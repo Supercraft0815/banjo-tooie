@@ -70,8 +70,11 @@ def load_config(root: Path):
             if k not in cfg:
                 raise HarnessError(f"Unknown configuration key: {k}")
             cfg[k] = {**cfg[k], **v} if isinstance(v, dict) else v
-    if cfg["concurrency"] != 1:
-        raise HarnessError("Only concurrency=1 is supported; no unsafe shared workers.")
+    if type(cfg['concurrency']) is not int or cfg['concurrency'] not in (1, 2):
+        raise HarnessError('concurrency must be 1 or 2 (isolated workers)')
+    for k in ('local_patterns', 'claude_enabled'):
+        if type(cfg[k]) is not bool:
+            raise HarnessError(f'{k} must be boolean')
     if cfg["build"]["backend"] not in ("native", "docker"):
         raise HarnessError("build.backend must be native or docker")
     for k in ("worker_timeout", "build_timeout", "context_chars", "max_attempts_per_function", "stagnation_window"):
@@ -89,12 +92,24 @@ def load_config(root: Path):
         raise HarnessError('Configured banjo_kazooie_repo does not exist')
     if not isinstance(cfg['routing'], list) or not cfg['routing']:
         raise HarnessError('routing must contain at least one stage')
-    for stage in cfg['routing']:
-        if not isinstance(stage, dict) or set(stage) != {'model', 'effort', 'attempts'}:
-            raise HarnessError('Each routing stage needs exactly model, effort and attempts')
-        if not isinstance(stage['model'], str) or not stage['model'] or not isinstance(stage['attempts'], int) or stage['attempts'] < 1 or stage['effort'] not in ('low', 'medium', 'high', 'xhigh'):
-            raise HarnessError('Invalid routing stage model, effort or attempts')
+    if type(cfg['easy_model'].get('enabled')) is not bool:
+        raise HarnessError('easy_model.enabled must be boolean')
+    for stage in [*cfg['routing'], cfg['easy_model']]:
+        validate_stage(stage, cfg['claude_enabled'])
     return cfg
+
+
+def validate_stage(stage, claude_enabled):
+    if not isinstance(stage, dict) or not {'model', 'effort', 'attempts'} <= set(stage) or set(stage) - {'model', 'effort', 'attempts', 'provider', 'enabled'}:
+        raise HarnessError('Each routing stage needs model, effort, attempts and an optional provider')
+    if not isinstance(stage['model'], str) or not stage['model'] or type(stage['attempts']) is not int or stage['attempts'] < 1 or stage['effort'] not in ('low', 'medium', 'high', 'xhigh'):
+        raise HarnessError('Invalid routing stage model, effort or attempts')
+    if stage.get('provider', 'codex') not in ('codex', 'claude'):
+        raise HarnessError('Only subscription CLI providers codex and claude are supported')
+    if stage.get('provider') == 'claude' and not claude_enabled:
+        raise HarnessError('Claude routing requires claude_enabled=true and a verified Claude Pro/Max login')
+    if stage.get('provider') == 'claude' and stage['effort'] == 'xhigh':
+        raise HarnessError('Claude effort must be low, medium or high; xhigh is a Codex setting')
 
 
 @contextlib.contextmanager

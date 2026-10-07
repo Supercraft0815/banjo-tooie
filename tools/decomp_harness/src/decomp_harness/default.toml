@@ -9,6 +9,15 @@ stagnation_window = 2
 minimum_gain = 0.5
 extra_attempts = 0
 probe_cache_hours = 24
+local_patterns = true
+claude_enabled = false
+
+[easy_model]
+enabled = true
+provider = "codex"
+model = "gpt-6-luna"
+effort = "low"
+attempts = 1
 
 [build]
 backend = "docker"

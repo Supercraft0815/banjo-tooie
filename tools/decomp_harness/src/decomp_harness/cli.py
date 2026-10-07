@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import argparse
-from collections import Counter
+from collections import Counter, defaultdict
 import json
 from pathlib import Path
 import shutil
@@ -10,14 +10,14 @@ import sys
 import time
 
 from .build import Builder, import_rom, snapshot, verify_rom
-from .codex import CodexRunner
 from .common import Control, HarnessError, atomic_write, command, git, load_config, locked, save_json
 from .context import context_pack
 from .guard import recover_publications
 from .scanner import scan
 from .scheduler import next_function, route
 from .state import State
-from .workflow import Loop, initialize_knowledge, probe_models
+from .workflow import Loop, initialize_knowledge, probe_models, configured_models, runner_for
+from .patterns import candidates
 
 
 def positive(value):
@@ -28,24 +28,30 @@ def positive(value):
 
 
 def parser():
-    cli = argparse.ArgumentParser(prog='decomp-agent', description='ChatGPT-only Codex matching harness (no API billing)')
+    cli = argparse.ArgumentParser(prog='decomp-agent', description='Subscription CLI matching harness; local patterns; no API-key billing')
     cli.add_argument('--repo', type=Path, help='Repository root (default: current Git repository)')
     sub = cli.add_subparsers(dest='command', required=True)
-    for name in ('init', 'doctor', 'scan', 'status', 'next', 'run', 'retry', 'inspect', 'verify', 'report', 'stop-after-current', 'knowledge'):
+    for name in ('init', 'doctor', 'scan', 'status', 'next', 'run', 'retry', 'inspect', 'verify', 'report', 'patterns', 'stop-after-current', 'knowledge'):
         p = sub.add_parser(name)
         p.add_argument('--json', action='store_true')
         if name in ('retry', 'inspect', 'verify'):
             p.add_argument('function')
         if name in ('run', 'next'):
             p.add_argument('--difficulty', choices=('easy', 'medium', 'hard', 'extreme'))
+        if name in ('run', 'next', 'doctor'):
             p.add_argument('--model', help='Explicit model override; never an automatic fallback')
+            p.add_argument('--provider', choices=('codex', 'claude'), help='Explicit subscription CLI backend (requires --model for run/next)')
         if name == 'run':
+            p.add_argument('--concurrency', type=int, choices=(1, 2), help='Isolated workers; validation and commits stay serialized')
+            local = p.add_mutually_exclusive_group()
+            local.add_argument('--local-only', action='store_true', help='Only deterministic/reused candidates; no CLI authentication or inference')
+            local.add_argument('--no-local', action='store_true', help='Skip local candidates, e.g. for a bounded model benchmark')
             p.add_argument('--max-functions', type=positive)
             p.add_argument('--max-attempts', type=positive, help='Maximum worker CLI launches across this invocation, including retries')
             p.add_argument('--max-runtime', type=positive, help='Wall clock limit in seconds, including builds and probes')
             p.add_argument('--function', help='Limit this run to one symbol or source::symbol')
             p.add_argument('--stop-after-current', action='store_true')
-            p.add_argument('--dry-run', action='store_true', help='Local plan only; never launches Codex or compiles')
+            p.add_argument('--dry-run', action='store_true', help='Local plan only; never launches model CLIs or compiles')
         if name == 'doctor':
             p.add_argument('--offline', action='store_true', help='No inference; mark live model checks skipped')
             p.add_argument('--no-build', action='store_true', help='Skip baseline build; report is incomplete')
@@ -62,19 +68,25 @@ def parser():
 
 def summary(state):
     statuses = dict(state.db.execute('SELECT status,count(*) FROM functions GROUP BY status'))
-    kinds = Counter(json.loads(r[0]).get('kind') for r in state.db.execute('SELECT features FROM functions WHERE present=1'))
-    models = [dict(r) for r in state.db.execute('''SELECT model,kind,count(*) AS runs,
+    kinds = Counter(json.loads(r[0]).get('kind') for r in state.db.execute("SELECT features FROM functions WHERE present=1 AND status!='matched'"))
+    models = [dict(r) for r in state.db.execute('''SELECT provider,model,kind,count(*) AS runs,
         round(sum(ended-started),2) AS seconds, sum(outcome='matched') AS matches
-        FROM runs GROUP BY model,kind''')]
-    usage = Counter()
-    for row in state.db.execute('SELECT usage FROM runs WHERE usage IS NOT NULL'):
-        usage.update({k: v for k, v in json.loads(row[0]).items() if isinstance(v, (int, float))})
+        FROM runs GROUP BY provider,model,kind''')]
+    usage, grouped_usage = Counter(), defaultdict(Counter)
+    for row in state.db.execute('SELECT provider,model,kind,usage FROM runs WHERE usage IS NOT NULL'):
+        values = {k: v for k, v in json.loads(row['usage']).items() if isinstance(v, (int, float))}
+        usage.update(values)
+        grouped_usage[row['provider'], row['model'], row['kind']].update(values)
+    for group in models:
+        group['reported_usage'] = dict(grouped_usage[group['provider'], group['model'], group['kind']])
     workers = state.db.execute("SELECT count(*) FROM runs WHERE kind='worker'").fetchone()[0]
-    matched = statuses.get('matched', 0)
+    matched = state.db.execute("SELECT count(*) FROM runs WHERE kind='worker' AND outcome='matched'").fetchone()[0]
+    local = state.db.execute("SELECT count(*) FROM runs WHERE kind='local' AND outcome='matched'").fetchone()[0]
     return {'open_functions': kinds.get('function', 0), 'data_directives': kinds.get('data', 0),
             'statuses': statuses, 'runs': models, 'reported_usage': dict(usage),
             'matched_functions_per_worker_run': matched/workers if workers else 0,
-            'state_schema': 1}
+            'local_matches': local, 'learned_patterns': state.db.execute('SELECT count(*) FROM patterns').fetchone()[0],
+            'state_schema': 2}
 
 
 def doctor(root, state, config, control, args):
@@ -94,7 +106,14 @@ def doctor(root, state, config, control, args):
     check('git', lambda: {'branch': git(root, 'symbolic-ref', '--short', 'HEAD'), 'status': git(root, 'status', '--short')})
     check('rom', lambda: verify_rom(root))
     check('decompressed-rom', lambda: verify_rom(root, True))
-    check('codex-auth', lambda: CodexRunner().authenticate())
+    models = configured_models(config)
+    if args.model:
+        models = [{'model': args.model, 'effort': 'low', 'provider': args.provider or 'codex'}]
+    elif args.provider:
+        models = [m for m in models if m.get('provider', 'codex') == args.provider]
+    providers = {args.provider} if args.provider else {m.get('provider', 'codex') for m in models}
+    for provider in sorted(providers):
+        check(provider+'-auth', lambda provider=provider: runner_for(provider).authenticate())
     builder = Builder(root, config, control)
     check('dependencies', lambda: builder.dependencies(root/'.decomp-agent/logs/doctor-dependencies.log'))
     check('compiler', lambda: builder.invoke(['sh', '-c', 'test -x tools/ido/cc && mips-linux-gnu-gcc --version && mips-linux-gnu-objdump --version && make --version'], root/'.decomp-agent/logs/doctor-compiler.log') == 0)
@@ -108,9 +127,9 @@ def doctor(root, state, config, control, args):
     else:
         check('baseline', lambda: builder.regression(root/'.decomp-agent/logs/doctor-baseline.log'))
     if args.offline:
-        checks.append({'check': 'models', 'status': 'skipped', 'detail': 'Offline: no Codex inference'})
+        checks.append({'check': 'models', 'status': 'skipped', 'detail': 'Offline: no CLI inference'})
     elif not any(c['status'] == 'error' for c in checks):
-        check('models', lambda: probe_models(root, state, config, control, [r['model'] for r in config['routing']], args.refresh_models, live_first=True)[1])
+        check('models', lambda: probe_models(root, state, config, control, models, args.refresh_models, live_first=True)[1])
     else:
         checks.append({'check': 'models', 'status': 'skipped', 'detail': 'Resolve prerequisite failures before consuming usage'})
     report = {'ok': not any(c['status'] == 'error' for c in checks),
@@ -157,9 +176,13 @@ def dry_run(root, state, config, args):
         pack = context_pack(root, f, state, config) if (root/f['asm']).exists() else 'Run init --setup to generate ASM'
         path = root/'.decomp-agent/context'/f'dry-{len(choices)+1}.txt'
         atomic_write(path, pack)
+        local = list(candidates(root, f, state)) if config['local_patterns'] and not args.no_local and (root/f['asm']).exists() else []
+        if args.provider:
+            model['provider'] = args.provider
         choices.append({'function': f['id'], 'difficulty': f['difficulty'], 'bytes': f['size'],
+                        'local_candidates': len(local), 'local_only': args.local_only,
                         'stage': stage, **model, 'context_chars': len(pack), 'context': str(path)})
-    return {'dry_run': True, 'codex_runs': 0, 'plan': choices}
+    return {'dry_run': True, 'codex_runs': 0, 'model_runs': 0, 'concurrency': config['concurrency'], 'plan': choices}
 
 
 def verify(root, state, config, control, function):
@@ -175,6 +198,17 @@ def verify(root, state, config, control, function):
                 'exact_match': ok and implemented, 'status': f['status'], 'log': str(log)}
     finally:
         shutil.rmtree(work)
+
+
+def pattern_report(root, state):
+    found = []
+    for row in state.db.execute("SELECT * FROM functions WHERE present=1 AND status!='matched' AND json_extract(features,'$.kind')='function'"):
+        f = dict(row)
+        if (root/f['asm']).exists():
+            choices = list(candidates(root, f, state))
+            if choices:
+                found.append({'function': f['id'], 'candidates': len(choices), 'origins': [c[0] for c in choices]})
+    return {'candidate_functions': len(found), 'sample': found[:20], 'model_runs': 0, 'compiled': False}
 
 
 def dispatch(root, state, config, control, args):
@@ -197,14 +231,20 @@ def dispatch(root, state, config, control, args):
         if not f:
             return {'next': None}
         stage, model = route(f, config, args.model)
+        if args.provider:
+            model['provider'] = args.provider
         return {'next': f['id'], 'difficulty': f['difficulty'], 'size': f['size'], 'stage': stage, **model}
+    if args.command == 'patterns':
+        return pattern_report(root, state)
     if args.command == 'run':
         return dry_run(root, state, config, args) if args.dry_run else Loop(root, state, config, control, args).run()
     if args.command == 'retry':
         f = state.get(args.function)
         if f['status'] == 'matched':
             raise HarnessError('Matched functions cannot be retried; use verify')
-        state.transition(f['id'], 'pending', stage=-1, stage_attempts=0, cycle_attempts=0, last_error=None)
+        state.transition(f['id'], 'pending', stage=-1, stage_attempts=0, cycle_attempts=0, initial_done=0, last_error=None)
+        with state.db:
+            state.db.execute('DELETE FROM local_trials WHERE function_id=?', (f['id'],))
         return {'pending': f['id'], 'best_attempt_retained': bool(f['best_source'])}
     if args.command == 'inspect':
         f = state.get(args.function)
@@ -228,14 +268,20 @@ def main(argv=None):
         if not (root/'baserom.us.yaml').exists():
             raise HarnessError('This does not appear to be the Banjo-Tooie repository')
         config = load_config(root)
+        if getattr(args, 'concurrency', None) is not None:
+            config['concurrency'] = args.concurrency
+        if args.command in ('run', 'next') and args.provider and not args.model:
+            raise HarnessError('--provider requires an explicit --model')
+        if args.command == 'run' and args.local_only and not config['local_patterns']:
+            raise HarnessError('--local-only requires local_patterns=true')
         state_dir = root/'.decomp-agent'
         if args.command == 'stop-after-current':
             atomic_write(state_dir/'stop-after-current', 'stop\n')
-            print('Stop requested: current function may finish; no next function will start.')
+            print('Stop requested: active functions may finish; no next function will start.')
             return 0
         # Read-only commands use WAL without taking the scheduler lock.
         from contextlib import nullcontext
-        readonly = args.command in ('status', 'report', 'inspect', 'next')
+        readonly = args.command in ('status', 'report', 'inspect', 'next', 'patterns')
         with nullcontext() if readonly else locked(state_dir):
             state = State(state_dir/'state.db')
             result = dispatch(root, state, config, control, args)

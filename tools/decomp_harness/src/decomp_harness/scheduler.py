@@ -1,16 +1,25 @@
 from .common import HarnessError
 
 
-def next_function(state, difficulty=None, excluded=()):
+def next_function(state, difficulty=None, excluded=(), busy=()):
     rows = state.db.execute("""SELECT * FROM functions WHERE status='pending' AND present=1
         ORDER BY CASE difficulty WHEN 'easy' THEN 0 WHEN 'medium' THEN 1 WHEN 'hard' THEN 2 ELSE 3 END,
         CASE WHEN best_source IS NOT NULL THEN 0 ELSE 1 END, size, id""").fetchall()
-    return next((dict(r) for r in rows if (not difficulty or r['difficulty'] == difficulty) and r['id'] not in excluded), None)
+    return next((dict(r) for r in rows if (not difficulty or r['difficulty'] == difficulty)
+                 and r['id'] not in excluded and not resources(r) & set(busy)), None)
+
+
+def resources(function):
+    import json
+    return {function['source'], function['symbol'], *json.loads(function['dependencies'])}
 
 
 def route(function, config, model=None):
     stages = config['routing']
     stage = function['stage']
+    if (function['difficulty'] == 'easy' and config['easy_model']['enabled']
+            and not function.get('initial_done', 0) and (stage == -2 or function['cycle_attempts'] == 0) and not model):
+        return -2, dict(config['easy_model'])
     if stage < 0:
         stage = min({'easy': 0, 'medium': 1, 'hard': 2, 'extreme': 3}[function['difficulty']], len(stages)-1)
     if stage >= len(stages):
@@ -21,6 +30,10 @@ def route(function, config, model=None):
 def advance(function, history, config, stage):
     used = function['stage_attempts'] + 1
     total = function['cycle_attempts'] + 1
+    if stage == -2:
+        if used < config['easy_model']['attempts']:
+            return -2, used, total, total >= config['max_attempts_per_function']
+        return 0, 0, total, total >= config['max_attempts_per_function']
     scores = [h['score'] for h in history if h['score'] is not None]
     window = config['stagnation_window']
     stagnant = len(scores) > window and max(scores[-window:]) - scores[-window-1] < config['minimum_gain']

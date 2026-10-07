@@ -15,7 +15,7 @@ import unittest
 from unittest.mock import patch
 
 from decomp_harness.build import import_rom
-from decomp_harness.cli import dry_run, parser
+from decomp_harness.cli import dry_run, parser, summary
 from decomp_harness.codex import CodexRunner, Redactor, Result, check_auth_document, clean_environment, parse_events
 from decomp_harness.context import asm_analogues
 from decomp_harness.common import Control, HarnessError, atomic_write, load_config, locked
@@ -162,7 +162,7 @@ class SchedulerTests(Fixture):
     def test_selection_and_difficulty_route(self):
         self.assertEqual(next_function(self.state)['id'], self.function['id'])
         self.assertIsNone(next_function(self.state, 'hard'))
-        self.assertEqual(route(self.function, self.cfg)[1]['effort'], 'medium')
+        self.assertEqual(route(self.function, self.cfg)[1]['model'], 'gpt-6-luna')
         hard = {**self.function, 'difficulty': 'hard'}
         self.assertEqual(route(hard, self.cfg)[1]['model'], 'gpt-6-astra')
 
@@ -334,6 +334,8 @@ class GuardTests(Fixture):
 class LoopTests(Fixture):
     def setUp(self):
         super().setUp()
+        self.cfg['local_patterns'] = False
+        self.cfg['easy_model']['enabled'] = False
         self.git = GuardTests.setup_git(self)
         for name in ('include', 'lib/ultralib/include'):
             (self.root/name).mkdir(parents=True)
@@ -426,6 +428,34 @@ class LoopTests(Fixture):
         run = self.state.history(self.function['id'])[0]
         self.assertTrue((self.root/'.decomp-agent/runs'/run['id']/'source-after.c').exists())
 
+    def test_guarded_interrupted_edit_resumes_without_second_model_call(self):
+        self.outcomes = ['interrupted']
+        with self.assertRaises(HarnessError):
+            self.process()
+        self.process()
+        self.assertEqual(self.state.get('target')['status'], 'matched')
+        self.assertEqual(len(self.invocations), 1)
+
+    def test_hard_crash_candidate_recovered_from_private_worker(self):
+        from decomp_harness.workflow import recover_candidates
+        from decomp_harness.guard import worker_copy, dispose_worker
+        from decomp_harness.common import save_json
+        worker = worker_copy(self.work, self.function, worktree=True)
+        try:
+            directory = self.root/'.decomp-agent/runs/crash-test'
+            directory.mkdir(parents=True)
+            save_json(directory/'worker-before.json', manifest(worker))
+            (worker/self.function['source']).write_text(CANDIDATE)
+            self.state.update(self.function['id'], base_sha=hashlib.sha256(SOURCE.encode()).hexdigest())
+            self.state.start_run(self.function['id'], 'worker', 'sol', 'medium', directory, worker)
+            recover_candidates(self.root, self.state)
+            self.state.recover()
+            self.process()
+            self.assertEqual(self.state.get('target')['status'], 'matched')
+            self.assertEqual(self.invocations, [])
+        finally:
+            dispose_worker(worker)
+
     def test_crash_after_worker_resumes_without_new_inference(self):
         directory = self.root/'.decomp-agent/runs/recovery-test'; directory.mkdir(parents=True)
         (directory/'source-after.c').write_text(CANDIDATE)
@@ -435,6 +465,27 @@ class LoopTests(Fixture):
         self.process()
         self.assertEqual(self.state.get('target')['status'], 'matched')
         self.assertEqual(self.invocations, [])
+
+    def test_local_match_uses_no_runner_and_learns_pattern(self):
+        self.cfg['local_patterns'] = True
+        with patch('decomp_harness.workflow.runner_for', side_effect=AssertionError('No model')):
+            self.process()
+        self.assertEqual(self.state.get('target')['status'], 'matched')
+        self.assertEqual(self.loop.calls, 0)
+        self.assertEqual(summary(self.state)['open_functions'], 0)
+        self.assertEqual(summary(self.state)['local_matches'], 1)
+        self.assertEqual(summary(self.state)['learned_patterns'], 1)
+
+    def test_local_only_failure_is_resumable_and_not_retried_forever(self):
+        self.cfg['local_patterns'] = True
+        self.allow_match = False
+        self.loop.args.local_only = True
+        with patch('decomp_harness.workflow.runner_for', side_effect=AssertionError('No model')):
+            self.process()
+            self.process()
+        self.assertEqual(self.state.get('target')['status'], 'pending')
+        self.assertEqual(self.state.db.execute("SELECT count(*) FROM runs WHERE kind='local'").fetchone()[0], 1)
+        self.assertEqual(self.state.get('target')['attempts'], 0)
 
 
 if __name__ == '__main__':

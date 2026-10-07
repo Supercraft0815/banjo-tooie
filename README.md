@@ -29,7 +29,7 @@
 
 ## Autonomous matching harness
 
-The [decompilation harness](tools/decomp_harness/README.md) runs isolated Codex CLI
+The [decompilation harness](tools/decomp_harness/README.md) tries local C patterns before starting isolated Codex CLI
 workers with ChatGPT authentication, persists progress in SQLite, and accepts a
 match only after a complete ROM comparison. Start with `./decomp-agent doctor`,
 `./decomp-agent scan`, and `./decomp-agent run --dry-run`.

@@ -20,10 +20,14 @@ REQUIRED_FLAGS = ('--json', '--output-schema', '--output-last-message', '--ignor
                   '--ignore-rules', '--ephemeral', '--sandbox', '--skip-git-repo-check')
 
 
-def clean_environment(environ=None):
+def clean_environment(environ=None, provider='codex'):
+    if provider not in ('codex', 'claude'):
+        raise HarnessError('Unknown credential provider')
     original = os.environ if environ is None else environ
-    env = {k: v for k, v in original.items() if k in SAFE_ENV}
-    env['CODEX_HOME'] = str(Path(original.get('CODEX_HOME', str(Path(env.get('HOME', '~')).expanduser() / '.codex'))).resolve())
+    allowed = SAFE_ENV if provider == 'codex' else SAFE_ENV - {'CODEX_CA_CERTIFICATE'}
+    env = {k: v for k, v in original.items() if k in allowed}
+    key = 'CODEX_HOME' if provider == 'codex' else 'CLAUDE_CONFIG_DIR'
+    env[key] = str(Path(original.get(key, str(Path(env.get('HOME', '~')).expanduser() / ('.'+provider)))).resolve())
     return env
 
 
@@ -106,11 +110,13 @@ def parse_events(text: str, exit_code: int, last_message='', interrupted=False, 
 
 
 class CodexRunner:
+    provider = 'codex'
+    authentication_label = 'stored ChatGPT only'
     def __init__(self):
-        self.env = clean_environment()
-        self.executable = shutil.which('codex', path=self.env.get('PATH'))
+        self.env = clean_environment(provider=self.provider)
+        self.executable = shutil.which(self.provider, path=self.env.get('PATH'))
         if not self.executable:
-            raise HarnessError('codex not found in PATH; install/update the official Codex CLI and sign in with ChatGPT')
+            raise HarnessError(f'{self.provider} not found in PATH; install/update its official CLI and sign in with your subscription')
         self.redact = Redactor()
         self.version = ''
 
@@ -181,7 +187,7 @@ class CodexRunner:
         started_at = time.time()
         save_json(directory/'invocation.json', {'model': model, 'effort': effort, 'cwd': str(cwd),
                   'timeout': timeout, 'started': started_at, 'version': self.version,
-                  'authentication': 'stored ChatGPT only'})
+                  'authentication': self.authentication_label, 'provider': self.provider})
         log_overflow = threading.Event()
 
         def drain(stream, path):
@@ -228,7 +234,7 @@ class CodexRunner:
         message = self.redact(output.read_text()) if output.exists() else ''
         if output.exists():
             output.write_text(message)
-        result = parse_events((directory/'stdout.jsonl').read_text(), p.returncode, message, interrupted, timed_out)
+        result = self.parse_output((directory/'stdout.jsonl').read_text(), p.returncode, message, interrupted, timed_out)
         stderr = (directory/'stderr.txt').read_text()
         if result.outcome == 'technical_error' and stderr:
             detail = parse_events(json.dumps({'type': 'error', 'message': stderr[-3000:]}), p.returncode)
@@ -241,3 +247,5 @@ class CodexRunner:
         save_json(directory/'timing.json', {'started': started_at, 'ended': time.time(), 'duration': result.duration})
         save_json(directory/'result.json', {k: v for k, v in vars(result).items() if k != 'events'})
         return result
+
+    parse_output = staticmethod(parse_events)

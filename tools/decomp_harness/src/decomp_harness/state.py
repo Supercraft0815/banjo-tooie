@@ -29,7 +29,7 @@ class State:
         self.db.execute('PRAGMA foreign_keys=ON')
         self.db.execute('PRAGMA synchronous=FULL')
         version = self.db.execute('PRAGMA user_version').fetchone()[0]
-        if version not in (0, 1):
+        if version not in (0, 1, 2):
             raise HarnessError(f"Unsupported state schema {version}; do not overwrite it")
         self.db.executescript('''
             CREATE TABLE IF NOT EXISTS functions (
@@ -56,8 +56,20 @@ class State:
             CREATE TABLE IF NOT EXISTS publication (
               function_id TEXT PRIMARY KEY REFERENCES functions(id), source TEXT NOT NULL,
               before BLOB NOT NULL, after BLOB NOT NULL, head TEXT NOT NULL, created REAL NOT NULL);
-            PRAGMA user_version=1;
+            CREATE TABLE IF NOT EXISTS patterns (
+              asm_key TEXT, replacement TEXT, origin TEXT NOT NULL, created REAL NOT NULL,
+              PRIMARY KEY(asm_key,replacement));
+            CREATE TABLE IF NOT EXISTS local_trials (
+              function_id TEXT REFERENCES functions(id), candidate_sha TEXT, outcome TEXT,
+              PRIMARY KEY(function_id,candidate_sha));
         ''')
+        columns = {r[1] for r in self.db.execute('PRAGMA table_info(functions)')}
+        if 'initial_done' not in columns:
+            self.db.execute('ALTER TABLE functions ADD COLUMN initial_done INTEGER NOT NULL DEFAULT 0')
+        if 'provider' not in {r[1] for r in self.db.execute('PRAGMA table_info(runs)')}:
+            self.db.execute("ALTER TABLE runs ADD COLUMN provider TEXT NOT NULL DEFAULT 'codex'")
+        self.db.execute('PRAGMA user_version=2')
+        self.db.commit()
 
     def close(self):
         self.db.close()
@@ -109,7 +121,7 @@ class State:
         with self.db:
             self.db.execute('INSERT INTO runs(id,function_id,kind,model,effort,started,path,worker) VALUES (?,?,?,?,?,?,?,?)',
                             (run_id, identity, kind, model, effort, time.time(), str(directory), str(worker) if worker else None))
-            if identity:
+            if identity and kind == 'worker':
                 self.db.execute('UPDATE functions SET attempts=attempts+1,model=?,updated=? WHERE id=?', (model, time.time(), identity))
         return run_id
 

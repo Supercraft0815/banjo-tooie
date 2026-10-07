@@ -42,8 +42,10 @@ def repository_stamp(root):
             'rom': digest(root/'baserom.us.z64'), 'decompressed': digest(root/'decompressed.us.z64')}
 
 
-def worker_copy(root: Path, function, native=False):
-    target = Path(tempfile.mkdtemp(prefix='decomp-worker-')).resolve()
+def worker_copy(root: Path, function, native=False, worktree=False):
+    owner = Path(tempfile.mkdtemp(prefix='decomp-worker-')).resolve()
+    target = owner/'seed' if worktree else owner
+    target.mkdir(exist_ok=True)
     try:
         for directory in ('src', 'include', 'lib/ultralib/include'):
             shutil.copytree(root/directory, target/directory)
@@ -63,10 +65,34 @@ def worker_copy(root: Path, function, native=False):
                 shutil.copy2(root/name, path)
         (target/'build/us').mkdir(parents=True)
         (target/'.harness-worker').write_text(function['id'])
+        if worktree:
+            # Private Git database: workers never get a link to the user's .git.
+            git(target, 'init', '-q', '-b', 'isolated')
+            git(target, 'add', 'src', 'include', 'lib', 'asm', '.harness-worker')
+            git(target, '-c', 'user.name=Decomp Worker', '-c', 'user.email=worker@example.invalid',
+                '-c', 'core.hooksPath=/dev/null', '-c', 'commit.gpgsign=false', 'commit', '-qm', 'Isolated source snapshot')
+            checkout = owner/'checkout'
+            git(target, '-c', 'core.hooksPath=/dev/null', 'worktree', 'add', '--detach', str(checkout), 'HEAD')
+            # Native compiler tools are ignored/untracked, copy them separately.
+            for name in ('tools', 'Makefile', 'overlays.us.toml') if native else ():
+                if (target/name).is_dir():
+                    shutil.copytree(target/name, checkout/name)
+                elif (target/name).exists():
+                    shutil.copy2(target/name, checkout/name)
+            (owner/'.harness-private-worktree').write_text(function['id'])
+            (checkout/'build/us').mkdir(parents=True)
+            target = checkout
         return target
     except BaseException:
-        shutil.rmtree(target)
+        shutil.rmtree(owner)
         raise
+
+
+def dispose_worker(worker):
+    owner = worker.parent if worker.name == 'checkout' and (worker.parent/'.harness-private-worktree').is_file() else worker
+    if not owner.name.startswith('decomp-worker-'):
+        raise HarnessError('Refusing to clean an unowned worker directory')
+    shutil.rmtree(owner)
 
 
 def candidate_guard(original: str, candidate: str, symbol: str):
@@ -139,7 +165,7 @@ def publish(root, state, function, before: bytes, after: bytes):
         raise
     commit = git(root, 'rev-parse', 'HEAD')
     with state.db:
-        state.db.execute("UPDATE functions SET status='matched',commit_sha=?,best_score=100,last_error=NULL WHERE id=?", (commit, function['id']))
+        state.db.execute("UPDATE functions SET status='matched',present=0,commit_sha=?,best_score=100,last_error=NULL WHERE id=?", (commit, function['id']))
         state.db.execute('DELETE FROM publication WHERE function_id=?', (function['id'],))
     return commit
 

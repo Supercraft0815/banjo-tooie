@@ -1,8 +1,9 @@
 # Banjo-Tooie Decompilation Harness
 
-Lokaler, fortsetzbarer Matching-Loop mit Python 3.11+, SQLite und **ausschließlich
-`codex exec` mit gespeicherter ChatGPT-Anmeldung**. Keine OpenAI-SDKs, keine eigenen
-Inference-HTTP-Requests, kein API-Key-Fallback. Ein Worker bearbeitet eine Funktion.
+Lokaler, fortsetzbarer Matching-Loop mit Python 3.11+, SQLite und standardmäßig
+**`codex exec` mit gespeicherter ChatGPT-Anmeldung**. Ein optionaler Claude-Code-Runner
+erfordert eine separat bestätigte Pro-/Max-Anmeldung. Keine Inference-SDKs, keine
+eigenen Inference-HTTP-Requests, kein API-Key-Fallback. Ein Worker bearbeitet eine Funktion.
 Ein Match benötigt einen unabhängig geprüften, vollständigen ROM-Vergleich.
 
 ## Installation
@@ -102,6 +103,7 @@ decomp-agent doctor
 decomp-agent scan
 decomp-agent status
 decomp-agent next
+decomp-agent patterns
 decomp-agent run --dry-run --max-functions 10
 decomp-agent run --max-functions 10
 ```
@@ -122,25 +124,30 @@ wird blockiert. Der Scanner meldet Funktionszahl und Datenimporte getrennt.
 
 1. Der Scheduler wählt offene Funktionen nach lokaler Schwierigkeit und Größe.
 2. Ein frischer separater Build-Snapshot muss zuerst vollständig `make check` bestehen.
-3. Ein kleiner Context Pack enthält Target-ASM, Nachbarcode, Symbol-/Prototyp-Hits,
-   relevante Kenntnisse, bisherigen Score, letzte Patches und Compiler-Diffs.
-4. Codex arbeitet in einer separaten temporären Quellkopie, mit eigenem Prozess,
+3. Zuerst werden lokal erkannte Getter, Setter, Konstanten und leere Funktionen sowie
+   bereits bestätigte C-Lösungen für identische Instruktionsmuster versucht. Dafür
+   startet kein Modell. Fehlgeschlagene lokale Kandidaten werden persistent markiert.
+4. Ein kleiner Context Pack enthält Target-ASM, die genaue zu ersetzende Direktive,
+   tatsächliche primitive Typdefinitionen, knappen Nachbarcode, Symbol-/Prototyp-Hits,
+   relevante Kenntnisse, bisherigen Score und letzte Compiler-Diffs. Der Worker soll
+   diese Angaben direkt verwenden und nur fehlende Fakten gezielt nachlesen.
+5. Codex arbeitet in einer separaten temporären Quellkopie, mit eigenem Prozess,
    deaktiviertem Netzwerk für Werkzeuge und `workspace-write`-Sandbox ohne Freigaben.
    Persönliche Plugins, Skills, Erinnerungen und Subagenten werden nicht geladen.
-5. Der Harness prüft alle Dateien dieser Kopie. Ausschließlich der Austausch der
+6. Der Harness prüft alle Dateien dieser Kopie. Ausschließlich der Austausch der
    Target-Direktive durch eine C-Funktion ist erlaubt. Hilfsdeklarationen müssen
    innerhalb dieser Funktion liegen. ASM-/Präprozessor-Umgehungen werden abgewiesen.
-6. Nur die geprüfte C-Datei gelangt in den vertrauenswürdigen Build-Snapshot. Dessen
+7. Nur die geprüfte C-Datei gelangt in den vertrauenswürdigen Build-Snapshot. Dessen
    Original-Buildtools kompilieren das zugehörige `.c.o` neu.
-7. `mips-linux-gnu-objdump -drz --disassemble=SYMBOL` liefert den Instruktionsvergleich
+8. `mips-linux-gnu-objdump -drz --disassemble=SYMBOL` liefert den Instruktionsvergleich
    gegen das Objekt des zuvor exakt passenden Baselines. Adressen werden normalisiert;
    Operanden, Register, Immediates und Relokationsnamen bleiben im Vergleich.
-8. Ein deterministischer Sequenzvergleich liefert Score, Zahl verschiedener
+9. Ein deterministischer Sequenzvergleich liefert Score, Zahl verschiedener
    Instruktionen, erste/letzte Diffs und Verbesserung. **100 Punkte allein reichen
    niemals.** `make check` und ein unabhängiger SHA-1 über die vollständige gelinkte,
    dekomprimierte ROM sind die endgültige Freigabe, einschließlich rodata, Padding,
    Overlays und bereits gematchtem Code.
-9. Erst dann übernimmt der Harness die C-Datei und erstellt atomar
+10. Erst dann übernimmt der Harness die C-Datei und erstellt atomar
    `decomp: match SYMBOL` mit Funktions-ID im Commit. Es gibt keinen Push-Codepfad.
 
 `diff.py` bleibt unverändert nutzbar. Dessen Objektmodus setzt ein passendes
@@ -162,7 +169,7 @@ auf einem eingerichteten nativen Linux-System darf der Worker selbst das Objekt 
 ## Pausieren/Fortsetzen
 
 ```sh
-# In einem zweiten Terminal: laufende Funktion abschließen, dann stoppen
+# In einem zweiten Terminal: aktive Funktionen abschließen, dann stoppen
 decomp-agent stop-after-current
 
 # Oder direkt genau eine Funktion bearbeiten
@@ -172,13 +179,15 @@ decomp-agent run --stop-after-current
 decomp-agent run
 ```
 
-Ctrl+C/SIGTERM beendet die aktive Prozessgruppe und stoppt den Lauf. SQLite verwendet
+Ctrl+C/SIGTERM beendet die aktiven Prozessgruppen und stoppt den Lauf. SQLite verwendet
 WAL und FULL-Synchronisierung. Hängengebliebene aktive Zustände werden beim Neustart
-auf `pending` zurückgesetzt; nur eindeutig identifizierte verwaiste Codex-Prozesse
+auf `pending` zurückgesetzt; nur eindeutig identifizierte verwaiste CLI-Prozesse
 werden beendet. Ein Publikationsjournal unterscheidet Abstürze vor und nach dem
 Git-Commit. Konflikte mit zwischenzeitlichen Nutzeränderungen benötigen Review.
 Ein vollständig gespeicherter, noch nicht ausgewerteter Kandidat wird zunächst ohne
-neuen Modellaufruf erneut validiert. Bestes C, Erkenntnisse und Versuchshistorie
+neuen Modellaufruf erneut validiert. Auch ein beim Abbruch geschriebenes C wird nach
+Prüfung des gespeicherten Dateimanifests und der Basis-/Kandidaten-Hashes wiederverwendet.
+Bestes C, Erkenntnisse und Versuchshistorie
 leben auf Platte. Teilweise Worker-Ausgaben bleiben im Run-Ordner.
 
 ```sh
@@ -187,7 +196,7 @@ decomp-agent verify func_8001E7E0
 decomp-agent retry SYMBOL
 ```
 
-`retry` setzt Eskalation/Zyklusbudget zurück und erhält den besten Versuch.
+`retry` setzt Eskalation/Zyklusbudget und lokale Fehlversuchsmarken zurück und erhält den besten Versuch.
 `verify` baut einen frischen Snapshot und prüft die vollständige ROM. Eine entfernte
 Direktive allein wird nie nachträglich als erfolgreicher Match verbucht.
 Die Zustände sind `pending`, `analyzing`, `attempting`, `improving`, `matched`, `blocked`,
@@ -201,18 +210,127 @@ werden verwendet. Default:
 
 | Stufe | Modell | Reasoning | Versuche |
 |---|---|---|---:|
+| Easy-Einstieg | `gpt-6-luna` | low | 1 |
 | 1 | `gpt-6.1-sol` | medium | 2 |
 | 2 | `gpt-6.1-sol` | high | 2 |
 | 3 | `gpt-6-astra` | high | 2 |
 | 4 | `gpt-6-astra` | xhigh | 2 |
 
-Easy startet bei 1, medium bei 2, hard bei 3, extreme bei 4. Die lokale Schätzung
+Easy startet mit Luna, danach bei 1; medium bei 2, hard bei 3, extreme bei 4.
+Luna ist ein begrenzter Versuch für einfache Fälle, keine Bewertung schwieriger
+Decompilation anhand eines einzelnen Tests. Lokale Muster haben Vorrang vor Modellen.
+Das gesamte persistente Zyklusbudget bleibt standardmäßig **8 Modellversuche**;
+mit einem Luna-Versuch bleibt deshalb maximal ein Astra/xhigh-Versuch übrig.
+Die lokale Schätzung
 berücksichtigt Instruktionen, Branches, Calls, FPU, indirekte Sprünge und Switches;
 Stack, Speicherzugriffe und Globals werden zusätzlich erfasst. Nach einer Stufe
 oder einem konfigurierten Stagnationsfenster wird eskaliert. Am Ende wird blockiert.
 `extra_attempts = 0` verhindert standardmäßig Verlängerungen. Ein explizit höherer
 Wert erlaubt zusätzliche Versuche nur bei ausreichendem Scoregewinn.
 `--model NAME` überschreibt die Modellwahl bewusst für diesen Lauf, nicht das Budget.
+Ein nicht verfügbares Modell führt zum Abbruch. Die Sol-Eskalation erfolgt nach einem
+gültigen, aber nicht passenden C-Versuch, niemals als versteckter Auth-/Provider-Fallback.
+
+```toml
+# .decomp-agent/config.toml; fehlende neue Schlüssel erhalten ihre Defaults.
+[easy_model]
+enabled = true
+provider = "codex"
+model = "gpt-6-luna"
+effort = "low"
+attempts = 1
+```
+
+`enabled = false` stellt den bisherigen Sol-Einstieg wieder her. Die Datenbank wird
+automatisch migriert; vorhandene Matches, Versuche und Commits bleiben erhalten.
+
+## Lokale Muster und Token-Ersparnis
+
+```sh
+decomp-agent patterns
+decomp-agent run --local-only --max-functions 100 --max-runtime 3600
+```
+
+`patterns` zeigt Kandidaten, **keine bereits bestätigten Matches**. `--local-only`
+benötigt keine CLI-Anmeldung, keine Modellprobe und keine Inferenz. Die gleichen
+Source-Guards, Original-Compiler, vollständigen ROM-Prüfungen und atomaren Commits
+gelten auch hier. Gibt es keinen passenden Kandidaten, bleibt die Funktion `pending`.
+`--no-local` überspringt diese Stufe ausdrücklich, etwa für einen Modellvergleich.
+
+Bestätigte C-Lösungen werden in SQLite anhand ihrer Instruktionen und exakten Operanden
+wiederverwendet; nur der Target-Name wird normalisiert. Es wird keine ähnliche, aber
+ungeprüfte Lösung übernommen. Bei jedem neuen Ziel erfolgt erneut der vollständige
+Compiler-/ROM-Vergleich. Änderungen an ASM oder Quelldatei ermöglichen einen erneuten
+lokalen Versuch. `report` trennt Modell-Runs, lokale Matches und gelernte Muster.
+
+## Zwei parallele Worker
+
+```sh
+decomp-agent run --concurrency 2 --max-functions 100 --max-attempts 200 --max-runtime 14400
+```
+
+Frische Installationen bleiben bei `concurrency = 1`. Dauerhaft aktivieren lässt sich
+die zweite Spur mit `concurrency = 2` auf oberster Ebene der lokalen Konfiguration.
+Der Scheduler sperrt dieselbe Quelldatei und gemeinsame Funktionsabhängigkeiten.
+Jeder parallele Worker erhält einen eigenen Git-Worktree mit **privater Git-Datenbank**;
+es gibt keine Verbindung zum `.git` des Nutzer-Repositories. Logs sind pro Run getrennt.
+Die Modellarbeit kann sich überlappen. Build, vollständiger Regressionstest und Commit
+laufen unter einer gemeinsamen Sperre nacheinander; ein zweiter Match wird damit
+gegen die bereits integrierte erste Änderung geprüft. Der Baseline-Build läuft einmal
+pro Harness-Aufruf. Seine Logdatei wird beim Start ausgegeben.
+
+Funktions-, Versuchs- und Laufzeitbudgets gelten gemeinsam für beide Worker.
+Ein externer `stop-after-current` lässt bis zu zwei aktive Funktionen fertig werden.
+`run --stop-after-current` startet dagegen höchstens eine Funktion. Es darf nicht
+parallel ein zweiter Harness-Prozess auf dieselbe State-Datenbank gestartet werden.
+Zwei Worker sparen Wartezeit, nicht automatisch Kontingent; mehr als zwei werden
+bewusst abgewiesen. Ein langer Lauf amortisiert den frischen Baseline-Build.
+
+## Optional: Haiku über Claude Code
+
+Dieser Backend bleibt standardmäßig **deaktiviert**. Ein ChatGPT-Abo beinhaltet keine
+Claude-Nutzung. Erforderlich sind die separat installierte Claude Code CLI (getestete
+Flag-Oberfläche **2.1.292**) und eine aktive Claude-Pro-/Max-Anmeldung. Interaktiv
+`claude` starten und über `/login` das Claude-Konto wählen, nicht die API-Console.
+
+```toml
+# Auf oberster Ebene, vor [build] oder anderen Tabellen:
+claude_enabled = true
+
+# Ersetzt nur den einfachen Einstieg; Sol/Astra bleiben Codex-Stufen.
+[easy_model]
+enabled = true
+provider = "claude"
+model = "haiku"
+effort = "low"
+attempts = 1
+```
+
+`haiku` ist der von Claude Code aufgelöste Modellalias. Für eine feste Version den
+konkreten, für das eigene Konto freigeschalteten Modellnamen eintragen. Der Harness
+behauptet nicht, dass jeder Alias dauerhaft dieselbe Version bezeichnet. Vor Nutzung:
+
+```sh
+decomp-agent doctor --provider claude --model haiku
+```
+
+Der Runner verlangt maschinenlesbar `loggedIn=true`, `authMethod=claude.ai`,
+`apiProvider=firstParty` und `subscriptionType=pro|max`. Sonst **FAIL CLOSED**.
+Eine positive Anmeldung garantiert noch keine Modellverfügbarkeit; dies prüft die
+kleine echte Probe. Hier wurde keine angemeldete Haiku-Inferenz durchgeführt.
+
+Die erlaubte Prozessumgebung entfernt insbesondere `ANTHROPIC_API_KEY`, Auth-Token-
+Overrides, Provider-Endpunkte sowie Bedrock-/Vertex-/Foundry-Overrides. `--safe-mode`,
+leere `--setting-sources`, `forceLoginMethod=claudeai` und `--strict-mcp-config`
+unterbinden Konfigurations-/Hook-/MCP-Overrides. `--bare` wird ausdrücklich **nicht**
+benutzt: Dieser Modus deaktiviert laut installierter Hilfe die OAuth-Anmeldung.
+Worker nutzen `--restricted` mit ausschließlich `Read,Edit`; die Validierung führt
+der vertrauenswürdige Elternprozess aus. Weder Shell- noch Netz- oder Subagent-Tools
+sind freigeschaltet. Claude-Code-Runs haben dieselben Budgets, Guards und Logs.
+Es gibt keinen Wechsel auf API-Abrechnung und keinen automatischen Provider-Ersatz.
+
+Referenzen: [Claude-Code-Authentifizierung](https://code.claude.com/docs/en/authentication),
+[CLI-Referenz](https://code.claude.com/docs/en/cli-reference).
 
 ## Banjo-Kazooie-Referenz konfigurieren
 
@@ -235,7 +353,8 @@ menschlichen Prüfung; der Worker darf sie nicht stillschweigend global ändern.
 `.decomp-agent/` ist ignoriert und enthält:
 
 * `state.db`: Funktionen, Versuche, Kandidaten, Scores, Modellstufen, Knowledge Base,
-  Probe-Cache und Publikationsjournal. SQLite ist die primäre Datenquelle.
+  bestätigte C-Muster, lokale Fehlversuche, Probe-Cache und Publikationsjournal.
+  SQLite ist die primäre Datenquelle (Schema 2).
 * `runs/ID/`: Prompt, Metadaten, JSONL-Events, redigiertes stderr, letzte Antwort,
   Exitcode/Usage, Git-Fingerprints, C vorher/nachher, Source-Diff, Compiler-/Regressions-
   Output sowie erwartetes/tatsächliches ASM und `comparison.json`.
@@ -261,20 +380,25 @@ für spätere Funktionen wiederverwendet.
 
 ```sh
 decomp-agent run --difficulty easy --max-functions 10 --max-attempts 20 --max-runtime 3600
-decomp-agent run --max-functions 100 --max-attempts 200 --max-runtime 14400
+decomp-agent run --concurrency 2 --max-functions 100 --max-attempts 200 --max-runtime 14400
 ```
 
 `--max-attempts` begrenzt sämtliche Worker-CLI-Starts dieses Aufrufs, inklusive
 technischer Retries. Kleine Modell-Preflight-Probes werden separat protokolliert und
 gecacht. `max_attempts_per_function` begrenzt den persistierten Funktionszyklus über
 Neustarts hinweg. `--max-runtime` ist in Sekunden; Prozessbeendigung und sicheres
-Aufräumen können kurz darüber hinaus dauern. Es werden keine Funktionen parallel
-gestartet (`concurrency = 1`; andere Werte sind ausdrücklich abgewiesen).
+Aufräumen können kurz darüber hinaus dauern. Lokale Kandidaten zählen zum Funktions-,
+aber nicht zum Modellversuchsbudget. Probe-Runs sind in den Logs getrennt erkennbar.
 
-Die CLI-JSONL-Usage wird unverändert erfasst, soweit sie vorhanden ist; sie ist kein
+Die CLI-JSONL-Usage wird erfasst, soweit sie vorhanden ist; Claude-Eingabetokens
+werden einschließlich Cache-Lese-/Schreibtokens mit den Codex-Metriken vergleichbar
+zusammengezählt. Provider bleiben im Bericht getrennt. Usage ist kein
 verlässlicher Zähler des verbleibenden ChatGPT-Wochenkontingents. Zusätzlich werden
-Modell, Run-Zahl, Dauer und Erfolgsrate geführt. Für die offizielle verbleibende Usage
-Codex interaktiv starten und `/status` verwenden. Kein Scraping von UI-Ausgaben.
+Modell, Run-Zahl, Dauer und Erfolgsrate geführt. Gemeldete Tokens stehen außerdem
+je Provider, Modell und Run-Art im Bericht;
+die gesamte `reported_usage` ist kein gemeinsames Kontingent verschiedener Anbieter.
+Für die offizielle verbleibende Usage Codex interaktiv starten und `/status` verwenden.
+Kein Scraping von UI-Ausgaben.
 
 ## Tests
 
@@ -286,6 +410,8 @@ decomp-agent run --dry-run
 Die Tests laufen ohne ROM, Docker, Netzwerk oder echte Codex-Nutzung. Sie decken Parser,
 SQLite, Zustände/Resume, Scoring/Relokationen, Scheduler/Eskalation, Credential-Guard,
 JSONL/Usage, echte kontrollierte Fake-CLI-Prozesse, Timeout/Abbruch, Änderungsgrenzen,
-Publikations-Recovery und Erhalt fremder gestagter Änderungen ab.
+Publikations-Recovery und Erhalt fremder gestagter Änderungen ab. Hinzu kommen lokale
+Muster, Schema-Migration, Luna-Eskalation, Claude-Auth/JSONL, echte private Worktrees,
+zwei überlappende Fake-Worker, serielle Publikation und gemeinsame Budgets.
 
 Der praktische Test dieses Branches ist in [INTEGRATION.md](INTEGRATION.md) festgehalten.
