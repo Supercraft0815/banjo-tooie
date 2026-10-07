@@ -6,7 +6,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3CA10/func_80025224.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3CA10/func_80025668.s")
+s32 func_80025668(s32 *arg0) {
+    return arg0[3];
+}
 
 void func_80025670(void) {
 }
