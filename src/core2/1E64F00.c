@@ -63,7 +63,10 @@ s32 func_8008C0B8(void)
 	return 0x20;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008C0C0.s")
+s32 func_8008C0C0(s16 *arg0)
+{
+    return arg0[12];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008C0C8.s")
 
