@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+"""Repository-local entry point, also installable with pip/uv tool install."""
+from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent / "tools/decomp_harness/src"))
+from decomp_harness.cli import main
+raise SystemExit(main())

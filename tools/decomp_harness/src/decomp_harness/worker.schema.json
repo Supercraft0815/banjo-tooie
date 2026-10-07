@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "status": {"type": "string", "enum": ["candidate", "blocked"]},
+    "summary": {"type": "string"},
+    "knowledge": {"type": "array", "items": {"type": "string"}},
+    "blocker": {"type": "string"}
+  },
+  "required": ["status", "summary", "knowledge", "blocker"],
+  "additionalProperties": false
+}

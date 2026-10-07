@@ -26,3 +26,10 @@
 - Place a copy of Banjo Tooie NTSC-U (SHA1 = af1a89e12b638b8d82cc4c085c8e01d4cba03fb3) in this folder and name it `baserom.us.z64`.
 - Run `make setup` to decompress the rom and split it.
 - Run `make` (with an optional job count) to build the rom.
+
+## Autonomous matching harness
+
+The [decompilation harness](tools/decomp_harness/README.md) runs isolated Codex CLI
+workers with ChatGPT authentication, persists progress in SQLite, and accepts a
+match only after a complete ROM comparison. Start with `./decomp-agent doctor`,
+`./decomp-agent scan`, and `./decomp-agent run --dry-run`.
