@@ -135,7 +135,9 @@ s32 func_80111144(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_8011114C.s")
+s32 func_8011114C(void) {
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111154.s")
 
