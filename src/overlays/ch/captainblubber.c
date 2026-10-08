@@ -18,4 +18,9 @@ void func_808014C8_chcaptainblubber(Actor* arg0)
 {
     _suexpression_entrypoint_8(arg0, 1);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/captainblubber/chcaptainblubber_entrypoint_0.s")
+OSThread *chcaptainblubber_entrypoint_0(void)
+{
+    extern u8 D_8080176C_chcaptainblubber[];
+
+    return (OSThread *) D_8080176C_chcaptainblubber;
+}
