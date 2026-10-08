@@ -1,6 +1,8 @@
 #include "ch/doubloon.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doubloon/func_80800000_chdoubloon.s")
+void func_80800000_chdoubloon(void *arg0) {
+    (*(f32 *)((s8 *)(arg0) + (0x44))) = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doubloon/func_8080000C_chdoubloon.s")
 
