@@ -10,7 +10,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D2C54.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D2CC4.s")
+void func_800D2CC4(void) {
+    extern u8 D_8012B321;
+
+    D_8012B321 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D2CD0.s")
 
