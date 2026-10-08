@@ -10,7 +10,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_8080040C_chjigsawbitcont.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/chjigsawbitcont_entrypoint_0.s")
+OSThread *chjigsawbitcont_entrypoint_0(void)
+{
+    extern u8 D_808009B8_chjigsawbitcont[];
+
+    return (OSThread *) D_808009B8_chjigsawbitcont;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_80800570_chjigsawbitcont.s")
 
