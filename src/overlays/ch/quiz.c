@@ -204,4 +204,9 @@ OSThread *chquiz_entrypoint_3(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808064F4_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/chquiz_entrypoint_4.s")
+OSThread *chquiz_entrypoint_4(void)
+{
+    extern u8 D_80807684_chquiz[];
+
+    return (OSThread *) D_80807684_chquiz;
+}
