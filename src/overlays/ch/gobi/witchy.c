@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gobi/witchy/chgobiwitchy_entrypoint_0.s")
+OSThread *chgobiwitchy_entrypoint_0(void)
+{
+    extern u8 D_80800410_chgobiwitchy[];
+
+    return (OSThread *) D_80800410_chgobiwitchy;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gobi/witchy/func_8080000C_chgobiwitchy.s")
 
