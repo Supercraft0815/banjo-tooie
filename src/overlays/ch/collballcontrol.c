@@ -216,7 +216,12 @@ void func_80803208_chcollballcontrol(s32 arg0)
     func_80801764_chcollballcontrol(arg0,0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/chcollballcontrol_entrypoint_2.s")
+OSThread *chcollballcontrol_entrypoint_2(void)
+{
+    extern u8 D_80804F58_chcollballcontrol[];
+
+    return (OSThread *) D_80804F58_chcollballcontrol;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/chcollballcontrol_entrypoint_3.s")
 
