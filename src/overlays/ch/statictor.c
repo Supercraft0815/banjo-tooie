@@ -13,4 +13,9 @@ void func_808000E4_chstatictorch(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statictor/func_80800180_chstatictorch.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statictor/chstatictorch_entrypoint_0.s")
+OSThread *chstatictorch_entrypoint_0(void)
+{
+    extern u8 D_80800248_chstatictorch[];
+
+    return (OSThread *) D_80800248_chstatictorch;
+}
