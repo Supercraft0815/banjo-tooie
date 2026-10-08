@@ -7,7 +7,12 @@ OSThread *chghostdoor_entrypoint_0(void)
     return (OSThread *) D_80800220_chghostdoor;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/ghostdoor/chghostdoor_entrypoint_1.s")
+OSThread *chghostdoor_entrypoint_1(void)
+{
+    extern u8 D_80800268_chghostdoor[];
+
+    return (OSThread *) D_80800268_chghostdoor;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/ghostdoor/func_80800018_chghostdoor.s")
 
