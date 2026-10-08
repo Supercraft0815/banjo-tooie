@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/snakehead/chgoldsnakehead_entrypoint_0.s")
+OSThread *chgoldsnakehead_entrypoint_0(void)
+{
+    extern u8 D_80800508_chgoldsnakehead[];
+
+    return (OSThread *) D_80800508_chgoldsnakehead;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/snakehead/chgoldsnakehead_entrypoint_1.s")
 
