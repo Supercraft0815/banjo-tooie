@@ -14,7 +14,12 @@ OSThread *chvolcanobits_entrypoint_1(void)
     return (OSThread *) D_8080119C_chvolcanobits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/chvolcanobits_entrypoint_2.s")
+OSThread *chvolcanobits_entrypoint_2(void)
+{
+    extern u8 D_808011E4_chvolcanobits[];
+
+    return (OSThread *) D_808011E4_chvolcanobits;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/chvolcanobits_entrypoint_3.s")
 
