@@ -14,7 +14,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/fixpos/ncpodfixpos_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/fixpos/ncpodfixpos_entrypoint_5.s")
+void ncpodfixpos_entrypoint_5(s16 *arg0, s32 arg1) {
+    arg0[22] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/fixpos/func_808001A8_ncpodfixpos.s")
 
