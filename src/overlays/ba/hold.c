@@ -23,7 +23,9 @@ void bahold_entrypoint_4(s32 arg0)
     func_80800008_bahold(arg0,0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/hold/bahold_entrypoint_5.s")
+Unk80132ED0 *bahold_entrypoint_5(PlayerState *arg0) {
+    return (*(Unk80132ED0 **)((s8 *)(arg0->unk9C) + (8)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/hold/bahold_entrypoint_6.s")
 
