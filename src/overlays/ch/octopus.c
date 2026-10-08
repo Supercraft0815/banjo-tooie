@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/octopus/choctopus_entrypoint_0.s")
+OSThread *choctopus_entrypoint_0(void)
+{
+    extern u8 D_808008F4_choctopus[];
+
+    return (OSThread *) D_808008F4_choctopus;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/octopus/func_8080000C_choctopus.s")
 
