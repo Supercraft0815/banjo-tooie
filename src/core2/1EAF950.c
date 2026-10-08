@@ -66,7 +66,12 @@ void * func_800D7400(void) {
     return &D_8012BE70;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D740C.s")
+void func_800D740C(void)
+{
+    extern s32 D_8012BFFC;
+
+    D_8012BFFC = 0;
+}
 
 void func_800D7418()
 {
