@@ -1,6 +1,8 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/func_80800000_bsbbilldrill.s")
+void func_80800000_bsbbilldrill(void *arg0) {
+    *(u32 *)((u8 *)arg0 + 0x168) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/func_80800008_bsbbilldrill.s")
 
