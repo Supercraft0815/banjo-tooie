@@ -7,7 +7,12 @@ OSThread *chdinoboss_entrypoint_0(void)
     return (OSThread *) D_80802B40_chdinoboss;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/chdinoboss_entrypoint_1.s")
+OSThread *chdinoboss_entrypoint_1(void)
+{
+    extern u8 D_80802B88_chdinoboss[];
+
+    return (OSThread *) D_80802B88_chdinoboss;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80800018_chdinoboss.s")
 
