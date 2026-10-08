@@ -21,4 +21,9 @@ OSThread *chfantasylakebits_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/lakebits/func_8080073C_chfantasylakebits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/lakebits/chfantasylakebits_entrypoint_2.s")
+OSThread *chfantasylakebits_entrypoint_2(void)
+{
+    extern u8 D_80800AF0_chfantasylakebits[];
+
+    return (OSThread *) D_80800AF0_chfantasylakebits;
+}
