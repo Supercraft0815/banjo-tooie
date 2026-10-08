@@ -154,5 +154,8 @@ MAKEFLAGS += -r
 # Phony targets
 .PHONY: clean check setup distclean
 
+# Keep IDO optimization enabled for the large animation-sequence table.
+$(BUILD_ROOT)/src/overlays/in/antab.c.o: CFLAGS += -Olimit 3000
+
 # Debug variable print target
 print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true
