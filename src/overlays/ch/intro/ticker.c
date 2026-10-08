@@ -21,4 +21,9 @@ void func_808003BC_chintroticker(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/ticker/func_808005AC_chintroticker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/ticker/chintroticker_entrypoint_0.s")
+OSThread *chintroticker_entrypoint_0(void)
+{
+    extern u8 D_80800934_chintroticker[];
+
+    return (OSThread *) D_80800934_chintroticker;
+}
