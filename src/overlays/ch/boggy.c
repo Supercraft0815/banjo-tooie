@@ -21,4 +21,9 @@ OSThread *chboggy_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/func_80800634_chboggy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/chboggy_entrypoint_1.s")
+OSThread *chboggy_entrypoint_1(void)
+{
+    extern u8 D_80800888_chboggy[];
+
+    return (OSThread *) D_80800888_chboggy;
+}
