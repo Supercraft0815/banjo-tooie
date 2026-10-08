@@ -10,7 +10,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/lakebits/func_80800570_chfantasylakebits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/lakebits/chfantasylakebits_entrypoint_1.s")
+OSThread *chfantasylakebits_entrypoint_1(void)
+{
+    extern u8 D_80800A30_chfantasylakebits[];
+
+    return (OSThread *) D_80800A30_chfantasylakebits;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/lakebits/func_808006F4_chfantasylakebits.s")
 
