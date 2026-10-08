@@ -10,4 +10,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/wumbawigwam/func_80800FEC_chwumbawigwam.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/wumbawigwam/chwumbawigwam_entrypoint_0.s")
+OSThread *chwumbawigwam_entrypoint_0(void)
+{
+    extern u8 D_8080116C_chwumbawigwam[];
+
+    return (OSThread *) D_8080116C_chwumbawigwam;
+}
