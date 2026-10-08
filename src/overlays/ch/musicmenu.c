@@ -46,4 +46,9 @@ OSThread *chmusicmenu_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_808010C4_chmusicmenu.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/chmusicmenu_entrypoint_2.s")
+OSThread *chmusicmenu_entrypoint_2(void)
+{
+    extern u8 D_8080160C_chmusicmenu[];
+
+    return (OSThread *) D_8080160C_chmusicmenu;
+}
