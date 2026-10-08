@@ -2,7 +2,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/leaves/func_80800000_fxleaves.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/leaves/func_80800288_fxleaves.s")
+void func_80800288_fxleaves(s8 *arg0, s32 arg1) {
+    arg0[34] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/leaves/fxleaves_entrypoint_0.s")
 
