@@ -7,7 +7,12 @@ OSThread *chpoolkids_entrypoint_0(void)
     return (OSThread *) D_808013F0_chpoolkids;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/chpoolkids_entrypoint_1.s")
+OSThread *chpoolkids_entrypoint_1(void)
+{
+    extern u8 D_80801438_chpoolkids[];
+
+    return (OSThread *) D_80801438_chpoolkids;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/chpoolkids_entrypoint_2.s")
 
