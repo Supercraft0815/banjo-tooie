@@ -7,7 +7,12 @@ OSThread *chfireicestorm_entrypoint_0(void)
     return (OSThread *) D_80800EA8_chfireicestorm;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/chfireicestorm_entrypoint_1.s")
+OSThread *chfireicestorm_entrypoint_1(void)
+{
+    extern u8 D_80800EF0_chfireicestorm[];
+
+    return (OSThread *) D_80800EF0_chfireicestorm;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_80800018_chfireicestorm.s")
 
