@@ -41,7 +41,9 @@ u32 func_80092738(s32 *arg0) {
     return ((u8 *)arg0[20])[17];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092744.s")
+void func_80092744(s32 *arg0, s32 arg1) {
+    ((u8 *)arg0[20])[0x88] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092750.s")
 
