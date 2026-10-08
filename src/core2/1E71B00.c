@@ -28,7 +28,10 @@ s32 func_80098530()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E71B00/func_80098590.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E71B00/func_800985B8.s")
+f32 func_800985B8(f32 **arg0)
+{
+    return arg0[56][1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E71B00/func_800985C4.s")
 
