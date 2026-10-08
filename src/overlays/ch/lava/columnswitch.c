@@ -8,4 +8,9 @@ void func_8080003C_chlavacolumnswitch(s32 arg0)
     _chswitch_entrypoint_9(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/columnswitch/chlavacolumnswitch_entrypoint_0.s")
+OSThread *chlavacolumnswitch_entrypoint_0(void)
+{
+    extern u8 D_80800080_chlavacolumnswitch[];
+
+    return (OSThread *) D_80800080_chlavacolumnswitch;
+}
