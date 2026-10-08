@@ -8,7 +8,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weather/func_80800094_chweather.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weather/chweather_entrypoint_0.s")
+OSThread *chweather_entrypoint_0(void)
+{
+    extern u8 D_80800440_chweather[];
+
+    return (OSThread *) D_80800440_chweather;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weather/chweather_entrypoint_1.s")
 
