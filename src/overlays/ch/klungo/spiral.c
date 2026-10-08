@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/spiral/chklungospiral_entrypoint_0.s")
+OSThread *chklungospiral_entrypoint_0(void)
+{
+    extern u8 D_80800620_chklungospiral[];
+
+    return (OSThread *) D_80800620_chklungospiral;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/spiral/func_8080000C_chklungospiral.s")
 
