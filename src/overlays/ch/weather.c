@@ -22,7 +22,12 @@ OSThread *chweather_entrypoint_1(void)
     return (OSThread *) D_80800488_chweather;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weather/chweather_entrypoint_2.s")
+OSThread *chweather_entrypoint_2(void)
+{
+    extern u8 D_808004D0_chweather[];
+
+    return (OSThread *) D_808004D0_chweather;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weather/chweather_entrypoint_3.s")
 
