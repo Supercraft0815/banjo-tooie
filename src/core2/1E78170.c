@@ -132,7 +132,9 @@ void func_8009EAD0(s32 arg0) {
     D_80127074 = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009EADC.s")
+void func_8009EADC(s32 arg0) {
+    *(s32 *)((u8 *)&D_80127080 + 0) = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009EAE8.s")
 
