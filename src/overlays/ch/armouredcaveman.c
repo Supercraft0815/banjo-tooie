@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/armouredcaveman/charmouredcaveman_entrypoint_0.s")
+OSThread *charmouredcaveman_entrypoint_0(void)
+{
+    extern u8 D_80800B20_charmouredcaveman[];
+
+    return (OSThread *) D_80800B20_charmouredcaveman;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/armouredcaveman/func_8080000C_charmouredcaveman.s")
 
