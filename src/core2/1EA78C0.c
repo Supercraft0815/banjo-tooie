@@ -66,7 +66,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CEF48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CEF6C.s")
+void func_800CEF6C(void) {
+    extern f32 D_8012B170;
+    D_8012B170 = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CEF7C.s")
 
