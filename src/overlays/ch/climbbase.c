@@ -15,4 +15,9 @@ OSThread *chclimbbase_entrypoint_0(void)
     return (OSThread *) D_808003D0_chclimbbase;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/climbbase/chclimbbase_entrypoint_1.s")
+OSThread *chclimbbase_entrypoint_1(void)
+{
+    extern u8 D_80800418_chclimbbase[];
+
+    return (OSThread *) D_80800418_chclimbbase;
+}
