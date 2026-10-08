@@ -7,7 +7,12 @@ OSThread *chcactusofstrength_entrypoint_0(void)
     return (OSThread *) D_80800D00_chcactusofstrength;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/chcactusofstrength_entrypoint_1.s")
+OSThread *chcactusofstrength_entrypoint_1(void)
+{
+    extern u8 D_80800D48_chcactusofstrength[];
+
+    return (OSThread *) D_80800D48_chcactusofstrength;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/chcactusofstrength_entrypoint_2.s")
 
