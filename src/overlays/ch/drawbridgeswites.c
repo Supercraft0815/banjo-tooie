@@ -8,7 +8,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/drawbridgeswites/func_808000F4_chdrawbridgeswitches.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/drawbridgeswites/chdrawbridgeswitches_entrypoint_0.s")
+OSThread *chdrawbridgeswitches_entrypoint_0(void)
+{
+    extern u8 D_80800210_chdrawbridgeswitches[];
+
+    return (OSThread *) D_80800210_chdrawbridgeswitches;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/drawbridgeswites/func_80800128_chdrawbridgeswitches.s")
 
