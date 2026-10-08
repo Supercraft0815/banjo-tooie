@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/genlist/fxgenlist_entrypoint_0.s")
+OSThread *fxgenlist_entrypoint_0(void)
+{
+    extern u8 D_80800030_fxgenlist[];
+
+    return (OSThread *) D_80800030_fxgenlist;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/genlist/fxgenlist_entrypoint_1.s")
 
