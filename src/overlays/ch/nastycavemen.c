@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/chnastycavemen_entrypoint_0.s")
+OSThread *chnastycavemen_entrypoint_0(void)
+{
+    extern u8 D_808010E8_chnastycavemen[];
+
+    return (OSThread *) D_808010E8_chnastycavemen;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_8080000C_chnastycavemen.s")
 
