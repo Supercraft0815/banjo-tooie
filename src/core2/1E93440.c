@@ -27,7 +27,9 @@ void func_800BA4B8(s16 *arg0, s32 arg1, s32 arg2) {
     ((s32 *) arg0)[47] = arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA4C4.s")
+void func_800BA4C4(void *arg0, f32 arg1) {
+    *(f32 *)((u8 *)arg0 + 176) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA4D0.s")
 
