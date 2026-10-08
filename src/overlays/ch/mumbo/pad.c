@@ -20,4 +20,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/pad/func_808008CC_chmumbopad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/pad/chmumbopad_entrypoint_1.s")
+OSThread *chmumbopad_entrypoint_1(void)
+{
+    extern u8 D_80801110_chmumbopad[];
+
+    return (OSThread *) D_80801110_chmumbopad;
+}
