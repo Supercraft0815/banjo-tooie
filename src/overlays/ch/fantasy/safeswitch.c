@@ -6,4 +6,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/safeswitch/func_80800070_chfantasysafeswitch.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/safeswitch/chfantasysafeswitch_entrypoint_0.s")
+OSThread *chfantasysafeswitch_entrypoint_0(void)
+{
+    extern u8 D_80800288_chfantasysafeswitch[];
+
+    return (OSThread *) D_80800288_chfantasysafeswitch;
+}
