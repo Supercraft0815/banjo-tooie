@@ -6,6 +6,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/safe/func_80800630_chfantasysafe.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/safe/chfantasysafe_entrypoint_0.s")
+OSThread *chfantasysafe_entrypoint_0(void)
+{
+    extern u8 D_80800AA0_chfantasysafe[];
+
+    return (OSThread *) D_80800AA0_chfantasysafe;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/safe/chfantasysafe_entrypoint_1.s")
