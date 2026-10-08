@@ -12,7 +12,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A1450.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A1618.s")
+void func_800A1618(s32 arg0) {
+    extern s8 D_80127092;
+    *(s8 *)((u8 *)&D_80127092 + 0) = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A1624.s")
 
