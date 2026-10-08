@@ -74,7 +74,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF160.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF184.s")
+void func_800CF184(void)
+{
+    extern u8 D_8012B16C;
+
+    D_8012B16C = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF190.s")
 
