@@ -7,7 +7,12 @@ OSThread *chshockjump_entrypoint_0(void)
     return (OSThread *) D_808002B0_chshockjump;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/shockjump/chshockjump_entrypoint_1.s")
+OSThread *chshockjump_entrypoint_1(void)
+{
+    extern u8 D_808002F8_chshockjump[];
+
+    return (OSThread *) D_808002F8_chshockjump;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/shockjump/func_80800018_chshockjump.s")
 
