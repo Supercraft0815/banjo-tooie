@@ -7,7 +7,12 @@ OSThread *chgobihailfire_entrypoint_0(void)
     return (OSThread *) D_80800788_chgobihailfire;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gobi/hailfire/chgobihailfire_entrypoint_1.s")
+OSThread *chgobihailfire_entrypoint_1(void)
+{
+    extern u8 D_808007D0_chgobihailfire[];
+
+    return (OSThread *) D_808007D0_chgobihailfire;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gobi/hailfire/func_80800018_chgobihailfire.s")
 
