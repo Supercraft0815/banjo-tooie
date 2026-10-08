@@ -21,7 +21,12 @@ OSThread *chpowerhutwitchy_entrypoint_2(void)
     return (OSThread *) D_80800BB8_chpowerhutwitchy;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/chpowerhutwitchy_entrypoint_3.s")
+OSThread *chpowerhutwitchy_entrypoint_3(void)
+{
+    extern u8 D_80800C00_chpowerhutwitchy[];
+
+    return (OSThread *) D_80800C00_chpowerhutwitchy;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/func_80800030_chpowerhutwitchy.s")
 
