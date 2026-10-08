@@ -57,7 +57,9 @@ AnimCtrl* func_8008AEB4(AnimCtrl* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_getIndex.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_getPlaybackType.s")
+u32 anctrl_getPlaybackType(u8 *arg0) {
+    return arg0[26];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B28C.s")
 
