@@ -14,7 +14,9 @@ void ncpoducam_entrypoint_4(s16 *arg0, s32 arg1) {
     arg0[36] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/ncpoducam_entrypoint_5.s")
+s32 ncpoducam_entrypoint_5(s16 *arg0) {
+    return arg0[36];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/func_80800160_ncpoducam.s")
 
