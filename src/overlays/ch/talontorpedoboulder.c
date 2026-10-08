@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/talontorpedoboulder/chtalontorpedoboulder_entrypoint_0.s")
+OSThread *chtalontorpedoboulder_entrypoint_0(void)
+{
+    extern u8 D_808002B4_chtalontorpedoboulder[];
+
+    return (OSThread *) D_808002B4_chtalontorpedoboulder;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/talontorpedoboulder/func_8080000C_chtalontorpedoboulder.s")
 
