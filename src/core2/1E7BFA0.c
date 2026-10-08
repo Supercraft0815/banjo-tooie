@@ -50,7 +50,9 @@ s32 func_800A3040()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3200.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3274.s")
+TransformationId func_800A3274(PlayerState *self) {
+    return (*(u8 **)((u8 *)self + 0xA0))[0x29];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3280.s")
 
