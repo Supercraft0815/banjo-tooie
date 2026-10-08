@@ -21,7 +21,12 @@ OSThread *chnicecavemen_entrypoint_2(void)
     return (OSThread *) D_80801AEC_chnicecavemen;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/chnicecavemen_entrypoint_3.s")
+OSThread *chnicecavemen_entrypoint_3(void)
+{
+    extern u8 D_80801B34_chnicecavemen[];
+
+    return (OSThread *) D_80801B34_chnicecavemen;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_80800030_chnicecavemen.s")
 
