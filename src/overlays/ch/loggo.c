@@ -7,7 +7,12 @@ OSThread *chloggo_entrypoint_0(void)
     return (OSThread *) D_80800648_chloggo;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/loggo/chloggo_entrypoint_1.s")
+OSThread *chloggo_entrypoint_1(void)
+{
+    extern u8 D_80800690_chloggo[];
+
+    return (OSThread *) D_80800690_chloggo;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/loggo/func_80800018_chloggo.s")
 
