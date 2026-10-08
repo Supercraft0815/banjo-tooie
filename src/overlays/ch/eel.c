@@ -22,4 +22,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_80801330_cheel.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/cheel_entrypoint_0.s")
+OSThread *cheel_entrypoint_0(void)
+{
+    extern u8 D_80801644_cheel[];
+
+    return (OSThread *) D_80801644_cheel;
+}
