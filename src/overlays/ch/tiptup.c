@@ -14,7 +14,12 @@ OSThread *chtiptup_entrypoint_1(void)
     return (OSThread *) D_80801490_chtiptup;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/chtiptup_entrypoint_2.s")
+OSThread *chtiptup_entrypoint_2(void)
+{
+    extern u8 D_808014D8_chtiptup[];
+
+    return (OSThread *) D_808014D8_chtiptup;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800024_chtiptup.s")
 
