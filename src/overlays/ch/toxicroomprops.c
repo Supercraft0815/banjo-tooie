@@ -6,7 +6,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroomprops/func_80800390_chtoxicroomprops.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroomprops/chtoxicroomprops_entrypoint_0.s")
+OSThread *chtoxicroomprops_entrypoint_0(void)
+{
+    extern u8 D_808009E8_chtoxicroomprops[];
+
+    return (OSThread *) D_808009E8_chtoxicroomprops;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroomprops/func_80800650_chtoxicroomprops.s")
 
