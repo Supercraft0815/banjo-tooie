@@ -81,7 +81,9 @@ u32 gczoombox_entrypoint_3(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_6.s")
+u32 gczoombox_entrypoint_6(u8 *arg0) {
+    return arg0[376];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_7.s")
 
