@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/chevilspirit_entrypoint_0.s")
+OSThread *chevilspirit_entrypoint_0(void)
+{
+    extern u8 D_80802270_chevilspirit[];
+
+    return (OSThread *) D_80802270_chevilspirit;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_8080000C_chevilspirit.s")
 
