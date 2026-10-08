@@ -49,7 +49,10 @@ void func_800D3A14(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3B24.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3B60.s")
+u32 func_800D3B60(void) {
+    extern s8 D_8012B3F3;
+    return (u8)D_8012B3F3;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3B6C.s")
 
