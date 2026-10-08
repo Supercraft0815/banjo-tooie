@@ -12,7 +12,9 @@ s32 gspropctrl_entrypoint_3(s32 *arg0) {
     return arg0[3];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propctrl/gspropctrl_entrypoint_4.s")
+u32 gspropctrl_entrypoint_4(u16 *arg0) {
+    return arg0[4];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propctrl/gspropctrl_entrypoint_5.s")
 
