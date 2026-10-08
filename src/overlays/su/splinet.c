@@ -18,7 +18,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_6.s")
+u32 susplinet_entrypoint_6(u8 *arg0) {
+    return arg0[83];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_7.s")
 
