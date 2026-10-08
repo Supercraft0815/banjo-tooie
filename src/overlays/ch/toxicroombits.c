@@ -31,4 +31,9 @@ OSThread *chtoxicroombits_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_80800CB0_chtoxicroombits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/chtoxicroombits_entrypoint_1.s")
+OSThread *chtoxicroombits_entrypoint_1(void)
+{
+    extern u8 D_80801034_chtoxicroombits[];
+
+    return (OSThread *) D_80801034_chtoxicroombits;
+}
