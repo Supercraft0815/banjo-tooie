@@ -72,6 +72,8 @@ void gcgoto_entrypoint_12(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/goto/gcgoto_entrypoint_13.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/goto/gcgoto_entrypoint_14.s")
+void gcgoto_entrypoint_14(s32 arg0) {
+    *(s8 *)((u8 *)&D_80127194 + 1068) = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/goto/gcgoto_entrypoint_15.s")
