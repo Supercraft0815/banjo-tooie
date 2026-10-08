@@ -154,7 +154,9 @@ void func_800A3550(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A38F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3904.s")
+void func_800A3904(PlayerState *arg0, s32 arg1) {
+    (*(u8 **)((u8 *)arg0 + 0xA0))[0x3E] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3910.s")
 
