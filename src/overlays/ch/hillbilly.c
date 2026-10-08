@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/chhillbilly_entrypoint_0.s")
+OSThread *chhillbilly_entrypoint_0(void)
+{
+    extern u8 D_80800C60_chhillbilly[];
+
+    return (OSThread *) D_80800C60_chhillbilly;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_8080000C_chhillbilly.s")
 
