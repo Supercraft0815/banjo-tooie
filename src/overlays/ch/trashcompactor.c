@@ -21,7 +21,12 @@ OSThread *chtrashcompactor_entrypoint_2(void)
     return (OSThread *) D_80800960_chtrashcompactor;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcompactor/chtrashcompactor_entrypoint_3.s")
+OSThread *chtrashcompactor_entrypoint_3(void)
+{
+    extern u8 D_808009A8_chtrashcompactor[];
+
+    return (OSThread *) D_808009A8_chtrashcompactor;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcompactor/func_80800030_chtrashcompactor.s")
 
