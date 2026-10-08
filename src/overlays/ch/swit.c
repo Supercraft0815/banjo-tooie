@@ -14,7 +14,12 @@ OSThread *chswitch_entrypoint_1(void)
     return (OSThread *) D_80800DC4_chswitch;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swit/chswitch_entrypoint_2.s")
+OSThread *chswitch_entrypoint_2(void)
+{
+    extern u8 D_80800DD8_chswitch[];
+
+    return (OSThread *) D_80800DD8_chswitch;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swit/func_80800024_chswitch.s")
 
