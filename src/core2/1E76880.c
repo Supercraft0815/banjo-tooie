@@ -7,7 +7,9 @@ s32 func_8009CF90()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76880/func_8009CF98.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76880/func_8009CFD8.s")
+void func_8009CFD8(PlayerState *arg0, f32 arg1) {
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xFC)))) + (4))) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76880/func_8009CFE8.s")
 
