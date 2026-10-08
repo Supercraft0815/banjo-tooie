@@ -15,7 +15,10 @@ f32 func_80101068(void) {
     return *(f32 *)((u8 *)&D_80135A7C + 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDA900/func_80101074.s")
+void func_80101074(s32 arg0)
+{
+    D_80135A80 = arg0;
+}
 
 Unk80132ED0* func_80101080()
 {
