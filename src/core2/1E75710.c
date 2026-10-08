@@ -21,7 +21,9 @@ f32 func_8009BFCC(PlayerState *arg0) {
     return **(f32 **)((u8 *)arg0 + 0xDC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75710/func_8009BFD8.s")
+f32 func_8009BFD8(PlayerState *arg0) {
+    return (*(f32 **)((u8 *)arg0 + 0xDC))[1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75710/func_8009BFE4.s")
 
