@@ -5,7 +5,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/func_8080016C_bswalk.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/func_808001D8_bswalk.s")
+void func_808001D8_bswalk(void *arg0, f32 arg1) {
+    *(f32 *)((u8 *)arg0 + 364) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/func_808001E4_bswalk.s")
 
