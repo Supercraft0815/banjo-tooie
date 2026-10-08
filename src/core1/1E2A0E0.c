@@ -19,7 +19,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80012EA0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80012EDC.s")
+void *func_80012EDC(void) {
+    extern u8 D_80046A78[];
+
+    return D_80046A78;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80012EE8.s")
 
