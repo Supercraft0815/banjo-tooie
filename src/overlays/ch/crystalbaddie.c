@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crystalbaddie/chcrystalbaddie_entrypoint_0.s")
+OSThread *chcrystalbaddie_entrypoint_0(void)
+{
+    extern u8 D_80800664_chcrystalbaddie[];
+
+    return (OSThread *) D_80800664_chcrystalbaddie;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crystalbaddie/func_8080000C_chcrystalbaddie.s")
 
