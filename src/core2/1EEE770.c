@@ -6,7 +6,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEE770/func_80114FA4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEE770/func_801150F0.s")
+u32 func_801150F0(u8 *arg0) {
+    return arg0[12];
+}
 
 void func_801150F8(void* arg0) 
 {
