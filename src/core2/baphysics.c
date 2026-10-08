@@ -81,7 +81,9 @@ f32 func_8009BB0C(void *arg0) {
     return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 32);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009BB18.s")
+f32 func_8009BB18(void *arg0) {
+    return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 64);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009BB24.s")
 
