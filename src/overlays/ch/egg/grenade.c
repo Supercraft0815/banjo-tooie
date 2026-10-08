@@ -6,7 +6,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/grenade/func_80800164_chegggrenade.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/grenade/chegggrenade_entrypoint_1.s")
+OSThread *chegggrenade_entrypoint_1(void)
+{
+    extern u8 D_80800450_chegggrenade[];
+
+    return (OSThread *) D_80800450_chegggrenade;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/grenade/chegggrenade_entrypoint_2.s")
 
