@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/light/chfactorylight_entrypoint_0.s")
+OSThread *chfactorylight_entrypoint_0(void)
+{
+    extern u8 D_80800B90_chfactorylight[];
+
+    return (OSThread *) D_80800B90_chfactorylight;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/light/func_8080000C_chfactorylight.s")
 
