@@ -14,4 +14,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/drillfield/func_8080054C_chfantasydrillfield.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/drillfield/chfantasydrillfield_entrypoint_0.s")
+OSThread *chfantasydrillfield_entrypoint_0(void)
+{
+    extern u8 D_808009C4_chfantasydrillfield[];
+
+    return (OSThread *) D_808009C4_chfantasydrillfield;
+}
