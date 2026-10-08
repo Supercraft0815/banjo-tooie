@@ -9,4 +9,9 @@ OSThread *chwitchytents_entrypoint_0(void)
     return (OSThread *) D_80800050_chwitchytents;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/witchy/tents/chwitchytents_entrypoint_1.s")
+OSThread *chwitchytents_entrypoint_1(void)
+{
+    extern u8 D_80800098_chwitchytents[];
+
+    return (OSThread *) D_80800098_chwitchytents;
+}
