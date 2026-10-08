@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swit/chswitch_entrypoint_0.s")
+OSThread *chswitch_entrypoint_0(void)
+{
+    extern u8 D_80800DB0_chswitch[];
+
+    return (OSThread *) D_80800DB0_chswitch;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swit/chswitch_entrypoint_1.s")
 
