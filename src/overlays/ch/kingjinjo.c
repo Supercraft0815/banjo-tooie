@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/chkingjinjo_entrypoint_0.s")
+OSThread *chkingjinjo_entrypoint_0(void)
+{
+    extern u8 D_808011A8_chkingjinjo[];
+
+    return (OSThread *) D_808011A8_chkingjinjo;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/chkingjinjo_entrypoint_1.s")
 
