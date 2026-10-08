@@ -25,4 +25,9 @@ OSThread *chlavagargoyle_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/gargoyle/chlavagargoyle_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/gargoyle/chlavagargoyle_entrypoint_2.s")
+OSThread *chlavagargoyle_entrypoint_2(void)
+{
+    extern u8 D_80800F20_chlavagargoyle[];
+
+    return (OSThread *) D_80800F20_chlavagargoyle;
+}
