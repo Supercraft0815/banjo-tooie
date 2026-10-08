@@ -54,7 +54,9 @@ TransformationId func_800A3274(PlayerState *self) {
     return (*(u8 **)((u8 *)self + 0xA0))[0x29];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3280.s")
+u32 func_800A3280(void *arg0) {
+    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 42);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A328C.s")
 
