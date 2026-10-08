@@ -2,7 +2,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/bsbabykaz_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80800050_bsbabykaz.s")
+void func_80800050_bsbabykaz(void *arg0) {
+    (*(f32 *)((s8 *)(arg0) + (0x170))) = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_8080005C_bsbabykaz.s")
 
