@@ -22,7 +22,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800B68_chtoothyfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/chtoothyfish_entrypoint_0.s")
+OSThread *chtoothyfish_entrypoint_0(void)
+{
+    extern u8 D_80801870_chtoothyfish[];
+
+    return (OSThread *) D_80801870_chtoothyfish;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800E04_chtoothyfish.s")
 
