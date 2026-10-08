@@ -51,7 +51,10 @@ void func_800FE89C(void) {
     D_801359CF = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FE8AC.s")
+void func_800FE8AC(void) {
+    extern s8 D_801359D8;
+    D_801359D8 = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FE8BC.s")
 
