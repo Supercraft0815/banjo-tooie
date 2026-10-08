@@ -21,4 +21,9 @@ OSThread *chjadestatue_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadestatue/func_808002A4_chjadestatue.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadestatue/chjadestatue_entrypoint_1.s")
+OSThread *chjadestatue_entrypoint_1(void)
+{
+    extern u8 D_80800358_chjadestatue[];
+
+    return (OSThread *) D_80800358_chjadestatue;
+}
