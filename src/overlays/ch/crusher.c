@@ -56,6 +56,11 @@ void func_80800AD4_chcrusher(s32 arg0)
     _chswitch_entrypoint_14(arg0,FLAG_4FB_UNK);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/chcrusher_entrypoint_3.s")
+OSThread *chcrusher_entrypoint_3(void)
+{
+    extern u8 D_80800D20_chcrusher[];
+
+    return (OSThread *) D_80800D20_chcrusher;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/chcrusher_entrypoint_4.s")
