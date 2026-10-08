@@ -39,4 +39,7 @@ void func_800B4354(s32 arg0)
     func_800B3EDC(arg0,0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B4374.s")
+s32 func_800B4374(s16 *arg0)
+{
+    return arg0[2];
+}
