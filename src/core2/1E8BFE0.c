@@ -26,7 +26,10 @@ f32 func_800B27D8(f32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8BFE0/func_800B27E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8BFE0/func_800B27FC.s")
+s32 func_800B27FC(s32 arg0) {
+    arg0 += ((s16 *)arg0)[4];
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8BFE0/func_800B2808.s")
 
