@@ -32,7 +32,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80803D0C_chintrochar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/chintrochar_entrypoint_0.s")
+OSThread *chintrochar_entrypoint_0(void)
+{
+    extern u8 D_8080532C_chintrochar[];
+
+    return (OSThread *) D_8080532C_chintrochar;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80803E98_chintrochar.s")
 
