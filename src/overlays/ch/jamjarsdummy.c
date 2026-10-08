@@ -11,4 +11,9 @@ void func_80800238_chjamjarsdummy(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jamjarsdummy/func_808002AC_chjamjarsdummy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jamjarsdummy/chjamjarsdummy_entrypoint_0.s")
+OSThread *chjamjarsdummy_entrypoint_0(void)
+{
+    extern u8 D_80800338_chjamjarsdummy[];
+
+    return (OSThread *) D_80800338_chjamjarsdummy;
+}
