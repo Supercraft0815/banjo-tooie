@@ -37,7 +37,10 @@ void *func_80012EF4(void) {
     return D_80069568;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80012F00.s")
+void *func_80012F00(void) {
+    extern u8 D_80045BB8[];
+    return D_80045BB8;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80012F0C.s")
 
