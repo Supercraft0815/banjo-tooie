@@ -30,4 +30,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80801184_chcrusherboulder.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/chcrusherboulder_entrypoint_0.s")
+OSThread *chcrusherboulder_entrypoint_0(void)
+{
+    extern u8 D_808014EC_chcrusherboulder[];
+
+    return (OSThread *) D_808014EC_chcrusherboulder;
+}
