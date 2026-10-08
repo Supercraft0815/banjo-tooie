@@ -10,6 +10,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/id/glid_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/id/glid_entrypoint_5.s")
+void glid_entrypoint_5(s32 *arg0, s32 arg1) {
+    arg0[5] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/id/glid_entrypoint_6.s")
