@@ -7,7 +7,12 @@ OSThread *chlagoonbits_entrypoint_0(void)
     return (OSThread *) D_80800804_chlagoonbits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/chlagoonbits_entrypoint_1.s")
+OSThread *chlagoonbits_entrypoint_1(void)
+{
+    extern u8 D_8080084C_chlagoonbits[];
+
+    return (OSThread *) D_8080084C_chlagoonbits;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/chlagoonbits_entrypoint_2.s")
 
