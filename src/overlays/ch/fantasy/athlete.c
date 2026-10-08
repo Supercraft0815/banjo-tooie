@@ -38,4 +38,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80802DA8_chfantasyathlete.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/chfantasyathlete_entrypoint_0.s")
+OSThread *chfantasyathlete_entrypoint_0(void)
+{
+    extern u8 D_808031B4_chfantasyathlete[];
+
+    return (OSThread *) D_808031B4_chfantasyathlete;
+}
