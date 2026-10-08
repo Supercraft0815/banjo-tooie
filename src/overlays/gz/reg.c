@@ -228,4 +228,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/gzreg_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/gzreg_entrypoint_2.s")
+s32 gzreg_entrypoint_2(void *arg0) {
+    return *(s32 *)((u8 *)arg0 + 0x11C);
+}
