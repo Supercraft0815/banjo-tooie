@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/chstonepillar_entrypoint_0.s")
+OSThread *chstonepillar_entrypoint_0(void)
+{
+    extern u8 D_808013F0_chstonepillar[];
+
+    return (OSThread *) D_808013F0_chstonepillar;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/chstonepillar_entrypoint_1.s")
 
