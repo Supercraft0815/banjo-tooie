@@ -19,7 +19,12 @@ OSThread *chdinofamilysick_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/func_808003B0_chdinofamilysick.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/chdinofamilysick_entrypoint_1.s")
+OSThread *chdinofamilysick_entrypoint_1(void)
+{
+    extern u8 D_80800EA8_chdinofamilysick[];
+
+    return (OSThread *) D_80800EA8_chdinofamilysick;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/func_808005F8_chdinofamilysick.s")
 
