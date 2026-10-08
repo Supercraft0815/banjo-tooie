@@ -38,7 +38,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_8.s")
+void gcmapsects_entrypoint_8(void *arg0) {
+    *(u8 *)((u8 *)arg0 + 0x78) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/func_80801554_gcmapsects.s")
 
