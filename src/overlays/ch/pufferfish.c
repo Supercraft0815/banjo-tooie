@@ -20,4 +20,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pufferfish/func_80800F30_chpufferfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pufferfish/chpufferfish_entrypoint_0.s")
+OSThread *chpufferfish_entrypoint_0(void)
+{
+    extern u8 D_808012A8_chpufferfish[];
+
+    return (OSThread *) D_808012A8_chpufferfish;
+}
