@@ -43,4 +43,9 @@ OSThread *chfantasyeyeball_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80801BC4_chfantasyeyeball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/chfantasyeyeball_entrypoint_1.s")
+OSThread *chfantasyeyeball_entrypoint_1(void)
+{
+    extern u8 D_80802008_chfantasyeyeball[];
+
+    return (OSThread *) D_80802008_chfantasyeyeball;
+}
