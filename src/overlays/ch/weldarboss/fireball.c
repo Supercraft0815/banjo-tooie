@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fireball/chweldarbossfireball_entrypoint_0.s")
+OSThread *chweldarbossfireball_entrypoint_0(void)
+{
+    extern u8 D_80800410_chweldarbossfireball[];
+
+    return (OSThread *) D_80800410_chweldarbossfireball;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fireball/func_8080000C_chweldarbossfireball.s")
 
