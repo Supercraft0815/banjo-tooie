@@ -62,7 +62,9 @@ OSThread *func_80109518(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109CC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109EE0.s")
+s32 func_80109EE0(void *arg0, s32 arg1) {
+    return (*(u16 *)((s8 *)(arg0) + (0x66))) & arg1;
+}
 
 void func_80109EEC(s16 *arg0, s32 arg1) {
     arg0[51] = arg1;
