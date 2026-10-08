@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/attract/chattract_entrypoint_0.s")
+OSThread *chattract_entrypoint_0(void)
+{
+    extern u8 D_808004F4_chattract[];
+
+    return (OSThread *) D_808004F4_chattract;
+}
 
 void func_8080000C_chattract(s32 arg0) 
 {
