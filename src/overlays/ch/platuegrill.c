@@ -15,4 +15,9 @@ OSThread *chplatuegrill_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/platuegrill/func_80800148_chplatuegrill.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/platuegrill/chplatuegrill_entrypoint_1.s")
+OSThread *chplatuegrill_entrypoint_1(void)
+{
+    extern u8 D_80800238_chplatuegrill[];
+
+    return (OSThread *) D_80800238_chplatuegrill;
+}
