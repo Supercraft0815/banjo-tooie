@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/idgoldhorde/chidgoldhorde_entrypoint_0.s")
+OSThread *chidgoldhorde_entrypoint_0(void)
+{
+    extern u8 D_808001F0_chidgoldhorde[];
+
+    return (OSThread *) D_808001F0_chidgoldhorde;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/idgoldhorde/func_8080000C_chidgoldhorde.s")
 
