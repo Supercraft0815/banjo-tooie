@@ -1,6 +1,11 @@
 #include "ch/factory/workerdirty.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/chfactoryworkerdirty_entrypoint_0.s")
+OSThread *chfactoryworkerdirty_entrypoint_0(void)
+{
+    extern u8 D_80800EF8_chfactoryworkerdirty[];
+
+    return (OSThread *) D_80800EF8_chfactoryworkerdirty;
+}
 
 void func_8080000C_chfactoryworkerdirty(Actor* arg0)
 {
