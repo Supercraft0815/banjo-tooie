@@ -6,7 +6,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_808000D4_chfactoryroofbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/chfactoryroofbits_entrypoint_0.s")
+OSThread *chfactoryroofbits_entrypoint_0(void)
+{
+    extern u8 D_80800974_chfactoryroofbits[];
+
+    return (OSThread *) D_80800974_chfactoryroofbits;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_8080015C_chfactoryroofbits.s")
 
