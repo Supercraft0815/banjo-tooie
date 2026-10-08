@@ -50,7 +50,10 @@ s32 func_800EA340(void) {
     return D_80132DCA;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA34C.s")
+void func_800EA34C(s32 arg0) {
+    extern s16 D_80132DCC;
+    *(s16 *)((u8 *)&D_80132DCC + 0) = arg0;
+}
 
 s32 func_800EA358(void) {
     extern s16 D_80132DCC;
