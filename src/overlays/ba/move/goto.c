@@ -19,7 +19,9 @@ void bamovegoto_entrypoint_5(s32 arg0)
     func_80800000_bamovegoto(arg0,0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/goto/bamovegoto_entrypoint_6.s")
+void bamovegoto_entrypoint_6(void *arg0) {
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x54))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/goto/bamovegoto_entrypoint_7.s")
 
