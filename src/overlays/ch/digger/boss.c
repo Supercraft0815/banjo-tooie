@@ -15,7 +15,12 @@ OSThread *chdiggerboss_entrypoint_0(void)
     return (OSThread *) D_80809E44_chdiggerboss;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/chdiggerboss_entrypoint_1.s")
+OSThread *chdiggerboss_entrypoint_1(void)
+{
+    extern u8 D_80809E8C_chdiggerboss[];
+
+    return (OSThread *) D_80809E8C_chdiggerboss;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80800508_chdiggerboss.s")
 
