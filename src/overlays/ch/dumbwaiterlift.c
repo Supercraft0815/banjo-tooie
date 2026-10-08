@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dumbwaiterlift/chdumbwaiterlift_entrypoint_0.s")
+OSThread *chdumbwaiterlift_entrypoint_0(void)
+{
+    extern u8 D_80800BE8_chdumbwaiterlift[];
+
+    return (OSThread *) D_80800BE8_chdumbwaiterlift;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dumbwaiterlift/func_8080000C_chdumbwaiterlift.s")
 
