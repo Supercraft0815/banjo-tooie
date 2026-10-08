@@ -43,4 +43,9 @@ OSThread *chmayafarmer_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_808010DC_chmayafarmer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/chmayafarmer_entrypoint_1.s")
+OSThread *chmayafarmer_entrypoint_1(void)
+{
+    extern u8 D_808012FC_chmayafarmer[];
+
+    return (OSThread *) D_808012FC_chmayafarmer;
+}
