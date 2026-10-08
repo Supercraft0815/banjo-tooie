@@ -24,7 +24,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B422C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B4290.s")
+void func_800B4290(void *arg0) {
+    (*(s16 *)((s8 *)(arg0) + (2))) = 0;
+    (*(s16 *)((s8 *)(arg0) + (0))) = (s16) (*(s16 *)((s8 *)(arg0) + (2)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B42A0.s")
 
