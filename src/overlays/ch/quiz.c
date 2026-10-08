@@ -90,7 +90,9 @@ s32 func_80801544_chquiz(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808016F8_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801710_chquiz.s")
+void func_80801710_chquiz(void *arg0) {
+    (*(s8 *)((s8 *)(arg0) + (0x90))) = 1;
+}
 
 u32 func_8080171C_chquiz(u8 *arg0) {
     return arg0[144];
