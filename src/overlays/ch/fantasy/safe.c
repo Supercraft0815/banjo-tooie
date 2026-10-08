@@ -13,4 +13,9 @@ OSThread *chfantasysafe_entrypoint_0(void)
     return (OSThread *) D_80800AA0_chfantasysafe;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/safe/chfantasysafe_entrypoint_1.s")
+OSThread *chfantasysafe_entrypoint_1(void)
+{
+    extern u8 D_80800AE8_chfantasysafe[];
+
+    return (OSThread *) D_80800AE8_chfantasysafe;
+}
