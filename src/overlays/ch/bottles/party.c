@@ -7,7 +7,12 @@ OSThread *chbottlesparty_entrypoint_0(void)
     return (OSThread *) D_80800410_chbottlesparty;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/party/chbottlesparty_entrypoint_1.s")
+OSThread *chbottlesparty_entrypoint_1(void)
+{
+    extern u8 D_80800458_chbottlesparty[];
+
+    return (OSThread *) D_80800458_chbottlesparty;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/party/func_80800018_chbottlesparty.s")
 
