@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossbattery/chdiggerbossbattery_entrypoint_0.s")
+OSThread *chdiggerbossbattery_entrypoint_0(void)
+{
+    extern u8 D_808002F0_chdiggerbossbattery[];
+
+    return (OSThread *) D_808002F0_chdiggerbossbattery;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossbattery/func_8080000C_chdiggerbossbattery.s")
 
