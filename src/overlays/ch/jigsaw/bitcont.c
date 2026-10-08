@@ -27,4 +27,9 @@ OSThread *chjigsawbitcont_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_80800890_chjigsawbitcont.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/chjigsawbitcont_entrypoint_1.s")
+OSThread *chjigsawbitcont_entrypoint_1(void)
+{
+    extern u8 D_80800A28_chjigsawbitcont[];
+
+    return (OSThread *) D_80800A28_chjigsawbitcont;
+}
