@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/babydino/chbabydino_entrypoint_0.s")
+OSThread *chbabydino_entrypoint_0(void)
+{
+    extern u8 D_80800770_chbabydino[];
+
+    return (OSThread *) D_80800770_chbabydino;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/babydino/func_8080000C_chbabydino.s")
 
