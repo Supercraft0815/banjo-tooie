@@ -17,7 +17,9 @@ s32 func_8009C030()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75920/func_8009C128.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75920/func_8009C150.s")
+f32 func_8009C150(PlayerState *arg0) {
+    return (*(f32 **)((u8 *)arg0 + 0xE4))[1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75920/func_8009C15C.s")
 
