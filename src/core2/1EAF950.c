@@ -62,7 +62,9 @@ void func_800D73AC()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D73CC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7400.s")
+void * func_800D7400(void) {
+    return &D_8012BE70;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D740C.s")
 
