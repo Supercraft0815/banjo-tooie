@@ -7,7 +7,12 @@ OSThread *chbiggafoot_entrypoint_0(void)
     return (OSThread *) D_80801094_chbiggafoot;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/chbiggafoot_entrypoint_1.s")
+OSThread *chbiggafoot_entrypoint_1(void)
+{
+    extern u8 D_808010DC_chbiggafoot[];
+
+    return (OSThread *) D_808010DC_chbiggafoot;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_80800018_chbiggafoot.s")
 
