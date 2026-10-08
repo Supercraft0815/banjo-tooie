@@ -34,7 +34,12 @@ void func_808001A8_chmasterjiggy(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_808007F0_chmasterjiggy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/chmasterjiggy_entrypoint_1.s")
+OSThread *chmasterjiggy_entrypoint_1(void)
+{
+    extern u8 D_808016F8_chmasterjiggy[];
+
+    return (OSThread *) D_808016F8_chmasterjiggy;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_8080095C_chmasterjiggy.s")
 
