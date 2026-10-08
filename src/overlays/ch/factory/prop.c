@@ -7,7 +7,12 @@ OSThread *chfactoryprop_entrypoint_0(void)
     return (OSThread *) D_80800C20_chfactoryprop;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/prop/chfactoryprop_entrypoint_1.s")
+OSThread *chfactoryprop_entrypoint_1(void)
+{
+    extern u8 D_80800C68_chfactoryprop[];
+
+    return (OSThread *) D_80800C68_chfactoryprop;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/prop/chfactoryprop_entrypoint_2.s")
 
