@@ -19,4 +19,9 @@ void func_8080025C_chstinger(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stinger/func_80800774_chstinger.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stinger/chstinger_entrypoint_1.s")
+OSThread *chstinger_entrypoint_1(void)
+{
+    extern u8 D_80800870_chstinger[];
+
+    return (OSThread *) D_80800870_chstinger;
+}
