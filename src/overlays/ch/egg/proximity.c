@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/cheggproximity_entrypoint_0.s")
+OSThread *cheggproximity_entrypoint_0(void)
+{
+    extern u8 D_80800CE0_cheggproximity[];
+
+    return (OSThread *) D_80800CE0_cheggproximity;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/cheggproximity_entrypoint_1.s")
 
