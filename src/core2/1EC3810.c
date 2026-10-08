@@ -19,7 +19,9 @@ s32 func_800EA090(void) {
     return D_80132DC8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA09C.s")
+s32 func_800EA09C(void) {
+    return *(s16 *)((u8 *)&D_80132DC0 + 0);
+}
 
 void func_800EA0A8()
 {
