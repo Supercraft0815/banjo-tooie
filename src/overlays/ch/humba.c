@@ -82,4 +82,9 @@ OSThread *chhumba_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80802234_chhumba.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/chhumba_entrypoint_1.s")
+OSThread *chhumba_entrypoint_1(void)
+{
+    extern u8 D_80802780_chhumba[];
+
+    return (OSThread *) D_80802780_chhumba;
+}
