@@ -4,7 +4,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoext/func_80800168_chlagoonufoext.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoext/chlagoonufoext_entrypoint_0.s")
+OSThread *chlagoonufoext_entrypoint_0(void)
+{
+    extern u8 D_80800558_chlagoonufoext[];
+
+    return (OSThread *) D_80800558_chlagoonufoext;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoext/func_808001D8_chlagoonufoext.s")
 
