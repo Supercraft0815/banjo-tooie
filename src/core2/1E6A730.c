@@ -20,7 +20,10 @@ void func_80091054(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6A730/func_800910BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6A730/func_80091104.s")
+void func_80091104(s32 *arg0, s32 arg1)
+{
+    *(u8 *) (arg0[12] + 0xF) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6A730/func_80091110.s")
 
