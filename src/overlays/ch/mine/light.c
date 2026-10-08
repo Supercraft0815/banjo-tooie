@@ -9,4 +9,9 @@ void func_808004CC_chminelight(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/light/func_808004D4_chminelight.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/light/chminelight_entrypoint_0.s")
+OSThread *chminelight_entrypoint_0(void)
+{
+    extern u8 D_808006AC_chminelight[];
+
+    return (OSThread *) D_808006AC_chminelight;
+}
