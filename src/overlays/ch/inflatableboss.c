@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/chinflatableboss_entrypoint_0.s")
+OSThread *chinflatableboss_entrypoint_0(void)
+{
+    extern u8 D_80802E50_chinflatableboss[];
+
+    return (OSThread *) D_80802E50_chinflatableboss;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_8080000C_chinflatableboss.s")
 
