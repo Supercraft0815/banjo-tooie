@@ -84,6 +84,8 @@ s32 bs_getPreviousState(PlayerState *self) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E77A20/func_8009E7C8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E77A20/func_8009E830.s")
+void func_8009E830(PlayerState *arg0, s32 arg1) {
+    (*(s16 **)((u8 *)arg0 + 0x120))[7] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E77A20/func_8009E83C.s")
