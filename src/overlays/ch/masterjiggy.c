@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/chmasterjiggy_entrypoint_0.s")
+OSThread *chmasterjiggy_entrypoint_0(void)
+{
+    extern u8 D_8080164C_chmasterjiggy[];
+
+    return (OSThread *) D_8080164C_chmasterjiggy;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_8080000C_chmasterjiggy.s")
 
