@@ -1,6 +1,11 @@
 #include "ch/biggafoot.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/chbiggafoot_entrypoint_0.s")
+OSThread *chbiggafoot_entrypoint_0(void)
+{
+    extern u8 D_80801094_chbiggafoot[];
+
+    return (OSThread *) D_80801094_chbiggafoot;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/chbiggafoot_entrypoint_1.s")
 
