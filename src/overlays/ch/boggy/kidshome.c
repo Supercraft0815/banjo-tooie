@@ -14,7 +14,12 @@ OSThread *chboggykidshome_entrypoint_1(void)
     return (OSThread *) D_808004B0_chboggykidshome;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/kidshome/chboggykidshome_entrypoint_2.s")
+OSThread *chboggykidshome_entrypoint_2(void)
+{
+    extern u8 D_808004F8_chboggykidshome[];
+
+    return (OSThread *) D_808004F8_chboggykidshome;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/kidshome/func_80800024_chboggykidshome.s")
 
