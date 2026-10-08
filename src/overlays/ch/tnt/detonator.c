@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/detonator/chtntdetonator_entrypoint_0.s")
+OSThread *chtntdetonator_entrypoint_0(void)
+{
+    extern u8 D_808006A8_chtntdetonator[];
+
+    return (OSThread *) D_808006A8_chtntdetonator;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/detonator/func_8080000C_chtntdetonator.s")
 
