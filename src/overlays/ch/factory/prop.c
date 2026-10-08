@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/prop/chfactoryprop_entrypoint_0.s")
+OSThread *chfactoryprop_entrypoint_0(void)
+{
+    extern u8 D_80800C20_chfactoryprop[];
+
+    return (OSThread *) D_80800C20_chfactoryprop;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/prop/chfactoryprop_entrypoint_1.s")
 
