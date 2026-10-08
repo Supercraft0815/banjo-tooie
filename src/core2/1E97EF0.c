@@ -101,7 +101,9 @@ void func_800BF420()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF6B8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF704.s")
+void * func_800BF704(void) {
+    return &D_801285B0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF710.s")
 
