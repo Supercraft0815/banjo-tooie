@@ -14,6 +14,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressmorph/suexpressmorph_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressmorph/suexpressmorph_entrypoint_4.s")
+void suexpressmorph_entrypoint_4(s8 *arg0, s32 arg1) {
+    arg0[6] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressmorph/suexpressmorph_entrypoint_5.s")
