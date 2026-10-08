@@ -42,4 +42,9 @@ void func_8080172C_chnewmumbo(Actor* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_80801760_chnewmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/chnewmumbo_entrypoint_1.s")
+OSThread *chnewmumbo_entrypoint_1(void)
+{
+    extern u8 D_80801B14_chnewmumbo[];
+
+    return (OSThread *) D_80801B14_chnewmumbo;
+}
