@@ -16,7 +16,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/scinfobar_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/scinfobar_entrypoint_4.s")
+void scinfobar_entrypoint_4(s32 *arg0, s32 arg1) {
+    arg0[10] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/scinfobar_entrypoint_5.s")
 
