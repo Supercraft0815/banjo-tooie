@@ -2,7 +2,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/func_80800000_sulights.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/func_808000D0_sulights.s")
+void func_808000D0_sulights(s8 *arg0) {
+    arg0[0] = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/func_808000D8_sulights.s")
 
