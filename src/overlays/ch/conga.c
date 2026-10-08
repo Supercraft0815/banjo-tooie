@@ -1,6 +1,11 @@
 #include "ch/conga.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/conga/chconga_entrypoint_0.s")
+OSThread *chconga_entrypoint_0(void)
+{
+    extern u8 D_808006A0_chconga[];
+
+    return (OSThread *) D_808006A0_chconga;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/conga/func_8080000C_chconga.s")
 
