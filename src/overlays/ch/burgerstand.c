@@ -7,7 +7,12 @@ OSThread *chburgerstand_entrypoint_0(void)
     return (OSThread *) D_80800C28_chburgerstand;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/chburgerstand_entrypoint_1.s")
+OSThread *chburgerstand_entrypoint_1(void)
+{
+    extern u8 D_80800C70_chburgerstand[];
+
+    return (OSThread *) D_80800C70_chburgerstand;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/chburgerstand_entrypoint_2.s")
 
