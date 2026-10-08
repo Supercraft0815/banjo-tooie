@@ -1,6 +1,8 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/dialog/gldialog_entrypoint_0.s")
+s32 gldialog_entrypoint_0(void) {
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/dialog/gldialog_entrypoint_1.s")
 
