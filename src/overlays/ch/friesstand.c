@@ -21,7 +21,12 @@ OSThread *chfriesstand_entrypoint_2(void)
     return (OSThread *) D_80800F58_chfriesstand;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/chfriesstand_entrypoint_3.s")
+OSThread *chfriesstand_entrypoint_3(void)
+{
+    extern u8 D_80800FA0_chfriesstand[];
+
+    return (OSThread *) D_80800FA0_chfriesstand;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/func_80800030_chfriesstand.s")
 
