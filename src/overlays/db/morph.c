@@ -2,7 +2,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/morph/func_80800000_dbmorph.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/morph/dbmorph_entrypoint_0.s")
+s32 dbmorph_entrypoint_0(s16 *arg0) {
+    return arg0[1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/morph/dbmorph_entrypoint_1.s")
 
