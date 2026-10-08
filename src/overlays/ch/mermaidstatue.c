@@ -7,7 +7,12 @@ OSThread *chmermaidstatue_entrypoint_0(void)
     return (OSThread *) D_80800354_chmermaidstatue;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mermaidstatue/chmermaidstatue_entrypoint_1.s")
+OSThread *chmermaidstatue_entrypoint_1(void)
+{
+    extern u8 D_8080039C_chmermaidstatue[];
+
+    return (OSThread *) D_8080039C_chmermaidstatue;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mermaidstatue/func_80800018_chmermaidstatue.s")
 
