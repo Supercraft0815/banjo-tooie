@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/chfirefx_entrypoint_0.s")
+OSThread *chfirefx_entrypoint_0(void)
+{
+    extern u8 D_80801200_chfirefx[];
+
+    return (OSThread *) D_80801200_chfirefx;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/chfirefx_entrypoint_1.s")
 
