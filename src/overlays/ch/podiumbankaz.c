@@ -25,4 +25,9 @@ OSThread *chpodiumbankaz_entrypoint_0(void)
     return (OSThread *) D_80800500_chpodiumbankaz;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/podiumbankaz/chpodiumbankaz_entrypoint_1.s")
+OSThread *chpodiumbankaz_entrypoint_1(void)
+{
+    extern u8 D_80800548_chpodiumbankaz[];
+
+    return (OSThread *) D_80800548_chpodiumbankaz;
+}
