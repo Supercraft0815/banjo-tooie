@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/ground/chdiggerground_entrypoint_0.s")
+OSThread *chdiggerground_entrypoint_0(void)
+{
+    extern u8 D_80800408_chdiggerground[];
+
+    return (OSThread *) D_80800408_chdiggerground;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/ground/func_8080000C_chdiggerground.s")
 
