@@ -29,4 +29,9 @@ OSThread *chstonedartgunhead_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/func_80800D50_chstonedartgunhead.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/chstonedartgunhead_entrypoint_1.s")
+OSThread *chstonedartgunhead_entrypoint_1(void)
+{
+    extern u8 D_80800FB0_chstonedartgunhead[];
+
+    return (OSThread *) D_80800FB0_chstonedartgunhead;
+}
