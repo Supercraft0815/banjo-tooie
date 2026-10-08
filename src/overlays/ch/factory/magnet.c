@@ -73,4 +73,9 @@ OSThread *chfactorymagnet_entrypoint_3(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_8080281C_chfactorymagnet.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/chfactorymagnet_entrypoint_4.s")
+OSThread *chfactorymagnet_entrypoint_4(void)
+{
+    extern u8 D_80802B68_chfactorymagnet[];
+
+    return (OSThread *) D_80802B68_chfactorymagnet;
+}
