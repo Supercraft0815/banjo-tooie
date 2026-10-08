@@ -11,4 +11,9 @@
 void func_80800630_chlighthalo(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/light/halo/chlighthalo_entrypoint_0.s")
+OSThread *chlighthalo_entrypoint_0(void)
+{
+    extern u8 D_808006A8_chlighthalo[];
+
+    return (OSThread *) D_808006A8_chlighthalo;
+}
