@@ -28,4 +28,9 @@ OSThread *chpotogoldbits_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldbits/func_80800810_chpotogoldbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldbits/chpotogoldbits_entrypoint_3.s")
+OSThread *chpotogoldbits_entrypoint_3(void)
+{
+    extern u8 D_808009D0_chpotogoldbits[];
+
+    return (OSThread *) D_808009D0_chpotogoldbits;
+}
