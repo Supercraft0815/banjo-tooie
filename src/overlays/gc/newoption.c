@@ -4,7 +4,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80800038_gcnewoption.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80800070_gcnewoption.s")
+s32 func_80800070_gcnewoption(void *arg0, s32 arg1) {
+    return (*(s16 *)((s8 *)(arg0) + (8))) + arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_0.s")
 
