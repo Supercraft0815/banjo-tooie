@@ -1,6 +1,11 @@
 #include "ch/introtext.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/text/chintrotext_entrypoint_0.s")
+OSThread *chintrotext_entrypoint_0(void)
+{
+    extern u8 D_808007D0_chintrotext[];
+
+    return (OSThread *) D_808007D0_chintrotext;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/text/func_8080000C_chintrotext.s")
 
