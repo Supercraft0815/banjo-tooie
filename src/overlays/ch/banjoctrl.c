@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/chbanjoctrl_entrypoint_0.s")
+OSThread *chbanjoctrl_entrypoint_0(void)
+{
+    extern u8 D_80801270_chbanjoctrl[];
+
+    return (OSThread *) D_80801270_chbanjoctrl;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_8080000C_chbanjoctrl.s")
 
