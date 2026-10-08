@@ -17,4 +17,9 @@ OSThread *chfactoryentrydoors_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/entrydoors/func_808001F0_chfactoryentrydoors.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/entrydoors/chfactoryentrydoors_entrypoint_1.s")
+OSThread *chfactoryentrydoors_entrypoint_1(void)
+{
+    extern u8 D_808003A0_chfactoryentrydoors[];
+
+    return (OSThread *) D_808003A0_chfactoryentrydoors;
+}
