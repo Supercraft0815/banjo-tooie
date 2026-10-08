@@ -7,7 +7,12 @@ OSThread *chpumproomswitch_entrypoint_0(void)
     return (OSThread *) D_80800380_chpumproomswitch;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pumproomswit/chpumproomswitch_entrypoint_1.s")
+OSThread *chpumproomswitch_entrypoint_1(void)
+{
+    extern u8 D_808003C8_chpumproomswitch[];
+
+    return (OSThread *) D_808003C8_chpumproomswitch;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pumproomswit/func_80800018_chpumproomswitch.s")
 
