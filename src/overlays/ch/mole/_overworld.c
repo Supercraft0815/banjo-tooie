@@ -10,4 +10,9 @@ void func_808000F4_chmole_overworld(Actor* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_overworld/func_80800160_chmole_overworld.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_overworld/chmole_overworld_entrypoint_0.s")
+OSThread *chmole_overworld_entrypoint_0(void)
+{
+    extern u8 D_808001F0_chmole_overworld[];
+
+    return (OSThread *) D_808001F0_chmole_overworld;
+}
