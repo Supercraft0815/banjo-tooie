@@ -18,7 +18,9 @@ s32 func_800E0448(s16 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB9940/func_800E0450.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB9940/func_800E0464.s")
+s32 func_800E0464(s16 *arg0) {
+    return arg0[2];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB9940/func_800E046C.s")
 
