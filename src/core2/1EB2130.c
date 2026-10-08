@@ -20,4 +20,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2130/func_800D8B80.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2130/func_800D8F40.s")
+void * func_800D8F40(void) {
+    extern u8 D_8012C030;
+    return &D_8012C030;
+}
