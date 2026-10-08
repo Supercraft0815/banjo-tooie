@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waterfall/fx/chwaterfallfx_entrypoint_0.s")
+OSThread *chwaterfallfx_entrypoint_0(void)
+{
+    extern u8 D_80800410_chwaterfallfx[];
+
+    return (OSThread *) D_80800410_chwaterfallfx;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waterfall/fx/func_8080000C_chwaterfallfx.s")
 
