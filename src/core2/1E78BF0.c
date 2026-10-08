@@ -34,7 +34,10 @@ void func_8009FE58(PlayerState* arg0)
     func_800A2E18(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009FE78.s")
+void func_8009FE78(PlayerState *arg0)
+{
+    **(s32 **)((u8 *)arg0 + 0x12C) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/bs_getTypeOfJump.s")
 
