@@ -7,7 +7,12 @@ OSThread *chseaweedbaddy_entrypoint_0(void)
     return (OSThread *) D_80800EB4_chseaweedbaddy;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/chseaweedbaddy_entrypoint_1.s")
+OSThread *chseaweedbaddy_entrypoint_1(void)
+{
+    extern u8 D_80800EFC_chseaweedbaddy[];
+
+    return (OSThread *) D_80800EFC_chseaweedbaddy;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_80800018_chseaweedbaddy.s")
 
