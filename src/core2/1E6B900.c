@@ -171,7 +171,9 @@ u32 func_80092EB0(u32 *arg0)
     return *((u8 *) arg0[20] + 0x18);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092EBC.s")
+void func_80092EBC(void *arg0, s32 arg1) {
+    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 80) + 20) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092EC8.s")
 
