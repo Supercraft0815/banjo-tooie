@@ -59,7 +59,9 @@ void func_8009ACF4(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 192) + 0) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72EA0/func_8009AD04.s")
+void func_8009AD04(void *arg0, f32 arg1) {
+    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 192) + 4) = arg1;
+}
 
 void func_8009AD14(void *arg0, s32 arg1) {
     *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 192) + 20) = arg1;
