@@ -25,7 +25,10 @@ s32 func_8008E92C(void *arg0)
     return *(s32 *) ((u8 *) *(void **) ((u8 *) arg0 + 0xC) + 0x18);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E67DA0/func_8008E938.s")
+s32 func_8008E938(void *arg0)
+{
+    return *(s32 *) *(void **) ((u8 *) arg0 + 0xC);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E67DA0/func_8008E944.s")
 
