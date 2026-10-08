@@ -10,4 +10,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familymissing/func_808004A4_chdinofamilymissing.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familymissing/chdinofamilymissing_entrypoint_0.s")
+OSThread *chdinofamilymissing_entrypoint_0(void)
+{
+    extern u8 D_808006DC_chdinofamilymissing[];
+
+    return (OSThread *) D_808006DC_chdinofamilymissing;
+}
