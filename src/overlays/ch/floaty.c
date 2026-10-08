@@ -27,4 +27,9 @@ OSThread *chfloaty_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/floaty/func_80800CA0_chfloaty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/floaty/chfloaty_entrypoint_1.s")
+OSThread *chfloaty_entrypoint_1(void)
+{
+    extern u8 D_80800EF0_chfloaty[];
+
+    return (OSThread *) D_80800EF0_chfloaty;
+}
