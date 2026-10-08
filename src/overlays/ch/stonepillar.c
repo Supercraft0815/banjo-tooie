@@ -7,7 +7,12 @@ OSThread *chstonepillar_entrypoint_0(void)
     return (OSThread *) D_808013F0_chstonepillar;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/chstonepillar_entrypoint_1.s")
+OSThread *chstonepillar_entrypoint_1(void)
+{
+    extern u8 D_80801438_chstonepillar[];
+
+    return (OSThread *) D_80801438_chstonepillar;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800018_chstonepillar.s")
 
