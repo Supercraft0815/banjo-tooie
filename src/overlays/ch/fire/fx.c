@@ -7,7 +7,12 @@ OSThread *chfirefx_entrypoint_0(void)
     return (OSThread *) D_80801200_chfirefx;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/chfirefx_entrypoint_1.s")
+OSThread *chfirefx_entrypoint_1(void)
+{
+    extern u8 D_80801248_chfirefx[];
+
+    return (OSThread *) D_80801248_chfirefx;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/func_80800018_chfirefx.s")
 
