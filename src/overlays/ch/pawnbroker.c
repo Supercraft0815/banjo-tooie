@@ -7,7 +7,12 @@ OSThread *chpawnbroker_entrypoint_0(void)
     return (OSThread *) D_80800FD0_chpawnbroker;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/chpawnbroker_entrypoint_1.s")
+OSThread *chpawnbroker_entrypoint_1(void)
+{
+    extern u8 D_80801018_chpawnbroker[];
+
+    return (OSThread *) D_80801018_chpawnbroker;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/chpawnbroker_entrypoint_2.s")
 
