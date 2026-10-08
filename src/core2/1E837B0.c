@@ -26,7 +26,10 @@ u32 func_800AA0B8(void) {
     return *(u8 *)((u8 *)&D_80127783 + 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800AA0C4.s")
+s32 func_800AA0C4(void) {
+    extern s16 D_80127780;
+    return *(s16 *)((u8 *)&D_80127780 + 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800AA0D0.s")
 
