@@ -34,4 +34,9 @@ void func_80800B84_chfantasycannon()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/cannon/func_80800BDC_chfantasycannon.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/cannon/chfantasycannon_entrypoint_1.s")
+OSThread *chfantasycannon_entrypoint_1(void)
+{
+    extern u8 D_80800D78_chfantasycannon[];
+
+    return (OSThread *) D_80800D78_chfantasycannon;
+}
