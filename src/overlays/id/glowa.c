@@ -2,7 +2,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/glowa/idglowa_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/glowa/idglowa_entrypoint_1.s")
+f32 idglowa_entrypoint_1(f32 *arg0) {
+    return arg0[1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/glowa/func_808000E8_idglowa.s")
 
