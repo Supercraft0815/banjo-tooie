@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/icywind/chicywind_entrypoint_0.s")
+OSThread *chicywind_entrypoint_0(void)
+{
+    extern u8 D_80800300_chicywind[];
+
+    return (OSThread *) D_80800300_chicywind;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/icywind/func_8080000C_chicywind.s")
 
