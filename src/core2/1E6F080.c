@@ -31,7 +31,9 @@ void func_80095A64(s32 *arg0) {
     arg0[20] = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80095A6C.s")
+void func_80095A6C(s32 *arg0, s32 *arg1) {
+    arg1[20] = (s32) arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80095A74.s")
 
