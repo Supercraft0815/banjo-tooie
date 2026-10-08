@@ -14,6 +14,11 @@ OSThread *fxgenlist_entrypoint_1(void)
     return (OSThread *) D_8080005C_fxgenlist;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/genlist/fxgenlist_entrypoint_2.s")
+OSThread *fxgenlist_entrypoint_2(void)
+{
+    extern u8 D_808000A0_fxgenlist[];
+
+    return (OSThread *) D_808000A0_fxgenlist;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/genlist/fxgenlist_entrypoint_3.s")
