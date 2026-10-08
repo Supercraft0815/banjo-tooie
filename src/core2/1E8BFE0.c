@@ -20,7 +20,9 @@ s32 func_800B270C(s16 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8BFE0/func_800B27BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8BFE0/func_800B27D8.s")
+f32 func_800B27D8(f32 *arg0) {
+    return arg0[18];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8BFE0/func_800B27E0.s")
 
