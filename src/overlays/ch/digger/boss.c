@@ -8,7 +8,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_8080041C_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/chdiggerboss_entrypoint_0.s")
+OSThread *chdiggerboss_entrypoint_0(void)
+{
+    extern u8 D_80809E44_chdiggerboss[];
+
+    return (OSThread *) D_80809E44_chdiggerboss;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/chdiggerboss_entrypoint_1.s")
 
