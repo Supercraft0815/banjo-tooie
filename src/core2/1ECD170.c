@@ -30,7 +30,9 @@ void func_800F3BB0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F4200.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F4244.s")
+s32 func_800F4244(s32 *arg0) {
+    return arg0[95];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F424C.s")
 
