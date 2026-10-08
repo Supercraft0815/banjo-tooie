@@ -61,7 +61,12 @@ void func_808007B8_chfactoryroofbits(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_808007E4_chfactoryroofbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/chfactoryroofbits_entrypoint_4.s")
+OSThread *chfactoryroofbits_entrypoint_4(void)
+{
+    extern u8 D_80800AEC_chfactoryroofbits[];
+
+    return (OSThread *) D_80800AEC_chfactoryroofbits;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_80800840_chfactoryroofbits.s")
 
