@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/chklungo_entrypoint_0.s")
+OSThread *chklungo_entrypoint_0(void)
+{
+    extern u8 D_80803B6C_chklungo[];
+
+    return (OSThread *) D_80803B6C_chklungo;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_8080000C_chklungo.s")
 
