@@ -6,7 +6,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/skullfakearchpanellava/func_8080008C_chmumboskullfakearchpanellava.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/skullfakearchpanellava/chmumboskullfakearchpanellava_entrypoint_0.s")
+OSThread *chmumboskullfakearchpanellava_entrypoint_0(void)
+{
+    extern u8 D_808001E0_chmumboskullfakearchpanellava[];
+
+    return (OSThread *) D_808001E0_chmumboskullfakearchpanellava;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/skullfakearchpanellava/func_8080012C_chmumboskullfakearchpanellava.s")
 
