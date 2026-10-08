@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/planet/chstarspinnerplanet_entrypoint_0.s")
+OSThread *chstarspinnerplanet_entrypoint_0(void)
+{
+    extern u8 D_80800260_chstarspinnerplanet[];
+
+    return (OSThread *) D_80800260_chstarspinnerplanet;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/planet/chstarspinnerplanet_entrypoint_1.s")
 
