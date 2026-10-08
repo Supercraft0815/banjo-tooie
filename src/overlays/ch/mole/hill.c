@@ -24,4 +24,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/func_808009A0_chmolehill.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/chmolehill_entrypoint_6.s")
+OSThread *chmolehill_entrypoint_6(void)
+{
+    extern u8 D_80800B70_chmolehill[];
+
+    return (OSThread *) D_80800B70_chmolehill;
+}
