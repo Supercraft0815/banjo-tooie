@@ -27,7 +27,12 @@ OSThread *chjiggytemple_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_80800438_chjiggytemple.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/chjiggytemple_entrypoint_2.s")
+OSThread *chjiggytemple_entrypoint_2(void)
+{
+    extern u8 D_80800974_chjiggytemple[];
+
+    return (OSThread *) D_80800974_chjiggytemple;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_8080047C_chjiggytemple.s")
 
