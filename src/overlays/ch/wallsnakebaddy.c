@@ -13,4 +13,9 @@ void func_80800650_chwallsnakebaddy()
     func_80105010();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/wallsnakebaddy/chwallsnakebaddy_entrypoint_0.s")
+OSThread *chwallsnakebaddy_entrypoint_0(void)
+{
+    extern u8 D_808007B4_chwallsnakebaddy[];
+
+    return (OSThread *) D_808007B4_chwallsnakebaddy;
+}
