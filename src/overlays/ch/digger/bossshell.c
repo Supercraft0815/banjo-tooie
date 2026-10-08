@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossshell/chdiggerbossshell_entrypoint_0.s")
+OSThread *chdiggerbossshell_entrypoint_0(void)
+{
+    extern u8 D_80800560_chdiggerbossshell[];
+
+    return (OSThread *) D_80800560_chdiggerbossshell;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossshell/chdiggerbossshell_entrypoint_1.s")
 
