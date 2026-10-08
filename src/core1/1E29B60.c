@@ -9,7 +9,9 @@ void func_8001207C(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E29B60/func_8001209C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E29B60/func_8001210C.s")
+s32 func_8001210C(s32 arg0) {
+    return D_800459C8 & arg0;
+}
 
 s32 func_8001211C(void) 
 {
