@@ -96,7 +96,9 @@ void func_8008C1D4(s32 *arg0, s32 arg1) {
     arg0[0] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008C1DC.s")
+void func_8008C1DC(s32 *arg0, s32 arg1) {
+    arg0[1] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008C1E4.s")
 
