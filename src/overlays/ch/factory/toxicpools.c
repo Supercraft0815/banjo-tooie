@@ -7,7 +7,12 @@ OSThread *chfactorytoxicpools_entrypoint_0(void)
     return (OSThread *) D_80800940_chfactorytoxicpools;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxicpools/chfactorytoxicpools_entrypoint_1.s")
+OSThread *chfactorytoxicpools_entrypoint_1(void)
+{
+    extern u8 D_80800988_chfactorytoxicpools[];
+
+    return (OSThread *) D_80800988_chfactorytoxicpools;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxicpools/chfactorytoxicpools_entrypoint_2.s")
 
