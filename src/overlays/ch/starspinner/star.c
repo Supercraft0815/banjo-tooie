@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/star/chstarspinnerstar_entrypoint_0.s")
+OSThread *chstarspinnerstar_entrypoint_0(void)
+{
+    extern u8 D_808006B0_chstarspinnerstar[];
+
+    return (OSThread *) D_808006B0_chstarspinnerstar;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/star/func_8080000C_chstarspinnerstar.s")
 
