@@ -55,7 +55,9 @@ void anctrl_setDuration(AnimCtrl *arg0, f32 arg1) {
     (*(f32 *)((s8 *)(arg0) + (0xC))) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B1C8.s")
+void func_8008B1C8(AnimCtrl *arg0, f32 arg1) {
+    (*(f32 *)((s8 *)(arg0) + (0x10))) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_setSubrange.s")
 
