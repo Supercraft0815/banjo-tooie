@@ -7,7 +7,12 @@ OSThread *chstarspinnerplanet_entrypoint_0(void)
     return (OSThread *) D_80800260_chstarspinnerplanet;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/planet/chstarspinnerplanet_entrypoint_1.s")
+OSThread *chstarspinnerplanet_entrypoint_1(void)
+{
+    extern u8 D_808002A8_chstarspinnerplanet[];
+
+    return (OSThread *) D_808002A8_chstarspinnerplanet;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/planet/func_80800018_chstarspinnerplanet.s")
 
