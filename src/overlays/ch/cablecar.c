@@ -20,7 +20,12 @@ OSThread *chcablecar_entrypoint_0(void)
     return (OSThread *) D_80800EB0_chcablecar;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/chcablecar_entrypoint_1.s")
+OSThread *chcablecar_entrypoint_1(void)
+{
+    extern u8 D_80800EF8_chcablecar[];
+
+    return (OSThread *) D_80800EF8_chcablecar;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800018_chcablecar.s")
 
