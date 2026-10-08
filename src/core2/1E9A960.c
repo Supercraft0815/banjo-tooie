@@ -14,7 +14,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C13B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C13C4.s")
+u32 func_800C13C4(u16 *arg0, u32 arg1)
+{
+    return (u32) arg0[0x3E] & arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C13D0.s")
 
