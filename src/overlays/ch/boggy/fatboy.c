@@ -1,6 +1,11 @@
 #include "ch/boggy/fatboy.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/chboggyfatboy_entrypoint_0.s")
+OSThread *chboggyfatboy_entrypoint_0(void)
+{
+    extern u8 D_80801120_chboggyfatboy[];
+
+    return (OSThread *) D_80801120_chboggyfatboy;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/chboggyfatboy_entrypoint_1.s")
 
