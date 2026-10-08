@@ -16,4 +16,5 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fireball/func_808002E0_chweldarbossfireball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fireball/func_80800404_chweldarbossfireball.s")
+void func_80800404_chweldarbossfireball(s32 arg0) {
+}
