@@ -16,7 +16,15 @@ s32 func_800AF5A8(s16 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E88E90/func_800AF5E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E88E90/func_800AF5F0.s")
+void *func_800AF5F0(void *arg0)
+{
+    struct OffsetHeader {
+        u8 padding[0x18];
+        s32 offset;
+    };
+
+    return (u8 *)arg0 + ((struct OffsetHeader *)arg0)->offset;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E88E90/func_800AF5FC.s")
 
