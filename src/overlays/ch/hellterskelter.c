@@ -14,7 +14,12 @@ OSThread *chhellterskelter_entrypoint_1(void)
     return (OSThread *) D_80800810_chhellterskelter;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/chhellterskelter_entrypoint_2.s")
+OSThread *chhellterskelter_entrypoint_2(void)
+{
+    extern u8 D_80800858_chhellterskelter[];
+
+    return (OSThread *) D_80800858_chhellterskelter;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/func_80800024_chhellterskelter.s")
 
