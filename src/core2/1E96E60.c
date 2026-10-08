@@ -48,7 +48,10 @@ s32 func_800BDC50()
     return D_80128434;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BDC5C.s")
+s32 func_800BDC5C(void) {
+    extern s16 D_8012844C;
+    return *(s16 *)((u8 *)&D_8012844C + 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BDC68.s")
 
