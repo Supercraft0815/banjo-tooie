@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/temple/internaldoor/chtempleinternaldoor_entrypoint_0.s")
+OSThread *chtempleinternaldoor_entrypoint_0(void)
+{
+    extern u8 D_808001C0_chtempleinternaldoor[];
+
+    return (OSThread *) D_808001C0_chtempleinternaldoor;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/temple/internaldoor/func_8080000C_chtempleinternaldoor.s")
 
