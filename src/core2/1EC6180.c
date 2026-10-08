@@ -75,6 +75,8 @@ void func_800EE0F8(s32 *arg0, s32 arg1) {
     arg0[4] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EE100.s")
+void func_800EE100(s16 *arg0, s32 arg1) {
+    arg0[38] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EE108.s")
