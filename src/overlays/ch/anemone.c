@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anemone/chanemone_entrypoint_0.s")
+OSThread *chanemone_entrypoint_0(void)
+{
+    extern u8 D_808008D8_chanemone[];
+
+    return (OSThread *) D_808008D8_chanemone;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anemone/func_8080000C_chanemone.s")
 
