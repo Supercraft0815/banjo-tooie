@@ -4,4 +4,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE8860/func_8010F070.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE8860/func_8010F270.s")
+void func_8010F270(void)
+{
+    extern s32 D_80137210;
+
+    D_80137210 = 0;
+}
