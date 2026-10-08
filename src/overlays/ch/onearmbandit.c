@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/chonearmbandit_entrypoint_0.s")
+OSThread *chonearmbandit_entrypoint_0(void)
+{
+    extern u8 D_808012BC_chonearmbandit[];
+
+    return (OSThread *) D_808012BC_chonearmbandit;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/chonearmbandit_entrypoint_1.s")
 
