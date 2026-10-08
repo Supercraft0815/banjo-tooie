@@ -34,7 +34,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_16.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_17.s")
+void suexpression_entrypoint_17(s16 *arg0, s32 arg1) {
+    arg0[7] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_18.s")
 
