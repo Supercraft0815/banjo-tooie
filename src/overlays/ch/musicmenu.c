@@ -37,7 +37,12 @@ OSThread *chmusicmenu_entrypoint_0(void)
     return (OSThread *) D_8080157C_chmusicmenu;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/chmusicmenu_entrypoint_1.s")
+OSThread *chmusicmenu_entrypoint_1(void)
+{
+    extern u8 D_808015C4_chmusicmenu[];
+
+    return (OSThread *) D_808015C4_chmusicmenu;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_808010C4_chmusicmenu.s")
 
