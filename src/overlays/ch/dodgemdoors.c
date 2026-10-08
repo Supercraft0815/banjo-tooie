@@ -6,4 +6,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemdoors/func_8080026C_chdodgemdoors.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemdoors/chdodgemdoors_entrypoint_0.s")
+OSThread *chdodgemdoors_entrypoint_0(void)
+{
+    extern u8 D_80800374_chdodgemdoors[];
+
+    return (OSThread *) D_80800374_chdodgemdoors;
+}
