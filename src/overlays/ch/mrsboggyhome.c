@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggyhome/chmrsboggyhome_entrypoint_0.s")
+OSThread *chmrsboggyhome_entrypoint_0(void)
+{
+    extern u8 D_808001F0_chmrsboggyhome[];
+
+    return (OSThread *) D_808001F0_chmrsboggyhome;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggyhome/func_8080000C_chmrsboggyhome.s")
 
