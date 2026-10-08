@@ -14,4 +14,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/worlddoors/func_80800798_chworlddoors.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/worlddoors/chworlddoors_entrypoint_0.s")
+OSThread *chworlddoors_entrypoint_0(void)
+{
+    extern u8 D_80800A04_chworlddoors[];
+
+    return (OSThread *) D_80800A04_chworlddoors;
+}
