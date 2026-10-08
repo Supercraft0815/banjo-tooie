@@ -22,4 +22,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_80800EB4_chrainbow.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/chrainbow_entrypoint_1.s")
+OSThread *chrainbow_entrypoint_1(void)
+{
+    extern u8 D_80801010_chrainbow[];
+
+    return (OSThread *) D_80801010_chrainbow;
+}
