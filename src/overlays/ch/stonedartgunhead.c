@@ -16,7 +16,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/func_80800B6C_chstonedartgunhead.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/chstonedartgunhead_entrypoint_0.s")
+OSThread *chstonedartgunhead_entrypoint_0(void)
+{
+    extern u8 D_80800F10_chstonedartgunhead[];
+
+    return (OSThread *) D_80800F10_chstonedartgunhead;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/func_80800BE8_chstonedartgunhead.s")
 
