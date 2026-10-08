@@ -20,4 +20,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_808005B8_chtimetable.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/chtimetable_entrypoint_0.s")
+OSThread *chtimetable_entrypoint_0(void)
+{
+    extern u8 D_808007CC_chtimetable[];
+
+    return (OSThread *) D_808007CC_chtimetable;
+}
