@@ -72,6 +72,8 @@ void func_800D5E94()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5EB4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5FDC.s")
+void func_800D5FDC(s32 arg0) {
+    *(s32 *)((u8 *)&D_8012B7E8 + 0) = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5FE8.s")
