@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/explodingainlinks/chexplodingchainlinks_entrypoint_0.s")
+OSThread *chexplodingchainlinks_entrypoint_0(void)
+{
+    extern u8 D_80800170_chexplodingchainlinks[];
+
+    return (OSThread *) D_80800170_chexplodingchainlinks;
+}
 
 void func_8080000C_chexplodingchainlinks(s32 arg0) 
 {
