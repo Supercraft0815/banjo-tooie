@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/chdinoswitches_entrypoint_0.s")
+OSThread *chdinoswitches_entrypoint_0(void)
+{
+    extern u8 D_80800C30_chdinoswitches[];
+
+    return (OSThread *) D_80800C30_chdinoswitches;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/chdinoswitches_entrypoint_1.s")
 
