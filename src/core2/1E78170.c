@@ -85,7 +85,10 @@ s32 func_8009EA2C()
     return func_800DA298(FLAG_3EC_ABILITY_DRAGON_KAZOOIE);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009EA4C.s")
+u32 func_8009EA4C(void) {
+    extern u8 D_80127074;
+    return *(u8 *)((u8 *)&D_80127074 + 0);
+}
 
 s32 func_8009EA58()
 {
