@@ -67,7 +67,12 @@ void func_808024C8_chjiggygamenew(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/chjiggygamenew_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/chjiggygamenew_entrypoint_3.s")
+OSThread *chjiggygamenew_entrypoint_3(void)
+{
+    extern u8 D_80803E50_chjiggygamenew[];
+
+    return (OSThread *) D_80803E50_chjiggygamenew;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80802E80_chjiggygamenew.s")
 
