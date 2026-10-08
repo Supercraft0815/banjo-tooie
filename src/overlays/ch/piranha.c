@@ -38,7 +38,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_8080182C_chpiranha.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/chpiranha_entrypoint_0.s")
+OSThread *chpiranha_entrypoint_0(void)
+{
+    extern u8 D_80801B60_chpiranha[];
+
+    return (OSThread *) D_80801B60_chpiranha;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/chpiranha_entrypoint_1.s")
 
