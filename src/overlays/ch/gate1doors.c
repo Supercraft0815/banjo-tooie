@@ -17,4 +17,9 @@ OSThread *chgate1doors_entrypoint_0(void)
     return (OSThread *) D_808004B8_chgate1doors;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gate1doors/chgate1doors_entrypoint_1.s")
+OSThread *chgate1doors_entrypoint_1(void)
+{
+    extern u8 D_80800500_chgate1doors[];
+
+    return (OSThread *) D_80800500_chgate1doors;
+}
