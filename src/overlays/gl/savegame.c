@@ -30,7 +30,10 @@ s32 glsavegame_entrypoint_5()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/glsavegame_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/func_808004B8_glsavegame.s")
+void func_808004B8_glsavegame(s32 arg0) {
+    extern s8 D_80127614;
+    *(s8 *)((u8 *)&D_80127614 + 22) = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/func_808004C4_glsavegame.s")
 
