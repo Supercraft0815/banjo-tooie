@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/chchuffy_entrypoint_0.s")
+OSThread *chchuffy_entrypoint_0(void)
+{
+    extern u8 D_80802434_chchuffy[];
+
+    return (OSThread *) D_80802434_chchuffy;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_8080000C_chchuffy.s")
 
