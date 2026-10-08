@@ -32,7 +32,9 @@ u32 suspline_entrypoint_7(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_11.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_12.s")
+void suspline_entrypoint_12(void *arg0, s8 arg1) {
+    (*(s8 *)((s8 *)(arg0) + (0x8A))) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/func_80800224_suspline.s")
 
