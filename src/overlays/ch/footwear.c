@@ -31,7 +31,12 @@ OSThread *chfootwear_entrypoint_1(void)
     return (OSThread *) D_808007D0_chfootwear;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/footwear/chfootwear_entrypoint_2.s")
+OSThread *chfootwear_entrypoint_2(void)
+{
+    extern u8 D_80800818_chfootwear[];
+
+    return (OSThread *) D_80800818_chfootwear;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/footwear/chfootwear_entrypoint_3.s")
 
