@@ -15,7 +15,9 @@ void func_80115858(void *arg0, s32 arg1) {
     *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 60) + 12) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEF00/func_80115864.s")
+void func_80115864(void *arg0, s32 arg1) {
+    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 60) + 28) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEF00/func_80115870.s")
 
