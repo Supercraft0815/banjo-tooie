@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillboulder/chbilldrillboulder_entrypoint_0.s")
+OSThread *chbilldrillboulder_entrypoint_0(void)
+{
+    extern u8 D_80800540_chbilldrillboulder[];
+
+    return (OSThread *) D_80800540_chbilldrillboulder;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillboulder/chbilldrillboulder_entrypoint_1.s")
 
