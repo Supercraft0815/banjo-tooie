@@ -7,7 +7,12 @@ OSThread *chjollyroger_entrypoint_0(void)
     return (OSThread *) D_80801358_chjollyroger;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/chjollyroger_entrypoint_1.s")
+OSThread *chjollyroger_entrypoint_1(void)
+{
+    extern u8 D_808013A0_chjollyroger[];
+
+    return (OSThread *) D_808013A0_chjollyroger;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/chjollyroger_entrypoint_2.s")
 
