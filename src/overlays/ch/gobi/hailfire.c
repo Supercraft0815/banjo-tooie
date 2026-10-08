@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gobi/hailfire/chgobihailfire_entrypoint_0.s")
+OSThread *chgobihailfire_entrypoint_0(void)
+{
+    extern u8 D_80800788_chgobihailfire[];
+
+    return (OSThread *) D_80800788_chgobihailfire;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gobi/hailfire/chgobihailfire_entrypoint_1.s")
 
