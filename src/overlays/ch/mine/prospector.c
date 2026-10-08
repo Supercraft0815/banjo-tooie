@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/chmineprospector_entrypoint_0.s")
+OSThread *chmineprospector_entrypoint_0(void)
+{
+    extern u8 D_8080102C_chmineprospector[];
+
+    return (OSThread *) D_8080102C_chmineprospector;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/chmineprospector_entrypoint_1.s")
 
