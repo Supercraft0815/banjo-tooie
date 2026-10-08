@@ -32,7 +32,9 @@ f32 susplinet_entrypoint_9(f32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_11.s")
+void susplinet_entrypoint_11(void *arg0, f32 arg1) {
+    *(f32 *)((u8 *)arg0 + 72) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_12.s")
 
