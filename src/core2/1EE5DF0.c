@@ -74,7 +74,11 @@ void func_8010CCE0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010D1E8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010D23C.s")
+s32 func_8010D23C(void) {
+    extern s16 D_80136F5C;
+
+    return D_80136F5C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010D248.s")
 
