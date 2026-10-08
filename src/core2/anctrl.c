@@ -71,7 +71,9 @@ f32 func_8008B2AC(f32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_getAnimTimer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B2D4.s")
+f32 func_8008B2D4(f32 *arg0) {
+    return arg0[0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B2DC.s")
 
