@@ -7,7 +7,12 @@ OSThread *chdippy_entrypoint_0(void)
     return (OSThread *) D_80801580_chdippy;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/chdippy_entrypoint_1.s")
+OSThread *chdippy_entrypoint_1(void)
+{
+    extern u8 D_808015C8_chdippy[];
+
+    return (OSThread *) D_808015C8_chdippy;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800018_chdippy.s")
 
