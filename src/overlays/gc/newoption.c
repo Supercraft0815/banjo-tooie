@@ -25,7 +25,9 @@ int gcnewoption_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_8.s")
+void gcnewoption_entrypoint_8(s16 *arg0, s32 arg1) {
+    arg0[1] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_9.s")
 
