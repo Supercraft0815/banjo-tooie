@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/freezy/chfreezy_entrypoint_0.s")
+OSThread *chfreezy_entrypoint_0(void)
+{
+    extern u8 D_80800700_chfreezy[];
+
+    return (OSThread *) D_80800700_chfreezy;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/freezy/func_8080000C_chfreezy.s")
 
