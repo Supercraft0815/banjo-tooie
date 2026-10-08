@@ -2,7 +2,9 @@
 
 extern s32 D_8011AE60;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800CF870.s")
+void func_800CF870(s32 arg0) {
+    *(s32 *)((u8 *)&D_8011AE60 + 0) = arg0;
+}
 
 s32 func_800CF87C()
 {
