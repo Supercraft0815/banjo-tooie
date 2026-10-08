@@ -7,7 +7,12 @@ OSThread *chmrsicecube_entrypoint_0(void)
     return (OSThread *) D_8080099C_chmrsicecube;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/chmrsicecube_entrypoint_1.s")
+OSThread *chmrsicecube_entrypoint_1(void)
+{
+    extern u8 D_808009E4_chmrsicecube[];
+
+    return (OSThread *) D_808009E4_chmrsicecube;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/func_80800018_chmrsicecube.s")
 
