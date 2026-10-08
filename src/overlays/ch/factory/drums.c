@@ -18,4 +18,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/drums/func_80800D90_chfactorydrums.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/drums/chfactorydrums_entrypoint_2.s")
+OSThread *chfactorydrums_entrypoint_2(void)
+{
+    extern u8 D_8080125C_chfactorydrums[];
+
+    return (OSThread *) D_8080125C_chfactorydrums;
+}
