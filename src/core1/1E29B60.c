@@ -98,4 +98,9 @@ void func_8001253C(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E29B60/func_80012548.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E29B60/func_80012598.s")
+OSThread *func_80012598(void)
+{
+    extern u8 D_80045788[];
+
+    return (OSThread *) D_80045788;
+}
