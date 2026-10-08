@@ -230,7 +230,12 @@ OSThread *chcollballcontrol_entrypoint_3(void)
     return (OSThread *) D_80804FA0_chcollballcontrol;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/chcollballcontrol_entrypoint_4.s")
+OSThread *chcollballcontrol_entrypoint_4(void)
+{
+    extern u8 D_80804FE8_chcollballcontrol[];
+
+    return (OSThread *) D_80804FE8_chcollballcontrol;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_8080324C_chcollballcontrol.s")
 
