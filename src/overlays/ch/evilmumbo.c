@@ -53,7 +53,12 @@ void func_808023E8_chevilmumbo(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80802618_chevilmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/chevilmumbo_entrypoint_0.s")
+OSThread *chevilmumbo_entrypoint_0(void)
+{
+    extern u8 D_80804460_chevilmumbo[];
+
+    return (OSThread *) D_80804460_chevilmumbo;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_8080300C_chevilmumbo.s")
 
