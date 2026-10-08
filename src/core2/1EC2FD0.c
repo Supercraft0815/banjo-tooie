@@ -45,7 +45,9 @@ s32 func_800E9DC4(s16 *arg0) {
     return arg0[1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9DCC.s")
+s32 func_800E9DCC(s16 *arg0) {
+    return arg0[3];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9DD4.s")
 
