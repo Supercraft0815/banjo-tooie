@@ -139,7 +139,9 @@ s32 gcnewoption_entrypoint_45(s16 *arg0) {
     return arg0[3];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_46.s")
+void gcnewoption_entrypoint_46(s8 *arg0, s32 arg1) {
+    arg0[592] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_47.s")
 
