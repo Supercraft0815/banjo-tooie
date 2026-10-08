@@ -113,4 +113,9 @@ void func_80803B48_chevilmumbo(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80803C88_chevilmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/chevilmumbo_entrypoint_3.s")
+OSThread *chevilmumbo_entrypoint_3(void)
+{
+    extern u8 D_8080458C_chevilmumbo[];
+
+    return (OSThread *) D_8080458C_chevilmumbo;
+}
