@@ -81,7 +81,11 @@ void func_800B8CF0(f32 size)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B8F88.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B8FE0.s")
+void func_800B8FE0(void) {
+    extern s32 D_8012712C;
+
+    D_8012712C = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B8FEC.s")
 
