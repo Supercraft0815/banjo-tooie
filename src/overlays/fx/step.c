@@ -18,7 +18,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/fxstep_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/fxstep_entrypoint_2.s")
+void fxstep_entrypoint_2(s8 *arg0, s32 arg1) {
+    arg0[38] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/fxstep_entrypoint_3.s")
 
