@@ -22,7 +22,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800DC8_chfactorysparkroom.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/chfactorysparkroom_entrypoint_0.s")
+OSThread *chfactorysparkroom_entrypoint_0(void)
+{
+    extern u8 D_80801108_chfactorysparkroom[];
+
+    return (OSThread *) D_80801108_chfactorysparkroom;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800E94_chfactorysparkroom.s")
 
