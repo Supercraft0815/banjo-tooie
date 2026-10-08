@@ -7,7 +7,12 @@ OSThread *chsabreman_entrypoint_0(void)
     return (OSThread *) D_80801BE0_chsabreman;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/chsabreman_entrypoint_1.s")
+OSThread *chsabreman_entrypoint_1(void)
+{
+    extern u8 D_80801D30_chsabreman[];
+
+    return (OSThread *) D_80801D30_chsabreman;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/chsabreman_entrypoint_2.s")
 
