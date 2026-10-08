@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/chbilldrillplate_entrypoint_0.s")
+OSThread *chbilldrillplate_entrypoint_0(void)
+{
+    extern u8 D_808010DC_chbilldrillplate[];
+
+    return (OSThread *) D_808010DC_chbilldrillplate;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/chbilldrillplate_entrypoint_1.s")
 
