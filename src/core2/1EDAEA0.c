@@ -14,7 +14,10 @@ OSThread *func_801015B0(void)
     return (OSThread *) D_80135A90;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDAEA0/func_801015BC.s")
+void func_801015BC(void) {
+    extern s16 D_80135A94;
+    D_80135A94 = 0;
+}
 
 void func_801015C8(void) {
 }
