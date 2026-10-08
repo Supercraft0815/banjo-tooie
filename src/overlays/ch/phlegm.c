@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/chphlegm_entrypoint_0.s")
+OSThread *chphlegm_entrypoint_0(void)
+{
+    extern u8 D_80800B58_chphlegm[];
+
+    return (OSThread *) D_80800B58_chphlegm;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/chphlegm_entrypoint_1.s")
 
