@@ -6,7 +6,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/maindoor/func_808001F0_chfactorymaindoor.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/maindoor/chfactorymaindoor_entrypoint_0.s")
+OSThread *chfactorymaindoor_entrypoint_0(void)
+{
+    extern u8 D_808004D4_chfactorymaindoor[];
+
+    return (OSThread *) D_808004D4_chfactorymaindoor;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/maindoor/func_80800344_chfactorymaindoor.s")
 
