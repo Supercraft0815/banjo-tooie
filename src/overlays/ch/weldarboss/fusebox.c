@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fusebox/chweldarbossfusebox_entrypoint_0.s")
+OSThread *chweldarbossfusebox_entrypoint_0(void)
+{
+    extern u8 D_80800670_chweldarbossfusebox[];
+
+    return (OSThread *) D_80800670_chweldarbossfusebox;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fusebox/chweldarbossfusebox_entrypoint_1.s")
 
