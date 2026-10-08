@@ -7,7 +7,12 @@ OSThread *chflysaucerdoor_entrypoint_0(void)
     return (OSThread *) D_80800160_chflysaucerdoor;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucerdoor/chflysaucerdoor_entrypoint_1.s")
+OSThread *chflysaucerdoor_entrypoint_1(void)
+{
+    extern u8 D_808001A8_chflysaucerdoor[];
+
+    return (OSThread *) D_808001A8_chflysaucerdoor;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucerdoor/func_80800018_chflysaucerdoor.s")
 
