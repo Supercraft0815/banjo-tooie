@@ -126,7 +126,12 @@ OSThread *chstoneballcontrol_entrypoint_2(void)
     return (OSThread *) D_808052CC_chstoneballcontrol;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/chstoneballcontrol_entrypoint_3.s")
+OSThread *chstoneballcontrol_entrypoint_3(void)
+{
+    extern u8 D_80805314_chstoneballcontrol[];
+
+    return (OSThread *) D_80805314_chstoneballcontrol;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/chstoneballcontrol_entrypoint_4.s")
 
