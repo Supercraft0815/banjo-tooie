@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80108ED0.s")
+OSThread *func_80108ED0(void)
+{
+    extern u8 D_801245D0[];
+
+    return (OSThread *) D_801245D0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80108EDC.s")
 
