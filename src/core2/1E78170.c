@@ -20,7 +20,10 @@ u32 func_8009E964(void) {
     return *(u8 *)((u8 *)&D_80127078 + 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009E970.s")
+f32 func_8009E970(void) {
+    extern f32 D_80127048;
+    return *(f32 *)((u8 *)&D_80127048 + 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009E97C.s")
 
