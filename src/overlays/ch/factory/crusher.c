@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/crusher/chfactorycrusher_entrypoint_0.s")
+OSThread *chfactorycrusher_entrypoint_0(void)
+{
+    extern u8 D_80800A50_chfactorycrusher[];
+
+    return (OSThread *) D_80800A50_chfactorycrusher;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/crusher/chfactorycrusher_entrypoint_1.s")
 
