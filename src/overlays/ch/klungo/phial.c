@@ -7,7 +7,12 @@ OSThread *chklungophial_entrypoint_0(void)
     return (OSThread *) D_80800C30_chklungophial;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/phial/chklungophial_entrypoint_1.s")
+OSThread *chklungophial_entrypoint_1(void)
+{
+    extern u8 D_80800C78_chklungophial[];
+
+    return (OSThread *) D_80800C78_chklungophial;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/phial/func_80800018_chklungophial.s")
 
