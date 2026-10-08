@@ -7,7 +7,12 @@ f32* func_801018D8(Actor*);
 f32* func_801027F4(Actor*);
 s32 func_801015D0(Actor*);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDAEA0/func_801015B0.s")
+OSThread *func_801015B0(void)
+{
+    extern u8 D_80135A90[];
+
+    return (OSThread *) D_80135A90;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDAEA0/func_801015BC.s")
 
