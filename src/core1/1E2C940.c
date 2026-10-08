@@ -90,7 +90,10 @@ s32 func_8001575C()
     return D_80078F88;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80015768.s")
+void func_80015768(void) {
+    extern s16 D_80078F62;
+    D_80078F62 = 1;
+}
 
 void wait_one_frame(void) {
     while (osViGetCurrentLine() < 5) {
