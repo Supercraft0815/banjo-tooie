@@ -10,4 +10,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beehive/func_80800268_chbeehive.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beehive/chbeehive_entrypoint_0.s")
+OSThread *chbeehive_entrypoint_0(void)
+{
+    extern u8 D_80800374_chbeehive[];
+
+    return (OSThread *) D_80800374_chbeehive;
+}
