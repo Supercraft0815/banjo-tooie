@@ -110,7 +110,9 @@ u32 func_800A3404(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3410.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A34A0.s")
+void func_800A34A0(void *arg0, s32 arg1) {
+    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 42) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A34AC.s")
 
