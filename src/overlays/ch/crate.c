@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crate/chcrate_entrypoint_0.s")
+OSThread *chcrate_entrypoint_0(void)
+{
+    extern u8 D_80800410_chcrate[];
+
+    return (OSThread *) D_80800410_chcrate;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crate/chcrate_entrypoint_1.s")
 
