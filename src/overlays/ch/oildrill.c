@@ -33,4 +33,9 @@ OSThread *choildrill_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_80801110_choildrill.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/choildrill_entrypoint_2.s")
+OSThread *choildrill_entrypoint_2(void)
+{
+    extern u8 D_808014F0_choildrill[];
+
+    return (OSThread *) D_808014F0_choildrill;
+}
