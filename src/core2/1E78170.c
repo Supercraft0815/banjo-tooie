@@ -45,7 +45,10 @@ void func_8009E9A0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009E9A8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009E9D8.s")
+void func_8009E9D8(s32 arg0) {
+    extern u8 D_8012704C;
+    D_8012704C = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009E9E4.s")
 
