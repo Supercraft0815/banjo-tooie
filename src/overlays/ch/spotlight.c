@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/chspotlight_entrypoint_0.s")
+OSThread *chspotlight_entrypoint_0(void)
+{
+    extern u8 D_808009B0_chspotlight[];
+
+    return (OSThread *) D_808009B0_chspotlight;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_8080000C_chspotlight.s")
 
