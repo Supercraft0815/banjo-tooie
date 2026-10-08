@@ -14,7 +14,12 @@ OSThread *chcrate_entrypoint_1(void)
     return (OSThread *) D_80800458_chcrate;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crate/chcrate_entrypoint_2.s")
+OSThread *chcrate_entrypoint_2(void)
+{
+    extern u8 D_808004A0_chcrate[];
+
+    return (OSThread *) D_808004A0_chcrate;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crate/func_80800024_chcrate.s")
 
