@@ -44,7 +44,9 @@ u32 func_8009861C(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 224) + 46);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E71B00/func_80098628.s")
+f32 func_80098628(void *arg0) {
+    return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 224) + 24);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E71B00/func_80098634.s")
 
