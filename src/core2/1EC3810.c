@@ -44,7 +44,11 @@ void func_800EA334(s32 arg0) {
     *(s16 *)((u8 *)&D_80132DCA + 0) = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA340.s")
+s32 func_800EA340(void) {
+    extern s16 D_80132DCA;
+
+    return D_80132DCA;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA34C.s")
 
