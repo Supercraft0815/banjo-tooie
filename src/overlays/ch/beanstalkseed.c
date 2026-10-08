@@ -23,4 +23,9 @@ OSThread *chbeanstalkseed_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beanstalkseed/func_80800A0C_chbeanstalkseed.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beanstalkseed/chbeanstalkseed_entrypoint_1.s")
+OSThread *chbeanstalkseed_entrypoint_1(void)
+{
+    extern u8 D_80800C54_chbeanstalkseed[];
+
+    return (OSThread *) D_80800C54_chbeanstalkseed;
+}
