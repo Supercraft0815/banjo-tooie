@@ -73,7 +73,12 @@ void func_808021F4_chhumba(Actor* arg0)
         _suexpression_entrypoint_8(arg0, 1);
     }
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/chhumba_entrypoint_0.s")
+OSThread *chhumba_entrypoint_0(void)
+{
+    extern u8 D_80802738_chhumba[];
+
+    return (OSThread *) D_80802738_chhumba;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80802234_chhumba.s")
 
