@@ -53,7 +53,10 @@ void func_80014F64(OSMesgQueue* queue, OSMesg mesg) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80014FE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80015178.s")
+void func_80015178(s32 arg0)
+{
+    D_8007913C = arg0;
+}
 
 s32 func_80015184()
 {
