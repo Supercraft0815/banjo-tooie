@@ -21,7 +21,12 @@ OSThread *chstatuebossbits_entrypoint_2(void)
     return (OSThread *) D_80800780_chstatuebossbits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statuebossbits/chstatuebossbits_entrypoint_3.s")
+OSThread *chstatuebossbits_entrypoint_3(void)
+{
+    extern u8 D_808007C8_chstatuebossbits[];
+
+    return (OSThread *) D_808007C8_chstatuebossbits;
+}
 
 void func_80800030_chstatuebossbits(s32 arg0) 
 {
