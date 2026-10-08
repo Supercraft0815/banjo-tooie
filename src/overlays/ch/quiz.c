@@ -162,7 +162,12 @@ OSThread *chquiz_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80803910_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/chquiz_entrypoint_2.s")
+OSThread *chquiz_entrypoint_2(void)
+{
+    extern u8 D_80807480_chquiz[];
+
+    return (OSThread *) D_80807480_chquiz;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80803954_chquiz.s")
 
