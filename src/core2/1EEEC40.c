@@ -21,7 +21,9 @@ f32 func_8011546C(void *arg0) {
     return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 20) + 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEC40/func_80115478.s")
+f32 func_80115478(void *arg0) {
+    return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 20) + 4);
+}
 
 void func_80115484(PlayerState* arg0, f32* arg1)
 {
