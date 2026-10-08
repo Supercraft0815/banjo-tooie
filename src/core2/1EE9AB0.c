@@ -54,7 +54,9 @@ u32 func_80110890(u8 *arg0) {
     return arg0[114];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110898.s")
+s32 func_80110898(s32 *arg0) {
+    return arg0[25];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_801108A0.s")
 
