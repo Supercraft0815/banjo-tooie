@@ -38,4 +38,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_8080100C_chskeletonexplode.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/chskeletonexplode_entrypoint_9.s")
+OSThread *chskeletonexplode_entrypoint_9(void)
+{
+    extern u8 D_80801138_chskeletonexplode[];
+
+    return (OSThread *) D_80801138_chskeletonexplode;
+}
