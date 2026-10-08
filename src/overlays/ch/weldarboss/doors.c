@@ -7,7 +7,12 @@ OSThread *chweldarbossdoors_entrypoint_0(void)
     return (OSThread *) D_80800270_chweldarbossdoors;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/doors/chweldarbossdoors_entrypoint_1.s")
+OSThread *chweldarbossdoors_entrypoint_1(void)
+{
+    extern u8 D_808002B8_chweldarbossdoors[];
+
+    return (OSThread *) D_808002B8_chweldarbossdoors;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/doors/func_80800018_chweldarbossdoors.s")
 
