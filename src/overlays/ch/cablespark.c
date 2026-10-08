@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablespark/chcablespark_entrypoint_0.s")
+OSThread *chcablespark_entrypoint_0(void)
+{
+    extern u8 D_80800B88_chcablespark[];
+
+    return (OSThread *) D_80800B88_chcablespark;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablespark/func_8080000C_chcablespark.s")
 
