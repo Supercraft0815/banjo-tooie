@@ -71,7 +71,12 @@ void func_80800A6C_chnests(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800F08_chnests.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/chnests_entrypoint_0.s")
+OSThread *chnests_entrypoint_0(void)
+{
+    extern u8 D_808011E8_chnests[];
+
+    return (OSThread *) D_808011E8_chnests;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/chnests_entrypoint_1.s")
 
