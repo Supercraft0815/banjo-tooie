@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/chbadshad_entrypoint_0.s")
+OSThread *chbadshad_entrypoint_0(void)
+{
+    extern u8 D_80800A10_chbadshad[];
+
+    return (OSThread *) D_80800A10_chbadshad;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/func_8080000C_chbadshad.s")
 
