@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/chcactusofstrength_entrypoint_0.s")
+OSThread *chcactusofstrength_entrypoint_0(void)
+{
+    extern u8 D_80800D00_chcactusofstrength[];
+
+    return (OSThread *) D_80800D00_chcactusofstrength;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/chcactusofstrength_entrypoint_1.s")
 
