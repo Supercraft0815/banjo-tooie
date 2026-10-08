@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/chseaweedbaddy_entrypoint_0.s")
+OSThread *chseaweedbaddy_entrypoint_0(void)
+{
+    extern u8 D_80800EB4_chseaweedbaddy[];
+
+    return (OSThread *) D_80800EB4_chseaweedbaddy;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/chseaweedbaddy_entrypoint_1.s")
 
