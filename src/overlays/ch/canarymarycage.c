@@ -12,4 +12,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/canarymarycage/func_80800410_chcanarymarycage.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/canarymarycage/chcanarymarycage_entrypoint_0.s")
+OSThread *chcanarymarycage_entrypoint_0(void)
+{
+    extern u8 D_80800674_chcanarymarycage[];
+
+    return (OSThread *) D_80800674_chcanarymarycage;
+}
