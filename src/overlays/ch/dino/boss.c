@@ -6,7 +6,366 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80800018_chdinoboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80800220_chdinoboss.s")
+void func_80800220_chdinoboss(Actor* arg0) {
+    typedef struct {
+        u8 pad0[0x110];
+        f32 unk110[3];
+        s16 unk11C;
+        s16 unk11E;
+        s32 unk120;
+        f32 unk124;
+        u8 pad128[8];
+        f32 unk130;
+    } DinoBossData;
+    typedef struct {
+        u8 pad0[0xAE];
+        u16 flags;
+    } DinoBossDefinition;
+    extern f32 D_80802A20_chdinoboss[3];
+    extern u32 D_80802A2C_chdinoboss[];
+    extern u32 D_80802A34_chdinoboss[];
+    extern u32 D_80802A58_chdinoboss[];
+    extern DinoBossDefinition D_80802A68_chdinoboss;
+    extern u8 D_80802BD0_chdinoboss[];
+    void* func_80100094(Actor*, u32);
+    s32 func_800DA298(s32);
+    void func_800DA524(s32);
+    void func_800DA544(s32);
+    void _subaddieskeleton_entrypoint_2(Unk80132ED0*, s32, f32*);
+    void func_800EFD24(f32*);
+    s32 func_8010C9B0(f32*, u32);
+    u32 func_800F54E4(void);
+    s32 func_800F64A4(s32, s32);
+    void func_8010D254(f32*);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
+    s32 func_80101180(s32, s32, s32);
+    u8 func_800D9078(f32*);
+    s32 func_800D90A4(f32*);
+    u32 func_800FDC28(u32);
+    s32 func_80101DDC(Actor*);
+    s32 func_80101E14(Actor*, f32);
+    void func_80108B04(Actor*, u32);
+    void _gcfrontend_entrypoint_9(s32);
+    void _gcfrontend_entrypoint_10(void);
+    s32 _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
+    Actor* _subaddiefind_entrypoint_2(s32, s32);
+    f32 func_800D8FF8(void);
+    f32 func_800136E4(f32);
+    f32 func_800DC178(f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F1F38(f32, f32, f32);
+    f32 func_800F2094(f32, f32);
+    s32 func_80102CF4(Actor*, f32);
+    void func_800E15CC(s32, f32, f32);
+    void func_80018820(s32, f32, f32);
+    s32 func_800D395C(void);
+    s32 func_800C9510(void);
+    f32 func_800F1DF4(f32*, f32*);
+    void func_800907C0(f32*);
+    void func_800906DC(f32*);
+    void func_800C964C(s32);
+    s32 _subaddiedialog_entrypoint_7(Actor*, f32*, void*);
+    void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, u32, u32);
+    s32 func_801022E4(Actor*);
+    void _subaddiemulti_entrypoint_6(f32*, f32);
+    void func_80800F70_chdinoboss(Actor*, s32);
+    void func_80801660_chdinoboss(Actor*, f32, f32);
+    void func_808016C0_chdinoboss(Actor*);
+    void func_808017A0_chdinoboss(Actor*);
+    void func_808017D0_chdinoboss(Actor*);
+    void func_80801800_chdinoboss(Actor*);
+    void func_80801830_chdinoboss(Actor*);
+    void func_80801860_chdinoboss(Actor*);
+    void func_808018D0_chdinoboss(Actor*);
+    s32 func_80801C28_chdinoboss(Actor*);
+    f32 func_80801C84_chdinoboss(Actor*);
+    void func_80801CDC_chdinoboss(Actor*);
+    void func_80801D08_chdinoboss(Actor*, s32);
+    void func_80801DC8_chdinoboss(Actor*);
+    void func_8080248C_chdinoboss(Actor*, s32, s32);
+    void func_80802500_chdinoboss(Actor*);
+    void func_80802540_chdinoboss(Actor*);
+    DinoBossData* sp84;
+
+    sp84 = func_80100094(arg0, 0);
+    if (func_800DA298(1)) {
+        func_80801CDC_chdinoboss(arg0);
+    }
+
+    switch (arg0->unk70_10) {
+        case 1: {
+            f32 sp78[3];
+            f32 sp6C[3];
+
+            _subaddieskeleton_entrypoint_2(arg0->unk0, 4, sp84->unk110);
+            func_800EFD24(sp78);
+            sp78[1] = arg0->position[1];
+            if (func_8010C9B0(sp78, 0x6D6) && func_800F64A4(func_800F54E4(), 1)) {
+                func_8010D254(sp6C);
+                if (sp6C[2] < 1000.0f) {
+                    if (func_800DA298(0x172)) {
+                        func_8080248C_chdinoboss(arg0, 0xD, 0x30);
+                        _subaddiedialog_entrypoint_11(arg0->unk0, 0x1801, 6, arg0->position, 0x57);
+                        func_80800F70_chdinoboss(arg0, 3);
+                    } else {
+                        func_8080248C_chdinoboss(arg0, 0x28, 0x30);
+                        func_80800F70_chdinoboss(arg0, 2);
+                    }
+                    func_80101180(0x461, 8, 0);
+                }
+            }
+            func_808016C0_chdinoboss(arg0);
+            break;
+        }
+        case 2:
+        case 3:
+            _subaddieskeleton_entrypoint_2(arg0->unk0, 4, sp84->unk110);
+            func_808016C0_chdinoboss(arg0);
+            break;
+        case 4:
+            func_808016C0_chdinoboss(arg0);
+            if (func_800D9078(&arg0->unk58)) {
+                func_800FDC28(6);
+                func_80800F70_chdinoboss(arg0, 5);
+            }
+            break;
+        case 5:
+            func_808017A0_chdinoboss(arg0);
+            if (func_80101DDC(arg0)) {
+                func_80800F70_chdinoboss(arg0, 6);
+            }
+            break;
+        case 6:
+            if (!func_800DA298(0x6AD)) {
+                func_80802500_chdinoboss(arg0);
+                func_80800F70_chdinoboss(arg0, 7);
+                sp84->unk120 = func_80801C28_chdinoboss(arg0);
+                func_800DA544(0x172);
+                _gcfrontend_entrypoint_9(0x27);
+            }
+            func_80801660_chdinoboss(arg0, 0.0f, 0.0f);
+            func_80801D08_chdinoboss(arg0, 2);
+            func_808017D0_chdinoboss(arg0);
+            break;
+        case 7:
+            func_80801D08_chdinoboss(arg0, 2);
+            func_808017D0_chdinoboss(arg0);
+            if (func_800D9078(&arg0->unk58)) {
+                func_80800F70_chdinoboss(arg0, 8);
+            }
+            break;
+        case 8:
+            func_80801D08_chdinoboss(arg0, 2);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802A34_chdinoboss, 0.65f);
+            if (func_80101E14(arg0, 0.7f)) {
+                func_80108B04(arg0, 1);
+            }
+            if (func_80101DDC(arg0)) {
+                if (sp84->unk120 > 0) {
+                    func_80800F70_chdinoboss(arg0, 7);
+                    arg0->unk58 = func_80801C84_chdinoboss(arg0);
+                } else {
+                    func_80800F70_chdinoboss(arg0, 9);
+                }
+            }
+            break;
+        case 9:
+            func_80801D08_chdinoboss(arg0, 2);
+            func_808017D0_chdinoboss(arg0);
+            if (!_subaddiefind_entrypoint_2(0x398, 0) && func_800D9078(&arg0->unk58)) {
+                func_80800F70_chdinoboss(arg0, 10);
+                arg0->unk58 = 12.0f;
+            }
+            break;
+        case 10: {
+            f32 sp68 = func_800D8FF8();
+
+            sp84->unk130 = func_800136E4(sp84->unk130 + sp68 * 16.0f);
+            func_80801660_chdinoboss(arg0, 0.0f, 0.0f);
+            func_80801D08_chdinoboss(arg0, 1);
+            func_80801800_chdinoboss(arg0);
+            if (func_800D9078(&arg0->unk58)) {
+                if (sp84->unk11E == 0) {
+                    func_80800F70_chdinoboss(arg0, 7);
+                    sp84->unk120 = func_80801C28_chdinoboss(arg0);
+                } else {
+                    func_80800F70_chdinoboss(arg0, 11);
+                }
+            }
+            break;
+        }
+        case 11:
+            func_80801D08_chdinoboss(arg0, 0);
+            func_808017D0_chdinoboss(arg0);
+            if (func_800D9078(&arg0->unk58)) {
+                func_80800F70_chdinoboss(arg0, 12);
+            }
+            break;
+        case 12:
+            func_80801D08_chdinoboss(arg0, 0);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802A34_chdinoboss, 0.65f);
+            if (func_80101E14(arg0, 0.7f)) {
+                func_80108B04(arg0, 1);
+            }
+            if (func_80101DDC(arg0)) {
+                if (sp84->unk120 > 0) {
+                    func_80800F70_chdinoboss(arg0, 12);
+                    arg0->unk58 = func_800DC178(0.5f, 1.0f);
+                } else {
+                    func_80800F70_chdinoboss(arg0, 13);
+                }
+            }
+            break;
+        case 13: {
+            f32 sp64;
+            f32 sp60;
+            s32 sp5C;
+
+            sp5C = func_800D9078(&arg0->unk58);
+            sp64 = func_800F10B4(arg0->unk58, 0.0f, 4.0f, -70.0f, 0.0f);
+            sp60 = func_800F10B4(arg0->unk58, 0.0f, 4.0f, 6500.0f, 0.0f);
+            func_80801660_chdinoboss(arg0, sp64, sp60);
+            func_80801D08_chdinoboss(arg0, 0);
+            func_808017D0_chdinoboss(arg0);
+            if (sp5C) {
+                func_80800F70_chdinoboss(arg0, 14);
+                func_800DA544(0);
+            }
+            break;
+        }
+        case 14:
+            func_80801D08_chdinoboss(arg0, 0);
+            if (!_subaddiefind_entrypoint_2(0x399, 0) && func_800D90A4(&arg0->unk58)) {
+                func_80800F70_chdinoboss(arg0, 15);
+                func_800DA524(0);
+            }
+            break;
+        case 15: {
+            f32 sp58;
+            f32 sp54;
+            s32 sp50;
+
+            sp50 = func_800D9078(&arg0->unk58);
+            sp58 = func_800F10B4(arg0->unk58, 0.0f, 4.0f, 0.0f, -70.0f);
+            sp54 = func_800F10B4(arg0->unk58, 0.0f, 4.0f, 0.0f, 6500.0f);
+            func_80801660_chdinoboss(arg0, sp58, sp54);
+            func_80801D08_chdinoboss(arg0, 0);
+            func_808017D0_chdinoboss(arg0);
+            if (sp50) {
+                func_80800F70_chdinoboss(arg0, 7);
+                sp84->unk120 = func_80801C28_chdinoboss(arg0);
+            }
+            break;
+        }
+        case 16: {
+            f32 sp4C = func_800D8FF8();
+
+            sp84->unk130 = func_800F1F38(sp84->unk130, sp84->unk124, 25.0f * sp4C);
+            func_80801660_chdinoboss(arg0, 0.0f, 0.0f);
+            func_80801D08_chdinoboss(arg0, 0);
+            func_80801830_chdinoboss(arg0);
+            if (func_800F2094(sp84->unk130, sp84->unk124) < 1.5f && func_80102CF4(arg0, 4.0f)) {
+                arg0->rotation[1] = arg0->unk54;
+                func_80800F70_chdinoboss(arg0, 17);
+                func_8080248C_chdinoboss(arg0, 10, 0x30);
+            }
+            break;
+        }
+        case 17:
+            if (_subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802A2C_chdinoboss, 0.35f)) {
+                func_800E15CC(0, 30.0f, 0.9f);
+                func_80018820(0, 2.0f, 0.45f);
+            }
+            if (func_80101DDC(arg0)) {
+                func_80800F70_chdinoboss(arg0, 18);
+            }
+            break;
+        case 18:
+            if (func_800D9078(&arg0->unk58)) {
+                if (func_800D395C()) {
+                    func_80802500_chdinoboss(arg0);
+                    _gcfrontend_entrypoint_10();
+                } else {
+                    func_80800F70_chdinoboss(arg0, 19);
+                }
+            }
+            func_80801860_chdinoboss(arg0);
+            break;
+        case 19: {
+            f32 sp40[3];
+
+            func_80801860_chdinoboss(arg0);
+            if (!func_800C9510()) {
+                D_80802A68_chdinoboss.flags |= 0x200;
+                func_80800F70_chdinoboss(arg0, 21);
+                D_80802A68_chdinoboss.flags &= ~0x200;
+                func_8080248C_chdinoboss(arg0, 0x13, 0x20);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x17B6, 0xE, arg0->position, 0x57);
+                func_800EFD24(sp40);
+                sp40[1] = func_800F1DF4(D_80802A20_chdinoboss, arg0->position);
+                func_800907C0(D_80802A20_chdinoboss);
+                func_800906DC(sp40);
+                func_800C964C(4);
+            }
+            break;
+        }
+        case 20:
+            if (_subaddiedialog_entrypoint_7(arg0, arg0->position, D_80802BD0_chdinoboss)) {
+                _capod_entrypoint_13(arg0->unk0, NULL, 0x27, 0x20);
+            }
+            func_808018D0_chdinoboss(arg0);
+            func_80802540_chdinoboss(arg0);
+            break;
+        case 21:
+            func_808018D0_chdinoboss(arg0);
+            func_80802540_chdinoboss(arg0);
+            break;
+        case 22:
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802A58_chdinoboss, 0.45f);
+            if (func_80101DDC(arg0)) {
+                if (sp84->unk11E == 3) {
+                    func_80800F70_chdinoboss(arg0, 11);
+                } else {
+                    func_80800F70_chdinoboss(arg0, 10);
+                }
+            }
+            break;
+        case 23:
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802A58_chdinoboss, 0.45f);
+            if (func_80101DDC(arg0)) {
+                func_80800F70_chdinoboss(arg0, 16);
+            }
+            break;
+        case 24:
+            func_80802540_chdinoboss(arg0);
+            func_808016C0_chdinoboss(arg0);
+            break;
+        case 25:
+            func_80801D08_chdinoboss(arg0, 0);
+            func_808017D0_chdinoboss(arg0);
+            break;
+        case 26:
+            func_808016C0_chdinoboss(arg0);
+            break;
+    }
+
+    func_80801DC8_chdinoboss(arg0);
+    switch (func_801022E4(arg0)) {
+        case 0x163:
+        case 0x1C1:
+        case 0x1F7:
+            if (!func_800D395C()) {
+                break;
+            }
+        default: {
+            f32 sp34[3];
+
+            func_800EFD24(sp34);
+            _subaddiemulti_entrypoint_6(sp34, 3062500.0f);
+            break;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80800C50_chdinoboss.s")
 
