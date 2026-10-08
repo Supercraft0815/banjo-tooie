@@ -26,4 +26,9 @@ void func_80800394_chtorpedo(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/torpedo/func_80800720_chtorpedo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/torpedo/chtorpedo_entrypoint_1.s")
+OSThread *chtorpedo_entrypoint_1(void)
+{
+    extern u8 D_8080095C_chtorpedo[];
+
+    return (OSThread *) D_8080095C_chtorpedo;
+}
