@@ -5,7 +5,10 @@ extern Unk80132ED0* D_80135A80;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDA900/func_80101038.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDA900/func_8010105C.s")
+void func_8010105C(f32 arg0) {
+    extern f32 D_80135A7C;
+    *(f32 *)((u8 *)&D_80135A7C + 0) = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDA900/func_80101068.s")
 
