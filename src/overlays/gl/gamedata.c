@@ -5,7 +5,9 @@ s32 func_80800000_glgamedata()
     return 0x2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamedata/func_80800008_glgamedata.s")
+void func_80800008_glgamedata(s8 *arg0) {
+    *arg0 = 0x1E;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamedata/glgamedata_entrypoint_0.s")
 
