@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/minecelldoor/chtntminecelldoor_entrypoint_0.s")
+OSThread *chtntminecelldoor_entrypoint_0(void)
+{
+    extern u8 D_80800140_chtntminecelldoor[];
+
+    return (OSThread *) D_80800140_chtntminecelldoor;
+}
 
 void func_8080000C_chtntminecelldoor(s32 arg0)
 {
