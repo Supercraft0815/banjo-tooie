@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mricecube/chmricecube_entrypoint_0.s")
+OSThread *chmricecube_entrypoint_0(void)
+{
+    extern u8 D_80800928_chmricecube[];
+
+    return (OSThread *) D_80800928_chmricecube;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mricecube/func_8080000C_chmricecube.s")
 
