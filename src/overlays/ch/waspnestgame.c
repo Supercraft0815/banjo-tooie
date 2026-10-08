@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/chwaspnestgame_entrypoint_0.s")
+OSThread *chwaspnestgame_entrypoint_0(void)
+{
+    extern u8 D_80801F80_chwaspnestgame[];
+
+    return (OSThread *) D_80801F80_chwaspnestgame;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/chwaspnestgame_entrypoint_1.s")
 
