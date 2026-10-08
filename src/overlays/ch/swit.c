@@ -43,7 +43,9 @@ void chswitch_entrypoint_8(s32 *arg0, s32 arg1) {
     arg0[11] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swit/chswitch_entrypoint_9.s")
+void chswitch_entrypoint_9(void *arg0) {
+    (*(s32 *)((s8 *)(arg0) + (0x30))) = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swit/func_80800694_chswitch.s")
 
