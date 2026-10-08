@@ -5,7 +5,12 @@ void func_80800000_chbanjocurrent()
     func_800F4C24(func_800F54E4());
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjocurrent/chbanjocurrent_entrypoint_0.s")
+OSThread *chbanjocurrent_entrypoint_0(void)
+{
+    extern u8 D_808007D0_chbanjocurrent[];
+
+    return (OSThread *) D_808007D0_chbanjocurrent;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjocurrent/func_80800034_chbanjocurrent.s")
 
