@@ -28,4 +28,9 @@ OSThread *chjigsaw_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/func_808006CC_chjigsaw.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/chjigsaw_entrypoint_1.s")
+OSThread *chjigsaw_entrypoint_1(void)
+{
+    extern u8 D_808007B8_chjigsaw[];
+
+    return (OSThread *) D_808007B8_chjigsaw;
+}
