@@ -173,6 +173,9 @@ void func_8009EB18(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009EC60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009EC7C.s")
+u32 func_8009EC7C(void) {
+    extern u8 D_80127060;
+    return *(u8 *)((u8 *)&D_80127060 + 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009EC88.s")
