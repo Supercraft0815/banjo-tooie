@@ -8,7 +8,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/grill2switches/func_808000B8_chminegrill2switches.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/grill2switches/chminegrill2switches_entrypoint_0.s")
+OSThread *chminegrill2switches_entrypoint_0(void)
+{
+    extern u8 D_80800150_chminegrill2switches[];
+
+    return (OSThread *) D_80800150_chminegrill2switches;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/grill2switches/func_808000EC_chminegrill2switches.s")
 
