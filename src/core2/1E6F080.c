@@ -60,7 +60,10 @@ s32 func_800961A0(s32 *arg0, s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_800961AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80096254.s")
+void func_80096254(s32 *arg0, s32 arg1)
+{
+    ((s32 *) arg0[0x25])[0x2A] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80096260.s")
 
