@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/electricfence/chelectricfence_entrypoint_0.s")
+OSThread *chelectricfence_entrypoint_0(void)
+{
+    extern u8 D_808004C0_chelectricfence[];
+
+    return (OSThread *) D_808004C0_chelectricfence;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/electricfence/func_8080000C_chelectricfence.s")
 
