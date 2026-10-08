@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/icestationbits/chicestationbits_entrypoint_0.s")
+OSThread *chicestationbits_entrypoint_0(void)
+{
+    extern u8 D_80800280_chicestationbits[];
+
+    return (OSThread *) D_80800280_chicestationbits;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/icestationbits/chicestationbits_entrypoint_1.s")
 
