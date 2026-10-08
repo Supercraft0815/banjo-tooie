@@ -41,7 +41,9 @@ s32 func_8010FF80(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FF88.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FFA8.s")
+s32 func_8010FFA8(s16 *arg0) {
+    return arg0[11];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FFB0.s")
 
