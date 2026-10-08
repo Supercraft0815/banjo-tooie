@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucercrate/chflysaucercrate_entrypoint_0.s")
+OSThread *chflysaucercrate_entrypoint_0(void)
+{
+    extern u8 D_80800D78_chflysaucercrate[];
+
+    return (OSThread *) D_80800D78_chflysaucercrate;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucercrate/func_8080000C_chflysaucercrate.s")
 
