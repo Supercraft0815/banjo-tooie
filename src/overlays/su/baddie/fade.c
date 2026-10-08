@@ -1,6 +1,8 @@
 #include "su/baddiefade.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/fade/subaddiefade_entrypoint_0.s")
+u32 subaddiefade_entrypoint_0(u8 *arg0) {
+    return arg0[155];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/fade/subaddiefade_entrypoint_1.s")
 
