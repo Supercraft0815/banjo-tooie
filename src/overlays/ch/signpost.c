@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/signpost/chsignpost_entrypoint_0.s")
+OSThread *chsignpost_entrypoint_0(void)
+{
+    extern u8 D_808002E0_chsignpost[];
+
+    return (OSThread *) D_808002E0_chsignpost;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/signpost/func_8080000C_chsignpost.s")
 
