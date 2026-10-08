@@ -19,4 +19,9 @@ OSThread *chanemone_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anemone/func_80800648_chanemone.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anemone/chanemone_entrypoint_1.s")
+OSThread *chanemone_entrypoint_1(void)
+{
+    extern u8 D_80800964_chanemone[];
+
+    return (OSThread *) D_80800964_chanemone;
+}
