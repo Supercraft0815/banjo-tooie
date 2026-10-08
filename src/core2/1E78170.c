@@ -100,7 +100,10 @@ s32 func_8009EA64(void) {
     return *(s16 *)((u8 *)&D_8012707C + 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009EA70.s")
+u32 func_8009EA70(void) {
+    extern u8 D_80127076;
+    return *(u8 *)((u8 *)&D_80127076 + 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009EA7C.s")
 
