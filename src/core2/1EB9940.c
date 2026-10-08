@@ -24,4 +24,6 @@ s32 func_800E0464(s16 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB9940/func_800E046C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB9940/func_800E04AC.s")
+void func_800E04AC(void *arg0)
+{
+}
