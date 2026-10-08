@@ -15,4 +15,9 @@ OSThread *chmumboskullfakearchpanellava_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/skullfakearchpanellava/func_8080012C_chmumboskullfakearchpanellava.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/skullfakearchpanellava/chmumboskullfakearchpanellava_entrypoint_1.s")
+OSThread *chmumboskullfakearchpanellava_entrypoint_1(void)
+{
+    extern u8 D_80800228_chmumboskullfakearchpanellava[];
+
+    return (OSThread *) D_80800228_chmumboskullfakearchpanellava;
+}
