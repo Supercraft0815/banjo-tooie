@@ -92,7 +92,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808035C4_chflysaucer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/chflysaucer_entrypoint_1.s")
+OSThread *chflysaucer_entrypoint_1(void)
+{
+    extern u8 D_80804668_chflysaucer[];
+
+    return (OSThread *) D_80804668_chflysaucer;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80803844_chflysaucer.s")
 
