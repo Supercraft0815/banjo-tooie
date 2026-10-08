@@ -5,7 +5,10 @@
 void chbounce_entrypoint_1(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bounce/chbounce_entrypoint_2.s")
+void chbounce_entrypoint_2(f32 arg0) {
+    extern f32 D_8012716C;
+    *(f32 *)((u8 *)&D_8012716C + 28) = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bounce/chbounce_entrypoint_3.s")
 
