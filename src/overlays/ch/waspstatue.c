@@ -10,7 +10,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspstatue/chwaspstatue_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspstatue/chwaspstatue_entrypoint_1.s")
+OSThread *chwaspstatue_entrypoint_1(void)
+{
+    extern u8 D_80800740_chwaspstatue[];
+
+    return (OSThread *) D_80800740_chwaspstatue;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspstatue/func_80800544_chwaspstatue.s")
 
