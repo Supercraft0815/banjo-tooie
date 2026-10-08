@@ -35,7 +35,10 @@ s32 func_800B27FC(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8BFE0/func_800B2824.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8BFE0/func_800B2840.s")
+s32 func_800B2840(s32 arg0) {
+    arg0 += ((s32 *)arg0)[4];
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8BFE0/func_800B284C.s")
 
