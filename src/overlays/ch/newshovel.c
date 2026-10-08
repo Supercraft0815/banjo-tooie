@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/chnewshovel_entrypoint_0.s")
+OSThread *chnewshovel_entrypoint_0(void)
+{
+    extern u8 D_80800FB4_chnewshovel[];
+
+    return (OSThread *) D_80800FB4_chnewshovel;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_8080000C_chnewshovel.s")
 
