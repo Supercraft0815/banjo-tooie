@@ -14,7 +14,12 @@ OSThread *chphlegm_entrypoint_1(void)
     return (OSThread *) D_80800BA0_chphlegm;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/chphlegm_entrypoint_2.s")
+OSThread *chphlegm_entrypoint_2(void)
+{
+    extern u8 D_80800BE8_chphlegm[];
+
+    return (OSThread *) D_80800BE8_chphlegm;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_80800024_chphlegm.s")
 
