@@ -24,4 +24,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_808012C4_chfactorytoxiccloud.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/chfactorytoxiccloud_entrypoint_0.s")
+OSThread *chfactorytoxiccloud_entrypoint_0(void)
+{
+    extern u8 D_80801568_chfactorytoxiccloud[];
+
+    return (OSThread *) D_80801568_chfactorytoxiccloud;
+}
