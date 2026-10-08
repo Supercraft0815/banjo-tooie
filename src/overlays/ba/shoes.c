@@ -5,7 +5,9 @@ s32 bashoes_entrypoint_0()
     return 0x18;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/bashoes_entrypoint_1.s")
+u32 bashoes_entrypoint_1(void *arg0) {
+    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 268) + 4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/bashoes_entrypoint_2.s")
 
