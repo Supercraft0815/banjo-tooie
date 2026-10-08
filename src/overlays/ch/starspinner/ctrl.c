@@ -7,7 +7,12 @@ OSThread *chstarspinnerctrl_entrypoint_0(void)
     return (OSThread *) D_8080092C_chstarspinnerctrl;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/chstarspinnerctrl_entrypoint_1.s")
+OSThread *chstarspinnerctrl_entrypoint_1(void)
+{
+    extern u8 D_80800974_chstarspinnerctrl[];
+
+    return (OSThread *) D_80800974_chstarspinnerctrl;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/func_80800018_chstarspinnerctrl.s")
 
