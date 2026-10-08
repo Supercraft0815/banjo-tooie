@@ -7,7 +7,12 @@ OSThread *chboxingglove_entrypoint_0(void)
     return (OSThread *) D_80800708_chboxingglove;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/chboxingglove_entrypoint_1.s")
+OSThread *chboxingglove_entrypoint_1(void)
+{
+    extern u8 D_80800750_chboxingglove[];
+
+    return (OSThread *) D_80800750_chboxingglove;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/func_80800018_chboxingglove.s")
 
