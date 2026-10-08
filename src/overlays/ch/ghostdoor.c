@@ -1,6 +1,11 @@
 #include "ch/ghostdoor.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/ghostdoor/chghostdoor_entrypoint_0.s")
+OSThread *chghostdoor_entrypoint_0(void)
+{
+    extern u8 D_80800220_chghostdoor[];
+
+    return (OSThread *) D_80800220_chghostdoor;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/ghostdoor/chghostdoor_entrypoint_1.s")
 
