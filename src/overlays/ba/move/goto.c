@@ -6,7 +6,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/goto/bamovegoto_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/goto/bamovegoto_entrypoint_2.s")
+f32 bamovegoto_entrypoint_2(void *arg0) {
+    return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 116);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/goto/bamovegoto_entrypoint_3.s")
 
