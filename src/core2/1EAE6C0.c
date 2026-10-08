@@ -20,6 +20,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAE6C0/func_800D5210.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAE6C0/func_800D5234.s")
+void func_800D5234(s32 arg0) {
+    extern s32 D_8012B420;
+    *(s32 *)((u8 *)&D_8012B420 + 0) = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAE6C0/func_800D5240.s")
