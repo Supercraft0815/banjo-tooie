@@ -458,7 +458,12 @@ void func_80806AD4_chgameselect()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80806BD4_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/chgameselect_entrypoint_6.s")
+OSThread *chgameselect_entrypoint_6(void)
+{
+    extern u8 D_808084B4_chgameselect[];
+
+    return (OSThread *) D_808084B4_chgameselect;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80806C54_chgameselect.s")
 
