@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcompactor/chtrashcompactor_entrypoint_0.s")
+OSThread *chtrashcompactor_entrypoint_0(void)
+{
+    extern u8 D_808008D0_chtrashcompactor[];
+
+    return (OSThread *) D_808008D0_chtrashcompactor;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcompactor/chtrashcompactor_entrypoint_1.s")
 
