@@ -1,6 +1,11 @@
 #include "su/coasterfly.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/sucoasterfly_entrypoint_0.s")
+OSThread *sucoasterfly_entrypoint_0(void)
+{
+    extern u8 D_80802280_sucoasterfly[];
+
+    return (OSThread *) D_80802280_sucoasterfly;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/sucoasterfly_entrypoint_1.s")
 
