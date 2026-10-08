@@ -16,7 +16,12 @@ OSThread *func_80104118(void)
     return (OSThread *) D_80136BE8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDD9C0/func_80104124.s")
+OSThread *func_80104124(void)
+{
+    extern u8 D_80124400[];
+
+    return (OSThread *) D_80124400;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDD9C0/func_80104130.s")
 
