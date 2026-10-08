@@ -6,4 +6,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bkcart/func_808004DC_chbkcart.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bkcart/chbkcart_entrypoint_0.s")
+OSThread *chbkcart_entrypoint_0(void)
+{
+    extern u8 D_80800880_chbkcart[];
+
+    return (OSThread *) D_80800880_chbkcart;
+}
