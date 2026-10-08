@@ -8,7 +8,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/flamefx/suflamefx_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/flamefx/suflamefx_entrypoint_4.s")
+void suflamefx_entrypoint_4(void *arg0) {
+    (*(s8 *)((s8 *)(arg0) + (0x1C))) = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/flamefx/suflamefx_entrypoint_5.s")
 
