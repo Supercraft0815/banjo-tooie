@@ -10,4 +10,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/dance/chjigsawdance_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/dance/chjigsawdance_entrypoint_2.s")
+OSThread *chjigsawdance_entrypoint_2(void)
+{
+    extern u8 D_80800488_chjigsawdance[];
+
+    return (OSThread *) D_80800488_chjigsawdance;
+}
