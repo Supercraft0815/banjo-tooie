@@ -50,4 +50,9 @@ s32 func_8008E9AC(void *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E67DA0/func_8008E9E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E67DA0/func_8008ED70.s")
+extern u8 D_80117CAC[];
+
+u8 *func_8008ED70(void)
+{
+    return D_80117CAC;
+}
