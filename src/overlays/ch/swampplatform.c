@@ -10,4 +10,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swampplatform/func_80800804_chswampplatform.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swampplatform/chswampplatform_entrypoint_0.s")
+OSThread *chswampplatform_entrypoint_0(void)
+{
+    extern u8 D_808009F8_chswampplatform[];
+
+    return (OSThread *) D_808009F8_chswampplatform;
+}
