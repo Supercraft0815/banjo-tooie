@@ -25,4 +25,9 @@ void func_80800264_chlagoonfish()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/fish/func_80800AE0_chlagoonfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/fish/chlagoonfish_entrypoint_0.s")
+OSThread *chlagoonfish_entrypoint_0(void)
+{
+    extern u8 D_80800B70_chlagoonfish[];
+
+    return (OSThread *) D_80800B70_chlagoonfish;
+}
