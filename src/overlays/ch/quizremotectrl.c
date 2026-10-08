@@ -19,4 +19,9 @@ void func_808003A0_chquizremotectrl(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quizremotectrl/func_808005E4_chquizremotectrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quizremotectrl/chquizremotectrl_entrypoint_0.s")
+OSThread *chquizremotectrl_entrypoint_0(void)
+{
+    extern u8 D_80800668_chquizremotectrl[];
+
+    return (OSThread *) D_80800668_chquizremotectrl;
+}
