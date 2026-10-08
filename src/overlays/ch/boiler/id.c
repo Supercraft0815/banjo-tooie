@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/chboilerid_entrypoint_0.s")
+OSThread *chboilerid_entrypoint_0(void)
+{
+    extern u8 D_80800D5C_chboilerid[];
+
+    return (OSThread *) D_80800D5C_chboilerid;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_8080000C_chboilerid.s")
 
