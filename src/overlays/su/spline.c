@@ -20,7 +20,9 @@ f32 suspline_entrypoint_6(f32 *arg0) {
     return arg0[22];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_7.s")
+u32 suspline_entrypoint_7(u8 *arg0) {
+    return arg0[139];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_8.s")
 
