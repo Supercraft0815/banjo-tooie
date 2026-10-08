@@ -38,7 +38,10 @@ void func_800BDBC4()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BDBEC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BDC44.s")
+void * func_800BDC44(void) {
+    extern u8 D_80128444;
+    return &D_80128444;
+}
 
 s32 func_800BDC50()
 {
