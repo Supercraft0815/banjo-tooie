@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/coaster/chdinocoaster_entrypoint_0.s")
+OSThread *chdinocoaster_entrypoint_0(void)
+{
+    extern u8 D_808004E0_chdinocoaster[];
+
+    return (OSThread *) D_808004E0_chdinocoaster;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/coaster/func_8080000C_chdinocoaster.s")
 
