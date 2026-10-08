@@ -55,7 +55,9 @@ f32 sumumbofx_entrypoint_21(f32 *arg0)
     return arg0[4];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_22.s")
+f32 sumumbofx_entrypoint_22(f32 *arg0) {
+    return arg0[1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_23.s")
 
