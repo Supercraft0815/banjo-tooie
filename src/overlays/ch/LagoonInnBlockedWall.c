@@ -9,7 +9,12 @@ void func_808000C0_chLagoonInnBlockedWall()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/LagoonInnBlockedWall/func_808000E0_chLagoonInnBlockedWall.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/LagoonInnBlockedWall/chLagoonInnBlockedWall_entrypoint_0.s")
+OSThread *chLagoonInnBlockedWall_entrypoint_0(void)
+{
+    extern u8 D_80800480_chLagoonInnBlockedWall[];
+
+    return (OSThread *) D_80800480_chLagoonInnBlockedWall;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/LagoonInnBlockedWall/func_8080025C_chLagoonInnBlockedWall.s")
 
