@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/chdinofamilysick_entrypoint_0.s")
+OSThread *chdinofamilysick_entrypoint_0(void)
+{
+    extern u8 D_80800E60_chdinofamilysick[];
+
+    return (OSThread *) D_80800E60_chdinofamilysick;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/func_8080000C_chdinofamilysick.s")
 
