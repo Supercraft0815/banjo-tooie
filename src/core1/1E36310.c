@@ -6,4 +6,6 @@ u32 func_8001E7E0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E36310/func_8001E7E8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E36310/func_8001E830.s")
+u32 func_8001E830(void) {
+    return 0x002C8800;
+}
