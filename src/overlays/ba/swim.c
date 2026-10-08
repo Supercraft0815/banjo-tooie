@@ -36,4 +36,6 @@ void baswim_entrypoint_4()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_13.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_14.s")
+f32 baswim_entrypoint_14(void *arg0) {
+    return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 308) + 0);
+}
