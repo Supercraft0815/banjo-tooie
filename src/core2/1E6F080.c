@@ -27,7 +27,9 @@ u32 func_80095898(s32 *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_800959C8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_800959FC.s")
+void func_800959FC(s32 *arg0, s32 arg1) {
+    ((s32 *) arg0[37])[5] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80095A08.s")
 
