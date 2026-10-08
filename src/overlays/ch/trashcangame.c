@@ -73,7 +73,12 @@ OSThread *chtrashcangame_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80802C40_chtrashcangame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/chtrashcangame_entrypoint_3.s")
+OSThread *chtrashcangame_entrypoint_3(void)
+{
+    extern u8 D_808033E8_chtrashcangame[];
+
+    return (OSThread *) D_808033E8_chtrashcangame;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80802CC0_chtrashcangame.s")
 
