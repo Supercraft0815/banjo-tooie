@@ -90,7 +90,9 @@ f32 func_800A0E58(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E79FD0/func_800A0E64.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E79FD0/func_800A0FCC.s")
+u32 func_800A0FCC(void *arg0) {
+    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 336) + 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E79FD0/func_800A0FD8.s")
 
