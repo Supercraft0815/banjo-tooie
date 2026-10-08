@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/drips/chdrips_entrypoint_0.s")
+OSThread *chdrips_entrypoint_0(void)
+{
+    extern u8 D_80800610_chdrips[];
+
+    return (OSThread *) D_80800610_chdrips;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/drips/chdrips_entrypoint_1.s")
 
