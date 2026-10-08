@@ -28,7 +28,12 @@ OSThread *chmonsterinterior_entrypoint_3(void)
     return (OSThread *) D_80801F58_chmonsterinterior;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/chmonsterinterior_entrypoint_4.s")
+OSThread *chmonsterinterior_entrypoint_4(void)
+{
+    extern u8 D_80801FA0_chmonsterinterior[];
+
+    return (OSThread *) D_80801FA0_chmonsterinterior;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_8080003C_chmonsterinterior.s")
 
