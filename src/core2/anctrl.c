@@ -23,7 +23,10 @@ AnimCtrl* func_8008AEB4(AnimCtrl* arg0)
 {
     return defrag(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_setIndex.s")
+void anctrl_setIndex(AnimCtrl *arg0, AssetId arg1)
+{
+    ((s16 *)arg0)[12] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008AEDC.s")
 
