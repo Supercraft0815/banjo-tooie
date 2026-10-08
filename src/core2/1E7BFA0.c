@@ -104,7 +104,9 @@ u32 func_800A33F8(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 40);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3404.s")
+u32 func_800A3404(void *arg0) {
+    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 63);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3410.s")
 
