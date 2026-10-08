@@ -14,7 +14,12 @@ OSThread *chbilldrillboulder_entrypoint_1(void)
     return (OSThread *) D_80800588_chbilldrillboulder;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillboulder/chbilldrillboulder_entrypoint_2.s")
+OSThread *chbilldrillboulder_entrypoint_2(void)
+{
+    extern u8 D_808005D0_chbilldrillboulder[];
+
+    return (OSThread *) D_808005D0_chbilldrillboulder;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillboulder/func_80800024_chbilldrillboulder.s")
 
