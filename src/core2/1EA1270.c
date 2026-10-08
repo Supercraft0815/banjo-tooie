@@ -40,4 +40,6 @@ void func_800C7A68(Unk800C7A68* arg0, f32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C82CC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C84A4.s")
+void func_800C84A4(s8 *arg0, s32 arg1) {
+    arg0[3] = arg1;
+}
