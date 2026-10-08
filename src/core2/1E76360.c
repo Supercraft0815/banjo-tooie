@@ -12,4 +12,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76360/func_8009CBDC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76360/func_8009CBFC.s")
+void func_8009CBFC(void *arg0)
+{
+}
