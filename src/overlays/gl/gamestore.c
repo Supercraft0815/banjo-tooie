@@ -2,7 +2,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamestore/func_80800000_glgamestore.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamestore/func_80800030_glgamestore.s")
+s32 func_80800030_glgamestore(s32 arg0) {
+    return arg0 << 7;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamestore/func_80800038_glgamestore.s")
 
