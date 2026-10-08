@@ -19,4 +19,9 @@ void chwandglow_entrypoint_1()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/wandglow/chwandglow_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/wandglow/chwandglow_entrypoint_3.s")
+OSThread *chwandglow_entrypoint_3(void)
+{
+    extern u8 D_80800410_chwandglow[];
+
+    return (OSThread *) D_80800410_chwandglow;
+}
