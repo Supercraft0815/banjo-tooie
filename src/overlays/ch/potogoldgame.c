@@ -48,4 +48,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_8080227C_chpotogoldgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/chpotogoldgame_entrypoint_4.s")
+OSThread *chpotogoldgame_entrypoint_4(void)
+{
+    extern u8 D_80802578_chpotogoldgame[];
+
+    return (OSThread *) D_80802578_chpotogoldgame;
+}
