@@ -6,7 +6,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beanstalkseed/func_8080026C_chbeanstalkseed.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beanstalkseed/chbeanstalkseed_entrypoint_0.s")
+OSThread *chbeanstalkseed_entrypoint_0(void)
+{
+    extern u8 D_80800C00_chbeanstalkseed[];
+
+    return (OSThread *) D_80800C00_chbeanstalkseed;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beanstalkseed/func_80800328_chbeanstalkseed.s")
 
