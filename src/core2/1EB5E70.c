@@ -190,7 +190,9 @@ s32 func_800DF8BC(s32 *arg0) {
     return arg0[11];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DF8C4.s")
+f32 func_800DF8C4(f32 *arg0) {
+    return arg0[0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DF8CC.s")
 
