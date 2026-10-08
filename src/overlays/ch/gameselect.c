@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/chgameselect_entrypoint_0.s")
+OSThread *chgameselect_entrypoint_0(void)
+{
+    extern u8 D_80807FD8_chgameselect[];
+
+    return (OSThread *) D_80807FD8_chgameselect;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080000C_chgameselect.s")
 
