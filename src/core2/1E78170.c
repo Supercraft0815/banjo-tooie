@@ -70,7 +70,10 @@ void func_8009EA08(f32 arg0) {
     *(f32 *)((u8 *)&D_80127070 + 0) = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009EA14.s")
+f32 func_8009EA14(void) {
+    extern f32 D_8012706C;
+    return *(f32 *)((u8 *)&D_8012706C + 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009EA20.s")
 
