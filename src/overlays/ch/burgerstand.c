@@ -1,6 +1,11 @@
 #include "ch/burgerstand.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/chburgerstand_entrypoint_0.s")
+OSThread *chburgerstand_entrypoint_0(void)
+{
+    extern u8 D_80800C28_chburgerstand[];
+
+    return (OSThread *) D_80800C28_chburgerstand;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/chburgerstand_entrypoint_1.s")
 
