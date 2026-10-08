@@ -52,4 +52,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107BB0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107C00.s")
+f32 func_80107C00(void) {
+    extern f32 D_80136F10;
+    return *(f32 *)((u8 *)&D_80136F10 + 0);
+}
