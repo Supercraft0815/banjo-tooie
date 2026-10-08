@@ -96,7 +96,9 @@ u32 func_8080171C_chquiz(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801724_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801758_chquiz.s")
+void func_80801758_chquiz(s32 *arg0, s32 arg1) {
+    arg0[32] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801760_chquiz.s")
 
