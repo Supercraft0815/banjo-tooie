@@ -7,7 +7,12 @@ OSThread *chaliendad_entrypoint_0(void)
     return (OSThread *) D_80802674_chaliendad;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/chaliendad_entrypoint_1.s")
+OSThread *chaliendad_entrypoint_1(void)
+{
+    extern u8 D_808026BC_chaliendad[];
+
+    return (OSThread *) D_808026BC_chaliendad;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/chaliendad_entrypoint_2.s")
 
