@@ -52,4 +52,9 @@ OSThread *chpiranha_entrypoint_1(void)
     return (OSThread *) D_80801BA8_chpiranha;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/chpiranha_entrypoint_2.s")
+OSThread *chpiranha_entrypoint_2(void)
+{
+    extern u8 D_80801BF0_chpiranha[];
+
+    return (OSThread *) D_80801BF0_chpiranha;
+}
