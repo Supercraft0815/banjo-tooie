@@ -14,7 +14,9 @@ void suflamefx_entrypoint_4(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/flamefx/suflamefx_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/flamefx/suflamefx_entrypoint_6.s")
+void suflamefx_entrypoint_6(f32 *arg0, f32 arg1) {
+    arg0[5] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/flamefx/suflamefx_entrypoint_7.s")
 
