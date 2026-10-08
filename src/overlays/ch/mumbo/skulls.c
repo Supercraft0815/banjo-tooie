@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/skulls/chmumboskulls_entrypoint_0.s")
+OSThread *chmumboskulls_entrypoint_0(void)
+{
+    extern u8 D_808000C0_chmumboskulls[];
+
+    return (OSThread *) D_808000C0_chmumboskulls;
+}
 
 void func_8080000C_chmumboskulls(s32 arg0)
 {
