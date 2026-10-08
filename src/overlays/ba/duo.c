@@ -17,7 +17,9 @@ u32 baduo_entrypoint_3(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 88) + 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_4.s")
+u32 baduo_entrypoint_4(void *arg0) {
+    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 88) + 2);
+}
 
 void baduo_entrypoint_5(s32 arg0) 
 {
