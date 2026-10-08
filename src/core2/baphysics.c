@@ -69,7 +69,9 @@ f32 func_8009BAE8(PlayerState *arg0) {
     return (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x38)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009BAF4.s")
+s32 func_8009BAF4(void *arg0) {
+    return *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 0);
+}
 
 f32 baphysics_get_target_horizontal_velocity(PlayerState *arg0) {
     return (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x3C)));
