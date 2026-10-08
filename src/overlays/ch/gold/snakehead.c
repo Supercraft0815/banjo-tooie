@@ -14,7 +14,12 @@ OSThread *chgoldsnakehead_entrypoint_1(void)
     return (OSThread *) D_80800550_chgoldsnakehead;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/snakehead/chgoldsnakehead_entrypoint_2.s")
+OSThread *chgoldsnakehead_entrypoint_2(void)
+{
+    extern u8 D_80800598_chgoldsnakehead[];
+
+    return (OSThread *) D_80800598_chgoldsnakehead;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/snakehead/func_80800024_chgoldsnakehead.s")
 
