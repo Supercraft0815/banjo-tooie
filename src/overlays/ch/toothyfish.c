@@ -42,4 +42,9 @@ void func_80800EDC_chtoothyfish(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80801588_chtoothyfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/chtoothyfish_entrypoint_1.s")
+OSThread *chtoothyfish_entrypoint_1(void)
+{
+    extern u8 D_80801914_chtoothyfish[];
+
+    return (OSThread *) D_80801914_chtoothyfish;
+}
