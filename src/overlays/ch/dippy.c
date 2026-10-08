@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/chdippy_entrypoint_0.s")
+OSThread *chdippy_entrypoint_0(void)
+{
+    extern u8 D_80801580_chdippy[];
+
+    return (OSThread *) D_80801580_chdippy;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/chdippy_entrypoint_1.s")
 
