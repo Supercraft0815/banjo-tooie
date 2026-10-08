@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flamer/chflamer_entrypoint_0.s")
+OSThread *chflamer_entrypoint_0(void)
+{
+    extern u8 D_80800B20_chflamer[];
+
+    return (OSThread *) D_80800B20_chflamer;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flamer/func_8080000C_chflamer.s")
 
