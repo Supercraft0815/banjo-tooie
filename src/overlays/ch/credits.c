@@ -46,7 +46,12 @@ void func_80800BCC_chcredits(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80801108_chcredits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/chcredits_entrypoint_2.s")
+OSThread *chcredits_entrypoint_2(void)
+{
+    extern u8 D_8080159C_chcredits[];
+
+    return (OSThread *) D_8080159C_chcredits;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/R_808011B0_chcredits.s")
 
