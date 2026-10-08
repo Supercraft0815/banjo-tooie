@@ -23,7 +23,9 @@ void bamovespline_entrypoint_5(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/spline/bamovespline_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/spline/bamovespline_entrypoint_7.s")
+void bamovespline_entrypoint_7(void *arg0, s32 arg1) {
+    *(s16 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 148) = arg1;
+}
 
 void bamovespline_entrypoint_8(s32 arg0)
 {
