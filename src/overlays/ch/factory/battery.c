@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/chfactorybattery_entrypoint_0.s")
+OSThread *chfactorybattery_entrypoint_0(void)
+{
+    extern u8 D_80801B34_chfactorybattery[];
+
+    return (OSThread *) D_80801B34_chfactorybattery;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_8080000C_chfactorybattery.s")
 
