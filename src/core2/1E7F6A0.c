@@ -31,4 +31,7 @@ void func_800A70B0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A7130.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A7168.s")
+void * func_800A7168(void) {
+    extern u8 D_8011A3A0;
+    return &D_8011A3A0;
+}
