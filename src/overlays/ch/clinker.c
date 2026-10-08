@@ -48,7 +48,12 @@ void func_808008C0_chclinker(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_80800E1C_chclinker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/chclinker_entrypoint_1.s")
+OSThread *chclinker_entrypoint_1(void)
+{
+    extern u8 D_80801550_chclinker[];
+
+    return (OSThread *) D_80801550_chclinker;
+}
 
 void func_80800FFC_chclinker(s32 arg0) 
 {
