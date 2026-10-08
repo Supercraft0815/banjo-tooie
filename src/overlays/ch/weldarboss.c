@@ -7,7 +7,12 @@ OSThread *chweldarboss_entrypoint_0(void)
     return (OSThread *) D_808047C4_chweldarboss;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/chweldarboss_entrypoint_1.s")
+OSThread *chweldarboss_entrypoint_1(void)
+{
+    extern u8 D_8080480C_chweldarboss[];
+
+    return (OSThread *) D_8080480C_chweldarboss;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80800018_chweldarboss.s")
 
