@@ -62,7 +62,12 @@ void func_808003D8_chdragonbrothers(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808034DC_chdragonbrothers.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/chdragonbrothers_entrypoint_0.s")
+OSThread *chdragonbrothers_entrypoint_0(void)
+{
+    extern u8 D_808056A8_chdragonbrothers[];
+
+    return (OSThread *) D_808056A8_chdragonbrothers;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80803574_chdragonbrothers.s")
 
