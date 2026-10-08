@@ -34,7 +34,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800C90_chtntmineshoot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/chtntmineshoot_entrypoint_0.s")
+OSThread *chtntmineshoot_entrypoint_0(void)
+{
+    extern u8 D_80802690_chtntmineshoot[];
+
+    return (OSThread *) D_80802690_chtntmineshoot;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800E10_chtntmineshoot.s")
 
