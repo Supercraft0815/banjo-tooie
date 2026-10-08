@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/chfishshootgame_entrypoint_0.s")
+OSThread *chfishshootgame_entrypoint_0(void)
+{
+    extern u8 D_808018C0_chfishshootgame[];
+
+    return (OSThread *) D_808018C0_chfishshootgame;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_8080000C_chfishshootgame.s")
 
