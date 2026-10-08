@@ -17,7 +17,9 @@ void func_80800008_glgamedata(s8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamedata/glgamedata_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamedata/func_808001E4_glgamedata.s")
+s32 func_808001E4_glgamedata(s32 arg0) {
+    return 4;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamedata/func_808001F0_glgamedata.s")
 
