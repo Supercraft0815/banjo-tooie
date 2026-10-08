@@ -127,7 +127,9 @@ void func_80110DE0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_801110EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_8011113C.s")
+s32 func_8011113C(void) {
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111144.s")
 
