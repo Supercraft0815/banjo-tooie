@@ -9,7 +9,10 @@ s32 func_800A06E0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E79FD0/func_800A0714.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E79FD0/func_800A0C20.s")
+s32 func_800A0C20(PlayerState *self)
+{
+    return (*(u8 **)((u8 *)self + 0x138))[0x10];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E79FD0/func_800A0C2C.s")
 
