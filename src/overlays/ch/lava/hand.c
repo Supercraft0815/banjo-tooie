@@ -14,7 +14,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/hand/func_80800D8C_chlavahand.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/hand/chlavahand_entrypoint_0.s")
+OSThread *chlavahand_entrypoint_0(void)
+{
+    extern u8 D_808013D0_chlavahand[];
+
+    return (OSThread *) D_808013D0_chlavahand;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/hand/func_80800E0C_chlavahand.s")
 
