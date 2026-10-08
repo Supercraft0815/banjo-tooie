@@ -16,7 +16,12 @@ void func_808000A8_chjiggytemple(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_808000B0_chjiggytemple.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/chjiggytemple_entrypoint_1.s")
+OSThread *chjiggytemple_entrypoint_1(void)
+{
+    extern u8 D_8080092C_chjiggytemple[];
+
+    return (OSThread *) D_8080092C_chjiggytemple;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_80800320_chjiggytemple.s")
 
