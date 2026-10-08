@@ -12,7 +12,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D162C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D16C4.s")
+s32 func_800D16C4(s32 arg0)
+{
+    return arg0 - 0x40;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D16CC.s")
 
