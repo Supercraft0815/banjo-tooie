@@ -78,7 +78,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808014F8_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801544_chquiz.s")
+s32 func_80801544_chquiz(s32 arg0) {
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_8080154C_chquiz.s")
 
