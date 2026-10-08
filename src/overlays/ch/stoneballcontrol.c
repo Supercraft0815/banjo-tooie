@@ -119,7 +119,12 @@ void func_8080367C_chstoneballcontrol(s32 arg0)
     func_80801944_chstoneballcontrol(arg0,0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/chstoneballcontrol_entrypoint_2.s")
+OSThread *chstoneballcontrol_entrypoint_2(void)
+{
+    extern u8 D_808052CC_chstoneballcontrol[];
+
+    return (OSThread *) D_808052CC_chstoneballcontrol;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/chstoneballcontrol_entrypoint_3.s")
 
