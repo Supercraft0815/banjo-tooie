@@ -20,7 +20,12 @@ void func_80800520_chmayafarmer(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_8080085C_chmayafarmer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/chmayafarmer_entrypoint_0.s")
+OSThread *chmayafarmer_entrypoint_0(void)
+{
+    extern u8 D_80801278_chmayafarmer[];
+
+    return (OSThread *) D_80801278_chmayafarmer;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_808008F8_chmayafarmer.s")
 
