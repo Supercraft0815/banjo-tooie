@@ -2,4 +2,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/slab/func_80800000_chlavaslab.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/slab/chlavaslab_entrypoint_0.s")
+OSThread *chlavaslab_entrypoint_0(void)
+{
+    extern u8 D_808000A0_chlavaslab[];
+
+    return (OSThread *) D_808000A0_chlavaslab;
+}
