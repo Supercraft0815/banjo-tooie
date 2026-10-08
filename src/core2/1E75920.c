@@ -13,7 +13,9 @@ s32 func_8009C030()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75920/func_8009C0F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75920/func_8009C118.s")
+void func_8009C118(void *arg0, f32 arg1) {
+    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 228) + 4) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75920/func_8009C128.s")
 
