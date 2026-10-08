@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/chballoonburst_entrypoint_0.s")
+OSThread *chballoonburst_entrypoint_0(void)
+{
+    extern u8 D_80801C40_chballoonburst[];
+
+    return (OSThread *) D_80801C40_chballoonburst;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/chballoonburst_entrypoint_1.s")
 
