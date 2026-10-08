@@ -7,7 +7,12 @@ OSThread *chfactorytwinklies_entrypoint_0(void)
     return (OSThread *) D_80802218_chfactorytwinklies;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/chfactorytwinklies_entrypoint_1.s")
+OSThread *chfactorytwinklies_entrypoint_1(void)
+{
+    extern u8 D_80802260_chfactorytwinklies[];
+
+    return (OSThread *) D_80802260_chfactorytwinklies;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/chfactorytwinklies_entrypoint_2.s")
 
