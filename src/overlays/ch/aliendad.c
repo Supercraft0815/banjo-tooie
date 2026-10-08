@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/chaliendad_entrypoint_0.s")
+OSThread *chaliendad_entrypoint_0(void)
+{
+    extern u8 D_80802674_chaliendad[];
+
+    return (OSThread *) D_80802674_chaliendad;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/chaliendad_entrypoint_1.s")
 
