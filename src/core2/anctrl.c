@@ -85,7 +85,9 @@ f32 func_8008B2D4(f32 *arg0) {
     return arg0[0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B2DC.s")
+void func_8008B2DC(void *arg0, f32 arg1) {
+    *(f32 *)((u8 *)arg0 + 0) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B2E8.s")
 
