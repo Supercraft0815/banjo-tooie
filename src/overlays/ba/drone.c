@@ -28,7 +28,9 @@ void badrone_entrypoint_6(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/drone/badrone_entrypoint_7.s")
+u32 badrone_entrypoint_7(void *arg0) {
+    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 84) + 4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/drone/badrone_entrypoint_8.s")
 
