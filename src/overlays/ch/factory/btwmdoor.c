@@ -4,4 +4,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/btwmdoor/func_80800068_chfactorybtwmdoor.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/btwmdoor/chfactorybtwmdoor_entrypoint_0.s")
+OSThread *chfactorybtwmdoor_entrypoint_0(void)
+{
+    extern u8 D_80800344_chfactorybtwmdoor[];
+
+    return (OSThread *) D_80800344_chfactorybtwmdoor;
+}
