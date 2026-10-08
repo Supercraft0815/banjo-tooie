@@ -11,7 +11,9 @@ s32 func_800A3B70()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A3D78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A3DAC.s")
+u32 func_800A3DAC(void *arg0) {
+    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 56) + 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A3DB8.s")
 
