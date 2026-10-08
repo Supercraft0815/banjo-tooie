@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/chcheato_entrypoint_0.s")
+OSThread *chcheato_entrypoint_0(void)
+{
+    extern u8 D_80800E98_chcheato[];
+
+    return (OSThread *) D_80800E98_chcheato;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_8080000C_chcheato.s")
 
