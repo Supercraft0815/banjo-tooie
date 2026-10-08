@@ -24,6 +24,8 @@ void func_800A5CFC()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F4D0/func_800A5D1C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F4D0/func_800A5D60.s")
+void * func_800A5D60(void) {
+    return &D_80127110;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F4D0/func_800A5D6C.s")
