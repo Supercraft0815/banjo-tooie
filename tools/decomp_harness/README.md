@@ -248,8 +248,18 @@ automatisch migriert; vorhandene Matches, Versuche und Commits bleiben erhalten.
 
 ```sh
 decomp-agent patterns
-decomp-agent run --local-only --max-functions 100 --max-runtime 3600
+decomp-agent run --local-only --dry-run > .decomp-agent/local-plan.json
+decomp-agent run --local-only
 ```
+
+Ohne `--max-functions` und `--max-runtime` läuft die lokale Suche über das gesamte
+offene Projekt. Zuerst werden alle `pending`-Funktionen lokal geprüft; nur Funktionen
+mit einem unversuchten C-Kandidaten oder einem fortsetzbaren Versuch kommen in die
+Build-Warteschlange. Quellen werden dabei pro Datei einmal gelesen. Unbekannte Muster
+verbrauchen weder einen Build noch einen Platz im `--max-functions`-Budget. Gibt es
+keinen Kandidaten, endet der Lauf bereits vor dem Baseline-Build. Der Dry-Run liefert
+dieselbe vollständige Auswahl ohne Compiler oder Modell; `patterns` zeigt Anzahl und
+eine kurze Vorschau. `blocked`/`needs_human` bleiben bis `retry SYMBOL` ausgeschlossen.
 
 `patterns` zeigt Kandidaten, **keine bereits bestätigten Matches**. `--local-only`
 benötigt keine CLI-Anmeldung, keine Modellprobe und keine Inferenz. Die gleichen
@@ -262,6 +272,41 @@ wiederverwendet; nur der Target-Name wird normalisiert. Es wird keine ähnliche,
 ungeprüfte Lösung übernommen. Bei jedem neuen Ziel erfolgt erneut der vollständige
 Compiler-/ROM-Vergleich. Änderungen an ASM oder Quelldatei ermöglichen einen erneuten
 lokalen Versuch. `report` trennt Modell-Runs, lokale Matches und gelernte Muster.
+
+Die ASM-Regeln erkennen unter anderem Konstanten, direkte und indirekte Getter/Setter,
+Float-Setter, symbolische Adress-Rückgaben, globale Variablen, skalierte Tabellenzugriffe
+und einfache Ganzzahloperationen. Symbolische `%hi`/`%lo`-Paare und beteiligte Register
+müssen zusammenpassen. NOPs nach `endlabel` sind keine Funktionsinstruktionen für die
+Mustererkennung; ihre korrekte Platzierung prüft weiterhin der vollständige ROM-Build.
+Ein komplexer Algorithmus lässt sich damit noch nicht automatisch rekonstruieren.
+
+Fehlversuche sind in SQLite gespeichert und werden bei unveränderter Quelle/ASM nicht
+erneut kompiliert. Neue Regeln und erfolgreiche Muster werden beim nächsten Aufruf
+berücksichtigt. Für eine begrenzte Sitzung beispielsweise:
+
+```sh
+decomp-agent run --local-only --max-functions 100 --max-runtime 3600
+```
+
+## Baseline-Build wiederverwenden
+
+Der erste Lauf baut weiterhin eine unabhängige Kopie vollständig. Nach einem normal
+beendeten oder mit `stop-after-current` geleerten Lauf bleibt ein Build-Cache unter
+`.decomp-agent/build-cache/` erhalten. Folgeläufe prüfen Inhalts-Hashes aller kopierten
+Eingaben und Build-Artefakte sowie die Docker-Image-ID. Der Cache wird in eine neue
+Arbeitskopie kopiert und dort erneut geprüft. Anschließend laufen das originale
+`make check` und die vollständige ROM-Hash-Prüfung auch bei einem Cache-Treffer.
+
+Geänderte Quellen, Header, ASM, Tools, ROMs, Compiler-Image oder Build-Konfiguration
+erzwingen einen frischen Build. Ein beschädigter Cache wird verworfen. Unterbrechungen
+mit SIGINT/Timeout und Fehler schreiben keinen neuen Cache; der SQLite-Resume bleibt
+erhalten. `stop-after-current` ist deshalb die günstigste Art, längere Läufe zu pausieren.
+
+`build_cache = false` in der lokalen Konfiguration oder `run --no-build-cache` schaltet
+die Wiederverwendung ab. Der Cache gilt nur für das Docker-Backend, dessen Toolchain
+durch die Image-ID eindeutig feststeht; native Builds bleiben frisch. Pro Kandidat
+bleiben Compiler-, vollständiger ROM-Vergleich und atomarer Commit nötig. Zwei lokale
+Worker beschleunigen diese serialisierten Prüfungen daher kaum.
 
 ## Zwei parallele Worker
 
@@ -360,6 +405,7 @@ menschlichen Prüfung; der Worker darf sie nicht stillschweigend global ändern.
   Output sowie erwartetes/tatsächliches ASM und `comparison.json`.
 * `context/`: begrenzte Context Packs (Standardbudget 24.000 Zeichen).
 * `logs/`: Setup, Baseline, Doctor, Verify und Wiederherstellungs-Builds.
+* `build-cache/`: ein vollständig geprüfter Docker-Build als wiederverwendbare Kopie.
 * `doctor.json`, `report.json`, `knowledge.md`: lesbare abgeleitete Berichte.
 
 Ein technischer CLI-Fehler ist von Agent-, Compiler-, Guard-, Modell-, Auth- und
@@ -413,5 +459,8 @@ JSONL/Usage, echte kontrollierte Fake-CLI-Prozesse, Timeout/Abbruch, Änderungsg
 Publikations-Recovery und Erhalt fremder gestagter Änderungen ab. Hinzu kommen lokale
 Muster, Schema-Migration, Luna-Eskalation, Claude-Auth/JSONL, echte private Worktrees,
 zwei überlappende Fake-Worker, serielle Publikation und gemeinsame Budgets.
+Zusätzlich werden projektweite lokale Vorauswahl, Versuchsdeduplizierung, symbolische
+ASM-Regeln und Cache-Invalidierung bei geänderten Eingaben/Toolchains sowie manipulierten
+Artefakten geprüft. Auch mit warmem Cache bleibt die vollständige ROM-Prüfung Pflicht.
 
 Der praktische Test dieses Branches ist in [INTEGRATION.md](INTEGRATION.md) festgehalten.

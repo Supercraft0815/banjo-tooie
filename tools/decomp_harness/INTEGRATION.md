@@ -108,3 +108,56 @@ Ignored local evidence:
 
 The single Luna failure does not establish a model-wide success rate. The proven
 quota saving here is the local path: it solved this target without inference.
+
+## Project-wide local sweep — 2026-10-08
+
+The earlier local recipes had already been exhausted in this checkout. At the start
+of the following measurements, the existing user runs had reached 230 committed
+matches, 13,163 pending functions, one blocked function and four needing human review.
+Counts below are snapshots, not promises about future runs.
+
+* The expanded local planner scanned all **13,163 pending functions in 6.49 seconds**
+  and found **1,423 functions with untried candidates**. The installed CLI's unbounded
+  `run --local-only --dry-run` independently produced a 1,423-entry plan with zero
+  model runs. Unsupported functions no longer enter the build/objdump queue.
+* A fresh isolated original `make check` took **251.52 seconds** on this machine and
+  produced the exact original decompressed ROM. This explains the previous long
+  startup even for a tiny local batch. The new cache retains verified artifacts,
+  checks inputs, artifact contents and Docker image identity, and still runs the
+  original full-ROM check after reuse. It never treats a cached success as a match.
+* Seven disposable object-level checks produced **100.0 score and zero instruction
+  differences** using the real IDO compiler: `func_800A5D60`, `func_800BDC44`,
+  `func_8001E7A0`, `func_80092EBC`, `func_800932BC`, `func_8009E9D8`, and `func_800BA4C4`.
+  They cover address returns with/without an existing declaration, indexed globals,
+  nested pointer setters, global stores and direct/indirect float setters. These
+  object-only experiments did not publish source changes or mark functions matched.
+* `chbeehive_entrypoint_0` exposed a useful padding case: object symbol disassembly
+  omitted two NOPs following the original `endlabel` (score 60), but **the full ROM
+  was identical**. The compiler supplied equivalent section alignment outside the
+  displayed symbol. This confirms why the original full-ROM test remains authoritative.
+  This disposable test was restored and did not publish a match.
+* Each generated target was restored after inspection; a final original `make check`
+  confirmed the restored baseline. These checks used **zero inference/API calls**.
+* Reusing the cache took **7.53 seconds** to copy and verify all artifacts, followed
+  by **6.15 seconds** for the original `make check`; the full ROM was identical.
+  A real installed-CLI run then matched **exactly one additional function**,
+  `func_800A5D60`: score 100, zero instruction differences, full ROM exact, atomic
+  commit **`da30285bbc938b25c4c6d1a65a05e63384936768`**. The complete invocation took
+  **34.78 seconds**, including scan/startup, validation, publication and cache retention.
+  SQLite recorded **zero new worker or probe calls**. Afterwards the planner reported
+  **1,422 remaining eligible functions** and the harness had **231 confirmed matches**.
+* The added stdlib tests cover symbolic relocations/register guards, typed declaration
+  reuse, endlabel padding, project-wide preselection, persisted local failures,
+  resumable candidates, stop before the first function, cache integrity/invalidation,
+  symlink rejection and mandatory full-ROM checks even with a warm cache.
+  Cache artifacts include generated Python bytecode and hidden files: adding or
+  changing any such file invalidates reuse, even though the initial fresh source
+  snapshot deliberately excludes user Git/agent configuration.
+
+Ignored evidence: `.decomp-agent/logs/local-sweep-plan.json` and
+`.decomp-agent/logs/local-sweep-integration/` (generated C, compiler logs, object dumps,
+scores and original full-ROM checks). Only actual harness publications update the
+matched count; 1,423 candidates does not mean 1,423 confirmed matches.
+The full CLI output is in `.decomp-agent/logs/local-sweep-run.log`; timing and usage
+counts are in the adjacent `local-sweep-run-timing.json`. The offline doctor passed
+its requested checks (live model probes and its separate baseline build were skipped).

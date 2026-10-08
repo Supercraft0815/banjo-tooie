@@ -10,6 +10,7 @@ minimum_gain = 0.5
 extra_attempts = 0
 probe_cache_hours = 24
 local_patterns = true
+build_cache = true
 claude_enabled = false
 
 [easy_model]

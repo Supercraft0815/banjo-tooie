@@ -17,7 +17,7 @@ from .scanner import scan
 from .scheduler import next_function, route
 from .state import State
 from .workflow import Loop, initialize_knowledge, probe_models, configured_models, runner_for
-from .patterns import candidates
+from .patterns import candidates, local_plan, seed_matches
 
 
 def positive(value):
@@ -52,6 +52,7 @@ def parser():
             p.add_argument('--function', help='Limit this run to one symbol or source::symbol')
             p.add_argument('--stop-after-current', action='store_true')
             p.add_argument('--dry-run', action='store_true', help='Local plan only; never launches model CLIs or compiles')
+            p.add_argument('--no-build-cache', action='store_true', help='Force a fresh isolated baseline; do not retain its build')
         if name == 'doctor':
             p.add_argument('--offline', action='store_true', help='No inference; mark live model checks skipped')
             p.add_argument('--no-build', action='store_true', help='Skip baseline build; report is incomplete')
@@ -165,6 +166,11 @@ def init(root, state, config, control, args):
 
 def dry_run(root, state, config, args):
     state.sync(scan(root))
+    seed_matches(root, state)
+    if args.local_only:
+        plan = local_plan(root, state, args.difficulty, args.function)
+        plan['plan'] = plan['plan'][:args.max_functions]
+        return {'dry_run': True, 'codex_runs': 0, 'model_runs': 0, **plan}
     choices, excluded = [], set()
     limit = args.max_functions or 1
     for _ in range(limit):
@@ -201,14 +207,9 @@ def verify(root, state, config, control, function):
 
 
 def pattern_report(root, state):
-    found = []
-    for row in state.db.execute("SELECT * FROM functions WHERE present=1 AND status!='matched' AND json_extract(features,'$.kind')='function'"):
-        f = dict(row)
-        if (root/f['asm']).exists():
-            choices = list(candidates(root, f, state))
-            if choices:
-                found.append({'function': f['id'], 'candidates': len(choices), 'origins': [c[0] for c in choices]})
-    return {'candidate_functions': len(found), 'sample': found[:20], 'model_runs': 0, 'compiled': False}
+    result = local_plan(root, state)
+    result['sample'] = result.pop('plan')[:20]
+    return {**result, 'candidate_functions': result['eligible_functions'], 'model_runs': 0, 'compiled': False}
 
 
 def dispatch(root, state, config, control, args):
@@ -270,6 +271,8 @@ def main(argv=None):
         config = load_config(root)
         if getattr(args, 'concurrency', None) is not None:
             config['concurrency'] = args.concurrency
+        if getattr(args, 'no_build_cache', False):
+            config['build_cache'] = False
         if args.command in ('run', 'next') and args.provider and not args.model:
             raise HarnessError('--provider requires an explicit --model')
         if args.command == 'run' and args.local_only and not config['local_patterns']:

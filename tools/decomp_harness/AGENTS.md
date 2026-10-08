@@ -8,5 +8,7 @@ Parallel workers use private Git worktrees, file/dependency locks, and shared bu
 Only the trusted, serialized parent validation/publication path touches the checkout.
 A normalized score is guidance. `make check` plus the original full-ROM hash is
 required before committing a match. Keep original ROMs and build/diff tools intact.
+Build-cache hits must verify inputs/artifacts and rerun the full ROM check; never
+trust timestamps or cached success flags. Local scans must not launch model CLIs.
 Exercise failure/resume paths with fake CLI processes before spending real usage.
 Tests: `PYTHONPATH=tools/decomp_harness/src python3 -m unittest discover -s tools/decomp_harness/tests -v`.

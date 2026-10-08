@@ -13,7 +13,8 @@ import time
 import threading
 import uuid
 
-from .build import Builder, snapshot, verify_rom
+from .build import Builder, verify_rom
+from . import cache
 from .codex import CodexRunner, Redactor
 from .common import HarnessError, atomic_write, command, git, save_json, validate_stage
 from .context import context_pack, worker_prompt
@@ -23,7 +24,7 @@ from .matching import instructions, score
 from .scanner import scan
 from .scheduler import advance, next_function, route, resources
 from .state import State
-from .patterns import candidates, candidate_source, remember, seed_matches
+from .patterns import untried_candidates, candidate_source, local_plan, trial_key, remember, seed_matches
 
 
 def new_run(root, prefix):
@@ -160,6 +161,8 @@ class Loop:
         self.probe_lock = threading.Lock()
         self.probed = set()
         self.abort = threading.Event()
+        self.local_queue = None
+        self.local_scan = None
 
     def budget_reached(self):
         c = self.coordinator
@@ -192,6 +195,16 @@ class Loop:
         recover_publications(self.root, self.state)
         self.state.recover()
         self.state.sync(scan(self.root))
+        initialize_knowledge(self.state)
+        seed_matches(self.root, self.state)
+        if self.args.local_only:
+            self.local_scan = local_plan(self.root, self.state, self.args.difficulty, self.args.function)
+            self.local_queue = self.local_scan.pop('plan')
+            print(f"Local scan: {self.local_scan['scanned_functions']} functions, "
+                  f"{len(self.local_queue)} with untried local/resumable candidates (no model usage).", flush=True)
+        if self.local_queue == [] or self.budget_reached() or (self.root/'.decomp-agent/stop-after-current').exists():
+            (self.root/'.decomp-agent/stop-after-current').unlink(missing_ok=True)
+            return self.result()
         verify_rom(self.root)
         verify_rom(self.root, True)
         if not self.args.local_only:
@@ -201,34 +214,44 @@ class Loop:
         if not git(self.root, 'config', 'user.name', check=False) or not git(self.root, 'config', 'user.email', check=False):
             raise HarnessError('Configure git user.name and user.email before automatic match commits')
         baseline_stamp = repository_stamp(self.root)
-        self.workspace = snapshot(self.root)
+        self.workspace, warm = cache.prepare(self.root, self.config)
         self.state.set_meta('last_build_workspace', str(self.workspace))
         self.builder = Builder(self.workspace, self.config, self.control)
         try:
             baseline_log = self.root/'.decomp-agent/logs/run-baseline.log'
-            print(f'Checking isolated baseline (make check). Build output: {baseline_log}', flush=True)
+            print(f"Checking isolated baseline (make check; {'verified build cache' if warm else 'fresh build'}). "
+                  f'Build output: {baseline_log}', flush=True)
             if not self.builder.regression(baseline_log):
                 raise HarnessError(f'Baseline does not match; no model usage. See {baseline_log}')
             if repository_stamp(self.root) != baseline_stamp:
                 raise HarnessError('Repository changed during baseline build; restart against the new state')
             self.expected_stamp = baseline_stamp
-            initialize_knowledge(self.state)
-            seed_matches(self.root, self.state)
             if self.config['concurrency'] == 1:
                 self.process_queue()
             else:
                 self.process_parallel()
+            if not self.control.stopped():
+                self.check_repository()
+                cache.retain(self.root, self.workspace, self.config)
         finally:
-            shutil.rmtree(self.workspace)
+            if self.workspace.exists():
+                shutil.rmtree(self.workspace)
+        return self.result()
+
+    def result(self):
         return {'functions': self.examined, 'model_worker_runs': self.calls, 'matched': self.matched,
                 'local_matches': self.local_matches, 'concurrency': self.config['concurrency'],
+                'local_scan': self.local_scan,
                 'interrupted': self.control.stopped()}
 
     def select_function(self, seen, busy=()):
         if self.args.max_functions is not None and self.examined >= self.args.max_functions:
             return None
-        if self.examined and (self.args.stop_after_current or (self.root/'.decomp-agent/stop-after-current').exists()):
+        if (self.examined and self.args.stop_after_current) or (self.root/'.decomp-agent/stop-after-current').exists():
             return None
+        if self.local_queue is not None:
+            choice = next((f for f in self.local_queue if f['function'] not in seen and not resources(f) & set(busy)), None)
+            return self.state.get(choice['function']) if choice else None
         function = next_function(self.state, self.args.difficulty, seen, busy)
         if self.args.function:
             function = self.state.get(self.args.function) if not seen else None
@@ -367,13 +390,11 @@ class Loop:
 
     def try_local(self, function, target):
         original = target.original
-        for origin, code in candidates(self.root, function, self.state):
+        for origin, code in untried_candidates(self.root, function, self.state, original.decode()):
             if self.control.stopped():
                 break
             candidate = candidate_source(original.decode(), function['symbol'], code)
-            key = hashlib.sha256(candidate + (function['asm_sha'] or '').encode()).hexdigest()
-            if self.state.db.execute('SELECT 1 FROM local_trials WHERE function_id=? AND candidate_sha=?', (function['id'], key)).fetchone():
-                continue
+            key = trial_key(candidate, function)
             directory = new_run(self.root, 'local')
             run_id = self.state.start_run(function['id'], 'local', origin, 'none', directory)
             self.state.finish_run(run_id, provider='local')

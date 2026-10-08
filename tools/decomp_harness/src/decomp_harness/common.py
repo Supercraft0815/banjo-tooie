@@ -72,7 +72,7 @@ def load_config(root: Path):
             cfg[k] = {**cfg[k], **v} if isinstance(v, dict) else v
     if type(cfg['concurrency']) is not int or cfg['concurrency'] not in (1, 2):
         raise HarnessError('concurrency must be 1 or 2 (isolated workers)')
-    for k in ('local_patterns', 'claude_enabled'):
+    for k in ('local_patterns', 'claude_enabled', 'build_cache'):
         if type(cfg[k]) is not bool:
             raise HarnessError(f'{k} must be boolean')
     if cfg["build"]["backend"] not in ("native", "docker"):
