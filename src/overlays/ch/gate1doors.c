@@ -10,6 +10,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gate1doors/func_80800334_chgate1doors.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gate1doors/chgate1doors_entrypoint_0.s")
+OSThread *chgate1doors_entrypoint_0(void)
+{
+    extern u8 D_808004B8_chgate1doors[];
+
+    return (OSThread *) D_808004B8_chgate1doors;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gate1doors/chgate1doors_entrypoint_1.s")
