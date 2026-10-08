@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/chamazongoldhordeofficial_entrypoint_0.s")
+OSThread *chamazongoldhordeofficial_entrypoint_0(void)
+{
+    extern u8 D_80801240_chamazongoldhordeofficial[];
+
+    return (OSThread *) D_80801240_chamazongoldhordeofficial;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_8080000C_chamazongoldhordeofficial.s")
 
