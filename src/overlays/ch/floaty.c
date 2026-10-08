@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/floaty/chfloaty_entrypoint_0.s")
+OSThread *chfloaty_entrypoint_0(void)
+{
+    extern u8 D_80800E00_chfloaty[];
+
+    return (OSThread *) D_80800E00_chfloaty;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/floaty/func_8080000C_chfloaty.s")
 
