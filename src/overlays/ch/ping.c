@@ -6,4 +6,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/ping/chping_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/ping/chping_entrypoint_1.s")
+OSThread *chping_entrypoint_1(void)
+{
+    extern u8 D_80800410_chping[];
+
+    return (OSThread *) D_80800410_chping;
+}
