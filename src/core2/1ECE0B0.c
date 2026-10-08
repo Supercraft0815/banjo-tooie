@@ -303,7 +303,9 @@ void func_800F5A2C(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F5A58.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F5AD0.s")
+f32 func_800F5AD0(s32 arg0) {
+    return 4.0f;
+}
 
 void func_800F5AE0(s32 arg0)
 {
