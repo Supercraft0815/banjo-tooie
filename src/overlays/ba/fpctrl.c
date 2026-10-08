@@ -49,7 +49,9 @@ u32 bafpctrl_entrypoint_4(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/bafpctrl_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/bafpctrl_entrypoint_6.s")
+u32 bafpctrl_entrypoint_6(void *arg0) {
+    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 144) + 19);
+}
 
 void bafpctrl_entrypoint_7(s32 arg0) 
 {
