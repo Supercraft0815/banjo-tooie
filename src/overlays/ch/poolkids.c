@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/chpoolkids_entrypoint_0.s")
+OSThread *chpoolkids_entrypoint_0(void)
+{
+    extern u8 D_808013F0_chpoolkids[];
+
+    return (OSThread *) D_808013F0_chpoolkids;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/chpoolkids_entrypoint_1.s")
 
