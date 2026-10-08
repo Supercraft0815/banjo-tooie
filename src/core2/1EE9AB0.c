@@ -22,7 +22,9 @@ void func_80110720(s8 *arg0, s32 arg1) {
     arg0[112] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110728.s")
+void func_80110728(s8 *arg0, s32 arg1) {
+    arg0[113] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110730.s")
 
