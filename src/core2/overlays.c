@@ -16,7 +16,12 @@ void* heap_alloc(s32 size);
 s32 D_80117C60 = 0;
 s32 D_80117C64 = 0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/overlays/func_800815C0.s")
+void func_800815C0(s32 arg0)
+{
+    extern s32 D_80126CB8;
+
+    D_80126CB8 = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/overlays/func_800815CC.s")
 
