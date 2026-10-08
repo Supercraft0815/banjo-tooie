@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/chcoderoombits_entrypoint_0.s")
+OSThread *chcoderoombits_entrypoint_0(void)
+{
+    extern u8 D_80801170_chcoderoombits[];
+
+    return (OSThread *) D_80801170_chcoderoombits;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_8080000C_chcoderoombits.s")
 
