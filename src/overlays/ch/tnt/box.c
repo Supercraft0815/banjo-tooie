@@ -7,7 +7,12 @@ OSThread *chtntbox_entrypoint_0(void)
     return (OSThread *) D_80800988_chtntbox;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/chtntbox_entrypoint_1.s")
+OSThread *chtntbox_entrypoint_1(void)
+{
+    extern u8 D_808009D0_chtntbox[];
+
+    return (OSThread *) D_808009D0_chtntbox;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/func_80800018_chtntbox.s")
 
