@@ -44,6 +44,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800AE6BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800AE6FC.s")
+void func_800AE6FC(s16 *arg0, s16 arg1) {
+    arg0[6] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800AE708.s")
