@@ -13,7 +13,12 @@ typedef struct {
     u8 unk10;
 } cablecarMemory;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/chcablecar_entrypoint_0.s")
+OSThread *chcablecar_entrypoint_0(void)
+{
+    extern u8 D_80800EB0_chcablecar[];
+
+    return (OSThread *) D_80800EB0_chcablecar;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/chcablecar_entrypoint_1.s")
 
