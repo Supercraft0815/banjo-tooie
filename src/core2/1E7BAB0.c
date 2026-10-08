@@ -18,7 +18,10 @@ void func_800A22A8(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BAB0/func_800A235C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BAB0/func_800A2534.s")
+void func_800A2534(s32 *arg0)
+{
+    *(u8 *)(arg0[0xB4 / 4] + 3) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BAB0/func_800A2540.s")
 
