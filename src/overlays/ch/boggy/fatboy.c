@@ -7,7 +7,12 @@ OSThread *chboggyfatboy_entrypoint_0(void)
     return (OSThread *) D_80801120_chboggyfatboy;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/chboggyfatboy_entrypoint_1.s")
+OSThread *chboggyfatboy_entrypoint_1(void)
+{
+    extern u8 D_808011DC_chboggyfatboy[];
+
+    return (OSThread *) D_808011DC_chboggyfatboy;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_80800018_chboggyfatboy.s")
 
