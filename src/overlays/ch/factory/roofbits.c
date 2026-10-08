@@ -72,4 +72,9 @@ OSThread *chfactoryroofbits_entrypoint_4(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_80800890_chfactoryroofbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/chfactoryroofbits_entrypoint_5.s")
+OSThread *chfactoryroofbits_entrypoint_5(void)
+{
+    extern u8 D_80800B34_chfactoryroofbits[];
+
+    return (OSThread *) D_80800B34_chfactoryroofbits;
+}
