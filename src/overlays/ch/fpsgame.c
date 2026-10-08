@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/chfpsgame_entrypoint_0.s")
+OSThread *chfpsgame_entrypoint_0(void)
+{
+    extern u8 D_808021A0_chfpsgame[];
+
+    return (OSThread *) D_808021A0_chfpsgame;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_8080000C_chfpsgame.s")
 
