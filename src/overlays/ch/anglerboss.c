@@ -7,7 +7,12 @@ OSThread *changlerboss_entrypoint_0(void)
     return (OSThread *) D_80802EB4_changlerboss;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/changlerboss_entrypoint_1.s")
+OSThread *changlerboss_entrypoint_1(void)
+{
+    extern u8 D_80802EFC_changlerboss[];
+
+    return (OSThread *) D_80802EFC_changlerboss;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80800018_changlerboss.s")
 
