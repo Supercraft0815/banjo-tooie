@@ -42,7 +42,10 @@ OSThread *func_800EBB50(void)
     return (OSThread *) D_80123540;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBB5C.s")
+void func_800EBB5C(void) {
+    extern s32 D_8013546C;
+    D_8013546C = 0x6B7;
+}
 
 void func_800EBB6C(void) {
 }
