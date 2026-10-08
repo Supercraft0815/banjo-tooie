@@ -15,4 +15,9 @@ OSThread *chfantasytrashcanbits_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/trashcanbits/func_808001D8_chfantasytrashcanbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/trashcanbits/chfantasytrashcanbits_entrypoint_1.s")
+OSThread *chfantasytrashcanbits_entrypoint_1(void)
+{
+    extern u8 D_80800288_chfantasytrashcanbits[];
+
+    return (OSThread *) D_80800288_chfantasytrashcanbits;
+}
