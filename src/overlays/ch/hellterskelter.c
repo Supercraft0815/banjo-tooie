@@ -1,6 +1,11 @@
 #include "ch/hellterskelter.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/chhellterskelter_entrypoint_0.s")
+OSThread *chhellterskelter_entrypoint_0(void)
+{
+    extern u8 D_808007C8_chhellterskelter[];
+
+    return (OSThread *) D_808007C8_chhellterskelter;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/chhellterskelter_entrypoint_1.s")
 
