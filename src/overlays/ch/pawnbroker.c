@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/chpawnbroker_entrypoint_0.s")
+OSThread *chpawnbroker_entrypoint_0(void)
+{
+    extern u8 D_80800FD0_chpawnbroker[];
+
+    return (OSThread *) D_80800FD0_chpawnbroker;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/chpawnbroker_entrypoint_1.s")
 
