@@ -39,7 +39,11 @@ void func_800EA124()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA34C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA358.s")
+s32 func_800EA358(void) {
+    extern s16 D_80132DCC;
+
+    return D_80132DCC;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA364.s")
 
