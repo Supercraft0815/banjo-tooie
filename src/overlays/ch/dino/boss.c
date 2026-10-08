@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/chdinoboss_entrypoint_0.s")
+OSThread *chdinoboss_entrypoint_0(void)
+{
+    extern u8 D_80802B40_chdinoboss[];
+
+    return (OSThread *) D_80802B40_chdinoboss;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/chdinoboss_entrypoint_1.s")
 
