@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/grunty/fireballbig/chgruntyfireballbig_entrypoint_0.s")
+OSThread *chgruntyfireballbig_entrypoint_0(void)
+{
+    extern u8 D_80800680_chgruntyfireballbig[];
+
+    return (OSThread *) D_80800680_chgruntyfireballbig;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/grunty/fireballbig/func_8080000C_chgruntyfireballbig.s")
 
