@@ -65,7 +65,9 @@ u32 anctrl_getPlaybackType(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B29C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B2AC.s")
+f32 func_8008B2AC(f32 *arg0) {
+    return arg0[3];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_getAnimTimer.s")
 
