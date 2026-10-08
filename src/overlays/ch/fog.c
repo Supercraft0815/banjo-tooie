@@ -10,4 +10,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fog/func_808009F0_chfog.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fog/chfog_entrypoint_0.s")
+OSThread *chfog_entrypoint_0(void)
+{
+    extern u8 D_80800A90_chfog[];
+
+    return (OSThread *) D_80800A90_chfog;
+}
