@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/squits/chsquits_entrypoint_0.s")
+OSThread *chsquits_entrypoint_0(void)
+{
+    extern u8 D_808006D8_chsquits[];
+
+    return (OSThread *) D_808006D8_chsquits;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/squits/func_8080000C_chsquits.s")
 
