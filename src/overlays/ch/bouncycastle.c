@@ -14,7 +14,12 @@ OSThread *chbouncycastle_entrypoint_1(void)
     return (OSThread *) D_80800978_chbouncycastle;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bouncycastle/chbouncycastle_entrypoint_2.s")
+OSThread *chbouncycastle_entrypoint_2(void)
+{
+    extern u8 D_808009C0_chbouncycastle[];
+
+    return (OSThread *) D_808009C0_chbouncycastle;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bouncycastle/chbouncycastle_entrypoint_3.s")
 
