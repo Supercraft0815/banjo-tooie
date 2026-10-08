@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/appearfx/chappearfx_entrypoint_0.s")
+OSThread *chappearfx_entrypoint_0(void)
+{
+    extern u8 D_80800990_chappearfx[];
+
+    return (OSThread *) D_80800990_chappearfx;
+}
 
 void func_8080000C_chappearfx(s32 arg0) 
 {
