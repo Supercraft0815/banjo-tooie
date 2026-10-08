@@ -28,6 +28,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_80800A7C_chchuffycont.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/chchuffycont_entrypoint_2.s")
+OSThread *chchuffycont_entrypoint_2(void)
+{
+    extern u8 D_80800B84_chchuffycont[];
+
+    return (OSThread *) D_80800B84_chchuffycont;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/chchuffycont_entrypoint_3.s")
