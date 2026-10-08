@@ -15,4 +15,6 @@ void idwibble_entrypoint_1(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/wibble/idwibble_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/wibble/idwibble_entrypoint_5.s")
+void idwibble_entrypoint_5(void *arg0, s16 arg1) {
+    (*(s16 *)((s8 *)(arg0) + (0x34))) = arg1;
+}
