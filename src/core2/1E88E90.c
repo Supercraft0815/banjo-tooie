@@ -4,7 +4,9 @@ s32 func_800AF5A0(s16 *arg0) {
     return arg0[0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E88E90/func_800AF5A8.s")
+s32 func_800AF5A8(s16 *arg0) {
+    return arg0[1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E88E90/func_800AF5B0.s")
 
