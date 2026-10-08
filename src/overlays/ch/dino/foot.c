@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/foot/chdinofoot_entrypoint_0.s")
+OSThread *chdinofoot_entrypoint_0(void)
+{
+    extern u8 D_80800818_chdinofoot[];
+
+    return (OSThread *) D_80800818_chdinofoot;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/foot/func_8080000C_chdinofoot.s")
 
