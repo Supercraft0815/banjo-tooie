@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazonstadiumguard/chamazonstadiumguard_entrypoint_0.s")
+OSThread *chamazonstadiumguard_entrypoint_0(void)
+{
+    extern u8 D_80800700_chamazonstadiumguard[];
+
+    return (OSThread *) D_80800700_chamazonstadiumguard;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazonstadiumguard/func_8080000C_chamazonstadiumguard.s")
 
