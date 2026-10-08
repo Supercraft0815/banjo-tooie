@@ -237,7 +237,9 @@ u32 func_800936F4(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 80) + 163);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093700.s")
+void func_80093700(void *arg0, s32 arg1) {
+    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 80) + 25) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_8009370C.s")
 
