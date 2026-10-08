@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/laundry/chlaundry_entrypoint_0.s")
+OSThread *chlaundry_entrypoint_0(void)
+{
+    extern u8 D_80800400_chlaundry[];
+
+    return (OSThread *) D_80800400_chlaundry;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/laundry/func_8080000C_chlaundry.s")
 
