@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/temple/lobbydoor/chtemplelobbydoor_entrypoint_0.s")
+OSThread *chtemplelobbydoor_entrypoint_0(void)
+{
+    extern u8 D_808003A0_chtemplelobbydoor[];
+
+    return (OSThread *) D_808003A0_chtemplelobbydoor;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/temple/lobbydoor/func_8080000C_chtemplelobbydoor.s")
 
