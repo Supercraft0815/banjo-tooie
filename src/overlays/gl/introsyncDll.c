@@ -8,7 +8,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/introsyncDll/glintrosyncDll_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/introsyncDll/glintrosyncDll_entrypoint_2.s")
+void glintrosyncDll_entrypoint_2(f32 arg0) {
+    extern f32 D_80127194;
+    *(f32 *)((u8 *)&D_80127194 + 1092) = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/introsyncDll/glintrosyncDll_entrypoint_3.s")
 
