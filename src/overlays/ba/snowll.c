@@ -23,7 +23,9 @@ s32 basnowball_entrypoint_0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/basnowball_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/basnowball_entrypoint_3.s")
+f32 basnowball_entrypoint_3(void *arg0) {
+    return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 272) + 8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/basnowball_entrypoint_4.s")
 
