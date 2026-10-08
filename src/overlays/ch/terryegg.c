@@ -14,7 +14,12 @@ OSThread *chterryegg_entrypoint_1(void)
     return (OSThread *) D_80801328_chterryegg;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/chterryegg_entrypoint_2.s")
+OSThread *chterryegg_entrypoint_2(void)
+{
+    extern u8 D_80801370_chterryegg[];
+
+    return (OSThread *) D_80801370_chterryegg;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/chterryegg_entrypoint_3.s")
 
