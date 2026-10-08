@@ -14,7 +14,12 @@ OSThread *chballoonburst_entrypoint_1(void)
     return (OSThread *) D_80801C88_chballoonburst;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/chballoonburst_entrypoint_2.s")
+OSThread *chballoonburst_entrypoint_2(void)
+{
+    extern u8 D_80801CD0_chballoonburst[];
+
+    return (OSThread *) D_80801CD0_chballoonburst;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80800024_chballoonburst.s")
 
