@@ -35,7 +35,11 @@ void func_800E8A60(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8F8C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E9048.s")
+s32 func_800E9048(void) {
+    extern s16 D_80131CE0;
+
+    return D_80131CE0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E9054.s")
 
