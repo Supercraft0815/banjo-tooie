@@ -7,7 +7,12 @@ OSThread *chwaspnestgame_entrypoint_0(void)
     return (OSThread *) D_80801F80_chwaspnestgame;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/chwaspnestgame_entrypoint_1.s")
+OSThread *chwaspnestgame_entrypoint_1(void)
+{
+    extern u8 D_80801FC8_chwaspnestgame[];
+
+    return (OSThread *) D_80801FC8_chwaspnestgame;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80800018_chwaspnestgame.s")
 
