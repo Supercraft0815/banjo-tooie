@@ -18,7 +18,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_808002E4_gczoombox.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80800358_gczoombox.s")
+void func_80800358_gczoombox(void *arg0, f32 arg1) {
+    *(f32 *)((u8 *)arg0 + 496) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80800364_gczoombox.s")
 
