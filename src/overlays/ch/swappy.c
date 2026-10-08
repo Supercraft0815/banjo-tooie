@@ -14,4 +14,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swappy/chswappy_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swappy/chswappy_entrypoint_1.s")
+OSThread *chswappy_entrypoint_1(void)
+{
+    extern u8 D_808006D4_chswappy[];
+
+    return (OSThread *) D_808006D4_chswappy;
+}
