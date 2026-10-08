@@ -21,7 +21,12 @@ OSThread *chboilerboss_entrypoint_2(void)
     return (OSThread *) D_80802C9C_chboilerboss;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/chboilerboss_entrypoint_3.s")
+OSThread *chboilerboss_entrypoint_3(void)
+{
+    extern u8 D_80802CE4_chboilerboss[];
+
+    return (OSThread *) D_80802CE4_chboilerboss;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80800030_chboilerboss.s")
 
