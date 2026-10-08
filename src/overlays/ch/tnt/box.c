@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/chtntbox_entrypoint_0.s")
+OSThread *chtntbox_entrypoint_0(void)
+{
+    extern u8 D_80800988_chtntbox[];
+
+    return (OSThread *) D_80800988_chtntbox;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/chtntbox_entrypoint_1.s")
 
