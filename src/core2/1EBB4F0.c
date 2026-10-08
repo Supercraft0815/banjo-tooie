@@ -69,7 +69,10 @@ void func_800E2530(f32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E2568.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E257C.s")
+void func_800E257C(s32 arg0) {
+    extern s16 D_8012D48C;
+    *(s16 *)((u8 *)&D_8012D48C + 0) = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E2588.s")
 
