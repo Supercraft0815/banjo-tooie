@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/chdodgemcontrol_entrypoint_0.s")
+OSThread *chdodgemcontrol_entrypoint_0(void)
+{
+    extern u8 D_80804DB4_chdodgemcontrol[];
+
+    return (OSThread *) D_80804DB4_chdodgemcontrol;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080000C_chdodgemcontrol.s")
 
