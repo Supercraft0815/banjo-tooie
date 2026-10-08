@@ -33,7 +33,12 @@ OSThread *chlagoonufoint_entrypoint_2(void)
     return (OSThread *) D_80801A28_chlagoonufoint;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/chlagoonufoint_entrypoint_3.s")
+OSThread *chlagoonufoint_entrypoint_3(void)
+{
+    extern u8 D_80801A90_chlagoonufoint[];
+
+    return (OSThread *) D_80801A90_chlagoonufoint;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_80800744_chlagoonufoint.s")
 
