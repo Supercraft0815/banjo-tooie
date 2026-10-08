@@ -99,7 +99,10 @@ s32 func_800DF324()
     return D_8012C824;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DF330.s")
+void * func_800DF330(void) {
+    extern u8 D_8012C840;
+    return &D_8012C840;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DF33C.s")
 
