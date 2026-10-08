@@ -7,7 +7,12 @@ OSThread *chfactoryliftdoor_entrypoint_0(void)
     return (OSThread *) D_80800140_chfactoryliftdoor;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/liftdoor/chfactoryliftdoor_entrypoint_1.s")
+OSThread *chfactoryliftdoor_entrypoint_1(void)
+{
+    extern u8 D_80800188_chfactoryliftdoor[];
+
+    return (OSThread *) D_80800188_chfactoryliftdoor;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/liftdoor/func_80800018_chfactoryliftdoor.s")
 
