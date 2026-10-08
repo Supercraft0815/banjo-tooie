@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/chvolcanobits_entrypoint_0.s")
+OSThread *chvolcanobits_entrypoint_0(void)
+{
+    extern u8 D_80801154_chvolcanobits[];
+
+    return (OSThread *) D_80801154_chvolcanobits;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/chvolcanobits_entrypoint_1.s")
 
