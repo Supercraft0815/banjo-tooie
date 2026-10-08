@@ -15,4 +15,6 @@ void bamovethrust_entrypoint_0(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/thrust/bamovethrust_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/thrust/bamovethrust_entrypoint_6.s")
+f32 bamovethrust_entrypoint_6(void *arg0) {
+    return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 140);
+}
