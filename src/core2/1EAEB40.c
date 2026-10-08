@@ -29,4 +29,6 @@ s32 func_800D5424(s32 arg0) {
     return arg0 - 0x16;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAEB40/func_800D542C.s")
+s32 func_800D542C(s32 arg0) {
+    return arg0 + 0x9A;
+}
