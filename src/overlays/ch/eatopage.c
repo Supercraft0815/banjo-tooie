@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatopage/chcheatopage_entrypoint_0.s")
+OSThread *chcheatopage_entrypoint_0(void)
+{
+    extern u8 D_80800330_chcheatopage[];
+
+    return (OSThread *) D_80800330_chcheatopage;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatopage/func_8080000C_chcheatopage.s")
 
