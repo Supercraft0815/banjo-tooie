@@ -5,7 +5,12 @@ void func_800D5250()
     func_800D52B0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAEB40/func_800D5270.s")
+void func_800D5270(void)
+{
+    extern u8 D_8012B431;
+
+    D_8012B431 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAEB40/func_800D527C.s")
 
