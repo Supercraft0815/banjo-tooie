@@ -34,7 +34,9 @@ void bashoes_entrypoint_5(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/bashoes_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/bashoes_entrypoint_7.s")
+void bashoes_entrypoint_7(void *arg0, s32 arg1) {
+    *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 268) + 8) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/bashoes_entrypoint_8.s")
 
