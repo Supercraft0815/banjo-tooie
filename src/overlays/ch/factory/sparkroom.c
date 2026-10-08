@@ -33,4 +33,9 @@ OSThread *chfactorysparkroom_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800EC8_chfactorysparkroom.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/chfactorysparkroom_entrypoint_1.s")
+OSThread *chfactorysparkroom_entrypoint_1(void)
+{
+    extern u8 D_8080115C_chfactorysparkroom[];
+
+    return (OSThread *) D_8080115C_chfactorysparkroom;
+}
