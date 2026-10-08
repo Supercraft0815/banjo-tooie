@@ -38,7 +38,10 @@ void func_800C00BC()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0638.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C064C.s")
+s32 func_800C064C(void) {
+    extern s16 D_80128A12;
+    return *(s16 *)((u8 *)&D_80128A12 + 0);
+}
 
 void func_800C0658()
 {
