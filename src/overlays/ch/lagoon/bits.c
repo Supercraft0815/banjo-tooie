@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/chlagoonbits_entrypoint_0.s")
+OSThread *chlagoonbits_entrypoint_0(void)
+{
+    extern u8 D_80800804_chlagoonbits[];
+
+    return (OSThread *) D_80800804_chlagoonbits;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/chlagoonbits_entrypoint_1.s")
 
