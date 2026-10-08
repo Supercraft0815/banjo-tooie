@@ -31,7 +31,9 @@ s32 func_800BEB4C()
     return D_80128760;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEB58.s")
+void func_800BEB58(s32 arg0) {
+    *(s32 *)((u8 *)&D_80128760 + 0) = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEB64.s")
 
