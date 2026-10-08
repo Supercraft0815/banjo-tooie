@@ -137,7 +137,12 @@ OSThread *chgameselect_entrypoint_4(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802780_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/chgameselect_entrypoint_5.s")
+OSThread *chgameselect_entrypoint_5(void)
+{
+    extern u8 D_80808328_chgameselect[];
+
+    return (OSThread *) D_80808328_chgameselect;
+}
 
 void func_808027D4_chgameselect(s32 arg0) 
 {
