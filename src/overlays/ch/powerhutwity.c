@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/chpowerhutwitchy_entrypoint_0.s")
+OSThread *chpowerhutwitchy_entrypoint_0(void)
+{
+    extern u8 D_80800B28_chpowerhutwitchy[];
+
+    return (OSThread *) D_80800B28_chpowerhutwitchy;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/chpowerhutwitchy_entrypoint_1.s")
 
