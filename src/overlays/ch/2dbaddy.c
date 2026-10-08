@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/ch2dbaddy_entrypoint_0.s")
+OSThread *ch2dbaddy_entrypoint_0(void)
+{
+    extern u8 D_80800A9C_ch2dbaddy[];
+
+    return (OSThread *) D_80800A9C_ch2dbaddy;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_8080000C_ch2dbaddy.s")
 
