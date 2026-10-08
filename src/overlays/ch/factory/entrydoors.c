@@ -4,7 +4,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/entrydoors/func_808000CC_chfactoryentrydoors.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/entrydoors/chfactoryentrydoors_entrypoint_0.s")
+OSThread *chfactoryentrydoors_entrypoint_0(void)
+{
+    extern u8 D_808002B0_chfactoryentrydoors[];
+
+    return (OSThread *) D_808002B0_chfactoryentrydoors;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/entrydoors/func_8080014C_chfactoryentrydoors.s")
 
