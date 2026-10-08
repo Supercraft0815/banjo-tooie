@@ -7,7 +7,12 @@ OSThread *chfactoryflypad_entrypoint_0(void)
     return (OSThread *) D_80800250_chfactoryflypad;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/flypad/chfactoryflypad_entrypoint_1.s")
+OSThread *chfactoryflypad_entrypoint_1(void)
+{
+    extern u8 D_80800298_chfactoryflypad[];
+
+    return (OSThread *) D_80800298_chfactoryflypad;
+}
 
 void func_80800018_chfactoryflypad(s32 arg0)
 {
