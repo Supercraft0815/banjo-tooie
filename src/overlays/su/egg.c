@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_0.s")
+OSThread *suegg_entrypoint_0(void)
+{
+    extern u8 D_80800E40_suegg[];
+
+    return (OSThread *) D_80800E40_suegg;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/func_8080000C_suegg.s")
 
