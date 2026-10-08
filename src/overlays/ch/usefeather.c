@@ -13,4 +13,9 @@ OSThread *chusefeather_entrypoint_2(void)
     return (OSThread *) D_80800364_chusefeather;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/usefeather/chusefeather_entrypoint_3.s")
+OSThread *chusefeather_entrypoint_3(void)
+{
+    extern u8 D_808003AC_chusefeather[];
+
+    return (OSThread *) D_808003AC_chusefeather;
+}
