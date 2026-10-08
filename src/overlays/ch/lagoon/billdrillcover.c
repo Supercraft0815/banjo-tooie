@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/billdrillcover/chlagoonbilldrillcover_entrypoint_0.s")
+OSThread *chlagoonbilldrillcover_entrypoint_0(void)
+{
+    extern u8 D_80800330_chlagoonbilldrillcover[];
+
+    return (OSThread *) D_80800330_chlagoonbilldrillcover;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/billdrillcover/func_8080000C_chlagoonbilldrillcover.s")
 
