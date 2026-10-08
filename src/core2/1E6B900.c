@@ -19,7 +19,9 @@ s32 func_80092010(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092234.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_8009224C.s")
+s32 func_8009224C(u8 **arg0) {
+    return arg0[20][26];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092258.s")
 
