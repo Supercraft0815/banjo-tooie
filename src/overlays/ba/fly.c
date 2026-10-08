@@ -9,7 +9,9 @@ s32 bafly_entrypoint_0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_3.s")
+u32 bafly_entrypoint_3(void *arg0) {
+    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 140) + 8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_4.s")
 
