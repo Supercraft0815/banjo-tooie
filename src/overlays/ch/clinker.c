@@ -14,7 +14,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_808003A8_chclinker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/chclinker_entrypoint_0.s")
+OSThread *chclinker_entrypoint_0(void)
+{
+    extern u8 D_808014D4_chclinker[];
+
+    return (OSThread *) D_808014D4_chclinker;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_8080045C_chclinker.s")
 
