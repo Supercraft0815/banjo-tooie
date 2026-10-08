@@ -46,4 +46,8 @@ s16 func_8001E7C0(void) {
     return D_8007DB80;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E35DD0/func_8001E7CC.s")
+s32 func_8001E7CC(void) {
+    extern s32 D_8007E948;
+
+    return D_8007E948;
+}
