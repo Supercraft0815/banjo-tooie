@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxicpools/chfactorytoxicpools_entrypoint_0.s")
+OSThread *chfactorytoxicpools_entrypoint_0(void)
+{
+    extern u8 D_80800940_chfactorytoxicpools[];
+
+    return (OSThread *) D_80800940_chfactorytoxicpools;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxicpools/chfactorytoxicpools_entrypoint_1.s")
 
