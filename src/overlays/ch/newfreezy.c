@@ -40,4 +40,9 @@ void func_808000AC_chnewfreezy(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_808017FC_chnewfreezy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/chnewfreezy_entrypoint_1.s")
+OSThread *chnewfreezy_entrypoint_1(void)
+{
+    extern u8 D_80801978_chnewfreezy[];
+
+    return (OSThread *) D_80801978_chnewfreezy;
+}
