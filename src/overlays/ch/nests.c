@@ -78,7 +78,12 @@ OSThread *chnests_entrypoint_0(void)
     return (OSThread *) D_808011E8_chnests;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/chnests_entrypoint_1.s")
+OSThread *chnests_entrypoint_1(void)
+{
+    extern u8 D_80801230_chnests[];
+
+    return (OSThread *) D_80801230_chnests;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/chnests_entrypoint_2.s")
 
