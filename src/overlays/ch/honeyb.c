@@ -7,7 +7,12 @@ OSThread *chhoneyb_entrypoint_0(void)
     return (OSThread *) D_80801020_chhoneyb;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/chhoneyb_entrypoint_1.s")
+OSThread *chhoneyb_entrypoint_1(void)
+{
+    extern u8 D_80801068_chhoneyb[];
+
+    return (OSThread *) D_80801068_chhoneyb;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800018_chhoneyb.s")
 
