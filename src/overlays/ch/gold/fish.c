@@ -16,4 +16,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/fish/func_80800BA8_chgoldfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/fish/chgoldfish_entrypoint_0.s")
+OSThread *chgoldfish_entrypoint_0(void)
+{
+    extern u8 D_80800D94_chgoldfish[];
+
+    return (OSThread *) D_80800D94_chgoldfish;
+}
