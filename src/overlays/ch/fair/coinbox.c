@@ -25,4 +25,9 @@ void func_8080016C_chfaircoinbox(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/func_808003C4_chfaircoinbox.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/chfaircoinbox_entrypoint_2.s")
+OSThread *chfaircoinbox_entrypoint_2(void)
+{
+    extern u8 D_808004C8_chfaircoinbox[];
+
+    return (OSThread *) D_808004C8_chfaircoinbox;
+}
