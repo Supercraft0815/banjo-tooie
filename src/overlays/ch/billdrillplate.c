@@ -14,7 +14,12 @@ OSThread *chbilldrillplate_entrypoint_1(void)
     return (OSThread *) D_80801124_chbilldrillplate;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/chbilldrillplate_entrypoint_2.s")
+OSThread *chbilldrillplate_entrypoint_2(void)
+{
+    extern u8 D_8080116C_chbilldrillplate[];
+
+    return (OSThread *) D_8080116C_chbilldrillplate;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_80800024_chbilldrillplate.s")
 
