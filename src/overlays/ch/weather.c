@@ -1,6 +1,8 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weather/func_80800000_chweather.s")
+s32 func_80800000_chweather(s32 arg0) {
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weather/func_8080000C_chweather.s")
 
