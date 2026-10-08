@@ -4,4 +4,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/proplighter/func_8080000C_chproplighter.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/proplighter/func_8080017C_chproplighter.s")
+void func_8080017C_chproplighter(void *arg0)
+{
+}
