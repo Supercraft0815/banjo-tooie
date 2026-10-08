@@ -28,4 +28,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_80800C70_chmole_training.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/chmole_training_entrypoint_1.s")
+OSThread *chmole_training_entrypoint_1(void)
+{
+    extern u8 D_80800F30_chmole_training[];
+
+    return (OSThread *) D_80800F30_chmole_training;
+}
