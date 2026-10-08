@@ -35,7 +35,10 @@ f32 func_8009E988(void) {
     return *(f32 *)((u8 *)&D_80127044 + 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009E994.s")
+u32 func_8009E994(void) {
+    extern u8 D_80127075;
+    return *(u8 *)((u8 *)&D_80127075 + 0);
+}
 
 void func_8009E9A0(void) {
 }
