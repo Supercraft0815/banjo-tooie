@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/forcefield/chklungoforcefield_entrypoint_0.s")
+OSThread *chklungoforcefield_entrypoint_0(void)
+{
+    extern u8 D_80800400_chklungoforcefield[];
+
+    return (OSThread *) D_80800400_chklungoforcefield;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/forcefield/func_8080000C_chklungoforcefield.s")
 
