@@ -33,6 +33,11 @@ OSThread *chhoney_entrypoint_0(void)
     return (OSThread *) D_80801048_chhoney;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/chhoney_entrypoint_1.s")
+OSThread *chhoney_entrypoint_1(void)
+{
+    extern u8 D_80801090_chhoney[];
+
+    return (OSThread *) D_80801090_chhoney;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/chhoney_entrypoint_2.s")
