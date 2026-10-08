@@ -31,4 +31,9 @@ void func_80800000_chfriendlystonehead(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_80800830_chfriendlystonehead.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/chfriendlystonehead_entrypoint_0.s")
+OSThread *chfriendlystonehead_entrypoint_0(void)
+{
+    extern u8 D_808009B4_chfriendlystonehead[];
+
+    return (OSThread *) D_808009B4_chfriendlystonehead;
+}
