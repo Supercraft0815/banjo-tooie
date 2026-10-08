@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/beehive/chbadbeehive_entrypoint_0.s")
+OSThread *chbadbeehive_entrypoint_0(void)
+{
+    extern u8 D_80800B1C_chbadbeehive[];
+
+    return (OSThread *) D_80800B1C_chbadbeehive;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/beehive/func_8080000C_chbadbeehive.s")
 
