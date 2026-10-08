@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/light/fader/chlightfader_entrypoint_0.s")
+OSThread *chlightfader_entrypoint_0(void)
+{
+    extern u8 D_808003A0_chlightfader[];
+
+    return (OSThread *) D_808003A0_chlightfader;
+}
 
 void func_8080000C_chlightfader(s32 arg0) 
 {
