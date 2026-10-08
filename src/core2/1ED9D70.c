@@ -32,7 +32,10 @@ void func_80100670()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100AC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100B3C.s")
+void func_80100B3C(void) {
+    extern s32 D_80135A68;
+    D_80135A68 = 0x3667;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100B4C.s")
 
