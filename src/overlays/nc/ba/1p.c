@@ -33,7 +33,9 @@ void ncba1p_entrypoint_4(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/1p/ncba1p_entrypoint_8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/1p/ncba1p_entrypoint_9.s")
+f32 ncba1p_entrypoint_9(void *arg0) {
+    return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0) + 16);
+}
 
 s32 ncba1p_entrypoint_10(void *arg0) {
     return *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0) + 76);
