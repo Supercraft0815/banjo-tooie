@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/chminisubgame_entrypoint_0.s")
+OSThread *chminisubgame_entrypoint_0(void)
+{
+    extern u8 D_80801424_chminisubgame[];
+
+    return (OSThread *) D_80801424_chminisubgame;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/chminisubgame_entrypoint_1.s")
 
