@@ -16,7 +16,10 @@ s32 func_8001211C(void)
     return D_800459C8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E29B60/func_80012128.s")
+void func_80012128(void)
+{
+    D_800459C8 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E29B60/func_80012134.s")
 
