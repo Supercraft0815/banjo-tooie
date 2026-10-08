@@ -10,4 +10,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/onion/func_808006E0_chfantasyonion.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/onion/chfantasyonion_entrypoint_0.s")
+OSThread *chfantasyonion_entrypoint_0(void)
+{
+    extern u8 D_80800754_chfantasyonion[];
+
+    return (OSThread *) D_80800754_chfantasyonion;
+}
