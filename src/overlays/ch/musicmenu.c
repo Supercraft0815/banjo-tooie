@@ -30,7 +30,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_80801040_chmusicmenu.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/chmusicmenu_entrypoint_0.s")
+OSThread *chmusicmenu_entrypoint_0(void)
+{
+    extern u8 D_8080157C_chmusicmenu[];
+
+    return (OSThread *) D_8080157C_chmusicmenu;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/chmusicmenu_entrypoint_1.s")
 
