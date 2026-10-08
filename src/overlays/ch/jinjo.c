@@ -39,4 +39,9 @@ OSThread *chjinjo_entrypoint_5(void)
     return (OSThread *) D_808013A4_chjinjo;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/chjinjo_entrypoint_6.s")
+OSThread *chjinjo_entrypoint_6(void)
+{
+    extern u8 D_808013EC_chjinjo[];
+
+    return (OSThread *) D_808013EC_chjinjo;
+}
