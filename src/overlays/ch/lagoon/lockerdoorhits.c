@@ -8,4 +8,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/lockerdoorhits/func_8080022C_chlagoonlockerdoorhits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/lockerdoorhits/chlagoonlockerdoorhits_entrypoint_0.s")
+OSThread *chlagoonlockerdoorhits_entrypoint_0(void)
+{
+    extern u8 D_8080045C_chlagoonlockerdoorhits[];
+
+    return (OSThread *) D_8080045C_chlagoonlockerdoorhits;
+}
