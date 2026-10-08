@@ -2,7 +2,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDD9C0/func_801040D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDD9C0/func_8010410C.s")
+OSThread *func_8010410C(void)
+{
+    extern u8 D_80136BC0[];
+
+    return (OSThread *) D_80136BC0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDD9C0/func_80104118.s")
 
