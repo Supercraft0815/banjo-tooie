@@ -120,4 +120,9 @@ void func_80803BE8_chflysaucer(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80803D30_chflysaucer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/chflysaucer_entrypoint_2.s")
+OSThread *chflysaucer_entrypoint_2(void)
+{
+    extern u8 D_8080470C_chflysaucer[];
+
+    return (OSThread *) D_8080470C_chflysaucer;
+}
