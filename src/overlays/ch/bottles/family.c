@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/chbottlesfamily_entrypoint_0.s")
+OSThread *chbottlesfamily_entrypoint_0(void)
+{
+    extern u8 D_80800DE0_chbottlesfamily[];
+
+    return (OSThread *) D_80800DE0_chbottlesfamily;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/chbottlesfamily_entrypoint_1.s")
 
