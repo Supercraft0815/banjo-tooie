@@ -18,4 +18,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familymother/func_80801228_chdinofamilymother.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familymother/chdinofamilymother_entrypoint_0.s")
+OSThread *chdinofamilymother_entrypoint_0(void)
+{
+    extern u8 D_80801474_chdinofamilymother[];
+
+    return (OSThread *) D_80801474_chdinofamilymother;
+}
