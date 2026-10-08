@@ -24,7 +24,12 @@ void func_80800210_choctopus()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/octopus/func_80800540_choctopus.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/octopus/choctopus_entrypoint_1.s")
+OSThread *choctopus_entrypoint_1(void)
+{
+    extern u8 D_80800998_choctopus[];
+
+    return (OSThread *) D_80800998_choctopus;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/octopus/func_80800790_choctopus.s")
 
