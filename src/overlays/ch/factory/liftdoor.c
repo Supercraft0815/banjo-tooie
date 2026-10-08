@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/liftdoor/chfactoryliftdoor_entrypoint_0.s")
+OSThread *chfactoryliftdoor_entrypoint_0(void)
+{
+    extern u8 D_80800140_chfactoryliftdoor[];
+
+    return (OSThread *) D_80800140_chfactoryliftdoor;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/liftdoor/chfactoryliftdoor_entrypoint_1.s")
 
