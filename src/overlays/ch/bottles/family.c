@@ -7,7 +7,12 @@ OSThread *chbottlesfamily_entrypoint_0(void)
     return (OSThread *) D_80800DE0_chbottlesfamily;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/chbottlesfamily_entrypoint_1.s")
+OSThread *chbottlesfamily_entrypoint_1(void)
+{
+    extern u8 D_80800E28_chbottlesfamily[];
+
+    return (OSThread *) D_80800E28_chbottlesfamily;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/chbottlesfamily_entrypoint_2.s")
 
