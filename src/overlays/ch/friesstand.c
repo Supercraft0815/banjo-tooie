@@ -1,6 +1,11 @@
 #include "ch/friesstand.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/chfriesstand_entrypoint_0.s")
+OSThread *chfriesstand_entrypoint_0(void)
+{
+    extern u8 D_80800EC8_chfriesstand[];
+
+    return (OSThread *) D_80800EC8_chfriesstand;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/chfriesstand_entrypoint_1.s")
 
