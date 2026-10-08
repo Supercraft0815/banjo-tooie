@@ -1,6 +1,8 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/skeleton/dbskeleton_entrypoint_0.s")
+s32 dbskeleton_entrypoint_0(s16 *arg0) {
+    return arg0[2];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/skeleton/dbskeleton_entrypoint_1.s")
 
