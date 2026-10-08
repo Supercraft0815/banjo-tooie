@@ -132,4 +132,9 @@ OSThread *chdodgemcontrol_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080476C_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/chdodgemcontrol_entrypoint_2.s")
+OSThread *chdodgemcontrol_entrypoint_2(void)
+{
+    extern u8 D_80804FAC_chdodgemcontrol[];
+
+    return (OSThread *) D_80804FAC_chdodgemcontrol;
+}
