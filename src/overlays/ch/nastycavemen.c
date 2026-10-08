@@ -31,7 +31,12 @@ OSThread *chnastycavemen_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_80800B10_chnastycavemen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/chnastycavemen_entrypoint_1.s")
+OSThread *chnastycavemen_entrypoint_1(void)
+{
+    extern u8 D_808011BC_chnastycavemen[];
+
+    return (OSThread *) D_808011BC_chnastycavemen;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_80800BE0_chnastycavemen.s")
 
