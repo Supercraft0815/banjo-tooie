@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/hut/chtnthut_entrypoint_0.s")
+OSThread *chtnthut_entrypoint_0(void)
+{
+    extern u8 D_80800220_chtnthut[];
+
+    return (OSThread *) D_80800220_chtnthut;
+}
 
 void func_8080000C_chtnthut(s32 arg0) 
 {
