@@ -21,7 +21,12 @@ OSThread *chhotwaterpoolbits_entrypoint_2(void)
     return (OSThread *) D_808009C0_chhotwaterpoolbits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/waterpoolbits/chhotwaterpoolbits_entrypoint_3.s")
+OSThread *chhotwaterpoolbits_entrypoint_3(void)
+{
+    extern u8 D_80800A08_chhotwaterpoolbits[];
+
+    return (OSThread *) D_80800A08_chhotwaterpoolbits;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/waterpoolbits/func_80800030_chhotwaterpoolbits.s")
 
