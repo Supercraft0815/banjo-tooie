@@ -28,7 +28,10 @@ void anctrl_setIndex(AnimCtrl *arg0, AssetId arg1)
     ((s16 *)arg0)[12] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008AEDC.s")
+void *func_8008AEDC(void *arg0)
+{
+    return (u8 *)arg0 + 0x1C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008AEE4.s")
 
