@@ -18,7 +18,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_9.s")
+void suexpression_entrypoint_9(void *arg0) {
+    *(u8 *)((u8 *)arg0 + 0x12) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_10.s")
 
