@@ -18,7 +18,12 @@ OSThread *chbanjocurrent_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjocurrent/func_808001D0_chbanjocurrent.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjocurrent/chbanjocurrent_entrypoint_1.s")
+OSThread *chbanjocurrent_entrypoint_1(void)
+{
+    extern u8 D_80800818_chbanjocurrent[];
+
+    return (OSThread *) D_80800818_chbanjocurrent;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjocurrent/func_80800514_chbanjocurrent.s")
 
