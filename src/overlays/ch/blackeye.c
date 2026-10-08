@@ -29,4 +29,9 @@ void func_80800444_chblackeye(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_80800BC4_chblackeye.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/chblackeye_entrypoint_0.s")
+OSThread *chblackeye_entrypoint_0(void)
+{
+    extern u8 D_8080104C_chblackeye[];
+
+    return (OSThread *) D_8080104C_chblackeye;
+}
