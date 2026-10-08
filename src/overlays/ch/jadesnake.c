@@ -14,4 +14,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadesnake/func_808007DC_chjadesnake.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadesnake/chjadesnake_entrypoint_0.s")
+OSThread *chjadesnake_entrypoint_0(void)
+{
+    extern u8 D_808009F4_chjadesnake[];
+
+    return (OSThread *) D_808009F4_chjadesnake;
+}
