@@ -77,4 +77,9 @@ OSThread *chchuffy_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80802164_chchuffy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/chchuffy_entrypoint_2.s")
+OSThread *chchuffy_entrypoint_2(void)
+{
+    extern u8 D_808026F4_chchuffy[];
+
+    return (OSThread *) D_808026F4_chchuffy;
+}
