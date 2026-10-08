@@ -18,6 +18,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/podiumbankaz/func_80800464_chpodiumbankaz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/podiumbankaz/chpodiumbankaz_entrypoint_0.s")
+OSThread *chpodiumbankaz_entrypoint_0(void)
+{
+    extern u8 D_80800500_chpodiumbankaz[];
+
+    return (OSThread *) D_80800500_chpodiumbankaz;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/podiumbankaz/chpodiumbankaz_entrypoint_1.s")
