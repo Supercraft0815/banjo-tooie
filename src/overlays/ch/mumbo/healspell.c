@@ -12,4 +12,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/healspell/func_80800800_chmumbohealspell.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/healspell/chmumbohealspell_entrypoint_0.s")
+OSThread *chmumbohealspell_entrypoint_0(void)
+{
+    extern u8 D_80800900_chmumbohealspell[];
+
+    return (OSThread *) D_80800900_chmumbohealspell;
+}
