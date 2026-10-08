@@ -10,4 +10,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/foodwarn/func_808001F4_chfoodwarn.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/foodwarn/chfoodwarn_entrypoint_0.s")
+OSThread *chfoodwarn_entrypoint_0(void)
+{
+    extern u8 D_808002A8_chfoodwarn[];
+
+    return (OSThread *) D_808002A8_chfoodwarn;
+}
