@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/chfactoryrobot_entrypoint_0.s")
+OSThread *chfactoryrobot_entrypoint_0(void)
+{
+    extern u8 D_80802928_chfactoryrobot[];
+
+    return (OSThread *) D_80802928_chfactoryrobot;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/chfactoryrobot_entrypoint_1.s")
 
