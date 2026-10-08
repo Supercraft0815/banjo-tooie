@@ -1,6 +1,11 @@
 #include "ch/flysaucerdoor.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucerdoor/chflysaucerdoor_entrypoint_0.s")
+OSThread *chflysaucerdoor_entrypoint_0(void)
+{
+    extern u8 D_80800160_chflysaucerdoor[];
+
+    return (OSThread *) D_80800160_chflysaucerdoor;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucerdoor/chflysaucerdoor_entrypoint_1.s")
 
