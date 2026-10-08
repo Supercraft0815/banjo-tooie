@@ -9,4 +9,9 @@ void func_80800034_chbottlesdead()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/dead/func_80800054_chbottlesdead.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/dead/chbottlesdead_entrypoint_0.s")
+OSThread *chbottlesdead_entrypoint_0(void)
+{
+    extern u8 D_808000C0_chbottlesdead[];
+
+    return (OSThread *) D_808000C0_chbottlesdead;
+}
