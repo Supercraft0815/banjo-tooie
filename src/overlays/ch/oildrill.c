@@ -22,7 +22,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_80800F08_choildrill.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/choildrill_entrypoint_1.s")
+OSThread *choildrill_entrypoint_1(void)
+{
+    extern u8 D_808014A8_choildrill[];
+
+    return (OSThread *) D_808014A8_choildrill;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_808010C0_choildrill.s")
 
