@@ -4,7 +4,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/linkgrill/func_8080006C_chfactorylinkgrill.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/linkgrill/chfactorylinkgrill_entrypoint_0.s")
+OSThread *chfactorylinkgrill_entrypoint_0(void)
+{
+    extern u8 D_80800250_chfactorylinkgrill[];
+
+    return (OSThread *) D_80800250_chfactorylinkgrill;
+}
 
 void func_80800124_chfactorylinkgrill(s32 arg0)
 {
