@@ -4,7 +4,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_808001D4_chtoxicroombits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/chtoxicroombits_entrypoint_0.s")
+OSThread *chtoxicroombits_entrypoint_0(void)
+{
+    extern u8 D_80800FB0_chtoxicroombits[];
+
+    return (OSThread *) D_80800FB0_chtoxicroombits;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_80800410_chtoxicroombits.s")
 
