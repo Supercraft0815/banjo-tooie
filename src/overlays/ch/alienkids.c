@@ -14,7 +14,12 @@ OSThread *chalienkids_entrypoint_1(void)
     return (OSThread *) D_80802124_chalienkids;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/chalienkids_entrypoint_2.s")
+OSThread *chalienkids_entrypoint_2(void)
+{
+    extern u8 D_8080216C_chalienkids[];
+
+    return (OSThread *) D_8080216C_chalienkids;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/chalienkids_entrypoint_3.s")
 
