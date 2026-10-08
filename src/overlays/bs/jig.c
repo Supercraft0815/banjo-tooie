@@ -1,6 +1,8 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jig/bsjig_entrypoint_0.s")
+s32 bsjig_entrypoint_0(s32 arg0) {
+    return arg0 == 0x44;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jig/bsjig_entrypoint_1.s")
 
