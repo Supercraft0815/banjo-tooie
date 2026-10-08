@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/chhoopswoop_entrypoint_0.s")
+OSThread *chhoopswoop_entrypoint_0(void)
+{
+    extern u8 D_80801EC0_chhoopswoop[];
+
+    return (OSThread *) D_80801EC0_chhoopswoop;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/chhoopswoop_entrypoint_1.s")
 
