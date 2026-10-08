@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/splode/cheggsplode_entrypoint_0.s")
+OSThread *cheggsplode_entrypoint_0(void)
+{
+    extern u8 D_80800994_cheggsplode[];
+
+    return (OSThread *) D_80800994_cheggsplode;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/splode/func_8080000C_cheggsplode.s")
 
