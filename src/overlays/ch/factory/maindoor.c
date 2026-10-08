@@ -31,4 +31,9 @@ void func_8080041C_chfactorymaindoor(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/maindoor/func_8080043C_chfactorymaindoor.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/maindoor/chfactorymaindoor_entrypoint_2.s")
+OSThread *chfactorymaindoor_entrypoint_2(void)
+{
+    extern u8 D_80800564_chfactorymaindoor[];
+
+    return (OSThread *) D_80800564_chfactorymaindoor;
+}
