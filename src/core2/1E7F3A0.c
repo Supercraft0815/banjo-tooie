@@ -12,7 +12,10 @@ s8 func_800A5B7C(void) {
     return (*(s8 *)((s8 *)(D_80127100) + (3)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F3A0/func_800A5B8C.s")
+f32 func_800A5B8C(void) {
+    extern void *D_80127100;
+    return (*(f32 *)((s8 *)(D_80127100) + (4)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F3A0/func_800A5B9C.s")
 
