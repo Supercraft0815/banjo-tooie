@@ -14,7 +14,12 @@ OSThread *chmineprospector_entrypoint_1(void)
     return (OSThread *) D_80801074_chmineprospector;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/chmineprospector_entrypoint_2.s")
+OSThread *chmineprospector_entrypoint_2(void)
+{
+    extern u8 D_808010BC_chmineprospector[];
+
+    return (OSThread *) D_808010BC_chmineprospector;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800024_chmineprospector.s")
 
