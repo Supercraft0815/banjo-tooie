@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/camerawibble/chcamerawibble_entrypoint_0.s")
+OSThread *chcamerawibble_entrypoint_0(void)
+{
+    extern u8 D_808000E0_chcamerawibble[];
+
+    return (OSThread *) D_808000E0_chcamerawibble;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/camerawibble/func_8080000C_chcamerawibble.s")
 
