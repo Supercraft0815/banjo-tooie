@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/chtiptup_entrypoint_0.s")
+OSThread *chtiptup_entrypoint_0(void)
+{
+    extern u8 D_80801448_chtiptup[];
+
+    return (OSThread *) D_80801448_chtiptup;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/chtiptup_entrypoint_1.s")
 
