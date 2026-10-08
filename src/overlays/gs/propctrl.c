@@ -8,7 +8,9 @@ u32 gspropctrl_entrypoint_0(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propctrl/gspropctrl_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propctrl/gspropctrl_entrypoint_3.s")
+s32 gspropctrl_entrypoint_3(s32 *arg0) {
+    return arg0[3];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propctrl/gspropctrl_entrypoint_4.s")
 
