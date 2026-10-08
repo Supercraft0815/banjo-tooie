@@ -2,7 +2,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/rain/func_80800000_fxrain.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/rain/func_808001E8_fxrain.s")
+void func_808001E8_fxrain(s32 *arg0, s32 arg1) {
+    arg0[10] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/rain/fxrain_entrypoint_0.s")
 
