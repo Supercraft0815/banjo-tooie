@@ -36,4 +36,6 @@ void func_800DFC60(void* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB93C0/func_800E0018.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB93C0/func_800E0040.s")
+void func_800E0040(u32 *arg0) {
+    arg0[0] = (u32) arg0 + 8;
+}
