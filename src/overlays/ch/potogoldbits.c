@@ -4,7 +4,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldbits/func_80800030_chpotogoldbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldbits/chpotogoldbits_entrypoint_0.s")
+OSThread *chpotogoldbits_entrypoint_0(void)
+{
+    extern u8 D_80800920_chpotogoldbits[];
+
+    return (OSThread *) D_80800920_chpotogoldbits;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldbits/func_8080007C_chpotogoldbits.s")
 
