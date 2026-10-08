@@ -65,7 +65,12 @@ void func_808000F4_chstoneballcontrol()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80801884_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/chstoneballcontrol_entrypoint_0.s")
+OSThread *chstoneballcontrol_entrypoint_0(void)
+{
+    extern u8 D_808050D4_chstoneballcontrol[];
+
+    return (OSThread *) D_808050D4_chstoneballcontrol;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80801944_chstoneballcontrol.s")
 
