@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/hit/sucoasterhit_entrypoint_0.s")
+OSThread *sucoasterhit_entrypoint_0(void)
+{
+    extern u8 D_80800CB0_sucoasterhit[];
+
+    return (OSThread *) D_80800CB0_sucoasterhit;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/hit/func_8080000C_sucoasterhit.s")
 
