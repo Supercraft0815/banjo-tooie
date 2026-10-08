@@ -17,7 +17,12 @@ OSThread *chfactorymaindoor_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/maindoor/func_808003A8_chfactorymaindoor.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/maindoor/chfactorymaindoor_entrypoint_1.s")
+OSThread *chfactorymaindoor_entrypoint_1(void)
+{
+    extern u8 D_8080051C_chfactorymaindoor[];
+
+    return (OSThread *) D_8080051C_chfactorymaindoor;
+}
 
 void func_8080041C_chfactorymaindoor(s32 arg0)
 {
