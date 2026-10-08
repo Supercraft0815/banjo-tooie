@@ -19,4 +19,9 @@ OSThread *chwaspstatue_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspstatue/func_80800544_chwaspstatue.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspstatue/chwaspstatue_entrypoint_2.s")
+OSThread *chwaspstatue_entrypoint_2(void)
+{
+    extern u8 D_80800788_chwaspstatue[];
+
+    return (OSThread *) D_80800788_chwaspstatue;
+}
