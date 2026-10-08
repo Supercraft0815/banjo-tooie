@@ -35,7 +35,12 @@ void func_800EB874(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBB30.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBB50.s")
+OSThread *func_800EBB50(void)
+{
+    extern u8 D_80123540[];
+
+    return (OSThread *) D_80123540;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBB5C.s")
 
