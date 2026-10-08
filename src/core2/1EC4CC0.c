@@ -70,7 +70,9 @@ void func_800EBC04(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC340.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC358.s")
+void func_800EC358(s32 *arg0, s32 arg1) {
+    arg0[3] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC360.s")
 
