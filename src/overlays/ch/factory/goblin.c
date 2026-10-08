@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/goblin/chfactorygoblin_entrypoint_0.s")
+OSThread *chfactorygoblin_entrypoint_0(void)
+{
+    extern u8 D_80800298_chfactorygoblin[];
+
+    return (OSThread *) D_80800298_chfactorygoblin;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/goblin/func_8080000C_chfactorygoblin.s")
 
