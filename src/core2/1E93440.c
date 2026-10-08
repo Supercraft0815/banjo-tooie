@@ -22,7 +22,10 @@ void func_800BA4B0(s8 *arg0, s32 arg1) {
     arg0[131] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA4B8.s")
+void func_800BA4B8(s16 *arg0, s32 arg1, s32 arg2) {
+    arg0[85] = arg1;
+    ((s32 *) arg0)[47] = arg2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA4C4.s")
 
