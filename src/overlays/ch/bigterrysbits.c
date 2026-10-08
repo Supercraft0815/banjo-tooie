@@ -7,7 +7,12 @@ OSThread *chbigterrysbits_entrypoint_0(void)
     return (OSThread *) D_80800380_chbigterrysbits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bigterrysbits/chbigterrysbits_entrypoint_1.s")
+OSThread *chbigterrysbits_entrypoint_1(void)
+{
+    extern u8 D_808003C8_chbigterrysbits[];
+
+    return (OSThread *) D_808003C8_chbigterrysbits;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bigterrysbits/chbigterrysbits_entrypoint_2.s")
 
