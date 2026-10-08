@@ -22,7 +22,12 @@ s32 func_800EB854(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB860.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB874.s")
+void func_800EB874(void)
+{
+    extern s32 D_80132EC0;
+
+    D_80132EC0 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB880.s")
 
