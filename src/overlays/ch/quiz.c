@@ -118,7 +118,12 @@ void func_80801758_chquiz(s32 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801CC4_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/chquiz_entrypoint_0.s")
+OSThread *chquiz_entrypoint_0(void)
+{
+    extern u8 D_808072CC_chquiz[];
+
+    return (OSThread *) D_808072CC_chquiz;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80802004_chquiz.s")
 
