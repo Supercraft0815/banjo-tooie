@@ -10,4 +10,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/linkpipefan/func_80800638_chlinkpipefan.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/linkpipefan/chlinkpipefan_entrypoint_1.s")
+OSThread *chlinkpipefan_entrypoint_1(void)
+{
+    extern u8 D_808009C8_chlinkpipefan[];
+
+    return (OSThread *) D_808009C8_chlinkpipefan;
+}
