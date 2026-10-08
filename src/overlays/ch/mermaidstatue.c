@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mermaidstatue/chmermaidstatue_entrypoint_0.s")
+OSThread *chmermaidstatue_entrypoint_0(void)
+{
+    extern u8 D_80800354_chmermaidstatue[];
+
+    return (OSThread *) D_80800354_chmermaidstatue;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mermaidstatue/chmermaidstatue_entrypoint_1.s")
 
