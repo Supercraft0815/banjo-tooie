@@ -869,7 +869,10 @@ void func_800F90F8(s32 arg0) {
 	D_801354F9 = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9104.s")
+void func_800F9104(s32 arg0) {
+    extern u8 D_801354FC;
+    D_801354FC = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9110.s")
 
