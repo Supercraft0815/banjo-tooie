@@ -23,7 +23,10 @@ void func_800B537C(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B5450.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B5534.s")
+void func_800B5534(s8 *arg0)
+{
+    arg0[9] = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B553C.s")
 
