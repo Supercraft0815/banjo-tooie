@@ -48,7 +48,9 @@ void func_8009D3D8(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009DCCC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009DDD0.s")
+u32 func_8009DDD0(void *arg0) {
+    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 260) + 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009DDDC.s")
 
