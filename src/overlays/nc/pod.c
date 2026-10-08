@@ -40,7 +40,9 @@ f32 ncpod_entrypoint_10(f32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_12.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_13.s")
+u32 ncpod_entrypoint_13(u8 *arg0) {
+    return arg0[65];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_14.s")
 
