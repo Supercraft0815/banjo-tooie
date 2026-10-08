@@ -58,4 +58,9 @@ OSThread *chfishshootgame_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80801768_chfishshootgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/chfishshootgame_entrypoint_2.s")
+OSThread *chfishshootgame_entrypoint_2(void)
+{
+    extern u8 D_80801A7C_chfishshootgame[];
+
+    return (OSThread *) D_80801A7C_chfishshootgame;
+}
