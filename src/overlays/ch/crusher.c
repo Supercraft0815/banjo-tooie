@@ -37,7 +37,12 @@ OSThread *chcrusher_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_80800838_chcrusher.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/chcrusher_entrypoint_2.s")
+OSThread *chcrusher_entrypoint_2(void)
+{
+    extern u8 D_80800CC8_chcrusher[];
+
+    return (OSThread *) D_80800CC8_chcrusher;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_808008FC_chcrusher.s")
 
