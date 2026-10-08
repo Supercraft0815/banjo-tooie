@@ -1,6 +1,11 @@
 #include "ch/alienkids.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/chalienkids_entrypoint_0.s")
+OSThread *chalienkids_entrypoint_0(void)
+{
+    extern u8 D_808020DC_chalienkids[];
+
+    return (OSThread *) D_808020DC_chalienkids;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/chalienkids_entrypoint_1.s")
 
