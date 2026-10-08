@@ -14,7 +14,12 @@ OSThread *chdinoswitches_entrypoint_1(void)
     return (OSThread *) D_80800C78_chdinoswitches;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/chdinoswitches_entrypoint_2.s")
+OSThread *chdinoswitches_entrypoint_2(void)
+{
+    extern u8 D_80800CC0_chdinoswitches[];
+
+    return (OSThread *) D_80800CC0_chdinoswitches;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/chdinoswitches_entrypoint_3.s")
 
