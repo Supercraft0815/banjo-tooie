@@ -73,7 +73,12 @@ OSThread *chfiregen_entrypoint_12(void)
     return (OSThread *) D_8080196C_chfiregen;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/chfiregen_entrypoint_13.s")
+OSThread *chfiregen_entrypoint_13(void)
+{
+    extern u8 D_808019B4_chfiregen[];
+
+    return (OSThread *) D_808019B4_chfiregen;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/chfiregen_entrypoint_14.s")
 
