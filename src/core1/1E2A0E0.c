@@ -51,7 +51,10 @@ void *func_80012F60(void) {
     return D_8007695C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80012F6C.s")
+void *func_80012F6C(void) {
+    extern u8 D_80076940[];
+    return D_80076940;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/rom_dma_read.s")
 
