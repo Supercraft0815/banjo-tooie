@@ -8,4 +8,9 @@ void func_80800078_chsounder(s32 arg0)
 void func_80800080_chsounder(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sounder/chsounder_entrypoint_0.s")
+OSThread *chsounder_entrypoint_0(void)
+{
+    extern u8 D_808000BC_chsounder[];
+
+    return (OSThread *) D_808000BC_chsounder;
+}
