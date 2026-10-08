@@ -6,4 +6,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fish/func_8080018C_chboggyfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fish/chboggyfish_entrypoint_0.s")
+OSThread *chboggyfish_entrypoint_0(void)
+{
+    extern u8 D_80800220_chboggyfish[];
+
+    return (OSThread *) D_80800220_chboggyfish;
+}
