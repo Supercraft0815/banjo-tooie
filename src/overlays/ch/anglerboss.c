@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/changlerboss_entrypoint_0.s")
+OSThread *changlerboss_entrypoint_0(void)
+{
+    extern u8 D_80802EB4_changlerboss[];
+
+    return (OSThread *) D_80802EB4_changlerboss;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/changlerboss_entrypoint_1.s")
 
