@@ -21,7 +21,12 @@ OSThread *chfairgroundworker_entrypoint_2(void)
     return (OSThread *) D_80800398_chfairgroundworker;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/groundworker/chfairgroundworker_entrypoint_3.s")
+OSThread *chfairgroundworker_entrypoint_3(void)
+{
+    extern u8 D_808003E0_chfairgroundworker[];
+
+    return (OSThread *) D_808003E0_chfairgroundworker;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/groundworker/func_80800030_chfairgroundworker.s")
 
