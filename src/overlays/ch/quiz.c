@@ -54,7 +54,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800DA8_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800E38_chquiz.s")
+s8 func_80800E38_chquiz(s32 arg0, s32 arg1) {
+    return (*(s8 *)((s8 *)((arg0 + arg1)) + (0x60)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800E44_chquiz.s")
 
