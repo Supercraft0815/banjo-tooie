@@ -92,4 +92,6 @@ s32 func_800A5090(void *arg0) {
     return *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 56) + 60);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A509C.s")
+void func_800A509C(void *arg0) {
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (0x3B))) = 1;
+}
