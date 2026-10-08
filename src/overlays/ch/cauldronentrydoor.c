@@ -20,6 +20,11 @@ void chcauldronentrydoor_entrypoint_0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cauldronentrydoor/func_80800398_chcauldronentrydoor.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cauldronentrydoor/chcauldronentrydoor_entrypoint_1.s")
+OSThread *chcauldronentrydoor_entrypoint_1(void)
+{
+    extern u8 D_80800550_chcauldronentrydoor[];
+
+    return (OSThread *) D_80800550_chcauldronentrydoor;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cauldronentrydoor/chcauldronentrydoor_entrypoint_2.s")
