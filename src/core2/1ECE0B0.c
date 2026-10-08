@@ -863,7 +863,10 @@ void func_800F8EBC(s32 a0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9098.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F90EC.s")
+void func_800F90EC(f32 arg0) {
+    extern f32 D_8013550C;
+    *(f32 *)((u8 *)&D_8013550C + 0) = arg0;
+}
 
 void func_800F90F8(s32 arg0) {
 	D_801354F9 = arg0;
