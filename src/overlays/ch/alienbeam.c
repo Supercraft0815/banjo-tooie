@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienbeam/chalienbeam_entrypoint_0.s")
+OSThread *chalienbeam_entrypoint_0(void)
+{
+    extern u8 D_808001A0_chalienbeam[];
+
+    return (OSThread *) D_808001A0_chalienbeam;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienbeam/func_8080000C_chalienbeam.s")
 
