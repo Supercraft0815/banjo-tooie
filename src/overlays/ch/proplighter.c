@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/proplighter/chproplighter_entrypoint_0.s")
+OSThread *chproplighter_entrypoint_0(void)
+{
+    extern u8 D_808001A0_chproplighter[];
+
+    return (OSThread *) D_808001A0_chproplighter;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/proplighter/func_8080000C_chproplighter.s")
 
