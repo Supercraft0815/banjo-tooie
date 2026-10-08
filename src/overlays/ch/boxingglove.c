@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/chboxingglove_entrypoint_0.s")
+OSThread *chboxingglove_entrypoint_0(void)
+{
+    extern u8 D_80800708_chboxingglove[];
+
+    return (OSThread *) D_80800708_chboxingglove;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/chboxingglove_entrypoint_1.s")
 
