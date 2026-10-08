@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/loggo/chloggo_entrypoint_0.s")
+OSThread *chloggo_entrypoint_0(void)
+{
+    extern u8 D_80800648_chloggo[];
+
+    return (OSThread *) D_80800648_chloggo;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/loggo/chloggo_entrypoint_1.s")
 
