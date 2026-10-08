@@ -1,6 +1,11 @@
 #include "ch/fireicestorm.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/chfireicestorm_entrypoint_0.s")
+OSThread *chfireicestorm_entrypoint_0(void)
+{
+    extern u8 D_80800EA8_chfireicestorm[];
+
+    return (OSThread *) D_80800EA8_chfireicestorm;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/chfireicestorm_entrypoint_1.s")
 
