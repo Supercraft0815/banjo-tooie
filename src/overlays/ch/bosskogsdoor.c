@@ -19,4 +19,9 @@ OSThread *chbosskogsdoor_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bosskogsdoor/func_80800714_chbosskogsdoor.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bosskogsdoor/chbosskogsdoor_entrypoint_1.s")
+OSThread *chbosskogsdoor_entrypoint_1(void)
+{
+    extern u8 D_808009EC_chbosskogsdoor[];
+
+    return (OSThread *) D_808009EC_chbosskogsdoor;
+}
