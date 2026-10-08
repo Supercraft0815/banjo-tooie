@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lifeforcespell/chlifeforcespell_entrypoint_0.s")
+OSThread *chlifeforcespell_entrypoint_0(void)
+{
+    extern u8 D_80800460_chlifeforcespell[];
+
+    return (OSThread *) D_80800460_chlifeforcespell;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lifeforcespell/func_8080000C_chlifeforcespell.s")
 
