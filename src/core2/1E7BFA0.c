@@ -78,7 +78,9 @@ s32 func_800A32F8(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3328.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3354.s")
+u32 func_800A3354(void *arg0) {
+    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 84);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3360.s")
 
