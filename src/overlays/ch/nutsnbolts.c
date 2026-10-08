@@ -14,7 +14,12 @@ OSThread *chnutsnbolts_entrypoint_1(void)
     return (OSThread *) D_80800E70_chnutsnbolts;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nutsnbolts/chnutsnbolts_entrypoint_2.s")
+OSThread *chnutsnbolts_entrypoint_2(void)
+{
+    extern u8 D_80800EB8_chnutsnbolts[];
+
+    return (OSThread *) D_80800EB8_chnutsnbolts;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nutsnbolts/func_80800024_chnutsnbolts.s")
 
