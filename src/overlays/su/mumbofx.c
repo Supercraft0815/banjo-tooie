@@ -44,7 +44,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_18.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_19.s")
+void sumumbofx_entrypoint_19(s8 *arg0, s32 arg1) {
+    arg0[98] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_20.s")
 
