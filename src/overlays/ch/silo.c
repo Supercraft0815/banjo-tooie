@@ -34,4 +34,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_808011C8_chsilo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/chsilo_entrypoint_0.s")
+OSThread *chsilo_entrypoint_0(void)
+{
+    extern u8 D_80801384_chsilo[];
+
+    return (OSThread *) D_80801384_chsilo;
+}
