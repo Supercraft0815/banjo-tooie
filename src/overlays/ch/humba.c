@@ -26,7 +26,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_8080071C_chhumba.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_808007EC_chhumba.s")
+s32 func_808007EC_chhumba(s32 arg0) {
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_808007F8_chhumba.s")
 
