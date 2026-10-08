@@ -17,4 +17,9 @@ void func_80800094_chgoldstatue(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/statue/func_80800528_chgoldstatue.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/statue/chgoldstatue_entrypoint_0.s")
+OSThread *chgoldstatue_entrypoint_0(void)
+{
+    extern u8 D_80800990_chgoldstatue[];
+
+    return (OSThread *) D_80800990_chgoldstatue;
+}
