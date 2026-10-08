@@ -15,4 +15,9 @@ OSThread *chlightdemon_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/light/demon/func_808000D8_chlightdemon.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/light/demon/chlightdemon_entrypoint_1.s")
+OSThread *chlightdemon_entrypoint_1(void)
+{
+    extern u8 D_8080019C_chlightdemon[];
+
+    return (OSThread *) D_8080019C_chlightdemon;
+}
