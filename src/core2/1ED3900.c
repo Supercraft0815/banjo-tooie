@@ -26,7 +26,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA934.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA9A8.s")
+void func_800FA9A8(s32 arg0) {
+    extern u8 D_801357B0;
+    D_801357B0 = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA9B4.s")
 
