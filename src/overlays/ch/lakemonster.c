@@ -60,7 +60,12 @@ void func_808018AC_chlakemonster(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80801E60_chlakemonster.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/chlakemonster_entrypoint_4.s")
+OSThread *chlakemonster_entrypoint_4(void)
+{
+    extern u8 D_808022E0_chlakemonster[];
+
+    return (OSThread *) D_808022E0_chlakemonster;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80801EA8_chlakemonster.s")
 
