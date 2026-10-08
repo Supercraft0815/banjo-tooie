@@ -37,7 +37,12 @@ OSThread *chstatueboss_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801640_chstatueboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/chstatueboss_entrypoint_1.s")
+OSThread *chstatueboss_entrypoint_1(void)
+{
+    extern u8 D_808027E8_chstatueboss[];
+
+    return (OSThread *) D_808027E8_chstatueboss;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801694_chstatueboss.s")
 
