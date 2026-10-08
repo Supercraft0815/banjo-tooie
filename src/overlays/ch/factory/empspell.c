@@ -34,4 +34,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801FE0_chfactoryempspell.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/chfactoryempspell_entrypoint_1.s")
+OSThread *chfactoryempspell_entrypoint_1(void)
+{
+    extern u8 D_80802414_chfactoryempspell[];
+
+    return (OSThread *) D_80802414_chfactoryempspell;
+}
