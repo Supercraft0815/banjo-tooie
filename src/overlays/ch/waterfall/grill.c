@@ -8,4 +8,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waterfall/grill/chwaterfallgrill_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waterfall/grill/chwaterfallgrill_entrypoint_1.s")
+OSThread *chwaterfallgrill_entrypoint_1(void)
+{
+    extern u8 D_80800330_chwaterfallgrill[];
+
+    return (OSThread *) D_80800330_chwaterfallgrill;
+}
