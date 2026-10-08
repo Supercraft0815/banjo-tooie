@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/chexploder_entrypoint_0.s")
+OSThread *chexploder_entrypoint_0(void)
+{
+    extern u8 D_80801AE0_chexploder[];
+
+    return (OSThread *) D_80801AE0_chexploder;
+}
 
 void func_8080000C_chexploder(s32 arg0) 
 {
