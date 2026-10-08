@@ -2,7 +2,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_80800000_chfiregen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/chfiregen_entrypoint_0.s")
+OSThread *chfiregen_entrypoint_0(void)
+{
+    extern u8 D_808015B4_chfiregen[];
+
+    return (OSThread *) D_808015B4_chfiregen;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/chfiregen_entrypoint_1.s")
 
