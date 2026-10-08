@@ -14,7 +14,12 @@ OSThread *chhoopswoop_entrypoint_1(void)
     return (OSThread *) D_80801F08_chhoopswoop;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/chhoopswoop_entrypoint_2.s")
+OSThread *chhoopswoop_entrypoint_2(void)
+{
+    extern u8 D_80801F50_chhoopswoop[];
+
+    return (OSThread *) D_80801F50_chhoopswoop;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80800024_chhoopswoop.s")
 
