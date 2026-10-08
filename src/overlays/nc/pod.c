@@ -18,7 +18,9 @@ void ncpod_entrypoint_3(s16 *arg0, s32 arg1) {
     arg0[30] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_4.s")
+s32 ncpod_entrypoint_4(s32 *arg0) {
+    return arg0[14];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/func_808002E8_ncpod.s")
 
