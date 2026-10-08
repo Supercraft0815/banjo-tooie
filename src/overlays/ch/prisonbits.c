@@ -14,7 +14,12 @@ OSThread *chprisonbits_entrypoint_1(void)
     return (OSThread *) D_80800FC0_chprisonbits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/chprisonbits_entrypoint_2.s")
+OSThread *chprisonbits_entrypoint_2(void)
+{
+    extern u8 D_80801008_chprisonbits[];
+
+    return (OSThread *) D_80801008_chprisonbits;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/chprisonbits_entrypoint_3.s")
 
