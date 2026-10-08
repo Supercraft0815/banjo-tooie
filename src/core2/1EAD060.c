@@ -60,7 +60,10 @@ u32 func_800D3B60(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3C70.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3CF8.s")
+void func_800D3CF8(s32 arg0) {
+    extern s8 D_8012B3F4;
+    *(s8 *)((u8 *)&D_8012B3F4 + 0) = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3D04.s")
 
