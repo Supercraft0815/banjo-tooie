@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/floorsmoke/chhotfloorsmoke_entrypoint_0.s")
+OSThread *chhotfloorsmoke_entrypoint_0(void)
+{
+    extern u8 D_808002D0_chhotfloorsmoke[];
+
+    return (OSThread *) D_808002D0_chhotfloorsmoke;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/floorsmoke/func_8080000C_chhotfloorsmoke.s")
 
