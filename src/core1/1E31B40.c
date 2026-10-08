@@ -14,7 +14,9 @@ s32 func_8001A0A8()
     return D_8007BCC4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A0B4.s")
+u32 func_8001A0B4(void) {
+    return 0x00021D80U;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A0C0.s")
 
