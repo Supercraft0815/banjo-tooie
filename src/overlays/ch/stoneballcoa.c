@@ -10,4 +10,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcoa/func_8080035C_chstoneballcoach.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcoa/chstoneballcoach_entrypoint_0.s")
+OSThread *chstoneballcoach_entrypoint_0(void)
+{
+    extern u8 D_808003D4_chstoneballcoach[];
+
+    return (OSThread *) D_808003D4_chstoneballcoach;
+}
