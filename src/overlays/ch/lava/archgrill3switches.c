@@ -11,7 +11,12 @@ void func_80800000_chlavaarchgrill3switches()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/archgrill3switches/func_808000F0_chlavaarchgrill3switches.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/archgrill3switches/chlavaarchgrill3switches_entrypoint_0.s")
+OSThread *chlavaarchgrill3switches_entrypoint_0(void)
+{
+    extern u8 D_808001F0_chlavaarchgrill3switches[];
+
+    return (OSThread *) D_808001F0_chlavaarchgrill3switches;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/archgrill3switches/func_80800124_chlavaarchgrill3switches.s")
 
