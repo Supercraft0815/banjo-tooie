@@ -2,7 +2,9 @@
 
 extern u32 D_80800070_chjiggybeam;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/beam/chjiggybeam_entrypoint_0.s")
+void * chjiggybeam_entrypoint_0(void) {
+    return &D_80800070_chjiggybeam;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/beam/func_8080000C_chjiggybeam.s")
 
