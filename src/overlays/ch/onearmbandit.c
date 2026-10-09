@@ -56,6 +56,10 @@ void func_80800018_chonearmbandit(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_808010AC_chonearmbandit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80801114_chonearmbandit.s")
+void func_80801114_chonearmbandit(u8 *arg0) {
+    s32 func_800BBCB8(u8 *, s32, s32, s32, s32 *);
+    extern s32 D_808013E8_chonearmbandit;
+    func_800BBCB8(arg0 + 4, 0, (*(s32 *)((s8 *)(arg0) + (0x38))), 1, &D_808013E8_chonearmbandit);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80801154_chonearmbandit.s")
