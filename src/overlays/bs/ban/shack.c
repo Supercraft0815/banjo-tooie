@@ -81,7 +81,10 @@ void func_80800B20_bsbanshack(PlayerState* self)
 {
     _bsdrone_entrypoint_1(self);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/bsbanshack_entrypoint_4.s")
+s32 bsbanshack_entrypoint_4(s32 arg0) {
+    extern s32 D_80800CF0_bsbanshack[];
+    return ((s32 *)&D_80800CF0_bsbanshack)[arg0];
+}
 
 void func_80800B54_bsbanshack(s32 arg0)
 {
