@@ -42,7 +42,21 @@ s32 bsbeefly_entrypoint_1(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_80800B54_bsbeefly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_80800BA4_bsbeefly.s")
+/* extern */
+
+void func_80800BA4_bsbeefly(s32 arg0) {
+    s32 _bsbee_entrypoint_2();
+    s32 _bsrest_entrypoint_20(s32);
+    s32 bs_setState(s32, s32);
+    s32 sp1C;
+
+    sp1C = 0;
+    _bsbee_entrypoint_2();
+    if (_bsrest_entrypoint_20(arg0) != 0) {
+        sp1C = 0x8C;
+    }
+    bs_setState(arg0, sp1C);
+}
 
 void func_80800BE8_bsbeefly(s32 arg0)
 {
