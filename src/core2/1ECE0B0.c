@@ -947,7 +947,15 @@ void func_800F91EC(void) {
     D_801354F0 = vector_defrag(D_801354F0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9214.s")
+/* extern */
+
+s32 func_800F9214(void) {
+    s32 func_800F6720();
+    if (func_800F6720() != 0) {
+        return 2;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9240.s")
 
