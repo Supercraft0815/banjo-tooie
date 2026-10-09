@@ -45,7 +45,10 @@ void func_808007B0_bsvan(s32 arg0)
     _bsdrone_entrypoint_1();
     bsvan_entrypoint_3(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/bsvan_entrypoint_5.s")
+s32 bsvan_entrypoint_5(s32 arg0) {
+    extern s32 D_80801C9C_bsvan[];
+    return ((s32 *)&D_80801C9C_bsvan)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_808007EC_bsvan.s")
 
