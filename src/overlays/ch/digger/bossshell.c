@@ -34,4 +34,15 @@ void func_8080044C_chdiggerbossshell(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossshell/func_808004C8_chdiggerbossshell.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossshell/func_80800504_chdiggerbossshell.s")
+void func_80800504_chdiggerbossshell(s32 arg0) {
+    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+    s32 func_800FFAB0(s32);
+    s32 func_8010A570(s32);
+    extern s32 D_8080060C_chdiggerbossshell;
+    s32 temp_a0;
+
+    temp_a0 = arg0 + 4;
+    func_800BBCB8(temp_a0, temp_a0, 0x3F800000, 3, &D_8080060C_chdiggerbossshell);
+    func_8010A570(arg0);
+    func_800FFAB0(arg0);
+}
