@@ -121,7 +121,11 @@ void func_800F5184(void) {
     func_800F47C0(&func_80093528);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F51A8.s")
+void func_800F51A8(void) {
+    s32 func_800F47C0(s32 *);
+    extern s32 func_80093584;
+    func_800F47C0(&func_80093584);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F51CC.s")
 
