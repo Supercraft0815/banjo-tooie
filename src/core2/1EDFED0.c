@@ -6,7 +6,12 @@ void func_801065E0(void) {
     D_80136EE0 = vector_new(0x9C, 30);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDFED0/func_80106608.s")
+void func_80106608(void) {
+    s32 vector_free(s32);
+    extern s32 D_80136EE0;
+    vector_free(D_80136EE0);
+    D_80136EE0 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDFED0/func_80106630.s")
 
