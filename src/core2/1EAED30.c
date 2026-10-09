@@ -16,7 +16,13 @@ void func_800D55A0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D55DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5688.s")
+void func_800D5688(void) {
+    s32 vector_defrag(s32);
+    extern s32 D_8012B7F0;
+    extern s32 D_8012B7F4;
+    (*(s32 *)((s8 *)(&D_8012B7F0) + (0))) = vector_defrag((*(s32 *)((s8 *)(&D_8012B7F0) + (0))));
+    D_8012B7F4 = vector_defrag((*(s32 *)((s8 *)(&D_8012B7F0) + (4))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D56C4.s")
 
