@@ -6,7 +6,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D154C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D15CC.s")
+void func_800D15CC(void) {
+    s32 defrag(s32);
+    extern s32 D_8012B250;
+    if (D_8012B250 != 0) {
+        D_8012B250 = defrag(D_8012B250);
+    }
+}
 
 void func_800D1604(void) {
     s32 heap_free(s32);
