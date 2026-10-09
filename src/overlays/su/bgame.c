@@ -24,7 +24,15 @@ u8 susubgame_entrypoint_2(s32 arg0, u8 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/susubgame_entrypoint_10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/susubgame_entrypoint_11.s")
+/* extern */
+
+void susubgame_entrypoint_11(s32 arg0) {
+    s32 func_800CE88C(s32, s32);
+    s32 func_800CEAA8();
+    if (func_800CEAA8() != 0) {
+        func_800CE88C(arg0, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/func_8080078C_susubgame.s")
 
