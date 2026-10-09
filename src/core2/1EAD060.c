@@ -88,4 +88,9 @@ u32 func_800D3D1C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3D58.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3DA4.s")
+/* extern */
+
+void func_800D3DA4(void) {
+    s32 func_800F54F0();
+    func_800F54F0();
+}
