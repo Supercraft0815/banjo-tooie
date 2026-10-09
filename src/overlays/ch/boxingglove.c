@@ -32,7 +32,19 @@ void func_808002AC_chboxingglove(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/func_808002E0_chboxingglove.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/func_808004F8_chboxingglove.s")
+/* extern */
+
+s32 func_808004F8_chboxingglove(void *arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800FFA88(s32);
+    s32 func_800FFAB0(void *);
+    if (func_800DA298(0) != 0) {
+        func_800FFAB0(arg0);
+        func_800FFA88((*(s32 *)((s8 *)(arg0) + (0x3C))));
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/func_80800544_chboxingglove.s")
 
