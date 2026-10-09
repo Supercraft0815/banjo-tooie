@@ -123,7 +123,22 @@ void func_808013A4_bswasher(s32 arg0)
     func_808001A8_bswasher();
     _bsrest_entrypoint_16(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_808013CC_bswasher.s")
+/* extern */
+
+void func_808013CC_bswasher(s32 arg0) {
+    s32 _bsrest_entrypoint_13(s32);
+    s32 _bsrest_entrypoint_20();
+    s32 bs_setState(s32, s32);
+    s32 func_80800300_bswasher(s32);
+    s32 sp1C;
+
+    sp1C = 0;
+    if (_bsrest_entrypoint_20() != 0) {
+        sp1C = _bsrest_entrypoint_13(arg0);
+    }
+    func_80800300_bswasher(arg0);
+    bs_setState(arg0, sp1C);
+}
 
 s32 bswasher_entrypoint_8(s32 arg0) {
     extern s32 D_80801E90_bswasher[];
