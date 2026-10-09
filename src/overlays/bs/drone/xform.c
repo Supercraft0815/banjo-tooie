@@ -6,7 +6,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/func_808000E4_bsdronexform.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/func_808002CC_bsdronexform.s")
+/* extern */
+
+void func_808002CC_bsdronexform(void *arg0) {
+    s32 func_800B5450(s32);
+    func_800B5450((*(s32 *)((s8 *)((*(s32 **)((s8 *)(arg0) + (0x18C)))) + (4))));
+    func_800B5450(*(*(s32 **)((s8 *)(arg0) + (0x18C))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/func_80800304_bsdronexform.s")
 
