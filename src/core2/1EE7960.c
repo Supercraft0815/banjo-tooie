@@ -36,7 +36,26 @@ s32 func_8010E3B8()
     return D_80137074;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE7960/func_8010E3C4.s")
+void func_8010E3C4(f32 *arg0, s32 *arg1, f32 *arg2) {
+    s32 i;
+    f32 length;
+    f32 vec[3];
+
+    for (i = 0; i < 3; i++) {
+        vec[i] = (arg2[0] * arg0[i * 4] + arg2[1] * arg0[i * 4 + 1]) + arg2[2] * arg0[i * 4 + 2];
+    }
+    length = sqrtf((vec[0] * vec[0] + vec[1] * vec[1]) + vec[2] * vec[2]);
+    if (length > 0.0f) {
+        length = 256.0f / length;
+        arg1[0] = (s32)(vec[0] * length);
+        arg1[1] = (s32)(vec[1] * length);
+        arg1[2] = (s32)(vec[2] * length);
+    } else {
+        arg1[2] = 0;
+        arg1[1] = 0;
+        arg1[0] = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE7960/func_8010E4C4.s")
 
