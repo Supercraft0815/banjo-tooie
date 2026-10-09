@@ -104,7 +104,10 @@ void * func_800DF330(void) {
     return &D_8012C840;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DF33C.s")
+s32 func_800DF33C(s32 arg0) {
+    extern s32 D_8012C850[];
+    return ((s32 *)&D_8012C850)[arg0];
+}
 
 s32 func_800DF350()
 {
