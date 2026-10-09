@@ -75,7 +75,15 @@ s32 suquiz_entrypoint_17()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_19.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_20.s")
+void suquiz_entrypoint_20(s32 arg0) {
+    if (arg0 != 0) {
+        if (arg0 == 1) {
+            func_800DA544(FLAG_582_UNK);
+        }
+    } else {
+        func_800DA544(FLAG_583_UNK);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_21.s")
 
