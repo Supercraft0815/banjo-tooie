@@ -32,6 +32,13 @@ void func_808000D0_sulights(s8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/sulights_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/sulights_entrypoint_8.s")
+void sulights_entrypoint_8(void) {
+    s32 vector_free(s32);
+    extern s32 D_80127EF0;
+    if (D_80127EF0 != 0) {
+        vector_free(D_80127EF0);
+        D_80127EF0 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/sulights_entrypoint_9.s")
