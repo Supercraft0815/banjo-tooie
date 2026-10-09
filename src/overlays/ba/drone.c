@@ -127,7 +127,12 @@ void badrone_entrypoint_29(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/drone/badrone_entrypoint_30.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/drone/badrone_entrypoint_31.s")
+s32 badrone_entrypoint_31(void *arg0) {
+    if (*(*(u8 **)((s8 *)(arg0) + (0x54))) == 1) {
+        return 1;
+    }
+    return 0;
+}
 
 void badrone_entrypoint_32(void *arg0) {
     void *temp_v0;
