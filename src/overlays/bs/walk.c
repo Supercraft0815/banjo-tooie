@@ -44,7 +44,10 @@ void bswalk_entrypoint_1()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_12.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_13.s")
+s32 bswalk_entrypoint_13(s32 arg0) {
+    extern s32 D_80801540_bswalk[];
+    return ((s32 *)&D_80801540_bswalk)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_14.s")
 
