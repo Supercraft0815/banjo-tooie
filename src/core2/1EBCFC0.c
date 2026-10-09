@@ -33,7 +33,28 @@ void func_800CA7E4(s32, f32[3]);
 u16 func_800CB124(s32, MtxF*);
 void func_800E443C(MtxF*, f32[3], f32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBCFC0/func_800E36D0.s")
+s32 func_800E36D0(s32 *arg0, s32 *arg1, f32 *arg2, f32 *arg3) {
+    f32 delta[3];
+    f32 max;
+    f32 dot;
+    s32 i, j, k;
+
+    max = 0.0f;
+    for (i = 0; i != 2; i++) {
+        for (j = 0; j != 2; j++) {
+            for (k = 0; k != 2; k++) {
+                delta[0] = (f32)(i ? arg0[0] : arg1[0]) - arg2[0];
+                delta[1] = (f32)(j ? arg0[1] : arg1[1]) - arg2[1];
+                delta[2] = (f32)(k ? arg0[2] : arg1[2]) - arg2[2];
+                dot = arg3[0] * delta[0] + arg3[1] * delta[1] + arg3[2] * delta[2];
+                if (max < dot) {
+                    max = dot;
+                }
+            }
+        }
+    }
+    return (s32)max;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBCFC0/func_800E37E8.s")
 
