@@ -39,7 +39,18 @@ int func_80800160_bstrexlarge(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80800270_bstrexlarge.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80800294_bstrexlarge.s")
+/* extern */
+
+void func_80800294_bstrexlarge(s32 arg0) {
+    s32 func_8009E6EC();
+    s32 func_8080024C_bstrexlarge(s32);
+    s32 temp_v0;
+
+    temp_v0 = func_8009E6EC();
+    if ((temp_v0 != 0x1C) && (temp_v0 != 0x1D) && (temp_v0 != 0x1E) && (temp_v0 != 0x25)) {
+        func_8080024C_bstrexlarge(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_808002E0_bstrexlarge.s")
 
