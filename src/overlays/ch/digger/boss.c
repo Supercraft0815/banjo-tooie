@@ -54,7 +54,12 @@ OSThread *chdiggerboss_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808021E8_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80802228_chdiggerboss.s")
+/* extern */
+
+void func_80802228_chdiggerboss(void *arg0) {
+    s32 func_80106790(s32);
+    func_80106790((*(s32 *)((s8 *)(arg0) + (0x3C))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80802248_chdiggerboss.s")
 
