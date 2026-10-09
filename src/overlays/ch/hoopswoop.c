@@ -76,6 +76,10 @@ void func_80801A94_chhoopswoop()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80801D20_chhoopswoop.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80801D8C_chhoopswoop.s")
+void func_80801D8C_chhoopswoop(u8 *arg0) {
+    s32 func_8010D930(s32, s32, u8 *, s32 *);
+    extern s32 D_80801FDC_chhoopswoop;
+    func_8010D930(4, (*(s32 *)((s8 *)(arg0) + (0x70))) & 1, arg0 + 4, &D_80801FDC_chhoopswoop);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80801DCC_chhoopswoop.s")
