@@ -21,7 +21,9 @@ OSThread *func_80108EE8(void)
     return (OSThread *) D_801245F8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80108EF4.s")
+s32 func_80108EF4(void *arg0, s32 arg1) {
+    return (*(u16 *)((s8 *)(arg0) + (8))) == 0x23A;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80108F08.s")
 
