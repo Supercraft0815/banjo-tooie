@@ -28,7 +28,12 @@ void func_80103AA0()
     func_801039A4();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103AC0.s")
+/* extern */
+
+void func_80103AC0(void **arg0) {
+    s32 func_800D6C34(u16);
+    func_800D6C34((*(u16 *)((s8 *)(*arg0) + (0x14))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103AE4.s")
 
