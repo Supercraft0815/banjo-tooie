@@ -26,7 +26,16 @@ void func_800BD5DC()
     _gccubeDll_entrypoint_2(&D_80128410);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BD600.s")
+void func_800BD600(void) {
+    s32 defrag(s32);
+    s32 func_800D2EE4();
+    s32 func_800E9DF8();
+    extern s32 D_80128454;
+    (*(s32 *)((s8 *)(&D_80128410) + (0))) = defrag((*(s32 *)((s8 *)(&D_80128410) + (0))));
+    D_80128454 = defrag((*(s32 *)((s8 *)(&D_80128410) + (0x44))));
+    func_800E9DF8();
+    func_800D2EE4();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BD64C.s")
 
