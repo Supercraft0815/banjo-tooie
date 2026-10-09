@@ -21,7 +21,17 @@ OSThread *func_80107C20(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_801085CC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108618.s")
+/* extern */
+
+s32 func_80108618(s32 arg0, s32 arg1) {
+    s32 func_800DA298(s32);
+    s32 func_800FFAB0(s32);
+    if (func_800DA298(arg1) != 0) {
+        func_800FFAB0(arg0);
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108658.s")
 
