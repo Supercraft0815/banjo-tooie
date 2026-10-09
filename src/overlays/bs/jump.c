@@ -43,7 +43,10 @@ void bsjump_entrypoint_14()
     func_8008E95C();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_15.s")
+s32 bsjump_entrypoint_15(s32 arg0) {
+    extern s32 D_80801140_bsjump[];
+    return ((s32 *)&D_80801140_bsjump)[arg0];
+}
 
 s32 bsjump_entrypoint_16(s32 *arg0) {
     return arg0[88];
