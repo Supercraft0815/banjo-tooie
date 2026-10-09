@@ -15,7 +15,41 @@ OSThread *chcrusher_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_80800394_chcrusher.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_808003E4_chcrusher.s")
+void func_808003E4_chcrusher(void *arg0) {
+    struct CrusherFlags {
+        u8 pad[0x65];
+        u8 unused : 3;
+        u8 active : 1;
+        u8 remaining : 4;
+    };
+    void func_8008FE94(s32, f32 *);
+    s32 func_80090150(void);
+    void func_800904C8(s32);
+    f32 upper[3];
+    f32 lower[3];
+    f32 x;
+    f32 z;
+    f32 position[3];
+
+    x = *(f32 *)((u8 *)arg0 + 4) - *(f32 *)((u8 *)arg0 + 0x18);
+    z = *(f32 *)((u8 *)arg0 + 0x20) - *(f32 *)((u8 *)arg0 + 0xC);
+    x += 25.0f;
+    z += 25.0f;
+    func_8008FE94(5, position);
+    upper[0] = *(f32 *)((u8 *)arg0 + 4) + x;
+    lower[0] = *(f32 *)((u8 *)arg0 + 4) - x;
+    upper[1] = *(f32 *)((u8 *)arg0 + 0x1C);
+    lower[1] = *(f32 *)((u8 *)arg0 + 0x1C) + 100.0f;
+    upper[2] = *(f32 *)((u8 *)arg0 + 0xC) + z;
+    lower[2] = *(f32 *)((u8 *)arg0 + 0xC) - z;
+    if (position[2] < upper[2] && *(f32 *)((u8 *)arg0 + 0x1C) < position[1] &&
+        position[0] < upper[0] && lower[0] < position[0]) {
+        ((struct CrusherFlags *)arg0)->active = 1;
+        if (func_80090150() != 0) {
+            func_800904C8(0x59);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_80800508_chcrusher.s")
 
