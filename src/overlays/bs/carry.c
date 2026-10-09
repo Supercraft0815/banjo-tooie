@@ -34,7 +34,10 @@ void func_808003D8_bscarry()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_8080047C_bscarry.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/bscarry_entrypoint_1.s")
+s32 bscarry_entrypoint_1(s32 arg0) {
+    extern s32 D_808007C0_bscarry[];
+    return ((s32 *)&D_808007C0_bscarry)[arg0];
+}
 
 void func_80800500_bscarry()
 {
