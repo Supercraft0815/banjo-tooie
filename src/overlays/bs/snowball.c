@@ -98,7 +98,10 @@ s32 bssnowball_entrypoint_7(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_80800BBC_bssnowball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/bssnowball_entrypoint_8.s")
+s32 bssnowball_entrypoint_8(s32 arg0) {
+    extern s32 D_808010A4_bssnowball[];
+    return ((s32 *)&D_808010A4_bssnowball)[arg0];
+}
 
 void func_80800C18_bssnowball(s32 arg0)
 {
