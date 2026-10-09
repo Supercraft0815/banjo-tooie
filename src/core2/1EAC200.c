@@ -2,7 +2,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D2910.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D2970.s")
+void func_800D2970(void) {
+    extern s32 D_8012B320;
+    (*(s8 *)((s8 *)(&D_8012B320) + (0x18))) = 0;
+    (*(s8 *)((s8 *)(&D_8012B320) + (4))) = 0;
+    (*(s8 *)((s8 *)(&D_8012B320) + (1))) = 0;
+    (*(s8 *)((s8 *)(&D_8012B320) + (0))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D298C.s")
 
