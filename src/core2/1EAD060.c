@@ -84,7 +84,29 @@ u32 func_800D3B60(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3B6C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3BC8.s")
+void func_800D3BC8(void *arg0) {
+    struct Entry {
+        u8 count;
+        void (*callback)();
+        s32 args[3];
+    };
+    struct Entry *entry = arg0;
+
+    switch (entry->count) {
+        case 0:
+            entry->callback();
+            break;
+        case 1:
+            entry->callback(entry->args[0]);
+            break;
+        case 2:
+            entry->callback(entry->args[0], entry->args[1]);
+            break;
+        case 3:
+            entry->callback(entry->args[0], entry->args[1], entry->args[2]);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3C70.s")
 
