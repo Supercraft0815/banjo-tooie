@@ -20,7 +20,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FB2AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FB338.s")
+s32 func_800FB338(void *arg0, s32 arg1, s32 arg2, f32 *arg3) {
+    *arg3 = (*(f32 *)((s8 *)(arg0) + (4)));
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FB350.s")
 
