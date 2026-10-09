@@ -43,7 +43,12 @@ u8 func_800C89A8(s32 arg0) {
     return (*(u8 *)((s8 *)(vector_at(D_8012AB00, arg0 - 1, arg0)) + (0x15)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C89D8.s")
+/* extern */
+
+u8 func_800C89D8(s32 arg0) {
+    void *vector_at(s32, s32, s32);
+    return (*(u8 *)((s8 *)(vector_at(D_8012AB00, arg0 - 1, arg0)) + (0x19)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8A08.s")
 
