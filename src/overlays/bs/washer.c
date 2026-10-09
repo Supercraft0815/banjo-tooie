@@ -36,7 +36,10 @@ s32 bswasher_entrypoint_1(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_808007DC_bswasher.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/bswasher_entrypoint_2.s")
+s32 bswasher_entrypoint_2(s32 arg0) {
+    extern s32 D_80801E20_bswasher[];
+    return ((s32 *)&D_80801E20_bswasher)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_808008BC_bswasher.s")
 
