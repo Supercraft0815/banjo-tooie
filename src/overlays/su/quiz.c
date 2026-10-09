@@ -20,7 +20,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_6.s")
+s8 suquiz_entrypoint_6(void) {
+    extern void *D_80127614;
+    if (func_800DA298(FLAG2_6B6_UNK) != 0) {
+        return (*(s8 *)((s8 *)(D_80127614) + (0x28)));
+    }
+    return -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_7.s")
 
