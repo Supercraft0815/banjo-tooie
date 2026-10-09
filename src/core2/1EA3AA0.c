@@ -139,7 +139,29 @@ f32 func_800CAA1C(f32 *arg0) {
     return arg0[7];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CAA24.s")
+s32 func_800CAA24(f32 *arg0, f32 *arg1, f32 *arg2) {
+    struct Data { f32 pad[9]; f32 planes[4][4]; };
+    s32 i;
+    f32 x, y, z, v;
+    f32 *plane;
+
+    for (i = 0; i < 4; i++) {
+        plane = ((struct Data *)arg0)->planes[i];
+        x = plane[0];
+        y = plane[1];
+        z = plane[2];
+        v = x >= 0.0f ? arg1[0] : arg2[0];
+        x *= v;
+        v = y >= 0.0f ? arg1[1] : arg2[1];
+        y *= v;
+        v = z >= 0.0f ? arg1[2] : arg2[2];
+        z *= v;
+        if (plane[3] + (x + y + z) >= 0.0f) {
+            return 0;
+        }
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CAB70.s")
 
