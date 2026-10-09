@@ -4,7 +4,14 @@ void func_80800000_chdoubloon(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x44))) = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doubloon/func_8080000C_chdoubloon.s")
+/* extern */
+
+void func_8080000C_chdoubloon(s32 arg0) {
+    s32 func_80103110(s32, s32);
+    s32 chdoubloon_entrypoint_1();
+    chdoubloon_entrypoint_1();
+    func_80103110(arg0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doubloon/chdoubloon_entrypoint_0.s")
 
