@@ -182,7 +182,19 @@ s32 bsbfly_entrypoint_8(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80801BB4_bsbfly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80801C58_bsbfly.s")
+/* extern */
+
+void func_80801C58_bsbfly(s32 arg0) {
+    s32 _badrone_entrypoint_3(s32);
+    s32 _bsdrone_entrypoint_0(s32);
+    s32 baphysics_set_type(s32, s32);
+    s32 func_80800128_bsbfly();
+    func_80800128_bsbfly();
+    _bsdrone_entrypoint_0(arg0);
+    if (_badrone_entrypoint_3(arg0) == 0xE) {
+        baphysics_set_type(arg0, 7);
+    }
+}
 
 void func_80801C9C_bsbfly(PlayerState* self)
 {
