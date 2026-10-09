@@ -13,7 +13,12 @@ s32 baflameline_entrypoint_0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/flameline/baflameline_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/flameline/baflameline_entrypoint_4.s")
+/* extern */
+
+void baflameline_entrypoint_4(void *arg0) {
+    s32 func_800EE7F8(s32);
+    func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x84))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/flameline/baflameline_entrypoint_5.s")
 
