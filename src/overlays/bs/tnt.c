@@ -199,4 +199,7 @@ void func_808020EC_bstnt(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_8080217C_bstnt.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/bstnt_entrypoint_15.s")
+s32 bstnt_entrypoint_15(s32 arg0) {
+    extern s32 D_808025CC_bstnt[];
+    return ((s32 *)&D_808025CC_bstnt)[arg0];
+}
