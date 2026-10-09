@@ -131,7 +131,14 @@ s32 func_80804C6C_chdragonbrothers(s32 arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80804C90_chdragonbrothers.s")
+/* extern */
+
+void func_80804C90_chdragonbrothers(s32 arg0, s32 arg1) {
+    s32 _subaddiedraw25d_entrypoint_2(s32, s32);
+    s32 func_800E24D8(s32);
+    func_800E24D8(1);
+    _subaddiedraw25d_entrypoint_2(arg0, arg1);
+}
 
 OSThread *chdragonbrothers_entrypoint_3(void)
 {
