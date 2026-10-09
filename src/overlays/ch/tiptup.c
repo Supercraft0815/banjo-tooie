@@ -46,7 +46,15 @@ void func_808002C8_chtiptup(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800774_chtiptup.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_808007CC_chtiptup.s")
+/* extern */
+
+void func_808007CC_chtiptup(void *arg0) {
+    s32 _capod_entrypoint_3(s32, void *);
+    if ((*(s32 *)((s8 *)(arg0) + (0x2C))) != 0) {
+        _capod_entrypoint_3(0, arg0);
+        (*(s32 *)((s8 *)(arg0) + (0x2C))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800808_chtiptup.s")
 
