@@ -49,7 +49,10 @@ void suexpression_entrypoint_13(void *arg0, f32 *arg1, f32 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_15.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_16.s")
+void suexpression_entrypoint_16(void *arg0, s32 arg1) {
+    (*(s16 *)((s8 *)(arg0) + (4))) = (s16) (s32) ((f32) (*(s16 *)((s8 *)(arg0) + (4))) * 0.97f);
+    (*(s16 *)((s8 *)(arg0) + (8))) = (s16) (s32) ((f32) (*(s16 *)((s8 *)(arg0) + (8))) * 0.97f);
+}
 
 void suexpression_entrypoint_17(s16 *arg0, s32 arg1) {
     arg0[7] = arg1;
