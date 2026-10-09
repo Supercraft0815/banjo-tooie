@@ -16,7 +16,13 @@ s32 *func_8008E4B8(PlayerState *self) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E67DA0/func_8008E618.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E67DA0/func_8008E6BC.s")
+/* extern */
+
+void func_8008E6BC(void *arg0) {
+    s32 func_800EBFF4(s32);
+    func_800EBFF4(*(*(s32 **)((s8 *)(arg0) + (0xC))));
+    *(*(s32 **)((s8 *)(arg0) + (0xC))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E67DA0/func_8008E6F0.s")
 
