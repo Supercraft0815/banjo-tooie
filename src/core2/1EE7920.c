@@ -1,3 +1,9 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE7920/func_8010E030.s")
+void func_8010E030(void) {
+    s32 defrag(s32);
+    extern s32 D_80127614;
+    if (D_80127614 != 0) {
+        D_80127614 = defrag(D_80127614);
+    }
+}
