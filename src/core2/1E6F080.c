@@ -34,7 +34,18 @@ void func_800959FC(s32 *arg0, s32 arg1) {
     ((s32 *) arg0[37])[5] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80095A08.s")
+void func_80095A08(void *arg0, s32 arg1, s32 arg2) {
+    void *temp_v0;
+    void *temp_v0_2;
+
+    if (arg2 != 0) {
+        temp_v0 = (*(void **)((s8 *)(arg0) + (0x94)));
+        (*(s32 *)((s8 *)(temp_v0) + (0x14))) = (s32) ((*(s32 *)((s8 *)(temp_v0) + (0x14))) | arg1);
+        return;
+    }
+    temp_v0_2 = (*(void **)((s8 *)(arg0) + (0x94)));
+    (*(s32 *)((s8 *)(temp_v0_2) + (0x14))) = (s32) ((*(s32 *)((s8 *)(temp_v0_2) + (0x14))) & ~arg1);
+}
 
 void func_80095A40(PlayerState *arg0) {
     func_800959C8(arg0, 80.0f, 35.0f);
