@@ -112,7 +112,9 @@ void func_800EC368(s16 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC398.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC3C4.s")
+void func_800EC3C4(void *arg0) {
+    (*(s32 (**)())((s8 *)(arg0) + (8)))();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC3E8.s")
 
