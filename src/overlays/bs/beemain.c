@@ -43,7 +43,10 @@ void func_80800788_bsbeemain(s32 arg0)
     _bsbee_entrypoint_0();
     baphysics_reset_gravity(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/bsbeemain_entrypoint_2.s")
+s32 bsbeemain_entrypoint_2(s32 arg0) {
+    extern s32 D_80801280_bsbeemain[];
+    return ((s32 *)&D_80801280_bsbeemain)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_808007C4_bsbeemain.s")
 
