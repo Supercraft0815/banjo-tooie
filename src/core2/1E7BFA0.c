@@ -150,7 +150,10 @@ void func_800A3550(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3644.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A380C.s")
+void func_800A380C(void *arg0) {
+    extern f32 D_80125568;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xA0)))) + (0x38))) = (f32) D_80125568;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3820.s")
 
