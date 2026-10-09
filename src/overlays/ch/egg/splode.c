@@ -25,4 +25,12 @@ OSThread *cheggsplode_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/splode/func_80800778_cheggsplode.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/splode/func_808007D4_cheggsplode.s")
+/* extern */
+
+s32 func_808007D4_cheggsplode(s32 arg0, s32 arg1) {
+    s32 func_800F6478(s32);
+    if (func_800F6478(arg1) == 0) {
+        return 0;
+    }
+    return 1;
+}
