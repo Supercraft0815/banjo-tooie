@@ -11,4 +11,7 @@ void func_80800274_bssplat(s32 arg0)
     func_8008E95C();
     func_8009BD88(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splat/bssplat_entrypoint_1.s")
+s32 bssplat_entrypoint_1(s32 arg0) {
+    extern s32 D_808002B0_bssplat[];
+    return ((s32 *)&D_808002B0_bssplat)[arg0];
+}
