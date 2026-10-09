@@ -10,7 +10,12 @@ void func_800D8870(void) {
     D_8012C020 = freelist_new(0x70, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2130/func_800D8898.s")
+void func_800D8898(void) {
+    s32 freelist_free(s32);
+    extern s32 D_8012C020;
+    freelist_free(D_8012C020);
+    D_8012C020 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2130/func_800D88C0.s")
 
