@@ -7,7 +7,18 @@ void func_8001E2A0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E35DD0/func_8001E2C8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E35DD0/func_8001E304.s")
+void func_8001E304(void) {
+    s32 _gzreg_entrypoint_1();
+    s32 func_8001D37C(s32 *);
+    s32 func_8001D96C();
+    s32 func_8001D9CC(s32, s32);
+    extern s32 D_80041868;
+    func_8001D96C();
+    func_8001D37C(&D_80041868);
+    func_8001D9CC(0, 0xA);
+    _gzreg_entrypoint_1();
+    func_8001E2A0();
+}
 
 void func_8001E34C(void) {
     s32 func_8001D37C(s32 *);
