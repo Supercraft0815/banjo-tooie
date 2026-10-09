@@ -58,7 +58,11 @@ void func_800FE8AC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FE8BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FE8EC.s")
+void func_800FE8EC(s32 arg0) {
+    s32 _cothemedll_entrypoint_4(s32 *, s32);
+    extern s32 D_801359C0;
+    _cothemedll_entrypoint_4(&D_801359C0, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FE914.s")
 
