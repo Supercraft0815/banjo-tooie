@@ -40,7 +40,14 @@ void func_808005B8_bsride()
     func_8080008C_bsride();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_808005D8_bsride.s")
+/* extern */
+
+void func_808005D8_bsride(s32 arg0) {
+    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    s32 func_80800000_bsride();
+    func_80800000_bsride();
+    baanim_playForDuration_loopSmooth(arg0, 0x83, 0x3FE66666);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_8080060C_bsride.s")
 
