@@ -1,6 +1,9 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/cursor/func_80800000_baeggcursor.s")
+s32 func_80800000_baeggcursor(s32 arg0) {
+    extern s32 D_80800690_baeggcursor[];
+    return ((s32 *)&D_80800690_baeggcursor)[arg0];
+}
 
 s32 baeggcursor_entrypoint_0() 
 {
