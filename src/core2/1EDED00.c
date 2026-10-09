@@ -1,7 +1,11 @@
 #include "common.h"
 extern s32 D_80136ED8;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105410.s")
+void func_80105410(void) {
+    s32 freelist_new(s32, s32);
+    extern s32 D_80136EC0;
+    D_80136EC0 = freelist_new(0x48, 8);
+}
 
 void func_80105438(void) {
     s32 freelist_free(s32);
