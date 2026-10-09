@@ -76,7 +76,12 @@ void func_8009DE38(PlayerState *arg0, s32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009DF18.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009DF58.s")
+/* extern */
+
+void func_8009DF58(PlayerState *arg0, s32 arg1, f32 arg2) {
+    s32 func_8009DCCC(f32, u8, s32, f32, s32);
+    func_8009DCCC(arg2, (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x104)))) + (3))), arg1, arg2, 0x55F0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009DF94.s")
 
