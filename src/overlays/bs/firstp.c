@@ -278,7 +278,18 @@ void func_80802C6C_bsfirstp(s32 arg0)
     func_800FC660(0xF);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80802C90_bsfirstp.s")
+/* extern */
+
+void func_80802C90_bsfirstp(void *arg0) {
+    s32 _badeathmatch_entrypoint_6();
+    s32 _badeathmatch_entrypoint_9(void *, s32);
+    s32 func_80094BC0();
+    if ((*(s32 *)((s8 *)(arg0) + (0x158))) == 0) {
+        func_80094BC0();
+        return;
+    }
+    _badeathmatch_entrypoint_9(arg0, _badeathmatch_entrypoint_6());
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80802CD8_bsfirstp.s")
 
