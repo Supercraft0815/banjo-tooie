@@ -16,4 +16,6 @@ void func_8080000C_chdiggerbossdeflect(void *arg0) {
 void func_80800020_chdiggerbossdeflect(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossdeflect/func_80800028_chdiggerbossdeflect.s")
+s32 func_80800028_chdiggerbossdeflect(s32 arg0, s32 arg1, s32 arg2) {
+    return 0;
+}
