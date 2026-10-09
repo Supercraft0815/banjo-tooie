@@ -50,7 +50,13 @@ u8 suquiz_entrypoint_7(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_15.s")
+s8 suquiz_entrypoint_15(s32 arg0) {
+    extern void *D_80127614;
+    if (func_800DA298(FLAG2_6B6_UNK) != 0) {
+        return (*(s8 *)((s8 *)(D_80127614) + (0x27)));
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_16.s")
 
