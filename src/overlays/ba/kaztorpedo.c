@@ -9,7 +9,14 @@ f32 bakaztorpedo_entrypoint_1(void *arg0) {
     return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 176) + 16);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/kaztorpedo/bakaztorpedo_entrypoint_2.s")
+/* extern */
+
+void bakaztorpedo_entrypoint_2(void *arg0) {
+    s32 func_8009EA08(f32);
+    s32 func_800C2FDC(u8);
+    func_8009EA08((*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xB0)))) + (0x10))));
+    func_800C2FDC((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xB0)))) + (0x1C))));
+}
 
 void bakaztorpedo_entrypoint_3(void *arg0) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xB0)))) + (0x10))) = 20.0f;
