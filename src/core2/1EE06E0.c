@@ -45,7 +45,16 @@ s32 func_80107388(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_801075E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107750.s")
+/* extern */
+
+void func_80107750(s32 arg0, s32 arg1) {
+    s32 _subaddiefade_entrypoint_5();
+    s32 func_8010A570(s32);
+    s32 func_8010A624(s32);
+    _subaddiefade_entrypoint_5();
+    func_8010A570(arg0);
+    func_8010A624(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107784.s")
 
