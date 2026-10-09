@@ -2,7 +2,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_80800000_chmusicmenu.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_808000B4_chmusicmenu.s")
+s32 func_808000B4_chmusicmenu(s32 arg0) {
+    if (arg0 < 9) {
+        return arg0 + 0x1851;
+    }
+    return arg0 + 0x1860;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_808000D0_chmusicmenu.s")
 
