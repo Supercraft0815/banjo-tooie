@@ -172,7 +172,13 @@ s32 func_8011114C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_801112B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111310.s")
+/* extern */
+
+void func_80111310(s32 *arg0) {
+    s32 func_800A509C(s32);
+    s32 func_800F53D0(s32);
+    func_800A509C(func_800F53D0(func_80110840(arg0)));
+}
 
 s32 func_80111340() 
 {
