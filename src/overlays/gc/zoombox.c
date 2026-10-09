@@ -220,7 +220,15 @@ void gczoombox_entrypoint_31(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_34.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_35.s")
+/* extern */
+
+void gczoombox_entrypoint_35(u8 *arg0, s32 arg1, s16 arg2, s32 arg3) {
+    s32 func_800EC370(s32, u8 *);
+    (*(s32 *)((s8 *)(arg0) + (0x130))) = arg1;
+    (*(s16 *)((s8 *)(arg0) + (0x13A))) = arg2;
+    (*(s32 *)((s8 *)(arg0) + (0x13C))) = arg3;
+    func_800EC370(arg1, arg0 + 0x134);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_36.s")
 
