@@ -18,7 +18,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/func_80800BFC_sumultiscore.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/func_80800D24_sumultiscore.s")
+/* extern */
+
+void func_80800D24_sumultiscore(s32 arg0, s32 arg1, void *arg2) {
+    s16 func_800F5578(s32);
+    (*(s16 *)((s8 *)(arg2) + (8))) = func_800F5578(arg1);
+}
 
 void func_80800D54_sumultiscore(s32 arg0, s32 arg1, s32 arg2) {
 }
