@@ -18,4 +18,10 @@ void func_801150F8(void* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEE770/func_801151C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEE770/func_80115324.s")
+/* extern */
+
+void func_80115324(s32 *arg0, s32 arg1) {
+    s32 defrag();
+    *arg0 = arg1;
+    defrag();
+}
