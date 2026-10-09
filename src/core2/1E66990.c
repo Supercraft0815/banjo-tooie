@@ -99,7 +99,12 @@ s32 func_8008DE24(PlayerState* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DE44.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DE50.s")
+/* extern */
+
+s32 func_8008DE50(void) {
+    s32 func_80096694();
+    return func_80096694() == 3;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DE74.s")
 
