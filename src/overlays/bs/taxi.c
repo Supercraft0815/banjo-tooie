@@ -50,7 +50,36 @@ s32 bstaxi_entrypoint_10(s32 arg0) {
     return ((s32 *)&D_80802198_bstaxi)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/func_80800A18_bstaxi.s")
+/* extern */
+
+void func_80800A18_bstaxi(void *arg0, u32 arg1) {
+    s32 _bapackctrl_entrypoint_5(void *, s32);
+    s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
+    s32 baanim_playForDuration_onceSmooth(void *, s32, s32);
+    s32 bainput_enable(void *, s32, s32);
+    switch (arg1) {
+    case 0:
+        if ((*(u8 *)((s8 *)(arg0) + (0x15C))) == 3) {
+            _bapackctrl_entrypoint_5(arg0, 2);
+        }
+        break;
+    case 1:
+        (*(s8 *)((s8 *)(arg0) + (0x15D))) = 0;
+        baanim_playForDuration_onceSmooth(arg0, 0x121, 0x3F8CCCCD);
+        bainput_enable(arg0, 0, 0);
+        break;
+    case 2:
+        baanim_playForDuration_loopSmooth(arg0, 0x12B, 0x40900000);
+        break;
+    case 3:
+        baanim_playForDuration_onceSmooth(arg0, 0x12D, 0x40333333);
+        break;
+    case 4:
+        baanim_playForDuration_onceSmooth(arg0, 0x12C, 0x3FB33333);
+        break;
+    }
+    (*(u8 *)((s8 *)(arg0) + (0x15C))) = (u8) arg1;
+}
 
 void bstaxi_entrypoint_11(s32 arg0)
 {
