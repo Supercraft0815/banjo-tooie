@@ -1,6 +1,12 @@
 #include "core2/1ECB0F0.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1800.s")
+/* extern */
+
+void func_800F1800(void) {
+    f32 func_80013AAC();
+    s32 mlAbsF(f32);
+    mlAbsF(func_80013AAC());
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1828.s")
 
