@@ -6,7 +6,9 @@ f32 func_80800030_bssub(f32 arg0, f32 arg1) {
     return arg1 * 300.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800048_bssub.s")
+f32 func_80800048_bssub(f32 arg0, f32 arg1) {
+    return -arg1 * 428.57144f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800064_bssub.s")
 
