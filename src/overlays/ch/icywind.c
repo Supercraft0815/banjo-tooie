@@ -7,7 +7,15 @@ OSThread *chicywind_entrypoint_0(void)
     return (OSThread *) D_80800300_chicywind;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/icywind/func_8080000C_chicywind.s")
+/* extern */
+
+void func_8080000C_chicywind(s32 arg0) {
+    s32 func_800D0B68(s32, s32);
+    s32 func_800FFAB0(s32);
+    if (func_800D0B68(0x21, 0) != 0) {
+        func_800FFAB0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/icywind/func_80800044_chicywind.s")
 
