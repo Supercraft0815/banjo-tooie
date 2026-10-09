@@ -14,7 +14,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_808002E8_chsilo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_80800378_chsilo.s")
+/* extern */
+
+void func_80800378_chsilo(s32 arg0) {
+    s32 func_800903D0(s32);
+    func_800903D0(arg0 + 0x18);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_80800398_chsilo.s")
 
