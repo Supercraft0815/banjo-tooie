@@ -69,7 +69,12 @@ void func_800E39A8(s32 arg0, s32 arg1) {
     func_800CA8B4(D_8012D500, arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBCFC0/func_800E39D8.s")
+/* extern */
+
+void func_800E39D8(s32 arg0, s32 arg1) {
+    s32 func_800CA628(s32, s32, s32);
+    func_800CA628(D_8012D500, arg0, arg1);
+}
 
 /* extern */
 
