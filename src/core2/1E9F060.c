@@ -5,7 +5,11 @@ void func_800C5770(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C5778.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C57C0.s")
+void func_800C57C0(void) {
+    s32 func_800BF48C(u8, u8, u8);
+    extern s32 D_8012AA20;
+    func_800BF48C((*(u8 *)((s8 *)(&D_8012AA20) + (8))), (*(u8 *)((s8 *)(&D_8012AA20) + (9))), (*(u8 *)((s8 *)(&D_8012AA20) + (0xA))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C57F0.s")
 
