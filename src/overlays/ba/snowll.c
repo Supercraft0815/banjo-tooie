@@ -36,7 +36,12 @@ f32 basnowball_entrypoint_4(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/basnowball_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/basnowball_entrypoint_6.s")
+/* extern */
+
+s32 basnowball_entrypoint_6(void) {
+    s32 func_800A1718();
+    return func_800A1718() >= 5;
+}
 
 void basnowball_entrypoint_7(void *arg0) {
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x110)))) + (0x2C))) = 1;
