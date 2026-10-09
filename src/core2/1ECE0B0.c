@@ -936,7 +936,11 @@ s32 func_800F9184(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9198.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F91EC.s")
+void func_800F91EC(void) {
+    s32 vector_defrag(s32);
+    extern s32 D_801354F0;
+    D_801354F0 = vector_defrag(D_801354F0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9214.s")
 
