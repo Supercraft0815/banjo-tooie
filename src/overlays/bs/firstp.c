@@ -22,7 +22,13 @@ void func_808001D0_bsfirstp(s32 arg0) {
     func_80800858_bsfirstp(arg0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808001FC_bsfirstp.s")
+/* extern */
+
+void func_808001FC_bsfirstp(void) {
+    s32 anctrl_setPlaybackType(s32, s32);
+    s32 func_8008D04C();
+    anctrl_setPlaybackType(func_8008D04C(), 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80800228_bsfirstp.s")
 
