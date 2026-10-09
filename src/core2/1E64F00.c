@@ -121,4 +121,9 @@ void func_8008C270(s8 *arg0) {
     arg0[0x1B] = 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008C27C.s")
+/* extern */
+
+void func_8008C27C(void) {
+    s32 func_8008BD1C();
+    func_8008BD1C();
+}
