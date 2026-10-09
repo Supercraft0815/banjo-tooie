@@ -7,7 +7,12 @@ OSThread *chjiggygamenew_entrypoint_0(void)
     return (OSThread *) D_80803D44_chjiggygamenew;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_8080000C_chjiggygamenew.s")
+/* extern */
+
+s32 func_8080000C_chjiggygamenew(void) {
+    void *func_80106790();
+    return (*(s32 *)((s8 *)(func_80106790()) + (0x20)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80800030_chjiggygamenew.s")
 
