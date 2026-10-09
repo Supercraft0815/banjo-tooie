@@ -152,7 +152,9 @@ void func_800F53A4(s32 arg0)
     func_8008E938(D_80135490[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F53D0.s")
+PlayerState *func_800F53D0(s32 arg0) {
+    return D_80135490[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F53E4.s")
 
