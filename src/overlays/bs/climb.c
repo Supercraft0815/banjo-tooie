@@ -43,6 +43,9 @@ void bsclimb_entrypoint_10()
     func_808001D0_bsclimb();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/bsclimb_entrypoint_11.s")
+s32 bsclimb_entrypoint_11(s32 arg0) {
+    extern s32 D_8080091C_bsclimb[];
+    return ((s32 *)&D_8080091C_bsclimb)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/bsclimb_entrypoint_12.s")
