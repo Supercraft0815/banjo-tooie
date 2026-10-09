@@ -33,4 +33,15 @@ void badeathmatch_entrypoint_7(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/deathmatch/badeathmatch_entrypoint_10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/deathmatch/badeathmatch_entrypoint_11.s")
+void badeathmatch_entrypoint_11(void *arg0, s32 arg1, s32 arg2) {
+    void *temp_v0;
+    void *temp_v0_2;
+
+    if (arg2 != 0) {
+        temp_v0 = (*(void **)((s8 *)(arg0) + (0x158)));
+        (*(u8 *)((s8 *)(temp_v0) + (0x23))) = (u8) ((*(u8 *)((s8 *)(temp_v0) + (0x23))) | arg1);
+        return;
+    }
+    temp_v0_2 = (*(void **)((s8 *)(arg0) + (0x158)));
+    (*(u8 *)((s8 *)(temp_v0_2) + (0x23))) = (u8) ((*(u8 *)((s8 *)(temp_v0_2) + (0x23))) & ~arg1);
+}
