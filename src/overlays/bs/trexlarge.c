@@ -193,7 +193,13 @@ s32 bstrexlarge_entrypoint_11(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_808011A8_bstrexlarge.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80801208_bstrexlarge.s")
+/* extern */
+
+void func_80801208_bstrexlarge(void *arg0) {
+    s32 func_808011A8_bstrexlarge();
+    func_808011A8_bstrexlarge();
+    (*(s8 *)((s8 *)(arg0) + (0x15E))) = 0;
+}
 
 void func_80801230_bstrexlarge(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x160))) = -1;
