@@ -32,7 +32,13 @@ s32 func_8008EE04(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008F748.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008F788.s")
+/* extern */
+
+void func_8008F788(s32 arg0, s32 arg1) {
+    s32 func_800D1844(s32);
+    s32 func_800D1B34(s32);
+    func_800D1844(func_800D1B34(arg1));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008F7B4.s")
 
