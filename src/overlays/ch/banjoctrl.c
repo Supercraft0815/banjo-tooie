@@ -23,7 +23,18 @@ OSThread *chbanjoctrl_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_808003F8_chbanjoctrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/chbanjoctrl_entrypoint_1.s")
+/* extern */
+
+s32 chbanjoctrl_entrypoint_1(s32 arg0) {
+    s32 _chhotwaterpoolbits_entrypoint_5(s32, s32);
+    s32 func_800F54E4();
+    s32 func_800F7B9C(s32, s32);
+    if (func_800F7B9C(func_800F54E4(), 0x51) == 2) {
+        _chhotwaterpoolbits_entrypoint_5(arg0, 0x3F800000);
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800544_chbanjoctrl.s")
 
