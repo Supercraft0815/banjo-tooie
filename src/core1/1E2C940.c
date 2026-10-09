@@ -125,7 +125,12 @@ void set_widescreen(s32 enabled) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80015B34.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80015CC0.s")
+void func_80015CC0(void *arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4) {
+    *arg1 = (s32) (*(s16 *)((s8 *)(arg0) + (4)));
+    *arg2 = (s32) (*(s16 *)((s8 *)(arg0) + (6)));
+    *arg3 = (s32) (*(s16 *)((s8 *)(arg0) + (8)));
+    *arg4 = (s32) (*(s16 *)((s8 *)(arg0) + (0xA)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80015CE8.s")
 
