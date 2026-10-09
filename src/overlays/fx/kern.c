@@ -6,7 +6,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/kern/func_80800224_fxkern.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/kern/fxkern_entrypoint_0.s")
+/* extern */
+
+void fxkern_entrypoint_0(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 func_80800084_fxkern(s32);
+    s32 func_80800224_fxkern(s32, s32, s32, s32, s32);
+    func_80800224_fxkern(arg0, arg1, arg2, arg3, func_80800084_fxkern(arg3));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/kern/fxkern_entrypoint_1.s")
 
