@@ -201,7 +201,9 @@ void func_800C9B84(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9BB4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9C04.s")
+void func_800C9C04(f32 arg0, u32 arg1, u32 arg2) {
+    func_800C9E20(arg0, (u32 *) func_800C9974, arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9C34.s")
 
