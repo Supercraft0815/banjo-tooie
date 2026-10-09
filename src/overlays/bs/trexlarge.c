@@ -4,7 +4,14 @@ void func_80800000_bstrexlarge(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x168))) = 5;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_8080000C_bstrexlarge.s")
+void func_8080000C_bstrexlarge(void *arg0) {
+    s32 temp_v0;
+
+    temp_v0 = (*(s32 *)((s8 *)(arg0) + (0x168)));
+    if (temp_v0 > 0) {
+        (*(s32 *)((s8 *)(arg0) + (0x168))) = (s32) (temp_v0 - 1);
+    }
+}
 
 s32 func_80800024_bstrexlarge(void *arg0) {
     return (*(s32 *)((s8 *)(arg0) + (0x168))) == 0;
