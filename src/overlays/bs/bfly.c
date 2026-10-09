@@ -130,7 +130,10 @@ void func_80801B80_bsbfly()
     func_80800188_bsbfly();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/bsbfly_entrypoint_8.s")
+s32 bsbfly_entrypoint_8(s32 arg0) {
+    extern s32 D_80801DC8_bsbfly[];
+    return ((s32 *)&D_80801DC8_bsbfly)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80801BB4_bsbfly.s")
 
