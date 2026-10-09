@@ -21,7 +21,40 @@ void func_808001CC_bsvanswim(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_80800200_bsvanswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_808002D0_bsvanswim.s")
+void func_808002D0_bsvanswim(void *arg0) {
+    f32 baphysics_get_vertical_velocity(void *);
+    void baphysics_set_vertical_velocity(void *, f32);
+    void func_8009C128(void *, f32 *);
+    s32 func_8009FBB0(void *, f32 *, f32);
+    void func_800BA930(s32, s32, s32, s32, s32, s32, s32);
+    f32 func_800F0E00(f32, f32);
+    f32 mlAbsF(f32);
+    s32 next_state;
+    f32 position[3];
+    s32 effect;
+
+    next_state = 0;
+    func_8009C128(arg0, position);
+    position[1] += 60.0f;
+    effect = func_8009FBB0(arg0, position, 20.0f);
+    func_800BA930(effect, -30, -30, -30, 30, 30, 30);
+    func_800BA22C(effect, 1);
+    if (*(f32 *)((u8 *)arg0 + 0x16C) < 0.0f) {
+        *(f32 *)((u8 *)arg0 + 0x16C) += func_800F0E00(mlAbsF(*(f32 *)((u8 *)arg0 + 0x16C)) * 0.1f, 50.0f);
+        baphysics_set_vertical_velocity(arg0, *(f32 *)((u8 *)arg0 + 0x16C));
+    }
+    if (player_isStable(arg0)) {
+        next_state = 0x11B;
+    }
+    if (!player_inWater(arg0)) {
+        next_state = 0x11A;
+    }
+    if (baphysics_get_vertical_velocity(arg0) >= 0.0f) {
+        next_state = 0x11B;
+    }
+    _bsvan_entrypoint_3(arg0);
+    bs_setState(arg0, next_state);
+}
 
 s32 bsvanswim_entrypoint_0(s32 arg0) {
     extern s32 D_80800980_bsvanswim[];
