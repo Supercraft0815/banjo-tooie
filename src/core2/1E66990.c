@@ -63,7 +63,12 @@ s32 func_8008D544(PlayerState* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DA24.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DAA8.s")
+/* extern */
+
+void func_8008DAA8(void *arg0) {
+    s32 func_800F65D0(s32);
+    func_800F65D0((*(s32 *)((s8 *)(arg0) + (0x184))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DAC8.s")
 
