@@ -106,7 +106,13 @@ s32 func_8008DE50(void) {
     return func_80096694() == 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DE74.s")
+/* extern */
+
+void func_8008DE74(s32 arg0) {
+    s32 bs_getCurrentState();
+    s32 func_8009CA70(s32, s32, s32);
+    func_8009CA70(arg0, bs_getCurrentState(), 0x4000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DEA4.s")
 
