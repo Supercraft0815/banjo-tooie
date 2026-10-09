@@ -370,4 +370,10 @@ void func_80094370(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094DA8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094E40.s")
+/* extern */
+
+void func_80094E40(void) {
+    s32 _gcegg_entrypoint_2();
+    s32 func_800FC660(s32);
+    func_800FC660(_gcegg_entrypoint_2());
+}
