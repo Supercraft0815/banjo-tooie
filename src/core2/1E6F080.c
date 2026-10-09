@@ -210,7 +210,12 @@ void func_800966E0(void *arg0) {
     func_800C67E8(*(*(s32 **)((s8 *)(arg0) + (0x94))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80096704.s")
+/* extern */
+
+void func_80096704(void *arg0) {
+    s32 func_800C5B84(s32);
+    func_800C5B84(*(*(s32 **)((s8 *)(arg0) + (0x94))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80096728.s")
 
