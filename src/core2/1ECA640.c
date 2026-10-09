@@ -1,6 +1,14 @@
 #include "core2/1ECA640.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F0D50.s")
+f32 func_800F0D50(f32 value, f32 min, f32 max) {
+    if (value < min) {
+        return min;
+    }
+    if (max < value) {
+        return max;
+    }
+    return value;
+}
 
 s32 func_800F0D90(s32 arg0, s32 arg1, s32 arg2) {
     if (arg0 < arg1) {
