@@ -92,6 +92,11 @@ void func_8009E0B8(void *arg0) {
     func_800C3CE8(*(*(u8 **)((s8 *)(arg0) + (0x104))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009E0DC.s")
+/* extern */
+
+void func_8009E0DC(PlayerState *arg0) {
+    s32 func_800C3CE8(u8);
+    func_800C3CE8((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x104)))) + (2))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009E100.s")
