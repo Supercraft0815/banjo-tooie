@@ -82,7 +82,16 @@ s32 func_800123B0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E29B60/func_800123F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E29B60/func_800124EC.s")
+/* extern */
+
+void func_800124EC(s32 arg0) {
+    s32 func_80012214();
+    s32 func_800123F4();
+    func_80012214();
+loop_1:
+    func_800123F4();
+    goto loop_1;
+}
 
 void func_80012520(s32 arg0) {
     extern s32 D_80043384;
