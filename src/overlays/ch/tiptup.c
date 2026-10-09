@@ -25,7 +25,12 @@ OSThread *chtiptup_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800200_chtiptup.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_808002C8_chtiptup.s")
+/* extern */
+
+void func_808002C8_chtiptup(void *arg0) {
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    (*(u8 *)((s8 *)(arg0) + (0x28))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(arg0) + (0x28))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_808002F4_chtiptup.s")
 
