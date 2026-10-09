@@ -110,7 +110,16 @@ OSThread *chhumba_entrypoint_0(void)
     return (OSThread *) D_80802738_chhumba;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80802234_chhumba.s")
+/* extern */
+
+void func_80802234_chhumba(void *arg0) {
+    s32 func_800EA05C();
+    if (func_800EA05C() == 0x122) {
+        (*(f32 *)((s8 *)(arg0) + (0x38))) = 2.0f;
+        return;
+    }
+    (*(f32 *)((s8 *)(arg0) + (0x38))) = 1.0f;
+}
 
 OSThread *chhumba_entrypoint_1(void)
 {
