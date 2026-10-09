@@ -35,7 +35,17 @@ s32 func_800EDA24(s16 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EDA2C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EDAF4.s")
+/* extern */
+
+void func_800EDAF4(u8 *arg0) {
+    s32 func_800C2FDC(s32, u8);
+    u8 temp_a1;
+
+    temp_a1 = *arg0;
+    if (temp_a1 != 0) {
+        func_800C2FDC(temp_a1 & 0xFF, temp_a1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EDB20.s")
 
