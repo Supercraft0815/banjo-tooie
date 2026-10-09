@@ -30,7 +30,11 @@ void* chmole_maya_entrypoint_0()
 void func_80800144_chmole_maya(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_maya/func_8080014C_chmole_maya.s")
+void func_8080014C_chmole_maya(Actor *arg0) {
+    if (func_800DA298(FLAG_506_FTT_CS_JAMJARS) != 0) {
+        func_800FFAB0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_maya/func_80800180_chmole_maya.s")
 
