@@ -66,7 +66,17 @@ void func_80016A04(void);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2D890/func_80015D60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2D890/func_80015E80.s")
+void func_80015E80(s32 arg0, void *arg1) {
+    unkD_800799E0 *temp_v0;
+
+    temp_v0 = &D_800799E0[arg0];
+    (*(s32 *)((s8 *)(arg1) + (0))) = (s32) temp_v0->unk0[0];
+    (*(s32 *)((s8 *)(arg1) + (4))) = (s32) temp_v0->unk0[1];
+    (*(s32 *)((s8 *)(arg1) + (8))) = (s32) temp_v0->unk0[2];
+    (*(s32 *)((s8 *)(arg1) + (0xC))) = (s32) temp_v0->unk0[3];
+    (*(s32 *)((s8 *)(arg1) + (0x10))) = (s32) temp_v0->unk0[4];
+    (*(s32 *)((s8 *)(arg1) + (0x14))) = (s32) temp_v0->unk0[5];
+}
 
 void func_80015ECC(s32 arg0, void *arg1) {
     extern s32 D_80079AC0;
