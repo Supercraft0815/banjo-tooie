@@ -37,7 +37,12 @@ void func_800EB874(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB8C0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBB30.s")
+s32 func_800EBB30(s32 *arg0, s32 *arg1) {
+    extern s32 D_80132EA0;
+    *arg0 = (*(s32 *)((s8 *)(&D_80132EA0) + (0x14)));
+    *arg1 = (*(s32 *)((s8 *)(&D_80132EA0) + (0x18)));
+    return (*(s32 *)((s8 *)(&D_80132EA0) + (0x1C)));
+}
 
 OSThread *func_800EBB50(void)
 {
