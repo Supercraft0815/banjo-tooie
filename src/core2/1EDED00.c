@@ -13,7 +13,13 @@ void func_80105438(void) {
     freelist_free(D_80136EC0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_8010545C.s")
+void func_8010545C(void) {
+    s32 freelist_defrag(s32);
+    extern s32 D_80136EC0;
+    if (D_80136EC0 != 0) {
+        D_80136EC0 = freelist_defrag(D_80136EC0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105494.s")
 
