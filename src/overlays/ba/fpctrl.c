@@ -68,7 +68,18 @@ void bafpctrl_entrypoint_10(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 144) + 18) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/bafpctrl_entrypoint_11.s")
+void bafpctrl_entrypoint_11(void *arg0, s32 arg1, s32 arg2) {
+    s32 *temp_v0;
+    s32 *temp_v0_2;
+
+    if (arg2 != 0) {
+        temp_v0 = (*(s32 **)((s8 *)(arg0) + (0x90)));
+        *temp_v0 |= arg1;
+        return;
+    }
+    temp_v0_2 = (*(s32 **)((s8 *)(arg0) + (0x90)));
+    *temp_v0_2 &= ~arg1;
+}
 
 /* extern */
 
