@@ -19,7 +19,10 @@ void func_80092224(void *arg0) {
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x1A))) = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092234.s")
+void func_80092234(void *arg0) {
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x1A))) = 1;
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x16))) = 1;
+}
 
 s32 func_8009224C(u8 **arg0) {
     return arg0[20][26];
