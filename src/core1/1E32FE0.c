@@ -11,7 +11,61 @@ void func_8001B50C(void)
     D_8007C6E0 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E32FE0/func_8001B518.s")
+void func_8001B518(s32 arg0)
+{
+    typedef struct { void *ptr; s32 type; } Entry;
+    extern Entry D_8007BF10[];
+    extern s32 D_8007C6E0;
+    extern s32 D_8007C6E4;
+    void *defrag(void *);
+    void func_800E0040(u32 *);
+    void func_800E0AC0();
+    void vector_update_pointers();
+    void *old;
+    void *saved;
+    void *moved;
+    s32 type;
+    s32 i;
+    s32 count;
+    Entry *entry;
+
+    if (D_8007C6E0 == 0 || arg0 != 0) {
+        D_8007C6E0 = 1;
+        if (arg0 != 0) {
+            count = 250;
+        } else {
+            count = 20;
+        }
+        for (i = 1; i < count; i++) {
+            D_8007C6E4++;
+            if (D_8007C6E4 >= 250) {
+                D_8007C6E4 = 0;
+            }
+            if (D_8007BF10[D_8007C6E4].ptr != 0) {
+                saved = D_8007BF10[D_8007C6E4].ptr;
+                moved = defrag(D_8007BF10[D_8007C6E4].ptr);
+                entry = &D_8007BF10[D_8007C6E4];
+                entry->ptr = moved;
+                if (moved != saved) {
+                    type = entry->type;
+                    if (type != 0) {
+                        switch (type) {
+                        case 1:
+                            func_800E0040((u32 *)entry->ptr);
+                            break;
+                        case 3:
+                            func_800E0AC0(entry->ptr);
+                            break;
+                        case 5:
+                            vector_update_pointers(entry->ptr);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E32FE0/func_8001B668.s")
 
