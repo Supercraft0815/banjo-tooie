@@ -2,7 +2,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bubbled/func_80800000_bsdronebubbled.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bubbled/bsdronebubbled_entrypoint_0.s")
+/* extern */
+
+void bsdronebubbled_entrypoint_0(void *arg0) {
+    s32 func_80800000_bsdronebubbled();
+    if ((*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x54)))) + (0x48))) != 0) {
+        func_80800000_bsdronebubbled();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bubbled/bsdronebubbled_entrypoint_1.s")
 
