@@ -29,7 +29,14 @@ void func_80800060_bstnt(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_808005F4_bstnt.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80800668_bstnt.s")
+/* extern */
+
+void func_80800668_bstnt(s32 arg0) {
+    s32 baflag_clear(s32, s32);
+    s32 func_8009E474();
+    func_8009E474();
+    baflag_clear(arg0, 0x32);
+}
 
 void func_80800694_bstnt()
 {
