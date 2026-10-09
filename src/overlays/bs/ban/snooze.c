@@ -60,7 +60,10 @@ void func_8080069C_bsbansnooze(PlayerState* self)
 {
     _bsdrone_entrypoint_1(self);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/bsbansnooze_entrypoint_3.s")
+s32 bsbansnooze_entrypoint_3(s32 arg0) {
+    extern s32 D_80800A88_bsbansnooze[];
+    return ((s32 *)&D_80800A88_bsbansnooze)[arg0];
+}
 
 void func_808006D0_bsbansnooze(s32 arg0)
 {
