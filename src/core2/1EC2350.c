@@ -5,7 +5,14 @@ void func_800E8A60(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8A68.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8B04.s")
+void func_800E8B04(void) {
+    s32 freelist_free(s32);
+    extern s32 D_8012D680;
+    if (D_8012D680 != 0) {
+        freelist_free(D_8012D680);
+        D_8012D680 = 0;
+    }
+}
 
 void func_800E8B3C(void) {
     s32 freelist_defrag(s32);
