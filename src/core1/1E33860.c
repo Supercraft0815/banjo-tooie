@@ -11,6 +11,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E33860/func_8001BF80.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E33860/func_8001C070.s")
+/* extern */
+
+s32 func_8001C070(void) {
+    s32 func_8001BF80();
+    s32 var_v1;
+
+    if (func_8001BF80() != 0) {
+        var_v1 = 1;
+    } else {
+        var_v1 = 0;
+    }
+    return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E33860/func_8001C0A0.s")
