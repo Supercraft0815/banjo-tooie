@@ -10,7 +10,12 @@ void func_80800000_bsbbilldrill(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/func_80800100_bsbbilldrill.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/func_80800158_bsbbilldrill.s")
+void func_80800158_bsbbilldrill(s32 arg0) {
+    s32 func_800B5BE4(s32);
+    s32 func_800BABB8(s32, s32, s32, s32, s32 *);
+    extern s32 D_80800AC8_bsbbilldrill;
+    func_800BABB8(func_800B5BE4(9), arg0, 0, 0x3F800000, &D_80800AC8_bsbbilldrill);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/func_8080019C_bsbbilldrill.s")
 
