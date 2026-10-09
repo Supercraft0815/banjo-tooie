@@ -36,7 +36,18 @@ void func_8080049C_bsbanswim()
     func_808003BC_bsbanswim();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/swim/func_808004BC_bsbanswim.s")
+/* extern */
+
+void func_808004BC_bsbanswim(s32 arg0) {
+    s32 anctrl_setDuration(s32, s32);
+    s32 baanim_getAnimCtrlPtr();
+    s32 func_8080040C_bsbanswim(s32);
+    s32 sp1C;
+
+    sp1C = baanim_getAnimCtrlPtr();
+    func_8080040C_bsbanswim(arg0);
+    anctrl_setDuration(sp1C, 0x3F800000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/swim/func_808004F4_bsbanswim.s")
 
