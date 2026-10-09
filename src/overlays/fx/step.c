@@ -14,7 +14,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/func_808003B4_fxstep.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/fxstep_entrypoint_0.s")
+/* extern */
+
+void fxstep_entrypoint_0(void *arg0) {
+    s32 func_800C2FDC(u8);
+    s32 heap_free(void *);
+    func_800C2FDC((*(u8 *)((s8 *)(arg0) + (0x24))));
+    func_800C2FDC((*(u8 *)((s8 *)(arg0) + (0x25))));
+    heap_free(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/fxstep_entrypoint_1.s")
 
