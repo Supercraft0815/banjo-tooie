@@ -1,6 +1,14 @@
 #include "core2/1EDD9C0.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDD9C0/func_801040D0.s")
+s32 func_801040D0(void) {
+    s32 func_800DFAD0(s32 *);
+    extern s32 D_80135AB0;
+    extern s32 D_80135AB8;
+    (*(s32 **)((s8 *)(&D_80135AB0) + (0))) = &D_80135AB8;
+    (*(s32 *)((s8 *)(&D_80135AB0) + (4))) = 0x6D;
+    func_800DFAD0(&D_80135AB0);
+    return (s32) &D_80135AB0;
+}
 
 OSThread *func_8010410C(void)
 {
