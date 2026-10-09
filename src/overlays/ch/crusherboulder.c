@@ -24,7 +24,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80801064_chcrusherboulder.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_808010EC_chcrusherboulder.s")
+void func_808010EC_chcrusherboulder(void) {
+    s32 func_800BBCB8(s32 *, s32, s32, s32, s32 *);
+    extern s32 D_80801464_chcrusherboulder;
+    extern s32 D_80801470_chcrusherboulder;
+    func_800BBCB8(&D_80801464_chcrusherboulder, 0, 0x3F800000, 3, &D_80801470_chcrusherboulder);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80801128_chcrusherboulder.s")
 
