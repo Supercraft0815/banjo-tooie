@@ -20,7 +20,10 @@ s32 bsjump_entrypoint_3(s32 arg0) {
 void bsjump_entrypoint_6(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_7.s")
+s32 bsjump_entrypoint_7(s32 arg0) {
+    extern s32 D_80801120_bsjump[];
+    return ((s32 *)&D_80801120_bsjump)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_8.s")
 
