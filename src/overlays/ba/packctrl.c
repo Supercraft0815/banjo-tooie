@@ -7,7 +7,12 @@ s32 bapackctrl_entrypoint_0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/packctrl/func_80800008_bapackctrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/packctrl/bapackctrl_entrypoint_1.s")
+/* extern */
+
+void bapackctrl_entrypoint_1(s32 arg0) {
+    s32 func_8009EA58();
+    func_8009EA58();
+}
 
 void bapackctrl_entrypoint_2(s32 arg0)
 {
