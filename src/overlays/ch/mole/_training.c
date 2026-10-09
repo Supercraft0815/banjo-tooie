@@ -8,7 +8,33 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_80800270_chmole_training.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_808003D4_chmole_training.s")
+/* extern */
+
+void func_808003D4_chmole_training(void *arg0) {
+    void _sumole_entrypoint_19(void *, s32);
+    s32 func_800DA298(s32);
+    void func_800DA3B8(s32, s32);
+
+    switch ((u32) (*(f32 *)((s8 *)(arg0) + (0x54)))) {
+    case 6:
+        if (func_800DA298(0x53) == 0) {
+            func_800DA3B8(0x53, 1);
+            return;
+        }
+    default:
+        return;
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 7:
+        _sumole_entrypoint_19(arg0, 3);
+        (*(u8 *)((s8 *)(arg0) + (0x72))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x72))) & 0xFF03) | 0xC);
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_808004D0_chmole_training.s")
 
