@@ -31,7 +31,14 @@ void subaddietaxi_entrypoint_3(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_13.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_14.s")
+/* extern */
+
+void subaddietaxi_entrypoint_14(s32 arg0, s32 arg1) {
+    s32 _subaddieDll_entrypoint_4(s32, s32);
+    void *func_8010410C();
+    (*(s16 *)((s8 *)(func_8010410C()) + (0x20))) = 0;
+    _subaddieDll_entrypoint_4(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_15.s")
 
