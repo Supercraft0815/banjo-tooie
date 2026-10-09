@@ -24,7 +24,15 @@ void func_800D2CC4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D2CD0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D2E4C.s")
+void func_800D2E4C(void) {
+    s32 heap_free(s32);
+    extern s32 D_8012B360;
+    if ((*(s32 *)((s8 *)(&D_8012B360) + (0))) != 0) {
+        heap_free((*(s32 *)((s8 *)(&D_8012B360) + (0))));
+        (*(s32 *)((s8 *)(&D_8012B360) + (0))) = 0;
+    }
+    (*(s32 *)((s8 *)(&D_8012B360) + (4))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D2E90.s")
 
