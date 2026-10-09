@@ -49,7 +49,12 @@ void func_801107B0(void *arg0) {
     func_800F5A00((*(s32 *)((s8 *)(arg0) + (0x68))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_801107D0.s")
+/* extern */
+
+void func_801107D0(void *arg0) {
+    s32 func_800F5B38(s32);
+    func_800F5B38((*(s32 *)((s8 *)(arg0) + (0x68))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_801107F0.s")
 
