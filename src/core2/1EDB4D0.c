@@ -4,7 +4,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80101CDC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80101D0C.s")
+/* extern */
+
+f32 func_80101D0C(void) {
+    f32 func_8008B2AC(s32);
+    s32 func_80104248();
+    s32 temp_v0;
+
+    temp_v0 = func_80104248();
+    if (temp_v0 != 0) {
+        return func_8008B2AC(temp_v0);
+    }
+    return 0.0f;
+}
 
 /* extern */
 
