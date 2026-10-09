@@ -32,7 +32,15 @@ void func_80800548_chmrsboggy(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggy/func_80800738_chmrsboggy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggy/func_80800790_chmrsboggy.s")
+/* extern */
+
+void func_80800790_chmrsboggy(void *arg0) {
+    s32 _capod_entrypoint_3(s32, void *);
+    if ((*(s32 *)((s8 *)(arg0) + (0x28))) != 0) {
+        _capod_entrypoint_3(0, arg0);
+        (*(s32 *)((s8 *)(arg0) + (0x28))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggy/func_808007CC_chmrsboggy.s")
 
