@@ -6,7 +6,9 @@ u32 gspropctrl_entrypoint_0(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propctrl/gspropctrl_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propctrl/gspropctrl_entrypoint_2.s")
+u32 gspropctrl_entrypoint_2(void *arg0) {
+    return (u32) ((*(s32 *)((s8 *)(arg0) + (4))) << 0x19) >> 0x1A;
+}
 
 s32 gspropctrl_entrypoint_3(s32 *arg0) {
     return arg0[3];
