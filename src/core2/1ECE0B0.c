@@ -168,7 +168,12 @@ PlayerState *func_800F53D0(s32 arg0) {
     return D_80135490[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F53E4.s")
+PlayerState *func_800F53E4(s32 arg0) {
+    if ((arg0 >= 0) && (arg0 < 8)) {
+        return D_80135490[arg0];
+    }
+    return NULL;
+}
 
 s32 func_800F5410(s32 arg0)
 {
