@@ -37,7 +37,81 @@ void func_80800398_chfriesstand(Actor* arg0)
     func_80800970_chfriesstand(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/func_808003B8_chfriesstand.s")
+s32 func_808003B8_chfriesstand(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _capod_entrypoint_13(Unk80132ED0 *, s32, s32, s32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_80090734(s32, f32 *);
+    s32 func_800D1A04(s32);
+    s32 func_80101EE4(Actor *, f32);
+    s32 func_80102424(Actor *, s32);
+    s32 func_80103110(Actor *, s32);
+    void *func_80106790(Unk80132ED0 *);
+    s32 func_80108B04(Actor *, s32);
+    s32 func_80800904_chfriesstand(Actor *);
+    s32 func_808009F0_chfriesstand(Actor *, s16, s16);
+    s32 func_80800AEC_chfriesstand(Actor *, s16, s16);
+    s32 func_80800BB0_chfriesstand(Actor *);
+    extern s32 D_80800FF0_chfriesstand;
+    Unk80132ED0 *temp_a0;
+    s32 temp_t7;
+    void *temp_v0;
+
+    switch (arg1) {
+    default:
+        return 0;
+    case 0x2E:
+        func_808009F0_chfriesstand(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x2F:
+        func_80800AEC_chfriesstand(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x32:
+        func_80090734(2, arg0->position);
+        break;
+    case 0x3D:
+        func_80800BB0_chfriesstand(arg0);
+        break;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_80800FF0_chfriesstand, arg0->scale);
+        break;
+    case 0xA:
+        arg0->unk64_16 = 1;
+        func_80102424(arg0, 3);
+        func_80101EE4(arg0, 0.0f);
+        func_80103110(arg0, 1);
+        temp_a0 = arg0->unk3C;
+        if (temp_a0 != NULL) {
+            temp_v0 = func_80106790(temp_a0);
+            ((Actor *)temp_v0)->unk64_16 = arg0->unk64_16;
+        }
+        _capod_entrypoint_13(arg0->unk0, 0, 0x16, 0x30);
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x10E0, 4, arg0->position, 0x51);
+        break;
+    case 0x29:
+        func_80800904_chfriesstand(arg0);
+        break;
+    case 0x2A:
+        func_80800970_chfriesstand(arg0);
+        break;
+    case 0x95:
+        if (func_800D1A04(0x4C) == 0) {
+            func_80108B04(arg0, 0);
+        }
+        break;
+    case 0xB8:
+        temp_t7 = arg2 & 0xFFFF;
+        switch (temp_t7) {
+        default:
+            return 0;
+        case 1:
+            return arg0->unk3C != NULL ? 0x10AE : 0x10AF;
+        case 2:
+            return arg0->unk3C != NULL ? 0x1109 : 0x110A;
+        }
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/func_808005F0_chfriesstand.s")
 
