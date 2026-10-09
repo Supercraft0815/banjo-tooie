@@ -37,7 +37,15 @@ OSThread *chbottlesfamily_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_808005D0_chbottlesfamily.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_80800600_chbottlesfamily.s")
+/* extern */
+
+void func_80800600_chbottlesfamily(s32 arg0) {
+    s32 func_80102424(s32, s32);
+    s32 _glcutDll_entrypoint_20();
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80102424(arg0, 5);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_80800630_chbottlesfamily.s")
 
