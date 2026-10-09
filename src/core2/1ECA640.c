@@ -2,7 +2,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F0D50.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F0D90.s")
+s32 func_800F0D90(s32 arg0, s32 arg1, s32 arg2) {
+    if (arg0 < arg1) {
+        return arg1;
+    }
+    if (arg2 < arg0) {
+        return arg2;
+    }
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F0DC0.s")
 
