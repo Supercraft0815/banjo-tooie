@@ -232,7 +232,22 @@ void func_800C9610(void) {
     _gctransitionDll_entrypoint_6(var_a0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C964C.s")
+/* extern */
+
+void func_800C964C(s32 arg0) {
+    s32 _gctransitionDll_entrypoint_7(s32, s32);
+    s32 func_800C9150(s32);
+    s32 func_800C91C8(s32);
+    s32 temp_v0;
+    s32 var_a0;
+
+    temp_v0 = func_800C91C8(4);
+    var_a0 = temp_v0;
+    if (temp_v0 == 0) {
+        var_a0 = func_800C9150(4);
+    }
+    _gctransitionDll_entrypoint_7(var_a0, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C968C.s")
 
