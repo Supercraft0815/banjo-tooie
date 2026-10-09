@@ -96,7 +96,59 @@ s32 bsbswim_entrypoint_2(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_8080090C_bsbswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_8080097C_bsbswim.s")
+void func_8080097C_bsbswim(s32 arg0) {
+    void _baswim_entrypoint_10(void *, f32);
+    void _baswim_entrypoint_11(void *);
+    void _baswim_entrypoint_12(void *);
+    void _baswim_entrypoint_13(void *);
+    s32 _baswim_entrypoint_2(s32);
+    s32 _baswim_entrypoint_3(s32);
+    void func_8009DF18(s32, s32, f32, s32);
+    s32 baanim_getAnimCtrlPtr();
+    s32 anctrl_isAt(s32, f32);
+    s32 bs_setState(s32, s32);
+    s32 player_inWater();
+    s32 sp24;
+    s32 sp20;
+
+    sp24 = 0;
+    sp20 = baanim_getAnimCtrlPtr(arg0);
+    _baswim_entrypoint_11((void *)arg0);
+    _baswim_entrypoint_12((void *)arg0);
+    _baswim_entrypoint_13((void *)arg0);
+    _baswim_entrypoint_10((void *)arg0, 250.0f);
+    if (anctrl_isAt(sp20, 0.17f)) {
+        func_8009DF18(arg0, 0x3FD, 1.9f, 0x2710);
+    }
+    if (anctrl_isAt(sp20, 0.67f)) {
+        func_8009DF18(arg0, 0x3FD, 1.7f, 0x2710);
+    }
+    switch (_baswim_entrypoint_3((s32)arg0)) {
+    case 0:
+        if (anctrl_isAt(sp20, 0.4791f)) {
+            sp24 = 0x2B;
+        }
+        break;
+    case 1:
+        break;
+    case 2:
+        sp24 = 0x2C;
+        break;
+    case 3:
+        sp24 = 0x19;
+        break;
+    }
+    if (bainput_func_8009803C(arg0)) {
+        sp24 = 0x157;
+    }
+    if (_baswim_entrypoint_2((s32)arg0)) {
+        sp24 = 0x2D;
+    }
+    if (!player_inWater(arg0)) {
+        sp24 = 1;
+    }
+    bs_setState(arg0, sp24);
+}
 
 void func_80800AD0_bsbswim(s32 arg0)
 {
