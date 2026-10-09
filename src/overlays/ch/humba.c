@@ -25,7 +25,15 @@ void func_80800000_chhumba(s32 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_808003CC_chhumba.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800414_chhumba.s")
+/* extern */
+
+s32 func_80800414_chhumba(void *arg0) {
+    s32 func_800EA05C();
+    if (func_800EA05C() == 0x122) {
+        return 0x346;
+    }
+    return ((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF) + 0x346;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800450_chhumba.s")
 
