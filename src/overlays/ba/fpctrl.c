@@ -7,7 +7,14 @@ s32 bafpctrl_entrypoint_0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_80800008_bafpctrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_808000DC_bafpctrl.s")
+/* extern */
+
+void func_808000DC_bafpctrl(void *arg0, s32 arg1, f32 arg2) {
+    s32 func_800A4C68(f32);
+    s32 func_800C51A4(s32, s32);
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x90)))) + (0x18))) = arg2;
+    func_800C51A4(func_800A4C68(arg2), arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_80800114_bafpctrl.s")
 
