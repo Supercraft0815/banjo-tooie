@@ -97,7 +97,10 @@ void func_80114C7C(void* arg0)
 {
     heap_free(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80114C9C.s")
+void func_80114C9C(void *arg0, f32 *arg1, f32 *arg2) {
+    *arg1 = (*(f32 *)((s8 *)(arg0) + (0xC)));
+    *arg2 = (*(f32 *)((s8 *)(arg0) + (0x10)));
+}
 
 void func_80114CB0(void *arg0, f32 arg1) {
     (*(s8 *)((s8 *)(arg0) + (4))) = 0;
