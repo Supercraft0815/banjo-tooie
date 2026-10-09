@@ -4,7 +4,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/lakebits/func_8080007C_chfantasylakebits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/lakebits/func_80800300_chfantasylakebits.s")
+/* extern */
+
+void func_80800300_chfantasylakebits(s32 arg0, s16 arg1) {
+    s32 _idwibble_entrypoint_5(s32, s16);
+    s32 _idworld_entrypoint_4(s32, s32);
+    s32 func_800BEA88(s32);
+    s32 temp_v0;
+
+    temp_v0 = _idworld_entrypoint_4(func_800BEA88(1), 1);
+    if (temp_v0 != 0) {
+        _idwibble_entrypoint_5(temp_v0, arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/lakebits/func_80800344_chfantasylakebits.s")
 
