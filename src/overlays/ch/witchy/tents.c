@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/witchy/tents/func_80800000_chwitchytents.s")
+/* extern */
+
+void func_80800000_chwitchytents(s32 arg0) {
+    s32 func_800EA05C();
+    s32 func_8010A624(s32);
+    if (func_800EA05C() == 0x124) {
+        func_8010A624(arg0);
+    }
+}
 
 OSThread *chwitchytents_entrypoint_0(void)
 {
