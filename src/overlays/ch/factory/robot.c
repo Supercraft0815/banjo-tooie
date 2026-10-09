@@ -61,7 +61,12 @@ OSThread *chfactoryrobot_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80801BB0_chfactoryrobot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80801C50_chfactoryrobot.s")
+s32 func_80801C50_chfactoryrobot(s32 arg0) {
+    s32 func_80101074(s32 *);
+    extern s32 D_80802AD4_chfactoryrobot;
+    func_80101074(&D_80802AD4_chfactoryrobot);
+    return 2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80801C7C_chfactoryrobot.s")
 
