@@ -28,7 +28,13 @@ void basub_entrypoint_1(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_4.s")
+/* extern */
+
+void basub_entrypoint_4(void) {
+    s32 _chping_entrypoint_0(s32);
+    void *func_800F53D0();
+    _chping_entrypoint_0((*(s32 *)((s8 *)(func_800F53D0()) + (0x184))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_5.s")
 
