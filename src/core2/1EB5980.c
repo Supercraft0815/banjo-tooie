@@ -18,7 +18,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5980/func_800DC2D4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5980/func_800DC310.s")
+void func_800DC310(void) {
+    extern s32 D_8012C7F0;
+    D_8012C7F0 = 0xEAA0C7;
+}
 
 void func_800DC324(s32 arg0) {
     extern s32 D_8012C7F0;
