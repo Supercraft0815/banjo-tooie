@@ -193,7 +193,16 @@ void func_800B8FE0(void) {
     D_8012712C = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B8FEC.s")
+void func_800B8FEC(void) {
+    s32 heap_free(void *);
+    extern s32 D_80127128;
+    if ((*(void **)((s8 *)(&D_80127128) + (0))) != NULL) {
+        heap_free((*(void **)((s8 *)((*(void **)((s8 *)(&D_80127128) + (0)))) + (0x1C))));
+        heap_free((*(void **)((s8 *)(&D_80127128) + (0))));
+        (*(void **)((s8 *)(&D_80127128) + (0))) = NULL;
+        (*(s32 *)((s8 *)(&D_80127128) + (4))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B9038.s")
 
