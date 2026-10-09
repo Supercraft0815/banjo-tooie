@@ -17,7 +17,15 @@ OSThread *chjadestatue_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadestatue/func_808001C0_chjadestatue.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadestatue/func_8080026C_chjadestatue.s")
+/* extern */
+
+void func_8080026C_chjadestatue(s32 arg0) {
+    s32 func_800D035C(s32);
+    s32 func_800FFAB0(s32);
+    if (func_800D035C(5) >= 0x14) {
+        func_800FFAB0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadestatue/func_808002A4_chjadestatue.s")
 
