@@ -109,7 +109,10 @@ void func_8080121C_bstnt(s32 arg0)
     bstnt_entrypoint_2();
     _bsdrone_entrypoint_2(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/bstnt_entrypoint_6.s")
+s32 bstnt_entrypoint_6(s32 arg0) {
+    extern s32 D_8080255C_bstnt[];
+    return ((s32 *)&D_8080255C_bstnt)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80801258_bstnt.s")
 
