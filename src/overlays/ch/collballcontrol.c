@@ -43,7 +43,9 @@ void func_808000F4_chcollballcontrol()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808010B8_chcollballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808010F8_chcollballcontrol.s")
+s32 func_808010F8_chcollballcontrol(void *arg0) {
+    return (*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80801108_chcollballcontrol.s")
 
