@@ -12,7 +12,13 @@ void func_80106A28(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE0310/func_80106A60.s")
+void func_80106A60(void) {
+    s32 func_800B38E8(s32);
+    extern s32 D_80136EF0;
+    if (D_80136EF0 != 0) {
+        D_80136EF0 = func_800B38E8(D_80136EF0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE0310/func_80106A98.s")
 
