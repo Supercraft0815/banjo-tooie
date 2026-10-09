@@ -102,7 +102,15 @@ void func_800BF420()
     _gcmapDll_entrypoint_4(&D_801285B0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF444.s")
+void func_800BF444(void) {
+    s32 _gcmapDll_entrypoint_3(s32 *);
+    s32 func_800C6A28(s32 *, s32 *, s32 *, s32 (*)());
+    extern s32 func_800BEF00;
+    extern s32 func_800BF0E0;
+    extern s32 func_800BF228;
+    _gcmapDll_entrypoint_3(&D_801285B0);
+    func_800C6A28(&func_800BEF00, &func_800BF0E0, &func_800BF228, func_800BEB4C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF48C.s")
 
