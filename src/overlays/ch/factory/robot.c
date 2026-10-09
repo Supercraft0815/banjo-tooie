@@ -82,7 +82,18 @@ s32 func_80801C50_chfactoryrobot(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80801D7C_chfactoryrobot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_8080219C_chfactoryrobot.s")
+/* extern */
+
+void func_8080219C_chfactoryrobot(void *arg0) {
+    s32 func_800E8C08(s32, u8, void *);
+    u8 temp_a1;
+
+    temp_a1 = (*(u8 *)((s8 *)(arg0) + (0x28)));
+    if (temp_a1 != 0) {
+        func_800E8C08(temp_a1 & 0xFF, temp_a1, arg0);
+        (*(u8 *)((s8 *)(arg0) + (0x28))) = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_808021D4_chfactoryrobot.s")
 
