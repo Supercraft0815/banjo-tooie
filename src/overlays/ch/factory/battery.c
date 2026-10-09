@@ -23,7 +23,13 @@ OSThread *chfactorybattery_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_808004E8_chfactorybattery.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80800558_chfactorybattery.s")
+/* extern */
+
+void func_80800558_chfactorybattery(void) {
+    s32 func_800DA298(s32);
+    s32 func_80800678_chfactorybattery();
+    func_800DA298(func_80800678_chfactorybattery() + 0x1B1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80800580_chfactorybattery.s")
 
