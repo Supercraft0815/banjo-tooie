@@ -7,7 +7,15 @@ OSThread *chhotwatersteam_entrypoint_0(void)
     return (OSThread *) D_80800240_chhotwatersteam;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/watersteam/func_8080000C_chhotwatersteam.s")
+/* extern */
+
+void func_8080000C_chhotwatersteam(s32 *arg0) {
+    s32 func_800FFA88(s32);
+    s32 func_808001E8_chhotwatersteam();
+    if (func_808001E8_chhotwatersteam() == 0) {
+        func_800FFA88(*arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/watersteam/func_8080003C_chhotwatersteam.s")
 
