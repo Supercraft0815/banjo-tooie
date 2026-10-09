@@ -33,7 +33,14 @@ void func_808001B0_chmasterjiggy(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_808004FC_chmasterjiggy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_80800704_chmasterjiggy.s")
+/* extern */
+
+void func_80800704_chmasterjiggy(s32 *arg0, s32 arg1, s32 arg2) {
+    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    s32 _capod_entrypoint_14();
+    _capod_entrypoint_14();
+    _capod_entrypoint_13(*arg0, 0, arg2, 0x2030);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_80800744_chmasterjiggy.s")
 
