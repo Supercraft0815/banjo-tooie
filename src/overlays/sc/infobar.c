@@ -2,7 +2,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/func_80800000_scinfobar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/func_808000B0_scinfobar.s")
+void func_808000B0_scinfobar(void *arg0) {
+    s16 temp_v0;
+
+    (*(s16 *)((s8 *)(arg0) + (0x30))) = 0;
+    temp_v0 = (*(s16 *)((s8 *)(arg0) + (0x30)));
+    (*(s16 *)((s8 *)(arg0) + (0x2E))) = temp_v0;
+    (*(s16 *)((s8 *)(arg0) + (0x2C))) = temp_v0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/func_808000C4_scinfobar.s")
 
