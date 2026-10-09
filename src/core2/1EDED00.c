@@ -3,7 +3,11 @@ extern s32 D_80136ED8;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105410.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105438.s")
+void func_80105438(void) {
+    s32 freelist_free(s32);
+    extern s32 D_80136EC0;
+    freelist_free(D_80136EC0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_8010545C.s")
 
