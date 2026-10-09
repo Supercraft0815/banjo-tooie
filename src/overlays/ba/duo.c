@@ -47,7 +47,17 @@ void baduo_entrypoint_11(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 88) + 2) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_12.s")
+/* extern */
+
+void baduo_entrypoint_12(s32 arg0) {
+    s32 _bashoes_entrypoint_6(s32, s32);
+    s32 func_8008E39C();
+    s32 func_800F9A6C();
+    if (func_8008E39C() != 0) {
+        _bashoes_entrypoint_6(arg0, 2);
+    }
+    func_800F9A6C();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_13.s")
 
