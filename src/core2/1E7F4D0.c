@@ -43,4 +43,11 @@ void * func_800A5D60(void) {
     return &D_80127110;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F4D0/func_800A5D6C.s")
+/* extern */
+
+void func_800A5D6C(void) {
+    s32 defrag(s32);
+    if (D_80127110 != 0) {
+        D_80127110 = defrag(D_80127110);
+    }
+}
