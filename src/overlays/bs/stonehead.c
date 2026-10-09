@@ -99,7 +99,10 @@ void bsstonehead_entrypoint_22(s32 arg0)
     func_80800000_bsstonehead();
     func_80090A2C(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_23.s")
+s32 bsstonehead_entrypoint_23(s32 arg0) {
+    extern s32 D_80801680_bsstonehead[];
+    return ((s32 *)&D_80801680_bsstonehead)[arg0];
+}
 
 void bsstonehead_entrypoint_24(s32 arg0)
 {
