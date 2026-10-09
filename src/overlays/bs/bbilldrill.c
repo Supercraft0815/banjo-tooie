@@ -21,7 +21,15 @@ void func_80800158_bsbbilldrill(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/func_80800250_bsbbilldrill.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/func_80800298_bsbbilldrill.s")
+/* extern */
+
+void func_80800298_bsbbilldrill(s32 arg0) {
+    s32 _bswalk_entrypoint_1();
+    f32 baphysics_get_target_horizontal_velocity(s32);
+    s32 baphysics_set_target_horizontal_velocity(s32, f32);
+    _bswalk_entrypoint_1();
+    baphysics_set_target_horizontal_velocity(arg0, baphysics_get_target_horizontal_velocity(arg0) * 0.1f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/func_808002DC_bsbbilldrill.s")
 
