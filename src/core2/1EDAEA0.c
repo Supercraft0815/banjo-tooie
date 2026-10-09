@@ -55,4 +55,10 @@ void func_80101870(Actor* arg0, void* arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDAEA0/func_80101A50.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDAEA0/func_80101BA0.s")
+/* extern */
+
+void func_80101BA0(s32 arg0) {
+    s32 func_800DF744(s32, s32);
+    func_800DF744(1, 4);
+    func_800DF744(2, 4);
+}
