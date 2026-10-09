@@ -8,7 +8,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_80800174_bsvanswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_808001CC_bsvanswim.s")
+/* extern */
+
+void func_808001CC_bsvanswim(s32 arg0) {
+    s32 _bsvan_entrypoint_0(s32);
+    s32 func_800961AC(s32, s32);
+    s32 func_8009BC34();
+    func_8009BC34();
+    func_800961AC(arg0, 1);
+    _bsvan_entrypoint_0(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_80800200_bsvanswim.s")
 
