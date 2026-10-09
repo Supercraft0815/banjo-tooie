@@ -14,7 +14,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_5.s")
+/* extern */
+
+void suspline_entrypoint_5(s32 arg0) {
+    s32 func_800EE7F8(s32);
+    func_800EE7F8(arg0 + 0x3C);
+}
 
 f32 suspline_entrypoint_6(f32 *arg0) {
     return arg0[22];
