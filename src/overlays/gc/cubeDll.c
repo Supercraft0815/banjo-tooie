@@ -16,7 +16,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubeDll/gccubeDll_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubeDll/func_80800868_gccubeDll.s")
+/* extern */
+
+void func_80800868_gccubeDll(s32 arg0, s32 arg1) {
+    s32 func_800CE308();
+    func_800CE308();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubeDll/gccubeDll_entrypoint_5.s")
 
