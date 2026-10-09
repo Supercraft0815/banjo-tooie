@@ -123,7 +123,57 @@ OSThread *chstoneballcontrol_entrypoint_0(void)
     return (OSThread *) D_808050D4_chstoneballcontrol;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80801944_chstoneballcontrol.s")
+void func_80801944_chstoneballcontrol(u8 *arg0, s32 arg1) {
+    void _subaddiefade_entrypoint_3(u8 *);
+    void _sukickball_entrypoint_11(u8 *, s32);
+    s32 _sukickball_entrypoint_6(u8 *, s32);
+    void func_800B4470(u8 *, s32, void *, s32, f32, f32, s32, s32, s32);
+    void func_800F4F98(s32, void *);
+    void *func_80100094(void *, s32);
+    s32 func_80101FDC(u8 *, s32);
+    u8 *func_80106790(s32);
+    void func_808024F8_chstoneballcontrol(u8 *);
+    void func_80802588_chstoneballcontrol(u8 *, s32);
+    extern u8 D_8080511C_chstoneballcontrol[];
+    u8 *data;
+    s32 linked;
+    u32 kind;
+    u32 state;
+
+    data = func_80100094(arg0, 0);
+    state = (u32)*(u16 *)(arg0 + 0x72) >> 10;
+    if (state == 2 && arg1 != state) {
+        linked = *(s32 *)(arg0 + 0x3C);
+        if (linked != 0) {
+            if (_sukickball_entrypoint_6(func_80106790(linked), data[0x20])) {
+                func_800F4F98(data[0x20], *(void **)arg0);
+            }
+            _sukickball_entrypoint_11(func_80106790(*(s32 *)(arg0 + 0x3C)), data[0x20]);
+            state = (u32)*(u16 *)(arg0 + 0x72) >> 10;
+        }
+    }
+    if (state == 3 && arg1 == 2 && (*(u32 *)(*(u8 **)arg0 + 0x24) >> 22) == 0x253) {
+        *(f32 *)(data + 0x14) = 20.0f;
+        *(f32 *)(data + 0x18) = 2.0f;
+        _subaddiefade_entrypoint_3(arg0);
+        func_808024F8_chstoneballcontrol(arg0);
+        arg1 = 4;
+    }
+    func_80101FDC(arg0, arg1);
+    if (((u32)*(u16 *)(arg0 + 0x72) >> 10) == 6) {
+        func_808024F8_chstoneballcontrol(arg0);
+        _subaddiefade_entrypoint_3(arg0);
+        func_800B4470(arg0 + 4, 0, D_8080511C_chstoneballcontrol, 1, 0.75f, 0.0f, 0x7D, 0xFA, 0);
+        kind = *(u32 *)(*(u8 **)arg0 + 0x24) >> 22;
+        if (kind != 0x254) {
+            if (kind == 0x267) {
+                func_80802588_chstoneballcontrol(arg0, 1);
+            }
+        } else {
+            func_80802588_chstoneballcontrol(arg0, 2);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80801B00_chstoneballcontrol.s")
 
