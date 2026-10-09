@@ -29,7 +29,18 @@ OSThread *chfpsgame_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_8080075C_chfpsgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_808008D4_chfpsgame.s")
+/* extern */
+
+void func_808008D4_chfpsgame(s32 arg0) {
+    s32 func_80800FF4_chfpsgame(s32);
+    s32 func_808015EC_chfpsgame();
+    s32 func_80801758_chfpsgame(s32);
+    s32 func_808018E0_chfpsgame(s32);
+    func_808015EC_chfpsgame();
+    func_80800FF4_chfpsgame(arg0);
+    func_80801758_chfpsgame(arg0);
+    func_808018E0_chfpsgame(arg0);
+}
 
 void func_8080090C_chfpsgame(s32 arg0) 
 {
