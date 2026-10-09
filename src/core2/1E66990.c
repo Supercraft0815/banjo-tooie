@@ -149,7 +149,21 @@ s32 func_8008E23C(PlayerState *arg0) {
     return func_800F8B88() == 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E260.s")
+/* extern */
+
+s32 func_8008E260(PlayerState *arg0) {
+    s32 func_800954E8(PlayerState *, s32 *);
+    s32 player_isStable();
+    s32 sp1C;
+
+    if (player_isStable() != 0) {
+        return 0;
+    }
+    if (func_800954E8(arg0, &sp1C) == 0) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E2AC.s")
 
