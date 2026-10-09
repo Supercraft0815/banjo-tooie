@@ -6,7 +6,12 @@ void func_80800288_fxleaves(s8 *arg0, s32 arg1) {
     arg0[34] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/leaves/fxleaves_entrypoint_0.s")
+/* extern */
+
+void fxleaves_entrypoint_0(void *arg0) {
+    s32 vector_clear(s32);
+    vector_clear((*(s32 *)((s8 *)(arg0) + (0x1C))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/leaves/fxleaves_entrypoint_1.s")
 
