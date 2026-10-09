@@ -15,4 +15,10 @@ void fxripple_entrypoint_3()
     func_80800094_fxripple();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/ripple/fxripple_entrypoint_4.s")
+/* extern */
+
+void fxripple_entrypoint_4(f32 arg0) {
+    s32 func_800B5BE4(s32);
+    s32 func_800BA5D0(s32, s16);
+    func_800BA5D0(func_800B5BE4(3), (s16) (s32) arg0);
+}
