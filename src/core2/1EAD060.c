@@ -88,7 +88,14 @@ u32 func_800D3D1C(void) {
     return *(u8 *)&D_8012B3F5;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3D28.s")
+s32 func_800D3D28(void) {
+    extern s32 D_8012B3F0;
+    if ((*(u8 *)((s8 *)(&D_8012B3F0) + (9))) != 0) {
+        return 0;
+    }
+    (*(u8 *)((s8 *)(&D_8012B3F0) + (9))) = 1U;
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3D58.s")
 
