@@ -107,7 +107,14 @@ s32 bsbfly_entrypoint_6(s32 arg0) {
     return ((s32 *)&D_80801DA8_bsbfly)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_808019EC_bsbfly.s")
+/* extern */
+
+void func_808019EC_bsbfly(s32 arg0) {
+    s32 _bafly_entrypoint_16(s32, s32, s32);
+    s32 func_80800128_bsbfly();
+    func_80800128_bsbfly();
+    _bafly_entrypoint_16(arg0, 0x10D, 0x3F800000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80801A1C_bsbfly.s")
 
