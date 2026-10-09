@@ -19,7 +19,11 @@ void func_800E9708()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9804.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9898.s")
+void func_800E9898(s32 arg0) {
+    s32 func_800B3CDC(s32 *, s32);
+    extern s32 D_80132DB0;
+    func_800B3CDC(&D_80132DB0, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E98C0.s")
 
