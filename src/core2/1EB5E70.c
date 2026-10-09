@@ -149,7 +149,11 @@ void func_800DF47C(s32 arg0, s32 arg1) {
     (*(s32 *)((s8 *)(&D_8012C9A8) + (4))) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DF490.s")
+void func_800DF490(s32 arg0, s32 arg1) {
+    extern s32 D_8012C9A8;
+    (*(s32 *)((s8 *)(&D_8012C9A8) + (8))) = arg0;
+    (*(s32 *)((s8 *)(&D_8012C9A8) + (0xC))) = arg1;
+}
 
 void func_800DF4A4(s32 arg0)
 {
