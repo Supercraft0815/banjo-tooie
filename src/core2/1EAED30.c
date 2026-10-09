@@ -6,7 +6,13 @@ extern s32 D_8012B7E8;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D54F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D55A0.s")
+void func_800D55A0(void) {
+    s32 vector_new(s32, s32);
+    extern s32 D_8012B7F0;
+    extern s32 D_8012B7F4;
+    D_8012B7F0 = vector_new(8, 0x10);
+    D_8012B7F4 = vector_new(8, 0x10);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D55DC.s")
 
