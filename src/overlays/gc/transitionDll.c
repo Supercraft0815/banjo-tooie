@@ -12,7 +12,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/transitionDll/gctransitionDll_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/transitionDll/gctransitionDll_entrypoint_2.s")
+s32 gctransitionDll_entrypoint_2(void *arg0) {
+    return (*(u8 *)((s8 *)(arg0) + (0x1C))) == 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/transitionDll/gctransitionDll_entrypoint_3.s")
 
