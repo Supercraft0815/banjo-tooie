@@ -134,4 +134,13 @@ void func_80015CC0(void *arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80015CE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80015D14.s")
+f32 func_80015D14(void *arg0) {
+    extern f32 D_80041710;
+    f32 var_f2;
+
+    var_f2 = (f32) (*(s16 *)((s8 *)(arg0) + (8))) / (f32) (*(s16 *)((s8 *)(arg0) + (0xA)));
+    if (widescreen_enabled != 0) {
+        var_f2 *= D_80041710;
+    }
+    return var_f2;
+}
