@@ -25,4 +25,11 @@ OSThread *chfreezy_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/freezy/func_80800538_chfreezy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/freezy/func_808006C0_chfreezy.s")
+/* extern */
+
+void func_808006C0_chfreezy(s32 arg0) {
+    s32 _sufreezy_entrypoint_2();
+    s32 func_800FFAB0(s32);
+    _sufreezy_entrypoint_2();
+    func_800FFAB0(arg0);
+}
