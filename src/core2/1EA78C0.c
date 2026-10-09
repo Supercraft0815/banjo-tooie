@@ -80,7 +80,13 @@ void func_800CEF6C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF01C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF160.s")
+void func_800CF160(f32 arg0, s32 arg1) {
+    extern s32 D_8012B160;
+    (*(s8 *)((s8 *)(&D_8012B160) + (0xC))) = 1;
+    (*(f32 *)((s8 *)(&D_8012B160) + (0x14))) = arg0;
+    (*(s32 *)((s8 *)(&D_8012B160) + (0x1C))) = arg1;
+    (*(f32 *)((s8 *)(&D_8012B160) + (0x18))) = 0.0f;
+}
 
 void func_800CF184(void)
 {
