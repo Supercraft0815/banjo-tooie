@@ -190,7 +190,12 @@ s32 func_80111340()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111A98.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111ABC.s")
+/* extern */
+
+void func_80111ABC(void *arg0) {
+    s32 func_800EE7F8(s32);
+    func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x34))) + 0x68);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111AE0.s")
 
