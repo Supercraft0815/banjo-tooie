@@ -9,7 +9,11 @@ s32 func_80090E40(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6A730/func_80090F38.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6A730/func_80091030.s")
+void func_80091030(void *arg0) {
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (8))) = 0.0f;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (4))) = 0.0f;
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (0xC))) = 1;
+}
 
 void func_80091054(s32 arg0) 
 {
