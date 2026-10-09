@@ -189,4 +189,12 @@ void func_800BABB0(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BBCB8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BBD18.s")
+/* extern */
+
+void func_800BBD18(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, s32 *arg4) {
+    s32 func_800B4790(s32);
+    if (arg0 != 0) {
+        func_800BABB8(arg0, arg1, arg2, arg3, arg4);
+        func_800B4790(arg0);
+    }
+}
