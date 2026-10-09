@@ -62,7 +62,10 @@ void func_80800928_bsbanshack()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_808009E4_bsbanshack.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/bsbanshack_entrypoint_3.s")
+s32 bsbanshack_entrypoint_3(s32 arg0) {
+    extern s32 D_80800CE0_bsbanshack[];
+    return ((s32 *)&D_80800CE0_bsbanshack)[arg0];
+}
 
 void func_80800AD0_bsbanshack(s32 arg0)
 {
