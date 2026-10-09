@@ -35,4 +35,6 @@ void ncbaspline_entrypoint_3()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/spline/ncbaspline_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/spline/ncbaspline_entrypoint_8.s")
+s32 ncbaspline_entrypoint_8(void *arg0) {
+    return (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x44)))) + (0x28))) < 1;
+}
