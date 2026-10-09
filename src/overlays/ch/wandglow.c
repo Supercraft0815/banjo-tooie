@@ -39,7 +39,42 @@ s32 func_8080011C_chwandglow(s32 arg0, s32 arg1) {
     ((struct StateBits *)arg0)->state = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/wandglow/func_80800218_chwandglow.s")
+void func_80800218_chwandglow(s32 arg0) {
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    u8 func_800D9078(f32 *);
+    int func_800FFA88();
+    struct StateBits {
+        u8 pad[0x72];
+        u16 state : 6;
+        u16 other : 10;
+    };
+
+    switch (((struct StateBits *)arg0)->state) {
+    case 2:
+        *(f32 *)(arg0 + 0x2C) = func_800F10B4(*(f32 *)(arg0 + 0x28), 0.0f, 0.4f, 1, 0.0f);
+        if (func_800D9078((f32 *)(arg0 + 0x28))) {
+            func_8080011C_chwandglow(arg0, 3);
+        }
+        return;
+    case 3:
+        if (*(f32 *)(arg0 + 0x38) == 1.0f) {
+            *(f32 *)(arg0 + 0x38) = 0.75f;
+            return;
+        } else {
+            *(f32 *)(arg0 + 0x38) = 1.0f;
+        }
+        return;
+    case 4:
+        *(f32 *)(arg0 + 0x2C) = func_800F10B4(*(f32 *)(arg0 + 0x28), 0.0f, 0.3f, 0.0f, 1);
+        if (func_800D9078((f32 *)(arg0 + 0x28))) {
+            func_8080011C_chwandglow(arg0, 5);
+        }
+        break;
+    case 5:
+        func_800FFA88(*(s32 *)arg0);
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/wandglow/chwandglow_entrypoint_0.s")
 
