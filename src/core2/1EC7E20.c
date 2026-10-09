@@ -28,4 +28,10 @@ void func_800EE718(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC7E20/func_800EE748.s")
+void func_800EE748(void) {
+    s32 _idbounce_entrypoint_7();
+    extern u8 D_80135483;
+    if (D_80135483 != 0) {
+        _idbounce_entrypoint_7();
+    }
+}
