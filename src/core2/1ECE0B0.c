@@ -530,7 +530,12 @@ s32 func_800F66F0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F68B8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F690C.s")
+/* extern */
+
+void func_800F690C(s32 arg0) {
+    s32 baflag_isTrue(PlayerState *, s32);
+    baflag_isTrue(D_80135490[arg0], 0x17);
+}
 
 void func_800F693C(s32 arg0)
 {
