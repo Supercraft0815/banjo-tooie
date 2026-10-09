@@ -56,7 +56,16 @@ void func_800C0658()
     _gcdialogexec_entrypoint_2(&D_801288B0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C067C.s")
+/* extern */
+
+s32 func_800C067C(s32 arg0) {
+    s32 _gcdialogexec_entrypoint_6(s32 *, s32);
+    if (func_800C064C() != arg0) {
+        return 0;
+    }
+    _gcdialogexec_entrypoint_6(&D_801288B0, 6);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C06C4.s")
 
