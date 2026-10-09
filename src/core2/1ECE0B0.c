@@ -513,7 +513,12 @@ void func_800F6690(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F66BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F66F0.s")
+/* extern */
+
+s32 func_800F66F0(s32 arg0) {
+    s32 bs_getCurrentState(PlayerState *);
+    return bs_getCurrentState(D_80135490[arg0]) == 0x6F;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6720.s")
 
