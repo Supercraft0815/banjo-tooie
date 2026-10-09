@@ -107,7 +107,10 @@ void func_80800FCC_bsstatue()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80801060_bsstatue.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/bsstatue_entrypoint_7.s")
+s32 bsstatue_entrypoint_7(s32 arg0) {
+    extern s32 D_808015F0_bsstatue[];
+    return ((s32 *)&D_808015F0_bsstatue)[arg0];
+}
 
 void func_808010B4_bsstatue()
 {
