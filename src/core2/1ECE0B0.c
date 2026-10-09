@@ -823,7 +823,12 @@ void func_800F8874(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8914.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F89BC.s")
+s32 func_800F89BC(void) {
+    if (D_801354F8 == 2) {
+        return 0xB;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F89E4.s")
 
