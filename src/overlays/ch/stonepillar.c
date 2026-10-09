@@ -55,7 +55,15 @@ void func_808001FC_chstonepillar(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800CC8_chstonepillar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800DA4_chstonepillar.s")
+/* extern */
+
+void func_80800DA4_chstonepillar(s32 arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    if (func_800DA298(0x9D8) == 0) {
+        func_800DA544(0x9D8);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800DD8_chstonepillar.s")
 
