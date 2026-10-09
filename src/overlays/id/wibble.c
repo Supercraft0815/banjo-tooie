@@ -1,6 +1,39 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/wibble/func_80800000_idwibble.s")
+/* extern */
+
+f32 func_80800000_idwibble(void *arg0, void *arg1, void *arg2) {
+    f32 func_800136D0(f32);
+    f32 func_80013788(f32);
+    f32 func_800137D4(f32);
+    f32 func_800EEF94(f32 *);
+    f32 sp3C;
+    f32 temp_f12;
+    f32 vec[4];
+    f32 temp_f0_2;
+    f32 temp_f2;
+
+    vec[0] = (f32) (*(s16 *)((s8 *)(arg1) + (0)));
+    vec[1] = (f32) (*(s16 *)((s8 *)(arg1) + (2)));
+    vec[2] = (f32) (*(s16 *)((s8 *)(arg1) + (4)));
+    sp3C = func_800EEF94(vec);
+    temp_f12 = (sp3C - (*(f32 *)((s8 *)(arg0) + (0x24)))) * (*(f32 *)((s8 *)(arg0) + (0x28)));
+    temp_f12 = func_800136D0(temp_f12);
+    temp_f12 = func_800137D4(temp_f12);
+    temp_f12 *= (f32) (*(s16 *)((s8 *)(arg0) + (0x1A)));
+    if ((*(u8 *)((s8 *)(arg0) + (0x33))) != 0) {
+        temp_f2 = (*(f32 *)((s8 *)(arg0) + (0x28))) * ((f32) (*(s16 *)((s8 *)(arg0) + (0x1A))) * func_80013788(temp_f12));
+        if (sp3C > 0.0001f) {
+            temp_f0_2 = temp_f2 / sp3C;
+            (*(f32 *)((s8 *)(arg2) + (0))) = (f32) (vec[0] * temp_f0_2);
+            (*(f32 *)((s8 *)(arg2) + (4))) = (f32) (vec[2] * temp_f0_2);
+        } else {
+            (*(f32 *)((s8 *)(arg2) + (0))) = (f32) (vec[0] * temp_f2);
+            (*(f32 *)((s8 *)(arg2) + (4))) = (f32) (vec[2] * temp_f2);
+        }
+    }
+    return temp_f12;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/wibble/idwibble_entrypoint_0.s")
 
