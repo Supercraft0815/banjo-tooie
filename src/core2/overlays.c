@@ -171,7 +171,12 @@ s32 ovl_unload(struct Overlay* ovl, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/overlays/func_80081AA4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/overlays/func_80081BC0.s")
+s32 func_80081BC0(s32 *arg0) {
+    if ((*arg0 & 0xFC00003F) == 0xC) {
+        return 0;
+    }
+    return 1;
+}
 
 void defragment_overlays(void) {
     s32 i;
