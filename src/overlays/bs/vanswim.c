@@ -14,7 +14,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_808002D0_bsvanswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/bsvanswim_entrypoint_0.s")
+s32 bsvanswim_entrypoint_0(s32 arg0) {
+    extern s32 D_80800980_bsvanswim[];
+    return ((s32 *)&D_80800980_bsvanswim)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_8080042C_bsvanswim.s")
 
