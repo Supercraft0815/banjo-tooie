@@ -29,4 +29,9 @@ s32 func_800BFFA0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E995C0/func_800BFFF4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E995C0/func_800C0064.s")
+/* extern */
+
+void func_800C0064(s32 arg0) {
+    s32 _gcskyDll_entrypoint_2(s32 *, s32);
+    _gcskyDll_entrypoint_2(&D_80128770, arg0);
+}
