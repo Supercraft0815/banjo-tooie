@@ -6,7 +6,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_808007DC_choildrill.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/choildrill_entrypoint_0.s")
+void choildrill_entrypoint_0(s32 arg0, s32 arg1) {
+    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+    extern s32 D_808013DC_choildrill;
+    func_800BBCB8(arg1, 0, 0x3F800000, 1, &D_808013DC_choildrill);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_808008AC_choildrill.s")
 
