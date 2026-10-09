@@ -76,7 +76,19 @@ void func_800D73AC()
     func_800D59C0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D73CC.s")
+/* extern */
+
+s32 func_800D73CC(void) {
+    s32 func_800D6254();
+    s32 var_v1;
+
+    if (func_800D6254() == -1) {
+        var_v1 = 0;
+    } else {
+        var_v1 = 1;
+    }
+    return var_v1;
+}
 
 void * func_800D7400(void) {
     return &D_8012BE70;
