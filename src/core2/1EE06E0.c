@@ -6,7 +6,14 @@ void func_80106DF0(void) {
     D_80136F00 = freelist_new(0x18, 12);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80106E18.s")
+void func_80106E18(void) {
+    s32 freelist_free(s32);
+    extern s32 D_80136F00;
+    if (D_80136F00 != 0) {
+        freelist_free(D_80136F00);
+        D_80136F00 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80106E50.s")
 
