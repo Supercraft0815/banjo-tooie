@@ -7,7 +7,12 @@ OSThread *chfactorysmoke_entrypoint_0(void)
     return (OSThread *) D_80800100_chfactorysmoke;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/smoke/func_8080000C_chfactorysmoke.s")
+/* extern */
+
+void func_8080000C_chfactorysmoke(void *arg0) {
+    f32 func_800DC178(f32, f32);
+    (*(f32 *)((s8 *)(arg0) + (0x58))) = func_800DC178(0.55f, 0.65f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/smoke/func_80800044_chfactorysmoke.s")
 
