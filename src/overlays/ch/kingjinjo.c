@@ -20,7 +20,14 @@ OSThread *chkingjinjo_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_80800634_chkingjinjo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_808009D0_chkingjinjo.s")
+/* extern */
+
+void func_808009D0_chkingjinjo(s32 arg0) {
+    s32 _suexpression_entrypoint_8(s32, s32);
+    s32 func_80800C18_chkingjinjo();
+    func_80800C18_chkingjinjo();
+    _suexpression_entrypoint_8(arg0, 0x1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_808009FC_chkingjinjo.s")
 
