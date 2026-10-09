@@ -694,7 +694,18 @@ block_128:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808058F0_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808064F4_chquiz.s")
+/* extern */
+
+void func_808064F4_chquiz(s32 arg0, s32 arg1) {
+    s32 func_800EB854();
+    s32 func_801018A4(s32, s32);
+    s32 func_808002F0_chquiz(s32, s32);
+    if (func_800EB854() == 0) {
+        func_801018A4(arg0, arg1);
+        return;
+    }
+    func_808002F0_chquiz(arg0, arg1);
+}
 
 OSThread *chquiz_entrypoint_4(void)
 {
