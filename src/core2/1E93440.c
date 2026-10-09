@@ -101,7 +101,13 @@ void func_800BA714(void *arg0, s16 arg1, s16 arg2) {
     (*(s16 *)((s8 *)(arg0) + (0x2A))) = arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA730.s")
+void func_800BA730(void *arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4) {
+    (*(s8 *)((s8 *)(arg0) + (5))) = 2;
+    (*(s16 *)((s8 *)(arg0) + (0x28))) = arg1;
+    (*(s16 *)((s8 *)(arg0) + (0x2A))) = arg2;
+    (*(s16 *)((s8 *)(arg0) + (0x2C))) = arg3;
+    (*(s16 *)((s8 *)(arg0) + (0x2E))) = arg4;
+}
 
 /* extern */
 
