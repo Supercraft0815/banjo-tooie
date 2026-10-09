@@ -84,7 +84,13 @@ void func_800C0890(s32 arg0, s32 arg1) {
     _gcdialogexec_entrypoint_9(&D_801288B0, arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C08C0.s")
+void func_800C08C0(void) {
+    s32 defrag(s32);
+    extern s32 D_80128AF0;
+    if (D_80128AF0 != 0) {
+        D_80128AF0 = defrag(D_80128AF0);
+    }
+}
 
 void func_800C08F8(void) {
     s32 _gcnewpause_entrypoint_0(s32);
