@@ -14,7 +14,18 @@ OSThread *chbottlesparty_entrypoint_1(void)
     return (OSThread *) D_80800458_chbottlesparty;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/party/func_80800018_chbottlesparty.s")
+/* extern */
+
+void func_80800018_chbottlesparty(s32 arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800FFAB0(s32);
+    s32 func_8010A800(s32, s32);
+    if (func_800DA298(0x3B) == 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    func_8010A800(arg0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/party/func_8080005C_chbottlesparty.s")
 
