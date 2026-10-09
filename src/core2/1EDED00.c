@@ -49,7 +49,12 @@ f32 func_80105AC4(void) {
     return (*(f32 *)((s8 *)(func_80105494()) + (0x14)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105AE8.s")
+/* extern */
+
+f32 func_80105AE8(void) {
+    void *func_80105494();
+    return (*(f32 *)((s8 *)(func_80105494()) + (0xC)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105B0C.s")
 
