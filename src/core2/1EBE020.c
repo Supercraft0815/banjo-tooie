@@ -32,7 +32,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E6728.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E692C.s")
+void func_800E692C(void) {
+    s32 heap_alloc(s32);
+    extern s32 D_8012D570;
+    D_8012D570 = heap_alloc(0x40);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E6950.s")
 
