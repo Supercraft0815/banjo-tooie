@@ -15,7 +15,14 @@
 void func_80103930(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103938.s")
+/* extern */
+
+void func_80103938(void *arg0) {
+    s32 func_80104504();
+    if ((*(s16 *)((s8 *)(arg0) + (0x8E))) != 0) {
+        func_80104504();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103964.s")
 
