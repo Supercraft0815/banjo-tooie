@@ -161,7 +161,10 @@ void bsstonehead_entrypoint_36()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_38.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_39.s")
+s32 bsstonehead_entrypoint_39(s32 arg0) {
+    extern s32 D_808016C0_bsstonehead[];
+    return ((s32 *)&D_808016C0_bsstonehead)[arg0];
+}
 
 void bsstonehead_entrypoint_40(s32 arg0)
 {
