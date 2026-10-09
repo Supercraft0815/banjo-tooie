@@ -14,7 +14,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/subaddierouteDll_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/func_80800564_subaddierouteDll.s")
+void func_80800564_subaddierouteDll(s32 arg0, void *arg1) {
+    (*(s16 *)((s8 *)(arg1) + (6))) = 0;
+    (*(s32 *)((s8 *)(arg1) + (8))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/subaddierouteDll_entrypoint_4.s")
 
