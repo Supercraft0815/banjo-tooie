@@ -71,7 +71,16 @@ void func_80104580(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80105138.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_8010518C.s")
+/* extern */
+
+s32 func_8010518C(s32 arg0) {
+    void *func_801043D8(s32);
+    s32 func_80104544();
+    if (func_80104544() == 0) {
+        return 0;
+    }
+    return (*(s32 *)((s8 *)(func_801043D8(arg0)) + (0x24)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_801051C8.s")
 
