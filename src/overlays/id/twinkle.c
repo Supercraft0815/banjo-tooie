@@ -8,7 +8,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/twinkle/func_80800478_idtwinkle.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/twinkle/idtwinkle_entrypoint_3.s")
+/* extern */
+
+void idtwinkle_entrypoint_3(void *arg0) {
+    s32 heap_free(s32);
+    heap_free((*(s32 *)((s8 *)(arg0) + (0x2C))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/twinkle/idtwinkle_entrypoint_4.s")
 
