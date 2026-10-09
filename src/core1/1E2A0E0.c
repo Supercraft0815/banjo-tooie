@@ -28,7 +28,14 @@ s32 *func_80012D4C(s32 **arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80012D84.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80012EA0.s")
+void func_80012EA0(void) {
+    extern s32 D_8003CA40;
+    extern OSThread D_800459F8;
+    if (D_8003CA40 == 0) {
+        D_8003CA40 = 1;
+        osStartThread(&D_800459F8);
+    }
+}
 
 void *func_80012EDC(void) {
     extern u8 D_80046A78[];
