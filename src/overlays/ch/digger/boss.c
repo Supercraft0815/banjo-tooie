@@ -182,7 +182,12 @@ void func_80802EF8_chdiggerboss(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80804450_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80804644_chdiggerboss.s")
+s32 func_80804644_chdiggerboss(f32 arg0, f32 arg1, f32 arg2) {
+    if ((arg2 < arg0) && (arg1 <= arg2)) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80804680_chdiggerboss.s")
 
