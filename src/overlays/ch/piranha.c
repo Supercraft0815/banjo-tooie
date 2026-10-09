@@ -47,7 +47,43 @@ void func_80801690_chpiranha(s32 arg0, s32 arg1) {
     func_800BBCB8(arg1, 0, 0x3F800000, 1, &D_80801B10_chpiranha);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_808016D0_chpiranha.s")
+/* extern */
+
+s32 *func_808016D0_chpiranha(u8 *arg0) {
+    s32 *_subaddiefind_entrypoint_0(s32, s32, s32, f32 *);
+    s32 pad;
+    s32 *sp28;
+    f32 sp24;
+    f32 sp20;
+    s32 *temp_v0;
+
+    sp28 = _subaddiefind_entrypoint_0((s32)(arg0 + 4), 0x211, -1, &sp24);
+    temp_v0 = _subaddiefind_entrypoint_0((s32)(arg0 + 4), 0x199, -1, &sp20);
+    if ((temp_v0 != NULL) && (sp28 == NULL)) {
+        sp28 = temp_v0;
+    }
+    if ((temp_v0 != NULL) && (sp28 != NULL) && ((sp20 < sp24) || (sp24 > 500.0f))) {
+        sp28 = temp_v0;
+        sp24 = sp20;
+    }
+    temp_v0 = _subaddiefind_entrypoint_0((s32)(arg0 + 4), 0x19A, -1, &sp20);
+    if ((temp_v0 != NULL) && (sp28 == NULL)) {
+        sp28 = temp_v0;
+    }
+    if ((temp_v0 != NULL) && (sp28 != NULL) && ((sp20 < sp24) || (sp24 > 500.0f))) {
+        sp28 = temp_v0;
+        sp24 = sp20;
+    }
+    if (sp28 != NULL) {
+        (*(s32 *)((s8 *)(arg0) + (0x3C))) = (s32) *sp28;
+    } else {
+        (*(s32 *)((s8 *)(arg0) + (0x3C))) = 0;
+    }
+    if (sp24 > 500.0f) {
+        (*(s32 *)((s8 *)(arg0) + (0x3C))) = 0;
+    }
+    return sp28;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_8080182C_chpiranha.s")
 
