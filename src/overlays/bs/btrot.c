@@ -205,7 +205,14 @@ void bsbtrot_entrypoint_44(s32 arg0)
     baphysics_reset_gravity();
     func_8080061C_bsbtrot(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_45.s")
+/* extern */
+
+void bsbtrot_entrypoint_45(s32 arg0) {
+    s32 func_808025D8_bsbtrot(s32, s32);
+    func_80800538_bsbtrot(arg0);
+    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+    func_808025D8_bsbtrot(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_46.s")
 
