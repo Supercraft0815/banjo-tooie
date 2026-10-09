@@ -40,7 +40,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800B6C_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800B90_chquiz.s")
+s32 func_80800B90_chquiz(s32 arg0) {
+    if ((arg0 >= 0x1910) && (arg0 < 0x1A00)) {
+        return 0;
+    }
+    if ((arg0 >= 0x1A00) && (arg0 < 0x1A89)) {
+        return 1;
+    }
+    return 2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800BD4_chquiz.s")
 
