@@ -76,7 +76,14 @@ void func_800C0808()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C082C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0850.s")
+/* extern */
+
+void func_800C0850(void) {
+    s32 _gcdialogexec_entrypoint_6(s32 *, s32);
+    (*(u8 *)((s8 *)(&D_801288B0) + (0x11C))) = (u8) ((*(u8 *)((s8 *)(&D_801288B0) + (0x11C))) & 0xFF3F);
+    (*(u8 *)((s8 *)(&D_801288B0) + (0x11D))) = (u8) ((*(u8 *)((s8 *)(&D_801288B0) + (0x11D))) & 0xFF3F);
+    _gcdialogexec_entrypoint_6(&D_801288B0, 6);
+}
 
 void func_800C0890(s32 arg0, s32 arg1) {
     s32 _gcdialogexec_entrypoint_9(s32 *, s32, s32);
