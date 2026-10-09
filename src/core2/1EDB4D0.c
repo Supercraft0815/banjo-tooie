@@ -52,7 +52,18 @@ void func_80101D7C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80102078.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_801020A8.s")
+/* extern */
+
+void func_801020A8(void) {
+    s32 func_8008B1C8(s32, s32);
+    s32 func_80104248();
+    s32 temp_v0;
+
+    temp_v0 = func_80104248();
+    if (temp_v0 != 0) {
+        func_8008B1C8(temp_v0, 0x3E4CCCCD);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_801020DC.s")
 
