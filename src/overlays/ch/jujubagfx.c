@@ -19,4 +19,8 @@ OSThread *chjujubagfx_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jujubagfx/chjujubagfx_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jujubagfx/chjujubagfx_entrypoint_2.s")
+void chjujubagfx_entrypoint_2(void) {
+    s32 _chbaddiesetup_entrypoint_0(s32 *);
+    extern s32 _chjujubagfx_entrypoint_1;
+    _chbaddiesetup_entrypoint_0(&_chjujubagfx_entrypoint_1);
+}
