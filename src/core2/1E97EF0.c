@@ -29,7 +29,14 @@ void func_800BE9B0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEAAC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEAF4.s")
+/* extern */
+
+void func_800BEAF4(void) {
+    s32 _gcmapsects_entrypoint_8(s32 *);
+    if ((*(u8 *)((s8 *)(&D_801285B0) + (0x77))) != 0) {
+        _gcmapsects_entrypoint_8(&D_801285B0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEB28.s")
 
