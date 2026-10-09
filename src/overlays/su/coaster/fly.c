@@ -34,7 +34,13 @@ void sucoasterfly_entrypoint_2(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_808019A0_sucoasterfly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80801A80_sucoasterfly.s")
+/* extern */
+
+void func_80801A80_sucoasterfly(s32 arg0) {
+    s32 func_800F54E4();
+    s32 func_800F5BF0(s32, s32);
+    func_800F5BF0(func_800F54E4(), arg0 + 0x18);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80801AB0_sucoasterfly.s")
 
