@@ -109,7 +109,12 @@ void func_8008B2DC(void *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B2E8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B304.s")
+/* extern */
+
+void func_8008B304(s32 arg0) {
+    s32 func_8008C038(s32);
+    func_8008C038(arg0 + 0x1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_isStopped.s")
 
