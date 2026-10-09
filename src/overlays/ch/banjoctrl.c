@@ -38,7 +38,18 @@ s32 chbanjoctrl_entrypoint_1(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800544_chbanjoctrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/chbanjoctrl_entrypoint_2.s")
+/* extern */
+
+s32 chbanjoctrl_entrypoint_2(s32 arg0) {
+    s32 func_800F54E4();
+    s32 func_800F798C(s32, s32, s32);
+    s32 func_80800544_chbanjoctrl(s32);
+    if (func_800F798C(func_800F54E4(), 0xD, 3) != 0) {
+        func_80800544_chbanjoctrl(arg0);
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800638_chbanjoctrl.s")
 
