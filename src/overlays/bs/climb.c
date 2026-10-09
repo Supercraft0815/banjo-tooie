@@ -8,7 +8,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/func_808001D0_bsclimb.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/func_80800258_bsclimb.s")
+/* extern */
+
+void func_80800258_bsclimb(void *arg0, f32 arg1, f32 arg2) {
+    f32 func_800DC0C0();
+    (*(f32 *)((s8 *)(arg0) + (0x16C))) = (f32) ((func_800DC0C0() * arg2) + arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/func_80800298_bsclimb.s")
 
