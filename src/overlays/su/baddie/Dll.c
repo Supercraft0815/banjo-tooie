@@ -8,7 +8,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/Dll/subaddieDll_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/Dll/subaddieDll_entrypoint_4.s")
+/* extern */
+
+void subaddieDll_entrypoint_4(void *arg0, s32 arg1) {
+    void *func_80100368();
+    if (arg1 != 0) {
+        (*(u16 *)((s8 *)(arg0) + (0x7C))) = 0U;
+        return;
+    }
+    (*(u16 *)((s8 *)(arg0) + (0x7C))) = (u16) (*(u16 *)((s8 *)(func_80100368()) + (0x18)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/Dll/subaddieDll_entrypoint_5.s")
 
