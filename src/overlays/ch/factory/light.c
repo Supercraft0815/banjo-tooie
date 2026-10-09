@@ -26,7 +26,66 @@ void func_8080000C_chfactorylight(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/light/func_808006B8_chfactorylight.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/light/func_80800778_chfactorylight.s")
+void func_80800778_chfactorylight(void *arg0, s32 *arg1)
+{
+  struct LightSelector
+  {
+    u8 pad[0x6C];
+    u32 unused : 23;
+    u32 index : 9;
+  };
+  u32 var_v0;
+  struct ColorChannels
+  {
+    u32 red;
+    u32 green;
+    u32 blue;
+  };
+  switch (((struct LightSelector *) arg0)->index)
+  {
+    case 0:
+      var_v0 = 0xFFFF2000;
+      break;
+
+    case 1:
+      var_v0 = 0x20FF0000;
+      break;
+
+    case 2:
+      var_v0 = 0xFF202000;
+      break;
+
+    case 3:
+      var_v0 = 0x96FF00;
+      break;
+
+    case 4:
+      var_v0 = 0x20FFFF00;
+      break;
+
+    case 5:
+      var_v0 = 0xFF802000;
+      break;
+
+    case 6:
+      var_v0 = 0xFF60FF00;
+      break;
+
+    case 7:
+      var_v0 = -0x100;
+      break;
+
+    default:
+      var_v0 = 0xFFFF2000;
+      break;
+
+  }
+
+  ((struct ColorChannels *) arg1)->red = var_v0 & 0xFF000000;
+  ((struct ColorChannels *) arg1)->green = var_v0 & 0xFF0000;
+  ((struct ColorChannels *) arg1)->blue = var_v0 & 0xFF00;
+ ((struct ColorChannels *) arg1)->red /= 0x1000000; ((struct ColorChannels *) arg1)->green /= 0x10000; ((struct ColorChannels *) arg1)->blue /= 0x100;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/light/func_80800830_chfactorylight.s")
 
