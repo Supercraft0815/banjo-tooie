@@ -6,7 +6,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/wave/mlwave_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/wave/mlwave_entrypoint_3.s")
+void mlwave_entrypoint_3(void *arg0, f32 arg1, f32 arg2) {
+    (*(f32 *)((s8 *)(arg0) + (0x10))) = arg1;
+    (*(f32 *)((s8 *)(arg0) + (0x14))) = arg2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/wave/mlwave_entrypoint_4.s")
 
