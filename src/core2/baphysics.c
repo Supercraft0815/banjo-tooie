@@ -108,7 +108,9 @@ void func_8009BC34(PlayerState* arg0)
     baphysics_reset_gravity(arg0);
     baphysics_reset_terminal_velocity(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009BC5C.s")
+void func_8009BC5C(PlayerState *arg0, f32 arg1) {
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x44))) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/baphysics_reset_gravity.s")
 
