@@ -3,7 +3,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0690/func_800C6DA0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0690/func_800C6E18.s")
+s32 func_800C6E18(s32 arg0) {
+    return func_800DA298(arg0 + 0xEE);
+}
 
 //Has Ability
 s32 func_800C6E38(s32 AbilityID) {
