@@ -69,4 +69,7 @@ void func_80800B34_bsswim(s32 arg0)
     _bsdrone_entrypoint_2();
     func_80800270_bsswim(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/bsswim_entrypoint_3.s")
+s32 bsswim_entrypoint_3(s32 arg0) {
+    extern s32 D_80800BD4_bsswim[];
+    return ((s32 *)&D_80800BD4_bsswim)[arg0];
+}
