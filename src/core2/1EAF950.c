@@ -22,7 +22,15 @@ extern s32 D_8012BE70;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6B0C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6C34.s")
+/* extern */
+
+s32 func_800D6C34(void) {
+    s32 func_800D6254();
+    if (func_800D6254() != -1) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6C64.s")
 
