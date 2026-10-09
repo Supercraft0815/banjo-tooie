@@ -59,7 +59,14 @@ void gcgoto_entrypoint_7(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/goto/gcgoto_entrypoint_9.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/goto/gcgoto_entrypoint_10.s")
+/* extern */
+
+void gcgoto_entrypoint_10(s32 arg0, s32 arg1) {
+    s32 func_8008FD48();
+    if (func_8008FD48() == 8) {
+        func_808003D0_gcgoto(arg0, 0xC403);
+    }
+}
 
 void gcgoto_entrypoint_11(s32 arg0, u32 arg1)
 {
