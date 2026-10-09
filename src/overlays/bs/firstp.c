@@ -373,7 +373,10 @@ void func_80804EB4_bsfirstp(void)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80804ED4_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_21.s")
+s32 bsfirstp_entrypoint_21(s32 arg0) {
+    extern s32 D_8080B520_bsfirstp[];
+    return ((s32 *)&D_8080B520_bsfirstp)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80804F28_bsfirstp.s")
 
