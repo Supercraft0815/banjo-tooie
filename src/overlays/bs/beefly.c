@@ -83,4 +83,7 @@ void func_80800CE0_bsbeefly(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_80800D50_bsbeefly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/bsbeefly_entrypoint_4.s")
+s32 bsbeefly_entrypoint_4(s32 arg0) {
+    extern s32 D_80800E80_bsbeefly[];
+    return ((s32 *)&D_80800E80_bsbeefly)[arg0];
+}
