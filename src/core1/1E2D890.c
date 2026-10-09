@@ -64,7 +64,23 @@ void func_80016864(void);
 void func_800169B4(void);
 void func_80016A04(void);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2D890/func_80015D60.s")
+f32 func_80015D60(s32 arg0, s32 arg1, s32 arg2) {
+    extern s32 D_8007DB54;
+    s32 bits[2];
+    f32 scale;
+
+    bits[0] = 0xE955CCDD - D_8007DB54;
+    scale = *(f32 *)&bits[0];
+    if (arg0 > 0) {
+        arg0 = arg2 < arg0 ? arg2 : (arg0 < arg1 ? arg1 : arg0);
+        arg0 = ((arg0 - arg1) * 0x50) / (arg2 - arg1);
+    } else if (arg0 < 0) {
+        arg0 = arg0 < -arg2 ? -arg2 : (-arg1 < arg0 ? -arg1 : arg0);
+        arg0 = ((arg0 + arg1) * 0x50) / (arg2 - arg1);
+    }
+    scale *= (f32)arg0;
+    return scale;
+}
 
 void func_80015E80(s32 arg0, void *arg1) {
     unkD_800799E0 *temp_v0;
