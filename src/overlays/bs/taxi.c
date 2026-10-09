@@ -56,7 +56,10 @@ void bstaxi_entrypoint_11(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_13.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_14.s")
+s32 bstaxi_entrypoint_14(s32 arg0) {
+    extern s32 D_808021A8_bstaxi[];
+    return ((s32 *)&D_808021A8_bstaxi)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_15.s")
 
