@@ -60,7 +60,39 @@ void func_800D192C(s32 arg0, u32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1ACC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1B34.s")
+s32 func_800D1B34(s32 arg0) {
+    switch (arg0) {
+    case 0x29F:
+        return 0x48;
+    case 0x523:
+        return 0x54;
+    case 0x1D9:
+        return 0x4F;
+    case 0x3CA:
+        return 0x4B;
+    case 0x3CB:
+        return 0x4C;
+    case 0x40D:
+    case 0x481:
+        return 0x50;
+    case 0x4E2:
+        return 0x4D;
+    case 0x4E3:
+        return 0x4A;
+    case 0x4E4:
+        return 0x4E;
+    case 0x4BA:
+    case 0x4D7:
+        return 0x51;
+    case 0x515:
+    case 0x516:
+        return 0x52;
+    case 0x4B7:
+        return 0x49;
+    default:
+        return 0;
+    }
+}
 
 s32 func_800D1C38(s32 arg0) {
     return func_800D1A04(arg0) == 0;
