@@ -40,4 +40,15 @@ void basudie_entrypoint_11(s32 arg0)
     func_8009E6EC();
     func_80099AA8(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sudie/basudie_entrypoint_12.s")
+/* extern */
+
+void basudie_entrypoint_12(s32 arg0) {
+    s32 baphysics_reset_terminal_velocity(s32);
+    s32 baphysics_set_terminal_velocity(s32, s32);
+    s32 player_inWater();
+    if (player_inWater() != 0) {
+        baphysics_set_terminal_velocity(arg0, 0xC37A0000);
+        return;
+    }
+    baphysics_reset_terminal_velocity(arg0);
+}
