@@ -13,7 +13,18 @@ u32 bafly_entrypoint_3(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 140) + 8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_4.s")
+/* extern */
+
+void bafly_entrypoint_4(void *arg0) {
+    s32 func_800C2FDC(s32, u8, void *);
+    u8 temp_a1;
+
+    temp_a1 = (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (9)));
+    if (temp_a1 != 0) {
+        func_800C2FDC(temp_a1 & 0xFF, temp_a1, arg0);
+        (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (9))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_5.s")
 
