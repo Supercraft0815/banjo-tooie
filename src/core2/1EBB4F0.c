@@ -5,7 +5,29 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E1DF4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E204C.s")
+void func_800E204C(u8 *arg0, u8 *arg1) {
+    void func_800F26B0(f32 (*)[4], f32, f32, f32);
+    extern s32 D_8012D470;
+    extern f32 D_8012D4A8[4];
+    s16 width;
+    s16 globalWidth;
+    Gfx *ptr;
+
+    width = *(s16 *)(arg1 + 4);
+    globalWidth = *(s16 *)&D_8012D470;
+    if ((globalWidth != width && globalWidth != 0) ||
+        (*(s16 *)((u8 *)&D_8012D470 + 2) != *(s16 *)(arg1 + 6) && *(s16 *)((u8 *)&D_8012D470 + 2) != 0) ||
+        *(f32 *)((u8 *)&D_8012D470 + 0x2C) != 1.0f || *(f32 *)((u8 *)&D_8012D470 + 0x30) != 1.0f) {
+        func_800F26B0((f32 (*)[4])D_8012D4A8,
+            (f32)globalWidth * *(f32 *)((u8 *)&D_8012D470 + 0x2C) / (f32)width,
+            *(f32 *)((u8 *)&D_8012D470 + 0x30) * (f32)*(s16 *)((u8 *)&D_8012D470 + 2) / (f32)*(s16 *)(arg1 + 6), 1.0f);
+        guMtxF2L((f32 (*)[4])D_8012D4A8, *(Mtx **)(arg0 + 4));
+        ptr = (*(Gfx **)arg0)++;
+        ptr->words.w0 = 0xDA380000;
+        ptr->words.w1 = (u32)*(Mtx **)(arg0 + 4);
+        *(Mtx **)(arg0 + 4) = *(Mtx **)(arg0 + 4) + 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E2180.s")
 
