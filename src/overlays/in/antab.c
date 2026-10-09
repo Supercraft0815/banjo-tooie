@@ -709,7 +709,14 @@ s32 func_80800020_inantab(s32 arg0, s16 *arg1, Actor *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/in/antab/func_808057BC_inantab.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/in/antab/func_808064DC_inantab.s")
+/* extern */
+
+void func_808064DC_inantab(s32 arg0, s16 *arg1, Actor *arg2) {
+    s32 func_808057BC_inantab(s32, s16 *, Actor *);
+    if (func_80800020_inantab(arg0, arg1, arg2) == 0) {
+        func_808057BC_inantab(arg0, arg1, arg2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/in/antab/inantab_entrypoint_1.s")
 
