@@ -39,7 +39,9 @@ void func_80800704_bsdronexform(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 396) + 40) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/func_80800714_bsdronexform.s")
+void func_80800714_bsdronexform(void *arg0, f32 arg1) {
+    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 396) + 36) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/func_80800724_bsdronexform.s")
 
