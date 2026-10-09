@@ -34,7 +34,11 @@ OSThread *chdippy_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_808009D8_chdippy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/chdippy_entrypoint_2.s")
+void chdippy_entrypoint_2(s32 arg0, s32 arg1) {
+    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+    extern s32 D_808014B0_chdippy;
+    func_800BBCB8(arg1, 0, 0x3F99999A, 1, &D_808014B0_chdippy);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800CBC_chdippy.s")
 
