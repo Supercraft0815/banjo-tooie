@@ -5,7 +5,19 @@ void basudie_entrypoint_0()
     func_80091EF0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sudie/basudie_entrypoint_1.s")
+/* extern */
+
+void basudie_entrypoint_1(void *arg0) {
+    s32 func_800C0658();
+    s32 func_800F8B64();
+    s32 func_800F90F8(s32);
+    s32 func_80101238(s32, s32);
+    if (func_800F8B64() == 0) {
+        func_80101238(0x9F, (*(s32 *)((s8 *)(arg0) + (0x184))));
+        func_800F90F8(1);
+        func_800C0658();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sudie/basudie_entrypoint_2.s")
 
