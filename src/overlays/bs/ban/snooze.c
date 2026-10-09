@@ -41,7 +41,10 @@ void func_808004C0_bsbansnooze()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_80800588_bsbansnooze.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/bsbansnooze_entrypoint_2.s")
+s32 bsbansnooze_entrypoint_2(s32 arg0) {
+    extern s32 D_80800A78_bsbansnooze[];
+    return ((s32 *)&D_80800A78_bsbansnooze)[arg0];
+}
 
 void func_8080064C_bsbansnooze(s32 arg0)
 {
