@@ -25,6 +25,13 @@ void func_80800258_suautobaddies(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/autobaddies/func_8080036C_suautobaddies.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/autobaddies/func_808003DC_suautobaddies.s")
+void func_808003DC_suautobaddies(void) {
+    s32 _chbaddiesetup_entrypoint_4(s32 *, s32, s32, s32, s32);
+    s32 _chlensflare_entrypoint_0();
+    extern s32 _chbaddiesetup_entrypoint_8;
+    if (_chlensflare_entrypoint_0() != 0) {
+        _chbaddiesetup_entrypoint_4(&_chbaddiesetup_entrypoint_8, 0x3FE, 0, 0, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/autobaddies/suautobaddies_entrypoint_3.s")
