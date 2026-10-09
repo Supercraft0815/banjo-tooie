@@ -13,7 +13,12 @@ u32 badrone_entrypoint_3(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 84) + 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/drone/badrone_entrypoint_4.s")
+void badrone_entrypoint_4(void *arg0) {
+    void *temp_v0;
+
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x54)));
+    (*(u8 *)((s8 *)(temp_v0) + (0))) = (u8) (*(u8 *)((s8 *)(temp_v0) + (1)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/drone/badrone_entrypoint_5.s")
 
