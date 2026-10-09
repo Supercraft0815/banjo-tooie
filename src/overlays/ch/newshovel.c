@@ -39,4 +39,9 @@ void func_80800310_chnewshovel(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800D18_chnewshovel.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800DC8_chnewshovel.s")
+s32 func_80800DC8_chnewshovel(s32 arg0) {
+    s32 func_80101074(s32 *);
+    extern s32 D_808010B0_chnewshovel;
+    func_80101074(&D_808010B0_chnewshovel);
+    return 2;
+}
