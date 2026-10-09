@@ -7,7 +7,14 @@ void func_80800034_chbottlesdead()
     func_8010C964();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/dead/func_80800054_chbottlesdead.s")
+/* extern */
+
+void func_80800054_chbottlesdead(s32 arg0, s32 arg1) {
+    s32 func_800DF744(s32, s32);
+    s32 func_80101870(s32, s32);
+    func_800DF744(3, 0);
+    func_80101870(arg0, arg1);
+}
 
 OSThread *chbottlesdead_entrypoint_0(void)
 {
