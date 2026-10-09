@@ -10,7 +10,9 @@ s32 func_80800024_bstrexlarge(void *arg0) {
     return (*(s32 *)((s8 *)(arg0) + (0x168))) == 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80800034_bstrexlarge.s")
+s32 func_80800034_bstrexlarge(void *arg0) {
+    return (*(s32 *)((s8 *)(arg0) + (0x164))) >= 4;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80800044_bstrexlarge.s")
 
