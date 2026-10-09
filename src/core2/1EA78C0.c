@@ -28,7 +28,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CE83C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CE864.s")
+/* extern */
+
+void func_800CE864(void) {
+    void *func_800CE3E0();
+    (*(s8 *)((s8 *)(func_800CE3E0()) + (0x14))) = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CE88C.s")
 
