@@ -44,7 +44,18 @@ void bafly_entrypoint_7(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_11.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_12.s")
+/* extern */
+
+s32 bafly_entrypoint_12(void *arg0) {
+    s32 _suinv_entrypoint_0(s32 *, s32, s32, s32, s32);
+    s32 sp24;
+
+    if ((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (0xE))) != 0) {
+        return 1;
+    }
+    _suinv_entrypoint_0(&sp24, 0, 1, 0x46, 1);
+    return sp24;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_13.s")
 
