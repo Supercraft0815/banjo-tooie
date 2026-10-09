@@ -492,7 +492,12 @@ s32 func_800F64A4(s32 characterIndex, AllowedTransformation transformationType)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F65D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6604.s")
+/* extern */
+
+s32 func_800F6604(s32 arg0) {
+    s32 _bacough_entrypoint_1(PlayerState *);
+    return _bacough_entrypoint_1(D_80135490[arg0]) == 2;
+}
 
 s32 func_800F6634(s32 arg0) 
 {
