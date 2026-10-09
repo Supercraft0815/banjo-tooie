@@ -131,7 +131,10 @@ void func_800D87B0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D87D4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D87EC.s")
+s32 func_800D87EC(s32 arg0) {
+    extern s32 D_8012BF70[];
+    return ((s32 *)&D_8012BF70)[arg0];
+}
 
 void func_800D8800(void) {
 }
