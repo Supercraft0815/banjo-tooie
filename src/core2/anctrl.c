@@ -33,7 +33,12 @@ void *func_8008AEDC(void *arg0)
     return (u8 *)arg0 + 0x1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008AEE4.s")
+/* extern */
+
+void func_8008AEE4(s32 arg0) {
+    s32 func_8008C1D4(s32);
+    func_8008C1D4(arg0 + 0x1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008AF04.s")
 
