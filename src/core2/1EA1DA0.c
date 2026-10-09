@@ -191,7 +191,13 @@ void func_800C9994()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9B30.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9B84.s")
+void func_800C9B84(void) {
+    s32 vector_clear(s32);
+    extern s32 D_8012AB60;
+    if (D_8012AB60 != 0) {
+        vector_clear(D_8012AB60);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9BB4.s")
 
