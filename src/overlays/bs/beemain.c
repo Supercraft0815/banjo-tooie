@@ -15,7 +15,10 @@ void func_808001FC_bsbeemain(s32 arg0)
     func_80090A2C();
     _bsbee_entrypoint_0(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/bsbeemain_entrypoint_0.s")
+s32 bsbeemain_entrypoint_0(s32 arg0) {
+    extern s32 D_80801260_bsbeemain[];
+    return ((s32 *)&D_80801260_bsbeemain)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80800238_bsbeemain.s")
 
