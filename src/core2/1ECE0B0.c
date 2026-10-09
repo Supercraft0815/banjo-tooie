@@ -1093,7 +1093,16 @@ void func_800F9400(s32 arg0) {
     func_800C964C(0xE);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9444.s")
+/* extern */
+
+void func_800F9444(s32 arg0) {
+    s32 func_800C964C(s32);
+    if ((arg0 == 0xA) || (arg0 == 1)) {
+        func_800C964C(0xD);
+        return;
+    }
+    func_800C964C(0xF);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9488.s")
 
