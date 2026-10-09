@@ -19,7 +19,18 @@ s32 bsjig_entrypoint_6(s32 arg0) {
     return ((s32 *)&D_808005B0_bsjig)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jig/bsjig_entrypoint_7.s")
+/* extern */
+
+void bsjig_entrypoint_7(s32 arg0) {
+    s32 func_80099AA8(s32);
+    s32 func_80099B94(s32);
+    s32 func_8009E6EC();
+    if (func_8009E6EC() == 0x26) {
+        func_80099B94(arg0);
+        return;
+    }
+    func_80099AA8(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jig/bsjig_entrypoint_8.s")
 
