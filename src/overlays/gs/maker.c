@@ -8,7 +8,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/maker/gsmaker_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/maker/gsmaker_entrypoint_2.s")
+/* extern */
+
+void gsmaker_entrypoint_2(s32 arg0) {
+    s32 gsmaker_entrypoint_1(s32);
+    gsmaker_entrypoint_1(arg0 + 0x955);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/maker/gsmaker_entrypoint_3.s")
 
