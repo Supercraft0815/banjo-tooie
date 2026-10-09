@@ -44,7 +44,12 @@ f32 func_800F1214(f32 value, f32 min, f32 max) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F1344.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F13C4.s")
+f32 func_800F13C4(f32 arg0, f32 arg1) {
+    f32 temp_f2;
+
+    temp_f2 = arg0 / arg1;
+    return (temp_f2 - (f32) (s32) temp_f2) * arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F13F0.s")
 
