@@ -23,7 +23,15 @@ OSThread *chbigterrysbits_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bigterrysbits/func_80800024_chbigterrysbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bigterrysbits/func_80800130_chbigterrysbits.s")
+/* extern */
+
+void func_80800130_chbigterrysbits(s32 arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800FFAB0(s32);
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_800FFAB0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bigterrysbits/func_80800160_chbigterrysbits.s")
 
