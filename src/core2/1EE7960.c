@@ -15,7 +15,14 @@ void func_8010E334(void) {
     D_80137074 = func_800B3310(0x4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE7960/func_8010E358.s")
+/* extern */
+
+void func_8010E358(void) {
+    s32 func_800B38E8(s32);
+    if (D_80137074 != 0) {
+        D_80137074 = func_800B38E8(D_80137074);
+    }
+}
 
 void func_8010E390(void) {
     s32 func_800B3370(s32);
