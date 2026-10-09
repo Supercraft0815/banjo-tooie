@@ -25,7 +25,14 @@ void func_80106630(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDFED0/func_801066C0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDFED0/func_80106730.s")
+s32 func_80106730(void) {
+    s32 vector_size(s32);
+    extern s32 D_80136EE0;
+    if (D_80136EE0 == 0) {
+        return 0;
+    }
+    return vector_size(D_80136EE0);
+}
 
 void func_80106768(s32 arg0) {
     s32 vector_at(s32, s32);
