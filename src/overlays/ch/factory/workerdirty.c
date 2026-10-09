@@ -36,7 +36,15 @@ void func_80800340_chfactoryworkerdirty(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800788_chfactoryworkerdirty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800828_chfactoryworkerdirty.s")
+/* extern */
+
+s32 func_80800828_chfactoryworkerdirty(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_80800A54_chfactoryworkerdirty();
+    if (arg1 == 0x134E) {
+        return func_80800A54_chfactoryworkerdirty();
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800864_chfactoryworkerdirty.s")
 
