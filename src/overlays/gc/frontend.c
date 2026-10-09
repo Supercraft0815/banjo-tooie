@@ -41,7 +41,14 @@ void gcfrontend_entrypoint_11(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_12.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_13.s")
+/* extern */
+
+void gcfrontend_entrypoint_13(void) {
+    s32 func_800D37D4();
+    s32 func_808002DC_gcfrontend(s32, s32);
+    func_800D37D4();
+    func_808002DC_gcfrontend(0xA6, -1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/func_80800450_gcfrontend.s")
 
