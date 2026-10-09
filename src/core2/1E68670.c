@@ -7,7 +7,12 @@ s32 func_8008ED80(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008ED88.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008EE04.s")
+s32 func_8008EE04(s32 arg0, s32 arg1) {
+    if (arg0 != 0) {
+        return arg1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008EE1C.s")
 
