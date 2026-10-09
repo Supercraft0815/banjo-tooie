@@ -73,7 +73,12 @@ f32 func_800F13C4(f32 arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F1418.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F1434.s")
+f32 func_800F1434(f32 arg0) {
+    f32 func_8001395C(f32);
+    extern f32 D_80125EC0;
+    extern f32 D_80125EC4;
+    return (func_8001395C((arg0 * D_80125EC0) + D_80125EC4) + 1.0f) * 0.5f;
+}
 
 /* extern */
 
