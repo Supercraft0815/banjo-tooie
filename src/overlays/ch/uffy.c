@@ -69,7 +69,12 @@ OSThread *chchuffy_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80801F04_chchuffy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80801F84_chchuffy.s")
+/* extern */
+
+void func_80801F84_chchuffy(s32 arg0) {
+    s32 func_800EFD24(s32);
+    func_800EFD24(arg0 + 0x4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80801FA4_chchuffy.s")
 
