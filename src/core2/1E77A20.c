@@ -84,7 +84,11 @@ s32 bs_getPreviousState(PlayerState *self) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E77A20/func_8009E77C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E77A20/func_8009E7AC.s")
+void func_8009E7AC(void *arg0) {
+    (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x120)))) + (0))) = 0;
+    (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x120)))) + (4))) = 0;
+    (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x120)))) + (8))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E77A20/func_8009E7C8.s")
 
