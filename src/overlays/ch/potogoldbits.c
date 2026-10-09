@@ -17,7 +17,12 @@ OSThread *chpotogoldbits_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldbits/func_80800618_chpotogoldbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldbits/chpotogoldbits_entrypoint_1.s")
+/* extern */
+
+void chpotogoldbits_entrypoint_1(s32 arg0, s32 arg1) {
+    s32 func_80101180(s32, s32, s32);
+    func_80101180(0x408, 8, 0);
+}
 
 OSThread *chpotogoldbits_entrypoint_2(void)
 {
