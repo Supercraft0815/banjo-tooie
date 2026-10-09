@@ -39,7 +39,12 @@ void func_80102CA4(void *arg0) {
     func_800F20BC((*(f32 *)((s8 *)(arg0) + (0x44))), (*(f32 *)((s8 *)(arg0) + (0x50))), 0x40400000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102CCC.s")
+/* extern */
+
+void func_80102CCC(void *arg0) {
+    s32 func_800F20BC(f32, f32, s32);
+    func_800F20BC((*(f32 *)((s8 *)(arg0) + (0x48))), (*(f32 *)((s8 *)(arg0) + (0x54))), 0x40400000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102CF4.s")
 
