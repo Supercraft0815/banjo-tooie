@@ -10,7 +10,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAE6C0/func_800D4EF4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAE6C0/func_800D4F9C.s")
+s32 func_800D4F9C(s32 arg0) {
+    if (arg0 == 2) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAE6C0/func_800D4FB8.s")
 
