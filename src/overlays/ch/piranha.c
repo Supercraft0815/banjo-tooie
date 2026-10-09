@@ -26,7 +26,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_80801420_chpiranha.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_80801508_chpiranha.s")
+/* extern */
+
+void func_80801508_chpiranha(s32 arg0) {
+    s32 func_8010C500();
+    s32 func_8010C9B0(s32, s32);
+    s32 func_80800218_chpiranha(s32, s32);
+    if ((func_8010C500() != 0) && (func_8010C9B0(arg0 + 4, 0x384) != 0)) {
+        func_80800218_chpiranha(arg0, 3);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_8080154C_chpiranha.s")
 
