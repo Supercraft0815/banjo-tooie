@@ -41,7 +41,9 @@ void basnowball_entrypoint_7(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/basnowball_entrypoint_8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/basnowball_entrypoint_9.s")
+void basnowball_entrypoint_9(void *arg0, f32 arg1) {
+    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 272) + 12) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/basnowball_entrypoint_10.s")
 
