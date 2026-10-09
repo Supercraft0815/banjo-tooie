@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800000_chhumba.s")
+/* extern */
+
+void func_80800000_chhumba(s32 *arg0, s32 arg1) {
+    s32 _capod_entrypoint_2(s32, s32, s32);
+    _capod_entrypoint_2(*arg0, 9, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800028_chhumba.s")
 
