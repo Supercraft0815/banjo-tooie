@@ -24,7 +24,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107320.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107388.s")
+/* extern */
+
+s32 func_80107388(void) {
+    void *func_80100368();
+    return (*(s32 *)((s8 *)(func_80100368()) + (0x44)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_801073AC.s")
 
