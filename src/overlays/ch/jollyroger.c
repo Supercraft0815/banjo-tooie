@@ -69,4 +69,13 @@ void func_80800E30_chjollyroger(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_808010A0_chjollyroger.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80801194_chjollyroger.s")
+/* extern */
+
+void func_80801194_chjollyroger(s32 arg0) {
+    s32 _chexploder_entrypoint_12(s32, s32);
+    s32 func_800DA544(s32);
+    s32 func_80101080();
+    s32 func_80106790(s32);
+    _chexploder_entrypoint_12(func_80106790(func_80101080()), 0x3C);
+    func_800DA544(0x41);
+}
