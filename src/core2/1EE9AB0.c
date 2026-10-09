@@ -235,7 +235,35 @@ void func_80111ABC(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111DB0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111E88.s")
+/* extern */
+
+void func_80111E88(f32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4) {
+    f32 func_800D8FF8();
+    f32 var_f20;
+    f32 temp_f0;
+    f32 targetVelocity;
+    f32 acceleration;
+
+    temp_f0 = func_800D8FF8();
+    if (arg0 == *arg1) {
+        *arg2 = 0.0f;
+        return;
+    }
+    targetVelocity = (arg0 - *arg1) * arg3;
+    acceleration = (targetVelocity - *arg2) * arg4;
+    *arg2 += acceleration * temp_f0;
+    var_f20 = *arg1 + (*arg2 * temp_f0);
+    if (arg0 < *arg1) {
+        if (var_f20 < arg0) {
+            var_f20 = arg0;
+            *arg2 = 0.0f;
+        }
+    } else if (arg0 < var_f20) {
+        var_f20 = arg0;
+        *arg2 = 0.0f;
+    }
+    *arg1 = var_f20;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111F70.s")
 
