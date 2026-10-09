@@ -32,7 +32,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80802C94_chfantasyathlete.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80802D38_chfantasyathlete.s")
+/* extern */
+
+void func_80802D38_chfantasyathlete(void *arg0) {
+    s32 _capod_entrypoint_3(s32, void *);
+    if ((*(s32 *)((s8 *)(arg0) + (0x18))) != 0) {
+        _capod_entrypoint_3(0, arg0);
+        (*(s32 *)((s8 *)(arg0) + (0x18))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80802D74_chfantasyathlete.s")
 
