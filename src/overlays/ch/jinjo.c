@@ -11,7 +11,12 @@ s32 chjinjo_entrypoint_0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/func_80800120_chjinjo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/chjinjo_entrypoint_1.s")
+/* extern */
+
+void chjinjo_entrypoint_1(s32 arg0, s32 arg1) {
+    s32 func_800D0C78(s32, s32, s32);
+    func_800D0C78(arg0 + 0x51, 1, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/chjinjo_entrypoint_2.s")
 
