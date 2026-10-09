@@ -6,7 +6,9 @@ void * chjiggybeam_entrypoint_0(void) {
     return &D_80800070_chjiggybeam;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/beam/func_8080000C_chjiggybeam.s")
+void func_8080000C_chjiggybeam(void *arg0) {
+    (*(f32 *)((s8 *)(arg0) + (0x18))) = 1.0f;
+}
 
 void func_8080001C_chjiggybeam(void) {
 }
