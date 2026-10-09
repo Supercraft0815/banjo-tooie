@@ -41,7 +41,9 @@ OSThread *chmasterjiggy_entrypoint_1(void)
     return (OSThread *) D_808016F8_chmasterjiggy;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_8080095C_chmasterjiggy.s")
+void func_8080095C_chmasterjiggy(void *arg0) {
+    (*(f32 *)((s8 *)(arg0) + (0x38))) = 1.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_8080096C_chmasterjiggy.s")
 
