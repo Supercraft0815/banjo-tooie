@@ -16,7 +16,12 @@ void func_800DFC60(void* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB93C0/func_800DFC80.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB93C0/func_800DFCC0.s")
+/* extern */
+
+void func_800DFCC0(s16 arg0) {
+    s32 func_8001B754(s16);
+    func_8001B754(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB93C0/func_800DFCE8.s")
 
