@@ -23,7 +23,14 @@ void func_800B5DF4(void) {
 void func_800B5DFC(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B5E04.s")
+void func_800B5E04(void) {
+    s32 vector_free(s32);
+    extern s32 D_80128180;
+    if (D_80128180 != 0) {
+        vector_free(D_80128180);
+        D_80128180 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B5E3C.s")
 
