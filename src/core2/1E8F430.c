@@ -32,7 +32,13 @@ void func_800B5E04(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B5E3C.s")
+void func_800B5E3C(void) {
+    s32 vector_defrag(s32);
+    extern s32 D_80128180;
+    if (D_80128180 != 0) {
+        D_80128180 = vector_defrag(D_80128180);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B5E74.s")
 
