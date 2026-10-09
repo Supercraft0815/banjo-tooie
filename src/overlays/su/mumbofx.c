@@ -26,7 +26,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_11.s")
+/* extern */
+
+void sumumbofx_entrypoint_11(void *arg0) {
+    s32 func_800C8CB8(s16);
+    func_800C8CB8((*(s16 *)((s8 *)(arg0) + (0x5E))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/func_80800F8C_sumumbofx.s")
 
