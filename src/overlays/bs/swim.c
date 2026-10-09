@@ -52,7 +52,10 @@ void func_80800A4C_bsswim(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_80800A74_bsswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/bsswim_entrypoint_2.s")
+s32 bsswim_entrypoint_2(s32 arg0) {
+    extern s32 D_80800BC4_bsswim[];
+    return ((s32 *)&D_80800BC4_bsswim)[arg0];
+}
 
 void func_80800AC8_bsswim(s32 arg0)
 {
