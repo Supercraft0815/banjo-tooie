@@ -1,6 +1,26 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AA2A0.s")
+void func_800AA2A0(s16 *arg0, s32 *arg1, f32 *arg2) {
+    s32 i;
+
+    if (arg0[9] == 0) {
+        arg1[0] = arg1[1] = arg1[2] = 0;
+        return;
+    }
+    for (i = 0; i < 3; i++) {
+        if (arg2[i] >= 0.0f) {
+            arg1[i] = (s32)arg2[i] / arg0[9];
+        } else {
+            arg1[i] = (s32)arg2[i] / arg0[9] - 1;
+        }
+        if (arg1[i] < arg0[i]) {
+            arg1[i] = arg0[i];
+        }
+        if (arg0[i + 3] < arg1[i]) {
+            arg1[i] = arg0[i + 3];
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AA3B4.s")
 
