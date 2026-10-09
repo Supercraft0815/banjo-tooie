@@ -36,7 +36,30 @@ OSThread *chwaspnestgame_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80800DE4_chwaspnestgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80800EB8_chwaspnestgame.s")
+s32 func_80800EB8_chwaspnestgame(void *arg0, s32 arg1, s32 arg2) {
+    s32 func_800D211C(s32);
+
+    switch (arg1) {
+        case 0x1405:
+        case 0x1449:
+            return arg2 ? 0x32 : 0x28;
+        case 0x1406:
+        case 0x144A:
+            return 0x32;
+        case 0x1409:
+            return 0x3C;
+        case 0x140E:
+        case 0x144C:
+            return *(s32 *)((u8 *)arg0 + 0x24);
+        case 0x140F:
+        case 0x1450:
+            if (arg2 == 0) {
+                return *(s32 *)((u8 *)arg0 + 0x24);
+            }
+        default:
+            return func_800D211C(0x87);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80800F98_chwaspnestgame.s")
 
