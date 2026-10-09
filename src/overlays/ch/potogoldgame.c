@@ -46,7 +46,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_8080219C_chpotogoldgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_8080227C_chpotogoldgame.s")
+/* extern */
+
+void func_8080227C_chpotogoldgame(void *arg0) {
+    s32 _capod_entrypoint_3(s32, void *);
+    if ((*(s32 *)((s8 *)(arg0) + (0x34))) != 0) {
+        _capod_entrypoint_3(0, arg0);
+        (*(s32 *)((s8 *)(arg0) + (0x34))) = 0;
+    }
+}
 
 OSThread *chpotogoldgame_entrypoint_4(void)
 {
