@@ -13,7 +13,14 @@ OSThread *chboilerid_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_808003AC_chboilerid.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_808003EC_chboilerid.s")
+/* extern */
+
+void func_808003EC_chboilerid(s32 arg0) {
+    s32 func_800CF494();
+    s32 func_800DA524(s32);
+    func_800DA524(0x66F);
+    func_800CF494();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_80800418_chboilerid.s")
 
