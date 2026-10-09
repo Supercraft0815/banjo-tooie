@@ -12,7 +12,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/joy/subaddiejoy_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/joy/subaddiejoy_entrypoint_6.s")
+/* extern */
+
+void subaddiejoy_entrypoint_6(void *arg0) {
+    s32 func_80016B30(u32);
+    func_80016B30((u32) ((*(s32 *)((s8 *)(arg0) + (0x64))) * 8) >> 0x1E);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/joy/subaddiejoy_entrypoint_7.s")
 
