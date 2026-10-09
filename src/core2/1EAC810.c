@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC810/func_800D2F20.s")
+/* extern */
+
+s32 func_800D2F20(void) {
+    s32 func_800BDC5C();
+    return func_800BDC5C() * 4;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC810/func_800D2F44.s")
 
