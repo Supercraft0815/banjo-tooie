@@ -26,6 +26,12 @@ void func_8009BD88(PlayerState *arg0) {
     func_8009BDAC(arg0, 0.6f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75620/func_8009BDAC.s")
+/* extern */
+
+void func_8009BDAC(PlayerState *arg0, f32 arg1) {
+    s32 bastatetimer_set(f32, s32, f32);
+    bastatetimer_set(arg1, 4, arg1);
+    func_8009BD38(arg0, 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75620/func_8009BDE4.s")
