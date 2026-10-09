@@ -12,7 +12,10 @@ void gsattract_entrypoint_2(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/attract/gsattract_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/attract/gsattract_entrypoint_4.s")
+void gsattract_entrypoint_4(void) {
+    extern s32 D_8013546C;
+    (*(s8 *)((s8 *)(&D_8013546C) + (4))) = 2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/attract/func_80800274_gsattract.s")
 
