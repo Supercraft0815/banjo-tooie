@@ -115,7 +115,9 @@ void gczoombox_entrypoint_15(void *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x177))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x177))) & 0xFE);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_16.s")
+void gczoombox_entrypoint_16(void *arg0) {
+    (*(u8 *)((s8 *)(arg0) + (0x177))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x177))) & 0xEF);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_17.s")
 
