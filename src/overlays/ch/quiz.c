@@ -196,7 +196,478 @@ OSThread *chquiz_entrypoint_3(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_8080414C_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80804170_chquiz.s")
+void func_80804170_chquiz(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    f32 func_800DC178(f32, f32);
+    void func_8080100C_chquiz(Actor *, void *, u8);
+    void func_80801058_chquiz(Actor *, void *, f32, s8, s8, s8);
+    void func_8008F990(void *, f32);
+    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    s32 _gcgoto_entrypoint_2(s32, s32, s32);
+    s32 _gcnewoption_entrypoint_47(s32);
+    s32 _gcstatusDll_entrypoint_17();
+    s32 _gcstatusDll_entrypoint_18(void);
+    s32 _glglobalsettings_entrypoint_3();
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _suquiz_entrypoint_11(s32);
+    s32 _suquiz_entrypoint_18(s32);
+    s32 _suquiz_entrypoint_19(s32);
+    s32 _suquiz_entrypoint_2();
+    s32 _suquiz_entrypoint_20(s32);
+    s32 _suquiz_entrypoint_4();
+    s32 _suquiz_entrypoint_6();
+    f32 _suquiz_entrypoint_8(s32);
+    s32 func_8008F8B0();
+    s32 func_8008F8D8(s32);
+    s32 func_8008F904(s32 *, Unk80132ED0 *);
+    s32 func_800D3948();
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    s32 func_800DC128(s32, s32);
+    s32 func_800FC660(s32);
+    s32 func_80101180(s32, s32, s32);
+    s32 func_80102424(Actor *, s32);
+    s32 func_8080034C_chquiz(Actor *, s32);
+    s32 func_808008B0_chquiz(Actor *);
+    s32 func_808008D4_chquiz(Actor *);
+    s32 func_80800A70_chquiz(Actor *);
+    s32 func_80800B6C_chquiz(Actor *);
+    s32 func_80800B90_chquiz(s32);
+    s32 func_80801408_chquiz(Actor *, void *, s32, s32);
+    s32 func_808014F8_chquiz(s32, s32);
+    s32 func_80801544_chquiz(s32);
+    s32 func_8080154C_chquiz(void *);
+    s32 func_808016F8_chquiz(void *, s32, f32);
+    s32 func_80801724_chquiz(void *);
+    s32 func_80801760_chquiz(void *, s32, s32);
+    s32 func_80801784_chquiz(void *, s32);
+    s32 func_80801930_chquiz(void *, s32 *);
+    s32 func_80801A54_chquiz(void *, s32 *);
+    s32 func_80801C08_chquiz(void *, s32);
+    s32 func_80803B54_chquiz(Actor *, s32, s32);
+    extern s32 D_80807678_chquiz;
+    extern s32 func_8010D5DC;
+    void *temp_s1;
+    s32 sp68;
+    s32 sp64;
+    s32 sp60;
+    volatile s32 sp5C;
+    s32 sp50[3];
+    s32 count1;
+    s32 sp48;
+    s32 sp38[4];
+    s32 count2;
+
+    temp_s1 = func_80100094(arg0, 0U);
+    switch (arg1) {
+    case 0x1:
+        func_80801408_chquiz(arg0, temp_s1, 9, 0);
+        func_80102424(arg0, 1);
+        func_808014F8_chquiz(1, 1);
+        goto block_128;
+    case 0x2:
+        func_80803B54_chquiz(arg0, 0x1460, 4);
+        goto block_128;
+    case 0x3:
+        func_80803B54_chquiz(arg0, 0x1461, 4);
+        goto block_128;
+    case 0x4:
+        func_80803B54_chquiz(arg0, 0x1463, 4);
+        func_8080100C_chquiz(arg0, temp_s1, 0U);
+        goto block_128;
+    case 0x5:
+        func_80803B54_chquiz(arg0, 0x1465, 4);
+        func_8080100C_chquiz(arg0, temp_s1, 1U);
+        goto block_128;
+    case 0x6:
+        func_80803B54_chquiz(arg0, 0x1464, 4);
+        func_8080100C_chquiz(arg0, temp_s1, 2U);
+        goto block_128;
+    case 0x7:
+        if (func_800DA298(0x584) != 0) {
+            func_80803B54_chquiz(arg0, 0x146A, 0x46);
+        } else {
+            func_800DA544(0x584);
+            func_80803B54_chquiz(arg0, 0x1466, 4);
+        }
+        func_80801724_chquiz(temp_s1);
+        func_8080100C_chquiz(arg0, temp_s1, 3U);
+        func_80102424(arg0, 1);
+        _suquiz_entrypoint_18(1);
+        _chintrotext_entrypoint_1(0x1A89, 0, 0, 2);
+        goto block_128;
+    case 0x8:
+        if (func_800DA298(0x585) != 0) {
+            func_80803B54_chquiz(arg0, 0x146B, 0x46);
+        } else {
+            func_800DA544(0x585);
+            func_80803B54_chquiz(arg0, 0x1467, 4);
+        }
+        func_80801724_chquiz(temp_s1);
+        func_80102424(arg0, 1);
+        func_8080100C_chquiz(arg0, temp_s1, 4U);
+        _suquiz_entrypoint_18(2);
+        _chintrotext_entrypoint_1(0x1A89, 1, 0, 2);
+        goto block_128;
+    case 0x9:
+        func_80102424(arg0, 1);
+        func_80803B54_chquiz(arg0, 0x1462, 4);
+        func_8080100C_chquiz(arg0, temp_s1, 6U);
+        _suquiz_entrypoint_18(3);
+        goto block_128;
+    case 0xA:
+        if (func_800DA298(0x586) != 0) {
+            func_80803B54_chquiz(arg0, 0x146C, 0x46);
+        } else {
+            func_800DA544(0x586);
+            func_80803B54_chquiz(arg0, 0x1468, 4);
+        }
+        func_80801724_chquiz(temp_s1);
+        func_80102424(arg0, 1);
+        func_8080100C_chquiz(arg0, temp_s1, arg0->actorData[7] == 9 ? 5 : 6);
+        _suquiz_entrypoint_18(3);
+        _chintrotext_entrypoint_1(0x1A89, 2, 0, 2);
+        goto block_128;
+    case 0xB:
+        if (func_8080154C_chquiz(temp_s1) != 0) {
+            if (func_800D3948() != 0) {
+                func_80804170_chquiz(arg0, 0x35);
+                return;
+            }
+            func_80804170_chquiz(arg0, 0x1A);
+            return;
+        }
+        func_808008D4_chquiz(arg0);
+        func_80800A70_chquiz(arg0);
+        func_80102424(arg0, 1);
+        switch (func_80800B90_chquiz(func_80800B6C_chquiz(arg0))) {
+        case 0:
+            func_80804170_chquiz(arg0, 0xD);
+            return;
+        case 1:
+            func_8080100C_chquiz(arg0, temp_s1, 8U);
+            func_80803B54_chquiz(arg0, func_800DC128(0x14A1, 0x14A4), 0x46);
+            goto block_128;
+        }
+        break;
+    case 0xD:
+        if (arg0->unk70_10 != 0xC) {
+            sp68 = 2;
+        } else {
+            sp68 = 1;
+        }
+        func_8080100C_chquiz(arg0, temp_s1, 9U);
+        func_8080034C_chquiz(arg0, 1);
+        _suquiz_entrypoint_19(sp68);
+        func_808016F8_chquiz(temp_s1, 0, _suquiz_entrypoint_8(sp68));
+        func_80101180(0x529, 0x82, 0);
+        goto block_128;
+    case 0xF:
+        sp64 = _suquiz_entrypoint_6();
+        func_8080034C_chquiz(arg0, 2);
+        func_80801058_chquiz(arg0, temp_s1, 0.5f, 0, (s8) func_80801544_chquiz(sp64), 1);
+        if (_suquiz_entrypoint_11(sp64) == 0) {
+            *(f32 *)&arg0->actorData[0] = func_800DC178(1.0f, 2.0f);
+            arg0->unk64_20 = 0;
+            *(f32 *)&arg0->actorData[1] = 1.0f;
+        }
+        _suquiz_entrypoint_19(3);
+        func_808016F8_chquiz(temp_s1, 1, _suquiz_entrypoint_8(3));
+        goto block_128;
+    case 0x11:
+        func_80102424(arg0, 2);
+        func_800FC660(0xF);
+        func_8080100C_chquiz(arg0, temp_s1, 0xDU);
+        if (_suquiz_entrypoint_4() == 2) {
+            func_80803B54_chquiz(arg0, func_800DC128(0x1485, 0x148B), 0x46);
+            func_8080034C_chquiz(arg0, 0);
+        } else {
+            func_80803B54_chquiz(arg0, func_800DC128(0x1479, 0x147F), 0x46);
+        }
+        func_808008B0_chquiz(arg0);
+        func_80801760_chquiz(temp_s1, 0x63, _suquiz_entrypoint_6());
+        goto block_128;
+    case 0x13:
+        func_8080100C_chquiz(arg0, temp_s1, 0xBU);
+        if (_suquiz_entrypoint_4() == 2) {
+            func_80803B54_chquiz(arg0, func_800DC128(0x14B0, 0x14B6), 0x46);
+        } else {
+            func_80803B54_chquiz(arg0, func_800DC128(0x14AA, 0x14B0), 0x46);
+        }
+        func_808008B0_chquiz(arg0);
+        func_80801760_chquiz(temp_s1, 0x67, _suquiz_entrypoint_6());
+        goto block_128;
+    case 0xE:
+        func_8080100C_chquiz(arg0, temp_s1, 0xAU);
+        func_80101180(0x529, 0x85, _suquiz_entrypoint_6());
+        _suquiz_entrypoint_19(4);
+        func_80101180(0x529, 0x86, 0);
+        func_8080034C_chquiz(arg0, 3);
+        func_808016F8_chquiz(temp_s1, _gcnewoption_entrypoint_47((*(s32 *)((s8 *)(func_80100094(arg0, 0U)) + (0x94)))), _suquiz_entrypoint_8(4));
+        goto block_128;
+    case 0x10:
+        sp60 = _suquiz_entrypoint_6();
+        func_8080034C_chquiz(arg0, 4);
+        func_80801058_chquiz(arg0, temp_s1, 0.5f, 0, (s8) func_80801544_chquiz(sp60), 1);
+        if (_suquiz_entrypoint_11(sp60) == 0) {
+            *(f32 *)&arg0->actorData[0] = func_800DC178(1.0f, 2.0f);
+            arg0->unk64_20 = 0;
+            *(f32 *)&arg0->actorData[1] = 2.0f;
+        }
+        _suquiz_entrypoint_19(5);
+        func_808016F8_chquiz(temp_s1, 1, _suquiz_entrypoint_8(5));
+        goto block_128;
+    case 0x12:
+        func_80102424(arg0, 2);
+        func_8080100C_chquiz(arg0, temp_s1, 0xAU);
+        func_800FC660(0xF);
+        if (_suquiz_entrypoint_4() == 2) {
+            func_80803B54_chquiz(arg0, func_800DC128(0x14B6, 0x14BC), 0x46);
+        } else {
+            func_80803B54_chquiz(arg0, func_800DC128(0x147F, 0x1485), 0x46);
+        }
+        func_808008B0_chquiz(arg0);
+        func_8080034C_chquiz(arg0, 0);
+        func_80801760_chquiz(temp_s1, 0x64, _suquiz_entrypoint_6());
+        goto block_128;
+    case 0x14:
+        func_8080100C_chquiz(arg0, temp_s1, 0xBU);
+        func_80803B54_chquiz(arg0, func_800DC128(0x14DA, 0x14E0), 0x46);
+        func_808008B0_chquiz(arg0);
+        func_80801760_chquiz(temp_s1, 0x68, _suquiz_entrypoint_6());
+        func_8080034C_chquiz(arg0, 0);
+        goto block_128;
+    case 0x16:
+        func_8080100C_chquiz(arg0, temp_s1, 0xCU);
+        if (_suquiz_entrypoint_4() == 2) {
+            func_80803B54_chquiz(arg0, func_800DC128(0x14BC, 0x14C2), 0x46);
+        } else {
+            func_80803B54_chquiz(arg0, func_800DC128(0x146D, 0x1473), 0x46);
+        }
+        func_8080034C_chquiz(arg0, 0);
+        goto block_128;
+    case 0x15:
+        func_8080100C_chquiz(arg0, temp_s1, 0x11U);
+        func_80803B54_chquiz(arg0, func_800DC128(0x149A, 0x14A0), 0x46);
+        func_8080034C_chquiz(arg0, 0);
+        goto block_128;
+    case 0x17:
+        func_80102424(arg0, 3);
+        func_800FC660(0xE);
+        func_808008B0_chquiz(arg0);
+        func_8080100C_chquiz(arg0, temp_s1, 0xFU);
+        func_80803B54_chquiz(arg0, func_800DC128(0x1473, 0x1479), 0x46);
+        func_8080034C_chquiz(arg0, 0);
+        func_80801760_chquiz(temp_s1, 0x65, _suquiz_entrypoint_6());
+        goto block_128;
+    case 0x18:
+        func_80102424(arg0, 3);
+        func_800FC660(0xE);
+        func_808008B0_chquiz(arg0);
+        func_8080100C_chquiz(arg0, temp_s1, 0x10U);
+        func_80803B54_chquiz(arg0, func_800DC128(0x14A4, 0x14AA), 0x46);
+        func_8080034C_chquiz(arg0, 0);
+        func_80801760_chquiz(temp_s1, 0x66, _suquiz_entrypoint_6());
+        goto block_128;
+    case 0x19:
+        func_80102424(arg0, 1);
+        func_80101180(0x529, 0x84, _suquiz_entrypoint_6());
+        func_80101180(0x52E, 0x8C, _suquiz_entrypoint_6());
+        func_80801058_chquiz(arg0, temp_s1, 1.0f, 0, (s8) func_80801544_chquiz(_suquiz_entrypoint_6()), 0);
+        *(f32 *)&arg0->actorData[0] = 2.0f;
+        goto block_128;
+    case 0x1A:
+        sp5C = 0;
+        func_80101180(0x529, 0x3B, 0);
+        func_8080100C_chquiz(arg0, temp_s1, 0x12U);
+        if (_suquiz_entrypoint_4() == 2) {
+            func_80804170_chquiz(arg0, 0x1F);
+            if (func_80801784_chquiz(temp_s1, 2) < 0xF) {
+                sp5C = 0x1491;
+            } else {
+                func_808014F8_chquiz(1, 1);
+                sp5C = 0x1492;
+            }
+            func_80803B54_chquiz(arg0, sp5C, 0x4E);
+            arg0->unk6C_0 = 2;
+            return;
+        }
+        count1 = func_80801930_chquiz(temp_s1, &sp50[0]);
+        if (count1 == 1) {
+            arg0->unk6C_0 = sp50[0];
+            switch (arg0->unk6C_0) {
+            case 1:
+                if (_suquiz_entrypoint_4() == 0) {
+                    sp5C = 0x148D;
+                } else {
+                    sp5C = 0x1490;
+                }
+                break;
+            case 0:
+                if (_suquiz_entrypoint_4() == 0) {
+                    sp5C = 0x148B;
+                } else {
+                    sp5C = 0x148E;
+                }
+                break;
+            case 2:
+                if (_suquiz_entrypoint_4() == 0) {
+                    sp5C = 0x148C;
+                } else {
+                    sp5C = 0x148F;
+                }
+                break;
+            }
+        } else {
+            if (_suquiz_entrypoint_4() == 0) {
+                sp5C = 0x14C7;
+            } else {
+                sp5C = 0x14C8;
+            }
+            arg0->unk6C_0 = sp50[func_800DC128(0, count1)];
+        }
+        func_80803B54_chquiz(arg0, sp5C, 0x46);
+        goto block_128;
+    case 0x1B:
+        func_8080100C_chquiz(arg0, temp_s1, 0x13U);
+        goto block_128;
+    case 0x1C:
+        func_80101180(0x529, 0x87, arg0->unk6C_0);
+        _suquiz_entrypoint_20(arg0->unk6C_0);
+        goto block_128;
+    case 0x1D:
+        *(f32 *)&arg0->actorData[0] = 2.0f;
+        goto block_128;
+    case 0x1E:
+        func_8080100C_chquiz(arg0, temp_s1, 0x14U);
+        func_80102424(arg0, 4);
+        goto block_128;
+    case 0x20:
+        func_80102424(arg0, 6);
+        func_8080100C_chquiz(arg0, temp_s1, 0x19U);
+        goto block_128;
+    case 0x21:
+        _suquiz_entrypoint_18(4);
+        _suquiz_entrypoint_2();
+        func_80101180(0x4CD, 7, 0);
+        func_80801408_chquiz(arg0, func_80100094(arg0, 0U), 0x13, 0x10);
+        arg0->unk64_16 = 0;
+        goto block_128;
+    case 0x22:
+        func_80101180(0x529, 0x8A, 2);
+        func_80801058_chquiz(arg0, temp_s1, 1.5f, 0, 9, 1);
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x14A0, 0xC, arg0->position, 0xC);
+        goto block_128;
+    case 0x23:
+        func_8008F8B0();
+        func_8008F8D8(1);
+        func_8008F990(&D_80807678_chquiz, 500.0f);
+        func_8008F904(&func_8010D5DC, arg0->unk0);
+        func_80801408_chquiz(arg0, temp_s1, 0x15, 0x40);
+        *(f32 *)&arg0->actorData[0] = 0.3f;
+        goto block_128;
+    case 0x24:
+        func_80801058_chquiz(arg0, temp_s1, 2.5f, _glglobalsettings_entrypoint_3() != 0 ? 2 : 0, 7, 1);
+        func_808014F8_chquiz(0, 1);
+        goto block_128;
+    case 0x25:
+        _gcgoto_entrypoint_2(0x19C, 0, 0);
+        goto block_128;
+    case 0x26:
+        _suquiz_entrypoint_18(1);
+        func_8080100C_chquiz(arg0, temp_s1, 0x21U);
+        func_80803B54_chquiz(arg0, 0x14CC, 0x46);
+        goto block_128;
+    case 0x27:
+        _suquiz_entrypoint_18(2);
+        func_8080100C_chquiz(arg0, temp_s1, 0x22U);
+        func_80803B54_chquiz(arg0, 0x14CD, 0x46);
+        goto block_128;
+    case 0x28:
+        _suquiz_entrypoint_18(3);
+        func_8080100C_chquiz(arg0, temp_s1, 0x23U);
+        func_80803B54_chquiz(arg0, 0x14CE, 0x46);
+        goto block_128;
+    case 0x29:
+        func_80801724_chquiz(temp_s1);
+        func_8080100C_chquiz(arg0, temp_s1, 3U);
+        func_80803B54_chquiz(arg0, 0x14D3, 0x46);
+        goto block_128;
+    case 0x2A:
+        func_80801724_chquiz(temp_s1);
+        func_8080100C_chquiz(arg0, temp_s1, 3U);
+        func_80803B54_chquiz(arg0, 0x14D4, 0x46);
+        goto block_128;
+    case 0x2B:
+        func_80801724_chquiz(temp_s1);
+        func_8080100C_chquiz(arg0, temp_s1, 3U);
+        func_80803B54_chquiz(arg0, 0x14D5, 0x46);
+        goto block_128;
+    case 0x2C:
+        func_8080100C_chquiz(arg0, temp_s1, 0x24U);
+        func_80803B54_chquiz(arg0, 0x14CF, 0x46);
+        goto block_128;
+    case 0x2D:
+        func_8080100C_chquiz(arg0, temp_s1, 0x25U);
+        func_80803B54_chquiz(arg0, 0x14D0, 0x46);
+        goto block_128;
+    case 0x2E:
+        func_8080100C_chquiz(arg0, temp_s1, 0x1AU);
+        func_80803B54_chquiz(arg0, 0x1469, 0x46);
+        goto block_128;
+    case 0x2F:
+        func_8080100C_chquiz(arg0, temp_s1, 0x1BU);
+        func_80803B54_chquiz(arg0, 0x14D6, 0x46);
+        goto block_128;
+    case 0x30:
+        func_8080100C_chquiz(arg0, temp_s1, 0x1CU);
+        func_80803B54_chquiz(arg0, 0x14C2, 0x46);
+        goto block_128;
+    case 0x31:
+        func_8080100C_chquiz(arg0, temp_s1, 0x1DU);
+        func_80803B54_chquiz(arg0, 0x14C3, 0x46);
+        goto block_128;
+    case 0x32:
+        func_8080100C_chquiz(arg0, temp_s1, 0x1EU);
+        func_80803B54_chquiz(arg0, 0x14C4, 0x46);
+        goto block_128;
+    case 0x33:
+        func_8080100C_chquiz(arg0, temp_s1, 0x1FU);
+        func_80803B54_chquiz(arg0, 0x14C5, 0x46);
+        goto block_128;
+    case 0x34:
+        func_8080100C_chquiz(arg0, temp_s1, 0x1BU);
+        func_80803B54_chquiz(arg0, (f32) _gcstatusDll_entrypoint_17() == 0.0f ? 0x14C6 : 0x14D9, 0x46);
+        goto block_128;
+    case 0x35:
+        func_8080100C_chquiz(arg0, temp_s1, 0x1AU);
+        if ((f32) _gcstatusDll_entrypoint_17() != 0.0f) {
+            count2 = func_80801A54_chquiz(temp_s1, &sp38[0]);
+            if (count2 == 1) {
+                arg0->unk6C_0 = sp38[0];
+                sp48 = 0x1493;
+            } else {
+                sp48 = 0x1495;
+                arg0->unk6C_0 = sp38[func_800DC128(0, count2)];
+            }
+        } else {
+            arg0->unk6C_0 = func_80801C08_chquiz(temp_s1, _gcstatusDll_entrypoint_18());
+            sp48 = 0x1494;
+        }
+        func_80801758_chquiz(temp_s1, arg0->unk6C_0);
+        func_80803B54_chquiz(arg0, sp48, 0x46);
+        func_800FC660(0x10);
+        goto block_128;
+    case 0x36:
+        func_8080100C_chquiz(arg0, temp_s1, 0x13U);
+        goto block_128;
+    case 0x37:
+        func_80101180(0x529, 0x87, arg0->unk6C_0);
+        goto block_128;
+    }
+block_128:
+    arg0->actorData[7] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808053BC_chquiz.s")
 
