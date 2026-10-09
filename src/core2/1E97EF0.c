@@ -100,7 +100,12 @@ void func_800BF420()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF58C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF68C.s")
+void func_800BF68C(void) {
+    s32 _gcmapDll_entrypoint_1(s32 *);
+    extern s8 D_80128634;
+    _gcmapDll_entrypoint_1(&D_801285B0);
+    D_80128634 = -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF6B8.s")
 
