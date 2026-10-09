@@ -8,7 +8,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspstatue/func_80800350_chwaspstatue.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspstatue/chwaspstatue_entrypoint_0.s")
+/* extern */
+
+void chwaspstatue_entrypoint_0(s32 arg0, s32 arg1) {
+    s32 func_80106790(s32);
+    s32 func_80800134_chwaspstatue(s32, s32);
+    func_80800134_chwaspstatue(func_80106790(arg1), 4);
+}
 
 OSThread *chwaspstatue_entrypoint_1(void)
 {
