@@ -8,7 +8,10 @@ void func_80800000_chfoodwarn(s32 arg0, s32 arg1, s32 arg2) {
     _gspropctrl_entrypoint_11(_gccubesearch_entrypoint_1(arg1 + 0x521, arg0 + 4), arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/foodwarn/func_8080003C_chfoodwarn.s")
+void func_8080003C_chfoodwarn(s32 arg0) {
+    func_80800000_chfoodwarn(arg0, 0, arg0 + 0x28);
+    func_80800000_chfoodwarn(arg0, 1, arg0 + 0x18);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/foodwarn/func_80800074_chfoodwarn.s")
 
