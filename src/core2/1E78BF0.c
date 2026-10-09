@@ -45,7 +45,15 @@ void func_8009FE78(PlayerState *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009FF44.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009FFD8.s")
+/* extern */
+
+void func_8009FFD8(PlayerState *arg0, enum baanim_update_type_e anim_update_type, enum yaw_type_e yaw_state, s32 arg2, enum ba_physics_type_e arg3) {
+    s32 func_8009D2D8(PlayerState *, s32);
+    func_8008CA4C(arg0, anim_update_type);
+    yaw_setUpdateType(arg0, yaw_state);
+    func_8009D2D8(arg0, arg2);
+    baphysics_set_type(arg0, arg3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A0024.s")
 
