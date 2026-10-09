@@ -129,7 +129,23 @@ void func_800BF68C(void) {
     D_80128634 = -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF6B8.s")
+/* extern */
+
+s32 func_800BF6B8(void) {
+    s32 _gcmapsects_entrypoint_24(s32 *);
+    s32 var_v0;
+
+    var_v0 = 0;
+    if ((*(u8 *)((s8 *)(&D_801285B0) + (0x77))) != 0) {
+        if (_gcmapsects_entrypoint_24(&D_801285B0) != 0) {
+            return 2;
+        }
+        var_v0 = 1;
+        /* Duplicate return node #4. Try simplifying control flow for better match */
+        return var_v0;
+    }
+    return var_v0;
+}
 
 void * func_800BF704(void) {
     return &D_801285B0;
