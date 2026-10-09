@@ -11,7 +11,9 @@ f32 bakaztorpedo_entrypoint_1(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/kaztorpedo/bakaztorpedo_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/kaztorpedo/bakaztorpedo_entrypoint_3.s")
+void bakaztorpedo_entrypoint_3(void *arg0) {
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xB0)))) + (0x10))) = 20.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/kaztorpedo/bakaztorpedo_entrypoint_4.s")
 
