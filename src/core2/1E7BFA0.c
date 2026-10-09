@@ -45,7 +45,14 @@ void func_800A2EDC(void *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2EEC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2F90.s")
+/* extern */
+
+void func_800A2F90(void *arg0, s32 arg1) {
+    s32 _fxstep_entrypoint_2(s32, s32);
+    s32 func_800A2EEC(void *, s32);
+    _fxstep_entrypoint_2(*(*(s32 **)((s8 *)(arg0) + (0x124))), 0);
+    func_800A2EEC(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2FCC.s")
 
