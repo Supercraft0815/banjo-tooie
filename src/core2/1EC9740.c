@@ -26,7 +26,36 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F059C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F05F8.s")
+s32 func_800F05F8(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4) {
+    f32 delta[3];
+    f32 a, b, c;
+    f32 root, dot, discriminant;
+    f32 b2[1], ac[1];
+    s32 result;
+
+    delta[0] = arg0[0] - arg2[0];
+    delta[2] = arg0[2] - arg2[2];
+    a = arg1[0] * arg1[0] + arg1[2] * arg1[2];
+    if (a == 0.0f) {
+        return 0;
+    }
+    b = 2.0f * (arg1[0] * delta[0] + arg1[2] * delta[2]);
+    c = delta[0] * delta[0] + delta[2] * delta[2] - arg3 * arg3;
+    b2[0] = b * b;
+    ac[0] = 4.0f * a * c;
+    if (b2[0] < ac[0]) {
+        return 0;
+    }
+    discriminant = b2[0] - ac[0];
+    root = sqrtf(discriminant);
+    a = 0.5f / a;
+    arg4[0] = (root - b) * a;
+    if (root != 0.0f) {
+        arg4[1] = -(b + root) * a;
+        return 2;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F0734.s")
 
