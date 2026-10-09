@@ -64,4 +64,11 @@ OSThread *chmineprospector_entrypoint_2(void)
 void func_80800DF8_chmineprospector(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800E00_chmineprospector.s")
+/* extern */
+
+void func_80800E00_chmineprospector(Actor *arg0) {
+    s32 _suexpression_entrypoint_8(Actor *, s32);
+    if (func_80100094(arg0, 1U) != NULL) {
+        _suexpression_entrypoint_8(arg0, 1);
+    }
+}
