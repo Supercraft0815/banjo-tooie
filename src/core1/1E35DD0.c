@@ -9,7 +9,14 @@ void func_8001E2A0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E35DD0/func_8001E304.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E35DD0/func_8001E34C.s")
+void func_8001E34C(void) {
+    s32 func_8001D37C(s32 *);
+    s32 func_8001D96C();
+    extern s32 D_8004187C;
+    func_8001D96C();
+    func_8001D37C(&D_8004187C);
+    func_8001E2A0();
+}
 
 void func_8001E380()
 {
