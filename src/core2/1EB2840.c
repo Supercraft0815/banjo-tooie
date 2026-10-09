@@ -3,7 +3,14 @@
 extern u32 D_8012C764;
 extern f32 D_8012C760;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2840/func_800D8F50.s")
+void func_800D8F50(f32 arg0) {
+    extern f32 D_80125D10;
+    if (arg0 < D_80125D10) {
+        D_8012C760 = arg0;
+        return;
+    }
+    D_8012C760 = D_80125D10;
+}
 
 void func_800D8F84(void) {
     extern f32 D_80125D14;
