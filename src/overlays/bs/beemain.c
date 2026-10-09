@@ -85,7 +85,10 @@ void func_80800B68_bsbeemain(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80800BD0_bsbeemain.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/bsbeemain_entrypoint_8.s")
+s32 bsbeemain_entrypoint_8(s32 arg0) {
+    extern s32 D_808012B0_bsbeemain[];
+    return ((s32 *)&D_808012B0_bsbeemain)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80800C28_bsbeemain.s")
 
