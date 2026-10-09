@@ -15,7 +15,12 @@ void func_8009BF04(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75710/func_8009BF34.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75710/func_8009BF5C.s")
+/* extern */
+
+void func_8009BF5C(PlayerState *arg0, f32 arg1) {
+    f32 func_800136E4(f32);
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xDC)))) + (4))) = func_800136E4(arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75710/func_8009BF8C.s")
 
