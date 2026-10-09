@@ -7,7 +7,12 @@ void func_8001A010(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A018.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A080.s")
+/* extern */
+
+void func_8001A080(void) {
+    s32 func_8001A018(s32);
+    D_8007BCC4 = func_8001A018(0x21D80);
+}
 
 s32 func_8001A0A8()
 {
