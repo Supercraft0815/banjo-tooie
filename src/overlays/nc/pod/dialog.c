@@ -34,7 +34,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80801310_ncpoddialog.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/ncpoddialog_entrypoint_3.s")
+/* extern */
+
+void ncpoddialog_entrypoint_3(s16 arg0) {
+    s32 func_8001B754(s16);
+    func_8001B754(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_808013C0_ncpoddialog.s")
 
