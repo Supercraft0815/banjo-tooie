@@ -8,4 +8,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bpeck/bsbpeck_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bpeck/bsbpeck_entrypoint_3.s")
+s32 bsbpeck_entrypoint_3(s32 arg0) {
+    extern s32 D_808004A0_bsbpeck[];
+    return ((s32 *)&D_808004A0_bsbpeck)[arg0];
+}
