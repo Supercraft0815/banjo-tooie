@@ -37,7 +37,82 @@ void func_80800284_chburgerstand(Actor* arg0)
     func_80800720_chburgerstand(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/func_808002A4_chburgerstand.s")
+s32 func_808002A4_chburgerstand(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _capod_entrypoint_13(Unk80132ED0 *, s32, s32, s32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_80090734(s32, f32 *);
+    s32 func_800D1A04(s32);
+    s32 func_80101EE4(Actor *, f32);
+    s32 func_80102424(Actor *, s32);
+    s32 func_80103110(Actor *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_80108B04(Actor *, s32);
+    s32 func_808006B4_chburgerstand(Actor *);
+    s32 func_808007A0_chburgerstand(Actor *, s16, s16);
+    s32 func_8080087C_chburgerstand(Actor *, s16, s16);
+    s32 func_80800940_chburgerstand(Actor *);
+    extern s32 D_80800D50_chburgerstand;
+    Unk80132ED0 *temp_a0;
+    s32 temp_t7;
+    s32 result;
+    Actor *temp_v0;
+
+    switch (arg1) {
+        default:                                    /* switch 2 */
+            return 0;
+        case 0x2E:                                  /* switch 2 */
+            func_808007A0_chburgerstand(arg0, (*(s16 *)((s8 *)(&arg2) + (0))), (*(s16 *)((s8 *)(&arg2) + (2))));
+            break;
+        case 0x2F:                                  /* switch 2 */
+            func_8080087C_chburgerstand(arg0, (*(s16 *)((s8 *)(&arg2) + (0))), (*(s16 *)((s8 *)(&arg2) + (2))));
+            break;
+        case 0x32:                                  /* switch 2 */
+            func_80090734(2, arg0->position);
+            break;
+        case 0x3D:                                  /* switch 2 */
+            func_80800940_chburgerstand(arg0);
+            break;
+        case 0x52:                                  /* switch 2 */
+            _gcdialogcamera_entrypoint_3(&D_80800D50_chburgerstand, arg0->scale);
+            break;
+        case 0xA:                                   /* switch 2 */
+            arg0->unk64_16 = 1;
+            func_80102424(arg0, 2);
+            func_80101EE4(arg0, 0.0f);
+            func_80103110(arg0, 1);
+            temp_a0 = arg0->unk3C;
+            if (temp_a0 != NULL) {
+                temp_v0 = func_80106790(temp_a0);
+                temp_v0->unk64_16 = arg0->unk64_16;
+            }
+            _capod_entrypoint_13(arg0->unk0, 0, 0x11, 0x30);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x10DF, 4, arg0->position, 0x50);
+            break;
+        case 0x29:                                  /* switch 2 */
+            func_808006B4_chburgerstand(arg0);
+            break;
+        case 0x2A:                                  /* switch 2 */
+            func_80800720_chburgerstand(arg0);
+            break;
+        case 0x95:
+            if (func_800D1A04(0x4B) == 0) {
+                func_80108B04(arg0, 0);
+            }
+            break;
+        case 0xB8:
+            temp_t7 = arg2 & 0xFFFF;
+            switch (temp_t7) {
+            default:
+                return 0;
+            case 1:
+                return arg0->unk3C != NULL ? 0x10AB : 0x10AC;
+            case 2:
+                return arg0->unk3C != NULL ? 0x1106 : 0x1107;
+            }
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/func_808004DC_chburgerstand.s")
 
