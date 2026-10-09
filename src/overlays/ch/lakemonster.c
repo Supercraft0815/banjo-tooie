@@ -50,7 +50,12 @@ OSThread *chlakemonster_entrypoint_0(void)
 void func_808018AC_chlakemonster(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/chlakemonster_entrypoint_1.s")
+/* extern */
+
+void chlakemonster_entrypoint_1(s32 arg0) {
+    s32 _fxripple_entrypoint_0(s32);
+    _fxripple_entrypoint_0(0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/chlakemonster_entrypoint_2.s")
 
