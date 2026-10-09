@@ -69,7 +69,12 @@ f32 func_800A328C(void *arg0) {
     return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 72);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3298.s")
+/* extern */
+
+f32 func_800A3298(PlayerState *arg0) {
+    f32 func_800964DC();
+    return (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xA0)))) + (0x48))) - func_800964DC();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A32C4.s")
 
