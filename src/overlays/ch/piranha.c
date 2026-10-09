@@ -32,7 +32,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_80801638_chpiranha.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_80801690_chpiranha.s")
+void func_80801690_chpiranha(s32 arg0, s32 arg1) {
+    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+    extern s32 D_80801B10_chpiranha;
+    func_800BBCB8(arg1, 0, 0x3F800000, 1, &D_80801B10_chpiranha);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_808016D0_chpiranha.s")
 
