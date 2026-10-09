@@ -56,7 +56,12 @@ void func_80103D00(s32 arg0,s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103D24.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103D48.s")
+/* extern */
+
+void func_80103D48(void **arg0) {
+    s32 func_800D70F8(u16, s32);
+    func_800D70F8((*(u16 *)((s8 *)(*arg0) + (0x14))), 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103D70.s")
 
