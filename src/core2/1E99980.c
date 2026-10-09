@@ -77,7 +77,11 @@ void func_800C0808()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C08C0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C08F8.s")
+void func_800C08F8(void) {
+    s32 _gcnewpause_entrypoint_0(s32);
+    extern s32 D_80128AF0;
+    D_80128AF0 = _gcnewpause_entrypoint_0(D_80128AF4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0920.s")
 
