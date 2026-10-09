@@ -26,7 +26,9 @@ OSThread *chdiggerbossshell_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossshell/func_80800330_chdiggerbossshell.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossshell/func_8080044C_chdiggerbossshell.s")
+void func_8080044C_chdiggerbossshell(void *arg0) {
+    (*(f32 *)((s8 *)(arg0) + (0x58))) = 1.75f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossshell/func_8080045C_chdiggerbossshell.s")
 
