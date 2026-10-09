@@ -383,7 +383,19 @@ void func_800947EC(PlayerState *arg0, s32 arg1, s32 arg2) {
     (*(u8 *)((s8 *)(temp_v0_2) + (2))) = (u8) ((*(u8 *)((s8 *)(temp_v0_2) + (2))) & ~arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094824.s")
+/* extern */
+
+void func_80094824(s32 arg0) {
+    s32 bainput_func_80097C7C();
+    s32 func_80094A10(s32);
+    s32 func_80094C88(s32);
+    s32 func_80094D04(s32);
+    if (bainput_func_80097C7C() != 0) {
+        func_80094A10(arg0);
+        func_80094C88(arg0);
+    }
+    func_80094D04(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094864.s")
 
