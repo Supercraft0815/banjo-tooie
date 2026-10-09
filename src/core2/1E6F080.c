@@ -121,7 +121,9 @@ u32 func_80096524(PlayerState *arg0)
     return (*(u8 **)((u8 *)arg0 + 0x94))[0xA0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80096530.s")
+s32 func_80096530(void *arg0) {
+    return (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x94)))) + (0xA3))) == 3;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80096544.s")
 
