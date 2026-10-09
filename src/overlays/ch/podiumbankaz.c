@@ -1,6 +1,16 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/podiumbankaz/func_80800000_chpodiumbankaz.s")
+/* extern */
+
+void func_80800000_chpodiumbankaz(s32 arg0) {
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    s32 func_800C6E38(s32);
+    if (func_800C6E38(0x1C) != 0) {
+        _subaddiefade_entrypoint_1(arg0, 0xFF);
+        return;
+    }
+    _subaddiefade_entrypoint_1(arg0, 0x87);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/podiumbankaz/func_80800044_chpodiumbankaz.s")
 
