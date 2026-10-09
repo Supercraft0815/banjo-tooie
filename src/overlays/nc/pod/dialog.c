@@ -97,6 +97,11 @@ void ncpoddialog_entrypoint_7(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/ncpoddialog_entrypoint_9.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/ncpoddialog_entrypoint_10.s")
+/* extern */
+
+void ncpoddialog_entrypoint_10(s32 arg0) {
+    s32 ncpoddialog_entrypoint_11(s32, u32, s32, s32);
+    ncpoddialog_entrypoint_11(arg0 & 0xFFFF, (u32) (arg0 & 0xFFFF0000) >> 0x10, 1, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/ncpoddialog_entrypoint_11.s")
