@@ -25,7 +25,13 @@ OSThread *chfactoryprop_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/prop/func_80800070_chfactoryprop.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/prop/func_808001D8_chfactoryprop.s")
+/* extern */
+
+void func_808001D8_chfactoryprop(void *arg0) {
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    (*(u8 *)((s8 *)(arg0) + (0x18))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(arg0) + (0x18))));
+    (*(u8 *)((s8 *)(arg0) + (0x1C))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(arg0) + (0x1C))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/prop/func_80800214_chfactoryprop.s")
 
