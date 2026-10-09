@@ -27,7 +27,35 @@ void func_800F26B0(MtxF* arg0, f32 arg1, f32 arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F2984.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F2C1C.s")
+void func_800F2C1C(MtxF *arg0, f32 *arg1) {
+    f32 func_800138D0(f32);
+    f32 func_80013A7C(f32, f32);
+    f32 func_80013AAC(f32);
+    f32 mlAbsF(f32);
+    extern f32 D_80125EF0;
+    f32 cosine;
+    s32 pad;
+
+    if (D_80125EF0 < 1.0f - mlAbsF(arg0->m[2][1])) {
+        arg1[0] = func_80013AAC(-arg0->m[2][1]);
+        cosine = func_800138D0(arg1[0]);
+    } else {
+        cosine = 0.0f;
+        if (arg0->m[2][1] < 0.0f) {
+            arg1[0] = 90.0f;
+        } else {
+            arg1[0] = -90.0f;
+        }
+    }
+    if (cosine != 0.0f) {
+        cosine = 1.0f / cosine;
+        arg1[1] = func_80013AAC(arg0->m[2][0] * cosine);
+        arg1[2] = func_80013AAC(arg0->m[0][1] * cosine);
+    } else {
+        arg1[1] = func_80013A7C(arg0->m[0][0], 0.0f);
+        arg1[2] = 0.0f;
+    }
+}
 
 // Transforms a Vec4f by a MtxF.
 void func_800F2D34(MtxF* mat, f32 out[4], f32 in[4]) {
