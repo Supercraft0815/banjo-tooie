@@ -43,7 +43,16 @@ OSThread *chmayafarmer_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_80800C58_chmayafarmer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_80800D18_chmayafarmer.s")
+/* extern */
+
+void func_80800D18_chmayafarmer(u8 *arg0) {
+    s32 func_800CC63C(s32, s32);
+    s32 func_800EE7F8(u8 *, s32);
+    u32 temp_v0;
+
+    temp_v0 = (*(u32 *)((s8 *)(arg0) + (0x70)));
+    func_800EE7F8(arg0 + 0x18, func_800CC63C((temp_v0 >> 0x19) - 1, ((u32) (temp_v0 << 0x16) >> 0x1A) - 1));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_80800D60_chmayafarmer.s")
 
