@@ -42,7 +42,17 @@ OSThread *chhotwaterpoolbits_entrypoint_3(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/waterpoolbits/func_808003E0_chhotwaterpoolbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/waterpoolbits/func_80800528_chhotwaterpoolbits.s")
+void func_80800528_chhotwaterpoolbits(s32 *arg0) {
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    s32 func_800BEA88(s32);
+    extern s32 _chhotwaterpoolbits_entrypoint_4;
+    s32 temp_v0;
+
+    temp_v0 = func_800BEA88(1);
+    if (temp_v0 != 0) {
+        _glid_entrypoint_0(temp_v0, 0xA, &_chhotwaterpoolbits_entrypoint_4, *arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/waterpoolbits/chhotwaterpoolbits_entrypoint_4.s")
 
