@@ -17,7 +17,14 @@ void fxleaves_entrypoint_0(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/leaves/fxleaves_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/leaves/fxleaves_entrypoint_3.s")
+/* extern */
+
+void fxleaves_entrypoint_3(void *arg0) {
+    s32 heap_free(void *);
+    s32 vector_free(s32);
+    vector_free((*(s32 *)((s8 *)(arg0) + (0x1C))));
+    heap_free(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/leaves/fxleaves_entrypoint_4.s")
 
