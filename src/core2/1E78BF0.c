@@ -55,7 +55,14 @@ void func_8009FE78(PlayerState *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A0110.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A0150.s")
+/* extern */
+
+void func_800A0150(s32 arg0) {
+    s32 func_800FC240(s32, s32);
+    s32 func_800FC660(s32);
+    func_800FC240(0, 0xFA0);
+    func_800FC660(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A0180.s")
 
