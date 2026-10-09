@@ -138,7 +138,14 @@ f32 func_800DF428(f32 arg0) {
     return temp_f2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DF440.s")
+void func_800DF440(s32 arg0) {
+    extern s32 D_8012C828;
+    if (arg0 != 0) {
+        D_8012C828 = 1;
+        return;
+    }
+    D_8012C828 = 0;
+}
 
 void func_800DF464(f32 arg0) {
     extern f32 D_8012C830;
