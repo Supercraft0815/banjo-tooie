@@ -53,4 +53,7 @@ void bssplitup_entrypoint_18(s32 arg0)
     func_800A0CF4(arg0,0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/bssplitup_entrypoint_19.s")
+s32 bssplitup_entrypoint_19(s32 arg0) {
+    extern s32 D_80800740_bssplitup[];
+    return ((s32 *)&D_80800740_bssplitup)[arg0];
+}
