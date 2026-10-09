@@ -156,7 +156,12 @@ s32 func_800965D4(void *arg0)
     return (*(s32 **)((u8 *)arg0 + 0x94))[0x14];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_800965E0.s")
+/* extern */
+
+void func_800965E0(void *arg0) {
+    s32 func_800C67F8(s32);
+    func_800C67F8(*(*(s32 **)((s8 *)(arg0) + (0x94))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80096604.s")
 
