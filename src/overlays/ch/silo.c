@@ -4,7 +4,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_80800104_chsilo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_8080015C_chsilo.s")
+/* extern */
+
+s32 func_8080015C_chsilo(void *arg0, s32 arg1) {
+    s32 func_800DA298(s32);
+    if (arg1 == ((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF)) {
+        return 0;
+    }
+    if (func_800DA298(arg1 + 0x32C) == 0) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_808001A8_chsilo.s")
 
