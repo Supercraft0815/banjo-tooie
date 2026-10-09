@@ -45,7 +45,11 @@ void func_808004F0_chflysaucer(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800FF0_chflysaucer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80801034_chflysaucer.s")
+void func_80801034_chflysaucer(void *arg0) {
+    (*(f32 *)((s8 *)(arg0) + (4))) = -7800.0f;
+    (*(f32 *)((s8 *)(arg0) + (8))) = 1700.0f;
+    (*(f32 *)((s8 *)(arg0) + (0xC))) = -2900.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_8080105C_chflysaucer.s")
 
