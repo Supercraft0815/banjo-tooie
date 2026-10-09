@@ -33,7 +33,15 @@ OSThread *chphlegm_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_808005E4_chphlegm.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_80800704_chphlegm.s")
+/* extern */
+
+void func_80800704_chphlegm(s32 arg0, s32 arg1) {
+    s32 func_800DF744(s32, s32);
+    s32 func_80101870(s32, s32);
+    func_800DF744(3, 1);
+    func_800DF744(4, 0);
+    func_80101870(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_80800748_chphlegm.s")
 
