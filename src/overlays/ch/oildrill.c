@@ -14,7 +14,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_808009F8_choildrill.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_80800B90_choildrill.s")
+/* extern */
+
+void func_80800B90_choildrill(void **arg0) {
+    s32 func_80103140(void **, s32, u16);
+    s32 func_8010A590(void **);
+    s32 func_8010A624();
+    func_8010A624();
+    func_8010A590(arg0);
+    func_80103140(arg0, 0x610, (*(u16 *)((s8 *)(*arg0) + (0x16))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_80800BCC_choildrill.s")
 
