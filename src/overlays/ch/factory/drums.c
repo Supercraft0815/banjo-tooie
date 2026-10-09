@@ -10,7 +10,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/drums/func_808003DC_chfactorydrums.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/drums/chfactorydrums_entrypoint_0.s")
+void chfactorydrums_entrypoint_0(s32 arg0, s32 arg1) {
+    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+    extern s32 D_808011CC_chfactorydrums;
+    func_800BBCB8(arg1, 0, 0x3F800000, 1, &D_808011CC_chfactorydrums);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/drums/chfactorydrums_entrypoint_1.s")
 
