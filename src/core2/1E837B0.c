@@ -13,7 +13,12 @@ s32 func_800A9F14(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800A9F60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800A9F80.s")
+/* extern */
+
+void func_800A9F80(s32 arg0) {
+    s32 func_800DA298(s32);
+    func_800DA298(arg0 + 0xD1B);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800A9FA0.s")
 
