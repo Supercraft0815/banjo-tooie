@@ -78,7 +78,21 @@ void func_80801CD8_changlerboss(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80802430_changlerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_808025AC_changlerboss.s")
+/* extern */
+
+s32 func_808025AC_changlerboss(s32 arg0) {
+    s32 func_800F54E4();
+    s32 func_8010D290(s32);
+    s32 temp_v0;
+    s32 var_v1;
+
+    temp_v0 = func_8010D290(0x400);
+    var_v1 = temp_v0;
+    if (temp_v0 == -1) {
+        var_v1 = func_800F54E4();
+    }
+    return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_808025EC_changlerboss.s")
 
