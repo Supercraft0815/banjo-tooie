@@ -29,7 +29,15 @@ OSThread *chfantasylakebits_entrypoint_1(void)
     return (OSThread *) D_80800A30_chfantasylakebits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/lakebits/func_808006F4_chfantasylakebits.s")
+/* extern */
+
+void func_808006F4_chfantasylakebits(s32 *arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800FFA88(s32);
+    if ((func_800DA298(0x327) != 0) || (func_800DA298(0x9FC) != 0)) {
+        func_800FFA88(*arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/lakebits/func_8080073C_chfantasylakebits.s")
 
