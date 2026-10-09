@@ -100,7 +100,9 @@ void func_8010A3E8(void *arg0, f32 arg1) {
     (*(s16 *)((s8 *)(arg0) + (0x92))) = (s16) (s32) (256.0f * arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A40C.s")
+f32 func_8010A40C(void *arg0) {
+    return (f32) (*(s16 *)((s8 *)(arg0) + (0x92))) * 0.00390625f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A430.s")
 
