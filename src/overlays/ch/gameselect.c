@@ -266,7 +266,14 @@ void func_80803718_chgameselect()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803A58_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803A88_chgameselect.s")
+/* extern */
+
+void func_80803A88_chgameselect(void) {
+    s32 _gcstatusDll_entrypoint_7(s32);
+    s32 _gcstatusDll_entrypoint_8(s32);
+    _gcstatusDll_entrypoint_8(0);
+    _gcstatusDll_entrypoint_7(3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803AB0_chgameselect.s")
 
