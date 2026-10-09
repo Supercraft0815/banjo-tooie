@@ -27,4 +27,11 @@ OSThread *chboggyboy_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/boy/func_80800A64_chboggyboy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/boy/func_80800AD0_chboggyboy.s")
+/* extern */
+
+void func_80800AD0_chboggyboy(Actor *arg0) {
+    s32 _suexpression_entrypoint_8(Actor *, s32);
+    if (func_80100094(arg0, 1U) != NULL) {
+        _suexpression_entrypoint_8(arg0, 1);
+    }
+}
