@@ -92,7 +92,17 @@ OSThread *chdodgemcontrol_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808026D0_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80802720_chdodgemcontrol.s")
+/* extern */
+
+void func_80802720_chdodgemcontrol(s32 arg0) {
+    s32 anctrl_setIndex(s32, s32);
+    s32 func_80101CDC(s32, s32);
+    s32 func_80104248();
+    s32 func_808026D0_chdodgemcontrol(s32);
+    anctrl_setIndex(func_80104248(), 0x105);
+    func_80101CDC(arg0, 0x4B189680);
+    func_808026D0_chdodgemcontrol(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80802764_chdodgemcontrol.s")
 
