@@ -51,7 +51,10 @@ void bsstonehead_entrypoint_10(s32 arg0)
     func_80800000_bsstonehead();
     _bsdrone_entrypoint_2(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_11.s")
+s32 bsstonehead_entrypoint_11(s32 arg0) {
+    extern s32 D_80801650_bsstonehead[];
+    return ((s32 *)&D_80801650_bsstonehead)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/func_808008CC_bsstonehead.s")
 
