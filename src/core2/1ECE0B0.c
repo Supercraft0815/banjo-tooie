@@ -895,7 +895,10 @@ void func_800F9178(void)
     D_801354FA = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9184.s")
+s32 func_800F9184(void) {
+    extern u8 D_801354FA;
+    return D_801354FA == 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9198.s")
 
