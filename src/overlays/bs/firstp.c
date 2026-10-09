@@ -47,7 +47,13 @@ s32 func_80800228_bsfirstp(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80800264_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80800290_bsfirstp.s")
+/* extern */
+
+void func_80800290_bsfirstp(s32 arg0, s32 arg1, s32 arg2) {
+    f32 baanim_getTimer();
+    s32 baanim_playForDuration_loopStartingAt(s32, s32, s32, f32);
+    baanim_playForDuration_loopStartingAt(arg0, arg1, arg2, baanim_getTimer());
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808002CC_bsfirstp.s")
 
