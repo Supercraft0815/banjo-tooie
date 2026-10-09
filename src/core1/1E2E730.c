@@ -38,7 +38,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_800175F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80017764.s")
+u32 func_80017764(s32 arg0) {
+    extern u16 D_8003F600[];
+    return ((u16 *)&D_8003F600)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80017778.s")
 
