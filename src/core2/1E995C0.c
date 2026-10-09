@@ -2,7 +2,12 @@
 
 extern s32 D_80128770;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E995C0/func_800BFCD0.s")
+void func_800BFCD0(s32 arg0, s32 arg1) {
+    (*(s32 *)((s8 *)(&(&D_80128770)[arg0]) + (0x30))) = arg1;
+    if ((*(s32 *)((s8 *)(&D_80128770) + (0x30))) < arg0) {
+        (*(s32 *)((s8 *)(&D_80128770) + (0x30))) = arg0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E995C0/func_800BFD00.s")
 
