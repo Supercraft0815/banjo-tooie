@@ -242,7 +242,14 @@ void func_800C9C04(f32 arg0, u32 arg1, u32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9FD0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800CA060.s")
+void func_800CA060(void) {
+    s32 vector_free(s32);
+    extern s32 D_8012AB60;
+    if (D_8012AB60 != 0) {
+        vector_free(D_8012AB60);
+        D_8012AB60 = 0;
+    }
+}
 
 void func_800CA098(void) {
     extern f32 D_8012AB64;
