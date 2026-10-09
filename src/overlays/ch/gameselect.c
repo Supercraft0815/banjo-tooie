@@ -132,7 +132,12 @@ void func_808025CC_chgameselect(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808025EC_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802620_chgameselect.s")
+/* extern */
+
+void func_80802620_chgameselect(void *arg0) {
+    s32 _gczoombox_entrypoint_0(s32);
+    _gczoombox_entrypoint_0((*(s32 *)((s8 *)(arg0) + (0x28))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802640_chgameselect.s")
 
