@@ -7,7 +7,14 @@ void func_80800000_chfriendlystonehead(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_80800020_chfriendlystonehead.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_80800160_chfriendlystonehead.s")
+/* extern */
+
+void func_80800160_chfriendlystonehead(void **arg0, s32 arg1) {
+    s32 func_800DF744(s32, u32);
+    s32 func_80101870(void **, s32);
+    func_800DF744(3, (u32) ((*(s32 *)((s8 *)(*arg0) + (0x28))) << 0x12) >> 0x1F);
+    func_80101870(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_808001A8_chfriendlystonehead.s")
 
