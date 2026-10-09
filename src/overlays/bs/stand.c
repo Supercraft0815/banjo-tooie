@@ -46,4 +46,7 @@ void bsstand_entrypoint_11(s32 arg0)
     _bsdrone_entrypoint_2(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stand/bsstand_entrypoint_12.s")
+s32 bsstand_entrypoint_12(s32 arg0) {
+    extern s32 D_80800DB8_bsstand[];
+    return ((s32 *)&D_80800DB8_bsstand)[arg0];
+}
