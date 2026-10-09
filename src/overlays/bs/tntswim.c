@@ -8,7 +8,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tntswim/func_80800174_bstntswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tntswim/func_808001CC_bstntswim.s")
+/* extern */
+
+void func_808001CC_bstntswim(s32 arg0) {
+    s32 _bstnt_entrypoint_2(s32);
+    s32 func_800961AC(s32, s32);
+    s32 func_8009BC34();
+    func_8009BC34();
+    func_800961AC(arg0, 1);
+    _bstnt_entrypoint_2(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tntswim/func_80800200_bstntswim.s")
 
