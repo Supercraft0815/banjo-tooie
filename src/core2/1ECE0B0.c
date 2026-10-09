@@ -92,7 +92,19 @@ s32 func_800F4BB8(u32 arg0, u32 arg1, s32 arg2)
     return func_800F3A78(D_80135490[arg0],arg1,arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F4BE4.s")
+/* extern */
+
+s32 func_800F4BE4(s32 arg0) {
+    s32 func_8009E674(PlayerState *, s32);
+    s32 var_v1;
+
+    if (func_8009E674(D_80135490[arg0], 0x20000) != 0) {
+        var_v1 = 0;
+    } else {
+        var_v1 = 1;
+    }
+    return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F4C24.s")
 
