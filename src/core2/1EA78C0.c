@@ -58,7 +58,12 @@ s32 func_800CE95C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CEA84.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CEAA8.s")
+/* extern */
+
+s32 func_800CEAA8(void) {
+    void *func_800CE3E0();
+    return (*(s8 *)((s8 *)(func_800CE3E0()) + (0x12))) > 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CEAD0.s")
 
