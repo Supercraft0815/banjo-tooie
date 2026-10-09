@@ -8,7 +8,13 @@ void chanim_entrypoint_0(s32 arg0, s32 arg1) {
     (*(s32 *)((s8 *)((func_80100094(func_80106790(), 0) + (arg1 * 4))) + (4))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anim/chanim_entrypoint_1.s")
+/* extern */
+
+void chanim_entrypoint_1(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_80100094(s32, s32);
+    s32 func_80106790();
+    (*(s32 *)((s8 *)((func_80100094(func_80106790(), 0) + (arg1 * 4))) + (4))) = arg2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anim/chanim_entrypoint_2.s")
 
