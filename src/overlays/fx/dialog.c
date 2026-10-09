@@ -10,7 +10,13 @@ void fxdialog_entrypoint_1(s32 arg0, s32 arg1) {
     (*(f32 *)((s8 *)(&B_80800290_fxdialog) + (4))) = (f32) arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/dialog/fxdialog_entrypoint_2.s")
+void fxdialog_entrypoint_2(f32 arg0) {
+    extern s32 B_80800290_fxdialog;
+    if (arg0 > 0.0f) {
+        (*(f32 *)((s8 *)(&B_80800290_fxdialog) + (0x10))) = arg0;
+        (*(f32 *)((s8 *)(&B_80800290_fxdialog) + (0x14))) = (f32) (1.0f / arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/dialog/fxdialog_entrypoint_3.s")
 
