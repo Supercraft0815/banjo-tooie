@@ -1,6 +1,11 @@
 #include "ch/factory/roofbits.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_80800000_chfactoryroofbits.s")
+/* extern */
+
+void func_80800000_chfactoryroofbits(s32 arg0) {
+    s32 func_800EFA4C(s32, s32, s32, s32);
+    func_800EFA4C(arg0 + 4, 0xC48C8000, 0x460CA800, 0x44C78000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_8080003C_chfactoryroofbits.s")
 
