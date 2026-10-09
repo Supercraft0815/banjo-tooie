@@ -81,7 +81,9 @@ void func_8009DE14(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009E058.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009E084.s")
+void func_8009E084(PlayerState *arg0) {
+    func_8009DF18(arg0, 0x417, 1.0f, 0x36B0);
+}
 
 void func_8009E0AC(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 260) + 28) = arg1;
