@@ -12,7 +12,50 @@ void func_801127A8(PlayerState* arg0, f32* arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_801127C8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_801128D4.s")
+void func_801128D4(f32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) {
+    f32 func_800136E4(f32);
+    f32 func_800D8FF8();
+    f32 func_800F1344(f32, f32, f32, f32, f32);
+    f32 func_800F1DCC(f32, f32);
+    f32 mlAbsF(f32);
+    f32 unused;
+    f32 sp38;
+    f32 acceleration;
+    f32 sp30;
+    f32 sp2C;
+    f32 sp28;
+
+    if (arg0 == *arg1) {
+        *arg2 = 0.0f;
+        return;
+    }
+    sp30 = func_800D8FF8();
+    sp38 = func_800F1DCC(arg0, *arg1);
+    if (mlAbsF(sp38) < arg5) {
+        *arg2 = func_800F1344(sp38, 0.0f, arg5, 10.0f, arg4);
+    } else {
+        acceleration = arg3 * sp30;
+        if (sp38 < 0.0f) {
+            acceleration = -acceleration;
+        }
+        *arg2 += acceleration;
+        if (*arg2 < 0.0f) {
+            if (*arg2 < -arg4) {
+                *arg2 = -arg4;
+            }
+        } else if (arg4 < *arg2) {
+            *arg2 = arg4;
+        }
+    }
+    sp2C = *arg2 * sp30;
+    sp28 = mlAbsF(sp2C);
+    if ((mlAbsF(sp38) < sp28) && ((sp2C * sp38) > 0.0f)) {
+        *arg2 = 0.0f;
+        sp2C = 0.0f;
+        *arg1 = arg0;
+    }
+    *arg1 = func_800136E4(*arg1 + sp2C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80112A84.s")
 
