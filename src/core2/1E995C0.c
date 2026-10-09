@@ -20,7 +20,10 @@ void func_800BFF4C()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E995C0/func_800BFF70.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E995C0/func_800BFFA0.s")
+s32 func_800BFFA0(s32 arg0) {
+    extern s32 D_80128778[];
+    return ((s32 *)&D_80128778)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E995C0/func_800BFFB4.s")
 
