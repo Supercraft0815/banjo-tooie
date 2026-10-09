@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fog/func_80800000_chfog.s")
+/* extern */
+
+void func_80800000_chfog(s32 arg0) {
+    s32 func_800CF494();
+    func_800CF494();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fog/func_80800020_chfog.s")
 
