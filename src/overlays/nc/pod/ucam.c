@@ -4,7 +4,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/ncpoducam_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/ncpoducam_entrypoint_1.s")
+/* extern */
+
+void ncpoducam_entrypoint_1(s16 arg0) {
+    s32 func_8001B798(s16);
+    func_8001B798(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/ncpoducam_entrypoint_2.s")
 
