@@ -11,6 +11,15 @@ OSThread *chtempleinternaldoor_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/temple/internaldoor/func_808000F8_chtempleinternaldoor.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/temple/internaldoor/func_80800138_chtempleinternaldoor.s")
+/* extern */
+
+void func_80800138_chtempleinternaldoor(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _chdoor_entrypoint_1(s32, s32, s32);
+    s32 func_80800178_chtempleinternaldoor();
+    if (arg1 == 0x95) {
+        func_80800178_chtempleinternaldoor();
+    }
+    _chdoor_entrypoint_1(arg0, arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/temple/internaldoor/func_80800178_chtempleinternaldoor.s")
