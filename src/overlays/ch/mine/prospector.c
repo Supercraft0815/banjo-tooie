@@ -31,7 +31,14 @@ OSThread *chmineprospector_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800540_chmineprospector.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_808005F0_chmineprospector.s")
+void func_808005F0_chmineprospector(s32 arg0) {
+    s32 _subaddieaudioquick_entrypoint_3(s32, s32, s32 *, s32);
+    s32 func_800DC298(f32);
+    extern s32 D_80800FB0_chmineprospector;
+    if (func_800DC298(0.2f) != 0) {
+        _subaddieaudioquick_entrypoint_3(arg0, arg0 + 0x28, &D_80800FB0_chmineprospector, 0x3F4CCCCD);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800638_chmineprospector.s")
 
