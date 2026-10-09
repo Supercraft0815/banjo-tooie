@@ -112,7 +112,12 @@ void func_800C68A0(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)arg0 + 120) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C68AC.s")
+/* extern */
+
+void func_800C68AC(s32 arg0) {
+    s32 func_800EE7F8(s32);
+    func_800EE7F8(arg0 + 0x4C);
+}
 
 void func_800C68CC(s32 *arg0, s32 arg1) {
     arg0[33] = arg1;
