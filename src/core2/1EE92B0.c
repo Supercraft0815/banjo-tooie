@@ -6,7 +6,15 @@ s32 func_8010FAE4(s16 *arg0) {
     return arg0[11];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FAEC.s")
+/* extern */
+
+void func_8010FAEC(s32 arg0, void *arg1) {
+    s32 func_800A9420(s32);
+    s32 func_80114FA4(s32, s32, void *);
+    if (((*(s32 *)((s8 *)(arg1) + (0xC))) != 0) && (func_800A9420((*(s32 *)((s8 *)(arg1) + (0x1C)))) != 0)) {
+        func_80114FA4(arg0, (*(s32 *)((s8 *)(arg1) + (0xC))), arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FB34.s")
 
