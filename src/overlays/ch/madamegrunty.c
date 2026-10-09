@@ -36,7 +36,12 @@ OSThread *chmadamegrunty_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_8080082C_chmadamegrunty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_80800898_chmadamegrunty.s")
+s32 func_80800898_chmadamegrunty(f32 arg0, f32 arg1, f32 arg2) {
+    if ((arg0 <= arg2) && (arg2 < arg1)) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_808008D4_chmadamegrunty.s")
 
