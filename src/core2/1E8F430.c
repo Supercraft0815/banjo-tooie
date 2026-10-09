@@ -91,7 +91,11 @@ void func_800B7CA4()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B7CC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B7D14.s")
+void func_800B7D14(void) {
+    extern s32 D_801282B0;
+    (*(s32 *)((s8 *)(&D_801282B0) + (0))) = 0;
+    (*(s32 *)((s8 *)(&D_801282B0) + (4))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B7D28.s")
 
