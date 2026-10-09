@@ -8,7 +8,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_3.s")
+s32 bsjump_entrypoint_3(s32 arg0) {
+    extern s32 D_80801110_bsjump[];
+    return ((s32 *)&D_80801110_bsjump)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_4.s")
 
