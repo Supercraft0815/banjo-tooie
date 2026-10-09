@@ -33,7 +33,12 @@ s32 func_800D9058(f32 arg0) {
     return (s32) (arg0 * 30.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2840/func_800D9078.s")
+/* extern */
+
+u8 func_800D9078(f32 *arg0) {
+    u8 func_800F1574(f32 *, f32);
+    return func_800F1574(arg0, func_800D8FF8());
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2840/func_800D90A4.s")
 
