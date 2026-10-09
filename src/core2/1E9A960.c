@@ -14,7 +14,9 @@ void func_800C13A0(void *arg0, s32 arg1) {
     (*(u16 *)((s8 *)(arg0) + (0x7C))) = (u16) ((*(u16 *)((s8 *)(arg0) + (0x7C))) | arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C13B0.s")
+void func_800C13B0(void *arg0, s32 arg1) {
+    (*(u16 *)((s8 *)(arg0) + (0x7C))) = (u16) ((*(u16 *)((s8 *)(arg0) + (0x7C))) & ~arg1);
+}
 
 u32 func_800C13C4(u16 *arg0, u32 arg1)
 {
