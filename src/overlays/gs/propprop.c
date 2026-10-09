@@ -15,7 +15,15 @@ f32 func_8080001C_gspropprop(void) {
     return (f32) func_800B0CFC(func_800BFC94(_gsproplookup_entrypoint_1()));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propprop/func_80800050_gspropprop.s")
+/* extern */
+
+void func_80800050_gspropprop(void) {
+    s32 _gsproplookup_entrypoint_0();
+    s32 func_800B2354(s32);
+    s32 func_800B2840(s32);
+    s32 func_800BFC34(s32);
+    func_800B2354(func_800B2840(func_800BFC34(_gsproplookup_entrypoint_0())));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propprop/gspropprop_entrypoint_1.s")
 
