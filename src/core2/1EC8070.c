@@ -141,7 +141,14 @@ f32 func_800EEB40(f32 a[3], f32 b[3]) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EEFD4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EEFFC.s")
+void func_800EEFFC(void *arg0) {
+    f32 temp_f0;
+    f32 temp_f2;
+
+    temp_f0 = (*(f32 *)((s8 *)(arg0) + (8)));
+    temp_f2 = (*(f32 *)((s8 *)(arg0) + (0)));
+    sqrtf((temp_f0 * temp_f0) + (temp_f2 * temp_f2));
+}
 
 f32 func_800EF030(void *arg0) {
     f32 temp_f12;
