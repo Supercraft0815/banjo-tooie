@@ -12,7 +12,18 @@ void func_80800000_chlighthalo(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/light/halo/func_80800030_chlighthalo.s")
+/* extern */
+
+void func_80800030_chlighthalo(void *arg0) {
+    s32 func_800E87E0(s32, u8, void *);
+    u8 temp_a1;
+
+    temp_a1 = (*(u8 *)((s8 *)(arg0) + (0x34)));
+    if (temp_a1 != 0) {
+        func_800E87E0(temp_a1 & 0xFF, temp_a1, arg0);
+        (*(u8 *)((s8 *)(arg0) + (0x34))) = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/light/halo/func_80800068_chlighthalo.s")
 
