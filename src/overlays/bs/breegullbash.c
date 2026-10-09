@@ -17,4 +17,7 @@ void func_808001B4_bsbreegullbash(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/breegullbash/bsbreegullbash_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/breegullbash/bsbreegullbash_entrypoint_3.s")
+s32 bsbreegullbash_entrypoint_3(s32 arg0) {
+    extern s32 D_80800560_bsbreegullbash[];
+    return ((s32 *)&D_80800560_bsbreegullbash)[arg0];
+}
