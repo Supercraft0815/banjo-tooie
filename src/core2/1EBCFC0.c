@@ -122,7 +122,12 @@ void func_800E4064(void) {
     func_800CA6FC(D_8012D500);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBCFC0/func_800E4088.s")
+/* extern */
+
+void func_800E4088(void) {
+    s32 func_800CA7B4(s32);
+    func_800CA7B4(D_8012D500);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBCFC0/func_800E40AC.s")
 
