@@ -41,4 +41,44 @@ void sulights_entrypoint_8(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/sulights_entrypoint_9.s")
+void sulights_entrypoint_9(void) {
+    f32 func_800D8FF8();
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    extern s32 D_80127EF0;
+    typedef struct {
+        s32 (*update)(u32);
+        s32 (*finish)(u32);
+    } LightCallbacks;
+    extern LightCallbacks D_80800A00_sulights[];
+    s32 (*temp_v0_2)(u32);
+    f32 temp_f0;
+    f32 temp_f20;
+    u32 temp_s2;
+    u32 temp_v0;
+    u32 var_s0;
+
+    temp_f20 = func_800D8FF8();
+    temp_s2 = vector_end(D_80127EF0);
+    temp_v0 = vector_begin(D_80127EF0);
+    var_s0 = temp_v0;
+    if (temp_v0 < temp_s2) {
+        do {
+            if ((*(u8 *)((s8 *)(var_s0) + (0))) != 0) {
+                temp_f0 = (*(f32 *)((s8 *)(var_s0) + (0x38)));
+                (*(f32 *)((s8 *)(var_s0) + (0x34))) = (f32) ((*(f32 *)((s8 *)(var_s0) + (0x34))) + temp_f20);
+                if (temp_f0 < (*(f32 *)((s8 *)(var_s0) + (0x34)))) {
+                    (*(f32 *)((s8 *)(var_s0) + (0x34))) = temp_f0;
+                }
+                D_80800A00_sulights[*(u8 *)var_s0 - 1].update(var_s0);
+                if ((*(f32 *)((s8 *)(var_s0) + (0x38))) <= (*(f32 *)((s8 *)(var_s0) + (0x34)))) {
+                    temp_v0_2 = D_80800A00_sulights[*(u8 *)var_s0 - 1].finish;
+                    if (temp_v0_2 != NULL) {
+                        temp_v0_2(var_s0);
+                    }
+                }
+            }
+            var_s0 += 0x3C;
+        } while (var_s0 < temp_s2);
+    }
+}
