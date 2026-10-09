@@ -56,7 +56,22 @@ s32 func_800E36D0(s32 *arg0, s32 *arg1, f32 *arg2, f32 *arg3) {
     return (s32)max;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBCFC0/func_800E37E8.s")
+void func_800E37E8(s32 *arg0, s32 *arg1, s32 arg2) {
+    s32 i;
+
+    for (i = 0; i != 3; i++) {
+        if (arg0[i] >= 0) {
+            arg0[i] = arg0[i] / arg2;
+        } else {
+            arg0[i] = arg0[i] / arg2 - 1;
+        }
+        if (arg1[i] >= 0) {
+            arg1[i] = arg1[i] / arg2;
+        } else {
+            arg1[i] = arg1[i] / arg2 - 1;
+        }
+    }
+}
 
 /* extern */
 
