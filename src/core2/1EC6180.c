@@ -3,7 +3,49 @@
 void func_800EC890(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EC898.s")
+void func_800EC898(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    typedef struct { s16 map; s16 id; s16 scale; s16 offset; } Entry;
+    void _glidmake_entrypoint_2(s32, s32, u8 *, u8 *);
+    s32 func_800EA05C();
+    extern Entry D_80123580[];
+    Entry *var_t0;
+    s16 temp_v0_2;
+    s16 var_v1;
+    s32 temp_lo;
+    s32 temp_v0;
+
+    temp_v0 = func_800EA05C();
+    for (var_t0 = D_80123580; var_t0->map != 0; var_t0++) {
+        if (temp_v0 == var_t0->map && arg3 == var_t0->id) {
+            break;
+        }
+    }
+    (*(f32 *)((s8 *)(arg0) + (0x14))) = (f32) (2048.0f / (f32) (*(s16 *)((s8 *)(var_t0) + (4))));
+    (*(f32 *)((s8 *)(arg0) + (0xC))) = (f32) ((*(s16 *)((s8 *)(var_t0) + (6))) << 6);
+    _glidmake_entrypoint_2(arg2, arg3, arg0, arg0 + 6);
+    temp_v0 = arg1 / 10;
+    if (temp_v0 & 1) {
+        (*(s8 *)((s8 *)(arg0) + (0x1A))) = 0;
+    } else {
+        (*(s8 *)((s8 *)(arg0) + (0x1A))) = 1;
+    }
+    if (temp_v0 & 2) {
+        (*(s8 *)((s8 *)(arg0) + (0x1B))) = 0;
+    } else {
+        (*(s8 *)((s8 *)(arg0) + (0x1B))) = 1;
+    }
+    if (temp_v0 & 4) {
+        (*(s8 *)((s8 *)(arg0) + (0x1C))) = 0;
+    } else {
+        (*(s8 *)((s8 *)(arg0) + (0x1C))) = 1;
+    }
+    temp_v0_2 = (*(s16 *)((s8 *)(arg0) + (0x18)));
+    if (temp_v0_2 == 0) {
+        (*(s8 *)((s8 *)(arg0) + (0x1C))) = 0;
+        return;
+    }
+    (*(f32 *)((s8 *)(arg0) + (0x10))) = (f32) (50.0f / (f32) temp_v0_2);
+}
 
 void func_800EC9E0(s32 arg0, s32 arg1, s32 arg2) {
 }
