@@ -236,7 +236,12 @@ void func_800DF7E8(s8 arg0) {
     D_8012C96C = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DF7F8.s")
+void func_800DF7F8(s32 arg0, f32 arg1, f32 arg2) {
+    extern s32 D_8012CA18;
+    (*(s32 *)((s8 *)(&D_8012CA18) + (0))) = arg0;
+    (*(f32 *)((s8 *)(&D_8012CA18) + (4))) = arg1;
+    (*(f32 *)((s8 *)(&D_8012CA18) + (8))) = arg2;
+}
 
 void func_800DF818(s32 arg0)
 {
