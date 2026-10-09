@@ -135,6 +135,9 @@ void func_80801218_bsstatue()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_808012E8_bsstatue.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/bsstatue_entrypoint_9.s")
+s32 bsstatue_entrypoint_9(s32 arg0) {
+    extern s32 D_80801610_bsstatue[];
+    return ((s32 *)&D_80801610_bsstatue)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_8080147C_bsstatue.s")
