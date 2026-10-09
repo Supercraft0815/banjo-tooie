@@ -22,6 +22,13 @@ void func_8009CC90(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76500/func_8009CDE0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76500/func_8009CEE8.s")
+void func_8009CEE8(void *arg0) {
+    void *temp_v0;
+
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0xF0)));
+    if ((*(u8 *)((s8 *)(temp_v0) + (0x80))) != 0) {
+        (*(s8 *)((s8 *)(temp_v0) + (0x81))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76500/func_8009CF04.s")
