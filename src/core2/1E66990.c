@@ -163,7 +163,12 @@ void func_8008E37C()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E3E8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E40C.s")
+/* extern */
+
+s32 func_8008E40C(void) {
+    s32 _bashoes_entrypoint_1();
+    return _bashoes_entrypoint_1() == 4;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E430.s")
 
