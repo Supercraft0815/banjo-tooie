@@ -24,7 +24,15 @@ void basub_entrypoint_1(s32 arg0)
     func_80800458_basub(arg0,0x5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_2.s")
+f32 basub_entrypoint_2(void *arg0) {
+    void *temp_v0;
+
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x130)));
+    if ((*(f32 *)((s8 *)(temp_v0) + (4))) > 0.0f) {
+        return (*(f32 *)((s8 *)(temp_v0) + (0)));
+    }
+    return 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_3.s")
 
