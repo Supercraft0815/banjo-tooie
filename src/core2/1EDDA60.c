@@ -2,7 +2,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDA60/func_80104170.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDA60/func_801041A0.s")
+void func_801041A0(void) {
+    s32 freelist_free(s32);
+    extern s32 D_80136E70;
+    freelist_free(D_80136E70);
+    D_80136E70 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDA60/func_801041C8.s")
 
