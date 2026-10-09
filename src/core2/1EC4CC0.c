@@ -20,7 +20,11 @@ s32 func_800EB854(void) {
     return D_80132E9C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB860.s")
+void func_800EB860(s32 arg0, s32 arg1) {
+    extern s32 D_80132EA0;
+    (*(s32 *)((s8 *)(&D_80132EA0) + (0x20))) = arg0;
+    (*(s32 *)((s8 *)(&D_80132EA0) + (0x24))) = arg1;
+}
 
 void func_800EB874(void)
 {
