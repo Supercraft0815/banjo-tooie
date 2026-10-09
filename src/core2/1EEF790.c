@@ -7,7 +7,11 @@ s32 func_80115EA0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEF790/func_80115EA8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEF790/func_80115F98.s")
+void func_80115F98(void *arg0) {
+    (*(f32 *)((s8 *)(arg0) + (8))) = 0.0f;
+    (*(f32 *)((s8 *)(arg0) + (4))) = 0.0f;
+    (*(f32 *)((s8 *)(arg0) + (0))) = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEF790/func_80115FB0.s")
 
