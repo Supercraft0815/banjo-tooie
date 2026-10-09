@@ -996,7 +996,12 @@ s32 func_800F9214(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9240.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F929C.s")
+s32 func_800F929C(void) {
+    if (func_800F8B88() == 2) {
+        return 0xB;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F92CC.s")
 
