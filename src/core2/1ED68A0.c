@@ -16,7 +16,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FE614.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FE6F8.s")
+void func_800FE6F8(s32 arg0) {
+    extern u8 D_801359D6;
+    if ((arg0 == 0) && (D_801359D6 != 0)) {
+        func_800FE4E4();
+    }
+    D_801359D6 = (u8) arg0;
+}
 
 void func_800FE734(u32 arg0) {
     extern s8 D_801359D7;
