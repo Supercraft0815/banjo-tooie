@@ -4,7 +4,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/sueggmove_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/sueggmove_entrypoint_1.s")
+/* extern */
+
+s32 sueggmove_entrypoint_1(void) {
+    void *func_80106790();
+    return (*(s32 *)((s8 *)(func_80106790()) + (0x3C)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/sueggmove_entrypoint_2.s")
 
