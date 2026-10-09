@@ -60,7 +60,16 @@ s8 func_80800E38_chquiz(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800E44_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800EF4_chquiz.s")
+/* extern */
+
+void func_80800EF4_chquiz(s16 arg0, s32 arg1, s32 arg2) {
+    s32 _cadbfunc_entrypoint_0(s32);
+    s32 _cadbfunc_entrypoint_2(s32);
+    s32 func_800A5800(s16);
+    func_800A5800(arg0);
+    _cadbfunc_entrypoint_0(arg1);
+    _cadbfunc_entrypoint_2(arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800F34_chquiz.s")
 
