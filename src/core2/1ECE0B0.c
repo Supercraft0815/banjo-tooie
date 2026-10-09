@@ -1082,7 +1082,16 @@ void func_800F93C4(u32 *arg0, s32 *arg1) {
     *arg1 = func_800F5410((s32) temp_v0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9400.s")
+/* extern */
+
+void func_800F9400(s32 arg0) {
+    s32 func_800C964C(s32);
+    if ((arg0 == 0xA) || (arg0 == 1)) {
+        func_800C964C(0xC);
+        return;
+    }
+    func_800C964C(0xE);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9444.s")
 
