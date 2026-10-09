@@ -58,7 +58,9 @@ void susplinet_entrypoint_11(void *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/func_8080111C_susplinet.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/func_808011B8_susplinet.s")
+s32 func_808011B8_susplinet(s32 arg0, s32 arg1) {
+    return (arg0 * 0xC) + (arg1 * 4) + 6;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_18.s")
 
