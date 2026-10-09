@@ -482,7 +482,56 @@ void func_80805474_chgameselect(s32 arg0,s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80805FCC_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80806068_chgameselect.s")
+void func_80806068_chgameselect(void *arg0, s32 arg1, s32 arg2) {
+    s32 _gcstatusDll_entrypoint_4(s32);
+    s32 _gcstatusDll_entrypoint_7(s32);
+    s32 _gcstatusDll_entrypoint_8(s32);
+    s32 _gcstatusDll_entrypoint_9(s32);
+    s32 _gcstatusDll_entrypoint_19(void);
+
+    switch (arg1) {
+    case 1:
+        *(s32 *)((u8 *)arg0 + 0x20) = arg2;
+        switch (arg2) {
+        case 0:
+            _gcstatusDll_entrypoint_8(10);
+            _gcstatusDll_entrypoint_7(0);
+            break;
+        case 1:
+            _gcstatusDll_entrypoint_8(20);
+            _gcstatusDll_entrypoint_7(0);
+            break;
+        case 2:
+            _gcstatusDll_entrypoint_8(0);
+            _gcstatusDll_entrypoint_7(5);
+            break;
+        case 3:
+            _gcstatusDll_entrypoint_8(0);
+            _gcstatusDll_entrypoint_7(10);
+            break;
+        }
+        break;
+    case 2:
+        _gcstatusDll_entrypoint_4(arg2 + 1);
+        switch (arg2) {
+        case 2:
+        case 4:
+            func_80806068_chgameselect(arg0, 1, 2);
+            _gcstatusDll_entrypoint_9(0);
+            break;
+        case 3:
+        default:
+            if (_gcstatusDll_entrypoint_19() == 0) {
+                _gcstatusDll_entrypoint_9(2);
+            }
+            break;
+        }
+        break;
+    case 3:
+        _gcstatusDll_entrypoint_9(arg2 + 2);
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808061A8_chgameselect.s")
 
