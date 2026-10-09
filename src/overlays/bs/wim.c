@@ -99,7 +99,18 @@ s32 bsbswim_entrypoint_5(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80800DFC_bsbswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80800E30_bsbswim.s")
+/* extern */
+
+void func_80800E30_bsbswim(s32 arg0) {
+    s32 _babounce_entrypoint_4(s32, s32);
+    s32 _babounce_entrypoint_5(s32, s32, s32);
+    s32 func_800961AC(s32, s32);
+    s32 func_80800030_bsbswim();
+    func_80800030_bsbswim();
+    func_800961AC(arg0, 1);
+    _babounce_entrypoint_4(arg0, 2);
+    _babounce_entrypoint_5(arg0, 0xF, 0x3F15119D);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80800E7C_bsbswim.s")
 
