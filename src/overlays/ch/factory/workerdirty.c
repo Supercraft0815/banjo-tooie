@@ -74,7 +74,15 @@ s32 func_808009E4_chfactoryworkerdirty()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800A04_chfactoryworkerdirty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800A14_chfactoryworkerdirty.s")
+/* extern */
+
+s32 func_80800A14_chfactoryworkerdirty(s32 arg0) {
+    s32 func_80800A04_chfactoryworkerdirty(s32);
+    s32 sp1C;
+
+    sp1C = func_800DA564(FLAG_42D_PROGRESS_GI_SKIVVY_WASHED_OUTSIDE, 6);
+    return (func_80800A04_chfactoryworkerdirty(arg0) + 1) == sp1C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800A54_chfactoryworkerdirty.s")
 
