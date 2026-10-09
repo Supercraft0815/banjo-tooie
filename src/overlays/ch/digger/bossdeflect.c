@@ -7,7 +7,11 @@ OSThread *chdiggerbossdeflect_entrypoint_0(void)
     return (OSThread *) D_80800040_chdiggerbossdeflect;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossdeflect/func_8080000C_chdiggerbossdeflect.s")
+void func_8080000C_chdiggerbossdeflect(void *arg0) {
+    (*(s16 *)((s8 *)(arg0) + (0x62))) = 0x1F4;
+    (*(s16 *)((s8 *)(arg0) + (0x6A))) = 0x1F4;
+    (*(s16 *)((s8 *)(arg0) + (0x68))) = 0x1F4;
+}
 
 void func_80800020_chdiggerbossdeflect(s32 arg0) 
 {
