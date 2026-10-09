@@ -33,7 +33,32 @@ int func_80800160_bstrexlarge(s32 arg0)
     return bakey_pressed(arg0,BUTTON_A);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80800180_bstrexlarge.s")
+void func_80800180_bstrexlarge(PlayerState *arg0, void (*arg1)(PlayerState *)) {
+    s32 func_8009E6EC();
+    void func_8009E830(PlayerState *, s32);
+
+    switch (func_8009E6EC(arg0)) {
+        case 0x20:
+        case 0x21:
+        case 0x2E:
+        case 0x4E:
+        case 0x51:
+        case 0x52:
+        case 0x59:
+        case 0x5A:
+        case 0x5B:
+        case 0x5C:
+        case 0x91:
+            func_8009E830(arg0, 1);
+            break;
+        case 0x7E:
+            *((s8 *)arg0 + 0x15D) = 2;
+            break;
+        default:
+            arg1(arg0);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_8080024C_bstrexlarge.s")
 
