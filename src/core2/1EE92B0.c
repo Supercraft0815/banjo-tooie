@@ -27,7 +27,10 @@ void func_8010FD88()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FDA8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FDEC.s")
+void func_8010FDEC(void *arg0, f32 arg1) {
+    (*(s8 *)((s8 *)(arg0) + (0x20))) = 0x29;
+    (*(f32 *)((s8 *)(arg0) + (0x3C))) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FE00.s")
 
