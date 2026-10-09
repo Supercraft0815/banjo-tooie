@@ -60,7 +60,12 @@ void func_800BDC68(s32 arg0) {
     _gccubeDll_entrypoint_3(&D_80128410, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BDC90.s")
+/* extern */
+
+void func_800BDC90(s32 arg0) {
+    s32 _gccubeDll_entrypoint_4(s32 *, s32);
+    _gccubeDll_entrypoint_4(&D_80128410, arg0);
+}
 
 void func_800BDCB8()
 {
