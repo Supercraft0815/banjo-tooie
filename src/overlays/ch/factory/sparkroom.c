@@ -29,7 +29,16 @@ OSThread *chfactorysparkroom_entrypoint_0(void)
     return (OSThread *) D_80801108_chfactorysparkroom;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800E94_chfactorysparkroom.s")
+/* extern */
+
+void func_80800E94_chfactorysparkroom(s32 arg0) {
+    s32 _chswitch_entrypoint_7(s32, s32);
+    s32 _subaddiefade_entrypoint_14();
+    s32 func_8010A63C(s32);
+    _subaddiefade_entrypoint_14();
+    func_8010A63C(arg0);
+    _chswitch_entrypoint_7(arg0, 0xA2F);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800EC8_chfactorysparkroom.s")
 
