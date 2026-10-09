@@ -104,7 +104,39 @@ s32 suquiz_entrypoint_17()
     return func_800DA298(FLAG2_6E3_UNK);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_18.s")
+/* extern */
+
+void suquiz_entrypoint_18(u32 arg0) {
+    s32 _gcfrontend_entrypoint_9(s32);
+    switch (arg0) {
+    case 0:
+        func_800DA524(FLAG_441_UNK);
+        func_800DA7A8(FLAG_442_UNK, 0, 3);
+        return;
+    case 1:
+        func_800DA524(FLAG_441_UNK);
+        func_800DA7A8(FLAG_442_UNK, 1, 3);
+        _gcfrontend_entrypoint_9(0x74);
+        return;
+    case 2:
+        func_800DA524(FLAG_441_UNK);
+        func_800DA7A8(FLAG_442_UNK, 2, 3);
+        _gcfrontend_entrypoint_9(0x75);
+        return;
+    case 3:
+        func_800DA524(FLAG_441_UNK);
+        func_800DA7A8(FLAG_442_UNK, 3, 3);
+        _gcfrontend_entrypoint_9(0x76);
+        return;
+    case 4:
+        func_800DA544(FLAG_441_UNK);
+        func_800DA7A8(FLAG_442_UNK, 4, 3);
+        _gcfrontend_entrypoint_9(0x84);
+        /* fallthrough */
+    default:
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_19.s")
 
