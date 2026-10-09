@@ -15,7 +15,12 @@ OSThread *chtoxicroombits_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_80800458_chtoxicroombits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_808004C8_chtoxicroombits.s")
+/* extern */
+
+void func_808004C8_chtoxicroombits(s32 arg0) {
+    s32 func_800DA7A8(s32, s32, s32);
+    func_800DA7A8(0x6DF, arg0, 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_808004F0_chtoxicroombits.s")
 
