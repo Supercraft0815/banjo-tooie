@@ -8,7 +8,12 @@ extern s32 D_80137074;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE7960/func_8010E2C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE7960/func_8010E334.s")
+/* extern */
+
+void func_8010E334(void) {
+    s32 func_800B3310(s32);
+    D_80137074 = func_800B3310(0x4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE7960/func_8010E358.s")
 
