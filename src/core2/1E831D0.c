@@ -1,6 +1,14 @@
 #include "core2/1E831D0.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E831D0/func_800A98E0.s")
+void func_800A98E0(void) {
+    s32 _gsattract_entrypoint_3();
+    extern u8 D_80127760;
+    extern s8 D_80127763;
+    if ((D_80127760 != 1) && (D_80127760 == 2)) {
+        _gsattract_entrypoint_3();
+    }
+    D_80127763 = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E831D0/func_800A9924.s")
 
