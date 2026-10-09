@@ -27,4 +27,9 @@ void func_800A526C(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7EAB0/func_800A5298.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7EAB0/func_800A52E0.s")
+/* extern */
+
+void func_800A52E0(f32 *arg0, f32 arg1, f32 arg2) {
+    s32 _plcamera_entrypoint_7(u32, f32 *, f32, f32);
+    _plcamera_entrypoint_7(func_800F54E4(), arg0, arg1, arg2);
+}
