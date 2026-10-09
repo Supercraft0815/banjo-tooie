@@ -2,7 +2,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC1990/func_800E80A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC1990/func_800E8104.s")
+void func_800E8104(void) {
+    s32 func_800A9800();
+    s32 heap_free(s32);
+    extern s32 D_8012D5F4;
+    if (D_8012D5F4 != 0) {
+        heap_free(D_8012D5F4);
+        D_8012D5F4 = 0;
+    }
+    func_800A9800();
+}
 
 void func_800E8144(void) {
     s32 func_800A9828(s32, s32, s32);
