@@ -46,7 +46,12 @@ u32 func_800C8594(u8 *arg0, u32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8B84.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8BF4.s")
+/* extern */
+
+void func_800C8BF4(void) {
+    s32 vector_size(s32);
+    vector_size(D_8012AB00);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8C18.s")
 
