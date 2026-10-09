@@ -60,7 +60,12 @@ s32 func_8010FFA8(s16 *arg0) {
     return arg0[11];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FFB0.s")
+/* extern */
+
+void func_8010FFB0(s32 *arg0) {
+    s32 func_800CA8B4(s32);
+    func_800CA8B4(*arg0);
+}
 
 u32 func_8010FFD0(u8 *arg0) {
     return arg0[25];
