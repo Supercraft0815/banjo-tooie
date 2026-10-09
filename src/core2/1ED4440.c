@@ -31,4 +31,10 @@ s32 func_800FB338(void *arg0, s32 arg1, s32 arg2, f32 *arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FB434.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FB508.s")
+void func_800FB508(void *arg0, void *arg1) {
+    (*(u16 *)((s8 *)(arg0) + (0))) = (u16) (*(u16 *)((s8 *)(arg1) + (0)));
+    (*(u16 *)((s8 *)(arg0) + (2))) = (u16) (*(u16 *)((s8 *)(arg1) + (2)));
+    (*(u16 *)((s8 *)(arg0) + (4))) = (u16) (*(u16 *)((s8 *)(arg1) + (4)));
+    (*(s32 *)((s8 *)(arg0) + (8))) = (s32) (*(s32 *)((s8 *)(arg1) + (8)));
+    (*(s16 *)((s8 *)(arg0) + (6))) = (s16) (*(s16 *)((s8 *)(arg1) + (6)));
+}
