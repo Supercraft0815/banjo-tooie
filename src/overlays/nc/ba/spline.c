@@ -5,7 +5,12 @@ s32 ncbaspline_entrypoint_0()
     return 0x30;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/spline/func_80800008_ncbaspline.s")
+/* extern */
+
+void func_80800008_ncbaspline(void *arg0) {
+    s32 func_800D7520(s32);
+    func_800D7520(*(*(s32 **)((s8 *)(arg0) + (0x44))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/spline/func_8080002C_ncbaspline.s")
 
