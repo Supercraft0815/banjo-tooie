@@ -18,7 +18,20 @@ s32 func_800E4AF0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E4B1C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E4BB8.s")
+/* extern */
+
+s32 func_800E4BB8(void) {
+    s32 func_800E4730();
+    s32 func_800E4B1C(s32);
+    s32 temp_v0;
+
+    temp_v0 = func_800E4730();
+    if (temp_v0 < 0) {
+        return 0;
+    }
+    func_800E4B1C(temp_v0);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E4BF4.s")
 
