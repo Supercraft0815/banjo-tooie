@@ -210,7 +210,11 @@ void func_800EF3DC(f32 dst[3], f32 src[3]) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF9A8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EFA20.s")
+void func_800EFA20(void *arg0, void *arg1, f32 arg2) {
+    (*(f32 *)((s8 *)(arg0) + (0))) = (f32) ((*(f32 *)((s8 *)(arg1) + (0))) * arg2);
+    (*(f32 *)((s8 *)(arg0) + (4))) = (f32) ((*(f32 *)((s8 *)(arg1) + (4))) * arg2);
+    (*(f32 *)((s8 *)(arg0) + (8))) = (f32) ((*(f32 *)((s8 *)(arg1) + (8))) * arg2);
+}
 
 void func_800EFA4C(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
     (*(f32 *)((s8 *)(arg0) + (0))) = arg1;
