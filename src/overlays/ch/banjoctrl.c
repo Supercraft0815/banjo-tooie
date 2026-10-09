@@ -31,7 +31,13 @@ OSThread *chbanjoctrl_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800638_chbanjoctrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800684_chbanjoctrl.s")
+void func_80800684_chbanjoctrl(void *arg0, f32 arg1, s32 arg2, s32 arg3) {
+    (*(s32 *)((s8 *)(arg0) + (0x24))) = arg3;
+    (*(s32 *)((s8 *)(arg0) + (0x50))) = arg2;
+    (*(s8 *)((s8 *)(arg0) + (0x30))) = 1;
+    (*(f32 *)((s8 *)(arg0) + (0x2C))) = arg1;
+    (*(f32 *)((s8 *)(arg0) + (0x28))) = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_808006A8_chbanjoctrl.s")
 
