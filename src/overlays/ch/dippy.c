@@ -40,7 +40,10 @@ OSThread *chdippy_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800D44_chdippy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800D84_chdippy.s")
+void func_80800D84_chdippy(void *arg0) {
+    (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFFE);
+    (*(f32 *)((s8 *)(arg0) + (0x1C))) = (f32) (*(f32 *)((s8 *)(arg0) + (8)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800D9C_chdippy.s")
 
