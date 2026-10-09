@@ -159,7 +159,11 @@ f32 func_800EF030(void *arg0) {
     return (temp_f2 * temp_f2) + (temp_f12 * temp_f12);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF04C.s")
+void func_800EF04C(f32 *arg0, f32 *arg1) {
+    (*(f32 *)((s8 *)(arg0) + (0))) += (*(f32 *)((s8 *)(arg1) + (0)));
+    arg0[1] += arg1[1];
+    arg0[2] += arg1[2];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF080.s")
 
