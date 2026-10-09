@@ -155,7 +155,10 @@ s32 bsbtrot_entrypoint_31(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_34.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_35.s")
+s32 bsbtrot_entrypoint_35(s32 arg0) {
+    extern s32 D_80802ED0_bsbtrot[];
+    return ((s32 *)&D_80802ED0_bsbtrot)[arg0];
+}
 
 void bsbtrot_entrypoint_36(s32 arg0)
 {
