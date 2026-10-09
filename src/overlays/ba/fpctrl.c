@@ -70,7 +70,12 @@ void bafpctrl_entrypoint_10(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/bafpctrl_entrypoint_11.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/bafpctrl_entrypoint_12.s")
+/* extern */
+
+void bafpctrl_entrypoint_12(void *arg0) {
+    s32 func_800EE7F8(s32);
+    func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x90))) + 4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/bafpctrl_entrypoint_13.s")
 
