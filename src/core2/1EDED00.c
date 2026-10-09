@@ -91,7 +91,11 @@ s32 func_80106314()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80106320.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_801063C0.s")
+void func_801063C0(void *arg0) {
+    s32 freelist_at(s32, s16, void *);
+    extern s32 D_80136ED0;
+    freelist_at(D_80136ED0, (*(s16 *)((s8 *)(arg0) + (0x90))), arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_801063EC.s")
 
