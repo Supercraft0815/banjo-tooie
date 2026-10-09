@@ -1,6 +1,15 @@
 #include "gl/globalsettings.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/glglobalsettings_entrypoint_0.s")
+/* extern */
+
+void glglobalsettings_entrypoint_0(void) {
+    s32 glglobalsettings_entrypoint_4(s32);
+    s32 glglobalsettings_entrypoint_6(s32, s32);
+    s32 glglobalsettings_entrypoint_8(s32);
+    glglobalsettings_entrypoint_4(0);
+    glglobalsettings_entrypoint_6(0, 0);
+    glglobalsettings_entrypoint_8(1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/func_80800034_glglobalsettings.s")
 
