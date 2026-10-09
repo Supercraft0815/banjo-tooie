@@ -54,7 +54,33 @@ void suspline_entrypoint_12(void *arg0, s8 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_13.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_14.s")
+void suspline_entrypoint_14(u8 *arg0) {
+    struct SplineOffsets {
+        u8 pad[0x68];
+        s16 offsets[8];
+    };
+    f32 _mlspline_entrypoint_13(s16, u8 *, f32, f32, f32, s32 *);
+    extern s32 _mlspline_entrypoint_6;
+    extern s32 _mlspline_entrypoint_7;
+    extern s32 _mlspline_entrypoint_8;
+    f32 temp_f0;
+    f32 var_f0;
+    s16 temp_a0;
+    u8 *temp_a1;
+
+    if (((temp_f0 = *(f32 *)(arg0 + 0x58)) < 0.9999f) && !((*(u8 *)((s8 *)(arg0) + (0x8A))) & 1)) {
+        temp_a1 = ((struct SplineOffsets *)arg0)->offsets[*(s16 *)(arg0 + 0x7A)] + arg0;
+        temp_a0 = (*(s16 *)((s8 *)(arg0) + (0x78)));
+        if (temp_a0 >= 4) {
+            var_f0 = _mlspline_entrypoint_13(temp_a0, temp_a1, temp_f0, (*(f32 *)((s8 *)(arg0) + (0x54))) * (*(f32 *)((s8 *)(arg0) + (0x64))), 1.0f, &_mlspline_entrypoint_8);
+        } else if (temp_a0 >= 3) {
+            var_f0 = _mlspline_entrypoint_13(temp_a0, temp_a1, temp_f0, (*(f32 *)((s8 *)(arg0) + (0x54))) * (*(f32 *)((s8 *)(arg0) + (0x64))), 1.0f, &_mlspline_entrypoint_7);
+        } else {
+            var_f0 = _mlspline_entrypoint_13(temp_a0, temp_a1, temp_f0, (*(f32 *)((s8 *)(arg0) + (0x54))) * (*(f32 *)((s8 *)(arg0) + (0x64))), 1.0f, &_mlspline_entrypoint_6);
+        }
+        (*(f32 *)((s8 *)(arg0) + (0x58))) = var_f0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_15.s")
 
