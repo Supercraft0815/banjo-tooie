@@ -16,6 +16,10 @@ void func_8080000C_chattract(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/attract/func_808002AC_chattract.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/attract/chattract_entrypoint_1.s")
+void chattract_entrypoint_1(s32 arg0) {
+    s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
+    extern s32 _chattract_entrypoint_2;
+    _chbaddiesetup_entrypoint_1(&_chattract_entrypoint_2, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/attract/chattract_entrypoint_2.s")
