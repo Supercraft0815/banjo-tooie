@@ -202,7 +202,9 @@ void gczoombox_entrypoint_41(void *arg0, f32 arg1) {
     (*(f32 *)((s8 *)(arg0) + (0x1D8))) = (f32) (1.0f / arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_42.s")
+void gczoombox_entrypoint_42(void *arg0, f32 arg1) {
+    func_80800358_gczoombox(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_43.s")
 
