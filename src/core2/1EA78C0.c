@@ -177,7 +177,16 @@ void func_800CF700(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF734.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF7F4.s")
+/* extern */
+
+void func_800CF7F4(u32 a0) {
+    s32 func_800A16A4();
+    s32 func_800CEBD8(s32, u32);
+    s32 func_800CF580();
+    if (((func_800CF580() != 0) && (func_800A16A4() == 0)) || (a0 == 0)) {
+        func_800CEBD8(1, a0);
+    }
+}
 
 /* extern */
 
