@@ -127,7 +127,14 @@ void * func_800BF704(void) {
     return &D_801285B0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF710.s")
+/* extern */
+
+void func_800BF710(void) {
+    s32 _gcmapsects_entrypoint_9(s32 *);
+    if ((*(u8 *)((s8 *)(&D_801285B0) + (0x77))) != 0) {
+        _gcmapsects_entrypoint_9(&D_801285B0);
+    }
+}
 
 void func_800BF744(s32 arg0, s32 arg1) {
     (*(s32 *)((s8 *)(&(&D_801285B0)[arg0]) + (0x88))) = arg1;
