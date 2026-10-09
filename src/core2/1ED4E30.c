@@ -4,7 +4,15 @@ extern s32 D_80135960;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FB540.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FB5BC.s")
+/* extern */
+
+void func_800FB5BC(void *arg0) {
+    s32 func_800FED90(s16, void *);
+    if ((*(u8 *)((s8 *)(arg0) + (0x33))) != 0) {
+        func_800FED90((*(s16 *)((s8 *)(arg0) + (0x28))), arg0);
+        (*(u8 *)((s8 *)(arg0) + (0x33))) = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FB5F8.s")
 
