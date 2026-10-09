@@ -118,7 +118,12 @@ u32 func_8010A610(void **arg0) {
     return (u32) ((*(s32 *)((s8 *)(*arg0) + (0x28))) << 0x16) >> 0x1F;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A624.s")
+void func_8010A624(void ***arg0) {
+    void *temp_v0;
+
+    temp_v0 = **arg0;
+    (*(u8 *)((s8 *)(temp_v0) + (0xB))) = (u8) ((*(u8 *)((s8 *)(temp_v0) + (0xB))) & 0xFFF7);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A63C.s")
 
