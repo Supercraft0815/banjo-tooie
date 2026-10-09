@@ -6,7 +6,12 @@ void func_808001E8_fxrain(s32 *arg0, s32 arg1) {
     arg0[10] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/rain/fxrain_entrypoint_0.s")
+/* extern */
+
+void fxrain_entrypoint_0(void *arg0) {
+    s32 vector_clear(s32);
+    vector_clear((*(s32 *)((s8 *)(arg0) + (0x20))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/rain/fxrain_entrypoint_1.s")
 
