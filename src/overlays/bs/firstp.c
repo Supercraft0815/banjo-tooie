@@ -30,7 +30,20 @@ void func_808001FC_bsfirstp(void) {
     anctrl_setPlaybackType(func_8008D04C(), 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80800228_bsfirstp.s")
+/* extern */
+
+s32 func_80800228_bsfirstp(void) {
+    s32 anctrl_getPlaybackType(s32);
+    s32 func_8008D04C();
+    s32 var_v1;
+
+    if (anctrl_getPlaybackType(func_8008D04C()) == 3) {
+        var_v1 = 1;
+    } else {
+        var_v1 = 0;
+    }
+    return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80800264_bsfirstp.s")
 
