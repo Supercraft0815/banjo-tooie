@@ -170,6 +170,11 @@ s32 func_8008E40C(void) {
     return _bashoes_entrypoint_1() == 4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E430.s")
+/* extern */
+
+s32 func_8008E430(void) {
+    s32 _bashoes_entrypoint_1();
+    return _bashoes_entrypoint_1() == 5;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E454.s")
