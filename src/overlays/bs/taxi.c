@@ -14,7 +14,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_5.s")
+s32 bstaxi_entrypoint_5(s32 arg0) {
+    extern s32 D_80802130_bstaxi[];
+    return ((s32 *)&D_80802130_bstaxi)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/func_80800420_bstaxi.s")
 
