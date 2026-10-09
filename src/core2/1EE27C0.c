@@ -114,7 +114,9 @@ void func_8010A590(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A5B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A610.s")
+u32 func_8010A610(void **arg0) {
+    return (u32) ((*(s32 *)((s8 *)(*arg0) + (0x28))) << 0x16) >> 0x1F;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A624.s")
 
