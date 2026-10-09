@@ -7,7 +7,14 @@ OSThread *chdumbwaiterlift_entrypoint_0(void)
     return (OSThread *) D_80800BE8_chdumbwaiterlift;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dumbwaiterlift/func_8080000C_chdumbwaiterlift.s")
+/* extern */
+
+void func_8080000C_chdumbwaiterlift(s32 arg0) {
+    s32 func_800EE7F8(s32, s32, s32);
+    s32 func_8010A828(s32, s32);
+    func_800EE7F8(arg0 + 0x28, arg0 + 4, arg0);
+    func_8010A828(arg0, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dumbwaiterlift/func_80800044_chdumbwaiterlift.s")
 
