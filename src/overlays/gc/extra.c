@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/extra/gcextra_entrypoint_0.s")
+/* extern */
+
+void gcextra_entrypoint_0(void) {
+    s32 func_800DA564(s32, s32);
+    func_800DA564(0x4EA, 3);
+}
 
 s32 gcextra_entrypoint_1() 
 {
