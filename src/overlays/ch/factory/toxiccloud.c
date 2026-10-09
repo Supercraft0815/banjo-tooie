@@ -18,7 +18,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_808010B8_chfactorytoxiccloud.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_80801164_chfactorytoxiccloud.s")
+/* extern */
+
+void func_80801164_chfactorytoxiccloud(void *arg0) {
+    s32 func_8010BA80();
+    f32 sp1C;
+
+    sp1C = (*(f32 *)((s8 *)(arg0) + (0x48)));
+    (*(f32 *)((s8 *)(arg0) + (0x48))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x54)));
+    func_8010BA80();
+    (*(f32 *)((s8 *)(arg0) + (0x48))) = sp1C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_808011A0_chfactorytoxiccloud.s")
 
