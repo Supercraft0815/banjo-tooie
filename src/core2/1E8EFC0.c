@@ -27,4 +27,13 @@ void func_800B5AD4(void) {
     func_800B5B40();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8EFC0/func_800B5B04.s")
+/* extern */
+
+void func_800B5B04(void) {
+    s32 func_800B5B88();
+    s32 _fxsparkle_entrypoint_3();
+    s32 func_800B43E0();
+    func_800B5B88();
+    _fxsparkle_entrypoint_3();
+    func_800B43E0();
+}
