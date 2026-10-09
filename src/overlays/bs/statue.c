@@ -148,7 +148,16 @@ void func_80800FCC_bsstatue()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80800FEC_bsstatue.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80801060_bsstatue.s")
+/* extern */
+
+void func_80801060_bsstatue(s32 arg0) {
+    s32 baanim_isAt(s32, s32);
+    s32 func_8080147C_bsstatue();
+    func_8080147C_bsstatue();
+    if (baanim_isAt(arg0, 0x3F666666) != 0) {
+        func_80800D84_bsstatue(arg0);
+    }
+}
 
 s32 bsstatue_entrypoint_7(s32 arg0) {
     extern s32 D_808015F0_bsstatue[];
