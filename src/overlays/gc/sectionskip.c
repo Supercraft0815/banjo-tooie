@@ -8,7 +8,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionskip/func_80800374_gcsectionskip.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionskip/gcsectionskip_entrypoint_0.s")
+void gcsectionskip_entrypoint_0(s32 arg0, s32 arg1, s32 arg2) {
+    if (arg1 == 0xDAA) {
+        func_800DA524(FLAG2_6C9_UNK);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionskip/gcsectionskip_entrypoint_1.s")
 
