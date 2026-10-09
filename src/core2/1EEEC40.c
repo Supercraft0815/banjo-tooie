@@ -42,4 +42,6 @@ void func_80115484(PlayerState* arg0, f32* arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEC40/func_80115580.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEC40/func_801155E8.s")
+f32 func_801155E8(void *arg0) {
+    return (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x14)))) + (0x10))) * 1.5f;
+}
