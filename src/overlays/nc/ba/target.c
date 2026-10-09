@@ -19,6 +19,8 @@ void ncbatarget_entrypoint_2(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/target/ncbatarget_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/target/ncbatarget_entrypoint_4.s")
+void ncbatarget_entrypoint_4(void *arg0, f32 arg1) {
+    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 88) + 12) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/target/ncbatarget_entrypoint_5.s")
