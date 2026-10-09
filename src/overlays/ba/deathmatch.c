@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/deathmatch/func_80800000_badeathmatch.s")
+void func_80800000_badeathmatch(void *arg0) {
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x158)))) + (0x20))) = 1;
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x158)))) + (0x21))) = 0;
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x158)))) + (0x22))) = 0;
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x158)))) + (0x23))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/deathmatch/func_80800028_badeathmatch.s")
 
