@@ -22,7 +22,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_9.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_10.s")
+/* extern */
+
+void gcfrontend_entrypoint_10(void) {
+    s32 func_800D3CF8(s32);
+    s32 func_808002DC_gcfrontend(s32, s32);
+    func_800D3CF8(0);
+    func_808002DC_gcfrontend(0xA0, -1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_11.s")
 
