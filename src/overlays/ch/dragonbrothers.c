@@ -124,7 +124,12 @@ void func_808048A4_chdragonbrothers(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80804AA4_chdragonbrothers.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80804C6C_chdragonbrothers.s")
+s32 func_80804C6C_chdragonbrothers(s32 arg0, s32 arg1, s32 arg2) {
+    if (arg1 != 0xF) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80804C90_chdragonbrothers.s")
 
