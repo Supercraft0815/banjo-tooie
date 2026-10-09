@@ -7,7 +7,9 @@ s32 func_801125B0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEBEA0/func_801125B8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEBEA0/func_801125D8.s")
+void func_801125D8(void *arg0, f32 arg1) {
+    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 76) + 8) = arg1;
+}
 
 f32 func_801125E8(void *arg0) {
     return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 76) + 12);
