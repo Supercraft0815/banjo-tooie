@@ -99,6 +99,10 @@ void func_800FF01C(f32 arg0) {
     (*(f32 *)((s8 *)(&D_801359C0) + (0))) = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FF038.s")
+void func_800FF038(s32 arg0) {
+    s32 _cothemedll_entrypoint_2(s32 *, s32);
+    extern s32 D_801359C0;
+    _cothemedll_entrypoint_2(&D_801359C0, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FF060.s")
