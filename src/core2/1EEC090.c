@@ -28,7 +28,14 @@ void func_80112D08(void *arg0, s32 arg1, f32 arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80112D90.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80112E50.s")
+void func_80112E50(void *arg0, f32 arg1, s32 arg2) {
+    void *temp_v0;
+
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x60)));
+    if (((*(s16 *)((s8 *)(temp_v0) + (0xC))) != 0) && (arg2 == (*(s16 *)((s8 *)(temp_v0) + (0xE))))) {
+        (*(f32 *)((s8 *)(temp_v0) + (0x10))) = (f32) ((*(f32 *)((s8 *)(temp_v0) + (0x14))) + arg1);
+    }
+}
 
 s32 func_80112E84(void *arg0) {
     return *(s16 *)((u8 *)*(void **)((u8 *)arg0 + 96) + 12);
