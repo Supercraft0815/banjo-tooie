@@ -8,7 +8,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D15CC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1604.s")
+void func_800D1604(void) {
+    s32 heap_free(s32);
+    extern s32 D_8012B250;
+    heap_free(D_8012B250);
+    D_8012B250 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D162C.s")
 
