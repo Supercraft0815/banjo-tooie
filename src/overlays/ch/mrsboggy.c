@@ -40,4 +40,9 @@ void func_80800548_chmrsboggy(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggy/func_80800910_chmrsboggy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggy/func_80800990_chmrsboggy.s")
+/* extern */
+
+void func_80800990_chmrsboggy(void) {
+    s32 func_800DA980(s32, s32);
+    func_800DA980(0x8C, 3);
+}
