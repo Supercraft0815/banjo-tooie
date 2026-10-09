@@ -30,7 +30,14 @@ void baswim_entrypoint_9(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 308) + 0) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_10.s")
+void baswim_entrypoint_10(void *arg0, f32 arg1) {
+    f32 *temp_v0;
+
+    temp_v0 = (*(f32 **)((s8 *)(arg0) + (0x134)));
+    if (*temp_v0 < arg1) {
+        *temp_v0 = arg1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_11.s")
 
