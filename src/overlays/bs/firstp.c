@@ -979,7 +979,46 @@ void func_80809DA0_bsfirstp(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809DD0_bsfirstp.s")
+void func_80809DD0_bsfirstp(void *arg0) {
+    f32 mlAbsF(f32);
+    void *temp_v0;
+    s32 var_v1;
+    f32 var_f14;
+    f32 sp18;
+
+    temp_v0 = *(void **)((u8 *)arg0 + 0x188);
+    var_v1 = 0;
+    if (*(s32 *)((u8 *)temp_v0 + 0xA0) == 1) {
+        var_f14 = *(f32 *)((u8 *)temp_v0 + 0xC4);
+    } else {
+        var_v1 = *(s32 *)((u8 *)temp_v0 + 0x10);
+        var_f14 = *(f32 *)((u8 *)temp_v0 + 0x180);
+    }
+    switch (var_v1) {
+    case 0:
+        *(s32 *)((u8 *)temp_v0 + 0x254) = 0;
+        break;
+    case 1:
+        sp18 = mlAbsF(*(f32 *)((u8 *)temp_v0 + 0x148));
+        if (mlAbsF(var_f14) > 0.01f) {
+            if (sp18 > 0.5f) {
+                *(s32 *)((u8 *)temp_v0 + 0x258) = 1;
+            } else {
+                *(s32 *)((u8 *)temp_v0 + 0x258) = 0;
+            }
+            *(s32 *)((u8 *)temp_v0 + 0x254) = 0;
+        } else if (*(s32 *)((u8 *)temp_v0 + 0x254) == 0) {
+            if (*(s32 *)((u8 *)temp_v0 + 0x258) != 0) {
+                if (sp18 < 0.25f) {
+                    *(s32 *)((u8 *)temp_v0 + 0x254) = 1;
+                }
+            } else if (sp18 > 0.75f) {
+                *(s32 *)((u8 *)temp_v0 + 0x254) = 1;
+            }
+        }
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809EF8_bsfirstp.s")
 
