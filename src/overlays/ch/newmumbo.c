@@ -6,7 +6,27 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_808000DC_chnewmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_8080011C_chnewmumbo.s")
+s32 func_8080011C_chnewmumbo(void) {
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+
+    if (func_800DA298(0x9C5) == 0) {
+        return 0;
+    }
+    switch (func_800EA05C()) {
+        case 0xB7: return 0x37F;
+        case 0xD9: return 0x380;
+        case 0x176: return 0x381;
+        case 0xEF: return 0x382;
+        case 0x171: return 0x383;
+        case 0x172: return 0x387;
+        case 0x134: return 0x384;
+        case 0x13E:
+        case 0x13F: return 0x385;
+        case 0x156: return 0x386;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_80800210_chnewmumbo.s")
 
