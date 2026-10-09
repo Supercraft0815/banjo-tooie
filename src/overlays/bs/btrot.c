@@ -42,7 +42,19 @@ void func_808003F0_bsbtrot(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_8080061C_bsbtrot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80800710_bsbtrot.s")
+/* extern */
+
+s32 func_80800710_bsbtrot(void *arg0) {
+    s32 bakey_released(void *, s32);
+    s32 func_8008E39C();
+    if ((*(s32 *)((s8 *)(arg0) + (0x164))) != 0) {
+        return 1;
+    }
+    if (func_8008E39C() != 0) {
+        return 0;
+    }
+    return bakey_released(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_8080075C_bsbtrot.s")
 
