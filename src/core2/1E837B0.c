@@ -9,7 +9,14 @@ s32 func_800A9F14(s32 arg0) {
     return 0x12;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800A9F30.s")
+s32 func_800A9F30(void) {
+    s32 func_8001BDAC(s32 *, s32);
+    extern s32 D_80127770;
+    s32 sp1C;
+
+    func_8001BDAC(&sp1C, 1);
+    return D_80127770 < sp1C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800A9F60.s")
 
