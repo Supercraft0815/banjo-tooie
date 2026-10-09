@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80800000_chtrashcangame.s")
+void func_80800000_chtrashcangame(void *arg0) {
+    (*(s32 *)((s8 *)(arg0) + (0x18))) = 0;
+    (*(s32 *)((s8 *)(arg0) + (0x30))) = 0;
+    (*(s32 *)((s8 *)(arg0) + (0x2C))) = 0;
+    (*(s32 *)((s8 *)(arg0) + (0x28))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80800014_chtrashcangame.s")
 
