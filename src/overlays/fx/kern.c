@@ -17,4 +17,9 @@ void fxkern_entrypoint_2(void) {
     B_80800480_fxkern = 1.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/kern/fxkern_entrypoint_3.s")
+void fxkern_entrypoint_3(f32 arg0) {
+    s32 func_800B8CF0(f32);
+    extern f32 B_80800480_fxkern;
+    func_800B8CF0(arg0);
+    B_80800480_fxkern = arg0;
+}
