@@ -27,7 +27,9 @@ void bamovegoto_entrypoint_7(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 112) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/goto/bamovegoto_entrypoint_8.s")
+void bamovegoto_entrypoint_8(void *arg0, f32 arg1) {
+    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 120) = arg1;
+}
 
 void bamovegoto_entrypoint_9(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 85) = arg1;
