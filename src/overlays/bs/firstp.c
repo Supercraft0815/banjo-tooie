@@ -341,7 +341,12 @@ s32 bsfirstp_entrypoint_17(s32 arg0) {
 void func_80804A34_bsfirstp(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80804A3C_bsfirstp.s")
+/* extern */
+
+void func_80804A3C_bsfirstp(void *arg0) {
+    s32 func_80101238(s32, s32, void *);
+    func_80101238(0x77, (*(s32 *)((s8 *)(arg0) + (0x184))), arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80804A64_bsfirstp.s")
 
