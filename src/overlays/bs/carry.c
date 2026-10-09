@@ -67,7 +67,10 @@ void func_808006AC_bscarry(PlayerState* self)
 {
     _bsdrone_entrypoint_1(self);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/bscarry_entrypoint_3.s")
+s32 bscarry_entrypoint_3(s32 arg0) {
+    extern s32 D_808007E0_bscarry[];
+    return ((s32 *)&D_808007E0_bscarry)[arg0];
+}
 
 void func_808006E0_bscarry(s32 arg0)
 {
