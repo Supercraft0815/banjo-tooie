@@ -20,7 +20,12 @@ s32 bsbanswim_entrypoint_0(s32 arg0) {
     return ((s32 *)&D_80800A30_bsbanswim)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/swim/func_80800390_bsbanswim.s")
+s32 func_80800390_bsbanswim(s32 arg0) {
+    if ((arg0 == 0x81) || (arg0 == 0x82) || (arg0 == 0x90)) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/swim/func_808003BC_bsbanswim.s")
 
