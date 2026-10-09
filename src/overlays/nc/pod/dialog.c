@@ -80,7 +80,18 @@ void ncpoddialog_entrypoint_3(s16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/ncpoddialog_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/ncpoddialog_entrypoint_7.s")
+void ncpoddialog_entrypoint_7(void *arg0, s32 arg1) {
+    if (arg1 >= 0) {
+        (*(s8 *)((s8 *)(arg0) + (0x215))) = 1;
+        if (arg1 == 0) {
+            (*(s8 *)((s8 *)(arg0) + (0x214))) = 0;
+            return;
+        }
+        (*(s8 *)((s8 *)(arg0) + (0x214))) = 1;
+        return;
+    }
+    (*(s8 *)((s8 *)(arg0) + (0x215))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/ncpoddialog_entrypoint_8.s")
 
