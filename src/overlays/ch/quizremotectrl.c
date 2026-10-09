@@ -17,7 +17,12 @@ void func_808003A0_chquizremotectrl(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quizremotectrl/func_80800410_chquizremotectrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quizremotectrl/func_808005E4_chquizremotectrl.s")
+s32 func_808005E4_chquizremotectrl(s32 arg0, s32 arg1, s32 arg2) {
+    if (arg1 == 0xB) {
+        return 3;
+    }
+    return 0;
+}
 
 OSThread *chquizremotectrl_entrypoint_0(void)
 {
