@@ -48,7 +48,10 @@ void func_80800560_bstrexlarge(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_808005D4_bstrexlarge.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/bstrexlarge_entrypoint_0.s")
+s32 bstrexlarge_entrypoint_0(s32 arg0) {
+    extern s32 D_80801990_bstrexlarge[];
+    return ((s32 *)&D_80801990_bstrexlarge)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/bstrexlarge_entrypoint_1.s")
 
