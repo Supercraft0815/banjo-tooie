@@ -229,7 +229,10 @@ void func_80802F00_bsfirstp()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803204_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_8.s")
+s32 bsfirstp_entrypoint_8(s32 arg0) {
+    extern s32 D_8080B474_bsfirstp[];
+    return ((s32 *)&D_8080B474_bsfirstp)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808032C0_bsfirstp.s")
 
