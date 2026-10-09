@@ -1,7 +1,11 @@
 #include "core2/1EDA900.h"
 extern Unk80132ED0* D_80135A80;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDA900/func_80101010.s")
+void func_80101010(s32 arg0) {
+    s32 func_800EE7F8(s32 *, s32);
+    extern s32 D_80135A70;
+    func_800EE7F8(&D_80135A70, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDA900/func_80101038.s")
 
