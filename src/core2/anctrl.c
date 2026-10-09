@@ -66,7 +66,10 @@ void func_8008B238(void *arg0, f32 *arg1, f32 *arg2) {
     *arg2 = (*(f32 *)((s8 *)(arg0) + (8)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_setStart.s")
+void anctrl_setStart(AnimCtrl *arg0, f32 arg1) {
+    (*(u8 *)((s8 *)(arg0) + (0x1B))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x1B))) & 0xFFDF);
+    (*(f32 *)((s8 *)(arg0) + (0x14))) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_getIndex.s")
 
