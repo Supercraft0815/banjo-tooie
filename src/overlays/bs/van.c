@@ -72,7 +72,39 @@ s32 bsvan_entrypoint_7(s32 arg0) {
     return ((s32 *)&D_80801CBC_bsvan)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80800E60_bsvan.s")
+/* extern */
+
+void func_80800E60_bsvan(u8 *arg0, s32 (*arg1)(u8 *)) {
+    s32 _chfaircoinbox_entrypoint_0(s32, u8 *);
+    s32 bs_setState(u8 *, s32);
+    s32 func_80099A4C(u8 *);
+    s32 func_8009E6EC();
+    s32 func_8009E830(u8 *, s32);
+    s32 temp_v0;
+    u8 *temp_v1;
+
+    temp_v0 = func_8009E6EC(arg0);
+    switch (temp_v0) {
+    case 0x46:
+        (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x188)))) + (0))) = func_80099A4C(arg0);
+        temp_v1 = (*(u8 **)((s8 *)(arg0) + (0x188)));
+        (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x188)))) + (0x10))) = _chfaircoinbox_entrypoint_0((*(s32 *)((s8 *)(temp_v1) + (0))), temp_v1 + 4);
+        func_8009E830(arg0, 2);
+        bs_setState(arg0, 0x121);
+        return;
+    default:
+        arg1(arg0);
+        /* fallthrough */
+    case 0x1F:
+    case 0x20:
+    case 0x21:
+    case 0x2E:
+    case 0x4E:
+    case 0x51:
+    case 0x52:
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/bsvan_entrypoint_8.s")
 
