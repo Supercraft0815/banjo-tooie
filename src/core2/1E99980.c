@@ -142,4 +142,9 @@ void func_800C0BC0(Gfx** gfx, void* destination, void* source) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0FD8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C1044.s")
+/* extern */
+
+void func_800C1044(s32 arg0) {
+    s32 func_800EA34C(s32);
+    func_800EA34C(1);
+}
