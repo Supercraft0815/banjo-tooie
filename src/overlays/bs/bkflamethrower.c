@@ -13,4 +13,7 @@ void bsbkflamethrower_entrypoint_1(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bkflamethrower/bsbkflamethrower_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bkflamethrower/bsbkflamethrower_entrypoint_4.s")
+s32 bsbkflamethrower_entrypoint_4(s32 arg0) {
+    extern s32 D_80800450_bsbkflamethrower[];
+    return ((s32 *)&D_80800450_bsbkflamethrower)[arg0];
+}
