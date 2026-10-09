@@ -23,7 +23,11 @@ OSThread *chjigsawbitcont_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_808006D8_chjigsawbitcont.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_80800868_chjigsawbitcont.s")
+void func_80800868_chjigsawbitcont(void *arg0) {
+    (*(f32 *)((s8 *)(arg0) + (0x38))) = 0.2f;
+    (*(f32 *)((s8 *)(arg0) + (0x34))) = -1500.0f;
+    (*(f32 *)((s8 *)(arg0) + (0x24))) = 840.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_80800890_chjigsawbitcont.s")
 
