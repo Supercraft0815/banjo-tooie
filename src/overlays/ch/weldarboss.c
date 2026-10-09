@@ -100,7 +100,21 @@ OSThread *chweldarboss_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80803D64_chweldarboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80803D98_chweldarboss.s")
+/* extern */
+
+s32 func_80803D98_chweldarboss(s32 arg0) {
+    s32 func_800F54E4();
+    s32 func_8010D290(s32);
+    s32 temp_v0;
+    s32 var_v1;
+
+    temp_v0 = func_8010D290(0x10000);
+    var_v1 = temp_v0;
+    if (temp_v0 == -1) {
+        var_v1 = func_800F54E4();
+    }
+    return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80803DD8_chweldarboss.s")
 
