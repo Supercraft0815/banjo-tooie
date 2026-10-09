@@ -87,7 +87,19 @@ s32 func_80802550_sucoaster(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_80802594_sucoaster.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_8080264C_sucoaster.s")
+/* extern */
+
+f32 func_8080264C_sucoaster(void *arg0, s32 arg1) {
+    f32 func_8010CD50(void *, s32);
+    s32 func_80802760_sucoaster(s32);
+    s32 temp_v0;
+
+    temp_v0 = func_80802760_sucoaster(arg1);
+    if (temp_v0 == -1) {
+        return (*(f32 *)((s8 *)(arg0) + (0x48)));
+    }
+    return func_8010CD50(arg0, temp_v0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_80802690_sucoaster.s")
 
