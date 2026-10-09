@@ -48,7 +48,10 @@ void sumumbofx_entrypoint_19(s8 *arg0, s32 arg1) {
     arg0[98] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_20.s")
+void sumumbofx_entrypoint_20(void *arg0, f32 arg1) {
+    (*(f32 *)((s8 *)(arg0) + (0x10))) = arg1;
+    (*(f32 *)((s8 *)(arg0) + (0x14))) = arg1;
+}
 
 f32 sumumbofx_entrypoint_21(f32 *arg0)
 {
