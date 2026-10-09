@@ -105,4 +105,12 @@ s32 func_8010B94C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010C460.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010C4AC.s")
+/* extern */
+
+f32 func_8010C4AC(void *arg0) {
+    s32 func_800D3E40(s32);
+    if (func_800D3E40(8) != 0) {
+        return (*(f32 *)((s8 *)(arg0) + (0x24))) * 1.5f;
+    }
+    return (*(f32 *)((s8 *)(arg0) + (0x24)));
+}
