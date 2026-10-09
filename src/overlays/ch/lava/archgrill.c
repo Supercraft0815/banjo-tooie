@@ -12,7 +12,16 @@ void func_80800000_chlavaarchgrill(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/archgrill/func_80800044_chlavaarchgrill.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/archgrill/func_80800288_chlavaarchgrill.s")
+/* extern */
+
+void func_80800288_chlavaarchgrill(u8 *arg0, s32 arg1) {
+    s32 func_800D9078(s32);
+    s32 func_80101FDC(u8 *, s32);
+    if (func_800D9078(arg0 + 0x18) != 0) {
+        func_80101FDC(arg0, arg1);
+        (*(f32 *)((s8 *)(arg0) + (0x58))) = 2.0f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/archgrill/func_808002D0_chlavaarchgrill.s")
 
