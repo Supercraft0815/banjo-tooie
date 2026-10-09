@@ -87,7 +87,12 @@ void func_800C8C90(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8FE0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9044.s")
+/* extern */
+
+u8 func_800C9044(s32 arg0) {
+    void *vector_at(s32, s32, s32);
+    return (*(u8 *)((s8 *)(vector_at(D_8012AB00, arg0 - 1, arg0)) + (0x17)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9074.s")
 
