@@ -13,7 +13,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80012BB4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80012D4C.s")
+s32 *func_80012D4C(s32 **arg0) {
+    extern s32 D_80069A30;
+    extern s32 D_80069A40;
+    extern s32 func_80012BB4;
+    if ((*(u8 *)((s8 *)(&D_80069A30) + (0))) == 0) {
+        (*(s32 *)((s8 *)(&D_80069A30) + (4))) = 0;
+        (*(s32 **)((s8 *)(&D_80069A30) + (8))) = &D_80069A40;
+        (*(u8 *)((s8 *)(&D_80069A30) + (0))) = 1U;
+    }
+    *arg0 = &D_80069A30;
+    return &func_80012BB4;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80012D84.s")
 
