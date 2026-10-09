@@ -20,7 +20,15 @@ OSThread *chboxingglove_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/func_808001CC_chboxingglove.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/func_808002AC_chboxingglove.s")
+void func_808002AC_chboxingglove(void *arg0) {
+    f32 temp_f0;
+
+    temp_f0 = (*(f32 *)((s8 *)(arg0) + (8)));
+    (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFFE);
+    (*(f32 *)((s8 *)(arg0) + (8))) = (f32) (temp_f0 - 70.0f);
+    (*(f32 *)((s8 *)(arg0) + (0x28))) = temp_f0;
+    (*(f32 *)((s8 *)(arg0) + (0x58))) = 1.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/func_808002E0_chboxingglove.s")
 
