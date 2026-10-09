@@ -19,7 +19,12 @@ OSThread *chsquits_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/squits/func_808003C4_chsquits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/squits/func_80800528_chsquits.s")
+s32 func_80800528_chsquits(f32 arg0, f32 arg1, f32 arg2) {
+    if ((arg2 < arg0) && (arg1 <= arg2)) {
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
