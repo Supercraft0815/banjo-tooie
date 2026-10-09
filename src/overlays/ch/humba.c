@@ -37,7 +37,12 @@ s32 func_808007EC_chhumba(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_808007F8_chhumba.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800878_chhumba.s")
+/* extern */
+
+void func_80800878_chhumba(void *arg0) {
+    s32 func_800DA298(s32);
+    func_800DA298(((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF) + 0xD5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_808008A0_chhumba.s")
 
