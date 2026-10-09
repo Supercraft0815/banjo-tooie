@@ -20,7 +20,11 @@ void func_8080000C_chappearfx(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/appearfx/func_80800554_chappearfx.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/appearfx/chappearfx_entrypoint_1.s")
+void chappearfx_entrypoint_1(s32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 _chbaddiesetup_entrypoint_4(s32 *, s32, s32, s32, s32);
+    extern s32 _chappearfx_entrypoint_3;
+    _chbaddiesetup_entrypoint_4(&_chappearfx_entrypoint_3, *arg0, arg1, arg2, arg3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/appearfx/chappearfx_entrypoint_2.s")
 
