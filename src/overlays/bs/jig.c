@@ -24,4 +24,7 @@ s32 bsjig_entrypoint_0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jig/bsjig_entrypoint_10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jig/bsjig_entrypoint_11.s")
+s32 bsjig_entrypoint_11(s32 arg0) {
+    extern s32 D_808005C0_bsjig[];
+    return ((s32 *)&D_808005C0_bsjig)[arg0];
+}
