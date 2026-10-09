@@ -31,7 +31,12 @@ s32 func_80800030_glgamestore(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamestore/glgamestore_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamestore/glgamestore_entrypoint_3.s")
+/* extern */
+
+void glgamestore_entrypoint_3(s32 arg0, s32 arg1) {
+    s32 func_8080013C_glgamestore(s32, s32, s32);
+    func_8080013C_glgamestore(func_80800030_glgamestore(arg0), arg1, 0x80);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamestore/func_808001E0_glgamestore.s")
 
