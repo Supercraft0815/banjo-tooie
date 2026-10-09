@@ -13,7 +13,14 @@ u32 func_8009BD44(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 212) + 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75620/func_8009BD50.s")
+/* extern */
+
+void func_8009BD50(void *arg0) {
+    s32 bastatetimer_clear(void *, s32);
+    *(*(s8 **)((s8 *)(arg0) + (0xD4))) = 0;
+    func_8009BD38(arg0, 1);
+    bastatetimer_clear(arg0, 4);
+}
 
 void func_8009BD88(PlayerState *arg0) {
     func_8009BDAC(arg0, 0.6f);
