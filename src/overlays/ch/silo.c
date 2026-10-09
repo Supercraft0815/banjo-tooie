@@ -8,7 +8,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_808001A8_chsilo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_80800210_chsilo.s")
+/* extern */
+
+void func_80800210_chsilo(s32 arg0, s32 arg1) {
+    s32 _gcnewoption_entrypoint_32(s32, s32);
+    _gcnewoption_entrypoint_32(arg1, 111);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_80800238_chsilo.s")
 
