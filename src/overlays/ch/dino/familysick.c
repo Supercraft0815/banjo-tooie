@@ -9,7 +9,18 @@ OSThread *chdinofamilysick_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/func_8080000C_chdinofamilysick.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/func_808001FC_chdinofamilysick.s")
+/* extern */
+
+f32 func_808001FC_chdinofamilysick(s32 arg0, s32 arg1) {
+    s32 _gccubesearch_entrypoint_9(s32, s32 *, s32);
+    s32 _gspropctrl_entrypoint_11(s32, s32);
+    s32 _gspropctrl_entrypoint_12(s32);
+    s32 sp1C;
+
+    _gccubesearch_entrypoint_9(0x52D, &sp1C, 1);
+    _gspropctrl_entrypoint_11(sp1C, arg1);
+    return (f32) _gspropctrl_entrypoint_12(sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/func_80800244_chdinofamilysick.s")
 
