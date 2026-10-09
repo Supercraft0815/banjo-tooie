@@ -57,7 +57,15 @@ s32 func_80800828_chfactoryworkerdirty(s32 arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800864_chfactoryworkerdirty.s")
+/* extern */
+
+void func_80800864_chfactoryworkerdirty(Actor *arg0) {
+    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    void *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    _subaddielink_entrypoint_1(sp1C, func_801084B0(0x239, &arg0)->unk0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_808008A4_chfactoryworkerdirty.s")
 
