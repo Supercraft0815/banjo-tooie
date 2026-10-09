@@ -6,7 +6,12 @@ extern s32 D_80119540;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7EE40/func_800A5598.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7EE40/func_800A55E0.s")
+/* extern */
+
+void func_800A55E0(void) {
+    s32 _cadbmgrDll_entrypoint_0(s32 *, s32);
+    _cadbmgrDll_entrypoint_0(&D_80119540, 0x7D);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7EE40/func_800A5608.s")
 
