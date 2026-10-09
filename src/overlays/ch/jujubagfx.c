@@ -11,7 +11,14 @@ OSThread *chjujubagfx_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jujubagfx/func_80800100_chjujubagfx.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jujubagfx/func_80800174_chjujubagfx.s")
+/* extern */
+
+void func_80800174_chjujubagfx(Actor *arg0) {
+    s32 _sumumbofx_entrypoint_1(Actor *, s32);
+    if (func_80100094(arg0, 1U) != NULL) {
+        _sumumbofx_entrypoint_1(arg0, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jujubagfx/func_808001A8_chjujubagfx.s")
 
