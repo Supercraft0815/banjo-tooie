@@ -124,7 +124,10 @@ void func_800EEBF0(f32 *arg0, f32 *arg1, f32 arg2) {
     func_800EF214(arg0, (*(f32 *)((s8 *)(arg1) + (0))), (*(f32 *)((s8 *)(arg1) + (4))), arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EEC30.s")
+void func_800EEC30(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
+    func_800EFD24(arg0);
+    func_800EF214(arg0, arg1, arg2, arg3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EEC70.s")
 
