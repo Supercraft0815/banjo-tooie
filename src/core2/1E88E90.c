@@ -8,7 +8,10 @@ s32 func_800AF5A8(s16 *arg0) {
     return arg0[1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E88E90/func_800AF5B0.s")
+void func_800AF5B0(void *arg0, s32 *arg1, s32 *arg2) {
+    *arg1 = (s32) (*(s16 *)((s8 *)(arg0) + (4)));
+    *arg2 = (s32) (*(s16 *)((s8 *)(arg0) + (6)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E88E90/func_800AF5C4.s")
 
