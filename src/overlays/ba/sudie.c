@@ -27,7 +27,19 @@ void basudie_entrypoint_1(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sudie/basudie_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sudie/basudie_entrypoint_6.s")
+/* extern */
+
+void basudie_entrypoint_6(s32 arg0) {
+    s32 baphysics_reset_gravity();
+    s32 func_800951B4(s32);
+    s32 func_800A4C68(s32);
+    s32 func_800A4E30(s32);
+    s32 func_800C53EC(s32, s32);
+    baphysics_reset_gravity();
+    func_800A4E30(arg0);
+    func_800C53EC(func_800A4C68(arg0), 2);
+    func_800951B4(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sudie/basudie_entrypoint_7.s")
 
