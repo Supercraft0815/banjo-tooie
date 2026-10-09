@@ -24,7 +24,10 @@ void gspropctrl_entrypoint_5(s32 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propctrl/gspropctrl_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propctrl/gspropctrl_entrypoint_7.s")
+s32 gspropctrl_entrypoint_7(s32 arg0) {
+    extern s16 D_80800140_gspropctrl[];
+    return ((s16 *)&D_80800140_gspropctrl)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propctrl/gspropctrl_entrypoint_8.s")
 
