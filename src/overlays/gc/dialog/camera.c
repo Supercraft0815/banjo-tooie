@@ -14,7 +14,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/camera/gcdialogcamera_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/camera/gcdialogcamera_entrypoint_4.s")
+/* extern */
+
+void gcdialogcamera_entrypoint_4(s32 arg0) {
+    s32 _capod_entrypoint_10(s32, s32);
+    _capod_entrypoint_10(0, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/camera/gcdialogcamera_entrypoint_5.s")
 
