@@ -24,7 +24,14 @@ void func_80115864(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 60) + 28) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEF00/func_80115870.s")
+void func_80115870(void *arg0, f32 arg1) {
+    if (arg1 == 0.0f) {
+        (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x10))) = 0;
+    } else {
+        (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x10))) = 1;
+    }
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (8))) = arg1;
+}
 
 void func_801158B0(void *arg0, f32 arg1, f32 arg2) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x14))) = arg1;
