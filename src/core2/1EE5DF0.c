@@ -13,7 +13,12 @@ extern s32 D_80136F64;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010C710.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010C754.s")
+/* extern */
+
+s32 func_8010C754(void) {
+    s32 func_8010C710();
+    return (s32) sqrtf((f32) func_8010C710());
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010C788.s")
 
