@@ -91,7 +91,11 @@ void func_800EA600(s32 arg0, s32 arg1) {
     (*(s32 *)((s8 *)(&D_80132DD0) + (4))) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA614.s")
+void func_800EA614(void) {
+    extern s32 D_80132DD0;
+    (*(s32 *)((s8 *)(&D_80132DD0) + (0))) = 0;
+    (*(s32 *)((s8 *)(&D_80132DD0) + (4))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA628.s")
 
