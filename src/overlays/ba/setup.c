@@ -21,7 +21,13 @@ s32 basetup_entrypoint_0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/func_80800534_basetup.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/func_808006F0_basetup.s")
+/* extern */
+
+void func_808006F0_basetup(void) {
+    s32 _gccubesearch_entrypoint_14(s32, s32);
+    s32 _gemarkersDll_entrypoint_1();
+    _gccubesearch_entrypoint_14(_gemarkersDll_entrypoint_1(), 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/func_8080071C_basetup.s")
 
