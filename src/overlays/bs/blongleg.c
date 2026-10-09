@@ -123,7 +123,19 @@ void bsblongleg_entrypoint_28(s32 arg0)
     func_8080013C_bsblongleg();
     _bsdrone_entrypoint_0(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_29.s")
+/* extern */
+
+void bsblongleg_entrypoint_29(s32 arg0) {
+    s32 _bsdrone_entrypoint_1(s32);
+    s32 bastatetimer_isDone(s32, s32);
+    s32 bs_setState(s32, s32);
+    s32 func_808000C8_bsblongleg();
+    func_808000C8_bsblongleg();
+    _bsdrone_entrypoint_1(arg0);
+    if (bastatetimer_isDone(arg0, 2) != 0) {
+        bs_setState(arg0, 0x29);
+    }
+}
 
 void bsblongleg_entrypoint_30(s32 arg0)
 {
