@@ -14,7 +14,13 @@ void func_80800008_bamum(void *arg0) {
 void bamum_entrypoint_1(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/mum/bamum_entrypoint_2.s")
+/* extern */
+
+void bamum_entrypoint_2(void *arg0) {
+    s32 func_8009ADF0(void *, s32, s32);
+    func_80800008_bamum(arg0);
+    func_8009ADF0(arg0, 5, 0);
+}
 
 void bamum_entrypoint_3()
 {
