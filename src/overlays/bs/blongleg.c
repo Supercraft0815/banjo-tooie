@@ -39,7 +39,10 @@ void bsblongleg_entrypoint_6()
     func_80800204_bsblongleg();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_7.s")
+s32 bsblongleg_entrypoint_7(s32 arg0) {
+    extern s32 D_80801480_bsblongleg[];
+    return ((s32 *)&D_80801480_bsblongleg)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_8.s")
 
