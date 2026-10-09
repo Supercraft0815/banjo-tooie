@@ -12,7 +12,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_6.s")
+/* extern */
+
+void mlspline_entrypoint_6(f32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 func_800EFB24(s32, s32);
+    func_800EFB24(arg3, arg2 + 0xC);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_7.s")
 
