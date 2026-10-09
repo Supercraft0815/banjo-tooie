@@ -111,7 +111,11 @@ f32 func_800CA7B4(f32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CA9D8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CAA00.s")
+void func_800CAA00(void *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
+    *arg1 = (*(f32 *)((s8 *)(arg0) + (0x18)));
+    *arg2 = (*(f32 *)((s8 *)(arg0) + (0x1C)));
+    *arg3 = (*(f32 *)((s8 *)(arg0) + (0x20)));
+}
 
 f32 func_800CAA1C(f32 *arg0) {
     return arg0[7];
