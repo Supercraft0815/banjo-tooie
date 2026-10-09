@@ -92,7 +92,15 @@ void func_80015F5C(s32 arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2D890/func_80015FA0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2D890/func_80015FFC.s")
+void func_80015FFC(s32 arg0, void *arg1) {
+    unkD_800799E0 *temp_v0;
+
+    temp_v0 = &D_800799E0[arg0];
+    (*(s32 *)((s8 *)(arg1) + (0))) = (s32) temp_v0->unk0[9];
+    (*(s32 *)((s8 *)(arg1) + (4))) = (s32) temp_v0->unk0[0xA];
+    (*(s32 *)((s8 *)(arg1) + (8))) = (s32) temp_v0->unk0[0xB];
+    (*(s32 *)((s8 *)(arg1) + (0xC))) = (s32) temp_v0->unk0[0xC];
+}
 
 void func_80016038(s32 arg0, void *arg1) {
     extern s32 D_80079AC0;
