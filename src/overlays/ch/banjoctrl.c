@@ -61,4 +61,9 @@ OSThread *chbanjoctrl_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_808010FC_chbanjoctrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_808011F4_chbanjoctrl.s")
+/* extern */
+
+void func_808011F4_chbanjoctrl(void) {
+    s32 func_8080102C_chbanjoctrl();
+    func_8080102C_chbanjoctrl();
+}
