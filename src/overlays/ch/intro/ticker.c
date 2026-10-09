@@ -2,7 +2,66 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/ticker/func_80800000_chintroticker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/ticker/func_808000B0_chintroticker.s")
+s32 func_808000B0_chintroticker(u8 *arg0, s32 arg1) {
+    void _gcfrontend_entrypoint_9(s32);
+    extern s32 D_808008A8_chintroticker[];
+    struct TickerState {
+        u8 padding[0x79];
+        u8 state : 4;
+        u8 other : 4;
+    };
+    s32 state = 0;
+    s32 value;
+
+    switch (arg1) {
+    case 0xA1:
+    case 0xA2:
+    case 0xA3:
+    case 0xA4:
+    case 0xA5:
+    case 0xA6:
+    case 0xA7:
+    case 0xA8:
+    case 0xA9:
+    case 0xAA:
+    case 0xAB:
+    case 0xAC:
+        state = 2;
+        break;
+    case 0x17E:
+    case 0x18C:
+    case 0x18D:
+    case 0x18E:
+    case 0x18F:
+    case 0x190:
+        state = 3;
+        break;
+    case 0x192:
+    case 0x193:
+    case 0x194:
+    case 0x195:
+    case 0x197:
+    case 0x198:
+    case 0x199:
+        state = 4;
+        break;
+    case 0x191:
+    case 0x196:
+        state = 5;
+        break;
+    case 0x18B:
+        state = 1;
+        break;
+    case 0x167:
+        break;
+    }
+    value = D_808008A8_chintroticker[state];
+    if (value != 0) {
+        _gcfrontend_entrypoint_9(value);
+    }
+    ((struct TickerState *)arg0)->state = state;
+    return 1;
+}
 
 void func_80800188_chintroticker(u8 *arg0, s32 arg1) {
     s32 func_800167F4(void);
