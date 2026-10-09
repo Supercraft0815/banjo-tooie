@@ -50,7 +50,15 @@ s32 bsstatue_entrypoint_2(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_808007D4_bsstatue.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_8080081C_bsstatue.s")
+/* extern */
+
+void func_8080081C_bsstatue(void *arg0) {
+    s32 func_808001FC_bsstatue();
+    s32 func_8080054C_bsstatue(void *, s32);
+    func_808001FC_bsstatue();
+    (*(s8 *)((s8 *)(arg0) + (0x15C))) = 0;
+    func_8080054C_bsstatue(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_8080084C_bsstatue.s")
 
