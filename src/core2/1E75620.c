@@ -15,7 +15,9 @@ u32 func_8009BD44(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75620/func_8009BD50.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75620/func_8009BD88.s")
+void func_8009BD88(PlayerState *arg0) {
+    func_8009BDAC(arg0, 0.6f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75620/func_8009BDAC.s")
 
