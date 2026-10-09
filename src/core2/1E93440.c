@@ -10,7 +10,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA28C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA2C4.s")
+/* extern */
+
+s32 func_800BA2C4(void) {
+    s32 heap_free();
+    heap_free();
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA2E8.s")
 
