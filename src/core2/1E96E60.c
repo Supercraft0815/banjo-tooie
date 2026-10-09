@@ -8,7 +8,18 @@ void func_800BD570()
     _gccubeDll_entrypoint_1(&D_80128410);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BD594.s")
+/* extern */
+
+void func_800BD594(s32 arg0) {
+    s32 func_800D3104(s32, s32 *);
+    s32 func_800EA068(s32);
+    s32 func_8010A874(s32);
+    if (func_800EA068(0x200) != 0) {
+        func_8010A874(arg0);
+        return;
+    }
+    func_800D3104(arg0, &D_80128410);
+}
 
 void func_800BD5DC()
 {
