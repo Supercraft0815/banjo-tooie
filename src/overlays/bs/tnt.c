@@ -89,7 +89,10 @@ void func_80801190_bstnt(s32 arg0)
     _basudie_entrypoint_10();
     bstnt_entrypoint_4(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/bstnt_entrypoint_5.s")
+s32 bstnt_entrypoint_5(s32 arg0) {
+    extern s32 D_8080254C_bstnt[];
+    return ((s32 *)&D_8080254C_bstnt)[arg0];
+}
 
 void func_808011CC_bstnt(s32 arg0)
 {
