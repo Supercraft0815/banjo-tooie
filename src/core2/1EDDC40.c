@@ -6,7 +6,12 @@ void func_80104350(void) {
     D_80136E80 = freelist_new(0x2C, 8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104378.s")
+void func_80104378(void) {
+    s32 freelist_free(s32);
+    extern s32 D_80136E80;
+    freelist_free(D_80136E80);
+    D_80136E80 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_801043A0.s")
 
