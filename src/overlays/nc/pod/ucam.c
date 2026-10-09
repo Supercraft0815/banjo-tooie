@@ -60,4 +60,9 @@ s32 ncpoducam_entrypoint_5(s16 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/ncpoducam_entrypoint_10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/ncpoducam_entrypoint_11.s")
+/* extern */
+
+void ncpoducam_entrypoint_11(s32 arg0) {
+    s32 func_800EE7F8(s32);
+    func_800EE7F8(arg0 + 0x3C);
+}
