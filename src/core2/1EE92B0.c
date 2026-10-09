@@ -36,7 +36,12 @@ void func_8010FE00(void *arg0, s32 arg1, s32 arg2) {
     (*(s8 *)((s8 *)(arg0) + (0x18))) = (s8) (arg2 == 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FE14.s")
+/* extern */
+
+void func_8010FE14(s32 *arg0) {
+    s32 func_800CA628(s32);
+    func_800CA628(*arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FE34.s")
 
