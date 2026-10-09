@@ -33,4 +33,6 @@ void func_80091104(s32 *arg0, s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6A730/func_80091290.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6A730/func_800914FC.s")
+void func_800914FC(PlayerState *arg0, f32 arg1, s32 arg2) {
+    func_80091290(arg0, arg1, arg2, 4);
+}
