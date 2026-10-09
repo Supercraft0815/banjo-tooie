@@ -24,4 +24,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/die/bsdie_entrypoint_10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/die/bsdie_entrypoint_11.s")
+s32 bsdie_entrypoint_11(s32 arg0) {
+    extern s32 D_80800980_bsdie[];
+    return ((s32 *)&D_80800980_bsdie)[arg0];
+}
