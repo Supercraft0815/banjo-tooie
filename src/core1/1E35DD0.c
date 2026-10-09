@@ -24,7 +24,9 @@ void func_8001E380()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E35DD0/func_8001E44C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E35DD0/func_8001E490.s")
+void func_8001E490(void) {
+    osDestroyThread(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E35DD0/func_8001E4B0.s")
 
