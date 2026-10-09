@@ -1,6 +1,26 @@
 #include "core2/1E91790.h"
 #include "common.h"
 
+/* Operand order matches the game's display-list packing. */
+#define textLoadTile(pkt, cmd, tile, uls, ult, lrs, lrt) { \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = _SHIFTL(cmd, 24, 8) | _SHIFTL(ult, 0, 12) | _SHIFTL(uls, 12, 12); \
+    _g->words.w1 = _SHIFTL(tile, 24, 3) | _SHIFTL(lrt, 0, 12) | _SHIFTL(lrs, 12, 12); \
+}
+
+typedef struct {
+    u8 imgWidth;
+    u8 unk1;
+    u8 width;
+    u8 height;
+    s32 offset;
+} FontGlyph;
+
+void *func_800B8148(u8 *ch);
+FontGlyph *func_800B0D6C(void *font, s32 ch);
+u8 *func_800B0D60(void *font);
+f32 func_800DC178(f32, f32);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B7EA0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B7F14.s")
@@ -11,7 +31,93 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B8148.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B81CC.s")
+s32 func_800B81CC(Gfx **gfx, s32 x, s32 y, u8 ch) {
+    void *font;
+    FontGlyph *glyph;
+    Gfx *g;
+    u8 *tex;
+    f32 fx, fy, w, h;
+
+    font = func_800B8148(&ch);
+    if (font == NULL) {
+        return 0;
+    }
+    glyph = func_800B0D6C(font, ch);
+    tex = func_800B0D60(font) + glyph->offset;
+    g = *gfx;
+    /* IDO scheduling requires each load/sync trio to stay on one source line. */
+    if (D_801282C0.unk10 == 0x800) {
+        gDPSetTextureImage(g++, G_IM_FMT_RGBA, G_IM_SIZ_32b, glyph->imgWidth, tex + 0x80000000);
+        gDPSetTile(g++, G_IM_FMT_RGBA, G_IM_SIZ_32b, ((glyph->width * 2 + 7) >> 3), 0, G_TX_LOADTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
+        gDPLoadSync(g++); textLoadTile(g++, G_LOADTILE, G_TX_LOADTILE, 0, 0, (glyph->width - 1) << 2, (glyph->height - 1) << 2); gDPPipeSync(g++);
+        gDPSetTile(g++, G_IM_FMT_RGBA, G_IM_SIZ_32b, ((glyph->width * 2 + 7) >> 3), 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
+        textLoadTile(g++, G_SETTILESIZE, G_TX_RENDERTILE, 0, 0, (glyph->width - 1) << 2, (glyph->height - 1) << 2);
+    } else if (D_801282C0.unk10 == 0x200) {
+        gDPSetTextureImage(g++, G_IM_FMT_IA, G_IM_SIZ_16b, glyph->imgWidth, tex + 0x80000000);
+        gDPSetTile(g++, G_IM_FMT_IA, G_IM_SIZ_16b, ((glyph->width * 2 + 7) >> 3), 0, G_TX_LOADTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
+        gDPLoadSync(g++); textLoadTile(g++, G_LOADTILE, G_TX_LOADTILE, 0, 0, (glyph->width - 1) << 2, (glyph->height - 1) << 2); gDPPipeSync(g++);
+        gDPSetTile(g++, G_IM_FMT_IA, G_IM_SIZ_16b, ((glyph->width * 2 + 7) >> 3), 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
+        textLoadTile(g++, G_SETTILESIZE, G_TX_RENDERTILE, 0, 0, (glyph->width - 1) << 2, (glyph->height - 1) << 2);
+    } else if (D_801282C0.unk10 == 0x100) {
+        gDPSetTextureImage(g++, G_IM_FMT_IA, G_IM_SIZ_8b, glyph->imgWidth, tex + 0x80000000);
+        gDPSetTile(g++, G_IM_FMT_IA, G_IM_SIZ_8b, ((glyph->width + 7) >> 3), 0, G_TX_LOADTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
+        gDPLoadSync(g++); textLoadTile(g++, G_LOADTILE, G_TX_LOADTILE, 0, 0, (glyph->width - 1) << 2, (glyph->height - 1) << 2); gDPPipeSync(g++);
+        gDPSetTile(g++, G_IM_FMT_IA, G_IM_SIZ_8b, ((glyph->width + 7) >> 3), 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
+        textLoadTile(g++, G_SETTILESIZE, G_TX_RENDERTILE, 0, 0, (glyph->width - 1) << 2, (glyph->height - 1) << 2);
+    } else if (D_801282C0.unk10 == 0x40) {
+        gDPSetTextureImage(g++, G_IM_FMT_I, G_IM_SIZ_8b, glyph->imgWidth, tex + 0x80000000);
+        gDPSetTile(g++, G_IM_FMT_I, G_IM_SIZ_8b, ((glyph->width + 7) >> 3), 0, G_TX_LOADTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
+        gDPLoadSync(g++); textLoadTile(g++, G_LOADTILE, G_TX_LOADTILE, 0, 0, (glyph->width - 1) << 2, (glyph->height - 1) << 2); gDPPipeSync(g++);
+        gDPSetTile(g++, G_IM_FMT_I, G_IM_SIZ_8b, ((glyph->width + 7) >> 3), 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
+        textLoadTile(g++, G_SETTILESIZE, G_TX_RENDERTILE, 0, 0, (glyph->width - 1) << 2, (glyph->height - 1) << 2);
+    } else if (D_801282C0.unk10 == 0x20) {
+        gDPSetTextureImage(g++, G_IM_FMT_I, G_IM_SIZ_8b, (glyph->imgWidth >> 1), tex + 0x80000000);
+        gDPSetTile(g++, G_IM_FMT_I, G_IM_SIZ_8b, (((glyph->width >> 1) + 7) >> 3), 0, G_TX_LOADTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
+        gDPLoadSync(g++); textLoadTile(g++, G_LOADTILE, G_TX_LOADTILE, 0, 0, (glyph->width - 1) << 1, (glyph->height - 1) << 2); gDPPipeSync(g++);
+        gDPSetTile(g++, G_IM_FMT_I, G_IM_SIZ_4b, (((glyph->width >> 1) + 7) >> 3), 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
+        textLoadTile(g++, G_SETTILESIZE, G_TX_RENDERTILE, 0, 0, (glyph->width - 1) << 2, (glyph->height - 1) << 2);
+    } else {
+        return 0;
+    }
+    fx = x;
+    w = glyph->width * D_801282C0.value;
+    h = glyph->height * D_801282C0.value;
+    if (D_801282C0.data[7] == 0 || D_801282C0.data[8] == 0) {
+        fx -= w * 0.5f;
+    }
+    fy = y - glyph->unk1 * 0.5f;
+    if (D_801282C0.data[4] != 0) {
+        fx += func_800DC178(-2.0f, 2.0f);
+        fy += func_800DC178(-2.0f, 2.0f);
+    }
+    /* Keep these rectangle command statements on separate source lines. */
+    {
+        Gfx *rect = g++;
+
+        rect->words.w0 = _SHIFTL(G_TEXRECT, 24, 8)
+            | _SHIFTL(MAX((s16)(s32)((fx + w) * 4.0f), 0), 12, 12)
+            | _SHIFTL(MAX((s16)(s32)((fy + h) * 4.0f), 0), 0, 12);
+        rect->words.w1 = _SHIFTL(G_TX_RENDERTILE, 24, 3)
+            | _SHIFTL(MAX((s16)(s32)(fx * 4.0f), 0), 12, 12)
+            | _SHIFTL(MAX((s16)(s32)(fy * 4.0f), 0), 0, 12);
+        gImmp1(g++, G_RDPHALF_1,
+            _SHIFTL(0 - (((s16)(s32)(fx * 4.0f) < 0)
+                ? (((s16)(s32)(1024.0f / D_801282C0.value) < 0)
+                    ? MAX(((s16)(s32)(fx * 4.0f) * (s16)(s32)(1024.0f / D_801282C0.value)) >> 7, 0)
+                    : MIN(((s16)(s32)(fx * 4.0f) * (s16)(s32)(1024.0f / D_801282C0.value)) >> 7, 0)) : 0), 16, 16)
+            | _SHIFTL(0 - (((s32)(fy * 4.0f) < 0)
+                ? (((s16)(s32)(1024.0f / D_801282C0.value) < 0)
+                    ? MAX(((s16)(s32)(fy * 4.0f) * (s16)(s32)(1024.0f / D_801282C0.value)) >> 7, 0)
+                    : MIN(((s16)(s32)(fy * 4.0f) * (s16)(s32)(1024.0f / D_801282C0.value)) >> 7, 0)) : 0), 0, 16));
+        gImmp1(g++, G_RDPHALF_2,
+            _SHIFTL((s32)(1024.0f / D_801282C0.value), 16, 16)
+            | _SHIFTL((s32)(1024.0f / D_801282C0.value), 0, 16));
+    }
+    *gfx = g;
+    return w;
+}
+
+#undef textLoadTile
 
 #ifndef NON_MATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B8C50.s")

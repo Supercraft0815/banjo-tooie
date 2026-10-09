@@ -4,6 +4,7 @@
 #include "common.h"
 #include "gc/newoption.h"
 
+s32 func_800B81CC(Gfx **gfx, s32 x, s32 y, u8 ch);
 void func_800B8C50(void);
 void func_800B8C8C(s32 Transparency);
 void func_800B8C98(s32 Font);
@@ -12,7 +13,8 @@ void func_800B8CA4(s32 shakiness);
 void func_800B8CE0(s32 color);
 void func_800B8CF0(f32 size);
 extern struct {
-	u8 data[0x14];  // D_801282C0
+	u8 data[0x10];  // D_801282C0
+	s32 unk10;  // Texture format
 	f32 value;
 } D_801282C0;
 extern s8 D_801282C1; 
