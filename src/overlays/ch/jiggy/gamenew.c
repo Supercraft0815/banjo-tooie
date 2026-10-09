@@ -28,7 +28,12 @@ s32 func_8080000C_chjiggygamenew(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_808006E0_chjiggygamenew.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_808007BC_chjiggygamenew.s")
+/* extern */
+
+s32 func_808007BC_chjiggygamenew(void) {
+    void *func_80106790();
+    return (*(s32 *)((s8 *)(func_80106790()) + (0x28))) == 5;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_808007E4_chjiggygamenew.s")
 
