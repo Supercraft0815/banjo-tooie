@@ -1,6 +1,21 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB57A0/func_800DBEB0.s")
+/* extern */
+
+void func_800DBEB0(s32 arg0) {
+    s32 func_800EFD24(u32);
+    u32 temp_s1;
+    u32 var_s0;
+
+    var_s0 = arg0 + 4;
+    temp_s1 = arg0 + 0x118;
+    if (var_s0 < temp_s1) {
+        do {
+            func_800EFD24(var_s0);
+            var_s0 += 0xC;
+        } while (var_s0 < temp_s1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB57A0/func_800DBEFC.s")
 
