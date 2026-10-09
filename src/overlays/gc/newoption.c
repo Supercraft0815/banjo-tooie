@@ -2,7 +2,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80800000_gcnewoption.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80800038_gcnewoption.s")
+s32 func_80800038_gcnewoption(void *arg0, s32 arg1) {
+    s32 temp_v1;
+
+    temp_v1 = arg1 - (*(s16 *)((s8 *)(arg0) + (8)));
+    if (temp_v1 >= (*(s16 *)((s8 *)(arg0) + (2)))) {
+        return -1;
+    }
+    if (temp_v1 < 0) {
+        return -1;
+    }
+    return temp_v1;
+}
 
 s32 func_80800070_gcnewoption(void *arg0, s32 arg1) {
     return (*(s16 *)((s8 *)(arg0) + (8))) + arg1;
