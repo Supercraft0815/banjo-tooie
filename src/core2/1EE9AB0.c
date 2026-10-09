@@ -35,7 +35,12 @@ void func_80110770(s32 arg0) {
     func_800EE7F8(arg0 + 0x74);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110790.s")
+/* extern */
+
+void func_80110790(s32 arg0) {
+    s32 func_800EE7F8(s32);
+    func_800EE7F8(arg0 + 0x80);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_801107B0.s")
 
