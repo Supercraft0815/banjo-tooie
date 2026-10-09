@@ -38,7 +38,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1720.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1748.s")
+/* extern */
+
+void func_800E1748(void) {
+    s32 func_800E1720(s32);
+    s32 var_s0;
+
+    var_s0 = 0;
+    do {
+        func_800E1720(var_s0);
+        var_s0 += 1;
+    } while (var_s0 != 0xA);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1788.s")
 
