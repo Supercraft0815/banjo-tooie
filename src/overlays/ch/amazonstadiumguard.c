@@ -7,7 +7,11 @@ OSThread *chamazonstadiumguard_entrypoint_0(void)
     return (OSThread *) D_80800700_chamazonstadiumguard;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazonstadiumguard/func_8080000C_chamazonstadiumguard.s")
+void func_8080000C_chamazonstadiumguard(void *arg0) {
+    (*(f32 *)((s8 *)(arg0) + (0x28))) = (f32) (*(f32 *)((s8 *)(arg0) + (4)));
+    (*(f32 *)((s8 *)(arg0) + (0x2C))) = (f32) (*(f32 *)((s8 *)(arg0) + (8)));
+    (*(f32 *)((s8 *)(arg0) + (0x30))) = (f32) (*(f32 *)((s8 *)(arg0) + (0xC)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazonstadiumguard/func_80800028_chamazonstadiumguard.s")
 
