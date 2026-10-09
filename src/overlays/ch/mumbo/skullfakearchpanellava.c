@@ -2,7 +2,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/skullfakearchpanellava/func_80800000_chmumboskullfakearchpanellava.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/skullfakearchpanellava/func_80800054_chmumboskullfakearchpanellava.s")
+/* extern */
+
+void func_80800054_chmumboskullfakearchpanellava(s32 arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800FFAB0(s32);
+    s32 func_80800000_chmumboskullfakearchpanellava();
+    if (func_800DA298(func_80800000_chmumboskullfakearchpanellava()) != 0) {
+        func_800FFAB0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/skullfakearchpanellava/func_8080008C_chmumboskullfakearchpanellava.s")
 
