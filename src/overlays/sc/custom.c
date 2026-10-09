@@ -32,6 +32,12 @@ void sccustom_entrypoint_3(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/custom/sccustom_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/custom/sccustom_entrypoint_7.s")
+/* extern */
+
+void sccustom_entrypoint_7(s32 arg0) {
+    s32 func_8080084C_sccustom();
+    s32 func_808006C4_sccustom(s32, s32);
+    func_808006C4_sccustom(arg0, func_8080084C_sccustom());
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/custom/R_80800910_sccustom.s")
