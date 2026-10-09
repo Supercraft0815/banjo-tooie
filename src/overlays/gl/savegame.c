@@ -13,7 +13,24 @@ void func_80800000_glsavegame()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/func_808002E0_glsavegame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/func_8080036C_glsavegame.s")
+/* extern */
+
+s32 func_8080036C_glsavegame(s32 arg0) {
+    s32 _glgamestore_entrypoint_4(s32);
+    s32 temp_v0;
+    s32 var_s0;
+
+    var_s0 = 3;
+loop_1:
+    temp_v0 = _glgamestore_entrypoint_4(arg0);
+    if (temp_v0 != 0) {
+        var_s0 -= 1;
+        if (var_s0 != 0) {
+            goto loop_1;
+        }
+    }
+    return temp_v0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/glsavegame_entrypoint_1.s")
 
