@@ -10,4 +10,50 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/data/sucoasterdata_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/data/sucoasterdata_entrypoint_5.s")
+s32 *sucoasterdata_entrypoint_5(u32 arg0, s32 arg1, s32 *arg2) {
+    extern s32 D_808006FC_sucoasterdata;
+    extern s32 D_80800750_sucoasterdata;
+    extern s32 D_808007A4_sucoasterdata;
+    extern s32 D_808007F8_sucoasterdata;
+    extern s32 D_8080084C_sucoasterdata;
+    extern s32 D_808008A0_sucoasterdata;
+    extern s32 D_808008F4_sucoasterdata;
+    extern s32 D_80800948_sucoasterdata;
+    extern s32 D_80800990_sucoasterdata;
+
+    switch (arg0) {
+    case 0:
+        *arg2 = 7;
+        return &D_8080084C_sucoasterdata;
+    case 1:
+        *arg2 = 7;
+        return &D_80800990_sucoasterdata;
+    case 3:
+        switch (arg1) {
+        case 0x327:
+            *arg2 = 7;
+            return &D_808006FC_sucoasterdata;
+        case 0x328:
+            *arg2 = 7;
+            return &D_80800750_sucoasterdata;
+        case 0x329:
+            *arg2 = 7;
+            return &D_808007A4_sucoasterdata;
+        case 0x32A:
+            *arg2 = 7;
+            return &D_808007F8_sucoasterdata;
+        }
+        break;
+    case 5:
+        *arg2 = 7;
+        return &D_808008A0_sucoasterdata;
+    case 6:
+        *arg2 = 7;
+        return &D_808008F4_sucoasterdata;
+    case 7:
+        *arg2 = 6;
+        return &D_80800948_sucoasterdata;
+    }
+    *arg2 = 0;
+    return 0;
+}
