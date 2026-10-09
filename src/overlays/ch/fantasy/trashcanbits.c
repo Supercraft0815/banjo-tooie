@@ -13,7 +13,16 @@ OSThread *chfantasytrashcanbits_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/trashcanbits/func_808001A8_chfantasytrashcanbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/trashcanbits/func_808001D8_chfantasytrashcanbits.s")
+/* extern */
+
+void func_808001D8_chfantasytrashcanbits(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    s32 func_80101180(s32);
+    if (arg1 == 7) {
+        func_80101180(0x40C);
+    }
+    _chswitch_entrypoint_10(arg0, arg1, arg2);
+}
 
 OSThread *chfantasytrashcanbits_entrypoint_1(void)
 {
