@@ -42,7 +42,12 @@ void func_80102780(void *arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102D4C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102D78.s")
+/* extern */
+
+void func_80102D78(s32 arg0) {
+    s32 func_800F1DF4(s32);
+    func_800F1DF4(arg0 + 0x4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102D98.s")
 
