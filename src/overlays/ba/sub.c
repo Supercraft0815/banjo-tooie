@@ -50,7 +50,17 @@ void basub_entrypoint_4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_8.s")
+void basub_entrypoint_8(void *arg0, s32 arg1) {
+    u8 temp_v1;
+    void *temp_v0;
+
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x130)));
+    temp_v1 = (*(u8 *)((s8 *)(temp_v0) + (0x5E)));
+    if (((*(s32 *)((s8 *)(temp_v0) + (0x28))) + temp_v1) < 0xA) {
+        (*(u8 *)((s8 *)(temp_v0) + (0x5E))) = (u8) (temp_v1 + 1);
+        (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0x58))) = 0.35f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/func_80800834_basub.s")
 
