@@ -241,7 +241,20 @@ s32 bsbswim_entrypoint_13(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80801C64_bsbswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80801CE4_bsbswim.s")
+/* extern */
+
+void func_80801CE4_bsbswim(s32 arg0) {
+    s32 _baswim_entrypoint_3(s32);
+    s32 baanim_isStopped();
+    s32 bs_setState(s32, s32);
+    s32 sp1C;
+
+    sp1C = 0;
+    if ((baanim_isStopped() != 0) || (_baswim_entrypoint_3(arg0) != 0)) {
+        sp1C = 0x2B;
+    }
+    bs_setState(arg0, sp1C);
+}
 
 void func_80801D30_bsbswim()
 {
