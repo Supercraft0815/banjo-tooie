@@ -28,6 +28,13 @@ void func_800DC324(s32 arg0) {
     *(s32 *)((u8 *)&D_8012C7F0 + 0) = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5980/func_800DC330.s")
+void func_800DC330(void) {
+    extern s32 D_8012C7F0;
+    extern s32 D_8012C7F4;
+    extern s32 D_8012C7F8;
+    extern s32 D_8012C7FC;
+    D_8012C7F8 = D_8012C7F0;
+    D_8012C7FC = D_8012C7F4;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5980/func_800DC354.s")
