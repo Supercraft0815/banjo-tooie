@@ -16,7 +16,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808004B0_chflysaucer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808004F0_chflysaucer.s")
+void func_808004F0_chflysaucer(void) {
+    s32 func_808017D0_chflysaucer();
+    extern s32 D_80127194;
+    (*(s16 *)((s8 *)(&D_80127194) + (0x434))) = 0;
+    func_808017D0_chflysaucer();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800514_chflysaucer.s")
 
