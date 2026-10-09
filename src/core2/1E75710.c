@@ -30,6 +30,9 @@ f32 func_8009BFD8(PlayerState *arg0) {
     return (*(f32 **)((u8 *)arg0 + 0xDC))[1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75710/func_8009BFE4.s")
+void func_8009BFE4(PlayerState *arg0, f32 arg1, f32 arg2) {
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xDC)))) + (8))) = arg1;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xDC)))) + (0xC))) = arg2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75710/func_8009C000.s")
