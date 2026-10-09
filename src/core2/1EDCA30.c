@@ -63,7 +63,12 @@ void func_80103D48(void **arg0) {
     func_800D70F8((*(u16 *)((s8 *)(*arg0) + (0x14))), 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103D70.s")
+/* extern */
+
+void func_80103D70(void **arg0) {
+    s32 func_800D70F8(u16, s32);
+    func_800D70F8((*(u16 *)((s8 *)(*arg0) + (0x14))), 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103D98.s")
 
