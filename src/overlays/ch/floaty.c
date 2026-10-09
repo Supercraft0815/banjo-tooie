@@ -7,7 +7,9 @@ OSThread *chfloaty_entrypoint_0(void)
     return (OSThread *) D_80800E00_chfloaty;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/floaty/func_8080000C_chfloaty.s")
+s32 func_8080000C_chfloaty(s32 arg0, s32 arg1, s32 arg2) {
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/floaty/func_80800020_chfloaty.s")
 
