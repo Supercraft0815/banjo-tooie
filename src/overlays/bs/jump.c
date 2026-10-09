@@ -29,7 +29,10 @@ void bsjump_entrypoint_10(s32 arg0)
     baphysics_reset_gravity(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_11.s")
+s32 bsjump_entrypoint_11(s32 arg0) {
+    extern s32 D_80801130_bsjump[];
+    return ((s32 *)&D_80801130_bsjump)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_12.s")
 
