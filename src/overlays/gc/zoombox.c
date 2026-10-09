@@ -8,7 +8,12 @@ void func_808000C4_gczoombox(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_808000DC_gczoombox.s")
+void func_808000DC_gczoombox(void *arg0) {
+    if ((*(u16 *)((s8 *)(arg0) + (0x140))) != 0) {
+        (*(u16 *)((s8 *)(arg0) + (0x140))) = 0U;
+    }
+    func_808000C4_gczoombox(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_0.s")
 
