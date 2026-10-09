@@ -80,4 +80,11 @@ void func_80800B40_chfactoryworkerdirty(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800D48_chfactoryworkerdirty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800DB4_chfactoryworkerdirty.s")
+/* extern */
+
+void func_80800DB4_chfactoryworkerdirty(Actor *arg0) {
+    s32 _suexpression_entrypoint_8(Actor *, s32);
+    if (func_80100094(arg0, 1U) != NULL) {
+        _suexpression_entrypoint_8(arg0, 1);
+    }
+}
