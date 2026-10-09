@@ -31,4 +31,6 @@ void func_8080022C_chbottlesparty(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/party/func_80800330_chbottlesparty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/party/func_808003E4_chbottlesparty.s")
+s32 func_808003E4_chbottlesparty(s32 arg0, s32 arg1, s32 arg2) {
+    return 0;
+}
