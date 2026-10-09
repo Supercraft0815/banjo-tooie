@@ -66,7 +66,9 @@ void func_8008FB94(s32 arg0)
     func_800F4924(func_800F54E4(),arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E691A0/func_8008FBC0.s")
+void func_8008FBC0(void) {
+    func_8008FB94(-1);
+}
 
 void func_8008FBE0(u32 arg0)
 {
