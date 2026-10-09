@@ -609,7 +609,12 @@ void func_800F70BC(s32 arg0) {
     func_8009E71C(D_80135490[arg0], 0xE);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F70EC.s")
+/* extern */
+
+s32 func_800F70EC(s32 arg0) {
+    s32 func_8009BD44(PlayerState *);
+    return func_8009BD44(D_80135490[arg0]) != 3;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F711C.s")
 
