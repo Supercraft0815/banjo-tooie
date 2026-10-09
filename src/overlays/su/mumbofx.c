@@ -4,7 +4,43 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_2.s")
+/* extern */
+
+void sumumbofx_entrypoint_2(u8 *arg0) {
+    f32 func_800DC178(f32, f32);
+    f32 temp_f0;
+    s32 var_s1;
+    u8 *var_s0;
+
+    (*(s16 *)((s8 *)(arg0) + (0x5A))) = 0;
+    (*(s16 *)((s8 *)(arg0) + (0x5C))) = 0;
+    (*(u8 *)((s8 *)(arg0) + (0x60))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x60))) & 0xFF01);
+    (*(s16 *)((s8 *)(arg0) + (0x5E))) = 0;
+    (*(s8 *)((s8 *)(arg0) + (0x61))) = 0;
+    (*(s8 *)((s8 *)(arg0) + (0x62))) = 2;
+    (*(s32 *)((s8 *)(arg0) + (0x54))) = -1;
+    var_s0 = arg0 + 0x64;
+    var_s1 = 0;
+    (*(f32 *)((s8 *)(arg0) + (0x10))) = 0.0f;
+    (*(f32 *)((s8 *)(arg0) + (0x14))) = 0.0f;
+    (*(f32 *)((s8 *)(arg0) + (0x18))) = 0.0f;
+    (*(f32 *)((s8 *)(arg0) + (4))) = 0.0f;
+    (*(f32 *)((s8 *)(arg0) + (0xC))) = 1.0f;
+    if ((*(s16 *)((s8 *)(arg0) + (0x58))) > 0) {
+        do {
+            (*(f32 *)((s8 *)(var_s0) + (0x1C))) = 0.0f;
+            temp_f0 = func_800DC178(0.4f, 0.8f);
+            (*(f32 *)((s8 *)(var_s0) + (0x24))) = temp_f0;
+            (*(f32 *)((s8 *)(var_s0) + (0x20))) = func_800DC178(0, temp_f0);
+            (*(f32 *)((s8 *)(var_s0) + (0))) = func_800DC178(0.0f, 359.0f);
+            (*(f32 *)((s8 *)(var_s0) + (4))) = 0.0f;
+            (*(f32 *)((s8 *)(var_s0) + (0xC))) = func_800DC178(8.0f, 16.0f);
+            (*(f32 *)((s8 *)(var_s0) + (8))) = func_800DC178(8.0f, 16.0f);
+            var_s1 += 1;
+            var_s0 += 0x2C;
+        } while (var_s1 < (*(s16 *)((s8 *)(arg0) + (0x58))));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_3.s")
 
