@@ -102,7 +102,12 @@ void * func_800C911C(void) {
     return &D_8012AB00;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9128.s")
+/* extern */
+
+void func_800C9128(s32 arg0) {
+    s32 _gclightsDll_entrypoint_3(s32 *, s32);
+    _gclightsDll_entrypoint_3(&D_8012AB00, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9150.s")
 
