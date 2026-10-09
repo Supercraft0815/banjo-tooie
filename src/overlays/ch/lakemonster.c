@@ -22,7 +22,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80800968_chlakemonster.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_808009CC_chlakemonster.s")
+/* extern */
+
+void func_808009CC_chlakemonster(void) {
+    s32 _gcgoto_entrypoint_1(s32, s32);
+    s32 func_800DA544(s32);
+    s32 func_800F54E4();
+    s32 func_800F7C9C(s32, s32, s32, s32);
+    func_800F7C9C(func_800F54E4(), 0x95, 0x116, 0xA);
+    _gcgoto_entrypoint_1(0x123, 1);
+    func_800DA544(0x6E8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80800A14_chlakemonster.s")
 
