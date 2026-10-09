@@ -132,7 +132,12 @@ void func_800BAB54(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)arg0 + 92) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BAB60.s")
+/* extern */
+
+void func_800BAB60(s32 arg0) {
+    s32 func_800F2EA0(s32);
+    func_800F2EA0(arg0 + 0x80);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BAB80.s")
 
