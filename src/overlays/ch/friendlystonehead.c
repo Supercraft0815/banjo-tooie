@@ -39,7 +39,14 @@ void func_808002F8_chfriendlystonehead(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_80800540_chfriendlystonehead.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_80800680_chfriendlystonehead.s")
+/* extern */
+
+void func_80800680_chfriendlystonehead(s32 *arg0, s32 arg1) {
+    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    s32 func_800C01A8(s32, s32);
+    func_800C01A8(0x6B, 0);
+    _capod_entrypoint_13(*arg0, 0, arg1, 0x2010);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_808006C4_chfriendlystonehead.s")
 
