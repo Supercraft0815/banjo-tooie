@@ -100,7 +100,12 @@ u8 func_800CC61C(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CC684.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CC6CC.s")
+/* extern */
+
+s32 func_800CC6CC(void) {
+    void *func_800CC63C();
+    return (*(u16 *)((s8 *)(func_800CC63C()) + (0x14))) & 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CC6F4.s")
 
