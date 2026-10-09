@@ -4,7 +4,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/record/glrecord_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/record/glrecord_entrypoint_2.s")
+s32 glrecord_entrypoint_2(void) {
+    extern s32 D_8012D5B0;
+    return (*(s32 *)((s8 *)(&D_8012D5B0) + (8))) * 6;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/record/glrecord_entrypoint_3.s")
 
