@@ -12,7 +12,12 @@ void func_80091E18(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B700/func_80091E48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B700/func_80091E6C.s")
+void func_80091E6C(void *arg0) {
+    void *temp_v0;
+
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x48)));
+    (*(u8 *)((s8 *)(temp_v0) + (3))) = (u8) ((*(u8 *)((s8 *)(temp_v0) + (3))) - 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B700/func_80091E80.s")
 
