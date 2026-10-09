@@ -59,7 +59,10 @@ void func_8080088C_bstntswim(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tntswim/func_808008B4_bstntswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tntswim/bstntswim_entrypoint_3.s")
+s32 bstntswim_entrypoint_3(s32 arg0) {
+    extern s32 D_808009E0_bstntswim[];
+    return ((s32 *)&D_808009E0_bstntswim)[arg0];
+}
 
 void func_8080090C_bstntswim(s32 arg0)
 {
