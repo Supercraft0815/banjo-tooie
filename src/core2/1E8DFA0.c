@@ -4,7 +4,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B4790.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B5028.s")
+void func_800B5028(void) {
+    s32 heap_alloc(s32);
+    extern s32 D_80127F10;
+    extern s16 D_80127F18;
+    D_80127F10 = heap_alloc(0);
+    D_80127F18 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B5054.s")
 
