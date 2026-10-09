@@ -28,4 +28,10 @@ void func_800D2CC4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D2E90.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D2EE4.s")
+void func_800D2EE4(void) {
+    s32 defrag(s32);
+    extern s32 D_8012B360;
+    if (D_8012B360 != 0) {
+        D_8012B360 = defrag(D_8012B360);
+    }
+}
