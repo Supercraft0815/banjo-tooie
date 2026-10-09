@@ -39,7 +39,12 @@ void func_800EA124()
     _gsworldDll_entrypoint_4(&D_80132DC0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA148.s")
+/* extern */
+
+void func_800EA148(s32 arg0) {
+    s32 _gsworldDll_entrypoint_3(s32 *, s32);
+    _gsworldDll_entrypoint_3(&D_80132DC0, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA170.s")
 
