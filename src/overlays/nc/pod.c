@@ -83,7 +83,18 @@ u32 ncpod_entrypoint_13(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_17.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_18.s")
+/* extern */
+
+s16 ncpod_entrypoint_18(void) {
+    void *func_80110024();
+    void *temp_v0;
+
+    temp_v0 = func_80110024();
+    if (temp_v0 == NULL) {
+        return -1;
+    }
+    return (*(s16 *)((s8 *)(temp_v0) + (0x3C)));
+}
 
 /* extern */
 
