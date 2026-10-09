@@ -39,4 +39,7 @@ void subaddietaxi_entrypoint_3(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_16.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/func_80800CF0_subaddietaxi.s")
+s32 func_80800CF0_subaddietaxi(s32 arg0) {
+    extern s16 D_80800DB4_subaddietaxi[];
+    return ((s16 *)&D_80800DB4_subaddietaxi)[arg0];
+}
