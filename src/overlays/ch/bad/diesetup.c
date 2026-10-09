@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/diesetup/func_80800000_chbaddiesetup.s")
+s32 func_80800000_chbaddiesetup(void *arg0) {
+    if ((*(s32 *)((s8 *)(arg0) + (0))) == 0) {
+        return 0;
+    }
+    if ((*(u8 *)((s8 *)(arg0) + (4))) == 0x16) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/diesetup/chbaddiesetup_entrypoint_0.s")
 
