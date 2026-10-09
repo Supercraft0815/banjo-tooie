@@ -20,4 +20,7 @@ s32 bstimeout_entrypoint_3(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/timeout/bstimeout_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/timeout/bstimeout_entrypoint_7.s")
+s32 bstimeout_entrypoint_7(s32 arg0) {
+    extern s32 D_80800340_bstimeout[];
+    return ((s32 *)&D_80800340_bstimeout)[arg0];
+}
