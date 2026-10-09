@@ -32,7 +32,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_15.s")
+f32 sukickball_entrypoint_15(s32 arg0) {
+    extern f32 D_80801234_sukickball[];
+    return ((f32 *)&D_80801234_sukickball)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_16.s")
 
