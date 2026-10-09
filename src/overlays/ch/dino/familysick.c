@@ -26,7 +26,16 @@ f32 func_808001FC_chdinofamilysick(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/func_8080030C_chdinofamilysick.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/func_80800368_chdinofamilysick.s")
+/* extern */
+
+s32 func_80800368_chdinofamilysick(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_800EA05C();
+    if (func_800EA05C() == 0x121) {
+        func_808001FC_chdinofamilysick(arg0, arg2);
+        return 2;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/func_808003B0_chdinofamilysick.s")
 
