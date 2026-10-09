@@ -20,7 +20,12 @@ OSThread *chstarspinnerctrl_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/func_80800184_chstarspinnerctrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/func_808002B4_chstarspinnerctrl.s")
+void func_808002B4_chstarspinnerctrl(s32 *arg0) {
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    s32 func_800BEA88(s32);
+    extern s32 _chstarspinnerctrl_entrypoint_2;
+    _glid_entrypoint_0(func_800BEA88(0), 1, &_chstarspinnerctrl_entrypoint_2, *arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/chstarspinnerctrl_entrypoint_2.s")
 
