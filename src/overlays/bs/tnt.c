@@ -9,7 +9,18 @@ void func_80800060_bstnt(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80800068_bstnt.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_8080009C_bstnt.s")
+/* extern */
+
+void func_8080009C_bstnt(void *arg0) {
+    s32 func_800C2FDC(s32, u8, void *);
+    u8 temp_a1;
+
+    temp_a1 = (*(u8 *)((s8 *)(arg0) + (0x160)));
+    if (temp_a1 != 0) {
+        func_800C2FDC(temp_a1 & 0xFF, temp_a1, arg0);
+    }
+    (*(u8 *)((s8 *)(arg0) + (0x160))) = 0U;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_808000D4_bstnt.s")
 
