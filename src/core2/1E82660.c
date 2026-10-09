@@ -29,7 +29,10 @@ s32 func_800A93E4(s32 arg0) {
     return ((s32 *)&D_80127728)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A93F8.s")
+s32 func_800A93F8(s32 arg0) {
+    extern s32 D_80127708[];
+    return ((s32 *)&D_80127708)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A940C.s")
 
