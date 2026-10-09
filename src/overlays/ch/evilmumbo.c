@@ -116,7 +116,39 @@ OSThread *chevilmumbo_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_8080398C_chevilmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80803A24_chevilmumbo.s")
+void func_80803A24_chevilmumbo(s32 arg0, s32 arg1) {
+    struct State {
+        u8 pad[0x72];
+        u8 state : 6;
+        u8 other : 2;
+    };
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 temp;
+
+    switch (arg1) {
+    case 2:
+        *(f32 *)(arg0 + 0x28) = 0.3f;
+        *(f32 *)(arg0 + 0x2C) = 0.0f;
+        break;
+    case 3:
+        *(f32 *)(arg0 + 0x2C) = 1.0f;
+        *(f32 *)(arg0 + 0x38) = 1.0f;
+        *(f32 *)(arg0 + 0x28) = 0.15f;
+        break;
+    case 4:
+        *(f32 *)(arg0 + 0x38) = 1.0f;
+        temp = func_800F10B4(*(f32 *)(arg0 + 0x2C), 0.0f, 1.0f, 0.0f, 0.2f);
+        *(f32 *)(arg0 + 0x28) = temp;
+        if (temp == 0.0f) {
+            *(f32 *)(arg0 + 0x28) += 0.01f;
+        }
+        break;
+    case 5:
+        *(f32 *)(arg0 + 0x2C) = 0.0f;
+        break;
+    }
+    ((struct State *)arg0)->state = arg1;
+}
 
 void func_80803B28_chevilmumbo(s32 arg0)
 {
