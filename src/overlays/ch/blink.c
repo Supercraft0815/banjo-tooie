@@ -10,6 +10,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blink/chblink_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blink/chblink_entrypoint_3.s")
+/* extern */
+
+void chblink_entrypoint_3(s16 arg0) {
+    s32 func_8001B754(s16);
+    func_8001B754(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blink/chblink_entrypoint_4.s")
