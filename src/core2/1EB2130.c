@@ -4,7 +4,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2130/func_800D8854.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2130/func_800D8870.s")
+void func_800D8870(void) {
+    s32 freelist_new(s32, s32);
+    extern s32 D_8012C020;
+    D_8012C020 = freelist_new(0x70, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2130/func_800D8898.s")
 
