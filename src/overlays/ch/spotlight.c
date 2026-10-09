@@ -25,7 +25,18 @@ OSThread *chspotlight_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_808007F4_chspotlight.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_808008A4_chspotlight.s")
+/* extern */
+
+s32 func_808008A4_chspotlight(void *arg0) {
+    s32 func_800DA298(s32);
+    if ((*(s32 *)((s8 *)(arg0) + (0x3C))) == 0) {
+        return 0;
+    }
+    if (func_800DA298(3) != 0) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_808008EC_chspotlight.s")
 
