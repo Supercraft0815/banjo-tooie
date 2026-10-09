@@ -17,7 +17,9 @@ u32 bafly_entrypoint_3(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_6.s")
+void bafly_entrypoint_6(void *arg0, f32 arg1) {
+    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 140) + 0) = arg1;
+}
 
 void bafly_entrypoint_7(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 140) + 8) = arg1;
