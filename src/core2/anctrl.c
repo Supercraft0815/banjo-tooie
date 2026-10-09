@@ -126,7 +126,12 @@ u32 func_8008B4C4(void *arg0) {
     return (u32) ((*(s32 *)((s8 *)(arg0) + (0x18))) << 0x1D) >> 0x1F;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B4D4.s")
+/* extern */
+
+s32 func_8008B4D4(AnimCtrl *arg0) {
+    s32 func_8008C27C(AnimCtrl *);
+    return func_8008C27C(arg0 + 0x1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B4F4.s")
 
