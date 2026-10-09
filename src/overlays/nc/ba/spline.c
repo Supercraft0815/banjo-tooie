@@ -34,7 +34,14 @@ void ncbaspline_entrypoint_3()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/spline/ncbaspline_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/spline/ncbaspline_entrypoint_5.s")
+void ncbaspline_entrypoint_5(void *arg0, s32 arg1, s32 arg2) {
+    void *temp_v0;
+
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x44)));
+    if ((*(s32 *)((s8 *)(temp_v0) + (0x28))) != 0) {
+        (*(s32 *)((s8 *)(temp_v0) + (0x28))) = -1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/spline/ncbaspline_entrypoint_6.s")
 
