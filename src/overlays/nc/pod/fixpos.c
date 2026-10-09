@@ -4,7 +4,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/fixpos/ncpodfixpos_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/fixpos/ncpodfixpos_entrypoint_1.s")
+/* extern */
+
+void ncpodfixpos_entrypoint_1(s16 arg0) {
+    s32 func_8001B754(s16);
+    func_8001B754(arg0);
+}
 
 /* extern */
 
