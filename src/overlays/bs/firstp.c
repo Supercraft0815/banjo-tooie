@@ -707,7 +707,16 @@ s32 bsfirstp_entrypoint_35(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80808CAC_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80808D80_bsfirstp.s")
+/* extern */
+
+void func_80808D80_bsfirstp(s32 arg0) {
+    s32 baanim_playForDuration_loopSmooth(s32, s16, s32);
+    void *func_80802508_bsfirstp();
+    void *temp_v0;
+
+    temp_v0 = func_80802508_bsfirstp();
+    baanim_playForDuration_loopSmooth(arg0, (*(s16 *)((s8 *)(temp_v0) + (0))), (*(s32 *)((s8 *)(temp_v0) + (4))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80808DB0_bsfirstp.s")
 
