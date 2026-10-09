@@ -7,7 +7,12 @@ OSThread *chrainripples_entrypoint_0(void)
     return (OSThread *) D_80800290_chrainripples;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainripples/func_8080000C_chrainripples.s")
+/* extern */
+
+void func_8080000C_chrainripples(void *arg0) {
+    f32 func_808001FC_chrainripples();
+    (*(f32 *)((s8 *)(arg0) + (0x2C))) = (f32) (func_808001FC_chrainripples() + 4.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainripples/func_80800040_chrainripples.s")
 
