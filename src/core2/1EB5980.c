@@ -37,4 +37,11 @@ void func_800DC330(void) {
     D_8012C7FC = D_8012C7F4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5980/func_800DC354.s")
+void func_800DC354(void) {
+    extern s32 D_8012C7F8;
+    extern s32 D_8012C7FC;
+    extern s32 D_8012C7F0;
+    extern s32 D_8012C7F4;
+    D_8012C7F0 = D_8012C7F8;
+    D_8012C7F4 = D_8012C7FC;
+}
