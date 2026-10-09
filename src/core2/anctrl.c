@@ -116,7 +116,9 @@ void func_8008B304(s32 arg0) {
     func_8008C038(arg0 + 0x1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_isStopped.s")
+s32 anctrl_isStopped(AnimCtrl *arg0) {
+    return anctrl_getPlaybackType(&arg0->unk0) == 3;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_isAt.s")
 
