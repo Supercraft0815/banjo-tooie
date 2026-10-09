@@ -84,7 +84,15 @@ void func_800AA200(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800AA220.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800AA240.s")
+/* extern */
+
+s32 func_800AA240(void) {
+    s32 func_800AA0D0();
+    s32 sp1C;
+
+    sp1C = func_800AA0C4();
+    return sp1C >= (func_800AA0D0() - 1);
+}
 
 void func_800AA274(s32 arg0) {
     func_800A9F80(arg0);
