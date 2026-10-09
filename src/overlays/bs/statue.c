@@ -2,7 +2,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80800000_bsstatue.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80800050_bsstatue.s")
+/* extern */
+
+f32 func_80800050_bsstatue(s32 arg0) {
+    s32 func_800CEA84(s32);
+    return (f32) func_800CEA84(2);
+}
 
 void func_80800078_bsstatue(s32 arg0)
 {
