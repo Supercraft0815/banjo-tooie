@@ -60,7 +60,10 @@ void bsbtrot_entrypoint_6()
     func_8080061C_bsbtrot();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_7.s")
+s32 bsbtrot_entrypoint_7(s32 arg0) {
+    extern s32 D_80802E60_bsbtrot[];
+    return ((s32 *)&D_80802E60_bsbtrot)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80800DC4_bsbtrot.s")
 
