@@ -421,7 +421,9 @@ void func_800F5F7C(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6140.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F61E4.s")
+void func_800F61E4(void) {
+    func_800F6140(-1);
+}
 
 void func_800F6204()
 {
