@@ -4,7 +4,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/func_808000DC_chjinjo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/chjinjo_entrypoint_0.s")
+s32 chjinjo_entrypoint_0(s32 arg0) {
+    extern s16 D_80801368_chjinjo[];
+    return ((s16 *)&D_80801368_chjinjo)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/func_80800120_chjinjo.s")
 
