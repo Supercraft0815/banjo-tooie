@@ -42,7 +42,10 @@ void func_80800808_bsvanswim()
     func_80800174_bsvanswim();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/bsvanswim_entrypoint_2.s")
+s32 bsvanswim_entrypoint_2(s32 arg0) {
+    extern s32 D_808009A0_bsvanswim[];
+    return ((s32 *)&D_808009A0_bsvanswim)[arg0];
+}
 
 void func_8080083C_bsvanswim(s32 arg0)
 {
