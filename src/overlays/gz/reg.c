@@ -222,7 +222,36 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/func_80800000_gzreg.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/func_808000CC_gzreg.s")
+void func_808000CC_gzreg(s8 *arg0, f32 arg1) {
+    u32 func_800F21C4(f32);
+    u32 temp_v0;
+
+    temp_v0 = func_800F21C4(arg1);
+    switch (temp_v0) {
+    case 0:
+        sprintf(arg0, "S.NaN");
+        return;
+    case 1:
+        sprintf(arg0, "Q.NaN");
+        return;
+    case 2:
+        sprintf(arg0, "+ve INF");
+        return;
+    case 3:
+        sprintf(arg0, "-ve INF");
+        return;
+    case 4:
+    case 5:
+    case 8:
+    case 9:
+        sprintf(arg0, "%.6e", (f64)arg1);
+        return;
+    case 6:
+    case 7:
+        sprintf(arg0, "%d", *(s32 *)&arg1);
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/gzreg_entrypoint_0.s")
 
