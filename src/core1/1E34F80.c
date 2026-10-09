@@ -30,4 +30,11 @@ void func_8001DA58(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E34F80/func_8001DB90.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E34F80/func_8001DC6C.s")
+void func_8001DC6C(void) {
+    extern s32 D_8007D170;
+    if ((*(s32 *)((s8 *)(&D_8007D170) + (0x6A0))) != 0) {
+        (*(s32 *)((s8 *)(&D_8007D170) + (0x6A0))) = 0;
+        return;
+    }
+    (*(s32 *)((s8 *)(&D_8007D170) + (0x6A0))) = 1;
+}
