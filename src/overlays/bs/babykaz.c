@@ -78,7 +78,10 @@ void func_808009C4_bsbabykaz(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80800B54_bsbabykaz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/bsbabykaz_entrypoint_8.s")
+s32 bsbabykaz_entrypoint_8(s32 arg0) {
+    extern s32 D_80801760_bsbabykaz[];
+    return ((s32 *)&D_80801760_bsbabykaz)[arg0];
+}
 
 void func_80800D18_bsbabykaz(s32 arg0)
 {
