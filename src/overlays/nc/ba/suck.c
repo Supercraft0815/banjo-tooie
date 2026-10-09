@@ -23,6 +23,12 @@ void func_80800094_ncbasuck(s32 *arg0) {
     func_80092BC4(func_800F53D0(func_80110840(arg0)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/suck/func_808000C4_ncbasuck.s")
+/* extern */
+
+void func_808000C4_ncbasuck(s32 *arg0) {
+    s32 func_80092BD0(s32);
+    s32 func_800F53D0(s32);
+    func_80092BD0(func_800F53D0(func_80110840(arg0)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/suck/ncbasuck_entrypoint_2.s")
