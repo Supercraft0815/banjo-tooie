@@ -89,7 +89,12 @@ void func_800F2F20(void *arg0, void *arg1) {
     (*(s8 *)((s8 *)(arg0) + (2))) = (s8) (*(s32 *)((s8 *)(arg1) + (8)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F2F3C.s")
+void func_800F2F3C(void *arg0, void *arg1) {
+    (*(s8 *)((s8 *)(arg0) + (0))) = (s8) (*(s32 *)((s8 *)(arg1) + (0)));
+    (*(s8 *)((s8 *)(arg0) + (1))) = (s8) (*(s32 *)((s8 *)(arg1) + (4)));
+    (*(s8 *)((s8 *)(arg0) + (2))) = (s8) (*(s32 *)((s8 *)(arg1) + (8)));
+    (*(s8 *)((s8 *)(arg0) + (3))) = (s8) (*(s32 *)((s8 *)(arg1) + (0xC)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F2F60.s")
 
