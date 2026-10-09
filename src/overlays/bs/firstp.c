@@ -567,7 +567,10 @@ s32 bsfirstp_entrypoint_32(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80807864_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_33.s")
+s32 bsfirstp_entrypoint_33(s32 arg0) {
+    extern s32 D_8080B5A0_bsfirstp[];
+    return ((s32 *)&D_8080B5A0_bsfirstp)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808078F4_bsfirstp.s")
 
