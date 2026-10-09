@@ -37,7 +37,17 @@ void func_800A5CFC()
     func_800FF62C();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F4D0/func_800A5D1C.s")
+void func_800A5D1C(void) {
+    s32 _chbaddieDll_entrypoint_3(s32 *);
+    s32 func_800FFB74();
+    s32 func_8010D1E8();
+    extern u8 D_80127114;
+    if (D_80127114 != 0) {
+        func_8010D1E8();
+        _chbaddieDll_entrypoint_3(&D_80127110);
+    }
+    func_800FFB74();
+}
 
 void * func_800A5D60(void) {
     return &D_80127110;
