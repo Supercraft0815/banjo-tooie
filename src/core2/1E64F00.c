@@ -1,6 +1,18 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008B610.s")
+void func_8008B610(void) {
+    s32 func_8008BBC0(s32, s32);
+    s32 heap_alloc(s32);
+    extern s32 D_80126CC0;
+    s32 temp_a1;
+    s32 temp_v0;
+
+    temp_v0 = heap_alloc(0x3C);
+    temp_a1 = temp_v0 + 0x3C;
+    (*(s32 *)((s8 *)(&D_80126CC0) + (0))) = temp_v0;
+    (*(s32 *)((s8 *)(&D_80126CC0) + (4))) = temp_a1;
+    func_8008BBC0(temp_v0, temp_a1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008B64C.s")
 
