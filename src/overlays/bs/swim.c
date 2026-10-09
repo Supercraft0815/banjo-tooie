@@ -1,6 +1,18 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_80800000_bsswim.s")
+/* extern */
+
+s32 func_80800000_bsswim(void) {
+    s32 func_8008E23C();
+    s32 var_v1;
+
+    if (func_8008E23C() != 0) {
+        var_v1 = 0x6D;
+    } else {
+        var_v1 = 0x30;
+    }
+    return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_80800030_bsswim.s")
 
