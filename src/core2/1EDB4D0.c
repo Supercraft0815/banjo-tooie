@@ -19,7 +19,18 @@ void func_80101D4C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80101D7C.s")
+/* extern */
+
+void func_80101D7C(void) {
+    s32 anctrl_setPlaybackType(s32, s32);
+    s32 func_80104248();
+    s32 temp_v0;
+
+    temp_v0 = func_80104248();
+    if (temp_v0 != 0) {
+        anctrl_setPlaybackType(temp_v0, 2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80101DAC.s")
 
