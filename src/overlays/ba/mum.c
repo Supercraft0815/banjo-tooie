@@ -5,7 +5,9 @@ s32 bamum_entrypoint_0()
     return 0x8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/mum/func_80800008_bamum.s")
+void func_80800008_bamum(void *arg0) {
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xD0)))) + (4))) = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/mum/func_80800018_bamum.s")
 
