@@ -7,7 +7,12 @@ OSThread *chdiggerbossinterior_entrypoint_0(void)
     return (OSThread *) D_80800230_chdiggerbossinterior;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossinterior/func_8080000C_chdiggerbossinterior.s")
+/* extern */
+
+void func_8080000C_chdiggerbossinterior(s32 arg0) {
+    s32 func_800FE850();
+    func_800FE850();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossinterior/func_8080002C_chdiggerbossinterior.s")
 
