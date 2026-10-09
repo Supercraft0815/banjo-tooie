@@ -56,7 +56,17 @@ void func_80800BD8_bssub(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800E34_bssub.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800E98_bssub.s")
+/* extern */
+
+void func_80800E98_bssub(void *arg0) {
+    s32 _basudie_entrypoint_10(void *);
+    func_80800AEC_bssub();
+    if ((*(s32 *)((s8 *)(arg0) + (0x15C))) != 0) {
+        func_80800BD8_bssub(arg0);
+        return;
+    }
+    _basudie_entrypoint_10(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800EE0_bssub.s")
 
