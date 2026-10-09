@@ -127,7 +127,34 @@ void func_8011396C(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80113D30.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80113FF0.s")
+s32 func_80113FF0(void *arg0) {
+    typedef struct {
+        s32 unk;
+        f32 value;
+        u8 active;
+        u8 pad[3];
+    } Entry;
+    typedef struct {
+        u8 pad[0x48];
+        Entry entries[7];
+    } Data;
+    Data *data = arg0;
+    s32 i;
+    s32 best = -1;
+    f32 value = -1.0f;
+    f32 current;
+
+    for (i = 0; i < 7; i++) {
+        if (data->entries[i].active != 0) {
+            current = data->entries[i].value;
+            if (best == -1 || current < value) {
+                value = current;
+                best = i;
+            }
+        }
+    }
+    return best;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_8011413C.s")
 
