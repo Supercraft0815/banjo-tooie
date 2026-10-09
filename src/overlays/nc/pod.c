@@ -20,7 +20,16 @@ void func_80800038_ncpod(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/func_8080006C_ncpod.s")
+/* extern */
+
+void func_8080006C_ncpod(void *arg0) {
+    s32 _glcutDll_entrypoint_6(s32, s32);
+    s32 func_800EA05C();
+    if (!((*(s32 *)((s8 *)(arg0) + (0x10))) & 0x800)) {
+        (*(s8 *)((s8 *)(arg0) + (0x43))) = 1;
+        _glcutDll_entrypoint_6(func_800EA05C(), 0x79);
+    }
+}
 
 /* extern */
 
