@@ -931,7 +931,9 @@ s32 func_800F99E8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F99FC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9A24.s")
+void func_800F9A24(void) {
+    func_800F9488(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9A44.s")
 
