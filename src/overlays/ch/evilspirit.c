@@ -43,7 +43,17 @@ OSThread *chevilspirit_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801534_chevilspirit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_808015A4_chevilspirit.s")
+/* extern */
+
+void func_808015A4_chevilspirit(s32 arg0) {
+    s32 func_80102424(s32, s32);
+    s32 func_80801458_chevilspirit();
+    s32 func_808015E0_chevilspirit(s32, s32);
+    func_80801458_chevilspirit();
+    if (func_808015E0_chevilspirit(arg0, 0x42C80000) != 0) {
+        func_80102424(arg0, 6);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_808015E0_chevilspirit.s")
 
