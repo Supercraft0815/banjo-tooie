@@ -56,7 +56,14 @@ s32 func_8010B910(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B94C.s")
+/* extern */
+
+s32 func_8010B94C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    f32 func_800D8FF8();
+    s32 func_800EF174(s32, s32, f32);
+    func_800EF174(arg0 + 4, arg0 + 0x28, func_800D8FF8());
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B990.s")
 
