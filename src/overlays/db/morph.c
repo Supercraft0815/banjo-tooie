@@ -10,7 +10,12 @@ s32 dbmorph_entrypoint_1(s16 *arg0) {
     return arg0[0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/morph/dbmorph_entrypoint_2.s")
+/* extern */
+
+u8 dbmorph_entrypoint_2(void) {
+    void *func_80800000_dbmorph();
+    return (*(u8 *)((s8 *)(func_80800000_dbmorph()) + (3)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/morph/dbmorph_entrypoint_3.s")
 
