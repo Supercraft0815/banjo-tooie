@@ -566,7 +566,12 @@ u8 func_800F6B34(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6B94.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6BE4.s")
+s32 func_800F6BE4(s32 arg0) {
+    if ((arg0 >= 0) && (arg0 < 8) && (D_80135490[arg0] != NULL)) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6C1C.s")
 
