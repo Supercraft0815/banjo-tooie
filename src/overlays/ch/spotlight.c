@@ -38,6 +38,17 @@ s32 func_808008A4_chspotlight(void *arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_808008EC_chspotlight.s")
+/* extern */
+
+s32 *func_808008EC_chspotlight(u8 *arg0) {
+    s32 *_subaddiefind_entrypoint_0(s32, s32, s32, s32);
+    s32 *temp_v0;
+
+    temp_v0 = _subaddiefind_entrypoint_0(arg0 + 4, 0x13C, -1, 0);
+    if (temp_v0 != NULL) {
+        (*(s32 *)((s8 *)(arg0) + (0x3C))) = (s32) *temp_v0;
+    }
+    return temp_v0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_80800934_chspotlight.s")
