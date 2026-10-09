@@ -92,7 +92,15 @@ void func_8011396C(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_801143A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80114444.s")
+f32 func_80114444(void) {
+    s32 func_800F5410();
+    extern f32 D_801265E4;
+    extern f32 D_801265E8;
+    if (func_800F5410() == 0xD) {
+        return D_801265E4;
+    }
+    return D_801265E8;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_8011447C.s")
 
