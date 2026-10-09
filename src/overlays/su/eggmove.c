@@ -18,7 +18,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/sueggmove_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/sueggmove_entrypoint_6.s")
+void sueggmove_entrypoint_6(void *arg0, f32 arg1, f32 arg2) {
+    (*(f32 *)((s8 *)(arg0) + (0x34))) = arg1;
+    (*(f32 *)((s8 *)(arg0) + (0x54))) = arg2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/sueggmove_entrypoint_7.s")
 
