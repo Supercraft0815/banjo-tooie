@@ -87,7 +87,9 @@ void func_800F1480(f32 arg0) {
     func_80013970(arg0 * 90.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F14AC.s")
+void func_800F14AC(f32 arg0) {
+    func_800F1434(func_800F1434(arg0));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F14D4.s")
 
