@@ -74,7 +74,12 @@ void func_800A4C88(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4CA8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4CE8.s")
+/* extern */
+
+void func_800A4CE8(PlayerState *arg0, s32 arg1) {
+    s32 func_800CA7E4(f32 *, s32);
+    func_800CA7E4(func_800A4C48(arg0), arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4D14.s")
 
