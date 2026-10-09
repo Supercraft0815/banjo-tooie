@@ -9,4 +9,7 @@
 void func_80800120_bssilowait(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/silowait/bssilowait_entrypoint_0.s")
+s32 bssilowait_entrypoint_0(s32 arg0) {
+    extern s32 D_80800140_bssilowait[];
+    return ((s32 *)&D_80800140_bssilowait)[arg0];
+}
