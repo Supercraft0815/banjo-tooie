@@ -965,7 +965,13 @@ s32 func_800F99E8(void) {
     return D_80135520 != 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F99FC.s")
+s32 func_800F99FC(void) {
+    extern u8 D_80135520;
+    if (D_80135520 == 0xE) {
+        return 1;
+    }
+    return 0;
+}
 
 void func_800F9A24(void) {
     func_800F9488(NULL);
