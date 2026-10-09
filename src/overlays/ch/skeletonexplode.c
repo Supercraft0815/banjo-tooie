@@ -10,7 +10,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_808004DC_chskeletonexplode.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_80800594_chskeletonexplode.s")
+void func_80800594_chskeletonexplode(void *arg0) {
+    (*(f32 *)((s8 *)(arg0) + (0x30))) = 15.0f;
+    (*(f32 *)((s8 *)(arg0) + (0x18))) = 15.0f;
+    (*(f32 *)((s8 *)(arg0) + (0x28))) = 800.0f;
+    (*(f32 *)((s8 *)(arg0) + (0x2C))) = 1000.0f;
+    (*(f32 *)((s8 *)(arg0) + (0x34))) = -2000.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_808005CC_chskeletonexplode.s")
 
