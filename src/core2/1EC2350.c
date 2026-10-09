@@ -7,7 +7,13 @@ void func_800E8A60(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8B04.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8B3C.s")
+void func_800E8B3C(void) {
+    s32 freelist_defrag(s32);
+    extern s32 D_8012D680;
+    if (D_8012D680 != 0) {
+        D_8012D680 = freelist_defrag(D_8012D680);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8B74.s")
 
