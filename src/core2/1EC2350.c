@@ -89,7 +89,16 @@ void func_800E9300(s32 arg0,s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E94E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E9574.s")
+void func_800E9574(void) {
+    s32 func_800E93CC(s32);
+    s32 func_800E9438(s32);
+    s32 func_800E94E4();
+    extern s32 D_80123510;
+    func_800E94E4();
+    func_800E93CC(0);
+    func_800E9438(0);
+    D_80123510 = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E95AC.s")
 
