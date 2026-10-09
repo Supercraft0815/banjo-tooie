@@ -13,7 +13,51 @@ void func_808001A8_bsbswim()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_808001C8_bsbswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80800288_bsbswim.s")
+void func_80800288_bsbswim(s32 self)
+{
+    void _baswim_entrypoint_11(void *);
+    void _baswim_entrypoint_12(void *);
+    void _baswim_entrypoint_13(void *);
+    s32 _baswim_entrypoint_3(s32);
+    s32 _baswim_entrypoint_2(s32);
+    s32 bs_setState(s32, s32);
+    s32 func_8008E23C();
+    s32 player_inWater();
+    s32 next_state = 0;
+
+    _baswim_entrypoint_11((void *)self);
+    _baswim_entrypoint_12((void *)self);
+    _baswim_entrypoint_13((void *)self);
+    if (func_8008E23C(self)) {
+        if (bakey_held(self, 8) || bakey_held(self, 9)) {
+            next_state = 0x81;
+        }
+    } else {
+        switch (_baswim_entrypoint_3((s32)self)) {
+            case 0:
+                break;
+            case 1:
+                next_state = 0x39;
+                break;
+            case 2:
+                next_state = 0x2C;
+                break;
+            case 3:
+                next_state = 0x19;
+                break;
+        }
+        if (bainput_func_8009803C(self)) {
+            next_state = 0x157;
+        }
+    }
+    if (_baswim_entrypoint_2((s32)self)) {
+        next_state = 0x2D;
+    }
+    if (!player_inWater(self)) {
+        next_state = 1;
+    }
+    bs_setState((s32)self, next_state);
+}
 
 s32 bsbswim_entrypoint_0(s32 arg0) {
     extern s32 D_80801E60_bsbswim[];
