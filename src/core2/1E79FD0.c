@@ -5,7 +5,13 @@ s32 func_800A06E0()
     return 0x18;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E79FD0/func_800A06E8.s")
+/* extern */
+
+void func_800A06E8(s32 arg0) {
+    s32 func_80092B80();
+    s32 func_800A0714(s32, s32);
+    func_800A0714(arg0, func_80092B80());
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E79FD0/func_800A0714.s")
 
