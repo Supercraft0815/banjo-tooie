@@ -124,7 +124,17 @@ void func_8010D5DC(s32 arg0,s32 arg1)
     func_8010114C(arg0,0x32,arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010D600.s")
+/* extern */
+
+void func_8010D600(s32 arg0) {
+    s32 func_8008FE68(s32);
+    s32 func_800E3980(s32);
+    if (func_8010D23C() != 0) {
+        func_8008FE68(arg0);
+        return;
+    }
+    func_800E3980(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010D640.s")
 
