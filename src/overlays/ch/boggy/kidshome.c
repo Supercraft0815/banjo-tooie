@@ -33,6 +33,17 @@ void func_808000DC_chboggykidshome(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/kidshome/func_80800214_chboggykidshome.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/kidshome/func_808002C0_chboggykidshome.s")
+s32 func_808002C0_chboggykidshome(void *arg0) {
+    u32 temp_v0;
+
+    temp_v0 = (u32) ((*(s32 *)((s8 *)(arg0) + (0x6C))) << 0xB) >> 0x14;
+    if (temp_v0 == 0x41D) {
+        return 0x3B;
+    }
+    if (temp_v0 == 0x3E4) {
+        return 0x3C;
+    }
+    return 0x3D;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/kidshome/func_80800300_chboggykidshome.s")
