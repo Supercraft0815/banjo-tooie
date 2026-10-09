@@ -14,7 +14,32 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_3.s")
+s32 suquiz_entrypoint_3(void) {
+    u32 temp_v0;
+
+    if (func_800DA298(FLAG_441_UNK) != 0) {
+        return 4;
+    }
+    if (func_800DA298(FLAG2_6E3_UNK) != 0) {
+        func_800DA524(FLAG2_6E3_UNK);
+        func_800DA524(FLAG2_6EB_UNK);
+        return 5;
+    }
+    temp_v0 = func_800DA564(FLAG_442_UNK, 3);
+    switch (temp_v0) {
+    case 0:
+        return 0;
+    case 1:
+        return 1;
+    case 2:
+        return 2;
+    case 3:
+        return 3;
+    case 4:
+        return 6;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_4.s")
 
