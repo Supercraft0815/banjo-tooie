@@ -21,7 +21,11 @@ void func_800D8898(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2130/func_800D88F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2130/func_800D8954.s")
+void func_800D8954(s16 arg0) {
+    s32 freelist_erase(s32, s16);
+    extern s32 D_8012C020;
+    freelist_erase(D_8012C020, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2130/func_800D8988.s")
 
