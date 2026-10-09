@@ -31,7 +31,10 @@ void fxstep_entrypoint_4(void *arg0, s32 arg1, s32 arg2) {
     (*(s32 *)((s8 *)(arg0) + (0x20))) = arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/fxstep_entrypoint_5.s")
+void fxstep_entrypoint_5(void *arg0, s32 arg1, f32 arg2) {
+    (*(s32 *)((s8 *)(arg0) + (0))) = arg1;
+    (*(f32 *)((s8 *)(arg0) + (0x10))) = arg2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/fxstep_entrypoint_6.s")
 
