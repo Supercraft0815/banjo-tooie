@@ -111,7 +111,9 @@ void func_800E401C(void) {
     func_800CA7A4(D_8012D500);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBCFC0/func_800E4040.s")
+void func_800E4040(void) {
+    func_800CA7AC(D_8012D500);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBCFC0/func_800E4064.s")
 
