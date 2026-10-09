@@ -149,4 +149,7 @@ s32 bsvan_entrypoint_14(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80801890_bsvan.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/bsvan_entrypoint_16.s")
+s32 bsvan_entrypoint_16(s32 arg0) {
+    extern s32 D_80801D80_bsvan[];
+    return ((s32 *)&D_80801D80_bsvan)[arg0];
+}
