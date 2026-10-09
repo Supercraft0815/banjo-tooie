@@ -11,7 +11,11 @@ MapId func_800EA05C(void)
 	return D_80132DC2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA068.s")
+void func_800EA068(s32 arg0) {
+    s32 _gcsectionDll_entrypoint_3(s32, s32);
+    extern s32 D_80132DC4;
+    _gcsectionDll_entrypoint_3(D_80132DC4, arg0);
+}
 
 s32 func_800EA090(void) {
     extern s16 D_80132DC8;
