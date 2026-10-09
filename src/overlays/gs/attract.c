@@ -1,6 +1,9 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/attract/gsattract_entrypoint_0.s")
+void gsattract_entrypoint_0(void) {
+    extern s32 D_8013546C;
+    (*(f32 *)((s8 *)(&D_8013546C) + (8))) = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/attract/gsattract_entrypoint_1.s")
 
