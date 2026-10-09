@@ -89,7 +89,21 @@ OSThread *chcollballcontrol_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80801A20_chcollballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808020B0_chcollballcontrol.s")
+/* extern */
+
+void func_808020B0_chcollballcontrol(void *arg0) {
+    s32 func_8080237C_chcollballcontrol();
+    s32 func_808023FC_chcollballcontrol(void *, s32);
+    s32 temp_a1;
+    s32 temp_v0;
+
+    temp_v0 = func_8080237C_chcollballcontrol();
+    temp_a1 = temp_v0;
+    (*(f32 *)((s8 *)(arg0) + (8))) = 30.0f;
+    if (temp_v0 != -1) {
+        func_808023FC_chcollballcontrol(arg0, temp_a1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808020F4_chcollballcontrol.s")
 
