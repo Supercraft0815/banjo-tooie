@@ -97,7 +97,15 @@ u8 *func_800B2808(u8 *arg0) {
     return arg0 + temp_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8BFE0/func_800B2824.s")
+u8 *func_800B2824(u8 *arg0) {
+    s32 temp_v1;
+
+    temp_v1 = (*(s32 *)((s8 *)(arg0) + (0x14)));
+    if (temp_v1 == 0) {
+        return NULL;
+    }
+    return arg0 + temp_v1;
+}
 
 s32 func_800B2840(s32 arg0) {
     arg0 += ((s32 *)arg0)[4];
