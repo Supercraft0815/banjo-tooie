@@ -52,7 +52,10 @@ void func_800BA568(s16 *arg0, s16 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA574.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA594.s")
+void func_800BA594(void *arg0, f32 arg1, f32 arg2) {
+    (*(f32 *)((s8 *)(arg0) + (0x18))) = arg1;
+    (*(f32 *)((s8 *)(arg0) + (0x1C))) = arg2;
+}
 
 void func_800BA5A8(s16 *arg0, s32 arg1) {
     arg0[0] = arg1;
