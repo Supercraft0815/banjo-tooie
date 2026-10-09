@@ -116,7 +116,9 @@ void baphysics_set_gravity(PlayerState *arg0, f32 arg1) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x34))) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/baphysics_set_terminal_velocity.s")
+void baphysics_set_terminal_velocity(PlayerState *arg0, f32 arg1) {
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x38))) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009BCD4.s")
 
