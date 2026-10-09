@@ -2,7 +2,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/goto/func_80800000_bsdronegoto.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/goto/func_8080009C_bsdronegoto.s")
+/* extern */
+
+s32 func_8080009C_bsdronegoto(void) {
+    s32 func_800A3274();
+    return func_800A3274() != 0x12;
+}
 
 void func_808000C0_bsdronegoto()
 {
