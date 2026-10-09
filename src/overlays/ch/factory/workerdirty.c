@@ -12,7 +12,18 @@ void func_8080000C_chfactoryworkerdirty(Actor* arg0)
     func_80108B04(arg0,1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_8080002C_chfactoryworkerdirty.s")
+/* extern */
+
+void func_8080002C_chfactoryworkerdirty(Actor *arg0) {
+    s32 func_8010114C(s32, s32, s32);
+    s32 *sp1C;
+    s32 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    sp1C = temp_v0;
+    func_8010114C(*temp_v0, 0x2C, 0);
+    *sp1C = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800068_chfactoryworkerdirty.s")
 
