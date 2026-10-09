@@ -54,7 +54,12 @@ void suegg_entrypoint_15(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_17.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_18.s")
+/* extern */
+
+void suegg_entrypoint_18(s32 arg0, s32 arg1) {
+    s32 func_800EFB24(s32, s32, s32, s32);
+    func_800EFB24(arg1, arg0 + 0x4, arg0 + 0x18, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_19.s")
 
