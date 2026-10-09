@@ -16,4 +16,11 @@ s32 glrecord_entrypoint_2(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/record/glrecord_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/record/glrecord_entrypoint_4.s")
+void glrecord_entrypoint_4(void) {
+    s32 func_800D56C4(s32);
+    extern s32 D_8012D5B0;
+    if ((*(s32 *)((s8 *)(&D_8012D5B0) + (4))) != 0) {
+        func_800D56C4((*(s32 *)((s8 *)(&D_8012D5B0) + (4))));
+        (*(s32 *)((s8 *)(&D_8012D5B0) + (4))) = 0;
+    }
+}
