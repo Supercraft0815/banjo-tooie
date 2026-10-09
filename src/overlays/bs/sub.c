@@ -68,7 +68,10 @@ void func_80800FC0_bssub(s32 arg0)
     _bsdrone_entrypoint_1(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/bssub_entrypoint_1.s")
+s32 bssub_entrypoint_1(s32 arg0) {
+    extern s32 D_808018A0_bssub[];
+    return ((s32 *)&D_808018A0_bssub)[arg0];
+}
 
 void func_80801004_bssub(s32 arg0)
 {
