@@ -11,7 +11,13 @@ void func_80800000_chtrashcangame(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80800098_chtrashcangame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80800144_chtrashcangame.s")
+/* extern */
+
+void func_80800144_chtrashcangame(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_80800014_chtrashcangame();
+    s32 func_80800098_chtrashcangame(s32, s32, s32);
+    func_80800098_chtrashcangame(arg0, arg1, func_80800014_chtrashcangame() + arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80800180_chtrashcangame.s")
 
