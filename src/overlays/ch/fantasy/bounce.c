@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/bounce/func_80800000_chfantasybounce.s")
+/* extern */
+
+void func_80800000_chfantasybounce(s32 arg0) {
+    s32 func_800EFA4C(s32, s32, s32, s32);
+    func_800EFA4C(arg0 + 4, 0xC62C8A36, 0x4604CA00, 0xC6149236);
+}
 
 OSThread *chfantasybounce_entrypoint_0(void)
 {
