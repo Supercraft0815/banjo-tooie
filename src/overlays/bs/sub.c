@@ -154,4 +154,7 @@ void func_80801578_bssub(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80801618_bssub.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/bssub_entrypoint_7.s")
+s32 bssub_entrypoint_7(s32 arg0) {
+    extern s32 D_80801900_bssub[];
+    return ((s32 *)&D_80801900_bssub)[arg0];
+}
