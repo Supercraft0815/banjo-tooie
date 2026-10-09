@@ -65,4 +65,7 @@ void func_8080084C_bsride(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_80800904_bsride.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/bsride_entrypoint_3.s")
+s32 bsride_entrypoint_3(s32 arg0) {
+    extern s32 D_80800A90_bsride[];
+    return ((s32 *)&D_80800A90_bsride)[arg0];
+}
