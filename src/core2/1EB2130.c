@@ -33,7 +33,11 @@ void func_800D8954(s16 arg0) {
     freelist_erase(D_8012C020, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2130/func_800D8988.s")
+s32 func_800D8988(s16 arg0, s32 arg1) {
+    s32 freelist_at(s32, s16);
+    extern s32 D_8012C020;
+    return freelist_at(D_8012C020, arg0) + (arg1 * 0x1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2130/func_800D89C8.s")
 
