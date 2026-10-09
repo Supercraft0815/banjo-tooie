@@ -180,7 +180,10 @@ void func_80801A04_bsbansack(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80801A64_bsbansack.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/bsbansack_entrypoint_8.s")
+s32 bsbansack_entrypoint_8(s32 arg0) {
+    extern s32 D_80801E90_bsbansack[];
+    return ((s32 *)&D_80801E90_bsbansack)[arg0];
+}
 
 void func_80801CB4_bsbansack()
 {
