@@ -9,7 +9,28 @@ s32 baboost_entrypoint_0(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/boost/baboost_entrypoint_1.s")
 
 s32 baboost_entrypoint_2(PlayerState *self, f32 arg1);
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/boost/baboost_entrypoint_2.s")
+s32 baboost_entrypoint_2(PlayerState *self, f32 arg1) {
+    f32 threshold;
+    s32 i;
+
+    i = 0;
+    threshold = arg1 - 0.25f;
+    while (i < 5) {
+        if (threshold < self->boost->unk8[i]) {
+            self->boost->unk4 = arg1;
+            return 0;
+        }
+        i++;
+    }
+    for (i = 0; i < 5; i++) {
+        if (self->boost->unk8[i] == 0.0f) {
+            self->boost->unk8[i] = arg1;
+            return 1;
+        }
+    }
+    self->boost->unk4 = arg1;
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/boost/baboost_entrypoint_3.s")
 
