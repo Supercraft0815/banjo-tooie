@@ -35,7 +35,19 @@ void func_8080009C_bsstatue(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80800474_bsstatue.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_808004B4_bsstatue.s")
+/* extern */
+
+void func_808004B4_bsstatue(s32 arg0) {
+    s32 _badrone_entrypoint_31(s32);
+    s32 _bsdrone_entrypoint_0(s32);
+    s32 func_80800000_bsstatue(s32, s32);
+    s32 func_808001FC_bsstatue();
+    func_808001FC_bsstatue();
+    _bsdrone_entrypoint_0(arg0);
+    if (_badrone_entrypoint_31(arg0) != 0) {
+        func_80800000_bsstatue(arg0, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_808004F4_bsstatue.s")
 
