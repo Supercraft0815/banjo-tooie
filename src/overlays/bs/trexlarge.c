@@ -226,4 +226,7 @@ void func_808017DC_bstrexlarge(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_808018AC_bstrexlarge.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/bstrexlarge_entrypoint_15.s")
+s32 bstrexlarge_entrypoint_15(s32 arg0) {
+    extern s32 D_80801A40_bstrexlarge[];
+    return ((s32 *)&D_80801A40_bstrexlarge)[arg0];
+}
