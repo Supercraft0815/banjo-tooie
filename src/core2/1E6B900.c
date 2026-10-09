@@ -52,7 +52,20 @@ void func_80092744(s32 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092750.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092778.s")
+/* extern */
+
+void func_80092778(PlayerState *arg0) {
+    s32 _bapreload_entrypoint_0(PlayerState *, s32, s16 *, s16 *);
+    s32 func_80092EC8(PlayerState *, s16);
+    s32 func_8009312C(PlayerState *, s16);
+    s32 func_800A3274();
+    s16 sp1E;
+    s16 sp1C;
+
+    _bapreload_entrypoint_0(arg0, func_800A3274(), &sp1E, &sp1C);
+    func_80092EC8(arg0, sp1E);
+    func_8009312C(arg0, sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_800927C4.s")
 
