@@ -46,7 +46,15 @@ OSThread *changlerboss_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80801C50_changlerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80801CD8_changlerboss.s")
+/* extern */
+
+void func_80801CD8_changlerboss(s32 arg0) {
+    s32 func_8001210C(s32);
+    s32 func_80108B04(s32, s32);
+    if (func_8001210C(3) == 0) {
+        func_80108B04(arg0, 2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80801D0C_changlerboss.s")
 
