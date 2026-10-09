@@ -38,4 +38,10 @@ void ncfixposrot_entrypoint_6(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/fixposrot/ncfixposrot_entrypoint_13.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/fixposrot/ncfixposrot_entrypoint_14.s")
+/* extern */
+
+void ncfixposrot_entrypoint_14(void *arg0) {
+    s32 func_800C52F4(s32, s32);
+    func_800C52F4(0, 0);
+    (*(s16 *)((s8 *)(arg0) + (0x18))) = 1;
+}
