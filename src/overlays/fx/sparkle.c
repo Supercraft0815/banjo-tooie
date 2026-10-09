@@ -9,4 +9,9 @@ void fxsparkle_entrypoint_2()
     _fxspgold_entrypoint_0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/sparkle/fxsparkle_entrypoint_3.s")
+/* extern */
+
+void fxsparkle_entrypoint_3(void) {
+    s32 _fxspgold_entrypoint_1();
+    _fxspgold_entrypoint_1();
+}
