@@ -13,4 +13,7 @@ void subaddielink_entrypoint_0(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/link/subaddielink_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/link/subaddielink_entrypoint_5.s")
+void subaddielink_entrypoint_5(void *arg0, void *arg1) {
+    (*(s32 *)((s8 *)(arg1) + (0))) = (s32) (*(s32 *)((s8 *)(arg0) + (0)));
+    (*(s32 *)((s8 *)(arg1) + (4))) = (s32) (*(s32 *)((s8 *)(arg0) + (4)));
+}
