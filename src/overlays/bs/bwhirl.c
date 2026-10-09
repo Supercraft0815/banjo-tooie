@@ -46,7 +46,10 @@ void bsbwhirl_entrypoint_10()
     func_8080017C_bsbwhirl();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_11.s")
+s32 bsbwhirl_entrypoint_11(s32 arg0) {
+    extern s32 D_80800FB8_bsbwhirl[];
+    return ((s32 *)&D_80800FB8_bsbwhirl)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_12.s")
 
