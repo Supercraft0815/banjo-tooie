@@ -24,7 +24,12 @@ void chjinjo_entrypoint_1(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/func_808002E0_chjinjo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/chjinjo_entrypoint_4.s")
+/* extern */
+
+void chjinjo_entrypoint_4(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _glcutDll_entrypoint_6(s32, s32);
+    _glcutDll_entrypoint_6(0x142, 0x84);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/func_80800C10_chjinjo.s")
 
