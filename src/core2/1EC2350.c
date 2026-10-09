@@ -75,4 +75,9 @@ void func_800E9300(s32 arg0,s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E95AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E96B0.s")
+/* extern */
+
+void func_800E96B0(s32 arg0) {
+    s32 func_800E95AC(s32, s32);
+    func_800E95AC(200, arg0);
+}
