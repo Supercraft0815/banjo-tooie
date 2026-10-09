@@ -42,7 +42,15 @@ OSThread *chwaspnestgame_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801260_chwaspnestgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_8080129C_chwaspnestgame.s")
+/* extern */
+
+void func_8080129C_chwaspnestgame(void) {
+    void *func_80106790();
+    void *temp_v0;
+
+    temp_v0 = func_80106790();
+    (*(s32 *)((s8 *)(temp_v0) + (0x34))) = (s32) ((*(s32 *)((s8 *)(temp_v0) + (0x34))) - 1);
+}
 
 void func_808012C8_chwaspnestgame(s32 arg0) 
 {
