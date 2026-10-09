@@ -24,6 +24,14 @@ OSThread *chloggo_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/loggo/func_80800460_chloggo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/loggo/func_808004F8_chloggo.s")
+/* extern */
+
+void func_808004F8_chloggo(s32 arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800FFAB0(s32);
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_800FFAB0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/loggo/func_80800528_chloggo.s")
