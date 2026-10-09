@@ -34,4 +34,6 @@ void baeggfire_entrypoint_7(void *arg0) {
     (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x6C)))) + (0xC))) = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/fire/baeggfire_entrypoint_8.s")
+s32 baeggfire_entrypoint_8(void *arg0) {
+    return (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x6C)))) + (8))) >= 2;
+}
