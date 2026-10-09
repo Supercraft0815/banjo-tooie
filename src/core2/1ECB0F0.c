@@ -42,6 +42,11 @@ void func_800F1800(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1FF0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F2094.s")
+/* extern */
+
+void func_800F2094(f32 arg0, f32 arg1) {
+    s32 mlAbsF(f32);
+    mlAbsF(func_800F1DCC(arg0, arg1));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F20BC.s")
