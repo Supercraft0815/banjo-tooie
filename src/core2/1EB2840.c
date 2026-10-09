@@ -5,7 +5,11 @@ extern f32 D_8012C760;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2840/func_800D8F50.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2840/func_800D8F84.s")
+void func_800D8F84(void) {
+    extern f32 D_80125D14;
+    D_8012C760 = D_80125D14;
+    D_8012C764 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2840/func_800D8FA0.s")
 
