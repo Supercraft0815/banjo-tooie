@@ -116,7 +116,18 @@ void func_800CF184(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF190.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF264.s")
+void func_800CF264(void) {
+    s32 func_800CF01C();
+    s32 func_800CF190();
+    s32 func_800EA09C();
+    extern u8 D_8012B16C;
+    if (func_800EA09C() == 2) {
+        func_800CF01C();
+        if (D_8012B16C != 0) {
+            func_800CF190();
+        }
+    }
+}
 
 void func_800CF2B0(void) {
     f32 func_800CEA60(s32);
