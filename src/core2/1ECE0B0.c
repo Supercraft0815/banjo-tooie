@@ -133,7 +133,19 @@ void func_800F4F98(s32 arg0)
     _baattach_entrypoint_5(D_80135490[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F4FC4.s")
+/* extern */
+
+void func_800F4FC4(void) {
+    s32 _plsu_entrypoint_1(s32);
+    s32 func_80101180(s32, s32, s32);
+    s32 temp_v0;
+
+    temp_v0 = _plsu_entrypoint_1(0x11);
+    if (temp_v0 != -1) {
+        func_800F7B9C(temp_v0, 0x1FU);
+    }
+    func_80101180(0x15E, 0x2C, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F5008.s")
 
