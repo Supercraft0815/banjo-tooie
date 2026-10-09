@@ -75,7 +75,10 @@ void func_80800F50_bsvan()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80801034_bsvan.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/bsvan_entrypoint_10.s")
+s32 bsvan_entrypoint_10(s32 arg0) {
+    extern s32 D_80801CCC_bsvan[];
+    return ((s32 *)&D_80801CCC_bsvan)[arg0];
+}
 
 void func_80801118_bsvan(s32 arg0)
 {
