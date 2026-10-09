@@ -17,7 +17,10 @@ void func_808000F4_chstoneballcontrol()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800114_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800130_chstoneballcontrol.s")
+s32 func_80800130_chstoneballcontrol(s32 arg0) {
+    extern s32 D_80805088_chstoneballcontrol[];
+    return ((s32 *)&D_80805088_chstoneballcontrol)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800144_chstoneballcontrol.s")
 
