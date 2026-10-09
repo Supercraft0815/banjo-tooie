@@ -36,7 +36,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80802D74_chfantasyathlete.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80802DA8_chfantasyathlete.s")
+/* extern */
+
+void func_80802DA8_chfantasyathlete(s32 arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_80800314_chfantasyathlete(s32);
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80800314_chfantasyathlete(arg0);
+    }
+}
 
 OSThread *chfantasyathlete_entrypoint_0(void)
 {
