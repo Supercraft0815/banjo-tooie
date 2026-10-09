@@ -18,7 +18,10 @@ u32 func_80014EC8() {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80014F00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80014F38.s")
+s32 func_80014F38(void) {
+    extern s16 D_80078F60;
+    return D_80078F60 ^ 1;
+}
 
 s32 func_80014F4C(void) {
     extern s16 D_80078F64;
