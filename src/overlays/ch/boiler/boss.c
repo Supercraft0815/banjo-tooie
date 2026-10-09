@@ -89,7 +89,15 @@ void func_80800E64_chboilerboss(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80801EB4_chboilerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80801F10_chboilerboss.s")
+/* extern */
+
+void func_80801F10_chboilerboss(s32 arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800FFAB0(s32);
+    if (func_800DA298(0x86) != 0) {
+        func_800FFAB0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80801F44_chboilerboss.s")
 
