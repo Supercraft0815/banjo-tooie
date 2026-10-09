@@ -801,7 +801,16 @@ void func_80808084_bsfirstp(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808085A8_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80808630_bsfirstp.s")
+/* extern */
+
+s32 func_80808630_bsfirstp(s32 arg0) {
+    s32 bakey_pressed(s32, s32);
+    s32 func_800C6E38(s32);
+    if ((func_800C6E38(0x1A) != 0) && (bakey_pressed(arg0, 9) != 0)) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80808678_bsfirstp.s")
 
