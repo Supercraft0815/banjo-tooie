@@ -35,6 +35,9 @@ void baeggcursor_entrypoint_6(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/cursor/baeggcursor_entrypoint_9.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/cursor/baeggcursor_entrypoint_10.s")
+void baeggcursor_entrypoint_10(void *arg0, f32 arg1, f32 arg2) {
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x68)))) + (0))) = arg1;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x68)))) + (4))) = arg2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/cursor/baeggcursor_entrypoint_11.s")
