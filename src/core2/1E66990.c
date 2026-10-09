@@ -127,7 +127,12 @@ void func_8008E0C8()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E148.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E1A0.s")
+/* extern */
+
+s32 func_8008E1A0(void) {
+    s32 func_80096694();
+    return func_80096694() == 24;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E1C4.s")
 
