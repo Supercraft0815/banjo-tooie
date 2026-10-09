@@ -6,7 +6,10 @@ u32 subaddiefade_entrypoint_0(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/fade/subaddiefade_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/fade/subaddiefade_entrypoint_2.s")
+void subaddiefade_entrypoint_2(void *arg0) {
+    (*(s8 *)((s8 *)(arg0) + (0x9B))) = 0;
+    (*(u8 *)((s8 *)(arg0) + (0x79))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x79))) & 0xFFFC) | 1);
+}
 
 void subaddiefade_entrypoint_3(void *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x79))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x79))) & 0xFFFC) | 2);
