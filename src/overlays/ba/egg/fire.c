@@ -13,7 +13,17 @@ void func_80800040_baeggfire(void *arg0) {
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x6C)))) + (0x13))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/fire/baeggfire_entrypoint_1.s")
+/* extern */
+
+void baeggfire_entrypoint_1(void) {
+    void *func_800F53D0();
+    s32 func_80800008_baeggfire(void *, s32);
+    void *temp_v0;
+
+    temp_v0 = func_800F53D0();
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(temp_v0) + (0x6C)))) + (0x13))) = 0;
+    func_80800008_baeggfire(temp_v0, 0);
+}
 
 /* extern */
 
