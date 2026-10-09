@@ -12,7 +12,12 @@ void func_801121B8(PlayerState* arg0, f32* arg1)
     func_80112168(arg0,arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEBA50/func_801121D8.s")
+/* extern */
+
+void func_801121D8(PlayerState *arg0, s32 arg1) {
+    s32 func_800F5A00(f32 *, s32);
+    func_800F5A00(func_80110840(arg0), arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEBA50/func_80112204.s")
 
