@@ -21,7 +21,16 @@ OSThread *chboggykidshome_entrypoint_2(void)
     return (OSThread *) D_808004F8_chboggykidshome;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/kidshome/func_80800024_chboggykidshome.s")
+/* extern */
+
+void func_80800024_chboggykidshome(s32 arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800DA298(s32);
+    s32 func_800FFAB0(s32);
+    if ((func_800DA298(0x1CD) == 0) && (_glcutDll_entrypoint_20() == 0)) {
+        func_800FFAB0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/kidshome/func_80800068_chboggykidshome.s")
 
