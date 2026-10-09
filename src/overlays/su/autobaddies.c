@@ -8,7 +8,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/autobaddies/func_80800194_suautobaddies.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/autobaddies/func_80800258_suautobaddies.s")
+/* extern */
+
+void func_80800258_suautobaddies(void) {
+    s32 _suquiz_entrypoint_27();
+    s32 func_800DA298(s32);
+    s32 func_800DB9B0();
+    if ((func_800DA298(0x6B6) != 0) && (func_800DB9B0() != 0)) {
+        _suquiz_entrypoint_27();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/autobaddies/func_80800298_suautobaddies.s")
 
