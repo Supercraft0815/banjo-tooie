@@ -37,7 +37,35 @@ s32 func_80800414_chhumba(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800450_chhumba.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_8080071C_chhumba.s")
+s32 func_8080071C_chhumba(s32 arg0) {
+    s32 func_800EA05C();
+    s32 map;
+
+    map = func_800EA05C();
+    switch (map) {
+        case 0xB6:
+            return 1;
+        case 0xD5:
+            return 3;
+        case 0xE9:
+            return 2;
+        case 0x11E:
+        case 0x122:
+            return 5;
+        case 0x120:
+            return 4;
+        case 0x11F:
+            return 6;
+        case 0x135:
+            return 7;
+        case 0x140:
+            return 8;
+        case 0x157:
+            return 9;
+        default:
+            return 0;
+    }
+}
 
 s32 func_808007EC_chhumba(s32 arg0) {
     return 1;
