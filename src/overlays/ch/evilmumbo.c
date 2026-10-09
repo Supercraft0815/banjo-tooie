@@ -2,7 +2,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800000_chevilmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800098_chevilmumbo.s")
+/* extern */
+
+void func_80800098_chevilmumbo(s32 arg0) {
+    s32 _capod_entrypoint_3(s32);
+    _capod_entrypoint_3(0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_808000BC_chevilmumbo.s")
 
