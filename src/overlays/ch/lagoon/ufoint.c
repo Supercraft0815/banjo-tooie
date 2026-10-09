@@ -40,7 +40,20 @@ OSThread *chlagoonufoint_entrypoint_3(void)
     return (OSThread *) D_80801A90_chlagoonufoint;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_80800744_chlagoonufoint.s")
+void func_80800744_chlagoonufoint(s32 arg0) {
+    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    s32 func_800DA298(s32);
+    extern s32 D_80801AD8_chlagoonufoint;
+    extern s32 D_80801AF4_chlagoonufoint;
+    s32 *var_a2;
+
+    if (func_800DA298(0x9F0) != 0) {
+        var_a2 = &D_80801AF4_chlagoonufoint;
+    } else {
+        var_a2 = &D_80801AD8_chlagoonufoint;
+    }
+    _subaddiedialog_entrypoint_7(arg0, arg0 + 4, var_a2);
+}
 
 /* extern */
 
