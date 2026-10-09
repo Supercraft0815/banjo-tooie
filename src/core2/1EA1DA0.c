@@ -94,7 +94,14 @@ u8 func_800C9044(s32 arg0) {
     return (*(u8 *)((s8 *)(vector_at(D_8012AB00, arg0 - 1, arg0)) + (0x17)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9074.s")
+/* extern */
+
+void func_800C9074(void) {
+    s32 vector_defrag(s32);
+    if (D_8012AB00 != 0) {
+        D_8012AB00 = vector_defrag(D_8012AB00);
+    }
+}
 
 void func_800C90AC()
 {
