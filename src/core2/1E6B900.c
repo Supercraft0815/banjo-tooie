@@ -354,7 +354,15 @@ void func_80094370(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094510.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094538.s")
+/* extern */
+
+void func_80094538(PlayerState *arg0) {
+    f32 _batimer_get(PlayerState *, s32);
+    s32 func_8009E9E4(s32);
+    s32 func_8009E9F0(f32);
+    func_8009E9E4(func_80094510(arg0));
+    func_8009E9F0(_batimer_get(arg0, 0xD));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094574.s")
 
