@@ -20,7 +20,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/pl/camera/plcamera_entrypoint_9.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/pl/camera/plcamera_entrypoint_10.s")
+/* extern */
+
+void plcamera_entrypoint_10(s32 *arg0) {
+    s32 func_801106A0(s32);
+    s32 func_80110014(s32);
+    func_801106A0(func_80110014(func_800F5EF8(arg0)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/pl/camera/func_80800300_plcamera.s")
 
