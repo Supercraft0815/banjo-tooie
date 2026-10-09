@@ -66,7 +66,11 @@ f32 func_80105AE8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105BE0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105C20.s")
+void func_80105C20(void) {
+    s32 freelist_new(s32, s32);
+    extern s32 D_80136ED0;
+    D_80136ED0 = freelist_new(0x8, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105C48.s")
 
