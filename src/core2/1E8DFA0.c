@@ -58,4 +58,12 @@ void func_800B5654(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B5680.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B5698.s")
+s32 func_800B5698(s16 *arg0) {
+    extern s16 D_80127F1A;
+    extern u8 D_80127F1D;
+    if (D_80127F1D != 0) {
+        *arg0 = D_80127F1A;
+        return 1;
+    }
+    return 0;
+}
