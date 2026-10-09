@@ -58,7 +58,12 @@ void baphysics_set_target_horizontal_velocity(PlayerState *arg0, f32 vel) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x3C))) = vel;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/baphysics_set_target_yaw.s")
+/* extern */
+
+void baphysics_set_target_yaw(PlayerState *arg0, f32 target_yaw) {
+    f32 func_800136E4(f32);
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x40))) = func_800136E4(target_yaw);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009B9F0.s")
 
