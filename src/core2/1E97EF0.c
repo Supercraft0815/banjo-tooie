@@ -129,4 +129,6 @@ u32 func_800BF8B0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BFA1C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BFAA4.s")
+u8 func_800BFAA4(void) {
+    return (*(u8 *)((s8 *)(func_800BF704()) + (0x77)));
+}
