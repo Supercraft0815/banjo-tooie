@@ -2,7 +2,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80800000_gczoombox.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_808000C4_gczoombox.s")
+void func_808000C4_gczoombox(void *arg0) {
+    if ((*(u16 *)((s8 *)(arg0) + (0x142))) != 0) {
+        (*(u16 *)((s8 *)(arg0) + (0x142))) = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_808000DC_gczoombox.s")
 
