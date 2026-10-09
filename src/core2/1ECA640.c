@@ -57,7 +57,12 @@ f32 func_800F13C4(f32 arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F1434.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F1480.s")
+/* extern */
+
+void func_800F1480(f32 arg0) {
+    s32 func_80013970(f32);
+    func_80013970(arg0 * 90.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F14AC.s")
 
