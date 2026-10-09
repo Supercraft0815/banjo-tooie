@@ -34,6 +34,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F0BD0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F0C68.s")
+/* extern */
+
+f32 func_800F0C68(s32 arg0, s32 arg1, f32 arg2, f32 arg3) {
+    s32 func_800EF2A0(s32);
+    func_800EF2A0(arg1);
+    return arg2 / sqrtf((arg2 * arg2) + (arg3 * arg3));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F0CB4.s")
