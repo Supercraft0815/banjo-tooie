@@ -84,6 +84,8 @@ void func_80801E80_chaliendad(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_808022CC_chaliendad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80802330_chaliendad.s")
+void func_80802330_chaliendad(void *arg0) {
+    (*(f32 *)((s8 *)(arg0) + (0x58))) = 0.85f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80802340_chaliendad.s")
