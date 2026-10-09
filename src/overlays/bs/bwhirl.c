@@ -60,7 +60,10 @@ void bsbwhirl_entrypoint_14(s32 arg0)
     baphysics_reset_gravity();
     func_8080017C_bsbwhirl(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_15.s")
+s32 bsbwhirl_entrypoint_15(s32 arg0) {
+    extern s32 D_80800FC8_bsbwhirl[];
+    return ((s32 *)&D_80800FC8_bsbwhirl)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_16.s")
 
