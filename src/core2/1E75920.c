@@ -7,7 +7,14 @@ s32 func_8009C030()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75920/func_8009C038.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75920/func_8009C08C.s")
+/* extern */
+
+void func_8009C08C(void *arg0) {
+    s32 func_8009C21C();
+    s32 func_800EFD24(s32);
+    func_8009C21C();
+    func_800EFD24((*(s32 *)((s8 *)(arg0) + (0xE4))) + 0x24);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75920/func_8009C0BC.s")
 
