@@ -61,7 +61,10 @@ void func_8008B1C8(AnimCtrl *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_setSubrange.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B238.s")
+void func_8008B238(void *arg0, f32 *arg1, f32 *arg2) {
+    *arg1 = (*(f32 *)((s8 *)(arg0) + (4)));
+    *arg2 = (*(f32 *)((s8 *)(arg0) + (8)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_setStart.s")
 
