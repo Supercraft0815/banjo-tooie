@@ -201,7 +201,19 @@ void func_800C9598(void) {
     _gctransitionDll_entrypoint_1(var_a0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C95D4.s")
+/* extern */
+
+s32 func_800C95D4(void) {
+    s32 _gctransitionDll_entrypoint_2(s32);
+    s32 func_800C91C8(s32);
+    s32 temp_v0;
+
+    temp_v0 = func_800C91C8(4);
+    if (temp_v0 != 0) {
+        return _gctransitionDll_entrypoint_2(temp_v0);
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9610.s")
 
