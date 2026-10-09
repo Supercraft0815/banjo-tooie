@@ -39,7 +39,10 @@ void bamovegoto_entrypoint_10(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 86) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/goto/bamovegoto_entrypoint_11.s")
+void bamovegoto_entrypoint_11(void *arg0, s32 arg1, s32 arg2) {
+    (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x80))) = arg1;
+    (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x7C))) = arg2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/goto/bamovegoto_entrypoint_12.s")
 
