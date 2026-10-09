@@ -63,7 +63,10 @@ s32 suquiz_entrypoint_17()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_25.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_26.s")
+s16 suquiz_entrypoint_26(void) {
+    extern void *D_80127614;
+    return (*(s16 *)((s8 *)(D_80127614) + (0x34)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_27.s")
 
