@@ -12,7 +12,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_2.s")
+/* extern */
+
+void ncpod_entrypoint_2(s16 arg0) {
+    s32 func_8001B798(s16);
+    func_8001B798(arg0);
+}
 
 void ncpod_entrypoint_3(s16 *arg0, s32 arg1) {
     arg0[30] = arg1;
