@@ -8,7 +8,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD6C0/func_800D3E6C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD6C0/func_800D3EC8.s")
+/* extern */
+
+s32 func_800D3EC8(void) {
+    s32 func_800D3E14();
+    if (func_800D3E14() != 0) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD6C0/func_800D3EF4.s")
 
