@@ -17,4 +17,8 @@ s32 func_800D2140()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAB8B0/func_800D2188.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAB8B0/func_800D21B0.s")
+void func_800D21B0(s32 *arg0, s32 **arg1) {
+    extern s32 D_8012B290;
+    *arg0 = 0x2E;
+    *arg1 = &D_8012B290;
+}
