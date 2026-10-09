@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/func_80800000_ncpod.s")
+/* extern */
+
+void func_80800000_ncpod(void *arg0) {
+    s32 func_800F82D4(s32, s32);
+    if ((*(u8 *)((s8 *)(arg0) + (0x42))) == 0) {
+        (*(u8 *)((s8 *)(arg0) + (0x42))) = 1U;
+        func_800F82D4((*(s32 *)((s8 *)(arg0) + (0x38))), 2);
+    }
+}
 
 /* extern */
 
