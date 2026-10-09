@@ -2,7 +2,58 @@
 
 extern s32 D_8012BE70;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6060.s")
+s32 func_800D6060(s32 arg0) {
+    void aligned4_memmove(void *, void *, int);
+    extern u8 D_8012B800[];
+    extern s16 D_8012BE62;
+    s32 mid;
+    u32 size = 12;
+    {
+    u32 value;
+    s32 high;
+    s32 low;
+
+    high = D_8012BE62 - 1;
+    mid = 0;
+    low = 0;
+    while (high >= low) {
+        mid = (high + low) >> 1;
+        value = *(u32 *)(D_8012B800 + mid * size + 8);
+        if ((s32)(value >> 18) < arg0) {
+            low = mid + 1;
+            if (low < D_8012BE62) {
+                if (arg0 < (s32)(*(u32 *)(D_8012B800 + low * size + 8) >> 18)) {
+                    mid = low;
+                    break;
+                }
+            } else {
+                mid = D_8012BE62;
+                break;
+            }
+        } else {
+            high = mid - 1;
+            if (high >= 0) {
+                if ((s32)(*(u32 *)(D_8012B800 + high * size + 8) >> 18) < arg0) {
+                    break;
+                }
+            } else {
+                mid = 0;
+                break;
+            }
+        }
+    }
+    }
+    if (mid < 0) {
+        mid = 0;
+    } else if (D_8012BE62 < mid) {
+        mid = D_8012BE62;
+    }
+    if (mid < D_8012BE62) {
+        s32 remaining = D_8012BE62 - mid;
+        aligned4_memmove(D_8012B800 + mid * size + size, D_8012B800 + mid * size, remaining * size);
+    }
+    return mid;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D61B4.s")
 
