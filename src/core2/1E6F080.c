@@ -52,7 +52,12 @@ void func_80095A6C(s32 *arg0, s32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80095AD0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80095C10.s")
+/* extern */
+
+void func_80095C10(void *arg0) {
+    s32 func_800C5BA4(s32);
+    func_800C5BA4(*(*(s32 **)((s8 *)(arg0) + (0x94))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80095C34.s")
 
