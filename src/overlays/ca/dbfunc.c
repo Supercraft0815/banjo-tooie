@@ -270,7 +270,19 @@ s32 cadbfunc_entrypoint_31(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ca/dbfunc/cadbfunc_entrypoint_32.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ca/dbfunc/cadbfunc_entrypoint_33.s")
+/* extern */
+
+s32 cadbfunc_entrypoint_33(f32 arg0) {
+    f32 *func_80800E80_cadbfunc();
+    f32 *temp_v0;
+
+    temp_v0 = func_80800E80_cadbfunc();
+    if (temp_v0 == NULL) {
+        return 0;
+    }
+    *temp_v0 = arg0;
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ca/dbfunc/func_80800F3C_cadbfunc.s")
 
