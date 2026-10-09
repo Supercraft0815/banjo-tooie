@@ -426,7 +426,10 @@ void func_800F5F7C(s32 arg0)
     func_8009C150(D_80135490[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F5FA8.s")
+s32 func_800F5FA8(s32 arg0) {
+    bakey_setState(D_80135490[arg0], BUTTON_B, 2);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F5FE0.s")
 
