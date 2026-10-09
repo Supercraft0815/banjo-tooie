@@ -47,7 +47,14 @@ void func_800B562C(void) {
     D_80127F10 = defrag(D_80127F10);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B5654.s")
+void func_800B5654(s32 arg0, s32 arg1) {
+    extern s8 D_80127F1C;
+    if (arg1 == 2) {
+        D_80127F1C = 1;
+        return;
+    }
+    D_80127F1C = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B5680.s")
 
