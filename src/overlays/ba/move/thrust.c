@@ -9,7 +9,9 @@ void bamovethrust_entrypoint_0(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/thrust/bamovethrust_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/thrust/bamovethrust_entrypoint_3.s")
+void bamovethrust_entrypoint_3(void *arg0, f32 arg1) {
+    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 140) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/thrust/bamovethrust_entrypoint_4.s")
 
