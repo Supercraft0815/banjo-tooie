@@ -38,7 +38,10 @@ void bsstonehead_entrypoint_6()
     _basudie_entrypoint_6();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_7.s")
+s32 bsstonehead_entrypoint_7(s32 arg0) {
+    extern s32 D_80801640_bsstonehead[];
+    return ((s32 *)&D_80801640_bsstonehead)[arg0];
+}
 
 void bsstonehead_entrypoint_8(s32 arg0)
 {
