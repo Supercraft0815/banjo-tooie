@@ -26,7 +26,10 @@ void func_808004AC_bssnowball()
     _basudie_entrypoint_10();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/bssnowball_entrypoint_3.s")
+s32 bssnowball_entrypoint_3(s32 arg0) {
+    extern s32 D_80801054_bssnowball[];
+    return ((s32 *)&D_80801054_bssnowball)[arg0];
+}
 
 void func_808004E0_bssnowball(s32 arg0)
 {
