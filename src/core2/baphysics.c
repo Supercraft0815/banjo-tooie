@@ -47,7 +47,12 @@ s32 func_8009AE00()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009B94C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009B98C.s")
+/* extern */
+
+void func_8009B98C(void *arg0) {
+    s32 func_800EE7F8(s32);
+    func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xC8))) + 4);
+}
 
 void baphysics_set_target_horizontal_velocity(PlayerState *arg0, f32 vel) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x3C))) = vel;
