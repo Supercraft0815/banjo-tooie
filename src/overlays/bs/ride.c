@@ -13,7 +13,16 @@ void func_8080016C_bsride()
     func_8080008C_bsride();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_8080018C_bsride.s")
+/* extern */
+
+void func_8080018C_bsride(s32 arg0) {
+    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    s32 func_8009C128(s32, s32);
+    s32 func_80800000_bsride();
+    func_80800000_bsride();
+    baanim_playForDuration_loopSmooth(arg0, 0x256, 0x3F666666);
+    func_8009C128(arg0, arg0 + 0x16C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_808001CC_bsride.s")
 
