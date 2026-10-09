@@ -15,7 +15,19 @@ void func_800E9708()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9774.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E97C0.s")
+/* extern */
+
+void func_800E97C0(void) {
+    s32 func_800A5CFC();
+    s32 func_800EA09C();
+    s32 func_800EA45C();
+    s32 func_800EA51C();
+    if (func_800EA09C() != 1) {
+        func_800EA45C();
+        func_800A5CFC();
+        func_800EA51C();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9804.s")
 
