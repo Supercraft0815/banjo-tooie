@@ -69,7 +69,21 @@ void bsbeemain_entrypoint_4(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/bsbeemain_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/bsbeemain_entrypoint_6.s")
+/* extern */
+
+void bsbeemain_entrypoint_6(s32 arg0) {
+    s32 _bsbee_entrypoint_2();
+    s32 _babounce_entrypoint_9(s32);
+    s32 bs_setState(s32, s32);
+    s32 sp1C;
+
+    sp1C = 0;
+    _bsbee_entrypoint_2();
+    if (_babounce_entrypoint_9(arg0) != 0) {
+        sp1C = 0x85;
+    }
+    bs_setState(arg0, sp1C);
+}
 
 s32 bsbeemain_entrypoint_7(s32 arg0) {
     extern s32 D_808012A0_bsbeemain[];
