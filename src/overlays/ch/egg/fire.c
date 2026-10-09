@@ -4,7 +4,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/fire/func_808000B8_cheggfire.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/fire/func_80800228_cheggfire.s")
+void func_80800228_cheggfire(s32 arg0) {
+    s32 _suegg_entrypoint_21(s32, s32 *);
+    s32 _suegg_entrypoint_5();
+    extern s32 D_808003B0_cheggfire;
+    _suegg_entrypoint_5();
+    _suegg_entrypoint_21(arg0, &D_808003B0_cheggfire);
+}
 
 OSThread *cheggfire_entrypoint_0(void)
 {
