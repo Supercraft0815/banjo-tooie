@@ -27,7 +27,14 @@ void func_8080009C_bsstatue(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_808001FC_bsstatue.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/bsstatue_entrypoint_0.s")
+/* extern */
+
+void bsstatue_entrypoint_0(s32 arg0) {
+    s32 baflag_set(s32, s32);
+    if (func_80800050_bsstatue(arg0) <= 1.0f) {
+        baflag_set(arg0, 0x3F);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/bsstatue_entrypoint_1.s")
 
