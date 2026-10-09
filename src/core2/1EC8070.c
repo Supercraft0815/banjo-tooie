@@ -253,7 +253,11 @@ void func_800EFB24(void *arg0, void *arg1, void *arg2) {
     (*(f32 *)((s8 *)(arg0) + (8))) = (f32) ((*(f32 *)((s8 *)(arg1) + (8))) - (*(f32 *)((s8 *)(arg2) + (8))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EFB58.s")
+void func_800EFB58(void *arg0, void *arg1, void *arg2) {
+    (*(s32 *)((s8 *)(arg0) + (0))) = (s32) ((*(s32 *)((s8 *)(arg1) + (0))) - (*(s32 *)((s8 *)(arg2) + (0))));
+    (*(s32 *)((s8 *)(arg0) + (4))) = (s32) ((*(s32 *)((s8 *)(arg1) + (4))) - (*(s32 *)((s8 *)(arg2) + (4))));
+    (*(s32 *)((s8 *)(arg0) + (8))) = (s32) ((*(s32 *)((s8 *)(arg1) + (8))) - (*(s32 *)((s8 *)(arg2) + (8))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EFB8C.s")
 
