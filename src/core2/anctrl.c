@@ -120,7 +120,27 @@ s32 anctrl_isStopped(AnimCtrl *arg0) {
     return anctrl_getPlaybackType(&arg0->unk0) == 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_isAt.s")
+int anctrl_isAt(AnimCtrl *arg0, f32 arg1) {
+    f32 func_8008C0C8(f32 *);
+    f32 current;
+    f32 previous;
+
+    current = func_8008C0C8((f32 *)((u8 *)arg0 + 0x1C));
+    previous = *(f32 *)arg0;
+    if (current == previous) {
+        return 0;
+    }
+    if (((u32)*(u8 *)((u8 *)arg0 + 0x1B) >> 7) == 1) {
+        if (previous < current) {
+            return previous <= arg1 && arg1 < current;
+        }
+        return previous <= arg1 || arg1 < current;
+    }
+    if (current < previous) {
+        return arg1 <= previous && current < arg1;
+    }
+    return arg1 <= previous || current < arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B4A8.s")
 
