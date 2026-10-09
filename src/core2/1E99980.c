@@ -16,7 +16,12 @@ void func_800C00BC()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0130.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C01A8.s")
+/* extern */
+
+void func_800C01A8(s16 arg0, s32 arg1) {
+    s32 _gcdialogcamera_entrypoint_10(s32 *, s16, s32);
+    _gcdialogcamera_entrypoint_10(&D_801288B0, arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C01D8.s")
 
