@@ -117,7 +117,10 @@ void baphysics_reset_gravity(PlayerState *arg0) {
     baphysics_set_gravity(arg0, D_80117EF0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/baphysics_reset_terminal_velocity.s")
+void baphysics_reset_terminal_velocity(PlayerState *arg0) {
+    extern f32 D_80117EF4;
+    baphysics_set_terminal_velocity(arg0, D_80117EF4);
+}
 
 void baphysics_set_gravity(PlayerState *arg0, f32 arg1) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x34))) = arg1;
