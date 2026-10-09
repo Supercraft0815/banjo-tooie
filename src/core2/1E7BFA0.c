@@ -17,7 +17,16 @@ s32 func_800A26B0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2CE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2D2C.s")
+/* extern */
+
+void func_800A2D2C(PlayerState *arg0, f32 arg1, s32 arg2) {
+    s32 anctrl_isAt(s32, f32);
+    s32 baanim_getAnimCtrlPtr();
+    s32 func_800A2FCC(PlayerState *, s32);
+    if (anctrl_isAt(baanim_getAnimCtrlPtr(), arg1) != 0) {
+        func_800A2FCC(arg0, arg2);
+    }
+}
 
 /* extern */
 
