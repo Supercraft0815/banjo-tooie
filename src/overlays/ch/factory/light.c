@@ -7,7 +7,14 @@ OSThread *chfactorylight_entrypoint_0(void)
     return (OSThread *) D_80800B90_chfactorylight;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/light/func_8080000C_chfactorylight.s")
+/* extern */
+
+void func_8080000C_chfactorylight(s32 arg0) {
+    s32 func_8010A800(s32, s32);
+    s32 func_80800830_chfactorylight();
+    func_80800830_chfactorylight();
+    func_8010A800(arg0, 0x2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/light/func_80800038_chfactorylight.s")
 
