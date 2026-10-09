@@ -23,7 +23,10 @@ OSThread *chstatueboss_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_808010A0_chstatueboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_808011A0_chstatueboss.s")
+s32 func_808011A0_chstatueboss(s32 arg0) {
+    extern s16 D_808027D4_chstatueboss[];
+    return ((s16 *)&D_808027D4_chstatueboss)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_808011B4_chstatueboss.s")
 
