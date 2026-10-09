@@ -35,7 +35,18 @@ void func_80106E50(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107200.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_801072A8.s")
+/* extern */
+
+s32 func_801072A8(void) {
+    void *func_80106F30();
+    void *temp_v0;
+
+    temp_v0 = func_80106F30();
+    if (temp_v0 == NULL) {
+        return 0;
+    }
+    return (*(s16 *)((s8 *)(temp_v0) + (0xA))) != 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_801072E4.s")
 
