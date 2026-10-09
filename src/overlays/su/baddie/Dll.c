@@ -23,7 +23,14 @@ void subaddieDll_entrypoint_7()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/Dll/subaddieDll_entrypoint_8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/Dll/subaddieDll_entrypoint_9.s")
+/* extern */
+
+void subaddieDll_entrypoint_9(s32 arg0, s32 arg1) {
+    s32 func_800DA544(s32);
+    s32 subaddieDll_entrypoint_8(s32);
+    func_800DA544(arg1);
+    subaddieDll_entrypoint_8(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/Dll/subaddieDll_entrypoint_10.s")
 
