@@ -119,7 +119,44 @@ void func_808020B0_chcollballcontrol(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808023FC_chcollballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80802764_chcollballcontrol.s")
+void func_80802764_chcollballcontrol(s32 *arg0) {
+    typedef struct { u8 pad[0x1A]; u16 index; u8 pad1[8]; u32 id:10; u32 flags:22; } Marker;
+    typedef struct { Marker *marker; s32 unk4; u32 flags; } Entry;
+    s32 *func_800BE3F8(void *);
+    Entry *func_800E9E88(s32);
+    Entry *func_800E9EB4(s32);
+    u8 *func_80106790(s32);
+    void func_808028D0_chcollballcontrol(s32 *, u8 *);
+    void func_80802964_chcollballcontrol(s32 *, u32);
+    void func_808029D8_chcollballcontrol(s32 *, u8 *);
+    s32 *list;
+    Entry *entry;
+    Entry *end;
+    Marker *marker;
+
+    list = func_800BE3F8(arg0 + 1);
+    while (*list != 0) {
+        entry = func_800E9E88(*list);
+        end = func_800E9EB4(*list);
+        for (; entry < end; entry++) {
+            if (entry->flags & 1) {
+                marker = entry->marker;
+                if (marker != (Marker *)*arg0) {
+                    if (marker->id == 0x44 || marker->id == 0x42 || marker->id == 0x43) {
+                        func_808028D0_chcollballcontrol(arg0, func_80106790((s32)marker));
+                    }
+                    if (marker->id == 0) {
+                        func_80802964_chcollballcontrol(arg0, (u32)marker->index >> 5);
+                    }
+                    if (marker->id == 0x40) {
+                        func_808029D8_chcollballcontrol(arg0, func_80106790((s32)marker));
+                    }
+                }
+            }
+        }
+        list++;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808028D0_chcollballcontrol.s")
 
