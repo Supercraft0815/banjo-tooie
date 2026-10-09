@@ -1,6 +1,24 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/camera/func_80800000_gcdialogcamera.s")
+void func_80800000_gcdialogcamera(s32 arg0, s32 *arg1, s32 *arg2) {
+    s32 var_v0;
+    s32 var_v1;
+
+    var_v0 = arg0;
+    if (arg0 < 0x32) {
+        var_v1 = 0;
+    } else {
+        var_v0 = arg0 - 0x32;
+        if (arg0 >= 0x64) {
+            var_v0 = arg0 - 0x64;
+            var_v1 = 1;
+        } else {
+            var_v1 = 0x32;
+        }
+    }
+    *arg2 = var_v1;
+    *arg1 = var_v0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/camera/func_8080003C_gcdialogcamera.s")
 
