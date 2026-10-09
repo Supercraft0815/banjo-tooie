@@ -75,7 +75,11 @@ void func_800E2554(f32 arg0, f32 arg1) {
     (*(f32 *)((s8 *)(&D_8012D470) + (0x30))) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E2568.s")
+void func_800E2568(s32 arg0, s32 arg1) {
+    extern s32 D_8012D470;
+    (*(s16 *)((s8 *)(&D_8012D470) + (0))) = (s16) arg0;
+    (*(s16 *)((s8 *)(&D_8012D470) + (2))) = (s16) arg1;
+}
 
 void func_800E257C(s32 arg0) {
     extern s16 D_8012D48C;
