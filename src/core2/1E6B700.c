@@ -39,4 +39,9 @@ void func_80091EA8(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B700/func_80091F74.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B700/func_80091FE4.s")
+/* extern */
+
+s32 func_80091FE4(void) {
+    s32 func_800DB9B0();
+    return func_800DB9B0() == 0;
+}
