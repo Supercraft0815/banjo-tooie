@@ -21,7 +21,17 @@ OSThread *chpoolkids_entrypoint_2(void)
     return (OSThread *) D_80801480_chpoolkids;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_80800024_chpoolkids.s")
+/* extern */
+
+void func_80800024_chpoolkids(void *arg0) {
+    s32 _subaddiesect_entrypoint_1();
+    s32 _subaddiesect_entrypoint_2(void *, s32, s32);
+    s32 temp_v0;
+
+    temp_v0 = _subaddiesect_entrypoint_1();
+    (*(s32 *)((s8 *)(arg0) + (0x30))) = temp_v0;
+    _subaddiesect_entrypoint_2(arg0, temp_v0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_80800058_chpoolkids.s")
 
