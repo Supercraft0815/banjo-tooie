@@ -44,7 +44,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_3.s")
+s32 bsbtrot_entrypoint_3(s32 arg0) {
+    extern s32 D_80802E50_bsbtrot[];
+    return ((s32 *)&D_80802E50_bsbtrot)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80800C20_bsbtrot.s")
 
