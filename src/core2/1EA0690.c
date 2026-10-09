@@ -94,4 +94,7 @@ void* func_800C7150(void* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0690/func_800C7170.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0690/func_800C718C.s")
+void func_800C718C(void) {
+    extern s32 D_8012AAE0;
+    D_8012AAE0 += 1;
+}
