@@ -33,7 +33,9 @@ void gcgoto_entrypoint_1(u32 a0, u32 a1)
     func_8080011C_gcgoto(a0, a1, 0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/goto/gcgoto_entrypoint_2.s")
+void gcgoto_entrypoint_2(s32 arg0, s32 arg1, s32 arg2) {
+    func_8080011C_gcgoto(arg0, arg1, 0, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/goto/func_808001E0_gcgoto.s")
 
