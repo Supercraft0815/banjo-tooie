@@ -23,7 +23,13 @@ OSThread *chstonedartgunhead_entrypoint_0(void)
     return (OSThread *) D_80800F10_chstonedartgunhead;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/func_80800BE8_chstonedartgunhead.s")
+/* extern */
+
+void func_80800BE8_chstonedartgunhead(u8 *arg0) {
+    s32 func_800EE7F8(s32, s32, u8 *);
+    func_800EE7F8(arg0 + 0x18, arg0 + 4, arg0);
+    (*(f32 *)((s8 *)(arg0) + (0x58))) = 4.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/func_80800C28_chstonedartgunhead.s")
 
