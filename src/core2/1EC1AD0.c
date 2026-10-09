@@ -23,7 +23,13 @@ void func_800E86DC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC1AD0/func_800E8870.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC1AD0/func_800E88AC.s")
+/* extern */
+
+void func_800E88AC(u8 arg0, s32 arg1) {
+    s32 func_800A89F8();
+    s32 func_800E8918(u8, s32, s32, s32);
+    func_800E8918(arg0, func_800A89F8(), 0, arg1);
+}
 
 /* extern */
 
