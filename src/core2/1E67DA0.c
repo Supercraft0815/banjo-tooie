@@ -46,7 +46,10 @@ s32 func_8008E9AC(void *arg0)
     return ((s32 *) *(void **) ((u8 *) arg0 + 0xC))[1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E67DA0/func_8008E9B8.s")
+s32 func_8008E9B8(PlayerState *arg0, s32 **arg1) {
+    *arg1 = func_8008E4B8(arg0);
+    return 3;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E67DA0/func_8008E9E4.s")
 
