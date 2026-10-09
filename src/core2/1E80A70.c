@@ -84,7 +84,13 @@ void func_800A7990(s32 arg0, s32 arg1, s32 arg2) {
     func_800A7B18(1U);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A79D4.s")
+void func_800A79D4(s32 arg0, s32 arg1) {
+    func_800FE4E4();
+    (*(s8 *)((s8 *)(&D_80127630) + (0x16))) = 1;
+    (*(s8 *)((s8 *)(&D_80127630) + (0x15))) = 0;
+    D_80127630.mapValue = (s16) arg0;
+    D_80127630.entranceIndex = (s8) arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A7A18.s")
 
