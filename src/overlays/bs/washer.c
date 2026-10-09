@@ -132,7 +132,10 @@ void func_80801744_bswasher(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_808017A0_bswasher.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/bswasher_entrypoint_10.s")
+s32 bswasher_entrypoint_10(s32 arg0) {
+    extern s32 D_80801EC4_bswasher[];
+    return ((s32 *)&D_80801EC4_bswasher)[arg0];
+}
 
 void func_80801B10_bswasher()
 {
