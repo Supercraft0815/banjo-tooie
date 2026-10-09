@@ -22,7 +22,18 @@ void func_801041C8(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDA60/func_80104200.s")
+s32 func_80104200(s16 arg0) {
+    s32 freelist_at(s32, s16);
+    extern s32 D_80136E70;
+    s32 var_v1;
+
+    if (arg0 != 0) {
+        var_v1 = freelist_at(D_80136E70, arg0);
+    } else {
+        var_v1 = 0;
+    }
+    return var_v1;
+}
 
 /* extern */
 
