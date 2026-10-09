@@ -43,7 +43,11 @@ void func_80100B3C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100D24.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100E18.s")
+void func_80100E18(s16 arg0) {
+    void *freelist_at(s32, s16);
+    extern s32 D_80135A60;
+    (*(s8 *)((s8 *)(freelist_at(D_80135A60, arg0)) + (0xA))) = 2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100E54.s")
 
