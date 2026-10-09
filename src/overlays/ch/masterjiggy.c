@@ -12,7 +12,12 @@ OSThread *chmasterjiggy_entrypoint_0(void)
 void func_808001A8_chmasterjiggy(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_808001B0_chmasterjiggy.s")
+/* extern */
+
+void func_808001B0_chmasterjiggy(s32 arg0) {
+    s32 _sujiggy_entrypoint_8();
+    _sujiggy_entrypoint_8();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_808001D0_chmasterjiggy.s")
 
