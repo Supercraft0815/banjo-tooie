@@ -8,7 +8,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_80800440_chchuffycont.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_8080046C_chchuffycont.s")
+/* extern */
+
+void func_8080046C_chchuffycont(s32 arg0, s32 arg1) {
+    s32 _gcnewoption_entrypoint_32(s32, s32);
+    _gcnewoption_entrypoint_32(arg1, 66);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_80800494_chchuffycont.s")
 
