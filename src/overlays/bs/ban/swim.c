@@ -15,7 +15,10 @@ void func_808001A8_bsbanswim()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/swim/func_8080025C_bsbanswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/swim/bsbanswim_entrypoint_0.s")
+s32 bsbanswim_entrypoint_0(s32 arg0) {
+    extern s32 D_80800A30_bsbanswim[];
+    return ((s32 *)&D_80800A30_bsbanswim)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/swim/func_80800390_bsbanswim.s")
 
