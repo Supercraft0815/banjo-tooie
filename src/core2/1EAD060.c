@@ -51,7 +51,11 @@ void func_800D3A20(s32 arg0) {
     func_800D3B6C(1, &func_800DA544, arg0, 0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3A54.s")
+void func_800D3A54(s32 arg0, s32 arg1) {
+    s32 func_800D3B6C(s32, s32 *, s32, s32, s32);
+    extern s32 func_800C70B0;
+    func_800D3B6C(2, &func_800C70B0, arg0, arg1, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3A88.s")
 
