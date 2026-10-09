@@ -827,7 +827,12 @@ f32 func_800F8A50(void)
 	return D_8013550C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8A5C.s")
+/* extern */
+
+s16 func_800F8A5C(void) {
+    void *func_800F88A0();
+    return (*(s16 *)((s8 *)(func_800F88A0()) + (0x22)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8A80.s")
 
