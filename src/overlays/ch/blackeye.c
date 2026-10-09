@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_80800000_chblackeye.s")
+/* extern */
+
+void func_80800000_chblackeye(s32 arg0, s32 arg1) {
+    s32 _subaddieaudioquick_entrypoint_2(s32, s32, s32);
+    s32 func_800DA298(s32);
+    if (func_800DA298(0) == 0) {
+        _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_8080003C_chblackeye.s")
 
