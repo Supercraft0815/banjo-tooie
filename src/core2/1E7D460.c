@@ -5,7 +5,17 @@ s32 func_800A3B70()
     return 0x40;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A3B78.s")
+/* extern */
+
+void func_800A3B78(PlayerState *arg0, s32 arg1) {
+    s32 func_801106A8(PlayerState *, s32);
+    PlayerState *temp_v0;
+
+    temp_v0 = func_800A4CA8(arg0);
+    if (temp_v0 != NULL) {
+        func_801106A8(temp_v0, arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A3BA8.s")
 
