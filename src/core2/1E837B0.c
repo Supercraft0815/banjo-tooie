@@ -2,7 +2,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800A9EC0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800A9F14.s")
+s32 func_800A9F14(s32 arg0) {
+    if (arg0 == 2) {
+        return 3;
+    }
+    return 0x12;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800A9F30.s")
 
