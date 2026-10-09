@@ -55,7 +55,13 @@ void func_80800A6C_chnests(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800A74_chnests.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800B4C_chnests.s")
+/* extern */
+
+void func_80800B4C_chnests(void *arg0) {
+    f32 func_800DC178(f32, f32);
+    (*(f32 *)((s8 *)(arg0) + (0x58))) = func_800DC178((*(f32 *)((s8 *)(arg0) + (0x28))), (*(f32 *)((s8 *)(arg0) + (0x2C))));
+    (*(s32 *)((s8 *)(arg0) + (0x30))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800B80_chnests.s")
 
