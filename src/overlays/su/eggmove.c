@@ -8,7 +8,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/sueggmove_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/func_80800108_sueggmove.s")
+void func_80800108_sueggmove(void *arg0) {
+    if ((*(u8 *)((s8 *)(arg0) + (0xD))) == 0) {
+        (*(s8 *)((s8 *)(arg0) + (0xC))) = 1;
+        (*(u8 *)((s8 *)(arg0) + (0xD))) = 8U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/func_8080012C_sueggmove.s")
 
