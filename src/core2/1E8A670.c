@@ -46,4 +46,9 @@ void func_800B23E0(void* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B25D8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B26C8.s")
+/* extern */
+
+void func_800B26C8(void) {
+    s32 defrag();
+    defrag();
+}
