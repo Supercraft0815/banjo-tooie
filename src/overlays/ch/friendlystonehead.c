@@ -15,7 +15,14 @@ void func_80800000_chfriendlystonehead(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_80800284_chfriendlystonehead.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_808002BC_chfriendlystonehead.s")
+/* extern */
+
+void func_808002BC_chfriendlystonehead(void *arg0) {
+    s32 func_80102BF8(void *, s32, s32, s32);
+    f32 func_8010CD28();
+    (*(f32 *)((s8 *)(arg0) + (0x54))) = func_8010CD28();
+    func_80102BF8(arg0, 0x3DCCCCCD, 0x40800000, 0x42F00000);
+}
 
 /* extern */
 
