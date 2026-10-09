@@ -29,4 +29,7 @@ Unk80132ED0 *bahold_entrypoint_5(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/hold/bahold_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/hold/bahold_entrypoint_7.s")
+void bahold_entrypoint_7(void *arg0, f32 arg1, f32 arg2) {
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x9C)))) + (0))) = arg1;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x9C)))) + (4))) = arg2;
+}
