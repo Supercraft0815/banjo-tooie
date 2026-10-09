@@ -258,4 +258,10 @@ void func_800CA098(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800CA0A8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800CA174.s")
+void func_800CA174(void) {
+    s32 vector_defrag(s32);
+    extern s32 D_8012AB60;
+    if (D_8012AB60 != 0) {
+        D_8012AB60 = vector_defrag(D_8012AB60);
+    }
+}
