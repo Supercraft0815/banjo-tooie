@@ -14,7 +14,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tntswim/func_808002D0_bstntswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tntswim/bstntswim_entrypoint_0.s")
+s32 bstntswim_entrypoint_0(s32 arg0) {
+    extern s32 D_808009B0_bstntswim[];
+    return ((s32 *)&D_808009B0_bstntswim)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tntswim/func_8080042C_bstntswim.s")
 
