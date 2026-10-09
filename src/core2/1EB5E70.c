@@ -88,7 +88,69 @@ void func_800DCB58(s32 arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DCD10.s")
+void func_800DCD10(s32 arg0, u8 *arg1) {
+    s32 func_800DE2A4(s32, u8 *);
+    s32 func_800EF3DC(s32 *, s32 *);
+    s32 func_800EFB24(s32 *, s32 *, s32 *);
+    extern s32 D_8012CE98;
+    extern f32 D_8012CF2C;
+    extern s32 D_8012CF30;
+    extern s32 D_8012CF40;
+    extern s32 D_8012CF50;
+    f32 temp_f0;
+    s32 temp_v0_2;
+    s32 temp_v0_3;
+    s32 temp_v0_6;
+    s32 temp_v0;
+    s32 temp_v0_4;
+    s32 temp_v0_5;
+
+    func_800DC5BC(&D_8012CF40, arg1 + 8);
+    func_800DC5BC(&D_8012CF50, arg1 + 0x14);
+    func_800EFB24(&D_8012CF30, &D_8012CF50, &D_8012CF40);
+    func_800EF3DC(&D_8012CF40, &D_8012CE98);
+    temp_f0 = -(((f32 *)&D_8012CF30)[0] * ((f32 *)&D_8012CF40)[0]
+              + ((f32 *)&D_8012CF30)[1] * ((f32 *)&D_8012CF40)[1]
+              + ((f32 *)&D_8012CF30)[2] * ((f32 *)&D_8012CF40)[2]);
+    if ((*(u8 *)((s8 *)(arg1) + (0x21))) & 1) {
+        if (temp_f0 >= 0.0f) {
+            temp_v0 = (*(s32 *)((s8 *)(arg1) + (0x24)));
+            if (temp_v0 != 0) {
+                D_8012CF2C = temp_f0;
+                func_800DE2A4(arg0, arg1 + temp_v0);
+                return;
+            }
+        }
+        D_8012CF2C = temp_f0;
+        if (temp_f0 < 0.0f) {
+            temp_v0_2 = (*(s16 *)((s8 *)(arg1) + (0x22)));
+            if (temp_v0_2 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_2);
+            }
+        }
+    } else {
+        D_8012CF2C = temp_f0;
+        if (temp_f0 >= 0.0f) {
+            temp_v0_3 = (*(s16 *)((s8 *)(arg1) + (0x22)));
+            if (temp_v0_3 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_3);
+            }
+            temp_v0_4 = (*(s32 *)((s8 *)(arg1) + (0x24)));
+            if (temp_v0_4 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_4);
+            }
+        } else {
+            temp_v0_5 = (*(s32 *)((s8 *)(arg1) + (0x24)));
+            if (temp_v0_5 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_5);
+            }
+            temp_v0_6 = (*(s16 *)((s8 *)(arg1) + (0x22)));
+            if (temp_v0_6 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_6);
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DCEC8.s")
 
