@@ -135,7 +135,12 @@ s32 func_80096530(void *arg0) {
     return (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x94)))) + (0xA3))) == 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80096544.s")
+/* extern */
+
+s32 func_80096544(PlayerState *arg0) {
+    s32 func_800C670C(s32);
+    return func_800C670C(*(*(s32 **)((s8 *)(arg0) + (0x94))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80096568.s")
 
