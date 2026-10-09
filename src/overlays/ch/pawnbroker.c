@@ -43,7 +43,15 @@ void func_80800514_chpawnbroker(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800A50_chpawnbroker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800AA8_chpawnbroker.s")
+/* extern */
+
+void func_80800AA8_chpawnbroker(void *arg0) {
+    s32 _capod_entrypoint_3(s32, void *);
+    if ((*(s32 *)((s8 *)(arg0) + (0x28))) != 0) {
+        _capod_entrypoint_3(0, arg0);
+        (*(s32 *)((s8 *)(arg0) + (0x28))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800AE4_chpawnbroker.s")
 
