@@ -17,7 +17,9 @@ void func_808000A4_ncbafly(PlayerState* arg0, f32* arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/fly/ncbafly_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/fly/ncbafly_entrypoint_4.s")
+void ncbafly_entrypoint_4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+
+}
 
 void ncbafly_entrypoint_5(s32 arg0)
 {
