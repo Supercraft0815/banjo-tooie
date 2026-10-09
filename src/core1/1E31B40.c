@@ -30,7 +30,10 @@ void func_8001A0F0(void) {
     osRecvMesg(&D_8007BEE0, NULL, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A11C.s")
+void func_8001A11C(void) {
+    extern OSMesgQueue D_8007BEE0;
+    osSendMesg(&D_8007BEE0, NULL, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A148.s")
 
