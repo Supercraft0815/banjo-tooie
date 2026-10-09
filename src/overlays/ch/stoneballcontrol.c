@@ -44,7 +44,43 @@ s32 func_80800130_chstoneballcontrol(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800B4C_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800BCC_chstoneballcontrol.s")
+void func_80800BCC_chstoneballcontrol(u8 *arg0, s32 arg1) {
+    typedef struct { f32 v[3]; } Vec3;
+    f32 func_800DC178(f32, f32);
+    s32 func_800EE780(u8 *, u8 *, s32 *);
+    s32 func_800EFCD8(s32 *, f32, s32);
+    f32 func_80102D78(u8 *);
+    s32 func_80800B4C_chstoneballcontrol(u8 *, s32);
+    f32 func_8080009C_chstoneballcontrol();
+    extern Vec3 D_808050B0_chstoneballcontrol;
+    Vec3 sp2C = D_808050B0_chstoneballcontrol;
+    f32 var_f2;
+    f32 sp24;
+
+    if (arg1 == 0) {
+        var_f2 = (*(f32 *)((s8 *)(arg0) + (0x48))) + func_800DC178(110.0f, 250.0f);
+    } else {
+        sp24 = func_80102D78(arg0);
+        var_f2 = func_800DC178(110.0f, 250.0f) + sp24;
+    }
+    func_800EFCD8((s32 *)&sp2C, var_f2, 0x43FA0000);
+    func_800EE780(arg0 + 0x18, arg0 + 4, (s32 *)&sp2C);
+    (*(f32 *)((s8 *)(arg0) + (0x24))) = func_8080009C_chstoneballcontrol(arg0);
+    if ((*(f32 *)((s8 *)(arg0) + (0x18))) > 720.0f) {
+        (*(f32 *)((s8 *)(arg0) + (0x18))) = 720.0f;
+    }
+    if ((*(f32 *)((s8 *)(arg0) + (0x20))) > 720.0f) {
+        (*(f32 *)((s8 *)(arg0) + (0x20))) = 720.0f;
+    }
+    if ((*(f32 *)((s8 *)(arg0) + (0x18))) < -720.0f) {
+        (*(f32 *)((s8 *)(arg0) + (0x18))) = -720.0f;
+    }
+    if ((*(f32 *)((s8 *)(arg0) + (0x20))) < -720.0f) {
+        (*(f32 *)((s8 *)(arg0) + (0x20))) = -720.0f;
+    }
+    (*(f32 *)((s8 *)(arg0) + (0x34))) = func_800DC178(0.25f, 1.0f);
+    func_80800B4C_chstoneballcontrol(arg0, 7);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800D20_chstoneballcontrol.s")
 
