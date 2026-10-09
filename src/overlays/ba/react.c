@@ -11,7 +11,9 @@ u8 bareact_entrypoint_2(void *arg0) {
     return (*(u8 *)((s8 *)(*(*(void ***)((s8 *)(arg0) + (0xEC)))) + (1)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/react/bareact_entrypoint_3.s")
+f32 bareact_entrypoint_3(void *arg0) {
+    return (*(f32 *)((s8 *)(*(*(void ***)((s8 *)(arg0) + (0xEC)))) + (4)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/react/bareact_entrypoint_4.s")
 
