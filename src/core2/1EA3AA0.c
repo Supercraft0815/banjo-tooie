@@ -145,7 +145,17 @@ f32 func_800CAA1C(f32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CACEC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CAD9C.s")
+s32 func_800CAD9C(void *arg0, f32 arg1, f32 arg2, f32 arg3) {
+    f32 *p = arg0;
+
+    if ((p[9] * arg1 + p[10] * arg2 + p[11] * arg3 + p[12] <= 0.0f) &&
+        (p[13] * arg1 + p[14] * arg2 + p[15] * arg3 + p[16] <= 0.0f) &&
+        (p[17] * arg1 + p[18] * arg2 + p[19] * arg3 + p[20] <= 0.0f) &&
+        (p[21] * arg1 + p[22] * arg2 + p[23] * arg3 + p[24] <= 0.0f)) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CAEA4.s")
 
