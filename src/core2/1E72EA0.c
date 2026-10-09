@@ -47,7 +47,15 @@ s32 func_80099A70(PlayerState *self) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72EA0/func_80099AA8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72EA0/func_80099B54.s")
+/* extern */
+
+void func_80099B54(PlayerState *arg0) {
+    s32 _badata_entrypoint_33(PlayerState *);
+    s32 func_8009EAE8(u32);
+    void *func_80106790(s32);
+    func_8009EAE8((u32) ((*(s32 *)((s8 *)(func_80106790(func_80099A4C(arg0))) + (0x6C))) << 0xB) >> 0x14);
+    _badata_entrypoint_33(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72EA0/func_80099B94.s")
 
