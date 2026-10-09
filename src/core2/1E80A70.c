@@ -100,7 +100,16 @@ void func_800A7A5C(void)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A7A6C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A7A90.s")
+/* extern */
+
+void func_800A7A90(s32 arg0) {
+    s32 func_800C9610();
+    (*(s8 *)((s8 *)(&D_80127630) + (0x14))) = (s8) arg0;
+    (*(s8 *)((s8 *)(&D_80127630) + (0x17))) = 0;
+    if ((arg0 != 0) && (func_800C9510() == 0)) {
+        func_800C9610();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A7AD4.s")
 
