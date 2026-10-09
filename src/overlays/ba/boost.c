@@ -32,7 +32,14 @@ s32 baboost_entrypoint_2(PlayerState *self, f32 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/boost/baboost_entrypoint_3.s")
+void baboost_entrypoint_3(PlayerState *self) {
+    s32 i;
+
+    for (i = 0; i < 5; i++) {
+        self->boost->unk8[i] = self->boost->unk8[i] = 0.0f;
+    }
+    self->boost->unk0 = self->boost->unk4 = 0.0;
+}
 
 void baboost_entrypoint_4(PlayerState *self, s32 arg1) {
     self->boost->unk0 = arg1;
