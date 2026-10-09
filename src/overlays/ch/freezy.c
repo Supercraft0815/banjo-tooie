@@ -7,7 +7,13 @@ OSThread *chfreezy_entrypoint_0(void)
     return (OSThread *) D_80800700_chfreezy;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/freezy/func_8080000C_chfreezy.s")
+/* extern */
+
+void func_8080000C_chfreezy(void *arg0) {
+    s32 _sufreezy_entrypoint_1();
+    _sufreezy_entrypoint_1();
+    (*(f32 *)((s8 *)(arg0) + (0x38))) = 0.2f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/freezy/func_8080003C_chfreezy.s")
 
