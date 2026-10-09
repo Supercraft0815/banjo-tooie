@@ -5,7 +5,12 @@ void gcintrotext_entrypoint_0()
     func_800DA544(FLAG2_6CB_UNK);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/introtext/gcintrotext_entrypoint_1.s")
+s32 gcintrotext_entrypoint_1(void) {
+    if (func_800DA9E4(FLAG2_6CB_UNK, 0) != 0) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/introtext/gcintrotext_entrypoint_2.s")
 
