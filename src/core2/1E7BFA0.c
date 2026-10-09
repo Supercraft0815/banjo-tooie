@@ -19,7 +19,12 @@ s32 func_800A26B0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2D2C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2D70.s")
+/* extern */
+
+void func_800A2D70(void *arg0) {
+    s32 _fxstep_entrypoint_0(s32);
+    _fxstep_entrypoint_0(*(*(s32 **)((s8 *)(arg0) + (0x124))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2D94.s")
 
