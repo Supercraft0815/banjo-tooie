@@ -14,7 +14,13 @@ OSThread *chonearmbandit_entrypoint_1(void)
     return (OSThread *) D_80801304_chonearmbandit;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80800018_chonearmbandit.s")
+/* extern */
+
+void func_80800018_chonearmbandit(void *arg0) {
+    s32 func_80800040_chonearmbandit();
+    (*(f32 *)((s8 *)(arg0) + (0x24))) = 400.0f;
+    func_80800040_chonearmbandit();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80800040_chonearmbandit.s")
 
