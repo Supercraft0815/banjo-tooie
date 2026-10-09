@@ -111,7 +111,10 @@ void func_80801318_bsbansack(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80801390_bsbansack.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/bsbansack_entrypoint_4.s")
+s32 bsbansack_entrypoint_4(s32 arg0) {
+    extern s32 D_80801E50_bsbansack[];
+    return ((s32 *)&D_80801E50_bsbansack)[arg0];
+}
 
 void func_8080143C_bsbansack(s32 arg0)
 {
