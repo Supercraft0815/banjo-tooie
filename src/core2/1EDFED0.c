@@ -1,6 +1,10 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDFED0/func_801065E0.s")
+void func_801065E0(void) {
+    s32 vector_new(s32, s32);
+    extern s32 D_80136EE0;
+    D_80136EE0 = vector_new(0x9C, 30);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDFED0/func_80106608.s")
 
