@@ -153,7 +153,10 @@ s32 bsbswim_entrypoint_11(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_808019E0_bsbswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/bsbswim_entrypoint_12.s")
+s32 bsbswim_entrypoint_12(s32 arg0) {
+    extern s32 D_80801F78_bsbswim[];
+    return ((s32 *)&D_80801F78_bsbswim)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80801ACC_bsbswim.s")
 
