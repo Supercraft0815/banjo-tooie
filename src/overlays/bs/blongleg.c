@@ -76,7 +76,10 @@ void bsblongleg_entrypoint_18(s32 arg0)
     baphysics_reset_gravity();
     func_80800204_bsblongleg(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_19.s")
+s32 bsblongleg_entrypoint_19(s32 arg0) {
+    extern s32 D_808014B0_bsblongleg[];
+    return ((s32 *)&D_808014B0_bsblongleg)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_20.s")
 
