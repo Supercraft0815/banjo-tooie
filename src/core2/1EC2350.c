@@ -31,7 +31,12 @@ void func_800E8A60(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8E70.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8F68.s")
+u8 *func_800E8F68(u8 *arg0) {
+    if ((*(s32 *)((s8 *)(arg0) + (0x24))) != (*(s32 *)((s8 *)(arg0) + (0x20)))) {
+        return arg0 + 0x20;
+    }
+    return NULL;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8F8C.s")
 
