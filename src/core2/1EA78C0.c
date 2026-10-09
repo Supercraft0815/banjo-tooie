@@ -150,7 +150,14 @@ s32 func_800CF6D0(void) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF700.s")
+/* extern */
+
+void func_800CF700(void) {
+    s32 func_800CE9E8(s32, s32);
+    s32 func_800DA544(s32);
+    func_800DA544(0x1BF);
+    func_800CE9E8(1, func_800CF6D0());
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF734.s")
 
