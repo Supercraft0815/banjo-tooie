@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2EF0/func_800D9600.s")
+void func_800D9600(void *arg0, void *arg1) {
+    (*(f32 *)((s8 *)(arg0) + (0))) = (f32) (*(f32 *)((s8 *)(arg1) + (0)));
+    (*(f32 *)((s8 *)(arg0) + (4))) = (f32) (*(f32 *)((s8 *)(arg1) + (4)));
+    (*(f32 *)((s8 *)(arg0) + (8))) = (f32) (*(f32 *)((s8 *)(arg1) + (8)));
+    (*(f32 *)((s8 *)(arg0) + (0xC))) = (f32) (*(f32 *)((s8 *)(arg1) + (0xC)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2EF0/func_800D9624.s")
 
