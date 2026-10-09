@@ -18,7 +18,14 @@ void func_800A5C04(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F4D0/func_800A5C94.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F4D0/func_800A5CC4.s")
+/* extern */
+
+void func_800A5CC4(void) {
+    s32 _chbaddieDll_entrypoint_2(s32 *);
+    s32 _subaddietaxi_entrypoint_3();
+    _subaddietaxi_entrypoint_3();
+    _chbaddieDll_entrypoint_2(&D_80127110);
+}
 
 void func_800A5CF0(s32 arg0) {
     extern s8 D_80127115;
