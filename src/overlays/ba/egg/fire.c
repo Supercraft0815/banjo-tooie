@@ -7,7 +7,11 @@ s32 baeggfire_entrypoint_0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/fire/func_80800008_baeggfire.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/fire/func_80800040_baeggfire.s")
+void func_80800040_baeggfire(void *arg0) {
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x6C)))) + (0x12))) = 0;
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x6C)))) + (0x11))) = 0;
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x6C)))) + (0x13))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/fire/baeggfire_entrypoint_1.s")
 
