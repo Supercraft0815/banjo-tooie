@@ -7,7 +7,10 @@ s32 basnowball_entrypoint_0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/func_80800008_basnowball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/func_80800084_basnowball.s")
+f32 func_80800084_basnowball(s32 arg0) {
+    extern f32 D_80801020_basnowball[];
+    return ((f32 *)&D_80801020_basnowball)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/func_80800098_basnowball.s")
 
