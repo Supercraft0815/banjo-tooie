@@ -16,4 +16,8 @@ void func_8080000C_chfactorysmoke(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/smoke/func_80800044_chfactorysmoke.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/smoke/func_808000A8_chfactorysmoke.s")
+void func_808000A8_chfactorysmoke(s32 arg0) {
+    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+    extern s32 D_80800148_chfactorysmoke;
+    func_800BBCB8(arg0 + 4, 0, 0x3F800000, 4, &D_80800148_chfactorysmoke);
+}
