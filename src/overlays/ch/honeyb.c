@@ -48,7 +48,15 @@ void func_80800B78_chhoneyb()
     _gcextra_entrypoint_0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800B98_chhoneyb.s")
+/* extern */
+
+s32 func_80800B98_chhoneyb(s32 arg0) {
+    s32 _gcextra_entrypoint_1();
+    if ((arg0 <= 0) || (_gcextra_entrypoint_1() < arg0)) {
+        return -1;
+    }
+    return (arg0 * 2) - 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800BD8_chhoneyb.s")
 
