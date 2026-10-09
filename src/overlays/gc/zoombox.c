@@ -132,7 +132,24 @@ void gczoombox_entrypoint_13(void *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x177))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x177))) | 0x20);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_14.s")
+void gczoombox_entrypoint_14(u8 *arg0) {
+    s32 var_v0;
+    u8 *var_v1;
+
+    var_v0 = 0;
+    var_v1 = arg0;
+    do {
+        var_v0 += 4;
+        (*(s32 *)((s8 *)(var_v1) + (0x180))) = 0;
+        (*(s32 *)((s8 *)(var_v1) + (0x184))) = 0;
+        (*(s32 *)((s8 *)(var_v1) + (0x188))) = 0;
+        var_v1 += 0x10;
+        (*(s32 *)((s8 *)(var_v1) + (0x16C))) = 0;
+    } while (var_v0 != 8);
+    (*(s8 *)((s8 *)(arg0) + (0x174))) = 0;
+    (*(s8 *)((s8 *)(arg0) + (0x175))) = 0;
+    (*(u8 *)((s8 *)(arg0) + (0x177))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x177))) & 0xFB);
+}
 
 void gczoombox_entrypoint_15(void *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x177))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x177))) & 0xFE);
