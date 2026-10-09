@@ -16,7 +16,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_5.s")
+s32 susplinet_entrypoint_5(void *arg0, f32 arg1) {
+    if (((*(f32 *)((s8 *)(arg0) + (0x48))) <= arg1) && (arg1 < (*(f32 *)((s8 *)(arg0) + (0x44))))) {
+        return 1;
+    }
+    return 0;
+}
 
 u32 susplinet_entrypoint_6(u8 *arg0) {
     return arg0[83];
