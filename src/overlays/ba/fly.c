@@ -38,7 +38,37 @@ void bafly_entrypoint_7(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_9.s")
+/* extern */
+
+void bafly_entrypoint_9(s32 arg0) {
+    f32 _bafpctrl_entrypoint_3(s32);
+    s32 bakey_held(s32, s32);
+    s32 baroll_setIdeal(s32, f32);
+    f32 bastick_getX(s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 yaw_getIdeal(s32);
+    s32 yaw_setIdeal(s32, f32);
+    s32 yaw_setVelocityBounded(s32, s32, s32);
+    f32 sp34;
+    f32 var_f2;
+    f32 var_f0;
+    f32 sp28;
+
+    sp28 = bastick_getX(arg0);
+    if (bakey_held(arg0, 3) != 0) {
+        yaw_setVelocityBounded(arg0, 0x43FA0000, 0x41F00000);
+        var_f2 = 6.0f;
+        var_f0 = 85.0f;
+    } else {
+        yaw_setVelocityBounded(arg0, 0x43FA0000, 0x40000000);
+        var_f2 = 3.0f;
+        var_f0 = 75.0f;
+    }
+    baroll_setIdeal(arg0, func_800F10B4(sp28, -1.0f, 1.0f, -var_f0, var_f0));
+    sp34 = func_800F10B4(sp28, -1.0f, 1.0f, var_f2, -var_f2);
+    sp34 *= _bafpctrl_entrypoint_3(arg0);
+    yaw_setIdeal(arg0, yaw_getIdeal(arg0) + sp34);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_10.s")
 
