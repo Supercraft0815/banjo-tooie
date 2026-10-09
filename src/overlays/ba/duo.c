@@ -30,7 +30,9 @@ void baduo_entrypoint_5(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_9.s")
+void baduo_entrypoint_9(void *arg0, f32 arg1) {
+    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 88) + 4) = arg1;
+}
 
 void baduo_entrypoint_10(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 88) + 1) = arg1;
