@@ -23,7 +23,12 @@ OSThread *chclinker_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_8080045C_chclinker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_80800574_chclinker.s")
+/* extern */
+
+void func_80800574_chclinker(s32 arg0) {
+    s32 _susubgame_entrypoint_11(s32);
+    _susubgame_entrypoint_11(0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_80800598_chclinker.s")
 
