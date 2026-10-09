@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/falldie/func_80800000_bsdronefalldie.s")
+/* extern */
+
+void func_80800000_bsdronefalldie(void *arg0, s32 arg1) {
+    s32 _basudie_entrypoint_0();
+    if (arg1 == 2) {
+        _basudie_entrypoint_0();
+    }
+    (*(s32 *)((s8 *)(arg0) + (0x190))) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/falldie/bsdronefalldie_entrypoint_0.s")
 
