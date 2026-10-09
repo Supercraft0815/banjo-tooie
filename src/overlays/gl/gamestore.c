@@ -1,6 +1,19 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamestore/func_80800000_glgamestore.s")
+/* extern */
+
+s32 func_80800000_glgamestore(void) {
+    s32 _glcrc_entrypoint_1();
+    s32 temp_v0;
+    s32 var_v1;
+
+    temp_v0 = _glcrc_entrypoint_1();
+    var_v1 = temp_v0;
+    if (temp_v0 != 0) {
+        var_v1 = 3;
+    }
+    return var_v1;
+}
 
 s32 func_80800030_glgamestore(s32 arg0) {
     return arg0 << 7;
