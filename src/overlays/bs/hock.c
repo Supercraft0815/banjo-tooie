@@ -6,7 +6,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/hock/bsbshock_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/hock/bsbshock_entrypoint_3.s")
+s32 bsbshock_entrypoint_3(s32 arg0) {
+    extern s32 D_80800870_bsbshock[];
+    return ((s32 *)&D_80800870_bsbshock)[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/hock/bsbshock_entrypoint_4.s")
 
