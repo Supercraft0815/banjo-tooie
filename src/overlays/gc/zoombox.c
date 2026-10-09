@@ -15,7 +15,19 @@ void func_808000DC_gczoombox(void *arg0) {
     func_808000C4_gczoombox(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_0.s")
+/* extern */
+
+void gczoombox_entrypoint_0(void *arg0) {
+    s32 func_800D52B0();
+    s32 func_80800000_gczoombox(void *);
+    s32 heap_free(void *);
+    if (arg0 != NULL) {
+        func_800D52B0();
+        func_80800000_gczoombox(arg0);
+        func_808000DC_gczoombox(arg0);
+        heap_free(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_8080014C_gczoombox.s")
 
