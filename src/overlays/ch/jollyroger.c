@@ -49,7 +49,15 @@ void func_80800DB8_chjollyroger(Actor* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800DD8_chjollyroger.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800E30_chjollyroger.s")
+/* extern */
+
+void func_80800E30_chjollyroger(void *arg0) {
+    s32 _capod_entrypoint_3(s32, void *);
+    if ((*(s32 *)((s8 *)(arg0) + (0x28))) != 0) {
+        _capod_entrypoint_3(0, arg0);
+        (*(s32 *)((s8 *)(arg0) + (0x28))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800E6C_chjollyroger.s")
 
