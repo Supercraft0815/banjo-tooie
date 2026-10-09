@@ -1,6 +1,16 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pufferfish/func_80800000_chpufferfish.s")
+/* extern */
+
+void func_80800000_chpufferfish(void *arg0) {
+    s32 _subaddieDll_entrypoint_1();
+    s32 func_800FFAB0(void *);
+    if (_subaddieDll_entrypoint_1() == 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    (*(f32 *)((s8 *)(arg0) + (0x34))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x38)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pufferfish/func_80800040_chpufferfish.s")
 
