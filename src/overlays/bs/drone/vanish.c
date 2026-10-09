@@ -22,4 +22,14 @@ void func_808001E4_bsdronevanish(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/vanish/bsdronevanish_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/vanish/bsdronevanish_entrypoint_2.s")
+/* extern */
+
+void bsdronevanish_entrypoint_2(void *arg0) {
+    s32 _bastatemem_entrypoint_1(void *);
+    s32 func_80092778(void *);
+    s32 func_800961AC(void *, s32);
+    func_808001E4_bsdronevanish(arg0);
+    func_800961AC(arg0, 1);
+    func_80092778(arg0);
+    _bastatemem_entrypoint_1(arg0);
+}
