@@ -43,7 +43,11 @@ void gspropctrl_entrypoint_10(void *arg0, void *arg1) {
     (*(s16 *)((s8 *)(arg1) + (4))) = (s16) (*(s16 *)((s8 *)(arg0) + (4)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propctrl/gspropctrl_entrypoint_11.s")
+void gspropctrl_entrypoint_11(void *arg0, void *arg1) {
+    (*(f32 *)((s8 *)(arg1) + (0))) = (f32) (*(s16 *)((s8 *)(arg0) + (0)));
+    (*(f32 *)((s8 *)(arg1) + (4))) = (f32) (*(s16 *)((s8 *)(arg0) + (2)));
+    (*(f32 *)((s8 *)(arg1) + (8))) = (f32) (*(s16 *)((s8 *)(arg0) + (4)));
+}
 
 u32 gspropctrl_entrypoint_12(void *arg0) {
     return (u32) (*(u32 *)((s8 *)(arg0) + (0xC))) >> 0x17;
