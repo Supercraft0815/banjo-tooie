@@ -12,7 +12,9 @@ f32 bamovegoto_entrypoint_2(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/goto/bamovegoto_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/goto/bamovegoto_entrypoint_4.s")
+s32 bamovegoto_entrypoint_4(void *arg0) {
+    return (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x54))) == 6;
+}
 
 void bamovegoto_entrypoint_5(s32 arg0)
 {
