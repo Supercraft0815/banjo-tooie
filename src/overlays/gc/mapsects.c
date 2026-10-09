@@ -68,7 +68,12 @@ void gcmapsects_entrypoint_13(s32 arg0) {
     (*(s8 *)((s8 *)(func_800BF704()) + (0x80))) = (s8) arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_14.s")
+/* extern */
+
+void gcmapsects_entrypoint_14(s32 arg0) {
+    void *func_800BF704();
+    (*(s8 *)((s8 *)(func_800BF704()) + (0x81))) = (s8) arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_15.s")
 
