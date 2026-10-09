@@ -4,7 +4,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/transitionDll/func_8080004C_gctransitionDll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/transitionDll/func_80800098_gctransitionDll.s")
+/* extern */
+
+void func_80800098_gctransitionDll(s32 *arg0, f32 *arg1) {
+    f32 func_800A8AF0(s32);
+    *arg1 *= func_800A8AF0(*arg0) * 0.75f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/transitionDll/func_808000D8_gctransitionDll.s")
 
