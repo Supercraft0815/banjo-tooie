@@ -171,7 +171,21 @@ s32 bstnt_entrypoint_9(s32 arg0) {
     return ((s32 *)&D_8080257C_bstnt)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/bstnt_entrypoint_10.s")
+/* extern */
+
+void bstnt_entrypoint_10(void *arg0) {
+    s32 func_80099A4C(void *);
+    s32 func_80099B94(void *);
+    s32 func_8009E6EC();
+    s32 func_8009E830(void *, s32);
+    if (func_8009E6EC() == 0x42) {
+        (*(s32 *)((s8 *)(arg0) + (0x164))) = func_80099A4C(arg0);
+        (*(s8 *)((s8 *)(arg0) + (0x168))) = 1;
+        func_8009E830(arg0, 2);
+        return;
+    }
+    func_80099B94(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80801980_bstnt.s")
 
