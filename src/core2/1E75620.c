@@ -34,4 +34,9 @@ void func_8009BDAC(PlayerState *arg0, f32 arg1) {
     func_8009BD38(arg0, 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75620/func_8009BDE4.s")
+void func_8009BDE4(s32 arg0) {
+    s32 bastatetimer_isDone(s32, s32);
+    if (bastatetimer_isDone(arg0, 4) != 0) {
+        func_8009BD38((u8 *) arg0, 1);
+    }
+}
