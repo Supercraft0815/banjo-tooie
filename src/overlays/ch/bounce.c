@@ -38,4 +38,8 @@ s32 chbounce_entrypoint_10(Actor *arg0) {
     return ((u32) (*(u32 *)((s8 *)(func_80100094(arg0, 2U)) + (0x24))) >> 0x1F) == 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bounce/func_80800F74_chbounce.s")
+void func_80800F74_chbounce(Actor *arg0) {
+    u32* func_80100074(Actor*, u32, u32);
+    (*(u8 *)((s8 *)(arg0) + (0x7B))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x7B))) & 0xFFF7);
+    func_80100074(arg0, 2U, 0U);
+}
