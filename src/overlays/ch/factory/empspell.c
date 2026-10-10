@@ -10,7 +10,23 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801038_chfactoryempspell.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/chfactoryempspell_entrypoint_0.s")
+/* extern */
+
+void chfactoryempspell_entrypoint_0(s32 arg0, s32 arg1) {
+    s32 _chmrtannoy_entrypoint_0();
+    s32 func_800C0534(s32, s32, s32, s32, s32, s32, s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    s32 func_800EA05C();
+    if (func_800DA298(0x329) == 0) {
+        _chmrtannoy_entrypoint_0();
+        func_800C0534(0x133A, 4, 0, 0, 0, 0, 0, 0xA3);
+    }
+    if (func_800EA05C() != 0x10B) {
+        func_800DA524(0x9DE);
+    }
+    func_800DA524(0xA05);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801130_chfactoryempspell.s")
 
