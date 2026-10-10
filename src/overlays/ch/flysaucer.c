@@ -41,7 +41,29 @@ void func_808004F0_chflysaucer(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800E48_chflysaucer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800F98_chflysaucer.s")
+/* extern */
+
+void func_80800F98_chflysaucer(void) {
+    s32 func_800FC6B0(s32);
+    u32 func_80800E48_chflysaucer();
+    u32 temp_v0;
+
+    temp_v0 = func_80800E48_chflysaucer();
+    switch (temp_v0) {
+    case 0:
+    case 5:
+        func_800FC6B0(0x17);
+        return;
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+        func_800FC6B0(0x16);
+        /* fallthrough */
+    default:
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800FF0_chflysaucer.s")
 
