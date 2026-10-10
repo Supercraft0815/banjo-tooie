@@ -28,7 +28,22 @@ s32 func_80098BA0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72180/func_80098BA8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72180/func_80098BE0.s")
+/* extern */
+
+void func_80098BE0(void *arg0) {
+    s32 _baeggcursor_entrypoint_1(void *);
+    s32 _bsfirstp_entrypoint_37(void *);
+    s32 func_8009AD78(void *, s32);
+    s32 func_800A9420(s32);
+    if (func_800A9420((*(s32 *)((s8 *)(arg0) + (0x184)))) != 0) {
+        if (func_8009AD78(arg0, 8) != 0) {
+            _baeggcursor_entrypoint_1(arg0);
+        }
+        if (func_8009AD78(arg0, 0xB) != 0) {
+            _bsfirstp_entrypoint_37(arg0);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72180/func_80098C48.s")
 
