@@ -182,7 +182,10 @@ void func_80111018(s32 arg0, s32 arg1) {
     _ncba1p_entrypoint_1(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_8011106C.s")
+void func_8011106C(void *arg0, f32 *arg1) {
+    s32 func_800EE7F8();
+    func_800EE7F8(arg1, (u8 *)arg0 + 0x8C);
+}
 
 /* extern */
 
