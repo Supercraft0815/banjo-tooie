@@ -27,7 +27,21 @@ OSThread *chamazongoldhordeofficial_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800DB4_chamazongoldhordeofficial.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800E18_chamazongoldhordeofficial.s")
+/* extern */
+
+void func_80800E18_chamazongoldhordeofficial(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    void func_80102424(Actor*, s32);
+    s32 func_80800DB4_chamazongoldhordeofficial(Actor *, u8);
+    u8 *sp1C;
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    sp1C = temp_v0;
+    func_80800DB4_chamazongoldhordeofficial(arg0, (*(u8 *)((s8 *)(temp_v0) + (0x67))));
+    func_80102424(arg0, 2);
+    (*(s16 *)((s8 *)(sp1C) + (8))) = -0x3E7;
+}
 
 void func_80800E64_chamazongoldhordeofficial(Actor *arg0) {
     extern u32 D_808011D0_chamazongoldhordeofficial;
