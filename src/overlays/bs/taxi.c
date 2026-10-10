@@ -21,7 +21,47 @@ s32 bstaxi_entrypoint_5(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/func_80800420_bstaxi.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/func_808004A8_bstaxi.s")
+/* extern */
+
+void func_808004A8_bstaxi(s32 arg0) {
+    s32 func_80099B94(s32);
+    s32 func_8009E6EC();
+    s32 func_80800420_bstaxi(s32);
+    s32 temp_v0;
+
+    temp_v0 = func_8009E6EC();
+    switch (temp_v0) {
+    case 0x1F:
+    case 0x20:
+    case 0x21:
+    case 0x24:
+    case 0x2D:
+    case 0x2E:
+    case 0x45:
+    case 0x4E:
+    case 0x51:
+    case 0x52:
+    case 0x59:
+    case 0x5A:
+    case 0x5B:
+    case 0x5C:
+        func_80800420_bstaxi(arg0);
+        func_80099B94(arg0);
+        return;
+    case 0x15:
+    case 0x1C:
+    case 0x1D:
+    case 0x1E:
+    case 0x25:
+    case 0x43:
+        func_80800420_bstaxi(arg0);
+        func_80099B94(arg0);
+        return;
+    default:
+        func_80099B94(arg0);
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/func_80800524_bstaxi.s")
 
