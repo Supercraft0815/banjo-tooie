@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/custom_big/func_80800000_sccustom_big.s")
+s32 func_80800000_sccustom_big(s32 arg0) {
+    s32 _scinfobar_entrypoint_19(s32);
+    s32 func_800E6DB4(s32 *, s32);
+    s32 func_800E73D4(s32 *);
+    extern s32 B_808003F0_sccustom_big;
+    func_800E73D4(&B_808003F0_sccustom_big);
+    func_800E6DB4(&B_808003F0_sccustom_big, _scinfobar_entrypoint_19(arg0));
+    return (s32) &B_808003F0_sccustom_big;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/custom_big/func_80800044_sccustom_big.s")
 
