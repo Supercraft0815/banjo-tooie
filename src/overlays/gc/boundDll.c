@@ -99,6 +99,9 @@ void func_8080141C_gcboundDll(u8 *arg0, s32 arg1, s32 arg2) {
     func_80801370_gcboundDll((*(s32 *)((s8 *)(arg0) + (8))), (*(s32 *)((s8 *)(arg0) + (0xC))), arg2, arg1, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_80801450_gcboundDll.s")
+void func_80801450_gcboundDll(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 func_80801370_gcboundDll(s32, s32, s32, s32, s32);
+    func_80801370_gcboundDll((*(s32 *)((s8 *)(arg0) + (0x10))), (*(s32 *)((s8 *)(arg0) + (0x14))), arg2, arg1, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_80801484_gcboundDll.s")
