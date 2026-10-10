@@ -34,4 +34,14 @@ void func_808003DC_suautobaddies(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/autobaddies/suautobaddies_entrypoint_3.s")
+void suautobaddies_entrypoint_3(void) {
+    s32 _chbaddiesetup_entrypoint_4(s32 *, s32, s32, s32, s32);
+    s32 _gcfrontend_entrypoint_3(s32);
+    s32 func_800D035C(s32);
+    s32 func_800D395C();
+    s32 func_800DB9B0();
+    extern s32 _chbaddiesetup_entrypoint_8;
+    if ((func_800D395C() == 0) && (func_800DB9B0() == 0) && (_gcfrontend_entrypoint_3(0x85) == 0) && (func_800D035C(1) == 0x5A)) {
+        _chbaddiesetup_entrypoint_4(&_chbaddiesetup_entrypoint_8, 0x524, 0, 0, 0);
+    }
+}
