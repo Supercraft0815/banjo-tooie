@@ -18,7 +18,20 @@ void ncpodfixpos_entrypoint_2(s16 arg0) {
     func_8001B798(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/fixpos/func_80800118_ncpodfixpos.s")
+/* extern */
+
+void func_80800118_ncpodfixpos(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 _cadbfunc_entrypoint_0(u8 *);
+    s32 _cadbfunc_entrypoint_2(u8 *);
+    s32 func_800A5800(s16);
+    (*(s32 *)((s8 *)(arg0) + (0x3C))) = arg2;
+    if (arg2 == 1) {
+        func_800A5800((*(s16 *)((s8 *)(arg0) + (0x38))));
+        _cadbfunc_entrypoint_0(arg0);
+        _cadbfunc_entrypoint_2(arg0 + 0xC);
+        (*(s8 *)((s8 *)(arg0) + (0x42))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/fixpos/ncpodfixpos_entrypoint_3.s")
 
