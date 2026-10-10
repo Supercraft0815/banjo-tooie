@@ -31,7 +31,18 @@ void func_808001B0_bsbansack(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_808002D4_bsbansack.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800368_bsbansack.s")
+void func_80800368_bsbansack(PlayerState *arg0) {
+    s32 baroll_setIdeal(s32, f32);
+    s32 func_8008DF8C(PlayerState *, s32);
+    void func_8009BF5C(PlayerState *, f32);
+    void func_8009D2F0(PlayerState *, s32, f32);
+    if (func_8008DF8C(arg0, 0x1E) != 0) {
+        func_8009D2F0(arg0, 0, 0.5f);
+        return;
+    }
+    func_8009BF5C(arg0, 0.0f);
+    baroll_setIdeal((s32) arg0, 0.0f);
+}
 
 void func_808003C0_bsbansack(PlayerState *arg0) {
     void baphysics_set_gravity(PlayerState *arg0, f32 arg1);
