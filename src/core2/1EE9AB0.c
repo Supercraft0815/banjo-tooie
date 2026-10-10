@@ -140,7 +140,10 @@ void func_80110D08()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110D28.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110D58.s")
+void func_80110D58(u8 *arg0, f32 arg1) {
+    void func_801125D8(void *arg0, f32 arg1);
+    func_801125D8(arg0, arg1);
+}
 
 void func_80110D80()
 {
