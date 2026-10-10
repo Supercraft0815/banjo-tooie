@@ -50,7 +50,22 @@ u32 func_800AADE4(u16 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AB980.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AB9D0.s")
+void func_800AB9D0(void) {
+    s32 heap_free(void *);
+    extern void *D_8012798C;
+    void *temp_s1;
+    void *var_s0;
+
+    var_s0 = D_8012798C;
+    if (var_s0 != NULL) {
+        do {
+            temp_s1 = (*(void **)((s8 *)(var_s0) + (4)));
+            heap_free(var_s0);
+            var_s0 = temp_s1;
+        } while (temp_s1 != NULL);
+    }
+    D_8012798C = NULL;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800ABA20.s")
 
