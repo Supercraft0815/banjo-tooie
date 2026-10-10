@@ -73,7 +73,16 @@ void chexploder_entrypoint_8(Actor *arg0, f32 arg1, f32 arg2) {
     (*(s16 *)((s8 *)(temp_v0) + (6))) = (s16) (s32) arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/chexploder_entrypoint_9.s")
+void chexploder_entrypoint_9(Actor *arg0, s32 arg1, s32 arg2) {
+    void* func_80100094(Actor*, u32);
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    (*(s8 *)((s8 *)((temp_v0 + arg1)) + (0x18))) = (s8) arg2;
+    if ((s32) (*(u8 *)((s8 *)(temp_v0) + (0x18))) < arg1) {
+        (*(u8 *)((s8 *)(temp_v0) + (0x18))) = (u8) arg1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/chexploder_entrypoint_10.s")
 
