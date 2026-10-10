@@ -22,7 +22,10 @@ void func_80800108_sueggmove(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/func_8080012C_sueggmove.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/sueggmove_entrypoint_3.s")
+u8 sueggmove_entrypoint_3(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    return (*(u8 *)((s8 *)(func_80100094(arg0, 0U)) + (0xC)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/sueggmove_entrypoint_4.s")
 
