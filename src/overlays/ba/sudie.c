@@ -57,7 +57,12 @@ void basudie_entrypoint_8(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sudie/basudie_entrypoint_9.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sudie/basudie_entrypoint_10.s")
+void basudie_entrypoint_10(u8 *arg0) {
+    s32 _batimer_decrement(void *, s32);
+    if (_batimer_decrement(arg0, 9) != 0) {
+        basudie_entrypoint_0(arg0);
+    }
+}
 
 void basudie_entrypoint_11(s32 arg0)
 {
