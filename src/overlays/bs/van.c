@@ -4,7 +4,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80800064_bsvan.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_808000BC_bsvan.s")
+void func_808000BC_bsvan(u8 *arg0) {
+    s32 bakey_pressed(void *, s32);
+    if (bakey_pressed(arg0, 9) != 0) {
+        _bavan_entrypoint_1(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/bsvan_entrypoint_0.s")
 
