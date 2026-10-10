@@ -19,7 +19,14 @@ void ncbaspline_entrypoint_1()
     func_8080002C_ncbaspline();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/spline/ncbaspline_entrypoint_2.s")
+/* extern */
+
+void ncbaspline_entrypoint_2(s32 arg0) {
+    s32 func_801124D0(s32, s32);
+    s32 func_80111B8C(s32, s32, s32);
+    func_801124D0(arg0, 1);
+    func_80111B8C(arg0, 0x40400000, 0x41000000);
+}
 
 void ncbaspline_entrypoint_3()
 {
