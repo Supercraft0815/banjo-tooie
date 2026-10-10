@@ -30,7 +30,12 @@ OSThread *chmrsicecube_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/func_80800634_chmrsicecube.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/func_8080066C_chmrsicecube.s")
+void func_8080066C_chmrsicecube(u8 *arg0, u8 *arg1)
+{
+  s32 func_800EE7F8(u8 *, s32, u8 *);
+  func_800EE7F8(arg1, arg0 + 4, arg1);
+  *((f32 *) (((s8 *) arg1) + 4)) += (*((f32 *) (((s8 *) arg0) + 0x38))) * 100.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/func_808006C4_chmrsicecube.s")
 
