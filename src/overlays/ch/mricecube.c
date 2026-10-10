@@ -7,7 +7,28 @@ OSThread *chmricecube_entrypoint_0(void)
     return (OSThread *) D_80800928_chmricecube;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mricecube/func_8080000C_chmricecube.s")
+/* extern */
+
+void func_8080000C_chmricecube(u8 *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800DA298(s32);
+    s32 func_800EE7F8(s32, s32);
+    s32 func_800FFAB0(u8 *);
+    s32 func_80102424(u8 *, s32);
+    s32 func_8010A5B0(u8 *, s32);
+    func_800EE7F8(arg0 + 0x18, arg0 + 4);
+    (*(f32 *)((s8 *)(arg0) + (0x2C))) = 0.0f;
+    (*(f32 *)((s8 *)(arg0) + (0x54))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x48)));
+    func_8010A5B0(arg0, func_800DA298(0x1C9));
+    if (_glcutDll_entrypoint_20() != 0) {
+        (*(f32 *)((s8 *)(arg0) + (0x48))) = (f32) ((*(f32 *)((s8 *)(arg0) + (0x48))) - 180.0f);
+        func_80102424(arg0, 6);
+        return;
+    }
+    if (func_800DA298(0x31B) != 0) {
+        func_800FFAB0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mricecube/func_808000AC_chmricecube.s")
 
