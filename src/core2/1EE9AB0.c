@@ -403,4 +403,21 @@ void func_80111E88(f32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111FD4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_801120CC.s")
+/* extern */
+
+void func_801120CC(s32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
+    f32 func_800A3048(s32);
+    s32 func_800F53E4(s32);
+    f32 var_f2;
+    s32 temp_v0;
+
+    temp_v0 = func_800F53E4(func_80110840(arg0));
+    if (temp_v0 != 0) {
+        var_f2 = func_800A3048(temp_v0);
+    } else {
+        var_f2 = 1.0f;
+    }
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x34)))) + (0x7C))) = (f32) (arg1 * var_f2);
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x34)))) + (0x80))) = (f32) (arg2 * var_f2);
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x34)))) + (0x84))) = (f32) (arg3 * var_f2);
+}
