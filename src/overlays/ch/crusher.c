@@ -13,7 +13,12 @@ OSThread *chcrusher_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_808000D4_chcrusher.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_80800394_chcrusher.s")
+void func_80800394_chcrusher(u8 *arg0) {
+    s32 func_800BABB8(s32, s32, s32, s32, s32 *);
+    extern s32 D_80800BF0_chcrusher;
+    func_800BABB8(0, arg0 + 0x28, 0, 0x3F800000, &D_80800BF0_chcrusher);
+    (*(f32 *)((s8 *)(arg0) + (0x24))) = 0.3f;
+}
 
 void func_808003E4_chcrusher(void *arg0) {
     struct CrusherFlags {
