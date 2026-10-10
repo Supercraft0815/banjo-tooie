@@ -6,7 +6,15 @@ void func_80800000_bsbwhirl(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/func_80800008_bsbwhirl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/func_808000D8_bsbwhirl.s")
+void func_808000D8_bsbwhirl(u8 *arg0) {
+    s32 _chlightfader_entrypoint_1(s32, f32, s32);
+    s32 temp_a3;
+
+    temp_a3 = (*(s32 *)((s8 *)(arg0) + (0x160)));
+    if (temp_a3 != 0) {
+        (*(s32 *)((s8 *)(arg0) + (0x160))) = _chlightfader_entrypoint_1(temp_a3, 0.25f, 2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/func_80800114_bsbwhirl.s")
 
