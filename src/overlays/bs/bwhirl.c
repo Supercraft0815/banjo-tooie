@@ -24,7 +24,26 @@ void func_808000D8_bsbwhirl(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/func_808003A8_bsbwhirl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/func_80800430_bsbwhirl.s")
+void func_80800430_bsbwhirl(void *arg0, s32 *arg1)
+{
+  f32 new_var;
+  s32 _chusefeather_entrypoint_1(s32, s32);
+  s32 _suinv_entrypoint_0(s32 *, s32, s32, s32, s32);
+  s32 func_8009DF18(void *, s32, s32, s32);
+  f32 func_800D8FF8();
+  new_var = func_800D8FF8();
+  *((f32 *) (((s8 *) arg0) + 0x16C)) = (f32) ((*((f32 *) (((s8 *) arg0) + 0x16C))) + new_var);
+  if ((*((f32 *) (((s8 *) arg0) + 0x16C))) > 2.0f)
+  {
+    *((f32 *) (((s8 *) arg0) + 0x16C)) = 0.0f;
+    _suinv_entrypoint_0(arg1, 0x1E, -1, 0x47, 1);
+    if ((*arg1) != 0x1E)
+    {
+      func_8009DF18(arg0, 0x3E9, 0x3F4CCCCD, 0x6D60);
+      _chusefeather_entrypoint_1(*((s32 *) (((s8 *) arg0) + 0x184)), 1);
+    }
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_0.s")
 
