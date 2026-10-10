@@ -22,7 +22,14 @@ s32 func_80800000_bsbtrot(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_808000DC_bsbtrot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80800120_bsbtrot.s")
+void func_80800120_bsbtrot(s32 arg0) {
+    s32 _bashoes_entrypoint_6(s32, s32);
+    s32 bakey_pressed(s32, s32);
+    s32 func_8008E39C();
+    if ((bakey_pressed(arg0, 9) != 0) && (func_8008E39C(arg0) != 0)) {
+        _bashoes_entrypoint_6(arg0, 2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80800164_bsbtrot.s")
 
