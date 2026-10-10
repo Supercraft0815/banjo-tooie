@@ -7,7 +7,19 @@ OSThread *chcoderoombits_entrypoint_0(void)
     return (OSThread *) D_80801170_chcoderoombits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_8080000C_chcoderoombits.s")
+void func_8080000C_chcoderoombits(Actor *arg0) {
+    u32* func_80100074(Actor*, u32, u32);
+    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
+    s32 _susubgame_entrypoint_12(u32 *, s32 *);
+    extern s32 D_80801308_chcoderoombits;
+    u32 *sp1C;
+    u32 *temp_v0;
+
+    temp_v0 = func_80100074(arg0, 0U, 0x182U);
+    sp1C = temp_v0;
+    _susubgame_entrypoint_0(arg0, temp_v0, 1);
+    _susubgame_entrypoint_12(sp1C, &D_80801308_chcoderoombits);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_80800058_chcoderoombits.s")
 
