@@ -110,7 +110,16 @@ OSThread *chtntmineshoot_entrypoint_2(void)
 void func_80802140_chtntmineshoot(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80802148_chtntmineshoot.s")
+/* extern */
+
+void func_80802148_chtntmineshoot(void *arg0, s32 arg1) {
+    s32 func_800DF5D8(u8, u8, u8, u8);
+    s32 func_80101870(void *, s32);
+    s32 func_80802320_chtntmineshoot(void *);
+    func_800DF5D8((*(u8 *)((s8 *)(arg0) + (0x98))), (*(u8 *)((s8 *)(arg0) + (0x99))), (*(u8 *)((s8 *)(arg0) + (0x9A))), (*(u8 *)((s8 *)(arg0) + (0x9B))));
+    func_80101870(arg0, arg1);
+    func_80802320_chtntmineshoot(arg0);
+}
 
 /* extern */
 
