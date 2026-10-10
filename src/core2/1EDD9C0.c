@@ -45,4 +45,7 @@ OSThread *func_8010413C(void)
     return (OSThread *) D_80136D10;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDD9C0/func_80104148.s")
+void *func_80104148(s32 arg0) {
+    extern u8 D_80136D88[];
+    return D_80136D88 + arg0 * 20;
+}
