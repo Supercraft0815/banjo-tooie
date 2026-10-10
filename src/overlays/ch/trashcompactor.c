@@ -34,7 +34,16 @@ OSThread *chtrashcompactor_entrypoint_3(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcompactor/func_80800684_chtrashcompactor.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcompactor/func_808007A4_chtrashcompactor.s")
+/* extern */
+
+void func_808007A4_chtrashcompactor(s32 arg0) {
+    s32 _chswitch_entrypoint_7(s32, s32);
+    s32 _chswitch_entrypoint_8(s32, s32);
+    s32 _chswitch_entrypoint_9(s32);
+    _chswitch_entrypoint_7(arg0, 0x9F5);
+    _chswitch_entrypoint_8(arg0, 512);
+    _chswitch_entrypoint_9(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcompactor/func_808007DC_chtrashcompactor.s")
 
