@@ -38,7 +38,22 @@ void func_808009CC_chlakemonster(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80800C88_chlakemonster.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_808013E8_chlakemonster.s")
+void func_808013E8_chlakemonster(s32 *arg0) {
+    s32 func_8008F8B0();
+    s32 func_8008F8D8(s32);
+    s32 func_8008F904(s32 *, s32);
+    s32 func_8008F938(s32);
+    s32 func_8008F964(s32 *);
+    s32 func_8008F9C4(s32 *, s32);
+    extern s32 D_808020D4_chlakemonster;
+    extern s32 func_8010D5DC;
+    func_8008F8B0();
+    func_8008F964(&D_808020D4_chlakemonster);
+    func_8008F8D8(0);
+    func_8008F938(1);
+    func_8008F904(&func_8010D5DC, *arg0);
+    func_8008F9C4(&D_808020D4_chlakemonster, 0x3F400000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80801448_chlakemonster.s")
 
