@@ -50,7 +50,10 @@ void func_800FE870()
     func_800DA544(FLAG2_675_UNK);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FE890.s")
+u32 func_800FE890(void) {
+    extern s8 D_801359CE;
+    return *(u8 *)((u8 *)&D_801359CE + 0);
+}
 
 void func_800FE89C(void) {
     extern s8 D_801359CF;
