@@ -19,7 +19,13 @@ s32 func_8009F300()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009FA20.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009FBB0.s")
+/* extern */
+
+s32 func_8009FBB0(PlayerState *arg0, f32 *arg1, f32 arg2) {
+    f32 func_800964DC(PlayerState *);
+    s32 _fxairbub_entrypoint_1(f32 *, f32, f32, s32);
+    return _fxairbub_entrypoint_1(arg1, arg2, func_800964DC(arg0), 0x3F800000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009FBE8.s")
 
