@@ -1,6 +1,9 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/dead/func_80800000_chbottlesdead.s")
+void func_80800000_chbottlesdead(Actor *arg0) {
+    void func_80102FDC(Actor*, f32);
+    func_80102FDC(arg0, arg0->scale * 0.15f);
+}
 
 void func_80800034_chbottlesdead()
 {
