@@ -19,7 +19,10 @@ void chdoormake_entrypoint_5(Actor *arg0, f32 arg1) {
     (*(s16 *)((s8 *)(func_80100094(arg0, 0U)) + (0xA))) = (s16) (s32) (256.0f * arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/chdoormake_entrypoint_6.s")
+void chdoormake_entrypoint_6(Actor *arg0, f32 arg1) {
+    void* func_80100094(Actor*, u32);
+    (*(s16 *)((s8 *)(func_80100094(arg0, 0U)) + (0xC))) = (s16) (s32) (256.0f * arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/chdoormake_entrypoint_7.s")
 
