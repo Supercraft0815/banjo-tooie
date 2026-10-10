@@ -9,7 +9,10 @@ OSThread *func_80107C20(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80107C2C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108454.s")
+void func_80108454(s32 arg0, s32 *arg1, u32 arg2) {
+    Actor*  func_80108C90(s32, s32*, u32, Prop*);
+    func_80108C90(arg0, arg1, arg2, NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108474.s")
 
