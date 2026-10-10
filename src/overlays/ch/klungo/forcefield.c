@@ -11,7 +11,23 @@ OSThread *chklungoforcefield_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/forcefield/func_808000F0_chklungoforcefield.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/forcefield/func_808001D4_chklungoforcefield.s")
+void func_808001D4_chklungoforcefield(u8 *arg0) {
+    void func_800C8B84(s32);
+    void func_800E8C08(u8 a0);
+    s32 temp_a1;
+    u8 temp_a0;
+
+    temp_a1 = (*(s32 *)((s8 *)(arg0) + (0x18)));
+    if (temp_a1 != 0) {
+        func_800C8B84(temp_a1);
+        (*(s32 *)((s8 *)(arg0) + (0x18))) = 0;
+    }
+    temp_a0 = (*(u8 *)((s8 *)(arg0) + (0x24)));
+    if (temp_a0 != 0) {
+        func_800E8C08(temp_a0);
+        (*(u8 *)((s8 *)(arg0) + (0x24))) = 0U;
+    }
+}
 
 /* extern */
 
