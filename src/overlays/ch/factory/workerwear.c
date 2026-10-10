@@ -23,6 +23,13 @@ void func_80800124_chfactoryworkerwear(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerwear/func_808002E4_chfactoryworkerwear.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerwear/func_80800320_chfactoryworkerwear.s")
+void func_80800320_chfactoryworkerwear(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    f32 func_80101068(void);
+    u8 *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    (*(f32 *)((s8 *)(sp1C) + (0x20))) = func_80101068();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerwear/func_80800350_chfactoryworkerwear.s")
