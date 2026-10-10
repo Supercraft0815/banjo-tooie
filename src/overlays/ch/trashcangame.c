@@ -54,7 +54,24 @@ OSThread *chtrashcangame_entrypoint_0(void)
     return (OSThread *) D_808031B4_chtrashcangame;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80801CF0_chtrashcangame.s")
+/* extern */
+
+void func_80801CF0_chtrashcangame(s32 arg0) {
+    s32 _gcstatusDll_entrypoint_11();
+    s32 _subaddiemulti_entrypoint_3(s32);
+    s32 func_800946C4(s32, s32);
+    s32 func_800F53D0(s32);
+    s32 var_s0;
+
+    _subaddiemulti_entrypoint_3(1);
+    var_s0 = 0;
+    if (_gcstatusDll_entrypoint_11() > 0) {
+        do {
+            func_800946C4(func_800F53D0(var_s0), 1);
+            var_s0 += 1;
+        } while (var_s0 < _gcstatusDll_entrypoint_11());
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80801D54_chtrashcangame.s")
 
