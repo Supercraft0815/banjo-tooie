@@ -8,7 +8,15 @@ void func_80102780(void *arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_8010279C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_801027F4.s")
+f32 *func_801027F4(u8 *arg0) {
+    extern f32 D_80135AA0;
+    if (((u32) (*(u32 *)((s8 *)(arg0) + (0x94))) >> 0x1F) != 0) {
+        func_80102780(arg0, &D_80135AA0);
+        D_80135AA0 = -D_80135AA0;
+        return &D_80135AA0;
+    }
+    return arg0 + 0x44;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102844.s")
 
