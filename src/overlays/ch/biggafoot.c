@@ -43,7 +43,10 @@ void func_808004B0_chbiggafoot(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_80800CDC_chbiggafoot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_80800D38_chbiggafoot.s")
+void func_80800D38_chbiggafoot(Actor *arg0) {
+    void func_80102FDC(Actor*, f32);
+    func_80102FDC(arg0, 1.4f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_80800D5C_chbiggafoot.s")
 
