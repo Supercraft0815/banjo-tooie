@@ -7,7 +7,29 @@ OSThread *chmrsboggy_entrypoint_0(void)
     return (OSThread *) D_80800AD8_chmrsboggy;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggy/func_8080000C_chmrsboggy.s")
+/* extern */
+
+void func_8080000C_chmrsboggy(s32 arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    s32 func_800DA980(s32, s32);
+    s32 func_800FFAB0(s32);
+    s32 func_80102424(s32, s32);
+    s32 func_80105A9C(s32, s32);
+    s32 func_80105BAC(s32);
+    if (func_800DA980(0x8C, 3) == 3) {
+        if (func_800DA298(0x1CD) != 0) {
+            func_800FFAB0(arg0);
+            return;
+        }
+        func_800DA524(0x8B);
+        func_80102424(arg0, 6);
+        goto block_4;
+    }
+block_4:
+    func_80105A9C(arg0, 0x43AF0000);
+    func_80105BAC(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggy/func_80800088_chmrsboggy.s")
 
