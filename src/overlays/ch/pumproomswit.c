@@ -20,7 +20,17 @@ OSThread *chpumproomswitch_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pumproomswit/func_8080016C_chpumproomswitch.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pumproomswit/func_80800194_chpumproomswitch.s")
+/* extern */
+
+void func_80800194_chpumproomswitch(void *arg0) {
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 func_800DA298(s32);
+    s32 func_80101FDC(void *, s32);
+    (*(f32 *)((s8 *)(arg0) + (0x58))) = 0.0f;
+    if ((func_800DA298(0xB2) != 0) || (_glcutDll_entrypoint_19(0x20) != 0)) {
+        func_80101FDC(arg0, 2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pumproomswit/func_808001E4_chpumproomswitch.s")
 
