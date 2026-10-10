@@ -191,7 +191,19 @@ void func_808010B4_bsstatue()
     func_80800130_bsstatue();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_808010D4_bsstatue.s")
+void func_808010D4_bsstatue(register void *arg0) {
+    void baphysics_set_target_horizontal_velocity(void *, f32);
+    s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
+    s32 func_8009FFD8(void *, s32, s32, s32, s32);
+    s32 func_808001FC_bsstatue();
+    s32 yaw_setVelocityBounded(void *, s32, s32);
+
+    func_808001FC_bsstatue(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0x1EE, 0x40D00000);
+    func_8009FFD8(arg0, 1, 3, 1, 2);
+    yaw_setVelocityBounded(arg0, 0x43960000, 0x40600000);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80801144_bsstatue.s")
 
