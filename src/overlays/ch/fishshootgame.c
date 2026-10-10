@@ -53,7 +53,19 @@ OSThread *chfishshootgame_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80801358_chfishshootgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_808013B8_chfishshootgame.s")
+void func_808013B8_chfishshootgame(void *arg0)
+{
+  f32 func_800D8FF8();
+  s32 func_8010B990(void *, s32);
+  f32 temp_f0;
+  *((f32 *) (((s8 *) arg0) + 0x24)) = (f32) ((*((f32 *) (((s8 *) arg0) + 0x58))) * func_800D8FF8());
+  func_8010B990(arg0, 0x100008);
+  temp_f0 = *((f32 *) (((s8 *) arg0) + 0x50));
+  if (temp_f0 < ((*((f32 *) (((s8 *) arg0) + 8))) + 40.0f))
+  {
+    *((f32 *) (((s8 *) arg0) + 8)) = (f32) (temp_f0 - 40.0f);
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80801424_chfishshootgame.s")
 
