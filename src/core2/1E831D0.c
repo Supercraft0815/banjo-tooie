@@ -47,7 +47,12 @@ u32 func_800A9CD0(void) {
     return *(u8 *)((u8 *)&D_80127760 + 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E831D0/func_800A9CDC.s")
+void func_800A9CDC(void) {
+    extern u8 D_80127760;
+    if ((*(u8 *)((s8 *)(&D_80127760) + (2))) == 0) {
+        (*(u8 *)((s8 *)(&D_80127760) + (2))) = 1U;
+    }
+}
 
 void func_800A9D00(void) {
 }
