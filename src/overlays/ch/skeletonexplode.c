@@ -1,6 +1,13 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_80800000_chskeletonexplode.s")
+void func_80800000_chskeletonexplode(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    f32 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 1U);
+    arg0->unk58 = 0.0f;
+    *temp_v0 = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_80800034_chskeletonexplode.s")
 
