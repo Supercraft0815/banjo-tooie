@@ -59,7 +59,21 @@ void func_80801138_chalienkids(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_808014B0_chalienkids.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80801520_chalienkids.s")
+/* extern */
+
+void func_80801520_chalienkids(void *arg0, s32 arg1) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiefade_entrypoint_2();
+    s32 func_80102424(void *, s32);
+    s32 func_8010A3E8(void *, s32);
+    s32 func_808014B0_chalienkids(void *, s32);
+    (*(f32 *)((s8 *)(arg0) + (0x58))) = 2.0f;
+    _subaddiefade_entrypoint_2();
+    _subaddieDll_entrypoint_4(arg0, 1);
+    func_8010A3E8(arg0, 0x3F19999A);
+    func_80102424(arg0, 0xD);
+    func_808014B0_chalienkids(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_8080158C_chalienkids.s")
 
