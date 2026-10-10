@@ -84,7 +84,12 @@ void func_80109F08(void *arg0, s32 arg1) {
     (*(u16 *)((s8 *)(arg0) + (0x66))) = (u16) ((*(u16 *)((s8 *)(arg0) + (0x66))) | arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109F18.s")
+/* extern */
+
+void func_80109F18(s32 arg0, volatile s32 arg1) {
+    s32 func_8010114C(s32, s32, s32);
+    func_8010114C(arg0, 0x3E, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109F40.s")
 
