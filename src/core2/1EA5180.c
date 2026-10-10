@@ -65,7 +65,12 @@ void func_800CBAC8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     _gcboundDll_entrypoint_4(&D_8012AE80, arg0, arg1, arg2, arg3, arg4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CBB18.s")
+/* extern */
+
+void func_800CBB18(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    s32 _gcboundDll_entrypoint_5(s32 *, s32, s32, s32, s32, s32, s32);
+    _gcboundDll_entrypoint_5(&D_8012AE80, arg0, arg1, arg2, arg3, arg4, arg5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CBB70.s")
 
