@@ -35,7 +35,19 @@ void func_808009D0_chkingjinjo(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_80800B28_chkingjinjo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_80800BBC_chkingjinjo.s")
+/* extern */
+
+s32 func_80800BBC_chkingjinjo(void *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_0(s32, s32);
+    s32 func_80800C60_chkingjinjo(void *, s32, s32);
+    if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
+        if (((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF) != 2) {
+            func_80800C60_chkingjinjo(arg0, 2, 1);
+        }
+        return 2;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_80800C18_chkingjinjo.s")
 
