@@ -1,6 +1,8 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800000_bssub.s")
+void func_80800000_bssub(s32 arg0) {
+    func_8009FFD8(arg0, 0x1, 0x3, 0x3, 0xF);
+}
 
 f32 func_80800030_bssub(f32 arg0, f32 arg1) {
     return arg1 * 300.0f;
