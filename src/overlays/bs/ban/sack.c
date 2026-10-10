@@ -33,7 +33,14 @@ void func_808001B0_bsbansack(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800368_bsbansack.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_808003C0_bsbansack.s")
+void func_808003C0_bsbansack(PlayerState *arg0) {
+    void baphysics_set_gravity(PlayerState *arg0, f32 arg1);
+    void baphysics_set_terminal_velocity(PlayerState *arg0, f32 arg1);
+    void func_800961AC(PlayerState *, s32);
+    baphysics_set_gravity(arg0, 100.0f);
+    baphysics_set_terminal_velocity(arg0, 133.33f);
+    func_800961AC(arg0, 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800400_bsbansack.s")
 
