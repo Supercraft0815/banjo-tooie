@@ -16,7 +16,16 @@ OSThread *chweldarboss_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80800018_chweldarboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_808002BC_chweldarboss.s")
+void func_808002BC_chweldarboss(Actor *arg0) {
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    void *func_80100094(Actor *, u32);
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    (*(u8 *)((s8 *)(temp_v0) + (0xB0))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(temp_v0) + (0xB0))));
+    (*(u8 *)((s8 *)(temp_v0) + (0xB1))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(temp_v0) + (0xB1))));
+    (*(u8 *)((s8 *)(temp_v0) + (0xB2))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(temp_v0) + (0xB2))));
+}
 
 void func_8080030C_chweldarboss(Actor *arg0)
 {
