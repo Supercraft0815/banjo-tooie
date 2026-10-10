@@ -35,7 +35,20 @@ void ncpoddialog_entrypoint_0(s16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/ncpoddialog_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_808012A0_ncpoddialog.s")
+/* extern */
+
+void func_808012A0_ncpoddialog(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _plcamera_entrypoint_14(s32, s32, s32);
+    s32 func_800F5EF8(s32);
+    s32 func_800F690C();
+    s32 func_800F693C(s32);
+    s32 func_8010FFB0(s32, s32, s32);
+    if ((func_800F690C() != 0) || (func_800F693C(arg0) != 0)) {
+        _plcamera_entrypoint_14(arg0, arg1, arg2);
+        return;
+    }
+    func_8010FFB0(func_800F5EF8(arg0), arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80801310_ncpoddialog.s")
 
