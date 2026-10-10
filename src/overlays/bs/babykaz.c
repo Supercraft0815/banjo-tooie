@@ -93,7 +93,25 @@ void func_80800D40_bsbabykaz(s32 arg0)
     bsbabykaz_entrypoint_4();
     _bsrest_entrypoint_16(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80800D68_bsbabykaz.s")
+/* extern */
+
+void func_80800D68_bsbabykaz(s32 arg0) {
+    s32 _bababykaz_entrypoint_3(s32);
+    s32 _bsrest_entrypoint_20();
+    s32 bs_setState(s32, s32);
+    s32 bsbabykaz_entrypoint_5(s32);
+    s32 sp1C;
+
+    sp1C = 0;
+    if (_bsrest_entrypoint_20() != 0) {
+        sp1C = 0x136;
+    }
+    bsbabykaz_entrypoint_5(arg0);
+    if (_bababykaz_entrypoint_3(arg0) != 0) {
+        sp1C = 0x94;
+    }
+    bs_setState(arg0, sp1C);
+}
 
 s32 bsbabykaz_entrypoint_9(s32 arg0) {
     extern s32 D_80801770_bsbabykaz[];
