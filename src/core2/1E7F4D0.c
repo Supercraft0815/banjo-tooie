@@ -14,7 +14,28 @@ void func_800A5C04(void) {
     D_80127110 = heap_alloc(0x2C0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F4D0/func_800A5C28.s")
+/* extern */
+
+void func_800A5C28(void) {
+    s32 _chbaddieDll_entrypoint_1(s32 *);
+    s32 _cosectionstor_entrypoint_4(s32);
+    s32 _gccollectDll_entrypoint_4();
+    s32 _subaddietaxi_entrypoint_4();
+    s32 func_8001E204();
+    s32 func_800BDCDC();
+    s32 func_800EA05C();
+    s32 func_800FFB74();
+    s32 func_80108C14();
+    _gccollectDll_entrypoint_4();
+    _chbaddieDll_entrypoint_1(&D_80127110);
+    _subaddietaxi_entrypoint_4();
+    _cosectionstor_entrypoint_4(func_800EA05C());
+    func_80108C14();
+    func_800FFB74();
+    if (func_8001E204() == 0) {
+        func_800BDCDC();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F4D0/func_800A5C94.s")
 
