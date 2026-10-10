@@ -1,6 +1,19 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/healspell/func_80800000_chmumbohealspell.s")
+/* extern */
+
+void func_80800000_chmumbohealspell(s32 *arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+    s32 func_800FFA88(s32);
+    s32 func_80103110(s32 *, s32);
+    if ((func_800DA298(0x15E) != 0) && (func_800EA05C() == 0x155)) {
+        func_800FFA88(*arg0);
+    } else if (func_800DA298(0x189) == 0) {
+        func_800FFA88(*arg0);
+    }
+    func_80103110(arg0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/healspell/func_80800074_chmumbohealspell.s")
 
