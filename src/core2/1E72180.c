@@ -41,4 +41,21 @@ void func_8009919C(void *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72180/func_800991B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72180/func_80099544.s")
+/* extern */
+
+void func_80099544(void *arg0) {
+    s32 baanim_defrag();
+    s32 bakey_defrag(void *);
+    s32 func_800934C4(void *);
+    s32 func_80096728(void *);
+    s32 func_800A266C(void *);
+    s32 func_800A300C(void *);
+    if ((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xB8)))) + (8))) != 0) {
+        baanim_defrag();
+        func_800934C4(arg0);
+        func_80096728(arg0);
+        func_800A300C(arg0);
+        bakey_defrag(arg0);
+        func_800A266C(arg0);
+    }
+}
