@@ -89,7 +89,21 @@ void chlakemonster_entrypoint_1(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/chlakemonster_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/chlakemonster_entrypoint_3.s")
+void chlakemonster_entrypoint_3(void *arg0, void *arg1, s32 arg2, s32 arg3) {
+    s32 func_800B53A4(s32);
+    s32 func_800BA1D0(s32, void *, void *, s32);
+    s32 func_800BABB8(s32, void *, s32, s32, s32 *);
+    extern s32 D_8080229C_chlakemonster;
+    s32 sp24;
+    s32 temp_v0;
+
+    temp_v0 = func_800B53A4(3);
+    sp24 = temp_v0;
+    (*(f32 *)((s8 *)(arg1) + (4))) = (f32) ((*(f32 *)((s8 *)(arg1) + (4))) + 200.0f);
+    (*(f32 *)((s8 *)(arg0) + (4))) = (f32) ((*(f32 *)((s8 *)(arg0) + (4))) + 200.0f);
+    func_800BABB8(temp_v0, arg1, 0, 0x3F800000, &D_8080229C_chlakemonster);
+    func_800BA1D0(sp24, arg0, arg1, 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80801A60_chlakemonster.s")
 
