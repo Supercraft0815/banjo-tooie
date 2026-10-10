@@ -139,7 +139,10 @@ void func_8080193C_bsbfly(s32 arg0) {
     func_800A0CF4(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80801980_bsbfly.s")
+void func_80801980_bsbfly(s32 arg0) {
+    s32 _bafly_entrypoint_14(s32, s32, s32);
+    _bafly_entrypoint_14(arg0, 0x24, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_808019A4_bsbfly.s")
 
