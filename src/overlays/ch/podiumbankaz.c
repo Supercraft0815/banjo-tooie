@@ -22,7 +22,12 @@ void func_80800000_chpodiumbankaz(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/podiumbankaz/func_80800318_chpodiumbankaz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/podiumbankaz/func_808003C4_chpodiumbankaz.s")
+void func_808003C4_chpodiumbankaz(s32 arg0, s32 arg1) {
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    if (arg1 == 0x1C) {
+        _subaddiefade_entrypoint_1(arg0, 0xFF);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/podiumbankaz/func_808003EC_chpodiumbankaz.s")
 
