@@ -24,7 +24,20 @@ s32 bsbeefly_entrypoint_0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_80800480_bsbeefly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_808005B0_bsbeefly.s")
+/* extern */
+
+void func_808005B0_bsbeefly(s32 arg0) {
+    s32 _baboost_entrypoint_2(s32, s32);
+    s32 func_80099B94(s32);
+    s32 func_8009E6EC();
+    s32 func_8009E830(s32, s32);
+    if (func_8009E6EC() == 0x18) {
+        _baboost_entrypoint_2(arg0, 0x3F800000);
+        func_8009E830(arg0, 2);
+        return;
+    }
+    func_80099B94(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_80800600_bsbeefly.s")
 
