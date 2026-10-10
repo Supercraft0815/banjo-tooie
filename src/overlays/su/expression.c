@@ -44,7 +44,17 @@ void suexpression_entrypoint_9(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_11.s")
+/* extern */
+
+void suexpression_entrypoint_11(u8 *arg0) {
+    s32 _suexpressmorph_entrypoint_2(void *);
+    s16 temp_v0;
+
+    temp_v0 = (*(s16 *)((s8 *)(arg0) + (2)));
+    if (temp_v0 != 0) {
+        _suexpressmorph_entrypoint_2((void *)((s8 *)arg0 + temp_v0));
+    }
+}
 
 void suexpression_entrypoint_12(void *arg0, f32 arg1, f32 arg2) {
     (*(s16 *)((s8 *)(arg0) + (6))) = (s16) (s32) arg1;
