@@ -27,7 +27,11 @@ void func_808004B0_chbiggafoot(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_80800840_chbiggafoot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_808008D4_chbiggafoot.s")
+void func_808008D4_chbiggafoot(s32 arg0) {
+    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    extern s32 D_80801198_chbiggafoot;
+    _subaddiedialog_entrypoint_7(arg0, arg0 + 4, &D_80801198_chbiggafoot);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_808008FC_chbiggafoot.s")
 
