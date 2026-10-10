@@ -121,7 +121,12 @@ s32 func_80801544_chquiz(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801600_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808016F8_chquiz.s")
+s32 func_808016F8_chquiz(void *arg0, s32 arg1, f32 arg2) {
+    (*(s8 *)((s8 *)(arg0) + (0x90))) = (s8) arg1;
+    (*(f32 *)((s8 *)(arg0) + (0x8C))) = arg2;
+    (*(f32 *)((s8 *)(arg0) + (0x88))) = arg2;
+    (*(f32 *)((s8 *)(arg0) + (0x84))) = arg2;
+}
 
 void func_80801710_chquiz(void *arg0) {
     (*(s8 *)((s8 *)(arg0) + (0x90))) = 1;
