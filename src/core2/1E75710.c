@@ -22,7 +22,10 @@ void func_8009BF5C(PlayerState *arg0, f32 arg1) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xDC)))) + (4))) = func_800136E4(arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75710/func_8009BF8C.s")
+void func_8009BF8C(u8 *arg0, f32 arg1) {
+    f32 func_800136E4(f32);
+    *(*(f32 **)((s8 *)(arg0) + (0xDC))) = func_800136E4(arg1);
+}
 
 void func_8009BFBC(void *arg0) {
     void *temp_v0;
