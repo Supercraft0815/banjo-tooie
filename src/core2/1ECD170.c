@@ -77,7 +77,12 @@ void func_800F452C(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F457C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F45B0.s")
+s32 func_800F45B0(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_8009CCFC(s32, s32);
+    s32 func_8009CD70(s32, s32);
+    func_8009CCFC(arg0, arg1);
+    func_8009CD70(arg0, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F45E0.s")
 
