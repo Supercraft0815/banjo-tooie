@@ -506,4 +506,24 @@ void func_80801F44_chdinoboss(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_808026D0_chdinoboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80802864_chdinoboss.s")
+void func_80802864_chdinoboss(s32 arg0, s32 arg1) {
+    s32 _chappearfx_entrypoint_1(s32, s32, s32, s32);
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 func_800FFAB0(s32);
+    s32 func_80102FDC(s32, s32);
+    s32 func_80108528(s32, s32 *, s32, s32 *);
+    extern s32 D_80802CA8_chdinoboss;
+    s32 sp1C;
+    s32 temp_v0;
+
+    if (arg1 == 0) {
+        temp_v0 = func_80108528(0x234, &D_80802CA8_chdinoboss, 0x5A, &arg0);
+        sp1C = temp_v0;
+        func_80102FDC(temp_v0, 0x3F4CCCCD);
+        if (_glcutDll_entrypoint_19(0x33) != 0) {
+            _chappearfx_entrypoint_1(sp1C, 0x22, 2, 0x3F800000);
+            return;
+        }
+        func_800FFAB0(arg0);
+    }
+}
