@@ -94,7 +94,19 @@ void func_808010CC_chstonepillar(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_8080112C_chstonepillar.s")
+/* extern */
+
+s32 func_8080112C_chstonepillar(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    s32 func_800DA564(s32, s32);
+    u8 *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    if (func_800DA564(0x9CD, 3) == (*(s16 *)((s8 *)(sp1C) + (0x2C)))) {
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
