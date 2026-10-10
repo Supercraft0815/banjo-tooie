@@ -53,7 +53,19 @@ void func_800C883C(s32 arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8898.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8900.s")
+void func_800C8900(s32 arg0, u8 *arg1) {
+    void func_800EFA88(void *arg0, s32 arg1, s32 arg2, s32 arg3);
+    void func_800F2EE0(void *arg0, void *arg1);
+    void *vector_at(s32, s32, s32);
+    u8 *temp_v0;
+
+    temp_v0 = vector_at(D_8012AB00, arg0 - 1, arg0);
+    if ((*(u8 *)((s8 *)(temp_v0) + (0x17))) == 0) {
+        func_800EFA88(arg1, 0, 0, 0);
+        return;
+    }
+    func_800F2EE0(arg1, temp_v0 + 0xA);
+}
 
 void func_800C8960(s32 *arg0, f32 *arg1) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
