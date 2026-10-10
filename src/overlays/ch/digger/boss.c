@@ -80,7 +80,14 @@ s32 func_80802288_chdiggerboss(void *arg0) {
     return (*(u16 *)((s8 *)(arg0) + (0x64))) & 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80802298_chdiggerboss.s")
+void func_80802298_chdiggerboss(u8 *arg0, u8 *arg1)
+{
+  s32 func_800EE7F8(u8 *, s32);
+  s32 func_800EF1B8(u8 *, s32, f32);
+  func_800EE7F8(arg1, arg0 + 4);
+  func_800EF1B8(arg1, *((s32 *) (((s8 *) arg0) + 0x48)), (*((f32 *) (((s8 *) arg0) + 0x38))) * 600.0f);
+  *((f32 *) (((s8 *) arg1) + 4)) = (f32) (((*((f32 *) (((s8 *) arg0) + 0x38))) * 2500.0f) + (*((f32 *) (((s8 *) arg1) + 4))));
+}
 
 /* extern */
 
