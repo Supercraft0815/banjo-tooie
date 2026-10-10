@@ -166,7 +166,22 @@ s32 func_80801408_chquiz(Actor *arg0, void *arg1, s32 arg2, s32 arg3) {
     return temp_v0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801470_chquiz.s")
+/* extern */
+
+void func_80801470_chquiz(s32 arg0, u8 *arg1) {
+    s32 _ncpod_entrypoint_12(s32, s32);
+    s32 func_800A89F8();
+    s32 func_800A9478(s32);
+    s32 func_800F54E4();
+    s32 func_800F5EF8(s32);
+    s32 func_8010FFB0(s32, u8 *, u8 *);
+    s32 func_80110024(s32);
+    if ((*(u8 *)((s8 *)(arg1) + (0x5C))) == 4) {
+        func_8010FFB0(func_800F5EF8(func_800F54E4()), arg1 + 0x38, arg1 + 0x44);
+        (*(u8 *)((s8 *)(arg1) + (0x5C))) = 3U;
+        _ncpod_entrypoint_12(func_80110024(func_800F5EF8(func_800A9478(func_800A89F8()))), 0);
+    }
+}
 
 s32 func_808014F8_chquiz(s32 arg0, s32 arg1) {
     s32 func_800A89F8();
