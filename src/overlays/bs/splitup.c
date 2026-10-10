@@ -2,7 +2,24 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/bssplitup_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/bssplitup_entrypoint_1.s")
+/* extern */
+
+void bssplitup_entrypoint_1(void *arg0) {
+    s32 baanim_isStopped();
+    s32 bs_setState(void *, s32);
+    s32 func_800F457C(void *, s32);
+    s32 func_800F54E4();
+    s32 sp1C;
+
+    sp1C = 0;
+    if (baanim_isStopped() != 0) {
+        sp1C = 1;
+        if (func_800F54E4() != (*(s32 *)((s8 *)(arg0) + (0x184)))) {
+            func_800F457C(arg0, 2);
+        }
+    }
+    bs_setState(arg0, sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/bssplitup_entrypoint_2.s")
 
