@@ -39,7 +39,12 @@ void func_8010FD88()
     func_8010FD08();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FDA8.s")
+void func_8010FDA8(u8 *arg0, f32 *arg1, f32 *arg2) {
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    (*(s8 *)((s8 *)(arg0) + (0x20))) = 0x28;
+    func_800EE7F8(arg0 + 0x24, arg1);
+    func_800EE7F8(arg0 + 0x30, arg2);
+}
 
 void func_8010FDEC(void *arg0, f32 arg1) {
     (*(s8 *)((s8 *)(arg0) + (0x20))) = 0x29;
