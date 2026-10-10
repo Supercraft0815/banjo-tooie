@@ -89,7 +89,9 @@ void func_80015410()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_8001546C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_8001559C.s")
+void func_8001559C(s32 arg0) {
+    osViBlack((u8) arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_800155BC.s")
 
