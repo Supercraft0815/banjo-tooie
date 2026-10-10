@@ -427,7 +427,22 @@ void func_80800220_chdinoboss(Actor* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80801ECC_chdinoboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80801F44_chdinoboss.s")
+/* extern */
+
+void func_80801F44_chdinoboss(s32 arg0) {
+    s32 func_800F5EF8(s32);
+    s32 func_800F6438(s32);
+    s32 func_8010F9C0(s32, s32);
+    s32 var_s0;
+
+    var_s0 = 0;
+    do {
+        if (func_800F6438(var_s0) != 0) {
+            func_8010F9C0(func_800F5EF8(var_s0), arg0);
+        }
+        var_s0 += 1;
+    } while (var_s0 != 8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80801FAC_chdinoboss.s")
 
