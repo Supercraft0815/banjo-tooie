@@ -16,7 +16,13 @@ s32 bstimeout_entrypoint_3(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/timeout/bstimeout_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/timeout/bstimeout_entrypoint_5.s")
+void bstimeout_entrypoint_5(u8 *arg0) {
+    s32 _batimer_decrement(void *, s32);
+    s32 func_800A05DC();
+    if (_batimer_decrement(arg0, 0) != 0) {
+        func_800A05DC(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/timeout/bstimeout_entrypoint_6.s")
 
