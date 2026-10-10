@@ -39,7 +39,21 @@ void func_80800C54_gcmapsects(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_5.s")
+/* extern */
+
+u32 gcmapsects_entrypoint_5(s32 arg0) {
+    void *func_800BF704();
+    void *temp_v0;
+
+    if (arg0 == -1) {
+        return 1U;
+    }
+    temp_v0 = func_800BF704();
+    if ((*(u8 *)((s8 *)(temp_v0) + (0x77))) == 0) {
+        return 1U;
+    }
+    return (u32) ((*(s32 *)((s8 *)(((*(s32 *)((s8 *)(temp_v0) + (0x68))) + (arg0 * 0x58))) + (0x4C))) * 2) >> 0x1F;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/func_80800DC8_gcmapsects.s")
 
