@@ -25,7 +25,17 @@ void* chmole_maya_entrypoint_0()
 	return &D_80800210_chmole_maya;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_maya/func_808000C0_chmole_maya.s")
+/* extern */
+
+void func_808000C0_chmole_maya(Actor *arg0) {
+    s32 func_8008FA2C(s32, s32);
+    if ((func_8010C500(arg0) != 0) && (func_8008FA2C(-1, 0) != 0)) {
+        (*(u8 *)((s8 *)(arg0) + (0x7E))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x7E))) & 0xFFBF);
+        func_800DA544(FLAG_506_FTT_CS_JAMJARS);
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0xDBFU, 0xCU, arg0->position, 0x6FU);
+        _capod_entrypoint_13(arg0->unk0, NULL, 0xBU, 0x20U);
+    }
+}
 
 void func_80800144_chmole_maya(s32 arg0) 
 {
