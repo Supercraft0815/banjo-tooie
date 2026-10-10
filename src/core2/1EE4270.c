@@ -14,7 +14,11 @@ void func_8010AA78(s32 *arg0) {
     func_800EE7F8(arg0, &D_80136F20);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010AA9C.s")
+void func_8010AA9C(s32 *arg0) {
+    s32 func_800EE7F8();
+    extern s32 D_80136F40;
+    func_800EE7F8(arg0, &D_80136F40);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010AAC0.s")
 
