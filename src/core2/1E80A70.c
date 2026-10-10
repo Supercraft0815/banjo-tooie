@@ -111,7 +111,15 @@ void func_800A7A90(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A7AD4.s")
+void func_800A7AD4(s32 arg0, s32 arg1) {
+    s32 func_800C9510();
+    void func_800C964C(s32 arg0);
+    (*(s8 *)((s8 *)(&D_80127630) + (0x14))) = (s8) arg0;
+    (*(s8 *)((s8 *)(&D_80127630) + (0x17))) = (s8) arg1;
+    if ((arg0 != 0) && (func_800C9510() == 0)) {
+        func_800C964C(arg1);
+    }
+}
 
 //Set Warp Bit To On
 void func_800A7B18(u32 warpVal)
