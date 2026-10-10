@@ -6,7 +6,15 @@ void func_80800000_bsbbilldrill(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/func_80800008_bsbbilldrill.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/func_808000C0_bsbbilldrill.s")
+void func_808000C0_bsbbilldrill(u8 *arg0) {
+    s32 _chlightfader_entrypoint_1(s32, f32, s32);
+    s32 temp_a3;
+
+    temp_a3 = (*(s32 *)((s8 *)(arg0) + (0x168)));
+    if (temp_a3 != 0) {
+        (*(s32 *)((s8 *)(arg0) + (0x168))) = _chlightfader_entrypoint_1(temp_a3, 0.6f, 2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/func_80800100_bsbbilldrill.s")
 
