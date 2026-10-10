@@ -2,7 +2,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800000_chflysaucer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_8080003C_chflysaucer.s")
+/* extern */
+
+void func_8080003C_chflysaucer(Actor *arg0, s32 arg1) {
+    void* func_80100094(Actor*, u32);
+    s32 func_800DA7A8(s32, s32, s32);
+    u8 *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    func_800DA7A8(0xA34, arg1, 3);
+    (*(s8 *)((s8 *)(sp1C) + (0x26))) = (s8) arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800080_chflysaucer.s")
 
