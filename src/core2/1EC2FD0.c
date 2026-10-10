@@ -102,7 +102,11 @@ u8 func_800E9DD4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9E4C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9E88.s")
+void func_800E9E88(s32 arg0) {
+    extern s32 D_80132DB4;
+    s32 func_800B42A0(s32, s32);
+    func_800B42A0(D_80132DB4, arg0 + 4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9EB4.s")
 
