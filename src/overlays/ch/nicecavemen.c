@@ -58,7 +58,19 @@ void func_808003B8_chnicecavemen(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_8080134C_chnicecavemen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_808013D0_chnicecavemen.s")
+/* extern */
+
+s32 func_808013D0_chnicecavemen(void *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_0(s32, s32);
+    s32 func_80801464_chnicecavemen(void *, s32, s32);
+    if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
+        if ((*(s32 *)((s8 *)(arg0) + (0x18))) != 2) {
+            func_80801464_chnicecavemen(arg0, 2, 1);
+        }
+        return 2;
+    }
+    return 1;
+}
 
 /* extern */
 
