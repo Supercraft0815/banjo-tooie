@@ -207,7 +207,26 @@ s32 func_8011114C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_801111D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_801112B0.s")
+/* extern */
+
+f32 func_801112B0(void *arg0) {
+    s32 func_80092BC4(s32);
+    f32 func_80092BD0(s32);
+    s32 func_800F53D0(s32);
+    f32 func_800F5F24(s32);
+    s32 sp1C;
+    f32 var_f2;
+    s32 temp_v0;
+
+    temp_v0 = func_800F53D0((*(s32 *)((s8 *)(arg0) + (0x68))));
+    sp1C = temp_v0;
+    if (func_80092BC4(temp_v0) != 0) {
+        var_f2 = func_80092BD0(sp1C) - 180.0f;
+    } else {
+        var_f2 = func_800F5F24((*(s32 *)((s8 *)(arg0) + (0x68))));
+    }
+    return var_f2;
+}
 
 /* extern */
 
