@@ -2,7 +2,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/gcboundDll_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/gcboundDll_entrypoint_1.s")
+/* extern */
+
+void gcboundDll_entrypoint_1(void *arg0) {
+    s32 func_800B42FC(s32, s32);
+    s32 heap_alloc(s32);
+    (*(s32 *)((s8 *)(arg0) + (4))) = heap_alloc(0);
+    (*(s32 *)((s8 *)(arg0) + (0xC))) = heap_alloc(0);
+    (*(s32 *)((s8 *)(arg0) + (0x14))) = heap_alloc(0);
+    (*(s32 *)((s8 *)(arg0) + (0xE0))) = func_800B42FC(0x18, 0xA);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_808000AC_gcboundDll.s")
 
