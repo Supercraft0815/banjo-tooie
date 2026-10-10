@@ -42,7 +42,12 @@ OSThread *chterryegg_entrypoint_3(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80800A2C_chterryegg.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80800BD0_chterryegg.s")
+void func_80800BD0_chterryegg(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80102424(Actor*, s32);
+    if ((arg1 != 0x17E1) && (arg1 == 0x17FE)) {
+        func_80102424(arg0, 6);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80800C08_chterryegg.s")
 
