@@ -2,7 +2,14 @@
 
 extern u32 D_80800190_chminegrilldoor;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/grilldoor/func_80800000_chminegrilldoor.s")
+void func_80800000_chminegrilldoor(Actor *arg0) {
+    s32 _chdoormake_entrypoint_3(Actor*, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_8(void*, u32);
+    (*(u16 *)((s8 *)(arg0) + (0x6E))) = (u16) ((*(u16 *)((s8 *)(arg0) + (0x6E))) & 0xFE00);
+    if (_chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, arg0->scale * 220.0f, 4, 0x43B) != 0) {
+        _chdoormake_entrypoint_8(arg0, 2U);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/grilldoor/func_80800068_chminegrilldoor.s")
 
