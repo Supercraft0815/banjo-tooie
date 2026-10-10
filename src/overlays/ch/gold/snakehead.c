@@ -27,7 +27,30 @@ OSThread *chgoldsnakehead_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/snakehead/func_808002B4_chgoldsnakehead.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/snakehead/func_80800324_chgoldsnakehead.s")
+/* extern */
+
+void func_80800324_chgoldsnakehead(s32 arg0, s32 arg1) {
+    s32 func_800DA564(s32, s32);
+    s32 func_800DA7A8(s32, s32, s32);
+    s32 func_80101180(s32, s32, s32);
+    s32 func_80101FDC(s32, s32);
+    s32 func_80102FE8(s32, s32);
+    s32 func_80103110(s32, s32);
+    s32 func_8010A570();
+    s32 sp1C;
+    s32 temp_a1;
+
+    func_8010A570();
+    func_80101FDC(arg0, 2);
+    func_80102FE8(arg0, 0);
+    func_80103110(arg0, 1);
+    temp_a1 = func_800DA564(6, 3) + 1;
+    sp1C = temp_a1;
+    func_800DA7A8(6, temp_a1, 3);
+    if (sp1C == 6) {
+        func_80101180(0x10E, 7, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/snakehead/func_808003A8_chgoldsnakehead.s")
 
