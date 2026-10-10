@@ -8,7 +8,27 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhut/chpowerhut_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhut/func_80800400_chpowerhut.s")
+/* extern */
+
+void func_80800400_chpowerhut(s32 arg0) {
+    s16 _chmumbopad_entrypoint_0(s32);
+    s32 _sumumbofx_entrypoint_0(s32, s32, s32, s16);
+    s32 _sumumbofx_entrypoint_15(s32, s32);
+    s32 _sumumbofx_entrypoint_2(s32);
+    s32 _sumumbofx_entrypoint_20(s32, s32);
+    s32 _sumumbofx_entrypoint_24(s32, s32);
+    s32 func_80100094(s32, s32);
+    s32 sp1C;
+    s32 temp_v0;
+
+    _sumumbofx_entrypoint_0(arg0, 1, 0x14, _chmumbopad_entrypoint_0(3));
+    temp_v0 = func_80100094(arg0, 1);
+    sp1C = temp_v0;
+    _sumumbofx_entrypoint_2(temp_v0);
+    _sumumbofx_entrypoint_24(sp1C, 0x40100000);
+    _sumumbofx_entrypoint_15(sp1C, 0x40400000);
+    _sumumbofx_entrypoint_20(sp1C, 0x40400000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhut/func_8080047C_chpowerhut.s")
 
