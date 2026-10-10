@@ -35,7 +35,18 @@ void func_800C01A8(s16 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0438.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C04C8.s")
+s32 func_800C04C8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 _gcdialogexec_entrypoint_3(s32 *, s32, s32, s32, s32, s32);
+    extern u8 D_80128A30;
+    s32 var_v1;
+
+    if (D_80128A30 != 0) {
+        var_v1 = _gcdialogexec_entrypoint_3(&D_801288B0, arg0, arg1, arg2, arg3, arg4);
+    } else {
+        var_v1 = 0;
+    }
+    return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0534.s")
 
