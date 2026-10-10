@@ -108,7 +108,15 @@ OSThread *chtrashcangame_entrypoint_3(void)
     return (OSThread *) D_808033E8_chtrashcangame;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80802CC0_chtrashcangame.s")
+void func_80802CC0_chtrashcangame(Actor *arg0) {
+    s32 _chdoormake_entrypoint_3(Actor*, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor*, f32);
+    void _chdoormake_entrypoint_8(void*, u32);
+    f32 func_80103EF4(Actor*);
+    _chdoormake_entrypoint_3(arg0, arg0->rotation[1], 90.0f, func_80103EF4(arg0), 0x802, 0);
+    _chdoormake_entrypoint_8(arg0, 2U);
+    _chdoormake_entrypoint_5(arg0, 2.0f);
+}
 
 OSThread *chtrashcangame_entrypoint_4(void)
 {
