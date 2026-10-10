@@ -290,7 +290,22 @@ void func_80093504(void *arg0) {
     func_800F23D0((*(s32 *)((s8 *)(arg0) + (0x50))) + 0xCC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093528.s")
+/* extern */
+
+void func_80093528(void *arg0) {
+    s32 func_800DBEB0(s32, void *);
+    u8 temp_v1;
+    void *temp_v0;
+
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x1A))) = 0;
+    func_800DBEB0((*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (4))), arg0);
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x16))) = 0;
+    (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0xA5))) = 0U;
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x50)));
+    temp_v1 = (*(u8 *)((s8 *)(temp_v0) + (0xA5)));
+    (*(u8 *)((s8 *)(temp_v0) + (0xA1))) = temp_v1;
+    (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x10))) = temp_v1;
+}
 
 void func_80093584(void *arg0) {
     void *temp_v0;
