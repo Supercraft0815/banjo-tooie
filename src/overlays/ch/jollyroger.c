@@ -47,7 +47,19 @@ void func_80800DB8_chjollyroger(Actor* arg0)
 {
     _suexpression_entrypoint_8(arg0, 1);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800DD8_chjollyroger.s")
+/* extern */
+
+s32 func_80800DD8_chjollyroger(void *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_0(s32, s32);
+    s32 func_80800E6C_chjollyroger(void *, s32, s32);
+    if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
+        if ((*(s32 *)((s8 *)(arg0) + (0x28))) != 2) {
+            func_80800E6C_chjollyroger(arg0, 2, 1);
+        }
+        return 2;
+    }
+    return 1;
+}
 
 /* extern */
 
