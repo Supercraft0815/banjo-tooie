@@ -4,7 +4,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/drawbridgeswites/func_80800030_chdrawbridgeswitches.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/drawbridgeswites/func_808000D0_chdrawbridgeswitches.s")
+void func_808000D0_chdrawbridgeswitches(s32 arg0) {
+    s32 func_80800000_chdrawbridgeswitches(s32, s32, s32);
+    func_80800000_chdrawbridgeswitches(arg0, 0xA20, 512);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/drawbridgeswites/func_808000F4_chdrawbridgeswitches.s")
 
