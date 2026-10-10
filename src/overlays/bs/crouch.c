@@ -1,6 +1,10 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/crouch/func_80800000_bscrouch.s")
+void func_80800000_bscrouch(s32 arg0) {
+    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    baanim_playForDuration_loopSmooth(arg0, 0x10C, 0x3F000000);
+    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 4;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/crouch/func_80800034_bscrouch.s")
 
