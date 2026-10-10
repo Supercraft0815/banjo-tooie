@@ -227,7 +227,10 @@ void func_80803610_chdiggerboss(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80803660_chdiggerboss.s")
+s32 func_80803660_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    return _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, arg0->position, 0x22);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80803694_chdiggerboss.s")
 
