@@ -25,7 +25,15 @@ OSThread *chfishshootgame_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80800A28_chfishshootgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80800A90_chfishshootgame.s")
+void func_80800A90_chfishshootgame(Actor *arg0, f32 *arg1) {
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    void* func_80100094(Actor*, u32);
+    u8 *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    func_800EE7F8(arg1, arg0->position);
+    arg1[1] += (*(f32 *)((s8 *)(sp1C) + (0x24))) + 60.0f;
+}
 
 /* extern */
 
