@@ -21,7 +21,21 @@ OSThread *chamazongoldhordeofficial_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800C18_chamazongoldhordeofficial.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800C60_chamazongoldhordeofficial.s")
+s32 func_80800C60_chamazongoldhordeofficial(s32 arg0) {
+    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    s32 func_800DA298(s32);
+    s32 func_800F54E4();
+    s32 func_800F56AC(s32);
+    extern s32 D_80801324_chamazongoldhordeofficial;
+    extern s32 D_80801340_chamazongoldhordeofficial;
+    if (func_800F56AC(func_800F54E4()) == 0x12) {
+        return 0;
+    }
+    if (func_800DA298(0x5A) != 0) {
+        return _subaddiedialog_entrypoint_7(arg0, arg0 + 4, &D_80801340_chamazongoldhordeofficial);
+    }
+    return _subaddiedialog_entrypoint_7(arg0, arg0 + 4, &D_80801324_chamazongoldhordeofficial);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800CD8_chamazongoldhordeofficial.s")
 
