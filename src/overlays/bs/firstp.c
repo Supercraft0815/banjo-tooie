@@ -419,7 +419,18 @@ s32 bsfirstp_entrypoint_11(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803A84_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803B04_bsfirstp.s")
+/* extern */
+
+void func_80803B04_bsfirstp(s32 arg0) {
+    s32 func_8009E4E0(s32, s32, s32);
+    s32 var_s0;
+
+    var_s0 = 0;
+    do {
+        func_8009E4E0(arg0, var_s0, 0);
+        var_s0 += 1;
+    } while (var_s0 != 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803B58_bsfirstp.s")
 
