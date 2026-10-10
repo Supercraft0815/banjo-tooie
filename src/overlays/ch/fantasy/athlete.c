@@ -1,4 +1,9 @@
 #include "common.h"
+#include "core2/1E9A960.h"
+#include "core2/1EB5980.h"
+#include "core2/1EDB4D0.h"
+
+extern u16 D_80803034_chfantasyathlete[][4];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80800000_chfantasyathlete.s")
 
@@ -20,7 +25,81 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_808018B8_chfantasyathlete.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80801974_chfantasyathlete.s")
+void func_80801974_chfantasyathlete(Actor *arg0) {
+    switch (D_80803034_chfantasyathlete[arg0->unk70_10][0]) {
+    case 0x3F9:
+        if ((func_80101E14(arg0, 0.06f) != 0) || (func_80101E14(arg0, 0.26f) != 0) || (func_80101E14(arg0, 0.46f) != 0)) {
+            func_800C4140(((u32) (u16) (func_800DC178(1.1f, 1.2f) * 1023.0f) << 0x15) + 0x1B5E23, arg0->position, 0x04B000FA);
+        }
+        if ((func_80101E14(arg0, 0.17f) != 0) || (func_80101E14(arg0, 0.37f) != 0) || (func_80101E14(arg0, 0.57f) != 0)) {
+            func_800C4140(((u32) (u16) (func_800DC178(1.1f, 1.2f) * 1023.0f) << 0x15) + 0x1B5E24, arg0->position, 0x04B000FA);
+        }
+        if (func_80101E14(arg0, 0.7f) != 0) {
+            func_800C4140(((u32) (u16) (func_800DC178(0.95f, 1.05f) * 1023.0f) << 0x15) + 0x1B5E26, arg0->position, 0x04B000FA);
+            return;
+        }
+    default:
+        return;
+    case 0x3FA:
+        if ((func_80101E14(arg0, 0.45f) != 0) || (func_80101E14(arg0, 0.95f) != 0)) {
+            func_800C4140(((u32) (u16) (func_800DC178(0.9f, 1.1f) * 1023.0f) << 0x15) + 0x1F4404, arg0->position, 0x04B000FA);
+        }
+        if (func_80101E14(arg0, 0.4f) != 0) {
+            func_800C4140(((u32) (u16) (func_800DC178(1.25f, 1.35f) * 1023.0f) << 0x15) + 0xBBD8A, arg0->position, 0x04B000FA);
+        }
+        if (func_80101E14(arg0, 0.9f) != 0) {
+            func_800C4140(((u32) (u16) (func_800DC178(1.25f, 1.35f) * 1023.0f) << 0x15) + 0x1F58B, arg0->position, 0x04B000FA);
+            return;
+        }
+        break;
+    case 0x3FD:
+        if (func_80101E14(arg0, 0.05f) != 0) {
+            func_800C4140(((u32) (u16) (func_800DC178(0.95f, 1.05f) * 1023.0f) << 0x15) + 0x1B5E26, arg0->position, 0x04B000FA);
+        }
+        if (func_80101E14(arg0, 0.42f) != 0) {
+            func_800C4140(((u32) (u16) (func_800DC178(0.75f, 0.85f) * 1023.0f) << 0x15) + 0x1B5E1F, arg0->position, 0x04B000FA);
+        }
+        if (func_80101E14(arg0, 0.66f) != 0) {
+            func_800C4140(((u32) (u16) (func_800DC178(0.75f, 0.85f) * 1023.0f) << 0x15) + 0x1B5E1F, arg0->position, 0x04B000FA);
+            return;
+        }
+        break;
+    case 0x3FE:
+        if (func_80101E14(arg0, 0.32f) != 0) {
+            func_800C4140(((u32) (u16) (func_800DC178(0.55f, 0.65f) * 1023.0f) << 0x15) + 0x1B5E1E, arg0->position, 0x04B000FA);
+            return;
+        }
+        if (func_80101E14(arg0, 0.1f) != 0) {
+            func_800C4140(((u32) (u16) (func_800DC178(0.95f, 1.05f) * 1023.0f) << 0x15) + 0x1B5E25, arg0->position, 0x04B000FA);
+            return;
+        }
+        break;
+    case 0x3FC:
+        if (func_80101E14(arg0, 0.1f) != 0) {
+            func_800C4140(((u32) (u16) (func_800DC178(1.1f, 1.2f) * 1023.0f) << 0x15) + 0x138E23, arg0->position, 0x04B000FA);
+        }
+        if (func_80101E14(arg0, 0.17f) != 0) {
+            func_800C4140(0x7FF38CD5, arg0->position, 0x04B000FA);
+        }
+        if (func_80101E14(arg0, 0.7f) != 0) {
+            func_800C4140(((u32) (u16) (func_800DC178(1.25f, 1.35f) * 1023.0f) << 0x15) + 0x9C58B, arg0->position, 0x04B000FA);
+            return;
+        }
+        break;
+    case 0x3FF:
+        if ((func_80101E14(arg0, 0.1f) != 0) || (func_80101E14(arg0, 0.42f) != 0) || (func_80101E14(arg0, 0.6f) != 0)) {
+            func_800C4140(0x665B5E1F, arg0->position, 0x04B000FA);
+            return;
+        }
+        break;
+    case 0x400:
+        if (func_80101E14(arg0, 0.34f) != 0) {
+            func_800C4140(((u32) (u16) (func_800DC178(0.55f, 0.65f) * 1023.0f) << 0x15) + 0x1B5E1E, arg0->position, 0x04B000FA);
+        }
+        break;
+    }
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80802730_chfantasyathlete.s")
 
