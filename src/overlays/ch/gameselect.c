@@ -539,7 +539,18 @@ void func_80805474_chgameselect(s32 arg0,s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80805AC0_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80805BA0_chgameselect.s")
+/* extern */
+
+void func_80805BA0_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_80803E40_chgameselect();
+    s32 func_8080401C_chgameselect(s32, s32, s32);
+    s32 func_8080407C_chgameselect(s32, s32, s32);
+    if (func_80803E40_chgameselect() >= (arg1 + 2)) {
+        func_8080407C_chgameselect(arg0, arg1, arg2);
+        return;
+    }
+    func_8080401C_chgameselect(arg0, arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80805BFC_chgameselect.s")
 
