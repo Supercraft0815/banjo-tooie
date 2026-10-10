@@ -47,7 +47,18 @@ void func_80800024_chpoolkids(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_80800884_chpoolkids.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_808008DC_chpoolkids.s")
+/* extern */
+
+void func_808008DC_chpoolkids(u8 *arg0) {
+    s32 _fxripple_entrypoint_0(s32, u8 *);
+    s32 func_800D9078(s32);
+    f32 func_800DC178(f32, f32);
+    func_800D9078(arg0 + 0x58);
+    if ((*(f32 *)((s8 *)(arg0) + (0x58))) <= 0.0f) {
+        _fxripple_entrypoint_0(3, arg0 + 4);
+        (*(f32 *)((s8 *)(arg0) + (0x58))) = func_800DC178(0.6f, 1.2f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_80800944_chpoolkids.s")
 
