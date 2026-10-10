@@ -106,7 +106,10 @@ void func_80800E60_bsvan(u8 *arg0, s32 (*arg1)(u8 *)) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/bsvan_entrypoint_8.s")
+void bsvan_entrypoint_8(s32 *arg0) {
+    extern s32 func_80099B94;
+    func_80800E60_bsvan(arg0, &func_80099B94);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/bsvan_entrypoint_9.s")
 
