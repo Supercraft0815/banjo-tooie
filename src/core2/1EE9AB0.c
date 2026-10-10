@@ -56,7 +56,10 @@ void func_801107D0(void *arg0) {
     func_800F5B38((*(s32 *)((s8 *)(arg0) + (0x68))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_801107F0.s")
+void func_801107F0(void *arg0, f32 *arg1) {
+    s32 func_800EE7F8();
+    func_800EE7F8(arg1, (u8 *)arg0 + 0x74);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110818.s")
 
