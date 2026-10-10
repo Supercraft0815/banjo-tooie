@@ -4,7 +4,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A1294.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A1364.s")
+/* extern */
+
+void func_800A1364(void) {
+    extern s8 D_80127090;
+    u32 func_8009E958(void);
+    s32 func_800A1240(u32);
+    s32 func_800D517C();
+    (*(s8 *)((s8 *)(&D_80127090) + (1))) = 0;
+    (*(s8 *)((s8 *)(&D_80127090) + (0))) = 0;
+    func_800D517C();
+    func_800A1240(func_8009E958());
+}
 
 void func_800A13A0(void) {
     extern s8 D_80127090;
