@@ -21,7 +21,24 @@ OSThread *chhellterskelter_entrypoint_2(void)
     return (OSThread *) D_80800858_chhellterskelter;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/func_80800024_chhellterskelter.s")
+/* extern */
+
+void func_80800024_chhellterskelter(u8 *arg0) {
+    s32 _gccubesearch_entrypoint_0(s32, u8 *);
+    s32 func_800EE88C(u8 *, s32);
+    s32 func_80108B04(u8 *, s32);
+    s32 sp24;
+    s32 sp20;
+
+    sp24 = _gccubesearch_entrypoint_0(0x154, arg0);
+    sp20 = _gccubesearch_entrypoint_0(0x320, arg0);
+    func_800EE88C(arg0 + 0x18, sp24);
+    func_800EE88C(arg0 + 0x28, sp20);
+    if (func_800DA298(FLAG3_A4B_UNK) != 0) {
+        (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFEF);
+        func_80108B04(arg0, 0x210);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/func_808000A8_chhellterskelter.s")
 
