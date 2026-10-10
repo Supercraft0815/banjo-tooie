@@ -86,7 +86,15 @@ OSThread *chfactorytwinklies_entrypoint_5(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_808018A0_chfactorytwinklies.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80801D58_chfactorytwinklies.s")
+void func_80801D58_chfactorytwinklies(u8 *arg0) {
+    s32 _chlightfader_entrypoint_1(s32, f32, s32);
+    s32 temp_a3;
+
+    temp_a3 = (*(s32 *)((s8 *)(arg0) + (0x50)));
+    if (temp_a3 != 0) {
+        (*(s32 *)((s8 *)(arg0) + (0x50))) = _chlightfader_entrypoint_1(temp_a3, 1.0f, 2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80801D94_chfactorytwinklies.s")
 
