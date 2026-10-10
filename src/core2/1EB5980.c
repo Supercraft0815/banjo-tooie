@@ -19,7 +19,12 @@ s32 func_800DC214(s32 arg0, s32 arg1) {
     return (s32) ((func_800DC1AC() * (f32) (arg1 - arg0)) + (f32) arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5980/func_800DC264.s")
+/* extern */
+
+f32 func_800DC264(f32 arg0, f32 arg1) {
+    f32 func_800DC1AC();
+    return (func_800DC1AC() * (arg1 - arg0)) + arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5980/func_800DC298.s")
 
