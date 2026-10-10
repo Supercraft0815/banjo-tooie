@@ -22,7 +22,15 @@ void bswalk_entrypoint_1()
     func_80800000_bswalk();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_2.s")
+void bswalk_entrypoint_2(u8 *arg0) {
+    s32 _bapackctrl_entrypoint_5(s32, s32);
+    s32 func_8008E0E8();
+    void func_800A2EDC(void *arg0, f32 arg1);
+    func_800A2EDC(arg0, 1.0f);
+    if (func_8008E0E8(arg0) != 0) {
+        _bapackctrl_entrypoint_5((s32) arg0, 3);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_3.s")
 
