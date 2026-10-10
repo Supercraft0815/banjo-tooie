@@ -95,7 +95,28 @@ void func_8080219C_chfactoryrobot(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_808021D4_chfactoryrobot.s")
+/* extern */
+
+void func_808021D4_chfactoryrobot(void *arg0, s32 arg1) {
+    u8 func_800D731C(u16);
+    s32 func_800DBE60(u8, s32, s32);
+    s32 func_800E8C58(u8);
+    s32 func_801015D0();
+    u8 sp1F;
+    s32 sp18;
+    s32 temp_v0_2;
+    u8 temp_v0;
+
+    func_801015D0();
+    temp_v0 = func_800D731C((*(u16 *)((s8 *)((*(void **)((s8 *)(arg0) + (0)))) + (0x14))));
+    sp1F = temp_v0;
+    if (temp_v0 != 0) {
+        temp_v0_2 = func_800E8C58((*(u8 *)((s8 *)(arg0) + (0x28))));
+        sp18 = temp_v0_2;
+        func_800DBE60(sp1F, 0, temp_v0_2);
+        func_800DBE60(sp1F, 1, sp18);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80802240_chfactoryrobot.s")
 
