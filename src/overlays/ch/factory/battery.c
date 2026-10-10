@@ -68,7 +68,15 @@ void func_80800558_chfactorybattery(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_8080130C_chfactorybattery.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_808014C0_chfactorybattery.s")
+/* extern */
+
+void func_808014C0_chfactorybattery(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    s32 _subaddiefx_entrypoint_1(Actor *, u8 *);
+    if (func_80100094(arg0, 0U) != NULL) {
+        _subaddiefx_entrypoint_1(arg0, func_80100094(arg0, 0U));
+    }
+}
 
 OSThread *chfactorybattery_entrypoint_1(void)
 {
