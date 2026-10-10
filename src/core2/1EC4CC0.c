@@ -76,7 +76,21 @@ void func_800EBC04(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBE24.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBE74.s")
+/* extern */
+
+void func_800EBE74(s32 arg0, void *arg1, s32 arg2) {
+    s32 func_800BDBC4(s32);
+    s32 func_800BDC44();
+    s32 func_800EBC0C(s32, s32, void *, s32);
+    s32 var_v0;
+
+    if ((*(s32 *)((s8 *)(arg1) + (0x10))) & 1) {
+        var_v0 = func_800BDC44();
+    } else {
+        var_v0 = func_800BDBC4(arg0);
+    }
+    func_800EBC0C(var_v0, arg0, arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBED4.s")
 
