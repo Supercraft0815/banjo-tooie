@@ -72,7 +72,23 @@ void func_80800AA8_chpawnbroker(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800B88_chpawnbroker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800C00_chpawnbroker.s")
+/* extern */
+
+s32 func_80800C00_chpawnbroker(s32 arg0, s32 arg1) {
+    s32 func_800D1A04(s32);
+    s32 func_800F54E4();
+    s32 func_800F64A4(s32, s32);
+    if (arg1 > 0) {
+        if (func_800D1A04(0x4E) >= arg0) {
+            if (func_800F64A4(func_800F54E4(), 0x201) != 0) {
+                return 0x1040;
+            }
+            return 0x1225;
+        }
+        return 0xFE9;
+    }
+    return 0xFE7;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800C70_chpawnbroker.s")
 
