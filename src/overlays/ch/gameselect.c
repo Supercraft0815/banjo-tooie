@@ -322,7 +322,13 @@ s32 func_80803940_chgameselect(void) {
     return _gcstatusDll_entrypoint_6(3, 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803988_chgameselect.s")
+s32 func_80803988_chgameselect(void) {
+    s32 _gcstatusDll_entrypoint_3(s32, s32);
+    _gcstatusDll_entrypoint_3(0, 1);
+    _gcstatusDll_entrypoint_3(1, 1);
+    _gcstatusDll_entrypoint_3(2, 1);
+    return _gcstatusDll_entrypoint_3(3, 1);
+}
 
 /* extern */
 
