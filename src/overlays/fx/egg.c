@@ -26,7 +26,16 @@ void func_808000F8_fxegg(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_800BABB8(arg0, arg1, 0, arg3, &D_808005B0_fxegg);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/egg/fxegg_entrypoint_1.s")
+/* extern */
+
+s32 fxegg_entrypoint_1(s32 arg0, s32 arg1) {
+    s32 func_800B5BE4(s32);
+    s32 sp1C;
+
+    sp1C = func_800B5BE4(0xC);
+    func_808000F8_fxegg(sp1C, arg0, 0x9E5, arg1);
+    return sp1C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/egg/fxegg_entrypoint_2.s")
 
