@@ -76,7 +76,10 @@ s32 func_80800B98_chhoneyb(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800C0C_chhoneyb.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800C34_chhoneyb.s")
+void func_80800C34_chhoneyb(u8 *arg0) {
+    void func_8010A3E8(void *arg0, f32 arg1);
+    func_8010A3E8(arg0, 0.7f);
+}
 
 void func_80800C58_chhoneyb()
 {
