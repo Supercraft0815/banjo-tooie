@@ -99,7 +99,22 @@ void func_80110A68(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110BF0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110C2C.s")
+/* extern */
+
+void func_80110C2C(PlayerState *self) {
+    s32 _ncba1p_entrypoint_10();
+    s32 _ncba1p_entrypoint_13(PlayerState *, u8 *, struct ba_flag_s **);
+    s32 _ncba1p_entrypoint_5(PlayerState *, s32);
+    s32 temp_v0;
+
+    temp_v0 = _ncba1p_entrypoint_10();
+    if ((temp_v0 != 0) && (temp_v0 != 3)) {
+        if (self->pad48[0x2A] != 0) {
+            _ncba1p_entrypoint_13(self, &self->pad48[0x2C], &self->flag);
+        }
+        _ncba1p_entrypoint_5(self, 3);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110C88.s")
 
