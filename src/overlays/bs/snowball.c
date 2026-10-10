@@ -6,7 +6,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_8080010C_bssnowball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_80800164_bssnowball.s")
+/* extern */
+
+void func_80800164_bssnowball(s32 arg0) {
+    s32 yaw_setUpdateType(s32, s32);
+    s32 yaw_setVelocityBounded(s32, s32, s32);
+    yaw_setUpdateType(arg0, 3);
+    yaw_setVelocityBounded(arg0, 0x43960000, 0x40C00000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/bssnowball_entrypoint_0.s")
 
