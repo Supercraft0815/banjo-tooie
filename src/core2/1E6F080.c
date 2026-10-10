@@ -59,7 +59,18 @@ void func_80095A6C(s32 *arg0, s32 *arg1) {
     arg1[20] = (s32) arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80095A74.s")
+/* extern */
+
+void func_80095A74(void *arg0, s32 arg1) {
+    s32 func_800EA05C();
+    if (func_800EA05C() == 0xB8) {
+        if (arg1 != 0) {
+            func_80095A08(arg0, 8, 1);
+            return;
+        }
+        func_80095A08(arg0, 8, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80095AD0.s")
 
