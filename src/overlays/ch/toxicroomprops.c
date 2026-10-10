@@ -20,7 +20,24 @@ void func_80800650_chtoxicroomprops(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x58))) = 10.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroomprops/func_80800670_chtoxicroomprops.s")
+/* extern */
+
+void func_80800670_chtoxicroomprops(u8 *arg0) {
+    s32 _subaddieaudioloop_entrypoint_2(u8 *);
+    s32 func_800D90A4(s32);
+    s32 func_800FFA88(s32);
+    s32 func_80800390_chtoxicroomprops(u8 *, s32);
+    if (func_800D90A4(arg0 + 0x58) != 0) {
+        func_80800390_chtoxicroomprops(arg0, 0xC0000000);
+        if ((*(f32 *)((s8 *)(arg0) + (0x24))) < 45.0f) {
+            _subaddieaudioloop_entrypoint_2(arg0);
+            (*(f32 *)((s8 *)(arg0) + (0x24))) = 0.0f;
+            func_800FFA88((*(s32 *)((s8 *)(arg0) + (0))));
+        }
+    } else {
+        func_80800390_chtoxicroomprops(arg0, 0x40800000);
+    }
+}
 
 OSThread *chtoxicroomprops_entrypoint_1(void)
 {
