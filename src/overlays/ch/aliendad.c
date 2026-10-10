@@ -61,7 +61,12 @@ s32 func_80801254_chaliendad(void *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801868_chaliendad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801B9C_chaliendad.s")
+void func_80801B9C_chaliendad(s32 arg0) {
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    extern s32 D_808025C0_chaliendad;
+    extern s32 D_80802824_chaliendad;
+    _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, &D_80802824_chaliendad, &D_808025C0_chaliendad, 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801BD4_chaliendad.s")
 
