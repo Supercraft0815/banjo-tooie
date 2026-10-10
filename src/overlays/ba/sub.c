@@ -15,7 +15,22 @@ s32 basub_entrypoint_0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/func_80800358_basub.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/func_80800458_basub.s")
+/* extern */
+
+void func_80800458_basub(void *arg0, s32 arg1) {
+    s32 func_8010114C(s32, s32, s32);
+    s32 temp_a0;
+    s32 var_s0;
+
+    var_s0 = 0;
+    do {
+        temp_a0 = (*(s32 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x130))) + var_s0)) + (0x2C)));
+        if (temp_a0 != 0) {
+            func_8010114C(temp_a0, arg1, (*(s32 *)((s8 *)(arg0) + (0x184))));
+        }
+        var_s0 += 4;
+    } while (var_s0 != 0x28);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/func_808004C8_basub.s")
 
