@@ -113,7 +113,14 @@ s32 func_8010518C(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80105230.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80105390.s")
+void func_80105390(u8 *arg0, u8 *arg1) {
+    s32 temp_f16;
+
+    temp_f16 = (s32) ((f32) ((*(s32 *)((s8 *)(arg1) + (0))) + (*(s32 *)((s8 *)(arg1) + (4))) + (*(s32 *)((s8 *)(arg1) + (8)))) / 3.0f);
+    (*(s32 *)((s8 *)(arg0) + (0))) = temp_f16;
+    (*(s32 *)((s8 *)(arg0) + (4))) = temp_f16;
+    (*(s32 *)((s8 *)(arg0) + (8))) = temp_f16;
+}
 
 /* extern */
 
