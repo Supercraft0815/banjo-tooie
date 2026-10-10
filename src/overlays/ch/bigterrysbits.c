@@ -33,7 +33,15 @@ void func_80800130_chbigterrysbits(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bigterrysbits/func_80800160_chbigterrysbits.s")
+/* extern */
+
+void func_80800160_chbigterrysbits(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_6(Actor*, s32);
+    s32 func_8080022C_chbigterrysbits(Actor *);
+    if (((((u32) (*(u16 *)((s8 *)(arg0) + (0x72)))) >> 0xA) == 2) && (_subaddieDll_entrypoint_6(arg0, 0xB) != 0)) {
+        func_8080022C_chbigterrysbits(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bigterrysbits/func_808001A8_chbigterrysbits.s")
 
