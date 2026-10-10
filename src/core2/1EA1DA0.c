@@ -102,7 +102,34 @@ u8 func_800C89D8(s32 arg0) {
     return (*(u8 *)((s8 *)(vector_at(D_8012AB00, arg0 - 1, arg0)) + (0x19)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8A08.s")
+void func_800C8A08(void) {
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    extern s32 D_8012AB00;
+    u32 sp1C;
+    u32 temp_v0;
+    u32 var_v1;
+
+    sp1C = vector_begin(D_8012AB00);
+    temp_v0 = vector_end(D_8012AB00);
+    var_v1 = sp1C;
+    if (var_v1 < temp_v0) {
+        do {
+            if ((*(u8 *)((s8 *)(var_v1) + (0x15))) != 0) {
+                if ((*(u8 *)((s8 *)(var_v1) + (0x16))) == 2) {
+                    (*(u8 *)((s8 *)(var_v1) + (0x15))) = 0U;
+                } else {
+                    (*(u8 *)((s8 *)(var_v1) + (0x16))) = 0U;
+                }
+                if ((*(u8 *)((s8 *)(var_v1) + (0x18))) != 0) {
+                    (*(u8 *)((s8 *)(var_v1) + (0x18))) = 0U;
+                }
+                (*(s8 *)((s8 *)(var_v1) + (0x19))) = 0;
+            }
+            var_v1 += 0x1C;
+        } while (var_v1 < temp_v0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8A98.s")
 
