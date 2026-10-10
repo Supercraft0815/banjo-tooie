@@ -23,7 +23,17 @@ OSThread *cheggsplode_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/splode/func_808006F0_cheggsplode.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/splode/func_80800778_cheggsplode.s")
+/* extern */
+
+void func_80800778_cheggsplode(s32 arg0, s32 arg1) {
+    s32 func_800D3948();
+    s32 func_800F6BE4(s32);
+    s32 func_800F6CC8(s32);
+    void *func_80100094(s32, s32);
+    if ((func_800D3948() == 0) && (func_800F6BE4(arg1) != 0) && (func_800F6CC8(arg1) != 0)) {
+        (*(s16 *)((s8 *)(func_80100094(arg0, 0)) + (6))) = 1;
+    }
+}
 
 /* extern */
 
