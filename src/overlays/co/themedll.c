@@ -56,6 +56,21 @@ void func_80800388_cothemedll(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/co/themedll/cothemedll_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/co/themedll/func_80800524_cothemedll.s")
+/* extern */
+
+void func_80800524_cothemedll(void *arg0, s32 arg1) {
+    s32 func_800FC884();
+    s32 func_800FCCD4(s16);
+    s32 func_800FE89C();
+    s16 temp_a0;
+
+    if (arg1 != 0) {
+        func_800FC884();
+    }
+    temp_a0 = (*(s16 *)((s8 *)(arg0) + (8)));
+    if ((temp_a0 != -1) && (func_800FCCD4(temp_a0) == 0)) {
+        func_800FE89C();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/co/themedll/cothemedll_entrypoint_5.s")
