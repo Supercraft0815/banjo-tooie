@@ -13,7 +13,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_808002AC_bsbanshack.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_8080030C_bsbanshack.s")
+/* extern */
+
+void func_8080030C_bsbanshack(PlayerState *arg0) {
+    s32 baanim_playForDuration_onceSmooth(void *, s32, s32);
+    s32 bainput_enable(void *, s32, s32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *arg0, f32 vel);
+    s32 func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+    arg0->unk15C.bytes[1] = 0;
+    baanim_playForDuration_onceSmooth(arg0, 0x145, 0x3FB33333);
+    func_8009FFD8(arg0, 1, 1, 3, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    bainput_enable(arg0, 5, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_8080037C_bsbanshack.s")
 
