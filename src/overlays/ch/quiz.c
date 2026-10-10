@@ -45,7 +45,10 @@ s32 func_808008B0_chquiz(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800A70_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800B6C_chquiz.s")
+s32 func_80800B6C_chquiz(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    return (*(s32 *)((s8 *)(func_80100094(arg0, 0U)) + (0xCC)));
+}
 
 s32 func_80800B90_chquiz(s32 arg0) {
     if ((arg0 >= 0x1910) && (arg0 < 0x1A00)) {
