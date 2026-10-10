@@ -640,7 +640,18 @@ s32 bsfirstp_entrypoint_22(s32 arg0) {
     return ((s32 *)&D_8080B530_bsfirstp)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80805058_bsfirstp.s")
+/* extern */
+
+void func_80805058_bsfirstp(s32 arg0) {
+    s32 _bsdrone_entrypoint_0(s32);
+    s32 baanim_playForDuration_loopStartingAt(s32, s32, s32, f32);
+    s32 func_80807BB8_bsfirstp();
+    s32 func_808002CC_bsfirstp(s32, s32, s32, s32);
+    _bsdrone_entrypoint_0(arg0);
+    func_80807BB8_bsfirstp(arg0);
+    baanim_playForDuration_loopStartingAt(arg0, 0x30D, 0x40000000, 0.5036f);
+    func_808002CC_bsfirstp(arg0, 0x311, 0x40000000, 0x3F00EBEE);
+}
 
 void func_808050B0_bsfirstp(s32 arg0)
 {
