@@ -22,7 +22,23 @@ OSThread *chdiggerbossshell_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossshell/func_808001EC_chdiggerbossshell.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossshell/func_808002CC_chdiggerbossshell.s")
+void func_808002CC_chdiggerbossshell(s32 arg0) {
+    s32 _chlightfader_entrypoint_1(s32, s32, s32);
+    s32 func_800C8A98();
+    s32 func_800C8CB8(s32, s32);
+    s32 func_800C8E54(s32, s32, s32);
+    s32 func_800C8E84(s32, s32 *);
+    extern s32 D_80800600_chdiggerbossshell;
+    s32 sp1C;
+    s32 temp_v0;
+
+    temp_v0 = func_800C8A98();
+    sp1C = temp_v0;
+    func_800C8CB8(temp_v0, arg0);
+    func_800C8E84(sp1C, &D_80800600_chdiggerbossshell);
+    func_800C8E54(sp1C, 0x44160000, 0x447A0000);
+    _chlightfader_entrypoint_1(sp1C, 0x3FB33333, 5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossshell/func_80800330_chdiggerbossshell.s")
 
