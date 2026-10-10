@@ -201,7 +201,20 @@ void func_800D7900(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D86F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D8744.s")
+void func_800D8744(void) {
+    f32 _glintrosyncDll_entrypoint_5();
+    f32 func_800D8FF8();
+    extern f32 D_8012C000;
+    f32 var_f0;
+
+    (*(f32 *)((s8 *)(&D_8012BE70) + (0x194))) = (f32) (*(f32 *)((s8 *)(&D_8012BE70) + (0x190)));
+    if ((*(u8 *)((s8 *)(&D_8012BE70) + (0x1A8))) != 0) {
+        var_f0 = _glintrosyncDll_entrypoint_5();
+    } else {
+        var_f0 = func_800D8FF8();
+    }
+    D_8012C000 = (*(f32 *)((s8 *)(&D_8012BE70) + (0x190))) + (var_f0 * 60.0f);
+}
 
 void func_800D87B0()
 {
