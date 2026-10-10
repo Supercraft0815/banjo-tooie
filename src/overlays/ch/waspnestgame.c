@@ -80,7 +80,12 @@ void func_808012C8_chwaspnestgame(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_808012D0_chwaspnestgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801324_chwaspnestgame.s")
+void func_80801324_chwaspnestgame(f32 *arg0, f32 arg1, f32 arg2) {
+    void func_800EF334(f32 vec[3], f32 scale);
+    if (arg1 != 0.0f) {
+        func_800EF334(arg0, arg2 / arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801364_chwaspnestgame.s")
 
