@@ -30,7 +30,10 @@ void func_80800574_chclinker(s32 arg0) {
     _susubgame_entrypoint_11(0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_80800598_chclinker.s")
+void func_80800598_chclinker(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    (*(s32 *)((s8 *)(func_80100094(arg0, 0U)) + (0x18))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_808005BC_chclinker.s")
 
