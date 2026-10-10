@@ -836,7 +836,18 @@ void func_80807208_bsfirstp(s32 arg0) {
     _batimer_set(arg0, 0, 0x3F000000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80807264_bsfirstp.s")
+/* extern */
+
+void func_80807264_bsfirstp(u8 *arg0) {
+    s32 _batimer_decrement(void *, s32);
+    s32 _bababykaz_entrypoint_4(u8 *);
+    s32 _batimer_isZero(u8 *, s32);
+    s32 func_800F9AAC(s32, s32);
+    _batimer_decrement(arg0, 0);
+    if (_batimer_isZero(arg0, 0) != 0) {
+        func_800F9AAC((*(s32 *)((s8 *)(arg0) + (0x184))), _bababykaz_entrypoint_4(arg0));
+    }
+}
 
 s32 bsfirstp_entrypoint_31(s32 arg0) {
     extern s32 D_8080B580_bsfirstp[];
