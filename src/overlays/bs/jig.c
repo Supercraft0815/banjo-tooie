@@ -6,7 +6,22 @@ s32 bsjig_entrypoint_0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jig/bsjig_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jig/bsjig_entrypoint_2.s")
+/* extern */
+
+void bsjig_entrypoint_2(void) {
+    s32 _chjigsawdance_entrypoint_1(s32, s32);
+    s32 func_800A32F8(s32);
+    s32 func_800F53D0();
+    s32 func_80106790(s32);
+    s32 sp1C;
+    s32 temp_v0;
+
+    temp_v0 = func_800F53D0();
+    sp1C = temp_v0;
+    if (func_800A32F8(temp_v0) != 0) {
+        _chjigsawdance_entrypoint_1(func_80106790(func_800A32F8(sp1C)), 4);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jig/bsjig_entrypoint_3.s")
 
