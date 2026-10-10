@@ -131,7 +131,10 @@ void func_80096394(PlayerState *arg0, f32 *arg1) {
     func_800EE7F8(arg1, (*(s32 *)((s8 *)(arg0) + (0x94))) + 0x90);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_800963C0.s")
+void func_800963C0(PlayerState *arg0, f32 *arg1) {
+    void func_800C675C(void *arg0, f32 *arg1);
+    func_800C675C(*(*(u8 ***)((s8 *)(arg0) + (0x94))), arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_800963E4.s")
 
