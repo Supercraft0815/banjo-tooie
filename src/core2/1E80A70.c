@@ -151,7 +151,38 @@ void func_800A7B18(u32 warpVal)
     D_80127630.unk12 = warpVal;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A7B24.s")
+/* extern */
+
+void func_800A7B24(void) {
+    s32 _gcgame_entrypoint_1();
+    s32 _gclevel_entrypoint_1();
+    s32 _gcsectionDll_entrypoint_1(s32);
+    s32 _glcutDll_entrypoint_2();
+    s32 func_80013430();
+    s32 func_8008B64C();
+    s32 func_800A8710();
+    s32 func_800B5DF4();
+    s32 func_800C2A90();
+    s32 func_800CA060();
+    s32 func_800DF35C();
+    s32 func_800E4290();
+    s32 func_800FB908();
+    func_800A759C(2, 0U);
+    func_80013430();
+    func_800B5DF4();
+    func_800CA060();
+    func_800DF35C();
+    func_800A7380(0);
+    _gcsectionDll_entrypoint_1(0);
+    _gclevel_entrypoint_1();
+    _gcgame_entrypoint_1();
+    func_8008B64C();
+    func_800FB908();
+    func_800C2A90();
+    func_800A8710();
+    func_800E4290();
+    _glcutDll_entrypoint_2();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A7BB8.s")
 
