@@ -1055,7 +1055,17 @@ s32 func_800F9184(void) {
     return D_801354FA == 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9198.s")
+void func_800F9198(void) {
+    s32 func_800F9C6C();
+    extern u8 D_801354FA;
+    if (D_801354FA == 0) {
+        func_800F90F8(0);
+        func_800F9104(0);
+        func_800F9110(0);
+        D_801354FA = 1;
+    }
+    func_800F9C6C();
+}
 
 void func_800F91EC(void) {
     s32 vector_defrag(s32);
