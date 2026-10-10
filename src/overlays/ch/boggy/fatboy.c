@@ -63,7 +63,18 @@ void func_80800B38_chboggyfatboy(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_80800E80_chboggyfatboy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_80800F40_chboggyfatboy.s")
+/* extern */
+
+void func_80800F40_chboggyfatboy(Actor *arg0) {
+    s32 _suexpression_entrypoint_12(void *, s32, s32);
+    s32 _suexpression_entrypoint_17(void *, s32);
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    if (func_80100094(arg0, 1U) == NULL) {
+        _suexpression_entrypoint_7(arg0, 1, 0x3D);
+        _suexpression_entrypoint_12(func_80100094(arg0, 1U), 0x42700000, 0x41A00000);
+        _suexpression_entrypoint_17(func_80100094(arg0, 1U), 0x3E8);
+    }
+}
 
 void func_80800FAC_chboggyfatboy(Actor* arg0) 
 {
