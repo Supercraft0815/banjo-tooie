@@ -205,7 +205,25 @@ void func_80801218_bsstatue()
     func_80800130_bsstatue();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80801238_bsstatue.s")
+/* extern */
+
+void func_80801238_bsstatue(void *arg0) {
+    s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
+    s32 baanim_setDurationRange(void *, s32, s32);
+    s32 func_8008C9F0(void *, s32, s32, s32, f32);
+    s32 func_8008CA30(void *, s32);
+    s32 func_8009FFD8(void *, s32, s32, s32, s32);
+    s32 func_808001FC_bsstatue();
+    s32 yaw_setVelocityBounded(void *, s32, s32);
+    func_808001FC_bsstatue();
+    baanim_playForDuration_loopSmooth(arg0, 0x1E5, 0x3FB0A3D7);
+    func_8009FFD8(arg0, 2, 3, 1, 2);
+    yaw_setVelocityBounded(arg0, 0x43960000, 0x40600000);
+    baanim_setDurationRange(arg0, 0x3E99999A, 0x40800000);
+    func_8008C9F0(arg0, 0x42C80000, 0x44228000, 0x40000000, 0.9f);
+    func_8008CA30(arg0, 0x3F800000);
+    (*(s32 *)((s8 *)(arg0) + (0x160))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_808012E8_bsstatue.s")
 
