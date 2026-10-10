@@ -94,7 +94,32 @@ void func_800D0B08(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D0B68.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D0BD4.s")
+/* extern */
+
+void func_800D0BD4(s32 arg0, u32 arg1) {
+    s32 func_800D24E8(s32, s32, s32);
+    s32 func_800DA544(s32);
+    s32 func_80101238(s32, s32);
+    s32 temp_v0;
+
+    temp_v0 = func_800D0A80(arg0, (s32) arg1);
+    if (temp_v0 != 0) {
+        func_800DA544(temp_v0);
+        if (arg1 != 0) {
+            if (arg1 != 1) {
+                if (arg1 == 6) {
+                    func_800D24E8(0xD0, func_800D035C(6), 0);
+                }
+            } else {
+                func_800D24E8(0xD6, func_800D035C(1), 0);
+                goto block_6;
+            }
+        } else {
+block_6:
+            func_80101238(0xB7, (arg0 << 0x10) | (arg1 & 0xFFFF));
+        }
+    }
+}
 
 /* extern */
 
