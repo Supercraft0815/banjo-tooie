@@ -24,7 +24,27 @@ void func_80800020_bsblongleg(PlayerState *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/func_808002D8_bsblongleg.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/func_80800378_bsblongleg.s")
+/* extern */
+
+void func_80800378_bsblongleg(void *arg0) {
+    s32 anctrl_reset(s32);
+    s32 anctrl_setDuration(s32, s32);
+    s32 anctrl_setIndex(s32, s32);
+    s32 anctrl_setPlaybackType(s32, s32);
+    s32 anctrl_setSmoothTransition(s32, s32);
+    s32 anctrl_start(s32);
+    s32 baanim_getAnimCtrlPtr();
+    s32 temp_v0;
+
+    temp_v0 = baanim_getAnimCtrlPtr();
+    anctrl_reset(temp_v0);
+    anctrl_setSmoothTransition(temp_v0, 0);
+    anctrl_setIndex(temp_v0, 0x16);
+    anctrl_setDuration(temp_v0, 0x3F000000);
+    anctrl_setPlaybackType(temp_v0, 1);
+    anctrl_start(temp_v0);
+    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_0.s")
 
