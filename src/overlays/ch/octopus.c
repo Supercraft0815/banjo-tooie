@@ -7,7 +7,12 @@ OSThread *choctopus_entrypoint_0(void)
     return (OSThread *) D_808008F4_choctopus;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/octopus/func_8080000C_choctopus.s")
+void func_8080000C_choctopus(Actor *arg0) {
+    s32 _subaddiesect_entrypoint_1(Actor*);
+    void func_80102FDC(Actor*, f32);
+    func_80102FDC(arg0, arg0->scale * 0.8f);
+    arg0->actorData[6] = _subaddiesect_entrypoint_1(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/octopus/func_80800054_choctopus.s")
 
