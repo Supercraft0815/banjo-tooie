@@ -19,7 +19,11 @@ OSThread *charmouredcaveman_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/armouredcaveman/func_808008B0_charmouredcaveman.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/armouredcaveman/func_8080092C_charmouredcaveman.s")
+void func_8080092C_charmouredcaveman(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    extern u32 D_80800C20_charmouredcaveman;
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800C20_charmouredcaveman, 0.1f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/armouredcaveman/func_8080095C_charmouredcaveman.s")
 
