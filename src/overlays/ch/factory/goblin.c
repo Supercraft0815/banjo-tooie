@@ -7,7 +7,14 @@ OSThread *chfactorygoblin_entrypoint_0(void)
     return (OSThread *) D_80800298_chfactorygoblin;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/goblin/func_8080000C_chfactorygoblin.s")
+/* extern */
+
+void func_8080000C_chfactorygoblin(u8 *arg0) {
+    void func_8010A3E8(void *arg0, f32 arg1);
+    s32 _sucoaster_entrypoint_0(void *, s32);
+    _sucoaster_entrypoint_0(arg0, 0);
+    func_8010A3E8(arg0, 0.75f);
+}
 
 /* extern */
 
