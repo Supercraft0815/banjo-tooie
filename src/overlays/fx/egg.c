@@ -4,7 +4,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/egg/fxegg_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/egg/func_8080009C_fxegg.s")
+void func_8080009C_fxegg(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 func_800B5BE4(s32);
+    s32 func_800BA670(s32, s32);
+    s32 func_800BABB8(s32, s32, s32, s32, s32 *);
+    extern s32 D_80800574_fxegg;
+    s32 sp24;
+    s32 temp_v0;
+
+    temp_v0 = func_800B5BE4(arg1);
+    sp24 = temp_v0;
+    func_800BA670(temp_v0, arg0);
+    func_800BABB8(sp24, arg2, arg2, arg3, &D_80800574_fxegg);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/egg/func_808000F8_fxegg.s")
 
