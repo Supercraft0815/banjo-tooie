@@ -75,7 +75,20 @@ void func_80801C78_chstatueboss(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801F74_chstatueboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_808020EC_chstatueboss.s")
+void func_808020EC_chstatueboss(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    void func_80102FDC(Actor*, f32);
+    Actor* func_801084B0(s32, Actor**);
+    u8 *sp1C;
+    Actor *sp18;
+    Actor *temp_v0;
+
+    sp1C = func_80100094(arg0, 0U);
+    temp_v0 = func_801084B0(0x44F, &arg0);
+    sp18 = temp_v0;
+    func_80102FDC(temp_v0, arg0->scale);
+    (*(Unk80132ED0 **)((s8 *)(sp1C) + (0x8C))) = (Unk80132ED0 *) sp18->unk0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80802144_chstatueboss.s")
 
