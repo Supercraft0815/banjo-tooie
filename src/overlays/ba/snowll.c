@@ -14,7 +14,20 @@ f32 func_80800084_basnowball(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/func_80800098_basnowball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/func_808000C0_basnowball.s")
+/* extern */
+
+void func_808000C0_basnowball(s32 arg0) {
+    s32 func_8009590C(s32, s32);
+    s32 func_800959C8(s32, s32, s32);
+    s32 func_800A1718();
+    s32 func_80800098_basnowball(s32, s32, s32 *, s32 *);
+    s32 sp24;
+    s32 sp20;
+
+    func_80800098_basnowball(arg0, func_800A1718(), &sp24, &sp20);
+    func_800959C8(arg0, sp24, sp20);
+    func_8009590C(arg0, sp24);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/func_80800110_basnowball.s")
 
