@@ -27,7 +27,11 @@ s32 func_80108EF4(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80108F08.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_801094E0.s")
+void func_801094E0(f32 *arg0, f32 arg1) {
+    void func_800BBCB8(f32[3], s32, f32, s32, s32 *);
+    extern s32 D_8012461C;
+    func_800BBCB8(arg0, (s32) arg0, arg1, 3, &D_8012461C);
+}
 
 OSThread *func_80109518(void)
 {
