@@ -7,7 +7,11 @@ OSThread *chgruntyfireballbig_entrypoint_0(void)
     return (OSThread *) D_80800680_chgruntyfireballbig;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/grunty/fireballbig/func_8080000C_chgruntyfireballbig.s")
+void func_8080000C_chgruntyfireballbig(s16 *arg0) {
+    void func_80109EEC(s16 *arg0, s32 arg1);
+    (*(s32 *)((s8 *)(arg0) + (0x24))) = 0;
+    func_80109EEC(arg0, 0x40);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/grunty/fireballbig/func_80800030_chgruntyfireballbig.s")
 
