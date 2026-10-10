@@ -7,7 +7,10 @@ OSThread *chdingpot_entrypoint_0(void)
     return (OSThread *) D_80800500_chdingpot;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dingpot/func_8080000C_chdingpot.s")
+void func_8080000C_chdingpot(Actor *arg0) {
+    void func_80102FDC(Actor*, f32);
+    func_80102FDC(arg0, arg0->scale * 0.5f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dingpot/func_80800040_chdingpot.s")
 
