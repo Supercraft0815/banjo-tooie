@@ -97,7 +97,12 @@ void func_80109F18(s32 arg0, volatile s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109F90.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109FB8.s")
+/* extern */
+
+void func_80109FB8(s32 arg0, volatile s32 arg1) {
+    void *func_80106790(s32);
+    (*(s32 *)((s8 *)(func_80106790(*(s32 *)&arg1)) + (0x3C))) = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109FE8.s")
 
