@@ -38,7 +38,10 @@ s32 gctransitionDll_entrypoint_3(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/transitionDll/gctransitionDll_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/transitionDll/gctransitionDll_entrypoint_5.s")
+void gctransitionDll_entrypoint_5(u8 *arg0) {
+    s32 func_808000D8_gctransitionDll(s32, u8, void *);
+    func_808000D8_gctransitionDll(arg0, 0x1, 0);
+}
 
 /* extern */
 
