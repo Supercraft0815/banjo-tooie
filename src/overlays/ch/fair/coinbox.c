@@ -11,7 +11,20 @@
 void func_8080016C_chfaircoinbox(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/func_80800174_chfaircoinbox.s")
+/* extern */
+
+void func_80800174_chfaircoinbox(s32 arg0) {
+    s32 func_800DA298(s32);
+    s32 func_8010A63C();
+    s32 func_80800050_chfaircoinbox(s32);
+    s32 func_808000A4_chfaircoinbox(s32, s32);
+    func_8010A63C();
+    if (func_800DA298(func_80800050_chfaircoinbox(arg0)) != 0) {
+        func_808000A4_chfaircoinbox(arg0, 4);
+        return;
+    }
+    func_808000A4_chfaircoinbox(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/func_808001C8_chfaircoinbox.s")
 
