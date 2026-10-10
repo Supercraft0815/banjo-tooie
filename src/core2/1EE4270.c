@@ -28,7 +28,21 @@ s32 func_8010ACE0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010AD4C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010AE30.s")
+/* extern */
+
+s32 func_8010AE30(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 func_800CC6CC(s32, s32);
+    s32 func_8010AD4C(void *, s32, s32, s32);
+    u32 temp_v0;
+    u32 temp_v1;
+
+    temp_v0 = (*(u32 *)((s8 *)(arg0) + (0x70)));
+    temp_v1 = temp_v0 >> 0x19;
+    if ((temp_v1 != 0) && (func_800CC6CC(temp_v1 - 1, ((u32) (temp_v0 << 0x16) >> 0x1A) - 1) == 0)) {
+        return 0;
+    }
+    return func_8010AD4C(arg0, arg1, arg2, arg3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010AE9C.s")
 
