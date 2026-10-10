@@ -56,7 +56,17 @@ void badrone_entrypoint_12(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 84) + 5) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/drone/badrone_entrypoint_13.s")
+/* extern */
+
+void badrone_entrypoint_13(void *arg0, s32 arg1) {
+    s32 _bamovegoto_entrypoint_12(void *, s32);
+    s32 func_8009BAF4(void *);
+    s32 func_800EE7F8(s32);
+    func_800EE7F8((*(u8 **)((s8 *)(arg0) + (0x54))) + 0x10);
+    if ((*(*(u8 **)((s8 *)(arg0) + (0x54))) == 1) && (func_8009BAF4(arg0) == 0xC)) {
+        _bamovegoto_entrypoint_12(arg0, arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/drone/badrone_entrypoint_14.s")
 
