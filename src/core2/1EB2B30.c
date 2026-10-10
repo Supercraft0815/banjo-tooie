@@ -40,4 +40,21 @@ void func_800D92F4(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2B30/func_800D9330.s")
+/* extern */
+
+void func_800D9330(u32 arg0) {
+    s32 func_800F5898();
+    s32 func_800F6BE4(s32);
+    s32 func_800F78C8(s32, u32);
+    s32 var_s0;
+
+    var_s0 = 0;
+    if (func_800F5898() > 0) {
+        do {
+            if (func_800F6BE4(var_s0) != 0) {
+                func_800F78C8(var_s0, arg0);
+            }
+            var_s0 += 1;
+        } while (var_s0 < func_800F5898());
+    }
+}
