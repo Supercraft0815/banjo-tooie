@@ -85,7 +85,10 @@ s32 func_808007D8_chbanjoctrl(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800824_chbanjoctrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_808008D8_chbanjoctrl.s")
+void func_808008D8_chbanjoctrl(f32 *arg0, f32 arg1, f32 arg2) {
+    void func_800EFA4C(f32[3], f32, f32, f32);
+    func_800EFA4C(arg0, (*(f32 *)((s8 *)(arg0) + (0))) + arg1, arg0[1], arg0[2] + arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_8080091C_chbanjoctrl.s")
 
