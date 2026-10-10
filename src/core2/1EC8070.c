@@ -284,7 +284,22 @@ f32 func_800EFB8C(f32 *arg0, f32 *arg1) {
     return 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EFBFC.s")
+f32 func_800EFBFC(void *arg0, void *arg1) {
+    f32 mlAbsF(f32);
+    extern f32 D_80125EA0;
+    f32 sp1C;
+    f32 temp_f0;
+    f32 var_f12;
+
+    sp1C = mlAbsF((*(f32 *)((s8 *)(arg1) + (0))) - (*(f32 *)((s8 *)(arg0) + (0))));
+    temp_f0 = mlAbsF((*(f32 *)((s8 *)(arg1) + (8))) - (*(f32 *)((s8 *)(arg0) + (8))));
+    if (sp1C < temp_f0) {
+        var_f12 = sp1C;
+    } else {
+        var_f12 = temp_f0;
+    }
+    return (sp1C + temp_f0) - (var_f12 * D_80125EA0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EFC7C.s")
 
