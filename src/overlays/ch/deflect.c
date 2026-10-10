@@ -10,7 +10,10 @@ void func_80800000_chdeflect(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/deflect/func_80800034_chdeflect.s")
+void func_80800034_chdeflect(u8 *arg0) {
+    void _sudeflect_entrypoint_0(f32*, f32, f32, s32);
+    _sudeflect_entrypoint_0(arg0 + 4, 0.0f, (*(f32 *)((s8 *)(arg0) + (0x38))) * 100.0f, 2);
+}
 
 OSThread *chdeflect_entrypoint_0(void)
 {
