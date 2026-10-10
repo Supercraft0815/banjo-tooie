@@ -3,7 +3,21 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_80800000_bscarry.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_808000D0_bscarry.s")
+/* extern */
+
+void func_808000D0_bscarry(s32 arg0) {
+    s32 _bsdrone_entrypoint_3(s32);
+    s32 func_8009E6EC();
+    s32 func_80800000_bscarry(s32);
+    s32 temp_v0;
+
+    temp_v0 = func_8009E6EC();
+    if ((temp_v0 == 8) || (temp_v0 == 0x12) || (temp_v0 == 0x16)) {
+        func_80800000_bscarry(arg0);
+        return;
+    }
+    _bsdrone_entrypoint_3(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_80800128_bscarry.s")
 
