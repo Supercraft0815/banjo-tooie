@@ -22,7 +22,15 @@ OSThread *chfactoryroofbits_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_808001C0_chfactoryroofbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_808003C4_chfactoryroofbits.s")
+/* extern */
+
+void func_808003C4_chfactoryroofbits(u8 *arg0) {
+    s32 func_800FFA88(s32);
+    s32 func_808001C0_chfactoryroofbits(u32, u8 *, u8 *, u8 *);
+    if (func_808001C0_chfactoryroofbits((u32) (*(u32 *)((s8 *)(arg0) + (0x6C))) >> 0x15, arg0 + 4, arg0 + 0x28, arg0 + 0x44) != 0) {
+        func_800FFA88((*(s32 *)((s8 *)(arg0) + (0))));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_80800414_chfactoryroofbits.s")
 
