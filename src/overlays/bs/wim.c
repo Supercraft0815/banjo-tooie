@@ -336,7 +336,16 @@ s32 bsbswim_entrypoint_10(s32 arg0) {
     return ((s32 *)&D_80801F00_bsbswim)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_8080182C_bsbswim.s")
+void func_8080182C_bsbswim(s32 arg0) {
+    s32 _bsdrone_entrypoint_0(s32);
+    s32 baroll_setIdeal(s32, f32);
+    void func_8009BF5C(void *, f32);
+    s32 func_80800030_bsbswim();
+    func_80800030_bsbswim();
+    _bsdrone_entrypoint_0(arg0);
+    func_8009BF5C((u8 *) arg0, 0.0f);
+    baroll_setIdeal(arg0, 0.0f);
+}
 
 /* extern */
 
