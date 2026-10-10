@@ -3,7 +3,19 @@
 extern s32 D_80136F60;
 extern s32 D_80136F64;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010C500.s")
+s32 func_8010C500(void *arg0) {
+    s32 func_800CC338(s32 *, s32, s32);
+    extern s32 D_80136F50;
+    u32 temp_v0;
+    u32 temp_v1;
+
+    temp_v0 = (*(u32 *)((s8 *)(arg0) + (0x70)));
+    temp_v1 = temp_v0 >> 0x19;
+    if (temp_v1 == 0) {
+        return 1;
+    }
+    return (func_800CC338(&D_80136F50, temp_v1 - 1, ((u32) (temp_v0 << 0x16) >> 0x1A) - 1) + 1) != 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010C550.s")
 
