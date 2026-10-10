@@ -4,7 +4,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/vanish/func_808000CC_bsdronevanish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/vanish/func_8080019C_bsdronevanish.s")
+void func_8080019C_bsdronevanish(s32 arg0, s32 arg1) {
+    void func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    extern s32 D_80800578_bsdronevanish;
+    func_800BABB8(arg0, NULL, NULL, 1.0f, &D_80800578_bsdronevanish);
+    func_800BA3FC(arg0, arg1);
+}
 
 /* extern */
 
