@@ -35,7 +35,10 @@ void func_80800898_chfactorycrusher(void *arg0) {
     func_80106790((*(s32 *)((s8 *)(arg0) + (0x3C))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/crusher/func_808008B8_chfactorycrusher.s")
+void func_808008B8_chfactorycrusher(s32 arg0, f32 arg1) {
+    void func_800EFE50(f32*, void*, void*, f32);
+    func_800EFE50(arg0 + 4, arg0 + 0x18, arg0 + 0x28, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/crusher/func_808008F0_chfactorycrusher.s")
 
