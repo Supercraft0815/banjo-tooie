@@ -100,7 +100,19 @@ u32 func_800D3B60(void) {
     return (u8)D_8012B3F3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3B6C.s")
+s32 func_800D3B6C(s32 arg0, s32 *arg1, s32 arg2, s32 arg3, s32 arg4) {
+    extern s16 D_8012B3FC;
+    void* func_800B2A58(s16 arg0);
+    u8 *temp_v0;
+
+    temp_v0 = func_800B2A58(D_8012B3FC);
+    (*(s8 *)((s8 *)(temp_v0) + (0))) = (s8) arg0;
+    (*(s32 **)((s8 *)(temp_v0) + (4))) = arg1;
+    (*(s32 *)((s8 *)(temp_v0) + (8))) = arg2;
+    (*(s32 *)((s8 *)(temp_v0) + (0xC))) = arg3;
+    (*(s32 *)((s8 *)(temp_v0) + (0x10))) = arg4;
+    return (s32) temp_v0;
+}
 
 void func_800D3BC8(void *arg0) {
     struct Entry {
