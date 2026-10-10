@@ -160,7 +160,19 @@ s32 func_80800264_sccustom(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/custom/func_808004C8_sccustom.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/custom/func_8080050C_sccustom.s")
+s32 *func_8080050C_sccustom(s32 arg0, u8 arg1) {
+    s32 _scinfobar_entrypoint_19(s32);
+    s32 _scinfobar_entrypoint_20(s32);
+    s32 func_800E6A58(s32 *, u8);
+    s32 func_800E6DB4(s32 *, s32);
+    s32 func_800E73D4(s32 *);
+    extern s32 B_80800940_sccustom;
+    func_800E73D4(&B_80800940_sccustom);
+    func_800E6DB4(&B_80800940_sccustom, _scinfobar_entrypoint_19(arg0));
+    func_800E6A58(&B_80800940_sccustom, arg1);
+    func_800E6DB4(&B_80800940_sccustom, _scinfobar_entrypoint_20(arg0));
+    return &B_80800940_sccustom;
+}
 
 /* extern */
 
