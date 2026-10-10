@@ -62,7 +62,10 @@ void fxstep_entrypoint_7(void *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/fxstep_entrypoint_10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/fxstep_entrypoint_11.s")
+void fxstep_entrypoint_11(u8 *arg0, f32 arg1, f32 arg2) {
+    void func_80800344_fxstep(u8 *, f32, f32, u8);
+    func_80800344_fxstep(arg0, arg1, arg2, arg0[0x27]);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/fxstep_entrypoint_12.s")
 
