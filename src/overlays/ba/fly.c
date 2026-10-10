@@ -89,7 +89,24 @@ s32 bafly_entrypoint_12(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_13.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_14.s")
+/* extern */
+
+void bafly_entrypoint_14(s32 arg0, s32 arg1, s32 arg2) {
+    s32 anctrl_isStopped(s32);
+    s32 baanim_getAnimCtrlPtr();
+    s32 bs_setState(s32, s32);
+    s32 player_isStable(s32);
+    s32 sp1C;
+
+    sp1C = 0;
+    if (anctrl_isStopped(baanim_getAnimCtrlPtr()) != 0) {
+        sp1C = arg1;
+    }
+    if (player_isStable(arg0) != 0) {
+        sp1C = arg2;
+    }
+    bs_setState(arg0, sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_15.s")
 
