@@ -6,7 +6,15 @@ void ncfixposrot_entrypoint_1(void* arg0)
 {
     heap_free(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/fixposrot/ncfixposrot_entrypoint_2.s")
+/* extern */
+
+void ncfixposrot_entrypoint_2(u8 *arg0, s32 arg1) {
+    f32 func_800136E4(f32, u8 *);
+    s32 func_800F18FC(s32, u8 *, s32, s32);
+    func_800F18FC(arg1, arg0, arg0 + 0xC, arg1);
+    (*(f32 *)((s8 *)(arg0) + (0xC))) = func_800136E4(-(*(f32 *)((s8 *)(arg0) + (0xC))), arg0);
+    (*(f32 *)((s8 *)(arg0) + (0x14))) = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/fixposrot/ncfixposrot_entrypoint_3.s")
 
