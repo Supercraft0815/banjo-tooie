@@ -67,7 +67,10 @@ void suegg_entrypoint_18(s32 arg0, s32 arg1) {
     func_800EFB24(arg1, arg0 + 0x4, arg0 + 0x18, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_19.s")
+void suegg_entrypoint_19(void *arg0, f32 *arg1) {
+    s32 func_800EE7F8();
+    func_800EE7F8(arg1, (u8 *)arg0 + 0x18);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_20.s")
 
