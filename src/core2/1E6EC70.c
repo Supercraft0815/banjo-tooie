@@ -31,7 +31,20 @@ s32 func_8009557C(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6EC70/func_80095588.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6EC70/func_800955CC.s")
+/* extern */
+
+void func_800955CC(PlayerState *arg0) {
+    void func_8009C128(PlayerState *, f32[3]);
+    s32 func_80095588(PlayerState *, s32);
+    f32 *temp_v0;
+
+    func_8009C128(arg0, (*(f32 **)((s8 *)(arg0) + (0x7C))));
+    (*(s8 *)((s8 *)((*(f32 **)((s8 *)(arg0) + (0x7C)))) + (0xC))) = 0;
+    func_80095588(arg0, 1);
+    (*(s32 *)((s8 *)((*(f32 **)((s8 *)(arg0) + (0x7C)))) + (0x10))) = 0;
+    temp_v0 = (*(f32 **)((s8 *)(arg0) + (0x7C)));
+    (*(s32 *)((s8 *)(temp_v0) + (0x14))) = (s32) (*(s32 *)((s8 *)(temp_v0) + (0x10)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6EC70/func_8009561C.s")
 
