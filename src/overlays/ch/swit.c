@@ -37,7 +37,31 @@ OSThread *chswitch_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swit/chswitch_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swit/chswitch_entrypoint_7.s")
+/* extern */
+
+s32 chswitch_entrypoint_7(void *arg0, s32 arg1) {
+    s32 func_800DA298(s32);
+    s32 func_80102424(void *, s32);
+    s32 func_80102E08(void *);
+    s32 sp24;
+    s32 temp_v0;
+
+    temp_v0 = func_800DA298(arg1);
+    sp24 = temp_v0;
+    (*(s32 *)((s8 *)(arg0) + (0x34))) = arg1;
+    if (temp_v0 != 0) {
+        (*(f32 *)((s8 *)(arg0) + (0x54))) = 0.0f;
+        func_80102424(arg0, 3);
+    } else {
+        (*(f32 *)((s8 *)(arg0) + (0x54))) = 0.375f;
+        func_80102424(arg0, 1);
+    }
+    (*(s32 *)((s8 *)(arg0) + (0x2C))) = -1;
+    (*(s32 *)((s8 *)(arg0) + (0x50))) = 0;
+    (*(s32 *)((s8 *)(arg0) + (0x30))) = 0;
+    func_80102E08(arg0);
+    return sp24;
+}
 
 void chswitch_entrypoint_8(s32 *arg0, s32 arg1) {
     arg0[11] = arg1;
