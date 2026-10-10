@@ -123,7 +123,16 @@ void func_800A7B18(u32 warpVal)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A7BB8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A7D30.s")
+void func_800A7D30(void) {
+    s32 func_80014F4C();
+    s32 func_800D8FA0(s32);
+    extern f32 D_80127638;
+    if (D_80127638 == 0.0f) {
+        func_800D8FA0(0);
+        return;
+    }
+    func_800D8FA0(func_80014F4C());
+}
 
 s32 func_800A7D84(void)
 {
