@@ -100,7 +100,13 @@ s32 func_80800A7C_chballoonburst(void *arg0, s32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_808011A8_chballoonburst.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80801254_chballoonburst.s")
+s32 func_80801254_chballoonburst(u8 *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(void *, u32);
+    if (arg1 == 0x10CF) {
+        return (*(s32 *)((s8 *)(func_80100094(arg0, 0U)) + (8))) + 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80801290_chballoonburst.s")
 
