@@ -51,7 +51,11 @@ void func_8080065C_chvolcanobits(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_80800A04_chvolcanobits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_80800AEC_chvolcanobits.s")
+void func_80800AEC_chvolcanobits(Actor *arg0) {
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    void* func_80100094(Actor*, u32);
+    func_800EE7F8(func_80100094(arg0, 0U), arg0->position);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_80800B20_chvolcanobits.s")
 
