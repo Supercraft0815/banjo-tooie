@@ -27,7 +27,11 @@ OSThread *chjollyroger_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800370_chjollyroger.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_8080056C_chjollyroger.s")
+void func_8080056C_chjollyroger(void *arg0) {
+    extern u32 D_80801430_chjollyroger;
+    extern u32 D_8080143C_chjollyroger;
+    _subaddieaudioquick_entrypoint_4(arg0, (u8 *)arg0 + 24, &D_80801430_chjollyroger, &D_8080143C_chjollyroger);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_8080059C_chjollyroger.s")
 
