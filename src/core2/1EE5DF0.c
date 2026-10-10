@@ -118,7 +118,11 @@ s32 func_8010D248(void) {
     return D_80136F5E;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010D254.s")
+void func_8010D254(s32 *arg0) {
+    s32 func_800EE7F8();
+    extern s32 D_80136F50;
+    func_800EE7F8(arg0, &D_80136F50);
+}
 
 s32 func_8010D278()
 {
