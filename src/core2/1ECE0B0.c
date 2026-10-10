@@ -999,7 +999,13 @@ u8 func_800F8B88(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8B94.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8D50.s")
+/* extern */
+
+void func_800F8D50(s32 arg0, s32 arg1) {
+    void *func_800F88A0();
+    s32 func_800F8D80(s32, u8 *);
+    func_800F8D80(arg0, func_800F88A0(arg1));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8D80.s")
 
