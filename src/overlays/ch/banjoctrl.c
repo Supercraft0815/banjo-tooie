@@ -51,7 +51,12 @@ s32 chbanjoctrl_entrypoint_2(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800638_chbanjoctrl.s")
+void func_80800638_chbanjoctrl(void *arg0, s32 arg1) {
+    if ((arg1 == 2) && ((*(s32 (**)())((s8 *)(arg0) + (0x24)))() != 0)) {
+        (*(f32 *)((s8 *)(arg0) + (0x28))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x2C)));
+    }
+    (*(s8 *)((s8 *)(arg0) + (0x30))) = (s8) arg1;
+}
 
 void func_80800684_chbanjoctrl(void *arg0, f32 arg1, s32 arg2, s32 arg3) {
     (*(s32 *)((s8 *)(arg0) + (0x24))) = arg3;
