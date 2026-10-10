@@ -41,7 +41,19 @@ void func_80801314_chfantasyeyeball(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80801740_chfantasyeyeball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_808017B4_chfantasyeyeball.s")
+/* extern */
+
+s32 func_808017B4_chfantasyeyeball(void) {
+    s32 func_8010C754();
+    s32 func_8010D248();
+    f32 temp_f0;
+
+    temp_f0 = (f32) func_8010C754();
+    if ((temp_f0 > 5000.0f) || (temp_f0 < 500.0f)) {
+        return 0;
+    }
+    return func_8010D248();
+}
 
 OSThread *chfantasyeyeball_entrypoint_0(void)
 {
