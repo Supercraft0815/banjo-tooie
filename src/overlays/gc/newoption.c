@@ -162,7 +162,24 @@ void gcnewoption_entrypoint_32(void *arg0, s16 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_38.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_39.s")
+s32 gcnewoption_entrypoint_39(u8 *arg0)
+{
+  s32 _gczoombox_entrypoint_41(s32, s32);
+  s32 func_80800000_gcnewoption(u8 *, s32);
+  s32 func_80802A9C_gcnewoption(u8 *);
+  s32 sp24;
+  s16 temp_v0;
+  temp_v0 = *((s16 *) (((s8 *) arg0) + 0));
+  if ((temp_v0 == 5) || (temp_v0 == 9))
+  {
+    sp24 = func_80800000_gcnewoption(arg0, func_80800038_gcnewoption(arg0, (s32) (*((s16 *) (((s8 *) arg0) + 6)))));
+    func_80802A9C_gcnewoption(arg0);
+    *((s16 *) (((s8 *) arg0) + 0)) = 0xA;
+    _gczoombox_entrypoint_41(*((s32 *) (((s8 *) (((0, arg0)) + (sp24 * 4))) + 0x3C)), 0x42340000);
+    return 1;
+  }
+  return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_40.s")
 
