@@ -61,7 +61,15 @@ void sucoaster_entrypoint_18(s32 arg0)
     func_80105230(arg0,0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_19.s")
+/* extern */
+
+void sucoaster_entrypoint_19(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    s32 _suexpression_entrypoint_18(u8 *, s32);
+    if (func_80100094(arg0, 1U) != NULL) {
+        _suexpression_entrypoint_18(func_80100094(arg0, 1U), 1);
+    }
+}
 
 void sucoaster_entrypoint_20()
 {
