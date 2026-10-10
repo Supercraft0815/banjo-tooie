@@ -18,7 +18,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/func_808002DC_gcfrontend.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_8.s")
+void gcfrontend_entrypoint_8(s32 arg0, s32 arg1) {
+    s32 func_808002DC_gcfrontend(s32, s32);
+    s32 var_a1;
+
+    if (arg1 != 0) {
+        var_a1 = 1;
+    } else {
+        var_a1 = 0;
+    }
+    func_808002DC_gcfrontend(arg0, var_a1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_9.s")
 
