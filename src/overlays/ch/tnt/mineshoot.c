@@ -32,7 +32,14 @@ void func_8080003C_chtntmineshoot(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800AD0_chtntmineshoot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800BCC_chtntmineshoot.s")
+void func_80800BCC_chtntmineshoot(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    (*(s8 *)((s8 *)(temp_v0) + (1))) = 0;
+    (*(s8 *)((s8 *)(temp_v0) + (4))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800BF4_chtntmineshoot.s")
 
