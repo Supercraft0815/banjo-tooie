@@ -2,7 +2,28 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80800000_gcdialogexec.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_8080002C_gcdialogexec.s")
+/* extern */
+
+void func_8080002C_gcdialogexec(u8 *arg0) {
+    s32 _gczoombox_entrypoint_0(s32);
+    s32 temp_a0;
+    s32 var_s1;
+    u8 *var_s0;
+
+    var_s0 = arg0;
+    var_s1 = 0;
+    do {
+        _gczoombox_entrypoint_0((*(s32 *)((s8 *)(var_s0) + (0x120))));
+        var_s1 += 1;
+        var_s0 += 4;
+        (*(s32 *)((s8 *)(var_s0) + (0x11C))) = 0;
+    } while (var_s1 != 2);
+    temp_a0 = (*(s32 *)((s8 *)(arg0) + (0x12C)));
+    if (temp_a0 != 0) {
+        _gczoombox_entrypoint_0(temp_a0);
+        (*(s32 *)((s8 *)(arg0) + (0x12C))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_808000A0_gcdialogexec.s")
 
