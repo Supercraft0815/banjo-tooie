@@ -18,7 +18,30 @@ void func_80800084_glglobalsettings()
     heap_alloc(0x80);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/func_808000A4_glglobalsettings.s")
+/* extern */
+
+s32 func_808000A4_glglobalsettings(s32 arg0, s32 arg1) {
+    s32 _glgamestore_entrypoint_1(s32, s32);
+    s32 _glglobaldata_entrypoint_4(s32);
+    s32 sp28;
+    s32 temp_v0;
+    s32 var_s0;
+
+    var_s0 = 3;
+loop_1:
+    temp_v0 = _glgamestore_entrypoint_1(arg0, arg1);
+    if (temp_v0 != 0) {
+        var_s0 -= 1;
+        if (var_s0 != 0) {
+            goto loop_1;
+        }
+    }
+    if (temp_v0 != 0) {
+        sp28 = temp_v0;
+        _glglobaldata_entrypoint_4(arg1);
+    }
+    return temp_v0;
+}
 
 /* extern */
 
