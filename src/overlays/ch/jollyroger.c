@@ -61,7 +61,25 @@ void func_8080056C_chjollyroger(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800CC4_chjollyroger.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800D28_chjollyroger.s")
+/* extern */
+
+void func_80800D28_chjollyroger(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_800F54E4();
+    s32 func_800F82D4(s32, s32);
+    s32 func_80102424(s32, s32);
+    s32 func_80105A9C(s32, s32);
+    s32 func_80105BAC(s32);
+    s32 func_80800F3C_chjollyroger(s32, s32, s32);
+    if ((arg1 == 0xFFB) || (arg1 == 0x1054)) {
+        func_80102424(arg0, 4);
+        func_80105A9C(arg0, 0x43AF0000);
+        func_80105BAC(arg0);
+        func_800F82D4(func_800F54E4(), 0);
+        func_80800F3C_chjollyroger(arg0, 4, 0x30);
+        return;
+    }
+    func_80102424(arg0, 5);
+}
 
 void func_80800DB8_chjollyroger(Actor* arg0) 
 {
