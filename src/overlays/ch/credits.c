@@ -1,6 +1,15 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80800000_chcredits.s")
+s16 func_80800000_chcredits(s32 arg0) {
+    extern s32 D_8012760D;
+    extern s16 D_80801208_chcredits[];
+    extern s16 D_808012C0_chcredits[];
+    s32 offset = arg0 << 3;
+    if ((*(u8 *)((s8 *)(&D_8012760D) + (4))) == 2) {
+        return *(s16 *)((u8 *)D_808012C0_chcredits + offset);
+    }
+    return *(s16 *)((u8 *)D_80801208_chcredits + offset);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_8080003C_chcredits.s")
 
