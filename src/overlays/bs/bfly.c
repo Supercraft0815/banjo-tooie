@@ -160,7 +160,10 @@ void func_808019EC_bsbfly(s32 arg0) {
     _bafly_entrypoint_16(arg0, 0x10D, 0x3F800000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80801A1C_bsbfly.s")
+void func_80801A1C_bsbfly(s32 arg0) {
+    s32 _bafly_entrypoint_17(s32, s32, s32, s32 *);
+    _bafly_entrypoint_17(arg0, 0x24, 0x20, arg0 + 0x15C);
+}
 
 void func_80801A44_bsbfly(s32 arg0)
 {
