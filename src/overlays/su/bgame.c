@@ -32,7 +32,24 @@ s32 susubgame_entrypoint_3(s32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/susubgame_entrypoint_8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/susubgame_entrypoint_9.s")
+/* extern */
+
+s32 susubgame_entrypoint_9(void) {
+    s32 func_800F6F00(s32);
+    s32 func_808008DC_susubgame(s32);
+    s32 var_s0;
+
+    var_s0 = 0;
+loop_1:
+    if ((func_808008DC_susubgame(var_s0) != 0) && (func_800F6F00(var_s0) == 0)) {
+        return 0;
+    }
+    var_s0 += 1;
+    if (var_s0 == 8) {
+        return 1;
+    }
+    goto loop_1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/susubgame_entrypoint_10.s")
 
