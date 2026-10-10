@@ -2,7 +2,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/func_80800000_suquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/func_80800074_suquiz.s")
+f32 func_80800074_suquiz(s32 arg0, s32 arg1, s32 arg2) {
+    extern f32 D_80801050_suquiz[][3][2];
+    return D_80801050_suquiz[arg1][arg2][0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/func_8080009C_suquiz.s")
 
