@@ -157,7 +157,18 @@ s32 bsbtrot_entrypoint_15(s32 arg0) {
     return ((s32 *)&D_80802E80_bsbtrot)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_8080163C_bsbtrot.s")
+/* extern */
+
+void func_8080163C_bsbtrot(s32 arg0) {
+    s32 func_8009E6EC();
+    s32 func_80099B94(void *);
+    s32 temp_v0;
+
+    temp_v0 = func_8009E6EC();
+    if ((temp_v0 != 0x1A) && (temp_v0 != 0x1B) && (temp_v0 != 0x29) && (temp_v0 != 0x2B)) {
+        func_80099B94(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_16.s")
 
