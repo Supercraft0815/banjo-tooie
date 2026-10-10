@@ -29,7 +29,11 @@ OSThread *chamazongoldhordeofficial_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800E18_chamazongoldhordeofficial.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800E64_chamazongoldhordeofficial.s")
+void func_80800E64_chamazongoldhordeofficial(Actor *arg0) {
+    extern u32 D_808011D0_chamazongoldhordeofficial;
+    extern u32 D_8080135C_chamazongoldhordeofficial;
+    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_808011D0_chamazongoldhordeofficial, &D_8080135C_chamazongoldhordeofficial);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800E94_chamazongoldhordeofficial.s")
 
