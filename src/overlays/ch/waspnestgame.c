@@ -97,7 +97,22 @@ void func_80801324_chwaspnestgame(f32 *arg0, f32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801880_chwaspnestgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801954_chwaspnestgame.s")
+/* extern */
+
+void func_80801954_chwaspnestgame(s32 arg0) {
+    s32 func_800DA298(s32);
+    f32 func_800EEB40(s32, s32);
+    s32 func_8010A570(s32);
+    s32 func_80801364_chwaspnestgame(s32, s32);
+    if (func_800EEB40(arg0 + 0x18, arg0 + 4) > 1.0f) {
+        func_80801364_chwaspnestgame(arg0, 2);
+    } else {
+        func_80801364_chwaspnestgame(arg0, 1);
+    }
+    if (func_800DA298(0) != 0) {
+        func_8010A570(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_808019D4_chwaspnestgame.s")
 
