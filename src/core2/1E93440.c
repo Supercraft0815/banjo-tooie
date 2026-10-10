@@ -118,7 +118,13 @@ void func_800BA660(void *arg0, s32 arg1, s16 arg2) {
     (*(s16 *)((s8 *)(arg0) + (0x98))) = arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA670.s")
+void func_800BA670(s32 arg0, s32 arg1) {
+    s8 func_800D738C(s32);
+    if (arg1 != (*(u16 *)((s8 *)(arg0) + (2)))) {
+        (*(u16 *)((s8 *)(arg0) + (2))) = (u16) arg1;
+        (*(s8 *)((s8 *)(arg0) + (0xA))) = func_800D738C(arg1 & 0xFFFF);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA6B0.s")
 
