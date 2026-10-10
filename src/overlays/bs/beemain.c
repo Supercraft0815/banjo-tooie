@@ -2,7 +2,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80800000_bsbeemain.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_8080002C_bsbeemain.s")
+/* extern */
+
+void func_8080002C_bsbeemain(s32 arg0) {
+    s32 func_8009D7A4(s32, f32, f32);
+    func_8009D7A4(arg0, 1.35f, 1.45f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80800058_bsbeemain.s")
 
