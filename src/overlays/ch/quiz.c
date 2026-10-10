@@ -255,7 +255,16 @@ OSThread *chquiz_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80803588_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80803910_chquiz.s")
+void func_80803910_chquiz(u8 *arg0) {
+    s32 func_800C8B84(s32);
+    s32 temp_a1;
+
+    temp_a1 = (*(s32 *)((s8 *)(arg0) + (0x24)));
+    if (temp_a1 != 0) {
+        func_800C8B84(temp_a1);
+        (*(s32 *)((s8 *)(arg0) + (0x24))) = 0;
+    }
+}
 
 OSThread *chquiz_entrypoint_2(void)
 {
