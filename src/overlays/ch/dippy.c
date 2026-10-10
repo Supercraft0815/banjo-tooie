@@ -42,7 +42,19 @@ void chdippy_entrypoint_2(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800CBC_chdippy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800D44_chdippy.s")
+void func_80800D44_chdippy(u8 *arg0) {
+    struct Flags {
+        u8 pad[0x64];
+        unsigned int : 11;
+        unsigned int active : 1;
+        unsigned int : 20;
+    };
+    void _capod_entrypoint_14(void);
+    if (((struct Flags *)arg0)->active) {
+        _capod_entrypoint_14();
+        arg0[0x65] &= 0xFFEF;
+    }
+}
 
 void func_80800D84_chdippy(void *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFFE);
