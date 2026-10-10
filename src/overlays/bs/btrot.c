@@ -1,6 +1,22 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80800000_bsbtrot.s")
+/* extern */
+
+s32 func_80800000_bsbtrot(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 func_8008E3E8(s32);
+    s32 func_8008E40C();
+    s32 func_8008E430(s32);
+    if (func_8008E40C() != 0) {
+        return arg4;
+    }
+    if (func_8008E3E8(arg0) != 0) {
+        return arg2;
+    }
+    if (func_8008E430(arg0) != 0) {
+        return arg3;
+    }
+    return arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80800070_bsbtrot.s")
 
