@@ -122,7 +122,13 @@ void func_80800BF0_bsbanshack()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_80800C10_bsbanshack.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_80800C6C_bsbanshack.s")
+/* extern */
+
+void func_80800C6C_bsbanshack(Actor *arg0) {
+    void* func_80800074_bsbanshack(Actor*, u32);
+    s32 bs_setState(Actor *, u8 *);
+    bs_setState(arg0, func_80800074_bsbanshack(arg0, 0U));
+}
 
 s32 bsbanshack_entrypoint_6(s32 arg0) {
     extern s32 D_80800D10_bsbanshack[];
