@@ -67,7 +67,12 @@ block_10:
     return out_max;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F1198.s")
+f32 func_800F1198(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+    if (arg2 != arg1) {
+        return (((arg0 - arg1) / (arg2 - arg1)) * (arg4 - arg3)) + arg3;
+    }
+    return arg4;
+}
 
 f32 func_800F11E4(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     return (((arg0 - arg1) / (arg2 - arg1)) * (arg4 - arg3)) + arg3;
