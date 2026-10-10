@@ -1,6 +1,8 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/swim/func_80800000_bsbanswim.s")
+void func_80800000_bsbanswim(s32 arg0) {
+    func_8009FFD8(arg0, 0x1, 0x3, 0x3, 0x9);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/swim/func_80800030_bsbanswim.s")
 
