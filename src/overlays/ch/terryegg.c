@@ -72,7 +72,10 @@ void func_80800D20_chterryegg(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80800FE0_chterryegg.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80801050_chterryegg.s")
+void func_80801050_chterryegg(Actor *arg0) {
+    extern u32 D_80801424_chterryegg;
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80801424_chterryegg, 0x3F4F5C29);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80801080_chterryegg.s")
 
