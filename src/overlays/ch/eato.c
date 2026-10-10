@@ -57,7 +57,19 @@ loop_1:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800C0C_chcheato.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800C64_chcheato.s")
+/* extern */
+
+s32 func_80800C64_chcheato(void *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_0(s32, s32);
+    s32 func_80800D08_chcheato(void *, s32, s32);
+    if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
+        if (((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF) != 2) {
+            func_80800D08_chcheato(arg0, 2, 1);
+        }
+        return 2;
+    }
+    return 1;
+}
 
 /* extern */
 
