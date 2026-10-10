@@ -5,7 +5,11 @@ void func_80800000_chcollballcontrol(Unk80132ED0 **arg0, u32 arg1, s32 arg2) {
     _subaddiedialog_entrypoint_11(*arg0, arg1, arg2 | 0xE, (f32 *)((s8 *)arg0 + 4), 0x33);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80800040_chcollballcontrol.s")
+f32 func_80800040_chcollballcontrol(void *arg0) {
+    void *func_80100094(void *, s32);
+    extern f32 D_80804CB4_chcollballcontrol[];
+    return D_80804CB4_chcollballcontrol[*((u8 *)func_80100094(arg0, 0) + 0x14)];
+}
 
 /* extern */
 
