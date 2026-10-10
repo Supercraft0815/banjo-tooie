@@ -31,7 +31,16 @@ void func_808009D0_chkingjinjo(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_808009FC_chkingjinjo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_80800AE4_chkingjinjo.s")
+void func_80800AE4_chkingjinjo(s32 arg0, s32 *arg1) {
+    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    s32 func_80800C60_chkingjinjo(void *, s32, s32);
+    s32 temp_v0;
+
+    temp_v0 = _subaddiedialog_entrypoint_7(arg0, arg0 + 4, arg1);
+    if ((temp_v0 != 0) && (temp_v0 != 0x1208)) {
+        func_80800C60_chkingjinjo((u8 *) arg0, 3, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_80800B28_chkingjinjo.s")
 
