@@ -34,7 +34,11 @@ void func_800C87DC(s32 *arg0) {
     func_800EE830(arg0, &D_8012AB10);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8800.s")
+void func_800C8800(s32 arg0, f32 *arg1) {
+    void func_800EE88C(f32 dst[3], s16 src[3]);
+    void *vector_at(s32, s32, s32);
+    func_800EE88C(arg1, vector_at(D_8012AB00, arg0 - 1, arg0));
+}
 
 /* extern */
 
