@@ -33,7 +33,12 @@ OSThread *chinflatableboss_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80801958_chinflatableboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80801AD8_chinflatableboss.s")
+void func_80801AD8_chinflatableboss(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80108B04(Actor*, u32);
+    if (arg1 == 0x1085) {
+        func_80108B04(arg0, 0U);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80801B04_chinflatableboss.s")
 
