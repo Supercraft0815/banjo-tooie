@@ -2,7 +2,28 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80016C00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80016DA0.s")
+/* extern */
+
+void func_80016DA0(s32 arg0, s32 arg1) {
+    s32 func_800D5B24();
+    s32 func_800D674C(s32);
+    s32 func_800D70D0(s32);
+    s32 func_800D71F4(s32);
+    s32 func_800D73CC(s32);
+    s32 sp1C;
+    s32 temp_a0;
+
+    temp_a0 = arg0 + 0x1DDD;
+    sp1C = temp_a0;
+    if (func_800D73CC(temp_a0) == 0) {
+        if (arg1 != 0) {
+            func_800D5B24();
+        }
+        func_800D674C(sp1C);
+        func_800D70D0(1);
+        func_800D71F4(1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80016DF8.s")
 
