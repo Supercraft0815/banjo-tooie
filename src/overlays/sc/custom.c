@@ -200,7 +200,20 @@ void sccustom_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_80800000_sccustom(arg0, arg1, arg2, arg3, func_808004C8_sccustom(arg1));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/custom/sccustom_entrypoint_2.s")
+/* extern */
+
+void sccustom_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 _scinfobar_entrypoint_19(s32);
+    s32 _scinfobar_entrypoint_20(s32);
+    s32 _scinfobar_entrypoint_5(s32, s32);
+    s32 sp2C;
+
+    sp2C = _scinfobar_entrypoint_19(arg1);
+    if (_scinfobar_entrypoint_20(arg1) == sp2C) {
+        _scinfobar_entrypoint_5(arg1, 1);
+    }
+    func_80800000_sccustom(arg0, arg1, arg2, arg3, func_8080050C_sccustom(arg1, 0x2FU));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/custom/func_808006C4_sccustom.s")
 
