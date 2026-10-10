@@ -59,7 +59,11 @@ OSThread *chmonsterinterior_entrypoint_4(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_80800E0C_chmonsterinterior.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_8080101C_chmonsterinterior.s")
+void func_8080101C_chmonsterinterior(Actor *arg0, s32 arg1) {
+    void* func_80100094(Actor*, u32);
+    s32 _sumultiscore_entrypoint_12(s32, s32, s32);
+    _sumultiscore_entrypoint_12((s32)func_80100094(arg0, 0U) + 0x28, arg1, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_80801050_chmonsterinterior.s")
 
