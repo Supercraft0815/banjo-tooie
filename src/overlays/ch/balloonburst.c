@@ -129,7 +129,23 @@ void func_80801A10_chballoonburst(u8 *arg0) {
     func_800BBCB8(temp_a0, temp_a0, (*(s32 *)((s8 *)(arg0) + (0x38))), 8, &D_80801D28_chballoonburst);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80801A50_chballoonburst.s")
+void func_80801A50_chballoonburst(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA670(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    extern s32 D_80801D5C_chballoonburst;
+    s32 sp24;
+    f32 *temp_a1;
+    s32 temp_v0;
+
+    temp_v0 = func_800B53A4(arg2);
+    sp24 = temp_v0;
+    func_800BA670(temp_v0, arg1);
+    temp_a1 = arg0 + 4;
+    func_800BABB8(sp24, temp_a1, temp_a1, (*(f32 *)((s8 *)(arg0) + (0x38))), &D_80801D5C_chballoonburst);
+    func_800BA22C(sp24, arg2);
+}
 
 void func_80801ABC_chballoonburst(u8 *arg0) {
     s32 func_800BBCB8(u8 *, u8 *, s32, s32, s32 *);
