@@ -6,7 +6,11 @@ void func_80800000_bscrouch(s32 arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x15C))) = 4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/crouch/func_80800034_bscrouch.s")
+void func_80800034_bscrouch(s32 arg0) {
+    s32 baanim_playForDuration_onceSmooth(s32, s32, s32);
+    baanim_playForDuration_onceSmooth(arg0, 0x116, 0x40000000);
+    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/crouch/func_80800068_bscrouch.s")
 
