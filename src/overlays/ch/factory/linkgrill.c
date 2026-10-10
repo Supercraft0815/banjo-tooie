@@ -26,7 +26,14 @@ OSThread *chfactorylinkgrill_entrypoint_1(void)
     return (OSThread *) D_80800298_chfactorylinkgrill;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/linkgrill/func_808001B0_chfactorylinkgrill.s")
+void func_808001B0_chfactorylinkgrill(Actor *arg0) {
+    void _chdoormake_entrypoint_0(void*, f32, u32, s32);
+    void _chdoormake_entrypoint_5(Actor*, f32);
+    void _chdoormake_entrypoint_8(void*, u32);
+    _chdoormake_entrypoint_0(arg0, -90.0f, 0U, 0x1D9);
+    _chdoormake_entrypoint_5(arg0, 1.5f);
+    _chdoormake_entrypoint_8(arg0, 2U);
+}
 
 OSThread *chfactorylinkgrill_entrypoint_2(void)
 {
