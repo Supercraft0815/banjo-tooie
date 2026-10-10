@@ -2,7 +2,25 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80800000_ncpoddialog.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_8080008C_ncpoddialog.s")
+/* extern */
+
+void func_8080008C_ncpoddialog(u8 *arg0) {
+    f32 func_800F1DCC(f32, f32, u8 *);
+    f32 func_800F1DF4(s32, s32, u8 *);
+    f32 temp_f0;
+    f32 var_f2;
+
+    temp_f0 = func_800F1DCC(func_800F1DF4(arg0 + 0x28, arg0 + 0x34, arg0), (*(f32 *)((s8 *)(arg0) + (0x44))), arg0);
+    var_f2 = temp_f0;
+    if ((temp_f0 < -90.0f) || (temp_f0 > 90.0f)) {
+        var_f2 = -temp_f0;
+    }
+    if (var_f2 > 0.0f) {
+        (*(s8 *)((s8 *)(arg0) + (0x214))) = 1;
+        return;
+    }
+    (*(s8 *)((s8 *)(arg0) + (0x214))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80800128_ncpoddialog.s")
 
