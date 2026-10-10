@@ -1,6 +1,16 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/thrust/func_80800000_bamovethrust.s")
+/* extern */
+
+void func_80800000_bamovethrust(s32 arg0, f32 *arg1, f32 arg2) {
+    void func_800EF4E4(f32[3], f32, f32, f32, f32, f32);
+    f32 func_8009BFCC();
+    f32 yaw_get(s32);
+    f32 sp24;
+
+    sp24 = func_8009BFCC();
+    func_800EF4E4(arg1, sp24, yaw_get(arg0), 0.0f, 0.0f, arg2);
+}
 
 void bamovethrust_entrypoint_0(s32 arg0) 
 {
