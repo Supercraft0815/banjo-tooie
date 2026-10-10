@@ -383,7 +383,15 @@ void func_80800220_chdinoboss(Actor* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80800E88_chdinoboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80800F28_chdinoboss.s")
+void func_80800F28_chdinoboss(Actor *arg0, s32 arg1) {
+    s32 func_800DA298(s32);
+    void func_80800F70_chdinoboss(Actor*, s32);
+    void func_8080248C_chdinoboss(Actor*, s32, s32);
+    if (func_800DA298(0xE5) == 0) {
+        func_80800F70_chdinoboss(arg0, 0x17);
+        func_8080248C_chdinoboss(arg0, 0x2A, 0x438);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80800F70_chdinoboss.s")
 
