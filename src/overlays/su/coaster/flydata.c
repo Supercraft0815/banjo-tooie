@@ -4,7 +4,30 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/flydata/sucoasterflydata_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/flydata/sucoasterflydata_entrypoint_2.s")
+s32 *sucoasterflydata_entrypoint_2(u32 arg0, s32 *arg1) {
+    extern s32 D_80800358_sucoasterflydata;
+    extern s32 D_808003AC_sucoasterflydata;
+    extern s32 D_808003F4_sucoasterflydata;
+    extern s32 D_8080043C_sucoasterflydata;
+    switch (arg0) {
+    case 0:
+        *arg1 = 7;
+        return &D_80800358_sucoasterflydata;
+    case 1:
+    case 2:
+        *arg1 = 6;
+        return &D_808003AC_sucoasterflydata;
+    case 3:
+        *arg1 = 6;
+        return &D_808003F4_sucoasterflydata;
+    case 4:
+        *arg1 = 6;
+        return &D_8080043C_sucoasterflydata;
+    default:
+        *arg1 = 0;
+        return NULL;
+    }
+}
 
 s32 sucoasterflydata_entrypoint_3(u32 arg0) {
     switch (arg0) {
