@@ -20,7 +20,11 @@ s32 func_800D2140()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAB8B0/func_800D2148.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAB8B0/func_800D2188.s")
+void func_800D2188(u8 *arg0) {
+    void rare_memcpy(void* dst, void* src, int length);
+    extern s32 D_8012B260;
+    rare_memcpy(arg0, &D_8012B260, 0x2E);
+}
 
 void func_800D21B0(s32 *arg0, s32 **arg1) {
     extern s32 D_8012B290;
