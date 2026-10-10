@@ -41,7 +41,26 @@ void func_80800024_chweldarbossfusebox(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fusebox/func_80800098_chweldarbossfusebox.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fusebox/func_80800140_chweldarbossfusebox.s")
+void func_80800140_chweldarbossfusebox(s32 arg0) {
+    s32 _chexploder_entrypoint_15(s32, s32, s32);
+    s32 _chexploder_entrypoint_6(s32, s32, s32);
+    s32 _chexploder_entrypoint_7(s32, s32, s32);
+    s32 _subaddieaudioquick_entrypoint_2(s32, s32, s32 *);
+    s32 func_800BF744(s32, s32);
+    s32 func_80101080();
+    s32 func_80106790(s32);
+    extern s32 D_80800660_chweldarbossfusebox;
+    s32 sp1C;
+    s32 temp_v0;
+
+    temp_v0 = func_80106790(func_80101080());
+    sp1C = temp_v0;
+    _chexploder_entrypoint_6(temp_v0, 0x44E10000, 0x44FA0000);
+    _chexploder_entrypoint_7(sp1C, 0xC4AF0000, 0xC4960000);
+    _chexploder_entrypoint_15(sp1C, 2, 0x3FC00000);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80800660_chweldarbossfusebox);
+    func_800BF744(2, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fusebox/func_808001BC_chweldarbossfusebox.s")
 
