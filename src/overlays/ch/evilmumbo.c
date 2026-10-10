@@ -17,7 +17,20 @@ void func_80800098_chevilmumbo(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800290_chevilmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800300_chevilmumbo.s")
+void func_80800300_chevilmumbo(s32 *arg0) {
+    s32 func_8008F8B0();
+    s32 func_8008F8D8(s32);
+    s32 func_8008F904(s32 *, s32);
+    s32 func_8008F938(s32);
+    s32 func_8008F990(s32 *, s32);
+    extern s32 D_80804294_chevilmumbo;
+    extern s32 func_8010D5DC;
+    func_8008F8B0();
+    func_8008F8D8(1);
+    func_8008F938(1);
+    func_8008F904(&func_8010D5DC, *arg0);
+    func_8008F990(&D_80804294_chevilmumbo, 0x43480000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800354_chevilmumbo.s")
 
