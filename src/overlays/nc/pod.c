@@ -70,7 +70,12 @@ s32 ncpod_entrypoint_4(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_8.s")
+void ncpod_entrypoint_8(u8 *arg0, f32 *arg1, f32 *arg2) {
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    func_800EE7F8(arg0 + 0x18, arg1);
+    func_800EE7F8(arg0 + 0x24, arg2);
+    (*(s8 *)((s8 *)(arg0) + (0x40))) = 1;
+}
 
 void ncpod_entrypoint_9(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)arg0 + 48) = arg1;
