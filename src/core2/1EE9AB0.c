@@ -149,7 +149,17 @@ void func_80110DE0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110FCC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111018.s")
+void func_80111018(s32 arg0, s32 arg1) {
+    s32 _ncba1p_entrypoint_1(s32);
+    s32 func_8011337C(s32);
+    s32 func_80113410();
+    s32 rare_memcpy(s32, s32, s32);
+    extern s16 D_80137372;
+    func_80113410();
+    rare_memcpy(arg0 + 0x98, arg1 + 0x98, D_80137372 - 0x98);
+    func_8011337C(arg0);
+    _ncba1p_entrypoint_1(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_8011106C.s")
 
