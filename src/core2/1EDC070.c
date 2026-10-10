@@ -6,7 +6,14 @@ void func_80102780(void *arg0, void *arg1) {
     (*(f32 *)((s8 *)(arg1) + (8))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x4C)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_8010279C.s")
+/* extern */
+
+void func_8010279C(void *arg0, void *arg1) {
+    f32 func_800136E4(f32);
+    (*(f32 *)((s8 *)(arg0) + (0x44))) = func_800136E4((*(f32 *)((s8 *)(arg1) + (0))));
+    (*(f32 *)((s8 *)(arg0) + (0x48))) = func_800136E4((*(f32 *)((s8 *)(arg1) + (4))));
+    (*(f32 *)((s8 *)(arg0) + (0x4C))) = func_800136E4((*(f32 *)((s8 *)(arg1) + (8))));
+}
 
 f32 *func_801027F4(u8 *arg0) {
     extern f32 D_80135AA0;
