@@ -17,7 +17,23 @@ OSThread *ch2dbaddy_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_8080041C_ch2dbaddy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_80800468_ch2dbaddy.s")
+/* extern */
+
+s32 func_80800468_ch2dbaddy(u8 *arg0) {
+    s32 _subaddiejoy_entrypoint_6(u8 *, s32);
+    struct Flags {
+        u8 pad[0x64];
+        u32 : 2;
+        u32 flag : 1;
+        u32 : 29;
+    };
+
+    if (((struct Flags *)arg0)->flag) {
+        return _subaddiejoy_entrypoint_6(arg0, 0) == 1;
+    } else {
+        return 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_808004A8_ch2dbaddy.s")
 
