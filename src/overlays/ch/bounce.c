@@ -15,7 +15,14 @@ void chbounce_entrypoint_3(f32 arg0) {
     *(f32 *)((u8 *)&D_8012716C + 36) = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bounce/chbounce_entrypoint_4.s")
+void chbounce_entrypoint_4(Actor *arg0, s32 *arg1) {
+    void func_800EE84C(f32 dst[3], s32 src[3]);
+    void chbounce_entrypoint_6(Actor *arg0, u32 arg1);
+    f32 position[3];
+
+    func_800EE84C(position, arg1);
+    chbounce_entrypoint_6(arg0, (u32) position);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bounce/func_80800078_chbounce.s")
 
