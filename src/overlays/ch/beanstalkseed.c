@@ -13,7 +13,32 @@ OSThread *chbeanstalkseed_entrypoint_0(void)
     return (OSThread *) D_80800C00_chbeanstalkseed;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beanstalkseed/func_80800328_chbeanstalkseed.s")
+/* extern */
+
+s32 func_80800328_chbeanstalkseed(void) {
+    s32 func_800D1A04(s32);
+    s32 func_800F54E4();
+    s32 func_800F64A4(s32, s32);
+    s32 func_800F66F0(s32);
+    s32 func_800F6720(s32);
+    s32 func_8010C500();
+    if (func_8010C500() == 0) {
+        return 0;
+    }
+    if (func_800D1A04(0x50) == 0) {
+        return 0;
+    }
+    if (func_800F64A4(func_800F54E4(), 0x201) == 0) {
+        return 0;
+    }
+    if (func_800F6720(func_800F54E4()) != 0) {
+        return 0;
+    }
+    if (func_800F66F0(func_800F54E4()) != 0) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beanstalkseed/func_808003D8_chbeanstalkseed.s")
 
