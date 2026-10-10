@@ -16,7 +16,15 @@ void sucoaster_entrypoint_1(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_4.s")
+void sucoaster_entrypoint_4(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    if (temp_v0 != NULL) {
+        (*(u8 *)((s8 *)(temp_v0) + (0x19))) = (u8) ((*(u8 *)((s8 *)(temp_v0) + (0x19))) & 0xFFBF);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_5.s")
 
