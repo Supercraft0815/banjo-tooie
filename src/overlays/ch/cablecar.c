@@ -62,7 +62,19 @@ void func_808005E0_chcablecar(Actor* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800AF4_chcablecar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800B74_chcablecar.s")
+/* extern */
+
+void func_80800B74_chcablecar(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _subaddieDll_entrypoint_4(s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_80101FDC(s32, s32);
+    if (func_800DA298(0x67E) == 0) {
+        func_80101FDC(arg0, 2);
+        return;
+    }
+    func_80101FDC(arg0, 3);
+    _subaddieDll_entrypoint_4(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800BD0_chcablecar.s")
 
