@@ -22,7 +22,14 @@ OSThread *chminisubgame_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/func_80800484_chminisubgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/func_80800A64_chminisubgame.s")
+void func_80800A64_chminisubgame(Actor *arg0, s32 arg1) {
+    void* func_80100094(Actor*, u32);
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    arg0->actorData[5] -= 1;
+    (*(s8 *)((s8 *)((temp_v0 + arg1)) + (0x2D0))) = 2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/func_80800AAC_chminisubgame.s")
 
