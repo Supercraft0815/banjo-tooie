@@ -197,7 +197,10 @@ void func_80111094(s32 arg0, s32 arg1) {
     func_800EE780(arg1, arg0 + 0x74, arg0 + 0x8C, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_801110C4.s")
+void func_801110C4(s32 arg0, u8 *arg1) {
+    void func_800EFB24(void *arg0, void *arg1, void *arg2);
+    func_800EFB24(arg0 + 0x8C, arg1, arg0 + 0x74);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_801110EC.s")
 
