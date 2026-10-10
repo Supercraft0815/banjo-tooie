@@ -8,7 +8,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadesnake/func_80800150_chjadesnake.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadesnake/func_80800728_chjadesnake.s")
+void func_80800728_chjadesnake(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80102424(Actor*, s32);
+    if (arg1 != 0xF3C) {
+        if (arg1 == 0xF3D) {
+            func_80102424(arg0, 8);
+        }
+    } else {
+        func_80102424(arg0, 6);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadesnake/func_80800770_chjadesnake.s")
 
