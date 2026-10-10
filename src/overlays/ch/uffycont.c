@@ -25,7 +25,24 @@ void func_8080046C_chchuffycont(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_8080070C_chchuffycont.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_80800768_chchuffycont.s")
+/* extern */
+
+void func_80800768_chchuffycont(s32 arg0, s32 arg1) {
+    s32 _gcnewoption_entrypoint_1(s32, s32);
+    s32 func_800EB854();
+    s32 func_80100094(s32, s32);
+    s32 func_80101870(s32, s32);
+    s32 temp_v0;
+
+    if (func_800EB854() == 3) {
+        temp_v0 = func_80100094(arg0, 1);
+        if (temp_v0 != 0) {
+            _gcnewoption_entrypoint_1(temp_v0, arg1);
+        }
+    } else {
+        func_80101870(arg0, arg1);
+    }
+}
 
 s32 chchuffycont_entrypoint_0(s32 *arg0, s32 *arg1)
 {
