@@ -285,7 +285,9 @@ s32 func_80016B54(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2D890/func_80016B78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2D890/func_80016B9C.s")
+s32 func_80016B9C(s32 arg0, u16 arg1) {
+    return D_80079AF8[arg0].unk0 & arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2D890/func_80016BBC.s")
 
