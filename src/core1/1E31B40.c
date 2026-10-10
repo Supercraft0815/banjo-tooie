@@ -62,7 +62,26 @@ void func_8001A2D0(void) {
     func_80014C40();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A324.s")
+void func_8001A324(void) {
+    s32 func_8001A63C();
+    s32 heap_free(s32);
+    extern s32 D_8007BCD0;
+    extern s32 D_8007BCD4;
+    extern s32 D_8007BCD8;
+    extern s32 D_8007BCDC;
+    extern s32 D_8007BCE0;
+    extern s32 D_8007BCE4;
+    if (D_8007BCD0 != 0) {
+        heap_free(D_8007BCD0);
+        heap_free(D_8007BCD4);
+        heap_free(D_8007BCD8);
+        heap_free(D_8007BCDC);
+        heap_free(D_8007BCE0);
+        heap_free(D_8007BCE4);
+        D_8007BCD0 = 0;
+    }
+    func_8001A63C();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A3A0.s")
 
