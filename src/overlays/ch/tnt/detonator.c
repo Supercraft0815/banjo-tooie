@@ -7,7 +7,14 @@ OSThread *chtntdetonator_entrypoint_0(void)
     return (OSThread *) D_808006A8_chtntdetonator;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/detonator/func_8080000C_chtntdetonator.s")
+void func_8080000C_chtntdetonator(Actor *arg0) {
+    s32 _subaddiefade_entrypoint_14(s32);
+    void func_80102FDC(Actor*, f32);
+    s32 func_8010A63C(s32);
+    func_80102FDC(arg0, arg0->scale * 0.5f);
+    _subaddiefade_entrypoint_14((s32) arg0);
+    func_8010A63C((s32) arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/detonator/func_80800054_chtntdetonator.s")
 
