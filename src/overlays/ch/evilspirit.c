@@ -83,7 +83,25 @@ void func_808015A4_chevilspirit(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801E18_chevilspirit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801EC4_chevilspirit.s")
+/* extern */
+
+s32 func_80801EC4_chevilspirit(s32 arg0) {
+    s32 func_800F54E4();
+    s32 func_800F6D24(s32);
+    s32 func_800F8004(s32);
+    s32 sp1C;
+    s32 temp_v0;
+
+    temp_v0 = func_800F54E4();
+    sp1C = temp_v0;
+    if (func_800F6D24(temp_v0) != 0) {
+        return 0;
+    }
+    if (func_800F8004(sp1C) != 0) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801F1C_chevilspirit.s")
 
