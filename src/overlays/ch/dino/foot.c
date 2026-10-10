@@ -7,7 +7,20 @@ OSThread *chdinofoot_entrypoint_0(void)
     return (OSThread *) D_80800818_chdinofoot;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/foot/func_8080000C_chdinofoot.s")
+/* extern */
+
+void func_8080000C_chdinofoot(void *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 _subaddiefade_entrypoint_12(void *, s32, s32, s32);
+    s32 func_80102424(void *, s32);
+    s32 func_80102FDC(void *, f32);
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80102424(arg0, 5);
+        (*(f32 *)((s8 *)(arg0) + (0x58))) = 1.4f;
+    }
+    _subaddiefade_entrypoint_12(arg0, 0x60, 0x80, 0x60);
+    func_80102FDC(arg0, (*(f32 *)((s8 *)(arg0) + (0x38))) * 4.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/foot/func_80800084_chdinofoot.s")
 
