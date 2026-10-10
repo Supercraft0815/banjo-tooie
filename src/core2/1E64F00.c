@@ -38,7 +38,9 @@ void func_8008B610(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008BBF0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008BC2C.s")
+void func_8008BC2C(u8 *arg0) {
+    func_8008BBF0(arg0, arg0[8]);
+}
 
 void func_8008BC4C(s32 arg0)
 {
