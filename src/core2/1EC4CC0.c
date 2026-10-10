@@ -148,7 +148,22 @@ void func_800EC3C4(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC3E8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC428.s")
+/* extern */
+
+s32 func_800EC428(void *arg0) {
+    s32 func_800D674C(u16, void *);
+    s32 func_801039E4(void *);
+    u16 temp_a0;
+
+    if ((*(u16 *)((s8 *)(arg0) + (0x18))) & 1) {
+        return func_801039E4(arg0);
+    }
+    temp_a0 = (*(u16 *)((s8 *)(arg0) + (0x14)));
+    if ((temp_a0 == 0) || (temp_a0 == 0xFFFF)) {
+        return 0;
+    }
+    return func_800D674C(temp_a0, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC48C.s")
 
