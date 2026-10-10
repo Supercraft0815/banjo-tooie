@@ -157,6 +157,11 @@ MAKEFLAGS += -r
 # Keep IDO optimization enabled for the large animation-sequence table.
 $(BUILD_ROOT)/src/overlays/in/antab.c.o: CFLAGS += -Olimit 3000
 
+# The MIDI handler was built with IDO 7.1 debug code generation.
+$(BUILD_ROOT)/src/core1/1E39CE0.c.o: CC := tools/ido7.1/cc
+$(BUILD_ROOT)/src/core1/1E39CE0.c.o: OPT_LEVEL := -g
+$(BUILD_ROOT)/src/core1/1E39CE0.c.o: CFLAGS := $(filter-out -O2,$(CFLAGS)) -g
+
 # Debug variable print target
 print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true
 
