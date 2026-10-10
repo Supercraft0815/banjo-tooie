@@ -152,7 +152,20 @@ void func_808024B8_chboilerboss(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808025DC_chboilerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80802690_chboilerboss.s")
+/* extern */
+
+s32 func_80802690_chboilerboss(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_0(s32, s32);
+    void *func_80100094(s32, s32);
+    s32 func_80802730_chboilerboss(s32, s32, s32);
+    if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
+        if ((*(u8 *)((s8 *)(func_80100094(arg0, 0)) + (0x59))) != 2) {
+            func_80802730_chboilerboss(arg0, 2, 1);
+        }
+        return 2;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808026F0_chboilerboss.s")
 
