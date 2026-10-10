@@ -78,7 +78,15 @@ void *func_80012F6C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_8001311C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_800131C0.s")
+void func_800131C0(void) {
+    extern u8 D_8007695C[];
+    extern u8 *D_80076958;
+    extern u8 *D_80076978;
+    extern OSMesgQueue D_800769B8;
+    osCreateMesgQueue((OSMesgQueue *) D_8007695C, &D_80076958, 1);
+    osCreateMesgQueue(&D_800769B8, &D_80076978, 0x10);
+    osCreatePiManager(0x96, &D_800769B8, &D_80076978, 0x10);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80013224.s")
 
