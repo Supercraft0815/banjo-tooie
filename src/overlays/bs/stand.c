@@ -13,7 +13,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stand/bsstand_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stand/bsstand_entrypoint_2.s")
+void bsstand_entrypoint_2(PlayerState *arg0) {
+    s32 func_800A0CF4(PlayerState *, s32);
+    s32 func_80090A2C();
+    void func_800951B4(void* mem);
+    func_800A0CF4(arg0, 0);
+    func_80090A2C(arg0);
+    func_800951B4(arg0);
+}
 
 s32 bsstand_entrypoint_3(s32 arg0) {
     extern s32 D_80800D98_bsstand[];
