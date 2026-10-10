@@ -62,7 +62,10 @@ s32 func_80800B90_chquiz(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800BD4_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800C00_chquiz.s")
+s32 func_80800C00_chquiz(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    return (*(s32 *)((s8 *)(func_80100094(arg0, 0U)) + (0xD0)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800C24_chquiz.s")
 
