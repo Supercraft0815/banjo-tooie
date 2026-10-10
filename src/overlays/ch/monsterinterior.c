@@ -65,7 +65,13 @@ OSThread *chmonsterinterior_entrypoint_4(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_80801114_chmonsterinterior.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_80801180_chmonsterinterior.s")
+s32 func_80801180_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2) {
+    void* func_80100094(Actor*, u32);
+    if (arg1 == 0x17F8) {
+        return (*(s32 *)((s8 *)(func_80100094(arg0, 0U)) + (4))) + 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_808011BC_chmonsterinterior.s")
 
