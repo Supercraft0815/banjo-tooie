@@ -181,7 +181,13 @@ s32 func_800EC428(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC75C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC7D4.s")
+/* extern */
+
+void func_800EC7D4(Unk80132ED0 *arg0, s32 arg1) {
+    Actor* func_80106790(Unk80132ED0 *);
+    s32 func_8010A79C(Actor *, s32);
+    func_8010A79C(func_80106790(arg0), arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC800.s")
 
