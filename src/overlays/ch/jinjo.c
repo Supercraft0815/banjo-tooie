@@ -33,7 +33,10 @@ void chjinjo_entrypoint_4(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/func_80800C10_chjinjo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/func_80800EE4_chjinjo.s")
+void func_80800EE4_chjinjo(Actor *arg0) {
+    extern u32 D_80801358_chjinjo;
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80801358_chjinjo, 0x3F19999A);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/func_80800F14_chjinjo.s")
 
