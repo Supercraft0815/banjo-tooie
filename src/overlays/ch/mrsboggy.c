@@ -18,7 +18,23 @@ void func_80800290_chmrsboggy(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggy/func_808002B0_chmrsboggy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggy/func_808004F4_chmrsboggy.s")
+/* extern */
+
+void func_808004F4_chmrsboggy(s32 arg0) {
+    s32 _suexpression_entrypoint_12(s32, s32, s32);
+    s32 _suexpression_entrypoint_17(s32, s32);
+    s32 _suexpression_entrypoint_20();
+    s32 _suexpression_entrypoint_7(s32, s32, s32);
+    s32 sp1C;
+    s32 temp_v0;
+
+    if (_suexpression_entrypoint_20() == 0) {
+        temp_v0 = _suexpression_entrypoint_7(arg0, 1, 0x3E);
+        sp1C = temp_v0;
+        _suexpression_entrypoint_12(temp_v0, 0x42700000, 0x41A00000);
+        _suexpression_entrypoint_17(sp1C, 0x3E8);
+    }
+}
 
 void func_80800548_chmrsboggy(Actor* arg0) 
 {
