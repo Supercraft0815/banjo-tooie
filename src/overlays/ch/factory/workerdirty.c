@@ -37,7 +37,11 @@ void func_80800340_chfactoryworkerdirty(Actor* arg0)
     func_80800DB4_chfactoryworkerdirty(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_8080036C_chfactoryworkerdirty.s")
+void func_8080036C_chfactoryworkerdirty(s32 arg0) {
+    s32 _subaddieaudioquick_entrypoint_2(s32, s32, s32 *);
+    extern s32 D_80800F90_chfactoryworkerdirty;
+    _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80800F90_chfactoryworkerdirty);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800394_chfactoryworkerdirty.s")
 
