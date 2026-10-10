@@ -42,7 +42,24 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E7324.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E7368.s")
+/* extern */
+
+void func_800E7368(s32 arg0, s32 arg1) {
+    s32 func_800E6A58(s32, s32);
+    s32 var_s0;
+    s32 var_v0;
+
+    var_s0 = 0x1F;
+    do {
+        if ((1 << var_s0) & arg1) {
+            var_v0 = 0x31;
+        } else {
+            var_v0 = 0x30;
+        }
+        func_800E6A58(arg0, var_v0 & 0xFF);
+        var_s0 -= 1;
+    } while (var_s0 >= 0);
+}
 
 void func_800E73D4(s8 *arg0) {
     arg0[0] = 0;
