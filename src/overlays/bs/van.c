@@ -156,7 +156,24 @@ void func_80801224_bsvan(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_8080124C_bsvan.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_808012A4_bsvan.s")
+/* extern */
+
+void func_808012A4_bsvan(s32 arg0) {
+    s32 _babounce_entrypoint_2();
+    s32 _babounce_entrypoint_9(s32);
+    s32 bs_setState(u8 *, s32);
+    s32 func_80800000_bsvan(s32);
+    s32 sp1C;
+
+    sp1C = 0;
+    if (_babounce_entrypoint_2() != 0) {
+        func_80800000_bsvan(arg0);
+    }
+    if (_babounce_entrypoint_9(arg0) != 0) {
+        sp1C = 0x11A;
+    }
+    bs_setState(arg0, sp1C);
+}
 
 s32 bsvan_entrypoint_12(s32 arg0) {
     extern s32 D_80801CEC_bsvan[];
