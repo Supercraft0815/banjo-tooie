@@ -14,7 +14,16 @@ OSThread *chicestationbits_entrypoint_1(void)
     return (OSThread *) D_808002C8_chicestationbits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/icestationbits/func_80800018_chicestationbits.s")
+/* extern */
+
+void func_80800018_chicestationbits(s32 arg0) {
+    s32 _chswitch_entrypoint_7(s32, s32);
+    s32 _chswitch_entrypoint_8(s32, s32);
+    s32 _chswitch_entrypoint_9(s32);
+    _chswitch_entrypoint_7(arg0, 0x1CF);
+    _chswitch_entrypoint_9(arg0);
+    _chswitch_entrypoint_8(arg0, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/icestationbits/func_80800050_chicestationbits.s")
 
