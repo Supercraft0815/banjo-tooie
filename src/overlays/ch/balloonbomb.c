@@ -50,4 +50,10 @@ void func_80800400_chballoonbomb(u8 *arg0) {
     func_800BBCB8(arg0 + 4, 0, (*(s32 *)((s8 *)(arg0) + (0x38))), 1, &D_8080057C_chballoonbomb);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonbomb/func_80800440_chballoonbomb.s")
+void func_80800440_chballoonbomb(u8 *arg0) {
+    func_80800394_chballoonbomb(arg0, 0x93F, 2);
+    func_80800394_chballoonbomb(arg0, 0x940, 3);
+    func_80800394_chballoonbomb(arg0, 0x941, 4);
+    func_80800400_chballoonbomb(arg0);
+    func_80800354_chballoonbomb(arg0);
+}
