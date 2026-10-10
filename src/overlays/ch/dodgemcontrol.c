@@ -149,7 +149,19 @@ void func_80802720_chdodgemcontrol(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808039B8_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080422C_chdodgemcontrol.s")
+/* extern */
+
+void func_8080422C_chdodgemcontrol(s32 arg0, s32 arg1) {
+    s32 anctrl_setPlaybackType(s32, s32);
+    s32 func_80101FDC();
+    s32 func_80104248(s32, s32);
+    func_80101FDC();
+    if ((arg1 == 5) || (arg1 == 6) || (arg1 == 7)) {
+        anctrl_setPlaybackType(func_80104248(arg0, arg1), 2);
+        return;
+    }
+    anctrl_setPlaybackType(func_80104248(arg0, arg1), 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808042A4_chdodgemcontrol.s")
 
