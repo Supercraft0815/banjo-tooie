@@ -57,7 +57,23 @@ s32 func_80800138_chcollballcontrol(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80801038_chcollballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808010B8_chcollballcontrol.s")
+void func_808010B8_chcollballcontrol(void *arg0, s32 arg1) {
+    struct Fields {
+        u8 pad0[0x64];
+        u8 unused : 7;
+        u8 active : 1;
+        u8 pad1[9];
+        u16 high : 7;
+        u16 state : 9;
+    };
+    struct Fields *p = arg0;
+    p->state = arg1;
+    if (arg1 == 2) {
+        p->active = 1;
+    } else {
+        p->active = 0;
+    }
+}
 
 s32 func_808010F8_chcollballcontrol(void *arg0) {
     return (*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF;
