@@ -54,7 +54,18 @@ void func_80801344_chevilspirit(u8 *arg0) {
     func_808013DC_chevilspirit(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801398_chevilspirit.s")
+/* extern */
+
+void func_80801398_chevilspirit(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    s32 func_808013DC_chevilspirit(u8 *);
+    s32 func_80801458_chevilspirit();
+    s32 _subaddielink_entrypoint_4(u8 *);
+    if (_subaddielink_entrypoint_4(func_80100094(arg0, 0U)) != 0) {
+        func_80801458_chevilspirit(arg0);
+        func_808013DC_chevilspirit((u8 *) arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_808013DC_chevilspirit.s")
 
