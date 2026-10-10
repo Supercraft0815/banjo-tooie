@@ -106,4 +106,16 @@ void basub_entrypoint_13(void *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_15.s")
+void basub_entrypoint_15(void *arg0, s32 arg1) {
+    if (arg1 != 0) {
+        (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0x68))) = 3000.0f;
+        (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0x5F))) = 6;
+        (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0x60))) = 0.8f;
+        (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0x64))) = 0.28f;
+        return;
+    }
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0x68))) = 1500.0f;
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0x5F))) = 3;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0x60))) = 0.8f;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0x64))) = 0.28f;
+}
