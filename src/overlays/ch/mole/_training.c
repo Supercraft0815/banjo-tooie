@@ -62,7 +62,11 @@ void func_80800C28_chmole_training(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_80800C3C_chmole_training.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_80800C70_chmole_training.s")
+void func_80800C70_chmole_training(Actor *arg0) {
+    void _sumole_entrypoint_0(Actor*, u32);
+    arg0->unk54 = (f32) (s32) arg0->rotation[1];
+    _sumole_entrypoint_0(arg0, 1U);
+}
 
 OSThread *chmole_training_entrypoint_1(void)
 {
