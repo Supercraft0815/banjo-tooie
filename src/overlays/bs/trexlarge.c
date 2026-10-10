@@ -62,7 +62,10 @@ void func_80800180_bstrexlarge(PlayerState *arg0, void (*arg1)(PlayerState *)) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_8080024C_bstrexlarge.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80800270_bstrexlarge.s")
+void func_80800270_bstrexlarge(s32 *arg0) {
+    extern s32 _bsdrone_entrypoint_3;
+    func_80800180_bstrexlarge(arg0, &_bsdrone_entrypoint_3);
+}
 
 /* extern */
 
