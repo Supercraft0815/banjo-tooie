@@ -30,7 +30,13 @@ void func_8080009C_bstnt(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80800218_bstnt.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_808002AC_bstnt.s")
+void func_808002AC_bstnt(s32 arg0, s32 arg1) {
+    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+    extern s32 D_8080223C_bstnt;
+    extern s32 D_80802284_bstnt;
+    func_800BBCB8(arg1, 0, 0x3F800000, 8, &D_8080223C_bstnt);
+    func_800BBCB8(arg1, 0, 0x3F800000, 0xC, &D_80802284_bstnt);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_8080030C_bstnt.s")
 
