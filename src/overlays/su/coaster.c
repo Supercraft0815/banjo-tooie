@@ -2,7 +2,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_1.s")
+/* extern */
+
+void sucoaster_entrypoint_1(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    s32 func_80802728_sucoaster(Actor *, u8 *);
+    func_80802728_sucoaster(arg0, func_80100094(arg0, 0U));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_2.s")
 
