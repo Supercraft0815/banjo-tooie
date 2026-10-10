@@ -62,7 +62,15 @@ void func_808011F8_chsabreman()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_80801218_chsabreman.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_8080158C_chsabreman.s")
+void func_8080158C_chsabreman(Actor *arg0) {
+    s32 func_800DA564(s32, s32);
+    void func_800FFAB0(Actor*);
+    void func_80102FDC(Actor*, f32);
+    func_80102FDC(arg0, 0.45f);
+    if (func_800DA564(0x1CA, 2) != 3) {
+        func_800FFAB0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_808015D4_chsabreman.s")
 
