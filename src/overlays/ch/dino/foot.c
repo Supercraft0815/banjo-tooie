@@ -33,7 +33,20 @@ void func_80800310_chdinofoot(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/foot/func_80800480_chdinofoot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/foot/func_8080055C_chdinofoot.s")
+/* extern */
+
+s32 func_8080055C_chdinofoot(void *arg0) {
+    f32 func_800136E4(f32);
+    f32 func_8010CD28(void *);
+    s32 func_80800408_chdinofoot();
+    if (func_80800408_chdinofoot() != 0) {
+        (*(f32 *)((s8 *)(arg0) + (4))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x18)));
+        (*(f32 *)((s8 *)(arg0) + (0xC))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x20)));
+        (*(f32 *)((s8 *)(arg0) + (0x48))) = func_800136E4(func_8010CD28(arg0) + 180.0f);
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/foot/func_808005C4_chdinofoot.s")
 
