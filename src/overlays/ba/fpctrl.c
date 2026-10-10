@@ -119,4 +119,19 @@ void bafpctrl_entrypoint_16(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/bafpctrl_entrypoint_18.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/bafpctrl_entrypoint_19.s")
+/* extern */
+
+void bafpctrl_entrypoint_19(void *arg0) {
+    s32 _plcamera_entrypoint_0(s32);
+    s32 bafpctrl_entrypoint_14(void *, s32);
+    s32 func_8009337C(void *, s32);
+    s32 func_800A3544(void *, s32);
+    s32 func_800A4EC8(void *);
+    if (bafpctrl_entrypoint_4(arg0) == 3) {
+        bafpctrl_entrypoint_14(arg0, 1);
+        func_800A3544(arg0, 0);
+        func_8009337C(arg0, 1);
+        func_800A4EC8(arg0);
+        _plcamera_entrypoint_0((*(s32 *)((s8 *)(arg0) + (0x184))));
+    }
+}
