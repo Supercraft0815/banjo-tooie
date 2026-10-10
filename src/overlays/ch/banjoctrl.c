@@ -111,7 +111,19 @@ void func_80800ADC_chbanjoctrl(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800D04_chbanjoctrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800D50_chbanjoctrl.s")
+/* extern */
+
+void func_80800D50_chbanjoctrl(u8 *arg0) {
+    s32 func_800D90A4(s32);
+    s32 func_800F54E4();
+    s32 func_800F56AC(s32);
+    s32 func_800F6C5C(s32);
+    s32 func_800F6DA0(s32);
+    s32 func_800F7B9C(s32, s32);
+    if ((func_800D90A4(arg0 + 0x58) != 0) && (func_800F56AC(func_800F54E4()) == 0x19) && (func_800F6DA0(func_800F54E4()) == 0) && (func_800F6C5C(func_800F54E4()) != 0) && (func_800F7B9C(func_800F54E4(), 0x51) == 2)) {
+        (*(f32 *)((s8 *)(arg0) + (0x58))) = 3.0f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800DF8_chbanjoctrl.s")
 
