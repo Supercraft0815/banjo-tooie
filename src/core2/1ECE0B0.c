@@ -932,7 +932,10 @@ void func_800F8830(s32 arg0)
     func_8009E7C8(arg0,0x99);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8850.s")
+void func_800F8850(void) {
+    s32 func_800F47C0(s32 *);
+    func_800F47C0((s32 *) func_800F8830);
+}
 
 void func_800F8874(s32 arg0)
 {
