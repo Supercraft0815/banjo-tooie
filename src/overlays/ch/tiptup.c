@@ -95,7 +95,20 @@ void func_808007CC_chtiptup(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800D78_chtiptup.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800E2C_chtiptup.s")
+void func_80800E2C_chtiptup(Actor *arg0) {
+    f32 *sp1C[1];
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    extern u32 D_8080165C_chtiptup;
+    extern u32 D_80801668_chtiptup;
+    extern u32 D_80801674_chtiptup;
+    extern u32 D_8080167C_chtiptup;
+
+    sp1C[0] = (f32 *)((u8 *)arg0 + 0x18);
+    _subaddieaudioquick_entrypoint_3(arg0, sp1C[0], &D_8080165C_chtiptup, 0.02f);
+    _subaddieaudioquick_entrypoint_3(arg0, sp1C[0], &D_80801668_chtiptup, 0.14f);
+    _subaddieaudioquick_entrypoint_4(arg0, sp1C[0], &D_80801674_chtiptup, &D_8080167C_chtiptup);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800E9C_chtiptup.s")
 
