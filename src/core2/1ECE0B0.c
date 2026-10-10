@@ -896,7 +896,10 @@ void func_800F83B8(s32 arg0)
     func_800A3514(D_80135490[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F83E4.s")
+void func_800F83E4(s32 arg0, f32 arg1) {
+    void baphysics_set_vertical_velocity(PlayerState *arg0, f32 arg1);
+    baphysics_set_vertical_velocity(D_80135490[arg0], arg1);
+}
 
 void func_800F8418(s32 arg0)
 {
