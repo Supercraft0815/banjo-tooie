@@ -29,7 +29,17 @@ void func_80800820_chklungophial(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/phial/func_80800828_chklungophial.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/phial/func_80800980_chklungophial.s")
+s32 func_80800980_chklungophial(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80101FDC(Actor*, u32);
+    switch (arg1) {
+        case 0x4F:
+            func_80101FDC(arg0, 2U);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/phial/func_808009BC_chklungophial.s")
 
