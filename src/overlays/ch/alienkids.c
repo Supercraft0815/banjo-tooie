@@ -96,7 +96,11 @@ void func_80801994_chalienkids(Actor* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_808019C8_chalienkids.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80801A50_chalienkids.s")
+void func_80801A50_chalienkids(u8 *arg0) {
+    void func_80109F08(void *arg0, s32 arg1);
+    func_80109F08(arg0, 0x44);
+    (*(u8 *)((s8 *)(arg0) + (0x7A))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x7A))) & 0xFF3F) | 0x80);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80801A88_chalienkids.s")
 
