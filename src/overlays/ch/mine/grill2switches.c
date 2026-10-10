@@ -29,7 +29,10 @@ OSThread *chminegrill2switches_entrypoint_0(void)
     return (OSThread *) D_80800150_chminegrill2switches;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/grill2switches/func_808000EC_chminegrill2switches.s")
+void func_808000EC_chminegrill2switches(s32 arg0) {
+    s32 func_80800000_chminegrill2switches(s32, s32, s32);
+    func_80800000_chminegrill2switches(arg0, 0xA28, 1024);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/grill2switches/func_80800110_chminegrill2switches.s")
 
