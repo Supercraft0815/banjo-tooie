@@ -53,7 +53,10 @@ void func_8008AF04(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_start.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B10C.s")
+void func_8008B10C(AnimCtrl *arg0, f32 arg1) {
+    void func_8008C1C0(f32 *arg0, f32 arg1);
+    func_8008C1C0((f32 *) (arg0 + 0x1C), arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_setPlaybackType.s")
 
