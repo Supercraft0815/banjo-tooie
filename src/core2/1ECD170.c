@@ -13,7 +13,10 @@ void func_800F3880(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F3B3C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F3B90.s")
+void func_800F3B90(Actor *arg0, u32 arg1) {
+    u32* func_800F3B3C(Actor*, u32, u32);
+    func_800F3B3C(arg0, arg1, 0U);
+}
 
 void func_800F3BB0()
 {
