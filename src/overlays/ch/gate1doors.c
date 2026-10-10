@@ -2,7 +2,27 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gate1doors/func_80800000_chgate1doors.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gate1doors/func_808000A4_chgate1doors.s")
+/* extern */
+
+void func_808000A4_chgate1doors(u8 *arg0) {
+    u8 *_subaddiefind_entrypoint_0(s32, s32, s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_80101FDC(u8 *, s32);
+    s32 func_8010A570(u8 *);
+    u8 *temp_v0;
+
+    if (func_800DA298(0xB1) != 0) {
+        (*(f32 *)((s8 *)(arg0) + (0x48))) = 90.0f;
+        func_8010A570(arg0);
+        func_80101FDC(arg0, 3);
+        return;
+    }
+    temp_v0 = _subaddiefind_entrypoint_0(arg0 + 4, 0x129, -1, 0);
+    if (temp_v0 != NULL) {
+        (*(s32 *)((s8 *)(temp_v0) + (0x3C))) = (s32) (*(s32 *)((s8 *)(arg0) + (0)));
+        (*(s32 *)((s8 *)(arg0) + (0x3C))) = (s32) (*(s32 *)((s8 *)(temp_v0) + (0)));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gate1doors/func_80800128_chgate1doors.s")
 
