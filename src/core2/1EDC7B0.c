@@ -9,7 +9,13 @@ void func_80102EC0(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC7B0/func_80102F44.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC7B0/func_80102F74.s")
+/* extern */
+
+void func_80102F74(Unk80132ED0 *arg0, s32 arg1) {
+    Actor* func_80100368(Unk80132ED0 *);
+    s32 func_80102FA0(Actor *, s32);
+    func_80102FA0(func_80100368(arg0), arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC7B0/func_80102FA0.s")
 
