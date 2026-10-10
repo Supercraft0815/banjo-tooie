@@ -20,7 +20,15 @@ void func_80091054(s32 arg0)
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6A730/func_8009105C.s")
+void func_8009105C(PlayerState *arg0) {
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (0xC))) = 0;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (4))) = 2.0f;
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (0xE))) = 0;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (0x10))) = 0.0f;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (0x14))) = 0.0f;
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (0xF))) = 1;
+    func_800910BC(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6A730/func_800910BC.s")
 
