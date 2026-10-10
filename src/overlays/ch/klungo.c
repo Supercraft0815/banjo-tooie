@@ -120,7 +120,11 @@ void func_80802940_chklungo(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_808031E4_chklungo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80803208_chklungo.s")
+void func_80803208_chklungo(s32 *arg0) {
+    s32 func_80105230();
+    extern s32 D_80803D38_chklungo;
+    func_80105230(arg0, &D_80803D38_chklungo);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_8080322C_chklungo.s")
 
