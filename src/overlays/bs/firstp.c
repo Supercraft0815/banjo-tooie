@@ -11,7 +11,16 @@ void func_80800040_bsfirstp()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80800190_bsfirstp.s")
+void func_80800190_bsfirstp(u8 *arg0) {
+    s32 func_800EFD24(s32);
+    s32 func_80800858_bsfirstp(s32, s32);
+    u8 *sp1C;
+
+    sp1C = (*(u8 **)((s8 *)(arg0) + (0x188)));
+    func_80800858_bsfirstp((s32) arg0, 0);
+    func_800EFD24((s32) (sp1C + 0x2C));
+    (*(f32 *)((s8 *)(sp1C) + (0x50))) = 0.0f;
+}
 
 /* extern */
 
