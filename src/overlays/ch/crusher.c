@@ -85,7 +85,10 @@ OSThread *chcrusher_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_808008FC_chcrusher.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_80800A98_chcrusher.s")
+void func_80800A98_chcrusher(s32 arg0) {
+    void func_800EFA4C(f32[3], f32, f32, f32);
+    func_800EFA4C(arg0 + 4, 0.0f, -10.0f, 0.0f);
+}
 
 void func_80800ACC_chcrusher(s32 arg0) 
 {
