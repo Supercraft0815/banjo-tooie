@@ -80,7 +80,13 @@ void gsmaker_entrypoint_9(s32 arg0,s32 arg1)
     gsmaker_entrypoint_13(arg0,arg1,0x4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/maker/gsmaker_entrypoint_10.s")
+void gsmaker_entrypoint_10(s32 arg0, s32 arg1, s32 arg2) {
+    while (arg2 > 0) {
+        gsmaker_entrypoint_9(arg0, arg1);
+        arg2--;
+        arg1 += 4;
+    }
+}
 
 void gsmaker_entrypoint_11(s32 arg0,s32 arg1)
 {
