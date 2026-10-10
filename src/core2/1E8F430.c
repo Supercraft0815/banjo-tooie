@@ -100,7 +100,22 @@ void func_800B7BA4(f32 arg0) {
     *(f32 *)((u8 *)&D_80128198 + 0) = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B7BB0.s")
+void func_800B7BB0(void) {
+    s32 _fxleaves_entrypoint_1(s32);
+    s32 _fxrain_entrypoint_1(s32);
+    s32 func_800B956C();
+    extern s32 D_80127128;
+    extern s32 D_801282B0;
+    if (D_801282B0 != 0) {
+        _fxleaves_entrypoint_1(D_801282B0);
+    }
+    if (D_801282B4 != 0) {
+        _fxrain_entrypoint_1(D_801282B4);
+    }
+    if (D_80127128 != 0) {
+        func_800B956C();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B7C10.s")
 
