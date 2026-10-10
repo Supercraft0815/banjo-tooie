@@ -21,7 +21,15 @@ OSThread *chfactoryprop_entrypoint_2(void)
     return (OSThread *) D_80800CB0_chfactoryprop;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/prop/func_80800024_chfactoryprop.s")
+void func_80800024_chfactoryprop(u8 *arg0) {
+    s32 _subaddiefade_entrypoint_14(s32);
+    s32 func_8010A63C(s32);
+    (*(f32 *)((s8 *)(arg0) + (0x34))) = 1.0f;
+    (*(f32 *)((s8 *)(arg0) + (0x24))) = 1.0f;
+    _subaddiefade_entrypoint_14((s32) arg0);
+    func_8010A63C((s32) arg0);
+    (*(f32 *)((s8 *)(arg0) + (0x44))) = 30.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/prop/func_80800070_chfactoryprop.s")
 
