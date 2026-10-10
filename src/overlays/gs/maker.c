@@ -4,7 +4,20 @@
     
 // }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/maker/gsmaker_entrypoint_0.s")
+/* extern */
+
+void gsmaker_entrypoint_0(void *arg0) {
+    s32 func_800D6CEC(s16);
+    s32 func_800D70F8(s16, s32);
+    s32 func_800D721C(s16, s32);
+    s32 heap_free(void *);
+    if ((*(s32 *)((s8 *)(arg0) + (0x14))) == 2) {
+        func_800D721C((*(s16 *)((s8 *)(arg0) + (0x20))), 0);
+        func_800D70F8((*(s16 *)((s8 *)(arg0) + (0x20))), 0);
+        func_800D6CEC((*(s16 *)((s8 *)(arg0) + (0x20))));
+    }
+    heap_free(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/maker/gsmaker_entrypoint_1.s")
 
