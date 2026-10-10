@@ -468,4 +468,12 @@ void func_800A8CCC(s32 arg0, s32 arg1)
     func_800A8B24(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A8D00.s")
+void func_800A8D00(s32 arg0, s32 arg1) {
+    s32 func_800A85A8();
+    extern s32 D_80127670;
+    if ((arg0 != ((*(s32 *)((s8 *)(&D_80127670) + (0xC))) * 2)) || (arg1 != ((*(s32 *)((s8 *)(&D_80127670) + (0x10))) * 2))) {
+        (*(s32 *)((s8 *)(&D_80127670) + (0xC))) = (s32) (arg0 / 2);
+        (*(s32 *)((s8 *)(&D_80127670) + (0x10))) = (s32) (arg1 / 2);
+        func_800A85A8();
+    }
+}
