@@ -73,7 +73,18 @@ void func_80800DA4_chstonepillar(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800FE0_chstonepillar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_808010CC_chstonepillar.s")
+/* extern */
+
+void func_808010CC_chstonepillar(s32 arg0) {
+    s32 _glcutDll_entrypoint_6(s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+    s32 func_800F54E4();
+    s32 func_800F6CC8(s32);
+    if ((func_800DA298(0x9D9) == 0) && (func_800EA05C() != 0xB9) && (func_800F6CC8(func_800F54E4()) == 0)) {
+        _glcutDll_entrypoint_6(0xB9, 0xB);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_8080112C_chstonepillar.s")
 
