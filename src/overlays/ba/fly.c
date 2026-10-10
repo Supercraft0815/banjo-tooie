@@ -119,7 +119,27 @@ void bafly_entrypoint_18(s32 arg0)
     baphysics_reset_gravity();
     func_8008E95C(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_19.s")
+/* extern */
+
+void bafly_entrypoint_19(s32 arg0) {
+    s32 _bafpctrl_entrypoint_11(s32, s32, s32);
+    s32 _bafpctrl_entrypoint_14(s32, s32);
+    s32 _bafpctrl_entrypoint_4();
+    s32 _bafpctrl_entrypoint_9(s32, s32);
+    s32 baflag_isTrue(s32, s32);
+    s32 func_800C6E38(s32);
+    if (_bafpctrl_entrypoint_4() != 3) {
+        if (baflag_isTrue(arg0, 0x2F) != 0) {
+            _bafpctrl_entrypoint_14(arg0, 3);
+        } else {
+            _bafpctrl_entrypoint_14(arg0, 2);
+        }
+        _bafpctrl_entrypoint_9(arg0, 1);
+        if (func_800C6E38(0x1B) == 0) {
+            _bafpctrl_entrypoint_11(arg0, 4, 1);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_20.s")
 
