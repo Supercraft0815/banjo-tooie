@@ -2,7 +2,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80800000_chlakemonster.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80800064_chlakemonster.s")
+void func_80800064_chlakemonster(Actor *arg0) {
+    u32 func_800FDC28(u32);
+    u32* func_80100074(Actor*, u32, u32);
+    func_80100074(arg0, 0U, 0U);
+    func_800FDC28(0U);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80800090_chlakemonster.s")
 
