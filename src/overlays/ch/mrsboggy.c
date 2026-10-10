@@ -46,7 +46,19 @@ void func_80800548_chmrsboggy(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggy/func_8080070C_chmrsboggy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggy/func_80800738_chmrsboggy.s")
+/* extern */
+
+s32 func_80800738_chmrsboggy(void *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_0(s32, s32);
+    s32 func_808007CC_chmrsboggy(void *, s32, s32);
+    if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
+        if ((*(s32 *)((s8 *)(arg0) + (0x28))) != 2) {
+            func_808007CC_chmrsboggy(arg0, 2, 1);
+        }
+        return 2;
+    }
+    return 1;
+}
 
 /* extern */
 
