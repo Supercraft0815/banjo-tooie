@@ -22,7 +22,13 @@ OSThread *chseaweedbaddy_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_80800554_chseaweedbaddy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_8080065C_chseaweedbaddy.s")
+void func_8080065C_chseaweedbaddy(Actor *arg0) {
+    f32 func_800DC0C0(void);
+    s32 func_80101EE4(Actor *, f32);
+    void func_80102FDC(Actor*, f32);
+    func_80102FDC(arg0, arg0->scale * 0.7f);
+    func_80101EE4(arg0, func_800DC0C0());
+}
 
 /* extern */
 
