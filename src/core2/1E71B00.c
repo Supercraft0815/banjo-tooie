@@ -25,7 +25,11 @@ void func_800984CC(void *arg0) {
     func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xAC))) + 0x1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E71B00/func_800984F0.s")
+void func_800984F0(u8 *arg0) {
+    s32 func_800EE7F8(s32);
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xAC)))) + (0x29))) = 1;
+    func_800EE7F8((s32) ((*(u8 **)((s8 *)(arg0) + (0xAC))) + 0x10));
+}
 
 void func_80098520(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 172) + 44) = arg1;
