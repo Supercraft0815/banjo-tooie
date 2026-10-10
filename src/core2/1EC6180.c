@@ -120,7 +120,18 @@ void func_800EDD20(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EDF98.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EDFBC.s")
+void func_800EDFBC(void *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4)
+{
+  s32 func_800ED964(f32, f32);
+  *((s8 *) (((s8 *) arg0) + 0x29)) = 4;
+  *((f32 *) (((s8 *) arg0) + 4)) = arg1;
+  *((f32 *) (((s8 *) arg0) + 0x48)) = arg3;
+  *((f32 *) (((s8 *) arg0) + 0x44)) = 0.0f;
+  *((f32 *) (((s8 *) arg0) + 8)) = arg2;
+  *((s16 *) (((s8 *) arg0) + 0x4C)) = 0;
+  *((s16 *) (((s8 *) arg0) + 0x4E)) = (s16) arg4;
+  func_800ED964(arg1, arg3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EE010.s")
 
