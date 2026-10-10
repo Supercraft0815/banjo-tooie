@@ -91,7 +91,13 @@ OSThread *chjiggygamenew_entrypoint_3(void)
 void func_80803564_chjiggygamenew(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_8080356C_chjiggygamenew.s")
+/* extern */
+
+void func_8080356C_chjiggygamenew(void) {
+    s32 func_80102424(s32, s32);
+    void *func_80106790();
+    func_80102424(func_80106790(), 8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80803598_chjiggygamenew.s")
 
