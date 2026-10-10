@@ -104,7 +104,29 @@ void func_80800EF4_chquiz(s16 arg0, s32 arg1, s32 arg2) {
     _cadbfunc_entrypoint_2(arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800F34_chquiz.s")
+/* extern */
+
+void func_80800F34_chquiz(s32 *arg0, void *arg1) {
+    s32 _ncpod_entrypoint_12(s32, s32);
+    s32 _ncpod_entrypoint_16(s32, s32, s32, s32);
+    s32 func_800A89F8();
+    s32 func_800A9478(s32);
+    s32 func_800F5EF8(s32);
+    s32 func_8010FD88(s32);
+    s32 func_80110024(s32);
+    s32 func_80801170_chquiz(s32 *, void *);
+    s32 sp1C;
+    s32 temp_v0;
+
+    temp_v0 = func_800F5EF8(func_800A9478(func_800A89F8()));
+    sp1C = temp_v0;
+    (*(s8 *)((s8 *)(arg1) + (0x5C))) = 3;
+    (*(s16 *)((s8 *)(arg1) + (0x50))) = 0;
+    _ncpod_entrypoint_16(temp_v0, *arg0, 0x2C, 0x804);
+    _ncpod_entrypoint_12(func_80110024(sp1C), 0);
+    func_80801170_chquiz(arg0, arg1);
+    func_8010FD88(sp1C);
+}
 
 /* extern */
 
