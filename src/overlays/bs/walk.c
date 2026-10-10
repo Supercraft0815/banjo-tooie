@@ -9,7 +9,11 @@ void func_808001D8_bswalk(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)arg0 + 364) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/func_808001E4_bswalk.s")
+void func_808001E4_bswalk(u8 *arg0) {
+    f32 func_800D8FF8(void);
+    f32 func_800F0E00(f32, f32);
+    (*(f32 *)((s8 *)(arg0) + (0x16C))) = func_800F0E00(0.0f, (*(f32 *)((s8 *)(arg0) + (0x16C))) - func_800D8FF8());
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/func_80800220_bswalk.s")
 
