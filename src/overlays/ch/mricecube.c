@@ -26,4 +26,8 @@ void func_80800734_chmricecube(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mricecube/func_808007B0_chmricecube.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mricecube/func_80800850_chmricecube.s")
+void func_80800850_chmricecube(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    extern u32 D_80800A00_chmricecube;
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800A00_chmricecube, 0.1f);
+}
