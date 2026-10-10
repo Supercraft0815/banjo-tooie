@@ -67,7 +67,22 @@ void func_80801C78_chstatueboss(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801CA0_chstatueboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801E24_chstatueboss.s")
+void func_80801E24_chstatueboss(Actor *arg0, u32 arg1, u32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, u32, u32);
+    void _capod_entrypoint_14(void);
+    void* func_80100094(Actor*, u32);
+    u8 *sp1C;
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    sp1C = temp_v0;
+    if ((*(u8 *)((s8 *)(temp_v0) + (0x1CD))) != 0) {
+        arg2 |= 0x2000;
+        _capod_entrypoint_14();
+    }
+    _capod_entrypoint_13(arg0->unk0, NULL, arg1, arg2);
+    (*(s8 *)((s8 *)(sp1C) + (0x1CD))) = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801E90_chstatueboss.s")
 
