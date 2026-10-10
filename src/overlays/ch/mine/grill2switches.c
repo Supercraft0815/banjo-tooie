@@ -15,7 +15,10 @@ void func_80800030_chminegrill2switches(s32 arg0, s32 arg1, s32 arg2, s32 arg3) 
     _chswitch_entrypoint_10(arg0, arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/grill2switches/func_80800094_chminegrill2switches.s")
+void func_80800094_chminegrill2switches(s32 arg0) {
+    s32 func_80800000_chminegrill2switches(s32, s32, s32);
+    func_80800000_chminegrill2switches(arg0, 0xA26, 512);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/grill2switches/func_808000B8_chminegrill2switches.s")
 
