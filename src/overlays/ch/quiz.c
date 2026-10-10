@@ -166,7 +166,26 @@ OSThread *chquiz_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80802108_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_8080216C_chquiz.s")
+/* extern */
+
+void func_8080216C_chquiz(u8 *arg0) {
+    s32 func_800C8B84(s32);
+    s32 temp_a0;
+    s32 var_s1;
+    u8 *var_s0;
+
+    var_s0 = arg0;
+    var_s1 = 0;
+    do {
+        temp_a0 = (*(s32 *)((s8 *)(var_s0) + (0x28)));
+        if (temp_a0 != 0) {
+            func_800C8B84(temp_a0);
+            (*(s32 *)((s8 *)(var_s0) + (0x28))) = 0;
+        }
+        var_s1 += 4;
+        var_s0 += 4;
+    } while (var_s1 != 8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808021C8_chquiz.s")
 
