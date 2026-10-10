@@ -605,7 +605,19 @@ s32 func_800F66F0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F682C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F68B8.s")
+/* extern */
+
+s32 func_800F68B8(s32 arg0) {
+    s32 func_8009E674(PlayerState *, s32);
+    PlayerState *sp1C;
+    s32 pad[1];
+
+    sp1C = D_80135490[arg0];
+    if (func_8009E674(sp1C, 8) != 0) {
+        return _badrone_entrypoint_3(sp1C) == 1;
+    }
+    return 0;
+}
 
 /* extern */
 
