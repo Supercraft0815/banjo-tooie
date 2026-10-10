@@ -24,7 +24,12 @@ f32 func_808001FC_chdinofamilysick(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/func_80800244_chdinofamilysick.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/func_8080030C_chdinofamilysick.s")
+void func_8080030C_chdinofamilysick(volatile unsigned int arg0, void *arg1, s32 arg2, s32 arg3)
+{
+  s32 _chbaddiesetup_entrypoint_6(s32 *, s32, s32, s32, s32, s32, s32);
+  extern s32 _subaddietaxi_entrypoint_16;
+  _chbaddiesetup_entrypoint_6(&_subaddietaxi_entrypoint_16, arg0, *((s32 *) (((s8 *) arg1) + 0)), *((s32 *) (((s8 *) arg1) + 4)), *((s32 *) (((s8 *) arg1) + 8)), arg2, arg3);
+}
 
 /* extern */
 
