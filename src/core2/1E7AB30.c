@@ -51,7 +51,10 @@ u32 func_800A16B0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A16BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A16F4.s")
+void func_800A16F4(s32 arg0) {
+    s32 _batimer_set(s32, s32, s32);
+    _batimer_set(arg0, 0xE, 0x40400000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A1718.s")
 
