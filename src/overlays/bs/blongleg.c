@@ -5,7 +5,14 @@ s32 func_80800000_bsblongleg(PlayerState* arg0)
     return player_inWater(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/func_80800020_bsblongleg.s")
+void func_80800020_bsblongleg(PlayerState *arg0, s32 arg1) {
+    void func_8009DE38(PlayerState *, s32, f32);
+    if (arg1 != 0) {
+        func_8009DE38(arg0, 0x4433, 0.88f);
+        return;
+    }
+    func_8009DE38(arg0, 0x4433, 0.96f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/func_80800064_bsblongleg.s")
 
