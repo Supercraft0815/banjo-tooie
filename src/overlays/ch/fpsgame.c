@@ -7,7 +7,17 @@ OSThread *chfpsgame_entrypoint_0(void)
     return (OSThread *) D_808021A0_chfpsgame;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_8080000C_chfpsgame.s")
+void func_8080000C_chfpsgame(Actor *arg0, s32 arg1, s32 arg2) {
+    void* func_80100094(Actor*, u32);
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    if (arg2 != 0) {
+        (*(s32 *)((s8 *)(temp_v0) + (4))) = (s32) ((*(s32 *)((s8 *)(temp_v0) + (4))) | (1 << arg1));
+        return;
+    }
+    (*(s32 *)((s8 *)(temp_v0) + (4))) = (s32) ((*(s32 *)((s8 *)(temp_v0) + (4))) & ~(1 << arg1));
+}
 
 s32 func_80800074_chfpsgame(Actor *arg0, s32 arg1) {
     void* func_80100094(Actor*, u32);
