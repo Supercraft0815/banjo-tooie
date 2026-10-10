@@ -9,7 +9,22 @@ OSThread *chbadjinjo_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_8080000C_chbadjinjo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_8080010C_chbadjinjo.s")
+/* extern */
+
+void func_8080010C_chbadjinjo(s32 arg0, f32 arg1, s32 arg2) {
+    s32 func_800B53A4(s32);
+    s32 func_800BA22C(s32, s32);
+    s32 func_800BA994(s32, s32, s16, s32, s32, s32, s32);
+    s32 func_8080000C_chbadjinjo(s32, s32, s32);
+    s32 sp2C;
+    s32 temp_v0;
+
+    temp_v0 = func_800B53A4(0xA);
+    sp2C = temp_v0;
+    func_8080000C_chbadjinjo(temp_v0, arg0, arg2);
+    func_800BA994(sp2C, -0xF, (s16) (s32) (-60.0f + arg1), 0x15E, -5, (s32) (60.0f + arg1), 0x1C2);
+    func_800BA22C(sp2C, 0xA);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_808001B0_chbadjinjo.s")
 
