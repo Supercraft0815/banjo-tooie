@@ -1,6 +1,20 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_0.s")
+void sumumbofx_entrypoint_0(Actor *arg0, u32 arg1, s32 arg2, s16 arg3) {
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    u32* func_80100074(Actor*, u32, u32);
+    void* func_80100094(Actor*, u32);
+    u8 *sp1C;
+    u8 *temp_v0;
+
+    func_80100074(arg0, arg1, (arg2 * 0x2C) + 0x64);
+    temp_v0 = func_80100094(arg0, arg1);
+    sp1C = temp_v0;
+    (*(s32 *)((s8 *)(temp_v0) + (0))) = (s32) arg3;
+    (*(s16 *)((s8 *)(temp_v0) + (0x58))) = (s16) arg2;
+    func_800EE7F8(temp_v0 + 0x1C, arg0->position);
+    (*(s8 *)((s8 *)(sp1C) + (0x63))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_1.s")
 
