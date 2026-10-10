@@ -10,7 +10,25 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A8FDC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A9010.s")
+s32 func_800A9010(void) {
+    extern u8 D_801276D4;
+    extern u8 D_801276D5;
+    extern u8 D_801276D6;
+    extern u8 D_801276D7;
+    if (D_801276D4 == 0) {
+        return 0;
+    }
+    if (D_801276D5 == 0) {
+        return 1;
+    }
+    if (D_801276D6 == 0) {
+        return 2;
+    }
+    if (D_801276D7 == 0) {
+        return 3;
+    }
+    return -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A907C.s")
 
