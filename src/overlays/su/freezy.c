@@ -17,7 +17,18 @@ void sufreezy_entrypoint_3(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/freezy/sufreezy_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/freezy/sufreezy_entrypoint_5.s")
+/* extern */
+
+void sufreezy_entrypoint_5(Unk80132ED0 *arg0, s32 arg1) {
+    s32 func_8010114C(s32, s32, s32);
+    Actor* func_80106790(Unk80132ED0 *);
+    void func_8010A570(Actor*);
+    s32 _sueggmisc_entrypoint_0(s32);
+    func_8010A570(func_80106790(arg0));
+    if (_sueggmisc_entrypoint_0(arg1) != 0) {
+        func_8010114C(arg1, 5, 0);
+    }
+}
 
 void sufreezy_entrypoint_6(Unk80132ED0 *arg0, s32 arg1) {
     f32 func_800DC178(f32, f32);
