@@ -7,7 +7,23 @@
 void func_808000E4_chstatictorch(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statictor/func_808000EC_chstatictorch.s")
+/* extern */
+
+void func_808000EC_chstatictorch(Actor *arg0) {
+    void func_800C2FDC(u8 id);
+    void* func_80100094(Actor*, u32);
+    s32 _suflamefx_entrypoint_1(Actor *, s32);
+    u8 temp_a0;
+
+    if (func_80100094(arg0, 1U) != NULL) {
+        _suflamefx_entrypoint_1(arg0, 1);
+    }
+    temp_a0 = arg0->unk5F;
+    if (temp_a0 != 0) {
+        func_800C2FDC(temp_a0);
+        arg0->unk5F = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statictor/func_80800140_chstatictorch.s")
 
