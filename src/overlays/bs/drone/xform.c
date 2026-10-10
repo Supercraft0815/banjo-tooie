@@ -1,6 +1,12 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/func_80800000_bsdronexform.s")
+void func_80800000_bsdronexform(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, s32, s32, s32, s32 *);
+    extern s32 D_808011F0_bsdronexform;
+    func_800BABB8(arg1, 0, 0, 0x3F800000, &D_808011F0_bsdronexform);
+    func_800BA3FC(arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/func_80800050_bsdronexform.s")
 
