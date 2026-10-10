@@ -41,7 +41,16 @@ void chskeletonexplode_entrypoint_2(void *arg0, f32 arg1, f32 arg2) {
     (*(f32 *)((s8 *)(arg0) + (0x18))) = arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/chskeletonexplode_entrypoint_3.s")
+void chskeletonexplode_entrypoint_3(Actor *arg0, s32 arg1, s32 arg2) {
+    void* func_80100094(Actor*, u32);
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 1U);
+    (*(s32 *)((s8 *)((temp_v0 + (arg1 * 4))) + (4))) = arg2;
+    if ((*(s32 *)((s8 *)(temp_v0) + (4))) < arg1) {
+        (*(s32 *)((s8 *)(temp_v0) + (4))) = arg1;
+    }
+}
 
 void chskeletonexplode_entrypoint_4(Actor *arg0, s32 arg1) {
     void* func_80100094(Actor*, u32);
