@@ -71,7 +71,28 @@ s32 bsblongleg_entrypoint_7(s32 arg0) {
     return ((s32 *)&D_80801480_bsblongleg)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_8.s")
+/* extern */
+
+void bsblongleg_entrypoint_8(s32 arg0) {
+    s32 anctrl_reset(s32);
+    s32 anctrl_setIndex(s32, s32);
+    s32 anctrl_setPlaybackType(s32, s32);
+    s32 anctrl_start(s32);
+    s32 baanim_getAnimCtrlPtr();
+    s32 func_8008C9F0(s32, s32, s32, s32, f32);
+    s32 func_8009FFD8(s32, s32, s32, s32, s32);
+    s32 sp24;
+    s32 temp_v0;
+
+    temp_v0 = baanim_getAnimCtrlPtr();
+    sp24 = temp_v0;
+    anctrl_reset(temp_v0);
+    anctrl_setIndex(sp24, 0x42);
+    anctrl_setPlaybackType(sp24, 2);
+    anctrl_start(sp24);
+    func_8009FFD8(arg0, 2, 1, 1, 2);
+    func_8008C9F0(arg0, 0x42A00000, 0x43FA0000, 0x3F800000, 0.8f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_9.s")
 
