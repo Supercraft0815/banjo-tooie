@@ -18,7 +18,25 @@ OSThread *chhoneyb_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800058_chhoneyb.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_8080011C_chhoneyb.s")
+/* extern */
+
+void func_8080011C_chhoneyb(void *arg0) {
+    s32 func_8008FC28();
+    s32 func_80090708(s32);
+    s32 func_800FC6B0(s32);
+    s32 func_80102424(void *, s32);
+    s32 temp_v0;
+
+    func_80090708(2);
+    func_80102424(arg0, 3);
+    (*(f32 *)((s8 *)(arg0) + (0x34))) = 1.0f;
+    (*(f32 *)((s8 *)(arg0) + (0x58))) = 0.25f;
+    temp_v0 = func_8008FC28();
+    (*(s32 *)((s8 *)(arg0) + (0x30))) = temp_v0;
+    (*(s32 *)((s8 *)(arg0) + (0x24))) = (s32) ((*(s32 *)((s8 *)(arg0) + (0x28))) + temp_v0);
+    (*(u8 *)((s8 *)(arg0) + (0x74))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x74))) & 0xFFBF);
+    func_800FC6B0(0xA);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800194_chhoneyb.s")
 
