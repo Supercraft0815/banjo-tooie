@@ -28,7 +28,16 @@ u32 func_800C8594(u8 *arg0, u32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8800.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C883C.s")
+/* extern */
+
+void func_800C883C(s32 arg0, void *arg1) {
+    void *vector_at(s32, s32, s32);
+    void *temp_v0;
+
+    temp_v0 = vector_at(D_8012AB00, arg0 - 1, arg0);
+    (*(f32 *)((s8 *)(arg1) + (0))) = (f32) (*(s16 *)((s8 *)(temp_v0) + (6)));
+    (*(f32 *)((s8 *)(arg1) + (4))) = (f32) (*(s16 *)((s8 *)(temp_v0) + (8)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8898.s")
 
