@@ -10,7 +10,24 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_8080020C_cheel.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_808002A0_cheel.s")
+/* extern */
+
+s32 func_808002A0_cheel(u8 *arg0) {
+    s32 func_800EFFB4(u8 *, s32, u8 *, u8 *);
+    f32 func_800F1DCC(f32, f32);
+    f32 temp_f0;
+    f32 var_f2;
+
+    temp_f0 = func_800F1DCC((*(f32 *)((s8 *)(arg0) + (0x48))), (*(f32 *)((s8 *)(arg0) + (0x54))));
+    var_f2 = temp_f0;
+    if (temp_f0 < 0.0f) {
+        var_f2 = -temp_f0;
+    }
+    if ((var_f2 < 30.0f) || (func_800EFFB4(arg0 + 0x18, 0x43480000, arg0 + 4, arg0) != 0)) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_8080031C_cheel.s")
 
