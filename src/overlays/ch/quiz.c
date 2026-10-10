@@ -247,7 +247,19 @@ OSThread *chquiz_entrypoint_1(void)
     return (OSThread *) D_80807334_chquiz;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80803320_chquiz.s")
+/* extern */
+
+void func_80803320_chquiz(s32 arg0, Unk80132ED0 *arg1) {
+    s32 func_80102424(Actor *, s32);
+    Actor *_subaddiefind_entrypoint_11(s32, s32);
+    Actor *sp1C;
+    Actor *temp_v0;
+
+    temp_v0 = _subaddiefind_entrypoint_11(0x52B, arg0);
+    sp1C = temp_v0;
+    func_80102424(temp_v0, 4);
+    sp1C->unk3C = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80803368_chquiz.s")
 
