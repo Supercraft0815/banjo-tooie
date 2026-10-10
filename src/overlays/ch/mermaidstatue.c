@@ -14,7 +14,28 @@ OSThread *chmermaidstatue_entrypoint_1(void)
     return (OSThread *) D_8080039C_chmermaidstatue;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mermaidstatue/func_80800018_chmermaidstatue.s")
+/* extern */
+
+void func_80800018_chmermaidstatue(void *arg0) {
+    s32 _subaddiesect_entrypoint_1();
+    s32 _subaddiesect_entrypoint_2(void *, s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA7A8(s32, s32, s32);
+    s32 func_80101FDC(void *, s32);
+    s32 func_80109EEC(void *, s32);
+    s32 func_8010A570(void *);
+    s32 temp_v0;
+
+    temp_v0 = _subaddiesect_entrypoint_1();
+    (*(s32 *)((s8 *)(arg0) + (0x30))) = temp_v0;
+    _subaddiesect_entrypoint_2(arg0, temp_v0, 0);
+    func_800DA7A8(0x6B1, 0, 3);
+    func_80109EEC(arg0, 0x40);
+    if (func_800DA298(0x18D) != 0) {
+        func_8010A570(arg0);
+        func_80101FDC(arg0, 2);
+    }
+}
 
 void func_80800094_chmermaidstatue(s32 arg0) 
 {
