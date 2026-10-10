@@ -73,7 +73,20 @@ void func_808005D8_bsride(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_8080060C_bsride.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_8080066C_bsride.s")
+/* extern */
+
+void func_8080066C_bsride(s32 arg0) {
+    s32 func_80099B94(s32);
+    s32 func_8009E6EC();
+    s32 func_8009E830(s32, s32);
+    s32 func_808000F0_bsride(s32);
+    if (func_8009E6EC() == 0x28) {
+        func_808000F0_bsride(arg0);
+        func_8009E830(arg0, 2);
+        return;
+    }
+    func_80099B94(arg0);
+}
 
 s32 bsride_entrypoint_2(s32 arg0) {
     extern s32 D_80800A80_bsride[];
