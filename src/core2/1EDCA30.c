@@ -50,7 +50,10 @@ void func_80103AC0(void **arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103BF0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103C94.s")
+void func_80103C94(Actor *arg0) {
+    u32* func_80103BF0(Actor*, u32, u32);
+    func_80103BF0(arg0, 0U, 0U);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103CB8.s")
 
