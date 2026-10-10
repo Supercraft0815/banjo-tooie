@@ -28,7 +28,20 @@ s32 func_8080011C_chnewmumbo(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_80800210_chnewmumbo.s")
+void func_80800210_chnewmumbo(s32 *arg0) {
+    s32 func_8008F8B0();
+    s32 func_8008F8D8(s32);
+    s32 func_8008F904(s32 *, s32);
+    s32 func_8008F938(s32);
+    s32 func_8008F990(s32 *, s32);
+    extern s32 D_80801A0C_chnewmumbo;
+    extern s32 func_8010D5DC;
+    func_8008F8B0();
+    func_8008F8D8(1);
+    func_8008F938(1);
+    func_8008F904(&func_8010D5DC, *arg0);
+    func_8008F990(&D_80801A0C_chnewmumbo, 0x43480000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_80800264_chnewmumbo.s")
 
