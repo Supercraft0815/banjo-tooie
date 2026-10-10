@@ -4,7 +4,20 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/cannon/func_80800028_chfantasycannon.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/cannon/func_80800050_chfantasycannon.s")
+/* extern */
+
+s32 func_80800050_chfantasycannon(void) {
+    s32 func_800F54E4();
+    s32 func_800F64DC(s32);
+    s32 func_8010C500();
+    if (func_8010C500() == 0) {
+        return 0;
+    }
+    if (func_800F64DC(func_800F54E4()) == 0) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/cannon/func_808000A4_chfantasycannon.s")
 
