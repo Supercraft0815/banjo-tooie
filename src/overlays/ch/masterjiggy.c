@@ -46,7 +46,21 @@ void func_80800414_chmasterjiggy(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_8080047C_chmasterjiggy.s")
+/* extern */
+
+void func_8080047C_chmasterjiggy(s32 arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 _sujiggy_entrypoint_0();
+    s32 _sujiggy_entrypoint_2(s32);
+    s32 func_800C0638();
+    s32 func_800D035C(s32);
+    s32 func_800D2498(s32, s32, s32);
+    s32 func_800DA298(s32);
+    if ((func_800C0638() == 0) && (func_800DA298(0xD4E) == 0) && (_glcutDll_entrypoint_20() == 0)) {
+        func_800D2498(0x10E, func_800D035C(1), 0);
+        func_800D2498(0x106, _sujiggy_entrypoint_2(_sujiggy_entrypoint_0()), 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_808004FC_chmasterjiggy.s")
 
