@@ -35,4 +35,19 @@ void func_80800B28_chboggygirl(Actor* arg0)
         _suexpression_entrypoint_8(arg0, 1);
     }
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/girl/func_80800B5C_chboggygirl.s")
+/* extern */
+
+s32 func_80800B5C_chboggygirl(s32 arg0) {
+    s32 func_800F54E4();
+    s32 func_800F640C(s32, s32);
+    s32 func_800F64A4(s32, s32);
+    s32 sp1C;
+    s32 temp_v0;
+
+    temp_v0 = func_800F54E4();
+    sp1C = temp_v0;
+    if (func_800F64A4(temp_v0, 0x201) == 0) {
+        return 0;
+    }
+    return func_800F640C(sp1C, arg0) > 0;
+}
