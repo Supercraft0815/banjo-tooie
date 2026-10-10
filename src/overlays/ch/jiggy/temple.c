@@ -29,7 +29,14 @@ OSThread *chjiggytemple_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_80800320_chjiggytemple.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_80800438_chjiggytemple.s")
+void func_80800438_chjiggytemple(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _chdoor_entrypoint_1(s32, s32, s32);
+    if (arg1 == 7) {
+        _chdoor_entrypoint_1(arg0, arg1, arg2);
+        return;
+    }
+    _chdoor_entrypoint_1(arg0, arg1, arg2);
+}
 
 OSThread *chjiggytemple_entrypoint_2(void)
 {
