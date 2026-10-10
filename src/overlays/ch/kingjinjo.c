@@ -63,4 +63,12 @@ s32 func_80800F60_chkingjinjo(s32 arg0, s32 arg1, s32 arg2)
 {
     return 0;
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_80800F74_chkingjinjo.s")
+/* extern */
+
+void func_80800F74_chkingjinjo(void *arg0, s32 arg1) {
+    s32 func_800DF744(s32, u32);
+    s32 func_80101870(void *, s32);
+    func_800DF744(3, (*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF);
+    func_800DF744(4, (u32) ((*(s32 *)((s8 *)(arg0) + (0x64))) << 0xC) >> 0x1F);
+    func_80101870(arg0, arg1);
+}
