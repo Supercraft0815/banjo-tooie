@@ -10,7 +10,14 @@ void func_80800000_bsdronefalldie(void *arg0, s32 arg1) {
     (*(s32 *)((s8 *)(arg0) + (0x190))) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/falldie/bsdronefalldie_entrypoint_0.s")
+/* extern */
+
+void bsdronefalldie_entrypoint_0(s32 arg0) {
+    s32 func_800961AC(s32, s32);
+    s32 func_80092880(s32, s32);
+    func_800961AC(arg0, 0x1);
+    func_80092880(arg0, 0x1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/falldie/bsdronefalldie_entrypoint_1.s")
 
