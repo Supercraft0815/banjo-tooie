@@ -28,7 +28,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_8080085C_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808008B0_chquiz.s")
+s32 func_808008B0_chquiz(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    (*(s8 *)((s8 *)(temp_v0) + (0x99))) = 0;
+    return (s32) temp_v0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808008D4_chquiz.s")
 
