@@ -25,7 +25,23 @@ void func_808000C8_chcredits()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_8080038C_chcredits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_808003E8_chcredits.s")
+/* extern */
+
+void func_808003E8_chcredits(s32 *arg0, s32 arg1) {
+    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    s32 _capod_entrypoint_21(s32, s32, s32, s32);
+    s32 func_800A5854(s32);
+    s32 temp_v0;
+
+    temp_v0 = func_800A5854(arg1);
+    if (temp_v0 != 2) {
+        if ((temp_v0 == 5) || (temp_v0 == 6) || (temp_v0 == 8)) {
+            _capod_entrypoint_13(*arg0, 0, arg1, 0x834);
+        }
+    } else {
+        _capod_entrypoint_21(*arg0, 0, arg1, 0x814);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80800464_chcredits.s")
 
