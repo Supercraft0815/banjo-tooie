@@ -406,7 +406,10 @@ void func_800DF738(s32 arg0)
     D_8012C844 = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DF744.s")
+void func_800DF744(s32 arg0, s32 arg1) {
+    extern s32 D_8012C850[];
+    D_8012C850[arg0] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DF758.s")
 
