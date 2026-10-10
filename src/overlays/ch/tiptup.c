@@ -40,7 +40,22 @@ void func_808002C8_chtiptup(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800578_chtiptup.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800614_chtiptup.s")
+void func_80800614_chtiptup(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 *arg4) {
+    s32 func_800B53A4(s32);
+    s32 func_800BA22C(s32, s32);
+    s32 func_800BABB8(s32, s32, s32, s32, s32 *);
+    extern s32 D_80801580_chtiptup;
+    s32 sp24;
+    s32 temp_v0;
+
+    temp_v0 = func_800B53A4(arg2);
+    sp24 = temp_v0;
+    func_800BABB8(temp_v0, arg0, arg1, arg3, &D_80801580_chtiptup);
+    if (arg4 != NULL) {
+        func_800BABB8(sp24, arg0, arg1, arg3, arg4);
+    }
+    func_800BA22C(sp24, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800694_chtiptup.s")
 
