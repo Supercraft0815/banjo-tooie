@@ -166,7 +166,15 @@ void bstaxi_entrypoint_23()
     bstaxi_entrypoint_0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_24.s")
+void bstaxi_entrypoint_24(void *arg0) {
+    s32 baanim_playForDuration_onceSmooth(void *, s32, s32);
+    void baphysics_set_target_horizontal_velocity(void *, f32);
+
+    bstaxi_entrypoint_1();
+    baanim_playForDuration_onceSmooth(arg0, 0x128, 0x3FB33333);
+    func_8009FFD8(arg0, 1, 1, 3, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_25.s")
 
