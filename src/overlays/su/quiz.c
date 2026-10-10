@@ -12,7 +12,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_2.s")
+void suquiz_entrypoint_2(void) {
+    extern void *D_80127614;
+    void heap_free(void* mem);
+    if (D_80127614 != NULL) {
+        func_800DA524(FLAG2_6B6_UNK);
+        heap_free(D_80127614);
+        D_80127614 = NULL;
+    }
+}
 
 s32 suquiz_entrypoint_3(void) {
     u32 temp_v0;
