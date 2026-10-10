@@ -224,7 +224,17 @@ s32 bswalk_entrypoint_13(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_15.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_16.s")
+void bswalk_entrypoint_16(PlayerState *arg0) {
+    s32 _bapackctrl_entrypoint_5(s32, s32);
+    s32 baroll_setIdeal(s32, f32);
+    s32 func_8008E0E8();
+    void func_8009BF5C(PlayerState *, f32);
+    func_8009BF5C(arg0, 0.0f);
+    baroll_setIdeal((s32) arg0, 0.0f);
+    if (func_8008E0E8(arg0) != 0) {
+        _bapackctrl_entrypoint_5((s32) arg0, 3);
+    }
+}
 
 s32 bswalk_entrypoint_17(s32 arg0) {
     extern s32 D_80801550_bswalk[];
