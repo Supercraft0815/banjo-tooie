@@ -28,7 +28,15 @@ OSThread *chdippy_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800800_chdippy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800948_chdippy.s")
+void func_80800948_chdippy(s32 *arg0) {
+    s32 _subaddieaudioquick_entrypoint_3(s32 *, s32 *, s32 *, s32);
+    s32 _subaddieskeleton_entrypoint_3(s32, s32, s32 *);
+    extern s32 D_80801480_chdippy;
+    s32 sp1C[3];
+
+    _subaddieskeleton_entrypoint_3(*arg0, 5, sp1C);
+    _subaddieaudioquick_entrypoint_3(arg0, sp1C, &D_80801480_chdippy, 0x3ECCCCCD);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800990_chdippy.s")
 
