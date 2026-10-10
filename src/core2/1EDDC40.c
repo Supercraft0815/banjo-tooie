@@ -23,7 +23,24 @@ void func_801043A0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_801043D8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104410.s")
+s32 *func_80104410(void *arg0) {
+    s32 *freelist_at(s32, s16);
+    extern s32 D_80136E80;
+    extern s32 D_80136E88;
+    extern s8 D_80136E8B;
+    extern s32 D_80136EAC;
+    extern s8 D_80136EB0;
+    s16 temp_a1;
+
+    temp_a1 = (*(s16 *)((s8 *)(arg0) + (0x8E)));
+    if (temp_a1 == 0) {
+        D_80136E8B = 0;
+        D_80136EAC = 0;
+        D_80136EB0 = 0;
+        return &D_80136E88;
+    }
+    return freelist_at(D_80136E80, temp_a1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104460.s")
 
