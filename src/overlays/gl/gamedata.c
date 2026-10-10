@@ -48,4 +48,10 @@ void glgamedata_entrypoint_2(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamedata/glgamedata_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamedata/glgamedata_entrypoint_6.s")
+void glgamedata_entrypoint_6(u8 *arg0) {
+    s32 i;
+
+    for (i = 0; i < 0x1C0; i++) {
+        arg0[i] = 0;
+    }
+}
