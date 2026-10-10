@@ -21,6 +21,20 @@ void func_8080028C_chbabydino(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/babydino/func_80800448_chbabydino.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/babydino/func_808005A0_chbabydino.s")
+/* extern */
+
+s32 func_808005A0_chbabydino(s32 arg0, s32 arg1) {
+    s32 func_800FFAB0(s32);
+    s32 func_80105834();
+    s32 func_80105A5C(s32);
+    func_80105834();
+    if (func_80105A5C(arg0) != 0) {
+        if (arg1 != 0) {
+            func_800FFAB0(arg0);
+        }
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/babydino/func_808005F0_chbabydino.s")
