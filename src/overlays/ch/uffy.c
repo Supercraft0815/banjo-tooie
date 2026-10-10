@@ -43,7 +43,21 @@ OSThread *chchuffy_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_808013E8_chchuffy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_8080167C_chchuffy.s")
+/* extern */
+
+void func_8080167C_chchuffy(s32 *arg0) {
+    s32 _capod_entrypoint_14();
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 _glcutDll_entrypoint_21();
+    s32 func_800D9290();
+    if (_glcutDll_entrypoint_19(0x72) != 0) {
+        _capod_entrypoint_14();
+        func_800D9290();
+        _glcutDll_entrypoint_21();
+        return;
+    }
+    *arg0 = 0xD0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_808016D0_chchuffy.s")
 
