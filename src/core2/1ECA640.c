@@ -84,7 +84,9 @@ f32 func_800F1214(f32 value, f32 min, f32 max) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F122C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F1274.s")
+void func_800F1274(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 (*arg5)(f32)) {
+    func_800F10B4(arg5(func_800F10B4(arg0, arg1, arg2, 0.0f, 1.0f)), 0.0f, 1.0f, arg3, arg4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F12D4.s")
 
