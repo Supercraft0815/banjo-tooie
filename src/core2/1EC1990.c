@@ -22,7 +22,21 @@ void func_800E8144(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC1990/func_800E817C.s")
+void func_800E817C(s32 arg0) {
+    s32 func_800A8B24(s32, s32);
+    s32 func_800A9800();
+    s32 func_800E7C28(s32);
+    s32 func_800E7CF4(s32);
+    s32 func_800E7D4C(s32);
+    extern s32 D_8012D5F4;
+    if (D_8012D5F4 != 0) {
+        func_800A9800();
+        func_800E7C28(arg0);
+        func_800E7CF4(arg0);
+        func_800E7D4C(arg0);
+        func_800A8B24(arg0, 0);
+    }
+}
 
 s32 func_800E81D0(void) {
     extern s32 D_8012D5F0;
