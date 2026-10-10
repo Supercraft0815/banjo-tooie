@@ -784,7 +784,21 @@ block_128:
     arg0->actorData[7] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808053BC_chquiz.s")
+/* extern */
+
+void func_808053BC_chquiz(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    u32 func_8010A828(Actor*, u32);
+    s32 _suquiz_entrypoint_0();
+    s32 func_80800C24_chquiz(Actor *);
+    u8 *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    func_8010A828(arg0, 9U);
+    (*(s8 *)((s8 *)(sp1C) + (0x98))) = 0;
+    _suquiz_entrypoint_0();
+    func_80800C24_chquiz(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80805404_chquiz.s")
 
