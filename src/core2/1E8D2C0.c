@@ -6,7 +6,29 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B3A40.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B3B08.s")
+/* extern */
+
+void func_800B3B08(u8 *arg0, s32 arg1, s32 arg2) {
+    s16 *func_800B39D0(u8 *, s16);
+    s32 func_800B3A40(u8 *, s16 *, s32, s32);
+    s16 *temp_v0;
+    s16 *var_s0;
+    s16 temp_a1;
+
+    var_s0 = arg0 + 4;
+    if ((*(s16 *)((s8 *)(arg0) + (4))) != 0) {
+loop_1:
+        temp_a1 = *var_s0;
+        if (temp_a1 < (arg1 + arg2)) {
+            temp_v0 = func_800B39D0(arg0, temp_a1);
+            var_s0 = temp_v0;
+            if (*temp_v0 != 0) {
+                goto loop_1;
+            }
+        }
+    }
+    func_800B3A40(arg0, var_s0, arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B3B8C.s")
 
