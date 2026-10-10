@@ -52,7 +52,13 @@ void func_80800324_chgoldsnakehead(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/snakehead/func_808003A8_chgoldsnakehead.s")
+s32 func_808003A8_chgoldsnakehead(s32 arg0, s32 arg1, volatile s32 arg2) {
+    if (arg1 == 0x40) {
+        func_80800324_chgoldsnakehead(arg0, *(s32 *)&arg2);
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
