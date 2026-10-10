@@ -49,7 +49,20 @@ void func_8009FE78(PlayerState *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009FF00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009FF44.s")
+void func_8009FF44(PlayerState *arg0, enum asset_e arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
+    AnimCtrl *sp24;
+    AnimCtrl *temp_v0;
+
+    temp_v0 = baanim_getAnimCtrlPtr(arg0);
+    sp24 = temp_v0;
+    if (anctrl_getIndex(temp_v0) != arg1) {
+        anctrl_setIndex(sp24, arg1);
+        anctrl_start(sp24);
+    }
+    func_8008CA4C(arg0, BAANIM_UPDATE_2_SCALE_HORZ);
+    baanim_setDurationRange(arg0, 0.2345f, 3.9876f);
+    func_8008C9F0(arg0, arg2, arg3, arg4, arg5);
+}
 
 /* extern */
 
