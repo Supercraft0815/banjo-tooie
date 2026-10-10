@@ -115,7 +115,12 @@ void bafpctrl_entrypoint_16(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/bafpctrl_entrypoint_17.s")
+void bafpctrl_entrypoint_17(u8 *arg0) {
+    s32 bafpctrl_entrypoint_14(void *, s32);
+    if ((*(u8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x90)))) + (0x13))) != 0) {
+        bafpctrl_entrypoint_14(arg0, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/bafpctrl_entrypoint_18.s")
 
