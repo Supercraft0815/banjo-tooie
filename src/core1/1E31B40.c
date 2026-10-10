@@ -51,7 +51,16 @@ void func_8001A2B0()
     func_80013D10(0x3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A2D0.s")
+void func_8001A2D0(void) {
+    s32 func_80014C40();
+    extern s16 D_8007BED8;
+    extern OSMesgQueue D_8007BEE0;
+    extern void *D_8007BEF8;
+    D_8007BED8 = 0;
+    osCreateMesgQueue(&D_8007BEE0, &D_8007BEF8, 1);
+    osSendMesg(&D_8007BEE0, NULL, 1);
+    func_80014C40();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A324.s")
 
