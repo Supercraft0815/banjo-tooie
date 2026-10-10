@@ -22,7 +22,21 @@ OSThread *chhoneyb_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800194_chhoneyb.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800240_chhoneyb.s")
+/* extern */
+
+void func_80800240_chhoneyb(s32 arg0) {
+    s32 _suexpression_entrypoint_20();
+    s32 _suexpression_entrypoint_8(s32, s32);
+    s32 _susubgame_entrypoint_2(s32, s32);
+    s32 _susubgame_entrypoint_4(s32, s32);
+    s32 func_80100094(s32, s32);
+    if (_suexpression_entrypoint_20() != 0) {
+        _suexpression_entrypoint_8(arg0, 0);
+    }
+    if (_susubgame_entrypoint_2(arg0, func_80100094(arg0, 1)) != 0) {
+        _susubgame_entrypoint_4(arg0, func_80100094(arg0, 1));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_808002AC_chhoneyb.s")
 
