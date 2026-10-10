@@ -111,7 +111,20 @@ OSThread *chgameselect_entrypoint_4(void)
     return (OSThread *) D_808082E0_chgameselect;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808021E4_chgameselect.s")
+/* extern */
+
+void func_808021E4_chgameselect(void *arg0) {
+    s32 _gczoombox_entrypoint_19(s32);
+    s32 _gczoombox_entrypoint_5(s32, s32, s32, s32, s32);
+    s32 heap_alloc(s32);
+    s32 temp_v0;
+
+    temp_v0 = _gczoombox_entrypoint_5(0xC8, 0xC, 2, 0, 0);
+    (*(s32 *)((s8 *)(arg0) + (0x28))) = temp_v0;
+    _gczoombox_entrypoint_19(temp_v0);
+    (*(s32 *)((s8 *)(arg0) + (0x24))) = heap_alloc(0x40);
+    (*(s32 *)((s8 *)(arg0) + (0x34))) = heap_alloc(0x40);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802248_chgameselect.s")
 
