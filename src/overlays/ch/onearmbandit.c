@@ -22,7 +22,13 @@ void func_80800018_chonearmbandit(void *arg0) {
     func_80800040_chonearmbandit();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80800040_chonearmbandit.s")
+s32 func_80800040_chonearmbandit(Actor *arg0) {
+    void _subaddierouteDll_entrypoint_1(Actor*);
+    void _subaddierouteDll_entrypoint_3(Actor*, void*, f32*);
+    void* func_80100094(Actor*, u32);
+    _subaddierouteDll_entrypoint_3(arg0, func_80100094(arg0, 1U), arg0->position);
+    _subaddierouteDll_entrypoint_1(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_8080007C_chonearmbandit.s")
 
