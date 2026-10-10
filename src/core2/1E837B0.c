@@ -18,7 +18,10 @@ s32 func_800A9F30(void) {
     return D_80127770 < sp1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800A9F60.s")
+void func_800A9F60(s32 arg0, s32 arg1) {
+    void func_800DA3B8(s32, s32);
+    func_800DA3B8(arg0 + 0xD1B, arg1);
+}
 
 /* extern */
 
