@@ -6,7 +6,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110424.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_801104F4.s")
+void func_801104F4(PlayerState *arg0) {
+    s32 func_801106A8(PlayerState *, s32);
+    s32 func_80113410();
+    void heap_free(void* mem);
+    func_801106A8(arg0, 0);
+    func_80113410(arg0);
+    heap_free(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110528.s")
 
