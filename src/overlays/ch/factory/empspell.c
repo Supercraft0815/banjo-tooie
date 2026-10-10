@@ -32,7 +32,20 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801F30_chfactoryempspell.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801FE0_chfactoryempspell.s")
+/* extern */
+
+void func_80801FE0_chfactoryempspell(void *arg0) {
+    s32 _subaddieaudioloop_entrypoint_2();
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    s32 _sumumbofx_entrypoint_1(void *, s32);
+    s32 func_80801AB4_chfactoryempspell(void *);
+    _subaddieaudioloop_entrypoint_2();
+    (*(u8 *)((s8 *)(arg0) + (0x28))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(arg0) + (0x28))));
+    func_80801AB4_chfactoryempspell(arg0);
+    if ((*(s16 *)((s8 *)(arg0) + (0x82))) != 0) {
+        _sumumbofx_entrypoint_1(arg0, 0);
+    }
+}
 
 OSThread *chfactoryempspell_entrypoint_1(void)
 {
