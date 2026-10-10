@@ -123,7 +123,22 @@ void func_80802FCC_chklungo(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80803000_chklungo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_8080305C_chklungo.s")
+/* extern */
+
+void func_8080305C_chklungo(Actor *arg0) {
+    u32 func_800F54E4(void);
+    void* func_80100094(Actor*, u32);
+    s32 func_800F4B20(u32);
+    u8 *sp1C;
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    sp1C = temp_v0;
+    if ((*(s16 *)((s8 *)(temp_v0) + (0x46))) != 0) {
+        func_800F4B20(func_800F54E4());
+        (*(s16 *)((s8 *)(sp1C) + (0x46))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_808030A4_chklungo.s")
 
