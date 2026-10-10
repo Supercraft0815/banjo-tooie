@@ -30,7 +30,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_808019F4_chfactorymagnet.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80801A9C_chfactorymagnet.s")
+void func_80801A9C_chfactorymagnet(s32 arg0, f32 *arg1, f32 *arg2) {
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    extern f32 D_8080298C_chfactorymagnet;
+    extern f32 D_80802998_chfactorymagnet;
+    if (arg1 != NULL) {
+        func_800EE7F8(arg1, &D_8080298C_chfactorymagnet);
+    }
+    if (arg2 != NULL) {
+        func_800EE7F8(arg2, &D_80802998_chfactorymagnet);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80801AE8_chfactorymagnet.s")
 
