@@ -43,7 +43,13 @@ void func_800A1624(s32 arg0) {
     func_800D284C(0xCF);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A1658.s")
+void func_800A1658(s32 arg0) {
+    extern s8 D_80127090;
+    if ((arg0 != (*(u8 *)((s8 *)(&D_80127090) + (6)))) || (((*(u8 *)((s8 *)(&D_80127090) + (8))) != 0) && (arg0 != (*(u8 *)((s8 *)(&D_80127090) + (8)))))) {
+        (*(s8 *)((s8 *)(&D_80127090) + (7))) = 1;
+        (*(u8 *)((s8 *)(&D_80127090) + (8))) = (u8) arg0;
+    }
+}
 
 void func_800A1694(void) {
     extern u8 D_80127097;
