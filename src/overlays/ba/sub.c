@@ -79,7 +79,16 @@ void basub_entrypoint_8(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/func_80800834_basub.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_9.s")
+/* extern */
+
+void basub_entrypoint_9(void *arg0) {
+    s32 _bawobble_entrypoint_2(void *);
+    s32 func_800C2FDC(u8);
+    func_80800458_basub(arg0, 0x2C);
+    func_800C2FDC((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0xC))));
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0xC))) = 0;
+    _bawobble_entrypoint_2(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_10.s")
 
