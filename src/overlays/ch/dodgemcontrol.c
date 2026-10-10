@@ -105,7 +105,15 @@ OSThread *chdodgemcontrol_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80802180_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808026D0_chdodgemcontrol.s")
+s32 func_808026D0_chdodgemcontrol(s32 arg0) {
+    s32 func_80104248();
+    s32 anctrl_setPlaybackType(s32, s32);
+    s32 anctrl_start(s32);
+    s32 func_8008B188(s32, s32);
+    anctrl_setPlaybackType(func_80104248(), 1);
+    func_8008B188(func_80104248(arg0), 1);
+    return anctrl_start(func_80104248(arg0));
+}
 
 /* extern */
 
