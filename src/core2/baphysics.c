@@ -116,7 +116,20 @@ f32 baphysics_get_vertical_velocity(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009BB94.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009BBB8.s")
+f32 func_8009BBB8(PlayerState *arg0) {
+    f32 sp1C;
+    f32 temp_f0;
+    f32 var_f12;
+
+    sp1C = func_8009BB5C(arg0);
+    temp_f0 = baphysics_get_target_horizontal_velocity(arg0);
+    if (sp1C < temp_f0) {
+        var_f12 = sp1C / temp_f0;
+    } else {
+        var_f12 = 1.0f;
+    }
+    return var_f12;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009BC08.s")
 
