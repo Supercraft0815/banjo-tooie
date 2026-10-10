@@ -442,7 +442,11 @@ void func_800C9C04(f32 arg0, u32 arg1, u32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9CD0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9D38.s")
+void func_800C9D38(s32 arg0, s32 arg1) {
+    s32 func_800C9DE4(s32, s32 *, s32);
+    extern s32 func_800C9AB0;
+    func_800C9DE4(arg0, &func_800C9AB0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9D60.s")
 
