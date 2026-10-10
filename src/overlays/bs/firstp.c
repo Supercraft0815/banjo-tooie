@@ -790,7 +790,22 @@ void func_808071D8_bsfirstp(s32 arg0)
     func_80807C8C_bsfirstp(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80807208_bsfirstp.s")
+/* extern */
+
+void func_80807208_bsfirstp(s32 arg0) {
+    s32 _bababykaz_entrypoint_9(s32);
+    s32 _batimer_set(s32, s32, s32);
+    s32 _bsbabykaz_entrypoint_0(s32);
+    s32 _bsbabykaz_entrypoint_4(s32);
+    s32 func_80091E48(s32, s32);
+    s32 func_80807BB8_bsfirstp();
+    func_80807BB8_bsfirstp();
+    _bsbabykaz_entrypoint_4(arg0);
+    _bsbabykaz_entrypoint_0(arg0);
+    _bababykaz_entrypoint_9(arg0);
+    func_80091E48(arg0, 0x20);
+    _batimer_set(arg0, 0, 0x3F000000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80807264_bsfirstp.s")
 
