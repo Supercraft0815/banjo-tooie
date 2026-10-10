@@ -327,7 +327,24 @@ s32 func_80803B54_chquiz(Actor *arg0, s32 arg1, s32 arg2) {
     return _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, arg0->position, 0x4D);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80803B88_chquiz.s")
+void func_80803B88_chquiz(s32 arg0) {
+    s32 _chlightfader_entrypoint_1(s32, s32, s32);
+    s32 func_800C8A98();
+    s32 func_800C8CB8(s32, s32);
+    s32 func_800C8D4C(s32, s32 *);
+    s32 func_800C8E84(s32, s32 *);
+    s32 func_800C8F64(s32, s32);
+    extern s32 D_8080755C_chquiz;
+    extern s32 D_80807564_chquiz;
+    s32 temp_v0;
+
+    temp_v0 = func_800C8A98();
+    func_800C8CB8(temp_v0, arg0);
+    func_800C8F64(temp_v0, 0xF);
+    func_800C8D4C(temp_v0, &D_8080755C_chquiz);
+    func_800C8E84(temp_v0, &D_80807564_chquiz);
+    _chlightfader_entrypoint_1(temp_v0, 0x40000000, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80803BFC_chquiz.s")
 
