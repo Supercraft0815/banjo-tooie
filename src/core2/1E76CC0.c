@@ -10,7 +10,20 @@ void func_8009D3D8(s32 arg0)
     func_8009E674(arg0,0x2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009D3F8.s")
+/* extern */
+
+void func_8009D3F8(s32 arg0, s32 arg1) {
+    s32 func_800C2FDC(u8);
+    PlayerState *func_800F53D0(s32);
+    PlayerState *sp1C;
+    PlayerState *temp_v0;
+
+    temp_v0 = func_800F53D0(arg1);
+    sp1C = temp_v0;
+    func_8009DB04(temp_v0, 0x411, (*(f32 *)((s8 *)((*(void **)((s8 *)(temp_v0) + (0x104)))) + (0x14))), 0x55F0);
+    func_800C2FDC((*(u8 *)((s8 *)((*(void **)((s8 *)(sp1C) + (0x104)))) + (1))));
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(sp1C) + (0x104)))) + (1))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009D454.s")
 
