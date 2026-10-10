@@ -46,7 +46,10 @@ void sueggmove_entrypoint_7(s32 arg0) {
     func_800EE7F8(arg0 + 0x28);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/sueggmove_entrypoint_8.s")
+void sueggmove_entrypoint_8(Actor *arg0, s32 arg1) {
+    void* func_80100094(Actor*, u32);
+    (*(s8 *)((s8 *)(func_80100094(arg0, 0U)) + (0xF))) = (s8) arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/sueggmove_entrypoint_9.s")
 
