@@ -28,7 +28,17 @@ void func_808002F4_chamazonstadiumguard(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazonstadiumguard/func_80800530_chamazonstadiumguard.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazonstadiumguard/func_808005CC_chamazonstadiumguard.s")
+void func_808005CC_chamazonstadiumguard(s32 arg0) {
+    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    s32 func_8010D278();
+    extern s32 D_80800770_chamazonstadiumguard;
+    extern s32 D_8080078C_chamazonstadiumguard;
+    if (func_8010D278() == 8) {
+        _subaddiedialog_entrypoint_7(arg0, arg0 + 4, &D_80800770_chamazonstadiumguard);
+        return;
+    }
+    _subaddiedialog_entrypoint_7(arg0, arg0 + 4, &D_8080078C_chamazonstadiumguard);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazonstadiumguard/func_80800620_chamazonstadiumguard.s")
 
