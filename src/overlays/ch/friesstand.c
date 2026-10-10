@@ -113,7 +113,11 @@ s32 func_808003B8_chfriesstand(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/func_808005F0_chfriesstand.s")
+void func_808005F0_chfriesstand(Actor *arg0) {
+    extern u32 D_80801000_chfriesstand;
+    extern u32 D_8080100C_chfriesstand;
+    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80801000_chfriesstand, &D_8080100C_chfriesstand);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/func_80800620_chfriesstand.s")
 
