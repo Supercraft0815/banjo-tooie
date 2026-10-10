@@ -54,7 +54,43 @@ void gcnewoption_entrypoint_11(s16 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80800D28_gcnewoption.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_8080103C_gcnewoption.s")
+void func_8080103C_gcnewoption(u8 *arg0)
+{
+  s32 _gczoombox_entrypoint_0(s32);
+  s16 var_v0;
+  s32 temp_a0;
+  s32 temp_a0_2;
+  s32 var_s1;
+  u8 *var_s0;
+  var_v0 = *((s16 *) (((s8 *) arg0) + 2));
+  var_s0 = arg0;
+  var_s1 = 0;
+  if (var_v0 > 0)
+  {
+    do
+    {
+      temp_a0 = *((s32 *) (((s8 *) var_s0) + 0x3C));
+      if (temp_a0 != 0)
+      {
+        _gczoombox_entrypoint_0(temp_a0);
+        *((s32 *) (((s8 *) var_s0) + 0x3C)) = 0;
+        *((s8 *) (((s8 *) (arg0 + var_s1)) + 0x94)) = -1;
+        var_v0 = *((s16 *) (((s8 *) arg0) + 2));
+      }
+      var_s1 += 1;
+      var_s0 += 4;
+    }
+    while (var_s1 < var_v0);
+  }
+  temp_a0_2 = *((s32 *) (((s8 *) arg0) + 0x20));
+  if (temp_a0_2 != 0)
+  {
+    _gczoombox_entrypoint_0(temp_a0_2);
+    *((s32 *) (((s8 *) arg0) + 0x20)) = 0;
+    var_v0 = 0xFF;
+    *((s8 *) (((s8 *) arg0) + 0x24)) = var_v0;
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_808010E0_gcnewoption.s")
 
