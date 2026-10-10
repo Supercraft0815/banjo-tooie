@@ -115,7 +115,12 @@ void func_80801974_chfantasyathlete(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80802730_chfantasyathlete.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80802950_chfantasyathlete.s")
+void func_80802950_chfantasyathlete(Actor *arg0) {
+    void func_80102BAC(Actor*, f32, f32, f32);
+    void func_80102CCC(void *arg0);
+    func_80102BAC(arg0, 0.2f, 0.1f, 10.0f);
+    func_80102CCC(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_8080298C_chfantasyathlete.s")
 
