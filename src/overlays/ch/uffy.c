@@ -79,7 +79,17 @@ void func_8080167C_chchuffy(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80801DDC_chchuffy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80801EAC_chchuffy.s")
+void func_80801EAC_chchuffy(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    u8 _subaddieaudioloop_entrypoint_7(u8, u8 *, s32, s32 *, s32);
+    extern s32 D_80802690_chchuffy;
+    u8 *sp24;
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    sp24 = temp_v0;
+    *sp24 = _subaddieaudioloop_entrypoint_7(*temp_v0, temp_v0 + 0x20, 1, &D_80802690_chchuffy, (*(s32 *)((s8 *)(arg0) + (0x70))) & 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80801F04_chchuffy.s")
 
