@@ -44,7 +44,19 @@ void func_808002C8_chtiptup(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800694_chtiptup.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800774_chtiptup.s")
+/* extern */
+
+s32 func_80800774_chtiptup(void *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_0(s32, s32);
+    s32 func_80800808_chtiptup(void *, s32, s32);
+    if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
+        if ((*(s32 *)((s8 *)(arg0) + (0x2C))) != 2) {
+            func_80800808_chtiptup(arg0, 2, 1);
+        }
+        return 2;
+    }
+    return 1;
+}
 
 /* extern */
 
