@@ -14,7 +14,10 @@ void func_800DFBE0(s32 *arg0, s32 arg1, s32 arg2) {
     func_800EE7F8(arg2, *arg0 + (arg1 * 0x28) + 0x10);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB93C0/func_800DFC20.s")
+void func_800DFC20(s32 *arg0, s32 arg1, s32 arg2) {
+    s32 func_800EE7F8(s32, s32);
+    func_800EE7F8(arg2, *arg0 + (arg1 * 0x28) + 0x1C);
+}
 
 void func_800DFC60(void* arg0) 
 {
