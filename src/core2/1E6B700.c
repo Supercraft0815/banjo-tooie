@@ -8,7 +8,11 @@ s32 func_80091E10(void)
 void func_80091E18(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B700/func_80091E20.s")
+void func_80091E20(u8 *arg0) {
+    s32 func_80091E48(s32, s32);
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x48)))) + (3))) = 0;
+    func_80091E48((s32) arg0, 0x7F);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B700/func_80091E48.s")
 
