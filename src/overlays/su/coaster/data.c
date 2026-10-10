@@ -54,7 +54,30 @@ s32 sucoasterdata_entrypoint_3(u32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/data/sucoasterdata_entrypoint_4.s")
+s32 sucoasterdata_entrypoint_4(u32 arg0) {
+    switch (arg0) {
+    case 0:
+        return 0x140;
+    case 1:
+        return 0x12C;
+    case 2:
+        return 0x154;
+    case 3:
+        return 0x168;
+    case 4:
+        return 0x190;
+    case 5:
+        return 0x17C;
+    case 6:
+        return 0x1A4;
+    case 7:
+        return 0x1B8;
+    case 8:
+        return 0x1CC;
+    default:
+        return 0;
+    }
+}
 
 s32 *sucoasterdata_entrypoint_5(u32 arg0, s32 arg1, s32 *arg2) {
     extern s32 D_808006FC_sucoasterdata;
