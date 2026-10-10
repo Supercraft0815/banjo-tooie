@@ -20,7 +20,20 @@ void func_80800084_glglobalsettings()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/func_808000A4_glglobalsettings.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/func_80800114_glglobalsettings.s")
+/* extern */
+
+void func_80800114_glglobalsettings(s32 arg0) {
+    s32 _glgamestore_entrypoint_5(s32);
+    s32 var_s0;
+
+    var_s0 = 0;
+    do {
+        if (var_s0 != arg0) {
+            _glgamestore_entrypoint_5(var_s0);
+        }
+        var_s0 += 1;
+    } while (var_s0 != 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/func_80800168_glglobalsettings.s")
 
