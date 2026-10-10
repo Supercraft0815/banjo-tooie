@@ -581,7 +581,14 @@ s32 func_800F6634(s32 arg0)
 	return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6640.s")
+int func_800F6640(s32 arg0) {
+    s32 func_80091E80(PlayerState *, s32);
+    u32 func_80092EA4(u32 *);
+    PlayerState *self;
+
+    self = D_80135490[arg0];
+    return func_80092EA4((u32 *)self) && func_80091E80(self, 1);
+}
 
 void func_800F6690(s32 arg0)
 {
