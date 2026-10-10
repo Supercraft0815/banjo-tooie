@@ -1,6 +1,17 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/func_80800000_ncpoducam.s")
+/* extern */
+
+void func_80800000_ncpoducam(u8 *arg0) {
+    s32 func_800EFD24(s32);
+    func_800EFD24(arg0 + 4);
+    func_800EFD24(arg0 + 0x10);
+    func_800EFD24(arg0 + 0x24);
+    func_800EFD24(arg0 + 0x30);
+    (*(s8 *)((s8 *)(arg0) + (0x63))) = 0;
+    (*(f32 *)((s8 *)(arg0) + (0x50))) = 40.0f;
+    (*(f32 *)((s8 *)(arg0) + (0x54))) = 1.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/ncpoducam_entrypoint_0.s")
 
