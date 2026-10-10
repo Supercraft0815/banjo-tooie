@@ -8,7 +8,21 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_808002B0_chclinker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_80800304_chclinker.s")
+void func_80800304_chclinker(Actor *arg0, u32 arg1) {
+    void _subaddieDll_entrypoint_4(Actor*, u32);
+    void* func_80100094(Actor*, u32);
+    void func_80101FDC(Actor*, u32);
+    void func_8010A570(Actor*);
+    u8 *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    if (arg1 == 2) {
+        func_8010A570(arg0);
+        _subaddieDll_entrypoint_4(arg0, 1U);
+        (*(s32 *)((s8 *)(sp1C) + (8))) = 0;
+    }
+    func_80101FDC(arg0, arg1);
+}
 
 void func_80800368_chclinker(Actor *arg0, u8 *arg1) {
     void func_800DF744(s32, s32);
