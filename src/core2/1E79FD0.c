@@ -120,7 +120,14 @@ u32 func_800A0FE4(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 336) + 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E79FD0/func_800A0FF0.s")
+void func_800A0FF0(void *arg0) {
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x150)))) + (2))) = 1;
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x150)))) + (0))) = 0;
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x150)))) + (1))) = 0;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x150)))) + (4))) = 50.0f;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x150)))) + (8))) = 70.0f;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x150)))) + (0xC))) = -1.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E79FD0/func_800A1040.s")
 
