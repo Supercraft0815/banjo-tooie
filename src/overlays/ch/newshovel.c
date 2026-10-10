@@ -7,7 +7,15 @@ OSThread *chnewshovel_entrypoint_0(void)
     return (OSThread *) D_80800FB4_chnewshovel;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_8080000C_chnewshovel.s")
+/* extern */
+
+void func_8080000C_chnewshovel(Actor *arg0) {
+    void _subaddierouteDll_entrypoint_3(Actor*, void*, f32*);
+    void* func_80100094(Actor*, u32);
+    s32 func_808007F8_chnewshovel(Actor *, s32);
+    _subaddierouteDll_entrypoint_3(arg0, func_80100094(arg0, 0U), arg0->position);
+    func_808007F8_chnewshovel(arg0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_8080004C_chnewshovel.s")
 
