@@ -89,7 +89,14 @@ void func_808036E4_chdragonbrothers(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80803DC4_chdragonbrothers.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80803EFC_chdragonbrothers.s")
+/* extern */
+
+void func_80803EFC_chdragonbrothers(void *arg0, s32 arg1) {
+    s32 func_800DF744(s32, s32);
+    s32 func_80101870(s32, s32);
+    func_800DF744(1, (u32) ((*(s32 *)((s8 *)(arg0) + (0x64))) << 0xB) >> 0x1F);
+    func_80101870(arg0, arg1);
+}
 
 OSThread *chdragonbrothers_entrypoint_1(void)
 {
