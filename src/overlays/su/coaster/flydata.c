@@ -40,4 +40,19 @@ s32 sucoasterflydata_entrypoint_4(u32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/flydata/sucoasterflydata_entrypoint_5.s")
+s32 sucoasterflydata_entrypoint_5(u32 arg0) {
+    switch (arg0) {
+    case 0:
+        return 0x320;
+    case 1:
+        return 0x258;
+    case 2:
+        return 0x258;
+    case 3:
+        return 0x4B0;
+    case 4:
+        return 0x3E8;
+    default:
+        return 0;
+    }
+}
