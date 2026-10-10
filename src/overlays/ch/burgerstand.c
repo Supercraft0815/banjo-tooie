@@ -136,7 +136,18 @@ void func_80800720_chburgerstand(Actor* arg0)
         _suexpression_entrypoint_8(arg0, 1);
     }
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/func_80800754_chburgerstand.s")
+void func_80800754_chburgerstand(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    s32 func_80090734(s32, f32 *);
+    extern s32 D_80800E14_chburgerstand;
+    extern s32 D_80800BC0_chburgerstand;
+    f32 *position[2];
+
+    position[1] = arg0->position;
+    if (_subaddiedialog_entrypoint_8((s32)arg0, position[1], &D_80800E14_chburgerstand, &D_80800BC0_chburgerstand, 5) != 0) {
+        func_80090734(1, position[1]);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/func_808007A0_chburgerstand.s")
 
