@@ -49,7 +49,10 @@ void func_800CA5D8()
     func_800EE84C();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CA5F8.s")
+void func_800CA5F8(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
+    void func_800EFA4C(f32[3], f32, f32, f32);
+    func_800EFA4C(arg0, arg1, arg2, arg3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CA628.s")
 
