@@ -157,7 +157,21 @@ void func_800BA7FC(void *arg0, f32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA834.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA894.s")
+void func_800BA894(void *arg0, f32 arg1, f32 arg2)
+{
+  f32 *new_var;
+  f32 func_800DC178(f32, f32);
+  f32 temp_f0;
+  s8 *new_var3;
+  f32 *new_var2;
+  new_var2 = (f32 *) (((s8 *) arg0) + 0x58);
+  temp_f0 = *((f32 *) (((s8 *) arg0) + 0x20));
+  *((f32 *) ((new_var3 = (s8 *) arg0) + 0x54)) = arg1;
+ *new_var2 = arg2; if (((*((f32 *) (((s8 *) arg0) + 0x20))) == 0.0f) || (arg2 < temp_f0)) {
+    new_var = (f32 *) (((s8 *) arg0) + 0x54);
+    *((f32 *) (((s8 *) arg0) + 0x20)) = func_800DC178(*new_var, *new_var2);
+  }
+}
 
 void func_800BA8F8(void *arg0, f32 arg1, f32 arg2) {
     (*(s16 *)((s8 *)(arg0) + (0xA2))) = (s16) (s32) (arg1 * 256.0f);
