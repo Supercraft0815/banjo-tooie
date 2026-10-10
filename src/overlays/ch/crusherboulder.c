@@ -4,7 +4,20 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80800100_chcrusherboulder.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_808001CC_chcrusherboulder.s")
+/* extern */
+
+void func_808001CC_chcrusherboulder(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    s32 _sumumbofx_entrypoint_5(u8 *, s32);
+    s32 func_80800100_chcrusherboulder(u8 *, f32 *);
+    u8 *sp1C;
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 1U);
+    sp1C = temp_v0;
+    _sumumbofx_entrypoint_5(temp_v0, 0x40400000);
+    func_80800100_chcrusherboulder(sp1C, arg0->position);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80800210_chcrusherboulder.s")
 
