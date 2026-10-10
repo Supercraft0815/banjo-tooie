@@ -371,7 +371,11 @@ void func_800C9C04(f32 arg0, u32 arg1, u32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9D60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9D88.s")
+void func_800C9D88(s32 *arg0) {
+    s32 func_800C9DAC();
+    extern s32 func_800A5524;
+    func_800C9DAC(arg0, &func_800A5524);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9DAC.s")
 
