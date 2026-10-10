@@ -21,7 +21,23 @@ OSThread *chweldarbossfusebox_entrypoint_2(void)
     return (OSThread *) D_80800700_chweldarbossfusebox;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fusebox/func_80800024_chweldarbossfusebox.s")
+/* extern */
+
+void func_80800024_chweldarbossfusebox(s32 arg0) {
+    s32 _subaddiefade_entrypoint_14(s32);
+    s32 func_800BF744(s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800EFA4C(s32, s32, s32, s32);
+    s32 func_800FFAB0(s32);
+    s32 func_80103014(s32);
+    func_800BF744(2, func_800DA298(0x18C));
+    func_800EFA4C(arg0 + 4, 0xC4E10000, 0x44960000, 0xC5098000);
+    func_80103014(arg0);
+    _subaddiefade_entrypoint_14(arg0);
+    if (func_800DA298(0x18C) != 0) {
+        func_800FFAB0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fusebox/func_80800098_chweldarbossfusebox.s")
 
