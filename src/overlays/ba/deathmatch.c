@@ -31,7 +31,24 @@ void badeathmatch_entrypoint_1(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/deathmatch/badeathmatch_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/deathmatch/badeathmatch_entrypoint_4.s")
+s32 badeathmatch_entrypoint_4(s32 arg0) {
+    switch (arg0) {
+    case 0x40:
+        return 1;
+    case 0x41:
+        return 2;
+    case 0x42:
+        return 3;
+    case 0x43:
+        return 4;
+    case 0x44:
+        return 5;
+    case 0x45:
+        return 6;
+    default:
+        return 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/deathmatch/badeathmatch_entrypoint_5.s")
 
