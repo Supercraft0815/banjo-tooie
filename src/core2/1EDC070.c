@@ -70,7 +70,16 @@ f32 func_80102A04(void *arg0, f32 arg1, f32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102BAC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102BF8.s")
+/* extern */
+
+void func_80102BF8(void *arg0, s32 arg1, f32 arg2, f32 arg3) {
+    f32 func_800D8FF8();
+    f32 func_800F1FF0(f32, f32, s32, f32, f32);
+    f32 temp_f0;
+
+    temp_f0 = func_800D8FF8();
+    (*(f32 *)((s8 *)(arg0) + (0x48))) = func_800F1FF0((*(f32 *)((s8 *)(arg0) + (0x48))), (*(f32 *)((s8 *)(arg0) + (0x54))), arg1, temp_f0 * arg2, temp_f0 * arg3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102C58.s")
 
