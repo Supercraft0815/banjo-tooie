@@ -11,7 +11,16 @@ OSThread *chlagoonufoint_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_808001A0_chlagoonufoint.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_80800240_chlagoonufoint.s")
+void func_80800240_chlagoonufoint(Actor *arg0) {
+    s32 _susubgame_entrypoint_11(s32);
+    s32 _susubgame_entrypoint_2(void *, s32);
+    s32 _susubgame_entrypoint_4(void *, s32);
+    void* func_80100094(Actor*, u32);
+    if (_susubgame_entrypoint_2(arg0, func_80100094(arg0, 0U)) != 0) {
+        _susubgame_entrypoint_4(arg0, func_80100094(arg0, 0U));
+    }
+    _susubgame_entrypoint_11(0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_80800294_chlagoonufoint.s")
 
