@@ -201,7 +201,15 @@ void func_808027D4_chgameselect(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808027DC_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802994_chgameselect.s")
+/* extern */
+
+void func_80802994_chgameselect(Actor *arg0, s32 arg1) {
+    void* func_80100094(Actor*, u32);
+    s32 _gcnewoption_entrypoint_1(u8 *, s32);
+    if (func_80100094(arg0, 0U) != NULL) {
+        _gcnewoption_entrypoint_1(func_80100094(arg0, 0U), arg1);
+    }
+}
 
 /* extern */
 
