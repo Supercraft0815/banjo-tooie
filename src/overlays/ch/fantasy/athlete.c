@@ -5,7 +5,19 @@
 
 extern u16 D_80803034_chfantasyathlete[][4];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80800000_chfantasyathlete.s")
+/* extern */
+
+void func_80800000_chfantasyathlete(s32 arg0, s32 arg1) {
+    s32 func_800C78CC(s32);
+    s32 func_800DA9E4(s32, s32);
+    if (arg1 != 0) {
+        if (func_800DA9E4(0xA51, 1) == 0) {
+            func_800C78CC(1);
+        }
+    } else if (func_800DA9E4(0xA51, 0) != 0) {
+        func_800C78CC(0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80800060_chfantasyathlete.s")
 
