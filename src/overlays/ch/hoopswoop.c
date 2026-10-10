@@ -21,7 +21,24 @@ OSThread *chhoopswoop_entrypoint_2(void)
     return (OSThread *) D_80801F50_chhoopswoop;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80800024_chhoopswoop.s")
+/* extern */
+
+void func_80800024_chhoopswoop(void *arg0) {
+    s32 _susubgame_entrypoint_11(s32);
+    s32 func_800946C4(s32, s32);
+    s32 func_800DA524(s32);
+    s32 func_800F53D0(s32);
+    s32 func_800F54E4();
+    s32 func_80800094_chhoopswoop(void *);
+    func_800946C4(func_800F53D0(func_800F54E4()), 1);
+    func_800DA524(0);
+    func_800DA524(3);
+    func_800DA524(2);
+    func_800DA524(1);
+    (*(u16 *)((s8 *)(arg0) + (0x6E))) = (u16) ((*(u16 *)((s8 *)(arg0) + (0x6E))) & 0xFE00);
+    func_80800094_chhoopswoop(arg0);
+    _susubgame_entrypoint_11(0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80800094_chhoopswoop.s")
 
