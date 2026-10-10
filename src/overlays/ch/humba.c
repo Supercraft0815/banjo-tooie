@@ -15,7 +15,10 @@ void func_80800000_chhumba(s32 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_808001E4_chhumba.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800238_chhumba.s")
+void func_80800238_chhumba(u8 *arg0, f32 *arg1) {
+    void func_800EFA4C(f32[3], f32, f32, f32);
+    func_800EFA4C(arg1, 0.0f, (*(f32 *)((s8 *)(arg0) + (0x38))) * 5.0f * -50.0f, 0.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800294_chhumba.s")
 
