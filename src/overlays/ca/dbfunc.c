@@ -1,6 +1,30 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ca/dbfunc/func_80800000_cadbfunc.s")
+/* extern */
+
+s32 func_80800000_cadbfunc(void) {
+    s32 func_800A586C();
+    s32 func_800A587C();
+    s32 temp_v0;
+
+    temp_v0 = func_800A587C();
+    switch (temp_v0) {
+    case 3:
+        return func_800A586C();
+    case 1:
+        return func_800A586C();
+    case 2:
+        return func_800A586C();
+    case 5:
+        return func_800A586C();
+    case 6:
+        return func_800A586C();
+    case 8:
+        return func_800A586C();
+    default:
+        return 0;
+    }
+}
 
 /* extern */
 
