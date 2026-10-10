@@ -31,7 +31,10 @@ void func_80800514_chpawnbroker(Actor* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800534_chpawnbroker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800664_chpawnbroker.s")
+void func_80800664_chpawnbroker(Actor *arg0) {
+    extern u32 D_808010C4_chpawnbroker;
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_808010C4_chpawnbroker, 0x3F051EB8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800694_chpawnbroker.s")
 
