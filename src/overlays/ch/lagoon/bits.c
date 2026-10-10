@@ -50,7 +50,20 @@ void func_80800048_chlagoonbits(s32 arg0)
 void func_808000A4_chlagoonbits(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/func_808000AC_chlagoonbits.s")
+/* extern */
+
+void func_808000AC_chlagoonbits(void *arg0) {
+    s32 _subaddiesect_entrypoint_1();
+    s32 func_800DA298(s32);
+    s32 func_80101FDC(void *, s32);
+    s32 func_80108B04(void *, s32);
+    (*(s32 *)((s8 *)(arg0) + (0x28))) = _subaddiesect_entrypoint_1();
+    if (func_800DA298(0xCF) != 0) {
+        func_80108B04(arg0, 0);
+        func_80101FDC(arg0, 3);
+        (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFFE);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/func_80800108_chlagoonbits.s")
 
