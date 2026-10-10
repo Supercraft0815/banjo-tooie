@@ -16,7 +16,21 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800BE0_chfactorysparkroom.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800D30_chfactorysparkroom.s")
+/* extern */
+
+void func_80800D30_chfactorysparkroom(void *arg0) {
+    s32 _subaddieaudioloop_entrypoint_3(u8);
+    u32 var_s0;
+
+    var_s0 = 0;
+    if ((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF) {
+        do {
+            _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(arg0) + (0x50))));
+            var_s0 += 1;
+            (*(u8 *)((s8 *)(arg0) + (0x50))) = 0U;
+        } while (var_s0 < (u32) ((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800D90_chfactorysparkroom.s")
 
