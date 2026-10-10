@@ -104,7 +104,19 @@ s32 func_808007A4_chhoopswoop(void *arg0, s32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80801500_chhoopswoop.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_8080153C_chhoopswoop.s")
+void func_8080153C_chhoopswoop(void *arg0)
+{
+  s32 _subaddiemulti_entrypoint_1(s32, s32);
+  s32 func_800BF544(s32, s32, s32);
+  s32 func_800BF744(s32, s32);
+  func_800BF744(1, 0);
+  func_800BF744(2, 1);
+  func_800BF544(0, 0, 0);
+  if ((((((((((u16) (*((u16 *) (((s8 *) arg0) + 0x72)))) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) >> 0xA) == 1)
+  {
+    _subaddiemulti_entrypoint_1(0, 0);
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_808015A4_chhoopswoop.s")
 
