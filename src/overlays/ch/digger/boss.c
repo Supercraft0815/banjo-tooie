@@ -161,7 +161,25 @@ void func_80803558_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
     *temp_v0_2 &= ~(1 << (arg1 & 7));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/chdiggerboss_entrypoint_2.s")
+/* extern */
+
+void chdiggerboss_entrypoint_2(s32 arg0, s32 arg1) {
+    s32 _gcnewoption_entrypoint_37(s32, s32);
+    u8 *func_80100094(s32, s32);
+    s32 func_80106790(s32);
+    s32 sp1C;
+    u8 *sp18;
+    s32 temp_a0;
+    s32 temp_v0;
+
+    temp_v0 = func_80106790(arg1);
+    sp1C = temp_v0;
+    sp18 = func_80100094(temp_v0, 0);
+    temp_a0 = func_80100094(sp1C, 0) + 0x10C;
+    if ((*(u8 *)((s8 *)(sp18) + (0x40))) == 2) {
+        _gcnewoption_entrypoint_37(temp_a0, 1);
+    }
+}
 
 /* extern */
 
