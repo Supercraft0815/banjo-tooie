@@ -8,7 +8,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80800A94_chpotogoldgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/chpotogoldgame_entrypoint_0.s")
+/* extern */
+
+void chpotogoldgame_entrypoint_0(s32 arg0, s32 arg1) {
+    s32 func_800D395C();
+    s32 func_80106790(s32);
+    s32 func_80800434_chpotogoldgame(s32, s32);
+    if (func_800D395C() != 0) {
+        func_80800434_chpotogoldgame(func_80106790(arg1), 0xE);
+        return;
+    }
+    func_80800434_chpotogoldgame(func_80106790(arg1), 8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_808010A0_chpotogoldgame.s")
 
