@@ -94,7 +94,13 @@ void func_800BA5BC(void *arg0, f32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA5D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA610.s")
+/* extern */
+
+void func_800BA610(s32 arg0, s16 arg1, s16 arg2) {
+    s32 func_800EFA6C(s32, s32, s16, s32);
+    func_800EFA6C(arg0 + 0x34, 0, arg1, 0);
+    func_800EFA6C(arg0 + 0x3A, 0, arg2, 0);
+}
 
 void func_800BA660(void *arg0, s32 arg1, s16 arg2) {
     (*(s32 *)((s8 *)(arg0) + (0x88))) = arg1;
