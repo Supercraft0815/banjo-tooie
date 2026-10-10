@@ -41,7 +41,20 @@ s32 bssplitup_entrypoint_7(s32 arg0) {
     return ((s32 *)&D_80800710_bssplitup)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/bssplitup_entrypoint_8.s")
+/* extern */
+
+void bssplitup_entrypoint_8(s32 arg0) {
+    s32 _batimer_set(s32, s32, s32);
+    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    s32 func_8009B94C(s32, s32);
+    s32 func_8009BA9C(s32, s32);
+    s32 func_8009FFD8(s32, s32, s32, s32, s32);
+    baanim_playForDuration_loopSmooth(arg0, 0x6F, 0x40B00000);
+    func_8009FFD8(arg0, 1, 1, 3, 2);
+    func_8009B94C(arg0, 0);
+    func_8009BA9C(arg0, 0);
+    _batimer_set(arg0, 0, 0x3DCCCCCD);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/bssplitup_entrypoint_9.s")
 
