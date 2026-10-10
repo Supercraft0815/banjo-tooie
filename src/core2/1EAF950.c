@@ -221,7 +221,10 @@ void func_800D87B0()
     _glsplineDll_entrypoint_2(&D_8012BE70);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D87D4.s")
+void func_800D87D4(s32 *arg0, s32 arg1) {
+    extern s32 D_8012BF70[];
+    D_8012BF70[arg1] = *arg0;
+}
 
 s32 func_800D87EC(s32 arg0) {
     extern s32 D_8012BF70[];
