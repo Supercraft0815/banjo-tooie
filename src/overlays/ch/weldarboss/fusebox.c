@@ -49,7 +49,14 @@ void func_8080032C_chweldarbossfusebox(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fusebox/func_8080049C_chweldarbossfusebox.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fusebox/func_808005C0_chweldarbossfusebox.s")
+s32 func_808005C0_chweldarbossfusebox(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80103110(Actor*, u32);
+    if (arg1 == 0xA) {
+        func_80103110(arg0, 1U);
+        return 1;
+    }
+    return 0;
+}
 
 void func_808005F8_chweldarbossfusebox(s32 arg0) {
     s32 func_8001210C(s32);
