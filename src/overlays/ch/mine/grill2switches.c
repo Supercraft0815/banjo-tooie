@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/grill2switches/func_80800000_chminegrill2switches.s")
+s32 func_80800000_chminegrill2switches(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _chswitch_entrypoint_7(s32, s32);
+    s32 _chswitch_entrypoint_8(s32, s32);
+    _chswitch_entrypoint_7(arg0, arg1);
+    _chswitch_entrypoint_8(arg0, arg2);
+}
 
 /* extern */
 
