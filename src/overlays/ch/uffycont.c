@@ -6,7 +6,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_808002C4_chchuffycont.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_80800440_chchuffycont.s")
+void func_80800440_chchuffycont(Actor *arg0) {
+    u32 func_8010A828(Actor*, u32);
+    arg0->scale = 0.5f;
+    func_8010A828(arg0, 2U);
+}
 
 /* extern */
 
