@@ -38,7 +38,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E729C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E72E0.s")
+void func_800E72E0(u8 *arg0) {
+    u8 *ptr;
+
+    ptr = arg0;
+    while (*ptr != 0) {
+        if (*ptr >= 0x61 && *ptr < 0x7B) {
+            *ptr -= 0x20;
+        }
+        ptr++;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E7324.s")
 
