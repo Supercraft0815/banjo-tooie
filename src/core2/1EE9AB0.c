@@ -110,7 +110,16 @@ void func_80110A68(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110B68.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110BF0.s")
+/* extern */
+
+void func_80110BF0(PlayerState *self) {
+    s32 _ncba1p_entrypoint_5(PlayerState *, s32);
+    s32 _ncba1p_entrypoint_6(PlayerState *, u8 *);
+    s32 _ncba1p_entrypoint_7(PlayerState *, struct ba_flag_s **);
+    _ncba1p_entrypoint_5(self, 1);
+    _ncba1p_entrypoint_6(self, &self->pad48[0x2C]);
+    _ncba1p_entrypoint_7(self, &self->flag);
+}
 
 /* extern */
 
