@@ -4,7 +4,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80800064_bswasher.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_808000BC_bswasher.s")
+/* extern */
+
+void func_808000BC_bswasher(s32 arg0) {
+    s32 yaw_setUpdateType(s32, s32);
+    s32 yaw_setVelocityBounded(s32, s32, s32);
+    yaw_setUpdateType(arg0, 3);
+    yaw_setVelocityBounded(arg0, 0x43960000, 0x40C00000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_808000F0_bswasher.s")
 
