@@ -31,7 +31,21 @@ OSThread *chbottlesfamily_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_8080046C_chbottlesfamily.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_808004B4_chbottlesfamily.s")
+s32 func_808004B4_chbottlesfamily(s32 arg0) {
+    s32 func_800DA298(s32);
+    s32 func_808009F0_chbottlesfamily(s32, s32 *);
+    extern s32 D_80800F04_chbottlesfamily;
+    extern s16 D_80800F08_chbottlesfamily;
+    if (func_800DA298(0x3B) != 0) {
+        return 0;
+    }
+    if (func_800DA298(0x1A5) != 0) {
+        D_80800F08_chbottlesfamily = 0x1539;
+    } else {
+        D_80800F08_chbottlesfamily = 0x1501;
+    }
+    return func_808009F0_chbottlesfamily(arg0, &D_80800F04_chbottlesfamily);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_80800520_chbottlesfamily.s")
 
