@@ -69,7 +69,14 @@ void func_8008B1C8(AnimCtrl *arg0, f32 arg1) {
     (*(f32 *)((s8 *)(arg0) + (0x10))) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_setSubrange.s")
+void anctrl_setSubrange(AnimCtrl *arg0, f32 arg1, f32 arg2) {
+    (*(f32 *)((s8 *)(arg0) + (4))) = (f32) (arg1 - (f32) (s32) arg1);
+    if (arg2 != 1.0f) {
+        (*(f32 *)((s8 *)(arg0) + (8))) = (f32) (arg2 - (f32) (s32) arg2);
+        return;
+    }
+    (*(f32 *)((s8 *)(arg0) + (8))) = arg2;
+}
 
 void func_8008B238(void *arg0, f32 *arg1, f32 *arg2) {
     *arg1 = (*(f32 *)((s8 *)(arg0) + (4)));
