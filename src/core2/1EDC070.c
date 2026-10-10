@@ -64,7 +64,9 @@ f32 func_80102A04(void *arg0, f32 arg1, f32 arg2, s32 arg3) {
     return func_800136E4(delta);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102B2C.s")
+void func_80102B2C(Actor *arg0, f32 arg1) {
+    arg0->rotation[1] = func_80102A04(arg0, arg0->rotation[1], arg0->unk54, (s32) arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102B6C.s")
 
