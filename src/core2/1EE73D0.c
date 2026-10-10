@@ -23,6 +23,23 @@ void func_8010DEFC(void) {
     } while (var_s0 != 0xB);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE73D0/func_8010DF3C.s")
+/* extern */
+
+void func_8010DF3C(void) {
+    s32 func_8008ADE4(s32);
+    void *func_80104148(s32);
+    s32 func_80104200(s16);
+    s32 var_s0;
+    void *temp_v0;
+
+    var_s0 = 0;
+    do {
+        temp_v0 = func_80104148(var_s0);
+        if ((*(s16 *)((s8 *)(temp_v0) + (2))) != 0) {
+            func_8008ADE4(func_80104200((*(s16 *)((s8 *)(temp_v0) + (2)))));
+        }
+        var_s0 += 1;
+    } while (var_s0 != 0xB);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE73D0/func_8010DF98.s")
