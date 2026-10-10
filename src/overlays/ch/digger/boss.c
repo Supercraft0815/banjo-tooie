@@ -278,7 +278,10 @@ void func_80804784_chdiggerboss(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808049DC_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80804A50_chdiggerboss.s")
+void func_80804A50_chdiggerboss(s32 arg0, s32 arg1) {
+    u8 *func_80100094(s32, s32);
+    (*(s16 *)((s8 *)(func_80100094(arg0, 0)) + (0x18))) = (s16) arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80804A7C_chdiggerboss.s")
 
