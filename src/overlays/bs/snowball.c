@@ -4,7 +4,20 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_80800064_bssnowball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_8080010C_bssnowball.s")
+/* extern */
+
+s32 func_8080010C_bssnowball(s32 arg0, s32 arg1) {
+    s32 _badrone_entrypoint_24(s32);
+    s32 bainput_should_enter_first_person();
+    s32 bakey_pressed(s32, s32);
+    if (bainput_should_enter_first_person() != 0) {
+        arg1 = _badrone_entrypoint_24(arg0);
+    }
+    if (bakey_pressed(arg0, 8) != 0) {
+        arg1 = 0x17F;
+    }
+    return arg1;
+}
 
 /* extern */
 
