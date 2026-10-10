@@ -115,4 +115,23 @@ void func_80801B08_chalienkids(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80801B40_chalienkids.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80801BC4_chalienkids.s")
+void func_80801BC4_chalienkids(u8 *arg0) {
+    s32 _chexploder_entrypoint_9(s32, s32, s32);
+    s32 _subaddieaudioquick_entrypoint_2(u8 *, u8 *, s32 *);
+    s32 func_800DA544(s32);
+    s32 func_800FFAB0(u8 *);
+    s32 func_80101080();
+    s32 func_8010114C(s32, s32, s32);
+    s32 func_80106790(s32);
+    extern s32 D_80802284_chalienkids;
+    s32 temp_a0;
+
+    _chexploder_entrypoint_9(func_80106790(func_80101080()), 3, 2);
+    func_8010114C((*(s32 *)((s8 *)(arg0) + (0x3C))), 0xA, 0);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80802284_chalienkids);
+    temp_a0 = (*(s32 *)((s8 *)(arg0) + (0x50)));
+    if (temp_a0 != 0) {
+        func_800DA544(temp_a0);
+    }
+    func_800FFAB0(arg0);
+}
