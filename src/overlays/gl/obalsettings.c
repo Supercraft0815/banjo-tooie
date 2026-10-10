@@ -37,7 +37,10 @@ s32 glglobalsettings_entrypoint_3()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/glglobalsettings_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/glglobalsettings_entrypoint_5.s")
+void glglobalsettings_entrypoint_5(s32 *arg0, s32 *arg1) {
+    *arg0 = func_800DA564(GFLAG_BBA_SCREEN_ALIGN_X_1, 6) - 0x20;
+    *arg1 = func_800DA564(GFLAG_BC0_SCREEN_ALIGN_Y_1, 6) - 0x28;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/glglobalsettings_entrypoint_6.s")
 
