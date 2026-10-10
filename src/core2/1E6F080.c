@@ -99,7 +99,10 @@ void func_80096254(s32 *arg0, s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80096260.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_800962B0.s")
+void func_800962B0(PlayerState *arg0, s32 arg1) {
+    void func_800C68D4(s8 *arg0, s32 arg1);
+    func_800C68D4(*(*(s8 ***)((s8 *)(arg0) + (0x94))), arg1);
+}
 
 /* extern */
 
