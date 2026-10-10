@@ -7,7 +7,11 @@ OSThread *chjiggytemple_entrypoint_0(void)
     return (OSThread *) D_808008C8_chjiggytemple;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_8080000C_chjiggytemple.s")
+void func_8080000C_chjiggytemple(s32 arg0) {
+    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    extern s32 D_80800910_chjiggytemple;
+    _subaddiedialog_entrypoint_7(arg0, arg0 + 4, &D_80800910_chjiggytemple);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_80800034_chjiggytemple.s")
 
