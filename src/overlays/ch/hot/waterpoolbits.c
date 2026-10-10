@@ -28,7 +28,20 @@ OSThread *chhotwaterpoolbits_entrypoint_3(void)
     return (OSThread *) D_80800A08_chhotwaterpoolbits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/waterpoolbits/func_80800030_chhotwaterpoolbits.s")
+/* extern */
+
+void func_80800030_chhotwaterpoolbits(s32 arg0) {
+    s32 _chswitch_entrypoint_7(s32, s32);
+    s32 _chswitch_entrypoint_8(s32, s32);
+    s32 _chswitch_entrypoint_9(s32);
+    s32 sp1C;
+
+    sp1C = _chswitch_entrypoint_7(arg0, 0x167);
+    _chswitch_entrypoint_8(arg0, 0x200);
+    if (sp1C != 0) {
+        _chswitch_entrypoint_9(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/waterpoolbits/func_80800078_chhotwaterpoolbits.s")
 
