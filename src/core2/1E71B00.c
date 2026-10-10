@@ -36,7 +36,16 @@ s32 func_80098530()
     return 0x34;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E71B00/func_80098538.s")
+/* extern */
+
+void func_80098538(u8 *arg0) {
+    s32 func_800EFD24(u8 *, u8 *);
+    func_800EFD24((*(u8 **)((s8 *)(arg0) + (0xE0))), arg0);
+    func_800EFD24((*(u8 **)((s8 *)(arg0) + (0xE0))) + 0xC, arg0);
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xE0)))) + (0x2C))) = 0;
+    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xE0)))) + (0x28))) = 0.0f;
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xE0)))) + (0x2F))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E71B00/func_80098590.s")
 
