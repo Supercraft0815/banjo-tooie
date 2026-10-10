@@ -22,7 +22,17 @@ void func_808004C8_chtoxicroombits(s32 arg0) {
     func_800DA7A8(0x6DF, arg0, 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_808004F0_chtoxicroombits.s")
+/* extern */
+
+s32 func_808004F0_chtoxicroombits(void) {
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 func_800D0A9C(s32, s32);
+    s32 func_800DA564(s32, s32);
+    if ((func_800D0A9C(0x38, 1) == 0) && (_glcutDll_entrypoint_19(0x41) == 0)) {
+        return func_800DA564(0x6DF, 3);
+    }
+    return 6;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_80800540_chtoxicroombits.s")
 
