@@ -8,7 +8,19 @@ u8 susubgame_entrypoint_2(s32 arg0, u8 *arg1) {
     return *arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/susubgame_entrypoint_3.s")
+/* extern */
+
+s32 susubgame_entrypoint_3(s32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
+    s32 _gcdialogcamera_entrypoint_0(s32, s32);
+    s32 susubgame_entrypoint_5(s32, u8 *, s32, s32, s32);
+    if (_gcdialogcamera_entrypoint_0(arg2, arg3) != 0) {
+        if (*arg1 != 2) {
+            susubgame_entrypoint_5(arg0, arg1, 5, 1, 0);
+        }
+        return 2;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/susubgame_entrypoint_4.s")
 
