@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_80800000_chmole_training.s")
+/* extern */
+
+void func_80800000_chmole_training(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    s32 _gcnewoption_entrypoint_6(Actor *, s32);
+    if (func_80100094(arg0, 0U) != NULL) {
+        _gcnewoption_entrypoint_6(arg0, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_80800034_chmole_training.s")
 
