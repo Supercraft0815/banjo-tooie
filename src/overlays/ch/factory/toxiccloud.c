@@ -26,7 +26,25 @@ void func_80800A34_chfactorytoxiccloud(s32 arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_80800FCC_chfactorytoxiccloud.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_808010B8_chfactorytoxiccloud.s")
+/* extern */
+
+void func_808010B8_chfactorytoxiccloud(void *arg0) {
+    f32 _subaddiejoy_entrypoint_3();
+    f32 func_80013728(f32);
+    s32 func_80102BAC(void *, s32, s32, s32);
+    s32 func_8010BA80(void *, s32, s32);
+    f32 mlAbsF(f32);
+    f32 sp24;
+
+    sp24 = _subaddiejoy_entrypoint_3() * 650.0f;
+    func_80102BAC(arg0, 0x3FC00000, 0x3F800000, 0x41C80000);
+    if (mlAbsF(func_80013728((*(f32 *)((s8 *)(arg0) + (0x54))) - (*(f32 *)((s8 *)(arg0) + (0x48))))) < 90.0f) {
+        (*(f32 *)((s8 *)(arg0) + (0x24))) = sp24;
+    } else {
+        (*(f32 *)((s8 *)(arg0) + (0x24))) = (f32) (sp24 / 10.0f);
+    }
+    func_8010BA80(arg0, 0x200026, 0x20);
+}
 
 /* extern */
 
