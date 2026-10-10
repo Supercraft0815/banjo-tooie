@@ -14,7 +14,14 @@ void func_8009E388(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E77A20/func_8009E390.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E77A20/func_8009E474.s")
+void func_8009E474(PlayerState *arg0) {
+    s32 rare_memcpy(u8 *, u8 *, s32);
+    u8 *temp_a0;
+
+    temp_a0 = (*(u8 **)((s8 *)(arg0) + (0x114)));
+    rare_memcpy(temp_a0, temp_a0 + 0x78, 0x78);
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x114)))) + (0xF0))) = 0;
+}
 
 /* extern */
 
