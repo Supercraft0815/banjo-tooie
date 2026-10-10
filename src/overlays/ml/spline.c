@@ -6,7 +6,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_3.s")
+void mlspline_entrypoint_3(f32 arg0, s32 arg1, void *arg2, f32 *arg3) {
+    f32 temp_f0;
+    f32 temp_f14;
+    f32 temp_f2;
+
+    temp_f0 = (*(f32 *)((s8 *)(arg2) + (0)));
+    temp_f2 = (*(f32 *)((s8 *)(arg2) + (4)));
+    temp_f14 = (*(f32 *)((s8 *)(arg2) + (8)));
+    *arg3 = (((((temp_f14 + temp_f0) - (2.0f * temp_f2)) * (2.0f * arg0)) + (((4.0f * temp_f2) - (3.0f * temp_f0)) - temp_f14)) * arg0) + temp_f0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_4.s")
 
