@@ -7,7 +7,14 @@ extern OSMesgQueue D_80079010;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80014E10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80014E6C.s")
+void func_80014E6C(void) {
+    s32 func_80014E10(s32, s32);
+    extern s32 D_80078F80;
+    extern s32 D_80078F84;
+    D_80078F80 = func_80014E10(0, 0x21D80);
+    D_80078F84 = func_80014E10(1, 0x21D80);
+    D_80078F88 = func_80014E10(2, 0x10EC0);
+}
 
 // get_framebuffer_size_bytes
 u32 func_80014EC8() {
