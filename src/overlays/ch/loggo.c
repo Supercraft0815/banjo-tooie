@@ -43,7 +43,20 @@ void func_80800018_chloggo(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/loggo/func_80800398_chloggo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/loggo/func_80800460_chloggo.s")
+void func_80800460_chloggo(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    extern u32 D_808006F8_chloggo;
+    extern u32 D_80800710_chloggo;
+    extern u32 D_80800728_chloggo;
+    extern u32 D_80800740_chloggo;
+    f32 *temp_s1;
+
+    temp_s1 = (f32 *)((s8 *)arg0 + 4);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_808006F8_chloggo, 0.09f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80800740_chloggo, 0.16f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80800710_chloggo, 0.22f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80800728_chloggo, 0.6f);
+}
 
 /* extern */
 
