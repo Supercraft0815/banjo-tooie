@@ -55,7 +55,20 @@ void gcgoto_entrypoint_6(s32 arg0, s32 arg1) {
 
 void gcgoto_entrypoint_7(s32 arg0, s32 arg1) {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/goto/gcgoto_entrypoint_8.s")
+/* extern */
+
+void gcgoto_entrypoint_8(s32 arg0, s32 arg1) {
+    s32 func_80015FA0(s32);
+    s32 func_800A7AD4(s32, s32);
+    s32 func_800FC1CC(s32, s32);
+    s32 func_800FE3EC();
+    if (func_80015FA0(0) == 1) {
+        func_800A7AD4(1, 2);
+        func_800FC1CC(0, 0x320);
+        func_800FE3EC();
+        gcgoto_entrypoint_7(arg0, arg1);
+    }
+}
 
 /* extern */
 
