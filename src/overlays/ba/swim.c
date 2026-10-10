@@ -18,7 +18,10 @@ void baswim_entrypoint_4()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_6.s")
+void baswim_entrypoint_6(Actor *arg0, u32 arg1) {
+    u32* baswim_entrypoint_7(Actor*, u32, u32);
+    baswim_entrypoint_7(arg0, arg1, 0U);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_7.s")
 
