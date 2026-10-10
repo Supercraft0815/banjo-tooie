@@ -119,7 +119,22 @@ s32 bsstatue_entrypoint_5(s32 arg0) {
     return ((s32 *)&D_808015D0_bsstatue)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80800D20_bsstatue.s")
+/* extern */
+
+void func_80800D20_bsstatue(void *arg0) {
+    s32 func_80099A58(void *);
+    s32 func_8009E6EC();
+    s32 func_8009E830(void *, s32);
+    s32 func_808003B4_bsstatue(void *);
+    if (func_8009E6EC() == 0x81) {
+        if (func_80099A58(arg0) == 0x11E8) {
+            (*(s32 *)((s8 *)(arg0) + (0x164))) = (s32) ((*(s32 *)((s8 *)(arg0) + (0x164))) + 1);
+        }
+        func_8009E830(arg0, 2);
+        return;
+    }
+    func_808003B4_bsstatue(arg0);
+}
 
 /* extern */
 
