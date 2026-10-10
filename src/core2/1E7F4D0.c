@@ -37,7 +37,15 @@ void func_800A5C28(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F4D0/func_800A5C94.s")
+/* extern */
+
+void func_800A5C94(void) {
+    extern s8 D_80127115;
+    s32 func_801002C0();
+    if ((u8) D_80127115 != 0) {
+        func_801002C0();
+    }
+}
 
 /* extern */
 
