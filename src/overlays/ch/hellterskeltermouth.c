@@ -13,4 +13,8 @@ OSThread *chhellterskeltermouth_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskeltermouth/func_80800258_chhellterskeltermouth.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskeltermouth/func_808002E4_chhellterskeltermouth.s")
+void func_808002E4_chhellterskeltermouth(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
+    extern u32 D_80800384_chhellterskeltermouth;
+    _subaddieaudioloop_entrypoint_4(arg0, (f32 *) ((u8 *) arg0 + 4), 1U, &D_80800384_chhellterskeltermouth);
+}
