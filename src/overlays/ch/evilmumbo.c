@@ -111,7 +111,14 @@ OSThread *chevilmumbo_entrypoint_1(void)
 void func_80803918_chevilmumbo(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80803920_chevilmumbo.s")
+/* extern */
+
+void func_80803920_chevilmumbo(s32 arg0) {
+    void func_800EFA4C(f32[3], f32, f32, f32);
+    s32 func_8080362C_chevilmumbo(s32, s32);
+    func_800EFA4C(arg0 + 0x18, -130.0f, 0.0f, -430.0f);
+    func_8080362C_chevilmumbo(arg0, 1);
+}
 
 s32 func_8080395C_chevilmumbo(s32 arg0, s32 arg1, s32 arg2) {
     if (arg1 == 0xB) {
