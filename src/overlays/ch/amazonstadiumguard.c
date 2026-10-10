@@ -42,4 +42,8 @@ void func_808005CC_chamazonstadiumguard(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazonstadiumguard/func_80800620_chamazonstadiumguard.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazonstadiumguard/func_80800648_chamazonstadiumguard.s")
+void func_80800648_chamazonstadiumguard(Actor *arg0) {
+    extern u32 D_808007C4_chamazonstadiumguard;
+    extern u32 D_808007D0_chamazonstadiumguard;
+    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_808007C4_chamazonstadiumguard, &D_808007D0_chamazonstadiumguard);
+}
