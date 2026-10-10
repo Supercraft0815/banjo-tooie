@@ -66,7 +66,12 @@ s32 func_8080078C_chlagoonufoint(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_80800820_chlagoonufoint.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_80800878_chlagoonufoint.s")
+/* extern */
+
+void func_80800878_chlagoonufoint(s32 arg0, s32 arg1) {
+    s32 func_800C4104(s32, s32, s32, s32, f32, f32);
+    func_800C4104(arg1, 0x3F800000, 0x55F0, arg0 + 4, 500.0f, 1000.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_808008C8_chlagoonufoint.s")
 
