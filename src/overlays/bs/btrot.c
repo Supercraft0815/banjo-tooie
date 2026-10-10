@@ -98,7 +98,9 @@ s32 bsbtrot_entrypoint_3(s32 arg0) {
     return ((s32 *)&D_80802E50_bsbtrot)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80800C20_bsbtrot.s")
+void func_80800C20_bsbtrot(s32 arg0) {
+    func_80800000_bsbtrot(arg0, 0x26, 0x26, 0x29B, 0x86);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_4.s")
 
