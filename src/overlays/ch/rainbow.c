@@ -8,7 +8,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_80800440_chrainbow.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_808005E0_chrainbow.s")
+void func_808005E0_chrainbow(s32 arg0, s32 arg1) {
+    s32 func_800B53A4(s32);
+    s32 func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, s32, s32, s32, s32 *);
+    extern s32 D_80800FD0_chrainbow;
+    s32 sp24;
+    s32 temp_v0;
+
+    temp_v0 = func_800B53A4(1);
+    sp24 = temp_v0;
+    func_800BA3FC(temp_v0, arg1 + 0x9DF);
+    func_800BABB8(sp24, arg0, 0, 0x3F800000, &D_80800FD0_chrainbow);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_8080063C_chrainbow.s")
 
