@@ -112,7 +112,12 @@ s32 chchuffycont_entrypoint_0(s32 *arg0, s32 *arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/chchuffycont_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_80800A7C_chchuffycont.s")
+void func_80800A7C_chchuffycont(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
+    extern u32 D_80800B68_chchuffycont;
+    extern f32 D_80800B78_chchuffycont;
+    _subaddieaudioloop_entrypoint_4(arg0, &D_80800B78_chchuffycont, 1U, &D_80800B68_chchuffycont);
+}
 
 OSThread *chchuffycont_entrypoint_2(void)
 {
