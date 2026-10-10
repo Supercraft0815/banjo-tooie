@@ -35,6 +35,9 @@ OSThread *chnutsnbolts_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nutsnbolts/func_80800B80_chnutsnbolts.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nutsnbolts/func_80800BD4_chnutsnbolts.s")
+void func_80800BD4_chnutsnbolts(Actor *arg0) {
+    extern u32 D_80800CC0_chnutsnbolts;
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800CC0_chnutsnbolts, 0x3F266666);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nutsnbolts/func_80800C04_chnutsnbolts.s")
