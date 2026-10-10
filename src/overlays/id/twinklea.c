@@ -8,7 +8,19 @@ void idtwinklea_entrypoint_0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
 void idtwinklea_entrypoint_1(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/twinklea/idtwinklea_entrypoint_2.s")
+void idtwinklea_entrypoint_2(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    s32 _idtwinkle_entrypoint_6(s32, s32, s32);
+    s32 _idworld_entrypoint_2(s32);
+    extern s32 _idtwinklea_entrypoint_3;
+    s32 temp_v0;
+
+    temp_v0 = _idworld_entrypoint_2(arg2 - 0xC8);
+    if (temp_v0 != 0) {
+        _idtwinkle_entrypoint_6(temp_v0, arg0, arg0 + 4);
+        _glid_entrypoint_0(arg1, arg2, &_idtwinklea_entrypoint_3, arg0);
+    }
+}
 
 void idtwinklea_entrypoint_3(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, u8 *arg4) {
     f32 var_f0;
