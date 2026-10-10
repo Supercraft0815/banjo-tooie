@@ -1,6 +1,25 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/fish/func_80800000_chgoldfish.s")
+/* extern */
+
+void func_80800000_chgoldfish(u8 *arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800FFA88(s32);
+    s32 func_808005F0_chgoldfish(u8 *, s32);
+    s32 func_80800BA8_chgoldfish(u8 *, u8 *);
+    if (func_800DA298(0x1BF) != 0) {
+        func_800FFA88((*(s32 *)((s8 *)(arg0) + (0))));
+        return;
+    }
+    if (func_800DA298(0x1DA) != 0) {
+        func_808005F0_chgoldfish(arg0, 6);
+    } else if (func_800DA298(0x51E) != 0) {
+        func_808005F0_chgoldfish(arg0, 3);
+    }
+    (*(f32 *)((s8 *)(arg0) + (0x24))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x38)));
+    (*(f32 *)((s8 *)(arg0) + (0x4C))) = 90.0f;
+    func_80800BA8_chgoldfish(arg0, arg0 + 4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/fish/func_8080009C_chgoldfish.s")
 
