@@ -64,7 +64,23 @@ OSThread *chtntmineshoot_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_8080146C_chtntmineshoot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80801604_chtntmineshoot.s")
+void func_80801604_chtntmineshoot(Actor *arg0) {
+    s32 _susubgame_entrypoint_11(s32);
+    void func_800C2FDC(u8 id);
+    void func_800D284C(u32 a0);
+    void* func_80100094(Actor*, u32);
+    u8 *sp1C;
+    u8 temp_a0;
+
+    sp1C = func_80100094(arg0, 0U);
+    _susubgame_entrypoint_11(0);
+    func_800D284C(0x102U);
+    temp_a0 = (*(u8 *)((s8 *)(sp1C) + (0xC)));
+    if (temp_a0 != 0) {
+        func_800C2FDC(temp_a0);
+        (*(u8 *)((s8 *)(sp1C) + (0xC))) = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80801658_chtntmineshoot.s")
 
