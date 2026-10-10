@@ -106,7 +106,16 @@ void gsmaker_entrypoint_14(s32 arg0,s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/maker/gsmaker_entrypoint_16.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/maker/gsmaker_entrypoint_17.s")
+/* extern */
+
+s32 gsmaker_entrypoint_17(s32 arg0, s32 arg1, s32 arg2) {
+    s32 gsmaker_entrypoint_16();
+    if (gsmaker_entrypoint_16(arg0, arg1) == 0) {
+        return 0;
+    }
+    gsmaker_entrypoint_7(arg0, arg2);
+    return 1;
+}
 
 /* extern */
 
