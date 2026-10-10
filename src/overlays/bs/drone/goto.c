@@ -25,7 +25,24 @@ void func_80800148_bsdronegoto(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/goto/func_8080032C_bsdronegoto.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/goto/bsdronegoto_entrypoint_0.s")
+/* extern */
+
+void bsdronegoto_entrypoint_0(void *arg0) {
+    s32 _badata_entrypoint_14(void *);
+    s32 _gcgoto_entrypoint_14(s32);
+    s32 func_80091E48(void *, s32);
+    s32 func_80800000_bsdronegoto(void *, s32);
+    s32 player_isStable(void *);
+    (*(s32 *)((s8 *)(arg0) + (0x190))) = 0;
+    (*(s32 *)((s8 *)(arg0) + (0x194))) = 0;
+    _gcgoto_entrypoint_14(1);
+    func_80091E48(arg0, 0x3F);
+    if ((player_isStable(arg0) == 0) && (_badata_entrypoint_14(arg0) != 0)) {
+        func_80800000_bsdronegoto(arg0, 1);
+        return;
+    }
+    func_80800000_bsdronegoto(arg0, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/goto/bsdronegoto_entrypoint_1.s")
 
