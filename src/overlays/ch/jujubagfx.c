@@ -9,7 +9,21 @@ OSThread *chjujubagfx_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jujubagfx/func_8080000C_chjujubagfx.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jujubagfx/func_80800100_chjujubagfx.s")
+/* extern */
+
+void func_80800100_chjujubagfx(u8 *arg0) {
+    s32 *_subaddiefind_entrypoint_0(s32, s32, s32, s32);
+    s32 func_8008FE94(s32, u8 *);
+    s32 func_8010D278();
+    s32 func_8080000C_chjujubagfx(u8 *, s32);
+    if (func_8010D278() != 0xD) {
+        (*(s32 *)((s8 *)(arg0) + (0x3C))) = (s32) *_subaddiefind_entrypoint_0(arg0 + 4, 0x190, -1, 0);
+    } else {
+        func_8008FE94(1, arg0 + 4);
+    }
+    (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFEF);
+    func_8080000C_chjujubagfx(arg0, 2);
+}
 
 /* extern */
 
