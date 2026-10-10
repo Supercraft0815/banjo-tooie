@@ -88,7 +88,16 @@ OSThread *chfactoryroofbits_entrypoint_4(void)
     return (OSThread *) D_80800AEC_chfactoryroofbits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_80800840_chfactoryroofbits.s")
+void func_80800840_chfactoryroofbits(Actor *arg0) {
+    void _chdoormake_entrypoint_0(void*, f32, u32, s32);
+    void _chdoormake_entrypoint_5(Actor*, f32);
+    void _chdoormake_entrypoint_6(Actor*, s32);
+    void _chdoormake_entrypoint_8(void*, u32);
+    _chdoormake_entrypoint_0(arg0, 90.0f, 0x80U, 0x355);
+    _chdoormake_entrypoint_5(arg0, 3.0f);
+    _chdoormake_entrypoint_6(arg0, 0x3F800000);
+    _chdoormake_entrypoint_8(arg0, 4U);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_80800890_chfactoryroofbits.s")
 
