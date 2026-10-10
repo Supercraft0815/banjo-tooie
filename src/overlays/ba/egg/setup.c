@@ -26,7 +26,18 @@ void baeggsetup_entrypoint_4(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/setup/baeggsetup_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/setup/baeggsetup_entrypoint_6.s")
+void baeggsetup_entrypoint_6(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
+    s32 func_80094C0C();
+    s32 func_800EE7F8(u8 *, s32);
+    extern s32 _baeggsetup_entrypoint_4;
+    func_80094C0C();
+    func_800EE7F8((*(u8 **)((s8 *)(arg0) + (0x70))), arg2);
+    func_800EE7F8((*(u8 **)((s8 *)(arg0) + (0x70))) + 0xC, arg3);
+    func_800EE7F8((*(u8 **)((s8 *)(arg0) + (0x70))) + 0x18, arg4);
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x70)))) + (0x24))) = (s8) arg1;
+    _chbaddiesetup_entrypoint_1(&_baeggsetup_entrypoint_4, (*(s32 *)((s8 *)(arg0) + (0x184))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/setup/baeggsetup_entrypoint_7.s")
 
