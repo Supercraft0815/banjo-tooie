@@ -82,4 +82,11 @@ void func_80800B74_chcablecar(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800DC8_chcablecar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800E30_chcablecar.s")
+/* extern */
+
+void func_80800E30_chcablecar(s32 arg0) {
+    s32 _chswitch_entrypoint_7(s32, s32);
+    s32 _chswitch_entrypoint_9(s32);
+    _chswitch_entrypoint_7(arg0, 0xD4);
+    _chswitch_entrypoint_9(arg0);
+}
