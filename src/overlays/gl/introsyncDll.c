@@ -4,7 +4,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/introsyncDll/func_808000BC_glintrosyncDll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/introsyncDll/glintrosyncDll_entrypoint_0.s")
+/* extern */
+
+void glintrosyncDll_entrypoint_0(s32 arg0) {
+    extern f32 D_80127194;
+    s32 func_80800000_glintrosyncDll(s32);
+    (*(u32 *)((s8 *)(&D_80127194) + (0x43C))) = osGetCount();
+    (*(s32 *)((s8 *)(&D_80127194) + (0x440))) = func_80800000_glintrosyncDll(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/introsyncDll/glintrosyncDll_entrypoint_1.s")
 
