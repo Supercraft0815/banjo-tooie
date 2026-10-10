@@ -4,7 +4,21 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/autobaddies/suautobaddies_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/autobaddies/func_80800104_suautobaddies.s")
+/* extern */
+
+void func_80800104_suautobaddies(void) {
+    s32 _chintrotext_entrypoint_2(s32);
+    s32 _gcintrotext_entrypoint_1();
+    s32 _gclevel_entrypoint_4(s32);
+    s32 _glcutDll_entrypoint_1();
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800A9C98();
+    s32 func_800DA298(s32);
+    if ((_glcutDll_entrypoint_1() == 0) && (func_800DA298(0x647) == 0) && (func_800A9C98() == 0) && (_gcintrotext_entrypoint_1() == 0) && (_glcutDll_entrypoint_19(0x6F) == 0) && (_glcutDll_entrypoint_20() == 0) && (_gclevel_entrypoint_4(0x40) == 0)) {
+        _chintrotext_entrypoint_2(0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/autobaddies/func_80800194_suautobaddies.s")
 
