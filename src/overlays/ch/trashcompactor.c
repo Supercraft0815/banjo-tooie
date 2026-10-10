@@ -45,6 +45,14 @@ void func_808007A4_chtrashcompactor(s32 arg0) {
     _chswitch_entrypoint_9(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcompactor/func_808007DC_chtrashcompactor.s")
+void func_808007DC_chtrashcompactor(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    s32 func_80101180(s32, s32, s32);
+    if (arg1 == 7) {
+        func_80101180(0x3B7, 7, 0);
+        return;
+    }
+    _chswitch_entrypoint_10(arg0, arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcompactor/func_8080081C_chtrashcompactor.s")
