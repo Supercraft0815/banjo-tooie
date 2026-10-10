@@ -50,7 +50,22 @@ s32 bsbansack_entrypoint_1(s32 arg0) {
     return ((s32 *)&D_80801E20_bsbansack)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800710_bsbansack.s")
+/* extern */
+
+void func_80800710_bsbansack(s32 arg0) {
+    f32 anctrl_getAnimTimer(s32);
+    s32 baanim_getAnimCtrlPtr(s32);
+    s32 func_80099B94(s32);
+    s32 func_8009E6EC();
+    s32 func_80800168_bsbansack(s32);
+    if (func_8009E6EC() == 0xC) {
+        if (anctrl_getAnimTimer(baanim_getAnimCtrlPtr(arg0)) > 0.42f) {
+            func_80099B94(arg0);
+        }
+    } else {
+        func_80800168_bsbansack(arg0);
+    }
+}
 
 void func_8080077C_bsbansack(s32 arg0)
 {
