@@ -40,4 +40,21 @@ void func_808007B8_chcheatomenu(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_80800800_chcheatomenu.s")
+/* extern */
+
+s32 func_80800800_chcheatomenu(void) {
+    s32 func_800D3DD0(s32);
+    s32 func_800D3E14(s32);
+    s32 var_s0;
+    s32 var_s1;
+
+    var_s1 = 0;
+    var_s0 = 1;
+    do {
+        if ((func_800D3DD0(var_s0) != 0) || (func_800D3E14(var_s0) != 0)) {
+            var_s1 += 1;
+        }
+        var_s0 += 1;
+    } while (var_s0 != 0xD);
+    return var_s1;
+}
