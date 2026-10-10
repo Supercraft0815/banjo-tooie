@@ -14,7 +14,13 @@ void func_80800034_bscrouch(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/crouch/func_80800068_bscrouch.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/crouch/func_808000B4_bscrouch.s")
+/* extern */
+
+void func_808000B4_bscrouch(s32 arg0, f32 arg1) {
+    f32 func_800F10B4(f32 value, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
+    s32 anctrl_setDuration(s32, f32);
+    anctrl_setDuration(arg0, func_800F10B4(arg1, 0.0f, 180.0f, 0.5f, 0.2f));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/crouch/func_808000FC_bscrouch.s")
 
