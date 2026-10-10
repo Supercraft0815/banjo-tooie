@@ -2,7 +2,14 @@
 
 extern s32 D_80119540;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7EE40/func_800A5550.s")
+/* extern */
+
+void func_800A5550(s32 arg0, void *arg1) {
+    s32 _ncbaspline_entrypoint_5(s32, s32, void *);
+    s32 func_800A93E4(u32);
+    s32 func_80110014(s32);
+    _ncbaspline_entrypoint_5(func_80110014(func_800A93E4((u32) (*(u16 *)((s8 *)(arg1) + 0x1A)) >> 5)), arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7EE40/func_800A5598.s")
 
