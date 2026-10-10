@@ -71,7 +71,18 @@ void func_80800280_chprisonbits()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_8080090C_chprisonbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_80800970_chprisonbits.s")
+void func_80800970_chprisonbits(Actor *arg0) {
+    void _suexpression_entrypoint_8(Actor*, u32);
+    s32 _susubgame_entrypoint_4(void *, s32);
+    void* func_80100094(Actor*, u32);
+    u8 *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    if (func_80100094(arg0, 1U) != NULL) {
+        _suexpression_entrypoint_8(arg0, 1U);
+    }
+    _susubgame_entrypoint_4(arg0, (s32) (sp1C + 0x1C));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_808009C4_chprisonbits.s")
 
