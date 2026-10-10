@@ -32,7 +32,29 @@ void func_80800024_chboggykidshome(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/kidshome/func_80800068_chboggykidshome.s")
+void func_80800068_chboggykidshome(u8 *arg0)
+{
+  s32 _sudeflect_entrypoint_0(u8 *, s32, s32, s32);
+  s32 _suexpression_entrypoint_10(s32, s32, s32);
+  s32 _suexpression_entrypoint_20(u8 *);
+  u8 *new_var;
+  s32 func_80800214_chboggykidshome();
+  s32 func_80800300_chboggykidshome(u8 *);
+  if (((((u16) (*((u16 *) (((s8 *) arg0) + 0x72)))) & 0xFFFFFFFF) >> 0xA) == 1)
+  {
+    if (1)
+    {
+      func_80800214_chboggykidshome();
+    }
+  }
+  _sudeflect_entrypoint_0(arg0 + 4, 0x42C80000, 0x42480000, 0xA);
+  if (1)
+  {
+    new_var = arg0;
+    _suexpression_entrypoint_10(_suexpression_entrypoint_20(arg0), *((s32 *) (((s8 *) new_var) + 0)), 0);
+    func_80800300_chboggykidshome(arg0);
+  }
+}
 
 void func_808000DC_chboggykidshome(Actor* arg0) 
 {
