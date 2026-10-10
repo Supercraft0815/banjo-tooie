@@ -70,7 +70,13 @@ OSThread *chfactorytwinklies_entrypoint_5(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80801108_chfactorytwinklies.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80801174_chfactorytwinklies.s")
+s32 func_80801174_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
+    void* func_80100094(Actor*, u32);
+    if (arg1 == 0x1348) {
+        return (*(s32 *)((s8 *)(func_80100094(arg0, 0U)) + (0xA0))) + 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_808011B0_chfactorytwinklies.s")
 
