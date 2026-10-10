@@ -275,7 +275,10 @@ OSThread *chquiz_entrypoint_3(void)
     return (OSThread *) D_808074DC_chquiz;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80803B54_chquiz.s")
+s32 func_80803B54_chquiz(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    return _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, arg0->position, 0x4D);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80803B88_chquiz.s")
 
