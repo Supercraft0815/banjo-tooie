@@ -5,7 +5,24 @@ void chbaddieDll_entrypoint_0(void *arg0) {
     (*(s8 *)((s8 *)(arg0) + (5))) = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/dieDll/chbaddieDll_entrypoint_1.s")
+/* extern */
+
+void chbaddieDll_entrypoint_1(void *arg0) {
+    s32 _suautobaddies_entrypoint_0();
+    s32 func_8001E204();
+    s32 func_800BDCB8();
+    s32 func_800BDD00();
+    s32 func_800CB9B4();
+    s32 func_800FF390();
+    (*(s8 *)((s8 *)(arg0) + (4))) = 0;
+    func_800CB9B4();
+    func_800BDD00();
+    func_800FF390();
+    if (func_8001E204() == 0) {
+        func_800BDCB8();
+        _suautobaddies_entrypoint_0();
+    }
+}
 
 /* extern */
 
