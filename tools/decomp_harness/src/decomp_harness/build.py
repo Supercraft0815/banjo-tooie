@@ -6,6 +6,7 @@ from pathlib import Path
 import shutil
 import sys
 import tempfile
+import uuid
 
 from .common import (Control, HarnessError, ROM_SHA1, DECOMPRESSED_SHA1, command,
                      digest, run_logged)
@@ -59,11 +60,33 @@ def import_rom(source: Path, root: Path):
 class Builder:
     def __init__(self, root: Path, config, control: Control):
         self.root, self.config, self.control = root, config, control
+        self.container = None
+
+    def start(self):
+        """One offline container per owned workspace, explicitly closed by its owner."""
+        if self.container or self.config['build']['backend'] == 'native':
+            return
+        name = 'decomp-build-' + uuid.uuid4().hex
+        args = self.argv(['sleep', 'infinity'])
+        args[2:2] = ['-d', '--init', '--name', name]
+        self.container = name
+        try:
+            command(args, self.root, timeout=90)
+        except BaseException:
+            self.close()
+            raise
+
+    def close(self):
+        if self.container:
+            command(['docker', 'rm', '-f', self.container], timeout=30)
+            self.container = None
 
     def argv(self, args, network=False):
         build = self.config['build']
         if build['backend'] == 'native':
             return args
+        if self.container and not network:
+            return ['docker', 'exec', self.container, *args]
         # Only the disposable build directory is exposed to the compiler container.
         docker = ['docker', 'run', '--rm', '--platform', build['platform'],
                   '--mount', f'type=bind,source={self.root},target=/work', '--workdir', '/work',
@@ -74,8 +97,13 @@ class Builder:
         return docker + [build['image'], *args]
 
     def invoke(self, args, log: Path, network=False):
-        return run_logged(self.argv(args, network), self.root, log,
-                          self.config['build_timeout'], self.control)
+        try:
+            return run_logged(self.argv(args, network), self.root, log,
+                              self.config['build_timeout'], self.control)
+        except BaseException:
+            # Killing docker exec alone leaves the compiler running in the container.
+            self.close()
+            raise
 
     def build(self, log: Path, source=None):
         if source:
@@ -127,7 +155,11 @@ class Builder:
 
     def disassemble(self, source, symbol):
         # -t: the symbol table lets scoring rebase named rodata labels to section offsets.
-        result = command(self.argv(['mips-linux-gnu-objdump', '-drzt', f'--disassemble={symbol}', self.object_path(source)]), self.root, timeout=90)
+        try:
+            result = command(self.argv(['mips-linux-gnu-objdump', '-drzt', f'--disassemble={symbol}', self.object_path(source)]), self.root, timeout=90)
+        except BaseException:
+            self.close()
+            raise
         return result.stdout.decode()
 
     def dependencies(self, log):

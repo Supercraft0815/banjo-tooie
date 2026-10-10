@@ -289,6 +289,12 @@ class ParallelTests(fixtures.Fixture):
             def __init__(self, root=None, *_):
                 self.root = root
 
+            def start(self):
+                pass
+
+            def close(self):
+                pass
+
             def disassemble(self, source, symbol):
                 return DUMP.replace('target', symbol)
 
@@ -372,6 +378,82 @@ class ParallelTests(fixtures.Fixture):
             self.process()
         self.assertEqual(self.state.db.execute("SELECT count(*) FROM functions WHERE status='pending'").fetchone()[0], 3)
         self.assertEqual(self.loop.matched, 0)
+
+    def test_new_probe_finishes_while_an_earlier_rom_check_is_waiting(self):
+        self.loop.args.max_functions = 3
+        self.loop.local_queue = [{'function': self.state.get(name)['id'], **self.state.get(name)}
+                                 for name in ('target', 'other_target', 'third_target')]
+        rom_started, third_probe = threading.Event(), threading.Event()
+        builder_type = type(self.loop.builder)
+        build, regression = builder_type.object_build, builder_type.regression
+
+        def object_build(builder, source, log):
+            if builder.root != self.work:
+                if 'other_target' in source:
+                    self.assertTrue(rom_started.wait(5))
+                elif 'third_target' in source:
+                    third_probe.set()
+            return build(builder, source, log)
+
+        def check(builder, log):
+            rom_started.set()
+            self.assertTrue(third_probe.wait(5), 'ROM publication blocked admission of a new probe')
+            return regression(builder, log)
+
+        def disassemble(builder, source, symbol):
+            dump = DUMP.replace('target', symbol)
+            if symbol == 'other_target' and 'void other_target' in (builder.root/source).read_text():
+                return dump.replace('nop', 'li v0,1')
+            return dump
+
+        def process(loop, function):
+            target = loop.prepare(function)
+            try:
+                candidate = candidate_source(target.original.decode(), function['symbol'],
+                                             f"void {function['symbol']}(void) {{}}")
+                loop.local_trial(function, target, 'test', candidate, function['id'])
+            finally:
+                loop.release(function['id'], 'test complete')
+
+        with patch.object(builder_type, 'object_build', object_build), \
+                patch.object(builder_type, 'regression', check), \
+                patch.object(builder_type, 'disassemble', disassemble), \
+                patch.object(Loop, 'process_function', process):
+            self.process()
+        self.assertTrue(third_probe.is_set())
+        self.assertEqual(self.peak_checks, 1)
+        self.assertEqual(self.state.get('target')['status'], 'matched')
+        self.assertEqual(self.state.get('third_target')['status'], 'matched')
+        self.assertEqual(self.state.get('other_target')['status'], 'pending')
+        self.assertIsNone(self.loop.baseline_builder)
+
+    def test_parallel_rom_mismatch_never_publishes_and_restores_source(self):
+        self.barrier = None
+        self.loop.args.max_attempts = 1
+        self.loop.args.max_functions = 1
+        with patch.object(type(self.loop.builder), 'regression', return_value=False):
+            self.process()
+        self.assertEqual(self.git('rev-list', '--count', 'HEAD'), '1')
+        self.assertEqual(self.state.db.execute("SELECT count(*) FROM functions WHERE status='matched'").fetchone()[0], 0)
+        for source in (self.root/'src').rglob('*.c'):
+            self.assertEqual(source.read_bytes(), (self.work/source.relative_to(self.root)).read_bytes())
+
+    def test_repository_change_during_rom_check_withholds_publication(self):
+        self.barrier = None
+        self.loop.args.max_attempts = self.loop.args.max_functions = 1
+        source = self.root/'src/core1/a.c'
+        original = source.read_text()
+
+        def change(*_):
+            source.write_text(original + '\n/* external edit */\n')
+            return True
+
+        with patch.object(type(self.loop.builder), 'regression', change):
+            with self.assertRaisesRegex(HarnessError, 'Repository changed'):
+                self.process()
+        self.assertTrue(source.read_text().endswith('/* external edit */\n'))
+        self.assertEqual(self.git('rev-list', '--count', 'HEAD'), '1')
+        self.assertEqual((self.work/'src/core1/a.c').read_text(), original)
 
 
 if __name__ == '__main__':

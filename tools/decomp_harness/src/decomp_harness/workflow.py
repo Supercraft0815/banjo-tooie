@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
+from contextlib import ExitStack, nullcontext
 from dataclasses import dataclass, replace
 import json
 import queue
@@ -160,9 +161,11 @@ class Loop:
         self.workspace = self.expected_stamp = None
         self.runners = {}
         self.coordinator = self
-        # Gate: the trusted workspace (baseline objects, ROM checks, commits). Parallel runs
-        # compile probes in private lanes; ponytail: ROM checks stay serial, they need one tree.
+        # Repository snapshots/commits use the short gate. ROM builds use their own
+        # serial gate so private probes and scheduling can continue during linking.
         self.gate = threading.RLock()
+        self.publication_gate = threading.RLock()
+        self.baseline_builder = None
         self.lanes = None
         self.count_lock = threading.Lock()
         self.probe_lock = threading.Lock()
@@ -226,6 +229,7 @@ class Loop:
         self.state.set_meta('last_build_workspace', str(self.workspace))
         self.builder = Builder(self.workspace, self.config, self.control)
         try:
+            self.builder.start()
             baseline_log = self.root/'.decomp-agent/logs/run-baseline.log'
             print(f"Checking isolated baseline (make check; {'verified build cache' if warm else 'fresh build'}). "
                   f'Build output: {baseline_log}', flush=True)
@@ -242,6 +246,7 @@ class Loop:
                 self.check_repository()
                 cache.retain(self.root, self.workspace, self.config)
         finally:
+            self.builder.close()
             if self.workspace.exists():
                 shutil.rmtree(self.workspace)
         return self.result()
@@ -280,19 +285,26 @@ class Loop:
         (self.root/'.decomp-agent/stop-after-current').unlink(missing_ok=True)
 
     def process_parallel(self):
-        # SQLite connections are thread-owned. Only the gate holder builds/publishes.
+        # SQLite connections are thread-owned. The immutable reference never sees
+        # candidate writes; only publication_gate owns the mutable ROM workspace.
         seen, active = set(), {}
         self.lanes = queue.Queue()
         print(f"Cloning {self.config['concurrency']} private build lanes for parallel compiles...", flush=True)
-        for _ in range(self.config['concurrency']):
-            lane = clone(self.workspace)
-            self.lanes.put((lane, Builder(lane, self.config, self.control)))
         try:
-            self.run_pool(seen, active)
+            with ExitStack() as cleanup:
+                for index in range(self.config['concurrency'] + 1):
+                    lane = clone(self.workspace)
+                    cleanup.callback(shutil.rmtree, lane, ignore_errors=True)
+                    builder = Builder(lane, self.config, self.control)
+                    cleanup.callback(builder.close)
+                    builder.start()
+                    if index == 0:
+                        self.baseline_builder = builder
+                    else:
+                        self.lanes.put((lane, builder))
+                self.run_pool(seen, active)
         finally:
-            lanes, self.lanes = self.lanes, None
-            while not lanes.empty():
-                shutil.rmtree(lanes.get()[0], ignore_errors=True)
+            self.lanes = self.baseline_builder = None
         (self.root/'.decomp-agent/stop-after-current').unlink(missing_ok=True)
 
     def run_pool(self, seen, active):
@@ -330,7 +342,7 @@ class Loop:
         child = Loop(self.root, state, self.config, control, self.args)
         child.coordinator, child.gate = self, self.gate
         child.workspace = self.workspace
-        child.builder = Builder(self.workspace, self.config, control)
+        child.builder = self.builder
         try:
             child.process_function(function)
         finally:
@@ -369,9 +381,10 @@ class Loop:
             if function['base_sha'] != source_sha:
                 self.state.update(identity, best_source=None, best_score=None, best_run=None, base_sha=source_sha)
             length = (function['size'] or 0) // 4 or None
-            reference_dump = self.builder.disassemble(source, function['symbol'])
+            baseline = self.coordinator.baseline_builder
+            reference_dump = (baseline or self.builder).disassemble(source, function['symbol'])
             reference = instructions(reference_dump, function['symbol'], length)
-            saved = self.builder.save_baseline(source, self.root/'.decomp-agent/logs/baseline-object.log')
+            saved = False if baseline else self.builder.save_baseline(source, self.root/'.decomp-agent/logs/baseline-object.log')
             return Target(self.state.get(identity), original, reference_dump, reference, saved, length)
 
     def release(self, identity, message):
@@ -623,7 +636,9 @@ class Loop:
         compiles = self.config['worker_compiles'] if provider == 'codex' else 0
         with self.gate:
             stamp = self.check_repository()
-            worker = worker_copy(self.workspace, function, worktree=self.config['concurrency'] > 1)
+            baseline = self.coordinator.baseline_builder
+            worker = worker_copy(baseline.root if baseline else self.workspace, function,
+                                 worktree=self.config['concurrency'] > 1)
         compiler = None
         try:
             if batch:
@@ -736,7 +751,7 @@ class Loop:
             source = function['source']
             current = (self.root/source).read_bytes()
             # Earlier batch members may already be published: rebase on the new file/object.
-            with self.gate:
+            with self.coordinator.publication_gate, self.gate:
                 saved = self.builder.save_baseline(source, directory/'baseline-object.log')
             rebased = replace(target, function=function, original=current, baseline_saved=saved)
             try:
@@ -774,41 +789,51 @@ class Loop:
             self.state.finish_run(run_id, outcome='compile_error', error='See compiler.log')
             self.state.update(function['id'], last_error=(directory/'compiler.log').read_text(errors='replace')[-3000:])
             return 'improve'
-        with self.gate:
-            self.check_repository()
+        with self.coordinator.publication_gate if comparison['rom_checked'] else nullcontext():
+            saved = False
+            if comparison['rom_checked']:
+                with self.gate:
+                    self.check_repository()
+                saved = self.builder.save_baseline(function['source'], directory/'baseline-object.log')
             try:
                 # Only plausible matches pay for the full link + ROM hash; it stays mandatory for those.
                 comparison['exact'] = comparison['rom_checked'] and self.rom_check(target, candidate, directory)
-                previous = self.state.get(function['id'])['best_score']
-                comparison['delta'] = comparison['score'] - (previous if previous is not None else 0)
-                save_json(directory/'comparison.json', comparison)
-                self.state.finish_run(run_id, outcome='matched' if comparison['exact'] else 'nonmatching',
-                                      score=comparison['score'], delta=comparison['delta'],
-                                      differences=comparison['different_instructions'], first_diff=json.dumps(comparison['first_diff']),
-                                      last_diffs=json.dumps(comparison['last_diffs']))
-                if previous is None or comparison['score'] > previous or comparison['exact']:
-                    self.state.update(function['id'], best_source=candidate, best_score=comparison['score'], best_run=run_id)
-                print(f"  {function['symbol']}: score {comparison['score']:.2f}, diff instructions {comparison['different_instructions']}, "
-                      f"ROM {'exact' if comparison['exact'] else 'not exact' if comparison['rom_checked'] else 'check skipped'}", flush=True)
-                if not comparison['exact']:
-                    return 'improve'
-                if self.control.stopped():
-                    self.state.transition(function['id'], 'pending', last_error='Validated match retained; interrupted before publication')
-                    return 'stop'
-                self.check_repository()
-                commit = publish(self.root, self.state, function, original, candidate)
-                self.coordinator.expected_stamp = repository_stamp(self.root)
-                atomic_write(directory/'commit.txt', commit+'\n')
-                remember(self.root, self.state, function, replacement, commit)
-                if isinstance(message, dict):
-                    for note in message.get('knowledge', [])[:4]:
-                        if isinstance(note, str):
-                            self.state.note(function['segment']+' IDO '+function['symbol'], note, commit)
-                self.state.note(function['segment']+' '+function['symbol'], 'Matched source pattern:\n'+replacement[:900], commit)
-                return 'matched'
+                with self.gate:
+                    return self.finish_candidate(target, candidate, directory, comparison, replacement, message)
             finally:
                 if comparison['rom_checked'] and self.state.get(function['id'])['status'] != 'matched':
-                    self.builder.restore(function['source'], original, target.baseline_saved, directory/'restore.log')
+                    self.builder.restore(function['source'], original, saved, directory/'restore.log')
+
+    def finish_candidate(self, target, candidate, directory, comparison, replacement, message):
+        """Under the repository gate, persist evidence and publish only a ROM-exact result."""
+        function, original, run_id = target.function, target.original, directory.name
+        self.check_repository()
+        previous = self.state.get(function['id'])['best_score']
+        comparison['delta'] = comparison['score'] - (previous if previous is not None else 0)
+        save_json(directory/'comparison.json', comparison)
+        self.state.finish_run(run_id, outcome='matched' if comparison['exact'] else 'nonmatching',
+                              score=comparison['score'], delta=comparison['delta'],
+                              differences=comparison['different_instructions'], first_diff=json.dumps(comparison['first_diff']),
+                              last_diffs=json.dumps(comparison['last_diffs']))
+        if previous is None or comparison['score'] > previous or comparison['exact']:
+            self.state.update(function['id'], best_source=candidate, best_score=comparison['score'], best_run=run_id)
+        print(f"  {function['symbol']}: score {comparison['score']:.2f}, diff instructions {comparison['different_instructions']}, "
+              f"ROM {'exact' if comparison['exact'] else 'not exact' if comparison['rom_checked'] else 'check skipped'}", flush=True)
+        if not comparison['exact']:
+            return 'improve'
+        if self.control.stopped():
+            self.state.transition(function['id'], 'pending', last_error='Validated match retained; interrupted before publication')
+            return 'stop'
+        commit = publish(self.root, self.state, function, original, candidate)
+        self.coordinator.expected_stamp = repository_stamp(self.root)
+        atomic_write(directory/'commit.txt', commit+'\n')
+        remember(self.root, self.state, function, replacement, commit)
+        if isinstance(message, dict):
+            for note in message.get('knowledge', [])[:4]:
+                if isinstance(note, str):
+                    self.state.note(function['segment']+' IDO '+function['symbol'], note, commit)
+        self.state.note(function['segment']+' '+function['symbol'], 'Matched source pattern:\n'+replacement[:900], commit)
+        return 'matched'
 
     def object_dumps(self, target, candidate, symbols, log, restore_log):
         """Compile a candidate; None on a compile error, else {symbol: objdump}.

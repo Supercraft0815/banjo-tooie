@@ -395,17 +395,27 @@ Jeder parallele Worker erhält einen eigenen Git-Worktree mit **privater Git-Dat
 es gibt keine Verbindung zum `.git` des Nutzer-Repositories. Logs sind pro Run getrennt.
 Die Modellarbeit kann sich überlappen. Jeder Worker kompiliert Probe- und Kandidaten-Objekte
 in einer eigenen **Build-Lane** (APFS-Klon des gebauten Workspace, wird nie gelinkt), also
-parallel. Nur `make check` und Commit laufen unter einer gemeinsamen Sperre im vertrauenswürdigen
-Workspace nacheinander; ein zweiter Match wird damit gegen die bereits integrierte erste
-Änderung geprüft. Der Baseline-Build läuft einmal
+parallel. Eine zusätzliche unveränderte Baseline-Kopie liefert die Referenzobjekte.
+Die ROM-Prüfung und Übernahme laufen nacheinander im vertrauenswürdigen Workspace;
+ein zweiter Match wird damit gegen die bereits integrierte erste Änderung geprüft.
+Die kurze Repository-Sperre schützt Zustandsprüfungen und Commits, wird während des
+ROM-Builds aber freigegeben. Unabhängige Kandidaten können weiter vorbereitet,
+kompiliert und als Nichttreffer abgeschlossen werden. Vor jeder Übernahme werden
+Repository-Zustand, `make check` und vollständiger ROM-Hash weiterhin geprüft.
+
+Jeder Build-Workspace besitzt für die Laufdauer einen eigenen Container ohne Netzwerk,
+Credentials oder Docker-Socket. Compiler und Objdump laufen darin über `docker exec`.
+Bei regulärem Ende und Fehlern werden diese Container entfernt; bei einem Build-Timeout
+wird auch der Container beendet, damit kein Compiler weiter in die Build-Lane schreibt.
+Der Baseline-Build läuft einmal
 pro Harness-Aufruf. Seine Logdatei wird beim Start ausgegeben.
 
 Funktions-, Versuchs- und Laufzeitbudgets gelten gemeinsam für alle Worker.
-Ein externer `stop-after-current` lässt bis zu zwei aktive Funktionen fertig werden.
+Ein externer `stop-after-current` lässt die bereits aktiven Funktionen fertig werden.
 `run --stop-after-current` startet dagegen höchstens eine Funktion. Es darf nicht
 parallel ein zweiter Harness-Prozess auf dieselbe State-Datenbank gestartet werden.
-Zwei Worker sparen Wartezeit, nicht automatisch Kontingent; mehr als zwei werden
-bewusst abgewiesen. Ein langer Lauf amortisiert den frischen Baseline-Build.
+Mehr Worker sparen Wartezeit, nicht automatisch Kontingent. Ein langer Lauf amortisiert
+den frischen Baseline-Build und das Anlegen der Build-Lanes.
 
 ## Optional: Haiku über Claude Code
 
