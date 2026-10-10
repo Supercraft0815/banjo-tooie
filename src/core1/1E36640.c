@@ -328,7 +328,19 @@ void func_8001EE34(SfxEvent *arg0) {
 }
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E36640/func_800200B8.s")
+/* extern */
+
+void func_800200B8(SfxState *arg0) {
+    s32 func_800205D0(SfxState *);
+    s32 func_80026FF0(ALVoice *);
+    s32 func_80027090(ALVoice *);
+    if (arg0->flags & 4) {
+        func_80026FF0(&arg0->voice);
+        func_80027090(&arg0->voice);
+    }
+    func_800205D0(arg0);
+    func_800201A4(&D_800411DC->queue, arg0, 0xFFFF);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E36640/func_80020128.s")
 
