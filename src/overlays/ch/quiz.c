@@ -132,7 +132,17 @@ void func_80800FBC_chquiz(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808013E0_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801408_chquiz.s")
+s32 func_80801408_chquiz(Actor *arg0, void *arg1, s32 arg2, s32 arg3) {
+    s32 _ncpod_entrypoint_20(s32, s32, s32, s32);
+    s32 func_800A89F8();
+    s32 func_800A9478(s32);
+    s32 func_800F5EF8(s32);
+    s32 temp_v0;
+
+    temp_v0 = _ncpod_entrypoint_20(func_800F5EF8(func_800A9478(func_800A89F8())), (s32) arg0->unk0, arg2, arg3 | 0x20);
+    (*(s8 *)((s8 *)(arg1) + (0x5C))) = 4;
+    return temp_v0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801470_chquiz.s")
 
