@@ -115,7 +115,20 @@ s32 func_80112E90()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_801137E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_801138A0.s")
+s32 func_801138A0(void *arg0) {
+    void *temp_v0;
+
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x28)));
+    if ((*(u8 *)((s8 *)(temp_v0) + (0x14))) != 0) {
+        return 0;
+    }
+    if ((*(s16 *)((s8 *)(temp_v0) + (0xC))) >= 4) {
+        (*(s16 *)((s8 *)(temp_v0) + (0xE))) = (s16) ((*(s16 *)((s8 *)(temp_v0) + (0xE))) + 1);
+    } else {
+        (*(s16 *)((s8 *)(temp_v0) + (0xE))) = 0;
+    }
+    return (*(s16 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x28)))) + (0xE))) >= 5;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_801138F4.s")
 
