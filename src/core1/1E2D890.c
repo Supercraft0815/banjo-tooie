@@ -122,7 +122,10 @@ void func_80015F5C(s32 arg0, void *arg1) {
     (*(s32 *)((s8 *)(arg1) + (8))) = (s32) (*(s32 *)((s8 *)(&D_80079AC0) + (0x20)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2D890/func_80015F84.s")
+s32 func_80015F84(s32 arg0) {
+    extern s32 D_80079A14;
+    return *(s32 *)((u8 *)&D_80079A14 + ((arg0 * 7) * 8));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2D890/func_80015FA0.s")
 
