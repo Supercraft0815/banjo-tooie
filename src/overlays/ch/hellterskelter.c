@@ -32,7 +32,14 @@ void func_80800274_chhellterskelter(s32 arg0)
     _chswitch_entrypoint_7(arg0,FLAG3_A4B_UNK);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/func_80800294_chhellterskelter.s")
+void func_80800294_chhellterskelter(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    s32 func_80101180(s32, s32, s32);
+    if (arg1 == 7) {
+        func_80101180(0x339, 0xA, 0);
+    }
+    _chswitch_entrypoint_10(arg0, arg1, arg2);
+}
 
 void func_808002E8_chhellterskelter(s32 arg0) 
 {
