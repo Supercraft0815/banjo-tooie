@@ -38,7 +38,10 @@ loop_1:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/glsavegame_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/glsavegame_entrypoint_4.s")
+s32 glsavegame_entrypoint_4(s32 arg0) {
+    extern s8 D_80127614;
+    return ((s32 *)&D_80127614)[arg0 + 1];
+}
 
 s32 glsavegame_entrypoint_5() 
 {
