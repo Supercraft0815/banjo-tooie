@@ -408,7 +408,24 @@ void func_80094538(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094574.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094644.s")
+/* extern */
+
+void func_80094644(void *arg0) {
+    s32 func_80094430(void *, f32);
+    s32 func_80094574(void *, s32);
+    s32 func_8009E964();
+    f32 func_8009E970();
+    s32 temp_f4;
+
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x64)))) + (2))) = 0;
+    func_80094370((s32) arg0);
+    func_80094574(arg0, func_8009E964());
+    temp_f4 = (s32) func_8009E970();
+    if (temp_f4 != 0) {
+        func_80094430(arg0, (f32) temp_f4);
+    }
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x64)))) + (3))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_800946C4.s")
 
