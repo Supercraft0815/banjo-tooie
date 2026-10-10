@@ -26,4 +26,6 @@ void func_80800144_chcaveofhorrorsdoors(s32 arg0) {
     func_800FFAB0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/caveofhorrorsdoors/func_808001A4_chcaveofhorrorsdoors.s")
+s32 func_808001A4_chcaveofhorrorsdoors(s32 arg0) {
+    return ((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7) + 0x65;
+}
