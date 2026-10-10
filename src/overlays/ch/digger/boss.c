@@ -148,7 +148,18 @@ void func_80802EF8_chdiggerboss(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80803524_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80803558_chdiggerboss.s")
+void func_80803558_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
+    u8 *temp_v0;
+    u8 *temp_v0_2;
+
+    if (arg2 != 0) {
+        temp_v0 = (arg1 >> 3) + arg0;
+        *temp_v0 |= 1 << (arg1 & 7);
+        return;
+    }
+    temp_v0_2 = (arg1 >> 3) + arg0;
+    *temp_v0_2 &= ~(1 << (arg1 & 7));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/chdiggerboss_entrypoint_2.s")
 
