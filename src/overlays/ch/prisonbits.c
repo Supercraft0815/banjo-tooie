@@ -49,7 +49,10 @@ void func_808001E0_chprisonbits(s32 arg0)
     func_8080003C_chprisonbits(arg0,1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_80800200_chprisonbits.s")
+void func_80800200_chprisonbits(s32 arg0) {
+    s32 func_8080005C_chprisonbits(s32, s32, s32);
+    func_8080005C_chprisonbits(arg0, 0x2, 175);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_80800224_chprisonbits.s")
 
