@@ -65,7 +65,11 @@ void func_80801FC0_chinflatableboss(u8 *arg0, f32 *arg1, f32 *arg2) {
     func_800BABB8(0, arg1, arg2, (*(f32 *)((s8 *)(arg0) + (0x38))) * 0.75f, &D_80802F90_chinflatableboss);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_8080200C_chinflatableboss.s")
+void func_8080200C_chinflatableboss(u8 *arg0, f32 *arg1, f32 *arg2) {
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    extern s32 D_80802FC4_chinflatableboss;
+    func_800BABB8(0, arg1, arg2, (*(f32 *)((s8 *)(arg0) + (0x38))) * 0.75f, &D_80802FC4_chinflatableboss);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80802058_chinflatableboss.s")
 
