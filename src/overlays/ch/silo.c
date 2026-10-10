@@ -53,7 +53,24 @@ void func_80800378_chsilo(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_80801080_chsilo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_808011C8_chsilo.s")
+/* extern */
+
+void func_808011C8_chsilo(s32 arg0, s32 arg1) {
+    s32 _gcnewoption_entrypoint_1(s32, s32);
+    s32 func_800EB854();
+    s32 func_80100094(s32, s32);
+    s32 func_801018A4(s32, s32);
+    s32 temp_v0;
+
+    if (func_800EB854() == 3) {
+        temp_v0 = func_80100094(arg0, 0);
+        if (temp_v0 != 0) {
+            _gcnewoption_entrypoint_1(temp_v0, arg1);
+        }
+    } else {
+        func_801018A4(arg0, arg1);
+    }
+}
 
 OSThread *chsilo_entrypoint_0(void)
 {
