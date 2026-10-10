@@ -148,7 +148,22 @@ void func_808013C4_bssub(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_808013EC_bssub.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80801428_bssub.s")
+/* extern */
+
+void func_80801428_bssub(s32 arg0) {
+    s32 _babounce_entrypoint_9(s32);
+    s32 bs_setState(s32, s32);
+    s32 func_800914FC(s32, s32, s32);
+    s32 sp1C;
+
+    sp1C = 0;
+    func_80800AEC_bssub();
+    func_800914FC(arg0, 0x42200000, 0);
+    if (_babounce_entrypoint_9(arg0) != 0) {
+        sp1C = 0x131;
+    }
+    bs_setState(arg0, sp1C);
+}
 
 s32 bssub_entrypoint_5(s32 arg0) {
     extern s32 D_808018E0_bssub[];
