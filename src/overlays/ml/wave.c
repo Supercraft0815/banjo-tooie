@@ -2,7 +2,21 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/wave/mlwave_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/wave/mlwave_entrypoint_1.s")
+/* extern */
+
+void mlwave_entrypoint_1(void *arg0) {
+    f32 func_800D8FF8();
+    f32 func_800F15F8(f32, f32, f32);
+    f32 mlwave_entrypoint_6(void *);
+    f32 sp24;
+    f32 temp_f0;
+
+    sp24 = func_800D8FF8();
+    (*(f32 *)((s8 *)(arg0) + (0x18))) = mlwave_entrypoint_6(arg0);
+    temp_f0 = func_800F15F8((*(f32 *)((s8 *)(arg0) + (0xC))), (*(f32 *)((s8 *)(arg0) + (0x10))), (*(f32 *)((s8 *)(arg0) + (0x14))) * sp24);
+    (*(f32 *)((s8 *)(arg0) + (0xC))) = temp_f0;
+    (*(f32 *)((s8 *)(arg0) + (0))) = (f32) ((*(f32 *)((s8 *)(arg0) + (0))) + (temp_f0 * sp24));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/wave/mlwave_entrypoint_2.s")
 
