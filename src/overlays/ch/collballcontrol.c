@@ -167,7 +167,13 @@ void func_808022F0_chcollballcontrol(f32 *arg0) {
     func_800BBCB8(arg0, 0, 1.0f, 2, &D_80804E4C_chcollballcontrol);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80802324_chcollballcontrol.s")
+void func_80802324_chcollballcontrol(f32 *arg0) {
+    void func_800BBCB8(f32[3], s32, f32, s32, s32 *);
+    extern s32 D_80804E94_chcollballcontrol;
+    extern s32 D_80804EE4_chcollballcontrol;
+    func_800BBCB8(arg0, 0, 1.0f, 0xA, &D_80804E94_chcollballcontrol);
+    func_800BBCB8(arg0, 0, 1.0f, 5, &D_80804EE4_chcollballcontrol);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_8080237C_chcollballcontrol.s")
 
