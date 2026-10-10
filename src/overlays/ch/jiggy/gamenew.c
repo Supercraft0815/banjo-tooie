@@ -99,7 +99,13 @@ void func_8080356C_chjiggygamenew(void) {
     func_80102424(func_80106790(), 8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80803598_chjiggygamenew.s")
+/* extern */
+
+void func_80803598_chjiggygamenew(void) {
+    s32 func_80102424(s32, s32);
+    void *func_80106790();
+    func_80102424(func_80106790(), 7);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_808035C4_chjiggygamenew.s")
 
