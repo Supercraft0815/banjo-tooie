@@ -1,6 +1,13 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bubbled/func_80800000_bsdronebubbled.s")
+s32 func_80800000_bsdronebubbled(u8 *arg0) {
+    s32 func_8010114C(s32, s32, s32);
+    s32 temp_v0;
+
+    temp_v0 = func_8010114C((*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x54)))) + (0x48))), 0x2C, (*(s32 *)((s8 *)(arg0) + (0x184))));
+    (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x54)))) + (0x48))) = 0;
+    return temp_v0;
+}
 
 /* extern */
 
