@@ -337,7 +337,11 @@ void func_80093700(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 80) + 25) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_8009370C.s")
+void func_8009370C(u8 *arg0) {
+    s32 func_800AE080(s16);
+    Unkfunc_800E0960_1 *func_800AE6BC(s32);
+    func_800AE6BC(func_800AE080((*(s16 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x50)))) + (0x90)))));
+}
 
 /* extern */
 
