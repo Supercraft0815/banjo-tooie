@@ -34,7 +34,22 @@ s32 ncpoducam_entrypoint_5(s16 *arg0) {
     return arg0[36];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/func_80800160_ncpoducam.s")
+void func_80800160_ncpoducam(u8 *arg0) {
+    s32 func_8001B754(s16);
+    s16 temp_a0;
+    s16 temp_a1;
+
+    temp_a1 = (*(s16 *)((s8 *)(arg0) + (0)));
+    if (temp_a1 != 0) {
+        func_8001B754(temp_a1);
+        (*(s16 *)((s8 *)(arg0) + (0))) = 0;
+    }
+    temp_a0 = (*(s16 *)((s8 *)(arg0) + (2)));
+    if (temp_a0 != 0) {
+        func_8001B754(temp_a0);
+        (*(s16 *)((s8 *)(arg0) + (2))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/ncpoducam_entrypoint_6.s")
 
