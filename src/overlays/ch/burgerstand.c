@@ -118,7 +118,16 @@ s32 func_808002A4_chburgerstand(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/func_808005AC_chburgerstand.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/func_808006B4_chburgerstand.s")
+s32 func_808006B4_chburgerstand(Actor *arg0) {
+    s32 _suexpression_entrypoint_12(void *, s32, s32);
+    s32 _suexpression_entrypoint_17(void *, s32);
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    if (func_80100094(arg0, 1U) == NULL) {
+        _suexpression_entrypoint_7(arg0, 1, 0x50);
+        _suexpression_entrypoint_12(func_80100094(arg0, 1U), 0x42480000, 0x41A00000);
+        _suexpression_entrypoint_17(func_80100094(arg0, 1U), 0x3E8);
+    }
+}
 
 void func_80800720_chburgerstand(Actor* arg0) 
 {
