@@ -110,7 +110,16 @@ void func_80802F30_chklungo(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80802F58_chklungo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80802FCC_chklungo.s")
+void func_80802FCC_chklungo(Actor *arg0) {
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    void* func_80100094(Actor*, u32);
+    u8 *sp1C;
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    sp1C = temp_v0;
+    (*(u8 *)((s8 *)(sp1C) + (0x48))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(temp_v0) + (0x48))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80803000_chklungo.s")
 
