@@ -45,4 +45,10 @@ void subaddieDll_entrypoint_9(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/Dll/subaddieDll_entrypoint_11.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/Dll/subaddieDll_entrypoint_12.s")
+/* extern */
+
+void subaddieDll_entrypoint_12(void *arg0, void *arg1) {
+    s16 func_800DC128(s16, s16, void *);
+    (*(s16 *)((s8 *)(arg1) + (0))) = func_800DC128((*(s16 *)((s8 *)(arg0) + (0))), (*(s16 *)((s8 *)(arg0) + (4))), arg0);
+    (*(s16 *)((s8 *)(arg1) + (2))) = func_800DC128((*(s16 *)((s8 *)(arg0) + (2))), (*(s16 *)((s8 *)(arg0) + (6))), arg0);
+}
