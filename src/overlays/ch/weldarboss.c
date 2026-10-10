@@ -629,7 +629,17 @@ void func_8080030C_chweldarboss(Actor *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_808035D0_chweldarboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80803624_chweldarboss.s")
+void func_80803624_chweldarboss(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u8, s32 *, s32);
+    extern s32 D_80804AB4_chweldarboss;
+    u8 *sp24;
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    sp24 = temp_v0;
+    (*(s8 *)((s8 *)(sp24) + (0xB1))) = _subaddieaudioloop_entrypoint_7((*(u8 *)((s8 *)(temp_v0) + (0xB1))), arg0->position, (*(u8 *)((s8 *)(temp_v0) + (0x6E))), &D_80804AB4_chweldarboss, (*(s32 *)((s8 *)(arg0) + (0x70))) & 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_8080367C_chweldarboss.s")
 
