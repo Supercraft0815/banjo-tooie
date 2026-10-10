@@ -52,7 +52,14 @@ void func_808003D8_chdragonbrothers(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80801C44_chdragonbrothers.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80801CEC_chdragonbrothers.s")
+/* extern */
+
+void func_80801CEC_chdragonbrothers(void *arg0) {
+    f32 func_800F1DCC(f32, f32);
+    s32 func_80801A4C_chdragonbrothers(void *, f32);
+    func_80801A4C_chdragonbrothers(arg0, func_800F1DCC((*(f32 *)((s8 *)(arg0) + (0x54))), (*(f32 *)((s8 *)(arg0) + (0x48)))));
+    func_80801A4C_chdragonbrothers(arg0, func_800F1DCC((*(f32 *)((s8 *)(arg0) + (0x54))), (*(f32 *)((s8 *)(arg0) + (0x48)))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80801D40_chdragonbrothers.s")
 
