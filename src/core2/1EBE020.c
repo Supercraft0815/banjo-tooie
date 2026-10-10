@@ -1,6 +1,24 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E4730.s")
+s32 func_800E4730(s32 arg0) {
+    extern void *D_8012D560;
+    extern void *D_8012D564;
+    extern void *D_8012D568;
+    extern void *D_8012D56C;
+    if ((D_8012D560 != NULL) && (arg0 == (*(s16 *)((s8 *)(D_8012D560) + (0x3A))))) {
+        return 0;
+    }
+    if ((D_8012D564 != NULL) && (arg0 == (*(s16 *)((s8 *)(D_8012D564) + (0x3A))))) {
+        return 1;
+    }
+    if ((D_8012D568 != NULL) && (arg0 == (*(s16 *)((s8 *)(D_8012D568) + (0x3A))))) {
+        return 2;
+    }
+    if ((D_8012D56C != NULL) && (arg0 == (*(s16 *)((s8 *)(D_8012D56C) + (0x3A))))) {
+        return 3;
+    }
+    return -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E47CC.s")
 
