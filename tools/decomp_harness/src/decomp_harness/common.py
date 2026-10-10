@@ -70,9 +70,9 @@ def load_config(root: Path):
             if k not in cfg:
                 raise HarnessError(f"Unknown configuration key: {k}")
             cfg[k] = {**cfg[k], **v} if isinstance(v, dict) else v
-    if type(cfg['concurrency']) is not int or cfg['concurrency'] not in (1, 2):
-        raise HarnessError('concurrency must be 1 or 2 (isolated workers)')
-    for k in ('local_patterns', 'claude_enabled', 'build_cache'):
+    if type(cfg['concurrency']) is not int or cfg['concurrency'] < 1:
+        raise HarnessError('concurrency must be an integer >= 1 (isolated workers)')
+    for k in ('local_patterns', 'claude_enabled', 'build_cache', 'm2c'):
         if type(cfg[k]) is not bool:
             raise HarnessError(f'{k} must be boolean')
     if cfg["build"]["backend"] not in ("native", "docker"):
@@ -80,12 +80,16 @@ def load_config(root: Path):
     for k in ("worker_timeout", "build_timeout", "context_chars", "max_attempts_per_function", "stagnation_window"):
         if not isinstance(cfg[k], int) or cfg[k] <= 0:
             raise HarnessError(f"{k} must be a positive integer")
-    for k in ('technical_retries', 'extra_attempts'):
+    for k in ('technical_retries', 'extra_attempts', 'worker_compiles', 'permuter_seconds', 'batch_max_bytes'):
         if not isinstance(cfg[k], int) or cfg[k] < 0:
             raise HarnessError(f'{k} must be a nonnegative integer')
     for k in ('probe_cache_hours', 'minimum_gain'):
         if not isinstance(cfg[k], (int, float)) or cfg[k] < 0:
             raise HarnessError(f'{k} must be nonnegative')
+    if not isinstance(cfg['permuter_min_score'], (int, float)) or not 0 <= cfg['permuter_min_score'] <= 100:
+        raise HarnessError('permuter_min_score must be between 0 and 100')
+    if type(cfg['batch_size']) is not int or cfg['batch_size'] < 1:
+        raise HarnessError('batch_size must be a positive integer')
     if not isinstance(cfg['build']['jobs'], int) or cfg['build']['jobs'] < 1:
         raise HarnessError('build.jobs must be a positive integer')
     if cfg['banjo_kazooie_repo'] and not Path(cfg['banjo_kazooie_repo']).expanduser().is_dir():

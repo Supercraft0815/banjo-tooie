@@ -29,7 +29,7 @@ class State:
         self.db.execute('PRAGMA foreign_keys=ON')
         self.db.execute('PRAGMA synchronous=FULL')
         version = self.db.execute('PRAGMA user_version').fetchone()[0]
-        if version not in (0, 1, 2):
+        if version not in (0, 1, 2, 3):
             raise HarnessError(f"Unsupported state schema {version}; do not overwrite it")
         self.db.executescript('''
             CREATE TABLE IF NOT EXISTS functions (
@@ -62,13 +62,22 @@ class State:
             CREATE TABLE IF NOT EXISTS local_trials (
               function_id TEXT REFERENCES functions(id), candidate_sha TEXT, outcome TEXT,
               PRIMARY KEY(function_id,candidate_sha));
+            CREATE TABLE IF NOT EXISTS solutions (
+              function_id TEXT PRIMARY KEY REFERENCES functions(id), shape TEXT, symbol TEXT NOT NULL,
+              asm TEXT NOT NULL, replacement TEXT NOT NULL);
+            CREATE INDEX IF NOT EXISTS solutions_shape ON solutions(shape);
+            CREATE TABLE IF NOT EXISTS prototypes (
+              symbol TEXT NOT NULL, declaration TEXT NOT NULL, function_id TEXT NOT NULL,
+              definition INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(symbol,function_id));
         ''')
         columns = {r[1] for r in self.db.execute('PRAGMA table_info(functions)')}
         if 'initial_done' not in columns:
             self.db.execute('ALTER TABLE functions ADD COLUMN initial_done INTEGER NOT NULL DEFAULT 0')
+        if 'shape' not in columns:
+            self.db.execute('ALTER TABLE functions ADD COLUMN shape TEXT')
         if 'provider' not in {r[1] for r in self.db.execute('PRAGMA table_info(runs)')}:
             self.db.execute("ALTER TABLE runs ADD COLUMN provider TEXT NOT NULL DEFAULT 'codex'")
-        self.db.execute('PRAGMA user_version=2')
+        self.db.execute('PRAGMA user_version=3')
         self.db.commit()
 
     def close(self):
@@ -81,10 +90,11 @@ class State:
             for f in found:
                 values = {**f, 'features': json.dumps(f['features']), 'dependencies': json.dumps(f['dependencies']), 'updated': time.time()}
                 self.db.execute('''INSERT INTO functions
-                    (id,symbol,source,asm,segment,size,difficulty,features,dependencies,asm_sha,updated)
-                    VALUES (:id,:symbol,:source,:asm,:segment,:size,:difficulty,:features,:dependencies,:asm_sha,:updated)
+                    (id,symbol,source,asm,segment,size,difficulty,features,dependencies,asm_sha,shape,updated)
+                    VALUES (:id,:symbol,:source,:asm,:segment,:size,:difficulty,:features,:dependencies,:asm_sha,:shape,:updated)
                     ON CONFLICT(id) DO UPDATE SET size=excluded.size,difficulty=excluded.difficulty,segment=excluded.segment,
-                    features=excluded.features,dependencies=excluded.dependencies,asm_sha=excluded.asm_sha,present=1''', values)
+                    features=excluded.features,dependencies=excluded.dependencies,asm_sha=excluded.asm_sha,
+                    shape=excluded.shape,present=1''', {'shape': None, **values})
                 if f['features'].get('kind') == 'data':
                     self.db.execute("UPDATE functions SET status='skipped',last_error='GLOBAL_ASM imports data, not a function' WHERE id=? AND status='pending'", (f['id'],))
             self.db.execute("UPDATE functions SET status='needs_human',last_error='GLOBAL_ASM reappeared after match' WHERE present=1 AND status='matched'")

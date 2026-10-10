@@ -6,6 +6,7 @@ from pathlib import Path
 import re
 
 from .common import command
+from .patterns import known_declarations
 from .scanner import global_asms, INSN
 
 
@@ -70,21 +71,56 @@ def excerpts(root: Path, terms, folders, limit=5000):
     return '\n'.join(line.replace(str(root)+'/', '') for line in hits)[:limit]
 
 
-def context_pack(root, function, state, config):
+def failed_attempts(root, history):
+    """Give retries the tested patches and their actual compiler feedback."""
+    entries, seen = [], {}
+    for run in reversed(history):
+        if run['outcome'] not in ('nonmatching', 'compile_error'):
+            continue
+        directory = root / '.decomp-agent/runs' / run['id']
+        try:
+            patch = (directory / 'source.diff').read_text()
+        except OSError:
+            patch = ''
+        entry = f"Run {run['id']}: {run['outcome']}, score={run['score']}\n"
+        if patch and patch in seen:
+            entry += f"Identical source patch to {seen[patch]}; already tried.\n"
+        else:
+            seen[patch] = run['id']
+            entry += 'Tested source patch:\n' + (patch[:1000] or '[unavailable]')
+            if len(patch) > 1000:
+                entry += '\n[patch truncated]'
+            entry += '\n'
+        try:
+            comparison = json.loads((directory / 'comparison.json').read_text())
+            feedback = {key: comparison.get(key) for key in
+                        ('exact', 'different_instructions', 'first_diff')}
+            entry += 'Compiler comparison: ' + json.dumps(feedback)[:1500] + '\n'
+        except (OSError, ValueError):
+            entry += f"Compiler comparison unavailable; error: {run['error']}\n"
+        entries.append(entry)
+    # ponytail: bounded recent feedback; store a compact ledger if longer searches need older attempts.
+    return '\n'.join(entries)[:6000]
+
+
+def context_pack(root, function, state, config, budget=None, shared=True, draft=None):
+    """Context for one target. `shared=False` omits file-wide facts already given for
+    another target of the same batch; `draft` is an unverified m2c translation."""
     source = (root/function['source']).read_text()
     macro = next((m for m in global_asms(source) if m['symbol'] == function['symbol']), None)
     position = macro['start'] if macro else source.find(function['symbol'])
-    radius = 12 if function['difficulty'] == 'easy' else 28
+    radius = (12 if function['difficulty'] == 'easy' else 28) if shared else 6
     before = source[:position].splitlines()[-radius:]
     after = source[position:].splitlines()[:radius]
     neighbors = '\n'.join(l for l in before+after if 'GLOBAL_ASM' not in l and l.strip())
     includes = '\n'.join(l for l in source.splitlines() if l.startswith('#include'))
     features = json.loads(function['features'])
     terms = [function['symbol'], *features['calls'], *features['globals']]
-    related = excerpts(root, terms, ('src', 'include'), 6000)
+    declared = known_declarations(state, [*features['calls'], *features['globals']])
+    related = excerpts(root, terms, ('src', 'include'), 6000 if shared else 2500)
     # Find nearby type declarations using locally observed type names only.
     types = re.findall(r'\b(?:struct\s+)?([A-Z][A-Za-z0-9_]*(?:State|Info|Actor|Data|Struct))\b', neighbors+related)
-    type_info = excerpts(root, types, ('include',), 2500)
+    type_info = excerpts(root, types, ('include',), 2500 if shared else 1000)
     asm = (root/function['asm']).read_text()
     bk = ''
     if config['banjo_kazooie_repo']:
@@ -97,7 +133,7 @@ def context_pack(root, function, state, config):
     tokens = set(re.findall(r'\w+', function['source']+' '+asm))
     knowledge.sort(key=lambda row: len(tokens & set(row['tags'].split())), reverse=True)
     notes = '\n'.join(row['summary'] for row in knowledge if tokens & set(row['tags'].split()))[:1600]
-    history = state.history(function['id'], 4)
+    history = state.history(function['id'], 8)
     previous = ''
     if function['best_run']:
         result = root / '.decomp-agent/runs' / function['best_run'] / 'comparison.json'
@@ -105,12 +141,7 @@ def context_pack(root, function, state, config):
             value = json.loads(result.read_text())
             value.pop('diffs', None)
             previous = json.dumps(value, ensure_ascii=False)[:4000]
-    last_patch = ''
-    if history:
-        path = root / '.decomp-agent/runs' / history[-1]['id'] / 'source.diff'
-        if path.exists():
-            last_patch = path.read_text()[:4000]
-    budget = config['context_chars']
+    budget = budget or config['context_chars']
     current = ''
     if function['best_source']:
         from .guard import candidate_guard
@@ -121,14 +152,20 @@ def context_pack(root, function, state, config):
             current = '[Saved candidate does not fit the current source; use the target directive.]'
     directive = source[macro['start']:macro['end']] if macro else ''
     line = source[:position].count('\n') + 1
+    common = (f"Compiler: IDO 5.3, -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul\n"
+              f"Existing primitive typedefs from PR/ultratypes.h (do not redeclare or reread):\n{primitive_types(root)}\n"
+              if shared else '')
+    m2c = (f"Unverified m2c draft (types/order may be wrong; a starting point, not a result):\n{draft[:6000]}\n"
+           if draft and not current else '')
     pack = (f"Target: {function['id']}\nSource: {function['source']}\nTarget line: {line}\nASM: {function['asm']}\n"
             f"Exact target directive (or current C below):\n{directive}\nCurrent candidate:\n{current[:4000]}\n"
-            f"Compiler: IDO 5.3, -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul\n"
-            f"Existing primitive typedefs from PR/ultratypes.h (do not redeclare or reread):\n{primitive_types(root)}\n"
+            f"{common}{m2c}"
             f"Features: {json.dumps(features)}\nBest score: {function['best_score']}\n"
             f"Recent attempts: {json.dumps(history)}\nPrevious diff: {previous}\n"
-            f"Last compiler/agent error: {function['last_error']}\nLast attempted source patch:\n{last_patch}\n"
-            f"Relevant compiler/pattern notes:\n{notes}\nIncludes:\n{includes}\n"
+            f"Failed attempts (newest first):\n{failed_attempts(root, history)}\n"
+            f"Last compiler/agent error: {function['last_error']}\n"
+            f"Relevant compiler/pattern notes:\n{notes}\n" + (f"Includes:\n{includes}\n" if shared else '') +
+            f"Declarations verified in matched code (reuse; declare inside the function if needed):\n{declared}\n"
             f"Neighbor context:\n{neighbors[:3500]}\nLocal symbol/prototype/pattern hits:\n{related}\n"
             f"Type hints:\n{type_info}\nRead-only BK search results:\n{bk}\n")
     # The full ASM and current C always exist in the worker, even for extreme targets.
@@ -137,24 +174,49 @@ def context_pack(root, function, state, config):
     return (pack[:max(0, budget-1200)] + '\nOriginal ASM:\n' + asm_context)[:budget]
 
 
-def worker_prompt(function, pack, native):
-    validation = f"make -j1 build/us/{function['source']}.o"
-    return f'''Implement exactly one matching C function: {function['symbol']}.
+def worker_prompt(function, pack, compiles, batch=()):
+    """`compiles` > 0 enables ./decomp-compile; `batch` lists further targets in the same file."""
+    symbols = [function['symbol'], *(f['symbol'] for f in batch)]
+    if batch:
+        task = f'''Implement matching C functions for these {len(symbols)} targets in {function['source']}:
+{', '.join(symbols)}. Each target directive is wrapped in comment markers
+/* decomp-target-begin NAME */ ... /* decomp-target-end NAME */. Replace only the
+GLOBAL_ASM line between a pair of markers with that C function; keep every marker
+and everything outside the marked regions byte-for-byte unchanged. Leave a directive
+in place when you cannot match it; each target is validated and committed separately.'''
+    else:
+        task = f'''Implement exactly one matching C function: {function['symbol']}.
 Edit ONLY {function['source']}; replace only its target GLOBAL_ASM directive.
-Keep the surrounding file byte-for-byte unchanged. Put any necessary declarations
-inside the function. The pack supplies the exact edit target, ASM, primitive typedefs
-and local context. Use them directly: do not reread these files to confirm the same
-information. Read a narrow file range only to resolve a specific missing fact.
-If an editing tool requires a prior read, read only a few lines around Target line.
-This directory is a disposable source copy. No git actions or other agents.
+Keep the surrounding file byte-for-byte unchanged.'''
+    if compiles:
+        loop = f'''Compile loop: after each edit run `./decomp-compile` (no arguments). The trusted
+parent compiles the file with the original IDO flags and prints the normalized
+instruction diff (expected | actual) per edited target. Fix the reported differences
+and compile again. Stop as soon as every target reports OBJECT MATCH, or when the
+budget of {compiles} requests is used; then finish with your best version. A rejected
+request explains which guard rule the file violated. Never run make, Docker or IDO.'''
+    else:
+        loop = '''The compiler is Linux-only on this host. The parent builds after you finish;
+do not invoke Docker or install tools.'''
+    return f'''{task}
+Put any necessary declarations inside the function. The pack supplies the exact edit
+target, ASM, primitive typedefs and local context. Use them directly: do not reread
+these files to confirm the same information. Read a narrow file range only to resolve
+a specific missing fact. If an editing tool requires a prior read, read only a few
+lines around Target line. This directory is a disposable source copy. No git actions
+or other agents.
 Goal: byte/instruction-identical IDO output, not approximately equivalent semantics.
 Never use GLOBAL_ASM, inline asm, generated byte arrays, incbin, conditional compilation,
 reference changes, build/diff modifications, or other tricks to manufacture a match.
 Do not read credentials, environment configuration or personal files. No network.
-Prefer existing types and nearby C patterns; spend context on this function only.
-One implementation attempt per invocation. Return structured notes after editing.
-Validation command: {validation}
-{'You may run that object build; the parent separately verifies the full ROM.' if native else 'The compiler is Linux-only on this host. The parent runs that build in an isolated container after you finish; do not invoke Docker or install tools.'}
+Prefer existing types and nearby C patterns; spend context on these functions only.
+Continue from the current best candidate and the recorded failed attempts below.
+Do not resubmit a tested failed source patch, including cosmetic rewrites. Different
+C expressions can produce identical machine code: use the recorded compiler diffs,
+not just the score. Identify what the previous variants failed to change and try a
+new, concrete compiler hypothesis. In your summary, explain what you changed and
+which instruction difference it fixed.
+{loop}
 The parent, not your final answer, determines whether the code matches.
 If blocked, describe the concrete missing type/compiler issue in the result.
 

@@ -3,7 +3,8 @@
 Lokaler, fortsetzbarer Matching-Loop mit Python 3.11+, SQLite und standardmäßig
 **`codex exec` mit gespeicherter ChatGPT-Anmeldung**. Ein optionaler Claude-Code-Runner
 erfordert eine separat bestätigte Pro-/Max-Anmeldung. Keine Inference-SDKs, keine
-eigenen Inference-HTTP-Requests, kein API-Key-Fallback. Ein Worker bearbeitet eine Funktion.
+eigenen Inference-HTTP-Requests, kein API-Key-Fallback. Ein Worker bearbeitet eine Funktion oder einen kleinen Batch
+derselben Datei.
 Ein Match benötigt einen unabhängig geprüften, vollständigen ROM-Vergleich.
 
 ## Installation
@@ -102,6 +103,7 @@ decomp-agent init
 decomp-agent doctor
 decomp-agent scan
 decomp-agent status
+decomp-agent progress
 decomp-agent next
 decomp-agent patterns
 decomp-agent run --dry-run --max-functions 10
@@ -122,31 +124,40 @@ wird blockiert. Der Scanner meldet Funktionszahl und Datenimporte getrennt.
 
 ## Ablauf und exakter Match
 
-1. Der Scheduler wählt offene Funktionen nach lokaler Schwierigkeit und Größe.
+1. Der Scheduler wählt offene Funktionen: zuerst Mitglieder bereits gelöster Formgruppen,
+   dann nach Schwierigkeit, Gruppengröße, schon dekompilierten Callees und Größe.
 2. Ein frischer separater Build-Snapshot muss zuerst vollständig `make check` bestehen.
-3. Zuerst werden lokal erkannte Getter, Setter, Konstanten und leere Funktionen sowie
-   bereits bestätigte C-Lösungen für identische Instruktionsmuster versucht. Dafür
-   startet kein Modell. Fehlgeschlagene lokale Kandidaten werden persistent markiert.
+3. Zuerst werden lokal erkannte Getter, Setter, Konstanten und leere Funktionen,
+   bereits bestätigte C-Lösungen für identische Instruktionsmuster und übertragene
+   Lösungen formgleicher Funktionen versucht, danach m2c und bei knappen Fehlschlägen der
+   Permuter. Dafür startet kein Modell. Fehlgeschlagene lokale Kandidaten werden
+   persistent markiert.
 4. Ein kleiner Context Pack enthält Target-ASM, die genaue zu ersetzende Direktive,
    tatsächliche primitive Typdefinitionen, knappen Nachbarcode, Symbol-/Prototyp-Hits,
-   relevante Kenntnisse, bisherigen Score und letzte Compiler-Diffs. Der Worker soll
-   diese Angaben direkt verwenden und nur fehlende Fakten gezielt nachlesen.
+   in gematchtem Code bestätigte Deklarationen, einen m2c-Entwurf, relevante Kenntnisse,
+   bisherigen Score und letzte Compiler-Diffs. Der Worker soll diese Angaben direkt
+   verwenden und nur fehlende Fakten gezielt nachlesen.
 5. Codex arbeitet in einer separaten temporären Quellkopie, mit eigenem Prozess,
    deaktiviertem Netzwerk für Werkzeuge und `workspace-write`-Sandbox ohne Freigaben.
    Persönliche Plugins, Skills, Erinnerungen und Subagenten werden nicht geladen.
+   Über `./decomp-compile` lässt der Worker seinen Stand vom Elternprozess kompilieren
+   und bekommt den Instruktions-Diff zurück (siehe Beschleunigung).
 6. Der Harness prüft alle Dateien dieser Kopie. Ausschließlich der Austausch der
    Target-Direktive durch eine C-Funktion ist erlaubt. Hilfsdeklarationen müssen
    innerhalb dieser Funktion liegen. ASM-/Präprozessor-Umgehungen werden abgewiesen.
 7. Nur die geprüfte C-Datei gelangt in den vertrauenswürdigen Build-Snapshot. Dessen
    Original-Buildtools kompilieren das zugehörige `.c.o` neu.
-8. `mips-linux-gnu-objdump -drz --disassemble=SYMBOL` liefert den Instruktionsvergleich
-   gegen das Objekt des zuvor exakt passenden Baselines. Adressen werden normalisiert;
-   Operanden, Register, Immediates und Relokationsnamen bleiben im Vergleich.
+8. `mips-linux-gnu-objdump -drzt --disassemble=SYMBOL` liefert den Instruktionsvergleich
+   gegen das Objekt des zuvor exakt passenden Baselines. Adressen werden normalisiert,
+   benannte lokale Rodata-Labels auf Section+Offset gebracht und Alignment-NOPs hinter
+   `endlabel` ignoriert; Operanden, Register, Immediates und externe Relokationsnamen
+   bleiben im Vergleich.
 9. Ein deterministischer Sequenzvergleich liefert Score, Zahl verschiedener
    Instruktionen, erste/letzte Diffs und Verbesserung. **100 Punkte allein reichen
    niemals.** `make check` und ein unabhängiger SHA-1 über die vollständige gelinkte,
    dekomprimierte ROM sind die endgültige Freigabe, einschließlich rodata, Padding,
-   Overlays und bereits gematchtem Code.
+   Overlays und bereits gematchtem Code. Sie laufen, sobald das Objekt normalisiert
+   identisch ist (oder Score ≥ 99); bei sichtbaren Differenzen entfällt der teure Link.
 10. Erst dann übernimmt der Harness die C-Datei und erstellt atomar
    `decomp: match SYMBOL` mit Funktions-ID im Commit. Es gibt keinen Push-Codepfad.
 
@@ -163,8 +174,70 @@ weder gestasht noch zurückgesetzt. Atomare Target-Commits bewahren anderweitig
 gestagte Dateien. Kein `git reset --hard`, keine Worker-Zugriffe auf das echte `.git`.
 Die Sandbox setzt eine funktionierende lokale Codex-Installation voraus; es gibt
 keinen automatisch freigeschalteten Modus ohne Sandbox. Normale Builds sind getrennt
-von den untrusted Worker-Kopien. Unter macOS validiert der Elternprozess im Container;
-auf einem eingerichteten nativen Linux-System darf der Worker selbst das Objekt bauen.
+von den untrusted Worker-Kopien. Worker bekommen weder Compiler noch Docker: auch ihre
+Zwischenstände kompiliert ausschließlich der Elternprozess (`./decomp-compile`).
+
+## Beschleunigung: weniger Tokens, weniger Abbrüche, schnellere Läufe
+
+Die folgenden Stufen sind standardmäßig aktiv. Jede liefert nur **Kandidaten**; ein Match
+braucht weiterhin Source-Guard, Original-Compiler, `make check` und den vollständigen ROM-Hash.
+
+| Stufe | Kosten | Wirkung |
+|---|---|---|
+| Gruppen-Transfer | keine Tokens | Funktionen mit gleicher Instruktionsform (Opcodes, Register, Stack/Offsets gleich; Symbole/Immediates verschieden) übernehmen eine bestätigte Lösung mit umbenannten Symbolen und Konstanten. |
+| m2c | keine Tokens | `tools/m2c` übersetzt die Ziel-ASM mit dem Projekt-Kontext (`tools/m2ctx.py`). Ein sauberer Entwurf wird kompiliert; bei `void *`-Arithmetik zusätzlich als `u8 *`-Variante. Ein knapper Fehlschlag wird Startkandidat des Modells, sonst landet der Entwurf im Context Pack. |
+| Permuter | keine Tokens, `permuter_seconds` | Ab `permuter_min_score` sucht `tools/decomp-permuter` im Buildcontainer nach äquivalenten Umformungen, bevor weiter eskaliert wird. |
+| Compile-Schleife | Tokens nur für eine Sitzung | Codex-Worker rufen `./decomp-compile` auf. Der vertrauenswürdige Elternprozess prüft die Datei mit denselben Guards, kompiliert das Objekt unter der Build-Sperre, stellt das Baseline-Objekt wieder her und antwortet mit einem kompakten Instruktions-Diff. Bis zu `worker_compiles` Runden pro Sitzung statt einem Blindversuch pro CLI-Start. |
+| Batches | ein CLI-Overhead für bis zu `batch_size` Funktionen | Frische kleine Funktionen (≤ `batch_max_bytes`) derselben Datei teilen sich eine Sitzung. Die Ziele sind mit `/* decomp-target-begin/end NAME */` markiert; jede Funktion wird einzeln validiert und committed. |
+
+Weitere Änderungen:
+
+* **Score-Normalisierung:** Die Referenz (asm-processor) referenziert Rodata per Name
+  (`jtbl_…`, `R_…`), IDO per `.rodata`+Offset. Über die objdump-Symboltabelle werden beide
+  auf Section+Offset gebracht; Alignment-NOPs hinter `endlabel` zählen nicht mehr. Ein
+  falscher Rodata-Offset bleibt eine Differenz.
+* **Günstige Validierung:** Der volle `make check` läuft nur noch, wenn das Objekt normalisiert
+  identisch ist (oder Score ≥ 99). Nach einem Fehlschlag wird die Quelle zurückgeschrieben;
+  das zuvor gesicherte Baseline-Objekt wird **im Buildcontainer** zurückkopiert und die
+  gelinkten Ausgaben dort gelöscht, statt neu zu bauen und erneut zu prüfen. Der nächste
+  `make check` muss dadurch neu linken. Unter `build/` schreibt nie der Host: Das führte über
+  das Docker-Desktop-Dateisharing zu `ld: cannot open output file` bei allen folgenden Checks.
+* **Scheduler:** zuerst Mitglieder bereits gelöster Gruppen (lokaler Transfer), dann nach
+  Schwierigkeit; innerhalb davon Vertreter großer ungelöster Gruppen, dann Funktionen, deren
+  Callees schon dekompiliert sind, dann kleinere. Mitglieder derselben Gruppe laufen nie parallel.
+* **Prototyp-Register:** Jeder Match speichert seine Signatur und seine lokalen
+  Prototypen/Externs (ohne funktionslokale Typen). Der Context Pack nennt für Calls und Globals
+  die verbindlichste bekannte Deklaration.
+* **Fortschritt in Bytes:** `status` meldet `matched_code_bytes`, `code_bytes` und
+  `matched_code_percent` sowie `solved_shape_groups`. `progress` rechnet das auf das ganze
+  Projekt hoch: Fork-Stand (`tools/progress.py` bei `25033be6`) plus gematchte Bytes, als
+  `project_percent` und `gained_percent_points`. `segments` liefert dieselbe Rechnung je
+  README-Badge (Boot/Core1/Core2/Overlays), `difficulties` die offenen und gematchten
+  Funktionen je Schwierigkeit.
+
+```toml
+# .decomp-agent/config.toml, oberste Ebene (Defaults)
+worker_timeout = 1200      # Sitzungen mit Compile-Schleife dauern länger
+worker_compiles = 12       # 0 = alter Einzelversuch pro Sitzung
+m2c = true
+permuter_seconds = 180     # 0 = Permuter aus
+permuter_min_score = 95.0
+batch_size = 6             # 1 = keine Batches
+batch_max_bytes = 64
+```
+
+`--local-only` nutzt jetzt auch m2c und den Permuter (ohne Anmeldung und ohne Inferenz). Ein
+lokaler Durchlauf über alle offenen Funktionen kostet damit nur Rechenzeit:
+
+```sh
+decomp-agent run --local-only --difficulty easy --max-runtime 28800
+```
+
+Für einen neuen Checkout: `git submodule update --init tools/m2c tools/decomp-permuter`.
+Beide Tools bringen ihren eigenen C-Parser mit; das Docker-Image bleibt unverändert. Fehlen sie,
+werden die Stufen übersprungen. Der Claude-Backend-Worker hat nur Read/Edit und deshalb keine
+Compile-Schleife. Die Datenbank wird automatisch auf Schema 3 migriert (nur Ergänzungen);
+ältere Harness-Versionen öffnen sie danach nicht mehr.
 
 ## Pausieren/Fortsetzen
 
@@ -254,8 +327,9 @@ decomp-agent run --local-only
 
 Ohne `--max-functions` und `--max-runtime` läuft die lokale Suche über das gesamte
 offene Projekt. Zuerst werden alle `pending`-Funktionen lokal geprüft; nur Funktionen
-mit einem unversuchten C-Kandidaten oder einem fortsetzbaren Versuch kommen in die
-Build-Warteschlange. Quellen werden dabei pro Datei einmal gelesen. Unbekannte Muster
+mit einem unversuchten C-Kandidaten, einem fortsetzbaren Versuch oder (bei vorhandenem
+`tools/m2c`) ohne m2c-Durchlauf für die aktuelle ASM/Datei kommen in die
+Build-Warteschlange. m2c wird pro Funktion und Dateistand nur einmal versucht. Quellen werden dabei pro Datei einmal gelesen. Unbekannte Muster
 verbrauchen weder einen Build noch einen Platz im `--max-functions`-Budget. Gibt es
 keinen Kandidaten, endet der Lauf bereits vor dem Baseline-Build. Der Dry-Run liefert
 dieselbe vollständige Auswahl ohne Compiler oder Modell; `patterns` zeigt Anzahl und
@@ -315,16 +389,18 @@ decomp-agent run --concurrency 2 --max-functions 100 --max-attempts 200 --max-ru
 ```
 
 Frische Installationen bleiben bei `concurrency = 1`. Dauerhaft aktivieren lässt sich
-die zweite Spur mit `concurrency = 2` auf oberster Ebene der lokalen Konfiguration.
+der Parallelbetrieb mit z. B. `concurrency = 4` auf oberster Ebene der lokalen Konfiguration.
 Der Scheduler sperrt dieselbe Quelldatei und gemeinsame Funktionsabhängigkeiten.
 Jeder parallele Worker erhält einen eigenen Git-Worktree mit **privater Git-Datenbank**;
 es gibt keine Verbindung zum `.git` des Nutzer-Repositories. Logs sind pro Run getrennt.
-Die Modellarbeit kann sich überlappen. Build, vollständiger Regressionstest und Commit
-laufen unter einer gemeinsamen Sperre nacheinander; ein zweiter Match wird damit
-gegen die bereits integrierte erste Änderung geprüft. Der Baseline-Build läuft einmal
+Die Modellarbeit kann sich überlappen. Jeder Worker kompiliert Probe- und Kandidaten-Objekte
+in einer eigenen **Build-Lane** (APFS-Klon des gebauten Workspace, wird nie gelinkt), also
+parallel. Nur `make check` und Commit laufen unter einer gemeinsamen Sperre im vertrauenswürdigen
+Workspace nacheinander; ein zweiter Match wird damit gegen die bereits integrierte erste
+Änderung geprüft. Der Baseline-Build läuft einmal
 pro Harness-Aufruf. Seine Logdatei wird beim Start ausgegeben.
 
-Funktions-, Versuchs- und Laufzeitbudgets gelten gemeinsam für beide Worker.
+Funktions-, Versuchs- und Laufzeitbudgets gelten gemeinsam für alle Worker.
 Ein externer `stop-after-current` lässt bis zu zwei aktive Funktionen fertig werden.
 `run --stop-after-current` startet dagegen höchstens eine Funktion. Es darf nicht
 parallel ein zweiter Harness-Prozess auf dieselbe State-Datenbank gestartet werden.

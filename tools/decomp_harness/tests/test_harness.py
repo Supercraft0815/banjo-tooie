@@ -371,6 +371,12 @@ class LoopTests(Fixture):
             def regression(self, *_):
                 return owner.allow_match or (owner.work/'src/core1/a.c').read_text() == SOURCE
 
+            def save_baseline(self, *_):
+                return False
+
+            def restore(self, source, original, saved, log):
+                (owner.work/source).write_bytes(original)
+
         self.patches = [patch('decomp_harness.workflow.CodexRunner', FakeRunner),
                         patch('decomp_harness.workflow.repository_stamp', return_value={'head': 'stable'}),
                         patch('decomp_harness.workflow.probe_models', return_value=({}, {}))]

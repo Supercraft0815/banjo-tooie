@@ -1,6 +1,8 @@
 concurrency = 1
 banjo_kazooie_repo = ""
-worker_timeout = 600
+worker_timeout = 1200
+# Requests to ./decomp-compile per worker session (0: one blind attempt per session).
+worker_compiles = 12
 build_timeout = 1800
 technical_retries = 1
 context_chars = 24000
@@ -10,6 +12,13 @@ minimum_gain = 0.5
 extra_attempts = 0
 probe_cache_hours = 24
 local_patterns = true
+# Inference-free stages before models: m2c draft/candidate and decomp-permuter search.
+m2c = true
+permuter_seconds = 180
+permuter_min_score = 95.0
+# Fresh tiny functions of one file share a worker session.
+batch_size = 6
+batch_max_bytes = 64
 build_cache = true
 claude_enabled = false
 

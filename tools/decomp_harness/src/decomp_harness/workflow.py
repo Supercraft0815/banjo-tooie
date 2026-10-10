@@ -2,8 +2,9 @@ from __future__ import annotations
 
 import hashlib
 from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 import json
+import queue
 import os
 from pathlib import Path
 import shutil
@@ -13,18 +14,20 @@ import time
 import threading
 import uuid
 
-from .build import Builder, verify_rom
+from .build import Builder, clone, verify_rom
 from . import cache
 from .codex import CodexRunner, Redactor
 from .common import HarnessError, atomic_write, command, git, save_json, validate_stage
 from .context import context_pack, worker_prompt
-from .guard import (candidate_guard, manifest, publish, recover_publications, repository_stamp,
-                    source_diff, verify_worker_changes, worker_copy, dispose_worker)
-from .matching import instructions, score
+from .guard import (candidate_guard, manifest, mark_targets, publish, recover_publications, repository_stamp,
+                    source_diff, split_targets, verify_worker_changes, worker_copy, dispose_worker)
+from .local_tools import m2c_candidates, m2c_draft, run_permuter
+from .matching import instructions, score, worth_rom_check
+from . import service
 from .scanner import scan
 from .scheduler import advance, next_function, route, resources
 from .state import State
-from .patterns import untried_candidates, candidate_source, local_plan, trial_key, remember, seed_matches
+from .patterns import untried_candidates, candidate_source, local_plan, m2c_key, trial_key, remember, seed_matches
 
 
 def new_run(root, prefix):
@@ -146,6 +149,8 @@ class Target:
     original: bytes
     reference_dump: str
     reference: list
+    baseline_saved: bool = False
+    length: int | None = None
 
 
 class Loop:
@@ -155,8 +160,10 @@ class Loop:
         self.workspace = self.expected_stamp = None
         self.runners = {}
         self.coordinator = self
-        # ponytail: one compiler/publication gate; shard only if builds become the bottleneck.
+        # Gate: the trusted workspace (baseline objects, ROM checks, commits). Parallel runs
+        # compile probes in private lanes; ponytail: ROM checks stay serial, they need one tree.
         self.gate = threading.RLock()
+        self.lanes = None
         self.count_lock = threading.Lock()
         self.probe_lock = threading.Lock()
         self.probed = set()
@@ -198,7 +205,8 @@ class Loop:
         initialize_knowledge(self.state)
         seed_matches(self.root, self.state)
         if self.args.local_only:
-            self.local_scan = local_plan(self.root, self.state, self.args.difficulty, self.args.function)
+            self.local_scan = local_plan(self.root, self.state, self.args.difficulty, self.args.function,
+                                         m2c=self.config['m2c'] and (self.root/'tools/m2c/m2c.py').is_file())
             self.local_queue = self.local_scan.pop('plan')
             print(f"Local scan: {self.local_scan['scanned_functions']} functions, "
                   f"{len(self.local_queue)} with untried local/resumable candidates (no model usage).", flush=True)
@@ -274,6 +282,20 @@ class Loop:
     def process_parallel(self):
         # SQLite connections are thread-owned. Only the gate holder builds/publishes.
         seen, active = set(), {}
+        self.lanes = queue.Queue()
+        print(f"Cloning {self.config['concurrency']} private build lanes for parallel compiles...", flush=True)
+        for _ in range(self.config['concurrency']):
+            lane = clone(self.workspace)
+            self.lanes.put((lane, Builder(lane, self.config, self.control)))
+        try:
+            self.run_pool(seen, active)
+        finally:
+            lanes, self.lanes = self.lanes, None
+            while not lanes.empty():
+                shutil.rmtree(lanes.get()[0], ignore_errors=True)
+        (self.root/'.decomp-agent/stop-after-current').unlink(missing_ok=True)
+
+    def run_pool(self, seen, active):
         with ThreadPoolExecutor(max_workers=self.config['concurrency'], thread_name_prefix='decomp') as pool:
             try:
                 while active or not self.budget_reached():
@@ -299,7 +321,6 @@ class Loop:
             finally:
                 if self.control.stopped():
                     self.abort.set()
-        (self.root/'.decomp-agent/stop-after-current').unlink(missing_ok=True)
 
     def parallel_function(self, function):
         from .common import Control
@@ -316,6 +337,23 @@ class Loop:
             state.close()
 
     def process_function(self, function):
+        target = self.prepare(function)
+        if target is None:
+            return
+        identity = function['id']
+        try:
+            if self.local_stages(target):
+                return
+            if self.args.local_only:
+                self.state.transition(identity, 'pending', last_error='No local candidate matched; normal run may use a model')
+                return
+            self.improve(identity, target)
+        except BaseException:
+            self.release(identity, 'Interrupted/error; persisted candidate will be revalidated')
+            raise
+
+    def prepare(self, function):
+        """Under the gate: claim the function and record its baseline object and reference."""
         identity, source = function['id'], function['source']
         with self.gate:
             self.check_repository()
@@ -323,34 +361,41 @@ class Loop:
             source_sha = hashlib.sha256(original).hexdigest()
             if git(self.root, 'status', '--porcelain=v1', '--', source):
                 self.state.transition(identity, 'blocked', last_error='Uncommitted target changes; untouched. Commit them, then retry.')
-                return
+                return None
             if json.loads(function['features']).get('kind') != 'function':
                 self.state.transition(identity, 'blocked', last_error='No function ASM; run init --setup and scan')
-                return
+                return None
             self.state.transition(identity, 'analyzing')
             if function['base_sha'] != source_sha:
                 self.state.update(identity, best_source=None, best_score=None, best_run=None, base_sha=source_sha)
+            length = (function['size'] or 0) // 4 or None
             reference_dump = self.builder.disassemble(source, function['symbol'])
-            reference = instructions(reference_dump, function['symbol'])
-            target = Target(function, original, reference_dump, reference)
-        try:
-            if self.resume_candidate(self.state.get(identity), target):
-                self.count_match()
-                return
-            if self.config['local_patterns'] and not self.args.no_local:
-                if self.try_local(self.state.get(identity), target):
-                    self.count_match(local=True)
-                    return
-            if self.args.local_only:
-                self.state.transition(identity, 'pending', last_error='No local candidate matched; normal run may use a model')
-                return
-            self.improve(identity, target)
-        except BaseException:
-            if self.state.get(identity)['status'] in ('analyzing', 'attempting', 'improving'):
-                self.state.transition(identity, 'pending', last_error='Interrupted/error; persisted candidate will be revalidated')
-            raise
+            reference = instructions(reference_dump, function['symbol'], length)
+            saved = self.builder.save_baseline(source, self.root/'.decomp-agent/logs/baseline-object.log')
+            return Target(self.state.get(identity), original, reference_dump, reference, saved, length)
+
+    def release(self, identity, message):
+        if self.state.get(identity)['status'] in ('analyzing', 'attempting', 'improving'):
+            self.state.transition(identity, 'pending', last_error=message)
+
+    def local_stages(self, target):
+        """Every inference-free route before a model run; True when matched."""
+        identity = target.function['id']
+        if self.resume_candidate(self.state.get(identity), target):
+            self.count_match()
+            return True
+        if not self.config['local_patterns'] or self.args.no_local:
+            return False
+        if self.try_local(self.state.get(identity), target):
+            self.count_match(local=True)
+            return True
+        if self.try_m2c(target) or self.try_permuter(target):
+            self.count_match(local=True)
+            return True
+        return False
 
     def improve(self, identity, target):
+        batch = None
         while not self.budget_reached():
             function = self.state.get(identity)
             stage, routing = route(function, self.config, self.args.model)
@@ -366,7 +411,12 @@ class Loop:
                     self.coordinator.probed.add(key)
             if self.budget_reached():
                 break
-            result = self.attempt_with_retries(function, routing, target)
+            batch = self.companions(function, stage, routing) if batch is None else []
+            try:
+                result = self.attempt_with_retries(function, routing, target, batch)
+            finally:
+                for companion in batch:
+                    self.release(companion.function['id'], 'Batch interrupted; resumable')
             if result == 'matched':
                 self.count_match()
                 return
@@ -374,51 +424,164 @@ class Loop:
                 return
             if result == 'budget':
                 break
-            new_stage, used, total, exhausted = advance(self.state.get(identity), self.state.history(identity, 12), self.config, stage)
-            self.state.update(identity, stage=new_stage, stage_attempts=used, cycle_attempts=total,
-                              initial_done=int(stage == -2 and new_stage != -2 or function.get('initial_done', 0)))
-            if exhausted:
-                self.state.transition(identity, 'blocked', last_error='Escalation/stagnation budget exhausted; inspect best attempt and retry')
+            if result == 'improve' and self.try_permuter(target):
+                self.count_match(local=True)
+                return
+            if self.escalate(identity, stage):
                 return
             self.state.transition(identity, 'improving')
         self.state.transition(identity, 'pending', last_error='Run budget/interruption; next run resumes persisted best candidate')
+
+    def escalate(self, identity, stage):
+        """Record one finished model attempt; True when the function is now blocked."""
+        function = self.state.get(identity)
+        new_stage, used, total, exhausted = advance(function, self.state.history(identity, 12), self.config, stage)
+        self.state.update(identity, stage=new_stage, stage_attempts=used, cycle_attempts=total,
+                          initial_done=int(stage == -2 and new_stage != -2 or function.get('initial_done', 0)))
+        if exhausted:
+            self.state.transition(identity, 'blocked', last_error='Escalation/stagnation budget exhausted; inspect best attempt and retry')
+        return exhausted
+
+    def companions(self, function, stage, routing):
+        """Fresh tiny functions of the same file share one worker session (one CLI overhead)."""
+        limit, size = self.config['batch_size'], self.config['batch_max_bytes']
+        if (limit < 2 or self.args.function or function['difficulty'] != 'easy' or (function['size'] or 0) > size
+                or function['cycle_attempts'] or function['best_source'] is not None):
+            return []
+        rows = self.state.db.execute("""SELECT * FROM functions WHERE source=? AND id!=? AND status='pending'
+            AND present=1 AND difficulty='easy' AND size<=? AND cycle_attempts=0 AND best_source IS NULL
+            ORDER BY size, id""", (function['source'], function['id'], size)).fetchall()
+        batch = []
+        for row in rows:
+            if len(batch) >= limit-1 or self.budget_reached():
+                break
+            target = self.prepare(dict(row))
+            if target is None:
+                continue
+            try:
+                if self.local_stages(target):
+                    continue
+            except BaseException:
+                self.release(row['id'], 'Interrupted/error; persisted candidate will be revalidated')
+                raise
+            if self.state.get(row['id'])['best_source'] is not None:
+                self.release(row['id'], 'Has a local candidate; continues individually')
+                continue
+            self.state.update(row['id'], stage=stage)
+            batch.append(replace(target, function=self.state.get(row['id'])))
+        return batch
 
     def count_match(self, local=False):
         with self.coordinator.count_lock:
             self.coordinator.matched += 1
             self.coordinator.local_matches += int(local)
 
+    def local_trial(self, function, target, origin, candidate, key):
+        directory = new_run(self.root, 'local')
+        run_id = self.state.start_run(function['id'], 'local', origin, 'none', directory)
+        self.state.finish_run(run_id, provider='local')
+        self.state.transition(function['id'], 'attempting', model='local')
+        original = target.original
+        atomic_write(directory/'source-before.c', original)
+        atomic_write(directory/'source-after.c', candidate)
+        atomic_write(directory/'source.diff', source_diff(original.decode(), candidate.decode(), function['source']))
+        self.state.finish_run(run_id, outcome='ok')
+        print(f"{function['symbol']}: local {origin} (no model usage)", flush=True)
+        outcome = self.accept_candidate(target, candidate, directory)
+        self.state.finish_run(run_id, ended=time.time())
+        with self.state.db:
+            self.state.db.execute('INSERT OR REPLACE INTO local_trials VALUES (?,?,?)', (function['id'], key, outcome))
+        return outcome
+
+    def tried(self, function, key):
+        return self.state.db.execute('SELECT 1 FROM local_trials WHERE function_id=? AND candidate_sha=?',
+                                     (function['id'], key)).fetchone() is not None
+
     def try_local(self, function, target):
         original = target.original
-        for origin, code in untried_candidates(self.root, function, self.state, original.decode()):
+        for origin, code in list(untried_candidates(self.root, function, self.state, original.decode())):
             if self.control.stopped():
                 break
             candidate = candidate_source(original.decode(), function['symbol'], code)
-            key = trial_key(candidate, function)
-            directory = new_run(self.root, 'local')
-            run_id = self.state.start_run(function['id'], 'local', origin, 'none', directory)
-            self.state.finish_run(run_id, provider='local')
-            self.state.transition(function['id'], 'attempting', model='local')
-            atomic_write(directory/'source-before.c', original)
-            atomic_write(directory/'source-after.c', candidate)
-            atomic_write(directory/'source.diff', source_diff(original.decode(), candidate.decode(), function['source']))
-            self.state.finish_run(run_id, outcome='ok')
-            print(f"{function['symbol']}: local {origin} (no model usage)", flush=True)
-            outcome = self.accept_candidate(target, candidate, directory)
-            self.state.finish_run(run_id, ended=time.time())
-            with self.state.db:
-                self.state.db.execute('INSERT OR REPLACE INTO local_trials VALUES (?,?,?)', (function['id'], key, outcome))
+            outcome = self.local_trial(function, target, origin, candidate, trial_key(candidate, function))
             if outcome == 'matched':
                 return True
             if outcome == 'stop':
                 break
         return False
 
-    def attempt_with_retries(self, function, routing, target):
+    def draft(self, function):
+        if not self.config['m2c']:
+            return None
+        try:
+            return m2c_draft(self.root, self.workspace, self.builder, function, self.root/'.decomp-agent/m2c')
+        except (HarnessError, OSError):
+            return None
+
+    def try_m2c(self, target):
+        """A clean m2c translation is compiled; a near miss becomes the model's start."""
+        function = self.state.get(target.function['id'])
+        if function['best_source'] is not None or self.control.stopped() or not self.config['m2c']:
+            return False
+        marker = m2c_key(function, target.original.decode())
+        if self.tried(function, marker):
+            return False
+        draft = self.draft(function)
+        matched = False
+        for code in m2c_candidates(draft, function['symbol']) if draft else ():
+            try:
+                candidate = candidate_source(target.original.decode(), function['symbol'], code)
+            except HarnessError:
+                continue
+            key = trial_key(candidate, function)
+            if self.tried(function, key):
+                continue
+            if self.local_trial(function, target, 'm2c', candidate, key) == 'matched':
+                matched = True
+                break
+            if self.state.get(function['id'])['best_source'] is not None or self.control.stopped():
+                break  # It compiled: the near miss is now the model's starting point.
+        if not matched and not self.control.stopped() and (self.workspace/'tools/m2c/m2c.py').is_file():
+            with self.state.db:
+                self.state.db.execute('INSERT OR REPLACE INTO local_trials VALUES (?,?,?)', (function['id'], marker, 'm2c-done'))
+        return matched
+
+    def try_permuter(self, target):
+        """Token-free search on a near miss before more model escalation."""
+        function = self.state.get(target.function['id'])
+        seconds, best = self.config['permuter_seconds'], function['best_source']
+        if (not seconds or best is None or self.control.stopped()
+                or (function['best_score'] or 0) < self.config['permuter_min_score'] or function['best_score'] >= 100):
+            return False
+        key = 'permuter:' + trial_key(best, function)
+        if self.tried(function, key):
+            return False
+        directory = new_run(self.root, 'local')
+        run_id = self.state.start_run(function['id'], 'local', 'permuter', 'none', directory)
+        self.state.finish_run(run_id, provider='local')
+        print(f"{function['symbol']}: permuter {seconds}s from score {function['best_score']:.2f} (no model usage)", flush=True)
+        outcome = 'improve'
+        try:
+            found = run_permuter(self.builder, self.workspace, function, best, target.original, self.gate, seconds, directory)
+            candidate = candidate_source(target.original.decode(), function['symbol'], found[1]) if found else None
+        except (HarnessError, OSError) as e:
+            candidate = None
+            self.state.finish_run(run_id, error=str(e)[:2000])
+        if candidate and candidate != best:
+            self.state.transition(function['id'], 'attempting', model='local')
+            atomic_write(directory/'source-before.c', target.original)
+            atomic_write(directory/'source.diff', source_diff(target.original.decode(), candidate.decode(), function['source']))
+            outcome = self.accept_candidate(target, candidate, directory)
+        self.state.finish_run(run_id, ended=time.time(), outcome=outcome if candidate else 'no_improvement')
+        with self.state.db:
+            self.state.db.execute('INSERT OR REPLACE INTO local_trials VALUES (?,?,?)', (function['id'], key, outcome))
+        return outcome == 'matched'
+
+    def attempt_with_retries(self, function, routing, target, batch=()):
         for _ in range(self.config['technical_retries']+1):
             if self.budget_reached():
                 return 'budget'
-            result = self.attempt(self.state.get(function['id']), routing, target)
+            result = self.attempt(self.state.get(function['id']), routing, target, batch)
             if result != 'technical':
                 return result
         self.state.transition(function['id'], 'pending', last_error='Technical CLI failure; safely resumable on next run')
@@ -449,40 +612,70 @@ class Loop:
         self.state.transition(function['id'], 'attempting')
         return self.accept_candidate(target, candidate, directory) == 'matched'
 
-    def attempt(self, function, routing, target):
+    def attempt(self, function, routing, target, batch=()):
+        targets = [target, *batch]
         original = target.original
         identity, source = function['id'], function['source']
         provider = routing.get('provider', 'codex')
         runner = self.get_runner(provider)
         directory = new_run(self.root, 'attempt')
-        native = self.config['build']['backend'] == 'native'
+        # Claude workers only get Read/Edit tools; the compile loop needs a shell command.
+        compiles = self.config['worker_compiles'] if provider == 'codex' else 0
         with self.gate:
             stamp = self.check_repository()
-            worker = worker_copy(self.workspace, function, native, worktree=self.config['concurrency'] > 1)
+            worker = worker_copy(self.workspace, function, worktree=self.config['concurrency'] > 1)
+        compiler = None
         try:
-            atomic_write(worker/source, function['best_source'] or original)
+            if batch:
+                atomic_write(worker/source, mark_targets(original.decode(), [t.function['symbol'] for t in targets]))
+            else:
+                atomic_write(worker/source, function['best_source'] or original)
+            if compiles:
+                service.install(worker, source, self.config['worker_timeout'])
             before = manifest(worker)
             save_json(directory/'worker-before.json', before)
-            pack = context_pack(self.root, function, self.state, self.config)
+            share = max(5000, self.config['context_chars'] // len(targets))
+            pack = '\n\n'.join(context_pack(self.root, self.state.get(t.function['id']), self.state, self.config,
+                                             budget=None if not batch else share, shared=not index,
+                                             draft=self.draft(t.function))
+                                for index, t in enumerate(targets))
             atomic_write(self.root/'.decomp-agent/context'/f"{hashlib.sha256(identity.encode()).hexdigest()[:16]}.txt", pack)
-            prompt = worker_prompt(function, pack, native)
+            prompt = worker_prompt(function, pack, compiles, [t.function for t in batch])
             atomic_write(directory/'source-before.c', (worker/source).read_bytes())
             save_json(directory/'git-before.json', stamp)
             save_json(directory/'metadata.json', {'function': identity, **routing, 'provider': provider,
-                                                'started': time.time(), 'worker': str(worker)})
+                                                'started': time.time(), 'worker': str(worker),
+                                                'batch': [t.function['id'] for t in batch]})
             number = self.claim_attempt()
             if number is None:
                 return 'budget'
             self.state.transition(identity, 'attempting')
             run_id = self.state.start_run(identity, 'worker', routing['model'], routing['effort'], directory, worker)
             self.state.finish_run(run_id, provider=provider)
-            print(f"{function['symbol']}: {provider}/{routing['model']} {routing['effort']} (worker run {number})", flush=True)
+            members = []
+            for companion in batch:
+                folder = new_run(self.root, 'attempt')
+                save_json(folder/'metadata.json', {'function': companion.function['id'], 'batch_run': directory.name})
+                self.state.transition(companion.function['id'], 'attempting')
+                member = self.state.start_run(companion.function['id'], 'worker', routing['model'], routing['effort'], folder)
+                self.state.finish_run(member, provider=provider, error=f'Batched with {directory.name}')
+                members.append((companion, folder, member))
+            names = ', '.join(t.function['symbol'] for t in targets)
+            print(f"{names}: {provider}/{routing['model']} {routing['effort']} (worker run {number})", flush=True)
+            if compiles:
+                compiler = service.CompileService(self, worker, targets, directory, compiles)
+                compiler.start()
             result = runner.run(cwd=worker, prompt=prompt, model=routing['model'], effort=routing['effort'],
                                 directory=directory, timeout=self.config['worker_timeout'], control=self.control,
                                 schema=Path(__file__).with_name('worker.schema.json'),
                                 on_start=lambda pid: self.state.finish_run(run_id, pid=pid))
+            if compiler:
+                compiler.stop()
+                compiler = None
             self.state.finish_run(run_id, ended=time.time(), outcome=result.outcome, exit_code=result.exit_code,
                                   usage=json.dumps(result.usage), error=result.error)
+            for _, _, member in members:
+                self.state.finish_run(member, ended=time.time(), outcome=result.outcome)
             if (worker/source).is_file() and not (worker/source).is_symlink():
                 attempted = runner.redact((worker/source).read_text(errors='replace'))
                 atomic_write(directory/'source-after.c', attempted)
@@ -490,7 +683,7 @@ class Loop:
             with self.gate:
                 save_json(directory/'git-after.json', self.check_repository())
             if result.outcome in ('auth_error', 'quota_error', 'model_error', 'interrupted'):
-                if result.outcome == 'interrupted':
+                if result.outcome == 'interrupted' and not batch:
                     try:
                         candidate = (worker/source).read_text()
                         if runner.redact(candidate) == candidate:
@@ -503,33 +696,89 @@ class Loop:
                 return 'technical'
             if result.outcome != 'ok':
                 self.state.update(identity, last_error='Agent output invalid')
+                self.finish_batch(members, routing, stage_of(function), 'Agent output invalid')
                 return 'improve'
             try:
                 verify_worker_changes(worker, before, source)
-                candidate = (worker/source).read_bytes()
-                if runner.redact(candidate.decode()) != candidate.decode():
+                text = (worker/source).read_bytes()
+                if runner.redact(text.decode()) != text.decode():
                     raise HarnessError('Candidate contains credential material; rejected without persistence')
-                candidate_guard(original.decode(), candidate.decode(), function['symbol'])
+                if not batch:
+                    candidate_guard(original.decode(), text.decode(), function['symbol'])
             except (HarnessError, UnicodeError) as e:
                 self.state.finish_run(run_id, outcome='guard_rejected', error=str(e))
                 self.state.transition(identity, 'needs_human', last_error=str(e))
+                self.finish_batch(members, routing, stage_of(function), 'Batch worker violated the guard')
                 return 'stop'
-            return self.accept_candidate(target, candidate, directory, result.message)
+            if not batch:
+                return self.accept_candidate(target, text, directory, result.message)
+            return self.accept_batch(targets, text.decode(), [directory, *(f for _, f, _ in members)],
+                                     result.message, members, stage_of(function))
         finally:
+            if compiler:
+                compiler.stop()
             dispose_worker(worker)
+
+    def accept_batch(self, targets, text, directories, message, members, stage):
+        """Validate and publish each edited target on its own, in file order."""
+        try:
+            edits = split_targets(targets[0].original.decode(), text, {t.function['symbol'] for t in targets})
+        except HarnessError as e:
+            edits = {}
+            self.state.update(targets[0].function['id'], last_error=f'Batch edit rejected: {e}')
+        results = {}
+        for index, (target, directory) in enumerate(zip(targets, directories)):
+            function = self.state.get(target.function['id'])
+            code = edits.get(function['symbol'])
+            if not code or self.control.stopped():
+                results[function['id']] = 'improve'
+                continue
+            source = function['source']
+            current = (self.root/source).read_bytes()
+            # Earlier batch members may already be published: rebase on the new file/object.
+            with self.gate:
+                saved = self.builder.save_baseline(source, directory/'baseline-object.log')
+            rebased = replace(target, function=function, original=current, baseline_saved=saved)
+            try:
+                candidate = candidate_source(current.decode(), function['symbol'], code)
+            except HarnessError as e:
+                self.state.update(function['id'], last_error=str(e))
+                results[function['id']] = 'improve'
+                continue
+            atomic_write(directory/'source-before.c', current)
+            atomic_write(directory/'source.diff', source_diff(current.decode(), candidate.decode(), source))
+            results[function['id']] = self.accept_candidate(rebased, candidate, directory, message if not index else None)
+            if results[function['id']] == 'stop':
+                break
+        self.finish_batch(members, None, stage, None, results)
+        return results.get(targets[0].function['id'], 'improve')
+
+    def finish_batch(self, members, routing, stage, error, results=None):
+        for companion, _, _ in members:
+            identity = companion.function['id']
+            outcome = (results or {}).get(identity, 'improve')
+            if outcome == 'matched':
+                self.count_match()
+                continue
+            if self.state.get(identity)['status'] not in ('analyzing', 'attempting', 'improving'):
+                continue
+            if not self.escalate(identity, stage):
+                self.state.transition(identity, 'pending', last_error=error or 'Batch attempt did not match; continues individually')
 
     def accept_candidate(self, target, candidate, directory, message=None):
         function, original, run_id = target.function, target.original, directory.name
+        replacement = candidate_guard(original.decode(), candidate.decode(), function['symbol'])
+        atomic_write(directory/'source-after.c', candidate)
+        comparison = self.validate(target, candidate, directory)
+        if comparison is None:
+            self.state.finish_run(run_id, outcome='compile_error', error='See compiler.log')
+            self.state.update(function['id'], last_error=(directory/'compiler.log').read_text(errors='replace')[-3000:])
+            return 'improve'
         with self.gate:
             self.check_repository()
-            replacement = candidate_guard(original.decode(), candidate.decode(), function['symbol'])
-            atomic_write(directory/'source-after.c', candidate)
             try:
-                comparison = self.validate(target, candidate, directory)
-                if comparison is None:
-                    self.state.finish_run(run_id, outcome='compile_error', error='See compiler.log')
-                    self.state.update(function['id'], last_error=(directory/'compiler.log').read_text(errors='replace')[-3000:])
-                    return 'improve'
+                # Only plausible matches pay for the full link + ROM hash; it stays mandatory for those.
+                comparison['exact'] = comparison['rom_checked'] and self.rom_check(target, candidate, directory)
                 previous = self.state.get(function['id'])['best_score']
                 comparison['delta'] = comparison['score'] - (previous if previous is not None else 0)
                 save_json(directory/'comparison.json', comparison)
@@ -539,7 +788,8 @@ class Loop:
                                       last_diffs=json.dumps(comparison['last_diffs']))
                 if previous is None or comparison['score'] > previous or comparison['exact']:
                     self.state.update(function['id'], best_source=candidate, best_score=comparison['score'], best_run=run_id)
-                print(f"  {function['symbol']}: score {comparison['score']:.2f}, diff instructions {comparison['different_instructions']}, ROM exact={comparison['exact']}", flush=True)
+                print(f"  {function['symbol']}: score {comparison['score']:.2f}, diff instructions {comparison['different_instructions']}, "
+                      f"ROM {'exact' if comparison['exact'] else 'not exact' if comparison['rom_checked'] else 'check skipped'}", flush=True)
                 if not comparison['exact']:
                     return 'improve'
                 if self.control.stopped():
@@ -557,21 +807,54 @@ class Loop:
                 self.state.note(function['segment']+' '+function['symbol'], 'Matched source pattern:\n'+replacement[:900], commit)
                 return 'matched'
             finally:
-                if self.state.get(function['id'])['status'] != 'matched':
-                    atomic_write(self.workspace/function['source'], original)
-                    if not self.control.stopped():
-                        self.builder.build(directory/'restore-baseline.log', function['source'])
-                        if not self.builder.regression(directory/'restore-check.log'):
-                            raise HarnessError('Could not restore isolated baseline; stopping')
+                if comparison['rom_checked'] and self.state.get(function['id'])['status'] != 'matched':
+                    self.builder.restore(function['source'], original, target.baseline_saved, directory/'restore.log')
+
+    def object_dumps(self, target, candidate, symbols, log, restore_log):
+        """Compile a candidate; None on a compile error, else {symbol: objdump}.
+
+        Parallel runs use a private lane (never linked, so no restore); otherwise the
+        trusted workspace under the gate, returned to its baseline afterwards."""
+        source, lanes = target.function['source'], self.coordinator.lanes
+        if lanes is None:
+            with self.gate:
+                try:
+                    return self.compile_in(self.workspace, self.builder, source, candidate, symbols, log)
+                finally:
+                    self.builder.restore(source, target.original, target.baseline_saved, restore_log)
+        lane, builder = lanes.get()
+        try:
+            return self.compile_in(lane, builder, source, candidate, symbols, log)
+        finally:
+            lanes.put((lane, builder))
+
+    @staticmethod
+    def compile_in(workspace, builder, source, candidate, symbols, log):
+        atomic_write(workspace/source, candidate)
+        if builder.object_build(source, log):
+            return None
+        return {symbol: builder.disassemble(source, symbol) for symbol in symbols}
 
     def validate(self, target, candidate, directory):
-        function = target.function
-        atomic_write(self.workspace/function['source'], candidate)
+        """Object comparison only; the caller runs the ROM check under the gate."""
+        symbol = target.function['symbol']
         atomic_write(directory/'expected.asm', target.reference_dump)
-        if self.builder.object_build(function['source'], directory/'compiler.log'):
+        dumps = self.object_dumps(target, candidate, [symbol], directory/'compiler.log', directory/'probe-restore.log')
+        if dumps is None:
             return None
-        dump = self.builder.disassemble(function['source'], function['symbol'])
-        atomic_write(directory/'actual.asm', dump)
-        comparison = score(target.reference, instructions(dump, function['symbol']))
-        comparison['exact'] = self.builder.regression(directory/'regression.log')
+        atomic_write(directory/'actual.asm', dumps[symbol])
+        comparison = score(target.reference, instructions(dumps[symbol], symbol, target.length))
+        comparison['rom_checked'] = worth_rom_check(comparison)
         return comparison
+
+    def rom_check(self, target, candidate, directory):
+        """Under the gate: the candidate in the trusted workspace, then `make check`."""
+        source = target.function['source']
+        atomic_write(self.workspace/source, candidate)
+        if self.builder.object_build(source, directory/'rom-object.log'):
+            return False
+        return self.builder.regression(directory/'regression.log')
+
+
+def stage_of(function):
+    return function['stage']

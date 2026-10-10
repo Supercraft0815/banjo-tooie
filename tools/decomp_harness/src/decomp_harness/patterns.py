@@ -6,7 +6,7 @@ from functools import lru_cache
 
 from .common import HarnessError
 from .guard import candidate_guard
-from .scanner import INSN, LEX, global_asms
+from .scanner import INSN, LEX, asm_features, global_asms
 
 LOADS = {0x20: ('s8', 's32', 1), 0x24: ('u8', 'u32', 1),
          0x21: ('s16', 's32', 2), 0x25: ('u16', 'u32', 2),
@@ -211,14 +211,74 @@ def candidate_source(original, symbol, replacement):
     return result.encode()
 
 
+TOKEN = re.compile(r'(?<![\w$.%])[A-Za-z_]\w*|(?<![\w$])-?(?:0x[0-9A-Fa-f]+|\d+)(?![\w(])')
+C_INTEGER = re.compile(r'(?<![\w.])(0[xX][0-9a-fA-F]+|\d+)(?![\w.])')
+
+
+def operand_tokens(row):
+    """Symbols and plain immediates in source order; labels and stack offsets excluded."""
+    operand = re.sub(r'\s+', '', row[5].split('#')[0])
+    operand = re.sub(r'\.L\w+|%(?:hi|lo)', '', operand)
+    names, numbers = [], []
+    for token in TOKEN.findall(operand):
+        if token[0].isalpha() or token[0] == '_':
+            names.append(token)
+        elif '$sp' not in operand:
+            numbers.append(int(token, 0))
+    return names, numbers
+
+
+def transfer(code, source_asm, source_symbol, target_asm, target_symbol):
+    """Adapt a verified solution to a function with the same instruction shape.
+
+    Symbols are renamed and differing integer literals rewritten. This is only a
+    candidate; the compiler and full ROM decide.
+    """
+    a, b = body_rows(source_asm, source_symbol), body_rows(target_asm, target_symbol)
+    if not a or len(a) != len(b):
+        return None
+    names, numbers = {source_symbol: target_symbol}, {}
+    for x, y in zip(a, b):
+        if x[4] != y[4]:
+            return None
+        (xn, xi), (yn, yi) = operand_tokens(x), operand_tokens(y)
+        if len(xn) != len(yn) or len(xi) != len(yi):
+            return None
+        for old, new in [*zip(xn, yn), *zip(xi, yi)]:
+            table = names if isinstance(old, str) else numbers
+            if table.setdefault(old, new) != new:
+                return None
+    names = {k: v for k, v in names.items() if k != v}
+    numbers = {k: v for k, v in numbers.items() if k != v}
+    code = re.sub(r'\b[A-Za-z_]\w*\b', lambda m: names.get(m[0], m[0]), code)
+    if numbers:
+        def literal(m):
+            value = numbers.get(int(m[1], 0))
+            if value is None:
+                return m[0]
+            return (f'0x{value:X}' if m[1][:2].lower() == '0x' else str(value)) if value >= 0 else f'({value})'
+        code = C_INTEGER.sub(literal, code)
+    return code
+
+
 def candidates(root, function, state, source=None):
     asm = (root/function['asm']).read_text()
     key = pattern_key(asm, function['symbol'])
     seen = set()
-    for row in state.db.execute('SELECT replacement,origin FROM patterns WHERE asm_key=? ORDER BY created DESC LIMIT 3', (key,)):
+    # fetchall: a cursor left open across a yield keeps a WAL read snapshot; a later write on
+    # this connection then fails with "database is locked" once another worker has committed.
+    for row in state.db.execute('SELECT replacement,origin FROM patterns WHERE asm_key=? ORDER BY created DESC LIMIT 3', (key,)).fetchall():
         code = row['replacement'].replace('__DECOMP_TARGET__', function['symbol'])
         seen.add(code)
         yield 'reuse:'+row['origin'][:12], code
+    if function.get('shape'):
+        for row in state.db.execute('SELECT * FROM solutions WHERE shape=? AND function_id!=? LIMIT 3',
+                                    (function['shape'], function['id'])).fetchall():
+            path = root/row['asm']
+            code = transfer(row['replacement'], path.read_text(), row['symbol'], asm, function['symbol']) if path.is_file() else None
+            if code and code not in seen:
+                seen.add(code)
+                yield 'transfer:'+row['symbol'][:40], code
     source = (root/function['source']).read_text() if source is None else source
     for code in replacements(asm, function['symbol'], source):
         if code not in seen:
@@ -238,8 +298,16 @@ def untried_candidates(root, function, state, source=None):
             yield origin, code
 
 
-def local_plan(root, state, difficulty=None, function=None):
-    """One cheap project pass, before any Git manifests, objdump or compilation."""
+def m2c_key(function, source):
+    """m2c output depends on the ASM and on the file context (earlier matches change it)."""
+    return 'm2c:' + hashlib.sha256(f"{function['asm_sha']}:{hashlib.sha256(source.encode()).hexdigest()}".encode()).hexdigest()
+
+
+def local_plan(root, state, difficulty=None, function=None, m2c=False):
+    """One cheap project pass, before any Git manifests, objdump or compilation.
+
+    With `m2c`, every function without a candidate and without an m2c pass for its
+    current ASM/file context is eligible: m2c runs later, in the trusted build."""
     rows = [state.get(function)] if function else [dict(r) for r in state.db.execute("""
         SELECT * FROM functions WHERE present=1 AND status='pending'
         ORDER BY size, id""")]
@@ -255,25 +323,68 @@ def local_plan(root, state, difficulty=None, function=None):
             sources[f['source']] = (root/f['source']).read_text()
         source = sources[f['source']]
         choices = list(untried_candidates(root, f, state, source))
+        translate = m2c and f['best_source'] is None and state.db.execute(
+            'SELECT 1 FROM local_trials WHERE function_id=? AND candidate_sha=?', (f['id'], m2c_key(f, source))).fetchone() is None
         # Full candidate/manifest checks still happen in resume_candidate before use.
         history = state.history(f['id'], 1)
         resume = bool(history and history[0]['outcome'] in ('ok', 'matched', 'interrupted')
                       and f['base_sha'] == hashlib.sha256(source.encode()).hexdigest()
                       and (root/'.decomp-agent/runs'/history[0]['id']/'source-after.c').is_file())
-        if choices or resume:
+        if choices or resume or translate:
             found.append({'function': f['id'], 'source': f['source'], 'symbol': f['symbol'],
                           'dependencies': f['dependencies'], 'candidates': len(choices),
-                          'origins': [c[0] for c in choices], 'resume': resume})
+                          'origins': [c[0] for c in choices] + (['m2c'] if translate else []), 'resume': resume})
     return {'scanned_functions': scanned, 'eligible_functions': len(found), 'plan': found}
 
 
+PROTOTYPE = re.compile(r'^[ \t]*(?:extern[ \t]+)?(?P<type>[A-Za-z_][\w \t*]*?)[ \t*]+(?P<name>[A-Za-z_]\w*)'
+                       r'[ \t]*\((?P<params>[^;{}()]*)\)[ \t]*;', re.M)
+EXTERN = re.compile(r'^[ \t]*extern[ \t]+(?P<type>[A-Za-z_][\w \t*]*?)[ \t*]+(?P<name>[A-Za-z_]\w*)[ \t]*(?:\[[^\]\n]*\])?[ \t]*;', re.M)
+STATEMENTS = {'return', 'else', 'case', 'do', 'goto', 'sizeof', 'typedef'}
+
+
+def declarations(code, symbol):
+    """(symbol, declaration, is_definition) from a verified function: its own signature
+    plus block-scope prototypes/externs that do not depend on function-local types."""
+    brace = code.find('{')
+    head = re.search(r'([A-Za-z_][\w \t*]*?)\b'+re.escape(symbol)+r'\s*\(([^)]*)\)\s*$', code[:brace].strip()) if brace > 0 else None
+    if head:
+        yield symbol, re.sub(r'\s+', ' ', f'{head[1].strip()} {symbol}({head[2].strip()});'), 1
+    body = code[brace+1:]
+    local = set(re.findall(r'}\s*(\w+)\s*;', body))
+    for match in [*PROTOTYPE.finditer(body), *EXTERN.finditer(body)]:
+        words = set(re.findall(r'\w+', match['type']))
+        if words & STATEMENTS or words & local:
+            continue
+        yield match['name'], re.sub(r'\s+', ' ', match[0].strip()), 0
+
+
 def remember(root, state, function, replacement, commit):
-    key = pattern_key((root/function['asm']).read_text(), function['symbol'])
-    if key:
-        template = re.sub(r'\b'+re.escape(function['symbol'])+r'\b', '__DECOMP_TARGET__', replacement)
-        with state.db:
+    asm = (root/function['asm']).read_text()
+    key = pattern_key(asm, function['symbol'])
+    # Matches from before shape grouping were never rescanned (no GLOBAL_ASM left).
+    shape = function.get('shape') or asm_features(asm, function['symbol'])['shape']
+    with state.db:
+        if key:
+            template = re.sub(r'\b'+re.escape(function['symbol'])+r'\b', '__DECOMP_TARGET__', replacement)
             state.db.execute('INSERT OR IGNORE INTO patterns(asm_key,replacement,origin,created) VALUES (?,?,?,unixepoch())',
                              (key, template, commit))
+        state.db.execute('INSERT OR REPLACE INTO solutions VALUES (?,?,?,?,?)',
+                         (function['id'], shape, function['symbol'], function['asm'], replacement))
+        for symbol, declaration, definition in declarations(replacement, function['symbol']):
+            state.db.execute('INSERT OR REPLACE INTO prototypes VALUES (?,?,?,?)',
+                             (symbol, declaration, function['id'], definition))
+
+
+def known_declarations(state, symbols, limit=1500):
+    """Most authoritative declaration per symbol: a matched definition, else the most common."""
+    lines = []
+    for symbol in sorted(set(symbols)):
+        row = state.db.execute('''SELECT declaration, max(definition) AS d, count(*) AS n FROM prototypes
+            WHERE symbol=? GROUP BY declaration ORDER BY d DESC, n DESC LIMIT 1''', (symbol,)).fetchone()
+        if row:
+            lines.append(row['declaration'] + ('  /* matched definition */' if row['d'] else f'  /* used by {row["n"]} matched */'))
+    return '\n'.join(lines)[:limit]
 
 
 def seed_matches(root, state):

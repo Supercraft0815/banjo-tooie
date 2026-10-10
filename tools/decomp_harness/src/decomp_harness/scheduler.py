@@ -1,17 +1,48 @@
+from collections import Counter
+import json
+
 from .common import HarnessError
+
+RANK = {'easy': 0, 'medium': 1, 'hard': 2, 'extreme': 3}
 
 
 def next_function(state, difficulty=None, excluded=(), busy=()):
-    rows = state.db.execute("""SELECT * FROM functions WHERE status='pending' AND present=1
-        ORDER BY CASE difficulty WHEN 'easy' THEN 0 WHEN 'medium' THEN 1 WHEN 'hard' THEN 2 ELSE 3 END,
-        CASE WHEN best_source IS NOT NULL THEN 0 ELSE 1 END, size, id""").fetchall()
-    return next((dict(r) for r in rows if (not difficulty or r['difficulty'] == difficulty)
-                 and r['id'] not in excluded and not resources(r) & set(busy)), None)
+    """Cheapest progress first:
+
+    1. members of an already solved shape group (local transfer, no inference),
+    2. easier functions before harder ones, resumable candidates first,
+    3. representatives of large unsolved groups (one model run can unlock many),
+    4. functions whose callees are already decompiled (known prototypes),
+    5. smaller before larger.
+    """
+    rows = [dict(r) for r in state.db.execute("SELECT * FROM functions WHERE status='pending' AND present=1")]
+    pending = {r['symbol'] for r in rows}
+    groups = Counter(r['shape'] for r in rows if r['shape'])
+    solved = {r[0] for r in state.db.execute('SELECT DISTINCT shape FROM solutions WHERE shape IS NOT NULL')}
+    tried = {r[0] for r in state.db.execute(
+        "SELECT DISTINCT function_id FROM local_trials WHERE candidate_sha NOT LIKE 'm2c:%' AND candidate_sha NOT LIKE 'permuter:%'")}
+    # A blocked member suggests the group needs more than one routine model run.
+    spoiled = {r[0] for r in state.db.execute(
+        "SELECT DISTINCT shape FROM functions WHERE shape IS NOT NULL AND status IN ('blocked','needs_human')")}
+
+    def priority(r):
+        shape = r['shape']
+        harvest = shape in solved and r['id'] not in tried
+        group = groups[shape] if shape and shape not in solved and shape not in spoiled else 1
+        callees = sum(c in pending for c in json.loads(r['dependencies']) if c != r['symbol'])
+        return (0 if harvest else 1, RANK.get(r['difficulty'], 3), 0 if r['best_source'] is not None else 1,
+                -group, callees, r['size'] or 0, r['id'])
+
+    busy = set(busy)
+    choices = (r for r in rows if (not difficulty or r['difficulty'] == difficulty)
+               and r['id'] not in excluded and not resources(r) & busy)
+    return min(choices, key=priority, default=None)
 
 
 def resources(function):
-    import json
-    return {function['source'], function['symbol'], *json.loads(function['dependencies'])}
+    shape = function.get('shape')
+    return {function['source'], function['symbol'], *json.loads(function['dependencies']),
+            *(('shape:'+shape,) if shape else ())}
 
 
 def route(function, config, model=None):

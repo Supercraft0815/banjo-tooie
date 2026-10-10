@@ -14,7 +14,7 @@ from unittest.mock import patch
 import test_harness as fixtures
 from test_harness import ASM, SOURCE, CANDIDATE, DUMP
 from decomp_harness.claude import ClaudeRunner, check_subscription, clean_claude_environment, parse_claude_events
-from decomp_harness.cli import parser, summary
+from decomp_harness.cli import FORK_DECOMPED_BYTES, TOTAL_CODE_BYTES, parser, progress, summary
 from decomp_harness.codex import Result
 from decomp_harness.codex import Redactor
 from decomp_harness.common import Control, HarnessError, git, validate_stage
@@ -79,6 +79,34 @@ class PatternTests(fixtures.Fixture):
         self.assertIn('do not reread', worker_prompt(self.function, pack, False))
         self.assertLessEqual(len(pack), self.cfg['context_chars'])
 
+    def test_retry_context_pairs_failed_patches_with_results_and_flags_repeats(self):
+        for index in range(5):
+            directory = self.root / '.decomp-agent/runs' / f'attempt-{index}'
+            directory.mkdir(parents=True)
+            (directory / 'source.diff').write_text('+return first_variant;' if index == 0 else '+return repeated_variant;')
+            (directory / 'comparison.json').write_text(json.dumps({
+                'exact': False, 'different_instructions': 1,
+                'first_diff': {'expected': 'addu v0,a0,t6', 'actual': f'actual_{index}'},
+            }))
+            run_id = self.state.start_run(self.function['id'], 'worker', 'test', 'low', directory)
+            self.state.finish_run(run_id, outcome='nonmatching', score=66.6667)
+        pack = context_pack(self.root, self.state.get('target'), self.state, self.cfg)
+        feedback = pack.split('Failed attempts (newest first):\n', 1)[1]
+        self.assertIn('+return first_variant;', feedback)  # Survives beyond the old four-run window.
+        self.assertEqual(feedback.count('+return repeated_variant;'), 1)
+        self.assertIn('Identical source patch to attempt-4; already tried.', feedback)
+        oldest = feedback.split('Run attempt-0:', 1)[1]
+        self.assertIn('actual_0', oldest)
+        self.assertNotIn('actual_4', oldest)
+        self.assertLessEqual(len(pack), self.cfg['context_chars'])
+        self.assertIn('Do not resubmit a tested failed source patch', worker_prompt(self.function, pack, False))
+        # A missing patch or incomplete comparison must not prevent resuming the run.
+        (directory / 'source.diff').unlink()
+        (directory / 'comparison.json').write_text('{incomplete')
+        pack = context_pack(self.root, self.state.get('target'), self.state, self.cfg)
+        self.assertIn('Compiler comparison unavailable', pack)
+        self.assertIn('+return first_variant;', pack)
+
     def test_busy_file_and_dependencies_are_excluded(self):
         self.assertIsNone(next_function(self.state, busy=resources(self.function)))
         self.state.update(self.function['id'], dependencies='["shared_helper"]')
@@ -104,7 +132,7 @@ class PatternTests(fixtures.Fixture):
         other = State(self.root/'.decomp-agent/state.db')
         try:
             self.assertEqual(other.get('target')['attempts'], 1)
-            self.assertEqual(other.db.execute('PRAGMA user_version').fetchone()[0], 2)
+            self.assertEqual(other.db.execute('PRAGMA user_version').fetchone()[0], 3)
             self.assertEqual(other.db.execute('SELECT provider FROM runs').fetchone()[0], 'codex')
         finally:
             other.close()
@@ -119,6 +147,17 @@ class PatternTests(fixtures.Fixture):
         groups = {(r['provider'], r['model'], r['kind']): r['reported_usage']['input_tokens'] for r in report['runs']}
         self.assertEqual(groups, {('codex', 'luna', 'worker'): 50, ('codex', 'luna', 'probe'): 10,
                                   ('claude', 'haiku', 'worker'): 30})
+
+    def test_progress_adds_matched_bytes_to_fork_baseline(self):
+        with self.state.db:
+            self.state.db.execute("UPDATE functions SET status='matched' WHERE id=?", (self.function['id'],))
+        report = progress(self.state)
+        size = self.function['size']
+        self.assertEqual(report['matched_functions'], 1)
+        self.assertEqual(report['decomped_code_bytes'], FORK_DECOMPED_BYTES+size)
+        self.assertEqual(report['gained_percent_points'], round(100*size/TOTAL_CODE_BYTES, 3))
+        self.assertEqual(report['segments']['boot'], {'fork_percent': 100.0, 'percent': 100.0})
+        self.assertEqual(sum(d['matched'] for d in report['difficulties'].values()), 1)
 
     def test_private_worktree_cannot_reference_user_git(self):
         fixtures.GuardTests.setup_git(self)
@@ -208,9 +247,10 @@ class ParallelTests(fixtures.Fixture):
         self.cfg['concurrency'] = 2
         self.cfg['local_patterns'] = False
         self.cfg['easy_model']['enabled'] = False
-        for name in ('other_target', 'third_target'):
+        # Distinct instruction shapes: members of one shape group never run concurrently.
+        for name, delay in (('other_target', '24020001 */ addiu $v0, $zero, 0x1'), ('third_target', '24030001 */ addiu $v1, $zero, 0x1')):
             (self.root/f'src/core1/{name}.c').write_text(f'#pragma GLOBAL_ASM("asm/nonmatchings/core1/a/{name}.s")\n')
-            (self.root/f'asm/nonmatchings/core1/a/{name}.s').write_text(ASM.replace('target', name))
+            (self.root/f'asm/nonmatchings/core1/a/{name}.s').write_text(ASM.replace('target', name).replace('00000000 */ nop', delay))
         self.state.sync(scan(self.root))
         self.git = fixtures.GuardTests.setup_git(self)
         (self.root/'include').mkdir()
@@ -224,7 +264,8 @@ class ParallelTests(fixtures.Fixture):
         self.starts = []
         self.stop_after_pair = False
         self.fail = False
-        self.active_builds = self.peak_builds = 0
+        self.active_builds = self.peak_builds = self.active_checks = self.peak_checks = 0
+        self.build_roots = set()
         owner = self
 
         class FakeRunner:
@@ -245,13 +286,14 @@ class ParallelTests(fixtures.Fixture):
                 return Result(0, 'ok', message={'status': 'candidate', 'knowledge': []})
 
         class FakeBuilder:
-            def __init__(self, *_):
-                pass
+            def __init__(self, root=None, *_):
+                self.root = root
 
             def disassemble(self, source, symbol):
                 return DUMP.replace('target', symbol)
 
             def object_build(self, source, log):
+                owner.build_roots.add(self.root)
                 owner.active_builds += 1
                 owner.peak_builds = max(owner.peak_builds, owner.active_builds)
                 time.sleep(0.02)
@@ -262,7 +304,17 @@ class ParallelTests(fixtures.Fixture):
                 return 0
 
             def regression(self, *_):
+                owner.active_checks += 1
+                owner.peak_checks = max(owner.peak_checks, owner.active_checks)
+                time.sleep(0.02)
+                owner.active_checks -= 1
                 return True
+
+            def save_baseline(self, *_):
+                return False
+
+            def restore(self, source, original, saved, log):
+                (owner.work/source).write_bytes(original)
 
         def stamp(root):
             return {'head': git(root, 'rev-parse', 'HEAD'),
@@ -275,7 +327,7 @@ class ParallelTests(fixtures.Fixture):
         for p in self.patches:
             p.start()
         self.loop = Loop(self.root, self.state, self.cfg, Control(), parser().parse_args(['run', '--max-functions', '2']))
-        self.loop.workspace, self.loop.builder = self.work, FakeBuilder()
+        self.loop.workspace, self.loop.builder = self.work, FakeBuilder(self.work)
         self.loop.expected_stamp = stamp(self.root)
 
     def tearDown(self):
@@ -287,11 +339,15 @@ class ParallelTests(fixtures.Fixture):
         with redirect_stdout(io.StringIO()):
             self.loop.process_parallel()
 
-    def test_two_real_worktrees_overlap_but_build_and_commits_are_serial(self):
+    def test_two_real_worktrees_overlap_but_rom_checks_and_commits_are_serial(self):
         self.process()
         self.assertEqual(len(self.starts), 2)
         self.assertEqual((self.loop.calls, self.loop.matched), (2, 2))
-        self.assertEqual(self.peak_builds, 1)
+        self.assertEqual(self.peak_checks, 1)
+        # Object probes ran in private lanes; only the ROM check rebuilt in the trusted tree.
+        lanes = self.build_roots - {self.work}
+        self.assertTrue(lanes and all(l.name.startswith('decomp-lane-') and not l.exists() for l in lanes))
+        self.assertIsNone(self.loop.lanes)
         self.assertEqual(self.git('rev-list', '--count', 'HEAD'), '3')
         self.assertEqual(self.state.db.execute("SELECT count(*) FROM functions WHERE status='matched'").fetchone()[0], 2)
 

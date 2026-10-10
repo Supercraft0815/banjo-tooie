@@ -53,6 +53,22 @@ def global_asms(text: str):
         yield {"asm": path.as_posix(), "symbol": path.stem, "start": m.start(), "end": m.end()}
 
 
+def shape_operand(operand: str) -> str:
+    """Operand class for near-duplicate grouping: symbols, labels and plain immediates
+    vary; registers, stack offsets and memory displacements must stay identical."""
+    operand = re.sub(r'\s+', '', operand.split('#')[0])
+    operand = re.sub(r'\.L\w+', 'L', operand)
+    operand = re.sub(r'(?<![\w$.%])[A-Za-z_]\w*', 'S', operand)
+    if '$sp' not in operand:
+        operand = re.sub(r'(?<![\w$])-?(?:0x[0-9A-Fa-f]+|\d+)(?![\w(])', 'I', operand)
+    return operand
+
+
+def shape_key(body):
+    rows = [op + ' ' + shape_operand(rest) for *_, op, rest in body]
+    return hashlib.sha256('\n'.join(rows).encode()).hexdigest()[:24] if rows else None
+
+
 def asm_features(text: str, symbol: str):
     lines = text.splitlines()
     start = next((i for i, l in enumerate(lines) if re.match(rf'\s*(?:glabel|[.]globl)\s+{re.escape(symbol)}\s*$', l)), None)
@@ -76,6 +92,7 @@ def asm_features(text: str, symbol: str):
         "memory_ops": sum(op in ('lw', 'sw', 'lb', 'lbu', 'lh', 'lhu', 'sh', 'sb', 'ld', 'sd') for op in ops),
         "rom_start": int(body[0][0], 16) if body else None,
         "vram": int(body[0][1], 16) if body else None,
+        "shape": shape_key(body),
     }
     weight = (len(body) + features['branches'] * 5 + len(calls) * 3 +
               features['float_ops'] * 2 + features['indirect_calls'] * 35 + features['switches'] * 60)
@@ -103,5 +120,5 @@ def scan(root: Path):
             yield {"id": identity, "symbol": macro['symbol'], "source": relative,
                    "asm": macro['asm'], "segment": macro['symbol'].rsplit('_', 1)[-1] if relative.startswith('src/overlays/') else Path(relative).parts[1],
                    "size": features['instructions'] * 4, "difficulty": features['difficulty'],
-                   "features": features, "dependencies": features['calls'],
+                   "features": features, "dependencies": features['calls'], "shape": features.pop('shape'),
                    "asm_sha": hashlib.sha256(asm.read_bytes()).hexdigest() if asm.exists() else None}

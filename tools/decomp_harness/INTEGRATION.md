@@ -161,3 +161,74 @@ matched count; 1,423 candidates does not mean 1,423 confirmed matches.
 The full CLI output is in `.decomp-agent/logs/local-sweep-run.log`; timing and usage
 counts are in the adjacent `local-sweep-run-timing.json`. The offline doctor passed
 its requested checks (live model probes and its separate baseline build were skipped).
+
+## Acceleration — 2026-10-08
+
+Goal: fewer tokens per match, fewer blocked functions, shorter wall time. Snapshot at
+the start: 398 matches, all but one ≤ 16 bytes (0.26 % of code bytes); every
+nonmatching candidate paid a full `make check` plus a rebuild and second check
+(≈ 20 s serialized), and Codex workers could not compile on macOS.
+
+Measurements with the real Docker/IDO toolchain (no inference unless stated):
+
+* **Score normalization.** The `func_80800220_chdinoboss` match (2,608 bytes) scored
+  99.3865 with 4 "differences" that were only `jtbl_…`/`R_…` vs `.rodata` relocations.
+  Rebuilt from the parent commit and compared with the new symbol-table rebasing:
+  **100.0, 0 differences**. A wrong rodata offset remains a difference (unit-tested).
+* **Compile service.** A scripted worker in a real `worker_copy` called
+  `./decomp-compile`: ≈ 2 s per round trip, normalized diff or compiler error, workspace
+  source and object restored byte-identically afterwards.
+* **m2c** (`--valid-syntax`, macros expanded to plain C, `u8 *` variant for `void *`
+  arithmetic), random samples of 30 pending functions each, object-level result:
+  easy **12–14 / 30 identical**, medium 3 / 30 identical and 22 compiled, hard 15 compiled
+  (median 40). ≈ 3 s per function including the IDO compile.
+* **Permuter** on two m2c near misses for 120 s each: import, search and extraction work
+  end to end; `func_800B59E0` improved from 94.29 to 97.14 (one instruction left).
+* **Opcode shape groups:** 676 groups with 3,140 pending/matched functions; 37 groups
+  already contain a match (812 pending members become transfer candidates).
+* **Real worker run** (one function, one CLI launch): `./decomp-agent run --function
+  func_80800394_chtorpedo --max-attempts 1 --model gpt-6-luna`. The m2c stage compiled a
+  candidate at 94.44 (one instruction off; ROM check skipped). Luna started from it inside
+  the normal Codex `workspace-write` sandbox, called `./decomp-compile` once, received
+  `OBJECT MATCH` and stopped. The parent then verified **full ROM exact** and committed
+  **`44a639b6dbc5805a43af92377e34567e3baa6dab`**. Worker: **17.0 s, 63,117 input tokens
+  (29,184 cached), 919 output tokens**; no second attempt.
+* **Local sweeps (zero inference).** `run --local-only --difficulty easy --max-functions 12`
+  (concurrency 2) matched four functions via templates/transfers, then stopped with
+  `database is locked`: candidate generation yielded while an SQLite cursor was still open,
+  so a write after the other worker's commit hit a stale WAL snapshot. Cursors are now
+  materialized; a regression test reproduces the error without the fix. State stayed
+  consistent (no open publication, interrupted functions back to `pending`).
+  The rerun `run --local-only --difficulty medium --max-functions 12` used m2c only:
+  **3 / 12 ROM-exact matches** (`func_808000E8_chwandglow`, `func_8010A764`,
+  `badrone_entrypoint_6`), 9 compiled near misses kept as model starting points,
+  ≈ 87 s after the baseline, no lock errors.
+* **Legacy matches seed their groups.** Matches made before shape grouping were never
+  rescanned, so only 7 shape groups were solved. `remember` now derives the shape from the
+  ASM file: **255 solved groups, 808 pending functions with a transfer candidate.**
+* Stdlib tests: **105 passed**, including compile-service guard/symlink handling, batch
+  publication, transfer, scheduler priorities, m2c macro expansion, permuter acceptance,
+  local-only m2c planning, the SQLite snapshot regression and the new configuration checks.
+
+Not yet measured: batch sessions with a real model and long unattended runs. The m2c
+and permuter numbers are small random samples, not project-wide rates.
+
+Ignored evidence: `.decomp-agent/logs/acceleration-real-run.log`,
+`.decomp-agent/runs/attempt-670588bcda4a/` (prompt, `compile-1.txt`, usage, comparison,
+regression output, commit SHA), `.decomp-agent/logs/acceleration-local-m2c*.log` and
+`.decomp-agent/scratch/probe2-*.jsonl` (m2c samples).
+
+### Follow-up: linker failure after host-side restore
+
+A user sweep (`run --local-only --difficulty easy`) matched 15 functions, then every
+ROM check failed with `mips-linux-gnu-ld: cannot open output file
+build/us/banjotooie_decompressed_prelim.elf: No such file or directory`, although the
+objects were identical (score 100). The new restore wrote the baseline object and
+deleted linked outputs from the macOS host while the linker runs in the container
+(Docker Desktop file sharing). The exact trigger could not be reproduced on a fresh copy,
+so restore and baseline saving now run inside the build environment, like `make`.
+31 affected runs on 16 functions were identified by their `regression.log`; their 44
+non-matched local-trial records were removed (backup: `.decomp-agent/state-before-linker-cleanup.db`).
+Verification `run --local-only --difficulty easy --max-functions 24`: 7 restores after
+compile errors, every later ROM check passed, **22 / 24 matched**, including all 15
+previously misreported functions. Stdlib tests: 105 passed.

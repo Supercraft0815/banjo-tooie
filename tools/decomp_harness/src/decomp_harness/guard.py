@@ -10,14 +10,17 @@ import stat
 import tempfile
 
 from .common import HarnessError, atomic_write, digest, git
-from .scanner import global_asms, uncomment
+from .scanner import LEX, global_asms, uncomment
+
+IPC = '.decomp-ipc'
 
 
 def manifest(root: Path):
     result = {}
     for folder, directories, files in os.walk(root, followlinks=False):
         if Path(folder) == root:
-            directories[:] = [d for d in directories if d != 'build']
+            # build/ is scratch; .decomp-ipc/ carries compile requests to the parent.
+            directories[:] = [d for d in directories if d not in ('build', IPC)]
         for name in files + [d for d in directories if (Path(folder)/d).is_symlink()]:
             path = Path(folder)/name
             rel = path.relative_to(root).as_posix()
@@ -42,7 +45,8 @@ def repository_stamp(root):
             'rom': digest(root/'baserom.us.z64'), 'decompressed': digest(root/'decompressed.us.z64')}
 
 
-def worker_copy(root: Path, function, native=False, worktree=False):
+def worker_copy(root: Path, function, worktree=False):
+    """Sources and headers only: workers compile through the parent's ./decomp-compile."""
     owner = Path(tempfile.mkdtemp(prefix='decomp-worker-')).resolve()
     target = owner/'seed' if worktree else owner
     target.mkdir(exist_ok=True)
@@ -52,17 +56,6 @@ def worker_copy(root: Path, function, native=False, worktree=False):
         path = target/function['asm']
         path.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(root/function['asm'], path)
-        if native:
-            for macro in global_asms((root/function['source']).read_text()):
-                path = target/macro['asm']
-                path.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(root/macro['asm'], path)
-            for directory in ('tools/ido', 'tools/asm-processor'):
-                shutil.copytree(root/directory, target/directory, ignore=shutil.ignore_patterns('.git', '__pycache__'))
-            for name in ('Makefile', 'overlays.us.toml', 'tools/list_overlays.py'):
-                path = target/name
-                path.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(root/name, path)
         (target/'build/us').mkdir(parents=True)
         (target/'.harness-worker').write_text(function['id'])
         if worktree:
@@ -73,12 +66,6 @@ def worker_copy(root: Path, function, native=False, worktree=False):
                 '-c', 'core.hooksPath=/dev/null', '-c', 'commit.gpgsign=false', 'commit', '-qm', 'Isolated source snapshot')
             checkout = owner/'checkout'
             git(target, '-c', 'core.hooksPath=/dev/null', 'worktree', 'add', '--detach', str(checkout), 'HEAD')
-            # Native compiler tools are ignored/untracked, copy them separately.
-            for name in ('tools', 'Makefile', 'overlays.us.toml') if native else ():
-                if (target/name).is_dir():
-                    shutil.copytree(target/name, checkout/name)
-                elif (target/name).exists():
-                    shutil.copy2(target/name, checkout/name)
             (owner/'.harness-private-worktree').write_text(function['id'])
             (checkout/'build/us').mkdir(parents=True)
             target = checkout
@@ -127,6 +114,78 @@ def candidate_guard(original: str, candidate: str, symbol: str):
     if depth or bodies != 1 or trailing.strip():
         raise HarnessError('Replacement must contain only the single target function')
     return replacement
+
+
+def target_markers(symbol):
+    return f'/* decomp-target-begin {symbol} */', f'/* decomp-target-end {symbol} */'
+
+
+def mark_targets(original: str, symbols):
+    """Wrap each batch target directive in comment markers the worker must keep."""
+    macros = sorted((m for m in global_asms(original) if m['symbol'] in symbols), key=lambda m: m['start'])
+    if len(macros) != len(set(symbols)):
+        raise HarnessError('Each batch target needs exactly one active GLOBAL_ASM')
+    result, position = [], 0
+    for m in macros:
+        begin, end = target_markers(m['symbol'])
+        result += [original[position:m['start']], begin, '\n', original[m['start']:m['end']], '\n', end]
+        position = m['end']
+    return ''.join(result + [original[position:]])
+
+
+def split_targets(original: str, worked: str, symbols):
+    """Map each batch target to its edited replacement (None if untouched).
+
+    Everything outside the marked regions must be byte-identical to the original.
+    Each replacement is checked like a single-target candidate.
+    """
+    macros = sorted((m for m in global_asms(original) if m['symbol'] in symbols), key=lambda m: m['start'])
+    if len(macros) != len(set(symbols)):
+        raise HarnessError('Each batch target needs exactly one active GLOBAL_ASM')
+    result, read, position = {}, 0, 0
+    for m in macros:
+        begin, end = target_markers(m['symbol'])
+        expected = original[position:m['start']] + begin
+        if worked[read:read+len(expected)] != expected:
+            raise HarnessError(f"Changed bytes outside the marked target regions (before {m['symbol']}), or a marker was removed")
+        read += len(expected)
+        stop = worked.find(end, read)
+        if stop < 0:
+            raise HarnessError(f"End marker for {m['symbol']} was removed")
+        code = worked[read:stop].strip()
+        read, position = stop + len(end), m['end']
+        directive = original[m['start']:m['end']].strip()
+        if code != directive:
+            replacement = original[:m['start']] + code + original[m['end']:]
+            candidate_guard(original, replacement, m['symbol'])
+            result[m['symbol']] = code
+        else:
+            result[m['symbol']] = None
+    if worked[read:] != original[position:]:
+        raise HarnessError('Changed bytes after the last marked target region')
+    return result
+
+
+def extract_function(text: str, symbol: str):
+    """Text of the top-level definition of symbol (return type to closing brace)."""
+    clean = LEX.sub(lambda m: ' '*len(m[0]), text)
+    depth = 0
+    for match in re.finditer(r'[{}]|\b'+re.escape(symbol)+r'\s*\([^;{}]*\)\s*{', clean):
+        if match[0] in '{}':
+            depth = depth+1 if match[0] == '{' else max(0, depth-1)
+            continue
+        if depth:
+            continue
+        before = clean[:match.start()]
+        directives = [m.end() for m in re.finditer(r'(?m)^[ \t]*#.*$', before)]
+        begin = max(before.rfind(';')+1, before.rfind('}')+1, *directives, 0)
+        depth = 0
+        for index in range(match.end()-1, len(clean)):
+            depth += {'{': 1, '}': -1}.get(clean[index], 0)
+            if depth == 0:
+                return text[begin:index+1].strip()
+        return None
+    return None
 
 
 def verify_worker_changes(worker, before, source):

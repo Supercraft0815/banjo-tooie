@@ -4,10 +4,22 @@ from array import array
 import os
 from pathlib import Path
 import shutil
+import sys
 import tempfile
 
 from .common import (Control, HarnessError, ROM_SHA1, DECOMPRESSED_SHA1, command,
                      digest, run_logged)
+
+
+LINK_OUTPUTS = ('build/us/banjotooie_decompressed.elf', 'build/us/banjotooie_decompressed_prelim.elf',
+                'build/us/banjotooie_decompressed.z64', 'build/us/banjotooie.z64')
+
+
+BASELINE = '.baseline'
+
+
+def object_path(source):
+    return 'build/us/' + source + '.o'
 
 
 def verify_rom(root: Path, decompressed=False):
@@ -85,10 +97,37 @@ class Builder:
 
     @staticmethod
     def object_path(source):
-        return 'build/us/' + source + '.o'
+        return object_path(source)
+
+    def save_baseline(self, source, log: Path):
+        """Keep the verified object next to it; inside the build environment, like make.
+
+        Build outputs are only ever written by the container: host-side writes or deletes
+        under build/ can leave Docker Desktop's file sharing with a stale view, after
+        which `ld` fails to create its outputs (observed: every later ROM check failed)."""
+        obj = self.object_path(source)
+        if not (self.root/obj).is_file():
+            return False
+        if self.invoke(['cp', '-p', obj, obj + BASELINE], log):
+            raise HarnessError(f'Could not save baseline object for {source}; see {log}')
+        return True
+
+    def restore(self, source, original: bytes, saved: bool, log: Path):
+        """Return a translation unit to its verified baseline without rebuilding.
+
+        Exact source bytes, the saved baseline object, and no linked outputs: the next
+        `make check` must relink instead of trusting timestamps."""
+        from .common import atomic_write
+        atomic_write(self.root/source, original)
+        obj = self.object_path(source)
+        args = (['sh', '-c', 'cp -p "$1" "$2" && shift 2 && rm -f "$@"', 'restore', obj + BASELINE, obj, *LINK_OUTPUTS]
+                if saved else ['rm', '-f', obj, *LINK_OUTPUTS])
+        if self.invoke(args, log):
+            raise HarnessError(f'Could not restore the baseline object for {source}; see {log}')
 
     def disassemble(self, source, symbol):
-        result = command(self.argv(['mips-linux-gnu-objdump', '-drz', f'--disassemble={symbol}', self.object_path(source)]), self.root, timeout=90)
+        # -t: the symbol table lets scoring rebase named rodata labels to section offsets.
+        result = command(self.argv(['mips-linux-gnu-objdump', '-drzt', f'--disassemble={symbol}', self.object_path(source)]), self.root, timeout=90)
         return result.stdout.decode()
 
     def dependencies(self, log):
@@ -115,6 +154,21 @@ def snapshot(root: Path, prefix='decomp-build-') -> Path:
             shutil.copy2(root/name, target/name)
         (target/'build/us').mkdir(parents=True)
         (target/'.harness-snapshot').write_text(str(root))
+    except BaseException:
+        shutil.rmtree(target)
+        raise
+    return target
+
+
+def clone(workspace: Path) -> Path:
+    """Private build lane: an independent copy of a built workspace, mtimes kept so make
+    only recompiles what changes. APFS clones on macOS cost no space or copy time."""
+    target = Path(tempfile.mkdtemp(prefix='decomp-lane-')).resolve()
+    try:
+        if sys.platform == 'darwin':
+            command(['cp', '-cRp', f'{workspace}/.', str(target)], timeout=600)
+        else:
+            shutil.copytree(workspace, target, symlinks=True, dirs_exist_ok=True)
     except BaseException:
         shutil.rmtree(target)
         raise

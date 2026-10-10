@@ -31,7 +31,7 @@ def parser():
     cli = argparse.ArgumentParser(prog='decomp-agent', description='Subscription CLI matching harness; local patterns; no API-key billing')
     cli.add_argument('--repo', type=Path, help='Repository root (default: current Git repository)')
     sub = cli.add_subparsers(dest='command', required=True)
-    for name in ('init', 'doctor', 'scan', 'status', 'next', 'run', 'retry', 'inspect', 'verify', 'report', 'patterns', 'stop-after-current', 'knowledge'):
+    for name in ('init', 'doctor', 'scan', 'status', 'next', 'run', 'retry', 'inspect', 'verify', 'report', 'patterns', 'stop-after-current', 'knowledge', 'progress'):
         p = sub.add_parser(name)
         p.add_argument('--json', action='store_true')
         if name in ('retry', 'inspect', 'verify'):
@@ -42,7 +42,7 @@ def parser():
             p.add_argument('--model', help='Explicit model override; never an automatic fallback')
             p.add_argument('--provider', choices=('codex', 'claude'), help='Explicit subscription CLI backend (requires --model for run/next)')
         if name == 'run':
-            p.add_argument('--concurrency', type=int, choices=(1, 2), help='Isolated workers; validation and commits stay serialized')
+            p.add_argument('--concurrency', type=positive, help='Isolated workers (each with its own worktree); validation and commits stay serialized')
             local = p.add_mutually_exclusive_group()
             local.add_argument('--local-only', action='store_true', help='Only deterministic/reused candidates; no CLI authentication or inference')
             local.add_argument('--no-local', action='store_true', help='Skip local candidates, e.g. for a bounded model benchmark')
@@ -83,11 +83,46 @@ def summary(state):
     workers = state.db.execute("SELECT count(*) FROM runs WHERE kind='worker'").fetchone()[0]
     matched = state.db.execute("SELECT count(*) FROM runs WHERE kind='worker' AND outcome='matched'").fetchone()[0]
     local = state.db.execute("SELECT count(*) FROM runs WHERE kind='local' AND outcome='matched'").fetchone()[0]
+    # Code bytes are the honest progress measure: 400 tiny getters are not 400 functions' worth of work.
+    matched_bytes, total_bytes = state.db.execute(
+        "SELECT coalesce(sum(CASE WHEN status='matched' THEN size END),0), coalesce(sum(size),0) FROM functions WHERE status!='skipped'").fetchone()
     return {'open_functions': kinds.get('function', 0), 'data_directives': kinds.get('data', 0),
+            'matched_code_bytes': matched_bytes, 'code_bytes': total_bytes,
+            'matched_code_percent': round(100*matched_bytes/total_bytes, 3) if total_bytes else 0,
             'statuses': statuses, 'runs': models, 'reported_usage': dict(usage),
             'matched_functions_per_worker_run': matched/workers if workers else 0,
             'local_matches': local, 'learned_patterns': state.db.execute('SELECT count(*) FROM patterns').fetchone()[0],
-            'state_schema': 2}
+            'solved_shape_groups': state.db.execute('SELECT count(DISTINCT shape) FROM solutions').fetchone()[0],
+            'state_schema': 3}
+
+
+# tools/progress.py (mapfile .text) at the fork point 25033be6. The ROM never changes, so the
+# total is fixed; progress.py itself keeps reporting the fork value because matched functions'
+# nonmatching .s files are retained as references.
+TOTAL_CODE_BYTES = 2904832
+FORK_DECOMPED_BYTES = 377848
+# Same run, per src/ folder (the README badges): folder -> (decomped at fork, total).
+FORK_SEGMENT_BYTES = {'boot': (15936, 15936), 'core1': (62860, 153680), 'core2': (97384, 616096),
+                      'overlays': (201668, 2119120)}
+
+
+def progress(state):
+    count, matched = state.db.execute(
+        "SELECT count(*), coalesce(sum(size),0) FROM functions WHERE status='matched'").fetchone()
+    pct = lambda b: round(100*b/TOTAL_CODE_BYTES, 3)
+    gained = dict(state.db.execute(
+        "SELECT substr(source,5,instr(substr(source,5),'/')-1), sum(size) FROM functions WHERE status='matched' GROUP BY 1"))
+    segments = {name: {'fork_percent': round(100*fork/total, 2), 'percent': round(100*(fork+gained.get(name, 0))/total, 2)}
+                for name, (fork, total) in FORK_SEGMENT_BYTES.items()}
+    # Open = still present and unmatched, same filter as the scheduler's queue; matched counts harness matches.
+    difficulties = {r[0]: {'open': r[1], 'open_code_bytes': r[2], 'matched': r[3]} for r in state.db.execute('''
+        SELECT difficulty, coalesce(sum(present=1 AND status!='matched'),0),
+               coalesce(sum(CASE WHEN present=1 AND status!='matched' THEN size END),0), coalesce(sum(status='matched'),0)
+        FROM functions WHERE json_extract(features,'$.kind')='function' GROUP BY difficulty
+        ORDER BY CASE difficulty WHEN 'easy' THEN 1 WHEN 'medium' THEN 2 WHEN 'hard' THEN 3 ELSE 4 END''')}
+    return {'segments': segments, 'difficulties': difficulties, 'fork_percent': pct(FORK_DECOMPED_BYTES), 'project_percent': pct(FORK_DECOMPED_BYTES+matched),
+            'gained_percent_points': pct(matched), 'matched_functions': count, 'matched_code_bytes': matched,
+            'decomped_code_bytes': FORK_DECOMPED_BYTES+matched, 'total_code_bytes': TOTAL_CODE_BYTES}
 
 
 def doctor(root, state, config, control, args):
@@ -168,7 +203,8 @@ def dry_run(root, state, config, args):
     state.sync(scan(root))
     seed_matches(root, state)
     if args.local_only:
-        plan = local_plan(root, state, args.difficulty, args.function)
+        plan = local_plan(root, state, args.difficulty, args.function,
+                          m2c=config['m2c'] and (root/'tools/m2c/m2c.py').is_file())
         plan['plan'] = plan['plan'][:args.max_functions]
         return {'dry_run': True, 'codex_runs': 0, 'model_runs': 0, **plan}
     choices, excluded = [], set()
@@ -235,6 +271,8 @@ def dispatch(root, state, config, control, args):
         if args.provider:
             model['provider'] = args.provider
         return {'next': f['id'], 'difficulty': f['difficulty'], 'size': f['size'], 'stage': stage, **model}
+    if args.command == 'progress':
+        return progress(state)
     if args.command == 'patterns':
         return pattern_report(root, state)
     if args.command == 'run':
@@ -284,7 +322,7 @@ def main(argv=None):
             return 0
         # Read-only commands use WAL without taking the scheduler lock.
         from contextlib import nullcontext
-        readonly = args.command in ('status', 'report', 'inspect', 'next', 'patterns')
+        readonly = args.command in ('status', 'progress', 'report', 'inspect', 'next', 'patterns')
         with nullcontext() if readonly else locked(state_dir):
             state = State(state_dir/'state.db')
             result = dispatch(root, state, config, control, args)

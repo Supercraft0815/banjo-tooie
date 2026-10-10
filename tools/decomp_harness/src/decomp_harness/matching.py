@@ -5,12 +5,46 @@ import re
 
 from .common import HarnessError
 
+SYMBOL = re.compile(r'^([0-9a-fA-F]{8}) .{7} (\S+)\t[0-9a-fA-F]{8} ?(.*)$')
+NOT_DATA = {'*UND*', '*ABS*', '*COM*', '.text'}
+IMMEDIATE = re.compile(r'(-?(?:0x[0-9a-fA-F]+|\d+))(?=\(\w+\)$|$)')
 
-def instructions(dump: str, symbol: str):
+
+def local_data(dump: str):
+    """Symbols defined in this object's data sections, from objdump -t."""
+    result = {}
+    for line in dump.splitlines():
+        match = SYMBOL.match(line)
+        if match and match[2] not in NOT_DATA and match[3]:
+            result[match[3]] = (match[2], int(match[1], 16))
+    return result
+
+
+def rebase(row, data):
+    """Express named local-data relocations as section+offset, like IDO emits them.
+
+    asm-processor references `jtbl_X`/`R_X` by name, IDO references `.rodata` with
+    the offset in the instruction. Both encode the same final address.
+    """
+    for index, reloc in enumerate(row['relocs']):
+        kind, _, name = reloc.partition(' ')
+        if kind not in ('R_MIPS_HI16', 'R_MIPS_LO16') or name not in data:
+            continue
+        section, value = data[name]
+        row['relocs'][index] = f'{kind} {section}'
+        if kind == 'R_MIPS_HI16':
+            value = (value + 0x8000) >> 16
+        if value:
+            row['asm'] = IMMEDIATE.sub(lambda m: (hex if m[1].lstrip('-').startswith('0x') else str)(int(m[1], 0) + value),
+                                       row['asm'], count=1)
+
+
+def instructions(dump: str, symbol: str, length: int | None = None):
     """Normalize objdump addresses, retain opcodes/registers/immediates/relocations.
 
-    This is a guidance metric only. A score of 100 never proves a match: the
-    trusted full linked decompressed ROM must compare byte for byte as well.
+    `length` is the instruction count between glabel and endlabel; trailing alignment
+    NOPs beyond it are section padding. This is a guidance metric only. A score of 100
+    never proves a match: the trusted full linked decompressed ROM must compare too.
     """
     rows = []
     start = None
@@ -41,6 +75,11 @@ def instructions(dump: str, symbol: str):
                     target['relocs'].append(reloc[2]+' '+reloc[3].strip())
     if not rows:
         raise HarnessError(f'objdump did not contain instructions for {symbol}')
+    data = local_data(dump)
+    for row in rows:
+        rebase(row, data)
+    if length and len(rows) > length and all(r['asm'] == 'nop' and not r['relocs'] for r in rows[length:]):
+        rows = rows[:length]
     return rows
 
 
@@ -61,3 +100,25 @@ def score(reference, candidate):
     return {'score': round(100*equal/denominator, 4), 'different_instructions': denominator-equal,
             'first_diff': differences[0] if differences else None, 'last_diffs': differences[-4:],
             'diffs': differences, 'object_identical': reference == candidate, 'exact': False}
+
+
+def worth_rom_check(comparison):
+    """The expensive full-ROM check only runs when the object can plausibly match."""
+    return comparison['different_instructions'] == 0 or comparison['score'] >= 99
+
+
+def render(comparison, limit=12):
+    """Compact expected/actual listing for workers; offsets are function-relative."""
+    lines = [f"score {comparison['score']:.2f}, {comparison['different_instructions']} differing instructions"]
+    for diff in comparison['diffs'][:limit]:
+        lines.append(f"- {diff['kind']} at instruction {diff['reference_index']}"
+                     f" (expected {diff['reference_count']}, got {diff['candidate_count']}):")
+        expected, actual = diff['expected'][:4], diff['actual'][:4]
+        for i in range(max(len(expected), len(actual))):
+            left = expected[i] if i < len(expected) else None
+            right = actual[i] if i < len(actual) else None
+            show = lambda r: (r['asm'] + (' [' + ', '.join(r['relocs']) + ']' if r['relocs'] else '')) if r else '-'
+            lines.append(f'    {show(left):<44} | {show(right)}')
+    if len(comparison['diffs']) > limit:
+        lines.append(f"... {len(comparison['diffs']) - limit} more difference blocks")
+    return '\n'.join(lines)
