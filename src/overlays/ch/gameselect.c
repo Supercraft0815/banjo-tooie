@@ -403,7 +403,19 @@ void func_80803CE0_chgameselect()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080407C_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808040DC_chgameselect.s")
+void func_808040DC_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _gcnewoption_entrypoint_13(s32, s32, s32 *);
+    s32 _gcnewoption_entrypoint_18();
+    s32 _gcnewoption_entrypoint_22(s32, s32);
+    extern s32 D_808083D8_chgameselect;
+    if (_gcnewoption_entrypoint_18() == 0) {
+        _gcnewoption_entrypoint_22(arg0, arg1);
+        _gcnewoption_entrypoint_13(arg0, arg1, &D_808083D8_chgameselect);
+        if (arg2 != 0) {
+            func_80803CE0_chgameselect();
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080413C_chgameselect.s")
 
