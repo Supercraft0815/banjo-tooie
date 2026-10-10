@@ -27,7 +27,13 @@ OSThread *chnutsnbolts_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nutsnbolts/func_808005D0_chnutsnbolts.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nutsnbolts/func_808008FC_chnutsnbolts.s")
+/* extern */
+
+void func_808008FC_chnutsnbolts(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    s32 _subaddiefx_entrypoint_1(Actor *, u8 *);
+    _subaddiefx_entrypoint_1(arg0, func_80100094(arg0, 0U));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nutsnbolts/func_8080092C_chnutsnbolts.s")
 
