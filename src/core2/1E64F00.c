@@ -22,7 +22,16 @@ void func_8008B610(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008B850.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008B8E0.s")
+s16 func_8008B8E0(void) {
+    s16 func_8008BAC0(s32 *);
+    s32 sp1C;
+    s16 *temp_v0;
+
+    temp_v0 = (s16 *)func_8008BAC0(&sp1C);
+    temp_v0[1] = 0;
+    temp_v0[0] = 0;
+    return *(s16 *)((s8 *)&sp1C + 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008B90C.s")
 
