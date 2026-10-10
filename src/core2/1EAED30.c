@@ -47,7 +47,20 @@ s32 func_800D5944()
     return D_8012B7E8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5950.s")
+s32 func_800D5950(s32 arg0) {
+    s32 rom_read_word(s32, u32 *);
+    extern s32 D_8011B900;
+    extern u32 D_8012B440;
+    extern u32 D_8012B444;
+    s32 temp_v0[2];
+    register s32 offset;
+
+    offset = arg0 * 4;
+    rom_read_word(D_8011B900 + offset, (temp_v0[1] = offset, &D_8012B440));
+    offset = temp_v0[1];
+    rom_read_word(D_8011B900 + offset + 4, &D_8012B444);
+    return ((u32) D_8012B444 >> 6) - ((u32) D_8012B440 >> 6);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D59C0.s")
 
