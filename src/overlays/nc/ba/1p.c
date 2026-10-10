@@ -7,7 +7,19 @@ s32 ncba1p_entrypoint_0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/1p/func_80800008_ncba1p.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/1p/func_8080004C_ncba1p.s")
+/* extern */
+
+void func_8080004C_ncba1p(void **arg0, s32 arg1) {
+    s32 func_800F7B9C(s32, s32);
+    s32 func_80110840();
+    s32 temp_a0;
+
+    temp_a0 = func_80110840();
+    if ((*(u8 *)((s8 *)(*arg0) + (0x51))) == 0) {
+        func_800F7B9C(temp_a0, arg1);
+        (*(s8 *)((s8 *)(*arg0) + (0x51))) = 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/1p/func_808000A0_ncba1p.s")
 
