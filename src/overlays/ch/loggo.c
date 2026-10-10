@@ -14,7 +14,28 @@ OSThread *chloggo_entrypoint_1(void)
     return (OSThread *) D_80800690_chloggo;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/loggo/func_80800018_chloggo.s")
+/* extern */
+
+void func_80800018_chloggo(s32 arg0) {
+    s32 _gccubesearch_entrypoint_0(s32, s32);
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800D0A9C(s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800EE88C(s32, s32);
+    s32 func_80102424(s32, s32);
+    s32 func_8010A570(s32);
+    s32 func_8010A5B0(s32, s32);
+    func_800EE88C(arg0 + 0x18, _gccubesearch_entrypoint_0(0x201, arg0));
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80102424(arg0, 4);
+        return;
+    }
+    if (func_800D0A9C(0x10, 4) != 0) {
+        func_8010A570(arg0);
+        return;
+    }
+    func_8010A5B0(arg0, func_800DA298(0x169));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/loggo/func_808000AC_chloggo.s")
 
