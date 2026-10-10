@@ -5,7 +5,23 @@ s32 basetup_entrypoint_0()
     return 0x4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/func_80800008_basetup.s")
+/* extern */
+
+void func_80800008_basetup(s32 arg0) {
+    s32 func_800A0FF0(s32);
+    s32 func_800DA298(s32);
+    s32 func_800DB9B0();
+    s32 func_800EA05C();
+    s32 func_800EA090();
+    s32 sp1C;
+    s32 sp18;
+
+    sp1C = func_800EA05C();
+    sp18 = func_800EA090();
+    if ((func_800DB9B0() == 0) && (((sp1C == 0x13A) && (sp18 == 0xE)) || ((sp1C == 0x136) && (sp18 == 0x1B))) && (func_800DA298(0x327) != 0)) {
+        func_800A0FF0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/func_80800080_basetup.s")
 
