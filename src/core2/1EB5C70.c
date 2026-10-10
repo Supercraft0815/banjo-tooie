@@ -1,6 +1,16 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5C70/func_800DC380.s")
+void func_800DC380(void) {
+    s32 func_80012EDC(s32 *);
+    s32 func_8001EB10(s32 *);
+    extern s32 D_8012C800;
+    (*(s32 *)((s8 *)(&D_8012C800) + (0))) = 0x32;
+    (*(s32 *)((s8 *)(&D_8012C800) + (4))) = 0x100;
+    (*(s16 *)((s8 *)(&D_8012C800) + (0x10))) = 0x40;
+    (*(s32 *)((s8 *)(&D_8012C800) + (8))) = 0x18;
+    (*(s32 *)((s8 *)(&D_8012C800) + (0xC))) = func_80012EDC(&D_8012C800);
+    func_8001EB10(&D_8012C800);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5C70/func_800DC3D4.s")
 
