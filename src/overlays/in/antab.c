@@ -93,7 +93,6 @@ extern f32 D_80807664_inantab[8];
 #define INANTAB_ARG(actor) (*(s32 *)&(actor))
 
 s32 func_80800020_inantab(s32 arg0, s16 *arg1, Actor *arg2) {
-
     switch (arg0) {
     case 0x1:
         INANTAB_ANSEQ2(arg1, D_80806F80_inantab, func_800BFCD0, 1, 1);
@@ -702,12 +701,152 @@ s32 func_80800020_inantab(s32 arg0, s16 *arg1, Actor *arg2) {
     return 1;
 }
 
+void _anseq_entrypoint_4(s16 *, f32, void *, s32, s32, s32, s32);
+void _chanim_entrypoint_5(s16 *, f32, s32, s32, s32);
+void _inantab_entrypoint_1();
+extern f32 D_80807684_inantab[21];
+extern f32 D_808076D8_inantab[17];
+extern f32 D_8080771C_inantab[9];
+extern f32 D_80807740_inantab[9];
+extern f32 D_80807764_inantab[1];
+extern f32 D_80807768_inantab[1];
+extern f32 D_8080776C_inantab[1];
+extern f32 D_80807770_inantab[3];
+extern f32 D_8080777C_inantab[1];
+
+s32 func_808057BC_inantab(s32 arg0, s16 *arg1, Actor *arg2) {
+    switch (arg0) {
+    case 0x26:
+        _chanim_entrypoint_4(arg1, 0.01f, INANTAB_ARG(arg2), 4, 0);
+        _chanim_entrypoint_4(arg1, 0.01f, INANTAB_ARG(arg2), 3, 1);
+        INANTAB_ANSEQ3(arg1, D_80807684_inantab, _indrv_fx_entrypoint_0, INANTAB_ARG(arg2), 0xE, 4);
+        INANTAB_ANSEQ3(arg1, D_80807684_inantab, _indrv_fx_entrypoint_0, INANTAB_ARG(arg2), 0xE, 5);
+        INANTAB_ANSEQ3(arg1, D_808076D8_inantab, _indrv_fx_entrypoint_0, INANTAB_ARG(arg2), 0xE, 4);
+        INANTAB_ANSEQ3(arg1, D_808076D8_inantab, _indrv_fx_entrypoint_0, INANTAB_ARG(arg2), 0xE, 5);
+        break;
+    case 0x37:
+        _chanim_entrypoint_4(arg1, 0.01f, INANTAB_ARG(arg2), 4, 0);
+        _chanim_entrypoint_4(arg1, 0.01f, INANTAB_ARG(arg2), 3, 1);
+        _chanim_entrypoint_4(arg1, 0.03f, INANTAB_ARG(arg2), 3, 0);
+        _chanim_entrypoint_4(arg1, 0.426f, INANTAB_ARG(arg2), 4, 1);
+        _chanim_entrypoint_4(arg1, 0.934f, INANTAB_ARG(arg2), 3, 1);
+        _chanim_entrypoint_4(arg1, 0.934f, INANTAB_ARG(arg2), 4, 0);
+        break;
+    case 0x25:
+        _chanim_entrypoint_4(arg1, 0.01f, INANTAB_ARG(arg2), 3, 0);
+        _chanim_entrypoint_4(arg1, 0.0348f, INANTAB_ARG(arg2), 3, 1);
+        _chanim_entrypoint_4(arg1, 0.418f, INANTAB_ARG(arg2), 3, 0);
+        break;
+    case 0x67:
+        _chanim_entrypoint_4(arg1, 0.01f, INANTAB_ARG(arg2), 3, 0);
+        _chanim_entrypoint_4(arg1, 0.0312f, INANTAB_ARG(arg2), 3, 1);
+        break;
+    case 0x27:
+        INANTAB_ANSEQ3(arg1, D_8080771C_inantab, _indrv_fx_entrypoint_0, INANTAB_ARG(arg2), 0xF, 4);
+        _anseq_entrypoint_3(arg1, 0.1f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        _anseq_entrypoint_3(arg1, 0.15f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        _anseq_entrypoint_3(arg1, 0.2f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        _anseq_entrypoint_3(arg1, 0.25f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        _anseq_entrypoint_3(arg1, 0.3f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        _anseq_entrypoint_3(arg1, 0.35f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        _anseq_entrypoint_3(arg1, 0.4f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        _anseq_entrypoint_3(arg1, 0.45f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        _anseq_entrypoint_3(arg1, 0.5f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        _anseq_entrypoint_3(arg1, 0.55f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        _anseq_entrypoint_3(arg1, 0.6f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        _anseq_entrypoint_3(arg1, 0.65f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        _anseq_entrypoint_3(arg1, 0.7f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        _anseq_entrypoint_3(arg1, 0.75f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        _anseq_entrypoint_3(arg1, 0.8f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        _anseq_entrypoint_3(arg1, 0.85f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        _anseq_entrypoint_3(arg1, 0.9f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        _anseq_entrypoint_3(arg1, 0.95f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        _anseq_entrypoint_3(arg1, 0.99f, _indrv_lights_entrypoint_0, 0x70006, INANTAB_ARG(arg2), 4);
+        break;
+    case 0x3F:
+        _chanim_entrypoint_4(arg1, 0.01f, INANTAB_ARG(arg2), 2, 3);
+        _chanim_entrypoint_4(arg1, 0.01f, INANTAB_ARG(arg2), 3, 1);
+        _chanim_entrypoint_4(arg1, 0.01f, INANTAB_ARG(arg2), 4, 1);
+        break;
+    case 0x40:
+        _chanim_entrypoint_4(arg1, 0.01f, INANTAB_ARG(arg2), 2, 1);
+        break;
+    case 0x41:
+        _chanim_entrypoint_4(arg1, 0.01f, INANTAB_ARG(arg2), 4, 2);
+        break;
+    case 0x42:
+        _chanim_entrypoint_4(arg1, 0.01f, INANTAB_ARG(arg2), 3, 2);
+        break;
+    case 0x43:
+        _chanim_entrypoint_4(arg1, 0.01f, INANTAB_ARG(arg2), 2, 2);
+        break;
+    case 0x47:
+        _anseq_entrypoint_4(arg1, 0.0f, _inantab_entrypoint_1, INANTAB_ARG(arg2), 0, 0x100, 0x200);
+        _anseq_entrypoint_4(arg1, 0.5f, _inantab_entrypoint_1, INANTAB_ARG(arg2), 0, 0x100, 0x200);
+        _chanim_entrypoint_4(arg1, 0.0f, INANTAB_ARG(arg2), 1, 0);
+        _chanim_entrypoint_4(arg1, 0.5f, INANTAB_ARG(arg2), 1, 1);
+        _chanim_entrypoint_5(arg1, -1.0f, INANTAB_ARG(arg2), 2, 4);
+        break;
+    case 0x48:
+        INANTAB_ANSEQ3(arg1, D_80807740_inantab, _indrv_fx_entrypoint_0, INANTAB_ARG(arg2), 0x13, -1);
+        break;
+    case 0x49:
+        INANTAB_ANSEQ3(arg1, D_80807764_inantab, _indrv_fx_entrypoint_0, INANTAB_ARG(arg2), 0x14, -1);
+        INANTAB_ANSEQ3(arg1, D_80807768_inantab, _indrv_lights_entrypoint_0, 0x30000, -0x100, 0);
+        INANTAB_ANSEQ3(arg1, D_8080776C_inantab, _indrv_lights_entrypoint_0, 0x30000, 0, 0x4C);
+        break;
+    case 0x4C:
+        _chanim_entrypoint_4(arg1, 0.01f, INANTAB_ARG(arg2), 3, 0);
+        break;
+    case 0x4D:
+        _chanim_entrypoint_4(arg1, 0.01f, INANTAB_ARG(arg2), 3, 0);
+        break;
+    case 0x4E:
+        _chanim_entrypoint_4(arg1, 0.01f, INANTAB_ARG(arg2), 3, 0);
+        break;
+    case 0x4F:
+        _chanim_entrypoint_4(arg1, 0.01f, INANTAB_ARG(arg2), 3, 0);
+        break;
+    case 0x50:
+        _chanim_entrypoint_4(arg1, 0.01f, INANTAB_ARG(arg2), 3, 1);
+        INANTAB_ANSEQ3(arg1, D_80807770_inantab, _indrv_fx_entrypoint_0, INANTAB_ARG(arg2), 0x18, 4);
+        break;
+    case 0x54:
+        _chanim_entrypoint_4(arg1, 0.0f, INANTAB_ARG(arg2), 3, 0);
+        _chanim_entrypoint_4(arg1, 0.0f, INANTAB_ARG(arg2), 5, 0);
+        break;
+    case 0x55:
+        _chanim_entrypoint_4(arg1, 0.0f, INANTAB_ARG(arg2), 3, 1);
+        _chanim_entrypoint_4(arg1, 0.0f, INANTAB_ARG(arg2), 5, 0);
+        break;
+    case 0x61:
+        _chanim_entrypoint_4(arg1, 0.0f, INANTAB_ARG(arg2), 3, 0);
+        _chanim_entrypoint_4(arg1, 0.0f, INANTAB_ARG(arg2), 5, 1);
+        break;
+    case 0x68:
+        _anseq_entrypoint_3(arg1, 0.1f, _indrv_fx_entrypoint_0, INANTAB_ARG(arg2), 0x1A, 4);
+        _anseq_entrypoint_3(arg1, 0.2f, _indrv_fx_entrypoint_0, INANTAB_ARG(arg2), 0x1B, 5);
+        _anseq_entrypoint_3(arg1, 0.3f, _indrv_fx_entrypoint_0, INANTAB_ARG(arg2), 0x1C, 6);
+        _anseq_entrypoint_3(arg1, 0.4f, _indrv_fx_entrypoint_0, INANTAB_ARG(arg2), 0x1D, 7);
+        _anseq_entrypoint_3(arg1, 0.5f, _indrv_fx_entrypoint_0, INANTAB_ARG(arg2), 0x1E, 8);
+        _anseq_entrypoint_3(arg1, 0.15f, _indrv_fx_entrypoint_0, INANTAB_ARG(arg2), 0x1A, 6);
+        _anseq_entrypoint_3(arg1, 0.25f, _indrv_fx_entrypoint_0, INANTAB_ARG(arg2), 0x1B, 9);
+        _anseq_entrypoint_3(arg1, 0.35f, _indrv_fx_entrypoint_0, INANTAB_ARG(arg2), 0x1C, 0xA);
+        _anseq_entrypoint_3(arg1, 0.6f, _indrv_fx_entrypoint_0, INANTAB_ARG(arg2), 0x1D, 0xB);
+        _anseq_entrypoint_3(arg1, 0.7f, _indrv_fx_entrypoint_0, INANTAB_ARG(arg2), 0x1E, 0xC);
+        INANTAB_ANSEQ3(arg1, D_8080777C_inantab, _indrv_audio_entrypoint_0, INANTAB_ARG(arg2), 0xB5, -2);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
+
 #undef INANTAB_ANSEQ2
 #undef INANTAB_ANSEQ3
 #undef INANTAB_CHANIM4
 #undef INANTAB_ARG
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/in/antab/func_808057BC_inantab.s")
 
 /* extern */
 
