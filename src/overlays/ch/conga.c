@@ -25,4 +25,8 @@ void func_80800280_chconga(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/conga/func_80800538_chconga.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/conga/func_80800618_chconga.s")
+void func_80800618_chconga(Actor *arg0) {
+    extern u32 D_80800714_chconga;
+    extern u32 D_80800724_chconga;
+    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80800714_chconga, &D_80800724_chconga);
+}
