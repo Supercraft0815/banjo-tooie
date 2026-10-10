@@ -7,7 +7,11 @@ OSThread *chsquits_entrypoint_0(void)
     return (OSThread *) D_808006D8_chsquits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/squits/func_8080000C_chsquits.s")
+void func_8080000C_chsquits(u8 *arg0) {
+    f32 func_800DC178(f32, f32);
+    (*(u16 *)((s8 *)(arg0) + (0x6E))) = (u16) (((*(u16 *)((s8 *)(arg0) + (0x6E))) & 0xFE00) | 1);
+    (*(f32 *)((s8 *)(arg0) + (0x2C))) = func_800DC178(5.0f, 8.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/squits/func_80800054_chsquits.s")
 
