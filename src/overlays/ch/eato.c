@@ -37,7 +37,23 @@ OSThread *chcheato_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800B00_chcheato.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800BB8_chcheato.s")
+/* extern */
+
+s32 func_80800BB8_chcheato(void) {
+    s32 func_800D3DD0(s32);
+    s32 var_s0;
+
+    var_s0 = 1;
+loop_1:
+    if (func_800D3DD0(var_s0) == 0) {
+        return var_s0;
+    }
+    var_s0 += 1;
+    if (var_s0 == 6) {
+        return -1;
+    }
+    goto loop_1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800C0C_chcheato.s")
 
