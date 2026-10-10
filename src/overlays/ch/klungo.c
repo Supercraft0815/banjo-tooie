@@ -15,7 +15,24 @@ OSThread *chklungo_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_808010E0_chklungo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_808011B4_chklungo.s")
+void func_808011B4_chklungo(void *arg0, s32 arg1)
+{
+  s32 func_800DF440(s32);
+  s32 func_80101808(void *, s32 *);
+  extern s32 func_801017D0;
+  u32 temp_t7;
+  temp_t7 = (u16) (*((u16 *) (((s8 *) arg0) + 0x72)));
+  temp_t7 = temp_t7 >> 0xA;
+  if (((temp_t7 == 0xD) || (temp_t7 == 0x15)) || (temp_t7 == 0x16))
+  {
+    func_800DF440(0);
+  }
+  else
+  {
+    func_800DF440(1);
+  }
+  func_80101808(arg0, &func_801017D0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80801220_chklungo.s")
 
