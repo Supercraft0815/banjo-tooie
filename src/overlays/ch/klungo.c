@@ -65,7 +65,17 @@ OSThread *chklungo_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80802914_chklungo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80802940_chklungo.s")
+void func_80802940_chklungo(s32 arg0) {
+    s32 _subaddieaudioquick_entrypoint_2(s32, s32, s32 *);
+    s32 func_80018820(s32, s32, s32);
+    s32 func_800E15CC(s32, s32, s32);
+    s32 func_8080299C_chklungo();
+    extern s32 D_80803CB8_chklungo;
+    func_8080299C_chklungo();
+    func_80018820(0, 0x3F800000, 0x3ECCCCCD);
+    func_800E15CC(0, 0x41200000, 0x3F4CCCCD);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80803CB8_chklungo);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_8080299C_chklungo.s")
 
