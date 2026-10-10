@@ -1,6 +1,25 @@
 #include "core2/1ED8C80.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FF390.s")
+void func_800FF390(void) {
+    s32 func_80104170();
+    s32 func_80104350();
+    s32 func_80105410();
+    s32 func_80105C20();
+    s32 func_801065E0();
+    s32 func_80106A20();
+    s32 func_80106DF0();
+    s32 func_80107BB0();
+    extern s32 D_80135A50;
+    D_80135A50 = 0;
+    func_801065E0();
+    func_80104170();
+    func_80104350();
+    func_80105410();
+    func_80105C20();
+    func_80106A20();
+    func_80106DF0();
+    func_80107BB0();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FF3EC.s")
 
