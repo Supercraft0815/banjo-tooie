@@ -74,7 +74,10 @@ void bs_setState(PlayerState *self, BanjoStateId nextState) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E77A20/func_8009E674.s")
+s32 func_8009E674(PlayerState *arg0, s32 arg1) {
+    s32 func_8009CA70(PlayerState *, s32, s32);
+    return func_8009CA70(arg0, arg0->state->current, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E77A20/func_8009E69C.s")
 
