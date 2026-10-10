@@ -82,7 +82,20 @@ void func_80800D20_chterryegg(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80800D88_chterryegg.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80800E0C_chterryegg.s")
+/* extern */
+
+s32 func_80800E0C_chterryegg(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_800C05B8(s32, s32, s32, s32, s32, s32, s32);
+    s32 func_800CBD84(s32);
+    s32 func_800EA05C();
+    s32 func_80800D88_chterryegg(s32, s32);
+    if ((func_800EA05C() == 0x113) && (func_800CBD84(arg1) != -1)) {
+        func_80800D88_chterryegg(arg0, arg2);
+        return 2;
+    }
+    func_800C05B8(0x17E0, 1, 0, 0, 0, 0, 0);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80800E88_chterryegg.s")
 
