@@ -117,7 +117,10 @@ void func_80113410(void *arg0) {
     } while (var_s0 != 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_8011347C.s")
+void func_8011347C(PlayerState *arg0) {
+    void func_801107F0(PlayerState *, f32 *);
+    func_801107F0(arg0, arg0->bounce);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_8011349C.s")
 
