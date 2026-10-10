@@ -19,7 +19,28 @@ OSThread *chjigsawbitcont_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_80800570_chjigsawbitcont.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_80800634_chjigsawbitcont.s")
+void func_80800634_chjigsawbitcont(s32 arg0) {
+    s32 func_8001211C();
+    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+    f32 func_800DC0C0();
+    s32 func_800E3E8C(s32, s32);
+    s32 func_800FFAB0(s32);
+    s32 func_8010C9B0(s32, s32);
+    s32 func_8080040C_chjigsawbitcont(s32);
+    extern s32 D_80800A00_chjigsawbitcont;
+    s32 sp24;
+    s32 temp_a0;
+
+    temp_a0 = arg0 + 4;
+    sp24 = temp_a0;
+    if ((func_800E3E8C(temp_a0, 0x42480000) != 0) && !(func_8001211C() & 3) && (func_800DC0C0() < 0.1f)) {
+        func_800BBCB8(sp24, 0, 0x3F800000, 2, &D_80800A00_chjigsawbitcont);
+    }
+    if (func_8010C9B0(sp24, 0x32) != 0) {
+        func_8080040C_chjigsawbitcont(arg0);
+        func_800FFAB0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_808006D8_chjigsawbitcont.s")
 
