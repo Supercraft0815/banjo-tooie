@@ -31,4 +31,12 @@ u32 func_800A25D0(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BAB0/func_800A25DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BAB0/func_800A266C.s")
+void func_800A266C(u8 *arg0) {
+    s32 func_800B38E8(s32);
+    s32 temp_a1;
+
+    temp_a1 = (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xB4)))) + (4)));
+    if (temp_a1 != 0) {
+        (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xB4)))) + (4))) = func_800B38E8(temp_a1);
+    }
+}
