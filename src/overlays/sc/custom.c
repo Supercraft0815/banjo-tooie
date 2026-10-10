@@ -211,7 +211,15 @@ void sccustom_entrypoint_5(s32 arg0) {
     func_808006C4_sccustom(arg0, func_8080050C_sccustom(arg0, 0x2FU));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/custom/func_8080084C_sccustom.s")
+s32 func_8080084C_sccustom(s32 arg0) {
+    s32 _scinfobar_entrypoint_19(s32);
+    s32 func_800DB8BC(s32 *, s32);
+    s32 func_800E73D4(s32 *);
+    extern s32 B_80800950_sccustom;
+    func_800E73D4(&B_80800950_sccustom);
+    func_800DB8BC(&B_80800950_sccustom, _scinfobar_entrypoint_19(arg0));
+    return (s32) &B_80800950_sccustom;
+}
 
 /* extern */
 
