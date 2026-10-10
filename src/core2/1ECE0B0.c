@@ -713,7 +713,15 @@ void func_800F732C(void) {
     D_801354DA = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7364.s")
+void func_800F7364(s32 arg0) {
+    void func_80092AA4(PlayerState* arg0);
+    PlayerState *temp_a1;
+
+    temp_a1 = D_80135490[arg0];
+    if (temp_a1 != NULL) {
+        func_80092AA4(temp_a1);
+    }
+}
 
 /* extern */
 
