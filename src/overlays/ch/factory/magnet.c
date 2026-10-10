@@ -38,7 +38,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80801CD8_chfactorymagnet.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80801E84_chfactorymagnet.s")
+void func_80801E84_chfactorymagnet(u8 *arg0) {
+    s32 _sumumbofx_entrypoint_1(void *, s32);
+    if ((*(s16 *)((s8 *)(arg0) + (0x82))) != 0) {
+        _sumumbofx_entrypoint_1(arg0, 0);
+    }
+}
 
 OSThread *chfactorymagnet_entrypoint_1(void)
 {
