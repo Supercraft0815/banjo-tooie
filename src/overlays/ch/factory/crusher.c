@@ -42,6 +42,15 @@ void func_808008B8_chfactorycrusher(s32 arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/crusher/func_808008F0_chfactorycrusher.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/crusher/func_80800984_chfactorycrusher.s")
+/* extern */
+
+void func_80800984_chfactorycrusher(s32 arg0) {
+    s32 _chswitch_entrypoint_7(s32, s32);
+    s32 _chswitch_entrypoint_8(s32, s32);
+    s32 _chswitch_entrypoint_9(s32);
+    _chswitch_entrypoint_7(arg0, 0x329);
+    _chswitch_entrypoint_8(arg0, 1);
+    _chswitch_entrypoint_9(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/crusher/func_808009BC_chfactorycrusher.s")
