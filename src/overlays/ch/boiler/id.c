@@ -22,7 +22,13 @@ void func_808003EC_chboilerid(s32 arg0) {
     func_800CF494();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_80800418_chboilerid.s")
+/* extern */
+
+void func_80800418_chboilerid(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    s32 _mlwave_entrypoint_1(u8 *);
+    _mlwave_entrypoint_1(func_80100094(arg0, 0U));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_80800440_chboilerid.s")
 
