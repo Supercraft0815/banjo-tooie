@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/cannon/func_80800000_chfantasycannon.s")
+/* extern */
+
+void func_80800000_chfantasycannon(u8 *arg0) {
+    s32 func_800DA298(s32);
+    func_800DA298(((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7) + 0x55D);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/cannon/func_80800028_chfantasycannon.s")
 
