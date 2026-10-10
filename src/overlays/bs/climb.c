@@ -45,7 +45,18 @@ s32 bsclimb_entrypoint_7(s32 arg0) {
     return ((s32 *)&D_8080090C_bsclimb)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/bsclimb_entrypoint_8.s")
+/* extern */
+
+void bsclimb_entrypoint_8(s32 arg0) {
+    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    s32 baphysics_set_type(s32, s32);
+    s32 func_8008CA4C(s32, s32);
+    s32 func_808000E8_bsclimb(s32);
+    baanim_playForDuration_loopSmooth(arg0, 0xB2, 0x4028F5C3);
+    func_8008CA4C(arg0, 1);
+    func_808000E8_bsclimb(arg0);
+    baphysics_set_type(arg0, 7);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/bsclimb_entrypoint_9.s")
 
