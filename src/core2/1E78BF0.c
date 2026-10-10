@@ -84,7 +84,18 @@ void func_800A0150(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A02DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A042C.s")
+/* extern */
+
+void func_800A042C(PlayerState *arg0) {
+    s32 baroll_setIdeal(s32, f32);
+    void func_8009BF5C(PlayerState *, f32);
+    void func_8009BFBC(void *arg0);
+    s32 baroll_applyIdeal(PlayerState *);
+    func_8009BF5C(arg0, 0.0f);
+    func_8009BFBC(arg0);
+    baroll_setIdeal((s32) arg0, 0.0f);
+    baroll_applyIdeal(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A046C.s")
 
