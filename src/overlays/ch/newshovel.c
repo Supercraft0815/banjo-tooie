@@ -25,7 +25,31 @@ void func_80800310_chnewshovel(Actor* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800330_chnewshovel.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800570_chnewshovel.s")
+void func_80800570_chnewshovel(s32 arg0) {
+    s32 _subaddieaudioquick_entrypoint_3(s32, s32, s32 *, s32);
+    s32 _subaddieaudioquick_entrypoint_4(s32, s32, s32 *, s32 *);
+    s32 func_80101E14(s32, s32);
+    s32 func_801022E4();
+    s32 func_80800CC4_chnewshovel(s32);
+    s32 func_80800D18_chnewshovel(s32);
+    extern s32 D_80801008_chnewshovel;
+    extern s32 D_80801018_chnewshovel;
+    extern s32 D_80801024_chnewshovel;
+    s32 temp_v0;
+
+    temp_v0 = func_801022E4();
+    if (temp_v0 != 0x1BA) {
+        if (temp_v0 == 0x1BB) {
+            _subaddieaudioquick_entrypoint_4(arg0, arg0 + 4, &D_80801008_chnewshovel, &D_80801018_chnewshovel);
+            if (func_80101E14(arg0, 0x3F333333) != 0) {
+                func_80800CC4_chnewshovel(arg0);
+                func_80800D18_chnewshovel(arg0);
+            }
+        }
+    } else {
+        _subaddieaudioquick_entrypoint_3(arg0, arg0 + 4, &D_80801024_chnewshovel, 0x3ECCCCCD);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800610_chnewshovel.s")
 
