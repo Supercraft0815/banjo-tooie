@@ -18,7 +18,20 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80801290_chfantasyeyeball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80801314_chfantasyeyeball.s")
+/* extern */
+
+void func_80801314_chfantasyeyeball(void *arg0) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 func_800A50B0(s32);
+    s32 func_800F54E4();
+    s32 func_800F7B9C(s32, s32);
+    s32 func_800F82D4(s32, s32);
+    func_800F82D4(func_800F54E4(), 0);
+    _subaddieDll_entrypoint_4(arg0, 0);
+    func_800F7B9C(func_800F54E4(), 0x6C);
+    func_800A50B0(2);
+    (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFF7);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80801378_chfantasyeyeball.s")
 
