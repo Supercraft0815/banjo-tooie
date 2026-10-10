@@ -51,7 +51,16 @@ s32 bsbwhirl_entrypoint_7(s32 arg0) {
     return ((s32 *)&D_80800FA8_bsbwhirl)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_8.s")
+/* extern */
+
+void bsbwhirl_entrypoint_8(s32 arg0) {
+    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    s32 func_8008C9F0(s32, s32, s32, s32, f32);
+    s32 func_8009FFD8(s32, s32, s32, s32, s32);
+    baanim_playForDuration_loopSmooth(arg0, 0x11, 0x3F07AE14);
+    func_8008C9F0(arg0, 0x42A00000, 0x43D48000, 0x3F0F5C29, 0.4f);
+    func_8009FFD8(arg0, 2, 1, 1, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_9.s")
 
