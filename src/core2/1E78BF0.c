@@ -78,7 +78,28 @@ void func_800A0150(s32 arg0) {
     func_800FC660(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A0180.s")
+/* extern */
+
+void func_800A0180(PlayerState *arg0) {
+    s32 _badata_entrypoint_16();
+    s32 baflag_isTrue(PlayerState *, s32);
+    s32 baflag_set(PlayerState *, s32);
+    s32 func_800D395C();
+    s32 func_800FCCD4(s32);
+    s32 func_800FE4E4();
+    s32 sp1C;
+
+    sp1C = _badata_entrypoint_16();
+    if (func_800D395C() != 0) {
+        if (func_800FCCD4(sp1C) == 0) {
+            func_800A0150(sp1C);
+        }
+    } else if (baflag_isTrue(arg0, 0x41) == 0) {
+        baflag_set(arg0, 0x41);
+        func_800A0150(sp1C);
+        func_800FE4E4();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A01F8.s")
 
