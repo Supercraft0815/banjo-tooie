@@ -7,7 +7,11 @@ void func_80101010(s32 arg0) {
     func_800EE7F8(&D_80135A70, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDA900/func_80101038.s")
+void func_80101038(s32 *arg0) {
+    s32 func_800EE7F8();
+    extern s32 D_80135A70;
+    func_800EE7F8(arg0, &D_80135A70);
+}
 
 void func_8010105C(f32 arg0) {
     extern f32 D_80135A7C;
