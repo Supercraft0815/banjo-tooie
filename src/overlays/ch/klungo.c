@@ -102,7 +102,11 @@ void func_80802940_chklungo(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80802DF4_chklungo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80802F30_chklungo.s")
+void func_80802F30_chklungo(s32 arg0) {
+    s32 _subaddieaudioquick_entrypoint_2(s32, s32, s32 *);
+    extern s32 D_80803D18_chklungo;
+    _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80803D18_chklungo);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80802F58_chklungo.s")
 
