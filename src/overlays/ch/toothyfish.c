@@ -10,7 +10,30 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800350_chtoothyfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_808003D4_chtoothyfish.s")
+void func_808003D4_chtoothyfish(s32 arg0, u8 *arg1)
+{
+  s32 func_808000E8_chtoothyfish(s32, s32, s32, u8 *);
+  s32 sp18;
+  s32 var_a2;
+  s32 var_v0;
+  u8 *var_v1;
+  var_a2 = 0;
+ do { var_v0 = 0; var_v1 = arg1; do { var_v0 += 1; if ((*((u8 *) (((s8 *) var_v1) + 0x34))) == 0) { var_a2 += 1; } var_v1 += 1; } while (var_v0 != 5); } while (0);
+  if (var_a2 != (*((u8 *) (((s8 *) arg1) + 0x3E))))
+  {
+    if (var_a2 != 0)
+    {
+      sp18 = var_a2;
+      func_808000E8_chtoothyfish(arg0, 2, var_a2, arg1);
+    }
+    else
+    {
+      sp18 = var_a2;
+      func_808000E8_chtoothyfish(arg0, 3, var_a2, arg1);
+    }
+    *((u8 *) (((s8 *) arg1) + 0x3E)) = ((u8) var_a2) & 0xFFFF;
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800470_chtoothyfish.s")
 
