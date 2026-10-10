@@ -52,7 +52,15 @@ void func_8009B7C0(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/baphysics_set_type.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009B94C.s")
+void func_8009B94C(u8 *arg0, s32 arg1) {
+    s32 func_800EE7F8(s32);
+    void func_800EFD24(f32 vec[3]);
+    if (arg1 != 0) {
+        func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x1C);
+        return;
+    }
+    func_800EFD24((*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x1C);
+}
 
 /* extern */
 
