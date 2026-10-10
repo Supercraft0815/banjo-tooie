@@ -8,7 +8,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1294.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1338.s")
+f32 func_800E1338(s32 arg0) {
+    extern f32 D_8012CFB8[];
+    return *(f32 *)((s32)&D_8012CFB8 + ((arg0 * 31) * 4));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1354.s")
 
