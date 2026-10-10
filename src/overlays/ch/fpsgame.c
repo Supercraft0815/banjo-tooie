@@ -13,7 +13,24 @@ OSThread *chfpsgame_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_808000BC_chfpsgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80800138_chfpsgame.s")
+/* extern */
+
+void func_80800138_chfpsgame(u32 arg0) {
+    s32 func_800F5898();
+    s32 func_800F6BE4(s32);
+    s32 func_800F7F98(s32, u32);
+    s32 var_s0;
+
+    var_s0 = 0;
+    if (func_800F5898() > 0) {
+        do {
+            if (func_800F6BE4(var_s0) != 0) {
+                func_800F7F98(var_s0, arg0);
+            }
+            var_s0 += 1;
+        } while (var_s0 < func_800F5898());
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_8080019C_chfpsgame.s")
 
