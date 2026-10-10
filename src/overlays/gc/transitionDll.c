@@ -58,6 +58,16 @@ void gctransitionDll_entrypoint_6(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/transitionDll/gctransitionDll_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/transitionDll/gctransitionDll_entrypoint_8.s")
+void gctransitionDll_entrypoint_8(u8 *arg0, s32 arg1) {
+    u32 func_800E6A00(void);
+    s32 func_808000D8_gctransitionDll(s32, u8, void *);
+    (*(s8 *)((s8 *)(arg0) + (8))) = 0;
+    (*(s32 *)((s8 *)(arg0) + (0x20))) = 0;
+    (*(s32 *)((s8 *)(arg0) + (0))) = arg1;
+    (*(s8 *)((s8 *)(arg0) + (0x1C))) = 0;
+    (*(f32 *)((s8 *)(arg0) + (0x24))) = 0.0f;
+    (*(s8 *)((s8 *)(arg0) + (0x1D))) = func_800E6A00();
+    func_808000D8_gctransitionDll((s32) arg0, 1U, NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/transitionDll/gctransitionDll_entrypoint_9.s")
