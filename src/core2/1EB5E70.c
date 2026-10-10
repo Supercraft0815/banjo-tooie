@@ -491,6 +491,13 @@ s32 func_800DF8F8(s32 *arg0) {
     return arg0[1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DF900.s")
+/* extern */
+
+void func_800DF900(u8 *arg0) {
+    void mlMtx_push_translation(f32 x, f32 y, f32 z);
+    s32 func_8001980C(s32, s32, s32, s32);
+    mlMtx_push_translation(0.0f, 0.0f, 0.0f);
+    func_8001980C((*(s32 *)((s8 *)(arg0) + (4))), (*(s32 *)((s8 *)(arg0) + (8))), (*(s32 *)((s8 *)(arg0) + (0))), (*(s32 *)((s8 *)(arg0) + (0xC))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DF944.s")
