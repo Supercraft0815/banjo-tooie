@@ -39,7 +39,15 @@ void func_808002E8_chhellterskelter(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/func_808002F0_chhellterskelter.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/func_808004D0_chhellterskelter.s")
+void func_808004D0_chhellterskelter(s32 arg0) {
+    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+    s32 func_800DC298(f32);
+    void *func_80105494();
+    extern s32 D_808008C0_chhellterskelter;
+    if (!((*(f32 *)((s8 *)(func_80105494()) + (0xC))) > 0.9f) && (func_800DC298(0.1f) != 0)) {
+        func_800BBCB8(arg0 + 4, 0, 0x3F800000, 1, &D_808008C0_chhellterskelter);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/func_80800540_chhellterskelter.s")
 
