@@ -32,7 +32,20 @@ void func_800EA0A8()
     _gsworldDll_entrypoint_1(&D_80132DC0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA0CC.s")
+/* extern */
+
+void func_800EA0CC(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _cothemedll_entrypoint_0();
+    s32 _gsworldDll_entrypoint_2(s32 *, s32, s32, s32);
+    s32 func_800BF8BC(s32);
+    s32 func_800C0064(s32);
+    s32 func_800DBB5C();
+    _cothemedll_entrypoint_0();
+    func_800DBB5C();
+    func_800BF8BC(arg0);
+    func_800C0064(arg0);
+    _gsworldDll_entrypoint_2(&D_80132DC0, arg0, arg1, arg2);
+}
 
 void func_800EA124()
 {
