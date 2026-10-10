@@ -4,7 +4,30 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quizremotectrl/func_80800068_chquizremotectrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quizremotectrl/func_8080012C_chquizremotectrl.s")
+/* extern */
+
+void func_8080012C_chquizremotectrl(s32 *arg0) {
+    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    s32 _capod_entrypoint_21(s32, s32, s32, s32);
+    s32 _suquiz_entrypoint_26();
+    s32 func_800A5854(s32);
+    s32 func_80800000_chquizremotectrl(s32 *, s32);
+    s32 sp1C;
+    s32 temp_v0;
+    s32 temp_v0_2;
+
+    temp_v0 = _suquiz_entrypoint_26();
+    sp1C = temp_v0;
+    temp_v0_2 = func_800A5854(temp_v0);
+    if (temp_v0_2 != 2) {
+        if ((temp_v0_2 == 5) || (temp_v0_2 == 6) || (temp_v0_2 == 8)) {
+            _capod_entrypoint_13(*arg0, 0, sp1C, 0x834);
+        }
+    } else {
+        _capod_entrypoint_21(*arg0, 0, sp1C, 0x814);
+    }
+    func_80800000_chquizremotectrl(arg0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quizremotectrl/func_808001BC_chquizremotectrl.s")
 
