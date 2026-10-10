@@ -20,7 +20,11 @@ void chanim_entrypoint_1(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anim/chanim_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anim/chanim_entrypoint_4.s")
+void chanim_entrypoint_4(s16 *arg0, f32 arg1, volatile s32 arg2, s32 arg3, s32 arg4) {
+    void _anseq_entrypoint_3(s16 *, f32, void *, s32, s32, s32);
+    extern s32 _chanim_entrypoint_1;
+    _anseq_entrypoint_3(arg0, arg1, &_chanim_entrypoint_1, arg2, arg3, arg4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anim/chanim_entrypoint_5.s")
 
