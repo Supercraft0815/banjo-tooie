@@ -81,7 +81,12 @@ void func_800CBB18(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CBB80.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CBBC0.s")
+s32 func_800CBBC0(s32 arg0) {
+    extern s32 D_8012AE8C;
+    s32 *entry;
+    entry = (s32 *)(D_8012AE8C + arg0 * 0x1C);
+    return entry[5];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CBBE0.s")
 
