@@ -60,7 +60,10 @@ void func_80800180_bstrexlarge(PlayerState *arg0, void (*arg1)(PlayerState *)) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_8080024C_bstrexlarge.s")
+s32 func_8080024C_bstrexlarge(s32 arg0) {
+    void func_80099B94(PlayerState *);
+    func_80800180_bstrexlarge((PlayerState *) arg0, func_80099B94);
+}
 
 void func_80800270_bstrexlarge(s32 *arg0) {
     extern s32 _bsdrone_entrypoint_3;
