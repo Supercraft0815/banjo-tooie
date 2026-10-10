@@ -7,7 +7,17 @@ OSThread *chcheato_entrypoint_0(void)
     return (OSThread *) D_80800E98_chcheato;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_8080000C_chcheato.s")
+/* extern */
+
+void func_8080000C_chcheato(Actor *arg0) {
+    void _subaddieitem_entrypoint_0(s32, u32, s32, s32);
+  s32 func_80100094(void *, s32);
+    u32 func_8010A828(Actor*, u32);
+    s32 _subaddieitem_entrypoint_1(s32, s32);
+    _subaddieitem_entrypoint_0(func_80100094(arg0, 1), 0x4E3U, -1, 3);
+    _subaddieitem_entrypoint_1(func_80100094(arg0, 1), 5);
+    func_8010A828(arg0, 9U);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800068_chcheato.s")
 
