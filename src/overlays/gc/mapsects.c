@@ -103,7 +103,33 @@ void gcmapsects_entrypoint_14(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_16.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_17.s")
+void gcmapsects_entrypoint_17(void *arg0)
+{
+  s32 func_800BF4DC(s32, u8, void *);
+  s32 func_800BFF28();
+  u8 *new_var;
+  s32 func_800BFF4C();
+  s32 func_80801640_gcmapsects();
+  u8 temp_v0;
+  func_80801640_gcmapsects();
+  ;
+  if ((*((u8 *) (((s8 *) arg0) + 0x7A))) != (*((u8 *) (((s8 *) arg0) + 0x7B))))
+  {
+    if ((*((u8 *) (((s8 *) arg0) + 0x7B))) != 0)
+    {
+      if (1)
+      {
+        func_800BFF4C();
+      }
+    }
+    else
+    {
+      func_800BFF28();
+    }
+    *((u8 *) (((s8 *) arg0) + 0x7A)) = (u8) (*(new_var = (u8 *) (((s8 *) arg0) + 0x7B)));
+  }
+  func_800BF4DC(1, *((u8 *) (((s8 *) arg0) + 0x7E)), arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_18.s")
 
