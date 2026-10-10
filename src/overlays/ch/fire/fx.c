@@ -24,7 +24,14 @@ OSThread *chfirefx_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/chfirefx_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/chfirefx_entrypoint_6.s")
+void chfirefx_entrypoint_6(Actor *arg0, s16 arg1, s16 arg2) {
+    void* func_80100094(Actor*, u32);
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    (*(s16 *)((s8 *)(temp_v0) + (0x14))) = arg1;
+    (*(s16 *)((s8 *)(temp_v0) + (0x16))) = arg2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/func_80800884_chfirefx.s")
 
