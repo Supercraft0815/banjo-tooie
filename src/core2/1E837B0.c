@@ -80,7 +80,10 @@ void func_800AA200(s32 arg0) {
     D_80127782 = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800AA20C.s")
+void func_800AA20C(s32 arg0, s32 arg1) {
+    extern s16 D_8012778C[];
+    D_8012778C[arg0] = arg1;
+}
 
 void func_800AA220(s32 arg0, s32 arg1) {
     extern s16 D_80127780;
