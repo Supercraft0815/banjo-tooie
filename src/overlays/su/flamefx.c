@@ -2,7 +2,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/flamefx/suflamefx_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/flamefx/suflamefx_entrypoint_1.s")
+void suflamefx_entrypoint_1(Actor *arg0, u32 arg1) {
+    u32* func_80100074(Actor*, u32, u32);
+    func_80100074(arg0, arg1, 0U);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/flamefx/suflamefx_entrypoint_2.s")
 
