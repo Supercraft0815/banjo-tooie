@@ -310,7 +310,16 @@ s32 cadbfunc_entrypoint_19(f32 arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ca/dbfunc/func_80800960_cadbfunc.s")
+/* extern */
+
+f32 *func_80800960_cadbfunc(void) {
+    s32 func_800A586C(void);
+    s32 func_800A587C();
+    if (func_800A587C() == 3) {
+        return func_800A586C() + 0x20;
+    }
+    return NULL;
+}
 
 /* extern */
 
