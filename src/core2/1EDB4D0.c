@@ -96,7 +96,19 @@ void func_801020A8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_801020DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80102128.s")
+/* extern */
+
+s32 func_80102128(Actor *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4) {
+    s32 func_8001210C(s32);
+    s32 func_800DC298(f32);
+    if ((func_8001210C(arg1) == arg2) && (func_800DC298(arg3) != 0)) {
+        if (arg4 != -1) {
+            func_80102424(arg0, arg4);
+        }
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80102190.s")
 
