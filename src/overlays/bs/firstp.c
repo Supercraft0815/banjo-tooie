@@ -314,7 +314,18 @@ void func_80801B0C_bsfirstp(s32 arg0, s32 *arg1, s32 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80802594_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808025C8_bsfirstp.s")
+void func_808025C8_bsfirstp(void *arg0, void **arg1, void **arg2) {
+    u32 func_800A3280(void *);
+    extern u8 D_8080B1B8_bsfirstp[];
+    extern u8 D_8080B1E0_bsfirstp[];
+    s32 index;
+    s32 offset;
+
+    index = func_800A3280(arg0) - 1;
+    offset = index << 3;
+    *arg1 = D_8080B1B8_bsfirstp + offset;
+    *arg2 = D_8080B1E0_bsfirstp + offset;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080261C_bsfirstp.s")
 
