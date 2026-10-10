@@ -477,7 +477,16 @@ void func_80807FD8_chdiggerboss(s32 arg0) {
     (*(s8 *)((s8 *)(temp_v0) + (0xA6))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80808000_chdiggerboss.s")
+void func_80808000_chdiggerboss(s32 arg0) {
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    u8 *func_80100094(s32, s32);
+    u8 *sp1C;
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0);
+    sp1C = temp_v0;
+    (*(u8 *)((s8 *)(sp1C) + (0xA6))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(temp_v0) + (0xA6))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80808034_chdiggerboss.s")
 
