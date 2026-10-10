@@ -39,7 +39,14 @@ OSThread *chdrawbridgeswitches_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/drawbridgeswites/func_80800180_chdrawbridgeswitches.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/drawbridgeswites/func_808001B0_chdrawbridgeswitches.s")
+void func_808001B0_chdrawbridgeswitches(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    s32 func_80101180(s32, s32, s32);
+    if (arg1 == 7) {
+        func_80101180(0x395, 7, 0);
+    }
+    _chswitch_entrypoint_10(arg0, arg1, arg2);
+}
 
 OSThread *chdrawbridgeswitches_entrypoint_2(void)
 {
