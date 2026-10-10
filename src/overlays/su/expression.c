@@ -6,7 +6,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_3.s")
+/* extern */
+
+void suexpression_entrypoint_3(s16 arg0, s32 *arg1, s32 *arg2, s32 *arg3) {
+    s32 _suexpressjoint_entrypoint_0(s16);
+    s32 _suexpressmorph_entrypoint_0(s16);
+    *arg3 = 0x14;
+    *arg1 = _suexpressmorph_entrypoint_0(arg0);
+    *arg2 = _suexpressjoint_entrypoint_0(arg0);
+    *arg3 = (*arg3 + 3) & 0x7FFFFFFC;
+    *arg1 = (*arg1 + 3) & 0x7FFFFFFC;
+    *arg2 = (*arg2 + 3) & 0x7FFFFFFC;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_4.s")
 
