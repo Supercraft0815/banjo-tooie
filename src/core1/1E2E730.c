@@ -6,7 +6,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80016DF8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80016E7C.s")
+void func_80016E7C(void) {
+    s32 func_80016DF8(s32);
+    extern u16 D_8007AE78;
+    s32 var_s0;
+
+    var_s0 = 0;
+    if ((s32) D_8007AE78 > 0) {
+        do {
+            func_80016DF8(var_s0);
+            var_s0 += 1;
+        } while (var_s0 < (s32) D_8007AE78);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80016ED0.s")
 
