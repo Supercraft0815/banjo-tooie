@@ -49,7 +49,24 @@ void func_8080000C_chcoderoombits(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/chcoderoombits_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_80800FDC_chcoderoombits.s")
+s32 func_80800FDC_chcoderoombits(void) {
+    s32 func_800D3E14(s32);
+    s32 var_s0;
+    s32 var_s1;
+    s32 var_s2;
+
+    var_s1 = 0;
+    var_s0 = 1;
+    var_s2 = 0xD;
+
+    do {
+        if (func_800D3E14(var_s0) != 0) {
+            var_s1 += 1;
+        }
+        var_s0 += 1;
+    } while (var_s0 != var_s2);
+    return var_s1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_80801040_chcoderoombits.s")
 
