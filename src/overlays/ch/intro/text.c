@@ -20,7 +20,14 @@ void func_80800130_chintrotext(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/text/func_8080051C_chintrotext.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/text/chintrotext_entrypoint_1.s")
+void chintrotext_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 _chbaddiesetup_entrypoint_4(s32 *, s32, s32, s32, s32);
+    s32 func_800A9C98();
+    extern s32 _chintrotext_entrypoint_3;
+    if (func_800A9C98() == 0) {
+        _chbaddiesetup_entrypoint_4(&_chintrotext_entrypoint_3, arg0, arg1, arg3, arg2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/text/chintrotext_entrypoint_2.s")
 
