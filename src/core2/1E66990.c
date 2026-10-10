@@ -129,7 +129,10 @@ void func_8008E0C8()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E0E8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E124.s")
+s32 func_8008E124(PlayerState *arg0) {
+    s32 func_8009CC68(PlayerState *self);
+    return func_8009CC68(arg0) != 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E148.s")
 
