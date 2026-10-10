@@ -98,7 +98,20 @@ void func_808026F8_chdiggerboss(void *arg0) {
     func_80106790((*(s32 *)((s8 *)(arg0) + (0x3C))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80802718_chdiggerboss.s")
+/* extern */
+
+s32 func_80802718_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_0(s32, s32);
+    u8 *func_80100094(s32, s32);
+    s32 func_80802878_chdiggerboss(s32, s32, s32);
+    if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
+        if ((*(s16 *)((s8 *)(func_80100094(arg0, 0)) + (8))) != 2) {
+            func_80802878_chdiggerboss(arg0, 2, 1);
+        }
+        return 2;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80802778_chdiggerboss.s")
 
