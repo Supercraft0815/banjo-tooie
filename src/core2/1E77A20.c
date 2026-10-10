@@ -84,7 +84,10 @@ s32 func_8009E69C(PlayerState *arg0, s32 arg1) {
     return func_8009CA70(arg0, arg0->state->next, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E77A20/func_8009E6C4.s")
+s32 func_8009E6C4(PlayerState *arg0, s32 arg1) {
+    s32 func_8009CA70(PlayerState *, s32, s32);
+    return func_8009CA70(arg0, arg0->state->previous, arg1);
+}
 
 s16 func_8009E6EC(PlayerState *self) {
     return self->state->unkC;
