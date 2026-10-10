@@ -130,7 +130,22 @@ s32 func_800CC6CC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CCEF4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CCFEC.s")
+void func_800CCFEC(void) {
+    s32 defrag(s32);
+    extern s32 D_8012AE80;
+    if ((*(s32 *)((s8 *)(&D_8012AE80) + (4))) != 0) {
+        (*(s32 *)((s8 *)(&D_8012AE80) + (4))) = defrag((*(s32 *)((s8 *)(&D_8012AE80) + (4))));
+    }
+    if ((*(s32 *)((s8 *)(&D_8012AE80) + (0xC))) != 0) {
+        (*(s32 *)((s8 *)(&D_8012AE80) + (0xC))) = defrag((*(s32 *)((s8 *)(&D_8012AE80) + (0xC))));
+    }
+    if ((*(s32 *)((s8 *)(&D_8012AE80) + (0x14))) != 0) {
+        (*(s32 *)((s8 *)(&D_8012AE80) + (0x14))) = defrag((*(s32 *)((s8 *)(&D_8012AE80) + (0x14))));
+    }
+    if ((*(s32 *)((s8 *)(&D_8012AE80) + (0xE0))) != 0) {
+        (*(s32 *)((s8 *)(&D_8012AE80) + (0xE0))) = defrag((*(s32 *)((s8 *)(&D_8012AE80) + (0xE0))));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CD08C.s")
 
