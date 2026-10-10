@@ -49,7 +49,14 @@ void func_80800BD0_chterryegg(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80800C08_chterryegg.s")
+void func_80800C08_chterryegg(Actor *arg0) {
+    s16 _glsplinefind_entrypoint_0(u32, f32*);
+    void* func_80100094(Actor*, u32);
+    s32 *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    *sp1C = _glsplinefind_entrypoint_0(0x357U, arg0->position);
+}
 
 void func_80800C48_chterryegg(s32 arg0)
 {
