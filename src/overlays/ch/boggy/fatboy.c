@@ -46,7 +46,14 @@ void func_80800AF0_chboggyfatboy(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_80800B38_chboggyfatboy.s")
+void func_80800B38_chboggyfatboy(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
+    s32 _chbaddiesetup_entrypoint_6(s32 *, s32, s32, s32, s32, s32, s32);
+    s32 func_800DA298(s32);
+    extern s32 _subaddietaxi_entrypoint_16;
+    if (func_800DA298(0x8E) == 0) {
+        _chbaddiesetup_entrypoint_6(&_subaddietaxi_entrypoint_16, arg0, (*(s32 *)((s8 *)(arg1) + (0))), (*(s32 *)((s8 *)(arg1) + (4))), (*(s32 *)((s8 *)(arg1) + (8))), arg2, arg3);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_80800BA0_chboggyfatboy.s")
 
