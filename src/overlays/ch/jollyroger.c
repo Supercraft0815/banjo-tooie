@@ -23,7 +23,23 @@ OSThread *chjollyroger_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800024_chjollyroger.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_808002E8_chjollyroger.s")
+/* extern */
+
+void func_808002E8_chjollyroger(s32 arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 _subaddieitem_entrypoint_0(s32, s32, s32, s32);
+    s32 _subaddieitem_entrypoint_1(s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_80100094(s32, s32);
+    s32 func_80102424(s32, s32);
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80102424(arg0, 9);
+    } else if (func_800DA298(0xC0) != 0) {
+        func_80102424(arg0, 4);
+    }
+    _subaddieitem_entrypoint_0(func_80100094(arg0, 0), 0x4E4, -1, 3);
+    _subaddieitem_entrypoint_1(func_80100094(arg0, 0), 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800370_chjollyroger.s")
 
