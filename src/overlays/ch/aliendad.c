@@ -37,7 +37,19 @@ OSThread *chaliendad_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801220_chaliendad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801254_chaliendad.s")
+/* extern */
+
+s32 func_80801254_chaliendad(void *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_0(s32, s32);
+    s32 func_80801C9C_chaliendad(void *, s32, s32);
+    if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
+        if ((*(s32 *)((s8 *)(arg0) + (0x1C))) != 2) {
+            func_80801C9C_chaliendad(arg0, 2, 1);
+        }
+        return 2;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_808012AC_chaliendad.s")
 
