@@ -277,7 +277,9 @@ void func_80111590(void *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111A38.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111A98.s")
+void func_80111A98(u8 *arg0) {
+    func_801107F0(arg0, (*(s32 *)((s8 *)(arg0) + (0x34))) + 0x5C);
+}
 
 /* extern */
 
