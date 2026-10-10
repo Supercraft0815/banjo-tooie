@@ -26,7 +26,31 @@ void bafly_entrypoint_4(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_5.s")
+/* extern */
+
+void bafly_entrypoint_5(void *arg0) {
+    s32 _gcstatusDll_entrypoint_11();
+    u8 func_800C2E04();
+    s32 func_800C3418(u8, s32);
+    s32 func_800EA05C();
+    s32 temp_v0;
+
+    if (_gcstatusDll_entrypoint_11() >= 2) {
+        (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (9))) = 0U;
+    } else {
+        (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (9))) = func_800C2E04();
+        func_800C3418((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (9))), 0);
+    }
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (4))) = 1.0f;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (0))) = 0.0f;
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (8))) = 0;
+    temp_v0 = func_800EA05C();
+    if ((temp_v0 != 0xE4) && (temp_v0 != 0x17B)) {
+        (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (0xE))) = 0;
+        return;
+    }
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (0xE))) = 1;
+}
 
 void bafly_entrypoint_6(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 140) + 0) = arg1;
