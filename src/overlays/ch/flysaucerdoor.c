@@ -14,7 +14,14 @@ OSThread *chflysaucerdoor_entrypoint_1(void)
     return (OSThread *) D_808001A8_chflysaucerdoor;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucerdoor/func_80800018_chflysaucerdoor.s")
+void func_80800018_chflysaucerdoor(Actor *arg0) {
+    s32 _chdoormake_entrypoint_3(Actor*, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor*, f32);
+    void _chdoormake_entrypoint_8(void*, u32);
+    _chdoormake_entrypoint_3(arg0, arg0->rotation[1], 90.0f, 300.0f, 0x45, 8);
+    _chdoormake_entrypoint_5(arg0, 3.5f);
+    _chdoormake_entrypoint_8(arg0, 0x10U);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucerdoor/func_8080006C_chflysaucerdoor.s")
 
