@@ -1,6 +1,9 @@
 #include "core2/1E2F380.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_80017850.s")
+void func_80017850(s32 arg0) {
+    extern u8 D_8007AEE8[];
+    D_8007AEE8[arg0] = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_80017864.s")
 
