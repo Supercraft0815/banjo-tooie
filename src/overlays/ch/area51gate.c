@@ -7,7 +7,13 @@ OSThread *charea51gate_entrypoint_0(void)
     return (OSThread *) D_80800290_charea51gate;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/area51gate/func_8080000C_charea51gate.s")
+void func_8080000C_charea51gate(s32 arg0) {
+    s32 func_80104004(s32, s32, s32);
+    void func_8010A800(Actor*, s32);
+    func_80104004(arg0, arg0 + 0x18, arg0 + 0x28);
+    (*(f32 *)((s8 *)(arg0) + (0x30))) = (f32) ((*(f32 *)((s8 *)(arg0) + (0x20))) + 40.0f);
+    func_8010A800((Actor *) arg0, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/area51gate/func_80800054_charea51gate.s")
 
