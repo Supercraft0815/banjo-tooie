@@ -125,7 +125,23 @@ void func_80803BE8_chflysaucer(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80803C3C_chflysaucer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80803CC4_chflysaucer.s")
+void func_80803CC4_chflysaucer(s32 arg0, s32 arg1) {
+    s32 func_800B53A4(s32);
+    s32 func_800BA22C(s32, s32);
+    s32 func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, s32, s32, s32, s32 *);
+    extern s32 D_808046DC_chflysaucer;
+    s32 sp24;
+    s32 temp_a1;
+    s32 temp_v0;
+
+    temp_v0 = func_800B53A4(6);
+    temp_a1 = arg0 + 4;
+    sp24 = temp_v0;
+    func_800BABB8(temp_v0, temp_a1, temp_a1, 0x3FB33333, &D_808046DC_chflysaucer);
+    func_800BA3FC(sp24, arg1);
+    func_800BA22C(sp24, 6);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80803D30_chflysaucer.s")
 
