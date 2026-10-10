@@ -23,7 +23,10 @@ void chbounce_entrypoint_3(f32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bounce/chbounce_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bounce/chbounce_entrypoint_6.s")
+void chbounce_entrypoint_6(Actor *arg0, u32 arg1) {
+    u32* func_80800190_chbounce(Actor*, u32, u32);
+    func_80800190_chbounce(arg0, arg1, 0U);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bounce/chbounce_entrypoint_7.s")
 
