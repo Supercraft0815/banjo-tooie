@@ -1,6 +1,17 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/skullfakearchpanellava/func_80800000_chmumboskullfakearchpanellava.s")
+/* extern */
+
+s32 func_80800000_chmumboskullfakearchpanellava(void) {
+    s32 func_800EA05C();
+    if (func_800EA05C() == 0x134) {
+        return 0x39C;
+    }
+    if (func_800EA05C() == 0xEF) {
+        return 0x39D;
+    }
+    return 0;
+}
 
 /* extern */
 
