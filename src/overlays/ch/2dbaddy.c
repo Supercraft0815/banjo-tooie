@@ -27,6 +27,10 @@ OSThread *ch2dbaddy_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_80800700_ch2dbaddy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_80800820_ch2dbaddy.s")
+void func_80800820_ch2dbaddy(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    extern u32 D_80800AF4_ch2dbaddy;
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800AF4_ch2dbaddy, 0.1f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_80800850_ch2dbaddy.s")
