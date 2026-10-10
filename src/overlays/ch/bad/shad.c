@@ -27,6 +27,16 @@ OSThread *chbadshad_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/func_8080078C_chbadshad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/func_8080082C_chbadshad.s")
+void func_8080082C_chbadshad(Actor *arg0) {
+    void func_800FFAB0(Actor*);
+    Actor* func_80106790(Unk80132ED0 *);
+    Unk80132ED0 *temp_a1;
+
+    temp_a1 = arg0->pad40;
+    if (temp_a1 != NULL) {
+        func_80106790(temp_a1)->pad40 = 0;
+    }
+    func_800FFAB0(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/func_8080086C_chbadshad.s")
