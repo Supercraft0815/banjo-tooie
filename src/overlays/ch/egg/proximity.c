@@ -19,7 +19,23 @@ OSThread *cheggproximity_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_80800330_cheggproximity.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_8080048C_cheggproximity.s")
+/* extern */
+
+void func_8080048C_cheggproximity(s32 arg0, void *arg1) {
+    s32 _suegg_entrypoint_16(s32);
+    s32 func_800EEEA8(s32);
+    s32 func_808001CC_cheggproximity(s32);
+    s32 func_80800718_cheggproximity(s32, s32);
+    if (func_800EEEA8(arg0 + 0x28) != 0) {
+        func_80800718_cheggproximity(arg0, 3);
+        return;
+    }
+    func_808001CC_cheggproximity(arg0);
+    _suegg_entrypoint_16(arg0);
+    if ((*(f32 *)((s8 *)(arg1) + (0x30))) > 0.19999695f) {
+        func_80800718_cheggproximity(arg0, 2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_80800510_cheggproximity.s")
 
