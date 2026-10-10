@@ -46,7 +46,14 @@ void ncba1p_entrypoint_6(s32 *arg0) {
     func_800EE7F8(*arg0 + 0x18);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/1p/ncba1p_entrypoint_7.s")
+/* extern */
+
+void ncba1p_entrypoint_7(void **arg0, void *arg1) {
+    f32 func_800136E4(f32);
+    (*(f32 *)((s8 *)(*arg0) + (0x24))) = func_800136E4((*(f32 *)((s8 *)(arg1) + (0))));
+    (*(f32 *)((s8 *)(*arg0) + (0x28))) = func_800136E4((*(f32 *)((s8 *)(arg1) + (4))));
+    (*(f32 *)((s8 *)(*arg0) + (0x2C))) = func_800136E4((*(f32 *)((s8 *)(arg1) + (8))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/1p/ncba1p_entrypoint_8.s")
 
