@@ -35,7 +35,18 @@ void gsmaker_entrypoint_3(s32 arg0, s32 arg1) {
     gsmaker_entrypoint_1(arg0 + arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/maker/gsmaker_entrypoint_4.s")
+void gsmaker_entrypoint_4(s32 arg0, s32 arg1) {
+    void* heap_alloc(s32 size);
+    u8 *temp_v0;
+
+    temp_v0 = heap_alloc(0x24);
+    (*(s32 *)((s8 *)(temp_v0) + (0x14))) = 3;
+    (*(s32 *)((s8 *)(temp_v0) + (0x18))) = -1;
+    (*(s32 *)((s8 *)(temp_v0) + (0x1C))) = -1;
+    (*(s32 *)((s8 *)(temp_v0) + (8))) = arg0;
+    (*(s32 *)((s8 *)(temp_v0) + (0xC))) = arg0;
+    (*(s32 *)((s8 *)(temp_v0) + (0x10))) = (s32) (arg0 + arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/maker/gsmaker_entrypoint_5.s")
 
