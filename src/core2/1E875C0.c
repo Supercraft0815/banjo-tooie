@@ -46,7 +46,27 @@ s32 func_800AE0D0(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800AE124.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800AE160.s")
+/* extern */
+
+void func_800AE160(u8 **arg0, u8 *arg1, s32 arg2) {
+    void* heap_realloc(void* mem, s32 size);
+    s32 func_800AE820(s32, u8 *, u8 *, s32);
+    s16 var_v1;
+    u8 *temp_v0;
+    u8 *var_s0;
+
+    var_s0 = *arg0;
+    var_v1 = (*(s16 *)((s8 *)(arg1) + (4)));
+    if ((*(s32 *)((s8 *)(var_s0) + (4))) < var_v1) {
+        temp_v0 = heap_realloc(var_s0, (var_v1 << 6) + 0x50);
+        var_s0 = temp_v0;
+        (*(s32 *)((s8 *)(temp_v0) + (4))) = (s32) (*(s16 *)((s8 *)(arg1) + (4)));
+        *arg0 = temp_v0;
+        var_v1 = (*(s16 *)((s8 *)(arg1) + (4)));
+    }
+    (*(s32 *)((s8 *)(var_s0) + (0))) = (s32) var_v1;
+    func_800AE820(arg2, arg1, var_s0 + 0x50, (*(s32 *)((s8 *)(var_s0) + (8))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800AE1E8.s")
 
