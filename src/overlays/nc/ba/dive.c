@@ -15,7 +15,10 @@ void ncbadive_entrypoint_1(void *arg0) {
     func_801120CC(arg0, 0x45834000, 0x46034000, 0xC6034000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/dive/ncbadive_entrypoint_2.s")
+void ncbadive_entrypoint_2(u8 *arg0) {
+    s32 func_801120CC(void *, s32, s32, s32);
+    func_801120CC(arg0, 0x44FA0000, 0x457A0000, -0x3A860000);
+}
 
 void func_80800080_ncbadive(PlayerState* arg0, f32* arg1)
 {
