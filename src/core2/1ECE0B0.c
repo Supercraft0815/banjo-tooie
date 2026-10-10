@@ -1008,7 +1008,19 @@ void func_800F8EBC(s32 a0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9070.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9098.s")
+void func_800F9098(s32 arg0) {
+    s32 func_800EA05C();
+    s32 func_800EE7F8(s32 *);
+    extern s32 D_80135500;
+    extern s32 D_80135510;
+    extern s32 D_8013551C;
+    if (arg0 == 0xA) {
+        func_800EE7F8(&D_80135500);
+    } else if (arg0 == 0xB) {
+        func_800EE7F8(&D_80135510);
+    }
+    D_8013551C = func_800EA05C();
+}
 
 void func_800F90EC(f32 arg0) {
     extern f32 D_8013550C;
