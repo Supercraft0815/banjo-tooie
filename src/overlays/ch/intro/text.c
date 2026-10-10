@@ -29,6 +29,20 @@ void chintrotext_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/text/chintrotext_entrypoint_2.s")
+/* extern */
+
+s32 chintrotext_entrypoint_2(s32 arg0) {
+    s32 _gcintrotext_entrypoint_2(s32, s32 *, s32 *);
+    s32 sp24;
+    s32 sp20;
+    s32 temp_v0;
+
+    temp_v0 = _gcintrotext_entrypoint_2(-1, &sp24, &sp20);
+    if ((temp_v0 != -1) && ((arg0 != 0) || (temp_v0 > 0))) {
+        chintrotext_entrypoint_1(sp24, sp20, 0, 0);
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/text/chintrotext_entrypoint_3.s")
