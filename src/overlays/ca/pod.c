@@ -280,7 +280,19 @@ s32 capod_entrypoint_20(s32 arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ca/pod/capod_entrypoint_21.s")
+/* extern */
+
+s32 capod_entrypoint_21(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 _ncpod_entrypoint_33(s32, s32, s32, s32, s32);
+    s32 func_8008FFE8();
+    s32 temp_v0;
+
+    temp_v0 = func_8008FFE8();
+    if ((temp_v0 != 0) && (_ncpod_entrypoint_33(temp_v0, arg0, arg1, arg2, arg3) != 0)) {
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
