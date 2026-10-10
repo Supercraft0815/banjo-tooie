@@ -27,7 +27,11 @@ OSThread *cheggclockwork_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/clockwork/func_808006E8_cheggclockwork.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/clockwork/func_808007B4_cheggclockwork.s")
+void func_808007B4_cheggclockwork(Actor *arg0) {
+    s32 func_8001B754(s16);
+    void* func_80100094(Actor*, u32);
+    func_8001B754((*(s16 *)((s8 *)(func_80100094(arg0, 0U)) + (0x2C))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/clockwork/func_808007DC_cheggclockwork.s")
 
