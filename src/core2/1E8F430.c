@@ -150,7 +150,19 @@ void func_800B7D28(void) {
     func_800B90C8();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B7D78.s")
+void func_800B7D78(void) {
+    s32 _fxleaves_entrypoint_6(s32);
+    s32 _fxrain_entrypoint_8(s32);
+    s32 func_800B90E8();
+    extern s32 D_801282B0;
+    if (D_801282B0 != 0) {
+        _fxleaves_entrypoint_6(D_801282B0);
+    }
+    if (D_801282B4 != 0) {
+        _fxrain_entrypoint_8(D_801282B4);
+    }
+    func_800B90E8();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B7DC8.s")
 
