@@ -51,7 +51,24 @@ void func_808003EC_chcactusofstrength(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_808006BC_chcactusofstrength.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_80800718_chcactusofstrength.s")
+/* extern */
+
+void func_80800718_chcactusofstrength(void *arg0) {
+    s32 _mlwave_entrypoint_0(s32, s32, s32);
+    s32 func_80100074(void *, s32, s32);
+    s32 func_80101FDC(void *, s32);
+    s32 func_80103110(void *, s32);
+    void *func_80106790(s32);
+    void *sp1C;
+    void *temp_v0;
+
+    temp_v0 = func_80106790((*(s32 *)((s8 *)(arg0) + (0x3C))));
+    sp1C = temp_v0;
+    func_80101FDC(temp_v0, 2);
+    func_80103110(sp1C, 1);
+    (*(f32 *)((s8 *)(sp1C) + (0x58))) = 2.5f;
+    _mlwave_entrypoint_0(func_80100074(sp1C, 1, 0x1C), 0x42C80000, 0x42A00000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_80800780_chcactusofstrength.s")
 
