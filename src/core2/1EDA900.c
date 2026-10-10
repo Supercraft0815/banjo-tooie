@@ -35,7 +35,10 @@ Unk80132ED0* func_80101080()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDA900/func_8010108C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDA900/func_8010114C.s")
+s32 func_8010114C(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_8010108C();
+    return func_8010108C(func_80106790(arg0), arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDA900/func_80101180.s")
 
