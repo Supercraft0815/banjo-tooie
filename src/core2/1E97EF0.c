@@ -74,7 +74,13 @@ f32 func_800BECCC(void) {
     return (f32) D_80128734;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BECE0.s")
+void func_800BECE0(s32 *arg0, s32 *arg1) {
+    void func_800EE830(s32 dst[3], s32 src[3]);
+    extern s32 D_80128730;
+    extern s32 D_8012873C;
+    func_800EE830(arg0, &D_80128730);
+    func_800EE830(arg1, &D_8012873C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BED18.s")
 
