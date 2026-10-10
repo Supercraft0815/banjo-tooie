@@ -27,7 +27,16 @@ void func_800DBFD8(void* arg0)
 {
     heap_free(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB57A0/func_800DBFF8.s")
+u8 *func_800DBFF8(void) {
+    void* heap_alloc(s32 size);
+    u8 *sp1C;
+    u8 *temp_v0;
+
+    temp_v0 = heap_alloc(0x118);
+    sp1C = temp_v0;
+    func_800DBEB0((s32) temp_v0);
+    return sp1C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB57A0/func_800DC028.s")
 
