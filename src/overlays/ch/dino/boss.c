@@ -407,7 +407,11 @@ void func_808017D0_chdinoboss(Actor *arg0) {
     _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80802A48_chdinoboss, &D_80802C4C_chdinoboss);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80801800_chdinoboss.s")
+void func_80801800_chdinoboss(Actor *arg0) {
+    s32 _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
+    extern u32 D_80802A48_chdinoboss;
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80802A48_chdinoboss, 0.23f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80801830_chdinoboss.s")
 
