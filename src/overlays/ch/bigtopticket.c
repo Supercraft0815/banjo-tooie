@@ -10,7 +10,12 @@ OSThread *chbigtopticket_entrypoint_0(void)
 void func_8080000C_chbigtopticket(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bigtopticket/func_80800014_chbigtopticket.s")
+void func_80800014_chbigtopticket(u8 *arg0) {
+    f32 func_800D8FF8(void);
+    s32 func_80103110(void *, u32);
+    (*(f32 *)((s8 *)(arg0) + (0x48))) = (f32) ((*(f32 *)((s8 *)(arg0) + (0x48))) - (func_800D8FF8() * 175.0f));
+    func_80103110(arg0, 0U);
+}
 
 /* extern */
 
