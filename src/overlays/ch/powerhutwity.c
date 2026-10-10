@@ -48,6 +48,17 @@ OSThread *chpowerhutwitchy_entrypoint_3(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/chpowerhutwitchy_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/func_808009FC_chpowerhutwitchy.s")
+/* extern */
+
+void func_808009FC_chpowerhutwitchy(s32 arg0) {
+    s32 _idworldmake_entrypoint_1(s32, s32, s32, s32);
+    s32 func_800BEA88(s32);
+    s32 func_800EA05C();
+    void *func_80100094(s32, s32);
+    if (func_800EA05C() == 0xD6) {
+        _idworldmake_entrypoint_1(func_800BEA88(0), 0x89D, 4, 1);
+    }
+    (*(s8 *)((s8 *)(func_80100094(arg0, 0)) + (0x19))) = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/func_80800A58_chpowerhutwitchy.s")
