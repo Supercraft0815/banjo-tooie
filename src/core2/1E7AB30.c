@@ -49,7 +49,14 @@ u32 func_800A16B0(void) {
     return *(u8 *)((u8 *)&D_80127099 + 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A16BC.s")
+void func_800A16BC(s32 arg0) {
+    extern s8 D_80127090;
+    if (arg0 != 0) {
+        (*(u8 *)((s8 *)(&D_80127090) + (5))) = (u8) ((*(u8 *)((s8 *)(&D_80127090) + (5))) + 1);
+        return;
+    }
+    (*(u8 *)((s8 *)(&D_80127090) + (5))) = (u8) ((*(u8 *)((s8 *)(&D_80127090) + (5))) - 1);
+}
 
 void func_800A16F4(s32 arg0) {
     s32 _batimer_set(s32, s32, s32);
