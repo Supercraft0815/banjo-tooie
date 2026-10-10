@@ -53,7 +53,11 @@ void func_80800C48_chterryegg(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80800C70_chterryegg.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80800CF4_chterryegg.s")
+s32 func_80800CF4_chterryegg(Actor *arg0, f32 arg1) {
+    void func_80102FDC(Actor*, f32);
+    func_80102FDC(arg0, arg1);
+    return 1;
+}
 
 void func_80800D20_chterryegg(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
     s32 _chbaddiesetup_entrypoint_6(s32 *, s32, s32, s32, s32, s32, s32);
