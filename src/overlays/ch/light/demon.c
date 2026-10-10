@@ -16,7 +16,10 @@ void func_8080000C_chlightdemon(u8 *arg0) {
     func_800C8CB8((*(s32 *)((s8 *)(arg0) + (0x28))), arg0 + 4, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/light/demon/func_8080003C_chlightdemon.s")
+void func_8080003C_chlightdemon(Actor *arg0) {
+    void func_80105A9C(Actor*, f32);
+    func_80105A9C(arg0, 650.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/light/demon/func_80800060_chlightdemon.s")
 
