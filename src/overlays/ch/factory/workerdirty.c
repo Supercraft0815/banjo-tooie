@@ -73,7 +73,10 @@ void func_80800864_chfactoryworkerdirty(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_808008A4_chfactoryworkerdirty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800994_chfactoryworkerdirty.s")
+void func_80800994_chfactoryworkerdirty(u8 *arg0) {
+    void func_80102BF8(void *arg0, s32 arg1, f32 arg2, f32 arg3);
+    func_80102BF8(arg0, 0x3E99999A, 3.0f, 300.0f);
+}
 
 void func_808009C0_chfactoryworkerdirty(void) {
     func_800DA564(FLAG_42D_PROGRESS_GI_SKIVVY_WASHED_OUTSIDE, 6);
