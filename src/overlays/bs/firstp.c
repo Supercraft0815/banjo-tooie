@@ -411,7 +411,30 @@ void func_80802F00_bsfirstp()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803124_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803134_bsfirstp.s")
+void func_80803134_bsfirstp(void *arg0) {
+    s32 _baeggsetup_entrypoint_7(void *, s32 *);
+    s32 baanim_playForDuration_onceSmooth(void *, s16, s32);
+    s32 func_800A0D94(void *, s32);
+    s32 func_80800424_bsfirstp(void *, s16, s32);
+    s32 func_8080261C_bsfirstp(void *, void **, void **);
+    s32 func_80807BB8_bsfirstp();
+    s32 func_80808DB0_bsfirstp(void *);
+    extern s32 _bsfirstp_entrypoint_10;
+    void *sp2C;
+    void *sp28;
+    void *sp24;
+
+    sp2C = (*(void **)((s8 *)(arg0) + (0x188)));
+    func_80807BB8_bsfirstp();
+    func_80808DB0_bsfirstp(arg0);
+    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+    func_8080261C_bsfirstp(arg0, &sp28, &sp24);
+    func_80800424_bsfirstp(arg0, (*(s16 *)((s8 *)(sp28) + (0))), (*(s32 *)((s8 *)(sp28) + (4))));
+    baanim_playForDuration_onceSmooth(arg0, (*(s16 *)((s8 *)(sp24) + (0))), (*(s32 *)((s8 *)(sp24) + (4))));
+    _baeggsetup_entrypoint_7(arg0, &_bsfirstp_entrypoint_10);
+    (*(s16 *)((s8 *)(sp2C) + (0xE0))) = 3;
+    func_800A0D94(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808031D0_bsfirstp.s")
 
