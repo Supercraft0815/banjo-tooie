@@ -1136,7 +1136,19 @@ void func_800F9ADC()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9AFC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9B54.s")
+/* extern */
+
+void func_800F9B54(void) {
+    s32 _plsu_entrypoint_1(s32);
+    u32 sp1C;
+    s32 sp18;
+
+    sp1C = func_800F54E4();
+    sp18 = _plsu_entrypoint_1(0x11);
+    func_800F8128((s32) sp1C);
+    func_800F8268((s32) sp1C, 1, 1);
+    func_800F82C0(sp18);
+}
 
 void func_800F9BA4()
 {
