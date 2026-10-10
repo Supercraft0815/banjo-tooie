@@ -6,7 +6,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_808001B8_chfactorytoxiccloud.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_80800A34_chfactorytoxiccloud.s")
+/* extern */
+
+void func_80800A34_chfactorytoxiccloud(s32 arg0, void *arg1) {
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    (*(f32 *)((s8 *)(arg1) + (0))) = func_800DC178(0.5f, 1.0f);
+    (*(f32 *)((s8 *)(arg1) + (4))) = 0.0f;
+    (*(f32 *)((s8 *)(arg1) + (0xC))) = (f32) (func_800DC178(0.4f, 0.5f) + 0.2f);
+    (*(f32 *)((s8 *)(arg1) + (0x10))) = (f32) (func_800DC178(0.7f, 0.9f) + 0.2f);
+    (*(s32 *)((s8 *)(arg1) + (8))) = func_800DC128(0, 0x10);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_80800AD8_chfactorytoxiccloud.s")
 
