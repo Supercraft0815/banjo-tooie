@@ -9,7 +9,15 @@ void func_80800000_chpotogoldbits(s32 arg0) {
     _chswitch_entrypoint_8(arg0, 0x601);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldbits/func_80800030_chpotogoldbits.s")
+s32 func_80800030_chpotogoldbits(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    s32 func_80101180(s32, s32, s32);
+    if (arg1 == 7) {
+        func_80101180(0x408, 7, 0);
+        return 1;
+    }
+    return _chswitch_entrypoint_10(arg0, arg1, arg2);
+}
 
 OSThread *chpotogoldbits_entrypoint_0(void)
 {
