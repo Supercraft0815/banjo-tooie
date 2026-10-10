@@ -26,7 +26,23 @@ OSThread *chjigsaw_entrypoint_0(void)
     return (OSThread *) D_80800770_chjigsaw;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/func_808006CC_chjigsaw.s")
+/* extern */
+
+void func_808006CC_chjigsaw(s32 arg0) {
+    s32 _gcfrontend_entrypoint_9(s32);
+    s32 _subaddiedialog_entrypoint_11(s32, s32, s32, s32, s32);
+    s32 _subaddiedialog_entrypoint_16();
+    s32 func_800D395C();
+    s32 func_800FFAB0(s32);
+    if (func_800D395C() != 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    if ((_subaddiedialog_entrypoint_16() != 0) && (_subaddiedialog_entrypoint_11(0, 0xD0A, 0, arg0 + 4, 0x6F) != 0)) {
+        _gcfrontend_entrypoint_9(0x85);
+        func_800FFAB0(arg0);
+    }
+}
 
 OSThread *chjigsaw_entrypoint_1(void)
 {
