@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_80800000_chpiranha.s")
+/* extern */
+
+void func_80800000_chpiranha(Actor *arg0) {
+    u32* func_80100074(Actor*, u32, u32);
+    s32 func_800DA3B8(s32, s32);
+    func_80100074(arg0, 0U, 0U);
+    arg0->unk3C = NULL;
+    func_800DA3B8(0x6A8, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_8080003C_chpiranha.s")
 
