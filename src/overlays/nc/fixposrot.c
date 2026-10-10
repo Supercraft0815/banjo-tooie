@@ -43,7 +43,12 @@ void ncfixposrot_entrypoint_7(s32 arg0, s32 arg1) {
     _cadbfunc_entrypoint_2(arg0 + 0xC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/fixposrot/ncfixposrot_entrypoint_8.s")
+void ncfixposrot_entrypoint_8(s32 arg0, s32 arg1) {
+    s32 func_8010F9C0(s32, s32);
+    s32 func_8011001C(s32 *arg0);
+    func_8010F9C0(arg0, 3);
+    ncfixposrot_entrypoint_7(func_8011001C((s32 *) arg0), arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/fixposrot/ncfixposrot_entrypoint_9.s")
 
