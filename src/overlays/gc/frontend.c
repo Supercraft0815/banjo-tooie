@@ -74,6 +74,32 @@ void gcfrontend_entrypoint_13(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/func_8080068C_gcfrontend.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/func_80800738_gcfrontend.s")
+/* extern */
+
+void func_80800738_gcfrontend(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 func_800A791C(s32, s32, s32);
+    s32 func_800D39A8();
+    s32 func_800D39DC(s32);
+    s32 func_800D3B24();
+    s32 func_800EA334(s32);
+    s32 func_80800520_gcfrontend(s32);
+    s32 func_8080068C_gcfrontend(s32 *, s32 *);
+    s32 sp1C;
+    s32 sp18;
+
+    sp1C = (s32) (*(s16 *)((s8 *)(arg0) + (2)));
+    sp18 = (s32) (*(s16 *)((s8 *)(arg0) + (0)));
+    func_800D39A8();
+    func_800D39DC(arg3);
+    if (arg1 != 0) {
+        func_800D3B24();
+        func_80800520_gcfrontend(arg1);
+        func_8080068C_gcfrontend(&sp18, &sp1C);
+    }
+    if (arg2 == 0) {
+        func_800EA334(0);
+    }
+    func_800A791C(sp18, sp1C, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_14.s")
