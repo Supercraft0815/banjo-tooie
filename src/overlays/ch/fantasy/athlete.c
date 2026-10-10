@@ -29,7 +29,20 @@ void func_80800000_chfantasyathlete(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_808011E4_chfantasyathlete.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_808015D8_chfantasyathlete.s")
+/* extern */
+
+void func_808015D8_chfantasyathlete(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 *arg4) {
+    s32 func_800EE780(s32, s32, s32);
+    f32 func_800EEAD4(s32, s32);
+    s32 func_800EF2A0(s32);
+    s32 func_800EF334(s32, s32);
+    s32 func_800EFB24(s32, s32, s32);
+    func_800EFB24(arg3, arg0, arg1);
+    func_800EF2A0(arg3);
+    func_800EE780(arg2, arg1, arg0);
+    func_800EF334(arg2, 0x3F000000);
+    *arg4 = func_800EEAD4(arg1, arg0) * 0.5f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80801654_chfantasyathlete.s")
 
