@@ -34,7 +34,10 @@ void subaddiefade_entrypoint_8(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/fade/subaddiefade_entrypoint_9.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/fade/subaddiefade_entrypoint_10.s")
+void subaddiefade_entrypoint_10(void *arg0, f32 *arg1) {
+    s32 func_800F2EFC();
+    func_800F2EFC(arg1, (u8 *)arg0 + 0x98);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/fade/subaddiefade_entrypoint_11.s")
 
