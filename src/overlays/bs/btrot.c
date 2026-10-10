@@ -292,7 +292,23 @@ s32 bsbtrot_entrypoint_47(s32 arg0) {
     return ((s32 *)&D_80802F00_bsbtrot)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_808029D8_bsbtrot.s")
+/* extern */
+
+void func_808029D8_bsbtrot(void *arg0) {
+    s32 _bashoessuck_entrypoint_3(void *);
+    s32 bs_getPreviousState();
+    s32 func_80092880(void *, s32);
+    s32 func_8009CA70(void *, s32, s32);
+    s32 func_800A2018(void *, s32);
+    s32 func_800A4DA4(void *, s32);
+    if (func_8009CA70(arg0, bs_getPreviousState(), 0x800) == 0) {
+        _bashoessuck_entrypoint_3(arg0);
+        (*(s32 *)((s8 *)(arg0) + (0x160))) = 1;
+        func_80092880(arg0, 0);
+        func_800A2018(arg0, 3);
+        func_800A4DA4(arg0, 0x19);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80802A4C_bsbtrot.s")
 
