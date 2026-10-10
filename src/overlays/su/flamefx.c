@@ -1,6 +1,15 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/flamefx/suflamefx_entrypoint_0.s")
+void suflamefx_entrypoint_0(Actor *arg0, u32 arg1, s32 arg2, s16 arg3) {
+    u32* func_80100074(Actor*, u32, u32);
+    void* func_80100094(Actor*, u32);
+    u8 *temp_v0;
+
+    func_80100074(arg0, arg1, (arg2 * 0x30) + 0x20);
+    temp_v0 = func_80100094(arg0, arg1);
+    (*(s16 *)((s8 *)(temp_v0) + (0x18))) = arg3;
+    (*(s8 *)((s8 *)(temp_v0) + (0x1B))) = (s8) arg2;
+}
 
 void suflamefx_entrypoint_1(Actor *arg0, u32 arg1) {
     u32* func_80100074(Actor*, u32, u32);
