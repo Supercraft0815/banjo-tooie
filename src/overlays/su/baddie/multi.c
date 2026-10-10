@@ -4,7 +4,21 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/multi/subaddiemulti_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/multi/subaddiemulti_entrypoint_2.s")
+/* extern */
+
+void subaddiemulti_entrypoint_2(void) {
+    s32 func_800F6438(s32);
+    s32 func_800F82D4(s32, s32);
+    s32 var_s0;
+
+    var_s0 = 0;
+    do {
+        if (func_800F6438(var_s0) != 0) {
+            func_800F82D4(var_s0, 0);
+        }
+        var_s0 += 1;
+    } while (var_s0 != 8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/multi/subaddiemulti_entrypoint_3.s")
 
