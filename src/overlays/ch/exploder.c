@@ -58,7 +58,10 @@ void func_8080000C_chexploder(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/chexploder_entrypoint_11.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/chexploder_entrypoint_12.s")
+void chexploder_entrypoint_12(Actor *arg0, s32 arg1) {
+    void* func_80100094(Actor*, u32);
+    (*(s16 *)((s8 *)(func_80100094(arg0, 0U)) + (0xC))) = (s16) (s32) (arg0->scale * (f32) arg1);
+}
 
 void chexploder_entrypoint_13(Actor *arg0, s32 arg1) {
     void* func_80100094(Actor*, u32);
