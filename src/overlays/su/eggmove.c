@@ -11,7 +11,11 @@ s32 sueggmove_entrypoint_1(void) {
     return (*(s32 *)((s8 *)(func_80106790()) + (0x3C)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/sueggmove_entrypoint_2.s")
+s32 sueggmove_entrypoint_2(void) {
+    void* func_80100094(Actor*, u32);
+    void *func_80106790();
+    return (*(s32 *)((s8 *)(func_80100094(func_80106790(), 0U)) + (0x34)));
+}
 
 void func_80800108_sueggmove(void *arg0) {
     if ((*(u8 *)((s8 *)(arg0) + (0xD))) == 0) {
