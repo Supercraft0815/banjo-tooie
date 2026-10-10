@@ -43,7 +43,19 @@ void func_80800018_chmadamegrunty(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_80800784_chmadamegrunty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_8080082C_chmadamegrunty.s")
+/* extern */
+
+void func_8080082C_chmadamegrunty(void *arg0, s32 arg1) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiedialog_entrypoint_11(s32, s32, s32, s32, s32);
+    s32 func_80101FDC();
+    func_80101FDC();
+    if (arg1 == 7) {
+        _subaddieDll_entrypoint_4(arg0, 1);
+        (*(f32 *)((s8 *)(arg0) + (0x58))) = 60.0f;
+        _subaddiedialog_entrypoint_11((*(s32 *)((s8 *)(arg0) + (0))), 0x10CA, 4, 0, 0x43);
+    }
+}
 
 s32 func_80800898_chmadamegrunty(f32 arg0, f32 arg1, f32 arg2) {
     if ((arg0 <= arg2) && (arg2 < arg1)) {
