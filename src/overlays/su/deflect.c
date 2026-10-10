@@ -10,7 +10,26 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/deflect/sudeflect_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/deflect/func_80800630_sudeflect.s")
+/* extern */
+
+s32 func_80800630_sudeflect(s32 arg0) {
+    s32 func_800F52B8(s32, s32);
+    s32 func_800F5410(s32);
+    s32 func_800F6720();
+    s32 temp_v0;
+
+    if (func_800F6720() != 0) {
+        return 1;
+    }
+    if (func_800F5410(arg0) == 0x11) {
+        return 1;
+    }
+    temp_v0 = func_800F52B8(arg0, 0);
+    if ((temp_v0 == 1) || (temp_v0 == 0xB)) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/deflect/func_808006A4_sudeflect.s")
 
