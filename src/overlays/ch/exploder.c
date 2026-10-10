@@ -32,7 +32,25 @@ void func_8080000C_chexploder(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_80800F74_chexploder.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_808010E0_chexploder.s")
+/* extern */
+
+void func_808010E0_chexploder(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 func_80018820(s32, s32, s32);
+    s32 func_800E1610(s32, s32, s32, s32);
+    s32 func_800FFAB0(s32);
+    if (arg2 & 2) {
+        func_800E1610(0, 0x41F00000, 0x3F666666, arg0 + 4);
+    }
+    if (arg2 & 1) {
+        func_80018820(0, 0x40400000, 0x3E800000);
+    }
+    if ((arg1 != 0) && (arg2 & 8)) {
+        func_800FFAB0(arg1);
+    }
+    if (arg2 & 0x40) {
+        (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFFE);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_80801188_chexploder.s")
 
