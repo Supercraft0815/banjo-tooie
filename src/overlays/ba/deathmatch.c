@@ -58,7 +58,26 @@ void badeathmatch_entrypoint_7(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 344) + 32) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/deathmatch/badeathmatch_entrypoint_8.s")
+/* extern */
+
+void badeathmatch_entrypoint_8(void *arg0, f32 arg1) {
+    s32 _batimer_set(f32, s32, f32);
+    s32 func_80101180(s32, s32, s32);
+    if (arg1 != 0.0f) {
+        (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x158)))) + (0x21))) = 1;
+    } else {
+        (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x158)))) + (0x21))) = 0;
+    }
+    if (arg1 > 0.0f) {
+        (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x158)))) + (0x22))) = 1;
+    } else {
+        (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x158)))) + (0x22))) = 0;
+    }
+    _batimer_set(arg1, 0xD, arg1);
+    if ((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x158)))) + (0x21))) == 0) {
+        func_80101180(0x1CD, 0x76, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/deathmatch/badeathmatch_entrypoint_9.s")
 
