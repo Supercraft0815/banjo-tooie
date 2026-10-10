@@ -28,7 +28,31 @@ void func_8080009C_bstnt(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_808001C8_bstnt.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80800218_bstnt.s")
+/* extern */
+
+s32 func_80800218_bstnt(void *arg0, s32 arg1) {
+    s32 _badrone_entrypoint_24(void *);
+    s32 bainput_should_enter_first_person();
+    s32 bakey_pressed(void *, s32);
+    s32 bstnt_entrypoint_8(void *);
+    s32 player_isStable(void *);
+    s32 var_s1;
+
+    var_s1 = arg1;
+    if (bainput_should_enter_first_person() != 0) {
+        var_s1 = _badrone_entrypoint_24(arg0);
+    }
+    if (bakey_pressed(arg0, 8) != 0) {
+        var_s1 = 0x107;
+    }
+    if (bstnt_entrypoint_8(arg0) != 0) {
+        var_s1 = 0x10E;
+    }
+    if (((*(u8 *)((s8 *)(arg0) + (0x168))) != 0) && (player_isStable(arg0) != 0)) {
+        var_s1 = 0x10D;
+    }
+    return var_s1;
+}
 
 void func_808002AC_bstnt(s32 arg0, s32 arg1) {
     s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
