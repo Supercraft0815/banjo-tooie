@@ -20,7 +20,25 @@ void subaddiemulti_entrypoint_0(s32 arg0) {
     } while (var_s0 != 8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/multi/subaddiemulti_entrypoint_1.s")
+/* extern */
+
+void subaddiemulti_entrypoint_1(s32 arg0, s32 arg1) {
+    s32 func_800F608C(s32, s32);
+    s32 func_800F6438(s32);
+    s32 func_800F8300(s32, s32, s32);
+    s32 var_s0;
+
+    var_s0 = 0;
+    do {
+        if (func_800F6438(var_s0) != 0) {
+            func_800F8300(var_s0, 2, arg1);
+            if (arg0 != 0) {
+                func_800F608C(var_s0, arg0);
+            }
+        }
+        var_s0 += 1;
+    } while (var_s0 != 8);
+}
 
 /* extern */
 
