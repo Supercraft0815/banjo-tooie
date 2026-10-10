@@ -62,7 +62,15 @@ void func_8008B10C(AnimCtrl *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B188.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_setSmoothTransition.s")
+void anctrl_setSmoothTransition(AnimCtrl *arg0, s32 arg1) {
+    struct Flags {
+        u8 padding[0x1B];
+        u8 high : 1;
+        u8 smooth : 1;
+        u8 low : 6;
+    };
+    ((struct Flags *)arg0)->smooth = arg1;
+}
 
 void anctrl_setDuration(AnimCtrl *arg0, f32 arg1) {
     (*(f32 *)((s8 *)(arg0) + (0xC))) = arg1;
