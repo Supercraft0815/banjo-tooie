@@ -29,7 +29,10 @@ s32 func_800D3948(void) {
     return (u8) D_8012B3F2 == 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D395C.s")
+s32 func_800D395C(void) {
+    extern s8 D_8012B3F2;
+    return (u8) D_8012B3F2 == 2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3970.s")
 
