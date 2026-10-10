@@ -7,7 +7,14 @@ OSThread *chklungoleave_entrypoint_0(void)
     return (OSThread *) D_80800130_chklungoleave;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/leave/func_8080000C_chklungoleave.s")
+/* extern */
+
+void func_8080000C_chklungoleave(Actor *arg0) {
+    void func_80105A9C(Actor*, f32);
+    s32 func_80105BAC(Actor *);
+    func_80105A9C(arg0, 300.0f);
+    func_80105BAC(arg0);
+}
 
 void func_80800038_chklungoleave(s32 arg0)
 {
