@@ -49,7 +49,10 @@ s32 func_808004B4_chbottlesfamily(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_80800520_chbottlesfamily.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_808005D0_chbottlesfamily.s")
+void func_808005D0_chbottlesfamily(Actor *arg0) {
+    extern u32 D_80800F20_chbottlesfamily;
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800F20_chbottlesfamily, 0x3DA3D70A);
+}
 
 /* extern */
 
