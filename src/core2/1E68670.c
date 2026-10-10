@@ -67,4 +67,8 @@ void func_8008F854(s32 arg0, s32 arg1) {
     func_800D1824(func_800D1B34(arg1));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008F880.s")
+void func_8008F880(Unk80132ED0 *arg0, f32 *arg1) {
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    Actor* func_80106790(Unk80132ED0 *);
+    func_800EE7F8(arg1, (f32 *)((u8 *)func_80106790(arg0) + 4));
+}
