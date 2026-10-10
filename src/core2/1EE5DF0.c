@@ -119,7 +119,27 @@ void func_8010CE28(s32 arg0, f32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010D12C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010D1E8.s")
+/* extern */
+
+s32 func_8010D1E8(void) {
+    extern s32 D_80136F50;
+    extern s16 D_80136F5C;
+    extern s16 D_80136F5E;
+    s32 func_8008FD48();
+    s32 func_8008FE68(s32);
+    s32 func_80090150(void);
+    s32 func_8008FF6C();
+    s16 func_80090128();
+    s32 temp_v0;
+
+    func_8008FE68((s32) &D_80136F50);
+    D_80136F5C = func_80090128();
+    D_80136F5E = func_80090150();
+    D_80136F60 = func_8008FD48();
+    temp_v0 = func_8008FF6C();
+    D_80136F64 = temp_v0;
+    return temp_v0;
+}
 
 s32 func_8010D23C(void) {
     extern s16 D_80136F5C;
