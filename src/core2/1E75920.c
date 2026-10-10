@@ -5,7 +5,15 @@ s32 func_8009C030()
     return 0x30;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75920/func_8009C038.s")
+/* extern */
+
+void func_8009C038(void *arg0) {
+    s32 func_800EFD24(s32);
+    func_800EFD24((*(s32 *)((s8 *)(arg0) + (0xE4))) + 0x24);
+    func_800EFD24((*(s32 *)((s8 *)(arg0) + (0xE4))));
+    func_800EFD24((*(s32 *)((s8 *)(arg0) + (0xE4))) + 0xC);
+    func_800EFD24((*(s32 *)((s8 *)(arg0) + (0xE4))) + 0x18);
+}
 
 /* extern */
 
