@@ -10,7 +10,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_80800304_chclinker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_80800368_chclinker.s")
+void func_80800368_chclinker(Actor *arg0, u8 *arg1) {
+    void func_800DF744(s32, s32);
+    void* func_80100094(Actor*, u32);
+    void func_80101870(Actor* arg0, void* arg1);
+    func_800DF744(3, (*(s32 *)((s8 *)(func_80100094(arg0, 0U)) + (4))));
+    func_80101870(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_808003A8_chclinker.s")
 
