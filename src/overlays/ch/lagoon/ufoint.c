@@ -62,7 +62,21 @@ s32 func_8080078C_chlagoonufoint(void) {
     return *_subaddiefind_entrypoint_2(0x1C5, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_808007B4_chlagoonufoint.s")
+/* extern */
+
+void func_808007B4_chlagoonufoint(void *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    f32 func_800DC0C0();
+    s32 func_80101EE4(void *, f32);
+    s32 func_80102424(void *, s32);
+    (*(s32 *)((s8 *)(arg0) + (0x3C))) = func_8080078C_chlagoonufoint();
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80102424(arg0, 3);
+    }
+    if (((u32) ((*(s32 *)((s8 *)(arg0) + (0x6C))) << 0xB) >> 0x14) == 0x1C7) {
+        func_80101EE4(arg0, func_800DC0C0());
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_80800820_chlagoonufoint.s")
 
