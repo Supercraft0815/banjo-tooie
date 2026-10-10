@@ -9,7 +9,10 @@ OSThread *chfactoryworkerwear_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerwear/func_8080000C_chfactoryworkerwear.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerwear/func_80800100_chfactoryworkerwear.s")
+void func_80800100_chfactoryworkerwear(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    (*(s8 *)((s8 *)(func_80100094(arg0, 0U)) + (0x24))) = 0;
+}
 
 void func_80800124_chfactoryworkerwear(s32 arg0) 
 {
