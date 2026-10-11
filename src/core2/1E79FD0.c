@@ -142,6 +142,14 @@ void func_800A1040(PlayerState *arg0) {
     (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x150)))) + (0xC))) = -1.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E79FD0/func_800A106C.s")
+void func_800A106C(PlayerState *arg0, f32 arg1, f32 arg2) {
+    void *temp_v0;
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x150)));
+    (*(f32 *)((s8 *)(temp_v0) + (0xC))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (4)));
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x150)));
+    (*(f32 *)((s8 *)(temp_v0) + (0x10))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (8)));
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x150)))) + (4))) = arg1;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x150)))) + (8))) = arg2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E79FD0/func_800A10A0.s")
