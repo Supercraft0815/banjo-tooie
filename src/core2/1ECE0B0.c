@@ -62,7 +62,10 @@ void func_800F4A8C(s32 arg0, s32 arg1, f32 arg2) {
     _badrone_entrypoint_15(D_80135490[arg0], arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F4AC0.s")
+void func_800F4AC0(s32 arg0, s32 arg1, f32 arg2) {
+    s32 _badrone_entrypoint_16(PlayerState *, s32, f32);
+    _badrone_entrypoint_16(D_80135490[arg0], arg1, arg2);
+}
 
 void func_800F4AF4(s32 arg0)
 {
