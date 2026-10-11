@@ -7,4 +7,9 @@ OSThread *chbigfoot_entrypoint_0(void)
     return (OSThread *) D_808000C8_chbigfoot;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bigfoot/func_8080000C_chbigfoot.s")
+/* extern */
+
+void func_8080000C_chbigfoot(void *arg0) {
+    s32 _sucoaster_entrypoint_0(void *, s32);
+    _sucoaster_entrypoint_0(arg0, 0);
+}
