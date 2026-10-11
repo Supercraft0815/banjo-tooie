@@ -202,4 +202,8 @@ OSThread *chnests_entrypoint_12(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80801014_chnests.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_808010A0_chnests.s")
+int func_808010A0_chnests(void *arg0) {
+    return ((u32)(*(s32 *)((u8 *)arg0 + 0x6C) << 11) >> 20) == 0x1CE
+        || ((u32)(*(s32 *)((u8 *)arg0 + 0x6C) << 11) >> 20) == 0x1CF
+        || ((u32)(*(s32 *)((u8 *)arg0 + 0x6C) << 11) >> 20) == 0x4A6;
+}
