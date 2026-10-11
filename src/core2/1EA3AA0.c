@@ -197,7 +197,10 @@ s32 func_800CAD9C(void *arg0, f32 arg1, f32 arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CAEA4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CAF00.s")
+f32 func_800CAF00(f32 *arg0, f32 arg1) {
+    f32 func_800136E4(f32);
+    return func_800136E4(arg0[7] + arg1 + 90.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CAF34.s")
 
