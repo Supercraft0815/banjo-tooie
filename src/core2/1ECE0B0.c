@@ -1088,7 +1088,10 @@ void func_800F8D50(s32 arg0, s32 arg1) {
     func_800F8D80(arg0, func_800F88A0(arg1));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8D80.s")
+s32 func_800F8D80(s32 arg0, u8 *arg1) {
+    s32 _plcamera_entrypoint_12(s32, u8 *, u8 *, u8 *);
+    return _plcamera_entrypoint_12(arg0, arg1 + 4, arg1 + 0x10, arg1);
+}
 
 /* extern */
 
