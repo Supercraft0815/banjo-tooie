@@ -356,7 +356,9 @@ void func_80093738(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093AB8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093DF4.s")
+s32 func_80093DF4(void *arg0, s32 arg1) {
+    return arg1 == (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0xA2))) ? 1 : 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093E18.s")
 
