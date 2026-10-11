@@ -140,7 +140,10 @@ s32 func_800CEB08(void *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CEF00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CEF48.s")
+f32 func_800CEF48(s32 arg0) {
+    extern s16 D_8011AA8E;
+    return (f32) *(s16 *) ((u8 *) &D_8011AA8E + arg0 * 20);
+}
 
 void func_800CEF6C(void) {
     extern f32 D_8012B170;
