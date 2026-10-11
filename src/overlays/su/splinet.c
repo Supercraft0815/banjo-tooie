@@ -94,6 +94,11 @@ s32 func_808011B8_susplinet(s32 arg0, s32 arg1) {
     return (arg0 * 0xC) + (arg1 * 4) + 6;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_18.s")
+s32 susplinet_entrypoint_18(s32 arg0, s32 arg1, s32 arg2) {
+    register s32 result;
+    result = arg0;
+    result *= func_808011B8_susplinet(arg1, arg2);
+    return result + 0x5C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_19.s")
