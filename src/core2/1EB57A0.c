@@ -17,7 +17,10 @@ void func_800DBEB0(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB57A0/func_800DBEFC.s")
+void func_800DBEFC(s32 *arg0, s32 arg1, s32 arg2) {
+    s32 func_800EE7F8(s32, s32);
+    func_800EE7F8(arg2, (s32)((u8 *)arg0 + (arg1 * 12) + 4));
+}
 
 void func_800DBF38(void *arg0, s32 arg1, s32 *arg2) {
     typedef struct { s32 header; f32 vectors[23][3]; } VectorTable;
