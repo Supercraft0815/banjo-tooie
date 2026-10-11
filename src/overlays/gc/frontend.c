@@ -4,7 +4,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_2.s")
+int gcfrontend_entrypoint_2(void) {
+    s32 gcfrontend_entrypoint_1(s32);
+    return gcfrontend_entrypoint_1(0) || gcfrontend_entrypoint_1(1) || gcfrontend_entrypoint_1(2);
+}
 
 void gcfrontend_entrypoint_3(s32 arg0) {
     s32 func_800DA298(s32);

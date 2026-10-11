@@ -1,5 +1,12 @@
 #include "common.h"
 
+typedef struct {
+    u8 pad0[0x16];
+    u16 count : 15;
+    u16 flags : 1;
+    Vtx vertices[1];
+} VertexListView;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B0D80.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B0ECC.s")
@@ -67,7 +74,21 @@ void func_800B23E0(void* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B2464.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B2540.s")
+void func_800B2540(VertexListView *this, s32 color[3]) {
+    Vtx *start_ptr, *end_ptr, *i_ptr;
+    int i;
+
+    start_ptr = this->vertices;
+    end_ptr = start_ptr + this->count;
+
+    for (i_ptr = start_ptr; i_ptr < end_ptr; i_ptr++) {
+        for (i = 0; i < 3; i++) {
+            i_ptr->v.cn[i] = color[i];
+        }
+    }
+
+    osWritebackDCache(start_ptr, (end_ptr - start_ptr) * sizeof(Vtx));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B25D8.s")
 

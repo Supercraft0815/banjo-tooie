@@ -1,10 +1,60 @@
 #include "common.h"
 
+typedef struct { s32 unk0; void *unk1; } AssetReference;
+
 extern s32 D_8012B7E8;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5440.s")
+void func_800D5440(void *ptr){
+    extern s32 D_8012B7F0;
+    void *vector_end(void *);
+    void *vector_begin(void *);
+    void *vector_push_back(void **);
+    void vector_clear(void *);
+    void func_800D56C4(void *);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D54F0.s")
+    AssetReference *start_ptr;
+    AssetReference *end_ptr;
+    AssetReference *iPtr;
+
+    end_ptr = (AssetReference *) vector_end(((void **)&D_8012B7F0)[0]);
+    start_ptr = (AssetReference *) vector_begin(((void **)&D_8012B7F0)[0]);
+
+    for (iPtr = start_ptr; iPtr < end_ptr && ptr != iPtr->unk1; iPtr++);
+
+    if (iPtr < end_ptr) {
+        iPtr->unk0++;
+    }
+    else {
+        iPtr = (AssetReference *) vector_push_back(&((void **)&D_8012B7F0)[0]);
+        iPtr->unk0 = 1;
+        iPtr->unk1 = ptr;
+    }
+}
+
+int func_800D54F0(void *arg0) {
+    extern s32 D_8012B7F0;
+    void *vector_end(void *);
+    void *vector_begin(void *);
+    void *vector_push_back(void **);
+    void vector_clear(void *);
+    void func_800D56C4(void *);
+
+    AssetReference *start_ptr;
+    AssetReference *end_ptr;
+    AssetReference *iPtr;
+    s32 j;
+
+    for(j = 0; j < 2; j++){
+        end_ptr = (AssetReference *) vector_end(((void **)&D_8012B7F0)[j]);
+        start_ptr = (AssetReference *) vector_begin(((void **)&D_8012B7F0)[j]);
+        for(iPtr = start_ptr; iPtr < end_ptr && arg0 != iPtr->unk1; iPtr++){
+        }
+        if (iPtr < end_ptr){
+            return 1;
+        }
+    }
+    return 0;
+}
 
 void func_800D55A0(void) {
     s32 vector_new(s32, s32);
@@ -14,7 +64,33 @@ void func_800D55A0(void) {
     D_8012B7F4 = vector_new(8, 0x10);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D55DC.s")
+void func_800D55DC(void){
+    extern s32 D_8012B7F0;
+    void *vector_end(void *);
+    void *vector_begin(void *);
+    void *vector_push_back(void **);
+    void vector_clear(void *);
+    void func_800D56C4(void *);
+
+    void *tmp_a0;
+    AssetReference *iPtr;
+    AssetReference *start_ptr;
+    AssetReference *endPtr;
+    int i;
+
+    tmp_a0 = ((void **)&D_8012B7F0)[0];
+    ((void **)&D_8012B7F0)[0] = ((void **)&D_8012B7F0)[1];
+    ((void **)&D_8012B7F0)[1] = tmp_a0;
+
+    endPtr = (AssetReference *) vector_end(((void **)&D_8012B7F0)[0]);
+    start_ptr = (AssetReference *) vector_begin(((void **)&D_8012B7F0)[0]);
+    for(iPtr = start_ptr; iPtr < endPtr; iPtr++){
+        for(i = 0; i < iPtr->unk0; i++)
+            func_800D56C4(iPtr->unk1);
+    }
+
+    vector_clear(((void **)&D_8012B7F0)[0]);
+}
 
 void func_800D5688(void) {
     s32 vector_defrag(s32);
@@ -96,9 +172,9 @@ void func_800D5E28(s32 *arg0) {
     *arg0 = 0;
 }
 
-void func_800D5E54()
+void func_800D5E54(s32 arg0)
 {
-    func_800D5440();
+    func_800D5440((void *)arg0);
 }
 
 void func_800D5E74(void) 
@@ -106,9 +182,9 @@ void func_800D5E74(void)
     func_800D55DC();
 }
 
-void func_800D5E94()
+void func_800D5E94(s32 arg0)
 {
-    func_800D54F0();
+    func_800D54F0((void *)arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5EB4.s")

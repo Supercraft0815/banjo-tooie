@@ -97,13 +97,20 @@ s32 func_80110898(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110970.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110A24.s")
+void func_80110A24(PlayerState *player, f32 position[3], f32 rotation[3]) {
+    void func_80112524(PlayerState *, f32 *);
+    void func_800A516C(f32 *, f32 *, f32 *);
+    f32 pos[3];
+    func_80112524(player, pos);
+    func_800A516C(position, pos, rotation);
+    position[2] = 0.0f;
+}
 
 /* extern */
 
 void func_80110A68(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_800A516C(s32, s32, s32);
-    func_800A516C(arg1, arg2, arg0 + 0x74);
+    void func_800A516C(f32 *, f32 *, f32 *);
+    func_800A516C((f32 *)arg1, (f32 *)arg2, (f32 *)(arg0 + 0x74));
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110A9C.s")

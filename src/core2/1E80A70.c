@@ -37,7 +37,17 @@ s32* func_800A7180(void)
     return &D_80127658;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A718C.s")
+void func_800A718C(void) {
+    extern f32 D_801255F0;
+    void func_800E3BFC(f32, f32, f32);
+    void func_800E3C58(f32, f32, f32);
+    void func_800E3900(f32);
+    void func_800E3CE8(void);
+    func_800E3BFC(0.0f, 0.0f, 0.0f);
+    func_800E3C58(-30.0f, 30.0f, 0.0f);
+    func_800E3900(D_801255F0);
+    func_800E3CE8();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A71E0.s")
 

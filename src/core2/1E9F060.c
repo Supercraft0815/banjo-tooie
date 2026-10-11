@@ -1,24 +1,85 @@
 #include "common.h"
 
+typedef struct {
+    f32 unk0;
+    f32 unk4;
+    u8 rgb[3];
+    u8 unkB[3];
+    u8 unkE[3];
+    u8 unk11;
+} ColorTransition;
+
 void func_800C5770(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C5778.s")
+void func_800C5778(void){
+    extern ColorTransition D_8012AA20;
+
+    D_8012AA20.unk11 = 0;
+    D_8012AA20.unk0 = D_8012AA20.unk4 = 0.0f;
+    D_8012AA20.unkE[0] = D_8012AA20.unkE[1] = D_8012AA20.unkE[2] = 0xFF;
+    D_8012AA20.unkB[0] = D_8012AA20.unkB[1] = D_8012AA20.unkB[2] = 0xFF;
+    D_8012AA20.rgb[0] = D_8012AA20.rgb[1] = D_8012AA20.rgb[2] = 0xFF;
+}
 
 void func_800C57C0(void) {
     s32 func_800BF48C(u8, u8, u8);
-    extern s32 D_8012AA20;
+    extern ColorTransition D_8012AA20;
     func_800BF48C((*(u8 *)((s8 *)(&D_8012AA20) + (8))), (*(u8 *)((s8 *)(&D_8012AA20) + (9))), (*(u8 *)((s8 *)(&D_8012AA20) + (0xA))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C57F0.s")
+void func_800C57F0(void) {
+    extern ColorTransition D_8012AA20;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C5968.s")
+    void func_800C57C0(void);
+    f32 func_800F10B4(f32 val, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
+    f32 func_800F0E00(f32 arg0, f32 arg1);
+    f32 func_800D8FF8(void);
+
+    s32 i;
+
+    if (D_8012AA20.unk11 != 0) {
+        D_8012AA20.unk0 = func_800F0E00(0.0f, D_8012AA20.unk0 - func_800D8FF8());
+        for(i = 0; i < 3; i++){
+            D_8012AA20.rgb[i] = func_800F10B4(D_8012AA20.unk0, D_8012AA20.unk4, 0.0f,D_8012AA20.unkE[i], D_8012AA20.unkB[i]);
+        }
+        func_800C57C0();
+        if (D_8012AA20.unk0 == 0.0f) {
+            D_8012AA20.unk11 = 0;
+        }
+    }
+}
+
+void func_800C5968(s32 red, s32 blue, s32 green, f32 arg3) {
+    extern ColorTransition D_8012AA20;
+
+    void func_800C57C0(void);
+
+    if (arg3 != 0.0f) {
+        D_8012AA20.unk11 = 1;
+        D_8012AA20.unk0 = arg3;
+        D_8012AA20.unk4 = arg3;
+        D_8012AA20.unkB[0] = red;
+        D_8012AA20.unkB[1] = blue;
+        D_8012AA20.unkB[2] = green;
+        D_8012AA20.unkE[0] = D_8012AA20.rgb[0];
+        D_8012AA20.unkE[1] = D_8012AA20.rgb[1];
+        D_8012AA20.unkE[2] = D_8012AA20.rgb[2];
+        return;
+    }
+    else{
+        D_8012AA20.unk11 = 0;
+        D_8012AA20.rgb[0] = red;
+        D_8012AA20.rgb[1] = blue;
+        D_8012AA20.rgb[2] = green;
+        func_800C57C0();
+    }
+}
 
 /* extern */
 
 void func_800C59F0(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_800C5968(s32, s32, s32, f32);
+    void func_800C5968(s32, s32, s32, f32);
     func_800C5968(arg0, arg1, arg2, 0.0f);
 }
 
@@ -55,13 +116,24 @@ void* func_800C5BC4(void* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C5EB8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C5F40.s")
+void func_800C5F40(void *ptr, void *arg1, void *triangle) {
+    void func_800C5EB8(void *, f32, s32, s32, void *, s32, void *);
+    u8 *data = arg1;
+    func_800C5EB8(ptr, *(f32 *)(data + 0xC), *(s32 *)(data + 0x10), *(s16 *)(data + 0x14), data, *(s32 *)(data + 0x18), triangle);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C5F8C.s")
+void func_800C5F8C(void *ptr) {
+    extern u8 D_8011A890[];
+    void func_800C5EB8(void *, f32, s32, s32, void *, s32, void *);
+    func_800C5EB8(ptr, -18000.0f, 0, 0, D_8011A890, 0, NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C5FCC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C6038.s")
+void func_800C6038(void *ptr) {
+    void func_800C5FCC(void *, f32, s32);
+    func_800C5FCC(ptr, -19000.0f, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C6060.s")
 

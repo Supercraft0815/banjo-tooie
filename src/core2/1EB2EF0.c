@@ -11,7 +11,9 @@ void func_800D9600(void *arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2EF0/func_800D965C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2EF0/func_800D97E8.s")
+int func_800D97E8(f32 a[4], f32 b[4]) {
+    return a[0] == b[0] && a[1] == b[1] && a[2] == b[2] && a[3] == b[3];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2EF0/func_800D9888.s")
 

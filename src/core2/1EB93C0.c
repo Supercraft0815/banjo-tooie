@@ -1,6 +1,21 @@
 #include "core2/1EB93C0.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB93C0/func_800DFAD0.s")
+typedef struct { f32 unk0[4]; f32 scale[3]; f32 unk1C[3]; } BoneTransform;
+typedef struct { BoneTransform *ptr; s32 count; } BoneTransformList;
+
+void func_800DFAD0(BoneTransformList *this) {
+    BoneTransform *end_ptr;
+    BoneTransform *i_ptr;
+
+    i_ptr = this->ptr;
+    end_ptr = i_ptr + this->count;
+    for(i_ptr = i_ptr; i_ptr < end_ptr; i_ptr++){
+        i_ptr->unk0[0] = i_ptr->unk0[1] = i_ptr->unk0[2] = 0.0f;
+        i_ptr->unk0[3] = 1.0f;
+        i_ptr->scale[0] = i_ptr->scale[1] = i_ptr->scale[2] = 1;
+        i_ptr->unk1C[0] = i_ptr->unk1C[1] = i_ptr->unk1C[2] = 0.0f;
+    }
+}
 
 void func_800DFB40(s32 *arg0, s32 arg1, u8 *arg2) {
     void func_800D9600(void *arg0, void *arg1);

@@ -38,7 +38,23 @@ void fxrain_entrypoint_4(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/rain/fxrain_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/rain/fxrain_entrypoint_6.s")
+void fxrain_entrypoint_6(void *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+    typedef struct {
+        u8 pad0[0x30];
+        u8 enabled;
+        f32 elapsed;
+        f32 rate;
+        f32 values[4];
+    } RainFade;
+    RainFade *this = arg0;
+    this->enabled = 1;
+    this->elapsed = 0.0f;
+    this->rate = 0.1f;
+    this->values[0] = arg1;
+    this->values[1] = arg2;
+    this->values[2] = arg3;
+    this->values[3] = arg4;
+}
 
 void fxrain_entrypoint_7(s32 arg0)
 {

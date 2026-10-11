@@ -1,5 +1,20 @@
 #include "core2/1E9A960.h"
 
+typedef struct {
+    u8 pad0[0xC];
+    f32 fade_inner_radius_sqr;
+    f32 fade_outer_radius_sqr;
+    u8 pad14[0x4C];
+    u8 unk60;
+    u8 unk61;
+    u8 pad62[0xA];
+    f32 unk6C;
+    f32 unk70;
+    f32 unk74;
+    u8 pad78;
+    u8 unk79;
+} SoundSourceView;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C1070.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C1104.s")
@@ -93,7 +108,15 @@ void func_800C157C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C15BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C16A4.s")
+void func_800C16A4(u8 index) {
+    extern u8 D_80128C08[][0x80];
+    SoundSourceView *ptr = func_800C1414(index);
+    if (ptr->unk79) {
+        func_800C1568(ptr->unk79);
+        ptr->unk79 = 0;
+    }
+    D_80128C08[index][0] = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C16F8.s")
 
@@ -137,7 +160,29 @@ void func_800C1950(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2718.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2840.s")
+void func_800C2840(s32 uid, f32 volume, s32 sampleRate, s32 arg3, s32 arg4){
+    s32 func_800C2E04(void);
+    void func_800C301C(u8, s32);
+    void func_800C3058(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C32C4(u8, s32);
+    void func_800C330C(u8, s32);
+    void func_800C3418(u8, s32);
+    void func_800C36F4(u8, s32);
+    void func_800C3BDC(u8);
+
+    s32 indx = func_800C2E04();
+    if(indx){
+        func_800C301C(indx, uid);
+        func_800C3058(indx, sampleRate);
+        func_800C31DC(indx, volume);
+        func_800C32C4(indx, arg3);
+        func_800C330C(indx, 1);
+        func_800C3418(indx, arg4);
+        func_800C36F4(indx, 0);
+        func_800C3BDC(indx);
+    }
+}
 
 void func_800C28D8()
 {
@@ -173,7 +218,12 @@ void func_800C2A90()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2E40.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2FDC.s")
+s32 func_800C2FDC(u8 index) {
+    void *ptr = func_800C1414(index);
+    func_800C3CE8(index);
+    func_800C1210(ptr, 3);
+    return 0;
+}
 
 void func_800C301C(u8 id, s32 arg1) {
     if (id != 0) {
@@ -183,15 +233,44 @@ void func_800C301C(u8 id, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3058.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C30B8.s")
+void func_800C30B8(u8 index, s32 arg1, f32 position[3], f32 min_dist, f32 max_dist) {
+    void func_800C1070(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800C3058(u8, s32);
+    f32 pos[3];
+    f32 distance;
+    f32 scale;
+    func_800C1070(pos, position);
+    distance = func_800EEAD4(position, pos);
+    if (max_dist <= distance) scale = 0.0f;
+    else {
+        if (min_dist <= distance) scale = 1.0f - (distance - min_dist) / (max_dist - min_dist);
+        else scale = 1.0f;
+    }
+    func_800C3058(index, (s32)arg1 * scale);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C316C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C31DC.s")
+void func_800C31DC(u8 index, f32 value) {
+    SoundSourceView *ptr;
+    if (index) {
+        ptr = func_800C1414(index);
+        ptr->unk6C = value;
+        func_800C13A0(ptr, 4);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3224.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C32C4.s")
+void func_800C32C4(u8 index, s32 value) {
+    SoundSourceView *ptr;
+    if (index) {
+        ptr = func_800C1414(index);
+        ptr->unk60 = value;
+        func_800C13A0(ptr, 16);
+    }
+}
 
 void func_800C330C(u8 id, s32 arg1) {
     extern void func_800C11F8(void *, s32);
@@ -202,7 +281,14 @@ void func_800C330C(u8 id, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C334C.s")
+void func_800C334C(u8 index, s32 value) {
+    SoundSourceView *ptr;
+    if (index) {
+        ptr = func_800C1414(index);
+        ptr->unk61 = value;
+        func_800C13A0(ptr, 256);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3394.s")
 
@@ -212,15 +298,69 @@ void func_800C33DC(u8 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3418.s")
+void func_800C3418(u8 indx, s32 arg1){
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C34CC.s")
+    void *temp_v0;
+    if(indx){
+        temp_v0 = func_800C1414(indx);
+        switch(arg1){
+            case 0:
+                func_800C13B0(temp_v0, 0x40);
+                func_800C13B0(temp_v0, 0x80);
+                break;
+            case 1:
+                func_800C13A0(temp_v0, 0x40);
+                func_800C13B0(temp_v0, 0x80);
+                break;
+            case 2:
+                func_800C13A0(temp_v0, 0x40);
+                func_800C13A0(temp_v0, 0x80);
+                break;
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3528.s")
+void func_800C34CC(u8 index, s32 enabled) {
+    void *ptr;
+    if (index) {
+        ptr = func_800C1414(index);
+        if (enabled) { func_800C13B0(ptr, 512); }
+        else { func_800C13A0(ptr, 512); }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3584.s")
+void func_800C3528(u8 index, s32 enabled) {
+    void *ptr;
+    if (index) {
+        ptr = func_800C1414(index);
+        if (enabled) { func_800C13A0(ptr, 1024); }
+        else { func_800C13B0(ptr, 1024); }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C35E8.s")
+void func_800C3584(u8 index, f32 min, f32 max) {
+    void func_800C368C(u8, s32);
+    SoundSourceView *ptr;
+    if (index) {
+        ptr = func_800C1414(index);
+        ptr->fade_inner_radius_sqr = min * min;
+        ptr->fade_outer_radius_sqr = max * max;
+        func_800C368C(index, 1);
+    }
+}
+
+void func_800C35E8(u8 index, f32 position[3]) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800C368C(u8, s32);
+    s32 func_800EA05C(void);
+    u8 *ptr;
+    if (index) {
+        ptr = func_800C1414(index);
+        func_800EE7F8((f32 *)ptr, position);
+        func_800C368C(index, 1);
+        *(s16 *)(ptr + 0x5E) = func_800EA05C();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3648.s")
 
@@ -232,11 +372,37 @@ void func_800C36F4(u8 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3730.s")
+void func_800C3730(u8 index, f32 arg1, f32 arg2, f32 arg3) {
+    u8 *ptr;
+    if (index) {
+        ptr = func_800C1414(index);
+        *(u16 *)(ptr + 0x7A) = (*(u16 *)(ptr + 0x7A) & 0xFC3F) | 0x40;
+        *(f32 *)(ptr + 0x28) = arg3;
+        *(f32 *)(ptr + 0x2C) = arg2;
+        func_800C31DC(index, arg1);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3798.s")
+void func_800C3798(u8 index, f32 arg1, f32 arg2) {
+    SoundSourceView *ptr;
+    if (index) {
+        ptr = func_800C1414(index);
+        ptr->unk70 = arg1;
+        ptr->unk74 = arg2;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C37E0.s")
+void func_800C37E0(u8 index, f32 arg1, f32 arg2, f32 arg3) {
+    u8 *ptr;
+    if (index) {
+        ptr = func_800C1414(index);
+        *(u16 *)(ptr + 0x7A) = (*(u16 *)(ptr + 0x7A) & 0xFC3F) | 0x80;
+        *(f32 *)(ptr + 0x30) = arg3;
+        *(f32 *)(ptr + 0x2C) = arg1;
+        *(f32 *)(ptr + 0x28) = arg2;
+        func_800C31DC(index, (arg1 + arg2) * 0.5f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3868.s")
 
@@ -254,7 +420,14 @@ s16 func_800C3920(u8 arg0) {
     return (*(s16 *)((s8 *)(func_800C1414(arg0)) + (0x5A)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C395C.s")
+f32 func_800C395C(u8 index) {
+    SoundSourceView *ptr;
+    if (!index) return 1.0f;
+    else {
+        ptr = func_800C1414(index);
+        return ptr->unk6C;
+    }
+}
 
 s32 func_800C39A0(u8 id) {
     u16 *p = (u16 *) ((u8 *) func_800C1414(id) + 0x7A);
@@ -277,39 +450,80 @@ s32 func_800C39A0(u8 id) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3E00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3E88.s")
+void func_800C3E88(s32 uid){
+    void func_800C2840(s32, f32, s32, s32, s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3EB8.s")
+    func_800C2840(uid, 1.0f, 22000, 0, 2);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3EE4.s")
+void func_800C3EB8(s32 uid){
+    void func_800C2840(s32, f32, s32, s32, s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3F14.s")
+    func_800C2840(uid, 1.0f, 22000, 0, 0);
+}
+
+void func_800C3EE4(s32 uid, s32 sampleRate){
+    void func_800C2840(s32, f32, s32, s32, s32);
+
+    func_800C2840(uid, 1.0f, sampleRate, 0, 2);
+}
+
+void func_800C3F14(s32 uid, f32 arg1){
+    void func_800C2840(s32, f32, s32, s32, s32);
+
+    func_800C2840(uid, arg1, 22000, 0, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3F48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3FC0.s")
+void func_800C3FC0(s32 uid, f32 pitch, s32 arg2){
+    void func_800C2840(s32, f32, s32, s32, s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3FF0.s")
+    func_800C2840(uid, pitch, arg2, 0, 2);
+}
+
+void func_800C3FF0(s32 uid, f32 arg1, s32 arg2){
+    void func_800C2840(s32, f32, s32, s32, s32);
+
+    func_800C2840(uid, arg1, arg2, 0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C401C.s")
 
 void func_800C4104(s32 arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5) {
-    s32 func_800C401C(s32, f32, s32, s32, f32, f32, s32);
-    func_800C401C(arg0, arg1, arg2, arg3, arg4, arg5, 2);
+    void func_800C401C(s32, f32, u32, f32 *, f32, f32, s32);
+    func_800C401C(arg0, arg1, arg2, (f32 *)arg3, arg4, arg5, 2);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C4140.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C4208.s")
+void func_800C4208(s32 uid, f32 volume, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance){
+    void func_800C401C(s32, f32, u32, f32 *, f32, f32, s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C4244.s")
+    func_800C401C(uid, volume, sampleRate, position, minFadeDistance, maxFadeDistance, 1);
+}
+
+void func_800C4244(s32 uid, f32 volume, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance){
+    void func_800C401C(s32, f32, u32, f32 *, f32, f32, s32);
+
+    func_800C401C(uid, volume, sampleRate, position, minFadeDistance, maxFadeDistance, 0);
+}
 
 void func_800C427C()
 {
     func_800C2718();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C429C.s")
+u8 func_800C429C(s32 uid, s32 arg1){
+    s32 func_800C2E04(void);
+    void func_800C301C(u8, s32);
+    void func_800C330C(u8, s32);
+
+    u8 indx = func_800C2E04();
+    func_800C301C(indx, uid);
+    func_800C330C(indx, arg1);
+    return indx;
+}
 
 /* extern */
 

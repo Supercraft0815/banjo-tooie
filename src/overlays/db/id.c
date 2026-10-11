@@ -1,5 +1,8 @@
 #include "common.h"
 
+typedef struct { s16 uid; s16 vtx_count; s16 vertices[1]; } MeshRecord;
+typedef struct { s16 count; MeshRecord data[1]; } MeshList;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/id/dbid_entrypoint_0.s")
 
 s32 dbid_entrypoint_1(s16 *arg0) {
@@ -15,6 +18,31 @@ s32 dbid_entrypoint_1(s16 *arg0) {
     return sum;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/id/dbid_entrypoint_2.s")
+MeshRecord *dbid_entrypoint_2(MeshList *this, s32 mesh_id) {
+    int i;
+    MeshRecord *mesh = this->data;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/id/dbid_entrypoint_3.s")
+    for (i = 0; i < this->count; i++) {
+        if (mesh->uid == mesh_id) {
+            return mesh;
+        }
+        mesh = (MeshRecord *) &mesh->vertices[mesh->vtx_count];
+    }
+
+    return NULL;
+}
+
+int dbid_entrypoint_3(MeshList *this, s32 mesh_id, u16 *vtx_id) {
+    int i;
+    MeshRecord *mesh = dbid_entrypoint_2(this, mesh_id);
+
+    if (mesh) {
+        for (i = 0; i < mesh->vtx_count; i++) {
+            if (mesh->vertices[i] == *vtx_id) {
+                return 1;
+            }
+        }
+    }
+
+    return 0;
+}

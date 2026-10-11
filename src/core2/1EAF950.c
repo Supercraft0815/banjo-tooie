@@ -176,7 +176,11 @@ void func_800D7460()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D75DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7708.s")
+f32 func_800D7708(s32 arg0, f32 arg1, s32 arg2) {
+    void *func_800D7520(s32);
+    f32 func_800C7AE4(void *, f32, f32);
+    return func_800C7AE4(func_800D7520(arg0), arg1, 1.0f) / ((f32)arg2 / 4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7754.s")
 

@@ -1,6 +1,13 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_0.s")
+void mlspline_entrypoint_0(f32 t, s32 arg1, f32 points[2][3], f32 dst[3]) {
+    int i;
+    for (i = 0; i < 3; i++) {
+        f32 start = points[0][i];
+        f32 end = points[1][i];
+        dst[i] = start + (end - start) * t;
+    }
+}
 
 void mlspline_entrypoint_1(f32 arg0, s32 arg1, u8 *arg2, f32 *arg3) {
     f32 temp_f0;

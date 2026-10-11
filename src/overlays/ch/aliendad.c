@@ -90,7 +90,17 @@ void func_80801C60_chaliendad(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801D40_chaliendad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801DD0_chaliendad.s")
+s32 func_80801DD0_chaliendad(void) {
+    s32 func_800DA298(s32);
+    s32 i;
+    s32 count = 0;
+    for (i = 0; i < 3; i++) {
+        if (func_800DA298(i + 0x372)) {
+            count++;
+        }
+    }
+    return count;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801E28_chaliendad.s")
 

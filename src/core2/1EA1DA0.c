@@ -409,7 +409,10 @@ void func_800C9994()
     func_800FCAE0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C99B4.s")
+void func_800C99B4(s32 arg0, s32 arg1, s32 arg2) {
+    void func_800C3FF0(s32, f32, s32);
+    func_800C3FF0(arg0, arg1 / 1000.0f, arg2);
+}
 
 /* extern */
 
@@ -450,7 +453,11 @@ void func_800C9D38(f32 arg0, s32 arg1) {
     func_800C9DE4(arg0, &func_800C9AB0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9D60.s")
+void func_800C9D60(f32 time, s32 arg0) {
+    void func_800C9DE4(f32, void *, s32);
+    void func_800A54F8(s32);
+    func_800C9DE4(time, func_800A54F8, arg0);
+}
 
 void func_800C9D88(f32 arg0) {
     void func_800C9DAC(f32, void *);
@@ -483,7 +490,12 @@ void func_800C9EAC(f32 time, void *funcPtr, s32 arg0, s32 arg1, s32 arg2, s32 ar
     func_800C9750(time, 4, funcPtr, arg0, arg1, arg2, arg3, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9EF8.s")
+void func_800C9EF8(f32 time, void *funcPtr, void *argPtr) {
+    void *func_800C9750(f32, s32, void *, s32, s32, s32, s32, s32);
+    void rare_memcpy(void *, void *, s32);
+    u8 *q = func_800C9750(time, 6, funcPtr, 0, 0, 0, 0, 0);
+    rare_memcpy(q + 0x20, argPtr, 0x50);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9F48.s")
 

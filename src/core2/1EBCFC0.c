@@ -135,12 +135,17 @@ void func_800E3A58(s32 arg0) {
 
 /* extern */
 
-void func_800E3A80(void) {
-    s32 func_800CAA1C(s32);
-    func_800CAA1C(D_8012D500);
+f32 func_800E3A80(void) {
+    f32 func_800CAA1C(s32);
+    return func_800CAA1C(D_8012D500);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBCFC0/func_800E3AA4.s")
+s32 func_800E3AA4(f32 x) {
+    f32 val = (s32)(func_800E3A80() - x);
+    while (val < 0) val += 360;
+    while (val >= 360) val -= 360;
+    return val;
+}
 
 /* extern */
 

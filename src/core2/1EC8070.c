@@ -144,7 +144,9 @@ int func_800EEEA8(f32 vec[3])
     return !(vec[0] != 0 || vec[1] != 0 || vec[2] != 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EEF24.s")
+int func_800EEF24(f32 vec[3]) {
+    return vec[0] != 0 || vec[1] != 0 || vec[2] != 0;
+}
 
 f32 func_800EEF94(f32 *arg0) {
     f32 z = arg0[2];

@@ -90,7 +90,16 @@ void func_80095C10(void *arg0) {
     func_800C5BA4(*(*(s32 **)((s8 *)(arg0) + (0x94))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80095C34.s")
+f32 func_80095C34(f32 arg0, f32 arg1, f32 arg2) {
+    f32 func_800F13F0(f32, f32);
+    f32 func_800F0E00(f32, f32);
+    if (arg1 < arg0) {
+        arg1 = func_800F13F0(arg0, arg1 + arg2);
+    } else if (arg0 < arg1) {
+        arg1 = func_800F0E00(arg0, arg1 - arg2);
+    }
+    return arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80095C94.s")
 

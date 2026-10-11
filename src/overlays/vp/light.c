@@ -10,7 +10,14 @@ void vplight_entrypoint_1(void* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/light/vplight_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/light/func_808004B0_vplight.s")
+void func_808004B0_vplight(void *arg0, s32 position[3]) {
+    void func_800C8800(void *, f32 *);
+    f32 pos[3];
+    func_800C8800(arg0, pos);
+    position[0] = (s32)pos[0];
+    position[1] = (s32)pos[1];
+    position[2] = (s32)pos[2];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/light/func_80800518_vplight.s")
 

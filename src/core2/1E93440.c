@@ -16,7 +16,15 @@ s32 func_800BA198(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA1D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA22C.s")
+void func_800BA22C(s32 arg0, s32 n) {
+    typedef u8 Particle[0x3C];
+    typedef struct { u8 pad0[0x90]; Particle *end; Particle *capacity; } EmitterView;
+    void func_800B9B50(EmitterView *, Particle *);
+    EmitterView *this = (EmitterView *)arg0;
+    for (; n > 0; n--) {
+        if (this->end < this->capacity) func_800B9B50(this, this->end++);
+    }
+}
 
 int func_800BA28C(void *arg0) {
     return ((*(s32 *)((s8 *)arg0 + 0x90) -

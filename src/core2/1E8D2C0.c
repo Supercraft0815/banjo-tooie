@@ -57,7 +57,16 @@ void func_800B42DC(void* arg0)
 {
     heap_free(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B42FC.s")
+s16 *func_800B42FC(s32 size, s32 count) {
+    void func_800B39E8(void *);
+    s16 *ptr;
+    count++;
+    ptr = heap_alloc(size * count + 4);
+    ptr[0] = size;
+    ptr[1] = count;
+    func_800B39E8(ptr);
+    return ptr;
+}
 
 void func_800B4354(s32 arg0)
 {

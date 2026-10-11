@@ -73,7 +73,10 @@ s32 func_80801020_gcdialogexec(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/gcdialogexec_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/gcdialogexec_entrypoint_4.s")
+s32 gcdialogexec_entrypoint_4(s32 text_id, s32 arg1, f32 *pos, void *marker, void *callback, void *arg5) {
+    s32 func_808011A4_gcdialogexec(s32, s32, f32 *, void *, void *, void *);
+    return func_808011A4_gcdialogexec(text_id, arg1, pos, marker, callback, arg5);
+}
 
 void gcdialogexec_entrypoint_5()
 {

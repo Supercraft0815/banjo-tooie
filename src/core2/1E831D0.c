@@ -16,7 +16,15 @@ void func_800A98E0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E831D0/func_800A9A14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E831D0/func_800A9AA4.s")
+void func_800A9AA4(void) {
+    extern u8 D_80127760;
+    void func_800E817C(void);
+    void _gsattract_entrypoint_2(void);
+    switch (D_80127760) {
+        case 1: func_800E817C(); break;
+        case 2: _gsattract_entrypoint_2(); break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E831D0/func_800A9AF8.s")
 

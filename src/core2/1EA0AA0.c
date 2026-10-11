@@ -70,7 +70,22 @@ void func_800C7364(s32 arg0, s32 arg1, s32* arg2)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0AA0/func_800C73A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0AA0/func_800C7494.s")
+void func_800C7494(void) {
+    typedef struct CallbackEntry {
+        s32 unk0;
+        s32 enabled;
+        void *unk8;
+        void (*callback)(struct CallbackEntry *);
+        s32 unk10;
+    } CallbackEntry;
+    extern CallbackEntry D_8011A8A0[5];
+    CallbackEntry *ptr;
+    if (*(u8 *)&D_8012AAF0 != 0) {
+        for (ptr = D_8011A8A0; ptr != &D_8011A8A0[5]; ptr++) {
+            if (ptr->enabled != 0 && ptr->callback != NULL) ptr->callback(ptr);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0AA0/func_800C7500.s")
 

@@ -207,7 +207,15 @@ s32 func_800EC428(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC5C0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC708.s")
+f32 func_800EC708(void **marker) {
+    f32 func_800EC5C0(void *, void *);
+    void func_800EC504(void);
+    void func_800EC48C(void);
+    typedef struct { u8 pad0[8]; u32 reserved : 30; u32 isModel : 1; u32 flag : 1; } PropView;
+    PropView *prop = *marker;
+    if (prop->isModel) return func_800EC5C0(prop, func_800EC504);
+    else return func_800EC5C0(prop, func_800EC48C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC75C.s")
 

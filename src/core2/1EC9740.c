@@ -38,9 +38,57 @@ int func_800F0130(s32 vec2[3], s32 distance, s32 vec1[3])
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F03AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F0410.s")
+void func_800F0410(f32 dst[3], f32 arg2[3][3], f32 arg1[3]){
+    void func_800F0274(f32 *, f32 *, f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 sp54;
+    f32 sp50;
+    f32 sp4C;
+    f32 sp40[3];
+    f32 sp34[3];
+    f32 sp28[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F0524.s")
+    func_800F0274(sp40, arg2[0], arg2[1], arg1);
+    func_800F0274(sp34, arg2[1], arg2[2], arg1);
+    func_800F0274(sp28, arg2[2], arg2[0], arg1);
+
+    sp54 = func_800EEB40(sp40, arg1);
+    sp50 = func_800EEB40(sp34, arg1);
+    sp4C = func_800EEB40(sp28, arg1);
+
+    if(sp54 < sp50){
+        if(sp4C < sp54){
+            func_800EE7F8(dst, sp28);
+        }
+        else{
+            func_800EE7F8(dst, sp40);
+        }
+    }
+    else{//L80257868
+        if(sp4C < sp50)
+            func_800EE7F8(dst, sp28);
+        else
+            func_800EE7F8(dst, sp34);
+    }
+
+
+}
+
+void func_800F0524(f32 dst[3], f32 vec1[9], f32 vec2[3]) {
+    void func_800EFB24(f32 *, f32 *, f32 *);
+    void func_800EE97C(f32 *, f32 *, f32 *);
+    s32 func_800EF2A0(s32);
+    void func_800F03AC(f32 *, f32 *, f32 *, f32 *);
+    f32 tmp1[3];
+    f32 tmp2[3];
+    f32 tmp3[3];
+    func_800EFB24(tmp1, &vec1[3], vec1);
+    func_800EFB24(tmp2, &vec1[6], vec1);
+    func_800EE97C(tmp3, tmp1, tmp2);
+    func_800EF2A0((s32)tmp3);
+    func_800F03AC(dst, vec1, tmp3, vec2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F059C.s")
 

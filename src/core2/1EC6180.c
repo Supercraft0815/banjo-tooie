@@ -133,7 +133,11 @@ s32 func_800EDA24(s16 *arg0) {
     return arg0[38];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EDA2C.s")
+int func_800EDA2C(void *self, f32 arg1[3]) {
+    MeshEffect *arg0 = self;
+    return (arg0->unk14[0] <= arg1[0]) && (arg1[0] < arg0->unk1A[0])
+        && (arg0->unk14[2] <= arg1[2]) && (arg1[2] < arg0->unk1A[2]);
+}
 
 /* extern */
 
@@ -147,7 +151,24 @@ void func_800EDAF4(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EDB20.s")
+void func_800EDB20(void *self, s32 arg1, void *model, s32 mesh_id) {
+    void _glidmake_entrypoint_2(s32, s32, u8 *, u8 *);
+    MeshEffect *arg0 = self;
+    arg0->unk0 = 0;
+    arg0->unkC = NULL;
+    arg0->unk10 = NULL;
+    arg0->unk29 = 0;
+    arg0->unk28 = 0;
+    arg0->unk4C = 0;
+    arg0->unk4E = 0;
+    arg0->unk70 = 0.0f;
+    arg0->unk74 = 0.0f;
+    arg0->unk9C = 0.0f;
+    arg0->unk98 = 0.0f;
+    arg0->unk44 = 0;
+    arg0->unk48 = 0;
+    _glidmake_entrypoint_2((s32)model, mesh_id, (u8 *)arg0->unk14, (u8 *)arg0->unk1A);
+}
 
 void func_800EDBA0(void *self, f32 arg1[3], f32 arg2[3], f32 arg3, s32 arg4){
     MeshEffect *arg0 = (MeshEffect *)self;
@@ -190,12 +211,26 @@ void func_800EDCB8(void *arg0, f32 arg1) {
 
 void func_800EDD20(void *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     void func_800EDC10(void *, f32, f32, f32, s32);
-    s32 func_800EE010();
+    void func_800EE010();
     func_800EE010();
     func_800EDC10(arg0, arg1, arg2, arg3, arg4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EDD68.s")
+void func_800EDD68(void *self, f32 arg1[4], f32 arg2[4], f32 arg3) {
+    extern f32 D_80125E64;
+    MeshEffect *arg0 = self;
+    arg0->unk50[0] = arg1[0];
+    arg0->unk50[1] = arg1[1];
+    arg0->unk50[2] = arg1[2];
+    arg0->unk50[3] = arg1[3];
+    arg0->unk60[0] = arg2[0];
+    arg0->unk60[1] = arg2[1];
+    arg0->unk60[2] = arg2[2];
+    arg0->unk60[3] = arg2[3];
+    arg0->unk70 = 0.0f;
+    arg0->unk28 = 0;
+    arg0->unk74 = (arg3 > 0.0f) ? arg3 : D_80125E64;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EDDDC.s")
 
@@ -222,9 +257,31 @@ void func_800EDFBC(void *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4)
   func_800ED964(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EE010.s")
+void func_800EE010(void *self){
+    void func_800EE040(void *, s32, f32, f32);
+    MeshEffect *arg0 = self;
+    func_800EE040(arg0, 0x3EC, 0.7f, 0.9f);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EE040.s")
+void func_800EE040(void *self, s32 sfx_id, f32 arg2, f32 arg3){
+    s32 func_800C2E04(void);
+    void func_800C301C(u8, s32);
+    void func_800C330C(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C3058(u8, s32);
+    void func_800C3BDC(u8);
+    MeshEffect *arg0 = self;
+    if(arg0->unk0 == 0){
+        arg0->unk0 = func_800C2E04();
+    }
+    arg0->unk20 = arg2;
+    arg0->unk24 = arg3;
+    func_800C301C(arg0->unk0, sfx_id);
+    func_800C330C(arg0->unk0, 3);
+    func_800C31DC(arg0->unk0, (arg2 + arg3) * 0.5f);
+    func_800C3058(arg0->unk0, 32000);
+    func_800C3BDC(arg0->unk0);
+}
 
 void func_800EE0F0(s32 *arg0, s32 arg1) {
     arg0[3] = arg1;

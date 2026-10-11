@@ -104,7 +104,9 @@ void func_80015ECC(s32 arg0, void *arg1) {
     (*(s32 *)((s8 *)(arg1) + (0x14))) = (s32) (*(s32 *)((s8 *)(&D_80079AC0) + (0x14)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2D890/func_80015F0C.s")
+s32 func_80015F0C(s32 controller, s32 combo) {
+    return D_800799C0[controller].unk0[combo];
+}
 
 void func_80015F28(s32 arg0, void *arg1) {
     unkD_800799E0 *temp_v0;

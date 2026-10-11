@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC1990/func_800E80A0.s")
+void func_800E80A0(void) {
+    extern s32 D_8012D5F0;
+    extern s32 D_8012D5F4;
+    if (D_8012D5F4 == NULL) {
+        D_8012D5F0 = (s32)heap_alloc(0xA040);
+        D_8012D5F4 = D_8012D5F0;
+        while ((s32)D_8012D5F0 & 0x3F) D_8012D5F0 += 2;
+    }
+}
 
 void func_800E8104(void) {
     s32 func_800A9800();

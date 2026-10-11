@@ -1,9 +1,20 @@
 #include "common.h"
 
+typedef struct {
+    u8 pad0[0x70];
+    u32 index : 7;
+    u32 reserved : 15;
+    u32 value : 6;
+    u32 flags : 4;
+} ActorPathView;
+
 void func_80102EC0(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC7B0/func_80102EC8.s")
+int func_80102EC8(ActorPathView *self, f32 (*positions)[3]) {
+    s32 func_800CC338(f32 (*)[3], s32, s32);
+    return self->index < 1 || func_800CC338(positions, self->index - 1, self->value - 1) != -1;
+}
 
 s32 func_80102F14(void *arg0) {
     struct Flags {

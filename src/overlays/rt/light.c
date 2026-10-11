@@ -17,7 +17,14 @@ void rtlight_entrypoint_0(void* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/rt/light/func_8080036C_rtlight.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/rt/light/func_80800544_rtlight.s")
+void func_80800544_rtlight(void *arg0, s32 position[3]) {
+    void func_800C8800(void *, f32 *);
+    f32 pos[3];
+    func_800C8800(arg0, pos);
+    position[0] = (s32)pos[0];
+    position[1] = (s32)pos[1];
+    position[2] = (s32)pos[2];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/rt/light/func_808005AC_rtlight.s")
 

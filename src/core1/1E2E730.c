@@ -1,5 +1,23 @@
 #include "common.h"
 
+typedef struct {
+    s16 volume;
+    u8 unk2;
+    u8 unk3;
+    u8 pad4;
+    u8 pending;
+    u8 pad6[2];
+    u8 cseq[0x1D8];
+    u8 cseqp[0x18];
+    s32 unk1F8;
+    u8 pad1FC[0x10];
+    s32 state;
+    u8 pad210[0x5C];
+    s16 track_id;
+    s16 index_cpy;
+    u8 pad270[4];
+} MusicSlotView;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80016C00.s")
 
 /* extern */
@@ -60,13 +78,69 @@ s32 func_80017210(u8 index) {
     return D_8007A1AC[index].state;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80017244.s")
+void func_80017244(void) {
+    s32 func_80017210(u8 index);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_800172D4.s")
+    void func_80016ED0(u8, s32);
+    int i;
+    int still_running;
+    volatile OSTime time;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80017330.s")
+    for (i = 0; i < 6; i++) {
+        func_80016ED0(i, -1);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_800173B0.s")
+    time = osGetTime();
+
+    do {
+        still_running = 0;
+        for (i = 0; i < 6; i++) {
+            if (func_80017210(i) != 0)
+                still_running++;
+        }
+        osGetTime();
+    } while(still_running);
+
+}
+
+void func_800172D4(u8 index, s32 track_id) {
+    extern u16 D_8003F600[];
+    extern s32 D_80079FA0;
+    MusicSlotView *slots = (MusicSlotView *)&D_80079FA0;
+    slots[index].index_cpy = track_id;
+    slots[index].unk2 = 1;
+    slots[index].pending = 1;
+    slots[index].unk3 = 0;
+    slots[index].volume =  D_8003F600[track_id];
+}
+
+void func_80017330(u8 index) {
+    extern s32 D_80079FA0;
+    MusicSlotView *slots = (MusicSlotView *)&D_80079FA0;
+    s32 track_id = slots[index].track_id;
+
+    if ((track_id == 0x10) || (track_id == 0x18)) {
+        slots[index].unk2 = 1;
+        slots[index].unk3 = 0;
+        slots[index].index_cpy = slots[index].track_id;
+    } else {
+        slots[index].index_cpy = -1;
+        slots[index].unk3 = 1;
+        slots[index].unk2 = 1;
+        slots[index].pending = 1;
+        slots[index].volume = 0;
+    }
+}
+
+void func_800173B0(u8 index, s16 volume) {
+    extern s32 D_80079FA0;
+    MusicSlotView *slots = (MusicSlotView *)&D_80079FA0;
+    slots[index].unk3 = 1;
+    slots[index].unk2 = 1;
+    slots[index].pending = 1;
+    slots[index].volume = volume;
+    slots[index].index_cpy = slots[index].track_id;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80017404.s")
 
@@ -74,7 +148,12 @@ s32 func_80017210(u8 index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80017534.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_800175A0.s")
+s32 func_800175A0(u8 index) {
+    s32 func_80025668(void *);
+    extern s32 D_80079FA0;
+    MusicSlotView *slots = (MusicSlotView *)&D_80079FA0;
+    return func_80025668(slots[index].cseq);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_800175F0.s")
 
@@ -83,7 +162,11 @@ u32 func_80017764(s32 arg0) {
     return ((u16 *)&D_8003F600)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80017778.s")
+int func_80017778(s32 index) {
+    extern s32 D_80079FA0;
+    u8 *slot = (u8 *)&D_80079FA0 + index * 0x274;
+    return *(s32 *)(slot + 0x20C) == 0 && !slot[3];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_800177C4.s")
 

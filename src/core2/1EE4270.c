@@ -108,7 +108,12 @@ s32 func_8010B040(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B514.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B69C.s")
+int func_8010B69C(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
+    f32 func_800BED50(f32 *, Actor *);
+    f32 y = func_800BED50(arg0->position, arg0) - 130.0f;
+    arg0->position[1] = (arg0->position[1] < y) ? arg0->position[1] : y;
+    return y == arg0->position[1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B71C.s")
 

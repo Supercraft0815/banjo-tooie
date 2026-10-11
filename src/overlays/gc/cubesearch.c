@@ -1,10 +1,39 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_0.s")
+void *gccubesearch_entrypoint_0(s32 actor_id, Actor *actor) {
+    void *gccubesearch_entrypoint_14(s32, s32 *);
+    s32 pos[3];
+    s32 *position;
+    if (actor != NULL) {
+        pos[0] = actor->position[0];
+        pos[1] = actor->position[1];
+        pos[2] = actor->position[2];
+    }
+    if (actor == NULL) position = NULL;
+    else position = pos;
+    return gccubesearch_entrypoint_14(actor_id, position);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_1.s")
+void *gccubesearch_entrypoint_1(s32 actor_id, f32 *position) {
+    void *gccubesearch_entrypoint_14(s32, s32 *);
+    s32 pos[3];
+    pos[0] = (s32)position[0];
+    pos[1] = (s32)position[1];
+    pos[2] = (s32)position[2];
+    return gccubesearch_entrypoint_14(actor_id, pos);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_2.s")
+int gccubesearch_entrypoint_2(s32 actor_id, s32 *position) {
+    void *gccubesearch_entrypoint_14(s32, s32 *);
+    s16 *ptr = gccubesearch_entrypoint_14(actor_id, NULL);
+    if (ptr != NULL) {
+        position[0] = ptr[0];
+        position[1] = ptr[1];
+        position[2] = ptr[2];
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_3.s")
 
@@ -40,7 +69,11 @@ void gccubesearch_entrypoint_12(s32 arg0, s32 arg1, s32 arg2) {
     func_80800590_gccubesearch(arg0, arg1, arg2, func_800EEB40);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_13.s")
+s32 gccubesearch_entrypoint_13(s32 arg0, s32 arg1, s32 arg2) {
+    f32 func_800EFC7C(f32 *, f32 *);
+    s32 func_80800590_gccubesearch(s32, s32, s32, f32 (*)(f32 *, f32 *));
+    return func_80800590_gccubesearch(arg0, arg1, arg2, func_800EFC7C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_14.s")
 

@@ -35,11 +35,19 @@ s32 func_8008D544(PlayerState* arg0)
     return func_800C6E38(0xA);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008D568.s")
+int func_8008D568(PlayerState *player) {
+    int func_800C6E38(s32);
+    return func_800C6E38(0x29) && baflag_isFalse(player, 5) && baflag_isFalse(player, 0x12);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008D5C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008D630.s")
+int func_8008D630(PlayerState *player) {
+    s32 bs_getCurrentState(PlayerState *);
+    if (baflag_isTrue(player, 0x14) || baflag_isTrue(player, 0x19)) return 0;
+    if (bs_getCurrentState(player) == 0x56) return 0;
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008D694.s")
 
@@ -119,7 +127,12 @@ void func_8008DE74(s32 arg0) {
     func_8009CA70(arg0, bs_getCurrentState(), 0x4000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DEA4.s")
+int func_8008DEA4(PlayerState *player, f32 position[3], f32 range) {
+    void func_8009C128(PlayerState *, f32 *);
+    f32 plyr_pos[3];
+    func_8009C128(player, plyr_pos);
+    return ((position[1] - range) <= plyr_pos[1]) && (plyr_pos[1] <= position[1] + range);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DF18.s")
 
@@ -148,7 +161,15 @@ s32 func_8008E1A0(void) {
     return func_80096694() == 24;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E1C4.s")
+int func_8008E1C4(PlayerState *player) {
+    s32 func_8009659C(PlayerState *, s32);
+    int sp1C;
+    int sp18;
+    sp1C = func_8009659C(player, 0x10) && baflag_isFalse(player, 3);
+    sp18 = func_8009659C(player, 0x40) && baflag_isFalse(player, 4);
+    if (sp1C || sp18) return 1;
+    return 0;
+}
 
 /* extern */
 
@@ -175,7 +196,13 @@ s32 func_8008E260(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E2AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E300.s")
+int func_8008E300(PlayerState *player) {
+    f32 yaw_getIdeal(PlayerState *);
+    f32 yaw_get(PlayerState *);
+    f32 func_800F1DCC(f32, f32);
+    f32 mlAbsF(f32);
+    return 135.0f < mlAbsF(func_800F1DCC(yaw_getIdeal(player), yaw_get(player)));
+}
 
 void player_inWater()
 {

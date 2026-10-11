@@ -384,7 +384,13 @@ void func_800F5A2C(s32 arg0)
     func_800F3BD0(D_80135490[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F5A58.s")
+void func_800F5A58(s32 index, s32 position[3]) {
+    f32 pos[3];
+    func_800F3BB0(D_80135490[index], pos);
+    position[0] = (s32)pos[0];
+    position[1] = (s32)pos[1];
+    position[2] = (s32)pos[2];
+}
 
 f32 func_800F5AD0(s32 arg0) {
     return 4.0f;

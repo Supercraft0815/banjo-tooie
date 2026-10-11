@@ -83,9 +83,41 @@ s32 func_800C067C(s32 arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C06C4.s")
+void func_800C06C4(void) {
+    typedef struct {
+        u8 pad0[0x15E];
+        u8 reserved : 2;
+        u8 queue : 1;
+        u8 decrement : 1;
+        u8 flags : 4;
+        u8 pad15F[7];
+        s8 index;
+    } DialogFlags;
+    DialogFlags *g;
+    if (!func_800C0638()) return;
+    g = (DialogFlags *)&D_801288B0;
+    g->queue = 1;
+    g->decrement = 0;
+    g->index++;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0710.s")
+void func_800C0710(void) {
+    typedef struct {
+        u8 pad0[0x15E];
+        u8 reserved : 2;
+        u8 queue : 1;
+        u8 decrement : 1;
+        u8 flags : 4;
+        u8 pad15F[7];
+        s8 index;
+    } DialogFlags;
+    DialogFlags *g;
+    if (!func_800C0638()) return;
+    g = (DialogFlags *)&D_801288B0;
+    g->queue = 1;
+    g->decrement = 1;
+    g->index--;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C075C.s")
 

@@ -2,7 +2,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/idmake/func_80800000_glidmake.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/idmake/glidmake_entrypoint_0.s")
+void glidmake_entrypoint_0(void *model, s32 mesh_id, s16 dst[3]) {
+    void glidmake_entrypoint_2(void *, s32, s16 *, s16 *);
+    s16 min[3];
+    s16 max[3];
+    glidmake_entrypoint_2(model, mesh_id, min, max);
+    dst[0] = (min[0] + max[0]) / 2;
+    dst[1] = (min[1] + max[1]) / 2;
+    dst[2] = (min[2] + max[2]) / 2;
+}
 
 /* extern */
 

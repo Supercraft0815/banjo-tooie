@@ -5,7 +5,7 @@
 #include "overlays/ba/playerstate.h"
 
 s32 func_800C2E04(void);
-void func_800C2FDC(u8 id);
+s32 func_800C2FDC(u8 id);
 void func_800C301C(u8 id, s32);
 void func_800C31DC(u8 id, f32);
 void func_800C330C(u8 id, s32);
