@@ -53,7 +53,9 @@ u32 func_800B2344(void *arg0) {
     return (u32) (*(u16 *)((s8 *)arg0 + 0x16)) >> 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B2354.s")
+f32 func_800B2354(void *arg0) {
+    return (f32) (u32) *(u16 *)((s8 *)arg0 + 0x14);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B237C.s")
 
