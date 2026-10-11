@@ -43,7 +43,11 @@ void func_80101870(Actor* arg0, void* arg1) {
     func_80101808(arg0, func_801015D0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDAEA0/func_801018A4.s")
+void func_801018A4(Actor *arg0, s32 arg1) {
+    extern s32 func_801017D0;
+    func_80101970(arg0);
+    func_80101808(arg0, (s32 (*)(Actor *)) &func_801017D0);
+}
 
 f32 *func_801018D8(Actor *arg0) {
     f32 *func_80101918(f32);
