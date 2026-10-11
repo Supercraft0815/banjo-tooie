@@ -9,7 +9,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/func_80800194_bsstonehead.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/func_808003B8_bsstonehead.s")
+int func_808003B8_bsstonehead(s32 arg0) {
+    s32 bakey_pressed(s32, s32);
+    s32 func_800DA298(s32);
+    return bakey_pressed(arg0, 8) && !func_800DA298(0x65A);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/func_808003F4_bsstonehead.s")
 
