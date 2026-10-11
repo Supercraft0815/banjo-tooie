@@ -64,7 +64,99 @@ void func_80800558_chfactorybattery(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80800AB8_chfactorybattery.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80801040_chfactorybattery.s")
+s32 func_80801040_chfactorybattery(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddieDll_entrypoint_1();
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    s32 _subaddietaxi_entrypoint_2(Actor *, s32);
+    void func_800DF744(s32, s32);
+    s32 func_800F54E4();
+    void func_800F7A2C(s32, s32, f32 *);
+    s32 func_801015D0(Actor *);
+    s32 func_80107070(Actor *, s32);
+    f32 func_8010A40C(void *);
+    s32 func_8080000C_chfactorybattery(Actor *);
+    void func_80800050_chfactorybattery(Actor *, s32);
+    void func_808001F8_chfactorybattery(Actor *);
+    s32 func_80800678_chfactorybattery();
+    void func_8080130C_chfactorybattery(Actor *, s32);
+
+    switch (arg1) {
+        case 0x3E:
+            switch (arg0->unk70_10) {
+                case 1:
+                case 4:
+                case 9:
+                    if (_subaddietaxi_entrypoint_2(arg0, func_80800678_chfactorybattery(arg0))) {
+                        func_8080130C_chfactorybattery(arg0, 2);
+                    }
+                    return 1;
+                case 6:
+                case 7:
+                    func_8080130C_chfactorybattery(arg0, 7);
+                    return 1;
+                case 8:
+                case 10:
+                    if (arg0->unk79_4) {
+                        func_8080130C_chfactorybattery(arg0, 10);
+                    }
+                    return 1;
+                case 5:
+                case 13:
+                    func_800F7A2C(func_800F54E4(), 5, arg0->position);
+                    return 1;
+                default:
+                    return 1;
+            }
+        case 0x40:
+            switch (arg0->unk70_10) {
+                case 1:
+                case 6:
+                    func_8080130C_chfactorybattery(arg0, 1);
+                    return 1;
+                case 8:
+                case 9:
+                case 10:
+                    func_8080130C_chfactorybattery(arg0, 9);
+                    return 1;
+                default:
+                    return 1;
+            }
+        case 1:
+            switch ((s32)arg0->unk70_10) {
+                case 1:
+                case 6:
+                case 7:
+                    func_8080130C_chfactorybattery(arg0, 8);
+                    return 1;
+            }
+            return 1;
+        case 2:
+            func_80107070(arg0, 1);
+            return 1;
+        case 0x1F:
+            func_801015D0(arg0);
+            func_800DF744(3, arg0->unk79_4);
+            return 1;
+        case 0x44:
+            func_80800050_chfactorybattery(arg0, arg2);
+            return 1;
+        case 0x29:
+            ((s16 *)arg0->unk0)[0x10] = (s32)(func_8010A40C(arg0) * 120.0f);
+            return 1;
+        case 0x95:
+            func_808001F8_chfactorybattery(arg0);
+            return 1;
+        case 0x4D:
+            func_8080000C_chfactorybattery(arg0);
+            if (arg0->unk70_10 != 3 && arg0->unk70_10 != 4 && arg0->unk70_10 != 5 && arg0->unk70_10 != 13) {
+                _subaddieDll_entrypoint_1(arg0);
+                _subaddierouteDll_entrypoint_1(arg0);
+            }
+            return 1;
+        default:
+            return 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_8080130C_chfactorybattery.s")
 
