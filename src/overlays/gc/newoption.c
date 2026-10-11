@@ -131,7 +131,9 @@ s32 gcnewoption_entrypoint_18(s32 arg0, s32 arg1) {
     return ((s16 *)arg0)[arg1 + 0x58] == 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_19.s")
+s32 gcnewoption_entrypoint_19(s32 arg0, s32 arg1) {
+    return ((*(s16 *)((s8 *)(arg0) + ((arg1 * 2) + 0xB0))) + 1) == 0;
+}
 
 s16 gcnewoption_entrypoint_20(s32 arg0, s32 arg1) {
     return ((s16 *)arg0)[arg1 + 0x58];
