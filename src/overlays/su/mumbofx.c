@@ -178,7 +178,12 @@ f32 sumumbofx_entrypoint_26(void *arg0) {
     return 1.0f - ((*(f32 *)((s8 *)(arg0) + (0x10))) / (*(f32 *)((s8 *)(arg0) + (0x14))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_27.s")
+s32 sumumbofx_entrypoint_27(f32 *arg0) {
+    s32 result;
+
+    result = sumumbofx_entrypoint_21(arg0) <= 0.0f;
+    return result;
+}
 
 void sumumbofx_entrypoint_28(u8 *arg0, f32 *arg1, f32 arg2, f32 arg3) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
