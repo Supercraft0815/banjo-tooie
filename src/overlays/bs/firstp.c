@@ -1035,7 +1035,10 @@ void func_80808084_bsfirstp(s32 arg0)
     func_80092744(arg0,0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808080A4_bsfirstp.s")
+void func_808080A4_bsfirstp(void *arg0, s8 arg1) {
+    s8 *ptr = *(s8 **)((s8 *)arg0 + 0x188);
+    ptr[0x72] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808080B4_bsfirstp.s")
 
