@@ -289,6 +289,9 @@ s32 func_80016B9C(s32 arg0, u16 arg1) {
     return D_80079AF8[arg0].unk0 & arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2D890/func_80016BBC.s")
+s32 func_80016BBC(s32 arg0, u16 arg1) {
+    extern u16 D_80079AFC[][8];
+    return D_80079AFC[arg0][0] & arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2D890/func_80016BDC.s")
