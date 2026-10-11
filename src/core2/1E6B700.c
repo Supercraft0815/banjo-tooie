@@ -14,7 +14,14 @@ void func_80091E20(u8 *arg0) {
     func_80091E48((s32) arg0, 0x7F);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B700/func_80091E48.s")
+s32 func_80091E48(s32 arg0, s32 arg1) {
+    u8 *data;
+
+    data = *(u8 **)(arg0 + 0x48);
+    data[data[3]] = arg1;
+    data = *(u8 **)(arg0 + 0x48);
+    data[3]++;
+}
 
 void func_80091E6C(void *arg0) {
     void *temp_v0;
