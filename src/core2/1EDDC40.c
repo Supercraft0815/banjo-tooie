@@ -84,7 +84,93 @@ void func_80104580(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104958.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_801049B4.s")
+void func_801049B4(u8 *arg0, f32 *arg1, s32 *arg2) {
+    typedef struct {
+        u8 header[4];
+        s16 position[3][3];
+        u8 pad16[2];
+        u8 color[3][4];
+        s32 flags;
+    } Triangle;
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EE830(s32 *, s32 *);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EE97C(f32 *, f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    f32 func_800EEF94(f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFA88(void *, s32, s32, s32);
+    void func_800EFB24(void *, void *, void *);
+    s32 func_800F36D4(s32 *, s32 *);
+    void func_80105390(u8 *, u8 *);
+    extern f32 D_80126444;
+    extern f32 D_80126448;
+    extern f32 D_8012644C;
+    f32 point[3];
+    f32 delta[3];
+    f32 offset[3];
+    f32 denominator;
+    f32 t;
+    f32 distance;
+    f32 blend;
+    f32 perpendicular[3];
+    f32 edge[3];
+    f32 intersection[3];
+    s32 colors[3][3];
+    s32 i;
+    f32 vertices[3][3];
+    f32 normal[3];
+    f32 edge10[3];
+    f32 edge20[3];
+    f32 edge21[3];
+    s32 j;
+
+    if (((Triangle *)arg0)->flags & 0x200000) {
+        func_800EFA88(arg2, 255, 255, 255);
+        return;
+    }
+    func_800EE7F8(point, arg1);
+    for (i = 0; i < 3; i++) {
+        func_800EE88C(vertices[i], ((Triangle *)arg0)->position[i]);
+        for (j = 0; j < 3; j++) {
+            colors[i][j] = ((Triangle *)arg0)->color[i][j];
+        }
+    }
+    if (func_800F36D4(colors[0], colors[1]) &&
+        func_800F36D4(colors[0], colors[2])) {
+        func_800EE830(arg2, colors[0]);
+        return;
+    }
+    func_800EFB24(delta, point, vertices[0]);
+    func_800EFB24(edge, vertices[0], vertices[1]);
+    func_800EFB24(edge10, vertices[1], vertices[0]);
+    func_800EFB24(edge20, vertices[2], vertices[0]);
+    func_800EFB24(edge21, vertices[2], vertices[1]);
+    func_800EE97C(normal, edge10, edge20);
+    func_800EE97C(perpendicular, edge21, normal);
+    denominator = func_800EEAA4(delta, perpendicular);
+    if (denominator == 0.0f) {
+        denominator = D_80126444;
+    }
+    t = -func_800EEAA4(edge, perpendicular) / denominator;
+    func_800EFA4C(intersection, vertices[0][0] + delta[0] * t, 0.0,
+                 vertices[0][2] + delta[2] * t);
+    func_800EFB24(offset, intersection, vertices[1]);
+    distance = func_800EEF94(offset);
+    blend = distance / (func_800EEF94(perpendicular) + D_80126448);
+    for (i = 0; i < 3; i++) {
+        arg2[i] = (s32)((f32)colors[1][i] + (f32)(colors[2][i] - colors[1][i]) * blend);
+    }
+    func_800EFB24(offset, intersection, vertices[0]);
+    distance = func_800EEF94(delta);
+    blend = 1.0f - distance / (func_800EEF94(offset) + D_8012644C);
+    for (i = 0; i < 3; i++) {
+        arg2[i] = (s32)((f32)arg2[i] + (f32)(colors[0][i] - arg2[i]) * blend);
+    }
+    if (((Triangle *)arg0)->flags & 0x04000000) {
+        func_80105390((u8 *)arg2, (u8 *)arg2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104D80.s")
 
