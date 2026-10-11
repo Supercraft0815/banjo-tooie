@@ -20,7 +20,9 @@ void func_80800000_gcdialogcamera(s32 arg0, s32 *arg1, s32 *arg2) {
     *arg1 = var_v0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/camera/func_8080003C_gcdialogcamera.s")
+s32 func_8080003C_gcdialogcamera(void *arg0, s32 arg1) {
+    return arg1 == -1 ? 0 : ((u32)arg1 == ((u32)*(u16 *)((u8 *)arg0 + 0x12) >> 1));
+}
 
 /* extern */
 
