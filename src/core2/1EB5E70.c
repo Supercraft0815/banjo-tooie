@@ -510,7 +510,14 @@ void func_800DF848(s32 arg0, s32 arg1) {
     D_80122DC8[D_8012CA28 * 2 + 1] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DF874.s")
+void func_800DF874(void) {
+    extern u8 D_8012C840;
+    u8 *temp = *(u8 **) &D_8012C840;
+    if (temp != 0) {
+        *(s32 *) &D_8012C840 = func_800AE5F0(temp);
+    }
+    (void) func_8010E358();
+}
 
 s32 func_800DF8B4(s32 *arg0) {
     return arg0[7];
