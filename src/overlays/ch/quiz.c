@@ -312,7 +312,16 @@ void func_8080216C_chquiz(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80802434_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80802628_chquiz.s")
+void func_80802628_chquiz(Actor *arg0) {
+    void func_80108B04(Actor *, u32);
+    struct QuizField {
+        u16 upper : 9;
+        u16 lower : 7;
+    };
+
+    ((struct QuizField *)((u8 *)arg0 + 0x76))->upper -= 50;
+    func_80108B04(arg0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80802664_chquiz.s")
 
