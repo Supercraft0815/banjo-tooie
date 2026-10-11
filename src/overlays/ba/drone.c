@@ -10,7 +10,10 @@ u8 badrone_entrypoint_1(void *arg0) {
     return D_80800630_badrone[*(*(u8 **)((s8 *)arg0 + 0x54))];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/drone/badrone_entrypoint_2.s")
+void badrone_entrypoint_2(void *arg0, s32 arg1) {
+    s32 func_800EE7F8();
+    func_800EE7F8(arg1, *(u8 **)((u8 *)arg0 + 0x54) + 0x24);
+}
 
 u32 badrone_entrypoint_3(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 84) + 0);
