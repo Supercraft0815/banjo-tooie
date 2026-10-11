@@ -76,7 +76,15 @@ void func_8009C1F8(void *arg0) {
     func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xE4))) + 0x24);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75920/func_8009C21C.s")
+s32 func_8009C21C(u8 *arg0) {
+    s32 func_800EE7F8();
+    s32 temp;
+
+    temp = *(s32 *)(arg0 + 0xE4);
+    func_800EE7F8(temp + 0x18, temp + 0xC, temp);
+    temp = *(s32 *)(arg0 + 0xE4);
+    return func_800EE7F8(temp + 0xC, temp, temp);
+}
 
 /* extern */
 
