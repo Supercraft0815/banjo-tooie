@@ -70,7 +70,11 @@ s32 func_800BEB64(s32 arg0) {
     return entry->values[entry->index];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEB98.s")
+s32 func_800BEB98(s32 arg0) {
+    struct Entry { s32 value; s32 pad[10]; };
+    extern struct Entry D_801285C4[];
+    return D_801285C4[arg0].value != 0 ? 2 : 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEBD4.s")
 
