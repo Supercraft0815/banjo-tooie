@@ -119,7 +119,143 @@ void func_800EA614(void) {
     (*(s32 *)((s8 *)(&D_80132DD0) + (4))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA628.s")
+s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    typedef struct {
+        union {
+            u8 *marker;
+            struct { u16 id; u8 yaw; u8 roll; } model;
+        } data;
+        s16 x;
+        s16 y;
+        s32 z : 16;
+        u32 scale : 8;
+        u32 unused : 3;
+        u32 active : 1;
+        u32 collidable : 1;
+        u32 flag2 : 1;
+        u32 isModel : 1;
+        u32 isActor : 1;
+    } Prop;
+    typedef s32 (*CollisionCallback)(u8 *, s32, s32, s32, s32);
+    typedef struct { CollisionCallback collide; } CollisionTable;
+    typedef CollisionTable *(*GetCollisionTable)(void);
+    typedef struct { u32 upper : 14; u32 excluded : 1; u32 lower : 17; } ActorFlags;
+    s32 _gsproplookup_entrypoint_0();
+    s32 func_800AAEF4(f32 *, f32, s32, s32);
+    s32 func_800AB868(u8 *, s32, f32 *, f32 *, f32, s32, s32, s32, s32);
+    f32 func_800B2354(void *);
+    u8 *func_800B2720(u8 *);
+    s32 func_800B2840(s32);
+    u8 *func_800BFC34(s32);
+    u8 *func_800BFC54(s32);
+    void func_800BFC74(s32);
+    s16 func_800CB854(s32 *);
+    void func_800D62E4(u16);
+    Prop *func_800E9E88(s32);
+    Prop *func_800E9EB4(s32);
+    void func_800EA400(s32, u8 *, s32, s32);
+    s32 func_800EB350(u8 *, s32, s32);
+    void func_80103508(u8 *);
+    s32 func_801039E4(s32);
+    u8 *func_80103AA0(u8 *);
+    s32 func_80103CDC(u8 *, u8 *);
+    u8 *func_80106790(u8 *);
+    extern s32 D_80132DD0;
+    extern s32 D_80132DD4;
+    extern f32 D_80125E50;
+    s32 result;
+    Prop *prop;
+    s32 modelId;
+    Prop *end;
+    u8 *model;
+    f32 scale;
+    CollisionTable *table;
+    f32 position[3];
+    f32 rotation[3];
+    u8 *collision;
+    u8 *marker;
+    u8 *actor;
+    s32 hit;
+    s32 customHit;
+    s32 context;
+    s32 modelHit;
+
+    result = 0;
+    prop = func_800E9E88(arg0);
+    end = func_800E9EB4(arg0);
+    for (; prop < end; prop++) {
+        if (prop->active) {
+            if (!prop->isActor) {
+                if (prop->isModel) {
+                    modelId = _gsproplookup_entrypoint_0(prop);
+                    model = func_800BFC54(modelId);
+                    if (model != NULL || (func_800CB854(NULL) == 1 && (model = func_800BFC34(modelId)) != NULL)) {
+                        collision = func_800B2720(model);
+                        if (collision != NULL) {
+                            prop->collidable = 1;
+                            position[0] = prop->x;
+                            position[1] = prop->y;
+                            position[2] = prop->z;
+                            rotation[0] = 0.0f;
+                            rotation[1] = (f32)(u32)prop->data.model.yaw * 2.0f;
+                            rotation[2] = (f32)(u32)prop->data.model.roll * 2.0f;
+                            scale = (f32)prop->scale * D_80125E50;
+                            if (func_800AAEF4(position, func_800B2354((void *)func_800B2840((s32)model)) * scale, arg1, arg2)) {
+                                modelHit = func_800AB868(collision, func_800B2840((s32)model), position, rotation, scale, arg1, arg2, arg3, arg4);
+                                if (modelHit != 0) {
+                                    result = modelHit;
+                                }
+                            }
+                        }
+                        if (model != NULL) {
+                            func_800BFC74(modelId);
+                        }
+                    }
+                }
+            } else {
+                marker = prop->data.marker;
+                if (prop->collidable && (*(u16 *)(marker + 0x18) & 1)) {
+                    if (*(GetCollisionTable *)(marker + 0xC) != NULL && (table = (*(GetCollisionTable *)(marker + 0xC))())->collide != NULL) {
+                        customHit = table->collide(marker, arg1, arg2, arg3, arg4);
+                        if (customHit != 0) {
+                            result = customHit;
+                        }
+                    } else {
+                        actor = func_80106790(marker);
+                        if (!((ActorFlags *)(actor + 0x64))->excluded && !func_800EB350(actor, arg1, arg2)) {
+                            if (func_800CB854(NULL) == 1) {
+                                func_80103508(actor);
+                            }
+                            model = func_80103AA0(marker);
+                            if (model != NULL) {
+                                collision = func_800B2720(model);
+                                if (collision != NULL) {
+                                    hit = func_800AB868(collision, func_80103CDC(actor, model), (f32 *)(actor + 4), (f32 *)(actor + 0x44), *(f32 *)(actor + 0x38), arg1, arg2, arg3, arg4);
+                                    if (hit != 0 && D_80132DD0 != 0) {
+                                        ((void (*)(u8 *, s32))D_80132DD0)(marker, D_80132DD4);
+                                    }
+                                    if (hit != 0 && func_800CB854(&context) == 1) {
+                                        func_801039E4((s32)marker);
+                                        if (*(u16 *)(actor + 0x80) != 0) {
+                                            func_800EA400(context, marker, arg2, hit);
+                                        }
+                                    }
+                                    if (hit != 0) {
+                                        result = hit;
+                                    }
+                                }
+                                if (model != NULL) {
+                                    func_800D62E4(*(u16 *)(marker + 0x14));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EAA2C.s")
 
