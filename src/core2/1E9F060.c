@@ -167,4 +167,12 @@ void func_800C68DC(s8 *arg0) {
     arg0[147] = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C68E8.s")
+void func_800C68E8(s8 *arg0, s32 arg1, f32 arg2) {
+    if ((*(u8 *)(arg0 + 0x9C) != 0) && (arg1 == 0)) {
+        arg0[0x93] = 1;
+    }
+    if (arg1 != 0) {
+        (*(f32 *)(arg0 + 0x98)) = arg2;
+    }
+    (*(u8 *)(arg0 + 0x9C)) = arg1;
+}
