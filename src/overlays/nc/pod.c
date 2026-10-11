@@ -79,7 +79,10 @@ s32 ncpod_entrypoint_6(s32 arg0, void *arg1, s32 arg2, s32 arg3, s32 arg4) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_7.s")
+void ncpod_entrypoint_7(void *arg0, void *arg1) {
+    (*(void **)((s8 *)(arg0) + (8))) = arg1;
+    (*(u32 *)((s8 *)(arg0) + (0xC))) = (u32) (*(u16 *)((s8 *)(arg1) + (0x12))) >> 1;
+}
 
 void ncpod_entrypoint_8(u8 *arg0, f32 *arg1, f32 *arg2) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
