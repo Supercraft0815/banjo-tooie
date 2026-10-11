@@ -1,8 +1,18 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800EFE50.s")
+void func_800EFE50(f32 dst[3], f32 start[3], f32 end[3], f32 t) {
+    int i;
+    for (i = 0; i < 3; i++) {
+        dst[i] = start[i] + (end[i] - start[i]) * t;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800EFED0.s")
+int func_800EFED0(f32 min[3], f32 max[3], f32 vec[3])
+{
+    return vec[0] > min[0] && vec[0] < max[0]
+        && vec[1] > min[1] && vec[1] < max[1]
+        && vec[2] > min[2] && vec[2] < max[2];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800EFFB4.s")
 
@@ -12,7 +22,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F00A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F0130.s")
+int func_800F0130(s32 vec2[3], s32 distance, s32 vec1[3])
+{
+    s32 diff[3];
+
+    diff[0] = vec1[0] - vec2[0];
+    diff[2] = vec1[2] - vec2[2];
+
+    return (diff[0] * diff[0] + diff[2] * diff[2]) < distance * distance;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F018C.s")
 

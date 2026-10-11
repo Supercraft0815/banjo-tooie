@@ -29,9 +29,20 @@ void gczoombox_entrypoint_0(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_8080014C_gczoombox.s")
+void func_8080014C_gczoombox(u8 * arg0, u8 * arg1, s32 arg2, s32 arg3){
+     int i;
+     for(i = arg2; i < arg3; i++){
+          arg1[i - arg2] = arg0[i];
+     }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_808001D4_gczoombox.s")
+void func_808001D4_gczoombox(u8 *arg0, s32 size){
+     s32 i;
+
+     for(i = 0; i< size; i++){
+          arg0[i] = 0;
+     }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80800228_gczoombox.s")
 
@@ -51,7 +62,14 @@ void func_80800358_gczoombox(void *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_808004D0_gczoombox.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_808005F0_gczoombox.s")
+int func_808005F0_gczoombox(u8 arg0, u8 arg1){
+    if(arg1 == 0){
+        return arg0 == '.' || arg0 == '!' || arg0 == ',' || arg0 == '-' || arg0 == '?';
+    }
+    else{
+        return arg0 == '\1' || arg0 == '4' || arg0 == '@' || arg0 == 'B';
+    }
+}
 
 void gczoombox_entrypoint_1()
 {

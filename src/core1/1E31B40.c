@@ -39,7 +39,11 @@ void func_8001A11C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A1E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A270.s")
+void func_8001A270(Gfx *start, Gfx *end) {
+    void func_8001A1E0(Gfx *start, Gfx *end, s32 flags);
+
+    func_8001A1E0(start, end, 0x40000000);
+}
 
 void func_8001A290()
 {

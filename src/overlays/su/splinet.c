@@ -20,7 +20,9 @@ s32 func_80800068_susplinet(s16 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/func_808000FC_susplinet.s")
+int func_808000FC_susplinet(u8 *array, s32 index) {
+    return ((array + 0x50)[index / 8] & (1 << (index & 7))) ? 1 : 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_2.s")
 

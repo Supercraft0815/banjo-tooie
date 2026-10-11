@@ -2,9 +2,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/func_80800074_suspline.s")
+int func_80800074_suspline(u8 *array, s32 index) {
+    return ((array + 0x7E)[index / 8] & (1 << (index & 7))) ? 1 : 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/func_808000B4_suspline.s")
+int func_808000B4_suspline(u8 *array, s32 index) {
+    return ((array + 0x87)[index / 8] & (1 << (index & 7))) ? 1 : 0;
+}
 
 s32 suspline_entrypoint_1(void *arg0) {
     return *(f32 *)((s8 *)arg0 + 0x58) >= 0.99f;

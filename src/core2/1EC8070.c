@@ -139,7 +139,10 @@ void func_800EEC30(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EEDE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EEEA8.s")
+int func_800EEEA8(f32 vec[3])
+{
+    return !(vec[0] != 0 || vec[1] != 0 || vec[2] != 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EEF24.s")
 
@@ -197,7 +200,18 @@ void func_800EF080(s16 *arg0, s16 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF214.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF2A0.s")
+void func_800EF2A0(f32 vec[3])
+{
+    f32 length_squared = (vec[0]*vec[0] + vec[1]*vec[1] + vec[2]*vec[2]);
+
+    if (length_squared != 0)
+    {
+        f32 inverse = 1.0f / sqrtf(length_squared);
+        vec[0] *= inverse;
+        vec[1] *= inverse;
+        vec[2] *= inverse;
+    }
+}
 
 // ml_vec3f_apply_scale
 void func_800EF334(f32 vec[3], f32 scale) {
@@ -223,7 +237,24 @@ void func_800EF3DC(f32 dst[3], f32 src[3]) {
     dst[2] -= src[2];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF410.s")
+void func_800EF410(f32 arg0[3], f32 arg1[3])
+{
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    void func_800EFA20(void *, void *, f32);
+
+    f32 length_squared = (arg1[0]*arg1[0] + arg1[1]*arg1[1] + arg1[2]*arg1[2]);
+    f32 inverse;
+
+    if (length_squared != 0)
+    {
+        inverse = 1.0f / sqrtf(length_squared);
+        func_800EFA20(arg0, arg1, inverse);
+    }
+    else
+    {
+        func_800EE7F8(arg0, arg1);
+    }
+}
 
 /* extern */
 

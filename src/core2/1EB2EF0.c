@@ -24,6 +24,11 @@ void func_800D9C34(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0xC))) = 0x3F800000;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2EF0/func_800D9C4C.s")
+int func_800D9C4C(f32 arg0[4]){
+    return ((arg0[0] == 0.0f)
+        && (arg0[1] == 0.0f)
+        && (arg0[2] == 0.0f)
+        && (arg0[3] == 1.0f));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2EF0/func_800D9CE8.s")

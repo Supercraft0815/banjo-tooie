@@ -444,29 +444,44 @@ void func_800C9C04(f32 arg0, u32 arg1, u32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9CD0.s")
 
-void func_800C9D38(s32 arg0, s32 arg1) {
-    s32 func_800C9DE4(s32, s32 *, s32);
+void func_800C9D38(f32 arg0, s32 arg1) {
+    void func_800C9DE4(f32, void *, s32);
     extern s32 func_800C9AB0;
     func_800C9DE4(arg0, &func_800C9AB0, arg1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9D60.s")
 
-void func_800C9D88(s32 *arg0) {
-    s32 func_800C9DAC();
+void func_800C9D88(f32 arg0) {
+    void func_800C9DAC(f32, void *);
     extern s32 func_800A5524;
     func_800C9DAC(arg0, &func_800A5524);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9DAC.s")
+void func_800C9DAC(f32 time, void *funcPtr) {
+    void *func_800C9750(f32, s32, void *, s32, s32, s32, s32, s32);
+    func_800C9750(time, 0, funcPtr, 0, 0, 0, 0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9DE4.s")
+void func_800C9DE4(f32 time, void *funcPtr, s32 arg0) {
+    void *func_800C9750(f32, s32, void *, s32, s32, s32, s32, s32);
+    func_800C9750(time, 1, funcPtr, arg0, 0, 0, 0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9E20.s")
+void func_800C9E20(f32 time, u32 *funcPtr, u32 arg0, u32 arg1) {
+    void *func_800C9750(f32, s32, void *, s32, s32, s32, s32, s32);
+    func_800C9750(time, 2, funcPtr, arg0, arg1, 0, 0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9E64.s")
+void func_800C9E64(f32 time, void *funcPtr, s32 arg0, s32 arg1, s32 arg2) {
+    void *func_800C9750(f32, s32, void *, s32, s32, s32, s32, s32);
+    func_800C9750(time, 3, funcPtr, arg0, arg1, arg2, 0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9EAC.s")
+void func_800C9EAC(f32 time, void *funcPtr, s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void *func_800C9750(f32, s32, void *, s32, s32, s32, s32, s32);
+    func_800C9750(time, 4, funcPtr, arg0, arg1, arg2, arg3, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9EF8.s")
 

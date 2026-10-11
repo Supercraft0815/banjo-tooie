@@ -71,7 +71,12 @@ s32 func_800F0E44(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F0EF0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F0F9C.s")
+f32 func_800F0F9C(f32 val1, f32 val2)
+{
+    f32 func_800F13C4(f32 arg0, f32 arg1);
+
+    return func_800F13C4(val1, val2) / val2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F0FC4.s")
 
@@ -123,13 +128,25 @@ f32 func_800F1214(f32 value, f32 min, f32 max) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F122C.s")
 
-void func_800F1274(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 (*arg5)(f32)) {
-    func_800F10B4(arg5(func_800F10B4(arg0, arg1, arg2, 0.0f, 1.0f)), 0.0f, 1.0f, arg3, arg4);
+f32 func_800F1274(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 (*arg5)(f32)) {
+    return func_800F10B4(arg5(func_800F10B4(arg0, arg1, arg2, 0.0f, 1.0f)), 0.0f, 1.0f, arg3, arg4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F12D4.s")
+f32 func_800F12D4(f32 a, f32 b, f32 c, f32 d, f32 e)
+{
+    f32 func_800F1274(f32 a, f32 b, f32 c, f32 d, f32 e, f32 (*func)(f32));
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F130C.s")
+    f32 func_800F1434(f32);
+    return func_800F1274(a, b, c, d, e, func_800F1434);
+}
+
+f32 func_800F130C(f32 a, f32 b, f32 c, f32 d, f32 e)
+{
+    f32 func_800F1274(f32 a, f32 b, f32 c, f32 d, f32 e, f32 (*func)(f32));
+    f32 func_800F14AC(f32 val);
+
+    return func_800F1274(a, b, c, d, e, func_800F14AC);
+}
 
 void func_800F1344(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     if (arg0 < 0.0f) {
@@ -175,8 +192,8 @@ void func_800F1480(f32 arg0) {
     func_80013970(arg0 * 90.0f);
 }
 
-void func_800F14AC(f32 arg0) {
-    func_800F1434(func_800F1434(arg0));
+f32 func_800F14AC(f32 arg0) {
+    return func_800F1434(func_800F1434(arg0));
 }
 
 f32 func_800F14D4(f32 arg0, f32 arg1) {
@@ -202,7 +219,18 @@ f32 func_800F14FC(f32 arg0, f32 arg1, f32 arg2) {
     return temp_f2 * temp_f2 * (3.0f - (2.0f * temp_f2));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F1574.s")
+s32 func_800F1574(f32 *timer, f32 delta) {
+    if (*timer > 0) {
+        *timer -= delta;
+
+        if (*timer <= 0) {
+            *timer = 0;
+            return 1;
+        }
+    }
+
+    return 0;
+}
 
 f32 func_800F15C4(f32 arg0, s32 arg1) {
     f32 var_f2;

@@ -1,8 +1,25 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6A10.s")
+void func_800E6A10(char *dest, const char *src) {
+    while (*dest) {
+        dest++;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6A58.s")
+    while (*src) {
+        *dest++ = *src++;
+    }
+
+    *dest = '\0';
+}
+
+void func_800E6A58(char *dest, char src) {
+    while (*dest) {
+        dest++;
+    }
+
+    *dest++ = src;
+    *dest = '\0';
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6A90.s")
 
@@ -14,7 +31,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6CA8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6DB4.s")
+void func_800E6DB4(char *str, s32 num) {
+    void func_800E6DD8(char *, s32, s32, s32);
+    func_800E6DD8(str, num, 0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6DD8.s")
 
@@ -24,7 +44,20 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E705C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E70DC.s")
+int func_800E70DC(const char *lhs, const char *rhs) {
+    while (*lhs && *rhs && *lhs == *rhs) {
+        lhs++;
+        rhs++;
+    }
+
+    if (*lhs == *rhs) {
+        return 0;
+    } else if ((*lhs == '\0') || (*lhs < *rhs)) {
+        return -1;
+    } else {
+        return 1;
+    }
+}
 
 void func_800E715C(u8 *arg0, u8 *arg1) {
     u8 var_v0;
@@ -66,11 +99,37 @@ s32 func_800E71B8(s32 arg0) {
     return arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E71EC.s")
+int func_800E71EC(char *str1, char *str2, char *str3) {
+    while (*str2 == *str3) {
+        str2++;
+        str3++;
+        if (((*str2 == '\0') || (*str2 == *str1)) && ((*str3 == '\0') || (*str3 == *str1))) {
+            return 1;
+        }
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E7254.s")
+char *func_800E7254(char *str, const char *delim) {
+    while (*delim && *delim != *str ) {
+        delim++;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E729C.s")
+    if (*delim == *str) {
+        delim++;
+    }
+
+    return (char *) delim;
+}
+
+void func_800E729C(char *str1, char *str2, char *str3){
+    while ((*str3 != '\0') && (*str3 != *str1)){
+        *str2 = *str3;
+        str3++;
+        str2++;
+    }
+    *str2 = '\0';
+}
 
 void func_800E72E0(u8 *arg0) {
     u8 *ptr;
@@ -84,12 +143,22 @@ void func_800E72E0(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E7324.s")
+void func_800E7324(char *str) {
+    char *ch = str;
+
+    while (*ch) {
+        if ((*ch >= 'A') && (*ch <= 'Z')) {
+            *ch += 'a' - 'A';
+        }
+
+        ch++;
+    }
+}
 
 /* extern */
 
 void func_800E7368(s32 arg0, s32 arg1) {
-    s32 func_800E6A58(s32, s32);
+    void func_800E6A58(char *, char);
     s32 var_s0;
     s32 var_v0;
 
@@ -100,7 +169,7 @@ void func_800E7368(s32 arg0, s32 arg1) {
         } else {
             var_v0 = 0x30;
         }
-        func_800E6A58(arg0, var_v0 & 0xFF);
+        func_800E6A58(arg0, var_v0);
         var_s0 -= 1;
     } while (var_s0 >= 0);
 }

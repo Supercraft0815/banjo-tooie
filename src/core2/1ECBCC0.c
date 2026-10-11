@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include "core1/mlmtx.h"
 
+void func_800F274C(MtxF *);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F23D0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F2454.s")
@@ -17,11 +19,43 @@ void func_800F26B0(MtxF* arg0, f32 arg1, f32 arg2, f32 arg3) {
     arg0->m[3][3] = 1.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F2704.s")
+void func_800F2704(MtxF *mf, float arg1, float arg2, float arg3){
+    void func_800F274C(MtxF *mf);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F274C.s")
+    func_800F274C(mf);
+    mf->m[3][0] = arg1;
+    mf->m[3][1] = arg2;
+    mf->m[3][2] = arg3;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F27D4.s")
+void func_800F274C(MtxF *mf)
+{
+    int i, j;
+
+    for (i=0; i<4; i++)
+    for (j=0; j<4; j++)
+        if (i == j) mf->m[i][j] = 1.0;
+        else mf->m[i][j] = 0.0;
+}
+
+void func_800F27D4(float lmf[4][4], float rmf[4][4], float dst[4][4]) {
+    s32 i, j, k;
+    float sp1C[4][4];
+
+    for(i = 0; i < 4; i++){
+        for(j = 0; j < 4; j++){
+            sp1C[i][j] = 0.0f;
+            for(k = 0; k < 4; k++){
+                sp1C[i][j] += lmf[i][k]*rmf[k][j];
+            }
+        }
+    }
+    for(i = 0; i < 4; i++){
+        for(j = 0; j < 4; j++){
+            dst[i][j] = sp1C[i][j];
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F293C.s")
 
