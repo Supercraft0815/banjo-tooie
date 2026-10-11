@@ -14,7 +14,9 @@ void func_80800000_chpiranha(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_80800218_chpiranha.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_80800280_chpiranha.s")
+void func_80800280_chpiranha(void *arg0) {
+    *(u16 *)((u8 *)arg0 + 0x6E) = (*(u16 *)((u8 *)arg0 + 0x6E) & 0xFE00) | (((u32)*(u16 *)((u8 *)arg0 + 0x76) >> 7) & 0x1FF);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_808002A0_chpiranha.s")
 
