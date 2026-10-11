@@ -15,4 +15,6 @@ void sueggmisc_entrypoint_2(s32 arg0, s32 arg1) {
     func_800FC660(_gcegg_entrypoint_3(arg1));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmisc/sueggmisc_entrypoint_3.s")
+void sueggmisc_entrypoint_3(void) {
+    func_800DA544(2609);
+}
