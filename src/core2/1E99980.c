@@ -94,7 +94,15 @@ void func_800C0808()
     _gcdialogexec_entrypoint_8(&D_801288B0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C082C.s")
+void func_800C082C(s32 arg0) {
+    struct Flags {
+        u8 pad[0x15E];
+        u8 upper : 4;
+        u8 enabled : 1;
+        u8 lower : 3;
+    };
+    ((struct Flags *)&D_801288B0)->enabled = arg0;
+}
 
 /* extern */
 
