@@ -266,7 +266,20 @@ s32 func_80802A9C_gcnewoption(u8 *arg0) {
     *(u8 *)(arg0 + 0x24) = 0xFF;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_35.s")
+/* extern */
+
+void gcnewoption_entrypoint_35(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void func_80101074(s32);
+    s32 func_8010114C(s32, s32, s32);
+    s16 local[2];
+    s32 saved;
+
+    saved = arg0;
+    local[0] = (u16)arg2;
+    local[1] = (u16)arg3;
+    func_80101074(arg1);
+    func_8010114C(saved, 0x20, *(s32 *)&local[0]);
+}
 
 void gcnewoption_entrypoint_36(void *arg0) {
     struct Flags {
