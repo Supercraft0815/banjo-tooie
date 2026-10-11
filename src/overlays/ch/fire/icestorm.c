@@ -45,7 +45,9 @@ void func_80800940_chfireicestorm(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_808009C8_chfireicestorm.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_80800A40_chfireicestorm.s")
+void func_80800A40_chfireicestorm(void *arg0) {
+    (*(f32 *)((s8 *)(arg0) + (0x58))) = 8.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_80800A50_chfireicestorm.s")
 
