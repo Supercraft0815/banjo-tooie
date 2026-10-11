@@ -193,7 +193,14 @@ void func_800C301C(u8 id, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C32C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C330C.s")
+void func_800C330C(u8 id, s32 arg1) {
+    extern void func_800C11F8(void *, s32);
+    extern void *func_800C1414(u8);
+
+    if (id != 0) {
+        func_800C11F8(func_800C1414(id), arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C334C.s")
 
