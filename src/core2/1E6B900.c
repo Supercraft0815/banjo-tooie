@@ -386,7 +386,9 @@ s32 func_80094340(void)
 	return 0x4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094348.s")
+s32 func_80094348(void *arg0, s32 arg1) {
+    return ((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x64)))) + (2))) & arg1) ? 1 : 0;
+}
 
 void func_80094370(s32 arg0)
 {
