@@ -49,7 +49,16 @@ void func_800BD600(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BDAD4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BDB9C.s")
+s32 func_800BDB9C(s32 arg0) {
+    extern u8 D_80128444;
+    s32 result;
+    if (arg0 < 0) {
+        result = (s32)&D_80128444;
+    } else {
+        result = arg0 * 8 + D_80128410;
+    }
+    return result;
+}
 
 void func_800BDBC4()
 {
