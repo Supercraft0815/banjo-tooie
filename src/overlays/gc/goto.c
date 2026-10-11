@@ -103,7 +103,12 @@ void gcgoto_entrypoint_11(s32 arg0, u32 arg1)
 void gcgoto_entrypoint_12(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/goto/gcgoto_entrypoint_13.s")
+void gcgoto_entrypoint_13(void) {
+    u32 address = (u32)&D_80127194.unk42C;
+    u8 *state = (u8 *)address;
+    state[0] = 0;
+    *(s32 *)(state + 4) = 0;
+}
 
 void gcgoto_entrypoint_14(s32 arg0) {
     *(s8 *)((u8 *)&D_80127194 + 1068) = arg0;
