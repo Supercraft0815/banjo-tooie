@@ -42,7 +42,19 @@ s32 func_800F0E28(s32 arg0, s32 arg1) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F0E44.s")
+s32 func_800F0E44(s32 arg0) {
+    if (arg0 < 0) {
+        do {
+            arg0 += 0x168;
+        } while (arg0 < 0);
+    }
+    if (arg0 >= 0x168) {
+        do {
+            arg0 -= 0x168;
+        } while (arg0 >= 0x168);
+    }
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F0E7C.s")
 
