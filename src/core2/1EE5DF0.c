@@ -122,7 +122,14 @@ void func_8010CD28(s32 arg0) {
     func_800F1DF4(arg0 + 4, &D_80136F50);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010CD50.s")
+f32 func_8010CD50(Actor *arg0, u32 arg1) {
+    s32 func_800F1DF4(s32, s32 *);
+    void func_800F5A00(s32, f32[3]);
+    f32 sp1C[3];
+
+    func_800F5A00(arg1, sp1C);
+    func_800F1DF4((s32)arg0 + 4, (s32 *)sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010CD88.s")
 
