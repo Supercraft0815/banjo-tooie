@@ -708,7 +708,16 @@ void func_800F6C5C(s32 arg0)
     player_isStable(D_80135490[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6C88.s")
+/* extern */
+
+s32 func_800F6C88(s32 arg0) {
+    s32 bs_getCurrentState(PlayerState *);
+    s32 func_8009CBDC(PlayerState *, s32);
+    PlayerState *temp_a0;
+
+    temp_a0 = D_80135490[arg0];
+    return func_8009CBDC(temp_a0, bs_getCurrentState(temp_a0)) == 0x2;
+}
 
 /* extern */
 
