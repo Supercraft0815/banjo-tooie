@@ -30,7 +30,18 @@ void func_800A70B0()
     func_800FFA88();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A70D0.s")
+void func_800A70D0(Unk80132ED0 *arg0, s32 arg1) {
+    Actor *func_80106790(Unk80132ED0 *);
+    struct Fields {
+        u8 pad[0x76];
+        u16 value : 9;
+        u16 low : 7;
+    };
+    struct Fields *actor;
+
+    actor = (struct Fields *)func_80106790(arg0);
+    actor->value = arg1;
+}
 
 void func_800A7108(Unk80132ED0 *arg0, f32 arg1) {
     Actor* func_80106790(Unk80132ED0 *);
