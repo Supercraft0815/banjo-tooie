@@ -32,7 +32,12 @@ f32 func_800C5190(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C5464.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C54CC.s")
+void func_800C54CC(s32 arg0, f32 arg1, f32 arg2) {
+    extern f32 D_8012A9A0[];
+    f32 *p = D_8012A9A0 + arg0;
+    p[20] = arg1;
+    p[25] = arg2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C54F0.s")
 
