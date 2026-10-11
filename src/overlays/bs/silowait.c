@@ -1,6 +1,17 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/silowait/func_80800000_bssilowait.s")
+/* extern */
+
+void func_80800000_bssilowait(u8 *arg0) {
+    void func_80091E6C(void *arg0);
+    void baphysics_reset_gravity(u8 *);
+    void baphysics_reset_terminal_velocity(u8 *);
+    void func_80092880(void *, s32);
+    func_80092880(arg0, 1);
+    func_80091E6C(arg0);
+    baphysics_reset_gravity(arg0);
+    baphysics_reset_terminal_velocity(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/silowait/func_8080003C_bssilowait.s")
 
