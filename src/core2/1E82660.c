@@ -100,4 +100,15 @@ void func_800A9800(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A9828.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A989C.s")
+s32 func_800A989C(void) {
+    s32 func_80014F00(void);
+    extern s32 D_80127754;
+    s32 result;
+
+    if (D_80127754 != 0) {
+        result = D_80127754;
+    } else {
+        result = func_80014F00();
+    }
+    return result;
+}
