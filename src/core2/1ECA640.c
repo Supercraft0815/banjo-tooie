@@ -20,7 +20,18 @@ s32 func_800F0D90(s32 arg0, s32 arg1, s32 arg2) {
     return arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F0DC0.s")
+f32 func_800F0DC0(f32 arg0, f32 arg1) {
+    f32 temp_f2;
+
+    if (arg1 < arg0) {
+        return arg1;
+    }
+    temp_f2 = -arg1;
+    if (arg0 < temp_f2) {
+        return temp_f2;
+    }
+    return arg0;
+}
 
 f32 func_800F0E00(f32 arg0, f32 arg1) {
     f32 result;
