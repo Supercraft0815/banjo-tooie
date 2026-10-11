@@ -639,7 +639,16 @@ s32 func_800F66F0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6774.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F67EC.s")
+/* extern */
+
+void func_800F67EC(s32 arg0) {
+    s32 bs_getCurrentState(PlayerState *);
+    s32 func_8009CA70(PlayerState *, s32, s32);
+    PlayerState *sp1C;
+
+    sp1C = D_80135490[arg0];
+    func_8009CA70(sp1C, bs_getCurrentState(sp1C), 0x200);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F682C.s")
 
