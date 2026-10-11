@@ -293,7 +293,16 @@ void func_80096704(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80096728.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80096768.s")
+/* extern */
+
+void func_80096768(PlayerState *arg0) {
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_800D4D5C(s32, void *);
+    f32 sp1C[3];
+
+    func_8009C128(arg0, sp1C);
+    func_800D4D5C((s32) sp1C, *(void **)((s8 *)arg0 + 0x94));
+}
 
 /* extern */
 
