@@ -15,7 +15,34 @@ typedef struct {
     u8 unk79;
 } SoundSourceView;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C1070.s")
+/* extern */
+
+void func_800C1070(f32 *arg0, f32 *arg1) {
+    s32 _plsu_entrypoint_0(f32 *, f32 *);
+    void func_800E3980(f32 *);
+    s32 func_800EA068(s32);
+    s32 func_800F5310();
+    s32 func_800F5EF8(s32);
+    s32 func_8010FFA8(s32);
+    void func_8010FFB0(s32, f32 *, f32 *);
+    s32 temp_v0;
+    s32 sp28;
+    f32 sp1C[3];
+
+    if (func_800F5310() != 0) {
+        if (func_800EA068(0x20) != 0) {
+            _plsu_entrypoint_0(arg0, arg1);
+            return;
+        }
+        temp_v0 = func_800F5EF8(_plsu_entrypoint_0(arg0, arg1));
+        sp28 = temp_v0;
+        if (func_8010FFA8(temp_v0) != 2) {
+            func_8010FFB0(sp28, arg0, sp1C);
+        }
+    } else {
+        func_800E3980(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C1104.s")
 
@@ -306,7 +333,21 @@ void func_800C31DC(u8 index, f32 value) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3224.s")
+void func_800C3224(u8 index, f32 lower, f32 upper, f32 step) {
+    f32 func_800C395C(u8);
+    f32 func_800DC264(f32, f32);
+    f32 func_800F0D50(f32, f32, f32);
+    f32 rate = func_800C395C(index);
+    if (rate < lower) {
+        rate += step;
+    } else if (upper < rate) {
+        rate -= step;
+    } else {
+        rate += func_800DC264(-step, step);
+        rate = func_800F0D50(rate, lower, upper);
+    }
+    func_800C31DC(index, rate);
+}
 
 void func_800C32C4(u8 index, s32 value) {
     SoundSourceView *ptr;
@@ -486,7 +527,22 @@ s32 func_800C39A0(u8 id) {
     return ((u32) *p) >> 13;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C39D0.s")
+/* extern */
+
+s32 func_800C39D0(u16 *arg0) {
+    s32 func_800C19E4(u16 *, s16);
+    s32 var_v1;
+
+    if (func_800C13C4(arg0, 0x800U) != 0) {
+        return 1;
+    }
+    if (((*(u8 *)((s8 *)(arg0) + (0x63))) != 0) && (func_800C13C4(arg0, 2U) != 0)) {
+        var_v1 = func_800C19E4(arg0, (*(s16 *)((s8 *)(arg0) + (0x5A))));
+    } else {
+        var_v1 = (*(s16 *)((s8 *)(arg0) + (0x5A)));
+    }
+    return var_v1 >= 0x65;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3A40.s")
 

@@ -1,5 +1,8 @@
 #include "core2/1EB5E70.h"
 
+typedef void (*GeoCommandFunction)(s32, u8 *);
+extern GeoCommandFunction *D_8012CF8C;
+
 typedef struct {
     u32 header[2];
     Gfx commands[1];
@@ -32,7 +35,7 @@ void func_800DC628(s32 arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DC958.s")
 
 void func_800DCB58(s32 arg0, u8 *arg1) {
-    s32 func_800DE2A4(s32, u8 *);
+    void func_800DE2A4(s32, u8 *);
     s32 func_800EF3DC(s32 *, s32 *);
     s32 func_800EFB24(s32 *, s32 *, s32 *);
     extern s32 D_8012CE98;
@@ -96,7 +99,7 @@ void func_800DCB58(s32 arg0, u8 *arg1) {
 }
 
 void func_800DCD10(s32 arg0, u8 *arg1) {
-    s32 func_800DE2A4(s32, u8 *);
+    void func_800DE2A4(s32, u8 *);
     s32 func_800EF3DC(s32 *, s32 *);
     s32 func_800EFB24(s32 *, s32 *, s32 *);
     extern s32 D_8012CE98;
@@ -168,7 +171,7 @@ void func_800DCD10(s32 arg0, u8 *arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD07C.s")
 
 void func_800DD19C(s32 arg0, u8 *commands) {
-    s32 func_800DE2A4(s32, u8 *);
+    void func_800DE2A4(s32, u8 *);
     commands += *(s32 *)(commands + 8);
     func_800DE2A4(arg0, commands);
 }
@@ -216,7 +219,17 @@ void func_800DD1C0(Gfx **gfx, u8 *data) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DE1C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DE2A4.s")
+void func_800DE2A4(s32 model, u8 *commands) {
+    s32 next;
+    while (1) {
+        D_8012CF8C[*(s32 *)commands](model, commands);
+        next = *(s32 *)(commands + 4);
+        if (next == 0) {
+            return;
+        }
+        commands += next;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DE318.s")
 
@@ -350,8 +363,7 @@ void func_800DF4A4(s32 arg0)
 
 void func_800DF4B0(s32 arg0) {
     extern s32 D_80123198[];
-    extern s32 D_8012CF8C;
-    D_8012CF8C = D_80123198[arg0];
+    D_8012CF8C = (GeoCommandFunction *)D_80123198[arg0];
 }
 
 void func_800DF4CC(s32 arg0) {

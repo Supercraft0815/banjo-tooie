@@ -34,7 +34,14 @@ void func_80095004(PlayerState *player, s32 id, f32 position) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6E870/func_80095068.s")
+void func_80095068(PlayerState *player) {
+    s32 i;
+    for (i = 0; i < 4; i++) {
+        (*(EyeStateView **)((u8 *)player + 0x78))[i].duration = 1.0f;
+        (*(EyeStateView **)((u8 *)player + 0x78))[i].state = 0;
+        func_80095004(player, i, 0.0f);
+    }
+}
 
 void func_800950FC(PlayerState *player, s32 id, f32 duration) {
     (*(EyeStateView **)((u8 *)player + 0x78))[id].state = 1;

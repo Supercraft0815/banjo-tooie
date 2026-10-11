@@ -1,5 +1,7 @@
 #include "common.h"
 
+void func_80013D10(OSMesg);
+
 extern s32 D_8007BCC4;
 
 void func_8001A010(void) {
@@ -35,9 +37,38 @@ void func_8001A11C(void) {
     osSendMesg(&D_8007BEE0, NULL, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A148.s")
+void func_8001A148(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    extern u8 D_8007BCF8;
+    extern s16 D_8007BED8;
+    u8 *temp_a0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A1E0.s")
+    func_8001A0F0();
+    temp_a0 = (D_8007BED8 * 0x18) + &D_8007BCF8;
+    D_8007BED8 = (s16) ((s32) (D_8007BED8 + 1) % 20);
+    func_8001A11C();
+    (*(s32 *)((s8 *)(temp_a0) + (0))) = 0;
+    (*(s32 *)((s8 *)(temp_a0) + (8))) = arg0;
+    (*(s32 *)((s8 *)(temp_a0) + (0xC))) = arg1;
+    (*(s32 *)((s8 *)(temp_a0) + (0x10))) = arg2;
+    (*(s32 *)((s8 *)(temp_a0) + (0x14))) = arg3;
+    func_80013D10(temp_a0);
+}
+
+void func_8001A1E0(Gfx *arg0, Gfx *arg1, s32 arg2) {
+    extern u8 D_8007BCF8;
+    extern s16 D_8007BED8;
+    u8 *temp_a0;
+
+    func_8001A0F0();
+    temp_a0 = (D_8007BED8 * 0x18) + &D_8007BCF8;
+    D_8007BED8 = (s16) ((s32) (D_8007BED8 + 1) % 20);
+    func_8001A11C();
+    (*(s32 *)((s8 *)(temp_a0) + (0))) = 1;
+    (*(s32 *)((s8 *)(temp_a0) + (4))) = arg2;
+    (*(s32 *)((s8 *)(temp_a0) + (8))) = arg0;
+    (*(s32 *)((s8 *)(temp_a0) + (0xC))) = arg1;
+    func_80013D10(temp_a0);
+}
 
 void func_8001A270(Gfx *start, Gfx *end) {
     void func_8001A1E0(Gfx *start, Gfx *end, s32 flags);
@@ -87,9 +118,44 @@ void func_8001A324(void) {
     func_8001A63C();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A3A0.s")
+void func_8001A3A0(void) {
+    void func_8001A570(void);
+    s32 func_800A9800();
+    s32 heap_alloc(s32);
+    extern s32 D_8007BCD0;
+    extern s32 D_8007BCD4;
+    extern s32 D_8007BCD8;
+    extern s32 D_8007BCDC;
+    extern s32 D_8007BCE0;
+    extern s32 D_8007BCE4;
+    extern s16 D_8007BEDA;
+    if (D_8007BCD0 == 0) {
+        D_8007BCD0 = heap_alloc(0x76C0);
+        D_8007BCD4 = heap_alloc(0x76C0);
+        D_8007BCD8 = heap_alloc(0x12C00);
+        D_8007BCDC = heap_alloc(0x12C00);
+        D_8007BCE0 = heap_alloc(0x1AE0);
+        D_8007BCE4 = heap_alloc(0x1AE0);
+        func_8001A570();
+    }
+    D_8007BEDA = 0;
+    func_800A9800();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A440.s")
+void func_8001A440(s32 arg0) {
+    void func_80015430(s32);
+    extern u8 D_8007BCF8;
+    extern s16 D_8007BED8;
+    s32 *temp_a0;
+
+    func_8001A0F0();
+    func_80015430(arg0);
+    temp_a0 = (s32 *)((D_8007BED8 * 0x18) + &D_8007BCF8);
+    D_8007BED8 = (s16) ((s32) (D_8007BED8 + 1) % 20);
+    func_8001A11C();
+    *temp_a0 = 7;
+    func_80013D10(temp_a0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A4B8.s")
 

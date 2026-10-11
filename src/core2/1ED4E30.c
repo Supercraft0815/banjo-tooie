@@ -1,5 +1,19 @@
 #include "core2/1ED4E30.h"
 
+typedef struct {
+    u8 unk0[0x28];
+    s16 track_id;
+    s16 unk2A;
+    u8 unk2C[0xC];
+    s32 freelist;
+    s32 volume_indices[5];
+} MusicTrack;
+
+extern MusicTrack D_801357D0[6];
+void func_800FB774(void *);
+void func_800FCB00(s32, s32, s32, s32);
+
+
 extern s32 D_80135960;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FB540.s")
@@ -29,7 +43,20 @@ void func_800FB6C0(s32 *ptr, s32 volume) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FB808.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FB908.s")
+void func_800FB908(void) {
+    void func_80017244(void);
+    void func_80016E7C(void);
+    void freelist_free(s32);
+    extern u8 D_80123E40;
+    MusicTrack *track;
+    func_80017244();
+    func_80016E7C();
+    for (track = D_801357D0; track < &D_801357D0[6]; track++) {
+        freelist_free(track->freelist);
+        track->freelist = 0;
+    }
+    D_80123E40 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FB968.s")
 
@@ -135,11 +162,30 @@ void func_800FC788(s32 track_id, s32 state) {
     if (track != NULL) track->state = state;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC7C4.s")
+void func_800FC7C4(void) {
+    MusicTrack *track;
+    for (track = D_801357D0; track < &D_801357D0[6]; track++) {
+        if (track->track_id >= 0) func_800FB774(track);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC81C.s")
+void func_800FC81C(void) {
+    s32 func_800FE7A8(s16);
+    MusicTrack *track;
+    for (track = D_801357D0; track < &D_801357D0[6]; track++) {
+        s16 id = track->track_id;
+        if (id >= 0 && func_800FE7A8(id) == 0) func_800FB774(track);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC884.s")
+void func_800FC884(void) {
+    MusicTrack *track;
+    for (track = D_801357D0; track < &D_801357D0[6]; track++) {
+        if (track->track_id >= 0 && (*(u32 *)((u8 *)track + 0x30) >> 28) == 0) {
+            func_800FB774(track);
+        }
+    }
+}
 
 /* extern */
 
@@ -198,7 +244,16 @@ s32 func_800FCCD4(s32 track_id) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FCD14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FCD5C.s")
+void func_800FCD5C(void) {
+    s32 freelist_defrag(s32);
+    extern u8 D_80123E40;
+    MusicTrack *track;
+    if (D_80123E40 != 0) {
+        for (track = D_801357D0; track < &D_801357D0[6]; track++) {
+            track->freelist = freelist_defrag(track->freelist);
+        }
+    }
+}
 
 /* extern */
 

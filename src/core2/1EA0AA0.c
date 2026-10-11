@@ -1,5 +1,15 @@
 #include "core2/1EA0AA0.h"
 
+typedef struct CallbackEntry {
+    s32 unk0;
+    s32 enabled;
+    void *unk8;
+    void (*callback)(struct CallbackEntry *);
+    void (*update)(struct CallbackEntry *);
+} CallbackEntry;
+extern CallbackEntry D_8011A8A0[5];
+
+
 typedef struct {
     u8 unk0;
     s8 unk1;
@@ -71,14 +81,6 @@ void func_800C7364(s32 arg0, s32 arg1, s32* arg2)
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0AA0/func_800C73A4.s")
 
 void func_800C7494(void) {
-    typedef struct CallbackEntry {
-        s32 unk0;
-        s32 enabled;
-        void *unk8;
-        void (*callback)(struct CallbackEntry *);
-        s32 unk10;
-    } CallbackEntry;
-    extern CallbackEntry D_8011A8A0[5];
     CallbackEntry *ptr;
     if (*(u8 *)&D_8012AAF0 != 0) {
         for (ptr = D_8011A8A0; ptr != &D_8011A8A0[5]; ptr++) {
@@ -87,7 +89,15 @@ void func_800C7494(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0AA0/func_800C7500.s")
+void func_800C7500(void) {
+    CallbackEntry *entry;
+    for (entry = D_8011A8A0; entry != &D_8011A8A0[5]; entry++) {
+        if (entry->enabled != 0 && entry->update != NULL) {
+            entry->update(entry);
+        }
+    }
+    func_800C4308(0.0f, 1.0f);
+}
 
 void func_800C7574(s32 arg0, s32 arg1)
 {

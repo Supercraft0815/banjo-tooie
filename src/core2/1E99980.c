@@ -15,7 +15,20 @@ void func_800C00BC()
     _gcdialogDll_entrypoint_0(&D_801288B0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C00E0.s")
+/* extern */
+
+void func_800C00E0(void) {
+    void func_800C0658(void);
+    void _gcdialogexec_entrypoint_7(s32 *);
+    s32 func_800FECB8(s32);
+    if (func_800C0638() != 0) {
+        func_800FECB8(0);
+    }
+    func_800C0658();
+    _gcdialogexec_entrypoint_7(&D_801288B0);
+    (*(s8 *)((s8 *)(&D_801288B0) + (0x15C))) = 0;
+    (*(s8 *)((s8 *)(&D_801288B0) + (0x180))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0130.s")
 

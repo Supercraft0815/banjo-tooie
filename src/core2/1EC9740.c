@@ -26,7 +26,13 @@ s32 func_800EFFB4(f32 point[3], f32 radius, f32 center[3]) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F0064.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F00A4.s")
+int func_800F00A4(f32 point[3], f32 radius, f32 upper, f32 lower, f32 center[3]) {
+    f32 func_800EFC7C(f32 *, f32 *);
+    if (center[1] < point[1] + lower || point[1] + upper < center[1]) {
+        return 0;
+    }
+    return func_800EFC7C(point, center) < radius * radius;
+}
 
 int func_800F0130(s32 vec2[3], s32 distance, s32 vec1[3])
 {
@@ -172,7 +178,24 @@ s32 func_800F0AA4(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F0BD0.s")
+int func_800F0BD0(f32 direction[3], f32 normal[3], f32 limit, f32 cosine) {
+    int func_800EEEA8(f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    f32 func_800EEF94(f32 *);
+    f32 dot;
+    if (func_800EEEA8(direction)) {
+        return 0;
+    }
+    dot = func_800EEAA4(normal, direction);
+    if (limit < dot) {
+        return 0;
+    }
+    dot /= func_800EEF94(direction);
+    if (dot < cosine) {
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 

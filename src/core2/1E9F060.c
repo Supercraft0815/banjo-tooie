@@ -159,7 +159,25 @@ s32 func_800C5E14(void *arg0) {
     return 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C5EB8.s")
+/* extern */
+
+void func_800C5EB8(void *arg0, f32 arg1, s32 arg2, s32 arg3, void *arg4, s32 arg5, void *arg6) {
+    s32 func_800AAAE0(s32);
+    s32 func_800AAD28(s32);
+    s32 func_800EE7F8();
+    void func_800FB508(void *, void *);
+    if (arg6 != 0) {
+        func_800AAD28((u8 *)arg0 + 0x1C);
+        func_800AAAE0((u8 *)arg0 + 0x40);
+        func_800FB508((u8 *)arg0 + 4, arg6);
+    }
+    (*(s8 *)((s8 *)(arg0) + (0x8E))) = 1;
+    (*(s32 *)((s8 *)(arg0) + (0x7C))) = arg2;
+    (*(s16 *)((s8 *)(arg0) + (0x8C))) = (s16) arg3;
+    (*(f32 *)((s8 *)(arg0) + (0x70))) = arg1;
+    (*(s32 *)((s8 *)(arg0) + (0))) = arg5;
+    func_800EE7F8((u8 *)arg0 + 0x64, arg4);
+}
 
 void func_800C5F40(void *ptr, void *arg1, void *triangle) {
     void func_800C5EB8(void *, f32, s32, s32, void *, s32, void *);
@@ -173,7 +191,20 @@ void func_800C5F8C(void *ptr) {
     func_800C5EB8(ptr, -18000.0f, 0, 0, D_8011A890, 0, NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C5FCC.s")
+void func_800C5FCC(void *arg0, f32 value, s32 triangle) {
+    void func_800FB508(void *, void *);
+    if (*(u8 *)((u8 *)arg0 + 0x9C) != 0) {
+        value = *(f32 *)((u8 *)arg0 + 0x98);
+    }
+    if (triangle != 0) {
+        func_800FB508((u8 *)arg0 + 0x10, (void *)triangle);
+    }
+    if (triangle != 0) {
+        *(s32 *)((u8 *)arg0 + 0x80) = *(s32 *)((u8 *)triangle + 8);
+    }
+    *(u8 *)((u8 *)arg0 + 0x8F) = 1;
+    *(f32 *)((u8 *)arg0 + 0x74) = value;
+}
 
 void func_800C6038(void *ptr) {
     void func_800C5FCC(void *, f32, s32);

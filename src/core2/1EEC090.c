@@ -200,7 +200,17 @@ s32 func_80113FF0(void *arg0) {
     return best;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_8011413C.s")
+void func_8011413C(s32 camera, f32 rotation[3], f32 scale, s32 index) {
+    void func_800CA740(s32, f32 *);
+    void func_800CB0E8(s32, f32 *, s32);
+    void func_800EF334(f32 *, f32);
+    if (index != 0) {
+        func_800CB0E8(camera, rotation, index - 1);
+    } else {
+        func_800CA740(camera, rotation);
+    }
+    func_800EF334(rotation, scale);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80114184.s")
 

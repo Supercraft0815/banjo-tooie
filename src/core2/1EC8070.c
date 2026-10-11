@@ -137,7 +137,9 @@ void func_800EEC30(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EEC70.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EECE0.s")
+int func_800EECE0(f32 a[3], f32 b[3]) {
+    return a[0] == b[0] && a[1] == b[1] && a[2] == b[2];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EED58.s")
 
@@ -285,7 +287,17 @@ void func_800EF49C(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF7B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF8BC.s")
+void func_800EF8BC(f32 dst[3], f32 src[3], f32 pitch) {
+    f32 func_800137AC(f32);
+    f32 func_800137C4(void);
+    f32 cosine, sine, value;
+    cosine = func_800137AC(pitch);
+    sine = func_800137C4();
+    dst[0] = src[0];
+    value = src[1] * cosine - src[2] * sine;
+    dst[2] = src[1] * sine + src[2] * cosine;
+    dst[1] = value;
+}
 
 void func_800EF934(f32 dst[3], f32 src[3], f32 yaw) {
     f32 func_800137AC(f32);
@@ -299,7 +311,17 @@ void func_800EF934(f32 dst[3], f32 src[3], f32 yaw) {
     dst[0] = value;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF9A8.s")
+void func_800EF9A8(f32 dst[3], f32 src[3], f32 roll) {
+    f32 func_800137AC(f32);
+    f32 func_800137C4(void);
+    f32 cosine, sine, value;
+    cosine = func_800137AC(roll);
+    sine = func_800137C4();
+    value = src[0] * cosine - src[1] * sine;
+    dst[1] = src[0] * sine + src[1] * cosine;
+    dst[2] = src[2];
+    dst[0] = value;
+}
 
 void func_800EFA20(void *arg0, void *arg1, f32 arg2) {
     (*(f32 *)((s8 *)(arg0) + (0))) = (f32) ((*(f32 *)((s8 *)(arg1) + (0))) * arg2);
@@ -325,7 +347,15 @@ void func_800EFA88(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     (*(s32 *)((s8 *)(arg0) + (8))) = arg3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EFA98.s")
+void func_800EFA98(f32 dst[3], f32 src[3], f32 length) {
+    f32 squared;
+    squared = src[0] * src[0] + src[1] * src[1] + src[2] * src[2];
+    if (squared != 0.0f) {
+        func_800EFA20(dst, src, length / sqrtf(squared));
+    } else {
+        func_800EE7F8(dst, src);
+    }
+}
 
 void func_800EFB24(void *arg0, void *arg1, void *arg2) {
     (*(f32 *)((s8 *)(arg0) + (0))) = (f32) ((*(f32 *)((s8 *)(arg1) + (0))) - (*(f32 *)((s8 *)(arg2) + (0))));

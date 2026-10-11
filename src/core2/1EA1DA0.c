@@ -449,9 +449,36 @@ void func_800C9C34(f32 time, s32 track_id, s32 volume, s32 duration) {
     func_800C9E64(time, func_800C9994, track_id, volume, duration);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9C70.s")
+void func_800C9C70(f32 time, u32 id, f32 volume, u32 rate, f32 position[3], f32 near, f32 far) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800C9EF8(f32, void *, void *);
+    struct { u32 id; f32 volume; u32 rate; f32 position[3]; f32 near; f32 far; } data;
+    data.id = id;
+    data.rate = rate;
+    data.volume = volume;
+    data.near = near;
+    data.far = far;
+    func_800EE7F8(data.position, position);
+    func_800C9EF8(time, func_800C99F0, &data);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9CD0.s")
+void func_800C9CD0(f32 time, s32 arg1, s32 arg2, s32 arg3, f32 *position, s16 arg5) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFD24(f32 *);
+    void func_800C9EF8(f32, void *, void *);
+    void func_800C9A38(void *);
+    struct { s32 arg1; s32 arg2; s32 arg3; f32 position[3]; s16 arg5; } data;
+    data.arg1 = arg1;
+    data.arg2 = arg2;
+    data.arg3 = arg3;
+    data.arg5 = arg5;
+    if (position != NULL) {
+        func_800EE7F8(data.position, position);
+    } else {
+        func_800EFD24(data.position);
+    }
+    func_800C9EF8(time, func_800C9A38, &data);
+}
 
 void func_800C9D38(f32 arg0, s32 arg1) {
     void func_800C9DE4(f32, void *, s32);
