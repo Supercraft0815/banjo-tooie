@@ -5,7 +5,97 @@ void chdoor_entrypoint_0(s32 arg0)
     func_80800028_chdoor();
     func_8080050C_chdoor(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/door/func_80800028_chdoor.s")
+int func_80800028_chdoor(u8 *arg0) {
+    s32 _glcutDll_entrypoint_19(s32);
+    u8 func_800D9078(f32 *);
+    s32 func_800DA298(s32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    u8 *func_80100094(u8 *, s32);
+    s32 func_8010108C();
+    void func_8080032C_chdoor(u8 *, f32);
+    void func_8080069C_chdoor(u8 *, s32);
+    void func_80800754_chdoor(u8 *);
+    void func_808008A0_chdoor(u8 *);
+    void func_80800B14_chdoor(u8 *, s32);
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    switch ((u32)*(u16 *)(arg0 + 0x72) >> 10) {
+    case 1:
+        if (*(s32 *)data & 4) {
+            if (func_800DA298(*(s16 *)(data + 4))) {
+                func_80800754_chdoor(arg0);
+            }
+        } else {
+            s32 cutscene = data[0x20];
+            if (cutscene && _glcutDll_entrypoint_19(cutscene)) {
+                func_80800754_chdoor(arg0);
+            }
+        }
+        break;
+    case 2:
+        if (func_800D9078((f32 *)(arg0 + 0x58))) {
+            func_80800B14_chdoor(arg0, 3);
+        }
+        break;
+    case 3: {
+        f32 oldOpen;
+        s32 openDone;
+        oldOpen = *(f32 *)(arg0 + 0x58);
+        openDone = func_800D9078((f32 *)(arg0 + 0x58));
+        func_8080032C_chdoor(arg0, func_800F12D4(*(f32 *)(arg0 + 0x58), 0.0f,
+            (f32)*(s16 *)(data + 0xA) * 0.00390625f, 1.0f, 0.0f));
+        if (oldOpen >= 0.2f && *(f32 *)(arg0 + 0x58) < 0.2f) {
+            func_8080069C_chdoor(arg0, 1);
+        }
+        if (openDone) {
+            func_80800B14_chdoor(arg0, 4);
+            func_8010108C(arg0, 0x9D, 0);
+        }
+        break;
+    }
+    case 4:
+        if (*(s32 *)data & 2) {
+            if (*(s32 *)data & 4) {
+                if (!func_800DA298(*(s16 *)(data + 4))) {
+                    func_808008A0_chdoor(arg0);
+                }
+            } else {
+                s32 cutscene = data[0x28];
+                if (cutscene && _glcutDll_entrypoint_19(cutscene)) {
+                    func_808008A0_chdoor(arg0);
+                }
+            }
+            if (*(s32 *)data & 0x400) {
+                func_808008A0_chdoor(arg0);
+            }
+        }
+        break;
+    case 5:
+        if (func_800D9078((f32 *)(arg0 + 0x58))) {
+            func_80800B14_chdoor(arg0, 6);
+        }
+        break;
+    case 6: {
+        f32 fraction;
+        f32 oldClose;
+        s32 closeDone;
+        oldClose = *(f32 *)(arg0 + 0x58);
+        closeDone = func_800D9078((f32 *)(arg0 + 0x58));
+        fraction = func_800F12D4(*(f32 *)(arg0 + 0x58), 0.0f,
+            (f32)*(s16 *)(data + 0xA) * 0.00390625f, 0.0f, 1.0f);
+        func_8080032C_chdoor(arg0, fraction);
+        if (oldClose >= 0.2f && *(f32 *)(arg0 + 0x58) < 0.2f) {
+            func_8080069C_chdoor(arg0, 0);
+        }
+        if (closeDone) {
+            func_80800B14_chdoor(arg0, 1);
+            func_8010108C(arg0, 0x9E, 0);
+        }
+        break;
+    }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/door/func_8080032C_chdoor.s")
 
