@@ -29,7 +29,95 @@ void func_80800144_chtrashcangame(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80800B64_chtrashcangame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80800BA8_chtrashcangame.s")
+void func_80800BA8_chtrashcangame(Actor *arg0) {
+    typedef struct { f32 values[4]; } Timing4;
+    typedef struct { f32 values[7]; } Timing7;
+    extern u16 D_80802FF4_chtrashcangame[][4];
+    extern Timing4 D_808030BC_chtrashcangame;
+    extern Timing4 D_808030CC_chtrashcangame;
+    extern Timing4 D_808030DC_chtrashcangame;
+    extern Timing4 D_808030EC_chtrashcangame;
+    extern Timing4 D_808030FC_chtrashcangame;
+    extern Timing4 D_8080310C_chtrashcangame;
+    extern Timing4 D_8080311C_chtrashcangame;
+    extern Timing7 D_8080312C_chtrashcangame;
+    extern Timing7 D_80803148_chtrashcangame;
+    f32 func_800DC178(f32, f32);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80101E4C(Actor *, f32 *);
+    void func_800C4140(u32, f32 *, u32);
+
+    switch (D_80802FF4_chtrashcangame[(u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10][0]) {
+        case 0x369: {
+            Timing4 first = D_808030BC_chtrashcangame;
+            Timing4 second = D_808030CC_chtrashcangame;
+            Timing4 third = D_808030DC_chtrashcangame;
+            s32 volume = 0;
+
+            if (func_80101E14(arg0, 0.157f)) {
+                volume = 22000;
+            } else if (func_80101E4C(arg0, first.values)) {
+                volume = 10000;
+            } else if (func_80101E4C(arg0, second.values)) {
+                volume = 5000;
+            }
+            if (func_80101E4C(arg0, third.values)) {
+                func_800C4140((((u32)(func_800DC178(0.95f, 1.05f) * 1023.0f) & 0x7FF) << 21) + 0x157C04,
+                             (f32 *)((u8 *)arg0 + 4), 0x04B000FA);
+            }
+            if (volume) {
+                func_800C4140((((u32)(func_800DC178(1.05f, 1.15f) * 1023.0f) & 0x7FF) << 21) +
+                             (((volume >> 5) & 0x3FF) << 11) + 0x4C1,
+                             (f32 *)((u8 *)arg0 + 4), 0x04B000FA);
+            }
+            break;
+        }
+        case 0x36A: {
+            Timing4 first = D_808030EC_chtrashcangame;
+            Timing4 second = D_808030FC_chtrashcangame;
+            Timing4 third = D_8080310C_chtrashcangame;
+            s32 volume = 0;
+
+            if (func_80101E14(arg0, 0.126f)) {
+                volume = 22000;
+            } else if (func_80101E14(arg0, 0.156f) || func_80101E14(arg0, 0.888f)) {
+                volume = 10000;
+            } else if (func_80101E14(arg0, 0.918f)) {
+                volume = 5000;
+            }
+            if (volume) {
+                func_800C4140((((u32)(func_800DC178(1.05f, 1.15f) * 1023.0f) & 0x7FF) << 21) +
+                             (((volume >> 5) & 0x3FF) << 11) + 0x4C1,
+                             (f32 *)((u8 *)arg0 + 4), 0x04B000FA);
+            }
+            break;
+        }
+        case 0x36B: {
+            Timing4 first = D_8080311C_chtrashcangame;
+            Timing7 second = D_8080312C_chtrashcangame;
+            Timing7 third = D_80803148_chtrashcangame;
+            s32 volume = 0;
+
+            if (func_80101E4C(arg0, first.values)) {
+                volume = 22000;
+            } else if (func_80101E4C(arg0, second.values)) {
+                volume = 10000;
+            } else if (func_80101E14(arg0, 0.44f) || func_80101E14(arg0, 0.994f)) {
+                volume = 5000;
+            }
+            if (func_80101E4C(arg0, third.values)) {
+                func_800C4140((((u32)(func_800DC178(0.95f, 1.05f) * 1023.0f) & 0x7FF) << 21) + 0x157C04,
+                             (f32 *)((u8 *)arg0 + 4), 0x04B000FA);
+            }
+            if (volume) {
+                func_800C4140((((u32)(func_800DC178(1.05f, 1.15f) * 1023.0f) & 0x7FF) << 21) +
+                             (((volume >> 5) & 0x3FF) << 11) + 0x4C1,
+                             (f32 *)((u8 *)arg0 + 4), 0x04B000FA);
+            }
+            break;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_8080134C_chtrashcangame.s")
 
