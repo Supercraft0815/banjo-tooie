@@ -9,7 +9,16 @@ OSThread *chcrusher_entrypoint_0(void)
     return (OSThread *) D_80800B98_chcrusher;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_80800068_chcrusher.s")
+void func_80800068_chcrusher(Actor *arg0, u8 *arg1) {
+    s32 func_800DBEFC(s32, s32, s32);
+    void func_80101870(Actor* arg0, void* arg1);
+    OSThread * func_80104130(void);
+    func_80101870(arg0, arg1);
+    if (((struct { u32 unused : 19; u32 active : 1; u32 rest : 12; } *)((u8 *)arg0 + 0x7C))->active) {
+        func_800DBEFC(func_80104130(), 6, (s32) arg0->actorData);
+        func_800DBEFC(func_80104130(), 4, (s32) &arg0->actorData[4]);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_808000D4_chcrusher.s")
 
