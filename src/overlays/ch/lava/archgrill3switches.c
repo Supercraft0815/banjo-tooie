@@ -41,7 +41,13 @@ OSThread *chlavaarchgrill3switches_entrypoint_1(void)
     return (OSThread *) D_80800238_chlavaarchgrill3switches;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/archgrill3switches/func_80800188_chlavaarchgrill3switches.s")
+/* extern */
+
+void func_80800188_chlavaarchgrill3switches(s32 arg0) {
+    s32 _chswitch_entrypoint_8(s32, s32);
+    func_80800000_chlavaarchgrill3switches(arg0, 0xA1F);
+    _chswitch_entrypoint_8(arg0, 0x200);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/archgrill3switches/func_808001B8_chlavaarchgrill3switches.s")
 
