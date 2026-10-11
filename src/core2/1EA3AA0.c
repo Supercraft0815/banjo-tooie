@@ -54,7 +54,14 @@ void func_800CA5F8(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
     func_800EFA4C(arg0, arg1, arg2, arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CA628.s")
+void func_800CA628(f32 *arg0, f32 *arg1, f32 *arg2) {
+    s32 i;
+
+    for (i = 0; i < 3; i++) {
+        arg0[i] = arg1[i];
+        arg0[i + 6] = arg2[i];
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CA668.s")
 
