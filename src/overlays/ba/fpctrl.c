@@ -98,7 +98,13 @@ void bafpctrl_entrypoint_12(void *arg0) {
     func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x90))) + 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/bafpctrl_entrypoint_13.s")
+/* extern */
+
+void bafpctrl_entrypoint_13(void *arg0, s32 arg1) {
+    s32 _baeggcursor_entrypoint_6();
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x90)))) + (0x13))) = arg1;
+    _baeggcursor_entrypoint_6();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/bafpctrl_entrypoint_14.s")
 
