@@ -134,7 +134,11 @@ void func_800BED50(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF340.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF3E4.s")
+int func_800BF3E4(void) {
+    return (*(u16 *)((s8 *)&D_801285B0 + 0x5A) != 0 ||
+            *(u8 *)((s8 *)&D_801285B0 + 0x77) != 0) &&
+           *(u16 *)((s8 *)&D_801285B0 + 0x5C) != 0;
+}
 
 void func_800BF420()
 {
