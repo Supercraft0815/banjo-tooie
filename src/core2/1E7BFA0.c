@@ -144,7 +144,9 @@ u32 func_800A336C(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 60);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3378.s")
+f32 func_800A3378(void *arg0) {
+    return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 56) * (f32)1;
+}
 
 f32 func_800A3394(PlayerState *arg0) {
     return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 36);
