@@ -17,7 +17,14 @@ void func_8080088C_chmoley(Actor* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/y/func_808008C0_chmoley.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/y/chmoley_entrypoint_0.s")
+void chmoley_entrypoint_0(void *arg0, s32 arg1) {
+    struct Fields {
+        u8 pad[0x79];
+        u8 upper : 4;
+        u8 lower : 4;
+    };
+    ((struct Fields *)arg0)->upper = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/y/chmoley_entrypoint_1.s")
 
