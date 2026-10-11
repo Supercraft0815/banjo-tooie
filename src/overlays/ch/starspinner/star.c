@@ -34,4 +34,12 @@ void func_808005F8_chstarspinnerstar(void **arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/star/func_80800660_chstarspinnerstar.s")
+f32 *func_80800660_chstarspinnerstar(s32 arg0) {
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    extern f32 B_80800710_chstarspinnerstar;
+    f32 *position;
+    func_800EE7F8(&B_80800710_chstarspinnerstar, arg0 + 4);
+    position = &B_80800710_chstarspinnerstar;
+    position[1] = position[1];
+    return position;
+}
