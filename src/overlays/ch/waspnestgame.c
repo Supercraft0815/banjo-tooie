@@ -63,7 +63,16 @@ s32 func_80800EB8_chwaspnestgame(void *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80800F98_chwaspnestgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801260_chwaspnestgame.s")
+/* extern */
+
+void func_80801260_chwaspnestgame(Unk80132ED0 *arg0, s32 arg1) {
+    void *func_80106790();
+    void *temp_v0;
+
+    temp_v0 = func_80106790(arg0);
+    (*(s32 *)((s8 *)(temp_v0) + (0x24))) = (s32) ((*(s32 *)((s8 *)(temp_v0) + (0x24))) + arg1);
+    (*(s32 *)((s8 *)(temp_v0) + (0x34))) = (s32) ((*(s32 *)((s8 *)(temp_v0) + (0x34))) - 1);
+}
 
 /* extern */
 
