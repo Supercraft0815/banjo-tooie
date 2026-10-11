@@ -275,7 +275,9 @@ void func_800C4308(f32 arg0, f32 arg1) {
     D_8011A874 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C431C.s")
+void func_800C431C(u8 arg0, s32 arg1) {
+    (*(s8 *)((s8 *)(func_800C1414(arg0)) + (0x63))) = (s8) arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C4350.s")
 
