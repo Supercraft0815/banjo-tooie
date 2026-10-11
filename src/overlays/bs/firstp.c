@@ -768,7 +768,14 @@ s32 bsfirstp_entrypoint_24(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_25.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808052A4_bsfirstp.s")
+void func_808052A4_bsfirstp(f32 *arg0, f32 *arg1) {
+    f32 temp_f0;
+    f32 divisor = -2.0f;
+
+    temp_f0 = *arg0 / -divisor;
+    *arg0 = *arg1 + temp_f0;
+    *arg1 = temp_f0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808052C8_bsfirstp.s")
 
