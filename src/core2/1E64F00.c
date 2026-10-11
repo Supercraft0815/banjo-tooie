@@ -43,7 +43,18 @@ s16 func_8008B8E0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008BAC0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008BBC0.s")
+ s32 func_8008BBC0(s32 arg0, s32 arg1) {
+    s32 var_v0;
+
+    var_v0 = arg0;
+    if ((u32) arg0 < (u32) arg1) {
+        do {
+            (*(s16 *)((s8 *)var_v0)) = 0;
+            (*(s16 *)((s8 *)var_v0 + 2)) = ((*(s16 *)((s8 *)var_v0 + 4)) = 0);
+            var_v0 += 6;
+        } while ((u32) var_v0 < (u32) arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008BBF0.s")
 
