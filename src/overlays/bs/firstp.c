@@ -185,7 +185,108 @@ s32 func_80800864_bsfirstp(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80800F14_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80801000_bsfirstp.s")
+void func_80801000_bsfirstp(void *arg0) {
+    f32 func_80013728(f32);
+    void *func_80092AD8(void *);
+    void func_800E0ACC(void *);
+    void func_800E0AF0(void *, f32);
+    void func_800E0AFC(void *, u8, f32, f32, f32, f32);
+    f32 func_800F0DC0(f32, f32);
+    f32 func_800F1214(f32, f32, f32);
+    void func_80805380_bsfirstp(f32 *, f32, f32, f32);
+    f32 func_80806130_bsfirstp(void *);
+    f32 func_8080613C_bsfirstp(void *);
+    u8 *sp84;
+    void *temp_v0;
+    f32 pitch[2];
+    f32 yaw[2];
+    f32 speed;
+    f32 y;
+
+    sp84 = *(u8 **)((u8 *)arg0 + 0x188);
+    temp_v0 = func_80092AD8(arg0);
+    func_800E0ACC(temp_v0);
+    func_800E0AF0(temp_v0, 1.0f);
+    pitch[0] = func_800F0DC0(func_80806130_bsfirstp(arg0), 80.0f);
+    speed = func_800F1214(func_8080613C_bsfirstp(arg0), 360.0f, 720.0f);
+    func_80805380_bsfirstp((f32 *)(sp84 + 0x50), pitch[0], speed, speed * 0.041666668f);
+    pitch[0] = *(f32 *)(sp84 + 0x50);
+    pitch[1] = func_80013728(*(f32 *)(sp84 + 0xCC) + pitch[0]);
+    yaw[0] = *(f32 *)(sp84 + 0x20C);
+    yaw[1] = func_80013728(*(f32 *)(sp84 + 0xC8) + *(f32 *)(sp84 + 0x20C));
+    switch (*(u32 *)sp84) {
+    case 1:
+    case 5:
+    {
+        f32 x, z;
+        x = 0.0f;
+        y = pitch[0];
+        z = 0.0f;
+        func_800E0AFC(temp_v0, *(u32 *)sp84 == 1 ? 0x2B : 3, 1.0f, x, y, z);
+        x = -yaw[0] * 0.4f;
+        y *= -0.5f;
+        func_800E0AFC(temp_v0, 1, 1.0f, x, y, z);
+        x = -yaw[0] * 0.6f;
+        func_800E0AFC(temp_v0, 0x12, 1.0f, x, y, z);
+        y = (-0.25f * pitch[0]) + (pitch[1] * 0.125f);
+        func_800E0AFC(temp_v0, 0x49, 1.0f, -yaw[1] * 0.1f, y, z);
+        func_800E0AFC(temp_v0, 0x4B, 1.0f, -yaw[1] * 0.5f, y, z);
+        x = 0.0f;
+        y = pitch[1] * 0.125f;
+        z = pitch[1] * 0.0625f;
+        func_800E0AFC(temp_v0, 8, 1.0f, x, y, z);
+        y = -yaw[1] * 0.0625f;
+        z = yaw[1] * 0.125f;
+        func_800E0AFC(temp_v0, 0xE, 1.0f, x, y, z);
+        return;
+    }
+    case 4:
+    {
+        f32 x, z;
+        f32 half_pitch;
+        f32 limb_y;
+        x = 0.0f;
+        half_pitch = pitch[0] * 0.5f;
+        z = 0.0f;
+        if (half_pitch != 0.0f) {
+            func_800E0AFC(temp_v0, 3, 1.0f, x, half_pitch, z);
+            func_800E0AFC(temp_v0, 6, 1.0f, x, half_pitch, z);
+            func_800E0AFC(temp_v0, 0x14, 1.0f, x, half_pitch, z);
+        }
+        x = -yaw[0] * 0.4f;
+        y = -pitch[0] * 0.25f;
+        func_800E0AFC(temp_v0, 1, 1.0f, x, y, z);
+        x = -yaw[0] * 0.6f;
+        func_800E0AFC(temp_v0, 0x12, 1.0f, x, y, z);
+        x = 0.0f;
+        limb_y = yaw[1] * 0.25f;
+        y = (0.25f * pitch[1]) - (pitch[0] * 0.5f);
+        func_800E0AFC(temp_v0, 0x1E, 1.0f, x, limb_y, y);
+        func_800E0AFC(temp_v0, 0x3A, 1.0f, x, -limb_y, y);
+        return;
+    }
+    case 2:
+    case 3:
+    {
+        f32 y, z;
+        f32 limb_z;
+        func_800E0AFC(temp_v0, 3, 1.0f, 0.0f, pitch[0], 0.0f);
+        func_800E0AFC(temp_v0, 1, 1.0f, -yaw[0] * 0.4f, -pitch[0] * 0.67f, 0.0f);
+        func_800E0AFC(temp_v0, 0x12, 1.0f, -yaw[0] * 0.6f, -pitch[0] * 0.33f, 0.0f);
+        y = yaw[1] * 0.25f;
+        limb_z = (0.25f * pitch[1]) - (pitch[0] * 0.33f);
+        func_800E0AFC(temp_v0, 0x1E, 1.0f, 0.0f, y, limb_z);
+        func_800E0AFC(temp_v0, 0x3A, 1.0f, -y, limb_z, 0.0f);
+        return;
+    }
+    case 0:
+    {
+        func_800E0AFC(temp_v0, 3, 1.0f, 0, pitch[0], 0);
+        func_800E0AFC(temp_v0, 0x6C, 1.0f, -yaw[0], -pitch[0], 0);
+        return;
+    }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808015C0_bsfirstp.s")
 
