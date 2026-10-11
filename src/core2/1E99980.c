@@ -5,7 +5,10 @@
 extern s32 D_801288B0;
 extern s32 D_80128AF4;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0090.s")
+int func_800C0090(void *caller, s32 arg1) {
+    typedef struct { u8 pad[0x12]; u16 unk12_15:15; u16 unk12_0:1; } Marker;
+    return (arg1 == -1) ? 0 : ((Marker *)caller)->unk12_15 == arg1;
+}
 
 void func_800C00BC()
 {

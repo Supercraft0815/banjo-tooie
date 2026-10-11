@@ -97,14 +97,17 @@ void func_800EDAF4(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EDC64.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EDCB8.s")
+void func_800EDCB8(void *arg0, f32 arg1) {
+    void func_800EDC10(void *, f32, f32, f32, s32);
+    func_800EDC10(arg0, arg1, arg1, 0.0f, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EDCEC.s")
 
 /* extern */
 
-void func_800EDD20(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    s32 func_800EDC10(s32, s32, s32, s32, s32);
+void func_800EDD20(void *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
+    void func_800EDC10(void *, f32, f32, f32, s32);
     s32 func_800EE010();
     func_800EE010();
     func_800EDC10(arg0, arg1, arg2, arg3, arg4);

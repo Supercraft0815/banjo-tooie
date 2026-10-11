@@ -54,7 +54,11 @@ s16 func_80017108(u8 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_8001713C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80017210.s")
+s32 func_80017210(u8 index) {
+    typedef struct { s32 state; u8 pad[0x270]; } MusicSlotSeqp;
+    extern MusicSlotSeqp D_8007A1AC[];
+    return D_8007A1AC[index].state;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80017244.s")
 

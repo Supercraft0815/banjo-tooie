@@ -254,7 +254,13 @@ void func_800DF35C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DF38C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DF3E0.s")
+void func_800DF3E0(void) {
+    extern s32 D_8012C850[];
+    s32 i;
+    for(i = 0; i < 0x3C; i++){
+        D_8012C850[i] = 0;
+    }
+}
 
 void func_800DF410(s32 arg0) {
     extern s32 D_8012C9A4;
