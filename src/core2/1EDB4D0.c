@@ -110,7 +110,15 @@ s32 func_80102128(Actor *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80102190.s")
+void func_80102190(void *arg0, s32 arg1) {
+    struct Flags { u8 pad[0x74]; u8 upper:4; u8 flag:1; u8 lower:3; };
+    struct Flags *p = arg0;
+    if (arg1 != 0) {
+        p->flag = 0;
+        return;
+    }
+    p->flag = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_801021BC.s")
 
