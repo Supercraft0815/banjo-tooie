@@ -85,7 +85,12 @@ void func_800E9070(s32 arg0, s32 arg1) {
     *p = *p + 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E90A4.s")
+void func_800E90A4(s32 arg0, s32 arg1) {
+    extern s32 D_8012D690;
+    s32 offset = arg0 - (s32)&D_8012D690;
+    u8 *p = (u8 *)&D_8012D690 + ((offset - 0x3A8) / 216);
+    *p = *p - 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E90D8.s")
 
