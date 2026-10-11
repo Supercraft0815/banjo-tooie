@@ -32,7 +32,11 @@ void func_80800600_chnicecavemenguard(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemenguard/func_80800608_chnicecavemenguard.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemenguard/func_80800730_chnicecavemenguard.s")
+void func_80800730_chnicecavemenguard(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    extern u32 D_808009E8_chnicecavemenguard;
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_808009E8_chnicecavemenguard, 0.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemenguard/func_8080075C_chnicecavemenguard.s")
 
