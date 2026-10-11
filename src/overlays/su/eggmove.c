@@ -2,7 +2,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/func_80800000_sueggmove.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/sueggmove_entrypoint_0.s")
+/* extern */
+
+void sueggmove_entrypoint_0(s32 arg0, volatile s32 arg1) {
+    void *func_80106790(s32);
+    (*(s32 *)((s8 *)(func_80106790(*(s32 *)&arg1)) + (0x3C))) = arg0;
+}
 
 /* extern */
 
