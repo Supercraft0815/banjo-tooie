@@ -129,7 +129,17 @@ void set_widescreen(s32 enabled) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_800157EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80015828.s")
+s32 func_80015828(void) {
+    extern s16 D_80079778[];
+    s32 count;
+    for (count = 0; count < 0x20; count++) {
+        if (D_80079778[count] == 0) {
+            break;
+        }
+    }
+    D_80079778[count] = -1;
+    return count;
+}
 
 void func_80015860(s32 arg0) {
     extern s16 D_80079778[];
