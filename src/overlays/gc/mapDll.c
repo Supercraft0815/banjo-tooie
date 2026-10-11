@@ -4,7 +4,114 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapDll/gcmapDll_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapDll/gcmapDll_entrypoint_1.s")
+/* extern */
+
+void gcmapDll_entrypoint_1(void *arg0) {
+    s32 _dblight_entrypoint_0(s32, s32, s32 *);
+    s32 _dblight_entrypoint_1(s32, s32, s32);
+    s32 _glid_entrypoint_6(s32, s32);
+    s32 _glidmake_entrypoint_5(u16, s32);
+    s32 _idworldmake_entrypoint_0(s32, s32);
+    s32 _rtlight_entrypoint_1(s32, s32, s32);
+    s32 _vpmodule_entrypoint_0(s32, s32, s32 *);
+    s32 func_800A946C();
+    s32 func_800B2400(s32, s32);
+    s32 func_800B2464(s32, s32 *, s32);
+    s32 func_800B274C(s32);
+    s32 func_800B27A0(s32);
+    s32 func_800B27BC(s32);
+    s32 func_800B2868(s32);
+    void func_800C87DC(s32 *);
+    struct Map {
+        s32 unk0, glid0, light0, model0, vertices0, clone0, vp0, module0;
+        s32 unk20[4];
+        s32 glid1, light1, model1, vertices1, clone1, vp1, module1;
+        u8 unk4c[14];
+        u16 id0, id1;
+        u8 unk5e[6];
+        u8 side0, side1;
+    };
+    s32 color[3];
+    s32 light;
+
+    func_800C87DC(color);
+    if (((struct Map *)arg0)->model0 != 0 && func_800A946C() < 3) {
+        light = func_800B27BC(((struct Map *)arg0)->model0);
+    } else {
+        light = 0;
+    }
+    if (light != 0) {
+        _dblight_entrypoint_0(light, ((struct Map *)arg0)->vertices0, color);
+        _dblight_entrypoint_1(light, ((struct Map *)arg0)->vertices0, func_800B27A0(((struct Map *)arg0)->model0));
+    }
+    if (light != 0) {
+        ((struct Map *)arg0)->light0 = _rtlight_entrypoint_1(light, ((struct Map *)arg0)->vertices0, func_800B27A0(((struct Map *)arg0)->model0));
+    } else {
+        ((struct Map *)arg0)->light0 = 0;
+    }
+    if (((struct Map *)arg0)->model1 != 0 && func_800A946C() < 3) {
+        light = func_800B27BC(((struct Map *)arg0)->model1);
+    } else {
+        light = 0;
+    }
+    if (light != 0) {
+        _dblight_entrypoint_0(light, ((struct Map *)arg0)->vertices1, color);
+        _dblight_entrypoint_1(light, ((struct Map *)arg0)->vertices1, func_800B27A0(((struct Map *)arg0)->model1));
+    }
+    if (light != 0) {
+        ((struct Map *)arg0)->light1 = _rtlight_entrypoint_1(light, ((struct Map *)arg0)->vertices1, func_800B27A0(((struct Map *)arg0)->model1));
+    } else {
+        ((struct Map *)arg0)->light1 = 0;
+    }
+    if (((struct Map *)arg0)->model0 != 0 && func_800A946C() < 3 && (light = func_800B2868(((struct Map *)arg0)->model0), ((struct Map *)arg0)->vp0 = light, light != 0)) {
+        ((struct Map *)arg0)->module0 = _vpmodule_entrypoint_0(light, ((struct Map *)arg0)->vertices0, color);
+    } else {
+        ((struct Map *)arg0)->module0 = 0;
+    }
+    if (((struct Map *)arg0)->model1 != 0 && func_800A946C() < 3 && (light = func_800B2868(((struct Map *)arg0)->model1), ((struct Map *)arg0)->vp1 = light, light != 0)) {
+        ((struct Map *)arg0)->module1 = _vpmodule_entrypoint_0(light, ((struct Map *)arg0)->vertices1, color);
+    } else {
+        ((struct Map *)arg0)->module1 = 0;
+    }
+    if (((struct Map *)arg0)->model0 != 0 && ((struct Map *)arg0)->vp0 == 0 && ((struct Map *)arg0)->light0 == 0) {
+        func_800B2464(((struct Map *)arg0)->vertices0, color, ((struct Map *)arg0)->vertices0);
+    }
+    if (((struct Map *)arg0)->model1 != 0 && ((struct Map *)arg0)->vp1 == 0 && ((struct Map *)arg0)->light1 == 0) {
+        func_800B2464(((struct Map *)arg0)->vertices1, color, ((struct Map *)arg0)->vertices1);
+    }
+    if ((((struct Map *)arg0)->model0 != 0 && func_800A946C() < 3 ? func_800B274C(((struct Map *)arg0)->model0) : 0) != 0) {
+        ((struct Map *)arg0)->glid0 = _glidmake_entrypoint_5(((struct Map *)arg0)->id0, 0);
+    } else {
+        ((struct Map *)arg0)->glid0 = 0;
+    }
+    if (((struct Map *)arg0)->glid0 != 0) {
+        _idworldmake_entrypoint_0(((struct Map *)arg0)->glid0, 1);
+    }
+    if ((((struct Map *)arg0)->model1 != 0 && func_800A946C() < 3 ? func_800B274C(((struct Map *)arg0)->model1) : 0) != 0) {
+        ((struct Map *)arg0)->glid1 = _glidmake_entrypoint_5(((struct Map *)arg0)->id1, 0);
+    } else {
+        ((struct Map *)arg0)->glid1 = 0;
+    }
+    if (((struct Map *)arg0)->glid1 != 0) {
+        _idworldmake_entrypoint_0(((struct Map *)arg0)->glid1, 1);
+    }
+    if (((struct Map *)arg0)->vertices0 != 0 && ((struct Map *)arg0)->side0 != 0) {
+        ((struct Map *)arg0)->clone0 = func_800B2400(((struct Map *)arg0)->vertices0, 1);
+    } else {
+        ((struct Map *)arg0)->clone0 = 0;
+    }
+    if (((struct Map *)arg0)->vertices1 != 0 && ((struct Map *)arg0)->side1 != 0) {
+        ((struct Map *)arg0)->clone1 = func_800B2400(((struct Map *)arg0)->vertices1, 1);
+    } else {
+        ((struct Map *)arg0)->clone1 = 0;
+    }
+    if (((struct Map *)arg0)->glid0 != 0 && ((struct Map *)arg0)->clone0 != 0) {
+        _glid_entrypoint_6(((struct Map *)arg0)->glid0, ((struct Map *)arg0)->clone0);
+    }
+    if (((struct Map *)arg0)->glid1 != 0 && ((struct Map *)arg0)->clone1 != 0) {
+        _glid_entrypoint_6(((struct Map *)arg0)->glid1, ((struct Map *)arg0)->clone1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapDll/func_8080045C_gcmapDll.s")
 
