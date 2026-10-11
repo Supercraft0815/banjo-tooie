@@ -133,7 +133,11 @@ void func_80801F10_chboilerboss(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808022BC_chboilerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_8080238C_chboilerboss.s")
+void func_8080238C_chboilerboss(Unk80132ED0 **arg0, s32 arg1, s32 arg2) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    arg2 |= 0x104;
+    _subaddiedialog_entrypoint_11(*arg0, arg1, arg2, (f32 *)(arg0 + 1), 0x42);
+}
 
 /* extern */
 
