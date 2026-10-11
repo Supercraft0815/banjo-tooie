@@ -258,7 +258,110 @@ void func_80802C30_chstoneballcontrol(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/chstoneballcontrol_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80803148_chstoneballcontrol.s")
+void func_80803148_chstoneballcontrol(u8 *arg0) {
+    typedef struct { f32 v[4]; } Distances;
+    typedef struct { f32 v[3]; } Position;
+    typedef struct { f32 timer; u8 pad[0x1C]; u8 owner; } BallData;
+    typedef struct { u8 pad[0x3A]; u8 count; } ParentData;
+    typedef struct { u8 pad[0x24]; u32 id:10; u32 flags:22; } MarkerState;
+    typedef struct { u8 pad[0x70]; u32 upper:16; u32 state:6; u32 flags:10; } ActorState;
+    extern Distances D_808052B0_chstoneballcontrol;
+    extern Position D_808052C0_chstoneballcontrol;
+    extern void _chstoneballcontrol_entrypoint_1(void);
+    void *func_80100094(void *, s32);
+    u8 *func_80106790(s32);
+    s32 _sukickball_entrypoint_6(u8 *, s32);
+    s32 _sukickball_entrypoint_7(u8 *, s32);
+    s32 _sukickball_entrypoint_8(u8 *, s32);
+    void _sukickball_entrypoint_10(u8 *, s32, s32);
+    void _sukickball_entrypoint_11(u8 *, s32);
+    s32 _sukickball_entrypoint_12(u8 *, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    void func_800F4950(s32, void *, void (*)(void));
+    void func_800F4F98(s32, void *);
+    s32 func_800F5410(s32);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6C5C(s32);
+    BallData *data = func_80100094(arg0, 0);
+    f32 distances[4];
+    u8 *parent;
+    ParentData *parentData;
+    f32 closest;
+    s32 selected;
+    s32 i;
+
+    *(Distances *)distances = D_808052B0_chstoneballcontrol;
+    parent = func_80106790(*(s32 *)(arg0 + 0x3C));
+    parentData = func_80100094(parent, 0);
+    if ((((ActorState *)parent)->state == 4 ||
+         ((ActorState *)parent)->state == 7) &&
+        (0.0f == data->timer || ((ActorState *)arg0)->state == 1)) {
+        selected = 0x7F;
+        closest = 10000000.0f;
+        for (i = 0; i < parentData->count; i++) {
+            if ((((ActorState *)arg0)->state != 2 || i != data->owner) &&
+                !_sukickball_entrypoint_12(parent, i)) {
+                f32 position[3];
+                *(Position *)position = D_808052C0_chstoneballcontrol;
+                if (_sukickball_entrypoint_6(parent, i)) {
+                    if (func_800F6C5C(i) && func_800F5410(i) == 8) {
+                        func_800F5A00(i, position);
+                        if (func_800EFFB4((f32 *)(arg0 + 4), 65.0f, position)) {
+                            distances[i] = func_800EEB40((f32 *)(arg0 + 4), position);
+                        }
+                    }
+                } else {
+                    func_800EE7F8(position, (f32 *)(func_80106790(_sukickball_entrypoint_8(parent, i)) + 4));
+                    if (func_800EFFB4((f32 *)(arg0 + 4), 65.0f, position)) {
+                        distances[i] = func_800EEB40((f32 *)(arg0 + 4), position);
+                    }
+                }
+            }
+        }
+        for (i = 0; i < parentData->count; i++) {
+            if (((ActorState *)arg0)->state == 2 && i == data->owner) {
+                continue;
+            }
+            if (distances[i] < closest) {
+                closest = distances[i];
+                selected = i;
+            }
+        }
+        if (selected != 0x7F) {
+            if (data->owner != 0x7F) {
+                if (_sukickball_entrypoint_7(parent, data->owner)) {
+                    _sukickball_entrypoint_11(parent, data->owner);
+                } else {
+                    func_800F4F98(data->owner, *(void **)arg0);
+                    _sukickball_entrypoint_11(parent, data->owner);
+                }
+            }
+            data->owner = selected;
+            data->timer = 1.5f;
+            if (_sukickball_entrypoint_6(parent, data->owner)) {
+                func_800F4950(data->owner, *(void **)arg0, _chstoneballcontrol_entrypoint_1);
+            } else {
+                u8 *player = func_80106790(_sukickball_entrypoint_8(parent, data->owner));
+                player[0x65] &= ~0x10;
+            }
+            switch ((*(MarkerState **)arg0)->id) {
+                case 0x267:
+                    _sukickball_entrypoint_10(parent, data->owner, 1);
+                    break;
+                case 0x253:
+                    _sukickball_entrypoint_10(parent, data->owner, 3);
+                    break;
+                case 0x254:
+                    _sukickball_entrypoint_10(parent, data->owner, 2);
+                    break;
+            }
+            func_80801944_chstoneballcontrol(arg0, 2);
+            *(f32 *)(arg0 + 0x24) = 0.0f;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80803538_chstoneballcontrol.s")
 
