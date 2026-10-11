@@ -63,7 +63,13 @@ void scinfobar_entrypoint_9(u32 *arg0, s32 arg1) {
     arg0[9] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/scinfobar_entrypoint_10.s")
+void scinfobar_entrypoint_10(void *arg0, s32 arg1) {
+    struct InfobarEntry10 { s16 pad[4]; s16 value; s16 pad2; f32 rate; f32 factor; f32 pad3; f32 duration; };
+    struct InfobarEntry10 *p = arg0;
+    p->value = arg1;
+    p->factor = (f32) arg1 / (24.0f * p->rate);
+    p->duration = 250.0f / (f32) arg1;
+}
 
 s32 scinfobar_entrypoint_11(void *arg0) {
     struct InfobarEntry11 { s16 pad[4]; s16 value; s16 pad2[5]; f32 factor; };
