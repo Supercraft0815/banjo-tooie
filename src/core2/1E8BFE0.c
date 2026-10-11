@@ -123,7 +123,20 @@ s32 func_800B2840(s32 arg0) {
     return arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8BFE0/func_800B284C.s")
+u8 *func_800B284C(u8 *arg0) {
+    s32 offset;
+    u8 *result;
+    u8 *ret;
+
+    offset = *(s32 *)(arg0 + 0x20);
+    result = arg0 + offset;
+    if (offset == 0) {
+        ret = NULL;
+    } else {
+        ret = result;
+    }
+    return ret;
+}
 
 u8 *func_800B2868(u8 *arg0) {
     s32 temp_v1;
