@@ -26,7 +26,20 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E70DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E715C.s")
+void func_800E715C(u8 *arg0, u8 *arg1) {
+    u8 var_v0;
+
+    var_v0 = *arg1;
+    if (var_v0 != 0) {
+        do {
+            *arg0 = var_v0;
+            var_v0 = arg1[1];
+            arg0++;
+            arg1++;
+        } while (var_v0 != 0);
+    }
+    *arg0 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E7188.s")
 
