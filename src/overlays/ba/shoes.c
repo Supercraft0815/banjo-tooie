@@ -79,7 +79,20 @@ void bashoes_entrypoint_12(void *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/bashoes_entrypoint_17.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/bashoes_entrypoint_18.s")
+void bashoes_entrypoint_18(s32 arg0) {
+    s32 func_80092E08(s32, s32 *);
+    s32 func_800B53A4(s32);
+    s32 func_800BABB8(s32, s32 *, s32 *, s32, s32 *);
+    extern s32 D_80800B90_bashoes;
+    f32 sp28;
+    s32 sp24[2];
+    s32 sp20;
+
+    sp20 = func_800B53A4(0xA);
+    func_80092E08(arg0, sp24);
+    *(f32 *)((s8 *)sp24 + 4) -= 30.0f;
+    func_800BABB8(sp20, sp24, sp24, 0x3F800000, &D_80800B90_bashoes);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/bashoes_entrypoint_19.s")
 
