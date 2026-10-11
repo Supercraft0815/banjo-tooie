@@ -28,7 +28,11 @@ void func_800E8B3C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8C58.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8CB0.s")
+void *func_800E8CB0(u8 arg0) {
+    extern s32 D_8012D680;
+    void *freelist_at(s32, s32);
+    return freelist_at(D_8012D680, arg0);
+}
 
 void func_800E8CDC(u8 arg0) {
     void *func_800E8CB0(u8);
