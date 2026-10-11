@@ -234,4 +234,10 @@ s32 func_800D87EC(s32 arg0) {
 void func_800D8800(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D8808.s")
+void func_800D8808(s32 arg0) {
+    extern s32 *D_8012C014;
+
+    if (arg0 != 0) {
+        ((s8 *)D_8012C014)[arg0 * 12 - 12] &= 0xFF7F;
+    }
+}
