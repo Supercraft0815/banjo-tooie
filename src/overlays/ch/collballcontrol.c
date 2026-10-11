@@ -236,7 +236,73 @@ s32 func_8080237C_chcollballcontrol(void *arg0) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808023FC_chcollballcontrol.s")
+s32 func_808023FC_chcollballcontrol(void *ptr, s32 arg1) {
+    void func_80802AF8_chcollballcontrol(u8 *, s32);
+    u8 *arg0 = ptr;
+
+    switch (arg1) {
+        case 0:
+            if (*(f32 *)(arg0 + 0xC) > -183.0f && *(f32 *)(arg0 + 0xC) < 183.0f) {
+                if (((u32)*(u16 *)(arg0 + 0x72) >> 10) != 4 && *(f32 *)(arg0 + 4) > 720.0f) {
+                    func_80802AF8_chcollballcontrol(arg0, 0);
+                }
+                if (*(f32 *)(arg0 + 4) > 801.0f) {
+                    *(f32 *)(arg0 + 4) = 846.0f;
+                    *(f32 *)(arg0 + 0x24) = 0.0f;
+                }
+            } else {
+                *(f32 *)(arg0 + 4) = 720.0f;
+                *(f32 *)(arg0 + 0x24) = 0.0f;
+                func_80801764_chcollballcontrol(arg0, 6);
+            }
+            break;
+        case 1:
+            if (*(f32 *)(arg0 + 4) < 183.0f && *(f32 *)(arg0 + 4) > -183.0f) {
+                if (((u32)*(u16 *)(arg0 + 0x72) >> 10) != 4 && *(f32 *)(arg0 + 0xC) > 720.0f) {
+                    func_80802AF8_chcollballcontrol(arg0, 1);
+                }
+                if (*(f32 *)(arg0 + 0xC) > 801.0f) {
+                    *(f32 *)(arg0 + 0xC) = 846.0f;
+                    *(f32 *)(arg0 + 0x24) = 0.0f;
+                }
+            } else {
+                *(f32 *)(arg0 + 0xC) = 720.0f;
+                *(f32 *)(arg0 + 0x24) = 0.0f;
+                func_80801764_chcollballcontrol(arg0, 6);
+            }
+            break;
+        case 2:
+            if (*(f32 *)(arg0 + 0xC) < 183.0f && *(f32 *)(arg0 + 0xC) > -183.0f) {
+                if (((u32)*(u16 *)(arg0 + 0x72) >> 10) != 4 && *(f32 *)(arg0 + 4) < -720.0f) {
+                    func_80802AF8_chcollballcontrol(arg0, 2);
+                }
+                if (*(f32 *)(arg0 + 4) < -801.0f) {
+                    *(f32 *)(arg0 + 4) = -846.0f;
+                    *(f32 *)(arg0 + 0x24) = 0.0f;
+                }
+            } else {
+                *(f32 *)(arg0 + 4) = -720.0f;
+                *(f32 *)(arg0 + 0x24) = 0.0f;
+                func_80801764_chcollballcontrol(arg0, 6);
+            }
+            break;
+        case 3:
+            if (*(f32 *)(arg0 + 4) > -183.0f && *(f32 *)(arg0 + 4) < 183.0f) {
+                if (((u32)*(u16 *)(arg0 + 0x72) >> 10) != 4 && *(f32 *)(arg0 + 0xC) < -720.0f) {
+                    func_80802AF8_chcollballcontrol(arg0, 3);
+                }
+                if (*(f32 *)(arg0 + 0xC) < -801.0f) {
+                    *(f32 *)(arg0 + 0xC) = -846.0f;
+                    *(f32 *)(arg0 + 0x24) = 0.0f;
+                }
+            } else {
+                *(f32 *)(arg0 + 0xC) = -720.0f;
+                *(f32 *)(arg0 + 0x24) = 0.0f;
+                func_80801764_chcollballcontrol(arg0, 6);
+            }
+            break;
+    }
+}
 
 void func_80802764_chcollballcontrol(s32 *arg0) {
     typedef struct { u8 pad[0x1A]; u16 index; u8 pad1[8]; u32 id:10; u32 flags:22; } Marker;
