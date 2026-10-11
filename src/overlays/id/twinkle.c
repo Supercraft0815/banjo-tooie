@@ -26,4 +26,7 @@ void idtwinkle_entrypoint_3(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/twinkle/idtwinkle_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/twinkle/idtwinkle_entrypoint_6.s")
+void idtwinkle_entrypoint_6(u8 *arg0, s32 *arg1, s32 *arg2) {
+    *arg1 = *(s32 *)(arg0 + 0x2C);
+    *arg2 = (*(s16 *)(arg0 + 0x28) << 4) + *(s32 *)(arg0 + 0x2C);
+}
