@@ -34,7 +34,10 @@ void func_80102924(void *arg0, f32 arg1) {
     (*(f32 *)((s8 *)(arg0) + (0x54))) = func_800136E4(arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102950.s")
+void func_80102950(void *arg0, f32 arg1) {
+    f32 func_800136E4(f32);
+    (*(f32 *)((s8 *)(arg0) + (0x50))) = func_800136E4(arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_8010297C.s")
 
