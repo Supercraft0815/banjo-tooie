@@ -33,7 +33,14 @@ s32 func_800D4F9C(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAE6C0/func_800D517C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAE6C0/func_800D5210.s")
+u8 func_800D5210(s32 arg0) {
+    extern u8 D_8011B640[];
+
+    if (arg0 == 9) {
+        arg0 = 1;
+    }
+    return D_8011B640[arg0 * 3];
+}
 
 void func_800D5234(s32 arg0) {
     extern s32 D_8012B420;
