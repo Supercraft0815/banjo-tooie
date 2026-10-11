@@ -80,7 +80,10 @@ u32 func_80017764(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_800177C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80017810.s")
+u8 *func_80017810(s32 arg0) {
+    extern s32 D_80079FA0;
+    return (u8 *)((arg0 * 0x274) + 0x1E0 + (s32)&D_80079FA0);
+}
 
 void func_80017840(void) {
 }
