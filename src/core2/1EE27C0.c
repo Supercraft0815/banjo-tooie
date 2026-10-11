@@ -146,7 +146,17 @@ void func_8010A624(void ***arg0) {
     (*(u8 *)((s8 *)(temp_v0) + (0xB))) = (u8) ((*(u8 *)((s8 *)(temp_v0) + (0xB))) & 0xFFF7);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A63C.s")
+void func_8010A63C(void ***arg0) {
+    struct Flags {
+        u8 pad[8];
+        u32 upper : 28;
+        u32 enabled : 1;
+        u32 lower : 3;
+    } *flags;
+
+    flags = **arg0;
+    flags->enabled = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A654.s")
 
