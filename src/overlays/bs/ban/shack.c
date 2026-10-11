@@ -108,7 +108,18 @@ void func_80800B7C_bsbanshack(s32 arg0)
     func_8080021C_bsbanshack();
     _bsrest_entrypoint_16(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_80800BA4_bsbanshack.s")
+void func_80800BA4_bsbanshack(s32 arg0) {
+    s32 _bsrest_entrypoint_20();
+    s32 bs_setState(Actor *, u8 *);
+    s32 next_state;
+    s32 unused;
+
+    next_state = 0;
+    if (_bsrest_entrypoint_20() != 0) {
+        next_state = 0x16C;
+    }
+    bs_setState((Actor *)arg0, (u8 *)next_state);
+}
 
 s32 bsbanshack_entrypoint_5(s32 arg0) {
     extern s32 D_80800D00_bsbanshack[];
