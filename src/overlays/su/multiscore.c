@@ -35,7 +35,12 @@ void func_80800E84_sumultiscore(s32 arg0, s32 arg1, s32 arg2) {
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_8.s")
+s16 sumultiscore_entrypoint_8(s32 arg0, s32 arg1, s32 arg2) {
+    s8 *table = (s8 *)arg0 + (arg2 << 2);
+    s32 index = *(s32 *)(table + 4);
+    s32 offset = arg1 * 0x13C;
+    return *(s16 *)((s8 *)(arg0 + offset + (index << 5)) + 0x48);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_9.s")
 
