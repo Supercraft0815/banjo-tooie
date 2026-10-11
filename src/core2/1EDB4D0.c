@@ -82,7 +82,19 @@ s32 func_80101DDC(Actor *arg0) {
     return anctrl_isStopped(temp_v0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80101E14.s")
+/* extern */
+
+s32 func_80101E14(Actor *arg0, f32 arg1) {
+    s32 anctrl_isAt(s32, f32);
+    s32 func_80104248();
+    s32 temp_v0;
+
+    temp_v0 = func_80104248(arg0);
+    if (temp_v0 == 0) {
+        return 0;
+    }
+    return anctrl_isAt(temp_v0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80101E4C.s")
 
