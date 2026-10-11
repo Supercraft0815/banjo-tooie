@@ -52,7 +52,81 @@ void func_800B5E3C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B71F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B7448.s")
+void func_800B7448(Gfx **arg0) {
+    void func_800B62CC(Gfx **, u8, f32 *, f32 *, f32);
+    void func_800B7174(u8 *);
+    s32 func_800B71F4(Gfx **, u8 *);
+    s32 func_800B7A98();
+    s32 func_800D35BC(u32);
+    s32 func_800D3724(u32);
+    s32 func_800E7188(u8 *);
+    void func_800E7694(void);
+    void func_800E76A4(Gfx **, s32);
+    s32 func_800E7778(Gfx **, s32);
+    s32 func_800E7828(Gfx **, s32 *);
+    s32 func_800E7988(Gfx **, s32);
+    s32 func_800E79E8(Gfx **);
+    s32 func_800E7A4C(Gfx **);
+    u32 vector_begin(s32);
+    s32 vector_clear(s32);
+    u32 vector_end(s32);
+    s32 vector_size(s32);
+    extern s32 D_8011A620;
+    extern s32 D_80128180;
+    struct FlagWord { u32 upper : 16; u32 font : 4; u32 bit11 : 1; u32 highlight : 1; u32 lower : 10; };
+    s32 var_s0;
+    f32 sp88;
+    f32 sp84;
+    u32 temp_s0;
+    s32 temp_s3;
+    u32 sp78;
+    f32 temp_f14;
+    f32 temp_f20;
+    u32 var_s1;
+
+    if (((*(s32 *)((s8 *)(&D_80128180) + (0))) != 0) && (vector_size((*(s32 *)((s8 *)(&D_80128180) + (0)))) > 0)) {
+        func_800E79E8(arg0);
+        func_800E7988(arg0, 0);
+        temp_s0 = vector_begin((*(s32 *)((s8 *)(&D_80128180) + (0))));
+        sp78 = vector_end((*(s32 *)((s8 *)(&D_80128180) + (0))));
+        var_s1 = temp_s0;
+        if (temp_s0 < sp78) {
+            do {
+                (*(s32 *)((s8 *)(&D_80128180) + (4))) = func_800D3724(((struct FlagWord *)(var_s1 + 4))->font);
+                if ((*(s32 *)((s8 *)(&D_80128180) + (4))) != 0) {
+                    sp88 = (f32) (*(s16 *)((s8 *)(var_s1) + (0)));
+                    sp84 = (f32) (*(s16 *)((s8 *)(var_s1) + (2)));
+                    if (((struct FlagWord *)(var_s1 + 4))->highlight) {
+                        temp_s3 = func_800D35BC(((struct FlagWord *)(var_s1 + 4))->font);
+                        temp_f20 = (f32) ((func_800E7188((*(u8 **)((s8 *)(var_s1) + (0xC)))) - 1) * temp_s3);
+                        func_800E7828(arg0, &D_8011A620);
+                        func_800E7778(arg0, 0);
+                        func_800E76A4(arg0, 2);
+                        temp_f14 = (f32) (temp_s3 / 2);
+                        gDPFillRectangle((*arg0)++,
+                            sp88 - temp_f14 > 1.0f ? sp88 - temp_f14 - 1.0f : 0.0f,
+                            sp84 - temp_f14 > 1.0f ? sp84 - temp_f14 - 1.0f : 0.0f,
+                            sp88 + temp_f20 + temp_f14 > 0.0f ? sp88 + temp_f20 + temp_f14 : 0.0f,
+                            temp_f14 + sp84 + 1.0f > 0.0f ? temp_f14 + sp84 + 1.0f : 0.0f);
+                        func_800E7694();
+                    }
+                    func_800B71F4(arg0, (u8 *) var_s1);
+                    func_800B7174((u8 *) var_s1);
+                    for (var_s0 = 0; ((*(u8 **)((s8 *)var_s1 + 0xC))[var_s0] != 0) || (*(u8 *)((s8 *)&D_80128180 + 0x1D) != 0) || (*(u8 *)((s8 *)&D_80128180 + 0x1C) != 0); var_s0++) {
+                        func_800B62CC(arg0, (*(u8 **)((s8 *)var_s1 + 0xC))[var_s0], &sp88, &sp84, *(f32 *)((s8 *)var_s1 + 8));
+                        if (*(s32 *)((s8 *)&D_80128180 + 4) == 0) {
+                            break;
+                        }
+                    }
+                }
+                var_s1 += 0x14;
+            } while (var_s1 < sp78);
+        }
+        func_800E7A4C(arg0);
+        vector_clear((*(s32 *)((s8 *)(&D_80128180) + (0))));
+    }
+    func_800B7A98();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B798C.s")
 
