@@ -46,7 +46,15 @@ s32 chfaircoinbox_entrypoint_0(Unk80132ED0 *arg0, f32 *arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/chfaircoinbox_entrypoint_1.s")
+/* extern */
+void chfaircoinbox_entrypoint_1(Unk80132ED0 *arg0) {
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    Actor *actor;
+
+    actor = func_80106790(arg0);
+    _subaddiedialog_entrypoint_11((Unk80132ED0 *) actor->unk0, 0x10B8, 4, (f32 *) ((u8 *) actor + 4), 0x8C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/func_808003C4_chfaircoinbox.s")
 
