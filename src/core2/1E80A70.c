@@ -122,7 +122,15 @@ void func_800A7A5C(void)
 {
     D_80127630.unk18 = 1;
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A7A6C.s")
+s32 func_800A7A6C(s32 arg0, s32 arg1)
+{
+    D_80127630_unk *state = &D_80127630;
+    *((s8 *)state + 0x16) = 0;
+    state->mapValue = (s16)arg0;
+    state->entranceIndex = (s8)arg1;
+    *((u8 *)state + 0x15) = *((u8 *)state + 0x18);
+    state->unk18 = 0;
+}
 
 /* extern */
 
