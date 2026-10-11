@@ -7,7 +7,9 @@ OSThread *chtransparencypot_entrypoint_0(void)
     return (OSThread *) D_808001B0_chtransparencypot;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparencypot/func_8080000C_chtransparencypot.s")
+void func_8080000C_chtransparencypot(void *arg0) {
+    (*(f32 *)((s8 *)(arg0) + (0x38))) = 0.5f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparencypot/func_8080001C_chtransparencypot.s")
 
