@@ -2,7 +2,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_1.s")
+u8 suexpression_entrypoint_1(u8 arg0) {
+    void *func_80800CF4_suexpression(s32 arg0);
+    void *temp_v0;
+
+    temp_v0 = func_80800CF4_suexpression(arg0);
+    if (temp_v0 == NULL) {
+        return 0U;
+    }
+    return *((u8 *) temp_v0 + 4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_2.s")
 
