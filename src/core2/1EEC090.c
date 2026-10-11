@@ -167,7 +167,134 @@ void func_8011396C(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 40) + 20) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80113978.s")
+f32 func_80113978(PlayerState *arg0, s32 arg1, s32 arg2) {
+    f32 func_800136E4(f32);
+    void func_800CA7E4(s32, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800F0DC0(f32, f32);
+    void func_800F1A88(f32 *, f32 *);
+    s32 func_800F711C(s32);
+    s32 func_8010FF80(s32 *);
+    s32 func_80110840(PlayerState *);
+    s32 func_80110898(PlayerState *);
+    void func_80112D90(PlayerState *, f32, f32, s32, s32);
+    s32 func_801137E4(PlayerState *, f32 *, f32 *, void *, f32 *);
+    extern f32 D_801265D0;
+    f32 sp94[3];
+    f32 sp88[3];
+    s32 sp84;
+    f32 sp80;
+    s32 sp7C;
+
+    sp84 = func_80110840(arg0);
+    sp80 = 0.0f;
+    sp7C = func_8010FF80((s32 *)func_80110898(arg0));
+    if (func_800F711C(sp84) == 0 || *(u8 *)((u8 *)arg0->bounce + 0x14) != 0) {
+        return 0.0f;
+    }
+    func_80112550(arg0, sp94);
+    func_800CA7E4(sp7C, sp88);
+    if (arg1 != 0) {
+        s32 direction;
+        s32 count;
+        s32 hit;
+        f32 sp6C;
+        f32 sp68;
+        f32 sp60[2];
+        f32 sp54[3];
+        f32 sp48[3];
+
+        count = 0;
+        direction = 0;
+        hit = 0;
+        if (*(s32 *)((u8 *)arg0->bounce + 0x40) >= 4) {
+            count++;
+            direction--;
+        }
+        if (*(s32 *)((u8 *)arg0->bounce + 0x48) >= 4) {
+            count++;
+            direction++;
+        }
+        sp6C = 0.0f;
+        if (count != 0) {
+            if (direction == 0) {
+                if (*(s32 *)((u8 *)arg0->bounce + 0x24) < *(s32 *)((u8 *)arg0->bounce + 0x1C)) {
+                    direction = 1;
+                } else {
+                    direction = -1;
+                }
+            }
+            if (direction < 0) {
+                if (func_801137E4(arg0, sp94, sp88, (u8 *)arg0->bounce + 0x58, &sp6C)) {
+                    hit = 1;
+                }
+            } else {
+                if (func_801137E4(arg0, sp94, sp88, (u8 *)arg0->bounce + 0x70, &sp6C)) {
+                    hit = 1;
+                }
+            }
+        }
+        if (hit != 0) {
+            func_800EFB24(sp48, sp88, sp94);
+            func_800F1A88(sp48, sp60);
+            sp68 = (direction < 0 ? -1.0f : 1.0f) * sp6C;
+            func_800EF934(sp54, sp48, sp68 * D_801265D0);
+            func_800EF04C(sp54, sp94);
+            if (func_8011349C(sp88, sp54)) {
+                func_80112D90(arg0, func_800136E4(sp60[1] + sp68), sp6C * 0.25f, 1, 1);
+                *(s32 *)((u8 *)arg0->bounce + 0x7C) = direction;
+            }
+        } else {
+            if (*(s32 *)((u8 *)arg0->bounce + 0x7C) != 0) {
+                func_80112E50(arg0, (f32)*(s32 *)((u8 *)arg0->bounce + 0x7C) * 2.5f, 1);
+                *(s32 *)((u8 *)arg0->bounce + 0x7C) = 0;
+            }
+        }
+    }
+    if (arg2 != 0) {
+        s32 direction;
+        s32 count;
+        s32 hit;
+        f32 sp38;
+
+        count = 0;
+        direction = 0;
+        hit = 0;
+        if (*(s32 *)((u8 *)arg0->bounce + 0x44) >= 4) {
+            count++;
+            direction--;
+        }
+        if (*(s32 *)((u8 *)arg0->bounce + 0x3C) >= 4) {
+            count++;
+            direction++;
+        }
+        sp38 = 0.0f;
+        if (count != 0) {
+            if (direction == 0) {
+                if (*(s32 *)((u8 *)arg0->bounce + 0x18) < *(s32 *)((u8 *)arg0->bounce + 0x20)) {
+                    direction = 1;
+                } else {
+                    direction = -1;
+                }
+            }
+            if (direction < 0) {
+                if (func_801137E4(arg0, sp94, sp88, (u8 *)arg0->bounce + 0x64, &sp38)) {
+                    hit = 1;
+                }
+            } else {
+                if (func_801137E4(arg0, sp94, sp88, (u8 *)arg0->bounce + 0x4C, &sp38)) {
+                    hit = 1;
+                }
+            }
+        }
+        if (hit != 0) {
+            sp80 = func_800F0DC0(sp38, 10.0f);
+        }
+    }
+    return sp80;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80113D30.s")
 
