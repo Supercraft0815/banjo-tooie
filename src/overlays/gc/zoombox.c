@@ -68,7 +68,9 @@ void gczoombox_entrypoint_1()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_808009E4_gczoombox.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80800E24_gczoombox.s")
+int func_80800E24_gczoombox(u8 arg0) {
+    return arg0 >= 0x7F && arg0 < 0x88;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80800E44_gczoombox.s")
 
