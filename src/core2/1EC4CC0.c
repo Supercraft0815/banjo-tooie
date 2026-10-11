@@ -132,7 +132,14 @@ void func_800EC0EC(f32 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC124.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC340.s")
+void func_800EC340(void *arg0, s32 arg1) {
+    struct Fields {
+        u8 pad[26];
+        u16 upper : 11;
+        u16 lower : 5;
+    };
+    ((struct Fields *)arg0)->upper = arg1;
+}
 
 void func_800EC358(s32 *arg0, s32 arg1) {
     arg0[3] = arg1;
