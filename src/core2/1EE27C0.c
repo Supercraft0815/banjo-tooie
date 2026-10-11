@@ -101,7 +101,12 @@ void func_80109F40(s32 arg0, volatile s32 arg1) {
     func_8010114C(arg0, 0x3F, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109F68.s")
+/* extern */
+
+void func_80109F68(s32 arg0, volatile s32 arg1) {
+    s32 func_8010114C(s32, s32, s32);
+    func_8010114C(arg0, 0x40, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109F90.s")
 
