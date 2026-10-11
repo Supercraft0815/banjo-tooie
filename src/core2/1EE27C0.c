@@ -122,7 +122,18 @@ void func_80109FB8(s32 arg0, volatile s32 arg1) {
     (*(s32 *)((s8 *)(func_80106790(*(s32 *)&arg1)) + (0x3C))) = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109FE8.s")
+void func_80109FE8(void **arg0, s32 arg1) {
+    struct Flags {
+        u8 padding[0x1B];
+        u8 other : 7;
+        u8 enabled : 1;
+    };
+    if (arg1 != 0) {
+        ((struct Flags *) *arg0)->enabled = 0;
+        return;
+    }
+    ((struct Flags *) *arg0)->enabled = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A01C.s")
 
