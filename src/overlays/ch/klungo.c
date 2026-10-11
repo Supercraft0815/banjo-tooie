@@ -170,7 +170,14 @@ s32 func_80803158_chklungo(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_8080318C_chklungo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_808031E4_chklungo.s")
+f32 func_808031E4_chklungo(void *arg0) {
+    f32 temp_f0;
+    f32 temp_f2;
+
+    temp_f0 = *(f32 *)((s8 *)(arg0) + 0x24) / 300.0f;
+    temp_f2 = 400.0f;
+    return temp_f2 * temp_f0;
+}
 
 void func_80803208_chklungo(s32 *arg0) {
     s32 func_80105230();
