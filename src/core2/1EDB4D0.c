@@ -2,7 +2,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80101BE0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80101CDC.s")
+/* extern */
+
+void func_80101CDC(Actor *arg0, f32 arg1) {
+    s32 anctrl_setDuration(s32, f32);
+    s32 func_80104248();
+    s32 temp_v0;
+
+    temp_v0 = func_80104248(arg0);
+    if (temp_v0 != 0) {
+        anctrl_setDuration(temp_v0, arg1);
+    }
+}
 
 /* extern */
 
