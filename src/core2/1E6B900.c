@@ -50,7 +50,12 @@ void func_80092744(s32 *arg0, s32 arg1) {
     ((u8 *)arg0[20])[0x88] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092750.s")
+void func_80092750(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x89))) = arg1;
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x8A))) = arg2;
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x8B))) = arg3;
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x8C))) = (s8) arg4;
+}
 
 /* extern */
 
