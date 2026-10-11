@@ -30,7 +30,132 @@ s32 func_80800040_chonearmbandit(Actor *arg0) {
     _subaddierouteDll_entrypoint_1(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_8080007C_chonearmbandit.s")
+void func_8080007C_chonearmbandit(u8 *arg0) {
+    struct DisabledFlags {
+        unsigned int : 29;
+        unsigned int disabled : 1;
+        unsigned int : 2;
+    };
+    struct InteractionFlags {
+        unsigned int : 2;
+        unsigned int interacting : 1;
+        unsigned int : 29;
+    };
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void _subaddiejoy_entrypoint_10(void *, f32, f32);
+    s32 _subaddiejoy_entrypoint_6(u8 *, s32);
+    f32 func_800D8FF8(void);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80102CF4(Actor *, f32);
+    void func_80108B04(Actor *, u32);
+    s32 func_8010C9B0(f32 *, s32);
+    s32 func_8010D278(void);
+    void func_80800680_chonearmbandit(u8 *, s32);
+    void func_80800740_chonearmbandit(u8 *, f32);
+    void func_808008E0_chonearmbandit(u8 *, f32);
+    void func_80800A14_chonearmbandit(u8 *, f32);
+    extern u32 D_808011F0_chonearmbandit[];
+    extern u32 D_8080134C_chonearmbandit[];
+    s32 pad;
+
+    if (!((struct DisabledFlags *)(arg0 + 0x78))->disabled) {
+        switch ((u32)*(u16 *)(arg0 + 0x72) >> 10) {
+        case 1:
+            if (((struct InteractionFlags *)(arg0 + 0x64))->interacting) {
+                func_80800680_chonearmbandit(arg0, 2);
+            } else if (func_8010C9B0((f32 *)(arg0 + 4), 1500)) {
+                func_80800680_chonearmbandit(arg0, 4);
+            }
+            break;
+        case 2:
+            if (_subaddieaudioquick_entrypoint_3((Actor *)arg0, (f32 *)(arg0 + 4), D_808011F0_chonearmbandit, 0.75f)) {
+                _subaddiejoy_entrypoint_10(arg0, 0.8f, 0.2f);
+            }
+            func_808008E0_chonearmbandit(arg0, 0.0f);
+            if (_subaddiejoy_entrypoint_6(arg0, 1)) {
+                func_80800680_chonearmbandit(arg0, 3);
+            } else if (_subaddiejoy_entrypoint_6(arg0, 0)) {
+                func_80800680_chonearmbandit(arg0, 5);
+            }
+            if (!((struct InteractionFlags *)(arg0 + 0x64))->interacting) {
+                func_80800680_chonearmbandit(arg0, 3);
+            }
+            break;
+        case 3:
+            if (_subaddieaudioquick_entrypoint_3((Actor *)arg0, (f32 *)(arg0 + 4), D_808011F0_chonearmbandit, 0.75f)) {
+                _subaddiejoy_entrypoint_10(arg0, 0.8f, 0.2f);
+            }
+            func_80800A14_chonearmbandit(arg0, 0.7f);
+            func_808008E0_chonearmbandit(arg0, 0.0f);
+            if (func_80101E14((Actor *)arg0, 0.999f)) {
+                if (((struct InteractionFlags *)(arg0 + 0x64))->interacting) {
+                    if (!_subaddiejoy_entrypoint_6(arg0, 1)) {
+                        func_80800680_chonearmbandit(arg0, 2);
+                    }
+                } else if (!func_8010C9B0((f32 *)(arg0 + 4), 800)) {
+                    func_80800680_chonearmbandit(arg0, 4);
+                }
+            }
+            break;
+        case 4:
+            _subaddieaudioquick_entrypoint_3((Actor *)arg0, (f32 *)(arg0 + 4), D_808011F0_chonearmbandit, 0.75f);
+            if (func_80101E14((Actor *)arg0, 0.999f)) {
+                if (((struct InteractionFlags *)(arg0 + 0x64))->interacting) {
+                    func_80800680_chonearmbandit(arg0, 2);
+                } else if (!func_8010C9B0((f32 *)(arg0 + 4), 1500)) {
+                    func_80800680_chonearmbandit(arg0, 1);
+                } else if (func_8010C9B0((f32 *)(arg0 + 4), 800)) {
+                    func_80800680_chonearmbandit(arg0, func_8010D278() == 0x10 ? 6 : 2);
+                }
+            } else {
+                func_80800740_chonearmbandit(arg0, 0.0f);
+                if (func_8010C9B0((f32 *)(arg0 + 4), 1500)) {
+                    if (func_80102CF4((Actor *)arg0, 8.0f)) {
+                        func_80800680_chonearmbandit(arg0, 5);
+                    }
+                } else {
+                    func_80800680_chonearmbandit(arg0, 1);
+                }
+            }
+            break;
+        case 5:
+            _subaddieaudioquick_entrypoint_3((Actor *)arg0, (f32 *)(arg0 + 4), D_8080134C_chonearmbandit, 0.1f);
+            if (func_80101E14((Actor *)arg0, 0.25f)) {
+                func_80108B04((Actor *)arg0, 0);
+            }
+            if (func_80101DDC((Actor *)arg0)) {
+                *(f32 *)(arg0 + 0x58) -= func_800D8FF8();
+                if (*(f32 *)(arg0 + 0x58) < 0.0f) {
+                    if (((struct InteractionFlags *)(arg0 + 0x64))->interacting) {
+                        func_80800680_chonearmbandit(arg0, 2);
+                    } else {
+                        func_80800680_chonearmbandit(arg0,
+                            func_8010C9B0((f32 *)(arg0 + 4), 800) ?
+                            (func_8010D278() == 0x10 ? 6 : 2) : 4);
+                    }
+                }
+            }
+            break;
+        case 7:
+            if (func_80101DDC((Actor *)arg0)) {
+                func_80800680_chonearmbandit(arg0, 1);
+            }
+            break;
+        case 6:
+            _subaddieaudioquick_entrypoint_3((Actor *)arg0, (f32 *)(arg0 + 4), D_808011F0_chonearmbandit, 0.75f);
+            if (func_80101E14((Actor *)arg0, 0.999f)) {
+                if (((struct InteractionFlags *)(arg0 + 0x64))->interacting) {
+                    func_80800680_chonearmbandit(arg0, 2);
+                } else if (!func_8010C9B0((f32 *)(arg0 + 4), 800)) {
+                    func_80800680_chonearmbandit(arg0, 4);
+                }
+            }
+            func_808008E0_chonearmbandit(arg0, 180.0f);
+            break;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80800520_chonearmbandit.s")
 
