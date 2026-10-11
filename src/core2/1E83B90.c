@@ -117,4 +117,102 @@ void func_800ABC58(f32 start_point[3], f32 end_point[3], f32 margin, f32 min_bou
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AD2C8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AD894.s")
+s32 func_800AD894(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 *arg5, f32 arg6) {
+    typedef struct { u16 vertex[3]; u16 flags[3]; } Triangle;
+    void func_800AA7FC(void *, s32 *, s32 *, u16 ***, u16 ***);
+    void *func_800B2190(void *);
+    void func_800EE8CC(s32 *, s16 *);
+    void func_800EE9EC(f32 *, s32 *, s32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    s32 func_800EED58(s32 *, s32 *);
+    void func_800EF2A0(f32 *);
+    void func_800EFB58(void *, void *, void *);
+    u16 *entry;
+    s16 *first_vertex;
+    u16 **begin;
+    u16 **end;
+    u16 **geometry;
+    Triangle *triangle;
+    Triangle *triangle_end;
+    u8 *vertices;
+    s32 start[3];
+    s32 finish[3];
+    s32 minimum[3];
+    s32 maximum[3];
+    s32 triangle_min[3];
+    s32 triangle_max[3];
+    s32 points[3][3];
+    s32 edge1[3];
+    s32 edge2[3];
+    s32 i;
+    u32 j;
+    f32 normal[3];
+    s16 *vertex;
+
+    for (i = 0; i < 3; i++) {
+        start[i] = arg2[i] - arg5[i];
+        finish[i] = arg3[i] - arg5[i];
+    }
+    for (i = 0; i < 3; i++) {
+        if (start[i] < finish[i]) {
+            minimum[i] = start[i];
+        } else {
+            minimum[i] = finish[i];
+        }
+    }
+    for (i = 0; i < 3; i++) {
+        if (finish[i] < start[i]) {
+            maximum[i] = start[i];
+        } else {
+            maximum[i] = finish[i];
+        }
+    }
+    func_800AA7FC(arg0, minimum, maximum, &begin, &end);
+    vertices = func_800B2190(arg1);
+    for (geometry = begin; geometry < end; geometry++) {
+        entry = *geometry;
+        triangle_end = (triangle = (Triangle *)((u8 *)arg0 + ((u16 *)arg0)[8] * 4 + 24) + entry[0]) + entry[1];
+        if (triangle < triangle_end) {
+            do {
+            first_vertex = (s16 *)(vertices + triangle->vertex[0] * 16);
+            triangle_min[0] = triangle_max[0] = first_vertex[0];
+            triangle_min[1] = triangle_max[1] = first_vertex[1];
+            triangle_min[2] = triangle_max[2] = first_vertex[2];
+            func_800EE8CC(points[0], first_vertex);
+            for (i = 1; i < 3; i++) {
+                first_vertex = (s16 *)(vertices + triangle->vertex[i] * 16);
+                j = 0;
+                do {
+                    if (first_vertex[j] < triangle_min[j]) {
+                        triangle_min[j] = first_vertex[j];
+                    }
+                    if (triangle_max[j] < first_vertex[j]) {
+                        triangle_max[j] = first_vertex[j];
+                    }
+                } while (++j < 3);
+                func_800EE8CC(points[i], first_vertex);
+            }
+            if (triangle_max[0] >= minimum[0] && maximum[0] >= triangle_min[0]
+                && triangle_max[1] >= minimum[1] && maximum[1] >= triangle_min[1]
+                && triangle_max[2] >= minimum[2] && maximum[2] >= triangle_min[2]) {
+                func_800EFB58(edge1, points[1], points[0]);
+                func_800EFB58(edge2, points[2], points[0]);
+                func_800EE9EC(normal, edge1, edge2);
+                func_800EF2A0(normal);
+                if (!(normal[1] <= arg6) || !(func_800EEAA4(normal, arg4) > 0.0f)) {
+                    if (func_800EED58(finish, points[0]) && func_800EED58(start, points[1])) {
+                        return 0;
+                    }
+                    if (func_800EED58(finish, points[1]) && func_800EED58(start, points[2])) {
+                        return 0;
+                    }
+                    if (func_800EED58(finish, points[2]) && func_800EED58(start, points[0])) {
+                        return 0;
+                    }
+                }
+            }
+            } while (++triangle < triangle_end);
+        }
+    }
+    return 1;
+}
