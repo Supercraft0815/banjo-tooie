@@ -141,7 +141,9 @@ s32 func_800CEB08(void *arg0, f32 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CEB54.s")
+void func_800CEB54(s32 arg0, f32 arg1) {
+    func_800CEB08(func_800CE3E0(arg0), arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CEB80.s")
 
