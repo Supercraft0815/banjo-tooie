@@ -132,7 +132,14 @@ void set_widescreen(s32 enabled) {
     widescreen_enabled = enabled;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_800157EC.s")
+void func_800157EC(s32 *arg0, Gfx **arg1) {
+    extern u8 D_800797B8[];
+    Gfx *dl;
+
+    dl = (*arg1)++;
+    dl->words.w0 = 0xDC080008;
+    dl->words.w1 = (u32)(D_800797B8 + ((*arg0 << 4) + 0x80000000));
+}
 
 s32 func_80015828(void) {
     extern s16 D_80079778[];
