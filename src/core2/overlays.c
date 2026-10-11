@@ -167,7 +167,11 @@ s32 ovl_unload(struct Overlay* ovl, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/overlays/func_80081A90.s")
+u8 *func_80081A90(u8 *arg0) {
+    u8 *ptr = arg0;
+    ptr += *(s16 *)(arg0 + 8) * 4;
+    return ptr + 0x38;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/overlays/func_80081AA4.s")
 
