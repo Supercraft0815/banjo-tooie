@@ -1,6 +1,13 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/fontstring/func_80800000_fxfontstring.s")
+u8 *func_80800000_fxfontstring(u8 *arg0) {
+    if (*arg0 != 0) {
+        do {
+            arg0++;
+        } while (*arg0 != 0);
+    }
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/fontstring/fxfontstring_entrypoint_0.s")
 
