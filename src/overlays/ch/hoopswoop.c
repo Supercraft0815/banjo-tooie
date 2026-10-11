@@ -107,7 +107,135 @@ s32 func_808007A4_chhoopswoop(void *arg0, s32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80800C9C_chhoopswoop.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80800D28_chhoopswoop.s")
+void func_80800D28_chhoopswoop(void *arg0, s32 arg1) {
+    typedef struct {
+        s32 kind : 15;
+        u32 used : 1;
+        s16 position[3];
+        f32 timer;
+    } Hoop;
+    typedef struct {
+        s32 count;
+        u8 pad[16];
+        Hoop hoops[1];
+    } HoopData;
+    typedef struct {
+        void *marker;
+        u8 pad04[4];
+        f32 y;
+        u8 pad0C[32];
+        s32 index;
+        u8 pad30[12];
+        s32 parent;
+        u8 pad40[24];
+        f32 scale;
+        u8 pad5C[16];
+        u32 flags : 23;
+        u32 id : 9;
+    } HoopActor;
+    s32 func_800DA298(s32);
+    void *func_80100094(void *, u32);
+    s32 func_800DC128(s32, s32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EE88C(f32 *, s16 *);
+    void *func_80108474(s32, f32 *, s32);
+    s32 _subaddiefade_entrypoint_2();
+    f32 func_800DC0C0(void);
+    s32 func_800D3948(void);
+    void func_80103140(void *, s32, u16);
+    void func_80102424(void *, s32);
+    s32 func_8010114C(s32, s32, s32);
+    f32 position[3];
+    f32 random;
+    HoopData *data;
+    s32 index;
+    s32 i;
+    s32 found;
+    HoopActor *actor;
+    s32 height;
+    s32 special;
+    s32 *actorData;
+    s32 model;
+    s32 variant;
+
+    special = func_800DA298(0);
+    data = func_80100094(arg0, 0);
+    index = func_800DC128(0, data->count);
+    if (special) {
+        func_800EFA4C(position, 1400.0f, 260.0f, -1400.0f);
+        index = -1;
+    } else {
+        found = 0;
+        for (i = 0; i < data->count; i++) {
+            if (data->hoops[index].timer == 0.0f && !data->hoops[index].used) {
+                found = 1;
+                break;
+            }
+            index++;
+            if (index >= data->count) {
+                index = 0;
+            }
+        }
+        if (!found) {
+            return;
+        }
+        func_800EE88C(position, data->hoops[index].position);
+    }
+    actor = func_80108474(0x356, position, data->hoops[index].kind);
+    actorData = func_80100094(actor, 0);
+    _subaddiefade_entrypoint_2(actor);
+    random = func_800DC0C0();
+    if (random < 0.1666f) {
+        variant = 0;
+    } else if (random < 0.5f) {
+        variant = 1;
+    } else {
+        variant = 2;
+    }
+    if (arg1 != -1) {
+        variant = arg1;
+    }
+    actorData[16] = 2 - variant;
+    switch (variant) {
+        case 0:
+            model = func_800D3948() ? 0x958 : 0x878;
+            func_80103140(actor, (u16)model, *(u16 *)((u8 *)((HoopActor *)arg0)->marker + 0x16));
+            func_80102424(actor, 4);
+            height = 100;
+            actor->scale = 10.0f;
+            break;
+        case 1:
+            model = func_800D3948() ? 0x957 : 0x877;
+            func_80103140(actor, (u16)model, *(u16 *)((u8 *)((HoopActor *)arg0)->marker + 0x16));
+            func_80102424(actor, 3);
+            height = 150;
+            actor->scale = 10.0f;
+            break;
+        case 2:
+            model = func_800D3948() ? 0x956 : 0x7A1;
+            func_80103140(actor, (u16)model, *(u16 *)((u8 *)((HoopActor *)arg0)->marker + 0x16));
+            func_80102424(actor, 2);
+            height = 200;
+            actor->scale = 10.0f;
+            break;
+    }
+    if (!special) {
+        actor->y = height + 80.0f;
+    }
+    actor->parent = (s32)((HoopActor *)arg0)->marker;
+    actor->index = index;
+    actor->id = ((HoopActor *)arg0)->id;
+    if (index != -1) {
+        data->hoops[index].used = 1;
+    }
+    if (special) {
+        actor->scale = 60.0f;
+        if (((HoopActor *)arg0)->parent) {
+            func_8010114C(((HoopActor *)arg0)->parent, 0x4F, 1);
+        }
+        ((HoopActor *)arg0)->parent = (s32)actor->marker;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80801130_chhoopswoop.s")
 
