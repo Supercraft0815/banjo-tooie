@@ -86,7 +86,110 @@ s32 func_808006B4_gczoombox(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80800964_gczoombox.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_808009E4_gczoombox.s")
+void func_808009E4_gczoombox(u8 *this, s32 arg1) {
+    typedef struct {
+        u32 pad : 20;
+        u32 enabled : 1;
+        u32 rest : 11;
+    } Flags;
+    f32 _suexpression_entrypoint_0(u8);
+    f32 func_80027170(s32);
+    void func_800C3058(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C3BDC(u8);
+    s32 func_800C3CE8(u8);
+    s32 func_800C3D78(u8);
+    void func_800D527C(s32);
+    void func_800D52CC(s32);
+    s32 func_800DC214(s32, s32);
+    f32 func_800DC264(f32, f32);
+    s32 func_800EC370(s32, u8 *);
+    void func_800FC6B0(u32);
+    s32 func_800FCCD4(s32);
+    s32 i;
+    s32 current_sfx;
+    f32 low;
+    f32 pitch;
+    f32 high;
+    s32 sample_low;
+    s32 sample_high;
+    s32 count;
+    f32 position[3];
+    u8 *source;
+    s32 initial_count;
+
+    current_sfx = 0;
+    if (this != NULL && (initial_count = this[0x178]) != 0 && ((Flags *)(this + 0x1E4))->enabled) {
+        i = 0;
+        if (*(f32 *)(this + 0x14C) == -1.0f) {
+            if (func_800FCCD4(this[0x144]) == 0) {
+                func_800FC6B0(this[0x144]);
+            }
+        } else {
+            count = initial_count;
+            if (initial_count > 0) {
+                source = this;
+                do {
+                    if (func_800C3D78(source[0x144])) {
+                        func_800C3CE8(source[0x144]);
+                    }
+                    count = this[0x178];
+                    i++;
+                    source++;
+                } while (i < count);
+            }
+            if (count != 1) {
+                do {
+                    current_sfx = func_800DC214(0, this[0x178]);
+                } while (current_sfx == this[0x1D3] || ((s16 *)(this + 0x160))[current_sfx] == 0);
+            }
+            this[0x1D3] = current_sfx;
+            i = 6000;
+            count = 0;
+            low = 0.2f;
+            high = 0.0f;
+            if ((pitch = ((f32 *)(this + 0x14C))[current_sfx]) < -1.0f) {
+                do {
+                    low = (f32)func_800DC214(-12, 0);
+                } while (low == -11.0f || low == -9.0f || low == -7.0f || low == -6.0f || low == -4.0f || low == -2.0f || low == -1.0f);
+                pitch = ((f32 *)(this + 0x14C))[current_sfx];
+                if (pitch < -2.0f) {
+                    low -= pitch - -2.0f;
+                }
+                func_800C31DC((this + current_sfx)[0x144], func_80027170(low * 100.0f));
+            } else {
+                low = (pitch - low < 0.1f) ? 0.1f : pitch - low;
+                if (low >= 2.0f) {
+                    low = 1.99f;
+                }
+                high = (pitch - high < 2.0f) ? pitch - high : 2.0f;
+                if (!(high > 0.1f)) {
+                    high = 0.1f;
+                }
+                func_800C31DC((this + current_sfx)[0x144], func_800DC264(low, high));
+            }
+            if (*(s16 *)(this + 0x13A) == *(s16 *)(this + 0x172)) {
+                if (func_808006B4_gczoombox(*(void **)(this + 0x130), *(s32 *)(this + 0x13C))) {
+                    func_800EC370(*(s32 *)(this + 0x130), this + 0x134);
+                    *(s16 *)(this + 0x136) += _suexpression_entrypoint_0(this[0x173]);
+                }
+                position[0] = *(s16 *)(this + 0x134);
+                position[1] = *(s16 *)(this + 0x136);
+                position[2] = *(s16 *)(this + 0x138);
+                sample_low = (((s16 *)(this + 0x160))[current_sfx] - i < 0) ? 0 : ((s16 *)(this + 0x160))[current_sfx] - i;
+                sample_high = (((s16 *)(this + 0x160))[current_sfx] - count < 0) ? 0 : ((s16 *)(this + 0x160))[current_sfx] - count;
+                func_800C3058((this + current_sfx)[0x144], func_800DC214(sample_low, sample_high));
+            } else {
+                sample_low = (((s16 *)(this + 0x160))[current_sfx] - i < 0) ? 0 : ((s16 *)(this + 0x160))[current_sfx] - i;
+                sample_high = (((s16 *)(this + 0x160))[current_sfx] - count < 0) ? 0 : ((s16 *)(this + 0x160))[current_sfx] - count;
+                func_800C3058((this + current_sfx)[0x144], func_800DC214(sample_low, sample_high));
+            }
+            func_800C3BDC((this + current_sfx)[0x144]);
+            func_800D52CC(*(s16 *)(this + 0x172));
+            func_800D527C(current_sfx);
+        }
+    }
+}
 
 int func_80800E24_gczoombox(u8 arg0) {
     return arg0 >= 0x7F && arg0 < 0x88;
