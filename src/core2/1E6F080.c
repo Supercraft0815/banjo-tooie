@@ -351,7 +351,13 @@ s32 func_80097524(PlayerState *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_800976DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80097858.s")
+/* extern */
+
+void func_80097858(void *arg0) {
+    s32 bastatetimer_set(void *, s32, f32);
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x98)))) + (0x24))) = 1;
+    bastatetimer_set(arg0, 7, 0.2f);
+}
 
 void func_8009788C(void *arg0) {
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x98)))) + (0x24))) = 1;
