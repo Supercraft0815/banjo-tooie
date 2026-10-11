@@ -144,7 +144,12 @@ void func_800F31EC(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     (*(s8 *)((s8 *)(arg0) + (2))) = arg3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F31FC.s")
+void func_800F31FC(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    (*(s8 *)((s8 *)(arg0) + (0))) = arg1;
+    (*(s8 *)((s8 *)(arg0) + (1))) = arg2;
+    (*(s8 *)((s8 *)(arg0) + (2))) = arg3;
+    (*(s8 *)((s8 *)(arg0) + (3))) = arg4;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F3214.s")
 
