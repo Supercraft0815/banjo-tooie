@@ -17,7 +17,71 @@ typedef struct {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B1508.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B196C.s")
+u8 func_800B196C(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, f32 *arg6, f32 arg7, s32 arg8) {
+    void func_80019480(f32 *, f32, f32, f32);
+    void func_800198D4(f32 *, f32 *);
+    void func_80019AA0(void *, s32);
+    s32 func_800ADE2C(s32, s32);
+    void func_800EF2A0(f32 *);
+    void func_800EF3DC(f32 *, f32 *);
+    void func_800EFB24(void *, void *, void *);
+    extern s32 D_80127EA0;
+    s32 index;
+    f32 position[3];
+    f32 rotation[3];
+    f32 distance;
+    f32 radialDistance;
+    f32 start[3];
+    f32 end[3];
+    f32 normal[3];
+    f32 delta[3];
+    f32 radius[3];
+    u8 *entry;
+    u8 *limit;
+
+    entry = *(s16 *)arg0 * 0x18 + arg0 + 8;
+    limit = *(s16 *)(arg0 + 2) * 0x10 + entry;
+    while ((u32)entry < (u32)limit) {
+        index = entry[0xD] - 1;
+        if (!((1 << index) & arg8)) {
+            position[0] = *(s16 *)(entry + 4);
+            position[1] = *(s16 *)(entry + 6);
+            position[2] = *(s16 *)(entry + 8);
+            rotation[0] = entry[0xA] * 2;
+            rotation[1] = entry[0xB] * 2;
+            rotation[2] = entry[0xC] * 2;
+            func_80019AA0(&D_80127EA0, func_800ADE2C(arg5, *(s8 *)(entry + 0xE)));
+            func_800198D4(position, rotation);
+            func_80019480(start, 0.0f, 0.0f, (f32)-*(s16 *)(entry + 2) * 0.5f);
+            func_80019480(end, 0.0f, 0.0f, (f32)*(s16 *)(entry + 2) * 0.5f);
+            func_80019480(radius, (f32)*(s16 *)entry, 0.0f, (f32)-*(s16 *)(entry + 2) * 0.5f);
+            func_800EF3DC(radius, start);
+            func_800EFB24(normal, start, end);
+            func_800EF2A0(normal);
+            func_800EFB24(delta, arg6, start);
+            distance = normal[0] * delta[0] + normal[1] * delta[1] + normal[2] * delta[2];
+            if (arg7 < distance) {
+                goto rejected;
+            }
+            func_800EFB24(delta, arg6, end);
+            if (arg7 < -(normal[0] * delta[0] + normal[1] * delta[1] + normal[2] * delta[2])) {
+                goto rejected;
+            }
+            delta[0] = arg6[0] - (start[0] + normal[0] * distance);
+            delta[1] = arg6[1] - (start[1] + normal[1] * distance);
+            delta[2] = arg6[2] - (start[2] + normal[2] * distance);
+            radialDistance = sqrtf(delta[0] * delta[0] + delta[1] * delta[1] + delta[2] * delta[2]);
+            if (sqrtf(radius[0] * radius[0] + radius[1] * radius[1] + radius[2] * radius[2]) < radialDistance - arg7) {
+                goto rejected;
+            }
+            return entry[0xD];
+rejected:
+            mlMtxPop();
+        }
+        entry += 0x10;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B1D3C.s")
 
