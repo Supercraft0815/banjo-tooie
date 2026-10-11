@@ -19,7 +19,9 @@ void func_808001E4_bswalk(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/func_80800248_bswalk.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_0.s")
+f32 bswalk_entrypoint_0(s32 arg0) {
+    return 500.0f;
+}
 
 void bswalk_entrypoint_1()
 {
