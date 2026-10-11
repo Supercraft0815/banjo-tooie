@@ -9,7 +9,10 @@ u16 gczoomboxdata_entrypoint_1(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoomboxdata/gczoomboxdata_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoomboxdata/gczoomboxdata_entrypoint_3.s")
+u8 gczoomboxdata_entrypoint_3(s32 arg0) {
+    extern u8 D_80800AB0_gczoomboxdata[];
+    return D_80800AB0_gczoomboxdata[(arg0 * 3) * 4];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoomboxdata/gczoomboxdata_entrypoint_4.s")
 
