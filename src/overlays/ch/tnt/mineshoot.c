@@ -10,7 +10,12 @@ void func_8080003C_chtntmineshoot(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800078_chtntmineshoot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800150_chtntmineshoot.s")
+void func_80800150_chtntmineshoot(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
+    extern u32 D_808025DC_chtntmineshoot;
+    _subaddieaudioloop_entrypoint_4(arg0, (f32 *) ((u8 *) arg0 + 4), 1U, &D_808025DC_chtntmineshoot);
+    arg0->unk5F = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800188_chtntmineshoot.s")
 
