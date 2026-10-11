@@ -70,7 +70,13 @@ s32 func_800E9048(void) {
     return D_80131CE0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E9054.s")
+s16 func_800E9054(s32 arg0) {
+    extern s16 D_80131CF6;
+    s32 index = arg0;
+    index *= 9;
+    index *= 2;
+    return *(s16 *)((u8 *)&D_80131CF6 + index);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E9070.s")
 
