@@ -74,7 +74,12 @@ u8 gcstatusDll_entrypoint_15(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/statusDll/gcstatusDll_entrypoint_17.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/statusDll/gcstatusDll_entrypoint_18.s")
+u8 gcstatusDll_entrypoint_18(void) {
+    extern s32 D_8012B3FC;
+    u8 result;
+    result = *((u8 *)&D_8012B3FC + 20);
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/statusDll/gcstatusDll_entrypoint_19.s")
 
