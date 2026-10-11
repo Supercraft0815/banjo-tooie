@@ -12,4 +12,10 @@ s32 glglobaldata_entrypoint_1(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obaldata/glglobaldata_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obaldata/glglobaldata_entrypoint_4.s")
+void glglobaldata_entrypoint_4(u8 *arg0) {
+    s32 i;
+
+    for (i = 0; i < 0x80; i++) {
+        arg0[i] = 0;
+    }
+}
