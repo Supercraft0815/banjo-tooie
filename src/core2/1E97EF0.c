@@ -57,7 +57,18 @@ void func_800BEB58(s32 arg0) {
     *(s32 *)((u8 *)&D_80128760 + 0) = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEB64.s")
+s32 func_800BEB64(s32 arg0) {
+    struct Entry {
+        s32 pad[4];
+        s32 values[6];
+        u8 pad28;
+        u8 index;
+        u8 pad2A[2];
+    } *entry;
+
+    entry = &((struct Entry *)&D_801285B0)[arg0];
+    return entry->values[entry->index];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEB98.s")
 
