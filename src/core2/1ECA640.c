@@ -181,7 +181,19 @@ f32 func_800F14FC(f32 arg0, f32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F1574.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F15C4.s")
+f32 func_800F15C4(f32 arg0, s32 arg1) {
+    f32 var_f2;
+    s32 temp_t7;
+
+    var_f2 = 1.0f;
+    if (arg1 != 0) do {
+        if (arg1 & 1) var_f2 *= arg0;
+        temp_t7 = arg1 >> 1;
+        arg0 *= arg0;
+        arg1 = temp_t7;
+    } while (arg1 != 0);
+    return var_f2;
+}
 
 f32 func_800F15F8(f32 arg0, f32 arg1, f32 arg2) {
     if (arg0 < arg1) {
