@@ -41,7 +41,122 @@ void func_808005B0_bsbeefly(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_80800600_bsbeefly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_80800708_bsbeefly.s")
+void func_80800708_bsbeefly(void *arg0) {
+    extern f32 D_80800E28_bsbeefly[];
+    extern f32 D_80800E3C_bsbeefly[];
+    s32 _bsbee_entrypoint_2();
+    s32 bs_setState(s32, s32);
+    s32 _baboost_entrypoint_1(void *);
+    s32 _baboost_entrypoint_2(s32, s32);
+    void _baboost_entrypoint_5(void *);
+    void _babuzz_entrypoint_3(void *);
+    void _babuzz_entrypoint_4(void *, f32);
+    s32 _bafly_entrypoint_2(void *);
+    void _bafly_entrypoint_8(void *, f32, f32, f32, f32, f32, f32, f32);
+    void _bafly_entrypoint_10(void *, f32, f32);
+    void _bafly_entrypoint_11(void *);
+    void _bafly_entrypoint_20(void *);
+    void _bafly_entrypoint_21(void *);
+    s32 baanim_getAnimCtrlPtr(void *);
+    void anctrl_setDuration(s32, f32);
+    f32 baphysics_get_target_horizontal_velocity(void *);
+    f32 baphysics_get_vertical_velocity(void *);
+    void baphysics_set_target_horizontal_velocity(void *, f32);
+    void baphysics_set_vertical_velocity(void *, f32);
+    void func_8009BF5C(void *, f32);
+    f32 func_8009BFCC(void *);
+    f32 func_8009BFD8(void *);
+    f32 func_8009C150(void *);
+    f32 func_800136E4(f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 next_state;
+    s32 anctrl;
+    s32 boost;
+    f32 buzz;
+    f32 pitch;
+    f32 target_pitch;
+    f32 buzz_offset;
+    f32 fall_speed;
+    f32 terminal_speed;
+
+    next_state = 0;
+    anctrl = baanim_getAnimCtrlPtr(arg0);
+    _bsbee_entrypoint_2(arg0);
+    _bafly_entrypoint_20(arg0);
+    func_80800480_bsbeefly(arg0);
+    _bafly_entrypoint_10(arg0, 300.0f, 80.0f);
+    _bafly_entrypoint_11(arg0);
+    func_8009BFCC(arg0);
+    if (bakey_pressed(arg0, 8) && func_8009C150(arg0) < 27500.0f) {
+        _baboost_entrypoint_2((s32)arg0, 0x3F800000);
+    }
+    if (!_baboost_entrypoint_1(arg0) && player_inWater(arg0)) {
+        _baboost_entrypoint_2((s32)arg0, 0x3F800000);
+    }
+    boost = _baboost_entrypoint_1(arg0);
+    anctrl_setDuration(anctrl, D_80800E28_bsbeefly[boost]);
+    buzz = 0.9f;
+    buzz += D_80800E3C_bsbeefly[boost];
+    pitch = func_8009BFCC(arg0);
+    buzz_offset = 0.0f;
+    if (baphysics_get_vertical_velocity(arg0) < 0) {
+        if (pitch < 300.0f) {
+            buzz_offset = func_800F10B4(pitch, 0, 80.0f, 0.0f, 0.23f);
+        }
+        if (pitch > 80.0f) {
+            buzz_offset = func_800F10B4(pitch, 300.0f, 360.0f, -0.2f, 0.0f);
+        }
+    }
+    buzz += buzz_offset;
+    if (boost == 0 && bakey_held(arg0, 9)) {
+        buzz += 0.12f;
+    }
+    _babuzz_entrypoint_4(arg0, buzz);
+    _babuzz_entrypoint_3(arg0);
+    switch (*(s32 *)((u8 *)arg0 + 0x15C)) {
+    case 0:
+        if (boost != 0) {
+            *(s32 *)((u8 *)arg0 + 0x15C) = 1;
+        }
+        break;
+    case 1:
+        target_pitch = func_800136E4(func_8009BFD8(arg0) - 30.0f);
+        if (target_pitch > 80.0f && target_pitch < 300.0f) {
+            target_pitch = 300.0f;
+        }
+        func_8009BF5C(arg0, target_pitch);
+        _bafly_entrypoint_21(arg0);
+        if (boost != 0) {
+            baphysics_set_vertical_velocity(arg0, (f32)boost * 400.0f);
+            func_80800000_bsbeefly(arg0);
+        }
+        if (boost == 0) {
+            _bafly_entrypoint_20(arg0);
+            *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+        }
+        break;
+    }
+    if (bakey_held(arg0, 9)) {
+        fall_speed = -1500.0f;
+        terminal_speed = -1800.0f;
+    } else {
+        fall_speed = -700.0f;
+        terminal_speed = -1000.0f;
+    }
+    _bafly_entrypoint_8(arg0, 300.0f, 80.0f, 600.0f, -300.0f, -99.9f, fall_speed, terminal_speed);
+    if (bakey_held(arg0, 9)) {
+        func_808000A4_bsbeefly(arg0);
+        baphysics_set_target_horizontal_velocity(arg0, baphysics_get_target_horizontal_velocity(arg0) * 3.5f);
+    }
+    if (bakey_held(arg0, 1)) {
+        _babee_entrypoint_2(arg0);
+    }
+    if (_bafly_entrypoint_2(arg0) && !player_inWater(arg0)) {
+        next_state = 0x85;
+    }
+    _baboost_entrypoint_5(arg0);
+    bs_setState((s32)arg0, next_state);
+}
 
 void func_80800B18_bsbeefly(s32 arg0)
 {
