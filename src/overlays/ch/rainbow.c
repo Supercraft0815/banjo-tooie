@@ -1,6 +1,13 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_80800000_chrainbow.s")
+/* extern */
+
+void func_80800000_chrainbow(s32 arg0) {
+    s32 func_800DA298(s32);
+    s32 func_80800270_chrainbow(s32, s32);
+
+    func_80800270_chrainbow(arg0, func_800DA298(0x1E1) ? 0xD : 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_8080003C_chrainbow.s")
 
