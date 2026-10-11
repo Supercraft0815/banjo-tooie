@@ -162,7 +162,19 @@ void gcnewoption_entrypoint_24(s32 arg0, s32 arg1, s32 arg2) {
     (*(s16 *)((s8 *)((arg0 + (arg1 * 2))) + (0xB0))) = arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_25.s")
+void gcnewoption_entrypoint_25(void *arg0, s32 arg1) {
+    struct Flags {
+        u8 padding[0x1D];
+        u8 upper : 1;
+        u8 flag : 1;
+        u8 lower : 6;
+    };
+    if (arg1 != 0) {
+        ((struct Flags *)arg0)->flag = 0;
+        return;
+    }
+    ((struct Flags *)arg0)->flag = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_26.s")
 
