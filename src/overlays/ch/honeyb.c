@@ -68,7 +68,11 @@ void func_80800240_chhoneyb(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800968_chhoneyb.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800B2C_chhoneyb.s")
+void func_80800B2C_chhoneyb(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
+    extern u32 D_808010D0_chhoneyb;
+    _subaddieaudioloop_entrypoint_4(arg0, (f32 *) ((u8 *) arg0 + 4), 1U, &D_808010D0_chhoneyb);
+}
 
 void func_80800B58_chhoneyb()
 {
