@@ -13,7 +13,13 @@ OSThread *chfishshootgame_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_808001F0_chfishshootgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_808002E8_chfishshootgame.s")
+void func_808002E8_chfishshootgame(Actor *arg0, f32 arg1) {
+    void _subaddieaudioquick_entrypoint_2(Actor*, f32[3], void*);
+    void func_800C4B64(f32);
+    extern s32 D_80801978_chfishshootgame;
+    func_800C4B64(arg1);
+    _subaddieaudioquick_entrypoint_2(arg0, (f32 *)((u8 *)arg0 + 4), &D_80801978_chfishshootgame);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80800320_chfishshootgame.s")
 
