@@ -6,7 +6,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/func_808000B4_suspline.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_1.s")
+s32 suspline_entrypoint_1(void *arg0) {
+    return *(f32 *)((s8 *)arg0 + 0x58) >= 0.99f;
+}
 
 s32 suspline_entrypoint_2(void *arg0, f32 arg1) {
     if (((*(f32 *)((s8 *)(arg0) + (0x5C))) <= arg1) && (arg1 < (*(f32 *)((s8 *)(arg0) + (0x58))))) {
