@@ -154,7 +154,11 @@ void func_800C2A90()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2FDC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C301C.s")
+void func_800C301C(u8 id, s32 arg1) {
+    if (id != 0) {
+        (*(s16 *)((s8 *)(func_800C1414(id)) + (0x58))) = (s16) arg1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3058.s")
 
