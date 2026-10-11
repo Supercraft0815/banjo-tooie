@@ -46,7 +46,14 @@ void gcnewoption_entrypoint_9(s16 *arg0, s32 arg1) {
     arg0[2] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_10.s")
+void gcnewoption_entrypoint_10(void *arg0, s32 arg1) {
+    struct Fields {
+        u8 padding[0x1C];
+        u8 upper : 5;
+        u8 value : 3;
+    };
+    ((struct Fields *)arg0)->value = arg1;
+}
 
 void gcnewoption_entrypoint_11(s16 *arg0) {
     *arg0 = 1;
