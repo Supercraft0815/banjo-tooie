@@ -99,7 +99,16 @@ void func_8080103C_gcnewoption(u8 *arg0)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_808010E0_gcnewoption.s")
+/* extern */
+
+void func_808010E0_gcnewoption(u8 *arg0, s32 arg1) {
+    s32 _gczoomboxdata_entrypoint_0(s16);
+    u8 *temp;
+    temp = (u8 *)((s8 *)arg0 + arg1 * 2);
+    if ((*(s16 *)((s8 *)(arg0) + (0x238))) == 0) {
+        _gczoomboxdata_entrypoint_0((*(s16 *)((s8 *)(temp) + (0x1DC))));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80801114_gcnewoption.s")
 
