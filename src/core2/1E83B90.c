@@ -103,7 +103,97 @@ void func_800ABC58(f32 start_point[3], f32 end_point[3], f32 margin, f32 min_bou
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800ABCE0.s")
+s32 func_800ABCE0(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 arg5, u32 arg6, void **arg7) {
+    typedef struct { u16 start; u16 count; } Geometry;
+    typedef struct { u16 vertex[3]; u16 pad; u32 flags; } Triangle;
+    typedef struct { s16 point[3]; u8 pad[10]; } Vertex;
+    typedef struct {
+        f32 edgeAB[3];
+        f32 edgeAC[3];
+        f32 normal[3];
+        Triangle *triangle;
+        f32 point[3][3];
+    } ProcessedTriangle;
+    void func_800AA4D4(void *, f32 *, f32 *, Geometry ***, Geometry ***);
+    void func_800ABB34(ProcessedTriangle **, void **);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EE97C(f32 *, f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EF2A0(f32 *);
+    void func_800EFB24(void *, void *, void *);
+    extern void *D_8012798C;
+    Geometry **start_geo, **i_geo, **end_geo;
+    f32 delta[3];
+    Triangle *start_tri;
+    Triangle *end_tri;
+    f32 min_bounds[3], max_bounds[3];
+    Triangle *i_tri;
+    Vertex *vertex_pool;
+    Vertex *i_vtx;
+    s32 i, j;
+    f32 tri_min_coord[3];
+    f32 tri_max_coord[3];
+    f32 vtx_radius;
+    void *buffer;
+    ProcessedTriangle *cur_processed_tri;
+
+    func_800ABC58(arg2, arg3, arg5, min_bounds, max_bounds);
+    vtx_radius = (u32)*(u16 *)((u8 *)arg1 + 0x14);
+    for (i = 0; i < 3; i++) {
+        if ((max_bounds[i] <= -vtx_radius) || (min_bounds[i] >= vtx_radius)) {
+            return 0;
+        }
+    }
+    func_800AA4D4(arg0, min_bounds, max_bounds, &start_geo, &end_geo);
+    vertex_pool = (Vertex *)((u8 *)arg1 + 0x18);
+    buffer = D_8012798C;
+    cur_processed_tri = (ProcessedTriangle *)((u8 *)D_8012798C + 0x10);
+    for (i_geo = start_geo; i_geo < end_geo; i_geo++) {
+        start_tri = (Triangle *)((Geometry *)((u8 *)arg0 + 0x18) + *(u16 *)((u8 *)arg0 + 0x10)) + (*i_geo)->start;
+        end_tri = start_tri + (*i_geo)->count;
+        for (i_tri = start_tri; i_tri < end_tri; i_tri++) {
+            if (!(i_tri->flags & arg6)) {
+                for (i = 0; i < 3; i++) {
+                    i_vtx = vertex_pool + i_tri->vertex[i];
+                    func_800EE88C(cur_processed_tri->point[i], i_vtx->point);
+                }
+                func_800EE7F8(tri_min_coord, cur_processed_tri->point[0]);
+                func_800EE7F8(tri_max_coord, cur_processed_tri->point[0]);
+                for (i = 1; i < 3; i++) {
+                    for (j = 0; j < 3; j++) {
+                        if (tri_min_coord[j] > cur_processed_tri->point[i][j]) {
+                            tri_min_coord[j] = cur_processed_tri->point[i][j];
+                        }
+                        if (tri_max_coord[j] < cur_processed_tri->point[i][j]) {
+                            tri_max_coord[j] = cur_processed_tri->point[i][j];
+                        }
+                    }
+                }
+                if ((tri_min_coord[0] > max_bounds[0]) || (tri_max_coord[0] < min_bounds[0])) continue;
+                if ((tri_min_coord[1] > max_bounds[1]) || (tri_max_coord[1] < min_bounds[1])) continue;
+                if ((tri_min_coord[2] > max_bounds[2]) || (tri_max_coord[2] < min_bounds[2])) continue;
+                func_800EFB24(cur_processed_tri->edgeAB, cur_processed_tri->point[1], cur_processed_tri->point[0]);
+                func_800EFB24(cur_processed_tri->edgeAC, cur_processed_tri->point[2], cur_processed_tri->point[0]);
+                func_800EE97C(cur_processed_tri->normal, cur_processed_tri->edgeAB, cur_processed_tri->edgeAC);
+                func_800EF2A0(cur_processed_tri->normal);
+                if (i_tri->flags & 0x10000) {
+                    func_800EFB24(delta, arg2, cur_processed_tri->point[0]);
+                    if (func_800EEAA4(delta, cur_processed_tri->normal) < 0.0f) {
+                        cur_processed_tri->normal[0] = -cur_processed_tri->normal[0];
+                        cur_processed_tri->normal[1] = -cur_processed_tri->normal[1];
+                        cur_processed_tri->normal[2] = -cur_processed_tri->normal[2];
+                    }
+                }
+                if (func_800EEAA4(cur_processed_tri->normal, arg4) > 0.0f) continue;
+                cur_processed_tri->triangle = i_tri;
+                func_800ABB34(&cur_processed_tri, &buffer);
+            }
+        }
+    }
+    *arg7 = cur_processed_tri;
+    return cur_processed_tri != (ProcessedTriangle *)((u8 *)D_8012798C + 0x10);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AC100.s")
 
