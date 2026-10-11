@@ -25,7 +25,12 @@ f32 func_8080009C_chcollballcontrol(void) {
     return func_80800040_chcollballcontrol() * 0.33f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808000C8_chcollballcontrol.s")
+/* extern */
+
+f32 func_808000C8_chcollballcontrol(void) {
+    f32 func_80800040_chcollballcontrol();
+    return func_80800040_chcollballcontrol() * 0.05f;
+}
 
 void func_808000F4_chcollballcontrol()
 {
