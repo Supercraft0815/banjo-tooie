@@ -81,7 +81,16 @@ void func_80800B80_chnests(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800BA0_chnests.s")
+void func_80800BA0_chnests(void *arg0, s32 arg1) {
+    struct Entry { s16 value; s16 rest[6]; };
+    struct Flags { u16 value : 10; u16 rest : 6; };
+    extern struct Entry D_80801118_chnests[];
+    void *ptr;
+
+    ptr = *(void **)arg0;
+    *(s32 *)((s8 *)arg0 + 0x1C) = arg1;
+    ((struct Flags *)((s8 *)ptr + 0x24))->value = D_80801118_chnests[arg1].value;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800BD8_chnests.s")
 
