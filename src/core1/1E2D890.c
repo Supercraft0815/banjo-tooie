@@ -294,4 +294,6 @@ s32 func_80016BBC(s32 arg0, u16 arg1) {
     return D_80079AFC[arg0][0] & arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2D890/func_80016BDC.s")
+void func_80016BDC(s32 arg0) {
+    osContSetCh((u8) arg0);
+}
