@@ -17,7 +17,10 @@ f32 func_808000A8_chquiz(s32 arg0) {
     return *(f32 *)((s32)&D_8080700C_chquiz + (arg0 * 24));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808000C4_chquiz.s")
+s32 func_808000C4_chquiz(s32 arg0) {
+    extern s32 D_80807010_chquiz;
+    return *(s32 *)((s32)&D_80807010_chquiz + arg0 * 24);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808000E0_chquiz.s")
 
