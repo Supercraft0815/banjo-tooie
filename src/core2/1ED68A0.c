@@ -103,7 +103,12 @@ void func_800FED70(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FEF94.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FF000.s")
+void func_800FF000(s32 arg0) {
+    extern s32 D_801359C0;
+    extern f32 D_80126420;
+    (*(s8 *)((s8 *)(&D_801359C0) + (0x13))) = (s8) arg0;
+    (*(f32 *)((s8 *)(&D_801359C0) + (0))) = D_80126420;
+}
 
 void func_800FF01C(f32 arg0) {
     extern s32 D_801359C0;
