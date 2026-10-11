@@ -189,7 +189,134 @@ void func_800D7900(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7908.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7948.s")
+void func_800D7948(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    typedef struct {
+        u8 unused[0x44];
+        f32 pitch, yaw, roll, idealPitch, idealYaw;
+    } Object;
+    typedef struct {
+        s32 unused0:21;
+        s32 path:10;
+        u32 unused1:1;
+        f32 unused4[2];
+        f32 time;
+        f32 unused10;
+        f32 speed;
+        u32 unused18[3];
+        u32 unused24:18;
+        u32 player:1;
+        u32 unused25:4;
+        u32 target:3;
+        u32 unused26:6;
+        u32 unused28:26;
+        u32 actor:6;
+        u32 unused2C;
+        f32 speedStart;
+        f32 speedEnd;
+        f32 start;
+        f32 end;
+        u32 yawEnd:9;
+        u32 yawStart:9;
+        u32 pitchStart:9;
+        u32 unused40:5;
+        u32 globalTime:1;
+        u32 mode:2;
+        u32 pitchEnd:9;
+        u32 unused44:20;
+    } PathState;
+    typedef struct {
+        u32 unused:1;
+        u32 fixed:1;
+        u32 rest:30;
+        u32 unused4;
+        s16 **actor;
+    } Target;
+    void *func_80105494(void *);
+    void func_800C810C(void *, f32, f32 *, f32 *);
+    void func_800D7908(void *, f32 *);
+    void func_8008FE68(f32 *);
+    void *func_80106790(s32);
+    f32 func_800136E4(f32);
+    f32 func_800F1DCC(f32, f32);
+    extern s32 D_8012BF70[];
+    extern f32 D_8012C000;
+    extern s32 *D_8012C014;
+    PathState *state;
+    f32 position[3];
+    f32 rotation[3];
+    s32 i;
+    f32 targetPosition[3];
+    Target *target;
+    Object *object;
+    f32 playerPosition[3];
+    f32 time;
+    f32 fraction;
+
+    object = arg0;
+    state = func_80105494(object);
+    if (arg1 & 0x300) {
+        func_800C810C(func_800D7520(state->path), state->time, position, rotation);
+        if (arg1 & 1) {
+            if (arg1 & 0x100) {
+                object->idealYaw = rotation[1];
+            }
+            if (arg1 & 0x200) {
+                object->idealPitch = rotation[0];
+            }
+        } else {
+            if (arg1 & 0x100) {
+                if (rotation[1] >= 180.0f) {
+                    object->idealYaw = rotation[1] - 180.0f;
+                } else {
+                    object->idealYaw = rotation[1] + 180.0f;
+                }
+            }
+            if (arg1 & 0x200) {
+                object->idealPitch = 360.0f - rotation[0];
+            }
+        }
+    }
+    if (state->target) {
+        target = (Target *)D_8012C014 + state->target - 1;
+        if (target->fixed) {
+            for (i = 0; i != 3; i++) {
+                targetPosition[i] = ((s16 *)target)[i + 1];
+            }
+        } else {
+            for (i = 0; i != 3; i++) {
+                targetPosition[i] = (*target->actor)[i + 2];
+            }
+        }
+        func_800D7908(object, targetPosition);
+    } else if (state->actor) {
+        func_800D7908(object, (f32 *)((u8 *)func_80106790(D_8012BF70[state->actor]) + 4));
+    } else if (state->player) {
+        func_8008FE68(playerPosition);
+        func_800D7908(object, playerPosition);
+    } else {
+        time = state->globalTime ? D_8012C000 : state->time;
+        if (time >= state->start && time < state->end) {
+            fraction = (time - state->start) / (state->end - state->start);
+            if (state->mode & 1) {
+                if (arg1 & 0x800) {
+                    object->idealYaw = func_800136E4(func_800F1DCC(state->yawEnd, state->yawStart) * fraction + state->yawStart);
+                }
+                if (arg1 & 0x1000) {
+                    object->idealPitch = func_800136E4(func_800F1DCC(state->pitchEnd, state->pitchStart) * fraction + state->pitchStart);
+                }
+            }
+            if (state->mode & 2) {
+                state->speed = (state->speedEnd - state->speedStart) * fraction + state->speedStart;
+            }
+        } else if (0.0f != state->start || 0.0f != state->end) {
+            state->globalTime = 0;
+            state->end = state->start = 0;
+        }
+    }
+    func_800D7900((s32)object);
+    object->yaw = object->idealYaw;
+    object->pitch = object->idealPitch;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7DE8.s")
 
