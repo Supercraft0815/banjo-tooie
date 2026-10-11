@@ -33,7 +33,10 @@ void func_80800118_ncpodfixpos(u8 *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/fixpos/ncpodfixpos_entrypoint_3.s")
+void ncpodfixpos_entrypoint_3(u8 *arg0, s32 arg1, s32 arg2) {
+    (*(s16 *)((s8 *)(arg0) + (0x38))) = arg2;
+    func_80800118_ncpodfixpos(arg0, arg1, 1);
+}
 
 void ncpodfixpos_entrypoint_4(u8 *arg0, u8 *arg1) {
     (*(u8 **)((s8 *)(arg0) + (0x18))) = arg1;
