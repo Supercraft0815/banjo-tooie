@@ -52,7 +52,10 @@ s32 func_80801008_gcdialogexec(s32 arg0) {
     return arg0 ? 0x1C : result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80801020_gcdialogexec.s")
+s32 func_80801020_gcdialogexec(s32 arg0) {
+    s32 result = 0;
+    return arg0 ? 1 : result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80801038_gcdialogexec.s")
 
