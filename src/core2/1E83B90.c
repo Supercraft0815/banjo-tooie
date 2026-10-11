@@ -201,7 +201,224 @@ s32 func_800ABCE0(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 a
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AC848.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AC978.s")
+void *func_800AC978(u16 *list, u16 *vertices, f32 position[3], f32 radius, f32 normal[3], u32 flag_filter)
+{
+  typedef struct 
+  {
+    u16 vertices[3];
+    u16 padding;
+    u32 flags;
+  } CollisionTriangle;
+  typedef struct 
+  {
+    u16 start_tri_index;
+    u16 tri_count;
+  } CollisionGeometry;
+  void func_800AA3B4(void *, void *);
+  void func_800AA4D4();
+  void func_800EE7F8(f32 *, f32 *);
+  void func_800EE88C(f32 *, s16 *);
+  void func_800EE97C(f32 *, f32 *, f32 *);
+  f32 func_800EEAA4(f32 *, f32 *);
+  f32 func_800EEFD4(f32 *);
+  void func_800EF04C(f32 *, f32 *);
+  void func_800EF2A0(f32 *);
+  void func_800EF410(f32 *, f32 *);
+  void func_800EFA4C(f32 *, f32, f32, f32);
+  void func_800EFB24(void *, void *, void *);
+  void func_800EFD24(f32 *);
+  f32 mlAbsF(f32);
+  CollisionGeometry **start_geo;
+  CollisionGeometry **i_geo;
+  CollisionGeometry **end_geo;
+  int i;
+  f32 min[3];
+  f32 max[3];
+  f32 vtx_radius;
+  f32 sum[3];
+  CollisionTriangle *matched_tri;
+  s32 primary_axis;
+  int j;
+  CollisionTriangle *start_tri;
+  CollisionTriangle *i_tri;
+  CollisionTriangle *end_tri;
+  s16 (*vtx_pool)[8];
+  s16 *i_vtx;
+  CollisionGeometry *temp_geo;
+  f32 tri_edge[3][3];
+  f32 delta[3][3];
+  f32 length_sq;
+  f32 radius_sq;
+  f32 distance;
+  f32 tri_normal[3];
+  f32 row_x[3];
+  f32 row_y[3];
+  register f32 u;
+  register f32 reciprocal;
+  register f32 v;
+  f32 min_coord[3];
+  f32 max_coord[3];
+  f32 projected_position[3];
+  f32 tri_vtx_coord[3][3];
+  f32 plane_distance;
+  f32 edge_projection;
+  for (i = 0; i < 3; i++)
+  {
+    min[i] = position[i] - (radius + 0.5f);
+    max[i] = position[i] + (radius + 0.5f);
+  }
+
+  vtx_radius = (u32) vertices[10];
+  for (i = 0; i < 3; i++)
+  {
+    if ((max[i] <= (-vtx_radius)) || (min[i] >= vtx_radius))
+    {
+      return NULL;
+    }
+  }
+
+  matched_tri = NULL;
+  func_800EFD24(sum);
+  func_800AA4D4(list, min, max, &start_geo, &end_geo);
+  for (i_geo = start_geo; i_geo < end_geo; i_geo++)
+  {
+    start_tri = ((CollisionTriangle *) ((((u8 *) list) + (list[8] * 4)) + 0x18)) + (*i_geo)->start_tri_index;
+    end_tri = start_tri + (*i_geo)->tri_count;
+    for (i_tri = start_tri; i_tri < end_tri; i_tri++)
+    {
+      if (i_tri->flags & flag_filter)
+      {
+        continue;
+      }
+      {
+        vtx_pool = (s16 (*)[8]) (((u8 *) vertices) + 0x18);
+        for (i = 0; i < 3; i++)
+        {
+          i_vtx = (s16 *) ((i_tri->vertices[i] * 0x10) + ((u8 *) vtx_pool));
+          func_800EE88C(tri_vtx_coord[i], i_vtx);
+        }
+
+        func_800EE7F8(min_coord, tri_vtx_coord[0]);
+        func_800EE7F8(max_coord, tri_vtx_coord[0]);
+        for (i = 1; i < 3; i++)
+        {
+          for (j = 0; j < 3; j++)
+          {
+            if (tri_vtx_coord[i][j] < min_coord[j])
+            {
+              min_coord[j] = tri_vtx_coord[i][j];
+            }
+            if (max_coord[j] < tri_vtx_coord[i][j])
+            {
+              max_coord[j] = tri_vtx_coord[i][j];
+            }
+          }
+
+        }
+
+        if ((max[0] < min_coord[0]) || (max_coord[0] < min[0]))
+        {
+          continue;
+        }
+        if ((max[1] < min_coord[1]) || (max_coord[1] < min[1]))
+        {
+          continue;
+        }
+        if ((max[2] < min_coord[2]) || (max_coord[2] < min[2]))
+        {
+          continue;
+        }
+        func_800EFB24(tri_edge[0], tri_vtx_coord[1], tri_vtx_coord[0]);
+        func_800EFB24(tri_edge[1], tri_vtx_coord[2], tri_vtx_coord[0]);
+        func_800EE97C(tri_normal, tri_edge[0], tri_edge[1]);
+        func_800EF2A0(tri_normal);
+        if (((tri_normal[0] == 0) && (tri_normal[1] == 0)) && (tri_normal[2] == 0))
+        {
+          continue;
+        }
+        distance = radius - 0.5f;
+        func_800EFB24(delta[0], position, tri_vtx_coord[0]);
+        if ((i_tri->flags & 0x10000) && (func_800EEAA4(delta[0], tri_normal) < 0.0f))
+        {
+          tri_normal[0] = -tri_normal[0];
+          tri_normal[1] = -tri_normal[1];
+          tri_normal[2] = -tri_normal[2];
+        }
+        plane_distance = func_800EEAA4(delta[0], tri_normal);
+        if (mlAbsF(plane_distance) >= distance)
+        {
+          continue;
+        }
+        projected_position[0] = position[0] - (tri_normal[0] * plane_distance);
+        projected_position[1] = position[1] - (tri_normal[1] * plane_distance);
+        projected_position[2] = position[2] - (tri_normal[2] * plane_distance);
+        primary_axis = (mlAbsF(tri_normal[0]) > mlAbsF(tri_normal[1])) ? (0) : (1);
+        primary_axis = (mlAbsF(tri_normal[2]) > mlAbsF(tri_normal[primary_axis])) ? (2) : (primary_axis);
+        func_800EFA4C(row_x, projected_position[(primary_axis + 1) % 3] - tri_vtx_coord[0][(primary_axis + 1) % 3], tri_edge[0][(primary_axis + 1) % 3], tri_edge[1][(primary_axis + 1) % 3]);
+        func_800EFA4C(row_y, projected_position[(primary_axis + 2) % 3] - tri_vtx_coord[0][(primary_axis + 2) % 3], tri_edge[0][(primary_axis + 2) % 3], tri_edge[1][(primary_axis + 2) % 3]);
+        reciprocal = 1.0f / ((row_x[1] * row_y[2]) - (row_y[1] * row_x[2]));
+        u = ((row_x[0] * row_y[2]) - (row_y[0] * row_x[2])) * reciprocal;
+        if ((u >= 0.0f) && (u <= 1.0f))
+        {
+          edge_projection = ((row_x[1] * row_y[0]) - (row_y[1] * row_x[0])) * reciprocal;
+          if (((edge_projection >= 0.0f) && (edge_projection <= 1.0f)) && ((u + edge_projection) <= 1.0f))
+          {
+            matched_tri = i_tri;
+            func_800EF04C(sum, tri_normal);
+            continue;
+          }
+        }
+        radius_sq = radius * radius;
+        for (i = 0; i < 3; i++)
+        {
+          func_800EFB24(delta[i], position, tri_vtx_coord[i]);
+          if (func_800EEFD4(delta[i]) < radius_sq)
+          {
+            matched_tri = i_tri;
+            func_800EF04C(sum, tri_normal);
+            break;
+          }
+        }
+
+        if (i < 3)
+        {
+          continue;
+        }
+        for (i = 0; i < 3; i++)
+        {
+          func_800EFB24(tri_edge[i], tri_vtx_coord[(i + 1) % 3], tri_vtx_coord[i]);
+          length_sq = func_800EEFD4(tri_edge[i]);
+          func_800EF2A0(tri_edge[i]);
+          edge_projection = func_800EEAA4(tri_edge[i], delta[i]);
+          if ((edge_projection >= 0) && ((edge_projection * edge_projection) <= length_sq))
+          {
+            if (1)
+            {
+              projected_position[0] = delta[i][0] - (tri_edge[i][0] * edge_projection);
+              projected_position[1] = delta[i][1] - (tri_edge[i][1] * edge_projection);
+            }
+            projected_position[2] = delta[i][2] - (tri_edge[i][2] * edge_projection);
+            if (func_800EEFD4(projected_position) < radius_sq)
+            {
+              matched_tri = i_tri;
+              func_800EF04C(sum, tri_normal);
+              break;
+            }
+          }
+        }
+
+      }
+    }
+
+  }
+
+  if (matched_tri != NULL)
+  {
+    func_800EF410(normal, sum);
+  }
+  func_800AA3B4(matched_tri, vertices);
+  return matched_tri;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AD1AC.s")
 
