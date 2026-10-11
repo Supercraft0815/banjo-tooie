@@ -147,7 +147,10 @@ void func_800D0C78(u32 arg0, u32 arg1, u32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D0CC8.s")
+u8 func_800D0CC8(s32 arg0) {
+    extern u8 D_8011AB3E[];
+    return D_8011AB3E[arg0 * 3];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D0CE0.s")
 
