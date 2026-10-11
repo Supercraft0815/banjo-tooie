@@ -115,7 +115,131 @@ void func_800ABC58(f32 start_point[3], f32 end_point[3], f32 margin, f32 min_bou
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AD1AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AD2C8.s")
+s32 func_800AD2C8(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 *arg4, s16 (**arg5)[3], s32 arg6, f32 arg7) {
+    typedef struct { u16 vertex[3]; u16 pad; u32 flags; } Triangle;
+    typedef struct { s16 point[3][3]; s16 pad; } CachedTriangle;
+    typedef struct { CachedTriangle triangles[64]; CachedTriangle *end; } TriangleCache;
+    void func_800AA7FC(void *, s32 *, s32 *, u16 ***, u16 ***);
+    void *func_800B2190(void *);
+    void func_800EE8CC(s32 *, s16 *);
+    void func_800EE9EC(f32 *, s32 *, s32 *);
+    void func_800EF2A0(f32 *);
+    void func_800EFB58(void *, void *, void *);
+    extern TriangleCache D_80127990;
+    s32 i;
+    s32 j;
+    s32 count = 0;
+    u16 **begin;
+    u16 **end;
+    u16 **geometry;
+    u8 *vertices;
+    Triangle *triangle_end;
+    Triangle *triangle;
+    s32 start[3];
+    s32 finish[3];
+    s32 offset[3];
+    s32 minimum[3];
+    s32 maximum[3];
+    s32 points[3][3];
+    s32 edge1[3];
+    s32 edge2[3];
+    register s16 *vertex;
+    register Triangle *first;
+    register CachedTriangle *cached;
+    f32 normal[3];
+
+    for (i = 0; i < 3; i++) {
+        start[i] = arg2[i] - arg4[i];
+        finish[i] = arg3[i] - arg4[i];
+        offset[i] = arg4[i];
+    }
+    func_800AA7FC(arg0, start, finish, &begin, &end);
+    vertices = func_800B2190(arg1);
+    D_80127990.end = D_80127990.triangles;
+    for (geometry = begin; geometry < end; geometry++) {
+        first = (Triangle *)((u8 *)arg0 + ((u16 *)arg0)[8] * 4 + 0x18) + (*geometry)[0];
+        triangle_end = first + (*geometry)[1];
+        for (triangle = first; count < arg6 && triangle < triangle_end; triangle++) {
+            if (triangle->flags & 0x20020) {
+                continue;
+            }
+            vertex = (s16 *)(vertices + triangle->vertex[0] * 16);
+            minimum[0] = maximum[0] = vertex[0];
+            minimum[1] = maximum[1] = vertex[1];
+            minimum[2] = maximum[2] = vertex[2];
+            func_800EE8CC(points[0], vertex);
+            for (i = 1; i < 3; i++) {
+                vertex = (s16 *)(vertices + triangle->vertex[i] * 16);
+                for (j = 0; j < 3; j++) {
+                    if (vertex[j] < minimum[j]) {
+                        minimum[j] = vertex[j];
+                    }
+                    if (maximum[j] < vertex[j]) {
+                        maximum[j] = vertex[j];
+                    }
+                }
+                func_800EE8CC(points[i], vertex);
+            }
+            if (maximum[0] < start[0] || finish[0] < minimum[0]) {
+                continue;
+            }
+            if (maximum[1] < start[1] || finish[1] < minimum[1]) {
+                continue;
+            }
+            if (maximum[2] < start[2] || finish[2] < minimum[2]) {
+                continue;
+            }
+            for (cached = D_80127990.triangles; cached < D_80127990.end; cached++) {
+                if (points[0][0] == cached->point[0][0] &&
+                    points[0][1] == cached->point[0][1] &&
+                    points[0][2] == cached->point[0][2] &&
+                    points[1][0] == cached->point[1][0] &&
+                    points[1][1] == cached->point[1][1] &&
+                    points[1][2] == cached->point[1][2] &&
+                    points[2][0] == cached->point[2][0] &&
+                    points[2][1] == cached->point[2][1] &&
+                    points[2][2] == cached->point[2][2]) {
+                    break;
+                }
+            }
+            if (cached != D_80127990.end) {
+                continue;
+            }
+            func_800EFB58(edge1, points[1], points[0]);
+            func_800EFB58(edge2, points[2], points[0]);
+            func_800EE9EC(normal, edge1, edge2);
+            if (normal[1] <= 0.0f) {
+                continue;
+            }
+            func_800EF2A0(normal);
+            if (normal[1] < arg7) {
+                continue;
+            }
+            if (D_80127990.end - D_80127990.triangles < 64) {
+                D_80127990.end->point[0][0] = points[0][0];
+                D_80127990.end->point[0][1] = points[0][1];
+                D_80127990.end->point[0][2] = points[0][2];
+                D_80127990.end->point[1][0] = points[1][0];
+                D_80127990.end->point[1][1] = points[1][1];
+                D_80127990.end->point[1][2] = points[1][2];
+                D_80127990.end->point[2][0] = points[2][0];
+                D_80127990.end->point[2][1] = points[2][1];
+                D_80127990.end->point[2][2] = points[2][2];
+                D_80127990.end++;
+            }
+            if (count < arg6) {
+                for (i = 0; i < 3; i++) {
+                    for (j = 0; j < 3; j++) {
+                        (*arg5)[i][j] = points[i][j] + offset[j];
+                    }
+                }
+                *arg5 += 3;
+                count++;
+            }
+        }
+    }
+    return count;
+}
 
 s32 func_800AD894(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 *arg5, f32 arg6) {
     typedef struct { u16 vertex[3]; u16 flags[3]; } Triangle;
