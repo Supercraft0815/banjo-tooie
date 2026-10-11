@@ -62,7 +62,90 @@ s32 func_808001F0_ncpoducam(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/func_8080021C_ncpoducam.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/func_808003A8_ncpoducam.s")
+void func_808003A8_ncpoducam(u8 *arg0, s32 arg1) {
+    void _cadbfunc_entrypoint_24(s32 *);
+    Unk80132ED0 *_subaddiefind_entrypoint_12(s32);
+    void _suspline_entrypoint_3(s32, s32, f32 *);
+    f32 _suspline_entrypoint_4(s32, s32);
+    void _suspline_entrypoint_5(s32, f32 *);
+    f32 func_800136E4(f32);
+    s32 func_8001B798(s16);
+    s32 func_800A5800(s16);
+    s32 func_800EE7F8();
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF5A0(f32 *, f32 *, f32, f32, f32);
+    void func_800EF6A8(f32 *, f32 *, f32, f32, f32);
+    f32 func_800F1828(f32 *, f32 *);
+    s32 func_800F18FC(f32 *, f32 *, f32 *);
+    f32 func_800F1DCC(f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_8080021C_ncpoducam(void *);
+    f32 sp84[3];
+    f32 sp78[3];
+    f32 sp6C[3];
+    f32 sp60[3];
+    f32 sp54[3];
+    f32 sp48[3];
+    u8 *actor;
+    s32 spline;
+    s32 id;
+
+    spline = func_8001B798(*(s16 *)arg0);
+    _suspline_entrypoint_3(spline, 0, sp60);
+    _suspline_entrypoint_3(spline, 2, sp54);
+    _suspline_entrypoint_3(spline, 1, sp48);
+    if (*(s16 *)(arg0 + 0x48) & 8) {
+        if (func_808001F0_ncpoducam(*(void **)(arg0 + 0x1C), *(s32 *)(arg0 + 0x20))) {
+            actor = (u8 *)func_80106790(*(Unk80132ED0 **)(arg0 + 0x1C));
+        } else {
+            actor = NULL;
+        }
+    } else {
+        func_800A5800(*(s16 *)(arg0 + 0x58));
+        _cadbfunc_entrypoint_24(&id);
+        actor = (u8 *)_subaddiefind_entrypoint_12(id);
+    }
+    if (actor != NULL) {
+        if (!(*(s16 *)(arg0 + 0x48) & 0x400) || arg0[0x63] == 0) {
+            func_800EE7F8((f32 *)(arg0 + 0x30), (f32 *)(actor + 0x44));
+            func_800EE7F8((f32 *)(arg0 + 0x24), (f32 *)(actor + 4));
+            arg0[0x63] = 1;
+        } else {
+            *(f32 *)(arg0 + 0x30) += func_800F1DCC(*(f32 *)(actor + 0x44), *(f32 *)(arg0 + 0x30)) * 0.1f;
+            *(f32 *)(arg0 + 0x34) += func_800F1DCC(*(f32 *)(actor + 0x48), *(f32 *)(arg0 + 0x34)) * 0.1f;
+            *(f32 *)(arg0 + 0x38) += func_800F1DCC(*(f32 *)(actor + 0x4C), *(f32 *)(arg0 + 0x38)) * 0.1f;
+            *(f32 *)(arg0 + 0x24) += (*(f32 *)(actor + 4) - *(f32 *)(arg0 + 0x24)) * 0.1f;
+            *(f32 *)(arg0 + 0x28) += (*(f32 *)(actor + 8) - *(f32 *)(arg0 + 0x28)) * 0.1f;
+            *(f32 *)(arg0 + 0x2C) += (*(f32 *)(actor + 0xC) - *(f32 *)(arg0 + 0x2C)) * 0.1f;
+        }
+    }
+    func_800EE7F8((f32 *)(arg0 + 4), sp54);
+    func_800EF6A8((f32 *)(arg0 + 4), (f32 *)(arg0 + 0x30), *(f32 *)(arg0 + 4), *(f32 *)(arg0 + 8), *(f32 *)(arg0 + 0xC));
+    func_800EF04C((f32 *)(arg0 + 4), (f32 *)(arg0 + 0x24));
+    if (!(*(s16 *)(arg0 + 0x48) & 1)) {
+        func_800EE7F8(sp84, sp60);
+        func_800EF6A8(sp84, (f32 *)(arg0 + 0x30), sp84[0], sp84[1], sp84[2]);
+        func_800EF04C(sp84, (f32 *)(arg0 + 0x24));
+        func_800EE7F8(sp78, sp60);
+        func_800EF5A0(sp6C, sp48, 100.0f, 0.0f, 0.0f);
+        func_800EF04C(sp78, sp6C);
+        func_800EF6A8(sp78, (f32 *)(arg0 + 0x30), sp78[0], sp78[1], sp78[2]);
+        func_800EF04C(sp78, (f32 *)(arg0 + 0x24));
+        *(f32 *)(arg0 + 0x18) = func_800136E4(-func_800F1828(sp84, sp78));
+        *(f32 *)(arg0 + 0x10) = -func_800136E4(func_800F1828(sp84, (f32 *)(arg0 + 4)));
+        *(f32 *)(arg0 + 0x14) = func_800136E4(func_800F1DF4(sp84, (f32 *)(arg0 + 4)));
+    }
+    if (func_8080021C_ncpoducam(arg0)) {
+        func_800F18FC((f32 *)(arg0 + 0x3C), (f32 *)(arg0 + 4), (f32 *)(arg0 + 0x10));
+        *(f32 *)(arg0 + 0x10) = -*(f32 *)(arg0 + 0x10);
+        *(f32 *)(arg0 + 0x18) = 0.0f;
+    }
+    *(f32 *)(arg0 + 0x50) = _suspline_entrypoint_4(spline, 0);
+    if (arg1 == 0) {
+        _suspline_entrypoint_5(spline, sp54);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/func_80800704_ncpoducam.s")
 
