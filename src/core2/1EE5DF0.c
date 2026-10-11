@@ -114,7 +114,17 @@ void func_8010CCE0(void)
     D_80136F8C = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010CCEC.s")
+s32 func_8010CCEC(void) {
+    extern s32 D_80136F68;
+    s32 temp_v0;
+
+    if ((*(s32 *)((s8 *)(&D_80136F68) + (0x24))) >= (*(s32 *)((s8 *)(&D_80136F68) + (0x20)))) {
+        return -1;
+    }
+    temp_v0 = *(&D_80136F68 + (*(s32 *)((s8 *)(&D_80136F68) + 0x24)));
+    (*(s32 *)((s8 *)(&D_80136F68) + (0x24))) = (s32) ((*(s32 *)((s8 *)(&D_80136F68) + (0x24))) + 1);
+    return temp_v0;
+}
 
 void func_8010CD28(s32 arg0) {
     s32 func_800F1DF4(s32, s32 *);
