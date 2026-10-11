@@ -15,7 +15,19 @@ s32 func_800ADE2C(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800ADEC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800ADF5C.s")
+/* extern */
+
+void func_800ADF5C(void *arg0) {
+    s32 func_800E0A50(s32, s32, void *);
+    s32 heap_free(void *);
+    s32 value;
+
+    value = *(s32 *)((s8 *)arg0 + 8);
+    if (value != 0) {
+        func_800E0A50(value, *(s32 *)((s8 *)arg0 + 8), arg0);
+    }
+    heap_free(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800ADF98.s")
 
