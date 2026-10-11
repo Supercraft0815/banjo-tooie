@@ -9,7 +9,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_800129FC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80012B74.s")
+void func_80012B74(s32 arg0) {
+    extern s32 D_8003CC64[1];
+    s32 i;
+    if (((osAiGetLength() >> 2) == 0) && (D_8003CC64[0] == 0)) {
+        for (i = 0; i < 1; i = 1) {
+            D_8003CC64[i] = 0;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80012BB4.s")
 
