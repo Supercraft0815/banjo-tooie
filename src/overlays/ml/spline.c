@@ -111,7 +111,88 @@ void mlspline_entrypoint_4(f32 arg0, s32 arg1, f32 arg2[][3], volatile f32 *arg3
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_5.s")
+void mlspline_entrypoint_5(f32 arg0, s32 arg1, f32 *arg2, volatile f32 *arg3)
+{
+    f32 func_800F0D50(f32, f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 scaled;
+    s32 count;
+    s32 i;
+    s32 offset;
+    s32 j;
+    s32 end;
+
+    count = arg1 - 1;
+    scaled = func_800F0D50(arg0, 0.0f, 1.0f);
+    scaled *= count;
+    count = arg1;
+    offset = (s32)scaled;
+    i = offset;
+    arg0 = scaled - (f32)offset;
+    if (offset == 0) {
+        f32 p0, p1, p2;
+        if (offset < 3) {
+        do {
+            p0 = arg2[i];
+            p1 = arg2[i + 3];
+            p2 = arg2[i + 6];
+            arg3[i] = ((p2 - p0) * 0.16666667f - (p1 - p0) * 0.5f) * arg0 + (p1 - p0) * 0.5f;
+            arg3[i] *= arg0;
+            arg3[i] += (p1 - p0) * 0.5f;
+            arg3[i] *= arg0;
+            arg3[i] += (p0 * 5.0f + p1) * 0.16666667f;
+            i++;
+        } while (i * 4 < 12);
+        }
+    } else {
+        i--;
+        end = i + 2;
+        if (count == end) {
+            arg2 += count * 3 - 3;
+            func_800EE7F8((f32 *)arg3, arg2);
+            return;
+        }
+        arg2 += i * 3;
+        end = i + 3;
+        if (count == end) {
+            f32 p0, p1, p2, difference, sum;
+            for (j = 0; j != 12; j += 4) {
+                p0 = *(f32 *)((u8 *)arg2 + j);
+                p2 = *(f32 *)((u8 *)(arg2 + 6) + j);
+                p1 = *(f32 *)((u8 *)(arg2 + 3) + j);
+                sum = p0 + p2;
+                difference = p2 - p0;
+                *(volatile f32 *)((u8 *)arg3 + j) = ((difference * 0.16666667f + (p1 - p2) * 0.5f) * arg0) + (sum * 0.5f - p1);
+                *(volatile f32 *)((u8 *)arg3 + j) *= arg0;
+                *(volatile f32 *)((u8 *)arg3 + j) += difference * 0.5f;
+                *(volatile f32 *)((u8 *)arg3 + j) *= arg0;
+                *(volatile f32 *)((u8 *)arg3 + j) += sum * 0.16666667f + p1 * 0.6666667f;
+            }
+            return;
+        }
+        {
+            f32 p0, p1, p2, p3;
+            f32 *point = arg2;
+            volatile f32 *out;
+            i = 0;
+            out = arg3;
+            for (; i != 3; i++) {
+                p0 = point[0];
+                p1 = point[3];
+                p2 = point[6];
+                p3 = point[9];
+                *out = ((p3 - p0) * 0.16666667f + (p1 - p2) * 0.5f) * arg0;
+                *out += (p0 + p2) * 0.5f - p1;
+                *out *= arg0;
+                *out += (p2 - p0) * 0.5f;
+                *out *= arg0;
+                *out += (p0 + p2) * 0.16666667f + p1 * 0.6666667f;
+                point++;
+                out++;
+            }
+        }
+    }
+}
 
 /* extern */
 
