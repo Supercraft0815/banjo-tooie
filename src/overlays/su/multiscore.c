@@ -49,7 +49,11 @@ void sumultiscore_entrypoint_10(u8 *arg0, s32 arg1) {
     arg0[arg1 * 0x13C + (value << 5) + 0x47] = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_11.s")
+void sumultiscore_entrypoint_11(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
+    s32 index = arg0[arg2 + 1];
+    s32 offset = arg1 * 0x13C;
+    *(f32 *)((s8 *)arg0 + offset + (index << 5) + 0x58) = arg3;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_12.s")
 
