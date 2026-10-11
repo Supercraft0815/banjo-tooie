@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beanstalkseed/func_80800000_chbeanstalkseed.s")
+/* extern */
+
+void func_80800000_chbeanstalkseed(void *arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800FFA88(s32);
+    if (func_800DA298(((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7) + 0x33D) != 0) {
+        func_800FFA88((*(s32 *)((s8 *)(arg0) + (0))));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beanstalkseed/func_8080003C_chbeanstalkseed.s")
 
