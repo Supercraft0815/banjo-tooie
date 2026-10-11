@@ -174,7 +174,10 @@ void gcmapsects_entrypoint_17(void *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_23.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_24.s")
+int gcmapsects_entrypoint_24(void *arg0) {
+    return (*(u8 *)((s8 *)arg0 + 0x82) != 0) &&
+           ((*(s16 *)((s8 *)arg0 + 0x74) + 1) == 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_25.s")
 
