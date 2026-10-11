@@ -49,7 +49,80 @@ void mlspline_entrypoint_6(f32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_8.s")
+void mlspline_entrypoint_8(f32 arg0, s32 arg1, f32 *arg2, volatile f32 *arg3)
+{
+    f32 func_800F0D50(f32, f32, f32);
+    f32 scaled;
+    s32 count;
+    s32 i;
+    s32 offset;
+    s32 j;
+    s32 end;
+    s32 penultimate;
+    count = arg1 - 1;
+    scaled = func_800F0D50(arg0, 0.0f, 1.0f);
+    scaled *= count;
+    count = arg1;
+    offset = (s32) scaled;
+    i = offset;
+    arg0 = scaled - (f32) offset;
+    if (offset == 0) {
+        f32 a;
+        f32 b;
+        f32 c;
+        for (; i < 3; i++) {
+            a = arg2[(u32) i];
+            b = arg2[(u32) i + 3];
+            c = arg2[(u32) i + 6];
+            arg3[i] = ((a - b) * 4.5f + 1.5f * (c - a)) * arg0
+                    + (4.0f * b - c - 3.0f * a);
+            arg3[i] *= arg0;
+            arg3[i] += 0.5f * (b - a);
+        }
+    } else {
+        i--;
+        end = i + 2;
+        penultimate = i + 3;
+        arg2 += (u32) i * 3;
+        if (count == end) {
+            f32 a;
+            f32 b;
+            for (j = 0; j < 3; j++) {
+                a = arg2[(u32) j];
+                b = arg2[(u32) j + 3];
+                arg3[j] = (b - a) * 0.5f;
+            }
+        } else if (count == penultimate) {
+            f32 a;
+            f32 b;
+            f32 c;
+            for (j = 0; j < 3; j++) {
+                a = arg2[(u32) j];
+                b = arg2[(u32) j + 3];
+                c = arg2[(u32) j + 6];
+                arg3[j] = ((b - c) * 4.5f + 1.5f * (c - a)) * arg0
+                        + (2.0f * a - 5.0f * b + 3.0f * c);
+                arg3[j] *= arg0;
+                arg3[j] += 0.5f * (c - a);
+            }
+        } else {
+            f32 a;
+            f32 b;
+            f32 c;
+            f32 d;
+            for (j = 0; j < 3; j++) {
+                a = arg2[(u32) j];
+                b = arg2[(u32) j + 3];
+                c = arg2[(u32) j + 6];
+                d = arg2[(u32) j + 9];
+                arg3[j] = ((b - c) * 4.5f + 1.5f * (d - a)) * arg0
+                        + (2.0f * a - 5.0f * b + 4.0f * c - d);
+                arg3[j] *= arg0;
+                arg3[j] += 0.5f * (c - a);
+            }
+        }
+    }
+}
 
 void mlspline_entrypoint_9(f32 arg0, s32 arg1, f32 *arg2, volatile f32 *arg3)
 {
