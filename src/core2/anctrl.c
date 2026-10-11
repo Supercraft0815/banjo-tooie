@@ -176,7 +176,15 @@ int anctrl_isAt(AnimCtrl *arg0, f32 arg1) {
     return arg1 <= previous || current < arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B4A8.s")
+void func_8008B4A8(AnimCtrl *arg0, s32 arg1) {
+    struct Flags {
+        u8 padding[0x1B];
+        u8 high : 5;
+        u8 smooth : 1;
+        u8 low : 2;
+    };
+    ((struct Flags *)arg0)->smooth = arg1;
+}
 
 u32 func_8008B4C4(void *arg0) {
     return (u32) ((*(s32 *)((s8 *)(arg0) + (0x18))) << 0x1D) >> 0x1F;
