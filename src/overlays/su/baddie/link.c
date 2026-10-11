@@ -5,7 +5,14 @@ void subaddielink_entrypoint_0(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/link/subaddielink_entrypoint_1.s")
+void subaddielink_entrypoint_1(u8 *arg0, u8 *arg1) {
+    if (arg1 != NULL) {
+        (*(u32 *)((s8 *)(arg0) + (4))) = (u32)*(u16 *)(arg1 + 0x12) >> 1;
+        (*(u8 **)((s8 *)(arg0) + (0))) = arg1;
+        return;
+    }
+    subaddielink_entrypoint_0(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/link/subaddielink_entrypoint_2.s")
 
