@@ -13,7 +13,10 @@ f32 func_800E1338(s32 arg0) {
     return *(f32 *)((s32)&D_8012CFB8 + ((arg0 * 31) * 4));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1354.s")
+s32 func_800E1354(s32 arg0) {
+    extern u8 D_8012D004[];
+    return D_8012D004[(arg0 * 31) * 4] != 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1378.s")
 
