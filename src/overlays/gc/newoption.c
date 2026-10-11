@@ -122,7 +122,9 @@ void gcnewoption_entrypoint_14(void *arg0, s16 arg1, s16 arg2, s16 arg3, f32 arg
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_19.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_20.s")
+s16 gcnewoption_entrypoint_20(s32 arg0, s32 arg1) {
+    return ((s16 *)arg0)[arg1 + 0x58];
+}
 
 void gcnewoption_entrypoint_21(s32 arg0, s32 arg1) {
     (*(s16 *)((s8 *)((arg0 + (arg1 * 2))) + (0xB0))) = 0;
