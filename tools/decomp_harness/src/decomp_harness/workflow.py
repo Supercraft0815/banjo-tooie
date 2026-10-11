@@ -437,6 +437,13 @@ class Loop:
                 return
             if result == 'budget':
                 break
+            if batch:
+                # Published companions changed the source used by further attempts.
+                self.state.transition(identity, 'pending')
+                target = self.prepare(self.state.get(identity))
+                if target is None:
+                    return
+                self.state.transition(identity, 'attempting')
             if result == 'improve' and self.try_permuter(target):
                 self.count_match(local=True)
                 return

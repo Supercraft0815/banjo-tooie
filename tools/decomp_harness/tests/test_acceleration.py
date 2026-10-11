@@ -365,7 +365,8 @@ class BatchLoopTests(LoopFixture):
                 owner.seen_prompts.append(kw['prompt'])
                 path = kw['cwd']/'src/core1/a.c'
                 text = path.read_text()
-                for symbol in ('target', 'second'):
+                symbols = ('target', 'second') if len(owner.seen_prompts) == 1 else ('target',)
+                for symbol in symbols:
                     text = text.replace(f'#pragma GLOBAL_ASM("asm/nonmatchings/core1/a/{symbol}.s")', f'void {symbol}(void) {{ }}')
                 path.write_text(text)
                 return Result(0, 'ok', usage={'input_tokens': 5}, message={'status': 'candidate', 'knowledge': []})
@@ -391,6 +392,59 @@ class BatchLoopTests(LoopFixture):
         self.process()
         second = self.state.get('second')
         self.assertEqual((second['status'], second['cycle_attempts'], second['initial_done']), ('pending', 1, 1))
+
+    def test_failed_batch_target_retries_on_published_companion(self):
+        def object_build(source, log):
+            if len(self.seen_prompts) == 1 and 'void target' in (self.work/source).read_text():
+                log.write_text('Batch target did not compile')
+                return 1
+            return 0
+
+        self.loop.builder.object_build = object_build
+        with patch.object(self.loop, 'try_permuter', wraps=self.loop.try_permuter) as permuter:
+            self.process()
+        self.assertEqual(len(self.seen_prompts), 2)
+        self.assertEqual({self.state.get('target')['status'], self.state.get('second')['status']}, {'matched'})
+        self.assertEqual(self.git('rev-list', '--count', 'HEAD'), '4')
+        self.assertEqual(self.loop.matched, 2)
+        final = (self.root/'src/core1/a.c').read_text()
+        self.assertIn('void target(void) { }', final)
+        self.assertIn('void second(void) { }', final)
+        self.assertEqual((self.work/'src/core1/a.c').read_text(), final)
+        self.assertIn(b'void second(void) { }', permuter.call_args.args[0].original)
+        history = self.state.history(self.function['id'])
+        self.assertEqual({r['outcome'] for r in history}, {'compile_error', 'matched'})
+
+    def test_batch_retry_discards_candidate_based_on_old_source(self):
+        def disassemble(source, symbol):
+            dump = DUMP.replace('target', symbol)
+            if len(self.seen_prompts) == 1 and symbol == 'target' and 'void target' in (self.work/source).read_text():
+                return dump.replace('nop', 'li v0,1')
+            return dump
+
+        self.loop.builder.disassemble = disassemble
+        self.process()
+        self.assertEqual(len(self.seen_prompts), 2)
+        self.assertEqual({self.state.get('target')['status'], self.state.get('second')['status']}, {'matched'})
+        self.assertIn(b'void second(void) { }', self.state.get('target')['best_source'])
+        self.assertEqual({r['outcome'] for r in self.state.history(self.function['id'])}, {'nonmatching', 'matched'})
+
+    def test_batch_retry_preserves_user_edits(self):
+        self.allow_match = False
+        finish_batch = self.loop.finish_batch
+        edited = (self.root/'src/core1/a.c').read_text() + '\n/* user edit */\n'
+
+        def edit_after_batch(*args, **kwargs):
+            finish_batch(*args, **kwargs)
+            (self.root/'src/core1/a.c').write_text(edited)
+
+        with patch.object(self.loop, 'finish_batch', side_effect=edit_after_batch):
+            self.process()
+        self.assertEqual(len(self.seen_prompts), 1)
+        self.assertEqual(self.state.get('target')['status'], 'blocked')
+        self.assertIn('Uncommitted target changes', self.state.get('target')['last_error'])
+        self.assertEqual((self.root/'src/core1/a.c').read_text(), edited)
+        self.assertEqual(self.git('rev-list', '--count', 'HEAD'), '2')
 
 
 class ConfigTests(fixtures.Fixture):
