@@ -79,7 +79,38 @@ void func_8080111C_chpotogoldgame(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80801A7C_chpotogoldgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/chpotogoldgame_entrypoint_3.s")
+void chpotogoldgame_entrypoint_3(s32 arg0, s32 arg1, Vtx *arg2, s32 arg3, s32 arg4) {
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_80106790(s32);
+    s32 pad;
+    u8 *actor;
+    u8 color;
+    Vtx *end;
+
+    actor = (u8 *)func_80106790(arg4);
+    switch (arg0) {
+    case 21:
+        color = (u8)(u32)func_800F10B4(*(f32 *)(actor + 0x2C), 0.0f, 2.0f, 100.0f, 255.0f);
+        break;
+    case 22:
+        color = (u8)(u32)func_800F10B4(*(f32 *)(actor + 0x30), 0.0f, 2.0f, 100.0f, 255.0f);
+        break;
+    case 23:
+        color = (u8)(u32)func_800F10B4(*(f32 *)(actor + 0x28), 0.0f, 2.0f, 100.0f, 255.0f);
+        break;
+    case 24:
+        color = (u8)(u32)func_800F10B4(*(f32 *)(actor + 0x18), 0.0f, 2.0f, 100.0f, 255.0f);
+        break;
+    case 25:
+        color = (u8)(u32)func_800F10B4(*(f32 *)(actor + 0x1C), 0.0f, 2.0f, 100.0f, 255.0f);
+        break;
+    }
+    for (end = arg2 + arg3; arg2 < end; arg2++) {
+        arg2->v.cn[0] = color;
+        arg2->v.cn[1] = color;
+        arg2->v.cn[2] = color;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_8080206C_chpotogoldgame.s")
 
