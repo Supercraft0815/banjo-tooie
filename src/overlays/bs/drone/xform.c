@@ -73,4 +73,118 @@ void func_80800724_bsdronexform(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/func_80800B5C_bsdronexform.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/bsdronexform_entrypoint_3.s")
+void bsdronexform_entrypoint_3(void *arg0)
+{
+  s32 _badata_entrypoint_34(void *);
+  s32 _batimer_decrement(void *, s32);
+  s32 bs_setState(void *, s32);
+  void func_8009C118(void *, f32);
+  void func_800C59F0(s32, s32, s32);
+  s32 func_8080051C_bsdronexform();
+  s32 func_80800758_bsdronexform(void *, s32);
+  f32 func_80800B5C_bsdronexform(void *, s32, f32, f32, f32);
+  s32 sp34;
+  f32 sp30;
+  f32 sp2C;
+  f32 sp28;
+  if ((*((u8 *) (((s8 *) (*((void **) (((s8 *) arg0) + 0x18C)))) + 0x1C))) != 0)
+  {
+    func_8080051C_bsdronexform();
+  }
+  func_80800724_bsdronexform(arg0);
+  switch (*((u8 *) (((s8 *) (*((void **) (((s8 *) arg0) + 0x18C)))) + 0x32)))
+  {
+    case 1:
+      sp34 = _batimer_decrement(arg0, 0);
+      func_8009C118(arg0, (*((f32 *) (((u8 *) (*((void **) (((u8 *) arg0) + 0x18C)))) + 0x2C))) + func_80800B5C_bsdronexform(arg0, 0, 2.8f, 0.0f, 90.0f));
+      func_808003BC_bsdronexform(arg0, func_80800B5C_bsdronexform(arg0, 0, 2.8f, 0.28f, 1.0f));
+ func_808003CC_bsdronexform(arg0, func_80800B5C_bsdronexform(arg0, 0, 2.8f, 180.0f, 55.0f)); func_808003DC_bsdronexform(arg0, func_80800B5C_bsdronexform(arg0, 0, 2.8f, 0.04f, 0.35f)); func_80800714_bsdronexform(arg0, func_80800B5C_bsdronexform(arg0, 0, 2.8f, 1.0f, 0.8f)); func_80800704_bsdronexform(arg0, func_80800B5C_bsdronexform(arg0, 0, 2.8f, 0.05f, 0.4f)); sp28 = func_80800B5C_bsdronexform(arg0, 0, 2.8f, 255.0f, 200.0f); sp2C = func_80800B5C_bsdronexform(arg0, 0, 2.8f, 255.0f, 80.0f); sp30 = func_80800B5C_bsdronexform(arg0, 0, 2.8f, 255.0f, 80.0f); func_800C59F0((s32) sp28, (s32) sp2C, (s32) sp30); if (sp34 != 0) {
+      func_80800758_bsdronexform(arg0, 2);
+      return;
+    }
+
+    default:
+      return;
+
+    case 2:
+      sp34 = _batimer_decrement(arg0, 0);
+      func_80800704_bsdronexform(arg0, func_80800B5C_bsdronexform(arg0, 0, 0.5f, 0.4f, 0.6f));
+      if (sp34 != 0)
+    {
+      func_80800758_bsdronexform(arg0, 3);
+      return;
+    }
+      break;
+
+    case 3:
+      sp34 = _batimer_decrement(arg0, 0);
+      func_80800714_bsdronexform(arg0, func_80800B5C_bsdronexform(arg0, 0, 0.05f, 0.8f, 1.2f));
+      if (sp34 != 0)
+    {
+      func_80800758_bsdronexform(arg0, 4);
+      return;
+    }
+      break;
+
+    case 4:
+      sp34 = _batimer_decrement(arg0, 0);
+      func_80800714_bsdronexform(arg0, func_80800B5C_bsdronexform(arg0, 0, 0.8f, 1.2f, 0.09f));
+      if (sp34 != 0)
+    {
+      func_80800758_bsdronexform(arg0, 5);
+      return;
+    }
+      break;
+
+    case 5:
+      if (_batimer_decrement(arg0, 0) != 0)
+    {
+      func_80800758_bsdronexform(arg0, 6);
+      return;
+    }
+      break;
+
+    case 6:
+      if (_batimer_decrement(arg0, 0) != 0)
+    {
+      func_80800758_bsdronexform(arg0, 7);
+      return;
+    }
+      break;
+
+    case 7:
+      sp34 = _batimer_decrement(arg0, 0);
+      func_80800714_bsdronexform(arg0, func_80800B5C_bsdronexform(arg0, 0, 0.8f, 0.09f, 1.0f));
+      if (sp34 != 0)
+    {
+      func_80800758_bsdronexform(arg0, 8);
+      return;
+    }
+      break;
+
+    case 8:
+      func_808003DC_bsdronexform(arg0, func_80800B5C_bsdronexform(arg0, 0, 1.0f, 0.35f, 0.03f));
+      func_80800704_bsdronexform(arg0, func_80800B5C_bsdronexform(arg0, 0, 1.0f, 0.6f, 0.05f));
+      sp28 = func_80800B5C_bsdronexform(arg0, 0, 1.0f, 200.0f, 255.0f);
+      sp2C = func_80800B5C_bsdronexform(arg0, 0, 1.0f, 80.0f, 255.0f);
+      sp30 = func_80800B5C_bsdronexform(arg0, 0, 1.0f, 80.0f, 255.0f);
+      func_800C59F0((s32) sp28, (s32) sp2C, (s32) sp30);
+      if (_batimer_decrement(arg0, 0) != 0)
+    {
+      func_80800758_bsdronexform(arg0, 9);
+      return;
+    }
+      break;
+
+    case 9:
+      sp34 = _batimer_decrement(arg0, 0);
+      func_8009C118(arg0, (*((f32 *) (((u8 *) (*((void **) (((u8 *) arg0) + 0x18C)))) + 0x2C))) + func_80800B5C_bsdronexform(arg0, 0, 0.7f, 90.0f, 0.0f));
+      if (sp34 != 0)
+    {
+      bs_setState(arg0, _badata_entrypoint_34(arg0));
+    }
+      break;
+
+  }
+
+}
