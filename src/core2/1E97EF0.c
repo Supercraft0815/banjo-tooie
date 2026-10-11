@@ -153,7 +153,14 @@ void func_800BF48C(s32 arg0, s32 arg1, s32 arg2) {
     (*(s8 *)((s8 *)(&D_801285B0) + (0x87))) = arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF4A4.s")
+void func_800BF4A4(s32 arg0, s32 arg1) {
+    void *temp_v0;
+
+    temp_v0 = (arg0 * 0x2C) + (s8 *)&D_801285B0;
+    if ((*(s32 *)((s8 *)(temp_v0) + (0))) != 0) {
+        (*(s8 *)((s8 *)(temp_v0) + (0x2A))) = arg1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF4DC.s")
 
