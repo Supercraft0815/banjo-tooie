@@ -100,4 +100,13 @@ void suexpression_entrypoint_18(s8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_20.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/func_80800CF4_suexpression.s")
+void *func_80800CF4_suexpression(s32 arg0) {
+    extern s32 D_80800D60_suexpression;
+    u32 temp_v1;
+
+    temp_v1 = arg0 - 0xC;
+    if (temp_v1 >= 0xC6U) {
+        return NULL;
+    }
+    return (u8 *) &D_80800D60_suexpression + temp_v1 * 6;
+}
