@@ -342,7 +342,11 @@ s32 func_808024DC_bsfirstp(void *arg0) {
     return D_8080AFB4_bsfirstp[func_800A3280(arg0)];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80802508_bsfirstp.s")
+void *func_80802508_bsfirstp(void *arg0) {
+    u32 func_800A3280(void *);
+    extern u8 D_8080AFCC_bsfirstp[];
+    return &D_8080AFCC_bsfirstp[func_800A3280(arg0) * 8];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80802534_bsfirstp.s")
 
