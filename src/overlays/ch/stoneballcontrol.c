@@ -205,7 +205,81 @@ void func_80802648_chstoneballcontrol(f32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_808026A0_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_8080282C_chstoneballcontrol.s")
+void func_8080282C_chstoneballcontrol(u8 *arg0, s32 arg1) {
+    s32 func_800EA05C();
+    void func_80802FBC_chstoneballcontrol(u8 *, s32);
+
+    if (func_800EA05C() != 0xBB) {
+        switch (arg1) {
+        case 0:
+            if ((*(f32 *)(arg0 + 0xC) > -183.0f) && (*(f32 *)(arg0 + 0xC) < 183.0f)) {
+                if ((((u32)*(u16 *)(arg0 + 0x72) >> 10) != 4) && (*(f32 *)(arg0 + 4) > 720.0f)) {
+                    func_80802FBC_chstoneballcontrol(arg0, 0);
+                }
+                if (*(f32 *)(arg0 + 4) > 801.0f) {
+                    *(f32 *)(arg0 + 4) = 846.0;
+                    *(f32 *)(arg0 + 0x24) = 0.0;
+                }
+            } else {
+                *(f32 *)(arg0 + 4) = 720.0f;
+                *(f32 *)(arg0 + 0x24) = 0.0f;
+                func_80801944_chstoneballcontrol(arg0, 6);
+            }
+            break;
+        case 1:
+            if ((*(f32 *)(arg0 + 4) < 183.0f) && (*(f32 *)(arg0 + 4) > -183.0f)) {
+                if ((((u32)*(u16 *)(arg0 + 0x72) >> 10) != 4) && (*(f32 *)(arg0 + 0xC) > 720.0f)) {
+                    func_80802FBC_chstoneballcontrol(arg0, 1);
+                }
+                if (*(f32 *)(arg0 + 0xC) > 801.0f) {
+                    *(f32 *)(arg0 + 0xC) = 846.0;
+                    *(f32 *)(arg0 + 0x24) = 0.0;
+                }
+            } else {
+                *(f32 *)(arg0 + 0xC) = 720.0f;
+                *(f32 *)(arg0 + 0x24) = 0.0f;
+                func_80801944_chstoneballcontrol(arg0, 6);
+            }
+            break;
+        case 2:
+            if ((*(f32 *)(arg0 + 0xC) < 183.0f) && (*(f32 *)(arg0 + 0xC) > -183.0f)) {
+                if ((((u32)*(u16 *)(arg0 + 0x72) >> 10) != 4) && (*(f32 *)(arg0 + 4) < -720.0f)) {
+                    func_80802FBC_chstoneballcontrol(arg0, 2);
+                }
+                if (*(f32 *)(arg0 + 4) < -801.0f) {
+                    *(f32 *)(arg0 + 4) = -846.0;
+                    *(f32 *)(arg0 + 0x24) = 0.0;
+                }
+            } else {
+                *(f32 *)(arg0 + 4) = -720.0f;
+                *(f32 *)(arg0 + 0x24) = 0.0f;
+                func_80801944_chstoneballcontrol(arg0, 6);
+            }
+            break;
+        case 3:
+            if ((*(f32 *)(arg0 + 4) > -183.0f) && (*(f32 *)(arg0 + 4) < 183.0f)) {
+                if ((((u32)*(u16 *)(arg0 + 0x72) >> 10) != 4) && (*(f32 *)(arg0 + 0xC) < -720.0f)) {
+                    func_80802FBC_chstoneballcontrol(arg0, 3);
+                }
+                if (*(f32 *)(arg0 + 0xC) < -801.0f) {
+                    *(f32 *)(arg0 + 0xC) = -846.0;
+                    *(f32 *)(arg0 + 0x24) = 0.0;
+                }
+            } else {
+                *(f32 *)(arg0 + 0xC) = -720.0f;
+                *(f32 *)(arg0 + 0x24) = 0.0f;
+                func_80801944_chstoneballcontrol(arg0, 6);
+            }
+            break;
+        }
+    } else {
+        if ((*(f32 *)(arg0 + 4) > -1145.0f) || (*(f32 *)(arg0 + 4) < -3255.0f) ||
+            (*(f32 *)(arg0 + 0xC) > -745.0f) || (*(f32 *)(arg0 + 0xC) < -1255.0f)) {
+            *(f32 *)(arg0 + 0x24) = 0.0f;
+            func_80801944_chstoneballcontrol(arg0, 6);
+        }
+    }
+}
 
 void func_80802C30_chstoneballcontrol(s32 *arg0) {
     typedef struct { u8 pad[0x1A]; u16 index; u8 pad1[8]; u32 id:10; u32 flags:22; } Marker;
