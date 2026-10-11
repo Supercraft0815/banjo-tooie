@@ -41,4 +41,16 @@ void func_80102FE8(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC7B0/func_80103040.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC7B0/func_80103110.s")
+void func_80103110(void *arg0, s32 arg1) {
+    struct Flags {
+        u8 padding[0x7E];
+        u8 unused : 1;
+        u8 flag : 1;
+        u8 rest : 6;
+    };
+    if (arg1 != 0) {
+        ((struct Flags *)arg0)->flag = 1;
+    } else {
+        ((struct Flags *)arg0)->flag = 0;
+    }
+}
