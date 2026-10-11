@@ -7,7 +7,269 @@ OSThread *func_80107C20(void)
     return (OSThread *) D_80124580;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80107C2C.s")
+void *func_80107C2C(s32 *arg0, s32 arg1, void *arg2, s32 arg3, void *arg4) {
+    struct Marker {
+        u8 pad0[8];
+        OSThread *(*callback)(void);
+        u8 padC[0xC];
+        u32 pad18 : 15;
+        u32 flag19_0 : 1;
+        u32 pad1A : 16;
+        u8 pad1C[0xC];
+        u32 pad28 : 22;
+        u32 flag2A_1 : 1;
+        u32 pad2A : 9;
+    };
+    struct Fields {
+        struct Marker *marker;
+        f32 position[3];
+        s32 unk10;
+        s32 unk14;
+        u8 pad18[0x1C];
+        f32 unk34;
+        f32 unk38;
+        u8 pad3C[0xC];
+        f32 unk48;
+        u8 pad4C[8];
+        f32 unk54;
+        u8 pad58[4];
+        u8 unk5C[3];
+        u8 pad5F[5];
+        u32 flag64_7 : 1;
+        u32 flag64_6 : 1;
+        u32 pad64 : 4;
+        u32 flag64_1 : 1;
+        u32 flag64_0 : 1;
+        u32 pad65 : 5;
+        u32 flag65_2 : 1;
+        u32 pad65_1 : 1;
+        u32 flag65_0 : 1;
+        u32 pad66 : 16;
+        u32 pad68;
+        u32 field6C_21 : 11;
+        u32 field6C_9 : 12;
+        u32 pad6C : 9;
+        u32 pad70 : 7;
+        u32 flag70_0 : 1;
+        u32 pad71 : 1;
+        u32 flag71_6 : 1;
+        u32 flag71_5 : 1;
+        u32 flag71_4 : 1;
+        u32 flag71_3 : 1;
+        u32 flag71_2 : 1;
+        u32 flag71_1 : 1;
+        u32 flag71_0 : 1;
+        u16 state : 6;
+        u16 pad72 : 7;
+        u16 flag73_2 : 1;
+        u16 pad73 : 1;
+        u16 flag73_0 : 1;
+        u32 pad74 : 3;
+        u32 flag74_4 : 1;
+        u32 flag74_3 : 1;
+        u32 flag74_2 : 1;
+        u32 pad74_0 : 2;
+        u32 flag75_7 : 1;
+        u32 pad75 : 2;
+        u32 flag75_4 : 1;
+        u32 flag75_3 : 1;
+        u32 pad75_2 : 1;
+        u32 flag75_1 : 1;
+        u16 flag75_0 : 1;
+        u32 pad76 : 10;
+        u32 flag77_5 : 1;
+        u32 pad77 : 1;
+        u32 field77 : 4;
+        u32 pad78 : 12;
+        u32 flag79_3 : 1;
+        u32 pad79 : 3;
+        u32 field7A : 2;
+        u32 pad7A : 12;
+        u32 flag7B_1 : 1;
+        u32 pad7B : 1;
+        u16 unk7C;
+        u16 pad7E : 1;
+        u16 flag7E_6 : 1;
+        u16 flag7E_5 : 1;
+        u16 pad7F : 13;
+        u8 pad80[0x14];
+        u32 flag94_7 : 1;
+        u32 flag94_6 : 1;
+        u32 pad94 : 12;
+        u32 flag95_1 : 1;
+        u32 flag95_0 : 1;
+        u32 pad96 : 1;
+        u32 flag96_6 : 1;
+        u32 pad97 : 14;
+        u8 color[4];
+    };
+    struct Info {
+        s16 unk0;
+        s16 unk2;
+        u16 unk4;
+        s16 unk6;
+        u8 pad8[0x10];
+        u16 unk18;
+        u16 pad1A;
+        f32 unk1C;
+        u16 pad20;
+        u16 unk22;
+        s32 flags;
+        u32 pad28;
+        OSThread *(*callback)(void);
+        u16 unk30;
+        u16 unk32;
+        u8 pad34[8];
+        s32 unk3C;
+        s32 unk40;
+    };
+    struct PropFields {
+        u8 pad0[0x10];
+        u32 field10 : 11;
+        u32 pad10 : 19;
+        u32 flag10 : 1;
+        u32 pad13 : 1;
+    };
+    void *func_80106668(s32 *);
+    u32 *func_80100074(void *, u32, u32);
+    s8 func_800D738C(s32);
+    void *func_800EBED4(s32 *, s32, s32, s32);
+    void func_800EC340(void *, s32);
+    void func_800EC360(void *, s32);
+    void func_800EC368(void *, s32);
+    s32 func_80102FA0(void *, s32);
+    s32 _subaddieDll_entrypoint_1();
+    void func_8010A800(void *, s32);
+    void func_8010A63C(void *);
+    void func_80108658(void *, s32, s32, void *);
+    void func_800F31FC(u8 *, s32, s32, s32, s32);
+    void func_80102424(void *, s32);
+    void func_80103930(void *);
+    void func_8010A3E8(void *, f32);
+    void func_80106E88(void *);
+    void func_80104F2C(void *, s32, s32);
+    s32 func_800BEC1C(void);
+    void _subaddiezone_entrypoint_0(void *);
+    struct Fields *actor;
+    s32 index;
+    s32 i;
+
+    actor = func_80106668(&index);
+    actor->unk10 = arg3;
+    actor->state = ((struct Info *)arg2)->unk6;
+    actor->position[0] = arg0[0];
+    actor->position[1] = arg0[1];
+    actor->position[2] = arg0[2];
+    actor->unk48 = arg1;
+    actor->unk54 = arg1;
+    actor->flag65_0 = 1;
+    actor->unk38 = 1.0f;
+    actor->field6C_9 = ((struct Info *)arg2)->unk2;
+    actor->field77 = 0;
+    actor->unk34 = 0.0f;
+    actor->field7A = 1;
+    actor->flag65_2 = 1;
+    actor->unk7C = ((struct Info *)arg2)->unk18;
+    if (((struct Info *)arg2)->unk1C) {
+        actor->flag75_4 = 1;
+    } else {
+        actor->flag75_4 = 0;
+    }
+    actor->flag95_0 = actor->flag75_4;
+    func_80100074(actor, 0, ((struct Info *)arg2)->unk30);
+    func_80100074(actor, 1, ((struct Info *)arg2)->unk32);
+    if (((struct Info *)arg2)->unk4 == 0xFFFF) {
+        actor->marker = func_800EBED4(arg0, 1, ((struct Info *)arg2)->unk0, (((struct Info *)arg2)->flags & 0x400) ? 1 : 0);
+    } else {
+        actor->marker = func_800EBED4(arg0, (func_800D738C(((struct Info *)arg2)->unk4) == 7) ? 0 : 1, ((struct Info *)arg2)->unk0, (((struct Info *)arg2)->flags & 0x400) ? 1 : 0);
+    }
+    actor->marker->flag19_0 = 1;
+    if (((struct Info *)arg2)->callback != NULL) {
+        actor->marker->callback = ((struct Info *)arg2)->callback;
+    } else {
+        actor->marker->callback = func_80107C20;
+    }
+    func_800EC340(actor->marker, index);
+    func_800EC360(actor->marker, ((struct Info *)arg2)->unk4);
+    func_800EC368(actor->marker, ((struct Info *)arg2)->unk22);
+    actor->flag75_0 = 1;
+    actor->flag75_3 = actor->flag75_0;
+    if (func_80102FA0(arg2, 1)) _subaddieDll_entrypoint_1(actor);
+    if (func_80102FA0(arg2, 0x800000)) actor->flag71_5 = 1;
+    if (func_80102FA0(arg2, 8)) actor->flag70_0 = 1;
+    if (func_80102FA0(arg2, 0x100)) actor->field77 = 1;
+    if (func_80102FA0(arg2, 0x200000)) actor->flag64_1 = 1;
+    if (func_80102FA0(arg2, 0x4000000)) actor->flag71_6 = 1;
+    if (!func_80102FA0(arg2, 4)) actor->flag75_1 = 1;
+    if (!func_80102FA0(arg2, 0x100000)) actor->flag71_4 = 1;
+    if (func_80102FA0(arg2, 0x8000000)) actor->flag71_2 = 1;
+    if (func_80102FA0(arg2, 0x80000002)) actor->marker->flag2A_1 = 0;
+    if (func_80102FA0(arg2, 0x80000004)) actor->flag64_7 = 1;
+    if (func_80102FA0(arg2, 0x80000008)) actor->flag64_6 = 1;
+    if (func_80102FA0(arg2, 0x80000400)) actor->flag71_1 = 1;
+    if (func_80102FA0(arg2, 0x80001000)) actor->flag71_0 = 1;
+    if (func_80102FA0(arg2, 0x80002000)) actor->flag77_5 = 1;
+    if (func_80102FA0(arg2, 0x80004000)) actor->flag7E_5 = 1;
+    if (func_80102FA0(arg2, 0x80000100)) actor->flag74_2 = 1;
+    if (func_80102FA0(arg2, 0x80100000)) actor->flag75_7 = 1;
+    if (func_80102FA0(arg2, 0x80000001)) actor->flag64_0 = 1;
+    if (func_80102FA0(arg2, 0x80000010)) actor->flag7B_1 = 1;
+    if (func_80102FA0(arg2, 0x80400000)) actor->flag94_7 = 1;
+    if (func_80102FA0(arg2, 0x80800000)) actor->flag94_6 = 1;
+    if (func_80102FA0(arg2, 0x80000040)) actor->flag73_2 = 1;
+    if (func_80102FA0(arg2, 0x80040000)) actor->flag79_3 = 1;
+    if (func_80102FA0(arg2, 0x80200000)) actor->flag95_1 = 1;
+    if (func_80102FA0(arg2, 0x84000000)) actor->flag96_6 = 1;
+    if (func_80102FA0(arg2, 0x80000080)) actor->flag71_3 = 1;
+    if (func_80102FA0(arg2, 0x82000000)) actor->flag95_0 = 0;
+    func_8010A800(actor, 0);
+    if (func_80102FA0(arg2, 0x800)) {
+        func_8010A800(actor, 1);
+        func_8010A63C(actor);
+    }
+    if (func_80102FA0(arg2, 0x20000)) {
+        func_8010A800(actor, 2);
+    } else if (func_80102FA0(arg2, 0x400000)) {
+        func_8010A800(actor, 3);
+    } else if (func_80102FA0(arg2, 0x80008000)) {
+        func_8010A800(actor, 4);
+    }
+    if (func_80102FA0(arg2, 0x80000800)) {
+        actor->flag7E_6 = 0;
+    } else {
+        actor->flag7E_6 = 1;
+    }
+    if (func_80102FA0(arg2, 0x80000200)) {
+        actor->flag65_0 = 0;
+    } else {
+        actor->flag65_0 = 1;
+    }
+    if (arg4 != NULL) {
+        actor->field6C_21 = ((struct PropFields *)arg4)->field10;
+        actor->flag73_0 = ((struct PropFields *)arg4)->flag10;
+    }
+    func_80108658(actor, ((struct Info *)arg2)->flags, ((struct Info *)arg2)->unk3C, arg4);
+    actor->unk14 = 0x4A0021;
+    i = 0;
+    do {
+        ++i;
+        actor->unk5C[i - 1] = 99;
+    } while (i != 3);
+    func_800F31FC(actor->color, 255, 255, 255, 255);
+    if (((struct Info *)arg2)->unk40 != 0) {
+        actor->flag74_4 = 1;
+    } else {
+        actor->flag74_4 = 0;
+    }
+    actor->flag74_3 = 1;
+    func_80102424(actor, actor->state);
+    func_80103930(actor);
+    func_8010A3E8(actor, 1.0f);
+    func_80106E88(actor);
+    func_80104F2C(actor, func_80102FA0(arg2, 0x40000000), func_80102FA0(arg2, 0x10));
+    if (func_800BEC1C()) _subaddiezone_entrypoint_0(actor);
+    return actor;
+}
 
 void func_80108454(s32 arg0, s32 *arg1, u32 arg2) {
     Actor*  func_80108C90(s32, s32*, u32, Prop*);
