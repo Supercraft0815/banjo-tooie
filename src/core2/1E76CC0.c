@@ -47,7 +47,20 @@ void func_8009D874(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009D940.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009D9D4.s")
+void func_8009D9D4(PlayerState *arg0) {
+    s32 _badata_entrypoint_17(PlayerState *, s32, s32 *, f32 *, s32 *);
+    void func_8009D940(PlayerState *, s32, f32, s32);
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+
+    if (_badata_entrypoint_17(arg0, (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x104)))) + (0xC))), &sp28, (f32 *)&sp2C, &sp24) == 0) {
+        (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x104)))) + (0xC))) = 0;
+    } else {
+        (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x104)))) + (0xC))) += 1;
+    }
+    func_8009D940(arg0, sp28, *(f32 *)&sp2C, sp24);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009DA40.s")
 
