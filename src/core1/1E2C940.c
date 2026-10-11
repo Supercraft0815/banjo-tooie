@@ -94,7 +94,12 @@ void func_80015410()
     func_800151BC(0x1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80015430.s")
+void func_80015430(s32 arg0) {
+    extern s16 D_80078F60;
+    extern s32 D_80078F80;
+    D_80078F60 = arg0;
+    osViSwapBuffer(((s32 *) &D_80078F80)[D_80078F60]);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_8001546C.s")
 
