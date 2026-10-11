@@ -1327,6 +1327,6 @@ void func_800F9BA4()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9BC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9C38.s")
+void func_800F9C38(void) { if (func_800F8B88() == 3) func_800F9488(0x13); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9C6C.s")
