@@ -11,7 +11,20 @@ s32 func_800CF87C()
     return D_8011AE60;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800CF888.s")
+s32 func_800CF888(s32 arg0, s32 arg1) {
+    extern s16 D_8011AE64[][2];
+    extern s16 D_8011AE6C[][2];
+    s32 i;
+
+    i = 0;
+    do {
+        if (arg0 == D_8011AE64[i][0] && arg1 == D_8011AE64[i][1]) {
+            return 1;
+        }
+        i++;
+    } while (D_8011AE6C != &D_8011AE64[i]);
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800CF8D0.s")
 
