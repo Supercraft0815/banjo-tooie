@@ -40,7 +40,16 @@ void glgamedata_entrypoint_2(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamedata/func_808002CC_glgamedata.s")
+s32 func_808002CC_glgamedata(s32 *arg0) {
+    s32 result;
+
+    if (*arg0 == 0x4B484A43) {
+        result = 4;
+    } else {
+        result = 0;
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamedata/glgamedata_entrypoint_3.s")
 
