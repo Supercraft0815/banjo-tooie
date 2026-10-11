@@ -2,7 +2,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/missilehome/sumissilehome_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/missilehome/sumissilehome_entrypoint_1.s")
+void sumissilehome_entrypoint_1(s32 arg0, void *arg1, s32 arg2) {
+    (*(s8 *)((s8 *)(arg1) + (8))) = 1;
+    (*(s16 *)((s8 *)(arg1) + (2))) = arg2;
+}
 
 void sumissilehome_entrypoint_2(s32 arg0, void *arg1, f32 arg2) {
     (*(s8 *)((s8 *)(arg1) + (0xA))) = 1;
