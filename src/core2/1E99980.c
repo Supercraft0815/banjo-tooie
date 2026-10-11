@@ -142,7 +142,18 @@ void func_800C0920(void) {
     D_80128AF0 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0948.s")
+s32 func_800C0948(void) {
+    s32 _gcnewpause_entrypoint_2(s32);
+    extern s32 D_80128AF0;
+    s32 var_v1;
+
+    if (D_80128AF0 != 0) {
+        var_v1 = _gcnewpause_entrypoint_2(D_80128AF0);
+    } else {
+        var_v1 = 0;
+    }
+    return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0984.s")
 
