@@ -40,7 +40,10 @@ OSThread *func_80109518(void)
     return (OSThread *) D_8012464C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109524.s")
+s32 func_80109524(s32 arg0) {
+    extern s16 D_801245A0[8][8];
+    return D_801245A0[arg0][0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109538.s")
 
