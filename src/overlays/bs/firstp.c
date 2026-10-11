@@ -1149,7 +1149,10 @@ s32 bsfirstp_entrypoint_36(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080995C_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808099A8_bsfirstp.s")
+void func_808099A8_bsfirstp(void *arg0, s32 arg1) {
+    void *state = *(void **)((u8 *)arg0 + 392);
+    *(s16 *)((u8 *)state + 584) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808099B4_bsfirstp.s")
 
