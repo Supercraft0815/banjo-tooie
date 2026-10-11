@@ -53,7 +53,15 @@ s32 func_800A586C(void) {
     return (*(s32 *)((s8 *)(D_80119540) + (0x34)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7EE40/func_800A587C.s")
+u8 func_800A587C(void) {
+    struct Data {
+        u8 pad[0x30];
+        s32 index;
+        u8 pad34[8];
+        u8 entries[1][2];
+    };
+    return ((struct Data *)D_80119540)->entries[((struct Data *)D_80119540)->index][0];
+}
 
 s32 func_800A5898(void) {
     return (*(s32 *)((s8 *)(D_80119540) + (0x30)));
