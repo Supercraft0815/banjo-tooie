@@ -395,7 +395,10 @@ s32 func_800944E0(PlayerState *arg0, s32 arg1) {
     return D_80117E3C[arg1 * 2];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_800944F8.s")
+s32 func_800944F8(PlayerState *arg0, s32 arg1) {
+    extern u8 D_80117E3D[];
+    return D_80117E3D[arg1 * 2];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094510.s")
 
