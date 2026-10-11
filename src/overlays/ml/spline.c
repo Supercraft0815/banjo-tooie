@@ -53,7 +53,85 @@ void mlspline_entrypoint_6(f32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_9.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_10.s")
+void mlspline_entrypoint_10(f32 arg0, s32 arg1, f32 *arg2, volatile f32 *arg3)
+{
+  f32 func_800F0D50(f32, f32, f32);
+  f32 scaled;
+  s32 count;
+  s32 i;
+  s32 end;
+  s32 penultimate;
+  f32 a;
+  f32 b;
+  f32 c;
+  f32 d;
+  f32 slope;
+  count = arg1 - 1;
+  scaled = func_800F0D50(arg0, 0.0f, 1.0f);
+  scaled *= count;
+  i = (s32) scaled;
+  arg0 = scaled - ((f32) i);
+  if (i == 0)
+  {
+    for (; i < 3; i++)
+    {
+      a = arg2[(u32) i];
+      b = arg2[((u32) i) + 3];
+      c = arg2[((u32) i) + 6];
+      slope = b - a;
+      arg3[(u32) i] = ((((c - a) * 0.5f) - (slope * 1.5f)) * arg0) + (b - a);
+      arg3[(u32) i] *= arg0;
+      arg3[(u32) i] += (b - a) * 0.5f;
+    }
+
+  }
+  else
+  {
+    i--;
+    arg2 += i * 3;
+    end = i + 2;
+    penultimate = i + 3;
+    if (arg1 == end)
+    {
+      for (i = 0; i != 3; i++)
+      {
+        a = arg2[i];
+        b = arg2[i + 3];
+        arg3[i] = (b - a) * 0.5f;
+      }
+
+    }
+    else
+      if (arg1 == penultimate)
+    {
+      for (i = 0; i != 3; i++)
+      {
+        a = arg2[i];
+        b = arg2[i + 3];
+        c = arg2[i + 6];
+        slope = (c - a) * 0.5f;
+        arg3[i] = ((((b - c) * 1.5f) + slope) * arg0) + ((a + c) - (2.0f * b));
+        arg3[i] *= arg0;
+        arg3[i] += slope;
+      }
+
+    }
+    else
+    {
+      for (i = 0; i != 3; i++)
+      {
+        a = arg2[i];
+        b = arg2[i + 3];
+        c = arg2[i + 6];
+        d = arg2[i + 9];
+        arg3[i] = ((((d - a) * 0.5f) + ((b - c) * 1.5f)) * arg0) + ((a + c) - (2.0f * b));
+        arg3[i] *= arg0;
+        arg3[i] += (c - a) * 0.5f;
+      }
+
+    }
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/func_8080145C_mlspline.s")
 
