@@ -75,7 +75,19 @@ s32 bssplitup_entrypoint_11(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/bssplitup_entrypoint_12.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/bssplitup_entrypoint_13.s")
+/* extern */
+
+void bssplitup_entrypoint_13(s32 arg0) {
+    s32 baanim_isStopped();
+    s32 bs_setState(void *, s32);
+    s32 sp1C;
+
+    sp1C = 0;
+    if (baanim_isStopped() != 0) {
+        sp1C = 1;
+    }
+    bs_setState(arg0, sp1C);
+}
 
 void bssplitup_entrypoint_14(s32 arg0)
 {
