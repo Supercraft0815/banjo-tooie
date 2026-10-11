@@ -274,7 +274,9 @@ s32 gcnewoption_entrypoint_47(void *arg0) {
     return (*(u8 *)((s8 *)(arg0) + (0x24))) == 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_48.s")
+int gcnewoption_entrypoint_48(s16 *arg0) {
+    return *arg0 >= 3 && *arg0 < 0xB;
+}
 
 void gcnewoption_entrypoint_49(void *arg0, s32 arg1) {
     struct Flags {
