@@ -67,7 +67,12 @@ s32 func_800A9C98(void) {
     return D_80127760 != 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E831D0/func_800A9CAC.s")
+s32 func_800A9CAC(void) {
+    extern u8 D_80127760;
+    s32 result;
+    result = 0;
+    return D_80127760 ? 1 : result;
+}
 
 u32 func_800A9CD0(void) {
     extern u8 D_80127760;
