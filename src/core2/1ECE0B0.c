@@ -552,7 +552,16 @@ s32 func_800F64A4(s32 characterIndex, AllowedTransformation transformationType)
     return func_800F543C(characterIndex) & transformationType ? 1 : 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F64DC.s")
+/* extern */
+
+void func_800F64DC(s32 arg0) {
+    s32 bs_getCurrentState(PlayerState *);
+    s32 func_8009CA70(PlayerState *, s32, s32);
+    volatile PlayerState *sp1C;
+
+    sp1C = D_80135490[arg0];
+    func_8009CA70((PlayerState *)sp1C, bs_getCurrentState((PlayerState *)sp1C), 0x400000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F651C.s")
 
