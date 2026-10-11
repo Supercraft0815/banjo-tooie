@@ -14,7 +14,9 @@ void func_8009AD88(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009AD90.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009ADF0.s")
+void func_8009ADF0(void *arg0, s32 arg1, s32 arg2) {
+    (*(u8 **)((u8 *)arg0 + 0xC4))[arg1] = arg2;
+}
 
 s32 func_8009AE00() 
 {
