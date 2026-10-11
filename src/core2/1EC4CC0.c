@@ -208,7 +208,10 @@ void func_800EC7D4(Unk80132ED0 *arg0, s32 arg1) {
     func_8010A79C(func_80106790(arg0), arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC800.s")
+int func_800EC800(void *arg0) {
+    return ((*(u16 *)((u8 *)arg0 + 0x18) & 1) != 0)
+        && (*(u16 *)((u8 *)arg0 + 0x14) != 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC828.s")
 
