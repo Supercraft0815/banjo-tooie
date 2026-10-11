@@ -1,7 +1,10 @@
 #include "common.h"
 #include "overlays/ba/playerstate.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stand/func_80800000_bsstand.s")
+s32 func_80800000_bsstand(s32 *arg0) {
+    extern s32 D_80800D90_bsstand[];
+    return D_80800D90_bsstand[arg0[0x160 / 4]];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stand/func_80800018_bsstand.s")
 
