@@ -98,7 +98,10 @@ s32 func_800D1C38(s32 arg0) {
     return func_800D1A04(arg0) == 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1C5C.s")
+s32 func_800D1C5C(u32 arg0) {
+    extern s16 D_8011AE50[];
+    return *(s16 *)((u8 *)D_8011AE50 + (arg0 << 2));
+}
 
 s32 func_800D1C70() 
 {
