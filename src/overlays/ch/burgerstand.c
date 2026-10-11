@@ -153,7 +153,21 @@ void func_80800754_chburgerstand(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/func_8080087C_chburgerstand.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/func_80800940_chburgerstand.s")
+s32 func_80800940_chburgerstand(Actor *arg0) {
+    Actor *func_801084B0(s32, Actor **);
+    void func_80102FDC(void *, f32);
+    void _subaddiefade_entrypoint_9(Actor *, s32 *);
+    void _subaddiefade_entrypoint_11(Actor *, s32 *);
+    Actor *temp_v0;
+    s32 sp20[3];
+
+    temp_v0 = func_801084B0(0x32C, &arg0);
+    func_80102FDC(temp_v0, arg0->scale);
+    _subaddiefade_entrypoint_9(arg0, sp20);
+    _subaddiefade_entrypoint_11(temp_v0, sp20);
+    arg0->unk3C = temp_v0->unk0;
+    temp_v0->unk64_16 = arg0->unk64_16;
+}
 
 void func_808009C4_chburgerstand(s32 arg0) 
 {
