@@ -1,6 +1,9 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2130/func_800D8840.s")
+f32 func_800D8840(s32 arg0) {
+    extern f32 D_8011B964[][2];
+    return D_8011B964[arg0][0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2130/func_800D8854.s")
 
