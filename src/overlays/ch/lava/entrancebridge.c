@@ -1,6 +1,8 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/entrancebridge/func_80800000_chlavaentrancebridge.s")
+void func_80800000_chlavaentrancebridge(void *arg0) {
+    (*(f32 *)((s8 *)(arg0) + (0x58))) = -2750.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/entrancebridge/func_80800010_chlavaentrancebridge.s")
 
