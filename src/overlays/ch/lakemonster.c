@@ -105,7 +105,98 @@ void chlakemonster_entrypoint_3(void *arg0, void *arg1, s32 arg2, s32 arg3) {
     func_800BA1D0(sp24, arg0, arg1, 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80801A60_chlakemonster.s")
+void func_80801A60_chlakemonster(void *arg0) {
+    s32 _subaddieaudioquick_entrypoint_2(s32, s32, s32 *);
+    void chlakemonster_entrypoint_2(void *, void *, s32, s32);
+    s32 func_800C2FDC(u8);
+    void func_800C3058(u8, s32);
+    void func_800C31DC(u8, f32);
+    u8 func_800C4350(s32, s32, s32 *);
+    f32 func_800D8FF8(void);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    extern s32 D_808020BC_chlakemonster;
+    extern s32 D_808022C8_chlakemonster;
+    f32 start[3];
+    f32 end[3];
+
+    switch ((u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10) {
+    case 1:
+        break;
+    case 2:
+        if (*(f32 *)((u8 *)arg0 + 8) >= 0.0f) {
+            func_80801790_chlakemonster(arg0, 3);
+            return;
+        }
+        *(f32 *)((u8 *)arg0 + 8) += func_800D8FF8() * *(f32 *)((u8 *)arg0 + 0x50);
+        *(f32 *)((u8 *)arg0 + 0x50) += 5.0f;
+        if (func_8001210C(1)) {
+            start[1] = *(f32 *)((u8 *)arg0 + 8) + -3050.0f;
+            end[1] = start[1];
+            switch (func_800DC128(0, 3)) {
+            case 0:
+                start[0] = 30.0f;
+                start[2] = 735.0f;
+                end[0] = 504.0f;
+                end[2] = 1423.0f;
+                chlakemonster_entrypoint_2(start, end, 0x42480000, 0xC53EA000);
+                chlakemonster_entrypoint_3(start, end, 0x42480000, 0xC53EA000);
+                break;
+            case 1:
+                end[0] = 504.0f;
+                end[2] = 1423.0f;
+                start[0] = -194.0f;
+                start[2] = 2263.0f;
+                chlakemonster_entrypoint_2(start, end, 0x42480000, 0xC53EA000);
+                chlakemonster_entrypoint_3(start, end, 0x42480000, 0xC53EA000);
+                break;
+            case 2:
+                start[0] = -194.0f;
+                start[2] = 2263.0f;
+                end[0] = 4.0f;
+                end[2] = 3081.0f;
+                chlakemonster_entrypoint_2(start, end, 0x42480000, 0xC53EA000);
+                chlakemonster_entrypoint_3(start, end, 0x42480000, 0xC53EA000);
+                break;
+            }
+            if (*(f32 *)((u8 *)arg0 + 0x58) <= 0.0f) {
+                _subaddieaudioquick_entrypoint_2((s32)arg0, (s32)end, &D_808020BC_chlakemonster);
+                *(f32 *)((u8 *)arg0 + 0x58) = func_800DC178(1.0f, 2.0f) * 0.15f;
+            } else {
+                *(f32 *)((u8 *)arg0 + 0x58) -= func_800D8FF8();
+            }
+        }
+        if (*((u8 *)arg0 + 0x5F) == 0) {
+            *((u8 *)arg0 + 0x5F) = func_800C4350(0, (s32)((u8 *)arg0 + 4), &D_808022C8_chlakemonster);
+        } else {
+            if (*(f32 *)((u8 *)arg0 + 8) < -750.0f) {
+                *(f32 *)((u8 *)arg0 + 0x34) = func_800F10B4(*(f32 *)((u8 *)arg0 + 8), -1000.0f, -850.0f, 0.0f, 32000.0f);
+            }
+            *(f32 *)((u8 *)arg0 + 0x54) = func_800F10B4(*(f32 *)((u8 *)arg0 + 8), -1000.0f, 0.0f, 0.05f, 1.0f);
+            func_800C3058(*((u8 *)arg0 + 0x5F), (s32)*(f32 *)((u8 *)arg0 + 0x34));
+            func_800C31DC(*((u8 *)arg0 + 0x5F), *(f32 *)((u8 *)arg0 + 0x54));
+            func_800C4350(*((u8 *)arg0 + 0x5F), (s32)((u8 *)arg0 + 0x18), NULL);
+        }
+        break;
+    case 3:
+        if (*((u8 *)arg0 + 0x5F) != 0) {
+            if (*(f32 *)((u8 *)arg0 + 0x34) > 500.0f) {
+                *(f32 *)((u8 *)arg0 + 0x34) *= 0.7f;
+                if (*(f32 *)((u8 *)arg0 + 0x54) > 0.05f) {
+                    *(f32 *)((u8 *)arg0 + 0x54) *= 0.7f;
+                }
+                func_800C3058(*((u8 *)arg0 + 0x5F), (s32)*(f32 *)((u8 *)arg0 + 0x34));
+                func_800C31DC(*((u8 *)arg0 + 0x5F), *(f32 *)((u8 *)arg0 + 0x54));
+                func_800C4350(*((u8 *)arg0 + 0x5F), (s32)((u8 *)arg0 + 0x18), NULL);
+            } else {
+                func_800C2FDC(*((u8 *)arg0 + 0x5F));
+                *((u8 *)arg0 + 0x5F) = 0;
+            }
+        }
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80801E60_chlakemonster.s")
 
