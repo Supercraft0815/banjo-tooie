@@ -42,7 +42,11 @@ void func_800BEAF4(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEB28.s")
+s32 func_800BEB28(s32 arg0) {
+    struct Entry { s32 value; u8 padding[40]; };
+    extern struct Entry D_801285BC[];
+    return D_801285BC[arg0].value;
+}
 
 s32 func_800BEB4C()
 {
