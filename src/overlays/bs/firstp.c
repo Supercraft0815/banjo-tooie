@@ -153,7 +153,13 @@ s32 func_80800858_bsfirstp(s32 arg0, s32 arg1) {
     return (s32) temp_v0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80800864_bsfirstp.s")
+s32 func_80800864_bsfirstp(void *arg0) {
+    s32 result;
+    s32 *ptr;
+    ptr = (s32 *)(*(void **)((s8 *)(arg0) + (0x188)));
+    result = 0;
+    return *(ptr + 10) != 0 ? 1 : result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80800888_bsfirstp.s")
 
