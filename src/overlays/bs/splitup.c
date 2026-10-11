@@ -34,7 +34,14 @@ s32 bssplitup_entrypoint_3(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/bssplitup_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/bssplitup_entrypoint_6.s")
+/* extern */
+
+void bssplitup_entrypoint_6(void *arg0) {
+    s32 _baduo_entrypoint_7(void *, s32);
+    s32 func_800F8EE4(s32);
+    _baduo_entrypoint_7(arg0, 3);
+    func_800F8EE4((*(s32 *)((s8 *)(arg0) + (0x184))));
+}
 
 s32 bssplitup_entrypoint_7(s32 arg0) {
     extern s32 D_80800710_bssplitup[];
