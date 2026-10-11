@@ -22,7 +22,15 @@ void func_800C59F0(s32 arg0, s32 arg1, s32 arg2) {
     func_800C5968(arg0, arg1, arg2, 0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C5A10.s")
+void func_800C5A10(u8 *arg0, s32 arg1) {
+    if (arg1 == 1) {
+        arg0[0x93] = 5;
+    }
+    if (arg1 == 4) {
+        arg0[0x92] = 1;
+    }
+    arg0[0x94] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C5A38.s")
 
