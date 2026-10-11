@@ -84,7 +84,94 @@ void gcnewpause_entrypoint_1(PauseState* a0)
 }
 
 #ifndef NON_MATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newpause/gcnewpause_entrypoint_2.s")
+u32 gcnewpause_entrypoint_2(PauseState *pauseMenu) {
+    s32 _gcfrontend_entrypoint_13();
+    void func_800A7AD4(s32, s32);
+    u32 sp34;
+    u32 sp30;
+    f32 joystick[2];
+
+    func_800D2574();
+    func_800C0438();
+    func_800E8A68();
+    switch (pauseMenu->PageIndex) {
+    case 1:
+        func_80800534_gcnewpause(pauseMenu, 2U);
+        break;
+    case 2:
+        if ((func_80015FA0(pauseMenu->unkC) == 1) && (_gcnewoption_entrypoint_37(&pauseMenu->optionState, 1U) != 0)) {
+            pauseMenu->unk3 = 0;
+        }
+        if ((pauseMenu->unkE != 0) && (func_800D9078(&pauseMenu->Timer) != 0)) {
+            func_80801E08_gcnewpause(pauseMenu, &pauseMenu->optionState);
+        }
+        func_80800E10_gcnewpause(pauseMenu, (u32) pauseMenu->unk3);
+        _gcnewoption_entrypoint_0(&pauseMenu->optionState);
+        break;
+    case 3:
+        func_80016068(pauseMenu->unkC, joystick);
+        func_800D9078(&pauseMenu->Timer);
+        if (*(u8 *)&pauseMenu->SoundEffectTimerPageOpen != 0) {
+            if (--*(u8 *)&pauseMenu->SoundEffectTimerPageOpen == 0) {
+                _gcaudiolist_entrypoint_1(2U, 0x4650U);
+            }
+        }
+        if ((pauseMenu->CanExitPage == 0) && (pauseMenu->unk3 == 1)) {
+            if (func_80015FA0(pauseMenu->unkC) == 1) {
+                func_808015F8_gcnewpause(pauseMenu, 1U);
+            } else if (func_80016B30(pauseMenu->unkC, 1U) == 1) {
+                func_808015F8_gcnewpause(pauseMenu, 0U);
+            } else if ((pauseMenu->CanMoveLeft != 0) && (joystick[0] < -0.75f) && (0.0f == pauseMenu->Timer)) {
+                func_8080162C_gcnewpause(pauseMenu, -1U);
+            } else if ((pauseMenu->CanMoveRight != 0) && (joystick[0] > 0.75f) && (0.0f == pauseMenu->Timer)) {
+                func_8080162C_gcnewpause(pauseMenu, 1U);
+            }
+        }
+        sp34 = func_80801330_gcnewpause(pauseMenu, pauseMenu->SubPage,
+            ((pauseMenu->CanExitPage == 0) && (pauseMenu->unk3 == -1)) ? 1 : pauseMenu->unk3);
+        func_80801580_gcnewpause(pauseMenu);
+        sp30 = func_80800F2C_gcnewpause(pauseMenu, (u32) pauseMenu->SubPage, (u32) pauseMenu->unk3);
+        if ((pauseMenu->CanExitPage == 0) && (pauseMenu->unk3 == -1) && (sp30 == 0)) {
+            pauseMenu->unk3 = 0;
+            pauseMenu->CanMoveLeft = pauseMenu->CanMoveRight = 0;
+            sp30 = 1;
+            _gcaudiolist_entrypoint_1(5U, 0x4650U);
+        }
+        if ((sp30 == 0) && (sp34 == 0)) {
+            if (pauseMenu->CanExitPage != 0) {
+                func_808017C8_gcnewpause(pauseMenu, func_80801718_gcnewpause((s32) pauseMenu->SubPage, (s32) pauseMenu->CanExitPage));
+                pauseMenu->CanExitPage = 0;
+                pauseMenu->unk3 = 1;
+                pauseMenu->Timer = 0.2f;
+                _gcaudiolist_entrypoint_1(2U, 0x4650U);
+            } else if (pauseMenu->unk4 != 0) {
+                pauseMenu->ExitType = 1;
+            } else {
+                func_80800534_gcnewpause(pauseMenu, 2U);
+            }
+        }
+        break;
+    case 4:
+        break;
+    case 5:
+        func_80801CDC_gcnewpause(pauseMenu);
+        if (func_800D9078(&pauseMenu->Timer) != 0) {
+            pauseMenu->GameOverFadingIn = 0;
+            func_800FCAE0(0x12U, 0U, 0xC8U);
+            func_800FCA90(0x12U);
+            func_800A7AD4(1, 0);
+            pauseMenu->ExitType = 2;
+            _gcfrontend_entrypoint_13();
+        }
+        break;
+    default:
+        if (func_80015FA0(pauseMenu->unkC) == 1) {
+            pauseMenu->ExitType = 1;
+        }
+        break;
+    }
+    return pauseMenu->ExitType == 1;
+}
 #else
 //Functionality update
 u32 gcnewpause_entrypoint_2(PauseState* pauseMenu) {
