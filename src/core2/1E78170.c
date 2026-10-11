@@ -52,7 +52,11 @@ u32 func_8009E994(void) {
 void func_8009E9A0(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009E9A8.s")
+void func_8009E9A8(void) {
+    extern void func_8009E9FC(f32);
+    extern void func_8009EB0C(f32);
+    func_8009E9FC(0.0f); func_8009EB0C(0.0f);
+}
 
 void func_8009E9D8(s32 arg0) {
     extern u8 D_8012704C;
