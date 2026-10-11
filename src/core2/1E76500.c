@@ -7,7 +7,17 @@ s32 func_8009CC10()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76500/func_8009CC18.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76500/func_8009CC68.s")
+s32 func_8009CC68(PlayerState *self) {
+    u8 temp_a1;
+    u8 *temp_v1;
+
+    temp_v1 = (*(u8 **)((s8 *)(self) + (0xF0)));
+    temp_a1 = (*(u8 *)((s8 *)(temp_v1) + (0x80)));
+    if (temp_a1 == 0) {
+        return 0;
+    }
+    return (s32) (*(u8 *)((s8 *)((u8 *)temp_v1 + ((u32)temp_a1 << 4)) - 0x10));
+}
 
 void func_8009CC90(void *arg0) {
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xF0)))) + (0x81))) = 0;
