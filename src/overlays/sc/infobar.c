@@ -33,7 +33,16 @@ void scinfobar_entrypoint_1(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/scinfobar_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/scinfobar_entrypoint_3.s")
+void scinfobar_entrypoint_3(void *arg0, s32 arg1) {
+    struct Entry { f32 value; f32 rest[2]; };
+    extern struct Entry D_80800D5C_scinfobar[];
+    if (*(u8 *)((s8 *)arg0 + 2) != 0) {
+        *(s16 *)((s8 *)arg0 + 0x30) = arg1;
+        return;
+    }
+    *(s32 *)((s8 *)arg0 + 0x1C) = arg1;
+    *(f32 *)((s8 *)arg0 + 0xC) = D_80800D5C_scinfobar[arg1].value;
+}
 
 void scinfobar_entrypoint_4(s32 *arg0, s32 arg1) {
     arg0[10] = arg1;
