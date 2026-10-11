@@ -26,7 +26,16 @@ s32 func_800D3EC8(void) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD6C0/func_800D3EF4.s")
+void func_800D3EF4(s32 arg0) {
+    s32 func_800DA544(s32);
+    extern u16 D_8011B5B8[][4];
+    u16 temp_v0;
+
+    temp_v0 = D_8011B5B8[arg0][0];
+    if (temp_v0 != 0) {
+        func_800DA544(temp_v0);
+    }
+}
 
 s32 func_800D3F2C(s32 arg0) {
     s32 func_800DA544(s32);
