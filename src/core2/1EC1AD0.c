@@ -31,7 +31,11 @@ void func_800E87E0(u8 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC1AD0/func_800E8830.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC1AD0/func_800E8870.s")
+void func_800E8870(u8 arg0, f32 arg1) {
+    void *freelist_at(s32, s32);
+    extern s32 D_8012D600;
+    (*(f32 *)((s8 *)freelist_at(D_8012D600, arg0) + 0xC)) = arg1;
+}
 
 /* extern */
 
