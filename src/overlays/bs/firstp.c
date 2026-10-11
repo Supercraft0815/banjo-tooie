@@ -528,7 +528,11 @@ void func_80803B04_bsfirstp(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803B58_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803B68_bsfirstp.s")
+f32 func_80803B68_bsfirstp(void *arg0) {
+    register void *ptr;
+    ptr = *(void **)((u8 *)arg0 + 392);
+    return *(f32 *)((u8 *)ptr + 272);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_14.s")
 
