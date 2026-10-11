@@ -50,4 +50,12 @@ void func_800DC028(s32 arg0, s32 arg1, s32 arg2) {
     func_800EE7F8(((Entry *)arg0)[arg1].position, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB57A0/func_800DC060.s")
+/* extern */
+s32 func_800DC060(s32 arg0) {
+    s32 defrag(s32);
+
+    if (arg0 != 0) {
+        arg0 = defrag(arg0);
+    }
+    return arg0;
+}
