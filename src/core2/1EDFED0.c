@@ -40,7 +40,11 @@ void func_80106768(s32 arg0) {
     vector_at(D_80136EE0, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDFED0/func_80106790.s")
+Actor *func_80106790(Unk80132ED0 *arg0) {
+    extern s32 D_80136EE0;
+    s32 vector_at(s32, s32);
+    return vector_at(D_80136EE0, (u32) (*(u16 *)((s8 *)(arg0) + 0x1A)) >> 5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDFED0/func_801067C4.s")
 
