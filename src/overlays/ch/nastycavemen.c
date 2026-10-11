@@ -48,4 +48,6 @@ void func_80800E68_chnastycavemen(u8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_80800E90_chnastycavemen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_8080103C_chnastycavemen.s")
+void func_8080103C_chnastycavemen(s32 arg0) {
+    _suexpression_entrypoint_8(arg0, 1);
+}
