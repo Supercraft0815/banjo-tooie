@@ -12,4 +12,6 @@ f32 dbskeleton_entrypoint_1(f32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/skeleton/dbskeleton_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/skeleton/dbskeleton_entrypoint_4.s")
+s16 dbskeleton_entrypoint_4(s16 arg0[][8], s32 arg1) {
+    return arg0[arg1][10];
+}
