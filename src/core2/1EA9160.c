@@ -41,7 +41,12 @@ void func_800CFA70()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800CFBC8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800CFC5C.s")
+s32 func_800CFC5C(s32 arg0) {
+    if ((arg0 -= D_8011AE60) >= 0 && arg0 < 0xA) {
+        return arg0;
+    }
+    return -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800CFC8C.s")
 
