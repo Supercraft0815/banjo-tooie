@@ -166,7 +166,10 @@ f32 func_8009BBB8(PlayerState *arg0) {
     return var_f12;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009BC08.s")
+void func_8009BC08(void *arg0, s32 arg1) {
+    s32 func_800EE7F8();
+    func_800EE7F8(arg1, *(s32 *)((u8 *)arg0 + 0xC8) + 0x4);
+}
 
 void func_8009BC34(PlayerState* arg0)
 {
