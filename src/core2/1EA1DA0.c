@@ -4,7 +4,9 @@ extern s32 D_8012AB00;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C84B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8560.s")
+int func_800C8560(void *arg0, s32 arg1) {
+    return ((u8 *)arg0)[0x16] && (((u8 *)arg0)[0x15] & arg1);
+}
 
 u32 func_800C8588(u8 *arg0, s32 arg1) {
     return arg0[0x14];
