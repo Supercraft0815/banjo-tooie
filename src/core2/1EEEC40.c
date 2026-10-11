@@ -38,7 +38,14 @@ void func_80115484(PlayerState* arg0, f32* arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEC40/func_801154A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEC40/func_80115564.s")
+void func_80115564(u8 *arg0) {
+    u8 *temp_v0;
+
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x14)));
+    (*(f32 *)((s8 *)(temp_v0) + (0xC))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (0x14)));
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x14)));
+    (*(f32 *)((s8 *)(temp_v0) + (0x10))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (0x18)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEC40/func_80115580.s")
 
