@@ -59,7 +59,10 @@ void func_800EBB5C(void) {
 void func_800EBB6C(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBB74.s")
+s32 func_800EBB74(void) {
+    extern s32 D_80132ED0;
+    return (s32)&D_80132ED0 ? 1 : 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBB94.s")
 
