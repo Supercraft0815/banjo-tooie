@@ -119,7 +119,10 @@ s32 func_8009E71C(void *arg0, s32 arg1) {
     return func_8009CBDC(arg0, (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x120)))) + (4)))) == arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E77A20/func_8009E74C.s")
+s32 func_8009E74C(PlayerState *arg0, s32 arg1) {
+    s32 func_8009CBDC(s32, s32);
+    return func_8009CBDC((s32)arg0, arg0->state->next) == arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E77A20/func_8009E77C.s")
 
