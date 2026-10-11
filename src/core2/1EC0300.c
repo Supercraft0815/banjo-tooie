@@ -41,7 +41,20 @@ void func_800E715C(u8 *arg0, u8 *arg1) {
     *arg0 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E7188.s")
+s32 func_800E7188(u8 *arg0) {
+    u8 temp_v0;
+    s32 var_v1 = 0;
+
+    temp_v0 = *arg0++;
+    if (temp_v0 != 0) {
+        do {
+            temp_v0 = *arg0;
+            var_v1++;
+            arg0++;
+        } while (temp_v0 != 0);
+    }
+    return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E71B8.s")
 
