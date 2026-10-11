@@ -195,7 +195,103 @@ void bstaxi_entrypoint_27(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_29.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_30.s")
+void bstaxi_entrypoint_30(void *arg0) {
+    void _babackpack_entrypoint_6(void *, f32 *, s32);
+    void _babackpack_set_state(void *, s32);
+    s32 _bapackctrl_entrypoint_1(void *);
+    s32 _bapackctrl_entrypoint_5(void *, s32);
+    s32 _batimer_decrement(void *, s32);
+    f32 _batimer_get(void *, s32);
+    void _subaddietaxi_entrypoint_8(s32, f32 *, f32, f32, s32);
+    s32 baanim_isAt(void *, f32);
+    s32 baanim_isStopped(void *);
+    s32 baflag_clear(void *, s32);
+    s32 baflag_isTrue(void *, s32);
+    s32 baflag_set(void *, s32);
+    void baphysics_set_target_horizontal_velocity(void *, f32);
+    s32 bs_setState(void *, s32);
+    void func_8009D3A8(void *, s32);
+    void func_8009DC98(void *, s32, f32, f32);
+    void func_8009DF18(void *, s32, f32, s32);
+    void func_8009DFD4(void *, s32, f32, f32, s32, s32);
+    void func_8009E55C(void *, s32, f32);
+    void func_800A0CD0(void *, s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 next_state;
+    f32 position[3];
+    f32 progress;
+    f32 scale;
+
+    next_state = 0;
+    func_8009D3A8(arg0, 0);
+    switch (*(u8 *)((u8 *)arg0 + 0x15C)) {
+    case 1:
+        func_80800000_bstaxi(arg0);
+        if (baflag_isTrue(arg0, 0x33)) {
+            baflag_clear(arg0, 0x33);
+        }
+        if (baanim_isAt(arg0, 0.2f)) {
+            baflag_set(arg0, 0x33);
+        }
+        if (baanim_isAt(arg0, 0.35f)) {
+            func_80801600_bstaxi(arg0, 3);
+        }
+        break;
+    case 2:
+        if (baanim_isAt(arg0, 0.44f)) {
+            func_8009DC98(arg0, 0x5AC, 0.95f, 1.05f);
+        }
+        if (baanim_isAt(arg0, 0.64f)) {
+            baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+        }
+        _babackpack_entrypoint_6(arg0, position, 0);
+        scale = func_800F10B4(_batimer_get(arg0, 0), 0.0f, 0.5f, 0.0f, 1.0f);
+        progress = func_800F10B4(_batimer_get(arg0, 0), 0.19999999f, 0.5f, 0.0f, 1.0f);
+        _subaddietaxi_entrypoint_8(*(s32 *)((u8 *)arg0 + 0x160), position, progress, scale, _bapackctrl_entrypoint_1(arg0));
+        if (_batimer_decrement(arg0, 0)) {
+            func_80801600_bstaxi(arg0, 4);
+        }
+        break;
+    case 3:
+        if (baanim_isAt(arg0, 0.64f)) {
+            baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+        }
+        if (baanim_isStopped(arg0)) {
+            next_state = 0x125;
+        }
+        break;
+    case 4:
+        if (baanim_isStopped(arg0)) {
+            func_80801600_bstaxi(arg0, 5);
+        }
+        break;
+    case 5:
+        if (baanim_isAt(arg0, 0.1f)) {
+            func_8009DF18(arg0, 0x5AF, 1.0f, 0x6D60);
+        }
+        if (baanim_isAt(arg0, 0.3f)) {
+            func_8009DF18(arg0, 0x5AF, 0.9f, 0x6D60);
+        }
+        if (baanim_isAt(arg0, 0.5f)) {
+            func_8009DFD4(arg0, 0x5AE, 0.95f, 1.05f, 0x4E20, 0x55F0);
+        }
+        if (baanim_isAt(arg0, 0.707f)) {
+            _babackpack_set_state(arg0, 1);
+            func_800A0CD0(arg0, 1);
+            _bapackctrl_entrypoint_5(arg0, 5);
+            func_8009E55C(arg0, 2, 0.0f);
+        }
+        if (baanim_isStopped(arg0)) {
+            if (*(f32 *)((u8 *)arg0 + 0x16C) != 0.0f) {
+                next_state = 0x6F;
+            } else {
+                next_state = 1;
+            }
+        }
+        break;
+    }
+    bs_setState(arg0, next_state);
+}
 
 s32 bstaxi_entrypoint_31(s32 arg0) {
     extern s32 D_808021E8_bstaxi[];
