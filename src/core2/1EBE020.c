@@ -70,7 +70,167 @@ void func_800E4CE8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E4D28.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E4E54.s")
+s32 func_800E4E54(void *arg0) {
+    struct code {
+        u8 e;
+        u8 b;
+        union {
+            u16 n;
+            struct code *t;
+        } v;
+    };
+    struct decoder {
+        u8 *input;
+        s32 input_pos;
+        u8 *output;
+        u32 bits;
+        u32 count;
+        u32 output_pos;
+        struct code *tl;
+        struct code *td;
+        s32 bl;
+        s32 bd;
+        s32 unused28;
+        s32 unused2c;
+        s32 offset;
+        s32 unused34;
+        s32 unused38;
+        s16 limit;
+    };
+    void func_8001311C(u8 *, s32);
+    extern u16 D_801232C0[];
+    register unsigned int e;
+    struct code *t;
+    register u32 b;
+    register unsigned int k;
+    u32 ml;
+    u32 md;
+    s32 counter = 0;
+    struct code *tl;
+    struct code *td;
+    u8 *slide;
+    unsigned int w;
+
+    slide = ((struct decoder *)arg0)->output;
+    tl = ((struct decoder *)arg0)->tl;
+    td = ((struct decoder *)arg0)->td;
+    b = ((struct decoder *)arg0)->bits;
+    k = ((struct decoder *)arg0)->count;
+    w = ((struct decoder *)arg0)->output_pos;
+    ml = D_801232C0[((struct decoder *)arg0)->bl];
+    md = D_801232C0[((struct decoder *)arg0)->bd];
+    for (;;) {
+        if (k < ((struct decoder *)arg0)->bl) {
+            do {
+                if (((struct decoder *)arg0)->input_pos >= 0x1800) {
+                    ((struct decoder *)arg0)->input_pos = 0;
+                    func_8001311C(((struct decoder *)arg0)->input, ((struct decoder *)arg0)->offset);
+                    ((struct decoder *)arg0)->offset += 0x1800;
+                }
+                b |= (u32)((struct decoder *)arg0)->input[((struct decoder *)arg0)->input_pos++] << k;
+                k += 8;
+            } while (k < ((struct decoder *)arg0)->bl);
+        }
+        t = tl + (b & ml);
+        e = t->e;
+        while (e > 16) {
+            b >>= t->b;
+            k -= t->b;
+            e -= 16;
+            while (k < e) {
+                if (((struct decoder *)arg0)->input_pos >= 0x1800) {
+                    ((struct decoder *)arg0)->input_pos = 0;
+                    func_8001311C(((struct decoder *)arg0)->input, ((struct decoder *)arg0)->offset);
+                    ((struct decoder *)arg0)->offset += 0x1800;
+                }
+                b |= (u32)((struct decoder *)arg0)->input[((struct decoder *)arg0)->input_pos++] << k;
+                k += 8;
+            }
+            t = t->v.t + (b & D_801232C0[e]);
+            e = t->e;
+        }
+        b >>= t->b;
+        k -= t->b;
+        if (e == 16) {
+            slide[w++] = t->v.n;
+        } else {
+            unsigned int n;
+            unsigned int d;
+            u8 *dest;
+            if (e == 15) {
+                break;
+            }
+            dest = slide + w;
+            while (k < e) {
+                if (((struct decoder *)arg0)->input_pos >= 0x1800) {
+                    ((struct decoder *)arg0)->input_pos = 0;
+                    func_8001311C(((struct decoder *)arg0)->input, ((struct decoder *)arg0)->offset);
+                    ((struct decoder *)arg0)->offset += 0x1800;
+                }
+                b |= (u32)((struct decoder *)arg0)->input[((struct decoder *)arg0)->input_pos++] << k;
+                k += 8;
+            }
+            n = t->v.n + (b & D_801232C0[e]);
+            b >>= e;
+            k -= e;
+            while (k < ((struct decoder *)arg0)->bd) {
+                if (((struct decoder *)arg0)->input_pos >= 0x1800) {
+                    ((struct decoder *)arg0)->input_pos = 0;
+                    func_8001311C(((struct decoder *)arg0)->input, ((struct decoder *)arg0)->offset);
+                    ((struct decoder *)arg0)->offset += 0x1800;
+                }
+                b |= (u32)((struct decoder *)arg0)->input[((struct decoder *)arg0)->input_pos++] << k;
+                k += 8;
+            }
+            t = td + (b & md);
+            e = t->e;
+            while (e > 16) {
+                b >>= t->b;
+                k -= t->b;
+                e -= 16;
+                while (k < e) {
+                    if (((struct decoder *)arg0)->input_pos >= 0x1800) {
+                        ((struct decoder *)arg0)->input_pos = 0;
+                        func_8001311C(((struct decoder *)arg0)->input, ((struct decoder *)arg0)->offset);
+                        ((struct decoder *)arg0)->offset += 0x1800;
+                    }
+                    b |= (u32)((struct decoder *)arg0)->input[((struct decoder *)arg0)->input_pos++] << k;
+                    k += 8;
+                }
+                t = t->v.t + (b & D_801232C0[e]);
+                e = t->e;
+            }
+            b >>= t->b;
+            k -= t->b;
+            while (k < e) {
+                if (((struct decoder *)arg0)->input_pos >= 0x1800) {
+                    ((struct decoder *)arg0)->input_pos = 0;
+                    func_8001311C(((struct decoder *)arg0)->input, ((struct decoder *)arg0)->offset);
+                    ((struct decoder *)arg0)->offset += 0x1800;
+                }
+                b |= (u32)((struct decoder *)arg0)->input[((struct decoder *)arg0)->input_pos++] << k;
+                k += 8;
+            }
+            d = w - t->v.n - (b & D_801232C0[e]);
+            b >>= e;
+            k -= e;
+            do {
+                w++;
+                *dest++ = slide[d++];
+            } while (--n);
+        }
+        if (counter++ > ((struct decoder *)arg0)->limit) {
+            ((struct decoder *)arg0)->output_pos = w;
+            ((struct decoder *)arg0)->bits = b;
+            ((struct decoder *)arg0)->count = k;
+            return 1;
+        }
+    }
+    ((struct decoder *)arg0)->output_pos = w;
+    ((struct decoder *)arg0)->bits = b;
+    ((struct decoder *)arg0)->count = k;
+    return 0;
+}
 
 s32 func_800E5390(void *arg0) {
     struct code {
