@@ -46,7 +46,17 @@ void func_8080014C_chmole_maya(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_maya/func_80800180_chmole_maya.s")
+s32 func_80800180_chmole_maya(Actor *arg0, s32 arg1, s32 arg2) {
+    switch (arg1) {
+    case 0x2E:
+        _capod_entrypoint_14();
+        func_800FFAB0(arg0);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 OSThread *chmole_maya_entrypoint_1(void)
 {
