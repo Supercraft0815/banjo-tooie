@@ -18,7 +18,11 @@ s32 func_800BA198(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA22C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA28C.s")
+int func_800BA28C(void *arg0) {
+    return ((*(s32 *)((s8 *)arg0 + 0x90) -
+             *(s32 *)((s8 *)arg0 + 0x8C)) / 60 == 0) &&
+           (*(u8 *)((s8 *)arg0 + 7) == 2);
+}
 
 /* extern */
 
