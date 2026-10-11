@@ -103,7 +103,10 @@ void badrone_entrypoint_17(void *arg0) {
     _badata_entrypoint_23();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/drone/badrone_entrypoint_18.s")
+void badrone_entrypoint_18(void *arg0, s32 arg1) {
+    (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x54)))) + (0x48))) = arg1;
+    func_80800348_badrone(arg0, 0xC);
+}
 
 void badrone_entrypoint_19(s32 arg0)
 {
