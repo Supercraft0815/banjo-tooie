@@ -1,6 +1,17 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/flasha/idflasha_entrypoint_0.s")
+void idflasha_entrypoint_0(s16 arg0, u32 arg1, u8 *arg2, s32 arg3, s16 *arg4) {
+    s32 value = *arg4;
+    u32 end = (arg3 << 4) + arg1;
+
+    if (arg1 < end) {
+        do {
+            arg1 += 0x10;
+            arg2 += 0x10;
+            arg2[-1] = value;
+        } while (arg1 < end);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/flasha/func_80800038_idflasha.s")
 
