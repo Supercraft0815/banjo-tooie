@@ -37,7 +37,14 @@ void func_80800174_chfaircoinbox(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/func_808002CC_chfaircoinbox.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/chfaircoinbox_entrypoint_0.s")
+/* extern */
+
+s32 chfaircoinbox_entrypoint_0(Unk80132ED0 *arg0, f32 *arg1) {
+    s32 func_800EE7F8(s32, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    func_800EE7F8((s32) arg1, (s32) ((u8 *) func_80106790(arg0) + 4));
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/chfaircoinbox_entrypoint_1.s")
 
