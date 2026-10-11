@@ -202,7 +202,15 @@ void gcnewoption_entrypoint_32(void *arg0, s16 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_35.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_36.s")
+void gcnewoption_entrypoint_36(void *arg0) {
+    struct Flags {
+        u8 pad[0x1C];
+        u8 upper : 3;
+        u8 enabled : 1;
+        u8 lower : 4;
+    };
+    ((struct Flags *)arg0)->enabled = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80802B24_gcnewoption.s")
 
