@@ -133,7 +133,15 @@ void func_8008B2DC(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)arg0 + 0) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B2E8.s")
+void func_8008B2E8(AnimCtrl *arg0, s32 arg1) {
+    struct Flags {
+        u8 padding[0x1B];
+        u8 high : 3;
+        u8 smooth : 2;
+        u8 low : 3;
+    };
+    ((struct Flags *)arg0)->smooth = arg1;
+}
 
 /* extern */
 
