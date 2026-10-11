@@ -1,6 +1,9 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80800000_bstnt.s")
+void func_80800000_bstnt(void *arg0) {
+    void func_8009DF94(void *, s32, f32, s32);
+    func_8009DF94(arg0, 0x504, 1.0f, 0x7FFF);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80800028_bstnt.s")
 
