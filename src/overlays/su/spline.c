@@ -20,7 +20,9 @@ void suspline_entrypoint_3(f32 arg0[][3], s32 arg1, f32 *arg2) {
     func_800EE7F8(arg2, arg0[arg1]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_4.s")
+f32 suspline_entrypoint_4(s32 arg0, s32 arg1) {
+    return ((f32 *)arg0)[arg1 + 12];
+}
 
 /* extern */
 
