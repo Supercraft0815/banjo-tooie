@@ -41,4 +41,8 @@ u32 func_800BCC84(void) {
     return *(u8 *)((u8 *)&D_801282ED + 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E95F80/func_800BCC90.s")
+void func_800BCC90(Gfx **arg0) {
+    extern s32 D_80128338;
+    gSPMatrix((*arg0)++, &D_80128338 - 0x20000000,
+              G_MTX_PROJECTION | G_MTX_MUL | G_MTX_NOPUSH);
+}
