@@ -5,7 +5,21 @@ void func_80102EC0(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC7B0/func_80102EC8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC7B0/func_80102F14.s")
+s32 func_80102F14(void *arg0) {
+    struct Flags {
+        u8 pad[0x74];
+        u32 : 13;
+        u32 flag : 1;
+        u32 : 18;
+    };
+    struct Flags *flags = arg0;
+
+    if (flags->flag) {
+        return 1;
+    }
+    flags->flag = 1;
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC7B0/func_80102F44.s")
 
