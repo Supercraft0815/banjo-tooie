@@ -12,7 +12,243 @@ void sucoaster_entrypoint_1(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_8080027C_sucoaster.s")
+void func_8080027C_sucoaster(Actor *arg0, void *arg1) {
+    typedef struct {
+        u8 pad0[0x10];
+        s16 radius;
+        u8 unk12;
+        s8 speed;
+        u8 pad14[2];
+        u8 counter;
+        u8 pad17;
+        u32 track : 4;
+        u32 pad18_26 : 2;
+        u32 alternate : 1;
+        u32 direction : 1;
+        u32 route : 1;
+        u32 pad18_22 : 1;
+        u32 hit : 1;
+        u32 pad18_0 : 21;
+    } CoasterData;
+    typedef struct {
+        u8 pad0[0x78];
+        u32 pad78_4 : 28;
+        u32 busy : 1;
+        u32 pad78_0 : 3;
+    } ActorFlags;
+    void _subaddiefade_entrypoint_3(Actor *);
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    void _subaddierouteDll_entrypoint_6(Actor *, void *, u8, s32, f32, s32, s32);
+    s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    void *_sucoasterdata_entrypoint_1(u32);
+    s32 _sucoasterdata_entrypoint_3(u32);
+    s32 _sucoasterhit_entrypoint_1(void *);
+    s32 _sucoasterhit_entrypoint_2(void *);
+    s32 func_8001210C(s32);
+    s32 func_800D9058(f32);
+    f32 func_800DC178(f32, f32);
+    s32 func_800DC298(f32);
+    s32 func_80101DDC(Actor *);
+    void func_80102924(void *, f32);
+    void func_80102BF8(void *, s32, f32, f32);
+    s32 func_80102CF4(Actor *, f32);
+    s32 func_80107070(Actor *, s32);
+    void func_808020B8_sucoaster(Actor *, void *, f32);
+    f32 func_8080230C_sucoaster(Actor *, void *);
+    s32 func_80802400_sucoaster(Actor *, void *);
+    s32 func_80802550_sucoaster(s32, s32);
+    f32 func_8080264C_sucoaster(void *, s32);
+    s32 sucoaster_entrypoint_7(Actor *, s32, f32);
+    void sucoaster_entrypoint_8(Actor *);
+    s32 sucoaster_entrypoint_9(Actor *, s32, s32);
+    s32 sucoaster_entrypoint_10(Actor *, s32);
+    void sucoaster_entrypoint_11(Actor *, f32);
+    s32 sucoaster_entrypoint_13(Actor *);
+    s32 sucoaster_entrypoint_14(Actor *);
+    void sucoaster_entrypoint_15(Actor *);
+    s32 sucoaster_entrypoint_16(Actor *, s32);
+    void sucoaster_entrypoint_19(Actor *);
+    u8 *config;
+    s32 choice1;
+    s32 choice2;
+    s32 choice3;
+    f32 turn;
+    u8 counter;
+    f32 direction;
+
+    config = _sucoasterdata_entrypoint_1(((CoasterData *)arg1)->track);
+    switch (arg0->unk70_10) {
+    case 1:
+        choice1 = func_800DC298(0.5f) ? 2 : 3;
+        if (!sucoaster_entrypoint_9(arg0, choice1, 0)) {
+            sucoaster_entrypoint_9(arg0, 3, 0);
+        }
+        break;
+    case 2:
+        sucoaster_entrypoint_19(arg0);
+        if (arg0->unk58 <= 0.0f && func_800DC298(0.03f)) {
+            if (((CoasterData *)arg1)->alternate) {
+                sucoaster_entrypoint_9(arg0, 3, 2);
+                ((CoasterData *)arg1)->alternate = 0;
+            } else if (sucoaster_entrypoint_9(arg0, 3, 0)) {
+                _subaddierouteDll_entrypoint_6(arg0, arg1, ((CoasterData *)arg1)->counter, 0, 1.0f, 10, 45);
+            }
+        }
+        sucoaster_entrypoint_13(arg0);
+        sucoaster_entrypoint_8(arg0);
+        break;
+    case 3:
+        _subaddierouteDll_entrypoint_6(arg0, arg1, ((CoasterData *)arg1)->counter, 7, 0.6f, 4, 8);
+        if (!(((CoasterData *)arg1)->counter & 7) && arg0->unk58 <= 0.0f && func_800DC298(0.01f)) {
+            choice2 = func_800DC298(0.3f) ? 4 : 2;
+            sucoaster_entrypoint_9(arg0, choice2, 0);
+        }
+        if (!sucoaster_entrypoint_7(arg0, 0x802, 30.0f)) {
+            sucoaster_entrypoint_13(arg0);
+        }
+        break;
+    case 4:
+        _subaddierouteDll_entrypoint_6(arg0, arg1, ((CoasterData *)arg1)->counter, 7, 0.6f, 4, 8);
+        if (arg0->unk58 <= 0.0f && func_800DC298(0.02f)) {
+            sucoaster_entrypoint_9(arg0, 3, 0);
+        }
+        if (!sucoaster_entrypoint_7(arg0, 0x802, 30.0f)) {
+            sucoaster_entrypoint_13(arg0);
+        }
+        break;
+    case 5:
+        if (sucoaster_entrypoint_14(arg0)) {
+            if (sucoaster_entrypoint_9(arg0, 2, 0)) {
+                arg0->unk6C_0 = func_800D9058(2.0f);
+            }
+        } else if (!_subaddierouteDll_entrypoint_7(arg0, arg1, arg0->unk54, func_8080264C_sucoaster(arg0, (s32)arg1), ((CoasterData *)arg1)->radius, 0x5802)) {
+            if (sucoaster_entrypoint_9(arg0, 2, 0)) {
+                arg0->unk6C_0 = func_800D9058(2.0f);
+            }
+        } else {
+            func_808020B8_sucoaster(arg0, arg1, 1.0f);
+            if (func_80102CF4(arg0, 15.0f)) {
+                choice3 = ((CoasterData *)arg1)->unk12 ? 8 : 7;
+                sucoaster_entrypoint_9(arg0, choice3, 0);
+            }
+        }
+        sucoaster_entrypoint_8(arg0);
+        break;
+    case 6:
+        func_80102BF8(arg0, *(s32 *)(config + 0x4C), *(s16 *)(config + 0x50), *(s16 *)(config + 0x52));
+        if (func_80102CF4(arg0, 20.0f)) {
+            if (((u8 *)arg0)[0x74] & 1) {
+                sucoaster_entrypoint_9(arg0, 18, 0);
+                ((CoasterData *)arg1)->alternate = 0;
+            } else {
+                sucoaster_entrypoint_9(arg0, 3, 2);
+                ((CoasterData *)arg1)->alternate = 0;
+            }
+        }
+        sucoaster_entrypoint_8(arg0);
+        break;
+    case 7:
+        sucoaster_entrypoint_16(arg0, 0);
+        arg0->unk54 = func_8080264C_sucoaster(arg0, (s32)arg1);
+        func_808020B8_sucoaster(arg0, arg1, 1.0f);
+        if (func_80101DDC(arg0)) {
+            if (sucoaster_entrypoint_14(arg0)) {
+                if (sucoaster_entrypoint_9(arg0, 3, 0)) {
+                    _subaddierouteDll_entrypoint_6(arg0, arg1, ((CoasterData *)arg1)->counter, 0, 1.0f, 40, 70);
+                    arg0->unk6C_0 = func_800D9058(2.0f);
+                }
+            } else {
+                sucoaster_entrypoint_9(arg0, 8, 0);
+            }
+        }
+        sucoaster_entrypoint_8(arg0);
+        break;
+    case 8:
+        sucoaster_entrypoint_11(arg0, _sucoasterdata_entrypoint_3(((CoasterData *)arg1)->track));
+        if (sucoaster_entrypoint_14(arg0)) {
+            sucoaster_entrypoint_15(arg0);
+        } else {
+            if (((CoasterData *)arg1)->route || _subaddierouteDll_entrypoint_4(arg0)) {
+                arg0->unk54 = func_8080264C_sucoaster(arg0, (s32)arg1);
+            }
+            if (*(u16 *)(config + 0x4A) && func_80102CF4(arg0, 80.0f) && func_80802400_sucoaster(arg0, arg1)) {
+                sucoaster_entrypoint_9(arg0, 9, 0);
+            }
+        }
+        sucoaster_entrypoint_7(arg0, 0x5802, 30.0f);
+        break;
+    case 9:
+        if (((CoasterData *)arg1)->route || _subaddierouteDll_entrypoint_4(arg0)) {
+            arg0->unk54 = func_8080264C_sucoaster(arg0, (s32)arg1);
+        }
+        sucoaster_entrypoint_7(arg0, 0x5802, 30.0f);
+        sucoaster_entrypoint_16(arg0, 1);
+        sucoaster_entrypoint_16(arg0, 6);
+        if (!((CoasterData *)arg1)->hit && sucoaster_entrypoint_16(arg0, 5)) {
+            _sucoasterhit_entrypoint_2(arg0);
+        }
+        if (func_80101DDC(arg0)) {
+            if (!sucoaster_entrypoint_13(arg0)) {
+                sucoaster_entrypoint_9(arg0, 3, 0);
+            }
+        }
+        break;
+    case 10:
+        sucoaster_entrypoint_11(arg0, _sucoasterdata_entrypoint_3(((CoasterData *)arg1)->track));
+        if (func_80802550_sucoaster((s32)arg0, (s32)arg1)) {
+            sucoaster_entrypoint_15(arg0);
+        } else if (((CoasterData *)arg1)->route || _subaddierouteDll_entrypoint_4(arg0)) {
+            arg0->unk54 = func_8080230C_sucoaster(arg0, arg1);
+        }
+        sucoaster_entrypoint_7(arg0, 0x4802, 30.0f);
+        break;
+    case 11:
+        sucoaster_entrypoint_16(arg0, 2);
+        if (func_80101DDC(arg0) && !((ActorFlags *)arg0)->busy) {
+            if (((u8 *)arg0)[0x74] & 1) {
+                sucoaster_entrypoint_9(arg0, 18, 0);
+            } else {
+                sucoaster_entrypoint_9(arg0, 3, 0);
+            }
+        }
+        sucoaster_entrypoint_8(arg0);
+        break;
+    case 12:
+        sucoaster_entrypoint_19(arg0);
+        if (func_80101DDC(arg0) && !((ActorFlags *)arg0)->busy && !func_80107070(arg0, 2)) {
+            sucoaster_entrypoint_10(arg0, 13);
+            _subaddiefade_entrypoint_3(arg0);
+        }
+        sucoaster_entrypoint_16(arg0, 3);
+        break;
+    case 13:
+        sucoaster_entrypoint_19(arg0);
+        break;
+    case 14:
+        sucoaster_entrypoint_19(arg0);
+        break;
+    case 15:
+        _sucoasterhit_entrypoint_1(arg0);
+        break;
+    case 17:
+        sucoaster_entrypoint_19(arg0);
+        break;
+    case 18:
+        sucoaster_entrypoint_11(arg0, _sucoasterdata_entrypoint_3(((CoasterData *)arg1)->track));
+        choice1 = ((CoasterData *)arg1)->counter;
+        if ((!choice1 & 0x1B) && !func_8001210C(7)) {
+            direction = ((CoasterData *)arg1)->direction ? 1.0f : -1.0f;
+            turn = func_800DC178(30.0f, 40.0f);
+            func_80102924(arg0, arg0->unk54 + turn * direction);
+        }
+        if (!(((u8 *)arg0)[0x74] & 1)) {
+            sucoaster_entrypoint_9(arg0, 3, 0);
+        } else {
+            sucoaster_entrypoint_7(arg0, 0x4000, 30.0f);
+        }
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_3.s")
 
