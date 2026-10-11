@@ -1,6 +1,9 @@
 #include "bs/trexsmall.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80800000_bstrexsmall.s")
+int func_80800000_bstrexsmall(PlayerState *arg0) {
+    s32 func_800C6E38(s32);
+    return bakey_pressed(arg0, BUTTON_B) && func_800C6E38(0x20);
+}
 
 int func_8080003C_bstrexsmall(PlayerState* arg0)
 {
