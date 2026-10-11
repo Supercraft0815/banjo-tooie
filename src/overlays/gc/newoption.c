@@ -276,4 +276,12 @@ s32 gcnewoption_entrypoint_47(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_49.s")
+void gcnewoption_entrypoint_49(void *arg0, s32 arg1) {
+    struct Flags {
+        u8 padding[0x1D];
+        u8 upper : 6;
+        u8 flag : 1;
+        u8 lower : 1;
+    };
+    ((struct Flags *)arg0)->flag = arg1;
+}
