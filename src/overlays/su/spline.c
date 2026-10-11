@@ -51,7 +51,9 @@ s32 suspline_entrypoint_10(s32 arg0, s32 arg1) {
     return ((s16 *)arg0)[arg1 + 0x34] + arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_11.s")
+s32 suspline_entrypoint_11(s32 arg0, s32 arg1) {
+    return arg0 + *(s16 *)((s8 *)arg0 + (arg1 * 2) + 0x70);
+}
 
 void suspline_entrypoint_12(void *arg0, s8 arg1) {
     (*(s8 *)((s8 *)(arg0) + (0x8A))) = arg1;
