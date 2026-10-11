@@ -43,4 +43,13 @@ void func_80800024_chcrate(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crate/func_80800380_chcrate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crate/func_808003AC_chcrate.s")
+s16 func_808003AC_chcrate(s32 arg0) {
+    extern s16 D_8080053C_chcrate[];
+    s32 index;
+
+    index = arg0 - 0x32;
+    if (index > 0) {
+        return D_8080053C_chcrate[index];
+    }
+    return 0;
+}
