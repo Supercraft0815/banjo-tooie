@@ -163,7 +163,12 @@ void func_80015CC0(void *arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4) {
     *arg4 = (s32) (*(s16 *)((s8 *)(arg0) + (0xA)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80015CE8.s")
+void func_80015CE8(void *arg0, void *arg1) {
+    f32 func_80015D14(void *);
+    void func_800CA510(void *, f32);
+
+    func_800CA510(arg1, func_80015D14(arg0));
+}
 
 f32 func_80015D14(void *arg0) {
     extern f32 D_80041710;
