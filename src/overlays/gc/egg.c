@@ -19,7 +19,10 @@ u8 gcegg_entrypoint_4(s32 arg0) {
     return D_8080020C_gcegg[arg0 * 14];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/egg/gcegg_entrypoint_5.s")
+u8 gcegg_entrypoint_5(s32 arg0) {
+    extern u8 D_80800209_gcegg[];
+    return D_80800209_gcegg[arg0 * 14];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/egg/gcegg_entrypoint_6.s")
 
