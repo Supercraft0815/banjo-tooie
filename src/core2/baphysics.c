@@ -35,7 +35,10 @@ s32 func_8009AE00()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009B450.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009B4D0.s")
+void func_8009B4D0(void *arg0, s32 arg1) {
+    s32 func_800EE7F8();
+    func_800EE7F8(arg1, *(s32 *)((u8 *)arg0 + 0xC8) + 0x28);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009B4FC.s")
 
