@@ -108,7 +108,9 @@ u32 anctrl_getPlaybackType(u8 *arg0) {
     return arg0[26];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B28C.s")
+s32 func_8008B28C(AnimCtrl *arg0) {
+    return (u32) (*(u8 *)((s8 *)arg0 + 0x1B)) >> 7;
+}
 
 u32 func_8008B29C(void *arg0) {
     return (u32) ((*(s32 *)((s8 *)(arg0) + (0x18))) << 0x19) >> 0x1F;
