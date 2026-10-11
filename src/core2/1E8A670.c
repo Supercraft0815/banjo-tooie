@@ -40,7 +40,14 @@ void func_800B21CC(void *arg0, void *arg1, void *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B2248.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B2324.s")
+u8 *func_800B2324(u8 *arg0, u8 **arg1, u8 **arg2) {
+    u8 *base;
+
+    base = arg0 + 0x18;
+    *arg1 = base;
+    *arg2 = (u8 *)((((u32)*(u16 *)(arg0 + 0x16) >> 1) * 0x10) + (u32)*arg1);
+    return base;
+}
 
 u32 func_800B2344(void *arg0) {
     return (u32) (*(u16 *)((s8 *)arg0 + 0x16)) >> 1;
