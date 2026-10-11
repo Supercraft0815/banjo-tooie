@@ -80,7 +80,17 @@ void func_8009FFD8(PlayerState *arg0, enum baanim_update_type_e anim_update_type
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A00CC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A0110.s")
+/* extern */
+
+void func_800A0110(AnimCtrl *arg0, AnimCtrl *arg1) {
+    s32 _badata_entrypoint_3(AnimCtrl *, enum asset_e *, f32 *);
+    f32 sp1C;
+    enum asset_e sp18;
+
+    _badata_entrypoint_3(arg0, &sp18, &sp1C);
+    anctrl_setIndex(arg1, sp18);
+    anctrl_setDuration(arg1, sp1C);
+}
 
 /* extern */
 
