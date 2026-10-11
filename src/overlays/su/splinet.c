@@ -87,7 +87,86 @@ s32 susplinet_entrypoint_15(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/func_80800620_susplinet.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/func_808007D0_susplinet.s")
+f32 func_808007D0_susplinet(u8 *arg0, f32 arg1, s16 *arg2, u8 *arg3) {
+    void _mlspline_entrypoint_4(f32, s32, u8 *, f32 *);
+    s32 func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    s32 func_800EEDE8(u8 *, u8 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    u8 *times;
+    u8 *speeds;
+    s32 index;
+    f32 distances[30];
+    s32 i;
+    f32 current[3];
+    f32 previous[3];
+    f32 *cursor;
+    f32 middle;
+    f32 end;
+    f32 start;
+    f32 duration;
+    f32 base;
+    f32 fraction;
+    f32 speed;
+    f32 progress;
+    f32 area;
+    f32 distance;
+    f32 half;
+
+    times = arg0;
+    speeds = arg0;
+    times += *(s16 *)(arg0 + 0x30);
+    speeds += *(s16 *)(arg0 + 0x34);
+    if ((f32)((s16 *)times)[arg2[2]] <= arg1) {
+        return 0.666f;
+    }
+    if (arg1 <= (f32)((s16 *)times)[arg2[1]]) {
+        return 0.333f;
+    }
+    if (func_800EEDE8(arg3 + 0xC, arg3 + 0x18, 25.0f)) {
+        return func_800F10B4(arg1, (f32)((s16 *)times)[arg2[1]], (f32)((s16 *)times)[arg2[2]], 0.333f, 0.666f);
+    }
+    for (i = 0; i != 30; i++) {
+        _mlspline_entrypoint_4(func_800F10B4((f32)i, 0.0f, 29.0f, 0.333f, 0.666f), 4, arg3, current);
+        if (i > 0) {
+            distances[i] = func_800EEAD4(previous, current);
+            distances[i] += (distances + i)[-1];
+        } else {
+            distances[i] = 0.0f;
+        }
+        func_800EE7F8(previous, current);
+    }
+    start = (f32)((s16 *)speeds)[arg2[1]] * 0.01f;
+    end = (f32)((s16 *)speeds)[arg2[2]] * 0.01f;
+    duration = (f32)((s16 *)times)[arg2[2]] - (f32)((s16 *)times)[arg2[1]];
+    middle = (((distances[29] * 4.0f / duration) - start) - end) * 0.5f;
+    fraction = func_800F10B4(arg1, (f32)((s16 *)times)[arg2[1]], (f32)((s16 *)times)[arg2[2]], 0.0f, 1.0f);
+    if (fraction < 0.5f) {
+        half = 0.5f * duration;
+        speed = func_800F10B4(arg1, (f32)((s16 *)times)[arg2[1]], (f32)((s16 *)times)[arg2[1]] + half, start, middle);
+        progress = func_800F10B4(arg1, (f32)((s16 *)times)[arg2[1]], (f32)((s16 *)times)[arg2[1]] + half, 0.0f, 1.0f);
+        base = start;
+    } else {
+        half = 0.5f * duration;
+        speed = func_800F10B4(arg1, (f32)((s16 *)times)[arg2[1]] + half, (f32)((s16 *)times)[arg2[2]], middle, end);
+        progress = func_800F10B4(arg1, (f32)((s16 *)times)[arg2[1]] + half, (f32)((s16 *)times)[arg2[2]], 0.0f, 1.0f);
+        base = middle;
+    }
+    if (speed < base) {
+        progress = (base + speed) * 0.25f * duration * progress;
+        distance = progress;
+    } else {
+        progress = (speed + base) * 0.25f * duration * progress;
+        distance = progress;
+    }
+    if (fraction >= 0.5f) {
+        distance += 0.25f * duration * (start + middle);
+    }
+    for (index = 0; index < 28 && (distances + index)[1] < distance; index++) {
+    }
+    cursor = distances + index;
+    return func_800F10B4(func_800F10B4(distance, cursor[0], cursor[1], (f32)index * 0.03448276f, (f32)(index + 1) * 0.03448276f), 0.0f, 1.0f, 0.333f, 0.666f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/func_80800D3C_susplinet.s")
 
