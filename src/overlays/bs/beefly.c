@@ -53,7 +53,21 @@ s32 bsbeefly_entrypoint_1(s32 arg0) {
     return ((s32 *)&D_80800E50_bsbeefly)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_80800B54_bsbeefly.s")
+/* extern */
+
+void func_80800B54_bsbeefly(void *arg0) {
+    extern s32 _bsbee_entrypoint_1();
+    extern s32 _bsrest_entrypoint_16(void *);
+    extern void baphysics_set_gravity(void *, f32);
+    extern void func_8009BA9C(void *, f32 *);
+    extern s32 func_8080039C_bsbeefly(s32);
+    void *self = arg0;
+    _bsbee_entrypoint_1(self);
+    func_8080039C_bsbeefly((s32)self);
+    _bsrest_entrypoint_16(self);
+    baphysics_set_gravity(self, 0.0f);
+    func_8009BA9C(self, 0);
+}
 
 /* extern */
 
