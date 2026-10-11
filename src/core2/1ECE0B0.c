@@ -589,7 +589,16 @@ s32 func_800F6590(s32 arg0) {
     return func_8009CBDC(temp_a0, bs_getCurrentState(temp_a0)) == 0xA;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F65D0.s")
+s32 func_800F65D0(s32 arg0) {
+    extern u8 D_8012762C;
+    s32 result;
+    if (D_8012762C == 0x1B) {
+        result = 1;
+    } else {
+        result = arg0 == D_801354DC;
+    }
+    return result;
+}
 
 /* extern */
 
