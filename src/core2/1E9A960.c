@@ -206,7 +206,10 @@ void func_800C2A90()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C395C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C39A0.s")
+s32 func_800C39A0(u8 id) {
+    u16 *p = (u16 *) ((u8 *) func_800C1414(id) + 0x7A);
+    return ((u32) *p) >> 13;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C39D0.s")
 
