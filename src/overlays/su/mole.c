@@ -133,7 +133,93 @@ void func_80800408_sumole(Actor* arg0)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mole/sumole_entrypoint_2.s")
+void sumole_entrypoint_2(Actor *arg0, s32 arg1) {
+    void sumole_entrypoint_9(Actor *);
+    void sumole_entrypoint_13(Actor *);
+    s32 temp_s1;
+    s32 temp_s1_2;
+
+    switch (arg0->unk70_10) {
+    case 1:
+        if (arg1 != 0xC) {
+            func_800C78CC(1U);
+        }
+        break;
+    case 7:
+    case 22:
+        func_800DA544(FLAG3_9F1_UNK);
+        func_808002E0_sumole(arg0, 2, 1, 2);
+        break;
+    case 3:
+        func_808002E0_sumole(arg0, 2, 0, 2);
+        break;
+    case 8:
+        sumole_entrypoint_19(arg0, 3);
+        break;
+    }
+    arg0->unk70_10 = arg1;
+    switch (arg0->unk70_10) {
+    case 13:
+        _chmolehill_entrypoint_1(func_80106790(arg0->unk3C), 7);
+        return;
+    case 3:
+        func_808002E0_sumole(arg0, 2, 1, 3);
+        sumole_entrypoint_7(arg0);
+        sumole_entrypoint_19(arg0, 3);
+        return;
+    case 14:
+        func_808002E0_sumole(arg0, 2, 1, 0);
+        sumole_entrypoint_9(arg0);
+        sumole_entrypoint_19(arg0, 3);
+        return;
+    case 7:
+        if ((s32) arg0->unk58 == 0) {
+            return;
+        }
+    default:
+        return;
+    case 11:
+        func_808002E0_sumole(arg0, 2, 1, 1);
+        sumole_entrypoint_13(arg0);
+        return;
+    case 17:
+        temp_s1 = func_8008FC28();
+        if (func_8008FC00() < temp_s1) {
+            if (func_800DA9E4(FLAG_422_FTT_JAMJARS_HEALTH_REFILL, 1) != 0) {
+                sumole_entrypoint_2(arg0, 20);
+            }
+        } else {
+            if (_chmolehill_entrypoint_3(func_80106790(arg0->unk3C)) != 0) {
+                sumole_entrypoint_2(arg0, 9);
+            } else {
+                func_800C0850();
+                sumole_entrypoint_2(arg0, 18);
+            }
+            return;
+        }
+        break;
+    case 20:
+        temp_s1_2 = func_8008FC00();
+        if (temp_s1_2 >= func_8008FC28()) {
+            if (_chmolehill_entrypoint_3(func_80106790(arg0->unk3C)) != 0) {
+                sumole_entrypoint_2(arg0, 9);
+            } else {
+                func_800C0850();
+                sumole_entrypoint_2(arg0, 18);
+            }
+            return;
+        }
+        *(f32 *) &arg0->actorData[6] = 0.2f;
+        return;
+    case 1:
+        func_800C78CC(0U);
+        func_800DA524(FLAG3_9F1_UNK);
+        func_80800408_sumole(arg0);
+        sumole_entrypoint_19(arg0, 0);
+        arg0->unk54 = (s32) arg0->unk74_7;
+        break;
+    }
+}
 
 typedef union {
     s32 i;
