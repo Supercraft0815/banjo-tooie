@@ -58,7 +58,19 @@ void bsclimb_entrypoint_8(s32 arg0) {
     baphysics_set_type(arg0, 7);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/bsclimb_entrypoint_9.s")
+/* extern */
+
+void bsclimb_entrypoint_9(s32 arg0) {
+    s32 bs_setState(s32, s32);
+    s32 func_8009CC68();
+    s32 var_a1;
+
+    var_a1 = 0;
+    if (func_8009CC68() == 0) {
+        var_a1 = 0x4F;
+    }
+    bs_setState(arg0, var_a1);
+}
 
 void bsclimb_entrypoint_10()
 {
