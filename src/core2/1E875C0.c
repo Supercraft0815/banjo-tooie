@@ -109,7 +109,18 @@ void func_800AE5F0(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800AE630.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800AE6BC.s")
+/* extern */
+
+s32 func_800AE6BC(s32 *arg0) {
+    s32 func_800E0A28(s16);
+    s16 temp_a1;
+
+    temp_a1 = ((s16 *) arg0)[6];
+    if (temp_a1 != 0) {
+        return func_800E0A28(temp_a1);
+    }
+    return arg0[2];
+}
 
 void func_800AE6FC(s16 *arg0, s16 arg1) {
     arg0[6] = arg1;
