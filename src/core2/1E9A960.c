@@ -4,7 +4,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C1104.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C11F8.s")
+void func_800C11F8(void *arg0, s32 arg1) {
+    struct Flags {
+        u8 padding[0x7A];
+        unsigned char value : 3;
+        unsigned char rest : 5;
+    };
+    ((struct Flags *)arg0)->value = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C1210.s")
 
