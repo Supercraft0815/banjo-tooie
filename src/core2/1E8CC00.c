@@ -25,7 +25,9 @@ void func_800B37A4(u8 *arg0, s32 *arg1, s32 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8CC00/func_800B37E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8CC00/func_800B388C.s")
+void func_800B388C(u8 *arg0, s32 arg1) {
+    (*(s32 *)((s8 *)(arg0) + (0x14))) = (s32) ((arg0 + 0x18) + (arg1 * 0x1C));
+}
 
 void func_800B38A8()
 {
