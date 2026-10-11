@@ -60,7 +60,106 @@ s32 func_8008E9B8(PlayerState *arg0, s32 **arg1) {
     return 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E67DA0/func_8008E9E4.s")
+void func_8008E9E4(void *arg0, s32 arg1, s32 arg2) {
+    s32 _glhittableDll_entrypoint_5(s32);
+    s32 _glhittableDll_entrypoint_6(s32);
+    s32 _glhittableDll_entrypoint_8();
+    s32 _glhittableDll_entrypoint_9(s32);
+    void _bamotor_entrypoint_1(PlayerState *, f32, f32, f32);
+    s32 baflag_set(PlayerState *, s32);
+    void func_8009AD14(void *, s32);
+    u32 func_8009BD44(void *);
+    void func_8009E7C8(PlayerState *, s32);
+    s32 func_800A1718(PlayerState *);
+    void func_800A17A8(PlayerState *, s32);
+    s32 func_800D3948(void);
+    s32 func_800F0D90(s32, s32, s32);
+    PlayerState *func_800F53D0(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F6774(s32);
+    s32 func_800F6C1C(s32);
+    void func_800F76B0(s32, s32, s32);
+    void func_800F79DC(s32, s32, s32);
+    s32 func_800F9184(void);
+    void *func_80100368(void *);
+    s32 func_8010108C(void *, s32, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_801096C8(void *, s32);
+    extern f32 D_80124B70;
+    extern f32 D_80124B74;
+    struct HitFlags {
+        u8 pad[0x5C];
+        u8 flags[1];
+    };
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    u32 sp28;
+    void *sp24;
+    PlayerState *sp20;
+    s32 sp1C;
+    register s32 result;
+
+    sp1C = (func_800D3948() == 0 || func_800F6774(func_800F54E4()) != 0) && func_800F9184() == 0;
+    sp30 = _glhittableDll_entrypoint_8(arg2);
+    sp2C = 0;
+    sp24 = func_80106790((Unk80132ED0 *)arg1);
+    sp28 = (u32)*(u16 *)((u8 *)arg0 + 0x1A) >> 5;
+    sp20 = func_800F53D0(sp28);
+    if (_glhittableDll_entrypoint_9(arg2) != 0) {
+        baflag_set(sp20, 8);
+    }
+    if ((func_8009BD44(sp20) != 3 && func_800F6C1C(sp28) != 0) || sp30 == 0) {
+        sp34 = _glhittableDll_entrypoint_5(arg2);
+        if (sp34 > 0 && sp34 < 6) {
+            sp2C = 2;
+            sp30 = sp30 - 1 < 0 ? 0 : sp30 - 1;
+        }
+        if (sp34 >= 7 && sp34 < 12 &&
+            (_glhittableDll_entrypoint_9(arg2) < 2 ||
+             (_glhittableDll_entrypoint_6(arg2) != -1 &&
+              ((struct HitFlags *)sp24)->flags[_glhittableDll_entrypoint_6(arg2)] != 0))) {
+            sp2C = 1;
+        }
+        if (sp30 != 0 && sp1C != 0) {
+            if (_glhittableDll_entrypoint_8(arg2) == 3) {
+                func_800A17A8(sp20, -999);
+            } else {
+                func_800A17A8(sp20, -sp30);
+            }
+        }
+        if (func_800A1718(sp20) == 0) {
+            sp2C = 2;
+        }
+        if (sp2C != 2 || sp1C != 0) {
+            switch (sp2C) {
+            case 0:
+                func_8009AD14(sp20, arg1);
+                func_8009E7C8(sp20, 0x72);
+                break;
+            case 1:
+                sp34 = func_800F0D90(sp34, 7, 11) - 7;
+                if ((result = func_8010108C(sp24, 0x50, (sp34 << 16) | (sp28 & 0xFFFF))) > 0) {
+                    sp34 = func_800F0D90(result - 1, 0, 4);
+                }
+                func_800F76B0(sp28, sp34 + 8, arg1);
+                _bamotor_entrypoint_1(sp20, 0.8f, (f32)sp34 + D_80124B70, 0.3f);
+                break;
+            case 2:
+                sp34 = func_800F0D90(sp34, 1, 5) - 1;
+                if ((result = func_8010108C(sp24, 0x50, (sp34 << 16) | (sp28 & 0xFFFF))) > 0) {
+                    sp34 = func_800F0D90(result - 1, 0, 4);
+                }
+                func_800F79DC(sp28, sp34 + 3, arg1);
+                _bamotor_entrypoint_1(sp20, 1.0f, (f32)sp34 + D_80124B74, 0.5f);
+                if (*(s32 *)((u8 *)func_80100368(sp24) + 0x24) & 0x03000000) {
+                    func_801096C8(sp24, **(s32 **)((u8 *)sp20 + 0xC));
+                }
+                break;
+            }
+        }
+    }
+}
 
 extern u8 D_80117CAC[];
 
