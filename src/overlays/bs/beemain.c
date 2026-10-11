@@ -1,6 +1,9 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80800000_bsbeemain.s")
+void func_80800000_bsbeemain(s32 arg0) {
+    s32 func_8009DF18(s32, s32, f32, s32);
+    func_8009DF18(arg0, 0x41F, 1.4f, 0x1F40);
+}
 
 /* extern */
 
