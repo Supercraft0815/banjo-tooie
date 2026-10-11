@@ -45,7 +45,17 @@ void func_80101870(Actor* arg0, void* arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDAEA0/func_801018A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDAEA0/func_801018D8.s")
+f32 *func_801018D8(Actor *arg0) {
+    f32 *func_80101918(f32);
+    f32 *var_v1;
+
+    if ((*(u16 *)((s8 *)(arg0) + 0x94)) & 1) {
+        var_v1 = func_80101918(arg0->scale);
+    } else {
+        var_v1 = NULL;
+    }
+    return var_v1;
+}
 
 f32 *func_80101918(f32 arg0) {
     extern f32 D_801243E0[];
