@@ -344,7 +344,81 @@ void func_80804A50_chdiggerboss(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80804EFC_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80804FE4_chdiggerboss.s")
+void func_80804FE4_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
+    struct DiggerPart { s16 pad; s16 appendage; u8 gap[4]; f32 position[3]; u8 camera; u8 alpha; u8 visible; u8 tail[5]; };
+    struct DiggerData { u8 prefix[0x34]; struct DiggerPart parts[0]; };
+    u8 *func_80100094(s32, s32);
+    s32 func_800A89F8();
+    s32 func_800E8918(u8, s32, s32, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800E3A58(f32 *);
+    void func_800DF830(s32);
+    void func_800DF744(s32, s32);
+    void func_800DF410(s32);
+    s32 func_800D674C(s32);
+    void func_800DE498(s32, u8 *, f32 *, s32, s32, s32);
+    struct DiggerData *data;
+    f32 screen[2];
+    s32 alpha;
+    u8 camera;
+    s32 visible;
+    f32 xfade;
+    f32 yfade;
+    f32 rotation[3];
+
+    data = (struct DiggerData *) func_80100094(arg0, 0);
+    camera = data->parts[arg1].camera;
+    alpha = 0;
+    visible = func_800E8918(camera, func_800A89F8(), 0, screen);
+    switch (visible) {
+        case -1:
+            if (data->parts[arg1].visible != 0) {
+                xfade = 1.0f;
+                yfade = 1.0f;
+                if (screen[0] < -30.0f || screen[0] > 334.0f) {
+                    xfade = -1.0f;
+                } else if (screen[0] <= 0.0f && screen[0] >= -30.0f) {
+                    xfade = func_800F10B4(screen[0], 0.0f, -30.0f, 1.0f, 0.0f);
+                } else if (screen[0] >= 304.0f && screen[0] <= 334.0f) {
+                    xfade = func_800F10B4(screen[0], 304.0f, 334.0f, 1.0f, 0.0f);
+                }
+                if (screen[1] < -30.0f || screen[1] > 258.0f) {
+                    yfade = -1.0f;
+                } else if (screen[1] <= 0.0f && screen[1] >= -30.0f) {
+                    yfade = func_800F10B4(screen[1], 0.0f, -30.0f, 1.0f, 0.0f);
+                } else if (screen[1] >= 228.0f && screen[1] <= 258.0f) {
+                    yfade = func_800F10B4(screen[1], 228.0f, 258.0f, 1.0f, 0.0f);
+                }
+                if (yfade != -1.0f && yfade != -1.0f) {
+                    alpha = (xfade + yfade) * 0.5f * 255.0f;
+                    visible = 1;
+                    break;
+                }
+            }
+        case 0:
+            alpha = data->parts[arg1].alpha * 0.25f;
+            if (alpha != 0) {
+                visible = 1;
+            }
+            break;
+        case 1:
+            alpha = 255;
+            break;
+        default:
+            break;
+    }
+    data->parts[arg1].alpha = (data->parts[arg1].alpha + alpha) >> 1;
+    if (visible == 1) {
+        func_800E3A58(rotation);
+        func_800DF830(0);
+        func_800DF744(1, data->parts[arg1].appendage);
+        func_800DF410(data->parts[arg1].alpha);
+        func_800DE498(arg2, (u8 *) data->parts[arg1].position, rotation, *(s32 *)(arg0 + 0x38), 0, func_800D674C(0x954));
+        data->parts[arg1].visible = 1;
+    } else {
+        data->parts[arg1].visible = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808053BC_chdiggerboss.s")
 
