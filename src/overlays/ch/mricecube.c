@@ -43,7 +43,12 @@ void func_80800734_chmricecube(void *arg0, s32 arg1) {
     func_80101870(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mricecube/func_80800778_chmricecube.s")
+void func_80800778_chmricecube(s32 arg0) {
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    extern s32 D_808008B0_chmricecube;
+    extern s32 D_808009B8_chmricecube;
+    _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, &D_808009B8_chmricecube, &D_808008B0_chmricecube, 5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mricecube/func_808007B0_chmricecube.s")
 
