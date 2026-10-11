@@ -2,7 +2,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800000_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800070_chquiz.s")
+f32 func_80800070_chquiz(s32 arg0) {
+    extern f32 D_80807004_chquiz[];
+    return *(f32 *)((s32)&D_80807004_chquiz + (arg0 * 24));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_8080008C_chquiz.s")
 
