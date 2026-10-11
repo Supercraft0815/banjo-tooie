@@ -23,7 +23,12 @@ void func_800BFF4C()
     _gcskyDll_entrypoint_1(&D_80128770);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E995C0/func_800BFF70.s")
+/* extern */
+
+void func_800BFF70(void) {
+    f32 func_800D8FF8();
+    (*(f32 *)((s8 *)(&D_80128770) + 0x134)) += func_800D8FF8();
+}
 
 s32 func_800BFFA0(s32 arg0) {
     extern s32 D_80128778[];
