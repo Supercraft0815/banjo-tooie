@@ -42,4 +42,59 @@ void idwater_entrypoint_3(WaterEffect *arg0, s32 arg1, void *arg2, s32 arg3) {
     arg0->unk1C = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/water/idwater_entrypoint_4.s")
+void idwater_entrypoint_4(void *arg0, s32 arg1, s32 arg2) {
+    s32 _glid_entrypoint_2(s32, s32, s32 *, void *);
+    f32 func_800138D0(f32);
+    f32 func_80013970(f32);
+    f32 func_800D8FF8();
+    extern s32 _idwater_entrypoint_0;
+    f32 temp_f18;
+    f32 sp30;
+    f32 scroll[2];
+    f32 var_f0;
+    f32 sp20;
+    f32 temp_f0;
+    f32 temp_f12;
+    s16 temp_v0;
+
+    temp_f0 = func_800D8FF8();
+    sp30 = temp_f0;
+    (*(f32 *)((s8 *)arg0 + 4)) = (f32) ((*(f32 *)((s8 *)arg0 + 4)) + temp_f0);
+    sp20 = func_800138D0((*(f32 *)((s8 *)arg0 + 4)) * 0.2f * 180.0f);
+    scroll[0] = ((func_80013970((*(f32 *)((s8 *)arg0 + 4)) * 0.08f * 180.0f) * 100.0f) + (150.0f * sp20)) * 0.8f;
+    sp20 = func_80013970((*(f32 *)((s8 *)arg0 + 4)) * 0.5f * 180.0f);
+    scroll[1] = ((func_800138D0((*(f32 *)((s8 *)arg0 + 4)) * 0.22f * 180.0f) * 100.0f) + (50.0f * sp20)) * 0.8f;
+    if (scroll[0] >= 0.0f) {
+        (*(s16 *)((s8 *)arg0 + 0)) = (s32) (scroll[0] + 0.5f);
+    } else {
+        (*(s16 *)((s8 *)arg0 + 0)) = (s32) (scroll[0] - 0.5f);
+    }
+    if (scroll[1] >= 0.0f) {
+        (*(s16 *)((s8 *)arg0 + 2)) = (s32) (scroll[1] + 0.5f);
+    } else {
+        (*(s16 *)((s8 *)arg0 + 2)) = (s32) (scroll[1] - 0.5f);
+    }
+    sp20 = func_800138D0((*(f32 *)((s8 *)arg0 + 4)) * 0.5f * 180.0f);
+    temp_f18 = ((*(f32 *)((s8 *)arg0 + 8)) * 0.75f * sp20) + (((*(f32 *)((s8 *)arg0 + 8)) * 0.25f) * func_80013970((*(f32 *)((s8 *)arg0 + 4)) * 0.11f * 180.0f));
+    if ((*(f32 *)((s8 *)arg0 + 0x14)) < (*(f32 *)((s8 *)arg0 + 0x1C))) {
+        (*(f32 *)((s8 *)arg0 + 0x18)) = (*(f32 *)((s8 *)arg0 + 0x14));
+        (*(f32 *)((s8 *)arg0 + 0x14)) = (f32) ((*(f32 *)((s8 *)arg0 + 0x14)) + sp30);
+        if ((*(f32 *)((s8 *)arg0 + 0x1C)) < (*(f32 *)((s8 *)arg0 + 0x14))) {
+            (*(f32 *)((s8 *)arg0 + 0x14)) = (*(f32 *)((s8 *)arg0 + 0x1C));
+        }
+    }
+    if ((*(f32 *)((s8 *)arg0 + 0x14)) < (*(f32 *)((s8 *)arg0 + 0x1C))) {
+        temp_v0 = (*(s16 *)((s8 *)arg0 + 0xC));
+        var_f0 = (f32) temp_v0;
+        var_f0 += ((*(f32 *)((s8 *)arg0 + 0x14)) / (*(f32 *)((s8 *)arg0 + 0x1C))) * (f32) ((*(s16 *)((s8 *)arg0 + 0xE)) - temp_v0);
+    } else {
+        var_f0 = (f32) (*(s16 *)((s8 *)arg0 + 0xE));
+    }
+    var_f0 += temp_f18;
+    if (var_f0 >= 0.0f) {
+        (*(s16 *)((s8 *)arg0 + 0x10)) = (s32) (var_f0 + 0.5f);
+    } else {
+        (*(s16 *)((s8 *)arg0 + 0x10)) = (s32) (var_f0 - 0.5f);
+    }
+    _glid_entrypoint_2(arg1, arg2, &_idwater_entrypoint_0, arg0);
+}
