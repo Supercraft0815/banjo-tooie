@@ -1,6 +1,16 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/hand/func_80800000_chlavahand.s")
+void func_80800000_chlavahand(void *arg0) {
+    struct Flags {
+        u8 pad0 : 7;
+        u8 flag0 : 1;
+        u8 pad1 : 7;
+        u8 flag1 : 1;
+    };
+    ((struct Flags *)((u8 *)arg0 + 0x64))->flag0 = 1;
+    ((struct Flags *)((u8 *)arg0 + 0x64))->flag1 = 0;
+    (*(f32 *)((s8 *)(arg0) + (0x54))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x38)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/hand/func_80800024_chlavahand.s")
 
