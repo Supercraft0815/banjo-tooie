@@ -1,6 +1,12 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bounce/chbounce_entrypoint_0.s")
+void chbounce_entrypoint_0(void) {
+    extern f32 D_8012716C;
+    f32 *temp_v0 = (f32 *)(u32)((u8 *)&D_8012716C + 28);
+    temp_v0[0] = 0.0f;
+    temp_v0[1] = 1.0f;
+    temp_v0[2] = 0.0;
+}
 
 void chbounce_entrypoint_1(void) {
 }
