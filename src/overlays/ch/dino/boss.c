@@ -454,7 +454,13 @@ void func_80801CDC_chdinoboss(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80801DC8_chdinoboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80801E90_chdinoboss.s")
+void func_80801E90_chdinoboss(s32 arg0, s32 arg1) {
+    u32 func_800F54E4(void);
+    s32 func_800F5EF8(s32);
+    void func_8010FFB0(s32, s32, s32);
+
+    func_8010FFB0(func_800F5EF8(func_800F54E4()), arg0, arg1);
+}
 
 /* extern */
 
