@@ -58,7 +58,15 @@ void func_800DFF64(s32 *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB93C0/func_800DFFDC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB93C0/func_800E0018.s")
+/* extern */
+
+void func_800E0018(void) {
+    s32 *defrag();
+    s32 *temp_v0;
+
+    temp_v0 = defrag();
+    *temp_v0 = (s32) temp_v0 + 8;
+}
 
 void func_800E0040(u32 *arg0) {
     arg0[0] = (u32) arg0 + 8;
