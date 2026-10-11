@@ -6,7 +6,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FDBB8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FDC28.s")
+u32 func_800FDC28(u32 arg0) {
+    extern s32 D_801359C0;
+    u32 result = (u32)&D_801359C0;
+    if (arg0 != ((u8 *)result)[0x40]) {
+        ((u8 *)result)[0x40] = arg0;
+        if (!(arg0 & 0xFF)) {
+            ((s8 *)result)[0x18] = 1;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FDC58.s")
 
