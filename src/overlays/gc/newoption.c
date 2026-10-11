@@ -250,7 +250,13 @@ s32 gcnewoption_entrypoint_39(u8 *arg0)
   return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_40.s")
+void gcnewoption_entrypoint_40(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5) {
+    (*(s16 *)((s8 *)(arg0) + (0x254))) = arg1;
+    (*(s16 *)((s8 *)(arg0) + (0x256))) = arg2;
+    (*(f32 *)((s8 *)(arg0) + (0x14))) = (f32) arg3;
+    (*(f32 *)((s8 *)(arg0) + (0x258))) = arg4;
+    (*(f32 *)((s8 *)(arg0) + (0x25C))) = arg5;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_41.s")
 
