@@ -47,7 +47,11 @@ void func_80101870(Actor* arg0, void* arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDAEA0/func_801018D8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDAEA0/func_80101918.s")
+f32 *func_80101918(f32 arg0) {
+    extern f32 D_801243E0[];
+    D_801243E0[1] = -4.0f / arg0;
+    return D_801243E0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDAEA0/func_80101934.s")
 
