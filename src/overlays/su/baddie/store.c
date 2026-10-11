@@ -164,7 +164,172 @@ u8 *func_808004FC_subaddiestore(u8 *arg0, u8 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/store/func_80800AD8_subaddiestore.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/store/func_80800B24_subaddiestore.s")
+void func_80800B24_subaddiestore(u8 *arg0, u8 *arg1) {
+    typedef struct {
+        u8 pad0[0x10];
+        u32 pad10:16;
+        u32 id:15;
+        u32 flag10:1;
+        u32 pad14;
+        u32 pad18:31;
+        u32 flag18:1;
+        u32 pad1C[2];
+        u32 index:10;
+        u32 pad24:22;
+        u32 pad28:21;
+        u32 flag28a:1;
+        u32 flag28b:1;
+        u32 value28:8;
+        u32 pad2B:1;
+    } Marker;
+    typedef struct {
+        u8 body[0x9C];
+        u8 animFlag:1;
+        u8 flag28a:1;
+        u8 flag28b:1;
+        u32 index:10;
+        u32 playback:3;
+        u32 animIndex:14;
+        u8 flag9F:1;
+        u8 pad9F:1;
+        f32 duration;
+        u16 timer;
+        u16 transition;
+        u16 start;
+        u16 end;
+        u8 loop:1;
+        u32 id:15;
+        u8 hasAnim:1;
+        u8 value28:6;
+        u32 flag10:1;
+        u32 flag18:1;
+        u8 padAF:7;
+    } Saved;
+    typedef struct { u8 data[0x48]; } Extra48;
+    typedef struct { u8 data[0x18]; } Extra18;
+    void anctrl_setDuration(s32, f32);
+    void anctrl_setIndex(s32, s32);
+    s32 anctrl_setPlaybackType(s32, s32);
+    void anctrl_setSmoothTransition(s32, s32);
+    void anctrl_setSubrange(s32, f32, f32);
+    s32 anctrl_start(s32);
+    s16 func_8001B668(s32, s32);
+    s32 func_8001B754(s16);
+    u8 *func_8001B798(s16);
+    void func_8008B10C(s32, f32);
+    void func_8008B188(s32, s32);
+    void func_8008B2DC(s32, f32);
+    f32 func_800F0D50(f32, f32, f32);
+    s32 func_80103014(u8 *);
+    s32 func_80104248(u8 *);
+    s32 func_801042B8(u8 *);
+    void func_80104328(u8 *);
+    u8 *func_8010556C(u8 *);
+    void func_80105634(u8 *);
+    u8 *func_80106E88(u8 *);
+    void func_80106EE0(u8 *);
+    void func_8010A654(u8 *, u32);
+    s32 func_80800F98_subaddiestore(u8 *);
+    void rare_memcpy(void *, void *, int);
+    Extra48 *first;
+    Extra18 *second;
+    s32 pad[7];
+    f32 timer;
+    f32 transition;
+    f32 start;
+    f32 end;
+    s32 padEnd;
+    u8 *out;
+    s32 *sizes;
+    u8 *entry;
+    s32 offset;
+    s32 i;
+    s32 anim;
+    u32 playback;
+    s16 handle;
+
+    *(u32 *)arg0 = *(u32 *)arg1;
+    out = arg0 + 0xB0;
+    *(s16 *)(arg0 + 0x8C) = *(s16 *)(arg1 + 0x8C);
+    if (*(u32 *)(arg1 + 0x7C) & 0xFFF) {
+        func_80105634(arg1);
+    }
+    if ((*(u32 *)(arg1 + 0x94) << 2) >> 22) {
+        func_80106EE0(arg1);
+    }
+    if (*(u32 *)(arg0 + 0x7C) & 0xFFF) {
+        *(u16 *)(arg0 + 0x7E) &= 0xF000;
+        first = (Extra48 *)out;
+        rare_memcpy(func_8010556C(arg0), out, 0x48);
+        out = (u8 *)(first + 1);
+    }
+    if ((*(u32 *)(arg0 + 0x94) << 2) >> 22) {
+        *(u16 *)(arg0 + 0x94) &= 0xC00F;
+        second = (Extra18 *)out;
+        rare_memcpy(func_80106E88(arg0), out, 0x18);
+        out = (u8 *)(second + 1);
+    }
+    if (func_80800F98_subaddiestore(arg0) != 0) {
+        sizes = (s32 *)out;
+        out += 0xC;
+        offset = 0;
+        entry = arg1;
+        i = 0;
+        do {
+            handle = *(s16 *)(entry + 0x82);
+            if (handle != 0) {
+                func_8001B754(handle);
+                *(s16 *)(entry + 0x82) = 0;
+            }
+            if (*sizes > 0) {
+                *(s16 *)(arg0 + offset + 0x82) = func_8001B668(0, *sizes);
+                rare_memcpy(func_8001B798(*(s16 *)(arg0 + offset + 0x82)), out, *sizes);
+                out = *sizes + out;
+            }
+            i += 4;
+            offset += 2;
+            entry += 2;
+            sizes++;
+        } while (i != 0xC);
+    }
+    rare_memcpy(arg1, arg0, 0x9C);
+    if (*(s16 *)(arg1 + 0x8C) != 0 || ((Saved *)arg0)->hasAnim) {
+        anim = func_80104248(arg1);
+        if (((Saved *)arg0)->hasAnim) {
+            if (anim == 0) {
+                anim = func_801042B8(arg1);
+            }
+            if (((Saved *)arg0)->playback != 0) {
+                anctrl_setPlaybackType(anim, ((Saved *)arg0)->playback);
+            }
+            anctrl_setIndex(anim, ((Saved *)arg0)->animIndex);
+            func_8008B188(anim, ((Saved *)arg0)->loop);
+            anctrl_setSmoothTransition(anim, ((Saved *)arg0)->animFlag);
+            anctrl_setDuration(anim, ((Saved *)arg0)->duration);
+            start = (u32)((Saved *)arg0)->start * 0.000030517578125f;
+            end = (u32)((Saved *)arg0)->end * 0.000030517578125f;
+            timer = func_800F0D50((u32)((Saved *)arg0)->timer * 0.000030517578125f, start, end);
+            transition = func_800F0D50((u32)((Saved *)arg0)->transition * 0.000030517578125f, start, end);
+            func_8008B10C(anim, timer);
+            anctrl_setSubrange(anim, start, end);
+            anctrl_start(anim);
+            func_8008B2DC(anim, transition);
+            func_8008B10C(anim, timer);
+        } else {
+            func_80104328(arg1);
+        }
+    }
+    (*(Marker **)arg1)->id = ((Saved *)arg0)->id;
+    func_8010A654(arg1, ((Saved *)arg0)->flag9F);
+    (*(Marker **)arg1)->flag28a = ((Saved *)arg0)->flag28a;
+    (*(Marker **)arg1)->flag28b = ((Saved *)arg0)->flag28b;
+    arg1[0x7E] &= ~0x80;
+    arg1[0x7E] &= 0xEF;
+    (*(Marker **)arg1)->value28 = ((Saved *)arg0)->value28;
+    (*(Marker **)arg1)->flag10 = ((Saved *)arg0)->flag10;
+    (*(Marker **)arg1)->flag18 = ((Saved *)arg0)->flag18;
+    func_80103014(arg1);
+}
 
 s32 func_80800F98_subaddiestore(u8 *arg0) {
     s32 var_v1;
