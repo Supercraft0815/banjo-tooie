@@ -80,6 +80,8 @@ void glglobalsettings_entrypoint_5(s32 *arg0, s32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/glglobalsettings_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/glglobalsettings_entrypoint_7.s")
+void glglobalsettings_entrypoint_7(void) {
+    func_800DA564(0xBC6, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/glglobalsettings_entrypoint_8.s")
