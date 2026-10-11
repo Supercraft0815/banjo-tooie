@@ -286,4 +286,257 @@ void gcdialogexec_entrypoint_9()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80802020_gcdialogexec.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/gcdialogexec_entrypoint_10.s")
+void gcdialogexec_entrypoint_10(void *arg0) {
+    typedef struct {
+        s16 code;
+        s16 pad;
+        void *text;
+    } DialogEntry;
+    typedef struct {
+        u8 mode : 2;
+        u8 busy : 2;
+        u8 unused : 4;
+    } BoxFlags;
+    typedef struct {
+        u8 pad0[0x104];
+        s32 entries[2];
+        u8 *data[2];
+        u8 pad114[2];
+        u8 index[2];
+        s16 code[2];
+        BoxFlags boxFlags[2];
+        u8 pad11E[2];
+        s32 box[2];
+        u8 pad128[0x30];
+        u8 value;
+        u8 pad159;
+        u16 flags;
+        u8 state;
+        u8 count;
+        u16 current : 1;
+        u16 pending : 1;
+        u16 unused15E : 6;
+        u32 opened : 2;
+        u32 skipped : 2;
+        u32 unused15F : 4;
+        s8 answer;
+        u8 pad161;
+        s16 dialogId;
+        u8 pad164[3];
+        u8 callerId;
+        void *caller;
+        s32 callerArg;
+    } Dialog;
+    void func_80015E80(s32, void *);
+    void func_80015ECC(s32, void *);
+    void func_80015F28(s32, void *);
+    void func_80015F5C(s32, void *);
+    s32 func_80015F0C(s32, s32);
+    int _gcaudiolist_entrypoint_0();
+    int _gcdialogcamera_entrypoint_10();
+    int _gczoombox_entrypoint_1();
+    int _gczoombox_entrypoint_7();
+    int _gczoombox_entrypoint_8();
+    int _gczoombox_entrypoint_10();
+    int _gczoombox_entrypoint_11();
+    void _gczoombox_entrypoint_12();
+    int _gczoombox_entrypoint_18();
+    int _gczoombox_entrypoint_32();
+    int _gczoombox_entrypoint_35();
+    int _gczoombox_entrypoint_37(s32, s16);
+    int _gczoombox_entrypoint_39();
+    int _subaddiedialog_entrypoint_15();
+    int func_80800478_gcdialogexec();
+    int func_80800A50_gcdialogexec();
+    int func_80801DB4_gcdialogexec();
+    int func_80802020_gcdialogexec();
+    s32 scanCode;
+    s32 i;
+    s32 result = -1;
+    s32 face[6];
+    s32 side[3];
+    s32 handled;
+    void *texts[8];
+    s32 scanIndex;
+
+    if (((Dialog *)arg0)->flags & 0x80) {
+        func_80015ECC(0, face);
+        func_80015F5C(0, side);
+    } else {
+        func_80015E80(0, face);
+        func_80015F28(0, side);
+    }
+    switch (((Dialog *)arg0)->state) {
+    case 1:
+        i = 0;
+        for (scanIndex = 0; scanIndex < 2; scanIndex++) {
+            if (((Dialog *)arg0)->box[scanIndex] == 0) {
+                i++;
+            }
+        }
+        if (i == 2) {
+            func_80800A50_gcdialogexec(arg0, 7);
+        } else if (((Dialog *)arg0)->count == ((u32)((u8 *)arg0)[0x15F] >> 6)) {
+            ((Dialog *)arg0)->opened = 0;
+            func_80800A50_gcdialogexec(arg0, 2);
+        }
+        break;
+    case 2:
+        handled = 0;
+        ((Dialog *)arg0)->code[((Dialog *)arg0)->current] = ((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + ((s32)((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8)))->code;
+        ((Dialog *)arg0)->data[((Dialog *)arg0)->current] = ((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + ((s32)((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8)))->text;
+        switch (((Dialog *)arg0)->code[((Dialog *)arg0)->current]) {
+        case -8:
+            func_80800478_gcdialogexec(arg0, *((Dialog *)arg0)->data[((Dialog *)arg0)->current]);
+            ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
+            handled = 1;
+            break;
+        case -9:
+            if (!(((Dialog *)arg0)->flags & 0x200)) {
+                _gcdialogcamera_entrypoint_10(arg0, *((Dialog *)arg0)->data[((Dialog *)arg0)->current], 0);
+            }
+            ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
+            handled = 1;
+            break;
+        case -2:
+            ((Dialog *)arg0)->value = *((Dialog *)arg0)->data[((Dialog *)arg0)->current];
+            ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
+            func_80800A50_gcdialogexec(arg0, 11);
+            handled = 1;
+            break;
+        case -1:
+            if (_subaddiedialog_entrypoint_15(((Dialog *)arg0)->caller, ((Dialog *)arg0)->dialogId, ((Dialog *)arg0)->index[((Dialog *)arg0)->current]) == 1) {
+                func_80800A50_gcdialogexec(arg0, 9);
+            }
+            ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
+            handled = 1;
+            break;
+        }
+        if (handled) {
+            break;
+        }
+        if (((Dialog *)arg0)->box[((Dialog *)arg0)->current] == 0 || _gczoombox_entrypoint_39(((Dialog *)arg0)->box[((Dialog *)arg0)->current]) || ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].busy) {
+            ((Dialog *)arg0)->current ^= 1;
+            break;
+        }
+        switch (((Dialog *)arg0)->code[((Dialog *)arg0)->current]) {
+        case -10:
+        case -11:
+            do {
+                ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
+                ((Dialog *)arg0)->code[((Dialog *)arg0)->current] = ((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + ((s32)((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8)))->code;
+            } while (((Dialog *)arg0)->code[((Dialog *)arg0)->current] == -10 || ((Dialog *)arg0)->code[((Dialog *)arg0)->current] == -11);
+            break;
+        case -4:
+            if (((Dialog *)arg0)->index[((Dialog *)arg0)->current] == 0) {
+                ((Dialog *)arg0)->skipped++;
+            }
+            _gczoombox_entrypoint_12(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+            ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].mode = 1;
+            ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].busy = 1;
+            ((Dialog *)arg0)->current ^= 1;
+            ((Dialog *)arg0)->pending = 1;
+            break;
+        case -5:
+            _gczoombox_entrypoint_12(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+            _gczoombox_entrypoint_10(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+            ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].mode = 0;
+            ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].busy = 1;
+            ((Dialog *)arg0)->current ^= 1;
+            ((Dialog *)arg0)->pending = 1;
+            break;
+        case -7:
+            for (scanIndex = ((Dialog *)arg0)->index[((Dialog *)arg0)->current]; (scanCode = ((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + scanIndex * 8))->code) < -5; scanIndex++) {}
+            if (scanCode >= 0) {
+                _gczoombox_entrypoint_37(((Dialog *)arg0)->box[((Dialog *)arg0)->current], scanCode + 12);
+            }
+            if (((Dialog *)arg0)->index[((Dialog *)arg0)->current]) {
+                _gczoombox_entrypoint_12(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+            }
+            if (((Dialog *)arg0)->index[((Dialog *)arg0)->current] == 0 && ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].mode == 2) {
+                _gczoombox_entrypoint_12(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+            }
+            ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].mode = 0;
+            ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
+            ((Dialog *)arg0)->current ^= 1;
+            ((Dialog *)arg0)->pending = 1;
+            break;
+        case -6:
+            _gczoombox_entrypoint_12(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+            ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].mode = 0;
+            ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
+            ((Dialog *)arg0)->current ^= 1;
+            ((Dialog *)arg0)->pending = 1;
+            break;
+        default:
+            if (((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + ((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8))[1].code == -10) {
+                result = func_80801DB4_gcdialogexec(arg0);
+            } else if (((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + ((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8))[1].code == -11) {
+                result = func_80802020_gcdialogexec(arg0);
+            }
+            if (!_gczoombox_entrypoint_1(((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + ((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8))->text)) {
+                ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
+                break;
+            }
+            if (func_80800000_gcdialogexec(((Dialog *)arg0)->caller, ((Dialog *)arg0)->callerArg)) {
+                _gczoombox_entrypoint_35(((Dialog *)arg0)->box[((Dialog *)arg0)->current], ((Dialog *)arg0)->caller, ((Dialog *)arg0)->callerId, ((Dialog *)arg0)->callerArg);
+            }
+            if (result == -1) {
+                if (_gczoombox_entrypoint_37(((Dialog *)arg0)->box[((Dialog *)arg0)->current], ((Dialog *)arg0)->code[((Dialog *)arg0)->current] + 12)) {
+                    _gczoombox_entrypoint_12(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+                    ((Dialog *)arg0)->pending = 1;
+                } else {
+                    _gczoombox_entrypoint_18(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+                }
+            }
+            if (((Dialog *)arg0)->pending) {
+                _gczoombox_entrypoint_11(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+                ((Dialog *)arg0)->pending = 0;
+            }
+            if (result == -1) {
+                for (i = ((Dialog *)arg0)->index[((Dialog *)arg0)->current];
+                     ((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + (i << 3)))->code == ((Dialog *)arg0)->code[((Dialog *)arg0)->current] &&
+                     i - ((Dialog *)arg0)->index[((Dialog *)arg0)->current] < 8 &&
+                     ((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + (i << 3)))[1].code != -11 &&
+                     ((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + (i << 3)))[1].code != -10;
+                     i++) {
+                    texts[i - ((Dialog *)arg0)->index[((Dialog *)arg0)->current]] = ((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + (i << 3)))->text;
+                }
+                _gczoombox_entrypoint_32(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+                _gczoombox_entrypoint_7(((Dialog *)arg0)->box[((Dialog *)arg0)->current], i - ((Dialog *)arg0)->index[((Dialog *)arg0)->current], texts);
+                ((Dialog *)arg0)->index[((Dialog *)arg0)->current] = i;
+            } else {
+                _gczoombox_entrypoint_32(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+                _gczoombox_entrypoint_8(((Dialog *)arg0)->box[((Dialog *)arg0)->current], arg0);
+                ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
+            }
+            func_80800A50_gcdialogexec(arg0, 3);
+            break;
+        }
+        break;
+    case 3:
+        if ((((Dialog *)arg0)->flags & 1) && face[1] == 1) {
+            func_80800A50_gcdialogexec(arg0, 6);
+        } else if (!(((Dialog *)arg0)->flags & 0x40)) {
+            if ((((Dialog *)arg0)->flags & 0x80) ? func_80015F0C(0, 1) == 1 : func_80015F0C(0, 0) == 1) {
+                func_80800A50_gcdialogexec(arg0, 6);
+            }
+        }
+        break;
+    case 4:
+        if (face[0] == 1) {
+            ((Dialog *)arg0)->answer = 1;
+            _gcaudiolist_entrypoint_0(6);
+        } else if (face[1] == 1) {
+            ((Dialog *)arg0)->answer = 0;
+            _gcaudiolist_entrypoint_0(7);
+        }
+        if (((Dialog *)arg0)->answer != -1) {
+            func_80800A50_gcdialogexec(arg0, 10);
+        }
+        break;
+    case 7:
+        func_80800A50_gcdialogexec(arg0, 0);
+        break;
+    }
+}
