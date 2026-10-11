@@ -90,7 +90,21 @@ u32 func_8010FFD0(u8 *arg0) {
     return arg0[25];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FFD8.s")
+/* extern */
+
+s32 func_8010FFD8(s32 arg0) {
+    u32 func_801150F0(u8 *);
+    u8 *temp_a1;
+    s32 var_v1;
+
+    temp_a1 = (*(u8 **)((s8 *)(arg0) + (0xC)));
+    if (temp_a1 != 0) {
+        var_v1 = func_801150F0(temp_a1);
+    } else {
+        var_v1 = 0;
+    }
+    return var_v1;
+}
 
 s32 func_80110014(s32 *arg0) {
     return arg0[1];
