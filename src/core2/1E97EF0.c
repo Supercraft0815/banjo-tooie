@@ -73,7 +73,11 @@ s32 func_800BEC1C()
     return D_8012872C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEC28.s")
+s32 func_800BEC28(s32 arg0) {
+    struct Entry { s32 value; u8 padding[40]; };
+    extern struct Entry D_801285D0[];
+    return D_801285D0[arg0].value;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEC4C.s")
 
