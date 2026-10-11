@@ -34,7 +34,115 @@ void func_808003D8_chdragonbrothers(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80800D20_chdragonbrothers.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80800D98_chdragonbrothers.s")
+void func_80800D98_chdragonbrothers(u8 *arg0, s32 arg1) {
+    s32 _gcfrontend_entrypoint_9(s32);
+    s32 _plsu_entrypoint_1(s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    s32 func_800DA9E4(s32, s32);
+    u8 *func_80100094(u8 *, u32);
+    void func_8080098C_chdragonbrothers(u8 *, s32, s32);
+    void func_80800A80_chdragonbrothers(u8 *, s32, s32, s32);
+    void func_80800B9C_chdragonbrothers(u8 *, s32, u8 *);
+    void func_80800D20_chdragonbrothers(u8 *, s16, s32);
+    u8 *data;
+    s16 introText;
+    s16 text;
+
+    data = func_80100094(arg0, 0);
+    if (*(s32 *)(data + 0x10) == 4) {
+        *(s32 *)(data + 0x20) = _plsu_entrypoint_1(1);
+    }
+    *(s32 *)(data + 0x10) = arg1;
+    switch (arg1) {
+    case 1:
+        _gcfrontend_entrypoint_9((arg0[0x7A] & 1) ? 0x29 : 0x2A);
+        if (arg0[0x7A] & 1) {
+            if (func_800DA9E4(0x1D3, 1) == 0) {
+                if (func_800DA298(0x1D6)) {
+                    introText = 0x129C;
+                } else if (func_800DA298(0x1D4)) {
+                    introText = 0x129A;
+                } else {
+                    introText = 0x1296;
+                }
+            } else {
+                introText = 0x1298;
+            }
+        } else {
+            if (func_800DA9E4(0x1D4, 1) == 0) {
+                if (func_800DA298(0x1D5)) {
+                    introText = 0x129D;
+                } else if (func_800DA298(0x1D3)) {
+                    introText = 0x129B;
+                } else {
+                    introText = 0x1297;
+                }
+            } else {
+                introText = 0x1299;
+            }
+        }
+        if (introText != 0) {
+            func_80800D20_chdragonbrothers(arg0, introText, 1);
+        }
+        break;
+    case 5:
+        data[0x58] = 3;
+        func_80800B9C_chdragonbrothers(data, 1, arg0 + 4);
+        func_80800A80_chdragonbrothers(arg0, 2, 0x420, 0);
+        break;
+    case 6:
+        func_80800D20_chdragonbrothers(arg0, (arg0[0x7A] & 1) ? 0x12A5 : 0x12A6, 1);
+        func_8080098C_chdragonbrothers(arg0, 2, 1);
+        break;
+    case 3:
+        if (arg0[0x7A] & 1) {
+            if (func_800DA298(0x1D6)) {
+                func_800DA544(0x1D2);
+                text = 0x12A3;
+            } else {
+                text = 0x12A1;
+            }
+        } else {
+            if (func_800DA298(0x1D5)) {
+                func_800DA524(0x1D2);
+                text = 0x12A4;
+            } else {
+                text = 0x12A2;
+            }
+        }
+        func_8080098C_chdragonbrothers(arg0, 2, 1);
+        func_80800D20_chdragonbrothers(arg0, text, 1);
+        break;
+    case 8:
+        func_800FDC28(0);
+        data[0x58] = 1;
+        if (func_800D395C()) {
+            func_80800A80_chdragonbrothers(arg0, 0x14, 0x420, 0);
+        } else {
+            func_80800A80_chdragonbrothers(arg0, 0x14, 0x400, 0);
+        }
+        break;
+    case 11:
+        *(f32 *)(arg0 + 0x58) = 3.0f;
+        break;
+    case 12:
+        func_80800A80_chdragonbrothers(arg0, 0x1D, 0x430, 0);
+        break;
+    case 13:
+        func_80800B9C_chdragonbrothers(data, 1, arg0 + 4);
+        func_80800D20_chdragonbrothers(arg0, (arg0[0x7A] & 1) ? 0x12AE : 0x12AF, 1);
+        break;
+    case 14:
+    case 15:
+        data[0x5B]++;
+    case 16:
+    case 17:
+        *(f32 *)(arg0 + 0x58) = 0.0f;
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_8080110C_chdragonbrothers.s")
 
