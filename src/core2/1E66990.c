@@ -45,7 +45,12 @@ s32 func_8008D544(PlayerState* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008D6D4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008D714.s")
+int func_8008D714(PlayerState *arg0) {
+    s32 _baduo_entrypoint_3();
+    s32 func_800A3304(PlayerState *);
+
+    return _baduo_entrypoint_3() && func_800A3304(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008D750.s")
 
