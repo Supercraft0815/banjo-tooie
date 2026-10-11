@@ -436,7 +436,10 @@ void func_80802F00_bsfirstp()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808030E0_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803124_bsfirstp.s")
+void func_80803124_bsfirstp(void *arg0, s32 arg1) {
+    void *p = *(void **)((s8 *)arg0 + 0x188);
+    (*(s16 *)((s8 *)p + 0xE0)) = 0;
+}
 
 void func_80803134_bsfirstp(void *arg0) {
     s32 _baeggsetup_entrypoint_7(void *, s32 *);
