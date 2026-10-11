@@ -86,7 +86,11 @@ void func_800C70D0(s32 arg0, s32 set) {
     func_800DA3B8(arg0 + FLAG_0EE_ABILITY_BK_BEAK_BOMB, set);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0690/func_800C70F0.s")
+void func_800C70F0(s32 arg0) {
+    extern s32 D_8012AAE0;
+    extern s32 D_8012AAD0[];
+    D_8012AAD0[arg0] = D_8012AAE0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0690/func_800C710C.s")
 
