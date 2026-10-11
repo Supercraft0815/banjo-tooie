@@ -18,7 +18,11 @@ s32 func_80800048_susplinet(s16 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_3.s")
+s16 susplinet_entrypoint_3(s8 *arg0) {
+    s32 base = (s32)arg0;
+    base += *(s16 *)(arg0 + 0x30);
+    return ((s16 *)base)[*(s16 *)(arg0 + 0x4E) - 1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_4.s")
 
