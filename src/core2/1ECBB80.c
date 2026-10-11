@@ -1,6 +1,9 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBB80/func_800F2290.s")
+f32 func_800F2290(u8 *arg0, u8 *arg1) {
+    return (*(f32 *)(arg0 + 0) * *(f32 *)(arg1 + 4)) -
+           (*(f32 *)(arg0 + 4) * *(f32 *)(arg1 + 0));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBB80/func_800F22B4.s")
 
