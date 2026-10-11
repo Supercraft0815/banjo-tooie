@@ -18,7 +18,11 @@ OSThread *chpumproomswitch_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pumproomswit/func_808000BC_chpumproomswitch.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pumproomswit/func_8080016C_chpumproomswitch.s")
+s32 func_8080016C_chpumproomswitch(u8 *arg0) {
+    u32 value = *(u16 *)((u8 *)arg0 + 0x76);
+    s32 result = 0x9E7;
+    return ((value & 0xFFFF) >> 7 == 0x32) ? 0x9E6 : result;
+}
 
 /* extern */
 
