@@ -5,7 +5,14 @@ f32 func_800F2290(u8 *arg0, u8 *arg1) {
            (*(f32 *)(arg0 + 4) * *(f32 *)(arg1 + 0));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBB80/func_800F22B4.s")
+/* extern */
+
+void func_800F22B4(void *arg0, f32 arg1) {
+    f32 func_80013788();
+    f32 func_800137F4(f32);
+    (*(f32 *)((s8 *)(arg0) + (0))) = func_800137F4(arg1);
+    (*(f32 *)((s8 *)(arg0) + (4))) = func_80013788();
+}
 
 void func_800F22EC(void *arg0) {
     f32 temp_f0;
