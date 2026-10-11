@@ -113,7 +113,9 @@ s32 func_800CE9E8(s32 arg0, s32 arg1) {
     return func_800CE438(temp_v0, arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CEA38.s")
+void func_800CEA38(s32 arg0, s32 arg1) {
+    (*(s8 *)((s8 *)(func_800CE3E0(arg0)) + (0x15))) = (s8) arg1;
+}
 
 f32 func_800CEA60(s32 arg0) {
     return *(f32 *) func_800CE3E0(arg0);
