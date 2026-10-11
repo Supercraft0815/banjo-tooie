@@ -442,7 +442,14 @@ void func_80803CE0_chgameselect()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803DCC_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803E40_chgameselect.s")
+s32 func_80803E40_chgameselect(void) {
+    s32 func_80016800(s32);
+    s32 i;
+    for (i = 0; i < 4; i++) {
+        if (!func_80016800(i)) return i;
+    }
+    return i;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803E94_chgameselect.s")
 

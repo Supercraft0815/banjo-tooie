@@ -84,11 +84,17 @@ void func_800FC618(s32 arg0, s32 arg1) {
     func_800FC508(arg0, arg1, 0, (-1));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC63C.s")
+void func_800FC63C(u32 track_id, u32 volume) {
+    func_800FC508(track_id, volume, 1, -1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC660.s")
+void func_800FC660(u32 track_id) {
+    func_800FC508(track_id, -1, 1, -1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC688.s")
+void func_800FC688(u32 track_id, s32 volume) {
+    func_800FC508(track_id, 1, 1, volume);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC6B0.s")
 
@@ -98,7 +104,16 @@ void func_800FC74C(u32 track_id) {
     if (ptr != NULL && *(s16 *)((u8 *)ptr + 0x28) >= 0) func_800FB774(ptr);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC788.s")
+void func_800FC788(s32 track_id, s32 state) {
+    typedef struct {
+        u8 pad0[0x30];
+        u8 state : 4;
+        u8 flags : 4;
+    } MusicFlags;
+    void *func_800FB5F8(s32);
+    MusicFlags *track = func_800FB5F8(track_id);
+    if (track != NULL) track->state = state;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC7C4.s")
 
@@ -129,7 +144,10 @@ void func_800FC8EC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FCA90.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FCAE0.s")
+void func_800FCAE0(u32 track_id, u32 volume, u32 duration) {
+    void func_800FCB54(s32, s32, s32, f32);
+    func_800FCB54(track_id, volume, duration, 0.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FCB00.s")
 

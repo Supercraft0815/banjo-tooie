@@ -196,7 +196,11 @@ void func_800EF080(s16 *arg0, s16 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF11C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF174.s")
+void func_800EF174(f32 dst[3], f32 src[3], f32 scale) {
+    dst[0] += src[0] * scale;
+    dst[1] += src[1] * scale;
+    dst[2] += src[2] * scale;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF1B8.s")
 

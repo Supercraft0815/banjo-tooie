@@ -82,7 +82,11 @@ f32 func_800F0F9C(f32 val1, f32 val2)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F101C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F1074.s")
+f32 func_800F1074(f32 value, f32 period) {
+    f32 func_800F13C4(f32, f32);
+    f32 func_80013970(f32);
+    return func_80013970((func_800F13C4(value, period) / period) * 360.0f);
+}
 
 f32 func_800F10B4(f32 value, f32 in_min, f32 in_max, f32 out_min, f32 out_max) {
     f32 var_f16;
@@ -188,7 +192,7 @@ f32 func_800F1434(f32 arg0) {
 /* extern */
 
 void func_800F1480(f32 arg0) {
-    s32 func_80013970(f32);
+    f32 func_80013970(f32);
     func_80013970(arg0 * 90.0f);
 }
 

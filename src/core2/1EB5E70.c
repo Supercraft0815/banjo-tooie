@@ -160,7 +160,11 @@ void func_800DCD10(s32 arg0, u8 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD07C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD19C.s")
+void func_800DD19C(s32 arg0, u8 *commands) {
+    s32 func_800DE2A4(s32, u8 *);
+    commands += *(s32 *)(commands + 8);
+    func_800DE2A4(arg0, commands);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD1C0.s")
 

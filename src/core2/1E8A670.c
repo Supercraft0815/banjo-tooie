@@ -64,7 +64,13 @@ f32 func_800B2354(void *arg0) {
     return (f32) (u32) *(u16 *)((s8 *)arg0 + 0x14);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B237C.s")
+void func_800B237C(void *list, f32 center[3], f32 *norm) {
+    s16 *coords = (s16 *)list;
+    center[0] = coords[6];
+    center[1] = coords[7];
+    center[2] = coords[8];
+    *norm = (u32)((u16 *)list)[9];
+}
 
 void func_800B23E0(void* arg0) 
 {

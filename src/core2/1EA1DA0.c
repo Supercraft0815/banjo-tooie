@@ -435,13 +435,19 @@ void func_800C9B84(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9BB4.s")
+void func_800C9BB4(f32 time, s32 sound_id, f32 volume, s32 rate) {
+    void func_800C9E64(f32, void *, s32, s32, s32);
+    func_800C9E64(time, func_800C99B4, sound_id, (s32)(volume * 1000.0f), rate);
+}
 
 void func_800C9C04(f32 arg0, u32 arg1, u32 arg2) {
     func_800C9E20(arg0, (u32 *) func_800C9974, arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9C34.s")
+void func_800C9C34(f32 time, s32 track_id, s32 volume, s32 duration) {
+    void func_800C9E64(f32, void *, s32, s32, s32);
+    func_800C9E64(time, func_800C9994, track_id, volume, duration);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9C70.s")
 
@@ -499,7 +505,11 @@ void func_800C9EF8(f32 time, void *funcPtr, void *argPtr) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9F48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9F94.s")
+int func_800C9F94(void) {
+    s32 vector_size(s32);
+    extern s32 D_8012AB60;
+    return D_8012AB60 == 0 || vector_size(D_8012AB60) == 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9FD0.s")
 
