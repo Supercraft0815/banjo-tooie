@@ -102,7 +102,20 @@ void func_80801D58_chfactorytwinklies(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80801D94_chfactorytwinklies.s")
+/* extern */
+
+s32 func_80801D94_chfactorytwinklies(s32 arg0, s32 arg1, u8 *arg2) {
+    s32 func_80801DD8_chfactorytwinklies(s32, u32);
+    u8 **ptr = &arg2;
+    switch (arg1) {
+    case 0x3E:
+        func_80801DD8_chfactorytwinklies(arg0, (u32)*(u16 *)(*ptr + 0x1A) >> 5);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80801DD8_chfactorytwinklies.s")
 
