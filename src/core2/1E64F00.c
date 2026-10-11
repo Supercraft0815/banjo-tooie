@@ -65,7 +65,13 @@ void func_8008BC94(u8 *arg0) {
     func_8008BC6C(arg0, arg0[8]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008BCB4.s")
+void func_8008BCB4(u8 *arg0) {
+    s32 func_8008BC6C(u8 *, u8);
+    u8 value;
+
+    value = arg0[8] ? 0 : 1;
+    func_8008BC6C(arg0, value);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008BCEC.s")
 
