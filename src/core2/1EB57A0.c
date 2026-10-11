@@ -42,6 +42,12 @@ u8 *func_800DBFF8(void) {
     return sp1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB57A0/func_800DC028.s")
+/* extern */
+
+void func_800DC028(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_800EE7F8(s32, s32);
+    typedef struct { s32 pad; f32 position[2]; } Entry;
+    func_800EE7F8(((Entry *)arg0)[arg1].position, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB57A0/func_800DC060.s")
