@@ -869,7 +869,13 @@ void func_808068E8_bsfirstp(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80806AD0_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_28.s")
+void bsfirstp_entrypoint_28(void *arg0, void *arg1) {
+    s32 *ptr0 = *(s32 **)((s8 *)arg0 + 0x188);
+    s32 *ptr1 = *(s32 **)((s8 *)arg1 + 0x188);
+
+    ptr0[0x64 / 4] = *(s32 *)((s8 *)arg1 + 0x184);
+    ptr1[0x68 / 4] = *(s32 *)((s8 *)arg0 + 0x184);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80806BA0_bsfirstp.s")
 
