@@ -186,7 +186,18 @@ void func_8080422C_chdodgemcontrol(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080440C_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080455C_chdodgemcontrol.s")
+void func_8080455C_chdodgemcontrol(void *arg0) {
+    struct Flags {
+        u8 pad[0x64];
+        u32 : 11;
+        u32 active : 1;
+        u32 : 20;
+    };
+    void func_800904C8(s32);
+    if (((struct Flags *)arg0)->active) {
+        func_800904C8(0x28);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080458C_chdodgemcontrol.s")
 
