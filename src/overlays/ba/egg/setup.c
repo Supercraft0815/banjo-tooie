@@ -5,7 +5,14 @@ s32 baeggsetup_entrypoint_0()
     return 0x28;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/setup/func_80800008_baeggsetup.s")
+/* extern */
+
+s32 func_80800008_baeggsetup(void *arg0) {
+    s32 func_8009E674(void *, s32);
+    s32 result;
+    result = func_8009E674(arg0, 2);
+    return result == 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/setup/baeggsetup_entrypoint_1.s")
 
