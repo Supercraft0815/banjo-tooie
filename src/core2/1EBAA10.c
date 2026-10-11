@@ -51,7 +51,16 @@ void func_800E146C(s32 arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1664.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1720.s")
+s32 func_800E1720(s32 arg0) {
+    typedef struct { s8 bytes[0x7C]; } Entry;
+    extern Entry D_8012CF90[];
+    Entry *entry;
+
+    entry = &D_8012CF90[arg0];
+    entry->bytes[0x74] = 1;
+    entry->bytes[0x76] = 0;
+    return (s32)entry;
+}
 
 /* extern */
 
