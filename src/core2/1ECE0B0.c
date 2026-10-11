@@ -893,7 +893,10 @@ void func_800F7E9C(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7ECC.s")
+void func_800F7ECC(s32 arg0, s32 arg1, f32 arg2) {
+    s32 bastatetimer_set(PlayerState *, s32, f32);
+    bastatetimer_set(D_80135490[arg0], arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7F00.s")
 
