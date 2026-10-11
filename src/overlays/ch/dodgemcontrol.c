@@ -154,7 +154,118 @@ void func_808027C4_chdodgemcontrol(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80802884_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808028E4_chdodgemcontrol.s")
+void func_808028E4_chdodgemcontrol(s32 arg0) {
+    struct Flags {
+        u8 pad[0x64];
+        u32 : 11;
+        u32 active : 1;
+        u32 : 20;
+    };
+    s32 anctrl_isStopped(s32);
+    s32 anctrl_setIndex(s32, s32);
+    s32 anctrl_setPlaybackType(s32, s32);
+    s32 anctrl_start(s32);
+    s32 func_8008B188(s32, s32);
+    s32 func_8008B28C(s32);
+    void func_800904C8(s32);
+    f32 func_800F1DCC(f32, f32);
+    s32 func_80101CDC(s32, s32);
+    s32 func_801022E4(s32);
+    s32 func_80104248();
+    f32 difference;
+
+    difference = func_800F1DCC(*(f32 *)(arg0 + 0x48), *(f32 *)(arg0 + 0x54));
+    if (((struct Flags *)arg0)->active) {
+        if (difference > 10.0f) {
+            func_800904C8(0x75);
+        } else if (difference < -10.0f) {
+            func_800904C8(0x76);
+        } else {
+            func_800904C8(0x74);
+        }
+    } else if (difference > 10.0f) {
+        switch (func_801022E4(arg0)) {
+        case 0x105:
+            anctrl_setIndex(func_80104248(arg0), 0x106);
+            func_80101CDC(arg0, 0x3F000000);
+            anctrl_setPlaybackType(func_80104248(arg0), 1);
+            func_8008B188(func_80104248(arg0), 1);
+            anctrl_start(func_80104248(arg0));
+            break;
+        case 0x107:
+            if (func_8008B28C(func_80104248(arg0))) {
+                func_8008B188(func_80104248(arg0), 0);
+                func_80101CDC(arg0, 0x40400000);
+            } else if (anctrl_isStopped(func_80104248(arg0))) {
+                func_80802720_chdodgemcontrol(arg0);
+            }
+            break;
+        case 0x108:
+        case 0x109:
+        case 0x10A:
+        case 0x10B:
+            if (anctrl_isStopped(func_80104248(arg0))) {
+                func_80802720_chdodgemcontrol(arg0);
+            }
+            break;
+        }
+    } else if (difference < -10.0f) {
+        switch (func_801022E4(arg0)) {
+        case 0x105:
+            anctrl_setIndex(func_80104248(arg0), 0x107);
+            func_80101CDC(arg0, 0x3F000000);
+            anctrl_setPlaybackType(func_80104248(arg0), 1);
+            func_8008B188(func_80104248(arg0), 1);
+            anctrl_start(func_80104248(arg0));
+            break;
+        case 0x106:
+            if (func_8008B28C(func_80104248(arg0))) {
+                func_80101CDC(arg0, 0x40400000);
+                func_8008B188(func_80104248(arg0), 0);
+            } else if (anctrl_isStopped(func_80104248(arg0))) {
+                func_80802720_chdodgemcontrol(arg0);
+            }
+            break;
+        case 0x108:
+        case 0x109:
+        case 0x10A:
+        case 0x10B:
+            if (anctrl_isStopped(func_80104248(arg0))) {
+                func_80802720_chdodgemcontrol(arg0);
+            }
+            break;
+        }
+    } else {
+        switch (func_801022E4(arg0)) {
+        case 0x105:
+            break;
+        case 0x106:
+            if (func_8008B28C(func_80104248(arg0))) {
+                func_80101CDC(arg0, 0x40400000);
+                func_8008B188(func_80104248(arg0), 0);
+            } else if (anctrl_isStopped(func_80104248(arg0))) {
+                func_80802720_chdodgemcontrol(arg0);
+            }
+            break;
+        case 0x107:
+            if (func_8008B28C(func_80104248(arg0))) {
+                func_80101CDC(arg0, 0x40400000);
+                func_8008B188(func_80104248(arg0), 0);
+            } else if (anctrl_isStopped(func_80104248(arg0))) {
+                func_80802720_chdodgemcontrol(arg0);
+            }
+            break;
+        case 0x108:
+        case 0x109:
+        case 0x10A:
+        case 0x10B:
+            if (anctrl_isStopped(func_80104248(arg0))) {
+                func_80802720_chdodgemcontrol(arg0);
+            }
+            break;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80802D04_chdodgemcontrol.s")
 
