@@ -612,7 +612,10 @@ s32 bsfirstp_entrypoint_17(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808047EC_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080483C_bsfirstp.s")
+void func_8080483C_bsfirstp(void *arg0, s32 arg1) {
+    register void *temp_v0 = *(void **)((u8 *)arg0 + 392);
+    *(s32 *)((u8 *)temp_v0 + 280) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80804848_bsfirstp.s")
 
