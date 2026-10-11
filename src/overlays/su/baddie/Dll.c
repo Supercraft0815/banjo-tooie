@@ -30,7 +30,17 @@ void subaddieDll_entrypoint_7()
     func_80800260_subaddieDll();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/Dll/subaddieDll_entrypoint_8.s")
+s32 subaddieDll_entrypoint_8(s32 arg0) {
+    Actor* func_80106790(Unk80132ED0 *);
+    void func_8010A570(Actor*);
+    Actor *volatile sp1C;
+    Actor *temp_v0;
+
+    temp_v0 = func_80106790((Unk80132ED0 *) arg0);
+    sp1C = temp_v0;
+    func_8010A570(temp_v0);
+    return (s32) sp1C;
+}
 
 /* extern */
 
