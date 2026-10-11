@@ -98,7 +98,20 @@ s32 func_80101E14(Actor *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80101E4C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80101EE4.s")
+/* extern */
+
+void func_80101EE4(Actor *arg0, s32 arg1) {
+    s32 func_8008B10C(s32, s32);
+    s32 func_8008B2DC(s32, s32);
+    s32 func_80104248();
+    s32 temp_v0;
+
+    temp_v0 = func_80104248(arg0);
+    if (temp_v0 != 0) {
+        func_8008B10C(temp_v0, arg1);
+        func_8008B2DC(temp_v0, arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80101F24.s")
 
