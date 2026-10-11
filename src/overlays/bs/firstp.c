@@ -955,7 +955,251 @@ void func_80805380_bsfirstp(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808058F0_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_26.s")
+void bsfirstp_entrypoint_26(s32 arg0) {
+    s32 _badeathmatch_entrypoint_5(s32, s32, s32);
+    s32 _baduo_entrypoint_14(s32, f32 *);
+    s32 _gcegg_entrypoint_7(s32);
+    s32 _suegg_entrypoint_6(s32, f32 *, s32 *);
+    s32 _sueggmisc_entrypoint_2(f32 *, s32);
+    s32 bs_getCurrentState(s32);
+    s32 bs_setState(void *, s32);
+    f32 func_80099A34(s32);
+    s32 func_80099A4C(s32);
+    s32 func_80099A58(s32);
+    s32 func_80099A70(s32);
+    s32 func_80099A7C(s32, f32 *);
+    s32 func_80099B94(s32);
+    s32 func_8009C15C(s32, f32 *);
+    s32 func_8009E6EC();
+    s32 func_8009E830(s32, s32);
+    s32 func_800A3404(s32);
+    s32 func_800A3544(s32, s32);
+    s32 func_800EFD24(s32);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F7E64(s32, s32);
+    s32 func_80801A5C_bsfirstp(s32);
+    s32 func_80802BE8_bsfirstp(s32, f32);
+    s32 func_80803CD4_bsfirstp(s32, s32, s32, s32, f32 *);
+    s32 func_80808678_bsfirstp(s32, s32);
+    void func_80807EEC_bsfirstp(s32);
+    void func_80807F24_bsfirstp(s32);
+    s32 next_state = 0;
+    s32 event = func_8009E6EC(arg0);
+    s32 handled = 1;
+
+    switch (event) {
+    default:
+        func_80099B94(arg0);
+        return;
+    case 0x99:
+        func_808019EC_bsfirstp(arg0);
+        break;
+    case 0x4C: {
+        f32 position[3];
+        func_80099A7C(arg0, position);
+        _baduo_entrypoint_14(arg0, position);
+        next_state = 0xD7;
+        handled = 2;
+        break;
+    }
+    case 0x4F:
+        handled = 2;
+        break;
+    case 0x61:
+        switch (func_80099A58(arg0)) {
+        case 0:
+            next_state = 0xCC;
+            break;
+        case 1:
+            func_800A3544(arg0, 0);
+            next_state = 0xC8;
+            break;
+        case 2:
+            next_state = 0xC9;
+            break;
+        }
+        func_800F7E64(*(s32 *)(arg0 + 0x184), 9);
+        handled = 2;
+        break;
+    case 0x73:
+        func_80807EEC_bsfirstp(arg0);
+        func_80801A5C_bsfirstp(arg0);
+        handled = 2;
+        break;
+    case 0x62:
+        if (!func_800A3404(arg0)) {
+            func_80807EEC_bsfirstp(arg0);
+            handled = 2;
+        }
+        break;
+    case 0x63:
+        if (func_800A3404(arg0)) {
+            func_80807F24_bsfirstp(arg0);
+            handled = 2;
+        }
+        break;
+    case 0x72:
+        if (bs_getCurrentState(arg0) == 0xD2) {
+            func_80808678_bsfirstp(arg0, func_80099A4C(arg0));
+            handled = 2;
+        }
+        break;
+    case 0x5F:
+        func_80802BE8_bsfirstp(arg0, func_80099A34(arg0));
+        handled = 2;
+        break;
+    case 0x47: {
+        s32 unused;
+        f32 position[3];
+        s32 egg;
+        s32 amount;
+        s32 type;
+        s32 state1;
+        s32 state2;
+
+        egg = _suegg_entrypoint_6(func_80099A4C(arg0), position, &type);
+        amount = _gcegg_entrypoint_7(type);
+        switch (type) {
+        default:
+            state2 = 0xDB;
+            state1 = 0xDA;
+            break;
+        case 6:
+            amount = 0;
+        case 4:
+        case 5:
+            state1 = 0xDA;
+            state2 = 0xDC;
+            break;
+        case 3:
+            if (bs_getCurrentState(arg0) != 0xD9) {
+                state1 = 0xD9;
+                state2 = 0;
+            } else {
+                func_80803760_bsfirstp(arg0);
+                state1 = 0;
+                state2 = 0;
+            }
+            break;
+        }
+        egg = func_80803CD4_bsfirstp(arg0, event, egg, amount, position);
+        if (egg != 0) {
+            if (egg != 1) {
+                if (egg == 2) {
+                    next_state = state2;
+                    handled = 2;
+                }
+            } else {
+                next_state = state1;
+                if (type == 6) {
+                    _badeathmatch_entrypoint_5(arg0, 6, 1);
+                    _sueggmisc_entrypoint_2(position, 6);
+                }
+                handled = 2;
+            }
+        }
+        break;
+    }
+    case 0x6D: {
+        f32 position[3];
+        s32 object;
+        s32 unused[2];
+        object = func_80099A58(arg0);
+        func_800F5A00(object, position);
+        switch (func_80803CD4_bsfirstp(arg0, event, object, 1, position)) {
+        case 1:
+            next_state = 0xDA;
+            handled = 2;
+            break;
+        case 2:
+            next_state = 0xDB;
+            handled = 2;
+            break;
+        }
+        break;
+    }
+    case 0x4E: {
+        s32 object;
+        s32 amount;
+        f32 position[3];
+        s32 unused;
+        object = func_80099A70(arg0);
+        amount = func_80099A58(arg0);
+        func_80099A7C(arg0, position);
+        switch (func_80803CD4_bsfirstp(arg0, event, object, amount, position)) {
+        case 1:
+            next_state = 0xDA;
+            handled = 2;
+            break;
+        case 2:
+            next_state = 0xDC;
+            handled = 2;
+            break;
+        }
+        break;
+    }
+    case 0x20: {
+        f32 position[3];
+        s32 unused[3];
+        func_80099A7C(arg0, position);
+        switch (func_80803CD4_bsfirstp(arg0, event, -1, 1, position)) {
+        case 1:
+            next_state = 0xDA;
+            handled = 2;
+            break;
+        case 2:
+            next_state = 0xDB;
+            handled = 2;
+            break;
+        }
+        break;
+    }
+    case 0x51: {
+        f32 position[3];
+        s32 unused[3];
+        func_8009C15C(arg0, position);
+        switch (func_80803CD4_bsfirstp(arg0, event, -1, 1, position)) {
+        case 1:
+            next_state = 0xDA;
+            handled = 2;
+            break;
+        case 2:
+            next_state = 0xDC;
+            handled = 2;
+            break;
+        }
+        break;
+    }
+    case 0x45: {
+        f32 position[3];
+        s32 unused[5];
+        func_800EFD24((s32)position);
+        if (func_80803CD4_bsfirstp(arg0, event, -1, 8, position)) {
+            next_state = 0xDB;
+            handled = 2;
+        }
+        break;
+    }
+    case 0x21:
+    case 0x24: {
+        f32 position[3];
+        func_800EFD24((s32)position);
+        switch (func_80803CD4_bsfirstp(arg0, event, -1, 1, position)) {
+        case 1:
+            next_state = 0xDA;
+            handled = 2;
+            break;
+        case 2:
+            next_state = 0xDB;
+            handled = 2;
+            break;
+        }
+        break;
+    }
+    }
+    func_8009E830(arg0, handled);
+    bs_setState((void *)arg0, next_state);
+}
 
 void func_80805F48_bsfirstp(s32 arg0)
 {
