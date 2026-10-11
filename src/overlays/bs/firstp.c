@@ -529,7 +529,11 @@ void func_80803B04_bsfirstp(s32 arg0) {
     } while (var_s0 != 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803B58_bsfirstp.s")
+void func_80803B58_bsfirstp(void *arg0, f32 arg1) {
+    register void *ptr;
+    ptr = *(void **)((u8 *)arg0 + 392);
+    *(f32 *)((u8 *)ptr + 272) = arg1;
+}
 
 f32 func_80803B68_bsfirstp(void *arg0) {
     register void *ptr;
