@@ -25,7 +25,188 @@ s32 func_80108EF4(void *arg0, s32 arg1) {
     return (*(u16 *)((s8 *)(arg0) + (8))) == 0x23A;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80108F08.s")
+void func_80108F08(void *arg0, void *arg1, s32 arg2) {
+    typedef struct {
+        u8 pad0[0x1A];
+        u16 player : 11;
+        u16 pad1A : 5;
+        u8 pad1C[8];
+        u32 id : 10;
+        u32 pad24 : 22;
+    } HitMarker;
+    typedef struct {
+        u8 pad0[4];
+        f32 position[3];
+        u8 pad10[0x4C];
+        u8 health[3];
+        u8 pad5F[5];
+        u32 pad64 : 6;
+        u32 bounce : 1;
+        u32 pad64b : 25;
+        u32 pad68;
+        u32 pad6C : 11;
+        u32 id : 12;
+        u32 pad6Cb : 9;
+        u32 pad70 : 31;
+        u32 flag : 1;
+    } HitActor;
+    void *func_80106790(s32);
+    s32 _glhittableDll_entrypoint_10(s32);
+    s32 _glhittableDll_entrypoint_7(s32);
+    s32 _glhittableDll_entrypoint_9(s32);
+    s32 _glhittableDll_entrypoint_6(s32);
+    s32 _glhittableDll_entrypoint_8(s32);
+    void *func_80100368(void *);
+    s32 func_800F70EC(s32);
+    s32 func_800F6C1C(s32);
+    s32 func_80102FA0(void *, s32);
+    void func_800EC398(void *, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void _chbounce_entrypoint_3(f32);
+    void _chbounce_entrypoint_2(f32);
+    void _chbounce_entrypoint_5(s32, void *);
+    void func_80109600(void *, void *);
+    void _chflamer_entrypoint_1(void *, void *);
+    void func_800EC370(void *, s16 *);
+    void _chfreezy_entrypoint_1(void *, s16 *);
+    s32 func_8010A430(void *);
+    f32 func_8010CD28(void *);
+    void func_800EE904(s32 *, f32 *);
+    void func_800DBEFC(s32 *, s32, f32 *);
+    void func_800EB860(s32, s32);
+    void _chbaddiesetup_entrypoint_10(void);
+    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    f32 func_800EC708(void *);
+    s32 _gccubesearch_entrypoint_16(s32 *, s32 *, s16 **, s32, s32);
+    void func_800EB874(void);
+    void func_800EB210(void *, void *, s32);
+    void func_800C4B7C(s32);
+    void func_8010D930(s32, s32, f32 *, void *);
+    void _subaddiejoy_entrypoint_10(void *, f32, f32);
+    extern s32 D_8012460C;
+    HitActor *actor;
+    s32 effect;
+    s32 bounce;
+    s32 damage;
+    s32 part;
+    void *flags;
+    s32 isPlayer;
+    s32 player;
+    s32 remaining;
+    f32 yaw;
+    f32 source[3];
+    s16 frozen[3];
+    f32 angle;
+    f32 position[3];
+    s32 cube;
+    s16 *node;
+    s32 point[3];
+    f32 height;
+    s32 amount;
+    s32 sound;
+
+    actor = func_80106790((s32)arg0);
+    effect = _glhittableDll_entrypoint_10(arg2);
+    bounce = _glhittableDll_entrypoint_7(arg2);
+    damage = _glhittableDll_entrypoint_9(arg2);
+    part = _glhittableDll_entrypoint_6(arg2);
+    flags = func_80100368(actor);
+    isPlayer = ((HitMarker *)arg1)->id == 0;
+    if (!isPlayer || ((player = ((HitMarker *)arg1)->player,
+                      func_800F70EC(player)) && func_800F6C1C(player)) ||
+        !_glhittableDll_entrypoint_8(arg2)) {
+        if (part == 0) {
+            if (damage == 0 && ((HitMarker *)arg1)->id != 0) {
+                return;
+            }
+            if (damage <= 0) {
+                damage = 1;
+            }
+        }
+        if (damage) {
+            amount = func_80102FA0(flags, 0x80000020) ? damage : 100 / damage;
+            remaining = actor->health[part] - amount;
+            amount = remaining < 0 ? 0 : remaining;
+            actor->health[part] = amount;
+            if ((u8)amount && damage >= 2) {
+                bounce /= 2;
+            }
+        }
+        if (bounce) {
+            func_800EC398(arg1, source);
+            yaw = func_800F1DF4(source, actor->position);
+            _chbounce_entrypoint_3(yaw);
+            _chbounce_entrypoint_2(yaw);
+            if (actor->bounce) {
+                _chbounce_entrypoint_5(bounce + 10, actor);
+            } else {
+                _chbounce_entrypoint_5(bounce + 5, actor);
+            }
+        }
+        if (damage) {
+            switch (part) {
+                case 2:
+                    if (func_80102FA0(flags, 0x02000000)) {
+                        func_80109600(actor, arg1);
+                    }
+                    break;
+                case 1:
+                    if (func_80102FA0(flags, 0x01000000)) {
+                        func_80109600(actor, arg1);
+                    }
+                    break;
+            }
+            if (func_80102FA0(flags, 0x80020000) && ((HitMarker *)arg1)->id == 0x26D) {
+                _chflamer_entrypoint_1(actor, arg1);
+            }
+            if (func_80102FA0(flags, 0x200) && ((HitMarker *)arg1)->id == 0x26E) {
+                func_800EC370(arg1, frozen);
+                _chfreezy_entrypoint_1(actor, frozen);
+            }
+            if (!actor->health[part] || (part && func_80102FA0(flags, 0x10000))) {
+                if (actor->health[part]) {
+                    part--;
+                }
+                if (part != 2) {
+                    actor->health[part] = 99;
+                }
+                if (part == 2 && effect && func_8010A430(actor)) {
+                    angle = func_8010CD28(actor) + 180.0f;
+                    func_800EE904(point, actor->position);
+                    if (*(s32 **)((u8 *)arg0 + 4)) {
+                        func_800DBEFC(*(s32 **)((u8 *)arg0 + 4), 14, position);
+                    }
+                    func_800EB860((s32)func_80108EF4, (s32)actor);
+                    if (*(s32 **)((u8 *)arg0 + 4) &&
+                        (position[0] != 0.0f || position[1] != 0.0f || position[2] != 0.0f)) {
+                        _chbaddiesetup_entrypoint_5(_chbaddiesetup_entrypoint_10, effect + 2,
+                                                  ((s32 *)position)[0], ((s32 *)position)[1], ((s32 *)position)[2], *(s32 *)&angle);
+                    } else if (func_80102FA0(flags, 0x81000000) &&
+                               _gccubesearch_entrypoint_16(point, &cube, &node, 3,
+                                                          (s32)(func_800EC708(arg0) * 4.0f))) {
+                        func_800EE88C(position, node);
+                        _chbaddiesetup_entrypoint_5(_chbaddiesetup_entrypoint_10, effect + 2,
+                                                  ((s32 *)position)[0], ((s32 *)position)[1], ((s32 *)position)[2], *(s32 *)&angle);
+                    } else {
+                        height = actor->position[1] + func_800EC708(arg0);
+                        _chbaddiesetup_entrypoint_5(_chbaddiesetup_entrypoint_10, effect + 2,
+                                                  ((s32 *)actor->position)[0], *(s32 *)&height, ((s32 *)actor->position)[2], *(s32 *)&angle);
+                    }
+                    func_800EB874();
+                }
+                func_800EB210(arg0, arg1, part);
+            }
+            if (part && bounce) {
+                sound = actor->id == 0x31E ? 0x41F : 0x415;
+                func_800C4B7C(sound);
+                func_8010D930(1, actor->flag, actor->position, &D_8012460C);
+                if (func_80102FA0(flags, 0x02000000) || func_80102FA0(flags, 0x01000000)) {
+                    _subaddiejoy_entrypoint_10(actor, 1.0f, 0.25f);
+                }
+            }
+        }
+    }
+}
 
 void func_801094E0(f32 *arg0, f32 arg1) {
     void func_800BBCB8(f32[3], s32, f32, s32, s32 *);
