@@ -156,7 +156,15 @@ void func_800F14AC(f32 arg0) {
     func_800F1434(func_800F1434(arg0));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F14D4.s")
+f32 func_800F14D4(f32 arg0, f32 arg1) {
+    f32 result;
+    if (arg0 <= arg1) {
+        result = arg0;
+    } else {
+        result = arg1;
+    }
+    return result;
+}
 
 f32 func_800F14FC(f32 arg0, f32 arg1, f32 arg2) {
     f32 temp_f2;
