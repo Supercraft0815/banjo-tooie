@@ -68,7 +68,28 @@ void func_800C1568(s32 arg0) {
     *((s32 *)((u8 *)&D_80128B0C + (arg0 << 3))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C157C.s")
+void func_800C157C(void) {
+    extern s32 D_80128B10;
+    extern s32 D_80128B90;
+    u32 end;
+    s32 *var_v1;
+
+    end = (u32)&D_80128B90;
+    for (var_v1 = &D_80128B10; ; ) {
+    var_v1 += 8;
+    ((s32 *)var_v1)[-6] = 0;
+    ((s32 *)var_v1)[-5] = 0;
+    ((s32 *)var_v1)[-4] = 0;
+    ((s32 *)var_v1)[-3] = 0;
+    ((s32 *)var_v1)[-2] = 0;
+    ((s32 *)var_v1)[-1] = 0;
+    ((s32 *)var_v1)[-8] = 0;
+    ((s32 *)var_v1)[-7] = 0;
+        if ((u32)var_v1 == end) {
+            break;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C15BC.s")
 
