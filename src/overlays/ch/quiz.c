@@ -167,7 +167,9 @@ void func_80800FBC_chquiz(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801170_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808013E0_chquiz.s")
+int func_808013E0_chquiz(s32 arg0, void *arg1) {
+    return *((u8 *)arg1 + 0x5C) == 3 || *((u8 *)arg1 + 0x5C) == 4;
+}
 
 s32 func_80801408_chquiz(Actor *arg0, void *arg1, s32 arg2, s32 arg3) {
     s32 _ncpod_entrypoint_20(s32, s32, s32, s32);
