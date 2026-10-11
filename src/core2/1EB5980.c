@@ -37,7 +37,12 @@ f32 func_800DC264(f32 arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5980/func_800DC298.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5980/func_800DC2D4.s")
+/* extern */
+
+s32 func_800DC2D4(f32 arg0) {
+    f32 func_800DC1AC();
+    return (func_800DC1AC() < arg0) ? 1 : 0;
+}
 
 void func_800DC310(void) {
     extern s32 D_8012C7F0;
