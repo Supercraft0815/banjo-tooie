@@ -26,6 +26,13 @@ u32 func_8010A848(void **arg0) {
     return (u32) ((*(s32 *)((s8 *)(*arg0) + (0x28))) << 0x17) >> 0x18;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4020/func_8010A85C.s")
+void func_8010A85C(u8 *arg0, s32 arg1) {
+    struct Fields {
+        u8 padding[0x77];
+        u8 high : 4;
+        u8 low : 4;
+    };
+    ((struct Fields *)arg0)->low = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4020/func_8010A874.s")
