@@ -5,7 +5,10 @@ s32 func_8009E130()
     return 0xF4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E77A20/func_8009E138.s")
+f32 func_8009E138(PlayerState *arg0, s32 arg1) {
+    typedef struct { f32 value; u8 pad[0x24]; } Entry;
+    return (*(Entry **)((u8 *)arg0 + 0x114))[arg1].value;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E77A20/func_8009E154.s")
 
