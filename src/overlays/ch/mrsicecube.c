@@ -28,7 +28,12 @@ OSThread *chmrsicecube_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/func_80800508_chmrsicecube.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/func_80800634_chmrsicecube.s")
+void func_80800634_chmrsicecube(s32 arg0) {
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    extern s32 D_808008F0_chmrsicecube;
+    extern s32 D_80800A44_chmrsicecube;
+    _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, &D_80800A44_chmrsicecube, &D_808008F0_chmrsicecube, 4);
+}
 
 void func_8080066C_chmrsicecube(u8 *arg0, u8 *arg1)
 {
