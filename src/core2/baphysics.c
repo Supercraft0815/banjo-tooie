@@ -5,7 +5,9 @@ s32 func_8009AD70()
     return 0xF;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009AD78.s")
+s32 func_8009AD78(void *arg0, s32 arg1) {
+    return (*(u8 **)((u8 *)arg0 + 0xC4))[arg1];
+}
 
 void func_8009AD88(s32 arg0) 
 {
