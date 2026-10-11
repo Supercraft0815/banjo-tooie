@@ -54,7 +54,13 @@ s32 func_80800228_bsfirstp(void) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80800264_bsfirstp.s")
+/* extern */
+
+void func_80800264_bsfirstp(s32 arg0, s32 arg1) {
+    s32 func_8008B10C(s32, s32);
+    s32 func_8008D04C(s32);
+    func_8008B10C(func_8008D04C(arg0), arg1);
+}
 
 /* extern */
 
