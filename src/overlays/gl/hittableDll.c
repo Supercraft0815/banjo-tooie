@@ -4,7 +4,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/hittableDll/glhittableDll_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/hittableDll/glhittableDll_entrypoint_2.s")
+int glhittableDll_entrypoint_2(s32 arg0) {
+    return ((arg0 + 1) != 0) && ((arg0 + 2) != 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/hittableDll/glhittableDll_entrypoint_3.s")
 
