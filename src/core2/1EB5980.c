@@ -1,6 +1,9 @@
 #include "core2/1EB5980.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5980/func_800DC090.s")
+s32 func_800DC090(void) {
+    extern s32 D_8012C7F0;
+    return D_8012C7F0 = (D_8012C7F0 * 0x19660D) + 0x3C6EF35F;
+}
 
 f32 func_800DC0C0(void) {
     extern s32 D_8011B9A0;
