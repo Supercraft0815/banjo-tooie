@@ -32,7 +32,18 @@ void func_800AA2A0(s16 *arg0, s32 *arg1, f32 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AAD28.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AAD80.s")
+s32 func_800AAD80(u16 *list) {
+    typedef struct { u16 vertices[3]; u16 padding; u32 flags; } CollisionTriangle;
+    CollisionTriangle *start, *end, *triangle;
+    int count;
+    count = 0;
+    start = (CollisionTriangle *)((u8 *)list + 0x18 + list[8] * 4);
+    end = start + list[10];
+    for (triangle = start; triangle < end; triangle++) {
+        if (triangle->flags & 0x20020) count++;
+    }
+    return count;
+}
 
 u32 func_800AADE4(u16 *arg0) {
     return arg0[10];

@@ -38,7 +38,7 @@ s32 func_80800218_bstnt(void *arg0, s32 arg1) {
     s32 bainput_should_enter_first_person();
     s32 bakey_pressed(void *, s32);
     s32 bstnt_entrypoint_8(void *);
-    s32 player_isStable(void *);
+    int player_isStable(void *);
     s32 var_s1;
 
     var_s1 = arg1;

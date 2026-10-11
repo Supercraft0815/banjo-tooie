@@ -1,6 +1,23 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800ADCD0.s")
+void func_800ADCD0(u8 **list_ptr, u8 *animation) {
+    void *heap_realloc(void *, s32);
+    s32 func_80019CD4(void);
+    s32 mlMtxGet(void *);
+    u8 *list;
+    u8 *start, *end, *matrix;
+    list = *list_ptr;
+    if (*(s32 *)(list + 4) < *(s16 *)(animation + 4)) {
+        list = heap_realloc(list, *(s16 *)(animation + 4) * 64 + 0x50);
+        *(s32 *)(list + 4) = *(s16 *)(animation + 4);
+        *list_ptr = list;
+    }
+    *(s32 *)list = *(s16 *)(animation + 4);
+    start = list + 0x50;
+    end = start + *(s32 *)list * 64;
+    func_80019CD4();
+    for (matrix = start; matrix < end; matrix += 64) mlMtxGet(matrix);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800ADD80.s")
 

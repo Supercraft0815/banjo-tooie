@@ -51,7 +51,7 @@ void bswalk_entrypoint_4(PlayerState *self) {
     s32 _badrone_entrypoint_25(PlayerState *);
     void _baduo_entrypoint_12(PlayerState *);
     s32 func_80800248_bswalk(PlayerState *, s32);
-    s32 func_8008E148(PlayerState *);
+    int func_8008E148(PlayerState *);
     s32 next_state;
 
     next_state = 0;
@@ -129,7 +129,7 @@ void bswalk_entrypoint_7(PlayerState *self) {
     s32 _badrone_entrypoint_25(PlayerState *);
     void _baduo_entrypoint_12(PlayerState *);
     s32 func_80800248_bswalk(PlayerState *, s32);
-    s32 func_8008E148(PlayerState *);
+    int func_8008E148(PlayerState *);
     s32 next_state = 0;
 
     func_8080016C_bswalk();

@@ -145,7 +145,7 @@ void func_808010AC_bsbabykaz(s32 arg0) {
     s32 bs_setState(s32, s32);
     s32 bsbabykaz_entrypoint_5();
     s32 func_8008DD04(s32);
-    s32 func_8008E148(s32);
+    int func_8008E148(s32);
     s32 func_808001A8_bsbabykaz(s32, s32);
     s32 sp24;
 

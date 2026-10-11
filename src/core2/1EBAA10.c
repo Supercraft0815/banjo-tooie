@@ -6,7 +6,25 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1218.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1294.s")
+void func_800E1294(s32 arg0, f32 position[3], f32 rotation[3], f32 delta) {
+    void func_800E1218(f32 *, f32 *, f32);
+    void func_800E1120(f32 *, f32 *, f32);
+    void func_800E119C(f32 *, f32 *, f32);
+    switch (arg0) {
+    case 1:
+        func_800E1218(position, rotation, delta);
+        return;
+    case 0:
+        func_800E1120(position, rotation, delta);
+        return;
+    case 2:
+        func_800E119C(position, rotation, delta);
+        return;
+    case 3:
+        position[1] += delta;
+        return;
+    }
+}
 
 f32 func_800E1338(s32 arg0) {
     extern f32 D_8012CFB8[];
@@ -90,7 +108,26 @@ void func_800E1748(void) {
     } while (var_s0 != 0xA);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1788.s")
+/* extern */
+
+void func_800E1788(void) {
+    s32 func_800E1378(s32);
+    s32 func_800EFD24(Entry *);
+    Entry *var_s0;
+    s32 var_s1;
+
+    var_s0 = D_8012CF90;
+    var_s1 = 0;
+    do {
+        var_s0->bytes[0x74] = 1;
+        (*(f32 *)((s8 *)(var_s0) + (0x30))) = 0.0f;
+        var_s0->bytes[0x76] = 0;
+        func_800EFD24(var_s0);
+        func_800E1378(var_s1);
+        var_s1 += 1;
+        var_s0++;
+    } while (var_s1 != 0xA);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1804.s")
 

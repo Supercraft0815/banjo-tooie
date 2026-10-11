@@ -20,7 +20,7 @@
 #include <ultra64.h>
 
 
-s32 func_8008E148(PlayerState *self);
+int func_8008E148(PlayerState *self);
 
 extern u8 D_80800400_bsmumstill[];
 extern s32 D_80800404_bsmumstill[];

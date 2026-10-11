@@ -104,7 +104,17 @@ int func_80800E24_gczoombox(u8 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80801B30_gczoombox.s")
+void func_80801B30_gczoombox(u8 *box) {
+    void gczoombox_entrypoint_15(void *);
+    box[0x171] = 8;
+    gczoombox_entrypoint_15(box);
+    *(f32 *)(box + 0x1E0) = 0.0f;
+    if (box[0x1E4] & 1) {
+        *(s16 *)(box + 0x1AE) = *(s16 *)(box + 0x1B2) + 0x8C;
+    } else {
+        *(s16 *)(box + 0x1AE) = *(s16 *)(box + 0x1B2) - 0x8C;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80801B90_gczoombox.s")
 
@@ -132,7 +142,13 @@ u32 gczoombox_entrypoint_6(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_8.s")
+int gczoombox_entrypoint_8(u8 *box, char *text) {
+    s32 gczoombox_entrypoint_7(u8 *, s32, char **);
+    char *line;
+    if ((box[0x177] & 4) || text == NULL) return 0;
+    line = text;
+    return gczoombox_entrypoint_7(box, 1, &line);
+}
 
 void gczoombox_entrypoint_9(void *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x177))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x177))) | 0x1);
@@ -268,7 +284,21 @@ void gczoombox_entrypoint_31(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_32.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_33.s")
+int gczoombox_entrypoint_33(u8 *box) {
+    s32 func_808004D0_gczoombox(void *);
+    void gczoombox_entrypoint_17(void *);
+    if (box == NULL || box[0x171] == 0 || box[0x171] == 7 || box[0x171] == 9) return 0;
+    if (box[0x171] == 6 && box[0x170] == 4) return 0;
+    if (box[0x171] == 8) {
+        box[0x1E5] &= ~1;
+        box[0x171] = 6;
+    } else if (box[0x171] != 6) {
+        func_808004D0_gczoombox(box);
+    }
+    gczoombox_entrypoint_14(box);
+    gczoombox_entrypoint_17(box);
+    return 1;
+}
 
 /* extern */
 

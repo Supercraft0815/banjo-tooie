@@ -90,7 +90,17 @@ void func_800F0524(f32 dst[3], f32 vec1[9], f32 vec2[3]) {
     func_800F03AC(dst, vec1, tmp3, vec2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F059C.s")
+void func_800F059C(f32 dst[3], f32 src[3], f32 normal[3]) {
+    void func_800EFA20(f32 *, f32 *, f32);
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EFB24(f32 *, f32 *, f32 *);
+    f32 tmp[3];
+    f32 dot;
+    func_800EFA20(dst, src, -1.0f);
+    dot = func_800EEAA4(dst, normal);
+    func_800EFA20(tmp, normal, dot + dot);
+    func_800EFB24(dst, tmp, dst);
+}
 
 s32 func_800F05F8(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4) {
     f32 delta[3];

@@ -37,7 +37,7 @@ void bsdronegoto_entrypoint_0(void *arg0) {
     s32 _gcgoto_entrypoint_14(s32);
     s32 func_80091E48(void *, s32);
     s32 func_80800000_bsdronegoto(void *, s32);
-    s32 player_isStable(void *);
+    int player_isStable(void *);
     (*(s32 *)((s8 *)(arg0) + (0x190))) = 0;
     (*(s32 *)((s8 *)(arg0) + (0x194))) = 0;
     _gcgoto_entrypoint_14(1);

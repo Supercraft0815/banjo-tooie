@@ -35,7 +35,13 @@ int gccubesearch_entrypoint_2(s32 actor_id, s32 *position) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_3.s")
+s32 gccubesearch_entrypoint_3(s32 actor_id, f32 dst[3]) {
+    void func_800EE84C(f32 *, s32 *);
+    s32 position[3];
+    if (gccubesearch_entrypoint_2(actor_id, position) == 0) return 0;
+    func_800EE84C(dst, position);
+    return 1;
+}
 
 s32 func_80800160_gccubesearch(s32 arg0, s32 arg1, s32 arg2) {
     return (arg0 * arg0) + (arg1 * arg1) + (arg2 * arg2);

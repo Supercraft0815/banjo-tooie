@@ -142,7 +142,14 @@ void func_800FC8EC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC9B4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FCA90.s")
+void func_800FCA90(u32 track_id) {
+    void *func_800FB5F8(s32);
+    u8 *track;
+    track = func_800FB5F8(track_id);
+    if (track == NULL) return;
+    track[0x31] = 1;
+    if (*(s32 *)(track + 0x20) == 0 || track[0x34] != 0) func_800FB774(track);
+}
 
 void func_800FCAE0(u32 track_id, u32 volume, u32 duration) {
     void func_800FCB54(s32, s32, s32, f32);

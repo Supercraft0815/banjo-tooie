@@ -14,7 +14,14 @@ s32 func_800BA198(void *arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA1D0.s")
+void func_800BA1D0(s32 emitter, f32 position[3], f32 velocity[3], s32 count) {
+    s32 func_800EE940();
+    *(u16 *)emitter |= 0x40;
+    func_800EE940((s16 *)(emitter + 0x28), position);
+    func_800EE940((s16 *)(emitter + 0x2E), velocity);
+    *(u8 *)(emitter + 5) = 0;
+    func_800BA22C(emitter, count);
+}
 
 void func_800BA22C(s32 arg0, s32 n) {
     typedef u8 Particle[0x3C];

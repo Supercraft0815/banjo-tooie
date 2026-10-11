@@ -119,7 +119,7 @@ void bafly_entrypoint_14(s32 arg0, s32 arg1, s32 arg2) {
     s32 anctrl_isStopped(s32);
     s32 baanim_getAnimCtrlPtr();
     s32 bs_setState(s32, s32);
-    s32 player_isStable(s32);
+    int player_isStable(s32);
     s32 sp1C;
 
     sp1C = 0;

@@ -91,7 +91,15 @@ loop_1:
     goto loop_1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800C0C_chcheato.s")
+s32 func_80800C0C_chcheato(void) {
+    s32 func_800D3DD0(s32);
+    int i;
+    int count = 0;
+    for (i = 1; i < 6; i++) {
+        if (func_800D3DD0(i)) count++;
+    }
+    return count;
+}
 
 /* extern */
 

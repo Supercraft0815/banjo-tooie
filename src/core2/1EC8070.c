@@ -281,7 +281,17 @@ void func_800EF49C(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF8BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF934.s")
+void func_800EF934(f32 dst[3], f32 src[3], f32 yaw) {
+    f32 func_800137AC(f32);
+    f32 func_800137C4(void);
+    f32 cosine, sine, value;
+    cosine = func_800137AC(yaw);
+    sine = func_800137C4();
+    value = src[2] * sine + src[0] * cosine;
+    dst[1] = src[1];
+    dst[2] = src[2] * cosine - src[0] * sine;
+    dst[0] = value;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF9A8.s")
 

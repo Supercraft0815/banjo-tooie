@@ -148,7 +148,18 @@ s32 func_800D5950(s32 arg0) {
     return ((u32) D_8012B444 >> 6) - ((u32) D_8012B440 >> 6);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D59C0.s")
+s32 func_800D59C0(s32 index) {
+    typedef struct {
+        u32 reserved : 26;
+        u32 encoding : 2;
+        u32 flags : 4;
+    } AssetEncoding;
+    extern s32 D_8011B900;
+    extern u32 D_8012B440;
+    s32 rom_read_word(s32, u32 *);
+    rom_read_word((s32)((u32 *)D_8011B900 + index), &D_8012B440);
+    return ((AssetEncoding *)&D_8012B440)->encoding & 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5A04.s")
 

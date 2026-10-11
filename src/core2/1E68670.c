@@ -59,7 +59,19 @@ void func_8008F788(s32 arg0, s32 arg1) {
     func_800D1844(func_800D1B34(arg1));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008F7B4.s")
+void func_8008F7B4(s32 player, s32 actor_id) {
+    Unk80132ED0 *_bahold_entrypoint_5(s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 _bahold_entrypoint_4(s32);
+    s32 func_800D1B34(s32);
+    s32 func_800D1804(s32);
+    Unk80132ED0 *marker;
+    Actor *actor;
+    marker = _bahold_entrypoint_5(player);
+    if (marker) actor = func_80106790(marker);
+    if (marker && actor->unk6C_9 == actor_id) _bahold_entrypoint_4(player);
+    func_800D1804(func_800D1B34(actor_id));
+}
 
 /* extern */
 

@@ -52,7 +52,11 @@ int func_8008D370(PlayerState *player) {
     return func_800C6E38(8) && func_800A3304(player);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008D3B0.s")
+int func_8008D3B0(PlayerState *player) {
+    int func_800C6E38(s32);
+    s32 func_800F64A4(s32, s32);
+    return baflag_isTrue(player, 1) && func_800C6E38(9) && func_800F64A4(player->unk184, 0x401);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008D40C.s")
 
@@ -190,11 +194,20 @@ int func_8008DEA4(PlayerState *player, f32 position[3], f32 range) {
     return ((position[1] - range) <= plyr_pos[1]) && (plyr_pos[1] <= position[1] + range);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DF18.s")
+int func_8008DF18(PlayerState *player) {
+    s32 bastatetimer_isActive(PlayerState *, s32);
+    f32 func_800A3378(PlayerState *);
+    s32 func_8009659C(PlayerState *, s32);
+    return bastatetimer_isActive(player, 6) || (func_800A3378(player) == 1.0f && func_8009659C(player, 0x40));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DF8C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/player_isStable.s")
+int player_isStable(PlayerState *player) {
+    s32 func_800A0FCC(void);
+    f32 baphysics_get_vertical_velocity(PlayerState *);
+    return func_800A0FCC() && baphysics_get_vertical_velocity(player) < 0.0f;
+}
 
 void func_8008E0C8()
 {
@@ -208,7 +221,11 @@ s32 func_8008E124(PlayerState *arg0) {
     return func_8009CC68(arg0) != 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E148.s")
+int func_8008E148(PlayerState *player) {
+    s32 bastatetimer_isActive(PlayerState *, s32);
+    f32 func_800A3378(PlayerState *);
+    return bastatetimer_isActive(player, 5) || func_800A3378(player) == 1.0f;
+}
 
 /* extern */
 
@@ -238,7 +255,7 @@ s32 func_8008E23C(PlayerState *arg0) {
 
 s32 func_8008E260(PlayerState *arg0) {
     s32 func_800954E8(PlayerState *, s32 *);
-    s32 player_isStable();
+    int player_isStable();
     s32 sp1C;
 
     if (player_isStable() != 0) {

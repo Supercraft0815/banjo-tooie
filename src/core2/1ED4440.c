@@ -2,7 +2,22 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FAB50.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FABF4.s")
+void *func_800FABF4(f32 start[3], f32 end[3], f32 normal[3], u32 flags, f32 radius, f32 height) {
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_800FAB50(f32 *, f32 *, f32 *, u32, f32);
+    f32 shifted_start[3];
+    f32 shifted_end[3];
+    void *triangle;
+    func_800EE7F8(shifted_start, start);
+    func_800EE7F8(shifted_end, end);
+    shifted_start[1] += height;
+    shifted_end[1] += height;
+    triangle = func_800FAB50(shifted_start, shifted_end, normal, flags, radius);
+    if (triangle == NULL) return NULL;
+    shifted_end[1] -= height;
+    func_800EE7F8(end, shifted_end);
+    return triangle;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FACA0.s")
 
@@ -10,7 +25,23 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FAE44.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FAF78.s")
+void func_800FAF78(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3], f32 arg4[3]) {
+    void func_800EFB24(f32 *, f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp24[3];
+    f32 phi_f12;
+
+    func_800EFB24(sp3C, arg1, arg0);
+    func_800EFB24(sp30, arg3, arg2);
+    func_800EFB24(sp24, sp3C, sp30);
+    phi_f12 = -func_800EEAA4(arg4, sp24);
+    if (phi_f12 < 5.0f) phi_f12 = 5.0f;
+    arg1[0] += phi_f12 * arg4[0];
+    arg1[1] += phi_f12 * arg4[1];
+    arg1[2] += phi_f12 * arg4[2];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FB040.s")
 

@@ -487,7 +487,9 @@ void func_800C3F14(s32 uid, f32 arg1){
     func_800C2840(uid, arg1, 22000, 0, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3F48.s")
+void func_800C3F48(u32 arg0) {
+    func_800C2840(arg0 & 0x7FF, (f32) ((arg0 >> 0x15) & 0x7FF) / 1024, (arg0 >> 6) & 0x7FE0, 0, 2);
+}
 
 void func_800C3FC0(s32 uid, f32 pitch, s32 arg2){
     void func_800C2840(s32, f32, s32, s32, s32);
