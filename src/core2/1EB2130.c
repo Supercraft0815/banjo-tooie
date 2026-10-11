@@ -5,7 +5,10 @@ f32 func_800D8840(s32 arg0) {
     return D_8011B964[arg0][0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2130/func_800D8854.s")
+s32 func_800D8854(s32 arg0) {
+    extern u8 D_8011B961[];
+    return D_8011B961[arg0 * 8] & 1;
+}
 
 void func_800D8870(void) {
     s32 freelist_new(s32, s32);
