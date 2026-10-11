@@ -107,7 +107,17 @@ void func_800BA5BC(void *arg0, f32 arg1, f32 arg2) {
     (*(f32 *)((s8 *)(arg0) + (0x7C))) = arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA5D0.s")
+void func_800BA5D0(void *arg0, s16 arg1) {
+    u32 var_v0;
+
+    *(s16 *)((s8 *)arg0 + 0x14) = arg1;
+    if (*(u32 *)((s8 *)arg0 + 0x90) > (var_v0 = *(u32 *)((s8 *)arg0 + 0x8C))) {
+        do {
+            *(s16 *)((s8 *)var_v0 + 8) = arg1;
+            var_v0 += 0x3C;
+        } while (var_v0 < *(u32 *)((s8 *)arg0 + 0x90));
+    }
+}
 
 /* extern */
 
