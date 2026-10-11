@@ -470,7 +470,22 @@ Referenzen: [Claude-Code-Authentifizierung](https://code.claude.com/docs/en/auth
 banjo_kazooie_repo = "/absoluter/Pfad/banjo-kazooie"
 ```
 
-Die Suche verwendet lokal `rg` über `src`, `include` und vorhandenes `asm`, mit
+Mit `tools/decomp_harness/bk_map.json` bekommt der Worker statt einer Textsuche das
+bekannte Gegenstück: den C-Quelltext der zugeordneten BK-Funktion und die BK-Signaturen
+zugeordneter Callees, live aus dem BK-Repository gelesen. Die Tabelle (BT-Funktion →
+BK-Datei, BK-Funktion, Opcode-Ähnlichkeit, Beleg) entsteht aus dem Maschinencode beider
+Spiele, weil ein fertiges BK-Decomp kein `asm/` mehr hat:
+
+```sh
+PYTHONPATH=tools/decomp_harness/src python3 -m decomp_harness.bkmap /pfad/zum/bk.z64 /pfad/zu/banjo-kazooie
+```
+
+Belege: `similar` (nahezu gleiche Opcode-Folge), `position` (gleiche Stelle in der
+zugeordneten Datei), `call` (Callee eines zugeordneten Paars). Neu erzeugen, wenn sich
+Symbolnamen oder Dateigrenzen ändern; nötig sind PyYAML, das eigene BK-ROM (US 1.0) und
+ein gebauter Workspace (Linker-Map).
+
+Ohne Tabelle sucht der Harness blind: lokal `rg` über `src`, `include` und vorhandenes `asm`, mit
 Funktionsnamen, Calls, Symbol-/Typnamen und charakteristischen Konstanten. Zusätzlich
 werden Opcode- und Call-Muster vorhandener ASM-Dateien lokal verglichen; ein per
 Datei-Mtime aktualisierter SQLite-Index vermeidet erneutes Parsen. Ergebnisse

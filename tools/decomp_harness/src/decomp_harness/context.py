@@ -5,6 +5,7 @@ from difflib import SequenceMatcher
 from pathlib import Path
 import re
 
+from .bkmap import bk_context
 from .common import command
 from .patterns import known_declarations
 from .scanner import global_asms, INSN
@@ -122,13 +123,16 @@ def context_pack(root, function, state, config, budget=None, shared=True, draft=
     types = re.findall(r'\b(?:struct\s+)?([A-Z][A-Za-z0-9_]*(?:State|Info|Actor|Data|Struct))\b', neighbors+related)
     type_info = excerpts(root, types, ('include',), 2500 if shared else 1000)
     asm = (root/function['asm']).read_text()
-    bk = ''
+    bk = analogue = ''
     if config['banjo_kazooie_repo']:
         bkroot = Path(config['banjo_kazooie_repo']).expanduser().resolve()
-        semantic_terms = [t for t in terms if not re.match(r'^(?:func|D|R)_[0-9A-Fa-f]{8}', t)]
-        constants = re.findall(r'\b0x[0-9a-fA-F]{3,}\b', asm)
-        bk = excerpts(bkroot, semantic_terms+constants[:8], ('src', 'include', 'asm'), 3000)
-        bk += '\n'+asm_analogues(bkroot, asm, state)
+        analogue = bk_context(root, bkroot, function['id'], features['calls'])
+        if analogue is None:   # no bk_map.json: blind text/opcode search instead of known analogues
+            semantic_terms = [t for t in terms if not re.match(r'^(?:func|D|R)_[0-9A-Fa-f]{8}', t)]
+            constants = re.findall(r'\b0x[0-9a-fA-F]{3,}\b', asm)
+            bk = excerpts(bkroot, semantic_terms+constants[:8], ('src', 'include', 'asm'), 3000)
+            bk += '\n'+asm_analogues(bkroot, asm, state)
+            analogue = ''
     knowledge = list(state.db.execute('SELECT tags,summary FROM knowledge'))
     tokens = set(re.findall(r'\w+', function['source']+' '+asm))
     knowledge.sort(key=lambda row: len(tokens & set(row['tags'].split())), reverse=True)
@@ -159,7 +163,7 @@ def context_pack(root, function, state, config, budget=None, shared=True, draft=
            if draft and not current else '')
     pack = (f"Target: {function['id']}\nSource: {function['source']}\nTarget line: {line}\nASM: {function['asm']}\n"
             f"Exact target directive (or current C below):\n{directive}\nCurrent candidate:\n{current[:4000]}\n"
-            f"{common}{m2c}"
+            f"{common}{m2c}{analogue}"
             f"Features: {json.dumps(features)}\nBest score: {function['best_score']}\n"
             f"Recent attempts: {json.dumps(history)}\nPrevious diff: {previous}\n"
             f"Failed attempts (newest first):\n{failed_attempts(root, history)}\n"

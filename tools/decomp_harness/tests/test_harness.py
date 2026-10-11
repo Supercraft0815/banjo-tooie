@@ -159,6 +159,25 @@ class SchedulerTests(Fixture):
         path.unlink()
         self.assertEqual(asm_analogues(bk, ASM, self.state), '')
 
+    def test_bk_map_supplies_analogue_and_callee_signatures(self):
+        from decomp_harness import bkmap
+        from decomp_harness.context import context_pack
+        bk = self.root/'bk'; (bk/'src/core2').mkdir(parents=True)
+        (bk/'src/core2/x.c').write_text('static int helper(int a){ return a; }\n/* { */\nf32 bk_get(Actor *this, f32 scale)\n{\n    if (scale) { return 1.0f; }\n    return this->unk0;\n}\n')
+        self.cfg['banjo_kazooie_repo'] = str(bk)
+        self.assertNotIn('Banjo-Kazooie analogue', context_pack(self.root, self.function, self.state, self.cfg))
+        table = self.root/bkmap.TABLE; table.parent.mkdir(parents=True)
+        table.write_text(json.dumps({self.function['id']: ['core2/x', 'bk_get', 0.93, 'similar'],
+                                     'src/core2/b.c::callee': ['core2/x', 'helper', 1.0, 'call']}))
+        bkmap.load.cache_clear()
+        pack = context_pack(self.root, self.function, self.state, self.cfg)
+        self.assertIn('Banjo-Kazooie analogue bk_get', pack)
+        self.assertIn('return this->unk0;\n}', pack)
+        self.assertEqual(bkmap.bk_context(self.root, bk, 'none', ['callee', 'unknown']).splitlines()[1],
+                         'callee = BK helper (1.00): static int helper(int a)')
+        chunks = bkmap.split_functions([0x10000004, 0, 0x03E00008, 0, 0x03E00008, 0, 0, 0, 0x03E00008, 0])
+        self.assertEqual([(start, len(words)) for start, words in chunks], [(0, 6), (8, 2)])
+
     def test_selection_and_difficulty_route(self):
         self.assertEqual(next_function(self.state)['id'], self.function['id'])
         self.assertIsNone(next_function(self.state, 'hard'))
