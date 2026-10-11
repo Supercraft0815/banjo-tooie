@@ -5,7 +5,18 @@ s32 bahold_entrypoint_0()
     return 0x10;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/hold/func_80800008_bahold.s")
+void func_80800008_bahold(u8 *arg0, s32 arg1) {
+    s32 func_8009ADF0(void *, s32, s32);
+    s32 var_a2;
+
+    (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x9C)))) + (8))) = arg1;
+    if (arg1 != 0) {
+        var_a2 = 1;
+    } else {
+        var_a2 = 0;
+    }
+    func_8009ADF0(arg0, 0xE, var_a2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/hold/bahold_entrypoint_1.s")
 
