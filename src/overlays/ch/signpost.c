@@ -13,7 +13,11 @@ OSThread *chsignpost_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/signpost/func_8080019C_chsignpost.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/signpost/func_80800230_chsignpost.s")
+void func_80800230_chsignpost(u8 *arg0, s32 arg1, s32 arg2) {
+    if (((u32)*(u16 *)(arg0 + 0x72) >> 10) == 2) {
+        *(u8 *)(arg0 + 0x72) = (*(u8 *)(arg0 + 0x72) & 0xFF03) | 4;
+    }
+}
 
 void func_80800264_chsignpost(s32 arg0, s32 arg1, s32 arg2) {
 }
