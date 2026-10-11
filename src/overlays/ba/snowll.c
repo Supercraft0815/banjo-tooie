@@ -12,7 +12,14 @@ f32 func_80800084_basnowball(s32 arg0) {
     return ((f32 *)&D_80801020_basnowball)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/func_80800098_basnowball.s")
+s32 func_80800098_basnowball(s32 arg0, s32 arg1, s32 *arg2, s32 *arg3) {
+    extern f32 D_80801038_basnowball[];
+    f32 *temp_v0;
+
+    temp_v0 = (f32 *)((u8 *)D_80801038_basnowball + arg1 * 8);
+    *(f32 *)arg2 = temp_v0[0];
+    *(f32 *)arg3 = temp_v0[1];
+}
 
 /* extern */
 
