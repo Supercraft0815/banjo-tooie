@@ -127,4 +127,14 @@ s32 func_80801D94_chfactorytwinklies(s32 arg0, s32 arg1, u8 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80802020_chfactorytwinklies.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_8080207C_chfactorytwinklies.s")
+/* extern */
+
+s32 func_8080207C_chfactorytwinklies(u8 *arg0) {
+    u8 func_800D9078(f32 *);
+    f32 func_800F12D4(f32, f32, s32, s32, f32);
+    s32 sp28;
+
+    sp28 = func_800D9078((f32 *) (arg0 + 0x28));
+    (*(f32 *)((s8 *)(arg0) + (8))) = func_800F12D4((*(f32 *)((s8 *)(arg0) + (0x28))), 0.0f, 0x3F19999A, 0xC37A0000, 0.0f);
+    return sp28;
+}
