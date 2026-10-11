@@ -300,7 +300,11 @@ void func_80802438_bsfirstp(void *arg0, s32 arg1) {
     *(s32 *)((u8 *)target + 160) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80802444_bsfirstp.s")
+s32 func_80802444_bsfirstp(void *arg0) {
+    register void *target;
+    target = *(void **)((u8 *)arg0 + 392);
+    return (*(s32 *)((u8 *)target + 160)) == 1;
+}
 
 s32 func_80802458_bsfirstp(void *arg0) {
     u32 func_800A3280(void *);
