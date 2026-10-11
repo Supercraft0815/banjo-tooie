@@ -251,7 +251,20 @@ void gcnewoption_entrypoint_32(void *arg0, s16 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80802998_gcnewoption.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80802A9C_gcnewoption.s")
+s32 func_80802A9C_gcnewoption(u8 *arg0) {
+    s32 i;
+    u8 *ptr;
+    i = 0;
+    ptr = arg0;
+    if (*(s16 *)(arg0 + 2) > 0) {
+        do {
+            * (s8 *)(ptr + 0x94) = -1;
+            i++;
+            ptr++;
+        } while (i < *(s16 *)(arg0 + 2));
+    }
+    *(u8 *)(arg0 + 0x24) = 0xFF;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_35.s")
 
