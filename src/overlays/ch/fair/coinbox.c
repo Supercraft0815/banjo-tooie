@@ -2,7 +2,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/func_80800000_chfaircoinbox.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/func_8080001C_chfaircoinbox.s")
+void func_8080001C_chfaircoinbox(u8 *arg0) {
+    struct CoinboxData { u8 pad[0x76]; unsigned short index : 9; unsigned short rest : 7; };
+    s32 func_800DA544(s32);
+    extern s32 func_808002E4_chfaircoinbox[][2];
+    func_800DA544(func_808002E4_chfaircoinbox[((struct CoinboxData *)arg0)->index][0]);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/func_80800050_chfaircoinbox.s")
 
