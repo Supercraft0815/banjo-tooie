@@ -406,7 +406,13 @@ u8 *func_808027A8_bsfirstp(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_7.s")
+void bsfirstp_entrypoint_7(void *arg0, f32 *arg1, f32 *arg2) {
+    void *temp_v0;
+
+    temp_v0 = func_80802458_bsfirstp(arg0);
+    *arg1 = (*(f32 *)((s8 *)(temp_v0) + (0xC)));
+    *arg2 = (*(f32 *)((s8 *)(temp_v0) + (0x10)));
+}
 
 void func_80802BD8_bsfirstp(s32 arg0) 
 {
