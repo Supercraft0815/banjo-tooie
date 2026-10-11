@@ -105,7 +105,14 @@ void func_8080103C_gcnewoption(u8 *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80801190_gcnewoption.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_12.s")
+void gcnewoption_entrypoint_12(OptionState *a0, u32 optionIndex, s16 textIndex) {
+    s16 *temp_v0;
+
+    temp_v0 = (s16 *)((s8 *)a0 + optionIndex * 2 + 0xEC);
+    if (textIndex != *temp_v0) {
+        *temp_v0 = textIndex;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_13.s")
 
