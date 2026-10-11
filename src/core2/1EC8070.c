@@ -117,7 +117,13 @@ f32 func_800EEB40(f32 a[3], f32 b[3]) {
     return SQ(delta[0]) + SQ(delta[1]) + SQ(delta[2]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EEB9C.s")
+void func_800EEB9C(f32 dst[3], f32 angle, f32 distance) {
+    f32 func_800137F4(f32);
+    f32 func_80013788(void);
+    dst[0] = func_800137F4(angle) * distance;
+    dst[1] = 0.0f;
+    dst[2] = func_80013788() * distance;
+}
 
 void func_800EEBF0(f32 *arg0, f32 *arg1, f32 arg2) {
     func_800EFD24(arg0);

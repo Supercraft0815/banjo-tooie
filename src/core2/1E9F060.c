@@ -110,9 +110,54 @@ void* func_800C5BC4(void* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C5BE4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C5CC0.s")
+s32 func_800C5CC0(s32 this, f32 arg1, f32 arg2, u32 arg3, s32 arg4) {
+    s32 func_800C5BE4(s32, f32, f32, u32, s32);
+    f32 mlAbsF(f32);
+    s32 phi_v1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C5E14.s")
+    if (mlAbsF(arg2 - arg1) > 500.0f) {
+        if (arg1 < arg2) {
+            phi_v1 = func_800C5BE4(this, arg1, arg1 + 500.0f, arg3, arg4);
+            if (phi_v1 == 0) {
+                phi_v1 = func_800C5BE4(this, arg1 + 500.0f - 1.0f, arg2, arg3, arg4);
+            }
+        } else {
+            phi_v1 = func_800C5BE4(this, arg1, arg1 - 500.0f, arg3, arg4);
+            if (phi_v1 == 0) {
+                phi_v1 = func_800C5BE4(this, arg1 - 500.0f + 1.0f, arg2, arg3, arg4);
+            }
+        }
+    } else {
+        phi_v1 = func_800C5BE4(this, arg1, arg2, arg3, arg4);
+    }
+    return phi_v1;
+}
+
+s32 func_800C5E14(void *arg0) {
+    f32 temp_f0;
+    f32 temp_f2;
+    int temp_v0;
+
+    temp_v0 = (*(u8 *)((s8 *)(arg0) + (0x8F)));
+    if (temp_v0 == 0) {
+        return 2;
+    }
+    if ((temp_v0 != 0) && ((*(u8 *)((s8 *)(arg0) + (0x8E))) == 0)) {
+        return 4;
+    }
+    temp_f0 = (*(f32 *)((s8 *)(arg0) + (0x74)));
+    if (temp_f0 < (*(f32 *)((s8 *)(arg0) + (0x50)))) {
+        return 2;
+    }
+    temp_f2 = temp_f0 - (*(f32 *)((s8 *)(arg0) + (0x70)));
+    if (temp_f2 < -20.0f) {
+        return 2;
+    }
+    if (temp_f2 > 100.0f) {
+        return 4;
+    }
+    return 3;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C5EB8.s")
 

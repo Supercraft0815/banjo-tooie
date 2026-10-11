@@ -1,5 +1,12 @@
 #include "core2/1EB5E70.h"
 
+typedef struct {
+    u32 header[2];
+    Gfx commands[1];
+} DisplayListView;
+
+extern DisplayListView *D_8012C960;
+
 extern s32 D_8012C824;
 extern s32 D_8012C940;
 
@@ -166,7 +173,10 @@ void func_800DD19C(s32 arg0, u8 *commands) {
     func_800DE2A4(arg0, commands);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD1C0.s")
+void func_800DD1C0(Gfx **gfx, u8 *data) {
+    struct Command { u8 padding[0xA]; s16 index; };
+    gSPDisplayList((*gfx)++, osVirtualToPhysical(&D_8012C960->commands[((struct Command *)data)->index]));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD214.s")
 
@@ -256,7 +266,24 @@ void func_800DF35C(void) {
     func_8010E390();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DF38C.s")
+void func_800DF38C(void) {
+    typedef struct { u8 buffer[0x400]; u8 *current; u8 *end; } LookAtBuffer;
+    extern LookAtBuffer D_8012CA40;
+    extern f32 D_8012CE48[3];
+    extern u8 D_8012C840;
+    s32 func_800ADF98(void);
+    s32 func_8010E334(void);
+    void func_800EFD24(f32 *);
+    LookAtBuffer *buffer;
+    void func_800DE318(void);
+    func_800DE318();
+    buffer = &D_8012CA40;
+    buffer->current = buffer->buffer;
+    buffer->end = buffer->current + sizeof(buffer->buffer);
+    func_800EFD24(D_8012CE48);
+    *(s32 *)&D_8012C840 = func_800ADF98();
+    func_8010E334();
+}
 
 void func_800DF3E0(void) {
     extern s32 D_8012C850[];
@@ -317,9 +344,8 @@ void func_800DF490(s32 arg0, s32 arg1) {
 
 void func_800DF4A4(s32 arg0)
 {
-    extern s32 D_8012C960;
 
-    D_8012C960 = arg0;
+    D_8012C960 = (DisplayListView *)arg0;
 }
 
 void func_800DF4B0(s32 arg0) {

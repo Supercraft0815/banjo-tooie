@@ -91,7 +91,12 @@ s32 susplinet_entrypoint_15(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/func_80800D3C_susplinet.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_17.s")
+void susplinet_entrypoint_17(u8 *spline) {
+    s32 func_80800D3C_susplinet(u8 *, s32);
+    spline[0x58] = 1;
+    func_80800D3C_susplinet(spline, *(s32 *)(spline + 0x44));
+    spline[0x58] = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/func_8080111C_susplinet.s")
 

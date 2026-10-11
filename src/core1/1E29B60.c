@@ -1,6 +1,14 @@
 #include "core1/1E29B60.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E29B60/func_80012030.s")
+void func_80012030(void *unused) {
+    extern u8 core1_BSS_START[];
+    extern u8 core1_BSS_END[];
+    void func_80013620(void);
+    bzero(core1_BSS_START, core1_BSS_END - core1_BSS_START);
+    osWritebackDCacheAll();
+    osInitialize();
+    func_80013620();
+}
 
 void func_8001207C(void) 
 {

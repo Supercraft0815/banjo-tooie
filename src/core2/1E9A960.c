@@ -128,7 +128,17 @@ void func_800C16A4(u8 index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C1860.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C18C8.s")
+void func_800C18C8(s32 index, s32 a, s32 b, s32 c, s32 d) {
+    s32 func_800C122C(s32, s32, s32, s32);
+    s32 func_800DC48C(s32, s32);
+    s32 parameters;
+    s32 source;
+    if (index) {
+        source = func_800C1448(index);
+        parameters = func_800C122C(a, b, c, d);
+        func_800DC48C(source, parameters);
+    }
+}
 
 /* extern */
 
@@ -198,7 +208,16 @@ void func_800C28D8()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2900.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2A08.s")
+void func_800C2A08(void) {
+    void func_800C4308(f32, f32);
+    void func_800C4B70(s32);
+    void func_800C4B7C(s32);
+    func_800C28D8();
+    func_800C4308(0.0f, 1.0f);
+    func_800C4B64(1.0f);
+    func_800C4B70(22000);
+    func_800C4B7C(-1);
+}
 
 void func_800C2A5C(s32 arg0, s32 arg1) {
 }
@@ -220,7 +239,14 @@ void func_800C2A90()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2C4C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2E04.s")
+s32 func_800C2E04(void) {
+    u8 func_800C145C(void);
+    s32 func_800C2C4C(u8);
+    u8 index = func_800C145C();
+    if (index == 0) return 0;
+    func_800C2C4C(index);
+    return index;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2E40.s")
 
@@ -237,7 +263,20 @@ void func_800C301C(u8 id, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3058.s")
+void func_800C3058(u8 index, s32 sample_rate) {
+    struct Flags { u8 padding[0x78]; u32 high : 28; u32 varying_rate : 1; u32 low : 3; };
+    u8 *source;
+    if (index) {
+        source = func_800C1414(index);
+        *(s16 *)(source + 0x5A) = sample_rate;
+        if (((struct Flags *)source)->varying_rate == 0) {
+            *(s16 *)(source + 0x4C) = sample_rate;
+            *(s16 *)(source + 0x4E) = sample_rate;
+            *(f32 *)(source + 0x50) = 0.0f;
+        }
+        func_800C13A0(source, 8);
+    }
+}
 
 void func_800C30B8(u8 index, s32 arg1, f32 position[3], f32 min_dist, f32 max_dist) {
     void func_800C1070(f32 *, f32 *);

@@ -19,7 +19,23 @@ void *func_800FABF4(f32 start[3], f32 end[3], f32 normal[3], u32 flags, f32 radi
     return triangle;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FACA0.s")
+void func_800FACA0(f32 arg0[3], s32 unused, u32 arg1) {
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800C6A7C(s32, f32 *, f32 *, s32);
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp1C[3];
+    u8 *temp_v0;
+
+    func_800EE7F8(sp28, arg0);
+    func_800EE7F8(sp1C, arg0);
+    sp28[1] += 100.0f;
+    sp1C[1] -= 500.0f;
+    temp_v0 = (u8 *)func_800C6A7C((s32)sp28, sp1C, sp34, arg1);
+    if ((temp_v0 != NULL) && (!(sp34[1] < 0.0f) || (*(u32 *)(temp_v0 + 8) & 0x10000)) && (arg0[1] < sp1C[1])) {
+        arg0[1] = sp1C[1];
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FAD68.s")
 

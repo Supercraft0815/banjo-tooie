@@ -122,13 +122,25 @@ void func_8011347C(PlayerState *arg0) {
     func_801107F0(arg0, arg0->bounce);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_8011349C.s")
+s32 func_8011349C(f32 *start, f32 *end) {
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_800FAB50(f32 *, f32 *, f32 *, u32, f32);
+    f32 destination[3];
+    f32 normal[3];
+    func_800EE7F8(destination, end);
+    if (func_800FAB50(start, destination, normal, 0x820020, 50.0f)) return 0;
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_801134F0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_801135D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80113640.s")
+void func_80113640(s32 unused, f32 *start, f32 *end) {
+    void *func_800FAB50(f32 *, f32 *, f32 *, u32, f32);
+    f32 normal[3];
+    func_800FAB50(start, end, normal, 0x820020, 45.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80113688.s")
 

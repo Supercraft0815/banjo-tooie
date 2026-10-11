@@ -76,7 +76,16 @@ void func_800B23E0(void* arg0)
 {
     heap_free(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B2400.s")
+void *func_800B2400(VertexListView *list, s32 side) {
+    void *heap_alloc_sided(s32, s32);
+    s32 aligned4_memcpy(void *, void *, s32);
+    void *copy;
+    s32 size;
+    size = list->count * sizeof(Vtx) + 0x18;
+    copy = heap_alloc_sided(size, side ? 1 : 2);
+    aligned4_memcpy(copy, list, size);
+    return copy;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B2464.s")
 

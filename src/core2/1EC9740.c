@@ -14,7 +14,13 @@ int func_800EFED0(f32 min[3], f32 max[3], f32 vec[3])
         && vec[2] > min[2] && vec[2] < max[2];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800EFFB4.s")
+s32 func_800EFFB4(f32 point[3], f32 radius, f32 center[3]) {
+    void func_800EFB24(f32 *, f32 *, f32 *);
+    f32 func_800EEFD4(f32 *);
+    f32 delta[3];
+    func_800EFB24(delta, center, point);
+    return func_800EEFD4(delta) <= radius * radius;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F0008.s")
 
@@ -36,7 +42,15 @@ int func_800F0130(s32 vec2[3], s32 distance, s32 vec1[3])
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F0274.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F03AC.s")
+void func_800F03AC(f32 dst[3], f32 point[3], f32 normal[3], f32 position[3]) {
+    void func_800EFB24(f32 *, f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EFA20(f32 *, f32 *, f32);
+    f32 delta[3];
+    func_800EFB24(delta, position, point);
+    func_800EFA20(delta, normal, func_800EEAA4(normal, delta));
+    func_800EFB24(dst, position, delta);
+}
 
 void func_800F0410(f32 dst[3], f32 arg2[3][3], f32 arg1[3]){
     void func_800F0274(f32 *, f32 *, f32 *, f32 *);

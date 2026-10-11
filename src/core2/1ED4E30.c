@@ -33,7 +33,27 @@ void func_800FB6C0(s32 *ptr, s32 volume) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FB968.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FBEC8.s")
+void func_800FBEC8(u8 *track, s32 *minimum_first, s32 *minimum_second) {
+    s32 freelist_capacity(s32);
+    s32 freelist_is_element_alive(s32, s32);
+    void *freelist_at(s32, s32);
+    int i;
+    int count = freelist_capacity(*(s32 *)(track + 0x38));
+    s32 first = 0x7FFF;
+    s32 second = 0x40000000;
+    s32 *entry;
+    for (i = 1; i < count; i++) {
+        if (freelist_is_element_alive(*(s32 *)(track + 0x38), i)) {
+            entry = freelist_at(*(s32 *)(track + 0x38), i);
+            if (entry[0] < first || (first == entry[0] && entry[1] < second)) {
+                first = entry[0];
+                second = entry[1];
+            }
+        }
+    }
+    *minimum_first = first;
+    *minimum_second = second;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FBF9C.s")
 
@@ -156,7 +176,11 @@ void func_800FCAE0(u32 track_id, u32 volume, u32 duration) {
     func_800FCB54(track_id, volume, duration, 0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FCB00.s")
+void func_800FCB00(s32 track, s32 first, s32 second, s32 index) {
+    void *func_800FB5F8(s32);
+    void func_800FCB9C(s32, s32, s32, f32, void *);
+    func_800FCB9C(track, first, second, 0.0f, (u8 *)func_800FB5F8(track) + 0x3C + index * 4);
+}
 
 void func_800FCB54(s32 track_id, s32 arg1, s32 arg2, f32 arg3) {
     void *func_800FB5F8(s32);

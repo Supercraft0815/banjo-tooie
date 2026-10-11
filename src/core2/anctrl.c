@@ -72,7 +72,23 @@ void func_8008AF04(s32 arg0) {
     func_8008C1DC(arg0 + 0x1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_reset.s")
+void anctrl_reset(AnimCtrl *control) {
+    typedef struct { f32 start; u8 padding4[0x10]; f32 time; u8 padding18[2]; u8 type; u8 high : 2; u8 flag : 1; u8 low : 5; } ResetState;
+    s32 func_800E6A00(void);
+    ResetState *state = (ResetState *)control;
+    s32 mode;
+    state->type = 2;
+    state->flag = 1;
+    state->start = 0.0f;
+    state->time = 0.0f;
+    anctrl_setSmoothTransition(control, 1);
+    anctrl_setSubrange(control, 0.0f, 1.0f);
+    anctrl_setDuration(control, 2.5678f);
+    func_8008B1C8(control, 0.2f);
+    func_8008B188(control, 1);
+    mode = func_800E6A00() ? 2 : 0;
+    func_8008B2E8(control, mode);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008AFCC.s")
 
