@@ -9,7 +9,9 @@ void sumissilehome_entrypoint_2(s32 arg0, void *arg1, f32 arg2) {
     (*(f32 *)((s8 *)(arg1) + (4))) = arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/missilehome/sumissilehome_entrypoint_3.s")
+void sumissilehome_entrypoint_3(s32 arg0, s8 *arg1, s32 arg2) {
+    *arg1 = arg2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/missilehome/sumissilehome_entrypoint_4.s")
 
