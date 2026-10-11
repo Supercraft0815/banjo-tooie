@@ -82,7 +82,22 @@ void func_800CBB70(s32 arg0, s32 arg1) {
     *(s8 *)((u8 *)&D_8012AE98 + arg0) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CBB80.s")
+void func_800CBB80(s32 arg0, s32 arg1) {
+    extern s32 D_8012AE8C;
+    struct Entry {
+        u16 prefix;
+        u8 other : 7;
+        u8 flag : 1;
+        u8 rest[25];
+    } *entry;
+
+    entry = (struct Entry *)(D_8012AE8C + arg0 * 0x1C);
+    if (arg1 != 0) {
+        entry->flag = 1;
+        return;
+    }
+    entry->flag = 0;
+}
 
 s32 func_800CBBC0(s32 arg0) {
     extern s32 D_8012AE8C;
