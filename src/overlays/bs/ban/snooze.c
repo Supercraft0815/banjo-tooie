@@ -75,7 +75,19 @@ void func_808006F8_bsbansnooze(s32 arg0)
     func_80800098_bsbansnooze();
     _bsrest_entrypoint_16(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_80800720_bsbansnooze.s")
+/* extern */
+
+void func_80800720_bsbansnooze(s32 arg0) {
+    s32 _bsrest_entrypoint_20();
+    s32 bs_setState(s32, s32);
+    s32 sp1C;
+
+    sp1C = 0;
+    if (_bsrest_entrypoint_20() != 0) {
+        sp1C = 0x16F;
+    }
+    bs_setState(arg0, sp1C);
+}
 
 s32 bsbansnooze_entrypoint_4(s32 arg0) {
     extern s32 D_80800A98_bsbansnooze[];
