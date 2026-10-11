@@ -109,7 +109,13 @@ void ncpoddialog_entrypoint_3(s16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/ncpoddialog_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/ncpoddialog_entrypoint_6.s")
+/* extern */
+
+void ncpoddialog_entrypoint_6(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_800EE7F8(s32, s32);
+    typedef struct { u8 pad[0x40]; f32 position[1][3]; } Pod;
+    func_800EE7F8(((Pod *)arg0)->position[arg1], arg2);
+}
 
 void ncpoddialog_entrypoint_7(void *arg0, s32 arg1) {
     if (arg1 >= 0) {
