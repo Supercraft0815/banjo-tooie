@@ -84,7 +84,11 @@ void func_808028E8_chklungo(Actor *arg0) {
     _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80803C98_chklungo, 0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80802914_chklungo.s")
+void func_80802914_chklungo(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    extern u32 D_80803CA8_chklungo;
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80803CA8_chklungo, 0.0f);
+}
 
 void func_80802940_chklungo(s32 arg0) {
     s32 _subaddieaudioquick_entrypoint_2(s32, s32, s32 *);
