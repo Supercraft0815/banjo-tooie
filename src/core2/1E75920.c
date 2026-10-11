@@ -24,7 +24,11 @@ void func_8009C08C(void *arg0) {
     func_800EFD24((*(s32 *)((s8 *)(arg0) + (0xE4))) + 0x24);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E75920/func_8009C0BC.s")
+s32 func_8009C0BC(u8 *arg0, s32 arg1) {
+    s32 func_800EE7F8();
+    func_800EE7F8(*(s32 *)((s8 *)arg0 + 0xE4));
+    return func_800EE7F8(*(s32 *)((s8 *)arg0 + 0xE4) + 0xC, arg1);
+}
 
 /* extern */
 
