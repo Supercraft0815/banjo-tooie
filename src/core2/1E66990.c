@@ -184,7 +184,10 @@ void func_8008E37C()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E39C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E3E8.s")
+s32 func_8008E3E8(PlayerState *arg0) {
+    s32 _bashoes_entrypoint_1(PlayerState *);
+    return _bashoes_entrypoint_1(arg0) == 3;
+}
 
 /* extern */
 
