@@ -110,7 +110,9 @@ s32 func_800CE9E8(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CEA60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CEA84.s")
+s16 func_800CEA84(s32 arg0) {
+    return (*(s16 *)((s8 *)(func_800CE3E0(arg0)) + (0xA)));
+}
 
 /* extern */
 
