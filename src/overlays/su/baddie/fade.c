@@ -80,4 +80,12 @@ void subaddiefade_entrypoint_12(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/fade/func_80800450_subaddiefade.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/fade/subaddiefade_entrypoint_14.s")
+/* extern */
+
+void subaddiefade_entrypoint_14(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void func_800C87DC(void *, s32, s32, s32);
+    s32 sp1C[3];
+
+    func_800C87DC(sp1C, arg1, arg2, arg3);
+    subaddiefade_entrypoint_11(arg0, (u8 *)sp1C);
+}
