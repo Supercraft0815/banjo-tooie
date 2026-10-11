@@ -39,7 +39,13 @@ void func_800D58CC(void) {
     func_800D55DC();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D58FC.s")
+s32 func_800D58FC(s32 arg0) {
+    s32 rom_read_word(s32, u32 *);
+    extern s32 D_8011B900;
+    extern u32 D_8012B440;
+    rom_read_word((s32)((u32 *)D_8011B900 + arg0), &D_8012B440);
+    return D_8012B440 & 0xF;
+}
 
 s32 func_800D593C() 
 {
