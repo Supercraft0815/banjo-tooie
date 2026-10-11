@@ -7,7 +7,20 @@ u16 gczoomboxdata_entrypoint_1(s32 arg0) {
     return *(u16 *)(D_80800AA8_gczoomboxdata + arg0 * 0xC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoomboxdata/gczoomboxdata_entrypoint_2.s")
+void gczoomboxdata_entrypoint_2(s32 arg0, s8 *arg1, s8 *arg2) {
+    extern u8 D_80800AA8_gczoomboxdata[];
+    typedef struct {
+        u16 unk0;
+        s8 unk2;
+        s8 unk3;
+        u8 padding[8];
+    } Entry;
+    Entry *entry;
+
+    entry = &((Entry *)D_80800AA8_gczoomboxdata)[arg0];
+    *arg1 = entry->unk2;
+    *arg2 = entry->unk3;
+}
 
 u8 gczoomboxdata_entrypoint_3(s32 arg0) {
     extern u8 D_80800AB0_gczoomboxdata[];
