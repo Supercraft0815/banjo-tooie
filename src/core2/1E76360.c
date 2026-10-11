@@ -1,6 +1,11 @@
 #include "core2/1E76360.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76360/func_8009CA70.s")
+s32 func_8009CA70(PlayerState *arg0, s32 arg1, s32 arg2) {
+    typedef struct { s32 flags; s32 pad[2]; } Entry;
+    extern Entry D_80117F34[];
+    s32 result = 0;
+    return (D_80117F34[arg1].flags & arg2) ? 1 : result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76360/func_8009CAAC.s")
 
