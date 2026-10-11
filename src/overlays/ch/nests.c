@@ -74,7 +74,12 @@ void func_80800B4C_chnests(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x30))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800B80_chnests.s")
+void func_80800B80_chnests(void *arg0) {
+    struct Flags { u32 unused : 11; u32 enabled : 1; u32 remaining : 20; };
+    if (((struct Flags *)((s8 *)arg0 + 0x64))->enabled) {
+        (*(s32 *)((s8 *)(arg0) + (0x30))) = 2;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800BA0_chnests.s")
 
