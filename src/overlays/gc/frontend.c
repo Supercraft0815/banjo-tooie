@@ -21,7 +21,10 @@ u8 gcfrontend_entrypoint_4(s32 arg0) {
     return *((u8 *)&D_80800D80_gcfrontend + arg0 * 0xC + 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_5.s")
+u8 gcfrontend_entrypoint_5(s32 arg0) {
+    extern s32 D_80800D80_gcfrontend;
+    return *((u8 *)&D_80800D80_gcfrontend + arg0 * 0xC);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_6.s")
 
