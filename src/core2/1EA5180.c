@@ -77,7 +77,10 @@ void func_800CBB18(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
     _gcboundDll_entrypoint_5(&D_8012AE80, arg0, arg1, arg2, arg3, arg4, arg5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CBB70.s")
+void func_800CBB70(s32 arg0, s32 arg1) {
+    extern s32 D_8012AE98;
+    *(s8 *)((u8 *)&D_8012AE98 + arg0) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CBB80.s")
 
