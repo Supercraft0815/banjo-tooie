@@ -33,7 +33,11 @@ void func_800D58AC()
     func_800D5688();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D58CC.s")
+void func_800D58CC(void) {
+    func_8001A2B0();
+    func_800D55DC();
+    func_800D55DC();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D58FC.s")
 
