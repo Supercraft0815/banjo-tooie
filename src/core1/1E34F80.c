@@ -23,7 +23,13 @@ void func_8001D98C(u16 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E34F80/func_8001D9AC.s")
+void func_8001D9AC(u16 arg0) {
+    extern s32 D_8007D804;
+
+    if (arg0 < 0x1E) {
+        D_8007D804 = arg0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E34F80/func_8001D9CC.s")
 
