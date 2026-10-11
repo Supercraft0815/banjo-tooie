@@ -172,7 +172,20 @@ void func_808025CC_chgameselect(void *arg0) {
     _gczoombox_entrypoint_2((*(s32 *)((s8 *)(arg0) + (0x28))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808025EC_chgameselect.s")
+s32 func_808025EC_chgameselect(void *arg0, s32 arg1, s32 arg2) {
+    struct Fields {
+        u8 pad[0x79];
+        u8 high : 4;
+        u8 low : 4;
+    };
+    s32 result = 1;
+    if (arg1 == 0xA) {
+        ((struct Fields *)arg0)->high = arg2;
+    } else {
+        return 0;
+    }
+    return result;
+}
 
 /* extern */
 
