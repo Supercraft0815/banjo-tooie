@@ -35,7 +35,21 @@ s32 func_800BFFA0(s32 arg0) {
     return ((s32 *)&D_80128778)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E995C0/func_800BFFB4.s")
+/* extern */
+
+s32 func_800BFFB4(s32 arg0, s32 arg1, s32 arg2) {
+    void func_800DBEFC(s32 *, s32, s32);
+    s32 temp_a3;
+    s32 var_v0;
+
+    temp_a3 = (&D_80128770)[arg0];
+    var_v0 = 0;
+    if (temp_a3 != 0) {
+        func_800DBEFC((s32 *)temp_a3, arg1, arg2);
+        return 1;
+    }
+    return var_v0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E995C0/func_800BFFF4.s")
 
