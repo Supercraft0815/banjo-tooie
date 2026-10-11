@@ -809,7 +809,11 @@ f32 func_80806130_bsfirstp(void *arg0) {
     return *(f32 *)((u8 *)ptr + 456);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080613C_bsfirstp.s")
+f32 func_8080613C_bsfirstp(void *arg0) {
+    register void *ptr;
+    ptr = *(void **)((u8 *)arg0 + 392);
+    return *(f32 *)((u8 *)ptr + 452);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80806148_bsfirstp.s")
 
