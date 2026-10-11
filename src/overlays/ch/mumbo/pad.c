@@ -1,6 +1,9 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/pad/chmumbopad_entrypoint_0.s")
+s32 chmumbopad_entrypoint_0(s32 arg0) {
+    extern s32 D_80801086_chmumbopad[];
+    return *(s16 *)((u8 *)D_80801086_chmumbopad + (arg0 << 2));
+}
 
 /* extern */
 
