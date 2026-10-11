@@ -14,7 +14,9 @@ void func_80800088_chtntblockage()
     _subaddiefade_entrypoint_14();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/blockage/func_808000A8_chtntblockage.s")
+s32 func_808000A8_chtntblockage(s32 arg0) {
+    return ((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7) + 0x4C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/blockage/func_808000B8_chtntblockage.s")
 
