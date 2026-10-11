@@ -99,7 +99,9 @@ void suspline_entrypoint_14(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/func_80800C8C_suspline.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_18.s")
+s32 suspline_entrypoint_18(s32 arg0, s32 arg1, s32 arg2) {
+    return (s32)((u32)arg0 * (u32)((arg1 * 0xC) + (arg2 * 4))) + 0x8C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_19.s")
 
