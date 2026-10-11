@@ -145,7 +145,12 @@ void func_800EEC30(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EEF94.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EEFD4.s")
+f32 func_800EEFD4(f32 *arg0) {
+    f32 z = arg0[2];
+    f32 x = arg0[0];
+    f32 y = arg0[1];
+    return (z * z) + ((x * x) + (y * y));
+}
 
 void func_800EEFFC(void *arg0) {
     f32 temp_f0;
