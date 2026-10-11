@@ -33,7 +33,18 @@ void func_800EB874(void)
     D_80132EC0 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB880.s")
+void func_800EB880(s32 *arg0, s32 arg1, s32 arg2) {
+    extern s32 D_80132EA0;
+    s32 *dst = &D_80132EA0;
+    dst[0] = arg0[0];
+    dst[1] = arg0[1];
+    dst[2] = arg0[2];
+    dst[4] = arg1;
+    dst[5] = 0;
+    dst[3] = arg2 * arg2;
+    dst[6] = 0;
+    dst[7] = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB8C0.s")
 
