@@ -7,7 +7,10 @@ void func_80800000_badeathmatch(void *arg0) {
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x158)))) + (0x23))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/deathmatch/func_80800028_badeathmatch.s")
+u8 func_80800028_badeathmatch(s32 arg0) {
+    extern u8 D_80800550_badeathmatch[];
+    return D_80800550_badeathmatch[arg0 - 1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/deathmatch/badeathmatch_entrypoint_0.s")
 
