@@ -36,7 +36,80 @@ void mlspline_entrypoint_3(f32 arg0, s32 arg1, void *arg2, f32 *arg3) {
     *arg3 = (((((temp_f14 + temp_f0) - (2.0f * temp_f2)) * (2.0f * arg0)) + (((4.0f * temp_f2) - (3.0f * temp_f0)) - temp_f14)) * arg0) + temp_f0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_4.s")
+void mlspline_entrypoint_4(f32 arg0, s32 arg1, f32 arg2[][3], volatile f32 *arg3) {
+    f32 func_800F0D50(f32, f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 scaled;
+    s32 count;
+    s32 index;
+    s32 i;
+    s32 j;
+    s32 end;
+
+    count = arg1 - 1;
+    scaled = func_800F0D50(arg0, 0.0f, 1.0f);
+    scaled *= count;
+    count = arg1;
+    index = (s32)scaled;
+    i = index;
+    arg0 = scaled - index;
+    if (index == 0) {
+        f32 p0, p1, p2;
+        if (index < 3) {
+        do {
+            p0 = arg2[0][i];
+            p1 = arg2[1][i];
+            p2 = arg2[2][i];
+            arg3[i] = (((p2 - p0) * 0.5f + (p0 - p1) * 1.5f) * arg0)
+                + ((2.0f * p1 - p2 * 0.5f) - 1.5f * p0);
+            arg3[i] *= arg0;
+            arg3[i] += (p1 - p0) * 0.5f;
+            arg3[i] *= arg0;
+            arg3[i] += p0;
+            i++;
+        } while (i * 4 < 12);
+        }
+    } else {
+        i--;
+        end = i + 2;
+        if (count == end) {
+            func_800EE7F8((f32 *)arg3, &((f32 *)arg2)[count * 3 - 3]);
+            return;
+        }
+        arg2 = (f32 (*)[3])((f32 *)arg2 + i * 3);
+        end = i + 3;
+        if (count == end) {
+            f32 p0, p1, p2;
+            for (j = 0; j != 12; j += 4) {
+                p0 = *(f32 *)((u8 *)arg2[0] + j);
+                p1 = *(f32 *)((u8 *)arg2[1] + j);
+                p2 = *(f32 *)((u8 *)arg2[2] + j);
+                *(volatile f32 *)((u8 *)arg3 + j) = (((p2 - p0) * 0.5f + (p1 - p2) * 1.5f) * arg0)
+                    + ((p0 - p1 * 2.5f) + p2 * 1.5f);
+                *(volatile f32 *)((u8 *)arg3 + j) *= arg0;
+                *(volatile f32 *)((u8 *)arg3 + j) += (p2 - p0) * 0.5f;
+                *(volatile f32 *)((u8 *)arg3 + j) *= arg0;
+                *(volatile f32 *)((u8 *)arg3 + j) += p1;
+            }
+            return;
+        }
+        {
+        f32 p0, p1, p2, p3;
+        for (j = 0; j != 12; j += 4) {
+            p0 = *(f32 *)((u8 *)arg2[0] + j);
+            p1 = *(f32 *)((u8 *)arg2[1] + j);
+            p2 = *(f32 *)((u8 *)arg2[2] + j);
+            p3 = *(f32 *)((u8 *)arg2[3] + j);
+            *(volatile f32 *)((u8 *)arg3 + j) = (((p3 - p0) * 0.5f + (p1 - p2) * 1.5f) * arg0)
+                + (((p0 - p1 * 2.5f) + 2.0f * p2) - p3 * 0.5f);
+            *(volatile f32 *)((u8 *)arg3 + j) *= arg0;
+            *(volatile f32 *)((u8 *)arg3 + j) += (p2 - p0) * 0.5f;
+            *(volatile f32 *)((u8 *)arg3 + j) *= arg0;
+            *(volatile f32 *)((u8 *)arg3 + j) += p1;
+        }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_5.s")
 
