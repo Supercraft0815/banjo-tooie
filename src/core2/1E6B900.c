@@ -172,7 +172,10 @@ void func_80092CDC(void *arg0, s32 arg1, s32 arg2) {
     func_800EEF24(arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092D18.s")
+void func_80092D18(void *arg0, s32 arg1) {
+    s32 func_800EE7F8();
+    func_800EE7F8(arg1, *(u8 **)((u8 *)arg0 + 0x50) + 0x44);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092D44.s")
 
