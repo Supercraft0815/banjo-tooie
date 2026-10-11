@@ -181,7 +181,19 @@ void func_80102190(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80102204.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_801022E4.s")
+/* extern */
+
+s32 func_801022E4(Actor *arg0) {
+    s32 anctrl_getIndex(s32);
+    s32 func_80104248(Actor *);
+    s32 temp_v0;
+
+    temp_v0 = func_80104248(arg0);
+    if (temp_v0 != 0) {
+        return anctrl_getIndex(temp_v0);
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80102320.s")
 
