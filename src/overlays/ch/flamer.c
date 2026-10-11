@@ -41,6 +41,10 @@ void func_8080000C_chflamer(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flamer/func_808008C0_chflamer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flamer/func_8080098C_chflamer.s")
+void func_8080098C_chflamer(s32 arg0) {
+    s32 _subaddieaudioloop_entrypoint_5(s32, s32, s32, s32, s32 *);
+    extern s32 D_80800B68_chflamer;
+    _subaddieaudioloop_entrypoint_5(arg0, arg0 + 4, 1, -1, &D_80800B68_chflamer);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flamer/func_808009C0_chflamer.s")
