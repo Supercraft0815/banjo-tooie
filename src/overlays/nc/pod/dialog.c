@@ -124,7 +124,10 @@ void ncpoddialog_entrypoint_7(void *arg0, s32 arg1) {
     (*(s8 *)((s8 *)(arg0) + (0x215))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/ncpoddialog_entrypoint_8.s")
+s32 ncpoddialog_entrypoint_8(void *arg0, s32 arg1) {
+    (*(s8 *)((s8 *)(arg0) + (0x218))) = arg1;
+    return 5;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/ncpoddialog_entrypoint_9.s")
 
