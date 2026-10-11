@@ -219,7 +219,12 @@ s16 func_800C38E4(u8 arg0) {
     return (*(s16 *)((s8 *)(func_800C1414(arg0)) + (0x58)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3920.s")
+s16 func_800C3920(u8 arg0) {
+    if (arg0 == 0) {
+        return 0;
+    }
+    return (*(s16 *)((s8 *)(func_800C1414(arg0)) + (0x5A)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C395C.s")
 
