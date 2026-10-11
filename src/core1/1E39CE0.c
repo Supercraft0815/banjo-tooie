@@ -161,7 +161,200 @@ extern s32 D_8007EA50[];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39CE0/func_800221B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39CE0/func_8002241C.s")
+s32 func_8002241C(MusicPlayer *arg0) {
+    s32 func_80022D1C(MusicPlayer *);
+    void func_80023008(MusicPlayer *, MusicEvent *);
+    s32 func_80024A5C(MusicPlayer *, MusicEvent *);
+    s32 func_80024DD8(MusicPlayer *);
+    s32 func_8002645C(ALEventQueue *, MusicEvent *);
+    s32 func_800266B0(ALEventQueue *, s32);
+    s32 func_80026FF0(ALVoice *);
+    s32 func_80027090(ALVoice *);
+    s32 func_80029670(MusicPlayer *, ALVoice *);
+    s32 func_800298E4(MusicPlayer *, ALVoice *, s32);
+    s32 func_8002A024(MusicPlayer *, u8 *);
+    s32 func_8002A6A4(MusicPlayer *, MusicVoiceState *);
+    s32 func_8002A940(u8);
+    s32 func_8002A9B8(u8);
+    s32 func_8002AA30(s32, s32, u8 *);
+    s32 func_8002AA74(s32, u8, u8 *);
+    MusicPlayer *p;
+    MusicEvent event;
+    ALVoice *voice;
+    s32 delta;
+    MusicVoiceState *vs;
+    void *osc;
+    f32 value;
+    u8 chan;
+    s32 param1;
+    s32 param2;
+
+    p = arg0;
+    do {
+        switch (*(u16 *)&p->nextEvent.type) {
+        case 0:
+            func_80022D1C(p);
+            break;
+        case 9:
+            event.type = 9;
+            func_80026500(&p->evtq, &event, p->frameTime, 1);
+            break;
+        case 5:
+            voice = p->nextEvent.msg.vol.voice;
+            func_80026FF0(voice);
+            func_80027090(voice);
+            vs = voice->clientPrivate;
+            if (vs->flags != 0) {
+                func_8002A6A4(p, vs);
+            }
+            func_80029670(p, voice);
+            break;
+        case 6:
+            voice = p->nextEvent.msg.vol.voice;
+            vs = voice->clientPrivate;
+            if (vs->envPhase == 0) {
+                vs->envPhase = 1;
+            }
+            delta = p->nextEvent.msg.vol.delta;
+            vs->envEndTime = p->curTime + delta;
+            vs->envGain = p->nextEvent.msg.vol.vol;
+            func_80026BE0(voice, func_80029D54(vs, p), delta);
+            break;
+        case 22:
+            vs = p->nextEvent.msg.osc.vs;
+            osc = p->nextEvent.msg.osc.oscState;
+            delta = p->updateOsc(osc, &value);
+            vs->tremelo = (u32)value;
+            func_80026BE0(&vs->voice, func_80029D54(vs, p), func_80029F5C(vs, p->curTime));
+            event.type = 22;
+            event.msg.osc.vs = vs;
+            event.msg.osc.oscState = osc;
+            func_80026500(&p->evtq, &event, delta, 0);
+            break;
+        case 23:
+            vs = p->nextEvent.msg.osc.vs;
+            osc = p->nextEvent.msg.osc.oscState;
+            chan = p->nextEvent.msg.osc.chan;
+            delta = p->updateOsc(osc, &value);
+            vs->vibrato = value;
+            func_80026E90(&vs->voice, p->chanState[chan].pitchBend * (vs->pitch * vs->vibrato));
+            if (p->chanState[chan].filterType != 0) {
+                func_8002A7E0(&vs->voice, (440.0f * func_80028B74(p->chanState[chan].filterPitch + (vs->key - vs->sound->keyBase) - 64)) * p->chanState[chan].pitchBend * vs->vibrato);
+            }
+            event.type = 23;
+            event.msg.osc.vs = vs;
+            event.msg.osc.oscState = osc;
+            event.msg.osc.chan = chan;
+            func_80026500(&p->evtq, &event, delta, 0);
+            break;
+        case 2:
+        case 21:
+            func_80023008(p, &p->nextEvent);
+            break;
+        case 7:
+            func_80024A5C(p, &p->nextEvent);
+            break;
+        case 10:
+            p->vol = *(s16 *)&p->nextEvent.msg;
+            if ((vs = p->vAllocHead) != NULL) {
+                do {
+                    func_80026BE0(&vs->voice, func_80029D54(vs, p), func_80029F5C(vs, p->curTime));
+                } while ((vs = vs->next) != NULL);
+            }
+            break;
+        case 24:
+            *(f32 *)&p->pad7C[0] = *(f32 *)&p->nextEvent.msg;
+            *(f32 *)&p->pad7C[4] = *(f32 *)&p->nextEvent.msg.vol.delta;
+            if ((vs = p->vAllocHead) != NULL) {
+                do {
+                    if (vs->envPhase != 3) {
+                        func_80026F40(&vs->voice, func_80029E64(vs, p));
+                    }
+                    vs = vs->next;
+                } while (vs != NULL);
+            }
+            break;
+        case 25:
+            if (((u8 *)&p->nextEvent.msg)[1] < 8) {
+                param1 = func_8002A940(((u8 *)&p->nextEvent.msg)[0]);
+                if (param1 != 0) {
+                    func_8002AA30(param1, (((u8 *)&p->nextEvent.msg)[1] & 7) | (((u8 *)&p->nextEvent.msg)[2] << 3), &p->nextEvent.msg.midi.status);
+                }
+            } else {
+                param2 = func_8002A9B8(((u8 *)&p->nextEvent.msg)[0]);
+                if (param2 != 0) {
+                    func_8002AA74(param2, ((u8 *)&p->nextEvent.msg)[1], &p->nextEvent.msg.midi.status);
+                }
+            }
+            break;
+        case 15:
+            if (p->state != 1) {
+                p->state = 1;
+                func_80024DD8(p);
+            }
+            break;
+        case 16:
+            if (p->state == 2) {
+                if ((vs = p->vAllocHead) != NULL) {
+                    do {
+                        func_80026FF0(&vs->voice);
+                        func_80027090(&vs->voice);
+                        if (vs->flags != 0) {
+                            func_8002A6A4(p, vs);
+                        }
+                        func_80029670(p, &vs->voice);
+                    } while ((vs = p->vAllocHead) != NULL);
+                }
+                p->state = 0;
+            }
+            break;
+        case 17:
+            if (p->state == 1) {
+                func_800266B0(&p->evtq, 0);
+                func_800266B0(&p->evtq, 21);
+                func_800266B0(&p->evtq, 2);
+                if ((vs = p->vAllocHead) != NULL) {
+                    do {
+                        if (func_800298E4(p, &vs->voice, 50000)) {
+                            func_8002976C(p, &vs->voice, 50000);
+                        }
+                    } while ((vs = vs->next) != NULL);
+                }
+                chan = 0;
+                do {
+                    p->chanState[chan].fadeVolume = p->chanState[chan].fadeTarget;
+                    if (p->chanState[chan].fadeVolume == 0) {
+                        p->chanMask &= (1 << chan) ^ -1;
+                    } else {
+                        p->chanMask |= 1 << chan;
+                    }
+                } while (++chan < 32);
+                p->state = 2;
+                event.type = 16;
+                func_80026500(&p->evtq, &event, 0x7FFFFFFF, 0);
+            }
+            break;
+        case 12:
+            chan = ((u8 *)&p->nextEvent.msg)[0];
+            p->chanState[chan].priority = ((u8 *)&p->nextEvent.msg)[1];
+            break;
+        case 13:
+            p->target = (ALCSeq *)p->nextEvent.msg.midi.ticks;
+            p->chanMask = -1;
+            func_8002A024(p, p->bank);
+            break;
+        case 14:
+            break;
+        case 1:
+        case 3:
+        case 4:
+            break;
+        }
+        p->nextDelta = func_8002645C(&p->evtq, &p->nextEvent);
+    } while (p->nextDelta == 0);
+    p->curTime += p->nextDelta;
+    return p->nextDelta;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39CE0/func_80022D1C.s")
 
