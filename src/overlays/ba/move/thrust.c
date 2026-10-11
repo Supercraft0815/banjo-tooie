@@ -21,7 +21,9 @@ void bamovethrust_entrypoint_1(void *arg0) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x88))) = 1.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/thrust/bamovethrust_entrypoint_2.s")
+void bamovethrust_entrypoint_2(void *arg0, f32 arg1) {
+    func_80800000_bamovethrust((s32) arg0, (*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x10, arg1);
+}
 
 void bamovethrust_entrypoint_3(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 140) = arg1;
