@@ -48,7 +48,12 @@ void func_800A7108(Unk80132ED0 *arg0, f32 arg1) {
     func_80106790(arg0)->unk58 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A7130.s")
+void func_800A7130(Unk80132ED0 *arg0, s32 arg1) {
+    Actor *func_80106790(Unk80132ED0 *);
+    struct Fields { u8 pad[0x65]; u8 other : 7; u8 bit : 1; } *actor;
+    actor = (struct Fields *)func_80106790(arg0);
+    actor->bit = arg1;
+}
 
 void * func_800A7168(void) {
     extern u8 D_8011A3A0;
