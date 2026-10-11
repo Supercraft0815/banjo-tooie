@@ -15,7 +15,14 @@ void func_8080000C_chfreezy(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x38))) = 0.2f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/freezy/func_8080003C_chfreezy.s")
+/* extern */
+
+void func_8080003C_chfreezy(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    u32 func_8010A828(Actor*, u32);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    func_8010A828(_subaddielink_entrypoint_4(func_80100094(arg0, 1U)), (u32) (*(u8 *)((s8 *)(arg0) + (0x79))) >> 4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/freezy/func_80800080_chfreezy.s")
 
