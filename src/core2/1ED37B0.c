@@ -24,4 +24,7 @@ s32 func_800F9F18(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED37B0/func_800F9F2C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED37B0/func_800F9F74.s")
+void func_800F9F74(s32 arg0, s32 arg1) {
+    extern s16 D_80135532[];
+    *(s16 *)((char *)D_80135532 + (arg0 << 2)) = arg1;
+}
