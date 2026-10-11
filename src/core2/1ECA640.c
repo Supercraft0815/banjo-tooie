@@ -123,7 +123,16 @@ f32 func_800F13C4(f32 arg0, f32 arg1) {
     return (temp_f2 - (f32) (s32) temp_f2) * arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F13F0.s")
+f32 func_800F13F0(f32 arg0, f32 arg1) {
+    f32 result;
+    if (arg0 < arg1) {
+        result = arg0;
+        goto done;
+    }
+    result = arg1;
+done:
+    return result;
+}
 
 s32 func_800F1418(s32 arg0, s32 arg1) {
     return arg0 < arg1 ? arg0 : arg1;
