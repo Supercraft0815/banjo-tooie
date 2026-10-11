@@ -2,7 +2,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/susubgame_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/susubgame_entrypoint_1.s")
+void susubgame_entrypoint_1(s32 arg0, u8 *arg1, s32 arg2) {
+    (*(s16 *)((s8 *)(arg1) + (4))) = arg2;
+}
 
 u8 susubgame_entrypoint_2(s32 arg0, u8 *arg1) {
     return *arg1;
