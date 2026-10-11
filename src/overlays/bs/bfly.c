@@ -38,7 +38,114 @@ void func_8080042C_bsbfly(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_8080050C_bsbfly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800624_bsbfly.s")
+void func_80800624_bsbfly(PlayerState *arg0) {
+    s32 _baboost_entrypoint_1(void *);
+    s32 _baboost_entrypoint_2(s32, s32);
+    void _baboost_entrypoint_5(void *);
+    void _bafly_entrypoint_10(void *, f32, f32);
+    void _bafly_entrypoint_11(void *);
+    s32 _bafly_entrypoint_12(void *);
+    s32 _bafly_entrypoint_2(void *);
+    void _bafly_entrypoint_20(void *);
+    void _bafly_entrypoint_21(void *);
+    void _bafly_entrypoint_7(void *, s32);
+    void _bafly_entrypoint_8(void *, f32, f32, f32, f32, f32, f32, f32);
+    void _bafly_entrypoint_9(void *);
+    s32 _bafpctrl_entrypoint_4();
+    s32 _chusefeather_entrypoint_1(s32, s32);
+    s32 anctrl_isAt(s32, f32);
+    void anctrl_setDuration(s32, f32);
+    s32 baanim_getAnimCtrlPtr();
+    s32 bainput_should_beak_bust(void *);
+    s32 bakey_pressed(s32, s32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    s32 bs_setState(s32, s32);
+    s32 func_8008D0E0(void *);
+    f32 func_800136E4(f32);
+    void func_8009BF5C(PlayerState *, f32);
+    f32 func_8009BFD8(PlayerState *);
+    void func_8009DFD4(void *, s32, f32, f32, s32, s32);
+    f32 func_800D8FF8();
+    f32 func_800F0E00(f32, f32);
+    s32 player_inWater(void *);
+    s32 next_state;
+    s32 anim;
+    f32 pitch;
+    s32 boost;
+    s32 flap;
+
+    next_state = 0;
+    anim = baanim_getAnimCtrlPtr(arg0);
+    _bafly_entrypoint_20(arg0);
+    _bafly_entrypoint_9(arg0);
+    _bafly_entrypoint_10(arg0, 300.0f, 80.0f);
+    _bafly_entrypoint_11(arg0);
+    flap = 0;
+    if (bakey_pressed((s32)arg0, 8)) {
+        ((u8 *)arg0->kazfly)[0x1C] = 1;
+    }
+    if (((u8 *)arg0->kazfly)[0x1C] && func_8001211C() % 3 == 0) {
+        ((u8 *)arg0->kazfly)[0x1C] = 0;
+        flap = _bafly_entrypoint_12(arg0);
+    }
+    if (flap || arg0->unk15C.word) {
+        if (flap) {
+            anctrl_setDuration(anim, 0.3f);
+            _chusefeather_entrypoint_1(arg0->unk184, 0);
+        }
+        if (arg0->unk15C.word) {
+            arg0->unk15C.word = 0;
+            _baboost_entrypoint_2((s32)arg0, 0x3EB33333);
+        } else {
+            _baboost_entrypoint_2((s32)arg0, 0x3F800000);
+        }
+    }
+    boost = _baboost_entrypoint_1(arg0);
+    _bafly_entrypoint_7(arg0, 0);
+    switch (arg0->unk160.word) {
+        case 0:
+            if (boost) {
+                arg0->unk160.word = 1;
+            }
+            break;
+        case 1:
+            _bafly_entrypoint_7(arg0, 1);
+            pitch = func_800136E4(func_8009BFD8(arg0) - 30.0f);
+            if (pitch > 80.0f && pitch < 300.0f) {
+                pitch = 300.0f;
+            }
+            func_8009BF5C(arg0, pitch);
+            _bafly_entrypoint_21(arg0);
+            if (boost) {
+                baphysics_set_vertical_velocity(arg0, boost * 400.0f);
+            }
+            if (!boost) {
+                anctrl_setDuration(anim, 0.62f);
+                _bafly_entrypoint_20(arg0);
+                arg0->unk160.word = 0;
+            }
+            break;
+    }
+    if (anctrl_isAt(anim, 0.1358f)) {
+        func_8009DFD4(arg0, 0x3FF, 0.6f, 0.7f, 10000, 12000);
+    }
+    _bafly_entrypoint_8(arg0, 300.0f, 80.0f, 600.0f, -300.0f, -99.9f, -700.0f, -1000.0f);
+    if (_bafpctrl_entrypoint_4(arg0) != 3 && bainput_should_beak_bust(arg0)) {
+        next_state = 0xF;
+    }
+    *(f32 *)arg0->kazfly = func_800F0E00(*(f32 *)arg0->kazfly - func_800D8FF8(), 0.0f);
+    if (*(f32 *)arg0->kazfly == 0.0f && bakey_pressed((s32)arg0, 9) && func_8008D0E0(arg0) && _bafly_entrypoint_12(arg0)) {
+        next_state = 0x2A;
+    }
+    if (player_inWater(arg0)) {
+        next_state = 0x2D;
+    }
+    if (_bafly_entrypoint_2(arg0)) {
+        next_state = 1;
+    }
+    _baboost_entrypoint_5(arg0);
+    bs_setState((s32)arg0, next_state);
+}
 
 s32 bsbfly_entrypoint_1(s32 arg0) {
     extern s32 D_80801D58_bsbfly[];
