@@ -17,7 +17,17 @@ void func_8080025C_chstinger(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stinger/chstinger_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stinger/func_80800774_chstinger.s")
+s32 func_80800774_chstinger(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80109EEC(s16*, s32);
+    switch (arg1) {
+        case 0x95:
+            func_80109EEC((s16 *) arg0, 0x10);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chstinger_entrypoint_1(void)
 {
