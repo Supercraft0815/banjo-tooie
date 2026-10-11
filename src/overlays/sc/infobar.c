@@ -47,7 +47,13 @@ void scinfobar_entrypoint_5(s8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/scinfobar_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/scinfobar_entrypoint_8.s")
+void scinfobar_entrypoint_8(u32 *arg0, s32 arg1) {
+    if (((u8 *)arg0)[2] != 0) {
+        ((s16 *)arg0)[22] = arg1;
+        return;
+    }
+    arg0[8] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/scinfobar_entrypoint_9.s")
 
