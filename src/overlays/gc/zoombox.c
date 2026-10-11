@@ -94,7 +94,137 @@ int func_80800E24_gczoombox(u8 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80800E44_gczoombox.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80800FE0_gczoombox.s")
+void func_80800FE0_gczoombox(u8 *arg0)
+{
+  typedef struct 
+  {
+    u32 unused31 : 1;
+    u32 first : 1;
+    u32 second : 1;
+    u32 unused28 : 4;
+    u32 side : 1;
+    u32 unused23 : 4;
+    u32 style : 1;
+    u32 unused18 : 1;
+    u32 centered : 1;
+    u32 unused16 : 1;
+    u32 alternate : 1;
+    u32 unused14 : 7;
+    u8 increasing : 1;
+    u32 unused6 : 5;
+    u32 synced : 1;
+    u32 unused0 : 1;
+  } Flags;
+  typedef struct 
+  {
+    u8 strings[4][0x30];
+    u8 padC0[0xB2];
+    s16 id;
+    u8 pad174[0x30];
+    f32 y0;
+    f32 y1;
+    s16 alpha;
+    s16 x;
+    s16 center;
+    s16 unk1B2;
+    u8 red;
+    u8 green;
+    u8 blue;
+    u8 pad1B7[5];
+    s16 opacity;
+    u8 pad1BE[0x1E];
+    f32 scale;
+    f32 unk1E0;
+    Flags flags;
+    f32 pulse;
+    u8 pad1EC[8];
+    f32 width;
+  } Box;
+  f32 _glintrosyncDll_entrypoint_5(void);
+  s32 func_800A8184(void);
+  void func_800B798C(s32, s32, u8 *);
+  void func_800B7A98(void);
+  void func_800B7ADC(s32);
+  void func_800B7B2C(s32);
+  void func_800B7B38(s32);
+  void func_800B7B8C(s32, s32, s32);
+  f32 func_800D8FF8(void);
+  void func_80800E44_gczoombox(u8 *, u8 *, u8 *);
+  s32 colors[3];
+  f32 alpha;
+  s32 x;
+  s32 height;
+  f32 delta;
+  f32 direction;
+  alpha = ((Box *) arg0)->alpha / 255.0f;
+  colors[0] = ((Box *) arg0)->red * alpha;
+  colors[1] = ((Box *) arg0)->green * alpha;
+  colors[2] = ((Box *) arg0)->blue * alpha;
+  func_800B7A98();
+  func_800B7B8C(colors[0], colors[1], colors[2]);
+  func_800B7ADC(((Box *) arg0)->opacity);
+  if (((Box *) arg0)->flags.alternate)
+  {
+    func_800B7B38(1);
+  }
+  else
+    if (((Box *) arg0)->flags.style)
+  {
+    func_800B7B38(2);
+  }
+  if (((Box *) arg0)->id == 0x44)
+  {
+    x = ((f32) ((Box *) arg0)->x) + (4.0f * ((Box *) arg0)->scale);
+ do { } while (0);
+  }
+  else
+    if (((Box *) arg0)->flags.side)
+  {
+    if (func_800A8184() == 4)
+    {
+      x = ((f32) ((Box *) arg0)->x) - (((Box *) arg0)->width * (216.0f * ((Box *) arg0)->scale));
+    }
+    else
+    {
+      x = ((f32) (0x130 - ((Box *) arg0)->x)) + (8.0f * ((Box *) arg0)->scale);
+    }
+  }
+  else
+    if (((Box *) arg0)->flags.alternate)
+  {
+    x = ((f32) ((Box *) arg0)->x) + ((24.0f * ((Box *) arg0)->scale) + 8.0f);
+  }
+  else
+  {
+    x = ((f32) ((Box *) arg0)->x) + ((24.0f * ((Box *) arg0)->scale) + 4.0f);
+  }
+  if (((Box *) arg0)->flags.first)
+  {
+    if (((Box *) arg0)->flags.centered)
+    {
+      height = (((Box *) arg0)->flags.style) ? (15) : (12);
+      func_800B7B2C(((Box *) arg0)->center - (height / 2));
+    }
+    func_80800E44_gczoombox(((Box *) arg0)->strings[0], ((Box *) arg0)->strings[2], ((Box *) arg0)->strings[0]);
+    func_800B798C(x, ((Box *) arg0)->y0, ((Box *) arg0)->strings[2]);
+  }
+  if (((Box *) arg0)->flags.second)
+  {
+    func_800B7B2C(-0x7FFF);
+    func_80800E44_gczoombox(((Box *) arg0)->strings[0], ((Box *) arg0)->strings[3], ((Box *) arg0)->strings[1]);
+    func_800B798C(x, ((Box *) arg0)->y1, ((Box *) arg0)->strings[3]);
+  }
+ if (((Box *) arg0)->flags.increasing) { direction = 1.0f; } else { direction = -1.0f; } if (((Box *) arg0)->flags.synced) { delta = _glintrosyncDll_entrypoint_5(); } else { delta = func_800D8FF8(); } ((Box *) arg0)->pulse += (delta * 10.0f) * direction; if (((Box *) arg0)->pulse >= 4.0f) {
+    ((Box *) arg0)->pulse = 3.999f;
+    ((Box *) arg0)->flags.increasing ^= 1;
+  }
+  else
+    if (((Box *) arg0)->pulse < 0.0f)
+  {
+    ((Box *) arg0)->pulse = 0;
+    ((Box *) arg0)->flags.increasing ^= 1;
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80801424_gczoombox.s")
 
