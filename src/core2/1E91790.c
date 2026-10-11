@@ -230,7 +230,111 @@ void func_800B90E8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B9108.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B9170.s")
+void func_800B9170(void) {
+    typedef struct {
+        f32 position[3];
+        f32 velocity[3];
+    } Particle;
+    typedef struct {
+        f32 position[3];
+        f32 velocity[3];
+        u8 mode;
+        Particle *particles;
+    } Emitter;
+    typedef struct {
+        Emitter *emitter;
+        s32 count;
+        s32 unk8;
+        s32 index;
+        f32 position[3];
+        f32 floor;
+    } State;
+    extern s32 D_80127128;
+    extern f32 D_80127138[3];
+    extern f32 D_801256A0;
+    extern f32 D_801256A4;
+    extern f32 D_801256A8;
+    s32 func_8001211C(void);
+    void func_8008FE68(f32 *);
+    s32 func_800A5490(void);
+    void func_800B9108(s32);
+    f32 func_800D8FF8(void);
+    f32 func_800DC0C0(void);
+    f32 func_800E3A80(void);
+    s32 func_800E3F8C(f32, f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    f32 func_800EEFD4(f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 temp_f20;
+    s32 sp68;
+    s32 var_v1;
+    s32 sp60;
+    Particle *sp5C;
+    f32 sp58;
+    f32 sp4C[3];
+    f32 var_f20;
+    s32 sp44;
+    Particle *sp40;
+
+    if (((State *)&D_80127128)->emitter != NULL) {
+        if (func_800A5490() != 0) {
+            ((State *)&D_80127128)->count = 0;
+            return;
+        }
+        temp_f20 = func_800D8FF8();
+        sp60 = (func_8001211C() & 1) * 2;
+        func_8008FE68(D_80127138);
+        ((State *)&D_80127128)->emitter->velocity[0] = ((State *)&D_80127128)->position[0] - ((State *)&D_80127128)->emitter->position[0];
+        ((State *)&D_80127128)->emitter->velocity[1] = ((State *)&D_80127128)->position[1] - ((State *)&D_80127128)->emitter->position[1];
+        ((State *)&D_80127128)->emitter->velocity[2] = ((State *)&D_80127128)->position[2] - ((State *)&D_80127128)->emitter->position[2];
+        ((State *)&D_80127128)->emitter->position[0] = ((State *)&D_80127128)->position[0];
+        ((State *)&D_80127128)->emitter->position[1] = ((State *)&D_80127128)->position[1];
+        ((State *)&D_80127128)->emitter->position[2] = ((State *)&D_80127128)->position[2];
+        ((State *)&D_80127128)->floor = ((State *)&D_80127128)->position[1] - 300.0f;
+
+        for (sp68 = 0; sp68 < ((State *)&D_80127128)->count; sp68++) {
+            sp5C = ((State *)&D_80127128)->emitter->particles + sp68;
+            for (var_v1 = 0; var_v1 < 3; var_v1++) {
+                sp5C->position[var_v1] += sp5C->velocity[var_v1] * temp_f20;
+            }
+            sp5C->velocity[sp60] += (func_800DC0C0() * 30.0f) - 15.0f;
+        }
+        ((State *)&D_80127128)->index++;
+        if (((State *)&D_80127128)->index < ((State *)&D_80127128)->count) {
+            sp5C = &((State *)&D_80127128)->emitter->particles[((State *)&D_80127128)->index];
+            if (func_800EEAD4(sp5C->position, D_80127138) > D_801256A0) {
+                func_800B9108(((State *)&D_80127128)->index);
+            }
+        } else {
+            ((State *)&D_80127128)->index = 0;
+        }
+        if (((State *)&D_80127128)->emitter->mode == 1) {
+            if (((State *)&D_80127128)->count < 100) {
+                sp40 = ((State *)&D_80127128)->emitter->particles + ((State *)&D_80127128)->count;
+                ((State *)&D_80127128)->count++;
+                sp58 = func_800DC178(100.0f, D_801256A4);
+                func_800EFA4C(sp4C, 0.0f, func_800DC0C0() * 200.0f + 200.0f, -sp58);
+                if (func_800EEFD4(((State *)&D_80127128)->emitter->velocity) < 25.0f) {
+                    var_f20 = 100.0f;
+                } else {
+                    var_f20 = 70.0f;
+                }
+                func_800EF934(sp4C, sp4C, func_800E3A80() + func_800DC178(-var_f20, var_f20));
+                func_800EF04C(sp4C, D_80127138);
+                if (sp58 < D_801256A8) {
+                    for (sp44 = 0; sp44 < 5 && func_800E3F8C(sp4C[0], sp4C[1] - 10.0f, sp4C[2]); sp44++) {
+                        sp4C[1] += 200.0f;
+                    }
+                }
+                func_800EE7F8(sp40->position, sp4C);
+                func_800EFA4C(sp40->velocity, 0.0f, func_800DC178(-150.0f, -50.0f), 0.0f);
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B956C.s")
 
