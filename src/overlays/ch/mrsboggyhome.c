@@ -31,4 +31,9 @@ void func_808000D0_chmrsboggyhome(Actor* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggyhome/func_808000F0_chmrsboggyhome.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggyhome/func_80800174_chmrsboggyhome.s")
+void func_80800174_chmrsboggyhome(s32 arg0) {
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    extern s32 D_808001B0_chmrsboggyhome;
+    extern s32 D_80800238_chmrsboggyhome;
+    _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, &D_80800238_chmrsboggyhome, &D_808001B0_chmrsboggyhome, 4);
+}
