@@ -4,7 +4,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/slide/func_80800080_bsdroneslide.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/slide/func_80800110_bsdroneslide.s")
+/* extern */
+
+void func_80800110_bsdroneslide(s32 arg0, s32 arg1, s32 arg2) {
+    void func_800963C0(s32 *, f32 *);
+    void func_800F1988(f32 *, s32, s32);
+    f32 sp1C[3];
+
+    func_800963C0((s32 *)arg0, sp1C);
+    func_800F1988(sp1C, arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/slide/bsdroneslide_entrypoint_0.s")
 
