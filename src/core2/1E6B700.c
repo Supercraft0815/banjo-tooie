@@ -23,7 +23,13 @@ void func_80091E6C(void *arg0) {
     (*(u8 *)((s8 *)(temp_v0) + (3))) = (u8) ((*(u8 *)((s8 *)(temp_v0) + (3))) - 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B700/func_80091E80.s")
+s32 func_80091E80(u8 *arg0, s32 arg1) {
+    struct Data { u8 bytes[256]; };
+    struct Data *temp_v1;
+
+    temp_v1 = *(struct Data **)(arg0 + 0x48);
+    return arg1 == (temp_v1->bytes[temp_v1->bytes[3] - 1] & arg1);
+}
 
 s32 func_80091EA0(void)
 {
