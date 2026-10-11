@@ -18,7 +18,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A6FF0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A7088.s")
+/* extern */
+
+void func_800A7088(void *arg0) {
+    s32 func_800F7364(u32);
+    func_800F7364((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7);
+}
 
 void func_800A70B0()
 {
