@@ -46,7 +46,20 @@ void func_8080063C_chonearmbandit(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80800680_chonearmbandit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_808006F8_chonearmbandit.s")
+/* extern */
+
+void func_808006F8_chonearmbandit(u8 *arg0, s32 arg1) {
+    struct Flags {
+        unsigned int : 29;
+        unsigned int active : 1;
+        unsigned int : 2;
+    };
+    void func_80800680_chonearmbandit(u8 *, s32);
+    if (!((struct Flags *)(arg0 + 0x78))->active &&
+        (((u32)*(u16 *)(arg0 + 0x72) >> 10) != 7)) {
+        func_80800680_chonearmbandit(arg0, 7);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80800740_chonearmbandit.s")
 
