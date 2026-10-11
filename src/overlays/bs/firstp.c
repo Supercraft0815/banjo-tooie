@@ -900,7 +900,21 @@ void func_80806148_bsfirstp(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80806588_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80806774_bsfirstp.s")
+/* extern */
+
+void func_80806774_bsfirstp(void *arg0) {
+    s32 func_8009B7C0();
+    struct {
+        s32 pad;
+        void *data;
+    } local;
+
+    local.data = *(void **)((s8 *)arg0 + 0x188);
+    func_8009B7C0();
+    *(f32 *)((s8 *)local.data + 0x1D8) = 0.0f;
+    *(f32 *)((s8 *)local.data + 0x1CC) = 0.0f;
+    *(f32 *)((s8 *)local.data + 0x1D4) = 0.0f;
+}
 
 void func_808067B0_bsfirstp(void *arg0) {
     f32 func_80809D94_bsfirstp(void *);
