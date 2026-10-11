@@ -35,7 +35,13 @@ OSThread *chaliendad_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801110_chaliendad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801220_chaliendad.s")
+void func_80801220_chaliendad(void *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddieaudioquick_entrypoint_2(void *, void *, s32 *);
+    extern s32 D_8080281C_chaliendad;
+    if (arg1 == 0x12A0) {
+        _subaddieaudioquick_entrypoint_2(arg0, (u8 *)arg0 + 4, &D_8080281C_chaliendad);
+    }
+}
 
 /* extern */
 
