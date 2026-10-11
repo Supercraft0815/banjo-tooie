@@ -32,7 +32,14 @@ OSThread *chdinoswitches_entrypoint_3(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/func_80800108_chdinoswitches.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/func_80800270_chdinoswitches.s")
+void func_80800270_chdinoswitches(void *arg0) {
+    void func_801032B0(void *, u16, u16);
+    extern u8 D_80800B28_chdinoswitches[];
+    s32 index = *(s32 *)((u8 *)arg0 + 0x18);
+
+    func_801032B0(arg0, *(u16 *)(D_80800B28_chdinoswitches + index * 0x14),
+                  *(u16 *)((u8 *)*(void **)arg0 + 0x16));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/func_808002B0_chdinoswitches.s")
 
