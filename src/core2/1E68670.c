@@ -39,7 +39,17 @@ void func_8008EEC4(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008F6B8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008F748.s")
+/* extern */
+
+void func_8008F748(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _gccubesearch_entrypoint_0(s32, s32);
+    s32 _gspropctrl_entrypoint_11(s32, s32 *);
+    s32 func_800A3514(s32, s32 *);
+    s32 sp1C[3];
+
+    _gspropctrl_entrypoint_11(_gccubesearch_entrypoint_0(arg1, arg2), sp1C);
+    func_800A3514(arg0, sp1C);
+}
 
 /* extern */
 
