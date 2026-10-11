@@ -56,7 +56,15 @@ s32 func_800E7188(u8 *arg0) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E71B8.s")
+/* extern */
+
+s32 func_800E71B8(s32 arg0) {
+    s32 _gldialog_entrypoint_1();
+    if (_gldialog_entrypoint_1() != 0) {
+        return arg0 += 2;
+    }
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E71EC.s")
 
