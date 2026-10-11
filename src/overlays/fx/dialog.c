@@ -1,6 +1,13 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/dialog/fxdialog_entrypoint_0.s")
+void fxdialog_entrypoint_0(void) {
+    extern s32 B_80800290_fxdialog;
+    (*(f32 *)((s8 *)(&B_80800290_fxdialog) + (0x10))) = 1.0f;
+    (*(f32 *)((s8 *)(&B_80800290_fxdialog) + (4))) = 0.0f;
+    (*(s32 *)((s8 *)(&B_80800290_fxdialog) + (0xC))) = 0;
+    (*(s32 *)((s8 *)(&B_80800290_fxdialog) + (8))) = 0;
+    (*(f32 *)((s8 *)(&B_80800290_fxdialog) + (0))) = (*(f32 *)((s8 *)(&B_80800290_fxdialog) + (4)));
+}
 
 void fxdialog_entrypoint_1(s32 arg0, s32 arg1) {
     extern s32 B_80800290_fxdialog;
