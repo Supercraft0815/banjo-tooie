@@ -404,7 +404,10 @@ void func_80803B88_chquiz(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80804110_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_8080414C_chquiz.s")
+int func_8080414C_chquiz(void *arg0) {
+    s32 value = *(s32 *)((s8 *)arg0 + 0x34);
+    return value == 0xF || value == 0x10;
+}
 
 void func_80804170_chquiz(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
