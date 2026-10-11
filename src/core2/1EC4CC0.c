@@ -215,4 +215,15 @@ int func_800EC800(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC828.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC854.s")
+s32 func_800EC854(void) {
+    extern s32 D_80132ED0;
+    s32 temp_t6;
+    s32 temp_v1;
+
+    temp_v1 = (*(s32 *)((s8 *)(&D_80132ED0) + (0x259C)));
+    (*(s32 *)((s8 *)(&D_80132ED0) + (0x259C)))++;
+    if ((*(s32 *)((s8 *)(&D_80132ED0) + (0x259C))) >= 0x8000) {
+        (*(s32 *)((s8 *)(&D_80132ED0) + (0x259C))) = 0x6B7;
+    }
+    return temp_v1;
+}
