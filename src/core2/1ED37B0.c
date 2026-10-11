@@ -17,7 +17,10 @@ s32 func_800F9F04(s32 arg0) {
     return *(s16 *)((char *)D_80135530 + (arg0 << 2));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED37B0/func_800F9F18.s")
+s32 func_800F9F18(s32 arg0) {
+    extern s16 D_80135532[];
+    return *(s16 *)((char *)D_80135532 + (arg0 << 2));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED37B0/func_800F9F2C.s")
 
