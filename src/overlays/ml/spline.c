@@ -51,7 +51,88 @@ void mlspline_entrypoint_6(f32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_9.s")
+void mlspline_entrypoint_9(f32 arg0, s32 arg1, f32 *arg2, volatile f32 *arg3)
+{
+    f32 func_800F0D50(f32, f32, f32);
+    f32 scaled;
+    s32 count;
+    s32 i;
+    s32 j;
+    s32 offset;
+    s32 end;
+    s32 penultimate;
+    f32 a;
+    f32 b;
+    f32 c;
+    f32 d;
+
+    count = arg1 - 1;
+    scaled = func_800F0D50(arg0, 0.0f, 1.0f);
+    scaled *= count;
+    count = arg1;
+    offset = (s32) scaled;
+    i = offset;
+    arg0 = scaled - (f32) offset;
+    if (offset == 0) {
+        if (offset < 1) {
+            do {
+                a = *(f32 *)((u8 *) arg2 + i * 4);
+                b = *(f32 *)((u8 *) arg2 + i * 4 + 4);
+                c = *(f32 *)((u8 *) arg2 + i * 4 + 8);
+                *(volatile f32 *)((u8 *) arg3 + i * 4) = (((c - a) * 0.5f + (a - b) * 1.5f) * arg0)
+                    + ((2.0f * b - c * 0.5f) - 1.5f * a);
+                *(volatile f32 *)((u8 *) arg3 + i * 4) *= arg0;
+                *(volatile f32 *)((u8 *) arg3 + i * 4) += (b - a) * 0.5f;
+                *(volatile f32 *)((u8 *) arg3 + i * 4) *= arg0;
+                *(volatile f32 *)((u8 *) arg3 + i * 4) += a;
+                i++;
+            } while (i * 4 < 4);
+        }
+    } else {
+        i--;
+        end = i + 2;
+        penultimate = i + 3;
+        if (count == end) {
+            arg2 += (u32) count - 1;
+            *arg3 = *arg2;
+        } else {
+            arg2 += i;
+            if (count == penultimate) {
+                f32 a;
+                f32 b;
+                f32 c;
+                for (j = 0; j != 4; j += 4) {
+                    a = *(f32 *)((u8 *) arg2 + j);
+                    b = *(f32 *)((u8 *) arg2 + j + 4);
+                    c = *(f32 *)((u8 *) arg2 + j + 8);
+                    *(volatile f32 *)((u8 *) arg3 + j) = (((c - a) * 0.5f + (b - c) * 1.5f) * arg0)
+                        + ((a - b * 2.5f) + c * 1.5f);
+                    *(volatile f32 *)((u8 *) arg3 + j) *= arg0;
+                    *(volatile f32 *)((u8 *) arg3 + j) += (c - a) * 0.5f;
+                    *(volatile f32 *)((u8 *) arg3 + j) *= arg0;
+                    *(volatile f32 *)((u8 *) arg3 + j) += b;
+                }
+            } else {
+                f32 a;
+                f32 b;
+                f32 c;
+                f32 d;
+                for (j = 0; j != 4; j += 4) {
+                    a = *(f32 *)((u8 *) arg2 + j);
+                    b = *(f32 *)((u8 *) arg2 + j + 4);
+                    c = *(f32 *)((u8 *) arg2 + j + 8);
+                    d = *(f32 *)((u8 *) arg2 + j + 12);
+                    *(volatile f32 *)((u8 *) arg3 + j) = (((d - a) * 0.5f + (b - c) * 1.5f) * arg0)
+                        + (((a - b * 2.5f) + 2.0f * c) - d * 0.5f);
+                    *(volatile f32 *)((u8 *) arg3 + j) *= arg0;
+                    *(volatile f32 *)((u8 *) arg3 + j) += (c - a) * 0.5f;
+                    *(volatile f32 *)((u8 *) arg3 + j) *= arg0;
+                    *(volatile f32 *)((u8 *) arg3 + j) += b;
+                }
+            }
+        }
+    }
+}
 
 void mlspline_entrypoint_10(f32 arg0, s32 arg1, f32 *arg2, volatile f32 *arg3)
 {
