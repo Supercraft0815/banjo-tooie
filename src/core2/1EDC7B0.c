@@ -23,7 +23,19 @@ void func_80102FDC(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)arg0 + 56) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC7B0/func_80102FE8.s")
+void func_80102FE8(void *arg0, s32 arg1) {
+    struct Flags {
+        u8 pad[0x77];
+        u8 upper : 2;
+        u8 flag : 1;
+        u8 lower : 5;
+    };
+    if (arg1 != 0) {
+        ((struct Flags *)arg0)->flag = 1;
+    } else {
+        ((struct Flags *)arg0)->flag = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC7B0/func_80103014.s")
 
