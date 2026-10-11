@@ -323,7 +323,102 @@ void func_80802628_chquiz(Actor *arg0) {
     func_80108B04(arg0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80802664_chquiz.s")
+void func_80802664_chquiz(Actor *arg0) {
+    s32 _suexpression_entrypoint_10(s32, s32, s32);
+    s32 _suquiz_entrypoint_28(s32, u32, void *);
+    s32 _suquiz_entrypoint_6(void);
+    void func_800C3F48(u32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_801039E4(s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80802434_chquiz(Actor *, s32);
+    struct QuizFlags {
+        u32 upper : 28;
+        u32 active : 1;
+        u32 lower : 3;
+    };
+    struct QuizState {
+        u16 state : 6;
+        u16 lower : 10;
+    };
+    struct QuizId {
+        u16 id : 9;
+        u16 lower : 7;
+    };
+    void *temp_v0;
+
+    switch (((struct QuizState *)((u8 *)arg0 + 0x72))->state) {
+    case 1:
+        break;
+    case 3:
+    case 4:
+        if (_suquiz_entrypoint_6() == (((struct QuizId *)((u8 *)arg0 + 0x76))->id)) {
+            func_80802434_chquiz(arg0, 5);
+        }
+        break;
+    case 5:
+        if (func_80101E14(arg0, func_808000E0_chquiz(((struct QuizId *)((u8 *)arg0 + 0x76))->id))) {
+            func_80101180(0x529, 0x83, ((struct QuizId *)((u8 *)arg0 + 0x76))->id);
+            if (func_80101180(0x528, 0x83, ((struct QuizId *)((u8 *)arg0 + 0x76))->id)) {
+                func_80802434_chquiz(arg0, 8);
+            } else {
+                func_80802434_chquiz(arg0, 7);
+            }
+        } else if (func_80101DDC(arg0)) {
+            func_80802434_chquiz(arg0, 6);
+        }
+        break;
+    case 2:
+    case 14:
+        if (func_80101DDC(arg0)) {
+            func_80802434_chquiz(arg0, 1);
+        } else if (func_80101E14(arg0, 0.3f)) {
+            _suquiz_entrypoint_28(1, ((struct QuizId *)((u8 *)arg0 + 0x76))->id, (u8 *)arg0 + 4);
+        }
+        break;
+    case 11:
+        if (func_80101DDC(arg0)) {
+            func_80802434_chquiz(arg0, 1);
+        } else if (func_80101E14(arg0, 0.3f)) {
+            _suquiz_entrypoint_28(1, ((struct QuizId *)((u8 *)arg0 + 0x76))->id, (u8 *)arg0 + 4);
+        }
+        break;
+    case 9:
+        if (func_80101DDC(arg0)) {
+            func_80802434_chquiz(arg0, 10);
+        } else if (func_80101E14(arg0, 0.3f)) {
+            _suquiz_entrypoint_28(2, ((struct QuizId *)((u8 *)arg0 + 0x76))->id, (u8 *)arg0 + 4);
+        }
+        break;
+    case 12:
+        if (func_80101DDC(arg0)) {
+            func_80802434_chquiz(arg0, 13);
+        }
+        break;
+    case 13:
+        if (func_80101E14(func_80106790(arg0->unk3C), 0.85f)) {
+            _suquiz_entrypoint_28(3, ((struct QuizId *)((u8 *)arg0 + 0x76))->id, (u8 *)arg0 + 4);
+            _suquiz_entrypoint_28(3, ((struct QuizId *)((u8 *)arg0 + 0x76))->id, (u8 *)arg0 + 4);
+        } else if (func_80101E14(func_80106790(arg0->unk3C), 0.9f) &&
+                   ((((struct QuizId *)((u8 *)arg0 + 0x76))->id) == 1)) {
+            func_800C3F48(0x7FFFFE70);
+        }
+        break;
+    }
+    if (((struct QuizId *)((u8 *)arg0 + 0x76))->id == 3 ||
+        ((struct QuizId *)((u8 *)arg0 + 0x76))->id == 4 ||
+        ((struct QuizId *)((u8 *)arg0 + 0x76))->id == 5 ||
+        ((struct QuizId *)((u8 *)arg0 + 0x76))->id == 6) {
+        func_801039E4(*(s32 *)arg0);
+    }
+    temp_v0 = func_80100094(arg0, 1);
+    if (((struct QuizFlags *)((u8 *)arg0 + 0x70))->active && temp_v0 != 0) {
+        _suexpression_entrypoint_10((s32)temp_v0, *(s32 *)arg0, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808029A4_chquiz.s")
 
