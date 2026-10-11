@@ -22,7 +22,12 @@ void func_80800000_gcdialogcamera(s32 arg0, s32 *arg1, s32 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/camera/func_8080003C_gcdialogcamera.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/camera/gcdialogcamera_entrypoint_0.s")
+/* extern */
+
+s32 gcdialogcamera_entrypoint_0(s32 arg0, s32 arg1) {
+    s32 _ncpoddialog_entrypoint_11(s32, s32, s32);
+    return 1 - _ncpoddialog_entrypoint_11(arg0, arg1, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/camera/gcdialogcamera_entrypoint_1.s")
 
