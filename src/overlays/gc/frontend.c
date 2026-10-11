@@ -16,7 +16,10 @@ void gcfrontend_entrypoint_3(s32 arg0) {
     func_800DA298(((*(s16 *)((s8 *)(temp_v1) + (2))) + arg0) - (*(u8 *)((s8 *)(temp_v1) + (0))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_4.s")
+u8 gcfrontend_entrypoint_4(s32 arg0) {
+    extern s32 D_80800D80_gcfrontend;
+    return *((u8 *)&D_80800D80_gcfrontend + arg0 * 0xC + 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_5.s")
 
