@@ -113,7 +113,151 @@ s32 func_80800D2C_chhumba(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800D74_chhumba.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800E44_chhumba.s")
+void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
+    s32 _fxsplash25d_entrypoint_0(f32 *);
+    s32 _fxsplash_entrypoint_1(f32 *);
+    s32 _subaddieaudioquick_entrypoint_2(u8 *, u8 *, s32 *);
+    s32 func_8008FD48(void);
+    Unk80132ED0 *func_8008FDEC(void);
+    s32 func_80090658(s32);
+    s32 func_80090708(s32);
+    s32 func_80090768(f32 *);
+    s32 func_800907EC(s32);
+    s32 func_8009EA2C(void);
+    void func_8009EAAC(s32);
+    s32 func_800DA9E4(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800FC660(u32);
+    void func_800FC6B0(u32);
+    void func_80101FDC(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_80800028_chhumba(u8 *, s32, s32);
+    s32 func_808000D4_chhumba(u8 *, s32, s32, Unk80132ED0 *);
+    s32 func_8080015C_chhumba(u8 *, s32, s32, s32);
+    s32 func_808001E4_chhumba(u8 *);
+    s32 func_80800294_chhumba(u8 *, s32);
+    s32 func_80800338_chhumba(s32, s32, s32);
+    s32 func_80800384_chhumba(u8 *);
+    s32 func_808003CC_chhumba(u8 *);
+    s32 func_808007F8_chhumba(u8 *);
+    s32 func_80800B40_chhumba(u8 *);
+    s32 func_80800C20_chhumba(u8 *);
+    s32 func_80800C6C_chhumba(u8 *);
+    extern s32 D_80802590_chhumba;
+    f32 sp34[3];
+    Actor *sp30;
+    f32 sp24[3];
+
+    switch (((Actor *)arg0)->unk70_10) {
+        case 2:
+            break;
+        case 3:
+            func_80800294_chhumba(arg0, 0);
+            break;
+        case 5:
+        case 6:
+            func_80800238_chhumba(arg0, sp34);
+            func_80090658(0);
+            _fxsplash_entrypoint_1(sp34);
+            _fxsplash25d_entrypoint_0(sp34);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80802590_chhumba);
+            func_808007F8_chhumba(arg0);
+            func_800FC660(0xE);
+            func_80800338_chhumba((s32)arg0, 0x11B4, 0xF);
+            break;
+    }
+    func_80101FDC((Actor *)arg0, arg1);
+    switch (((Actor *)arg0)->unk70_10) {
+        case 2:
+            func_80800B40_chhumba(arg0);
+            return;
+        case 3:
+            func_80800028_chhumba(arg0, 3, 1);
+            func_80800294_chhumba(arg0, 1);
+            return;
+        case 18:
+            if (func_80800C20_chhumba(arg0) != 0) {
+                func_80800C6C_chhumba(arg0);
+                return;
+            }
+            func_80800E44_chhumba(arg0, 4);
+            return;
+        case 4:
+            func_80090658(1);
+            return;
+        case 5:
+            func_80800238_chhumba(arg0, sp24);
+            func_80090768(sp24);
+            ((Actor *)arg0)->unk3C = func_8008FDEC();
+            sp30 = func_80106790(((Actor *)arg0)->unk3C);
+            func_800EE7F8((f32 *)sp30->actorData, sp24);
+            sp30->unk74_30 = 1;
+            func_808000D4_chhumba(arg0, 0xE, 9, ((Actor *)arg0)->unk3C);
+            return;
+        case 6:
+            func_808000D4_chhumba(arg0, 0xE, 9, ((Actor *)arg0)->unk3C);
+            return;
+        case 8:
+            func_80090658(1);
+            func_8080015C_chhumba(arg0, 2, 0x60, 0);
+            return;
+        case 9:
+            ((Actor *)arg0)->unk58 = 4.0f;
+            func_800FC6B0(0xC);
+            if (((Actor *)arg0)->unk74_29 && func_8009EA2C() == 0) {
+                func_8009EAAC(1);
+                func_800907EC(func_8008FD48());
+                return;
+            }
+            func_800907EC(func_80800384_chhumba(arg0));
+            return;
+        case 11:
+            func_80090658(0);
+            if (func_800DA9E4(func_80800414_chhumba(arg0), 1) == 0) {
+                if (((Actor *)arg0)->unk74_29) {
+                    func_80090708(2);
+                    func_80800338_chhumba((s32)arg0, func_808003CC_chhumba(arg0), 3);
+                    return;
+                }
+                func_80800338_chhumba((s32)arg0, func_808003CC_chhumba(arg0), 0xB);
+                return;
+            }
+            if (func_80800D2C_chhumba((s32)arg0) == 0) {
+                func_808001E4_chhumba(arg0);
+                func_80800E44_chhumba(arg0, 0xC);
+                return;
+            }
+            return;
+        case 13:
+            func_80090658(1);
+            func_8080015C_chhumba(arg0, 5, 0x60, 0);
+            return;
+        case 14:
+            ((Actor *)arg0)->unk58 = 4.0f;
+            func_800FC6B0(0xC);
+            if (((Actor *)arg0)->unk74_29 && func_8009EA2C() != 0) {
+                func_8009EAAC(0);
+                func_800907EC(func_8008FD48());
+                return;
+            }
+            func_800907EC(1);
+            return;
+        case 16:
+            func_80090658(0);
+            if (func_800DA9E4(0x1D1, 1) == 0) {
+                func_80800338_chhumba((s32)arg0, 0x11B6, 0xF);
+                return;
+            }
+            func_808001E4_chhumba(arg0);
+            func_80800E44_chhumba(arg0, 7);
+            return;
+        case 17:
+            if (func_800DA9E4(0x505, 1) == 0) {
+                func_80800B40_chhumba(arg0);
+            }
+            return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80801260_chhumba.s")
 
