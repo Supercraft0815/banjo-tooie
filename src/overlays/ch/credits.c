@@ -22,7 +22,14 @@ s16 func_8080003C_chcredits(s32 arg0) {
     return *(s16 *)((u8 *)D_80801202_chcredits + offset);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80800078_chcredits.s")
+s32 func_80800078_chcredits(void) {
+    extern s32 D_8012760D;
+    u8 *ptr = (u8 *)(u32)((s8 *)&D_8012760D + 3);
+    if (ptr[1] == 2) {
+        return ptr[0] >= 0x51U;
+    }
+    return ptr[0] >= 0x16U;
+}
 
 void func_808000B4_chcredits(s32 arg0) {
     extern s32 D_8012760D;
