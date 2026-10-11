@@ -101,7 +101,18 @@ void func_80101FDC(Actor *arg0, u32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_8010203C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80102078.s")
+/* extern */
+
+void func_80102078(s32 arg0, s32 arg1) {
+    s32 func_8008B1C8(s32, s32);
+    s32 func_80104248();
+    s32 temp_v0;
+
+    temp_v0 = func_80104248(arg0);
+    if (temp_v0 != 0) {
+        func_8008B1C8(temp_v0, arg1);
+    }
+}
 
 /* extern */
 
