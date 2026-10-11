@@ -2,7 +2,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/data/sucoasterdata_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/data/sucoasterdata_entrypoint_1.s")
+void *sucoasterdata_entrypoint_1(s32 arg0) {
+    extern s32 D_808003C0_sucoasterdata;
+    return (u8 *)&D_808003C0_sucoasterdata + arg0 * 0x5C;
+}
 
 s32 sucoasterdata_entrypoint_2(u32 arg0) {
     switch (arg0) {
