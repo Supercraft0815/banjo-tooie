@@ -21,7 +21,11 @@ u32 func_80014EC8() {
     return FRAMEBUFFER_SIZE_BYTES;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80014ED4.s")
+s32 func_80014ED4(void) {
+    extern s32 func_80014F38(void);
+    extern s32 D_80078F80;
+    return (&D_80078F80)[func_80014F38()];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80014F00.s")
 
