@@ -449,4 +449,93 @@ void mlspline_entrypoint_10(f32 arg0, s32 arg1, f32 *arg2, volatile f32 *arg3)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_12.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_13.s")
+f32 mlspline_entrypoint_13(s32 arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 (*arg5)(f32, s32, s32, f32 *)) {
+    f32 func_800EEF94(f32 *);
+    f32 func_80801488_mlspline(s32, s32, f32, f32, s32, f32, s32 (*)(f32, s32, s32, f32 *));
+    f32 mlAbsF(f32);
+    f32 spAC;
+    f32 var_f24;
+    f32 var_f22;
+    s32 spA0;
+    f32 var_f20;
+    f32 speed;
+    f32 sp8C[3];
+    s32 var_s3;
+    s32 var_s4;
+    f32 temp_f12;
+    f32 sp7C;
+
+    var_s3 = 0;
+    if (arg0 >= 4) {
+        spA0 = arg0 - 1;
+    } else {
+        spA0 = 1;
+    }
+    var_s4 = 0;
+    if (mlAbsF(arg3) < 0.01f) {
+        return arg2;
+    }
+    arg5(arg2, arg0, arg1, sp8C);
+    spAC = arg3 / (func_800EEF94(sp8C) * (f32) spA0);
+    sp7C = mlAbsF(arg3);
+    var_f24 = arg2 + spAC;
+    do {
+    var_f22 = var_f24;
+    if (spAC > 0.0f) {
+        if (var_f22 >= 1.0f) {
+            if (arg4 == 1.0f) {
+                var_f22 = 1.0f;
+                var_f20 = func_80801488_mlspline(arg1, arg0, arg2, 1.0f, 0x400, 0.01f, arg5);
+                if (var_f20 < arg3) {
+                    var_s3 = 1;
+                }
+            } else {
+                var_f22 += arg4;
+                var_f22 -= (f32) (s32) var_f22;
+                var_f20 = func_80801488_mlspline(arg1, arg0, arg2, 1.0f, 0x400, 0.01f, arg5);
+                var_f20 += func_80801488_mlspline(arg1, arg0, arg4, var_f22, 0x400, 0.01f, arg5);
+            }
+        } else {
+            var_f20 = func_80801488_mlspline(arg1, arg0, arg2, var_f22, 0x400, 0.01f, arg5);
+        }
+    } else if (arg4 == 1.0f) {
+        if (var_f22 < 0.0f) {
+            var_f22 = 0.0f;
+            var_f20 = func_80801488_mlspline(arg1, arg0, arg2, 0.0f, 0x400, 0.01f, arg5);
+            if (arg3 < var_f20) {
+                var_s3 = 1;
+            }
+        } else {
+            var_f20 = func_80801488_mlspline(arg1, arg0, arg2, var_f22, 0x400, 0.01f, arg5);
+        }
+    } else if (var_f22 < arg4) {
+        var_f22 -= arg4;
+        var_f22 -= (f32) (s32) var_f22;
+        var_f22 += 1.0f;
+        var_f20 = func_80801488_mlspline(arg1, arg0, arg2, arg4, 0x400, 0.01f, arg5);
+        var_f20 += func_80801488_mlspline(arg1, arg0, 1.0f, var_f22, 0x400, 0.01f, arg5);
+    } else {
+        var_f20 = func_80801488_mlspline(arg1, arg0, arg2, var_f22, 0x400, 0.01f, arg5);
+    }
+    if ((var_s3 == 0) && (mlAbsF(var_f20 - sp7C) > 0.01f)) {
+        arg5(var_f22, arg0, arg1, sp8C);
+        speed = func_800EEF94(sp8C) * (f32) spA0;
+        temp_f12 = (var_f20 - arg3) / speed;
+        var_f24 = var_f22 - temp_f12;
+        if (mlAbsF(temp_f12) < 0.000001f) {
+            var_s3 = 1;
+        }
+        if (spAC > 0.0f) {
+            if (var_f24 < arg2) {
+                var_f24 += 1.0f - arg4;
+            }
+        } else if (arg2 < var_f24) {
+            var_f24 -= 1.0f - arg4;
+        }
+    } else {
+        var_s3 = 1;
+    }
+    var_s4 += 1;
+    } while ((var_s3 == 0) && (var_s4 < 0xA));
+    return var_f22;
+}
