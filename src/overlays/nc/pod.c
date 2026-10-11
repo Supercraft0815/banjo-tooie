@@ -233,7 +233,14 @@ void ncpod_entrypoint_28(s32 arg0, s32 arg1) {
     _ncpoducam_entrypoint_8(_ncpoducam_entrypoint_1((*(s16 *)((s8 *)(func_80110024(arg0)) + (2)))), arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_29.s")
+/* extern */
+
+void ncpod_entrypoint_29(s32 arg0, s32 arg1) {
+    s32 _ncpoducam_entrypoint_1(s16);
+    s32 _ncpoducam_entrypoint_9(s32, s32);
+    void *func_80110024(s32);
+    _ncpoducam_entrypoint_9(_ncpoducam_entrypoint_1((*(s16 *)((s8 *)(func_80110024(arg0)) + (2)))), arg1);
+}
 
 /* extern */
 
