@@ -12,7 +12,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_2.s")
+void gcmapsects_entrypoint_2(s16 arg0, s32 arg1) {
+    void *func_800BF704(void);
+    struct { u8 pad[0x4C]; u8 other : 7; u8 flag : 1; } *temp_v1;
+
+    temp_v1 = (*(s32 *)((s8 *)(func_800BF704()) + (0x68))) + (arg0 * 0x58);
+    temp_v1->flag = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_3.s")
 
