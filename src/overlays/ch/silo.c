@@ -2,7 +2,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_80800000_chsilo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_80800104_chsilo.s")
+void func_80800104_chsilo(Actor *arg0, s32 arg1, s32 arg2) {
+    struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
+    if (!arg0->unk74_30) {
+        arg2 |= 6;
+        _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, arg0->position, 0x6F);
+        ((struct Flags *)arg0)->flag = 1;
+    }
+}
 
 /* extern */
 
