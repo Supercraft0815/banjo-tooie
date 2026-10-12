@@ -91,7 +91,27 @@ void subaddiefade_entrypoint_12(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     subaddiefade_entrypoint_11(arg0, (u8 *)sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/fade/subaddiefade_entrypoint_13.s")
+/* extern */
+
+void subaddiefade_entrypoint_13(u8 *arg0, u8 *arg1) {
+    void func_800F2F20(void *arg0, void *arg1);
+    void func_800F2F3C(void *arg0, void *arg1);
+    void func_80800450_subaddiefade();
+    struct Flags {
+        u8 padding[0x70];
+        u32 upper : 29;
+        u32 flag : 1;
+        u32 lower : 2;
+    };
+    s32 sp1C[3];
+
+    if (((struct Flags *)arg0)->flag) {
+        func_80800450_subaddiefade(sp1C, arg1, arg0);
+        func_800F2F20(arg0 + 0x98, sp1C);
+        return;
+    }
+    func_800F2F3C(arg0 + 0x98, arg1);
+}
 
 void func_80800450_subaddiefade(s32 *arg0, u8 *arg1) {
     s32 temp_f16;
