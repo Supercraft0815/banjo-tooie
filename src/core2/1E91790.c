@@ -21,7 +21,15 @@ FontGlyph *func_800B0D6C(void *font, s32 ch);
 u8 *func_800B0D60(void *font);
 f32 func_800DC178(f32, f32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B7EA0.s")
+void func_800B7EA0(s32 arg0, s32 arg1) {
+    void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, s32 cms, s32 cmt, s32 *width, s32 *height);
+    s32 sp38[2];
+    s32 sp34;
+
+    func_800AF614((Gfx **) arg0, (s16 *) func_800D674C(arg1), 0, 0x100, 1, 2, 2, &sp38[0], &sp34);
+    D_801282C0.data[0xA] = (u8) sp38[0];
+    D_801282C0.data[0xB] = (u8) sp34;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B7F14.s")
 
