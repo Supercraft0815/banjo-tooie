@@ -203,7 +203,20 @@ void func_80800BE8_chstonedartgunhead(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/func_80800C28_chstonedartgunhead.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/func_80800D50_chstonedartgunhead.s")
+int func_80800D50_chstonedartgunhead(Actor *arg0, s32 arg1, u8 *arg2) {
+    void func_80102424(Actor*, s32);
+    u8 **ptr = &arg2;
+    switch (arg1) {
+        case 0x40:
+            if (((u32) (*(u32 *)((s8 *)(*ptr) + 0x24)) >> 22) == 0) {
+                func_80102424(arg0, 9);
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chstonedartgunhead_entrypoint_1(void)
 {
