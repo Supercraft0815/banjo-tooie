@@ -14,7 +14,11 @@ OSThread *chhoneyb_entrypoint_1(void)
     return (OSThread *) D_80801068_chhoneyb;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800018_chhoneyb.s")
+void func_80800018_chhoneyb(Actor *arg0, u32 arg1, u32 arg2) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
+    _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, arg0->position, 0x9BU);
+    func_80102424(arg0, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800058_chhoneyb.s")
 
@@ -24,7 +28,6 @@ void func_8080011C_chhoneyb(void *arg0) {
     s32 func_8008FC28();
     s32 func_80090708(s32);
     s32 func_800FC6B0(s32);
-    s32 func_80102424(void *, s32);
     s32 temp_v0;
 
     func_80090708(2);
