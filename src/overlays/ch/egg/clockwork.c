@@ -21,7 +21,17 @@ OSThread *cheggclockwork_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/clockwork/cheggclockwork_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/clockwork/cheggclockwork_entrypoint_2.s")
+/* extern */
+
+void cheggclockwork_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, volatile f32 arg3, s32 arg4, s32 arg5) {
+    s32 _cheggsplode_entrypoint_2(s32 *, f32, s32, s32, s32);
+    f32 sp24[3];
+    f32 scale = arg3;
+    sp24[0] = *(f32 *)&arg0;
+    sp24[1] = *(f32 *)&arg1;
+    sp24[2] = *(f32 *)&arg2;
+    _cheggsplode_entrypoint_2((s32 *)sp24, scale, arg4, 5, arg5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/clockwork/cheggclockwork_entrypoint_3.s")
 
