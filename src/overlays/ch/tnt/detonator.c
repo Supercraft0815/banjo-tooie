@@ -38,6 +38,15 @@ void func_808003C0_chtntdetonator(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/detonator/func_80800400_chtntdetonator.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/detonator/func_80800588_chtntdetonator.s")
+void func_80800588_chtntdetonator(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
+    extern u32 D_80800798_chtntdetonator;
+    u32 temp_t7;
+
+    temp_t7 = (u32)arg0->unk70_10 == 2;
+    if ((temp_t7 != 0) || ((temp_t7 == 0) && (arg0->unk5F != 0))) {
+        _subaddieaudioloop_entrypoint_4(arg0, (f32 *)((u8 *)arg0 + 0x18), temp_t7, &D_80800798_chtntdetonator);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/detonator/chtntdetonator_entrypoint_1.s")
