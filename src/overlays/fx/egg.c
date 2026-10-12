@@ -4,10 +4,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/egg/fxegg_entrypoint_0.s")
 
-void func_8080009C_fxegg(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+void func_8080009C_fxegg(s32 arg0, s32 arg1, f32 arg2[3], f32 arg3) {
     s32 func_800B5BE4(s32);
     s32 func_800BA670(s32, s32);
-    s32 func_800BABB8(s32, s32, s32, s32, s32 *);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
     extern s32 D_80800574_fxegg;
     s32 sp24;
     s32 temp_v0;
@@ -18,9 +18,9 @@ void func_8080009C_fxegg(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_800BABB8(sp24, arg2, arg2, arg3, &D_80800574_fxegg);
 }
 
-void func_808000F8_fxegg(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+void func_808000F8_fxegg(s32 arg0, f32 arg1[3], s32 arg2, f32 arg3) {
     void func_800BA3FC(s32, s32);
-    s32 func_800BABB8(s32, s32, s32, s32, s32 *);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
     extern s32 D_808005B0_fxegg;
     func_800BA3FC(arg0, arg2);
     func_800BABB8(arg0, arg1, 0, arg3, &D_808005B0_fxegg);
@@ -28,7 +28,7 @@ void func_808000F8_fxegg(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 /* extern */
 
-s32 fxegg_entrypoint_1(s32 arg0, s32 arg1) {
+s32 fxegg_entrypoint_1(f32 arg0[3], f32 arg1) {
     s32 func_800B5BE4(s32);
     s32 sp1C;
 
@@ -39,7 +39,11 @@ s32 fxegg_entrypoint_1(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/egg/fxegg_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/egg/func_808001CC_fxegg.s")
+void func_808001CC_fxegg(s32 arg0, f32 arg1[3], f32 arg2) {
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    extern s32 D_808005D8_fxegg;
+    func_800BABB8(arg0, arg1, 0, arg2, &D_808005D8_fxegg);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/egg/fxegg_entrypoint_3.s")
 
