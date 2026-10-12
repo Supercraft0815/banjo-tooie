@@ -15,7 +15,16 @@ f32 func_800CB3FC(volatile s32 arg0, f32 *arg1, s32 *arg2) {
     return *(f32 *)(temp_v0 + 0x28);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA4CD0/func_800CB45C.s")
+f32 func_800CB45C(volatile s32 arg0, f32 *arg1, s32 *arg2, s32 *arg3) {
+    extern u8 D_8012AB70[];
+    void func_800EE7F8(f32 *, f32 *);
+    u8 *temp_v0;
+
+    func_800EE7F8(arg1, (f32 *)((temp_v0 = D_8012AB70 + arg0 * 0x30) + 8));
+    *arg2 = *(s16 *)(temp_v0 + 0x18);
+    *arg3 = *(s16 *)(temp_v0 + 0x1A);
+    return *(f32 *)(temp_v0 + 0x14);
+}
 
 s32 func_800CB4D0(s32 arg0, s32 arg1, s32 arg2) {
     extern u8 D_8012AB70[];
