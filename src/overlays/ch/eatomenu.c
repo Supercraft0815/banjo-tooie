@@ -14,7 +14,12 @@ void func_8080000C_chcheatomenu(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_808000D4_chcheatomenu.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_80800150_chcheatomenu.s")
+void func_80800150_chcheatomenu(Actor *arg0, s32 arg1) {
+    void *_gcnewoption_entrypoint_1(s32, s32);
+    if ((u32) arg0->unk70_10 == 4) {
+        _gcnewoption_entrypoint_1((s32) func_80100094(arg0, 0U), arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_80800194_chcheatomenu.s")
 
