@@ -66,7 +66,93 @@ void func_808008C0_chclinker(s32 arg0)
     func_808008E0_chclinker(arg0,0x5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_808008E0_chclinker.s")
+int func_808008E0_chclinker(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    s32 func_800CE8D8(s32, f32, s32);
+    s32 func_800D2498(s32, s32, s32);
+    s32 func_800D2054(s32, s32, s32);
+    void func_800F49D4(s32, void *, s32);
+    void func_800FC63C(u32, u32);
+    void *data;
+    s32 player;
+    s32 pad0;
+    s32 pad1;
+    s32 message;
+
+    data = func_80100094(arg0, 0);
+    if (arg1 != ((u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10)) {
+        switch (arg1) {
+        case 2:
+            _gcfrontend_entrypoint_9(0x6C);
+            func_800D2498(0x103, *(s32 *)data, 0);
+            func_800CE8D8(0, (f32)((u32)*(u16 *)((u8 *)arg0 + 0x76) >> 7),
+                         (u32)*(u16 *)((u8 *)arg0 + 0x76) >> 7);
+            func_800CE88C(0, 1);
+            break;
+        case 4:
+            func_800FC63C(0x10, -1);
+            func_80800BDC_chclinker(arg0, 0x1372);
+            if (func_800CEAA8(0) != 0) {
+                func_800CE88C(0, 0);
+            }
+            if (*(s32 *)((u8 *)arg0 + 0x3C) != 0) {
+                func_8010114C(*(s32 *)((u8 *)arg0 + 0x3C), 0x4F, 0);
+                *(s32 *)((u8 *)arg0 + 0x3C) = 0;
+            }
+            break;
+        case 5:
+            func_800D284C(0x103);
+            if (func_800D395C() != 0) {
+                func_800D284C(0xCC);
+            } else {
+                if (func_800CEAA8(0) != 0) {
+                    func_800CE88C(0, 0);
+                }
+                func_800D284C(0xCC);
+            }
+            break;
+        case 3:
+            func_80108B04(arg0, 0);
+            func_80800BDC_chclinker(arg0, 0x1371);
+            break;
+        case 9:
+            player = func_800F54E4();
+            func_800F49D4(player, 0, 0);
+            func_800F7B9C(player, 0x8F);
+            func_800F7B9C(player, 0x62);
+            func_800F7C58(player, 0x61, 0);
+            func_80800BDC_chclinker(arg0, func_800D211C(0x94) ? 0x137C : 0xCEC);
+            func_800F7F98(func_800F54E4(), 1);
+            break;
+        case 6:
+            *(f32 *)((u8 *)data + 4) = 0.0f;
+            func_800D2498(0x103, *(s32 *)data, 0);
+            func_800D2498(0xCC, (s32)*(f32 *)((u8 *)data + 4), 0);
+            break;
+        case 7:
+            switch (func_800D2054(1, 0x94, (s32)*(f32 *)((u8 *)data + 4))) {
+            case -1:
+                message = 0x137F;
+                break;
+            case 0:
+                message = 0x137E;
+                break;
+            case 1:
+                message = 0x137D;
+                break;
+            }
+            func_800FC63C(0x10, -1);
+            func_80800BDC_chclinker(arg0, message);
+            break;
+        case 8:
+            func_80800BDC_chclinker(arg0, 0xCEB);
+            break;
+        }
+        func_80101FDC(arg0, arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_80800BDC_chclinker.s")
 
