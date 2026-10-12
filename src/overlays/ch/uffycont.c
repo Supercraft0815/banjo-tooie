@@ -25,10 +25,16 @@ void func_8080046C_chchuffycont(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_80800620_chchuffycont.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_808006A4_chchuffycont.s")
+int func_808006A4_chchuffycont(s32 arg0) {
+  extern s16 D_80800B20_chchuffycont;
+  s32 func_800DA298(s32);
+    return (!(*(s16 *)((u8 *)&D_80800B20_chchuffycont + arg0 * 10 + 6) + 1)
+        || func_800DA298(*(s16 *)((u8 *)&D_80800B20_chchuffycont + arg0 * 10 + 6)))
+        && !func_800DA298(*(s16 *)((u8 *)&D_80800B20_chchuffycont + arg0 * 10 + 2));
+}
 
 s32 func_8080070C_chchuffycont(s32 arg0) {
-    s32 func_808006A4_chchuffycont(s32);
+    int func_808006A4_chchuffycont(s32);
     int i;
     int count = 0;
     for (i = 0; i < 7; i++) {
