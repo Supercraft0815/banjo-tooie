@@ -216,7 +216,16 @@ void func_800FC8EC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC934.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC97C.s")
+void func_800FC97C(s32 arg0, f32 arg1, f32 arg2) {
+    void *func_800FB5F8(s32);
+    u8 *temp_v0;
+
+    temp_v0 = func_800FB5F8(arg0);
+    if (temp_v0 != NULL) {
+        (*(f32 *)((s8 *)(temp_v0) + (0x10))) = arg1;
+        (*(f32 *)((s8 *)(temp_v0) + (0x14))) = arg2;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC9B4.s")
 
