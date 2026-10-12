@@ -30,7 +30,15 @@ OSThread *chfairgroundworker_entrypoint_3(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/groundworker/func_80800030_chfairgroundworker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/groundworker/func_80800098_chfairgroundworker.s")
+void func_80800098_chfairgroundworker(Actor *arg0) {
+    s32 _chbadshad_entrypoint_3(Actor *, u8 *, s32, f32, s32 *);
+    s32 _sucoaster_entrypoint_2();
+    extern s32 D_80800428_chfairgroundworker;
+    _sucoaster_entrypoint_2();
+    if (arg0->unk7C_12) {
+        _chbadshad_entrypoint_3(arg0, (u8 *)arg0 + 4, 3, arg0->scale * 1.5294117f, &D_80800428_chfairgroundworker);
+    }
+}
 
 /* extern */
 
