@@ -28,4 +28,10 @@ void func_80106A60(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE0310/func_80106D60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE0310/func_80106DA4.s")
+void func_80106DA4(s32 *arg0, s32 *arg1) {
+    s32 i;
+
+    for (i = 0; i < 3; i++) {
+        arg0[i] = (arg0[i] * arg1[i]) >> 8;
+    }
+}
