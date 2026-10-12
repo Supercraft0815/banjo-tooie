@@ -38,6 +38,11 @@ void chappearfx_entrypoint_1(s32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     _chbaddiesetup_entrypoint_4(&_chappearfx_entrypoint_3, *arg0, arg1, arg2, arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/appearfx/chappearfx_entrypoint_2.s")
+/* extern */
+
+void chappearfx_entrypoint_2(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
+    s32 chappearfx_entrypoint_3(s32, s32, s32);
+    chappearfx_entrypoint_3(*arg0, arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/appearfx/chappearfx_entrypoint_3.s")
