@@ -84,7 +84,7 @@ void func_800CE864(void) {
     (*(s8 *)((s8 *)(func_800CE3E0()) + (0x14))) = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CE88C.s")
+void func_800CE88C(s32 arg0, s32 arg1) { void *temp_v0; s8 temp_v1; temp_v0 = func_800CE3E0(arg0); if (arg1 != 0) { *(s8 *)((s8 *)temp_v0 + 0x12) = *(s8 *)((s8 *)temp_v0 + 0x12) + 1; } else { temp_v1 = *(s8 *)((s8 *)temp_v0 + 0x12); if (temp_v1 != 0) *(s8 *)((s8 *)temp_v0 + 0x12) = temp_v1 - 1; } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CE8D8.s")
 
