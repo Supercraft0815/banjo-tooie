@@ -62,4 +62,6 @@ void sueggmove_entrypoint_8(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/sueggmove_entrypoint_9.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/sueggmove_entrypoint_10.s")
+/* extern */
+
+void sueggmove_entrypoint_10(f32 *arg0, f32 *arg1) { void *func_800FAB50(f32 *, f32 *, f32 *, u32, f32); f32 sp24[3]; func_800FAB50(arg0, arg1, sp24, 0x024200A0, 15.0f); }
