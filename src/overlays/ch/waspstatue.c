@@ -1,6 +1,13 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspstatue/func_80800000_chwaspstatue.s")
+/* extern */
+
+void func_80800000_chwaspstatue(s32 arg0) {
+    s32 func_800DA298(s32);
+    s32 func_80800134_chwaspstatue(s32, s32);
+
+    func_80800134_chwaspstatue(arg0, func_800DA298(0x35A) ? 0x6 : 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspstatue/func_8080003C_chwaspstatue.s")
 
