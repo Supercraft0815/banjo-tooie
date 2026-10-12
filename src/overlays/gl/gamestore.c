@@ -21,7 +21,22 @@ s32 func_80800030_glgamestore(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamestore/func_80800038_glgamestore.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamestore/func_8080006C_glgamestore.s")
+s32 func_8080006C_glgamestore(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _gleeprom_entrypoint_2();
+    s32 func_80800000_glgamestore();
+    s32 var_v1;
+    s32 sp1C;
+
+    sp1C = 0;
+    var_v1 = sp1C;
+    if (_gleeprom_entrypoint_2(arg0) != 0) {
+        var_v1 = 2;
+    }
+    if (var_v1 == 0) {
+        var_v1 = func_80800000_glgamestore(arg1, arg2);
+    }
+    return var_v1;
+}
 
 /* extern */
 
