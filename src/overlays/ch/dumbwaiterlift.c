@@ -70,4 +70,12 @@ void func_808004E8_chdumbwaiterlift(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dumbwaiterlift/func_80800A8C_chdumbwaiterlift.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dumbwaiterlift/func_80800B40_chdumbwaiterlift.s")
+void func_80800B40_chdumbwaiterlift(Actor *arg0) {
+    void _capod_entrypoint_3(u32);
+    void _subaddieDll_entrypoint_4(Actor*, u32);
+    if (arg0->unk64_20) {
+        _capod_entrypoint_3(0U);
+        _subaddieDll_entrypoint_4(arg0, 0U);
+        *(volatile u8 *)((s8 *)arg0 + 0x65) = *(volatile u8 *)((s8 *)arg0 + 0x65) & 0xFFEF;
+    }
+}
