@@ -1,6 +1,26 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/Dll/subaddieDll_entrypoint_0.s")
+/* extern */
+
+void subaddieDll_entrypoint_0(void *arg0) {
+    void func_80103014(u8 *);
+    u32 func_8010A654(void ***, s32);
+    u32 func_8010A698(void ***);
+    s32 sp1C;
+    struct Flags {
+        u8 pad[0x10];
+        u32 upper : 31;
+        u32 enabled : 1;
+    } *flags;
+
+    if (!(((Actor *)arg0)->unk0->unk10 & 1)) {
+        sp1C = func_8010A698(arg0);
+        flags = (void *)((Actor *)arg0)->unk0;
+        flags->enabled = 1;
+        func_80103014(arg0);
+        func_8010A654(arg0, sp1C);
+    }
+}
 
 /* extern */
 
