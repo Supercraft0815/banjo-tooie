@@ -845,12 +845,25 @@ s32 bsfirstp_entrypoint_11(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_13.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803A84_bsfirstp.s")
+void func_80803A84_bsfirstp(void *arg0) {
+    void func_80803B58_bsfirstp(void *, f32);
+    extern s32 _bsfirstp_entrypoint_13;
+    s32 var_s0;
+    register s32 *callback;
+    register void *self;
+
+    callback = &_bsfirstp_entrypoint_13;
+    self = arg0;
+    for (var_s0 = 0; var_s0 < 2; var_s0++) {
+        func_8009E4E0(self, var_s0, (s32)callback);
+    }
+    func_8009E4E0(self, 2, 0);
+    func_80803B58_bsfirstp(self, 0.0f);
+}
 
 /* extern */
 
 void func_80803B04_bsfirstp(s32 arg0) {
-    s32 func_8009E4E0(s32, s32, s32);
     s32 var_s0;
 
     var_s0 = 0;
