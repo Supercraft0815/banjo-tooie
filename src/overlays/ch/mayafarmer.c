@@ -22,7 +22,17 @@ void func_80800180_chmayafarmer(u8 *arg0, u32 arg1, s32 arg2) {
     ((struct Flags *)arg0)->flag = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_808001CC_chmayafarmer.s")
+/* extern */
+
+void func_808001CC_chmayafarmer(u8 *arg0, s32 arg1) {
+    void func_80102424(Actor *, s32);
+    func_80102424((Actor *) arg0, arg1);
+    if (((Actor *) arg0)->unk70_10 == 4) {
+        func_800FC660(0x10);
+        func_80800180_chmayafarmer(arg0, 0xF07, 0xB);
+        ((Actor *) arg0)->unk58 = 0.0f;
+    }
+}
 
 s32 func_80800228_chmayafarmer(u8 *arg0, s32 arg1, s32 arg2) {
     struct FarmerState {
