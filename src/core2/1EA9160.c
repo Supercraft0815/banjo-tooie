@@ -89,7 +89,7 @@ void func_800D0594(s32 arg0, s32 arg1, s32 arg2) { s32 func_800CFC5C(s32); exter
 
 void func_800D05E4(s32 arg0, s32 arg1, s32 arg2) { s32 func_800CFC5C(s32); extern s32 D_8012B18C[]; s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { *(s32 *)((u8 *)D_8012B18C + temp_v0 * 0x14) = arg2; } } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D0634.s")
+ s32 func_800D0634(u32 arg0, u32 arg1) { extern s32 D_8012B18C[]; s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { return *(s32 *)((u8 *)D_8012B18C + temp_v0 * 0x14); } } return 0; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D0684.s")
 
