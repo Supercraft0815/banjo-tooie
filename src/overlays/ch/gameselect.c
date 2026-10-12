@@ -205,7 +205,23 @@ OSThread *chgameselect_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808020CC_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080218C_chgameselect.s")
+s32 func_8080218C_chgameselect(s32 arg0, s32 arg1) {
+    union {
+        s32 word;
+        struct {
+            s16 id;
+            volatile s16 flag;
+        } parts;
+    } sp1C;
+
+    sp1C.parts.id = arg0;
+    if (arg1 != 0) {
+        sp1C.parts.flag = 1;
+    } else {
+        sp1C.parts.flag = 0;
+    }
+    return func_80101180(0x4A8, 0x21, sp1C.word);
+}
 
 OSThread *chgameselect_entrypoint_3(void)
 {
