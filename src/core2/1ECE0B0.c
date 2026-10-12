@@ -896,7 +896,16 @@ void func_800F71D4(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7270.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F72DC.s")
+/* extern */
+
+int func_800F72DC(s32 arg0) {
+    s32 baflag_isTrue(PlayerState *, s32);
+    s32 func_8009640C(PlayerState *);
+    PlayerState *temp_a0;
+
+    temp_a0 = D_80135490[arg0];
+    return (func_8009640C(temp_a0) != 0) || (baflag_isTrue(temp_a0, 0x26) != 0);
+}
 
 /* extern */
 
