@@ -272,7 +272,9 @@ void func_80109C20(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
     func_801099D0(arg0, arg1, arg2, arg3, 0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109C4C.s")
+/* extern */
+
+void func_80109C4C(s32 arg0, f32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) { struct Flags { u8 pad[0x24]; u32 value : 10; u32 rest : 22; }; s32 temp; u32 saved; void func_801099D0(s32, f32, s32, s32, s32, s32); saved = ((struct Flags *)arg5)->value; ((struct Flags *)arg5)->value = arg6; func_801099D0(arg0, arg1, arg2, arg3, arg4, arg5); ((struct Flags *)arg5)->value = saved; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109CC4.s")
 
