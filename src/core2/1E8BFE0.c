@@ -14,7 +14,11 @@ s32 func_800B270C(s16 *arg0) {
     return arg0[5];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8BFE0/func_800B2714.s")
+s32 func_800B2714(s32 *arg0) {
+    u8 *result = (u8 *) arg0;
+    result += arg0[3];
+    return (s32) result;
+}
 
 u8 *func_800B2720(u8 *arg0) {
     s32 temp_v1;
