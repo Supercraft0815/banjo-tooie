@@ -105,7 +105,17 @@ void idbounce_entrypoint_2(u8 *arg0, u32 arg1, u8 *arg2, s32 arg3, u8 *arg4) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/bounce/func_80800874_idbounce.s")
+s32 *func_80800874_idbounce(s32 arg0) {
+    extern s32 D_80800E50_idbounce[];
+    s32 *var_v1 = D_80800E50_idbounce;
+    while (-1 != *var_v1) {
+        if (arg0 == *var_v1) {
+            break;
+        }
+        var_v1 += 8;
+    }
+    return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/bounce/func_808008B4_idbounce.s")
 
