@@ -225,7 +225,12 @@ void func_800BA8F8(void *arg0, f32 arg1, f32 arg2) {
     (*(s16 *)((s8 *)(arg0) + (0xA4))) = (s16) (s32) (arg2 * 256.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA930.s")
+void func_800BA930(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6) {
+    void func_800EFA6C(void *, s16, s16, s16);
+    (*(s8 *)((s8 *)(arg0) + (4))) = 0;
+    func_800EFA6C((void *)(arg0 + 0xC4), arg1, arg2, arg3);
+    func_800EFA6C((void *)(arg0 + 0xCA), arg4, arg5, arg6);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA994.s")
 
