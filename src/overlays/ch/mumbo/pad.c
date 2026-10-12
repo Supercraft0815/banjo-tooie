@@ -13,7 +13,7 @@ void func_80800014_chmumbopad(s32 arg0, s32 arg1, s32 arg2) {
     _gspropctrl_entrypoint_11(_gccubesearch_entrypoint_1(arg2), arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/pad/func_80800048_chmumbopad.s")
+s32 func_80800048_chmumbopad(void *arg0) { s32 func_800DA298(s32); extern s16 D_808010C8_chmumbopad[]; s16 temp_a1; temp_a1 = D_808010C8_chmumbopad[(*(s32 *)((s8 *)arg0 + 0x6C)) & 0x1FF]; if (temp_a1 != -1) { return func_800DA298(temp_a1); } else { return 0; } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/pad/func_80800098_chmumbopad.s")
 
