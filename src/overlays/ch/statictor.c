@@ -2,7 +2,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statictor/func_80800000_chstatictorch.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statictor/func_80800090_chstatictorch.s")
+/* extern */
+
+void func_80800090_chstatictorch(Actor *arg0) {
+    s32 _suflamefx_entrypoint_2(u8 *, u32 *);
+    void func_8008FB10(s32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80800140_chstatictorch(Actor *);
+    func_8008FB10((s32) arg0->position, 40.0f, 0.0f, 1.0f);
+    _suflamefx_entrypoint_2(func_80100094(arg0, 1U), arg0->actorData);
+    func_80800140_chstatictorch(arg0);
+}
 
 void func_808000E4_chstatictorch(s32 arg0) 
 {
