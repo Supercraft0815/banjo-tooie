@@ -25,7 +25,11 @@ f32 func_800DC178(f32, f32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B7F14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B80D0.s")
+void func_800B80D0(Gfx **arg0) {
+    Gfx *g = (*arg0)++;
+    g->words.w0 = 0xFA000000;
+    g->words.w1 = ((u32)D_801282C0.data[3] & 0xFF) | (u32)(((D_801282C0.data[1] & 0xFF) << 16) | ((D_801282C0.data[2] & 0xFF) << 8) | ((D_801282C0.data[0] & 0xFF) << 24));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B811C.s")
 
