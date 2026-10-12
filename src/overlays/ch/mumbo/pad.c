@@ -23,7 +23,14 @@ s32 func_80800048_chmumbopad(void *arg0) { s32 func_800DA298(s32); extern s16 D_
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/pad/func_80800514_chmumbopad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/pad/func_8080063C_chmumbopad.s")
+/* extern */
+
+void func_8080063C_chmumbopad(s32 *arg0, s32 arg1) {
+    s32 func_800F5FA8(s32);
+    s32 func_800F7874(s32, s32, void *, s32 *);
+    func_800F7874(arg1, *arg0, (u8 *)arg0 + 4, arg0);
+    func_800F5FA8(arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/pad/func_80800674_chmumbopad.s")
 
@@ -52,7 +59,6 @@ void func_808008CC_chmumbopad(void *arg0, s32 arg1) {
     s32 func_800DA564(s32, s32);
     s32 func_800F5410(s32);
     u32 func_800F54E4(void);
-    void func_8080063C_chmumbopad(void *, s32);
     s32 buttons[6];
 
     if (func_800F54E4() == arg1) {
