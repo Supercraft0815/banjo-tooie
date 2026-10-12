@@ -84,7 +84,23 @@ s32 func_800F45B0(s32 arg0, s32 arg1, s32 arg2) {
     func_8009CD70(arg0, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F45E0.s")
+/* extern */
+
+struct player_state_s;
+void func_800F45E0(struct player_state_s *arg0, f32 *arg1) {
+    void func_8009BF5C(struct player_state_s *, f32);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    void baroll_setIdeal(struct player_state_s *, f32);
+    void yaw_applyIdeal(struct player_state_s *);
+    void baroll_applyIdeal(struct player_state_s *);
+    void func_8009BFBC(void *);
+    func_8009BF5C(arg0, arg1[0]);
+    yaw_setIdeal(arg0, arg1[1]);
+    baroll_setIdeal(arg0, arg1[2]);
+    func_8009BFBC(arg0);
+    yaw_applyIdeal(arg0);
+    baroll_applyIdeal(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F4648.s")
 
