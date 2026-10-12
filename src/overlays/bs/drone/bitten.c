@@ -29,7 +29,22 @@ void bsdronebitten_entrypoint_8()
     func_80099AA8();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bitten/func_80800478_bsdronebitten.s")
+/* extern */
+
+struct player_state_s;
+s32 func_80800478_bsdronebitten(struct player_state_s *arg0, s32 arg1) {
+    s32 _badata_entrypoint_32(struct player_state_s *);
+    s32 _badata_entrypoint_34(struct player_state_s *);
+    s32 func_8008E124(struct player_state_s *);
+    s32 var_v0;
+
+    if (func_8008E124(arg0) != 0) {
+        var_v0 = _badata_entrypoint_32(arg0);
+    } else {
+        var_v0 = _badata_entrypoint_34(arg0);
+    }
+    return var_v0;
+}
 
 /* extern */
 
