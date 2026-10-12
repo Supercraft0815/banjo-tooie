@@ -540,7 +540,19 @@ void func_80094824(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094864.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_800949BC.s")
+/* extern */
+
+int func_800949BC(PlayerState *arg0) {
+    s32 func_8009E674(PlayerState *, s32);
+    s32 _baeggfire_entrypoint_8(PlayerState *);
+    s32 _bafpctrl_entrypoint_5(PlayerState *);
+    s32 temp_t6;
+    s32 temp_t7;
+    s32 var_v0;
+
+    return func_8009E674(arg0, 0x80000) != 0 ||
+           (_bafpctrl_entrypoint_5(arg0) != 0 && _baeggfire_entrypoint_8(arg0) != 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094A10.s")
 
