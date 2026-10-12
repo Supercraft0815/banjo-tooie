@@ -29,7 +29,7 @@ from .repairs import repair_scope, guard_candidate, save_support, load_support, 
 from .scanner import scan
 from .scheduler import advance, next_function, route, resources
 from .state import State
-from .patterns import untried_candidates, candidate_source, local_plan, m2c_key, trial_key, remember, seed_matches
+from .patterns import untried_candidates, candidate_source, local_plan, m2c_key, trial_key, remember, seed_matches, refresh_solutions
 
 
 def new_run(root, prefix):
@@ -896,6 +896,7 @@ class Loop:
         self.coordinator.expected_stamp = repository_stamp(self.root)
         atomic_write(directory/'commit.txt', commit+'\n')
         remember(self.root, self.state, function, replacement, commit)
+        refresh_solutions(self.root, self.state, [function['source'], *support], commit)
         if isinstance(message, dict):
             for note in message.get('knowledge', [])[:4]:
                 if isinstance(note, str):
@@ -909,6 +910,8 @@ class Loop:
         Parallel runs use a private lane (never linked, so no restore); otherwise the
         trusted workspace under the gate, returned to its baseline afterwards."""
         source, lanes = target.function['source'], self.coordinator.lanes
+        # A private lane may predate another function's published interface repair.
+        support = {**target.support, **(support or {})}
         if lanes is None:
             with self.gate:
                 try:
@@ -924,10 +927,11 @@ class Loop:
     @staticmethod
     def compile_in(workspace, builder, source, candidate, symbols, log, support=None):
         atomic_write(workspace/source, candidate)
-        before = {p: (workspace/p).read_bytes() for p in support or {}}
+        before = {p: (workspace/p).read_bytes() for p, value in (support or {}).items()
+                  if (workspace/p).read_bytes() != value}
         try:
-            for path, value in (support or {}).items():
-                atomic_write(workspace/path, value)
+            for path in before:
+                atomic_write(workspace/path, support[path])
             if builder.object_build(source, log):
                 return None
             return {symbol: builder.disassemble(source, symbol) for symbol in symbols}

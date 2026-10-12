@@ -5,7 +5,7 @@ import re
 from functools import lru_cache
 
 from .common import HarnessError
-from .guard import candidate_guard
+from .guard import candidate_guard, extract_function
 from .scanner import INSN, LEX, asm_features, global_asms
 
 LOADS = {0x20: ('s8', 's32', 1), 0x24: ('u8', 'u32', 1),
@@ -375,6 +375,7 @@ def remember(root, state, function, replacement, commit):
                              (key, template, commit))
         state.db.execute('INSERT OR REPLACE INTO solutions VALUES (?,?,?,?,?)',
                          (function['id'], shape, function['symbol'], function['asm'], replacement))
+        state.db.execute('DELETE FROM prototypes WHERE function_id=?', (function['id'],))
         for symbol, declaration, definition in declarations(replacement, function['symbol']):
             state.db.execute('INSERT OR REPLACE INTO prototypes VALUES (?,?,?,?)',
                              (symbol, declaration, function['id'], definition))
@@ -394,6 +395,10 @@ def known_declarations(state, symbols, limit=1500):
 def seed_matches(root, state):
     for row in state.db.execute("SELECT * FROM functions WHERE status='matched' AND best_run IS NOT NULL AND best_source IS NOT NULL").fetchall():
         f = dict(row)
+        current = state.db.execute('SELECT replacement FROM solutions WHERE function_id=?', (f['id'],)).fetchone()
+        if current:
+            remember(root, state, f, current[0], f['commit_sha'] or f['best_run'])
+            continue
         before = root/'.decomp-agent/runs'/f['best_run']/'source-before.c'
         if before.exists() and (root/f['asm']).exists():
             try:
@@ -401,3 +406,14 @@ def seed_matches(root, state):
             except (HarnessError, UnicodeError):
                 continue
             remember(root, state, f, code, f['commit_sha'] or f['best_run'])
+
+
+def refresh_solutions(root, state, sources, commit):
+    """A ROM-verified interface repair also updates knowledge from affected neighbors."""
+    sources = set(sources)
+    for row in state.db.execute("SELECT * FROM functions WHERE status='matched'").fetchall():
+        f = dict(row)
+        if f['source'] in sources and (root/f['asm']).is_file():
+            code = extract_function((root/f['source']).read_text(), f['symbol'])
+            if code:
+                remember(root, state, f, code, commit)

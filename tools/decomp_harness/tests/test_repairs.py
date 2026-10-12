@@ -13,6 +13,7 @@ from decomp_harness.guard import publish, recover_publications
 from decomp_harness.matching import instructions, score, worth_rom_check
 from decomp_harness.repairs import guard_candidate, guard_repair, refresh_repairs
 from decomp_harness.scanner import scan
+from decomp_harness.patterns import remember, known_declarations, refresh_solutions, seed_matches
 
 
 class RelocationTests(fixtures.Fixture):
@@ -53,6 +54,18 @@ class RelocationTests(fixtures.Fixture):
             self.assertEqual(len(refresh_repairs(self.root, self.state)), 1)
             self.state.update(self.function['id'], status='blocked')
             self.assertEqual(refresh_repairs(self.root, self.state), [])
+
+    def test_repaired_prototypes_replace_old_knowledge_after_restart(self):
+        old = 'void target(void) { int dependency(void); dependency(); }'
+        new = old.replace('int dependency', 'float dependency')
+        remember(self.root, self.state, self.function, old, 'old')
+        self.state.update(self.function['id'], status='matched', best_run='old', best_source=fixtures.CANDIDATE.encode())
+        (self.root/self.function['source']).write_text(fixtures.CANDIDATE.replace('void target(void) { }', new))
+        refresh_solutions(self.root, self.state, [self.function['source']], 'new')
+        seed_matches(self.root, self.state)
+        declarations = known_declarations(self.state, ['dependency'])
+        self.assertIn('float dependency', declarations)
+        self.assertNotIn('int dependency', declarations)
 
 
 class JournalTests(fixtures.GuardTests):
@@ -133,6 +146,17 @@ class RepairLoopTests(LoopFixture):
         self.assertEqual(self.state.get('target')['status'], 'matched')
         self.assertEqual(set(self.git('show', '--format=', '--name-only', 'HEAD').splitlines()), {header, self.function['source']})
         self.assertIn({header}, self.invalidations)
+
+    def test_old_build_lane_uses_current_dependency_baseline_for_probe(self):
+        header, before, after = self.dependency()
+        (self.root/header).write_bytes(after)
+        self.git('add', header); self.git('commit', '-qm', 'another validated interface repair')
+        target = self.loop.prepare(self.state.get('target'))
+        observed = []
+        self.loop.builder.object_build = lambda source, log: observed.append((self.work/header).read_bytes()) or 0
+        self.loop.object_dumps(target, fixtures.CANDIDATE.encode(), ['target'], self.root/'probe.log', self.root/'restore.log')
+        self.assertEqual(observed, [after])
+        self.assertEqual((self.work/header).read_bytes(), before)
 
     def test_wrong_linked_rom_restores_header_and_never_commits(self):
         header, before, after = self.dependency()
