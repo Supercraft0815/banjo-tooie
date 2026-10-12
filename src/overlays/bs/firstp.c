@@ -1678,7 +1678,21 @@ f32 func_80809938_bsfirstp(void *arg0) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080995C_bsfirstp.s")
+/* extern */
+
+void func_8080995C_bsfirstp(u8 *arg0) {
+    s32 func_80802458_bsfirstp(void *);
+    struct {
+        s32 pad;
+        u8 *data;
+    } local;
+
+    local.data = *(u8 **)((s8 *)arg0 + 0x188);
+    bcopy((u8 *)func_80802458_bsfirstp(arg0) + 0x74, local.data + 0x230, 0x18);
+    *(s16 *)(local.data + 0x248) = 0;
+    *(f32 *)(local.data + 0x24C) = 0.0f;
+    *(f32 *)(local.data + 0x250) = 0.0f;
+}
 
 void func_808099A8_bsfirstp(void *arg0, s32 arg1) {
     void *state = *(void **)((u8 *)arg0 + 392);
