@@ -831,7 +831,18 @@ void gczoombox_entrypoint_24(u8 *arg0, s32 arg1) {
     func_80802BF4_gczoombox();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_25.s")
+/* extern */
+
+void gczoombox_entrypoint_25(u8 *arg0, s32 arg1) {
+    struct Flags { u8 rest : 7; u8 flag : 1; };
+    s32 func_80802BF4_gczoombox();
+    if (arg1 != 0) {
+        ((struct Flags *)(arg0 + 0x1E7))->flag = 1;
+    } else {
+        ((struct Flags *)(arg0 + 0x1E7))->flag = 0;
+    }
+    func_80802BF4_gczoombox();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_26.s")
 
