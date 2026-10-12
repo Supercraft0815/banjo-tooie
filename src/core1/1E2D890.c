@@ -149,7 +149,13 @@ void func_80016038(s32 arg0, void *arg1) {
     (*(s32 *)((s8 *)(arg1) + (0xC))) = (s32) (*(s32 *)((s8 *)(&D_80079AC0) + (0x30)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2D890/func_80016068.s")
+void func_80016068(u32 arg0, f32 *arg1) {
+    unkD_80079AF8 *temp_v0;
+
+    temp_v0 = &D_80079AF8[arg0];
+    (*(f32 *)((s8 *)(arg1) + (0))) = temp_v0->unk8;
+    (*(f32 *)((s8 *)(arg1) + (4))) = (f32) temp_v0->unkC;
+}
 
 void func_8001608C(void) {
     s32 _glrecord_entrypoint_0(OSContPad *, s32 *);
