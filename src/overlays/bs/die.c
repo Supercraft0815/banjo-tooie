@@ -6,7 +6,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/die/bsdie_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/die/bsdie_entrypoint_2.s")
+/* extern */
+
+void bsdie_entrypoint_2(s32 arg0) {
+    s32 baroll_setIdeal(s32, f32);
+    s32 _basudie_entrypoint_6();
+    void func_8009BF5C(s32, f32);
+    s32 func_800A0CF4(s32, s32);
+    _basudie_entrypoint_6();
+    func_800A0CF4(arg0, 0);
+    func_8009BF5C(arg0, 0);
+    baroll_setIdeal(arg0, 0);
+}
 
 s32 bsdie_entrypoint_3(s32 arg0) {
     extern s32 D_80800960_bsdie[];
