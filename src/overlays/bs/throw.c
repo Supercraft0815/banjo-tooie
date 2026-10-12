@@ -4,7 +4,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/throw/bsthrow_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/throw/bsthrow_entrypoint_2.s")
+/* extern */
+
+void bsthrow_entrypoint_2(void *self) {
+    s32 bastatetimer_set(void *, s32, f32);
+    s32 bs_getNextState(void *);
+    (*(s32 *)((s8 *)(self) + 0x15C)) = 0;
+    if (bs_getNextState(self) == 1) {
+        bastatetimer_set(self, 0, 0.14f);
+        bastatetimer_set(self, 1, 0.28f);
+    }
+}
 
 s32 bsthrow_entrypoint_3(s32 arg0) {
     extern s32 D_808002F0_bsthrow[];
