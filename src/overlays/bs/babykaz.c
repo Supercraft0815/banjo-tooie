@@ -1,6 +1,19 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/bsbabykaz_entrypoint_0.s")
+/* extern */
+
+void bsbabykaz_entrypoint_0(u8 *arg0) {
+    s32 _bababykaz_entrypoint_4(u8 *);
+    s32 _cheggclockwork_entrypoint_3(f32 *, f32, s32, s32);
+    void func_8009C128(u8 *, f32[3]);
+    f32 yaw_get(u8 *);
+    f32 sp24[3];
+    f32 sp1C[2];
+
+    func_8009C128(arg0, sp24);
+    sp1C[0] = yaw_get(arg0);
+    _cheggclockwork_entrypoint_3(sp24, sp1C[0], _bababykaz_entrypoint_4(arg0), (*(s32 *)((s8 *)(arg0) + (0x160))));
+}
 
 void func_80800050_bsbabykaz(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x170))) = 0.0f;
