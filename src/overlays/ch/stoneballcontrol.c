@@ -477,7 +477,104 @@ OSThread *chstoneballcontrol_entrypoint_4(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80804218_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80804304_chstoneballcontrol.s")
+void func_80804304_chstoneballcontrol(u8 *arg0) {
+    typedef struct { f32 v[3]; } Vec3;
+    typedef struct { u8 high:3; u8 active:1; u8 low:4; } BallFlags;
+    extern Vec3 D_8080541C_chstoneballcontrol;
+    s32 _sukickball_entrypoint_12(u8 *, s32);
+    void _sukickball_entrypoint_13(f32 *, f32 *, f32);
+    s32 _sukickball_entrypoint_6(u8 *, s32);
+    s32 _sukickball_entrypoint_7(u8 *, s32);
+    s32 _sukickball_entrypoint_8(u8 *, s32);
+    f32 func_800D8FF8(void);
+    f32 func_800DC0C0(void);
+    f32 func_800EEF94(f32 *);
+    s32 func_800EF1B8(f32 *, f32, f32);
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    s32 func_800F52B8(s32, Unk80132ED0 *);
+    void func_800F5A00(s32, f32 *);
+    void func_800F5D70(s32, f32 *);
+    void func_800F7700(s32, s32, f32 *);
+    s32 func_800F8294(s32, f32 *);
+    void *func_80100094(void *, s32);
+    f32 func_80102D78();
+    u8 *func_80106790(s32);
+    s32 func_80800B4C_chstoneballcontrol(u8 *, s32);
+    s32 i;
+    u8 *parent;
+    u8 *other;
+    u8 *parentData;
+    f32 *selfPosition;
+    f32 position[3];
+    f32 selfSpeed;
+    f32 speed;
+    f32 velocity[3];
+
+    other = NULL;
+    parentData = func_80100094(func_80106790(*(s32 *)(arg0 + 0x3C)), 0);
+    for (i = 0; i < parentData[0x3A]; i++) {
+        selfPosition = (f32 *)(arg0 + 4);
+        if (i != (*(s32 *)(arg0 + 0x6C) & 0x1FF)) {
+            parent = func_80106790(*(s32 *)(arg0 + 0x3C));
+            if (_sukickball_entrypoint_7(parent, i)) {
+                other = func_80106790(_sukickball_entrypoint_8(parent, i));
+                position[0] = *(f32 *)(other + 4);
+                position[1] = *(f32 *)(other + 8);
+                position[2] = *(f32 *)(other + 0xC);
+            } else {
+                func_800F5A00(i, position);
+            }
+            if (func_800EFFB4(selfPosition, 90.0f, position)) {
+                selfSpeed = func_800EEF94((f32 *)(arg0 + 0x28));
+                if (_sukickball_entrypoint_6(parent, i)) {
+                    func_800F5D70(i, velocity);
+                    speed = func_800EEF94(velocity) * func_800D8FF8();
+                } else {
+                    speed = func_800EEF94((f32 *)(other + 0x28)) * func_800D8FF8();
+                }
+                if (speed < selfSpeed) {
+                    if (_sukickball_entrypoint_6(parent, i)) {
+                        _sukickball_entrypoint_13(selfPosition, position, 60.0f);
+                        func_800F8294(i, position);
+                        if (((u32)*(u16 *)(arg0 + 0x72) >> 10) == 8) {
+                            Vec3 impulse = D_8080541C_chstoneballcontrol;
+                            f32 playerPosition[3];
+                            func_800F5A00(i, playerPosition);
+                            func_800EF1B8((f32 *)&impulse, func_80102D78(arg0, playerPosition), 150.0f);
+                            func_800F7700(i, 3, selfPosition);
+                        }
+                    } else {
+                        f32 *otherPosition = (f32 *)(other + 4);
+                        _sukickball_entrypoint_13(selfPosition, otherPosition, 60.0f);
+                        if (((u32)*(u16 *)(arg0 + 0x72) >> 10) == 8) {
+                            *(f32 *)(other + 0x58) = 1.5f;
+                            ((BallFlags *)(other + 0x65))->active = 1;
+                            func_80800B4C_chstoneballcontrol(other, 12);
+                            *(f32 *)(other + 0x24) = *(f32 *)(arg0 + 0x24) * 0.75f;
+                            *(f32 *)(other + 0x54) = func_80102D78(arg0, otherPosition);
+                            *(f32 *)(arg0 + 0x24) *= 0.5f;
+                        }
+                    }
+                } else {
+                    _sukickball_entrypoint_13(position, selfPosition, 60.0f);
+                    if (func_800DC0C0() < 0.5f && !_sukickball_entrypoint_12(parent, *(s32 *)(arg0 + 0x6C) & 0x1FF)) {
+                        func_80800BCC_chstoneballcontrol(arg0, (s32)position);
+                    }
+                    if (_sukickball_entrypoint_6(parent, i) && func_800F52B8(i, *(Unk80132ED0 **)arg0) == 2) {
+                        f32 secondPosition[3];
+                        func_800F5A00(i, secondPosition);
+                        *(f32 *)(arg0 + 0x54) = func_800F1DF4(secondPosition, selfPosition);
+                        func_80800B4C_chstoneballcontrol(arg0, 12);
+                        *(f32 *)(arg0 + 0x24) = (speed * 0.75f) / func_800D8FF8();
+                    }
+                    *(f32 *)(arg0 + 0x58) = 1.5f;
+                    ((BallFlags *)(arg0 + 0x65))->active = 1;
+                }
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_808046C4_chstoneballcontrol.s")
 
