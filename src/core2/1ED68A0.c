@@ -97,8 +97,13 @@ void func_800FEC1C(f32 arg0) {
     *(f32 *)((u8 *)&D_801359F0 + 0) = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FEC28.s")
-
+s32 func_800FEC28(s32 arg0) {
+    extern u8 D_8012762C;
+    if (arg0 == 0) {
+        return D_8012762C == 0xD ? 7 : 0;
+    }
+    return arg0;
+}
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FEC60.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FECB8.s")
