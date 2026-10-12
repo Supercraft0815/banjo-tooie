@@ -204,7 +204,16 @@ void func_80801A60_chlakemonster(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80801E60_chlakemonster.s")
+int func_80801E60_chlakemonster(Actor *arg0, s32 arg1, s32 arg2) {
+    switch (arg1) {
+        case 7:
+            func_80801790_chlakemonster((s16 *) arg0, 2);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chlakemonster_entrypoint_4(void)
 {
