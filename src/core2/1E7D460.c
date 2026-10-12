@@ -19,7 +19,18 @@ void func_800A3B78(PlayerState *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A3BA8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A3D78.s")
+/* extern */
+
+void func_800A3D78(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 func_800A3BA8(s32, s32);
+    u8 *temp_v0;
+
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x38)));
+    if (arg1 != (*(u8 *)((s8 *)(temp_v0) + (2)))) {
+        (*(u8 *)((s8 *)(temp_v0) + (2))) = arg1;
+        func_800A3BA8((s32)arg0, arg2);
+    }
+}
 
 u32 func_800A3DAC(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 56) + 2);
