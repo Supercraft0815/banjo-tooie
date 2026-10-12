@@ -81,7 +81,18 @@ s32 bsstatue_entrypoint_2(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_8080054C_bsstatue.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80800790_bsstatue.s")
+/* extern */
+
+void func_80800790_bsstatue(struct player_state_s *arg0) {
+    s32 baflag_isTrue(struct player_state_s *, s32);
+    void func_8009B7C0(struct player_state_s *);
+    s32 func_80800BEC_bsstatue(struct player_state_s *);
+    if (baflag_isTrue(arg0, 0xF) != 0) {
+        func_8009B7C0(arg0);
+        return;
+    }
+    func_80800BEC_bsstatue(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_808007D4_bsstatue.s")
 
