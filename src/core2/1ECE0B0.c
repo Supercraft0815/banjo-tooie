@@ -270,7 +270,13 @@ s32 func_800F54F0(s32 arg0)
     return bakey_getControllerIndex(D_80135490[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F551C.s")
+/* extern */
+
+void func_800F551C(s32 arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
+    s32 func_800A3148(PlayerState *, f32 *, f32 *, f32 *);
+    &arg0;
+    func_800A3148(D_80135490[arg0], arg1, arg2, arg3);
+}
 
 void func_800F554C(s32 arg0)
 {
