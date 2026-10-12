@@ -23,7 +23,11 @@ void func_80800058_chtimetable(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_8080025C_chtimetable.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_808002D4_chtimetable.s")
+s32 func_808002D4_chtimetable(void) {
+    s32 func_808000B0_chtimetable();
+    extern s32 D_80800738_chtimetable;
+    return *((s32 *)((s8 *)&D_80800738_chtimetable + (func_808000B0_chtimetable() * 20)));
+}
 
 s32 func_80800308_chtimetable(void)
 {
