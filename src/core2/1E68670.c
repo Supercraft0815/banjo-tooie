@@ -18,11 +18,11 @@ s32 func_8008EE04(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008EE88.s")
 
-void func_8008EEC4(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+void func_8008EEC4(void *arg0, f32 *arg1, f32 arg2, s32 arg3) {
     s32 func_8008E938(void *);
     s32 func_800CB840(s32, s32);
     s32 func_800CB870();
-    s32 func_80109C4C(s32, s32, s32, s32 *, s32, s32, s32);
+    s32 func_80109C4C(f32 *, f32, s32, s32 *, s32, s32, s32);
     extern s32 func_8008EE1C;
     func_800CB840(1, (*(s32 *)((s8 *)(arg0) + (0x184))));
     func_80109C4C(arg1, arg2, 2, &func_8008EE1C, (*(s32 *)((s8 *)(arg0) + (0x184))), func_8008E938(arg0), arg3);

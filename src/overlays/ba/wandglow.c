@@ -20,7 +20,17 @@ void bawandglow_entrypoint_2(s32 arg0) {
 }
 
 #ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/wandglow/bawandglow_entrypoint_3.s")
+void bawandglow_entrypoint_3(PlayerState *arg0, f32 arg1) {
+    void func_8008EEC4(void *, f32 *, f32, s32);
+    void func_8008F880(Unk80132ED0 *, f32 *);
+    Unk80132ED0 *temp_a2;
+
+    temp_a2 = *(Unk80132ED0 **)((s8 *)arg0->wandglow + 0xC);
+    if (temp_a2 != 0) {
+        func_8008F880(temp_a2, arg0->wandglow->unk0);
+    }
+    func_8008EEC4(arg0, arg0->wandglow->unk0, arg1, 0x27D);
+}
 #else
 void bawandglow_entrypoint_3(PlayerState *self, s32 arg1) {
     if (self->wandglow->unkC != NULL) {
