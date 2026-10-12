@@ -847,7 +847,17 @@ void func_800F6E80(s32 arg0)
     func_800A336C(D_80135490[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6EAC.s")
+s32 func_800F6EAC(s32 arg0) {
+    s32 func_8009E674(PlayerState *, s32);
+    PlayerState *temp_a0;
+    s32 pad[1];
+
+    temp_a0 = D_80135490[arg0];
+    if (func_8009E674(temp_a0, 8) != 0) {
+        return _badrone_entrypoint_3(temp_a0) == 9;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6F00.s")
 
