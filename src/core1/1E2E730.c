@@ -158,7 +158,17 @@ void func_800173B0(u8 index, s16 volume) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80017404.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_800174C0.s")
+void func_800174C0(volatile u8 arg0, s32 arg1) {
+    int func_80017778(s32);
+    s32 func_80017D74(s32, s32, f32);
+    extern s32 D_80079FA2;
+    s32 index = arg0;
+    if (!func_80017778(index)) {
+        if (!*((u8 *)&D_80079FA2 + (arg0 * 0x274))) {
+            func_80017D74(index, arg1, 0.0f);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80017534.s")
 
