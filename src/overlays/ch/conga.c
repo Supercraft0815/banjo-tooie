@@ -19,7 +19,13 @@ void func_80800280_chconga(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/conga/func_80800374_chconga.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/conga/func_80800478_chconga.s")
+s32 func_80800478_chconga(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_800D1A04(s32 a0);
+    if ((arg1 == 0x10B0) || (arg1 == 0x10B1)) {
+        return func_800D1A04(0x4D);
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/conga/func_808004BC_chconga.s")
 
