@@ -20,7 +20,11 @@ u32 func_800C8594(u8 *arg0, u32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8678.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8760.s")
+void func_800C8760(s32 arg0) {
+    s32 func_800C85A0(s32);
+    extern s32 D_8011A9C0;
+    func_800C85A0(*(s32 *)((u8 *)&D_8011A9C0 + (arg0 * 4)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C878C.s")
 
