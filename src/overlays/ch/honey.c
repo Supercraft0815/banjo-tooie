@@ -10,7 +10,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_8080046C_chhoney.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_80800634_chhoney.s")
+void func_80800634_chhoney(Actor *arg0) {
+    s32 func_8010DCB4(s32);
+    extern s32 D_80127194;
+
+    D_80127194 -= 1;
+    if (arg0->unk64_19) {
+        func_8010DCB4(arg0->unk64_20 ? 2 : 3);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_80800688_chhoney.s")
 
