@@ -40,7 +40,23 @@ s32 bssplitup_entrypoint_3(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/func_8080012C_bssplitup.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/bssplitup_entrypoint_4.s")
+/* extern */
+
+typedef struct player_state_s PlayerState;
+
+void bssplitup_entrypoint_4(PlayerState *arg0) {
+    void bastick_func_8009F258(PlayerState *);
+    void func_80092778(PlayerState *);
+    void func_800A3410(PlayerState *, s32);
+    void func_800A38F0(PlayerState *, s32, s32);
+    s32 func_8080012C_bssplitup(PlayerState *, s32);
+    func_800A3410(arg0, 0xB);
+    func_800A38F0(arg0, 0, 0);
+    func_80092778(arg0);
+    bastick_func_8009F258(arg0);
+    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+    func_8080012C_bssplitup(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/bssplitup_entrypoint_5.s")
 
