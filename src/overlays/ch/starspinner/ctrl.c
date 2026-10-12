@@ -33,7 +33,16 @@ void func_808002B4_chstarspinnerctrl(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/chstarspinnerctrl_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/func_80800374_chstarspinnerctrl.s")
+/* extern */
+
+void func_80800374_chstarspinnerctrl(Actor *arg0) {
+    void func_8010A570(Actor*);
+    s32 func_800DA298(s32);
+    if (func_800DA298(0x679) != 0) {
+        func_8010A570(arg0);
+        arg0->unk64_20 = 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/func_808003B8_chstarspinnerctrl.s")
 
