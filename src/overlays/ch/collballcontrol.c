@@ -540,7 +540,113 @@ void func_808032CC_chcollballcontrol(u8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80803F70_chcollballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_8080405C_chcollballcontrol.s")
+void func_8080405C_chcollballcontrol(u8 *arg0) {
+    typedef struct { f32 v[3]; } Vec3;
+    typedef struct {
+        u8 pad[0x65];
+        u8 : 3;
+        u8 hit : 1;
+        u8 : 4;
+    } BallFlags;
+    extern Vec3 D_808050B4_chcollballcontrol;
+    u8 *func_80106790(s32);
+    void *func_80100094(void *, s32);
+    s32 _sukickball_entrypoint_6(u8 *, s32);
+    s32 _sukickball_entrypoint_7(u8 *, s32);
+    s32 _sukickball_entrypoint_8(u8 *, s32);
+    s32 _sukickball_entrypoint_12(u8 *, s32);
+    void _sukickball_entrypoint_13(f32 *, f32 *, f32);
+    f32 func_800D8FF8(void);
+    f32 func_800DC0C0(void);
+    void func_800EEB9C(f32 *, f32, f32);
+    f32 func_800EEF94(f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    s32 func_800F52B8(s32, Unk80132ED0 *);
+    void func_800F5A00(s32, f32 *);
+    void func_800F5D70(s32, f32 *);
+    void func_800F7700(s32, s32, f32 *);
+    s32 func_800F8294(s32, f32 *);
+    f32 func_80102D78();
+    s32 func_8080324C_chcollballcontrol(u8 *, s32);
+    u8 *parent;
+    u8 *other;
+    s32 i;
+    u8 *data;
+    f32 pos[3];
+    f32 selfSpeed;
+    f32 speed;
+    f32 velocity[3];
+    Vec3 impulse;
+    f32 playerPos[3];
+    f32 *selfPos;
+    f32 hitPos[3];
+
+    other = NULL;
+    parent = func_80106790(*(s32 *)(arg0 + 0x3C));
+    data = func_80100094(parent, 0);
+    for (i = 0; i < data[0x3A]; i++) {
+        if (i != (*(s32 *)(arg0 + 0x6C) & 0x1FF)) {
+            selfPos = (f32 *)(arg0 + 4);
+            if (_sukickball_entrypoint_7(parent, i)) {
+                other = func_80106790(_sukickball_entrypoint_8(parent, i));
+                pos[0] = *(f32 *)(other + 4);
+                pos[1] = *(f32 *)(other + 8);
+                pos[2] = *(f32 *)(other + 0xC);
+            } else {
+                func_800F5A00(i, pos);
+            }
+            if (func_800EFFB4(selfPos, 90.0f, pos)) {
+                selfSpeed = func_800EEF94((f32 *)(arg0 + 0x28));
+                if (_sukickball_entrypoint_6(parent, i)) {
+                    func_800F5D70(i, velocity);
+                    speed = func_800EEF94(velocity) * func_800D8FF8();
+                } else {
+                    speed = func_800EEF94((f32 *)(other + 0x28)) * func_800D8FF8();
+                }
+                if (speed <= selfSpeed) {
+                    if (_sukickball_entrypoint_6(parent, i)) {
+                        _sukickball_entrypoint_13(selfPos, pos, 60.0f);
+                        func_800F8294(i, pos);
+                        if (((u32)*(u16 *)(arg0 + 0x72) >> 10) == 8) {
+                            impulse = D_808050B4_chcollballcontrol;
+                            func_800F5A00(i, playerPos);
+                            func_800EEB9C(impulse.v, func_80102D78(arg0, playerPos), 150.0f);
+                            func_800EF04C(impulse.v, playerPos);
+                            func_800F7700(i, 3, selfPos);
+                        }
+                    } else {
+                        _sukickball_entrypoint_13(selfPos, (f32 *)(other + 4), 60.0f);
+                        if (((u32)*(u16 *)(arg0 + 0x72) >> 10) == 8) {
+                            *(f32 *)(other + 0x58) = 1.5f;
+                            ((BallFlags *)other)->hit = 1;
+                            func_8080324C_chcollballcontrol(other, 12);
+                            *(f32 *)(other + 0x24) = *(f32 *)(arg0 + 0x24) * 0.75f;
+                            *(f32 *)(other + 0x54) = func_80102D78(arg0, (f32 *)(other + 4));
+                            *(f32 *)(arg0 + 0x24) *= 0.5f;
+                        }
+                    }
+                } else {
+                    _sukickball_entrypoint_13(pos, selfPos, 60.0f);
+                    if ((func_800DC0C0() < 0.5f) &&
+                        !_sukickball_entrypoint_12(parent, *(s32 *)(arg0 + 0x6C) & 0x1FF)) {
+                        func_808032CC_chcollballcontrol(arg0, (s32)pos);
+                    }
+                    if (_sukickball_entrypoint_6(parent, i) &&
+                        func_800F52B8(i, *(Unk80132ED0 **)arg0) == 2) {
+                        func_800F5A00(i, hitPos);
+                        *(f32 *)(arg0 + 0x54) = func_800F1DF4(hitPos, selfPos);
+                        func_8080324C_chcollballcontrol(arg0, 12);
+                        *(f32 *)(arg0 + 0x24) = speed * 0.75f / func_800D8FF8();
+                    }
+                    *(f32 *)(arg0 + 0x58) = 1.5f;
+                    ((BallFlags *)arg0)->hit = 1;
+                }
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80804420_chcollballcontrol.s")
 
