@@ -95,4 +95,16 @@ void glglobalsettings_entrypoint_7(void) {
     func_800DA564(0xBC6, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/glglobalsettings_entrypoint_8.s")
+s32 glglobalsettings_entrypoint_8(s32 arg0) {
+    extern s8 D_80800560_glglobalsettings[];
+    s16 *sp18[2];
+    s16 *temp;
+    s32 value;
+    temp = (s16 *)&D_80800560_glglobalsettings[arg0 * 4];
+    value = *temp;
+    sp18[1] = temp;
+    func_80012F0C(value);
+    func_80012F34(0, sp18[1][1]);
+    func_80012F34(1, sp18[1][1]);
+    func_800DA7A8(GFLAG_BC6_SPEAKER_MODE_1, arg0, 2);
+}
