@@ -27,7 +27,19 @@ void func_80800D24_sumultiscore(s32 arg0, s32 arg1, void *arg2) {
 
 void func_80800D54_sumultiscore(s32 arg0, s32 arg1, s32 arg2) {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/func_80800D64_sumultiscore.s")
+void func_80800D64_sumultiscore(s32 arg0, s32 arg1, void *arg2) {
+    s32 _badeathmatch_entrypoint_6(s32);
+    s16 _badeathmatch_entrypoint_9(s32, s32);
+    s32 func_800F53D0(s32);
+    extern s32 D_808014B0_sumultiscore[];
+    s32 sp1C;
+    s32 temp_v0;
+
+    temp_v0 = _badeathmatch_entrypoint_6(func_800F53D0(arg1));
+    sp1C = temp_v0;
+    (*(s16 *)((s8 *)(arg2) + (2))) = (s16) D_808014B0_sumultiscore[temp_v0];
+    (*(s16 *)((s8 *)(arg2) + (8))) = _badeathmatch_entrypoint_9(func_800F53D0(arg1), sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/func_80800DD0_sumultiscore.s")
 
