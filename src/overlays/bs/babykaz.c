@@ -27,7 +27,24 @@ void func_80800050_bsbabykaz(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_808001A8_bsbabykaz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80800214_bsbabykaz.s")
+/* extern */
+
+void func_80800214_bsbabykaz(u8 *arg0) {
+    s32 _bababykaz_entrypoint_9(s32);
+    s32 bs_setState(s32, s32);
+    void func_800F82C0(s32);
+    s32 func_800F9AFC();
+    void func_8009C128(u8 *, f32[3]);
+    s32 func_801013A8(f32 *, s32, s32);
+    f32 sp1C[3];
+
+    func_8009C128(arg0, sp1C);
+    func_801013A8(&sp1C, 0x39, 0);
+    bs_setState(arg0, 0x5A);
+    _bababykaz_entrypoint_9(arg0);
+    func_800F82C0((*(s32 *)((s8 *)(arg0) + (0x184))));
+    func_800F9AFC();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/bsbabykaz_entrypoint_1.s")
 
