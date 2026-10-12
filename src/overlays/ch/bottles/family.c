@@ -21,7 +21,16 @@ OSThread *chbottlesfamily_entrypoint_2(void)
     return (OSThread *) D_80800E70_chbottlesfamily;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_80800024_chbottlesfamily.s")
+void func_80800024_chbottlesfamily(Actor *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_80102424(s32, s32);
+    void func_80102FDC(Actor*, f32);
+    func_80102FDC(arg0, arg0->scale / 3.0f);
+    arg0->unk64_20 = 1;
+    if (_glcutDll_entrypoint_20(arg0) != 0) {
+        func_80102424((s32) arg0, 5);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_80800080_chbottlesfamily.s")
 
