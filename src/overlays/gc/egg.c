@@ -24,7 +24,12 @@ u8 gcegg_entrypoint_5(s32 arg0) {
     return D_80800209_gcegg[arg0 * 14];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/egg/gcegg_entrypoint_6.s")
+int gcegg_entrypoint_6(s32 arg0) {
+    int func_800C6E38(s32);
+    extern u8 D_8080020A_gcegg[][14];
+    s32 ability = D_8080020A_gcegg[arg0][0];
+    return ability == 0x3C || func_800C6E38(ability);
+}
 
 int gcegg_entrypoint_7(s32 arg0) {
     s32 func_800D3948(void);
