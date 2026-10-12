@@ -81,7 +81,22 @@ void func_80800DA4_chstonepillar(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800DD8_chstonepillar.s")
+/* extern */
+
+int func_80800DD8_chstonepillar(Actor *arg0) {
+    s32 func_800DA298(s32);
+    void* func_80100094(Actor*, u32);
+    s32 func_800DA564(s32, s32);
+    u8 *sp1C;
+    int temp_v1;
+    int value;
+
+    sp1C = func_80100094(arg0, 0U);
+    value = func_800DA564(0x9CD, 3);
+    temp_v1 = *(s16 *)(sp1C + 0x2C);
+    return value == temp_v1 &&
+        func_800DA298(temp_v1 + 0x65C) == 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800E30_chstonepillar.s")
 
