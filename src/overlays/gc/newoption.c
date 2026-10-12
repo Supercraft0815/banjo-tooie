@@ -426,7 +426,16 @@ void gcnewoption_entrypoint_12(OptionState *a0, u32 optionIndex, s16 textIndex) 
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_13.s")
+void gcnewoption_entrypoint_13(s32 arg0, s32 arg1, void *arg2) {
+    s16 temp_v0;
+    void *temp_v1;
+
+    if (((temp_v0 = *(s16 *)arg2) != (*(s16 *)((s8 *)(temp_v1 = (s8 *)arg0 + arg1 * 6) + (0x128)))) || ((*(s16 *)((s8 *)(arg2) + (2))) != (*(s16 *)((s8 *)(temp_v1) + (0x12A)))) || ((*(s16 *)((s8 *)(arg2) + (4))) != (*(s16 *)((s8 *)(temp_v1) + (0x12C))))) {
+        (*(s16 *)((s8 *)(temp_v1) + (0x128))) = temp_v0;
+        (*(s16 *)((s8 *)(temp_v1) + (0x12A))) = (s16) (*(s16 *)((s8 *)(arg2) + (2)));
+        (*(s16 *)((s8 *)(temp_v1) + (0x12C))) = (s16) (*(s16 *)((s8 *)(arg2) + (4)));
+    }
+}
 
 void gcnewoption_entrypoint_14(void *arg0, s16 arg1, s16 arg2, s16 arg3, f32 arg4) {
     (*(s16 *)((s8 *)(arg0) + (0x26))) = arg1;
