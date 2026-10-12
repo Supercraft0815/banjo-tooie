@@ -87,7 +87,7 @@ void func_800A2F90(void *arg0, s32 arg1) {
     func_800A2EEC(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2FCC.s")
+s32 func_800A2FCC(PlayerState *arg0, s32 arg1) { func_800A2C84(arg0); (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x124)))) + (4))) = (s8) arg1; return _fxstep_entrypoint_12((*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x124)))) + (0)))); }
 
 /* extern */
 
