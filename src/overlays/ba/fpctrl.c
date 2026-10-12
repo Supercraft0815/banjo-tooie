@@ -26,7 +26,19 @@ void func_808000DC_bafpctrl(void *arg0, s32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_80800424_bafpctrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_808005FC_bafpctrl.s")
+/* extern */
+
+void func_808005FC_bafpctrl(s32 arg0, f32 *arg1) {
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32[3], f32[3]);
+    s32 func_800F3BD0(void *, s32, f32 *);
+    f32 yaw_get(s32);
+    f32 sp1C[3];
+
+    func_800F3BD0((void *) arg0, 5, arg1);
+    func_800EEB9C(sp1C, yaw_get(arg0), 5.0f);
+    func_800EF04C(arg1, sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_8080064C_bafpctrl.s")
 
