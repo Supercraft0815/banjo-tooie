@@ -252,7 +252,21 @@ void func_800BF744(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF774.s")
+void func_800BF774(void) {
+    void func_800DF744(s32, s32);
+    s32 *var_s1;
+    s32 var_s0;
+
+    var_s0 = 1;
+    if ((*(s32 *)((s8 *)(&D_801285B0) + (0x88))) > 0) {
+        var_s1 = &D_801285B4;
+        do {
+            func_800DF744(var_s0, (*(s32 *)((s8 *)(var_s1) + (0x88))));
+            var_s0 += 1;
+            var_s1 += 1;
+        } while ((*(s32 *)((s8 *)(&D_801285B0) + (0x88))) >= var_s0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF7E0.s")
 
