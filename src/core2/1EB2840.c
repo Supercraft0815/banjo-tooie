@@ -18,7 +18,12 @@ void func_800D8F84(void) {
     D_8012C764 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2840/func_800D8FA0.s")
+void func_800D8FA0(s32 arg0) {
+    extern f32 D_80125D18;
+
+    D_8012C764 = func_800F0D90(arg0, 1, 0xF);
+    func_800D8F50((f32) (s32) D_8012C764 * D_80125D18);
+}
 
 u32 func_800D8FEC()
 {
