@@ -13,7 +13,17 @@ OSThread *chamazongoldhordeofficial_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800630_chamazongoldhordeofficial.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800690_chamazongoldhordeofficial.s")
+/* extern */
+
+void func_80800690_chamazongoldhordeofficial(Actor *arg0) {
+    void _gspropctrl_entrypoint_11(Prop*, f32[3]);
+    s32 _gspropctrl_entrypoint_12(s32);
+    Prop *_gccubesearch_entrypoint_15(u32, u32, f32 *, Actor *);
+    Prop *sp1C;
+    sp1C = _gccubesearch_entrypoint_15(arg0->unk6C_9, arg0->pad6C_21, arg0->position, arg0);
+    _gspropctrl_entrypoint_11(sp1C, arg0->position);
+    arg0->rotation[1] = (f32) _gspropctrl_entrypoint_12((s32) sp1C);
+}
 
 s32 func_808006F8_chamazongoldhordeofficial(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_14(void);
