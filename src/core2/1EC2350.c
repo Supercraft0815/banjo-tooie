@@ -36,7 +36,18 @@ void func_800E8C08(u8 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8C58.s")
+s32 func_800E8C58(u8 arg0) {
+    void *func_800E8CB0(u8);
+    s32 var_v1;
+    u8 *temp_v0;
+
+    temp_v0 = func_800E8CB0(arg0);
+    var_v1 = (s32) ((f32) *(s16 *)temp_v0 * *(f32 *)(temp_v0 + 0xC));
+    if (var_v1 >= *(s16 *)temp_v0) {
+        var_v1 = *(s16 *)temp_v0 - 1;
+    }
+    return var_v1;
+}
 
 void *func_800E8CB0(u8 arg0) {
     extern s32 D_8012D680;
