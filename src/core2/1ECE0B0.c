@@ -1073,7 +1073,13 @@ s32 func_800F7E3C(s32 arg0, s32 arg1) {
     return func_800F7C58(arg0, 0x84, arg1) == 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7E64.s")
+void func_800F7E64(s32 arg0, s32 arg1) {
+    volatile PlayerState *sp1C;
+
+    sp1C = D_80135490[arg0];
+    func_800A3410((PlayerState *)sp1C, arg1);
+    func_80092778((PlayerState *)sp1C);
+}
 
 /* extern */
 
