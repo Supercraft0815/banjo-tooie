@@ -161,7 +161,14 @@ void func_80800FBC_chquiz(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_8080100C_chquiz.s")
+void func_8080100C_chquiz(Actor *arg0, void *arg1, u8 arg2) {
+    void func_80801058_chquiz(Actor *, void *, f32, s8, s8, s8);
+    extern s32 D_808070E4_chquiz;
+    s8 *temp_v0;
+
+    temp_v0 = ((s8 *)&D_808070E4_chquiz) + (arg2 * 8);
+    func_80801058_chquiz(arg0, arg1, (*(f32 *)(temp_v0 + 4)), (*(s8 *)(temp_v0 + 2)), temp_v0[0], temp_v0[1]);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801058_chquiz.s")
 
