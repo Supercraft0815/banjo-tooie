@@ -22,7 +22,13 @@ s32 func_800EFFB4(f32 point[3], f32 radius, f32 center[3]) {
     return func_800EEFD4(delta) <= radius * radius;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F0008.s")
+s32 func_800F0008(f32 arg0[3], f32 arg1, f32 arg2[3], f32 arg3) {
+    void func_800EFB24(f32 *, f32 *, f32 *);
+    f32 func_800EEFD4(f32 *);
+    f32 delta[3];
+    func_800EFB24(delta, arg0, arg2);
+    return func_800EEFD4(delta) <= (arg1 + arg3) * (arg1 + arg3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F0064.s")
 
