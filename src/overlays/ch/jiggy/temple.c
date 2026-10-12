@@ -80,7 +80,18 @@ OSThread *chjiggytemple_entrypoint_2(void)
     return (OSThread *) D_80800974_chjiggytemple;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_8080047C_chjiggytemple.s")
+void func_8080047C_chjiggytemple(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u8, s32 *, s32);
+    extern u32 D_808009BC_chjiggytemple;
+    extern s32 D_808009D0_chjiggytemple;
+    f32 *sp24[2];
+    f32 *position;
+    sp24[1] = (f32 *)((u8 *)arg0 + 4);
+    _subaddieaudioloop_entrypoint_4(arg0, sp24[1], 1U, &D_808009BC_chjiggytemple);
+    position = sp24[1];
+    (*(u8 *)((s8 *)(arg0) + (0x24))) = _subaddieaudioloop_entrypoint_7((*(u8 *)((s8 *)(arg0) + (0x24))), position, 1, &D_808009D0_chjiggytemple, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_808004D8_chjiggytemple.s")
 
