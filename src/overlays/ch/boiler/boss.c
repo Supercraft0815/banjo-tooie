@@ -142,7 +142,7 @@ void func_8080238C_chboilerboss(Unk80132ED0 **arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 s32 func_808023C8_chboilerboss(s32 arg0) {
-    void *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_80800F34_chboilerboss(s32, s32);
     u8 *temp_v0;
 
@@ -160,13 +160,29 @@ void func_808024B8_chboilerboss(s32 arg0)
     func_800FDC28(0x1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808024DC_chboilerboss.s")
+/* extern */
+
+void func_808024DC_chboilerboss(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_80802538_chboilerboss(s32);
+    u8 *temp_v0;
+    u8 *saved[1];
+
+    temp_v0 = func_80100094(arg0, 0);
+    if (temp_v0[0x57] == 0 && temp_v0[0x58] != 0 && temp_v0[0x59] == 0) {
+        func_80802538_chboilerboss(arg0);
+        if (0) {
+            saved[0] = temp_v0;
+        }
+        temp_v0[0x58] = 0;
+    }
+}
 
 /* extern */
 
 void func_80802538_chboilerboss(s32 arg0) {
     u32 func_800F54E4(void);
-    void *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_800F4AF4(u32, s32);
     s32 func_808025DC_chboilerboss(s32);
     u8 *sp1C;
@@ -185,7 +201,7 @@ void func_80802538_chboilerboss(s32 arg0) {
 
 void func_80802594_chboilerboss(s32 arg0) {
     u32 func_800F54E4(void);
-    void *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_800F4B20(u32);
     u8 *sp1C;
     u8 *temp_v0;
@@ -204,7 +220,7 @@ void func_80802594_chboilerboss(s32 arg0) {
 
 s32 func_80802690_chboilerboss(s32 arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_0(s32, s32);
-    void *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_80802730_chboilerboss(s32, s32, s32);
     if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
         if ((*(u8 *)((s8 *)(func_80100094(arg0, 0)) + (0x59))) != 2) {
@@ -217,7 +233,7 @@ s32 func_80802690_chboilerboss(s32 arg0, s32 arg1, s32 arg2) {
 
 void func_808026F0_chboilerboss(s32 arg0) {
     void _capod_entrypoint_3(u32);
-    void *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     u8 *sp1C[1];
     u8 *temp_v0;
 
