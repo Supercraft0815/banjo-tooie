@@ -180,4 +180,16 @@ void func_80800A8C_chburgerstand(s32 arg0)
     _chswitch_entrypoint_9(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/func_80800AB8_chburgerstand.s")
+s32 func_80800AB8_chburgerstand(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    s32 ret;
+
+    if (arg1 == 7) {
+        func_80101180(0x32F, 7, 0);
+        func_80101180(0x32B, 0xA, 0);
+        ret = 1;
+    } else {
+        return _chswitch_entrypoint_10(arg0, arg1, arg2);
+    }
+    return ret;
+}
