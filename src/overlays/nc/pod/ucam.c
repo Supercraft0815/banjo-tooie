@@ -182,7 +182,23 @@ void func_80800A18_ncpoducam(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/func_80800B74_ncpoducam.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/func_80800CB8_ncpoducam.s")
+/* extern */
+
+s32 func_80800CB8_ncpoducam(s16 arg0, s32 arg1) {
+    s32 func_800A5800(s16);
+    s32 _cadbfunc_entrypoint_16(s16 *);
+    s32 var_s0;
+
+    var_s0 = 0;
+    if (arg0 != -1) {
+        do {
+            func_800A5800(arg0);
+            _cadbfunc_entrypoint_16(&arg0);
+            var_s0 += 1;
+        } while (arg0 != -1);
+    }
+    return var_s0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/func_80800D28_ncpoducam.s")
 
