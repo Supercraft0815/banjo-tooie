@@ -4,7 +4,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quicksandbaddy/func_80800140_chquicksandbaddy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quicksandbaddy/func_80800CC0_chquicksandbaddy.s")
+/* extern */
+
+f32 func_80800CC0_chquicksandbaddy(u8 *arg0) {
+    f32 func_800C6920(s32, f32, f32, s32);
+    f32 result;
+
+    result = func_800C6920((s32) (arg0 + 4), 500.0f, -500.0f, 0);
+    result += *(f32 *) (arg0 + 0x54);
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quicksandbaddy/func_80800CFC_chquicksandbaddy.s")
 
