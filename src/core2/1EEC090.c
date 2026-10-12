@@ -135,7 +135,19 @@ s32 func_8011349C(f32 *start, f32 *end) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_801134F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_801135D0.s")
+void func_801135D0(u8 *arg0, u8 *arg1, u8 *arg2, u8 *arg3, f32 *arg4) {
+    f32 func_800EEAA4(f32 a[3], f32 b[3]);
+    s32 func_800EF174(s32, s32, f32);
+    void func_800EFB24(void *arg0, void *arg1, void *arg2);
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp1C[3];
+
+    func_800EFB24(sp34, arg3, arg2);
+    func_800EFB24(&sp28, arg1, arg0);
+    func_800EFB24(&sp1C, sp34, &sp28);
+    func_800EF174((s32) arg3, (s32) arg4, -func_800EEAA4(arg4, &sp1C));
+}
 
 void func_80113640(s32 unused, f32 *start, f32 *end) {
     void *func_800FAB50(f32 *, f32 *, f32 *, u32, f32);
