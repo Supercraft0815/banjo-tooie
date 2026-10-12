@@ -38,14 +38,14 @@ void func_80110728(s8 *arg0, s32 arg1) {
 /* extern */
 
 void func_80110770(s32 arg0) {
-    s32 func_800EE7F8(s32);
+    void func_800EE7F8();
     func_800EE7F8(arg0 + 0x74);
 }
 
 /* extern */
 
 void func_80110790(s32 arg0) {
-    s32 func_800EE7F8(s32);
+    void func_800EE7F8();
     func_800EE7F8(arg0 + 0x80);
 }
 
@@ -64,12 +64,12 @@ void func_801107D0(void *arg0) {
 }
 
 void func_801107F0(void *arg0, f32 *arg1) {
-    s32 func_800EE7F8();
+    void func_800EE7F8();
     func_800EE7F8(arg1, (u8 *)arg0 + 0x74);
 }
 
 void func_80110818(void *arg0, f32 *arg1) {
-    s32 func_800EE7F8();
+    void func_800EE7F8();
     func_800EE7F8(arg1, (u8 *)arg0 + 0x80);
 }
 
@@ -77,7 +77,7 @@ s32 func_80110840(s32 *arg0) {
     return arg0[26];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110848.s")
+void func_80110848(f32 *arg0, f32 *arg1, f32 *arg2) { void func_800EE7F8(); func_800EE7F8(arg1, arg0 + 29); func_800EE7F8(arg2, arg0 + 32); }
 
 u32 func_80110888(u8 *arg0) {
     return arg0[113];
@@ -228,7 +228,7 @@ void func_80111018(s32 arg0, s32 arg1) {
 }
 
 void func_8011106C(void *arg0, f32 *arg1) {
-    s32 func_800EE7F8();
+    void func_800EE7F8();
     func_800EE7F8(arg1, (u8 *)arg0 + 0x8C);
 }
 
@@ -346,7 +346,7 @@ void func_80111A98(u8 *arg0) {
 /* extern */
 
 void func_80111ABC(void *arg0) {
-    s32 func_800EE7F8(s32);
+    void func_800EE7F8();
     func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x34))) + 0x68);
 }
 
