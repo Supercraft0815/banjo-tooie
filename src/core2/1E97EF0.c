@@ -1,5 +1,8 @@
 #include "common.h"
 
+struct Entry { s32 value; u8 padding[40]; };
+extern struct Entry D_801285B4[];
+
 extern s32 D_801285B0;
 extern s32 D_80128728;
 extern s32 D_8012872C;
@@ -26,8 +29,6 @@ void func_800BE9B0(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEA64.s")
 
 s32 func_800BEA88(s32 arg0) {
-    struct Entry { s32 value; u8 padding[40]; };
-    extern struct Entry D_801285B4[];
     return D_801285B4[arg0].value;
 }
 
@@ -184,7 +185,15 @@ void func_800BF4A4(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF4DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF544.s")
+void func_800BF544(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _idworldmake_entrypoint_6(s32, s32, s32);
+    s32 temp_a3;
+
+    temp_a3 = D_801285B4[arg0].value;
+    if (temp_a3 != 0) {
+        _idworldmake_entrypoint_6(temp_a3, arg1, arg2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF58C.s")
 
