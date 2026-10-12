@@ -92,7 +92,19 @@ void func_8080084C_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800CD4_chmineprospector.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800D34_chmineprospector.s")
+void func_80800D34_chmineprospector(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, u32 *);
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 func_800DC298(f32);
+    extern s32 D_80801168_chmineprospector;
+    extern s32 D_80801178_chmineprospector;
+    f32 * volatile sp1C;
+
+    _subaddieaudioquick_entrypoint_3(arg0, sp1C = (f32 *) ((u8 *) arg0 + 4), &D_80801168_chmineprospector, 0.5f);
+    if (func_800DC298(0.1f) != 0) {
+        _subaddieaudioquick_entrypoint_2(arg0, sp1C, &D_80801178_chmineprospector);
+    }
+}
 
 void func_80800D8C_chmineprospector(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
