@@ -12,7 +12,12 @@ void func_800DC380(void) {
     func_8001EB10(&D_8012C800);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5C70/func_800DC3D4.s")
+/* extern */
+
+void func_800DC3D4(s32 arg0, f32 arg1, u16 arg2, u8 arg3, u8 arg4, s32 arg5) {
+    void func_80020790(s16, u16, u8, f32, u8, u8, s32);
+    func_80020790((s16) (arg0 + 1), arg2, arg3, arg1, arg4, 0, arg5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5C70/func_800DC42C.s")
 
