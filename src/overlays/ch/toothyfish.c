@@ -49,7 +49,19 @@ void func_808003D4_chtoothyfish(s32 arg0, u8 *arg1)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800470_chtoothyfish.s")
+/* extern */
+
+void func_80800470_chtoothyfish(Actor *arg0, s32 arg1, s32 arg2, u8 *arg3) {
+    s32 func_808000E8_chtoothyfish(s32, s32, s32, u8 *);
+    if (arg0->unk70_10 == 6) {
+        if (arg1) {
+            arg1 = 5;
+        } else {
+            arg1 = 5;
+        }
+        func_808000E8_chtoothyfish((s32) arg0, arg1, arg2, arg3);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_808004A4_chtoothyfish.s")
 
