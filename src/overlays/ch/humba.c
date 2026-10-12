@@ -22,7 +22,13 @@ void func_80800238_chhumba(u8 *arg0, f32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800294_chhumba.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800338_chhumba.s")
+void func_80800338_chhumba(u8 *arg0, s32 arg1, s32 arg2) {
+    struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
+    arg2 |= 4;
+    _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, arg1, arg2, (f32 *)(arg0 + 4), 0x40U);
+    ((struct Flags *)arg0)->flag = 1;
+}
 
 s32 func_80800384_chhumba(u8 *arg0) {
     s32 func_800EA05C();
@@ -117,7 +123,7 @@ void func_80800878_chhumba(void *arg0) {
 
 s32 func_80800D2C_chhumba(s32 arg0) {
     s32 func_800DA9E4(s32, s32);
-    s32 func_80800338_chhumba(s32, s32, s32);
+    void func_80800338_chhumba(u8 *, s32, s32);
     if (func_800DA9E4(0xE2, 1) == 0) {
         func_80800338_chhumba(arg0, 0x11B5, 0xF);
         return 1;
@@ -150,7 +156,7 @@ void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
     s32 func_8080015C_chhumba(u8 *, s32, s32, s32);
     s32 func_808001E4_chhumba(u8 *);
     s32 func_80800294_chhumba(u8 *, s32);
-    s32 func_80800338_chhumba(s32, s32, s32);
+    void func_80800338_chhumba(u8 *, s32, s32);
     s32 func_80800384_chhumba(u8 *);
     s32 func_808003CC_chhumba(u8 *);
     s32 func_808007F8_chhumba(u8 *);
