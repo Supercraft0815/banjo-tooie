@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapDll/func_80800000_gcmapDll.s")
+s16 *func_80800000_gcmapDll(s32 arg0) {
+    extern s16 D_80800F10_gcmapDll[];
+    s16 *p = D_80800F10_gcmapDll;
+    while (*p != 0) {
+        if (arg0 == *p) return p;
+        p += 7;
+    }
+    return NULL;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapDll/gcmapDll_entrypoint_0.s")
 
@@ -152,7 +160,7 @@ void gcmapDll_entrypoint_6(void *arg0, s32 arg1) {
     s32 func_800B27FC(s32);
     s32 func_800D5B24();
     s32 func_800D674C(u16);
-    void *func_80800000_gcmapDll(s32);
+    s16 *func_80800000_gcmapDll(s32);
     void *sp1C;
     void *temp_v0;
 
