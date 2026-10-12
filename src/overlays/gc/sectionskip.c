@@ -6,7 +6,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionskip/func_808002A0_gcsectionskip.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionskip/func_80800374_gcsectionskip.s")
+/* extern */
+
+void func_80800374_gcsectionskip(s32 arg0, s32 arg1) {
+    func_800F7E3C(arg0, 0);
+    func_808002A0_gcsectionskip(arg0, arg1);
+}
 
 void gcsectionskip_entrypoint_0(s32 arg0, s32 arg1, s32 arg2) {
     if (arg1 == 0xDAA) {
@@ -29,9 +34,7 @@ s32 gcsectionskip_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, u32 arg3, u8 *arg4)
     s32 func_800F6D24(s32);
     s32 func_800F70BC(s32);
     s32 func_800F7C9C(s32, s32, s32, s32);
-    s32 func_800F7E3C(s32, s32);
     s32 func_800F8B88(void);
-    void func_808002A0_gcsectionskip(u32, s32);
     void func_80800374_gcsectionskip();
     s32 func_80800D3C_gcsectionskip(s32 *, s32 *);
     void func_80800EF8_gcsectionskip(s32, s32);
