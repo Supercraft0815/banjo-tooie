@@ -15,7 +15,15 @@ void func_8080000C_charea51gate(s32 arg0) {
     func_8010A800((Actor *) arg0, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/area51gate/func_80800054_charea51gate.s")
+/* extern */
+
+void func_80800054_charea51gate(Actor *arg0) {
+    int func_800DC298(f32);
+    s32 _chelectricfence_entrypoint_2(Actor *, u8 *, u8 *);
+    if (arg0->unk7C_12 && (func_800DC298(0.15f) != 0)) {
+        _chelectricfence_entrypoint_2(arg0, (u8 *)arg0 + 0x18, (u8 *)arg0 + 0x28);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/area51gate/func_808000A0_charea51gate.s")
 
