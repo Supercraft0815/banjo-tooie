@@ -5,9 +5,9 @@ void func_80800000_chtntmineshoot(Actor *arg0) { extern s32 D_80802590_chtntmine
 }
 
 void func_8080003C_chtntmineshoot(s32 arg0) {
-    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+    s32 func_800BBCB8(f32 *, s32, f32, s32, s32 *);
     extern s32 D_808025A8_chtntmineshoot;
-    func_800BBCB8(arg0 + 4, 0, 0x3F800000, 4, &D_808025A8_chtntmineshoot);
+    func_800BBCB8((f32 *)(arg0 + 4), 0, 1.0f, 4, &D_808025A8_chtntmineshoot);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800078_chtntmineshoot.s")
@@ -129,7 +129,18 @@ OSThread *chtntmineshoot_entrypoint_1(void)
     return (OSThread *) D_808026D8_chtntmineshoot;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80801BA0_chtntmineshoot.s")
+void func_80801BA0_chtntmineshoot(void) {
+    s32 func_800BBCB8(f32 *, s32, f32, s32, s32 *);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    struct Vec { f32 v[3]; };
+    extern struct Vec D_80802720_chtntmineshoot;
+    extern s32 D_8080272C_chtntmineshoot;
+    struct Vec sp24;
+
+    sp24 = D_80802720_chtntmineshoot;
+    func_800BBCB8(sp24.v, 0, 1.0f, 2, &D_8080272C_chtntmineshoot);
+    func_800E1610(0, 20.0f, 0.9f, sp24.v);
+}
 
 void func_80801C10_chtntmineshoot(s32 arg0) 
 {
