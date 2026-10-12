@@ -23,7 +23,16 @@ s32 func_8010C500(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010C668.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010C710.s")
+s32 func_8010C710(s32 arg0) {
+    extern s32 D_80136F50;
+    f32 func_800EEAA4(f32 a[3], f32 b[3]);
+    void func_800EFB24(void *arg0, void *arg1, void *arg2);
+    f32 sp1C[3];
+    f32 sp20;
+
+    func_800EFB24(&sp1C, arg0 + 4, &D_80136F50);
+    return (s32) func_800EEAA4(&sp1C, &sp1C);
+}
 
 /* extern */
 
