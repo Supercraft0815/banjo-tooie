@@ -110,6 +110,18 @@ def seed_worker(worker, root, function, original, scope):
         atomic_write(worker/path, support.get(path, value))
 
 
+def rebase_source(original, candidate, symbol):
+    """Carry only the target body across other matches in the same translation unit."""
+    from .patterns import candidate_source
+    code = extract_function(candidate.decode(), symbol) if candidate else None
+    if code is None:
+        return None
+    try:
+        return candidate_source(original, symbol, code)
+    except HarnessError:
+        return None
+
+
 def save_support(directory, scope, changes):
     save_json(directory/'support.json', {path: {'before_sha': hashlib.sha256(scope[path]).hexdigest(),
                                                'after': after.decode()} for path, after in changes.items()})
@@ -162,7 +174,6 @@ def run_repair_evidence(root, function, run):
 def refresh_repairs(root, state):
     """One retry per new capability, only when recorded evidence identifies its use."""
     from .common import git
-    from .patterns import candidate_source
     refreshed = []
     rows = state.db.execute("SELECT * FROM functions WHERE present=1 AND difficulty='easy' AND status IN ('blocked','needs_human')").fetchall()
     for row in rows:
@@ -189,9 +200,7 @@ def refresh_repairs(root, state):
         candidate = recovered[0] if recovered else f['best_source']
         if candidate and not recovered:
             # Retain only the function when unrelated matches changed its translation unit.
-            code = extract_function(candidate.decode(), f['symbol'])
-            if code:
-                candidate = candidate_source(original, f['symbol'], code)
+            candidate = rebase_source(original, candidate, f['symbol'])
         state.update(f['id'], status='pending', stage=-1, stage_attempts=0, cycle_attempts=0,
                      initial_done=int(bool(history)), last_error=reason, best_source=candidate,
                      best_run=recovered[1] if recovered else f['best_run'],

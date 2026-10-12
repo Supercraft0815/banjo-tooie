@@ -197,3 +197,14 @@ class RepairLoopTests(LoopFixture):
             self.process()
         self.assertEqual(self.state.get('target')['status'], 'matched')
         self.assertEqual(self.loop.calls, 0)
+
+    def test_new_neighbor_match_keeps_target_candidate_without_reverting_neighbor(self):
+        original = fixtures.SOURCE + '\nint newer_neighbor(void) { return 1; }\n'
+        for root in (self.root, self.work):
+            (root/self.function['source']).write_text(original)
+        self.git('add', 'src'); self.git('commit', '-qm', 'neighbor match')
+        self.state.update(self.function['id'], best_source=fixtures.CANDIDATE.encode(), base_sha='older source hash')
+        target = self.loop.prepare(self.state.get('target'))
+        self.assertIn(b'newer_neighbor', target.function['best_source'])
+        self.assertIn(b'void target(void)', target.function['best_source'])
+        self.assertIsNone(target.function['best_score'])

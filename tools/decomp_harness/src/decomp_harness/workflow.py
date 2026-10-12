@@ -25,7 +25,7 @@ from .guard import (candidate_guard, manifest, mark_targets, publish, recover_pu
 from .local_tools import m2c_candidates, m2c_draft, run_permuter
 from .matching import instructions, score, worth_rom_check
 from . import service
-from .repairs import repair_scope, guard_candidate, save_support, load_support, recheck_key, worker_candidate, seed_worker
+from .repairs import repair_scope, guard_candidate, save_support, load_support, recheck_key, worker_candidate, seed_worker, rebase_source
 from .scanner import scan
 from .scheduler import advance, next_function, route, resources
 from .state import State
@@ -388,7 +388,8 @@ class Loop:
                 return None
             self.state.transition(identity, 'analyzing')
             if function['base_sha'] != source_sha:
-                self.state.update(identity, best_source=None, best_score=None, best_run=None, base_sha=source_sha)
+                candidate = rebase_source(original.decode(), function['best_source'], function['symbol'])
+                self.state.update(identity, best_source=candidate, best_score=None, best_run=None, base_sha=source_sha)
             length = (function['size'] or 0) // 4 or None
             baseline = self.coordinator.baseline_builder
             reference_dump = (baseline or self.builder).disassemble(source, function['symbol'])
