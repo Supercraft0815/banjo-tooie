@@ -95,7 +95,8 @@ s32 func_80112E90()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_8011329C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80113320.s")
+/* extern */
+s32 func_80113320(PlayerState *arg0, f32 *arg1) { void func_800EE7F8(f32 *, f32 *); s32 func_80110840(PlayerState *); s32 func_800C6A7C(s32, f32 *, f32 *, s32); s32 pad; f32 sp38[3]; f32 sp2C[3]; f32 sp20[3]; s32 pad2; func_800EE7F8(sp20, arg1); func_800F5B64(func_80110840(arg0), sp38); if (func_800C6A7C((s32)sp38, sp20, sp2C, 0x860020) != 0) return 0; return 1; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_8011337C.s")
 
