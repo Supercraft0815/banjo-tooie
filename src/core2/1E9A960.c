@@ -554,7 +554,21 @@ s32 func_800C39D0(u16 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3AE0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3B8C.s")
+/* extern */
+
+void func_800C3B8C(u8 arg0, s32 arg1) {
+    struct Flags {
+        u8 padding[0x7B];
+        unsigned char first : 6;
+        unsigned char value : 1;
+        unsigned char last : 1;
+    };
+    struct Flags *ptr;
+    if (arg0) {
+        ptr = func_800C1414(arg0);
+        ptr->value = arg1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3BDC.s")
 
