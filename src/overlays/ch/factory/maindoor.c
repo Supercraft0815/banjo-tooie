@@ -29,7 +29,14 @@ void func_8080041C_chfactorymaindoor(s32 arg0)
     _chswitch_entrypoint_3(arg0,FLAG_188_UNK);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/maindoor/func_8080043C_chfactorymaindoor.s")
+void func_8080043C_chfactorymaindoor(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _chswitch_entrypoint_5(s32, s32, s32);
+    void _glcutDll_entrypoint_6(u32, u32);
+    if (arg1 == 7) {
+        _glcutDll_entrypoint_6(0x100U, 0x86U);
+    }
+    _chswitch_entrypoint_5(arg0, arg1, arg2);
+}
 
 OSThread *chfactorymaindoor_entrypoint_2(void)
 {
