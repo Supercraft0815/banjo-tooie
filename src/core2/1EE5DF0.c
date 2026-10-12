@@ -83,7 +83,19 @@ void func_8010C93C(s32 arg0, s32 arg1, f32 arg2) {
     func_8010C878(arg0, arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010C964.s")
+/* extern */
+
+void func_8010C964(u8 *arg0) {
+    void func_8008FB58(f32[3], f32, f32);
+    f32 func_8010A40C(void *);
+    f32 func_80103F38(u8 *, f32 *);
+    f32 sp24[3];
+    s32 pad;
+    f32 sp1C;
+
+    sp1C = func_80103F38(arg0, sp24);
+    func_8008FB58(sp24, 0.0f, func_8010A40C(arg0) * sp1C);
+}
 
 s32 func_8010C9B0(f32 *arg0, s32 arg1) {
     extern s32 D_80136F50;
