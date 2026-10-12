@@ -41,7 +41,11 @@ void func_8080010C_chbadjinjo(s32 arg0, f32 arg1, s32 arg2) {
 void func_80800DF0_chbadjinjo(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_80800DF8_chbadjinjo.s")
+s16 func_80800DF8_chbadjinjo(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    extern s16 D_80801384_chbadjinjo[];
+    return D_80801384_chbadjinjo[*((u8 *)func_80100094(arg0, 0U) + 0x24)];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_80800E28_chbadjinjo.s")
 
