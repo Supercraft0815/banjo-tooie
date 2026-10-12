@@ -22,7 +22,16 @@ void func_800BE9B0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BE9E4.s")
+/* extern */
+
+void func_800BE9E4(s32 arg0) {
+    s32 _gcmapsects_entrypoint_18(s32 *, s32);
+    s32 func_800BE7F8(s32, s32);
+    func_800BE7F8(arg0, 0);
+    if ((*(u8 *)((s8 *)(&D_801285B0) + (0x77))) != 0) {
+        _gcmapsects_entrypoint_18(&D_801285B0, arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEA24.s")
 
