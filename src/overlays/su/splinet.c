@@ -42,7 +42,13 @@ int func_808000FC_susplinet(u8 *array, s32 index) {
     return ((array + 0x50)[index / 8] & (1 << (index & 7))) ? 1 : 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_2.s")
+int susplinet_entrypoint_2(u8 *arg0) {
+    s32 base = (s32)arg0;
+    s16 *ptr;
+    base += *(s16 *)((s8 *)arg0 + 0x30);
+    ptr = (s16 *)base;
+    return (f32)ptr[*(s16 *)((s8 *)arg0 + 0x4E) - 1] <= *(f32 *)((s8 *)arg0 + 0x44);
+}
 
 s16 susplinet_entrypoint_3(s8 *arg0) {
     s32 base = (s32)arg0;
