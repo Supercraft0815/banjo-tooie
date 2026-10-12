@@ -699,8 +699,8 @@ void func_808048F8_chgameselect(u8 *arg0, s32 *arg1) {
 
 void func_808049E8_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
     s32 _gcnewoption_entrypoint_12(s32, s32, s16);
-    s32 _gcnewoption_entrypoint_24(s32, s32);
-    _gcnewoption_entrypoint_24(arg0, arg1);
+    s32 _gcnewoption_entrypoint_24(s32, s32, s32);
+    _gcnewoption_entrypoint_24(arg0, arg1, arg2);
     _gcnewoption_entrypoint_12(arg0, arg1, (s16) ((arg1 * 5) + arg2 + 0xA));
 }
 
@@ -1017,7 +1017,22 @@ void func_80806AD4_chgameselect()
     _gcstatusDll_entrypoint_10();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80806AF4_chgameselect.s")
+/* extern */
+
+void func_80806AF4_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _gcnewoption_entrypoint_12(s32, s32, s16);
+    s32 _gcnewoption_entrypoint_24(s32, s32, s32);
+    s32 sp1C;
+    s32 var_v0;
+
+    if (arg1 == 3) {
+        sp1C = 5;
+    } else {
+        sp1C = 0xF;
+    }
+    _gcnewoption_entrypoint_24(arg0, arg1, arg2);
+    _gcnewoption_entrypoint_12(arg0, arg1, (s16) (sp1C + arg2));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80806B5C_chgameselect.s")
 
