@@ -59,7 +59,7 @@ void func_800B3B8C(u8 *arg0, s16 *arg1, s16 *arg2, s32 arg3) { s16 *temp_v0; *ar
 
 s16 *func_800B3BDC(u8 *arg0, s16 *arg1) { s16 *temp_v0; temp_v0 = func_800B39D0(arg0, *arg1); if (temp_v0[1] == 1) { *arg1 = temp_v0[0]; } else { func_800B3B8C(arg0, temp_v0, arg1, 1); } return temp_v0; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B3C40.s")
+s16 *func_800B3C40(u8 **arg0, s32 arg1, s32 arg2) { u8 *data; s32 old_count; s32 new_count; s16 *entry; s16 *result; data = *arg0; old_count = *(s16 *)(data + 2); new_count = old_count + arg2; data = heap_realloc(data, *(s16 *)data * new_count + 4); *(s16 *)(data + 2) = new_count; *arg0 = data; result = func_800B39D0(data, arg1); *result = old_count; entry = func_800B39D0(data, *result); entry[0] = 0; entry[1] = arg2; return result; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B3CDC.s")
 
