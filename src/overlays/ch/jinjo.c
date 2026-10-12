@@ -54,7 +54,7 @@ void func_80800EE4_chjinjo(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/func_80800F80_chjinjo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/func_80800FC4_chjinjo.s")
+void func_80800FC4_chjinjo(Actor *arg0) { extern u16 D_80801390_chjinjo[]; s32 sp2C; sp2C = func_800D0CC8(arg0->unk6C_0); func_800C05B8(D_80801390_chjinjo[sp2C], 0x44, NULL, NULL, 0, 0, func_808000DC_chjinjo((u8 *)arg0)); }
 
 s32 func_8080102C_chjinjo(Actor *arg0, s32 arg1) {
     if (arg0->unk74_30) {
