@@ -74,7 +74,14 @@ s32 func_800A5898(void) {
     return (*(s32 *)((s8 *)(D_80119540) + (0x30)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7EE40/func_800A58A8.s")
+/* extern */
+
+void func_800A58A8(s32 arg0, s32 arg1) {
+    s32 _cadbmgrDll_entrypoint_2(s32, s32, s32);
+    if (arg1 != (*(u8 *)((s8 *)D_80119540 + (arg0 * 2) + 0x3C)) && arg1 != 0) {
+        _cadbmgrDll_entrypoint_2(D_80119540, arg1, arg0);
+    }
+}
 
 s32 func_800A58F0(void) {
     return (*(s32 *)((s8 *)(D_80119540) + (0x38))) + 1;
