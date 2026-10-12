@@ -22,15 +22,27 @@ void func_800DFB40(s32 *arg0, s32 arg1, u8 *arg2) {
     func_800D9600(arg2, *arg0 + (arg1 * 0x28));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB93C0/func_800DFB7C.s")
+void func_800DFB7C(BoneTransformList *arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 *arg4) {
+    void func_800D9600(void *arg0, void *arg1);
+    void func_800EE7F8(f32 *, f32 *);
+    u8 *sp18;
+    u8 *transform;
+
+    sp18 = (u8 *)arg0->ptr;
+    transform = (u8 *)((u32)sp18 + arg1 * 0x28);
+    sp18 = transform;
+    func_800D9600(arg2, transform);
+    func_800EE7F8(arg3, (f32 *)(transform + 0x10));
+    func_800EE7F8(arg4, (f32 *)(transform + 0x1C));
+}
 
 void func_800DFBE0(s32 *arg0, s32 arg1, s32 arg2) {
-    s32 func_800EE7F8(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
     func_800EE7F8(arg2, *arg0 + (arg1 * 0x28) + 0x10);
 }
 
 void func_800DFC20(s32 *arg0, s32 arg1, s32 arg2) {
-    s32 func_800EE7F8(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
     func_800EE7F8(arg2, *arg0 + (arg1 * 0x28) + 0x1C);
 }
 
@@ -74,14 +86,14 @@ void func_800DFCE8(s16 arg0) {
 /* extern */
 
 void func_800DFF64(s32 *arg0, s32 arg1, s32 arg2) {
-    s32 func_800EE7F8(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
     func_800EE7F8(*arg0 + (arg1 * 0x28) + 0x10, arg2);
 }
 
 /* extern */
 
 void func_800DFFA0(s32 *arg0, s32 arg1, s32 arg2) {
-    s32 func_800EE7F8(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
     s32 **base = &arg0;
     func_800EE7F8(**base + (arg1 * 0x28) + 0x1C, arg2);
 }
