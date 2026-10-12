@@ -13,7 +13,17 @@ OSThread *ch2dbaddy_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_808002A8_ch2dbaddy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_808003C4_ch2dbaddy.s")
+/* extern */
+
+s32 func_808003C4_ch2dbaddy(f32 *arg0) {
+    void func_800EE88C(f32 dst[3], s16 src[3]);
+    f32 func_800EFC7C(f32 *, f32 *);
+    u8 *_sucoaster_entrypoint_3();
+    f32 sp1C[3];
+
+    func_800EE88C(sp1C, (s16 *)_sucoaster_entrypoint_3());
+    return func_800EFC7C(arg0 + 1, sp1C) < 10000.0f;
+}
 
 /* extern */
 
