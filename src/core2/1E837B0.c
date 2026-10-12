@@ -1,6 +1,23 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800A9EC0.s")
+void func_800A9EC0(s32 arg0) {
+    extern s32 D_80127770;
+    extern s16 D_8011A480[][2];
+    extern s16 D_8011A498[][2];
+    s32 i;
+
+    D_80127770 = 0x3E800;
+    i = 0;
+loop_1:
+    if (arg0 == D_8011A480[i][0]) {
+        D_80127770 = D_8011A480[i][1] << 10;
+        return;
+    }
+    i++;
+    if (D_8011A498 != &D_8011A480[i]) {
+        goto loop_1;
+    }
+}
 
 s32 func_800A9F14(s32 arg0) {
     if (arg0 == 2) {
