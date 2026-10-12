@@ -188,7 +188,22 @@ void bsstonehead_entrypoint_33(s32 arg0)
     func_80800060_bsstonehead();
     _bsrest_entrypoint_16(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_34.s")
+/* extern */
+
+void bsstonehead_entrypoint_34(s32 arg0) {
+    s32 _bsrest_entrypoint_13(s32);
+    s32 bs_setState(s32, s32);
+    s32 _bsrest_entrypoint_20();
+    s32 var_a1;
+    s32 sp1C;
+
+    sp1C = 0;
+    var_a1 = sp1C;
+    if (_bsrest_entrypoint_20() != 0) {
+        var_a1 = _bsrest_entrypoint_13(arg0);
+    }
+    bs_setState(arg0, var_a1);
+}
 
 s32 bsstonehead_entrypoint_35(s32 arg0) {
     extern s32 D_808016B0_bsstonehead[];
