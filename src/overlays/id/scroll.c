@@ -2,7 +2,21 @@
 
 typedef struct { f32 unk0; s16 unk4; f32 unk8; } ScrollEffect;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/scroll/idscroll_entrypoint_0.s")
+void idscroll_entrypoint_0(s16 arg0, u32 arg1, u8 *arg2, s32 arg3, s16 *arg4) {
+    s32 offset = arg4[2];
+    u32 end = (arg3 << 4) + arg1;
+    s32 value;
+
+    if (arg1 < end) {
+        do {
+            value = *(s16 *)(arg1 + 10) + offset;
+            arg1 += 16;
+            value -= 0x2000;
+            arg2 += 16;
+            *(s16 *)(arg2 - 6) = value;
+        } while (arg1 < end);
+    }
+}
 
 void idscroll_entrypoint_1(s32 arg0) 
 {
