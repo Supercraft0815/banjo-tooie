@@ -1,6 +1,19 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/idmake/func_80800000_glidmake.s")
+s32 func_80800000_glidmake(s32 arg0) {
+    int func_800EEEA8(f32 vec[3]);
+    s32 var_v1;
+    f32 *vec;
+
+    vec = (f32 *) (arg0 + 8);
+    arg0 = (s32) vec;
+    if (func_800EEEA8(vec) != 0) {
+        var_v1 = 0;
+    } else {
+        var_v1 = (s32) vec;
+    }
+    return var_v1;
+}
 
 void glidmake_entrypoint_0(void *model, s32 mesh_id, s16 dst[3]) {
     void glidmake_entrypoint_2(void *, s32, s16 *, s16 *);
