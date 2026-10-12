@@ -23,7 +23,16 @@ OSThread *chbilldrillboulder_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillboulder/func_80800024_chbilldrillboulder.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillboulder/func_8080026C_chbilldrillboulder.s")
+void func_8080026C_chbilldrillboulder(Actor *arg0)
+{
+  void _chexploder_entrypoint_3(void *, void *, u32);
+  f32 *new_var;
+  s32 _subaddieDll_entrypoint_6(Actor *, s32);
+  void func_8010A570(Actor *);
+ if ((((((u16) (*((u16 *) (((s8 *) arg0) + 0x72)))) & 0xFFFFFFFF) >> 0xA) == 2) && (_subaddieDll_entrypoint_6(arg0, 0xB) != 0)) { new_var = arg0->position; func_8010A570(arg0);
+    _chexploder_entrypoint_3(arg0, new_var, 2U);
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillboulder/func_808002C4_chbilldrillboulder.s")
 
