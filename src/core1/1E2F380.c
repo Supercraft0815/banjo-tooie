@@ -177,7 +177,18 @@ void func_80018028(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_80018090.s")
+void func_80018090(s32 arg0) {
+    void func_80016934(s32);
+    extern OSMesgQueue *D_8007AF0C;
+    Motor *motor;
+
+    motor = &D_8007B2D0[arg0];
+    if (motor->active == 0) {
+        func_80016934(4);
+        motor->active = osMotorInit(D_8007AF0C, &motor->pfs, arg0) == 0;
+        func_80016934(0);
+    }
+}
 
 void func_80018108(s32 arg0) { void func_80016934(s32); extern OSMesgQueue *D_8007AF0C; Motor *motor; if (func_80016800(arg0) != 0) { func_80016934(4); motor = &D_8007B2D0[arg0]; motor->unk0 = osMotorInit(D_8007AF0C, &motor->pfs, arg0) == 0; func_80016934(0); } }
 
