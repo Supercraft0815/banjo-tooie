@@ -10,7 +10,24 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA508.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA608.s")
+void func_800FA608(void)
+{
+  s32 defrag(s32);
+  extern s32 D_80123880[][7];
+  extern s32 D_80123DC0;
+  s32 new_var;
+  s32 (*var_s0)[7];
+  s32 temp_a0;
+ var_s0 = D_80123880; do { temp_a0 = var_s0[0][6];
+    if (temp_a0 != 0)
+    {
+      new_var = defrag(temp_a0);
+      var_s0[0][6] = new_var;
+    }
+    var_s0++;
+  }
+  while (var_s0 != ((s32 (*)[7]) (&D_80123DC0)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA660.s")
 
