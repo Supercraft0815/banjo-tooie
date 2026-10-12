@@ -172,7 +172,19 @@ void func_8080129C_chwaspnestgame(void) {
 void func_808012C8_chwaspnestgame(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_808012D0_chwaspnestgame.s")
+/* extern */
+
+void func_808012D0_chwaspnestgame(void *arg0) {
+    s32 func_80102BF8(void *, s32, s32, s32);
+    f32 func_80102D78(void *, s32 *);
+    s32 func_8010D600(s32 *);
+    s32 sp1C[3];
+
+    func_8010D600(sp1C);
+    (*(f32 *)((s8 *)(arg0) + (0x54))) = func_80102D78(arg0, sp1C);
+    func_80102BF8(arg0, 0x3DCCCCCD, 0x40800000, 0x43340000);
+    func_808012C8_chwaspnestgame((s32) arg0);
+}
 
 void func_80801324_chwaspnestgame(f32 *arg0, f32 arg1, f32 arg2) {
     void func_800EF334(f32 vec[3], f32 scale);
