@@ -28,7 +28,19 @@ void func_80800108_chcactusofstrength(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_80800110_chcactusofstrength.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_808001C4_chcactusofstrength.s")
+/* extern */
+
+s32 func_808001C4_chcactusofstrength(s32 arg0, s32 arg1, volatile s32 arg2) {
+    s32 func_80800110_chcactusofstrength(s32, s32);
+    s32 result;
+    if (arg1 == 0x40) {
+        func_80800110_chcactusofstrength(arg0, *(s32 *)&arg2);
+        result = 1;
+    } else {
+        return 0;
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_80800200_chcactusofstrength.s")
 
