@@ -1,6 +1,20 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ca/pod/capod_entrypoint_0.s")
+s32 capod_entrypoint_0(s32 arg0, s32 arg1, s32 arg2)
+{
+  s32 _ncpod_entrypoint_6(s32, s32, s32, s32, s32);
+  s32 func_8008FFE8();
+  s32 func_80110024(s32);
+  s32 sp24[2];
+  s32 temp_v0;
+  temp_v0 = func_80110024(func_8008FFE8());
+  if (temp_v0 != 0)
+  {
+    sp24[1] = temp_v0;
+    return _ncpod_entrypoint_6(func_8008FFE8(), (0, sp24[1]), arg0, arg1, arg2);
+  }
+  return -1;
+}
 
 /* extern */
 
