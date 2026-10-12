@@ -96,13 +96,29 @@ void func_800EBC04(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBC0C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBCD0.s")
+void func_800EBCD0(u8 **arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 func_800E9AC0(s32, s32);
+    s32 func_800EBC0C(s32, s32, void *, s32);
+    volatile struct {
+        u16 pad[3];
+        u16 saved;
+        u32 tail[2];
+    } local;
+    u8 *temp_a1;
+    s32 result;
+
+    temp_a1 = *arg0;
+    local.saved = (*(u16 *)((s8 *)(temp_a1) + (0xA)));
+    result = func_800E9AC0(arg2, (s32) temp_a1);
+    func_800EBC0C(arg3, arg1, arg0, result);
+    (*(u16 *)((s8 *)(*arg0) + (0xA))) = local.saved;
+}
 
 /* extern */
 
 void func_800EBD2C(u8 *arg0, s32 arg1, s32 arg2) {
     s32 func_800BDB9C(s32);
-    s32 func_800EBCD0(u8 *, s32, s32, s32);
+    void func_800EBCD0(u8 **, s32, s32, s32);
     s32 pad;
     s32 sp18;
 
