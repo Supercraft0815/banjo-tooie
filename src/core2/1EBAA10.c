@@ -89,7 +89,14 @@ void func_800E14B8(s32 arg0, f32 *arg1) {
     D_8012CF90[arg0].updated = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E14F8.s")
+void func_800E14F8(s32 arg0, u8 *arg1, s16 arg2) {
+    void rare_memcpy(void *, void *, int);
+    s32 entry = (s32)D_8012CF90 + (arg0 * 31) * 4;
+    s16 *countPtr = &arg2;
+    s16 count = *countPtr;
+    *(u8 *)(entry + 0x78) = count;
+    rare_memcpy((u8 *)(entry + 0x34), arg1, count * 8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1540.s")
 
