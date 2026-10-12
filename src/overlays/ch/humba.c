@@ -138,7 +138,21 @@ s32 func_80800B40_chhumba(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800BA8_chhumba.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800C20_chhumba.s")
+s32 func_80800C20_chhumba(u8 *arg0) {
+    s32 func_800F1EA4(f32[3], f32 *);
+    s32 func_800F20BC(f32, f32, s32);
+    void func_8010D254(f32*);
+    f32 sp24;
+    f32 sp18[3];
+
+    (void)&arg0;
+    func_8010D254(&sp18);
+    func_800F1EA4(&sp18, &sp24);
+    if (func_800F20BC(0.0f, sp24, 0x40A00000) == 0) {
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
