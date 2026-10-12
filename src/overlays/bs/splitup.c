@@ -21,7 +21,17 @@ void bssplitup_entrypoint_1(void *arg0) {
     bs_setState(arg0, sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/bssplitup_entrypoint_2.s")
+/* extern */
+
+void bssplitup_entrypoint_2(s32 arg0) {
+    void _sudialog_entrypoint_0(s32, s32);
+    s32 _baduo_entrypoint_7(void *, s32);
+    s32 bs_getNextState(void *);
+    _baduo_entrypoint_7(arg0, 3);
+    if (bs_getNextState(arg0) != 0x5A) {
+        _sudialog_entrypoint_0(0x4F5, 0xC);
+    }
+}
 
 s32 bssplitup_entrypoint_3(s32 arg0) {
     extern s32 D_80800700_bssplitup[];
