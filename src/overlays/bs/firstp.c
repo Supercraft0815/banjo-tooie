@@ -677,7 +677,18 @@ void func_80802D14_bsfirstp(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80802D50_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80802E7C_bsfirstp.s")
+s32 func_80802E7C_bsfirstp(u8 *arg0) {
+    u8 *temp_v0;
+
+    temp_v0 = func_808027A8_bsfirstp((*(s16 *)((s8 *)(arg0) + (0xE8))));
+    (*(s16 *)((s8 *)(arg0) + (0xE4))) = (*(s16 *)((s8 *)(arg0) + (0xE2)));
+    (*(s16 *)((s8 *)(arg0) + (0xE0))) = 2;
+    (*(s16 *)((s8 *)(arg0) + (0xE2))) = 0;
+    (*(s16 *)((s8 *)(arg0) + (0xE6))) = 0;
+    (*(f32 *)((s8 *)(arg0) + (0xD8))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (8)));
+    (*(f32 *)((s8 *)(arg0) + (0xDC))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (0xC)));
+    return (*(s32 *)((s8 *)(temp_v0) + (0)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80802ED4_bsfirstp.s")
 
