@@ -881,7 +881,19 @@ s32 bsfirstp_entrypoint_8(s32 arg0) {
     return ((s32 *)&D_8080B474_bsfirstp)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808032C0_bsfirstp.s")
+void func_808032C0_bsfirstp(struct player_state_s *self) {
+    s32 func_80807BB8_bsfirstp();
+    s32 func_80808DB0_bsfirstp(void *);
+    s32 _baeggsetup_entrypoint_7(void *, s32 *);
+    extern s32 _bsfirstp_entrypoint_10;
+    u8 *sp24;
+
+    func_80807BB8_bsfirstp(self);
+    func_80808DB0_bsfirstp(self);
+    func_80802670_bsfirstp(self, &sp24);
+    func_80800424_bsfirstp(self, *(s16 *)sp24, *(f32 *)(sp24 + 4));
+    _baeggsetup_entrypoint_7(self, &_bsfirstp_entrypoint_10);
+}
 
 void func_80803320_bsfirstp(void)
 {
