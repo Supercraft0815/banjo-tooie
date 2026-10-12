@@ -6,7 +6,7 @@ void func_80800000_chstoneballcontrol(Unk80132ED0 **arg0, u32 arg1, s32 arg2) {
 }
 
 f32 func_80800040_chstoneballcontrol(void *arg0) {
-    void *func_80100094(void *, s32);
+    void *func_80100094(Actor *, u32);
     extern f32 D_80804FFC_chstoneballcontrol[];
     return D_80804FFC_chstoneballcontrol[*((u8 *)func_80100094(arg0, 0) + 0x14)];
 }
@@ -109,7 +109,22 @@ void func_80800BCC_chstoneballcontrol(u8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_8080120C_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_8080128C_chstoneballcontrol.s")
+void func_8080128C_chstoneballcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    struct {
+        u8 pad0[0x10];
+        s32 words[9];
+        u8 bytes[6];
+        u8 count;
+    } *temp_v0;
+    s32 var_v1;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    for (var_v1 = 0; var_v1 < temp_v0->count; var_v1++) {
+        temp_v0->bytes[var_v1] = 0;
+        temp_v0->words[var_v1] = 0;
+    }
+}
 
 void func_808012E0_chstoneballcontrol(void *arg0, s32 arg1) {
     struct Fields {
@@ -160,7 +175,7 @@ void func_80801944_chstoneballcontrol(u8 *arg0, s32 arg1) {
     s32 _sukickball_entrypoint_6(u8 *, s32);
     void func_800B4470(u8 *, s32, void *, s32, f32, f32, s32, s32, s32);
     void func_800F4F98(s32, void *);
-    void *func_80100094(void *, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_80101FDC(u8 *, s32);
     u8 *func_80106790(s32);
     void func_808024F8_chstoneballcontrol(u8 *);
@@ -207,7 +222,7 @@ void func_80801944_chstoneballcontrol(u8 *arg0, s32 arg1) {
 }
 
 void func_80801B00_chstoneballcontrol(u8 *arg0) {
-    void *func_80100094(void *, s32);
+    void *func_80100094(Actor *, u32);
     u8 *data;
 
     data = func_80100094(arg0, 0);
@@ -382,7 +397,7 @@ void func_80803148_chstoneballcontrol(u8 *arg0) {
     extern Distances D_808052B0_chstoneballcontrol;
     extern Position D_808052C0_chstoneballcontrol;
     extern void _chstoneballcontrol_entrypoint_1(void);
-    void *func_80100094(void *, s32);
+    void *func_80100094(Actor *, u32);
     u8 *func_80106790(s32);
     s32 _sukickball_entrypoint_6(u8 *, s32);
     s32 _sukickball_entrypoint_7(u8 *, s32);
@@ -537,7 +552,7 @@ void func_80804304_chstoneballcontrol(u8 *arg0) {
     void func_800F5D70(s32, f32 *);
     void func_800F7700(s32, s32, f32 *);
     s32 func_800F8294(s32, f32 *);
-    void *func_80100094(void *, s32);
+    void *func_80100094(Actor *, u32);
     f32 func_80102D78();
     u8 *func_80106790(s32);
     s32 func_80800B4C_chstoneballcontrol(u8 *, s32);
