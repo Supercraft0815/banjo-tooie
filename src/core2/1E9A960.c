@@ -322,7 +322,9 @@ void func_800C30B8(u8 index, s32 arg1, f32 position[3], f32 min_dist, f32 max_di
     func_800C3058(index, (s32)arg1 * scale);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C316C.s")
+/* extern */
+
+void func_800C316C(u8 arg0, s32 arg1, s32 arg2, f32 arg3) { struct Flags { u8 pad[0x7B]; unsigned char first : 4; unsigned char flag : 1; unsigned char last : 3; }; void *temp_v0; if (arg0 != 0) { temp_v0 = func_800C1414(arg0); ((struct Flags *)temp_v0)->flag = 1; (*(s16 *)((s8 *)(temp_v0) + (0x4C))) = (s16) arg1; (*(s16 *)((s8 *)(temp_v0) + (0x4E))) = (s16) arg2; (*(f32 *)((s8 *)(temp_v0) + (0x50))) = arg3; (*(s16 *)((s8 *)(temp_v0) + (0x5A))) = 0; func_800C13A0(temp_v0, 8); } }
 
 void func_800C31DC(u8 index, f32 value) {
     SoundSourceView *ptr;
