@@ -84,7 +84,16 @@ void func_800AB9D0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800ABB34.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800ABC0C.s")
+void func_800ABC0C(u8 **arg0, u8 **arg1) {
+    u8 *temp_v0;
+
+    *arg0 += 0x4C;
+    temp_v0 = *arg1;
+    if (((s32) ((*arg0 - temp_v0) - 0x10) / 76) >= (*(s32 *)((s8 *)(temp_v0) + (0xC)))) {
+        *arg1 = (*(u8 **)((s8 *)(temp_v0) + (4)));
+        *arg0 = *arg1 + 0x10;
+    }
+}
 
 void func_800ABC58(f32 start_point[3], f32 end_point[3], f32 margin, f32 min_bounds[3], f32 max_bounds[3]) {
     int i;
