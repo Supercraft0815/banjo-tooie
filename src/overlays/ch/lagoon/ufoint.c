@@ -87,7 +87,23 @@ void func_808007B4_chlagoonufoint(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_80800820_chlagoonufoint.s")
+void func_80800820_chlagoonufoint(Actor *arg0, f32 *arg1) {
+    u8 func_800C4350(s32, f32[3], s32 *);
+    extern s32 D_80801B10_chlagoonufoint;
+    u8 var_a3;
+    Actor *actor;
+    Actor **saved_actor = &arg0;
+    u8 handle;
+
+    var_a3 = arg0->unk5F;
+    if (var_a3 == 0) {
+        handle = func_800C4350(0, arg1, &D_80801B10_chlagoonufoint);
+        actor = *saved_actor;
+        actor->unk5F = handle;
+        var_a3 = actor->unk5F;
+    }
+    func_800C4350(var_a3 & 0xFF, arg1, NULL);
+}
 
 /* extern */
 
