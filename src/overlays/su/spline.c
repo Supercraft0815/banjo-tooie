@@ -1,6 +1,15 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_0.s")
+void suspline_entrypoint_0(u8 *array, s32 index, s32 value) {
+    u8 *ptr;
+    if (value) {
+        ptr = array + 0x7E;
+        *(ptr += index / 8) |= (1 << (index & 7));
+    } else {
+        ptr = array + 0x7E;
+        *(ptr += index / 8) &= ~(1 << (index & 7));
+    }
+}
 
 int func_80800074_suspline(u8 *array, s32 index) {
     return ((array + 0x7E)[index / 8] & (1 << (index & 7))) ? 1 : 0;
