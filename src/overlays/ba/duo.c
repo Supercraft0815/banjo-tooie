@@ -5,7 +5,18 @@ s32 baduo_entrypoint_0()
     return 0x14;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/func_80800008_baduo.s")
+/* extern */
+
+void func_80800008_baduo(s32 arg0, s32 arg1) {
+    s32 func_800A4C88(s32);
+    s32 func_801100E4(s32, s32);
+    s32 sp18;
+    volatile s32 sp1c;
+
+    sp18 = func_800A4C88(arg1);
+    sp1c = sp18;
+    func_801100E4(sp1c, func_800A4C88(arg0));
+}
 
 u32 baduo_entrypoint_1(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 88) + 0);
