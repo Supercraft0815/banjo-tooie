@@ -43,7 +43,13 @@ void func_80800030_chpowerhutwitchy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/chpowerhutwitchy_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/func_808005C8_chpowerhutwitchy.s")
+void func_808005C8_chpowerhutwitchy(Actor *arg0) {
+    s32 _chpowerhut_entrypoint_0(Actor *, s32 *);
+    extern s32 D_80800B14_chpowerhutwitchy;
+    _chpowerhut_entrypoint_0(arg0, &D_80800B14_chpowerhutwitchy);
+    (*(s8 *)((s8 *)(func_80100094(arg0, 0)) + (0x18))) = 0;
+    (*(s8 *)((s8 *)(func_80100094(arg0, 0)) + (0x19))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/func_80800610_chpowerhutwitchy.s")
 
