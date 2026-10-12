@@ -46,7 +46,19 @@ void func_80800298_chquiz(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808002F0_chquiz.s")
+ s32 func_808002F0_chquiz(s32 arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 _gcnewoption_entrypoint_1(s32, s32);
+    s32 temp_a2;
+
+    (void)&temp_a2;
+    temp_a2 = ((Actor *)func_80100094((Actor *)arg0, 0U))->pad94;
+    if (temp_a2 != 0) {
+        if (((Actor *)func_80100094((Actor *)arg0, 0U))->pad99 != 0) {
+            _gcnewoption_entrypoint_1(temp_a2, arg1);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_8080034C_chquiz.s")
 
