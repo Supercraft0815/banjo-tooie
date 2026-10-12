@@ -127,7 +127,12 @@ void func_80800160_chmolehill(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/chmolehill_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/chmolehill_entrypoint_5.s")
+/* extern */
+
+s32 chmolehill_entrypoint_5(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    return *(s32 *) func_80100094(arg0, 0U);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/func_80800884_chmolehill.s")
 
