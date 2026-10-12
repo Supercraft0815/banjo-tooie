@@ -66,4 +66,10 @@ f32 func_800D91B8(f32 *arg0) {
     return *arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2840/func_800D91EC.s")
+int func_800D91EC(f32 *arg0, f32 arg1) {
+    if (arg1 < func_800D91B8(arg0)) {
+        *arg0 = arg1;
+        return 1;
+    }
+    return 0;
+}
