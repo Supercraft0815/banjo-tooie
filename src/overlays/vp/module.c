@@ -29,4 +29,19 @@ s32 func_80800000_vpmodule(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/module/func_808005C4_vpmodule.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/module/vpmodule_entrypoint_4.s")
+s32 vpmodule_entrypoint_4(s32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
+    u32 temp_t0;
+    u32 var_v1;
+
+    var_v1 = arg0 + 8;
+    temp_t0 = ((*(s32 *)((s8 *)(arg1) + (0x2C))) * 8) + arg0 + 8;
+    while (var_v1 < temp_t0) {
+        s32 *record = (s32 *)(((s32 *)(arg1 + 0x30))[*(s16 *)(var_v1 + 2)] + arg1);
+        if (arg2 == *record) {
+            (*(s8 *)((s8 *)(var_v1) + (1))) = arg3;
+            return 1;
+        }
+        var_v1 += 8;
+    }
+    return 0;
+}
