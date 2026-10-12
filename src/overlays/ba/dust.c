@@ -30,7 +30,15 @@ void func_80800008_badust(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/badust_entrypoint_10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/badust_entrypoint_11.s")
+/* extern */
+
+void badust_entrypoint_11(void *arg0) {
+    s32 badust_entrypoint_12(void *, s32);
+    (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x5C)))) + (4))) = 0;
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x5C)))) + (8))) = 0;
+    (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x5C)))) + (0))) = 0;
+    badust_entrypoint_12(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/badust_entrypoint_12.s")
 
