@@ -44,6 +44,8 @@ s32 gcsectionDll_entrypoint_3(s32 arg0, s32 arg1) {
     return (D_80800212_gcsectionDll[arg0][0] & arg1) ? 1 : 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionDll/gcsectionDll_entrypoint_4.s")
+u8 gcsectionDll_entrypoint_4(s32 arg0) {
+    return (*(u8 *)((s8 *)(func_808000F0_gcsectionDll(arg0, 0)) + (4)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionDll/gcsectionDll_entrypoint_5.s")
