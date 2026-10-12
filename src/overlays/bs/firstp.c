@@ -1,6 +1,18 @@
 #include "bs/firstp.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80800000_bsfirstp.s")
+/* extern */
+
+u8 *func_80800000_bsfirstp(u8 *arg0) {
+    s32 aligned8_memset(s32 dst, s32 value, s32 size);
+    void _bastatemem_entrypoint_0(s32, s32);
+    u8 *sp1C;
+    s32 pad;
+
+    _bastatemem_entrypoint_0((s32)arg0, 0x2A8);
+    sp1C = (*(u8 **)((s8 *)(arg0) + (0x188)));
+    aligned8_memset((s32)sp1C, 0, 0x2A8);
+    return sp1C;
+}
 
 void func_80800040_bsfirstp()
 {
