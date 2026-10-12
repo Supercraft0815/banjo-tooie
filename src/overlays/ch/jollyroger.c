@@ -115,7 +115,21 @@ void func_80800E30_chjollyroger(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800FBC_chjollyroger.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_8080103C_chjollyroger.s")
+/* extern */
+
+void func_8080103C_chjollyroger(Actor *arg0) {
+    s32 _chdoormake_entrypoint_0(void *, f32, u32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    void func_8010A63C(void ***);
+    s32 func_8010A800(Actor *, s32);
+    if (_chdoormake_entrypoint_0(arg0, -120.0f, 0x8000, 0xC2) != 0) {
+        _chdoormake_entrypoint_8(arg0, 1);
+        _chdoormake_entrypoint_5(arg0, 3.5f);
+    }
+    func_8010A800(arg0, 0);
+    func_8010A63C(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_808010A0_chjollyroger.s")
 
