@@ -1,6 +1,19 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/gcboundDll_entrypoint_0.s")
+void gcboundDll_entrypoint_0(u8 *arg0) {
+    s32 i;
+
+    (*(s32 *)(arg0 + 4)) = 0;
+    (*(s32 *)(arg0 + 0)) = 0;
+    (*(s32 *)(arg0 + 0xC)) = 0;
+    (*(s32 *)(arg0 + 8)) = 0;
+    (*(s32 *)(arg0 + 0x14)) = 0;
+    (*(s32 *)(arg0 + 0x10)) = 0;
+    for (i = 0; i < 0xC8; i++) {
+        arg0[i + 0x18] = 1;
+    }
+    (*(s32 *)(arg0 + 0xE0)) = 0;
+}
 
 /* extern */
 
