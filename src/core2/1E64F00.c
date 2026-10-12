@@ -110,7 +110,15 @@ void func_8008BCB4(u8 *arg0) {
     func_8008BC6C(arg0, value);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008BCEC.s")
+/* extern */
+
+s32 func_8008BCEC(s32 arg0, s32 arg1) {
+    s32 func_8008B9C4(s16, s32 *);
+    s32 sp1C;
+
+    func_8008B9C4((*(s16 *)((s8 *)arg0 + 0xA + (arg1 << 1))), &sp1C);
+    return sp1C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008BD1C.s")
 
