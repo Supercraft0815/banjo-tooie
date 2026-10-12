@@ -7,7 +7,23 @@ OSThread *changlerbossflare_entrypoint_0(void)
     return (OSThread *) D_80800480_changlerbossflare;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/flare/func_8080000C_changlerbossflare.s")
+void func_8080000C_changlerbossflare(Actor *arg0) {
+    struct FlareActorFields {
+        u8 pad0[0x54];
+        s32 unk54;
+        u8 pad58[0x18];
+        u32 pad70:31;
+        u32 initialized:1;
+    } *self = (void *)arg0;
+    s32 _subaddieaudioquick_entrypoint_2(s32, s32, s32 *);
+    s32 func_800C8A98(void);
+    void func_8010A3E8(void *, f32);
+    extern s32 D_808004C8_changlerbossflare;
+    _subaddieaudioquick_entrypoint_2(arg0, (u8 *)arg0 + 4, &D_808004C8_changlerbossflare);
+    func_8010A3E8(arg0, 0.3f);
+    self->unk54 = func_800C8A98();
+    self->initialized = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/flare/func_80800068_changlerbossflare.s")
 
