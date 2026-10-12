@@ -69,7 +69,11 @@ void func_808018D4_chklungo(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x48))) = temp_f0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80801910_chklungo.s")
+void func_80801910_chklungo(u8 *arg0) {
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    Actor *actor = (Actor *)arg0;
+    _sudeflect_entrypoint_0(actor->position, actor->scale * 100.0f, actor->scale * 130.0f, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80801964_chklungo.s")
 
