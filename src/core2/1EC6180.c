@@ -232,7 +232,17 @@ void func_800EDC10(void *self, f32 arg1, f32 arg2, f32 arg3,s32 arg4){
     func_800ED964(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EDC64.s")
+void func_800EDC64(void *self, f32 arg1, f32 arg2, f32 arg3,s32 arg4){
+    MeshEffect *arg0 = (MeshEffect *)self;
+    arg0->unk29 = 7;
+    arg0->unk4 = arg1;
+    arg0->unk44 = 0.0f;
+    arg0->unk48 = arg3;
+    arg0->unk8 = arg2;
+    arg0->unk4C = 0;
+    arg0->unk4E = arg4;
+    func_800ED964(arg0);
+}
 
 void func_800EDCB8(void *arg0, f32 arg1) {
     void func_800EDC10(void *, f32, f32, f32, s32);
