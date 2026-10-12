@@ -2,7 +2,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressjoint/func_80800000_suexpressjoint.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressjoint/suexpressjoint_entrypoint_0.s")
+s32 suexpressjoint_entrypoint_0(s16 arg0) {
+    s16 func_80800000_suexpressjoint(s16);
+    extern u8 D_80801824_suexpressjoint[][16];
+    s32 temp_v0;
+    u8 value;
+
+    temp_v0 = func_80800000_suexpressjoint(arg0);
+    if (temp_v0 == -1) {
+        return 0;
+    }
+    value = D_80801824_suexpressjoint[temp_v0][0];
+    return value + 0x20;
+}
 
 /* extern */
 
