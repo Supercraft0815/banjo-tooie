@@ -2,7 +2,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/co/themedll/func_80800000_cothemedll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/co/themedll/cothemedll_entrypoint_0.s")
+void cothemedll_entrypoint_0(s32 arg0) {
+    s32 func_80800000_cothemedll(s32);
+    extern s16 D_80800732_cothemedll[];
+    s32 temp_t7;
+    if (func_800FE890() == 0) {
+        temp_t7 = *(s16 *)((s8 *)D_80800732_cothemedll + func_80800000_cothemedll(arg0) * 6) >> 2;
+        if (temp_t7 != -1) func_80016DA0(temp_t7, 1);
+    }
+}
 
 s16 cothemedll_entrypoint_1(void) {
     s32 func_80800000_cothemedll();
