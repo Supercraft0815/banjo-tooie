@@ -1030,7 +1030,20 @@ void func_800F7ECC(s32 arg0, s32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8004.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8088.s")
+/* extern */
+
+int func_800F8088(s32 arg0) {
+    s32 bastick_func_8009F1A4(PlayerState *);
+    int bitfield;
+    s32 stick;
+    PlayerState *player;
+    s32 pad[2];
+
+    player = D_80135490[arg0];
+    bitfield = bakey_getBitfield(player);
+    stick = bastick_func_8009F1A4(player);
+    return bitfield && stick;
+}
 
 void func_800F80D8(u32 arg0) {
 	D_801354DC = arg0;
