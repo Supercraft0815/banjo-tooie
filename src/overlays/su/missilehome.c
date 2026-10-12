@@ -33,7 +33,18 @@ void sumissilehome_entrypoint_4(s32 arg0, s32 *arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/missilehome/sumissilehome_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/missilehome/func_80800178_sumissilehome.s")
+/* extern */
+
+void func_80800178_sumissilehome(void *arg0, void *arg1) {
+    f32 func_800EEF94(f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    volatile struct { f32 *vector; f32 length; } saved;
+
+    saved.length = func_800EEF94(saved.vector = (f32 *)((s8 *)arg0 + 0x28));
+    func_800EFB24(saved.vector, arg1, (s8 *)arg0 + 4);
+    func_800EF368(saved.vector, saved.length);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/missilehome/func_808001C8_sumissilehome.s")
 
