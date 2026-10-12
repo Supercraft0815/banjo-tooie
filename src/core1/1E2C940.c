@@ -5,7 +5,23 @@ extern s32 D_80078F88;
 extern s32 D_8007913C;
 extern OSMesgQueue D_80079010;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80014E10.s")
+s32 func_80014E10(s32 arg0, s32 arg1) {
+    extern s32 D_80078F70[];
+    void *temp_ptr;
+    s32 temp_v0;
+    s32 var_v1;
+
+    temp_ptr = heap_alloc_sided(arg1 + 0x40, 1);
+    temp_v0 = (s32) temp_ptr;
+    D_80078F70[arg0] = temp_v0;
+    var_v1 = temp_v0;
+    if (temp_v0 & 0x3F) {
+        do {
+            var_v1 += 1;
+        } while (var_v1 & 0x3F);
+    }
+    return var_v1;
+}
 
 void func_80014E6C(void) {
     s32 func_80014E10(s32, s32);
