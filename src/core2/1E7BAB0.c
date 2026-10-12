@@ -20,7 +20,14 @@ void func_800A22C8(s32 *arg0, s32 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BAB0/func_800A2314.s")
+/* extern */
+
+void func_800A2314(void *arg0, s32 *arg1) {
+    s32 sp1C[3];
+    func_800C87B8(sp1C);
+    func_800A22C8(sp1C, arg1);
+    func_800B38A8(*(s32 *)((u8 *)(*(u32 *)((u8 *)arg0 + 0xB4)) + 4), sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BAB0/func_800A235C.s")
 
