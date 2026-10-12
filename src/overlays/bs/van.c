@@ -2,10 +2,25 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80800000_bsvan.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80800064_bsvan.s")
+/* extern */
+
+struct player_state_s;
+
+s32 func_80800064_bsvan(struct player_state_s *arg0, s32 arg1) {
+    s32 _badrone_entrypoint_24(struct player_state_s *);
+    int bainput_should_enter_first_person(struct player_state_s *);
+    int bakey_pressed();
+    if (bainput_should_enter_first_person(arg0) != 0) {
+        arg1 = _badrone_entrypoint_24(arg0);
+    }
+    if (bakey_pressed(arg0, 8) != 0) {
+        arg1 = 0x115;
+    }
+    return arg1;
+}
 
 void func_808000BC_bsvan(u8 *arg0) {
-    s32 bakey_pressed(void *, s32);
+    int bakey_pressed(void *, s32);
     if (bakey_pressed(arg0, 9) != 0) {
         _bavan_entrypoint_1(arg0);
     }
