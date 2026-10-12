@@ -60,12 +60,18 @@ s32 func_800BDB9C(s32 arg0) {
     return result;
 }
 
-void func_800BDBC4()
+s32 func_800BDBC4(s32 arg0)
 {
-    func_800BDB9C(func_800BD97C());
+    return func_800BDB9C(func_800BD97C(arg0));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BDBEC.s")
+void func_800BDBEC(f32 *arg0) {
+    s32 pos[3];
+    pos[0] = (s32)arg0[0];
+    pos[1] = (s32)arg0[1];
+    pos[2] = (s32)arg0[2];
+    func_800BDBC4((s32)pos);
+}
 
 void * func_800BDC44(void) {
     extern u8 D_80128444;
