@@ -161,7 +161,20 @@ void func_80800668_gcmapDll(s32 arg0, u8 *arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapDll/gcmapDll_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapDll/gcmapDll_entrypoint_5.s")
+s16 gcmapDll_entrypoint_5(void) {
+    s32 func_800EA05C();
+    extern s16 D_80801BE8_gcmapDll[][2];
+    s32 map;
+    s32 index;
+
+    map = func_800EA05C();
+    for (index = 0; D_80801BE8_gcmapDll[index][0] != -1; index++) {
+        if (map == D_80801BE8_gcmapDll[index][0]) {
+            break;
+        }
+    }
+    return D_80801BE8_gcmapDll[index][1];
+}
 
 /* extern */
 
