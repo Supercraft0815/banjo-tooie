@@ -78,7 +78,26 @@ void baduo_entrypoint_12(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_16.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_17.s")
+/* extern */
+
+void baduo_entrypoint_17(void *arg0, s32 arg1) {
+    s32 bs_setState(s32, s32);
+    void func_8009C128(void *, f32[3]);
+    s32 func_800F452C(s32, s32);
+    s32 func_800F45B0(s32, s32, s32);
+    void *func_800F53D0(s32);
+    s32 func_800F6224(s32);
+    void *temp_v0;
+    void *sp28;
+    f32 sp1C[3];
+
+    func_8009C128(arg0, sp1C);
+    temp_v0 = func_800F53D0(func_800F6224((*(s32 *)((s8 *)(arg0) + (0x184)))));
+    sp28 = temp_v0;
+    func_800F452C((s32) temp_v0, arg1);
+    bs_setState((s32) sp28, 1);
+    func_800F45B0((s32) sp28, 2, (s32) sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_18.s")
 
