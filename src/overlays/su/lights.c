@@ -45,7 +45,16 @@ void sulights_entrypoint_1(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/sulights_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/sulights_entrypoint_3.s")
+/* extern */
+
+void sulights_entrypoint_3(s32 arg0, s32 arg1, s32 arg2) {
+    void func_800C883C(s32 arg0, void *arg1);
+    s32 sulights_entrypoint_2(s32, s32 *, s32, s32);
+    s32 sp18[2];
+
+    func_800C883C(arg0, &sp18);
+    sulights_entrypoint_2(arg0, &sp18, arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/sulights_entrypoint_4.s")
 
