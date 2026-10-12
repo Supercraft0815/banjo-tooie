@@ -2,7 +2,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC1AD0/func_800E81E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC1AD0/func_800E829C.s")
+void func_800E829C(void) {
+    extern s32 D_8012D600;
+    extern s32 D_8012D678;
+    int i;
+    int j;
+
+    for (j = 0; j < 2; j++) {
+        for (i = 0; i < 5; i++) {
+            *(s32 *)((s8 *)&D_8012D600 + j * 60 + i * 12 + 12) = 0;
+        }
+    }
+}
 
 void func_800E82EC(void) {
     void _chjiggygamenew_entrypoint_2(void);
