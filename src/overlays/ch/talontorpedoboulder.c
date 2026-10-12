@@ -30,4 +30,20 @@ s32 func_808001CC_chtalontorpedoboulder(u8 *arg0) {
     return temp_v1 + 0x3EF;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/talontorpedoboulder/func_808001F8_chtalontorpedoboulder.s")
+int func_808001F8_chtalontorpedoboulder(void *arg0) {
+    extern s16 D_80800314_chtalontorpedoboulder[][2];
+    extern s16 D_80800318_chtalontorpedoboulder[][2];
+    int index = 0;
+    int temp_v1;
+
+    temp_v1 = ((u32)*(u16 *)((u8 *)arg0 + 0x76) >> 7) - 0x32;
+loop_1:
+    if (temp_v1 == D_80800314_chtalontorpedoboulder[index][0]) {
+        return D_80800314_chtalontorpedoboulder[index][1];
+    }
+    index++;
+    if (D_80800318_chtalontorpedoboulder != &D_80800314_chtalontorpedoboulder[index]) {
+        goto loop_1;
+    }
+    return -1;
+}
