@@ -24,7 +24,17 @@ void func_800E8B3C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8B74.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8C08.s")
+void func_800E8C08(u8 arg0) {
+    s32 freelist_erase(s32, s32);
+    s32 freelist_free(s32);
+    s32 freelist_used_count(s32);
+    extern s32 D_8012D680;
+    freelist_erase(D_8012D680, arg0);
+    if (freelist_used_count(D_8012D680) == 0) {
+        freelist_free(D_8012D680);
+        D_8012D680 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8C58.s")
 
