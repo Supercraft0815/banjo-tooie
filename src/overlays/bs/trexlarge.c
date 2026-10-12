@@ -233,7 +233,19 @@ s32 bstrexlarge_entrypoint_11(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80801110_bstrexlarge.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_808011A8_bstrexlarge.s")
+s32 func_808011A8_bstrexlarge(PlayerState *arg0) {
+    void func_8009E55C(PlayerState *, s32, f32);
+    s32 _bamotor_entrypoint_2(PlayerState *, s32, s32, s32);
+    s32 func_800E144C(s32, s32);
+    s32 temp_a2;
+
+    temp_a2 = arg0->unk160.word;
+    if (temp_a2 != -1) {
+        func_800E144C(temp_a2, 0x3F5C28F6);
+    }
+    func_8009E55C(arg0, 2, 0.0f);
+    return _bamotor_entrypoint_2(arg0, 0x3F800000, 0x3DCCCCCD, 0x3F000000);
+}
 
 /* extern */
 
