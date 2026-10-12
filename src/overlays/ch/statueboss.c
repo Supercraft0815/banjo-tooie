@@ -53,7 +53,16 @@ OSThread *chstatueboss_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801804_chstatueboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801A6C_chstatueboss.s")
+void func_80801A6C_chstatueboss(Actor *arg0, f32 arg1) {
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void func_80018820(s32, f32, f32);
+    s32 func_800E15CC(s32, f32, f32);
+    extern u32 D_80802790_chstatueboss;
+    if (_subaddieaudioquick_entrypoint_3(arg0, (f32 *) ((u8 *) arg0 + 4), &D_80802790_chstatueboss, arg1) != 0) {
+        func_800E15CC(0, 20.0f, 0.8f);
+        func_80018820(0, 3.0f, 0.25f);
+    }
+}
 
 void func_80801AC4_chstatueboss(s32 arg0, s32 arg1) {
     s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
