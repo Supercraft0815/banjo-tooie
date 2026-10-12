@@ -1,6 +1,17 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/zone/glzone_entrypoint_0.s")
+/* extern */
+
+u8 *glzone_entrypoint_0(u8 *arg0) {
+    void glzone_entrypoint_2(u8 *);
+    void *heap_alloc(s32);
+    u8 *temp_v0;
+
+    temp_v0 = heap_alloc(*arg0 + 1);
+    *temp_v0 = *arg0;
+    glzone_entrypoint_2(temp_v0);
+    return temp_v0;
+}
 
 void glzone_entrypoint_1(void* arg0) 
 {
