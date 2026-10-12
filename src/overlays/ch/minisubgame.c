@@ -18,7 +18,19 @@ OSThread *chminisubgame_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/func_808000C8_chminisubgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/func_80800430_chminisubgame.s")
+void func_80800430_chminisubgame(Actor *arg0) {
+    s32 _susubgame_entrypoint_11(s32);
+    s32 _susubgame_entrypoint_2(void *, s32);
+    s32 _susubgame_entrypoint_4(void *, s32);
+    void* func_80100094(Actor*, u32);
+    u8 *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    _susubgame_entrypoint_11(0);
+    if (_susubgame_entrypoint_2(arg0, (s32) (sp1C + 0x30C)) != 0) {
+        _susubgame_entrypoint_4(arg0, (s32) (sp1C + 0x30C));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/func_80800484_chminisubgame.s")
 
