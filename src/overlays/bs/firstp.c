@@ -411,7 +411,19 @@ void func_80801B0C_bsfirstp(s32 arg0, s32 *arg1, s32 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80801C74_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80801D30_bsfirstp.s")
+/* extern */
+
+void func_80801D30_bsfirstp(void *arg0) {
+    s32 _baeggcursor_entrypoint_7(void *, s32);
+    void func_80802438_bsfirstp(void *, s32);
+    register void *temp_v0;
+
+    temp_v0 = *(void **)((u8 *)arg0 + 392);
+    *(s32 *)((u8 *)temp_v0 + 168) = 1;
+    *(s32 *)((u8 *)temp_v0 + 176) = 0;
+    _baeggcursor_entrypoint_7(arg0, 1);
+    func_80802438_bsfirstp(arg0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80801D70_bsfirstp.s")
 
