@@ -1,6 +1,15 @@
 #include "ch/factory/linkgrill.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/linkgrill/func_80800000_chfactorylinkgrill.s")
+/* extern */
+
+void func_80800000_chfactorylinkgrill(Actor *arg0) {
+    s32 _gccubesearch_entrypoint_10(s32, u32, Actor *);
+
+    arg0->unk79_4 = _gccubesearch_entrypoint_10(0x3E8, arg0->pad6C_21, arg0);
+    if (func_800DA298(arg0->unk79_4 + 0x1C0) != 0) {
+        func_800FFAB0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/linkgrill/func_8080006C_chfactorylinkgrill.s")
 
