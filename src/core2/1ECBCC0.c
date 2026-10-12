@@ -57,7 +57,16 @@ void func_800F27D4(float lmf[4][4], float rmf[4][4], float dst[4][4]) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F293C.s")
+void func_800F293C(f32 arg0[4][4], f32 arg1[4][4]) {
+    s32 i;
+    s32 j;
+
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 4; j++) {
+            arg0[i][j] = arg1[i][j];
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F2984.s")
 
