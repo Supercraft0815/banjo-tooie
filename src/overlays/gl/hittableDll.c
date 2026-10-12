@@ -35,7 +35,13 @@ s32 glhittableDll_entrypoint_6(s32 arg0) {
            ((u32)(table->entries[arg0 & 0xFFFF] << 20) >> 30);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/hittableDll/glhittableDll_entrypoint_7.s")
+s32 glhittableDll_entrypoint_7(s32 arg0) {
+    HitTable *table;
+
+    table = &D_80800530_glhittableDll[(arg0 >> 16) & 0xFFFF];
+    return ((u32)(table->header[1] << 22) >> 29) |
+           ((u32)(table->entries[arg0 & 0xFFFF] << 22) >> 29);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/hittableDll/glhittableDll_entrypoint_8.s")
 
