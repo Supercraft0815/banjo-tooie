@@ -4,7 +4,7 @@
 
 void glglobalsettings_entrypoint_0(void) {
     s32 glglobalsettings_entrypoint_4(s32);
-    s32 glglobalsettings_entrypoint_6(s32, s32);
+    void glglobalsettings_entrypoint_6(s32, s32);
     s32 glglobalsettings_entrypoint_8(s32);
     glglobalsettings_entrypoint_4(0);
     glglobalsettings_entrypoint_6(0, 0);
@@ -89,7 +89,17 @@ void glglobalsettings_entrypoint_5(s32 *arg0, s32 *arg1) {
     *arg1 = func_800DA564(GFLAG_BC0_SCREEN_ALIGN_Y_1, 6) - 0x28;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/glglobalsettings_entrypoint_6.s")
+void glglobalsettings_entrypoint_6(s32 arg0, s32 arg1) {
+    s32 func_80015670();
+    void func_800DA7A8(GameFlag startIndex, s32 set, s32 length);
+    func_80015670();
+    arg0 += 0x20;
+    arg1 += 0x28;
+    arg0 = arg0 < 0x40 ? arg0 : 0x3F;
+    arg1 = arg1 < 0x40 ? arg1 : 0x3F;
+    func_800DA7A8(GFLAG_BBA_SCREEN_ALIGN_X_1, arg0, 6);
+    func_800DA7A8(GFLAG_BC0_SCREEN_ALIGN_Y_1, arg1, 6);
+}
 
 void glglobalsettings_entrypoint_7(void) {
     func_800DA564(0xBC6, 2);
