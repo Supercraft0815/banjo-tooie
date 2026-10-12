@@ -26,4 +26,14 @@ u8 gcegg_entrypoint_5(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/egg/gcegg_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/egg/gcegg_entrypoint_7.s")
+int gcegg_entrypoint_7(s32 arg0) {
+    s32 func_800D3948(void);
+    extern u8 D_8080020B_gcegg[];
+    if (func_800D3948() == 0) {
+        return 1;
+    }
+    {
+        u8 result = D_8080020B_gcegg[arg0 * 14];
+        return result;
+    }
+}
