@@ -298,6 +298,27 @@ def untried_candidates(root, function, state, source=None):
             yield origin, code
 
 
+def quirk_candidates(root, function, original, state):
+    """Untested mechanical IDO-quirk rewrites of the best candidate: (origin, source, key)."""
+    from .local_tools import quirk_variants
+    from .repairs import guard_candidate
+    if not function['best_source'] or not function['best_run']:
+        return
+    try:
+        comparison = json.loads((root/'.decomp-agent/runs'/function['best_run']/'comparison.json').read_text())
+        code = guard_candidate(original, function['best_source'].decode(), function['symbol'])
+    except (HarnessError, OSError, ValueError, UnicodeError):
+        return
+    tried = {r[0] for r in state.db.execute('SELECT candidate_sha FROM local_trials WHERE function_id=?', (function['id'],))}
+    for origin, variant in quirk_variants(code, function['symbol'], comparison):
+        try:
+            candidate = candidate_source(original, function['symbol'], variant)
+        except HarnessError:
+            continue
+        if (key := trial_key(candidate, function)) not in tried:
+            yield origin, candidate, key
+
+
 def m2c_key(function, source):
     """m2c output depends on the ASM and on the file context (earlier matches change it)."""
     return 'm2c:' + hashlib.sha256(f"{function['asm_sha']}:{hashlib.sha256(source.encode()).hexdigest()}".encode()).hexdigest()
@@ -323,6 +344,7 @@ def local_plan(root, state, difficulty=None, function=None, m2c=False):
             sources[f['source']] = (root/f['source']).read_text()
         source = sources[f['source']]
         choices = list(untried_candidates(root, f, state, source))
+        quirks = [origin for origin, _, _ in quirk_candidates(root, f, source, state)]
         translate = m2c and f['best_source'] is None and state.db.execute(
             'SELECT 1 FROM local_trials WHERE function_id=? AND candidate_sha=?', (f['id'], m2c_key(f, source))).fetchone() is None
         # Full candidate/manifest checks still happen in resume_candidate before use.
@@ -334,10 +356,10 @@ def local_plan(root, state, difficulty=None, function=None, m2c=False):
             from .repairs import repair_scope, recheck_key
             key = recheck_key(f, source.encode(), repair_scope(root, f))
             resume |= state.db.execute('SELECT 1 FROM local_trials WHERE function_id=? AND candidate_sha=?', (f['id'], key)).fetchone() is None
-        if choices or resume or translate:
+        if choices or resume or translate or quirks:
             found.append({'function': f['id'], 'source': f['source'], 'symbol': f['symbol'],
                           'dependencies': f['dependencies'], 'candidates': len(choices),
-                          'origins': [c[0] for c in choices] + (['m2c'] if translate else []), 'resume': resume})
+                          'origins': [c[0] for c in choices] + (['m2c'] if translate else []) + quirks, 'resume': resume})
     return {'scanned_functions': scanned, 'eligible_functions': len(found), 'plan': found}
 
 

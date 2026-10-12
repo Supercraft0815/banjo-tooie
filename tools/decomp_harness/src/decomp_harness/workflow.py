@@ -29,7 +29,7 @@ from .repairs import repair_scope, guard_candidate, save_support, load_support, 
 from .scanner import scan
 from .scheduler import advance, next_function, route, resources
 from .state import State
-from .patterns import untried_candidates, candidate_source, local_plan, m2c_key, trial_key, remember, seed_matches, refresh_solutions
+from .patterns import untried_candidates, candidate_source, local_plan, m2c_key, quirk_candidates, trial_key, remember, seed_matches, refresh_solutions
 
 
 def new_run(root, prefix):
@@ -416,7 +416,7 @@ class Loop:
         if self.try_local(self.state.get(identity), target):
             self.count_match(local=True)
             return True
-        if self.try_m2c(target) or self.try_permuter(target):
+        if self.try_m2c(target) or self.try_quirks(target) or self.try_permuter(target):
             self.count_match(local=True)
             return True
         return False
@@ -579,6 +579,22 @@ class Loop:
             with self.state.db:
                 self.state.db.execute('INSERT OR REPLACE INTO local_trials VALUES (?,?,?)', (function['id'], marker, 'm2c-done'))
         return matched
+
+    def try_quirks(self, target):
+        """Mechanical IDO-quirk rewrites of the best candidate, chosen from its saved diff."""
+        for _ in range(3):  # A fixed frame can expose a scheduling difference, and so on.
+            function = self.state.get(target.function['id'])
+            if self.control.stopped():
+                return False
+            for origin, candidate, key in list(quirk_candidates(self.root, function, target.original.decode(), self.state)):
+                outcome = self.local_trial(function, target, origin, candidate, key)
+                if outcome == 'matched':
+                    return True
+                if outcome == 'stop':
+                    return False
+            if self.state.get(function['id'])['best_run'] == function['best_run']:
+                return False
+        return False
 
     def try_permuter(self, target):
         """Token-free search on a near miss before more model escalation."""

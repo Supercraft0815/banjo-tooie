@@ -151,7 +151,9 @@ class CodexRunner:
 
     def argv(self, cwd, model, effort, output, schema=None, read_only=False):
         shell_env = ('shell_environment_policy.set={PATH='+json.dumps(self.env.get('PATH', '/usr/bin:/bin'))+
-                     ',TMPDIR='+json.dumps(str(cwd/'build/tmp'))+',PYTHONDONTWRITEBYTECODE="1"}')
+                     ',TMPDIR='+json.dumps(str(cwd/'build/tmp'))+
+                     # zsh puts here-documents under TMPPREFIX (default /tmp/zsh), not TMPDIR.
+                     ',TMPPREFIX='+json.dumps(str(cwd/'build/tmp/zsh'))+',PYTHONDONTWRITEBYTECODE="1"}')
         args = [self.executable, '--no-daemon', 'exec', '--ignore-user-config', '--ignore-rules',
                 '--ephemeral', '--skip-git-repo-check', '--json', '--color', 'never',
                 '--sandbox', 'read-only' if read_only else 'workspace-write', '--cd', str(cwd),

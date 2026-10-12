@@ -181,7 +181,11 @@ class CompileService(threading.Thread):
                     'plausible': all(c['different_instructions'] == 0 or c['relocation_only'] for c in comparisons)}
         save_json(cache, feedback)
         self.record(number, candidate, support, feedback)
-        return feedback['reply'] + f'\n[{self.limit - self.count} compile requests left in this session]'
+        left = self.limit - self.count
+        if feedback['plausible'] or not left:
+            return feedback['reply'] + f'\n[{left} compile requests left in this session]'
+        return (feedback['reply'] + f'\n[Not matched; {left} compile requests left. Do not finish yet: '
+                'check the diff against the IDO quirk list and compile a different hypothesis.]')
 
     def record(self, number, candidate, support, feedback):
         save_json(self.directory/f'compile-{number}.json', feedback)

@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import shutil
 import tempfile
+import unittest
 from contextlib import redirect_stdout
 from types import SimpleNamespace
 from unittest.mock import patch
@@ -255,3 +256,44 @@ class BuildCacheTests(Fixture):
             self.assertFalse(warm, name)
             self.clean_work()
             injected.unlink()
+
+
+class QuirkVariantTests(unittest.TestCase):
+    """Variants follow from the saved diff; each is only a candidate for the compiler."""
+    CODE = 's32 target(s32 *arg0) {\n    s32 value;\n\n    value = arg0[1];\n    return other(value);\n}'
+
+    @staticmethod
+    def diff(expected, actual):
+        return {'diffs': [{'expected': [{'asm': a} for a in expected], 'actual': [{'asm': a} for a in actual]}]}
+
+    def variants(self, expected, actual, code=None):
+        from decomp_harness.local_tools import quirk_variants
+        return dict(quirk_variants(code or self.CODE, 'target', self.diff(expected, actual)))
+
+    def test_reordered_instructions_try_the_one_line_layout(self):
+        got = self.variants(['move a0,a1', 'sw ra,20(sp)'], ['sw ra,20(sp)', 'move a0,a1'])
+        self.assertEqual(got, {'quirk:one-line': 's32 target(s32 *arg0) { s32 value; value = arg0[1]; return other(value); }'})
+
+    def test_extra_result_move_tries_int_and_small_frame_tries_padding(self):
+        got = self.variants(['addiu sp,sp,-40'], ['addiu sp,sp,-32', 'move v0,v1'])
+        self.assertTrue(got['quirk:int-return'].startswith('int target('))
+        self.assertIn('{\n    s32 pad[2];\n    s32 value;', got['quirk:pad2-first'])
+        self.assertIn('s32 value;\n    s32 pad[2];\n\n', got['quirk:pad2-last'])
+        self.assertIn('s32 pad;', got['quirk:pad1-first'])
+
+    def test_m2c_scalar_buffer_and_hex_float_arguments_are_retyped(self):
+        code = ('void target(u8 *arg0) {\n    s32 set(s32 *, s32, s32);\n    s32 unknown();\n    s32 sp2C;\n\n'
+                '    set(&sp2C, 0, 0x42200000);\n    unknown(0x3F800000);\n}')
+        got = self.variants(['addiu sp,sp,-48'], ['addiu sp,sp,-40'], code)
+        self.assertIn('s32 sp2C[3];\n\n    set(sp2C, 0, 0x42200000);', got['quirk:array3-sp2C'])
+        self.assertIn('s32 set(s32 *, s32, f32);', got['quirk:float-args'])
+        self.assertIn('set(&sp2C, 0, 40.0f);', got['quirk:float-args'])
+        self.assertIn('s32 set(s32 *, f32, f32);', got['quirk:float-args-zero'])
+        self.assertIn('set(&sp2C, 0.0f, 40.0f);', got['quirk:float-args-zero'])
+        # An unprototyped callee would promote the float to double: left alone.
+        self.assertIn('unknown(0x3F800000);', got['quirk:float-args-zero'])
+
+    def test_unrelated_differences_produce_nothing(self):
+        self.assertEqual(self.variants(['lw v0,0(a0)'], ['lh v0,0(a0)']), {})
+        self.assertEqual(self.variants(['addiu sp,sp,-32'], ['addiu sp,sp,-40']), {})
+

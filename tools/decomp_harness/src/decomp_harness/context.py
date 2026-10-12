@@ -69,6 +69,8 @@ IDO_QUIRKS = """\
 - `srl` vs `sra` on a u16/u8 field: the field promotes to signed int, cast `(u32)field >> n`.
 - `b` to the next instruction before the epilogue: `if (c) { ...; ret = 1; } else { return f(); } return ret;`.
 - An argument reloaded from its stack home (`lw a3,40(sp)`) although still in a register: declare that parameter `volatile` or take its address.
+- `li a1,0` expected where you emit `move a1,zero`: the argument is the float 0.0f passed in an integer register. Hex words such as 0x3F800000 / 0x42200000 as call arguments are floats (1.0f / 40.0f): give the callee f32 parameters and pass float literals.
+- Frame 8-24 bytes too small, or `addiu reg,sp,N` off by 4/8, with a local that is only passed by address: that local is an array (`f32 sp30[3]`), not a scalar; try that before unused `s32 pad;` locals.
 - Loop body repeated 4x with `addiu reg,reg,4*size` and 0-3 peeled stores in front: a plain `for (i = 0; i < N; i++)` that IDO unrolled; do not unroll by hand.
 - beqzl/bnezl vs beqz/bnez+nop: swap the if/else arms or invert the condition; `if (!c) return;` and `if (c) {...}` schedule differently.
 """
@@ -103,6 +105,26 @@ def solved_neighbours(root, function, asm, state, limit=3):
         entries.append(f'{symbol} (matched, opcode similarity {ratio:.2f}; keep its line layout):\n{replacement[:700]}\n'
                        + ''.join(f'  note: {n[:300]}\n' for n in notes[:3]))
     return '\n'.join(entries)
+
+
+def struct_members(root, names, asm, limit=2200):
+    """Members of the named structs at the offsets the target ASM accesses. The headers
+    carry `/* 0x64 */` offset comments; bitfields share the offset of their word."""
+    touched = {int(m[1], 16) & ~3 for m in re.finditer(r'\b0x([0-9A-Fa-f]+)\(\$(?!sp\b)', asm)}
+    touched |= {0} if re.search(r'[ ,]\(\$(?!sp\b)', asm) else set()
+    entries = []
+    for name in sorted(set(names))[:6]:
+        found = command(['rg', '-l', '-e', rf'^\}}\s*{re.escape(name)}\s*;', str(root/'include')], timeout=30, check=False)
+        for header in found.stdout.decode(errors='replace').split('\n')[:1]:
+            if not header:
+                continue
+            body = re.search(rf'typedef\s+struct\b[^{{;]*\{{((?:[^{{}}]|\{{[^{{}}]*\}})*)\}}\s*{re.escape(name)}\s*;',
+                             Path(header).read_text(errors='replace'))
+            lines = [l.strip() for l in body[1].splitlines() if (m := re.search(r'/\*\s*0x([0-9A-Fa-f]+)\s*\*/', l))
+                     and int(m[1], 16) & ~3 in touched] if body else []
+            if lines:
+                entries.append(f'{name} ({Path(header).relative_to(root).as_posix()}):\n' + '\n'.join(lines))
+    return '\n'.join(entries)[:limit]
 
 
 def excerpts(root: Path, terms, folders, limit=5000):
@@ -189,6 +211,7 @@ def context_pack(root, function, state, config, budget=None, shared=True, draft=
     types = re.findall(r'\b(?:struct\s+)?([A-Z][A-Za-z0-9_]*(?:State|Info|Actor|Data|Struct))\b', neighbors+related)
     type_info = excerpts(root, types, ('include',), 2500 if shared else 1000)
     asm = (root/function['asm']).read_text()
+    members = struct_members(root, types, asm) if shared else ''
     bk = analogue = ''
     if config['banjo_kazooie_repo']:
         bkroot = Path(config['banjo_kazooie_repo']).expanduser().resolve()
@@ -232,6 +255,8 @@ def context_pack(root, function, state, config, budget=None, shared=True, draft=
             f"Recent attempts: {json.dumps(history)}\nPrevious diff: {previous}\n"
             f"IDO quirks verified in this repo (check the diff against these first):\n{notes}\n"
             f"Failed attempts (newest first):\n{failed_attempts(root, history)}\n"
+            + (f"Struct members at the offsets this ASM touches (use the member, never a raw offset cast;\n"
+               f"a `: n` member is a bitfield and needs a bitfield read/write to match):\n{members}\n" if members else '')
             + (f"Includes:\n{includes}\n" if shared else '') +
             f"Declarations verified in matched code (reuse; declare inside the function if needed):\n{declared}\n"
             f"Neighbor context:\n{neighbors[:3500]}\nLocal symbol/prototype/pattern hits:\n{related}\n"

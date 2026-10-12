@@ -9,6 +9,7 @@ import hashlib
 from pathlib import Path
 import re
 import shutil
+import struct
 import uuid
 
 from .common import atomic_write, command, digest
@@ -114,6 +115,120 @@ def m2c_candidates(draft, symbol):
         return []
     variant = re.sub(r'\bvoid(\s*\*)', r'u8\1', code)
     return [code] if variant == code else [code, variant]
+
+
+def float_literal(text):
+    """C literal for a hex word that is plausibly a float constant (m2c prints the bits
+    when it does not know that the callee takes a float), else None."""
+    if not re.fullmatch(r'0x[0-9A-Fa-f]{8}U?', text):
+        return None
+    word = int(text.rstrip('U'), 16)
+    if not 100 <= (word >> 23 & 0xFF) <= 150 or word & 0xFFF:
+        return None
+    value = repr(struct.unpack('>f', word.to_bytes(4, 'big'))[0])  # exact: at most 12 mantissa bits
+    return None if 'e' in value else value + 'f'
+
+
+def calls(code):
+    """(name, offset, [(start, end) of each top-level argument]) for every `name(...)`."""
+    for match in re.finditer(r'\b(\w+)\(', code):
+        depth, start, spans = 1, match.end(), []
+        for index in range(match.end(), len(code)):
+            char = code[index]
+            depth += (char in '([') - (char in ')]')
+            if depth == 0 or char == ',' and depth == 1:
+                spans.append((start, index))
+                start = index + 1
+            if depth == 0:
+                yield match[1], match.start(), spans
+                break
+
+
+def float_arguments(body, zeros=False):
+    """Pass float-looking hex words as floats to callees prototyped inside the body.
+    With `zeros`, a literal 0 passed to such a callee is 0.0f as well (`li aN,0`)."""
+    found = list(calls(body))
+    declared = lambda at: re.fullmatch(r'\s*(?!return\b)(?:\w+\s+)*\w+[\s*]+', body[body.rfind('\n', 0, at)+1:at]) is not None
+    text = lambda span: body[span[0]:span[1]].strip()
+    wanted = {}
+    for name, at, spans in found:
+        if not declared(at):
+            for position, span in enumerate(spans):
+                if float_literal(text(span)):
+                    wanted.setdefault(name, set()).add(position)
+    if zeros:
+        for name, at, spans in found:
+            if name in wanted and not declared(at):
+                wanted[name] |= {position for position, span in enumerate(spans) if text(span) == '0'}
+    edits = []
+    for name, positions in wanted.items():
+        prototypes = [spans for other, at, spans in found if other == name and declared(at)]
+        # Without a prototype in reach the float would be promoted to double.
+        if len(prototypes) != 1 or len(prototypes[0]) <= max(positions) or not text(prototypes[0][0]):
+            continue
+        edits += [(*prototypes[0][position], 'f32') for position in positions]
+        for other, at, spans in found:
+            if other == name and not declared(at):
+                for position in positions & set(range(len(spans))):
+                    literal = float_literal(text(spans[position])) or ('0.0f' if text(spans[position]) == '0' else None)
+                    if literal:
+                        edits.append((*spans[position], literal))
+    if not edits:
+        return None
+    for a, b, new in sorted(edits, reverse=True):
+        body = body[:a] + body[a:b].replace(body[a:b].strip(), new) + body[b:]
+    return body
+
+
+def quirk_variants(code, symbol, comparison):
+    """Mechanical rewrites of a near miss for IDO quirks that its diff points at.
+
+    Yields (origin, code). Cheap to compile and rarely guessed by a model:
+    line layout (instruction scheduling), `int` instead of `s32` (result register),
+    float arguments m2c printed as hex words, and a too small frame (a buffer typed
+    as a scalar, or unused stack padding)."""
+    body = extract_function(code, symbol)
+    diffs = comparison.get('diffs') or []
+    expected = [row['asm'] for d in diffs for row in d.get('expected', [])]
+    actual = [row['asm'] for d in diffs for row in d.get('actual', [])]
+    if not body or not expected + actual:
+        return
+    put = lambda new: code.replace(body, new, 1)
+    if sorted(expected) == sorted(actual) and not re.search(r'//|#|"', body):
+        flat = ' '.join(body.split())
+        if flat != body:
+            yield 'quirk:one-line', put(flat)
+    if 'move v0,v1' in actual and 'move v0,v1' not in expected:
+        retyped = re.sub(r'^s32(\s+'+re.escape(symbol)+r'\s*\()', r'int\1', body, count=1)
+        if retyped != body:
+            yield 'quirk:int-return', put(retyped)
+    for origin, zeros in (('quirk:float-args', False), ('quirk:float-args-zero', True)):
+        floats = float_arguments(body, zeros)
+        if floats and (not zeros or floats != float_arguments(body)):
+            yield origin, put(floats)
+    frames = [[int(m[1]) for a in rows for m in [re.match(r'addiu sp,sp,-(\d+)$', a)] if m] for rows in (expected, actual)]
+    if all(frames) and 0 < (missing := frames[0][0] - frames[1][0]) <= 24:
+        # m2c types a buffer that is only passed by address as one scalar.
+        buffers = False
+        for local in list(re.finditer(r'^([ \t]*\w+) (sp[0-9A-F]+);$', body, re.M))[:3]:
+            uses = re.findall(rf'(&?)\b{local[2]}\b', body)
+            if uses.count('') != 1 or '&' not in uses:
+                continue
+            for words in (missing//4 + 1, missing//4):
+                if words > 1:
+                    buffers = True
+                    grown = body.replace(local[0], f'{local[1]} {local[2]}[{words}];', 1)
+                    yield f'quirk:array{words}-{local[2]}', put(re.sub(rf'&{local[2]}\b', local[2], grown))
+        name = next(n for n in ('pad', 'pad_', 'stack_pad') if not re.search(rf'\b{n}\b', body))
+        brace = body.index('{') + 1
+        blank = body.find('\n\n', brace)  # m2c and most workers end the declarations with a blank line
+        for words in dict.fromkeys((missing//4, missing//4 - 1)):
+            if words < 1 or buffers:  # Padding would hide the frame difference that points at the buffer.
+                continue
+            pad = f'\n    s32 {name}[{words}];' if words > 1 else f'\n    s32 {name};'
+            yield f'quirk:pad{words}-first', put(body[:brace] + pad + body[brace:])
+            if blank > 0:
+                yield f'quirk:pad{words}-last', put(body[:blank] + pad + body[blank:])
 
 
 def run_permuter(builder, workspace: Path, function, candidate: bytes, original: bytes,
