@@ -158,7 +158,19 @@ void func_8080032C_chfog(f32 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fog/func_808009F0_chfog.s")
+s32 func_808009F0_chfog(Actor *arg0, s32 arg1, s32 arg2) {
+    void _subaddiefade_entrypoint_3(Actor*);
+    s32 func_800CF494();
+    switch (arg1) {
+    case 0x4F:
+        _subaddiefade_entrypoint_3(arg0);
+        func_800CF494();
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 OSThread *chfog_entrypoint_0(void)
 {
