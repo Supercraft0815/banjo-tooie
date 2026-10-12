@@ -60,7 +60,7 @@ void func_800B7448(Gfx **arg0) {
     void func_800B62CC(Gfx **, u8, f32 *, f32 *, f32);
     void func_800B7174(u8 *);
     s32 func_800B71F4(Gfx **, u8 *);
-    s32 func_800B7A98();
+    void func_800B7A98(void);
     s32 func_800D35BC(u32);
     s32 func_800D3724(u32);
     s32 func_800E7188(u8 *);
@@ -134,7 +134,17 @@ void func_800B7448(Gfx **arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B798C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B7A98.s")
+void func_800B7A98(void) {
+    extern s32 D_80128180;
+    u8 *ptr = (u8 *)&D_80128180;
+    ptr[12] = ptr[13] = ptr[14] = ptr[15] = 0xFF;
+    ptr[19] = 0;
+    ptr[16] = ptr[19];
+    ptr[18] = ptr[16];
+    ptr[17] = 0;
+    *(s16 *)(ptr + 20) = -0x7FFF;
+    *(f32 *)(ptr + 24) = 1.0f;
+}
 
 void func_800B7ADC(s32 arg0) {
     extern s8 D_8012818F;
