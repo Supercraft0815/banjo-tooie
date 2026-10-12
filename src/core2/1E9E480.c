@@ -10,7 +10,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C5094.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C5148.s")
+/* extern */
+
+void func_800C5148(s32 arg0, f32 arg1) {
+    extern f32 D_8012A9F0[];
+    s32 func_800C5094(s32, f32);
+    D_8012A9F0[arg0] = arg1;
+    func_800C5094(arg0, arg1);
+}
 
 f32 func_800C517C(s32 arg0) {
     extern f32 D_8012A9F0[];
