@@ -255,7 +255,15 @@ s16 func_800CF640(void) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF67C.s")
+/* extern */
+
+f32 func_800CF67C(void) {
+    f32 func_800CEF00(s32);
+    f32 sp18[2];
+
+    sp18[0] = func_800CEA60(1);
+    return sp18[0] / func_800CEF00(func_800CF640());
+}
 
 void func_800CF6B0()
 {
