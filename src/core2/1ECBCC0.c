@@ -196,7 +196,16 @@ void func_800F31FC(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F3214.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F32D4.s")
+void func_800F32D4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4) {
+    void func_800F3214(s32, s32, s32, f32);
+    f32 ratio;
+
+    ratio = arg3 / arg4;
+    if (ratio > 1.0f) {
+        ratio = 1.0f;
+    }
+    func_800F3214(arg0, arg1, arg2, ratio);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F3320.s")
 
