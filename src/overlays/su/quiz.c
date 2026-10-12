@@ -124,7 +124,15 @@ s8 suquiz_entrypoint_15(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_16.s")
+int suquiz_entrypoint_16(void) {
+    extern void *D_80127614;
+
+    if (func_800DA298(FLAG2_6B6_UNK) != 0) {
+        return (*(f32 *)((s8 *)D_80127614 + 0x20)) <= 0.0f;
+    } else {
+        return 1;
+    }
+}
 
 s32 suquiz_entrypoint_17()
 {
