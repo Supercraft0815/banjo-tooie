@@ -1,6 +1,21 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/thread/gzthread_entrypoint_0.s")
+void gzthread_entrypoint_0(s32 arg0, char *arg1) {
+    extern u8 *D_80800380_gzthread[];
+    u8 *temp_v0;
+    u8 c;
+
+    temp_v0 = D_80800380_gzthread[arg0];
+    arg1++;
+    c = *temp_v0++;
+    arg1[-1] = c;
+    while (c != 0) {
+        c = *temp_v0;
+        arg1++;
+        temp_v0++;
+        arg1[-1] = c;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/thread/R_808002B0_gzthread.s")
 
