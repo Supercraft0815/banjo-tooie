@@ -25,7 +25,16 @@ void basudie_entrypoint_1(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sudie/basudie_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sudie/basudie_entrypoint_5.s")
+/* extern */
+
+void basudie_entrypoint_5(u8 *arg0) {
+    s32 _batimer_decrement(void *, s32);
+    void func_8009D3A8(void *, s32);
+    func_8009D3A8(arg0, 0);
+    if (_batimer_decrement(arg0, 9) != 0) {
+        basudie_entrypoint_0(arg0);
+    }
+}
 
 /* extern */
 
