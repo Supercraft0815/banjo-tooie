@@ -102,7 +102,7 @@ void func_800123BC(void) {
 
 /* extern */
 
-void func_800124EC(s32 arg0) {
+void func_800124EC(void *arg0) {
     s32 func_80012214();
     s32 func_800123F4();
     func_80012214();
@@ -128,7 +128,11 @@ void func_8001253C(s32 arg0)
     D_800459CC = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E29B60/func_80012548.s")
+void func_80012548(void) {
+    extern u8 D_80045788[];
+    extern __OSThreadOddFpStorage D_80045938;
+    func_8001DD28((OSThread *)D_80045788, &D_80045938, 6, func_800124EC, 0, (u8 *)&D_80043388 + 0x2400, 0x14);
+}
 
 OSThread *func_80012598(void)
 {
