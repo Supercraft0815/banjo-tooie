@@ -231,7 +231,19 @@ s32 func_80110EFC(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110F44.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110FCC.s")
+/* extern */
+
+s32 *func_80110FCC(s32 *arg0, s32 arg1) {
+    s32 *original;
+
+    original = arg0;
+    arg0 = defrag(arg0);
+    if (original != arg0) {
+        func_80110280(arg0);
+    }
+    arg0[25] = arg1;
+    return arg0;
+}
 
 void func_80111018(s32 arg0, s32 arg1) {
     s32 _ncba1p_entrypoint_1(s32);
