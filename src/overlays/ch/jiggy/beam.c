@@ -13,7 +13,16 @@ void func_8080000C_chjiggybeam(void *arg0) {
 void func_8080001C_chjiggybeam(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/beam/func_80800024_chjiggybeam.s")
+/* extern */
+
+void func_80800024_chjiggybeam(Actor *arg0, void *arg1) {
+    void func_800E3A58(f32 *);
+    void func_80101870(Actor *, void *);
+    f32 sp1C[3];
+
+    func_800E3A58(sp1C);
+    func_80101870(arg0, arg1);
+}
 
 s32 func_80800058_chjiggybeam(s32 arg0, u32 arg1, u32 arg2) {
     return 0;
