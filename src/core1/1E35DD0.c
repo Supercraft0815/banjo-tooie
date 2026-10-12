@@ -42,7 +42,14 @@ void func_8001E380()
     func_8001E2A0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E35DD0/func_8001E3A0.s")
+void func_8001E3A0(void) {
+    extern s32 D_8007E948;
+    s32 func_8001211C(void);
+    s32 func_8001D37C(s32 *, s32, s32);
+    extern s32 D_800418A8;
+    func_8001D37C(&D_800418A8, func_8001211C(), D_8007E948);
+    func_8001E2A0();
+}
 
 void func_8001E3E0(void) {
     s32 func_8001211C(void);
