@@ -5,7 +5,15 @@ void func_8001E2A0()
     func_8001DA60(func_80014F00());
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E35DD0/func_8001E2C8.s")
+void func_8001E2C8(void) {
+    extern s32 D_8007E950;
+    s32 func_8001D37C();
+    s32 func_8001D96C();
+    extern s32 D_80041840;
+    func_8001D96C();
+    func_8001D37C(&D_80041840, D_8007E950);
+    func_8001E2A0();
+}
 
 void func_8001E304(void) {
     s32 _gzreg_entrypoint_1();
