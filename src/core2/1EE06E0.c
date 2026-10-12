@@ -124,7 +124,18 @@ s32 func_801078AC(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107A80.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107B70.s")
+s32 func_80107B70(s32 arg0, f32 *arg1) {
+    void func_800EE88C(f32 dst[3], s16 src[3]);
+    void *func_80106F30();
+    u8 *temp_v0;
+
+    temp_v0 = func_80106F30(arg0);
+    if (temp_v0 == NULL) {
+        return 0;
+    }
+    func_800EE88C(arg1, temp_v0 + 4);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107BB0.s")
 
