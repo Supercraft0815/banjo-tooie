@@ -111,7 +111,9 @@ void func_80800334_bsledge(PlayerState *self) {
 }
 
 #ifndef NONMATCHINGS
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ledge/func_808003D0_bsledge.s")
+int func_808003D0_bsledge(PlayerState *arg0) {
+    return bakey_pressed(arg0, BUTTON_A) && func_80097530(arg0);
+}
 #else
 // Probably a check whether banjo can pull himself up a ledge
 s32 func_808003D0_bsledge(PlayerState *self) {
