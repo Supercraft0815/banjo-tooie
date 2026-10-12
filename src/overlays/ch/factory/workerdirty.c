@@ -108,7 +108,16 @@ s32 func_80800A14_chfactoryworkerdirty(s32 arg0) {
     return (func_80800A04_chfactoryworkerdirty(arg0) + 1) == sp1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800A54_chfactoryworkerdirty.s")
+s32 func_80800A54_chfactoryworkerdirty(void) {
+    s32 i;
+    s32 count = 0;
+    s32 value;
+    for (i = 0; i < 6; i++) {
+        value = func_800DA298(i + 0x42D) == 0 ? 1 : 0;
+        count += value;
+    }
+    return count;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800AB4_chfactoryworkerdirty.s")
 
