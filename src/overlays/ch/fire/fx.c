@@ -45,4 +45,13 @@ void chfirefx_entrypoint_6(Actor *arg0, s16 arg1, s16 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/func_80800F7C_chfirefx.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/func_8080116C_chfirefx.s")
+void func_8080116C_chfirefx(Actor *arg0, Unk80132ED0 **arg1)
+{
+  s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+  void *func_80100094(Actor *, u32);
+  void func_80103110(Actor *, u32);
+  s32 *temp_v0;
+  temp_v0 = func_80100094(arg0, 0U);
+  _subaddielink_entrypoint_1((((u8 *) temp_v0) + ((temp_v0[1]++) * 8)) + ((0, 8)), *arg1);
+  func_80103110(arg0, 1U);
+}
