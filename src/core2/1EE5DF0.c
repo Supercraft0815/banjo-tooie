@@ -170,7 +170,9 @@ void func_8010CE28(s32 arg0, f32 *arg1) {
     *arg1 = 360.0f - *arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010CE70.s")
+/* extern */
+
+s32 func_8010CE70(u8 *arg0, s32 arg1, s32 arg2) { extern s32 D_80136F50; s32 func_80102844(u8 *, f32, s32, s32 *); return func_80102844(arg0, (f32) arg1, arg2, &D_80136F50); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010CEAC.s")
 
