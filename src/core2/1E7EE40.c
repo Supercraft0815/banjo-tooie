@@ -39,7 +39,17 @@ void func_800A5630()
     _cadbmgrDll_entrypoint_1(&D_80119540);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7EE40/func_800A5654.s")
+/* extern */
+
+void func_800A5654(void) {
+    s32 defrag(s32);
+
+    if (D_80119540 != 0) {
+        D_80119540 = defrag(D_80119540);
+        (*(s32 *)((s8 *)(D_80119540) + (0x30))) = -1;
+        (*(s32 *)((s8 *)(D_80119540) + (0x34))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7EE40/func_800A56A4.s")
 
