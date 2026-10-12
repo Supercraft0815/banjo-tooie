@@ -181,7 +181,18 @@ void func_80800F04_chsabreman(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_8080112C_chsabreman.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_808011AC_chsabreman.s")
+/* extern */
+
+void func_808011AC_chsabreman(void *arg0) {
+    s32 func_80102BF8(void *, s32, s32, s32);
+    f32 func_80102D78(void *, s32 *);
+    s32 func_8010D600(s32 *);
+    s32 sp1C[3];
+
+    func_8010D600(sp1C);
+    (*(f32 *)((s8 *)(arg0) + (0x54))) = func_80102D78(arg0, sp1C);
+    func_80102BF8(arg0, 0x3DCCCCCD, 0x40800000, 0x43160000);
+}
 
 void func_808011F8_chsabreman()
 {
