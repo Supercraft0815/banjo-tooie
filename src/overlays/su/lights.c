@@ -12,7 +12,21 @@ void func_808000D0_sulights(s8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/func_8080021C_sulights.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/func_80800340_sulights.s")
+void func_80800340_sulights(u8 *arg0) {
+    s32 i;
+    s32 *p;
+    s32 value;
+    i = 0;
+    p = (s32 *)arg0;
+    *(f32 *)(arg0 + 0x34) = 0.0f;
+    do {
+        value = p[4];
+        i++;
+        p++;
+        p[0] += value;
+        p[3] = value * -1;
+    } while (i != 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/func_8080038C_sulights.s")
 
