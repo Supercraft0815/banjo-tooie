@@ -38,7 +38,7 @@ loop_1:
     func_800B3A40(arg0, var_s0, arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B3B8C.s")
+void func_800B3B8C(u8 *arg0, s16 *arg1, s16 *arg2, s32 arg3) { s16 *temp_v0; *arg2 += arg3; temp_v0 = func_800B39D0(arg0, *arg2); temp_v0[0] = arg1[0]; temp_v0[1] = arg1[1] - arg3; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B3BDC.s")
 
