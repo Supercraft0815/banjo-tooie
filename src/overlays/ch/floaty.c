@@ -158,7 +158,15 @@ void func_80800BD8_chfloaty(s32 arg0, s32 arg1) {
     func_80800CA0_chfloaty(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/floaty/func_80800C4C_chfloaty.s")
+void func_80800C4C_chfloaty(u8 *arg0) {
+    void func_800FCA90(u32);
+    void func_800FCAE0(u32, u32, u32);
+    if (((Actor *) arg0)->unk64_19) {
+        func_800FCAE0(0x1CU, 0U, 0x7D0U);
+        func_800FCA90(0x1CU);
+        (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFF7);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/floaty/func_80800CA0_chfloaty.s")
 
