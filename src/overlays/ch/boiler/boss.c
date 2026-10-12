@@ -111,7 +111,7 @@ void func_80801B44_chboilerboss(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80801D80_chboilerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80801EB4_chboilerboss.s")
+void func_80801EB4_chboilerboss(Actor *arg0) { void func_80101CDC(Actor *, f32); f32 func_8010203C(Actor *, u32); f32 func_80105AC4(Actor *); f32 sp1C; f32 sp18; extern f32 D_80802B58_chboilerboss; sp18 = func_8010203C(arg0, (u32)arg0->unk70_10); sp1C = D_80802B58_chboilerboss / func_80105AC4(arg0); func_80101CDC(arg0, sp18 * sp1C); }
 
 /* extern */
 
