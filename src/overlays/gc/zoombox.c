@@ -902,7 +902,15 @@ void gczoombox_entrypoint_35(u8 *arg0, s32 arg1, s16 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_37.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_38.s")
+/* extern */
+
+void gczoombox_entrypoint_38(u8 *arg0, s32 arg1) {
+    void func_80800294_gczoombox(void *);
+    if (arg0 != NULL) {
+        (*(s16 *)((s8 *)(arg0) + (0x1B0))) = arg1;
+        func_80800294_gczoombox(arg0);
+    }
+}
 
 int gczoombox_entrypoint_39(void *arg0) {
     return arg0 != NULL && *(u8 *)((s8 *)arg0 + 0x171) == 0;
