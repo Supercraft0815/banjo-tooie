@@ -15,7 +15,17 @@ void subaddietaxi_entrypoint_3(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_6.s")
+/* extern */
+
+void subaddietaxi_entrypoint_6(s32 *arg0, volatile f32 arg1) {
+    void func_800DFF64(s32 *, s32, s32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 sp1C[3];
+    f32 scale = arg1;
+
+    func_800EFA4C(sp1C, scale, scale, scale);
+    func_800DFF64(arg0, 0x12, (s32)sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_7.s")
 
