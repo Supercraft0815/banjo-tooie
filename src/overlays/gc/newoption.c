@@ -31,7 +31,276 @@ s32 func_80800070_gcnewoption(void *arg0, s32 arg1) {
     return (*(s16 *)((s8 *)(arg0) + (8))) + arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_0.s")
+void gcnewoption_entrypoint_0(void *arg0) {
+    struct Option {
+        s16 state;
+        s16 count;
+        s16 unk4;
+        s16 selected;
+        s16 unk8;
+        s16 unkA;
+        s32 unkC;
+        f32 timer;
+        u8 unk14[8];
+        u32 flag80 : 1;
+        u32 flag40 : 1;
+        u32 flag20 : 1;
+        u32 flag10 : 1;
+        u32 flag08 : 1;
+        u32 kind : 3;
+        u32 flagsRest : 24;
+        s32 box;
+        u8 boxState;
+        u8 unk25[0x17];
+        s32 boxes[29];
+        s16 items[202];
+        void (*callback)(s32, void *, s32, s32);
+        s32 unk248;
+        s32 context;
+        s8 controller;
+    };
+    void func_80800D28_gcnewoption(void *);
+    void func_8080103C_gcnewoption(u8 *);
+    s32 func_80801114_gcnewoption(void *);
+    s32 func_80801190_gcnewoption(void *);
+    void func_808019D0_gcnewoption(void *);
+    void func_80801B5C_gcnewoption(void *);
+    s32 func_80801E68_gcnewoption(void *);
+    s32 func_808020C4_gcnewoption(void *);
+    s32 func_808022E0_gcnewoption(void *);
+    s32 func_8080241C_gcnewoption(void *);
+    s32 func_80802534_gcnewoption(void *);
+    s32 func_80802674_gcnewoption(void *);
+    void func_808027DC_gcnewoption(void *, s32);
+    void func_80802998_gcnewoption(void *);
+    s32 func_80802A9C_gcnewoption(u8 *);
+    void func_80802B24_gcnewoption(void *, s32);
+    s32 _gczoombox_entrypoint_4();
+    void func_80015E80(u32, void *);
+    void func_80016068(u32, f32 *);
+    f32 func_800D8FF8(void);
+    f32 mlAbsF(f32);
+    u8 previousState;
+    s32 i;
+    s32 index;
+    s32 buttons[6];
+    f32 stick[2];
+    s32 controller;
+    s32 selection;
+    s32 event;
+
+    ((struct Option *)arg0)->flag80 = 0;
+    if (((struct Option *)arg0)->box) {
+        previousState = ((struct Option *)arg0)->boxState;
+    }
+
+    i = 3;
+    switch (((struct Option *)arg0)->state) {
+        case 0:
+
+            break;
+        case 1:
+            func_80800D28_gcnewoption(arg0);
+            ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, selection = ((struct Option *)arg0)->selected, event = 0);
+            ((struct Option *)arg0)->state = 2;
+
+            break;
+        case 2:
+            ((struct Option *)arg0)->state = i;
+
+            break;
+        case 3:
+            if (func_80801E68_gcnewoption(arg0)) {
+                if (((struct Option *)arg0)->kind == i) {
+                    ((struct Option *)arg0)->state = 4;
+                } else {
+                    ((struct Option *)arg0)->state = 5;
+                    ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 8);
+                    ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 10);
+                }
+            }
+            func_808019D0_gcnewoption(arg0);
+
+            break;
+        case 4:
+            for (i = 0; i < ((struct Option *)arg0)->count; i++) {
+                index = func_80800000_gcnewoption((u8 *)arg0, i);
+                func_808027DC_gcnewoption(arg0, i);
+                _gczoombox_entrypoint_4(((struct Option *)arg0)->boxes[index]);
+            }
+            func_80801B5C_gcnewoption(arg0);
+            if (((struct Option *)arg0)->box) {
+                _gczoombox_entrypoint_4(((struct Option *)arg0)->box);
+            }
+            func_80802998_gcnewoption(arg0);
+            i = 3;
+        
+                    break;
+        case 5:
+            func_808019D0_gcnewoption(arg0);
+            func_80802998_gcnewoption(arg0);
+            if (((struct Option *)arg0)->timer <= 0.0f) {
+                if (((struct Option *)arg0)->controller < 0) {
+                    goto update_timer;
+                }
+                func_80015E80(((struct Option *)arg0)->controller, buttons);
+                if (buttons[1] == 1) {
+                    if (((struct Option *)arg0)->kind == 2) {
+                        if (((struct Option *)arg0)->callback) {
+                            ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 5);
+                        }
+                    } else {
+                        ((struct Option *)arg0)->flag20 = 1;
+                        func_80802A9C_gcnewoption((u8 *)arg0);
+                        ((struct Option *)arg0)->state = 6;
+                    }
+                } else if (buttons[0] == 1) {
+                    switch ((s32)((struct Option *)arg0)->kind) {
+                        case 0:
+                            if (((struct Option *)arg0)->items[((struct Option *)arg0)->selected] == -1) {
+                                if (((struct Option *)arg0)->callback) {
+                                    ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 3);
+                                    return;
+                                }
+                            } else {
+                                func_80802A9C_gcnewoption((u8 *)arg0);
+                                ((struct Option *)arg0)->state = 6;
+                            }
+
+                            break;
+                        case 1:
+                            if (((struct Option *)arg0)->callback) {
+                                ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 1);
+                            }
+
+                            break;
+                        case 2:
+                            if (((struct Option *)arg0)->callback) {
+                                ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 4);
+                            }
+
+                            break;
+                    }
+                    ((struct Option *)arg0)->timer = 0.6f;
+                }
+                if (((struct Option *)arg0)->state != 5) {
+
+                    break;
+                }
+                if (!((struct Option *)arg0)->flag80 && !((struct Option *)arg0)->flag08 && (controller = ((struct Option *)arg0)->controller) >= 0) {
+                    func_80016068(controller, stick);
+                    if (stick[1] > 0.8f) {
+                        if (func_80801114_gcnewoption(arg0)) {
+                            ((struct Option *)arg0)->timer = 0.2f;
+                        }
+                    } else if (stick[1] < -0.8f) {
+                        if (func_80801190_gcnewoption(arg0)) {
+                            ((struct Option *)arg0)->timer = 0.2f;
+                        }
+                    }
+                }
+                if (((struct Option *)arg0)->kind == 2 && ((struct Option *)arg0)->flag08) {
+                    func_80016068(((struct Option *)arg0)->controller, stick);
+                    if (((struct Option *)arg0)->flag40) {
+                        if (mlAbsF(stick[0]) < 0.8f) {
+                            ((struct Option *)arg0)->flag40 = 0;
+                        }
+                    } else if (stick[0] > 0.8f) {
+                        if (((struct Option *)arg0)->callback) {
+                            ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 7);
+                        }
+                        ((struct Option *)arg0)->flag40 = 1;
+                    } else if (stick[0] < -0.8f) {
+                        if (((struct Option *)arg0)->callback) {
+                            ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 6);
+                        }
+                        ((struct Option *)arg0)->flag40 = 1;
+                    }
+                }
+            } else {
+update_timer:
+                if (((struct Option *)arg0)->timer > 0.0f) {
+                    ((struct Option *)arg0)->timer -= func_800D8FF8();
+                }
+            }
+
+            break;
+        case 6:
+            func_808019D0_gcnewoption(arg0);
+            if (func_808020C4_gcnewoption(arg0)) {
+                ((struct Option *)arg0)->state = 11;
+            }
+
+            break;
+        case 7:
+            func_808019D0_gcnewoption(arg0);
+            if (func_808022E0_gcnewoption(arg0)) {
+                func_80802A9C_gcnewoption((u8 *)arg0);
+                ((struct Option *)arg0)->state = 8;
+            }
+
+            break;
+        case 8:
+            func_808019D0_gcnewoption(arg0);
+            if (func_80802674_gcnewoption(arg0)) {
+                ((struct Option *)arg0)->state = 11;
+            }
+
+            break;
+        case 11:
+            func_8080103C_gcnewoption((u8 *)arg0);
+            ((struct Option *)arg0)->state = 12;
+
+            break;
+        case 12:
+            ((struct Option *)arg0)->state = 13;
+            if (((struct Option *)arg0)->callback) {
+                if (((struct Option *)arg0)->flag20) {
+                    ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 2);
+                    return;
+                } else {
+                    ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 3);
+                    return;
+                }
+            }
+
+            break;
+        case 13:
+
+            break;
+        case 9:
+            func_808019D0_gcnewoption(arg0);
+            if (func_8080241C_gcnewoption(arg0)) {
+                ((struct Option *)arg0)->state = 5;
+                if (((struct Option *)arg0)->callback) {
+                    ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 10);
+                }
+            }
+
+            break;
+        case 10:
+            func_808019D0_gcnewoption(arg0);
+            if (func_80802534_gcnewoption(arg0)) {
+                ((struct Option *)arg0)->state = 5;
+                func_80802B24_gcnewoption(arg0, 0);
+                if (((struct Option *)arg0)->callback) {
+                    ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 10);
+                }
+            }
+
+            break;
+        default:
+            break;
+    }
+    if (((struct Option *)arg0)->box) {
+        if (i == ((struct Option *)arg0)->state || ((struct Option *)arg0)->state == 5 || ((struct Option *)arg0)->state == 10) {
+                if (previousState != i && ((struct Option *)arg0)->boxState == i) {
+                    ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 9);
+                }
+
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_1.s")
 
