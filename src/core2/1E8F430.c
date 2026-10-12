@@ -29,7 +29,24 @@ s32 func_800B5BE4(s32 arg0) {
     return (s32) func_800B56D0(D_80128150[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B5C10.s")
+/* extern */
+
+u8 *func_800B5C10(s32 arg0, s32 arg1, s32 *arg2, s32 *arg3) {
+    s32 func_800B0D58(s16 *arg0);
+    void *func_800B0D60(void *arg0);
+    void *func_800B0D6C(void *arg0, s32 arg1);
+    s16 *func_800D3524(s32);
+    s16 *sp1C;
+    u8 *sp18;
+    s16 *temp_v0;
+
+    temp_v0 = func_800D3524(arg0);
+    sp1C = temp_v0;
+    sp18 = func_800B0D6C(temp_v0, arg1);
+    *arg2 = func_800B0D58(sp1C);
+    *arg3 = (*(s32 *)((s8 *)(sp18) + (4))) + (s32) func_800B0D60(sp1C);
+    return sp18;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B5C7C.s")
 
