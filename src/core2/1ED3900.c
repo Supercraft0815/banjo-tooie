@@ -22,7 +22,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA874.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA8E8.s")
+s32 func_800FA8E8(s32 arg0, s32 arg1) {
+    extern s32 D_80123880[][7];
+    s32 *temp_v1;
+
+    temp_v1 = D_80123880[arg0];
+    if ((temp_v1[6] == 0) || (arg1 != *((s8 *)temp_v1 + 0xE))) {
+        return -1;
+    }
+    return (*((u8 *)temp_v1 + 0xC)) != 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA934.s")
 
