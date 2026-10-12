@@ -8,6 +8,7 @@
 
 u32 func_800FDC28(u32 arg0) {
     extern s32 D_801359C0;
+    extern u8 D_80135A10[];
     u32 result = (u32)&D_801359C0;
     if (arg0 != ((u8 *)result)[0x40]) {
         ((u8 *)result)[0x40] = arg0;
@@ -38,7 +39,27 @@ void func_800FE734(u32 arg0) {
     D_801359D7 = (s8) arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FE740.s")
+void func_800FE740(void) {
+    extern s32 D_801359C0;
+    extern u8 D_80135A10[];
+    s16 _cothemedll_entrypoint_1(s32);
+    s32 _cothemedll_entrypoint_3(s32 *, s32);
+    s32 func_800EA05C();
+    extern s16 D_801359E2;
+    extern s32 D_80135A08;
+    extern f32 D_80135A0C;
+    s32 sp1C[2];
+    s32 temp_a1;
+
+    temp_a1 = func_800EA05C();
+    if (D_80135A10[6] != 0) {
+        D_80135A10[6] = 0U;
+    }
+    D_80135A08 = 0;
+    D_80135A0C = 0.0f;
+    sp1C[1] = temp_a1; _cothemedll_entrypoint_3(&D_801359C0, temp_a1);
+    D_801359E2 = _cothemedll_entrypoint_1(sp1C[1]);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FE7A8.s")
 
