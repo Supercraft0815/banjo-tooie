@@ -181,7 +181,16 @@ void func_8080163C_bsbtrot(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_16.s")
+/* extern */
+
+void bsbtrot_entrypoint_16(s32 arg0) {
+    void baanim_playForDuration_once(void *, s32, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    baanim_playForDuration_once((void *)arg0, 7, 0.6f);
+    func_8008CA4C(arg0, 1);
+    baphysics_set_target_horizontal_velocity((PlayerState *)arg0, 0.0f);
+    func_800931AC((void *)arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_17.s")
 
