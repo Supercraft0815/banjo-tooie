@@ -61,7 +61,28 @@ void func_800CB598(s32 arg0, s32 arg1, s32 arg2) {
 void func_800CB610(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA4CD0/func_800CB618.s")
+void func_800CB618(void)
+{
+  extern u8 D_8012AB70[];
+  extern u8 D_8012AB78[];
+  u8 *var_s0;
+  u8 *new_var;
+  s32 var_s1;
+  u8 *var_s2;
+ do { var_s2 = D_8012AB78; var_s0 = D_8012AB70; var_s1 = 0; } while (0);
+  do
+  {
+    *((s8 *) (var_s0 + 0)) = (s8) var_s1;
+    *((s8 *) (new_var = var_s0 + 1)) = 0;
+    *((s32 *) (var_s0 + 4)) = 0;
+    *((f32 *) (var_s0 + 0x14)) = (long) 0.0f;
+    func_800EFD24((f32 *) var_s2);
+    var_s1 += 1;
+    var_s0 += 0x30;
+    var_s2 += 0x30;
+  }
+  while (var_s1 != 0x10);
+}
 
 s32 func_800CB698(s32 arg0, s32 arg1) {
     extern u8 D_8012AB71[];
