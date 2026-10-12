@@ -744,7 +744,13 @@ u8 func_800F6B34(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6B40.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6B94.s")
+int func_800F6B94(s32 arg0) {
+    PlayerState *temp_a0;
+    s32 pad;
+
+    temp_a0 = D_80135490[arg0];
+    return (func_800A3274(temp_a0) == TRANSFORM_2_SNOWBALL) && (func_800A1718(temp_a0) >= 5);
+}
 
 s32 func_800F6BE4(s32 arg0) {
     if ((arg0 >= 0) && (arg0 < 8) && (D_80135490[arg0] != NULL)) {
