@@ -148,7 +148,178 @@ void func_80800D98_chdragonbrothers(u8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808011C0_chdragonbrothers.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808012B4_chdragonbrothers.s")
+void func_808012B4_chdragonbrothers(u8 *arg0, s32 arg1) {
+    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    s32 _subaddieaudioquick_entrypoint_2(u8 *, u8 *, s32 *);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    s32 func_800DA9E4(s32, s32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFCD8(f32 *, f32, f32);
+    f32 func_800F1DCC(f32, f32);
+    u8 *func_80100094(u8 *, u32);
+    void func_80800A80_chdragonbrothers(u8 *, s32, s32, s32);
+    void func_80800B9C_chdragonbrothers(u8 *, s32, u8 *);
+    void func_80800D20_chdragonbrothers(u8 *, s16, s32);
+    f32 func_808011C0_chdragonbrothers(u8 *, s32);
+    extern s32 D_808053B0_chdragonbrothers;
+    extern s32 D_80805558_chdragonbrothers;
+    struct Flags { u32 pad : 12; u32 flag : 1; u32 rest : 19; };
+    struct State { u16 state : 6; u16 rest : 10; };
+    struct Count { u8 count : 4; u8 rest : 4; };
+    struct Mode { u16 rest : 7; u16 mode : 9; };
+    struct ByteFlags { u8 upper : 3; u8 flag4 : 1; u8 middle : 3; u8 flag0 : 1; };
+    u8 *data;
+    s32 flag;
+    f32 vec[3];
+
+    data = func_80100094(arg0, 0);
+    switch (((struct State *)(arg0 + 0x72))->state) {
+    case 3:
+    case 4:
+        ((struct ByteFlags *)(arg0 + 0x65))->flag0 = 1;
+        break;
+    case 5:
+        func_80800B9C_chdragonbrothers(data, 0, arg0 + 4);
+        break;
+    case 6:
+        func_80800B9C_chdragonbrothers(data, 0, arg0 + 4);
+        func_80800000_chdragonbrothers(arg0, 1);
+        data[0x5A] = 0;
+        data[0x59] = 1;
+        break;
+    case 23:
+        ((struct ByteFlags *)(arg0 + 0x65))->flag4 = 0;
+        break;
+    case 15:
+    case 20:
+    case 21:
+        data[0x5A] = 0;
+        break;
+    case 16:
+    case 17:
+        data[0x54] = 0;
+        break;
+    }
+    func_80102424(arg0, arg1);
+    switch (((struct State *)(arg0 + 0x72))->state) {
+    case 5:
+        func_80800A80_chdragonbrothers(arg0, 0, 0x420, 0);
+        func_800FDC28(1);
+        if (arg0[0x7A] & 1) {
+            if (!func_800DA298(0x1D3)) {
+                _chintrotext_entrypoint_1(0x18B9, 9, 1, 0);
+            }
+        } else {
+            if (!func_800DA298(0x1D4)) {
+                _chintrotext_entrypoint_1(0x18B9, 10, 1, 0);
+            }
+        }
+        break;
+    case 6:
+        func_80800A80_chdragonbrothers(arg0, 5, 0x420, 0);
+        func_80800B9C_chdragonbrothers(data, 1, arg0 + 4);
+        func_80101EE4(arg0, 0x3F000000);
+        data[0x5A] = 1;
+        break;
+    case 8:
+        ((struct Count *)(arg0 + 0x79))->count--;
+        break;
+    case 9:
+        if (((struct Flags *)(arg0 + 0x64))->flag) {
+            *(f32 *)(arg0 + 0x58) = 0.0f;
+        } else {
+            *(f32 *)(arg0 + 0x58) = 0.5f;
+        }
+        break;
+    case 10:
+        if (((struct Flags *)(arg0 + 0x64))->flag) {
+            *(f32 *)(arg0 + 0x58) = 1.0f;
+        } else {
+            *(f32 *)(arg0 + 0x58) = 2.0f;
+        }
+        break;
+    case 11:
+        flag = (arg0[0x7A] & 1) ? 0x406 : 0x407;
+        ((struct Mode *)(arg0 + 0x6E))->mode = 1;
+        if (((struct Flags *)(arg0 + 0x64))->flag) {
+            *(f32 *)(arg0 + 0x58) = 1.5f;
+        } else {
+            *(f32 *)(arg0 + 0x58) = 3.0f;
+        }
+        data[0x5D] = 1;
+        if (!func_800DA9E4(flag, 1)) {
+            func_80800D98_chdragonbrothers(arg0, 12);
+        }
+    case 12:
+        _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80805558_chdragonbrothers);
+        break;
+    case 14:
+        func_8010A570(arg0);
+        func_80800000_chdragonbrothers(arg0, 0);
+        if (!func_800DA298((arg0[0x7A] & 1) ? 0x404 : 0x405)) {
+            func_80800B9C_chdragonbrothers(data, 1, arg0 + 4);
+            func_80800A80_chdragonbrothers(arg0, 12, 0x420, 0);
+        }
+        *(f32 *)(arg0 + 0x54) = func_808011C0_chdragonbrothers(arg0, 1);
+        data[0x5E] = 0;
+        break;
+    case 16:
+        ((struct Mode *)(arg0 + 0x6E))->mode = 0;
+        func_8010A590(arg0);
+        *(f32 *)(arg0 + 0x24) = 0.0f;
+        data[0x54] = 1;
+        break;
+    case 17:
+        if (((struct Flags *)(arg0 + 0x64))->flag) {
+            *(f32 *)(arg0 + 0x34) = 45.0f;
+        } else {
+            *(f32 *)(arg0 + 0x34) = 30.0f;
+        }
+        *(f32 *)(arg0 + 0x1C) = 0.0f;
+        if (func_800F1DCC(*(f32 *)(arg0 + 0x48), *(f32 *)(data + 0x18)) < 0.0f) {
+            func_80800D98_chdragonbrothers(arg0, 16);
+        } else {
+            func_80800D98_chdragonbrothers(arg0, 14);
+        }
+        data[0x5B] = 0;
+        data[0x54] = 1;
+        break;
+    case 19:
+        func_8010A570(arg0);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_808053B0_chdragonbrothers);
+        func_80800B9C_chdragonbrothers(data, 1, arg0 + 4);
+        func_80800A80_chdragonbrothers(arg0, 9, 0x420, 0);
+        func_800DA544((arg0[0x7A] & 1) ? 0x1D5 : 0x1D6);
+        func_80800000_chdragonbrothers(arg0, 2);
+        *(f32 *)(arg0 + 0x54) = func_808011C0_chdragonbrothers(arg0, 1);
+        func_80800D98_chdragonbrothers(arg0, 10);
+        break;
+    case 20:
+        data[0x59] = 0;
+        data[0x5A] = 1;
+        break;
+    case 15:
+    case 21:
+        data[0x5A] = 1;
+        break;
+    case 22:
+        ((struct ByteFlags *)(arg0 + 0x65))->flag4 = 1;
+        *(f32 *)(arg0 + 0x48) = 0.0f;
+        func_80800A80_chdragonbrothers(arg0, 24, 0x420, 0);
+        break;
+    case 23:
+        func_80800D20_chdragonbrothers(arg0, (arg0[0x7A] & 1) ? 0x12CA : 0x12CB, 1);
+        vec[1] = 1500.0f;
+        func_800EFCD8(vec, *(f32 *)(arg0 + 0x48), -600.0f);
+        func_800EF04C((f32 *)(arg0 + 4), vec);
+        func_80800D98_chdragonbrothers(arg0, 7);
+        break;
+    case 2:
+        ((struct ByteFlags *)(arg0 + 0x65))->flag0 = 0;
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_8080183C_chdragonbrothers.s")
 
