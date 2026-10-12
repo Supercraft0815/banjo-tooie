@@ -324,6 +324,9 @@ def main(argv=None):
         from contextlib import nullcontext
         readonly = args.command in ('status', 'progress', 'report', 'inspect', 'next', 'patterns')
         with nullcontext() if readonly else locked(state_dir):
+            if not readonly:
+                # Under the lock no process owns a build tree: these are leftovers of killed runs.
+                shutil.rmtree(state_dir/'build-tmp', ignore_errors=True)
             state = State(state_dir/'state.db')
             result = dispatch(root, state, config, control, args)
             print(json.dumps(result, indent=2, ensure_ascii=False))

@@ -2,7 +2,7 @@ import subprocess
 from unittest.mock import patch
 
 import test_harness as fixtures
-from decomp_harness.build import Builder
+from decomp_harness.build import Builder, clone, scratch
 from decomp_harness.common import Control, HarnessError
 
 
@@ -59,6 +59,24 @@ class BuildSessionTests(fixtures.Fixture):
         self.assertTrue(name.startswith('decomp-build-'))
         self.assertEqual(calls[1], ['docker', 'rm', '-f', name])
         self.assertIsNone(builder.container)
+
+    def test_broken_toolchain_stops_instead_of_blaming_the_candidate(self):
+        self.cfg['build']['backend'] = 'native'
+        builder, log = Builder(self.root, self.cfg, Control()), self.root/'log'
+        missing = ("python3: can't open file '/work/tools/asm-processor/asm_processor.py': [Errno 2] No such file or directory\n"
+                   'make: *** [Makefile:89: build/us/src/core1/a.c.o] Error 2\n')
+        ordinary = ('cfe: Error: src/core1/a.c, line 3: Syntax Error\n     return "sh: x: not found";\n'
+                    'make: *** [Makefile:90: build/us/src/core1/a.c.o] Error 1\n')
+        with patch('decomp_harness.build.run_logged', side_effect=lambda *a, **kw: log.write_text(missing) and 2):
+            with self.assertRaisesRegex(HarnessError, 'Build environment is broken.*asm_processor.py'):
+                builder.object_build('src/core1/a.c', log)
+        with patch('decomp_harness.build.run_logged', side_effect=lambda *a, **kw: log.write_text(ordinary) and 2):
+            self.assertEqual(builder.object_build('src/core1/a.c', log), 2)
+
+    def test_build_trees_stay_out_of_the_purged_system_temp(self):
+        base = (self.root/'.decomp-agent/build-tmp').resolve()
+        work = scratch(self.root)
+        self.assertEqual((work.parent, clone(work).parent), (base, base))
 
     def test_native_backend_does_not_start_docker(self):
         self.cfg['build']['backend'] = 'native'

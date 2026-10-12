@@ -3,6 +3,7 @@ from __future__ import annotations
 from array import array
 import os
 from pathlib import Path
+import re
 import shutil
 import sys
 import tempfile
@@ -17,6 +18,14 @@ LINK_OUTPUTS = ('build/us/banjotooie_decompressed.elf', 'build/us/banjotooie_dec
 
 
 BASELINE = '.baseline'
+
+# Tool-level failures no candidate can cause (the guard refuses preprocessor and ASM
+# lines): the toolchain itself is missing or cannot run.
+# ponytail: message signatures, not a toolchain check; a vanished header still reads as
+# a compile error. Fingerprint the lane's inputs on failure if that ever happens.
+BROKEN = re.compile(r"^(?:(?:python3|make|/bin/sh|sh): .*(?:No such file or directory|not found"
+                    r"|No rule to make target|Permission denied)"
+                    r"|FileNotFoundError: |Error response from daemon|OCI runtime).*", re.M)
 
 
 def object_path(source):
@@ -121,7 +130,12 @@ class Builder:
 
     def object_build(self, source, log):
         (self.root/self.object_path(source)).unlink(missing_ok=True)
-        return self.invoke(['make', f'-j{self.config["build"]["jobs"]}', self.object_path(source)], log)
+        code = self.invoke(['make', f'-j{self.config["build"]["jobs"]}', self.object_path(source)], log)
+        broken = code and BROKEN.search(log.read_text(errors='replace'))
+        if broken:
+            # Stop the run instead of charging candidates and their attempt budget.
+            raise HarnessError(f'Build environment is broken, not the candidate: {broken[0][:200]} (see {log})')
+        return code
 
     @staticmethod
     def object_path(source):
@@ -167,9 +181,18 @@ class Builder:
         return self.invoke(['python3', '-c', code], log) == 0
 
 
+def scratch(root: Path, prefix='decomp-build-') -> Path:
+    """A build tree under .decomp-agent/, never $TMPDIR: macOS purges files there once
+    their atime is three days old (daily at 03:35), and copies keep the atimes of their
+    sources; a live run lost tools/ scripts that way and every later compile failed."""
+    base = root/'.decomp-agent/build-tmp'
+    base.mkdir(parents=True, exist_ok=True, mode=0o700)
+    return Path(tempfile.mkdtemp(prefix=prefix, dir=base)).resolve()
+
+
 def snapshot(root: Path, prefix='decomp-build-') -> Path:
     """Independent copies, never hardlinks/symlinks to writable original data."""
-    target = Path(tempfile.mkdtemp(prefix=prefix)).resolve()
+    target = scratch(root, prefix)
     ignored = shutil.ignore_patterns('.git', '.codex', '.agents', '__pycache__', '.decomp-agent', '*.egg-info')
     try:
         for name in ('src', 'include', 'tools', 'lib', 'asm', 'assets'):
@@ -194,8 +217,9 @@ def snapshot(root: Path, prefix='decomp-build-') -> Path:
 
 def clone(workspace: Path) -> Path:
     """Private build lane: an independent copy of a built workspace, mtimes kept so make
-    only recompiles what changes. APFS clones on macOS cost no space or copy time."""
-    target = Path(tempfile.mkdtemp(prefix='decomp-lane-')).resolve()
+    only recompiles what changes. APFS clones on macOS cost no space or copy time.
+    It lives next to the workspace, for the reason given in scratch()."""
+    target = Path(tempfile.mkdtemp(prefix='decomp-lane-', dir=workspace.parent)).resolve()
     try:
         if sys.platform == 'darwin':
             command(['cp', '-cRp', f'{workspace}/.', str(target)], timeout=600)

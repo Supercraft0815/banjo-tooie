@@ -507,6 +507,10 @@ menschlichen Prüfung; der Worker darf sie nicht stillschweigend global ändern.
 * `context/`: begrenzte Context Packs (Standardbudget 24.000 Zeichen).
 * `logs/`: Setup, Baseline, Doctor, Verify und Wiederherstellungs-Builds.
 * `build-cache/`: ein vollständig geprüfter Docker-Build als wiederverwendbare Kopie.
+* `build-tmp/`: Workspace und Build-Lanes des laufenden Prozesses. Bewusst nicht im
+  System-Temp: macOS löscht dort täglich um 03:35 Dateien mit mehr als drei Tage alter
+  Zugriffszeit, auch aus einem laufenden Build. Reste abgebrochener Läufe räumt der nächste
+  Aufruf unter dem Lock weg.
 * `doctor.json`, `report.json`, `knowledge.md`: lesbare abgeleitete Berichte.
 
 Ein technischer CLI-Fehler ist von Agent-, Compiler-, Guard-, Modell-, Auth- und

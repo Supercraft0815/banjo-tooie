@@ -5,10 +5,9 @@ import os
 from pathlib import Path
 import shutil
 import stat
-import tempfile
 import uuid
 
-from .build import snapshot
+from .build import scratch, snapshot
 from .common import HarnessError, command, digest, save_json
 
 INPUT_DIRS = ('src', 'include', 'tools', 'lib', 'asm', 'assets')
@@ -68,7 +67,7 @@ def prepare(root, config):
             if record['key'] == key:
                 cache = cache_path(root, record)
                 # Copy first, then hash the copy: no TOCTOU trust of cached artifacts.
-                work = Path(tempfile.mkdtemp(prefix='decomp-build-')).resolve()
+                work = scratch(root)
                 shutil.copytree(cache, work, dirs_exist_ok=True, symlinks=True)
                 if tree_fingerprint(work) == record['artifacts']:
                     return work, True
