@@ -3,7 +3,7 @@
 s32 _capod_entrypoint_17(f32);
 void _indrv_audio_entrypoint_0(Unk80132ED0 *, s32, s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/cam/func_80800000_chintrocam.s")
+void func_80800000_chintrocam(Actor *arg0) { arg0->unk6C_0 = func_800EA05C(); _capod_entrypoint_13(arg0->unk0, NULL, (u32) (s32) arg0->rotation[1], 0x6822); }
 
 void func_80800054_chintrocam(s32 arg0) 
 {
