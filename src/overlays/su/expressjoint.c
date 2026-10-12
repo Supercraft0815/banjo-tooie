@@ -4,7 +4,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressjoint/suexpressjoint_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressjoint/suexpressjoint_entrypoint_1.s")
+/* extern */
+
+void suexpressjoint_entrypoint_1(void *arg0, s16 arg1) {
+    s16 func_80800000_suexpressjoint(s16);
+    (*(s16 *)((s8 *)(arg0) + (4))) = arg1; (*(s16 *)((s8 *)(arg0) + (6))) = func_80800000_suexpressjoint((*(s16 *)((s8 *)(arg0) + (4))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressjoint/suexpressjoint_entrypoint_2.s")
 
