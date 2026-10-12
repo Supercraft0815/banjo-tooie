@@ -34,6 +34,14 @@ void func_808004B4_chcrystalbaddie(s32 arg0)
     func_80105230(arg0,0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crystalbaddie/func_808004D4_chcrystalbaddie.s")
+/* extern */
+
+void func_808004D4_chcrystalbaddie(Actor *arg0, s32 *arg1) {
+    void _subaddiejoy_entrypoint_10(void *, f32, f32);
+    s32 _chexploder_entrypoint_4(void *, s32, s32);
+    _subaddiejoy_entrypoint_10(arg0, 1.0f, 0.3f);
+    _chexploder_entrypoint_4(arg0, *arg1 + 4, 4);
+    (*(u8 *)((s8 *)(arg0) + 0x64)) = (u8)((*(u8 *)((s8 *)(arg0) + 0x64)) & 0xFFFE);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crystalbaddie/func_8080052C_chcrystalbaddie.s")
