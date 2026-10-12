@@ -235,7 +235,21 @@ void func_800D7460()
     func_800D7418();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7488.s")
+/* extern */
+
+s32 func_800D7488(s16 arg0, s16 arg1) {
+    void *func_8001B710(s16, s32);
+    s16 *sp1C;
+    s32 temp_t7;
+    s16 *temp_v0;
+
+    ++(*(s32 *)((s8 *)(&D_8012BE70) + (0x188)));
+    sp1C = func_8001B710((*(s16 *)((s8 *)(&D_8012BE70) + (0x184))), (*(s32 *)((s8 *)&D_8012BE70 + 0x188)) * 2);
+    temp_v0 = func_8001B710((*(s16 *)((s8 *)(&D_8012BE70) + (0x186))), (*(s32 *)((s8 *)(&D_8012BE70) + (0x188))) * 2);
+    sp1C[(*(s32 *)((s8 *)&D_8012BE70 + 0x188)) - 1] = arg0;
+    temp_v0[(*(s32 *)((s8 *)&D_8012BE70 + 0x188)) - 1] = arg1;
+    return (*(s32 *)((s8 *)(&D_8012BE70) + (0x188))) - 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7520.s")
 
