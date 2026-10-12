@@ -75,7 +75,21 @@ s32 func_800EBB74(void) {
     return (s32)&D_80132ED0 ? 1 : 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBB94.s")
+void func_800EBB94(void) {
+    extern s32 D_80132ED0;
+    struct {
+        u16 records[200][24];
+        s8 flags[25];
+    } *state = (void *)&D_80132ED0;
+    s32 i;
+
+    for (i = 0; i < 25; i++) {
+        state->flags[i] = 0;
+    }
+    for (i = 0; i < 200; i++) {
+        state->records[i][9] &= 1;
+    }
+}
 
 void func_800EBC04(void) {
 }
