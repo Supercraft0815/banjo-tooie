@@ -50,7 +50,107 @@ OSThread *chgameselect_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80800D74_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80800E24_chgameselect.s")
+void func_80800E24_chgameselect(void *arg0) {
+    typedef struct {
+        u8 pad0[0x34];
+        f32 fade;
+        u8 pad38[4];
+        s32 handle;
+        u8 pad40[0x18];
+        f32 timer;
+        u8 pad5C[8];
+        u32 pad64 : 11;
+        u32 flag20 : 1;
+        u32 flag19 : 1;
+        u32 pad64low : 19;
+        u32 pad68;
+        u32 pad6C : 23;
+        u32 state : 9;
+        u8 pad70[9];
+        u8 selection : 4;
+        u8 pad79 : 4;
+        u8 pad7A[2];
+        u32 pad7C : 19;
+        u32 flag12 : 1;
+        u32 pad7Clow : 12;
+    } SelectActor;
+    typedef struct {
+        u8 pad0[0x60];
+        f32 entries[8][3];
+        u8 enabled[8];
+    } SelectData;
+    void func_80016068(u32, f32 *);
+    s32 func_80016B30(s32, s32);
+    f32 func_800D8FF8(void);
+    s32 func_800DA298(s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010114C(s32, s32, s32);
+    s32 func_80800D3C_chgameselect(s32);
+    void func_80801338_chgameselect(void *, s32);
+    void func_808013C8_chgameselect(void *, s32);
+    s32 func_808014F0_chgameselect(void *, void *);
+    f32 mlAbsF(f32);
+    SelectData *data;
+    f32 delta;
+    f32 vertical;
+    f32 horizontal;
+    f32 magnitude;
+
+    data = func_80100094(arg0, 0);
+    delta = func_800D8FF8();
+    if (func_80800D3C_chgameselect(((SelectActor *)arg0)->handle)) {
+        if (((SelectActor *)arg0)->timer >= 0.0f) {
+            ((SelectActor *)arg0)->timer -= delta;
+        }
+        if (!((SelectActor *)arg0)->flag19 && ((SelectActor *)arg0)->timer <= 0.0f) {
+            func_80016068(0, &horizontal);
+            magnitude = mlAbsF(horizontal);
+            if (mlAbsF(vertical) < magnitude) {
+                vertical = 0.0f;
+            } else {
+                horizontal = 0.0f;
+            }
+            if (horizontal < -0.1f && (((SelectActor *)arg0)->selection & 3)) {
+                func_80801338_chgameselect(arg0, -1);
+            } else if (horizontal > 0.1f && (((SelectActor *)arg0)->selection & 3) != 3) {
+                func_80801338_chgameselect(arg0, 1);
+            }
+            if (vertical < -0.1f && (((SelectActor *)arg0)->selection & 4) != 4) {
+                func_808013C8_chgameselect(arg0, ((SelectActor *)arg0)->selection + 4);
+            } else if (vertical > 0.1f && (((SelectActor *)arg0)->selection & 4)) {
+                func_808013C8_chgameselect(arg0, ((SelectActor *)arg0)->selection - 4);
+            }
+        }
+        if (func_800DA298(0x64A)) {
+            if (func_80016B30(0, 1) == 1) {
+                func_8010114C(((SelectActor *)arg0)->handle, 8, ((SelectActor *)arg0)->selection);
+            } else if (func_80016B30(0, 0) == 1) {
+                func_8010114C(((SelectActor *)arg0)->handle, 7, ((SelectActor *)arg0)->selection);
+            }
+        }
+        if (((SelectActor *)arg0)->state == 1 && ((SelectActor *)arg0)->flag12) {
+            if (data->enabled[((SelectActor *)arg0)->selection] &&
+                func_808014F0_chgameselect(arg0, data->entries[((SelectActor *)arg0)->selection])) {
+                ((SelectActor *)arg0)->timer = 0.0f;
+            }
+        }
+        if (((SelectActor *)arg0)->flag19 && !((SelectActor *)arg0)->flag20) {
+            if (((SelectActor *)arg0)->fade > 0.0f) {
+                delta = func_800D8FF8();
+                ((SelectActor *)arg0)->fade = ((SelectActor *)arg0)->fade - 1 * delta;
+                if (((SelectActor *)arg0)->fade < 0.0f) {
+                    ((SelectActor *)arg0)->fade = 0.0f;
+                }
+            }
+        } else if (((SelectActor *)arg0)->fade < 1.0f) {
+            delta = func_800D8FF8();
+            ((SelectActor *)arg0)->fade = ((SelectActor *)arg0)->fade + 1 * delta;
+            if (((SelectActor *)arg0)->fade > 1.0f) {
+                ((SelectActor *)arg0)->fade = 1.0f;
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808011B4_chgameselect.s")
 
