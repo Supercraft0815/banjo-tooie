@@ -127,7 +127,13 @@ f32 func_80103EF4(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103F38.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103FB8.s")
+/* extern */
+
+f32 func_80103FB8(Actor *arg0) {
+    s32 func_80103328();
+    func_80103328(arg0);
+    return (f32) (u32) (u16) arg0->pad68 * arg0->scale;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80104004.s")
 
