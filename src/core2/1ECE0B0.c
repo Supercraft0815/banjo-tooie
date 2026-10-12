@@ -999,18 +999,20 @@ void func_800F7620(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
 /* extern */
 
 void func_800F77E8(s32 arg0, s32 arg1) {
-    s32 func_800F7750(s32, s32, s32, s32, s32);
-    func_800F7750(arg0, arg1, 0x44520000, 0xC4BB8000, 0);
+    s32 func_800F7750(s32, s32, f32, f32, s32);
+    func_800F7750(arg0, arg1, 840.0f, -1500.0f, 0);
 }
 
 /* extern */
 
 void func_800F7814(s32 arg0, s32 arg1) {
-    s32 func_800F7750(s32, s32, s32, s32, s32);
-    func_800F7750(arg0, arg1, 0x44520000, 0xC4BB8000, 1);
+    s32 func_800F7750(s32, s32, f32, f32, s32);
+    func_800F7750(arg0, arg1, 840.0f, -1500.0f, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7844.s")
+/* extern */
+
+s32 func_800F7844(u32 arg0, f32 *arg1, f32 arg2, f32 arg3) { s32 func_800F7750(s32, s32, f32, f32, s32); return func_800F7750(arg0, (s32)arg1, arg2, arg3, 0); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7874.s")
 
