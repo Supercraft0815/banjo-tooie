@@ -92,7 +92,14 @@ void func_80800694_bstnt()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_808006B4_bstnt.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_808006EC_bstnt.s")
+/* extern */
+
+void func_808006EC_bstnt(s32 arg0) {
+    s32 baflag_clear(s32, s32);
+    void func_8009E55C(void *, s32, f32);
+    func_8009E55C(arg0, 1, 28.0f);
+    baflag_clear(arg0, 0x32);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80800720_bstnt.s")
 
