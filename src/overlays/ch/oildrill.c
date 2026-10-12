@@ -197,7 +197,16 @@ OSThread *choildrill_entrypoint_1(void)
     return (OSThread *) D_808014A8_choildrill;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_808010C0_choildrill.s")
+/* extern */
+
+void func_808010C0_choildrill(s32 arg0) {
+    s32 _chswitch_entrypoint_7(s32, s32);
+    s32 _chswitch_entrypoint_9(s32);
+    s32 func_800DA298(s32);
+    _chswitch_entrypoint_7(arg0, 0x351);
+    _chswitch_entrypoint_9(arg0);
+    ((Actor *)arg0)->unk64_20 = func_800DA298(0x351);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_80801110_choildrill.s")
 
