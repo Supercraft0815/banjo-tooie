@@ -9,7 +9,13 @@ void func_80026188(s32 arg0, s32 arg1) {
     func_8002ACE0(arg0, 0, 0xB0, arg1, 0xFC, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3DC30/func_800261D0.s")
+/* extern */
+
+void func_800261D0(volatile s32 *arg0, volatile s32 arg1) {
+    void func_8002ACE0(s32, s32, s32, s32, s32, s32);
+    (*(s32 *)((s8 *)(arg0) + (0x30))) = (s32) ((*(s32 *)((s8 *)(arg0) + (0x30))) | (1 << arg1));
+    func_8002ACE0(arg0, 0, 0xB0, arg1, 0xFC, 0xFF);
+}
 
 /* extern */
 
