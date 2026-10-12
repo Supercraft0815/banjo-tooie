@@ -687,7 +687,14 @@ s32 func_800F66F0(s32 arg0) {
     return bs_getCurrentState(D_80135490[arg0]) == 0x6F;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6720.s")
+int func_800F6720(s32 arg0) {
+    s32 func_8008DE74(PlayerState *);
+    s32 func_8009E71C(PlayerState *, s32);
+    PlayerState *self;
+
+    self = D_80135490[arg0];
+    return func_8009E71C(self, 9) || func_8008DE74(self);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6774.s")
 
@@ -1405,7 +1412,7 @@ void func_800F91EC(void) {
 /* extern */
 
 s32 func_800F9214(void) {
-    s32 func_800F6720();
+    int func_800F6720();
     if (func_800F6720() != 0) {
         return 2;
     }
