@@ -51,7 +51,17 @@ OSThread *chmonsterinterior_entrypoint_4(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_80800A44_chmonsterinterior.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_80800BC8_chmonsterinterior.s")
+void func_80800BC8_chmonsterinterior(u8 **arg0, s32 arg1) {
+    s32 func_800D3948(void);
+    void func_801032B0(void *, u16, u16);
+    extern u16 D_80801FE8_chmonsterinterior[];
+    extern u16 D_80801FF0_chmonsterinterior[];
+    if (func_800D3948() != 0) {
+        func_801032B0(arg0, D_80801FF0_chmonsterinterior[arg1], *(u16 *)(*arg0 + 0x16));
+        return;
+    }
+    func_801032B0(arg0, D_80801FE8_chmonsterinterior[arg1], *(u16 *)(*arg0 + 0x16));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_80800C38_chmonsterinterior.s")
 
