@@ -23,7 +23,18 @@ s32 badialog_entrypoint_2(s32 arg0, s32 arg1, s32 arg2)
 {
     return 0;
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dialog/badialog_entrypoint_3.s")
+s32 badialog_entrypoint_3(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_8008E938(void *arg0);
+    u32 func_800C0534(u32, u32, f32*, Unk80132ED0*, s32, s32, s32, s32);
+    void func_8009C128(void *, f32 *);
+    extern s32 _badialog_entrypoint_0;
+    extern s32 _badialog_entrypoint_1;
+    extern s32 _badialog_entrypoint_2;
+    f32 sp2C[3];
+
+    func_8009C128((void *) arg0, sp2C);
+    return func_800C0534((u32) arg1, (u32) arg2, sp2C, func_8008E938((u8 *) arg0), (s32) &_badialog_entrypoint_0, (s32) &_badialog_entrypoint_1, (s32) &_badialog_entrypoint_2, 0);
+}
 
 /* extern */
 
