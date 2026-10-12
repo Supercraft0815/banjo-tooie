@@ -11,7 +11,15 @@ OSThread *chballoonbomb_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonbomb/func_80800118_chballoonbomb.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonbomb/func_808001F8_chballoonbomb.s")
+u32 func_808001F8_chballoonbomb(s32 unused, s32 arg1, s32 arg2) {
+    void func_80800294_chballoonbomb(Actor *);
+
+    if (arg1 == 0x40) {
+        func_80800294_chballoonbomb((Actor *) unused);
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonbomb/func_80800230_chballoonbomb.s")
 
