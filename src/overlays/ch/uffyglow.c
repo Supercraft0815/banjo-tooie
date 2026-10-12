@@ -7,7 +7,12 @@
 void func_80800484_chchuffyglow(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffyglow/func_8080048C_chchuffyglow.s")
+void func_8080048C_chchuffyglow(s32 arg0) {
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    _subaddiefade_entrypoint_1(arg0, 0);
+    ((Actor *)arg0)->unk58 = 5.0f;
+    ((Actor *)arg0)->unk64_20 = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffyglow/chchuffyglow_entrypoint_0.s")
 
