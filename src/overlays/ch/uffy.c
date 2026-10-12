@@ -93,7 +93,17 @@ void func_8080167C_chchuffy(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80801CF8_chchuffy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80801D3C_chchuffy.s")
+void func_80801D3C_chchuffy(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    extern s32 D_808025E4_chchuffy;
+    f32 *temp_a0;
+
+    temp_a0 = (f32 *)((u8 *)func_80100094(arg0, 0) + 8);
+    if (arg0->unk7C_12) {
+        func_800BBCB8(temp_a0, 0, 1.0f, arg1, &D_808025E4_chchuffy);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80801D94_chchuffy.s")
 
