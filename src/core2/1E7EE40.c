@@ -60,7 +60,19 @@ s32 func_800A57EC(s32 arg0) {
     return ((s32 *)&D_8011951C)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7EE40/func_800A5800.s")
+/* extern */
+
+s32 func_800A5800(s32 arg0) {
+    s32 func_800A5790(u8, u8);
+    void *temp_v0;
+    s32 temp_v1;
+
+    (*(s32 *)((s8 *)(D_80119540) + (0x30))) = arg0;
+    temp_v1 = arg0 * 2;
+    temp_v0 = D_80119540 + temp_v1;
+    (*(s32 *)((s8 *)(D_80119540) + (0x34))) = func_800A5790((*(u8 *)((s8 *)(temp_v0) + (0x3C))), (*(u8 *)((s8 *)(temp_v0) + (0x3D))));
+    return (*(s32 *)((s8 *)(D_80119540) + (0x34)));
+}
 
 s32 func_800A5854(s32 arg0) {
     return ((u8 *)D_80119540)[arg0 * 2 + 0x3C];
