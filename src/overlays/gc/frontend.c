@@ -33,7 +33,14 @@ u8 gcfrontend_entrypoint_5(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/func_808002DC_gcfrontend.s")
+s32 func_808002DC_gcfrontend(s32 arg0, s32 arg1) {
+    void func_80800738_gcfrontend(void *, s32, s32, s32);
+    extern s32 D_80800C9C_gcfrontend;
+    void *temp_v0;
+
+    temp_v0 = (arg0 * 0x10) + (u8 *)&D_80800C9C_gcfrontend;
+    func_80800738_gcfrontend((u8 *)temp_v0 - 0xA00, (u8 *)temp_v0 - 0x9FC, *(u8 *)((u8 *)temp_v0 - 0x9F3), arg1);
+}
 
 void gcfrontend_entrypoint_8(s32 arg0, s32 arg1) {
     s32 func_808002DC_gcfrontend(s32, s32);
