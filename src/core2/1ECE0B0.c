@@ -1312,7 +1312,7 @@ u8 func_800F8A80(void) {
 
 void func_800F8B0C(s32 arg0, f32 *arg1) { void *func_800F88A0(); void func_800EE7F8(f32 *, f32 *); func_800EE7F8(arg1, (f32 *)((u8 *)func_800F88A0(arg0) + 0x24)); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8B38.s")
+void func_800F8B38(s32 arg0, f32 *arg1) { void *func_800F88A0(); void func_800EE7F8(f32 *, f32 *); func_800EE7F8(arg1, (f32 *)((u8 *)func_800F88A0(arg0) + 0x30)); }
 
 s32 func_800F8B64(void) {
 	return (s32)D_801354F9;
