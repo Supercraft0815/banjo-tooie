@@ -40,7 +40,14 @@ void func_80800018_chmermaidstatue(void *arg0) {
 void func_80800094_chmermaidstatue(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mermaidstatue/func_8080009C_chmermaidstatue.s")
+/* extern */
+
+void func_8080009C_chmermaidstatue(void *arg0, s32 arg1) {
+    s32 func_800DF744(s32, s32);
+    s32 func_80101870(void *, s32);
+    func_800DF744(3, ((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7) - 0x31);
+    func_80101870(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mermaidstatue/func_808000E0_chmermaidstatue.s")
 
