@@ -1,8 +1,9 @@
 #include "overlays/bs/ledge.h"
 
 #ifndef NONMATCHINGS
-// Unmatched as the compiler wants to use a0 and then move a0 into v0 instead of using t registers
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ledge/func_80800000_bsledge.s")
+int func_80800000_bsledge(PlayerState *arg0) {
+    return (func_8008E23C(arg0) == 0) && (bakey_pressed(arg0, 9) != 0);
+}
 #else
 // Probably a check whether kazooie should (or can?) attack
 s32 func_80800000_bsledge(PlayerState *self) {
