@@ -171,7 +171,11 @@ int func_80017778(s32 index) {
     return *(s32 *)(slot + 0x20C) == 0 && !slot[3];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_800177C4.s")
+int func_800177C4(s32 arg0) {
+    extern s32 D_80079FA0;
+    u8 *slot = (u8 *)&D_80079FA0 + arg0 * 0x274;
+    return *(s32 *)(slot + 0x20C) == 0 && slot[3] != 0;
+}
 
 u8 *func_80017810(s32 arg0) {
     extern s32 D_80079FA0;
