@@ -116,7 +116,14 @@ s32 func_8010CAC0(f32 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010CB0C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010CB84.s")
+ s32 func_8010CB84(f32 *arg0, s32 arg1) {
+    extern s32 D_80136F50;
+    s32 func_800F0064(f32 *, f32, f32 *);
+    if ((*(s16 *)((s8 *)(&D_80136F50) + (0xC))) == 0) {
+        return 0;
+    }
+    return func_800F0064(arg0, (f32) arg1, (f32 *) &D_80136F50);
+}
 
 f32 func_8010CBD0(s32 arg0, f32 *arg1) {
     void func_800F5A00(s32, f32[3]);
