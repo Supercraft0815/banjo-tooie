@@ -179,7 +179,9 @@ s32 func_8010BAEC(Actor *volatile arg0, volatile s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010BDB0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010BF4C.s")
+/* extern */
+
+void func_8010BF4C(Actor *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4) { s32 func_80102844(Actor *, f32, s32, s32); *(f32 *)((s8 *)arg0 + 0x24) = arg2; func_80102844(arg0, (f32) arg3, -1, arg1); func_8010B990(arg0, arg4); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010BFA4.s")
 
