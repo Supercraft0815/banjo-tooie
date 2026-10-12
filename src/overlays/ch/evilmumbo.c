@@ -89,7 +89,12 @@ OSThread *chevilmumbo_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_808030AC_chevilmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80803358_chevilmumbo.s")
+void func_80803358_chevilmumbo(u8 *arg0) {
+    void func_800C8B84(s32);
+    if (((Actor *)arg0)->unk6C_0 != 0) {
+        func_800C8B84(((Actor *)arg0)->unk6C_0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80803388_chevilmumbo.s")
 
