@@ -728,7 +728,17 @@ void func_80802C90_bsfirstp(void *arg0) {
     _badeathmatch_entrypoint_9(arg0, _badeathmatch_entrypoint_6());
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80802CD8_bsfirstp.s")
+/* extern */
+
+void func_80802CD8_bsfirstp(void *arg0, s32 arg1) {
+    s32 func_80094C0C();
+    s32 _badeathmatch_entrypoint_5(s32, s32, s32);
+    if ((*(s32 *)((s8 *)(arg0) + (0x158))) == 0) {
+        func_80094C0C();
+        return;
+    }
+    _badeathmatch_entrypoint_5(arg0, arg1, -1);
+}
 
 /* extern */
 
