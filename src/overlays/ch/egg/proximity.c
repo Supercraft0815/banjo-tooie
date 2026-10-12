@@ -11,7 +11,28 @@ OSThread *cheggproximity_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_808000A8_cheggproximity.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_80800164_cheggproximity.s")
+/* extern */
+
+typedef union {
+    Actor actor;
+    struct {
+        u8 prefix[0x78];
+        u16 unused : 14;
+        u16 flags : 2;
+    } proximity;
+} ProximityActor;
+
+void func_80800164_cheggproximity(ProximityActor *arg0) {
+    s32 _subaddiedraw25d_entrypoint_1();
+    s32 sp1C;
+
+    sp1C = arg0->proximity.flags;
+    if (arg0->actor.alpha != 0xFF) {
+        arg0->proximity.flags = 1;
+    }
+    _subaddiedraw25d_entrypoint_1();
+    arg0->proximity.flags = sp1C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_808001CC_cheggproximity.s")
 
