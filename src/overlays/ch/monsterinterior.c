@@ -55,7 +55,21 @@ OSThread *chmonsterinterior_entrypoint_4(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_80800C38_chmonsterinterior.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_80800DA4_chmonsterinterior.s")
+/* extern */
+
+void func_80800DA4_chmonsterinterior(Actor *arg0) {
+    void _subaddiemulti_entrypoint_3(s32);
+    void* func_80100094(Actor*, u32);
+    s32 _sumultiscore_entrypoint_3(u8 *);
+    s32 _sumultiscore_entrypoint_4(u8 *, s32, s32, s32);
+    u8 *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    _subaddiemulti_entrypoint_3(0xA);
+    arg0->unk6C_0 = 5;
+    _sumultiscore_entrypoint_3(sp1C + 0x28);
+    _sumultiscore_entrypoint_4(sp1C + 0x28, 8, 0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_80800E0C_chmonsterinterior.s")
 
