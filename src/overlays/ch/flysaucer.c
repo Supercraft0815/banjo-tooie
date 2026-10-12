@@ -1,6 +1,16 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800000_chflysaucer.s")
+/* extern */
+
+s32 func_80800000_chflysaucer(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    s32 func_800DA564(s32, s32);
+    u8 *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    sp1C[0x26] = func_800DA564(0xA34, 3);
+    return sp1C[0x26];
+}
 
 /* extern */
 
