@@ -6,7 +6,11 @@ extern s32 D_801282B4;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B5B88.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B5BE4.s")
+s32 func_800B5BE4(s32 arg0) {
+    void *func_800B56D0(u8);
+    extern u8 D_80128150[];
+    return (s32) func_800B56D0(D_80128150[arg0]);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B5C10.s")
 
