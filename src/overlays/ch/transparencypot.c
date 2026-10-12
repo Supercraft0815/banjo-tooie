@@ -13,7 +13,14 @@ void func_8080000C_chtransparencypot(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparencypot/func_8080001C_chtransparencypot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparencypot/func_808000B8_chtransparencypot.s")
+/* extern */
+
+void func_808000B8_chtransparencypot(Actor *arg0) {
+    s32 func_8080001C_chtransparencypot(Actor *, s32);
+    if ((arg0->unk70_10 == 2) && (func_800D9078(&arg0->unk58) != 0)) {
+        func_8080001C_chtransparencypot(arg0, 1);
+    }
+}
 
 /* extern */
 
