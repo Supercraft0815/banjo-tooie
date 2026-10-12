@@ -2,7 +2,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_80800000_bsbeefly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_808000A4_bsbeefly.s")
+void func_808000A4_bsbeefly(s32 arg0) {
+    s32 func_800BABB8(s32, f32 *, s32, s32, s32 *);
+    extern s32 D_80800DE8_bsbeefly;
+    f32 sp24[3];
+    s32 sp20;
+
+    sp20 = func_800B5BE4(0x22);
+    func_8009C128(arg0, sp24);
+    *(f32 *)((s8 *)sp24 + 4) += 45.0f;
+    func_800BABB8(sp20, sp24, 0, 0x3F800000, &D_80800DE8_bsbeefly);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_8080010C_bsbeefly.s")
 
