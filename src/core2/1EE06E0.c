@@ -104,7 +104,23 @@ s32 func_801072E4(void) {
     return (*(s16 *)((s8 *)(temp_v0) + (0xA))) == 4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107320.s")
+s32 func_80107320(Actor *arg0) {
+    struct IndexField {
+        u8 pad[0x94];
+        u16 upper : 2;
+        u16 index : 10;
+        u16 lower : 4;
+    };
+    extern s32 D_80136F00;
+    s32 sp1C;
+    void *sp18;
+    sp1C = 0;
+    sp18 = freelist_next(&D_80136F00, &sp1C);
+    bzero(sp18, 0x18);
+    ((struct IndexField *)arg0)->index = sp1C;
+    func_80107200(arg0);
+    return (s32) sp18;
+}
 
 /* extern */
 
