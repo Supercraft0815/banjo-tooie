@@ -668,7 +668,7 @@ OSThread *chintrochar_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80803E98_chintrochar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80803F24_chintrochar.s")
+void func_80803F24_chintrochar(Actor *arg0, u8 *arg1, s32 arg2) { void func_800DBEFC(s32 *, s32, s32); void func_80103014(u8 *); extern s32 D_80805374_chintrochar[]; if (arg0->unk7C_12) { func_800DBEFC(*(s32 **)((u8 *)arg0->unk0 + 4), D_80805374_chintrochar[arg2], (s32)(arg1 + 4)); } func_80103014(arg1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80803F7C_chintrochar.s")
 
