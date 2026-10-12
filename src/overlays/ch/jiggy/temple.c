@@ -27,7 +27,42 @@ OSThread *chjiggytemple_entrypoint_1(void)
     return (OSThread *) D_8080092C_chjiggytemple;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_80800320_chjiggytemple.s")
+/* extern */
+
+void func_80800320_chjiggytemple(s32 arg0) {
+    s32 _chdoormake_entrypoint_3(s32, f32, f32, f32, s32, s32);
+    s32 _chdoormake_entrypoint_5(s32, f32);
+    s32 _chdoormake_entrypoint_6(s32, f32);
+    s32 _chdoormake_entrypoint_7(s32, f32);
+    s32 _chdoormake_entrypoint_8(s32, s32);
+    s32 _chdoormake_entrypoint_9(s32, s32, s32, s32);
+    s32 _glcutDll_entrypoint_18();
+    s32 _sujiggy_entrypoint_17();
+    s32 func_800DA298(s32);
+    s32 func_800EA090();
+    s32 func_8010108C(s32, s32, s32);
+    s32 func_80101FDC(s32, s32);
+    f32 func_80103EF4(s32);
+    s32 sp2C;
+    s32 sp28;
+
+    sp2C = func_800EA090();
+    if ((func_800DA298(0x532) != 0) && ((sp2C == 1) || (_sujiggy_entrypoint_17() != 0))) {
+        func_80101FDC(arg0, 4);
+    }
+    _chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, func_80103EF4(arg0), 2, -1);
+    _chdoormake_entrypoint_5(arg0, 1.0f);
+    _chdoormake_entrypoint_6(arg0, 0.5f);
+    _chdoormake_entrypoint_7(arg0, 0.5f);
+    _chdoormake_entrypoint_8(arg0, 5);
+    _chdoormake_entrypoint_9(arg0, 1, 0x12, 0x10);
+    if (func_800DA298(0x532) != 0) {
+        sp28 = _glcutDll_entrypoint_18();
+        if ((_sujiggy_entrypoint_17() == 0) && (sp28 != 0x67) && (sp28 != 0x7A)) {
+            func_8010108C(arg0, 8, 0);
+        }
+    }
+}
 
 void func_80800438_chjiggytemple(s32 arg0, s32 arg1, s32 arg2) {
     s32 _chdoor_entrypoint_1(s32, s32, s32);
