@@ -39,7 +39,26 @@ void fxrain_entrypoint_4(u8 *arg0) {
     heap_free(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/rain/fxrain_entrypoint_5.s")
+/* extern */
+
+u8 *fxrain_entrypoint_5(s32 arg0) {
+    s32 func_800EFD24(u8 *);
+    u8 *heap_alloc(s32);
+    s32 vector_new(s32, s32);
+    u8 *temp_v0;
+
+    temp_v0 = heap_alloc(0x4C);
+    func_800EFD24(temp_v0 + 4);
+    func_800EFD24(temp_v0 + 0x10);
+    (*(s8 *)((s8 *)(temp_v0) + (0))) = 0;
+    (*(s8 *)((s8 *)(temp_v0) + (0x1C))) = 0;
+    (*(s8 *)((s8 *)(temp_v0) + (0x30))) = 0;
+    (*(s32 *)((s8 *)(temp_v0) + (0x20))) = vector_new(0x1C, arg0);
+    (*(s32 *)((s8 *)(temp_v0) + (0x24))) = arg0;
+    (*(s32 *)((s8 *)(temp_v0) + (0x28))) = 0;
+    (*(f32 *)((s8 *)(temp_v0) + (0x2C))) = 0.1f;
+    return temp_v0;
+}
 
 void fxrain_entrypoint_6(void *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     typedef struct {
