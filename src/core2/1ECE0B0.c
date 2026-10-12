@@ -185,7 +185,18 @@ void func_800F51F0(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F521C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F5268.s")
+s32 func_800F5268(s32 arg0) {
+    s32 _bafpctrl_entrypoint_4();
+    s32 _bafpctrl_entrypoint_5(PlayerState *);
+
+    if (_bafpctrl_entrypoint_4(D_80135490[arg0]) != 3) {
+        return 0;
+    }
+    if (&_bafpctrl_entrypoint_5 != NULL) {
+        return 2;
+    }
+    return 1;
+}
 
 void func_800F52B8(s32 arg0)
 {
