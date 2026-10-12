@@ -5,7 +5,10 @@ s32 ncba1p_entrypoint_0()
     return 0x54;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/1p/func_80800008_ncba1p.s")
+int func_80800008_ncba1p(s32 arg0, f32 *arg1, f32 *arg2) {
+    f32 func_800EEAD4(f32 *, f32 *);
+    return func_800EEAD4(arg1, arg2) < 40.0f;
+}
 
 /* extern */
 
