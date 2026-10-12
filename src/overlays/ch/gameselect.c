@@ -562,7 +562,30 @@ void func_80803CE0_chgameselect()
     func_800FC660(0x97);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803D00_chgameselect.s")
+s32 func_80803D00_chgameselect(s32 arg0, s32 arg1) {
+    s32 _cadbfunc_entrypoint_0(s32 *);
+    s32 _cadbfunc_entrypoint_2(s32 *);
+    s32 func_800A5800(s32);
+    void func_800E39D8(s32 arg0, s32 arg1);
+    union {
+        s32 word;
+        struct {
+            s16 flag;
+            s16 id;
+        } parts;
+    } sp34;
+    s32 sp28[3];
+    s32 sp1C[3];
+
+    sp34.parts.flag = arg1;
+    sp34.parts.id = arg0;
+    if (func_80101180(0x4B9, 0x21, sp34.word) == 0) {
+        func_800A5800(arg0);
+        _cadbfunc_entrypoint_0(sp28);
+        _cadbfunc_entrypoint_2(sp1C);
+        func_800E39D8((s32) sp28, (s32) sp1C);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803D60_chgameselect.s")
 
