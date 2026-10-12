@@ -1106,7 +1106,12 @@ void func_800F7ECC(s32 arg0, s32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7F00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7F50.s")
+/* extern */
+
+void func_800F7F50(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5) {
+    void func_80098730(u8 *, s32, s32, f32, s32, s32);
+    func_80098730(D_80135490[arg0], arg1, arg2, arg3, arg4, arg5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7F98.s")
 
