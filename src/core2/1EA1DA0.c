@@ -196,7 +196,13 @@ void func_800C8F64(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8FB0.s")
+void func_800C8FB0(s32 arg0, u32 arg1, u32 arg2, u32 arg3) {
+    u32 sp1C[3];
+    sp1C[0] = arg1;
+    sp1C[1] = arg2;
+    sp1C[2] = arg3;
+    func_800C8E84(arg0, sp1C);
+}
 
 void func_800C8FE0(s32 arg0, s32 arg1) {
     void *vector_at(s32, s32, s32);
