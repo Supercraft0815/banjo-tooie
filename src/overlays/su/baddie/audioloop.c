@@ -2,7 +2,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/audioloop/subaddieaudioloop_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/audioloop/subaddieaudioloop_entrypoint_1.s")
+/* extern */
+
+void subaddieaudioloop_entrypoint_1(u8 *arg0, s32 sample_rate) {
+    void func_800C3058(u8, s32);
+
+    if (arg0[0x5F] != 0) {
+        func_800C3058(arg0[0x5F], sample_rate);
+    }
+}
 
 /* extern */
 
