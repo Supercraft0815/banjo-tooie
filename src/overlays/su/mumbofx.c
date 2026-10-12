@@ -121,7 +121,18 @@ void sumumbofx_entrypoint_11(void *arg0) {
     func_800C8CB8((*(s16 *)((s8 *)(arg0) + (0x5E))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/func_80800F8C_sumumbofx.s")
+void func_80800F8C_sumumbofx(u8 *arg0) {
+    s32 func_800C8E84(s32, s32 *);
+    void func_800F3214(s32, s32, s32, f32);
+    struct Vec { s32 x, y, z; };
+    extern struct Vec D_808014DC_sumumbofx;
+    s32 sp24[3];
+    struct Vec sp18;
+
+    sp18 = D_808014DC_sumumbofx;
+    func_800F3214((s32) sp24, (s32) &sp18, (s32) (arg0 + 0x3C), *(f32 *) (arg0 + 4));
+    func_800C8E84(*(s16 *)(arg0 + 0x5E), sp24);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_12.s")
 
