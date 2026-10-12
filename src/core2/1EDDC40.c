@@ -79,7 +79,19 @@ void func_80104580(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104668.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_8010473C.s")
+/* extern */
+
+f32 func_8010473C(s32 arg0, s32 arg1) {
+    void *func_801043D8();
+    s32 func_801048E4(void *, s32);
+    void *var_a0;
+
+    var_a0 = func_801043D8(arg0);
+    if (arg1 != 0) {
+        func_801048E4(var_a0, arg1);
+    }
+    return (f32) (*(s16 *)((s8 *)(var_a0) + (0x16)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104780.s")
 
