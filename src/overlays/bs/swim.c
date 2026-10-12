@@ -62,7 +62,22 @@ void func_80800A4C_bsswim(s32 arg0)
     func_808001DC_bsswim();
     _bsrest_entrypoint_16(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_80800A74_bsswim.s")
+/* extern */
+
+void func_80800A74_bsswim(s32 arg0) {
+    s32 _bsrest_entrypoint_13(s32);
+    s32 bs_setState(s32, s32);
+    s32 _bsrest_entrypoint_20();
+    s32 var_a1;
+    s32 sp1C;
+
+    sp1C = 0;
+    var_a1 = sp1C;
+    if (_bsrest_entrypoint_20() != 0) {
+        var_a1 = _bsrest_entrypoint_13(arg0);
+    }
+    bs_setState(arg0, var_a1);
+}
 
 s32 bsswim_entrypoint_2(s32 arg0) {
     extern s32 D_80800BC4_bsswim[];
