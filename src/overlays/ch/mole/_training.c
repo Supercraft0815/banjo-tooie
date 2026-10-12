@@ -10,7 +10,18 @@ void func_80800000_chmole_training(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_80800034_chmole_training.s")
+void func_80800034_chmole_training(Actor *arg0, s32 arg1)
+{
+  void *func_80100094(Actor *, u32);
+  s32 _gcnewoption_entrypoint_1(u8 *, s32);
+  u32 temp_t6;
+  temp_t6 = (u16) (*((u16 *) (((s8 *) arg0) + 0x72)));
+  temp_t6 = temp_t6 >> 0xA;
+  if (((temp_t6 == 5) || (temp_t6 == 7)) || (temp_t6 == 6))
+  {
+    _gcnewoption_entrypoint_1(func_80100094(arg0, 0U), arg1);
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_80800088_chmole_training.s")
 
