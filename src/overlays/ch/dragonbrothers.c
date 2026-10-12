@@ -32,7 +32,20 @@ void func_808003D8_chdragonbrothers(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80800C08_chdragonbrothers.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80800D20_chdragonbrothers.s")
+void func_80800D20_chdragonbrothers(u8 *arg0, s16 arg1, s32 arg2) {
+    s32 func_800C05B8(s32, s32, f32*, Unk80132ED0*, s32, s32, s16);
+    s32 var_v0;
+    Actor *actor = (Actor *)arg0;
+
+    arg2 |= 6;
+    if (actor->unk7A_8) {
+        var_v0 = 0x75;
+    } else {
+        var_v0 = 0x76;
+    }
+    func_800C05B8(arg1, arg2, actor->position, actor->unk0, 0, 0, var_v0);
+    actor->unk74_30 = 1;
+}
 
 void func_80800D98_chdragonbrothers(u8 *arg0, s32 arg1) {
     s32 _gcfrontend_entrypoint_9(s32);
