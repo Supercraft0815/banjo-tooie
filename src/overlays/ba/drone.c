@@ -89,7 +89,18 @@ void badrone_entrypoint_13(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/drone/badrone_entrypoint_14.s")
+/* extern */
+
+void badrone_entrypoint_14(u8 *arg0, f32 *arg1, f32 arg2) {
+    s32 bs_setState(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 _badata_entrypoint_21();
+    func_800EE7F8((f32 *)((*(u8 **)((s8 *)(arg0) + (0x54))) + 0x10), arg1);
+    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x54)))) + (0xC))) = arg2;
+    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x54)))) + (8))) = 0.0f;
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x54)))) + (1))) = 1;
+    bs_setState((s32) arg0, _badata_entrypoint_21(arg0));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/drone/badrone_entrypoint_15.s")
 
