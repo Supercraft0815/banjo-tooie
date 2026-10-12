@@ -1003,7 +1003,12 @@ void func_800F77E8(s32 arg0, s32 arg1) {
     func_800F7750(arg0, arg1, 0x44520000, 0xC4BB8000, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7814.s")
+/* extern */
+
+void func_800F7814(s32 arg0, s32 arg1) {
+    s32 func_800F7750(s32, s32, s32, s32, s32);
+    func_800F7750(arg0, arg1, 0x44520000, 0xC4BB8000, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7844.s")
 
