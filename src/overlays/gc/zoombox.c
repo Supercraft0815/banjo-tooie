@@ -713,7 +713,24 @@ void gczoombox_entrypoint_4(u8 *box) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80802B94_gczoombox.s")
+/* extern */
+
+void func_80802B94_gczoombox(u8 *arg0, s32 arg1) {
+    s32 func_800AF5A0(s16 *arg0);
+    s16 _gczoomboxdata_entrypoint_1(s32);
+    s32 func_800D674C(s32);
+    s16 temp_v0;
+
+    if (arg1 != 0x44) {
+        temp_v0 = _gczoomboxdata_entrypoint_1(arg1);
+        (*(s16 *)((s8 *)arg0 + (0x140))) = temp_v0;
+        (*(s8 *)((s8 *)arg0 + (0x1D1))) = func_800AF5A0(func_800D674C(temp_v0 & 0xFFFF));
+        (*(s8 *)((s8 *)arg0 + (0x1CF))) = 0;
+        return;
+    }
+    (*(s16 *)((s8 *)arg0 + (0x140))) = 0;
+    (*(s8 *)((s8 *)arg0 + (0x1D1))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80802BF4_gczoombox.s")
 
