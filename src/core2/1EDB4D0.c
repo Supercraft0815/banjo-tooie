@@ -247,7 +247,19 @@ s32 func_801022E4(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80102320.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80102394.s")
+/* extern */
+
+s32 func_80102394(Actor *arg0) {
+    typedef struct { u32 pad : 12; u32 flag : 1; u32 rest : 19; } Flags;
+    void *func_80100368(void *);
+    s32 func_80101080();
+    s32 func_8010108C(Actor *, s32, s32);
+    if (((Flags *)((s8 *)arg0 + 0x78))->flag) {
+        func_8010108C(arg0, 0x99, 0);
+        return func_80101080();
+    }
+    return (*(s32 *)((s8 *)(func_80100368(arg0)) + (8)));
+}
 
 /* extern */
 
