@@ -11,7 +11,7 @@ u8 badrone_entrypoint_1(void *arg0) {
 }
 
 void badrone_entrypoint_2(void *arg0, s32 arg1) {
-    s32 func_800EE7F8();
+    void func_800EE7F8();
     func_800EE7F8(arg1, *(u8 **)((u8 *)arg0 + 0x54) + 0x24);
 }
 
@@ -53,7 +53,12 @@ u32 badrone_entrypoint_7(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 84) + 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/drone/badrone_entrypoint_8.s")
+void badrone_entrypoint_8(u8 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
+    void func_800EE7F8();
+    func_800EE7F8(arg1, (f32 *)(*(u8 **)(arg0 + 0x54) + 0x10));
+    *arg2 = *(f32 *)(*(u8 **)(arg0 + 0x54) + 8);
+    *arg3 = *(f32 *)(*(u8 **)(arg0 + 0x54) + 0xC);
+}
 
 u32 badrone_entrypoint_9(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 84) + 5);
@@ -77,7 +82,7 @@ void badrone_entrypoint_12(void *arg0, s32 arg1) {
 void badrone_entrypoint_13(void *arg0, s32 arg1) {
     s32 _bamovegoto_entrypoint_12(void *, s32);
     s32 func_8009BAF4(void *);
-    s32 func_800EE7F8(s32);
+    void func_800EE7F8();
     func_800EE7F8((*(u8 **)((s8 *)(arg0) + (0x54))) + 0x10);
     if ((*(*(u8 **)((s8 *)(arg0) + (0x54))) == 1) && (func_8009BAF4(arg0) == 0xC)) {
         _bamovegoto_entrypoint_12(arg0, arg1);
@@ -129,7 +134,7 @@ void badrone_entrypoint_21(void *arg0) {
 /* extern */
 
 void badrone_entrypoint_22(void *arg0) {
-    s32 func_800EE7F8(s32);
+    void func_800EE7F8();
     func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x54))) + 0x34);
     func_80800348_badrone(arg0, 0xB);
 }
@@ -137,7 +142,7 @@ void badrone_entrypoint_22(void *arg0) {
 /* extern */
 
 void badrone_entrypoint_23(void *arg0) {
-    s32 func_800EE7F8(s32);
+    void func_800EE7F8();
     func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x54))) + 0x34);
     func_80800348_badrone(arg0, 0xA);
 }
@@ -198,6 +203,6 @@ void badrone_entrypoint_32(void *arg0) {
 /* extern */
 
 void badrone_entrypoint_33(void *arg0) {
-    s32 func_800EE7F8(s32);
+    void func_800EE7F8();
     func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x54))) + 0x24);
 }
