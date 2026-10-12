@@ -542,7 +542,24 @@ void func_800A8AF0(s32 arg0)
     func_80015D14(D_80127688[arg0].unk0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A8B24.s")
+/* extern */
+
+void func_800A8B24(s32 arg0, s32 arg1) {
+    s32 func_800157EC(s32, s32);
+    s32 func_800E7EC0(s32);
+    s32 func_800E7FB0(s32, s32, s32, s32);
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+
+    sp24 = D_80127688[D_80127674].unk0;
+    func_80015CC0(sp24, (s32) &sp34, (s32) &sp30, (s32) &sp2C, (s32) &sp28);
+    func_800E7FB0(sp34, sp30, sp2C, sp28);
+    func_800E7EC0(arg0);
+    func_800157EC(sp24, arg0);
+}
 
 void func_800A8BA8(Gfx** arg0, s32 arg1)
 {
