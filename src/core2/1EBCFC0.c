@@ -257,7 +257,20 @@ void func_800E40AC(s32 arg0, f32 arg1) {
     func_800CAF00((f32 *) D_8012D500, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBCFC0/func_800E40DC.s")
+/* extern */
+
+f32 func_800E40DC(f32 arg0, f32 arg1, s32 arg2, s32 arg3) {
+s32 func_800A89F8();
+    s32 func_800CA9D8(s32, s32);
+    void func_800EFA4C(f32[3], f32, f32, f32);
+    s32 func_800C4E58(s32, f32 *, s32);
+    f32 sp1C[3];
+
+    func_800CA9D8(D_8012D500, arg3);
+    func_800EFA4C(sp1C, arg0, arg1, 200.0f);
+    func_800C4E58(func_800A89F8(), sp1C, arg2);
+    return 1.0f;
+}
 
 int func_800E4140(s32 arg0, s32 arg1) {
     int temp_t6;
