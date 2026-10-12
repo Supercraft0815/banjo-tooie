@@ -45,7 +45,13 @@ OSThread *chlagoonbits_entrypoint_5(void)
 void func_80800048_chlagoonbits(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/func_80800050_chlagoonbits.s")
+void func_80800050_chlagoonbits(Actor *arg0) {
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor*);
+    if (func_800DA298(arg0->unk6C_9 == 0x368 ? 0xCB : 0xCC) != 0) {
+        func_800FFAB0(arg0);
+    }
+}
 
 void func_808000A4_chlagoonbits(s32 arg0) 
 {
