@@ -4,7 +4,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800098_chnests.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_808000E8_chnests.s")
+struct Entry { s16 value; s16 rest[6]; };
+extern struct Entry D_80801118_chnests[];
+
+void func_808000E8_chnests(void *arg0) {
+    s8 *entry;
+
+    entry = (s8 *)D_80801118_chnests + *(s32 *)((s8 *)arg0 + 0x1C) * 14;
+    if (*(s16 *)(entry + 8) != 0) {
+        if (func_800DA298(*(s16 *)(entry + 8)) == 0) {
+            _sudialog_entrypoint_0(*(s16 *)(entry + 8), 0);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800144_chnests.s")
 
@@ -89,9 +101,6 @@ void func_80800B80_chnests(void *arg0) {
         (*(s32 *)((s8 *)(arg0) + (0x30))) = 2;
     }
 }
-
-struct Entry { s16 value; s16 rest[6]; };
-extern struct Entry D_80801118_chnests[];
 
 void func_80800BA0_chnests(void *arg0, s32 arg1) {
     struct Flags { u16 value : 10; u16 rest : 6; };
