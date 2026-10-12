@@ -233,7 +233,16 @@ s32 func_80803158_chklungo(Actor *arg0, s32 arg1, s32 arg2) {
     return _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, arg0->position, 0xAB);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_8080318C_chklungo.s")
+/* extern */
+
+void func_8080318C_chklungo(Actor *arg0) {
+    void func_80101CDC(Actor*, f32);
+    f32 func_8010203C(Actor *, u32);
+    f32 sp1C;
+
+    sp1C = 300.0f / *(f32 *)((s8 *)arg0 + 0x24);
+    func_80101CDC(arg0, func_8010203C(arg0, arg0->unk70_10) * sp1C);
+}
 
 f32 func_808031E4_chklungo(void *arg0) {
     f32 temp_f0;
