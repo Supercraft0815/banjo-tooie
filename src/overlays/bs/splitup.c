@@ -73,7 +73,22 @@ void bssplitup_entrypoint_8(s32 arg0) {
     _batimer_set(arg0, 0, 0x3DCCCCCD);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/bssplitup_entrypoint_9.s")
+/* extern */
+
+void bssplitup_entrypoint_9(u8 *arg0) {
+    s32 _batimer_decrement(void *, s32);
+    s32 bs_setState(void *, s32);
+    s32 _baduo_entrypoint_16(u8 *);
+    s32 var_a2;
+
+    var_a2 = 0;
+    arg0 = arg0;
+    if (_batimer_decrement(arg0, 0) != 0) {
+        _baduo_entrypoint_16(arg0);
+        var_a2 = 0xB9;
+    }
+    bs_setState(arg0, var_a2);
+}
 
 void bssplitup_entrypoint_10(s32 arg0) 
 {
