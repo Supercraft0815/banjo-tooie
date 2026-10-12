@@ -141,7 +141,15 @@ void bstaxi_entrypoint_11(s32 arg0)
     bstaxi_entrypoint_0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_12.s")
+/* extern */
+
+void bstaxi_entrypoint_12(void *arg0) {
+    void baphysics_set_target_horizontal_velocity(void *, f32);
+    bstaxi_entrypoint_1(arg0);
+    func_8009FFD8(arg0, 1, 1, 3, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_80800A18_bstaxi(arg0, 1U);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_13.s")
 
