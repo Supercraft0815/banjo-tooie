@@ -32,7 +32,25 @@ loop_1:
     return temp_v0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/glsavegame_entrypoint_1.s")
+void glsavegame_entrypoint_1(void)
+{
+  extern s8 D_80127614;
+  s32 heap_free(s32);
+  s32 *var_s0;
+  s32 *var_s1;
+  s32 temp_a0;
+ var_s0 = ((s32 *) (&D_80127614)) + 1; var_s1 = ((s32 *) (&D_80127614)) + 4; do {
+    temp_a0 = *var_s0;
+    if (temp_a0 != 0)
+    {
+      heap_free(temp_a0);
+      *var_s0 = 0;
+    }
+    var_s0++;
+  }
+  while (var_s0 != var_s1);
+  *(((s8 *) (&D_80127614)) + 0x14) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/glsavegame_entrypoint_2.s")
 
