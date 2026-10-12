@@ -67,7 +67,12 @@ void func_80800570_chnewshovel(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800C58_chnewshovel.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800CC4_chnewshovel.s")
+s32 func_80800CC4_chnewshovel(s32 arg0) {
+    s32 func_800DC298(f32);
+    extern s32 D_80801064_chnewshovel;
+    func_800C4B7C(func_800DC298(0.5f) ? 0x517 : 0x518);
+    _subaddieaudioquick_entrypoint_2((Actor *) arg0, (f32 *) (arg0 + 4), &D_80801064_chnewshovel);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800D18_chnewshovel.s")
 
