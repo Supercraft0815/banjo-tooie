@@ -102,7 +102,23 @@ void func_80800BCC_chstoneballcontrol(u8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_8080128C_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_808012E0_chstoneballcontrol.s")
+void func_808012E0_chstoneballcontrol(void *arg0, s32 arg1) {
+    struct Fields {
+        u8 pad0[0x64];
+        u8 unused : 7;
+        u8 active : 1;
+        u8 pad1[9];
+        u16 high : 7;
+        u16 state : 9;
+    };
+    struct Fields *p = arg0;
+    p->state = arg1;
+    if (arg1 == 2) {
+        p->active = 1;
+    } else {
+        p->active = 0;
+    }
+}
 
 s32 func_80801320_chstoneballcontrol(void *arg0) {
     return (*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF;
