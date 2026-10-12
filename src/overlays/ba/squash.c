@@ -12,7 +12,13 @@ void basquash_entrypoint_1(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/squash/basquash_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/squash/basquash_entrypoint_3.s")
+/* extern */
+
+void basquash_entrypoint_3(void *arg0, s32 arg1) {
+    s32 func_80800008_basquash(void *, s32);
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x11C)))) + (2))) = arg1;
+    func_80800008_basquash(arg0, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/squash/func_80800140_basquash.s")
 
