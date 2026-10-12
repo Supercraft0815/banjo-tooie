@@ -83,6 +83,18 @@ void fxrain_entrypoint_7(s32 arg0)
     func_808001E8_fxrain(arg0,1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/rain/fxrain_entrypoint_8.s")
+/* extern */
+
+void fxrain_entrypoint_8(u8 *arg0) {
+    s32 func_800C3A40(u8, f32, f32, f32);
+    u8 temp_a0;
+
+    func_808001E8_fxrain(arg0, 2);
+    temp_a0 = *arg0;
+    if (temp_a0 != 0) {
+        func_800C3A40(temp_a0, 0.0f, 0.0f, 3.0f);
+        *arg0 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/rain/fxrain_entrypoint_9.s")
