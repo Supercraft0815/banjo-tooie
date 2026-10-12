@@ -393,7 +393,162 @@ void func_808028E4_chdodgemcontrol(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808037C8_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808039B8_chdodgemcontrol.s")
+void func_808039B8_chdodgemcontrol(Actor *arg0) {
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EEB9C(f32 *, f32, f32);
+    f32 func_800EEF94(f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFB24(void *, void *, void *);
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    f32 func_800F1DCC(f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    Actor *func_8080000C_chdodgemcontrol(Actor *, s32);
+    void func_80801084_chdodgemcontrol(f32 *, f32 *, f32);
+    void func_80802104_chdodgemcontrol(Actor *);
+    void func_80802764_chdodgemcontrol(Actor *);
+    void func_80802824_chdodgemcontrol(Actor *);
+    void func_80802884_chdodgemcontrol(Actor *);
+    extern s32 D_80804D5C_chdodgemcontrol;
+    s32 i;
+    Actor *controller;
+    u8 *control_data;
+    Actor *other;
+    f32 *data;
+    f32 *other_data;
+    f32 other_pos[3];
+    f32 front[3];
+    f32 other_front[3];
+    f32 speed;
+    f32 difference;
+    s32 angle;
+    f32 anglef;
+    f32 point[3];
+    f32 other_point[3];
+    f32 offset[3];
+    f32 other_offset[3];
+
+    data = func_80100094(arg0, 0);
+    controller = func_80106790(*(Unk80132ED0 **)((u8 *)arg0 + 0x3C));
+    control_data = func_80100094(controller, 0);
+    for (i = 0; i < control_data[0xC2]; i++) {
+        if (i != (*(u32 *)((u8 *)arg0 + 0x6C) & 0x1FF)) {
+            other = func_8080000C_chdodgemcontrol(controller, i);
+            other_data = func_80100094(other, 0);
+            other_pos[0] = ((f32 *)other)[1];
+            other_pos[1] = ((f32 *)other)[2];
+            other_pos[2] = ((f32 *)other)[3];
+            func_800EEB9C(front, ((f32 *)arg0)[0x12], 75.0f);
+            func_800EF04C(front, ((f32 *)arg0 + 1));
+            func_800EEB9C(other_front, ((f32 *)other)[0x12], 48.75f);
+            func_800EF04C(other_front, ((f32 *)other + 1));
+            if (func_800EFFB4(((f32 *)arg0 + 1), 182.0f, other_pos) ||
+                func_800EFFB4(front, 156.0f, other_pos) ||
+                func_800EFFB4(((f32 *)arg0 + 1), 156.0f, other_front) ||
+                func_800EFFB4(front, 130.0f, other_front)) {
+                speed = func_800EEF94((f32 *)arg0 + 10);
+                if (i == (s32)((f32 *)arg0)[13]) {
+                    ((f32 *)arg0)[20] = 0.0f;
+                }
+                if (func_800EEF94((f32 *)other + 10) <= speed) {
+                    angle = (s32)func_800F1DF4(((f32 *)other + 1), ((f32 *)arg0 + 1));
+                    difference = func_800F1DCC(((f32 *)other)[18], (f32)angle);
+                    if (data[6] <= 0.0f) {
+                        func_8010D930(1, 0, ((f32 *)arg0 + 1), &D_80804D5C_chdodgemcontrol);
+                        data[6] = 1.0f;
+                    }
+                    if (difference > -45.0f && difference < 45.0f) {
+                        func_80802764_chdodgemcontrol(other);
+                    }
+                    if (difference < -45.0f && difference > -135.0f) {
+                        func_80802824_chdodgemcontrol(other);
+                    }
+                    if (difference > 45.0f && difference < 135.0f) {
+                        func_80802884_chdodgemcontrol(other);
+                    }
+                    if (difference < -135.0f || difference > 135.0f) {
+                        func_808027C4_chdodgemcontrol((s32)other);
+                    }
+                    if (((f32 *)arg0)[9] < 150.0f) {
+                        ((f32 *)arg0)[9] = 150.0f;
+                    }
+                    if (!(*(u32 *)((u8 *)arg0 + 0x6C) & 0x1FF) &&
+                        ((u32)((u8 *)controller)[0x79] >> 4) != 3) {
+                        ((f32 *)arg0)[9] *= 0.8999938965f;
+                        anglef = (f32)angle;
+                        func_800EEB9C(data, anglef, ((f32 *)arg0)[9] * 0.5f);
+                    } else {
+                        ((f32 *)arg0)[9] *= 0.6999969482f;
+                        anglef = (f32)angle;
+                        func_800EEB9C(data, anglef, ((f32 *)arg0)[9] / 1.0f);
+                    }
+                    if (i == 0 && ((u32)((u8 *)controller)[0x79] >> 4) != 3) {
+                        ((f32 *)other)[9] *= 0.5f;
+                        func_800EEB9C(other_data, anglef, -((f32 *)arg0)[9] * 3.0f);
+                    } else {
+                        ((f32 *)other)[9] *= 0.6999969482f;
+                        func_800EEB9C(other_data, anglef, -((f32 *)arg0)[9] / 1.0f);
+                    }
+                    func_800EEB9C(offset, ((f32 *)arg0)[18], 48.75f);
+                    func_800EEB9C(other_offset, ((f32 *)other)[18], 48.75f);
+                    func_80801084_chdodgemcontrol(((f32 *)arg0 + 1), ((f32 *)other + 1), 170.625f);
+                    func_800EE780(point, offset, ((f32 *)arg0 + 1));
+                    func_80801084_chdodgemcontrol(point, ((f32 *)other + 1), 170.625f);
+                    func_800EFB24(((f32 *)arg0 + 1), point, offset);
+                    func_800EE780(other_point, other_offset, ((f32 *)other + 1));
+                    func_80801084_chdodgemcontrol(((f32 *)arg0 + 1), other_point, 136.5f);
+                    func_800EFB24(((f32 *)other + 1), other_point, other_offset);
+                    func_800EE780(point, offset, ((f32 *)arg0 + 1));
+                    func_800EE780(other_point, other_offset, ((f32 *)other + 1));
+                    func_80801084_chdodgemcontrol(point, other_point, 136.5f);
+                    func_800EFB24(((f32 *)other + 1), other_point, other_offset);
+                    func_800EFB24(((f32 *)arg0 + 1), point, offset);
+                    difference = func_800F1DCC(((f32 *)arg0)[18], (f32)(angle + 180));
+                    if (difference > -45.0f && difference < 45.0f) {
+                        func_80802104_chdodgemcontrol(arg0);
+                    }
+                    if (difference < -45.0f && difference > -135.0f) {
+                        func_80802104_chdodgemcontrol(arg0);
+                    }
+                    if (difference > 45.0f && difference < 135.0f) {
+                        func_80802104_chdodgemcontrol(arg0);
+                    }
+                    if (difference < -135.0f || difference > 135.0f) {
+                        func_80802104_chdodgemcontrol(arg0);
+                    }
+                    difference = func_800F1DCC(((f32 *)arg0)[18], anglef);
+                    if (difference > -80.0f && difference < 10.0f) {
+                        data[3] = ((f32 *)arg0)[9] * 0.01f;
+                    }
+                    if (difference < 80.0f && difference > 10.0f) {
+                        data[3] = ((f32 *)arg0)[9] * -0.01f;
+                    }
+                    if (difference > -170.0f && difference < -100.0f) {
+                        data[3] = ((f32 *)arg0)[9] * -0.01f;
+                    }
+                    if (difference < 170.0f && difference > 80.0f) {
+                        data[3] = ((f32 *)arg0)[9] * 0.01f;
+                    }
+                    difference = func_800F1DCC(((f32 *)other)[18], anglef);
+                    if (difference > -80.0f && difference < 10.0f) {
+                        other_data[3] = ((f32 *)arg0)[9] * -0.01f;
+                    }
+                    if (difference < 80.0f && difference > 10.0f) {
+                        other_data[3] = ((f32 *)arg0)[9] * 0.01f;
+                    }
+                    if (difference > -170.0f && difference < -100.0f) {
+                        other_data[3] = ((f32 *)arg0)[9] * 0.01f;
+                    }
+                    if (difference < 170.0f && difference > 80.0f) {
+                        other_data[3] = ((f32 *)arg0)[9] * -0.01f;
+                    }
+                }
+            }
+        }
+    }
+}
 
 /* extern */
 
