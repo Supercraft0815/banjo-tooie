@@ -252,7 +252,20 @@ void func_80801758_chquiz(s32 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801C08_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801C7C_chquiz.s")
+/* extern */
+
+Unk80132ED0 *func_80801C7C_chquiz(s32 arg0) {
+    void func_80102424(Actor *, s32);
+    Actor *_subaddiefind_entrypoint_11(s32, s32);
+    Actor *sp1C;
+    Actor *temp_v0;
+
+    temp_v0 = _subaddiefind_entrypoint_11(0x52C, arg0);
+    sp1C = temp_v0;
+    func_80102424(temp_v0, 2);
+    sp1C->unk64_16 = 1;
+    return sp1C->unk0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801CC4_chquiz.s")
 
@@ -434,7 +447,7 @@ OSThread *chquiz_entrypoint_1(void)
 /* extern */
 
 void func_80803320_chquiz(s32 arg0, Unk80132ED0 *arg1) {
-    s32 func_80102424(Actor *, s32);
+    void func_80102424(Actor *, s32);
     Actor *_subaddiefind_entrypoint_11(s32, s32);
     Actor *sp1C;
     Actor *temp_v0;
@@ -522,7 +535,7 @@ void func_80803BFC_chquiz(Actor *arg0) {
     s32 func_80101E14(Actor *, f32);
     s32 func_80101E4C(Actor *, f32 *);
     f32 func_80101F24(Actor *);
-    s32 func_80102424(Actor *, s32);
+    void func_80102424(Actor *, s32);
     f32 func_80103EAC(u8 *);
     void func_80804170_chquiz(Actor *, s32);
     extern u16 D_80807528_chquiz[][4];
@@ -658,7 +671,7 @@ void func_80804170_chquiz(Actor *arg0, s32 arg1) {
     s32 func_800DC128(s32, s32);
     s32 func_800FC660(s32);
     s32 func_80101180(s32, s32, s32);
-    s32 func_80102424(Actor *, s32);
+    void func_80102424(Actor *, s32);
     s32 func_8080034C_chquiz(Actor *, s32);
     s32 func_808008B0_chquiz(Actor *);
     s32 func_808008D4_chquiz(Actor *);
