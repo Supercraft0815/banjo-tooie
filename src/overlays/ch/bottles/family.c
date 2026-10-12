@@ -98,7 +98,22 @@ void func_8080099C_chbottlesfamily(s32 arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_808009F0_chbottlesfamily.s")
+s32 func_808009F0_chbottlesfamily(s32 arg0, s32 *arg1) {
+    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    s32 func_80800C08_chbottlesfamily(void *, s32, s32);
+    s32 temp_v0;
+    s32 var_v1;
+    s32 sp1C;
+
+    temp_v0 = _subaddiedialog_entrypoint_7(arg0, arg0 + 4, arg1);
+    var_v1 = temp_v0;
+    if ((temp_v0 != 0) && (temp_v0 != 0x1208)) {
+        sp1C = temp_v0;
+        func_80800C08_chbottlesfamily((u8 *) arg0, 3, 0);
+        var_v1 = sp1C;
+    }
+    return var_v1 != 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_80800A44_chbottlesfamily.s")
 
