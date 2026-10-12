@@ -40,7 +40,17 @@ int func_80800060_chnastycavemen(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_8080067C_chnastycavemen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_80800968_chnastycavemen.s")
+/* extern */
+
+void func_80800968_chnastycavemen(void) {
+    extern f32 D_80127194;
+    s32 func_800EA090(void);
+    s32 sp1C;
+    sp1C = func_800EA090();
+    if (((*(s16 *)((s8 *)(&D_80127194) + 0x436)) == 0) || ((sp1C != 0) && (func_80090178(0x10000) == 0))) {
+        (*(s16 *)((s8 *)(&D_80127194) + 0x436)) = (s16) sp1C;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_808009BC_chnastycavemen.s")
 
