@@ -217,7 +217,17 @@ void func_80110DE0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110E00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110EFC.s")
+s32 func_80110EFC(u8 *arg0) {
+    s32 func_80110E00();
+    extern s16 D_801247A0[];
+    s32 index;
+    index = *(s32 *)((s8 *)arg0 + 0x6C);
+    if (D_801247A0[index * 8 + 6] != 0) {
+        return func_80110E00();
+    } else {
+        return 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110F44.s")
 
