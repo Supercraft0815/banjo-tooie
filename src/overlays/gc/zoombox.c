@@ -371,7 +371,335 @@ void func_80801BD0_gczoombox(u8 *box, s32 state) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80801C0C_gczoombox.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_4.s")
+void gczoombox_entrypoint_4(u8 *box) {
+    struct Flags {
+            u32 b31:1; u32 b30:1; u32 b29:1; u32 b28:1;
+            u32 b27:1; u32 b26:1; u32 b25:1; u32 b24:1;
+            u32 b23:1; u32 b22:1; u32 b21:1; u32 b20:1;
+            u32 b19:1; u32 b18:1; u32 b17:1; u32 b16:1;
+            u32 b15:1; u32 b14:1; u32 b13:1; u32 b12:1;
+            u32 b11:1; u32 b10:1; u32 b9:1; u32 b8:1;
+            u32 b7:1; u32 b6:1; u32 b5:1; u32 b4:1;
+            u32 b3:1; u32 b2:1; u32 b1:1; u32 b0:1;
+    };
+    struct Box {
+        u8 text0[0x30];
+        u8 text1[0x90];
+        u8 text2[0xAA];
+        u8 pad16A[0x48];
+        s16 startX;
+        u8 pad1B4[0x19];
+        u8 speed;
+    };
+    void _gcaudiolist_entrypoint_1(s32, s16);
+    s32 _gldialog_entrypoint_1();
+    f32 _glintrosyncDll_entrypoint_5();
+    void func_80015E80(s32, void *);
+    void func_80015ECC(s32, void *);
+    void func_80015F28(s32, void *);
+    void func_80015F5C(s32, void *);
+    s32 func_800C710C(s32);
+    f32 func_800D8FF8(void);
+    f32 func_800D9004(void);
+    f32 func_800F3780(f32, u8 *, s16);
+    s32 func_80101238(s32, s32);
+    void func_80800228_gczoombox(void *);
+    void func_80800294_gczoombox(void *);
+    void func_808002E4_gczoombox(void *);
+    f32 func_80800364_gczoombox(void *);
+    s32 func_808003D8_gczoombox(void *, f32, f32);
+    void func_80800470_gczoombox(void *);
+    s32 func_808004D0_gczoombox(void *);
+    void func_808006E0_gczoombox(void *, u8);
+    void func_80800964_gczoombox(void *);
+    s32 func_80801C0C_gczoombox(void *, u8 *);
+    void gczoombox_entrypoint_14(u8 *);
+    extern u8 D_80803E44_gczoombox[];
+    s32 face[6];
+    s32 side[3];
+    f32 interval;
+    f32 dt;
+    f32 previousTime;
+    f32 previousTime2;
+
+    if (box == NULL) return;
+    if (!((struct Flags *)(box + 0x1E4))->b10) {
+        func_80015E80(0, face);
+        func_80015F28(0, side);
+        if (((struct Flags *)(box + 0x1E4))->b1) {
+            dt = _glintrosyncDll_entrypoint_5();
+        } else {
+            dt = func_800D8FF8();
+        }
+    } else {
+        func_80015ECC(0, face);
+        func_80015F5C(0, side);
+        dt = func_800D9004();
+    }
+    switch (box[0x171]) {
+    case 1:
+        if (box[0x19D]) {
+            (*(u8 * *)(box + 0x1A0)) += box[0x19C] + 1;
+        } else {
+            (*(u8 * *)(box + 0x1A0)) = ((u8 **)(box + 0x17C))[box[0x175]];
+            ((struct Flags *)(box + 0x1E4))->b19 = _gldialog_entrypoint_1((*(u8 * *)(box + 0x1A0)));
+        }
+        box[0x19C] = func_80801C0C_gczoombox(box, (*(u8 * *)(box + 0x1A0)));
+        if (*(box[0x19C] + (*(u8 * *)(box + 0x1A0)))) {
+            box[0x19D] = 1;
+        } else {
+            box[0x19D] = 0;
+        }
+        func_8080014C_gczoombox((*(u8 * *)(box + 0x1A0)), ((struct Box *)box)->text2, 0, box[0x19C]);
+        ((struct Box *)box)->text2[box[0x19C]] = 0;
+        if (!box[0x19D]) {
+            box[0x175]++;
+        }
+        if (box[0x19D] || box[0x175] < box[0x174]) {
+            ((struct Flags *)(box + 0x1E4))->b25 = 0;
+            ((struct Flags *)(box + 0x1E4))->b31 = 0;
+        } else {
+            ((struct Flags *)(box + 0x1E4))->b25 = 1;
+            ((struct Flags *)(box + 0x1E4))->b31 = 1;
+        }
+        if (((struct Flags *)(box + 0x1E4))->b27) {
+            ((struct Flags *)(box + 0x1E4))->b26 = 1;
+            ((struct Flags *)(box + 0x1E4))->b30 = 1;
+            ((struct Flags *)(box + 0x1E4))->b29 = 0;
+        } else {
+            ((struct Flags *)(box + 0x1E4))->b26 = 0;
+        }
+        func_808006E0_gczoombox(box, box[0x19C]);
+        box[0x171] = 2;
+        (*(s8 *)(box + 0x1CE)) = box[0x19E] = 0;
+        (*(f32 *)(box + 0x1D4)) = 0.0f;
+        if (((struct Flags *)(box + 0x1E4))->b19) {
+            box[0x19E] += 2;
+        }
+        ((struct Flags *)(box + 0x1E4))->b23 = 1;
+        func_80800294_gczoombox(box);
+        break;
+    case 2:
+        interval = (*(f32 *)(box + 0x1D8));
+        if (((struct Flags *)(box + 0x1E4))->b19) {
+            interval *= 1.5f;
+        }
+        if (((struct Flags *)(box + 0x1E4))->b4) {
+            interval *= 0.01998901367f;
+            ((struct Flags *)(box + 0x1E4))->b4 = 0;
+        } else if (face[0] && ((struct Flags *)(box + 0x1E4))->b12) {
+            interval *= 0.4499969482f;
+        } else if (side[0] && ((struct Flags *)(box + 0x1E4))->b12) {
+            interval *= 2;
+        }
+        (*(f32 *)(box + 0x1D4)) += dt;
+        while (interval < (*(f32 *)(box + 0x1D4)) && box[0x19C] >= box[0x19E]) {
+            box[0x19E]++;
+            if (func_808005F0_gczoombox(((struct Box *)box)->text2[box[0x19E]], ((struct Flags *)(box + 0x1E4))->b19)) {
+                (*(f32 *)(box + 0x1D4)) -= (face[0] && ((struct Flags *)(box + 0x1E4))->b12) ? 0.04999542236f : 0.09999084473f;
+            }
+            (*(f32 *)(box + 0x1D4)) -= interval;
+        }
+        if (((struct Flags *)(box + 0x1E4))->b26) {
+            if (((struct Flags *)(box + 0x1E4))->b3) {
+                (box + 0x30)[0] = 0xFD;
+                (box + 0x30)[1] = 0x68;
+                func_8080014C_gczoombox(((struct Box *)box)->text2, (box + 0x30) + 2, 0, box[0x19E]);
+                (box + 0x30)[box[0x19E] + 2] = 0;
+            } else {
+                func_8080014C_gczoombox(((struct Box *)box)->text2, (box + 0x30), 0, box[0x19E]);
+            }
+            ((struct Flags *)(box + 0x1E4))->b29 = 1;
+        } else {
+            if (((struct Flags *)(box + 0x1E4))->b3) {
+                ((u8 *)box)[0] = 0xFD;
+                ((u8 *)box)[1] = 0x68;
+                func_8080014C_gczoombox(((struct Box *)box)->text2, (u8 *)box + 2, 0, box[0x19E]);
+                ((u8 *)box)[box[0x19E] + 2] = 0;
+            } else {
+                func_8080014C_gczoombox(((struct Box *)box)->text2, (u8 *)box, 0, box[0x19E]);
+            }
+            ((struct Flags *)(box + 0x1E4))->b27 = 1;
+            ((struct Flags *)(box + 0x1E4))->b30 = 1;
+        }
+        if (box[0x19C] < box[0x19E]) {
+            func_808002E4_gczoombox(box);
+        }
+        break;
+    case 3:
+        if ((face[0] && ((struct Flags *)(box + 0x1E4))->b12) || (*(f32 *)(box + 0x1C4)) < 0.0f) {
+            box[0x171] = 4;
+            (*(f32 *)(box + 0x1C8)) = 60.0f * dt * ((struct Box *)box)->speed;
+        } else {
+            (*(f32 *)(box + 0x1C4)) -= dt;
+        }
+        break;
+    case 4:
+        if (face[0] && ((struct Flags *)(box + 0x1E4))->b12) {
+            (*(f32 *)(box + 0x1C8)) = 60.0f * dt * (((struct Box *)box)->speed + 2);
+            ((struct Flags *)(box + 0x1E4))->b23 = 0;
+        } else if (((struct Flags *)(box + 0x1E4))->b12 && side[0]) {
+            (*(f32 *)(box + 0x1C8)) = 60.0f * dt * (((struct Box *)box)->speed - 1);
+        }
+        ((struct Flags *)(box + 0x1E4))->b17 = 0;
+        if (((struct Flags *)(box + 0x1E4))->b26 || ((struct Flags *)(box + 0x1E4))->b31) {
+            if (((struct Flags *)(box + 0x1E4))->b25) {
+                if (((struct Flags *)(box + 0x1E4))->b6 && box[0x171] != 10 && ((struct Flags *)(box + 0x1E4))->b26) {
+                    func_80101238(0x6D, 0);
+                }
+                gczoombox_entrypoint_14((u8 *)box);
+                box[0x171] = 10;
+            }
+            if (!((struct Flags *)(box + 0x1E4))->b23 && !((struct Flags *)(box + 0x1E4))->b25) {
+                (*(f32 *)(box + 0x1A4)) -= (*(f32 *)(box + 0x1C8));
+                (*(f32 *)(box + 0x1A8)) -= (*(f32 *)(box + 0x1C8));
+                ((struct Flags *)(box + 0x1E4))->b17 = 1;
+            }
+            if (!((struct Flags *)(box + 0x1E4))->b25 && (*(f32 *)(box + 0x1A4)) <= (*(s16 *)(box + 0x1B0)) - (3 * (((struct Flags *)(box + 0x1E4))->b19 ? 15 : 12)) / 2) {
+                func_8080014C_gczoombox((box + 0x30), (u8 *)box, 0, 0x30);
+                func_808001D4_gczoombox((box + 0x30), 0x30);
+                func_80800228_gczoombox(box);
+                ((struct Flags *)(box + 0x1E4))->b30 = 1;
+                ((struct Flags *)(box + 0x1E4))->b29 = 0;
+                box[0x171] = 1;
+            }
+        } else if (!((struct Flags *)(box + 0x1E4))->b23) {
+            box[0x171] = 1;
+        }
+        break;
+    case 10:
+        func_80801BD0_gczoombox((u8 *)box, 3);
+        if (box[0x177] & 8) {
+            ((struct Flags *)(box + 0x1E4))->b27 = 0;
+            func_808004D0_gczoombox(box);
+        } else if (box[0x177] & 4) {
+            box[0x170] = 0;
+            ((struct Flags *)(box + 0x1E4))->b25 = 0;
+            box[0x171] = 4;
+        }
+        break;
+    case 5:
+        previousTime = -1.0f;
+        if (((struct Flags *)(box + 0x1E4))->b16) {
+            previousTime = func_80800364_gczoombox(box);
+            if (((struct Flags *)(box + 0x1E4))->b14) {
+                (*(f32 *)(box + 0x1C0)) = 1.0f - (*(f32 *)(box + 0x1EC)) / (*(f32 *)(box + 0x1F4));
+            }
+        }
+        if (((struct Flags *)(box + 0x1E4))->b11 && ((struct Flags *)(box + 0x1E4))->b16 && func_808003D8_gczoombox(box, previousTime, (*(f32 *)(box + 0x1F4)) * 0.1f)) {
+            if (func_800C710C(0)) {
+                _gcaudiolist_entrypoint_1(2, (*(s16 *)(box + 0x16A)));
+            }
+        }
+        if (((struct Flags *)(box + 0x1E4))->b16 && func_808003D8_gczoombox(box, previousTime, (*(f32 *)(box + 0x1F4)))) {
+            (*(f32 *)(box + 0x1EC)) = (*(f32 *)(box + 0x1F4));
+            if (((struct Flags *)(box + 0x1E4))->b14) {
+                func_808000C4_gczoombox(box);
+            }
+            ((struct Flags *)(box + 0x1E4))->b13 = 0;
+            ((struct Flags *)(box + 0x1E4))->b14 = ((struct Flags *)(box + 0x1E4))->b13;
+            ((struct Flags *)(box + 0x1E4))->b16 = 0;
+        }
+        if (!((struct Flags *)(box + 0x1E4))->b16) {
+            func_80801BD0_gczoombox((u8 *)box, 2);
+            if (box[0x177] & 4) {
+                box[0x171] = 1;
+            } else if (box[0x177] & 8) {
+                func_808004D0_gczoombox(box);
+            }
+        }
+        break;
+    case 6:
+        previousTime2 = -1.0f;
+        if (((struct Flags *)(box + 0x1E4))->b16) {
+            previousTime2 = func_80800364_gczoombox(box);
+            if (((struct Flags *)(box + 0x1E4))->b14) {
+                (*(f32 *)(box + 0x1C0)) = (*(f32 *)(box + 0x1EC)) / (*(f32 *)(box + 0x1F4));
+            }
+        }
+        if (((struct Flags *)(box + 0x1E4))->b11 && ((struct Flags *)(box + 0x1E4))->b16 && func_808003D8_gczoombox(box, previousTime2, (*(f32 *)(box + 0x1F4)) * 0.9f)) {
+            if (func_800C710C(1)) {
+                _gcaudiolist_entrypoint_1(3, (*(s16 *)(box + 0x16A)));
+            }
+        }
+        if (((struct Flags *)(box + 0x1E4))->b16 && (*(f32 *)(box + 0x1EC)) <= 0) {
+            (*(f32 *)(box + 0x1EC)) = 0;
+            if (((struct Flags *)(box + 0x1E4))->b14) {
+                func_808000C4_gczoombox(box);
+            }
+            ((struct Flags *)(box + 0x1E4))->b13 = 0;
+            ((struct Flags *)(box + 0x1E4))->b14 = ((struct Flags *)(box + 0x1E4))->b13;
+            ((struct Flags *)(box + 0x1E4))->b16 = 0;
+        }
+        if (!((struct Flags *)(box + 0x1E4))->b16) {
+            func_80801BD0_gczoombox((u8 *)box, 4);
+            if (box[0x177] & 0x10) {
+                func_80801B90_gczoombox((u8 *)box);
+            } else if (box[0x177] & 2) {
+                func_80800470_gczoombox(box);
+            }
+        }
+        break;
+    case 7:
+        func_80800964_gczoombox(box);
+        func_80801BD0_gczoombox((u8 *)box, 6);
+        break;
+    case 8:
+        if ((*(f32 *)(box + 0x1E0)) == 0.0f) {
+            ((struct Flags *)(box + 0x1E4))->b28 = 1;
+        }
+        if (((struct Flags *)(box + 0x1E4))->b11 && (*(f32 *)(box + 0x1E0)) == 0) {
+            if (func_800C710C(2)) {
+                _gcaudiolist_entrypoint_1(4, (*(s16 *)(box + 0x16A)));
+            }
+        }
+        if (((struct Flags *)(box + 0x1E4))->b24) {
+            (*(s16 *)(box + 0x1AE)) = func_800F3780((*(f32 *)(box + 0x1E0)), D_80803E44_gczoombox, 7) + ((struct Box *)box)->startX;
+        } else {
+            (*(s16 *)(box + 0x1AE)) = ((struct Box *)box)->startX - func_800F3780((*(f32 *)(box + 0x1E0)), D_80803E44_gczoombox, 7);
+        }
+        if ((*(f32 *)(box + 0x1E0)) >= 1.0f) {
+            (*(s16 *)(box + 0x1AE)) = ((struct Box *)box)->startX;
+            func_80801BD0_gczoombox((u8 *)box, 1);
+            if (box[0x177] & 2) {
+                func_80800470_gczoombox(box);
+            } else if (box[0x177] & 0x10) {
+                func_80801B90_gczoombox((u8 *)box);
+            }
+        } else {
+            (*(f32 *)(box + 0x1E0)) += 5.0f * dt;
+        }
+        break;
+    case 9:
+        if (((struct Flags *)(box + 0x1E4))->b11 && (*(f32 *)(box + 0x1E0)) == 0) {
+            if (func_800C710C(3)) {
+                _gcaudiolist_entrypoint_1(5, (*(s16 *)(box + 0x16A)));
+            }
+        }
+        if (((struct Flags *)(box + 0x1E4))->b24) {
+            (*(s16 *)(box + 0x1AE)) = func_800F3780(1.0f - (*(f32 *)(box + 0x1E0)), D_80803E44_gczoombox, 7) + ((struct Box *)box)->startX;
+        } else {
+            (*(s16 *)(box + 0x1AE)) = ((struct Box *)box)->startX - func_800F3780(1.0f - (*(f32 *)(box + 0x1E0)), D_80803E44_gczoombox, 7);
+        }
+        if ((*(f32 *)(box + 0x1E0)) >= 1.0f) {
+            ((struct Flags *)(box + 0x1E4))->b28 = 0;
+            func_80801BD0_gczoombox((u8 *)box, 5);
+            if (box[0x177] & 0x20) {
+                box[0x171] = 7;
+            } else if (box[0x177] & 1) {
+                func_80801B30_gczoombox((u8 *)box);
+            }
+        } else {
+            (*(f32 *)(box + 0x1E0)) += 5.0f * dt;
+        }
+        break;
+    case 11:
+        if (box[0x177] & 1) {
+            func_80801B30_gczoombox((u8 *)box);
+        }
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80802B94_gczoombox.s")
 
