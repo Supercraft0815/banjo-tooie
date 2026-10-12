@@ -128,7 +128,22 @@ void func_808027F8_changlerboss(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x44))) = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80802844_changlerboss.s")
+/* extern */
+
+void func_80802844_changlerboss(void *arg0) {
+    s32 func_800C8A98();
+    struct {
+        u8 pad0[0x54];
+        s32 unk54;
+        f32 unk58;
+        u8 pad5C[0x1E];
+        u8 unk7A_7 : 2;
+        u8 pad7A_5 : 6;
+    } *self = arg0;
+    self->unk58 = 0.4f;
+    self->unk7A_7 = 2;
+    self->unk54 = func_800C8A98();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80802888_changlerboss.s")
 
