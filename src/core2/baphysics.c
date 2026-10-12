@@ -12,7 +12,20 @@ s32 func_8009AD78(void *arg0, s32 arg1) {
 void func_8009AD88(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009AD90.s")
+void func_8009AD90(u8 *arg0) {
+    s32 var_v0;
+    var_v0 = 3;
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC4)))) + (0))) = 0;
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC4)))) + (1))) = 0;
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC4)))) + (2))) = 0;
+    do {
+        *((*(u8 **)((s8 *)(arg0) + (0xC4))) + var_v0) = 0;
+        (*(s8 *)((s8 *)(((*(u8 **)((s8 *)(arg0) + (0xC4))) + var_v0)) + (1))) = 0;
+        (*(s8 *)((s8 *)(((*(u8 **)((s8 *)(arg0) + (0xC4))) + var_v0)) + (2))) = 0;
+        (*(u8 **)((s8 *)(arg0) + (0xC4)))[var_v0 + 3] = 0;
+        var_v0 += 4;
+    } while (var_v0 != 0xF);
+}
 
 void func_8009ADF0(void *arg0, s32 arg1, s32 arg2) {
     (*(u8 **)((u8 *)arg0 + 0xC4))[arg1] = arg2;
