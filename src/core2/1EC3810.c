@@ -101,7 +101,12 @@ void func_800EA398(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA3A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA400.s")
+void func_800EA400(s32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
+    extern s32 D_80132DD0;
+    func_800EE7F8((f32 *)((u8 *)&D_80132DD0 + arg0 * 0x14 + 8), (f32 *)arg2);
+    *(u8 **)((u8 *)&D_80132DD0 + arg0 * 0x14 + 0x14) = arg1;
+    *(s32 *)((u8 *)&D_80132DD0 + arg0 * 0x14 + 0x18) = arg3;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA45C.s")
 
