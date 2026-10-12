@@ -38,7 +38,16 @@ void func_80800730_chnicecavemenguard(Actor *arg0) {
     _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_808009E8_chnicecavemenguard, 0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemenguard/func_8080075C_chnicecavemenguard.s")
+void func_8080075C_chnicecavemenguard(Actor *arg0) {
+    s32 _subaddieaudioquick_entrypoint_4(s32, s32, s32 *, s32 *);
+    struct AudioValues { s32 values[3]; };
+    extern struct AudioValues D_808009F0_chnicecavemenguard;
+    extern s32 D_808009FC_chnicecavemenguard;
+    struct AudioValues sp1C;
+
+    sp1C = D_808009F0_chnicecavemenguard;
+    _subaddieaudioquick_entrypoint_4((s32)arg0, (s32)((s8 *)arg0 + 4), &D_808009FC_chnicecavemenguard, sp1C.values);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemenguard/func_808007A8_chnicecavemenguard.s")
 
