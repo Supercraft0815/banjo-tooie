@@ -24,7 +24,13 @@ s32 func_80800000_chbaddiesetup(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/diesetup/chbaddiesetup_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/diesetup/chbaddiesetup_entrypoint_7.s")
+void chbaddiesetup_entrypoint_7(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    f32 pos[3];
+    pos[0] = *(f32 *)&arg1;
+    pos[1] = *(f32 *)&arg2;
+    pos[2] = *(f32 *)&arg3;
+    func_80108474(*(s32 *)&arg0, pos, 0);
+}
 
 /* extern */
 
