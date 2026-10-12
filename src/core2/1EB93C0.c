@@ -75,7 +75,21 @@ void func_800DFCE8(s16 arg0) {
     func_8001B798(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB93C0/func_800DFD10.s")
+/* extern */
+
+s16 func_800DFD10(void) {
+    s16 result;
+    s32 func_8001B668(s32, s32);
+    s32 func_8001B798(s16);
+    s32 *list;
+
+    result = func_8001B668(1, 0x1110);
+    list = (s32 *)func_8001B798(result);
+    list[0] = (s32)(list + 2);
+    list[1] = 0x6D;
+    func_800DFAD0((BoneTransformList *)list);
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB93C0/func_800DFD64.s")
 
