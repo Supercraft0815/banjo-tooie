@@ -86,7 +86,20 @@ void func_800CE864(void) {
 
 void func_800CE88C(s32 arg0, s32 arg1) { void *temp_v0; s8 temp_v1; temp_v0 = func_800CE3E0(arg0); if (arg1 != 0) { *(s8 *)((s8 *)temp_v0 + 0x12) = *(s8 *)((s8 *)temp_v0 + 0x12) + 1; } else { temp_v1 = *(s8 *)((s8 *)temp_v0 + 0x12); if (temp_v1 != 0) *(s8 *)((s8 *)temp_v0 + 0x12) = temp_v1 - 1; } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CE8D8.s")
+void func_800CE8D8(s32 arg0, f32 arg1, s32 arg2) {
+    void *func_800CE3E0(s32);
+    u8 *temp_v0;
+
+    temp_v0 = func_800CE3E0(arg0);
+    (*(s8 *)((s8 *)(temp_v0) + (0x15))) = 0;
+    (*(s32 *)((s8 *)(temp_v0) + (0x18))) = 0;
+    (*(s16 *)((s8 *)(temp_v0) + (0x10))) = (s16) arg2;
+    (*(s16 *)((s8 *)(temp_v0) + (0xA))) = (s16) arg2;
+    (*(s16 *)((s8 *)(temp_v0) + (8))) = (s16) arg2;
+    (*(f32 *)((s8 *)(temp_v0) + (0xC))) = arg1;
+    (*(f32 *)((s8 *)(temp_v0) + (4))) = arg1;
+    (*(f32 *)((s8 *)(temp_v0) + (0))) = arg1;
+}
 
 void func_800CE928(s32 arg0, s32 arg1, s32 arg2) {
     void *temp_v0;
