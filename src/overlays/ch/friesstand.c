@@ -141,7 +141,18 @@ void func_80800970_chfriesstand(Actor* arg0)
         _suexpression_entrypoint_8(arg0, 1);
     }
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/func_808009A4_chfriesstand.s")
+void func_808009A4_chfriesstand(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    s32 func_80090734(s32, f32 *);
+    extern s32 D_80801088_chfriesstand;
+    extern s32 D_80800E50_chfriesstand;
+    f32 *position[2];
+
+    position[1] = arg0->position;
+    if (_subaddiedialog_entrypoint_8((s32)arg0, position[1], &D_80801088_chfriesstand, &D_80800E50_chfriesstand, 5) != 0) {
+        func_80090734(1, position[1]);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/func_808009F0_chfriesstand.s")
 
