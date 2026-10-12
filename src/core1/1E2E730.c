@@ -61,7 +61,18 @@ void func_80016E7C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80016ED0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80017070.s")
+u32 func_80017070(u8 arg0) {
+    extern u8 **D_8007A198[][0x9D];
+    s32 temp_a0;
+    u8 **temp_v1;
+
+    temp_v1 = D_8007A198[arg0][0];
+    if (temp_v1 == NULL) {
+        return -1U;
+    }
+    temp_a0 = 0x20 - (*(s32 *)((s8 *)(*temp_v1) + (4)));
+    return (u32) (-1 << temp_a0) >> temp_a0;
+}
 
 s32 func_800170D4(u8 arg0) {
     extern s32 D_8007A1B0[][0x9D];
