@@ -35,7 +35,15 @@ s32 func_808007BC_chjiggygamenew(void) {
     return (*(s32 *)((s8 *)(func_80106790()) + (0x28))) == 5;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_808007E4_chjiggygamenew.s")
+/* extern */
+
+void func_808007E4_chjiggygamenew(s16 arg0[][12], s32 arg1, s32 arg2) {
+    s32 rom_read_word(s32, u32 *);
+    u32 sp1C[1];
+
+    rom_read_word(arg1 - 0x50000000, sp1C);
+    arg0[arg2][2] = sp1C[0] & 0xFFFF;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80800834_chjiggygamenew.s")
 
