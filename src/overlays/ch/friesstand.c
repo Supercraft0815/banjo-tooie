@@ -171,4 +171,16 @@ void func_80800CF0_chfriesstand(s32 arg0)
     _chswitch_entrypoint_9(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/func_80800D1C_chfriesstand.s")
+s32 func_80800D1C_chfriesstand(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    s32 func_80101180(s32, s32, s32);
+    int result;
+    if (arg1 == 7) {
+        func_80101180(0x331, 7, 0);
+        func_80101180(0x32D, 0xA, 0);
+        result = 1;
+    } else {
+        return _chswitch_entrypoint_10(arg0, arg1, arg2);
+    }
+    return result;
+}
