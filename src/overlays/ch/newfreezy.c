@@ -7,7 +7,14 @@ void func_80800000_chnewfreezy()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_80800020_chnewfreezy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_80800068_chnewfreezy.s")
+/* extern */
+
+void func_80800068_chnewfreezy(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    u32 func_8010A828(Actor*, u32);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    func_8010A828(_subaddielink_entrypoint_4(func_80100094(arg0, 1U)), (u32) (*(u8 *)((s8 *)(arg0) + (0x79))) >> 4);
+}
 
 void func_808000AC_chnewfreezy(s32 arg0)
 {
