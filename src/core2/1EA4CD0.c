@@ -5,7 +5,15 @@ u8 func_800CB3E0(s32 arg0) {
     return D_8012AB71[(arg0 * 3) * 16];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA4CD0/func_800CB3FC.s")
+f32 func_800CB3FC(volatile s32 arg0, f32 *arg1, s32 *arg2) {
+    extern u8 D_8012AB70[];
+    void func_800EE7F8(f32 *, f32 *);
+    u8 *temp_v0;
+
+    func_800EE7F8(arg1, (f32 *)((temp_v0 = D_8012AB70 + arg0 * 0x30) + 0x1C));
+    *arg2 = *(s16 *)(temp_v0 + 0x2C);
+    return *(f32 *)(temp_v0 + 0x28);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA4CD0/func_800CB45C.s")
 
@@ -53,6 +61,7 @@ s32 func_800CB698(s32 arg0, s32 arg1) {
 
 void func_800CB6B4(s32 arg0, f32 *arg1, f32 arg2, s32 arg3) {
     extern u8 D_8012AB70[];
+    void func_800EE7F8(f32 *, f32 *);
     struct Entry { f32 pad[7]; f32 vector[3]; f32 value; s16 flag; s16 tail; };
     func_800EE7F8(((struct Entry *)D_8012AB70)[arg0].vector, arg1);
     ((struct Entry *)D_8012AB70)[arg0].value = arg2;
@@ -61,6 +70,7 @@ void func_800CB6B4(s32 arg0, f32 *arg1, f32 arg2, s32 arg3) {
 
 void func_800CB70C(s32 arg0) {
     extern u8 D_8012AB70[];
+    void func_800EE7F8(f32 *, f32 *);
     struct Entry { f32 pre[2]; f32 src[3]; f32 copy; s16 flag; s16 tail; f32 vector[3]; f32 value; s16 outFlag; s16 outTail; };
     func_800EE7F8(((struct Entry *)D_8012AB70)[arg0].vector, ((struct Entry *)D_8012AB70)[arg0].src);
     ((struct Entry *)D_8012AB70)[arg0].value = ((struct Entry *)D_8012AB70)[arg0].copy;
