@@ -27,7 +27,22 @@ void func_80106E50(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80106EE0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80106F30.s")
+/* extern */
+
+void *func_80106F30(void *arg0) {
+    extern s32 D_80136F00;
+    void *freelist_at(s32, s32);
+    struct {
+        u8 pad[0x94];
+        u32 unk94_0 : 2;
+        u32 index : 10;
+        u32 unk94_12 : 20;
+    } *entry = arg0;
+    if (entry->index == 0) {
+        return NULL;
+    }
+    return freelist_at(D_80136F00, entry->index);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80106F70.s")
 
