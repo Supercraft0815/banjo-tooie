@@ -94,12 +94,23 @@ s32 func_800D6C34(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7050.s")
 
 void func_800D70D0(s32 arg0) {
-    s32 func_800D7050(s16, s32);
+    s32 func_800D7050(s32, s32);
     extern s16 D_8011B910;
     func_800D7050(D_8011B910, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D70F8.s")
+s32 func_800D70F8(s32 arg0, s32 arg1) {
+    s32 func_800D6254(s32);
+    s32 func_800D7050(s32, s32);
+    s32 temp_v0;
+
+    temp_v0 = func_800D6254(arg0);
+    if (temp_v0 != -1) {
+        func_800D7050(temp_v0, arg1);
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7138.s")
 
