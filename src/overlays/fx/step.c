@@ -87,7 +87,14 @@ void fxstep_entrypoint_12(u8 *arg0) {
     func_80800344_fxstep(arg0, 0.0f, 1.0f, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/fxstep_entrypoint_13.s")
+/* extern */
+
+void fxstep_entrypoint_13(u8 *arg0, s32 arg1) {
+    s32 func_80800210_fxstep(u8 *, f32, f32, s32);
+    if (arg0[0x27] != 0) {
+        func_80800210_fxstep(arg0, 0.0f, 1.0f, arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/fxstep_entrypoint_14.s")
 
