@@ -158,7 +158,21 @@ void func_808009A4_chfriesstand(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/func_80800AEC_chfriesstand.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/func_80800BB0_chfriesstand.s")
+s32 func_80800BB0_chfriesstand(Actor *arg0) {
+    Actor *func_801084B0(s32, Actor **);
+    void func_80102FDC(void *, f32);
+    void _subaddiefade_entrypoint_9(Actor *, s32 *);
+    void _subaddiefade_entrypoint_11(Actor *, s32 *);
+    Actor *temp_v0;
+    s32 sp20[3];
+
+    temp_v0 = func_801084B0(0x32E, &arg0);
+    func_80102FDC(temp_v0, arg0->scale);
+    _subaddiefade_entrypoint_9(arg0, sp20);
+    _subaddiefade_entrypoint_11(temp_v0, sp20);
+    arg0->unk3C = temp_v0->unk0;
+    temp_v0->unk64_16 = arg0->unk64_16;
+}
 
 void func_80800C34_chfriesstand(s32 arg0) 
 {
