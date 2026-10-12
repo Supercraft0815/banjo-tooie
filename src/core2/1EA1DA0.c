@@ -190,7 +190,19 @@ void func_800C8F64(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8FB0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8FE0.s")
+void func_800C8FE0(s32 arg0, s32 arg1) {
+    void *vector_at(s32, s32, s32);
+    u8 *temp_v0;
+
+    temp_v0 = vector_at(D_8012AB00, arg0 - 1, arg1);
+    if ((*(u8 *)((s8 *)(temp_v0) + (0x16))) == 0) {
+        (*(u8 *)((s8 *)(temp_v0) + (0x16))) = (u8) (arg1 != (*(u8 *)((s8 *)(temp_v0) + (0x17))));
+    }
+    (*(u8 *)((s8 *)(temp_v0) + (0x17))) = (u8) arg1;
+    if (arg1 == 0) {
+        (*(s8 *)((s8 *)(temp_v0) + (0x18))) = 1;
+    }
+}
 
 /* extern */
 
