@@ -15,6 +15,19 @@ void func_8080000C_chtransparencypot(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparencypot/func_808000B8_chtransparencypot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparencypot/func_80800104_chtransparencypot.s")
+/* extern */
+
+s32 func_80800104_chtransparencypot(s32 arg0, s32 arg1, u8 *arg2) {
+    s32 func_80800148_chtransparencypot(s32, u32);
+    u8 **ptr = &arg2;
+    switch (arg1) {
+    case 0x3E:
+        func_80800148_chtransparencypot(arg0, (u32)*(u16 *)(*ptr + 0x1A) >> 5);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparencypot/func_80800148_chtransparencypot.s")
