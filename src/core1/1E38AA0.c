@@ -32,7 +32,12 @@ void func_800217F4(ALLink *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E38AA0/func_800218C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E38AA0/func_80021928.s")
+/* extern */
+
+s32 func_80021928(s32 arg0) {
+    s32 func_800218C4(s32);
+    return func_800218C4(arg0) & ~0xF;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E38AA0/func_80021960.s")
 
