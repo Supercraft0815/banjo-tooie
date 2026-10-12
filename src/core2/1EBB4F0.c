@@ -133,7 +133,12 @@ void func_800E2588(u32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E28A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E2A14.s")
+void func_800E2A14(s32 arg0) {
+    s32 func_800E22F0(s32, s32);
+    extern s32 D_8012D4F0;
+    func_800E22F0(arg0, D_8012D4F0);
+    D_8012D4F0 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E2A3C.s")
 
