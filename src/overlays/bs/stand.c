@@ -182,7 +182,14 @@ s32 bsstand_entrypoint_3(s32 arg0) {
     return ((s32 *)&D_80800D98_bsstand)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stand/bsstand_entrypoint_4.s")
+/* extern */
+
+void bsstand_entrypoint_4(PlayerState *arg0) {
+    void baphysics_set_target_horizontal_velocity(PlayerState *arg0, f32 vel);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+    func_8009FFD8(arg0, 1, 1, 1, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stand/bsstand_entrypoint_5.s")
 
