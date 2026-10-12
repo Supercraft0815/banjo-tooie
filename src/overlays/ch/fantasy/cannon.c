@@ -145,7 +145,7 @@ void func_80800B84_chfantasycannon()
     func_80101870();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/cannon/func_80800BA4_chfantasycannon.s")
+void func_80800BA4_chfantasycannon(Actor *arg0) { arg0->rotation[1] = 0.0f; if (arg0->unk74_7 == 0x38) { func_800FFAB0(arg0); } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/cannon/func_80800BDC_chfantasycannon.s")
 
