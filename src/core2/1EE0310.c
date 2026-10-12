@@ -22,7 +22,15 @@ void func_80106A60(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE0310/func_80106A98.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE0310/func_80106C08.s")
+s32 func_80106C08(void) {
+    extern s32 D_80136EF0;
+    s32 func_800B3310(s32);
+
+    if (D_80136EF0 == 0) {
+        D_80136EF0 = func_800B3310(0x6);
+    }
+    return D_80136EF0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE0310/func_80106C4C.s")
 
