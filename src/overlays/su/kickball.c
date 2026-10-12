@@ -14,7 +14,14 @@ void func_80800000_sukickball(s32 arg0, s32 arg1, f32 *arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_1.s")
+void sukickball_entrypoint_1(Actor *arg0, void *arg1) {
+    extern s32 D_80801218_sukickball[];
+    func_800DF744(1, D_80801218_sukickball[arg0->unk6C_0]);
+    func_80101870(arg0, arg1);
+    if (arg0->unk7C_12) {
+        func_80800000_sukickball((s32)arg0->unk3C, (s32)arg1, (f32 *)arg0->position, 0.5f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_2.s")
 
