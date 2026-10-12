@@ -28,7 +28,12 @@ OSThread *chpowerhutwitchy_entrypoint_3(void)
     return (OSThread *) D_80800C00_chpowerhutwitchy;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/func_80800030_chpowerhutwitchy.s")
+void func_80800030_chpowerhutwitchy(Actor *arg0) {
+    s32 _chpowerhut_entrypoint_0(Actor *, s32 *);
+    extern s32 D_80800B00_chpowerhutwitchy;
+    _chpowerhut_entrypoint_0(arg0, &D_80800B00_chpowerhutwitchy);
+    (*(s8 *)((s8 *)(func_80100094(arg0, 0)) + (0x18))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/func_80800068_chpowerhutwitchy.s")
 
@@ -54,7 +59,6 @@ void func_808009FC_chpowerhutwitchy(s32 arg0) {
     s32 _idworldmake_entrypoint_1(s32, s32, s32, s32);
     s32 func_800BEA88(s32);
     s32 func_800EA05C();
-    void *func_80100094(s32, s32);
     if (func_800EA05C() == 0xD6) {
         _idworldmake_entrypoint_1(func_800BEA88(0), 0x89D, 4, 1);
     }
