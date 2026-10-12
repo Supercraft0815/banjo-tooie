@@ -15,7 +15,10 @@ void func_808000C0_chlavaarchgrill3switches(s32 arg0) {
     _chswitch_entrypoint_8(arg0, 0x200);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/archgrill3switches/func_808000F0_chlavaarchgrill3switches.s")
+void func_808000F0_chlavaarchgrill3switches(s32 arg0, s32 arg1, s32 arg2) {
+    void func_80800020_chlavaarchgrill3switches();
+    func_80800020_chlavaarchgrill3switches(arg0, arg1, arg2, 0x63, 0x64);
+}
 
 OSThread *chlavaarchgrill3switches_entrypoint_0(void)
 {
