@@ -31,7 +31,7 @@ OSThread *chalienkids_entrypoint_3(void)
 /* extern */
 
 void func_80800030_chalienkids(s32 arg0) {
-    s32 func_80800FA4_chalienkids(s32, s32, s32, s32);
+    void func_80800FA4_chalienkids(s32, s32, s32, s32);
     func_80800FA4_chalienkids(arg0, 0x32, 0x372, 4);
 }
 
@@ -43,7 +43,16 @@ void func_80800030_chalienkids(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80800370_chalienkids.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80800408_chalienkids.s")
+/* extern */
+
+void func_80800408_chalienkids(u8 *arg0) {
+    void func_8010A63C(void ***);
+    void func_80800FA4_chalienkids(s32, s32, s32, s32);
+    func_80800FA4_chalienkids(arg0, 0x34, 0x374, 9);
+    if (((Actor *) arg0)->unk70_10 == 9) {
+        func_8010A63C((void ***) arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80800454_chalienkids.s")
 
