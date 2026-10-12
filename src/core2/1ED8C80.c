@@ -74,7 +74,17 @@ u32* func_80100074(Actor* a0, u32 a1, u32 a2)
     return func_800FFECC(a0,a1,a2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_80100094.s")
+void *func_80100094(Actor *arg0, u32 arg1) {
+    s32 func_8001B798(s16);
+    s16 temp;
+    s32 result;
+    temp = *(s16 *)((u8 *)arg0 + 0x82 + arg1 * 2);
+    result = 0;
+    if (temp != 0) {
+        return (void *) func_8001B798(temp);
+    }
+    return (void *) result;
+}
 
 s32 func_801000D8(Actor *arg0, s32 arg1, s32 arg2) {
     if (func_80100094(arg0, (u32) arg1) == NULL) {
