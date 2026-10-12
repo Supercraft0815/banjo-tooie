@@ -111,7 +111,12 @@ s32 suquiz_entrypoint_11(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_12.s")
+void suquiz_entrypoint_12(void) {
+    int func_800DC298(f32);
+    s32 suquiz_entrypoint_4();
+    extern f64 D_80800F74_suquiz[];
+    func_800DC298(*(f32 *)&D_80800F74_suquiz[suquiz_entrypoint_4()]);
+}
 
 void suquiz_entrypoint_13(f32 *arg0) {
     extern void *D_80127614;
