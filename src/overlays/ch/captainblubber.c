@@ -19,7 +19,106 @@ void func_80800078_chcaptainblubber(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/captainblubber/func_808000CC_chcaptainblubber.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/captainblubber/func_808001F0_chcaptainblubber.s")
+void func_808001F0_chcaptainblubber(Actor *arg0) {
+    struct BlubberFlags {
+        u8 pad[0x70];
+        u32 pad70 : 28;
+        u32 expression : 1;
+        u32 pad73 : 3;
+    };
+    s32 _subaddiedialog_entrypoint_3(f32 *, s32, s32, s32, s32);
+    s32 _subaddiedialog_entrypoint_6(f32 *, s32, s32, s32, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddieitem_entrypoint_3(Actor *, f32 *, void *);
+    void _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80105998(Actor *, f32);
+    void func_80105A9C(Actor *, f32);
+    void func_8010C93C(Actor *, f32 *, f32);
+    f32 sp34[3];
+    void *sp30;
+
+    func_8010C93C(arg0, arg0->position, 0.75f);
+    if (((struct BlubberFlags *)arg0)->expression) {
+        _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, 0);
+    }
+    func_800D1824(0x4E);
+    switch (arg0->unk70_10) {
+        case 1:
+        case 2:
+            if (func_800F64A4(func_800F54E4(), 0x201)) {
+                if (func_800DA298(0xDF)) {
+                    if (_subaddiedialog_entrypoint_6(arg0->position, (s32)arg0->rotation[1], 0x12C, 0x3C, 0)) {
+                        func_80800000_chcaptainblubber(arg0);
+                    }
+                } else if (_subaddiedialog_entrypoint_3(arg0->position, (s32)arg0->rotation[1], 0x12C, 0x3C, 0)) {
+                    func_80800000_chcaptainblubber(arg0);
+                }
+            } else if (_subaddiedialog_entrypoint_6(arg0->position, (s32)arg0->rotation[1], 0x12C, 0x3C, 0)) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1208, 0xE, arg0->position, 0x64);
+            }
+            break;
+        case 5:
+            sp30 = func_80100094(arg0, 0);
+            _subaddieskeleton_entrypoint_0(arg0, 0x1E, sp34);
+            if (_subaddieitem_entrypoint_3(arg0, sp34, sp30)) {
+                func_80102424(arg0, 6);
+                func_80100074(arg0, 0, 0);
+                func_800F82D4(func_800F54E4(), 1);
+            }
+            break;
+        case 6:
+            if (func_80101DDC(arg0)) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x100B, 0xE, arg0->position, 0x64);
+                arg0->unk64_19 = 0;
+                func_80102424(arg0, 7);
+                arg0->position[0] -= 175.0f;
+                arg0->position[2] -= -33.0f;
+            }
+            break;
+        case 7:
+            if (func_80101E14(arg0, 0.999f) && arg0->unk64_19) {
+                func_800F82D4(func_800F54E4(), 0);
+                func_80102424(arg0, 8);
+                func_80105A9C(arg0, 500.0f);
+            }
+            break;
+        case 8:
+            func_80105834(arg0);
+            func_800A54C0(arg0->position);
+            if (func_80105998(arg0, 0.84f)) {
+                func_80102424(arg0, 9);
+            }
+            break;
+        case 9:
+            func_800A54C0(arg0->position);
+            if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 10);
+            }
+            break;
+        case 10:
+            func_80105834(arg0);
+            if (func_80105A5C(arg0)) {
+                _capod_entrypoint_22();
+                func_800FFA88(arg0->unk0);
+            }
+            break;
+        case 12:
+            if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 13);
+            }
+            break;
+        case 13:
+            if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 12);
+            }
+            break;
+    }
+    func_80800A1C_chcaptainblubber(arg0);
+    func_8080143C_chcaptainblubber(arg0);
+}
 
 s32 func_80800580_chcaptainblubber(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _suexpression_entrypoint_7(Actor *, s32, s32);
