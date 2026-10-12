@@ -99,9 +99,9 @@ void func_800A791C(s32 arg0, s32 arg1, s32 arg2)
 /* extern */
 
 void func_800A794C(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_800A7A18(s32, s32);
-    s32 func_800FE8EC();
-    func_800FE8EC();
+    void func_800A7A18(s32, s32);
+    void func_800FE8EC(s32);
+    func_800FE8EC(arg0);
     func_800A7A18(arg0, arg1);
     func_800A7A90(arg2);
     func_800A7B18(1U);
@@ -111,8 +111,8 @@ void func_800A794C(s32 arg0, s32 arg1, s32 arg2) {
 
 void func_800A7990(s32 arg0, s32 arg1, s32 arg2) {
     s32 func_800A7A6C(s32, s32);
-    s32 func_800FE8EC();
-    func_800FE8EC();
+    void func_800FE8EC(s32);
+    func_800FE8EC(arg0);
     func_800A7A6C(arg0, arg1);
     func_800A7A90(arg2);
     func_800A7B18(1U);
@@ -126,7 +126,16 @@ void func_800A79D4(s32 arg0, s32 arg1) {
     D_80127630.entranceIndex = (s8) arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A7A18.s")
+void func_800A7A18(s32 arg0, s32 arg1) {
+    void func_800FE8EC(s32);
+    D_80127630_unk *state;
+    func_800FE8EC(arg0);
+    state = &D_80127630;
+    *((s8 *)state + 0x16) = 0;
+    *((s8 *)state + 0x15) = 1;
+    state->mapValue = (s16)arg0;
+    state->entranceIndex = (s8)arg1;
+}
 
 void func_800A7A5C(void) 
 {
