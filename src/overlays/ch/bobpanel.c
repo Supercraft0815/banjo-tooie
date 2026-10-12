@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bobpanel/func_80800000_chbobpanel.s")
+void func_80800000_chbobpanel(Actor *arg0) {
+    void _sudeflect_entrypoint_1(u8 *, f32, f32, f32, s32);
+    f32 func_80103EAC(Actor*);
+    f32 func_80103EF4(Actor*);
+    f32 sp20[2];
+
+    sp20[0] = func_80103EF4(arg0);
+    _sudeflect_entrypoint_1(arg0->position, sp20[0], 0.0f, func_80103EAC(arg0), 0x1E);
+}
 
 s32 func_8080004C_chbobpanel(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800DF744(s32, s32);
