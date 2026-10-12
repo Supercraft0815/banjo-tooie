@@ -22,7 +22,18 @@ void func_800F1800(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1B78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1C98.s")
+f32 func_800F1C98(f32 *arg0, f32 *arg1) {
+    void func_800EE97C(f32 dst[3], f32 a[3], f32 b[3]);
+    f32 func_800EEF94(f32*);
+    f32 sp2C;
+    f32 sp28;
+    f32 sp1C[3];
+
+    sp2C = func_800EEF94(arg0);
+    sp28 = func_800EEF94(arg1);
+    func_800EE97C(sp1C, arg0, arg1);
+    return func_800EEF94(sp1C) / (sp2C * sp28);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1CF0.s")
 
