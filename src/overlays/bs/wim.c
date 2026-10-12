@@ -188,7 +188,21 @@ void func_80800D58_bsbswim(s32 arg0) {
     _baspin_entrypoint_2(arg0, 0xB9, 0x3F333333, 3, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80800D98_bsbswim.s")
+/* extern */
+
+void func_80800D98_bsbswim(s32 arg0) {
+    s32 _baspin_entrypoint_3(s32);
+    s32 bs_setState(s32, s32);
+    s32 func_800914FC(s32, f32, s32);
+    s32 sp1C;
+
+    sp1C = 0;
+    func_800914FC(arg0, 40.0f, 0);
+    if (_baspin_entrypoint_3(arg0) == 2) {
+        sp1C = 0x2B;
+    }
+    bs_setState(arg0, sp1C);
+}
 
 s32 bsbswim_entrypoint_5(s32 arg0) {
     extern s32 D_80801EB0_bsbswim[];
