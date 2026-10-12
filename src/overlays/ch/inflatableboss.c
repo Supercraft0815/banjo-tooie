@@ -312,4 +312,22 @@ void func_80802A9C_chinflatableboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80802AD8_chinflatableboss.s")
+void func_80802AD8_chinflatableboss(Actor *arg0, s32 arg1, s32 arg2) {
+    void* func_80100094(Actor*, u32);
+    u8 *temp_v0;
+    u8 *temp_v1;
+    u8 *temp_v1_2;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    temp_v1 = temp_v0 + arg1;
+    (*(s8 *)((s8 *)(temp_v1) + (0x487))) = (s8) arg2;
+    if (arg1 >= 9) {
+        arg1 = arg1 + arg1;
+        arg1 -= 9;
+        temp_v1_2 = temp_v0 + arg1;
+        (*(s8 *)((s8 *)(temp_v1_2) + (0x478))) = (s8) arg2;
+        (*(s8 *)((s8 *)(temp_v1_2) + (0x479))) = (s8) arg2;
+    } else {
+        (*(s8 *)((s8 *)(temp_v1) + (0x478))) = (s8) arg2;
+    }
+}
