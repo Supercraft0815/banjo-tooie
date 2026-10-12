@@ -10,7 +10,15 @@ void *func_80800000_gctransitionDll(s32 arg0) {
     return NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/transitionDll/func_8080004C_gctransitionDll.s")
+void *func_8080004C_gctransitionDll(s32 arg0) {
+    extern u16 D_8080105C_gctransitionDll[];
+    u16 *p = D_8080105C_gctransitionDll;
+    while (*p != 0) {
+        if (arg0 == *p) return p;
+        p += 2;
+    }
+    return p;
+}
 
 /* extern */
 
