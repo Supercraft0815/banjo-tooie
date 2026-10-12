@@ -238,7 +238,22 @@ void func_8080106C_chtoothyfish(Actor *self)
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80801588_chtoothyfish.s")
+/* extern */
+
+void func_80801588_chtoothyfish(Actor *arg0, s32 arg1) {
+    void* func_80100094(Actor*, u32);
+    Actor* func_801084B0(s32, Actor**);
+    s32 func_800DA544(s32);
+    Actor *sp1C;
+    u8 *sp18;
+
+    sp18 = func_80100094(arg0, 0U);
+    sp1C = func_801084B0(0x310, &arg0);
+    func_800DA544(arg1 + 0x4F6);
+    (*(s8 *)((s8 *)((sp18 + arg1)) + (0x34))) = 1;
+    sp1C->unk3C = arg0->unk0;
+    sp1C->unk6C_0 = arg1;
+}
 
 OSThread *chtoothyfish_entrypoint_1(void)
 {
