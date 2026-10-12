@@ -301,7 +301,14 @@ Actor* func_80108528(s32 arg0, f32 arg1[3], s32 arg2, Actor **arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_8010856C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_801085CC.s")
+void func_801085CC(s32 arg0, s16 *arg1, u32 arg2) {
+    Actor* func_80108C90(s32, s32*, u32, Prop*);
+    s32 sp24[3];
+    s16 *var_v1;
+    s32 *var_v0;
+    s32 *end;
+    end = &arg0; var_v0 = sp24; var_v1 = arg1; for (;;) { *var_v0 = *var_v1; var_v0 = (s32 *)((u8 *)var_v0 + 4); var_v1++; if (var_v0 == end) break; } func_80108C90(arg0, sp24, arg2, NULL);
+}
 
 /* extern */
 
