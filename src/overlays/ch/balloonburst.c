@@ -188,4 +188,12 @@ void func_80801AFC_chballoonburst(BalloonBurstActor *arg0) {
     func_8010D930(4, arg0->balloon.flag, arg0->actor.position, &D_80801DF0_chballoonburst);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80801B6C_chballoonburst.s")
+void func_80801B6C_chballoonburst(Actor *arg0) {
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern s32 D_80801DFC_chballoonburst;
+    if (arg0->unk70_10 != 5) {
+        arg0->unk58 = 1.4f;
+        func_80102424(arg0, 5);
+        func_8010D930(5, (*(s32 *)((s8 *)arg0 + 0x70)) & 1, arg0->position, &D_80801DFC_chballoonburst);
+    }
+}
