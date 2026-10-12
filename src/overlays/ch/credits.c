@@ -45,7 +45,7 @@ void func_808000C8_chcredits()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_808000E8_chcredits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/chcredits_entrypoint_0.s")
+void chcredits_entrypoint_0(s32 arg0) { s32 func_800DA544(s32); s32 func_808000E8_chcredits(); extern s32 D_8012760D; volatile s8 *ptr; ptr = (s8 *)(u32)((s8 *)&D_8012760D + 3); ptr[1] = 0; ptr[2] = arg0; func_808000E8_chcredits(); func_800DA544(0x650); _glcutDll_entrypoint_0(); _glcutDll_entrypoint_7(func_80800000_chcredits(-1)); _glcutDll_entrypoint_22(0x8C); _glcutDll_entrypoint_16(); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/chcredits_entrypoint_1.s")
 
