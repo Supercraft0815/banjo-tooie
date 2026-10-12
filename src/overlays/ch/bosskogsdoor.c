@@ -97,7 +97,18 @@ OSThread *chbosskogsdoor_entrypoint_0(void)
     return (OSThread *) D_80800918_chbosskogsdoor;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bosskogsdoor/func_808004F4_chbosskogsdoor.s")
+/* extern */
+
+void func_808004F4_chbosskogsdoor(Actor *arg0) {
+    s32 func_800DA298(s32);
+    s32 func_80102424(void *, s32);
+    if (func_800DA298(0x1B8) != 0) {
+        func_80102424(arg0, 4);
+        arg0->unk74_30 = 1;
+        return;
+    }
+    func_80102424(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bosskogsdoor/func_80800544_chbosskogsdoor.s")
 
