@@ -99,4 +99,10 @@ f32 func_8009864C(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E71B00/func_800987CC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E71B00/func_80098840.s")
+void func_80098840(u8 *arg0) {
+    void func_800EE7F8(f32 *, f32 *);
+    extern f32 D_80124E20;
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xE0)))) + (0x2C))) = 0;
+    func_800EE7F8((f32 *)(*(u8 **)(arg0 + 0xE0) + 0x1C), (f32 *)*(u8 **)(arg0 + 0xE0));
+    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xE0)))) + (0x28))) = (f32) D_80124E20;
+}
