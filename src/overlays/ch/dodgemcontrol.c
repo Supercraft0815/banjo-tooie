@@ -76,7 +76,13 @@ void func_808003B0_chdodgemcontrol(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801B94_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801C18_chdodgemcontrol.s")
+void func_80801C18_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddiefade_entrypoint_5();
+    func_80102424(arg0, arg2);
+    if ((arg0->unk70_10) == 3) {
+        _subaddiefade_entrypoint_5(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801C60_chdodgemcontrol.s")
 
