@@ -1,6 +1,16 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/func_80800000_sukickball.s")
+void func_80800000_sukickball(s32 arg0, s32 arg1, f32 *arg2, f32 arg3) {
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF830(s32);
+    s32 func_801039E4(s32);
+    struct kickball_vector { f32 v[3]; };
+    extern struct kickball_vector D_80801200_sukickball;
+    struct kickball_vector sp24 = D_80801200_sukickball;
+
+    func_800DF830(3);
+    func_800DE448(arg2, sp24.v, arg3, NULL, func_801039E4(arg0));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_0.s")
 
