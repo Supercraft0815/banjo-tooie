@@ -424,7 +424,15 @@ s32 func_80093DF4(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093ECC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093F30.s")
+s32 func_80093F30(s32 arg0) {
+    s32 func_8009EA2C(void);
+    extern s32 D_80117DD8[][4];
+    extern s32 D_80117DDC[][4];
+    if (func_8009EA2C() != 0) {
+        return D_80117DDC[arg0][0];
+    }
+    return D_80117DD8[arg0][0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093F7C.s")
 
