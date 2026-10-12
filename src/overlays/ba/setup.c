@@ -25,7 +25,18 @@ void func_80800008_basetup(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/func_80800080_basetup.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/func_80800140_basetup.s")
+/* extern */
+
+void func_80800140_basetup(void *arg0) {
+    s32 func_800C6A7C(s32 *, void *, s32 *, s32);
+    s32 func_800EE7F8(s32 *, void *);
+    s32 sp24[3];
+    s32 sp18[3];
+
+    func_800EE7F8(sp18, arg0);
+    (*(f32 *)((s8 *)(arg0) + (4))) = (f32) ((*(f32 *)((s8 *)(arg0) + (4))) - 1000.0f);
+    func_800C6A7C(sp18, arg0, sp24, 0x420025);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/func_80800194_basetup.s")
 
