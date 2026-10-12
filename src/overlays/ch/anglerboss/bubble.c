@@ -7,7 +7,17 @@ OSThread *changlerbossbubble_entrypoint_0(void)
     return (OSThread *) D_808005D0_changlerbossbubble;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/bubble/func_8080000C_changlerbossbubble.s")
+/* extern */
+
+void func_8080000C_changlerbossbubble(void *arg0) {
+    s32 func_800EC75C(s32, s32 *);
+    s32 func_800EFD4C(s32);
+    s32 sp1C[3];
+
+    func_800EC75C((*(s32 *)((s8 *)(arg0) + (0))), sp1C);
+    func_800EFD4C((*(s32 *)((s8 *)(arg0) + (0))) + 0x1E);
+    (*(f32 *)((s8 *)(arg0) + (0x34))) = 0.75f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/bubble/func_80800054_changlerbossbubble.s")
 
