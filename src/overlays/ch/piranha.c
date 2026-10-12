@@ -54,7 +54,11 @@ void func_80801508_chpiranha(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_8080154C_chpiranha.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_80801638_chpiranha.s")
+s32 func_80801638_chpiranha(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    return arg0->unk3C != NULL ?
+        ((u32)*(u16 *)((s8 *)arg0->unk3C + 0x12) >> 1) != *(s32 *)((s8 *)func_80100094(arg0, 0U) + 0x18) : 1;
+}
 
 void func_80801690_chpiranha(s32 arg0, s32 arg1) {
     s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
