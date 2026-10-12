@@ -62,7 +62,22 @@ void func_80800434_bsbansack(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_8080045C_bsbansack.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_808004B0_bsbansack.s")
+/* extern */
+
+void func_808004B0_bsbansack(s32 arg0) {
+    s32 bs_setState(s32, s32);
+    s32 bastick_getZone();
+    s32 func_80800084_bsbansack(s32, s32);
+    s32 var_a1;
+    s32 sp1C;
+
+    sp1C = 0;
+    var_a1 = sp1C;
+    if (bastick_getZone() > 0) {
+        var_a1 = 0x166;
+    }
+    bs_setState(arg0, func_80800084_bsbansack(arg0, var_a1));
+}
 
 s32 bsbansack_entrypoint_0(s32 arg0) {
     extern s32 D_80801E10_bsbansack[];
