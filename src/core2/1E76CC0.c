@@ -85,7 +85,16 @@ u32 func_8009DDD0(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 260) + 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009DDDC.s")
+/* extern */
+
+void func_8009DDDC(PlayerState *arg0) {
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_800C35E8(u8, f32[3]);
+    f32 sp1C[3];
+
+    func_8009C128(arg0, sp1C);
+    func_800C35E8(*(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x104) + 3), sp1C);
+}
 
 /* extern */
 
