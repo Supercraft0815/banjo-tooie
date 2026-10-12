@@ -82,7 +82,17 @@ void func_8008BA5C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008BBF0.s")
+/* extern */
+
+void func_8008BBF0(s32 arg0, s32 arg1) {
+    s32 func_800DFAD0(s32 *);
+    s32 func_8008B9C4(s16, s32 *);
+    s32 sp1C;
+
+    if (func_8008B9C4((*(s16 *)((s8 *)arg0 + (arg1 << 1) + 0xA)), &sp1C) == 0) {
+        func_800DFAD0((s32 *)sp1C);
+    }
+}
 
 void func_8008BC2C(u8 *arg0) {
     func_8008BBF0(arg0, arg0[8]);
