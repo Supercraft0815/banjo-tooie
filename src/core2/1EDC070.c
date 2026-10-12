@@ -114,7 +114,12 @@ s32 func_80102CF4(u8 *arg0, s32 arg1) {
     return func_800F20BC((*(f32 *)((s8 *)(arg0) + (0x48))), (*(f32 *)((s8 *)(arg0) + (0x54))), arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102D20.s")
+void func_80102D20(u8 *arg0, s32 arg1, f32 arg2) {
+    s32 *p = &arg1;
+    s32 func_800F20BC(f32, f32, s32);
+    (void)p;
+    func_800F20BC((*(f32 *)((s8 *)(arg0) + (0x48))), arg2, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102D4C.s")
 
