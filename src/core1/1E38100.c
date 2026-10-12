@@ -51,7 +51,23 @@ void func_80020BE0(void) {
     func_80020AD0(3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E38100/func_80020C08.s")
+void func_80020C08(volatile s32 arg0, volatile s16 arg1, volatile s32 arg2) {
+    extern u8 *D_800411DC;
+    void func_80026500(void *, void *, s32, s32);
+    struct {
+        s16 type;
+        s32 value;
+        s32 data;
+        s32 extra;
+    } event;
+
+    event.type = arg1;
+    event.value = arg0;
+    event.data = arg2;
+    if (arg0 != 0) {
+        func_80026500(D_800411DC + 0x14, &event, 0, 0);
+    }
+}
 
 s32 func_80020C74(u8 arg0) {
     extern u16 *D_8007EA24;
