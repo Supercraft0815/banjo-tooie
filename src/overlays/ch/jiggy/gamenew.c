@@ -10,7 +10,7 @@ OSThread *chjiggygamenew_entrypoint_0(void)
 /* extern */
 
 s32 func_8080000C_chjiggygamenew(void) {
-    void *func_80106790();
+    Actor *func_80106790();
     return (*(s32 *)((s8 *)(func_80106790()) + (0x20)));
 }
 
@@ -31,7 +31,7 @@ s32 func_8080000C_chjiggygamenew(void) {
 /* extern */
 
 s32 func_808007BC_chjiggygamenew(void) {
-    void *func_80106790();
+    Actor *func_80106790();
     return (*(s32 *)((s8 *)(func_80106790()) + (0x28))) == 5;
 }
 
@@ -108,7 +108,7 @@ void func_80803564_chjiggygamenew(s32 arg0)
 
 void func_8080356C_chjiggygamenew(void) {
     s32 func_80102424(s32, s32);
-    void *func_80106790();
+    Actor *func_80106790();
     func_80102424(func_80106790(), 8);
 }
 
@@ -116,7 +116,7 @@ void func_8080356C_chjiggygamenew(void) {
 
 void func_80803598_chjiggygamenew(void) {
     s32 func_80102424(s32, s32);
-    void *func_80106790();
+    Actor *func_80106790();
     func_80102424(func_80106790(), 7);
 }
 
@@ -125,7 +125,7 @@ void func_80803598_chjiggygamenew(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_808035FC_chjiggygamenew.s")
 
 s32 func_8080363C_chjiggygamenew(void) {
-    void *func_80106790();
+    Actor *func_80106790();
     return ((u32) (*(u16 *)((s8 *)(func_80106790()) + (0x72))) >> 0xA) == 1;
 }
 
@@ -140,4 +140,20 @@ OSThread *chjiggygamenew_entrypoint_4(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_8080377C_chjiggygamenew.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80803928_chjiggygamenew.s")
+void func_80803928_chjiggygamenew(Unk80132ED0 *arg0, Gfx **arg1) {
+    s32 func_800E81D0(void);
+    void func_80101870(Actor* arg0, void* arg1);
+    Actor *func_80106790(Unk80132ED0 *);
+    Gfx *sp18;
+    Gfx *temp_v0_2;
+    s32 temp_v0;
+
+    temp_v0 = func_800E81D0();
+    if (temp_v0 != 0) {
+        temp_v0_2 = (*arg1)++;
+        temp_v0_2->words.w0 = 0xDB060010;
+        sp18 = temp_v0_2;
+        sp18->words.w1 = osVirtualToPhysical((u8 *) temp_v0);
+        func_80101870(func_80106790(arg0), arg1);
+    }
+}
