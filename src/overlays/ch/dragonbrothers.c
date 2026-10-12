@@ -342,7 +342,12 @@ void func_80801CEC_chdragonbrothers(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80801D40_chdragonbrothers.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80802534_chdragonbrothers.s")
+/* extern */
+
+int func_80802534_chdragonbrothers(s32 arg0) {
+    s32 func_8008FA2C(s32, s32);
+    return (func_80090248() != 0) && (func_8008FA2C(-1, 0) != 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80802574_chdragonbrothers.s")
 
