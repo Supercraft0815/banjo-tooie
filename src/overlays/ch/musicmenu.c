@@ -133,7 +133,19 @@ void func_80800930_chmusicmenu(u8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_80800DA4_chmusicmenu.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_80800F50_chmusicmenu.s")
+/* extern */
+
+void func_80800F50_chmusicmenu(u8 *arg0) {
+    s32 _gcnewoption_entrypoint_6(u8 *, s32);
+    void func_80800714_chmusicmenu(u8 *);
+    u32 temp_t6;
+
+    func_80800714_chmusicmenu(arg0);
+    temp_t6 = (u32) ((Actor *) arg0)->unk70_10;
+    if ((temp_t6 == 1) || (temp_t6 == 2)) {
+        _gcnewoption_entrypoint_6(arg0, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_80800F98_chmusicmenu.s")
 
