@@ -35,7 +35,15 @@ void func_808001FC_chstonepillar(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_808005B4_chstonepillar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_808006AC_chstonepillar.s")
+void func_808006AC_chstonepillar(Unk80132ED0 **arg0) {
+    void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, s16, u32);
+    s32 func_800DA298(s32);
+    s32 func_800DA564(s32, s32);
+    extern s16 D_80801480_chstonepillar[];
+    if (func_800DA298(0x9D5) != 0) {
+        _capod_entrypoint_13(*arg0, NULL, D_80801480_chstonepillar[func_800DA564(0x9CD, 3)], 0x810U);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800704_chstonepillar.s")
 
