@@ -131,7 +131,15 @@ void func_800E9320(s32 arg0, s32 arg1) {
     func_800E90D8(arg0, arg1, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E9340.s")
+void func_800E9340(void *arg0, s32 arg1, s32 arg2) {
+    void func_800E8E70(s32, void *, s32, s32);
+    extern s32 D_8012D690;
+    extern s32 unknown2_ROM_START;
+    s32 temp_v0;
+    temp_v0 = arg1 * 0x12;
+    func_800E8E70((s32)arg0, (void *)((s32)&unknown2_ROM_START + temp_v0 + 8), 0x12, arg2);
+    rare_memcpy((void *)((s32)&D_8012D690 + temp_v0 + 0x4658), arg0, 0x12);
+}
 
 void *func_800E93AC(s32 arg0) {
     extern s32 D_8012D690;
