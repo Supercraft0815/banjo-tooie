@@ -46,7 +46,17 @@ void func_80105634(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_8010568C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_801056EC.s")
+/* extern */
+
+void func_801056EC(Actor *arg0, f32 arg1) {
+    s32 func_800D86F0(s32, f32, void *);
+    void *temp_v0;
+
+    temp_v0 = func_80105494(arg0);
+    (*(f32 *)((s8 *)(temp_v0) + (0x10))) = (*(f32 *)((s8 *)(temp_v0) + (0xC)));
+    (*(f32 *)((s8 *)(temp_v0) + (0xC))) = arg1;
+    func_800D86F0((s32) ((*(s32 *)((s8 *)(temp_v0) + (0))) << 0x15) >> 0x16, arg1, (s8 *)arg0 + 4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_8010573C.s")
 
