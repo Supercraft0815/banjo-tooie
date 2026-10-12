@@ -46,7 +46,16 @@ s32 func_8009AE00()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009B27C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009B3B8.s")
+void func_8009B3B8(u8 *arg0) {
+    f32 func_800D8FF8(void);
+    s32 func_800EE7F8();
+    void func_800EF04C(f32[3], f32[3]);
+    void func_800EF334(f32 vec[3], f32 scale);
+
+    func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x28, (*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x10);
+    func_800EF334((*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x28, func_800D8FF8());
+    func_800EF04C((*(s32 *)((s8 *)(arg0) + (0xC8))) + 4, (*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x28);
+}
 
 void func_8009B414(PlayerState *arg0) {
     void func_8009C128(PlayerState *, f32[3]);
