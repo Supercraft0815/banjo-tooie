@@ -28,6 +28,12 @@ void func_80800000_glcrc(void *start, void *end, u32 checksum[2]) {
     checksum[1] = crc2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/crc/glcrc_entrypoint_0.s")
+u32 glcrc_entrypoint_0(s32 arg0, s32 arg1) {
+    u32 *temp_a1;
+
+    temp_a1 = (u32 *) (arg0 + arg1 - 8);
+    func_80800000_glcrc((void *)arg0, temp_a1, temp_a1);
+    return *temp_a1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/crc/glcrc_entrypoint_1.s")
