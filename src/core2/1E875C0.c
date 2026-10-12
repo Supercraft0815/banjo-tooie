@@ -3,7 +3,7 @@
 void func_800ADCD0(u8 **list_ptr, u8 *animation) {
     void *heap_realloc(void *, s32);
     s32 func_80019CD4(void);
-    s32 mlMtxGet(void *);
+    void mlMtxGet(void *);
     u8 *list;
     u8 *start, *end, *matrix;
     list = *list_ptr;
@@ -46,7 +46,23 @@ void func_800ADF5C(void *arg0) {
     heap_free(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800ADF98.s")
+/* extern */
+
+u8 *func_800ADF98(void) {
+    s32 func_80019CD4(void);
+    void *heap_alloc(s32);
+    void mlMtxGet(void *);
+    u8 *temp_v0;
+
+    temp_v0 = heap_alloc(0x50);
+    (*(s32 *)((s8 *)(temp_v0) + (0))) = 0;
+    (*(s32 *)((s8 *)(temp_v0) + (4))) = 0;
+    (*(s32 *)((s8 *)(temp_v0) + (8))) = 0;
+    (*(s16 *)((s8 *)(temp_v0) + (0xC))) = 0;
+    func_80019CD4();
+    mlMtxGet(temp_v0 + 0x10);
+    return temp_v0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800ADFE0.s")
 
