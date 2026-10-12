@@ -219,7 +219,15 @@ void func_80102190(void *arg0, s32 arg1) {
     p->flag = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_801021BC.s")
+/* extern */
+
+int func_801021BC(Actor *arg0, s32 arg1) {
+    s32 func_80102394();
+    s32 temp_v0;
+
+    temp_v0 = func_80102394(arg0);
+    return temp_v0 != 0 && *(u16 *)((s8 *)temp_v0 + arg1 * 8 + 4) != 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80102204.s")
 
