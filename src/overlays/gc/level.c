@@ -50,7 +50,18 @@ s32 gclevel_entrypoint_2(s32 arg0)
     return D_8012762C = _gcsectionDll_entrypoint_4(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/level/gclevel_entrypoint_3.s")
+/* extern */
+
+u32 gclevel_entrypoint_3(void) {
+    void *func_80800314_gclevel();
+    void *temp_v0;
+
+    temp_v0 = func_80800314_gclevel();
+    if (temp_v0 == NULL) {
+        return 1U;
+    }
+    return func_800DA298((enum flag_e) (*(u16 *)((s8 *)(temp_v0) + (2))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/level/func_8080016C_gclevel.s")
 
