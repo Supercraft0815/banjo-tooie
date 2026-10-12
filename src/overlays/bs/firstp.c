@@ -687,7 +687,19 @@ void func_80803760_bsfirstp(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803784_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808037E4_bsfirstp.s")
+void func_808037E4_bsfirstp(u8 *arg0) {
+    s32 _batimer_decrement(void *, s32);
+    s32 bs_setState(void *, s32);
+    s32 var_a2;
+
+    var_a2 = 0;
+    if (_batimer_decrement(arg0, 0) != 0) {
+        var_a2 = 0xCA;
+    }
+    if (var_a2 != 0) {
+        bs_setState(arg0, var_a2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803828_bsfirstp.s")
 
