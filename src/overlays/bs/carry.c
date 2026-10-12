@@ -96,7 +96,23 @@ void func_80800708_bscarry(s32 arg0)
     func_80800208_bscarry();
     _bsrest_entrypoint_16(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_80800730_bscarry.s")
+/* extern */
+
+void func_80800730_bscarry(s32 arg0) {
+    s32 _bsrest_entrypoint_20();
+    s32 bs_setState(s32, s32);
+    s32 _bahold_entrypoint_5(s32);
+    s32 sp1C;
+
+    sp1C = 0;
+    if (_bsrest_entrypoint_20() != 0) {
+        sp1C = 0x3A;
+    }
+    if (_bahold_entrypoint_5(arg0) == 0) {
+        sp1C = 0x73;
+    }
+    bs_setState(arg0, sp1C);
+}
 
 s32 bscarry_entrypoint_4(s32 arg0) {
     extern s32 D_808007F0_bscarry[];
