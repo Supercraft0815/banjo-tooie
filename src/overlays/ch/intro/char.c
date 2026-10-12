@@ -674,6 +674,16 @@ void func_80803F24_chintrochar(Actor *arg0, u8 *arg1, s32 arg2) { void func_800D
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80804054_chintrochar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80804238_chintrochar.s")
+void func_80804238_chintrochar(s32 *arg0) {
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    s32 func_801065A4();
+    s32 _chintrochar_entrypoint_1();
+    s32 sp1C;
+    sp1C = func_801065A4();
+    if (sp1C != 0) {
+        _glid_entrypoint_0(sp1C, 1, (s32 *)_chintrochar_entrypoint_1, *arg0);
+        _glid_entrypoint_0(sp1C, 2, (s32 *)_chintrochar_entrypoint_1, *arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/chintrochar_entrypoint_1.s")
