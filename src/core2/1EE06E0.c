@@ -122,7 +122,19 @@ void func_80107750(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107784.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107858.s")
+/* extern */
+
+s32 func_80107858(Actor *arg0, u8 *arg1) {
+    s32 func_801073F8(s32, s32, s32);
+    s32 func_801078DC(Actor *, u8 *);
+    if (func_801073F8((s32)arg0, (*(s16 *)((s8 *)(arg1) + (0xA))), 2) == 0) {
+        func_801078DC(arg0, arg1 + 0x14);
+    }
+    if (_subaddiefade_entrypoint_0(arg0) == 0) {
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
