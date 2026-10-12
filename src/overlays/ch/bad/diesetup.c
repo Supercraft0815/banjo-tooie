@@ -38,7 +38,16 @@ void chbaddiesetup_entrypoint_8(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_80108454(*(s32 *)&arg0, pos, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/diesetup/chbaddiesetup_entrypoint_9.s")
+/* extern */
+
+void chbaddiesetup_entrypoint_9(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    Actor *_chbounce_entrypoint_6(s32, f32 *);
+    f32 pos[3];
+    pos[0] = *(f32 *)&arg1;
+    pos[1] = *(f32 *)&arg2;
+    pos[2] = *(f32 *)&arg3;
+    _chbounce_entrypoint_6(*(s32 *)&arg0, pos);
+}
 
 Actor *chbaddiesetup_entrypoint_10(s32 id, s32 x, s32 y, s32 z, s32 yaw) {
     void _chbounce_entrypoint_2(f32);
