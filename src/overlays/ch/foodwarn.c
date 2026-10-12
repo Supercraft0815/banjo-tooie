@@ -13,7 +13,15 @@ void func_8080003C_chfoodwarn(s32 arg0) {
     func_80800000_chfoodwarn(arg0, 1, arg0 + 0x18);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/foodwarn/func_80800074_chfoodwarn.s")
+/* extern */
+
+s32 func_80800074_chfoodwarn(s32 arg0, s32 arg1) {
+    f32 func_800EFC7C(f32 *, f32 *);
+    if (func_800EFC7C((f32 *)arg1, (f32 *)(arg0 + 0x28)) < func_800EFC7C((f32 *)arg1, (f32 *)(arg0 + 0x18))) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/foodwarn/func_808000D4_chfoodwarn.s")
 
