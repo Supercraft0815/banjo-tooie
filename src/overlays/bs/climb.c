@@ -1,6 +1,19 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/func_80800000_bsclimb.s")
+void func_80800000_bsclimb(void *arg0, s32 arg1) {
+    u32 func_80098634(void *arg0);
+    void func_8009DF94(void *, s32, f32, s32);
+    extern s32 D_808008C0_bsclimb;
+    u8 *temp_t0;
+    u8 *temp_v1;
+    u32 offset;
+
+    offset = func_80098634(arg0) * 5;
+    offset *= 4;
+    temp_v1 = offset + (u8 *)&D_808008C0_bsclimb;
+    temp_t0 = (u8 *)temp_v1 + (arg1 * 8);
+    func_8009DF94(arg0, *(s16 *)((u8 *)temp_v1 - 0x12), *(f32 *)(temp_t0 - 0x10), *(s32 *)(temp_t0 - 0xC));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/func_8080005C_bsclimb.s")
 
