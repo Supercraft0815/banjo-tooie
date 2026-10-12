@@ -42,7 +42,21 @@ void *func_800FB5F8(s32 arg0) {
     return first_free;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FB650.s")
+void func_800FB650(s32 *arg0, s32 arg1, s32 arg2) {
+    void freelist_clear(void *);
+    void *freelist_next(void **, s32 *);
+    s32 sp24;
+    s32 i;
+    s32 *tmp;
+
+    freelist_clear((void *)arg0[0x38 / 4]);
+    for (i = 0; i < 5; i++) {
+        arg0[0x3C / 4 + i] = 0;
+    }
+    tmp = freelist_next((void **)(arg0 + 0x38 / 4), &sp24);
+    tmp[0] = arg1;
+    tmp[1] = arg2;
+}
 
 void func_800FB6C0(s32 *ptr, s32 volume) {
     void func_800FB650(s32 *, s32, s32);
