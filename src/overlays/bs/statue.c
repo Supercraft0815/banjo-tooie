@@ -48,7 +48,11 @@ void bsstatue_entrypoint_0(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/bsstatue_entrypoint_1.s")
+/* extern */
+
+void bsstatue_entrypoint_1(s32 arg0) {
+    func_808000C0_bsstatue(arg0, 75.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_808003B4_bsstatue.s")
 
