@@ -5,7 +5,23 @@ s32 func_80095380(void)
 	return 0x18;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6EC70/func_80095388.s")
+u8 func_80095388(s32 *arg0, s32 arg1, u8 *arg2, s32 arg3) {
+    s32 threshold = arg3 + 0x3E8;
+    s16 *entry = (s16 *)(arg2 + 0xC);
+    s16 index;
+    if (*entry >= 0) {
+      do {
+        index = *entry;
+        if (index + threshold < arg1) {
+            *arg0 = ((u8 *)entry)[2];
+            return ((u8 *)entry)[3];
+        }
+        entry += 2;
+        index = *entry;
+      } while (index >= 0);
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6EC70/func_800953E0.s")
 
