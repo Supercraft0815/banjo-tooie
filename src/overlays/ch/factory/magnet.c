@@ -4,7 +4,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80800224_chfactorymagnet.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_8080083C_chfactorymagnet.s")
+/* extern */
+
+void func_8080083C_chfactorymagnet(s32 arg0) {
+    s32 _subaddiefind_entrypoint_2(s32, s32);
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    s32 func_800F4EC8(s32, s32 *, f32, f32, f32);
+    s32 func_800F54E4();
+    s32 sp24[3];
+
+    func_800EE7F8(sp24, _subaddiefind_entrypoint_2(0x3FC, 0) + 4);
+    func_800F4EC8(func_800F54E4(), sp24, 500.0f, 0.0f, 200.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80800898_chfactorymagnet.s")
 
