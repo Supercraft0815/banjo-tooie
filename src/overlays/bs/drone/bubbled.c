@@ -27,7 +27,20 @@ void bsdronebubbled_entrypoint_0(void *arg0) {
 void bsdronebubbled_entrypoint_4(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bubbled/bsdronebubbled_entrypoint_5.s")
+/* extern */
+
+void bsdronebubbled_entrypoint_5(s32 arg0) {
+    s32 baanim_playForDuration_loopSmooth(s32, s32, f32);
+    void _badata_entrypoint_0(s32, s32 *, f32 *);
+    void func_8009FFD8(s32, s32, s32, s32, s32);
+    f32 sp24;
+    s32 sp20;
+
+    _badata_entrypoint_0(arg0, &sp20, &sp24);
+    sp24 = sp24 + sp24;
+    baanim_playForDuration_loopSmooth(arg0, sp20, sp24);
+    func_8009FFD8(arg0, 1, 1, 3, 7);
+}
 
 void bsdronebubbled_entrypoint_6()
 {
