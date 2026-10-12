@@ -31,12 +31,17 @@ f32 func_800F1DCC(f32 arg0, f32 arg1) {
     return func_80013728(arg0 - arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1DF4.s")
+/* extern */
+
+f32 func_800F1DF4(f32 *arg0, f32 *arg1) {
+    f32 func_80013B7C(f32, f32);
+    return ((f32)(func_80013B7C((*(f32 *)((s8 *)(arg1) + (0))) - (*(f32 *)((s8 *)(arg0) + (0))), arg1[2] - arg0[2])));
+}
 
 /* extern */
 
 void func_800F1E28(void *arg0, void *arg1) {
-    s32 func_80013B7C(f32, f32);
+    f32 func_80013B7C(f32, f32);
     func_80013B7C((f32) ((*(s16 *)((s8 *)(arg1) + (0))) - (*(s16 *)((s8 *)(arg0) + (0)))), (f32) ((*(s16 *)((s8 *)(arg1) + (4))) - (*(s16 *)((s8 *)(arg0) + (4)))));
 }
 
