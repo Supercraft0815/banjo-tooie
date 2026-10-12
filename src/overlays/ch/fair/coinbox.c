@@ -13,7 +13,18 @@ void func_8080001C_chfaircoinbox(u8 *arg0) {
     func_800DA544(func_808002E4_chfaircoinbox[((struct CoinboxData *)arg0)->index][0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/func_80800050_chfaircoinbox.s")
+s32 func_80800050_chfaircoinbox(s32 arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    extern s32 D_80800470_chfaircoinbox[][2];
+    s32 index;
+    index = ((Actor *)arg0)->unk74_7 - 0x32;
+    arg0 = (s32)D_80800470_chfaircoinbox[index];
+    if (func_800DA298(((s32 *)arg0)[1]) != 0) {
+        func_800DA544(((s32 *)arg0)[0]);
+    }
+    return ((s32 *)arg0)[0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/func_808000A4_chfaircoinbox.s")
 
