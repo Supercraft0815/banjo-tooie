@@ -98,7 +98,13 @@ void func_800DFFA0(s32 *arg0, s32 arg1, s32 arg2) {
     func_800EE7F8(**base + (arg1 * 0x28) + 0x1C, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB93C0/func_800DFFDC.s")
+void func_800DFFDC(s32 arg0, s32 arg1, f32 *arg2) {
+    void func_800D93A0(f32[4], f32[3]);
+    f32 sp18[4];
+
+    func_800D93A0(sp18, arg2);
+    func_800DFF2C(arg0, arg1, sp18);
+}
 
 /* extern */
 
