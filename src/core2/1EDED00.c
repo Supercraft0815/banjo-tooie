@@ -34,7 +34,15 @@ void *func_80105494(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_8010556C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105634.s")
+void func_80105634(Actor *arg0) {
+    s32 freelist_erase(s32, s32, void *);
+    extern s32 D_80136EC0;
+    if (arg0->unk7C_0 != 0) {
+        freelist_erase(D_80136EC0, arg0->unk7C_0, arg0);
+        (*(u16 *)((s8 *)(arg0) + (0x7E))) = (u16) ((*(u16 *)((s8 *)(arg0) + (0x7E))) & 0xF000);
+        (*(u8 *)((s8 *)(arg0) + (0x77))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x77))) & 0xFFEF);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_8010568C.s")
 
