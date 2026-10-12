@@ -137,9 +137,9 @@ void func_800BA5D0(void *arg0, s16 arg1) {
 /* extern */
 
 void func_800BA610(s32 arg0, s16 arg1, s16 arg2) {
-    s32 func_800EFA6C(s32, s32, s16, s32);
-    func_800EFA6C(arg0 + 0x34, 0, arg1, 0);
-    func_800EFA6C(arg0 + 0x3A, 0, arg2, 0);
+    void func_800EFA6C(void *, s16, s16, s16);
+    func_800EFA6C((void *)(arg0 + 0x34), 0, arg1, 0);
+    func_800EFA6C((void *)(arg0 + 0x3A), 0, arg2, 0);
 }
 
 void func_800BA660(void *arg0, s32 arg1, s16 arg2) {
@@ -156,10 +156,10 @@ void func_800BA670(s32 arg0, s32 arg1) {
 }
 
 void func_800BA6B0(u8 *arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6) {
-    s32 func_800EFA6C(s32, s32, s16, s32);
+    void func_800EFA6C(void *, s16, s16, s16);
     (*(s8 *)((s8 *)(arg0) + (5))) = 0;
-    func_800EFA6C((s32) (arg0 + 0x28), (s32) arg1, arg2, (s32) arg3);
-    func_800EFA6C((s32) (arg0 + 0x2E), (s32) arg4, arg5, (s32) arg6);
+    func_800EFA6C(arg0 + 0x28, arg1, arg2, arg3);
+    func_800EFA6C(arg0 + 0x2E, arg4, arg5, arg6);
 }
 
 void func_800BA714(void *arg0, s16 arg1, s16 arg2) {
@@ -183,7 +183,10 @@ void func_800BA75C(s32 arg0) {
     func_800EE940(arg0 + 0x12);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA77C.s")
+void func_800BA77C(s32 arg0, s16 arg1, s16 arg2, s16 arg3) {
+    void func_800EFA6C(void *, s16, s16, s16);
+    func_800EFA6C((void *)(arg0 + 0x4C), arg1, arg2, arg3);
+}
 
 void func_800BA7C4(void *arg0, f32 arg1, f32 arg2) {
     (*(s16 *)((s8 *)(arg0) + (0x9A))) = (s16) (s32) (arg1 * 256.0f);
@@ -196,9 +199,9 @@ void func_800BA7FC(void *arg0, f32 arg1, f32 arg2) {
 }
 
 void func_800BA834(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6) {
-    s32 func_800EFA6C(s32, s32, s16, s32);
-    func_800EFA6C(arg0 + 0x40, (s32) arg1, arg2, (s32) arg3);
-    func_800EFA6C(arg0 + 0x46, (s32) arg4, arg5, (s32) arg6);
+    void func_800EFA6C(void *, s16, s16, s16);
+    func_800EFA6C((void *)(arg0 + 0x40), arg1, arg2, arg3);
+    func_800EFA6C((void *)(arg0 + 0x46), arg4, arg5, arg6);
 }
 
 void func_800BA894(void *arg0, f32 arg1, f32 arg2)
