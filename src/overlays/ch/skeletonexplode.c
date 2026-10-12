@@ -80,7 +80,19 @@ void chskeletonexplode_entrypoint_8(Actor **arg0, s16 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_80800E88_chskeletonexplode.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_8080100C_chskeletonexplode.s")
+/* extern */
+
+s32 func_8080100C_chskeletonexplode(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_80800E88_chskeletonexplode();
+    switch (arg1) {
+    case 0x1F:
+        func_80800E88_chskeletonexplode(arg0);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 OSThread *chskeletonexplode_entrypoint_9(void)
 {
