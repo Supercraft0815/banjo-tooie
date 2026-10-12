@@ -180,7 +180,16 @@ void func_8009EB18(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009EB8C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009EBD0.s")
+void func_8009EBD0(void) {
+    extern f32 D_80127040;
+    extern u8 D_8012704C;
+    s32 i;
+
+    for (i = 0; i < 3; i++) {
+        ((s32 *)&D_80127040)[i + 4] = ((s32 *)&D_80127040)[i + 5];
+    }
+    *((u8 *)&D_80127040 + 0x20) -= 1;
+}
 
 s32 func_8009EC08(s16 *arg0, s16 *arg1) {
     extern f32 D_80127040;
