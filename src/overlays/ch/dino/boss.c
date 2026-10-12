@@ -496,7 +496,144 @@ void func_80801F44_chdinoboss(s32 arg0) {
     } while (var_s0 != 8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80801FAC_chdinoboss.s")
+void func_80801FAC_chdinoboss(Actor *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u8 pad[0x138];
+        s16 state;
+        s16 playerMode;
+        s16 cutscene;
+        s16 blend;
+        f32 blendTime;
+        f32 blendDuration;
+        f32 position[3];
+        f32 rotation[3];
+        f32 turn;
+        s16 reset;
+        s16 pad166;
+        f32 timer;
+        f32 target[3];
+    } DinoData;
+    void *func_80100094(Actor *, u32);
+    u32 func_800F54E4(void);
+    f32 func_80102D78(Actor *, f32 *);
+    f32 func_800136E4(f32);
+    void func_8008FE68(f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800F1DCC(f32, f32);
+    s32 func_800F1EA4(s32, f32 *);
+    s32 func_800DC298(f32);
+    s32 func_800C52F4(s32, s32);
+    s32 func_800C53EC(s32, s32);
+    void func_80801E90_chdinoboss();
+    void func_80801ECC_chdinoboss();
+    f32 playerPos[3];
+    DinoData *data;
+    s32 cutscene;
+    s32 blend;
+    f32 position[3];
+    f32 delta[3];
+    f32 rotation[3];
+    f32 heading;
+    f32 *vec;
+
+    data = func_80100094(arg0, 0);
+    cutscene = 0;
+    blend = 1;
+    if (data->playerMode != 0 && arg2 == 0) {
+        func_80090708(0);
+        data->playerMode = 0;
+    }
+    if (data->playerMode == 0 && arg2 != 0) {
+        func_80090708(2);
+        data->playerMode = 1;
+    }
+    if (arg1 != data->state) {
+        vec = data->position;
+        func_80801E90_chdinoboss(vec, data->rotation);
+        switch (data->state) {
+            case 1:
+            case 2:
+            case 3:
+                break;
+            case 0:
+                func_800F7B9C(func_800F54E4(), 0x93);
+                break;
+        }
+        switch (arg1) {
+            case 0:
+                func_8008FE68(playerPos);
+                func_80801E90_chdinoboss(position, rotation);
+                func_800EFB24(delta, position, playerPos);
+                func_800EF368(delta, 600.0f);
+                func_800EF04C(playerPos, delta);
+                func_80801ECC_chdinoboss(playerPos, rotation);
+                func_80801F44_chdinoboss(2);
+                blend = 0;
+                break;
+            case 1: {
+                f32 angle;
+                func_80801F44_chdinoboss(6);
+                angle = func_80102D78(arg0, vec);
+                if (func_800F1EA4((s32)((u8 *)arg0 + 4), &heading) == 0) {
+                    heading = *(f32 *)((u8 *)arg0 + 0x48);
+                }
+                if (func_800F1DCC(angle, heading) > 0.0f) {
+                    data->turn = -100.0f;
+                } else {
+                    data->turn = 100.0f;
+                }
+                if (data->reset != 0) {
+                    blend = 0;
+                    data->reset = 0;
+                }
+                if (((u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10) == 0xB ||
+                    ((u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10) == 0xC) {
+                    cutscene = 1;
+                }
+                break;
+            }
+            case 2: {
+                f32 offset;
+                func_80801F44_chdinoboss(6);
+                data->timer = 0.0f;
+                offset = func_800DC298(0.5f) ? -35.0f : 35.0f;
+                offset = func_800136E4(*(f32 *)((u8 *)arg0 + 0x48) + offset);
+                vec = data->target;
+                func_800EEB9C(vec, offset, 6000.0f);
+                func_800EF04C(vec, (f32 *)((u8 *)arg0 + 4));
+                cutscene = 1;
+                blend = 0;
+                break;
+            }
+            case 3:
+                func_80801F44_chdinoboss(6);
+                cutscene = 1;
+                blend = 0;
+                break;
+        }
+        if (cutscene != 0 && data->cutscene == 0) {
+            _glcutDll_entrypoint_6(func_800EA05C(), 0x79);
+            func_800C52F4(0, 2);
+            data->cutscene = 1;
+        }
+        if (cutscene == 0 && data->cutscene != 0) {
+            _glcutDll_entrypoint_17();
+            func_800C53EC(0, 2);
+            data->cutscene = 0;
+        }
+        data->state = arg1;
+        if (blend != 0) {
+            data->blend = 1;
+            data->blendDuration = 1.0f;
+            data->blendTime = 1.0f;
+        } else {
+            data->blend = 0;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_8080232C_chdinoboss.s")
 
