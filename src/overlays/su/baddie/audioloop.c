@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/audioloop/subaddieaudioloop_entrypoint_0.s")
+void subaddieaudioloop_entrypoint_0(u8 *arg0, f32 arg1) {
+    void func_800C31DC(u8 id, f32);
+    if (arg0[0x5F] != 0) {
+        func_800C31DC(arg0[0x5F], arg1);
+    }
+}
 
 /* extern */
 
