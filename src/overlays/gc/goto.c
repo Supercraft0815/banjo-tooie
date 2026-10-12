@@ -9,7 +9,16 @@ typedef struct
 /* extern */
 extern UNKD_80127194 D_80127194;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/goto/func_80800000_gcgoto.s")
+s32 func_80800000_gcgoto(s8 *arg0, s16 arg1) {
+    s32 i = 0;
+
+    while (arg0[i] != -1) {
+        if (arg0[i++] == arg1) {
+            return 1;
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/goto/gcgoto_entrypoint_0.s")
 
