@@ -4,7 +4,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_808000B4_cheel.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_80800128_cheel.s")
+void func_80800128_cheel(Actor *arg0) {
+    void func_800C8B84(s32);
+    void* func_80100094(Actor*, u32);
+    u8 *temp_v0;
+    u8 *sp1C;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    if ((*(s32 *)((s8 *)(temp_v0) + (0xDC))) != 0) {
+        sp1C = temp_v0;
+        func_800C8B84((*(s32 *)((s8 *)(temp_v0) + (0xDC))));
+        (*(s32 *)((s8 *)(sp1C) + (0xDC))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_80800168_cheel.s")
 
