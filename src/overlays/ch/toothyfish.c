@@ -6,7 +6,21 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800188_chtoothyfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_808002DC_chtoothyfish.s")
+void func_808002DC_chtoothyfish(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_4(Actor*, f32*, u32*, u32*);
+    void _subaddieskeleton_entrypoint_2(Unk80132ED0*, s32, f32*);
+    extern u32 D_8080178C_chtoothyfish;
+    extern u32 D_8080179C_chtoothyfish;
+    extern u32 D_80801858_chtoothyfish;
+    extern u32 D_80801864_chtoothyfish;
+    f32 sp1C[3];
+
+    if (arg0->unk7C_12) {
+        _subaddieskeleton_entrypoint_2(arg0->unk0, 0xA, sp1C);
+        _subaddieaudioquick_entrypoint_4(arg0, sp1C, &D_8080178C_chtoothyfish, &D_80801858_chtoothyfish);
+        _subaddieaudioquick_entrypoint_4(arg0, sp1C, &D_8080179C_chtoothyfish, &D_80801864_chtoothyfish);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800350_chtoothyfish.s")
 
