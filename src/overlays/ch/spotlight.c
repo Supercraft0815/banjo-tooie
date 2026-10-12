@@ -66,4 +66,12 @@ s32 *func_808008EC_chspotlight(u8 *arg0) {
     return temp_v0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_80800934_chspotlight.s")
+u32 func_80800934_chspotlight(s32 unused, s32 arg1, s32 arg2) {
+    void func_8080047C_chspotlight(Actor *);
+
+    if (arg1 == 0x1F) {
+        func_8080047C_chspotlight((Actor *) unused);
+        return 1;
+    }
+    return 0;
+}
