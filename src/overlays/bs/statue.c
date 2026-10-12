@@ -19,7 +19,14 @@ void func_8080009C_bsstatue(s32 arg0)
     func_800CEAA8(0x2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_808000C0_bsstatue.s")
+/* extern */
+
+void func_808000C0_bsstatue(s32 arg0, f32 arg1) {
+    void func_800CE88C(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    func_800CE8D8(2, arg1, (s32) arg1);
+    func_800CE88C(2, 1);
+}
 
 /* extern */
 
