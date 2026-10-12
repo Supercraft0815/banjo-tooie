@@ -56,7 +56,12 @@ void func_80104504(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104544.s")
+int func_80104544(void) {
+    void *func_801043D8();
+    void *temp_v0;
+    temp_v0 = func_801043D8();
+    return temp_v0 != NULL && (*(u8 *)((s8 *)temp_v0 + 3)) != 0;
+}
 
 /* extern */
 
@@ -205,7 +210,7 @@ void func_801049B4(u8 *arg0, f32 *arg1, s32 *arg2) {
 
 s32 func_8010518C(s32 arg0) {
     void *func_801043D8(s32);
-    s32 func_80104544();
+    int func_80104544();
     if (func_80104544() == 0) {
         return 0;
     }
