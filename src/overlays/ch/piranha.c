@@ -12,7 +12,7 @@ void func_80800000_chpiranha(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_8080003C_chpiranha.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_80800218_chpiranha.s")
+void func_80800218_chpiranha(Actor *arg0, u32 arg1) { if (arg0->unk70_10 == 7) { arg0->unk64_16 = 1; } func_80101FDC(arg0, arg1); if (arg1 == 7) { arg0->unk64_16 = 0; } }
 
 void func_80800280_chpiranha(void *arg0) {
     *(u16 *)((u8 *)arg0 + 0x6E) = (*(u16 *)((u8 *)arg0 + 0x6E) & 0xFE00) | (((u32)*(u16 *)((u8 *)arg0 + 0x76) >> 7) & 0x1FF);
@@ -46,7 +46,7 @@ void func_80801210_chpiranha(f32 *arg0, f32 arg1, f32 arg2) {
 void func_80801508_chpiranha(s32 arg0) {
     s32 func_8010C500();
     s32 func_8010C9B0(s32, s32);
-    s32 func_80800218_chpiranha(s32, s32);
+    void func_80800218_chpiranha(Actor *, u32);
     if ((func_8010C500() != 0) && (func_8010C9B0(arg0 + 4, 0x384) != 0)) {
         func_80800218_chpiranha(arg0, 3);
     }
