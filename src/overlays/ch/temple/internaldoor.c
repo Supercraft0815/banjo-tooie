@@ -31,4 +31,8 @@ void func_80800138_chtempleinternaldoor(s32 arg0, s32 arg1, s32 arg2) {
     _chdoor_entrypoint_1(arg0, arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/temple/internaldoor/func_80800178_chtempleinternaldoor.s")
+s32 func_80800178_chtempleinternaldoor(Actor *arg0) {
+    extern u8 D_80800208_chtempleinternaldoor[];
+    u32 index = arg0->unk74_7 - 0x32;
+    func_80103140(arg0, *(u16 *)(D_80800208_chtempleinternaldoor + index * 8), arg0->unk0->unk16);
+}
