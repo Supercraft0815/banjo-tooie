@@ -120,7 +120,17 @@ s32 func_800B81CC(Gfx **gfx, s32 x, s32 y, u8 ch) {
 #undef textLoadTile
 
 #ifndef NON_MATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B8C50.s")
+void func_800B8C50(void) {
+    D_801282C0.data[2] = 0xFF;
+    D_801282C0.data[1] = D_801282C0.data[2];
+    D_801282C0.data[0] = D_801282C0.data[1];
+    D_801282C0.data[3] = D_801282C0.data[0];
+    D_801282C0.data[9] = 0;
+    D_801282C0.data[7] = D_801282C0.data[9];
+    D_801282C0.data[4] = D_801282C0.data[7];
+    D_801282C0.data[6] = D_801282C0.data[4];
+    D_801282C0.value = 1.0f;
+}
 #else
 //Reset Text Parameters
 void func_800B8C50(void)

@@ -41,7 +41,18 @@ void func_80800024_chcrate(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crate/chcrate_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crate/func_80800380_chcrate.s")
+s32 func_80800380_chcrate(u8 *arg0) {
+    struct CrateData { u8 pad[0x76]; unsigned short index : 9; unsigned short rest : 7; };
+    s32 ret = 0;
+    s32 temp;
+
+    if (((struct CrateData *)arg0)->index < 0x32) {
+        temp = 0x31 - ((struct CrateData *)arg0)->index;
+        ret = temp + 0xA40;
+        return ret;
+    }
+    return ret;
+}
 
 s16 func_808003AC_chcrate(s32 arg0) {
     extern s16 D_8080053C_chcrate[];
