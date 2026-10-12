@@ -154,7 +154,17 @@ void func_80800E24_chgameselect(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808011B4_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808012E4_chgameselect.s")
+void func_808012E4_chgameselect(Actor *arg0, u8 *arg1) {
+    void _subaddiefade_entrypoint_8(Actor*, s32);
+    void func_80101870(Actor* arg0, void* arg1);
+    s32 temp_f10;
+
+    temp_f10 = (s32) (*(f32 *) ((s8 *) arg0 + 0x34) * 255.0f);
+    if (temp_f10 != 0) {
+        _subaddiefade_entrypoint_8(arg0, temp_f10);
+        func_80101870(arg0, arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80801338_chgameselect.s")
 
