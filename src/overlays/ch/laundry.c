@@ -7,7 +7,22 @@ OSThread *chlaundry_entrypoint_0(void)
     return (OSThread *) D_80800400_chlaundry;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/laundry/func_8080000C_chlaundry.s")
+/* extern */
+
+f32 func_8080000C_chlaundry(Actor *arg0) {
+    s32 func_800A940C(s32);
+    f32 func_800C5190(s32);
+    void *func_80100094(Actor *, u32);
+    f32 temp_f0;
+    f32 var_f2;
+
+    temp_f0 = func_800C5190(func_800A940C(*(u8 *) func_80100094(arg0, 0)));
+    var_f2 = temp_f0;
+    if (temp_f0 > 2.0f) {
+        var_f2 = 2.0f;
+    }
+    return var_f2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/laundry/func_80800058_chlaundry.s")
 
