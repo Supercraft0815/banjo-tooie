@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/func_80800000_bsjump.s")
+/* extern */
+
+void func_80800000_bsjump(s32 arg0) {
+    s32 func_8009D7A4(s32, f32, f32);
+    func_8009D7A4(arg0, 0.91f, 1.09f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_0.s")
 
