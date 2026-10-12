@@ -109,7 +109,7 @@ void func_80800ADC_chbanjoctrl(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800B18_chbanjoctrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800D04_chbanjoctrl.s")
+/* extern */ void func_80800D04_chbanjoctrl(u8 *arg0) { s32 func_800F54E4(); s32 func_800F8418(s32, u8 *, u8 *); f32 temp_f0; temp_f0 = (*(f32 *)((s8 *)(arg0) + (8))); if (temp_f0 < (*(f32 *)((s8 *)(arg0) + (0x1C)))) { (*(f32 *)((s8 *)(arg0) + (0x1C))) = temp_f0; func_800F8418(func_800F54E4(), arg0 + 0x18, arg0); } }
 
 /* extern */
 
