@@ -209,7 +209,9 @@ and everything outside the marked regions byte-for-byte unchanged. Leave a direc
 in place when you cannot match it; each target is validated and committed separately.'''
     else:
         task = f'''Implement exactly one matching C function: {function['symbol']}.
-Replace its target GLOBAL_ASM directive in {function['source']} with C.
+Edit {function['source']}. Improve the existing C implementation when present;
+otherwise replace its target GLOBAL_ASM directive with C. Never restore an ASM
+directive over an existing candidate.
 If a verified type/prototype/data-layout error prevents a match, repair the relevant
 declarations or existing C definitions in that file or these dependency files:
 {', '.join(support) or '[no additional dependency files]'}.

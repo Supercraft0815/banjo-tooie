@@ -285,6 +285,8 @@ class AcceleratedLoopTests(LoopFixture):
         self.assertIn('decomp-target-begin', prompt)
         self.assertIn('Do not resubmit a tested failed source patch', prompt)
         self.assertNotIn('./decomp-compile', worker_prompt(self.function, 'pack', 0))
+        self.assertIn('Improve the existing C implementation when present', worker_prompt(self.function, 'pack', 12))
+        self.assertIn('Never restore an ASM', worker_prompt(self.function, 'pack', 12))
 
     def test_permuter_near_miss_matches_without_another_model_run(self):
         self.cfg['permuter_seconds'] = 5
