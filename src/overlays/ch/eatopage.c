@@ -7,7 +7,8 @@ OSThread *chcheatopage_entrypoint_0(void)
     return (OSThread *) D_80800330_chcheatopage;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatopage/func_8080000C_chcheatopage.s")
+/* extern */
+void func_8080000C_chcheatopage(Actor *arg0) { s32 func_80103110(void *, s32); func_80103110(arg0, 0); func_8010A5B0(arg0, func_800DA298(0x666) == 0); if (arg0->unk64_20) { func_800FC660(0x77); arg0->unk64_20 = 0; } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatopage/func_80800070_chcheatopage.s")
 
