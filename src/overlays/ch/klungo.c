@@ -115,7 +115,23 @@ loop_1:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_808025CC_chklungo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80802634_chklungo.s")
+void func_80802634_chklungo(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
+    void _subaddieaudioquick_entrypoint_4(Actor*, f32*, u32*, u32*);
+    extern u32 D_80803BE0_chklungo;
+    extern u32 D_80803BEC_chklungo;
+    extern u32 D_80803BFC_chklungo;
+    extern u32 D_80803C0C_chklungo;
+    extern u32 D_80803C1C_chklungo;
+    extern u32 D_80803C2C_chklungo;
+    f32 *temp_s1;
+
+    temp_s1 = (f32 *)((s8 *)arg0 + 4);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80803BE0_chklungo, 0.2f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80803BEC_chklungo, 0.78f);
+    _subaddieaudioquick_entrypoint_4(arg0, temp_s1, &D_80803C0C_chklungo, &D_80803C2C_chklungo);
+    _subaddieaudioquick_entrypoint_4(arg0, temp_s1, &D_80803BFC_chklungo, &D_80803C1C_chklungo);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_808026CC_chklungo.s")
 
