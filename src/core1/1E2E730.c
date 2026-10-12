@@ -170,7 +170,15 @@ void func_800174C0(volatile u8 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80017534.s")
+void func_80017534(u8 arg0, s32 arg1, s32 arg2) {
+    int func_80017778(s32);
+    s32 func_80025FE0(u8 *, s32, s32);
+    extern s32 D_80079FA0;
+    MusicSlotView *slots = (MusicSlotView *)&D_80079FA0;
+    if (func_80017778(arg0) == 0) {
+        func_80025FE0(slots[arg0].cseqp, arg1, arg2);
+    }
+}
 
 s32 func_800175A0(u8 index) {
     s32 func_80025668(void *);
