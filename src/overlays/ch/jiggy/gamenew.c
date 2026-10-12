@@ -122,7 +122,14 @@ void func_80803598_chjiggygamenew(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_808035C4_chjiggygamenew.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_808035FC_chjiggygamenew.s")
+void func_808035FC_chjiggygamenew(Actor *arg0, f32 *arg1) {
+    Actor *func_80106790(Unk80132ED0 *);
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(func_80106790((Unk80132ED0 *)arg0), 0U);
+    arg1[0] = *(f32 *)((u8 *)temp_v0 + 0x18);
+    arg1[1] = *(f32 *)((u8 *)temp_v0 + 0x1C);
+}
 
 s32 func_8080363C_chjiggygamenew(void) {
     Actor *func_80106790();
