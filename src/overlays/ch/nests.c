@@ -54,7 +54,13 @@ void func_8080034C_chnests(void *arg0) {
     func_80101FDC(arg0, (*(s32 *)((s8 *)(arg0) + (0x18))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_808003AC_chnests.s")
+/* extern */
+
+void func_808003AC_chnests(Actor *arg0) {
+    if (((u32) arg0->unk70_10 == 4) && (func_800D9078(&arg0->unk58) != 0)) {
+        func_8080034C_chnests(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_808003F4_chnests.s")
 
