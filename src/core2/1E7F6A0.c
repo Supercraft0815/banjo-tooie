@@ -4,7 +4,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A5EC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A61D4.s")
+void func_800A61D4(void) {
+    typedef struct { s32 color[4]; } Color;
+    void func_800DF580(void *arg0, void *arg1);
+    void func_800DF830(s32 arg0);
+    extern Color D_8011A380;
+    extern Color D_8011A390;
+    Color sp28 = D_8011A380;
+    Color sp18 = D_8011A390;
+    func_800DF580(&sp28, &sp18);
+    func_800DF830(3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A6250.s")
 
