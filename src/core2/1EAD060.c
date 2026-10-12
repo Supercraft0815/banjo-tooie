@@ -1,6 +1,18 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3770.s")
+int func_800D3770(void) {
+    extern u8 D_8012762C;
+    extern s8 D_8012B3F1;
+    s32 level;
+    int flag;
+
+    level = D_8012762C;
+    flag = level >= 0xF && level < 0x1C;
+    if (level == 0x11) {
+        flag = 0;
+    }
+    return (D_8012B3F1 + 1) && flag;
+}
 
 void func_800D37C0(s32 arg0) {
     extern s32 D_8012B3F0;
