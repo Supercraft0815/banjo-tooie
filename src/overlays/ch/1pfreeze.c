@@ -10,7 +10,9 @@ OSThread *ch1pfreeze_entrypoint_0(void)
 void func_8080000C_ch1pfreeze(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/1pfreeze/func_80800014_ch1pfreeze.s")
+/* extern */
+
+void func_80800014_ch1pfreeze(Actor *arg0) { if ((s32) arg0->unk70_10 < 4) { func_800F7B9C(*(s32 *)func_80100094(arg0, 0), 0xF); } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/1pfreeze/func_80800054_ch1pfreeze.s")
 
