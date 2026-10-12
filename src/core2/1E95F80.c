@@ -34,7 +34,10 @@ void func_800BCC28(s32 arg0, s32 arg1) {
     func_800F23D0(&D_801282F4, arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E95F80/func_800BCC58.s")
+int func_800BCC58(void) {
+    extern s32 D_801282E0;
+    return ((*(u8 *)((s8 *)(&D_801282E0) + (0xD))) != 0) && ((*(u8 *)((s8 *)(&D_801282E0) + (0x10))) != 0);
+}
 
 u32 func_800BCC84(void) {
     extern u8 D_801282ED;

@@ -49,7 +49,12 @@ s32 func_808007BC_chjiggygamenew(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80801C20_chjiggygamenew.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80801CB0_chjiggygamenew.s")
+int func_80801CB0_chjiggygamenew(u8 arg0, s32 arg1, void *arg2) {
+    struct Entry { u8 pad0[4]; u16 unk4; u8 pad6[0x12]; };
+    u16 temp_v1 = ((struct Entry *)arg2)[arg1].unk4;
+
+    return (temp_v1 == 0x6B54) || (temp_v1 == 0xC);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80801CE8_chjiggygamenew.s")
 

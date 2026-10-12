@@ -44,7 +44,16 @@ void func_800FA9F4(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FAA34.s")
+void func_800FAA34(s32 arg0) {
+    s32 _scinfobar_entrypoint_5(s32, s32);
+    extern s32 D_80123898[][7];
+    s32 temp_a2;
+
+    temp_a2 = D_80123898[arg0][0];
+    if (temp_a2 != 0) {
+        _scinfobar_entrypoint_5(temp_a2, 1);
+    }
+}
 
 void func_800FAA74(s32 arg0) {
     s32 _scinfobar_entrypoint_5(s32, s32);

@@ -14,7 +14,12 @@ OSThread *chtntbox_entrypoint_1(void)
     return (OSThread *) D_808009D0_chtntbox;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/func_80800018_chtntbox.s")
+void func_80800018_chtntbox(u8 *arg0) {
+    struct TntBoxData { u8 pad[0x76]; unsigned short index : 9; unsigned short rest : 7; };
+
+    *(s16 *)(arg0 + 0x7C) = (((struct TntBoxData *)arg0)->index * 10) + 0x320;
+    (*(u8 *)((s8 *)(arg0) + (0x95))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x95))) & 0xFFFE) | 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/func_80800044_chtntbox.s")
 

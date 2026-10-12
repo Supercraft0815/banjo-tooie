@@ -92,7 +92,14 @@ s32 func_8010CA74(f32 *arg0, s32 arg1) {
     return func_800F0064(arg0, (f32) arg1, (f32 *) &D_80136F50);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010CAC0.s")
+s32 func_8010CAC0(f32 *arg0, s32 arg1) {
+    extern s32 D_80136F50;
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    if ((*(s16 *)((s8 *)(&D_80136F50) + (0xC))) == 0) {
+        return 0;
+    }
+    return func_800EFFB4(arg0, (f32) arg1, (f32 *) &D_80136F50);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010CB0C.s")
 

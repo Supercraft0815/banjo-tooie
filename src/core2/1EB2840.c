@@ -30,7 +30,10 @@ f32 func_800D8FF8()
 	return D_8012C760;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2840/func_800D9004.s")
+f32 func_800D9004(void) {
+    extern f32 D_80125D1C;
+    return (s32)D_8012C764 * D_80125D1C;
+}
 
 f32 func_800D902C(void) {
     return func_800D8FF8() * 30.0f;

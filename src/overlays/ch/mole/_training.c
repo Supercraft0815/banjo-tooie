@@ -60,7 +60,10 @@ void func_80800C28_chmole_training(void *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x72))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x72))) & 0xFF03) | 0x34);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_80800C3C_chmole_training.s")
+void func_80800C3C_chmole_training(void *arg0) {
+    (*(f32 *)((s8 *)(arg0) + (0x54))) = (s32) (*(f32 *)((s8 *)(arg0) + (0x48)));
+    (*(u8 *)((s8 *)(arg0) + (0x72))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x72))) & 0xFF03) | 4);
+}
 
 void func_80800C70_chmole_training(Actor *arg0) {
     void _sumole_entrypoint_0(Actor*, u32);

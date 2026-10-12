@@ -289,7 +289,18 @@ void func_800932BC(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 80) + 200) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_800932CC.s")
+void func_800932CC(PlayerState *arg0, s32 arg1)
+{
+    u8 *temp_v0 = *(u8 **)((u8 *)arg0 + 0x50);
+
+    if (arg1 != temp_v0[0xC4]) {
+        if (arg1 != 0) {
+            *(f32 *)(temp_v0 + 0xC8) = 0.0f;
+            temp_v0 = *(u8 **)((u8 *)arg0 + 0x50);
+        }
+        temp_v0[0xC4] = arg1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093300.s")
 

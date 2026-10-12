@@ -7,7 +7,14 @@ void func_800D9600(void *arg0, void *arg1) {
     (*(f32 *)((s8 *)(arg0) + (0xC))) = (f32) (*(f32 *)((s8 *)(arg1) + (0xC)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2EF0/func_800D9624.s")
+void func_800D9624(f32 *arg0, f32 *arg1) {
+    s32 i;
+
+    for (i = 0; i < 3; i++) {
+        arg0[i] = -arg1[i];
+    }
+    arg0[3] = arg1[3];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2EF0/func_800D965C.s")
 

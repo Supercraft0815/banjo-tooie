@@ -7,11 +7,25 @@ s32 func_80800000_gztrace(u32 arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/trace/func_80800038_gztrace.s")
+void func_80800038_gztrace(u8 *arg0, u8 *arg1) {
+    while ((*arg0++ = *arg1++) != 0) {
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/trace/func_80800068_gztrace.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/trace/func_808000B8_gztrace.s")
+s32 func_808000B8_gztrace(u8 *arg0) {
+    s32 len;
+    u8 *p;
+
+    len = 0;
+    p = arg0;
+    while (*p != 0) {
+        len++;
+        p++;
+    }
+    return len;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/trace/func_808000E8_gztrace.s")
 

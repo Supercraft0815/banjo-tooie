@@ -228,7 +228,14 @@ s32 func_80109524(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109538.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109600.s")
+void func_80109600(void *arg0, void *arg1) {
+    void func_80103DFC(void *, f32 *);
+    void func_80109538(void *, f32 *, void *, s32);
+    f32 sp1C[3];
+
+    func_80103DFC(arg0, sp1C);
+    func_80109538(arg0, sp1C, arg1, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010963C.s")
 

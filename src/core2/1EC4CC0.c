@@ -243,7 +243,13 @@ int func_800EC800(void *arg0) {
         && (*(u16 *)((u8 *)arg0 + 0x14) != 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC828.s")
+void func_800EC828(void) {
+    extern s32 D_80132ED0;
+    (*(s32 *)((s8 *)(&D_80132ED0) + (0x259C)))--;
+    if ((*(s32 *)((s8 *)(&D_80132ED0) + (0x259C))) < 0x6B7) {
+        (*(s32 *)((s8 *)(&D_80132ED0) + (0x259C))) = 0x7FFF;
+    }
+}
 
 s32 func_800EC854(void) {
     extern s32 D_80132ED0;

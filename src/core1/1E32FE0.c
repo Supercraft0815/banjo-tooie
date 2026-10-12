@@ -1,8 +1,19 @@
 #include "common.h"
 
+typedef struct { void *ptr; s32 type; } Entry;
+extern Entry D_8007BF10[];
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E32FE0/func_8001B4B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E32FE0/func_8001B4E8.s")
+void func_8001B4E8(void)
+{
+    s32 i;
+
+    for (i = 2; i < 250; i++) {
+        if (D_8007BF10[i].ptr != NULL) {
+        }
+    }
+}
 
 void func_8001B50C(void)
 {
@@ -13,8 +24,6 @@ void func_8001B50C(void)
 
 void func_8001B518(s32 arg0)
 {
-    typedef struct { void *ptr; s32 type; } Entry;
-    extern Entry D_8007BF10[];
     extern s32 D_8007C6E0;
     extern s32 D_8007C6E4;
     void *defrag(void *);

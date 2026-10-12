@@ -162,6 +162,16 @@ $(BUILD_ROOT)/src/core1/1E39CE0.c.o: CC := tools/ido7.1/cc
 $(BUILD_ROOT)/src/core1/1E39CE0.c.o: OPT_LEVEL := -g
 $(BUILD_ROOT)/src/core1/1E39CE0.c.o: CFLAGS := $(filter-out -O2,$(CFLAGS)) -g
 
+# The audio list helpers were built with IDO 7.1 at -O1.
+$(BUILD_ROOT)/src/core1/1E38970.c.o: CC := tools/ido7.1/cc
+$(BUILD_ROOT)/src/core1/1E38970.c.o: OPT_LEVEL := -O1
+$(BUILD_ROOT)/src/core1/1E38970.c.o: CFLAGS := $(filter-out -O2,$(CFLAGS)) -O1
+
+# The MIDI controller helpers use IDO 7.1 debug code generation.
+$(BUILD_ROOT)/src/core1/1E3DC30.c.o: CC := tools/ido7.1/cc
+$(BUILD_ROOT)/src/core1/1E3DC30.c.o: OPT_LEVEL := -g
+$(BUILD_ROOT)/src/core1/1E3DC30.c.o: CFLAGS := $(filter-out -O2,$(CFLAGS)) -g
+
 # Debug variable print target
 print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true
 

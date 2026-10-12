@@ -44,7 +44,16 @@ void func_808011B4_chklungo(void *arg0, s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80801848_chklungo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80801888_chklungo.s")
+void func_80801888_chklungo(void *arg0) {
+    void func_8010D600(s32 *);
+    f32 func_80102D78(void *, s32 *);
+    void func_80102BF8(void *, f32, f32, f32);
+    s32 sp1C[3];
+
+    func_8010D600(sp1C);
+    (*(f32 *)((s8 *)(arg0) + (0x54))) = func_80102D78(arg0, sp1C);
+    func_80102BF8(arg0, 0.15f, 4.0f, 200.0f);
+}
 
 /* extern */
 

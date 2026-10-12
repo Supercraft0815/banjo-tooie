@@ -282,7 +282,19 @@ s32 bsbfly_entrypoint_7(s32 arg0) {
     return ((s32 *)&D_80801DB8_bsbfly)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80801A80_bsbfly.s")
+void func_80801A80_bsbfly(s32 arg0) {
+    s32 func_80800128_bsbfly();
+    s32 baanim_playForDuration_loopSmooth(s32, s32, f32);
+    s32 func_8009FFD8(s32, s32, s32, s32, s32);
+    s32 func_800A0CF4(s32, s32);
+    s32 func_800A0024(s32);
+
+    func_80800128_bsbfly(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0x38, 0.62f);
+    func_8009FFD8(arg0, 1, 1, 3, 7);
+    func_800A0CF4(arg0, 1);
+    func_800A0024(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80801AEC_bsbfly.s")
 

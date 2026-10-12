@@ -4,7 +4,9 @@ s32 gldialog_entrypoint_0(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/dialog/gldialog_entrypoint_1.s")
+int gldialog_entrypoint_1(u8 *arg0) {
+    return (arg0[0] == 0xFD) && (arg0[1] == 0x6A);
+}
 
 void gldialog_entrypoint_2(void) {
     extern u32 D_801275E0[];

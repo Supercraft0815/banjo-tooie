@@ -932,6 +932,30 @@ void gczoombox_entrypoint_43(void *arg0, s32 arg1) {
     ((struct Flags *)arg0)->flag = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_44.s")
+void gczoombox_entrypoint_44(void *arg0, s32 arg1) {
+    struct Flags {
+        u8 padding[0x1E7];
+        u8 high : 2;
+        u8 flag : 1;
+        u8 low : 5;
+    };
+    if (arg1 != 0) {
+        ((struct Flags *)arg0)->flag = 1;
+        return;
+    }
+    ((struct Flags *)arg0)->flag = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_45.s")
+void gczoombox_entrypoint_45(void *arg0, s32 arg1) {
+    struct Flags {
+        u8 padding[0x1E7];
+        u8 high : 3;
+        u8 flag : 1;
+        u8 low : 4;
+    };
+    if (arg1 != 0) {
+        ((struct Flags *)arg0)->flag = 1;
+        return;
+    }
+    ((struct Flags *)arg0)->flag = 0;
+}

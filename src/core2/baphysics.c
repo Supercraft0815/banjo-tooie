@@ -141,7 +141,8 @@ f32 func_8009BB18(void *arg0) {
     return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 64);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009BB24.s")
+/* Single line: IDO schedules this prologue by source line. */
+void func_8009BB24(PlayerState *arg0, f32 arg1[3]) { s32 func_800EE7F8(); func_800EE7F8(arg1, *(s32 *)((u8 *)arg0 + 0xC8) + 0x10); }
 
 f32 baphysics_get_vertical_velocity(PlayerState *arg0) {
     return (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x14)));

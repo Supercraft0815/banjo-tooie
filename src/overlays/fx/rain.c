@@ -15,7 +15,10 @@ void fxrain_entrypoint_0(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/rain/fxrain_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/rain/fxrain_entrypoint_2.s")
+int fxrain_entrypoint_2(void *arg0) {
+    s32 vector_size(s32);
+    return ((*(s32 *)((s8 *)(arg0) + (0x28))) != 1) && (vector_size((*(s32 *)((s8 *)(arg0) + (0x20)))) == 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/rain/fxrain_entrypoint_3.s")
 

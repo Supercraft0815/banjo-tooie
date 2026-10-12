@@ -1,6 +1,10 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/func_80800000_chfaircoinbox.s")
+s32 func_80800000_chfaircoinbox(u8 *arg0) {
+    struct CoinboxData { u8 pad[0x76]; unsigned short index : 9; unsigned short rest : 7; };
+    extern s16 func_80800424_chfaircoinbox[];
+    return func_80800424_chfaircoinbox[((struct CoinboxData *)arg0)->index];
+}
 
 void func_8080001C_chfaircoinbox(u8 *arg0) {
     struct CoinboxData { u8 pad[0x76]; unsigned short index : 9; unsigned short rest : 7; };

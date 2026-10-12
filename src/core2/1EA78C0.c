@@ -138,7 +138,9 @@ s32 func_800CEAA8(void) {
     return (*(s8 *)((s8 *)(func_800CE3E0()) + (0x12))) > 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CEAD0.s")
+s32 func_800CEAD0(s32 arg0) {
+    return func_800CEA60(arg0) == 0.0f;
+}
 
 s32 func_800CEB08(void *arg0, f32 arg1) {
     if (((*(s8 *)((s8 *)(arg0) + (0x12))) != 0) && (arg1 <= (*(f32 *)((s8 *)(arg0) + (4)))) && ((*(f32 *)((s8 *)(arg0) + (0))) < arg1)) {

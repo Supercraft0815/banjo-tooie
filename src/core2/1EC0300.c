@@ -25,7 +25,9 @@ void func_800E6A58(char *dest, char src) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6AFC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6B7C.s")
+s32 func_800E6B7C(u8 arg0, f32 arg1) {
+    return (arg1 < 0.0f) ? -1 : 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6BAC.s")
 
