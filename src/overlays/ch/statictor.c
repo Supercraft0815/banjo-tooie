@@ -25,7 +25,13 @@ void func_808000EC_chstatictorch(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statictor/func_80800140_chstatictorch.s")
+void func_80800140_chstatictorch(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
+    extern u32 D_80800230_chstatictorch;
+    _subaddieaudioloop_entrypoint_4(arg0,
+        arg0->unk7C_12 ? (f32 *)((u8 *)arg0 + 0x18) : arg0->position,
+        1U, &D_80800230_chstatictorch);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statictor/func_80800180_chstatictorch.s")
 
