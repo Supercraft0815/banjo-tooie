@@ -529,7 +529,30 @@ void gcnewoption_entrypoint_32(void *arg0, s16 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_33.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_34.s")
+/* extern */
+
+void gcnewoption_entrypoint_34(void *arg0, s16 arg1) {
+    struct Flags {
+        u8 pad[0x1D];
+        u8 unused : 5;
+        u8 active : 1;
+        u8 rest : 2;
+    };
+    int _gczoombox_entrypoint_32();
+    int _gczoombox_entrypoint_8();
+    u32 *_gldbstring_entrypoint_1(u32 *, s16);
+    s32 temp_a2;
+
+    temp_a2 = (*(s32 *)((s8 *)(arg0) + (0x20)));
+    if (temp_a2 != 0) {
+        _gczoombox_entrypoint_32(temp_a2);
+        _gczoombox_entrypoint_8((*(s32 *)((s8 *)(arg0) + (0x20))), _gldbstring_entrypoint_1((*(u32 **)((s8 *)(arg0) + (0x23C))), arg1));
+        ((struct Flags *)arg0)->active = 1;
+        (*(f32 *)((s8 *)(arg0) + (0x30))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x2C)));
+    } else {
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_808019D0_gcnewoption.s")
 
