@@ -7,7 +7,11 @@ OSThread *chsignpost_entrypoint_0(void)
     return (OSThread *) D_808002E0_chsignpost;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/signpost/func_8080000C_chsignpost.s")
+void func_8080000C_chsignpost(Actor *arg0) {
+    void func_80102FDC(Actor*, f32);
+    func_80102FDC(arg0, arg0->scale * 0.75f);
+    arg0->actorData[4] = ((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7) - 0x32;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/signpost/func_80800058_chsignpost.s")
 
