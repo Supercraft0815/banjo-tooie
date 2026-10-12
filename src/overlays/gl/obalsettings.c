@@ -71,7 +71,18 @@ s32 glglobalsettings_entrypoint_3()
     return func_800DA298(GFLAG_BB9_WIDESCREEN_ENABLED);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/glglobalsettings_entrypoint_4.s")
+s32 glglobalsettings_entrypoint_4(s32 arg0) {
+    void set_widescreen(s32);
+    s32 var_a1;
+
+    set_widescreen(arg0);
+    if (arg0 != 0) {
+        var_a1 = 1;
+    } else {
+        var_a1 = 0;
+    }
+    func_800DA3B8(GFLAG_BB9_WIDESCREEN_ENABLED, var_a1);
+}
 
 void glglobalsettings_entrypoint_5(s32 *arg0, s32 *arg1) {
     *arg0 = func_800DA564(GFLAG_BBA_SCREEN_ALIGN_X_1, 6) - 0x20;
