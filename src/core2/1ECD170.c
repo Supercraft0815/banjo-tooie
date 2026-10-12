@@ -52,7 +52,23 @@ s32 func_800F4244(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F43A8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F44DC.s")
+/* extern */
+
+void func_800F44DC(void *arg0, s32 arg1) {
+    s32 func_800A4C88();
+    s32 func_8010F9C0(s32, s32);
+    s32 var_a1;
+    s32 temp_a0;
+
+    (*(s32 *)((s8 *)(arg0) + (0x17C))) = arg1;
+    temp_a0 = func_800A4C88();
+    if (arg1 != 0) {
+        var_a1 = 2;
+    } else {
+        var_a1 = 1;
+    }
+    func_8010F9C0(temp_a0, var_a1);
+}
 
 void func_800F4524(s32 *arg0, s32 arg1) {
     arg0[96] = arg1;
