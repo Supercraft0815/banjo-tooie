@@ -1108,6 +1108,18 @@ void func_808078F0_chgameselect(void *arg0) {
 void func_808079C8_chgameselect(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808079D0_chgameselect.s")
+/* extern */
+
+s32 func_808079D0_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_80807A10_chgameselect(s32, s16, s16);
+    switch (arg1) {
+    case 0x21:
+        func_80807A10_chgameselect(arg0, ((s16 *)&arg2)[1], ((s16 *)&arg2)[0]);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80807A10_chgameselect.s")
