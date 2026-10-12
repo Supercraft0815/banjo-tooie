@@ -24,7 +24,14 @@ void subaddieaudioloop_entrypoint_2(void *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x5F))) = subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(arg0) + (0x5F))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/audioloop/subaddieaudioloop_entrypoint_3.s")
+u8 subaddieaudioloop_entrypoint_3(u8 arg0) {
+    s32 func_800C2FDC(u8 id);
+    if (arg0 != 0) {
+        func_800C2FDC(arg0);
+        arg0 = 0;
+    }
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/audioloop/subaddieaudioloop_entrypoint_4.s")
 
