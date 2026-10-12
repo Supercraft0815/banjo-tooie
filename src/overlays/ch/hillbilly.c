@@ -31,7 +31,17 @@ void func_8080000C_chhillbilly(void *arg0) {
 
 void func_80800298_chhillbilly(Actor *arg0, u8 *arg1) { s32 _sucoaster_entrypoint_20(Actor *, u8 *); s32 var_a1; if ((u32)(arg0->unk0->unk28 << 18) >> 31) { var_a1 = 0; } else { var_a1 = 1; } func_800DF744(3, var_a1); _sucoaster_entrypoint_20(arg0, arg1); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_808002F0_chhillbilly.s")
+/* extern */
+
+s32 func_808002F0_chhillbilly(f32 *arg0) {
+    u8 *_sucoaster_entrypoint_3();
+    void func_800EE88C(f32 *, s16 *);
+    f32 func_800EFC7C(f32 *, f32 *);
+    f32 sp1C[3];
+
+    func_800EE88C(sp1C, (s16 *)(_sucoaster_entrypoint_3() + 6));
+    return func_800EFC7C(arg0 + 1, sp1C) < 10000.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_80800348_chhillbilly.s")
 
