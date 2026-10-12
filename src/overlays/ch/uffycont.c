@@ -134,4 +134,16 @@ OSThread *chchuffycont_entrypoint_2(void)
     return (OSThread *) D_80800B84_chchuffycont;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/chchuffycont_entrypoint_3.s")
+void chchuffycont_entrypoint_3(void)
+{
+  extern s16 D_80800B20_chchuffycont;
+  extern s16 D_80800B66_chchuffycont;
+  s32 _gcsectionDll_entrypoint_4(s32);
+  s32 func_800DA298(s32);
+  s16 *var_s0;
+  s16 *var_s1;
+ var_s0 = &D_80800B20_chchuffycont; var_s1 = &D_80800B66_chchuffycont; loop_1: if (func_800DA298(var_s0[1]) == 0) { var_s0 += 5; if (var_s0 != var_s1) { goto loop_1; }
+  }
+
+  _gcsectionDll_entrypoint_4(*var_s0);
+}
