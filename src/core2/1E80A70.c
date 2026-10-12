@@ -554,7 +554,13 @@ void func_800A8A04(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4)
     func_80015CC0(D_80127688[arg0].unk0, arg1, arg2, arg3, arg4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A8A44.s")
+/* extern */
+
+void func_800A8A44(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 func_800A8380(s32);
+    s32 func_800A8424(s32, s32, s32, s32, s32);
+    func_800A8424(func_800A8380(arg0), arg1, arg2, arg3, arg4);
+}
 
 /* extern */
 
