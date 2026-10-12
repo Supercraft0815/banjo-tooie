@@ -24,7 +24,20 @@ s32 func_8080015C_chsilo(void *arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_808001A8_chsilo.s")
+s32 func_808001A8_chsilo(void *arg0) {
+    s32 var_s0;
+    s32 var_s1;
+
+    var_s1 = 0;
+    var_s0 = 1;
+    do {
+        if (func_8080015C_chsilo(arg0, var_s0) != 0) {
+            var_s1 += 1;
+        }
+        var_s0 += 1;
+    } while (var_s0 != 8);
+    return var_s1;
+}
 
 /* extern */
 
