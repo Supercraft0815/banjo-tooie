@@ -15,14 +15,27 @@ u32 bashoes_entrypoint_2(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/func_80800020_bashoes.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/func_808000D4_bashoes.s")
+/* extern */
+
+void func_808000D4_bashoes(void *arg0, s32 arg1) {
+    void _baalarm_free();
+    void bastatetimer_set(void *, s32, f32);
+    void func_800A0DB8(void *, s32);
+    void func_800C77DC(s32);
+    _baalarm_free();
+    func_800A0DB8(arg0, 1);
+    if (arg1 != 0) {
+        func_800C77DC(1);
+        bastatetimer_set(arg0, 3, 0.0f);
+    }
+}
 
 /* extern */
 
 void func_80800128_bashoes(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _baalarm_new();
     s32 baflag_clear(s32, s32);
-    s32 func_800A0DB8(s32, s32);
+    void func_800A0DB8(void *, s32);
     s32 func_80800020_bashoes(s32);
     _baalarm_new();
     baflag_clear(arg0, arg1);
