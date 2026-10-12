@@ -52,7 +52,25 @@ void func_800B5E3C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B62CC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B7174.s")
+void func_800B7174(u8 *arg0) {
+    struct Input { union { struct { s16 value; u16 rest; } halves; struct { unsigned int pad : 16; unsigned int nibble : 4; unsigned int rest : 12; } nib; struct { unsigned int pad : 20; unsigned int flag11 : 1; unsigned int pad2 : 1; unsigned int flag9 : 1; unsigned int rest : 9; } bits; } data; };
+    struct Output { u8 pad[0x1C]; s8 f1c, f1d, f1e, f1f, f20, f21; s16 f22; u8 pad24[4]; s16 f28, f2a; };
+    extern s32 D_80128180;
+    extern s32 D_801281A4;
+    void func_800F2EBC(void *, void *);
+    struct Output *out = (struct Output *)&D_80128180;
+    struct Input *in = (struct Input *)(arg0 + 4);
+    out->f1d = 0;
+    out->f1c = 0;
+    out->f1f = 0;
+    out->f20 = (u32)(u16)(in->data.halves.rest & 0xFFFF) >> 12;
+    out->f22 = in->data.halves.value;
+    out->f21 = in->data.bits.flag11;
+    out->f1e = in->data.bits.flag9;
+    out->f2a = 0;
+    out->f28 = out->f2a;
+    func_800F2EBC(&D_801281A4, arg0 + 0x10);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B71F4.s")
 
