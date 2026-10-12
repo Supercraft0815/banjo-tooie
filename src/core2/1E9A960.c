@@ -376,8 +376,14 @@ void func_800C334C(u8 index, s32 value) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3394.s")
-
+void func_800C3394(u8 arg0, s32 arg1, s32 arg2) {
+    void *ptr;
+    if (arg0 != 0) {
+        ptr = func_800C1414(arg0);
+        (*(s32 *)((s8 *)ptr + 0x64)) = arg1;
+        (*(s32 *)((s8 *)ptr + 0x68)) = arg2;
+    }
+}
 void func_800C33DC(u8 arg0, s32 arg1) {
     if (arg0 != 0) {
         (*(s8 *)((s8 *)(func_800C1414(arg0)) + (0x1B))) = (s8) arg1;
