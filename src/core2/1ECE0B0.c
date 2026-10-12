@@ -877,7 +877,10 @@ void func_800F739C(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F759C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7620.s")
+void func_800F7620(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
+    void _bamotor_entrypoint_1(PlayerState *, f32, f32, f32);
+    _bamotor_entrypoint_1(D_80135490[arg0], arg1, arg2, arg3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7664.s")
 
