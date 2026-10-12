@@ -288,7 +288,15 @@ void *func_800C67F0(void *arg0) {
     return (u8 *) arg0 + 4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C67F8.s")
+void func_800C67F8(u8 *arg0, u8 *arg1) {
+    s32 i;
+    for (i = 0; i < 3; i++) {
+        arg1[i * 4] = arg0[i * 4 + 0x40];
+        arg1[i * 4 + 1] = arg0[i * 4 + 0x41];
+        arg1[i * 4 + 2] = arg0[i * 4 + 0x42];
+        arg1[i * 4 + 3] = arg0[i * 4 + 0x43];
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C6840.s")
 
