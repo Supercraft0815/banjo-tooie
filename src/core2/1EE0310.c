@@ -26,7 +26,18 @@ void func_80106A60(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE0310/func_80106C4C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE0310/func_80106D60.s")
+/* extern */
+
+void func_80106D60(s32 arg0, s32 arg1, s32 *arg2) {
+    void func_800B38A8();
+    void func_800C87B8(s32 *);
+    void func_80106DA4(s32 *, s32 *);
+    s32 sp1C[3];
+
+    func_800C87B8(sp1C);
+    func_80106DA4(sp1C, arg2);
+    func_800B38A8(arg1, sp1C);
+}
 
 void func_80106DA4(s32 *arg0, s32 *arg1) {
     s32 i;
