@@ -40,7 +40,18 @@ s32 func_8009FBB0(PlayerState *arg0, f32 *arg1, f32 arg2) {
     return _fxairbub_entrypoint_1(arg1, arg2, func_800964DC(arg0), 0x3F800000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009FBE8.s")
+void func_8009FBE8(PlayerState *arg0, u8 *arg1) {
+    void func_8009C128(PlayerState *, f32[3]);
+    f32 *func_800A4C48(PlayerState *);
+    s32 func_800CA7E4(f32 *, s32);
+    void func_800EFB24(void *arg0, void *arg1, void *arg2);
+    f32 sp2C[3];
+    s32 sp20[3];
+
+    func_8009C128(arg0, sp2C);
+    func_800CA7E4(func_800A4C48(arg0), (s32) sp20);
+    func_800EFB24(arg1, sp20, sp2C);
+}
 
 /* extern */
 
