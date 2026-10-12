@@ -35,7 +35,20 @@ void func_8008AAC0(AnimCtrl *this) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008AC4C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008AD80.s")
+/* extern */
+
+AnimCtrl *func_8008AD80(s32 arg0) {
+    s32 func_8008C0B8();
+    void* heap_alloc(s32 size);
+    s32 func_8008B518(AnimCtrl *, s32);
+    AnimCtrl *sp1C;
+    AnimCtrl *temp_v0;
+
+    temp_v0 = heap_alloc(func_8008C0B8() + 0x1C);
+    sp1C = temp_v0;
+    func_8008B518(temp_v0, arg0);
+    return sp1C;
+}
 
 void func_8008ADBC(s32 arg0)
 {
