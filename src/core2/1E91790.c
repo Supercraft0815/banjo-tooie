@@ -242,7 +242,18 @@ void func_800B90E8(void) {
     if (D_80127128) ((u8 *)D_80127128)[0x18] = 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B9108.s")
+void func_800B9108(s32 arg0) {
+    typedef struct { f32 position[3]; f32 velocity[3]; } Particle;
+    typedef struct { f32 position[3]; f32 velocity[3]; u8 mode; Particle *particles; } Emitter;
+    typedef struct { Emitter *emitter; s32 count; } State;
+    s32 aligned4_memcpy(void *, void *, s32);
+    extern s32 D_80127128;
+    ((State *)&D_80127128)->count = ((State *)&D_80127128)->count - 1;
+    if (arg0 < ((State *)&D_80127128)->count) {
+        aligned4_memcpy(((State *)&D_80127128)->emitter->particles + arg0,
+                        ((State *)&D_80127128)->emitter->particles + ((State *)&D_80127128)->count, sizeof(Particle));
+    }
+}
 
 void func_800B9170(void) {
     typedef struct {
