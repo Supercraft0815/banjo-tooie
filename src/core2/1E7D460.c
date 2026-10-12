@@ -42,7 +42,16 @@ u32 func_800A3DAC(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A3F14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4030.s")
+/* extern */
+
+void func_800A4030(void *arg0) {
+    s32 func_800A4074(u8 *, s32);
+    if ((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (6))) == 9) {
+        func_800A4074(arg0, 9);
+        return;
+    }
+    func_800A4074(arg0, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4074.s")
 
