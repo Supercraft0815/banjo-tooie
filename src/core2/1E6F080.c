@@ -361,7 +361,21 @@ s32 func_800967C0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80096ACC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80096DD4.s")
+/* extern */
+
+s32 func_80096DD4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 func_800EE7F8(f32 *, s32);
+    s32 func_80096ACC(f32 *, f32 *, s32, s32);
+    f32 sp24[5];
+    f32 sp18;
+
+    func_800EE7F8(sp24 + 2, arg2);
+    func_800EE7F8(&sp18, arg3);
+    if (func_80096ACC(sp24 + 2, &sp18, arg0, arg1) == 0) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80096E30.s")
 
