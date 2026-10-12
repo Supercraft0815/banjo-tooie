@@ -43,7 +43,14 @@ void func_800E13F0(s32 arg0, f32 arg1) {
     *(f32 *)((s32)&D_8012CFB8 + ((arg0 * 31) * 4)) = arg1;
 }
 
-typedef struct { s8 bytes[0x7C]; } Entry;
+typedef struct {
+    f32 position[3];
+    s8 padC[0x68];
+    s8 active;
+    s8 unk75;
+    s8 updated;
+    s8 pad77[5];
+} Entry;
 extern Entry D_8012CF90[];
 
 void func_800E1410(s32 arg0, f32 arg1, f32 arg2) {
@@ -75,7 +82,12 @@ void func_800E148C(s32 arg0, f32 arg1, f32 arg2) {
     entry[4] = arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E14B8.s")
+void func_800E14B8(s32 arg0, f32 *arg1) {
+    void func_800EE7F8(f32 *, f32 *);
+
+    func_800EE7F8(D_8012CF90[arg0].position, arg1);
+    D_8012CF90[arg0].updated = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E14F8.s")
 
@@ -97,8 +109,8 @@ s32 func_800E1720(s32 arg0) {
     Entry *entry;
 
     entry = &D_8012CF90[arg0];
-    entry->bytes[0x74] = 1;
-    entry->bytes[0x76] = 0;
+    entry->active = 1;
+    entry->updated = 0;
     return (s32)entry;
 }
 
@@ -126,9 +138,9 @@ void func_800E1788(void) {
     var_s0 = D_8012CF90;
     var_s1 = 0;
     do {
-        var_s0->bytes[0x74] = 1;
+        var_s0->active = 1;
         (*(f32 *)((s8 *)(var_s0) + (0x30))) = 0.0f;
-        var_s0->bytes[0x76] = 0;
+        var_s0->updated = 0;
         func_800EFD24(var_s0);
         func_800E1378(var_s1);
         var_s1 += 1;
