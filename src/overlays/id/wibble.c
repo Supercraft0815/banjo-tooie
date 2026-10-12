@@ -46,7 +46,7 @@ void idwibble_entrypoint_1(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/wibble/idwibble_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/wibble/idwibble_entrypoint_4.s")
+void idwibble_entrypoint_4(void *arg0, s32 arg1, s32 arg2) { s32 _glid_entrypoint_0(s32, s32, s32 *, void *); f32 func_800D8FF8(void); extern s32 _idwibble_entrypoint_0; f32 dt = func_800D8FF8(); f32 *velocity = (f32 *) ((s8 *) arg0 + 0x2C); f32 *position = (f32 *) ((s8 *) arg0 + 0x24); *position += dt * *velocity; _glid_entrypoint_0(arg1, arg2, &_idwibble_entrypoint_0, arg0); }
 
 void idwibble_entrypoint_5(void *arg0, s16 arg1) {
     (*(s16 *)((s8 *)(arg0) + (0x34))) = arg1;
