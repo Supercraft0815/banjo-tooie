@@ -134,7 +134,16 @@ void func_80800F8C_sumumbofx(u8 *arg0) {
     func_800C8E84(*(s16 *)(arg0 + 0x5E), sp24);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_12.s")
+/* extern */
+
+void sumumbofx_entrypoint_12(u8 *arg0, s32 arg1, f32 *arg2, s32 *arg3) {
+    void sumumbofx_entrypoint_11();
+    func_800EE830((s32 *) (arg0 + 0x3C), arg3);
+    (*(s16 *)((s8 *)(arg0) + (0x5E))) = func_800C8A98();
+    func_80800F8C_sumumbofx(arg0);
+    sumumbofx_entrypoint_11(arg0, arg1);
+    func_800C8D4C((s32) (*(s16 *)((s8 *)(arg0) + (0x5E))), arg2);
+}
 
 /* extern */
 
@@ -182,7 +191,6 @@ void sumumbofx_entrypoint_24(void *arg0, f32 arg1) {
 /* extern */
 
 void sumumbofx_entrypoint_25(u8 *arg0, s32 arg1, s32 arg2) {
-    s32 func_800EE830(u8 *, s32);
     (*(s32 *)((s8 *)(arg0) + (0x54))) = arg1;
     func_800EE830(arg0 + 0x48, arg2);
 }
