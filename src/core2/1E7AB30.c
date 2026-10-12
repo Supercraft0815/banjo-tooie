@@ -106,7 +106,20 @@ s32 func_800A1760(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A17A8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A1870.s")
+/* extern */
+
+void func_800A1870(PlayerState *arg0, s32 arg1) {
+    s32 func_800A1294(s32);
+    void func_800F9F2C(s32, s32);
+    s32 func_800A3274(PlayerState *);
+    s32 func_800D4FB8(s32, s32);
+    if ((*(s32 *)((s8 *)arg0 + 0x158)) != 0) {
+        func_800F9F2C(arg0->unk184, arg1);
+        return;
+    }
+    func_800D4FB8(func_800A3274(arg0), arg1);
+    func_800A1294(1);
+}
 
 /* extern */
 
