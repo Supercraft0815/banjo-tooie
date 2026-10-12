@@ -45,7 +45,18 @@ void func_808008D4_chbiggafoot(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_80800C04_chbiggafoot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_80800CDC_chbiggafoot.s")
+void func_80800CDC_chbiggafoot(Actor *arg0) {
+    void func_800C3BDC(u8 id);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    void func_800C32C4(u8, s32);
+    extern u8 D_80801038_chbiggafoot[];
+    extern s32 D_80801224_chbiggafoot;
+    u8 sp1F;
+
+    sp1F = func_800C4350(0, NULL, &D_80801224_chbiggafoot);
+    func_800C32C4(sp1F, D_80801038_chbiggafoot[arg0->unk6C_0]);
+    func_800C3BDC(sp1F);
+}
 
 void func_80800D38_chbiggafoot(Actor *arg0) {
     void func_80102FDC(Actor*, f32);
