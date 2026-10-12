@@ -24,7 +24,18 @@ void func_801015C8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDAEA0/func_801015D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDAEA0/func_801017D0.s")
+/* extern */
+
+void func_801017D0(Actor *arg0) {
+    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_801039E4(s32);
+    s32 sp18[2];
+    s32 temp_v0;
+
+    temp_v0 = func_801039E4((s32)arg0->unk0);
+    sp18[0] = temp_v0;
+    func_8010108C(arg0, 0x1F, sp18[0]);
+}
 
 // the real actor_draw?
 void func_80101808(Actor* arg0, s32 (*arg1)(Actor*)) {
@@ -44,9 +55,8 @@ void func_80101870(Actor* arg0, void* arg1) {
 }
 
 void func_801018A4(Actor *arg0, s32 arg1) {
-    extern s32 func_801017D0;
     func_80101970(arg0);
-    func_80101808(arg0, (s32 (*)(Actor *)) &func_801017D0);
+    func_80101808(arg0, (s32 (*)(Actor *)) func_801017D0);
 }
 
 f32 *func_801018D8(Actor *arg0) {
