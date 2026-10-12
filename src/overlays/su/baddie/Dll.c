@@ -2,7 +2,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/Dll/subaddieDll_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/Dll/subaddieDll_entrypoint_1.s")
+/* extern */
+
+void subaddieDll_entrypoint_1(s32 arg0) {
+    s32 subaddieDll_entrypoint_2(s32, s32);
+    subaddieDll_entrypoint_2(arg0, arg0 + 4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/Dll/subaddieDll_entrypoint_2.s")
 
