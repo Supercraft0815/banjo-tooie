@@ -118,4 +118,16 @@ void func_800E9E88(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9EB4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9EE8.s")
+/* extern */
+
+void func_800E9EE8(s32 arg0) {
+    s32 _gccubesearch_entrypoint_17(s32, s32);
+    s32 func_800E9B74(s32, s32);
+    s32 temp_v0;
+    s32 sp18;
+
+    temp_v0 = _gccubesearch_entrypoint_17(arg0, (s32) &sp18);
+    if (temp_v0 != 0) {
+        func_800E9B74(sp18, temp_v0);
+    }
+}
