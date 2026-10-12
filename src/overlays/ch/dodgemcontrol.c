@@ -62,7 +62,21 @@ void func_808003B0_chdodgemcontrol(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801744_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808017F0_chdodgemcontrol.s")
+void func_808017F0_chdodgemcontrol(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    struct {
+        s32 words[12];
+        u8 bytes[0x92];
+        u8 count;
+    } *temp_v0;
+    s32 var_v1;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    for (var_v1 = 0; var_v1 < temp_v0->count; var_v1++) {
+        temp_v0->bytes[var_v1] = 0;
+        temp_v0->words[var_v1] = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801844_chdodgemcontrol.s")
 
