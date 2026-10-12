@@ -15,7 +15,11 @@ s32 func_800D2F20(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC810/func_800D3524.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC810/func_800D3574.s")
+int func_800D3574(s32 arg0) {
+    extern u8 D_8011B562[];
+    extern f32 D_80125B10;
+    return (s32) ((f32) (u32) D_8011B562[arg0 * 8] * D_80125B10);
+}
 
 u8 func_800D35BC(s32 arg0) {
     extern u8 D_8011B562[];
