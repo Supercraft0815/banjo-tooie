@@ -4,7 +4,24 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/drillfield/func_808000C4_chfantasydrillfield.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/drillfield/func_80800360_chfantasydrillfield.s")
+s32 func_80800360_chfantasydrillfield(s32 *entry, s32 *end) {
+    extern s32 B_80800A10_chfantasydrillfield[];
+    extern s32 B_80800A18_chfantasydrillfield[];
+    register s32 sentinel;
+    register int result;
+    s32 i;
+
+    sentinel = -1;
+    result = 1;
+    entry = B_80800A10_chfantasydrillfield; end = B_80800A18_chfantasydrillfield + 14;
+    do {
+        for (i = 0; i < 4; i++) {
+            result &= (entry[1] != sentinel);
+            entry += 2;
+        }
+    } while (entry != end);
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/drillfield/func_808003C8_chfantasydrillfield.s")
 
