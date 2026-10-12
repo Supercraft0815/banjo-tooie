@@ -65,7 +65,7 @@ void func_808005E0_chcablecar(Actor* arg0) {
 /* extern */
 
 void func_80800B74_chcablecar(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _subaddieDll_entrypoint_4(s32, s32);
+    void _subaddieDll_entrypoint_4(Actor*, u32);
     s32 func_800DA298(s32);
     s32 func_80101FDC(s32, s32);
     if (func_800DA298(0x67E) == 0) {
@@ -80,7 +80,25 @@ void func_80800B74_chcablecar(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800D14_chcablecar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800DC8_chcablecar.s")
+void func_80800DC8_chcablecar(Actor *arg0) {
+    void _subaddieDll_entrypoint_4(Actor*, u32);
+    void func_80102FDC(Actor*, f32);
+    Actor* func_801084B0(s32, Actor**);
+    Actor *sp1C;
+    union {
+        Actor *actor;
+        struct {
+            u8 reserved[0x7C];
+            u16 flags;
+        } *fields;
+    } view;
+    sp1C = func_801084B0(0x33F, &arg0);
+    func_80102FDC(sp1C, arg0->scale);
+    view.actor = arg0;
+    _subaddieDll_entrypoint_4(sp1C, view.fields->flags);
+    sp1C->rotation[0] = arg0->rotation[0];
+    arg0->unk3C = sp1C->unk0;
+}
 
 /* extern */
 
