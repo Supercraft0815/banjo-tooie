@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E34F80/func_8001D450.s")
+u16 func_8001D450(u16 arg0) {
+    u16 r = ((arg0 & 0xF800) / 2) & 0xF800;
+    u16 g = ((arg0 & 0x7C0) / 2) & 0x7C0;
+    u16 b = ((arg0 & 0x3E) / 2) & 0x3E;
+    return r | g | b | 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E34F80/func_8001D4C4.s")
 
