@@ -290,12 +290,20 @@ void func_80801000_bsfirstp(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808015C0_bsfirstp.s")
 
-void func_80801640_bsfirstp()
+f32 func_80801640_bsfirstp()
 {
-    func_800C517C(func_800A4C68());
+    f32 func_800C517C(s32);
+
+    return func_800C517C(func_800A4C68());
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80801668_bsfirstp.s")
+void func_80801668_bsfirstp(void *arg0, f32 arg1) {
+    void *temp_v0;
+
+    temp_v0 = *(void **)((u8 *)arg0 + 0x188);
+    *(f32 *)((u8 *)temp_v0 + 0x9C) = func_80801640_bsfirstp();
+    *(f32 *)((u8 *)temp_v0 + 0x98) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808016A0_bsfirstp.s")
 
