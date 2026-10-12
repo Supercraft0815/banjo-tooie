@@ -2,7 +2,23 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103140.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_801032B0.s")
+/* extern */
+
+s32 func_801032B0(Actor *arg0, u16 arg1, u16 arg2) {
+    s32 func_80103140(Actor *, u32, u16);
+    void func_80104328(s32);
+    s32 var_v1;
+    s32 sp18;
+
+    sp18 = ((s16 *)&arg0->pad8C)[0];
+    ((s16 *)&arg0->pad8C)[0] = 0;
+    var_v1 = func_80103140(arg0, arg1, arg2);
+    if (((s16 *)&arg0->pad8C)[0] != 0) {
+        func_80104328((s32) arg0);
+    }
+    ((s16 *)&arg0->pad8C)[0] = sp18;
+    return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103328.s")
 
