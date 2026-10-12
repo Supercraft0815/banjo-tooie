@@ -21,7 +21,14 @@ void func_8010545C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105494.s")
+void *func_80105494(Actor *arg0) {
+    extern s32 D_80136EC0;
+    void *freelist_at(s32, s32);
+    if (arg0->unk7C_0 == 0) {
+        return NULL;
+    }
+    return freelist_at(D_80136EC0, arg0->unk7C_0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_801054D4.s")
 
@@ -98,9 +105,9 @@ s32 func_80106314()
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80106320.s")
 
 void func_801063C0(void *arg0) {
-    s32 freelist_at(s32, s16, void *);
+    void *freelist_at(s32, s32);
     extern s32 D_80136ED0;
-    freelist_at(D_80136ED0, (*(s16 *)((s8 *)(arg0) + (0x90))), arg0);
+    freelist_at(D_80136ED0, (*(s16 *)((s8 *)(arg0) + (0x90))));
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_801063EC.s")
