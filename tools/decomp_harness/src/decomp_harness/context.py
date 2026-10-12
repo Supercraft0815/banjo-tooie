@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from difflib import SequenceMatcher
+from functools import lru_cache
 from pathlib import Path
 import re
 
@@ -55,6 +56,53 @@ def asm_analogues(root, target_asm, state):
             ranked.append((similarity, row['path'], row['symbol']))
     return '\n'.join(f'{path} ({symbol}, local opcode/call similarity {similarity:.2f})\n'+(root/path).read_text(errors='replace')[:1000]
                      for similarity, path, symbol in sorted(ranked, reverse=True)[:2])[:2600]
+
+
+# Verified by full-ROM matches in this repo. Short on purpose: every worker reads it.
+IDO_QUIRKS = """\
+- Source line layout changes scheduling. `sw ra` AFTER the argument moves (or two independent stores swapped): put the whole body on the signature line: `void f(A *a, f32 *b) { g(b, a->x); }`. Multi-line puts `sw ra` first.
+- `int` vs `s32` (long) differ: `return a && b;` in an s32 function leaves the result in v1 plus `move v0,v1`; declare the function `int` to get v0 directly.
+- Temp numbers shifted by one (t7/t8 where t6/t7 is expected) on a flag update: it is a bitfield write (`x->flag = 1`, or `(u8)((x & 0xFE) | 1)`), not `|=`. A load into t6+ instead of v0/a-reg is usually a bitfield read.
+- Skipped temp numbers (constant in t9, no t6-t8): forwarded reloads, write `x[1] = x[2]; x[0] = x[1];` instead of repeating the constant.
+- Temp in a2 instead of a1 in a non-leaf: the function has one more parameter that is passed straight through to the callee.
+- Leaf with `sw a0,0(sp)` / `sw a1,4(sp)` and the argument otherwise unused or masked: narrow parameter type (u8/s16). No such store: s32.
+- `srl` vs `sra` on a u16/u8 field: the field promotes to signed int, cast `(u32)field >> n`.
+- `b` to the next instruction before the epilogue: `if (c) { ...; ret = 1; } else { return f(); } return ret;`.
+- An argument reloaded from its stack home (`lw a3,40(sp)`) although still in a register: declare that parameter `volatile` or take its address.
+- Loop body repeated 4x with `addiu reg,reg,4*size` and 0-3 peeled stores in front: a plain `for (i = 0; i < N; i++)` that IDO unrolled; do not unroll by hand.
+- beqzl/bnezl vs beqz/bnez+nop: swap the if/else arms or invert the condition; `if (!c) return;` and `if (c) {...}` schedule differently.
+"""
+JUNK_NOTE = re.compile(r'parent|validat|unrelated|OBJECT MATCH|budget|deferred|compile request|preserved|remain', re.I)
+
+
+@lru_cache(maxsize=None)
+def opcodes(path):
+    try:
+        return tuple(m[4] for m in INSN.finditer(Path(path).read_text(errors='replace')))
+    except OSError:
+        return ()
+
+
+def solved_neighbours(root, function, asm, state, limit=3):
+    """C of the already matched functions whose opcode sequence is closest to the target,
+    with the compiler notes their workers recorded."""
+    target = tuple(m[4] for m in INSN.finditer(asm))
+    ranked = []
+    for row in state.db.execute('SELECT symbol,asm,replacement FROM solutions WHERE function_id!=?', (function['id'],)):
+        ops = opcodes(str(root/row['asm']))
+        if not ops or abs(len(ops)-len(target)) > max(2, len(target)//4):
+            continue
+        matcher = SequenceMatcher(None, target, ops, autojunk=False)
+        if matcher.quick_ratio() >= 0.75 and (ratio := matcher.ratio()) >= 0.75:
+            ranked.append((ratio, row['symbol'], row['replacement']))
+    entries = []
+    for ratio, symbol, replacement in sorted(ranked, reverse=True)[:limit]:
+        notes = [r['summary'] for r in state.db.execute(
+            "SELECT summary FROM knowledge WHERE tags LIKE ? AND summary NOT LIKE 'Matched source pattern:%'", ('% '+symbol,))
+            if not JUNK_NOTE.search(r['summary'])]
+        entries.append(f'{symbol} (matched, opcode similarity {ratio:.2f}; keep its line layout):\n{replacement[:700]}\n'
+                       + ''.join(f'  note: {n[:300]}\n' for n in notes[:3]))
+    return '\n'.join(entries)
 
 
 def excerpts(root: Path, terms, folders, limit=5000):
@@ -151,10 +199,7 @@ def context_pack(root, function, state, config, budget=None, shared=True, draft=
             bk = excerpts(bkroot, semantic_terms+constants[:8], ('src', 'include', 'asm'), 3000)
             bk += '\n'+asm_analogues(bkroot, asm, state)
             analogue = ''
-    knowledge = list(state.db.execute('SELECT tags,summary FROM knowledge'))
-    tokens = set(re.findall(r'\w+', function['source']+' '+asm))
-    knowledge.sort(key=lambda row: len(tokens & set(row['tags'].split())), reverse=True)
-    notes = '\n'.join(row['summary'] for row in knowledge if tokens & set(row['tags'].split()))[:1600]
+    notes = IDO_QUIRKS + 'Closest already matched functions:\n' + solved_neighbours(root, function, asm, state)
     history = state.history(function['id'], 8)
     previous = ''
     if function['best_run']:
@@ -185,9 +230,9 @@ def context_pack(root, function, state, config, budget=None, shared=True, draft=
             f"Features: {json.dumps(features)}\nBest score: {function['best_score']}\n"
             f"Last compiler/agent error: {function['last_error']}\n"
             f"Recent attempts: {json.dumps(history)}\nPrevious diff: {previous}\n"
+            f"IDO quirks verified in this repo (check the diff against these first):\n{notes}\n"
             f"Failed attempts (newest first):\n{failed_attempts(root, history)}\n"
-            f"Last compiler/agent error: {function['last_error']}\n"
-            f"Relevant compiler/pattern notes:\n{notes}\n" + (f"Includes:\n{includes}\n" if shared else '') +
+            + (f"Includes:\n{includes}\n" if shared else '') +
             f"Declarations verified in matched code (reuse; declare inside the function if needed):\n{declared}\n"
             f"Neighbor context:\n{neighbors[:3500]}\nLocal symbol/prototype/pattern hits:\n{related}\n"
             f"Type hints:\n{type_info}\nRead-only BK search results:\n{bk}\n")

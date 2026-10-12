@@ -79,6 +79,20 @@ class PatternTests(fixtures.Fixture):
         self.assertIn('do not reread', worker_prompt(self.function, pack, False))
         self.assertLessEqual(len(pack), self.cfg['context_chars'])
 
+    def test_context_carries_quirks_and_closest_matched_function(self):
+        solved = self.root/'asm/nonmatchings/core1/a/solved.s'
+        solved.write_text(ASM.replace('target', 'solved'))
+        self.state.db.execute('PRAGMA foreign_keys=OFF')
+        self.state.db.execute('INSERT INTO solutions VALUES (?,?,?,?,?)', (
+            'solved', '', 'solved', solved.relative_to(self.root).as_posix(), 'void solved(void) { one_line(); }'))
+        self.state.note('core1 IDO solved', 'line layout moved sw ra', 'commit')
+        self.state.note('core1 IDO solved', 'validation deferred to parent', 'commit')
+        pack = context_pack(self.root, self.function, self.state, self.cfg)
+        self.assertIn('Source line layout changes scheduling', pack)
+        self.assertIn('void solved(void) { one_line(); }', pack)
+        self.assertIn('note: line layout moved sw ra', pack)
+        self.assertNotIn('deferred to parent', pack)
+
     def test_retry_context_pairs_failed_patches_with_results_and_flags_repeats(self):
         for index in range(5):
             directory = self.root / '.decomp-agent/runs' / f'attempt-{index}'
