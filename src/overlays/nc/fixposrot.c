@@ -1,6 +1,16 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/fixposrot/ncfixposrot_entrypoint_0.s")
+void* ncfixposrot_entrypoint_0(void) {
+    void func_800EFD24(f32 vec[3]);
+    void* heap_alloc(s32 size);
+    f32 *temp_v0;
+
+    temp_v0 = heap_alloc(0x1C);
+    func_800EFD24(temp_v0);
+    func_800EFD24(temp_v0 + 3);
+    (*(s16 *)((s8 *)(temp_v0) + (0x18))) = 0;
+    return temp_v0;
+}
 
 void ncfixposrot_entrypoint_1(void* arg0) 
 {
