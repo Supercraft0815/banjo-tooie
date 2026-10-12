@@ -162,7 +162,21 @@ void func_800FED70(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FEDC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FEF94.s")
+void func_800FEF94(s32 arg0, s32 arg1, s32 arg2, s32 *arg3, s16 *arg4) {
+    extern s32 D_80123E84;
+    u8 *temp_v0;
+    u8 *temp_v0_2;
+
+    if (arg2 != 0) {
+        temp_v0 = (arg1 * 0xC) + (u8 *)&D_80123E84;
+        *arg3 = (*(s32 *)((s8 *)(temp_v0) + (4)));
+        *arg4 = (*(s16 *)((s8 *)(temp_v0) + (0xA)));
+        return;
+    }
+    temp_v0_2 = (arg1 * 0xC) + (u8 *)&D_80123E84;
+    *arg3 = (*(s32 *)((s8 *)(temp_v0_2) + (0)));
+    *arg4 = (*(s16 *)((s8 *)(temp_v0_2) + (8)));
+}
 
 void func_800FF000(s32 arg0) {
     extern s32 D_801359C0;
