@@ -86,8 +86,11 @@ void func_80801520_chalienkids(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_808016D4_chalienkids.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_8080184C_chalienkids.s")
-
+void func_8080184C_chalienkids(s32 arg0, s32 *arg1, s32 arg2) {
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    extern s32 D_8080226C_chalienkids;
+    _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, &D_8080226C_chalienkids, arg1, arg2);
+}
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80801884_chalienkids.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_8080193C_chalienkids.s")
