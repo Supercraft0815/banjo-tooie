@@ -43,4 +43,20 @@ void subaddiejoy_entrypoint_8(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/joy/subaddiejoy_entrypoint_9.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/joy/subaddiejoy_entrypoint_10.s")
+void subaddiejoy_entrypoint_10(u8 *arg0, f32 arg1, f32 arg2) {
+    void func_80018820(s32, f32, f32);
+    union {
+        s32 word;
+        struct {
+            u32 unused : 2;
+            u32 enabled : 1;
+            u32 controller : 2;
+            u32 remaining : 27;
+        } bits;
+    } flags;
+
+    flags.word = *(s32 *)(arg0 + 0x64);
+    if (flags.bits.enabled) {
+        func_80018820(flags.bits.controller, arg1, arg2);
+    }
+}
