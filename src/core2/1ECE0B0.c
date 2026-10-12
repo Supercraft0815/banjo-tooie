@@ -235,7 +235,18 @@ void func_800F5470(s32 arg0)
     func_80098590(D_80135490[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F549C.s")
+/* extern */
+
+f32 func_800F549C(s32 arg0, int arg1) {
+    f32 bastatetimer_get(PlayerState *, int);
+    PlayerState *temp_a2;
+
+    temp_a2 = D_80135490[arg0];
+    if (temp_a2 != NULL) {
+        return bastatetimer_get(temp_a2, arg1);
+    }
+    return 0.0f;
+}
 
 //Get Which Character is in Control
 u32 func_800F54E4(void) 
