@@ -774,7 +774,16 @@ void func_80804B90_chgameselect(void *arg0) {
     func_80801658_chgameselect((*(s32 *)((s8 *)(arg0) + (0x28))), 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80804BB4_chgameselect.s")
+/* extern */
+
+void func_80804BB4_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_80804D30_chgameselect(s32, s32);
+    if (arg2 < 3) {
+        func_80804D30_chgameselect(arg0, arg2);
+        return;
+    }
+    func_808038EC_chgameselect(arg0, arg2, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80804BF4_chgameselect.s")
 
