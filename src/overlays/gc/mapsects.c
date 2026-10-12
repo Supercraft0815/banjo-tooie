@@ -79,7 +79,19 @@ void gcmapsects_entrypoint_8(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_9.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_10.s")
+void gcmapsects_entrypoint_10(s32 arg0) {
+    void *func_800BF704();
+    void* heap_alloc(s32 size);
+    u8 *temp_v0;
+    u8 *sp1C;
+
+    temp_v0 = func_800BF704();
+    if (arg0 != 0) {
+        (*(s8 *)((s8 *)(temp_v0) + (0x76))) = (s8) arg0;
+        sp1C = temp_v0;
+        (*(u8 **)((s8 *)(sp1C) + (0x68))) = heap_alloc((arg0 & 0xFF) * 0x58);
+    }
+}
 
 /* extern */
 
