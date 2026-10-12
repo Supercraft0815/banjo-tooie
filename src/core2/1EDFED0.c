@@ -21,7 +21,18 @@ void func_80106630(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDFED0/func_80106668.s")
+void *func_80106668(s32 *arg0) {
+    s32 vector_index_of(s32, void *);
+    void *vector_push_back(s32 *);
+    extern s32 D_80136EE0;
+    void *sp1C;
+
+    *arg0 = 0;
+    sp1C = vector_push_back(&D_80136EE0);
+    *arg0 = vector_index_of(D_80136EE0, sp1C);
+    bzero(sp1C, 0x9C);
+    return sp1C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDFED0/func_801066C0.s")
 
