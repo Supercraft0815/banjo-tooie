@@ -8,7 +8,14 @@ void func_80800000_chtimetable(s32 arg0, s32 arg1, f32 *arg2) {
     arg2[1] = -50.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_80800058_chtimetable.s")
+/* extern */
+
+void func_80800058_chtimetable(Actor *arg0) {
+    void func_80102FDC(Actor*, f32);
+    func_80102FDC(arg0, arg0->scale * 0.75f);
+    func_80800000_chtimetable((s32) arg0, 0, (f32 *)((s8 *)arg0 + 0x28));
+    func_80800000_chtimetable((s32) arg0, 1, (f32 *)((s8 *)arg0 + 0x18));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_808000B0_chtimetable.s")
 
