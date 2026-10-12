@@ -225,7 +225,21 @@ void func_800D1218(u32 arg0, u32 arg1, f32 *arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D1254.s")
+void func_800D1254(u32 arg0, u32 arg1, f32 *arg2) {
+    s32 func_80103014(s32);
+    s32 func_80106790(s32);
+    s32 sp18[2];
+    s32 temp_v0;
+    s32 temp_v0_2;
+
+    temp_v0 = func_800D0634(arg0, arg1);
+    if (temp_v0 != 0) {
+        temp_v0_2 = func_80106790(temp_v0);
+        sp18[0] = temp_v0_2;
+        func_800EE7F8(temp_v0_2 + 4, arg2);
+        func_80103014(sp18[0]);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D129C.s")
 
