@@ -8,7 +8,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A8F68.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A8FDC.s")
+/* extern */
+
+s32 func_800A8FDC(void) {
+    extern s16 D_801276D0;
+    extern s16 D_801276D2;
+    s32 func_800A877C(s16);
+    s16 *ptr;
+    func_800A877C(D_801276D2);
+    ptr = &D_801276D0;
+    return ptr[1]++;
+}
 
 s32 func_800A9010(void) {
     extern u8 D_801276D4;
