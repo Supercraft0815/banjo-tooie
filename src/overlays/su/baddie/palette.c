@@ -4,7 +4,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/palette/subaddiepalette_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/palette/subaddiepalette_entrypoint_2.s")
+s32 subaddiepalette_entrypoint_2(void **arg0, void *arg1, u16 arg2, f32 arg3) {
+    u16 old;
+    old = *(u16 *)arg1;
+    if (old == arg2) return 0;
+    *(s16 *)((s8 *)arg1 + 4) = 1;
+    *(f32 *)((s8 *)arg1 + 12) = arg3;
+    *(f32 *)((s8 *)arg1 + 8) = arg3;
+    *(u16 *)((s8 *)arg1 + 2) = old;
+    *(u16 *)arg1 = arg2;
+    *(u16 *)((s8 *)*arg0 + 22) = arg2;
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/palette/subaddiepalette_entrypoint_3.s")
 
