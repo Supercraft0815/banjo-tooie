@@ -61,7 +61,18 @@ s32 func_80020C74(u8 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E38100/func_80020CA0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E38100/func_80020D80.s")
+void func_80020D80(s32 arg0, s32 arg1) {
+    s32 func_80020F70(s32);
+    extern s32 D_800411F0;
+    extern s32 D_800411F4;
+    if (D_800411F0 == 0) {
+        D_800411F0 = arg0;
+        if (D_800411F4 == 0) {
+            D_800411F4 = D_800411F0;
+            func_80020F70(arg1);
+        }
+    }
+}
 
 void func_80020DEC(s32 arg0) {
     s32 func_80027200();
