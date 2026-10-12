@@ -115,7 +115,23 @@ void func_80800160_chmolehill(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/chmolehill_entrypoint_0.s")
+void chmolehill_entrypoint_0(s32 arg0)
+{
+  s32 _chmoley_entrypoint_1(void *, u32);
+  void *func_80106790();
+  void *func_801084B0(s32, void **);
+  s32 func_80108944(void *, void *);
+  void *sp24;
+  void *sp20;
+  void *temp_v0;
+  sp24 = func_80106790();
+  temp_v0 = func_801084B0(0x18F, &sp24);
+  sp20 = temp_v0;
+  *((s32 *) (((s8 *) sp24) + 0x3C)) = (s32) (*((s32 *) (((s8 *) temp_v0) + 0)));
+  *((s32 *) (((s8 *) temp_v0) + 0x3C)) = (s32) (*((s32 *) (((s8 *) sp24) + 0)));
+  func_80108944(temp_v0, sp24);
+  _chmoley_entrypoint_1(sp20, ((unsigned long) ((u16) (*((u16 *) (((s8 *) sp24) + 0x72))))) >> 0xA);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/func_8080058C_chmolehill.s")
 
