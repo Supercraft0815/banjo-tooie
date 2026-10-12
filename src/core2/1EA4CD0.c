@@ -78,6 +78,14 @@ void func_800CB70C(s32 arg0) {
     ((struct Entry *)D_8012AB70)[arg0].outTail = ((struct Entry *)D_8012AB70)[arg0].tail;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA4CD0/func_800CB764.s")
+void func_800CB764(s32 arg0, f32 *arg1, f32 arg2, s32 arg3, s32 arg4) {
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    extern u8 D_8012AB70[];
+    struct Entry { f32 pad[2]; f32 vector[3]; f32 value; s16 flag; s16 tail; u8 rest[20]; };
+    func_800EE7F8(((struct Entry *)D_8012AB70)[arg0].vector, arg1);
+    ((struct Entry *)D_8012AB70)[arg0].value = arg2;
+    ((struct Entry *)D_8012AB70)[arg0].flag = arg3;
+    ((struct Entry *)D_8012AB70)[arg0].tail = arg4;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA4CD0/func_800CB7C4.s")
