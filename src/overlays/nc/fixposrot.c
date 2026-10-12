@@ -60,7 +60,22 @@ void ncfixposrot_entrypoint_8(s32 arg0, s32 arg1) {
     ncfixposrot_entrypoint_7(func_8011001C((s32 *) arg0), arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/fixposrot/ncfixposrot_entrypoint_9.s")
+void ncfixposrot_entrypoint_9(s32 *arg0) {
+    s32 func_800C53EC(s32, s32);
+    s32 func_8010F9C0(s32, s32);
+    s32 func_8011001C(s32 *arg0);
+    u8 *sp1C[2];
+    u8 *temp_v0;
+
+    temp_v0 = func_8011001C(arg0);
+    if ((*(s16 *)((s8 *)(temp_v0) + (0x18))) != 0) {
+        sp1C[1] = temp_v0;
+        func_800C53EC(0, 0);
+        temp_v0 = sp1C[1];
+        (*(s16 *)((s8 *)(temp_v0) + (0x18))) = 0;
+    }
+    func_8010F9C0((s32) arg0, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/fixposrot/ncfixposrot_entrypoint_10.s")
 
