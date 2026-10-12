@@ -25,7 +25,16 @@ OSThread *chmineprospector_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_8080029C_chmineprospector.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800340_chmineprospector.s")
+void func_80800340_chmineprospector(Actor *arg0, u8 *arg1) {
+    void func_800DBEFC(s32 *, s32, s32);
+    void func_80101870(Actor* arg0, void* arg1);
+    OSThread * func_80104130(void);
+    func_80101870(arg0, arg1);
+    if (arg0->unk7C_12) {
+        func_800DBEFC((s32 *) func_80104130(), 4, (s32) &arg0->actorData[4]);
+        *(f32 *) &arg0->actorData[5] = arg0->position[1];
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800398_chmineprospector.s")
 
