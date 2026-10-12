@@ -13,7 +13,22 @@ s32 func_800A26B0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2A00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2C84.s")
+s32 func_800A2C84(PlayerState *arg0) {
+    f32 func_800964DC(PlayerState *);
+    s32 func_80096628(PlayerState *);
+    void func_8009C128(PlayerState *, f32[3]);
+    s32 _fxstep_entrypoint_5(s32, s32, f32);
+    s32 _fxstep_entrypoint_6(s32, f32 *);
+    f32 sp2C[3];
+    s32 pad;
+    s32 sp24;
+
+    func_8009C128(arg0, sp2C);
+    _fxstep_entrypoint_6(*(*(s32 **)((s8 *)(arg0) + (0x124))), sp2C);
+    sp24 = func_80096628(arg0);
+    pad = 0;
+    return _fxstep_entrypoint_5(*(*(s32 **)((s8 *)(arg0) + (0x124))), sp24, func_800964DC(arg0)) + pad;
+}
 
 /* extern */
 
