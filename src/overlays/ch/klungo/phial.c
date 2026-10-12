@@ -18,7 +18,19 @@ OSThread *chklungophial_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/phial/func_80800204_chklungophial.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/phial/func_8080038C_chklungophial.s")
+/* extern */
+
+s32 func_8080038C_chklungophial(s32 arg0, s32 arg1, volatile s32 arg2) {
+    s32 func_808003C8_chklungophial(s32, s32);
+    int ret;
+    if (arg1 == 0x40) {
+        func_808003C8_chklungophial(arg0, 0);
+        ret = 1;
+    } else {
+        return 0;
+    }
+    return ret;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/phial/func_808003C8_chklungophial.s")
 
