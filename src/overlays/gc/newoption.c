@@ -309,7 +309,20 @@ int gcnewoption_entrypoint_2(void)
 	return 0x260;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_3.s")
+s32 gcnewoption_entrypoint_3(u8 *arg0) {
+    s32 offset;
+    u8 *text;
+
+    offset = 3;
+    text = *(u8 **)((s8 *)arg0 + 0x23C);
+    if (text[offset] != 0x8D) {
+        do {
+            offset += text[offset + 1];
+            offset += 2;
+        } while (text[offset] != 0x8D);
+    }
+    return (text + offset)[2] - 0x31;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_4.s")
 
