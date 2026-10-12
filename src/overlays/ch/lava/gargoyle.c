@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/gargoyle/func_80800000_chlavagargoyle.s")
+void func_80800000_chlavagargoyle(Actor *arg0) {
+    struct { u8 pad[0x64]; u8 : 7; u8 flag : 1; } *flags = (void *)arg0;
+    f32 func_800DC178(f32, f32);
+    s32 func_80105010();
+    flags->flag = 1;
+    arg0->unk58 = func_800DC178(5.0f, 8.0f);
+    func_80105010(arg0);
+    arg0->unk54 = *(f32 *)((s8 *)arg0 + 0x48);
+}
 
 void func_80800054_chlavagargoyle(Actor *arg0) {
     struct GargoyleFlags {
