@@ -20,7 +20,18 @@ s32 func_80800000_bsbtrot(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80800070_bsbtrot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_808000DC_bsbtrot.s")
+/* extern */
+
+typedef struct PlayerState PlayerState;
+
+void func_808000DC_bsbtrot(PlayerState *arg0, s32 arg1) {
+    void func_8009DE38(PlayerState *, s32, f32);
+    if (arg1 != 0) {
+        func_8009DE38(arg0, 0x4433, 0.96f);
+        return;
+    }
+    func_8009DE38(arg0, 0x4433, 1.04f);
+}
 
 void func_80800120_bsbtrot(s32 arg0) {
     s32 _bashoes_entrypoint_6(s32, s32);
