@@ -212,7 +212,19 @@ void func_8080158C_chsabreman(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_808015D4_chsabreman.s")
+/* extern */
+
+void func_808015D4_chsabreman(Actor *arg0) {
+    s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    void func_80801218_chsabreman(Actor *);
+    f32 sp1C[3];
+
+    if (_subaddieskeleton_entrypoint_0(arg0, 1, sp1C) != 0) {
+        _sudeflect_entrypoint_0(arg0->position, 0.0f, 100.0f, 0xA);
+    }
+    func_80801218_chsabreman(arg0);
+}
 
 /* extern */
 

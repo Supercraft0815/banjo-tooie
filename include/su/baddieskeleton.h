@@ -3,6 +3,6 @@
 
 #include "common.h"
 
-void _subaddieskeleton_entrypoint_0(Actor*, s32, f32*);
+s32 _subaddieskeleton_entrypoint_0(Actor*, s32, f32*);
 
 #endif
