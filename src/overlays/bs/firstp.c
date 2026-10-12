@@ -536,7 +536,18 @@ void func_808025C8_bsfirstp(void *arg0, void **arg1, void **arg2) {
     *arg2 = D_8080B1E0_bsfirstp + offset;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080261C_bsfirstp.s")
+void func_8080261C_bsfirstp(void *arg0, void **arg1, void **arg2) {
+    u32 func_800A3280(void *);
+    extern u8 D_8080B208_bsfirstp[];
+    extern u8 D_8080B230_bsfirstp[];
+    s32 index;
+    s32 offset;
+
+    index = func_800A3280(arg0) - 1;
+    offset = index << 3;
+    *arg1 = D_8080B208_bsfirstp + offset;
+    *arg2 = D_8080B230_bsfirstp + offset;
+}
 
 void func_80802670_bsfirstp(void *arg0, u8 **arg1) {
     u32 func_800A3280(void *);
@@ -656,7 +667,7 @@ void func_80803134_bsfirstp(void *arg0) {
     s32 baanim_playForDuration_onceSmooth(void *, s16, s32);
     s32 func_800A0D94(void *, s32);
     s32 func_80800424_bsfirstp(void *, s16, s32);
-    s32 func_8080261C_bsfirstp(void *, void **, void **);
+    void func_8080261C_bsfirstp(void *, void **, void **);
     s32 func_80807BB8_bsfirstp();
     s32 func_80808DB0_bsfirstp(void *);
     extern s32 _bsfirstp_entrypoint_10;
