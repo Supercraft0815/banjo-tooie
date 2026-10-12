@@ -132,7 +132,7 @@ class PatternTests(fixtures.Fixture):
         other = State(self.root/'.decomp-agent/state.db')
         try:
             self.assertEqual(other.get('target')['attempts'], 1)
-            self.assertEqual(other.db.execute('PRAGMA user_version').fetchone()[0], 3)
+            self.assertEqual(other.db.execute('PRAGMA user_version').fetchone()[0], 4)
             self.assertEqual(other.db.execute('SELECT provider FROM runs').fetchone()[0], 'codex')
         finally:
             other.close()

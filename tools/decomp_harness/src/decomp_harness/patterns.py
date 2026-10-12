@@ -330,6 +330,10 @@ def local_plan(root, state, difficulty=None, function=None, m2c=False):
         resume = bool(history and history[0]['outcome'] in ('ok', 'matched', 'interrupted')
                       and f['base_sha'] == hashlib.sha256(source.encode()).hexdigest()
                       and (root/'.decomp-agent/runs'/history[0]['id']/'source-after.c').is_file())
+        if f['best_source']:
+            from .repairs import repair_scope, recheck_key
+            key = recheck_key(f, source.encode(), repair_scope(root, f))
+            resume |= state.db.execute('SELECT 1 FROM local_trials WHERE function_id=? AND candidate_sha=?', (f['id'], key)).fetchone() is None
         if choices or resume or translate:
             found.append({'function': f['id'], 'source': f['source'], 'symbol': f['symbol'],
                           'dependencies': f['dependencies'], 'candidates': len(choices),

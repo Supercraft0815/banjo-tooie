@@ -90,6 +90,8 @@ def asm_features(text: str, symbol: str):
         "float_ops": sum('.s' in op or '.d' in op or op in ('lwc1', 'swc1', 'mtc1', 'mfc1') for op in ops),
         "indirect_calls": ops.count('jalr'), "switches": sum('jr ' in l and '$ra' not in l for l in lines),
         "memory_ops": sum(op in ('lw', 'sw', 'lb', 'lbu', 'lh', 'lhu', 'sh', 'sb', 'ld', 'sd') for op in ops),
+        "isa64_ops": sorted(set(ops) & {'ld', 'sd', 'dadd', 'daddu', 'daddi', 'daddiu', 'dsub', 'dsubu',
+                                        'dsll', 'dsll32', 'dsrl', 'dsrl32', 'dsra', 'dsra32', 'dmult', 'ddiv'}),
         "rom_start": int(body[0][0], 16) if body else None,
         "vram": int(body[0][1], 16) if body else None,
         "shape": shape_key(body),

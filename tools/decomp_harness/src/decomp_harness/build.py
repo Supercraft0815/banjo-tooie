@@ -170,11 +170,20 @@ class Builder:
     def disassemble(self, source, symbol):
         # -t: the symbol table lets scoring rebase named rodata labels to section offsets.
         try:
-            result = command(self.argv(['mips-linux-gnu-objdump', '-drzt', f'--disassemble={symbol}', self.object_path(source)]), self.root, timeout=90)
+            result = command(self.argv(['mips-linux-gnu-objdump', '-m', 'mips:4300', '-drzt', f'--disassemble={symbol}', self.object_path(source)]), self.root, timeout=90)
         except BaseException:
             self.close()
             raise
         return result.stdout.decode()
+
+    def invalidate(self, sources, log):
+        """Headers have no complete make dependencies; rebuild all objects for repairs."""
+        if any(p.endswith('.h') for p in sources):
+            if self.invoke(['find', 'build/us', '-name', '*.o', '-delete'], log):
+                raise HarnessError('Could not invalidate objects after header repair')
+        objects = [self.object_path(p) for p in sources if p.endswith('.c')]
+        if self.invoke(['rm', '-f', *objects, *LINK_OUTPUTS], log):
+            raise HarnessError('Could not invalidate dependency repair outputs')
 
     def dependencies(self, log):
         code = 'import sqlite3, yaml, spimdisasm, rabbitizer, mapfile_parser, n64img, pygfxd; print("Python build dependencies OK")'

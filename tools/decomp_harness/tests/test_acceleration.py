@@ -277,7 +277,7 @@ class AcceleratedLoopTests(LoopFixture):
         self.assertIn('Internal harness error', replies[2])
         self.assertNotIn('TOP-SECRET', ''.join(replies))
         self.assertEqual(self.state.get('target')['status'], 'matched')
-        self.assertEqual((self.work/'src/core1/a.c').read_text(), fixtures.CANDIDATE)
+        self.assertEqual((self.work/'src/core1/a.c').read_text(), fixtures.CANDIDATE.replace('{ }', '{ return; }'))
 
     def test_prompt_names_compile_loop_and_batch_markers(self):
         prompt = worker_prompt(self.function, 'pack', 12, [{'symbol': 'second'}])

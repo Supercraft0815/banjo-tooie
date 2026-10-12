@@ -3,7 +3,7 @@ from __future__ import annotations
 import hashlib
 from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
 from contextlib import ExitStack, nullcontext
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, replace, field
 import json
 import queue
 import os
@@ -25,6 +25,7 @@ from .guard import (candidate_guard, manifest, mark_targets, publish, recover_pu
 from .local_tools import m2c_candidates, m2c_draft, run_permuter
 from .matching import instructions, score, worth_rom_check
 from . import service
+from .repairs import repair_scope, guard_candidate, save_support, load_support, recheck_key, worker_candidate, seed_worker
 from .scanner import scan
 from .scheduler import advance, next_function, route, resources
 from .state import State
@@ -115,12 +116,10 @@ def initialize_knowledge(state):
     state.note('GLOBAL_ASM validation relocations', 'Object scores are guidance. Relocations, padding, rodata and overlay headers are accepted only after make check and an independent full decompressed-ROM hash match.', 'harness invariant')
 
 
-def save_guarded_candidate(worker, before, original, function, directory):
-    verify_worker_changes(worker, before, function['source'])
-    candidate = (worker/function['source']).read_bytes()
-    if Redactor()(candidate.decode()) != candidate.decode():
-        raise HarnessError('Credential-like material in recovered candidate')
-    candidate_guard(original.decode(), candidate.decode(), function['symbol'])
+def save_guarded_candidate(worker, before, original, function, directory, scope=None):
+    scope = scope or {}
+    candidate, support = worker_candidate(worker, before, function, original, scope, Redactor())
+    save_support(directory, scope, support)
     atomic_write(directory/'source-after.c', candidate)
     save_json(directory/'candidate-guard.json', {'base_sha': hashlib.sha256(original).hexdigest(),
                                                 'candidate_sha': hashlib.sha256(candidate).hexdigest()})
@@ -139,7 +138,11 @@ def recover_candidates(root, state):
             if hashlib.sha256(original).hexdigest() != function['base_sha']:
                 continue
             before = {k: tuple(v) for k, v in json.loads(record.read_text()).items()}
-            save_guarded_candidate(worker, before, original, function, directory)
+            saved = directory/'support-before.json'
+            scope = {p: text.encode() for p, text in json.loads(saved.read_text()).items()} if saved.is_file() else {}
+            if any((root/p).read_bytes() != value for p, value in scope.items()):
+                continue
+            save_guarded_candidate(worker, before, original, function, directory, scope)
         except (HarnessError, OSError, ValueError, UnicodeError):
             continue
 
@@ -152,6 +155,7 @@ class Target:
     reference: list
     baseline_saved: bool = False
     length: int | None = None
+    support: dict = field(default_factory=dict)
 
 
 class Loop:
@@ -377,6 +381,11 @@ class Loop:
             if json.loads(function['features']).get('kind') != 'function':
                 self.state.transition(identity, 'blocked', last_error='No function ASM; run init --setup and scan')
                 return None
+            isa64 = json.loads(function['features']).get('isa64_ops', [])
+            if isa64:
+                self.state.transition(identity, 'blocked', last_error='Toolchain/ABI prerequisite: target uses '
+                                      + ', '.join(isa64) + '; current C flags are -mips2. Resolve per-file compiler/ABI before retrying.')
+                return None
             self.state.transition(identity, 'analyzing')
             if function['base_sha'] != source_sha:
                 self.state.update(identity, best_source=None, best_score=None, best_run=None, base_sha=source_sha)
@@ -385,7 +394,8 @@ class Loop:
             reference_dump = (baseline or self.builder).disassemble(source, function['symbol'])
             reference = instructions(reference_dump, function['symbol'], length)
             saved = False if baseline else self.builder.save_baseline(source, self.root/'.decomp-agent/logs/baseline-object.log')
-            return Target(self.state.get(identity), original, reference_dump, reference, saved, length)
+            scope = repair_scope(self.root, function)
+            return Target(self.state.get(identity), original, reference_dump, reference, saved, length, scope)
 
     def release(self, identity, message):
         if self.state.get(identity)['status'] in ('analyzing', 'attempting', 'improving'):
@@ -396,6 +406,9 @@ class Loop:
         identity = target.function['id']
         if self.resume_candidate(self.state.get(identity), target):
             self.count_match()
+            return True
+        if self.recheck_best(self.state.get(identity), target):
+            self.count_match(local=True)
             return True
         if not self.config['local_patterns'] or self.args.no_local:
             return False
@@ -625,12 +638,36 @@ class Loop:
             if proof != {'base_sha': hashlib.sha256(original).hexdigest(), 'candidate_sha': hashlib.sha256(candidate).hexdigest()}:
                 return False
         try:
-            candidate_guard(original.decode(), candidate.decode(), function['symbol'])
+            guard_candidate(original.decode(), candidate.decode(), function['symbol'])
+            load_support(directory, target.support)
         except (HarnessError, UnicodeError):
             return False
         print(f"Revalidating persisted candidate for {function['symbol']} without inference...", flush=True)
         self.state.transition(function['id'], 'attempting')
         return self.accept_candidate(target, candidate, directory) == 'matched'
+
+    def recheck_best(self, function, target):
+        """Replay saved work once against the current guard/linker policy, without inference."""
+        if not function['best_source']:
+            return False
+        key = recheck_key(function, target.original, target.support)
+        if self.tried(function, key):
+            return False
+        try:
+            guard_candidate(target.original.decode(), function['best_source'].decode(), function['symbol'])
+            support = load_support(self.root/'.decomp-agent/runs'/function['best_run'], target.support) if function['best_run'] else {}
+        except (HarnessError, UnicodeError) as error:
+            self.state.update(function['id'], last_error=str(error))
+            return False
+        directory = new_run(self.root, 'recheck')
+        save_support(directory, target.support, support)
+        self.state.start_run(function['id'], 'local', None, None, directory)
+        self.state.transition(function['id'], 'attempting')
+        result = self.accept_candidate(target, function['best_source'], directory)
+        self.state.finish_run(directory.name, ended=time.time())
+        with self.state.db:
+            self.state.db.execute('INSERT OR REPLACE INTO local_trials VALUES (?,?,?)', (function['id'], key, result))
+        return result == 'matched'
 
     def attempt(self, function, routing, target, batch=()):
         targets = [target, *batch]
@@ -651,18 +688,19 @@ class Loop:
             if batch:
                 atomic_write(worker/source, mark_targets(original.decode(), [t.function['symbol'] for t in targets]))
             else:
-                atomic_write(worker/source, function['best_source'] or original)
+                seed_worker(worker, self.root, function, original, target.support)
             if compiles:
-                service.install(worker, source, self.config['worker_timeout'])
+                service.install(worker, source, self.config['worker_timeout'], () if batch else target.support)
             before = manifest(worker)
             save_json(directory/'worker-before.json', before)
+            save_json(directory/'support-before.json', {p: value.decode() for p, value in target.support.items()} if not batch else {})
             share = max(5000, self.config['context_chars'] // len(targets))
             pack = '\n\n'.join(context_pack(self.root, self.state.get(t.function['id']), self.state, self.config,
                                              budget=None if not batch else share, shared=not index,
                                              draft=self.draft(t.function))
                                 for index, t in enumerate(targets))
             atomic_write(self.root/'.decomp-agent/context'/f"{hashlib.sha256(identity.encode()).hexdigest()[:16]}.txt", pack)
-            prompt = worker_prompt(function, pack, compiles, [t.function for t in batch])
+            prompt = worker_prompt(function, pack, compiles, [t.function for t in batch], target.support if not batch else ())
             atomic_write(directory/'source-before.c', (worker/source).read_bytes())
             save_json(directory/'git-before.json', stamp)
             save_json(directory/'metadata.json', {'function': identity, **routing, 'provider': provider,
@@ -685,15 +723,21 @@ class Loop:
             names = ', '.join(t.function['symbol'] for t in targets)
             print(f"{names}: {provider}/{routing['model']} {routing['effort']} (worker run {number})", flush=True)
             if compiles:
-                compiler = service.CompileService(self, worker, targets, directory, compiles)
+                compiler = service.CompileService(self, worker, targets, directory, compiles, runner.redact)
                 compiler.start()
             result = runner.run(cwd=worker, prompt=prompt, model=routing['model'], effort=routing['effort'],
                                 directory=directory, timeout=self.config['worker_timeout'], control=self.control,
                                 schema=Path(__file__).with_name('worker.schema.json'),
                                 on_start=lambda pid: self.state.finish_run(run_id, pid=pid))
+            tested = False
             if compiler:
                 compiler.stop()
+                tested = compiler.retain_best(worker, before)
                 compiler = None
+            if isinstance(result.message, dict):
+                save_json(directory/'worker-summary.json', json.loads(runner.redact(json.dumps(result.message))))
+                if result.message.get('blocker'):
+                    self.state.update(identity, last_error=runner.redact(result.message['blocker'])[:3000])
             self.state.finish_run(run_id, ended=time.time(), outcome=result.outcome, exit_code=result.exit_code,
                                   usage=json.dumps(result.usage), error=result.error)
             for _, _, member in members:
@@ -709,24 +753,26 @@ class Loop:
                     try:
                         candidate = (worker/source).read_text()
                         if runner.redact(candidate) == candidate:
-                            save_guarded_candidate(worker, before, original, function, directory)
+                            save_guarded_candidate(worker, before, original, function, directory, target.support)
                     except (HarnessError, OSError, UnicodeError) as e:
                         save_json(directory/'candidate-guard.json', {'rejected': runner.redact(str(e))})
                 self.state.transition(identity, 'pending', last_error=result.outcome)
                 raise HarnessError(f'{provider} {result.outcome}; run can resume, no fallback')
             if result.outcome in ('technical_error', 'timeout'):
                 return 'technical'
-            if result.outcome != 'ok':
+            if result.outcome != 'ok' and not tested:
                 self.state.update(identity, last_error='Agent output invalid')
                 self.finish_batch(members, routing, stage_of(function), 'Agent output invalid')
                 return 'improve'
             try:
-                verify_worker_changes(worker, before, source)
-                text = (worker/source).read_bytes()
-                if runner.redact(text.decode()) != text.decode():
-                    raise HarnessError('Candidate contains credential material; rejected without persistence')
                 if not batch:
-                    candidate_guard(original.decode(), text.decode(), function['symbol'])
+                    text, support = worker_candidate(worker, before, function, original, target.support, runner.redact)
+                    save_support(directory, target.support, support)
+                else:
+                    verify_worker_changes(worker, before, source)
+                    text = (worker/source).read_bytes()
+                    if runner.redact(text.decode()) != text.decode():
+                        raise HarnessError('Candidate contains credential material; rejected without persistence')
             except (HarnessError, UnicodeError) as e:
                 self.state.finish_run(run_id, outcome='guard_rejected', error=str(e))
                 self.state.transition(identity, 'needs_human', last_error=str(e))
@@ -789,9 +835,10 @@ class Loop:
 
     def accept_candidate(self, target, candidate, directory, message=None):
         function, original, run_id = target.function, target.original, directory.name
-        replacement = candidate_guard(original.decode(), candidate.decode(), function['symbol'])
+        replacement = guard_candidate(original.decode(), candidate.decode(), function['symbol'])
+        support = load_support(directory, target.support)
         atomic_write(directory/'source-after.c', candidate)
-        comparison = self.validate(target, candidate, directory)
+        comparison = self.validate(target, candidate, directory, support)
         if comparison is None:
             self.state.finish_run(run_id, outcome='compile_error', error='See compiler.log')
             self.state.update(function['id'], last_error=(directory/'compiler.log').read_text(errors='replace')[-3000:])
@@ -801,6 +848,9 @@ class Loop:
             if comparison['rom_checked']:
                 with self.gate:
                     self.check_repository()
+                    for path in support:
+                        if (self.root/path).read_bytes() != target.support[path]:
+                            raise HarnessError('Dependency changed during search; candidate retained for revalidation')
                 saved = self.builder.save_baseline(function['source'], directory/'baseline-object.log')
             try:
                 # Only plausible matches pay for the full link + ROM hash; it stays mandatory for those.
@@ -809,6 +859,10 @@ class Loop:
                     return self.finish_candidate(target, candidate, directory, comparison, replacement, message)
             finally:
                 if comparison['rom_checked'] and self.state.get(function['id'])['status'] != 'matched':
+                    for path in support:
+                        atomic_write(self.workspace/path, target.support[path])
+                    if support:
+                        self.builder.invalidate(support, directory/'restore-support.log')
                     self.builder.restore(function['source'], original, saved, directory/'restore.log')
 
     def finish_candidate(self, target, candidate, directory, comparison, replacement, message):
@@ -818,6 +872,10 @@ class Loop:
         previous = self.state.get(function['id'])['best_score']
         comparison['delta'] = comparison['score'] - (previous if previous is not None else 0)
         save_json(directory/'comparison.json', comparison)
+        key = recheck_key({**function, 'best_source': candidate}, original, target.support)
+        with self.state.db:
+            self.state.db.execute('INSERT OR REPLACE INTO local_trials VALUES (?,?,?)',
+                                  (function['id'], key, 'matched' if comparison['exact'] else 'nonmatching'))
         self.state.finish_run(run_id, outcome='matched' if comparison['exact'] else 'nonmatching',
                               score=comparison['score'], delta=comparison['delta'],
                               differences=comparison['different_instructions'], first_diff=json.dumps(comparison['first_diff']),
@@ -831,7 +889,9 @@ class Loop:
         if self.control.stopped():
             self.state.transition(function['id'], 'pending', last_error='Validated match retained; interrupted before publication')
             return 'stop'
-        commit = publish(self.root, self.state, function, original, candidate)
+        support = load_support(directory, target.support)
+        commit = publish(self.root, self.state, function, original, candidate,
+                         {p: (target.support[p], value) for p, value in support.items()})
         self.coordinator.expected_stamp = repository_stamp(self.root)
         atomic_write(directory/'commit.txt', commit+'\n')
         remember(self.root, self.state, function, replacement, commit)
@@ -842,7 +902,7 @@ class Loop:
         self.state.note(function['segment']+' '+function['symbol'], 'Matched source pattern:\n'+replacement[:900], commit)
         return 'matched'
 
-    def object_dumps(self, target, candidate, symbols, log, restore_log):
+    def object_dumps(self, target, candidate, symbols, log, restore_log, support=None):
         """Compile a candidate; None on a compile error, else {symbol: objdump}.
 
         Parallel runs use a private lane (never linked, so no restore); otherwise the
@@ -851,27 +911,34 @@ class Loop:
         if lanes is None:
             with self.gate:
                 try:
-                    return self.compile_in(self.workspace, self.builder, source, candidate, symbols, log)
+                    return self.compile_in(self.workspace, self.builder, source, candidate, symbols, log, support)
                 finally:
                     self.builder.restore(source, target.original, target.baseline_saved, restore_log)
         lane, builder = lanes.get()
         try:
-            return self.compile_in(lane, builder, source, candidate, symbols, log)
+            return self.compile_in(lane, builder, source, candidate, symbols, log, support)
         finally:
             lanes.put((lane, builder))
 
     @staticmethod
-    def compile_in(workspace, builder, source, candidate, symbols, log):
+    def compile_in(workspace, builder, source, candidate, symbols, log, support=None):
         atomic_write(workspace/source, candidate)
-        if builder.object_build(source, log):
-            return None
-        return {symbol: builder.disassemble(source, symbol) for symbol in symbols}
+        before = {p: (workspace/p).read_bytes() for p in support or {}}
+        try:
+            for path, value in (support or {}).items():
+                atomic_write(workspace/path, value)
+            if builder.object_build(source, log):
+                return None
+            return {symbol: builder.disassemble(source, symbol) for symbol in symbols}
+        finally:
+            for path, value in before.items():
+                atomic_write(workspace/path, value)
 
-    def validate(self, target, candidate, directory):
+    def validate(self, target, candidate, directory, support=None):
         """Object comparison only; the caller runs the ROM check under the gate."""
         symbol = target.function['symbol']
         atomic_write(directory/'expected.asm', target.reference_dump)
-        dumps = self.object_dumps(target, candidate, [symbol], directory/'compiler.log', directory/'probe-restore.log')
+        dumps = self.object_dumps(target, candidate, [symbol], directory/'compiler.log', directory/'probe-restore.log', support)
         if dumps is None:
             return None
         atomic_write(directory/'actual.asm', dumps[symbol])
@@ -882,6 +949,11 @@ class Loop:
     def rom_check(self, target, candidate, directory):
         """Under the gate: the candidate in the trusted workspace, then `make check`."""
         source = target.function['source']
+        support = load_support(directory, target.support)
+        for path, value in support.items():
+            atomic_write(self.workspace/path, value)
+        if support:
+            self.builder.invalidate(support, directory/'invalidate.log')
         atomic_write(self.workspace/source, candidate)
         if self.builder.object_build(source, directory/'rom-object.log'):
             return False

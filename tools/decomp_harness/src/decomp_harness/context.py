@@ -72,11 +72,28 @@ def excerpts(root: Path, terms, folders, limit=5000):
     return '\n'.join(line.replace(str(root)+'/', '') for line in hits)[:limit]
 
 
+def probe_feedback(directory):
+    entries, seen = [], set()
+    result = directory/'worker-summary.json'
+    if result.is_file():
+        message = json.loads(result.read_text())
+        entries.append(f"Reported blocker: {message.get('blocker', '')[:800]}\nSummary: {message.get('summary', '')[:800]}")
+    for path in sorted(directory.glob('compile-*.json'), key=lambda p: int(p.stem.split('-')[1]), reverse=True):
+        probe = json.loads(path.read_text())
+        if probe['reply'] in seen:
+            continue
+        seen.add(probe['reply'])
+        entries.append(f"{path.stem}: {probe['reply'][:900]}")
+        if len(seen) == 3:
+            break
+    return '\n'.join(entries)
+
+
 def failed_attempts(root, history):
     """Give retries the tested patches and their actual compiler feedback."""
     entries, seen = [], {}
     for run in reversed(history):
-        if run['outcome'] not in ('nonmatching', 'compile_error'):
+        if run['outcome'] not in ('nonmatching', 'compile_error', 'guard_rejected'):
             continue
         directory = root / '.decomp-agent/runs' / run['id']
         try:
@@ -84,6 +101,7 @@ def failed_attempts(root, history):
         except OSError:
             patch = ''
         entry = f"Run {run['id']}: {run['outcome']}, score={run['score']}\n"
+        entry += 'Tested compiler variants (full sources and feedback saved in run artifacts):\n' + probe_feedback(directory) + '\n'
         if patch and patch in seen:
             entry += f"Identical source patch to {seen[patch]}; already tried.\n"
         else:
@@ -100,7 +118,7 @@ def failed_attempts(root, history):
         except (OSError, ValueError):
             entry += f"Compiler comparison unavailable; error: {run['error']}\n"
         entries.append(entry)
-    # ponytail: bounded recent feedback; store a compact ledger if longer searches need older attempts.
+    # Full probe ledger stays on disk; keep recent distinct failures ahead of patch text.
     return '\n'.join(entries)[:6000]
 
 
@@ -148,10 +166,10 @@ def context_pack(root, function, state, config, budget=None, shared=True, draft=
     budget = budget or config['context_chars']
     current = ''
     if function['best_source']:
-        from .guard import candidate_guard
+        from .repairs import guard_candidate
         from .common import HarnessError
         try:
-            current = candidate_guard(source, function['best_source'].decode(), function['symbol'])
+            current = guard_candidate(source, function['best_source'].decode(), function['symbol'])
         except (HarnessError, UnicodeError):
             current = '[Saved candidate does not fit the current source; use the target directive.]'
     directive = source[macro['start']:macro['end']] if macro else ''
@@ -165,6 +183,7 @@ def context_pack(root, function, state, config, budget=None, shared=True, draft=
             f"Exact target directive (or current C below):\n{directive}\nCurrent candidate:\n{current[:4000]}\n"
             f"{common}{m2c}{analogue}"
             f"Features: {json.dumps(features)}\nBest score: {function['best_score']}\n"
+            f"Last compiler/agent error: {function['last_error']}\n"
             f"Recent attempts: {json.dumps(history)}\nPrevious diff: {previous}\n"
             f"Failed attempts (newest first):\n{failed_attempts(root, history)}\n"
             f"Last compiler/agent error: {function['last_error']}\n"
@@ -178,7 +197,7 @@ def context_pack(root, function, state, config, budget=None, shared=True, draft=
     return (pack[:max(0, budget-1200)] + '\nOriginal ASM:\n' + asm_context)[:budget]
 
 
-def worker_prompt(function, pack, compiles, batch=()):
+def worker_prompt(function, pack, compiles, batch=(), support=()):
     """`compiles` > 0 enables ./decomp-compile; `batch` lists further targets in the same file."""
     symbols = [function['symbol'], *(f['symbol'] for f in batch)]
     if batch:
@@ -190,20 +209,27 @@ and everything outside the marked regions byte-for-byte unchanged. Leave a direc
 in place when you cannot match it; each target is validated and committed separately.'''
     else:
         task = f'''Implement exactly one matching C function: {function['symbol']}.
-Edit ONLY {function['source']}; replace only its target GLOBAL_ASM directive.
-Keep the surrounding file byte-for-byte unchanged.'''
+Replace its target GLOBAL_ASM directive in {function['source']} with C.
+If a verified type/prototype/data-layout error prevents a match, repair the relevant
+declarations or existing C definitions in that file or these dependency files:
+{', '.join(support) or '[no additional dependency files]'}.
+Keep unrelated code unchanged. Preserve every other ASM import, all preprocessor
+directives and all existing function names. Do not create files or helper functions.
+Explain any change outside the target in your summary; the parent validates and
+commits all dependent changes together, only after the full ROM is byte-identical.'''
     if compiles:
         loop = f'''Compile loop: after each edit run `./decomp-compile` (no arguments). The trusted
 parent compiles the file with the original IDO flags and prints the normalized
 instruction diff (expected | actual) per edited target. Fix the reported differences
-and compile again. Stop as soon as every target reports OBJECT MATCH, or when the
+and compile again. Stop as soon as every target reports OBJECT MATCH or LINK CHECK READY, or when the
 budget of {compiles} requests is used; then finish with your best version. A rejected
 request explains which guard rule the file violated. Never run make, Docker or IDO.'''
     else:
         loop = '''The compiler is Linux-only on this host. The parent builds after you finish;
 do not invoke Docker or install tools.'''
     return f'''{task}
-Put any necessary declarations inside the function. The pack supplies the exact edit
+Reuse canonical declarations; fix inconsistent prototypes rather than invent casts.
+The pack supplies the exact edit
 target, ASM, primitive typedefs and local context. Use them directly: do not reread
 these files to confirm the same information. Read a narrow file range only to resolve
 a specific missing fact. If an editing tool requires a prior read, read only a few
@@ -220,6 +246,9 @@ C expressions can produce identical machine code: use the recorded compiler diff
 not just the score. Identify what the previous variants failed to change and try a
 new, concrete compiler hypothesis. In your summary, explain what you changed and
 which instruction difference it fixed.
+If a recorded full-ROM check already rejected this source, an identical OBJECT MATCH
+or LINK CHECK READY is not progress: investigate its addresses/types/dependencies
+and the recorded link result before resubmitting. Full-ROM checks remain mandatory.
 {loop}
 The parent, not your final answer, determines whether the code matches.
 If blocked, describe the concrete missing type/compiler issue in the result.

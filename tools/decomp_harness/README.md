@@ -142,12 +142,15 @@ wird blockiert. Der Scanner meldet Funktionszahl und Datenimporte getrennt.
    Persönliche Plugins, Skills, Erinnerungen und Subagenten werden nicht geladen.
    Über `./decomp-compile` lässt der Worker seinen Stand vom Elternprozess kompilieren
    und bekommt den Instruktions-Diff zurück (siehe Beschleunigung).
-6. Der Harness prüft alle Dateien dieser Kopie. Ausschließlich der Austausch der
-   Target-Direktive durch eine C-Funktion ist erlaubt. Hilfsdeklarationen müssen
-   innerhalb dieser Funktion liegen. ASM-/Präprozessor-Umgehungen werden abgewiesen.
-7. Nur die geprüfte C-Datei gelangt in den vertrauenswürdigen Build-Snapshot. Dessen
-   Original-Buildtools kompilieren das zugehörige `.c.o` neu.
-8. `mips-linux-gnu-objdump -drzt --disassemble=SYMBOL` liefert den Instruktionsvergleich
+6. Der Harness prüft alle Dateien dieser Kopie. Einzelziele dürfen zusätzlich falsche
+   Deklarationen oder bestehende C-Definitionen in ihrer Quelldatei und bis zu acht
+   konkret benannten Abhängigkeitsdateien reparieren. Andere ASM-Imports,
+   Präprozessoranweisungen und bestehende Funktionsnamen bleiben erhalten. Batches
+   bearbeiten weiterhin nur ihre markierten Funktionen.
+7. Nur geprüfte Änderungen gelangen in den vertrauenswürdigen Build-Snapshot.
+   Geänderte C-Dateien werden neu kompiliert; bei Headeränderungen werden vor dem
+   ROM-Check sämtliche Objekte neu gebaut, da die Make-Abhängigkeiten unvollständig sind.
+8. `mips-linux-gnu-objdump -m mips:4300 -drzt --disassemble=SYMBOL` liefert den Instruktionsvergleich
    gegen das Objekt des zuvor exakt passenden Baselines. Adressen werden normalisiert,
    benannte lokale Rodata-Labels auf Section+Offset gebracht und Alignment-NOPs hinter
    `endlabel` ignoriert; Operanden, Register, Immediates und externe Relokationsnamen
@@ -157,8 +160,11 @@ wird blockiert. Der Scanner meldet Funktionszahl und Datenimporte getrennt.
    niemals.** `make check` und ein unabhängiger SHA-1 über die vollständige gelinkte,
    dekomprimierte ROM sind die endgültige Freigabe, einschließlich rodata, Padding,
    Overlays und bereits gematchtem Code. Sie laufen, sobald das Objekt normalisiert
-   identisch ist (oder Score ≥ 99); bei sichtbaren Differenzen entfällt der teure Link.
-10. Erst dann übernimmt der Harness die C-Datei und erstellt atomar
+   identisch ist, Score ≥ 99 erreicht oder ausschließlich HI16/LO16-Adressrelokationen
+   abweichen. Register, Opcodes und Reihenfolge müssen für diesen letzten Fall gleich sein.
+   Ein falscher Alias wird spätestens durch den verbindlichen ROM-Vergleich abgewiesen.
+10. Erst dann übernimmt der Harness alle zusammengehörigen Dateien und erstellt
+   mit einem wiederherstellbaren Veröffentlichungsjournal
    `decomp: match SYMBOL` mit Funktions-ID im Commit. Es gibt keinen Push-Codepfad.
 
 `diff.py` bleibt unverändert nutzbar. Dessen Objektmodus setzt ein passendes
@@ -197,7 +203,7 @@ Weitere Änderungen:
   auf Section+Offset gebracht; Alignment-NOPs hinter `endlabel` zählen nicht mehr. Ein
   falscher Rodata-Offset bleibt eine Differenz.
 * **Günstige Validierung:** Der volle `make check` läuft nur noch, wenn das Objekt normalisiert
-  identisch ist (oder Score ≥ 99). Nach einem Fehlschlag wird die Quelle zurückgeschrieben;
+  identisch ist, Score ≥ 99 erreicht oder nur Adressrelokationen abweichen. Nach einem Fehlschlag werden die Quellen zurückgeschrieben;
   das zuvor gesicherte Baseline-Objekt wird **im Buildcontainer** zurückkopiert und die
   gelinkten Ausgaben dort gelöscht, statt neu zu bauen und erneut zu prüfen. Der nächste
   `make check` muss dadurch neu linken. Unter `build/` schreibt nie der Host: Das führte über
@@ -267,9 +273,24 @@ leben auf Platte. Teilweise Worker-Ausgaben bleiben im Run-Ordner.
 decomp-agent inspect func_8001E7E0
 decomp-agent verify func_8001E7E0
 decomp-agent retry SYMBOL
+decomp-agent refresh-repairs
 ```
 
 `retry` setzt Eskalation/Zyklusbudget und lokale Fehlversuchsmarken zurück und erhält den besten Versuch.
+`refresh-repairs` aktiviert Easy-Blockaden einmalig und nur mit passender Evidenz:
+inzwischen saubere Zieldateien, Relokationsfälle, jetzt erlaubte Schnittstellenreparaturen
+und alte Versuche ohne Compiler-Rückmeldung. Unbegründet ausgeschöpfte Suchen bleiben
+blockiert. Anschließend prüft `run --local-only --difficulty easy` gespeichertes C ohne
+Modellaufruf erneut. Eine fehlgeschlagene Wiederprüfung wird für denselben Quell- und
+Abhängigkeitsstand nicht endlos wiederholt.
+
+Compilerproben speichern `compile-N.c`, `compile-N.json` und zugehörige
+`support.json`-Dateien im Run-Verzeichnis. Identische Anfragen gegen denselben Buildstand
+verwenden das gespeicherte Ergebnis; die endgültige ROM-Prüfung wird nie gecacht.
+Der Worker behält den besten tatsächlich kompilierten Stand. Folgesitzungen erhalten
+unterschiedliche Compilerergebnisse und den gemeldeten Blocker. Ziele mit 64-Bit-MIPS-
+Instruktionen werden vor Inferenz als Toolchain-/ABI-Voraussetzung ausgewiesen, solange
+das C-Buildprofil `-mips2` verwendet.
 `verify` baut einen frischen Snapshot und prüft die vollständige ROM. Eine entfernte
 Direktive allein wird nie nachträglich als erfolgreicher Match verbucht.
 Die Zustände sind `pending`, `analyzing`, `attempting`, `improving`, `matched`, `blocked`,

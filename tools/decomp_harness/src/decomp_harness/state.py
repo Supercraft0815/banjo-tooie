@@ -29,7 +29,7 @@ class State:
         self.db.execute('PRAGMA foreign_keys=ON')
         self.db.execute('PRAGMA synchronous=FULL')
         version = self.db.execute('PRAGMA user_version').fetchone()[0]
-        if version not in (0, 1, 2, 3):
+        if version not in (0, 1, 2, 3, 4):
             raise HarnessError(f"Unsupported state schema {version}; do not overwrite it")
         self.db.executescript('''
             CREATE TABLE IF NOT EXISTS functions (
@@ -56,6 +56,10 @@ class State:
             CREATE TABLE IF NOT EXISTS publication (
               function_id TEXT PRIMARY KEY REFERENCES functions(id), source TEXT NOT NULL,
               before BLOB NOT NULL, after BLOB NOT NULL, head TEXT NOT NULL, created REAL NOT NULL);
+            CREATE TABLE IF NOT EXISTS publication_files (
+              function_id TEXT REFERENCES publication(function_id) ON DELETE CASCADE,
+              source TEXT NOT NULL, before BLOB NOT NULL, after BLOB NOT NULL,
+              PRIMARY KEY(function_id,source));
             CREATE TABLE IF NOT EXISTS patterns (
               asm_key TEXT, replacement TEXT, origin TEXT NOT NULL, created REAL NOT NULL,
               PRIMARY KEY(asm_key,replacement));
@@ -77,7 +81,7 @@ class State:
             self.db.execute('ALTER TABLE functions ADD COLUMN shape TEXT')
         if 'provider' not in {r[1] for r in self.db.execute('PRAGMA table_info(runs)')}:
             self.db.execute("ALTER TABLE runs ADD COLUMN provider TEXT NOT NULL DEFAULT 'codex'")
-        self.db.execute('PRAGMA user_version=3')
+        self.db.execute('PRAGMA user_version=4')
         self.db.commit()
 
     def close(self):

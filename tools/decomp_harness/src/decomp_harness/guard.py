@@ -188,23 +188,26 @@ def extract_function(text: str, symbol: str):
     return None
 
 
-def verify_worker_changes(worker, before, source):
+def verify_worker_changes(worker, before, source, support=()):
     after = manifest(worker)
     changed = {p for p in before.keys() | after.keys() if before.get(p) != after.get(p)}
-    if changed - {source}:
+    if changed - {source, *support}:
         raise HarnessError('Worker changed forbidden files: ' + ', '.join(sorted(changed)[:20]))
-    if source not in after or (worker/source).is_symlink() or before[source][:2] != after[source][:2]:
-        raise HarnessError('Source type/mode changed')
+    for path in {source, *changed}:
+        if path not in after or (worker/path).is_symlink() or before[path][:2] != after[path][:2]:
+            raise HarnessError('Source type/mode changed')
+    return changed
 
 
 def source_diff(before, after, source):
     return ''.join(difflib.unified_diff(before.splitlines(True), after.splitlines(True), 'a/'+source, 'b/'+source))
 
 
-def publish(root, state, function, before: bytes, after: bytes):
-    path = root/function['source']
-    if path.read_bytes() != before or git(root, 'status', '--porcelain=v1', '--', function['source']):
-        raise HarnessError('Target has user changes; validated candidate retained, no overwrite')
+def publish(root, state, function, before: bytes, after: bytes, support=None):
+    files = {function['source']: (before, after), **(support or {})}
+    for source, (original, _) in files.items():
+        if (root/source).read_bytes() != original or git(root, 'status', '--porcelain=v1', '--', source):
+            raise HarnessError('Target/dependency has user changes; validated candidate retained, no overwrite')
     branch = git(root, 'symbolic-ref', '--short', 'HEAD')
     if branch in ('main', 'master'):
         raise HarnessError('Refusing automatic match commits on main/master; create a dedicated branch')
@@ -212,15 +215,16 @@ def publish(root, state, function, before: bytes, after: bytes):
     with state.db:
         state.db.execute('INSERT INTO publication VALUES (?,?,?,?,?,?)',
                          (function['id'], function['source'], before, after, head, __import__('time').time()))
-    atomic_write(path, after)
+        state.db.executemany('INSERT INTO publication_files VALUES (?,?,?,?)',
+                             [(function['id'], p, a, b) for p, (a, b) in (support or {}).items()])
     try:
+        for source, (_, updated) in files.items():
+            atomic_write(root/source, updated)
         git(root, '-c', 'core.hooksPath=/dev/null', '-c', 'commit.gpgsign=false', 'commit', '--only',
-            '-m', f"decomp: match {function['symbol']}\n\nDecomp-Function: {function['id']}", '--', function['source'])
-    except HarnessError:
-        if path.read_bytes() == after and git(root, 'rev-parse', 'HEAD') == head:
-            atomic_write(path, before)
-            with state.db:
-                state.db.execute('DELETE FROM publication WHERE function_id=?', (function['id'],))
+            '-m', f"decomp: match {function['symbol']}\n\nDecomp-Function: {function['id']}", '--', *files)
+    except (HarnessError, OSError):
+        # Recovery checks the entire journal before restoring any file.
+        recover_publications(root, state)
         raise
     commit = git(root, 'rev-parse', 'HEAD')
     with state.db:
@@ -231,14 +235,16 @@ def publish(root, state, function, before: bytes, after: bytes):
 
 def recover_publications(root, state):
     for row in state.db.execute('SELECT * FROM publication').fetchall():
-        path = root/row['source']
+        files = [row, *state.db.execute('SELECT * FROM publication_files WHERE function_id=?', (row['function_id'],))]
+        actual = [(root/f['source']).read_bytes() if (root/f['source']).is_file() else None for f in files]
         head = git(root, 'rev-parse', 'HEAD')
         message = git(root, 'log', '-1', '--format=%B')
-        if head != row['head'] and f"Decomp-Function: {row['function_id']}" in message and path.read_bytes() == row['after']:
-            state.update(row['function_id'], status='matched', commit_sha=head, best_score=100)
-        elif head == row['head'] and path.read_bytes() in (row['before'], row['after']):
-            if path.read_bytes() == row['after']:
-                atomic_write(path, row['before'])
+        if (head != row['head'] and f"Decomp-Function: {row['function_id']}" in message
+                and all(content == f['after'] for content, f in zip(actual, files))):
+            state.update(row['function_id'], status='matched', present=0, commit_sha=head, best_score=100)
+        elif head == row['head'] and all(content in (f['before'], f['after']) for content, f in zip(actual, files)):
+            for f in files:
+                atomic_write(root/f['source'], f['before'])
             state.update(row['function_id'], status='pending', last_error='Recovered interrupted publication')
         else:
             state.update(row['function_id'], status='needs_human', last_error='Interrupted publication conflicts with user changes; inspect publication journal')

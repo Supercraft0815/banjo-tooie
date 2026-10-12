@@ -99,12 +99,36 @@ def score(reference, candidate):
                                 'reference_count': a1-a0, 'candidate_count': b1-b0})
     return {'score': round(100*equal/denominator, 4), 'different_instructions': denominator-equal,
             'first_diff': differences[0] if differences else None, 'last_diffs': differences[-4:],
-            'diffs': differences, 'object_identical': reference == candidate, 'exact': False}
+            'diffs': differences, 'object_identical': reference == candidate,
+            'relocation_only': relocation_only(reference, candidate), 'exact': False}
+
+
+def relocation_only(reference, candidate):
+    """Only address bits may differ; the linker, never this predicate, proves equality."""
+    if len(reference) != len(candidate):
+        return False
+    changed = False
+    for expected, actual in zip(reference, candidate):
+        if (expected['asm'], expected['relocs']) == (actual['asm'], actual['relocs']):
+            continue
+        kinds = [r.split()[0] for r in expected['relocs']]
+        if len(kinds) != 1 or kinds[0] not in ('R_MIPS_HI16', 'R_MIPS_LO16'):
+            return False
+        if kinds != [r.split()[0] for r in actual['relocs']]:
+            return False
+        # The upper half contains the opcode and every register operand.
+        if int(expected['word'], 16) >> 16 != int(actual['word'], 16) >> 16:
+            return False
+        if IMMEDIATE.sub('ADDRESS', expected['asm']) != IMMEDIATE.sub('ADDRESS', actual['asm']):
+            return False
+        changed = True
+    return changed
 
 
 def worth_rom_check(comparison):
     """The expensive full-ROM check only runs when the object can plausibly match."""
-    return comparison['different_instructions'] == 0 or comparison['score'] >= 99
+    return (comparison['different_instructions'] == 0 or comparison['score'] >= 99
+            or comparison.get('relocation_only', False))
 
 
 def render(comparison, limit=12):

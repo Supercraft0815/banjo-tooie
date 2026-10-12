@@ -31,7 +31,7 @@ def parser():
     cli = argparse.ArgumentParser(prog='decomp-agent', description='Subscription CLI matching harness; local patterns; no API-key billing')
     cli.add_argument('--repo', type=Path, help='Repository root (default: current Git repository)')
     sub = cli.add_subparsers(dest='command', required=True)
-    for name in ('init', 'doctor', 'scan', 'status', 'next', 'run', 'retry', 'inspect', 'verify', 'report', 'patterns', 'stop-after-current', 'knowledge', 'progress'):
+    for name in ('init', 'doctor', 'scan', 'status', 'next', 'run', 'retry', 'refresh-repairs', 'inspect', 'verify', 'report', 'patterns', 'stop-after-current', 'knowledge', 'progress'):
         p = sub.add_parser(name)
         p.add_argument('--json', action='store_true')
         if name in ('retry', 'inspect', 'verify'):
@@ -277,6 +277,10 @@ def dispatch(root, state, config, control, args):
         return pattern_report(root, state)
     if args.command == 'run':
         return dry_run(root, state, config, args) if args.dry_run else Loop(root, state, config, control, args).run()
+    if args.command == 'refresh-repairs':
+        from .repairs import refresh_repairs
+        state.sync(scan(root))
+        return {'refreshed': refresh_repairs(root, state)}
     if args.command == 'retry':
         f = state.get(args.function)
         if f['status'] == 'matched':
