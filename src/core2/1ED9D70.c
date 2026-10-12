@@ -7,7 +7,23 @@ void func_8010052C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100534.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_801005B8.s")
+void func_801005B8(void)
+{
+  s32 defrag(s32);
+  extern s32 D_801243A0;
+  extern s32 D_801243DC;
+  s32 (*var_s0)[3];
+  s32 temp_a0;
+ var_s0 = &D_801243A0; do {
+    temp_a0 = var_s0[0][2];
+    if (temp_a0 != 0)
+    {
+      var_s0[0][2] = defrag(temp_a0);
+    }
+    var_s0++;
+  }
+  while (var_s0 != ((s32 (*)[3]) (&D_801243DC)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100610.s")
 
