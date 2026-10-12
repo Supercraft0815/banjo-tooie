@@ -975,7 +975,18 @@ void func_800F80D8(u32 arg0) {
 	D_801354DC = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F80E4.s")
+void func_800F80E4(s32 arg0, u32 arg1) {
+    void func_800947EC(PlayerState *, s32, s32);
+    s32 var_a2;
+    PlayerState *player = D_80135490[arg0];
+
+    if (arg1 != 0) {
+        var_a2 = 0;
+    } else {
+        var_a2 = 1;
+    }
+    func_800947EC(player, 1, var_a2);
+}
 
 void func_800F8128(s32 arg0)
 {
