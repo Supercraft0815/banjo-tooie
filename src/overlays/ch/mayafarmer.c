@@ -14,7 +14,13 @@ void func_80800138_chmayafarmer(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_80800180_chmayafarmer.s")
+void func_80800180_chmayafarmer(u8 *arg0, u32 arg1, s32 arg2) {
+    struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
+    arg2 |= 4;
+    _subaddiedialog_entrypoint_11((*(Unk80132ED0 **)((s8 *)(arg0) + (0))), arg1, arg2, arg0 + 4, 0x2AU);
+    ((struct Flags *)arg0)->flag = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_808001CC_chmayafarmer.s")
 
