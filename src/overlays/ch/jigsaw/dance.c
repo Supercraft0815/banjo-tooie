@@ -2,7 +2,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/dance/func_80800000_chjigsawdance.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/dance/func_808000AC_chjigsawdance.s")
+void func_808000AC_chjigsawdance(Actor *arg0) {
+    void func_800C8B84(s32);
+    if (arg0->unk6C_0 != 0) {
+        func_800C8B84(arg0->unk6C_0);
+        arg0->unk6C_0 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/dance/func_808000F0_chjigsawdance.s")
 
