@@ -54,7 +54,19 @@ void func_80800200_chprisonbits(s32 arg0) {
     func_8080005C_chprisonbits(arg0, 0x2, 175);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_80800224_chprisonbits.s")
+/* extern */
+
+void func_80800224_chprisonbits(Actor *arg0) {
+    s32 _chdoormake_entrypoint_0(void*, f32, u32, s32);
+    void _chdoormake_entrypoint_5(Actor*, f32);
+    void _chdoormake_entrypoint_8(void*, u32);
+    s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
+    if (_chdoormake_entrypoint_0(arg0, 90.0f, 0x60U, 0xD5) != 0) {
+        _chdoormake_entrypoint_8(arg0, 5);
+        _chdoormake_entrypoint_5(arg0, 3.0f);
+        _chdoormake_entrypoint_9(arg0, 0, 0, 0x10);
+    }
+}
 
 void func_80800280_chprisonbits()
 {
