@@ -75,10 +75,21 @@ void func_800F452C(s32 arg0) {
     func_800A380C(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F457C.s")
+/* extern */
+
+void func_800F457C(void *arg0, s32 arg1) {
+    struct player_state_s;
+    void func_8009CCA4(struct player_state_s *arg0);
+    void func_8009CCFC(s32 *arg0, s32 arg1);
+    if (arg1 == 0) {
+        func_8009CCA4(arg0);
+        return;
+    }
+    func_8009CCFC(arg0, arg1);
+}
 
 s32 func_800F45B0(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_8009CCFC(s32, s32);
+    void func_8009CCFC(s32 *, s32);
     s32 func_8009CD70(s32, s32);
     func_8009CCFC(arg0, arg1);
     func_8009CD70(arg0, arg2);
