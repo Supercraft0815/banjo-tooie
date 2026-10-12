@@ -1,6 +1,19 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D2910.s")
+void func_800D2910(s32 arg0, u8 *arg1) {
+    extern s32 D_8012B320;
+    u8 *temp_v0;
+
+    temp_v0 = (u8 *)&D_8012B320 + (arg0 * 0x14);
+    (*(s8 *)((s8 *)(temp_v0) + (4))) = 1;
+    (*(s16 *)((s8 *)(temp_v0) + (6))) = (s16) (*(u8 *)((s8 *)(arg1) + (0xC)));
+    (*(s16 *)((s8 *)(temp_v0) + (8))) = (s16) (*(u8 *)((s8 *)(arg1) + (0xD)));
+    (*(s16 *)((s8 *)(temp_v0) + (0xA))) = (s16) (*(u8 *)((s8 *)(arg1) + (0xE)));
+    (*(s16 *)((s8 *)(temp_v0) + (0xC))) = (s16) (*(u8 *)((s8 *)(arg1) + (0xF)));
+    (*(f32 *)((s8 *)(temp_v0) + (0x10))) = (f32) (*(f32 *)((s8 *)(arg1) + (4)));
+    (*(f32 *)((s8 *)(temp_v0) + (0x14))) = (f32) (*(f32 *)((s8 *)(arg1) + (8)));
+    (*(u8 *)&D_8012B320) += 1;
+}
 
 void func_800D2970(void) {
     extern s32 D_8012B320;
