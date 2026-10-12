@@ -28,7 +28,19 @@ void func_800FB5BC(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FB5F8.s")
+void *func_800FB5F8(s32 arg0) {
+    MusicTrack *i_ptr, *first_free = NULL;
+
+    for (i_ptr = D_801357D0; i_ptr < &D_801357D0[6]; i_ptr++) {
+        if (i_ptr->track_id == arg0) {
+            return i_ptr;
+        }
+        if ((first_free == NULL) && (i_ptr->track_id < 0)) {
+            first_free = i_ptr;
+        }
+    }
+    return first_free;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FB650.s")
 
