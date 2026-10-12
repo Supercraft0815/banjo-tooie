@@ -4,7 +4,7 @@
 #include "common.h"
 
 //Is Pause Button Pressed
-u8 func_80015FA0(u8);
+s32 func_80015FA0(s32);
 void func_80016068(u32, f32*);
 void func_80016864();
 //Get Number of Frames button held for

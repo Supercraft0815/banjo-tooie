@@ -129,7 +129,23 @@ s32 func_80015F84(s32 arg0) {
     return *(s32 *)((u8 *)&D_80079A14 + ((arg0 * 7) * 8));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2D890/func_80015FA0.s")
+s32 func_80015FA0(s32 arg0) {
+    extern s32 D_80079A14;
+    extern s32 D_80079AF4;
+    extern u8 D_80079B93;
+    extern u8 D_80079D69;
+    s32 var_v1;
+
+    if ((D_80079D69 == 0) || (D_80079B93 != 0)) {
+        return 0U;
+    }
+    if (arg0 != 0) {
+        var_v1 = *(s32 *)((u8 *)&D_80079A14 + ((arg0 * 7) * 8));
+    } else {
+        var_v1 = D_80079AF4;
+    }
+    return var_v1;
+}
 
 void func_80015FFC(s32 arg0, void *arg1) {
     unkD_800799E0 *temp_v0;
@@ -164,7 +180,7 @@ void func_8001608C(void) {
     s32 func_800D8FA0(s32);
     f32 func_800DC0C0(void);
     extern s32 D_80079AC0;
-    extern s8 D_80079D69;
+    extern u8 D_80079D69;
     s32 j;
     s32 i;
     s32 pri;
