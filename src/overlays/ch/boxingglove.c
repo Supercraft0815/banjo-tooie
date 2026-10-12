@@ -16,7 +16,22 @@ OSThread *chboxingglove_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/func_80800018_chboxingglove.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/func_80800168_chboxingglove.s")
+/* extern */
+
+void func_80800168_chboxingglove(void *arg0) {
+    void *_subaddiefind_entrypoint_2(s32, s32 *, void *);
+    s32 func_80800630_chboxingglove(void *);
+    s32 sp18[1];
+    void *temp_v0;
+
+    (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFFE);
+    (*(f32 *)((s8 *)(arg0) + (0x58))) = 1.0f;
+    (*(f32 *)((s8 *)(arg0) + (0x28))) = (f32) (*(f32 *)((s8 *)(arg0) + (8)));
+    temp_v0 = _subaddiefind_entrypoint_2(0x36E, ((s32 *)&sp18) - 1, arg0);
+    (*(s32 *)((s8 *)(arg0) + (0x3C))) = (s32) (*(s32 *)((s8 *)(temp_v0) + (0)));
+    (*(s32 *)((s8 *)(temp_v0) + (0x3C))) = (s32) (*(s32 *)((s8 *)(arg0) + (0)));
+    func_80800630_chboxingglove(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/func_808001CC_chboxingglove.s")
 
