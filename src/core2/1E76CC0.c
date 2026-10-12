@@ -50,7 +50,16 @@ s32 func_8009D454(PlayerState *arg0, volatile u8 arg1, s32 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009D7A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009D820.s")
+void func_8009D820(PlayerState *arg0, f32 arg1) {
+    f32 func_800DC0C0(void);
+    s32 var_a1;
+    if (func_800DC0C0() < 0.5f) {
+        var_a1 = 0x585;
+    } else {
+        var_a1 = 0x586;
+    }
+    func_8009DE38(arg0, var_a1, arg1);
+}
 
 void func_8009D874(PlayerState *arg0) {
     func_8009DE38(arg0, 0x442E, 1.117f);
