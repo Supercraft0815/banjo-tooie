@@ -259,7 +259,16 @@ void func_800C929C()
 	D_8012AB54 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C92A8.s")
+/* extern */
+
+void func_800C92A8(void) {
+    extern s32 D_8012AB40;
+    s32 _gctransitionDll_entrypoint_9(s32);
+    s32 i;
+    for (i = 0; i < (s32)(*(u8 *)((s8 *)&D_8012AB40 + 0x14)); i++) {
+        _gctransitionDll_entrypoint_9((&D_8012AB40)[i]);
+    }
+}
 
 void func_800C9310(void) {
     s32 _gctransitionDll_entrypoint_5(s32);
