@@ -1,5 +1,13 @@
 #include "core2/1E2F380.h"
 
+typedef struct {
+    s32 unk0;
+    s32 active;
+    u8 unk8[0x14];
+    OSPfs pfs;
+} Motor;
+extern Motor D_8007B2D0[];
+
 void func_80017850(s32 arg0) {
     extern u8 D_8007AEE8[];
     D_8007AEE8[arg0] = 1;
@@ -146,14 +154,7 @@ s32 func_800178C4(s32 arg0, s32 arg1, f32 arg2)
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_80017EC0.s")
 
 void func_80017FC0(s32 arg0) {
-    typedef struct {
-        s32 unk0;
-        s32 active;
-        u8 unk8[0x14];
-        OSPfs pfs;
-    } Motor;
     void func_80016934(s32);
-    extern Motor D_8007B2D0[];
     Motor *motor;
 
     motor = &D_8007B2D0[arg0];
@@ -164,7 +165,17 @@ void func_80017FC0(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_80018028.s")
+void func_80018028(s32 arg0) {
+    void func_80016934(s32);
+    Motor *motor;
+
+    motor = &D_8007B2D0[arg0];
+    if (motor->active != 0) {
+        func_80016934(4);
+        motor->active = __osMotorAccess(&motor->pfs, 0) == 0;
+        func_80016934(0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_80018090.s")
 
