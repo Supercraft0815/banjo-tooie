@@ -9,7 +9,19 @@ u8 func_800CB3E0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA4CD0/func_800CB45C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA4CD0/func_800CB4D0.s")
+s32 func_800CB4D0(s32 arg0, s32 arg1, s32 arg2) {
+    extern u8 D_8012AB70[];
+    void *temp_v1;
+
+    temp_v1 = D_8012AB70 + arg0 * 0x30;
+    if ((*(u8 *)((s8 *)(temp_v1) + (1))) == 0) {
+        (*(u8 *)((s8 *)(temp_v1) + (1))) = 1U;
+        (*(s32 *)((s8 *)(temp_v1) + (4))) = arg1;
+        (*(s16 *)((s8 *)(temp_v1) + (2))) = arg2;
+        return 1;
+    }
+    return 0;
+}
 
 s16 func_800CB518(s32 arg0) {
     extern s16 D_8012AB72[][24];
