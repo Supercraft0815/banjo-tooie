@@ -574,7 +574,12 @@ void func_800C9EF8(f32 time, void *funcPtr, void *argPtr) {
     rare_memcpy(q + 0x20, argPtr, 0x50);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9F48.s")
+void func_800C9F48(f32 time, u8 *arg1, s32 arg2) {
+    void *func_800C9750(f32, s32, void *, s32, s32, s32, s32, s32);
+    extern void func_800C9B30(void);
+    u8 **q = &arg1;
+    func_800C9750(time, 3, func_800C9B30, *q, (u32) (*(u16 *)(*q + 0x12)) >> 1, arg2, 0, 0);
+}
 
 int func_800C9F94(void) {
     s32 vector_size(s32);
