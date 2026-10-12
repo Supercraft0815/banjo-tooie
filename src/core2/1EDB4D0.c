@@ -100,9 +100,9 @@ s32 func_80101E14(Actor *arg0, f32 arg1) {
 
 /* extern */
 
-void func_80101EE4(Actor *arg0, s32 arg1) {
-    s32 func_8008B10C(s32, s32);
-    s32 func_8008B2DC(s32, s32);
+void func_80101EE4(Actor *arg0, f32 arg1) {
+    s32 func_8008B10C(s32, f32);
+    s32 func_8008B2DC(s32, f32);
     s32 func_80104248();
     s32 temp_v0;
 

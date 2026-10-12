@@ -18,7 +18,13 @@ void func_80800100_chstoneballcoach(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcoa/func_80800140_chstoneballcoach.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcoa/func_8080035C_chstoneballcoach.s")
+/* extern */
+
+void func_8080035C_chstoneballcoach(Actor *arg0) {
+    f32 func_800DC0C0(void);
+    void func_80101EE4(Actor *, f32);
+    func_80101EE4(arg0, func_800DC0C0());
+}
 
 OSThread *chstoneballcoach_entrypoint_0(void)
 {
