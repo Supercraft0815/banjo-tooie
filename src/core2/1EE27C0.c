@@ -243,7 +243,16 @@ void func_8010963C(void *arg0, f32 *arg1, void *arg2) { void func_80109538(void 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010965C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_801096C8.s")
+/* extern */
+
+void func_801096C8(Actor *arg0, s32 arg1) {
+    void func_80103DFC(void *, f32 *);
+    void func_80109538(void *, f32 *, void *, s32);
+    f32 sp1C[3];
+
+    func_80103DFC(arg0, sp1C);
+    func_80109538(arg0, sp1C, (void *) arg1, 0);
+}
 
 /* extern */
 
