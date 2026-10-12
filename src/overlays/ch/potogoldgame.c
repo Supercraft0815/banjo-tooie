@@ -79,7 +79,16 @@ void func_80801870_chpotogoldgame(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/chpotogoldgame_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80801998_chpotogoldgame.s")
+s32 func_80801998_chpotogoldgame(s16 *arg0) {
+    void func_800EE88C(f32 dst[3], s16 src[3]);
+    s32 func_800F1EA4(f32[3], f32 *);
+    f32 sp24;
+    f32 sp18[3];
+
+    func_800EE88C(sp18, arg0);
+    func_800F1EA4(sp18, &sp24);
+    return (s32) (sp24 / 72.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/chpotogoldgame_entrypoint_2.s")
 
