@@ -25,7 +25,13 @@ OSThread *chchuffy_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_8080059C_chchuffy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80800818_chchuffy.s")
+void func_80800818_chchuffy(u8 *arg0, u32 arg1, s32 arg2) {
+    struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
+    arg2 |= 4;
+    _subaddiedialog_entrypoint_11((*(Unk80132ED0 **)((s8 *)(arg0) + (0))), arg1, arg2, arg0 + 4, 0x6FU);
+    ((struct Flags *)arg0)->flag = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80800864_chchuffy.s")
 
