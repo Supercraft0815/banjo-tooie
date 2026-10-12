@@ -1,6 +1,17 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sunlightspell/func_80800000_chsunlightspell.s")
+/* extern */
+
+void func_80800000_chsunlightspell(Actor *arg0) {
+    s32 func_800DA298(s32);
+    void func_800FFA88(Unk80132ED0*);
+    void func_80800404_chsunlightspell(Actor *, s32);
+    if (func_800DA298(0xE9) != 0) {
+        func_800FFA88(arg0->unk0);
+        return;
+    }
+    func_80800404_chsunlightspell(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sunlightspell/func_80800048_chsunlightspell.s")
 
