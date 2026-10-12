@@ -1042,7 +1042,17 @@ s32 bsfirstp_entrypoint_17(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808045FC_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808047EC_bsfirstp.s")
+/* extern */
+
+void func_808047EC_bsfirstp(u8 *arg0) {
+    s32 func_80804848_bsfirstp(u8 *, s32);
+    u8 *sp1C;
+
+    sp1C = (*(u8 **)((s8 *)(arg0) + (0x188)));
+    bzero(sp1C + 0x12C, 0x38);
+    bzero(sp1C + 0x164, 0x38);
+    func_80804848_bsfirstp(arg0, (*(s32 *)((s8 *)(sp1C) + (0xC))));
+}
 
 void func_8080483C_bsfirstp(void *arg0, s32 arg1) {
     register void *temp_v0 = *(void **)((u8 *)arg0 + 392);
