@@ -68,7 +68,12 @@ void *func_80012F00(void) {
     return D_80045BB8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80012F0C.s")
+void func_80012F0C(s32 arg0) {
+    s32 func_80021A00(s32);
+    extern s16 D_8006A1CC;
+    D_8006A1CC = arg0;
+    func_80021A00(arg0 & 0xFF);
+}
 
 void func_80012F34(s32 arg0, s32 arg1) {
     s32 func_80021AD0();
