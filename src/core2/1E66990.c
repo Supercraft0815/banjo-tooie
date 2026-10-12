@@ -290,7 +290,11 @@ void func_8008E37C()
     func_800A0FE4();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E39C.s")
+int func_8008E39C(PlayerState *arg0) {
+    s32 _bashoes_entrypoint_1(PlayerState *);
+    s32 temp_v0 = _bashoes_entrypoint_1(arg0);
+    return !(temp_v0 == 1) && !(temp_v0 == 0) && !(temp_v0 == 2);
+}
 
 s32 func_8008E3E8(PlayerState *arg0) {
     s32 _bashoes_entrypoint_1(PlayerState *);
