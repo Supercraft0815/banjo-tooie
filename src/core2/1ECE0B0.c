@@ -1048,7 +1048,9 @@ void func_800F7B9C(s32 arg0,u32 a1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7DE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7E3C.s")
+s32 func_800F7E3C(s32 arg0, s32 arg1) {
+    return func_800F7C58(arg0, 0x84, arg1) == 2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7E64.s")
 
