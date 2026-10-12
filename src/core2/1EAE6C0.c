@@ -2,7 +2,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAE6C0/func_800D4DD0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAE6C0/func_800D4E18.s")
+/* extern */
+
+void func_800D4E18(s32 arg0, s32 arg1) { u8 func_800D4E7C(s32); s32 func_800D4FB8(s32, s32); if (arg0 == 9) { arg0 = 1; } if (arg1 < 0) { func_800FC660(0x74U); } func_800D4FB8(arg0, func_800D4E7C(arg0) + arg1); }
 
 u8 func_800D4E7C(s32 arg0) {
     s32 func_800D4DD0(s32);
