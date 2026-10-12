@@ -678,7 +678,16 @@ void func_80803624_chweldarboss(Actor *arg0) {
     (*(s8 *)((s8 *)(sp24) + (0xB1))) = _subaddieaudioloop_entrypoint_7((*(u8 *)((s8 *)(temp_v0) + (0xB1))), arg0->position, (*(u8 *)((s8 *)(temp_v0) + (0x6E))), &D_80804AB4_chweldarboss, (*(s32 *)((s8 *)(arg0) + (0x70))) & 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_8080367C_chweldarboss.s")
+void func_8080367C_chweldarboss(Actor *arg0) {
+    void func_800D2498(u32 itemDisplayUI, u32 value,u32 a2);
+    void *func_80100094(Actor *, u32);
+    u32 temp_t6;
+
+    temp_t6 = (u32) arg0->unk70_10;
+    if (((s32) temp_t6 >= 7) && ((s32) temp_t6 < 0x2D)) {
+        func_800D2498(0xFDU, (u32) (*(u8 *)((s8 *)(func_80100094(arg0, 0U)) + (0x6F))), 0U);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_808036C8_chweldarboss.s")
 
