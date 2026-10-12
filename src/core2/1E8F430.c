@@ -220,7 +220,15 @@ s32 func_800B7C10(void) {
     return D_801282B0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B7C54.s")
+s32 func_800B7C54(void) {
+    extern s32 D_801282B4;
+    s32 _fxrain_entrypoint_5(s32);
+
+    if (D_801282B4 == 0) {
+        D_801282B4 = _fxrain_entrypoint_5(0x1E);
+    }
+    return D_801282B4;
+}
 
 s32 func_800B7C98()
 {
