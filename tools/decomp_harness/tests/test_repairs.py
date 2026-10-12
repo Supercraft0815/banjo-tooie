@@ -160,6 +160,9 @@ class RepairLoopTests(LoopFixture):
 
     def test_wrong_linked_rom_restores_header_and_never_commits(self):
         header, before, after = self.dependency()
+        checks = []
+        regression = self.loop.builder.regression
+        self.loop.builder.regression = lambda log: checks.append(log.name) or regression(log)
         initial = self.git('rev-parse', 'HEAD')
         self.allow_match = False
         self.loop.args.max_attempts = 1
@@ -170,6 +173,15 @@ class RepairLoopTests(LoopFixture):
         self.assertEqual((self.work/self.function['source']).read_text(), fixtures.SOURCE)
         self.assertEqual(self.git('rev-parse', 'HEAD'), initial)
         self.assertEqual(len(self.invalidations), 2)
+        self.assertEqual(checks, ['regression.log', 'restore-baseline.log'])
+
+    def test_failed_dependency_rollback_stops_before_next_attempt(self):
+        header, before, after = self.dependency()
+        self.loop.builder.regression = lambda log: False
+        with self.repair_runner(header, after), self.assertRaisesRegex(HarnessError, 'rollback could not rebuild'):
+            self.process()
+        self.assertEqual(self.state.get('target')['status'], 'pending')
+        self.assertEqual((self.root/header).read_bytes(), before)
 
     def test_duplicate_probes_use_cache_and_retain_best_tested_source(self):
         replies, builds = [], []

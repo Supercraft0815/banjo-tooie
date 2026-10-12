@@ -865,6 +865,9 @@ class Loop:
                     if support:
                         self.builder.invalidate(support, directory/'restore-support.log')
                     self.builder.restore(function['source'], original, saved, directory/'restore.log')
+                    if support and not self.control.stopped():
+                        if not self.builder.regression(directory/'restore-baseline.log'):
+                            raise HarnessError('Dependency rollback could not rebuild an exact baseline; stopping before another attempt')
 
     def finish_candidate(self, target, candidate, directory, comparison, replacement, message):
         """Under the repository gate, persist evidence and publish only a ROM-exact result."""
