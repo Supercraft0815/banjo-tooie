@@ -27,4 +27,13 @@ s32 func_808000C4_chhotwatersteam(s32 arg0, s32 arg1, s32 arg2)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/watersteam/func_8080014C_chhotwatersteam.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/watersteam/func_808001E8_chhotwatersteam.s")
+/* extern */
+
+s32 func_808001E8_chhotwatersteam(void *arg0) {
+    s32 func_800DA298(s32);
+    if (((u32)*(u16 *)((u8 *)arg0 + 0x76) >> 7) == 0x33) {
+        return func_800DA298(0x31B) == 0;
+    } else {
+        return 1;
+    }
+}
