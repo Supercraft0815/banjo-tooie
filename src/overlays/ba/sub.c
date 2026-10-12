@@ -103,7 +103,18 @@ void basub_entrypoint_8(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/func_80800834_basub.s")
+void func_80800834_basub(u8 *arg0) {
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern s32 D_80800C24_basub;
+    extern s32 _basub_entrypoint_7;
+    f32 sp24;
+    f32 sp18[3];
+
+    sp24 = 0.0f;
+    func_8009C128(arg0, sp18);
+    func_8010D930(0xB, -1, sp18, &D_80800C24_basub);
+    _chbaddiesetup_entrypoint_2(&_basub_entrypoint_7, *(Unk80132ED0 **)((s8 *)arg0 + 0x184), *(s32 *)&sp24);
+}
 
 /* extern */
 
