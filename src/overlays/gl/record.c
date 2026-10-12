@@ -1,6 +1,23 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/record/glrecord_entrypoint_0.s")
+s32 glrecord_entrypoint_0(OSContPad *arg0, s32 *arg1) {
+    extern s32 D_8012D5B0;
+    struct Record { u8 x; u8 y; u16 button; u8 lag; u8 pad; } *record;
+    s32 count;
+    int valid;
+
+    count = *(s32 *)((s8 *)&D_8012D5B0 + 8);
+    record = (struct Record *)*(s32 *)((s8 *)&D_8012D5B0) + (*(s32 *)((s8 *)&D_8012D5B0 + 8))++;
+    valid = *(s32 *)((s8 *)&D_8012D5B0 + 8) < *(s32 *)((s8 *)&D_8012D5B0 + 0xC);
+    if (!valid) {
+        record = (struct Record *)((s8 *)&D_8012D5B0 + 0x10);
+    }
+    arg0->stick_x = record->x;
+    arg0->stick_y = record->y;
+    arg0->button = record->button;
+    *arg1 = record->lag;
+    return valid;
+}
 
 void glrecord_entrypoint_1(s32 arg0, u32 arg1, s32 arg2) {
     extern s32 D_8012D5B0;
