@@ -504,7 +504,120 @@ void func_80803B88_chquiz(s32 arg0) {
     _chlightfader_entrypoint_1(temp_v0, 0x40000000, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80803BFC_chquiz.s")
+void func_80803BFC_chquiz(Actor *arg0) {
+    typedef struct { f32 values[4]; } QuizTimes4;
+    typedef struct { f32 values[6]; } QuizTimes6;
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_4(s32, s32, s32 *, s32 *);
+    void _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800C3F48(u32);
+    s32 func_800D395C(void);
+    f32 func_800DC0C0(void);
+    s32 func_800DC298(f32);
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    f32 func_800F1214(f32, f32, f32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80101E4C(Actor *, f32 *);
+    f32 func_80101F24(Actor *);
+    s32 func_80102424(Actor *, s32);
+    f32 func_80103EAC(u8 *);
+    void func_80804170_chquiz(Actor *, s32);
+    extern u16 D_80807528_chquiz[][4];
+    extern QuizTimes4 D_80807570_chquiz;
+    extern QuizTimes6 D_80807580_chquiz;
+    extern QuizTimes6 D_80807598_chquiz;
+    extern s32 D_808075B0_chquiz;
+    extern s32 D_808075C0_chquiz;
+    extern s32 D_808075EC_chquiz;
+    extern u32 D_80807624_chquiz;
+    extern u32 D_80807640_chquiz;
+    extern u32 D_8080765C_chquiz;
+    QuizTimes4 sp90;
+    QuizTimes6 sp78;
+    QuizTimes6 sp60;
+    f32 sp54[3];
+    f32 sp50;
+    s32 i;
+    s32 count;
+    f32 sp3C[3];
+
+    if (*(u16 *)((u8 *)arg0 + 0x64) & 1) {
+        switch (D_80807528_chquiz[(u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10][0]) {
+        case 0x4C2:
+        case 0x4C3:
+        case 0x4C6:
+            break;
+        case 0x4C4:
+            if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 1);
+            }
+            break;
+        case 0x4C5:
+            sp90 = D_80807570_chquiz;
+            _subaddieaudioquick_entrypoint_4((s32)arg0, (s32)arg0->position,
+                &D_808075B0_chquiz, (s32 *)&sp90);
+            if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 5);
+            }
+            break;
+        case 0x4C7:
+            sp78 = D_80807580_chquiz;
+            sp60 = D_80807598_chquiz;
+            sp50 = func_80101F24(arg0);
+            _subaddieskeleton_entrypoint_0(arg0, 0x44, sp54);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80807640_chquiz, 0.33f);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_8080765C_chquiz, 0.88f);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80807624_chquiz, 0.09f);
+            if (func_80101E14(arg0, 0.09f)) {
+                func_800C3F48(0x7FFFFE87);
+            } else if (func_80101E14(arg0, 0.2f)) {
+                func_800C3F48(0x7FFFFE88);
+            } else if (func_80101E14(arg0, 0.33f)) {
+                func_800C3F48(0x7FFFFE89);
+            }
+            if (sp50 > 0.09f && func_800DC298(func_800F1214(sp50, 0.5f, 1.0f))) {
+                count = 0;
+                if (sp50 < 0.33f) {
+                    count = func_800DC298(0.75f);
+                } else if (sp50 < 0.58f) {
+                    count = 2;
+                } else if (sp50 < 0.88f) {
+                    count = 3;
+                }
+                i = 0;
+                if (count > 0) {
+                    do {
+                        func_800EEB9C(sp3C, func_800DC0C0() * 360.0f, func_80103EAC((u8 *)arg0) * 0.7f);
+                        func_800EF04C(sp3C, sp54);
+                        func_800BBCB8(sp3C, sp3C, 1.0f, 1, &D_808075C0_chquiz);
+                        i++;
+                    } while (i != count);
+                }
+            }
+            if ((sp50 > 0.575f && sp50 < 0.62f) ||
+                (sp50 > 0.69f && sp50 < 0.79f) ||
+                (sp50 > 0.82f && sp50 < 0.86f) ||
+                (sp50 > 0.9f && sp50 < 0.99f)) {
+                func_800BBCB8(sp54, sp54, 2.5f, 8, &D_808075EC_chquiz);
+            }
+            if (func_80101E4C(arg0, sp78.values)) {
+                func_80803B88_chquiz((s32)sp54);
+            }
+            if (func_80101DDC(arg0)) {
+                if (func_800D395C()) {
+                    func_80804170_chquiz(arg0, 0x2C);
+                } else {
+                    func_80804170_chquiz(arg0, 0x21);
+                }
+                func_80102424(arg0, 1);
+            }
+            break;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808040D4_chquiz.s")
 
