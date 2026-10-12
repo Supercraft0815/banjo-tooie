@@ -10,7 +10,17 @@ s16 *func_80800000_gcmapDll(s32 arg0) {
     return NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapDll/gcmapDll_entrypoint_0.s")
+s32 gcmapDll_entrypoint_0(s32 arg0) {
+    extern s16 D_80800F10_gcmapDll[];
+    s16 *p = D_80800F10_gcmapDll;
+    if (*p != 0) {
+    do {
+        if (arg0 == *p) return 1;
+        p += 7;
+    } while (*p != 0);
+    }
+    return 0;
+}
 
 /* extern */
 
