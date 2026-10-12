@@ -119,7 +119,11 @@ s32 func_80800A54_chfactoryworkerdirty(void) {
     return count;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800AB4_chfactoryworkerdirty.s")
+int func_80800AB4_chfactoryworkerdirty(s32 arg0) {
+    s32 func_80800A04_chfactoryworkerdirty();
+    return (func_808009E4_chfactoryworkerdirty() != 0) ||
+           (func_800DA298(func_80800A04_chfactoryworkerdirty(arg0) + 0x42D) != 0);
+}
 
 /* extern */
 
