@@ -530,7 +530,20 @@ void func_800A8A04(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A8A44.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A8A88.s")
+/* extern */
+
+void func_800A8A88(s32 arg0, f32 arg1) {
+    s32 func_800CA558(s32, f32);
+    s32 temp_a2;
+    unk_D_80127688 *temp_v0;
+
+    temp_v0 = &D_80127688[arg0];
+    temp_a2 = temp_v0->unk4;
+    temp_v0->unk8 = arg1;
+    if (temp_a2 != 0) {
+        func_800CA558(temp_a2, arg1);
+    }
+}
 
 f32 func_800A8AD4(s32 arg0) 
 {
