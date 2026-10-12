@@ -32,7 +32,20 @@ void func_8080009C_bstnt(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80800164_bstnt.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_808001C8_bstnt.s")
+/* extern */
+
+ s32 func_808001C8_bstnt(void *arg0, s32 arg1) {
+    s32 bakey_pressed(void *, s32);
+    s32 bstnt_entrypoint_8(void *);
+
+    if (bakey_pressed(arg0, 8) != 0) {
+        arg1 = 0x107;
+    }
+    if (bstnt_entrypoint_8(arg0) != 0) {
+        arg1 = 0x10E;
+    }
+    return arg1;
+}
 
 /* extern */
 
