@@ -29,7 +29,24 @@ void func_800FA608(void)
   while (var_s0 != ((s32 (*)[7]) (&D_80123DC0)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA660.s")
+void func_800FA660(void)
+{
+  s32 _scinfobar_entrypoint_1(s32);
+  extern s32 D_80123DC0;
+  extern s32 D_80123880[][7];
+  s32 (*var_s0)[7];
+  s32 temp_a0;
+ var_s0 = D_80123880; do {
+    temp_a0 = var_s0[0][6];
+    if (temp_a0 != 0)
+    {
+      _scinfobar_entrypoint_1(temp_a0);
+      var_s0[0][6] = 0;
+    }
+    var_s0++;
+  }
+  while (var_s0 != ((s32 (*)[7]) (&D_80123DC0)));
+}
 
 void func_800FA6B8(s32 arg0, s32 arg1, s32 arg2) {
     extern s32 D_80123880[][7];
