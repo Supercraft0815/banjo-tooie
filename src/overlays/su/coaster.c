@@ -270,7 +270,10 @@ void sucoaster_entrypoint_4(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_8.s")
+void sucoaster_entrypoint_8(Actor *arg0) {
+    s32 func_8010BA80(Actor *, s32, s32);
+    func_8010BA80(arg0, 0x505410, 0x20);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_9.s")
 
