@@ -19,7 +19,12 @@ void basudie_entrypoint_1(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sudie/basudie_entrypoint_2.s")
+/* extern */
+
+void basudie_entrypoint_2(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
+    void basudie_entrypoint_4(s32, f32, f32, f32, f32, f32);
+    basudie_entrypoint_4(arg0, arg1, arg2, arg3, 30.0f, 3.5f);
+}
 
 /* extern */
 
