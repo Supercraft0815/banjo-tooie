@@ -99,7 +99,15 @@ void func_80800B38_chpoolkids(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_80800B68_chpoolkids.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_80800D3C_chpoolkids.s")
+u32 func_80800D3C_chpoolkids(s32 unused, s32 arg1, s32 arg2) {
+    void func_80800D74_chpoolkids(Actor *);
+
+    if (arg1 == 0x95) {
+        func_80800D74_chpoolkids((Actor *) unused);
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_80800D74_chpoolkids.s")
 
