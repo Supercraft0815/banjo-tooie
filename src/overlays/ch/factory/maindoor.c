@@ -13,7 +13,19 @@ OSThread *chfactorymaindoor_entrypoint_0(void)
     return (OSThread *) D_808004D4_chfactorymaindoor;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/maindoor/func_80800344_chfactorymaindoor.s")
+void func_80800344_chfactorymaindoor(u8 *arg0)
+{
+  s32 _chswitch_entrypoint_7(s32, s32);
+  s32 _chswitch_entrypoint_8(u8 *, s32);
+  if ((((unsigned int) ((u16) (*((u16 *) (((s8 *) arg0) + 0x76))))) >> 7) == 0x32)
+  {
+    _chswitch_entrypoint_7((s32) arg0, 0xA01);
+    _chswitch_entrypoint_8(arg0, 0x200);
+    return;
+  }
+  _chswitch_entrypoint_7((s32) arg0, 0xA00);
+  _chswitch_entrypoint_8(arg0, 0x400);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/maindoor/func_808003A8_chfactorymaindoor.s")
 
