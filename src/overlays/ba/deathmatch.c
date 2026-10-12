@@ -30,7 +30,18 @@ void badeathmatch_entrypoint_1(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/deathmatch/badeathmatch_entrypoint_2.s")
+/* extern */
+
+void badeathmatch_entrypoint_2(void *arg0) {
+    s32 func_800A4C68(void *);
+    s32 func_800C968C(s32, s32);
+    s32 heap_free(s32);
+    if ((*(s32 *)((s8 *)(arg0) + (0x158))) != 0) {
+        heap_free((*(s32 *)((s8 *)(arg0) + (0x158))));
+        (*(s32 *)((s8 *)(arg0) + (0x158))) = 0;
+        func_800C968C(func_800A4C68(arg0), 9);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/deathmatch/badeathmatch_entrypoint_3.s")
 
