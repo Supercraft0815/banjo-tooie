@@ -44,7 +44,21 @@ void func_80800270_chfactorytoxicpools(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxicpools/func_808003DC_chfactorytoxicpools.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxicpools/func_808004A4_chfactorytoxicpools.s")
+void func_808004A4_chfactorytoxicpools(s32 *arg0) {
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    s32 _idworldmake_entrypoint_1(s32, s32, s32, s32);
+    s32 func_800BEA88(s32);
+    extern s32 _chfactorytoxicpools_entrypoint_3;
+    s32 temp_v0;
+    s32 sp1C;
+
+    temp_v0 = func_800BEA88(1);
+    if (temp_v0 != 0) {
+        sp1C = temp_v0;
+        _idworldmake_entrypoint_1(temp_v0, 0x7D, 2, 1);
+        _glid_entrypoint_0(sp1C, 2, &_chfactorytoxicpools_entrypoint_3, *arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxicpools/chfactorytoxicpools_entrypoint_3.s")
 
