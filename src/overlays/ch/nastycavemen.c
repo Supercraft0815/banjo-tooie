@@ -7,7 +7,14 @@ OSThread *chnastycavemen_entrypoint_0(void)
     return (OSThread *) D_808010E8_chnastycavemen;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_8080000C_chnastycavemen.s")
+/* extern */
+
+int func_8080000C_chnastycavemen(void) {
+    s32 _plsu_entrypoint_1(s32);
+    return (func_80090178(0x10000) != 0) &&
+        (_plsu_entrypoint_1(1) == -1) &&
+        (_plsu_entrypoint_1(0xB) == -1);
+}
 
 /* extern */
 
