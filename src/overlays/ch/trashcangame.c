@@ -247,7 +247,13 @@ void func_80800BA8_chtrashcangame(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_808017F0_chtrashcangame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_8080189C_chtrashcangame.s")
+void func_8080189C_chtrashcangame(void *arg0) {
+    s32 _capod_entrypoint_3(s32, void *);
+    if (((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7) != 0) {
+        _capod_entrypoint_3(0, arg0);
+        (*(u16 *)((s8 *)(arg0) + (0x76))) = (u16) ((*(u16 *)((s8 *)(arg0) + (0x76))) & 0x7F);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_808018E4_chtrashcangame.s")
 
