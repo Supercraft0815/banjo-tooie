@@ -34,7 +34,19 @@ OSThread *chvolcanobits_entrypoint_3(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_8080027C_chvolcanobits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_8080061C_chvolcanobits.s")
+void func_8080061C_chvolcanobits(u8 *arg0) {
+    struct Flags {
+        u8 pad[0x64];
+        unsigned int : 11;
+        unsigned int active : 1;
+        unsigned int : 20;
+    };
+    void func_800CF494(void);
+    if (((struct Flags *)arg0)->active) {
+        func_800CF494();
+        arg0[0x65] &= 0xFFEF;
+    }
+}
 
 void func_8080065C_chvolcanobits(s32 arg0) 
 {
