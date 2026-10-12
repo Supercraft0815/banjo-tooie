@@ -174,7 +174,17 @@ void func_800D5B24(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5B34.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5D70.s")
+void func_800D5D70(void) {
+    extern s32 D_8012B448;
+    extern s8 D_8012B7E4;
+    extern s8 D_8012B7E6;
+    extern s32 assets_ROM_START;
+    D_8012B7E6 = 0;
+    func_800D55A0();
+    D_8012B7E4 = 0;
+    D_8012B448 = (s32)&assets_ROM_START + 0xD9A4;
+    func_800E4CE8();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5DB8.s")
 
