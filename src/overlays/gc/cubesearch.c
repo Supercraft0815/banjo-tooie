@@ -60,7 +60,16 @@ void gccubesearch_entrypoint_6(s32 arg0,s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_9.s")
+/* extern */
+
+void gccubesearch_entrypoint_9(s32 arg0) {
+    s32 gccubesearch_entrypoint_7(s32 *);
+    s32 sp18[2];
+
+    sp18[0] = arg0;
+    sp18[1] = -1;
+    gccubesearch_entrypoint_7(sp18);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_10.s")
 
