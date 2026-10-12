@@ -34,4 +34,18 @@ void func_800A59B8(s32 id, s32 *vec11, s32 *vec12, s32 *vec13, s32 *vec21, s32 *
     *vec33 = ptr->far[2];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F220/func_800A5A4C.s")
+void func_800A5A4C(void) {
+    typedef struct { s32 id; CameraDistanceEntry *table; } MapEntry;
+    extern CameraDistanceEntry *D_801270F0;
+    extern CameraDistanceEntry D_80119BC0[];
+    extern MapEntry D_80119BD8[];
+    extern u8 D_8012762C;
+    int i;
+    int level = D_8012762C;
+    D_801270F0 = D_80119BC0;
+    for (i = 0; D_80119BD8[i].id != 0; i++) {
+        if (D_80119BD8[i].id == level) {
+            D_801270F0 = D_80119BD8[i].table;
+        }
+    }
+}
