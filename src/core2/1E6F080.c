@@ -291,9 +291,9 @@ void func_800966BC(void *arg0) {
 
 /* extern */
 
-void func_800966E0(void *arg0) {
+s32 func_800966E0(void *arg0) {
     s32 func_800C67E8(s32);
-    func_800C67E8(*(*(s32 **)((s8 *)(arg0) + (0x94))));
+    return func_800C67E8(*(*(s32 **)((s8 *)(arg0) + (0x94))));
 }
 
 /* extern */

@@ -29,7 +29,19 @@ s32 func_8009FBB0(PlayerState *arg0, f32 *arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009FBE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009FC34.s")
+/* extern */
+
+void func_8009FC34(PlayerState *arg0, s32 arg1) {
+    s32 _fxripple_entrypoint_1(s32, f32 *, s32);
+    f32 func_800964DC(PlayerState *);
+    s32 func_800966E0(void *);
+    void func_8009C128(PlayerState *, f32[3]);
+    f32 sp1C[3];
+
+    func_8009C128(arg0, sp1C);
+    sp1C[1] = func_800964DC(arg0);
+    _fxripple_entrypoint_1(arg1, sp1C, func_800966E0(arg0));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009FC80.s")
 
