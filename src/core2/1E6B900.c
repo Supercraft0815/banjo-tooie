@@ -586,7 +586,15 @@ int func_800949BC(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094B14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094BC0.s")
+/* extern */
+
+s32 func_80094BC0(PlayerState *arg0) {
+    s32 _gcegg_entrypoint_5(s32);
+    if (func_80094348(arg0, 4) != 0) {
+        return 1;
+    }
+    return func_800D1A04(_gcegg_entrypoint_5(func_80094510(arg0)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094C0C.s")
 
