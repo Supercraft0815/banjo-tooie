@@ -272,4 +272,20 @@ s32 func_800FCDB4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FCED0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FCF50.s")
+s32 func_800FCF50(s32 arg0)
+{
+  s16 *new_var;
+  s32 func_800DA298(s32);
+  extern s16 D_80123DE0;
+  s32 var_v0;
+  s32 var_a1;
+ var_v0 = 0; var_a1 = 0x30; do { new_var = &D_80123DE0;
+    if (arg0 == (*(new_var + var_v0)))
+    {
+      return func_800DA298(var_v0 + 0x53E);
+    }
+    var_v0 += 1;
+  }
+  while (var_v0 != var_a1);
+  return 1;
+}
