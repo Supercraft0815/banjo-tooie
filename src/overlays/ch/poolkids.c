@@ -76,7 +76,20 @@ void func_808008DC_chpoolkids(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_80800944_chpoolkids.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_80800AA0_chpoolkids.s")
+void func_80800AA0_chpoolkids(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
+    extern u32 D_8080152C_chpoolkids;
+    extern u32 D_8080153C_chpoolkids;
+    extern u32 D_8080154C_chpoolkids;
+    extern u32 D_8080155C_chpoolkids;
+    f32 *temp_s1;
+
+    temp_s1 = (f32 *)((s8 *)arg0 + 4);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_8080152C_chpoolkids, 0.4f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_8080153C_chpoolkids, 0.18f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_8080154C_chpoolkids, 0.73f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_8080155C_chpoolkids, 0.77f);
+}
 
 void func_80800B38_chpoolkids(Actor *arg0) {
     extern u32 D_8080156C_chpoolkids;
