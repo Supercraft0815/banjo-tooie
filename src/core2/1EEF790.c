@@ -33,7 +33,18 @@ void func_8011607C(void *arg0, s32 arg1) {
     *(s16 *)((u8 *)*(void **)((u8 *)arg0 + 4) + 46) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEF790/func_80116088.s")
+/* extern */
+
+void func_80116088(u8 *arg0, s32 arg1) {
+    s32 func_800F1E6C(f32 *, f32 *, f32 *);
+    void func_801107B0(void *, void *);
+    f32 sp1C[3];
+
+    func_801107B0(arg0, sp1C);
+    if (func_800F1E6C(sp1C, (f32 *)arg1, (f32 *)(*(u8 **)((s8 *)(arg0) + (4)) + 0x28)) != 0) {
+        (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (4)))) + (0x2C))) = 1;
+    }
+}
 
 void func_801160DC(PlayerState *self, f32 arg1) {
     struct ba_anim_s *temp_v0;
