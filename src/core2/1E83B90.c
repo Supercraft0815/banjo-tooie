@@ -59,7 +59,15 @@ u32 func_800AADE4(u16 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AB868.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AB980.s")
+void func_800AB980(void) {
+    extern void *D_8012798C;
+    void* heap_alloc(s32 size);
+    D_8012798C = heap_alloc(0x484);
+    *(s32 *)D_8012798C = 0;
+    (*(s32 *)((s8 *)(D_8012798C) + (4))) = 0;
+    (*(s32 *)((s8 *)(D_8012798C) + (0xC))) = 0xF;
+    (*(s32 *)((s8 *)(D_8012798C) + (8))) = 0x40000000;
+}
 
 void func_800AB9D0(void) {
     s32 heap_free(void *);
