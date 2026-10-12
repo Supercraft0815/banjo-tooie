@@ -242,7 +242,7 @@ void func_800D7948(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
         u32 unused4;
         s16 **actor;
     } Target;
-    void *func_80105494(void *);
+    void *func_80105494(Actor *);
     void func_800C810C(void *, f32, f32 *, f32 *);
     void func_800D7908(void *, f32 *);
     void func_8008FE68(f32 *);
@@ -329,7 +329,7 @@ void func_800D7948(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     object->pitch = object->idealPitch;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7DE8.s")
+s32 func_800D7DE8(Actor *arg0) { typedef struct { u32 pad[9]; u32 unused:16; u32 flag:1; u32 flag2:1; u32 rest:14; } State; void *func_80105494(Actor *); s32 var_a0; s32 var_v1; State *temp_v0; temp_v0 = func_80105494(arg0); if (temp_v0->flag) { var_a0 = 0x800; } else { var_a0 = 0x100; } var_v1 = temp_v0->flag2 ? 0x1000 : 0x200; return var_v1 + var_a0; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7E38.s")
 
@@ -366,7 +366,7 @@ s32 func_800D8070(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     f32 func_800C7E28(void *);
     f32 func_800C8070(s32, f32, f32, s32 *);
     s32 func_800D75DC(s32, f32);
-    s32 func_800D7DE8(void *);
+    s32 func_800D7DE8(Actor *);
     s32 func_800D7E38(void *, s32, s32, s32, s32, s32);
     f32 func_800D8FF8(void);
     s32 func_800DA298(s32);
