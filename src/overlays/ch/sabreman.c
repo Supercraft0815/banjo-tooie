@@ -48,7 +48,8 @@ s32 func_808008C8_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800F8300(s32, s32, s32);
     void func_800FC660(u32);
     void func_800FFAB0(Actor *);
-    void *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
+    void func_808016E4_chsabreman(Actor *);
     void func_80102FDC(Actor *, f32);
     Actor *func_801084B0(s32, Actor **);
     void func_80108B04(Actor *, u32);
@@ -229,7 +230,7 @@ void func_80801620_chsabreman(Actor *arg0, void *arg1) {
 
 s32 func_8080167C_chsabreman(s32 arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_0(s32, s32);
-    void *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_80801724_chsabreman(s32, s32, s32);
     void *temp_v0;
 
@@ -243,7 +244,20 @@ s32 func_8080167C_chsabreman(s32 arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_808016E4_chsabreman.s")
+void func_808016E4_chsabreman(Actor *arg0) {
+    void _capod_entrypoint_3(u32);
+    void *func_80100094(Actor *, u32);
+    u8 *sp1C[1];
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0);
+    if ((*(s16 *)((s8 *)(temp_v0) + (0x820))) != 0) {
+        sp1C[0] = temp_v0;
+        _capod_entrypoint_3(0U);
+        temp_v0 = sp1C[0];
+        (*(s16 *)((s8 *)(temp_v0) + (0x820))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_80801724_chsabreman.s")
 
