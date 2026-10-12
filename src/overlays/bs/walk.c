@@ -15,8 +15,9 @@ void func_808001E4_bswalk(u8 *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x16C))) = func_800F0E00(0.0f, (*(f32 *)((s8 *)(arg0) + (0x16C))) - func_800D8FF8());
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/func_80800220_bswalk.s")
-
+s32 func_80800220_bswalk(void *arg0) {
+    return 0.0f == *(f32 *)((s8 *)arg0 + 0x16C);
+}
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/func_80800248_bswalk.s")
 
 f32 bswalk_entrypoint_0(s32 arg0) {
@@ -51,7 +52,7 @@ void bswalk_entrypoint_4(PlayerState *self) {
     s32 _badrone_entrypoint_25(PlayerState *);
     void _baduo_entrypoint_12(PlayerState *);
     s32 func_80800248_bswalk(PlayerState *, s32);
-    int func_8008E148(PlayerState *);
+    s32 func_8008E148(PlayerState *);
     s32 next_state;
 
     next_state = 0;
@@ -129,7 +130,7 @@ void bswalk_entrypoint_7(PlayerState *self) {
     s32 _badrone_entrypoint_25(PlayerState *);
     void _baduo_entrypoint_12(PlayerState *);
     s32 func_80800248_bswalk(PlayerState *, s32);
-    int func_8008E148(PlayerState *);
+    s32 func_8008E148(PlayerState *);
     s32 next_state = 0;
 
     func_8080016C_bswalk();
