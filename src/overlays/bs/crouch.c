@@ -12,7 +12,15 @@ void func_80800034_bscrouch(s32 arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x15C))) = 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/crouch/func_80800068_bscrouch.s")
+/* extern */
+
+void func_80800068_bscrouch(void *arg0) {
+    void _batimer_set(void *, s32, f32);
+    void baanim_playForDuration_onceSmoothStartingAt(void *, s32, f32, f32);
+    baanim_playForDuration_onceSmoothStartingAt(arg0, 0x10C, 0.5f, 0.9999f);
+    _batimer_set(arg0, 2, 2.0f);
+    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 1;
+}
 
 /* extern */
 
