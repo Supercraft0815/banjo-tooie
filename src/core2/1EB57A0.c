@@ -28,7 +28,14 @@ void func_800DBF38(void *arg0, s32 arg1, s32 *arg2) {
     func_800EE904(arg2, ((VectorTable *)arg0)->vectors[arg1]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB57A0/func_800DBF74.s")
+/* extern */
+
+void func_800DBF74(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void func_800EF2A0(f32[3]);
+    void func_800EFB24(void *, void *, void *);
+    func_800EFB24((void *)arg3, (u8 *)arg0 + (arg2 * 12) + 4, (u8 *)arg0 + (arg1 * 12) + 4);
+    func_800EF2A0((f32 *)arg3);
+}
 
 void func_800DBFD8(void* arg0) 
 {
