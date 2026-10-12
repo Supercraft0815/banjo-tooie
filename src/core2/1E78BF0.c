@@ -86,7 +86,19 @@ void func_8009FFD8(PlayerState *arg0, enum baanim_update_type_e anim_update_type
     baphysics_set_type(arg0, arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A0024.s")
+/* extern */
+
+void func_800A0024(PlayerState *arg0) {
+    s32 func_8009CC18(PlayerState *self, f32[3]);
+    s32 func_8009CC68(PlayerState *self);
+    s32 func_800A0064(PlayerState *, f32 *);
+    f32 sp1C[3];
+    if (func_8009CC68(arg0) != 0) {
+        if (func_8009CC18(arg0, sp1C) != 0) {
+            func_800A0064(arg0, sp1C);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A0064.s")
 
