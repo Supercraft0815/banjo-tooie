@@ -59,7 +59,14 @@ void func_800CB6B4(s32 arg0, f32 *arg1, f32 arg2, s32 arg3) {
     ((struct Entry *)D_8012AB70)[arg0].flag = arg3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA4CD0/func_800CB70C.s")
+void func_800CB70C(s32 arg0) {
+    extern u8 D_8012AB70[];
+    struct Entry { f32 pre[2]; f32 src[3]; f32 copy; s16 flag; s16 tail; f32 vector[3]; f32 value; s16 outFlag; s16 outTail; };
+    func_800EE7F8(((struct Entry *)D_8012AB70)[arg0].vector, ((struct Entry *)D_8012AB70)[arg0].src);
+    ((struct Entry *)D_8012AB70)[arg0].value = ((struct Entry *)D_8012AB70)[arg0].copy;
+    ((struct Entry *)D_8012AB70)[arg0].outFlag = ((struct Entry *)D_8012AB70)[arg0].flag;
+    ((struct Entry *)D_8012AB70)[arg0].outTail = ((struct Entry *)D_8012AB70)[arg0].tail;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA4CD0/func_800CB764.s")
 
