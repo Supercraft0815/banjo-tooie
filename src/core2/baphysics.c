@@ -213,7 +213,18 @@ void baphysics_set_terminal_velocity(PlayerState *arg0, f32 arg1) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x38))) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009BCD4.s")
+s32 func_8009BCD4(PlayerState *arg0, f32 arg1) {
+    f32 temp_f0;
+    f32 temp_f2;
+    f32 magnitude;
+    u8 *temp_v1;
+
+    temp_v1 = (*(u8 **)((s8 *)(arg0) + (0xC8)));
+    temp_f0 = (*(f32 *)((s8 *)(temp_v1) + (0x18)));
+    temp_f2 = (*(f32 *)((s8 *)(temp_v1) + (0x10)));
+    magnitude = (temp_f0 * temp_f0) + (temp_f2 * temp_f2);
+    return magnitude <= arg1 * arg1;
+}
 
 void func_8009BD18(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 80) = arg1;
