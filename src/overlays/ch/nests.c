@@ -38,7 +38,21 @@ void func_80800324_chnests(s32 arg0)
     func_80800144_chnests();
     func_808002E0_chnests(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_8080034C_chnests.s")
+/* extern */
+
+void func_8080034C_chnests(void *arg0) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiefade_entrypoint_2();
+    s32 func_80101FDC(void *, s32);
+    s32 func_80103110(void *, s32);
+    s32 func_8010A590(void *);
+    _subaddiefade_entrypoint_2();
+    func_80103110(arg0, 0);
+    _subaddieDll_entrypoint_4(arg0, 0);
+    func_8010A590(arg0);
+    ((Actor *)arg0)->unk64_16 = 1;
+    func_80101FDC(arg0, (*(s32 *)((s8 *)(arg0) + (0x18))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_808003AC_chnests.s")
 
