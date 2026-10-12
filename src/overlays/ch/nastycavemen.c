@@ -9,7 +9,15 @@ OSThread *chnastycavemen_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_8080000C_chnastycavemen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_80800060_chnastycavemen.s")
+/* extern */
+
+int func_80800060_chnastycavemen(void) {
+    u32 func_800F54E4(void);
+    s32 func_800F640C(s32, s32);
+    s32 func_8008FE14();
+    return (func_8008FE14() == 0x1D9) ||
+        (func_800F640C(func_800F54E4(), 0x1D9) != 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_808000AC_chnastycavemen.s")
 
