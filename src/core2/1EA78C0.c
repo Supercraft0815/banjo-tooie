@@ -19,7 +19,9 @@ void *func_800CE3E0(s32 arg0) {
     return (void *) ((arg0 << 5) + (s32) &D_8012B030);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CE3F4.s")
+void func_800CE3F4(u8 *arg0, s32 arg1) { extern s16 D_8011AA30;
+    func_800D2498(*(s16 *)((s8 *)&D_8011AA30 + arg1 * 6), *(s16 *)(arg0 + 0xA), 0U);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CE438.s")
 
