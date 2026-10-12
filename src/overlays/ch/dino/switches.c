@@ -55,6 +55,13 @@ void func_80800270_chdinoswitches(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/func_808008F0_chdinoswitches.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/func_80800A48_chdinoswitches.s")
+void func_80800A48_chdinoswitches(void *arg0) {
+    void func_80103140(void *, u16, u16);
+    extern u8 D_80800B2C_chdinoswitches[];
+    s32 index = *(s32 *)((u8 *)arg0 + 0x18);
+
+    func_80103140(arg0, *(u16 *)(D_80800B2C_chdinoswitches + index * 0x14),
+                  *(u16 *)((u8 *)*(void **)arg0 + 0x16));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/func_80800A88_chdinoswitches.s")
