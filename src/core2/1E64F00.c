@@ -40,7 +40,18 @@ s32 func_8008B90C(s16 arg0) {
     return entry[0] ? 1 : 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008B954.s")
+void func_8008B954(s16 arg0) {
+    extern s32 D_80126CC0;
+    void func_800DFCC0(s16 arg0);
+    s16 *entry;
+    entry = (s16 *)(D_80126CC0 + arg0 * 6 - 6);
+    if (entry[0] != 0) {
+        func_800DFCC0(entry[0]);
+        entry[0] = 0;
+    }
+    entry[2] = 0;
+    entry[1] = entry[2];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008B9C4.s")
 
@@ -144,7 +155,7 @@ f32 func_8008C0D0(f32 *arg0)
 /* extern */
 
 void func_8008C0D8(void *arg0) {
-    s32 func_8008B954(s16);
+    void func_8008B954(s16);
     func_8008B954((*(s16 *)((s8 *)(arg0) + (0xA))));
     func_8008B954((*(s16 *)((s8 *)(arg0) + (0xC))));
     if ((*(u8 *)((s8 *)(arg0) + (0x1C))) == 1) {
