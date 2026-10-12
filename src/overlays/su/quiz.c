@@ -174,7 +174,14 @@ void suquiz_entrypoint_20(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_23.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_24.s")
+void suquiz_entrypoint_24(u32 arg0, s32 arg1) {
+    extern void *D_80127614;
+    void _glcutDll_entrypoint_6(u32, u32);
+    (*(s16 *)((s8 *)(D_80127614) + (0x34))) = arg1;
+    func_800DA544(FLAG2_6E3_UNK);
+    func_800DA524(FLAG2_6EB_UNK);
+    _glcutDll_entrypoint_6(arg0, 0x8AU);
+}
 
 /* extern */
 
