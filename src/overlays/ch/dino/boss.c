@@ -443,7 +443,7 @@ void func_808018D0_chdinoboss(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80801C28_chdinoboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80801C84_chdinoboss.s")
+f32 func_80801C84_chdinoboss(Actor *arg0) { f32 func_800F10B4(f32, f32, f32, f32, f32); f32 result; result = func_800F10B4((f32)arg0->pad5E, 0.0f, 30.0f, 0.3f, 1.8f); return result; }
 
 void func_80801CDC_chdinoboss(Actor *arg0) {
     void func_800D2498(u32 itemDisplayUI, u32 value,u32 a2);
