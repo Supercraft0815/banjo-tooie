@@ -4,7 +4,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/co/themedll/cothemedll_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/co/themedll/cothemedll_entrypoint_1.s")
+s16 cothemedll_entrypoint_1(void) {
+    s32 func_80800000_cothemedll();
+    extern s16 D_80800734_cothemedll[];
+    return *(s16 *)((s8 *)D_80800734_cothemedll + func_80800000_cothemedll() * 6);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/co/themedll/cothemedll_entrypoint_2.s")
 
