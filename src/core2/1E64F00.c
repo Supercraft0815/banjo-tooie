@@ -122,7 +122,12 @@ s32 func_8008BCEC(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008BD1C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008BD3C.s")
+void func_8008BD3C(s32 arg0) {
+    s32 value;
+
+    value = *(u8 *)(arg0 + 8) ? 0 : 1;
+    func_8008BCEC(arg0, value);
+}
 
 void func_8008BD74(s32 arg0)
 {
