@@ -14,7 +14,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D23E8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D2438.s")
+void func_800D2438(void) { extern s32 D_8011AFB0; extern s32 D_8011B3F4; extern s32 D_8012B2C0; extern s32 D_8012B320; u32 end; u32 ptr; end = (u32)&D_8011B3F4;
+    ptr = (u32)&D_8011AFB0; for (;;) { *(s16 *)(ptr + 4) = -1; *(s16 *)(ptr + 6) = 0; *(f32 *)(ptr + 8) = 0.0f; ptr += 12; if (ptr >= end) break; } end = (u32)&D_8012B320; ptr = (u32)&D_8012B2C0; for (;;) { ptr += 8; *(s16 *)(ptr - 6) = -1; *(s16 *)(ptr - 4) = -1; *(s16 *)(ptr - 2) = -1; *(s16 *)(ptr - 8) = -1; if (ptr == end) break; } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D2498.s")
 
