@@ -44,9 +44,9 @@ void ncba1p_entrypoint_4(void *arg0, s32 arg1) {
 
 /* extern */
 
-void ncba1p_entrypoint_6(s32 *arg0) {
-    s32 func_800EE7F8(s32);
-    func_800EE7F8(*arg0 + 0x18);
+void ncba1p_entrypoint_6(f32 **arg0, f32 *arg1) {
+    void func_800EE7F8(f32 *, f32 *);
+    func_800EE7F8(*arg0 + 6, arg1);
 }
 
 /* extern */
@@ -58,9 +58,9 @@ void ncba1p_entrypoint_7(void **arg0, void *arg1) {
     (*(f32 *)((s8 *)(*arg0) + (0x2C))) = func_800136E4((*(f32 *)((s8 *)(arg1) + (8))));
 }
 
-void ncba1p_entrypoint_8(s32 *arg0, s32 arg1) {
-    s32 func_800EE7F8();
-    func_800EE7F8(arg1, *arg0 + 0x24);
+void ncba1p_entrypoint_8(f32 **arg0, f32 *arg1) {
+    void func_800EE7F8(f32 *, f32 *);
+    func_800EE7F8(arg1, *arg0 + 9);
 }
 
 f32 ncba1p_entrypoint_9(void *arg0) {
@@ -79,4 +79,7 @@ void ncba1p_entrypoint_12(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0) + 72) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/1p/ncba1p_entrypoint_13.s")
+void ncba1p_entrypoint_13(f32 **volatile arg0, f32 *arg1, f32 *arg2) { void func_800EE7F8(f32 *, f32 *);
+    func_800EE7F8(arg1, *arg0);
+    func_800EE7F8(arg2, *arg0 + 3);
+}
