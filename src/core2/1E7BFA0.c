@@ -159,7 +159,7 @@ f32 func_800A3394(PlayerState *arg0) {
 /* Single line: IDO schedules this prologue by source line. */
 void func_800A33A0(PlayerState *arg0, f32 arg1[3]) { s32 func_800EE7F8(); func_800EE7F8(arg1, *(s32 *)((u8 *)arg0 + 0xA0) + 0xC); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A33CC.s")
+void func_800A33CC(void *arg0, f32 *arg1) { s32 func_800EE7F8(); func_800EE7F8(arg1, (u8 *)*(void **)((u8 *)arg0 + 0xA0) + 0x18); }
 
 u32 func_800A33F8(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 40);
