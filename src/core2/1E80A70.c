@@ -469,7 +469,17 @@ int func_800A8264(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A85A8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A861C.s")
+void func_800A861C(void) {
+    s32 func_800A84EC(s32, s32);
+    extern s32 D_80127678;
+
+    D_80127678 = 0;
+    D_80127688[4].unk4 = (s32) func_800CA334();
+    func_800E42B4(D_80127688[4].unk4);
+    func_800A84EC(4, 0);
+    func_800C5464();
+    func_800A89BC(4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A8670.s")
 
