@@ -35,7 +35,19 @@ void func_8011607C(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEF790/func_80116088.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEF790/func_801160DC.s")
+void func_801160DC(PlayerState *self, f32 arg1) {
+    struct ba_anim_s *temp_v0;
+    u8 flag = 1;
+
+    (*(f32 *)((s8 *)(self->anim) + (0x20))) = arg1;
+    temp_v0 = self->anim;
+    (*(f32 *)((s8 *)(temp_v0) + (0xC))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (0x20)));
+    (*(u8 *)((s8 *)(self->anim) + (0x24))) = flag;
+    temp_v0 = self->anim;
+    (*(u8 *)((s8 *)(temp_v0) + (0x10))) = (u8) (*(u8 *)((s8 *)(temp_v0) + (0x24)));
+    (*(f32 *)((s8 *)(self->anim) + (0x44))) = arg1;
+    (*(u8 *)((s8 *)(self->anim) + (0x48))) = flag;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEF790/func_80116120.s")
 
