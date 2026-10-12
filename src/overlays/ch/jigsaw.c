@@ -6,7 +6,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/func_8080011C_chjigsaw.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/func_8080017C_chjigsaw.s")
+/* extern */
+
+void func_8080017C_chjigsaw(Actor *arg0) {
+    void func_800C8B84(s32);
+    void func_800D05E4(s32, s32, s32);
+
+    func_800D05E4((s32)arg0->unk50, 1, 0);
+    if ((u32)arg0->unk6C_0 != 0) {
+        func_800C8B84(arg0->unk6C_0);
+    }
+}
 
 void func_808001D0_chjigsaw(s32 arg0)
 {
