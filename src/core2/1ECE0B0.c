@@ -1183,7 +1183,16 @@ void func_800F8418(s32 arg0)
     func_800F4648(D_80135490[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8444.s")
+void func_800F8444(s32 arg0, u8 *arg1) {
+    void baroll_setIdeal(PlayerState *, f32);
+    void func_8009BF5C(PlayerState *, f32);
+    PlayerState *sp1C;
+
+    sp1C = D_80135490[arg0];
+    func_8009BF5C(sp1C, (*(f32 *)((s8 *)(arg1) + (0))));
+    yaw_setIdeal(sp1C, (*(f32 *)((s8 *)(arg1) + (4))));
+    baroll_setIdeal(sp1C, (*(f32 *)((s8 *)(arg1) + (8))));
+}
 
 void func_800F849C(s32 arg0, f32 arg1) {
     void func_8009BD18(PlayerState *arg0, f32 arg1);
