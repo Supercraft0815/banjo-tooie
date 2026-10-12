@@ -178,9 +178,9 @@ void func_800BA730(void *arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4) {
 
 /* extern */
 
-void func_800BA75C(s32 arg0) {
-    s32 func_800EE940(s32);
-    func_800EE940(arg0 + 0x12);
+void func_800BA75C(s32 arg0, f32 arg1[3]) {
+    s32 func_800EE940(s32, f32[3]);
+    func_800EE940(arg0 + 0x12, arg1);
 }
 
 void func_800BA77C(s32 arg0, s16 arg1, s16 arg2, s16 arg3) {
