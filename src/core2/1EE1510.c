@@ -341,7 +341,15 @@ void func_80108B44(u8 *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108B8C.s")
+/* extern */
+
+void func_80108B8C(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 func_8010114C(s32, s32, s32);
+    s32 func_801069A4();
+    if ((arg2 == ((u32) (*(u16 *)((s8 *)(arg0) + (0x12))) >> 1)) && (func_801069A4() != 0)) {
+        func_8010114C((s32) arg0, 0x59, arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108BD4.s")
 
