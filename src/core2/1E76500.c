@@ -54,7 +54,23 @@ void func_8009CCFC(s32 *arg0, s32 arg1)
   *((u8 *) (temp_v0 + 0x80)) = (*((u8 *) (temp_v0 + 0x80))) + 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76500/func_8009CD70.s")
+void func_8009CD70(u8 *arg0, f32 *arg1) {
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    s32 func_800EFD24(s32);
+    u8 *temp_v0;
+    u8 *temp_v0_2;
+    u8 *temp_v0_3;
+
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0xF0)));
+    (*(s8 *)((s8 *)((temp_v0 + ((*(u8 *)((s8 *)(temp_v0) + (0x80))) * 0x10))) + (-0xF))) = 1;
+    if (arg1 != NULL) {
+        temp_v0_2 = (*(u8 **)((s8 *)(arg0) + (0xF0)));
+        func_800EE7F8((f32 *)((temp_v0_2 + temp_v0_2[0x80] * 0x10) + (0, -0xC)), arg1);
+        return;
+    }
+    temp_v0_3 = (*(u8 **)((s8 *)(arg0) + (0xF0)));
+    func_800EFD24((s32)((temp_v0_3 + temp_v0_3[0x80] * 0x10) + (0, -0xC)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76500/func_8009CDE0.s")
 
