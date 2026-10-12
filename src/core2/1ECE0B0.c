@@ -151,7 +151,16 @@ void func_800F4E5C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     func_8009F440(sp24, arg1, arg2, arg3, arg4, func_800A3048(sp24) * 1000.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F4EC8.s")
+/* extern */
+
+s32 func_800F4EC8(u32 arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+    s32 func_8009F860(PlayerState *, s32, f32, f32, f32, f32);
+    f32 func_800A3048(PlayerState *);
+    PlayerState *sp24;
+
+    sp24 = D_80135490[arg0];
+    return func_8009F860(sp24, arg1, arg2, arg3, arg4, func_800A3048(sp24) * 1000.0f);
+}
 
 /* extern */
 
