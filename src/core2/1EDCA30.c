@@ -109,7 +109,13 @@ void func_80103D70(void **arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103DFC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103EAC.s")
+/* extern */
+
+f32 func_80103EAC(Actor *arg0) {
+    s32 func_80103328();
+    func_80103328(arg0);
+    return arg0->scale * (u32)(u16)arg0->pad60;
+}
 
 /* extern */
 
