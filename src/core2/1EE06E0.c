@@ -23,7 +23,21 @@ void func_80106E50(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80106E88.s")
+/* extern */
+
+s32 func_80106E88(Actor *arg0) {
+    void *func_80100368(void *);
+    s32 func_80107320(Actor *);
+    s32 var_v1;
+    s32 sp1C;
+
+    sp1C = 0;
+    var_v1 = sp1C;
+    if (((*(s32 *)((s8 *)(func_80100368(arg0)) + (0x44))) != 0) && (arg0->pad6C_21 != 0)) {
+        var_v1 = func_80107320(arg0);
+    }
+    return var_v1;
+}
 
 void func_80106EE0(void *arg0) {
     s32 freelist_erase(s32, s32);

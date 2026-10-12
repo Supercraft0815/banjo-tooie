@@ -101,8 +101,8 @@ s32 func_801000D8(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_801002C0.s")
 
-void func_80100368(void *arg0) {
-    (*(s32 (**)())((s8 *)(arg0) + (0x10)))();
+void *func_80100368(void *arg0) {
+    return (*(void *(**)())((s8 *)(arg0) + (0x10)))();
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_8010038C.s")
