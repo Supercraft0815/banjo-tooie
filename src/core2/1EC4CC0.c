@@ -182,14 +182,25 @@ void func_800EC3C4(void *arg0) {
     (*(s32 (**)())((s8 *)(arg0) + (8)))();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC3E8.s")
+/* extern */
+
+s32 func_800EC3E8(u8 *arg0) {
+    void *func_800D674C(s32);
+    s32 temp_a1;
+
+    temp_a1 = (*(u16 *)((s8 *)(arg0) + (0x14)));
+    if ((temp_a1 == 0) || (temp_a1 == 0xFFFF)) {
+        return 0;
+    }
+    return (s32)func_800D674C(temp_a1);
+}
 
 /* extern */
 
 s32 func_800EC428(void *arg0) {
-    s32 func_800D674C(u16, void *);
+    void *func_800D674C(s32);
     s32 func_801039E4(void *);
-    u16 temp_a0;
+    s32 temp_a0;
 
     if ((*(u16 *)((s8 *)(arg0) + (0x18))) & 1) {
         return func_801039E4(arg0);
@@ -198,7 +209,7 @@ s32 func_800EC428(void *arg0) {
     if ((temp_a0 == 0) || (temp_a0 == 0xFFFF)) {
         return 0;
     }
-    return func_800D674C(temp_a0, arg0);
+    return (s32)func_800D674C(temp_a0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC48C.s")
