@@ -46,7 +46,18 @@ OSThread *chtoxicroomprops_entrypoint_1(void)
     return (OSThread *) D_80800A30_chtoxicroomprops;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroomprops/func_80800700_chtoxicroomprops.s")
+/* extern */
+
+void func_80800700_chtoxicroomprops(void *arg0) {
+    s32 func_800DA298(s32);
+    void func_80101FDC(Actor *, u32);
+    (*(f32 *)((s8 *)(arg0) + (0x30))) = (f32) (*(f32 *)((s8 *)(arg0) + (8)));
+    if (func_800DA298(0x1BD) == 0) {
+        func_80101FDC(arg0, 3);
+        return;
+    }
+    func_80101FDC(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroomprops/func_80800758_chtoxicroomprops.s")
 
