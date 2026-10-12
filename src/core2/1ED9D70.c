@@ -16,8 +16,6 @@ void func_80100670()
     func_80100610();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100690.s")
-
 typedef struct {
     s16 next_free;
     u8 data[];
@@ -31,6 +29,16 @@ typedef struct {
 
 FreeList *freelist_new(s32, s32);
 void *freelist_next(FreeList **, s32 *);
+
+void func_80100690(s32 *arg0) {
+    FreeList *freelist_new(s32, s32);
+    void *freelist_next(FreeList **, s32 *);
+    extern FreeList *D_80135A60;
+    if (D_80135A60 == 0) {
+        D_80135A60 = freelist_new(0xC, 2);
+    }
+    freelist_next(&D_80135A60, arg0);
+}
 
 extern FreeList *D_80135A64;
 
@@ -66,8 +74,8 @@ void func_80100B3C(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100D24.s")
 
 void func_80100E18(s16 arg0) {
-    void *freelist_at(s32, s16);
-    extern s32 D_80135A60;
+    void *freelist_at(FreeList *, s16);
+    extern FreeList *D_80135A60;
     (*(s8 *)((s8 *)(freelist_at(D_80135A60, arg0)) + (0xA))) = 2;
 }
 
