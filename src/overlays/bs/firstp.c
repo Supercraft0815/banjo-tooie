@@ -92,7 +92,15 @@ void func_80800290_bsfirstp(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80800488_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808004F8_bsfirstp.s")
+s32 func_808004F8_bsfirstp(u8 *arg0) {
+    s32 func_800EEC70(u8 *, f32, f32, s32);
+    f32 yaw_get(u8 *);
+    u8 *sp1C;
+    f32 sp18;
+    sp1C = (*(u8 **)((s8 *)(arg0) + (0x188)));
+    sp18 = (*(f32 *)((s8 *)(sp1C) + (0x20C)));
+    return func_800EEC70(sp1C + 0x2C, sp18, yaw_get(arg0), 0x43160000);
+}
 
 /* extern */
 
