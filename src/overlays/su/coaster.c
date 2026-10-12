@@ -262,7 +262,20 @@ void sucoaster_entrypoint_4(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_5.s")
+void sucoaster_entrypoint_5(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    struct {
+        u8 pad[0x19];
+        u8 low : 4;
+        u8 flag : 1;
+        u8 high : 3;
+    } *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    if (temp_v0 != NULL) {
+        temp_v0->flag = 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_80800C68_sucoaster.s")
 
