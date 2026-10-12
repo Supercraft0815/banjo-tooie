@@ -1521,7 +1521,17 @@ void func_800F9ADC()
     func_800F9488(0xC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9AFC.s")
+void func_800F9AFC(void) {
+    s32 _plsu_entrypoint_1(s32);
+    u32 sp20[2];
+    s32 sp1C;
+
+    func_800F93C4(&sp20[0], (s32 *) &sp20[1]);
+    sp1C = _plsu_entrypoint_1(func_800F929C());
+    func_800F8128(sp1C);
+    func_800F8EBC(sp1C);
+    func_800F8268(sp1C, 1, 1);
+}
 
 /* extern */
 
