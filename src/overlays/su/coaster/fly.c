@@ -18,7 +18,19 @@ void sucoasterfly_entrypoint_2(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/sucoasterfly_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80800EF0_sucoasterfly.s")
+void func_80800EF0_sucoasterfly(Unk80132ED0 *arg0, u8 *arg1)
+{
+  Actor *func_80106790(Unk80132ED0 *);
+  s32 func_808014AC_sucoasterfly(Actor *, s32);
+  Actor *temp_a0;
+  Actor *temp_v0;
+  temp_v0 = func_80106790(arg0);
+  temp_a0 = temp_v0;
+  if (((((u32) ((*((u32 *) (((s8 *) arg1) + 0x24))) ^ 0)) >> 0x16) == 0) && (((((u16) (*((u16 *) (((s8 *) temp_v0) + 0x72)))) & 0xFFFFFFFF) >> 0xA) == 6))
+  {
+    func_808014AC_sucoasterfly(temp_a0, 7);
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80800F44_sucoasterfly.s")
 
