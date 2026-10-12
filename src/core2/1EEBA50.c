@@ -29,7 +29,13 @@ void func_80112354(PlayerState *arg0, s32 arg1) {
     (*(f32 *)((s8 *)(arg1) + (8))) = (f32) (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (0x30)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEBA50/func_80112398.s")
+void func_80112398(u8 *arg0) {
+    void func_800EFD24(f32 vec[3]);
+    void func_801124D0(s32, s32);
+    *(*(s32 **)((s8 *)(arg0) + (0x30))) = 0;
+    func_801124D0((s32) arg0, 1);
+    func_800EFD24((f32 *)(*(s32 **)((s8 *)(arg0) + (0x30))) + 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEBA50/func_801123D4.s")
 
