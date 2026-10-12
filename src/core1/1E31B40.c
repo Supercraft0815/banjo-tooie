@@ -164,4 +164,23 @@ void func_8001A570(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A578.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A63C.s")
+s32 func_8001A63C(void) {
+    s32 heap_free(s32);
+    extern s32 D_8007BCE8;
+    extern s32 D_8007BCEC;
+    extern s32 D_8007BCF0;
+    extern s32 D_8007BCF4;
+    s32 sp18[2];
+
+    sp18[0] = D_8007BCF0;
+    if (D_8007BCE8 != 0) {
+        heap_free(D_8007BCE8);
+        heap_free(D_8007BCEC);
+        D_8007BCE8 = 0;
+    }
+    if (sp18[0] != 0) {
+        heap_free(D_8007BCF0);
+        heap_free(D_8007BCF4);
+        D_8007BCF0 = 0;
+    }
+}
