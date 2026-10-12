@@ -520,4 +520,21 @@ f32 func_8080264C_sucoaster(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_80802728_sucoaster.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_80802760_sucoaster.s")
+s32 func_80802760_sucoaster(s32 arg0) {
+    typedef struct {
+        u8 pad0[0x18];
+        u32 track : 4;
+        u32 pad18_20 : 8;
+        u32 flag : 1;
+        u32 pad18_0 : 19;
+    } CoasterData;
+    u32 func_800F54E4(void);
+    s32 func_8010D290(s32);
+    void *_sucoasterdata_entrypoint_1(u32);
+    CoasterData *data = (CoasterData *)arg0;
+
+    if (data->flag) {
+        return func_800F54E4();
+    }
+    return func_8010D290(*(s32 *)((s8 *)_sucoasterdata_entrypoint_1(data->track) + 0x3C));
+}
