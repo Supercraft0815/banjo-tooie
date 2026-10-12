@@ -125,4 +125,14 @@ void func_80801174_chstonepillar(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80801238_chstonepillar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80801374_chstonepillar.s")
+void func_80801374_chstonepillar(Actor *arg0, s32 arg1)
+{
+  s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+  extern u32 D_808014F0_chstonepillar;
+  u32 temp_a2;
+  temp_a2 = arg1 == ((((u16) (*((u16 *) (((s8 *) arg0) + 0x72)))) & 0xFFFFFFFF) >> 0xA);
+  if ((temp_a2 != 0) || ((temp_a2 == 0) && (arg0->unk5F != 0)))
+  {
+    _subaddieaudioloop_entrypoint_4(arg0, NULL, temp_a2, &D_808014F0_chstonepillar);
+  }
+}
