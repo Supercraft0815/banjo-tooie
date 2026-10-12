@@ -64,21 +64,33 @@ void func_80105A9C(Actor *arg0, f32 arg1) {
 
 /* extern */
 
-f32 func_80105AC4(void) {
-    void *func_80105494();
-    return (*(f32 *)((s8 *)(func_80105494()) + (0x14)));
+f32 func_80105AC4(Actor *arg0) {
+    void *func_80105494(Actor *);
+    return (*(f32 *)((s8 *)(func_80105494(arg0)) + (0x14)));
 }
 
 /* extern */
 
-f32 func_80105AE8(void) {
-    void *func_80105494();
-    return (*(f32 *)((s8 *)(func_80105494()) + (0xC)));
+f32 func_80105AE8(Actor *arg0) {
+    void *func_80105494(Actor *);
+    return (*(f32 *)((s8 *)(func_80105494(arg0)) + (0xC)));
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105B0C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105BAC.s")
+void func_80105BAC(Actor *arg0) {
+    void *func_80105494(Actor *);
+    struct {
+        u8 pad[0x18];
+        u8 flag : 1;
+        u8 rest : 7;
+    } *temp_v0;
+
+    temp_v0 = func_80105494(arg0);
+    if (temp_v0 != NULL) {
+        temp_v0->flag = 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105BE0.s")
 
