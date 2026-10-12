@@ -696,7 +696,10 @@ void func_800F6690(s32 arg0)
     func_80092EB0(D_80135490[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F66BC.s")
+void func_800F66BC(s32 arg0, s32 arg1, f32 arg2) {
+    s32 func_8008DAE8(PlayerState *, s32, f32);
+    func_8008DAE8(D_80135490[arg0], arg1, arg2);
+}
 
 /* extern */
 
