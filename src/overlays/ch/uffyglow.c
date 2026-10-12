@@ -14,7 +14,17 @@ void func_8080048C_chchuffyglow(s32 arg0) {
     ((Actor *)arg0)->unk64_20 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffyglow/chchuffyglow_entrypoint_0.s")
+/* extern */
+
+void chchuffyglow_entrypoint_0(s32 arg0) {
+    s32 *func_80106790();
+    void *func_801084B0(s32, s32 **);
+    s32 *sp24;
+    s32 pad[2];
+
+    sp24 = func_80106790();
+    (*(s32 *)((s8 *)(func_801084B0(0x30E, &sp24)) + (0x3C))) = (s32) *sp24;
+}
 
 OSThread *chchuffyglow_entrypoint_1(void)
 {
