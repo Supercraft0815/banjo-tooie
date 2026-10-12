@@ -92,7 +92,16 @@ void func_800C70F0(s32 arg0) {
     D_8012AAD0[arg0] = D_8012AAE0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0690/func_800C710C.s")
+s32 func_800C710C(s32 arg0) {
+    extern s32 D_8012AAE0;
+    extern s32 D_8012AAD0[];
+
+    if ((u32) (D_8012AAD0[arg0] + 5) < (u32) D_8012AAE0) {
+        D_8012AAD0[arg0] = D_8012AAE0;
+        return 1;
+    }
+    return 0;
+}
 
 void* func_800C7150(void* arg0) 
 {
