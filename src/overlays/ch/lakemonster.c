@@ -227,7 +227,6 @@ OSThread *chlakemonster_entrypoint_4(void)
 void func_80801EA8_chlakemonster(s32 arg0) {
     s32 _chswitch_entrypoint_14(s32, s32);
     s32 func_800DA298(s32);
-    s32 func_8010A570(s32);
     _chswitch_entrypoint_14(arg0, 0x187);
     if (func_800DA298(0x187) != 0) {
         func_8010A570(arg0);
@@ -237,7 +236,16 @@ void func_80801EA8_chlakemonster(s32 arg0) {
 void func_80801EE4_chlakemonster(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80801EEC_chlakemonster.s")
+s32 func_80801EEC_chlakemonster(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_80101180(s32, s32, s32);
+    if (arg1 == 7) {
+        func_80101180(0x301, 7, 0);
+        func_8010A570(arg0);
+    } else {
+        return 0;
+    }
+    return 1;
+}
 
 OSThread *chlakemonster_entrypoint_5(void)
 {
