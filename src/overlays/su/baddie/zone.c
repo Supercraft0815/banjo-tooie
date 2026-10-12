@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/zone/subaddiezone_entrypoint_0.s")
+/* extern */
+
+void subaddiezone_entrypoint_0(u8 *arg0) {
+    struct Flags { u8 pad[0x70]; unsigned int : 13; unsigned int disabled : 1; unsigned int : 18; };
+    u8 _glzone_entrypoint_5(s32, u8 *, u8, u8 *);
+    s32 func_800BEC28(s32);
+    if (((struct Flags *)arg0)->disabled) return;
+    (*(u8 *)((s8 *)(arg0) + 0x78)) = _glzone_entrypoint_5(func_800BEC28(0), arg0 + 4, (*(u8 *)((s8 *)(arg0) + 0x78)), arg0);
+}
 
 /* extern */
 
