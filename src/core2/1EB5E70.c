@@ -166,7 +166,14 @@ void func_800DCD10(s32 arg0, u8 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DCF48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD024.s")
+void func_800DD024(Gfx **gfx, u8 *data) {
+    struct Command { u8 padding[8]; s16 index; };
+    struct Command *cmd = (struct Command *)data;
+    Gfx *gfx_sub_list;
+
+    gfx_sub_list = &D_8012C960->commands[cmd->index];
+    gSPDisplayList((*gfx)++, osVirtualToPhysical(gfx_sub_list));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD07C.s")
 
