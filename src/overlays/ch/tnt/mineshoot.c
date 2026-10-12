@@ -59,7 +59,22 @@ OSThread *chtntmineshoot_entrypoint_0(void)
     return (OSThread *) D_80802690_chtntmineshoot;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800E10_chtntmineshoot.s")
+/* extern */
+
+void func_80800E10_chtntmineshoot(Actor *arg0) {
+    s32 _susubgame_entrypoint_11(s32);
+    s32 func_800C2E04(void);
+    void func_800C330C(u8 id, s32);
+    void* func_80100094(Actor*, u32);
+    void func_800C431C(u8, s32);
+    struct { u8 pad[12]; u8 id; } *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    sp1C->id = func_800C2E04();
+    func_800C330C(sp1C->id, 3);
+    func_800C431C(sp1C->id, 0);
+    _susubgame_entrypoint_11(0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800E64_chtntmineshoot.s")
 
