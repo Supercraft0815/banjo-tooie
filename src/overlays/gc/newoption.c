@@ -328,7 +328,14 @@ s32 gcnewoption_entrypoint_3(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_6.s")
+/* extern */
+
+void gcnewoption_entrypoint_6(Actor *arg0, volatile s16 arg1) {
+    u32 *func_80100074(Actor *, u32, u32);
+    void *func_80100094(Actor *, u32);
+    gcnewoption_entrypoint_7(func_80100094(arg0, arg1));
+    func_80100074(arg0, arg1, 0);
+}
 
 /* extern */
 
