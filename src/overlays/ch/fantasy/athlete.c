@@ -151,7 +151,14 @@ void func_80802D38_chfantasyathlete(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80802D74_chfantasyathlete.s")
+/* extern */
+
+void func_80802D74_chfantasyathlete(u8 *arg0) {
+    s32 func_80802C94_chfantasyathlete(void *, s32, s32);
+    if ((*(s32 *)((s8 *)(arg0) + (0x18))) != 1) {
+        func_80802C94_chfantasyathlete(arg0, 2, 0);
+    }
+}
 
 /* extern */
 
