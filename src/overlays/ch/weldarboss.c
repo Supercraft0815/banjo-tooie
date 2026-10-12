@@ -715,7 +715,24 @@ void chweldarboss_entrypoint_2(s32 arg0, s32 arg1, u32 arg2, s32 arg3, Unk80132E
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80803C18_chweldarboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80803CF0_chweldarboss.s")
+void func_80803CF0_chweldarboss(Actor *arg0, s32 arg1, s32 arg2)
+{
+  void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+  void _capod_entrypoint_14(void);
+  void *func_80100094(Actor *, u32);
+  u8 *sp1C;
+  u8 *temp_v0;
+  temp_v0 = func_80100094(arg0, 0U);
+  sp1C = temp_v0;
+  arg2 = arg2;
+  if ((*((s16 *) (((s8 *) temp_v0) + 0x72))) != 0)
+  {
+    _capod_entrypoint_14();
+    arg2 = arg2 | 0x2000;
+  }
+  _capod_entrypoint_13(arg0->unk0, NULL, (u32) arg1, (u32) arg2);
+  *((s16 *) (((s8 *) sp1C) + 0x72)) = 1;
+}
 
 void func_80803D64_chweldarboss(Actor *arg0) {
     void _capod_entrypoint_14(void);
