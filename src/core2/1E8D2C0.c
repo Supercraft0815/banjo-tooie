@@ -59,7 +59,18 @@ void func_800B4290(void *arg0) {
     (*(s16 *)((s8 *)(arg0) + (0))) = (s16) (*(s16 *)((s8 *)(arg0) + (2)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B42A0.s")
+s32 func_800B42A0(u8 *arg0, s16 *arg1) {
+    s32 value;
+    s32 result;
+
+    value = *arg1;
+    if (value != 0) {
+        result = (s32) func_800B39D0(arg0, value);
+    } else {
+        result = 0;
+    }
+    return result;
+}
 
 void func_800B42DC(void* arg0) 
 {
