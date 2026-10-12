@@ -25,7 +25,24 @@ void func_801005B8(void)
   while (var_s0 != ((s32 (*)[3]) (&D_801243DC)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100610.s")
+void func_80100610(void)
+{
+    s32 heap_free(s32);
+    extern s32 D_801243A0;
+    extern s32 D_801243DC;
+    s32 (*var_s0)[3];
+    s32 temp_a0;
+    var_s0 = &D_801243A0; do {
+        temp_a0 = var_s0[0][2];
+        if (temp_a0 != 0) {
+            heap_free(temp_a0);
+            var_s0[0][2] = 0;
+            ((s16 *)var_s0)[1] = 0;
+            var_s0[0][1] = 0;
+        }
+        var_s0++;
+    } while (var_s0 != ((s32 (*)[3]) (&D_801243DC)));
+}
 
 void func_80100670()
 {
