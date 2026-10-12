@@ -100,7 +100,18 @@ void func_808009D4_chnests(s32 arg0,s32 arg1)
 void func_808009F8_chnests(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800A00_chnests.s")
+void func_80800A00_chnests(void *arg0, s32 arg1) {
+    s32 func_800DF3E0();
+    s32 func_800DF744(s32, s32);
+    s32 func_801018A4(s32, s32);
+    s32 func_80800898_chnests(void *, s32, s32);
+    extern s32 D_80801124_chnests;
+    if (func_80800898_chnests(arg0, arg1, *(s32 *)((s8 *)arg0 + 0x48)) != 0) {
+        func_800DF3E0();
+        func_800DF744(((u8 *)&D_80801124_chnests)[(*(s32 *)((s8 *)arg0 + 0x1C)) * 14], 1);
+        func_801018A4((s32)arg0, arg1);
+    }
+}
 
 void func_80800A6C_chnests(s32 arg0) 
 {
