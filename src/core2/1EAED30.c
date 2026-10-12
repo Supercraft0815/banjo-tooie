@@ -163,7 +163,7 @@ s32 func_800D59C0(s32 index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5A04.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5A6C.s")
+s32 func_800D5A6C(s32 arg0) { s32 rom_read_word(s32, u32 *); extern s32 D_8011B900; extern u32 D_8012B440; extern s32 D_8012B448; rom_read_word((s32)((u32 *)D_8011B900 + arg0), &D_8012B440); return D_8012B448 + ((u32) D_8012B440 >> 6); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5AB4.s")
 
