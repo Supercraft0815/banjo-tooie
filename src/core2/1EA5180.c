@@ -117,7 +117,23 @@ s32 func_800CBBE0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CBC3C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CBD84.s")
+/* extern */
+
+s32 func_800CBD84(s32 arg0) {
+    s32 func_800CBC3C();
+    s32 func_800CC4D4(s32, s32);
+    s32 sp1C;
+    s32 var_a1;
+
+    var_a1 = func_800CBC3C();
+    if (var_a1 != -1) {
+        if (func_800CC4D4(arg0, (sp1C = var_a1)) != -1) {
+            return -1;
+        }
+        var_a1 = sp1C;
+    }
+    return var_a1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CBDD4.s")
 
