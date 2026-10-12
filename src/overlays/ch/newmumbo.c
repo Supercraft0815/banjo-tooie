@@ -52,7 +52,15 @@ void func_80800210_chnewmumbo(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_8080073C_chnewmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_808007B0_chnewmumbo.s")
+void func_808007B0_chnewmumbo(u8 *arg0) {
+    struct Flags { unsigned int : 12; unsigned int active : 1; unsigned int : 18; };
+    s32 func_800F54E4();
+    void func_800F82D4(s32, s32);
+    if (((struct Flags *)(arg0 + 0x64))->active) {
+        func_800F82D4(func_800F54E4(), 0);
+        arg0[0x65] &= 0xFFF7;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_808007FC_chnewmumbo.s")
 
