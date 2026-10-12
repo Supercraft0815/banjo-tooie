@@ -123,7 +123,7 @@ void func_80800720_gcboundDll(s32 arg0, s32 arg1, u32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/gcboundDll_entrypoint_8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_80800E6C_gcboundDll.s")
+void func_80800E6C_gcboundDll(u8 *arg0, u8 *arg1) { void rare_memcpy(void *, void *, int); u8 sp18[0x18]; rare_memcpy(sp18, arg0, 0x18); rare_memcpy(arg0, arg1, 0x18); rare_memcpy(arg1, sp18, 0x18); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_80800EBC_gcboundDll.s")
 
