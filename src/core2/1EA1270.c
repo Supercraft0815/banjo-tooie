@@ -36,7 +36,11 @@ void func_800C7B28(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     _mlspline_entrypoint_12((*(u8 *)((s8 *)(arg0) + (2))), arg0 + 0x14, arg1, arg2, arg3 * 2, func_800C7980());
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C7B7C.s")
+f32 func_800C7B7C(Unk800C7A68 *arg0, f32 arg1, f32 arg2, f32 arg3) {
+    f32 _mlspline_entrypoint_13(s16, u8 *, f32, f32, f32, s32 *);
+    s32 func_800C7980();
+    return _mlspline_entrypoint_13((s16) arg0->unk2, (u8 *) &arg0->unk14, arg1, arg2, 0.0f, func_800C7980());
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C7BCC.s")
 
