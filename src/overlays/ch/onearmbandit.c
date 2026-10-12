@@ -210,7 +210,10 @@ u32 func_80800E78_chonearmbandit(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80800F80_chonearmbandit.s")
 
-s32 func_80801008_chonearmbandit(s32 arg0, s32 arg1, volatile s32 arg2) {
+void func_808010AC_chonearmbandit(Actor *, s32);
+s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+
+s32 func_80801008_chonearmbandit(Actor *arg0, s32 arg1, volatile s32 arg2) {
     if (arg1 == 0x40) {
         func_808010AC_chonearmbandit(arg0, *(s32 *)&arg2);
         return 1;
@@ -233,12 +236,12 @@ void func_80801040_chonearmbandit(u8 *arg0, s32 arg1) {
     func_800DE448(arg0 + 4, sp2C, (*(f32 *)((s8 *)(arg0) + (0x38))), NULL, func_8010347C((*(s32 *)((s8 *)(arg0) + (0)))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_808010AC_chonearmbandit.s")
+void func_808010AC_chonearmbandit(Actor *arg0, s32 arg1) { void func_800C4AF0(f32 *, void *); extern s32 D_808013A4_chonearmbandit; extern s32 D_808013DC_chonearmbandit; (void)&arg0; func_800BBCB8(arg0->position, arg0->position, arg0->scale, 6, &D_808013A4_chonearmbandit);
+    func_800C4AF0(arg0->position, &D_808013DC_chonearmbandit); func_8010A570(arg0); func_800FFAB0(arg0); }
 
-void func_80801114_chonearmbandit(u8 *arg0) {
-    s32 func_800BBCB8(u8 *, s32, s32, s32, s32 *);
+void func_80801114_chonearmbandit(Actor *arg0) {
     extern s32 D_808013E8_chonearmbandit;
-    func_800BBCB8(arg0 + 4, 0, (*(s32 *)((s8 *)(arg0) + (0x38))), 1, &D_808013E8_chonearmbandit);
+    func_800BBCB8(arg0->position, 0, arg0->scale, 1, &D_808013E8_chonearmbandit);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80801154_chonearmbandit.s")
