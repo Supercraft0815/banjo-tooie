@@ -37,7 +37,11 @@ void func_808004F0_chflysaucer(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808005FC_chflysaucer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800728_chflysaucer.s")
+s16 func_80800728_chflysaucer(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    extern s16 D_808045DA_chflysaucer[];
+    return D_808045DA_chflysaucer[*((u8 *)func_80100094(arg0, 0U) + 0x26)];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800758_chflysaucer.s")
 
