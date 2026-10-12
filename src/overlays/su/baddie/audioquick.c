@@ -1,6 +1,8 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/audioquick/subaddieaudioquick_entrypoint_0.s")
+/* extern */
+
+void subaddieaudioquick_entrypoint_0(u8 arg0, s32 arg1) { void func_800C32C4(u8, s32); void func_800C3418(u8, s32); if (arg1 != 0) { func_800C3418(arg0, 1); func_800C32C4(arg0, 0x40); } else { func_800C3418(arg0, 2); } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/audioquick/subaddieaudioquick_entrypoint_1.s")
 
