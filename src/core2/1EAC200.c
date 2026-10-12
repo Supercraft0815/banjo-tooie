@@ -27,7 +27,16 @@ void func_800D2970(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D2A44.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D2C54.s")
+void func_800D2C54(Gfx **arg0) {
+    extern s32 D_8012B320;
+    if (*(u8 *)((s8 *)&D_8012B320 + 1)) return;
+    gDPSetFogColor((*arg0)++,
+        *(s16 *)((s8 *)&D_8012B320 + 0x2C),
+        *(s16 *)((s8 *)&D_8012B320 + 0x2E),
+        *(s16 *)((s8 *)&D_8012B320 + 0x30),
+        *(s16 *)((s8 *)&D_8012B320 + 0x32));
+    *(u8 *)((s8 *)&D_8012B320 + 1) = 1;
+}
 
 void func_800D2CC4(void) {
     extern u8 D_8012B321;
