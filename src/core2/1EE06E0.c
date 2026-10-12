@@ -101,7 +101,7 @@ s32 func_80107388(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_801073AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_801073F8.s")
+s32 func_801073F8(s32 arg0, s32 arg1, s32 arg2) { s32 func_80107388(); s32 var_v1; if ((*(s16 *)((s8 *)(func_80107388(arg0) + (arg1 * 4)) + 2)) & arg2) { var_v1 = 1; } else { var_v1 = 0; } return var_v1; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107448.s")
 
