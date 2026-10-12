@@ -15,7 +15,17 @@ OSThread *chbadshad_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/func_8080028C_chbadshad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/chbadshad_entrypoint_1.s")
+/* extern */
+
+void chbadshad_entrypoint_1(void *arg0, void *arg1, f32 arg2) {
+    Actor *func_80800664_chbadshad(void *, void *);
+    Actor *temp_v0;
+
+    temp_v0 = func_80800664_chbadshad(arg0, arg1);
+    if (temp_v0 != NULL) {
+        temp_v0->scale = arg2;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/chbadshad_entrypoint_2.s")
 
