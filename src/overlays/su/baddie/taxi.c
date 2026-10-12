@@ -62,7 +62,16 @@ void subaddietaxi_entrypoint_14(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_15.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/func_80800C00_subaddietaxi.s")
+void func_80800C00_subaddietaxi(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_800BBCB8(f32[3], s32, f32, s32, s32 *);
+    extern s32 D_80800D50_subaddietaxi;
+    extern s32 D_80800D74_subaddietaxi;
+    f32 *sp24[2];
+
+    sp24[1] = arg0->position; func_800BBCB8(sp24[1], (s32)sp24[1], 1.0f, 6, &D_80800D74_subaddietaxi);
+    _subaddieaudioquick_entrypoint_2(arg0, sp24[1], &D_80800D50_subaddietaxi);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_16.s")
 
