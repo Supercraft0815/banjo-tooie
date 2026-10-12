@@ -244,7 +244,21 @@ void func_801110C4(s32 arg0, u8 *arg1) {
     func_800EFB24(arg0 + 0x8C, arg1, arg0 + 0x74);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_801110EC.s")
+/* extern */
+
+s32 func_801110EC(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 _ncbatarget_entrypoint_4(u8 *, s32);
+    s32 _ncbatarget_entrypoint_5();
+    switch (*(s32 *)(arg0 + 0x6C)) {
+    case 0x14:
+        _ncbatarget_entrypoint_5(arg0, arg1);
+        _ncbatarget_entrypoint_4(arg0, arg2);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 s32 func_8011113C(void) {
     return 0;
