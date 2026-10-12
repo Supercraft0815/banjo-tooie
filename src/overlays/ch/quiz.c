@@ -119,7 +119,20 @@ s32 func_80800C00_chquiz(Actor *arg0) {
     return (*(s32 *)((s8 *)(func_80100094(arg0, 0U)) + (0xD0)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800C24_chquiz.s")
+s32 func_80800C24_chquiz(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    u8 *data;
+    volatile u8 *p;
+    s32 i;
+
+    data = func_80100094(arg0, 0U);
+    for (i = 0; i < 30; i++) {
+        ((volatile u8 *)data)[0x9C + i] = 0;
+    }
+    for (i = 0; i < 17; i++) {
+        data[0xBA + i] = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800C8C_chquiz.s")
 
