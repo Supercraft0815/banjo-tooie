@@ -27,4 +27,15 @@ void func_8080092C_charmouredcaveman(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/armouredcaveman/func_8080095C_charmouredcaveman.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/armouredcaveman/func_808009D4_charmouredcaveman.s")
+/* extern */
+
+void func_808009D4_charmouredcaveman(Actor *arg0) {
+    void func_8080095C_charmouredcaveman(void);
+    if (arg0->unk70_10 != 3) {
+        if (arg0->unk70_10 == 4) {
+            arg0->unk64_19 = 1;
+            return;
+        }
+        func_8080095C_charmouredcaveman();
+    }
+}
