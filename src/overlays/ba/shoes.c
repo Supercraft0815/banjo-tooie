@@ -90,7 +90,18 @@ void bashoes_entrypoint_16(s32 arg0) {
     func_800BABB8(sp20, &sp24, &sp24, 0x3F800000, &D_80800AD0_bashoes);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/bashoes_entrypoint_17.s")
+void bashoes_entrypoint_17(s32 arg0) {
+    s32 func_8009C128(s32, s32 *);
+    s32 func_800B53A4(s32);
+    s32 func_800BABB8(s32, s32 *, s32 *, s32, s32 *);
+    extern s32 D_80800B4C_bashoes;
+    s32 sp24[3];
+    s32 sp20;
+
+    sp20 = func_800B53A4(30);
+    func_8009C128(arg0, &sp24);
+    func_800BABB8(sp20, &sp24, &sp24, 0x3F800000, &D_80800B4C_bashoes);
+}
 
 void bashoes_entrypoint_18(s32 arg0) {
     s32 func_80092E08(s32, s32 *);
