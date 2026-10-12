@@ -1,6 +1,17 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_0.s")
+/* extern */
+
+f32 suexpression_entrypoint_0(u8 arg0) {
+    void *func_80800CF4_suexpression(s32);
+    void *temp_v0;
+
+    temp_v0 = func_80800CF4_suexpression(arg0);
+    if (temp_v0 == NULL) {
+        return 0.0f;
+    }
+    return (f32) *(s16 *) temp_v0;
+}
 
 u8 suexpression_entrypoint_1(u8 arg0) {
     void *func_80800CF4_suexpression(s32 arg0);
