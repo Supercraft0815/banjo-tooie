@@ -5,7 +5,20 @@ s32 func_8009F300()
     return 0x4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009F308.s")
+f32 func_8009F308(PlayerState *arg0) {
+    void func_8009C128(PlayerState *, f32[3]);
+    f32 *func_800A4C48(PlayerState *);
+    s32 func_800CA7E4(f32 *, s32);
+    s32 func_800F1E6C(f32[3], f32[3], f32 *target_yaw);
+    f32 sp2C[3];
+    f32 sp20[3];
+    f32 sp1C;
+
+    func_8009C128(arg0, sp2C);
+    func_800CA7E4(func_800A4C48(arg0), (s32) sp20);
+    func_800F1E6C(sp2C, sp20, &sp1C);
+    return sp1C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009F354.s")
 
