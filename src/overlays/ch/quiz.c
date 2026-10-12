@@ -31,7 +31,20 @@ f32 func_808000E0_chquiz(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800218_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800298_chquiz.s")
+/* extern */
+
+void func_80800298_chquiz(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _gcnewoption_entrypoint_0(s32);
+    s32 temp_a2;
+
+    temp_a2 = ((Actor *)func_80100094(arg0, 0U))->pad94;
+    if (temp_a2 != 0) {
+        if (((Actor *)func_80100094(arg0, 0U))->pad99 != 0) {
+            _gcnewoption_entrypoint_0(temp_a2);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808002F0_chquiz.s")
 
