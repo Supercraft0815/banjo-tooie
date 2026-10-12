@@ -24,7 +24,24 @@ void bstaxi_entrypoint_1(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_3.s")
+/* extern */
+
+struct player_state_s;
+enum baanim_update_type_e;
+enum yaw_type_e;
+enum ba_physics_type_e;
+void func_8009FFD8(struct player_state_s *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+
+void bstaxi_entrypoint_3(void *arg0) {
+    s32 baanim_playForDuration_onceSmooth(void *, s32, s32);
+    s32 bainput_enable(void *, s32, s32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    bstaxi_entrypoint_1(arg0);
+    baanim_playForDuration_onceSmooth(arg0, 0x129, 0x40A00000);
+    func_8009FFD8(arg0, 1, 1, 3, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    bainput_enable(arg0, 0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_4.s")
 
@@ -144,7 +161,7 @@ void bstaxi_entrypoint_11(s32 arg0)
 /* extern */
 
 void bstaxi_entrypoint_12(void *arg0) {
-    void baphysics_set_target_horizontal_velocity(void *, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     bstaxi_entrypoint_1(arg0);
     func_8009FFD8(arg0, 1, 1, 3, 2);
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
@@ -190,7 +207,7 @@ void bstaxi_entrypoint_23()
 
 void bstaxi_entrypoint_24(void *arg0) {
     s32 baanim_playForDuration_onceSmooth(void *, s32, s32);
-    void baphysics_set_target_horizontal_velocity(void *, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
 
     bstaxi_entrypoint_1(arg0);
     baanim_playForDuration_onceSmooth(arg0, 0x128, 0x3FB33333);
@@ -230,7 +247,7 @@ void bstaxi_entrypoint_30(void *arg0) {
     s32 baflag_clear(void *, s32);
     s32 baflag_isTrue(void *, s32);
     s32 baflag_set(void *, s32);
-    void baphysics_set_target_horizontal_velocity(void *, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     s32 bs_setState(void *, s32);
     void func_8009D3A8(void *, s32);
     void func_8009DC98(void *, s32, f32, f32);
@@ -328,7 +345,7 @@ void bstaxi_entrypoint_32(s32 arg0)
 void bstaxi_entrypoint_33(void *arg0) {
     void *self;
     s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
-    void baphysics_set_target_horizontal_velocity(void *, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     self = arg0;
     bstaxi_entrypoint_1(self);
     baanim_playForDuration_loopSmooth(self, 0x124, 0x40C00000);
