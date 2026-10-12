@@ -1,6 +1,16 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/suckunder/func_80800000_bsdronesuckunder.s")
+/* extern */
+struct player_state_s;
+
+void func_80800000_bsdronesuckunder(struct player_state_s *arg0) {
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_8009BA9C(struct player_state_s *, f32 *);
+    f32 sp1C[3];
+
+    func_800EFA4C(sp1C, 0.0f, -333.3333f, 0.0f);
+    func_8009BA9C(arg0, sp1C);
+}
 
 void bsdronesuckunder_entrypoint_0(s32 arg0)
 {
