@@ -1,16 +1,33 @@
 #include "common.h"
+struct Vector;
+struct Vector *vector_new(u32 element_size, u32 count);
+void *vector_push_back(struct Vector **vec_ptr);
+void *vector_begin(struct Vector *vec);
+void *vector_end(struct Vector *vec);
+void vector_clear(struct Vector *vec);
+void vector_free(struct Vector *vec);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/fade/sufade_entrypoint_0.s")
+extern struct Vector *D_80127EF4;
+
+void sufade_entrypoint_0(s32 arg0, s32 *arg1) {
+    u8 *temp_v0;
+
+    if (D_80127EF4 == 0) {
+        struct Vector *volatile *handle = &D_80127EF4;
+        *handle = vector_new(4, 1);
+    }
+    temp_v0 = vector_push_back(&D_80127EF4);
+    temp_v0[0] = arg1[0];
+    temp_v0[1] = arg1[1];
+    temp_v0[2] = arg1[2];
+    temp_v0[3] = arg0;
+}
 
 void sufade_entrypoint_1(s32 arg0) {
     s32 func_800B99CC(s32, u8, s32 *);
-    u32 vector_begin(s32);
-    s32 vector_clear(s32);
-    u32 vector_end(s32);
     extern s32 B_80800160_sufade;
-    extern s32 D_80127EF4;
-    u32 temp_v0;
-    u32 var_s0;
+    u8 *temp_v0;
+    u8 *var_s0;
 
     var_s0 = vector_begin(D_80127EF4);
     temp_v0 = vector_end(D_80127EF4);
@@ -27,8 +44,6 @@ void sufade_entrypoint_1(s32 arg0) {
 }
 
 void sufade_entrypoint_2(void) {
-    s32 vector_free(s32);
-    extern s32 D_80127EF4;
     if (D_80127EF4 != 0) {
         vector_free(D_80127EF4);
         D_80127EF4 = 0;

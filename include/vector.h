@@ -3,7 +3,7 @@
 
 #include <ultra64.h>
 
-typedef struct {
+typedef struct Vector {
     s32 element_size;
     void* begin;
     void* end;
