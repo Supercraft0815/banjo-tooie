@@ -3,19 +3,19 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010A980.s")
 
 void func_8010AA54(s32 *arg0) {
-    s32 func_800EE7F8();
+    void func_800EE7F8();
     extern s32 D_80136F30;
     func_800EE7F8(arg0, &D_80136F30);
 }
 
 void func_8010AA78(s32 *arg0) {
-    s32 func_800EE7F8();
+    void func_800EE7F8();
     extern s32 D_80136F20;
     func_800EE7F8(arg0, &D_80136F20);
 }
 
 void func_8010AA9C(s32 *arg0) {
-    s32 func_800EE7F8();
+    void func_800EE7F8();
     extern s32 D_80136F40;
     func_800EE7F8(arg0, &D_80136F40);
 }
@@ -140,7 +140,23 @@ s32 func_8010B94C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B990.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010BA80.s")
+s32 func_8010B990(Actor *, s32);
+
+s32 func_8010BA80(Actor *volatile arg0, volatile s32 arg1, s32 arg2) { 
+    void func_800EE7F8(f32 *, f32 *);
+    s32 result;
+    f32 saved[3];
+    f32 *position;
+    s32 *arg2_ptr = &arg2;
+
+    position = arg0->position;
+    func_800EE7F8(saved, position);
+    result = func_8010B990(arg0, arg1);
+    if (result & arg2) {
+        func_800EE7F8(position, saved);
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010BAEC.s")
 
