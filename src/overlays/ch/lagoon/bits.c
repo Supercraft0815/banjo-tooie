@@ -67,7 +67,15 @@ void func_808000AC_chlagoonbits(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/func_80800108_chlagoonbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/func_808001F4_chlagoonbits.s")
+/* extern */
+
+void func_808001F4_chlagoonbits(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_6(Actor*, s32);
+    s32 func_8080023C_chlagoonbits(Actor *);
+    if (((((u32) (*(u16 *)((s8 *)(arg0) + (0x72)))) >> 0xA) == 2) && (_subaddieDll_entrypoint_6(arg0, 0xB) != 0)) {
+        func_8080023C_chlagoonbits(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/func_8080023C_chlagoonbits.s")
 
