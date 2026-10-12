@@ -14,7 +14,10 @@ void func_808000D0_chdrawbridgeswitches(s32 arg0) {
     func_80800000_chdrawbridgeswitches(arg0, 0xA20, 512);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/drawbridgeswites/func_808000F4_chdrawbridgeswitches.s")
+void func_808000F4_chdrawbridgeswitches(s32 arg0, s32 arg1, s32 arg2) {
+    void func_80800030_chdrawbridgeswitches();
+    func_80800030_chdrawbridgeswitches(arg0, arg1, arg2, 0x69, 0x68);
+}
 
 OSThread *chdrawbridgeswitches_entrypoint_0(void)
 {
