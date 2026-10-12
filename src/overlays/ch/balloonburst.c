@@ -135,13 +135,13 @@ s32 func_80801254_chballoonburst(u8 *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80801948_chballoonburst.s")
 
-void func_80801A10_chballoonburst(u8 *arg0) {
-    s32 func_800BBCB8(u8 *, u8 *, s32, s32, s32 *);
+void func_80801A10_chballoonburst(Actor *arg0) {
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern s32 D_80801D28_chballoonburst;
-    u8 *temp_a0;
+    f32 *temp_a0;
 
-    temp_a0 = arg0 + 4;
-    func_800BBCB8(temp_a0, temp_a0, (*(s32 *)((s8 *)(arg0) + (0x38))), 8, &D_80801D28_chballoonburst);
+    temp_a0 = arg0->position;
+    func_800BBCB8(temp_a0, temp_a0, arg0->scale, 8, &D_80801D28_chballoonburst);
 }
 
 void func_80801A50_chballoonburst(u8 *arg0, s32 arg1, s32 arg2) {
@@ -162,12 +162,30 @@ void func_80801A50_chballoonburst(u8 *arg0, s32 arg1, s32 arg2) {
     func_800BA22C(sp24, arg2);
 }
 
-void func_80801ABC_chballoonburst(u8 *arg0) {
-    s32 func_800BBCB8(u8 *, u8 *, s32, s32, s32 *);
+void func_80801ABC_chballoonburst(Actor *arg0) {
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern s32 D_80801D98_chballoonburst;
-    func_800BBCB8(arg0 + 4, 0, (*(s32 *)((s8 *)(arg0) + (0x38))), 1, &D_80801D98_chballoonburst);
+    func_800BBCB8(arg0->position, 0, arg0->scale, 1, &D_80801D98_chballoonburst);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80801AFC_chballoonburst.s")
+typedef union {
+    Actor actor;
+    struct {
+        u8 pad0[0x70];
+        u32 pad70_1 : 31;
+        u32 flag : 1;
+    } balloon;
+} BalloonBurstActor;
+
+void func_80801AFC_chballoonburst(BalloonBurstActor *arg0) {
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern s32 D_80801DBC_chballoonburst;
+    extern s32 D_80801DF0_chballoonburst;
+    if (arg0->actor.unk64_20) {
+        func_800BBCB8(arg0->actor.position, NULL, arg0->actor.scale, 0xE, &D_80801DBC_chballoonburst);
+    }
+    func_8010D930(4, arg0->balloon.flag, arg0->actor.position, &D_80801DF0_chballoonburst);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80801B6C_chballoonburst.s")
