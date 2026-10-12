@@ -103,7 +103,123 @@ OSThread *chdodgemcontrol_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80802104_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80802180_chdodgemcontrol.s")
+void func_80802180_chdodgemcontrol(Actor *arg0) {
+    f32 func_800138D0(f32);
+    f32 func_800D8FF8(void);
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    f32 func_800F1DCC(f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80102B2C(Actor *, f32);
+    s32 func_80102CF4(Actor *, f32);
+    void func_80802104_chdodgemcontrol(Actor *);
+    void func_808039B8_chdodgemcontrol(Actor *);
+    f32 func_808046EC_chdodgemcontrol(Actor *);
+    f32 mlAbsF(f32);
+    f32 *sp8C;
+    f32 sp88;
+    f32 sp84;
+    f32 sp80;
+    f32 sp74[3];
+    f32 sp68[3];
+    f32 sp5C[3];
+    f32 sp50[3];
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp2C[3];
+
+    sp8C = func_80100094(arg0, 0);
+    sp88 = func_800D8FF8();
+    sp84 = func_800F1DCC(*(f32 *)((u8 *)arg0 + 0x48), *(f32 *)((u8 *)arg0 + 0x54));
+    *(f32 *)((u8 *)arg0 + 0x24) *= 0.95f;
+    sp84 = mlAbsF(func_800138D0(sp84));
+    sp80 = func_808046EC_chdodgemcontrol(arg0) * (1.1f - sp84) * sp88;
+    sp8C[3] *= 0.8f;
+    func_800EEB9C(sp74, *(f32 *)((u8 *)arg0 + 0x48), -40.0f);
+    func_800EF04C((f32 *)((u8 *)arg0 + 4), sp74);
+    if (func_80102CF4(arg0, sp80) == 0) {
+        func_80102B2C(arg0, sp80);
+    }
+    *(f32 *)((u8 *)arg0 + 0x48) += sp8C[3];
+    func_800EEB9C(sp74, *(f32 *)((u8 *)arg0 + 0x48), 40.0f);
+    func_800EF04C((f32 *)((u8 *)arg0 + 4), sp74);
+    func_800EEB9C(sp5C, *(f32 *)((u8 *)arg0 + 0x48), 48.75f);
+    func_800EF04C(sp5C, (f32 *)((u8 *)arg0 + 4));
+    func_800EEB9C(sp68, *(f32 *)((u8 *)arg0 + 0x48), *(f32 *)((u8 *)arg0 + 0x24));
+    func_800EF04C(sp68, sp8C);
+    if (sp68[0] < 0.0f) {
+        sp68[0] = -sp68[0];
+    }
+    if (sp68[2] < 0.0f) {
+        sp68[2] = -sp68[2];
+    }
+    if (*(f32 *)((u8 *)arg0 + 4) < -629.0f) {
+        *(f32 *)((u8 *)arg0 + 4) = -629.0f;
+        func_800EEB9C(sp8C, 90.0f, sp68[0] * 1.25f);
+        *(f32 *)((u8 *)arg0 + 0x24) = 0.0f;
+        func_80802104_chdodgemcontrol(arg0);
+    }
+    if (sp5C[0] < -655.0f) {
+        sp5C[0] = -655.0f;
+        func_800EEB9C(sp50, *(f32 *)((u8 *)arg0 + 0x48), 48.75f);
+        *(f32 *)((u8 *)arg0 + 4) = sp5C[0] - sp50[0];
+        func_800EEB9C(sp8C, 90.0f, sp68[0] * 1.25f);
+        *(f32 *)((u8 *)arg0 + 0x24) = 0.0f;
+        func_80802104_chdodgemcontrol(arg0);
+    }
+    if (*(f32 *)((u8 *)arg0 + 4) > 629.0f) {
+        *(f32 *)((u8 *)arg0 + 4) = 629.0f;
+        func_800EEB9C(sp8C, 270.0f, sp68[0] * 1.25f);
+        *(f32 *)((u8 *)arg0 + 0x24) = 0.0f;
+        func_80802104_chdodgemcontrol(arg0);
+    }
+    if (sp5C[0] > 655.0f) {
+        sp5C[0] = 655.0f;
+        func_800EEB9C(sp44, *(f32 *)((u8 *)arg0 + 0x48), 48.75f);
+        *(f32 *)((u8 *)arg0 + 4) = sp5C[0] - sp44[0];
+        func_800EEB9C(sp8C, 270.0f, sp68[0] * 1.25f);
+        *(f32 *)((u8 *)arg0 + 0x24) = 0.0f;
+        func_80802104_chdodgemcontrol(arg0);
+    }
+    if (*(f32 *)((u8 *)arg0 + 0xC) > 629.0f) {
+        *(f32 *)((u8 *)arg0 + 0xC) = 629.0f;
+        func_800EEB9C(sp8C, 180.0f, sp68[2] * 1.25f);
+        *(f32 *)((u8 *)arg0 + 0x24) = 0.0f;
+        func_80802104_chdodgemcontrol(arg0);
+    }
+    if (sp5C[2] > 655.0f) {
+        sp5C[2] = 655.0f;
+        func_800EEB9C(sp38, *(f32 *)((u8 *)arg0 + 0x48), 75.0f);
+        *(f32 *)((u8 *)arg0 + 0xC) = sp5C[2] - sp38[2];
+        func_800EEB9C(sp8C, 180.0f, sp68[2] * 1.25f);
+        *(f32 *)((u8 *)arg0 + 0x24) = 0.0f;
+        func_80802104_chdodgemcontrol(arg0);
+    }
+    if (*(f32 *)((u8 *)arg0 + 0xC) < -629.0f) {
+        *(f32 *)((u8 *)arg0 + 0xC) = -629.0f;
+        func_800EEB9C(sp8C, 0.0f, sp68[2] * 1.25f);
+        *(f32 *)((u8 *)arg0 + 0x24) = 0.0f;
+        func_80802104_chdodgemcontrol(arg0);
+    }
+    if (sp5C[2] < -655.0f) {
+        sp5C[2] = -655.0f;
+        func_800EEB9C(sp2C, *(f32 *)((u8 *)arg0 + 0x48), 48.75f);
+        *(f32 *)((u8 *)arg0 + 0xC) = sp5C[2] - sp2C[2];
+        func_800EEB9C(sp8C, 0.0f, sp68[2] * 1.25f);
+        *(f32 *)((u8 *)arg0 + 0x24) = 0.0f;
+        func_80802104_chdodgemcontrol(arg0);
+    }
+    func_800EEB9C((f32 *)((u8 *)arg0 + 0x28), *(f32 *)((u8 *)arg0 + 0x48), *(f32 *)((u8 *)arg0 + 0x24));
+    func_800EF04C((f32 *)((u8 *)arg0 + 0x28), sp8C);
+    func_800EF334((f32 *)((u8 *)arg0 + 0x28), sp88);
+    func_800EF04C((f32 *)((u8 *)arg0 + 4), (f32 *)((u8 *)arg0 + 0x28));
+    func_800EF334(sp8C, 0.7f);
+    if (sp8C[6] != 0.0f) {
+        sp8C[6] = sp8C[6] - sp88;
+    }
+    func_808039B8_chdodgemcontrol(arg0);
+}
 
 s32 func_808026D0_chdodgemcontrol(s32 arg0) {
     s32 func_80104248();
