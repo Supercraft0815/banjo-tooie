@@ -214,7 +214,7 @@ void func_800187B4(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_800187E8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_80018820.s")
+void func_80018820(s32 arg0, f32 arg1, f32 arg2) { func_800187B4(arg0, arg1, arg1, arg2); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_80018854.s")
 
