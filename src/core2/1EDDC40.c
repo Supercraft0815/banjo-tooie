@@ -82,7 +82,24 @@ void func_80104580(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_801048E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104958.s")
+/* extern */
+
+void func_80104958(u8 *arg0) {
+    void func_800AAD28(f32 *);
+    f32 sp34[9];
+    s16 *var_s1;
+    f32 *var_s0;
+
+    func_800AAD28(sp34);
+    var_s1 = (s16 *)(arg0 + 4);
+    arg0 = (u8 *)(sp34 + 9);
+    var_s0 = sp34;
+    do {
+        func_800EE940(var_s1, var_s0);
+        var_s0 += 3;
+        var_s1 += 3;
+    } while ((u8 *)var_s0 != arg0);
+}
 
 void func_801049B4(u8 *arg0, f32 *arg1, s32 *arg2) {
     typedef struct {
