@@ -113,7 +113,18 @@ void func_80101EE4(Actor *arg0, f32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80101F24.s")
+/* extern */
+f32 func_80101F24(Actor *arg0) {
+    s32 func_80104248(Actor *);
+    f32 anctrl_getAnimTimer(s32);
+    s32 temp_v0;
+
+    temp_v0 = func_80104248(arg0);
+    if (temp_v0 != 0) {
+        return anctrl_getAnimTimer(temp_v0);
+    }
+    return 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80101F64.s")
 
