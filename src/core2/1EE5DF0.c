@@ -43,9 +43,9 @@ s32 func_8010C754(void) {
 
 /* extern */
 
-void func_8010C788(s32 arg0, s32 arg1, s32 arg2, f32 arg3) {
+void func_8010C788(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     s32 _plsu_entrypoint_1(s32);
-    s32 func_800F4EC8(s32, s32, s32, s32, f32);
+    s32 func_800F4EC8(s32, s32, f32, f32, f32);
     s32 func_800F54E4();
     s32 func_800F8B88();
     s32 sp24;
@@ -62,7 +62,11 @@ void func_8010C788(s32 arg0, s32 arg1, s32 arg2, f32 arg3) {
     func_800F4EC8(sp24, arg0, arg1, arg2, arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010C820.s")
+/* extern */
+
+void func_8010C820(s32 arg0, s32 arg1, s32 arg2) {
+    func_8010C788(arg0 + 4, (f32) arg1, 0.0f, (f32) (arg2 + 0x1E));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010C878.s")
 
