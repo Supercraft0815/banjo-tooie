@@ -31,7 +31,11 @@ void func_80800018_chbottlesparty(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/party/func_8080009C_chbottlesparty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/party/func_80800138_chbottlesparty.s")
+void func_80800138_chbottlesparty(Actor *arg0) {
+    if ((u32) arg0->unk74_7 == 0x32) {
+        func_80103140(arg0, 0x653U, 0U);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/party/func_80800170_chbottlesparty.s")
 
