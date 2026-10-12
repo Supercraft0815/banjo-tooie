@@ -115,7 +115,11 @@ s32 bsbansack_entrypoint_2(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800A78_bsbansack.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800AA4_bsbansack.s")
+int func_80800AA4_bsbansack(PlayerState *arg0) {
+    f32 baphysics_get_vertical_velocity(PlayerState *);
+    s32 player_inWater(PlayerState *);
+    return player_inWater(arg0) && baphysics_get_vertical_velocity(arg0) < 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800AF4_bsbansack.s")
 
