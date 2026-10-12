@@ -29,7 +29,21 @@ OSThread *chbottlesfamily_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_808001B0_chbottlesfamily.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_8080046C_chbottlesfamily.s")
+/* extern */
+
+s32 func_8080046C_chbottlesfamily(Actor *arg0, s32 arg1) {
+    void _subaddierouteDll_entrypoint_1(Actor*);
+    s32 func_80800720_chbottlesfamily(Actor*);
+    s32 ret;
+    if (arg1 == 0x95) {
+        func_80800720_chbottlesfamily(arg0);
+        _subaddierouteDll_entrypoint_1(arg0);
+        ret = 1;
+    } else {
+        return func_80800720_chbottlesfamily(arg0);
+    }
+    return ret;
+}
 
 s32 func_808004B4_chbottlesfamily(s32 arg0) {
     s32 func_800DA298(s32);
