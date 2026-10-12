@@ -19,8 +19,15 @@ void func_80800564_subaddierouteDll(s32 arg0, void *arg1) {
     (*(s32 *)((s8 *)(arg1) + (8))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/subaddierouteDll_entrypoint_4.s")
+/* extern */
 
+s32 subaddierouteDll_entrypoint_4(void **arg0) {
+    s32 func_8001210C(s32);
+    u32 sp1C;
+
+    sp1C = (u32)(*(u16 *)((s8 *)(*arg0) + 0x12)) >> 1 & 3;
+    return func_8001210C(3) == sp1C;
+}
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/func_808005B0_subaddierouteDll.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/subaddierouteDll_entrypoint_5.s")
