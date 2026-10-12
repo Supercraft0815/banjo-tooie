@@ -1413,7 +1413,20 @@ void func_800F8E08(void) {
     func_800F9A44();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8E78.s")
+/* extern */
+
+s32 func_800F8E78(s32 arg0) {
+    extern s32 D_801354F0;
+    void *func_800F88A0();
+    void vector_erase(s32, s32);
+    s32 vector_index_of(s32, void *);
+    void *var_v0;
+
+    var_v0 = func_800F88A0(arg0);
+    if (var_v0 != NULL) {
+        vector_erase(D_801354F0, vector_index_of(D_801354F0, var_v0));
+    }
+}
 
 void func_800F8EBC(s32 a0)
 {
