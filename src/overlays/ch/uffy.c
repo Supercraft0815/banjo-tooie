@@ -37,9 +37,23 @@ void func_80800818_chchuffy(u8 *arg0, u32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_808009CC_chchuffy.s")
 
-void func_80800EF4_chchuffy(Unk80132ED0 *arg0) { s32 _capod_entrypoint_13(s32, s32, s32, s32); s32 func_80800110_chchuffy(s32); struct Entry { s16 pad[2]; s16 value; s16 tail; }; extern struct Entry D_8080247C_chchuffy[]; s32 temp_v0; temp_v0 = func_80800110_chchuffy(4); if (D_8080247C_chchuffy[temp_v0].value != -1) { _capod_entrypoint_13(arg0->unk0, 0, D_8080247C_chchuffy[temp_v0].value, 0x2830); } }
+struct Entry { s16 pad[2]; s16 value; s16 tail; };
+extern struct Entry D_8080247C_chchuffy[];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80800F54_chchuffy.s")
+void func_80800EF4_chchuffy(Unk80132ED0 *arg0) { void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, u32, u32); s32 func_80800110_chchuffy(s32); s32 temp_v0; temp_v0 = func_80800110_chchuffy(4); if (D_8080247C_chchuffy[temp_v0].value != -1) { _capod_entrypoint_13(arg0->unk0, 0, D_8080247C_chchuffy[temp_v0].value, 0x2830); } }
+
+void func_80800F54_chchuffy(Actor *arg0) {
+    void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, u32, u32);
+    s32 _chintrotext_entrypoint_2(s32);
+    s32 func_80800110_chchuffy(s32);
+    s32 temp_v0;
+
+    temp_v0 = func_80800110_chchuffy(4);
+    if (D_8080247C_chchuffy[temp_v0].tail != -1) {
+        _capod_entrypoint_13(arg0->unk0, NULL, D_8080247C_chchuffy[temp_v0].tail, 0x2830U);
+        _chintrotext_entrypoint_2(1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80800FBC_chchuffy.s")
 
