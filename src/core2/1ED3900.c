@@ -59,7 +59,15 @@ void func_800FA6B8(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA708.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA818.s")
+s32 func_800FA818(s32 arg0, s32 arg1) {
+    s32 func_800FA240(s32, s32);
+    extern s32 D_80123880[][7];
+    if ((D_80123880[arg0][6] == 0) || (arg1 != *((s8 *)D_80123880[arg0] + 0xE))) {
+        return 0;
+    }
+    func_800FA240(arg0, 0);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA874.s")
 
