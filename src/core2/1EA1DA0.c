@@ -469,7 +469,18 @@ void func_800C99F0(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9AB0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9B30.s")
+/* extern */
+
+void func_800C9B30(u8 *arg0, volatile s32 arg1, volatile s32 arg2) {
+    s32 func_8010114C(s32, s32, s32);
+    s32 func_801069A4();
+    u8 *sp1C;
+    u8 **arg0_home = &arg0;
+    sp1C = *arg0_home;
+    if ((func_801069A4(sp1C) != 0) && (arg1 == ((u32) (*(u16 *)((s8 *)(sp1C) + (0x12))) >> 1))) {
+        func_8010114C((s32)sp1C, 0x22, arg2);
+    }
+}
 
 void func_800C9B84(void) {
     s32 vector_clear(s32);
@@ -576,7 +587,7 @@ void func_800C9EF8(f32 time, void *funcPtr, void *argPtr) {
 
 void func_800C9F48(f32 time, u8 *arg1, s32 arg2) {
     void *func_800C9750(f32, s32, void *, s32, s32, s32, s32, s32);
-    extern void func_800C9B30(void);
+    extern void func_800C9B30(u8 *, volatile s32, volatile s32);
     u8 **q = &arg1;
     func_800C9750(time, 3, func_800C9B30, *q, (u32) (*(u16 *)(*q + 0x12)) >> 1, arg2, 0, 0);
 }
