@@ -152,7 +152,20 @@ s32 bsbfly_entrypoint_1(s32 arg0) {
     return ((s32 *)&D_80801D58_bsbfly)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_808009D0_bsbfly.s")
+/* extern */
+
+void func_808009D0_bsbfly(PlayerState *arg0) {
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800A34AC(PlayerState *, f32[3]);
+    void func_8009DF58(PlayerState *, s32, f32);
+    f32 sp1C[3];
+
+    func_8009C128(arg0, sp1C);
+    func_800EF04C(sp1C, (f32 *)(*(s32 *)((s8 *)arg0 + 0x188) + 0x10));
+    func_800A34AC(arg0, sp1C);
+    func_8009DF58(arg0, 0x40D, 1.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800A24_bsbfly.s")
 
