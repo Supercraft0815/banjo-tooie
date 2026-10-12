@@ -67,7 +67,21 @@ void func_80800240_chhoneyb(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800744_chhoneyb.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800920_chhoneyb.s")
+/* extern */
+
+s32 func_80800920_chhoneyb(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 func_80800BD8_chhoneyb();
+    s32 var_v0;
+
+    if (arg1 == 0x1520) {
+        return func_80800BD8_chhoneyb();
+    }
+    if (arg1 == 0x151B) {
+        return (*(s32 *)((s8 *)(arg0) + (0x28)));
+    } else {
+        return -1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800968_chhoneyb.s")
 
