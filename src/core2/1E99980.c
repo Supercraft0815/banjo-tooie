@@ -42,7 +42,17 @@ void func_800C01A8(s16 arg0, s32 arg1) {
 /* Single line: IDO schedules this prologue by source line. */
 void func_800C01D8(s32 arg0, s32 arg1) { s32 _gcdialogexec_entrypoint_5(s32 *, s32, s32); _gcdialogexec_entrypoint_5(&D_801288B0, arg0, arg1); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0208.s")
+int func_800C0208(void) {
+    extern s32 D_80128A18;
+    void *caller = *(void **)((s8 *)&D_801288B0 + 0x168);
+    if (caller == NULL) {
+        return 0;
+    }
+    if (func_800C0090(caller, *(s32 *)((s8 *)&D_801288B0 + 0x16C))) {
+        return D_80128A18;
+    }
+    return 0;
+}
 
 s16 func_800C0258(void) {
     return ((s16 *)&D_801288B0)[((u32)*(u16 *)((s8 *)&D_801288B0 + 0x15E) >> 15) + 0x8C] + 12;
