@@ -372,7 +372,22 @@ void func_8010A63C(void ***arg0) {
     flags->enabled = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A654.s")
+u32 func_8010A654(void ***arg0, s32 arg1) {
+    struct Flags {
+        u8 pad[8];
+        u32 upper : 28;
+        u32 enabled : 1;
+        u32 lower : 3;
+    } *ptr = **arg0;
+    u32 result = ptr->enabled;
+
+    if (arg1) {
+        ptr->enabled = 1;
+    } else {
+        ptr->enabled = 0;
+    }
+    return result;
+}
 
 u32 func_8010A698(void ***arg0) {
     return (u32) ((*(s32 *)((s8 *)(**arg0) + (8))) << 0x1C) >> 0x1F;
