@@ -22,7 +22,92 @@ OSThread *chwaspnestgame_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_8080047C_chwaspnestgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80800724_chwaspnestgame.s")
+s32 func_80800724_chwaspnestgame(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800DA298(s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void func_80800018_chwaspnestgame(Actor *, s32);
+    void func_80800B80_chwaspnestgame(Actor *);
+    void func_80800C7C_chwaspnestgame(Actor *, s32);
+    void func_80800D7C_chwaspnestgame(Actor *, s32);
+    s32 func_80800DE4_chwaspnestgame(Actor *, s32);
+    s32 func_80800EB8_chwaspnestgame(void *, s32, s32);
+    void func_80800F98_chwaspnestgame(Actor *, s32, s32);
+    extern s16 D_80801F76_chwaspnestgame[];
+    u8 *sp34;
+    s32 sp30;
+    s16 *sp2C;
+    s32 sp28;
+
+    sp34 = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0x95:
+            if ((func_800D0A9C(0x4B, 1) && !func_800D0B68(0x4B, 1)) ||
+                (func_800D0A9C(0x18, 4) && !func_800D0B68(0x18, 4))) {
+                *(f32 *)((u8 *)arg0 + 0x58) = 0.5f;
+                func_80101FDC(arg0, 5);
+            } else {
+                func_80090708(2);
+                if (func_800D395C()) {
+                    _susubgame_entrypoint_5(arg0, sp34 + 0x24, 5, 1, 0);
+                    _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0x144D, 6, 0, 0x99);
+                } else if (func_800DA298(0x6E6)) {
+                    _susubgame_entrypoint_5(arg0, sp34 + 0x24, 5, 1, 0);
+                    sp28 = !func_800D0A9C(0x4B, 1);
+                    _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, -!func_800D0A9C(0x18, 4) - sp28 + 0x144B, 6, 0, 0x99);
+                } else {
+                    _susubgame_entrypoint_6(arg0, sp34 + 0x24, 8, 0x20, 0);
+                    sp28 = !func_800D0A9C(0x4B, 1);
+                    _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, -!func_800D0A9C(0x18, 4) - sp28 + 0x1407, 6, 0, 0x99);
+                    func_800DA544(0);
+                    func_80108B04(arg0, 0);
+                }
+                func_80800018_chwaspnestgame(arg0, 1);
+            }
+            break;
+        case 0x3D:
+            if (arg2 > 0) {
+                func_80800C7C_chwaspnestgame(arg0, arg2);
+            } else if (arg2 < 0) {
+                func_80800D7C_chwaspnestgame(arg0, -arg2);
+            } else {
+                func_80800B80_chwaspnestgame(arg0);
+            }
+            break;
+        case 0x2E:
+            sp2C = (s16 *)&arg2;
+            func_80800F98_chwaspnestgame(arg0, sp2C[0], sp2C[1]);
+            break;
+        case 0x30:
+            sp2C = (s16 *)&arg2;
+            return func_80800EB8_chwaspnestgame(arg0, sp2C[0], sp2C[1]);
+        case 0x2F:
+            sp2C = (s16 *)&arg2;
+            sp30 = sp2C[1];
+            func_80101180(0x1E4, 0x45, 0);
+            _susubgame_entrypoint_6(arg0, sp34 + 0x24, D_80801F76_chwaspnestgame[sp30], 0x20, 0);
+            func_80108B04(arg0, -sp30);
+            break;
+        case 0xB:
+            return func_80800DE4_chwaspnestgame(arg0, arg2);
+        case 0x57:
+            return _susubgame_entrypoint_3(arg0, sp34 + 0x24, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+        case 0x96:
+            if (!func_800D395C()) {
+                return 0;
+            }
+            func_80101180(0x1E4, 0x45, 0);
+            _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0xCEB, 0x46, 0, 0x99);
+            func_80101FDC(arg0, 3);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80800AF8_chwaspnestgame.s")
 
