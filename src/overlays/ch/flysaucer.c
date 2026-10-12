@@ -66,7 +66,23 @@ s16 func_80800728_chflysaucer(Actor *arg0) {
     return D_808045DA_chflysaucer[*((u8 *)func_80100094(arg0, 0U) + 0x26)];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800758_chflysaucer.s")
+/* extern */
+
+s32 func_80800758_chflysaucer(s16 arg0) {
+    s32 func_800A5800(s32);
+    s32 _cadbfunc_entrypoint_16(s16 *);
+    s32 var_s0;
+
+    var_s0 = 0;
+    if (arg0 != -1) {
+        do {
+            func_800A5800(arg0);
+            _cadbfunc_entrypoint_16(&arg0);
+            var_s0 += 1;
+        } while (arg0 != -1);
+    }
+    return var_s0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808007C4_chflysaucer.s")
 
