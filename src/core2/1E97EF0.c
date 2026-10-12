@@ -31,7 +31,16 @@ s32 func_800BEA88(s32 arg0) {
     return D_801285B4[arg0].value;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEAAC.s")
+/* extern */
+
+s32 func_800BEAAC(s32 arg0, s32 arg1) {
+    extern u8 D_80128627;
+    s32 _gcmapsects_entrypoint_6(s32 *, s32, s32);
+    if (D_80128627 != 0) {
+        return _gcmapsects_entrypoint_6(&D_801285B0, arg0, arg1);
+    }
+    return 0;
+}
 
 /* extern */
 
