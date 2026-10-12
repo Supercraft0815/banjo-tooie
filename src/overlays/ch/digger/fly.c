@@ -14,4 +14,13 @@ OSThread *chdiggerfly_entrypoint_1(void)
     return (OSThread *) D_80800140_chdiggerfly;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/fly/func_80800018_chdiggerfly.s")
+/* extern */
+
+void func_80800018_chdiggerfly(void *arg0) {
+    s32 _sucoasterfly_entrypoint_1(s32, s32);
+    void func_80102FDC(void *, f32);
+    void func_8010A3E8(void *, f32);
+    _sucoasterfly_entrypoint_1((s32)arg0, 0);
+    func_80102FDC(arg0, (*(f32 *)((s8 *)(arg0) + (0x38))) * 0.75f);
+    func_8010A3E8(arg0, 0.75f);
+}
