@@ -46,7 +46,17 @@ void func_808005FC_bafpctrl(s32 arg0, f32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_80800880_bafpctrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_808008CC_bafpctrl.s")
+/* extern */
+
+void func_808008CC_bafpctrl(s32 arg0) {
+    void func_808005FC_bafpctrl(s32, f32 *);
+    void *func_800A4CA8(void *);
+    s32 _ncba1p_entrypoint_6(void *, f32 *);
+    f32 sp1C[3];
+
+    func_808005FC_bafpctrl(arg0, sp1C);
+    _ncba1p_entrypoint_6(func_800A4CA8((void *)arg0), sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_80800904_bafpctrl.s")
 
