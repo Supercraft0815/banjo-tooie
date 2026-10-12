@@ -204,7 +204,9 @@ void func_801049B4(u8 *arg0, f32 *arg1, s32 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80105010.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80105138.s")
+/* extern */
+
+void func_80105138(u8 *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) { s32 func_800C696C(s32, f32, f32, s32, f32 *); func_800C696C(arg1 ? arg1 : (s32)(arg0 + 4), arg2, arg3, *(s32 *)((s8 *)arg0 + 0x14), (f32 *)arg4); }
 
 /* extern */
 
