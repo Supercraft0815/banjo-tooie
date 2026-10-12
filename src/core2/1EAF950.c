@@ -114,10 +114,28 @@ s32 func_800D70F8(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7138.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7184.s")
+s32 func_800D7184(s32 arg0, s32 arg1) {
+    extern u8 D_8012B800[];
+    struct Entry {
+        u8 pad[10];
+        u8 upper : 4;
+        u8 count : 4;
+        u8 tail;
+    };
+    struct Entry *temp_v0;
+    struct Entry *temp_v0_2;
+    if (arg1 != 0) {
+        temp_v0_2 = (struct Entry *)D_8012B800 + arg0;
+        temp_v0_2->count++;
+        return (s32) temp_v0_2;
+    }
+    temp_v0 = (struct Entry *)D_8012B800 + arg0;
+    temp_v0->count--;
+    return (s32) temp_v0;
+}
 
 void func_800D71F4(s32 arg0) {
-    s32 func_800D7184(s16, s32);
+    s32 func_800D7184(s32, s32);
     extern s16 D_8011B910;
     func_800D7184(D_8011B910, arg0);
 }
