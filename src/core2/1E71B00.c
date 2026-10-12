@@ -64,7 +64,21 @@ f32 func_800985B8(f32 **arg0)
     return arg0[56][1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E71B00/func_800985C4.s")
+s32 func_800985C4(void *arg0, f32 *arg1) {
+    void _gspropctrl_entrypoint_11(Prop*, f32[3]);
+    Prop *_gccubesearch_entrypoint_6(s32 *, f32 *);
+    void func_8009C128(void *, f32[3]);
+    extern s32 D_80117EB0;
+    Prop *temp_v0;
+
+    func_8009C128(arg0, arg1);
+    temp_v0 = _gccubesearch_entrypoint_6(&D_80117EB0, arg1);
+    if (temp_v0 == NULL) {
+        return 0;
+    }
+    _gspropctrl_entrypoint_11(temp_v0, arg1);
+    return 1;
+}
 
 f32 func_80098610(void **arg0)
 {
