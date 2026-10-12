@@ -33,7 +33,15 @@ void func_80110728(s8 *arg0, s32 arg1) {
     arg0[113] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110730.s")
+void func_80110730(s32 arg0, s32 arg1) {
+    s32 func_8011337C(s32);
+    s32 func_80113410();
+    (*(s8 *)((s8 *)(arg0) + (0x72))) = arg1;
+    func_80113410((void *) arg0);
+    if (arg1 == 0) {
+        func_8011337C(arg0);
+    }
+}
 
 /* extern */
 
