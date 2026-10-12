@@ -11,7 +11,16 @@ void func_800CA314(s32 arg0,s32 arg1)
     aligned4_memcpy(arg0,arg1,0x168);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CA334.s")
+u8 *func_800CA334(void) {
+    void* heap_alloc(s32 size);
+    u8 *sp1C;
+    u8 *temp_v0;
+
+    temp_v0 = heap_alloc(0x168);
+    sp1C = temp_v0;
+    func_800CA440((s32) temp_v0);
+    return sp1C;
+}
 
 void func_800CA364(void* arg0) 
 {
