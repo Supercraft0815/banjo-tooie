@@ -115,7 +115,14 @@ void func_80098730(u8 *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5) {
     (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xE0)))) + (0x2E))) = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E71B00/func_80098778.s")
+/* extern */
+
+void func_80098778(u8 *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5, f32 arg6) {
+    void func_80098658(u8 *, s32, s32, f32, s32, s32);
+    func_80098658(arg0, arg1, arg2, arg3, arg4, arg5);
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xE0)))) + (0x2E))) = 2;
+    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xE0)))) + (0x30))) = arg6;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E71B00/func_800987CC.s")
 
