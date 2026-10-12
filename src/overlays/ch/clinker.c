@@ -6,7 +6,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_808000F4_chclinker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_808002B0_chclinker.s")
+/* extern */
+
+s32 func_808002B0_chclinker(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_80101180(s32, s32, s32);
+    void func_80800304_chclinker(Actor *, u32);
+    if (arg1 == 0x40) {
+        func_80101180(0x2BF, 0x4F, 0);
+        func_80800304_chclinker(arg0, 2);
+    } else {
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800304_chclinker(Actor *arg0, u32 arg1) {
     void _subaddieDll_entrypoint_4(Actor*, u32);
