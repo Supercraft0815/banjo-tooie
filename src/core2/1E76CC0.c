@@ -40,7 +40,14 @@ s32 func_8009D454(PlayerState *arg0, volatile u8 arg1, s32 *arg2) {
     return func_800C4350(var_a0, sp1C, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009D4A8.s")
+void func_8009D4A8(PlayerState *arg0, u8 *arg1) {
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_800C4AF0(f32 *, void*);
+    f32 sp1C[3];
+
+    func_8009C128(arg0, sp1C);
+    func_800C4AF0(sp1C, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009D4D8.s")
 
