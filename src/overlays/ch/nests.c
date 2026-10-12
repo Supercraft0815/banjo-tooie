@@ -81,10 +81,11 @@ void func_80800B80_chnests(void *arg0) {
     }
 }
 
+struct Entry { s16 value; s16 rest[6]; };
+extern struct Entry D_80801118_chnests[];
+
 void func_80800BA0_chnests(void *arg0, s32 arg1) {
-    struct Entry { s16 value; s16 rest[6]; };
     struct Flags { u16 value : 10; u16 rest : 6; };
-    extern struct Entry D_80801118_chnests[];
     void *ptr;
 
     ptr = *(void **)arg0;
@@ -198,7 +199,21 @@ OSThread *chnests_entrypoint_12(void)
     return (OSThread *) D_80801548_chnests;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/chnests_entrypoint_13.s")
+u8 chnests_entrypoint_13(s32 arg0) {
+    struct Entry *entry;
+    s32 i;
+    s32 limit;
+
+    limit = 14;
+    entry = &D_80801118_chnests[i = 0];
+    do {
+        if (arg0 == entry->value) {
+            return *((u8 *)entry + 0xB);
+        }
+        entry++;
+    } while (++i < limit);
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80801014_chnests.s")
 
