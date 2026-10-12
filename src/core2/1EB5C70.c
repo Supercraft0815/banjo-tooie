@@ -39,4 +39,6 @@ void func_800DC528(void) {
     func_800E9054(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5C70/func_800DC548.s")
+/* extern */
+
+s32 func_800DC548(void) { u8 *func_800E9320(); if ((*(s32 *)((s8 *)(func_800E9320()) + 4)) == -1) { return 1; } else { return 0; } }
