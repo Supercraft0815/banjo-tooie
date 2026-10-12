@@ -16,7 +16,17 @@ OSThread *chshockjump_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/shockjump/func_80800018_chshockjump.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/shockjump/func_808000AC_chshockjump.s")
+s32 func_808000AC_chshockjump(s32 arg0, s32 arg1, s32 arg2) {
+    void func_800F7B9C(s32, u32);
+    switch (arg1) {
+    case 0x91:
+        func_800F7B9C(arg2, 0x4AU);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void chshockjump_entrypoint_2(void) {
     s32 _chexploder_entrypoint_5(u8 *, s32, u8 *, s32, f32, s32);
