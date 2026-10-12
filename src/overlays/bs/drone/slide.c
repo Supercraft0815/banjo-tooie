@@ -21,4 +21,11 @@ void func_80800110_bsdroneslide(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/slide/bsdroneslide_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/slide/bsdroneslide_entrypoint_2.s")
+/* extern */
+
+void bsdroneslide_entrypoint_2(s32 arg0) {
+    void func_8009BF5C(s32, f32);
+    s32 func_800A4E30(s32);
+    func_8009BF5C(arg0, 0.0f);
+    func_800A4E30(arg0);
+}
