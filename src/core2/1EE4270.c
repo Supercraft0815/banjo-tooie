@@ -158,7 +158,20 @@ s32 func_8010BA80(Actor *volatile arg0, volatile s32 arg1, s32 arg2) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010BAEC.s")
+s32 func_8010BAEC(Actor *volatile arg0, volatile s32 arg1, s32 arg2) { 
+    void func_800EE7F8(f32 *, f32 *);
+    s32 result;
+    f32 saved[3];
+    f32 *position;
+    s32 *arg2_ptr = &arg2;
+    position = arg0->position;
+    func_800EE7F8(saved, position);
+    result = func_8010B990(arg0, arg1);
+    if ((result & *arg2_ptr) != *arg2_ptr) {
+        func_800EE7F8(position, saved);
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010BB5C.s")
 
