@@ -249,7 +249,10 @@ void func_800EDCB8(void *arg0, f32 arg1) {
     func_800EDC10(arg0, arg1, arg1, 0.0f, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EDCEC.s")
+void func_800EDCEC(void *arg0, f32 arg1) {
+    void func_800EDC64(void *, f32, f32, f32, s32);
+    func_800EDC64(arg0, arg1, arg1, 0.0f, 1);
+}
 
 /* extern */
 
