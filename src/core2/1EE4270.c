@@ -158,7 +158,16 @@ s32 func_8010B94C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010C2D8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010C3A8.s")
+void func_8010C3A8(Actor *arg0, u32 arg1, f32 arg2) {
+    f32 sp18[2];
+    f32 temp_f0;
+
+    temp_f0 = *(f32 *)((s8 *)arg0 + 0x24);
+    sp18[0] = temp_f0;
+    *(f32 *)((s8 *)arg0 + 0x24) = temp_f0 * arg2;
+    func_8010B990(arg0, arg1);
+    *(f32 *)((s8 *)arg0 + 0x24) = sp18[0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010C3E8.s")
 
