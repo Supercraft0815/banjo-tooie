@@ -26,7 +26,16 @@ void gcsectionDll_entrypoint_0(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionDll/gcsectionDll_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionDll/func_808000F0_gcsectionDll.s")
+s16 *func_808000F0_gcsectionDll(s32 arg0, s32 arg1) {
+    extern s16 D_80800212_gcsectionDll[][3];
+    s16 *p = &D_80800212_gcsectionDll[0][2];
+    while (*p != 0) {
+        if (arg0 == *p) return p;
+        p += 3;
+    }
+    if (arg1 != 0) return NULL;
+    return NULL;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionDll/gcsectionDll_entrypoint_2.s")
 
