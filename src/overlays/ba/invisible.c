@@ -30,7 +30,14 @@ f32 bainvisible_entrypoint_2(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/invisible/bainvisible_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/invisible/func_808007CC_bainvisible.s")
+/* extern */
+
+void func_808007CC_bainvisible(s32 arg0, void *arg1, f32 arg2, f32 arg3) {
+    void func_80800000_bainvisible(s32, void *, s32);
+    func_80800000_bainvisible(arg0, arg1, 4);
+    (*(f32 *)((s8 *)(arg1) + (0x20))) = arg2;
+    (*(f32 *)((s8 *)(arg1) + (0x2C))) = arg3;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/invisible/bainvisible_entrypoint_8.s")
 
