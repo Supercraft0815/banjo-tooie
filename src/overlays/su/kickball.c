@@ -21,7 +21,12 @@ s32 sukickball_entrypoint_6(Actor *arg0, s32 arg1) {
     return (*(u8 *)((s8 *)((s32)func_80100094(arg0, 0U) + arg1 + 0xA))) == 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_7.s")
+/* extern */
+
+s32 sukickball_entrypoint_7(Actor *arg0, s32 arg1) {
+    void* func_80100094(Actor*, u32);
+    return (*(u8 *)((s8 *)((s32)func_80100094(arg0, 0U) + arg1 + 0xA))) == 1;
+}
 
 /* extern */
 
