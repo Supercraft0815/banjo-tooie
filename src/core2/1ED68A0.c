@@ -104,7 +104,20 @@ s32 func_800FEC28(s32 arg0) {
     }
     return arg0;
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FEC60.s")
+void func_800FEC60(u32 arg0) {
+    extern f32 D_801359F0;
+    extern s32 D_80123E60;
+    extern u8 D_80135A10[];
+    s32 temp_v0;
+    u8 *temp_v1;
+    temp_v0 = func_800FEC28((s32)arg0);
+    temp_v1 = D_80135A10 + temp_v0;
+    *temp_v1 = *temp_v1 + 1;
+    if (temp_v0 == 3) {
+        D_801359F0 = 1.0f;
+    }
+    D_80123E60 = 1;
+}
 
 void func_800FECB8(u32 arg0) {
     extern s32 D_80123E60;
