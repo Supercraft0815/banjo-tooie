@@ -77,7 +77,16 @@ void func_80801188_chexploder(u8 *arg0, u8 *arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/chexploder_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/chexploder_entrypoint_4.s")
+/* extern */
+
+void chexploder_entrypoint_4(s32 arg0, s16 *arg1, s32 arg2) {
+    void func_800EE88C(f32 dst[3], s16 src[3]);
+    s32 chexploder_entrypoint_3(s32, f32 *, s32);
+    f32 sp1C[3];
+
+    func_800EE88C(sp1C, arg1);
+    chexploder_entrypoint_3(arg0, sp1C, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/chexploder_entrypoint_5.s")
 
