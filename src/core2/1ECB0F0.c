@@ -56,7 +56,13 @@ void func_800F1E28(void *arg0, void *arg1) {
     func_80013B7C((f32) ((*(s16 *)((s8 *)(arg1) + (0))) - (*(s16 *)((s8 *)(arg0) + (0)))), (f32) ((*(s16 *)((s8 *)(arg1) + (4))) - (*(s16 *)((s8 *)(arg0) + (4)))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1E6C.s")
+s32 func_800F1E6C(f32 *arg0, f32 *arg1, f32 *target_yaw) {
+    void func_800EFB24(void *arg0, void *arg1, void *arg2);
+    f32 sp1C[3];
+
+    func_800EFB24(sp1C, arg1, arg0);
+    return func_800F1EA4(sp1C, target_yaw);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1EA4.s")
 
