@@ -52,10 +52,13 @@ void chbounce_entrypoint_6(Actor *arg0, u32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bounce/chbounce_entrypoint_8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bounce/chbounce_entrypoint_9.s")
+/* extern */
+
+s32 chbounce_entrypoint_9(Actor *arg0) {
+    return (s32) ((s8 *) func_80100094(arg0, 2U) + 0xC);
+}
 
 s32 chbounce_entrypoint_10(Actor *arg0) {
-    void* func_80100094(Actor*, u32);
     return ((u32) (*(u32 *)((s8 *)(func_80100094(arg0, 2U)) + (0x24))) >> 0x1F) == 0;
 }
 
