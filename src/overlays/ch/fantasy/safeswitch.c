@@ -6,7 +6,13 @@ void func_80800000_chfantasysafeswitch(Actor *arg0) {
     func_80103110(arg0, 0U);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/safeswitch/func_8080002C_chfantasysafeswitch.s")
+void func_8080002C_chfantasysafeswitch(Actor *arg0) {
+    s32 func_80101DDC(Actor *);
+    void func_80102424(Actor *, s32);
+    if (arg0->unk70_10 == 2 && func_80101DDC(arg0) != 0) {
+        func_80102424(arg0, 3);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/safeswitch/func_80800070_chfantasysafeswitch.s")
 
