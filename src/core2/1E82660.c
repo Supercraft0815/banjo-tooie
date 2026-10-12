@@ -42,7 +42,20 @@ s32 func_800A9010(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A907C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A91A8.s")
+/* extern */
+
+void func_800A91A8(s32 arg0) {
+    extern s16 D_801276D0;
+    s32 func_800A88C4(s16, s32, s32);
+    s16 temp_a0;
+
+    if (arg0 >= 0) {
+        temp_a0 = (*(s16 *)((s8 *)(&(&D_801276D0)[arg0]) + (8)));
+        if (temp_a0 != -1) {
+            func_800A88C4(temp_a0, (*(s32 *)((s8 *)&D_801276D0 + (arg0 * 4) + 0x38)), arg0);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A91F4.s")
 
