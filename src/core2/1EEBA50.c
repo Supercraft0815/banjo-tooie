@@ -33,7 +33,7 @@ void func_80112354(PlayerState *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEBA50/func_801123D4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEBA50/func_801124D0.s")
+void func_801124D0(s32 arg0, s32 arg1) { s32 temp_a2; volatile s32 **temp_a1; temp_a2 = arg1; if (arg1 == 6) { temp_a1 = (volatile s32 **)((s8 *)(arg0) + 0x30); func_801121B8((PlayerState *) arg0, (f32 *)((s8 *)*temp_a1 + 0x28)); } **(s32 ***)((s8 *)(arg0) + 0x30) = temp_a2; }
 
 s32 func_80112518(void *arg0) {
     return *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 48) + 0);
