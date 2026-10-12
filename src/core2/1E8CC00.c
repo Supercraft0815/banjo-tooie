@@ -12,7 +12,18 @@ void func_800B3370(void* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8CC00/func_800B36C0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8CC00/func_800B3748.s")
+/* extern */
+
+void func_800B3748(s32 arg0) {
+    s32 func_800B36C0(s32, f32 *, s32 *, f32);
+    s32 func_800C8960(s32 *, f32 *);
+    f32 sp24[3];
+    s32 pad[2];
+    s32 sp18;
+
+    func_800C8960(&sp18, sp24);
+    func_800B36C0(arg0, sp24, &sp18, 500.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8CC00/func_800B3784.s")
 
