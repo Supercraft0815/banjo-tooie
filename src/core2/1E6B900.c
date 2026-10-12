@@ -70,7 +70,7 @@ void func_80092750(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 void func_80092778(PlayerState *arg0) {
     s32 _bapreload_entrypoint_0(PlayerState *, s32, s16 *, s16 *);
     s32 func_80092EC8(PlayerState *, s16);
-    s32 func_8009312C(PlayerState *, s16);
+    void func_8009312C(PlayerState *, s32);
     s32 func_800A3274();
     s16 sp1E;
     s16 sp1C;
@@ -270,7 +270,20 @@ void func_80092EBC(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093070.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_8009312C.s")
+void func_8009312C(PlayerState *arg0, s32 arg1) {
+    s32 func_80093070(PlayerState *, s32, s16, u8 *);
+    u8 *temp_v0;
+    u8 *temp_v0_2;
+
+    if (arg1 != 0) {
+        temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x50)));
+        if (arg1 != (*(s16 *)((s8 *)(temp_v0) + (0xE)))) {
+            (*(s16 *)((s8 *)(temp_v0) + (0xE))) = arg1;
+            temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x50)));
+            func_80093070(arg0, arg1, (*(s16 *)((s8 *)(temp_v0) + (0xC))), temp_v0 + 0x12);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_8009316C.s")
 
