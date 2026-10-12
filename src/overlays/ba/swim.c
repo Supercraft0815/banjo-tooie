@@ -5,7 +5,13 @@ s32 baswim_entrypoint_0()
     return 0x8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_1.s")
+/* extern */
+
+int baswim_entrypoint_1(void *arg0) {
+    f32 func_800964DC(void *);
+    f32 func_8009C150(void *);
+    return (func_800964DC(arg0) - func_8009C150(arg0)) < 100.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_2.s")
 
