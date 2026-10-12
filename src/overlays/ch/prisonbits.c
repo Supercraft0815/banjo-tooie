@@ -100,7 +100,20 @@ void func_80800970_chprisonbits(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_80800BB4_chprisonbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_80800C18_chprisonbits.s")
+void func_80800C18_chprisonbits(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void _subaddieaudioquick_entrypoint_4(Actor*, f32*, u32*, u32*);
+    extern u32 D_8080111C_chprisonbits;
+    extern u32 D_8080112C_chprisonbits;
+    extern u32 D_80801138_chprisonbits;
+    extern u32 D_80801144_chprisonbits;
+
+    f32 * volatile temp_a1;
+
+    _subaddieaudioquick_entrypoint_4(arg0, temp_a1 = (f32 *) ((s8 *) arg0 + 4), &D_8080111C_chprisonbits, &D_80801144_chprisonbits);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_a1, &D_8080112C_chprisonbits, 0.75f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_a1, &D_80801138_chprisonbits, 0.6f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_80800C84_chprisonbits.s")
 
