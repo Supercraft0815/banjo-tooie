@@ -53,4 +53,16 @@ void func_80800984_chfactorycrusher(s32 arg0) {
     _chswitch_entrypoint_9(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/crusher/func_808009BC_chfactorycrusher.s")
+/* extern */
+
+s32 func_808009BC_chfactorycrusher(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
+    void _chmrtannoy_entrypoint_0(void);
+    if (arg1 == 7) {
+        _chmrtannoy_entrypoint_0();
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x1340U, 4U, arg0->position, 0xA3U);
+        return 1;
+    }
+    return _chswitch_entrypoint_10((s32) arg0, arg1, arg2);
+}
