@@ -28,7 +28,18 @@ OSThread *chfairgroundworker_entrypoint_3(void)
     return (OSThread *) D_808003E0_chfairgroundworker;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/groundworker/func_80800030_chfairgroundworker.s")
+/* extern */
+
+void func_80800030_chfairgroundworker(Actor *arg0) {
+    s32 _sucoaster_entrypoint_0(void *, s32);
+    void func_80102FDC(Actor *, f32);
+    void func_8010A3E8(void *, f32);
+    struct GroundworkerFlags { u32 : 15; u32 active : 1; u32 : 16; };
+    _sucoaster_entrypoint_0(arg0, 0);
+    func_80102FDC(arg0, arg0->scale * 0.85f);
+    func_8010A3E8(arg0, 0.7f);
+    ((struct GroundworkerFlags *)&arg0->pad94)->active = 1;
+}
 
 void func_80800098_chfairgroundworker(Actor *arg0) {
     s32 _chbadshad_entrypoint_3(Actor *, u8 *, s32, f32, s32 *);
