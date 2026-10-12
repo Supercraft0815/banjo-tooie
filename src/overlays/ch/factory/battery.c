@@ -7,7 +7,17 @@ OSThread *chfactorybattery_entrypoint_0(void)
     return (OSThread *) D_80801B34_chfactorybattery;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_8080000C_chfactorybattery.s")
+/* extern */
+
+s32 func_8080000C_chfactorybattery(Actor *arg0) {
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    s32 _gccubesearch_entrypoint_12(s32 *, s32, u8 *);
+    f32 sp24[3];
+    s32 sp20;
+    sp20 = _gccubesearch_entrypoint_12((s32 *)sp24, 0x28C, (u8 *)arg0->position);
+    func_800EE7F8(arg0->position, sp24);
+    return sp20;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80800050_chfactorybattery.s")
 
