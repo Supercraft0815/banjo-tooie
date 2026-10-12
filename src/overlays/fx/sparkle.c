@@ -1,6 +1,15 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/sparkle/fxsparkle_entrypoint_0.s")
+/* extern */
+
+void fxsparkle_entrypoint_1(s32 arg0, s32 arg1);
+
+void fxsparkle_entrypoint_0(s16 *arg0, s32 arg1) {
+    f32 sp1C[3];
+
+    func_800EE88C(sp1C, arg0);
+    fxsparkle_entrypoint_1((s32)sp1C, arg1);
+}
 
 void fxsparkle_entrypoint_1(s32 arg0, s32 arg1) {
     s32 _fxspgold_entrypoint_2();
