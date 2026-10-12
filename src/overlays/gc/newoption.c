@@ -330,7 +330,16 @@ s32 gcnewoption_entrypoint_3(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_7.s")
+/* extern */
+
+void gcnewoption_entrypoint_7(OptionState *a0) {
+    void _gldbstring_entrypoint_2(s16 a0);
+    void func_8080103C_gcnewoption(u8 *);
+    if (((*(s16 *)((s8 *)(a0) + (0))) != 0xD) || ((*(s32 *)((s8 *)(a0) + (0x20))) != 0)) {
+        func_8080103C_gcnewoption(a0->data);
+    }
+    _gldbstring_entrypoint_2(*(s16 *)((s8 *)a0 + 0x240));
+}
 
 void gcnewoption_entrypoint_8(s16 *arg0, s32 arg1) {
     arg0[1] = arg1;
