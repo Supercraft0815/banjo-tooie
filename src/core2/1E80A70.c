@@ -481,7 +481,23 @@ void func_800A861C(void) {
     func_800A89BC(4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A8670.s")
+void func_800A8670(void)
+{
+  s32 func_800C54F0(s32);
+  s32 var_s0;
+  unk_D_80127688 *var_s1;
+  s32 *new_var;
+ var_s0 = 0; var_s1 = D_80127688; do {
+    new_var = &var_s1->unk4;
+    if ((var_s1->unk0 != 0) && ((*new_var) != 0))
+    {
+      func_800C54F0(var_s0);
+    }
+    var_s0 += 1;
+    var_s1 += 1;
+  }
+  while (var_s0 != 5);
+}
 
 void func_800A86D8(void)
 {
