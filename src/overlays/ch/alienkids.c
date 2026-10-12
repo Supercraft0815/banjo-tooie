@@ -37,8 +37,18 @@ void func_80800030_chalienkids(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80800058_chalienkids.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_8080017C_chalienkids.s")
+/* extern */
 
+void func_8080017C_chalienkids(s32 arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800DA298(s32);
+    void func_8010A85C(u8 *, s32);
+    void func_80800FA4_chalienkids(s32, s32, s32, s32);
+    func_80800FA4_chalienkids(arg0, 0x33, 0x373, 6);
+    if ((func_800DA298(0x373) == 0) && (_glcutDll_entrypoint_20() == 0)) {
+        func_8010A85C((u8 *) arg0, 2);
+    }
+}
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_808001D0_chalienkids.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80800370_chalienkids.s")
