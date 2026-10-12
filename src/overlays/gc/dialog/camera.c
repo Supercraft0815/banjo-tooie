@@ -122,7 +122,17 @@ void func_8080030C_gcdialogcamera(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/camera/gcdialogcamera_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/camera/func_808005C0_gcdialogcamera.s")
+/* extern */
+
+void func_808005C0_gcdialogcamera(void) {
+    void _capod_entrypoint_9(u32, f32*);
+    u32 func_800F54E4(void);
+    s32 gcdialogcamera_entrypoint_7(u32, f32 *);
+    f32 sp20[4];
+
+    gcdialogcamera_entrypoint_7(func_800F54E4(), sp20);
+    _capod_entrypoint_9(1U, sp20);
+}
 
 void gcdialogcamera_entrypoint_8()
 {
