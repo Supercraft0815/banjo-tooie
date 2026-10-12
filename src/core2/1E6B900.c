@@ -285,7 +285,20 @@ void func_8009312C(PlayerState *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_8009316C.s")
+void func_8009316C(PlayerState *arg0, s32 arg1) {
+    s32 func_80093070(PlayerState *, s32, s16, u8 *);
+    u8 *temp_v0;
+    u8 *temp_v0_2;
+
+    if (arg1 != 0) {
+        temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x50)));
+        if (arg1 != (*(s16 *)((s8 *)(temp_v0) + (0x9E)))) {
+            (*(s16 *)((s8 *)(temp_v0) + (0x9E))) = arg1;
+            temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x50)));
+            func_80093070(arg0, arg1, (*(s16 *)((s8 *)(temp_v0) + (0x9C))), temp_v0 + 0xA0);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_800931AC.s")
 
