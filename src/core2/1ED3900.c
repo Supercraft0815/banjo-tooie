@@ -14,7 +14,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA660.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA6B8.s")
+void func_800FA6B8(s32 arg0, s32 arg1, s32 arg2) {
+    extern s32 D_80123880[][7];
+    if (arg1) {
+        arg0 = arg0;
+    }
+    _scinfobar_entrypoint_3(D_80123880[arg0][6]);
+    _scinfobar_entrypoint_8(D_80123880[arg0][6], arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA708.s")
 
