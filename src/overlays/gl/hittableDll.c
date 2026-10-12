@@ -69,4 +69,19 @@ s32 glhittableDll_entrypoint_10(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/hittableDll/func_80800444_glhittableDll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/hittableDll/func_808004D8_glhittableDll.s")
+/* extern */
+
+int func_808004D8_glhittableDll(void *arg0, Unk80132ED0 *arg1) {
+    s32 func_800F52B8(s32, Unk80132ED0 *);
+    s32 var_v0;
+    if (arg0 == NULL) {
+        return 6;
+    }
+    var_v0 = 0;
+    if (((u32) (*(u32 *)((s8 *)(arg0) + (0x24))) >> 0x16) != 0) {
+        var_v0 = 0;
+    } else {
+        return func_800F52B8((u32) (*(u16 *)((s8 *)(arg0) + (0x1A))) >> 5, arg1);
+    }
+    return var_v0;
+}
