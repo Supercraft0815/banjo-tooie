@@ -12,7 +12,12 @@ OSThread *chbanjocurrent_entrypoint_0(void)
     return (OSThread *) D_808007D0_chbanjocurrent;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjocurrent/func_80800034_chbanjocurrent.s")
+void func_80800034_chbanjocurrent(s32 *arg0) {
+    s32 temp = arg0[1];
+    arg0[1] = arg0[2];
+    arg0[2] = arg0[0];
+    arg0[0] = temp;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjocurrent/func_80800050_chbanjocurrent.s")
 

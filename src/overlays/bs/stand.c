@@ -6,7 +6,13 @@ s32 func_80800000_bsstand(s32 *arg0) {
     return D_80800D90_bsstand[arg0[0x160 / 4]];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stand/func_80800018_bsstand.s")
+s32 func_80800018_bsstand(s32 *arg0, s32 arg1) {
+    arg1++;
+    if (arg1 >= arg0[0x164 / 4]) {
+        arg1 = 0;
+    }
+    return arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stand/func_80800038_bsstand.s")
 

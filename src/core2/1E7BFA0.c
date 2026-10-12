@@ -173,7 +173,10 @@ void func_800A34A0(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 42) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A34AC.s")
+void func_800A34AC(PlayerState *arg0, f32 arg1[3]) {
+    s32 func_800EE7F8();
+    func_800EE7F8(*(void **)((u8 *)arg0 + 0xA0), arg1);
+}
 
 void func_800A34CC(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 43) = arg1;
