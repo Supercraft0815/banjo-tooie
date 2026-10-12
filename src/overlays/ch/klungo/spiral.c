@@ -31,6 +31,14 @@ s32 func_808002A0_chklungospiral(void *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/spiral/func_808003AC_chklungospiral.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/spiral/func_80800430_chklungospiral.s")
+int func_80800430_chklungospiral(void *arg0) {
+    s32 _capod_entrypoint_3(s32, void *);
+    if ((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF) {
+        _capod_entrypoint_3(0, arg0);
+        (*(u16 *)((s8 *)(arg0) + (0x6E))) = (u16) ((*(u16 *)((s8 *)(arg0) + (0x6E))) & 0xFE00);
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/spiral/func_80800480_chklungospiral.s")
