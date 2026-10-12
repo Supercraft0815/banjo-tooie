@@ -121,7 +121,15 @@ void func_80801E80_chaliendad(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80802218_chaliendad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80802284_chaliendad.s")
+void func_80802284_chaliendad(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
+    void func_80103DFC(Actor*, f32*);
+    extern u32 D_80802834_chaliendad;
+    f32 sp1C[3];
+
+    func_80103DFC(arg0, sp1C);
+    _subaddieaudioloop_entrypoint_4(arg0, sp1C, (arg0->unk70_10 ^ 1) != 0, &D_80802834_chaliendad);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_808022CC_chaliendad.s")
 
