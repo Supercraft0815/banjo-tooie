@@ -18,7 +18,16 @@ void func_80800000_chboggy(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/func_80800220_chboggy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/func_80800504_chboggy.s")
+void func_80800504_chboggy(Actor *arg0, s32 arg1) {
+    struct Flags { u32 pad : 19; u32 active : 1; u32 rest : 12; };
+    void func_800DBEFC(s32 *, s32, s32);
+    void func_801018A4(Actor *, s32);
+    OSThread * func_80104130(void);
+    func_801018A4(arg0, arg1);
+    if (((struct Flags *)((s8 *)arg0 + 0x7C))->active) {
+        func_800DBEFC((s32 *)func_80104130(), 4, (s32)arg0 + 0x18);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/func_80800554_chboggy.s")
 
