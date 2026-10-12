@@ -83,7 +83,18 @@ void func_808002AC_bstnt(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_8080030C_bstnt.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_808004F8_bstnt.s")
+void func_808004F8_bstnt(s32 arg0, f32 *arg1) {
+    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    s32 func_800A4C48(s32);
+    s32 func_800CA3F4(s32, f32 *, s32);
+    extern s32 D_808022FC_bstnt;
+    f32 sp24[3];
+
+    func_800EE7F8(sp24, arg1);
+    func_800CA3F4(func_800A4C48(arg0), sp24, 0x42A00000);
+    func_800BBCB8((s32) sp24, 0, 0x3F800000, 1, &D_808022FC_bstnt);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80800554_bstnt.s")
 
