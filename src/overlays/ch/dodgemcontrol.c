@@ -316,7 +316,21 @@ void func_80802824_chdodgemcontrol(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80802884_chdodgemcontrol.s")
+/* extern */
+
+void func_80802884_chdodgemcontrol(Actor *arg0) {
+    s32 anctrl_setIndex(s32, s32);
+    s32 func_80101CDC(s32, s32);
+    s32 func_80104248();
+    s32 func_808026D0_chdodgemcontrol(s32);
+    s32 func_808000B8_chdodgemcontrol(s32);
+    anctrl_setIndex(func_80104248(), 0x10A);
+    func_80101CDC((s32)arg0, 0x3F666666);
+    func_808026D0_chdodgemcontrol((s32)arg0);
+    if (arg0->unk64_20) {
+        func_808000B8_chdodgemcontrol(3);
+    }
+}
 
 void func_808028E4_chdodgemcontrol(s32 arg0) {
     struct Flags {
