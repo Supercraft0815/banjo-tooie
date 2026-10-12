@@ -44,7 +44,17 @@ void baswim_entrypoint_10(void *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_11.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/func_808003B8_baswim.s")
+/* extern */
+
+void func_808003B8_baswim(void *self) {
+    f32 func_800EEF94(f32*);
+    f32 func_800F10B4(f32 value, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
+    void func_8009BB24(void *, f32 *);
+    f32 sp24[3];
+
+    func_8009BB24(self, sp24);
+    func_800F10B4(func_800EEF94(sp24), 50.0f, 200.0f, 0.0f, 1.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_12.s")
 
