@@ -50,7 +50,22 @@ s32 func_80800468_ch2dbaddy(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_808004A8_ch2dbaddy.s")
+/* extern */
+
+void func_808004A8_ch2dbaddy(Actor *arg0) {
+    s32 _sucoaster_entrypoint_10(Actor *, s32);
+    s32 func_80800700_ch2dbaddy(Actor *, s32);
+    u32 temp_t6;
+
+    temp_t6 = (u32) arg0->unk70_10;
+    if (temp_t6 != 0x13) {
+        if (temp_t6 == 0x15) {
+            _sucoaster_entrypoint_10(arg0, 3);
+        }
+    } else {
+        func_80800700_ch2dbaddy(arg0, 0x14);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_808004F4_ch2dbaddy.s")
 
