@@ -17,7 +17,20 @@ OSThread *chstatueboss_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80800BE0_chstatueboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80800D30_chstatueboss.s")
+void func_80800D30_chstatueboss(Actor *arg0) {
+    extern s16 D_808025C0_chstatueboss[][6];
+    s32 index;
+    s32 i;
+    s32 offset;
+    u8 *data;
+
+    data = func_80100094(arg0, 0U);
+    index = *(s16 *)(data + 0x84);
+    for (i = 0; D_808025C0_chstatueboss[index][i] != -1; i++) {
+        offset = D_808025C0_chstatueboss[index][i];
+        data[offset] = 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80800DA8_chstatueboss.s")
 
@@ -83,7 +96,6 @@ void func_80801C78_chstatueboss(s32 arg0) {
 void func_80801E24_chstatueboss(Actor *arg0, u32 arg1, u32 arg2) {
     void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, u32, u32);
     void _capod_entrypoint_14(void);
-    void* func_80100094(Actor*, u32);
     u8 *sp1C;
     u8 *temp_v0;
 
@@ -99,7 +111,6 @@ void func_80801E24_chstatueboss(Actor *arg0, u32 arg1, u32 arg2) {
 
 void func_80801E90_chstatueboss(Actor *arg0) {
     void _capod_entrypoint_14(void);
-    void* func_80100094(Actor*, u32);
     u8 *sp1C[1];
     u8 *temp_v0;
 
@@ -117,7 +128,6 @@ void func_80801E90_chstatueboss(Actor *arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801F74_chstatueboss.s")
 
 void func_808020EC_chstatueboss(Actor *arg0) {
-    void* func_80100094(Actor*, u32);
     void func_80102FDC(Actor*, f32);
     Actor* func_801084B0(s32, Actor**);
     u8 *sp1C;
