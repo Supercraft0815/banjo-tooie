@@ -16,7 +16,10 @@ OSThread *chseaweedbaddy_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_80800018_chseaweedbaddy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_8080043C_chseaweedbaddy.s")
+void func_8080043C_chseaweedbaddy(Actor *arg0) {
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    _sudeflect_entrypoint_1(arg0->position, arg0->scale * 120.0f, arg0->scale * 100.0f, 0.0f, 0xA);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_80800498_chseaweedbaddy.s")
 
