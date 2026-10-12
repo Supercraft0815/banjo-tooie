@@ -137,7 +137,15 @@ void func_808003D0_chtrashcangame(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_8080093C_chtrashcangame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80800B64_chtrashcangame.s")
+/* extern */
+
+void func_80800B64_chtrashcangame(s32 arg0) {
+    f32 func_800EFC7C(f32 *, f32 *);
+    s32 _subaddiefind_entrypoint_5(s32, s32 *, s32, s32, f32, f32 (*)(f32 *, f32 *));
+    struct { s32 before[2]; s32 output; s32 rest[49]; } sp;
+
+    _subaddiefind_entrypoint_5(0x476, &sp.output, 0x32, arg0, 300.0f, func_800EFC7C);
+}
 
 void func_80800BA8_chtrashcangame(Actor *arg0) {
     typedef struct { f32 values[4]; } Timing4;
