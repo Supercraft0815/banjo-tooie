@@ -95,7 +95,7 @@ s16 func_800D0684(s32 arg0, s32 arg1) { s32 func_800CFC5C(s32); extern s16 D_801
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D06D4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D0778.s")
+void func_800D0778(s32 arg0, s32 arg1, s32 *arg2) { s32 func_800CFC5C(s32); extern f32 D_8012B180[][5]; s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { func_800EE7F8(D_8012B180[temp_v0], (f32 *) arg2); } } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D07CC.s")
 
