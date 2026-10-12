@@ -18,7 +18,29 @@ void func_80100670()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100690.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_801006E0.s")
+typedef struct {
+    s16 next_free;
+    u8 data[];
+} FreeListElement;
+
+typedef struct {
+    s16 element_size;
+    s16 capacity;
+    FreeListElement data[];
+} FreeList;
+
+FreeList *freelist_new(s32, s32);
+void *freelist_next(FreeList **, s32 *);
+
+extern FreeList *D_80135A64;
+
+void func_801006E0(s32 *arg0) {
+    FreeList *volatile *list = &D_80135A64;
+    if (D_80135A64 == 0) {
+        *list = freelist_new(0xC, 2);
+    }
+    freelist_next(&D_80135A64, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_8010072C.s")
 
