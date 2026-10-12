@@ -381,7 +381,17 @@ void func_80111590(void *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111680.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111A38.s")
+/* extern */
+
+void func_80111A38(PlayerState *arg0, s32 arg1, s32 arg2) {
+    void func_80111680(s32, s32, f32 *, void *, f32, f32, void *);
+    void func_80112550(PlayerState *, f32[3]);
+    f32 sp2C[3];
+    u8 *temp_v0;
+    func_80112550(arg0, sp2C);
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x34)));
+    func_80111680(arg1, arg2, sp2C, temp_v0 + 0x24, (*(f32 *)((s8 *)(temp_v0) + (0x30))), (*(f32 *)((s8 *)(temp_v0) + (0x34))), temp_v0 + 0x38);
+}
 
 void func_80111A98(u8 *arg0) {
     func_801107F0(arg0, (*(s32 *)((s8 *)(arg0) + (0x34))) + 0x5C);
