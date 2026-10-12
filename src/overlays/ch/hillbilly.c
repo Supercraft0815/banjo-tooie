@@ -11,7 +11,9 @@ OSThread *chhillbilly_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_80800064_chhillbilly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_80800298_chhillbilly.s")
+/* extern */
+
+void func_80800298_chhillbilly(Actor *arg0, u8 *arg1) { s32 _sucoaster_entrypoint_20(Actor *, u8 *); s32 var_a1; if ((u32)(arg0->unk0->unk28 << 18) >> 31) { var_a1 = 0; } else { var_a1 = 1; } func_800DF744(3, var_a1); _sucoaster_entrypoint_20(arg0, arg1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_808002F0_chhillbilly.s")
 
