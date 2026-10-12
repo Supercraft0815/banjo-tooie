@@ -42,7 +42,18 @@ s16 sumultiscore_entrypoint_8(s32 arg0, s32 arg1, s32 arg2) {
     return *(s16 *)((s8 *)(arg0 + offset + (index << 5)) + 0x48);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_9.s")
+void sumultiscore_entrypoint_9(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 base;
+    s32 index;
+    s32 offset;
+    offset = arg1 * 0x13C;
+    base = arg0 + offset;
+    index = *(s32 *)((s8 *)arg0 + (arg2 << 2) + 4);
+    *(s16 *)((s8 *)base + (index << 5) + 0x48) = arg3;
+    if (arg2 == 4) {
+        *(f32 *)((s8 *)base + (index << 5) + 0x54) = 1.0f;
+    }
+}
 
 void sumultiscore_entrypoint_10(u8 *arg0, s32 arg1) {
     s32 value = *(s32 *)(arg0 + 0x18);
