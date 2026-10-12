@@ -206,7 +206,16 @@ void func_80801944_chstoneballcontrol(u8 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80801B00_chstoneballcontrol.s")
+void func_80801B00_chstoneballcontrol(u8 *arg0) {
+    void *func_80100094(void *, s32);
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    *(s8 *)(data + 0x20) = 0x7F;
+    *(f32 *)(data + 4) = 0.0f;
+    *(f32 *)data = 0.0;
+    *(f32 *)(arg0 + 0x24) = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80801B44_chstoneballcontrol.s")
 
