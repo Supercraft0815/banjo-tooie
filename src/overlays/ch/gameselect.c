@@ -724,7 +724,20 @@ void func_80804A38_chgameselect(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80804A8C_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80804AF0_chgameselect.s")
+/* extern */
+
+void func_80804AF0_chgameselect(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 _gcnewoption_entrypoint_20(s32, s32, s32, u8 *);
+    s32 var_a2;
+
+    if ((*(s32 *)((s8 *)(arg0) + (0x18))) > 0) {
+        var_a2 = _gcnewoption_entrypoint_20(arg1, arg2, arg2, arg0) - 1;
+        if (var_a2 < 0) {
+            var_a2 = (*(s32 *)((s8 *)(arg0) + (0x18))) - 1;
+        }
+        func_808049E8_chgameselect(arg1, arg2, var_a2);
+    }
+}
 
 /* extern */
 
