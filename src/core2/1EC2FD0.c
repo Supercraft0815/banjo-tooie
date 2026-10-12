@@ -115,7 +115,22 @@ u8 func_800E9DD4(void) {
     return *func_800BE5C4();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9DF8.s")
+void func_800E9DF8(void) {
+    s32 defrag(s32);
+    s32 func_800BE4C4(s32 *);
+    extern s32 D_80132DB0;
+    extern s32 D_80132DB4;
+    s32 temp_v0;
+    s32 *ptr;
+
+    D_80132DB0 = defrag(D_80132DB0);
+    temp_v0 = defrag(D_80132DB4);
+    ptr = (s32 *)((u32)&D_80132DB4 | 0);
+    if (temp_v0 != *ptr) {
+        *ptr = temp_v0;
+        func_800BE4C4(ptr);
+    }
+}
 
 /* extern */
 
