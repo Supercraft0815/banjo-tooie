@@ -10,7 +10,10 @@ void func_80800000_bstnt(void *arg0) {
 void func_80800060_bstnt(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80800068_bstnt.s")
+void func_80800068_bstnt(void *arg0) {
+    extern s32 D_80802230_bstnt;
+    (*(s8 *)((s8 *)(arg0) + (0x160))) = func_8009D454(arg0, 0, &D_80802230_bstnt);
+}
 
 /* extern */
 
