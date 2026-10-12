@@ -90,7 +90,12 @@ void func_80102FE8(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC7B0/func_80103014.s")
+/* extern */
+
+void func_80103014(u8 *arg0) {
+    s32 func_800EC124(void *, s32, void *, s32 *);
+    func_800EC124(arg0 + 4, *(s32 *)arg0, arg0 + 0x44, (s32 *)arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC7B0/func_80103040.s")
 
