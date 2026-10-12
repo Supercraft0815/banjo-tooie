@@ -132,9 +132,15 @@ u32 func_80092BC4(PlayerState *arg0)
     return (*(u8 **)((u8 *)arg0 + 0x50))[0xC4];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092BD0.s")
+f32 func_80092BD0(PlayerState *arg0)
+{
+    return *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0xC8);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092BDC.s")
+f32 func_80092BDC(PlayerState *arg0)
+{
+    return *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x1C);
+}
 
 f32 func_80092BE8(PlayerState *arg0)
 {
