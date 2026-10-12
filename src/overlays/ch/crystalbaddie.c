@@ -7,7 +7,15 @@ OSThread *chcrystalbaddie_entrypoint_0(void)
     return (OSThread *) D_80800664_chcrystalbaddie;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crystalbaddie/func_8080000C_chcrystalbaddie.s")
+/* extern */
+
+void func_8080000C_chcrystalbaddie(Actor *arg0) {
+    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    void *func_80100094(Actor *, u32);
+    _subaddierouteDll_entrypoint_3(arg0, func_80100094(arg0, 0), (f32 *)((s8 *)arg0 + 4));
+    (*(f32 *)((s8 *)(arg0) + (0x2C))) = 0.0f;
+    (*(f32 *)((s8 *)(arg0) + (0x24))) = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crystalbaddie/func_80800054_chcrystalbaddie.s")
 
