@@ -9,7 +9,23 @@ void cosectionstor_entrypoint_0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/co/sectionstor/cosectionstor_entrypoint_1.s")
+void cosectionstor_entrypoint_1(void) {
+    void heap_free(void *);
+    extern f32 D_80127194;
+    void **var_s0;
+    void **end;
+    void *temp_a0;
+
+    var_s0 = (void **)(&D_80127194 + 1); end = (void **)(&D_80127194 + 267);
+    do {
+        temp_a0 = *var_s0;
+        if (temp_a0 != 0) {
+            heap_free(temp_a0);
+            *var_s0 = 0;
+        }
+        var_s0++;
+    } while (var_s0 != end);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/co/sectionstor/cosectionstor_entrypoint_2.s")
 
