@@ -39,4 +39,7 @@ void chdoormake_entrypoint_7(Actor *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/func_808008C4_chdoormake.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/chdoormake_entrypoint_12.s")
+void chdoormake_entrypoint_12(Actor *arg0, s32 arg1, u16 arg2) {
+    void *func_80100094(Actor *, u32);
+    (*(s8 *)((s8 *)func_80100094(arg0, 0U) + (arg1 * 8) + 0x20)) = (s8) arg2;
+}
