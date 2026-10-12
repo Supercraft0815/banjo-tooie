@@ -97,7 +97,20 @@ void func_80801E24_chstatueboss(Actor *arg0, u32 arg1, u32 arg2) {
     (*(s8 *)((s8 *)(sp1C) + (0x1CD))) = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801E90_chstatueboss.s")
+void func_80801E90_chstatueboss(Actor *arg0) {
+    void _capod_entrypoint_14(void);
+    void* func_80100094(Actor*, u32);
+    u8 *sp1C[1];
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    if ((*(u8 *)((s8 *)(temp_v0) + (0x1CD))) != 0) {
+        sp1C[0] = temp_v0;
+        _capod_entrypoint_14();
+        temp_v0 = sp1C[0];
+        (*(s8 *)((s8 *)(temp_v0) + (0x1CD))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801ECC_chstatueboss.s")
 
