@@ -1,6 +1,16 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/goto/func_80800000_bamovegoto.s")
+struct player_state_s;
+
+void func_80800000_bamovegoto(void *arg0, s32 arg1) {
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void func_8009BA9C(struct player_state_s *, f32 *);
+    if ((arg1 == 0) || (arg1 == 6)) {
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+        func_8009BA9C(arg0, 0);
+    }
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x54))) = (s8) arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/goto/bamovegoto_entrypoint_0.s")
 
@@ -64,8 +74,8 @@ void bamovegoto_entrypoint_12(void *arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/goto/bamovegoto_entrypoint_13.s")
 
 void bamovegoto_entrypoint_14(void *arg0) {
-    void baphysics_set_target_horizontal_velocity(void *, f32);
-    void func_8009BA9C(void *, f32 *);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void func_8009BA9C(struct player_state_s *, f32 *);
     void func_8009C128(void *, f32 *);
     f32 func_800D8FF8(void);
     s32 func_800EE7F8();
