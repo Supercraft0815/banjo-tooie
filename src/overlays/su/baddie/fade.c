@@ -26,7 +26,20 @@ void subaddiefade_entrypoint_5(void *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x79))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x79))) & 0xFFFC) | 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/fade/subaddiefade_entrypoint_6.s")
+void subaddiefade_entrypoint_6(u8 *arg0, s32 arg1) {
+    s32 temp_v0;
+    s32 var_v1;
+    s32 var_v1_2;
+
+    temp_v0 = (*(u8 *)((s8 *)(arg0) + (0x9B))) + arg1;
+    var_v1 = temp_v0 >= 0x100 ? 0xFF : temp_v0;
+    if (var_v1 < 0) {
+        (*(u8 *)((s8 *)(arg0) + (0x9B))) = 0U;
+        return;
+    }
+    var_v1_2 = temp_v0 >= 0x100 ? 0xFF : temp_v0;
+    (*(u8 *)((s8 *)(arg0) + (0x9B))) = (u8) var_v1_2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/fade/subaddiefade_entrypoint_7.s")
 
