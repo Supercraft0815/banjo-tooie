@@ -9,7 +9,26 @@ void func_800BFCD0(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E995C0/func_800BFD00.s")
+void func_800BFD00(void)
+{
+  s32 func_800DF744(s32, s32);
+  extern s32 D_80128774;
+  s8 *new_var;
+  s32 var_s0;
+  var_s0 = 1;
+  if ((*((s32 *) (((s8 *) (&D_80128770)) + 0x30))) > 0)
+  {
+    new_var = &D_80128774;
+    do
+    {
+      new_var = (s8 *) new_var;
+      func_800DF744(var_s0, *((s32 *) (new_var + 0x30)));
+      var_s0 += 1;
+      new_var += 4;
+    }
+    while ((*((s32 *) (((s8 *) (&D_80128770)) + 0x30))) >= var_s0);
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E995C0/func_800BFD6C.s")
 
