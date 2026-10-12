@@ -18,7 +18,13 @@ OSThread *chLagoonInnBlockedWall_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/LagoonInnBlockedWall/func_8080025C_chLagoonInnBlockedWall.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/LagoonInnBlockedWall/func_80800398_chLagoonInnBlockedWall.s")
+s32 func_80800398_chLagoonInnBlockedWall(s32 arg0, s32 arg1, volatile s32 arg2) {
+    if (arg1 == 0x40) {
+        func_8080025C_chLagoonInnBlockedWall(arg0, *(s32 *)&arg2);
+        return 1;
+    }
+    return 0;
+}
 
 OSThread *chLagoonInnBlockedWall_entrypoint_1(void)
 {
