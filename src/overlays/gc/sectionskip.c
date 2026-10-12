@@ -357,4 +357,4 @@ final_checks:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionskip/func_80800D3C_gcsectionskip.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionskip/func_80800EF8_gcsectionskip.s")
+void func_80800EF8_gcsectionskip(s32 arg0, s32 arg1) { func_800C05B8(arg0, 0, NULL, NULL, 0, 0, arg1); }
