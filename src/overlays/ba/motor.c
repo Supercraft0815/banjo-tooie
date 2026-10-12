@@ -18,4 +18,10 @@ void bamotor_entrypoint_2(void *arg0, f32 arg1, f32 arg2, f32 arg3) {
     func_800187E8(bakey_getControllerIndex(arg0), arg1, arg2, arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/motor/bamotor_entrypoint_3.s")
+/* extern */
+
+void bamotor_entrypoint_3(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5, f32 arg6) {
+    s32 bakey_getControllerIndex(void *);
+    void func_80018854(s32, s32, s32, s32, f32, f32, f32);
+    func_80018854(bakey_getControllerIndex(arg0), arg1, arg2, arg3, arg4, arg5, arg6);
+}
