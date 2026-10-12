@@ -1,6 +1,24 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_0.s")
+void susplinet_entrypoint_0(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s16 *temp_v1;
+    s16 *temp_v1_2;
+    s16 temp_a0;
+    u8 *temp_v0;
+
+    temp_v0 = arg0;
+    temp_v0 += *(s16 *)((s8 *)arg0 + 0x32);
+    if (arg3 != 0) {
+        temp_v1 = (s16 *)((s8 *)temp_v0 + (arg1 * 2));
+        *temp_v1 |= arg2;
+        return;
+    }
+    temp_v1_2 = (s16 *)((s8 *)temp_v0 + (arg1 * 2));
+    temp_a0 = *temp_v1_2;
+    if (temp_a0 & arg2) {
+        *temp_v1_2 = temp_a0 - arg2;
+    }
+}
 
 s32 func_80800048_susplinet(s16 *arg0, s32 arg1) {
     s8 *base = (s8 *)arg0;
