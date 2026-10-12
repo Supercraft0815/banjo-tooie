@@ -288,7 +288,27 @@ void sucoaster_entrypoint_8(Actor *arg0) {
     func_8010BA80(arg0, 0x505410, 0x20);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_9.s")
+/* extern */
+
+s32 sucoaster_entrypoint_9(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_8010108C();
+    s32 sucoaster_entrypoint_10(Actor *, s32);
+    union {
+        s32 words[2];
+        struct {
+            s16 index;
+            s8 type;
+        } parts;
+    } sp18;
+
+    sp18.parts.type = arg2;
+    sp18.parts.index = arg1;
+    if (func_8010108C(arg0, 0x42, sp18.words[0]) > 0) {
+        sucoaster_entrypoint_10(arg0, (s32) arg1);
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_10.s")
 
