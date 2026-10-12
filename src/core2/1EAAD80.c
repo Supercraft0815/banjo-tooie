@@ -2,7 +2,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1490.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1510.s")
+/* extern */
+
+void func_800D1510(void) {
+    extern s32 D_8012B250;
+    void* heap_alloc_sided(s32 size, s32 alloc_side);
+    s32 func_800D1490();
+    s32 *state = &D_8012B250;
+    state[1] = 0;
+    D_8012B250 = heap_alloc_sided(0x2A, state[1]);
+    func_800D1490();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D154C.s")
 
