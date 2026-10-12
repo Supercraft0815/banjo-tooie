@@ -38,7 +38,16 @@ void func_800DFC60(void* arg0)
 {
     heap_free(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB93C0/func_800DFC80.s")
+BoneTransformList *func_800DFC80(void) {
+    void *heap_alloc(s32 size);
+    BoneTransformList *temp_v0;
+
+    temp_v0 = heap_alloc(0x1110);
+    temp_v0->ptr = (BoneTransform *)(temp_v0 + 1);
+    temp_v0->count = 0x6D;
+    func_800DFAD0(temp_v0);
+    return temp_v0;
+}
 
 /* extern */
 
