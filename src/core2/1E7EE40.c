@@ -53,7 +53,7 @@ void func_800A5654(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7EE40/func_800A56A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7EE40/func_800A5790.s")
+s32 func_800A5790(s32 arg0, s32 arg1) { extern s32 D_8011951C[]; s32 func_8001B798(s16); s32 result; result = arg1 * D_8011951C[arg0] + func_8001B798(*(s16 *)((s8 *)D_80119540 + arg0 * 2 + 0x1E)); return result; }
 
 s32 func_800A57EC(s32 arg0) {
     extern s32 D_8011951C[];
@@ -63,7 +63,7 @@ s32 func_800A57EC(s32 arg0) {
 /* extern */
 
 s32 func_800A5800(s32 arg0) {
-    s32 func_800A5790(u8, u8);
+    s32 func_800A5790(s32, s32);
     void *temp_v0;
     s32 temp_v1;
 
