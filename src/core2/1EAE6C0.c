@@ -16,7 +16,17 @@ u8 func_800D4E7C(s32 arg0) {
     return D_8011B641[index * 3];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAE6C0/func_800D4EB8.s")
+u8 func_800D4EB8(s32 arg0) {
+    s32 func_800D4DD0(s32);
+    extern u8 D_8011B642[];
+    s32 index;
+
+    if (arg0 == 9) {
+        arg0 = 1;
+    }
+    index = func_800D4DD0(arg0);
+    return D_8011B642[index * 3];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAE6C0/func_800D4EF4.s")
 
