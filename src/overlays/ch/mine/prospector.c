@@ -64,7 +64,17 @@ void func_80800638_chmineprospector(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_808006EC_chmineprospector.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_8080084C_chmineprospector.s")
+void func_8080084C_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddiedialog_entrypoint_10(s32);
+    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
+    s32 func_80108B04(s32, s32);
+    s32 func_80800A64_chmineprospector(s32, s32, s32);
+    extern s32 D_80800F58_chmineprospector;
+    if (_subaddiedialog_entrypoint_10(_subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80800F58_chmineprospector, 7)) != 0) {
+        func_80800A64_chmineprospector(arg0, 1, 0x30);
+        func_80108B04(arg0, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_808008A4_chmineprospector.s")
 
