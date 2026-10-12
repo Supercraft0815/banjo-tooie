@@ -38,7 +38,15 @@ u32 func_800A3DAC(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A3DB8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A3EC8.s")
+/* extern */
+
+void func_800A3EC8(PlayerState *arg0, s32 arg1) {
+    s32 func_80110D08(PlayerState *, u8, PlayerState *);
+    if (arg1 != (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (7)))) {
+        (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (7))) = arg1;
+        func_80110D08(func_800A4CA8(arg0), (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (7))), arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A3F14.s")
 
