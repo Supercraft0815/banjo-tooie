@@ -1,6 +1,8 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800000_chtntmineshoot.s")
+void func_80800000_chtntmineshoot(Actor *arg0) { extern s32 D_80802590_chtntmineshoot; extern s32 D_8080259C_chtntmineshoot; f32 *sp1C[2]; sp1C[1] = arg0->position; func_800C4AF0(sp1C[1], &D_80802590_chtntmineshoot);
+    func_800C4AF0(sp1C[1], &D_8080259C_chtntmineshoot);
+}
 
 void func_8080003C_chtntmineshoot(s32 arg0) {
     s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
