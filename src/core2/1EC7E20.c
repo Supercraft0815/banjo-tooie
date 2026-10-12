@@ -7,7 +7,14 @@ void func_800EE530(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x2C))) = defrag((*(s32 *)((s8 *)(arg0) + (0x2C))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC7E20/func_800EE55C.s")
+void func_800EE55C(u8 *arg0) {
+    s32 defrag(s32);
+    s32 sp1C;
+
+    sp1C = (s32) ((*(s32 *)((s8 *)(arg0) + (0x2C))) - (*(s32 *)((s8 *)(arg0) + (0x24)))) >> 2;
+    (*(s32 *)((s8 *)(arg0) + (0x24))) = defrag((*(s32 *)((s8 *)(arg0) + (0x24))));
+    (*(s32 *)((s8 *)(arg0) + (0x2C))) = (*(s32 *)((s8 *)(arg0) + (0x24))) + (sp1C * 4);
+}
 
 /* extern */
 
