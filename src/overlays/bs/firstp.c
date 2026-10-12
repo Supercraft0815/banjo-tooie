@@ -618,7 +618,19 @@ u8 *func_808027A8_bsfirstp(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_4.s")
+void bsfirstp_entrypoint_4(s32 arg0, s32 arg1) {
+    s32 _badeathmatch_entrypoint_10(s32, s32, u8, u8);
+    extern s32 D_8080AC94_bsfirstp;
+    s32 var_s0;
+    u8 *var_s1;
+
+    var_s0 = 1; var_s1 = (u8 *)&D_8080AC94_bsfirstp; var_s1 += arg1 * 0xE + 2;
+    do {
+        _badeathmatch_entrypoint_10(arg0, var_s0, (*(u8 *)((s8 *)(var_s1) + (-2))), (*(u8 *)((s8 *)(var_s1) + (-1))));
+        var_s0 += 1;
+        var_s1 += 2;
+    } while (var_s0 != 8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_5.s")
 
