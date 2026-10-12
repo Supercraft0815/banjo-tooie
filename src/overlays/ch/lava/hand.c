@@ -162,7 +162,20 @@ OSThread *chlavahand_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/hand/func_80800FB4_chlavahand.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/hand/func_808011BC_chlavahand.s")
+/* extern */
+
+void func_808011BC_chlavahand(Actor *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    void _subaddieskeleton_entrypoint_0(Actor*, s32, f32*);
+    void func_800DF410(s32 a0);
+    void func_800DF830(s32 arg0);
+    s32 func_800DE498(s32, f32 *, s32, s32, s32, s32);
+    f32 sp24[3];
+
+    _subaddieskeleton_entrypoint_0(arg0, arg3, sp24);
+    func_800DF410(arg5);
+    func_800DF830(2);
+    func_800DE498(arg1, sp24, 0, arg4, 0, arg2);
+}
 
 OSThread *chlavahand_entrypoint_1(void)
 {
