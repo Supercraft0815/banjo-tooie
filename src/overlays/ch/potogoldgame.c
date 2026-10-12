@@ -55,7 +55,19 @@ void func_8080111C_chpotogoldgame(s32 arg0) {
     func_80802124_chpotogoldgame(arg0, 3, 0x10);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_8080117C_chpotogoldgame.s")
+/* extern */
+
+void func_8080117C_chpotogoldgame(s32 arg0) {
+    s32 _gccubesearch_entrypoint_1(s32, s32);
+    s32 _gspropctrl_entrypoint_11(s32, s32 *);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    s32 func_80802124_chpotogoldgame(s32, s32, s32);
+    s32 sp24[3];
+
+    _gspropctrl_entrypoint_11(_gccubesearch_entrypoint_1(0x201, arg0 + 4), sp24);
+    func_800D1000(0x17, 4, sp24, 1, 0);
+    func_80802124_chpotogoldgame(arg0, 5, 0x10);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_808011DC_chpotogoldgame.s")
 
