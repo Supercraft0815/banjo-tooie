@@ -40,7 +40,19 @@ void func_8009CCA4(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76500/func_8009CCFC.s")
+void func_8009CCFC(s32 *arg0, s32 arg1)
+{
+  s32 func_800EFD24(s32);
+  u8 *temp_v0;
+  temp_v0 = *((u8 **) (((s8 *) arg0) + 0xF0));
+  temp_v0[(*((u8 *) (temp_v0 + 0x80))) * 0x10] = arg1;
+  temp_v0 = *((u8 **) (((s8 *) arg0) + 0xF0));
+  temp_v0[(2 * (8 * (*((u8 *) (temp_v0 + 0x80))))) + 1] = 0;
+  temp_v0 = *((u8 **) (((s8 *) arg0) + 0xF0));
+  func_800EFD24((s32) ((temp_v0 + ((*((u8 *) (temp_v0 + 0x80))) * 0x10)) + ((0, 4))));
+  temp_v0 = *((u8 **) (((s8 *) arg0) + 0xF0));
+  *((u8 *) (temp_v0 + 0x80)) = (*((u8 *) (temp_v0 + 0x80))) + 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76500/func_8009CD70.s")
 
