@@ -4,7 +4,24 @@ extern s32 D_801282B4;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B5B40.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B5B88.s")
+void func_800B5B88(void) {
+    s8 func_800B5758(s32);
+    extern s32 D_8011A5C2;
+    extern s32 D_80128151;
+    extern s32 D_80128179;
+    s8 *var_s0;
+    s8 *var_s1;
+    s8 *var_s2;
+    s8 temp_v0;
+
+    var_s0 = (s8 *) &D_80128151; var_s1 = (s8 *) &D_8011A5C2; var_s2 = (s8 *) &D_80128179;
+    do {
+        temp_v0 = func_800B5758((s32) (*(u8 *)(var_s1 + 1)));
+        var_s0 += 1;
+        var_s1 += 2;
+        var_s0[-1] = temp_v0;
+    } while (var_s0 != var_s2);
+}
 
 s32 func_800B5BE4(s32 arg0) {
     void *func_800B56D0(u8);
