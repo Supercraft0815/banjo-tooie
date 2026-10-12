@@ -24,7 +24,21 @@ void func_8009CC90(void *arg0) {
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xF0)))) + (0x80))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76500/func_8009CCA4.s")
+void func_8009CCA4(PlayerState *arg0) {
+    void func_8009BDAC(PlayerState *, f32);
+    int temp_v1;
+    u8 *temp_v0;
+
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0xF0)));
+    temp_v1 = (*(u8 *)((s8 *)(temp_v0) + (0x80)));
+    if (temp_v1 != 0) {
+        (*(u8 *)((s8 *)(temp_v0) + (0x80))) = (u8) (temp_v1 - 1);
+        if ((*(u8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xF0)))) + (0x80))) == 0) {
+            func_8009BDAC(arg0, 1.2f);
+            (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xF0)))) + (0x81))) = 0;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76500/func_8009CCFC.s")
 
