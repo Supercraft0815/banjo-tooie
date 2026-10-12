@@ -26,7 +26,9 @@ void func_800BE9B0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEA24.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEA64.s")
+void func_800BEA64(f32 *arg0) {
+    func_800BE600(arg0, 0x20020);
+}
 
 s32 func_800BEA88(s32 arg0) {
     return D_801285B4[arg0].value;
