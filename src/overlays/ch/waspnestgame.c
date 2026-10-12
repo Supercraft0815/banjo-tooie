@@ -220,7 +220,17 @@ void func_80801954_chwaspnestgame(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_808019D4_chwaspnestgame.s")
+/* extern */
+
+void func_808019D4_chwaspnestgame(Actor *arg0) {
+    s32 func_8010DCB4(s32);
+    u32 temp_t6;
+
+    temp_t6 = (u32) arg0->unk70_10;
+    if ((temp_t6 == 2) || (temp_t6 == 5)) {
+        func_8010DCB4(0xA);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801A10_chwaspnestgame.s")
 
