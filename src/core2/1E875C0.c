@@ -124,7 +124,13 @@ void func_800AE160(u8 **arg0, u8 *arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800AE40C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800AE598.s")
+/* extern */
+
+void func_800AE598(s32 *arg0, s32 *arg1) {
+    s32 func_80116684(void *, s32, s32, s32 *);
+    func_80116684((u8 *) arg0 + 0x10, *arg1, *arg0 + 1, arg0);
+    *arg1 += (*arg0 + 1) << 6;
+}
 
 /* extern */
 
