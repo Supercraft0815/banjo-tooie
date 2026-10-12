@@ -162,7 +162,16 @@ u8 *func_808004FC_subaddiestore(u8 *arg0, u8 *arg1) {
     return out;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/store/func_80800AD8_subaddiestore.s")
+/* extern */
+
+u32 *func_80800AD8_subaddiestore(void *arg0, u32 *arg1) {
+    s32 func_80800260_subaddiestore();
+    if (func_80800260_subaddiestore() != 2) {
+        return arg1;
+    }
+    *arg1 = (u32) (*(u32 *)((s8 *)(arg0) + (0x6C))) >> 0x15;
+    return arg1 + 1;
+}
 
 void func_80800B24_subaddiestore(u8 *arg0, u8 *arg1) {
     typedef struct {
