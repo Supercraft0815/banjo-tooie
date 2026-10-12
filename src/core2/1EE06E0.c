@@ -25,7 +25,21 @@ void func_80106E50(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80106E88.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80106EE0.s")
+void func_80106EE0(void *arg0) {
+    s32 freelist_erase(s32, s32);
+    extern s32 D_80136F00;
+    struct {
+        u8 pad[0x94];
+        u32 unk94_0 : 2;
+        u32 index : 10;
+        u32 unk94_12 : 20;
+    } *entry = arg0;
+
+    if (entry->index != 0) {
+        freelist_erase(D_80136F00, entry->index);
+        entry->index = 0;
+    }
+}
 
 /* extern */
 
