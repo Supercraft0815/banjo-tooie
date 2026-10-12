@@ -144,7 +144,18 @@ void func_80800B40_chfactoryworkerdirty(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/chfactoryworkerdirty_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/chfactoryworkerdirty_entrypoint_2.s")
+/* extern */
+
+void chfactoryworkerdirty_entrypoint_2(Unk80132ED0 *arg0, s32 arg1, f32 arg2) {
+    void func_80101010(s32 arg0);
+    void func_8010105C(f32 arg0);
+    s32 *sp18[2];
+
+    sp18[0] = func_80100094(func_80106790(arg0), 0U);
+    func_80101010(arg1);
+    func_8010105C(arg2);
+    func_80800068_chfactoryworkerdirty(sp18[0], 3, 0);
+}
 
 /* extern */
 
