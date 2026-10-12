@@ -1,6 +1,18 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/worlddoors/func_80800000_chworlddoors.s")
+void func_80800000_chworlddoors(u8 *arg0) {
+    void func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    extern s32 D_80800990_chworlddoors;
+    f32 *sp20;
+    f32 sp24[2];
+
+    sp20 = (f32 *)(arg0 + 0x28);
+    func_800EE7F8(sp24, sp20);
+    func_800EF214(sp24, *(f32 *)(arg0 + 0x44), *(f32 *)(arg0 + 0x48), -50.0f);
+    func_800BBCB8(sp20, sp24, 1.0f, 6, &D_80800990_chworlddoors);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/worlddoors/func_80800068_chworlddoors.s")
 
