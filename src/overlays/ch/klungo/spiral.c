@@ -7,7 +7,20 @@ OSThread *chklungospiral_entrypoint_0(void)
     return (OSThread *) D_80800620_chklungospiral;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/spiral/func_8080000C_chklungospiral.s")
+/* extern */
+
+void func_8080000C_chklungospiral(Actor *arg0) {
+    void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
+    void _subaddieDll_entrypoint_2(Actor *, f32 *);
+    void func_80105A9C(Actor *, f32);
+    void func_80105BAC(Actor *);
+    f32 sp20[6];
+
+    _subaddiemarker_entrypoint_1(arg0, 0x154, 0x33, sp20, 1);
+    _subaddieDll_entrypoint_2(arg0, sp20);
+    func_80105A9C(arg0, 300.0f);
+    func_80105BAC(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/spiral/func_80800060_chklungospiral.s")
 
