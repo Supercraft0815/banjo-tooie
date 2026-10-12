@@ -108,7 +108,7 @@ s32 func_800E15CC(s32 arg0, f32 arg1, f32 arg2) {
     return entry;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1610.s")
+s32 func_800E1610(s32 arg0, f32 arg1, f32 arg2, f32 *arg3) { s32 func_800E1540(s32); s32 entry = func_800E1540(arg0); func_800E13F0(entry, arg1); func_800E144C(entry, arg2); func_800E14B8(entry, arg3); return entry; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1664.s")
 
