@@ -276,18 +276,28 @@ void func_80108454(s32 arg0, s32 *arg1, u32 arg2) {
     func_80108C90(arg0, arg1, arg2, NULL);
 }
 
-void func_80108474(u32 arg0, f32 *arg1, s32 arg2) {
+Actor *func_80108474(u32 arg0, f32 *arg1, s32 arg2) {
     void func_800EE904(s32 dst[3], f32 src[3]);
     Actor*  func_80108C90(s32, s32*, u32, Prop*);
     s32 sp1C[3];
 
     func_800EE904(sp1C, arg1);
-    func_80108C90((s32) arg0, sp1C, (u32) arg2, NULL);
+    return func_80108C90((s32) arg0, sp1C, (u32) arg2, NULL);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_801084B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108528.s")
+Actor* func_80108528(s32 arg0, f32 arg1[3], s32 arg2, Actor **arg3) {
+    Unk80132ED0 *sp1C;
+    Actor *sp18;
+    Actor **sp2C;
+
+    sp2C = arg3;
+    sp1C = (*arg3)->unk0;
+    sp18 = func_80108474(arg0, arg1, arg2);
+    *sp2C = func_80106790(sp1C);
+    return sp18;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_8010856C.s")
 
