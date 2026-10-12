@@ -30,7 +30,14 @@ void* func_800CA384(void* arg0)
 {
     return defrag(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CA3A4.s")
+void func_800CA3A4(s32 arg0, f32 arg1) {
+    void func_800EF04C(f32[3], f32[3]);
+    void func_800EF4E4(f32[3], f32, f32, f32, f32, f32);
+    f32 sp24[3];
+
+    func_800EF4E4(sp24, (*(f32 *)((s8 *)(arg0) + (0x18))), (*(f32 *)((s8 *)(arg0) + (0x1C))), 0.0f, 0.0f, arg1);
+    func_800EF04C((f32 *) arg0, sp24);
+}
 
 void func_800CA3F4(u8 *arg0, f32 *arg1, f32 arg2) {
     void func_800EF04C(f32[3], f32[3]);
