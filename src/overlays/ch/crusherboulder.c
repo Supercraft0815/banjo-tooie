@@ -141,8 +141,17 @@ void func_80800338_chcrusherboulder(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_8080087C_chcrusherboulder.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_808009C0_chcrusherboulder.s")
+/* extern */
 
+void func_808009C0_chcrusherboulder(u8 *arg0) {
+    s32 _sudeflect_entrypoint_0(s32, s32, s32, s32);
+    _sudeflect_entrypoint_0((s32) (arg0 + 4), 0x43160000, 0x43700000, 0xA);
+    if (((Actor *) arg0)->unk74_29) {
+        func_80800338_chcrusherboulder((Actor *) arg0);
+        return;
+    }
+    func_8080087C_chcrusherboulder(arg0);
+}
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80800A1C_chcrusherboulder.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80800D3C_chcrusherboulder.s")
