@@ -61,7 +61,24 @@ void func_800E9898(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E98C0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E99E0.s")
+void func_800E99E0(void) {
+    typedef struct {
+        u8 pad[0xB];
+        u8 reserved : 3;
+        u8 flag10 : 1;
+        u8 flag8 : 1;
+        u8 flag4 : 1;
+        u8 reserved2 : 1;
+        u8 flag1 : 1;
+    } Flags;
+    Flags *func_800E9804();
+    Flags *p;
+    p = func_800E9804();
+    p->flag1 = 1;
+    p->flag8 = 0;
+    p->flag4 = 0;
+    p->flag10 = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9A24.s")
 
