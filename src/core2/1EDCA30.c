@@ -24,7 +24,18 @@ void func_80103938(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103964.s")
+/* extern */
+
+s32 func_80103964(u8 *arg0) {
+    void *func_800D674C(s32);
+    s32 temp_a1;
+
+    temp_a1 = (*(u16 *)((s8 *)(arg0) + (0x14)));
+    if ((temp_a1 == 0) || (temp_a1 == 0xFFFF)) {
+        return 0;
+    }
+    return (s32)func_800D674C(temp_a1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_801039A4.s")
 
