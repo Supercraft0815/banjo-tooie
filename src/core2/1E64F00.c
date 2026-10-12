@@ -33,7 +33,12 @@ s16 func_8008B8E0(void) {
     return *(s16 *)((s8 *)&sp1C + 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008B90C.s")
+s32 func_8008B90C(s16 arg0) {
+    extern s32 D_80126CC0;
+    s16 *entry;
+    entry = (s16 *)(D_80126CC0 + arg0 * 6 - 6);
+    return entry[0] ? 1 : 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008B954.s")
 
