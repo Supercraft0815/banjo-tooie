@@ -94,7 +94,18 @@ void func_808017E8_chmonsterinterior(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_80801B7C_chmonsterinterior.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_80801C1C_chmonsterinterior.s")
+/* extern */
+s32 func_80801C1C_chmonsterinterior(u8 *arg0) {
+    u8 func_800D9078(f32 *);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    s32 sp24;
+    s32 temp_v0;
+
+    temp_v0 = func_800D9078((f32 *) (arg0 + 0x28));
+    sp24 = temp_v0;
+    (*(f32 *)((s8 *)(arg0) + (8))) = func_800F12D4((*(f32 *)((s8 *)(arg0) + (0x28))), 0.0f, 0.6f, 0.0f, -250.0f);
+    return sp24;
+}
 
 /* extern */
 
