@@ -98,7 +98,21 @@ void func_80105BAC(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105BE0.s")
+/* extern */
+
+void func_80105BE0(Actor *arg0, s32 arg1) {
+    void *func_80105494(Actor *);
+    struct {
+        u8 pad[0x27];
+        u8 high : 2;
+        u8 flag : 1;
+        u8 low : 5;
+    } *temp_v0;
+    temp_v0 = func_80105494(arg0);
+    if (temp_v0 != NULL) {
+        temp_v0->flag = arg1;
+    }
+}
 
 void func_80105C20(void) {
     s32 freelist_new(s32, s32);
