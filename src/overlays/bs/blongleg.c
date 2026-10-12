@@ -201,7 +201,22 @@ void bsblongleg_entrypoint_25(s32 arg0)
     func_8080013C_bsblongleg();
     _bsrest_entrypoint_16(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_26.s")
+void bsblongleg_entrypoint_26(PlayerState *arg0) {
+    s32 _bsrest_entrypoint_13(PlayerState *);
+    s32 _bsrest_entrypoint_20(PlayerState *);
+    void bs_setState(PlayerState *, int);
+    void func_8009D3A8(PlayerState *, s32);
+    s32 func_808000C8_bsblongleg(PlayerState *);
+    s32 sp24;
+
+    sp24 = 0;
+    func_808000C8_bsblongleg(arg0);
+    func_8009D3A8(arg0, 1);
+    if (_bsrest_entrypoint_20(arg0) != 0) {
+        sp24 = _bsrest_entrypoint_13(arg0);
+    }
+    bs_setState(arg0, sp24);
+}
 
 s32 bsblongleg_entrypoint_27(s32 arg0) {
     extern s32 D_808014D0_bsblongleg[];
@@ -215,10 +230,10 @@ void bsblongleg_entrypoint_28(s32 arg0)
 }
 /* extern */
 
-void bsblongleg_entrypoint_29(s32 arg0) {
+void bsblongleg_entrypoint_29(PlayerState *arg0) {
     s32 _bsdrone_entrypoint_1(s32);
     s32 bastatetimer_isDone(s32, s32);
-    s32 bs_setState(s32, s32);
+    void bs_setState(PlayerState *, int);
     s32 func_808000C8_bsblongleg();
     func_808000C8_bsblongleg();
     _bsdrone_entrypoint_1(arg0);
