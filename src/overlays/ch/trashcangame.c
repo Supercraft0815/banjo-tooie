@@ -286,7 +286,102 @@ OSThread *chtrashcangame_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_808021BC_chtrashcangame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_8080223C_chtrashcangame.s")
+void func_8080223C_chtrashcangame(Actor *arg0) {
+    f32 func_80013970(f32);
+    void func_800BA22C(s32, s32);
+    s32 func_800BA994(s32, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32 *, f32 *, s32, s32 *);
+    s32 func_800BBCB8(f32 *, f32 *, s32, s32, s32 *);
+    void func_800C4140(u32, f32 *, u32);
+    s32 func_800D3948(void);
+    s32 func_800D90A4(f32 *);
+    s32 func_800DB9B0(void);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    s32 func_800F4F34(u32, f32 *, f32, f32);
+    s32 func_800F54E4(void);
+    s32 func_800FFA88(Unk80132ED0 *);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80101E4C(Actor *, f32 *);
+    f32 func_80101F24(Actor *);
+    void func_80102424(void *, s32);
+    f32 func_80103EAC(Actor *);
+    f32 func_80103EF4(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_8010C754(Actor *);
+    extern s32 D_8080326C_chtrashcangame[];
+    extern s32 D_808032C0_chtrashcangame[];
+    extern f32 D_80803300_chtrashcangame[];
+    s32 emitter;
+
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_80101E14(arg0, 0.01f) &&
+                (func_8010C754(arg0) < 1500 || func_800DB9B0())) {
+                if (!func_800D3948()) {
+                    func_800BBCB8(arg0->position, arg0->position, 0x3F800000, 5, D_8080326C_chtrashcangame);
+                }
+                func_800C4140(((u16)(func_800DC178(0.45f, 0.65f) * 1023.0f) << 21) + 0x1FFCB7,
+                             arg0->position, 0x05DC0190);
+            }
+            arg0->position[1] = ((f32 *)arg0->actorData)[1] + (func_80013970(func_80101F24(arg0) * 135.0f) - 0.707f) * (func_80103EF4(arg0) * 1.25f);
+            arg0->scale = func_80101F24(arg0) * 0.8f + 0.2f;
+            if (func_80101DDC(arg0)) {
+                if (arg0->unk64_20) {
+                    func_80102424(arg0, 3);
+                } else {
+                    arg0->unk58 = func_800DC178(2.0f, 3.0f);
+                    func_80102424(arg0, 2);
+                }
+            }
+            break;
+        case 3:
+            if (func_80101E14(arg0, 0.1f) && func_8010C754(arg0) < 1500) {
+                func_800C4140(((u16)(func_800DC178(0.75f, 0.85f) * 1023.0f) << 21) + 0x157C9D,
+                             arg0->position, 0x05DC0190);
+            }
+            if (!func_800D3948() && func_80101E4C(arg0, D_80803300_chtrashcangame)) {
+                emitter = func_800BABB8(0, arg0->position, arg0->position, 0x3F800000, D_808032C0_chtrashcangame);
+                if (func_800DC0C0() < 0.5f) {
+                    func_800BA994(emitter, -20, (s16)arg0->rotation[1] - 75, 300,
+                                 -45, (s16)arg0->rotation[1] - 75, 500);
+                } else {
+                    func_800BA994(emitter, -20, (s16)arg0->rotation[1] + 75, 300,
+                                 -45, (s16)arg0->rotation[1] + 75, 500);
+                }
+                func_800BA22C(emitter, 1);
+            }
+            if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 4);
+            }
+            break;
+        case 2:
+            if (func_800D90A4(&arg0->unk58)) {
+                func_80102424(arg0, 4);
+            }
+            break;
+        case 4:
+            if (func_80101E14(arg0, 0.05f) && func_8010C754(arg0) < 1500) {
+                if (!func_800D3948()) {
+                    func_800BBCB8(arg0->position, arg0->position, 0x3F800000, 5, D_8080326C_chtrashcangame);
+                }
+                func_800C4140(((u16)(func_800DC178(0.45f, 0.65f) * 1023.0f) << 21) + 0x1FFC01,
+                             arg0->position, 0x05DC0190);
+            }
+            if (func_80101DDC(arg0)) {
+                ((s32 *)func_80106790(arg0->unk3C))[0x14] -= 1;
+                func_800FFA88(arg0->unk0);
+            }
+            arg0->position[1] = ((f32 *)arg0->actorData)[1] + (func_80013970(func_80101F24(arg0) * 135.0f) - 0.707f) * (func_80103EF4(arg0) * 1.25f);
+            arg0->scale = func_80101F24(arg0) * 0.8f + 0.2f;
+            break;
+    }
+    if (arg0->scale > 0.5f) {
+        arg0->scale = 0.5f;
+    }
+    func_800F4F34(func_800F54E4(), arg0->position, 2.0f * func_80103EAC(arg0), func_80103EAC(arg0) * 0.4f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_8080292C_chtrashcangame.s")
 
