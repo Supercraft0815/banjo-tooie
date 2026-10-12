@@ -7,7 +7,13 @@ OSThread *chchompaslunch_entrypoint_0(void)
     return (OSThread *) D_808003E0_chchompaslunch;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/ompaslun/func_8080000C_chchompaslunch.s")
+void func_8080000C_chchompaslunch(Actor *arg0) {
+    if (_glcutDll_entrypoint_20() == 0) {
+        func_800FFAB0(arg0);
+    }
+    arg0->unk58 = 8.0f;
+    arg0->unk6C_0 = func_800DC128(0, 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/ompaslun/func_80800070_chchompaslunch.s")
 
