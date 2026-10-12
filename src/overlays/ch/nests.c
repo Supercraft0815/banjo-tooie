@@ -144,7 +144,12 @@ void func_80800ED8_chnests(s32 arg0) {
     func_80800BD8_chnests(arg0, 0x1CE, 1.0f, 1.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800F08_chnests.s")
+/* extern */
+
+void func_80800F08_chnests(s32 arg0) {
+    s32 func_80800BD8_chnests(s32, s32, f32, f32);
+    func_80800BD8_chnests(arg0, 0x1D5, 1.0f, 1.0f);
+}
 
 OSThread *chnests_entrypoint_0(void)
 {
