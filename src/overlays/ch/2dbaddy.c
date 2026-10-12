@@ -64,4 +64,12 @@ void func_80800820_ch2dbaddy(Actor *arg0) {
     _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800AF4_ch2dbaddy, 0.1f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_80800850_ch2dbaddy.s")
+void func_80800850_ch2dbaddy(void) {
+    s32 func_800DC128(s32, s32);
+    u8 *_sucoaster_entrypoint_3();
+    extern s16 D_80800B00_ch2dbaddy[];
+    u8 *sp1C;
+
+    sp1C = _sucoaster_entrypoint_3();
+    (*(s16 *)((s8 *)(sp1C) + (6))) = D_80800B00_ch2dbaddy[func_800DC128(0, 3)];
+}
