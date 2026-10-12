@@ -9,7 +9,19 @@ s32 chjinjo_entrypoint_0(s32 arg0) {
     return ((s16 *)&D_80801368_chjinjo)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/func_80800120_chjinjo.s")
+/* extern */
+
+void func_80800120_chjinjo(Actor *arg0) {
+    void _suexpression_entrypoint_8(Actor*, u32);
+    void func_800FC74C(u32);
+    s32 func_8080102C_chjinjo(Actor *, s32);
+    if (arg0->actorData[5] != 0U) {
+        func_800FC74C(0x1CU);
+        arg0->actorData[5] = 0;
+    }
+    func_8080102C_chjinjo(arg0, 1);
+    _suexpression_entrypoint_8(arg0, 1U);
+}
 
 /* extern */
 
