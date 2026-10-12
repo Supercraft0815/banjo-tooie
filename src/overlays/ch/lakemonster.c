@@ -60,7 +60,13 @@ void func_808013E8_chlakemonster(s32 *arg0) {
     func_8008F9C4(&D_808020D4_chlakemonster, 0x3F400000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80801448_chlakemonster.s")
+void func_80801448_chlakemonster(u8 *arg0, u32 arg1, s32 arg2) {
+    struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
+    arg2 |= 7;
+    _subaddiedialog_entrypoint_11((*(Unk80132ED0 **)((s8 *)(arg0) + (0))), arg1, arg2, (f32 *)(arg0 + 4), 0xB3U);
+    ((struct Flags *)arg0)->flag = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80801494_chlakemonster.s")
 
