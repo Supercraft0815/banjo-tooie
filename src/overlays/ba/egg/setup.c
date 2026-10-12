@@ -55,4 +55,19 @@ void baeggsetup_entrypoint_7(u8 *arg0, s32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/setup/baeggsetup_entrypoint_9.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/setup/baeggsetup_entrypoint_10.s")
+void baeggsetup_entrypoint_10(void *arg0) {
+    void func_800C4B64(f32);
+    void func_800C4B70(s32 arg0);
+    void func_800C4B7C(s32 arg0);
+    void func_8009C128(void *, f32[3]);
+    s32 func_8010D930(s32, s32, u8 *, s32 *);
+    extern s32 D_80800860_baeggsetup;
+    f32 sp1C[3];
+    s32 pad;
+
+    func_8009C128(arg0, sp1C);
+    func_800C4B64(1.0f);
+    func_800C4B70(0x7FFF);
+    func_800C4B7C(0x4A5);
+    func_8010D930(0xA, -1, sp1C, &D_80800860_baeggsetup);
+}
