@@ -4,7 +4,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_8080009C_chnewmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_808000DC_chnewmumbo.s")
+void func_808000DC_chnewmumbo(Actor *arg0, u32 arg1, u32 arg2) {
+    arg0->unk74_30 = 1;
+    _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, arg0->position, 0x10U);
+}
 
 s32 func_8080011C_chnewmumbo(void) {
     s32 func_800DA298(s32);
