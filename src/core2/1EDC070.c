@@ -91,7 +91,10 @@ void func_80102BF8(void *arg0, f32 arg1, f32 arg2, f32 arg3) {
     (*(f32 *)((s8 *)(arg0) + (0x48))) = func_800F1FF0((*(f32 *)((s8 *)(arg0) + (0x48))), (*(f32 *)((s8 *)(arg0) + (0x54))), arg1, temp_f0 * arg2, temp_f0 * arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102C58.s")
+void func_80102C58(Actor *arg0, volatile s32 arg1, f32 arg2, f32 arg3) {
+    f32 func_800F1FF0(f32, f32, f32, f32, f32);
+    arg0->rotation[0] = func_800F1FF0(arg0->rotation[0], arg0->unk50, (*(f32 *)&arg1), arg2, arg3);
+}
 
 /* extern */
 
