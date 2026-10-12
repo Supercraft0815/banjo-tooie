@@ -27,7 +27,18 @@ void func_80800344_chfactorymaindoor(u8 *arg0)
   _chswitch_entrypoint_8(arg0, 0x400);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/maindoor/func_808003A8_chfactorymaindoor.s")
+void func_808003A8_chfactorymaindoor(Actor *arg0, s32 arg1, s32 arg2)
+{
+  s32 new_var;
+  s32 _chswitch_entrypoint_10(s32, s32, s32);
+  void func_80103140(Actor *, u32, u16);
+  if ((arg1 == 0x95) && (((((u16) (*((u16 *) (((s8 *) arg0) + 0x76)))) & 0xFFFFFFFF) >> 7) == 0x32))
+  {
+ do { func_80103140(arg0, 0x7B8U, arg0->unk0->unk16); } while (0);
+  }
+  new_var = (s32) arg0;
+  _chswitch_entrypoint_10(new_var, arg1, arg2);
+}
 
 OSThread *chfactorymaindoor_entrypoint_1(void)
 {
