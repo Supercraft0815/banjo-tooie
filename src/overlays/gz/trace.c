@@ -12,7 +12,17 @@ void func_80800038_gztrace(u8 *arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/trace/func_80800068_gztrace.s")
+void func_80800068_gztrace(u8 *arg0, u8 *arg1) {
+    u8 *dest;
+    s32 c;
+
+    dest = arg0;
+    while ((c = *dest++) != 0) {
+    }
+    dest--;
+    while ((c = *arg1, *dest++ = c, arg1++, c != 0)) {
+    }
+}
 
 s32 func_808000B8_gztrace(u8 *arg0) {
     s32 len;
