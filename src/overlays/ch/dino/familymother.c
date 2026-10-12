@@ -8,7 +8,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familymother/func_808005EC_chdinofamilymother.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familymother/func_808008E4_chdinofamilymother.s")
+void func_808008E4_chdinofamilymother(s32 arg0) {
+    typedef struct { s32 x, y, z; } Vec;
+    s32 func_8010C93C(s32, s32 *, s32);
+    extern Vec D_808013EC_chdinofamilymother;
+    extern Vec D_808013F8_chdinofamilymother;
+    Vec sp24 = D_808013EC_chdinofamilymother;
+    Vec sp18 = D_808013F8_chdinofamilymother;
+    func_8010C93C(arg0, &sp24, 0x3DCCCCCD);
+    func_8010C93C(arg0, &sp18, 0x3E99999A);
+}
 
 void func_8080096C_chdinofamilymother(Actor *arg0) {
     extern u16 D_80801344_chdinofamilymother[][4];
