@@ -32,7 +32,14 @@ void func_80800458_basub(void *arg0, s32 arg1) {
     } while (var_s0 != 0x28);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/func_808004C8_basub.s")
+void func_808004C8_basub(u8 *arg0) {
+    s32 i;
+
+    for (i = 0; i < 10; i++) {
+        (*(s32 **)(arg0 + 0x130))[i + 11] = 0;
+    }
+    (*(s32 **)(arg0 + 0x130))[10] = 0;
+}
 
 void basub_entrypoint_1(s32 arg0)
 {
