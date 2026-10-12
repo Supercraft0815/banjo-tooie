@@ -9,7 +9,7 @@ void func_8001E2A0()
 
 void func_8001E304(void) {
     s32 _gzreg_entrypoint_1();
-    s32 func_8001D37C(s32 *);
+    s32 func_8001D37C();
     s32 func_8001D96C();
     s32 func_8001D9CC(s32, s32);
     extern s32 D_80041868;
@@ -21,7 +21,7 @@ void func_8001E304(void) {
 }
 
 void func_8001E34C(void) {
-    s32 func_8001D37C(s32 *);
+    s32 func_8001D37C();
     s32 func_8001D96C();
     extern s32 D_8004187C;
     func_8001D96C();
@@ -36,10 +36,16 @@ void func_8001E380()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E35DD0/func_8001E3A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E35DD0/func_8001E3E0.s")
+void func_8001E3E0(void) {
+    s32 func_8001211C(void);
+    s32 func_8001D37C();
+    extern s32 D_800418D4;
+    func_8001D37C(&D_800418D4, func_8001211C());
+    func_8001E2A0();
+}
 
 void func_8001E418(void) {
-    s32 func_8001D37C(s32 *);
+    s32 func_8001D37C();
     s32 func_8001D96C();
     extern s32 D_800418EC;
     func_8001D96C();
