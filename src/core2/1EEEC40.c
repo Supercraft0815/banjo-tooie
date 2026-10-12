@@ -5,7 +5,22 @@ s32 func_80115350()
     return 0x1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEC40/func_80115358.s")
+f32 func_80115358(void *arg0, f32 arg1) {
+    void *temp_v0;
+    f32 bound;
+
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x14)));
+    bound = *(f32 *)((s8 *)temp_v0 + 0xC);
+    if (arg1 < bound) {
+        arg1 = bound;
+    } else {
+        bound = *(f32 *)((s8 *)temp_v0 + 0x10);
+        if (bound < arg1) {
+            arg1 = bound;
+        }
+    }
+    return arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEC40/func_8011539C.s")
 
