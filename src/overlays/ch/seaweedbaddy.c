@@ -48,7 +48,20 @@ void func_808006A8_chseaweedbaddy(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_80800710_chseaweedbaddy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_808007E4_chseaweedbaddy.s")
+/* extern */
+
+void func_808007E4_chseaweedbaddy(u8 *arg0, s32 arg1) {
+    struct Flags {
+        unsigned int : 29;
+        unsigned int active : 1;
+        unsigned int : 2;
+    };
+    void func_80800710_chseaweedbaddy(u8 *, s32);
+    if (!((struct Flags *)(arg0 + 0x78))->active &&
+        (((u32)*(u16 *)(arg0 + 0x72) >> 10) != 4)) {
+        func_80800710_chseaweedbaddy(arg0, 4);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_8080082C_chseaweedbaddy.s")
 
