@@ -1,6 +1,25 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/lakebits/chfantasylakebits_entrypoint_0.s")
+/* extern */
+
+void chfantasylakebits_entrypoint_0(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4) {
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *actor;
+    Vtx *end;
+
+    actor = func_80106790(arg4);
+    end = arg2 + arg3;
+    if (arg2 < end) {
+        do {
+            arg2->v.cn[0] = 255;
+            arg2->v.cn[1] = 255;
+            arg2->v.cn[2] = 0;
+            arg2++;
+            arg1++;
+            arg2[-1].v.ob[1] = arg1[-1].v.ob[1] + actor->actorData[3];
+        } while (arg2 < end);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/lakebits/func_8080007C_chfantasylakebits.s")
 
