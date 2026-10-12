@@ -146,14 +146,25 @@ void *func_800E93AC(s32 arg0) {
     return (void *) ((arg0 * 0x12) + 0x4658 + (s32) &D_8012D690);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E93CC.s")
+void func_800E93CC(s32 arg0) {
+    void func_800E8E70(s32, void *, s32, s32);
+    extern s16 D_80131CE0;
+    extern s32 D_80123524;
+    extern s32 unknown2_ROM_START;
+    u8 *sp1C[2];
+
+    sp1C[1] = (u8 *)&unknown2_ROM_START;
+    func_800E8E70((s32)&D_80131CE0, (void *)sp1C[1], 8, arg0);
+    D_80123524 = (D_80131CE0 * 0x12 + 0xB) & ~3;
+    D_80123524 += (s32)sp1C[1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E9438.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E94E4.s")
 
 void func_800E9574(void) {
-    s32 func_800E93CC(s32);
+    void func_800E93CC(s32);
     s32 func_800E9438(s32);
     s32 func_800E94E4();
     extern s32 D_80123510;
