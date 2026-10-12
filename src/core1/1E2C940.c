@@ -160,7 +160,7 @@ void func_80015860(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80015878.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_800158E4.s")
+void func_800158E4(s32 *arg0) { extern s8 D_80079710[]; extern s8 D_80079718[]; func_80015860(*arg0); D_80079710[(s32) ((s8 *) arg0 - D_80079718) / 12] = 0; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_8001592C.s")
 
