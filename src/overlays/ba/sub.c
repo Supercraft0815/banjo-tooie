@@ -49,7 +49,17 @@ f32 basub_entrypoint_2(void *arg0) {
     return 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_3.s")
+void basub_entrypoint_3(u8 *arg0, f32 arg1, f32 arg2) {
+    u8 *temp_v0;
+
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x130)));
+    if (!((*(f32 *)((s8 *)(temp_v0) + (4))) > 0.0f)) {
+        (*(f32 *)((s8 *)(temp_v0) + (0))) = arg1;
+        (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x130)))) + (4))) = arg2;
+        temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x130)));
+        (*(f32 *)((s8 *)(temp_v0) + (8))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (4)));
+    }
+}
 
 /* extern */
 
