@@ -9,7 +9,18 @@ void func_80800000_chskeletonexplode(Actor *arg0) {
     *temp_v0 = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_80800034_chskeletonexplode.s")
+/* extern */
+
+void func_80800034_chskeletonexplode(void **arg0) {
+    s32 func_800ADFE0(s16);
+    s16 temp_a1;
+
+    temp_a1 = (*(s16 *)((s8 *)(*arg0) + (0x10)));
+    if (temp_a1 != 0) {
+        func_800ADFE0(temp_a1);
+        (*(s16 *)((s8 *)(*arg0) + (0x10))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_8080007C_chskeletonexplode.s")
 
