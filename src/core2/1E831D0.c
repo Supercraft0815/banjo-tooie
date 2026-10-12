@@ -53,7 +53,20 @@ void func_800A9BA0(s32 arg0, s32 arg1, s32 arg2) {
     func_800A7B18(3U);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E831D0/func_800A9BFC.s")
+/* extern */
+
+void func_800A9BFC(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_800EA090(void);
+    s32 func_800EA05C();
+    struct { s32 map; s32 entrance; } saved;
+    s32 entrance;
+
+    func_800A9B84();
+    saved.map = func_800EA05C();
+    entrance = func_800EA090();
+    func_800A9B8C(saved.map, entrance);
+    func_800A9BA0(arg0, arg1, arg2);
+}
 
 /* extern */
 
