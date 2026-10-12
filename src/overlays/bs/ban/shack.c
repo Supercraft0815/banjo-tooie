@@ -56,7 +56,12 @@ void func_80800744_bsbanshack(s32 arg0)
     func_80800164_bsbanshack(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_80800770_bsbanshack.s")
+void func_80800770_bsbanshack(s32 arg0)
+{
+    func_8080021C_bsbanshack();
+    *(u8 *)((u8 *)arg0 + 0x15C) = 0;
+    func_808005DC_bsbanshack(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_808007A0_bsbanshack.s")
 
