@@ -32,4 +32,17 @@ u8 func_800D35BC(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC810/func_800D36C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC810/func_800D3724.s")
+s32 func_800D3724(s32 arg0) {
+    s32 func_800D6C34(s16);
+    extern u8 D_8011B560[];
+    s32 var_v1;
+    u8 *temp_v0;
+
+    temp_v0 = D_8011B560 + arg0 * 8;
+    if ((*(s32 *)((s8 *)temp_v0 + 4)) != 0) {
+        var_v1 = func_800D6C34(*(s16 *)(temp_v0 + 0));
+    } else {
+        var_v1 = 1;
+    }
+    return var_v1;
+}
