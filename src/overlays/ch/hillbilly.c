@@ -7,7 +7,23 @@ OSThread *chhillbilly_entrypoint_0(void)
     return (OSThread *) D_80800C60_chhillbilly;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_8080000C_chhillbilly.s")
+/* extern */
+
+void func_8080000C_chhillbilly(void *arg0) {
+    s32 _sucoaster_entrypoint_0(void *, s32);
+    u8 *_sucoaster_entrypoint_3();
+    void func_800EE940(s16 *dst, f32 *src);
+    u8 *sp1C;
+    f32 *volatile sp18;
+    f32 *position;
+
+    if (_sucoaster_entrypoint_0(arg0, 0xC) != 0) {
+        sp1C = _sucoaster_entrypoint_3(arg0);
+        func_800EE940((s16 *)(sp1C + 6), sp18 = (f32 *)((u8 *)arg0 + 4));
+        position = sp18;
+        func_800EE940((s16 *)sp1C, position);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_80800064_chhillbilly.s")
 
