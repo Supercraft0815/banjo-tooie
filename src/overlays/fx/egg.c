@@ -1,6 +1,17 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/egg/func_80800000_fxegg.s")
+s16 *func_80800000_fxegg(s32 arg0) {
+    extern s16 D_80800550_fxegg[];
+    s32 i;
+    while (1) {
+        for (i = 0; D_80800550_fxegg[i * 3]; i++) {
+            if (arg0 == D_80800550_fxegg[i * 3]) {
+                return &D_80800550_fxegg[i * 3];
+            }
+        }
+        arg0 = 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/egg/fxegg_entrypoint_0.s")
 
