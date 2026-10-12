@@ -77,7 +77,7 @@ void suexpression_entrypoint_5(u8 *arg0) {
 
 void suexpression_entrypoint_8(void *arg0, s32 arg1) {
     s32 func_80100074(void *, s32, s32);
-    s32 func_80100094();
+    void *func_80100094();
     if (func_80100094() != 0) {
         func_80100074(arg0, arg1, 0);
     }
@@ -181,7 +181,16 @@ void suexpression_entrypoint_18(s8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_19.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_20.s")
+void *suexpression_entrypoint_20(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    u32 temp_t7;
+
+    temp_t7 = (arg0->pad94 << 0xC) >> 0x1E;
+    if (temp_t7 != 0) {
+        return func_80100094(arg0, temp_t7 - 1);
+    }
+    return NULL;
+}
 
 void *func_80800CF4_suexpression(s32 arg0) {
     extern s32 D_80800D60_suexpression;
