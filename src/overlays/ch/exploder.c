@@ -63,7 +63,13 @@ void func_808010E0_chexploder(u8 *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_80801188_chexploder.s")
+void func_80801188_chexploder(u8 *arg0, u8 *arg1, s32 arg2) {
+    u8 * func_800B26F0(u8 *arg0);
+    if (func_800B26F0(arg1) != NULL) {
+        arg0[0x70] = (u8)((arg0[0x70] & ~1) | 1);
+        (*(u8 *)((s8 *)(arg0) + (0x71))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x71))) & 0xFFDF);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/chexploder_entrypoint_1.s")
 
