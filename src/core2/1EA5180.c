@@ -177,4 +177,11 @@ void func_800CCFEC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CD08C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CD1E0.s")
+/* extern */
+
+void func_800CD1E0(s32 arg0, u8 *arg1, f32 arg2) {
+    func_800CD08C(arg0, arg1);
+    if ((*(f32 *)((s8 *)(arg1) + (4))) < arg2) {
+        (*(f32 *)((s8 *)(arg1) + (4))) = arg2;
+    }
+}
