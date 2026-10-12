@@ -12,13 +12,20 @@ int glhittableDll_entrypoint_2(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/hittableDll/glhittableDll_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/hittableDll/glhittableDll_entrypoint_5.s")
-
 typedef struct {
     u16 header[2];
     u16 entries[32];
 } HitTable;
 extern HitTable D_80800530_glhittableDll[];
+
+s32 glhittableDll_entrypoint_5(s32 arg0) {
+    HitTable *table;
+    u16 *entry;
+
+    table = &D_80800530_glhittableDll[(arg0 >> 16) & 0xFFFF];
+    entry = &table->entries[arg0 & 0xFFFF];
+    return ((u32)table->header[1] >> 12) | ((u32)*entry >> 12);
+}
 
 s32 glhittableDll_entrypoint_6(s32 arg0) {
     HitTable *table;
