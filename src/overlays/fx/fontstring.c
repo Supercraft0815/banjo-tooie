@@ -17,4 +17,15 @@ void fxfontstring_entrypoint_0(u8 *arg0, s32 arg1) { u8 *p; p = func_80800000_fx
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/fontstring/fxfontstring_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/fontstring/fxfontstring_entrypoint_3.s")
+/* extern */
+
+void fxfontstring_entrypoint_3(u8 *arg0, s32 arg1, s32 arg2) {
+    u8 *p;
+    p = func_80800000_fxfontstring(arg0);
+    p[0] = 0xFD;
+    p[1] = 0x69;
+    p[2] = arg1 & 0xFF;
+    p[3] = (arg1 >> 8) & 0xFF;
+    p[4] = arg2 + 1;
+    p[5] = 0;
+}
