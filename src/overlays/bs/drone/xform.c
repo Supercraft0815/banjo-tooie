@@ -71,7 +71,11 @@ void func_80800724_bsdronexform(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/bsdronexform_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/func_80800B5C_bsdronexform.s")
+f32 func_80800B5C_bsdronexform(void *self, s32 id, f32 arg2, f32 arg3, f32 arg4) {
+    f32 func_800F10B4(f32 value, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
+    f32 _batimer_get(void *, s32);
+    return func_800F10B4(_batimer_get(self, id), arg2, 0.0f, arg3, arg4);
+}
 
 void bsdronexform_entrypoint_3(void *arg0)
 {
