@@ -183,7 +183,17 @@ void func_800BF4A4(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF4DC.s")
+/* extern */
+
+void func_800BF4DC(s32 arg0, s32 arg1) {
+    s32 _idworldmake_entrypoint_5(s32);
+    if (arg1 != *(u8 *)((s8 *)&D_801285B0 + arg0 * 0x2C + 0x2B)) {
+        if (*(s32 *)((s8 *)&D_801285B0 + arg0 * 0x2C + 4) != 0) {
+            _idworldmake_entrypoint_5(*(s32 *)((s8 *)&D_801285B0 + arg0 * 0x2C + 4));
+        }
+    }
+    *(u8 *)((s8 *)&D_801285B0 + arg0 * 0x2C + 0x2B) = arg1;
+}
 
 void func_800BF544(s32 arg0, s32 arg1, s32 arg2) {
     s32 _idworldmake_entrypoint_6(s32, s32, s32);
