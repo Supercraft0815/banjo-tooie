@@ -144,4 +144,21 @@ void func_808005B8_chjigsawcollect(s32 arg0, s32 arg1) {
     func_800BBCB8(arg1, 0, 0x3F800000, 1, &D_808006D0_chjigsawcollect);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/collect/chjigsawcollect_entrypoint_1.s")
+void chjigsawcollect_entrypoint_1(Actor **arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u8 pad0[0x73];
+        u8 pad73_1 : 7;
+        u8 unk73_0 : 1;
+    } CollectActor;
+    typedef struct {
+        s32 unk0[3];
+        s32 unkC;
+    } CollectData;
+    void *func_80100094(Actor *, u32);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    Actor *actor;
+
+    actor = func_80108528(0x4EF, (*arg0)->position, 0, arg0);
+    ((CollectActor *)actor)->unk73_0 = arg2;
+    ((CollectData *)func_80100094(actor, 0))->unkC = arg1;
+}
