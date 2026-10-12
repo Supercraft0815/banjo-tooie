@@ -164,7 +164,25 @@ void func_801020A8(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_801020DC.s")
+/* extern */
+
+void func_801020DC(void *arg0, s32 arg1) {
+    struct anctrl_s;
+    s32 func_80104248();
+    void anctrl_setSmoothTransition(struct anctrl_s *, s32);
+    s32 var_a1;
+    s32 temp_v0;
+
+    temp_v0 = func_80104248(arg0);
+    if (temp_v0 != 0) {
+        if (arg1 == 1) {
+            var_a1 = 1;
+        } else {
+            var_a1 = 0;
+        }
+        anctrl_setSmoothTransition(temp_v0, var_a1);
+    }
+}
 
 /* extern */
 
