@@ -99,4 +99,13 @@ void func_8080038C_chweather(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weather/func_808003BC_chweather.s")
+/* extern */
+
+s32 func_808003BC_chweather(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_80800138_chweather(s32, s32);
+    if (arg1 == 0x95) {
+        func_80800138_chweather(arg0, 2);
+        return 1;
+    }
+    return 0;
+}
