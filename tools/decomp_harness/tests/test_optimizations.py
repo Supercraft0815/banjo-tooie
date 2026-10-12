@@ -93,6 +93,28 @@ class PatternTests(fixtures.Fixture):
         self.assertIn('note: line layout moved sw ra', pack)
         self.assertNotIn('deferred to parent', pack)
 
+    def test_context_lists_struct_members_at_the_touched_offsets(self):
+        from decomp_harness.context import struct_members
+        (self.root/'include').mkdir(exist_ok=True)
+        (self.root/'include/common.h').write_text(
+            'typedef struct Actor {\n    /* 0x00 */ s32 unk0;\n    /* 0x64 */ u32 unk64_20 : 1;\n    /* 0x68 */ s32 pad68;\n} Actor;\n')
+        asm = '/* 0 80000000 91D80065 */  lbu $t8, 0x65($t6)\n/* 4 80000004 AFA40018 */  sw $a0, 0x68($sp)\n'
+        self.assertEqual(struct_members(self.root, ['Actor', 'Missing'], asm),
+                         'Actor (include/common.h):\n/* 0x64 */ u32 unk64_20 : 1;')
+        (self.root/'src/core1/a.c').write_text('void near(Actor *arg0) {}\n' + (self.root/'src/core1/a.c').read_text())
+        (self.root/'asm/nonmatchings/core1/a/target.s').write_text(ASM + asm)
+        self.assertIn('/* 0x64 */ u32 unk64_20 : 1;', context_pack(self.root, self.state.get('target'), self.state, self.cfg))
+
+    def test_compile_feedback_flags_unchanged_code_and_regressions(self):
+        from types import SimpleNamespace
+        from decomp_harness.service import CompileService
+        service = SimpleNamespace(outputs={}, top=None)
+        note = lambda number, reply, score: CompileService.progress(service, number, {'reply': reply, 'score': score})
+        self.assertEqual(note(1, 'diff a', 90.0), '')
+        self.assertIn('Identical machine code to request 1', note(2, 'diff a', 90.0))
+        self.assertIn('Worse than request 1 (score 90.00)', note(3, 'diff b', 70.0))
+        self.assertEqual(note(4, 'diff c', 95.0), '')
+
     def test_retry_context_pairs_failed_patches_with_results_and_flags_repeats(self):
         for index in range(5):
             directory = self.root / '.decomp-agent/runs' / f'attempt-{index}'

@@ -65,6 +65,7 @@ IDO_QUIRKS = """\
 - Temp numbers shifted by one (t7/t8 where t6/t7 is expected) on a flag update: it is a bitfield write (`x->flag = 1`, or `(u8)((x & 0xFE) | 1)`), not `|=`. A load into t6+ instead of v0/a-reg is usually a bitfield read.
 - Skipped temp numbers (constant in t9, no t6-t8): forwarded reloads, write `x[1] = x[2]; x[0] = x[1];` instead of repeating the constant.
 - Temp in a2 instead of a1 in a non-leaf: the function has one more parameter that is passed straight through to the callee.
+- You emit `move a0,zero` (or load a0/a1) before a `jal` where the reference has nothing and a `nop` in the delay slot: the function forwards its own a0/a1 unchanged; give it that parameter and pass it through instead of a constant.
 - Leaf with `sw a0,0(sp)` / `sw a1,4(sp)` and the argument otherwise unused or masked: narrow parameter type (u8/s16). No such store: s32.
 - `srl` vs `sra` on a u16/u8 field: the field promotes to signed int, cast `(u32)field >> n`.
 - `b` to the next instruction before the epilogue: `if (c) { ...; ret = 1; } else { return f(); } return ret;`.
@@ -208,10 +209,11 @@ def context_pack(root, function, state, config, budget=None, shared=True, draft=
     declared = known_declarations(state, [*features['calls'], *features['globals']])
     related = excerpts(root, terms, ('src', 'include'), 6000 if shared else 2500)
     # Find nearby type declarations using locally observed type names only.
-    types = re.findall(r'\b(?:struct\s+)?([A-Z][A-Za-z0-9_]*(?:State|Info|Actor|Data|Struct))\b', neighbors+related)
+    types = re.findall(r'\b(?:struct\s+)?((?:[A-Z][A-Za-z0-9_]*)?(?:State|Info|Actor|Data|Struct))\b', neighbors+related)
     type_info = excerpts(root, types, ('include',), 2500 if shared else 1000)
     asm = (root/function['asm']).read_text()
-    members = struct_members(root, types, asm) if shared else ''
+    # Character overlays take the Actor first, also when no neighbour names the type yet.
+    members = struct_members(root, [*types, *(['Actor'] if '/overlays/ch/' in function['source'] else [])], asm) if shared else ''
     bk = analogue = ''
     if config['banjo_kazooie_repo']:
         bkroot = Path(config['banjo_kazooie_repo']).expanduser().resolve()
@@ -256,7 +258,7 @@ def context_pack(root, function, state, config, budget=None, shared=True, draft=
             f"IDO quirks verified in this repo (check the diff against these first):\n{notes}\n"
             f"Failed attempts (newest first):\n{failed_attempts(root, history)}\n"
             + (f"Struct members at the offsets this ASM touches (use the member, never a raw offset cast;\n"
-               f"a `: n` member is a bitfield and needs a bitfield read/write to match):\n{members}\n" if members else '')
+               f"a `: n` member is a bitfield and needs a bitfield read/write to match; an Actor listed here applies when the pointer argument is the Actor):\n{members}\n" if members else '')
             + (f"Includes:\n{includes}\n" if shared else '') +
             f"Declarations verified in matched code (reuse; declare inside the function if needed):\n{declared}\n"
             f"Neighbor context:\n{neighbors[:3500]}\nLocal symbol/prototype/pattern hits:\n{related}\n"

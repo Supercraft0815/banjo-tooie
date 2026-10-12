@@ -58,6 +58,7 @@ class CompileService(threading.Thread):
         self.function = targets[0].function
         self.original = targets[0].original
         self.count = 0
+        self.outputs, self.top = {}, None  # compiler reply -> first request; (score, request) of the best
         self.redact, self.best = redact, None
         self.done = set()
         self.halt = threading.Event()
@@ -153,7 +154,7 @@ class CompileService(threading.Thread):
         if cache.is_file():
             feedback = json.loads(cache.read_text())
             self.record(number, candidate, support, feedback)
-            return feedback['reply'] + '\n[Already compiled against this baseline; cached result. Try a different hypothesis.]'
+            return feedback['reply'] + '\n[Already compiled against this baseline; cached result. Try a different hypothesis.]' + self.progress(number, feedback)
         log = self.directory/f'compile-{number}.log'
         dumps = self.loop.object_dumps(self.targets[0], candidate.encode(), [t.function['symbol'] for t in changed],
                                        log, self.directory/f'restore-{number}.log', support)
@@ -163,7 +164,9 @@ class CompileService(threading.Thread):
             feedback = {'reply': 'Compile error:\n' + '\n'.join(lines[-30:])[-3000:], 'score': -1, 'plausible': False}
             save_json(cache, feedback)
             self.record(number, candidate, support, feedback)
-            return feedback['reply']
+            left = self.limit - self.count
+            return feedback['reply'] + (f'\n[Does not compile; {left} compile requests left. Fix the error and compile again '
+                                        'before finishing: an uncompiled version cannot match.]' if left else '')
         parts, comparisons = [], []
         for target in changed:
             symbol = target.function['symbol']
@@ -185,7 +188,19 @@ class CompileService(threading.Thread):
         if feedback['plausible'] or not left:
             return feedback['reply'] + f'\n[{left} compile requests left in this session]'
         return (feedback['reply'] + f'\n[Not matched; {left} compile requests left. Do not finish yet: '
-                'check the diff against the IDO quirk list and compile a different hypothesis.]')
+                'check the diff against the IDO quirk list and compile a different hypothesis.]' + self.progress(number, feedback))
+
+    def progress(self, number, feedback):
+        """Tell the worker when a request changed nothing or fell behind its best version."""
+        note, first = '', self.outputs.setdefault(feedback['reply'], number)
+        if first != number and feedback['score'] >= 0:
+            note += (f'\n[Identical machine code to request {first}: that edit changed nothing the compiler sees. '
+                     'Change a type, the expression structure or the statement order instead.]')
+        if self.top is None or feedback['score'] > self.top[0]:
+            self.top = (feedback['score'], number)
+        elif feedback['score'] < self.top[0]:
+            note += f'\n[Worse than request {self.top[1]} (score {self.top[0]:.2f}); go back to that version before the next change.]'
+        return note
 
     def record(self, number, candidate, support, feedback):
         save_json(self.directory/f'compile-{number}.json', feedback)
