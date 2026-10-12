@@ -61,7 +61,156 @@ void func_80800EDC_chtoothyfish(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800F6C_chtoothyfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_8080106C_chtoothyfish.s")
+void func_8080106C_chtoothyfish(Actor *self)
+{
+  f32 func_800D8FF8(void);
+  void func_800EFA20(void *, void *, f32);
+  void func_800EF04C(f32 *, f32 *);
+  s32 func_800DC298(f32);
+  f32 func_800DC178(f32, f32);
+  s32 _subaddie3d_entrypoint_0(f32 *, f32, f32, f32 *);
+  s32 func_80102D4C(Actor *, f32);
+  s32 func_80102CF4(Actor *, f32);
+  void func_80102B6C(u8 *, f32);
+  void func_80102B2C(Actor *, f32);
+  void func_80800EE4_chtoothyfish(Actor *, s32);
+  void func_80800F6C_chtoothyfish(f32 *, f32, f32);
+  f32 delta[3];
+  f32 dt;
+  dt = func_800D8FF8();
+  func_800EFA20(delta, &self->actorData[4], dt);
+  switch (self->unk70_10)
+  {
+    case 1:
+      func_800EF04C(self->position, delta);
+      ((f32 *) self->actorData)[4] *= 0.7f;
+      ((f32 *) self->actorData)[6] *= 0.7f;
+      ((f32 *) self->actorData)[5] += ((f32 *) self->actorData)[7] * dt;
+      if (((f32 *) self->actorData)[5] < (-50.0f))
+    {
+      func_80800EE4_chtoothyfish(self, 2);
+    }
+      self->rotation[0] += 400.0f * dt;
+      self->rotation[1] += 200.0f * dt;
+      if (func_800DC298(0.2f))
+    {
+      func_80800F6C_chtoothyfish(self->position, 200.0f, self->scale);
+    }
+      break;
+
+    case 2:
+      func_800EF04C(self->position, delta);
+      ((f32 *) self->actorData)[4] *= 0.7f;
+      ((f32 *) self->actorData)[6] *= 0.7f;
+      ((f32 *) self->actorData)[5] += ((f32 *) self->actorData)[7] * dt;
+      if (_subaddie3d_entrypoint_0(self->position, 0.0f, self->scale * (-200.0f), &((f32 *) self->actorData)[1]))
+    {
+      if ((((f32 *) self->actorData)[1] + (20.0f * self->scale)) < (delta[1] + self->position[1]))
+      {
+        self->position[1] += delta[1];
+      }
+      else
+      {
+        func_80800EE4_chtoothyfish(self, 4);
+      }
+    }
+    else
+      if (func_80102D4C(self, 4.0f))
+    {
+      func_80800EE4_chtoothyfish(self, 3);
+    }
+    else
+    {
+      func_80102B6C((u8 *) self, 4.0f);
+    }
+      if (func_800DC298(0.2f))
+    {
+      func_80800F6C_chtoothyfish(self->position, 200.0f, self->scale);
+    }
+      break;
+
+    case 3:
+      ((f32 *) self->actorData)[4] *= 0.7f;
+      ((f32 *) self->actorData)[6] *= 0.7f;
+      ((f32 *) self->actorData)[5] += ((f32 *) self->actorData)[7] * dt;
+      self->position[0] += ((f32 *) self->actorData)[4];
+      self->position[2] += ((f32 *) self->actorData)[6];
+      if (_subaddie3d_entrypoint_0(self->position, 0.0f, self->scale * (-200.0f), &((f32 *) self->actorData)[1]))
+    {
+      if ((((f32 *) self->actorData)[1] + (50.0f * self->scale)) < (delta[1] + self->position[1]))
+      {
+        self->position[1] += delta[1];
+      }
+      else
+      {
+        func_80800EE4_chtoothyfish(self, 4);
+      }
+    }
+    else
+    {
+      self->position[1] += delta[1];
+    }
+      if (!func_80102D4C(self, 3.0f))
+    {
+      func_80102B6C((u8 *) self, 3.0f);
+    }
+      if (!func_80102CF4(self, 3.0f))
+    {
+      func_80102B2C(self, 3.0f);
+    }
+      if (func_800DC298(0.1f))
+    {
+      self->unk50 = func_800DC178(140.0f, 220.0f);
+    }
+      if (func_800DC298(0.1f))
+    {
+      self->unk54 = self->rotation[1] + func_800DC178(-90.0f, 90.0f);
+    }
+      if (func_800DC298(0.2f))
+    {
+      func_80800F6C_chtoothyfish(self->position, 200.0f, self->scale);
+    }
+      break;
+
+    case 4:
+      if ((((f32 *) self->actorData)[1] + (10.0f * self->scale)) < self->position[1])
+    {
+      self->position[1] += ((f32 *) self->actorData)[5] * dt;
+    }
+    else
+      if (self->position[1] < ((f32 *) self->actorData)[1])
+    {
+      self->position[1] += 4.0f;
+    }
+      if (!func_80102D4C(self, 8.0f))
+    {
+      func_80102B6C((u8 *) self, 8.0f);
+    }
+    else
+    {
+      func_80800EE4_chtoothyfish(self, 5);
+    }
+      break;
+
+    case 5:
+      if ((((f32 *) self->actorData)[1] + (10.0f * self->scale)) < self->position[1])
+    {
+      self->position[1] += ((f32 *) self->actorData)[5] * dt;
+    }
+    else
+      if (self->position[1] < (((f32 *) self->actorData)[1] + (5.0f * self->scale)))
+    {
+      self->position[1] += 4.0f;
+    }
+    else
+    {
+      ((u8 *) self)[0x7E] &= ~0x40;
+    }
+      break;
+
+  }
+
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80801588_chtoothyfish.s")
 
