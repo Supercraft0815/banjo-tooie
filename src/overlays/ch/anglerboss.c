@@ -66,7 +66,11 @@ void func_80801CD8_changlerboss(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80802108_changlerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_808021E4_changlerboss.s")
+void func_808021E4_changlerboss(Actor *arg0, u32 arg1, u32 arg2) {
+    void func_80802210_changlerboss(Actor *, Unk80132ED0 *, u32, u32);
+
+    func_80802210_changlerboss(arg0, arg0->unk0, arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80802210_changlerboss.s")
 
