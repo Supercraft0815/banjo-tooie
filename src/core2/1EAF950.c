@@ -322,7 +322,130 @@ void func_800D7948(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7E38.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D8070.s")
+s32 func_800D8070(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    typedef struct {
+        s32 unused0:21;
+        s32 path:10;
+        u32 initialized:1;
+        f32 unused4[2];
+        f32 time;
+        f32 previousTime;
+        f32 speed;
+        u32 unused18:1;
+        u32 realTime:1;
+        u32 unused19:30;
+        u32 unused1C;
+        f32 delay;
+        u32 unused24:19;
+        u32 pause:4;
+        u32 unused25:9;
+        u32 unused28:6;
+        u32 condition:8;
+        u32 unused29:2;
+        u32 flag:9;
+        u32 clearFlag:1;
+        u32 actor:6;
+        f32 pod;
+    } PathState;
+    s32 _capod_entrypoint_16(f32);
+    f32 _glintrosyncDll_entrypoint_5(void);
+    s32 _seqdefine_entrypoint_0(s32);
+    s32 func_8001B798(s16);
+    void func_800C7A68(s32, f32, f32 *);
+    f32 func_800C7E28(void *);
+    f32 func_800C8070(s32, f32, f32, s32 *);
+    s32 func_800D75DC(s32, f32);
+    s32 func_800D7DE8(void *);
+    s32 func_800D7E38(void *, s32, s32, s32, s32, s32);
+    f32 func_800D8FF8(void);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    void *func_80105494();
+    extern u8 D_8012BE6F[];
+    extern s16 D_8012BFF4;
+    extern s32 D_8012BFFC;
+    s32 start;
+    s32 end;
+    s32 wrapped;
+    PathState *state;
+    f32 speed;
+    s32 path;
+    s32 node;
+    s32 oldFlags;
+    s32 newFlags;
+    f32 delta;
+    f32 duration;
+
+    wrapped = 0;
+    state = func_80105494();
+    speed = state->speed;
+    if (state->path == -1) {
+        return 0;
+    }
+    state->previousTime = state->time;
+    start = func_800D75DC(state->path, state->time);
+    if (0.0f == state->delay && state->pause == 0 && state->flag == 0 && state->condition == 0 && 0.0f == state->pod) {
+        path = func_8001B798(((s16 *)func_8001B798(D_8012BFF4))[state->path]);
+        state->time = func_800C8070(path, state->time, speed, &wrapped);
+        func_800C7A68(path, state->time, (f32 *)arg0 + 1);
+    } else {
+        if (0.0f != state->delay) {
+            delta = state->realTime ? _glintrosyncDll_entrypoint_5() : func_800D8FF8();
+            state->delay -= delta;
+            if (state->delay < 0.0f) {
+                state->delay = 0.0f;
+            }
+        }
+        if (state->flag != 0 && func_800DA298(_seqdefine_entrypoint_0(state->flag - 1))) {
+            if (state->clearFlag) {
+                state->clearFlag = 0;
+                func_800DA524(_seqdefine_entrypoint_0(state->flag - 1));
+            }
+            state->flag = 0;
+        }
+        if (state->condition != 0 && D_8012BE6F[state->condition] == 0) {
+            state->condition = 0;
+        }
+        if (state->pod > 0.0f && _capod_entrypoint_16(state->pod)) {
+            state->pod = 0.0f;
+        }
+    }
+    end = func_800D75DC(state->path, state->time);
+    if (!state->initialized) {
+        state->initialized = 1;
+        ((f32 *)arg0)[0x48 / 4] = ((f32 *)arg0)[0x54 / 4];
+        ((f32 *)arg0)[0x44 / 4] = ((f32 *)arg0)[0x50 / 4];
+    }
+    if (start == end && wrapped == 0) {
+        func_800D7948(arg0, arg1, arg2, arg3);
+    } else {
+        oldFlags = func_800D7DE8(arg0);
+        if (speed > 0.0f) {
+            if (wrapped == 0) {
+                if (func_800D7E38(arg0, state->path, start, end, 0, 1) == 2) {
+                    D_8012BFFC = 1;
+                }
+            } else if (func_800D7E38(arg0, state->path, start, -9999, 0, 1) == 0) {
+                duration = func_800C7E28(func_800D7520(state->path));
+                node = func_800D75DC(state->path, duration);
+                func_800D7E38(arg0, state->path, node, end, 0, 1);
+            }
+        } else if (speed < 0.0f) {
+            if (wrapped == 0) {
+                func_800D7E38(arg0, state->path, start - 1, end - 1, 0, -1);
+            } else if (func_800D7E38(arg0, state->path, start - 1, -1, 0, -1) == 0) {
+                func_800D7E38(arg0, state->path, -9999, end - 1, 0, -1);
+            }
+        }
+        newFlags = func_800D7DE8(arg0);
+        if (oldFlags == newFlags || (oldFlags != newFlags && oldFlags != (arg1 & 0x3F00))) {
+            func_800D7948(arg0, arg1, arg2, arg3);
+        } else {
+            func_800D7948(arg0, (arg1 & ~0x3F00) | (newFlags & 0x3F00), arg2, arg3);
+        }
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D8588.s")
 
