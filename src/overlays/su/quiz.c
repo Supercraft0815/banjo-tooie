@@ -81,7 +81,12 @@ u8 suquiz_entrypoint_7(void) {
     return 6U;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_8.s")
+f32 suquiz_entrypoint_8(s32 arg0) {
+    s32 suquiz_entrypoint_4();
+    extern f32 D_80800F94_suquiz[][6][2];
+    s32 row = suquiz_entrypoint_4();
+    return D_80800F94_suquiz[row][arg0][0];
+}
 
 s32 suquiz_entrypoint_9(s32 arg0) {
     if (arg0 != 0) {
