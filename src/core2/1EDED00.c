@@ -57,7 +57,10 @@ void func_80105834()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105A5C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105A9C.s")
+void func_80105A9C(Actor *arg0, f32 arg1) {
+    void *func_80105494(Actor *);
+    (*(f32 *)((s8 *)(func_80105494(arg0)) + 0x14)) = arg1;
+}
 
 /* extern */
 
