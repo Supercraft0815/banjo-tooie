@@ -53,7 +53,21 @@ s32 func_800D3F2C(s32 arg0) {
     return func_800DA544(D_8011B5BA[arg0][0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD6C0/func_800D3F58.s")
+void func_800D3F58(s32 arg0, s32 arg1) {
+    void func_800DA3B8(GameFlag, s32);
+    u32 func_800F54E4(void);
+    void func_800F4924(s32, s32);
+    extern u16 D_8011B5C0[][4];
+    extern u16 D_8011B608[][4];
+    u16 (*sp18)[4];
+
+    sp18 = &D_8011B5C0[arg0];
+    func_800DA3B8(sp18[-1][2], arg1);
+    if ((sp18 == D_8011B608) && (arg1 != 0)) {
+        arg0 = func_800F54E4();
+        func_800F4924(arg0, 0x3E7);
+    }
+}
 
 u32 func_800D3FC0(s32 arg0) {
     extern u16 D_8011B5BE[4][4];
