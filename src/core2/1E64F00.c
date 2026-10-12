@@ -44,7 +44,17 @@ s32 func_8008B90C(s16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008B9C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008BA5C.s")
+void func_8008BA5C(void) {
+    s32 defrag(s32);
+    extern s32 D_80126CC0;
+    s32 sp1C;
+    s32 temp_v0;
+
+    sp1C = (s32) ((*(s32 *)((s8 *)(&D_80126CC0) + (4))) - (*(s32 *)((s8 *)(&D_80126CC0) + (0)))) / 6;
+    temp_v0 = defrag((*(s32 *)((s8 *)(&D_80126CC0) + (0))));
+    (*(s32 *)((s8 *)(&D_80126CC0) + (0))) = temp_v0;
+    (*(s32 *)((s8 *)(&D_80126CC0) + (4))) = (sp1C * 6) + D_80126CC0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008BAC0.s")
 
