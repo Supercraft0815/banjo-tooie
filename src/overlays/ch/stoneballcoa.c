@@ -2,7 +2,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcoa/func_80800000_chstoneballcoach.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcoa/func_80800090_chstoneballcoach.s")
+/* extern */
+
+void func_80800090_chstoneballcoach(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_800C05B8(s32, s32, f32 *, Unk80132ED0 *, s32, s32, s16);
+    if (arg1 != 0) {
+        func_800C05B8(arg1, arg2, arg0->position, arg0->unk0, 0, 0, 0x34);
+        arg0->unk70_10 = 2;
+        arg0->unk74_30 = 1;
+    }
+}
 
 /* extern */
 
