@@ -285,7 +285,22 @@ void func_808012C0_chfactoryempspell(f32 arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801C00_chfactoryempspell.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801E48_chfactoryempspell.s")
+void func_80801E48_chfactoryempspell(Actor *arg0) {
+    void func_800C8B84(s32);
+    void* func_80100094(Actor*, u32);
+    s32 var_s0;
+    u8 *var_s1;
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 1U);
+    var_s0 = 0;
+    var_s1 = temp_v0;
+    do {
+        func_800C8B84((*(s32 *)((s8 *)(var_s1) + (0x3C))));
+        var_s0 += 4;
+        var_s1 += 4;
+    } while (var_s0 != 0x10);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801E9C_chfactoryempspell.s")
 
