@@ -1,6 +1,5 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E440D0/func_8002C5A0.s")
-
-void func_8002C5B4(void) {
+void func_8002C5A0(void *arg0, s16 arg1) {
+    *(s16 *)((u8 *)arg0 + 0x16) = arg1;
 }

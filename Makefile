@@ -162,15 +162,13 @@ $(BUILD_ROOT)/src/core1/1E39CE0.c.o: CC := tools/ido7.1/cc
 $(BUILD_ROOT)/src/core1/1E39CE0.c.o: OPT_LEVEL := -g
 $(BUILD_ROOT)/src/core1/1E39CE0.c.o: CFLAGS := $(filter-out -O2,$(CFLAGS)) -g
 
-# The audio list helpers were built with IDO 7.1 at -O1.
-$(BUILD_ROOT)/src/core1/1E38970.c.o: CC := tools/ido7.1/cc
-$(BUILD_ROOT)/src/core1/1E38970.c.o: OPT_LEVEL := -O1
-$(BUILD_ROOT)/src/core1/1E38970.c.o: CFLAGS := $(filter-out -O2,$(CFLAGS)) -O1
-
-# The MIDI controller helpers use IDO 7.1 debug code generation.
-$(BUILD_ROOT)/src/core1/1E3DC30.c.o: CC := tools/ido7.1/cc
-$(BUILD_ROOT)/src/core1/1E3DC30.c.o: OPT_LEVEL := -g
-$(BUILD_ROOT)/src/core1/1E3DC30.c.o: CFLAGS := $(filter-out -O2,$(CFLAGS)) -g
+# These audio library files use IDO 7.1 debug code generation. With -g a leaf
+# function ends in two `jr ra; nop` pairs, so there are no separate stubs.
+IDO71_DEBUG_OBJS := $(addprefix $(BUILD_ROOT)/src/core1/,$(addsuffix .c.o, \
+    1E38100 1E38970 1E389F0 1E38AA0 1E39740 1E3DC30 1E440D0 1E440F0))
+$(IDO71_DEBUG_OBJS): CC := tools/ido7.1/cc
+$(IDO71_DEBUG_OBJS): OPT_LEVEL := -g
+$(IDO71_DEBUG_OBJS): CFLAGS := $(filter-out -O2,$(CFLAGS)) -g
 
 # Debug variable print target
 print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true

@@ -39,7 +39,8 @@ void func_800C01A8(s16 arg0, s32 arg1) {
     _gcdialogcamera_entrypoint_10(&D_801288B0, arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C01D8.s")
+/* Single line: IDO schedules this prologue by source line. */
+void func_800C01D8(s32 arg0, s32 arg1) { s32 _gcdialogexec_entrypoint_5(s32 *, s32, s32); _gcdialogexec_entrypoint_5(&D_801288B0, arg0, arg1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0208.s")
 

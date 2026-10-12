@@ -6,9 +6,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E38AA0/func_80021794.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E38AA0/func_800217F4.s")
+void func_800217F4(ALLink *arg0) {
+    extern struct { u8 pad[0x2C]; ALLink *free; } *D_800411F4;
 
-void func_80021818(void) {
+    arg0->next = D_800411F4->free;
+    D_800411F4->free = arg0;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E38AA0/func_80021820.s")

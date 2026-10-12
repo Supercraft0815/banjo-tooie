@@ -1,8 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E440F0/func_8002C5C0.s")
-
-void func_8002C5F0(void) {
+s32 func_8002C5C0(s32 *arg0) {
+    if (arg0[1] == arg0[0]) {
+        return 0;
+    } else {
+        return 1;
+    }
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E440F0/func_8002C5F8.s")

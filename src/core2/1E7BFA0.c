@@ -113,7 +113,8 @@ f32 func_800A3298(PlayerState *arg0) {
     return (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xA0)))) + (0x48))) - func_800964DC();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A32C4.s")
+/* Single line: IDO schedules this prologue by source line. */
+void func_800A32C4(PlayerState *arg0, f32 arg1[3]) { s32 func_800EE7F8(); func_800EE7F8(arg1, *(s32 *)((u8 *)arg0 + 0xA0)); }
 
 u32 func_800A32EC(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 43);
@@ -155,7 +156,8 @@ f32 func_800A3394(PlayerState *arg0) {
     return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 36);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A33A0.s")
+/* Single line: IDO schedules this prologue by source line. */
+void func_800A33A0(PlayerState *arg0, f32 arg1[3]) { s32 func_800EE7F8(); func_800EE7F8(arg1, *(s32 *)((u8 *)arg0 + 0xA0) + 0xC); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A33CC.s")
 

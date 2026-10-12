@@ -6,7 +6,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB9940/func_800E02F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB9940/func_800E0414.s")
+f32 func_800E0414(s16 *arg0, f32 arg1) {
+    return (arg1 * (arg0[1] - arg0[0])) + arg0[0];
+}
 
 s32 func_800E0440(s16 *arg0) {
     return arg0[1];
