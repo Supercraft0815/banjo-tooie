@@ -432,7 +432,7 @@ void func_8009370C(u8 *arg0) {
 /* extern */
 
 void func_80093738(void *arg0) {
-    s32 func_800D674C(s16);
+    s32 func_800D674C(s32);
     func_800D674C((*(s16 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x9C))));
 }
 
@@ -472,7 +472,22 @@ s32 func_80093F30(s32 arg0) {
     return D_80117DD8[arg0][0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093F7C.s")
+/* extern */
+
+s32 func_80093F7C(u8 *arg0, s32 arg1) {
+    s32 func_800D674C(s32);
+    s32 func_800D62E4(s32);
+    struct { s32 pad; s32 value; } sp1C;
+    s32 var_v1;
+
+    sp1C.value = func_800D674C((*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x50)))) + (0x10C))));
+    var_v1 = sp1C.value;
+    if (arg1 == 0) {
+        func_800D62E4((*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x50)))) + (0x10C))));
+        var_v1 = sp1C.value;
+    }
+    return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093FD4.s")
 
