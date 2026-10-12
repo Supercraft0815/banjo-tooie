@@ -1104,7 +1104,12 @@ void func_800F7ECC(s32 arg0, s32 arg1, f32 arg2) {
     bastatetimer_set(D_80135490[arg0], arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7F00.s")
+/* extern */
+
+void func_800F7F00(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5, f32 arg6) {
+    void func_80098778(PlayerState *, s32, s32, f32, s32, s32, f32);
+    func_80098778(D_80135490[arg0], arg1, arg2, arg3, arg4, arg5, arg6);
+}
 
 /* extern */
 
