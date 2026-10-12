@@ -456,7 +456,17 @@ void func_800F5BC4(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F5BF0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F5C44.s")
+/* extern */
+
+f32 func_800F5C44(s32 arg0) {
+    f32 _basnowball_entrypoint_4(PlayerState *);
+    volatile PlayerState *sp1C;
+    sp1C = D_80135490[arg0];
+    if (func_800A3274((PlayerState *)sp1C) != TRANSFORM_2_SNOWBALL) {
+        return 0.0f;
+    }
+    return _basnowball_entrypoint_4((PlayerState *)sp1C);
+}
 
 void func_800F5C94(s32 arg0)
 {
