@@ -17,4 +17,9 @@ void func_8080002C_chmumboskulls(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/skulls/func_80800034_chmumboskulls.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/skulls/func_8080007C_chmumboskulls.s")
+void func_8080007C_chmumboskulls(Actor *arg0) {
+    s32 index = arg0->unk74_7;
+    extern u16 D_80800108_chmumboskulls[];
+    index -= 0x32;
+    func_80103140(arg0, D_80800108_chmumboskulls[index], 0U);
+}
