@@ -139,7 +139,20 @@ void func_800FC1A8()
     func_800FB774(&D_80135960);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC1CC.s")
+void func_800FC1CC(s32 arg0, s32 arg1)
+{
+  MusicTrack *track;
+  s16 id;
+ track = D_801357D0; do {
+    id = track->track_id;
+    if (id >= 0)
+    {
+      func_800FCB00(id, arg0, arg1, 1);
+    }
+    track++;
+  }
+  while (track != ((MusicTrack *) (&D_80135960)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC240.s")
 
