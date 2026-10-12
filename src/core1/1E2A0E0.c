@@ -103,7 +103,16 @@ void func_800131C0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80013224.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_800132BC.s")
+void func_800132BC(void) {
+    extern u8 D_8007695C[];
+    extern s32 D_8003CC70;
+    extern s32 D_800769CC[];
+    extern s32 D_800769D0[];
+
+    osRecvMesg((OSMesgQueue *) D_8007695C, NULL, 1);
+    osInvalDCache(D_800769CC[D_8003CC70], D_800769D0[D_8003CC70]);
+    D_8003CC70 -= 1;
+}
 
 void func_80013324()
 {
