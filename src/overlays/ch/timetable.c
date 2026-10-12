@@ -25,7 +25,21 @@ void func_80800058_chtimetable(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_808002D4_chtimetable.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_80800308_chtimetable.s")
+s32 func_80800308_chtimetable(void)
+{
+  s32 func_800DA298(s32);
+  extern s32 D_80800730_chtimetable;
+  s8 *new_var;
+  extern s32 D_8080080C_chtimetable;
+  s8 *var_s0;
+  new_var = (s8 *) (&D_80800730_chtimetable);
+ do { var_s0 = new_var; loop_1: if (func_800DA298(*((s32 *) (var_s0 + 4))) != 0) { return *((s32 *) (((s8 *) var_s0) + 0)); } } while (0); var_s0 += 0x14;
+  if (var_s0 == ((s8 *) (&D_8080080C_chtimetable)))
+  {
+    return -1;
+  }
+  goto loop_1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_80800364_chtimetable.s")
 
