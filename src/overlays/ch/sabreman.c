@@ -215,9 +215,9 @@ void func_8080158C_chsabreman(Actor *arg0) {
 
 /* extern */
 
-void func_80801620_chsabreman(s32 arg0, s32 arg1) {
-    s32 func_800DF744(s32, s32);
-    s32 func_80101870(s32, s32);
+void func_80801620_chsabreman(Actor *arg0, void *arg1) {
+    void func_800DF744(s32, s32);
+    void func_80101870(Actor *, void *);
     func_800DF744(5, 1);
     func_800DF744(3, 0);
     func_800DF744(6, 0);
@@ -253,6 +253,20 @@ s32 func_8080167C_chsabreman(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_808018DC_chsabreman.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_8080193C_chsabreman.s")
+void func_8080193C_chsabreman(Actor *arg0, void *arg1) {
+    void func_800DF744(s32, s32);
+    void func_80101870(Actor *, void *);
+    s32 var_a1;
+
+    if (arg0->unk64_20) {
+        var_a1 = 0;
+    } else {
+        var_a1 = 1;
+    }
+    func_800DF744(3, var_a1);
+    func_800DF744(4, 1);
+    func_800DF744(5, 1);
+    func_80101870(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_808019A4_chsabreman.s")
