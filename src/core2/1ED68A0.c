@@ -4,7 +4,24 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FD2A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FDBB8.s")
+void func_800FDBB8(s32 arg0) {
+    s32 func_800FCFB0(s32, s32, s32 *, s32, f32);
+    extern s32 D_80123E84;
+    extern s32 D_80124010;
+    extern s32 D_80124224[][2];
+    extern u8 D_80135A00[];
+    extern s32 *D_80135A04;
+    s32 sp20;
+    s32 temp_t9;
+    s32 *temp_v0;
+
+    temp_t9 = D_80124224[D_80135A00[0]][0];
+    sp20 = temp_t9;
+    if (temp_t9 != -1) {
+        func_800FCFB0(temp_t9, D_80124224[D_80135A00[0]][1], &D_80123E84, arg0, 0.0f);
+        D_80135A04 = &D_80124010;
+    }
+}
 
 u32 func_800FDC28(u32 arg0) {
     extern s32 D_801359C0;
