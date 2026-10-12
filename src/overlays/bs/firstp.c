@@ -650,7 +650,27 @@ s32 func_80802A40_bsfirstp(u8 *arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80802AA8_bsfirstp.s")
+void func_80802AA8_bsfirstp(u8 *arg0, s16 arg1, u8 *arg2, u8 *arg3) {
+    u32 func_800A3280(void *arg0);
+    extern s32 D_8080ADF4_bsfirstp;
+    extern s32 D_8080AE44_bsfirstp;
+    s32 temp_t6;
+    u32 temp_v0;
+    u8 *temp_a0;
+    u8 *temp_a1;
+    u32 temp_offset;
+
+    temp_v0 = func_800A3280(arg0);
+    temp_t6 = arg1 * 2;
+    temp_offset = (temp_v0 << 5) + (temp_t6 * 4);
+    temp_a0 = (u8 *)&D_8080AE44_bsfirstp + temp_offset;
+    temp_offset = (temp_v0 * 0x10) + (temp_t6 * 2);
+    temp_a1 = (u8 *)&D_8080ADF4_bsfirstp + temp_offset;
+    (*(s16 *)((s8 *)(arg2) + (0))) = (s16) (*(s32 *)((s8 *)(temp_a0) + (-0x20)));
+    (*(s16 *)((s8 *)(arg2) + (2))) = (s16) (*(s16 *)((s8 *)(temp_a1) + (-0x10)));
+    (*(s16 *)((s8 *)(arg3) + (0))) = (s16) (*(s32 *)((s8 *)(temp_a0) + (-0x1C)));
+    (*(s16 *)((s8 *)(arg3) + (2))) = (s16) (*(s16 *)((s8 *)(temp_a1) + (-0xE)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_6.s")
 
