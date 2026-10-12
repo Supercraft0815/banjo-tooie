@@ -32,7 +32,15 @@ void func_80800D30_chfactorysparkroom(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800D90_chfactorysparkroom.s")
+u32 func_80800D90_chfactorysparkroom(s32 unused, s32 arg1, s32 arg2) {
+    void func_80800DC8_chfactorysparkroom(Actor *);
+
+    if (arg1 == 0x95) {
+        func_80800DC8_chfactorysparkroom((Actor *) unused);
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800DC8_chfactorysparkroom.s")
 
