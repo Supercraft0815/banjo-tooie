@@ -76,7 +76,19 @@ void func_80800218_chwandglow(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/wandglow/chwandglow_entrypoint_0.s")
+/* extern */
+
+s32 chwandglow_entrypoint_0(s32 arg0, s32 arg1) {
+    Actor *actor;
+    f32 sp18[3];
+
+    func_800F5A2C(arg0, 6, sp18);
+    actor = func_80108474(0x164, sp18, 0);
+    actor->unk6C_0 = arg0;
+    actor->actorData[6] = arg1;
+    func_8080011C_chwandglow((s32) actor, 2);
+    return (s32)actor->unk0;
+}
 
 void chwandglow_entrypoint_1()
 {
