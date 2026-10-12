@@ -651,7 +651,23 @@ void func_80801FAC_chdinoboss(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_8080232C_chdinoboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_8080248C_chdinoboss.s")
+void func_8080248C_chdinoboss(Actor *arg0, s32 arg1, s32 arg2)
+{
+  void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+  void _capod_entrypoint_14(void);
+  void *func_80100094(Actor *, u32);
+  u8 *sp1C;
+  u8 *temp_v0;
+ temp_v0 = func_80100094(arg0, 0U); sp1C = temp_v0;
+  arg2 = arg2;
+  if ((*((u8 *) (((s8 *) temp_v0) + 0x12B))) != 0)
+  {
+    _capod_entrypoint_14();
+    arg2 = arg2 | 0x2000;
+  }
+  _capod_entrypoint_13(arg0->unk0, NULL, (u32) arg1, (u32) arg2);
+  *((s8 *) (((s8 *) sp1C) + 0x12B)) = 1;
+}
 
 void func_80802500_chdinoboss(Actor *arg0) {
     void _capod_entrypoint_14(void);
