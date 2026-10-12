@@ -48,4 +48,11 @@ u8 gcsectionDll_entrypoint_4(s32 arg0) {
     return (*(u8 *)((s8 *)(func_808000F0_gcsectionDll(arg0, 0)) + (4)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionDll/gcsectionDll_entrypoint_5.s")
+/* extern */
+
+s32 gcsectionDll_entrypoint_5(s32 arg0) {
+    if (func_808000F0_gcsectionDll(arg0, 1) != 0) {
+        return 1;
+    }
+    return 0;
+}
