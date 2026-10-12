@@ -8,7 +8,16 @@ s32 func_80800000_chweather(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weather/func_80800050_chweather.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weather/func_80800094_chweather.s")
+s32 func_80800094_chweather(s32 arg0) {
+    void func_8010D254(s32 *);
+    union {
+        s32 words[3];
+        f32 values[3];
+    } position;
+
+    func_8010D254(position.words);
+    return position.values[0] > 1700.0f;
+}
 
 OSThread *chweather_entrypoint_0(void)
 {
