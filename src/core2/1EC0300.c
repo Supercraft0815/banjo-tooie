@@ -21,7 +21,19 @@ void func_800E6A58(char *dest, char src) {
     *dest = '\0';
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6A90.s")
+void func_800E6A90(char *arg0, u8 *arg1) {
+    void func_800E6AFC(char *, u8);
+    extern s32 D_80125DC0;
+    u8 var_a2;
+    var_a2 = *arg1;
+    if (var_a2 != 0) {
+        do {
+            func_800E6AFC(arg0, *arg1++);
+            func_800E6A10(arg0, (const char *) &D_80125DC0);
+            var_a2 = *arg1;
+        } while (var_a2 != 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6AFC.s")
 
