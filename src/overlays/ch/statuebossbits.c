@@ -33,7 +33,21 @@ void func_80800030_chstatuebossbits(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statuebossbits/func_80800038_chstatuebossbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statuebossbits/func_80800224_chstatuebossbits.s")
+/* extern */
+
+s32 func_80800224_chstatuebossbits(s32 *arg0, s32 arg1, s32 arg2) {
+    s32 func_800FFA88(s32);
+    s32 func_80800270_chstatuebossbits();
+    s32 ret;
+    if (arg1 == 0x40) {
+        func_80800270_chstatuebossbits();
+        func_800FFA88(*arg0);
+        ret = 1;
+    } else {
+        return 0;
+    }
+    return ret;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statuebossbits/func_80800270_chstatuebossbits.s")
 
