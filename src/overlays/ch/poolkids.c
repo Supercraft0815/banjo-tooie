@@ -45,7 +45,21 @@ void func_80800024_chpoolkids(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_808007F0_chpoolkids.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_80800884_chpoolkids.s")
+/* extern */
+
+void func_80800884_chpoolkids(void *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_80102BF8(void *, s32, s32, s32);
+    f32 func_80102D78(void *, s32 *);
+    s32 func_8010D600(s32 *);
+    s32 sp1C[3];
+
+    if (_glcutDll_entrypoint_20() == 0) {
+        func_8010D600(sp1C);
+        (*(f32 *)((s8 *)(arg0) + (0x54))) = func_80102D78(arg0, sp1C);
+        func_80102BF8(arg0, 0x3E19999A, 0x40800000, 0x42F00000);
+    }
+}
 
 /* extern */
 
