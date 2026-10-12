@@ -216,7 +216,13 @@ OSThread *chflysaucer_entrypoint_1(void)
 void func_80803BE8_chflysaucer(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80803BF0_chflysaucer.s")
+void func_80803BF0_chflysaucer(Actor *arg0, s32 arg1) {
+    func_80102424(arg0, arg1);
+    if (arg0->unk70_10 == 2) {
+        _subaddiefade_entrypoint_3(arg0);
+        func_8010A800(arg0, 2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80803C3C_chflysaucer.s")
 
