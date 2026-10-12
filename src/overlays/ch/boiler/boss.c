@@ -215,7 +215,20 @@ s32 func_80802690_chboilerboss(s32 arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808026F0_chboilerboss.s")
+void func_808026F0_chboilerboss(s32 arg0) {
+    void _capod_entrypoint_3(u32);
+    void *func_80100094(s32, s32);
+    u8 *sp1C[1];
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0);
+    if ((*(u8 *)((s8 *)(temp_v0) + (0x59))) != 0) {
+        sp1C[0] = temp_v0;
+        _capod_entrypoint_3(0);
+        temp_v0 = sp1C[0];
+        (*(s8 *)((s8 *)(temp_v0) + (0x59))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80802730_chboilerboss.s")
 
