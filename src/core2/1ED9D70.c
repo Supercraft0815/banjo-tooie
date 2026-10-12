@@ -58,7 +58,8 @@ void func_801006E0(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_801009C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100A74.s")
+s32 func_80100A74(s16 arg0, s32 arg1) { extern FreeList *D_80135A60; void *freelist_at(FreeList *, s32); s32 var_v1; u8 *temp_v0;
+    temp_v0 = freelist_at(D_80135A60, arg0); if (temp_v0[9] != 0) { var_v1 = ((s32 *)temp_v0)[arg1]; } else { var_v1 = 0; } return var_v1; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100AC4.s")
 
@@ -74,7 +75,7 @@ void func_80100B3C(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100D24.s")
 
 void func_80100E18(s16 arg0) {
-    void *freelist_at(FreeList *, s16);
+    void *freelist_at(FreeList *, s32);
     extern FreeList *D_80135A60;
     (*(s8 *)((s8 *)(freelist_at(D_80135A60, arg0)) + (0xA))) = 2;
 }
