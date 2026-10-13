@@ -618,7 +618,11 @@ void func_800F6018(s32 arg0) {
     bakey_setState(D_80135490[arg0], BUTTON_A, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F604C.s")
+void func_800F604C(s32 arg0, s32 arg1) {
+    func_8009EAD0(arg1);
+    bs_setState(arg0, _badata_entrypoint_35(arg0));
+    func_8009EAD0(1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F608C.s")
 
