@@ -156,7 +156,7 @@ void func_800A4E74(s32 arg0)
 
 s32 func_800A4E94(void *arg0) { func_800A3F14((s32)arg0, 9); func_80110BF0(func_800A4CA8(arg0)); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4EC8.s")
+s32 func_800A4EC8(void *arg0) { func_800A3F14((s32)arg0, 2); func_80110C2C(func_800A4CA8(arg0)); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4EFC.s")
 
