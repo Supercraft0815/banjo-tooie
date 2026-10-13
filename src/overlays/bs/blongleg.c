@@ -57,7 +57,17 @@ s32 bsblongleg_entrypoint_3(s32 arg0) {
     return ((s32 *)&D_80801470_bsblongleg)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_4.s")
+void bsblongleg_entrypoint_4(PlayerState *arg0) {
+    void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+    void func_800931AC(PlayerState *, s32);
+    baanim_playForDuration_loopSmooth(arg0, 0x41, 1.0f);
+    func_8009FFD8(arg0, 1, 1, 1, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_800931AC(arg0, 2);
+    func_8080013C_bsblongleg(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_5.s")
 
@@ -73,14 +83,14 @@ s32 bsblongleg_entrypoint_7(s32 arg0) {
 
 /* extern */
 
-void bsblongleg_entrypoint_8(s32 arg0) {
+void bsblongleg_entrypoint_8(PlayerState *arg0) {
     s32 anctrl_reset(s32);
     s32 anctrl_setIndex(s32, s32);
     s32 anctrl_setPlaybackType(s32, s32);
     s32 anctrl_start(s32);
     s32 baanim_getAnimCtrlPtr();
     s32 func_8008C9F0(s32, s32, s32, s32, f32);
-    s32 func_8009FFD8(s32, s32, s32, s32, s32);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
     s32 sp24;
     s32 temp_v0;
 
