@@ -1110,7 +1110,15 @@ void func_800F7B9C(s32 arg0,u32 a1)
     func_8009E7C8((u8 *)D_80135490[arg0],a1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7BC8.s")
+void func_800F7BC8(s32 arg0, s32 arg1, Unk80132ED0 *arg2) {
+    void func_8009AD14(void *, s32);
+    s32 func_8009E7C8(u8 *, s32);
+    volatile PlayerState *sp1C;
+
+    sp1C = D_80135490[arg0];
+    func_8009AD14((void *)sp1C, (s32)arg2);
+    func_8009E7C8((u8 *)sp1C, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7C0C.s")
 
