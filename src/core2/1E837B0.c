@@ -56,7 +56,15 @@ void func_800AA054(s32 arg0)
     func_800A9F60(arg0,1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800AA074.s")
+void func_800AA074(void) {
+    s32 var_s0;
+
+    var_s0 = 0x40;
+    do {
+        func_800A9F60(var_s0, 0);
+        var_s0 += 1;
+    } while (var_s0 != 0x4E);
+}
 
 u32 func_800AA0B8(void) {
     extern u8 D_80127783;
