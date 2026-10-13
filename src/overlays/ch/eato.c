@@ -52,7 +52,16 @@ void func_8080035C_chcheato(void *arg0, s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800824_chcheato.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800888_chcheato.s")
+s32 func_80800888_chcheato(void) {
+    s32 func_80800BB8_chcheato(void);
+    s32 volatile sp1C;
+    s32 temp_v0;
+
+    temp_v0 = func_80800BB8_chcheato();
+    sp1C = temp_v0;
+    func_800D3EF4(temp_v0);
+    return sp1C + 0x114A;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_808008B8_chcheato.s")
 
