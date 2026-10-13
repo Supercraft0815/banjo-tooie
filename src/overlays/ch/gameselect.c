@@ -1,5 +1,8 @@
 #include "common.h"
 
+typedef struct { u8 data[0x260]; } OptionState;
+u32 _gcnewoption_entrypoint_37(OptionState *, u32);
+
 OSThread *chgameselect_entrypoint_0(void)
 {
     extern u8 D_80807FD8_chgameselect[];
@@ -492,7 +495,19 @@ void func_80802D04_chgameselect(Unk80132ED0 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802E38_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802F8C_chgameselect.s")
+s32 func_80802F8C_chgameselect(Unk80132ED0 *arg0) {
+    Actor *func_80106790(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    Actor *actor;
+    s32 result;
+
+    actor = func_80106790(arg0);
+    result = _gcnewoption_entrypoint_37(func_80100094(actor, 0U), 1);
+    if (result != 0) {
+        actor->unk64_20 = 0;
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802FE4_chgameselect.s")
 
