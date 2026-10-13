@@ -22,7 +22,10 @@ void bstaxi_entrypoint_1(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_2.s")
+void bstaxi_entrypoint_2(void *arg0) {
+    *(s32 *)((u8 *)arg0 + 0x160) = 0;
+    bstaxi_entrypoint_0();
+}
 
 /* extern */
 
