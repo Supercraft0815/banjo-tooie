@@ -103,7 +103,21 @@ s32 func_80800C00_chpawnbroker(s32 arg0, s32 arg1) {
     return 0xFE7;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800C70_chpawnbroker.s")
+/* extern */
+void func_80800CB4_chpawnbroker(void);
+
+void func_80800C70_chpawnbroker(Actor *arg0) {
+    u32 temp_t6;
+
+    temp_t6 = (u32) arg0->unk70_10;
+    switch (temp_t6) {
+    case 1:
+        func_80800CB4_chpawnbroker();
+        break;
+    case 2:
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800CB4_chpawnbroker.s")
 
