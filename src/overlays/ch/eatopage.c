@@ -27,4 +27,11 @@ void func_808002A0_chcheatopage(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatopage/func_808002F0_chcheatopage.s")
+int func_808002F0_chcheatopage(Actor *arg0) {
+    extern u8 D_80800378_chcheatopage[1];
+    s32 index;
+    for (index = 0; index < sizeof(D_80800378_chcheatopage); index++) {
+        if (D_80800378_chcheatopage[index] == *(u32 *)&arg0->unk50) return 1;
+    }
+    return 0;
+}
