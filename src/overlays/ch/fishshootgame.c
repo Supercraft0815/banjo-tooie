@@ -65,7 +65,7 @@ OSThread *chfishshootgame_entrypoint_1(void)
     return (OSThread *) D_80801A00_chfishshootgame;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80801358_chfishshootgame.s")
+void func_80801358_chfishshootgame(Actor *arg0) { union { f32 values[2]; f64 alignment; } result; Actor *actor = func_80106790(arg0->unk3C); func_80800A90_chfishshootgame(actor, (f32 *)arg0->actorData); func_800F18FC(arg0->position, (f32 *)arg0->actorData, result.values); arg0->rotation[1] = result.values[1]; arg0->rotation[0] = -result.values[0]; }
 
 void func_808013B8_chfishshootgame(void *arg0)
 {
