@@ -8,7 +8,20 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80800B68_chfantasyeyeball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80800F78_chfantasyeyeball.s")
+/* extern */
+
+void func_80800F78_chfantasyeyeball(Actor *arg0, Actor *arg1) {
+    void* func_80100094(Actor*, u32);
+    s32 _subaddielink_entrypoint_5(u8 *, u8 *);
+    s32 func_80800950_chfantasyeyeball(Actor *, s32, Actor *, Actor *);
+    void *sp18[2];
+
+    arg0->unk64_20 = 0;
+    arg1->unk64_20 = 1;
+    func_80800950_chfantasyeyeball(arg1, 6, arg1, arg0);
+    sp18[0] = func_80100094(arg0, 0U);
+    _subaddielink_entrypoint_5(sp18[0], func_80100094(arg1, 0U));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80800FEC_chfantasyeyeball.s")
 
