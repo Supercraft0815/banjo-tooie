@@ -86,13 +86,22 @@ s32 func_8010AFF8(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
 /* extern */
 
 s32 func_8010B040(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 func_800EF1B8(s32, s32, f32, u8 *);
+    void func_800EF1B8(f32 *, f32, f32);
     f32 func_8010C4AC(void *);
-    func_800EF1B8(arg0 + 4, (*(s32 *)((s8 *)(arg0) + (0x48))), func_8010C4AC(arg0), arg0);
+    func_800EF1B8((f32 *)(arg0 + 4), *(f32 *)(arg0 + 0x48), func_8010C4AC(arg0));
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B088.s")
+s32 func_8010B088(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800D8FF8(void);
+    f32 func_8010C4AC(void *);
+    f32 sp18[2];
+
+    sp18[0] = func_8010C4AC(arg0);
+    func_800EF1B8((f32 *)(arg0 + 4), *(f32 *)(arg0 + 0x48), sp18[0] * func_800D8FF8());
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B0E0.s")
 
