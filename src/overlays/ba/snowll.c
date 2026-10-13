@@ -46,7 +46,21 @@ void func_80800110_basnowball(s32 arg0) {
     func_800A4D6C((u8 *)arg0, (*(f32 *)(temp_v1 + 0)), (*(f32 *)(temp_v1 + 4)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/func_80800150_basnowball.s")
+/* extern */
+
+void func_80800150_basnowball(s32 arg0, s32 arg1) {
+    f32 func_800F0E00(f32, f32);
+    void *var_v0;
+
+    var_v0 = (*(void **)((s8 *)(arg0) + (0x110)));
+    if (arg1 != (*(u8 *)((s8 *)(var_v0) + (0x14)))) {
+        if ((arg1 != 1) && (arg1 == 2)) {
+            (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x110)))) + (0x10))) = func_800F0E00((*(f32 *)((s8 *)(var_v0) + (0xC))), 300.0f);
+            var_v0 = (*(void **)((s8 *)(arg0) + (0x110)));
+        }
+        (*(s8 *)((s8 *)(var_v0) + (0x14))) = (s8) arg1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/func_808001B8_basnowball.s")
 
@@ -82,7 +96,7 @@ void basnowball_entrypoint_7(void *arg0) {
 /* extern */
 
 void basnowball_entrypoint_8(s32 arg0, s32 arg1) {
-    s32 func_80800150_basnowball(s32, s32);
+    void func_80800150_basnowball(s32, s32);
     if (arg1 != 0) {
         func_80800150_basnowball(arg0, 2);
         return;
