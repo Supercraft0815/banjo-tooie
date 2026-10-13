@@ -1894,7 +1894,10 @@ void func_808080A4_bsfirstp(void *arg0, s8 arg1) {
     ptr[0x72] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808080B4_bsfirstp.s")
+void func_808080B4_bsfirstp(s32 arg0, s16 *arg1, u8 arg2) {
+    func_80092744((s32 *) arg0, 1);
+    func_80092750((void *) arg0, arg1[0], arg1[1], arg1[2], arg2);
+}
 
 /* extern */
 
