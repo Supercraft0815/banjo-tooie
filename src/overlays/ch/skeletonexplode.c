@@ -80,7 +80,15 @@ void chskeletonexplode_entrypoint_6(s32 *arg0, f32 *arg1, s32 arg2, s32 arg3) {
     _chbaddiesetup_entrypoint_6(&_chskeletonexplode_entrypoint_0, *arg0, sp[0], sp[1], sp[2], arg2, arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/chskeletonexplode_entrypoint_7.s")
+void chskeletonexplode_entrypoint_7(Actor *arg0, f32 *arg1) {
+    extern s32 _chskeletonexplode_entrypoint_0;
+    s32 sp[5];
+
+    sp[1] = arg0->unk0->unk14;
+    sp[0] = arg0->unk0->unk16;
+    func_800EE904(&sp[2], arg1);
+    _chbaddiesetup_entrypoint_6(&_chskeletonexplode_entrypoint_0, (s32) arg0->unk0, sp[2], sp[3], sp[4], sp[1], sp[0]);
+}
 
 void chskeletonexplode_entrypoint_8(Actor **arg0, s16 *arg1) {
     extern s32 _chskeletonexplode_entrypoint_0;
