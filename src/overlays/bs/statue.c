@@ -9,9 +9,9 @@ f32 func_80800050_bsstatue(s32 arg0) {
     return (f32) func_800CEA84(2);
 }
 
-void func_80800078_bsstatue(s32 arg0)
+s32 func_80800078_bsstatue(s32 arg0)
 {
-    func_800CEAD0(0x2);
+    return func_800CEAD0(0x2);
 }
 
 void func_8080009C_bsstatue(s32 arg0)
@@ -72,7 +72,20 @@ void func_808004B4_bsstatue(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_808004F4_bsstatue.s")
+/* extern */
+
+void func_808004F4_bsstatue(s32 arg0) {
+    s32 _bsdrone_entrypoint_1(s32);
+    s32 bs_setState(s32, s32);
+    s32 sp1C;
+
+    sp1C = 0;
+    _bsdrone_entrypoint_1(arg0);
+    if (func_80800078_bsstatue(arg0) != 0) {
+        sp1C = 0xFD;
+    }
+    bs_setState(arg0, sp1C);
+}
 
 s32 bsstatue_entrypoint_2(s32 arg0) {
     extern s32 D_808015A0_bsstatue[];
