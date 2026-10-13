@@ -251,7 +251,7 @@ s32 func_800D7488(s16 arg0, s16 arg1) {
     return (*(s32 *)((s8 *)(&D_8012BE70) + (0x188))) - 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7520.s")
+void *func_800D7520(s32 arg0) { void *func_8001B798(s16); extern s16 D_8012BFF4; if (arg0 == -1) { return NULL; } return func_8001B798(*(s16 *)((s8 *)func_8001B798(D_8012BFF4) + arg0 * 2)); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7570.s")
 
@@ -431,7 +431,7 @@ s32 func_800D8070(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _capod_entrypoint_16(f32);
     f32 _glintrosyncDll_entrypoint_5(void);
     s32 _seqdefine_entrypoint_0(s32);
-    s32 func_8001B798(s16);
+    void *func_8001B798(s16);
     void func_800C7A68(s32, f32, f32 *);
     f32 func_800C7E28(void *);
     f32 func_800C8070(s32, f32, f32, s32 *);
