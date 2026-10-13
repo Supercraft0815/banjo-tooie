@@ -147,7 +147,7 @@ void bafly_entrypoint_14(PlayerState *arg0, s32 arg1, s32 arg2) {
     bs_setState(arg0, sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_15.s")
+void bafly_entrypoint_15(s32 arg0) { func_8009BC34(); func_8008E95C(arg0); func_8009BD88(arg0); func_800A4E30(arg0); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_16.s")
 
