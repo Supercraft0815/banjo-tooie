@@ -162,7 +162,20 @@ void func_800DCD10(s32 arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DCEC8.s")
+void func_800DCEC8(Gfx **gfx, u8 *data) {
+    extern s32 D_8012C820;
+    struct Command { u8 padding[8]; s32 mode; };
+    struct Command *cmd = (struct Command *) data;
+
+    switch (cmd->mode) {
+        case 1:
+            gSPDisplayList((*gfx)++, D_8012C820 + 0x80000068);
+            break;
+        case 2:
+            gSPDisplayList((*gfx)++, D_8012C820 + 0x80000000);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DCF48.s")
 
