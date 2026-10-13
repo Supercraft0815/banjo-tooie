@@ -222,7 +222,7 @@ void func_80800FA0_bstrexlarge(s32 arg0)
     _babounce_entrypoint_3();
     bstrexlarge_entrypoint_1(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80800FC8_bstrexlarge.s")
+void func_80800FC8_bstrexlarge(s32 arg0) { bstrexlarge_entrypoint_2(); _babounce_entrypoint_4(arg0, 2); _babounce_entrypoint_5(arg0, 0x147, (s32) 0x3F30A3D7); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80801008_bstrexlarge.s")
 
