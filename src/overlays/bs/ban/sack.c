@@ -1,6 +1,8 @@
 #include "common.h"
 #include "overlays/ba/playerstate.h"
 
+void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800000_bsbansack.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800084_bsbansack.s")
@@ -132,7 +134,16 @@ void func_8080077C_bsbansack(s32 arg0)
     baphysics_reset_gravity(arg0);
     func_80800238_bsbansack(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_808007A4_bsbansack.s")
+void func_808007A4_bsbansack(PlayerState *arg0) {
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+    func_808002D4_bsbansack(arg0);
+    baanim_playForDuration_onceSmooth(arg0, 0x28A, 1.0f);
+    func_8009FFD8(arg0, 1, 1, 3, 6);
+    baphysics_set_gravity(arg0, -800.0f);
+    baphysics_set_vertical_velocity(arg0, 300.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800810_bsbansack.s")
 
@@ -193,7 +204,7 @@ void func_80801318_bsbansack(s32 arg0)
 
 /* extern */
 
-void func_80801348_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(); baanim_playForDuration_onceSmooth(arg0, 0x28C, 0x3F99999A); _babounce_entrypoint_4(arg0, 1); func_80801178_bsbansack(arg0); }
+void func_80801348_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(); baanim_playForDuration_onceSmooth(arg0, 0x28C, 1.2f); _babounce_entrypoint_4(arg0, 1); func_80801178_bsbansack(arg0); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80801390_bsbansack.s")
 
@@ -211,7 +222,7 @@ void func_8080143C_bsbansack(s32 arg0)
 
 /* extern */
 
-void func_8080146C_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(); baanim_playForDuration_onceSmooth(arg0, 0x28C, 0x3F99999A); _babounce_entrypoint_4(arg0, 2); func_80801178_bsbansack(arg0); }
+void func_8080146C_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(); baanim_playForDuration_onceSmooth(arg0, 0x28C, 1.2f); _babounce_entrypoint_4(arg0, 2); func_80801178_bsbansack(arg0); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_808014B4_bsbansack.s")
 
