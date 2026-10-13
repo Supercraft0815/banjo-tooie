@@ -19,7 +19,12 @@ void func_808001B0_chmasterjiggy(s32 arg0) {
     _sujiggy_entrypoint_8();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_808001D0_chmasterjiggy.s")
+s32 func_808001D0_chmasterjiggy(Unk80132ED0 **arg0, s32 arg1) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    extern s16 D_80801620_chmasterjiggy[];
+    s16 *entry = (s16 *)((s8 *)D_80801620_chmasterjiggy + arg1 * 4);
+    return _subaddiedialog_entrypoint_11(*arg0, entry[0], entry[1], (f32 *)((s8 *)arg0 + 4), 0x97);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_80800220_chmasterjiggy.s")
 
@@ -36,7 +41,7 @@ int func_808003D4_chmasterjiggy(s32 arg0) {
 void func_80800414_chmasterjiggy(s32 arg0) {
     s32 func_800DA298(s32);
     s32 func_800DA544(s32);
-    s32 func_808001D0_chmasterjiggy(s32, s32);
+    s32 func_808001D0_chmasterjiggy(Unk80132ED0 **, s32);
     s32 func_80800220_chmasterjiggy(s32, s32);
     s32 func_80800374_chmasterjiggy();
     int func_808003D4_chmasterjiggy(s32);
