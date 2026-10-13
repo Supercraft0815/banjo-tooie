@@ -34,7 +34,7 @@ loop_1:
 
 void glsavegame_entrypoint_1(void)
 {
-  extern s8 D_80127614;
+  extern void *D_80127614;
   s32 heap_free(s32);
   s32 *var_s0;
   s32 *var_s1;
@@ -52,7 +52,10 @@ void glsavegame_entrypoint_1(void)
   *(((s8 *) (&D_80127614)) + 0x14) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/glsavegame_entrypoint_2.s")
+s32 glsavegame_entrypoint_2(s32 arg0) {
+    extern void *D_80127614;
+    return ((u8 *)((void **)(&D_80127614))[arg0 + 1])[0] != 0;
+}
 
 s32 glsavegame_entrypoint_3(void){
     int i;
@@ -64,7 +67,7 @@ s32 glsavegame_entrypoint_3(void){
 }
 
 s32 glsavegame_entrypoint_4(s32 arg0) {
-    extern s8 D_80127614;
+    extern void *D_80127614;
     return ((s32 *)&D_80127614)[arg0 + 1];
 }
 
@@ -74,17 +77,17 @@ s32 glsavegame_entrypoint_5()
 }
 
 void glsavegame_entrypoint_6(s8 *arg0) {
-    extern s8 D_80127614;
+    extern void *D_80127614;
     *arg0 = (*(s8 *)((s8 *)(&D_80127614) + (0x16))) + 1;
 }
 
 void func_808004B8_glsavegame(s32 arg0) {
-    extern s8 D_80127614;
+    extern void *D_80127614;
     *(s8 *)((u8 *)&D_80127614 + 22) = arg0;
 }
 
 void func_808004C4_glsavegame(void) {
-    extern s8 D_80127614;
+    extern void *D_80127614;
     (*(s8 *)((s8 *)(&D_80127614) + (22))) = (-1);
 }
 
