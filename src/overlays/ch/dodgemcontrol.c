@@ -60,7 +60,12 @@ f32 func_80801214_chdodgemcontrol(s32 arg0) {
     return values.values[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801258_chdodgemcontrol.s")
+void func_80801258_chdodgemcontrol(s32 arg0, f32 arg1[3]) {
+    typedef struct { f32 values[4][3]; } DodgemPositions;
+    extern DodgemPositions D_80804E28_chdodgemcontrol;
+    DodgemPositions values = D_80804E28_chdodgemcontrol;
+    func_800EE7F8(arg1, values.values[arg0]);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808012C8_chdodgemcontrol.s")
 
