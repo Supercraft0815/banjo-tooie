@@ -36,7 +36,23 @@ void func_808005B4_chevilspirit(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80800F8C_chevilspirit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80800FF8_chevilspirit.s")
+int func_80800FF8_chevilspirit(s32 arg0) {
+    s32 func_800EA05C();
+    extern u16 D_808022E4_chevilspirit;
+    extern u16 D_808022E8_chevilspirit;
+    u16 *ptr;
+    s32 map;
+
+    map = func_800EA05C();
+    ptr = &D_808022E4_chevilspirit; loop_1: if (map == *ptr) {
+            return 1;
+        }
+        ptr++;
+        if (ptr == &D_808022E8_chevilspirit) {
+            return 0;
+        }
+    goto loop_1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_8080104C_chevilspirit.s")
 
