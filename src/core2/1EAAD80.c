@@ -1,13 +1,20 @@
 #include "core2/1EAAD80.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1490.s")
+void func_800D1490(void) {
+    extern s32 D_8012B250;
+    s32 i;
+
+    for (i = 0; i < 21; i++) {
+        ((s16 *)D_8012B250)[i] = ((s16 *)&func_800D1A04)[i * 4];
+    }
+}
 
 /* extern */
 
 void func_800D1510(void) {
     extern s32 D_8012B250;
     void* heap_alloc_sided(s32 size, s32 alloc_side);
-    s32 func_800D1490();
+    void func_800D1490(void);
     s32 *state = &D_8012B250;
     state[1] = 0;
     D_8012B250 = heap_alloc_sided(0x2A, state[1]);
