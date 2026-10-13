@@ -53,11 +53,18 @@ void func_808003C0_bsbansack(PlayerState *arg0) {
     func_800961AC(arg0, 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800400_bsbansack.s")
+void func_80800400_bsbansack(PlayerState *arg0) {
+    void baphysics_reset_terminal_velocity(PlayerState *);
+    void baphysics_reset_gravity(PlayerState *);
+    void func_800961AC(PlayerState *, s32);
+    baphysics_reset_terminal_velocity(arg0);
+    baphysics_reset_gravity(arg0);
+    func_800961AC(arg0, 1);
+}
 
 void func_80800434_bsbansack(s32 arg0)
 {
-    func_80800400_bsbansack();
+    func_80800400_bsbansack(arg0);
     func_80800238_bsbansack(arg0);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_8080045C_bsbansack.s")
@@ -114,7 +121,8 @@ void func_80800710_bsbansack(s32 arg0) {
 
 void func_8080077C_bsbansack(s32 arg0)
 {
-    baphysics_reset_gravity();
+    void baphysics_reset_gravity(PlayerState *);
+    baphysics_reset_gravity(arg0);
     func_80800238_bsbansack(arg0);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_808007A4_bsbansack.s")
@@ -131,7 +139,7 @@ s32 bsbansack_entrypoint_2(s32 arg0) {
 void func_80800A78_bsbansack(s32 arg0) {
     if (*((u8 *)arg0 + 0x15D) != 0) {
         *((u8 *)arg0 + 0x15D) = 0;
-        func_80800400_bsbansack();
+        func_80800400_bsbansack(arg0);
     }
 }
 
