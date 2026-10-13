@@ -15,7 +15,24 @@ OSThread *chstatueboss_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80800934_chstatueboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80800B74_chstatueboss.s")
+void func_80800B74_chstatueboss(Actor *arg0, s32 arg1)
+{
+  void func_800DF744(s32, s32);
+  s32 func_80101870(s32, s32);
+  s32 var_s0;
+  u8 *var_s1;
+  var_s1 = 1 + ((u8 *) func_80100094(arg0, 0U));
+  var_s0 = 1;
+  var_s1 += 0;
+  do
+  {
+    func_800DF744(var_s0, *var_s1);
+    var_s0 += 1;
+    var_s1 += 1;
+  }
+  while (var_s0 != 0x16);
+  func_80101870((s32) arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80800BE0_chstatueboss.s")
 
