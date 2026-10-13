@@ -72,6 +72,8 @@ void func_800FFA88(Unk80132ED0* a0)
 void func_800FFBE4(void) {
 }
 
+void func_800FFC3C(void);
+
 void func_800FFBEC()
 {
     func_800FFC3C();
@@ -84,7 +86,18 @@ void func_800FFC14()
     func_8010DEFC();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FFC3C.s")
+void func_800FFC3C(void) {
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    s32 var_s0;
+    s32 sp20[1];
+
+    if ((var_s0 = func_801067C4(sp20)) != 0) {
+        do {
+            *(u8 *)((s8 *)var_s0 + 0x7E) &= 0xFFEF;
+        } while ((var_s0 = func_8010682C(sp20)) != 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FFC90.s")
 
