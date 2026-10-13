@@ -549,7 +549,18 @@ s32 func_80802F8C_chgameselect(Unk80132ED0 *arg0) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802FE4_chgameselect.s")
+void func_80802FE4_chgameselect(Actor *arg0) {
+    s32 func_80802640_chgameselect(s32, s32, s32);
+    u32 *func_80100074(Actor *, u32, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 _gcnewoption_entrypoint_6(Actor *, s32);
+    func_80100074(arg0, 1U, 0U);
+    arg0->actorData[5] = 0;
+    arg0->actorData[4] = 0;
+    arg0->unk64_20 = 0;
+    _gcnewoption_entrypoint_6(arg0, 0);
+    func_80802640_chgameselect(func_80106790(arg0->unk3C)->actorData[3], 0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803048_chgameselect.s")
 
