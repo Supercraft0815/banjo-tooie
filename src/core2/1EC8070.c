@@ -202,7 +202,11 @@ void func_800EF080(s16 *arg0, s16 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF0B4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF11C.s")
+void func_800EF11C(f32 *arg0, s16 *arg1) {
+    arg0[0] += arg1[0];
+    arg0[1] += arg1[1];
+    arg0[2] += arg1[2];
+}
 
 void func_800EF174(f32 dst[3], f32 src[3], f32 scale) {
     dst[0] += src[0] * scale;
