@@ -200,7 +200,11 @@ void func_800EF080(s16 *arg0, s16 *arg1) {
     arg0[2] += arg1[2];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF0B4.s")
+void func_800EF0B4(s16 *arg0, f32 *arg1) {
+    arg0[0] += arg1[0];
+    arg0[1] += arg1[1];
+    arg0[2] += arg1[2];
+}
 
 void func_800EF11C(f32 *arg0, s16 *arg1) {
     arg0[0] += arg1[0];
