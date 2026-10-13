@@ -72,4 +72,13 @@ void func_80800BD4_chnutsnbolts(Actor *arg0) {
     _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800CC0_chnutsnbolts, 0.65f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nutsnbolts/func_80800C04_chnutsnbolts.s")
+void func_80800C04_chnutsnbolts(Actor *arg0) {
+    extern u32 D_80800CC0_chnutsnbolts;
+    extern u32 D_80800F48_chnutsnbolts;
+    extern u32 D_80800F58_chnutsnbolts;
+    f32 *sp1C[2];
+
+    sp1C[1] = (f32 *) ((u8 *) arg0 + 4);
+    _subaddieaudioquick_entrypoint_3(arg0, sp1C[1], &D_80800F48_chnutsnbolts, 0.7f);
+    _subaddieaudioquick_entrypoint_4(arg0, sp1C[1], &D_80800CC0_chnutsnbolts, &D_80800F58_chnutsnbolts);
+}
