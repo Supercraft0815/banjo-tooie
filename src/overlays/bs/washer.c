@@ -230,7 +230,7 @@ void func_80801744_bswasher(s32 arg0)
     func_808000F0_bswasher(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80801770_bswasher.s")
+void func_80801770_bswasher(s32 arg0) { func_808001A8_bswasher(); *(s32 *)((u8 *)arg0 + 0x15C) = 0; func_808015EC_bswasher(arg0, 1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_808017A0_bswasher.s")
 
