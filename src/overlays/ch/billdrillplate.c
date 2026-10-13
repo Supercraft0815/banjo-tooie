@@ -25,7 +25,25 @@ OSThread *chbilldrillplate_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_808000B0_chbilldrillplate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_80800240_chbilldrillplate.s")
+/* extern */
+
+s32 func_80800240_chbilldrillplate(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddieDll_entrypoint_5(Actor *, s32);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(void *, s32);
+    s32 *value = &arg2;
+    switch (arg1) {
+    case 0x3F:
+        if (_subaddieDll_entrypoint_5(arg0, *value) != 0) {
+            func_80103110(arg0, 1);
+            func_80101FDC(arg0, 2);
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_808002A0_chbilldrillplate.s")
 
