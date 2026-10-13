@@ -1,6 +1,13 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadesnake/func_80800000_chjadesnake.s")
+void func_80800000_chjadesnake(Actor *arg0) {
+    void func_8010A85C(u8 *, s32);
+    func_8010A85C((u8 *) arg0, 2);
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80102424(arg0, 9);
+        func_8010A85C((u8 *) arg0, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadesnake/func_80800048_chjadesnake.s")
 
@@ -9,7 +16,6 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadesnake/func_80800150_chjadesnake.s")
 
 void func_80800728_chjadesnake(Actor *arg0, s32 arg1, s32 arg2) {
-    void func_80102424(Actor*, s32);
     if (arg1 != 0xF3C) {
         if (arg1 == 0xF3D) {
             func_80102424(arg0, 8);
