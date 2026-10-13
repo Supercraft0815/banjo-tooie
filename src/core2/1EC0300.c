@@ -52,7 +52,28 @@ void func_800E6DB4(char *str, s32 num) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6DD8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6F7C.s")
+void func_800E6F7C(u8 *arg0, u32 arg1) {
+    s32 var_v1;
+    s32 temp_t0;
+    while (*arg0 != 0) {
+        arg0++;
+    }
+    arg0[0] = 0x30;
+    arg0[1] = 0x78;
+    arg0 += 2;
+    temp_t0 = arg1;
+    for (var_v1 = 0x1C; var_v1 >= 0; var_v1 -= 4) {
+        temp_t0 = ((u32)temp_t0 >> var_v1) & 0xF;
+        if ((temp_t0 < 0xA) & 0xFF) {
+            *arg0 = temp_t0 + 0x30;
+        } else {
+            *arg0 = temp_t0 + 0x57;
+        }
+        arg0 += 1;
+        temp_t0 = arg1;
+    }
+    *arg0 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6FEC.s")
 
