@@ -1713,7 +1713,13 @@ void func_800F9A44(void) {
     func_800F9488(1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9A6C.s")
+void func_800F9A6C(void) {
+    if (_plsu_entrypoint_2() != 0) {
+        func_800F9488(2);
+        return;
+    }
+    func_800F9488(4);
+}
 
 void func_800F9AAC(s32 arg0, s32 arg1) {
     extern u8 D_80135520;
