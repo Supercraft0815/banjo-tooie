@@ -37,7 +37,7 @@ void func_80800364_bstrexsmall()
     bstrexsmall_entrypoint_1();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80800384_bstrexsmall.s")
+void func_80800384_bstrexsmall(PlayerState *arg0) { bstrexsmall_entrypoint_2(); func_8009FFD8(arg0, 1, 3, 3, 2); yaw_setVelocityBounded((s32)arg0, 0x43FA0000, 0x40D00000); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_808003D0_bstrexsmall.s")
 
