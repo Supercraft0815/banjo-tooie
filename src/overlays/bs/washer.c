@@ -136,7 +136,7 @@ void func_808011B4_bswasher(s32 arg0)
     _baspin_entrypoint_1();
     func_808000F0_bswasher(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_808011DC_bswasher.s")
+void func_808011DC_bswasher(s32 arg0) { func_808001A8_bswasher(); _baspin_entrypoint_2(arg0, 0x358, 0x3FE66666, 2, 0); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80801218_bswasher.s")
 
