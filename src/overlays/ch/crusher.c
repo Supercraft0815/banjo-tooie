@@ -1,6 +1,21 @@
 #include "ch/crusher.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_80800000_chcrusher.s")
+s32 func_80800000_chcrusher(Actor *arg0, s32 arg1, s32 arg2) {
+    Actor *func_80108474(u32, f32 *, s32);
+    f32 position[3];
+    s32 result;
+
+    if (arg1 == 0x49) {
+        position[0] = arg0->position[0];
+        position[2] = arg0->position[2];
+        position[1] = 0.0f;
+        func_80108474(0x386, position, -0x5A);
+        result = 1;
+    } else {
+        return 0;
+    }
+    return result;
+}
 
 OSThread *chcrusher_entrypoint_0(void)
 {
