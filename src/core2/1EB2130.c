@@ -31,7 +31,18 @@ void func_800D88C0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2130/func_800D88F8.s")
+s16 func_800D88F8(void) {
+    extern s32 D_8012C020;
+    s32 func_800D8988(s16, s32);
+    s32 index;
+    s32 i;
+    index = 0;
+    freelist_next(&D_8012C020, &index);
+    for (i = 0; i != 4; i++) {
+        *(s8 *)(func_800D8988((s16)index, i) + 0x1A) = 0;
+    }
+    return *(s16 *)((u8 *)&index + 2);
+}
 
 void func_800D8954(s16 arg0) {
     s32 freelist_erase(s32, s16);
