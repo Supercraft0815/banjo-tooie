@@ -48,7 +48,22 @@ OSThread *chfiregen_entrypoint_5(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_80800824_chfiregen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_80800890_chfiregen.s")
+s32 func_80800890_chfiregen(Actor *arg0) {
+    switch (arg0->unk6C_9) {
+    case 0x1AA:
+        return 0;
+    case 0x1AC:
+        return 5;
+    case 0x1AE:
+        return 8;
+    case 0x1B0:
+        return 0xB;
+    case 0x1B2:
+        return 0xF;
+    default:
+        return -1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_808008F4_chfiregen.s")
 
