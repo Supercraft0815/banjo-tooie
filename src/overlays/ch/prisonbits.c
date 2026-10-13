@@ -133,6 +133,8 @@ void func_80800DAC_chprisonbits(Actor *arg0) {
     (*(f32 *)((s8 *)(sp1C) + (4))) = (f32) arg0->position[1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_80800DFC_chprisonbits.s")
+int func_80800DFC_chprisonbits(Actor *arg0) {
+    return !func_800DA298(0x5B) && func_80090128() && func_8010C500(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/chprisonbits_entrypoint_5.s")
