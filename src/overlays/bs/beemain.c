@@ -194,7 +194,13 @@ s32 bsbeemain_entrypoint_10(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_8080118C_bsbeemain.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_808011E8_bsbeemain.s")
+void func_808011E8_bsbeemain(s32 arg0) {
+    if (_badrone_entrypoint_3(arg0) == 2) {
+        func_800947EC(arg0, 2, 0);
+    }
+    _bsdrone_entrypoint_2(arg0);
+    _bsbee_entrypoint_0(arg0);
+}
 
 s32 bsbeemain_entrypoint_11(s32 arg0) {
     extern s32 D_808012E0_bsbeemain[];
