@@ -35,7 +35,17 @@ OSThread *chcablecar_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_808004EC_chcablecar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800598_chcablecar.s")
+void func_80800598_chcablecar(Actor *arg0) {
+    f32 _mlwave_entrypoint_5(u8 *, f32, f32);
+    s32 pad;
+    u8 *temp_a0;
+    cablecarMemory *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    temp_a0 = &temp_v0->unk10;
+    _mlwave_entrypoint_1(temp_a0);
+    arg0->rotation[0] = _mlwave_entrypoint_5(temp_a0, -5.0f, 5.0f);
+}
 
 void func_808005E0_chcablecar(Actor* arg0) {
     void* temp_a0;
