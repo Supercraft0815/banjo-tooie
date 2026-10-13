@@ -643,7 +643,16 @@ s32 func_80094BC0(PlayerState *arg0) {
     return func_800D1A04(_gcegg_entrypoint_5(func_80094510(arg0)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094C0C.s")
+/* extern */
+
+void func_80094C0C(PlayerState *arg0, s32 arg1) {
+    s32 _gcegg_entrypoint_5(s32);
+    s32 func_8009EA2C(void);
+    void func_800D1804(s32);
+    if ((func_80094348(arg0, 4) == 0) && ((arg1 != 2) || (func_8009EA2C() == 0))) {
+        func_800D1804(_gcegg_entrypoint_5(arg1));
+    }
+}
 
 u8 func_80094C64(void *arg0, s32 arg1) {
     extern u8 *D_80117E30[];
