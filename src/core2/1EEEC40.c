@@ -62,7 +62,18 @@ void func_80115564(u8 *arg0) {
     (*(f32 *)((s8 *)(temp_v0) + (0x10))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (0x18)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEC40/func_80115580.s")
+/* extern */
+
+int func_80115580(void *arg0, f32 *arg1) {
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_801107F0(void *, f32 *);
+    f32 sp1C[3];
+
+    func_801107F0(arg0, sp1C);
+    return func_800EEB40(sp1C, arg1) >
+        ((*(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x14) + 0x10) * 1.5f) *
+         (*(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x14) + 0x10) * 1.5f));
+}
 
 f32 func_801155E8(void *arg0) {
     return (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x14)))) + (0x10))) * 1.5f;
