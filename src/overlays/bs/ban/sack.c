@@ -144,7 +144,7 @@ void func_80800D4C_bsbansack(s32 arg0)
     func_80800238_bsbansack(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800D78_bsbansack.s")
+void func_80800D78_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(); *(u8 *)((u8 *)arg0 + 0x15D) = 0; *(u8 *)((u8 *)arg0 + 0x15C) = 0; func_80800AF4_bsbansack(arg0, 1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800DAC_bsbansack.s")
 
