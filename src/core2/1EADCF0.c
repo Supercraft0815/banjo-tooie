@@ -2,7 +2,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EADCF0/func_800D4400.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EADCF0/func_800D4534.s")
+ s32 func_800D4534(f32 arg0[3][3], void *arg1) { if (arg1 == 0) return 0; func_800AAD28(arg0); return 1; }
 
 void func_800D4564()
 {
