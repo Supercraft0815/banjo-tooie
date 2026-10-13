@@ -380,7 +380,21 @@ void func_80802620_chgameselect(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802640_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808026C8_chgameselect.s")
+void func_808026C8_chgameselect(Unk80132ED0 *arg0, s32 arg1) {
+    Actor *func_80106790(Unk80132ED0 *);
+    int _gczoombox_entrypoint_32();
+    int _gczoombox_entrypoint_8();
+    u32 *_gldbstring_entrypoint_1(u32 *, s16);
+    Actor *actor;
+
+    actor = func_80106790(arg0);
+    if (arg1 != actor->actorData[1]) {
+        actor->actorData[1] = arg1;
+        _gczoombox_entrypoint_32(actor->actorData[4]);
+        _gczoombox_entrypoint_8(actor->actorData[4], _gldbstring_entrypoint_1(*(u32 **)((s8 *)actor + 0x30), *(s16 *)((s8 *)actor + 0x1E)));
+        actor->actorData[2] = -1;
+    }
+}
 
 void func_80802730_chgameselect(Unk80132ED0 *arg0, s32 arg1) {
     Actor *func_80106790(Unk80132ED0 *);
@@ -909,12 +923,12 @@ void func_808049E8_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
 
 void func_80804A38_chgameselect(void *arg0) {
     s32 func_800FFA88(s32);
-    s32 func_808026C8_chgameselect(s32, s32);
+    void func_808026C8_chgameselect(Unk80132ED0 *, s32);
     s32 func_80802C48_chgameselect(Unk80132ED0 *);
     s32 temp_a0;
 
     func_80802C48_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x30))));
-    func_808026C8_chgameselect((*(s32 *)((s8 *)(arg0) + (0x2C))), 1);
+    func_808026C8_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x2C))), 1);
     temp_a0 = (*(s32 *)((s8 *)(arg0) + (0x34)));
     (*(s32 *)((s8 *)(arg0) + (0x18))) = 0;
     if (temp_a0 != 0) {
@@ -1000,13 +1014,13 @@ void func_80804F14_chgameselect(void *arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808051B4_chgameselect.s")
 
 void func_80805310_chgameselect(u8 *arg0) {
-    s32 func_808026C8_chgameselect(s32, s32);
+    void func_808026C8_chgameselect(Unk80132ED0 *, s32);
     s32 func_80802AD4_chgameselect(s32, s32, s32, s32, s32);
     void func_80802D04_chgameselect(Unk80132ED0 *, s32);
     extern s32 D_80807DB0_chgameselect[];
     func_80802AD4_chgameselect((*(s32 *)((s8 *)(arg0) + (0x30))), *(s16 *)&D_80807DB0_chgameselect[(u32)((Actor *)arg0)->unk79_4], 3, 1, 0);
     func_80802D04_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x30))), 1);
-    func_808026C8_chgameselect((*(s32 *)((s8 *)(arg0) + (0x2C))), 2);
+    func_808026C8_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x2C))), 2);
     (*(s32 *)((s8 *)(arg0) + (0x18))) = 0;
 }
 
@@ -1194,12 +1208,12 @@ void func_80806800_chgameselect(void *arg0, s32 arg1) {
 
 void func_80806834_chgameselect(void *arg0) {
     s32 func_80802640_chgameselect(s32, s32, s32);
-    s32 func_808026C8_chgameselect(s32, s32);
+    void func_808026C8_chgameselect(Unk80132ED0 *, s32);
     s32 func_80802AD4_chgameselect(s32, s32, s32, s32, s32);
     void func_80802D04_chgameselect(Unk80132ED0 *, s32);
     func_80802AD4_chgameselect((*(s32 *)((s8 *)(arg0) + (0x30))), 0x18F0, 5, 1, 4);
     func_80802D04_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x30))), 1);
-    func_808026C8_chgameselect((*(s32 *)((s8 *)(arg0) + (0x2C))), 9);
+    func_808026C8_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x2C))), 9);
     func_80802640_chgameselect((*(s32 *)((s8 *)(arg0) + (0x24))), 0x18F0, 0);
     (*(s32 *)((s8 *)(arg0) + (0x18))) = 6;
     (*(s32 *)((s8 *)(arg0) + (0x1C))) = -1;
