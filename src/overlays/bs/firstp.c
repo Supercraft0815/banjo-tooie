@@ -1946,7 +1946,18 @@ void func_80808EF0_bsfirstp(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809250_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809334_bsfirstp.s")
+/* extern */
+
+void func_80809334_bsfirstp(void *arg0) {
+    s32 func_80807BB8_bsfirstp();
+    s32 func_80808DB0_bsfirstp(void *);
+    void func_80809900_bsfirstp(void *);
+    func_80807BB8_bsfirstp(arg0);
+    func_80808DB0_bsfirstp(arg0);
+    func_80809900_bsfirstp(arg0);
+    func_80800858_bsfirstp((s32)arg0, 1);
+    func_80809684_bsfirstp(arg0, 0);
+}
 
 void func_80809384_bsfirstp(void)
 {
