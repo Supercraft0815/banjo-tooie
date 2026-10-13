@@ -113,7 +113,19 @@ OSThread *chlavagargoyle_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/gargoyle/func_808006EC_chlavagargoyle.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/gargoyle/func_8080099C_chlavagargoyle.s")
+void func_8080099C_chlavagargoyle(Actor *arg0, s32 arg1) {
+    struct Color { s32 values[3]; };
+    extern struct Color D_80800E44_chlavagargoyle;
+    s32 sp24;
+    struct Color sp18;
+
+    sp18 = D_80800E44_chlavagargoyle;
+    sp24 = func_800DC128(0, 0xA);
+    func_800C8CB8(arg0->unk14, arg1);
+    sp18.values[0] -= sp24;
+    sp18.values[1] -= sp24;
+    func_800C8E84(arg0->unk14, sp18.values);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/gargoyle/func_80800A2C_chlavagargoyle.s")
 
