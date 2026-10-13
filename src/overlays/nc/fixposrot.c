@@ -28,7 +28,9 @@ void ncfixposrot_entrypoint_2(u8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/fixposrot/ncfixposrot_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/fixposrot/ncfixposrot_entrypoint_4.s")
+void ncfixposrot_entrypoint_4(f32 *arg0, f32 *arg1) {
+    func_800EE7F8(arg0 + 3, arg1);
+}
 
 void ncfixposrot_entrypoint_5()
 {
