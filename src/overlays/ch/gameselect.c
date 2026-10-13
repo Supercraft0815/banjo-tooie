@@ -312,7 +312,16 @@ void func_80802530_chgameselect(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802588_chgameselect.s")
+void func_80802620_chgameselect(void *arg0);
+void _gldbstring_entrypoint_2(s32 a0);
+
+void func_80802588_chgameselect(void *arg0) {
+    if ((*(s32 *)((s8 *)arg0 + 0x30)) != 0) {
+        _gldbstring_entrypoint_2(*(s32 *)((s8 *)arg0 + 0x18));
+        (*(s32 *)((s8 *)arg0 + 0x30)) = 0;
+    }
+    func_80802620_chgameselect(arg0);
+}
 
 /* extern */
 
