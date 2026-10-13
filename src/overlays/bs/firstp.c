@@ -851,11 +851,16 @@ s32 func_80802E7C_bsfirstp(u8 *arg0) {
     return (*(s32 *)((s8 *)(temp_v0) + (0)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80802ED4_bsfirstp.s")
+void func_80802ED4_bsfirstp(void *arg0) {
+    void func_80803124_bsfirstp(void *arg0, s32 arg1);
+    register u8 *temp_v0 = *(u8 **)((u8 *)arg0 + 0x188);
+    *(s16 *)(temp_v0 + 0xE0) = 4;
+    func_80803124_bsfirstp(arg0, 0);
+}
 
-void func_80802F00_bsfirstp()
+void func_80802F00_bsfirstp(void *arg0)
 {
-    func_80802ED4_bsfirstp();
+    func_80802ED4_bsfirstp(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80802F20_bsfirstp.s")
