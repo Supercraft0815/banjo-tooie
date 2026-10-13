@@ -8,7 +8,24 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB70C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB750.s")
+void func_800EB750(void)
+{
+  s32 vector_free(s32);
+  s32 (*var_s0)[1];
+  extern s32 D_80132E80;
+  extern s16 D_80132E9C;
+  s32 temp_a0;
+ var_s0 = (s32 (*)[1]) (&D_80132E80); do {
+    temp_a0 = var_s0[0][0];
+    if (temp_a0 != 0)
+    {
+      vector_free(temp_a0);
+      var_s0[0][0] = 0;
+    }
+    var_s0++;
+  }
+  while (((s16 *) var_s0) != (&D_80132E9C));
+}
 
 void func_800EB7A8(void) {
     s32 vector_defrag(s32);
