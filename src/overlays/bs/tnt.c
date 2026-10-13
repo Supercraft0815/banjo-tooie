@@ -295,7 +295,7 @@ void bstnt_entrypoint_10(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80801980_bstnt.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80801C0C_bstnt.s")
+void func_80801C0C_bstnt(s32 arg0) { bstnt_entrypoint_3(); *(s32 *)((u8 *)arg0 + 0x15C) = 0; func_80801980_bstnt(arg0, 1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80801C3C_bstnt.s")
 
