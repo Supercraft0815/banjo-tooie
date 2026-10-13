@@ -44,28 +44,28 @@ void func_80800120_bsbtrot(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80800164_bsbtrot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_808001B8_bsbtrot.s")
+void func_808001B8_bsbtrot(s32 arg0) { f32 func_80800070_bsbtrot(s32, f32, f32, f32, f32); func_80800070_bsbtrot(arg0, 30.0f, 80.0f, 30.0f, 30.0f); }
 
 /* extern */
 
 f32 func_808001EC_bsbtrot(s32 arg0) {
     s32 func_8008DE24();
-    f32 func_80800070_bsbtrot(s32, s32, s32, s32, f32);
+    f32 func_80800070_bsbtrot(s32, f32, f32, f32, f32);
     if (func_8008DE24() != 0) {
         return 0.7f;
     }
-    return func_80800070_bsbtrot(arg0, 0x3EAE147B, 0x3E947AE1, 0x3F333333, 0.53f);
+    return func_80800070_bsbtrot(arg0, 0.34f, 0.29f, 0.7f, 0.53f);
 }
 
 /* extern */
 
 f32 func_80800248_bsbtrot(s32 arg0) {
     s32 func_8008DE24();
-    f32 func_80800070_bsbtrot(s32, s32, s32, s32, f32);
+    f32 func_80800070_bsbtrot(s32, f32, f32, f32, f32);
     if (func_8008DE24() != 0) {
         return 0.8f;
     }
-    return func_80800070_bsbtrot(arg0, 0x3F0F5C29, 0x3F028F5C, 0x3F99999A, 1.4f);
+    return func_80800070_bsbtrot(arg0, 0.56f, 0.51f, 1.2f, 1.4f);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_808002A4_bsbtrot.s")
