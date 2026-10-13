@@ -43,7 +43,16 @@ void func_800BD600(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BD860.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BD948.s")
+s32 func_800BD948(s32 arg0) {
+    s32 base = (s32)&D_80128410;
+    s32 result;
+    if (arg0 == base + 0x34) {
+        result = -1;
+    } else {
+        result = (arg0 - *(s32 *)base) >> 3;
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BD97C.s")
 
