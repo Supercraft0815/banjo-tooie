@@ -13,7 +13,24 @@ u8 *func_80800000_fxfontstring(u8 *arg0) {
 
 void fxfontstring_entrypoint_0(u8 *arg0, s32 arg1) { u8 *p; p = func_80800000_fxfontstring(arg0); *p++ = 0xFD; if (arg1 != 0) { *p = 0x68; } else { *p = 0x6C; } p++; *p = 0; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/fontstring/fxfontstring_entrypoint_1.s")
+/* extern */
+
+void fxfontstring_entrypoint_1(u8 *arg0, s32 arg1) {
+    u8 *p;
+    s32 value;
+
+    p = func_80800000_fxfontstring(arg0);
+    *p++ = 0xFD;
+    *p++ = 0x61;
+    if (arg1 <= 0) {
+        *p = 1;
+    } else {
+        value = arg1 >= 0x100 ? 0xFF : arg1;
+        *p = value;
+    }
+    p++;
+    *p = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/fontstring/fxfontstring_entrypoint_2.s")
 
