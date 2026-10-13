@@ -19,14 +19,17 @@ void ncfixposrot_entrypoint_1(void* arg0)
 /* extern */
 
 void ncfixposrot_entrypoint_2(u8 *arg0, s32 arg1) {
-    f32 func_800136E4(f32, u8 *);
+    f32 func_800136E4(f32);
     s32 func_800F18FC(s32, u8 *, s32, s32);
     func_800F18FC(arg1, arg0, arg0 + 0xC, arg1);
-    (*(f32 *)((s8 *)(arg0) + (0xC))) = func_800136E4(-(*(f32 *)((s8 *)(arg0) + (0xC))), arg0);
+    (*(f32 *)((s8 *)(arg0) + (0xC))) = func_800136E4(-(*(f32 *)((s8 *)(arg0) + (0xC))));
     (*(f32 *)((s8 *)(arg0) + (0x14))) = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/fixposrot/ncfixposrot_entrypoint_3.s")
+void ncfixposrot_entrypoint_3(void *arg0, f32 arg1) {
+    f32 func_800136E4(f32);
+    (*(f32 *)((s8 *)(arg0) + (0x14))) = func_800136E4(arg1);
+}
 
 void ncfixposrot_entrypoint_4(f32 *arg0, f32 *arg1) {
     func_800EE7F8(arg0 + 3, arg1);
