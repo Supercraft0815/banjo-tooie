@@ -50,7 +50,7 @@ s32 func_800D395C(void) {
     return (u8) D_8012B3F2 == 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3970.s")
+void func_800D3970(void) { void func_800D37D4(void); void func_800D3A14(s32); void func_800D3CF8(s32); void func_800D3D10(s32); func_800D37D4(); func_800D3A14(1); func_800D3CF8(0); func_800D3D10(1); }
 
 void func_800D39A8(void) {
     s16 func_800B2DC0(s32, s32);
