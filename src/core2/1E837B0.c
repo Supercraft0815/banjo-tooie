@@ -47,7 +47,22 @@ s32 func_800A9F80(s32 arg0) {
     return func_800DA298(arg0 + 0xD1B);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800A9FA0.s")
+s32 func_800A9FA0(s32 arg0) {
+    s32 var_s0;
+    s32 var_s1;
+    s32 difference;
+    var_s0 = 0;
+    var_s1 = 0x40;
+    do {
+        if (func_800A9F80(var_s1)) {
+            difference = var_s0 ^ arg0;
+            var_s0++;
+            if (difference == 0) break;
+        }
+        var_s1++;
+    } while (var_s1 != 0x4E);
+    return var_s1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800AA00C.s")
 
