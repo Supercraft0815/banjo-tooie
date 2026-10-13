@@ -505,7 +505,21 @@ void func_80802D04_chgameselect(Unk80132ED0 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802D40_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802DB4_chgameselect.s")
+void func_80802DB4_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    Actor *func_80106790(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    Actor *actor;
+    u8 *entry;
+
+    actor = func_80106790(arg0);
+    entry = (u8 *)func_80100094(actor, 1U) + actor->actorData[5] * 6;
+    entry[0] = arg1;
+    entry[1] = arg2;
+    entry[2] = arg3;
+    entry[3] = arg4;
+    *(s16 *)(entry + 4) = arg5;
+    actor->actorData[5]++;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802E38_chgameselect.s")
 
