@@ -32,11 +32,24 @@ void func_80800514_chpawnbroker(Actor* arg0)
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800534_chpawnbroker.s")
 
 void func_80800664_chpawnbroker(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
     extern u32 D_808010C4_chpawnbroker;
-    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_808010C4_chpawnbroker, 0x3F051EB8);
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_808010C4_chpawnbroker, 0.52f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800694_chpawnbroker.s")
+void func_80800694_chpawnbroker(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    extern u32 D_808010CC_chpawnbroker;
+    extern u32 D_808010D8_chpawnbroker;
+    extern u32 D_808010E4_chpawnbroker;
+    extern u32 D_808010F0_chpawnbroker;
+    f32 * volatile temp_a1;
+
+    _subaddieaudioquick_entrypoint_4(arg0, temp_a1 = (f32 *) ((s8 *) arg0 + 4), &D_808010D8_chpawnbroker, &D_808010F0_chpawnbroker);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_a1, &D_808010CC_chpawnbroker, 0.0f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_a1, &D_808010E4_chpawnbroker, 0.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_808006FC_chpawnbroker.s")
 
