@@ -1421,7 +1421,7 @@ void bsfirstp_entrypoint_26(s32 arg0) {
     s32 func_80099B94(s32);
     s32 func_8009C15C(s32, f32 *);
     s32 func_8009E6EC();
-    s32 func_8009E830(s32, s32);
+    void func_8009E830(struct player_state_s *, s32);
     u32 func_800A3404(void *);
     void func_800A3544(void *, s32);
     s32 func_800EFD24(s32);
@@ -1800,7 +1800,23 @@ void func_80806D64_bsfirstp(Actor *arg0) {
     func_80801928_bsfirstp(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80806D90_bsfirstp.s")
+/* extern */
+
+void func_80806D90_bsfirstp(struct player_state_s *arg0) {
+    s32 bs_setState(void *, s32);
+    s32 func_8009E6EC(struct player_state_s *);
+    void func_8009E830(struct player_state_s *, s32);
+    s32 *sp1C;
+
+    sp1C = *(s32 **)((s8 *)arg0 + 0x188);
+    if (func_8009E6EC(arg0) == 0x4F) {
+        sp1C[0x64 / 4] = -1;
+        bs_setState(arg0, 0xCA);
+        func_8009E830(arg0, 2);
+        return;
+    }
+    bsfirstp_entrypoint_26(arg0);
+}
 
 s32 bsfirstp_entrypoint_29(s32 arg0) {
     extern s32 D_8080B560_bsfirstp[];
