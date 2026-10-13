@@ -42,16 +42,17 @@ void *func_800AF5F0(void *arg0)
     return (u8 *)arg0 + ((struct OffsetHeader *)arg0)->offset;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E88E90/func_800AF5FC.s")
-
 typedef struct {
     s16 unk0[3];
     s16 paletteOffset;
     s32 textureOffset;
 } TextureFrame;
 
+TextureFrame *func_800AF5FC(s16 *texture, s32 frame) {
+    return (TextureFrame *)((s32)texture + frame * 0xC + 0x1C);
+}
+
 u8 *func_800AF5D8(s16 *texture);
-TextureFrame *func_800AF5FC(s16 *texture, s32 frame);
 
 void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, s32 cms, s32 cmt, s32 *width, s32 *height) {
     TextureFrame *frame;
