@@ -30,7 +30,17 @@ void func_8080027C_bscarry()
     func_808001D4_bscarry();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_8080029C_bscarry.s")
+/* extern */
+
+void func_8080029C_bscarry(s32 arg0) {
+    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    s32 func_8008C9F0(s32, s32, s32, s32, f32);
+    void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+    func_80800208_bscarry();
+    baanim_playForDuration_loopSmooth(arg0, 0x28, 0x3F4CCCCD);
+    func_8009FFD8((PlayerState *)arg0, 2, 1, 1, 2);
+    func_8008C9F0(arg0, 0x41F00000, 0x42700000, 0x3FE66666, 1.2f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_80800310_bscarry.s")
 
