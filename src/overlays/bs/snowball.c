@@ -131,7 +131,20 @@ void func_80800B44_bssnowball(s32 arg0) { _baspin_entrypoint_1(); *(u8 *)(arg0 +
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_80800B70_bssnowball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_80800BBC_bssnowball.s")
+/* extern */
+
+void func_80800BBC_bssnowball(s32 arg0) {
+    s32 _baspin_entrypoint_3(s32);
+    s32 bs_setState(s32, s32);
+    s32 sp1C;
+
+    sp1C = 0;
+    bssnowball_entrypoint_2(arg0);
+    if (_baspin_entrypoint_3(arg0) == 2) {
+        sp1C = 0x17D;
+    }
+    bs_setState(arg0, sp1C);
+}
 
 s32 bssnowball_entrypoint_8(s32 arg0) {
     extern s32 D_808010A4_bssnowball[];
