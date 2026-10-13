@@ -23,7 +23,7 @@ void func_8080037C_bsbansnooze()
     func_80800000_bsbansnooze();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_8080039C_bsbansnooze.s")
+void func_8080039C_bsbansnooze(PlayerState *arg0) { void baphysics_set_target_horizontal_velocity(PlayerState *, f32); void func_8009DF94(PlayerState *, s32, f32, s32); func_80800098_bsbansnooze(arg0); baanim_playForDuration_onceSmooth(arg0, 0x279, 0x3FCCCCCD); func_8009FFD8(arg0, 1, 1, 3, 2); baphysics_set_target_horizontal_velocity(arg0, 0.0f); func_8009DF94(arg0, 0x58D, 1.0f, 0x7530); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_80800414_bsbansnooze.s")
 
