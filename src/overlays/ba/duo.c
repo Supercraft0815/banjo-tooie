@@ -116,4 +116,9 @@ void func_80800C78_baduo(s32 arg0, s32 arg1) {
     func_800A1658(arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/func_80800CA8_baduo.s")
+void func_80800CA8_baduo(s32 arg0, s32 arg1) {
+    s32 sp18[2];
+
+    sp18[0] = func_800A3274(arg0);
+    func_800D5034(sp18[0], func_800A3274(arg1));
+}
