@@ -50,9 +50,10 @@ AnimCtrl *func_8008AD80(s32 arg0) {
     return sp1C;
 }
 
-void func_8008ADBC(s32 arg0)
+void func_8008ADBC(AnimCtrl *arg0)
 {
-    func_8008B5E8();
+    void func_8008B5E8(AnimCtrl *);
+    func_8008B5E8(arg0);
     heap_free(arg0);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008ADE4.s")
@@ -260,4 +261,7 @@ s32 func_8008B4F4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B518.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B5E8.s")
+void func_8008B5E8(AnimCtrl *arg0) {
+    void func_8008C0D8(void *);
+    func_8008C0D8((u8 *)arg0 + 0x1C);
+}
