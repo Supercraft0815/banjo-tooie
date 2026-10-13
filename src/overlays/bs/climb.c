@@ -73,8 +73,11 @@ void bsclimb_entrypoint_8(s32 arg0) {
 
 /* extern */
 
-void bsclimb_entrypoint_9(s32 arg0) {
-    s32 bs_setState(s32, s32);
+struct player_state_s;
+enum bs_state_e;
+void bs_setState(struct player_state_s *, enum bs_state_e);
+
+void bsclimb_entrypoint_9(struct player_state_s *arg0) {
     s32 func_8009CC68();
     s32 var_a1;
 
@@ -95,4 +98,18 @@ s32 bsclimb_entrypoint_11(s32 arg0) {
     return ((s32 *)&D_8080091C_bsclimb)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/bsclimb_entrypoint_12.s")
+/* extern */
+
+void bsclimb_entrypoint_12(struct player_state_s *arg0) {
+    void func_80099B94(struct player_state_s *);
+    s32 func_8009E6EC(struct player_state_s *);
+    void func_8009E830(struct player_state_s *, s32);
+    if (func_8009E6EC(arg0) == 0xC) {
+        *(s32 *)((s8 *)arg0 + 0x160) = 1;
+    } else {
+        func_80099B94(arg0);
+        return;
+    }
+    func_8009E830(arg0, 1);
+    bs_setState(arg0, 0);
+}
