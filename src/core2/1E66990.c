@@ -318,4 +318,18 @@ s32 func_8008E430(void) {
     return _bashoes_entrypoint_1() == 5;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E454.s")
+/* extern */
+
+s32 func_8008E454(PlayerState *arg0) {
+    s32 _gcmapsects_entrypoint_4(f32 *);
+    void func_8009C128(PlayerState *, f32[3]);
+    u8 func_800BFAA4(void);
+    s32 func_800DB9B0();
+    f32 sp1C[3];
+
+    if ((func_800DB9B0() != 0) && (func_800BFAA4() != 0)) {
+        func_8009C128(arg0, sp1C);
+        return (_gcmapsects_entrypoint_4(sp1C) + 1) != 0;
+    }
+    return 1;
+}
