@@ -25,7 +25,14 @@ u8 func_80095388(s32 *arg0, s32 arg1, u8 *arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6EC70/func_800953E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6EC70/func_80095490.s")
+void func_8009C128(PlayerState *, f32[3]);
+
+void func_80095490(volatile PlayerState *arg0) {
+    s32 func_800953E0(PlayerState *, void *, s32);
+    f32 sp1C[3];
+    func_8009C128(arg0, sp1C);
+    *(s32 *) ((s8 *) *(void **)((s8 *) arg0 + 0x7C) + 0x14) = func_800953E0(arg0, (s8 *) *(void **)((s8 *) arg0 + 0x7C) + 0x10, (s32) (*(f32 *) ((s8 *) *(void **)((s8 *) arg0 + 0x7C) + 4) - sp1C[1]));
+}
 
 /* extern */
 
