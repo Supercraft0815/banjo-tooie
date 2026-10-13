@@ -1,6 +1,20 @@
 #include "core2/1EAE6C0.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAE6C0/func_800D4DD0.s")
+extern s32 D_8012B420;
+s32 func_800D4DD0(s32 arg0) {
+    if (D_8012B420 != 0) {
+        switch (arg0) {
+        case 10:
+            arg0 = 1;
+            break;
+        case 4:
+        case 11:
+            arg0 = 0;
+            break;
+        }
+    }
+    return arg0;
+}
 
 /* extern */
 
