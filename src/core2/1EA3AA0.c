@@ -162,7 +162,7 @@ void func_800CA7BC(void *arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *arg4) {
     *arg4 = (*(f32 *)((s8 *)(arg0) + (0xF0)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CA7E4.s")
+void func_800CA7E4(s32 arg0, s32 *arg1) { func_800EE7F8(arg1, (s32 *)arg0); }
 
 void func_800CA810(void *arg0, void *arg1) {
     (*(s32 *)((s8 *)(arg1) + (0))) = (s32) ((f32) (s32) ((*(f32 *)((s8 *)(arg0) + (0))) * 500.0f) / 500.0f);
