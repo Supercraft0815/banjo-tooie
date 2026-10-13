@@ -2,7 +2,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/entrydoors/func_80800000_chfactoryentrydoors.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/entrydoors/func_808000CC_chfactoryentrydoors.s")
+/* extern */
+
+void func_808000CC_chfactoryentrydoors(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chdoor_entrypoint_1(s32, s32, s32);
+    s32 var_v0;
+
+    if (arg1 == 0x95) {
+        var_v0 = (arg0->unk74_7 == 0x33) ? 0x971 : 0x972;
+        func_80103140(arg0, var_v0 & 0xFFFF, arg0->unk0->unk16);
+    }
+    _chdoor_entrypoint_1((s32)arg0, arg1, arg2);
+}
 
 OSThread *chfactoryentrydoors_entrypoint_0(void)
 {
