@@ -161,7 +161,20 @@ s32 func_800D59C0(s32 index) {
     return ((AssetEncoding *)&D_8012B440)->encoding & 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5A04.s")
+s32 func_800D5A04(s32 arg0) {
+    extern s16 D_8012B6E0[];
+    extern s8 D_8012B7E4;
+    s32 var_v0;
+
+    var_v0 = 0;
+    while (var_v0 < (u8) D_8012B7E4 && arg0 != D_8012B6E0[var_v0]) {
+        var_v0++;
+    }
+    if (var_v0 < (u8) D_8012B7E4) {
+        return 1;
+    }
+    return 0;
+}
 
 s32 func_800D5A6C(s32 arg0) { s32 rom_read_word(s32, u32 *); extern s32 D_8011B900; extern u32 D_8012B440; extern s32 D_8012B448; rom_read_word((s32)((u32 *)D_8011B900 + arg0), &D_8012B440); return D_8012B448 + ((u32) D_8012B440 >> 6); }
 
