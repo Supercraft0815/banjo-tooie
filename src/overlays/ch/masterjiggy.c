@@ -28,7 +28,16 @@ s32 func_808001D0_chmasterjiggy(Unk80132ED0 **arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_80800220_chmasterjiggy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_80800374_chmasterjiggy.s")
+/* extern */
+
+int func_80800374_chmasterjiggy(s32 arg0) {
+    s32 func_8008FD48();
+    void func_8008FE68(f32 *);
+    f32 sp1C[3];
+
+    func_8008FE68(sp1C);
+    return sp1C[0] >= 1576.0f && func_8008FD48() == 1;
+}
 
 int func_808003D4_chmasterjiggy(s32 arg0) {
     s32 func_80016B30(s32, s32);
@@ -43,7 +52,7 @@ void func_80800414_chmasterjiggy(s32 arg0) {
     s32 func_800DA544(s32);
     s32 func_808001D0_chmasterjiggy(Unk80132ED0 **, s32);
     s32 func_80800220_chmasterjiggy(s32, s32);
-    s32 func_80800374_chmasterjiggy();
+    int func_80800374_chmasterjiggy();
     int func_808003D4_chmasterjiggy(s32);
     if (func_80800374_chmasterjiggy() != 0) {
         if ((func_800DA298(0x533) == 0) && (func_808001D0_chmasterjiggy(arg0, 3) != 0)) {
