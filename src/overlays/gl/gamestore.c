@@ -93,7 +93,19 @@ void glgamestore_entrypoint_3(s32 arg0, s32 arg1) {
     func_8080013C_glgamestore(func_80800030_glgamestore(arg0), arg1, 0x80);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamestore/func_808001E0_glgamestore.s")
+s32 func_808001E0_glgamestore(s32 arg0) {
+    s32 _gleeprom_entrypoint_1();
+    extern s32 B_80800270_glgamestore;
+    s32 var_v1;
+    s32 sp1C;
+
+    sp1C = 0;
+    var_v1 = sp1C;
+    if (_gleeprom_entrypoint_1(arg0, &B_80800270_glgamestore, 8) != 0) {
+        var_v1 = 1;
+    }
+    return var_v1;
+}
 
 void glgamestore_entrypoint_4()
 {
