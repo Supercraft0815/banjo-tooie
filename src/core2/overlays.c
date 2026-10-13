@@ -227,6 +227,18 @@ s32 func_80081D28()
     return D_80126CBC;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/overlays/func_80081D34.s")
+ s32 func_80081D34(s32 arg0) {
+    extern s32 overlay_syscalls;
+    extern s32 overlay_syscalls_end;
+    s32 index = (arg0 - (s32) &overlay_syscalls) >> 3;
+
+    if (index < 0) {
+        return 0;
+    }
+    if ((((s32) &overlay_syscalls_end - (s32) &overlay_syscalls) >> 3) < index) {
+        return 0;
+    }
+    return index;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/overlays/func_80081D80.s")
