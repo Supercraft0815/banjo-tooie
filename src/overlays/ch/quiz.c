@@ -306,7 +306,7 @@ void func_80801758_chquiz(s32 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801760_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801784_chquiz.s")
+s32 func_80801784_chquiz(void *arg0, s32 arg1) { return ((s32 *)arg0)[arg1 + 0x19]; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801794_chquiz.s")
 
