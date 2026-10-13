@@ -294,7 +294,18 @@ void func_800EDD68(void *self, f32 arg1[4], f32 arg2[4], f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EDE54.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EDF2C.s")
+void func_800EDF2C(void *self, s32 from, s32 to, f32 time) {
+    extern f32 D_80125E70;
+    MeshEffect *arg0 = self;
+    arg0->unk29 = 5;
+    arg0->unk28 = 0;
+    arg0->unk84 = (f32) from;
+    arg0->unk78[0] = arg0->unk78[1] = arg0->unk78[2] = 0.0f;
+    arg0->unk94 = (f32) to;
+    arg0->unk88[0] = arg0->unk88[1] = arg0->unk88[2] = 0.0f;
+    arg0->unk9C = (time > 0) ? time : D_80125E70;
+    arg0->unk98 = 0.0f;
+}
 
 void func_800EDF98(void *self, s32 opacity){
     void func_800EDF2C(void *, s32, s32, f32);
