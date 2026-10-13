@@ -65,7 +65,7 @@ void func_80105834()
     func_801054D4();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105854.s")
+void func_80105854(Actor *arg0) { s32 func_80105A5C(Actor *); func_801054D4(); if (func_80105A5C(arg0) != 0) { func_800FFAB0(arg0); } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_8010588C.s")
 
