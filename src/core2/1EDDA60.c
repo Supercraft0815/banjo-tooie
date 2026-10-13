@@ -42,7 +42,16 @@ s32 func_80104248(void *arg0) {
     return func_80104200((*(s16 *)((s8 *)(arg0) + (0x8C))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDA60/func_80104268.s")
+s32 func_80104268(s32 arg0) {
+    extern s32 D_80136E70;
+    s32 sp1C;
+    s32 sp18;
+    sp1C = 0;
+    sp18 = (s32)freelist_next(&D_80136E70, &sp1C);
+    func_8008B518((void *)sp18, 0);
+    *(s16 *)arg0 = (s16)sp1C;
+    return sp18;
+}
 
 /* extern */
 
