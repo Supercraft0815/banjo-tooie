@@ -64,7 +64,7 @@ u8 *func_800ADF98(void) {
     return temp_v0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800ADFE0.s")
+void func_800ADFE0(s16 arg0) { s32 func_800AE080(s16); s32 func_8001B754(s16); s32 func_800E0A70(s16); s32 temp_v0; temp_v0 = func_800AE080(arg0); if ((*(s16 *)((s8 *)temp_v0 + 0xC)) != 0) { func_800E0A70(*(s16 *)((s8 *)temp_v0 + 0xC)); } func_8001B754(arg0); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800AE020.s")
 
