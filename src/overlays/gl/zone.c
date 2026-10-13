@@ -28,7 +28,7 @@ void glzone_entrypoint_2(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/zone/glzone_entrypoint_3.s")
+void glzone_entrypoint_3(s8 *arg0, s32 arg1) { * (arg0 + arg1) = 1; }
 
 u8 glzone_entrypoint_4(u8 *arg0, s32 arg1) { return arg0[arg1]; }
 
