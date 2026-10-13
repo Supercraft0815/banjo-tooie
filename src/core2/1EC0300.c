@@ -35,7 +35,29 @@ void func_800E6A90(char *arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6AFC.s")
+void func_800E6AFC(char *arg0, u8 arg1) {
+    s32 var_a2;
+    s32 temp_v1;
+
+    while (*arg0 != 0) {
+        arg0++;
+    }
+    arg0[0] = 0x30;
+    arg0[1] = 0x78;
+    arg0 += 2;
+    temp_v1 = arg1;
+    for (var_a2 = 4; var_a2 >= 0; var_a2 -= 4) {
+        temp_v1 = (temp_v1 >> var_a2) & 0xF;
+        if ((temp_v1 < 0xA) & 0xFF) {
+            *arg0 = temp_v1 + 0x30;
+        } else {
+            *arg0 = temp_v1 + 0x57;
+        }
+        arg0 += 1;
+        temp_v1 = arg1;
+    }
+    *arg0 = 0;
+}
 
 s32 func_800E6B7C(u8 arg0, f32 arg1) {
     return (arg1 < 0.0f) ? -1 : 1;
