@@ -156,7 +156,7 @@ void func_80800A18_bsblongleg(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_13.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_14.s")
+void bsblongleg_entrypoint_14(void *arg0) { func_800C2FDC((*(u8 *)((s8 *)(arg0) + 0x160))); func_80800204_bsblongleg(arg0); }
 
 s32 bsblongleg_entrypoint_15(s32 arg0) {
     extern s32 D_808014A0_bsblongleg[];
