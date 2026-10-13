@@ -897,7 +897,7 @@ void func_80803124_bsfirstp(void *arg0, s32 arg1) {
 void func_80803134_bsfirstp(void *arg0) {
     s32 _baeggsetup_entrypoint_7(void *, s32 *);
     s32 baanim_playForDuration_onceSmooth(void *, s16, s32);
-    s32 func_800A0D94(void *, s32);
+    void func_800A0D94(void *, s32);
     void func_80800424_bsfirstp(struct player_state_s *, s32, f32);
     void func_8080261C_bsfirstp(void *, void **, void **);
     s32 func_80807BB8_bsfirstp();
@@ -919,7 +919,15 @@ void func_80803134_bsfirstp(void *arg0) {
     func_800A0D94(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808031D0_bsfirstp.s")
+void func_808031D0_bsfirstp(void *arg0) {
+    void func_800A0D94(void *, s32);
+    int func_80807C8C_bsfirstp(void *);
+    void *state = *(void **)((s8 *)arg0 + 0x188);
+
+    *(s16 *)((s8 *)state + 0xE0) = 0;
+    func_800A0D94(arg0, 0);
+    func_80807C8C_bsfirstp(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803204_bsfirstp.s")
 
