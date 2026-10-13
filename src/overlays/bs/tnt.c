@@ -263,7 +263,14 @@ s32 bstnt_entrypoint_7(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_8080166C_bstnt.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_808018D0_bstnt.s")
+void func_808018D0_bstnt(s32 arg0) {
+    void func_8009BF5C(s32, f32);
+    void baroll_setIdeal(s32, f32);
+    baphysics_reset_gravity();
+    func_8009BF5C(arg0, 0.0f);
+    baroll_setIdeal(arg0, 0.0f);
+    bstnt_entrypoint_2(arg0);
+}
 
 s32 bstnt_entrypoint_9(s32 arg0) {
     extern s32 D_8080257C_bstnt[];
