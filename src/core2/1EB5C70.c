@@ -33,7 +33,7 @@ void func_800DC4B0(s32 arg0,s32 arg1)
     func_80020C08(arg0,0x4,arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5C70/func_800DC4D4.s")
+void func_800DC4D4(s32 arg0) { if (arg0 != 0) { if (func_80020760() != 0) func_80020A60(arg0); } }
 
 void func_800DC508()
 {
