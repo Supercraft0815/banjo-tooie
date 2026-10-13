@@ -126,7 +126,8 @@ s32 bsstatue_entrypoint_3(s32 arg0) {
     return ((s32 *)&D_808015B0_bsstatue)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_808009C0_bsstatue.s")
+typedef struct player_state_s PlayerState;
+void func_808009C0_bsstatue(PlayerState *arg0) { void func_8009E53C(PlayerState *, s32, f32); void func_8009E55C(PlayerState *, s32, f32); void func_8009E5A4(PlayerState *, s32, s32); func_8009E53C(arg0, 2, 0.0f); func_8009E5A4(arg0, 2, 3); func_8009E55C(arg0, 2, 0.0f); baflag_clear(arg0, 0x2B); func_80800130_bsstatue(arg0); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80800A24_bsstatue.s")
 
