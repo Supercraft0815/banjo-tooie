@@ -28,7 +28,7 @@ s32 func_80094BC0(PlayerState *);
 PlayerState *func_80092B04(PlayerState *, s32);
 // This might take a s32 instead of a PlayerState pointer
 // This might return a s32 instead of a PlayerState pointer
-PlayerState *func_800B27E0(PlayerState *);
+u8 *func_800B27E0(u8 *);
 
 
 
