@@ -43,9 +43,11 @@ void func_8080009C_bstnt(void *arg0) {
 
 /* extern */
 
+struct player_state_s;
+
  s32 func_808001C8_bstnt(void *arg0, s32 arg1) {
-    s32 bakey_pressed(void *, s32);
-    s32 bstnt_entrypoint_8(void *);
+    int bakey_pressed(struct player_state_s *, int);
+    s32 bstnt_entrypoint_8(struct player_state_s *);
 
     if (bakey_pressed(arg0, 8) != 0) {
         arg1 = 0x107;
@@ -61,8 +63,8 @@ void func_8080009C_bstnt(void *arg0) {
 s32 func_80800218_bstnt(void *arg0, s32 arg1) {
     s32 _badrone_entrypoint_24(void *);
     s32 bainput_should_enter_first_person();
-    s32 bakey_pressed(void *, s32);
-    s32 bstnt_entrypoint_8(void *);
+    int bakey_pressed(struct player_state_s *, int);
+    s32 bstnt_entrypoint_8(struct player_state_s *);
     int player_isStable(void *);
     s32 var_s1;
 
@@ -257,7 +259,21 @@ s32 bstnt_entrypoint_7(s32 arg0) {
     return ((s32 *)&D_8080256C_bstnt)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/bstnt_entrypoint_8.s")
+/* extern */
+
+s32 bstnt_entrypoint_8(struct player_state_s *arg0) {
+    int bakey_pressed(struct player_state_s *, int);
+    s32 func_800A1718(struct player_state_s *);
+    void func_800FC660(u32);
+    if (bakey_pressed(arg0, 9) == 0) {
+        return 0;
+    }
+    if (func_800A1718(arg0) >= 2) {
+        return 1;
+    }
+    func_800FC660(0xF);
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_8080150C_bstnt.s")
 
