@@ -215,7 +215,7 @@ void func_80801258_bstrexsmall(PlayerState *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80801294_bstrexsmall.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_808013E8_bstrexsmall.s")
+void func_808013E8_bstrexsmall(void *arg0) { s32 func_80801294_bstrexsmall(void *, s32); bstrexsmall_entrypoint_1(); func_80801294_bstrexsmall(arg0, 0); }
 
 /* extern */
 
