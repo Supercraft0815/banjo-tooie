@@ -38,7 +38,11 @@ void func_80800300_chevilmumbo(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800670_chevilmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800774_chevilmumbo.s")
+void func_80800774_chevilmumbo(Actor *arg0) {
+    func_801032B0(arg0, 0x816, arg0->unk0->unk16);
+    arg0->unk64_20 = 1;
+    _suexpression_entrypoint_4(func_80100094(arg0, 1), 0x77);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_808007C4_chevilmumbo.s")
 
