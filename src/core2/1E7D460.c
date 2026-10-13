@@ -104,9 +104,9 @@ f32 *func_800A4C48(PlayerState *arg0) {
 
 /* extern */
 
-void func_800A4C68(void *arg0) {
+int func_800A4C68(void *arg0) {
     s32 func_800A940C(s32);
-    func_800A940C((*(s32 *)((s8 *)(arg0) + (0x184))));
+    return func_800A940C((*(s32 *)((s8 *)(arg0) + (0x184))));
 }
 
 /* extern */
