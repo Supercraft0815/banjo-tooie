@@ -82,7 +82,7 @@ s32 func_808004C0_chsilo(u8 *arg0, s32 arg1) {
     void func_800EE7F8(f32 *, f32 *);
     s32 func_800F54E4(void);
     s32 func_800F82D4(s32, s32);
-    s32 func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_80102424(u8 *, s32);
     void func_8010A828(void **, s32);
     s32 func_80800398_chsilo(u8 *, s32);
@@ -182,7 +182,21 @@ s32 func_808004C0_chsilo(u8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_8080087C_chsilo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_808009E8_chsilo.s")
+/* extern */
+
+void func_808009E8_chsilo(Actor *volatile arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _gcnewoption_entrypoint_6(u8 *, s32);
+    s32 func_80800398_chsilo(u8 *, s32);
+    Actor *actor;
+    if (func_80100094(*(Actor **)&arg0, 0) != 0) {
+        _gcnewoption_entrypoint_6((u8 *)*(Actor **)&arg0, 0);
+    }
+    actor = arg0;
+    if ((*(Actor **)&arg0)->unk70_10 == 0xA) {
+        func_80800398_chsilo((u8 *)actor, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_80800A40_chsilo.s")
 
@@ -195,7 +209,7 @@ s32 func_808004C0_chsilo(u8 *arg0, s32 arg1) {
 void func_808011C8_chsilo(s32 arg0, s32 arg1) {
     s32 _gcnewoption_entrypoint_1(s32, s32);
     s32 func_800EB854();
-    s32 func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_801018A4(s32, s32);
     s32 temp_v0;
 
