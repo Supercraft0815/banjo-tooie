@@ -86,7 +86,8 @@ void func_800E99E0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9B74.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9BF4.s")
+Prop *func_800E9D68(s16 *);
+s32 func_800E9BF4(s16 *arg0, s32 arg1) { if ((arg1 < 0) || (arg1 >= arg0[1])) return 0; return (s32)func_800E9D68(arg0) + arg1 * 20; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9C44.s")
 
