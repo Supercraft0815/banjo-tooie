@@ -176,7 +176,16 @@ void func_808011D0_bstrexsmall(s32 arg0)
     bstrexsmall_entrypoint_2();
     _bsrest_entrypoint_16(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_808011F8_bstrexsmall.s")
+/* extern */
+void func_808011F8_bstrexsmall(s32 arg0) {
+    s32 sp1C;
+    sp1C = 0;
+    if (_bsrest_entrypoint_20() != 0) {
+        sp1C = _bsrest_entrypoint_13(arg0);
+    }
+    bstrexsmall_entrypoint_3(arg0);
+    bs_setState(arg0, sp1C);
+}
 
 s32 bstrexsmall_entrypoint_11(s32 arg0) {
     extern s32 D_80801B78_bstrexsmall[];
