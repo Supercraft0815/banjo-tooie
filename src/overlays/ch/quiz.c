@@ -155,7 +155,19 @@ s32 func_80800C24_chquiz(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800C8C_chquiz.s")
+ s16 func_80800C8C_chquiz(u8 *arg0, s32 *arg1) {
+    s32 value;
+    u8 c;
+    value = *arg1;
+    c = *(value + arg0);
+    value = 0;
+    do {
+        value = (c + (value * 10)) - 0x30;
+        (*arg1)++;
+        c = arg0[*arg1];
+    } while ((c != ',') && (c != 0));
+    return value;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800CE8_chquiz.s")
 
