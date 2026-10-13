@@ -22,7 +22,21 @@ s32 func_808000B8_chdodgemcontrol(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080010C_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80800350_chdodgemcontrol.s")
+/* extern */
+
+int func_80800350_chdodgemcontrol(void) {
+    f32 func_800DC0C0(void);
+    f32 temp_f0;
+
+    temp_f0 = func_800DC0C0();
+    if (temp_f0 < 0.5f) {
+        return 0;
+    }
+    if (temp_f0 < 0.8333333f) {
+        return 1;
+    }
+    return 2;
+}
 
 /* extern */
 
