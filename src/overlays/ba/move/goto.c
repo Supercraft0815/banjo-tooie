@@ -80,7 +80,17 @@ void bamovegoto_entrypoint_12(void *arg0, f32 *arg1) {
     func_800EE7F8((f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 100), arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/goto/bamovegoto_entrypoint_13.s")
+/* extern */
+
+void bamovegoto_entrypoint_13(void *arg0) {
+    s32 baphysics_set_type(s32, s32);
+    baphysics_set_type(arg0, 0xC);
+    if ((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x55))) == 1) {
+        func_80800000_bamovegoto(arg0, 2);
+        return;
+    }
+    func_80800000_bamovegoto(arg0, 4);
+}
 
 void bamovegoto_entrypoint_14(void *arg0) {
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
