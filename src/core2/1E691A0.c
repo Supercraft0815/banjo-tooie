@@ -185,9 +185,9 @@ void func_8008FEF0()
     func_800F5AE0(func_800F54E4());
 }
 
-void func_8008FF18()
+s32 func_8008FF18()
 {
-    func_800F5B0C(func_800F54E4());
+    return func_800F5B0C(func_800F54E4());
 }
 
 void func_8008FF40(s32 arg0)
@@ -287,7 +287,9 @@ s32 func_80090270()
     func_800F6CC8(func_800F54E4());
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E691A0/func_80090298.s")
+s32 func_80090298(void) {
+    return func_8008FF18() != 0;
+}
 
 void func_800902BC()
 {
