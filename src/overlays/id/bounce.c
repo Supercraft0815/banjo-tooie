@@ -1,6 +1,19 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/bounce/func_80800000_idbounce.s")
+f32 func_80800000_idbounce(void) {
+    s32 func_8008FD48();
+
+    switch (func_8008FD48()) {
+        case 0x11:
+            return 0.1f;
+        case 0xA:
+            return 0.7f;
+        case 0xB:
+            return 0.4f;
+        default:
+            return 1.0f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/bounce/idbounce_entrypoint_0.s")
 
