@@ -214,7 +214,14 @@ void func_800EF174(f32 dst[3], f32 src[3], f32 scale) {
     dst[2] += src[2] * scale;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF1B8.s")
+/* extern */
+
+void func_800EF1B8(f32 *arg0, f32 arg1, f32 arg2) {
+    f32 func_80013788();
+    f32 func_800137F4(f32);
+    arg0[0] += arg2 * func_800137F4(arg1);
+    arg0[2] += arg2 * func_80013788();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF214.s")
 
