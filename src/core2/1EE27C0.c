@@ -365,6 +365,8 @@ f32 func_8010A40C(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A430.s")
 
+u32 func_8010A5B0(Actor *, s32);
+
 void func_8010A570(s32 arg0)
 {
     func_8010A5B0(arg0,0);
@@ -375,7 +377,19 @@ void func_8010A590(s32 arg0)
     func_8010A5B0(arg0,1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A5B0.s")
+u32 func_8010A5B0(Actor *arg0, s32 arg1) {
+    u32 func_8010A610(void **);
+    struct Flags { u8 pad[0x2A]; u8 upper : 6; u8 enabled : 1; u8 lower : 1; };
+    u32 result;
+
+    result = func_8010A610((void **)arg0);
+    if (arg1 != 0) {
+        ((struct Flags *)arg0->unk0)->enabled = 1;
+    } else {
+        ((struct Flags *)arg0->unk0)->enabled = 0;
+    }
+    return result;
+}
 
 u32 func_8010A610(void **arg0) {
     return (u32) ((*(s32 *)((s8 *)(*arg0) + (0x28))) << 0x16) >> 0x1F;
