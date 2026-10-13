@@ -7,7 +7,16 @@ s32 func_8009CA70(PlayerState *arg0, s32 arg1, s32 arg2) {
     return (D_80117F34[arg1].flags & arg2) ? 1 : result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76360/func_8009CAAC.s")
+void (*func_8009CAAC(PlayerState *arg0, s32 arg1))(PlayerState *) {
+    extern void (*(*D_80117F38[][3])(s32))(PlayerState *);
+    void (*(*temp_v0)(s32))(PlayerState *);
+
+    temp_v0 = D_80117F38[arg1][0];
+    if (temp_v0 != NULL) {
+        return temp_v0(0);
+    }
+    return 0;
+}
 
 void (*func_8009CAF8(PlayerState *arg0, s32 arg1))(PlayerState *) {
     extern void (*(*D_80117F38[][3])(s32))(PlayerState *);
