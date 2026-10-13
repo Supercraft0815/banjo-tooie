@@ -91,9 +91,9 @@ void func_80800B2C_chhoneyb(Actor *arg0) {
     _subaddieaudioloop_entrypoint_4(arg0, (f32 *) ((u8 *) arg0 + 4), 1U, &D_808010D0_chhoneyb);
 }
 
-void func_80800B58_chhoneyb()
+s32 func_80800B58_chhoneyb()
 {
-    func_800D1A04(0x49);
+    return func_800D1A04(0x49);
 }
 
 s32 func_80800B78_chhoneyb()
@@ -112,7 +112,12 @@ s32 func_80800B98_chhoneyb(s32 arg0) {
     return (arg0 * 2) - 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800BD8_chhoneyb.s")
+s32 func_80800BD8_chhoneyb(void) {
+    s32 result;
+
+    result = func_80800B98_chhoneyb(func_80800B78_chhoneyb() + 1);
+    return result - func_80800B58_chhoneyb();
+}
 
 void func_80800C0C_chhoneyb(void) {
     func_80800B98_chhoneyb(func_80800B78_chhoneyb() + 1);
