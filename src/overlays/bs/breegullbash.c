@@ -9,7 +9,14 @@ void func_808001B4_bsbreegullbash(s32 arg0)
     _babackpack_set_state(arg0,0x7);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/breegullbash/func_808001D4_bsbreegullbash.s")
+s32 func_808001D4_bsbreegullbash(s32 arg0) {
+    void func_8009E55C(void *, s32, f32);
+    if (_babackpack_get_state() != 1) {
+        _babackpack_set_state(arg0, 1);
+        func_8009E4E0(arg0, 2, 0);
+        func_8009E55C(arg0, 2, 0.0f);
+    }
+}
 
 /* extern */
 
