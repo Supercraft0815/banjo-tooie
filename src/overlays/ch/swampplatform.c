@@ -137,7 +137,18 @@ void func_808000BC_chswampplatform(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swampplatform/func_8080061C_chswampplatform.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swampplatform/func_808007A4_chswampplatform.s")
+/* extern */
+
+s32 func_808007A4_chswampplatform(Actor *arg0, s32 arg1, s32 arg2) {
+    if (arg1 == 0x4B) {
+        if ((arg2 == 8) && (arg0->unk70_10 == 0)) {
+            func_80101FDC(arg0, 1);
+            func_80103110(arg0, 1);
+        }
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swampplatform/func_80800804_chswampplatform.s")
 
