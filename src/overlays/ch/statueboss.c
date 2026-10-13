@@ -1,5 +1,7 @@
 #include "common.h"
 
+void *func_80100094(Actor *, u32);
+
 OSThread *chstatueboss_entrypoint_0(void)
 {
     extern u8 D_80802748_chstatueboss[];
@@ -51,7 +53,16 @@ s32 func_808011A0_chstatueboss(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801518_chstatueboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801640_chstatueboss.s")
+void func_80801640_chstatueboss(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    extern s16 D_80802624_chstatueboss[];
+    s8 *data;
+    s32 offset;
+
+    data = func_80100094(arg0, 0U);
+    offset = D_80802624_chstatueboss[arg1];
+    data[offset] = (s8)arg2;
+}
 
 OSThread *chstatueboss_entrypoint_1(void)
 {
