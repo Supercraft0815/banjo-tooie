@@ -220,7 +220,12 @@ f32 func_80090010()
     return func_800F5F24(func_800F54E4());
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E691A0/func_80090038.s")
+void func_80090038(s32 arg0, void *arg1) {
+    f32 sp1C[3];
+
+    func_800EE88C(sp1C, (s16 *) arg0);
+    func_800F7CF4((u32) ((u16 *) ((u8 *) arg1 + 0x1A))[0] >> 5, 0x58, sp1C);
+}
 
 void func_80090080()
 {
