@@ -18,7 +18,7 @@ void func_80800008_bahold(u8 *arg0, s32 arg1) {
     func_8009ADF0(arg0, 0xE, var_a2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/hold/bahold_entrypoint_1.s")
+void bahold_entrypoint_1(u8 *arg0) { void bahold_entrypoint_7(void *, f32, f32); func_80800008_bahold(arg0, (s32)0); (*(u8 **)((s8 *)arg0 + 0x9C))[0xC] = 0; bahold_entrypoint_7(arg0, 0.0f, 0.0f); }
 
 void bahold_entrypoint_2(s32 arg0) 
 {
