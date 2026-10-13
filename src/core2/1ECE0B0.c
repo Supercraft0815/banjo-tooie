@@ -1175,7 +1175,18 @@ void func_800F796C(s32 arg0,s32 arg1)
 /* extern */
 s32 func_800F798C(s32 arg0, s32 arg1, s32 arg2) { void func_8009AD20(void *, s32); void func_8009AD2C(void *, s32); s32 func_8009E7C8(u8 *, s32); PlayerState *sp1C; sp1C = D_80135490[arg0]; func_8009AD20(sp1C, arg1); func_8009AD2C(sp1C, arg2); return func_8009E7C8((u8 *) sp1C, 0x1F) == 2; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F79DC.s")
+/* extern */
+s32 func_800F79DC(s32 arg0, s32 arg1, s32 arg2) {
+    void func_8009AD14(void *, s32);
+    void func_8009AD20(void *, s32);
+    s32 func_8009E7C8(u8 *, s32);
+    PlayerState *temp_a0;
+
+    temp_a0 = D_80135490[arg0];
+    func_8009AD20(temp_a0, arg1);
+    func_8009AD14(temp_a0, arg2);
+    return func_8009E7C8((u8 *) temp_a0, 0x21) == 2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7A2C.s")
 
