@@ -1,4 +1,7 @@
 #include "common.h"
+struct Vector;
+void vector_free(struct Vector *vec);
+void gclightsDll_entrypoint_1();
 
 void func_80800000_gclightsDll(s32 arg0)
 {
@@ -7,7 +10,9 @@ void func_80800000_gclightsDll(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/lightsDll/gclightsDll_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/lightsDll/gclightsDll_entrypoint_1.s")
+void gclightsDll_entrypoint_1(struct Vector **arg0) {
+    vector_free(*arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/lightsDll/gclightsDll_entrypoint_2.s")
 
