@@ -116,7 +116,21 @@ s16 *func_800A4C88(void *arg0) {
     return func_800A93E4((*(s32 *)((s8 *)(arg0) + (0x184))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4CA8.s")
+/* extern */
+
+PlayerState *func_800A4CA8(PlayerState *arg0) {
+    PlayerState *func_80110014(s16 *);
+    PlayerState *var_v1;
+    s16 *temp_v0;
+
+    temp_v0 = func_800A4C88(arg0);
+    if (temp_v0 != NULL) {
+        var_v1 = func_80110014(temp_v0);
+    } else {
+        var_v1 = NULL;
+    }
+    return var_v1;
+}
 
 /* extern */
 
