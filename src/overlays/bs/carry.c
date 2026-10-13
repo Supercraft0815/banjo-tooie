@@ -31,7 +31,18 @@ void func_808001D4_bscarry(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_80800208_bscarry.s")
+/* extern */
+void func_80800208_bscarry(PlayerState *arg0) {
+    s32 func_8009E6C4(PlayerState *, s32);
+    void bastick_pushZone(PlayerState *);
+    void bastick_setZoneMax(PlayerState *, s32, f32);
+    if (func_8009E6C4(arg0, 0x400) == 0) {
+        bastick_pushZone(arg0);
+        bastick_setZoneMax(arg0, 0, 0.03f);
+        bastick_setZoneMax(arg0, 1, 0.2f);
+        bastick_setZoneMax(arg0, 2, 1.0f);
+    }
+}
 
 void func_8080027C_bscarry(PlayerState *arg0)
 {
@@ -44,7 +55,7 @@ void func_8080029C_bscarry(s32 arg0) {
     s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
     s32 func_8008C9F0(s32, s32, s32, s32, f32);
     void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
-    func_80800208_bscarry();
+    func_80800208_bscarry((PlayerState *)arg0);
     baanim_playForDuration_loopSmooth(arg0, 0x28, 0x3F4CCCCD);
     func_8009FFD8((PlayerState *)arg0, 2, 1, 1, 2);
     func_8008C9F0(arg0, 0x41F00000, 0x42700000, 0x3FE66666, 1.2f);
@@ -92,7 +103,7 @@ void func_8080065C_bscarry(s32 arg0)
 }
 void func_80800684_bscarry(s32 arg0)
 {
-    func_80800208_bscarry();
+    func_80800208_bscarry(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
 void func_808006AC_bscarry(PlayerState* self)
@@ -111,7 +122,7 @@ void func_808006E0_bscarry(s32 arg0)
 }
 void func_80800708_bscarry(s32 arg0)
 {
-    func_80800208_bscarry();
+    func_80800208_bscarry(arg0);
     _bsrest_entrypoint_16(arg0);
 }
 /* extern */
