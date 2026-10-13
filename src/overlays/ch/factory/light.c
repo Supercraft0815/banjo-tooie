@@ -18,7 +18,27 @@ void func_8080000C_chfactorylight(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/light/func_80800038_chfactorylight.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/light/func_80800408_chfactorylight.s")
+void func_80800408_chfactorylight(Actor *arg0) {
+    void func_800C8B84(s32);
+    void* func_80100094(Actor*, u32);
+    u8 *var_s0;
+    u8 *temp_v0;
+    s32 temp_a0;
+    s32 var_s1;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    var_s1 = 0;
+    var_s0 = temp_v0;
+    do {
+        temp_a0 = *(s32 *) var_s0;
+        if (temp_a0 != 0) {
+            func_800C8B84(temp_a0);
+            *(s32 *) var_s0 = 0;
+        }
+        var_s1 += 4;
+        var_s0 += 4;
+    } while (var_s1 != 8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/light/chfactorylight_entrypoint_1.s")
 
