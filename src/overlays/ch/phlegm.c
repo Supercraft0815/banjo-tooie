@@ -27,7 +27,19 @@ OSThread *chphlegm_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_8080026C_chphlegm.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_80800354_chphlegm.s")
+/* extern */
+
+void func_80800354_chphlegm(Actor *arg0) {
+    f32 func_800DC178(f32, f32);
+    f32 func_8010CD28(Actor *);
+    f32 temp_f0;
+
+    temp_f0 = func_8010CD28(arg0);
+    arg0->unk54 = temp_f0;
+    arg0->rotation[1] = temp_f0;
+    *(f32 *)&arg0->actorData[3] = arg0->scale * 150.0f;
+    arg0->unk58 = func_800DC178(0.8f, 1.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_808003B4_chphlegm.s")
 
