@@ -68,7 +68,13 @@ void func_800BBFDC(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E95650/func_800BC358.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E95650/func_800BC3B8.s")
+/* extern */
+
+void func_800BC3B8(s32 arg0, s32 arg1) {
+    void func_800BC358(s32, s32, s32);
+    func_800BC358(arg0, arg1, 4);
+    func_800BC358(arg0, arg1, 0);
+}
 
 void* func_800BC3F0(void* arg0) 
 {
