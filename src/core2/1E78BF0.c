@@ -126,7 +126,15 @@ void func_800A0024(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A0064.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A00CC.s")
+ s32 func_800A00CC(PlayerState *arg0, f32 arg1[3]) {
+    void func_8009C128(PlayerState *, f32[3]);
+    f32 sp24[3];
+    s32 sp18[3];
+
+    func_8009C128(arg0, sp24);
+    func_800F18FC(sp24, arg1, sp18);
+    yaw_setIdeal(arg0, *(f32 *)&sp18[1]);
+}
 
 /* extern */
 
