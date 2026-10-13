@@ -21,10 +21,20 @@ void func_801043A0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_801043D8.s")
+void *func_801043D8(s32 arg0) {
+    void *freelist_at(s32, s32);
+    extern s32 D_80136E80;
+    s16 temp_a1;
+
+    temp_a1 = (*(s16 *)((s8 *)(arg0) + (0x8E)));
+    if (temp_a1 == 0) {
+        return NULL;
+    }
+    return freelist_at(D_80136E80, temp_a1);
+}
 
 s32 *func_80104410(void *arg0) {
-    s32 *freelist_at(s32, s16);
+    void *freelist_at(s32, s32);
     extern s32 D_80136E80;
     extern s32 D_80136E88;
     extern s8 D_80136E8B;
