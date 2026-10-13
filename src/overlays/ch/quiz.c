@@ -718,7 +718,17 @@ void func_808040D4_chquiz(Actor *arg0) {
     func_80804170_chquiz(arg0, var_a1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80804110_chquiz.s")
+void func_80804110_chquiz(Actor *arg0) {
+    void func_80804170_chquiz(Actor *, s32);
+    s32 var_a1;
+
+    if (*(s32 *)((s8 *)arg0 + 0x34) == 0xF) {
+        var_a1 = 0x11;
+    } else {
+        var_a1 = 0x12;
+    }
+    func_80804170_chquiz(arg0, var_a1);
+}
 
 int func_8080414C_chquiz(void *arg0) {
     s32 value = *(s32 *)((s8 *)arg0 + 0x34);
