@@ -250,7 +250,10 @@ s32 func_800CAD9C(void *arg0, f32 arg1, f32 arg2, f32 arg3) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CAEA4.s")
+int func_800CAEA4(void *arg0, f32 arg1, f32 arg2, f32 arg3) {
+    f32 *p = arg0;
+    return p[17] * arg1 + p[18] * arg2 + p[19] * arg3 + p[20] <= 0.0f;
+}
 
 f32 func_800CAF00(f32 *arg0, f32 arg1) {
     f32 func_800136E4(f32);
