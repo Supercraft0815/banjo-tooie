@@ -13,7 +13,17 @@ OSThread *chgameselect_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80800228_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80800440_chgameselect.s")
+void func_80800440_chgameselect(void *arg0) {
+    void func_808036D8_chgameselect(void);
+    void heap_free(void *mem);
+    void *mem;
+
+    func_808036D8_chgameselect();
+    mem = *(void **)((u8 *)arg0 + 0x50);
+    if (mem != NULL) {
+        heap_free(mem);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80800478_chgameselect.s")
 
