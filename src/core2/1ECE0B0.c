@@ -1492,7 +1492,21 @@ void func_800F86C4(s32 arg0, s32 arg1) {
     (*(s16 *)((s8 *)(D_80135490) + (0x52))) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F86D8.s")
+void func_800F86D8(void)
+{
+    PlayerState *func_800F46D8(PlayerState *);
+    extern u8 D_801354B0[];
+    PlayerState **var_s0;
+    PlayerState *temp_a0;
+ var_s0 = D_80135490; do { temp_a0 = *var_s0;
+    if (temp_a0 != NULL)
+    {
+      *var_s0 = func_800F46D8(temp_a0);
+    }
+    var_s0++;
+  }
+  while (var_s0 != (PlayerState **) D_801354B0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8730.s")
 
