@@ -11,7 +11,14 @@ OSThread *chdodgemcontrol_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80800044_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808000B8_chdodgemcontrol.s")
+s32 func_808000B8_chdodgemcontrol(s32 arg0) {
+    struct DodgemValues { s32 values[4]; };
+    extern struct DodgemValues D_80804DFC_chdodgemcontrol;
+    struct DodgemValues sp18;
+    void func_800904C8(s32);
+    sp18 = D_80804DFC_chdodgemcontrol;
+    func_800904C8(sp18.values[arg0]);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080010C_chdodgemcontrol.s")
 
