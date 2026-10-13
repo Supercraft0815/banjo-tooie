@@ -47,7 +47,22 @@ void func_80800430_bsbwhirl(void *arg0, s32 *arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_1.s")
+/* extern */
+
+void bsbwhirl_entrypoint_1(s32 arg0) {
+    s32 anctrl_isStopped(s32);
+    s32 baanim_getAnimCtrlPtr(s32);
+    s32 bs_setState(s32, s32);
+    s32 sp1C;
+
+    sp1C = 0;
+    bainput_enable((void *)arg0, 1, 1);
+    if (anctrl_isStopped(baanim_getAnimCtrlPtr(arg0)) != 0) {
+        sp1C = 0x1B;
+    }
+    func_80800008_bsbwhirl(arg0);
+    bs_setState(arg0, sp1C);
+}
 
 /* extern */
 
