@@ -381,7 +381,31 @@ void func_80800220_chdinoboss(Actor* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80800C50_chdinoboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80800E2C_chdinoboss.s")
+/* extern */
+
+s32 func_80800E2C_chdinoboss(void) {
+    s32 func_800DA564(s32, s32);
+    volatile s32 sp1C;
+    s32 temp_v0;
+    s32 var_v1;
+
+    sp1C = 0;
+    temp_v0 = func_800DA564(0x175, 4);
+    var_v1 = sp1C;
+    if (temp_v0 & 1) {
+        var_v1 = 1;
+    }
+    if (temp_v0 & 2) {
+        var_v1 += 1;
+    }
+    if (temp_v0 & 4) {
+        var_v1 += 1;
+    }
+    if (temp_v0 & 8) {
+        var_v1 += 1;
+    }
+    return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80800E88_chdinoboss.s")
 
