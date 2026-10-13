@@ -145,7 +145,12 @@ void badrone_entrypoint_19(s32 arg0)
     func_80800348_badrone(arg0,0xD);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/drone/badrone_entrypoint_20.s")
+void badrone_entrypoint_20(void *arg0, f32 *arg1, s32 arg2) {
+    void func_800EE7F8(f32 *, f32 *);
+    *(s8 *)((s8 *)*(void **)((s8 *)arg0 + 0x54) + 0x30) = arg2;
+    func_800EE7F8((f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x54) + 0x34), arg1);
+    func_80800348_badrone(arg0, 8);
+}
 
 /* extern */
 
