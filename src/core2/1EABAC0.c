@@ -5,7 +5,26 @@ u8 *func_800D21D0(s32 arg0) {
     return (u8 *)&D_8011AFB0 + (arg0 * 12 - 0x900);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D21F0.s")
+s32 func_800D21F0(s32 arg0, s32 arg1) {
+    extern struct D_8011B45C_entry { u32 start; u32 count; } D_8011B45C[];
+    extern s32 D_8012B2C0;
+    u32 i;
+    u32 end;
+    u8 value;
+
+    i = D_8011B45C[arg1].count;
+    end = D_8011B45C[arg1].start + i;
+    if (i < end) {
+        do {
+            value = *(u8 *)i;
+            i++;
+            if (arg0 == ((s16 *)&D_8012B2C0)[value]) {
+                return value;
+            }
+        } while (i < end);
+    }
+    return -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D225C.s")
 
@@ -18,7 +37,7 @@ u8 func_800D22C8(s32 arg0) { extern struct D_8011B460_entry { u8 *ptr; u32 pad; 
 /* extern */
 
 int func_800D23E8(void *arg0, s32 arg1) {
-    s32 func_800D21F0(s32, u8);
+    s32 func_800D21F0(s32, s32);
     s32 func_800FA874(s32, u8);
     s32 temp_v0;
 
