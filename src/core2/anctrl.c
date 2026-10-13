@@ -171,7 +171,7 @@ void anctrl_setStart(AnimCtrl *arg0, f32 arg1) {
     (*(f32 *)((s8 *)(arg0) + (0x14))) = arg1;
 }
 
-enum asset_e anctrl_getIndex(AnimCtrl *arg0) {
+int anctrl_getIndex(AnimCtrl *arg0) {
     s32 func_8008C0C0(s16 *arg0);
     return func_8008C0C0((s16 *) (arg0 + 0x1C));
 }

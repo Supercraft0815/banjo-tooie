@@ -160,7 +160,31 @@ void func_8080149C_chflysaucer(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/chflysaucer_entrypoint_0.s")
+/* extern */
+
+struct anctrl_s;
+
+void chflysaucer_entrypoint_0(Unk80132ED0 *arg0, f32 arg1) {
+    int anctrl_getIndex(struct anctrl_s *);
+    void func_8008B10C(struct anctrl_s *, f32);
+    void *func_80100094(Actor *, u32);
+    struct anctrl_s *func_80104200(s16);
+    Actor *func_80106790(Unk80132ED0 *);
+    struct anctrl_s *sp1C[3];
+    s16 *temp_v0;
+    struct anctrl_s *temp_v0_2;
+    Actor *actor;
+
+    actor = func_80106790(arg0);
+    temp_v0 = func_80100094(actor, 0);
+    if (*temp_v0 != 0) {
+        temp_v0_2 = func_80104200(*temp_v0);
+        sp1C[0] = temp_v0_2;
+        if (anctrl_getIndex(temp_v0_2) == 0x486) {
+            func_8008B10C(sp1C[0], arg1);
+        }
+    }
+}
 
 void func_80801534_chflysaucer(Actor *arg0) {
     void* func_80100094(Actor*, u32);
