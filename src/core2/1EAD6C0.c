@@ -24,7 +24,19 @@ s32 func_800D3E40(s32 arg0) {
     return func_800DA298(D_8011B5BC[arg0][0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD6C0/func_800D3E6C.s")
+s32 func_800D3E6C(s32 arg0) {
+    s32 func_800DA298(s32);
+    extern u16 D_8011B5B8[][4];
+    u16 temp_v0;
+    if (func_800D3E14(arg0) != 0) {
+        return 0;
+    }
+    temp_v0 = D_8011B5B8[arg0][0];
+    if (temp_v0 != 0) {
+        return func_800DA298(temp_v0 & 0xFFFFFFFF);
+    }
+    return 1;
+}
 
 /* extern */
 
