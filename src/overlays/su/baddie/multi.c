@@ -75,6 +75,20 @@ void subaddiemulti_entrypoint_4(s32 arg0) {
     } while (var_s0 != 8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/multi/subaddiemulti_entrypoint_5.s")
+u32 subaddiemulti_entrypoint_5(void *arg0)
+{
+  u32 _suegg_entrypoint_7(void *);
+  s32 _sueggmisc_entrypoint_0();
+  u32 func_800F54E4(void *);
+  if (_sueggmisc_entrypoint_0() != 0)
+  {
+    return _suegg_entrypoint_7(arg0);
+  }
+  if ((((u32) (*((u32 *) (((s8 *) arg0) + 0x24)))) >> 0x16) == 0)
+  {
+    return (((u16) (*((u16 *) (((s8 *) arg0) + 0x1A)))) & 0xFFFFFFFFu) >> 5;
+  }
+  return func_800F54E4(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/multi/subaddiemulti_entrypoint_6.s")
