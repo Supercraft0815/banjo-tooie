@@ -20,7 +20,35 @@ void func_80800128_cheel(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_80800168_cheel.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_8080020C_cheel.s")
+/* extern */
+
+typedef union {
+    Actor actor;
+    struct {
+        u8 pad0[0x70];
+        u32 unk70_25 : 7;
+        u32 pad70_10 : 15;
+        u32 unk70_4 : 6;
+        u32 pad70_0 : 4;
+    } eel;
+} EelActor;
+
+s32 func_8080020C_cheel(EelActor *arg0) {
+    s32 func_800CC338(f32 (*)[3], s32, s32);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    f32 sp24[3];
+    s32 result;
+
+    func_800EEC30(sp24, arg0->actor.rotation[0], arg0->actor.rotation[1], 200.0f);
+    func_800EF04C(sp24, arg0->actor.position);
+    result = func_800CC338(&sp24, arg0->eel.unk70_25 - 1, arg0->eel.unk70_4 - 1);
+    if (result != -1) {
+        arg0->eel.unk70_4 = result + 1;
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
