@@ -51,7 +51,24 @@ void func_8080009C_chmermaidstatue(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mermaidstatue/func_808000E0_chmermaidstatue.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mermaidstatue/func_80800150_chmermaidstatue.s")
+/* extern */
+
+s32 func_80800150_chmermaidstatue(void) {
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    s32 func_800DA564(s32, s32);
+    s32 func_800DA7A8(s32, s32, s32);
+    s32 func_800DC128(s32, s32);
+    s32 temp_v0;
+
+    if (func_800DA298(0x6AE) == 0) {
+        temp_v0 = func_800DC128(0, 3);
+        func_800DA7A8(0x6AF, temp_v0, 2);
+        func_800DA544(0x6AE);
+        return temp_v0;
+    }
+    return func_800DA564(0x6AF, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mermaidstatue/func_808001B0_chmermaidstatue.s")
 
