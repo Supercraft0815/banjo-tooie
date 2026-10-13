@@ -250,7 +250,7 @@ void func_8080027C_sucoaster(Actor *arg0, void *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_3.s")
+u8 *sucoaster_entrypoint_3(Actor *arg0) { void *func_80100094(Actor *, u32); return (u8 *)func_80100094(arg0, 0U) + 0x1C; }
 
 void sucoaster_entrypoint_4(Actor *arg0) {
     void* func_80100094(Actor*, u32);
