@@ -133,7 +133,15 @@ void func_80800C18_chprisonbits(Actor *arg0) {
     _subaddieaudioquick_entrypoint_3(arg0, temp_a1, &D_80801138_chprisonbits, 0.6f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_80800C84_chprisonbits.s")
+/* extern */
+
+s32 func_80800C84_chprisonbits(Actor *arg0) {
+    if (func_800DA298(0x514) != 0) {
+        func_80102424(arg0, 7);
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_80800CC4_chprisonbits.s")
 
