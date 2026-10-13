@@ -56,7 +56,7 @@ void func_8080034C_chnests(void *arg0) {
     s32 _subaddieDll_entrypoint_4(void *, s32);
     s32 _subaddiefade_entrypoint_2();
     s32 func_80101FDC(void *, s32);
-    s32 func_80103110(void *, s32);
+    void func_80103110(void *, s32);
     s32 func_8010A590(void *);
     _subaddiefade_entrypoint_2();
     func_80103110(arg0, 0);
@@ -88,7 +88,27 @@ void func_80800670_chnests(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_808006C4_chnests.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_808007C8_chnests.s")
+/* extern */
+
+void func_808007C8_chnests(Actor *arg0) {
+    union NestActorView {
+        Actor actor;
+        struct {
+            u32 prefix[29];
+            u32 pad74_28 : 4;
+            u32 active : 1;
+            u32 pad74_0 : 27;
+        } flags;
+    } *view = (union NestActorView *)arg0;
+    f32 func_800D8FF8(void);
+    void func_80103110(void *, s32);
+    f32 delta;
+    if (((u32)arg0->unk70_10 == 2) && view->flags.active) {
+        delta = func_800D8FF8();
+        arg0->rotation[1] += *(f32 *)&arg0->actorData[5] * delta;
+        func_80103110(arg0, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_8080082C_chnests.s")
 
