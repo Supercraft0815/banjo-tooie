@@ -8,7 +8,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/ripple/fxripple_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/ripple/fxripple_entrypoint_2.s")
+void fxripple_entrypoint_2(s32 arg0, s32 arg1) {
+    func_80800094_fxripple(arg0, arg1, 0);
+}
 
 void fxripple_entrypoint_3()
 {
