@@ -51,7 +51,20 @@ s32 func_801042B8(s32 arg0) {
     return func_80104268(arg0 + 0x8C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDA60/func_801042D8.s")
+s32 func_801042D8(s32 arg0) {
+    s32 func_80104200(s16);
+    void func_8008B5E8(s32);
+    void freelist_erase(s32, s32);
+    extern s32 D_80136E70;
+    s32 temp_v0;
+
+    temp_v0 = func_80104200((*(s16 *)((s8 *)(arg0) + 0)));
+    if (temp_v0 != 0) {
+        func_8008B5E8(temp_v0);
+        freelist_erase(D_80136E70, (*(s16 *)((s8 *)(arg0) + 0)));
+        (*(s16 *)((s8 *)(arg0) + 0)) = 0;
+    }
+}
 
 /* extern */
 
