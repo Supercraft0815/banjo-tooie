@@ -817,7 +817,13 @@ void func_80023008(MusicPlayer *seqp, MusicEvent *event) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39CE0/func_80024C9C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39CE0/func_80024D90.s")
+void func_80024D90(MusicPlayer *arg0, f32 arg1) {
+    if (arg0->target != NULL) {
+        arg0->uspt = (s32) ((arg1 = arg1) * arg0->target->qnpt);
+    } else {
+        arg0->uspt = 0x1E8;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39CE0/func_80024DD8.s")
 
