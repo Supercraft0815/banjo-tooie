@@ -22,7 +22,42 @@ s32 func_8080000C_chjiggygamenew(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_8080020C_chjiggygamenew.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80800368_chjiggygamenew.s")
+/* extern */
+
+void func_80800368_chjiggygamenew(Unk80132ED0 *arg0) {
+    Actor *func_80106790();
+    void func_808007E4_chjiggygamenew(s16 arg0[][12], s32 arg1, s32 arg2);
+    typedef struct {
+        s8 selection;
+        u8 pad1[3];
+        u16 input;
+        u16 pad6;
+        f32 timer;
+        u8 padC[12];
+    } JiggyGameEntry;
+    Actor *actor;
+    s16 (*data)[12];
+    s32 index;
+
+    actor = func_80106790(arg0);
+    data = func_80100094(actor, 0);
+    index = actor->actorData[3];
+    if (((JiggyGameEntry *)data)[index].input != 0x800) {
+        if (((JiggyGameEntry *)data)[index].input == 0x1FFF) {
+            ((JiggyGameEntry *)data)[index].selection--;
+        }
+    } else {
+        ((JiggyGameEntry *)data)[index].selection++;
+    }
+    if (((JiggyGameEntry *)data)[index].selection < 0) {
+        ((JiggyGameEntry *)data)[index].selection += 4;
+    }
+    if (((JiggyGameEntry *)data)[index].selection >= 4) {
+        ((JiggyGameEntry *)data)[index].selection -= 4;
+    }
+    ((JiggyGameEntry *)data + index)->timer = 0.0f;
+    func_808007E4_chjiggygamenew(data, 0x55C, index);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80800424_chjiggygamenew.s")
 
