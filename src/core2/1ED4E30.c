@@ -304,7 +304,12 @@ s32 func_800FCCD4(s32 track_id) {
     return (ptr == NULL || *(s16 *)((u8 *)ptr + 0x28) == -1) ? 0 : 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FCD14.s")
+void func_800FCD14(s32 arg0, s32 arg1) {
+    void *ptr = func_800FB5F8(arg0);
+    if (ptr != NULL) {
+        func_800174C0(((s32)ptr - (s32)D_801357D0) / 80 & 0xFF, arg1);
+    }
+}
 
 void func_800FCD5C(void) {
     s32 freelist_defrag(s32);
