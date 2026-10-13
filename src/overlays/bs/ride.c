@@ -99,7 +99,27 @@ void func_808005D8_bsride(s32 arg0) {
     baanim_playForDuration_loopSmooth(arg0, 0x83, 0x3FE66666);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_8080060C_bsride.s")
+/* extern */
+
+void func_8080060C_bsride(void *arg0) {
+    struct player_state_s;
+    struct anctrl_s;
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void func_8008B10C(struct anctrl_s *, f32);
+    void bs_setState(void *, s32);
+    f32 _chhandcart_entrypoint_1(s32);
+    struct anctrl_s *animCtrl;
+    s32 next_state;
+
+    animCtrl = baanim_getAnimCtrlPtr(arg0);
+    next_state = 0;
+    if ((*(s32 *)((s8 *)arg0 + 0x15C)) != 0) {
+        func_8008B10C(animCtrl, _chhandcart_entrypoint_1(*(s32 *)((s8 *)arg0 + 0x15C)));
+    } else {
+        next_state = 0x2F;
+    }
+    bs_setState(arg0, next_state);
+}
 
 /* extern */
 
