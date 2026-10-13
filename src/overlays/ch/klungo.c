@@ -36,7 +36,20 @@ void func_808011B4_chklungo(void *arg0, s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80801220_chklungo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_8080162C_chklungo.s")
+void func_8080162C_chklungo(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_80802558_chklungo(Actor *);
+    void func_80802FCC_chklungo(Actor *);
+    s32 _suexpression_entrypoint_8(Actor *, s32);
+    void *sp1C;
+
+    sp1C = func_80100094(arg0, 0);
+    func_80802FCC_chklungo(arg0);
+    func_80802558_chklungo(arg0);
+    if (*(s16 *)((s8 *)sp1C + 0x1A) == 0) {
+        _suexpression_entrypoint_8(arg0, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80801680_chklungo.s")
 
