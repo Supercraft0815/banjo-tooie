@@ -125,7 +125,12 @@ void func_80800E94_bstrexsmall(s32 arg0)
     bstrexsmall_entrypoint_1(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80800EC0_bstrexsmall.s")
+void func_80800EC0_bstrexsmall(s32 arg0)
+{
+    bstrexsmall_entrypoint_2();
+    *(u8 *)((u8 *)arg0 + 0x15C) = 0;
+    func_80800CA4_bstrexsmall(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80800EF0_bstrexsmall.s")
 
