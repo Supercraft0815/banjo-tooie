@@ -88,7 +88,19 @@ s32 bstntswim_entrypoint_0(s32 arg0) {
     return ((s32 *)&D_808009B0_bstntswim)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tntswim/func_8080042C_bstntswim.s")
+/* extern */
+
+void func_8080042C_bstntswim(struct player_state_s *arg0) {
+    s32 baanim_playForDuration_loopSmooth(struct player_state_s *, s32, s32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    s32 func_8009FFD8(struct player_state_s *, s32, s32, s32, s32);
+    s32 yaw_setVelocityBounded(struct player_state_s *, s32, s32);
+    func_80800114_bstntswim(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0xE7, 0x40D00000);
+    func_8009FFD8(arg0, 1, 3, 3, 2);
+    yaw_setVelocityBounded(arg0, 0x43FA0000, 0x40A00000);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tntswim/func_8080049C_bstntswim.s")
 
