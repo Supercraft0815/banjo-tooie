@@ -143,7 +143,25 @@ s32 func_80801EC4_chevilspirit(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80802024_chevilspirit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80802090_chevilspirit.s")
+/* extern */
+
+void func_80802090_chevilspirit(Actor *arg0, s32 *arg1) {
+    u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);
+    void func_800C3058(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C330C(u8, s32);
+    void func_800C3BDC(u8);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    f32 *sp20 = arg0->position;
+    if (arg0->unk5F == 0) {
+        arg0->unk5F = _subaddieaudioquick_entrypoint_1(arg0, arg0->position);
+        func_800C330C(arg0->unk5F, 3);
+    }
+    func_800C3058(arg0->unk5F, 0x55F0);
+    func_800C31DC(arg0->unk5F, 1.0f);
+    func_800C4350(arg0->unk5F, sp20, arg1);
+    func_800C3BDC(arg0->unk5F);
+}
 
 /* extern */
 
