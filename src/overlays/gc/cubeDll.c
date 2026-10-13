@@ -14,7 +14,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubeDll/gccubeDll_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubeDll/gccubeDll_entrypoint_4.s")
+void gccubeDll_entrypoint_4(s32 arg0, s32 arg1) {
+    s32 func_80800230_gccubeDll(s32, s32);
+    s32 _gsmaker_entrypoint_16(s32, s32);
+    void func_80800868_gccubeDll(s32, s32);
+    func_80800230_gccubeDll(arg1, 0);
+    _gsmaker_entrypoint_16(arg1, 1);
+    func_80800868_gccubeDll(arg0, arg1);
+}
 
 /* extern */
 
