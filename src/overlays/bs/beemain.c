@@ -14,7 +14,17 @@ void func_8080002C_bsbeemain(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80800058_bsbeemain.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_808000C0_bsbeemain.s")
+void func_808000C0_bsbeemain(void *arg0) {
+    void *self;
+    s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    self = arg0;
+    _bsbee_entrypoint_1(self);
+    baanim_playForDuration_loopSmooth(self, 0x1DE, 0x40400000);
+    func_8009FFD8(self, 1, 1, 1, 2);
+    baphysics_set_target_horizontal_velocity(self, 0.0f);
+    func_800909CC(self);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80800128_bsbeemain.s")
 
