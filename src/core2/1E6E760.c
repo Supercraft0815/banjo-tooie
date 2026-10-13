@@ -14,7 +14,10 @@ void func_80094E78()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6E760/func_80094EEC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6E760/func_80094F14.s")
+void func_80094F14(u8 *arg0, s32 arg1, s32 arg2, f32 arg3) {
+    (*(u8 **)(arg0 + 0x74))[arg1] = arg2;
+    (*(f32 **)(arg0 + 0x74))[arg1 + 2] = arg3;
+}
 
 void func_80094F38(u8 *arg0) {
     s32 i;
