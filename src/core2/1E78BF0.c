@@ -20,7 +20,25 @@ f32 func_8009F308(PlayerState *arg0) {
     return sp1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009F354.s")
+/* extern */
+
+s32 func_8009F354(PlayerState *arg0) {
+    s32 _badata_entrypoint_24(PlayerState *);
+    s32 baflag_isTrue(PlayerState *, s32);
+    s32 baflag_set(PlayerState *, s32);
+    s32 bs_getCurrentState(PlayerState *);
+    s32 sp1C;
+
+    if (baflag_isTrue(arg0, 0xF) != 0) {
+        return 0;
+    }
+    baflag_set(arg0, 0xF);
+    sp1C = _badata_entrypoint_24(arg0);
+    if (bs_getCurrentState(arg0) != sp1C) {
+        return sp1C;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009F3BC.s")
 
