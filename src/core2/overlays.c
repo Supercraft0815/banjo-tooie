@@ -23,7 +23,13 @@ void func_800815C0(s32 arg0)
     D_80126CB8 = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/overlays/func_800815CC.s")
+void func_800815CC(void) {
+    extern u32 table_addr_ROM_START;
+    rom_read_word((uintptr_t)&table_addr_ROM_START, &D_80126730);
+    D_80117C60 = 0;
+    D_80117C64 = 0;
+    D_80126CB8 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/overlays/func_8008160C.s")
 
