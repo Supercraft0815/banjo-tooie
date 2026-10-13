@@ -39,7 +39,11 @@ void func_800B80D0(Gfx **arg0) {
     g->words.w1 = ((u32)D_801282C0.data[3] & 0xFF) | (u32)(((D_801282C0.data[1] & 0xFF) << 16) | ((D_801282C0.data[2] & 0xFF) << 8) | ((D_801282C0.data[0] & 0xFF) << 24));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B811C.s")
+void func_800B811C(Gfx **arg0) {
+    extern s32 D_8011A668;
+    extern s8 D_801282C5;
+    Gfx *v1 = (*arg0)++; v1->words.w0 = 0xDE000000; v1->words.w1 = (u32)((u8 *)&D_8011A668 - (u8 *)0x80000000); D_801282C5 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B8148.s")
 
