@@ -39,6 +39,13 @@ void func_808007CC_bainvisible(s32 arg0, void *arg1, f32 arg2, f32 arg3) {
     (*(f32 *)((s8 *)(arg1) + (0x2C))) = arg3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/invisible/bainvisible_entrypoint_8.s")
+void bainvisible_entrypoint_8(void *arg0, s32 arg1, f32 arg2, f32 arg3) {
+    if (arg1 & 1) {
+        func_808007CC_bainvisible((s32) arg0, (*(s32 *)((s8 *)(arg0) + (0xA8))) + 0x1C, arg2, arg3);
+    }
+    if (arg1 & 2) {
+        func_808007CC_bainvisible((s32) arg0, (*(s32 *)((s8 *)(arg0) + (0xA8))) + 0x4C, arg2, arg3);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/invisible/bainvisible_entrypoint_9.s")
