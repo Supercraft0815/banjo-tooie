@@ -35,7 +35,9 @@ void func_800D2438(void) { extern s32 D_8011AFB0; extern s32 D_8011B3F4; extern 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D2574.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D2748.s")
+void func_800D2748(s32 arg0, s32 arg1) {
+    (*(s8 *)((s8 *)(func_800D21D0(arg0)) + (1))) = (s8) arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D2770.s")
 
