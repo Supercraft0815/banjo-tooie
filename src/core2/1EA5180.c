@@ -6,9 +6,9 @@ extern s32 D_8012AE80;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CB8BC.s")
 
-void func_800CB8F0()
+s32 func_800CB8F0()
 {
-    func_800CB890();
+    return func_800CB890();
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CB910.s")
@@ -155,7 +155,11 @@ u8 func_800CC61C(s32 arg0) {
     return (*(u8 *)((s8 *)(((arg0 * 0x1C) + D_8012AE84)) + (3)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CC63C.s")
+void *func_800CC63C(s32 arg0, s32 arg1)
+{
+    extern s32 D_8012AE84;
+    return (s8 *)func_800CB8F0((arg0 * 0x1C) + D_8012AE84) + (arg1 * 0x18);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CC684.s")
 
