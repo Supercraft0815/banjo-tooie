@@ -20,7 +20,7 @@ f32 func_80800070_chstoneballcontrol(void) {
 
 /* extern */
 
-f32 func_8080009C_chstoneballcontrol(void) {
+f32 func_8080009C_chstoneballcontrol() {
     f32 func_80800040_chstoneballcontrol();
     return func_80800040_chstoneballcontrol() * 0.33f;
 }
@@ -32,9 +32,9 @@ f32 func_808000C8_chstoneballcontrol(void) {
     return func_80800040_chstoneballcontrol() * 0.05f;
 }
 
-void func_808000F4_chstoneballcontrol()
+f32 func_808000F4_chstoneballcontrol()
 {
-    func_808000C8_chstoneballcontrol();
+    return func_808000C8_chstoneballcontrol();
 }
 
 s32 func_80800114_chstoneballcontrol(s32 arg0, s32 arg1) {
@@ -641,7 +641,11 @@ void func_80804304_chstoneballcontrol(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80804D40_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80804DA0_chstoneballcontrol.s")
+void func_80804DA0_chstoneballcontrol(void *arg0) {
+    if (func_8080009C_chstoneballcontrol(arg0) < *(f32 *)((s8 *)arg0 + 0x24)) {
+        *(f32 *)((s8 *)arg0 + 0x24) -= func_808000F4_chstoneballcontrol(arg0);
+    }
+}
 
 OSThread *chstoneballcontrol_entrypoint_5(void)
 {
