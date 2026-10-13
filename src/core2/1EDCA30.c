@@ -93,7 +93,10 @@ s32 func_80103AE4(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103B24.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103BBC.s")
+void func_80103BBC(Actor *arg0) {
+    int func_80103B24(u8 *, s32, u8 *);
+    func_80103B24(arg0, 0, func_801039A4(arg0->unk0));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103BF0.s")
 
