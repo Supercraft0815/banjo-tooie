@@ -190,7 +190,14 @@ s32 bsbeemain_entrypoint_10(s32 arg0) {
     return ((s32 *)&D_808012D0_bsbeemain)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80801130_bsbeemain.s")
+void func_80801130_bsbeemain(void *arg0) {
+    _bsbee_entrypoint_1(arg0);
+    _bsdrone_entrypoint_0(arg0);
+    if (_badrone_entrypoint_3(arg0) == 2) {
+        _bafpctrl_entrypoint_10(arg0, 1);
+        func_800947EC(arg0, 2, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_8080118C_bsbeemain.s")
 
