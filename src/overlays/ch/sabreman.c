@@ -163,7 +163,21 @@ s32 func_808008C8_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_80800CDC_chsabreman.s")
+void func_80800CDC_chsabreman(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    s32 func_80101808(void *, s32 *);
+    void func_8010A764(s32, s32);
+    extern s32 func_801017D0;
+    Actor *temp_v0;
+
+    if (func_80101808(arg0, &func_801017D0) != 0) {
+        temp_v0 = _subaddielink_entrypoint_4((u8 *)func_80100094(arg0, 0U) + 0x810);
+        if (temp_v0 != NULL) {
+            func_8010A764((s32)temp_v0, arg1);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_80800D30_chsabreman.s")
 
