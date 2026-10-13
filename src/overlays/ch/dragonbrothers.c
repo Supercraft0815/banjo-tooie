@@ -176,7 +176,7 @@ void func_80800D98_chdragonbrothers(u8 *arg0, s32 arg1) {
 
 void func_808012B4_chdragonbrothers(u8 *arg0, s32 arg1) {
     s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
-    s32 _subaddieaudioquick_entrypoint_2(u8 *, u8 *, s32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     s32 func_800DA298(s32);
     s32 func_800DA544(s32);
     s32 func_800DA9E4(s32, s32);
@@ -496,7 +496,22 @@ OSThread *chdragonbrothers_entrypoint_3(void)
 void func_80804DB0_chdragonbrothers(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80804DB8_chdragonbrothers.s")
+void func_80804DB8_chdragonbrothers(Actor *arg0, u32 arg1) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_80101FDC(Actor *, u32);
+    extern s32 D_80805488_chdragonbrothers;
+    extern f32 D_80805A50_chdragonbrothers[3];
+    Actor **actor = &arg0;
+    switch (arg0->unk70_10) {
+        case 1:
+            break;
+        case 2:
+        case 4:
+            _subaddieaudioquick_entrypoint_2(*actor, D_80805A50_chdragonbrothers, &D_80805488_chdragonbrothers);
+            break;
+    }
+    func_80101FDC(*actor, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80804E1C_chdragonbrothers.s")
 
