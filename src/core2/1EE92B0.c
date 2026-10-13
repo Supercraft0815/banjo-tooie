@@ -22,7 +22,7 @@ void func_8010FAEC(s32 arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FC38.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FD08.s")
+void func_8010FD08(u8 *arg0) { s32 func_8010FC38(u8 *); arg0[0x19] = 1; func_8010FC38(arg0); arg0[0x19] = 0; }
 
 void func_8010FD38(s32 arg0, f32 arg1) {
     void func_80114CB0(void *arg0, f32 arg1);
@@ -34,9 +34,9 @@ void func_8010FD60(s32 arg0, f32 arg1) {
     func_80114CC0((*(u8 **)((s8 *)(arg0) + (0x10))), arg1);
 }
 
-void func_8010FD88()
+void func_8010FD88(u8 *arg0)
 {
-    func_8010FD08();
+    func_8010FD08(arg0);
 }
 
 void func_8010FDA8(u8 *arg0, f32 *arg1, f32 *arg2) {
