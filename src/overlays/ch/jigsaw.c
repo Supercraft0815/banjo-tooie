@@ -4,7 +4,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/func_80800070_chjigsaw.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/func_8080011C_chjigsaw.s")
+/* extern */
+
+void func_8080011C_chjigsaw(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    f32 temp_f2;
+
+    arg0->unk54 += func_800D8FF8() * 230.0f;
+    temp_f2 = arg0->unk54;
+    if (temp_f2 >= 360.0f) {
+        arg0->unk54 = temp_f2 - 360.0f;
+    }
+}
 
 /* extern */
 
