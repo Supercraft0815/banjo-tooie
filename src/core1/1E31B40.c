@@ -7,7 +7,19 @@ extern s32 D_8007BCC4;
 void func_8001A010(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A018.s")
+s32 func_8001A018(s32 arg0) {
+    void *heap_alloc(s32);
+    extern void *D_8007BCC0;
+    s16 *var_v1;
+
+    var_v1 = D_8007BCC0 = heap_alloc(arg0 + 0x40);
+    if ((s32)var_v1 % 64) {
+        do {
+            var_v1++;
+        } while ((s32)var_v1 % 64);
+    }
+    return (s32)var_v1;
+}
 
 /* extern */
 
@@ -121,7 +133,7 @@ void func_8001A324(void) {
 void func_8001A3A0(void) {
     void func_8001A570(void);
     s32 func_800A9800();
-    s32 heap_alloc(s32);
+    void *heap_alloc(s32);
     extern s32 D_8007BCD0;
     extern s32 D_8007BCD4;
     extern s32 D_8007BCD8;
