@@ -171,6 +171,7 @@ class Loop:
         self.publication_gate = threading.RLock()
         self.baseline_builder = None
         self.lanes = None
+        self.published, self.lane_seen = [], {}
         self.count_lock = threading.Lock()
         self.probe_lock = threading.Lock()
         self.probed = set()
@@ -293,6 +294,7 @@ class Loop:
         # candidate writes; only publication_gate owns the mutable ROM workspace.
         seen, active = set(), {}
         self.lanes = queue.Queue()
+        self.published, self.lane_seen = [], {}
         print(f"Cloning {self.config['concurrency']} private build lanes for parallel compiles...", flush=True)
         try:
             with ExitStack() as cleanup:
@@ -398,6 +400,25 @@ class Loop:
             scope = repair_scope(self.root, function)
             return Target(self.state.get(identity), original, reference_dump, reference, saved, length, scope)
 
+    def share(self, files):
+        """Under the gate: lanes are cloned once, so every later publication must reach them.
+
+        A lane that kept an old header compiled C the trusted tree then refused (and the
+        reverse), which looked like an object match that was never ROM-exact."""
+        self.published.append(files)
+        if self.baseline_builder:
+            # Worker copies are taken from this tree, under the same gate.
+            for path, value in files.items():
+                atomic_write(self.baseline_builder.root/path, value)
+
+    def catch_up(self, lane):
+        """Holding the lane: apply the publications it has not seen yet."""
+        published = self.published[:]
+        for files in published[self.lane_seen.get(lane, 0):]:
+            for path, value in files.items():
+                atomic_write(lane/path, value)
+        self.lane_seen[lane] = len(published)
+
     def release(self, identity, message):
         if self.state.get(identity)['status'] in ('analyzing', 'attempting', 'improving'):
             self.state.transition(identity, 'pending', last_error=message)
@@ -439,6 +460,13 @@ class Loop:
             if self.budget_reached():
                 break
             batch = self.companions(function, stage, routing) if batch is None else []
+            if (self.root/function['source']).read_bytes() != target.original:
+                # Companions matched locally were published into this file: refresh the snapshot.
+                self.state.transition(identity, 'pending')
+                target = self.prepare(self.state.get(identity))
+                if target is None:
+                    return
+                self.state.transition(identity, 'attempting')
             try:
                 result = self.attempt_with_retries(function, routing, target, batch)
             finally:
@@ -871,7 +899,14 @@ class Loop:
                 saved = self.builder.save_baseline(function['source'], directory/'baseline-object.log')
             try:
                 # Only plausible matches pay for the full link + ROM hash; it stays mandatory for those.
-                comparison['exact'] = comparison['rom_checked'] and self.rom_check(target, candidate, directory)
+                exact = comparison['rom_checked'] and self.rom_check(target, candidate, directory)
+                if exact is None:
+                    # Not a ROM difference: hand the worker the compiler's message instead.
+                    self.state.finish_run(run_id, outcome='compile_error', error='See rom-object.log')
+                    self.state.update(function['id'], last_error='Trusted ROM build could not compile the candidate:\n'
+                                      + (directory/'rom-object.log').read_text(errors='replace')[-3000:])
+                    return 'improve'
+                comparison['exact'] = exact
                 with self.gate:
                     return self.finish_candidate(target, candidate, directory, comparison, replacement, message)
             finally:
@@ -913,6 +948,7 @@ class Loop:
         commit = publish(self.root, self.state, function, original, candidate,
                          {p: (target.support[p], value) for p, value in support.items()})
         self.coordinator.expected_stamp = repository_stamp(self.root)
+        self.coordinator.share({function['source']: candidate, **support})
         atomic_write(directory/'commit.txt', commit+'\n')
         remember(self.root, self.state, function, replacement, commit)
         refresh_solutions(self.root, self.state, [function['source'], *support], commit)
@@ -929,7 +965,6 @@ class Loop:
         Parallel runs use a private lane (never linked, so no restore); otherwise the
         trusted workspace under the gate, returned to its baseline afterwards."""
         source, lanes = target.function['source'], self.coordinator.lanes
-        # A private lane may predate another function's published interface repair.
         support = {**target.support, **(support or {})}
         if lanes is None:
             with self.gate:
@@ -939,6 +974,7 @@ class Loop:
                     self.builder.restore(source, target.original, target.baseline_saved, restore_log)
         lane, builder = lanes.get()
         try:
+            self.coordinator.catch_up(lane)
             return self.compile_in(lane, builder, source, candidate, symbols, log, support)
         finally:
             lanes.put((lane, builder))
@@ -971,7 +1007,8 @@ class Loop:
         return comparison
 
     def rom_check(self, target, candidate, directory):
-        """Under the gate: the candidate in the trusted workspace, then `make check`."""
+        """Under the gate: the candidate in the trusted workspace, then `make check`.
+        None when it does not even compile there."""
         source = target.function['source']
         support = load_support(directory, target.support)
         for path, value in support.items():
@@ -980,7 +1017,7 @@ class Loop:
             self.builder.invalidate(support, directory/'invalidate.log')
         atomic_write(self.workspace/source, candidate)
         if self.builder.object_build(source, directory/'rom-object.log'):
-            return False
+            return None
         return self.builder.regression(directory/'regression.log')
 
 

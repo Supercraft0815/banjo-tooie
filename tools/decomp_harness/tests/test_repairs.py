@@ -158,6 +158,60 @@ class RepairLoopTests(LoopFixture):
         self.assertEqual(observed, [after])
         self.assertEqual((self.work/header).read_bytes(), before)
 
+    def test_lanes_and_worker_seed_receive_later_publications(self):
+        import queue
+        from types import SimpleNamespace
+        header = 'include/other.h'
+        lane, seed = self.root/'lane', self.root/'seed'
+        for tree in (lane, seed):
+            (tree/'include').mkdir(parents=True)
+            (tree/'src/core1').mkdir(parents=True)
+            (tree/header).write_bytes(b'void other(void);\n')
+        target = self.loop.prepare(self.state.get('target'))
+        observed = []
+        builder = SimpleNamespace(object_build=lambda source, log: observed.append((lane/header).read_bytes()) or 0,
+                                  disassemble=lambda source, symbol: '')
+        self.loop.lanes, self.loop.baseline_builder = queue.Queue(), SimpleNamespace(root=seed)
+        self.loop.lanes.put((lane, builder))
+        self.loop.share({header: b'int other(void);\n'})
+        for _ in range(2):
+            self.loop.object_dumps(target, fixtures.CANDIDATE.encode(), ['target'], self.root/'probe.log', self.root/'restore.log')
+        self.assertEqual(observed, [b'int other(void);\n'] * 2)
+        self.assertEqual((seed/header).read_bytes(), b'int other(void);\n')
+
+    def test_locally_published_companions_refresh_the_primary_snapshot(self):
+        target = self.loop.prepare(self.state.get('target'))
+        source, seen = self.root/target.function['source'], []
+
+        def companions(*_):
+            source.write_text(source.read_text() + '/* sibling matched */\n')
+            self.git('commit', '-am', 'sibling')
+            return []
+
+        self.loop.companions = companions
+        self.loop.attempt_with_retries = lambda function, routing, target, batch: seen.append(target.original) or 'stop'
+        self.loop.improve('target', target)
+        self.assertEqual(seen, [source.read_bytes()])
+
+    def test_compile_error_in_rom_check_is_reported_as_such(self):
+        initial = self.git('rev-parse', 'HEAD')
+        build = self.loop.builder.object_build
+
+        def trusted(source, log):
+            if log.name != 'rom-object.log':
+                return build(source, log)
+            log.write_text('cfe: Error: Incompatible function return type')
+            return 1
+
+        self.loop.builder.object_build = trusted
+        self.loop.args.max_attempts = 1
+        self.process()
+        function = self.state.get('target')
+        self.assertIsNone(function['best_score'])
+        self.assertEqual(self.state.history(function['id'], 1)[0]['outcome'], 'compile_error')
+        self.assertEqual(self.git('rev-parse', 'HEAD'), initial)
+        self.assertEqual((self.work/function['source']).read_text(), fixtures.SOURCE)
+
     def test_wrong_linked_rom_restores_header_and_never_commits(self):
         header, before, after = self.dependency()
         checks = []
