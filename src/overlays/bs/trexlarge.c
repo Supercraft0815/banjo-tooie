@@ -177,7 +177,12 @@ void func_80800DAC_bstrexlarge(s32 arg0)
     bstrexlarge_entrypoint_1(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80800DD8_bstrexlarge.s")
+void func_80800DD8_bstrexlarge(s32 arg0)
+{
+    bstrexlarge_entrypoint_2();
+    *(u8 *)((u8 *)arg0 + 0x15C) = 0;
+    func_80800BC4_bstrexlarge(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80800E08_bstrexlarge.s")
 
