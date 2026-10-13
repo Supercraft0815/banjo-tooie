@@ -84,7 +84,19 @@ void func_800D2820(s32 arg0)
     func_800D2398(func_800D21D0(arg0),arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D284C.s")
+/* extern */
+
+int func_800D284C(s32 a0) {
+    s32 func_800FA818(s32, s32);
+    u8 *sp1C;
+    s32 temp_v0_2;
+    u8 *temp_v0;
+
+    temp_v0 = func_800D21D0((s32) a0);
+    sp1C = temp_v0;
+    temp_v0_2 = func_800D21F0((s32) a0, (s32) *temp_v0);
+    return temp_v0_2 >= 0 && func_800FA818(temp_v0_2, sp1C[1]) == 1;
+}
 
 /* extern */
 
