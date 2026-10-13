@@ -8,7 +8,19 @@ void func_800F1800(void) {
     mlAbsF(func_80013AAC());
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1828.s")
+/* extern */
+
+f32 func_800F1828(f32 *arg0, f32 *arg1) {
+    f32 func_80013B7C(f32, f32);
+    f32 sp18[2];
+    f32 temp_f0;
+    f32 temp_f2;
+
+    temp_f0 = (*(f32 *)((s8 *)(arg1) + (0))) - (*(f32 *)((s8 *)(arg0) + (0)));
+    sp18[0] = (*(f32 *)((s8 *)(arg1) + (4))) - (*(f32 *)((s8 *)(arg0) + (4)));
+    temp_f2 = (*(f32 *)((s8 *)(arg1) + (8))) - (*(f32 *)((s8 *)(arg0) + (8)));
+    return func_80013B7C(sp18[0], sqrtf((temp_f0 * temp_f0) + (temp_f2 * temp_f2)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1884.s")
 
