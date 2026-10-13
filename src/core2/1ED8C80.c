@@ -31,7 +31,19 @@ void func_800FF390(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FF62C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FFA3C.s")
+/* extern */
+
+void func_800FFA3C(Actor *arg0) {
+    void func_800EBFF4(void *arg0);
+    s32 func_800FF3EC(Actor *);
+    s32 func_800FF4A4(Actor *);
+    s32 func_801066C0(u32);
+    Unk80132ED0 *sp1C = arg0->unk0;
+    func_800FF3EC(arg0);
+    func_800FF4A4(arg0);
+    func_801066C0((u32) (*(u16 *)((s8 *)(sp1C) + (0x1A))) >> 5);
+    func_800EBFF4(sp1C);
+}
 
 void func_800FFA88(Unk80132ED0* a0)
 {
