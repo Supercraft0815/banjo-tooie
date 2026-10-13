@@ -106,7 +106,19 @@ void func_800131C0(void) {
     osCreatePiManager(0x96, &D_800769B8, &D_80076978, 0x10);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80013224.s")
+void func_80013224(u32 arg0, void *arg1, s32 arg2) {
+    extern s32 D_8003CC70;
+    extern s32 D_800769CC[];
+    extern s32 D_800769D0[];
+    extern u8 D_80076940[];
+    extern u8 D_8007695C[];
+
+    D_8003CC70++;
+    D_800769CC[D_8003CC70] = (s32) arg1;
+    D_800769D0[D_8003CC70] = arg2;
+    osWritebackDCache(arg1, arg2);
+    osPiStartDma((OSIoMesg *) D_80076940, 0, 0, arg0, arg1, arg2, (OSMesgQueue *) D_8007695C);
+}
 
 void func_800132BC(void) {
     extern u8 D_8007695C[];
@@ -119,9 +131,9 @@ void func_800132BC(void) {
     D_8003CC70 -= 1;
 }
 
-void func_80013324()
+void func_80013324(u32 arg0, void *arg1, s32 arg2)
 {
-    func_80013224();
+    func_80013224(arg0, arg1, arg2);
     func_800132BC();
 }
 
