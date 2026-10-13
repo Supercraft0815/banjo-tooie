@@ -124,7 +124,7 @@ s32 func_808009F0_chbottlesfamily(s32 arg0, s32 *arg1) {
     return var_v1 != 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_80800A44_chbottlesfamily.s")
+ s32 func_80800A44_chbottlesfamily(Actor *arg0) { u32 temp_t7; temp_t7 = arg0->unk6C_9; switch (temp_t7) { case 0x43C: return 0xB0; case 0x43D: return 0xB1; default: return 0xAF; } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_80800A84_chbottlesfamily.s")
 
