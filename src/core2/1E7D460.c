@@ -167,7 +167,15 @@ void func_800A4DFC(PlayerState *arg0, s32 arg1) {
     func_800A3B78(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4E30.s")
+void func_800A4E30(PlayerState *arg0) {
+    u8 temp_v0;
+
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x38)))) + (0))) = 0;
+    temp_v0 = (*(u8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x38)))) + (6)));
+    if ((temp_v0 != 4) && (temp_v0 != 5)) {
+        func_800A3F14((s32)arg0, 2);
+    }
+}
 
 void func_800A4E74(s32 arg0)
 {
