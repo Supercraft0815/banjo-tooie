@@ -56,7 +56,7 @@ void func_8080030C_chweldarboss(Actor *arg0)
     void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
     void _chexploder_entrypoint_5(Actor *, s32, f32 *, f32, f32, s32);
     void _subaddieaudioquick_entrypoint_2(Actor*, f32[3], void*);
-    void _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
     s32 _subaddiefind_entrypoint_9(s32);
     void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
     void func_800BBCB8(f32 *, f32 *, s32, s32, s32 *);
@@ -603,7 +603,16 @@ void func_80802214_chweldarboss(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_808029D8_chweldarboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80802ABC_chweldarboss.s")
+void func_80802ABC_chweldarboss(Actor *arg0, f32 arg1) {
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void func_80018820(s32, f32, f32);
+    s32 func_800E15CC(s32, f32, f32);
+    extern u32 D_808049EC_chweldarboss;
+    if (_subaddieaudioquick_entrypoint_3(arg0, (f32 *) ((u8 *) arg0 + 4), &D_808049EC_chweldarboss, arg1) != 0) {
+        func_800E15CC(0, 10.0f, 0.8f);
+        func_80018820(0, 0.8f, 0.3f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80802B1C_chweldarboss.s")
 
