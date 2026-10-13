@@ -18,4 +18,15 @@ int func_80800000_bsdrone(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bsdrone_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bsdrone_entrypoint_3.s")
+void bsdrone_entrypoint_3(struct player_state_s *arg0) {
+    extern struct {
+        void (*callback)(struct player_state_s *);
+        u8 padding[0x10];
+    } D_80800190_bsdrone[];
+    void (*temp_v1)(struct player_state_s *);
+
+    temp_v1 = D_80800190_bsdrone[func_80800000_bsdrone()].callback;
+    if (temp_v1 != NULL) {
+        temp_v1(arg0);
+    }
+}
