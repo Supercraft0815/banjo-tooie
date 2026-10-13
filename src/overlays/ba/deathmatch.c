@@ -106,7 +106,7 @@ void badeathmatch_entrypoint_8(void *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/deathmatch/badeathmatch_entrypoint_9.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/deathmatch/badeathmatch_entrypoint_10.s")
+void badeathmatch_entrypoint_10(void *arg0, s32 arg1, s32 arg2, s32 arg3) { *(s16 *)(*(s32 *)((s8 *)arg0 + 0x158) + (arg1 * 2) + 0x10) = arg2; *(s16 *)(*(s32 *)((s8 *)arg0 + 0x158) + (arg1 * 2)) = arg3; }
 
 void badeathmatch_entrypoint_11(void *arg0, s32 arg1, s32 arg2) {
     void *temp_v0;
