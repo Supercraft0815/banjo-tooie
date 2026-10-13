@@ -52,7 +52,18 @@ void func_80800590_bswasher(s32 arg0)
     _basudie_entrypoint_6();
     func_808000F0_bswasher(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_808005B8_bswasher.s")
+struct player_state_s;
+
+void func_808005B8_bswasher(struct player_state_s *arg0) {
+    void _basudie_entrypoint_2(struct player_state_s *, f32, f32, f32);
+    s32 func_8080042C_bswasher(struct player_state_s *, s32);
+
+    func_808001A8_bswasher();
+    _basudie_entrypoint_2(arg0, *(f32 *)((s8 *)arg0 + 0x16C), 420.0f, -1200.0f);
+    *(s32 *)((s8 *)arg0 + 0x15C) = 0;
+    *(f32 *)((s8 *)arg0 + 0x16C) = 250.0f;
+    func_8080042C_bswasher(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80800608_bswasher.s")
 
