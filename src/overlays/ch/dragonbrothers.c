@@ -8,7 +8,20 @@ void func_808003D8_chdragonbrothers(Actor* arg0)
 {
     _suexpression_entrypoint_8(arg0, 1);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808003F8_chdragonbrothers.s")
+s32 func_808003F8_chdragonbrothers(Actor *arg0) {
+    switch (arg0->unk70_10) {
+    case 7:
+    case 8:
+    case 9:
+    case 10:
+    case 11:
+    case 12:
+    case 13:
+        return 1;
+    default:
+        return 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80800438_chdragonbrothers.s")
 
