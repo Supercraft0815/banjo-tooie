@@ -36,7 +36,7 @@ void func_80800174_chjujubagfx(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jujubagfx/func_808001A8_chjujubagfx.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jujubagfx/func_808003D4_chjujubagfx.s")
+void func_808003D4_chjujubagfx(Actor *arg0, s32 arg1) { void *_sumumbofx_entrypoint_8(u8 *, s32); _sumumbofx_entrypoint_8(func_80100094(arg0, 1U), arg1); }
 
 void chjujubagfx_entrypoint_1(void) {
     void func_80108474(u32, f32*, s32);
