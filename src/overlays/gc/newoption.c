@@ -324,7 +324,15 @@ s32 gcnewoption_entrypoint_3(u8 *arg0) {
     return (text + offset)[2] - 0x31;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_4.s")
+/* extern */
+
+void gcnewoption_entrypoint_4(Actor *arg0, volatile s16 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    u32 *func_80100074(Actor *, u32, u32);
+    void *func_80100094(Actor *, u32);
+    void gcnewoption_entrypoint_5(void *, s32, s32, s32, Unk80132ED0 *);
+    func_80100074(arg0, arg1, 0x260);
+    gcnewoption_entrypoint_5(func_80100094(arg0, arg1), arg2, arg3, arg4, arg0->unk0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_5.s")
 
