@@ -254,7 +254,7 @@ s32 bsvan_entrypoint_14(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_8080164C_bsvan.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80801770_bsvan.s")
+void func_80801770_bsvan(void *arg0) { s32 _chfaircoinbox_entrypoint_1(s32); _chfaircoinbox_entrypoint_1(*(*(s32 **)((s8 *)(arg0) + 0x188))); bsvan_entrypoint_0(arg0); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_808017A0_bsvan.s")
 
