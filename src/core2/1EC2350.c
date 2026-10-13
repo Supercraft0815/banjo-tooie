@@ -70,7 +70,10 @@ void func_800E8D28(u8 arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8D5C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8DB0.s")
+void func_800E8DB0(u8 arg0, s32 arg1) {
+    void *func_800E8CB0(u8);
+    *(s16 *)func_800E8CB0(arg0) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8DE4.s")
 
