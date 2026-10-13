@@ -80,7 +80,14 @@ void* func_800BC3F0(void* arg0)
 {
     return defrag(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E95650/func_800BC410.s")
+void func_800BC410(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 func_800BC474(s32, s32, s32, s32, s32, s32, s32, s32);
+    s32 func_800E7FCC(s32 *);
+    s32 sp[4];
+
+    func_800E7FCC(sp);
+    func_800BC474(arg0, sp[0], sp[1], sp[2], sp[3], arg1, arg2, arg3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E95650/func_800BC474.s")
 
