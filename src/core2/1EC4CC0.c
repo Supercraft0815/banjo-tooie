@@ -24,7 +24,15 @@ void func_800EB7A8(void) {
     } while (var_s0 != (s32 *)(&D_80132E9C));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB800.s")
+void func_800EB800(void)
+{
+  s32 vector_clear(s32);
+  extern s32 D_80132E80;
+  s32 *var_s0;
+  s32 temp_a0;
+  extern s16 D_80132E9C;
+ do { var_s0 = &D_80132E80; do { temp_a0 = *var_s0; if (temp_a0 != 0) { vector_clear(temp_a0); } var_s0++; } while (var_s0 != ((s32 *) (&D_80132E9C))); } while (0);
+}
 
 s32 func_800EB854(void) {
     extern s16 D_80132E9C;
