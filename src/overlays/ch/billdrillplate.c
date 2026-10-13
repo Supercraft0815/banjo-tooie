@@ -96,4 +96,22 @@ void *func_80800FCC_chbilldrillplate(void)
   goto loop_1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_80801020_chbilldrillplate.s")
+void *func_80801020_chbilldrillplate(void)
+{
+  s32 func_800EA05C();
+  extern u16 D_808010A0_chbilldrillplate;
+  extern u8 D_808010DC_chbilldrillplate[];
+  u16 *var_v1;
+  s32 temp_v0;
+  temp_v0 = func_800EA05C();
+ var_v1 = &D_808010A0_chbilldrillplate; loop_1: if (temp_v0 == var_v1[1]) {
+    return var_v1;
+  }
+
+  var_v1 += 0xA;
+  if (((u8 *) var_v1) == D_808010DC_chbilldrillplate)
+  {
+    return NULL;
+  }
+  goto loop_1;
+}
