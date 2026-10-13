@@ -4,7 +4,20 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/invisible/func_808001BC_bainvisible.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/invisible/func_808003AC_bainvisible.s")
+/* extern */
+
+int func_808003AC_bainvisible(void *arg0) {
+    f32 func_800F214C(f32, f32);
+    f32 temp_f0;
+    f32 temp_f12;
+    f32 step;
+
+    temp_f0 = (*(f32 *)((s8 *)(arg0) + (0xC)));
+    temp_f12 = (*(f32 *)((s8 *)(arg0) + (8))) - temp_f0;
+    step = temp_f12 * 0.25f;
+    (*(f32 *)((s8 *)(arg0) + (0xC))) = temp_f0 + step;
+    return func_800F214C(temp_f12, 0.01f) == 0.0f;
+}
 
 s32 bainvisible_entrypoint_0() 
 {
