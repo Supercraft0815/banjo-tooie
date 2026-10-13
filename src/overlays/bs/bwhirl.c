@@ -49,7 +49,10 @@ void func_80800430_bsbwhirl(void *arg0, s32 *arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_2.s")
+/* extern */
+
+void bsbwhirl_entrypoint_2(s32 arg0) { bainput_enable(arg0, 1, 1); func_8080017C_bsbwhirl(arg0); }
+
 
 s32 bsbwhirl_entrypoint_3(s32 arg0) {
     extern s32 D_80800F98_bsbwhirl[];
