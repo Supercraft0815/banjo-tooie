@@ -26,7 +26,24 @@ int func_80800060_chnastycavemen(void) {
         (func_800F640C(func_800F54E4(), 0x1D9) != 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_808000AC_chnastycavemen.s")
+int func_808000AC_chnastycavemen(int arg0, s32 *arg1, s32 *arg2) {
+    switch (arg0) {
+        default:
+        case 1:
+            *arg1 = 0xC5;
+            *arg2 = 3;
+            break;
+        case 2:
+            *arg1 = 0x112;
+            *arg2 = 5;
+            break;
+        case 5:
+            *arg1 = 0x112;
+            *arg2 = 0xD;
+            break;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_8080010C_chnastycavemen.s")
 
