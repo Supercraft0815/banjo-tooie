@@ -148,7 +148,17 @@ void func_8008DAC8(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DC90.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DD04.s")
+/* extern */
+
+int func_8008DD04(PlayerState *arg0) {
+    f32 func_80096364(PlayerState *);
+    f32 func_8009C150(PlayerState *);
+    int player_isStable(PlayerState *);
+    f32 sp1C;
+
+    sp1C = func_8009C150(arg0);
+    return (60.0f < sp1C - func_80096364(arg0)) && !player_isStable(arg0);
+}
 
 void func_8008DD70(s32 arg0)
 {

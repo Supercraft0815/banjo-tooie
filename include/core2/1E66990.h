@@ -12,7 +12,7 @@ s32 func_8008D544(PlayerState *);
 s32 func_8008D790(PlayerState *);
 s32 func_8008DE24(PlayerState *);
 int func_8008DF18(PlayerState *);
-s32 func_8008DD04(PlayerState *);
+int func_8008DD04(PlayerState *);
 s32 func_8008DF8C(PlayerState *, s32);
 int func_8008E0E8(PlayerState *);
 s32 func_8008E124(PlayerState *);
