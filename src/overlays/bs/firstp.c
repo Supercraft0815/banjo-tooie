@@ -2026,7 +2026,15 @@ void func_80808678_bsfirstp(Actor *arg0, volatile s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808086B0_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80808848_bsfirstp.s")
+void func_80808848_bsfirstp(Actor *arg0) {
+    void _bainvisible_entrypoint_7(Actor *, s32, f32, f32, f32);
+    s32 func_80807BB8_bsfirstp();
+    s32 func_80808DB0_bsfirstp(void *);
+    func_80807BB8_bsfirstp();
+    func_80808DB0_bsfirstp(arg0);
+    _bainvisible_entrypoint_7(arg0, 3, 1.0f, 1.0f, 0.4f);
+    func_808086B0_bsfirstp(arg0, 1);
+}
 
 void func_808088A4_bsfirstp(s32 arg0)
 {
