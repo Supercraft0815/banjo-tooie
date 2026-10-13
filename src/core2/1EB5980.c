@@ -47,7 +47,10 @@ f32 func_800DC264(f32 arg0, f32 arg1) {
     return (func_800DC1AC() * (arg1 - arg0)) + arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5980/func_800DC298.s")
+int func_800DC298(f32 arg0) {
+    f32 func_800DC0C0();
+    return (func_800DC0C0() < arg0) ? 1 : 0;
+}
 
 /* extern */
 
