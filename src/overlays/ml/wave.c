@@ -1,6 +1,18 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/wave/mlwave_entrypoint_0.s")
+void mlwave_entrypoint_0(void *arg0, f32 arg1, f32 arg2) {
+    (*(f32 *)((s8 *)(arg0) + (0xC))) = arg2;
+    (*(f32 *)((s8 *)(arg0) + (0x10))) = arg2;
+    (*(f32 *)((s8 *)(arg0) + (8))) = arg1;
+    (*(f32 *)((s8 *)(arg0) + (0))) = 0;
+    (*(f32 *)((s8 *)(arg0) + (0x14))) = 100.0f;
+    if (arg1 != 0.0f) {
+        (*(f32 *)((s8 *)(arg0) + (4))) = (f32) (6.2831855f / arg1);
+    } else {
+        (*(f32 *)((s8 *)(arg0) + (4))) = 0;
+    }
+    (*(f32 *)((s8 *)(arg0) + (0x18))) = 0;
+}
 
 /* extern */
 
