@@ -69,7 +69,7 @@ s16 *func_800B3C40(u8 **arg0, s32 arg1, s32 arg2) { u8 *data; s32 old_count; s32
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B4134.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B422C.s")
+void func_800B422C(u8 **arg0, s16 *arg1) { u8 *data; s32 count; data = *arg0; count = arg1[0]; if (count != 0) { func_800B3B08(data, count, arg1[1]); func_800B3EDC(arg0, 0xA); arg1[1] = 0; arg1[0] = arg1[1]; } }
 
 void func_800B4290(void *arg0) {
     (*(s16 *)((s8 *)(arg0) + (2))) = 0;
