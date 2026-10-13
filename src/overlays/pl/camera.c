@@ -37,6 +37,9 @@ s32 plcamera_entrypoint_12(s32 arg0, s32 arg1, s32 arg2) {
     return func_8010FDA8(func_800F5EF8(arg0), arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/pl/camera/plcamera_entrypoint_13.s")
+void plcamera_entrypoint_13(s32 arg0, f32 arg1) {
+    void func_8010FDEC(void *, f32);
+    func_8010FDEC(func_800F5EF8(arg0), arg1);
+}
 
 void plcamera_entrypoint_14(s32 *arg0, s32 arg1, s32 arg2) { s32 func_80110014(s32); func_80110848(func_80110014(func_800F5EF8(arg0)), arg1, arg2); }
