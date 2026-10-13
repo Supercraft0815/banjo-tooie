@@ -17,11 +17,13 @@ s32 func_800CB8F0(s16 *arg0)
     return func_800CB890(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CB910.s")
+s32 func_800CB910(s16 *arg0) {
+    return ((*(u32 *)arg0 >> 9) * 0x18) + func_800CB8F0(arg0);
+}
 
-void *func_800CB948()
+void *func_800CB948(s16 *arg0)
 {
-    func_800CB910();
+    func_800CB910(arg0);
 }
 
 void func_800CB968(s16 *arg0)
