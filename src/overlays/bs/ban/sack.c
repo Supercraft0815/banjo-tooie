@@ -160,7 +160,7 @@ void func_80801158_bsbansack(s32 arg0)
     func_8080101C_bsbansack(arg0,0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80801178_bsbansack.s")
+void func_80801178_bsbansack(PlayerState *arg0) { *(u8 *)((u8 *)arg0 + 0x15C) = 0; func_8080101C_bsbansack(arg0, 1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_8080119C_bsbansack.s")
 
