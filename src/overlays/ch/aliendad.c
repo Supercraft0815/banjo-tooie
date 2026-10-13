@@ -25,7 +25,16 @@ OSThread *chaliendad_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_808000AC_chaliendad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_808008C8_chaliendad.s")
+void func_808008C8_chaliendad(Actor *arg0) {
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    void func_80801E80_chaliendad(Actor *);
+    void *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    (*(u8 *)((s8 *)(sp1C) + (0x38))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(sp1C) + (0x38))));
+    (*(u8 *)((s8 *)(sp1C) + (0x39))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(sp1C) + (0x39))));
+    func_80801E80_chaliendad(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80800918_chaliendad.s")
 
