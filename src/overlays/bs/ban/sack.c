@@ -84,7 +84,7 @@ s32 bsbansack_entrypoint_0(s32 arg0) {
     return ((s32 *)&D_80801E10_bsbansack)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800508_bsbansack.s")
+void func_80800508_bsbansack(PlayerState *arg0) { if (*(u8 *)((u8 *)arg0 + 0x15E) == 0) func_808002D4_bsbansack(); func_80800238_bsbansack(arg0); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800540_bsbansack.s")
 
