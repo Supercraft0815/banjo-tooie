@@ -20,7 +20,16 @@ OSThread *chfactorycrusher_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/crusher/func_80800580_chfactorycrusher.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/crusher/func_8080067C_chfactorycrusher.s")
+/* extern */
+
+void func_8080067C_chfactorycrusher(s32 arg0, s32 arg1) {
+    f32 sp1C[3];
+
+    func_800E3980(sp1C);
+    if (sp1C[2] > 2500.0f) {
+        func_80101870(arg0, arg1);
+    }
+}
 
 /* extern */
 
