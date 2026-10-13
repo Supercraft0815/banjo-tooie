@@ -64,7 +64,17 @@ void func_800D192C(s32 arg0, u32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1960.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1A04.s")
+s32 func_800D1A04(s32 a0) {
+    extern struct { s16 value; s16 padding; } D_8011AF52[];
+    extern s32 D_8012B250;
+    s32 index;
+
+    index = func_800D16C4(a0);
+    if (D_8011AF52[index].value == -2) {
+        return 0x3E7;
+    }
+    return ((s16 *)D_8012B250)[index] ^ ((s16 *)&func_800D1A04)[index * 4];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1A6C.s")
 
