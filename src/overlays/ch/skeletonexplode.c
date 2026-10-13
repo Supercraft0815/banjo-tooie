@@ -73,7 +73,12 @@ void chskeletonexplode_entrypoint_5(Actor *arg0, s32 arg1) {
     (*(s8 *)((s8 *)(func_80100094(arg0, 1U)) + (0xF5))) = (s8) arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/chskeletonexplode_entrypoint_6.s")
+void chskeletonexplode_entrypoint_6(s32 *arg0, f32 *arg1, s32 arg2, s32 arg3) {
+    extern s32 _chskeletonexplode_entrypoint_0;
+    s32 sp[3];
+    func_800EE904(sp, arg1);
+    _chbaddiesetup_entrypoint_6(&_chskeletonexplode_entrypoint_0, *arg0, sp[0], sp[1], sp[2], arg2, arg3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/chskeletonexplode_entrypoint_7.s")
 
