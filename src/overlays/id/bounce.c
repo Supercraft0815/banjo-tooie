@@ -117,7 +117,25 @@ s32 *func_80800874_idbounce(s32 arg0) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/bounce/func_808008B4_idbounce.s")
+/* extern */
+
+int func_808008B4_idbounce(void) {
+    s32 func_800F54E4();
+    s32 func_800F55FC(s32);
+    s32 func_800F6C5C(s32);
+    s32 sp1C;
+    s32 temp_v0;
+
+    temp_v0 = func_800F54E4();
+    sp1C = temp_v0;
+    if (func_800F6C5C(temp_v0) == 0) {
+        return 0;
+    }
+    if (!(func_800F55FC(sp1C) & 0x8000)) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/bounce/idbounce_entrypoint_3.s")
 
