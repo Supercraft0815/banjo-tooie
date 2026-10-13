@@ -121,7 +121,21 @@ s32 bsbwhirl_entrypoint_15(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_16.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_17.s")
+/* extern */
+
+void bsbwhirl_entrypoint_17(s32 arg0) {
+    s32 anctrl_isStopped(s32);
+    s32 baanim_getAnimCtrlPtr();
+    s32 bs_setState(s32, s32);
+    s32 sp1C;
+
+    sp1C = 0;
+    if (anctrl_isStopped(baanim_getAnimCtrlPtr()) != 0) {
+        sp1C = 1;
+    }
+    func_80800008_bsbwhirl(arg0);
+    bs_setState(arg0, sp1C);
+}
 
 void bsbwhirl_entrypoint_18()
 {
