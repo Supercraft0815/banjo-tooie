@@ -36,8 +36,8 @@ void func_808005DC_chdiggerboss(s32 arg0, s32 arg1) {
 }
 
 void func_80800618_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
-    u8 *func_80100094(s32, s32);
-    (*(s8 *)((s8 *)((func_80100094(arg0, 0) + arg1)) + (0xFC))) = (s8) arg2;
+    void *func_80100094(Actor *, u32);
+    (*(s8 *)((s8 *)((((u8 *)func_80100094(arg0, 0)) + arg1)) + (0xFC))) = (s8) arg2;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80800650_chdiggerboss.s")
@@ -47,8 +47,8 @@ void func_80800618_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808007E0_chdiggerboss.s")
 
 void func_808008C0_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
-    u8 *func_80100094(s32, s32);
-    (*(s8 *)((s8 *)((func_80100094(arg0, 0) + arg1)) + (0xE4))) = (s8) arg2;
+    void *func_80100094(Actor *, u32);
+    (*(s8 *)((s8 *)((((u8 *)func_80100094(arg0, 0)) + arg1)) + (0xE4))) = (s8) arg2;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808008F8_chdiggerboss.s")
@@ -69,8 +69,8 @@ u16 func_80802158_chdiggerboss(s32 arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80802170_chdiggerboss.s")
 
 s32 func_808021E8_chdiggerboss(s32 arg0, s32 arg1) {
-    u8 *func_80100094(s32, s32);
-    if (*(func_80100094(arg0, 0) + arg1 + 0xFD) == 0) {
+    void *func_80100094(Actor *, u32);
+    if (*(u8 *)(((u8 *)func_80100094(arg0, 0)) + arg1 + 0xFD) == 0) {
         return 0;
     } else {
         return 1;
@@ -79,9 +79,9 @@ s32 func_808021E8_chdiggerboss(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void func_80802228_chdiggerboss(void *arg0) {
-    s32 func_80106790(s32);
-    func_80106790((*(s32 *)((s8 *)(arg0) + (0x3C))));
+Actor *func_80802228_chdiggerboss(Actor *arg0) {
+    Actor *func_80106790(Unk80132ED0 *);
+    return func_80106790(arg0->unk3C);
 }
 
 s32 func_80802248_chdiggerboss(s32 arg0) {
@@ -128,7 +128,7 @@ s32 func_80802314_chdiggerboss(void) {
 /* extern */
 
 void func_808026F8_chdiggerboss(void *arg0) {
-    s32 func_80106790(s32);
+    Actor *func_80106790(Unk80132ED0 *);
     func_80106790((*(s32 *)((s8 *)(arg0) + (0x3C))));
 }
 
@@ -136,7 +136,7 @@ void func_808026F8_chdiggerboss(void *arg0) {
 
 s32 func_80802718_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_0(s32, s32);
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_80802878_chdiggerboss(s32, s32, s32);
     if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
         if ((*(s16 *)((s8 *)(func_80100094(arg0, 0)) + (8))) != 2) {
@@ -166,7 +166,7 @@ void func_8080290C_chdiggerboss(Actor *arg0, u32 arg1, u32 arg2) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80802AB8_chdiggerboss.s")
 
 void func_80802BE0_chdiggerboss(s32 arg0, f32 arg1) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     (*(f32 *)((s8 *)(func_80100094(arg0, 0)) + (0xC))) = arg1;
 }
 
@@ -186,7 +186,7 @@ void func_80802CB4_chdiggerboss()
 }
 
 void func_80802CDC_chdiggerboss(s32 arg0) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     (*(s8 *)((s8 *)(func_80100094(arg0, 0)) + (0x42))) = 0;
 }
 
@@ -243,8 +243,8 @@ void func_80803558_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
 
 void chdiggerboss_entrypoint_2(s32 arg0, s32 arg1) {
     s32 _gcnewoption_entrypoint_37(s32, s32);
-    u8 *func_80100094(s32, s32);
-    s32 func_80106790(s32);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
     s32 sp1C;
     u8 *sp18;
     s32 temp_a0;
@@ -253,7 +253,7 @@ void chdiggerboss_entrypoint_2(s32 arg0, s32 arg1) {
     temp_v0 = func_80106790(arg1);
     sp1C = temp_v0;
     sp18 = func_80100094(temp_v0, 0);
-    temp_a0 = func_80100094(sp1C, 0) + 0x10C;
+    temp_a0 = ((u8 *)func_80100094(sp1C, 0)) + 0x10C;
     if ((*(u8 *)((s8 *)(sp18) + (0x40))) == 2) {
         _gcnewoption_entrypoint_37(temp_a0, 1);
     }
@@ -287,7 +287,7 @@ s32 func_80803660_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_80803DC8_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_8080041C_chdiggerboss(s32, s32);
     (*(s8 *)((s8 *)(func_80100094(arg0, 0)) + (4))) = (s8) arg1;
     if (arg2 != -1) {
@@ -302,7 +302,7 @@ void func_80803DC8_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
 void func_808040D8_chdiggerboss(s32 arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
     void func_800E8C08(u8 a0);
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0);
@@ -320,7 +320,7 @@ void func_808040D8_chdiggerboss(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808041E4_chdiggerboss.s")
 
 u8 func_808042D8_chdiggerboss(s32 arg0) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     return (*(u8 *)((s8 *)(func_80100094(arg0, 0)) + (8)));
 }
 
@@ -340,7 +340,7 @@ s32 func_80804644_chdiggerboss(f32 arg0, f32 arg1, f32 arg2) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80804680_chdiggerboss.s")
 
 void func_80804784_chdiggerboss(s32 arg0) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     (*(s8 *)((s8 *)(func_80100094(arg0, 0)) + (0x1A))) = 0;
 }
 
@@ -348,7 +348,7 @@ void func_80804784_chdiggerboss(s32 arg0) {
 
 void func_808049A8_chdiggerboss(s32 arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     u8 *sp1C;
     u8 *temp_v0;
 
@@ -360,14 +360,14 @@ void func_808049A8_chdiggerboss(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808049DC_chdiggerboss.s")
 
 void func_80804A50_chdiggerboss(s32 arg0, s32 arg1) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     (*(s16 *)((s8 *)(func_80100094(arg0, 0)) + (0x18))) = (s16) arg1;
 }
 
 /* extern */
 
 void func_80804A7C_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_800E0AFC(s32, s32, f32, f32, f32, f32);
     func_800E0AFC(arg1, 0x2A, 1.0f, 0.0f, 0.0f, (*(f32 *)((s8 *)(func_80100094(arg0, 0)) + (0x1C))));
 }
@@ -383,7 +383,7 @@ void func_80804A7C_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
 void func_80804FE4_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
     struct DiggerPart { s16 pad; s16 appendage; u8 gap[4]; f32 position[3]; u8 camera; u8 alpha; u8 visible; u8 tail[5]; };
     struct DiggerData { u8 prefix[0x34]; struct DiggerPart parts[0]; };
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_800A89F8();
     s32 func_800E8918(u8, s32, s32, f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
@@ -461,7 +461,7 @@ void func_80804FE4_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80805448_chdiggerboss.s")
 
 void func_808056B8_chdiggerboss(s32 arg0) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     void func_8010A570(Actor*);
     u8 *sp1C;
 
@@ -473,8 +473,8 @@ void func_808056B8_chdiggerboss(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808056F8_chdiggerboss.s")
 
 s16 func_80805798_chdiggerboss(s32 arg0, s32 arg1) {
-    u8 *func_80100094(s32, s32);
-    return (*(s16 *)((s8 *)((func_80100094(arg0, 0) + (arg1 * 0x1C))) + (0x34)));
+    void *func_80100094(Actor *, u32);
+    return (*(s16 *)((s8 *)((((u8 *)func_80100094(arg0, 0)) + (arg1 * 0x1C))) + (0x34)));
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808057D0_chdiggerboss.s")
@@ -482,12 +482,12 @@ s16 func_80805798_chdiggerboss(s32 arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808058B0_chdiggerboss.s")
 
 void func_80805960_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
-    u8 *func_80100094(s32, s32);
-    (*(s16 *)((s8 *)((func_80100094(arg0, 0) + (arg1 * 0x1C))) + (0x36))) = (s16) arg2;
+    void *func_80100094(Actor *, u32);
+    (*(s16 *)((s8 *)((((u8 *)func_80100094(arg0, 0)) + (arg1 * 0x1C))) + (0x36))) = (s16) arg2;
 }
 
 void func_808059A4_chdiggerboss(s32 arg0) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0);
@@ -497,7 +497,7 @@ void func_808059A4_chdiggerboss(s32 arg0) {
 
 void func_808059CC_chdiggerboss(s32 arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     u8 *sp1C;
     u8 *temp_v0;
 
@@ -509,7 +509,7 @@ void func_808059CC_chdiggerboss(s32 arg0) {
 /* extern */
 
 void func_80805A00_chdiggerboss(s32 arg0, s32 arg1) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_808027F4_chdiggerboss(s32);
     void func_80802C0C_chdiggerboss(s32);
     s32 func_80803BE8_chdiggerboss(s32, s32, s32);
@@ -535,14 +535,25 @@ void func_80805A00_chdiggerboss(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80805DF4_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808062B8_chdiggerboss.s")
+void func_808062B8_chdiggerboss(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    struct DiggerState { f32 prefix[5]; f32 value; };
+    struct DiggerActorState { f32 prefix[3]; f32 value; };
+    struct DiggerState *sp1C;
+    Actor *actor;
+
+    sp1C = func_80100094(arg0, 0);
+    actor = func_80802228_chdiggerboss(arg0);
+    sp1C->value = 2.0f;
+    ((struct DiggerActorState *)actor->actorData)->value = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80806300_chdiggerboss.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808063C8_chdiggerboss.s")
 
 void func_808064CC_chdiggerboss(s32 arg0, s32 arg1) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s8 _subaddieaudioloop_entrypoint_7(u8, s32, s32, s32 *, s32);
     extern s32 D_8080A0EC_chdiggerboss;
     u8 *sp24;
@@ -556,13 +567,13 @@ void func_808064CC_chdiggerboss(s32 arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80806528_chdiggerboss.s")
 
 void func_80806648_chdiggerboss(s32 arg0) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     (*(s8 *)((s8 *)(func_80100094(arg0, 0)) + (0x78))) = 0;
 }
 
 void func_8080666C_chdiggerboss(s32 arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     u8 *sp1C;
     u8 *temp_v0;
 
@@ -584,8 +595,8 @@ void func_8080666C_chdiggerboss(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80806CF8_chdiggerboss.s")
 
 s32 func_80806D84_chdiggerboss(s32 arg0) {
-    u8 *func_80100094(s32, s32);
-    s32 func_80106790(s32);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0);
@@ -598,7 +609,7 @@ s32 func_80806D84_chdiggerboss(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80806DC4_chdiggerboss.s")
 
 void func_80806EE4_chdiggerboss(s32 arg0, s32 arg1) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     (*(s8 *)((s8 *)(func_80100094(arg0, 0)) + (0x5F))) = (s8) arg1;
 }
 
@@ -613,18 +624,18 @@ void func_80806EE4_chdiggerboss(s32 arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80807304_chdiggerboss.s")
 
 s16 func_8080761C_chdiggerboss(s32 arg0) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     return (*(s16 *)((s8 *)(func_80100094(arg0, 0)) + (0x80)));
 }
 
 void func_80807640_chdiggerboss(s32 arg0) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     (*(s8 *)((s8 *)(func_80100094(arg0, 0)) + (0xA0))) = 0;
 }
 
 void func_80807664_chdiggerboss(s32 arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     u8 *sp1C;
     u8 *temp_v0;
 
@@ -640,7 +651,7 @@ void func_80807664_chdiggerboss(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_8080783C_chdiggerboss.s")
 
 void func_80807B18_chdiggerboss(s32 arg0) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0);
@@ -656,7 +667,7 @@ void func_80807B4C_chdiggerboss(s32 arg0)
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80807B54_chdiggerboss.s")
 
 void func_80807DC0_chdiggerboss(s32 arg0, s32 arg1) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0);
@@ -665,7 +676,7 @@ void func_80807DC0_chdiggerboss(s32 arg0, s32 arg1) {
 }
 
 void func_80807DF4_chdiggerboss(s32 arg0) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     u8 *temp_v0;
     u8 temp_v1;
 
@@ -680,7 +691,7 @@ void func_80807DF4_chdiggerboss(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80807E3C_chdiggerboss.s")
 
 void func_80807FD8_chdiggerboss(s32 arg0) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0);
@@ -690,7 +701,7 @@ void func_80807FD8_chdiggerboss(s32 arg0) {
 
 void func_80808000_chdiggerboss(s32 arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     u8 *sp1C;
     u8 *temp_v0;
 
@@ -704,7 +715,7 @@ void func_80808000_chdiggerboss(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808080C0_chdiggerboss.s")
 
 void func_8080815C_chdiggerboss(s32 arg0, s32 arg1) {
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     Actor* func_801084B0(s32, Actor**);
     u8 *sp1C;
     sp1C = func_80100094(arg0, 0);
@@ -719,7 +730,7 @@ void func_8080815C_chdiggerboss(s32 arg0, s32 arg1) {
 
 void func_8080843C_chdiggerboss(s32 arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     u8 *sp1C;
     u8 *temp_v0;
 
@@ -735,8 +746,8 @@ void func_8080843C_chdiggerboss(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808085E0_chdiggerboss.s")
 
 s32 func_808086A8_chdiggerboss(s32 arg0) {
-    u8 *func_80100094(s32, s32);
-    s32 func_80106790(s32);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0);
@@ -793,9 +804,9 @@ void func_80808F44_chdiggerboss(s32 *arg0) {
 
 s32 func_808091E4_chdiggerboss(s32 arg0) {
     u8 func_800D9078(f32*);
-    u8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_80809234_chdiggerboss(s32);
-    if ((func_800D9078(func_80100094(arg0, 0) + 0xE0) != 0) && (func_80809234_chdiggerboss(arg0) == 0)) {
+    if ((func_800D9078(((u8 *)func_80100094(arg0, 0)) + 0xE0) != 0) && (func_80809234_chdiggerboss(arg0) == 0)) {
         return 0;
     }
     return 1;
