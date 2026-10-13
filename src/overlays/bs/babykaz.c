@@ -156,7 +156,15 @@ s32 bsbabykaz_entrypoint_9(s32 arg0) {
     return ((s32 *)&D_80801770_bsbabykaz)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80800DD4_bsbabykaz.s")
+/* extern */
+
+void func_80800DD4_bsbabykaz(s32 arg0) {
+    void func_8009BF5C(s32, f32);
+    void baroll_setIdeal(s32, f32);
+    func_8009BF5C(arg0, 0.0f);
+    baroll_setIdeal(arg0, 0.0f);
+    bsbabykaz_entrypoint_3(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80800E0C_bsbabykaz.s")
 
