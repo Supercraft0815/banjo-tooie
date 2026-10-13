@@ -21,7 +21,22 @@ OSThread *chnutsnbolts_entrypoint_2(void)
     return (OSThread *) D_80800EB8_chnutsnbolts;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nutsnbolts/func_80800024_chnutsnbolts.s")
+/* extern */
+
+void func_80800024_chnutsnbolts(Actor *arg0) {
+    void _subaddierouteDll_entrypoint_3(Actor*, void*, f32*);
+    void* func_80100094(Actor*, u32);
+    s32 func_8080092C_chnutsnbolts(Actor *, s32);
+    u8 *sp24;
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    sp24 = temp_v0;
+    _subaddierouteDll_entrypoint_3(arg0, temp_v0 + 8, arg0->position);
+    func_8080092C_chnutsnbolts(arg0, 2);
+    (*(f32 *)((s8 *)(sp24) + (0x1C))) = 0.0f;
+    (*(f32 *)((s8 *)(arg0) + (0x24))) = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nutsnbolts/func_80800080_chnutsnbolts.s")
 
