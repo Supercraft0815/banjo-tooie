@@ -268,7 +268,7 @@ f32 func_800D7708(s32 arg0, f32 arg1, s32 arg2) {
 void func_800D7900(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7908.s")
+void func_800D7908(void *arg0, f32 *arg1) { void func_800A516C(f32 *, f32 *, f32 *); f32 sp1C[3]; func_800A516C(sp1C, arg1, (f32 *)((u8 *)arg0 + 4)); *(f32 *)((u8 *)arg0 + 0x54) = sp1C[1]; *(f32 *)((u8 *)arg0 + 0x50) = sp1C[0]; }
 
 void func_800D7948(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     typedef struct {
