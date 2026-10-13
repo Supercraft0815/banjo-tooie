@@ -1109,7 +1109,11 @@ void func_80806A88_chgameselect()
     _gcstatusDll_entrypoint_5();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80806AA8_chgameselect.s")
+s32 _gcstatusDll_entrypoint_10(void);
+
+s32 func_80806AA8_chgameselect(void) {
+    return (1 << (_gcstatusDll_entrypoint_10() + 0x1F)) - 1;
+}
 
 void func_80806AD4_chgameselect()
 {
