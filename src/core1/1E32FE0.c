@@ -82,7 +82,9 @@ void func_8001B518(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E32FE0/func_8001B754.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E32FE0/func_8001B798.s")
+void *func_8001B798(s16 arg0) {
+    return D_8007BF10[arg0].ptr;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E32FE0/func_8001B7B8.s")
 
