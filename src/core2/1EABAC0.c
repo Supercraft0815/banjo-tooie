@@ -1,12 +1,13 @@
 #include "core2/1EABAC0.h"
 
+extern struct D_8011B45C_entry { u32 start; u32 count; } D_8011B45C[];
+
 u8 *func_800D21D0(s32 arg0) {
     extern s32 D_8011AFB0;
     return (u8 *)&D_8011AFB0 + (arg0 * 12 - 0x900);
 }
 
 s32 func_800D21F0(s32 arg0, s32 arg1) {
-    extern struct D_8011B45C_entry { u32 start; u32 count; } D_8011B45C[];
     extern s32 D_8012B2C0;
     u32 i;
     u32 end;
@@ -26,7 +27,25 @@ s32 func_800D21F0(s32 arg0, s32 arg1) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D225C.s")
+s32 func_800D225C(s32 arg0) {
+    extern s32 D_8012B2C0;
+    u32 i;
+    u32 end;
+    u8 value;
+
+    i = D_8011B45C[arg0].count;
+    end = D_8011B45C[arg0].start + i;
+    if (i < end) {
+        do {
+            value = *(u8 *)i;
+            i++;
+            if (((s16 *)&D_8012B2C0)[value] == -1) {
+                return value;
+            }
+        } while (i < end);
+    }
+    return -1;
+}
 
 u8 func_800D22C8(s32 arg0) { extern struct D_8011B460_entry { u8 *ptr; u32 pad; } D_8011B460[]; return D_8011B460[arg0].ptr[0]; }
 
