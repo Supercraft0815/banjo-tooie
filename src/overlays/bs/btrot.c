@@ -390,7 +390,7 @@ s32 bsbtrot_entrypoint_39(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_40.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_41.s")
+void bsbtrot_entrypoint_41(s32 arg0) { func_80800538_bsbtrot(); _bashoes_entrypoint_5(arg0, 1); *(s32 *)(arg0 + 0x15C) = 0; func_80802380_bsbtrot(arg0, 1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_42.s")
 
