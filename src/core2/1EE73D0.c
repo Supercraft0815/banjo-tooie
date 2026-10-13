@@ -2,7 +2,21 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE73D0/func_8010DAE0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE73D0/func_8010DC50.s")
+/* extern */
+
+void func_8010DC50(s32 arg0) {
+    void *func_80104148(s32);
+    s32 func_80104268(s32);
+    s16 func_800AE020();
+    s32 func_8010DAE0(s32, s32);
+    s16 *ptr;
+    ptr = func_80104148(arg0);
+    if (*((u8 *)ptr + 4) == 0) {
+        func_8010DAE0(func_80104268((s32)((u8 *)ptr + 2)), arg0);
+        *ptr = func_800AE020();
+    }
+    *((u8 *)ptr + 4) = *((u8 *)ptr + 4) + 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE73D0/func_8010DCB4.s")
 
