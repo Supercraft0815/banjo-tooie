@@ -30,7 +30,21 @@ OSThread *changlerboss_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_808015F4_changlerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_808016A8_changlerboss.s")
+/* extern */
+
+void func_808016A8_changlerboss(Actor *arg0) {
+    s32 func_800DC128(s32, s32);
+    void *func_80100094(Actor *, u32);
+    void func_808015F4_changlerboss(Actor *, s32, s32);
+    u8 *temp_s0;
+    s32 temp_v0;
+
+    temp_s0 = func_80100094(arg0, 0U);
+    do {
+        temp_v0 = func_800DC128(0, 6);
+    } while (*(u8 *)((s32)temp_s0 + temp_v0 + 0x1B) != 1);
+    func_808015F4_changlerboss(arg0, temp_v0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_8080170C_changlerboss.s")
 
