@@ -16,7 +16,10 @@ OSThread *chboggyfatboy_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_80800018_chboggyfatboy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_80800078_chboggyfatboy.s")
+void func_80800078_chboggyfatboy(Actor *arg0) {
+    void *data = func_80100094(arg0, 0);
+    _subaddieitem_entrypoint_0((s32)data + 0xC, 0x3CA, 0x190, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_808000AC_chboggyfatboy.s")
 
