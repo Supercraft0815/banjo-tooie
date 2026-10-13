@@ -726,7 +726,16 @@ void func_80803A88_chgameselect(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803AB0_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803B3C_chgameselect.s")
+void func_80803B3C_chgameselect(s32 arg0) {
+    s32 _gcstatusDll_entrypoint_10(void);
+    s32 func_80016BDC(s32);
+    void func_800C9DAC(f32, void *);
+    s32 func_80800478_chgameselect(s32, s32);
+    extern void func_800AA1A0(void);
+    func_80016BDC(_gcstatusDll_entrypoint_10());
+    func_800C9DAC(1.5f, func_800AA1A0);
+    func_80800478_chgameselect(arg0, 8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803B84_chgameselect.s")
 
