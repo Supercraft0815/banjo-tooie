@@ -22,7 +22,17 @@ OSThread *chmrsicecube_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/func_808003BC_chmrsicecube.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/func_8080043C_chmrsicecube.s")
+s32 *func_8080043C_chmrsicecube(u8 *arg0, s32 arg1, f32 *arg2) {
+    s32 *_subaddiefind_entrypoint_0(s32, s32, s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 *temp_v0;
+
+    temp_v0 = _subaddiefind_entrypoint_0((s32)(arg0 + 4), arg1, -1, 0);
+    if (temp_v0 != NULL) {
+        func_800EE7F8(arg2, (f32 *)(temp_v0 + 1));
+    }
+    return temp_v0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/func_8080048C_chmrsicecube.s")
 
@@ -37,8 +47,8 @@ void func_80800634_chmrsicecube(s32 arg0) {
 
 void func_8080066C_chmrsicecube(u8 *arg0, u8 *arg1)
 {
-  s32 func_800EE7F8(u8 *, s32, u8 *);
-  func_800EE7F8(arg1, arg0 + 4, arg1);
+  void func_800EE7F8(f32 *, f32 *);
+  func_800EE7F8((f32 *)arg1, (f32 *)(arg0 + 4));
   *((f32 *) (((s8 *) arg1) + 4)) += (*((f32 *) (((s8 *) arg0) + 0x38))) * 100.0f;
 }
 
