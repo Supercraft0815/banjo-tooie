@@ -374,7 +374,17 @@ void func_808020EC_bstnt(s32 arg0)
     bstnt_entrypoint_2();
     func_80090A2C(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80802114_bstnt.s")
+void func_80802114_bstnt(void *arg0) {
+    void *self;
+    s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    self = arg0;
+    bstnt_entrypoint_3(self);
+    baanim_playForDuration_loopSmooth(self, 0xE5, 0x40D00000);
+    func_8009FFD8(self, 1, 1, 1, 2);
+    baphysics_set_target_horizontal_velocity(self, 0.0f);
+    func_800909CC(self);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_8080217C_bstnt.s")
 
