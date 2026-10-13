@@ -156,7 +156,7 @@ void sumumbofx_entrypoint_13(void *arg0) {
 
 void sumumbofx_entrypoint_15(void *arg0, f32 arg1) { void sumumbofx_entrypoint_20(void *, f32); arg0 = arg0; ((u8 *)arg0)[0x60] = (((u8 *)arg0)[0x60] & 0xFF01) | 2; sumumbofx_entrypoint_20(arg0, arg1); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_16.s")
+void sumumbofx_entrypoint_16(void *arg0, f32 arg1) { void sumumbofx_entrypoint_20(void *, f32); ((u8 *)arg0)[0x60] = (((u8 *)arg0)[0x60] & 0xFF01) | 4; sumumbofx_entrypoint_20(arg0, arg1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_17.s")
 
