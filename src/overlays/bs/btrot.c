@@ -118,7 +118,7 @@ s32 func_80800710_bsbtrot(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_2.s")
+void bsbtrot_entrypoint_2(s32 arg0) { bainput_enable(arg0, 0, 1); func_8080061C_bsbtrot(arg0); }
 
 s32 bsbtrot_entrypoint_3(s32 arg0) {
     extern s32 D_80802E50_bsbtrot[];
