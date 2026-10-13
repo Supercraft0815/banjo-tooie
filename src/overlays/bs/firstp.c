@@ -974,7 +974,20 @@ void func_80803760_bsfirstp(s32 arg0) {
     _batimer_set(arg0, 0, 0x40A00000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803784_bsfirstp.s")
+void func_80803784_bsfirstp(u8 *arg0) {
+    s32 func_8010114C(s32, s32, s32);
+    void *state;
+    s32 temp_a3;
+
+    state = *(void **)((s8 *)arg0 + 0x188);
+    temp_a3 = *(s32 *)((s8 *)state + 0x114);
+    if (temp_a3 != 0) {
+        func_8010114C(temp_a3, 4, *(s32 *)((s8 *)arg0 + 0x184));
+        *(s32 *)((s8 *)state + 0x114) = 0;
+    }
+    func_800A38F0(arg0, 1, 1);
+    func_80807C8C_bsfirstp(arg0);
+}
 
 void func_808037E4_bsfirstp(u8 *arg0) {
     s32 _batimer_decrement(void *, s32);
