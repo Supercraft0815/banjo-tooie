@@ -58,7 +58,7 @@ s32 func_808007A4_chhoopswoop(void *arg0, s32 *arg1) {
     s32 func_800D395C(void);
     void func_800FC6B0(u32);
     u32 func_800FDC28(u32);
-    void *func_80100094(void *, u32);
+    void *func_80100094(Actor *, u32);
     void *data;
     s32 count;
     s32 result;
@@ -134,7 +134,7 @@ void func_80800D28_chhoopswoop(void *arg0, s32 arg1) {
         u32 id : 9;
     } HoopActor;
     s32 func_800DA298(s32);
-    void *func_80100094(void *, u32);
+    void *func_80100094(Actor *, u32);
     s32 func_800DC128(s32, s32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800EE88C(f32 *, s16 *);
@@ -241,14 +241,18 @@ void func_80800D28_chhoopswoop(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_808011DC_chhoopswoop.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_808013C4_chhoopswoop.s")
+void func_808013C4_chhoopswoop(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 _sumultiscore_entrypoint_12(s32, s32, s32);
+    _sumultiscore_entrypoint_12((s32)func_80100094(arg0, 0U) + 0x4DC, arg1, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_808013F8_chhoopswoop.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80801494_chhoopswoop.s")
 
 s32 func_80801500_chhoopswoop(u8 *arg0, s32 arg1, s32 arg2) {
-    void *func_80100094(void *, u32);
+    void *func_80100094(Actor *, u32);
     if (arg1 == 0x10CD) {
         return (*(s32 *)((s8 *)(func_80100094(arg0, 0U)) + (8))) + 1;
     }
