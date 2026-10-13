@@ -93,7 +93,7 @@ void func_80800560_bstrexlarge(void)
 {
     bstrexlarge_entrypoint_1();
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80800580_bstrexlarge.s")
+void func_80800580_bstrexlarge(PlayerState *arg0) { bstrexlarge_entrypoint_2(); func_8009FFD8(arg0, 1, 3, 3, 2); yaw_setVelocityBounded((s32)arg0, 0x43960000, 0x40600000); func_80800000_bstrexlarge(arg0); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_808005D4_bstrexlarge.s")
 
