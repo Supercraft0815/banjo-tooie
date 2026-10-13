@@ -794,14 +794,13 @@ void func_80802BE0_bsfirstp(s32 arg0)
 
 /* extern */
 
-void func_80802C30_bsfirstp(void *arg0) {
+s32 func_80802C30_bsfirstp(void *arg0) {
     s32 _badeathmatch_entrypoint_6();
     s32 func_80094510();
     if ((*(s32 *)((s8 *)(arg0) + (0x158))) == 0) {
-        func_80094510();
-        return;
+        return func_80094510();
     }
-    _badeathmatch_entrypoint_6();
+    return _badeathmatch_entrypoint_6();
 }
 
 void func_80802C6C_bsfirstp(s32 arg0)
@@ -875,7 +874,15 @@ void func_80802F00_bsfirstp(void *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80802F20_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808030E0_bsfirstp.s")
+void func_808030E0_bsfirstp(void *arg0, s32 arg1) {
+    s32 func_80802C30_bsfirstp(void *);
+    register u8 *temp_v1 = *(u8 **)((u8 *)arg0 + 0x188);
+    *(s16 *)(temp_v1 + 0xD4) = 0;
+    if (*(s16 *)(temp_v1 + 0xE2) < arg1) {
+        *(s16 *)(temp_v1 + 0xE2) = arg1;
+        *(s16 *)(temp_v1 + 0xE8) = func_80802C30_bsfirstp(arg0);
+    }
+}
 
 void func_80803124_bsfirstp(void *arg0, s32 arg1) {
     void *p = *(void **)((s8 *)arg0 + 0x188);
