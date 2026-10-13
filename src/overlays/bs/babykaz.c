@@ -106,7 +106,13 @@ void func_808007EC_bsbabykaz()
     bsbabykaz_entrypoint_3();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_8080080C_bsbabykaz.s")
+void func_8080080C_bsbabykaz(void *arg0) {
+    void func_8009FFD8(void *, s32, s32, s32, s32);
+    bsbabykaz_entrypoint_4();
+    baanim_playForDuration_loopSmooth(arg0, 0xA9, 0x3EC28F5C);
+    func_8009FFD8(arg0, 1, 1, 3, 6);
+    *(s32 *)((s8 *)arg0 + 0x15C) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80800864_bsbabykaz.s")
 
