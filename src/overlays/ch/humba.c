@@ -175,7 +175,14 @@ void func_80800C6C_chhumba(s32 *arg0) {
     func_8008F990((s32) &sp1C, 300.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800CC8_chhumba.s")
+void func_80800CC8_chhumba(Actor *volatile arg0) {
+    void func_8008FB10(s32, f32, f32, f32);
+    extern s32 D_80802694_chhumba;
+    f32 temp_f0;
+
+    temp_f0 = arg0->scale;
+    func_8008FB10((s32) &D_80802694_chhumba, temp_f0 * 1600.0f, temp_f0 * 72.0f, temp_f0 * 350.0f);
+}
 
 /* extern */
 
