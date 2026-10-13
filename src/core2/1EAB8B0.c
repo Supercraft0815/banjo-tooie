@@ -1,6 +1,19 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAB8B0/func_800D1FC0.s")
+s16 *func_800D1FC0(s32 arg0) {
+    s32 func_800D395C(void);
+    extern s32 D_8012B260;
+    extern s32 D_8012B290;
+    s16 *result;
+
+    arg0 -= 0x80;
+    if (func_800D395C() != 0) {
+        result = (s16 *) &D_8012B290 + arg0;
+    } else {
+        result = (s16 *) &D_8012B260 + arg0;
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAB8B0/func_800D2014.s")
 
