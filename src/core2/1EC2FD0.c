@@ -92,13 +92,13 @@ void func_800E99E0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9CF4.s")
 
-void func_800E9D68(s32 arg0) {
+Prop *func_800E9D68(s16 *arg0) {
     s32 func_800B42A0(s32, s32);
     extern s32 D_80132DB0;
-    func_800B42A0(D_80132DB0, arg0);
+    return (Prop *)func_800B42A0(D_80132DB0, (s32)arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9D90.s")
+u32 func_800E9D90(s16 *arg0) { return arg0[1] * 20 + (u32)func_800E9D68(arg0); }
 
 s32 func_800E9DC4(s16 *arg0) {
     return arg0[1];
