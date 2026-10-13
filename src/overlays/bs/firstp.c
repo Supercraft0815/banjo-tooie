@@ -514,7 +514,23 @@ void func_80801D70_bsfirstp(u8 *arg0) {
     _baeggcursor_entrypoint_10(arg0, 152.0f, 114.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80801DC0_bsfirstp.s")
+/* extern */
+
+void func_80801DC0_bsfirstp(u8 *arg0) {
+    s32 func_80801E18_bsfirstp(u8 *);
+    s32 func_80801FD0_bsfirstp(u8 *, s32);
+    s32 func_808023A0_bsfirstp(u8 *);
+    u8 *temp_v0;
+    s32 temp_v1;
+
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x188)));
+    temp_v1 = (*(s32 *)((s8 *)(temp_v0) + (0xA8)));
+    if ((temp_v1 == 1) || (temp_v1 == 2)) {
+        func_80801E18_bsfirstp(arg0);
+        func_80801FD0_bsfirstp(arg0, (*(s32 *)((s8 *)(temp_v0) + (0xC))));
+        func_808023A0_bsfirstp(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80801E18_bsfirstp.s")
 
