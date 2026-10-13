@@ -34,7 +34,16 @@ void func_801121D8(s32 *arg0, f32 *arg1) {
     func_800F5A00(func_80110840(arg0), arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEBA50/func_80112204.s")
+void func_80112204(s32 *arg0, f32 *arg1) {
+    s32 func_80110840(s32 *);
+    void func_800F5470(s32, f32 *);
+    f32 sp1C[3];
+
+    func_80112168(arg0, arg1);
+    func_800F5470(func_80110840(arg0), sp1C);
+    arg1[0] = sp1C[0];
+    arg1[2] = sp1C[2];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEBA50/func_80112250.s")
 
