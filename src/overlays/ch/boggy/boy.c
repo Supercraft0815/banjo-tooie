@@ -17,7 +17,16 @@ OSThread *chboggyboy_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/boy/func_808007F4_chboggyboy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/boy/func_8080082C_chboggyboy.s")
+void func_8080082C_chboggyboy(Actor *arg0) {
+    s16 _glsplinefind_entrypoint_0(u32, f32 *);
+    void func_800EE940(void *, f32 *);
+    void *sp24;
+    f32 sp18[3];
+
+    sp24 = func_80100094(arg0, 0U);
+    ((s16 *)sp24)[3] = _glsplinefind_entrypoint_0(0x3A1U, sp18);
+    func_800EE940(sp24, sp18);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/boy/func_8080086C_chboggyboy.s")
 
