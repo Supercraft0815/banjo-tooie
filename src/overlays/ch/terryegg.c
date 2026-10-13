@@ -109,9 +109,11 @@ s32 func_80800E0C_chterryegg(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80800FE0_chterryegg.s")
 
+void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+
 void func_80801050_chterryegg(Actor *arg0) {
     extern u32 D_80801424_chterryegg;
-    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80801424_chterryegg, 0x3F4F5C29);
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80801424_chterryegg, 0.81f);
 }
 
 int func_80801080_chterryegg(s32 arg0) {
@@ -120,7 +122,10 @@ int func_80801080_chterryegg(s32 arg0) {
     _subaddieaudioquick_entrypoint_4(arg0, (f32 *) (arg0 + 4), &D_8080126C_chterryegg, &D_80801438_chterryegg);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_808010B0_chterryegg.s")
+void func_808010B0_chterryegg(Actor *arg0) {
+    extern u32 D_80801450_chterryegg;
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80801450_chterryegg, 0.0f);
+}
 
 /* extern */
 
