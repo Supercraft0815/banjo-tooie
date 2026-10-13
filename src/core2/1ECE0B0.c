@@ -831,7 +831,12 @@ void func_800F693C(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6968.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F69E8.s")
+int func_800F69E8(s32 arg0) {
+    PlayerState *self;
+
+    self = D_80135490[arg0];
+    return player_isStable(self) && func_8009659C(self, 0x2000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6A38.s")
 
