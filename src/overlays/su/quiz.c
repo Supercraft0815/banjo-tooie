@@ -124,7 +124,7 @@ void suquiz_entrypoint_13(f32 *arg0) {
     func_800EE7F8(arg0, (f32 *) D_80127614);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_14.s")
+void suquiz_entrypoint_14(f32 *arg0) { extern void *D_80127614; void func_800EE7F8(f32 *, f32 *); func_800EE7F8(arg0, (f32 *) ((u8 *) D_80127614 + 0xC)); }
 
 s8 suquiz_entrypoint_15(s32 arg0) {
     extern void *D_80127614;
