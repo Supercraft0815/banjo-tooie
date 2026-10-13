@@ -13,7 +13,24 @@ void glsplinecs_entrypoint_0(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/spline/cs/func_80800310_glsplinecs.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/spline/cs/func_808003A8_glsplinecs.s")
+/* extern */
+
+s32 func_808003A8_glsplinecs(Actor *arg0) {
+    s32 func_80104248(void *);
+    s32 func_801042B8(s32);
+    struct anctrl_s;
+    void anctrl_reset(struct anctrl_s *);
+    s32 var_v1;
+    s32 temp_v0_2;
+
+    var_v1 = func_80104248(arg0);
+    if (var_v1 == 0) {
+        temp_v0_2 = func_801042B8((s32) arg0);
+        var_v1 = temp_v0_2;
+        anctrl_reset((struct anctrl_s *) var_v1);
+    }
+    return var_v1;
+}
 
 typedef struct {
     u32 id:8;

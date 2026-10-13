@@ -46,9 +46,9 @@ s32 func_80104248(void *arg0) {
 
 /* extern */
 
-void func_801042B8(s32 arg0) {
+s32 func_801042B8(s32 arg0) {
     s32 func_80104268(s32);
-    func_80104268(arg0 + 0x8C);
+    return func_80104268(arg0 + 0x8C);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDA60/func_801042D8.s")
