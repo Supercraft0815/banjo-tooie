@@ -5,7 +5,16 @@ void func_80800000_bstnt(void *arg0) {
     func_8009DF94(arg0, 0x504, 1.0f, 0x7FFF);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80800028_bstnt.s")
+void func_80800028_bstnt(s32 arg0) {
+    s32 func_800C2FDC(u8 index);
+    u8 index;
+
+    index = *(u8 *)((s8 *)arg0 + 0x160);
+    if (index != 0) {
+        func_800C2FDC(index);
+    }
+    *(u8 *)((s8 *)arg0 + 0x160) = 0;
+}
 
 void func_80800060_bstnt(s32 arg0) 
 {
@@ -18,12 +27,12 @@ void func_80800068_bstnt(void *arg0) {
 /* extern */
 
 void func_8080009C_bstnt(void *arg0) {
-    s32 func_800C2FDC(s32, u8, void *);
+    s32 func_800C2FDC(u8 index);
     u8 temp_a1;
 
     temp_a1 = (*(u8 *)((s8 *)(arg0) + (0x160)));
     if (temp_a1 != 0) {
-        func_800C2FDC(temp_a1 & 0xFF, temp_a1, arg0);
+        func_800C2FDC(temp_a1);
     }
     (*(u8 *)((s8 *)(arg0) + (0x160))) = 0U;
 }
@@ -160,7 +169,7 @@ s32 bstnt_entrypoint_0(s32 arg0) {
 
 void func_80800CB0_bstnt(s32 arg0)
 {
-    func_80800028_bstnt();
+    func_80800028_bstnt(arg0);
     func_800951B4(arg0);
 }
 /* extern */
