@@ -5,7 +5,7 @@ s32 ncbadie_entrypoint_0()
     return 0x4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/die/func_80800008_ncbadie.s")
+void func_80800008_ncbadie(PlayerState *arg0, f32 *arg1) { func_80112524(arg0, arg1); arg1[1] = *(f32 *)*(void **)((s8 *)arg0 + 0x10) + arg1[1]; }
 
 void func_80800048_ncbadie(PlayerState* arg0, f32* arg1)
 {
