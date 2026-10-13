@@ -66,9 +66,9 @@ void func_801107B0(void *arg0) {
 
 /* extern */
 
-void func_801107D0(void *arg0) {
-    s32 func_800F5B38(s32);
-    func_800F5B38((*(s32 *)((s8 *)(arg0) + (0x68))));
+void func_801107D0(void *arg0, f32 *arg1) {
+    void func_800F5B38(s32, f32 *);
+    func_800F5B38((*(s32 *)((s8 *)(arg0) + (0x68))), arg1);
 }
 
 void func_801107F0(void *arg0, f32 *arg1) {
@@ -101,7 +101,15 @@ s32 func_80110898(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_801108A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110928.s")
+void func_80110928(void *arg0) {
+    void func_800F5B38(s32, f32 *);
+    f32 func_800136E4(f32);
+    void func_80110970(void *, f32);
+    f32 rotation[3];
+
+    func_800F5B38(*(s32 *)((s8 *)arg0 + 0x68), rotation);
+    func_80110970(arg0, func_800136E4(rotation[1] + 180.0f));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110970.s")
 
