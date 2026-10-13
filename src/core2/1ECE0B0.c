@@ -1703,7 +1703,12 @@ void func_800F9A44(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9A6C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9AAC.s")
+void func_800F9AAC(s32 arg0, s32 arg1) {
+    extern u8 D_80135520;
+    (&D_80135520)[1] = arg0;
+    (&D_80135520)[2] = arg1;
+    func_800F9488(0xB);
+}
 
 void func_800F9ADC()
 {
