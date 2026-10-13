@@ -833,7 +833,18 @@ void func_808048F8_chgameselect(u8 *arg0, s32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80804948_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080499C_chgameselect.s")
+void func_8080499C_chgameselect(s32 arg0, s32 arg1) {
+    void _glglobalsettings_entrypoint_4(s32);
+    void _glglobalsettings_entrypoint_8(s32);
+    switch (arg0) {
+        case 1:
+            _glglobalsettings_entrypoint_4(arg1);
+            break;
+        case 2:
+            _glglobalsettings_entrypoint_8(arg1);
+            break;
+    }
+}
 
 /* extern */
 
