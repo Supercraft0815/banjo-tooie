@@ -1,5 +1,10 @@
 #include "common.h"
 
+struct player_state_s;
+void _babee_entrypoint_2(struct player_state_s *self);
+extern s32 _badrone_entrypoint_3(struct player_state_s *self);
+extern void _bsdrone_entrypoint_1(struct player_state_s *self);
+
 void func_80800000_bsbeemain(s32 arg0) {
     s32 func_8009DF18(s32, s32, f32, s32);
     func_8009DF18(arg0, 0x41F, 1.4f, 0x1F40);
@@ -209,7 +214,16 @@ void func_80801130_bsbeemain(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_8080118C_bsbeemain.s")
+/* extern */
+
+void func_8080118C_bsbeemain(struct player_state_s *arg0) {
+    s32 _bsbee_entrypoint_2();
+    _bsbee_entrypoint_2(arg0);
+    _bsdrone_entrypoint_1(arg0);
+    if ((_badrone_entrypoint_3(arg0) == 2) && (bakey_held(arg0, 1) != 0)) {
+        _babee_entrypoint_2(arg0);
+    }
+}
 
 void func_808011E8_bsbeemain(s32 arg0) {
     if (_badrone_entrypoint_3(arg0) == 2) {
