@@ -25,6 +25,17 @@ void func_8080028C_chflysaucercrate(u8 *arg0, u32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucercrate/func_80800904_chflysaucercrate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucercrate/func_80800A2C_chflysaucercrate.s")
+/* extern */
+
+void func_80800A2C_chflysaucercrate(void *arg0) {
+    void func_80102B2C(Actor *, f32);
+    void func_80102B6C(u8 *, f32);
+
+    func_80102B2C(arg0, 4.0f);
+    func_80102B6C(arg0, 4.0f);
+    if (*(f32 *)((s8 *)arg0 + 0x4C)) {
+        *(f32 *)((s8 *)arg0 + 0x4C) *= 0.8f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucercrate/func_80800A88_chflysaucercrate.s")
