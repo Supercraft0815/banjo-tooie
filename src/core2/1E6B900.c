@@ -308,7 +308,20 @@ void func_8009316C(PlayerState *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_800931AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093230.s")
+/* extern */
+
+void func_80093230(PlayerState *arg0, f32 arg1) {
+    void func_800EF334(f32 *, f32);
+    u8 *temp_v0;
+
+    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x50)))) + (0x1C))) = arg1;
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x50)));
+    (*(f32 *)((s8 *)(temp_v0) + (0x70))) = (f32) ((*(f32 *)((s8 *)(temp_v0) + (0x1C))) * (*(f32 *)((s8 *)(temp_v0) + (0x5C))));
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x50)));
+    (*(f32 *)((s8 *)(temp_v0) + (0x74))) = (f32) ((*(f32 *)((s8 *)(temp_v0) + (0x1C))) * (*(f32 *)((s8 *)(temp_v0) + (0x60))));
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x50)));
+    func_800EF334((f32 *)(temp_v0 + 0x64), (*(f32 *)((s8 *)(temp_v0) + (0x1C))));
+}
 
 /* extern */
 
