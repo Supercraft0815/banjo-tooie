@@ -41,7 +41,13 @@ void func_8001D9CC(u16 arg0, u16 arg1) {
     func_8001D9AC(arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E34F80/func_8001DA00.s")
+void func_8001DA00(u8 *arg0, s32 arg1) {
+    extern s32 D_8007D810;
+    D_8007D810 = 0;
+    while (arg1--) {
+        func_8001D800(*arg0++);
+    }
+}
 
 void func_8001DA58(void) {
 }
