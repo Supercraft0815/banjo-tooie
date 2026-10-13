@@ -15,7 +15,6 @@ OSThread *chgameselect_entrypoint_0(void)
 
 void func_80800440_chgameselect(void *arg0) {
     void func_808036D8_chgameselect(void);
-    void heap_free(void *mem);
     void *mem;
 
     func_808036D8_chgameselect();
@@ -287,7 +286,22 @@ void func_808021E4_chgameselect(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802248_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802480_chgameselect.s")
+void func_80802620_chgameselect(void *arg0);
+
+void func_80802480_chgameselect(void *arg0) {
+    void *temp_a0;
+    void *temp_a1;
+
+    temp_a1 = *(void **)((u8 *)arg0 + 0x24);
+    if (temp_a1 != NULL) {
+        heap_free(temp_a1);
+    }
+    temp_a0 = *(void **)((u8 *)arg0 + 0x34);
+    if (temp_a0 != NULL) {
+        heap_free(temp_a0);
+    }
+    func_80802620_chgameselect(arg0);
+}
 
 /* extern */
 
@@ -322,7 +336,6 @@ void func_80802530_chgameselect(void *arg0) {
     }
 }
 
-void func_80802620_chgameselect(void *arg0);
 void _gldbstring_entrypoint_2(s32 a0);
 
 void func_80802588_chgameselect(void *arg0) {
