@@ -1,5 +1,7 @@
 #include "common.h"
 
+void func_80102424(Actor *, s32);
+
 void func_80800000_chfriendlystonehead(s32 arg0)
 {
     func_80102424(arg0,1);
@@ -18,7 +20,14 @@ void func_80800160_chfriendlystonehead(void **arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_808001A8_chfriendlystonehead.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_80800238_chfriendlystonehead.s")
+void func_80800238_chfriendlystonehead(Actor *arg0) {
+    struct { u8 pad[0x28]; u32 : 18; u32 flag : 1; u32 : 13; } *flags;
+    if (func_8010C9B0((f32 *) ((s8 *) arg0 + 4), 0x1F4) != 0) {
+        func_80102424(arg0, 2);
+        flags = (void *) arg0->unk0;
+        flags->flag = 1;
+    }
+}
 
 void func_80800284_chfriendlystonehead(Actor *arg0) {
     if (func_8010C9B0((f32 *) ((s8 *) arg0 + 4), 0x1F4) == 0) {
