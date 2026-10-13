@@ -2082,10 +2082,19 @@ void func_80809CB4_bsfirstp(u8 *arg0) {
 
 void func_80809CD8_bsfirstp()
 {
+    void func_80809CF8_bsfirstp();
     func_80809CF8_bsfirstp();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809CF8_bsfirstp.s")
+void func_80809CF8_bsfirstp(void *arg0) {
+    void *temp_v0;
+
+    temp_v0 = *(void **)((u8 *)arg0 + 0x188);
+    *(f32 *)((u8 *)temp_v0 + 0x29C) = 162.5f;
+    *(f32 *)((u8 *)temp_v0 + 0x2A0) = 8.0f;
+    *(s32 *)((u8 *)temp_v0 + 0x264) = 0;
+    *(f32 *)((u8 *)temp_v0 + 0x25C) = 0.0f;
+}
 
 void func_80809D24_bsfirstp(void *arg0) {
     void func_80809DD0_bsfirstp(void *);
