@@ -14,6 +14,8 @@ void func_8080000C_chcheatomenu(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_808000D4_chcheatomenu.s")
 
+void *func_80100094(Actor *, u32);
+
 void func_80800150_chcheatomenu(Actor *arg0, s32 arg1) {
     void *_gcnewoption_entrypoint_1(s32, s32);
     if ((u32) arg0->unk70_10 == 4) {
@@ -31,7 +33,35 @@ void func_80800150_chcheatomenu(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_8080058C_chcheatomenu.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_80800668_chcheatomenu.s")
+void func_80800668_chcheatomenu(Actor *arg0) {
+    void _gcnewoption_entrypoint_10(void *, u8);
+    void _gcnewoption_entrypoint_11(void *);
+    void _gcnewoption_entrypoint_4(Actor *, u32, s32 *, s32 *, s32);
+    void _gcnewoption_entrypoint_8(void *, u32);
+    void _gcnewoption_entrypoint_9(void *, u32);
+    void func_80090708(s32);
+    s32 func_800F1418(s32, s32);
+    void func_80101FDC(Actor *, u32);
+    s32 func_80800364_chcheatomenu(Actor *, void *);
+    s32 func_80800800_chcheatomenu();
+    extern s32 _gcnewoption_entrypoint_15;
+    extern s32 _gcnewoption_entrypoint_35;
+    s32 optionCounts[3];
+    void *temp_s0;
+    s32 visibleOptions;
+
+    optionCounts[0] = func_80800800_chcheatomenu();
+    _gcnewoption_entrypoint_4(arg0, 0, &_gcnewoption_entrypoint_15, &_gcnewoption_entrypoint_35, 0x1848);
+    temp_s0 = func_80100094(arg0, 0);
+    visibleOptions = func_800F1418(5, optionCounts[0]);
+    _gcnewoption_entrypoint_8(temp_s0, visibleOptions);
+    _gcnewoption_entrypoint_9(temp_s0, optionCounts[0]);
+    _gcnewoption_entrypoint_10(temp_s0, 1);
+    func_80800364_chcheatomenu(arg0, temp_s0);
+    _gcnewoption_entrypoint_11(temp_s0);
+    func_80101FDC(arg0, 4);
+    func_80090708(2);
+}
 
 void func_80800720_chcheatomenu(u8 *arg0) {
     s32 _capod_entrypoint_10(s32, s32 *);
