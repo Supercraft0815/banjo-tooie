@@ -79,10 +79,11 @@ void func_80802128_sucoasterfly(Actor* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_8080215C_sucoasterfly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/sucoasterfly_entrypoint_5.s")
+u8 *sucoasterfly_entrypoint_5(Actor *arg0) {
+    return (u8 *)func_80100094(arg0, 0U) + 0x1C;
+}
 
 void sucoasterfly_entrypoint_6()
 {
     func_80101870();
 }
-
