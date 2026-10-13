@@ -54,7 +54,24 @@ void func_80800258_suautobaddies(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/autobaddies/func_80800298_suautobaddies.s")
+/* extern */
+
+void func_80800298_suautobaddies(void) {
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+    s32 func_800EFD24(s32 *);
+    s32 func_80108474(s32, s32 *, s32);
+    s32 sp1C[3];
+    s32 temp_v0;
+
+    if (func_800DA298(0x650) != 0) {
+        temp_v0 = func_800EA05C();
+        if ((temp_v0 != 0x19C) && (temp_v0 != 0x19D)) {
+            func_800EFD24(sp1C);
+            func_80108474(0x174, sp1C, 0);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/autobaddies/suautobaddies_entrypoint_2.s")
 
