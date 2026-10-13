@@ -96,9 +96,10 @@ void func_80800B58_chhoneyb()
     func_800D1A04(0x49);
 }
 
-void func_80800B78_chhoneyb()
+s32 func_80800B78_chhoneyb()
 {
-    _gcextra_entrypoint_0();
+    s32 _gcextra_entrypoint_0();
+    return _gcextra_entrypoint_0();
 }
 
 /* extern */
@@ -113,7 +114,9 @@ s32 func_80800B98_chhoneyb(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800BD8_chhoneyb.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800C0C_chhoneyb.s")
+void func_80800C0C_chhoneyb(void) {
+    func_80800B98_chhoneyb(func_80800B78_chhoneyb() + 1);
+}
 
 void func_80800C34_chhoneyb(u8 *arg0) {
     void func_8010A3E8(void *arg0, f32 arg1);
