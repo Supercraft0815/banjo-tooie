@@ -11,10 +11,18 @@ void func_800F3880(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F3A78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F3B3C.s")
+typedef struct player_state_s PlayerState;
+f32 func_800F3B3C(PlayerState *arg0, f32 *arg1, s32 arg2) {
+    void func_8009E154(PlayerState *, s32, f32 *);
+    s32 func_8008E9B8(PlayerState *, s32 **);
+    s32 *sp1C;
 
-void func_800F3B90(Actor *arg0, u32 arg1) {
-    u32* func_800F3B3C(Actor*, u32, u32);
+    func_8009E154(arg0, arg2, arg1);
+    func_8008E9B8(arg0, &sp1C);
+    return (f32)sp1C[arg2];
+}
+
+void func_800F3B90(PlayerState *arg0, f32 *arg1) {
     func_800F3B3C(arg0, arg1, 0U);
 }
 
