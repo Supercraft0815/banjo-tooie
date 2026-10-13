@@ -195,7 +195,7 @@ void suquiz_entrypoint_20(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_21.s")
+void suquiz_entrypoint_21(s32 arg0, s32 arg1) { extern void *D_80127614; ((s8 *) ((u8 *) D_80127614 + arg0))[0x2A] = arg1; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_22.s")
 
