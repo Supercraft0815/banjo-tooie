@@ -93,7 +93,18 @@ void func_8080084C_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800910_chmineprospector.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800970_chmineprospector.s")
+void func_80800970_chmineprospector(Actor *arg0) {
+    void _capod_entrypoint_3(s32);
+    void *temp_v0;
+    void *sp1C;
+
+    temp_v0 = func_80100094(arg0, 0);
+    if (*(s32 *)((u8 *)temp_v0 + 0x10) != 0) {
+        sp1C = temp_v0;
+        _capod_entrypoint_3(0);
+        *(s32 *)((u8 *)sp1C + 0x10) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_808009B0_chmineprospector.s")
 
