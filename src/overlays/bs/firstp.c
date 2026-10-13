@@ -2049,7 +2049,22 @@ s32 bsfirstp_entrypoint_34(s32 arg0) {
     return ((s32 *)&D_8080B5B0_bsfirstp)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80808A24_bsfirstp.s")
+void func_80808A24_bsfirstp(struct player_state_s *arg0) {
+    s32 func_80807BB8_bsfirstp();
+    s32 func_80808DB0_bsfirstp(void *);
+    s32 func_80808CAC_bsfirstp(struct player_state_s *, s32);
+    void func_80808D80_bsfirstp(s32);
+    void *sp24;
+
+    sp24 = *(void **)((u8 *)arg0 + 0x188);
+    func_80807BB8_bsfirstp(arg0);
+    *(s32 *)((u8 *)sp24 + 8) = -1;
+    func_80808DB0_bsfirstp(arg0);
+    *(s32 *)((u8 *)arg0 + 0x160) = 0;
+    func_80808CAC_bsfirstp(arg0, 1);
+    func_80800858_bsfirstp((s32)arg0, 1);
+    func_80808D80_bsfirstp((s32)arg0);
+}
 
 void func_80808A8C_bsfirstp(void)
 {
