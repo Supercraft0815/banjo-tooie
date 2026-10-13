@@ -16,6 +16,8 @@ void func_8080000C_choctopus(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/octopus/func_80800054_choctopus.s")
 
+void func_808007E4_choctopus();
+
 void func_80800210_choctopus()
 {
     func_808007E4_choctopus();
@@ -39,11 +41,15 @@ OSThread *choctopus_entrypoint_1(void)
 void func_80800790_choctopus(Actor *arg0) {
     void _suexpression_entrypoint_12(void*, f32, f32);
     void _suexpression_entrypoint_7(Actor*, u32, u32);
-    void* func_80100094(Actor*, u32);
     if (func_80100094(arg0, 1U) == NULL) {
         _suexpression_entrypoint_7(arg0, 1U, 0xB6U);
         _suexpression_entrypoint_12(func_80100094(arg0, 1U), 80.0f, 30.0f);
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/octopus/func_808007E4_choctopus.s")
+void func_808007E4_choctopus(Actor *arg0) {
+    void _suexpression_entrypoint_8(Actor *, s32);
+    if (func_80100094(arg0, 1U) != 0) {
+        _suexpression_entrypoint_8(arg0, 1);
+    }
+}
