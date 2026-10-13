@@ -66,7 +66,9 @@ void func_80800548_chmrsboggy(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggy/func_808005D8_chmrsboggy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggy/func_8080070C_chmrsboggy.s")
+/* extern */
+
+s32 func_8080070C_chmrsboggy(s32 arg0, s32 arg1, s32 arg2) { s32 func_80800990_chmrsboggy(void); return 3 - func_80800990_chmrsboggy(); }
 
 /* extern */
 
@@ -100,7 +102,7 @@ void func_80800790_chmrsboggy(void *arg0) {
 
 /* extern */
 
-void func_80800990_chmrsboggy(void) {
+s32 func_80800990_chmrsboggy(void) {
     s32 func_800DA980(s32, s32);
-    func_800DA980(0x8C, 3);
+    return func_800DA980(0x8C, 3);
 }
