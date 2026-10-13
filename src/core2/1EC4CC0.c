@@ -141,7 +141,20 @@ void func_800EBD2C(u8 *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBD78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBE24.s")
+void func_800EBE24(void *arg0) {
+    extern s32 D_80123554;
+    extern s32 D_80132ED0;
+    u8 *base;
+    s32 temp_v0;
+    u8 *temp_v1;
+
+    base = (u8 *) &D_80132ED0;
+    temp_v0 = (s32) arg0 - (s32) base;
+    *(u16 *) ((s8 *) arg0 + 0x12) &= 1;
+    temp_v1 = base;
+    temp_v1 += temp_v0 / 48 >> 3;
+    *(temp_v1 + 0x2580) = *(temp_v1 + 0x2580) & *((s32 *) &D_80123554 + (temp_v0 / 48 & 7));
+}
 
 /* extern */
 
@@ -173,7 +186,7 @@ void func_800EBFD4(s32 arg0, s32 *arg1, u32 arg2) {
 void func_800EBFF4(void *arg0) {
     s32 func_800BDB9C(s32);
     s32 func_800E9AC0(s32, s32);
-    s32 func_800EBE24(void *);
+    void func_800EBE24(void *);
     func_800E9AC0(func_800BDB9C((*(s16 *)((s8 *)(arg0) + (0x1C)))), (*(s32 *)((s8 *)(arg0) + (0))));
     func_800EBE24(arg0);
 }
