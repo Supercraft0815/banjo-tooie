@@ -1875,12 +1875,32 @@ void func_80807F5C_bsfirstp(s32 arg0) {
     bs_setState((u8 *) arg0, 0xCA);
 }
 
-void func_80807F9C_bsfirstp()
+void func_80807FBC_bsfirstp(s32 arg0);
+void func_808080A4_bsfirstp(void *, u8);
+void func_808080B4_bsfirstp(s32, s16 *, u8);
+void func_80808100_bsfirstp(s32, s32);
+
+void func_80807F9C_bsfirstp(s32 arg0)
 {
-    func_80807FBC_bsfirstp();
+    func_80807FBC_bsfirstp(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80807FBC_bsfirstp.s")
+void func_80807FBC_bsfirstp(s32 arg0) {
+    void *volatile sp1C;
+    volatile s32 sp18;
+    s32 temp_a1;
+    void *temp_v0;
+    u8 temp_a2;
+
+    temp_v0 = *(void **)((s8 *)arg0 + 0x188);
+    temp_a1 = (s32)temp_v0 + 0x6C;
+    sp18 = temp_a1;
+    sp1C = temp_v0;
+    func_80808100_bsfirstp(arg0, temp_a1);
+    func_808080A4_bsfirstp((void *)arg0, 255);
+    temp_a2 = *(u8 *)((s8 *)sp1C + 0x72);
+    func_808080B4_bsfirstp(arg0, (s16 *)*(s32 *)&sp18, temp_a2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080800C_bsfirstp.s")
 
@@ -1889,7 +1909,7 @@ void func_80808084_bsfirstp(s32 arg0)
     func_80092744(arg0,0);
 }
 
-void func_808080A4_bsfirstp(void *arg0, s8 arg1) {
+void func_808080A4_bsfirstp(void *arg0, u8 arg1) {
     s8 *ptr = *(s8 **)((s8 *)arg0 + 0x188);
     ptr[0x72] = arg1;
 }
