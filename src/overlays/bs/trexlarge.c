@@ -153,7 +153,12 @@ void func_80800A00_bstrexlarge(void)
 {
     bstrexlarge_entrypoint_1();
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80800A20_bstrexlarge.s")
+void func_80800A20_bstrexlarge(s32 arg0)
+{
+    bstrexlarge_entrypoint_2();
+    *(u8 *)((u8 *)arg0 + 0x15C) = 0;
+    func_80800934_bstrexlarge(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80800A50_bstrexlarge.s")
 
