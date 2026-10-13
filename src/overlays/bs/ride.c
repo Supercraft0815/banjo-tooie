@@ -4,7 +4,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_8080008C_bsride.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_808000F0_bsride.s")
+s32 func_808000F0_bsride(s32 arg0) { func_8009EAE8(0); func_8080008C_bsride(arg0); }
 
 /* extern */
 
