@@ -212,12 +212,15 @@ int player_isStable(PlayerState *player) {
     return func_800A0FCC() && baphysics_get_vertical_velocity(player) < 0.0f;
 }
 
-void func_8008E0C8()
+s32 func_8008E0C8(PlayerState *arg0)
 {
-    _bapackctrl_entrypoint_1();
+    s32 _bapackctrl_entrypoint_1(PlayerState *);
+    return _bapackctrl_entrypoint_1(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008E0E8.s")
+int func_8008E0E8(PlayerState *arg0) {
+    return func_8008E23C(arg0) && !func_8008E0C8(arg0);
+}
 
 s32 func_8008E124(PlayerState *arg0) {
     s32 func_8009CC68(PlayerState *self);
