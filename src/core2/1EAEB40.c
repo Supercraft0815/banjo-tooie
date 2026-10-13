@@ -35,7 +35,12 @@ int func_800D52B0(void) {
     (*(s8 *)((s8 *)(&D_8012B430) + (0))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAEB40/func_800D52CC.s")
+void func_800D52CC(s32 arg0) {
+    int func_800D52B0();
+    extern s16 D_8012B432;
+    func_800D52B0();
+    D_8012B432 = (s16) arg0;
+}
 
 s32 func_800D52F4(void) {
     extern s16 D_8012B432;
