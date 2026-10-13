@@ -1,6 +1,17 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7EDB0/func_800A54C0.s")
+/* extern */
+
+void func_800A54C0(s32 arg0) {
+    s32 func_8011001C(s32 *);
+    void _ncfixposrot_entrypoint_2(s32, s32);
+    s32 temp_v0;
+
+    temp_v0 = func_8011001C((s32 *)func_8008FFE8());
+    if (temp_v0 != 0) {
+        _ncfixposrot_entrypoint_2(temp_v0, arg0);
+    }
+}
 
 void func_800A54F8(s32 arg0)
 {
