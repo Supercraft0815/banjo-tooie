@@ -110,7 +110,7 @@ void bsstonehead_entrypoint_16(PlayerState *arg0)
     func_80800000_bsstonehead(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_17.s")
+void bsstonehead_entrypoint_17(PlayerState *arg0) { func_80800060_bsstonehead(); (*(s32 *)((s8 *)(arg0) + 0x15C)) = 0; func_80800B38_bsstonehead(arg0, 1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_18.s")
 
