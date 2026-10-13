@@ -116,7 +116,16 @@ void func_80800790_bsstatue(struct player_state_s *arg0) {
     func_80800BEC_bsstatue(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_808007D4_bsstatue.s")
+void func_808007D4_bsstatue(void *arg0) {
+    int func_80800130_bsstatue();
+    s32 func_8080054C_bsstatue(void *, s32);
+    void baphysics_set_target_horizontal_velocity(void *, f32);
+    func_80800130_bsstatue();
+    func_8080054C_bsstatue(arg0, 0);
+    if (bs_getNextState(arg0) == 0xF9) {
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    }
+}
 
 /* extern */
 
