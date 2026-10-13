@@ -129,7 +129,14 @@ void func_800F45E0(struct player_state_s *arg0, f32 *arg1) {
     baroll_applyIdeal(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F4648.s")
+void func_800F4648(void *arg0, f32 arg1[3]) {
+    f32 sp24[3];
+    f32 sp18[3];
+
+    func_8009C128(arg0, sp24);
+    func_800EFB24(sp18, arg1, sp24);
+    func_8009C1F8(arg0, sp18);
+}
 
 /* extern */
 
