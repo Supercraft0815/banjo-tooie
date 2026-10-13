@@ -476,7 +476,17 @@ void func_800C3648(u8 index, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C368C.s")
+/* extern */
+
+void func_800C368C(u8 arg0, s32 arg1) {
+    void *ptr;
+    if (arg0) {
+        ptr = func_800C1414(arg0);
+        if (arg1) { func_800C13A0(ptr, 2); }
+        else { func_800C13B0(ptr, 2); }
+        func_800C33DC(arg0, arg1);
+    }
+}
 
 void func_800C36F4(u8 arg0, s32 arg1) {
     if (arg0 != 0) {
