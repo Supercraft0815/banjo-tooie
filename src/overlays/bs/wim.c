@@ -412,7 +412,7 @@ void func_808018EC_bsbswim(s32 arg0) {
     func_80099AA8(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80801930_bsbswim.s")
+void func_80801930_bsbswim(u8 *arg0) { s32 _baduo_entrypoint_7(u8 *, s32); if (arg0[0x165] != 0) _baduo_entrypoint_7(arg0, 3); func_80800104_bsbswim(arg0); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_8080196C_bsbswim.s")
 
