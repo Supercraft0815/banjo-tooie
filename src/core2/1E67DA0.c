@@ -43,7 +43,17 @@ void func_8008E944(PlayerState *arg0) {
     (*(u8 *)((s8 *)(temp_v0) + (0x2A))) = (u8) ((*(u8 *)((s8 *)(temp_v0) + (0x2A))) & 0xFFFD);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E67DA0/func_8008E95C.s")
+void func_8008E95C(PlayerState *arg0) {
+    struct Flags {
+        u8 pad[0x28];
+        unsigned int upper : 22;
+        unsigned int flag : 1;
+        unsigned int rest : 9;
+    } *flags;
+
+    flags = *(void **) *(void **)((u8 *)arg0 + 0xC);
+    flags->flag = 1;
+}
 
 s32 func_8008E974(u8 *arg0) {
     struct Flags { unsigned int pad : 22; signed int flag : 1; unsigned int rest : 9; };
