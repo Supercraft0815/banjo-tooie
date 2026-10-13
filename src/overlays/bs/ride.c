@@ -1,4 +1,6 @@
 #include "common.h"
+struct player_state_s;
+void func_80093230(struct player_state_s *, f32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_80800000_bsride.s")
 
@@ -59,17 +61,19 @@ s32 bsride_entrypoint_0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_808002A0_bsride.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_808004AC_bsride.s")
+void func_808004AC_bsride(struct player_state_s *arg0) {
+    func_80093230(arg0, 1.0f);
+    func_8080008C_bsride(arg0);
+}
 
 /* extern */
 
-void func_808004D8_bsride(s32 arg0) {
+void func_808004D8_bsride(struct player_state_s *arg0) {
     s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
     s32 func_80800000_bsride();
-    s32 func_80093230(s32, s32);
     func_80800000_bsride();
     baanim_playForDuration_loopSmooth(arg0, 0x281, 0x3F333333);
-    func_80093230(arg0, 0x3FACCCCD);
+    func_80093230(arg0, 1.35f);
     (*(s32 *)((s8 *)(arg0) + (0x160))) = 0;
 }
 
