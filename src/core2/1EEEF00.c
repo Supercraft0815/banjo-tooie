@@ -107,7 +107,22 @@ void func_80115C40(void *arg0, f32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEF00/func_80115CA4.s")
+void func_80115CA4(void *arg0, f32 arg1) {
+    f32 temp_f0;
+    void *temp_v0;
+
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x3C)));
+    if (((*(u8 *)((s8 *)(temp_v0) + (0x12))) == 0) || !((*(f32 *)((s8 *)(temp_v0) + (4))) < arg1)) {
+        if ((*(u8 *)((s8 *)(temp_v0) + (0x11))) != 0) {
+            temp_f0 = (*(f32 *)((s8 *)(temp_v0) + (0)));
+            if (arg1 < temp_f0) {
+                arg1 = temp_f0;
+            }
+        }
+        (*(f32 *)((s8 *)(temp_v0) + (4))) = arg1;
+        (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x12))) = 1U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEF00/func_80115D08.s")
 
