@@ -144,4 +144,14 @@ void func_8009E830(PlayerState *arg0, s32 arg1) {
     (*(s16 **)((u8 *)arg0 + 0x120))[7] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E77A20/func_8009E83C.s")
+/* extern */
+
+void func_8009E83C(PlayerState *arg0) {
+    void (*func_8009CB90(PlayerState *, s32))(PlayerState *);
+    void (*temp_v0)(PlayerState *);
+
+    temp_v0 = func_8009CB90(arg0, (*(s32 *)((s8 *)arg0->state + 4)));
+    if (temp_v0 != NULL) {
+        temp_v0(arg0);
+    }
+}
