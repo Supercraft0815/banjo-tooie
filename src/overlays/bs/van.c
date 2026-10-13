@@ -290,7 +290,15 @@ s32 bsvan_entrypoint_14(s32 arg0) {
 
 void func_80801770_bsvan(void *arg0) { s32 _chfaircoinbox_entrypoint_1(s32); _chfaircoinbox_entrypoint_1(*(*(s32 **)((s8 *)(arg0) + 0x188))); bsvan_entrypoint_0(arg0); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_808017A0_bsvan.s")
+void func_808017A0_bsvan(register void *arg0) {
+    s32 func_8080164C_bsvan(void *, s32);
+    bsvan_entrypoint_1();
+    baanim_playForDuration_loopSmooth(arg0, 0xEE, 0x3F800000);
+    func_8009FFD8(arg0, 1, 3, 3, 2);
+    yaw_setVelocityBounded(arg0, 0x43960000, 0x40D00000);
+    *(s32 *)((s8 *)arg0 + 0x15C) = 0;
+    func_8080164C_bsvan(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/bsvan_entrypoint_15.s")
 
