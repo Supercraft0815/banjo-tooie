@@ -2,7 +2,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800000_chnests.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800098_chnests.s")
+/* extern */
+void func_808002E0_chnests(void *);
+void func_80800098_chnests(void *arg0) {
+    s32 func_800D3948(void);
+    u32 func_800F54E4(void);
+    s32 func_800F7150(s32);
+    func_80800000_chnests();
+    if ((func_800D3948() == 0) && (func_800F7150(func_800F54E4()) != 0)) {
+        func_808002E0_chnests(arg0);
+    }
+}
 
 struct Entry { s16 value; s16 rest[6]; };
 extern struct Entry D_80801118_chnests[];
