@@ -17,9 +17,9 @@ void func_80800000_ncpoducam(u8 *arg0) {
 
 /* extern */
 
-void ncpoducam_entrypoint_1(s16 arg0) {
+ s32 ncpoducam_entrypoint_1(s16 arg0) {
     s32 func_8001B798(s16);
-    func_8001B798(arg0);
+    return func_8001B798(arg0);
 }
 
 /* extern */
@@ -60,7 +60,11 @@ void func_80800160_ncpoducam(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/ncpoducam_entrypoint_6.s")
+void ncpoducam_entrypoint_6(s16 arg0) {
+    s32 func_8001B754(s16);
+    func_80800160_ncpoducam(ncpoducam_entrypoint_1(arg0));
+    func_8001B754(arg0);
+}
 
 s32 func_808001F0_ncpoducam(void *arg0, s32 arg1) {
     return arg1 == -1 ? 0 : ((u32)arg1 == ((u32)*(u16 *)((u8 *)arg0 + 0x12) >> 1));
