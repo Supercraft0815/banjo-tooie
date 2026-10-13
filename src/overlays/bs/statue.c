@@ -140,7 +140,12 @@ s32 bsstatue_entrypoint_4(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80800BEC_bsstatue.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80800C64_bsstatue.s")
+void func_80800C64_bsstatue(PlayerState *arg0) {
+    s32 func_80800000_bsstatue(s32, s32);
+    func_80800000_bsstatue(arg0, 1);
+    _bsrest_entrypoint_14(arg0);
+    func_80800130_bsstatue(arg0);
+}
 
 /* extern */
 
