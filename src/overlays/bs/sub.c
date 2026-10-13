@@ -173,7 +173,13 @@ void func_808012F0_bssub(s32 arg0)
     _baspin_entrypoint_1();
     func_808008D8_bssub(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80801318_bssub.s")
+/* extern */
+
+void func_80801318_bssub(s32 arg0) {
+    s32 _baspin_entrypoint_2(s32, s32, s32, s32, s32);
+    func_808009B0_bssub();
+    _baspin_entrypoint_2(arg0, 0x130, 0x3FE66666, 3, 1);
+}
 
 /* extern */
 
