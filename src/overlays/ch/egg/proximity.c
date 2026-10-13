@@ -77,7 +77,21 @@ void func_8080048C_cheggproximity(s32 arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_80800510_cheggproximity.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_80800588_cheggproximity.s")
+/* extern */
+
+void func_80800588_cheggproximity(s32 arg0, s32 arg1) {
+    u8 func_800D9078(f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80800718_cheggproximity(s32, s32);
+    s32 func_80800874_cheggproximity(s32);
+    s32 func_80800BF4_cheggproximity(s32);
+    if ((*(s32 *)((s8 *)(func_80100094((Actor *)arg0, 1)) + (0xA4))) == 0) {
+        func_80800874_cheggproximity(arg0);
+        if ((func_80800BF4_cheggproximity(arg0) == 0) && (func_800D9078((f32 *)(arg1 + 0x30)) != 0)) {
+            func_80800718_cheggproximity(arg0, 4);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_808005EC_cheggproximity.s")
 
