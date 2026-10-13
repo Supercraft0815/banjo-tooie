@@ -32,7 +32,7 @@ void func_800B37A4(u8 *arg0, s32 *arg1, s32 *arg2) {
     *arg2 = (*(s32 *)((s8 *)(arg0) + (0x10)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8CC00/func_800B37B8.s")
+void func_800B37B8(s32 arg0, s32 *arg1) { func_800EE830(arg1, (s32 *)arg0); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8CC00/func_800B37E4.s")
 
