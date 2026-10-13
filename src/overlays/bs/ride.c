@@ -2,7 +2,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_80800000_bsride.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_8080008C_bsride.s")
+void func_8080008C_bsride(struct player_state_s *arg0) {
+    void func_800947EC(struct player_state_s *, s32, s32);
+    void func_800A34E4(void *, s32);
+    void func_800961AC(struct player_state_s *, s32);
+    void baroll_setIdeal(struct player_state_s *, f32);
+    void func_8009BF5C(struct player_state_s *, f32);
+    *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+    func_800947EC(arg0, 1, 0);
+    func_800A34E4(arg0, 1);
+    func_800961AC(arg0, 1);
+    baroll_setIdeal(arg0, 0.0f);
+    func_8009BF5C(arg0, 0.0f);
+}
 
 s32 func_808000F0_bsride(s32 arg0) { func_8009EAE8(0); func_8080008C_bsride(arg0); }
 
@@ -23,6 +35,7 @@ void func_8080011C_bsride(s32 arg0) {
 
 void func_8080016C_bsride()
 {
+    void func_8080008C_bsride();
     func_8080008C_bsride();
 }
 
@@ -69,6 +82,7 @@ s32 bsride_entrypoint_1(s32 arg0) {
 
 void func_808005B8_bsride()
 {
+    void func_8080008C_bsride();
     func_8080008C_bsride();
 }
 
