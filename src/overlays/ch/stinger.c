@@ -4,7 +4,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stinger/func_8080015C_chstinger.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stinger/func_80800218_chstinger.s")
+void func_80800218_chstinger(Actor *arg0) {
+    void func_800F1A88(f32 *, f32 *);
+    f32 sp18[2];
+
+    func_800F1A88((f32 *)((s8 *)arg0 + 0x28), sp18);
+    arg0->rotation[0] = -sp18[0];
+    arg0->rotation[1] = sp18[1];
+}
 
 void func_8080025C_chstinger(s32 arg0) 
 {
