@@ -157,10 +157,10 @@ s32 func_80106314()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80106320.s")
 
-void func_801063C0(void *arg0) {
+void *func_801063C0(void *arg0) {
     void *freelist_at(s32, s32);
     extern s32 D_80136ED0;
-    freelist_at(D_80136ED0, (*(s16 *)((s8 *)(arg0) + (0x90))));
+    return freelist_at(D_80136ED0, (*(s16 *)((s8 *)(arg0) + (0x90))));
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_801063EC.s")
@@ -176,4 +176,10 @@ void func_8010647C(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80106520.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_801065A4.s")
+s32 func_801065A4(void *arg0) {
+    s32 result = 0;
+    if (*(s16 *)((s8 *)arg0 + 0x90) != 0) {
+        return *(s32 *)func_801063C0(arg0);
+    }
+    return result;
+}
