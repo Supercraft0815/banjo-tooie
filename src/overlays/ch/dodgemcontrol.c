@@ -30,7 +30,7 @@ void func_808003B0_chdodgemcontrol(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808004E4_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808005CC_chdodgemcontrol.s")
+s32 func_808005CC_chdodgemcontrol(s32 arg0) { switch (arg0) { case 0: return 0x2D; case 1: return 0x2D; case 2: return 0x2D; case 3: return 0x3C; default: return 0; } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080061C_chdodgemcontrol.s")
 
