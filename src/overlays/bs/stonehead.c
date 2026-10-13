@@ -164,7 +164,15 @@ void bsstonehead_entrypoint_28(PlayerState *arg0)
     _babounce_entrypoint_3();
     func_80800000_bsstonehead(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_29.s")
+void bsstonehead_entrypoint_29(PlayerState *arg0) {
+    void _baattach_entrypoint_6(PlayerState *, s32, s32, s32);
+    void _babounce_entrypoint_4(PlayerState *, s32);
+    void _babounce_entrypoint_5(PlayerState *, s32, f32);
+    func_80800060_bsstonehead(arg0);
+    _baattach_entrypoint_6(arg0, 3, 0, 0);
+    _babounce_entrypoint_4(arg0, 2);
+    _babounce_entrypoint_5(arg0, 0x122, 0.7518f);
+}
 
 /* extern */
 
