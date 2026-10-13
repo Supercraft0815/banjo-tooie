@@ -8,6 +8,6 @@ u8 func_800E8B74(u32);
 void func_800E8C08(u8 a0);
 s32 func_800E8C58(u8);
 void func_800E8D28(u8, f32);
-void func_800E8D5C(u8, void*, u8);
+void func_800E8D5C(u8, void*, s16);
 
 #endif

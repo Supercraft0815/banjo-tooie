@@ -68,7 +68,14 @@ void func_800E8D28(u8 arg0, f32 arg1) {
     (*(f32 *)((s8 *)(func_800E8CB0(arg0)) + (8))) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8D5C.s")
+void func_800E8D5C(u8 arg0, void *arg1, s16 arg2) {
+    void func_800E8E3C(u8 *);
+    void *sp1C;
+    sp1C = func_800E8CB0(arg0);
+    *(s16 *)((s8 *)sp1C + 2) = (s16)arg2;
+    rare_memcpy((u8 *)sp1C + 0x10, arg1, (s16)arg2 * 8);
+    func_800E8E3C(sp1C);
+}
 
 void func_800E8DB0(u8 arg0, s32 arg1) {
     void *func_800E8CB0(u8);
