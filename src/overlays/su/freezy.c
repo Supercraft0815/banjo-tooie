@@ -1,10 +1,13 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/freezy/sufreezy_entrypoint_0.s")
+void sufreezy_entrypoint_0(Actor *arg0) {
+    f32 func_800DC178(f32, f32);
+    arg0->unk58 = func_800DC178(6.0f, 10.0f);
+}
 
-void sufreezy_entrypoint_1()
+void sufreezy_entrypoint_1(Actor *arg0)
 {
-    sufreezy_entrypoint_0();
+    sufreezy_entrypoint_0(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/freezy/sufreezy_entrypoint_2.s")
