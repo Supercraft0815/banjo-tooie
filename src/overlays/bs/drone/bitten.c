@@ -20,7 +20,13 @@ void bsdronebitten_entrypoint_2()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bitten/bsdronebitten_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bitten/bsdronebitten_entrypoint_6.s")
+void bsdronebitten_entrypoint_6(s32 arg0)
+{
+    void _bafpctrl_entrypoint_19(s32);
+    func_800961A0((s32 *)arg0, 0);
+    func_8008E95C(arg0);
+    _bafpctrl_entrypoint_19(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bitten/bsdronebitten_entrypoint_7.s")
 
