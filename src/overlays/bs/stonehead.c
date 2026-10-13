@@ -34,7 +34,7 @@ void bsstonehead_entrypoint_0(s32 arg0)
     func_80800194_bsstonehead(arg0,0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_1.s")
+void bsstonehead_entrypoint_1(s32 *arg0) { arg0[87] = 0; func_80800194_bsstonehead(arg0, 1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_2.s")
 
