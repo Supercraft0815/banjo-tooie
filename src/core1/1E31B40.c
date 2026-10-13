@@ -25,7 +25,7 @@ u32 func_8001A0B4(void) {
     return 0x00021D80U;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A0C0.s")
+s32 func_8001A0C0(s32 arg0, s32 arg1) { return *(u16 *)((u8 *)D_8007BCC4 + ((arg1 * 0x13) << 5) + (arg0 << 1)); }
 
 void func_8001A0F0(void) {
     extern OSMesgQueue D_8007BEE0;
