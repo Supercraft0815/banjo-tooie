@@ -368,7 +368,17 @@ void func_80802620_chgameselect(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802730_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802780_chgameselect.s")
+s32 func_80802780_chgameselect(s32 arg0, s32 arg1) {
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *actor;
+    struct Fields { u8 pad[0x65]; u8 rest : 3; u8 bit : 1; u8 low : 4; };
+    actor = func_80106790((Unk80132ED0 *)arg0);
+    if (arg1 != 0) {
+        ((struct Fields *)actor)->bit = 1;
+    } else {
+        ((struct Fields *)actor)->bit = 0;
+    }
+}
 
 OSThread *chgameselect_entrypoint_5(void)
 {
