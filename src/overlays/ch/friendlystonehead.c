@@ -20,7 +20,11 @@ void func_80800160_chfriendlystonehead(void **arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_80800238_chfriendlystonehead.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_80800284_chfriendlystonehead.s")
+void func_80800284_chfriendlystonehead(Actor *arg0) {
+    if (func_8010C9B0((f32 *) ((s8 *) arg0 + 4), 0x1F4) == 0) {
+        func_80102424(arg0, 5);
+    }
+}
 
 /* extern */
 
