@@ -62,6 +62,18 @@ void chanim_entrypoint_6(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anim/chanim_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anim/chanim_entrypoint_8.s")
+void chanim_entrypoint_8(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 func_80104248(void *);
+    void func_800DF758(s16 *);
+    s16 *data;
+
+    if (func_80104248(arg0) != 0) {
+        data = func_80100094(arg0, 0);
+        if (*data != 0) {
+            func_800DF758(data + 2);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anim/chanim_entrypoint_9.s")
