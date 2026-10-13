@@ -99,7 +99,24 @@ void func_800EA390(void) {
 void func_800EA398(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA3A0.s")
+int func_800EA3A0(void) {
+    extern s32 D_80132DD0;
+    extern f32 D_80132DD8;
+    extern f32 D_80132E78;
+    void func_800EFD24(f32 *);
+    f32 *var_s1;
+    s32 *var_s0;
+    f32 *end;
+
+    end = &D_80132E78; var_s0 = &D_80132DD0; var_s1 = &D_80132DD8;
+    do {
+        func_800EFD24(var_s1);
+        var_s1 += 5;
+        var_s0 += 5;
+        var_s0[0] = 0;
+        var_s0[1] = 0;
+    } while (var_s1 != end);
+}
 
 void func_800EA400(s32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
     extern s32 D_80132DD0;
