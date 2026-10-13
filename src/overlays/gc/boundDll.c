@@ -73,13 +73,16 @@ void gcboundDll_entrypoint_2(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/gcboundDll_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_80800630_gcboundDll.s")
+void func_80800630_gcboundDll(u8 *arg0, s16 *arg1) {
+    s32 func_800B42A0(u8 *, s16 *);
+    func_800B42A0(*(u8 **)(arg0 + 0xE0), arg1 + 12);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_80800654_gcboundDll.s")
 
-void func_80800688_gcboundDll()
+void func_80800688_gcboundDll(u8 *arg0, s16 *arg1)
 {
-    func_80800630_gcboundDll();
+    func_80800630_gcboundDll(arg0, arg1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_808006A8_gcboundDll.s")
