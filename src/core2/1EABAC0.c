@@ -6,7 +6,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D225C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D22C8.s")
+u8 func_800D22C8(s32 arg0) { extern struct D_8011B460_entry { u8 *ptr; u32 pad; } D_8011B460[]; return D_8011B460[arg0].ptr[0]; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D22E0.s")
 
