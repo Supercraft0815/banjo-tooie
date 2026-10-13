@@ -72,4 +72,11 @@ void func_80800998_chboilerid(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_80800C48_chboilerid.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_80800CB0_chboilerid.s")
+/* extern */
+s32 func_80800CB0_chboilerid(Actor *arg0) {
+    switch (*(s16 *)&arg0->pad5E) {
+        case 0xD1: return 0;
+        case 0xE7: return 1;
+        default: return 2;
+    }
+}
