@@ -1,8 +1,8 @@
 #include "common.h"
 
-void func_80800000_glsavegame()
+s32 func_80800000_glsavegame()
 {
-    heap_alloc(0x1C0);
+    return (s32)heap_alloc(0x1C0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/func_80800020_glsavegame.s")
@@ -102,7 +102,25 @@ void func_808004C4_glsavegame(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/glsavegame_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/glsavegame_entrypoint_8.s")
+s32 glsavegame_entrypoint_8(s32 arg0) {
+    s32 sp24;
+    s32 temp_v0;
+    s32 sp1C;
+    extern void *D_80127614;
+    extern s32 func_80800020_glsavegame(s8, s32);
+    extern s32 heap_free(s32);
+    extern s32 func_80800000_glsavegame(void);
+    extern void _glgamedata_entrypoint_2(s32);
+
+    sp1C = (s32)func_80800000_glsavegame();
+    temp_v0 = func_80800020_glsavegame(*((s8 *)&D_80127614 + 0x10 + arg0), sp1C);
+    sp24 = temp_v0;
+    if (temp_v0 == 0) {
+        _glgamedata_entrypoint_2(sp1C);
+    }
+    heap_free(sp1C);
+    return sp24;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/glsavegame_entrypoint_9.s")
 
