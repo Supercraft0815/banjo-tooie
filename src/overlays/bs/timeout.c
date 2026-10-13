@@ -24,7 +24,7 @@ void bstimeout_entrypoint_5(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/timeout/bstimeout_entrypoint_6.s")
+void bstimeout_entrypoint_6(void *arg0) { func_800A0CF4(arg0, 0); func_800A4E30(arg0); func_800FC7C4(); }
 
 s32 bstimeout_entrypoint_7(s32 arg0) {
     extern s32 D_80800340_bstimeout[];
