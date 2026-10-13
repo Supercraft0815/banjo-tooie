@@ -2,7 +2,32 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C7980.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C79EC.s")
+/* extern */
+
+void (*func_800C79EC(Unk800C7A68 *arg0))(f32, u8, s32 *, s32) {
+    void _mlspline_entrypoint_0(f32, u8, s32 *, s32);
+    void _mlspline_entrypoint_2(f32, u8, s32 *, s32);
+    void _mlspline_entrypoint_4(f32, u8, s32 *, s32);
+    void _mlspline_entrypoint_5(f32, u8, s32 *, s32);
+    s32 temp_v0;
+    s32 temp_v1;
+
+    temp_v0 = arg0->unk2;
+    temp_v1 = arg0->pad3[0];
+    if (temp_v0 < 2) {
+        return NULL;
+    }
+    if (temp_v0 == 2) {
+        return _mlspline_entrypoint_0;
+    }
+    if (temp_v0 == 3) {
+        return _mlspline_entrypoint_2;
+    }
+    if (temp_v1 == 1) {
+        return _mlspline_entrypoint_5;
+    }
+    return _mlspline_entrypoint_4;
+}
 
 void func_800C7A58(void) {
 }
