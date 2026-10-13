@@ -48,7 +48,17 @@ void subaddieDll_entrypoint_4(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/Dll/func_80800260_subaddieDll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/Dll/subaddieDll_entrypoint_6.s")
+/* extern */
+
+s32 subaddieDll_entrypoint_6(Actor *arg0, s32 arg1) {
+    s32 func_800F52B8(s32, Unk80132ED0 *);
+    s32 func_800F54E4();
+    if (func_800F52B8(func_800F54E4(), arg0->unk0) != 0xB) {
+        return 1;
+    }
+    func_80800260_subaddieDll(arg0, arg1);
+    return 0;
+}
 
 void subaddieDll_entrypoint_7()
 {
