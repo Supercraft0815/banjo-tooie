@@ -467,7 +467,23 @@ int func_800A8264(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A84EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A85A8.s")
+s32 func_800A85A8(void) {
+    s32 func_800A8380(s32);
+    s32 func_800A84EC(s32, s32);
+    s32 var_s0;
+    unk_D_80127688 *var_s1;
+
+    var_s1 = D_80127688;
+    var_s0 = 0;
+    do {
+        if (var_s1->unk0 != 0) {
+            func_800A84EC(var_s0, func_800A8380(var_s0));
+        }
+        var_s0 += 1;
+        var_s1 = (unk_D_80127688 *)((u8 *)var_s1 + 0xC);
+    } while (var_s0 != 4);
+    return func_800A84EC(4, 0);
+}
 
 void func_800A861C(void) {
     s32 func_800A84EC(s32, s32);
