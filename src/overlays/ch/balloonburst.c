@@ -21,7 +21,22 @@ OSThread *chballoonburst_entrypoint_2(void)
     return (OSThread *) D_80801CD0_chballoonburst;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80800024_chballoonburst.s")
+/* extern */
+
+void func_80800024_chballoonburst(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_800DA524(s32);
+    u32 *sp1C;
+    sp1C = func_80100094(arg0, 0U);
+    func_800DA524(0);
+    func_800DA524(3);
+    func_800DA524(2);
+    func_800DA524(1);
+    arg0->unk6C_0 = 0;
+    sp1C[3] = 0;
+    _susubgame_entrypoint_0(arg0, sp1C + 6, 0);
+    _susubgame_entrypoint_11(0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80800098_chballoonburst.s")
 
