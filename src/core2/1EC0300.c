@@ -192,7 +192,13 @@ void func_800E73D4(s8 *arg0) {
     arg0[0] = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E73DC.s")
+void func_800E73DC(s8 *arg0, s32 arg1, ...) {
+    s32 func_800E7480(s8 *, s32, s32);
+    u32 args;
+    func_800E73D4(arg0);
+    args = (u32)&arg1 + sizeof(arg1);
+    func_800E7480(arg0, arg1, (args + 3) & ~3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E7428.s")
 
