@@ -2,7 +2,28 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/autobaddies/suautobaddies_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/autobaddies/suautobaddies_entrypoint_1.s")
+/* extern */
+
+void suautobaddies_entrypoint_1(void) {
+    s32 _glcutDll_entrypoint_18();
+    s32 func_8010108C(s32, s32, s32);
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    s32 sp28;
+    s32 temp_s0;
+    s32 temp_v0_2;
+    s32 var_a0;
+
+    temp_s0 = _glcutDll_entrypoint_18();
+    var_a0 = func_801067C4((&sp28) - 1);
+    if (var_a0 != 0) {
+        do {
+            func_8010108C(var_a0, 0x49, temp_s0);
+            temp_v0_2 = func_8010682C((&sp28) - 1);
+            var_a0 = temp_v0_2;
+        } while (temp_v0_2 != 0);
+    }
+}
 
 /* extern */
 
