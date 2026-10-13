@@ -10,7 +10,18 @@ void chblink_entrypoint_0(u8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blink/chblink_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blink/func_808000CC_chblink.s")
+void func_808000CC_chblink(f32 *arg0, s32 arg1, f32 arg2, f32 arg3) {
+    f32 *temp_v0;
+
+    temp_v0 = arg0;
+    temp_v0 += arg1;
+    temp_v0[2] = arg2;
+    if (arg3 != 0.0f) {
+        temp_v0[4] = (temp_v0[2] - temp_v0[0]) / arg3;
+        return;
+    }
+    temp_v0[0] = temp_v0[2];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blink/func_80800118_chblink.s")
 
