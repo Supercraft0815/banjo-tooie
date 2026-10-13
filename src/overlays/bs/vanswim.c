@@ -99,7 +99,19 @@ void func_80800864_bsvanswim(s32 arg0)
     func_80800114_bsvanswim();
     _bsrest_entrypoint_16(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_8080088C_bsvanswim.s")
+/* extern */
+
+void func_8080088C_bsvanswim(s32 arg0) {
+    s32 _bsrest_entrypoint_20();
+    s32 sp1C;
+
+    sp1C = 0;
+    if (_bsrest_entrypoint_20() != 0) {
+        sp1C = 0x11B;
+    }
+    _bsvan_entrypoint_3(arg0);
+    bs_setState(arg0, sp1C);
+}
 
 s32 bsvanswim_entrypoint_3(s32 arg0) {
     extern s32 D_808009B0_bsvanswim[];
