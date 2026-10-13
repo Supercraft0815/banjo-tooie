@@ -31,7 +31,9 @@ void func_80012128(void)
     D_800459C8 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E29B60/func_80012134.s")
+void func_80012520(s32);
+void func_8001253C(s32);
+void func_80012134(void) { func_8001253C(_cosection_entrypoint_1()); func_80012520(1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E29B60/func_80012164.s")
 
