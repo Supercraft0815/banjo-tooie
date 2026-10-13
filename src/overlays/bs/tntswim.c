@@ -4,7 +4,20 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tntswim/func_808000B0_bstntswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tntswim/func_80800114_bstntswim.s")
+struct player_state_s;
+void func_80800114_bstntswim(struct player_state_s *arg0) {
+    void _bstnt_entrypoint_3(struct player_state_s *);
+    void baphysics_set_gravity(struct player_state_s *, f32);
+    void baphysics_set_terminal_velocity(struct player_state_s *, f32);
+    void func_800961AC(struct player_state_s *, s32);
+    s32 func_8009E6C4(struct player_state_s *, s32);
+    _bstnt_entrypoint_3(arg0);
+    if (func_8009E6C4(arg0, 1) == 0) {
+        baphysics_set_gravity(arg0, 100.0f);
+        baphysics_set_terminal_velocity(arg0, 133.33f);
+        func_800961AC(arg0, 3);
+    }
+}
 
 struct player_state_s;
 
@@ -108,9 +121,9 @@ void func_80800864_bstntswim(s32 arg0)
     _bsrest_entrypoint_14();
     func_80800174_bstntswim(arg0);
 }
-void func_8080088C_bstntswim(s32 arg0)
+void func_8080088C_bstntswim(struct player_state_s *arg0)
 {
-    func_80800114_bstntswim();
+    func_80800114_bstntswim(arg0);
     _bsrest_entrypoint_16(arg0);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tntswim/func_808008B4_bstntswim.s")
@@ -120,9 +133,9 @@ s32 bstntswim_entrypoint_3(s32 arg0) {
     return ((s32 *)&D_808009E0_bstntswim)[arg0];
 }
 
-void func_8080090C_bstntswim(s32 arg0)
+void func_8080090C_bstntswim(struct player_state_s *arg0)
 {
-    func_80800114_bstntswim();
+    func_80800114_bstntswim(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
 void func_80800934_bstntswim(s32 arg0)
