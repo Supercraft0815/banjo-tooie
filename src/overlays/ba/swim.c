@@ -22,7 +22,15 @@ void baswim_entrypoint_4()
     bastick_resetZones();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_5.s")
+void baswim_entrypoint_5(struct player_state_s *arg0) {
+    void bastick_setZoneMax(struct player_state_s *, s32, f32);
+    void baswim_entrypoint_9(void *, f32);
+    void baswim_entrypoint_8(void *, f32);
+    bastick_setZoneMax(arg0, 0, 0.03f);
+    bastick_setZoneMax(arg0, 1, 1.0f);
+    baswim_entrypoint_9(arg0, 0.0f);
+    baswim_entrypoint_8(arg0, 0.0f);
+}
 
 void baswim_entrypoint_6(Actor *arg0, u32 arg1) {
     u32* baswim_entrypoint_7(Actor*, u32, u32);
