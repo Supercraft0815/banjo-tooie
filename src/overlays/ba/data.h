@@ -97,7 +97,7 @@ extern s32 _badata_entrypoint_24(PlayerState *self);
 extern s32 _badata_entrypoint_25(PlayerState *self);
 extern s32 _badata_entrypoint_26(PlayerState *self);
 extern s32 _badata_entrypoint_27(PlayerState *self);
-extern s32 _badata_entrypoint_28(PlayerState *self);
+extern s32 (*_badata_entrypoint_28(PlayerState *self))(PlayerState *, f32);
 extern s32 _badata_entrypoint_29(PlayerState *self);
 extern s32 _badata_entrypoint_30(PlayerState *self, s32 arg1);
 extern s32 _badata_entrypoint_31(PlayerState *self);

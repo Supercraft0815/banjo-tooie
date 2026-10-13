@@ -83,7 +83,17 @@ void func_8009FE78(PlayerState *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/bs_getTypeOfJump.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009FF00.s")
+/* extern */
+
+void func_8009FF00(PlayerState *arg0) {
+    s32 (*_badata_entrypoint_28(PlayerState *))(PlayerState *, f32);
+    s32 (*sp1C)(PlayerState *, f32);
+
+    sp1C = _badata_entrypoint_28(arg0);
+    if (sp1C != NULL) {
+        sp1C(arg0, func_8009BB5C(arg0));
+    }
+}
 
 void func_8009FF44(PlayerState *arg0, enum asset_e arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
     AnimCtrl *sp24;
