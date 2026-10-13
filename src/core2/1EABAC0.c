@@ -59,4 +59,6 @@ void func_800D2820(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D28A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D28E8.s")
+u32 func_800D28E8(s32 arg0) {
+    return (u32) (*(u8 *)((s8 *)(func_800D21D0(arg0)) + (2)));
+}
