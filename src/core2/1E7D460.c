@@ -82,7 +82,7 @@ void func_800A4168(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4978.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4A14.s")
+void func_800A4A14(s32 arg0) { if (func_800A4338() != 0) return; func_800A4190(arg0); func_800A4878(arg0); }
 
 void func_800A4A4C(s32 arg0)
 {
