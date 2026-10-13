@@ -109,7 +109,11 @@ loop_1:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80802480_chklungo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80802558_chklungo.s")
+void func_80802558_chklungo(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _susubgame_entrypoint_4(void *, s32);
+    _susubgame_entrypoint_4(arg0, (s32)func_80100094(arg0, 0U) + 0x88);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80802588_chklungo.s")
 
