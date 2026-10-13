@@ -1478,7 +1478,14 @@ s32 func_800F8DA8(void) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8DD8.s")
+void func_800F8DD8(void) {
+    void func_800F9A24(void);
+    s32 vector_free(s32);
+    extern s32 D_801354F0;
+    func_800F9A24();
+    vector_free(D_801354F0);
+    D_801354F0 = 0;
+}
 
 void func_800F8E08(void) {
     s32 func_800EFD24(s32 *);
