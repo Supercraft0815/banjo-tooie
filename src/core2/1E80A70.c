@@ -190,7 +190,7 @@ void func_800A7B24(void) {
     s32 _glcutDll_entrypoint_2();
     s32 func_80013430();
     s32 func_8008B64C();
-    s32 func_800A8710();
+    void func_800A8710(void);
     s32 func_800B5DF4();
     s32 func_800C2A90();
     s32 func_800CA060();
@@ -526,7 +526,24 @@ void func_800A86D8(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A8710.s")
+void func_800A8710(void)
+{
+    extern s32 D_801276C4;
+    s32 (*var_s0)[3];
+    s32 temp_a0;
+    void func_800158E4(s32 *);
+    s32 func_800CA364(s32);
+    func_800CA364(D_80127688[4].unk4);
+    D_80127688[4].unk4 = 0;
+    var_s0 = (s32 (*)[3])((s8 *)&D_801276BC - 0x34); do {
+        temp_a0 = var_s0[0][0];
+        if (temp_a0 != 0) {
+            func_800158E4((s32 *)temp_a0);
+            var_s0[0][0] = 0;
+        }
+        var_s0++;
+    } while (var_s0 != (s32 (*)[3])&D_801276C4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A877C.s")
 
