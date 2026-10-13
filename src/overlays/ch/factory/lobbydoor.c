@@ -7,7 +7,24 @@ OSThread *chfactorylobbydoor_entrypoint_0(void)
     return (OSThread *) D_80800160_chfactorylobbydoor;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/lobbydoor/func_8080000C_chfactorylobbydoor.s")
+/* extern */
+
+void func_8080000C_chfactorylobbydoor(s32 arg0) {
+    s32 _chdoormake_entrypoint_3(s32, f32, f32, f32, s32, s32);
+    s32 _chdoormake_entrypoint_5(s32, f32);
+    s32 _chdoormake_entrypoint_8(s32, s32);
+    s32 func_8009E958();
+    s32 func_800D0A9C(s32, s32);
+    s32 func_800EA090();
+    s32 func_80101FDC(s32, s32);
+    if ((func_800EA090() == 1) && ((func_800D0A9C(0x35, 1) == 0) || (func_8009E958() != 1))) {
+        func_80101FDC(arg0, 1);
+    }
+    if (_chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, 200.0f, 8, -1) != 0) {
+        _chdoormake_entrypoint_5(arg0, 1.5f);
+        _chdoormake_entrypoint_8(arg0, 5);
+    }
+}
 
 void func_808000A8_chfactorylobbydoor(s32 arg0)
 {
