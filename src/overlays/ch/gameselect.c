@@ -1217,14 +1217,26 @@ void func_808069C8_chgameselect(s32 arg0)
   while (var_s0 != 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80806A30_chgameselect.s")
+ s32 _gcstatusDll_entrypoint_10(void);
+
+s32 func_80806A30_chgameselect(void) {
+    s32 var_v1;
+
+    var_v1 = _gcstatusDll_entrypoint_15();
+    if (var_v1 < 0) {
+        var_v1 = 0;
+    } else {
+        if (var_v1 >= _gcstatusDll_entrypoint_10()) {
+            var_v1 = _gcstatusDll_entrypoint_10() - 1;
+        }
+    }
+    return var_v1;
+}
 
 void func_80806A88_chgameselect()
 {
     _gcstatusDll_entrypoint_5();
 }
-
-s32 _gcstatusDll_entrypoint_10(void);
 
 s32 func_80806AA8_chgameselect(void) {
     return (1 << (_gcstatusDll_entrypoint_10() + 0x1F)) - 1;
