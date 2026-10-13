@@ -1,6 +1,23 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/look/bsdronelook_entrypoint_0.s")
+/* extern */
+
+struct player_state_s;
+
+void bsdronelook_entrypoint_0(struct player_state_s *arg0) {
+    s32 _bafpctrl_entrypoint_13(struct player_state_s *, s32);
+    void _bafpctrl_entrypoint_17(struct player_state_s *);
+    s32 _bafpctrl_entrypoint_4(struct player_state_s *);
+    s32 _bafpctrl_entrypoint_6(struct player_state_s *);
+    s32 func_800A4EC8(void *);
+    if (_bafpctrl_entrypoint_4(arg0) == 2) {
+        _bafpctrl_entrypoint_13(arg0, 1);
+    }
+    if (_bafpctrl_entrypoint_6(arg0) != 0) {
+        func_800A4EC8(arg0);
+        _bafpctrl_entrypoint_17(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/look/bsdronelook_entrypoint_1.s")
 
