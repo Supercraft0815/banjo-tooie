@@ -98,7 +98,10 @@ void func_80103CB8(Actor *arg0, u32 arg1) {
     func_80103BF0(arg0, 0U, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103CDC.s")
+s32 func_80103CDC(u8 *arg0, u8 *arg1) {
+    int func_80103B24(u8 *, s32, u8 *);
+    return func_80103B24(arg0, 0, arg1);
+}
 
 void func_80103D00(s32 arg0,s32 arg1)
 {
