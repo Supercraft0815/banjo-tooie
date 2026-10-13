@@ -1,4 +1,5 @@
 #include "common.h"
+struct player_state_s;
 
 s32 baswim_entrypoint_0() 
 {
@@ -7,13 +8,22 @@ s32 baswim_entrypoint_0()
 
 /* extern */
 
-int baswim_entrypoint_1(void *arg0) {
-    f32 func_800964DC(void *);
-    f32 func_8009C150(void *);
+int baswim_entrypoint_1(struct player_state_s *arg0) {
+    f32 func_800964DC(struct player_state_s *);
+    f32 func_8009C150(struct player_state_s *);
     return (func_800964DC(arg0) - func_8009C150(arg0)) < 100.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_2.s")
+/* extern */
+
+int baswim_entrypoint_2(struct player_state_s *arg0) {
+    f32 func_800964DC(struct player_state_s *);
+    s32 func_80096544(struct player_state_s *);
+    f32 func_8009C150(struct player_state_s *);
+    s32 pad;
+    return func_80096544(arg0) &&
+        func_8009C150(arg0) > func_800964DC(arg0) - 130.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_3.s")
 
