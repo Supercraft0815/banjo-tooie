@@ -38,7 +38,11 @@ OSThread *chboggy_entrypoint_0(void)
     return (OSThread *) D_80800840_chboggy;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/func_80800634_chboggy.s")
+void func_80800634_chboggy(Actor *arg0) {
+    arg0->rotation[0] = (f32)arg0->unk74_7;
+    arg0->rotation[2] = arg0->scale * 100.0f;
+    arg0->scale = 2.0f;
+}
 
 OSThread *chboggy_entrypoint_1(void)
 {
