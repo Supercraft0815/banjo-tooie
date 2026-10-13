@@ -1,5 +1,7 @@
 #include "common.h"
 
+void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+
 OSThread *chdinoboss_entrypoint_0(void)
 {
     extern u8 D_80802B40_chdinoboss[];
@@ -427,7 +429,19 @@ void func_80801830_chdinoboss(Actor *arg0) {
     _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80802A48_chdinoboss, 0.28f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80801860_chdinoboss.s")
+void func_80801860_chdinoboss(Actor *arg0) {
+    f32 *sp1C[1];
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    extern u32 D_80802A2C_chdinoboss[];
+    extern u32 D_80802C68_chdinoboss;
+    extern u32 D_80802C78_chdinoboss;
+    extern u32 D_80802C88_chdinoboss;
+
+    sp1C[0] = (f32 *)((u8 *)arg0 + 4);
+    _subaddieaudioquick_entrypoint_3(arg0, sp1C[0], D_80802A2C_chdinoboss, 0.8f);
+    _subaddieaudioquick_entrypoint_3(arg0, sp1C[0], &D_80802C68_chdinoboss, 0.65f);
+    _subaddieaudioquick_entrypoint_4(arg0, sp1C[0], &D_80802C78_chdinoboss, &D_80802C88_chdinoboss);
+}
 
 void func_808018D0_chdinoboss(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
