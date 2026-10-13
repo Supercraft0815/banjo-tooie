@@ -443,7 +443,12 @@ s32 func_80801A98_bsfirstp(void) {
     return _ncba1p_entrypoint_10(func_800A4CA8()) == 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80801AC4_bsfirstp.s")
+void func_80801AC4_bsfirstp(s32 arg0) {
+    int func_80801B64_bsfirstp(s32, s32);
+    register s32 temp = *(s32 *)(arg0 + 0x188);
+    *(s32 *)(temp + 0xA0) = 0;
+    func_80801B64_bsfirstp(arg0, 0);
+}
 
 void func_80801AEC_bsfirstp(s32 arg0)
 {
