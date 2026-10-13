@@ -45,7 +45,28 @@ s32 func_808002F0_chhillbilly(f32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_80800348_chhillbilly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_808003C8_chhillbilly.s")
+/* extern */
+
+s32 func_808003C8_chhillbilly(u8 *arg0) {
+    s32 _subaddiejoy_entrypoint_6(u8 *, s32);
+    s32 _sucoaster_entrypoint_13();
+    struct Flags {
+        u8 pad[0x64];
+        u32 : 2;
+        u32 flag : 1;
+        u32 : 29;
+        u8 pad68[0xC];
+        u8 : 7;
+        u8 flag74 : 1;
+    };
+    if (((struct Flags *)arg0)->flag) {
+        return _subaddiejoy_entrypoint_6(arg0, 0) == 1;
+    }
+    if (((struct Flags *)arg0)->flag74) {
+        return 1;
+    }
+    return _sucoaster_entrypoint_13() == 1;
+}
 
 /* extern */
 
