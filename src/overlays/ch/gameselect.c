@@ -395,7 +395,11 @@ void func_80802BE8_chgameselect(Unk80132ED0 *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802C10_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802C48_chgameselect.s")
+s32 func_80802C48_chgameselect(Unk80132ED0 *arg0) {
+    Actor *func_80106790(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    return _gcnewoption_entrypoint_39(func_80100094(func_80106790(arg0), 0U));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802C7C_chgameselect.s")
 
@@ -764,9 +768,9 @@ void func_80804694_chgameselect(void *arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80804878_chgameselect.s")
 
 void func_808048F8_chgameselect(u8 *arg0, s32 *arg1) {
-    s32 func_80802C48_chgameselect(s32);
+    s32 func_80802C48_chgameselect(Unk80132ED0 *);
     if ((*(s32 *)((s8 *)(arg0) + (0x18))) < -1) {
-        func_80802C48_chgameselect((*(s32 *)((s8 *)(arg0) + (0x30))));
+        func_80802C48_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x30))));
         (*(s32 *)((s8 *)(arg0) + (0x18))) = 0;
         *arg1 = 1;
     }
@@ -790,10 +794,10 @@ void func_808049E8_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
 void func_80804A38_chgameselect(void *arg0) {
     s32 func_800FFA88(s32);
     s32 func_808026C8_chgameselect(s32, s32);
-    s32 func_80802C48_chgameselect(s32);
+    s32 func_80802C48_chgameselect(Unk80132ED0 *);
     s32 temp_a0;
 
-    func_80802C48_chgameselect((*(s32 *)((s8 *)(arg0) + (0x30))));
+    func_80802C48_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x30))));
     func_808026C8_chgameselect((*(s32 *)((s8 *)(arg0) + (0x2C))), 1);
     temp_a0 = (*(s32 *)((s8 *)(arg0) + (0x34)));
     (*(s32 *)((s8 *)(arg0) + (0x18))) = 0;
