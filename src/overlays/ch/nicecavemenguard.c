@@ -49,7 +49,21 @@ void func_8080075C_chnicecavemenguard(Actor *arg0) {
     _subaddieaudioquick_entrypoint_4((s32)arg0, (s32)((s8 *)arg0 + 4), &D_808009FC_chnicecavemenguard, sp1C.values);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemenguard/func_808007A8_chnicecavemenguard.s")
+/* extern */
+
+void func_808007A8_chnicecavemenguard(Actor *arg0) {
+    s32 _suexpression_entrypoint_12(void *, s32, s32);
+    s32 _suexpression_entrypoint_17(void *, s32);
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    s32 temp_v0;
+
+    if (func_80100094(arg0, 1U) == NULL) {
+        _suexpression_entrypoint_7(arg0, 1, 0x96);
+        temp_v0 = func_80100094(arg0, 1U);
+        _suexpression_entrypoint_12(temp_v0, 0x42700000, 0x41700000);
+        _suexpression_entrypoint_17(temp_v0, 0x320);
+    }
+}
 
 void func_8080080C_chnicecavemenguard(Actor* arg0) 
 {
