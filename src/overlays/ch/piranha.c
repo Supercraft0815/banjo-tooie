@@ -20,7 +20,16 @@ void func_80800280_chpiranha(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_808002A0_chpiranha.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_80800CAC_chpiranha.s")
+f32 func_80800CAC_chpiranha(void) {
+    void func_8008FFBC(s32);
+    f32 sp1C[3];
+    f32 result;
+
+    func_8008FFBC((s32)sp1C);
+    result = sp1C[1];
+    result = sp1C[0] * sp1C[0] + result * result + sp1C[2] * sp1C[2];
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_80800CEC_chpiranha.s")
 
