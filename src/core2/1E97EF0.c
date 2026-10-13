@@ -127,7 +127,8 @@ s32 func_800BEC28(s32 arg0) {
     return D_801285D0[arg0].value;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEC4C.s")
+void func_800BECE0(s32 *arg0, s32 *arg1);
+void func_800BEC4C(s32 *arg0, s32 *arg1, s32 arg2) { extern s8 D_801285B3; s8 *var_v0; s32 *var_v1; s32 *var_a0; s8 *end; func_800BECE0(arg0, arg1); func_800E37E8(arg0, arg1, arg2); end = &D_801285B3; var_v0 = (s8 *)&D_801285B0; var_v1 = arg0; var_a0 = arg1; do { *var_v1 += var_v0[0x5E]; var_v0++; var_v1++; *var_a0 += var_v0[0x60]; var_a0++; if (var_v0 == end) break; } while (1); }
 
 f32 func_800BECCC(void) {
     extern s32 D_80128734;
