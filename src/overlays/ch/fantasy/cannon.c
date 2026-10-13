@@ -29,7 +29,20 @@ s32 func_80800050_chfantasycannon(void) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/cannon/func_808000A4_chfantasycannon.s")
+void func_808000A4_chfantasycannon(void) {
+    s32 func_800B5BE4(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800F54E4();
+    void func_800F5A00(s32, f32[3]);
+    extern s32 D_80800CF8_chfantasycannon;
+    f32 sp2C[3];
+    s32 sp28;
+
+    sp28 = func_800B5BE4(0x1A);
+    func_800F5A00(func_800F54E4(), sp2C);
+    sp2C[1] += 60.0f;
+    func_800BABB8(sp28, sp2C, NULL, 1.0f, &D_80800CF8_chfantasycannon);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/cannon/func_8080010C_chfantasycannon.s")
 
@@ -52,7 +65,7 @@ void func_80800228_chfantasycannon(Actor *arg0) {
     s32 func_80101E14(Actor *, f32);
     f32 func_80101F24(Actor *);
     s32 func_80800050_chfantasycannon();
-    s32 func_808000A4_chfantasycannon();
+    void func_808000A4_chfantasycannon(void);
     s32 func_80800544_chfantasycannon(Actor *, s32);
     s32 func_808008B0_chfantasycannon(Actor *);
     f32 temp_f0;
