@@ -642,7 +642,26 @@ int func_800949BC(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094A10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094AB4.s")
+/* extern */
+
+void func_80094AB4(void *arg0) {
+    s32 _gcegg_entrypoint_5(s32);
+    s32 _gcegg_entrypoint_6(s32);
+    u8 func_80094C64(void *, s32);
+    void func_800D1824(s32);
+    s32 temp_v0;
+    s32 sp1C;
+
+    if (func_80094348(arg0, 2) == 0) {
+        temp_v0 = func_80094C64(arg0, (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x64)))) + (1))));
+        if (temp_v0 != 0) {
+            sp1C = temp_v0;
+            if (_gcegg_entrypoint_6(temp_v0) != 0) {
+                func_800D1824(_gcegg_entrypoint_5(sp1C));
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094B14.s")
 
