@@ -113,7 +113,10 @@ s32 func_800CBBE0(s32 arg0) {
     return entry[5];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CBC00.s")
+s32 func_800CBC00(s32 arg0) {
+    extern s32 D_8012AE94;
+    return (*(u16 *)((s8 *)(func_800CB8F0((arg0 * 0x1C) + D_8012AE94)) + (0x14))) & 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CBC3C.s")
 
