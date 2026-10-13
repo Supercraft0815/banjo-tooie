@@ -53,13 +53,22 @@ s32 func_80103964(u8 *arg0) {
     return (s32)func_800D674C(temp_a1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_801039A4.s")
+s32 func_801039A4(u8 *arg0) {
+    s32 func_800D6B0C(s32);
+    s32 temp_a1;
+
+    temp_a1 = *(u16 *)(arg0 + 0x14);
+    if ((temp_a1 == 0) || (temp_a1 == 0xFFFF)) {
+        return 0;
+    }
+    return func_800D6B0C(temp_a1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_801039E4.s")
 
-void func_80103AA0()
+void func_80103AA0(u8 *arg0)
 {
-    func_801039A4();
+    func_801039A4(arg0);
 }
 
 /* extern */
