@@ -1,5 +1,7 @@
 #include "common.h"
 
+void *func_80100094(Actor *, u32);
+
 OSThread *chjiggygamenew_entrypoint_0(void)
 {
     extern u8 D_80803D44_chjiggygamenew[];
@@ -120,7 +122,12 @@ void func_80803598_chjiggygamenew(void) {
     func_80102424(func_80106790(), 7);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_808035C4_chjiggygamenew.s")
+void func_808035C4_chjiggygamenew(Unk80132ED0 *arg0, f32 *arg1) {
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790();
+    func_800EE7F8(arg1, (f32 *)((u8 *)func_80100094(func_80106790(arg0), 0U) + 0xC));
+}
 
 void func_808035FC_chjiggygamenew(Actor *arg0, f32 *arg1) {
     Actor *func_80106790(Unk80132ED0 *);
