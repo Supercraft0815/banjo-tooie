@@ -26,7 +26,26 @@ s32 func_800996E0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72EA0/func_800997BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72EA0/func_80099840.s")
+/* extern */
+
+void func_80099840(PlayerState *arg0, s32 arg1) {
+    s32 _badata_entrypoint_20(PlayerState *);
+    s32 _badata_entrypoint_26(PlayerState *);
+    s32 func_800A1718(PlayerState *);
+    s32 temp_v0;
+    s32 var_a0;
+
+    temp_v0 = func_800A1718(arg0);
+    var_a0 = arg1 == 0;
+    if (var_a0 != 0) {
+        var_a0 = temp_v0 != 0;
+    }
+    if (var_a0 != 0) {
+        _badata_entrypoint_26(arg0);
+        return;
+    }
+    _badata_entrypoint_20(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72EA0/func_8009989C.s")
 
