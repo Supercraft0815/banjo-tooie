@@ -142,13 +142,18 @@ s32 bsbtrot_entrypoint_7(s32 arg0) {
     return ((s32 *)&D_80802E60_bsbtrot)[arg0];
 }
 
-void func_80800DC4_bsbtrot(s32 arg0) {
-    func_80800000_bsbtrot(arg0, 0x15, 0x44, 0x29C, 0xA1);
+s32 func_80800DC4_bsbtrot(s32 arg0) {
+    return func_80800000_bsbtrot(arg0, 0x15, 0x44, 0x29C, 0xA1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80800DF4_bsbtrot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_8.s")
+void bsbtrot_entrypoint_8(s32 arg0) {
+    baanim_playForDuration_loopSmooth(arg0, func_80800DC4_bsbtrot(arg0), 0x3F07AE14);
+    func_8009FFD8(arg0, 2, 1, 1, 2);
+    func_80800538_bsbtrot(arg0);
+    func_80800DF4_bsbtrot(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_9.s")
 
