@@ -8,7 +8,9 @@ s32 func_800CB890(s16 *arg0) {
     return func_800B42A0(D_8012AF60, arg0 + 12);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CB8BC.s")
+s32 func_800CB8BC(s16 *arg0) {
+    return arg0[13] * 0x18 + func_800CB890(arg0);
+}
 
 s32 func_800CB8F0(s16 *arg0)
 {
@@ -22,9 +24,9 @@ void *func_800CB948()
     func_800CB910();
 }
 
-void func_800CB968()
+void func_800CB968(s16 *arg0)
 {
-    func_800CB8BC();
+    func_800CB8BC(arg0);
 }
 
 void func_800CB988()
