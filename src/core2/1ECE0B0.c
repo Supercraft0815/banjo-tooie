@@ -1109,7 +1109,7 @@ void func_800F7620(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     _bamotor_entrypoint_1(D_80135490[arg0], arg1, arg2, arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7664.s")
+void func_800F7664(s32 arg0, s32 arg1, s32 arg2) { void func_8009AD20(void *, s32); void func_8009AD2C(void *, s32); s32 func_8009E7C8(u8 *, s32); PlayerState *sp1C; sp1C = D_80135490[arg0]; func_8009AD20(sp1C, arg1); func_8009AD2C(sp1C, arg2); func_8009E7C8((u8 *) sp1C, 0x7D); }
 
 /* extern */
 s32 func_800F76B0(s32 arg0, s32 arg1, s32 arg2) {
