@@ -84,7 +84,7 @@ void func_8001E490(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E35DD0/func_8001E4B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E35DD0/func_8001E578.s")
+void func_8001E578(s32 arg0) { extern s32 D_8007E94C, D_8007E958; OSThread *func_8001DDA4(s32); void func_8001E7B4(s32); void func_8001E4B0(void); void _gzpublic_entrypoint_0(s32); func_8001E7B4(1); osSetThreadPri(func_8001DDA4(D_8007E958), 0); osSetThreadPri(func_8001DDA4(7), 0x5B); func_8001E4B0(); _gzpublic_entrypoint_0(D_8007E94C); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E35DD0/func_8001E5DC.s")
 
