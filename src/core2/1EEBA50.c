@@ -5,7 +5,21 @@ s32 func_80112160()
     return 0x34;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEBA50/func_80112168.s")
+f32 func_80112168(s32 *arg0, f32 *arg1) {
+    s32 func_80110840(s32 *);
+    f32 func_800F5BC4(s32, f32 *);
+    void func_800F5A00(s32, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    f32 sp2C;
+    f32 sp20[3];
+    s32 sp1C;
+
+    sp1C = func_80110840(arg0);
+    sp2C = func_800F5BC4(sp1C, arg1);
+    func_800F5A00(sp1C, sp20);
+    func_800EF04C(arg1, sp20);
+    return sp2C;
+}
 
 void func_801121B8(PlayerState* arg0, f32* arg1)
 {
@@ -14,8 +28,9 @@ void func_801121B8(PlayerState* arg0, f32* arg1)
 
 /* extern */
 
-void func_801121D8(PlayerState *arg0, s32 arg1) {
-    s32 func_800F5A00(f32 *, s32);
+void func_801121D8(s32 *arg0, f32 *arg1) {
+    s32 func_80110840(s32 *);
+    void func_800F5A00(s32, f32 *);
     func_800F5A00(func_80110840(arg0), arg1);
 }
 
