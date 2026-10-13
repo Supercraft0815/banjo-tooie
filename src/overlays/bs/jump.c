@@ -110,7 +110,7 @@ void bsjump_entrypoint_1(void *arg0) {
     bs_setState((s32)arg0, next_state);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_2.s")
+void bsjump_entrypoint_2(s32 arg0) { if (func_800C6E38(0xA) != 0) { func_800C6DA0(0x3C); } if (bs_getNextState(arg0) != 0x11) { baphysics_reset_gravity(arg0); } }
 
 s32 bsjump_entrypoint_3(s32 arg0) {
     extern s32 D_80801110_bsjump[];
