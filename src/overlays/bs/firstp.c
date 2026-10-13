@@ -1217,6 +1217,8 @@ void func_80805058_bsfirstp(struct player_state_s *arg0) {
     func_808002CC_bsfirstp(arg0, 0x311, 0x40000000, 0x3F00EBEE);
 }
 
+void func_80809D24_bsfirstp(void *);
+
 void func_808050B0_bsfirstp(s32 arg0)
 {
     _bsdrone_entrypoint_2();
@@ -2079,7 +2081,14 @@ void func_80809CD8_bsfirstp()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809CF8_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809D24_bsfirstp.s")
+void func_80809D24_bsfirstp(void *arg0) {
+    void func_80809DD0_bsfirstp(void *);
+    func_80809DD0_bsfirstp(arg0);
+    func_80809F74_bsfirstp(arg0);
+    func_8080A03C_bsfirstp(arg0);
+    func_8080A194_bsfirstp(arg0);
+    func_8080A250_bsfirstp(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809D6C_bsfirstp.s")
 
