@@ -14,7 +14,7 @@ void func_808000A8_chfactorylobbydoor(s32 arg0)
     func_808000D0_chfactorylobbydoor();
     _chdoor_entrypoint_0(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/lobbydoor/func_808000D0_chfactorylobbydoor.s")
+int func_808000D0_chfactorylobbydoor(s32 arg0) { s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *); s32 _chmrtannoy_entrypoint_0(void); extern s32 D_808001A8_chfactorylobbydoor; if (_subaddiedialog_entrypoint_7(arg0, arg0 + 4, &D_808001A8_chfactorylobbydoor) != 0) { _chmrtannoy_entrypoint_0(); } }
 
 s32 func_80800108_chfactorylobbydoor(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _chdoor_entrypoint_1(s32, s32, s32);
