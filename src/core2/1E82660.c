@@ -2,7 +2,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A8D70.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A8E9C.s")
+void func_800A8E9C(void) {
+    extern s16 D_801276D0;
+    extern s16 D_801276F0;
+    s32 func_8010FC38(u8 *);
+    s16 *var_s0;
+    s32 temp_a0;
+    var_s0 = &D_801276D0; do { temp_a0 = *(s32 *)((u8 *)var_s0 + 0x58); if (temp_a0 != 0) { func_8010FC38((u8 *)temp_a0); } var_s0 += 2; } while (var_s0 != &D_801276F0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A8EF0.s")
 
