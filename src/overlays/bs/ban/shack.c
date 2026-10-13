@@ -39,7 +39,7 @@ void func_80800430_bsbanshack()
     func_80800164_bsbanshack();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_80800450_bsbanshack.s")
+void func_80800450_bsbanshack(PlayerState *arg0) { s32 baanim_playForDuration_onceSmooth(void *, s32, s32); void baphysics_set_target_horizontal_velocity(PlayerState *, f32); s32 func_8009FFD8(PlayerState *, s32, s32, s32, s32); func_8080021C_bsbanshack(); baanim_playForDuration_onceSmooth(arg0, 0x295, 0x3FB33333); func_8009FFD8(arg0, 1, 1, 1, 2); baphysics_set_target_horizontal_velocity(arg0, 0.0f); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_808004AC_bsbanshack.s")
 
