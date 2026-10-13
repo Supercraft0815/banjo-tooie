@@ -10,6 +10,8 @@ s32 baeggcursor_entrypoint_0()
     return 0x1C;
 }
 
+s32 baeggcursor_entrypoint_7(void *, s32);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/cursor/baeggcursor_entrypoint_1.s")
 
 u32 baeggcursor_entrypoint_2(void *arg0) {
@@ -34,7 +36,14 @@ void baeggcursor_entrypoint_6(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/cursor/baeggcursor_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/cursor/baeggcursor_entrypoint_8.s")
+void baeggcursor_entrypoint_8(void *arg0) {
+    u8 temp_v0;
+
+    temp_v0 = (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x68)))) + (9)));
+    if ((temp_v0 != 0) && (temp_v0 != 1) && (temp_v0 != 4)) {
+        baeggcursor_entrypoint_7(arg0, 5);
+    }
+}
 
 s32 baeggcursor_entrypoint_9(void *arg0) {
     u8 temp_v0;
