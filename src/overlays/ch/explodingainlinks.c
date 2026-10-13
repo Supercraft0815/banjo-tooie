@@ -15,7 +15,15 @@ void func_80800014_chexplodingchainlinks(s32 arg0)
     _subaddieDll_entrypoint_7(arg0,0xB);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/explodingainlinks/func_80800034_chexplodingchainlinks.s")
+void func_80800034_chexplodingchainlinks(Actor *arg0, void *arg1) {
+    void func_800E3A58(f32 *);
+    void func_80101870(Actor *, void *);
+    f32 sp1C[3];
+
+    func_800E3A58(sp1C);
+    arg0->rotation[1] = sp1C[1];
+    func_80101870(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/explodingainlinks/func_80800070_chexplodingchainlinks.s")
 
