@@ -16,7 +16,8 @@ void func_8080012C_chbanjoctrl(Actor *arg0) { if ((u32) arg0->unk70_10 == 0xB) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800160_chbanjoctrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_8080025C_chbanjoctrl.s")
+s32 func_808007D8_chbanjoctrl(u8 *);
+void func_8080025C_chbanjoctrl(u8 *arg0) { if (func_808007D8_chbanjoctrl(arg0) && (*(f32 *)(arg0 + 0x1C) < *(f32 *)(arg0 + 8))) func_800904C8(0x91); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_808002A4_chbanjoctrl.s")
 
