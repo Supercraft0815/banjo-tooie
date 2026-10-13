@@ -108,7 +108,16 @@ void func_80800EC8_bswasher(u8 *arg0) {
     func_80099B94(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80800F1C_bswasher.s")
+void func_80800F1C_bswasher(s32 arg0) {
+    s32 func_800C2FDC(u8 index);
+    u8 temp;
+
+    temp = ((u8 *)arg0)[0x165];
+    if (temp != 0) {
+        func_800C2FDC(temp);
+        ((u8 *)arg0)[0x165] = 0;
+    }
+}
 
 void func_80800F54_bswasher(void *arg0) {
     extern s32 D_80801E50_bswasher;
@@ -119,7 +128,7 @@ void func_80800F54_bswasher(void *arg0) {
 
 void func_8080100C_bswasher(s32 arg0)
 {
-    func_80800F1C_bswasher();
+    func_80800F1C_bswasher(arg0);
     func_808000F0_bswasher(arg0);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80801034_bswasher.s")
