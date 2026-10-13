@@ -34,7 +34,10 @@ void bamovespline_entrypoint_8(s32 arg0)
     func_808000F4_bamovespline(arg0,0x2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/spline/bamovespline_entrypoint_9.s")
+void bamovespline_entrypoint_9(void *arg0, f32 arg1) {
+    (*(f32 *)((s8 *)(*(void **)((s8 *)arg0 + 0xC8)) + 0x98)) = arg1;
+    func_808000F4_bamovespline(arg0, 4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/spline/func_80800374_bamovespline.s")
 
