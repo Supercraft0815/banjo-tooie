@@ -180,4 +180,10 @@ void func_800BE58C(s32 *arg0, s32 *arg1) {
     func_800EE830(arg1, &D_8012842C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BE5C4.s")
+u8 *func_800BE5C4(u8 *arg0) {
+    extern u8 D_8012844E;
+    if (arg0 == (u8 *)&D_80128410 + 0x34) {
+        return &D_8012844E;
+    }
+    return *(u8 **)((u8 *)&D_80128410 + 0x44) + ((arg0 - *(u8 **)&D_80128410) >> 3);
+}
