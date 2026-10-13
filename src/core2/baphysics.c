@@ -118,7 +118,22 @@ void baphysics_set_target_yaw(PlayerState *arg0, f32 target_yaw) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x40))) = func_800136E4(target_yaw);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009B9F0.s")
+/* extern */
+
+void func_8009B9F0(PlayerState *arg0, f32 arg1) {
+    void func_800EEB9C(f32[3], f32, f32);
+    u8 *temp_v0;
+    u8 *temp_v0_2;
+
+    baphysics_set_target_horizontal_velocity(arg0, arg1);
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0xC8)));
+    func_800EEB9C((f32 *)(temp_v0 + 0x1C), (*(f32 *)((s8 *)(temp_v0) + (0x40))), (*(f32 *)((s8 *)(temp_v0) + (0x3C))));
+    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x20))) = 0.0f;
+    temp_v0_2 = (*(u8 **)((s8 *)(arg0) + (0xC8)));
+    (*(f32 *)((s8 *)(temp_v0_2) + (0x10))) = (f32) (*(f32 *)((s8 *)(temp_v0_2) + (0x1C)));
+    temp_v0_2 = (*(u8 **)((s8 *)(arg0) + (0xC8)));
+    (*(f32 *)((s8 *)(temp_v0_2) + (0x18))) = (f32) (*(f32 *)((s8 *)(temp_v0_2) + (0x24)));
+}
 
 void baphysics_set_vertical_velocity(PlayerState *arg0, f32 arg1) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x14))) = arg1;
