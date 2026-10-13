@@ -30,7 +30,11 @@ void func_80800418_chboilerid(Actor *arg0) {
     _mlwave_entrypoint_1(func_80100094(arg0, 0U));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_80800440_chboilerid.s")
+void func_80800440_chboilerid(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _mlwave_entrypoint_1(u8 *);
+    _mlwave_entrypoint_1((u8 *)func_80100094(arg0, 0U) + 0x20);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_80800468_chboilerid.s")
 
