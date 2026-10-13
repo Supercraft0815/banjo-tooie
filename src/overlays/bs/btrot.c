@@ -34,7 +34,6 @@ void func_808000DC_bsbtrot(PlayerState *arg0, s32 arg1) {
 }
 
 void func_80800120_bsbtrot(s32 arg0) {
-    s32 _bashoes_entrypoint_6(s32, s32);
     s32 bakey_pressed(s32, s32);
     s32 func_8008E39C();
     if ((bakey_pressed(arg0, 9) != 0) && (func_8008E39C(arg0) != 0)) {
@@ -395,7 +394,7 @@ s32 bsbtrot_entrypoint_39(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80802380_bsbtrot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_40.s")
+void bsbtrot_entrypoint_40(PlayerState *arg0) { func_80802380_bsbtrot(arg0, 0); _bashoes_entrypoint_6(arg0, 2); _bashoes_entrypoint_5(arg0, 0); func_8080061C_bsbtrot(arg0); }
 
 void bsbtrot_entrypoint_41(s32 arg0) { func_80800538_bsbtrot(); _bashoes_entrypoint_5(arg0, 1); *(s32 *)(arg0 + 0x15C) = 0; func_80802380_bsbtrot(arg0, 1); }
 
