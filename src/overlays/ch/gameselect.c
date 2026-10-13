@@ -393,7 +393,11 @@ void func_80802BE8_chgameselect(Unk80132ED0 *arg0)
     func_808029D8_chgameselect(func_80106790(arg0));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802C10_chgameselect.s")
+void func_80802C10_chgameselect(Unk80132ED0 *arg0) {
+    Actor *func_80106790(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    _gcnewoption_entrypoint_38(func_80100094(func_80106790(arg0), 0U), 1U);
+}
 
 s32 func_80802C48_chgameselect(Unk80132ED0 *arg0) {
     Actor *func_80106790(Unk80132ED0 *);
