@@ -12,7 +12,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/subaddierouteDll_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/subaddierouteDll_entrypoint_3.s")
+void subaddierouteDll_entrypoint_3(s32 arg0, void *arg1, f32 *arg2) {
+    void func_80800564_subaddierouteDll(s32, void *);
+    rare_memset(arg1, 0, 0xC);
+    func_80800564_subaddierouteDll(arg0, arg1);
+}
 
 void func_80800564_subaddierouteDll(s32 arg0, void *arg1) {
     (*(s16 *)((s8 *)(arg1) + (6))) = 0;
