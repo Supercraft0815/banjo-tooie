@@ -1,4 +1,5 @@
 #include "common.h"
+typedef struct player_state_s PlayerState;
 
 void func_80800000_bsbwhirl(void *arg0) {
     *(s32 *)((u8 *)arg0 + 0x160) = 0;
@@ -52,7 +53,7 @@ void func_80800430_bsbwhirl(void *arg0, s32 *arg1)
 void bsbwhirl_entrypoint_1(s32 arg0) {
     s32 anctrl_isStopped(s32);
     s32 baanim_getAnimCtrlPtr(s32);
-    s32 bs_setState(s32, s32);
+    void bs_setState(PlayerState *, int);
     s32 sp1C;
 
     sp1C = 0;
@@ -141,7 +142,7 @@ s32 bsbwhirl_entrypoint_15(s32 arg0) {
 void bsbwhirl_entrypoint_17(s32 arg0) {
     s32 anctrl_isStopped(s32);
     s32 baanim_getAnimCtrlPtr();
-    s32 bs_setState(s32, s32);
+    void bs_setState(PlayerState *, int);
     s32 sp1C;
 
     sp1C = 0;
@@ -194,7 +195,24 @@ void bsbwhirl_entrypoint_25()
     _bsrest_entrypoint_16();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_26.s")
+void bsbwhirl_entrypoint_26(PlayerState *arg0) {
+    int func_80800200_bsbwhirl(PlayerState *);
+    int func_80800008_bsbwhirl(PlayerState *);
+    s32 _bsrest_entrypoint_13(PlayerState *);
+    s32 _bsrest_entrypoint_20(PlayerState *);
+    void bs_setState(PlayerState *, int);
+    s32 sp24;
+    PlayerState *self;
+
+    self = arg0;
+    sp24 = 0;
+    func_80800200_bsbwhirl(self);
+    func_80800008_bsbwhirl(self);
+    if (_bsrest_entrypoint_20(self) != 0) {
+        sp24 = _bsrest_entrypoint_13(self);
+    }
+    bs_setState(self, sp24);
+}
 
 s32 bsbwhirl_entrypoint_27(s32 arg0) {
     extern s32 D_80800FF8_bsbwhirl[];
