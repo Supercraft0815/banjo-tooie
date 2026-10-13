@@ -155,7 +155,21 @@ f32 func_800962D4(void *arg0) {
     return sp1C - func_800C6784(*(*(void ***)((s8 *)(arg0) + (0x94))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_8009630C.s")
+/* extern */
+
+f32 func_8009630C(PlayerState *arg0) {
+    f32 func_8009C150(PlayerState *);
+    f32 func_800C6784(void *);
+    f32 func_800C67D8(f32 *);
+    f32 func_800F0E00(f32, f32);
+    s32 pad;
+    f32 sp20;
+    f32 sp1C;
+
+    sp1C = func_8009C150(arg0);
+    sp20 = func_800C6784(*(*(void ***)((s8 *)arg0 + 0x94)));
+    return sp1C - func_800F0E00(sp20, func_800C67D8(*(*(f32 ***)((s8 *)arg0 + 0x94))));
+}
 
 f32 func_80096364(PlayerState *arg0) {
     f32 func_800C6784(void *);
