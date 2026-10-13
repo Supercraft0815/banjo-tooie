@@ -1,6 +1,20 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_80800000_bssnowball.s")
+/* extern */
+
+f32 func_80800000_bssnowball(s32 arg0) {
+    f32 _basnowball_entrypoint_3();
+    s32 func_8008C990(s32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F13C4(f32, f32);
+    f32 sp20;
+    f32 temp_f0;
+
+    temp_f0 = func_800F13C4(func_800F10B4(_basnowball_entrypoint_3(), 0.0f, 360.0f, 0.0f, 1.0f), 1.0f);
+    sp20 = temp_f0;
+    func_8008C990(arg0, temp_f0);
+    return temp_f0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_80800064_bssnowball.s")
 
