@@ -25,7 +25,7 @@ void func_800B3748(s32 arg0) {
     func_800B36C0(arg0, sp24, &sp18, 500.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8CC00/func_800B3784.s")
+s32 func_800B3784(u8 *arg0) { return ((*(s32 *)((s8 *)arg0 + 0x10) - (s32)arg0) - 0x18) / 28; }
 
 void func_800B37A4(u8 *arg0, s32 *arg1, s32 *arg2) {
     *arg1 = arg0 + 0x18;
