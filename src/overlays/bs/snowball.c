@@ -129,7 +129,7 @@ s32 bssnowball_entrypoint_7(s32 arg0) {
 
 void func_80800B44_bssnowball(s32 arg0) { _baspin_entrypoint_1(); *(u8 *)(arg0 + 0x165) = 0; bssnowball_entrypoint_0(arg0); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_80800B70_bssnowball.s")
+void func_80800B70_bssnowball(s32 arg0) { bssnowball_entrypoint_1(); *(u8 *)(arg0 + 0x165) = 1; _basnowball_entrypoint_10(arg0); _baspin_entrypoint_2(arg0, 0x5E, 0x3FE66666, 3, 0); }
 
 /* extern */
 
