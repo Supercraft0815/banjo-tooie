@@ -40,7 +40,25 @@ f32 func_80800000_idwibble(void *arg0, void *arg1, void *arg2) {
 void idwibble_entrypoint_1(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/wibble/func_80800324_idwibble.s")
+s32 *func_80800324_idwibble(s32 arg0) {
+    struct WibbleEntry {
+        s32 words[3];
+        s16 unkC;
+        s16 id;
+    };
+    extern struct WibbleEntry D_80800770_idwibble[];
+    struct WibbleEntry *temp_v1;
+    s32 i;
+
+    arg0 -= arg0 % 100;
+    for (i = 0; i < 6; i++) {
+        temp_v1 = &D_80800770_idwibble[i];
+        if (arg0 == temp_v1->id) {
+            return temp_v1->words;
+        }
+    }
+    return D_80800770_idwibble[0].words;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/wibble/idwibble_entrypoint_2.s")
 
