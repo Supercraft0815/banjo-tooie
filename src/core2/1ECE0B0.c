@@ -1073,7 +1073,17 @@ void func_800F7814(s32 arg0, s32 arg1) {
 
 s32 func_800F7844(u32 arg0, f32 *arg1, f32 arg2, f32 arg3) { s32 func_800F7750(s32, s32, f32, f32, s32); return func_800F7750(arg0, (s32)arg1, arg2, arg3, 0); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7874.s")
+s32 func_800F7874(s32 arg0, s32 arg1, void *arg2) {
+    void func_8009AD14(void *, s32);
+    void func_8009AD44(void *, void *);
+    s32 func_8009E7C8(u8 *, s32);
+    PlayerState *temp_a0;
+
+    temp_a0 = D_80135490[arg0];
+    func_8009AD44(temp_a0, arg2);
+    func_8009AD14(temp_a0, arg1);
+    return func_8009E7C8((u8 *)temp_a0, 0x66) == 2;
+}
 
 void func_800F78C8(s32 arg0,s32 arg1)
 {
