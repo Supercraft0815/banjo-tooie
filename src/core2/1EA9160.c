@@ -136,7 +136,20 @@ void func_800D0B38(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D0B68.s")
+/* extern */
+
+s32 func_800D0B68(u32 arg0, u32 arg1) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800D395C();
+    s32 func_800DA298(s32);
+    s32 temp_v0;
+
+    temp_v0 = func_800D0A80((s32) arg0, (s32) arg1);
+    if (temp_v0 == 0) {
+        return -1;
+    }
+    return ((func_800DA298(temp_v0) != 0) || (_glcutDll_entrypoint_20() != 0) || (func_800D395C() != 0)) ? 1 : 0;
+}
 
 /* extern */
 
