@@ -261,6 +261,13 @@ void func_808019D4_chwaspnestgame(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801B9C_chwaspnestgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801CE4_chwaspnestgame.s")
+void func_80801CE4_chwaspnestgame(Actor *arg0) {
+    void func_800F1A88(f32 *, f32 *);
+    f32 sp18[2];
+
+    func_800F1A88((f32 *)((s8 *)arg0 + 0x28), sp18);
+    arg0->rotation[0] = -sp18[0];
+    arg0->rotation[1] = sp18[1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801D28_chwaspnestgame.s")
