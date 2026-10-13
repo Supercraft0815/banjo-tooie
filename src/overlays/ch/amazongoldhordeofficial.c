@@ -150,14 +150,23 @@ s32 func_80800C60_chamazongoldhordeofficial(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800CD8_chamazongoldhordeofficial.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800DB4_chamazongoldhordeofficial.s")
+ s32 func_80800DB4_chamazongoldhordeofficial(Actor *arg0, s32 arg1) {
+    u8 *temp_s0;
+    s32 temp_v0;
+    temp_s0 = func_80100094(arg0, 0);
+    do {
+        temp_v0 = func_800DC128(0, temp_s0[0x48] - 1);
+        temp_s0[0x67] = temp_v0;
+    } while (arg1 == (temp_v0 & 0xFF));
+    *(f32 *)&arg0->actorData[3] = 700.0f;
+}
 
 /* extern */
 
 void func_80800E18_chamazongoldhordeofficial(Actor *arg0) {
     void* func_80100094(Actor*, u32);
     void func_80102424(Actor*, s32);
-    s32 func_80800DB4_chamazongoldhordeofficial(Actor *, u8);
+    s32 func_80800DB4_chamazongoldhordeofficial(Actor *, s32);
     u8 *sp1C;
     u8 *temp_v0;
 
