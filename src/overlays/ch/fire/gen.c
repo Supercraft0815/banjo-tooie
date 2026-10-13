@@ -148,7 +148,20 @@ OSThread *chfiregen_entrypoint_17(void)
     return (OSThread *) D_80801AD4_chfiregen;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_8080105C_chfiregen.s")
+void func_8080105C_chfiregen(Actor *arg0) {
+    s32 sp1C;
+    s32 _idworld_entrypoint_3(s32);
+
+    switch (arg0->unk6C_9) {
+    case 0x2AA:
+        sp1C = 0x1AD;
+        break;
+    case 0x2AB:
+        sp1C = 0x1AE;
+        break;
+    }
+    _idworld_entrypoint_3(sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_808010B4_chfiregen.s")
 
