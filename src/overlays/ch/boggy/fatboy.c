@@ -34,7 +34,17 @@ void func_80800978_chboggyfatboy(Actor* arg0)
     func_80800FAC_chboggyfatboy(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_80800998_chboggyfatboy.s")
+void func_80800998_chboggyfatboy(Actor *arg0) {
+    s32 func_800EE940();
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 sp1C;
+    Actor *temp_v0;
+
+    sp1C = func_80100094(arg0, 0U);
+    temp_v0 = func_80106790(arg0->unk3C);
+    ((s16 *)sp1C)[3] = *(s32 *)((u8 *)temp_v0 + 0x2C);
+    func_800EE940((void *)sp1C, (u8 *)temp_v0 + 0x18);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_808009E0_chboggyfatboy.s")
 
