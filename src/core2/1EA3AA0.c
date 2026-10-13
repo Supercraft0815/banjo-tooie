@@ -64,6 +64,8 @@ void func_800CA510(void *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CA558.s")
 
+void func_800EE7F8();
+
 void func_800CA5B8()
 {
     func_800EE7F8();
@@ -257,6 +259,6 @@ f32 func_800CAF00(f32 *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CAF34.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CB0E8.s")
+void func_800CB0E8(u8 *arg0, f32 *arg1, s32 arg2) { void func_800EE7F8(f32 *, f32 *); func_800EE7F8(arg1, (f32 *)(arg0 + 0x128 + (arg2 * 12))); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CB124.s")
