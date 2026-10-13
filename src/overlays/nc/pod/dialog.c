@@ -42,7 +42,19 @@ s32 func_80800698_ncpoddialog(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_808006D4_ncpoddialog.s")
+s32 func_808006D4_ncpoddialog(void *arg0) {
+    switch (*(s8 *)((s8 *)arg0 + 0x211)) {
+    case 2:
+    case 3:
+    case 4:
+    case 6:
+    case 8:
+    case 9:
+        return 1;
+    default:
+        return 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80800710_ncpoddialog.s")
 
