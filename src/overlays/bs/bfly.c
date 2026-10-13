@@ -171,7 +171,7 @@ void func_808009D0_bsbfly(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800C38_bsbfly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800D50_bsbfly.s")
+void func_80800D50_bsbfly(s32 arg0) { s32 func_80800128_bsbfly(void); func_80800128_bsbfly(); (*(s32 *)((s8 *)(arg0) + 0x160)) = 0; func_80800A24_bsbfly(arg0, 1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800D80_bsbfly.s")
 
