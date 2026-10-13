@@ -21,7 +21,23 @@ OSThread *chchuffy_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80800410_chchuffy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80800524_chchuffy.s")
+/* extern */
+
+void func_80800524_chchuffy(Actor *arg0) {
+    void* func_80100094(Actor*, u32);
+    s32 func_80800410_chchuffy(Actor *, s32);
+    s32 var_s0;
+    Actor *actor;
+    u32 *temp_v0;
+
+    actor = arg0;
+    (*(s32 *)((s8 *)(func_80100094(actor, 0U)) + (0x2A8))) = 0x9DD;
+    for (var_s0 = 0; var_s0 < 10; var_s0++) {
+        func_80800410_chchuffy(actor, var_s0);
+    }
+    temp_v0 = actor->unk0->unk0;
+    (*(u8 *)((s8 *)(temp_v0) + (0xA))) = (u8) (((*(u8 *)((s8 *)(temp_v0) + (0xA))) & 0xFF07) | 0x18);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_8080059C_chchuffy.s")
 
