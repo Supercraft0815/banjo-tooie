@@ -35,4 +35,16 @@ void bsdronesuckunder_entrypoint_2(s32 arg0) {
     func_80099AA8(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/suckunder/bsdronesuckunder_entrypoint_3.s")
+/* extern */
+
+void bsdronesuckunder_entrypoint_3(struct player_state_s *arg0) {
+    int _batimer_decrement(struct player_state_s *, s32);
+    f32 _batimer_get(struct player_state_s *, s32);
+    void func_8009BA9C(struct player_state_s *, f32 *);
+    _batimer_decrement(arg0, 0xA);
+    if (_batimer_get(arg0, 0xA) != 0.0f) {
+        func_80800000_bsdronesuckunder(arg0);
+        return;
+    }
+    func_8009BA9C(arg0, 0);
+}
