@@ -7,7 +7,16 @@ OSThread *suegg_entrypoint_0(void)
     return (OSThread *) D_80800E40_suegg;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/func_8080000C_suegg.s")
+void func_8080000C_suegg(Actor *arg0) {
+    s32 func_800AF5A0(s16 *);
+    s32 func_800EC3E8(u8 *);
+    void *sp1C;
+
+    sp1C = func_80100094(arg0, 0);
+    *(f32 *)((s8 *)sp1C + 4) = 0.0f;
+    *(s32 *)((s8 *)sp1C + 8) = func_800AF5A0((s16 *)func_800EC3E8((u8 *)arg0->unk0));
+    *(f32 *)((s8 *)sp1C + 0) = 1.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/func_80800064_suegg.s")
 
