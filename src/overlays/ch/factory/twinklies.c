@@ -82,7 +82,23 @@ s32 func_80801174_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_808013BC_chfactorytwinklies.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_8080145C_chfactorytwinklies.s")
+void func_8080145C_chfactorytwinklies(Actor *arg0) {
+    s32 temp_v0;
+
+    temp_v0 = arg0->unk74_7 - 0x32;
+    arg0->actorData[5] = temp_v0;
+    switch (temp_v0) {
+    case 0:
+        arg0->actorData[4] = 0x20000000;
+        break;
+    case 1:
+        arg0->actorData[4] = 0x10000000;
+        break;
+    case 2:
+        arg0->actorData[4] = 0x08000000;
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_808014B0_chfactorytwinklies.s")
 
