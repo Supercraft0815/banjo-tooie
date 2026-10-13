@@ -18,7 +18,20 @@ void func_8080000C_chdumbwaiterlift(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dumbwaiterlift/func_80800044_chdumbwaiterlift.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dumbwaiterlift/func_80800268_chdumbwaiterlift.s")
+void func_80800268_chdumbwaiterlift(u8 *arg0)
+{
+  s32 func_800C53EC(s32, s32);
+  s32 func_80100094(void *, s32);
+  s32 _gcnewoption_entrypoint_6(u8 *, s32);
+  if (((((u16) (*((u16 *) (((s8 *) arg0) + 0x72)))) & 0xFFFFFFFFu) >> 0xA) == 6)
+  {
+    func_800C53EC(0, 0);
+  }
+  if (func_80100094(arg0, 0) != 0)
+  {
+    _gcnewoption_entrypoint_6(arg0, 0);
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dumbwaiterlift/func_808002C0_chdumbwaiterlift.s")
 
