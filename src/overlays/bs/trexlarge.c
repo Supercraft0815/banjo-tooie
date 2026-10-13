@@ -95,7 +95,21 @@ void func_80800560_bstrexlarge(void)
 }
 void func_80800580_bstrexlarge(PlayerState *arg0) { bstrexlarge_entrypoint_2(); func_8009FFD8(arg0, 1, 3, 3, 2); yaw_setVelocityBounded((s32)arg0, 0x43960000, 0x40600000); func_80800000_bstrexlarge(arg0); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_808005D4_bstrexlarge.s")
+void func_808005D4_bstrexlarge(PlayerState *arg0) {
+    int baanim_isStopped(PlayerState *);
+    s32 bs_setState(s32, s32);
+    void bstrexlarge_entrypoint_3(s32);
+    s32 func_808003C4_bstrexlarge(s32, s32, s32);
+    s32 sp24;
+
+    sp24 = 0;
+    func_8080000C_bstrexlarge(arg0);
+    bstrexlarge_entrypoint_3((s32)arg0);
+    if (baanim_isStopped(arg0) != 0) {
+        sp24 = 0x151;
+    }
+    bs_setState((s32)arg0, func_808003C4_bstrexlarge((s32)arg0, sp24, 1));
+}
 
 s32 bstrexlarge_entrypoint_0(s32 arg0) {
     extern s32 D_80801990_bstrexlarge[];
