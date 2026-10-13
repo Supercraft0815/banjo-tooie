@@ -1,6 +1,9 @@
 #include "core2/1EABAC0.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D21D0.s")
+u8 *func_800D21D0(s32 arg0) {
+    extern s32 D_8011AFB0;
+    return (u8 *)&D_8011AFB0 + (arg0 * 12 - 0x900);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D21F0.s")
 
@@ -42,12 +45,12 @@ void func_800D2438(void) { extern s32 D_8011AFB0; extern s32 D_8011B3F4; extern 
 
 void func_800D27F4(s32 arg0)
 {
-    func_800D23E8(func_800D21D0(),arg0);
+    func_800D23E8(func_800D21D0(arg0),arg0);
 }
 
 void func_800D2820(s32 arg0)
 {
-    func_800D2398(func_800D21D0(),arg0);
+    func_800D2398(func_800D21D0(arg0),arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D284C.s")
