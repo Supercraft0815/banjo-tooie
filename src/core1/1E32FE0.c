@@ -102,4 +102,8 @@ void func_8001B7B8(s16 arg0) {
     heap_get_allocation_size(D_8007BF10[arg0].ptr);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E32FE0/func_8001B7F0.s")
+/* extern */
+
+void func_8001B7F0(s16 arg0, u8 arg1, int arg2) { u32 value = arg1;
+    rare_memset(D_8007BF10[arg0].ptr, value, arg2);
+}
