@@ -23,17 +23,34 @@ void func_80800050_bsbabykaz(void *arg0) {
 
 /* extern */
 
-void func_808000F8_bsbabykaz(s32 arg0) {
-    s32 _bababykaz_entrypoint_3(s32);
+struct player_state_s;
+int bakey_pressed(struct player_state_s *, int);
+int bastick_getZone(struct player_state_s *);
+
+s32 func_808000F8_bsbabykaz(struct player_state_s *arg0) {
+    s32 _bababykaz_entrypoint_3(struct player_state_s *);
     if (bakey_pressed(arg0, 9) != 0) {
         _bababykaz_entrypoint_7(arg0, 1);
     }
-    _bababykaz_entrypoint_3(arg0);
+    return _bababykaz_entrypoint_3(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80800134_bsbabykaz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_808001A8_bsbabykaz.s")
+/* extern */
+
+s32 func_808001A8_bsbabykaz(struct player_state_s *arg0, s32 arg1) {
+    if (bastick_getZone(arg0) == 1) {
+        arg1 = 0x135;
+    }
+    if (bakey_pressed(arg0, 8) != 0) {
+        arg1 = 0x134;
+    }
+    if (func_808000F8_bsbabykaz(arg0) != 0) {
+        arg1 = 0x94;
+    }
+    return arg1;
+}
 
 /* extern */
 
@@ -148,7 +165,7 @@ void func_80800D40_bsbabykaz(s32 arg0)
 /* extern */
 
 void func_80800D68_bsbabykaz(s32 arg0) {
-    s32 _bababykaz_entrypoint_3(s32);
+    s32 _bababykaz_entrypoint_3(struct player_state_s *);
     s32 _bsrest_entrypoint_20();
     s32 bs_setState(s32, s32);
     s32 bsbabykaz_entrypoint_5(s32);
@@ -214,7 +231,7 @@ void func_808010AC_bsbabykaz(s32 arg0) {
     s32 bsbabykaz_entrypoint_5();
     s32 func_8008DD04(s32);
     int func_8008E148(s32);
-    s32 func_808001A8_bsbabykaz(s32, s32);
+    s32 func_808001A8_bsbabykaz(struct player_state_s *, s32);
     s32 sp24;
 
     sp24 = 0;
