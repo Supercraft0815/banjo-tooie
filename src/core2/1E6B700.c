@@ -62,7 +62,12 @@ void func_80091EF0(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B700/func_80091F30.s")
+void func_80091F30(void *arg0) {
+    s32 func_80091FE4(void);
+    if (**(u8 **)((u8 *)arg0 + 0x4C) == 2 && func_80091FE4() != 0) {
+        func_80091F74(arg0, 3);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B700/func_80091F74.s")
 
