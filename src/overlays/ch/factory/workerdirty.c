@@ -96,7 +96,9 @@ s32 func_808009E4_chfactoryworkerdirty()
     return func_800DA298(FLAG_433_UNK);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800A04_chfactoryworkerdirty.s")
+s32 func_80800A04_chfactoryworkerdirty(s32 arg0) {
+    return ((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7) + (-50);
+}
 
 /* extern */
 
