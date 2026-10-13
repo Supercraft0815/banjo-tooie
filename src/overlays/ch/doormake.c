@@ -33,7 +33,16 @@ void chdoormake_entrypoint_7(Actor *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/chdoormake_entrypoint_9.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/chdoormake_entrypoint_10.s")
+void chdoormake_entrypoint_10(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    struct DoorField {
+        u16 flag : 1;
+        u16 value : 15;
+    } *data;
+
+    data = (struct DoorField *)((s8 *)func_80100094(arg0, 0U) + arg1 * 8 + 0x22);
+    data->value = arg2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/chdoormake_entrypoint_11.s")
 
