@@ -27,7 +27,22 @@ void bahold_entrypoint_2(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/hold/func_808000E0_bahold.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/hold/bahold_entrypoint_3.s")
+/* extern */
+
+void bahold_entrypoint_3(u8 *arg0) {
+    s32 func_808000E0_bahold();
+    void *temp_v0;
+
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x9C)));
+    if ((*(s32 *)((s8 *)(temp_v0) + (8))) != 0) {
+        if ((*(u8 *)((s8 *)(temp_v0) + (0xC))) == 0) {
+            func_80800008_bahold(arg0, 0);
+            return;
+        }
+        func_808000E0_bahold();
+        (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x9C)))) + (0xC))) = 0;
+    }
+}
 
 void bahold_entrypoint_4(s32 arg0)
 {
