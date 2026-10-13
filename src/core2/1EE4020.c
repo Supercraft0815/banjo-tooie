@@ -16,7 +16,25 @@ void func_8010A764(s32 arg0, s32 arg1) {
     (*(s32 (**)(s32, s32))((s8 *)(func_80100368()) + (0x14)))(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4020/func_8010A79C.s")
+/* extern */
+
+void func_8010A79C(Actor *arg0, s32 arg1) {
+    void *func_80100368(void *arg0);
+    struct {
+        u8 padding[0x14];
+        s32 (*unk14)(Actor *, s32);
+    } *methods;
+    struct Flags {
+        u8 padding[0x7C];
+        u32 high : 16;
+        u32 unk7C_15 : 1;
+        u32 low : 15;
+    } *flags = (void *)arg0;
+    if (flags->unk7C_15 && !arg0->unk64_17 && arg0->unk64_16) {
+        methods = func_80100368(arg0);
+        methods->unk14(arg0, arg1);
+    }
+}
 
 void func_8010A800(void **arg0, s32 arg1) {
     struct Fields {
