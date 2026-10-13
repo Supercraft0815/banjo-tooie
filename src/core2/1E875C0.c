@@ -94,7 +94,7 @@ s32 func_800AE0D0(s32 *arg0) {
 
 s32 func_800AE0E8(s16 arg0) { if (arg0 != 0) { return *(s32 *)func_800AE080(arg0); } return 1; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800AE124.s")
+s32 func_800AE124(s16 arg0) { if (arg0 != 0) { return *(s32 *)func_800AE080(arg0); } return 0; }
 
 /* extern */
 
