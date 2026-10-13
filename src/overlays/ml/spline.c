@@ -441,7 +441,15 @@ void mlspline_entrypoint_10(f32 arg0, s32 arg1, f32 *arg2, volatile f32 *arg3)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/func_8080145C_mlspline.s")
+/* extern */
+
+f32 func_8080145C_mlspline(f32 arg0, s32 arg1, s32 arg2, s32 (*arg3)(f32, s32, s32, f32 *)) {
+    f32 func_800EEF94(f32 *);
+    f32 sp1C[3];
+
+    arg3(arg0, arg1, arg2, sp1C);
+    return func_800EEF94(sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/func_80801488_mlspline.s")
 
