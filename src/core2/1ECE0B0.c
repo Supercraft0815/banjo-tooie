@@ -1011,7 +1011,20 @@ s32 func_800F7018(s32 arg0) {
     return func_8009CBDC(temp_a0, bs_getCurrentState(temp_a0)) == 0x8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7058.s")
+/* extern */
+
+s32 func_800F7058(s32 arg0) {
+    s32 _bashoes_entrypoint_1(PlayerState *);
+    s32 func_8009E674(PlayerState *, s32);
+    PlayerState *temp_a0;
+    s32 pad[1];
+
+    temp_a0 = D_80135490[arg0];
+    if (func_8009E674(temp_a0, 0x80) != 0) {
+        return _bashoes_entrypoint_1(temp_a0) == 3 ? 2 : 1;
+    }
+    return 0;
+}
 
 /* extern */
 
