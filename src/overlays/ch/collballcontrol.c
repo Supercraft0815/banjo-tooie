@@ -208,7 +208,11 @@ void func_808020B0_chcollballcontrol(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808020F4_chcollballcontrol.s")
+void func_808020F4_chcollballcontrol(Actor *arg0) {
+    arg0->position[1] -= 5.0f;
+    arg0->alpha = (u32)arg0->alpha * 0.7f;
+    arg0->scale *= 0.95f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808021D4_chcollballcontrol.s")
 
