@@ -135,7 +135,9 @@ void func_80801A8C_chfpsgame(Actor *arg0, f32 arg1) {
     (*(s8 *)((s8 *)(temp_v0) + (0x558))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80801ADC_chfpsgame.s")
+/* extern */
+
+s32 func_80801ADC_chfpsgame(Actor *arg0) { void *func_80100094(Actor *, u32); s32 var_v1; void *temp_v0; temp_v0 = func_80100094(arg0, 0U); var_v1 = ((*(f32 *)((s8 *)temp_v0 + 0x55C)) != 0.0f) && ((*(f32 *)((s8 *)temp_v0 + 0x560)) == 0.0f) ? 1 : 0; return var_v1; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80801B30_chfpsgame.s")
 
