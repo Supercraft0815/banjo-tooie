@@ -4,7 +4,39 @@ void func_80800000_bsbanswim(s32 arg0) {
     func_8009FFD8(arg0, 0x1, 0x3, 0x3, 0x9);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/swim/func_80800030_bsbanswim.s")
+/* extern */
+
+void func_80800030_bsbanswim(struct player_state_s *arg0) {
+    s32 _baairbar_entrypoint_0(struct player_state_s *, s32);
+    s32 _baswim_entrypoint_5(struct player_state_s *);
+    s32 _baswim_entrypoint_6(struct player_state_s *, s32);
+    void baphysics_set_gravity(struct player_state_s *, f32);
+    void baphysics_set_terminal_velocity(struct player_state_s *, f32);
+    void baroll_setAngularVelocity(struct player_state_s *, f32, f32);
+    s32 bs_getCurrentState(struct player_state_s *);
+    void func_80093360(struct player_state_s *, f32);
+    void func_800961AC(struct player_state_s *, s32);
+    void func_8009BC5C(struct player_state_s *, f32);
+    s32 func_8009E77C(struct player_state_s *, s32);
+    void func_800A0CF4(struct player_state_s *, s32);
+    s32 func_800F8B88();
+    if (func_8009E77C(arg0, 0xB) == 0) {
+        _baswim_entrypoint_5(arg0);
+        baroll_setAngularVelocity(arg0, 130.0f, 0.9f);
+        baphysics_set_gravity(arg0, 0.0f);
+        baphysics_set_terminal_velocity(arg0, -399.99f);
+        if (func_800F8B88() != 3) {
+            func_800A0CF4(arg0, 1);
+        }
+        func_800961AC(arg0, 3);
+        func_80093360(arg0, 60.0f);
+        func_8009BC5C(arg0, 2.0f);
+        _baswim_entrypoint_6(arg0, 1);
+        if (bs_getCurrentState(arg0) != 0x4C) {
+            _baairbar_entrypoint_0(arg0, 2);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/swim/func_80800104_bsbanswim.s")
 
