@@ -21,7 +21,7 @@ void func_80800150_chtntmineshoot(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800188_chtntmineshoot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800228_chtntmineshoot.s")
+void func_80800228_chtntmineshoot(Actor *arg0) { void *func_80100094(Actor *, u32); void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *); void func_80800440_chtntmineshoot(Actor *, s32); void func_80800BCC_chtntmineshoot(Actor *); u8 *sp24; sp24 = func_80100094(arg0, 0U); func_80800BCC_chtntmineshoot(arg0); func_80800440_chtntmineshoot(arg0, 0); _subaddierouteDll_entrypoint_3(arg0, sp24 + 0x18, (f32 *)((u8 *)arg0 + 4)); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800280_chtntmineshoot.s")
 
