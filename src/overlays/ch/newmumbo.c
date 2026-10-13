@@ -75,7 +75,7 @@ void func_80800878_chnewmumbo(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_808014FC_chnewmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/chnewmumbo_entrypoint_0.s")
+void chnewmumbo_entrypoint_0(Actor *arg0, f32 *arg1) { func_800EE7F8(arg1, (f32 *)((u8 *)func_80100094(arg0, 0U) + 4)); }
 
 void func_8080172C_chnewmumbo(Actor* arg0) 
 {
