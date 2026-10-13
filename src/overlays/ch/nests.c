@@ -74,7 +74,10 @@ void func_808003AC_chnests(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800898_chnests.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_8080093C_chnests.s")
+s32 func_8080093C_chnests(u8 *arg0, u8 *arg1) {
+    int func_8010DD20(u8 *, s32, u8 *);
+    return func_8010DD20(arg0, 0, arg1);
+}
 
 void func_80800960_chnests(s32 arg0) 
 {
