@@ -10,7 +10,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB750.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB7A8.s")
+void func_800EB7A8(void) {
+    s32 vector_defrag(s32);
+    extern s32 D_80132E80;
+    extern s16 D_80132E9C;
+    s32 *var_s0;
+    s32 temp_a0;
+    var_s0 = &D_80132E80; do { temp_a0 = *var_s0;
+        if (temp_a0 != 0) {
+            *var_s0 = vector_defrag(temp_a0);
+        }
+        var_s0++;
+    } while (var_s0 != (s32 *)(&D_80132E9C));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB800.s")
 
