@@ -298,7 +298,14 @@ u32 func_8080171C_chquiz(u8 *arg0) {
     return arg0[144];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801724_chquiz.s")
+s32 func_80801724_chquiz(void *arg0) {
+    s32 *p = arg0;
+    s32 i;
+    for (i = 0; i < 7; i++) {
+        p[i + 0x19] = 0;
+    }
+    p[0x20] = -1;
+}
 
 void func_80801758_chquiz(s32 *arg0, s32 arg1) {
     arg0[32] = arg1;
