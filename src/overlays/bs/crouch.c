@@ -30,7 +30,12 @@ void func_808000B4_bscrouch(s32 arg0, f32 arg1) {
     anctrl_setDuration(arg0, func_800F10B4(arg1, 0.0f, 180.0f, 0.5f, 0.2f));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/crouch/func_808000FC_bscrouch.s")
+void func_808000FC_bscrouch(void *arg0, s32 arg1) {
+    struct player_state_s;
+    void func_800A2CE8(struct player_state_s *, f32, s32);
+    func_800A2CE8(arg0, 0.41f, 4);
+    func_800A2CE8(arg0, 0.91f, 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/crouch/bscrouch_entrypoint_0.s")
 
