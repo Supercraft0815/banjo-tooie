@@ -1651,6 +1651,7 @@ void func_808067E8_bsfirstp(u8 *arg0) {
 void func_808068E8_bsfirstp(s32 arg0) {
     f32 func_808069BC_bsfirstp(s32);
     s32 func_808069FC_bsfirstp(s32);
+    s32 func_80809D6C_bsfirstp();
     if (func_80809D6C_bsfirstp() != 0) {
         func_808069BC_bsfirstp(arg0);
         return;
@@ -2090,7 +2091,13 @@ void func_80809D24_bsfirstp(void *arg0) {
     func_8080A250_bsfirstp(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809D6C_bsfirstp.s")
+s32 func_80809D6C_bsfirstp(void *arg0) {
+    s32 result;
+    s32 *ptr;
+    ptr = *(s32 **)((u8 *)arg0 + 0x188);
+    result = 0;
+    return ptr[0x254 / 4] == 1 ? 1 : result;
+}
 
 f32 func_80809D94_bsfirstp(void *arg0) {
     void *temp_v0;
