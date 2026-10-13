@@ -1038,7 +1038,18 @@ void func_800F7620(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7664.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F76B0.s")
+/* extern */
+s32 func_800F76B0(s32 arg0, s32 arg1, s32 arg2) {
+    void func_8009AD14(void *, s32);
+    void func_8009AD20(void *, s32);
+    s32 func_8009E7C8(u8 *, s32);
+    PlayerState *temp_a0;
+
+    temp_a0 = D_80135490[arg0];
+    func_8009AD20(temp_a0, arg1);
+    func_8009AD14(temp_a0, arg2);
+    return func_8009E7C8((u8 *) temp_a0, 0x24) == 2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7700.s")
 
@@ -1095,7 +1106,8 @@ void func_800F7AF4(s32 arg0, s32 arg1) {
 
 void func_800F7B9C(s32 arg0,u32 a1)
 {
-    func_8009E7C8(D_80135490[arg0],a1);
+    s32 func_8009E7C8(u8 *, s32);
+    func_8009E7C8((u8 *)D_80135490[arg0],a1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7BC8.s")
@@ -1323,8 +1335,9 @@ void func_800F8804(s32 arg0)
     func_8009CD70(D_80135490[arg0]);
 }
 
-void func_800F8830(s32 arg0)
+void func_800F8830(u8 *arg0)
 {
+    s32 func_8009E7C8(u8 *, s32);
     func_8009E7C8(arg0,0x99);
 }
 
