@@ -83,7 +83,22 @@ s32 func_800D1A04(s32 a0) {
     return ((s16 *)D_8012B250)[index] ^ ((s16 *)&func_800D1A04)[index * 4];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1A6C.s")
+u32 func_800D1A6C(u32 arg0) {
+    extern struct { s16 padding; s16 value; } D_8011AF50[];
+    s16 temp_v1;
+    s32 temp_v0;
+
+    temp_v0 = func_800D16C4((s32) arg0);
+    temp_v1 = D_8011AF50[temp_v0].value;
+    if (temp_v1 != -2) {
+        if (temp_v1 == -1) {
+            return 0x32U;
+        }
+    } else {
+        return 0x3E7U;
+    }
+    return D_8011AF50[temp_v0].value;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1ACC.s")
 
