@@ -69,7 +69,17 @@ int func_800D90F8(f32 *arg0, f32 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2840/func_800D9154.s")
+int func_800D9154(f32 *arg0, f32 arg1) {
+    f32 delta;
+
+    delta = func_800D8FF8();
+    *arg0 -= delta;
+    if (*arg0 < 0.0f) {
+        *arg0 += arg1;
+        return 1;
+    }
+    return 0;
+}
 
 f32 func_800D91B8(f32 *arg0) {
     *arg0 += func_800D8FF8();
