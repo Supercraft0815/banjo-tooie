@@ -48,7 +48,7 @@ void func_800E2440(s32 arg0, s32 arg1, s32 arg2) {
     func_800F31DC(&D_8012D474, arg0, arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E2478.s")
+void func_800E2478(s32 arg0) { void func_800E24F8(s32, s32, s32); func_800E24F8(arg0, arg0, arg0); }
 
 void func_800E249C(s32 arg0) {
     extern s32 D_8012D494;
