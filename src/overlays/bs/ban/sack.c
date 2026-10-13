@@ -67,7 +67,14 @@ void func_80800434_bsbansack(s32 arg0)
     func_80800400_bsbansack(arg0);
     func_80800238_bsbansack(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_8080045C_bsbansack.s")
+void func_8080045C_bsbansack(PlayerState *arg0) {
+    void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+    func_808002D4_bsbansack();
+    baanim_playForDuration_loopSmooth(arg0, 0x28B, 1.5f);
+    func_8009FFD8(arg0, 1, 1, 1, 2);
+    func_808003C0_bsbansack(arg0);
+}
 
 /* extern */
 
