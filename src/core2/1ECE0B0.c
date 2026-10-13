@@ -1694,7 +1694,14 @@ s32 func_800F9214(void) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9240.s")
+void func_800F9240(f32 *arg0, s32 arg1) {
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 sp1C[3];
+
+    func_800F5A00(arg1, sp1C);
+    sp1C[0] += 200.0f;
+    func_800EFA4C(arg0, sp1C[0], sp1C[1], sp1C[2] + 200.0f);
+}
 
 s32 func_800F929C(void) {
     if (func_800F8B88() == 2) {
