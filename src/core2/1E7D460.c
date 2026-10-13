@@ -160,7 +160,16 @@ void func_800A4D6C(u8 *arg0, f32 arg1, f32 arg2) {
     func_800A3BA8((s32)arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4DA4.s")
+void func_800A4DA4(PlayerState *arg0, s32 arg1) {
+    u8 temp_v0;
+
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x38)))) + (0))) = (s8) arg1;
+    temp_v0 = (*(u8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x38)))) + (6)));
+    if ((temp_v0 != 4) && (temp_v0 != 5)) {
+        func_800A3F14((s32)arg0, 1);
+        func_800A3B78(arg0, arg1);
+    }
+}
 
 void func_800A4DFC(PlayerState *arg0, s32 arg1) {
     func_800A3F14((s32)arg0, 3);
