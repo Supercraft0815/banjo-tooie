@@ -151,7 +151,7 @@ s32 func_800CC5E8()
     return D_8012AE80;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CC5F4.s")
+u32 func_800CC5F4(s32 arg0) { extern s32 D_8012AE84; return (u32)*(u32 *)(D_8012AE84 + arg0 * 0x1C) >> 9; }
 
 u8 func_800CC61C(s32 arg0) {
     extern s32 D_8012AE84;
