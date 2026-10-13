@@ -40,7 +40,14 @@ void func_8080003C_chprisonbits()
     _chswitch_entrypoint_7();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_8080005C_chprisonbits.s")
+void func_8080005C_chprisonbits(Actor *arg0, s32 arg1, s32 arg2) {
+    Actor *temp_v0;
+
+    temp_v0 = (Actor *) _subaddiefind_entrypoint_2(0x120, 0);
+    arg0->position[0] = temp_v0->position[0] + (f32) arg2;
+    arg0->position[2] = temp_v0->position[2];
+    func_8080003C_chprisonbits(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_808000C0_chprisonbits.s")
 
@@ -50,7 +57,6 @@ void func_808001E0_chprisonbits(s32 arg0)
 }
 
 void func_80800200_chprisonbits(s32 arg0) {
-    s32 func_8080005C_chprisonbits(s32, s32, s32);
     func_8080005C_chprisonbits(arg0, 0x2, 175);
 }
 
