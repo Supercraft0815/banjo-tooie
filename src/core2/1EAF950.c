@@ -68,7 +68,32 @@ s32 func_800D6060(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6550.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D66AC.s")
+void func_800D66AC(void) {
+    extern s16 D_8011B910;
+    extern u8 D_8012B800[];
+    extern u8 D_8012BE60[];
+    extern s16 D_8012BE62;
+    struct Entry {
+        u32 unused : 27;
+        u32 flags : 4;
+        u32 low : 1;
+        s32 value;
+        u16 index : 14;
+        u16 low2 : 2;
+        s16 tail;
+    } *ptr;
+
+    s32 i;
+
+    ptr = (struct Entry *)D_8012B800;
+    for (i = 0; i < 136; i++) {
+        ptr[i].flags = 0;
+        ptr[i].index = -1;
+        ptr[i].value = 0;
+    }
+    D_8011B910 = -1;
+    D_8012BE62 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D674C.s")
 
