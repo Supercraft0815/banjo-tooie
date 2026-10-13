@@ -86,7 +86,10 @@ void *func_8001B710(s16 arg0, s32 arg1) {
             D_8007BF10[arg0].ptr);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E32FE0/func_8001B754.s")
+/* extern */
+void func_8001B754(s16 arg0) {
+    heap_free(D_8007BF10[arg0].ptr), D_8007BF10[arg0].ptr = NULL;
+}
 
 void *func_8001B798(s16 arg0) {
     return D_8007BF10[arg0].ptr;
