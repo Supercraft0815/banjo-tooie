@@ -141,4 +141,11 @@ void func_80800738_gcfrontend(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_800A791C(sp18, sp1C, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_14.s")
+s16 gcfrontend_entrypoint_14(s32 arg0) {
+    s32 func_80800450_gcfrontend();
+    extern s32 D_80800D80_gcfrontend;
+    void *temp_v1;
+
+    temp_v1 = (func_80800450_gcfrontend() * 0xC) + (u8 *)&D_80800D80_gcfrontend;
+    return *(s16 *)((u8 *)((*(u8 *)temp_v1 << 1) * -1) + (*(s32 *)((u8 *)temp_v1 + 8) + arg0 * 2));
+}
