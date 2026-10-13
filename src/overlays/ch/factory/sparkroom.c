@@ -8,7 +8,23 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_808006D0_chfactorysparkroom.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_808007E0_chfactorysparkroom.s")
+void func_808007E0_chfactorysparkroom(Actor *arg0) {
+    void func_800C8B84(s32);
+    void* func_80100094(Actor*, u32);
+    s32 var_s1;
+    u8 *var_s0;
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    var_s1 = 0;
+    var_s0 = temp_v0;
+    do {
+        func_800C8B84((*(s32 *)((s8 *)(var_s0) + (0x200))));
+        var_s1 += 1;
+        var_s0 += 4;
+        (*(s32 *)((s8 *)(var_s0) + (0x1FC))) = 0;
+    } while (var_s1 != 4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800838_chfactorysparkroom.s")
 
