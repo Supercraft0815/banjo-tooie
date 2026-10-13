@@ -42,9 +42,9 @@ void func_800A9F60(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void func_800A9F80(s32 arg0) {
+s32 func_800A9F80(s32 arg0) {
     s32 func_800DA298(s32);
-    func_800DA298(arg0 + 0xD1B);
+    return func_800DA298(arg0 + 0xD1B);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800A9FA0.s")
@@ -76,7 +76,14 @@ s32 func_800AA0C4(void) {
     return *(s16 *)((u8 *)&D_80127780 + 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800AA0D0.s")
+s32 func_800AA0D0(void) {
+    int i;
+    int sum = 0;
+    for (i = 0x40; i < 0x4E; i++) {
+        sum += func_800A9F80(i);
+    }
+    return sum;
+}
 
 void func_800AA120(void) { extern s16 D_80127780; s32 func_800A9FA0(s32); func_800A9FA0(D_80127780 + 1); }
 
