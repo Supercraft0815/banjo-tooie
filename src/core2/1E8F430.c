@@ -2,7 +2,19 @@
 
 extern s32 D_801282B4;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B5B40.s")
+void func_800B5B40(void) {
+    extern s32 D_80128151;
+    extern s32 D_80128179;
+    u8 *var_s0;
+    u8 *var_s1;
+
+    var_s0 = (u8 *) &D_80128151; var_s1 = (u8 *) &D_80128179;
+    do {
+        func_800B58D4(*var_s0);
+        var_s0 += 1;
+        var_s0[-1] = 0;
+    } while (var_s0 != var_s1);
+}
 
 void func_800B5B88(void) {
     s8 func_800B5758(s32);
