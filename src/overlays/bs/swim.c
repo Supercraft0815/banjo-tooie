@@ -14,7 +14,30 @@ s32 func_80800000_bsswim(void) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_80800030_bsswim.s")
+/* extern */
+
+void func_80800030_bsswim(void *arg0) {
+    void func_80092C00(void *, f32 *);
+    void func_80092C24(void *, f32 *);
+    s32 func_80096544(void *);
+    s32 func_8009FBB0(void *, f32 *, f32);
+    void func_800BA22C(s32, s32);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    f32 func_800DC0C0(void);
+    f32 sp2C[3];
+    s32 sp28;
+
+    if (func_80096544(arg0) != 0) {
+        if (func_800DC0C0() > 0.5f) {
+            func_80092C00(arg0, sp2C);
+        } else {
+            func_80092C24(arg0, sp2C);
+        }
+        sp28 = func_8009FBB0(arg0, sp2C, 0.0f);
+        func_800BA930(sp28, -0x3C, -0x64, -0x3C, 0x3C, 0, 0x3C);
+        func_800BA22C(sp28, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_808000E0_bsswim.s")
 
