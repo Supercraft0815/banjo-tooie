@@ -1,6 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/susubgame_entrypoint_0.s")
+void susubgame_entrypoint_12(void *, void *);
+void susubgame_entrypoint_0(s32 arg0, u8 *arg1, s32 arg2) {
+    extern s32 D_80800970_susubgame;
+    (*(s8 *)(arg1 + 0)) = 0;
+    (*(s16 *)(arg1 + 2)) = arg2;
+    (*(s8 *)(arg1 + 1)) = 0;
+    (*(s16 *)(arg1 + 4)) = 0x15;
+    susubgame_entrypoint_12(arg1, &D_80800970_susubgame);
+}
 
 void susubgame_entrypoint_1(s32 arg0, u8 *arg1, s32 arg2) {
     (*(s16 *)((s8 *)(arg1) + (4))) = arg2;
