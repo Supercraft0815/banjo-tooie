@@ -196,7 +196,14 @@ s32 bstaxi_entrypoint_14(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_16.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_17.s")
+void bstaxi_entrypoint_17(s32 arg0) {
+    void func_8009BF5C(s32, f32);
+    void baroll_setIdeal(s32, f32);
+    baphysics_reset_gravity();
+    func_8009BF5C(arg0, 0.0f);
+    baroll_setIdeal(arg0, 0.0f);
+    bstaxi_entrypoint_0(arg0);
+}
 
 s32 bstaxi_entrypoint_18(s32 arg0) {
     extern s32 D_808021B8_bstaxi[];
