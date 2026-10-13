@@ -1,6 +1,6 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/pl/camera/plcamera_entrypoint_0.s")
+void plcamera_entrypoint_0(s32 *arg0) { s32 func_80110014(s32); int sp1C = func_800F5EF8(arg0); func_801108A0(func_80110014(sp1C)); func_8010FD88(sp1C); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/pl/camera/plcamera_entrypoint_1.s")
 
