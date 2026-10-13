@@ -82,7 +82,21 @@ void func_800A92A8(s32 arg0, s32 arg1) {
     } while (var_s0 != (s32 *)&D_801276F0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A9318.s")
+void func_800A9318(s32 arg0) {
+    extern s16 D_801276D0;
+    extern s16 D_801276F0;
+    s32 func_8010FE34(s32, s32);
+    s32 *var_s0;
+    s32 temp_a0;
+
+    var_s0 = (s32 *)&D_801276D0; do {
+        temp_a0 = var_s0[0x16];
+        if (temp_a0 != 0) {
+            func_8010FE34(temp_a0, arg0);
+        }
+        var_s0++;
+    } while (var_s0 != (s32 *)&D_801276F0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A9378.s")
 
