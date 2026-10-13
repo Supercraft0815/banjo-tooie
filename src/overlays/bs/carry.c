@@ -21,13 +21,21 @@ void func_808000D0_bscarry(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_80800128_bscarry.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_808001D4_bscarry.s")
+/* extern */
+
+void func_808001D4_bscarry(PlayerState *arg0) {
+    s32 func_8009E69C(PlayerState *, s32);
+    void bastick_popZone(PlayerState *);
+    if (func_8009E69C(arg0, 0x400) == 0) {
+        bastick_popZone(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_80800208_bscarry.s")
 
-void func_8080027C_bscarry()
+void func_8080027C_bscarry(PlayerState *arg0)
 {
-    func_808001D4_bscarry();
+    func_808001D4_bscarry(arg0);
 }
 
 /* extern */
@@ -49,9 +57,9 @@ s32 bscarry_entrypoint_0(s32 arg0) {
     return ((s32 *)&D_808007B0_bscarry)[arg0];
 }
 
-void func_808003D8_bscarry()
+void func_808003D8_bscarry(PlayerState *arg0)
 {
-    func_808001D4_bscarry();
+    func_808001D4_bscarry(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_808003F8_bscarry.s")
@@ -63,9 +71,9 @@ s32 bscarry_entrypoint_1(s32 arg0) {
     return ((s32 *)&D_808007C0_bscarry)[arg0];
 }
 
-void func_80800500_bscarry()
+void func_80800500_bscarry(PlayerState *arg0)
 {
-    func_808001D4_bscarry();
+    func_808001D4_bscarry(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_80800520_bscarry.s")
