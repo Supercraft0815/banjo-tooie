@@ -8,7 +8,7 @@ void plcamera_entrypoint_2(s32 *arg0, s32 arg1) { s32 func_80110014(s32); func_8
 
 void plcamera_entrypoint_3(s32 *arg0, s32 arg1) { s32 func_80110014(s32); func_80110720(func_80110014(func_800F5EF8(arg0)), arg1); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/pl/camera/plcamera_entrypoint_4.s")
+void plcamera_entrypoint_4(s32 *arg0, s32 arg1) { s32 func_80110014(s32); func_80110770(func_80110014(func_800F5EF8(arg0)), arg1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/pl/camera/plcamera_entrypoint_5.s")
 
