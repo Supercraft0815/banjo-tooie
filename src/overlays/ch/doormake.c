@@ -31,7 +31,22 @@ void chdoormake_entrypoint_7(Actor *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/chdoormake_entrypoint_8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/chdoormake_entrypoint_9.s")
+void chdoormake_entrypoint_9(Actor *arg0, s32 arg1, u16 arg2, s32 arg3) {
+    void *func_80100094(Actor *, u32);
+    struct DoorData {
+        u8 pad[0x1E];
+        s16 amount;
+        u8 pad20;
+        s8 kind;
+        u16 flag : 1;
+        u16 value : 15;
+    } *data;
+    data = (struct DoorData *)((s8 *)func_80100094(arg0, 0U) + arg1 * 8);
+    data->kind = arg2;
+    *(s16 *)((s8 *)data + 0x1E) = arg3;
+    data->flag = 1;
+    data->value = 0;
+}
 
 void chdoormake_entrypoint_10(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
