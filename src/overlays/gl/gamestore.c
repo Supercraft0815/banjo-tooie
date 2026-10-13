@@ -113,4 +113,10 @@ void glgamestore_entrypoint_4()
     func_808001E0_glgamestore(func_80800038_glgamestore());
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamestore/glgamestore_entrypoint_5.s")
+/* extern */
+
+void glgamestore_entrypoint_5(void) {
+    s32 func_80800030_glgamestore();
+    s32 func_808001E0_glgamestore(s32);
+    func_808001E0_glgamestore(func_80800030_glgamestore());
+}
