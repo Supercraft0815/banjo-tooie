@@ -257,7 +257,14 @@ void bstaxi_entrypoint_27(s32 arg0)
     bstaxi_entrypoint_0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_28.s")
+void bstaxi_entrypoint_28(void *arg0) {
+    s32 baanim_playForDuration_onceSmooth(void *, s32, s32);
+    bstaxi_entrypoint_1(arg0);
+    baanim_playForDuration_onceSmooth(arg0, 0xF5, 0x3F333333);
+    func_8009FFD8(arg0, 1, 1, 3, 2);
+    *(s8 *)((u8 *)arg0 + 0x15C) = 0;
+    func_80801600_bstaxi(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_29.s")
 
