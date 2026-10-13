@@ -61,7 +61,15 @@ void func_808003D0_bsbabykaz()
     bsbabykaz_entrypoint_3();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_808003F0_bsbabykaz.s")
+/* extern */
+
+void func_808003F0_bsbabykaz(void *arg0) {
+    void baphysics_set_target_horizontal_velocity(void *, f32);
+    void func_8009FFD8(void *, s32, s32, s32, s32);
+    bsbabykaz_entrypoint_4();
+    func_8009FFD8(arg0, 1, 1, 1, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80800438_bsbabykaz.s")
 
