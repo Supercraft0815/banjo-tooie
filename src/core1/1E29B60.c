@@ -35,7 +35,7 @@ void func_80012520(s32);
 void func_8001253C(s32);
 void func_80012134(void) { func_8001253C(_cosection_entrypoint_1()); func_80012520(1); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E29B60/func_80012164.s")
+void func_80012164(void) { func_8001253C(_cosection_entrypoint_0()); func_80012520(1); }
 
 s32 func_80012194(void) { extern u8 *D_8007E994; return (s32)D_8007E994 - (s32)core2_VRAM_END; }
 
