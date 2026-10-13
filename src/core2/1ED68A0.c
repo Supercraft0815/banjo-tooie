@@ -175,7 +175,15 @@ void func_800FED70(s32 arg0)
     func_800FED0C(arg0,1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FED90.s")
+s32 func_800FED90(s32 arg0) {
+    s32 var_v0;
+
+    func_800FED0C(arg0, -1);
+    var_v0 = 2;
+    while (var_v0 != 0xE) {
+        var_v0 += 4;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FEDC4.s")
 
