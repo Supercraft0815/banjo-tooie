@@ -24,7 +24,28 @@ OSThread *chdiggerboss_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80800508_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80800568_chdiggerboss.s")
+void func_80800568_chdiggerboss(Actor *arg0, volatile s32 arg1)
+{
+  void func_800DF744(s32, s32);
+  void *func_80100094(Actor *, u32);
+  s32 func_801015D0(Actor *);
+  extern s16 D_80809EE0_chdiggerboss;
+  extern s16 D_80809EE2_chdiggerboss;
+  s16 *var_s0;
+  u8 *new_var;
+  u8 *var_s1;
+  void *temp_s2;
+  temp_s2 = func_80100094(arg0, 0);
+  func_801015D0(arg0);
+  var_s1 = temp_s2;
+ var_s0 = &D_80809EE0_chdiggerboss; do {
+    new_var = var_s1;
+    func_800DF744(*var_s0, new_var[0xFC]);
+    var_s0 += 1;
+    var_s1 += 1;
+  }
+  while (var_s0 != (&D_80809EE2_chdiggerboss));
+}
 
 /* extern */
 
