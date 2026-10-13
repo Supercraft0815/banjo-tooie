@@ -126,7 +126,19 @@ void func_8080088C_bstntswim(struct player_state_s *arg0)
     func_80800114_bstntswim(arg0);
     _bsrest_entrypoint_16(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tntswim/func_808008B4_bstntswim.s")
+/* extern */
+
+void func_808008B4_bstntswim(s32 arg0) {
+    s32 _bsrest_entrypoint_20();
+    s32 sp1C;
+
+    sp1C = 0;
+    if (_bsrest_entrypoint_20() != 0) {
+        sp1C = 0x10F;
+    }
+    _bstnt_entrypoint_4(arg0);
+    bs_setState(arg0, sp1C);
+}
 
 s32 bstntswim_entrypoint_3(s32 arg0) {
     extern s32 D_808009E0_bstntswim[];
