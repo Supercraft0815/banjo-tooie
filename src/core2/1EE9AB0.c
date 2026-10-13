@@ -169,7 +169,7 @@ void func_80110C2C(PlayerState *self) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110C88.s")
+void func_80110C88(s32 arg0) { void func_80110CC0(s32, s32, s32, s32, f32); func_80110CC0(arg0, 0x44098000, 0x441B0000, 0x43160000, 10.0f); }
 
 /* extern */
 
