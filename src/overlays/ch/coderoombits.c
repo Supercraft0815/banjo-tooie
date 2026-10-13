@@ -27,7 +27,29 @@ void func_8080000C_chcoderoombits(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_8080040C_chcoderoombits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_808004B8_chcoderoombits.s")
+struct CodeRoomBit { s32 unk0; s32 unk4; u8 unk8[2]; u8 flag; };
+extern struct CodeRoomBit D_808011F4_chcoderoombits[];
+void *func_80100094(Actor *, u32);
+s32 func_80800E28_chcoderoombits(Actor *);
+
+void func_808004B8_chcoderoombits(Actor *arg0) {
+    void *sp1C;
+    struct CodeRoomBit *bit;
+    s16 *room;
+
+    sp1C = func_80100094(arg0, 0U);
+    room = (s16 *)func_80100094(arg0, 0U) + 0xAA;
+    bit = D_808011F4_chcoderoombits;
+    if (bit->unk0 != 0) {
+        do {
+            *room = 0;
+            bit++;
+            room++;
+        } while (bit->unk0 != 0);
+    }
+    *(u8 *)((u8 *)sp1C + 0x19) = 0;
+    func_80800E28_chcoderoombits(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_8080052C_chcoderoombits.s")
 
@@ -36,8 +58,6 @@ void func_8080000C_chcoderoombits(Actor *arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_8080091C_chcoderoombits.s")
 
 void func_80800998_chcoderoombits(Actor *arg0) {
-    struct CodeRoomBit { s32 unk0; s32 unk4; u8 unk8[2]; u8 flag; };
-    extern struct CodeRoomBit D_808011F4_chcoderoombits[];
     struct CodeRoomBit *bit;
     s16 *room;
 
