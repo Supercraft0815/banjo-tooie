@@ -36,4 +36,11 @@ u32 glcrc_entrypoint_0(s32 arg0, s32 arg1) {
     return *temp_a1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/crc/glcrc_entrypoint_1.s")
+int glcrc_entrypoint_1(void *arg0, s32 arg1)
+{
+  u32 sp28[2];
+  u32 *temp_a1;
+  int result;
+  temp_a1 = (u32 *) ((((s32) arg0) + arg1) - 8);
+ func_80800000_glcrc(arg0, temp_a1, sp28); if ((temp_a1[0] != sp28[0]) || (temp_a1[1] != sp28[1])) { result = 0x6E382; } else { result = 0; } return result;
+}
