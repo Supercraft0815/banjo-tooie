@@ -66,7 +66,24 @@ u8 *func_800ADF98(void) {
 
 void func_800ADFE0(s16 arg0) { s32 func_800AE080(s16); s32 func_8001B754(s16); s32 func_800E0A70(s16); s32 temp_v0; temp_v0 = func_800AE080(arg0); if ((*(s16 *)((s8 *)temp_v0 + 0xC)) != 0) { func_800E0A70(*(s16 *)((s8 *)temp_v0 + 0xC)); } func_8001B754(arg0); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800AE020.s")
+s16 func_800AE020(void) {
+    s32 func_80019CD4(void);
+    s16 func_8001B668(s32, s32);
+    s32 func_800AE080(s16);
+    void mlMtxGet(void *);
+    s16 result;
+    s32 ptr;
+
+    result = func_8001B668(0, 0x50);
+    ptr = func_800AE080(result);
+    *(s32 *)ptr = 0;
+    *(s32 *)(ptr + 4) = 0;
+    *(s32 *)(ptr + 8) = 0;
+    *(s16 *)(ptr + 0xC) = 0;
+    func_80019CD4();
+    mlMtxGet((void *)(ptr + 0x10));
+    return result;
+}
 
 /* extern */
 
