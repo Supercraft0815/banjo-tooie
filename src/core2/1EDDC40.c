@@ -218,7 +218,21 @@ void func_801049B4(u8 *arg0, f32 *arg1, s32 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104D80.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104E24.s")
+void func_80104E24(s32 *arg0, s32 *arg1) {
+    s32 i;
+    s32 value;
+
+    for (i = 0; i < 3; i++) {
+        value = arg0[i];
+        if (value < 0) {
+            arg1[i] = 0;
+        } else if (value >= 0x100) {
+            arg1[i] = 0xFF;
+        } else {
+            arg1[i] = value;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104E78.s")
 
