@@ -124,7 +124,11 @@ void func_80800EDC_chballoonburst(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80800F4C_chballoonburst.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_808010D8_chballoonburst.s")
+void func_808010D8_chballoonburst(Actor *arg0, s32 arg1) {
+    void* func_80100094(Actor*, u32);
+    s32 _sumultiscore_entrypoint_12(s32, s32, s32);
+    _sumultiscore_entrypoint_12((s32)func_80100094(arg0, 0U) + 0x30, arg1, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_8080110C_chballoonburst.s")
 
