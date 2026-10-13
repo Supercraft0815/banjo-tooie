@@ -95,7 +95,14 @@ s32 bswasher_entrypoint_3(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80800C70_bswasher.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80800E74_bswasher.s")
+void func_80800E74_bswasher(s32 arg0) {
+    void func_8009BF5C(s32, f32);
+    void baroll_setIdeal(s32, f32);
+    baphysics_reset_gravity();
+    func_8009BF5C(arg0, 0.0f);
+    baroll_setIdeal(arg0, 0.0f);
+    func_808000F0_bswasher(arg0);
+}
 
 s32 bswasher_entrypoint_4(s32 arg0) {
     extern s32 D_80801E40_bswasher[];
