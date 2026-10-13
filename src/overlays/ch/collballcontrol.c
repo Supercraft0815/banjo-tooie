@@ -20,7 +20,7 @@ f32 func_80800070_chcollballcontrol(void) {
 
 /* extern */
 
-f32 func_8080009C_chcollballcontrol(void) {
+f32 func_8080009C_chcollballcontrol() {
     f32 func_80800040_chcollballcontrol();
     return func_80800040_chcollballcontrol() * 0.33f;
 }
@@ -32,9 +32,9 @@ f32 func_808000C8_chcollballcontrol(void) {
     return func_80800040_chcollballcontrol() * 0.05f;
 }
 
-void func_808000F4_chcollballcontrol()
+f32 func_808000F4_chcollballcontrol()
 {
-    func_808000C8_chcollballcontrol();
+    return func_808000C8_chcollballcontrol();
 }
 
 s32 func_80800114_chcollballcontrol(s32 arg0, s32 arg1) {
@@ -658,7 +658,13 @@ void func_8080405C_chcollballcontrol(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80804A48_chcollballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80804AA8_chcollballcontrol.s")
+void func_80804AA8_chcollballcontrol(void *arg0) {
+    f32 func_8080009C_chcollballcontrol();
+    f32 func_808000F4_chcollballcontrol();
+    if (func_8080009C_chcollballcontrol(arg0) < *(f32 *)((s8 *)arg0 + 0x24)) {
+        *(f32 *)((s8 *)arg0 + 0x24) -= func_808000F4_chcollballcontrol(arg0);
+    }
+}
 
 OSThread *chcollballcontrol_entrypoint_5(void)
 {
