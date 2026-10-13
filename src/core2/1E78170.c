@@ -176,7 +176,17 @@ void func_8009EB18(s32 arg0) {
     D_80127075 = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009EB24.s")
+void func_8009EB24(s16 arg0, s16 arg1)
+{
+  extern f32 D_80127040;
+  extern u8 D_8012704C;
+  void func_8009EC60(s16, s16);
+  s32 *var_v0;
+  u32 end;
+ do { var_v0 = (s32 *) (&D_8012704C); end = (u32) (&D_80127040); while (1) { var_v0[4] = var_v0[3]; var_v0--; if (((u32) var_v0) == end) { break; } } } while (0);
+  *(((u8 *) (&D_80127040)) + 0x20) += 1;
+  func_8009EC60(arg0, arg1);
+}
 
 void func_8009EB8C(s16 arg0, s16 arg1) {
     extern f32 D_80127040;
