@@ -128,7 +128,19 @@ void func_80800C18_bssnowball(s32 arg0)
     _babounce_entrypoint_3();
     bssnowball_entrypoint_0(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_80800C40_bssnowball.s")
+/* extern */
+
+void func_80800C40_bssnowball(struct player_state_s *arg0) {
+    struct anctrl_s;
+    void _babounce_entrypoint_4(struct player_state_s *, s32);
+    void _babounce_entrypoint_5(struct player_state_s *, s32, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void func_8008B10C(struct anctrl_s *, f32);
+    bssnowball_entrypoint_1();
+    _babounce_entrypoint_4(arg0, 2);
+    _babounce_entrypoint_5(arg0, 0x5E, 0.5128f);
+    func_8008B10C(baanim_getAnimCtrlPtr(arg0), 0.1026f);
+}
 
 /* extern */
 
