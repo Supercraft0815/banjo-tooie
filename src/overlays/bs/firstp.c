@@ -1386,7 +1386,7 @@ void bsfirstp_entrypoint_26(s32 arg0) {
     s32 func_80801A5C_bsfirstp(s32);
     s32 func_80802BE8_bsfirstp(s32, f32);
     s32 func_80803CD4_bsfirstp(s32, s32, s32, s32, f32 *);
-    s32 func_80808678_bsfirstp(s32, s32);
+    void func_80808678_bsfirstp(Actor *, volatile s32);
     void func_80807EEC_bsfirstp(s32);
     void func_80807F24_bsfirstp(s32);
     s32 next_state = 0;
@@ -2004,7 +2004,13 @@ s32 func_80808630_bsfirstp(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80808678_bsfirstp.s")
+void func_808086B0_bsfirstp(Actor *, s32);
+
+void func_80808678_bsfirstp(Actor *arg0, volatile s32 arg1) {
+    void func_8080633C_bsfirstp(Actor *, f32);
+    func_808086B0_bsfirstp(arg0, 3);
+    func_8080633C_bsfirstp(arg0, 0.15f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808086B0_bsfirstp.s")
 
