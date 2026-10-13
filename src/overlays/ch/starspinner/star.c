@@ -79,7 +79,22 @@ void func_8080000C_chstarspinnerstar(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/star/func_80800320_chstarspinnerstar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/star/func_808003F8_chstarspinnerstar.s")
+/* extern */
+
+s32 func_808003F8_chstarspinnerstar(Actor *arg0, s32 arg1, volatile s32 arg2) {
+    void func_808005F8_chstarspinnerstar(void **arg0, s32 arg1);
+    switch (arg1) {
+    case 0x91:
+        arg0->unk64_20 = 1;
+        break;
+    case 0x1F:
+        func_808005F8_chstarspinnerstar((void **)arg0, arg2);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/star/func_80800454_chstarspinnerstar.s")
 
