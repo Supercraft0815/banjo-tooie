@@ -53,7 +53,14 @@ void func_80091EC8(void *arg0) {
     func_80091F74(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B700/func_80091EF0.s")
+void func_80091EF0(s32 arg0) {
+    s32 func_80091FE4(void);
+    if (func_80091FE4() != 0) {
+        func_80091F74(arg0, 3);
+    } else {
+        func_80091F74(arg0, 2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B700/func_80091F30.s")
 
