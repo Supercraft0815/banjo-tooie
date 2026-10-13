@@ -264,7 +264,7 @@ void func_800C9128(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9150.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C91C8.s")
+s32 func_800C91C8(s32 arg0) { extern s32 D_8012AB40; register s32 key = arg0; s32 i = 0; register s32 count = D_8012AB54; s32 *p = &D_8012AB40; s32 *entry; if (count > 0) { loop: entry = (s32 *) *p; i++; if (key == *entry) return (s32) entry; p++; count = D_8012AB54; if (i < count) goto loop; } return 0; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9214.s")
 
