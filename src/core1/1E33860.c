@@ -10,7 +10,16 @@ u32 func_8001BD30(u32 arg0) {
     return temp_v0 ? result - temp_v0 + 0x10 : result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E33860/func_8001BD50.s")
+/* extern */
+
+int func_8001BD50(f32 arg0) {
+    s32 heap_bytes_free();
+    s32 heap_largest_free(s32 *);
+    s32 sp1C;
+
+    heap_largest_free(&sp1C);
+    return (f32) sp1C < ((f32) heap_bytes_free() * arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E33860/func_8001BDAC.s")
 
