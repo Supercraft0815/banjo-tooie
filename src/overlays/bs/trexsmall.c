@@ -39,7 +39,18 @@ void func_80800364_bstrexsmall()
 
 void func_80800384_bstrexsmall(PlayerState *arg0) { bstrexsmall_entrypoint_2(); func_8009FFD8(arg0, 1, 3, 3, 2); yaw_setVelocityBounded((s32)arg0, 0x43FA0000, 0x40D00000); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_808003D0_bstrexsmall.s")
+void func_808003D0_bstrexsmall(PlayerState *arg0) {
+    s32 func_8080020C_bstrexsmall(s32, s32);
+    s32 sp24;
+
+    sp24 = 0;
+    func_8009D3A8(arg0, 0);
+    bstrexsmall_entrypoint_3((s32) arg0);
+    if (baanim_isStopped(arg0) != 0) {
+        sp24 = 0x145;
+    }
+    bs_setState((s32) arg0, func_8080020C_bstrexsmall((s32) arg0, sp24));
+}
 
 s32 bstrexsmall_entrypoint_0(s32 arg0) {
     extern s32 D_80801B08_bstrexsmall[];
