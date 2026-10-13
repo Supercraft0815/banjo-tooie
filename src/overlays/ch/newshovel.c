@@ -61,7 +61,18 @@ void func_80800570_chnewshovel(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800A50_chnewshovel.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800B5C_chnewshovel.s")
+/* extern */
+
+s32 func_80800B5C_chnewshovel(s32 arg0) {
+    f32 func_800EEB40(f32 *, f32 *);
+    s32 func_80107B70(s32, f32 *);
+    f32 sp1C[3];
+
+    if (func_80107B70(arg0, sp1C) != 0) {
+        return func_800EEB40((f32 *)(arg0 + 4), sp1C) < 10000.0f;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800BC0_chnewshovel.s")
 
