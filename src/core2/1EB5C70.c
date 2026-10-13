@@ -21,7 +21,12 @@ void func_800DC3D4(s32 arg0, f32 arg1, u16 arg2, u8 arg3, u8 arg4, s32 arg5) {
 
 void func_800DC42C(s32 arg0, volatile s32 arg1) { func_80020C08(arg0, 0x10, arg1); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5C70/func_800DC454.s")
+void func_800DC454(s32 arg0, u16 arg1) {
+    s32 var_a2;
+    var_a2 = arg1;
+    if (var_a2 >= 0x8000) var_a2 = 0x7FFF;
+    func_80020C08(arg0, 8, var_a2);
+}
 
 void func_800DC48C(s32 arg0,s32 arg1)
 {
