@@ -65,7 +65,24 @@ void func_80800470_chtoothyfish(Actor *arg0, s32 arg1, s32 arg2, u8 *arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_808004A4_chtoothyfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800908_chtoothyfish.s")
+s32 func_80800908_chtoothyfish(s32 arg0) {
+    switch (arg0 &= 0x78000000) {
+    case 0x28000000:
+        return 0;
+    case 0x08000000:
+        return 1;
+    case 0x10000000:
+        return 2;
+    case 0x18000000:
+        return 3;
+    case 0x20000000:
+        return 4;
+    default:
+        arg0 = -1;
+        break;
+    }
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_8080096C_chtoothyfish.s")
 
