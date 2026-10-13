@@ -36,7 +36,12 @@ s32 func_8008E938(void *arg0)
     return *(s32 *) *(void **) ((u8 *) arg0 + 0xC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E67DA0/func_8008E944.s")
+void func_8008E944(PlayerState *arg0) {
+    void *temp_v0;
+
+    temp_v0 = *(void **) *(void **)((u8 *)arg0 + 0xC);
+    (*(u8 *)((s8 *)(temp_v0) + (0x2A))) = (u8) ((*(u8 *)((s8 *)(temp_v0) + (0x2A))) & 0xFFFD);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E67DA0/func_8008E95C.s")
 
