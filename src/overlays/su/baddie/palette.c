@@ -1,6 +1,20 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/palette/subaddiepalette_entrypoint_0.s")
+/* extern */
+
+void subaddiepalette_entrypoint_0(Actor *arg0, u8 *arg1, u16 arg2) {
+    void *func_800D674C(s32);
+    s32 func_800D6CEC(s32);
+    s32 func_801032B0(Actor *, u16, u16);
+    void rare_memcpy(void *, void *, int);
+    void subaddiepalette_entrypoint_4(void *, void *);
+    rare_memcpy(arg1 + 0x10, func_800D674C(arg2), 0x800);
+    func_800D6CEC(arg2);
+    (*(u16 *)(arg1 + 0)) = arg2;
+    (*(s16 *)(arg1 + 4)) = 0;
+    subaddiepalette_entrypoint_4(arg0, arg1);
+    func_801032B0(arg0, arg0->unk0->unk14, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/palette/subaddiepalette_entrypoint_1.s")
 
