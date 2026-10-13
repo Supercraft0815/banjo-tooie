@@ -125,4 +125,11 @@ void func_80013324()
     func_800132BC();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_8001334C.s")
+void func_8001334C(void) {
+    extern s32 D_8003CC70;
+    if (D_8003CC70 > 0) {
+        do {
+            func_800132BC();
+        } while (D_8003CC70 > 0);
+    }
+}
