@@ -293,7 +293,7 @@ s32 bstnt_entrypoint_12(s32 arg0) {
     return ((s32 *)&D_8080259C_bstnt)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80801F5C_bstnt.s")
+void func_80801F5C_bstnt(s32 arg0) { bstnt_entrypoint_3(); _babounce_entrypoint_4(arg0, 2); _babounce_entrypoint_5(arg0, 0xE9, (s32) 0x3ED0FF97); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80801F9C_bstnt.s")
 
