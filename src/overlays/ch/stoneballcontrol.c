@@ -633,7 +633,12 @@ void func_80804304_chstoneballcontrol(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_808046C4_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_808047E8_chstoneballcontrol.s")
+void func_808047E8_chstoneballcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_800BD09C();
+    void **data = func_80100094(arg0, 0);
+    func_800BD09C(*data);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80804810_chstoneballcontrol.s")
 
