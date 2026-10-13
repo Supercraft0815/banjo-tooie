@@ -49,7 +49,7 @@ void chcredits_entrypoint_0(s32 arg0) { s32 func_800DA544(s32); s32 func_808000E
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/chcredits_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_808002A4_chcredits.s")
+void func_808002A4_chcredits(s32 *arg0) { void func_80800710_chcredits(s32 *, s32); void func_808003E8_chcredits(s32 *, s32); extern s32 D_8012760D; if ((*(u8 *)((s8 *)(&D_8012760D) + 3)) == 0) { func_80800710_chcredits(arg0, 2); } else { func_80800710_chcredits(arg0, 3); } func_808003E8_chcredits(arg0, func_8080003C_chcredits(*(u8 *)((s8 *)(&D_8012760D) + 3))); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80800300_chcredits.s")
 
