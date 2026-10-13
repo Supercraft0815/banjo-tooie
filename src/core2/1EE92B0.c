@@ -114,10 +114,10 @@ s32 func_8011001C(s32 *arg0) {
     return arg0[2];
 }
 
-s32 func_80110024(s16 *arg0) {
-    s32 _ncpod_entrypoint_2(s16);
+void *func_80110024(s16 *arg0) {
+    void *_ncpod_entrypoint_2(s16);
     s16 temp;
-    s32 result;
+    void *result;
     temp = arg0[10];
     result = 0;
     if (temp != 0) {

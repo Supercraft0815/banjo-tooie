@@ -172,7 +172,12 @@ s32 ncpod_entrypoint_20(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     return 4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_21.s")
+void ncpod_entrypoint_21(s16 *arg0, s32 arg1, s32 arg2) {
+    s32 _ncpoddialog_entrypoint_0(s16);
+    void _ncpoddialog_entrypoint_9(s32, s16 *, s32, s32);
+    void *func_80110024(s16 *);
+    _ncpoddialog_entrypoint_9(_ncpoddialog_entrypoint_0(*(s16 *)func_80110024(arg0)), arg0, arg1, arg2);
+}
 
 /* extern */
 
@@ -226,19 +231,19 @@ s32 ncpod_entrypoint_27(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void ncpod_entrypoint_28(s32 arg0, s32 arg1) {
+void ncpod_entrypoint_28(s16 *arg0, s32 arg1) {
     s32 _ncpoducam_entrypoint_1(s16);
     s32 _ncpoducam_entrypoint_8(s32, s32);
-    void *func_80110024(s32);
+    void *func_80110024(s16 *);
     _ncpoducam_entrypoint_8(_ncpoducam_entrypoint_1((*(s16 *)((s8 *)(func_80110024(arg0)) + (2)))), arg1);
 }
 
 /* extern */
 
-void ncpod_entrypoint_29(s32 arg0, s32 arg1) {
+void ncpod_entrypoint_29(s16 *arg0, s32 arg1) {
     s32 _ncpoducam_entrypoint_1(s16);
     s32 _ncpoducam_entrypoint_9(s32, s32);
-    void *func_80110024(s32);
+    void *func_80110024(s16 *);
     _ncpoducam_entrypoint_9(_ncpoducam_entrypoint_1((*(s16 *)((s8 *)(func_80110024(arg0)) + (2)))), arg1);
 }
 
@@ -253,10 +258,10 @@ void ncpod_entrypoint_30(void) {
 
 /* extern */
 
-void ncpod_entrypoint_31(s32 arg0, s32 arg1) {
+void ncpod_entrypoint_31(s16 *arg0, s32 arg1) {
     s32 _ncpoducam_entrypoint_1(s16);
     s32 _ncpoducam_entrypoint_11(s32, s32);
-    void *func_80110024(s32);
+    void *func_80110024(s16 *);
     _ncpoducam_entrypoint_11(_ncpoducam_entrypoint_1((*(s16 *)((s8 *)(func_80110024(arg0)) + (2)))), arg1);
 }
 
