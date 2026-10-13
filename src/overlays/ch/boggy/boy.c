@@ -35,7 +35,19 @@ void func_8080082C_chboggyboy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/boy/func_8080086C_chboggyboy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/boy/func_80800978_chboggyboy.s")
+void func_80800978_chboggyboy(Actor *arg0, s32 arg1) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_80102424(s32, s32);
+    void *sp2C;
+    struct Flags { u8 pad[0x16]; u8 high : 1; u8 flag : 1; u8 low : 6; };
+
+    sp2C = func_80100094(arg0, 0);
+    _subaddiedialog_entrypoint_11(arg0->unk0, 0x108A, 0xE, (f32 *)((s8 *)arg0 + 4), 0x3B);
+    func_80102424((s32)arg0, 0xE);
+    func_8010A570(arg0);
+    ((struct Flags *)sp2C)->high = 1;
+    ((struct Flags *)sp2C)->flag = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/boy/func_808009F4_chboggyboy.s")
 
