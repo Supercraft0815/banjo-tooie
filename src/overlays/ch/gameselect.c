@@ -414,7 +414,15 @@ s32 func_80802C48_chgameselect(Unk80132ED0 *arg0) {
     return _gcnewoption_entrypoint_39(func_80100094(func_80106790(arg0), 0U));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802C7C_chgameselect.s")
+void func_80802C7C_chgameselect(Unk80132ED0 *arg0) {
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *actor;
+    void *func_80100094(Actor *, u32);
+
+    actor = func_80106790(arg0);
+    *(u8 *)((s8 *)actor + 0x65) = (u8) (*(u8 *)((s8 *)actor + 0x65) & ~0x10);
+    _gcnewoption_entrypoint_37(func_80100094(actor, 0), 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802CC0_chgameselect.s")
 
