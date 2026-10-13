@@ -152,7 +152,19 @@ s32 bsbansack_entrypoint_2(s32 arg0) {
     return ((s32 *)&D_80801E30_bsbansack)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800A14_bsbansack.s")
+/* extern */
+
+void func_80800A14_bsbansack(PlayerState *arg0) {
+    f32 baphysics_get_vertical_velocity(PlayerState *);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    if ((*(u8 *)((s8 *)(arg0) + (0x15D))) == 0) {
+        (*(u8 *)((s8 *)(arg0) + (0x15D))) = 1U;
+        if (baphysics_get_vertical_velocity(arg0) < 0.0f) {
+            baphysics_set_vertical_velocity(arg0, 0.0f);
+        }
+        func_808003C0_bsbansack(arg0);
+    }
+}
 
 void func_80800A78_bsbansack(s32 arg0) {
     if (*((u8 *)arg0 + 0x15D) != 0) {
