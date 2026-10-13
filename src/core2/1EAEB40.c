@@ -28,7 +28,12 @@ u32 func_800D52A4(void) {
     return *(u8 *)((u8 *)&D_8012B430 + 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAEB40/func_800D52B0.s")
+int func_800D52B0(void) {
+    extern u8 D_8012B430;
+    (*(s8 *)((s8 *)(&D_8012B430) + (1))) = 0;
+    (*(s16 *)((s8 *)(&D_8012B430) + (2))) = -1;
+    (*(s8 *)((s8 *)(&D_8012B430) + (0))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAEB40/func_800D52CC.s")
 
