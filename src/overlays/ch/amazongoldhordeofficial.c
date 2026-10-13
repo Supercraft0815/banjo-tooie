@@ -11,7 +11,9 @@ OSThread *chamazongoldhordeofficial_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800150_chamazongoldhordeofficial.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800630_chamazongoldhordeofficial.s")
+void *_func_unused(void);
+void *func_80100094(Actor *, u32);
+void func_80800630_chamazongoldhordeofficial(Actor *arg0) { _suexpression_entrypoint_8(arg0, 1); if (_susubgame_entrypoint_2(arg0, (s32)func_80100094(arg0, 0) + 0x6C) != 0) { _susubgame_entrypoint_4(arg0, (s32)func_80100094(arg0, 0) + 0x6C); } }
 
 /* extern */
 
