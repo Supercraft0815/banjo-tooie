@@ -12,7 +12,7 @@ f32 func_8080009C_suquiz(s32 arg0, s32 arg1, s32 arg2) {
     return D_80801054_suquiz[arg1][arg2][0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/func_808000C4_suquiz.s")
+int func_808000C4_suquiz(s32 arg0) { s32 sp18[6]; void func_80015E80(s32, void *); func_80015E80(arg0, sp18); return sp18[1] == 1; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_0.s")
 
