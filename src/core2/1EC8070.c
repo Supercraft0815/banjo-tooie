@@ -409,7 +409,17 @@ f32 func_800EFBFC(void *arg0, void *arg1) {
     return (sp1C + temp_f0) - (var_f12 * D_80125EA0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EFC7C.s")
+f32 func_800EFC7C(void *arg0, void *arg1) {
+    f32 temp_f12;
+    f32 temp_f2;
+
+    temp_f2 = (*(f32 *)((s8 *)(arg0) + (0))) - (*(f32 *)((s8 *)(arg1) + (0)));
+    temp_f12 = (*(f32 *)((s8 *)(arg0) + (8))) - (*(f32 *)((s8 *)(arg1) + (8)));
+    if ((temp_f2 != 0.0f) || (temp_f12 != 0.0f)) {
+        return (temp_f2 * temp_f2) + (temp_f12 * temp_f12);
+    }
+    return 0;
+}
 
 /* extern */
 
