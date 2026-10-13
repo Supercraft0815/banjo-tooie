@@ -6,7 +6,7 @@ void func_80800000_chcollballcontrol(Unk80132ED0 **arg0, u32 arg1, s32 arg2) {
 }
 
 f32 func_80800040_chcollballcontrol(void *arg0) {
-    void *func_80100094(void *, s32);
+    void *func_80100094(Actor *, u32);
     extern f32 D_80804CB4_chcollballcontrol[];
     return D_80804CB4_chcollballcontrol[*((u8 *)func_80100094(arg0, 0) + 0x14)];
 }
@@ -118,7 +118,7 @@ void func_80801764_chcollballcontrol(u8 *arg0, s32 arg1) {
     s32 _sukickball_entrypoint_6(u8 *, s32);
     void func_800B4470(u8 *, s32, void *, s32, f32, f32, s32, s32, s32);
     void func_800F4F98(s32, void *);
-    void *func_80100094(void *, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_80101FDC(u8 *, s32);
     u8 *func_80106790(s32);
     void func_808021D4_chcollballcontrol(u8 *);
@@ -165,7 +165,7 @@ void func_80801764_chcollballcontrol(u8 *arg0, s32 arg1) {
 }
 
 void func_80801920_chcollballcontrol(u8 *arg0) {
-    void *func_80100094(void *, s32);
+    void *func_80100094(Actor *, u32);
     u8 *data;
 
     data = func_80100094(arg0, 0);
@@ -365,7 +365,7 @@ void func_80802CE0_chcollballcontrol(u8 *arg0) {
     extern Distances D_80804F3C_chcollballcontrol;
     extern Position D_80804F4C_chcollballcontrol;
     extern void _chcollballcontrol_entrypoint_1(void);
-    void *func_80100094(void *, s32);
+    void *func_80100094(Actor *, u32);
     u8 *func_80106790(s32);
     s32 _sukickball_entrypoint_6(u8 *, s32);
     s32 _sukickball_entrypoint_7(u8 *, s32);
@@ -550,7 +550,7 @@ void func_8080405C_chcollballcontrol(u8 *arg0) {
     } BallFlags;
     extern Vec3 D_808050B4_chcollballcontrol;
     u8 *func_80106790(s32);
-    void *func_80100094(void *, s32);
+    void *func_80100094(Actor *, u32);
     s32 _sukickball_entrypoint_6(u8 *, s32);
     s32 _sukickball_entrypoint_7(u8 *, s32);
     s32 _sukickball_entrypoint_8(u8 *, s32);
@@ -650,7 +650,12 @@ void func_8080405C_chcollballcontrol(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80804420_chcollballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808044F4_chcollballcontrol.s")
+void func_808044F4_chcollballcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_800BD09C();
+    void **data = func_80100094(arg0, 0);
+    func_800BD09C(*data);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_8080451C_chcollballcontrol.s")
 
