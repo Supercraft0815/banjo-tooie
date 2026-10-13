@@ -139,7 +139,26 @@ void chmolehill_entrypoint_0(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/chmolehill_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/chmolehill_entrypoint_3.s")
+s32 chmolehill_entrypoint_3(Actor *arg0) {
+    switch (arg0->unk70_10) {
+    case 0:
+    case 1:
+    case 3:
+    case 11:
+        return 0;
+    case 7:
+    case 8:
+    case 9:
+        return 0;
+    case 2:
+    case 4:
+    case 5:
+    case 6:
+    case 10:
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
