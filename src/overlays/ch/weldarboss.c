@@ -593,7 +593,17 @@ void func_80802214_chweldarboss(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_8080227C_chweldarboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_808023BC_chweldarboss.s")
+void func_808023BC_chweldarboss(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    s32 func_808041C4_chweldarboss(Actor *, s32);
+    Actor *temp_v0;
+
+    temp_v0 = _subaddielink_entrypoint_4((u8 *)func_80100094(arg0, 0U) + 0x30);
+    if (temp_v0 != NULL) {
+        func_808041C4_chweldarboss(temp_v0, arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_808023F8_chweldarboss.s")
 
