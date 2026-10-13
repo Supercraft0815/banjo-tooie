@@ -53,10 +53,10 @@ void func_800E97C0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9804.s")
 
-void func_800E9898(s32 arg0) {
+void *func_800E9898(s32 arg0) {
     s32 func_800B3CDC(s32 *, s32);
     extern s32 D_80132DB0;
-    func_800B3CDC(&D_80132DB0, arg0);
+    return (void *)func_800B3CDC(&D_80132DB0, arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E98C0.s")
@@ -80,7 +80,46 @@ void func_800E99E0(void) {
     p->flag10 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9A24.s")
+void func_800E9A24(s32 arg0) {
+    typedef struct {
+    u8 pad[6];
+    u16 value : 9;
+    u8 flags7 : 6;
+    u8 flag7 : 1;
+    u16 value8;
+    u8 valueA;
+    u8 valueB;
+    u32 valueC;
+    u8 pad10[2];
+    u16 reserved12 : 6;
+    u16 flag12b : 1;
+    u16 flag12a : 1;
+    u16 flag13a : 1;
+    u16 flag13b : 1;
+    u16 flag13c : 1;
+    u16 flag13d : 1;
+    u16 flag13e : 2;
+    u16 flag13f : 2;
+   
+    } Data;
+    Data *p = func_800E9898(arg0);
+    p->value = 0x32;
+    p->valueB = 0;
+    p->valueA = 0;
+    p->value8 = 0;
+    p->valueC = 0;
+    p->flags7 = 0;
+    p->flag7 = 0;
+    p->flag12b = 0;
+    p->flag12a = 1;
+    p->flag13a = 0;
+    p->flag13b = 0;
+    p->flag13c = 0;
+    p->flag13d = 0;
+    p->flag13e = 0;
+    p->flag13f = 0;
+   
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9AC0.s")
 
