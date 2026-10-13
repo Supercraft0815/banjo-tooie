@@ -181,7 +181,19 @@ void func_80801118_bsvan(s32 arg0)
     _babounce_entrypoint_3();
     bsvan_entrypoint_0(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80801140_bsvan.s")
+/* extern */
+
+void func_80801140_bsvan(struct player_state_s *arg0) {
+    struct anctrl_s;
+    void _babounce_entrypoint_4(struct player_state_s *, s32);
+    void _babounce_entrypoint_5(struct player_state_s *, s32, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void func_8008B10C(struct anctrl_s *, f32);
+    bsvan_entrypoint_1();
+    _babounce_entrypoint_4(arg0, 1);
+    _babounce_entrypoint_5(arg0, 0xEF, 0.5128f);
+    func_8008B10C(baanim_getAnimCtrlPtr(arg0), 0.1026f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80801198_bsvan.s")
 
