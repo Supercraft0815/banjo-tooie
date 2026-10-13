@@ -12,7 +12,13 @@ void fxripple_entrypoint_0(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/ripple/fxripple_entrypoint_1.s")
+void fxripple_entrypoint_1(void) {
+    s32 temp_v0;
+    temp_v0 = func_80800094_fxripple();
+    if (temp_v0 != 0) {
+        func_800BA22C(temp_v0, 1);
+    }
+}
 
 void fxripple_entrypoint_2(s32 arg0, s32 arg1) {
     func_80800094_fxripple(arg0, arg1, 0);
