@@ -23,7 +23,20 @@ void bahold_entrypoint_1(u8 *arg0) { void bahold_entrypoint_7(void *, f32, f32);
 void bahold_entrypoint_2(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/hold/func_80800088_bahold.s")
+/* extern */
+
+void func_80800088_bahold(Unk80132ED0 *arg0, f32 arg1[3], f32 arg2[3]) {
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *actor;
+
+    actor = func_80106790(arg0);
+    if (actor->unk64_23) {
+        actor->position[0] = arg1[0];
+        actor->position[1] = arg1[1];
+        actor->position[2] = arg1[2];
+        actor->rotation[1] = arg2[1];
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/hold/func_808000E0_bahold.s")
 
