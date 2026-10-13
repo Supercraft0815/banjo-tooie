@@ -39,7 +39,13 @@ void func_800D2748(s32 arg0, s32 arg1) {
     (*(s8 *)((s8 *)(func_800D21D0(arg0)) + (1))) = (s8) arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D2770.s")
+void func_800D2770(s32 arg0, s32 arg1) {
+    u8 *temp_v0;
+
+    temp_v0 = func_800D21D0(arg0);
+    (*(s16 *)((s8 *)(temp_v0) + (4))) = (s16) arg1;
+    (*(f32 *)((s8 *)(temp_v0) + (8))) = (f32) arg1;
+}
 
 s32 func_800D27A4(s32 arg0) {
     return (s32) (*(u8 *)((s8 *)(func_800D21D0(arg0)) + (1)));
