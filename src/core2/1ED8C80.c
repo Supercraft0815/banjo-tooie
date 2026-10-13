@@ -75,7 +75,21 @@ void func_800FFC14()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FFD10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FFDBC.s")
+/* extern */
+
+void func_800FFDBC(void) {
+    s32 func_8010381C(s32);
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    s32 var_a0;
+    s32 sp20;
+
+    if ((var_a0 = func_801067C4(&sp20)) != 0) {
+        do {
+            func_8010381C(var_a0);
+        } while ((var_a0 = func_8010682C(&sp20)) != 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FFE08.s")
 
