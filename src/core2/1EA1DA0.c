@@ -46,26 +46,26 @@ void func_800C87DC(s32 *arg0) {
 
 void func_800C8800(s32 arg0, f32 *arg1) {
     void func_800EE88C(f32 dst[3], s16 src[3]);
-    void *vector_at(s32, s32, s32);
-    func_800EE88C(arg1, vector_at(D_8012AB00, arg0 - 1, arg0));
+    void *vector_at(s32, s32);
+    func_800EE88C(arg1, vector_at(D_8012AB00, arg0 - 1));
 }
 
 /* extern */
 
 void func_800C883C(s32 arg0, void *arg1) {
-    void *vector_at(s32, s32, s32);
+    void *vector_at(s32, s32);
     void *temp_v0;
 
-    temp_v0 = vector_at(D_8012AB00, arg0 - 1, arg0);
+    temp_v0 = vector_at(D_8012AB00, arg0 - 1);
     (*(f32 *)((s8 *)(arg1) + (0))) = (f32) (*(s16 *)((s8 *)(temp_v0) + (6)));
     (*(f32 *)((s8 *)(arg1) + (4))) = (f32) (*(s16 *)((s8 *)(temp_v0) + (8)));
 }
 
 void func_800C8898(s32 arg0, s32 arg1) {
-    void *vector_at(s32, s32, s32);
+    void *vector_at(s32, s32);
     u8 *temp_v0;
 
-    temp_v0 = vector_at(D_8012AB00, arg0 - 1, arg1);
+    temp_v0 = vector_at(D_8012AB00, arg0 - 1);
     (*(f32 *)((s8 *)(arg1) + (0))) = (f32) (*(s16 *)((s8 *)(temp_v0) + (6)));
     (*(f32 *)((s8 *)(arg1) + (4))) = (f32) (*(s16 *)((s8 *)(temp_v0) + (8)));
     (*(f32 *)((s8 *)(arg1) + (8))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (0x10)));
@@ -74,10 +74,10 @@ void func_800C8898(s32 arg0, s32 arg1) {
 void func_800C8900(s32 arg0, u8 *arg1) {
     void func_800EFA88(void *arg0, s32 arg1, s32 arg2, s32 arg3);
     void func_800F2EE0(void *arg0, void *arg1);
-    void *vector_at(s32, s32, s32);
+    void *vector_at(s32, s32);
     u8 *temp_v0;
 
-    temp_v0 = vector_at(D_8012AB00, arg0 - 1, arg0);
+    temp_v0 = vector_at(D_8012AB00, arg0 - 1);
     if ((*(u8 *)((s8 *)(temp_v0) + (0x17))) == 0) {
         func_800EFA88(arg1, 0, 0, 0);
         return;
@@ -101,15 +101,15 @@ void func_800C8960(s32 *arg0, f32 *arg1) {
 /* extern */
 
 u8 func_800C89A8(s32 arg0) {
-    void *vector_at(s32, s32, s32);
-    return (*(u8 *)((s8 *)(vector_at(D_8012AB00, arg0 - 1, arg0)) + (0x15)));
+    void *vector_at(s32, s32);
+    return (*(u8 *)((s8 *)(vector_at(D_8012AB00, arg0 - 1)) + (0x15)));
 }
 
 /* extern */
 
 u8 func_800C89D8(s32 arg0) {
-    void *vector_at(s32, s32, s32);
-    return (*(u8 *)((s8 *)(vector_at(D_8012AB00, arg0 - 1, arg0)) + (0x19)));
+    void *vector_at(s32, s32);
+    return (*(u8 *)((s8 *)(vector_at(D_8012AB00, arg0 - 1)) + (0x19)));
 }
 
 void func_800C8A08(void) {
@@ -143,7 +143,19 @@ void func_800C8A08(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8A98.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8B84.s")
+void func_800C8B84(volatile s32 arg0) {
+    void *vector_at(s32, s32);
+    void *sp1C;
+    extern f32 D_8011A9EC;
+    extern f32 D_8011A9F8;
+    extern u32 D_8011AA00;
+
+    sp1C = vector_at(D_8012AB00, arg0 - 1);
+    func_800C8CB8(arg0, &D_8011A9EC);
+    func_800C8D4C(arg0, &D_8011A9F8);
+    func_800C8E84(arg0, &D_8011AA00);
+    ((s8 *)sp1C)[0x16] = 2;
+}
 
 /* extern */
 
@@ -186,10 +198,10 @@ void func_800C8F08(s32 arg0, f32 *arg1) {
 /* extern */
 
 void func_800C8F64(s32 arg0, s32 arg1) {
-    void *vector_at(s32, s32, s32);
+    void *vector_at(s32, s32);
     void *temp_v0;
 
-    temp_v0 = vector_at(D_8012AB00, arg0 - 1, arg0);
+    temp_v0 = vector_at(D_8012AB00, arg0 - 1);
     if (arg1 != (*(u8 *)((s8 *)(temp_v0) + (0x15)))) {
         (*(u8 *)((s8 *)(temp_v0) + (0x15))) = (u8) arg1;
         (*(s8 *)((s8 *)(temp_v0) + (0x16))) = 1;
@@ -205,10 +217,10 @@ void func_800C8FB0(s32 arg0, u32 arg1, u32 arg2, u32 arg3) {
 }
 
 void func_800C8FE0(s32 arg0, s32 arg1) {
-    void *vector_at(s32, s32, s32);
+    void *vector_at(s32, s32);
     u8 *temp_v0;
 
-    temp_v0 = vector_at(D_8012AB00, arg0 - 1, arg1);
+    temp_v0 = vector_at(D_8012AB00, arg0 - 1);
     if ((*(u8 *)((s8 *)(temp_v0) + (0x16))) == 0) {
         (*(u8 *)((s8 *)(temp_v0) + (0x16))) = (u8) (arg1 != (*(u8 *)((s8 *)(temp_v0) + (0x17))));
     }
@@ -221,8 +233,8 @@ void func_800C8FE0(s32 arg0, s32 arg1) {
 /* extern */
 
 u8 func_800C9044(s32 arg0) {
-    void *vector_at(s32, s32, s32);
-    return (*(u8 *)((s8 *)(vector_at(D_8012AB00, arg0 - 1, arg0)) + (0x17)));
+    void *vector_at(s32, s32);
+    return (*(u8 *)((s8 *)(vector_at(D_8012AB00, arg0 - 1)) + (0x17)));
 }
 
 /* extern */
