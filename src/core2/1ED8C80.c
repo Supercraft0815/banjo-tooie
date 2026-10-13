@@ -23,7 +23,22 @@ void func_800FF390(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FF3EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FF44C.s")
+/* extern */
+
+void func_800FF44C(void) {
+    s32 func_800FF3EC(Actor *);
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    s32 sp24;
+    s32 var_a0;
+
+    func_80101238(0x93, 0);
+    if ((var_a0 = func_801067C4(&sp24)) != 0) {
+        do {
+            func_800FF3EC((Actor *)var_a0);
+        } while ((var_a0 = func_8010682C(&sp24)) != 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FF4A4.s")
 
