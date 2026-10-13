@@ -99,7 +99,7 @@ s32 func_8009E6C4(PlayerState *arg0, s32 arg1) {
     return func_8009CA70(arg0, arg0->state->previous, arg1);
 }
 
-s16 func_8009E6EC(PlayerState *self) {
+s32 func_8009E6EC(PlayerState *self) {
     return self->state->unkC;
 }
 

@@ -15,7 +15,14 @@ void func_8080005C_bstrexsmall()
     func_80099B94();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_8080007C_bstrexsmall.s")
+void func_8080007C_bstrexsmall(PlayerState *arg0) {
+    s32 temp_v0;
+
+    temp_v0 = func_8009E6EC(arg0);
+    if ((temp_v0 != 0x1C) && (temp_v0 != 0x1D) && (temp_v0 != 0x1E) && (temp_v0 != 0x25)) {
+        func_80099B94(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_808000C8_bstrexsmall.s")
 
