@@ -177,7 +177,7 @@ f32 func_8008B2AC(f32 *arg0) {
     return arg0[3];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_getAnimTimer.s")
+f32 anctrl_getAnimTimer(AnimCtrl *arg0) { f32 func_8008C0C8(f32 *); return func_8008C0C8((f32 *) ((u8 *) arg0 + 0x1C)); }
 
 f32 func_8008B2D4(f32 *arg0) {
     return arg0[0];
