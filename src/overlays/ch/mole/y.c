@@ -15,7 +15,7 @@ void func_8080088C_chmoley(Actor* arg0)
         _suexpression_entrypoint_8(arg0, 1);
     }
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/y/func_808008C0_chmoley.s")
+void func_808008C0_chmoley(Actor *arg0) { void _suexpression_entrypoint_12(void *, f32, f32); f32 zero = 0.0f; arg0->scale = 0.5f; _suexpression_entrypoint_7(arg0, 1, 0x6F); _suexpression_entrypoint_12(func_80100094(arg0, 1), zero, zero); }
 
 void chmoley_entrypoint_0(void *arg0, s32 arg1) {
     struct Fields {
