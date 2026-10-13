@@ -61,7 +61,7 @@ s32 bswasher_entrypoint_1(s32 arg0) {
     return ((s32 *)&D_80801E10_bswasher)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80800714_bswasher.s")
+void func_80800714_bswasher(s32 arg0) { if (_badrone_entrypoint_3(arg0) == 2) { _bafpctrl_entrypoint_10(arg0, 0); func_800947EC(arg0, 2, 0); } func_808000F0_bswasher(arg0); _bsdrone_entrypoint_2(arg0); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80800770_bswasher.s")
 
