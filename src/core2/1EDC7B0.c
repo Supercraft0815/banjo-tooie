@@ -49,10 +49,10 @@ s32 func_80102F44(void *arg0) {
 
 /* extern */
 
-void func_80102F74(Unk80132ED0 *arg0, s32 arg1) {
+s32 func_80102F74(Unk80132ED0 *arg0, s32 arg1) {
     Actor* func_80100368(Unk80132ED0 *);
     s32 func_80102FA0(Actor *, s32);
-    func_80102FA0(func_80100368(arg0), arg1);
+    return func_80102FA0(func_80100368(arg0), arg1);
 }
 
 s32 func_80102FA0(Actor *arg0, s32 arg1) {
