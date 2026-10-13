@@ -185,7 +185,7 @@ s32 func_800D3D28(void) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3D58.s")
+int func_800D3D58(void) { extern s32 D_8012B3F0; switch (*(u8 *)((s8 *)(&D_8012B3F0) + 9)) { case 1: (*(u8 *)((s8 *)(&D_8012B3F0) + 9)) = 0; return 1; case 2: (*(u8 *)((s8 *)(&D_8012B3F0) + 9)) = 3; return 1; default: return 0; } }
 
 /* extern */
 
