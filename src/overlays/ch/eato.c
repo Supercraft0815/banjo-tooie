@@ -78,7 +78,17 @@ void func_8080098C_chcheato(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800A04_chcheato.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800AB4_chcheato.s")
+void func_80800AB4_chcheato(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void func_80800A04_chcheato(s32);
+    switch (arg3) {
+        case 0:
+            func_80800A04_chcheato(arg1);
+            break;
+        case 2:
+            func_80102424((Actor *) arg0, 6);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800B00_chcheato.s")
 
