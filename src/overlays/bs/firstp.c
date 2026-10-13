@@ -94,7 +94,26 @@ void func_80800290_bsfirstp(struct player_state_s *arg0, s32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80800340_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808003B4_bsfirstp.s")
+/* extern */
+
+void func_808003B4_bsfirstp(struct player_state_s *self, s32 arg1, f32 arg2) {
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setSmoothTransition(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *func_8008D04C(struct player_state_s *);
+    struct anctrl_s *temp_v0;
+
+    temp_v0 = func_8008D04C(self);
+    anctrl_reset(temp_v0);
+    anctrl_setSmoothTransition(temp_v0, 0);
+    anctrl_setIndex(temp_v0, arg1);
+    anctrl_setDuration(temp_v0, arg2);
+    anctrl_setPlaybackType(temp_v0, 1);
+    anctrl_start(temp_v0);
+}
 
 /* extern */
 
