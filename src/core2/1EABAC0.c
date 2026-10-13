@@ -67,7 +67,18 @@ int func_800D23E8(void *arg0, s32 arg1) {
 void func_800D2438(void) { extern s32 D_8011AFB0; extern s32 D_8011B3F4; extern s32 D_8012B2C0; extern s32 D_8012B320; u32 end; u32 ptr; end = (u32)&D_8011B3F4;
     ptr = (u32)&D_8011AFB0; for (;;) { *(s16 *)(ptr + 4) = -1; *(s16 *)(ptr + 6) = 0; *(f32 *)(ptr + 8) = 0.0f; ptr += 12; if (ptr >= end) break; } end = (u32)&D_8012B320; ptr = (u32)&D_8012B2C0; for (;;) { ptr += 8; *(s16 *)(ptr - 6) = -1; *(s16 *)(ptr - 4) = -1; *(s16 *)(ptr - 2) = -1; *(s16 *)(ptr - 8) = -1; if (ptr == end) break; } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D2498.s")
+/* extern */
+
+void func_800D2498(u32 itemDisplayUI, s32 value, u32 a2) {
+    s32 func_800D22E0(u8 *, u32);
+    u8 *temp_v0;
+
+    temp_v0 = func_800D21D0((s32) itemDisplayUI);
+    (*(s16 *)((s8 *)(temp_v0) + (4))) = (s16) value;
+    (*(f32 *)((s8 *)(temp_v0) + (8))) = (f32) value;
+    (*(s16 *)((s8 *)(temp_v0) + (6))) = (s16) a2;
+    func_800D22E0(temp_v0, itemDisplayUI);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D24E8.s")
 
