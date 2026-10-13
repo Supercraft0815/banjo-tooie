@@ -241,4 +241,18 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E88E90/func_800B0CFC.s")
+s32 func_800B0CFC(void *arg0) {
+    s32 temp_v0;
+    s32 temp_v1;
+    s32 var_a0;
+    s32 var_v1;
+
+    if (arg0 == NULL) {
+        return 1;
+    }
+    temp_v0 = (*(s16 *)((s8 *)(arg0) + (0xE)));
+    temp_v1 = (*(s16 *)((s8 *)(arg0) + (0xC)));
+    var_a0 = temp_v0 < temp_v1 ? temp_v1 : temp_v0;
+    var_v1 = var_a0 <= 0 ? 1 : var_a0;
+    return var_v1;
+}
