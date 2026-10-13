@@ -43,6 +43,8 @@ void func_808002E0_chnests(void *arg0) {
     func_80101FDC(arg0, 4);
 }
 
+void func_80800144_chnests(void);
+
 void func_80800324_chnests(s32 arg0)
 {
     func_80800144_chnests();
@@ -74,7 +76,15 @@ void func_808003AC_chnests(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_808003F4_chnests.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800670_chnests.s")
+void func_80800670_chnests(void *arg0) {
+    s32 _gleeprom_entrypoint_0(void);
+    func_80800144_chnests();
+    func_808000E8_chnests(arg0);
+    if ((_gleeprom_entrypoint_0() >> 0x18) == 0x10) {
+        func_800D0BD4(*(s32 *)((s8 *)arg0 + 0x20), 6);
+    }
+    func_800FFAB0(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_808006C4_chnests.s")
 
