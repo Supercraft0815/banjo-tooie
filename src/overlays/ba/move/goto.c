@@ -14,7 +14,16 @@ void func_80800000_bamovegoto(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/goto/bamovegoto_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/goto/bamovegoto_entrypoint_1.s")
+void bamovegoto_entrypoint_1(void *arg0) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_8009C0F8(void *, f32 *);
+    u8 *state;
+
+    state = *(u8 **)((u8 *)arg0 + 0xC8);
+    func_800EE7F8((f32 *)(state + 4), (f32 *)(state + 0x64));
+    func_8009C0F8(arg0, (f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x64));
+    func_80800000_bamovegoto(arg0, 6);
+}
 
 f32 bamovegoto_entrypoint_2(void *arg0) {
     return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 116);
@@ -66,9 +75,9 @@ void bamovegoto_entrypoint_11(void *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-void bamovegoto_entrypoint_12(void *arg0) {
-    s32 func_800EE7F8(s32);
-    func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xC8))) + 100);
+void bamovegoto_entrypoint_12(void *arg0, f32 *arg1) {
+    void func_800EE7F8(f32 *, f32 *);
+    func_800EE7F8((f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 100), arg1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/goto/bamovegoto_entrypoint_13.s")
@@ -78,7 +87,7 @@ void bamovegoto_entrypoint_14(void *arg0) {
     void func_8009BA9C(struct player_state_s *, f32 *);
     void func_8009C128(void *, f32 *);
     f32 func_800D8FF8(void);
-    s32 func_800EE7F8();
+    void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEF94(f32 *);
     f32 func_800EEFFC(f32 *);
     void func_800EF04C(f32 *, f32 *);
@@ -128,7 +137,7 @@ void bamovegoto_entrypoint_14(void *arg0) {
             blend = progress;
         }
         state = *(u8 **)((u8 *)arg0 + 0xC8);
-        func_800EE7F8((s32)oldpos, (s32)(state + 4));
+        func_800EE7F8(oldpos, (f32 *)(state + 4));
         state = *(u8 **)((u8 *)arg0 + 0xC8);
         *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 4) =
             func_800F1214(blend, *(f32 *)(state + 0x58), *(f32 *)(state + 0x64));
