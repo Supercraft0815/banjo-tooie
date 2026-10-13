@@ -830,9 +830,9 @@ s32 func_800F68B8(s32 arg0) {
 
 /* extern */
 
-void func_800F690C(s32 arg0) {
+s32 func_800F690C(s32 arg0) {
     s32 baflag_isTrue(PlayerState *, s32);
-    baflag_isTrue(D_80135490[arg0], 0x17);
+    return baflag_isTrue(D_80135490[arg0], 0x17);
 }
 
 void func_800F693C(s32 arg0)
@@ -857,7 +857,12 @@ u8 func_800F6B34(void) {
 	return D_801354DA;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6B40.s")
+int func_800F6B40(s32 arg0) {
+    if (func_800F690C(arg0)) {
+        return 1;
+    }
+    return _ncba1p_entrypoint_10(func_800A4CA8(D_80135490[arg0])) == 3;
+}
 
 int func_800F6B94(s32 arg0) {
     PlayerState *temp_a0;
