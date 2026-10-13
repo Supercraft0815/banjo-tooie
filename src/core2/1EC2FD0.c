@@ -142,13 +142,13 @@ void func_800E9E4C(u8 *arg0, s32 arg1) {
     *func_800BE5C4(arg0) = 0;
 }
 
-void func_800E9E88(s32 arg0) {
+s32 func_800E9E88(s32 arg0) {
     extern s32 D_80132DB4;
     s32 func_800B42A0(s32, s32);
-    func_800B42A0(D_80132DB4, arg0 + 4);
+    return func_800B42A0(D_80132DB4, arg0 + 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9EB4.s")
+u32 func_800E9EB4(s16 *arg0) { return arg0[3] * 12 + (u32)func_800E9E88((s32)arg0); }
 
 /* extern */
 
