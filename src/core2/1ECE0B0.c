@@ -1,6 +1,7 @@
 #include "core2/1ECE0B0.h"
 
 extern PlayerState* D_80135490[];
+extern s32 func_8009E674(PlayerState *, s32);
 extern u8 D_801354DA;
 
 extern u32 D_801354DC;
@@ -80,7 +81,6 @@ void func_800F4B20(s32 arg0)
 /* extern */
 
 s32 func_800F4B4C(s32 arg0) {
-    s32 func_8009E674(PlayerState *, s32);
     s32 var_v1;
 
     if (func_8009E674(D_80135490[arg0], 0x200000) != 0) {
@@ -908,7 +908,12 @@ void func_800F6D24(s32 arg0)
     func_8008E124(D_80135490[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6D50.s")
+int func_800F6D50(s32 arg0) {
+    PlayerState *self;
+
+    self = D_80135490[arg0];
+    return func_8008E124(self) && func_8009E674(self, 0x10);
+}
 
 /* extern */
 
