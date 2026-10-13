@@ -1,22 +1,36 @@
 #include "common.h"
 
+struct player_state_s;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_80800000_bsvanswim.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_808000B0_bsvanswim.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_80800114_bsvanswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_80800174_bsvanswim.s")
+void func_80800174_bsvanswim(struct player_state_s *arg0) {
+    s32 func_8009E69C(struct player_state_s *, s32);
+    void baphysics_reset_terminal_velocity(struct player_state_s *);
+    void baphysics_reset_gravity(struct player_state_s *);
+    void func_800961AC(struct player_state_s *, s32);
+    s32 _bsvan_entrypoint_0(s32);
+    if (func_8009E69C(arg0, 1) == 0) {
+        baphysics_reset_terminal_velocity(arg0);
+        baphysics_reset_gravity(arg0);
+        func_800961AC(arg0, 1);
+    }
+    _bsvan_entrypoint_0((s32)arg0);
+}
 
 /* extern */
 
-void func_808001CC_bsvanswim(s32 arg0) {
+void func_808001CC_bsvanswim(struct player_state_s *arg0) {
     s32 _bsvan_entrypoint_0(s32);
-    s32 func_800961AC(s32, s32);
+    void func_800961AC(struct player_state_s *, s32);
     s32 func_8009BC34();
     func_8009BC34();
     func_800961AC(arg0, 1);
-    _bsvan_entrypoint_0(arg0);
+    _bsvan_entrypoint_0((s32)arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_80800200_bsvanswim.s")
@@ -65,9 +79,9 @@ s32 bsvanswim_entrypoint_0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_8080049C_bsvanswim.s")
 
-void func_808005E8_bsvanswim()
+void func_808005E8_bsvanswim(struct player_state_s *arg0)
 {
-    func_80800174_bsvanswim();
+    func_80800174_bsvanswim(arg0);
 }
 
 s32 bsvanswim_entrypoint_1(s32 arg0) {
@@ -79,9 +93,9 @@ s32 bsvanswim_entrypoint_1(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_808006D0_bsvanswim.s")
 
-void func_80800808_bsvanswim()
+void func_80800808_bsvanswim(struct player_state_s *arg0)
 {
-    func_80800174_bsvanswim();
+    func_80800174_bsvanswim(arg0);
 }
 
 s32 bsvanswim_entrypoint_2(s32 arg0) {
