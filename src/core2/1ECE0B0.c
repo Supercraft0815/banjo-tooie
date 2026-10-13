@@ -1482,7 +1482,7 @@ s32 func_800F8DA8(void) {
 
 void func_800F8E08(void) {
     s32 func_800EFD24(s32 *);
-    s32 func_800F9A44();
+    void func_800F9A44(void);
     s32 vector_new(s32, s32);
     extern s32 D_801354F0;
     extern s32 D_80135500;
@@ -1688,7 +1688,11 @@ void func_800F9A24(void) {
     func_800F9488(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9A44.s")
+void func_800F9A44(void) {
+    extern u8 D_80135520;
+    D_80135520 = 0;
+    func_800F9488(1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9A6C.s")
 
