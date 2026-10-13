@@ -15,7 +15,14 @@ void bashoessuck_entrypoint_1(s32 arg0, f32 arg1[3]) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoessuck/bashoessuck_entrypoint_2.s")
+void bashoessuck_entrypoint_2(struct player_state_s *arg0) {
+    void func_8009BF5C(struct player_state_s *, f32);
+    void baroll_setIdeal(struct player_state_s *, f32);
+    func_800932CC(arg0, 0);
+    func_8009BF5C(arg0, 0.0f);
+    baroll_setIdeal(arg0, 0.0f);
+    func_800961AC(arg0, 1);
+}
 
 void bashoessuck_entrypoint_3(s32 arg0)
 {
