@@ -205,7 +205,9 @@ void func_80803338_chdiggerboss(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80803424_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80803524_chdiggerboss.s")
+int func_80803524_chdiggerboss(u8 *array, s32 index) {
+    return ((array + (index >> 3))[0] & (1 << (index & 7))) ? 1 : 0;
+}
 
 void func_80803558_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
     u8 *temp_v0;
