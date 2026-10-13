@@ -39,7 +39,10 @@ OSThread *chgameselect_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80800CA0_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80800D3C_chgameselect.s")
+s32 func_80800D3C_chgameselect(Unk80132ED0 *arg0) {
+    Actor *func_80106790(Unk80132ED0 *);
+    return func_80106790(arg0)->unk70_10 != 9;
+}
 
 OSThread *chgameselect_entrypoint_1(void)
 {
@@ -55,7 +58,7 @@ void func_80800E24_chgameselect(void *arg0) {
         u8 pad0[0x34];
         f32 fade;
         u8 pad38[4];
-        s32 handle;
+        Unk80132ED0 *handle;
         u8 pad40[0x18];
         f32 timer;
         u8 pad5C[8];
@@ -84,8 +87,8 @@ void func_80800E24_chgameselect(void *arg0) {
     f32 func_800D8FF8(void);
     s32 func_800DA298(s32);
     void *func_80100094(Actor *, u32);
-    s32 func_8010114C(s32, s32, s32);
-    s32 func_80800D3C_chgameselect(s32);
+    s32 func_8010114C(Unk80132ED0 *, s32, s32);
+    s32 func_80800D3C_chgameselect(Unk80132ED0 *);
     void func_80801338_chgameselect(void *, s32);
     void func_808013C8_chgameselect(void *, s32);
     s32 func_808014F0_chgameselect(void *, void *);
@@ -177,6 +180,7 @@ void func_808012E4_chgameselect(Actor *arg0, u8 *arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808015DC_chgameselect.s")
 
  s32 func_80801658_chgameselect(s32 arg0, s32 arg1) {
+    Actor *func_80106790(Unk80132ED0 *);
     Actor *actor;
     struct Fields { u8 pad[0x65]; u8 rest : 4; u8 bit : 1; u8 low : 3; };
     actor = func_80106790((Unk80132ED0 *)arg0);
@@ -373,9 +377,10 @@ void func_808029D8_chgameselect(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802AD4_chgameselect.s")
 
-void func_80802BE8_chgameselect()
+void func_80802BE8_chgameselect(Unk80132ED0 *arg0)
 {
-    func_808029D8_chgameselect(func_80106790());
+    Actor *func_80106790(Unk80132ED0 *);
+    func_808029D8_chgameselect(func_80106790(arg0));
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802C10_chgameselect.s")
