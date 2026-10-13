@@ -96,7 +96,15 @@ void func_808004A8_bstaxi(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/func_80800524_bstaxi.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/func_808005B8_bstaxi.s")
+/* extern */
+
+void func_808005B8_bstaxi(s32 arg0) {
+    void baroll_setIdeal(s32, f32);
+    void func_8009BF5C(s32, f32);
+    baroll_setIdeal(arg0, 0.0f);
+    func_8009BF5C(arg0, 0.0f);
+    bstaxi_entrypoint_0(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/func_808005F0_bstaxi.s")
 
