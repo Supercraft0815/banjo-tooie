@@ -46,27 +46,27 @@ void func_80800190_bsfirstp(u8 *arg0) {
 
 void func_808001D0_bsfirstp(s32 arg0) {
     s32 func_80800858_bsfirstp(s32, s32);
-    s32 func_80808C48_bsfirstp();
-    func_80808C48_bsfirstp();
+    void func_80808C48_bsfirstp(struct player_state_s *);
+    func_80808C48_bsfirstp(arg0);
     func_80800858_bsfirstp(arg0, 0);
 }
 
 /* extern */
 
-void func_808001FC_bsfirstp() {
+void func_808001FC_bsfirstp(struct player_state_s *arg0) {
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
-    struct anctrl_s *func_8008D04C();
-    anctrl_setPlaybackType(func_8008D04C(), 3);
+    struct anctrl_s *func_8008D04C(struct player_state_s *);
+    anctrl_setPlaybackType(func_8008D04C(arg0), 3);
 }
 
 /* extern */
 
-s32 func_80800228_bsfirstp(void) {
+s32 func_80800228_bsfirstp(struct player_state_s *arg0) {
     s32 anctrl_getPlaybackType(s32);
-    struct anctrl_s *func_8008D04C();
+    struct anctrl_s *func_8008D04C(struct player_state_s *);
     s32 var_v1;
 
-    if (anctrl_getPlaybackType(func_8008D04C()) == 3) {
+    if (anctrl_getPlaybackType(func_8008D04C(arg0)) == 3) {
         var_v1 = 1;
     } else {
         var_v1 = 0;
@@ -2040,7 +2040,20 @@ s32 bsfirstp_entrypoint_35(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80808B8C_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80808C48_bsfirstp.s")
+void func_80808C48_bsfirstp(struct player_state_s *arg0) {
+    s32 func_80808CAC_bsfirstp(struct player_state_s *, s32);
+    void func_80808D80_bsfirstp(s32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    struct anctrl_s *func_8008D04C(struct player_state_s *);
+    void func_8008B304(struct anctrl_s *);
+
+    *(s32 *)((s8 *)arg0 + 0x160) = 0;
+    *(f32 *)((s8 *)arg0 + 0x16C) = 5.0f;
+    func_80808CAC_bsfirstp(arg0, 0);
+    func_80808D80_bsfirstp((s32)arg0);
+    func_8008B304(baanim_getAnimCtrlPtr(arg0));
+    func_8008B304(func_8008D04C(arg0));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80808CAC_bsfirstp.s")
 
