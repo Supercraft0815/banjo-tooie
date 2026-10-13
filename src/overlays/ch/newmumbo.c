@@ -2,7 +2,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_80800000_chnewmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_8080009C_chnewmumbo.s")
+void func_8080009C_chnewmumbo(Actor *arg0) {
+    void _capod_entrypoint_3(u32);
+    u8 *sp1C[1];
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    if ((*(u8 *)((s8 *)(temp_v0) + 0x24)) != 0) {
+        sp1C[0] = temp_v0;
+        _capod_entrypoint_3(0U);
+        temp_v0 = sp1C[0];
+        (*(s8 *)((s8 *)(temp_v0) + 0x24)) = 0;
+    }
+}
 
 void func_808000DC_chnewmumbo(Actor *arg0, u32 arg1, u32 arg2) {
     arg0->unk74_30 = 1;
