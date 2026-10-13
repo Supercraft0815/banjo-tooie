@@ -133,7 +133,18 @@ void func_80801004_bssub(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_8080102C_bssub.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80801130_bssub.s")
+/* extern */
+
+void func_80801130_bssub(struct player_state_s *self) {
+    void baanim_setDurationRange(struct player_state_s *, f32, f32);
+    void func_8008CA30(struct player_state_s *, f32);
+    void func_800909CC(struct player_state_s *);
+    func_808009B0_bssub(self);
+    func_8080102C_bssub(self);
+    baanim_setDurationRange(self, 0.3f, 10.0f);
+    func_8008CA30(self, 1.0f);
+    func_800909CC(self);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80801188_bssub.s")
 
