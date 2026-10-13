@@ -6,7 +6,7 @@
 
 void sucoaster_entrypoint_1(Actor *arg0) {
     void* func_80100094(Actor*, u32);
-    s32 func_80802728_sucoaster(Actor *, u8 *);
+    void func_80802728_sucoaster(Actor *, u8 * volatile);
     func_80802728_sucoaster(arg0, func_80100094(arg0, 0U));
 }
 
@@ -385,7 +385,7 @@ s32 sucoaster_entrypoint_21(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_80107070(Actor *, s32);
     s32 func_8010A590(u8 *);
     s32 func_80802690_sucoaster(Actor *, u8 *);
-    s32 func_80802728_sucoaster(Actor *, u8 *);
+    void func_80802728_sucoaster(Actor *, u8 * volatile);
     s32 sucoaster_entrypoint_10(Actor *, s32);
     s32 sucoaster_entrypoint_9(Actor *, s32, s32);
 
@@ -538,7 +538,13 @@ f32 func_8080264C_sucoaster(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_80802690_sucoaster.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_80802728_sucoaster.s")
+void func_80802728_sucoaster(Actor *arg0, u8 * volatile arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 _suexpression_entrypoint_8(Actor *, s32);
+    if (func_80100094(arg0, 1U) != NULL) {
+        _suexpression_entrypoint_8(arg0, 1);
+    }
+}
 
 s32 func_80802760_sucoaster(s32 arg0) {
     typedef struct {
