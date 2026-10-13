@@ -49,7 +49,9 @@ s32 func_80800160_gccubesearch(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_5.s")
+void gccubesearch_entrypoint_5(s32 arg0, s32 arg1) {
+    gccubesearch_entrypoint_4(arg0, arg1, 0);
+}
 
 void gccubesearch_entrypoint_6(s32 arg0,s32 arg1)
 {
