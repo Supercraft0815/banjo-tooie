@@ -11,7 +11,16 @@ OSThread *chboilerid_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_80800128_chboilerid.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_808003AC_chboilerid.s")
+/* extern */
+s32 func_808003AC_chboilerid(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    s32 _subaddielink_entrypoint_3(u8 *);
+    if (arg1 == 0x95) {
+        _subaddielink_entrypoint_3((u8 *)func_80100094(arg0, 0U) + 0x60);
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
