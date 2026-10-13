@@ -40,7 +40,16 @@ void (*func_8009CB44(PlayerState *arg0, s32 arg1))(PlayerState *) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76360/func_8009CB90.s")
+void (*func_8009CB90(PlayerState *arg0, s32 arg1))(PlayerState *) {
+    extern void (*(*D_80117F38[][3])(s32))(PlayerState *);
+    void (*(*temp_v0)(s32))(PlayerState *);
+
+    temp_v0 = D_80117F38[arg1][0];
+    if (temp_v0 != NULL) {
+        return temp_v0(2);
+    }
+    return 0;
+}
 
 s16 func_8009CBDC(s32 arg0, s32 arg1) {
     extern s16 D_80117F32[];
