@@ -196,7 +196,15 @@ void func_808013C4_bssub(s32 arg0)
     _babounce_entrypoint_3();
     func_808008D8_bssub(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_808013EC_bssub.s")
+/* extern */
+
+void func_808013EC_bssub(s32 arg0) {
+    s32 _babounce_entrypoint_4(s32, s32);
+    s32 _babounce_entrypoint_5(s32, s32, s32);
+    func_808009B0_bssub();
+    _babounce_entrypoint_4(arg0, 2);
+    _babounce_entrypoint_5(arg0, 0x12E, 0x40C00000);
+}
 
 /* extern */
 
