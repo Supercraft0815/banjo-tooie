@@ -11,7 +11,9 @@ OSThread *chtoxicroombits_entrypoint_0(void)
     return (OSThread *) D_80800FB0_chtoxicroombits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_80800410_chtoxicroombits.s")
+extern u32 D_80801004_chtoxicroombits;
+s32 func_808004F0_chtoxicroombits(void);
+u8 func_80800410_chtoxicroombits(void) { s32 value = func_808004F0_chtoxicroombits() ? func_808004F0_chtoxicroombits() : 6; return ((u8 *)&D_80801004_chtoxicroombits)[-(value * 2)]; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_80800458_chtoxicroombits.s")
 
