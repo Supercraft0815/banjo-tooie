@@ -34,7 +34,23 @@ void *func_80106668(s32 *arg0) {
     return sp1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDFED0/func_801066C0.s")
+void func_801066C0(s32 arg0) {
+    s32 vector_erase_unordered(s32, s32);
+    s32 vector_size(s32);
+    s32 vector_at(s32, s32);
+    extern s32 D_80136EE0;
+    struct Entry {
+        u8 pad[0x1A];
+        u16 index : 11;
+        u16 flags : 5;
+    } *entry;
+
+    vector_erase_unordered(D_80136EE0, arg0);
+    if (arg0 < vector_size(D_80136EE0)) {
+        entry = *(struct Entry **)(u32)vector_at(D_80136EE0, arg0);
+        entry->index = arg0;
+    }
+}
 
 s32 func_80106730(void) {
     s32 vector_size(s32);
