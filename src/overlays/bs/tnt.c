@@ -348,7 +348,21 @@ void func_80802064_bstnt(s32 arg0)
     bstnt_entrypoint_3();
     _bsrest_entrypoint_16(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_8080208C_bstnt.s")
+/* extern */
+
+void func_8080208C_bstnt(s32 arg0) {
+    s32 _bsrest_entrypoint_13(s32);
+    s32 _bsrest_entrypoint_20();
+    s32 bs_setState(s32, s32);
+    s32 sp1C;
+
+    sp1C = 0;
+    if (_bsrest_entrypoint_20() != 0) {
+        sp1C = _bsrest_entrypoint_13(arg0);
+    }
+    bstnt_entrypoint_4(arg0);
+    bs_setState(arg0, sp1C);
+}
 
 s32 bstnt_entrypoint_14(s32 arg0) {
     extern s32 D_808025BC_bstnt[];
