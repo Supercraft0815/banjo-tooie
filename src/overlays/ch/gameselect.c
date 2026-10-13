@@ -215,7 +215,11 @@ s32 func_808016A0_chgameselect(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808016E8_chgameselect.s")
+void func_808016E8_chgameselect(Unk80132ED0 *arg0, s32 arg1) {
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_808013C8_chgameselect(void *, s32);
+    func_808013C8_chgameselect(func_80106790(arg0), arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80801714_chgameselect.s")
 
@@ -804,11 +808,11 @@ void func_808040DC_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
 s32 func_808041C8_chgameselect(void *arg0) {
     s32 func_808015DC_chgameselect(s32, s32);
     s32 func_808016A0_chgameselect(s32, s32);
-    s32 func_808016E8_chgameselect(s32, s32);
+    void func_808016E8_chgameselect(Unk80132ED0 *, s32);
     s32 func_80803D00_chgameselect(s32, s32);
     func_808015DC_chgameselect((*(s32 *)((s8 *)(arg0) + (0x28))), 2);
     func_808016A0_chgameselect((*(s32 *)((s8 *)(arg0) + (0x28))), 1);
-    func_808016E8_chgameselect((*(s32 *)((s8 *)(arg0) + (0x28))), 0);
+    func_808016E8_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x28))), 0);
     func_80803D00_chgameselect(1, 1);
     return 1;
 }
@@ -819,7 +823,7 @@ void func_80804220_chgameselect(void *arg0) {
     s32 func_808015DC_chgameselect(s32, s32);
     s32 func_80801658_chgameselect(s32, s32);
     s32 func_808016A0_chgameselect(s32, s32);
-    s32 func_808016E8_chgameselect(s32, s32);
+    void func_808016E8_chgameselect(Unk80132ED0 *, s32);
     s32 func_80801758_chgameselect(s32, s32);
     s32 func_8080218C_chgameselect(s32, s32);
     s32 func_80803D60_chgameselect(s32);
@@ -829,7 +833,7 @@ void func_80804220_chgameselect(void *arg0) {
     func_80801658_chgameselect((*(s32 *)((s8 *)(arg0) + (0x28))), 0);
     func_808015DC_chgameselect((*(s32 *)((s8 *)(arg0) + (0x28))), 0);
     func_808016A0_chgameselect((*(s32 *)((s8 *)(arg0) + (0x28))), 0);
-    func_808016E8_chgameselect((*(s32 *)((s8 *)(arg0) + (0x28))), 3);
+    func_808016E8_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x28))), 3);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808042A8_chgameselect.s")
@@ -849,11 +853,11 @@ void func_80804404_chgameselect(u8 *arg0, s32 arg1) {
 s32 func_8080444C_chgameselect(void *arg0) {
     s32 func_808015DC_chgameselect(s32, s32);
     s32 func_808016A0_chgameselect(s32, s32);
-    s32 func_808016E8_chgameselect(s32, s32);
+    void func_808016E8_chgameselect(Unk80132ED0 *, s32);
     s32 func_80803D00_chgameselect(s32, s32);
     func_808015DC_chgameselect((*(s32 *)((s8 *)(arg0) + (0x28))), 1);
     func_808016A0_chgameselect((*(s32 *)((s8 *)(arg0) + (0x28))), 1);
-    func_808016E8_chgameselect((*(s32 *)((s8 *)(arg0) + (0x28))), 0);
+    func_808016E8_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x28))), 0);
     func_80803D00_chgameselect(1, 1);
     return 1;
 }
@@ -864,14 +868,14 @@ void func_808044A4_chgameselect(void *arg0) {
     s32 func_808015DC_chgameselect(s32, s32);
     s32 func_80801658_chgameselect(s32, s32);
     s32 func_808016A0_chgameselect(s32, s32);
-    s32 func_808016E8_chgameselect(s32, s32);
+    void func_808016E8_chgameselect(Unk80132ED0 *, s32);
     s32 func_8080218C_chgameselect(s32, s32);
     s32 func_80803D60_chgameselect(s32);
     func_8080218C_chgameselect((*(s32 *)((s8 *)(arg0) + (0x1C))), func_80803D60_chgameselect((*(s32 *)((s8 *)(arg0) + (0x1C)))));
     func_80801658_chgameselect((*(s32 *)((s8 *)(arg0) + (0x28))), 0);
     func_808015DC_chgameselect((*(s32 *)((s8 *)(arg0) + (0x28))), 0);
     func_808016A0_chgameselect((*(s32 *)((s8 *)(arg0) + (0x28))), 0);
-    func_808016E8_chgameselect((*(s32 *)((s8 *)(arg0) + (0x28))), 4);
+    func_808016E8_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x28))), 4);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080450C_chgameselect.s")
