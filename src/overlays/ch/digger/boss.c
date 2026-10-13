@@ -590,7 +590,20 @@ void func_8080666C_chdiggerboss(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80806C08_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80806CA4_chdiggerboss.s")
+void func_80806CA4_chdiggerboss(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    Actor *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0);
+    switch (temp_v0->pad5C) {
+    case 1:
+        temp_v0->pad5C = 2;
+        return;
+    case 9:
+        temp_v0->pad5C = 10;
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80806CF8_chdiggerboss.s")
 
