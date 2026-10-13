@@ -33,7 +33,17 @@ void suegg_entrypoint_3(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_5.s")
+/* extern */
+
+void suegg_entrypoint_5(Actor *arg0) {
+    s32 func_80800DC0_suegg(Actor *, s16);
+    Unk80132ED0 *temp_v0;
+
+    if (func_80800DC0_suegg(arg0, (*(s16 *)((s8 *)(func_80100094(arg0, 0U)) + (0x3A)))) == 0) {
+        temp_v0 = arg0->unk0;
+        (*(u8 *)((s8 *)(temp_v0) + (0x2A))) = (u8) (((*(u8 *)((s8 *)(temp_v0) + (0x2A))) & ~4) | 4);
+    }
+}
 
 s16 suegg_entrypoint_6(Unk80132ED0 *arg0, f32 *arg1, s32 *arg2) {
     s32 _gcegg_entrypoint_0(u32);
