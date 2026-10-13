@@ -75,7 +75,8 @@ void bsbeemain_entrypoint_4(s32 arg0)
     _babounce_entrypoint_3();
     _bsbee_entrypoint_0(arg0);
 }
-void bsbeemain_entrypoint_5(s32 arg0) { _bsbee_entrypoint_1(); _babounce_entrypoint_4(arg0, 1); _babounce_entrypoint_5(arg0, 0x1E0, 0x3F4075F7); }
+void _babounce_entrypoint_5(s32, s32, f32);
+void bsbeemain_entrypoint_5(s32 arg0) { _bsbee_entrypoint_1(); _babounce_entrypoint_4(arg0, 1); _babounce_entrypoint_5(arg0, 0x1E0, 0.7518f); }
 
 /* extern */
 
@@ -103,7 +104,7 @@ void func_80800B68_bsbeemain(s32 arg0)
     _babounce_entrypoint_3();
     _bsbee_entrypoint_0(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80800B90_bsbeemain.s")
+void func_80800B90_bsbeemain(s32 arg0) { _bsbee_entrypoint_1(); _babounce_entrypoint_4(arg0, 2); _babounce_entrypoint_5(arg0, 0x1E0, 0.7518f); }
 
 /* extern */
 
