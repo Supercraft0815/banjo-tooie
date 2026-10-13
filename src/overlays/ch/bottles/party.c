@@ -27,7 +27,8 @@ void func_80800018_chbottlesparty(s32 arg0) {
     func_8010A800(arg0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/party/func_8080005C_chbottlesparty.s")
+void func_8080022C_chbottlesparty(s32);
+void func_8080005C_chbottlesparty(s32 arg0) { void func_80800170_chbottlesparty(s32); func_8080022C_chbottlesparty(arg0); if (((Actor *)arg0)->unk70_10 == 1) { func_80800170_chbottlesparty(arg0); } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/party/func_8080009C_chbottlesparty.s")
 
