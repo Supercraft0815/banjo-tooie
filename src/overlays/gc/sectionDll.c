@@ -37,7 +37,10 @@ s16 *func_808000F0_gcsectionDll(s32 arg0, s32 arg1) {
     return NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionDll/gcsectionDll_entrypoint_2.s")
+ s32 gcsectionDll_entrypoint_2(s32 arg0) {
+    extern s16 D_80800210_gcsectionDll[];
+    return ((s32) func_808000F0_gcsectionDll(arg0, 0) - (s32) &D_80800210_gcsectionDll) / 6;
+}
 
 s32 gcsectionDll_entrypoint_3(s32 arg0, s32 arg1) {
     extern s16 D_80800212_gcsectionDll[][3];
