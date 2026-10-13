@@ -32,7 +32,17 @@ void bainvisible_entrypoint_3(s32 arg0) {
     bastatetimer_clear((void *)arg0, 9);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/invisible/bainvisible_entrypoint_4.s")
+void bainvisible_entrypoint_4(s32 arg0) {
+    s32 bastatetimer_clear(void *, s32);
+    void func_80800000_bainvisible(s32, void *, s32);
+    s8 *sp1C;
+
+    sp1C = *(s8 **)((s8 *)arg0 + 0xA8) + 0x1C;
+    func_80800000_bainvisible(arg0, sp1C, 0);
+    sp1C += 0x30;
+    func_80800000_bainvisible(arg0, sp1C, 0);
+    bastatetimer_clear((void *)arg0, 9);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/invisible/bainvisible_entrypoint_5.s")
 
