@@ -67,7 +67,7 @@ void func_80105834()
 
 void func_80105854(Actor *arg0) { s32 func_80105A5C(Actor *); func_801054D4(); if (func_80105A5C(arg0) != 0) { func_800FFAB0(arg0); } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_8010588C.s")
+void func_8010588C(Actor *arg0) { void func_8010A570(Actor *); struct { u32 words[10]; u32 upper : 21; u32 flag : 1; u32 lower : 10; } *flags; func_8010A570(arg0); flags = (void *)arg0->unk0; flags->flag = 1; func_801054D4(arg0); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_801058C4.s")
 
