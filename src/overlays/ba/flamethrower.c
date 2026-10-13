@@ -15,7 +15,7 @@ void baflamethrower_entrypoint_1(s32 arg0)
     _baflameline_entrypoint_2(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/flamethrower/baflamethrower_entrypoint_2.s")
+void baflamethrower_entrypoint_2(s32 arg0, s32 arg1) { _baflameline_entrypoint_3(); (*(s32 *)((s8 *)(*(u8 **)((s8 *)(arg0) + 0x88)) + 0)) = arg1; (*(s8 *)((s8 *)(*(u8 **)((s8 *)(arg0) + 0x88)) + 0xC)) = 0; func_80800088_baflamethrower(arg0, 1); }
 
 void baflamethrower_entrypoint_3(s32 arg0)
 {
