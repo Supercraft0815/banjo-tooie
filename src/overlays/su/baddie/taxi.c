@@ -54,13 +54,19 @@ s32 subaddietaxi_entrypoint_12(u8 *arg0, s32 arg1) {
 /* extern */
 
 void subaddietaxi_entrypoint_14(s32 arg0, s32 arg1) {
-    s32 _subaddieDll_entrypoint_4(s32, s32);
-    void *func_8010410C();
     (*(s16 *)((s8 *)(func_8010410C()) + (0x20))) = 0;
     _subaddieDll_entrypoint_4(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_15.s")
+/* extern */
+s32 subaddietaxi_entrypoint_15(s32 arg0, s32 arg1) {
+    func_801078DC((Actor *)arg0, (u8 *)func_8010410C() + 0x20);
+    if (_subaddiefade_entrypoint_0(arg0) == 0xFF) {
+        _subaddieDll_entrypoint_4((Actor *)arg0, 0);
+        return 1;
+    }
+    return 0;
+}
 
 void func_80800C00_subaddietaxi(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
