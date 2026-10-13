@@ -8,7 +8,7 @@ s32 glglobaldata_entrypoint_1(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obaldata/glglobaldata_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obaldata/func_80800124_glglobaldata.s")
+void func_80800124_glglobaldata(u8 *arg0, s32 *arg1) { arg0[*arg1] = 8; *arg1 += 1; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obaldata/glglobaldata_entrypoint_3.s")
 
