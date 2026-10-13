@@ -199,10 +199,15 @@ void func_800EBE74(s32 arg0, void *arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBED4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBF8C.s")
+void func_800EBF8C(f32 *arg0, s32 *arg1, u32 arg2, Prop *arg3) {
+    void func_800EE904(s32 *, f32 *);
+    s32 vec[3];
+    func_800EE904(vec, arg0);
+    func_800EBED4(vec, (s32)arg1, arg2, (s32)arg3);
+}
 
 void func_800EBFD4(s32 arg0, s32 *arg1, u32 arg2) {
-    Actor*  func_800EBF8C(s32, s32*, u32, Prop*);
+    void func_800EBF8C(f32 *, s32 *, u32, Prop *);
     func_800EBF8C(arg0, arg1, arg2, NULL);
 }
 
