@@ -366,7 +366,15 @@ Unk80132ED0* func_800F56D8(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F5704.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F5754.s")
+u32 func_800F5754(s32 arg0) {
+    Unk80132ED0 *temp_v0;
+
+    temp_v0 = _bahold_entrypoint_5(D_80135490[arg0]);
+    if (temp_v0 != NULL) {
+        return (u32) temp_v0->unk24 >> 22;
+    }
+    return 0;
+}
 
 void func_800F5794(s32 arg0)
 {
