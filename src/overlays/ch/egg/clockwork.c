@@ -63,4 +63,15 @@ void func_808007DC_cheggclockwork(Actor *arg0, f32 *arg1) {
     func_800EE7F8(sp18 + 0x18, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/clockwork/func_80800850_cheggclockwork.s")
+void func_80800850_cheggclockwork(Actor *arg0) {
+    s32 func_8001B798(s16);
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    void* func_80100094(Actor*, u32);
+    s32 pad;
+    s32 sp18;
+    pad = 0;
+    sp18 = func_8001B798((*(s16 *)((s8 *)(func_80100094(arg0, 0U)) + (0x2C))));
+    func_800EE7F8(sp18 + 0x18, sp18 + 0xC);
+    func_800EE7F8(sp18 + 0xC, (f32 *) sp18);
+    func_800EE7F8((f32 *) sp18, arg0->position);
+}
