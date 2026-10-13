@@ -70,7 +70,15 @@ void func_80800680_chfriendlystonehead(s32 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_808006C4_chfriendlystonehead.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_80800830_chfriendlystonehead.s")
+/* extern */
+
+void func_80800830_chfriendlystonehead(Actor *arg0, s16 arg1) {
+    struct Flags { u8 pad[0x2A]; u8 low : 2; u8 flag : 1; u8 high : 5; };
+
+    _subaddiedialog_entrypoint_11(arg0->unk0, arg1, 0xE, (f32 *)((s8 *)arg0 + 4), 0x35);
+    func_80102424(arg0, 6);
+    ((struct Flags *)arg0->unk0)->flag = 1;
+}
 
 OSThread *chfriendlystonehead_entrypoint_0(void)
 {
