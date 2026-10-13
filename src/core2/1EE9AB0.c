@@ -15,7 +15,7 @@ void func_801104F4(PlayerState *arg0) {
     heap_free(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110528.s")
+void func_80110528(PlayerState *arg0) { s32 func_801138A0(void *); void func_801138F4(PlayerState *); void func_80112524(PlayerState *, f32 *); void func_80110A68(s32, s32, s32); void func_80110790(s32, f32 *); f32 sp2C[3]; f32 sp20[3]; if (func_801138A0(arg0) != 0) { func_801138F4(arg0); } func_80112524(arg0, sp2C); func_80110A68((s32) arg0, (s32) sp20, (s32) sp2C); func_80110790((s32) arg0, sp20); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110588.s")
 
@@ -52,9 +52,9 @@ void func_80110770(s32 arg0) {
 
 /* extern */
 
-void func_80110790(s32 arg0) {
+void func_80110790(s32 arg0, f32 *arg1) {
     void func_800EE7F8();
-    func_800EE7F8(arg0 + 0x80);
+    func_800EE7F8(arg0 + 0x80, arg1);
 }
 
 /* extern */
