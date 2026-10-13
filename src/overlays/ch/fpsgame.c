@@ -100,7 +100,11 @@ void func_8080090C_chfpsgame(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_808015EC_chfpsgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80801758_chfpsgame.s")
+s32 func_80801758_chfpsgame(s32 arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _sumultiscore_entrypoint_6(u8 *);
+    return _sumultiscore_entrypoint_6((u8 *)func_80100094((Actor *)arg0, 0U) + 0x14);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80801780_chfpsgame.s")
 
