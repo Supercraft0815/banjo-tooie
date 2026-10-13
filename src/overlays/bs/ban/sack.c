@@ -383,7 +383,13 @@ void func_80801CB4_bsbansack()
     func_80800238_bsbansack();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80801CD4_bsbansack.s")
+void func_80801CD4_bsbansack(PlayerState *arg0) {
+    void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+    func_808002D4_bsbansack();
+    baanim_playForDuration_loopSmooth(arg0, 0x289, 1.0f);
+    func_8009FFD8(arg0, 1, 1, 1, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80801D20_bsbansack.s")
 
