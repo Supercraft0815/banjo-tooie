@@ -7,7 +7,35 @@ OSThread *chbadbeehive_entrypoint_0(void)
     return (OSThread *) D_80800B1C_chbadbeehive;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/beehive/func_8080000C_chbadbeehive.s")
+f32 func_8080000C_chbadbeehive(void) {
+    extern u8 D_8012762C;
+    switch (D_8012762C) {
+    case 19:
+        return 420.0f;
+    case 16:
+        return 440.0f;
+    case 15:
+        return 460.0f;
+    case 18:
+        return 480.0f;
+    case 20:
+        return 500.0f;
+    case 21:
+        return 550.0f;
+    case 22:
+        return 600.0f;
+    case 23:
+        return 650.0f;
+    case 24:
+        return 700.0f;
+    case 25:
+        return 630.0f;
+    case 26:
+        return 700.0f;
+    default:
+        return 0.0f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/beehive/func_808000EC_chbadbeehive.s")
 
