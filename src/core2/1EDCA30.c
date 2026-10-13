@@ -108,7 +108,10 @@ void func_80103D00(s32 arg0,s32 arg1)
     func_80103B24(arg0,0x1,arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103D24.s")
+void func_80103D24(Actor *arg0) {
+    u32* func_80103BF0(Actor*, u32, u32);
+    func_80103BF0(arg0, 1, 0);
+}
 
 /* extern */
 
