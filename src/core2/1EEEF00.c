@@ -96,7 +96,7 @@ void func_801158EC(f32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEF00/func_80115D08.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEF00/func_80115D88.s")
+void func_80115D88(PlayerState *arg0) { void func_801107F0(void *, f32 *); void func_800EFB24(void *, void *, void *); f32 sp34[3]; f32 sp28[3]; f32 sp1C[3]; func_801107F0(arg0, sp34); func_801158CC(arg0, sp1C); func_800EFB24(sp28, sp34, sp1C); func_800F1884(sp28, (u8 *)arg0->state_timer + 0x24); (*(f32 *)((s8 *)(arg0->state_timer) + 0x28)) = 0.0f; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEF00/func_80115DEC.s")
 
