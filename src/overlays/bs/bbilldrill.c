@@ -16,7 +16,22 @@ void func_808000C0_bsbbilldrill(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/func_80800100_bsbbilldrill.s")
+/* extern */
+
+void func_80800100_bsbbilldrill(void *arg0) {
+    f32 func_80092BF4(void *);
+    void func_80093300(void *, f32);
+    f32 temp_f0;
+    f32 var_f2;
+
+    temp_f0 = func_80092BF4(arg0);
+    var_f2 = temp_f0;
+    if (temp_f0 == 0.0f) {
+        var_f2 = 8.0f;
+    }
+    var_f2 = -var_f2;
+    func_80093300(arg0, var_f2);
+}
 
 void func_80800158_bsbbilldrill(s32 arg0) {
     s32 func_800B5BE4(s32);
