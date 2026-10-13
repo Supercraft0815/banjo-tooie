@@ -219,7 +219,12 @@ void func_800F51F0(s32 arg0)
     func_80093504(D_80135490[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F521C.s")
+void func_800F521C(s32 arg0, s32 arg1) {
+    PlayerState *sp1C;
+    sp1C = D_80135490[arg0];
+    bs_setState((s32)sp1C, _badata_entrypoint_35(sp1C));
+    func_800F457C(sp1C, arg1);
+}
 
 s32 func_800F5268(s32 arg0) {
     s32 _bafpctrl_entrypoint_4();
