@@ -249,7 +249,14 @@ void bsstonehead_entrypoint_40(PlayerState *arg0)
     func_80800000_bsstonehead(arg0);
     func_80090A2C(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_41.s")
+void bsstonehead_entrypoint_41(PlayerState *arg0) {
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    func_80800060_bsstonehead(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0x63, 0x40C33333);
+    func_8009FFD8(arg0, 1, 1, 1, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_800909CC(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_42.s")
 
