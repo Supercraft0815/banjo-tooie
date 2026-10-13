@@ -113,7 +113,21 @@ void func_8008B10C(AnimCtrl *arg0, f32 arg1) {
     func_8008C1C0((f32 *) (arg0 + 0x1C), arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_setPlaybackType.s")
+void anctrl_setPlaybackType(AnimCtrl *arg0, s32 arg1) {
+    struct PlaybackFlags { u8 padding[0x18]; u32 prefix : 16; u32 type : 8; u32 high : 5; u32 playback : 1; u32 low : 2; };
+    struct PlaybackFlags *flags = (struct PlaybackFlags *)arg0;
+    flags->type = arg1 & 0xFF;
+    switch (arg1) {
+    case 1:
+    case 3:
+        *((u8 *)arg0 + 0x1B) &= ~4;
+        return;
+    case 2:
+    case 4:
+        flags->playback = 1;
+        return;
+    }
+}
 
 void func_8008B188(AnimCtrl *arg0, s32 arg1) {
     struct Flags { u8 padding[0x1B]; u8 high : 1; u8 smooth : 1; u8 low : 6; };
