@@ -1,6 +1,21 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8CC00/func_800B3310.s")
+void func_800B38C8();
+void *heap_alloc(s32);
+s32 func_800B3310(s32 arg0) {
+    struct {
+        s32 unk0[3];
+        s32 count;
+        u8 *start;
+        u8 *end;
+    } *ptr;
+    ptr = heap_alloc(arg0 * 0x1C + 0x18);
+    func_800B38C8(ptr);
+    ptr->start = (u8 *)(ptr + 1);
+    ptr->end = ptr->start + arg0 * 0x1C;
+    ptr->count = arg0;
+    return (s32)ptr;
+}
 
 void func_800B3370(void* arg0) 
 {
