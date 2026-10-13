@@ -11,7 +11,7 @@ OSThread *suegg_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/func_80800064_suegg.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_1.s")
+void suegg_entrypoint_1(Actor *arg0, f32 arg1) { *(f32 *)func_80100094(arg0, 0) = arg1; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_2.s")
 
@@ -29,7 +29,6 @@ void suegg_entrypoint_3(s32 arg0)
 /* extern */
 
 s16 suegg_entrypoint_7(void) {
-    void *func_80100094(s32, s32);
     s32 func_80106790();
     return (*(s16 *)((s8 *)(func_80100094(func_80106790(), 0)) + (0x3A)));
 }
