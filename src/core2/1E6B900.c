@@ -127,8 +127,8 @@ s32 func_80092B80(PlayerState *arg0)
     return (*(s16 **)((u8 *)arg0 + 0x50))[6];
 }
 
-f32 func_80092B8C(PlayerState *arg0, s32 arg1) {
-    void func_800EE7F8();
+f32 func_80092B8C(PlayerState *arg0, f32 *arg1) {
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
     func_800EE7F8(arg1, (u8 *)(*(u32 *)((u8 *)arg0 + 0x50)) + 0x64);
     return *(f32 *)((u8 *)(*(u32 *)((u8 *)arg0 + 0x50)) + 0x70);
 }
