@@ -6,7 +6,19 @@ struct player_state_s;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_808000B0_bsvanswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_80800114_bsvanswim.s")
+void func_80800114_bsvanswim(struct player_state_s *arg0) {
+    extern void _bsvan_entrypoint_1(struct player_state_s *);
+    extern void baphysics_set_gravity(struct player_state_s *, f32);
+    extern void baphysics_set_terminal_velocity(struct player_state_s *, f32);
+    extern void func_800961AC(struct player_state_s *, s32);
+    extern s32 func_8009E6C4(struct player_state_s *, s32);
+    _bsvan_entrypoint_1(arg0);
+    if (func_8009E6C4(arg0, 1) == 0) {
+        baphysics_set_gravity(arg0, 100.0f);
+        baphysics_set_terminal_velocity(arg0, 133.33f);
+        func_800961AC(arg0, 3);
+    }
+}
 
 void func_80800174_bsvanswim(struct player_state_s *arg0) {
     s32 func_8009E69C(struct player_state_s *, s32);
@@ -108,9 +120,9 @@ void func_8080083C_bsvanswim(s32 arg0)
     _bsrest_entrypoint_14();
     func_80800174_bsvanswim(arg0);
 }
-void func_80800864_bsvanswim(s32 arg0)
+void func_80800864_bsvanswim(struct player_state_s *arg0)
 {
-    func_80800114_bsvanswim();
+    func_80800114_bsvanswim(arg0);
     _bsrest_entrypoint_16(arg0);
 }
 /* extern */
@@ -132,9 +144,9 @@ s32 bsvanswim_entrypoint_3(s32 arg0) {
     return ((s32 *)&D_808009B0_bsvanswim)[arg0];
 }
 
-void func_808008E4_bsvanswim(s32 arg0)
+void func_808008E4_bsvanswim(struct player_state_s *arg0)
 {
-    func_80800114_bsvanswim();
+    func_80800114_bsvanswim(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
 void func_8080090C_bsvanswim(s32 arg0)
