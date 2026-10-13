@@ -6,7 +6,7 @@
 s32 func_800BBCB8(f32[3], f32[3], f32, s32, s32 *);
 void func_800BA22C(s32, s32);
 void func_800BA3FC(s32, s32);
-void func_800BA450(s32, s32, s32, s32, s32, s32, s32);
+void func_800BA450(s32, s16, s16, s16, s16, s16, s16);
 void func_800BA670(s32, s32);
 void func_800BA75C(s32, f32[3]);
 void func_800BA77C(s32, s16, s16, s16);
