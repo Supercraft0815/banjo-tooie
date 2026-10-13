@@ -204,7 +204,21 @@ void func_80800D28_bssnowball(s32 arg0)
     bssnowball_entrypoint_1();
     _bsrest_entrypoint_16(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_80800D50_bssnowball.s")
+/* extern */
+
+void func_80800D50_bssnowball(s32 arg0) {
+    s32 _bsrest_entrypoint_13(s32);
+    s32 _bsrest_entrypoint_20();
+    s32 bs_setState(s32, s32);
+    s32 sp1C;
+
+    sp1C = 0;
+    if (_bsrest_entrypoint_20() != 0) {
+        sp1C = _bsrest_entrypoint_13(arg0);
+    }
+    bssnowball_entrypoint_2(arg0);
+    bs_setState(arg0, sp1C);
+}
 
 s32 bssnowball_entrypoint_10(s32 arg0) {
     extern s32 D_808010C4_bssnowball[];
