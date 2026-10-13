@@ -43,7 +43,19 @@ void func_80800440_chgameselect(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808009EC_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80800A4C_chgameselect.s")
+void func_80800A4C_chgameselect(Actor *arg0) {
+    typedef struct {
+        void (*callback)(void);
+        u8 pad4[0x30];
+    } GameSelectCallback;
+    extern GameSelectCallback D_80807DFC_chgameselect[];
+    void (*temp_v0)(void);
+
+    temp_v0 = D_80807DFC_chgameselect[arg0->unk70_10].callback;
+    if (temp_v0 != NULL) {
+        temp_v0();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80800A9C_chgameselect.s")
 
