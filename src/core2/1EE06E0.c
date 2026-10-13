@@ -129,7 +129,9 @@ s32 func_80107388(void) {
     return (*(s32 *)((s8 *)(func_80100368()) + (0x44)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_801073AC.s")
+/* extern */
+
+void func_801073AC(s32 arg0, s32 arg1) { s32 func_8010108C(); s32 func_80102424(s32, s32); s32 func_80107388(void); func_80102424(arg0, *(s16 *)(func_80107388() + arg1 * 4)); func_8010108C(arg0, 0x8F, arg1); }
 
 s32 func_801073F8(s32 arg0, s32 arg1, s32 arg2) { s32 func_80107388(); s32 var_v1; if ((*(s16 *)((s8 *)(func_80107388(arg0) + (arg1 * 4)) + 2)) & arg2) { var_v1 = 1; } else { var_v1 = 0; } return var_v1; }
 
