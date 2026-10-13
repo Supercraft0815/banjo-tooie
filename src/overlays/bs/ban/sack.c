@@ -128,7 +128,12 @@ s32 bsbansack_entrypoint_2(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800A14_bsbansack.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800A78_bsbansack.s")
+void func_80800A78_bsbansack(s32 arg0) {
+    if (*((u8 *)arg0 + 0x15D) != 0) {
+        *((u8 *)arg0 + 0x15D) = 0;
+        func_80800400_bsbansack();
+    }
+}
 
 int func_80800AA4_bsbansack(PlayerState *arg0) {
     f32 baphysics_get_vertical_velocity(PlayerState *);
@@ -267,6 +272,7 @@ void func_80801680_bsbansack(s32 arg0, s32 arg1) {
     void func_8009BF5C(PlayerState *, f32);
     void func_8009D2D8(PlayerState *, s32);
     void func_8009DB04(s32, s32, f32, s32);
+    void func_80800A78_bsbansack();
     void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
     void func_800A2EEC(s32, s32);
     void func_800A2FCC(s32, s32);
