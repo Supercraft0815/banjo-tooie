@@ -16,7 +16,19 @@ extern f32 D_8013550C;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F482C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F48BC.s")
+void func_800F48BC(s32 arg0, s32 arg1) {
+    f32 func_800D8FF8(void);
+    void func_800EFA20(void *, void *, f32);
+    f32 sp2C[3];
+    f32 sp20[3];
+    PlayerState *sp1C;
+
+    sp1C = D_80135490[arg0];
+    func_800F4200(sp1C, sp2C);
+    func_800EFA20(sp20, (void *)arg1, func_800D8FF8());
+    func_800EF04C(sp2C, sp20);
+    func_800F4648(sp1C, sp2C);
+}
 
 void func_800F4924(s32 arg0,s32 a1)
 {
