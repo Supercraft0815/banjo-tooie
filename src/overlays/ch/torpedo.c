@@ -6,7 +6,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/torpedo/func_808001E0_chtorpedo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/torpedo/func_80800350_chtorpedo.s")
+void func_80800350_chtorpedo(Actor *arg0) {
+    void func_800F1A88(f32 *, f32 *);
+    f32 sp18[2];
+
+    func_800F1A88((f32 *)((s8 *)arg0 + 0x28), sp18);
+    arg0->rotation[0] = -sp18[0];
+    arg0->rotation[1] = sp18[1];
+}
 
 /* extern */
 
