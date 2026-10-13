@@ -56,7 +56,13 @@ void func_800D2E4C(void) {
     (*(s32 *)((s8 *)(&D_8012B360) + (4))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D2E90.s")
+s32 func_800D2E90(s32 arg0) {
+    extern s32 D_8012B360;
+    if ((arg0 < 0) || (arg0 >= (*(s32 *)((s8 *)(&D_8012B360) + 4)))) {
+        return 0;
+    }
+    return *((s16 *)D_8012B360 + arg0) ? 1 : 0;
+}
 
 void func_800D2EE4(void) {
     s32 defrag(s32);
