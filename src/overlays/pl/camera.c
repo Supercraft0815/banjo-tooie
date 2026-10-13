@@ -32,7 +32,10 @@ void plcamera_entrypoint_10(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/pl/camera/plcamera_entrypoint_11.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/pl/camera/plcamera_entrypoint_12.s")
+s32 plcamera_entrypoint_12(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_8010FDA8();
+    return func_8010FDA8(func_800F5EF8(arg0), arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/pl/camera/plcamera_entrypoint_13.s")
 
