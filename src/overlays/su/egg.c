@@ -1,5 +1,7 @@
 #include "common.h"
 
+void *func_80100094(Actor *, u32);
+
 OSThread *suegg_entrypoint_0(void)
 {
     extern u8 D_80800E40_suegg[];
@@ -33,12 +35,24 @@ void suegg_entrypoint_3(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_6.s")
+s16 suegg_entrypoint_6(Unk80132ED0 *arg0, f32 *arg1, s32 *arg2) {
+    s32 _gcegg_entrypoint_0(u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_800EFB24(void *, void *, void *);
+    Actor *sp1C;
+    void *sp18;
+
+    sp1C = func_80106790(arg0);
+    sp18 = func_80100094(sp1C, 0);
+    func_800EFB24(arg1, sp1C->position, sp1C->actorData);
+    *arg2 = _gcegg_entrypoint_0(arg0->unk24 >> 22);
+    return *(s16 *)((u8 *)sp18 + 0x3A);
+}
 
 /* extern */
 
 s16 suegg_entrypoint_7(void) {
-    s32 func_80106790();
+    Actor *func_80106790();
     return (*(s16 *)((s8 *)(func_80100094(func_80106790(), 0)) + (0x3A)));
 }
 
@@ -71,7 +85,7 @@ void suegg_entrypoint_15(s32 arg0)
 /* extern */
 
 void suegg_entrypoint_18(s32 arg0, s32 arg1) {
-    s32 func_800EFB24(s32, s32, s32, s32);
+    void func_800EFB24();
     func_800EFB24(arg1, arg0 + 0x4, arg0 + 0x18, arg0);
 }
 
