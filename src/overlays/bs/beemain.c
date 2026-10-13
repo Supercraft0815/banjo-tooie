@@ -75,7 +75,7 @@ void bsbeemain_entrypoint_4(s32 arg0)
     _babounce_entrypoint_3();
     _bsbee_entrypoint_0(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/bsbeemain_entrypoint_5.s")
+void bsbeemain_entrypoint_5(s32 arg0) { _bsbee_entrypoint_1(); _babounce_entrypoint_4(arg0, 1); _babounce_entrypoint_5(arg0, 0x1E0, 0x3F4075F7); }
 
 /* extern */
 
