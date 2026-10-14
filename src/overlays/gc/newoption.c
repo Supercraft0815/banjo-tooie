@@ -647,7 +647,31 @@ void func_80802B24_gcnewoption(void *arg0, s32 arg1) {
     ((struct Flags *)arg0)->enabled = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_37.s")
+/* extern */
+
+u32 gcnewoption_entrypoint_37(OptionState *a0, u32 a1) {
+    s32 func_80802A9C_gcnewoption(u8 *);
+    struct Flags {
+        u8 pad[0x1C];
+        u8 upper : 2;
+        u8 enabled : 1;
+        u8 lower : 5;
+    };
+    s16 temp_v0;
+
+    temp_v0 = (*(s16 *)((s8 *)(a0) + (0)));
+    if ((temp_v0 == 5) || (temp_v0 == 4)) {
+        if (a1 != 0) {
+            ((struct Flags *)a0)->enabled = 1;
+        } else {
+            ((struct Flags *)a0)->enabled = 0;
+        }
+        func_80802A9C_gcnewoption(a0->data);
+        (*(s16 *)((s8 *)(a0) + (0))) = 6;
+        return 1U;
+    }
+    return 0U;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_38.s")
 
