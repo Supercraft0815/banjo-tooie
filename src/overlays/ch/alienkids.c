@@ -99,7 +99,28 @@ void func_80801520_chalienkids(void *arg0, s32 arg1) {
     func_808014B0_chalienkids(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_8080158C_chalienkids.s")
+/* extern */
+
+void func_8080158C_chalienkids(Actor *arg0) {
+    s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    void func_8008FB58(f32 *, f32, f32);
+    f32 func_80103EAC(Actor *);
+    f32 func_8010A40C(void *);
+    u32 func_8010A698(void ***);
+    f32 sp2C[3];
+    f32 sp28;
+    f32 sp24;
+
+    sp24 = func_80103EAC(arg0);
+    sp28 = func_8010A40C(arg0) * sp24;
+    if (arg0->unk64_16) {
+        if (func_8010A698(arg0) == 0) {
+            if (_subaddieskeleton_entrypoint_0(arg0, 3, sp2C) != 0) {
+                func_8008FB58(sp2C, 0.5f * sp28, sp28);
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80801628_chalienkids.s")
 
