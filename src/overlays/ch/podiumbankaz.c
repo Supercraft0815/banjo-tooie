@@ -33,7 +33,26 @@ void func_80800044_chpodiumbankaz(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/podiumbankaz/func_80800228_chpodiumbankaz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/podiumbankaz/func_80800318_chpodiumbankaz.s")
+/* extern */
+
+void func_80800318_chpodiumbankaz(Unk80132ED0 *arg0, s32 arg1) {
+    s32 func_800C6E38(s32);
+    s32 func_800F5410(s32);
+    s32 func_800F7CF4(s32, s32, void *);
+    void func_80101FDC(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *sp1C;
+    s32 sp18;
+
+    if (func_800C6E38(0x1C) != 0) {
+        sp18 = func_800F5410(arg1);
+        sp1C = func_80106790(arg0);
+        if ((sp18 == 0xB) && ((sp1C->unk70_10 == 3) || (func_800F7CF4(arg1, 0x3B, sp1C->position) == 2))) {
+            sp1C->unk79_4 = arg1;
+            func_80101FDC(sp1C, 2);
+        }
+    }
+}
 
 void func_808003C4_chpodiumbankaz(s32 arg0, s32 arg1) {
     s32 _subaddiefade_entrypoint_1(s32, s32);
