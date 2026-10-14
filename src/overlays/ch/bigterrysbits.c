@@ -37,7 +37,7 @@ void func_80800130_chbigterrysbits(s32 arg0) {
 
 void func_80800160_chbigterrysbits(Actor *arg0) {
     s32 _subaddieDll_entrypoint_6(Actor*, s32);
-    s32 func_8080022C_chbigterrysbits(Actor *);
+    void func_8080022C_chbigterrysbits(Actor *volatile);
     if (((((u32) (*(u16 *)((s8 *)(arg0) + (0x72)))) >> 0xA) == 2) && (_subaddieDll_entrypoint_6(arg0, 0xB) != 0)) {
         func_8080022C_chbigterrysbits(arg0);
     }
@@ -45,6 +45,21 @@ void func_80800160_chbigterrysbits(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bigterrysbits/func_808001A8_chbigterrysbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bigterrysbits/func_8080022C_chbigterrysbits.s")
+void func_8080022C_chbigterrysbits(Actor *volatile arg0) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_800DA544(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    extern s32 D_80800458_chbigterrysbits;
+    f32 sp1C[3];
+    f32 *sp18;
+
+    sp18 = arg0->position;
+    func_800EE7F8(sp1C, sp18);
+    sp1C[1] -= 80.0f;
+    _chexploder_entrypoint_3(arg0, sp1C, 0xC);
+    _subaddieaudioquick_entrypoint_2(arg0, sp18, &D_80800458_chbigterrysbits);
+    func_800DA544(0x173);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bigterrysbits/func_8080029C_chbigterrysbits.s")
