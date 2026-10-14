@@ -124,7 +124,7 @@ s32 func_808003D0_bsledge(PlayerState *self) {
 #endif
 
 #ifndef NONMATCHINGS
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ledge/func_80800410_bsledge.s")
+int func_80800410_bsledge(PlayerState *arg0) { return func_80096388(arg0) == 7 && func_80097524(arg0) != 4; }
 #else
 s32 func_80800410_bsledge(PlayerState *self) {
     if (((func_80096388(self) ^ 7) == 0) != 0) {
