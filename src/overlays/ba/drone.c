@@ -212,7 +212,7 @@ void badrone_entrypoint_29(s32 arg0)
     func_80800348_badrone(arg0,0xE);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/drone/badrone_entrypoint_30.s")
+int badrone_entrypoint_30(u8 *arg0) { s32 player_inWater(u8 *); return badrone_entrypoint_3(arg0) == 2 && !player_inWater(arg0); }
 
 s32 badrone_entrypoint_31(void *arg0) {
     if (*(*(u8 **)((s8 *)(arg0) + (0x54))) == 1) {
