@@ -214,4 +214,20 @@ f32 func_800F0C68(s32 arg0, s32 arg1, f32 arg2, f32 arg3) {
     return arg2 / sqrtf((arg2 * arg2) + (arg3 * arg3));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F0CB4.s")
+/* extern */
+
+s32 func_800F0CB4(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EF174(f32 *, f32 *, f32);
+    f32 dots[3];
+    f32 temp_f0;
+
+    temp_f0 = func_800EEAA4(arg1, arg3);
+    dots[2] = temp_f0;
+    if (temp_f0 == 0.0f) {
+        return 0;
+    }
+    dots[0] = func_800EEAA4(arg3, arg2);
+    func_800EF174(arg0, arg1, (dots[0] - func_800EEAA4(arg0, arg3)) / dots[2]);
+    return 1;
+}
