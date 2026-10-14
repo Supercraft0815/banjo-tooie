@@ -119,7 +119,23 @@ void func_80801BC8_changlerboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80801C50_changlerboss.s")
+/* extern */
+
+s32 func_80801C50_changlerboss(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 var_v1;
+    s32 i;
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    var_v1 = 0;
+    for (i = 0; i < 6; i++) {
+        if ((temp_v0 + i)[0x1B] != 2) {
+            var_v1 += 1;
+        }
+    }
+    return var_v1;
+}
 
 /* extern */
 
