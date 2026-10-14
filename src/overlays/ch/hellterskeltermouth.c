@@ -9,7 +9,27 @@ OSThread *chhellterskeltermouth_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskeltermouth/func_8080000C_chhellterskeltermouth.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskeltermouth/func_808001BC_chhellterskeltermouth.s")
+/* extern */
+
+void func_808001BC_chhellterskeltermouth(Actor *arg0) {
+    s32 func_800DA298(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80101FDC(Actor *, u32);
+    void func_80102FE8(void *, s32);
+    void func_80103110(Actor *, u32);
+    void func_8010A590(Actor *);
+    func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+    func_800EE7F8((f32 *)&arg0->actorData[4], arg0->position);
+    ((f32 *)arg0->actorData)[5] -= 350.0f;
+    if (func_800DA298(0xA4) != 0) {
+        func_8010A590(arg0);
+        func_80102FE8(arg0, 0);
+        func_80101FDC(arg0, 4);
+        arg0->unk58 = 2.5f;
+        return;
+    }
+    func_80103110(arg0, 0);
+}
 
 /* extern */
 
