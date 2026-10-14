@@ -176,4 +176,23 @@ s32 func_800D1C70()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1DFC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1F34.s")
+/* extern */
+
+s32 func_800D1F34(u8 *arg0, register s32 arg1) {
+    extern s32 _glgamedata_entrypoint_3(u8 *, s32, s32 *, u32 *);
+    s32 sp24;
+    u32 sp20;
+    u8 *temp_v1;
+    u32 result;
+
+    if (_glgamedata_entrypoint_3(arg0, 4, &sp24, &sp20) != 0) {
+        arg1 -= 0x40;
+        if ((s32) (sp20 >> 1) < arg1) {
+            return -1;
+        }
+        temp_v1 = arg0 + sp24 + (arg1 * 2);
+        result = (temp_v1[0] << 8) | temp_v1[1];
+        return result;
+    }
+    return -1;
+}
