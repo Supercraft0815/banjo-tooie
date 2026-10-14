@@ -297,7 +297,32 @@ s32 func_80800900_bsfirstp(u8 *arg0, f32 arg1) {
     return var_a0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80800978_bsfirstp.s")
+void func_80800978_bsfirstp(void *arg0, void *arg1, void *arg2, void *arg3) {
+    f32 temp_f0;
+    f32 temp_f2;
+    f32 var_f12;
+    void *temp_v0;
+
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x188)));
+    temp_f0 = (*(f32 *)((s8 *)(temp_v0) + (0xC8))) * 0.02712968f;
+    temp_f2 = (*(f32 *)((s8 *)(temp_v0) + (0xCC))) * 0.017686592f;
+    if (temp_f0 > 0.0f) {
+        var_f12 = -(*(f32 *)((s8 *)(arg1) + (0x34)));
+    } else {
+        var_f12 = (*(f32 *)((s8 *)(arg1) + (0x38)));
+    }
+    temp_f0 *= var_f12;
+    if (temp_f2 > 0.0f) {
+        var_f12 = -(*(f32 *)((s8 *)(arg1) + (0x3C)));
+    } else {
+        var_f12 = (*(f32 *)((s8 *)(arg1) + (0x40)));
+    }
+    temp_f2 *= var_f12;
+    (*(f32 *)((s8 *)(arg2) + (0))) = (f32) ((*(f32 *)((s8 *)(arg1) + (0x30))) * temp_f0);
+    (*(f32 *)((s8 *)(arg3) + (0))) = (f32) ((*(f32 *)((s8 *)(arg1) + (0x30))) * temp_f2);
+    (*(f32 *)((s8 *)(arg2) + (4))) = (f32) (temp_f0 - (*(f32 *)((s8 *)(arg2) + (0))));
+    (*(f32 *)((s8 *)(arg3) + (4))) = (f32) (temp_f2 - (*(f32 *)((s8 *)(arg3) + (0))));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80800A18_bsfirstp.s")
 
