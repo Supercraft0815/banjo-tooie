@@ -6,5 +6,5 @@
 void func_80015178(s32);
 s32 func_80015184();
 void func_80015CC0(s32, s32, s32, s32, s32);
-void func_80015D14(s32);
+f32 func_80015D14(void *);
 #endif

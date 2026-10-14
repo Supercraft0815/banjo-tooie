@@ -1,6 +1,26 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C4B90.s")
+void func_800C4B90(s32 arg0, f32 arg1, f32 arg2) {
+    f32 func_80015D14(void *);
+    s32 func_800A8984(s32);
+    void *func_800A89A0(s32);
+    f32 func_800A8AD4(s32);
+    extern f32 D_80125890;
+    extern f32 D_8012A9A0[];
+    f32 temp_f8;
+    f32 sp20;
+    s32 sp1C;
+    void *sp18;
+
+    sp1C = func_800A8984(arg0);
+    sp18 = func_800A89A0(arg0);
+    if ((sp18 != 0) && (sp1C != 0)) {
+        sp20 = func_800A8AD4(arg0);
+        temp_f8 = func_80015D14(sp18);
+        D_8012A9A0[31] += (arg1 * sp20) / 40.0f;
+        D_8012A9A0[30] += (arg2 * temp_f8) / D_80125890;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C4C34.s")
 

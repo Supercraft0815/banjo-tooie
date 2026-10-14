@@ -27,7 +27,8 @@ extern s32 D_80127674;
 extern void* D_801276BC;
 typedef struct
 {
-    s32 unk0, unk4;
+    void *unk0;
+    s32 unk4;
     f32 unk8;
 } unk_D_80127688;
 extern unk_D_80127688 D_80127688[];
@@ -586,7 +587,7 @@ s32 func_800A8984(s32 arg0)
     return D_80127688[arg0].unk4;
 }
 
-s32 func_800A89A0(s32 arg0) 
+void *func_800A89A0(s32 arg0) 
 {
     return D_80127688[arg0].unk0;
 }
