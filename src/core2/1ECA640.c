@@ -166,12 +166,11 @@ f32 func_800F130C(f32 a, f32 b, f32 c, f32 d, f32 e)
     return func_800F1274(a, b, c, d, e, func_800F14AC);
 }
 
-void func_800F1344(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+f32 func_800F1344(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     if (arg0 < 0.0f) {
-        func_800F10B4(arg0, -arg1, -arg2, -arg3, -arg4);
-        return;
+        return func_800F10B4(arg0, -arg1, -arg2, -arg3, -arg4);
     }
-    func_800F10B4(arg0, arg1, arg2, arg3, arg4);
+    return func_800F10B4(arg0, arg1, arg2, arg3, arg4);
 }
 
 f32 func_800F13C4(f32 arg0, f32 arg1) {

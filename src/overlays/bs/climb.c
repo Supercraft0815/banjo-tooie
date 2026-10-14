@@ -15,7 +15,31 @@ void func_80800000_bsclimb(void *arg0, s32 arg1) {
     func_8009DF94(arg0, *(s16 *)((u8 *)temp_v1 - 0x12), *(f32 *)(temp_t0 - 0x10), *(s32 *)(temp_t0 - 0xC));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/func_8080005C_bsclimb.s")
+/* extern */
+
+void func_8080005C_bsclimb(void *arg0) {
+    struct player_state_s;
+    f32 bastick_getY(struct player_state_s *);
+    void func_8009B94C(u8 *, f32 *);
+    f32 func_800F1344(f32, f32, f32, f32, f32);
+    f32 mlAbsF(f32);
+    f32 sp2C[3];
+    f32 sp28;
+    f32 temp_f0;
+    f32 var_f2;
+
+    temp_f0 = bastick_getY(arg0);
+    sp28 = temp_f0;
+    if (mlAbsF(temp_f0) < 0.03f) {
+        var_f2 = 0.0f;
+    } else {
+        var_f2 = func_800F1344(sp28, 0.03f, 1.0f, 100.0f, 300.0f);
+    }
+    sp2C[0] = 0.0f;
+    sp2C[1] = var_f2;
+    sp2C[2] = 0.0f;
+    func_8009B94C(arg0, sp2C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/func_808000E8_bsclimb.s")
 
