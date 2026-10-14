@@ -1,6 +1,30 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_0.s")
+/* extern */
+
+void gcfrontend_entrypoint_0(void) {
+    void func_800D3970(void);
+    u8 gcfrontend_entrypoint_4(s32);
+    u8 gcfrontend_entrypoint_5(s32);
+    void gcfrontend_entrypoint_9(s32);
+    s32 sp28[2];
+    s32 temp_v0;
+    s32 var_s0;
+    s32 var_s1;
+
+    func_800D3970();
+    sp28[0] = gcfrontend_entrypoint_5(3);
+    temp_v0 = gcfrontend_entrypoint_4(3);
+    var_s0 = 0;
+    if (temp_v0 > 0) {
+        var_s1 = sp28[0];
+        do {
+            gcfrontend_entrypoint_9(var_s1);
+            var_s0 += 1;
+            var_s1 += 1;
+        } while (var_s0 < temp_v0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_1.s")
 
