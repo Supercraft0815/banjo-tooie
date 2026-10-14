@@ -80,7 +80,26 @@ void func_80800D38_chbiggafoot(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_80800D5C_chbiggafoot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_80800E2C_chbiggafoot.s")
+/* extern */
+
+s32 func_80800E2C_chbiggafoot(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _chexploder_entrypoint_6(s32, s32, s32);
+    s32 _chexploder_entrypoint_9(s32, s32, s32);
+    s32 func_80101080();
+    s32 func_80106790(s32);
+    s32 sp1C;
+    s32 temp_v0;
+
+    if (arg1 == 0x90) {
+        temp_v0 = func_80106790(func_80101080());
+        sp1C = temp_v0;
+        _chexploder_entrypoint_9(temp_v0, 1, 2);
+        _chexploder_entrypoint_6(sp1C, 0x43C80000, 0x43FA0000);
+    } else {
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800E98_chbiggafoot(u8 *arg0) {
     s32 func_800BBCB8(u8 *, s32, s32, s32, s32 *);
