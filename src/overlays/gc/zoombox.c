@@ -70,7 +70,36 @@ void func_80800294_gczoombox(void *arg0) {
     func_80800228_gczoombox(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_808002E4_gczoombox.s")
+void func_808002E4_gczoombox(void *arg0) {
+    struct {
+        u8 pad0[0x171];
+        s8 state;
+        u8 pad172[0x2A];
+        u8 unk19C;
+        u8 pad19D;
+        u8 unk19E;
+        u8 pad19F[0x25];
+        f32 unk1C4;
+        u8 pad1C8[4];
+        u8 unk1CC;
+        u8 pad1CD[0x17];
+        u32 flag31:1;
+        u32 padFlags27:4;
+        u32 flag26:1;
+        u32 padFlags24:2;
+        u32 flag23:1;
+        u32 padFlags0:23;
+    } *this = arg0;
+
+    if (this->flag26 || this->flag31) {
+        this->state = 3;
+        this->unk1C4 = (u32)this->unk1CC / 60.0f;
+    } else {
+        this->state = 4;
+    }
+    this->unk19E = this->unk19C;
+    this->flag23 = 0;
+}
 
 void func_80800358_gczoombox(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)arg0 + 496) = arg1;
