@@ -140,7 +140,23 @@ OSThread *chcrusher_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_80800734_chcrusher.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_80800838_chcrusher.s")
+/* extern */
+
+void func_80800838_chcrusher(Actor *arg0) {
+    f32 func_800D8FF8(void);
+
+    if (arg0->unk74_7 != 0x32) {
+        arg0->unk54 = func_800D8FF8() * -240.0f;
+        arg0->position[1] = 350.0f;
+        arg0->rotation[2] += 22.5f;
+        arg0->position[2] = -635.0f;
+    } else {
+        arg0->unk54 = func_800D8FF8() * 240.0f;
+        arg0->position[1] = 100.0f;
+        arg0->position[2] = -660.0f;
+    }
+    arg0->position[0] = -2350.0f;
+}
 
 OSThread *chcrusher_entrypoint_2(void)
 {
