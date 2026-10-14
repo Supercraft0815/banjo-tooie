@@ -1,6 +1,8 @@
 #include "core2/1EA0690.h"
 #include "core2/1EB3750.h"
 
+s32 D_8012AAD0[4];
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0690/func_800C6DA0.s")
 
 s32 func_800C6E18(s32 arg0) {
@@ -107,7 +109,13 @@ void* func_800C7150(void* arg0)
 {
     return defrag(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0690/func_800C7170.s")
+void func_800C7170(void) {
+    s32 i;
+
+    for (i = 0; i < 4; i++) {
+        D_8012AAD0[i] = 0;
+    }
+}
 
 void func_800C718C(void) {
     extern s32 D_8012AAE0;
