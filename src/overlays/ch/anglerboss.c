@@ -235,7 +235,23 @@ s32 func_808025AC_changlerboss(s32 arg0) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_808025EC_changlerboss.s")
+void func_808025EC_changlerboss(Actor *arg0) {
+    void _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    extern s16 D_80803054_changlerboss;
+    s32 i;
+    struct {
+        f32 pad0[15];
+        f32 unk3C[6][3];
+        f32 unk84[3];
+    } *sp30;
+
+    sp30 = func_80100094(arg0, 0);
+    for (i = 0; i < 6; i++) {
+        _subaddieskeleton_entrypoint_2(arg0->unk0, (&D_80803054_changlerboss)[i], sp30->unk3C[i]);
+    }
+    _subaddieskeleton_entrypoint_2(arg0->unk0, 0xC, sp30->unk84);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80802680_changlerboss.s")
 
