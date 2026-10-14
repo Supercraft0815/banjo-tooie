@@ -187,4 +187,18 @@ void func_80800E64_chamazongoldhordeofficial(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800F40_chamazongoldhordeofficial.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80801060_chamazongoldhordeofficial.s")
+/* extern */
+
+void func_80801060_chamazongoldhordeofficial(Actor *arg0) {
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    f32 func_800F1DCC(f32, f32);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    f32 sp1C[3];
+    Actor *sp18;
+
+    func_800EEB9C(sp1C, arg0->rotation[1], 200.0f);
+    func_800EF04C(sp1C, arg0->position);
+    sp18 = func_80108528(0x1D9, sp1C, 0, &arg0);
+    sp18->rotation[1] = func_800F1DCC(arg0->rotation[1], 180.0f);
+}
