@@ -92,4 +92,23 @@ void func_80800000_cadbio(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ca/dbio/cadbio_entrypoint_0.s")
+/* extern */
+
+void cadbio_entrypoint_0(s32 arg0) {
+    s32 _gsmaker_entrypoint_16(s32, s32);
+    s32 _gsmaker_entrypoint_21(s32, s32, s32 *);
+    void func_800A5608(s32);
+    void func_800A5630();
+    s32 sp24;
+
+    func_800A5630();
+    if (_gsmaker_entrypoint_21(arg0, 0x14, &sp24) == 0) {
+        sp24 = 0x7D;
+    }
+    func_800A5608(sp24);
+    if (_gsmaker_entrypoint_16(arg0, 0) == 0) {
+        do {
+            func_80800000_cadbio(arg0);
+        } while (_gsmaker_entrypoint_16(arg0, 0) == 0);
+    }
+}
