@@ -65,7 +65,33 @@ void func_808003D4_chmole_training(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_80800A48_chmole_training.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_80800BA8_chmole_training.s")
+void func_80800BA8_chmole_training(Actor *arg0) {
+    switch ((s32) arg0->unk54) {
+    case 10:
+    case 11:
+    case 12:
+    case 13:
+    case 14:
+    case 15:
+    case 16:
+    case 17:
+    case 18:
+    case 19:
+    case 20:
+    case 21:
+    case 22:
+    case 23:
+    case 24:
+    case 25:
+    case 26:
+        arg0->unk54 = (f32) (s32) arg0->rotation[1];
+        arg0->unk70_10 = 4;
+        return;
+    default:
+        arg0->unk70_10 = 11;
+        return;
+    }
+}
 
 void func_80800C28_chmole_training(void *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x72))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x72))) & 0xFF03) | 0x34);
