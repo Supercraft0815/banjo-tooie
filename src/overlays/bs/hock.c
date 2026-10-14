@@ -4,7 +4,24 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/hock/bsbshock_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/hock/bsbshock_entrypoint_2.s")
+/* extern */
+
+struct player_state_s;
+void bsbshock_entrypoint_2(struct player_state_s *arg0) {
+    f32 func_80092BF4(struct player_state_s *);
+    void func_80093300(void *, f32);
+    void func_8009C1B4(void *, f32);
+    void func_800A0CE8(struct player_state_s *, s32);
+    void func_800A0CF4(struct player_state_s *, s32);
+    s32 func_800C2FDC(u8);
+    func_800C2FDC((*(u8 *)((s8 *)(arg0) + (0x164))));
+    func_800A0CE8(arg0, 0);
+    func_800A0CF4(arg0, 0);
+    if (func_80092BF4(arg0) != 0.0f) {
+        func_80093300(arg0, 0.0f);
+        func_8009C1B4(arg0, 87.0f);
+    }
+}
 
 s32 bsbshock_entrypoint_3(s32 arg0) {
     extern s32 D_80800870_bsbshock[];
