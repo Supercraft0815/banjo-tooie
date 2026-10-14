@@ -65,7 +65,16 @@ s16 susplinet_entrypoint_3(s8 *arg0) {
     return ((s16 *)base)[*(s16 *)(arg0 + 0x4E) - 1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_4.s")
+/* extern */
+
+s32 susplinet_entrypoint_4(void *arg0, f32 arg1) {
+    f32 func_800D8FF8(void);
+    if ((*(f32 *)((s8 *)arg0 + 0x48) <= arg1) &&
+        (arg1 < *(f32 *)((s8 *)arg0 + 0x44) + func_800D8FF8() * 100.0f)) {
+        return 1;
+    }
+    return 0;
+}
 
 s32 susplinet_entrypoint_5(void *arg0, f32 arg1) {
     if (((*(f32 *)((s8 *)(arg0) + (0x48))) <= arg1) && (arg1 < (*(f32 *)((s8 *)(arg0) + (0x44))))) {
