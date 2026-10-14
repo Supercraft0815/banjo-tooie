@@ -23,7 +23,22 @@ s32 func_808003F8_chdragonbrothers(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80800438_chdragonbrothers.s")
+/* extern */
+
+s32 func_80800438_chdragonbrothers(Actor *arg0) {
+    s32 _ncpod_entrypoint_17(s32, s32);
+    s32 func_800F5EF8(s32);
+    void *func_80100094(Actor *, u32);
+    s32 *temp_v1;
+
+    temp_v1 = func_80100094(arg0, 0);
+    if (!arg0->unk74_29) {
+        return 0;
+    }
+    _ncpod_entrypoint_17(func_800F5EF8(temp_v1[8]), 0);
+    arg0->unk74_29 = 0;
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808004A4_chdragonbrothers.s")
 
