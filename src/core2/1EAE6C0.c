@@ -18,7 +18,7 @@ s32 func_800D4DD0(s32 arg0) {
 
 /* extern */
 
-void func_800D4E18(s32 arg0, s32 arg1) { u8 func_800D4E7C(s32); s32 func_800D4FB8(s32, s32); if (arg0 == 9) { arg0 = 1; } if (arg1 < 0) { func_800FC660(0x74U); } func_800D4FB8(arg0, func_800D4E7C(arg0) + arg1); }
+void func_800D4E18(s32 arg0, s32 arg1) { u8 func_800D4E7C(s32); void func_800D4FB8(s32, s32); if (arg0 == 9) { arg0 = 1; } if (arg1 < 0) { func_800FC660(0x74U); } func_800D4FB8(arg0, func_800D4E7C(arg0) + arg1); }
 
 u8 func_800D4E7C(s32 arg0) {
     s32 func_800D4DD0(s32);
@@ -53,7 +53,27 @@ s32 func_800D4F9C(s32 arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAE6C0/func_800D4FB8.s")
+void func_800D4FB8(s32 arg0, s32 arg1) {
+    s32 func_800D4DD0(s32);
+    extern u8 D_8011B640[];
+    s32 index;
+    u8 *entry;
+    if (arg0 == 9) {
+        arg0 = 1;
+    }
+    index = func_800D4DD0(arg0);
+    if (arg1 < 0) {
+        entry = &D_8011B640[index * 3];
+        arg1 = 0;
+    } else {
+        entry = &D_8011B640[index * 3];
+        arg0 = entry[2];
+        if (arg0 < arg1) {
+            arg1 = arg0;
+        }
+    }
+    entry[1] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAE6C0/func_800D5034.s")
 
