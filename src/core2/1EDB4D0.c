@@ -298,6 +298,35 @@ u16 func_801023E4(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80102424.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_8010262C.s")
+/* extern */
+
+s32 func_8010262C(Unk80132ED0 *arg0, u32 arg1) {
+    s32 func_800AE080(s16);
+    s32 func_800AE6BC(s32 *);
+    void func_800AE6FC(s16 *, s16);
+    s16 func_800E09B8(s32);
+    s32 func_800E0A28(s16);
+    void func_800E0ACC(void *);
+    void func_800E0AF0(void *, f32);
+    s32 model;
+    s32 entry;
+    s16 handle;
+    s16 index;
+
+    index = *(s16 *)&arg0->unk10;
+    model = 0;
+    if (index != 0 && arg1 != 0) {
+        entry = func_800AE080(index);
+        model = func_800AE6BC((s32 *)entry);
+        if (model == 0) {
+            handle = func_800E09B8(arg1);
+            func_800AE6FC((s16 *)entry, handle);
+            model = func_800E0A28(handle);
+        }
+        func_800E0ACC((void *)model);
+        func_800E0AF0((void *)model, 1.0f);
+    }
+    return model;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_801026CC.s")
