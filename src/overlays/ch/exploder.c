@@ -88,7 +88,30 @@ void chexploder_entrypoint_4(s32 arg0, s16 *arg1, s32 arg2) {
     chexploder_entrypoint_3(arg0, sp1C, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/chexploder_entrypoint_5.s")
+void chexploder_entrypoint_5(Actor *arg0, s32 arg1, f32 *arg2, s32 arg3, s32 arg4, s32 arg5) {
+    s32 _chbaddiesetup_entrypoint_6(s32 *, s32, s32, s32, s32, s32, s32);
+    void func_8010A570(Actor *);
+    extern s32 _chexploder_entrypoint_2;
+    union {
+        struct { s16 first, second; } half;
+        s32 word;
+    } sp34, sp30;
+    volatile s32 sp2C;
+
+    if (arg0 != NULL) {
+        sp2C = (s32)arg0->unk0;
+    } else {
+        sp2C = 0;
+    }
+    sp34.half.first = arg1;
+    sp34.half.second = (s32)arg2[0];
+    sp30.half.first = (s32)arg2[1];
+    sp30.half.second = (s32)arg2[2];
+    if (arg5 & 4) {
+        func_8010A570(arg0);
+    }
+    _chbaddiesetup_entrypoint_6(&_chexploder_entrypoint_2, sp2C, sp34.word, sp30.word, arg3, arg4, arg5);
+}
 
 void chexploder_entrypoint_6(Actor *arg0, f32 arg1, f32 arg2) {
     void* func_80100094(Actor*, u32);
