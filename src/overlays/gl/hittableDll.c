@@ -1,6 +1,29 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/hittableDll/glhittableDll_entrypoint_0.s")
+typedef struct {
+    u16 header[2];
+    u16 entries[32];
+} HitTable;
+extern HitTable D_80800530_glhittableDll[];
+
+void glhittableDll_entrypoint_0(void) {
+    void *func_800D8F40(void);
+    s16 *var_a3;
+    s32 var_a0;
+    s32 var_a1;
+    s32 var_a2;
+
+    var_a3 = func_800D8F40();
+    for (var_a2 = 0; var_a2 < 0x398; var_a2++) {
+        for (var_a0 = 0, var_a1 = 0, var_a3[var_a2] = -1;
+             var_a0 < 0x99 && var_a1 == 0; var_a0++) {
+            if (var_a2 == D_80800530_glhittableDll[var_a0].header[0]) {
+                var_a3[var_a2] = var_a0;
+                var_a1 = 1;
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/hittableDll/glhittableDll_entrypoint_1.s")
 
@@ -11,12 +34,6 @@ int glhittableDll_entrypoint_2(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/hittableDll/glhittableDll_entrypoint_3.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/hittableDll/glhittableDll_entrypoint_4.s")
-
-typedef struct {
-    u16 header[2];
-    u16 entries[32];
-} HitTable;
-extern HitTable D_80800530_glhittableDll[];
 
 s32 glhittableDll_entrypoint_5(s32 arg0) {
     HitTable *table;
