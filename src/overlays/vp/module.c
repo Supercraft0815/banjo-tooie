@@ -21,7 +21,29 @@ s32 func_80800000_vpmodule(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/module/vpmodule_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/module/vpmodule_entrypoint_1.s")
+void vpmodule_entrypoint_1(u8 *arg0, void *arg1) {
+    void heap_free(void *);
+    typedef struct {
+        s32 unk0;
+        s32 unk4;
+        void (*free)(void *);
+        s32 unkC;
+        s32 unk10;
+    } ModuleEntry;
+    extern ModuleEntry D_808008C0_vpmodule[];
+    u8 *temp_s1;
+    u8 *var_s0;
+
+    var_s0 = arg0 + 8;
+    temp_s1 = ((*(s32 *)((s8 *)(arg1) + (0x2C))) * 8) + arg0 + 8;
+    if (var_s0 < temp_s1) {
+        do {
+            D_808008C0_vpmodule[*var_s0].free(*(void **)(var_s0 + 4));
+            var_s0 += 8;
+        } while (var_s0 < temp_s1);
+    }
+    heap_free(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/module/vpmodule_entrypoint_2.s")
 
