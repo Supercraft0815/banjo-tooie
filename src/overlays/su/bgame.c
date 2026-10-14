@@ -73,7 +73,30 @@ void susubgame_entrypoint_11(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/func_8080078C_susubgame.s")
+/* extern */
+
+void func_8080078C_susubgame(s32 arg0, s32 arg1) {
+    s32 _gcdialogcamera_entrypoint_7(s32, s32 *);
+    s32 _ncpod_entrypoint_22(s32, s32, s32);
+    s32 _ncpod_entrypoint_23(s32, s32, s32);
+    s32 _ncpod_entrypoint_24(s32, s32, s32);
+    s32 func_800A93E4(s32);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F5DC8(u32, s32 *);
+    void *func_80110024(s16 *);
+    f32 sp3C[3];
+    s32 sp30[3];
+    s32 sp20[4];
+    void *sp1C;
+
+    sp1C = func_80110024(func_800A93E4(arg1));
+    func_800F5A00(arg1, sp3C);
+    func_800F5DC8(arg1, sp30);
+    _ncpod_entrypoint_23(sp1C, 1, sp3C);
+    _ncpod_entrypoint_24(sp1C, 1, sp30);
+    _gcdialogcamera_entrypoint_7(arg1, sp20);
+    _ncpod_entrypoint_22(sp1C, 1, sp20);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/func_80800814_susubgame.s")
 
