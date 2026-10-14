@@ -74,7 +74,25 @@ void func_80800998_chboilerid(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/chboilerid_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_80800C48_chboilerid.s")
+/* extern */
+
+s32 func_80800C48_chboilerid(Actor *arg0) {
+    Actor *_subaddiefind_entrypoint_0(f32 *, s32, s32, s32);
+    s32 _subaddielink_entrypoint_0(u8 *);
+    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    u8 *sp1C;
+    Actor *temp_v0;
+
+    sp1C = func_80100094(arg0, 0U);
+    temp_v0 = _subaddiefind_entrypoint_0(arg0->position, 0x118, -1, 0);
+    if (temp_v0 != NULL) {
+        _subaddielink_entrypoint_1(sp1C + 0x60, temp_v0->unk0);
+        return 1;
+    }
+    _subaddielink_entrypoint_0(sp1C + 0x60);
+    return 0;
+}
 
 /* extern */
 s32 func_80800CB0_chboilerid(Actor *arg0) {
