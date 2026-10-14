@@ -133,7 +133,7 @@ s32 bafly_entrypoint_12(void *arg0) {
 void bafly_entrypoint_14(PlayerState *arg0, s32 arg1, s32 arg2) {
     s32 anctrl_isStopped(s32);
     s32 baanim_getAnimCtrlPtr();
-    s32 bs_setState(s32, s32);
+    void bs_setState(PlayerState *, s32);
     int player_isStable(PlayerState *);
     s32 sp1C;
 
@@ -151,7 +151,29 @@ void bafly_entrypoint_15(s32 arg0) { func_8009BC34(); func_8008E95C(arg0); func_
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_16.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_17.s")
+/* extern */
+
+void bafly_entrypoint_17(PlayerState *arg0, s32 arg1, s32 arg2, s32 *arg3) {
+    s32 anctrl_isStopped(s32);
+    s32 baanim_getAnimCtrlPtr();
+    void bs_setState(PlayerState *, s32);
+    int func_8008DD04(PlayerState *);
+    s32 func_8009650C(PlayerState *);
+    int player_isStable(PlayerState *);
+    s32 sp24;
+    s32 sp20;
+
+    sp24 = 0;
+    sp20 = baanim_getAnimCtrlPtr(arg0);
+    if (player_isStable(arg0) != 0) {
+        sp24 = arg2;
+    }
+    if ((anctrl_isStopped(sp20) != 0) && ((func_8008DD04(arg0) != 0) || (func_8009650C(arg0) != 0))) {
+        *arg3 = 1;
+        sp24 = arg1;
+    }
+    bs_setState(arg0, sp24);
+}
 
 void bafly_entrypoint_18(s32 arg0)
 {
