@@ -42,7 +42,24 @@ void sccustom_big_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_808000B4_sccustom_big(arg0, arg1, arg2, arg3, func_80800044_sccustom_big(arg1, 0x2F));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/custom_big/func_80800314_sccustom_big.s")
+/* extern */
+
+s32 func_80800314_sccustom_big(s32 arg0, s32 arg1) {
+    f32 _scinfobar_entrypoint_18(s32);
+    s32 func_800E7188(u8 *);
+    int sp1C;
+    f32 temp_f0;
+    int var_v1;
+
+    sp1C = func_800E7188(arg1);
+    temp_f0 = _scinfobar_entrypoint_18(arg0);
+    var_v1 = sp1C;
+    if (var_v1 < 2) {
+        var_v1 = 2;
+    }
+    var_v1--;
+    return (s32) ((24.0f * temp_f0) + 8.0f + (16.0f * (f32) var_v1));
+}
 
 /* extern */
 
