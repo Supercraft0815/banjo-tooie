@@ -205,7 +205,24 @@ void func_80800A5C_chhoney(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_80800EB0_chhoney.s")
+/* extern */
+
+s32 func_80800EB0_chhoney(Actor *arg0) {
+    void _subaddiefade_entrypoint_3(Actor *);
+    u8 func_800D9078(f32 *);
+    s32 func_800EA068(s32);
+    if (arg0->unk7A_5 || arg0->unk64_17) {
+        return 0;
+    }
+    if (func_800EA068(2) != 0) {
+        return 0;
+    }
+    if (func_800D9078((f32 *)&arg0->actorData[4]) && arg0->unk64_16) {
+        _subaddiefade_entrypoint_3(arg0);
+        return 1;
+    }
+    return 0;
+}
 
 OSThread *chhoney_entrypoint_0(void)
 {
