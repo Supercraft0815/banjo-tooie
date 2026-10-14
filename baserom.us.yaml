@@ -599,6 +599,8 @@ segments:
       - [0x1EF1550, .data, overlays]
       - [0x1EF1560, .data, baanim]
       - [0x1EF1590, data]
+      - [0x1EF4E50, .data, 1EAC810]
+      - [0x1EF4E70, data]
       - [0x1EF5280, .data, 1EB3750]
       - [0x1EF5290, data]
       - [0x1EFE380, rodata]
