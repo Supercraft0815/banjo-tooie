@@ -142,7 +142,34 @@ s32 func_80801254_chballoonburst(u8 *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80801290_chballoonburst.s")
+void func_80801290_chballoonburst(void *arg0)
+{
+  s32 _gcstatusDll_entrypoint_11();
+  s32 _subaddiemulti_entrypoint_1(s32, s32);
+  s32 func_800BF544(s32, s32, s32);
+  s32 func_800BF744(s32, s32);
+  s32 func_800F4CEC(s32, s32);
+  s32 func_800F7C58(s32, s32, s32);
+  s32 var_s0;
+  func_800BF744(1, 1);
+  func_800BF744(2, 0);
+  func_800BF544(0, 0, 0);
+  if (((((u16) (*((u16 *) (((s8 *) arg0) + 0x72)))) & 0xFFFFFFFFu) >> 0xA) == 1)
+  {
+    _subaddiemulti_entrypoint_1(2, 0);
+  }
+  var_s0 = 0;
+  if (_gcstatusDll_entrypoint_11() > 0)
+  {
+    do
+    {
+      func_800F7C58(var_s0, 0x5D, 1);
+      func_800F4CEC(var_s0, 0x77);
+      var_s0 += 1;
+    }
+    while (var_s0 < _gcstatusDll_entrypoint_11());
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80801338_chballoonburst.s")
 
