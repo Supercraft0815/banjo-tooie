@@ -100,7 +100,26 @@ f32 susplinet_entrypoint_9(f32 *arg0) {
     return arg0[17];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_10.s")
+/* extern */
+
+void susplinet_entrypoint_10(void *arg0, f32 arg1) {
+    f32 temp_f0;
+    s32 temp_v0;
+
+    temp_v0 = susplinet_entrypoint_3(arg0);
+    if (arg1 < 0.0f) {
+        arg1 = 0.0f;
+    }
+    if ((*(s32 *)((s8 *)(arg0) + (0x54))) & 2) {
+        temp_f0 = (f32) temp_v0;
+        if (temp_f0 < arg1) {
+            do {
+                arg1 -= temp_f0;
+            } while (temp_f0 < arg1);
+        }
+    }
+    (*(f32 *)((s8 *)(arg0) + (0x44))) = arg1;
+}
 
 void susplinet_entrypoint_11(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)arg0 + 72) = arg1;
