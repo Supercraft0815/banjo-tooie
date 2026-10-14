@@ -110,11 +110,11 @@ void func_80102CCC(void *arg0) {
     func_800F20BC((*(f32 *)((s8 *)(arg0) + (0x48))), (*(f32 *)((s8 *)(arg0) + (0x54))), 0x40400000);
 }
 
-s32 func_80102CF4(u8 *arg0, s32 arg1) {
+s32 func_80102CF4(Actor *arg0, s32 arg1) {
     s32 *p = &arg1;
     s32 func_800F20BC(f32, f32, s32);
     (void)p;
-    return func_800F20BC((*(f32 *)((s8 *)(arg0) + (0x48))), (*(f32 *)((s8 *)(arg0) + (0x54))), arg1);
+    return func_800F20BC(arg0->rotation[1], arg0->unk54, arg1);
 }
 
 void func_80102D20(u8 *arg0, s32 arg1, f32 arg2) {

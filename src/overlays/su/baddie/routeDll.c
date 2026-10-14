@@ -32,7 +32,22 @@ s32 subaddierouteDll_entrypoint_4(void **arg0) {
     sp1C = (u32)(*(u16 *)((s8 *)(*arg0) + 0x12)) >> 1 & 3;
     return func_8001210C(3) == sp1C;
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/func_808005B0_subaddierouteDll.s")
+/* extern */
+
+void func_808005B0_subaddierouteDll(Actor *arg0, s16 *arg1, f32 arg2, f32 arg3, f32 arg4) {
+    f32 func_800136E4(f32);
+    void func_800EE88C(f32 *, s16 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void func_80102BF8(void *, f32, f32, f32);
+    s32 func_80102CF4(Actor *, s32);
+    f32 sp1C[3];
+
+    func_800EE88C(sp1C, arg1);
+    arg0->unk54 = func_800136E4(func_800F1DF4(arg0->position, sp1C) + 180.0f);
+    if (func_80102CF4(arg0, 0x42200000) == 0) {
+        func_80102BF8(arg0, arg2, arg3, arg4);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/subaddierouteDll_entrypoint_5.s")
 
