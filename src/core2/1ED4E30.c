@@ -171,7 +171,19 @@ void func_800FC1CC(s32 arg0, s32 arg1)
   while (track != ((MusicTrack *) (&D_80135960)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC240.s")
+void func_800FC240(s32 arg0, s32 arg1) {
+    s32 func_800FE7A8(s32);
+    MusicTrack *track;
+    s16 id;
+
+    track = D_801357D0; do {
+        id = track->track_id;
+        if ((id >= 0) && (func_800FE7A8(id) == 0)) {
+            func_800FCB00(track->track_id, arg0, arg1, 1);
+        }
+        track++;
+    } while (track != ((MusicTrack *) (&D_80135960)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC2C4.s")
 
@@ -228,7 +240,7 @@ void func_800FC7C4(void) {
 }
 
 void func_800FC81C(void) {
-    s32 func_800FE7A8(s16);
+    s32 func_800FE7A8(s32);
     MusicTrack *track;
     for (track = D_801357D0; track < &D_801357D0[6]; track++) {
         s16 id = track->track_id;
