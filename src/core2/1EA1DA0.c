@@ -2,7 +2,25 @@
 
 extern s32 D_8012AB00;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C84B0.s")
+s32 func_800C84B0(s32 arg0) {
+    extern s32 D_8011A930[17][2];
+    s32 i;
+    s32 temp_v0;
+
+    temp_v0 = arg0 & 0x1F00;
+    if (arg0 & 0x20000) {
+        return 4;
+    }
+    if (temp_v0 == 0) {
+        return 0;
+    }
+    for (i = 0; i < 17; i++) {
+        if (temp_v0 == D_8011A930[i][0]) {
+            return D_8011A930[i][1];
+        }
+    }
+    return 1;
+}
 
 int func_800C8560(void *arg0, s32 arg1) {
     return ((u8 *)arg0)[0x16] && (((u8 *)arg0)[0x15] & arg1);
