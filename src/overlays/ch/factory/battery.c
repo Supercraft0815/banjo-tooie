@@ -99,7 +99,31 @@ void func_808008C8_chfactorybattery(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80800948_chfactorybattery.s")
+void func_80800948_chfactorybattery(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    extern u32 D_80801B60_chfactorybattery;
+    extern u32 D_80801B78_chfactorybattery;
+
+    switch (arg0->unk70_10) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 7:
+    case 9:
+        break;
+    case 6:
+    case 8:
+    case 10:
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80801B60_chfactorybattery, 0.5f);
+        break;
+    }
+    if (arg0->unk79_4 != 0) {
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_80801B78_chfactorybattery);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_808009C8_chfactorybattery.s")
 
