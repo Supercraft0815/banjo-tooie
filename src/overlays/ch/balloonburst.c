@@ -146,7 +146,35 @@ s32 func_80801254_chballoonburst(u8 *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80801338_chballoonburst.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_8080154C_chballoonburst.s")
+/* extern */
+
+typedef union {
+    Actor actor;
+    struct {
+        u8 pad0[0x70];
+        u32 pad70_1 : 31;
+        u32 flag : 1;
+    } balloon;
+} BalloonBurstActor;
+
+void func_8080154C_chballoonburst(BalloonBurstActor *arg0) {
+    s32 _subaddiefade_entrypoint_2();
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    void func_8010A800(Actor *, s32);
+    void func_80801AFC_chballoonburst(BalloonBurstActor *);
+    f32 var_f2;
+
+    if (func_800DC298(0.5f) != 0) {
+        var_f2 = 1.0f;
+    } else {
+        var_f2 = -1.0f;
+    }
+    arg0->actor.unk50 = func_800DC178(100.0f, 200.0f) * var_f2;
+    _subaddiefade_entrypoint_2(arg0);
+    func_8010A800(&arg0->actor, 2);
+    func_80801AFC_chballoonburst(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_808015D4_chballoonburst.s")
 
@@ -186,15 +214,6 @@ void func_80801ABC_chballoonburst(Actor *arg0) {
     extern s32 D_80801D98_chballoonburst;
     func_800BBCB8(arg0->position, 0, arg0->scale, 1, &D_80801D98_chballoonburst);
 }
-
-typedef union {
-    Actor actor;
-    struct {
-        u8 pad0[0x70];
-        u32 pad70_1 : 31;
-        u32 flag : 1;
-    } balloon;
-} BalloonBurstActor;
 
 void func_80801AFC_chballoonburst(BalloonBurstActor *arg0) {
     s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
