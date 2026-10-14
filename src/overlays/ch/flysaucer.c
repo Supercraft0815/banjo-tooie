@@ -272,7 +272,25 @@ OSThread *chflysaucer_entrypoint_1(void)
     return (OSThread *) D_80804668_chflysaucer;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80803844_chflysaucer.s")
+/* extern */
+
+int func_80803844_chflysaucer(void) {
+    s32 func_800DA298(s32);
+    f32 func_800DC0C0(void);
+    f32 sp1C;
+
+    sp1C = func_800DC0C0();
+    if (func_800DA298(0x6E9) != 0) {
+        return 2;
+    }
+    if (sp1C < 0.5f) {
+        return 0;
+    }
+    if (sp1C < 0.8333333f) {
+        return 1;
+    }
+    return 2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808038C4_chflysaucer.s")
 
