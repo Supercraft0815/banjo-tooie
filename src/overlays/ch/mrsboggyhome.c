@@ -23,7 +23,19 @@ void func_8080000C_chmrsboggyhome(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggyhome/func_8080005C_chmrsboggyhome.s")
+/* extern */
+
+void func_8080005C_chmrsboggyhome(Actor *arg0) {
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    u32 *_suexpression_entrypoint_20(Actor *);
+    void func_80800174_chmrsboggyhome(s32);
+    _sudeflect_entrypoint_1(arg0->position, 200.0f, 0.0f, 100.0f, 0xA);
+    _suexpression_entrypoint_10(_suexpression_entrypoint_20(arg0), arg0->unk0, 0);
+    if (arg0->unk70_10 == 1) {
+        func_80800174_chmrsboggyhome(arg0);
+    }
+}
 
 void func_808000D0_chmrsboggyhome(Actor* arg0) 
 {
