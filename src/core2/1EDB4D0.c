@@ -92,7 +92,19 @@ s32 func_80101E14(Actor *arg0, f32 arg1) {
     return anctrl_isAt(temp_v0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80101E4C.s")
+s32 func_80101E4C(Actor *arg0, f32 *arg1) {
+    f32 *var_s0 = arg1;
+    s32 var_s1 = 0;
+
+    while (-1.0f != *var_s0) {
+        if (func_80101E14(arg0, *var_s0) != 0) {
+            return var_s1 + 1;
+        }
+        var_s1++;
+        var_s0++;
+    }
+    return 0;
+}
 
 /* extern */
 
