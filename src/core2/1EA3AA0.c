@@ -39,7 +39,7 @@ void func_800CA3A4(s32 arg0, f32 arg1) {
     func_800EF04C((f32 *) arg0, sp24);
 }
 
-void func_800CA3F4(u8 *arg0, f32 *arg1, f32 arg2) {
+void func_800CA3F4(f32 *arg0, f32 *arg1, f32 arg2) {
     void func_800EF04C(f32[3], f32[3]);
     void func_800EF368(f32 vec[3], f32 target_length);
     void func_800EFB24(void *arg0, void *arg1, void *arg2);

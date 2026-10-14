@@ -108,20 +108,41 @@ void func_808002AC_bstnt(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_8080030C_bstnt.s")
 
-void func_808004F8_bstnt(s32 arg0, f32 *arg1) {
+struct player_state_s;
+
+void func_808004F8_bstnt(struct player_state_s *arg0, f32 *arg1) {
     s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
     void func_800EE7F8(f32 dst[3], f32 src[3]);
-    s32 func_800A4C48(s32);
-    s32 func_800CA3F4(s32, f32 *, s32);
+    f32 *func_800A4C48(struct player_state_s *);
+    void func_800CA3F4(f32 *, f32 *, f32);
     extern s32 D_808022FC_bstnt;
     f32 sp24[3];
 
     func_800EE7F8(sp24, arg1);
-    func_800CA3F4(func_800A4C48(arg0), sp24, 0x42A00000);
+    func_800CA3F4(func_800A4C48(arg0), sp24, 80.0f);
     func_800BBCB8((s32) sp24, 0, 0x3F800000, 1, &D_808022FC_bstnt);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80800554_bstnt.s")
+void func_80800554_bstnt(struct player_state_s *arg0) {
+    void func_8009C128(struct player_state_s *, f32[3]);
+    f32 *func_800A4C48(struct player_state_s *);
+    s32 func_800B5BE4(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800CA3F4(f32 *, f32 *, f32);
+    extern s32 D_80802328_bstnt;
+    extern s32 D_808023C8_bstnt;
+    f32 sp2C[3];
+    s32 sp28;
+    s32 temp_v0;
+
+    func_8009C128(arg0, sp2C);
+    func_800CA3F4(func_800A4C48(arg0), sp2C, 20.0f);
+    temp_v0 = func_800B5BE4(8);
+    sp28 = temp_v0;
+    func_800BABB8(temp_v0, sp2C, NULL, 1.0f, &D_80802328_bstnt);
+    func_800CA3F4(func_800A4C48(arg0), sp2C, 45.0f);
+    func_800BABB8(sp28, sp2C, NULL, 1.0f, &D_808023C8_bstnt);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_808005F4_bstnt.s")
 
