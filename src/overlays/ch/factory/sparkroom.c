@@ -9,7 +9,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_808006D0_chfactorysparkroom.s")
 
 void func_808007E0_chfactorysparkroom(Actor *arg0) {
-    void func_800C8B84(s32);
+    void func_800C8B84(volatile s32);
     void* func_80100094(Actor*, u32);
     s32 var_s1;
     u8 *var_s0;
@@ -28,7 +28,25 @@ void func_808007E0_chfactorysparkroom(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800838_chfactorysparkroom.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800B60_chfactorysparkroom.s")
+/* extern */
+
+void func_80800B60_chfactorysparkroom(Actor *arg0, s32 arg1) {
+    void func_800C8B84(volatile s32);
+    f32 func_800DC178(f32, f32);
+    void *func_80100094(Actor *, u32);
+    struct Spark {
+        f32 values[7];
+        s32 handle;
+    };
+    u8 *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    ((struct Spark *)(sp1C + (arg1 << 5)))->values[0] = func_800DC178(1.0f, 3.0f);
+    ((struct Spark *)(sp1C + (arg1 << 5)))->values[1] = 0.0f;
+    func_800C8B84(((struct Spark *)(sp1C + (arg1 << 5)))->handle);
+    ((struct Spark *)(sp1C + (arg1 << 5)))->handle = 0;
+    arg0->actorData[7]--;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800BE0_chfactorysparkroom.s")
 
