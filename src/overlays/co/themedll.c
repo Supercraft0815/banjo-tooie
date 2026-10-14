@@ -1,6 +1,25 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/co/themedll/func_80800000_cothemedll.s")
+s32 func_80800000_cothemedll(s32 arg0) {
+    s32 func_800DA298(s32);
+    extern s16 D_80800730_cothemedll[][3];
+    extern s16 D_80800D34_cothemedll[][3];
+    s32 var_s1;
+    s32 var_a1;
+
+    var_s1 = arg0;
+    for (var_a1 = 0; D_80800D34_cothemedll[var_a1][0] != 0; var_a1++) {
+        if ((var_s1 == D_80800D34_cothemedll[var_a1][0]) && (func_800DA298(D_80800D34_cothemedll[var_a1][2]) != 0)) {
+            var_s1 = D_80800D34_cothemedll[var_a1][1];
+        }
+    }
+    for (var_a1 = 0; D_80800730_cothemedll[var_a1][0] != 0; var_a1++) {
+        if (var_s1 == D_80800730_cothemedll[var_a1][0]) {
+            return var_a1;
+        }
+    }
+    return 0;
+}
 
 void cothemedll_entrypoint_0(s32 arg0) {
     s32 func_80800000_cothemedll(s32);
