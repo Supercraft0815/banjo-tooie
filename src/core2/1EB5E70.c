@@ -263,7 +263,30 @@ void func_800DD504(s32 arg0, u8 *arg1) { extern s32 D_8012C844; extern f32 D_801
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DDDC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DDF14.s")
+void func_800DDF14(volatile s32 arg0, u8 *arg1) {
+    void func_800DE2A4(s32, u8 *);
+    s32 func_800E3E8C(f32 *, f32);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EF334(f32 *, f32);
+    extern f32 D_8012C948;
+    f32 sp2C[3];
+    f32 radius;
+    s32 offset;
+    s32 model;
+
+    func_800EE88C(sp2C, (s16 *)(arg1 + 8));
+    func_800EF334(sp2C, D_8012C948);
+    radius = (f32)*(s16 *)(arg1 + 0xE) * D_8012C948;
+    if (func_800E3E8C(sp2C, radius) == 0) {
+        return;
+    }
+    offset = *(s16 *)(arg1 + 0x10);
+    model = arg0;
+    if (offset == 0) {
+        return;
+    }
+    arg1 += offset; func_800DE2A4(model, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DDFA0.s")
 
