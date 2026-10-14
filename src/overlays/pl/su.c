@@ -39,4 +39,27 @@ s32 plsu_entrypoint_2(void) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/pl/su/plsu_entrypoint_3.s")
+/* extern */
+
+s32 plsu_entrypoint_3(s32 arg0) {
+    s32 func_800F55D0(s32);
+    s32 func_800F5898();
+    s32 func_800F6BE4(s32);
+    s32 func_800F6C5C(s32);
+    s32 var_s0;
+
+    var_s0 = 0;
+    if (func_800F5898() > 0) {
+loop_1:
+        if ((func_800F6BE4(var_s0) != 0) && (func_800F6C5C(var_s0) != 0) && (func_800F55D0(var_s0) == arg0)) {
+            return var_s0;
+        }
+        var_s0 += 1;
+        if (var_s0 >= func_800F5898()) {
+            goto block_6;
+        }
+        goto loop_1;
+    }
+block_6:
+    return -1;
+}
