@@ -10,7 +10,28 @@ void vpwibble_entrypoint_1(void* arg0)
 {
     heap_free(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/wibble/vpwibble_entrypoint_2.s")
+/* extern */
+
+void vpwibble_entrypoint_2(u8 *arg0, u8 *arg1) {
+    f32 func_800D8FF8(void);
+    s32 i;
+    s16 *indices;
+    u8 *base;
+    f32 delta;
+
+    delta = func_800D8FF8();
+    i = 0;
+    *(f32 *)(arg0 + 0x24) += delta * *(f32 *)(arg0 + 0x2C);
+    base = arg1;
+    base += *(s32 *)(arg1 + 0x1C);
+    if (*(s32 *)(arg0 + 0x34) > 0) {
+        indices = (s16 *)(arg0 + 0x38);
+        do {
+            i++;
+            (base + *indices++ * 0x14)[3] = 1;
+        } while (i < *(s32 *)(arg0 + 0x34));
+    }
+}
 
 /* extern */
 
