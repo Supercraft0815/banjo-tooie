@@ -34,7 +34,32 @@ void func_801150F8(void* arg0)
 {
     heap_free(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEE770/func_80115118.s")
+void *func_80115118(s32 arg0) {
+    s32 func_800EA05C();
+    s32 func_80114E80(s32);
+    extern s16 D_80124A58;
+    s16 *ptr;
+    s16 map;
+    void *result;
+
+    result = heap_alloc(0x14);
+    (*(s32 *)((s8 *)result + 0)) = arg0;
+    (*(s32 *)((s8 *)result + 4)) = func_80114E80(func_800EA05C());
+    (*(s8 *)((s8 *)result + 0xC)) = 0;
+    (*(s8 *)((s8 *)result + 0xD)) = 0;
+    (*(s8 *)((s8 *)result + 0xE)) = 1;
+    (*(f32 *)((s8 *)result + 0x10)) = 0.0f;
+    map = func_800EA05C();
+    ptr = &D_80124A58;
+    while (*ptr != 0) {
+        if (map == *ptr) {
+            (*(s8 *)((s8 *)result + 0xE)) = 0;
+            break;
+        }
+        ptr++;
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEE770/func_801151C4.s")
 
