@@ -191,7 +191,25 @@ void func_800158E4(s32 *arg0) { extern s8 D_80079710[]; extern s8 D_80079718[]; 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_8001592C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80015A70.s")
+void func_80015A70(s32 *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+    extern u8 D_800797B8[];
+    s32 temp_v0;
+    void *temp_a0;
+
+    func_80015860(*arg0);
+    temp_v0 = func_80015828();
+    *arg0 = temp_v0;
+    temp_a0 = D_800797B8 + (temp_v0 * 0x10);
+    (*(s16 *)((s8 *)(temp_a0) + (4))) = 0x1FF;
+    (*(s16 *)((s8 *)(temp_a0) + (6))) = 0;
+    (*(s16 *)((s8 *)(temp_a0) + (0xC))) = 0x1FF;
+    (*(s16 *)((s8 *)(temp_a0) + (0xE))) = 0;
+    (*(s16 *)((s8 *)(temp_a0) + (0))) = (s16) (s32) (arg1 * 4.0f);
+    (*(s16 *)((s8 *)(temp_a0) + (2))) = (s16) (s32) (arg2 * 4.0f);
+    (*(s16 *)((s8 *)(temp_a0) + (8))) = (s16) (s32) (arg3 * 4.0f);
+    (*(s16 *)((s8 *)(temp_a0) + (0xA))) = (s16) (s32) (arg4 * 4.0f);
+    osWritebackDCache(temp_a0, 0x200);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80015B34.s")
 
