@@ -21,7 +21,23 @@ void func_8080000C_changlerbossbubble(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/bubble/func_80800054_changlerbossbubble.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/bubble/func_80800194_changlerbossbubble.s")
+/* extern */
+
+s32 func_80800194_changlerbossbubble(s32 arg0) {
+    s32 func_800F64A4(s32, s32);
+    s32 func_800F6D24(s32);
+    s32 func_800F8B88();
+    if (func_800F64A4(arg0, 0xA01) == 0) {
+        return 0;
+    }
+    if (func_800F6D24(arg0) == 0) {
+        return 1;
+    }
+    if (func_800F8B88() == 3) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/bubble/func_80800200_changlerbossbubble.s")
 
