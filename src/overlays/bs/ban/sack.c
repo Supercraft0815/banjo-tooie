@@ -3,7 +3,28 @@
 
 void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800000_bsbansack.s")
+/* extern */
+
+s32 func_80800000_bsbansack(PlayerState *arg0, s32 arg1, s32 arg2) {
+    int bakey_pressed(PlayerState *, int);
+    int bakey_released(PlayerState *, int);
+    int func_8008E148(PlayerState *);
+
+    if (arg2 != 0) {
+        if (bakey_pressed(arg0, 8) != 0) {
+            arg1 = 0x169;
+        }
+    }
+    if (func_8008E148(arg0) != 0) {
+        arg1 = 1;
+    }
+    if ((*(u8 *)((s8 *)(arg0) + (0x15F))) == 0) {
+        if (bakey_released(arg0, 1) != 0) {
+            arg1 = 0x164;
+        }
+    }
+    return arg1;
+}
 
 /* extern */
 
