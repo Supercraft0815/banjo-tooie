@@ -78,7 +78,31 @@ s32 func_80801C50_chfactoryrobot(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80801C7C_chfactoryrobot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80801D08_chfactoryrobot.s")
+/* extern */
+
+void func_80801D08_chfactoryrobot(Actor *arg0) {
+    typedef struct {
+        u8 pad[0x70];
+        u32 leading : 22;
+        u32 state : 6;
+        u32 trailing : 4;
+    } RobotState;
+    s32 func_800EA05C(void);
+    void *func_80100094(Actor *, u32);
+    u8 *data;
+    RobotState *flags;
+
+    data = func_80100094(arg0, 0);
+    flags = (RobotState *)arg0;
+    if (flags->state == 0) {
+        flags->state = 1;
+    }
+    if (func_800EA05C() == 0x101) {
+        data[0x12] = 1;
+    } else {
+        data[0x12] = 0;
+    }
+}
 
 void func_80801D7C_chfactoryrobot(Actor *arg0) {
     typedef struct {
