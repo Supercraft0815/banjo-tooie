@@ -26,7 +26,7 @@ void suegg_entrypoint_1(Actor *arg0, f32 arg1) { *(f32 *)func_80100094(arg0, 0) 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_2.s")
 
-void suegg_entrypoint_3(s32 arg0)
+void suegg_entrypoint_3(Actor *arg0)
 {
     suegg_entrypoint_4(arg0,1);
 }
@@ -36,7 +36,7 @@ void suegg_entrypoint_3(s32 arg0)
 /* extern */
 
 void suegg_entrypoint_5(Actor *arg0) {
-    s32 func_80800DC0_suegg(Actor *, s16);
+    s32 func_80800DC0_suegg(Actor *, s32);
     Unk80132ED0 *temp_v0;
 
     if (func_80800DC0_suegg(arg0, (*(s16 *)((s8 *)(func_80100094(arg0, 0U)) + (0x3A)))) == 0) {
@@ -119,4 +119,23 @@ void suegg_entrypoint_23(s32 arg0) {
     func_8010D930(8, 0, arg0 + 4, &D_80800E64_suegg);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/func_80800DC0_suegg.s")
+/* extern */
+
+s32 func_80800DC0_suegg(Actor *arg0, s32 arg1) {
+    s32 func_800D3948(void);
+    s32 func_800F6CC8(s32);
+    struct {
+        u8 pad[0x39];
+        u8 : 1;
+        u8 active : 1;
+        u8 : 6;
+    } *temp_v0;
+
+    if ((func_800D3948() == 0) && (func_800F6CC8(arg1) != 0)) {
+        temp_v0 = func_80100094(arg0, 0);
+        temp_v0->active = 1;
+        suegg_entrypoint_3(arg0);
+        return 1;
+    }
+    return 0;
+}
