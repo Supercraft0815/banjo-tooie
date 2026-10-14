@@ -60,7 +60,27 @@ void func_808004A4_chfactorytoxicpools(s32 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxicpools/chfactorytoxicpools_entrypoint_3.s")
+/* extern */
+
+void chfactorytoxicpools_entrypoint_3(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3) {
+    s32 func_800DA298(s32);
+    s32 var_v0;
+    Vtx *end;
+
+    if (func_800DA298(0x166) != 0) {
+        var_v0 = -0x12C;
+    } else {
+        var_v0 = 0;
+    }
+    end = arg1 + arg3;
+    if (arg1 < end) {
+        do {
+            arg1++;
+            arg2++;
+            arg2[-1].v.ob[1] = arg1[-1].v.ob[1] + var_v0;
+        } while (arg1 < end);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxicpools/func_8080057C_chfactorytoxicpools.s")
 
