@@ -78,7 +78,15 @@ void func_800FE740(void) {
     D_801359E2 = _cothemedll_entrypoint_1(sp1C[1]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FE7A8.s")
+s32 func_800FE7A8(s32 arg0) { extern s16 D_801359C8; extern s32 D_80135A20[]; extern u8 D_80135A3C; extern s32 D_80135A40; s32 var_v0; u8 *var_v1; if (arg0 == D_801359C8) { return 1; } var_v0 = 0; var_v1 = &D_80135A3C; if (D_80135A40 > 0) {
+        for (; var_v0 < 3; var_v0++, var_v1++) {
+            if ((*var_v1 != 0) && (arg0 == D_80135A20[var_v0])) {
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
 
 void func_800FE820(f32 arg0) {
     extern s32 D_801359C0;
