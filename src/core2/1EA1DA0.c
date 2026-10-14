@@ -302,7 +302,21 @@ void func_800C9128(s32 arg0) {
 
 s32 func_800C91C8(s32 arg0) { extern s32 D_8012AB40; register s32 key = arg0; s32 i = 0; register s32 count = D_8012AB54; s32 *p = &D_8012AB40; s32 *entry; if (count > 0) { loop: entry = (s32 *) *p; i++; if (key == *entry) return (s32) entry; p++; count = D_8012AB54; if (i < count) goto loop; } return 0; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9214.s")
+void func_800C9214(void *arg0)
+{
+    void heap_free(void *);
+    extern s32 D_8012AB40;
+    register s32 i;
+    register u8 last;
+
+    for (i = 0; i < (s32)*(u8 *)((s8 *)&D_8012AB40 + 0x14); i++) {
+        if (arg0 == ((void **)&D_8012AB40)[i]) {
+            heap_free(((void **)&D_8012AB40)[i]);
+            last = *(u8 *)((s8 *)&D_8012AB40 + 0x14) - 1; *(u8 *)((s8 *)&D_8012AB40 + 0x14) = last; ((void **)&D_8012AB40)[i] = ((void **)&D_8012AB40)[last];
+            break;
+        }
+    }
+}
 
 void func_800C929C()
 {
