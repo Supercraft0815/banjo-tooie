@@ -59,7 +59,23 @@ void func_808003D4_chmole_training(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/chmole_training_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_808008E4_chmole_training.s")
+/* extern */
+
+void func_808008E4_chmole_training(s32 arg0, s32 arg1, s32 arg2) {
+    void _gcnewoption_entrypoint_31(s32, s32, s16);
+    s32 _gcnewoption_entrypoint_32(s32, s32);
+    s32 func_800DA298(s32);
+    s32 var_s0;
+
+    _gcnewoption_entrypoint_32(arg1, (s16) (func_800DA298(0x578) ? 0xF : 0x9E));
+    var_s0 = 0;
+    if (arg2 > 0) {
+        do {
+            _gcnewoption_entrypoint_31(arg1, var_s0, (s16) ((var_s0 & 1) ? 0xD : 0xC));
+            var_s0 += 1;
+        } while (var_s0 != arg2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_80800988_chmole_training.s")
 
