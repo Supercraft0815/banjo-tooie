@@ -28,7 +28,30 @@ void func_808000A4_bsbeefly(s32 arg0) {
     func_800BABB8(sp20, sp24, 0, 0x3F800000, &D_80800DE8_bsbeefly);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_8080010C_bsbeefly.s")
+/* extern */
+
+void func_8080010C_bsbeefly(PlayerState *arg0) {
+    s32 _bsbee_entrypoint_1();
+    s32 baanim_playForDuration_once(void *, s32, f32);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    f32 bastick_distance(PlayerState *);
+    f32 bastick_getAngleRelativeToBanjo(PlayerState *);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+    f32 yaw_getIdeal(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+    _bsbee_entrypoint_1();
+    baanim_playForDuration_once(arg0, 0x1DF, 1.5f);
+    func_8009FFD8(arg0, 1, 1, 3, 6);
+    if (bastick_distance(arg0) != 0.0f) {
+        yaw_setIdeal(arg0, bastick_getAngleRelativeToBanjo(arg0));
+    }
+    baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    baphysics_set_gravity(arg0, -1200.0f);
+    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_808001C4_bsbeefly.s")
 
@@ -85,7 +108,7 @@ void func_80800708_bsbeefly(void *arg0) {
     void anctrl_setDuration(s32, f32);
     f32 baphysics_get_target_horizontal_velocity(void *);
     f32 baphysics_get_vertical_velocity(void *);
-    void baphysics_set_target_horizontal_velocity(void *, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     void baphysics_set_vertical_velocity(void *, f32);
     void func_8009BF5C(void *, f32);
     f32 func_8009BFCC(void *);
@@ -197,7 +220,7 @@ s32 bsbeefly_entrypoint_1(s32 arg0) {
 void func_80800B54_bsbeefly(void *arg0) {
     extern s32 _bsbee_entrypoint_1();
     extern s32 _bsrest_entrypoint_16(void *);
-    extern void baphysics_set_gravity(void *, f32);
+    extern void baphysics_set_gravity(PlayerState *, f32);
     extern void func_8009BA9C(void *, f32 *);
     extern s32 func_8080039C_bsbeefly(s32);
     void *self = arg0;
