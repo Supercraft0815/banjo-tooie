@@ -15,7 +15,21 @@ void func_808001C8_chgobiwitchy(Actor* arg0)
 {
     _suexpression_entrypoint_8(arg0, 1);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gobi/witchy/func_808001E8_chgobiwitchy.s")
+/* extern */
+
+void func_808001E8_chgobiwitchy(Actor *arg0) {
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
+    void func_80102FDC(Actor *, f32);
+    void func_80105A9C(Actor *, f32);
+    if (func_800DA298(0x97) != 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    func_80105A9C(arg0, 500.0f);
+    func_80102FDC(arg0, 0.25f);
+    ((struct { u8 pad; u8 : 7; u8 flag : 1; } *)&arg0->pad94)->flag = 1;
+}
 
 /* extern */
 
