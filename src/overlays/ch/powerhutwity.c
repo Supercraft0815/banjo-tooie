@@ -55,7 +55,24 @@ void func_808005C8_chpowerhutwitchy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/func_8080073C_chpowerhutwitchy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/func_80800890_chpowerhutwitchy.s")
+void func_80800890_chpowerhutwitchy(s32 *arg0) {
+    s32 _glid_entrypoint_0(s32, s32, void (*)(void), s32);
+    s32 func_800BEA88(s32);
+    void _chpowerhutwitchy_entrypoint_5(void);
+    s32 sp24;
+    s32 temp_v0;
+    s32 temp_v0_2;
+    void (*callback)(void) = _chpowerhutwitchy_entrypoint_5;
+
+    temp_v0 = func_800BEA88(0);
+    sp24 = temp_v0;
+    _glid_entrypoint_0(temp_v0, 4, callback, *arg0);
+    _glid_entrypoint_0(sp24, 5, callback, *arg0);
+    temp_v0_2 = func_800BEA88(1);
+    sp24 = temp_v0_2;
+    _glid_entrypoint_0(temp_v0_2, 4, callback, *arg0);
+    _glid_entrypoint_0(sp24, 5, callback, *arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/chpowerhutwitchy_entrypoint_5.s")
 
