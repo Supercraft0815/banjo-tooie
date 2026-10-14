@@ -1,6 +1,17 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_80800000_chjigsawbitcont.s")
+void func_80800000_chjigsawbitcont(Actor *arg0, u32 arg1) {
+    s32 func_800DA298(GameFlag);
+    void func_800DA544(GameFlag);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    extern s16 D_808009B4_chjigsawbitcont[][8];
+    func_80101FDC(arg0, arg1);
+    if ((arg1 == 2) && (func_800DA298(D_808009B4_chjigsawbitcont[arg0->unk74_7][0]) == 0)) {
+        func_800DA544(D_808009B4_chjigsawbitcont[arg0->unk74_7][0]);
+        func_80108B04(arg0, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_80800084_chjigsawbitcont.s")
 
