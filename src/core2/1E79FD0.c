@@ -95,7 +95,23 @@ void func_800A0DD0(PlayerState *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 312) + 17) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E79FD0/func_800A0DDC.s")
+/* extern */
+
+void func_800A0DDC(void *arg0) {
+    f32 func_800D8FF8(void);
+    f32 delta;
+    void *temp_v0;
+
+    if ((*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x138)))) + (8))) != 0.0f) {
+        delta = func_800D8FF8();
+        temp_v0 = (*(void **)((s8 *)(arg0) + (0x138)));
+        (*(f32 *)((s8 *)(temp_v0) + (8))) -= delta;
+        temp_v0 = (*(void **)((s8 *)(arg0) + (0x138)));
+        if ((*(f32 *)((s8 *)(temp_v0) + (8))) <= 0.0f) {
+            (*(u8 *)((s8 *)(temp_v0) + (0x10))) = (u8) (*(u8 *)((s8 *)(temp_v0) + (0xC)));
+        }
+    }
+}
 
 s32 func_800A0E50() 
 {
