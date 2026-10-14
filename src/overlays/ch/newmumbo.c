@@ -62,11 +62,25 @@ void func_80800210_chnewmumbo(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_808004E8_chnewmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_8080073C_chnewmumbo.s")
+/* extern */
+
+void func_8080073C_chnewmumbo(Actor *arg0, s32 arg1) {
+    s32 _plsu_entrypoint_1(s32);
+    u32 func_800F54E4(void);
+    void func_800F7B9C(s32, u32);
+    void func_800F8300();
+    if (!arg0->unk64_19) {
+        if (arg1 != 0) {
+            func_800F7B9C(_plsu_entrypoint_1(1), 0x8D);
+        }
+        func_800F8300(func_800F54E4(), 2, arg0->position);
+        arg0->unk64_19 = 1;
+    }
+}
 
 void func_808007B0_chnewmumbo(u8 *arg0) {
     struct Flags { unsigned int : 12; unsigned int active : 1; unsigned int : 18; };
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     void func_800F82D4(s32, s32);
     if (((struct Flags *)(arg0 + 0x64))->active) {
         func_800F82D4(func_800F54E4(), 0);
