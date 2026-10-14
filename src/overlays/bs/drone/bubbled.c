@@ -18,7 +18,23 @@ void bsdronebubbled_entrypoint_0(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bubbled/bsdronebubbled_entrypoint_1.s")
+/* extern */
+
+void bsdronebubbled_entrypoint_1(s32 arg0) {
+    void _badata_entrypoint_0(s32, s32 *, f32 *);
+    s32 baanim_playForDuration_loopSmooth(s32, s32, f32);
+    void func_8009D9D4(s32);
+    void func_8009FFD8(s32, s32, s32, s32, s32);
+    f32 sp2C;
+    s32 sp28;
+
+    _badata_entrypoint_0(arg0, &sp28, &sp2C);
+    baanim_playForDuration_loopSmooth(arg0, sp28, sp2C);
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x54)))) + (0x44))) = sp2C;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x54)))) + (0x40))) = 0.0f;
+    func_8009FFD8(arg0, 1, 1, 3, 7);
+    func_8009D9D4(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bubbled/bsdronebubbled_entrypoint_2.s")
 
