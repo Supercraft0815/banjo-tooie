@@ -251,9 +251,9 @@ s32 func_800F5268(s32 arg0) {
     return 1;
 }
 
-void func_800F52B8(s32 arg0)
+s32 func_800F52B8(s32 arg0, Unk80132ED0 *arg1)
 {
-    func_8008EF3C(D_80135490[arg0]);
+    return func_8008EF3C(D_80135490[arg0], arg1);
 }
 
 void func_800F52E4(s32 arg0)
