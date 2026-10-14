@@ -196,4 +196,29 @@ void func_80802844_changlerboss(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80802888_changlerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80802A90_changlerboss.s")
+/* extern */
+
+s32 func_80802A90_changlerboss(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chlightfader_entrypoint_1(s32, f32, s32);
+    void _subaddiefade_entrypoint_3(Actor *);
+    void func_80101FDC(Actor *, u32);
+    struct {
+        u8 pad0[0x54];
+        s32 unk54;
+    } *self = (void *)arg0;
+    s32 temp_a0;
+    s32 result;
+
+    if (arg1 == 0x2C) {
+        temp_a0 = self->unk54;
+        if (temp_a0 != 0) {
+            self->unk54 = _chlightfader_entrypoint_1(temp_a0, 1.0f, 3);
+        }
+        _subaddiefade_entrypoint_3(arg0);
+        func_80101FDC(arg0, 4);
+        result = 1;
+    } else {
+        return 0;
+    }
+    return result;
+}
