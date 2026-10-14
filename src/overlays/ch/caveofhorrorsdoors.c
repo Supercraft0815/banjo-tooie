@@ -7,7 +7,23 @@ OSThread *chcaveofhorrorsdoors_entrypoint_0(void)
     return (OSThread *) D_808001C0_chcaveofhorrorsdoors;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/caveofhorrorsdoors/func_8080000C_chcaveofhorrorsdoors.s")
+/* extern */
+
+void func_8080000C_chcaveofhorrorsdoors(s32 arg0) {
+    s32 _subaddiefade_entrypoint_14(s32);
+    s32 func_800DA298(s32);
+    s32 func_800FFAB0(s32);
+    s32 func_80109EEC(s32, s32);
+    s32 func_8010A63C(s32);
+    s32 func_808001A4_chcaveofhorrorsdoors(s32);
+    if (func_800DA298(func_808001A4_chcaveofhorrorsdoors(arg0)) != 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    func_80109EEC(arg0, 0x40);
+    _subaddiefade_entrypoint_14(arg0);
+    func_8010A63C(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/caveofhorrorsdoors/func_8080006C_chcaveofhorrorsdoors.s")
 
