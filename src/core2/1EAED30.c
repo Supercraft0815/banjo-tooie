@@ -255,4 +255,18 @@ void func_800D5FDC(s32 arg0) {
     *(s32 *)((u8 *)&D_8012B7E8 + 0) = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5FE8.s")
+s32 func_800D5FE8(s32 arg0) {
+    extern s32 D_8012B450[];
+    extern s16 D_8012B6E0[];
+    extern s8 D_8012B7E4;
+    s32 var_v1;
+
+    var_v1 = 0;
+    while (var_v1 < (u8) D_8012B7E4 && arg0 != D_8012B6E0[var_v1]) {
+        var_v1++;
+    }
+    if (var_v1 >= (u8) D_8012B7E4) {
+        return 0;
+    }
+    return D_8012B450[var_v1];
+}
