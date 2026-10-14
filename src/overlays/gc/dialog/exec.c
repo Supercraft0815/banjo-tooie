@@ -33,7 +33,33 @@ void func_8080002C_gcdialogexec(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_808001DC_gcdialogexec.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_808002E4_gcdialogexec.s")
+/* extern */
+
+s32 func_808002E4_gcdialogexec(volatile u8 *arg0) {
+    s32 _gldialog_entrypoint_1();
+    s32 temp_v0;
+    volatile s32 sp18 = 0;
+    s32 var_a2;
+    s32 var_v1;
+    volatile u8 *var_a0;
+    s32 var_a1;
+
+    temp_v0 = _gldialog_entrypoint_1();
+    var_a2 = sp18;
+    var_a0 = arg0;
+    if (*arg0 != 0) {
+        var_a1 = *arg0;
+        do {
+            var_v1 = temp_v0 ? 0xAE : 0x7E;
+            if (var_v1 == var_a1) {
+                var_a2 += 1;
+            }
+            var_a1 = var_a0[1];
+            var_a0 += 1;
+        } while (var_a1 != 0);
+    }
+    return var_a2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80800350_gcdialogexec.s")
 
