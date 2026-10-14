@@ -56,7 +56,23 @@ void chdippy_entrypoint_2(s32 arg0, s32 arg1) {
     func_800BBCB8(arg1, 0, 0x3F99999A, 1, &D_808014B0_chdippy);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800CBC_chdippy.s")
+/* extern */
+
+void func_80800CBC_chdippy(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _capod_entrypoint_14(void);
+    s32 _glcutDll_entrypoint_19(u32);
+
+    if (arg0->unk64_20) {
+        _capod_entrypoint_14();
+        arg2 |= 0x2000;
+    }
+    if (_glcutDll_entrypoint_19(0x36) != 0) {
+        arg2 |= 0x800;
+    }
+    _capod_entrypoint_13(arg0->unk0, NULL, arg1, arg2);
+    arg0->unk64_20 = 1;
+}
 
 void func_80800D44_chdippy(u8 *arg0) {
     struct Flags {
