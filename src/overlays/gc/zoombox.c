@@ -138,7 +138,23 @@ f32 func_80800364_gczoombox(void *arg0) {
     return sp1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_808003D8_gczoombox.s")
+int func_808003D8_gczoombox(void *arg0, f32 arg1, f32 arg2) {
+    struct {
+        u8 pad[0x1E4];
+        u32 padFlags:29;
+        u32 direction:1;
+        u32 sync:1;
+        u32 lastFlag:1;
+        u8 pad1E8[4];
+        f32 position;
+        f32 duration;
+    } *this = arg0;
+
+    if (this->direction) {
+        return arg1 <= arg2 && arg2 < this->position;
+    }
+    return arg2 <= arg1 && this->position < arg2;
+}
 
 void func_80800470_gczoombox(void *arg0) {
     void gczoombox_entrypoint_17(void *);
@@ -548,7 +564,7 @@ void gczoombox_entrypoint_4(u8 *box) {
     void func_80800294_gczoombox(void *);
     void func_808002E4_gczoombox(void *);
     f32 func_80800364_gczoombox(void *);
-    s32 func_808003D8_gczoombox(void *, f32, f32);
+    int func_808003D8_gczoombox(void *, f32, f32);
     s32 func_808004D0_gczoombox(void *);
     void func_808006E0_gczoombox(void *, u8);
     void func_80800964_gczoombox(void *);
