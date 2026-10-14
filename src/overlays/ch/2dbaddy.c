@@ -7,7 +7,28 @@ OSThread *ch2dbaddy_entrypoint_0(void)
     return (OSThread *) D_80800A9C_ch2dbaddy;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_8080000C_ch2dbaddy.s")
+/* extern */
+
+void func_8080000C_ch2dbaddy(Actor *arg0) {
+    s32 _sucoaster_entrypoint_0(void *, s32);
+    u8 *_sucoaster_entrypoint_3();
+    s32 func_800EE940();
+    void func_80102FDC(Actor *, f32);
+    void func_8010A3E8(void *, f32);
+    void func_8010A570(Actor *);
+    void func_80800850_ch2dbaddy();
+    u8 *sp24;
+
+    if (_sucoaster_entrypoint_0(arg0, 0xA) != 0) {
+        func_8010A3E8(arg0, 0.55f);
+        func_80102FDC(arg0, arg0->scale * 0.6f);
+        sp24 = _sucoaster_entrypoint_3(arg0);
+        func_80800850_ch2dbaddy(arg0);
+        func_800EE940(sp24, arg0->position);
+        arg0->unk64_16 = 0;
+        func_8010A570(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_808000A0_ch2dbaddy.s")
 
