@@ -23,7 +23,31 @@ void func_808000D8_bsbwhirl(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/func_80800200_bsbwhirl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/func_808003A8_bsbwhirl.s")
+/* extern */
+
+s32 func_808003A8_bsbwhirl(PlayerState *arg0, s32 arg1) {
+    int bakey_pressed(PlayerState *, int);
+    int bakey_released(PlayerState *, int);
+    int bastick_getZone(PlayerState *);
+    s32 player_inWater(PlayerState *);
+    int player_isStable(PlayerState *);
+    s32 var_s1;
+
+    var_s1 = arg1;
+    if (bastick_getZone(arg0) > 0) {
+        var_s1 = 0x1C;
+    }
+    if (bakey_released(arg0, 1) != 0) {
+        var_s1 = 0x1E;
+    }
+    if ((bakey_pressed(arg0, 8) != 0) && (player_isStable(arg0) != 0)) {
+        var_s1 = 0x1D;
+    }
+    if (player_inWater(arg0) != 0) {
+        var_s1 = 0x2D;
+    }
+    return var_s1;
+}
 
 void func_80800430_bsbwhirl(void *arg0, s32 *arg1)
 {
