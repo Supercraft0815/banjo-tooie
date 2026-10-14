@@ -100,7 +100,7 @@ s32 func_800AA0D0(void) {
     return sum;
 }
 
-void func_800AA120(void) { extern s16 D_80127780; s32 func_800A9FA0(s32); func_800A9FA0(D_80127780 + 1); }
+s32 func_800AA120(void) { extern s16 D_80127780; s32 func_800A9FA0(s32); return func_800A9FA0(D_80127780 + 1); }
 
 void func_800AA148(void) {
     s32 func_800A9FA0(s32);
