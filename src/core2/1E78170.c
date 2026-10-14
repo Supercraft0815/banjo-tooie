@@ -1,5 +1,7 @@
 #include "core2/1E78170.h"
 
+s32 D_80127050[4];
+
 extern s32 D_80127080;
 
 void func_8009E880(void) {
@@ -190,7 +192,7 @@ void func_8009EB24(s16 arg0, s16 arg1)
 
 void func_8009EB8C(s16 arg0, s16 arg1) {
     extern f32 D_80127040;
-    s32 func_8009EC3C();
+    void func_8009EC3C(void);
     void func_8009EC60(s16, s16);
     func_8009EC3C();
     *((u8 *)&D_80127040 + 0x20) += 1;
@@ -218,7 +220,15 @@ s32 func_8009EC08(s16 *arg0, s16 *arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009EC3C.s")
+void func_8009EC3C(void) {
+    extern u8 D_80127060;
+    s32 i;
+
+    for (i = 0; i < 4; i++) {
+        D_80127050[i] = 0;
+    }
+    D_80127060 = 0;
+}
 
 void func_8009EC60(s16 arg0, s16 arg1) {
     extern f32 D_80127040;

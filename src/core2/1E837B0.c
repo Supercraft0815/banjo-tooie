@@ -1,5 +1,13 @@
 #include "common.h"
 
+typedef struct {
+    s16 current;
+    u8 flag;
+    u8 active;
+    s16 values[8];
+} ProgressData;
+ProgressData D_80127780;
+
 void func_800A9EC0(s32 arg0) {
     extern s32 D_80127770;
     extern s16 D_8011A480[][2];
@@ -64,7 +72,18 @@ s32 func_800A9FA0(s32 arg0) {
     return var_s1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800AA00C.s")
+void func_800AA00C(void) {
+    s32 i;
+    s32 j;
+
+    D_80127780.current = -1;
+    D_80127780.active = 0;
+    D_80127780.flag = 0;
+    for (i = 0; i < 4; i++) {
+        D_80127780.values[i] = 0;
+    }
+    for (j = 4; j < 8; j++) { D_80127780.values[j] = 0; }
+}
 
 void func_800AA054(s32 arg0)
 {
@@ -82,12 +101,10 @@ void func_800AA074(void) {
 }
 
 u32 func_800AA0B8(void) {
-    extern u8 D_80127783;
-    return *(u8 *)((u8 *)&D_80127783 + 0);
+    return *(u8 *)((u8 *)&D_80127780.active + 0);
 }
 
 s32 func_800AA0C4(void) {
-    extern s16 D_80127780;
     return *(s16 *)((u8 *)&D_80127780 + 0);
 }
 
@@ -100,46 +117,50 @@ s32 func_800AA0D0(void) {
     return sum;
 }
 
-s32 func_800AA120(void) { extern s16 D_80127780; s32 func_800A9FA0(s32); return func_800A9FA0(D_80127780 + 1); }
+s32 func_800AA120(void) { s32 func_800A9FA0(s32); return func_800A9FA0(D_80127780.current + 1); }
 
-void func_800AA148(void) {
+s32 func_800AA148(void) {
     s32 func_800A9FA0(s32);
-    extern s16 D_80127780;
-    func_800A9FA0(D_80127780);
+    return func_800A9FA0(D_80127780.current);
 }
 
 s32 func_800AA16C(s32 arg0) {
-    extern s16 D_80127784[];
-    return ((s16 *)&D_80127784)[arg0];
+    return ((s16 *)D_80127780.values)[arg0];
 }
 
 s32 func_800AA180(s32 arg0) {
-    extern s16 D_8012778C[];
-    return ((s16 *)&D_8012778C)[arg0];
+    return ((s16 *)(D_80127780.values + 4))[arg0];
 }
 
 u32 func_800AA194(void) {
-    extern u8 D_80127782;
-    return *(u8 *)((u8 *)&D_80127782 + 0);
+    return *(u8 *)((u8 *)&D_80127780.flag + 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E837B0/func_800AA1A0.s")
+void func_800AA1A0(void) {
+    void _gcfrontend_entrypoint_7(s32, s32);
+    s32 i;
+
+    D_80127780.active = 1;
+    D_80127780.current++;
+    D_80127780.flag = 0;
+    for (i = 4; i < 8; i++) {
+        D_80127780.values[i] = 0;
+    }
+    _gcfrontend_entrypoint_7(func_800AA148(), 1);
+}
 
 void func_800AA200(s32 arg0) {
-    extern u8 D_80127782;
-    D_80127782 = arg0;
+    D_80127780.flag = arg0;
 }
 
 void func_800AA20C(s32 arg0, s32 arg1) {
-    extern s16 D_8012778C[];
-    D_8012778C[arg0] = arg1;
+    D_80127780.values[arg0 + 4] = arg1;
 }
 
 void func_800AA220(s32 arg0, s32 arg1) {
-    extern s16 D_80127780;
     s16 *temp_v0;
 
-    temp_v0 = &(&D_80127780)[arg0];
+    temp_v0 = (s16 *)&D_80127780 + arg0;
     (*(s16 *)((s8 *)(temp_v0) + (4))) = (s16) ((*(s16 *)((s8 *)(temp_v0) + (4))) + arg1);
 }
 
