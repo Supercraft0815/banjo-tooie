@@ -56,7 +56,19 @@ void func_80800EE4_chjinjo(Actor *arg0) {
     _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80801358_chjinjo, 0.6f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/func_80800F14_chjinjo.s")
+void func_80800F14_chjinjo(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_80101E14(Actor *, f32);
+    extern s32 D_8080133C_chjinjo;
+    extern s32 D_80801348_chjinjo;
+    if (func_80101E14(arg0, 0.2f) != 0) {
+        if (arg0->unk6C_9 == 0x48F) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801348_chjinjo);
+            return;
+        }
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_8080133C_chjinjo);
+    }
+}
 
 void func_80800F80_chjinjo(Actor *arg0) {
     extern u32 D_80801330_chjinjo;
