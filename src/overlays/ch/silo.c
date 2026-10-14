@@ -46,7 +46,28 @@ void func_80800210_chsilo(s32 arg0, s32 arg1) {
     _gcnewoption_entrypoint_32(arg1, 111);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_80800238_chsilo.s")
+void func_80800238_chsilo(void *arg0, s32 arg1) {
+    s32 _gcnewoption_entrypoint_12(s32, s32, s16);
+    void _gcnewoption_entrypoint_31(s32, s32, s16);
+    typedef struct {
+        s16 unk0[3];
+        s16 icon;
+    } SiloOption;
+    extern SiloOption D_808012EC_chsilo[];
+    s32 var_s0;
+    s32 var_s1;
+
+    var_s1 = 0;
+    var_s0 = 1;
+    do {
+        if (func_8080015C_chsilo(arg0, var_s0) != 0) {
+            _gcnewoption_entrypoint_12(arg1, var_s1, (s16) (var_s0 + 9));
+            _gcnewoption_entrypoint_31(arg1, var_s1, D_808012EC_chsilo[var_s0 - 1].icon);
+            var_s1 += 1;
+        }
+        var_s0 += 1;
+    } while (var_s0 != 8);
+}
 
 /* extern */
 
