@@ -1,8 +1,9 @@
 #include "common.h"
 
-s32 gcegg_entrypoint_0(s32 arg0) { typedef struct { s16 id; s16 fields[3]; u8 value; u8 rest[5]; } EggEntry; extern EggEntry D_80800200_gcegg[]; extern u8 D_8080020C_gcegg[]; EggEntry *entry = D_80800200_gcegg; u8 *end = &D_8080020C_gcegg[0x64]; loop_1: if (arg0 == entry[0].id) return entry[0].value; if (arg0 == entry[1].id) return entry[1].value; if (arg0 == entry[2].id) return entry[2].value; if (arg0 == entry[3].id) return entry[3].value; entry += 4; if ((u8 *)entry != end) goto loop_1; return 0; }
+typedef struct { s16 id; s16 fields[3]; u8 value; u8 rest[5]; } EggEntry;
+s32 gcegg_entrypoint_0(s32 arg0) { extern EggEntry D_80800200_gcegg[]; extern u8 D_8080020C_gcegg[]; EggEntry *entry = D_80800200_gcegg; u8 *end = &D_8080020C_gcegg[0x64]; loop_1: if (arg0 == entry[0].id) return entry[0].value; if (arg0 == entry[1].id) return entry[1].value; if (arg0 == entry[2].id) return entry[2].value; if (arg0 == entry[3].id) return entry[3].value; entry += 4; if ((u8 *)entry != end) goto loop_1; return 0; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/egg/gcegg_entrypoint_1.s")
+s32 gcegg_entrypoint_1(s32 arg0) { extern EggEntry D_80800200_gcegg[]; extern u8 D_8080020C_gcegg[]; EggEntry *entry = D_80800200_gcegg; u8 *end = &D_8080020C_gcegg[0x64]; loop_1: if (arg0 == entry[0].fields[1]) return entry[0].value; if (arg0 == entry[1].fields[1]) return entry[1].value; if (arg0 == entry[2].fields[1]) return entry[2].value; if (arg0 == entry[3].fields[1]) return entry[3].value; entry += 4; if ((u8 *)entry != end) goto loop_1; return 0; }
 
 s16 gcegg_entrypoint_2(s32 arg0) {
     extern s16 D_80800202_gcegg[][7];
