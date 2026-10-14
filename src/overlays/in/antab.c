@@ -857,7 +857,20 @@ void func_808064DC_inantab(s32 arg0, s16 *arg1, Actor *arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/in/antab/inantab_entrypoint_1.s")
+/* extern */
+
+void inantab_entrypoint_1(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    f32 func_800DC178(f32, f32);
+    void func_80101CDC(Actor *, f32);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *sp1C;
+    s32 pad;
+
+    sp1C = func_80106790(arg0);
+    if (arg1 == 0) {
+        func_80101CDC(sp1C, func_800DC178((f32) arg2 * 0.00390625f, (f32) arg3 * 0.00390625f));
+    }
+}
 
 void inantab_entrypoint_2(s32 arg0,s32 arg1)
 {
