@@ -108,13 +108,22 @@ s32 func_80800390_bsbanswim(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/swim/func_808003BC_bsbanswim.s")
+void func_808003BC_bsbanswim(struct player_state_s *arg0) {
+    int func_80800104_bsbanswim();
+    s32 bs_getNextState(struct player_state_s *);
+    int func_8008E0E8(struct player_state_s *);
+    void _bapackctrl_entrypoint_5(struct player_state_s *, s32);
+    if (!func_80800390_bsbanswim(bs_getNextState(arg0))) {
+        if (func_8008E0E8(arg0)) _bapackctrl_entrypoint_5(arg0,3);
+        func_80800104_bsbanswim(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/swim/func_8080040C_bsbanswim.s")
 
-void func_8080049C_bsbanswim()
+void func_8080049C_bsbanswim(struct player_state_s *arg0)
 {
-    func_808003BC_bsbanswim();
+    func_808003BC_bsbanswim(arg0);
 }
 
 /* extern */
@@ -137,9 +146,9 @@ s32 bsbanswim_entrypoint_1(s32 arg0) {
     return ((s32 *)&D_80800A40_bsbanswim)[arg0];
 }
 
-void func_80800670_bsbanswim()
+void func_80800670_bsbanswim(struct player_state_s *arg0)
 {
-    func_808003BC_bsbanswim();
+    func_808003BC_bsbanswim(arg0);
 }
 
 /* extern */
@@ -162,9 +171,9 @@ s32 bsbanswim_entrypoint_2(s32 arg0) {
     return ((s32 *)&D_80800A50_bsbanswim)[arg0];
 }
 
-void func_80800848_bsbanswim()
+void func_80800848_bsbanswim(struct player_state_s *arg0)
 {
-    func_808003BC_bsbanswim();
+    func_808003BC_bsbanswim(arg0);
 }
 
 /* extern */
