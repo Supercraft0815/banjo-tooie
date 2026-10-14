@@ -48,4 +48,37 @@ void gccubeDll_entrypoint_5(struct gccubeDll_entrypoint_5_arg *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubeDll/gccubeDll_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubeDll/gccubeDll_entrypoint_7.s")
+/* extern */
+
+u32 gccubeDll_entrypoint_7(void) {
+    void func_800BE52C(s32 *, s32 *);
+    Prop *func_800E9D68(s16 *);
+    u32 func_800E9D90(s16 *);
+    struct CubeProp { u8 pad[0x10]; u32 value : 11; u32 other : 21; };
+    u32 temp_t7;
+    s32 sp30;
+    s32 sp2C;
+    struct CubeProp *temp_v0;
+    struct CubeProp *var_s0;
+    u32 var_s1;
+
+    var_s1 = 0;
+    func_800BE52C(&sp30, &sp2C);
+    if ((u32)sp30 < (u32)sp2C) {
+        do {
+            var_s0 = (struct CubeProp *)func_800E9D68((s16 *)sp30);
+            temp_v0 = (struct CubeProp *)func_800E9D90((s16 *)sp30);
+            if (var_s0 < temp_v0) {
+                do {
+                    temp_t7 = var_s0->value;
+                    var_s0++;
+                    if (var_s1 < temp_t7) {
+                        var_s1 = temp_t7;
+                    }
+                } while (var_s0 < temp_v0);
+            }
+            sp30 += 8;
+        } while ((u32)sp30 < (u32)sp2C);
+    }
+    return var_s1;
+}
