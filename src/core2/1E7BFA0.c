@@ -119,7 +119,23 @@ f32 func_800A3048(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3148.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3200.s")
+void func_800A3200(PlayerState *arg0, f32 *arg1, f32 *arg2) {
+    f32 _basnowball_entrypoint_4(PlayerState *);
+    extern f32 D_80119430[][2];
+    f32 temp_f0;
+    s32 temp_v0;
+    f32 *temp_v1;
+
+    temp_v0 = (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xA0)))) + (0x29)));
+    temp_v1 = D_80119430[temp_v0];
+    *arg1 = temp_v1[0];
+    *arg2 = temp_v1[1];
+    if (temp_v0 == 2) {
+        temp_f0 = _basnowball_entrypoint_4(arg0);
+        *arg1 *= temp_f0;
+        *arg2 *= temp_f0;
+    }
+}
 
 TransformationId func_800A3274(PlayerState *self) {
     return (*(u8 **)((u8 *)self + 0xA0))[0x29];
