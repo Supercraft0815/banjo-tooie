@@ -8,7 +8,23 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/deflect/sudeflect_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/deflect/sudeflect_entrypoint_4.s")
+void sudeflect_entrypoint_4(s32 arg0, f32 *arg1) {
+    int func_800F7700(s32, s32, f32 *);
+    s32 func_80800630_sudeflect(s32);
+    extern struct {
+        s32 entries[9];
+        s32 count;
+    } B_80801020_sudeflect;
+    s32 temp_s0;
+    s32 var_s1;
+
+    for (var_s1 = 0; var_s1 < B_80801020_sudeflect.count; var_s1++) {
+        temp_s0 = B_80801020_sudeflect.entries[var_s1 + 1];
+        if (func_80800630_sudeflect(temp_s0) != 0) {
+            func_800F7700(temp_s0, arg0, arg1);
+        }
+    }
+}
 
 /* extern */
 
