@@ -112,7 +112,34 @@ void suspline_entrypoint_14(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_17.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/func_80800C8C_suspline.s")
+void func_80800C8C_suspline(u8 *arg0) {
+    s32 var_v0;
+    s32 var_v1;
+    u8 *var_a1;
+    u8 *var_a1_2;
+
+    var_v0 = 0x8C;
+    var_v1 = 0;
+    var_a1 = arg0;
+    if ((s32) (*(u8 *)((s8 *)(arg0) + (0x88))) > 0) {
+        do {
+            (*(s16 *)((s8 *)(var_a1) + (0x68))) = var_v0;
+            var_v1 += 1;
+            var_a1 += 2;
+            var_v0 += (*(s16 *)((s8 *)(arg0) + (0x78))) * 0xC;
+        } while (var_v1 < (s32) (*(u8 *)((s8 *)(arg0) + (0x88))));
+        var_v1 = 0;
+    }
+    var_a1_2 = arg0;
+    if ((s32) (*(u8 *)((s8 *)(arg0) + (0x89))) > 0) {
+        do {
+            (*(s16 *)((s8 *)(var_a1_2) + (0x70))) = var_v0;
+            var_v1 += 1;
+            var_a1_2 += 2;
+            var_v0 += (*(s16 *)((s8 *)(arg0) + (0x78))) * 4;
+        } while (var_v1 < (s32) (*(u8 *)((s8 *)(arg0) + (0x89))));
+    }
+}
 
 s32 suspline_entrypoint_18(s32 arg0, s32 arg1, s32 arg2) {
     return (s32)((u32)arg0 * (u32)((arg1 * 0xC) + (arg2 * 4))) + 0x8C;
