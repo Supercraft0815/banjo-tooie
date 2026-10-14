@@ -40,7 +40,29 @@ s32 func_8009AE00()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009B08C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009B170.s")
+/* extern */
+
+void func_8009B170(u8 *arg0) {
+    f32 func_800D8FF8(void);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFA20(void *, void *, f32);
+    f32 temp_f0;
+    f32 temp_f2;
+    u8 *temp_v0;
+
+    temp_f0 = func_800D8FF8();
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0xC8)));
+    (*(f32 *)((s8 *)(temp_v0) + (0x14))) += (*(f32 *)((s8 *)(temp_v0) + (0x34))) * temp_f0;
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0xC8)));
+    temp_f2 = (*(f32 *)((s8 *)(temp_v0) + (0x38)));
+    if ((*(f32 *)((s8 *)(temp_v0) + (0x14))) < temp_f2) {
+        (*(f32 *)((s8 *)(temp_v0) + (0x14))) = temp_f2;
+        temp_v0 = (*(u8 **)((s8 *)(arg0) + (0xC8)));
+    }
+    func_800EFA20(temp_v0 + 0x28, temp_v0 + 0x10, temp_f0);
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0xC8)));
+    func_800EF04C((f32 *)(temp_v0 + 4), (f32 *)(temp_v0 + 0x28));
+}
 
 /* extern */
 
