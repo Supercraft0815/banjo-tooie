@@ -18,7 +18,25 @@ void func_808000DC_bafpctrl(void *arg0, s32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_80800114_bafpctrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_8080022C_bafpctrl.s")
+/* extern */
+
+typedef struct player_state_s PlayerState;
+PlayerState *func_800A4CA8(PlayerState *);
+void _ncba1p_entrypoint_7(PlayerState *, f32[3]);
+
+void func_8080022C_bafpctrl(PlayerState *arg0) {
+    f32 baroll_get(PlayerState *);
+    f32 func_8009BFCC(PlayerState *);
+    void func_800F3E84(s32, void *);
+    f32 yaw_getIdeal(PlayerState *);
+    f32 sp24[3];
+
+    func_800F3E84(arg0, sp24);
+    sp24[0] = -func_8009BFCC(arg0);
+    sp24[1] = yaw_getIdeal(arg0) + 180.0f;
+    sp24[2] = -baroll_get(arg0);
+    _ncba1p_entrypoint_7(func_800A4CA8(arg0), sp24);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_808002A4_bafpctrl.s")
 
