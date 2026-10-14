@@ -77,7 +77,33 @@ void func_8080062C_chhoneyb(void *arg0) {
     func_80101180(0x4B8, 0x23, func_80800B78_chhoneyb());
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800680_chhoneyb.s")
+/* extern */
+
+void func_80800680_chhoneyb(s32 *arg0) {
+    s32 _suexpression_entrypoint_10(s32, s32, s32);
+    s32 _suexpression_entrypoint_18(s32, s32);
+    s32 _suexpression_entrypoint_20();
+    f32 func_80101F24(s32 *);
+    s32 func_801022E4(s32 *);
+    s32 func_80102320(s32 *, s32, s32);
+    s32 sp1C;
+    s32 sp18;
+    f32 temp_f0;
+    s32 temp_v0;
+
+    temp_v0 = _suexpression_entrypoint_20();
+    sp1C = temp_v0;
+    sp18 = 0;
+    if (temp_v0 != 0) {
+        if ((func_801022E4(arg0) == 0x4AD) && ((temp_f0 = func_80101F24(arg0), (temp_f0 < 0.12f)) || (temp_f0 > 0.97f) || (func_80102320(arg0, 0x3F0CCCCD, 0x3F333333) != 0))) {
+            sp18 = 1;
+        }
+        if (sp18 != 0) {
+            _suexpression_entrypoint_18(sp1C, 1);
+        }
+        _suexpression_entrypoint_10(sp1C, *arg0, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800744_chhoneyb.s")
 
