@@ -182,7 +182,24 @@ void func_80800CC8_chnicecavemen(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_80801178_chnicecavemen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_80801200_chnicecavemen.s")
+/* extern */
+
+void func_80801200_chnicecavemen(Actor *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 _subaddiepalette_entrypoint_0(void *, void *, s32);
+    s32 func_800DA298(s32);
+    void *func_80100094(Actor *, u32);
+    u8 *sp1C;
+    s32 var_v0;
+
+    sp1C = func_80100094(arg0, 0U);
+    if ((func_800DA298((*(s32 *)((s8 *)(arg0) + (0x28)))) != 0) || (_glcutDll_entrypoint_20() != 0)) {
+        var_v0 = 0x7E7;
+    } else {
+        var_v0 = 0x7E6;
+    }
+    _subaddiepalette_entrypoint_0(arg0, sp1C + 0x14, var_v0 & 0xFFFF);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_8080126C_chnicecavemen.s")
 
