@@ -64,7 +64,36 @@ void func_80800870_chhoney(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_808008F8_chhoney.s")
+/* extern */
+
+void func_808008F8_chhoney(Actor *arg0, s32 arg1) {
+    s32 func_8008FC00();
+    s32 func_8008FC28();
+    s32 func_8008FC70(s32);
+    f32 func_800D8FF8();
+    s32 func_800DC128(s32, s32);
+    f32 temp_f0;
+    s32 temp_s0;
+    s32 temp_s1;
+    s32 var_a1;
+
+    temp_f0 = func_800D8FF8();
+    arg0->unk58 -= temp_f0;
+    ((f32 *)arg0->actorData)[6] -= temp_f0;
+    if (arg0->unk58 <= 0.0f) {
+        temp_s1 = func_8008FC28() + 1;
+        temp_s0 = func_8008FC00();
+        var_a1 = func_800DC128(1, temp_s1);
+        if (var_a1 == temp_s0) {
+            do {
+                var_a1 = func_800DC128(1, temp_s1);
+            } while (var_a1 == temp_s0);
+        }
+        func_8008FC70(var_a1);
+        func_80800870_chhoney(arg0, var_a1);
+        arg0->unk58 = ((f32 *)arg0->actorData)[5];
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_808009BC_chhoney.s")
 
@@ -111,7 +140,7 @@ void func_80800A5C_chhoney(u8 *arg0) {
     s32 func_8010DCB4(s32);
     s32 func_808000C4_chhoney(u8 *, s32);
     s32 func_80800754_chhoney(u8 *);
-    s32 func_808008F8_chhoney(u8 *, s32);
+    void func_808008F8_chhoney(Actor *, s32);
     s32 func_808009BC_chhoney(u8 *);
     s32 func_80800EB0_chhoney();
     extern s32 D_80801038_chhoney;
