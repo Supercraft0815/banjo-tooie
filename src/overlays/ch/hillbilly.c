@@ -43,7 +43,21 @@ s32 func_808002F0_chhillbilly(f32 *arg0) {
     return func_800EFC7C(arg0 + 1, sp1C) < 10000.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_80800348_chhillbilly.s")
+void func_80800348_chhillbilly(Actor *arg0) {
+    u8 *_sucoaster_entrypoint_3();
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EE88C(f32 *, s16 *);
+    extern s32 D_80800CB4_chhillbilly;
+    f32 sp24[3];
+
+    if (arg0->unk70_10 == 0x16) {
+        func_800EE7F8(sp24, arg0->position);
+    } else {
+        func_800EE88C(sp24, (s16 *)_sucoaster_entrypoint_3(arg0));
+    }
+    func_800BBCB8(sp24, NULL, arg0->scale, 1, &D_80800CB4_chhillbilly);
+}
 
 /* extern */
 
