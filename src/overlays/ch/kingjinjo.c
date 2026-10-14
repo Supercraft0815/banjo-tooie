@@ -39,7 +39,7 @@ s32 func_80800634_chkingjinjo(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80102424(Actor *, s32);
     void func_801032B0(void *, u16, u16);
     void func_808009FC_chkingjinjo(void *, s16, s16);
-    void func_80800B28_chkingjinjo(void *);
+    void func_80800B28_chkingjinjo(Actor *);
     s32 func_80800BBC_chkingjinjo(void *, s32, s32);
     s32 func_80800C60_chkingjinjo(void *, s32, s32);
     s32 func_80800CFC_chkingjinjo(void *, s32, s32);
@@ -154,7 +154,29 @@ void func_80800AE4_chkingjinjo(s32 arg0, s32 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_80800B28_chkingjinjo.s")
+void func_80800B28_chkingjinjo(Actor *arg0) {
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    void _gcdialogcamera_entrypoint_5(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    s32 func_801022E4(Actor *);
+    extern u32 D_808012A0_chkingjinjo;
+    extern u32 D_808012B0_chkingjinjo;
+    f32 sp24[3];
+
+    if (func_801022E4(arg0) == 0x3A9) {
+        func_800EE7F8(sp24, arg0->position);
+        func_800EF1B8(sp24, arg0->rotation[1], -50.0f);
+        _gcdialogcamera_entrypoint_3(&D_808012A0_chkingjinjo, arg0->scale);
+        _gcdialogcamera_entrypoint_4(sp24);
+        _gcdialogcamera_entrypoint_5(arg0->rotation);
+        return;
+    }
+    _gcdialogcamera_entrypoint_3(&D_808012B0_chkingjinjo, arg0->scale);
+    _gcdialogcamera_entrypoint_4(arg0->position);
+    _gcdialogcamera_entrypoint_5(arg0->rotation);
+}
 
 /* extern */
 
