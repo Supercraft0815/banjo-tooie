@@ -5,7 +5,27 @@
 void func_8010052C(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100534.s")
+void func_80100534(void) {
+    s32 func_8001211C(void);
+    void heap_free(void *);
+    extern s32 D_801243A0;
+    extern s32 D_801243DC;
+    s8 *var_s0;
+    void *temp_a0;
+    s32 temp_s2;
+
+    temp_s2 = func_8001211C();
+    var_s0 = (s8 *)&D_801243A0; do {
+        temp_a0 = *(void **)(var_s0 + 8);
+        if ((temp_a0 != 0) && ((temp_s2 - (*(s32 *)((s8 *)(var_s0) + (4)))) >= 0x1F)) {
+            heap_free(temp_a0);
+            (*(s32 *)((s8 *)(var_s0) + (8))) = 0;
+            (*(s16 *)((s8 *)(var_s0) + (2))) = 0;
+            (*(s32 *)((s8 *)(var_s0) + (4))) = 0;
+        }
+        var_s0 += 0xC;
+    } while (var_s0 != (s8 *)&D_801243DC);
+}
 
 void func_801005B8(void)
 {
@@ -27,13 +47,13 @@ void func_801005B8(void)
 
 void func_80100610(void)
 {
-    s32 heap_free(s32);
+    void heap_free(void *);
     extern s32 D_801243A0;
     extern s32 D_801243DC;
     s32 (*var_s0)[3];
-    s32 temp_a0;
+    void *temp_a0;
     var_s0 = &D_801243A0; do {
-        temp_a0 = var_s0[0][2];
+        temp_a0 = *(void **)&var_s0[0][2];
         if (temp_a0 != 0) {
             heap_free(temp_a0);
             var_s0[0][2] = 0;
