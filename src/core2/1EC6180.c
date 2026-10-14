@@ -106,7 +106,16 @@ void func_800EC9F0(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, f32 *arg4) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800ECEEC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800ED064.s")
+void func_800ED064(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, f32 *arg4) {
+    s16 delta;
+    Vtx *end;
+
+    delta = (s32)((arg4[0x44 / 4] / arg4[0x48 / 4]) * (arg4[0x8 / 4] - arg4[0x4 / 4]) + arg4[0x4 / 4]);
+    end = arg1 + arg3;
+    for (; arg1 < end; arg1++, arg2++) {
+        arg2->v.ob[1] = arg1->v.ob[1] + delta;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800ED0D4.s")
 
