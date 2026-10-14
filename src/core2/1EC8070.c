@@ -157,7 +157,14 @@ int func_800EECE0(f32 a[3], f32 b[3]) {
 
 int func_800EEDA0(s16 *arg0, s16 *arg1) { return arg0[0] == arg1[0] && arg0[1] == arg1[1] && arg0[2] == arg1[2]; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EEDE8.s")
+/* extern */
+
+int func_800EEDE8(f32 *arg0, f32 *arg1, f32 arg2) {
+    f32 mlAbsF(f32);
+    return mlAbsF(arg0[0] - arg1[0]) < arg2 &&
+           mlAbsF(arg0[1] - arg1[1]) < arg2 &&
+           mlAbsF(arg0[2] - arg1[2]) < arg2;
+}
 
 int func_800EEEA8(f32 vec[3])
 {
