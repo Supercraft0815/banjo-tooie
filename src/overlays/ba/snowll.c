@@ -1,5 +1,7 @@
 #include "common.h"
 
+struct player_state_s;
+
 s32 basnowball_entrypoint_0() 
 {
     return 0x30;
@@ -32,24 +34,24 @@ f32 func_80800084_basnowball(s32 arg0) {
     return ((f32 *)&D_80801020_basnowball)[arg0];
 }
 
-s32 func_80800098_basnowball(s32 arg0, s32 arg1, s32 *arg2, s32 *arg3) {
+s32 func_80800098_basnowball(s32 arg0, s32 arg1, f32 *arg2, f32 *arg3) {
     extern f32 D_80801038_basnowball[];
     f32 *temp_v0;
 
     temp_v0 = (f32 *)((u8 *)D_80801038_basnowball + arg1 * 8);
-    *(f32 *)arg2 = temp_v0[0];
-    *(f32 *)arg3 = temp_v0[1];
+    *arg2 = temp_v0[0];
+    *arg3 = temp_v0[1];
 }
 
 /* extern */
 
 void func_808000C0_basnowball(s32 arg0) {
-    s32 func_8009590C(s32, s32);
-    s32 func_800959C8(s32, s32, s32);
+    void func_8009590C(struct player_state_s *, f32);
+    void func_800959C8(struct player_state_s *, f32, f32);
     s32 func_800A1718();
-    s32 func_80800098_basnowball(s32, s32, s32 *, s32 *);
-    s32 sp24;
-    s32 sp20;
+    s32 func_80800098_basnowball(s32, s32, f32 *, f32 *);
+    f32 sp24;
+    f32 sp20;
 
     func_80800098_basnowball(arg0, func_800A1718(), &sp24, &sp20);
     func_800959C8(arg0, sp24, sp20);
@@ -84,7 +86,25 @@ void func_80800150_basnowball(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/func_808001B8_basnowball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/basnowball_entrypoint_1.s")
+/* extern */
+
+void basnowball_entrypoint_1(void *arg0) {
+    s32 _bawobble_entrypoint_2(void *);
+    void baflag_clear(void *, s32);
+    void func_80093230(struct player_state_s *, f32);
+    void func_8009590C(struct player_state_s *, f32);
+    void func_80095A40(struct player_state_s *);
+    void func_8009E474(struct player_state_s *);
+    void func_800A4D6C(u8 *, f32, f32);
+    func_80800008_basnowball(arg0, 0);
+    func_8009E474(arg0);
+    baflag_clear(arg0, 0x3C);
+    func_80093230(arg0, 1.0f);
+    func_80095A40(arg0);
+    func_8009590C(arg0, 0.0f);
+    _bawobble_entrypoint_2(arg0);
+    func_800A4D6C(arg0, 1.0f, 1.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/basnowball_entrypoint_2.s")
 
@@ -181,7 +201,7 @@ void basnowball_entrypoint_12(void *arg0) {
     f32 func_800F0E00(f32, f32);
     void func_800E0AF0(void *, f32);
     void func_800E0AFC(void *, u8, f32, f32, f32, f32);
-    void func_80093230(void *, f32);
+    void func_80093230(struct player_state_s *, f32);
     extern void _basnowball_entrypoint_11(s32);
     f32 dt;
     void *model;
