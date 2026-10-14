@@ -11,7 +11,27 @@ s32 func_800D2F20(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC810/func_800D3104.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC810/func_800D34A0.s")
+void func_800D34A0(void) {
+    s32 func_800E7188(u8 *);
+    extern u8 D_8011B580[];
+    extern s8 D_8012B370[];
+    s32 temp_v0;
+    s32 var_a1;
+    int var_a0;
+
+    temp_v0 = func_800E7188(D_8011B580);
+    for (var_a1 = 0; var_a1 < 0x80; var_a1++) {
+        for (var_a0 = 0; var_a0 < temp_v0; var_a0++) {
+            if (var_a1 == D_8011B580[var_a0]) {
+                D_8012B370[var_a1] = var_a0;
+                break;
+            }
+        }
+        if (var_a0 == temp_v0) {
+            D_8012B370[var_a1] = -1;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC810/func_800D3524.s")
 
