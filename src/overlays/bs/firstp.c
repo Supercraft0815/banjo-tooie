@@ -1446,7 +1446,47 @@ void func_808052A4_bsfirstp(f32 *arg0, f32 *arg1) {
     *arg1 = temp_f0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808052C8_bsfirstp.s")
+f32 func_808052C8_bsfirstp(f32 *arg0, f32 arg1, f32 arg2, f32 arg3)
+{
+  float new_var;
+  f32 old;
+  f32 time;
+  f32 value;
+  f32 *new_var2;
+  f32 target;
+  f32 total = 0.0f;
+  new_var2 = arg0;
+  if (arg3 != 0.0f)
+  {
+    target = arg1;
+    old = *new_var2;
+    if (target != old)
+    {
+      if (target < old)
+      {
+        arg2 = -arg2;
+      }
+      new_var = arg2 * arg3;
+      time = (target - old) / arg2;
+      if (time <= arg3)
+      {
+        value = target;
+      }
+      else
+      {
+        value = old;
+        value = value + new_var;
+        time = arg3;
+      }
+      total += ((old + value) * 0.5f) * time;
+      *new_var2 = value;
+      old = *arg0;
+      arg3 -= time;
+    }
+    total += old * arg3;
+  }
+  return total;
+}
 
 /* extern */
 
