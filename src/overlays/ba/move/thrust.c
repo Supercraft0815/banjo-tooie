@@ -33,7 +33,31 @@ void bamovethrust_entrypoint_4(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 132) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/thrust/bamovethrust_entrypoint_5.s")
+/* extern */
+
+void bamovethrust_entrypoint_5(u8 *arg0) {
+    f32 func_800D8FF8(void);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EFA20(void *, void *, f32);
+    f32 temp_f0;
+    f32 sp38[3];
+    f32 sp2C[3];
+
+    func_80800000_bamovethrust((s32) arg0, sp38, (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x8C))));
+    func_800EE7F8(sp2C, (f32 *)((*(u8 **)((s8 *)(arg0) + (0xC8))) + 0x10));
+    func_800EF334(sp2C, (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x84))));
+    func_800EE780((f32 *)((*(u8 **)((s8 *)(arg0) + (0xC8))) + 0x10), sp2C, sp38);
+    temp_f0 = func_800D8FF8();
+    (*(f32 *)((*(u8 **)(arg0 + 0xC8)) + 0x14)) += (*(f32 *)((*(u8 **)(arg0 + 0xC8)) + 0x34)) * temp_f0;
+    if ((*(f32 *)((*(u8 **)(arg0 + 0xC8)) + 0x14)) < (*(f32 *)((*(u8 **)(arg0 + 0xC8)) + 0x38))) {
+        (*(f32 *)((*(u8 **)(arg0 + 0xC8)) + 0x14)) = (*(f32 *)((*(u8 **)(arg0 + 0xC8)) + 0x38));
+    }
+    func_800EFA20((*(u8 **)((s8 *)(arg0) + (0xC8))) + 0x28, (*(u8 **)((s8 *)(arg0) + (0xC8))) + 0x10, temp_f0);
+    func_800EF04C((f32 *)((*(u8 **)(arg0 + 0xC8)) + 4), (f32 *)((*(u8 **)(arg0 + 0xC8)) + 0x28));
+}
 
 f32 bamovethrust_entrypoint_6(void *arg0) {
     return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 140);
