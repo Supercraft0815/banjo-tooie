@@ -1,6 +1,8 @@
 #include "common.h"
 #include "overlays/ba/playerstate.h"
 
+struct anctrl_s;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800000_bsbfly.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_808000AC_bsbfly.s")
@@ -53,13 +55,13 @@ void func_80800624_bsbfly(PlayerState *arg0) {
     void _bafly_entrypoint_9(void *);
     s32 _bafpctrl_entrypoint_4();
     s32 _chusefeather_entrypoint_1(s32, s32);
-    s32 anctrl_isAt(s32, f32);
-    void anctrl_setDuration(s32, f32);
-    s32 baanim_getAnimCtrlPtr();
+    int anctrl_isAt(struct anctrl_s *, f32);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     s32 bainput_should_beak_bust(void *);
     s32 bakey_pressed(s32, s32);
     void baphysics_set_vertical_velocity(PlayerState *, f32);
-    s32 bs_setState(s32, s32);
+    void bs_setState(PlayerState *, s32);
     s32 func_8008D0E0(void *);
     f32 func_800136E4(f32);
     void func_8009BF5C(PlayerState *, f32);
@@ -69,7 +71,7 @@ void func_80800624_bsbfly(PlayerState *arg0) {
     f32 func_800F0E00(f32, f32);
     s32 player_inWater(void *);
     s32 next_state;
-    s32 anim;
+    struct anctrl_s *anim;
     f32 pitch;
     s32 boost;
     s32 flap;
@@ -309,7 +311,7 @@ void func_80801A80_bsbfly(s32 arg0) {
     s32 baanim_playForDuration_loopSmooth(s32, s32, f32);
     s32 func_8009FFD8(s32, s32, s32, s32, s32);
     s32 func_800A0CF4(s32, s32);
-    s32 func_800A0024(s32);
+    void func_800A0024(PlayerState *);
 
     func_80800128_bsbfly(arg0);
     baanim_playForDuration_loopSmooth(arg0, 0x38, 0.62f);
@@ -318,7 +320,27 @@ void func_80801A80_bsbfly(s32 arg0) {
     func_800A0024(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80801AEC_bsbfly.s")
+/* extern */
+
+void func_80801AEC_bsbfly(PlayerState *arg0) {
+    int anctrl_isAt(struct anctrl_s *, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void bs_setState(PlayerState *, s32);
+    s32 func_8009CC68(PlayerState *);
+    void func_8009DEC0(PlayerState *, s32, f32, f32, s32, s32);
+    void func_800A0024(PlayerState *);
+    s32 sp2C;
+
+    sp2C = 0;
+    if (anctrl_isAt(baanim_getAnimCtrlPtr(arg0), 0.1358f) != 0) {
+        func_8009DEC0(arg0, 0x3FF, 0.6f, 0.7f, 0x2710, 0x2EE0);
+    }
+    if (func_8009CC68(arg0) == 0) {
+        sp2C = 0x24;
+    }
+    func_800A0024(arg0);
+    bs_setState(arg0, sp2C);
+}
 
 void func_80801B80_bsbfly()
 {
