@@ -100,7 +100,25 @@ void func_80801910_chklungo(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_8080231C_chklungo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_808023A4_chklungo.s")
+/* extern */
+
+s32 func_808023A4_chklungo(Actor *arg0, f32 arg1, f32 arg2) {
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    s32 _subaddiefade_entrypoint_1(Actor *, s32);
+    f32 func_800D8FF8(void);
+    s32 sp1C;
+    f32 var_f2;
+
+    sp1C = 0;
+    var_f2 = (f32) _subaddiefade_entrypoint_0(arg0);
+    var_f2 += func_800D8FF8() * arg2;
+    if (arg1 < var_f2) {
+        var_f2 = arg1;
+        sp1C = 1;
+    }
+    _subaddiefade_entrypoint_1(arg0, (s32) var_f2);
+    return sp1C;
+}
 
 s32 func_8080242C_chklungo(void) {
     s32 func_800EA05C();
