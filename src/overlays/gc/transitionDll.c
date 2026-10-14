@@ -178,7 +178,14 @@ s32 gctransitionDll_entrypoint_3(void *arg0) {
     return (*(u8 *)((s8 *)(arg0) + (0x1C))) != 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/transitionDll/gctransitionDll_entrypoint_4.s")
+int gctransitionDll_entrypoint_4(void *arg0) {
+    int state = *(u8 *)((s8 *)arg0 + 0x1C);
+
+    return state == 4 ||
+        (state == 2 && *(s32 *)((s8 *)arg0 + 4) < 2) ||
+        state == 6 || state == 9 ||
+        (state == 7 && *(s32 *)((s8 *)arg0 + 4) < 2);
+}
 
 void gctransitionDll_entrypoint_5(u8 *arg0) {
     s32 func_808000D8_gctransitionDll(s32, u8, void *);
