@@ -18,7 +18,36 @@ s32 func_8080000C_chjiggygamenew(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80800030_chjiggygamenew.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80800158_chjiggygamenew.s")
+/* extern */
+
+void func_80800158_chjiggygamenew(Unk80132ED0 *arg0) {
+    Actor *func_80106790();
+    void func_808007E4_chjiggygamenew(s16 arg0[][12], s32 arg1, s32 arg2);
+    void func_808035C4_chjiggygamenew(Unk80132ED0 *, f32 *);
+    typedef struct {
+        s8 selection;
+        s8 slot;
+        u8 pad2[6];
+        f32 timer;
+        f32 position[3];
+    } JiggyGameResetEntry;
+    typedef struct {
+        u8 pad0[0x1F4];
+        s8 slots[12];
+    } JiggyGameResetData;
+    Actor *actor;
+    s16 (*data)[12];
+    s32 index;
+
+    actor = func_80106790(arg0);
+    data = func_80100094(actor, 0);
+    ((JiggyGameResetEntry *)data)[actor->actorData[3]].timer = 0.0f;
+    func_808007E4_chjiggygamenew(data, 0xEB0, actor->actorData[3]);
+    func_808035C4_chjiggygamenew(actor->unk3C, ((JiggyGameResetEntry *)data)[actor->actorData[3]].position);
+    index = actor->actorData[3];
+    ((JiggyGameResetData *)data)->slots[((JiggyGameResetEntry *)data)[index].slot] = index;
+    actor->actorData[3] = -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_8080020C_chjiggygamenew.s")
 
