@@ -85,7 +85,19 @@ void func_8009FC34(PlayerState *arg0, s32 arg1) {
     _fxripple_entrypoint_1(arg1, sp1C, func_800966E0(arg0));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009FC80.s")
+void func_8009FC80(PlayerState *arg0) {
+    void func_8009C128(PlayerState *, f32[3]);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    f32 func_800DC178(f32, f32);
+    extern s32 D_80119220;
+    f32 sp24[3];
+
+    func_8009C128(arg0, sp24);
+    sp24[0] += func_800DC178(-30.0f, 30.0f);
+    sp24[1] += func_800DC178(95.0f, 105.0f);
+    sp24[2] += func_800DC178(-30.0f, 30.0f);
+    func_800BBCB8(sp24, NULL, 1.0f, 1, &D_80119220);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009FD24.s")
 
