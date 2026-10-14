@@ -1,6 +1,17 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3DC30/func_80026100.s")
+void func_80026100(void *arg0) {
+    s32 sp4;
+
+    (*(s32 *)((s8 *)(arg0) + (0x30))) = -1;
+    sp4 = 0;
+    if ((s32) (*(u8 *)((s8 *)(arg0) + (0x36))) > 0) {
+        do {
+            (*(u8 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x60))) + (sp4 * 0x38))) + (0xA))) = 0xFF;
+            (*(u8 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x60))) + (sp4 * 0x38))) + (9))) = 0xFF;
+        } while (++sp4 < (s32) (*(u8 *)((s8 *)(arg0) + (0x36))));
+    }
+}
 
 /* extern */
 
