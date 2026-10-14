@@ -398,7 +398,7 @@ void func_80090684(s32 arg0)
     func_800F8200(func_800F54E4(),arg0);
 }
 
-void func_800906B0(s32 arg0)
+void func_800906B0(f32 *arg0)
 {
     func_800F8294(func_800F54E4(),arg0);
 }

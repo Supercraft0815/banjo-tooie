@@ -9,7 +9,25 @@ OSThread *chdodgemcontrol_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080000C_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80800044_chdodgemcontrol.s")
+/* extern */
+
+void func_80800044_chdodgemcontrol(f32 *arg0) {
+    void func_800906B0(f32 *);
+    void func_800906DC(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 sp24[3];
+    f32 sp18[3];
+
+    func_800EFA4C(sp24, 0.0f, 20.0f, 5.0f);
+    func_800EF934(sp24, sp24, arg0[18]);
+    func_800EF04C(sp24, arg0 + 1);
+    func_800EE7F8(sp18, arg0 + 17);
+    func_800906B0(sp24);
+    func_800906DC(sp18);
+}
 
 s32 func_808000B8_chdodgemcontrol(s32 arg0) {
     struct DodgemValues { s32 values[4]; };
@@ -75,6 +93,7 @@ f32 func_80801214_chdodgemcontrol(s32 arg0) {
 }
 
 void func_80801258_chdodgemcontrol(s32 arg0, f32 arg1[3]) {
+    void func_800EE7F8(f32 *, f32 *);
     typedef struct { f32 values[4][3]; } DodgemPositions;
     extern DodgemPositions D_80804E28_chdodgemcontrol;
     DodgemPositions values = D_80804E28_chdodgemcontrol;

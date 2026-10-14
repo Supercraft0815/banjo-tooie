@@ -28,6 +28,7 @@ void func_800903D0(f32[3]);
 void func_800904C8(s32);
 void func_800904F4(s32, Unk80132ED0*);
 void func_80090658(s32);
+void func_800906B0(f32[3]);
 void func_800906DC(f32[3]);
 void func_80090708(s32);
 void func_800907C0(f32[3]);
