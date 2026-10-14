@@ -55,7 +55,7 @@ s32 func_808006F8_chamazongoldhordeofficial(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80108B04(Actor *, u32);
     f32 func_8010CD28(Actor *);
     void func_80800690_chamazongoldhordeofficial(Actor *);
-    s32 func_80800C18_chamazongoldhordeofficial(void);
+    int func_80800C18_chamazongoldhordeofficial(void);
     void func_80800CD8_chamazongoldhordeofficial(Actor *, s32, s32);
     void func_80800E18_chamazongoldhordeofficial(Actor *);
     void func_80801060_chamazongoldhordeofficial(Actor *);
@@ -130,7 +130,10 @@ s32 func_808006F8_chamazongoldhordeofficial(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800A84_chamazongoldhordeofficial.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800C18_chamazongoldhordeofficial.s")
+int func_80800C18_chamazongoldhordeofficial(void) {
+    s32 func_800F54E4(); s32 func_800F640C(s32,s32); s32 func_8008FE14();
+    return func_800F640C(func_800F54E4(), 0x1D9) || func_8008FE14() == 0x1D9;
+}
 
 s32 func_80800C60_chamazongoldhordeofficial(s32 arg0) {
     s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
