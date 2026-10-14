@@ -147,7 +147,32 @@ void func_80801CD8_changlerboss(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80801D0C_changlerboss.s")
+/* extern */
+
+void func_80801D0C_changlerboss(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_0(Actor *);
+    void _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_801084B0(s32, Actor **);
+    void func_8010A570(Actor *);
+    void func_8010A800(Actor *, s32);
+    struct AnglerBossData {
+        u8 pad0[0x9C];
+        Unk80132ED0 *unk9C;
+        Unk80132ED0 *unkA0;
+    } *sp24;
+    Actor *temp_v0;
+
+    sp24 = func_80100094(arg0, 0U);
+    temp_v0 = func_801084B0(0x298, &arg0);
+    temp_v0->unk3C = arg0->unk0;
+    sp24->unkA0 = temp_v0->unk0;
+    _subaddieDll_entrypoint_0(temp_v0);
+    func_8010A800(temp_v0, 2);
+    func_8010A570(temp_v0);
+    temp_v0->unk64_16 = 0;
+    _subaddieskeleton_entrypoint_2(arg0->unk0, 0xB, temp_v0->position);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80801DA0_changlerboss.s")
 
