@@ -38,7 +38,7 @@ void func_80800124_chlavahand(u8 *arg0) {
     s32 func_8010C9FC(f32 *, s32, s32, s32);
     void func_80800024_chlavahand(u8 *);
     void func_80800910_chlavahand(u8 *);
-    void func_80800A30_chlavahand(u8 *);
+    void func_80800A30_chlavahand(Actor *);
     extern u32 D_80801324_chlavahand;
     struct Flags {
         u32 pad : 2;
@@ -145,7 +145,18 @@ void func_80800124_chlavahand(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/hand/func_80800910_chlavahand.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/hand/func_80800A30_chlavahand.s")
+void func_80800A30_chlavahand(Actor *arg0) {
+    s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800DC128(s32, s32);
+    extern s32 D_80801330_chlavahand[];
+    extern s32 D_808013A0_chlavahand[];
+    f32 sp24[3];
+
+    if (arg0->unk7C_12 && _subaddieskeleton_entrypoint_0(arg0, D_808013A0_chlavahand[func_800DC128(0, 0xD)], sp24)) {
+        func_800BABB8(0, sp24, NULL, arg0->scale, D_80801330_chlavahand);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/hand/func_80800AAC_chlavahand.s")
 
@@ -165,7 +176,7 @@ OSThread *chlavahand_entrypoint_0(void)
 /* extern */
 
 void func_808011BC_chlavahand(Actor *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
-    void _subaddieskeleton_entrypoint_0(Actor*, s32, f32*);
+    s32 _subaddieskeleton_entrypoint_0(Actor*, s32, f32*);
     void func_800DF410(s32 a0);
     void func_800DF830(s32 arg0);
     s32 func_800DE498(s32, f32 *, s32, s32, s32, s32);
