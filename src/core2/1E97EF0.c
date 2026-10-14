@@ -302,7 +302,36 @@ void func_800BF8BC(s32 arg0) {
     _gcmapDll_entrypoint_6(&D_801285B0, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF8E4.s")
+s8 func_800BF8E4(void)
+{
+  s32 _dbvpl_entrypoint_0(s32, s32);
+  extern s32 D_80128608;
+  extern s8 D_80128634;
+  s32 i;
+  s8 var_v1;
+  var_v1 = *((s8 *) (((s8 *) (&D_801285B0)) + 0x84));
+  if (var_v1 == (-1))
+  {
+    *((s8 *) (((s8 *) (&D_801285B0)) + 0x84)) = 0;
+    var_v1 = 0;
+    i = 0;
+    do
+    {
+      if ((*((s32 *) (((s8 *)&D_801285B0 + i * 0x2C) + 8))) != 0)
+      {
+        *((s8 *) (((s8 *) (&D_801285B0)) + 0x84)) = 1;
+      }
+      if (((*((s32 *) (((s8 *)&D_801285B0 + i * 0x2C) + 0x1C))) != 0) && (_dbvpl_entrypoint_0(*((s32 *) (((s8 *)&D_801285B0 + i * 0x2C) + 0x18)), 0) != 0))
+      {
+        *((s8 *) (((s8 *) (&D_801285B0)) + 0x84)) = 2;
+      }
+      i++;
+    }
+    while ((s8 *)&D_80128608 != (s8 *)&D_801285B0 + i * 0x2C);
+    var_v1 = D_80128634;
+  }
+  return var_v1;
+}
 
 /* extern */
 
