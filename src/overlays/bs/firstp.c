@@ -2518,6 +2518,8 @@ void func_80809CF8_bsfirstp(void *arg0) {
     *(f32 *)((u8 *)temp_v0 + 0x25C) = 0.0f;
 }
 
+void func_8080A194_bsfirstp(void *arg0);
+
 void func_80809D24_bsfirstp(void *arg0) {
     void func_80809DD0_bsfirstp(void *);
     func_80809DD0_bsfirstp(arg0);
@@ -2604,6 +2606,36 @@ void func_80809DD0_bsfirstp(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080A03C_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080A194_bsfirstp.s")
+void func_8080A194_bsfirstp(void *arg0) {
+    int temp_a0;
+    s32 temp_a1;
+    int temp_a3;
+    s32 temp_v1;
+    int var_a2;
+    u8 *temp_v0;
+    s32 *temp_v1_2;
+
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x188)));
+    temp_v1 = (*(s32 *)((s8 *)(temp_v0) + (0x26C)));
+    temp_a1 = (*(s32 *)((s8 *)(temp_v0) + (0x2A4)));
+    var_a2 = temp_v1 == 3 || temp_v1 == 2;
+    temp_a3 = temp_v1 == 3;
+    temp_v1_2 = (s32 *)(temp_v0 + 0x254);
+    temp_a0 = temp_a1 == 3;
+    if ((temp_a0 != 0) && (var_a2 == 0)) {
+        temp_v1_2[5] = 0;
+    }
+    var_a2 = temp_a1 == 3 || temp_a1 == 2;
+    if ((var_a2 == 0) & temp_a3) {
+        temp_v1_2[5] = 0;
+    }
+    if (temp_v1_2[5] != 0) {
+        ((f32 *)temp_v1_2)[2] = ((f32 *)temp_v1_2)[17];
+        return;
+    }
+    if ((25.0f == ((f32 *)temp_v1_2)[18]) && (temp_v1_2[3] >= 5)) {
+        ((f32 *)temp_v1_2)[2] = ((f32 *)temp_v1_2)[7];
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080A250_bsfirstp.s")
