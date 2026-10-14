@@ -51,7 +51,32 @@ s32 func_808002CC_glgamedata(s32 *arg0) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamedata/glgamedata_entrypoint_3.s")
+/* extern */
+
+s32 glgamedata_entrypoint_3(u8 *arg0, s32 arg1, s32 *arg2, u32 *arg3) {
+    s32 temp_v0;
+    u8 temp_a0;
+    u8 *temp_v0_2;
+
+    temp_v0 = func_808002CC_glgamedata((s32 *)arg0);
+    *arg2 = temp_v0;
+    if (temp_v0 == 0) {
+        return 0;
+    }
+loop_3:
+    temp_v0_2 = arg0 + *arg2;
+    temp_a0 = *temp_v0_2++;
+    *arg3 = *temp_v0_2;
+    *arg2 += 2;
+    if (temp_a0 == (u8)arg1) {
+        return 1;
+    }
+    *arg2 += *arg3;
+    if (temp_a0 == 0) {
+        return 0;
+    }
+    goto loop_3;
+}
 
  s32 glgamedata_entrypoint_4(u8 *arg0) {
     extern s32 glgamedata_entrypoint_3(u8 *, s32, s32 *, u32 *);
