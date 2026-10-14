@@ -49,7 +49,22 @@ void func_80800980_chfireicestorm(Actor *arg0, u32 arg1, u32 arg2) {
     _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, NULL, var_v0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_808009C8_chfireicestorm.s")
+/* extern */
+
+s32 func_808009C8_chfireicestorm(Actor *arg0) {
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    if (arg0->unk64_19) {
+        return 0;
+    }
+    if (func_800DA298(FLAG3_A24_UNK) != 0) {
+        func_80101FDC(arg0, 5);
+        func_80108B04(arg0, 1);
+        arg0->unk64_19 = 1;
+        return 1;
+    }
+    return 0;
+}
 
 void func_80800A40_chfireicestorm(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x58))) = 8.0f;
