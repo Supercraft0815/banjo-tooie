@@ -170,7 +170,32 @@ f32 func_8010CBD0(s32 arg0, f32 *arg1) {
     return 90.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010CC10.s")
+s32 func_8010CC10(f32 *arg0, f32 arg1) {
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    s32 func_800F5898();
+    s32 func_800F6438(u32);
+    extern s32 D_80136F68;
+    f32 radius;
+    s32 var_s0;
+    f32 sp34[3];
+
+    (*(s32 *)((s8 *)(&D_80136F68) + (0x20))) = 0;
+    (*(s32 *)((s8 *)(&D_80136F68) + (0x24))) = 0;
+    var_s0 = 0;
+    if (func_800F5898() > 0) {
+        do {
+            if (func_800F6438(var_s0) != 0) {
+                radius = func_8010CBD0(var_s0, sp34);
+                if (func_800EFFB4(arg0, arg1 + radius, sp34) != 0) {
+                    *(&D_80136F68 + (*(s32 *)((s8 *)(&D_80136F68) + (0x20)))) = var_s0;
+                    (*(s32 *)((s8 *)(&D_80136F68) + (0x20))) = (s32) ((*(s32 *)((s8 *)(&D_80136F68) + (0x20))) + 1);
+                }
+            }
+            var_s0 += 1;
+        } while (var_s0 < func_800F5898());
+    }
+    return (*(s32 *)((s8 *)(&D_80136F68) + (0x20)));
+}
 
 void func_8010CCE0(void)
 {
