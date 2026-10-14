@@ -164,7 +164,31 @@ void func_800C8BF4(void) {
     vector_size(D_8012AB00);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8C18.s")
+/* extern */
+
+s32 func_800C8C18(void) {
+    struct Entry { u8 pad[0x14]; u8 flag14; u8 flag15; u16 rest; u32 tail; };
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    struct Entry *sp24 = (struct Entry *)vector_end(D_8012AB00);
+    s32 pad20;
+    s32 var_a1;
+    s32 pad18;
+    struct Entry *temp_v0_2;
+    struct Entry *var_v1;
+
+    var_a1 = 0; temp_v0_2 = (struct Entry *)vector_begin(D_8012AB00);
+    var_v1 = temp_v0_2;
+    if (temp_v0_2 < sp24) {
+        do {
+            if ((var_v1->flag15 != 0) && (var_v1->flag14 != 0)) {
+                var_a1 += 1;
+            }
+            var_v1++;
+        } while (var_v1 < sp24);
+    }
+    return var_a1;
+}
 
 void func_800C8C90(s32 arg0) {
     s32 func_800EE830(s32 *, s32);
