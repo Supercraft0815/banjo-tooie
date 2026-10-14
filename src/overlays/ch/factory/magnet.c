@@ -21,7 +21,32 @@ void func_8080083C_chfactorymagnet(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80800B20_chfactorymagnet.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80800E40_chfactorymagnet.s")
+/* extern */
+
+void *func_80800E40_chfactorymagnet(Actor *arg0) {
+    s16 _chmumbopad_entrypoint_0(s32);
+    s32 _sumumbofx_entrypoint_0(Actor *, s32, s32, s16);
+    s32 _sumumbofx_entrypoint_2(void *);
+    s32 _sumumbofx_entrypoint_24(void *, s32);
+    void _sumumbofx_entrypoint_25(void *, s32, s32 *);
+    s32 _sumumbofx_entrypoint_28(void *, f32 *, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_8010A800(Actor *, s32);
+    void *temp_v0;
+    s32 sp28[3];
+
+    sp28[0] = 0;
+    sp28[1] = 0;
+    sp28[2] = 0;
+    _sumumbofx_entrypoint_0(arg0, 0, 0x28, _chmumbopad_entrypoint_0(0xA));
+    temp_v0 = func_80100094(arg0, 0);
+    _sumumbofx_entrypoint_2(temp_v0);
+    _sumumbofx_entrypoint_25(temp_v0, 0x8C, sp28);
+    _sumumbofx_entrypoint_24(temp_v0, 0x3F266666);
+    func_8010A800(arg0, 2);
+    _sumumbofx_entrypoint_28(temp_v0, arg0->position, 2000.0f, 4000.0f);
+    return temp_v0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80800EF0_chfactorymagnet.s")
 
