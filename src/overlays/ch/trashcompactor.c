@@ -28,7 +28,36 @@ OSThread *chtrashcompactor_entrypoint_3(void)
     return (OSThread *) D_808009A8_chtrashcompactor;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcompactor/func_80800030_chtrashcompactor.s")
+/* extern */
+
+void func_80800030_chtrashcompactor(Actor *arg0) {
+    void _subaddiefade_entrypoint_11(Actor *, s32 *);
+    void func_800C87DC(s32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    typedef struct {
+        f32 start[3];
+        f32 pad24;
+        f32 end[3];
+        f32 height;
+    } CompactorData;
+    f32 *sp20;
+    f32 *temp_a1;
+    s32 sp24;
+
+    temp_a1 = arg0->position;
+    sp20 = temp_a1;
+    func_800EE7F8(((CompactorData *)arg0->actorData)->start, temp_a1);
+    func_800EE7F8(((CompactorData *)arg0->actorData)->end, temp_a1);
+    ((CompactorData *)arg0->actorData)->end[1] = 0.0f;
+    if (arg0->unk74_7 == 0x32) {
+        *(s32 *)&arg0->unk50 = 0x08000000;
+    } else {
+        *(s32 *)&arg0->unk50 = 0x10000000;
+    }
+    ((CompactorData *)arg0->actorData)->height = 800.0f;
+    func_800C87DC(&sp24);
+    _subaddiefade_entrypoint_11(arg0, &sp24);
+}
 
 void func_808000BC_chtrashcompactor(void *arg0) {
     typedef struct {
