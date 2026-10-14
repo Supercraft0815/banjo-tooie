@@ -64,16 +64,29 @@ void gccubesearch_entrypoint_6(s32 arg0,s32 arg1)
 
 /* extern */
 
-void gccubesearch_entrypoint_9(s32 arg0) {
-    s32 gccubesearch_entrypoint_7(s32 *);
+s32 gccubesearch_entrypoint_9(s32 arg0, Actor **arg1, s32 arg2) {
+    s32 gccubesearch_entrypoint_7(s32 *, Actor **, s32);
     s32 sp18[2];
 
     sp18[0] = arg0;
     sp18[1] = -1;
-    gccubesearch_entrypoint_7(sp18);
+    return gccubesearch_entrypoint_7(sp18, arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_10.s")
+s32 gccubesearch_entrypoint_10(s32 arg0, u32 arg1) {
+    extern Actor *B_80800EB0_gccubesearch[40];
+    s32 var_v1;
+
+    arg0 = gccubesearch_entrypoint_9(arg0, B_80800EB0_gccubesearch, 0x28) - 1;
+    var_v1 = 0;
+    while (arg0 >= 0) {
+        if (((u32)B_80800EB0_gccubesearch[arg0]->pointerToSyscallEntry >> 0x15) < arg1) {
+            var_v1 += 1;
+        }
+        arg0--;
+    }
+    return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_11.s")
 
