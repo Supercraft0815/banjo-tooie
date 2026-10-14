@@ -240,7 +240,45 @@ void func_800F35AC(void *arg0, void *arg1) {
     (*(s8 *)((s8 *)(arg0) + (2))) = (s8) var_v1_3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F362C.s")
+void func_800F362C(void *arg0, void *arg1) {
+    s32 temp_v0;
+    s32 temp_v0_2;
+    s32 temp_v0_3;
+    s32 temp_v0_4;
+    s32 var_v1;
+    s32 var_v1_2;
+    s32 var_v1_3;
+    s32 var_v1_4;
+
+    temp_v0 = (*(s32 *)((s8 *)(arg1) + (0)));
+    if (temp_v0 < 0) {
+        (*(s8 *)((s8 *)(arg0) + (0))) = 0;
+    } else {
+        var_v1 = temp_v0 >= 0x100 ? 0xFF : temp_v0;
+        (*(s8 *)((s8 *)(arg0) + (0))) = (s8) var_v1;
+    }
+    temp_v0_2 = (*(s32 *)((s8 *)(arg1) + (4)));
+    if (temp_v0_2 < 0) {
+        (*(s8 *)((s8 *)(arg0) + (1))) = 0;
+    } else {
+        var_v1_2 = temp_v0_2 >= 0x100 ? 0xFF : temp_v0_2;
+        (*(s8 *)((s8 *)(arg0) + (1))) = (s8) var_v1_2;
+    }
+    temp_v0_3 = (*(s32 *)((s8 *)(arg1) + (8)));
+    if (temp_v0_3 < 0) {
+        (*(s8 *)((s8 *)(arg0) + (2))) = 0;
+    } else {
+        var_v1_3 = temp_v0_3 >= 0x100 ? 0xFF : temp_v0_3;
+        (*(s8 *)((s8 *)(arg0) + (2))) = (s8) var_v1_3;
+    }
+    temp_v0_4 = (*(s32 *)((s8 *)(arg1) + (0xC)));
+    if (temp_v0_4 < 0) {
+        (*(s8 *)((s8 *)(arg0) + (3))) = 0;
+        return;
+    }
+    var_v1_4 = temp_v0_4 >= 0x100 ? 0xFF : temp_v0_4;
+    (*(s8 *)((s8 *)(arg0) + (3))) = (s8) var_v1_4;
+}
 
 int func_800F36D4(s32 *arg0, s32 *arg1) {
     return (arg0[0] == arg1[0]) && (arg0[1] == arg1[1]) && (arg0[2] == arg1[2]);
