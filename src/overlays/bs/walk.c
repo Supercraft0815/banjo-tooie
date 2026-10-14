@@ -267,4 +267,13 @@ s32 bswalk_entrypoint_21(s32 arg0) {
     return ((s32 *)&D_80801560_bswalk)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_22.s")
+/* extern */
+
+void bswalk_entrypoint_22(PlayerState *arg0, f32 arg1) {
+    void func_8009FF44(PlayerState *, enum asset_e, f32, f32, f32, f32);
+    if (arg1 < 150.0f) {
+        func_8009FF44(arg0, 3, 80.0f, 150.0f, 1.3f, 0.6f);
+        return;
+    }
+    func_8009FF44(arg0, 0xC, 225.0f, 500.0f, 0.54f, 0.44f);
+}
