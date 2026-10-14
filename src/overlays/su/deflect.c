@@ -43,7 +43,21 @@ s32 func_80800630_sudeflect(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/deflect/func_80800D14_sudeflect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/deflect/func_80800E44_sudeflect.s")
+/* extern */
+
+s32 func_80800E44_sudeflect(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, f32 *arg4, f32 arg5) {
+    int func_800F0064(f32 *, f32, f32 *);
+    f32 temp_f0;
+
+    temp_f0 = arg4[1] - arg0[1];
+    if (arg1 < (temp_f0 - arg5)) {
+        return 0;
+    }
+    if ((temp_f0 + arg5) < arg2) {
+        return 0;
+    }
+    return func_800F0064(arg0, arg3 + arg5, arg4);
+}
 
 s32 func_80800ECC_sudeflect(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     void func_800EE7F8(f32 *, f32 *);
