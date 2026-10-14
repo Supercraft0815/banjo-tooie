@@ -60,7 +60,27 @@ void func_80800270_chstatuebossbits(Actor *arg0) {
     func_8010D930(4, -1, arg0->position, &D_8080084C_chstatuebossbits);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statuebossbits/func_808002CC_chstatuebossbits.s")
+/* extern */
+
+void func_808002CC_chstatuebossbits(Actor *arg0) {
+    s32 func_800DA298(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80101FDC(Actor *, u32);
+    void func_8010A590(Actor *);
+    s32 sp24;
+
+    sp24 = func_800DA298(0x88);
+    func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+    func_800EE7F8((f32 *)&arg0->actorData[4], arg0->position);
+    *(s32 *)&arg0->unk54 = 0;
+    ((f32 *)arg0->actorData)[5] -= 180.0f;
+    if (sp24 != 0) {
+        func_80101FDC(arg0, 1);
+        func_8010A590(arg0);
+        return;
+    }
+    arg0->position[1] = ((f32 *)arg0->actorData)[5];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statuebossbits/func_80800360_chstatuebossbits.s")
 
@@ -85,7 +105,7 @@ void func_8080064C_chstatuebossbits(s32 arg0) {
     s32 _chdoormake_entrypoint_8(s32, s32);
     s32 _glcutDll_entrypoint_20();
     s32 func_800DA298(s32);
-    s32 func_80101FDC(s32, s32);
+    void func_80101FDC(Actor *, u32);
     s32 var_v1;
 
     var_v1 = func_800DA298(0x88) != 0;
