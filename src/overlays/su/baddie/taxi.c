@@ -22,7 +22,27 @@ s32 func_80800220_subaddietaxi(f32 *arg0, f32 arg1) {
     return mlAbsF(func_800F1DCC(currentYaw, sp1C)) < arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_2.s")
+/* extern */
+
+int subaddietaxi_entrypoint_2(Actor *arg0, s32 arg1) {
+    s32 func_8008FCC8(Unk80132ED0 *);
+    s32 func_800905C4(Unk80132ED0 *, s32);
+    u8 func_800CB3E0(s32);
+    s32 temp_v0;
+
+    temp_v0 = func_800CB3E0(arg1);
+    if ((temp_v0 != 1) && (temp_v0 != 5)) {
+        return 0;
+    }
+    if (func_80800220_subaddietaxi(arg0, 90.0f) == 0) {
+        return 0;
+    }
+    if (_subaddiefade_entrypoint_0(arg0) < 0x78) {
+        return 0;
+    }
+    return func_8008FCC8(arg0->unk0) == 0x13 &&
+        func_800905C4(arg0->unk0, arg1) != 0;
+}
 
 void subaddietaxi_entrypoint_3(void) {
 }
