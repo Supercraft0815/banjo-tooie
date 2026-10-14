@@ -12,7 +12,7 @@ void func_80800090_chbosskogsdoor(u8 *arg0) {
     s32 func_800D91EC(u8 *, f32);
     s32 func_800DA544(s32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    s32 func_80101FDC(u8 *, s32);
+    void func_80101FDC(Actor *, u32);
     s32 func_80103110(u8 *, s32);
     f32 func_80103EF4(u8 *);
     extern s32 D_808008B0_chbosskogsdoor;
@@ -88,7 +88,25 @@ void func_80800090_chbosskogsdoor(u8 *arg0) {
     (*(f32 *)((s8 *)(arg0) + (8))) = (*(f32 *)((s8 *)(arg0) + (0x34))) + func_800F10B4((*(f32 *)((s8 *)(arg0) + (0x58))), 0.0f, (f32)((u32)*(u16 *)(arg0 + 0x76) >> 7) / 10.0f, 0.0f, temp_f0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bosskogsdoor/func_80800458_chbosskogsdoor.s")
+/* extern */
+
+s32 func_80800458_chbosskogsdoor(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_80101FDC(Actor *, u32);
+    switch (arg1) {
+    case 0x49:
+        if (arg2 == 0x40) {
+            _capod_entrypoint_13(arg0->unk0, NULL, 1, 0x930);
+            func_80101FDC(arg0, 2);
+            func_800EFA4C((f32 *)arg0->actorData, -7472.0f, 2405.0f, -1240.0f);
+            ((f32 *)arg0->actorData)[5] = 5.0f;
+            return 1;
+        }
+        return 0;
+    }
+    return 0;
+}
 
 OSThread *chbosskogsdoor_entrypoint_0(void)
 {
