@@ -194,7 +194,26 @@ void func_80802288_changlerboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_808022C4_changlerboss.s")
+/* extern */
+
+void func_808022C4_changlerboss(Actor *arg0) {
+    void func_800D2498(u32, s32, u32);
+    void *func_80100094(Actor *, u32);
+    s32 var_a1;
+    s32 temp_t6;
+    void *temp_v0;
+
+    temp_t6 = arg0->unk70_10;
+    if ((temp_t6 != 0xB) && (temp_t6 != 0xC) && (temp_t6 >= 5) && (temp_t6 < 0x19)) {
+        temp_v0 = func_80100094(arg0, 0U);
+        if ((*(s16 *)((s8 *)(temp_v0) + (0x92))) == 0) {
+            var_a1 = func_80801C50_changlerboss(arg0);
+        } else {
+            var_a1 = (*(s16 *)((s8 *)(temp_v0) + (0x96)));
+        }
+        func_800D2498(0xFE, var_a1, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80802340_changlerboss.s")
 
