@@ -72,7 +72,20 @@ void func_8080066C_chmrsicecube(u8 *arg0, u8 *arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/func_808006C4_chmrsicecube.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/func_80800818_chmrsicecube.s")
+void func_80800818_chmrsicecube(u8 *arg0) {
+    s32 pad[2];
+    s32 _subaddieaudioquick_entrypoint_2(u8 *, u8 *, s32 *);
+    s32 func_800BBCB8(u8 *, u8 *, f32, s32, s32 *);
+    s32 func_801094E0(u8 *, f32);
+    extern s32 D_80800A64_chmrsicecube;
+    extern s32 D_80800A74_chmrsicecube;
+    u8 sp2C[3];
+
+    func_8080066C_chmrsicecube(arg0, sp2C);
+    func_800BBCB8(sp2C, arg0 + 4, (*(f32 *)((s8 *)(arg0) + (0x38))), 0xC, &D_80800A74_chmrsicecube);
+    _subaddieaudioquick_entrypoint_2(arg0, sp2C, &D_80800A64_chmrsicecube);
+    func_801094E0(sp2C, (*(f32 *)((s8 *)(arg0) + (0x38))) * 3.0f);
+}
 
 void func_80800898_chmrsicecube(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
