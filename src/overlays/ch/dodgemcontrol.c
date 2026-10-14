@@ -132,7 +132,23 @@ void func_808017F0_chdodgemcontrol(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801928_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808019C4_chdodgemcontrol.s")
+/* extern */
+
+void func_808019C4_chdodgemcontrol(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80801A3C_chdodgemcontrol(Actor *, s32, s32);
+    s32 var_s0;
+    void *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    var_s0 = 0;
+    if ((s32) (*(u8 *)((s8 *)(temp_v0) + (0xC2))) > 0) {
+        do {
+            func_80801A3C_chdodgemcontrol(arg0, var_s0, arg1);
+            var_s0 += 1;
+        } while (var_s0 < (s32) (*(u8 *)((s8 *)(temp_v0) + (0xC2))));
+    }
+}
 
 /* extern */
 
