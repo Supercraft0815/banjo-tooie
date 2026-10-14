@@ -1,5 +1,7 @@
 #include "common.h"
 
+void func_8080143C_chcaptainblubber(Actor *arg0);
+
 void func_80800000_chcaptainblubber(Actor *arg0) {
     s32 func_8008F8B0();
     s32 func_8008F8D8(s32);
@@ -271,7 +273,21 @@ s32 func_80800580_chcaptainblubber(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/captainblubber/func_80800A1C_chcaptainblubber.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/captainblubber/func_8080143C_chcaptainblubber.s")
+void func_8080143C_chcaptainblubber(Actor *arg0) {
+    s32 _chbadshad_entrypoint_1(Actor *, f32 *, f32);
+    void _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    extern u16 D_80801654_chcaptainblubber[][4];
+    f32 sp24[3];
+
+    if (D_80801654_chcaptainblubber[arg0->unk70_10][0] == 0x1C0) {
+        _subaddieskeleton_entrypoint_0(arg0, 3, sp24);
+        sp24[1] = 0.0f;
+    } else {
+        func_800EFA4C(sp24, arg0->position[0], 0.0f, arg0->position[2]);
+    }
+    _chbadshad_entrypoint_1(arg0, sp24, 2.0f * arg0->scale);
+}
 
 void func_808014C8_chcaptainblubber(Actor* arg0) 
 {
