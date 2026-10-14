@@ -262,7 +262,31 @@ void bsstonehead_entrypoint_37(PlayerState *arg0) {
     _batimer_set(arg0, 1, 3.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_38.s")
+/* extern */
+
+void bsstonehead_entrypoint_38(PlayerState *arg0) {
+    s32 _batimer_decrement(void *, s32);
+    f32 _batimer_get(void *, s32);
+    s32 bs_setState(s32, s32);
+    f32 func_800D8FF8(void);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 yaw_applyIdeal(void *);
+    f32 yaw_getIdeal(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+    s32 sp34;
+    f32 sp30;
+    f32 sp2C;
+
+    sp34 = 0;
+    sp2C = func_800F10B4(_batimer_get(arg0, 1), 0.0f, 3.0f, 30.0f, 800.0f);
+    sp30 = func_800D8FF8() * sp2C;
+    yaw_setIdeal(arg0, yaw_getIdeal(arg0) + sp30);
+    yaw_applyIdeal(arg0);
+    if (_batimer_decrement(arg0, 1) != 0) {
+        sp34 = 0xB3;
+    }
+    bs_setState(arg0, sp34);
+}
 
 s32 bsstonehead_entrypoint_39(s32 arg0) {
     extern s32 D_808016C0_bsstonehead[];
