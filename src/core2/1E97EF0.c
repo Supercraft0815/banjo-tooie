@@ -155,7 +155,27 @@ void func_800BED50(s32 arg0)
     func_800BE600(arg0,0x1F00);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BED70.s")
+/* extern */
+
+s32 func_800BED70(f32 *arg0, f32 *arg1, s16 (**arg2)[3], s32 arg3, f32 arg4) {
+    s32 _gcmapsects_entrypoint_20(s32 *, f32 *, f32 *, s16 (**)[3], s32, f32);
+    s32 func_800AD2C8(void *, void *, f32 *, f32 *, f32 *, s16 (**)[3], s32, f32);
+    void func_800EFD24(f32 *);
+    f32 sp34[3];
+    s32 temp_v0;
+
+    if ((*(u8 *)((s8 *)(&D_801285B0) + (0x2A))) != 0) {
+        func_800EFD24(sp34);
+        temp_v0 = func_800AD2C8((*(void **)((s8 *)(&D_801285B0) + (0))), ((void **)&D_801285B0)[*(u8 *)((s8 *)&D_801285B0 + 0x29) + 4], arg0, arg1, sp34, arg2, arg3, arg4);
+        if (temp_v0 != 0) {
+            return temp_v0;
+        }
+    }
+    if ((*(u8 *)((s8 *)(&D_801285B0) + (0x77))) != 0) {
+        return _gcmapsects_entrypoint_20(&D_801285B0, arg0, arg1, arg2, arg3, arg4);
+    }
+    return 0;
+}
 
 /* extern */
 
