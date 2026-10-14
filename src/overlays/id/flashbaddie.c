@@ -1,6 +1,30 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/flashbaddie/idflashbaddie_entrypoint_0.s")
+void idflashbaddie_entrypoint_0(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, f32 *arg4) {
+    s32 brightness;
+    s32 value;
+    Vtx *end;
+
+    brightness = (s32)(*arg4 * 50.0f);
+    end = arg1 + arg3;
+    for (; arg1 < end; arg1++, arg2++) {
+        value = arg1->v.cn[0] + brightness;
+        if (value >= 0x100) {
+            value = 0xFF;
+        }
+        arg2->v.cn[0] = value;
+        value = arg1->v.cn[1] + brightness;
+        if (value >= 0x100) {
+            value = 0xFF;
+        }
+        arg2->v.cn[1] = value;
+        value = arg1->v.cn[2] + brightness;
+        if (value >= 0x100) {
+            value = 0xFF;
+        }
+        arg2->v.cn[2] = value;
+    }
+}
 
 void idflashbaddie_entrypoint_1(s32 arg0) 
 {
