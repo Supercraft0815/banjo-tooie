@@ -19,7 +19,31 @@ s32 func_80800000_bsbanshack(PlayerState *arg0, s32 arg1) { int bakey_pressed(Pl
     return var_s0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_80800074_bsbanshack.s")
+/* extern */
+
+s32 func_80800074_bsbanshack(PlayerState *arg0, s32 arg1) {
+    int bakey_pressed(PlayerState *, ButtonId);
+    int bakey_released(PlayerState *, ButtonId);
+    int bastick_getZone(PlayerState *);
+    int func_8008E148(PlayerState *);
+    s32 func_8008E260(PlayerState *);
+    if (bastick_getZone(arg0) > 0) {
+        arg1 = 0x16D;
+    }
+    if (bakey_pressed(arg0, 8) != 0) {
+        arg1 = 0x16E;
+    }
+    if (func_8008E148(arg0) != 0) {
+        arg1 = 1;
+    }
+    if (func_8008E260(arg0) != 0) {
+        arg1 = 0x3D;
+    }
+    if (bakey_released(arg0, 1) != 0) {
+        arg1 = 0x16B;
+    }
+    return arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_80800100_bsbanshack.s")
 
@@ -129,9 +153,9 @@ void func_80800B7C_bsbanshack(s32 arg0)
     func_8080021C_bsbanshack();
     _bsrest_entrypoint_16(arg0);
 }
-void func_80800BA4_bsbanshack(s32 arg0) {
+void func_80800BA4_bsbanshack(PlayerState *arg0) {
     s32 _bsrest_entrypoint_20();
-    s32 bs_setState(Actor *, u8 *);
+    s32 bs_setState(PlayerState *, s32);
     s32 next_state;
     s32 unused;
 
@@ -139,7 +163,7 @@ void func_80800BA4_bsbanshack(s32 arg0) {
     if (_bsrest_entrypoint_20() != 0) {
         next_state = 0x16C;
     }
-    bs_setState((Actor *)arg0, (u8 *)next_state);
+    bs_setState(arg0, next_state);
 }
 
 s32 bsbanshack_entrypoint_5(s32 arg0) {
@@ -156,9 +180,9 @@ void func_80800C10_bsbanshack(PlayerState *arg0) { s32 baanim_playForDuration_lo
 
 /* extern */
 
-void func_80800C6C_bsbanshack(Actor *arg0) {
-    void* func_80800074_bsbanshack(Actor*, u32);
-    s32 bs_setState(Actor *, u8 *);
+void func_80800C6C_bsbanshack(PlayerState *arg0) {
+    s32 func_80800074_bsbanshack(PlayerState *, s32);
+    s32 bs_setState(PlayerState *, s32);
     bs_setState(arg0, func_80800074_bsbanshack(arg0, 0U));
 }
 
