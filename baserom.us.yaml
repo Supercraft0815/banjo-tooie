@@ -195,6 +195,7 @@ segments:
       - [0x1E44B60, c, 1E44B60]
       - [0x1E44F80, c, 1E44F80]
       - [0x1E45210, hasm, ../../src/core1/core1bss1_0]
+      - [0x1E45210, hasm, ../../src/core1/core1bss1_0_1]
       - [0x1E45210, hasm, ../../src/core1/core1bss1_1]
       - [0x1E45210, hasm, ../../src/core1/core1bss1_2]
       - [0x1E45210, c, core1bss2]
@@ -356,6 +357,8 @@ segments:
       - [0x1E5A6A0, rodatabin, gspF3DEX2.fifo]
       - [0x1E5AAC0, rodatabin, gspL3DEX2.fifo]
       - [0x1E5AEB0, .bss, ../../src/core1/core1bss1_0]
+      - [0x1E5AEB0, .bss, 1E2F380]
+      - [0x1E5AEB0, .bss, ../../src/core1/core1bss1_0_1]
       - [0x1E5AEB0, .bss, mlmtx]
       - [0x1E5AEB0, .bss, ../../src/core1/core1bss1_1]
       - [0x1E5AEB0, .bss, defrag]
@@ -589,6 +592,8 @@ segments:
       - [0x1EF0820, hasm]
       - [0x1EF1550, hasm, ../../src/core2/core2bss1]
       - [0x1EF1550, hasm, ../../src/core2/core2bss2]
+      - [0x1EF1550, hasm, ../../src/core2/core2bss2_1]
+      - [0x1EF1550, hasm, ../../src/core2/core2bss2_2]
       - [0x1EF1550, .data, overlays]
       - [0x1EF1560, .data, baanim]
       - [0x1EF1590, data]
@@ -607,6 +612,10 @@ segments:
       - [0x1F00020, .bss, 1EB45C0]
       - [0x1F00020, .bss, 1EB52C0]
       - [0x1F00020, .bss, ../../src/core2/core2bss2]
+      - [0x1F00020, .bss, 1EB5E70]
+      - [0x1F00020, .bss, ../../src/core2/core2bss2_1]
+      - [0x1F00020, .bss, 1EC4CC0]
+      - [0x1F00020, .bss, ../../src/core2/core2bss2_2]
   # Generated from overlay decompression tool
   - name: overlay_table
     type: bin

@@ -14,7 +14,7 @@ void func_800E9708()
 void func_800E9728(void) {
     s32 func_800B42FC(s32, s32);
     s32 func_800EA390();
-    s32 func_800EB70C();
+    void func_800EB70C(void);
     extern s32 D_80132DB0;
     extern s32 D_80132DB4;
     func_800EA390();

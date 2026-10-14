@@ -1,21 +1,68 @@
 #include "common.h"
 
+typedef struct {
+    s32 entries[7];
+    s16 selected;
+} EntryGroup;
+
+EntryGroup D_80132E80;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB3D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB51C.s")
+void func_800EB51C(s32 arg0, s32 arg1) {
+    typedef struct {
+        Unk80132ED0 *actor;
+        s32 unknown;
+        u32 flags;
+    } Prop;
+    typedef struct { Prop *prop; s32 unknown; } Element;
+    void *vector_begin(s32);
+    void *vector_end(s32);
+    void func_800EC7D4(Unk80132ED0 *, s32);
+    void _gspropprop_entrypoint_3(void *, s32);
+    s32 vector;
+    Element *end;
+    Element *start;
+    Element *current;
+    Prop *prop;
+
+    vector = D_80132E80.entries[arg0];
+    if (vector != 0) {
+        start = vector_begin(vector);
+        end = vector_end(vector);
+        if (end != start) {
+            D_80132E80.selected = arg0;
+            for (current = start; current < end; current++) {
+                prop = current->prop;
+                if (prop->flags & 1) {
+                    func_800EC7D4(prop->actor, arg1);
+                } else {
+                    _gspropprop_entrypoint_3(prop, arg1);
+                }
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB5E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB70C.s")
+void func_800EB70C(void) {
+    s32 i;
+
+    D_80132E80.selected = -1;
+    for (i = 0; i < 7; i++) {
+        D_80132E80.entries[i] = 0;
+    }
+}
 
 void func_800EB750(void)
 {
   s32 vector_free(s32);
   s32 (*var_s0)[1];
-  extern s32 D_80132E80;
-  extern s16 D_80132E9C;
+
+
   s32 temp_a0;
- var_s0 = (s32 (*)[1]) (&D_80132E80); do {
+ var_s0 = (s32 (*)[1]) (D_80132E80.entries); do {
     temp_a0 = var_s0[0][0];
     if (temp_a0 != 0)
     {
@@ -24,37 +71,45 @@ void func_800EB750(void)
     }
     var_s0++;
   }
-  while (((s16 *) var_s0) != (&D_80132E9C));
+  while (((s16 *) var_s0) != (((s16 *)(D_80132E80.entries + 7))));
 }
 
 void func_800EB7A8(void) {
     s32 vector_defrag(s32);
-    extern s32 D_80132E80;
-    extern s16 D_80132E9C;
-    s32 *var_s0;
-    s32 temp_a0;
-    var_s0 = &D_80132E80; do { temp_a0 = *var_s0;
-        if (temp_a0 != 0) {
-            *var_s0 = vector_defrag(temp_a0);
+    s32 *current;
+    s32 *end;
+    s32 value;
+
+    current = (end = D_80132E80.entries + 7, D_80132E80.entries);
+    do {
+        value = *current;
+        if (value != 0) {
+            *current = vector_defrag(value);
         }
-        var_s0++;
-    } while (var_s0 != (s32 *)(&D_80132E9C));
+        current++;
+    } while (current != end);
 }
 
-void func_800EB800(void)
-{
-  s32 vector_clear(s32);
-  extern s32 D_80132E80;
-  s32 *var_s0;
-  s32 temp_a0;
-  extern s16 D_80132E9C;
- do { var_s0 = &D_80132E80; do { temp_a0 = *var_s0; if (temp_a0 != 0) { vector_clear(temp_a0); } var_s0++; } while (var_s0 != ((s32 *) (&D_80132E9C))); } while (0);
+void func_800EB800(void) {
+    s32 vector_clear(s32);
+    s32 *current;
+    s32 *end;
+    s32 value;
+
+    current = (end = D_80132E80.entries + 7, D_80132E80.entries);
+    do {
+        value = *current;
+        if (value != 0) {
+            vector_clear(value);
+        }
+        current++;
+    } while (current != end);
 }
 
 s32 func_800EB854(void) {
-    extern s16 D_80132E9C;
 
-    return D_80132E9C;
+
+    return D_80132E80.selected;
 }
 
 void func_800EB860(s32 arg0, s32 arg1) {

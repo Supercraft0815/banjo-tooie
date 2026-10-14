@@ -1,5 +1,8 @@
 #include "core2/1E2F380.h"
 
+u32 D_8007AED0[6];
+u8 D_8007AEE8[6];
+
 typedef struct {
     s32 unk0;
     s32 active;
@@ -17,7 +20,18 @@ void func_80017850(s32 arg0) {
     D_8007AEE8[arg0] = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_80017864.s")
+void func_80017864(void) {
+    extern u8 D_8007AE80[];
+    extern u8 D_8007AEA0[];
+    int index;
+    index = 0;
+    do {
+        D_8007AE80[index++] = 0xFF;
+    } while (&D_8007AE80[index] < D_8007AEA0);
+    for (index = 0; index < 6; index++) {
+        D_8007AEE8[index] = 1;
+    }
+}
 
 s32 func_800178C4(s32 arg0, s32 arg1, f32 arg2)
 {

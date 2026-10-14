@@ -1,5 +1,7 @@
 #include "core2/1EB5E70.h"
 
+s32 D_8012C850[60];
+
 typedef void (*GeoCommandFunction)(s32, u8 *);
 extern GeoCommandFunction *D_8012CF8C;
 
@@ -383,7 +385,6 @@ void * func_800DF330(void) {
 }
 
 s32 func_800DF33C(s32 arg0) {
-    extern s32 D_8012C850[];
     return ((s32 *)&D_8012C850)[arg0];
 }
 
@@ -421,7 +422,6 @@ void func_800DF38C(void) {
 }
 
 void func_800DF3E0(void) {
-    extern s32 D_8012C850[];
     s32 i;
     for(i = 0; i < 0x3C; i++){
         D_8012C850[i] = 0;
@@ -614,14 +614,18 @@ void func_800DF738(s32 arg0)
 }
 
 void func_800DF744(s32 arg0, s32 arg1) {
-    extern s32 D_8012C850[];
     D_8012C850[arg0] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DF758.s")
+void func_800DF758(s32 *arg0) {
+    s32 i;
+
+    for (i = 1; i < 60; i++) {
+        D_8012C850[i] = arg0[i];
+    }
+}
 
 void func_800DF7C4(s32 arg0, s32 arg1) {
-    extern s32 D_8012C850[];
     D_8012C850[arg0] = -arg1;
 }
 
