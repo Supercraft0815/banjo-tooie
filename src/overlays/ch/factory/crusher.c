@@ -50,7 +50,38 @@ void func_808006CC_chfactorycrusher(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/crusher/func_80800738_chfactorycrusher.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/crusher/func_80800800_chfactorycrusher.s")
+/* extern */
+
+int func_80800800_chfactorycrusher(Actor *arg0) {
+    u32 func_800F54E4(void);
+    s32 func_800F5578(s32);
+    s32 func_800F64A4(s32, s32);
+    s32 func_800F7B9C(s32, s32);
+    s32 func_800F7F98(s32, u32);
+    void *func_80100094(Actor *, u32);
+    struct {
+        f32 position[3];
+        f32 position2[3];
+        s32 unk18;
+    } *sp1C;
+    s32 sp18;
+    s32 temp_v0;
+    int var_v0;
+
+    sp1C = func_80100094(arg0, 0);
+    var_v0 = 0;
+    if (arg0->unk64_20) {
+        temp_v0 = func_800F54E4();
+        sp18 = temp_v0;
+        if ((func_800F5578(temp_v0) == 1) && (func_800F64A4(sp18, 0x10000) == 0)) {
+            func_800F7F98(sp18, 0);
+            sp1C->unk18 = 1;
+        }
+        func_800F7B9C(sp18, 0x5C);
+        return 1;
+    }
+    return var_v0;
+}
 
 /* extern */
 
