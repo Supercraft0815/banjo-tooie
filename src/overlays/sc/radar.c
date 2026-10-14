@@ -68,7 +68,26 @@ void func_8080074C_scradar(void *arg0, s8 arg1, s8 arg2, s8 arg3) {
     (*(s8 *)((s8 *)(arg0) + (2))) = arg3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/radar/func_80800768_scradar.s")
+/* extern */
+
+s32 func_80800768_scradar(s32 arg0) {
+    struct player_state_s;
+    s32 func_8009E674(struct player_state_s *, s32);
+    struct player_state_s *func_800F53D0(s32);
+    s32 func_800F5410(s32);
+
+    switch (func_800F5410(arg0)) {
+    case 0xC:
+        return 3;
+    case 6:
+        return 4;
+    default:
+        if (func_8009E674(func_800F53D0(arg0), 0x20) != 0) {
+            return 2;
+        }
+        return 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/radar/func_808007D4_scradar.s")
 
