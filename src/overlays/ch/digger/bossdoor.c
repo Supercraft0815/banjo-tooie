@@ -35,4 +35,20 @@ void func_80800370_chdiggerbossdoor(s32 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossdoor/chdiggerbossdoor_entrypoint_1.s")
+/* extern */
+
+void chdiggerbossdoor_entrypoint_1(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4) {
+    Actor *func_80106790(Unk80132ED0 *);
+    s16 offset;
+    Vtx *end;
+
+    offset = *(f32 *)&func_80106790(arg4)->actorData[4];
+    end = arg1 + arg3;
+    if (arg1 < end) {
+        do {
+            arg1++;
+            arg2++;
+            arg2[-1].v.ob[1] = arg1[-1].v.ob[1] + offset;
+        } while (arg1 < end);
+    }
+}
