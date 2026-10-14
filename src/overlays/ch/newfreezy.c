@@ -50,7 +50,40 @@ void func_808000AC_chnewfreezy(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_808011A8_chnewfreezy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_808012F8_chnewfreezy.s")
+/* extern */
+
+f32 func_808012F8_chnewfreezy(Actor *arg0) {
+    f32 func_800EEAD4(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    struct FreezyPart {
+        f32 position[3];
+        u8 pad0C[0x3C];
+        f32 scale;
+        u8 pad4C[0x10];
+        s8 state;
+        u8 pad5D[3];
+    } *var_s0;
+    f32 temp_f2;
+    f32 var_f20;
+    u32 var_s1;
+
+    var_s0 = func_80100094(arg0, 0);
+    var_f20 = 0.0f;
+    var_s1 = 0;
+    if (arg0->unk6C_0) {
+        do {
+            if (var_s0->state != 3) {
+                temp_f2 = func_800EEAD4((f32 *)&arg0->actorData[4], var_s0->position) + (25.0f * var_s0->scale);
+                if (var_f20 < temp_f2) {
+                    var_f20 = temp_f2;
+                }
+            }
+            var_s1 += 1;
+            var_s0++;
+        } while (var_s1 < arg0->unk6C_0);
+    }
+    return var_f20;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/chnewfreezy_entrypoint_0.s")
 
