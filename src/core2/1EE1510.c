@@ -337,10 +337,10 @@ s32 func_80108618(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108944.s")
 
-void func_80108A30(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
+void func_80108A30(s32 arg0, void *arg1, f32 arg2, s32 arg3) {
     s32 _chbaddiesetup_entrypoint_6(s32 *, s32, s32, s32, s32, s32, s32);
     extern s32 func_80108A8C;
-    _chbaddiesetup_entrypoint_6(&func_80108A8C, arg0, (*(s32 *)((s8 *)(arg1) + (0))), (*(s32 *)((s8 *)(arg1) + (4))), (*(s32 *)((s8 *)(arg1) + (8))), arg2, arg3);
+    _chbaddiesetup_entrypoint_6(&func_80108A8C, arg0, (*(s32 *)((s8 *)(arg1) + (0))), (*(s32 *)((s8 *)(arg1) + (4))), (*(s32 *)((s8 *)(arg1) + (8))), *(s32 *)&arg2, arg3);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108A8C.s")
