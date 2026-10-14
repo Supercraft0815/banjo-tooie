@@ -65,7 +65,25 @@ s32 subaddietaxi_entrypoint_12(u8 *arg0, s32 arg1) {
     return (*(f32 *)(arg0 + 0x34)) == 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_13.s")
+/* extern */
+
+s32 subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 func_800CB4D0(s32, s32, s32);
+    void func_800CB70C(s32);
+    void func_800CB764(s32, f32 *, f32, s32, s32);
+    s32 func_800EA05C();
+    s32 sp24;
+    s32 temp_v0;
+
+    temp_v0 = func_800CB4D0(arg1, arg2, arg3);
+    sp24 = temp_v0;
+    if (temp_v0 != 0) {
+        func_800CB764(arg1, arg0->position, arg0->rotation[1], func_800EA05C(), arg0->unk74_7);
+        func_800CB70C(arg1);
+    }
+    arg0->unk14 = 0x420021;
+    return sp24;
+}
 
 /* extern */
 
