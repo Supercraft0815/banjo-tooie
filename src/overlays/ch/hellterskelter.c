@@ -75,6 +75,20 @@ void func_808004D0_chhellterskelter(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/func_80800540_chhellterskelter.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/func_808005E0_chhellterskelter.s")
+void func_808005E0_chhellterskelter(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    extern s32 D_80800938_chhellterskelter[];
+    extern s32 D_80800974_chhellterskelter;
+    f32 sp24[3];
+
+    func_800EE7F8(sp24, arg0->position);
+    sp24[1] -= 100.0f;
+    func_800EF1B8(sp24, arg0->rotation[1] + 180.0f, 50.0f);
+    func_800BABB8(0, arg0->position, sp24, 1.0f, D_80800938_chhellterskelter);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800974_chhellterskelter);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/func_80800680_chhellterskelter.s")
