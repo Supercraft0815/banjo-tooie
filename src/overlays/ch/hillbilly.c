@@ -112,6 +112,22 @@ void func_808004D0_chhillbilly(Actor *arg0) { s32 _subaddieDll_entrypoint_3(Acto
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_80800894_chhillbilly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_80800944_chhillbilly.s")
+void func_80800944_chhillbilly(Actor *arg0) {
+    u8 *_sucoaster_entrypoint_3();
+    s32 func_8001210C(s32);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EE88C(f32 *, s16 *);
+    extern s32 D_80800CF0_chhillbilly;
+    f32 sp34[3];
+    f32 sp28[3];
+
+    if (arg0->unk7C_12 && (func_8001210C(1) == 0)) {
+        func_800EE88C(sp28, (s16 *)_sucoaster_entrypoint_3(arg0));
+        func_800EE7F8(sp34, sp28);
+        sp34[1] -= 20.0f;
+        func_800BBCB8(sp28, sp34, 1.0f, 3, &D_80800CF0_chhillbilly);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_808009D8_chhillbilly.s")
