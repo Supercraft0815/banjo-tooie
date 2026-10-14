@@ -14,7 +14,21 @@ OSThread *chfactoryliftdoor_entrypoint_1(void)
     return (OSThread *) D_80800188_chfactoryliftdoor;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/liftdoor/func_80800018_chfactoryliftdoor.s")
+/* extern */
+
+void func_80800018_chfactoryliftdoor(Actor *arg0) {
+    s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    void func_8010A800(Actor *, s32);
+    s32 switch_id;
+    switch_id = arg0->unk74_7 + 0xC;
+    if (_chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, 300.0f, 1, switch_id) != 0) {
+        _chdoormake_entrypoint_5(arg0, 1.5f);
+        _chdoormake_entrypoint_8(arg0, 4);
+    }
+    func_8010A800(arg0, 0);
+}
 
 /* extern */
 
