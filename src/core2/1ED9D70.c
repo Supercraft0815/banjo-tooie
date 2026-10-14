@@ -94,7 +94,26 @@ void func_801006E0(s32 *arg0) {
 s32 func_80100A74(s16 arg0, s32 arg1) { extern FreeList *D_80135A60; void *freelist_at(FreeList *, s32); s32 var_v1; u8 *temp_v0;
     temp_v0 = freelist_at(D_80135A60, arg0); if (temp_v0[9] != 0) { var_v1 = ((s32 *)temp_v0)[arg1]; } else { var_v1 = 0; } return var_v1; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100AC4.s")
+s32 func_80100AC4(s16 arg0) {
+    void *freelist_at(FreeList *, s32);
+    extern FreeList *D_80135A60;
+    extern FreeList *D_80135A64;
+    s32 var_v1;
+    void *temp_v0;
+    void *temp_v0_2;
+
+    temp_v0 = freelist_at(D_80135A60, arg0);
+    if ((*(u8 *)((s8 *)(temp_v0) + (8))) == 0) {
+        return 0;
+    }
+    temp_v0_2 = freelist_at(D_80135A64, (s16) (*(u8 *)((s8 *)(temp_v0) + (8))));
+    if ((*(u8 *)((s8 *)(temp_v0_2) + (8))) != 0) {
+        var_v1 = (*(s32 *)((s8 *)(temp_v0_2) + (0)));
+    } else {
+        var_v1 = 0;
+    }
+    return var_v1;
+}
 
 void func_80100B3C(void) {
     extern s32 D_80135A68;
