@@ -5,7 +5,27 @@ s32 basnowball_entrypoint_0()
     return 0x30;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/func_80800008_basnowball.s")
+/* extern */
+
+void func_80800008_basnowball(void *arg0, s32 arg1) {
+    void baflag_clear(void *, s32);
+    void baflag_set(void *, s32);
+    void func_800FC660(u32);
+    void func_800FC74C(u32);
+    void *var_v0;
+
+    var_v0 = (*(void **)((s8 *)(arg0) + (0x110)));
+    if ((*(u8 *)((s8 *)(var_v0) + (0x2D))) == 2) {
+        baflag_clear(arg0, 0x3C);
+        func_800FC74C(0x1C);
+        var_v0 = (*(void **)((s8 *)(arg0) + (0x110)));
+    }
+    (*(s8 *)((s8 *)(var_v0) + (0x2D))) = (s8) arg1;
+    if (arg1 == 2) {
+        baflag_set(arg0, 0x3C);
+        func_800FC660(0x1C);
+    }
+}
 
 f32 func_80800084_basnowball(s32 arg0) {
     extern f32 D_80801020_basnowball[];
