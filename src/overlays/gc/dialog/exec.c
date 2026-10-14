@@ -27,7 +27,44 @@ void func_8080002C_gcdialogexec(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_808000A0_gcdialogexec.s")
+/* extern */
+
+void func_808000A0_gcdialogexec(u8 *arg0) {
+    s32 _gldialog_entrypoint_5(s16);
+    s32 heap_free(s32);
+    s16 temp_a0;
+    s32 var_s2;
+    s32 var_v0;
+    s32 var_v1;
+    u8 *var_s0;
+    u8 *var_s1;
+
+    var_s0 = arg0;
+    var_s1 = arg0;
+    var_s2 = 0;
+    do {
+        var_v0 = 0;
+        var_v1 = 0;
+        if ((s32) (*(u8 *)((s8 *)(var_s0) + (0x114))) > 0) {
+            do {
+                var_v0 += 1;
+                (*(s32 *)((s8 *)(((*(s32 *)((s8 *)(var_s1) + (0x104))) + var_v1)) + (4))) = 0;
+                var_v1 += 8;
+            } while (var_v0 < (s32) (*(u8 *)((s8 *)(var_s0) + (0x114))));
+        }
+        (*(u8 *)((s8 *)(var_s0) + (0x114))) = 0U;
+        heap_free((*(s32 *)((s8 *)(var_s1) + (0x104))));
+        var_s2 += 1;
+        var_s0 += 1;
+        var_s1 += 4;
+        (*(s32 *)((s8 *)(var_s1) + (0x100))) = 0;
+    } while (var_s2 != 2);
+    temp_a0 = (*(s16 *)((s8 *)(arg0) + (0x162)));
+    if (temp_a0 != -1) {
+        _gldialog_entrypoint_5(temp_a0);
+    }
+    (*(s32 *)((s8 *)(arg0) + (0x100))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80800164_gcdialogexec.s")
 
