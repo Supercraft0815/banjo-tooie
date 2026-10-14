@@ -1,6 +1,24 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/wibble/func_80800000_vpwibble.s")
+s32 *func_80800000_vpwibble(s32 arg0) {
+    struct WibbleEntry {
+        s32 words[3];
+        s16 unkC;
+        s16 id;
+    };
+    extern struct WibbleEntry D_80800700_vpwibble[];
+    struct WibbleEntry *temp_v1;
+    s32 i;
+
+    arg0 -= arg0 % 100;
+    for (i = 0; i < 6; i++) {
+        temp_v1 = &D_80800700_vpwibble[i];
+        if (arg0 == temp_v1->id) {
+            return temp_v1->words;
+        }
+    }
+    return D_80800700_vpwibble[0].words;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/wibble/func_808000B0_vpwibble.s")
 
