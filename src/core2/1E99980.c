@@ -170,7 +170,8 @@ void func_800C0710(void) {
     g->index--;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C075C.s")
+void func_800C075C(void) {
+    s32 defrag(s32); s32 func_800C7150(s32); extern s32 D_801288B8; s32 *var_s0; s32 temp_a0; s32 temp_a0_2; var_s0 = &D_801288B8 - 2; do { temp_a0 = *(s32 *)((s8 *)var_s0 + 0x120); if (temp_a0 != 0) { *(s32 *)((s8 *)var_s0 + 0x120) = func_800C7150(temp_a0); } if (*(s32 *)((s8 *)&D_801288B0 + 0x12C) != 0) { *(s32 *)((s8 *)&D_801288B0 + 0x12C) = func_800C7150(*(s32 *)((s8 *)&D_801288B0 + 0x12C)); } temp_a0_2 = *(s32 *)((s8 *)var_s0 + 0x104); if (temp_a0_2 != 0) { *(s32 *)((s8 *)var_s0 + 0x104) = defrag(temp_a0_2); } var_s0++; } while (var_s0 != &D_801288B8); }
 
 u32 func_800C07F4(void) {
     extern s32 D_80128A0C;
