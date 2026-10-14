@@ -121,7 +121,20 @@ s32 bsbansack_entrypoint_0(s32 arg0) {
 
 void func_80800508_bsbansack(PlayerState *arg0) { if (*(u8 *)((u8 *)arg0 + 0x15E) == 0) func_808002D4_bsbansack(); func_80800238_bsbansack(arg0); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800540_bsbansack.s")
+/* extern */
+
+void func_80800540_bsbansack(PlayerState *arg0) {
+    void bainput_enable(PlayerState *, s32, s32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void func_8009DE38(PlayerState *, s32, f32);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+    (*(s8 *)((s8 *)(arg0) + (0x15E))) = 0;
+    baanim_playForDuration_onceSmooth(arg0, 0x143, 2.0f);
+    func_8009FFD8(arg0, 1, 1, 3, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_8009DE38(arg0, 0x583, 1.0f);
+    bainput_enable(arg0, 2, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_808005BC_bsbansack.s")
 
