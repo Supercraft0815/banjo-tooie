@@ -1,5 +1,7 @@
 #include "common.h"
 
+void bs_setState();
+
 /* extern */
 
 s32 func_80800000_bsbtrot(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
@@ -205,7 +207,33 @@ void bsbtrot_entrypoint_16(s32 arg0) {
     func_800931AC((void *)arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_17.s")
+/* extern */
+
+void bsbtrot_entrypoint_17(PlayerState *arg0) {
+    s32 _badata_entrypoint_30(PlayerState *, s32);
+    f32 baanim_getTimer(PlayerState *);
+    int baanim_isStopped(PlayerState *);
+    s32 bastick_getZone(PlayerState *);
+    int func_8008DD04(PlayerState *);
+    s32 func_8008E124(PlayerState *);
+    s32 func_8009CC68(PlayerState *);
+    s32 var_s1;
+
+    var_s1 = 0;
+    if (baanim_isStopped(arg0) != 0) {
+        var_s1 = 1;
+    }
+    if ((baanim_getTimer(arg0) > 0.3f) && (bastick_getZone(arg0) != 0)) {
+        var_s1 = 2;
+    }
+    if (func_8008DD04(arg0) != 0) {
+        var_s1 = 0x2F;
+    }
+    if (func_8008E124(arg0) != 0) {
+        var_s1 = _badata_entrypoint_30(arg0, func_8009CC68(arg0));
+    }
+    bs_setState(arg0, var_s1);
+}
 
 void bsbtrot_entrypoint_18(s32 arg0) {
     s32 func_8009CA70(void *, s32, s32);
