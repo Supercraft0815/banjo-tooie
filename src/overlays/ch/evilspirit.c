@@ -141,7 +141,19 @@ s32 func_80801EC4_chevilspirit(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801F1C_chevilspirit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80802024_chevilspirit.s")
+/* extern */
+
+void func_80802024_chevilspirit(Actor *arg0, s32 arg1, s32 arg2) {
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    u32 func_800C07F4(void);
+    void *func_80100094(Actor *, u32);
+    u8 *sp24;
+
+    sp24 = func_80100094(arg0, 0);
+    if ((func_800C07F4() == 0) && (arg1 == 0x15C5) && (arg2 == 1)) {
+        _susubgame_entrypoint_6(arg0, sp24 + 0x40, 5, 0x20, 0);
+    }
+}
 
 /* extern */
 
