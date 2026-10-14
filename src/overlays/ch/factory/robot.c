@@ -104,7 +104,31 @@ s32 func_80801C50_chfactoryrobot(s32 arg0) {
     return 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80801C7C_chfactoryrobot.s")
+/* extern */
+
+void func_80801C7C_chfactoryrobot(Actor *arg0) {
+    typedef struct {
+        u8 pad[0x70];
+        u32 index : 7;
+        u32 trailing : 25;
+    } RobotFlags;
+    typedef struct {
+        s16 unk0;
+        s16 unk2;
+        s16 unk4;
+        s16 unk6;
+    } RobotData;
+    void func_800CD1E0(s32, u8 *, f32);
+    f32 func_800DC178(f32, f32);
+    void *func_80100094(Actor *, u32);
+    RobotData *sp1C;
+    RobotData *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0);
+    sp1C = temp_v0;
+    func_800CD1E0(((RobotFlags *)arg0)->index - 1, (u8 *)arg0->actorData, (f32)temp_v0->unk2 + 60.0f);
+    sp1C->unk6 = (s16)(s32)func_800DC178(100.0f, 200.0f);
+}
 
 /* extern */
 
