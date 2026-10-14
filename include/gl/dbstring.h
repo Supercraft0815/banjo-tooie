@@ -5,6 +5,6 @@
 
 u32 *_gldbstring_entrypoint_0(u32* TextAddress, u32 a1);
 u32 *_gldbstring_entrypoint_1(u32* TextAddress, s16 index);
-void _gldbstring_entrypoint_2(s16 a0); // this may return something
+void _gldbstring_entrypoint_2(s32 a0); // this may return something
 
 #endif

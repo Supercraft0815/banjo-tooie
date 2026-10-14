@@ -204,7 +204,35 @@ s8 func_80800E38_chquiz(s32 arg0, s32 arg1) {
     return (*(s8 *)((s8 *)((arg0 + arg1)) + (0x60)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800E44_chquiz.s")
+/* extern */
+
+s32 func_80800E44_chquiz(u8 *arg0) {
+    s32 pad;
+    u32 *_gldbstring_entrypoint_0(u32 *, u32);
+    void _gldbstring_entrypoint_2(s32);
+    s32 sp1C;
+    s32 temp_a1;
+    s32 var_v1;
+    int var_v1_2;
+    u8 *var_a0;
+    u8 *temp_v0;
+    u8 *var_v0;
+
+    temp_v0 = (u8 *)_gldbstring_entrypoint_0(NULL, (*(s32 *)((s8 *)(arg0) + (0xCC))));
+    for (var_v1_2 = 3; temp_v0[var_v1_2] != 0x8D; ) {
+        var_v1_2 += temp_v0[var_v1_2 + 1];
+        var_v1_2 += 2;
+    }
+    temp_a1 = (*(u8 *)((s8 *)((var_v1_2 + temp_v0)) + (2))) - 0x31;
+    sp1C = temp_a1;
+    _gldbstring_entrypoint_2((*(s32 *)((s8 *)(arg0) + (0xCC))));
+    for (var_v1 = 0, var_v0 = arg0; var_v1 != 3; var_v1++, var_v0++) {
+        if (sp1C == (*(s8 *)((s8 *)(var_v0) + (0x60)))) {
+            return var_v1;
+        }
+    }
+    return var_v1;
+}
 
 /* extern */
 
