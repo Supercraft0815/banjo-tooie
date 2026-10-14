@@ -21,7 +21,21 @@ void bsdronelook_entrypoint_0(struct player_state_s *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/look/bsdronelook_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/look/bsdronelook_entrypoint_2.s")
+/* extern */
+
+void bsdronelook_entrypoint_2(f32 arg0) {
+    s32 func_800F0E00(f32, f32);
+    s32 func_800F13F0(f32, f32);
+    if (arg0 > 180.0f) {
+        func_800F0E00(292.0f, arg0);
+        return;
+    }
+    if (arg0 < -65.0f) {
+        func_800F0E00(-65.0f, arg0);
+        return;
+    }
+    func_800F13F0(70.0f, arg0);
+}
 
 /* extern */
 
