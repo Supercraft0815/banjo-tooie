@@ -59,7 +59,23 @@ loop_7:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_8080016C_chtimetable.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_8080025C_chtimetable.s")
+void func_8080025C_chtimetable(s32 arg0, s32 arg1, s32 arg2) {
+    void _glcutDll_entrypoint_0(void);
+    void _glcutDll_entrypoint_10(u32);
+    void _glcutDll_entrypoint_16(void);
+    void _glcutDll_entrypoint_22(u32);
+    void _glcutDll_entrypoint_7(u32);
+    void func_800DA544(GameFlag);
+    s32 func_808000B0_chtimetable(s32);
+    extern s32 D_8080073C_chtimetable;
+    func_800DA544(*(s32 *)((s8 *)&D_8080073C_chtimetable + func_808000B0_chtimetable(arg2) * 0x14));
+    func_800DA544(0x6B7);
+    _glcutDll_entrypoint_0();
+    _glcutDll_entrypoint_7(arg1);
+    _glcutDll_entrypoint_10(arg2);
+    _glcutDll_entrypoint_22(0x72);
+    _glcutDll_entrypoint_16();
+}
 
 s32 func_808002D4_chtimetable() {
     s32 func_808000B0_chtimetable();
