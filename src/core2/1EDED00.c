@@ -138,7 +138,28 @@ void func_80105C20(void) {
     D_80136ED0 = freelist_new(0x8, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105C48.s")
+void func_80105C48(void) {
+    s32 freelist_capacity(s32);
+    s32 freelist_free(s32);
+    s32 freelist_is_element_alive(s32, s32);
+    void func_801060E4(s16);
+    extern s32 D_80136ED0;
+    s32 var_s0;
+    s32 temp_v0;
+
+    temp_v0 = freelist_capacity(D_80136ED0);
+    var_s0 = 1;
+    if (temp_v0 >= 2) {
+        do {
+            if (freelist_is_element_alive(D_80136ED0, var_s0) != 0) {
+                func_801060E4(var_s0);
+            }
+            var_s0 += 1;
+        } while (var_s0 < temp_v0);
+    }
+    freelist_free(D_80136ED0);
+    D_80136ED0 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105CD0.s")
 
