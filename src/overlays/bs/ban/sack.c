@@ -100,7 +100,7 @@ void func_8080045C_bsbansack(PlayerState *arg0) {
 /* extern */
 
 void func_808004B0_bsbansack(PlayerState *arg0) {
-    s32 bs_setState(s32, s32);
+    void bs_setState(PlayerState *, int);
     s32 bastick_getZone();
     s32 func_80800084_bsbansack(PlayerState *, s32);
     s32 var_a1;
@@ -294,8 +294,8 @@ void func_8080160C_bsbansack(s32 arg0)
 /* extern */
 
 void func_80801634_bsbansack(s32 arg0) {
+    void bs_setState(PlayerState *, int);
     s32 _bsrest_entrypoint_20();
-    s32 bs_setState(s32, s32);
     s32 sp1C;
 
     sp1C = 0;
@@ -440,7 +440,28 @@ void func_80801CD4_bsbansack(PlayerState *arg0) {
     func_8009FFD8(arg0, 1, 1, 1, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80801D20_bsbansack.s")
+/* extern */
+
+void func_80801D20_bsbansack(PlayerState *arg0) {
+    s32 bastick_getZone();
+    void bs_setState(PlayerState *, int);
+    s32 func_8008E260(PlayerState *);
+    s32 player_inWater(PlayerState *);
+    s32 var_s0;
+
+    var_s0 = 0;
+    if (bastick_getZone(arg0) > 0) {
+        var_s0 = 0x166;
+    }
+    if (player_inWater(arg0) != 0) {
+        var_s0 = 0x167;
+    }
+    var_s0 = func_80800084_bsbansack(arg0, var_s0);
+    if (func_8008E260(arg0) != 0) {
+        var_s0 = 0x3D;
+    }
+    bs_setState(arg0, var_s0);
+}
 
 s32 bsbansack_entrypoint_9(s32 arg0) {
     extern s32 D_80801EA0_bsbansack[];
