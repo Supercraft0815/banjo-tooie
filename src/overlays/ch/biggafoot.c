@@ -35,7 +35,22 @@ void func_808008D4_chbiggafoot(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_808008FC_chbiggafoot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_80800980_chbiggafoot.s")
+/* extern */
+
+void func_80800980_chbiggafoot(void *arg0) {
+    s32 func_800F54E4();
+    s32 func_800F5A00(s32, s32 *);
+    s32 func_800F6438(s32);
+    s32 func_80102BF8(void *, s32, s32, s32);
+    f32 func_80102D78(void *, s32 *);
+    s32 sp1C[3];
+
+    if (func_800F6438(func_800F54E4()) != 0) {
+        func_800F5A00(func_800F54E4(), sp1C);
+        (*(f32 *)((s8 *)(arg0) + (0x54))) = func_80102D78(arg0, sp1C);
+        func_80102BF8(arg0, 0x3E19999A, 0x40A00000, 0x42F00000);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_808009EC_chbiggafoot.s")
 
