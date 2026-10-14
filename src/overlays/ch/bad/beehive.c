@@ -37,7 +37,22 @@ f32 func_8080000C_chbadbeehive(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/beehive/func_808000EC_chbadbeehive.s")
+/* extern */
+
+void func_808000EC_chbadbeehive(Actor *arg0) {
+    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    f32 func_8080000C_chbadbeehive(void);
+    u8 *sp24;
+
+    sp24 = func_80100094(arg0, 0U);
+    _subaddierouteDll_entrypoint_3(arg0, sp24, arg0->position);
+    ((f32 *)arg0->actorData)[3] = 0.0f;
+    ((f32 *)arg0->actorData)[5] = 0.0f;
+    func_800EE7F8((f32 *)(sp24 + 0x10), arg0->position);
+    ((f32 *)arg0->actorData)[6] = func_8080000C_chbadbeehive();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/beehive/func_80800158_chbadbeehive.s")
 
