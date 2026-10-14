@@ -106,7 +106,30 @@ void func_80801870_chpotogoldgame(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     _glid_entrypoint_0(func_800BEA88(0), ((arg0 * 5) - arg2) + 5, &_chpotogoldgame_entrypoint_1, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/chpotogoldgame_entrypoint_1.s")
+/* extern */
+
+void chpotogoldgame_entrypoint_1(u8 arg0, s16 *arg1, Vtx *arg2, s32 arg3, s32 arg4) { s32 func_80801998_chpotogoldgame(s16 *); s16 *var_s1; Vtx *temp_s6; Vtx *var_s0; s32 flag; var_s0 = arg2; var_s1 = arg1;
+    flag = arg4 & 0x10;
+    arg4 &= 0xF;
+    temp_s6 = arg2 + arg3;
+    if (arg2 < temp_s6) {
+        do {
+            if (func_80801998_chpotogoldgame(var_s1) == arg4) {
+                if (flag) {
+                    var_s0->v.cn[0] = 0x64;
+                    var_s0->v.cn[1] = 0x64;
+                    var_s0->v.cn[2] = 0x64;
+                } else {
+                    var_s0->v.cn[0] = 0xFF;
+                    var_s0->v.cn[1] = 0xFF;
+                    var_s0->v.cn[2] = 0xFF;
+                }
+            }
+            var_s0++;
+            var_s1 += 8;
+        } while (var_s0 < temp_s6);
+    }
+}
 
 s32 func_80801998_chpotogoldgame(s16 *arg0) {
     void func_800EE88C(f32 dst[3], s16 src[3]);
