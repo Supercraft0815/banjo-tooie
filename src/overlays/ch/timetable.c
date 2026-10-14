@@ -23,7 +23,7 @@ void func_80800058_chtimetable(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_8080025C_chtimetable.s")
 
-s32 func_808002D4_chtimetable(void) {
+s32 func_808002D4_chtimetable() {
     s32 func_808000B0_chtimetable();
     extern s32 D_80800738_chtimetable;
     return *((s32 *)((s8 *)&D_80800738_chtimetable + (func_808000B0_chtimetable() * 20)));
@@ -45,7 +45,33 @@ s32 func_80800308_chtimetable(void)
   goto loop_1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_80800364_chtimetable.s")
+/* extern */
+
+s32 func_80800364_chtimetable(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+    s32 func_80800308_chtimetable();
+    s32 sp24;
+    s32 map;
+    arg2 |= 6;
+    if (arg1 == 0) {
+        if (func_800DA298(0x95) != 0) {
+            sp24 = func_80800308_chtimetable();
+            map = func_800EA05C();
+            if (sp24 == map) {
+                arg1 = 0xCF4;
+            } else {
+                arg1 = func_808002D4_chtimetable(sp24);
+            }
+        } else {
+            arg1 = 0xCF3;
+        }
+    }
+    _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, arg0->position, 0x42);
+    arg0->unk74_30 = 1;
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_80800404_chtimetable.s")
 
