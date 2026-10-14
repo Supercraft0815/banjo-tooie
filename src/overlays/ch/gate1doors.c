@@ -1,6 +1,32 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gate1doors/func_80800000_chgate1doors.s")
+/* extern */
+
+s32 func_80800000_chgate1doors(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_800DA544(s32);
+    void func_80103110(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_8010A570(Actor *);
+    Actor *sp1C;
+    s32 result;
+
+    if (arg1 == 0x40) {
+        sp1C = func_80106790(arg0->unk3C);
+        if ((s32)arg0->unk70_10 < 3) {
+            func_80103110(arg0, 1);
+        }
+        if ((s32)sp1C->unk70_10 < 3) {
+            func_80103110(sp1C, 1);
+        }
+        func_8010A570(arg0);
+        func_8010A570(sp1C);
+        func_800DA544(0xB1);
+        result = 1;
+    } else {
+        return 0;
+    }
+    return result;
+}
 
 /* extern */
 
