@@ -38,7 +38,29 @@ void func_80800B0C_bssub()
     _baspin_entrypoint_1();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800B2C_bssub.s")
+/* extern */
+
+struct player_state_s;
+
+void func_80800B2C_bssub(s32 arg0) {
+    void _bamovethrust_entrypoint_3(struct player_state_s *, f32);
+    void _bamovethrust_entrypoint_4(struct player_state_s *, f32);
+    void _baspin_entrypoint_2(struct player_state_s *, s32, f32, s32, s32);
+    void _basub_entrypoint_11(s32, f32);
+    void _basub_entrypoint_13(s32, f32);
+    void _batimer_set(struct player_state_s *, s32, f32);
+    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    void func_800FC660(u32);
+    baanim_playForDuration_loopSmooth(arg0, 0x12E, 6.0f);
+    func_80800000_bssub(arg0);
+    _bamovethrust_entrypoint_3(arg0, 0.0f);
+    _bamovethrust_entrypoint_4(arg0, 0.9f);
+    _basub_entrypoint_11(arg0, 0.6f);
+    _basub_entrypoint_13(arg0, 1.0f);
+    _baspin_entrypoint_2(arg0, 0x130, 1.8f, 3, 1);
+    _batimer_set(arg0, 9, 1.8f);
+    func_800FC660(0x19);
+}
 
 /* extern */
 
@@ -161,9 +183,9 @@ void func_8080121C_bssub(s32 arg0)
 /* extern */
 
 void func_80801244_bssub(s32 arg0) {
-    s32 _baspin_entrypoint_2(s32, s32, s32, s32, s32);
+    void _baspin_entrypoint_2(struct player_state_s *, s32, f32, s32, s32);
     func_808009B0_bssub();
-    _baspin_entrypoint_2(arg0, 0x130, 0x3FE66666, 3, 1);
+    _baspin_entrypoint_2(arg0, 0x130, 1.8f, 3, 1);
 }
 
 /* extern */
@@ -196,9 +218,9 @@ void func_808012F0_bssub(s32 arg0)
 /* extern */
 
 void func_80801318_bssub(s32 arg0) {
-    s32 _baspin_entrypoint_2(s32, s32, s32, s32, s32);
+    void _baspin_entrypoint_2(struct player_state_s *, s32, f32, s32, s32);
     func_808009B0_bssub();
-    _baspin_entrypoint_2(arg0, 0x130, 0x3FE66666, 3, 1);
+    _baspin_entrypoint_2(arg0, 0x130, 1.8f, 3, 1);
 }
 
 /* extern */
