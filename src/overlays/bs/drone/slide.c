@@ -17,7 +17,35 @@ void func_80800110_bsdroneslide(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/slide/bsdroneslide_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/slide/func_808001F4_bsdroneslide.s")
+/* extern */
+
+typedef struct player_state_s PlayerState;
+
+void func_808001F4_bsdroneslide(PlayerState *arg0, f32 arg1) {
+    s32 pad;
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    f32 bastick_distance(PlayerState *);
+    f32 bastick_getAngleRelativeToBanjo(PlayerState *);
+    f32 func_8009BB18(void *);
+    void func_800A4DA4(PlayerState *, s32);
+    f32 func_800D8FF8(void);
+    f32 func_800F0DC0(f32, f32);
+    f32 func_800F1DCC(f32, f32);
+    f32 sp28;
+    f32 sp24;
+    s32 pad2;
+
+    if (bastick_distance(arg0) != 0.0f) {
+        arg1 += func_800F0DC0(func_800F1DCC(bastick_getAngleRelativeToBanjo(arg0), arg1), 60.0f);
+    }
+    sp28 = func_8009BB18(arg0);
+    sp24 = sp28;
+    sp28 = func_800F1DCC(arg1, sp28);
+    sp28 *= func_800D8FF8();
+    sp24 += sp28;
+    baphysics_set_target_yaw(arg0, sp24);
+    func_800A4DA4(arg0, 8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/slide/bsdroneslide_entrypoint_1.s")
 
