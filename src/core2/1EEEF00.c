@@ -128,7 +128,23 @@ void func_80115CA4(void *arg0, f32 arg1) {
 
 void func_80115D88(PlayerState *arg0) { void func_801107F0(void *, f32 *); void func_800EFB24(void *, void *, void *); f32 sp34[3]; f32 sp28[3]; f32 sp1C[3]; func_801107F0(arg0, sp34); func_801158CC(arg0, sp1C); func_800EFB24(sp28, sp34, sp1C); func_800F1884(sp28, (u8 *)arg0->state_timer + 0x24); (*(f32 *)((s8 *)(arg0->state_timer) + 0x28)) = 0.0f; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEF00/func_80115DEC.s")
+void func_80115DEC(PlayerState *arg0, f32 arg1, f32 arg2) {
+    f32 func_800F1DCC(f32, f32);
+    f32 mlAbsF(f32);
+    extern f32 D_80126614;
+    void *var_v0;
+
+    var_v0 = (*(void **)((s8 *)(arg0) + (0x3C)));
+    if ((*(u8 *)((s8 *)(var_v0) + (0x1D))) == 0) {
+        func_80115D88(arg0);
+        var_v0 = (*(void **)((s8 *)(arg0) + (0x3C)));
+    }
+    (*(f32 *)((s8 *)(var_v0) + (0x20))) = arg1;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x2C))) = 0.0f;
+    var_v0 = (*(void **)((s8 *)(arg0) + (0x3C)));
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x30))) = (f32) ((mlAbsF(func_800F1DCC((*(f32 *)((s8 *)(var_v0) + (0x20))), (*(f32 *)((s8 *)(var_v0) + (0x24))))) * D_80126614) / arg2);
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x1D))) = 1;
+}
 
 f32 func_80115E88(void *arg0) {
     return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 60) + 24);
