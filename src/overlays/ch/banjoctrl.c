@@ -68,7 +68,24 @@ void func_80800684_chbanjoctrl(void *arg0, f32 arg1, s32 arg2, s32 arg3) {
     (*(f32 *)((s8 *)(arg0) + (0x28))) = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_808006A8_chbanjoctrl.s")
+/* extern */
+
+int func_808006A8_chbanjoctrl(void *arg0) {
+    s32 func_800F54E4();
+    s32 func_800F64A4(s32, s32);
+    s32 func_800F6DA0(s32);
+    s32 func_800F6E40(s32);
+    struct BanjoCtrl {
+        u8 pad[0x50];
+        s32 (*callback)(s32);
+    };
+    s32 player;
+
+    player = func_800F54E4();
+    return !func_800F6DA0(player) && !func_800F6E40(player)
+        && !func_800F64A4(player, 0x8000)
+        && ((struct BanjoCtrl *)arg0)->callback(player);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800728_chbanjoctrl.s")
 
