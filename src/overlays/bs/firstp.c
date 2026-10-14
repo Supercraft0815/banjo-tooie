@@ -2057,12 +2057,12 @@ void func_808080B4_bsfirstp(s32 arg0, s16 *arg1, u8 arg2) {
 void func_80808100_bsfirstp(s32 arg0, s32 arg1) {
     s32 func_80808148_bsfirstp(s32, s32 *);
     s32 func_808084AC_bsfirstp(s32 *, s32);
-    s32 func_8080853C_bsfirstp(s32 *, s32);
+    void func_8080853C_bsfirstp(f32 *, f32);
     s32 func_808085A8_bsfirstp(s32 *, s32);
-    s32 sp1C[3];
+    f32 sp1C[3];
 
     func_80808148_bsfirstp(arg0, sp1C);
-    func_8080853C_bsfirstp(sp1C, 0x41A00000);
+    func_8080853C_bsfirstp(sp1C, 20.0f);
     func_808084AC_bsfirstp(sp1C, 0x3F000000);
     func_808085A8_bsfirstp(sp1C, arg1);
 }
@@ -2071,7 +2071,16 @@ void func_80808100_bsfirstp(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808084AC_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080853C_bsfirstp.s")
+void func_8080853C_bsfirstp(f32 *arg0, f32 arg1) {
+    f32 scale = 1.0f - arg1 * 0.00390625f;
+    s32 i;
+    f32 *p;
+
+    for (i = 0, p = arg0; i != 3; i++) {
+        *p = *p * scale + arg1;
+        p++;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808085A8_bsfirstp.s")
 
