@@ -545,7 +545,9 @@ void func_80802130_sucoaster(Actor *arg0, void *arg1, s16 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_80802260_sucoaster.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_8080230C_sucoaster.s")
+/* extern */
+
+f32 func_8080230C_sucoaster(Actor *arg0, void *arg1) { f32 func_800136E4(f32); f32 func_800F1DCC(f32, f32); f32 func_80102D78(Actor *, void *); void **p = &arg1; f32 sp18; f32 var_f0; (void)p; sp18 = func_80102D78(arg0, arg0->actorData); var_f0 = func_800F1DCC(arg0->rotation[1], sp18) > 0.0f ? 110.0f : -110.0f; return func_800136E4(var_f0 + sp18); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_80802384_sucoaster.s")
 
