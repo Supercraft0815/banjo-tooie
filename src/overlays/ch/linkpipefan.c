@@ -1,6 +1,22 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/linkpipefan/func_80800000_chlinkpipefan.s")
+/* extern */
+
+void func_80800000_chlinkpipefan(Actor *arg0) {
+    s32 func_800DA298(GameFlag);
+    void func_800FFA88(Unk80132ED0 *);
+    s32 value;
+
+    value = arg0->unk74_7;
+    if (value < 0x33 || value >= 0x3A) {
+        func_800FFA88(arg0->unk0);
+        value = arg0->unk74_7;
+    }
+    if (func_800DA298(value + 0x15C) != 0) {
+        func_800FFA88(arg0->unk0);
+    }
+    *(f32 *)&arg0->actorData[7] = 1.5f;
+}
 
 void func_80800080_chlinkpipefan(u8 *arg0) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
