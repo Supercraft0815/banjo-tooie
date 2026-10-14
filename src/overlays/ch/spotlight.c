@@ -30,7 +30,23 @@ void func_80800518_chspotlight(u8 *arg0, s32 arg1) {
     func_800DE448(arg0 + 4, &sp2C, (*(f32 *)((s8 *)(arg0) + (0x38))), NULL, func_8010347C((*(s32 *)((s8 *)(arg0) + (0)))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_80800580_chspotlight.s")
+/* extern */
+
+void func_80800580_chspotlight(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 *sp1C;
+    Actor *sp18;
+    f32 temp_f0;
+
+    sp1C = func_80100094(arg0, 0);
+    sp18 = func_80106790(arg0->unk3C);
+    temp_f0 = func_800D8FF8();
+    sp1C[10] += sp1C[11] * temp_f0;
+    sp1C[12] += sp1C[13] * temp_f0;
+    sp1C[14] = ((f32 *)sp18->actorData)[4] * 1500.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_80800600_chspotlight.s")
 
