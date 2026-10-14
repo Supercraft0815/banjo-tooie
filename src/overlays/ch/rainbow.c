@@ -39,7 +39,21 @@ void func_808005E0_chrainbow(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_80800D88_chrainbow.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_80800EB4_chrainbow.s")
+void func_80800EB4_chrainbow(Actor *arg0, void *arg1) {
+    void func_800B99CC(s32, s32, s32);
+    f32 func_800F1214(f32, f32, f32);
+    void func_80101870(Actor *, void *);
+    struct RainbowValues { s32 values[3]; } sp24;
+    extern struct RainbowValues D_80801004_chrainbow;
+    u32 temp_t6;
+
+    func_80101870(arg0, arg1);
+    temp_t6 = arg0->unk70_10;
+    if ((temp_t6 != 1) && (temp_t6 != 0xD)) {
+        sp24 = D_80801004_chrainbow;
+        func_800B99CC((s32)arg1, (s32)func_800F1214(*(f32 *)&arg0->actorData[7], 0.0f, 100.0f), (s32)&sp24);
+    }
+}
 
 OSThread *chrainbow_entrypoint_1(void)
 {
