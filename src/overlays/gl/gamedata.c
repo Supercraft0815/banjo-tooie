@@ -43,7 +43,25 @@ void func_80800098_glgamedata(u8 *arg0, s32 *arg1, u8 arg2) {
     *arg1 = *arg1 + size + 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamedata/glgamedata_entrypoint_1.s")
+/* extern */
+
+void glgamedata_entrypoint_1(void *arg0) {
+    s32 _glcrc_entrypoint_0(s32 *, s32);
+    void glgamedata_entrypoint_6(u8 *);
+    s32 var_s0;
+    s32 sp28;
+
+    sp28 = 0;
+    glgamedata_entrypoint_6(arg0);
+    sp28 = func_80800084_glgamedata(arg0);
+    var_s0 = 1;
+    do {
+        func_80800098_glgamedata(arg0, &sp28, var_s0);
+        var_s0 += 1;
+    } while (var_s0 != 7);
+    func_80800098_glgamedata(arg0, &sp28, 0);
+    _glcrc_entrypoint_0(arg0, 0x1C0);
+}
 
 s32 func_808001E4_glgamedata(s32 arg0) {
     return 4;
