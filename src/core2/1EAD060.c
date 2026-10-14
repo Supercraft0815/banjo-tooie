@@ -189,7 +189,7 @@ int func_800D3D58(void) { extern s32 D_8012B3F0; switch (*(u8 *)((s8 *)(&D_8012B
 
 /* extern */
 
-void func_800D3DA4(void) {
-    s32 func_800F54F0();
-    func_800F54F0();
+s32 func_800D3DA4(s32 arg0) {
+    s32 func_800F54F0(s32);
+    return func_800F54F0(arg0);
 }
