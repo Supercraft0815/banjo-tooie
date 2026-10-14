@@ -35,7 +35,26 @@ block_4:
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/skeleton/dbskeleton_entrypoint_3.s")
+s32 dbskeleton_entrypoint_3(u8 *arg0, s32 arg1) {
+    s32 size;
+    u8 *entry;
+    u32 start;
+    u8 *base;
+
+    base = arg0 + 8;
+    entry = base;
+    size = *(s16 *)(arg0 + 4) * 0x10;
+    start = (u32)entry;
+    if (start < (u32)(size + arg0 + 8)) {
+        do {
+            if (arg1 == *(s16 *)(entry + 0xC)) {
+                return 1;
+            }
+            entry += 0x10;
+        } while ((u32)entry < (u32)(size + base));
+    }
+    return 0;
+}
 
 s16 dbskeleton_entrypoint_4(s16 arg0[][8], s32 arg1) {
     return arg0[arg1][10];
