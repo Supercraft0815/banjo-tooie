@@ -153,6 +153,16 @@ void func_80102D78(s32 arg0) {
     func_800F1DF4(arg0 + 0x4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102D98.s")
+/* extern */
+
+s32 func_80102D98(Actor *arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4, f32 arg5) {
+    s32 func_8001210C(s32);
+    int func_800DC298(f32);
+    if ((func_8001210C(((u32)(u16)arg0->unk0->unk10 >> 1) & arg1) == arg2) && (func_800DC298(arg3) != 0)) {
+        func_8010297C(arg0, arg0->rotation[1], arg4, arg5);
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102E08.s")
