@@ -156,7 +156,21 @@ void func_800173B0(u8 index, s16 volume) {
     slots[index].index_cpy = slots[index].track_id;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80017404.s")
+void func_80017404(u8 arg0, s16 arg1) {
+    int func_80017778(s32);
+    void func_80025ED0(u8 *, s16);
+    extern s32 D_80079FA0;
+
+    ((MusicSlotView *)&D_80079FA0)[arg0].volume = arg1;
+    func_80025ED0(((MusicSlotView *)&D_80079FA0)[arg0].cseqp, arg1);
+    if (((MusicSlotView *)&D_80079FA0)[arg0].unk3 && arg1) {
+        func_800173B0(arg0, arg1);
+    } else if (!((MusicSlotView *)&D_80079FA0)[arg0].unk3 && (arg1 == 0)) {
+        if (!func_80017778(arg0)) {
+            func_80017330(arg0);
+        }
+    }
+}
 
 void func_800174C0(volatile u8 arg0, s32 arg1) {
     int func_80017778(s32);
