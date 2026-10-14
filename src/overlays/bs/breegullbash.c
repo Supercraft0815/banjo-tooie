@@ -2,7 +2,22 @@
 
 struct player_state_s;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/breegullbash/func_80800000_bsbreegullbash.s")
+/* extern */
+
+void func_80800000_bsbreegullbash(struct player_state_s *arg0, f32 arg1, f32 arg2, f32 arg3) {
+    void _babackpack_entrypoint_5(struct player_state_s *, f32 *, s32);
+    void _badust_entrypoint_2(struct player_state_s *, f32 *, f32 *, f32, f32, f32);
+    void func_800EFCD8(f32 *, f32, f32);
+    f32 sp2C[3];
+    f32 sp20[3];
+
+    arg2 *= 0.51f;
+    _babackpack_entrypoint_5(arg0, sp20, 2);
+    sp20[1] -= 20.0f;
+    func_800EFCD8(sp2C, arg1, arg2);
+    sp2C[1] = arg3;
+    _badust_entrypoint_2(arg0, sp20, sp2C, 0.1f, 0.8f, 0.7f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/breegullbash/func_808000A4_bsbreegullbash.s")
 
