@@ -22,7 +22,34 @@ OSThread *changlerboss_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80800F14_changlerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80800FEC_changlerboss.s")
+/* extern */
+
+void func_80800FEC_changlerboss(Actor *arg0, s32 arg1) {
+    void _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80101870(Actor *, void *);
+    void func_801018A4(Actor *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    struct AnglerBossData {
+        u8 pad0[0x9C];
+        Unk80132ED0 *unk9C;
+        Unk80132ED0 *unkA0;
+    } *sp1C, *temp_v0;
+    Unk80132ED0 *temp_a0;
+    Actor *child;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    sp1C = temp_v0;
+    if (sp1C->unkA0 != NULL) {
+        child = func_80106790(sp1C->unkA0);
+        func_80101870(child, arg1);
+    }
+    func_801018A4(arg0, arg1);
+    temp_a0 = sp1C->unk9C;
+    if (temp_a0 != NULL) {
+        _subaddieskeleton_entrypoint_2(arg0->unk0, 0xB, func_80106790(temp_a0)->position);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80801070_changlerboss.s")
 
