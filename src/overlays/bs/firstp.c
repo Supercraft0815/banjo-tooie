@@ -1823,7 +1823,7 @@ void func_80806170_bsfirstp(void *arg0, f32 arg1) {
 /* extern */
 
 void func_80806774_bsfirstp(void *arg0) {
-    s32 func_8009B7C0();
+    void func_8009B7C0();
     struct {
         s32 pad;
         void *data;
@@ -2081,7 +2081,45 @@ s32 bsfirstp_entrypoint_33(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80807A70_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80807AF8_bsfirstp.s")
+/* extern */
+
+void func_80807AF8_bsfirstp(struct player_state_s *arg0) {
+    s32 _gcstatusDll_entrypoint_13();
+    s32 _gcstatusDll_entrypoint_3(s32, s32);
+    s32 bainput_enable(void *, s32, s32);
+    void func_8009B7C0(struct player_state_s *);
+    void func_8009FFD8(struct player_state_s *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+    void func_800A34A0(void *, s32);
+    s32 func_800D3948(void);
+    s32 func_800EA068(s32);
+    struct {
+        s32 unk0;
+        s32 unk4;
+        s32 unk8;
+        u8 padC[0x58];
+        s32 unk64;
+        s32 unk68;
+    } *temp_s1;
+    s32 sp28;
+
+    temp_s1 = *(void **)((s8 *)arg0 + 0x188);
+    sp28 = 1;
+    if (func_800D3948() != 0) {
+        if (func_800EA068(0x4000) != 0) {
+            sp28 = _gcstatusDll_entrypoint_13(*(s32 *)((s8 *)arg0 + 0x184));
+        } else {
+            _gcstatusDll_entrypoint_3(*(s32 *)((s8 *)arg0 + 0x184), 1);
+        }
+    }
+    func_800A34A0(arg0, sp28);
+    temp_s1->unk0 = sp28;
+    temp_s1->unk64 = -1;
+    temp_s1->unk68 = -1;
+    temp_s1->unk8 = -1;
+    func_8009B7C0(arg0);
+    func_8009FFD8(arg0, 1, 0, 0, 0x10);
+    bainput_enable(arg0, 3, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80807BB8_bsfirstp.s")
 
