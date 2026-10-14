@@ -120,7 +120,27 @@ void func_800A1968(PlayerState *arg0, f32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7B250/func_800A1F0C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7B250/func_800A1F78.s")
+void func_800A1F78(void *arg0) {
+    s32 func_800EA05C();
+    extern s16 D_80119260[];
+    s32 i;
+    s32 temp_v0;
+    void *temp_v0_2;
+
+    temp_v0 = func_800EA05C();
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x108)))) + (4))) = 255.0f;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x108)))) + (8))) = 255.0f;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x108)))) + (0xC))) = 255.0f;
+    (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x108)))) + (0))) = 1U;
+    for (i = 0; D_80119260[i] != 0; i++) {
+        if (temp_v0 == D_80119260[i]) {
+            (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x108)))) + (0))) = 2U;
+            break;
+        }
+    }
+    temp_v0_2 = (*(void **)((s8 *)(arg0) + (0x108)));
+    (*(u8 *)((s8 *)(temp_v0_2) + (1))) = (u8) (*(u8 *)((s8 *)(temp_v0_2) + (0)));
+}
 
 void func_800A2018(PlayerState *arg0, s32 arg1) {
     u8 temp_v1;
