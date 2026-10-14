@@ -1301,7 +1301,26 @@ void func_808062CC_chgameselect(s32 arg0, s32 arg1) {
     _gcstatusDll_entrypoint_3(arg0, arg1 + 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808062EC_chgameselect.s")
+/* extern */
+
+void func_808062EC_chgameselect(s32 arg0, s32 arg1, s32 arg2, u8 *arg3) {
+    s32 _gcnewoption_entrypoint_20(s32, s32, s32, u8 *);
+    s32 func_800DA298(s32);
+    s32 var_a2;
+
+    var_a2 = _gcnewoption_entrypoint_20(arg0, arg1, arg2, arg3) + arg2;
+    if (var_a2 == 2) {
+        if (func_800DA298(0xC0B) == 0) {
+            var_a2 += arg2;
+        }
+    }
+    if (var_a2 >= 5) {
+        var_a2 = 0;
+    } else if (var_a2 < 0) {
+        var_a2 = 4;
+    }
+    func_80806218_chgameselect(arg0, arg1, var_a2, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80806370_chgameselect.s")
 
