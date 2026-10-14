@@ -52,7 +52,18 @@ void func_80801314_chfantasyeyeball(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_808016B4_chfantasyeyeball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80801740_chfantasyeyeball.s")
+/* extern */
+
+void func_80801740_chfantasyeyeball(Actor *arg0, f32 *arg1) {
+    void _subaddieskeleton_entrypoint_1(Actor *, s32, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    if (arg0->unk7C_12) {
+        _subaddieskeleton_entrypoint_1(arg0, 4, arg1);
+    } else {
+        func_800EE7F8(arg1, arg0->position);
+        arg1[1] += arg0->scale * 224.0f;
+    }
+}
 
 /* extern */
 
