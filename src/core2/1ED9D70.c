@@ -1,6 +1,25 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100480.s")
+void *func_80100480(s32 arg0, s32 arg1) {
+    s32 func_8001211C(void);
+    void *heap_alloc(s32);
+    void *heap_realloc(void *, s32);
+    extern s32 D_801243A0;
+    void *temp_a2;
+    s8 *temp_s0;
+
+    temp_s0 = (s8 *)&D_801243A0 + arg0 * 0xC;
+    temp_a2 = *(void **)(temp_s0 + 8);
+    if (temp_a2 == 0) {
+        (*(s16 *)((s8 *)(temp_s0) + (2))) = arg1;
+        *(void **)(temp_s0 + 8) = heap_alloc(*(s16 *)(temp_s0 + 2) * *(s16 *)(temp_s0 + 0));
+    } else if ((*(s16 *)((s8 *)(temp_s0) + (2))) < arg1) {
+        (*(s16 *)((s8 *)(temp_s0) + (2))) = arg1;
+        *(void **)(temp_s0 + 8) = heap_realloc(temp_a2, *(s16 *)(temp_s0 + 2) * *(s16 *)(temp_s0 + 0));
+    }
+    (*(s32 *)((s8 *)(temp_s0) + (4))) = func_8001211C();
+    return *(void **)(temp_s0 + 8);
+}
 
 void func_8010052C(void) {
 }
