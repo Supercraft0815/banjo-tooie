@@ -90,7 +90,26 @@ void func_80800560_chdumbwaiterlift(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dumbwaiterlift/func_80800608_chdumbwaiterlift.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dumbwaiterlift/func_80800770_chdumbwaiterlift.s")
+/* extern */
+
+void func_80800770_chdumbwaiterlift(Actor *arg0) {
+    s32 _chmrtannoy_entrypoint_0(void);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiedialog_entrypoint_4(f32 *, s32, s32);
+    s32 func_80090178(AllowedTransformation);
+    void func_80101FDC(Actor *, u32);
+    void func_80800A8C_chdumbwaiterlift(Actor *);
+    if (_subaddiedialog_entrypoint_4(arg0->position, 0x50, 0) != 0) {
+        if (func_80090178(0x40) == 0) {
+            _chmrtannoy_entrypoint_0();
+            func_80800A8C_chdumbwaiterlift(arg0);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x133F, 0xF, NULL, 0xA3);
+            func_80101FDC(arg0, 7);
+            return;
+        }
+        func_80101FDC(arg0, 3);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dumbwaiterlift/func_80800804_chdumbwaiterlift.s")
 
