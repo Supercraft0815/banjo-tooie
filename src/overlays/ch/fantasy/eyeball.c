@@ -46,7 +46,28 @@ void func_80801314_chfantasyeyeball(void *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFF7);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80801378_chfantasyeyeball.s")
+/* extern */
+
+void func_80801378_chfantasyeyeball(Actor *arg0) {
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    s32 func_800D0B68(u32, u32);
+    void *func_80100094(Actor *, u32);
+    void func_8010C964(u8 *);
+    void func_80801740_chfantasyeyeball(Actor *, f32 *);
+    void *sp1C;
+    Actor *temp_v0;
+
+    if ((func_800D0B68(0x4C, 1) == 0) && arg0->unk7C_12) {
+        temp_v0 = _subaddielink_entrypoint_4(func_80100094(arg0, 0));
+        if (temp_v0 != NULL) {
+            sp1C = temp_v0;
+            func_80801740_chfantasyeyeball(arg0, temp_v0->position);
+            temp_v0 = sp1C;
+            temp_v0->position[1] -= 48.0f;
+            func_8010C964(sp1C);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_808013F8_chfantasyeyeball.s")
 
