@@ -1,6 +1,13 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800000_chquiz.s")
+s32 func_80800000_chquiz(s32 arg0) {
+    s32 func_8009EA2C(void);
+    extern s32 D_80807000_chquiz;
+    if (arg0 == 2) {
+        return func_8009EA2C() != 0 ? 0x838 : *(s32 *)((s32)&D_80807000_chquiz + arg0 * 24);
+    }
+    return *(s32 *)((s32)&D_80807000_chquiz + arg0 * 24);
+}
 
 f32 func_80800070_chquiz(s32 arg0) {
     extern f32 D_80807004_chquiz[];
