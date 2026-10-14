@@ -178,7 +178,27 @@ s32 func_80800C24_chquiz(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800CE8_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800DA8_chquiz.s")
+/* extern */
+
+void func_80800DA8_chquiz(s16 arg0, u8 *arg1) {
+    s32 func_800DC128(s32, s32);
+    s8 temp_a0;
+    s32 var_s0;
+    s32 index;
+    u8 *temp_v1;
+    u8 *var_s1;
+
+    for (var_s0 = 0, var_s1 = arg1; var_s0 < 3; var_s0++, var_s1++) {
+        (*(s8 *)((s8 *)(var_s1) + (0x60))) = var_s0;
+    }
+    for (var_s0 = 0, var_s1 = arg1; var_s0 < 3; var_s0++, var_s1++) {
+        index = func_800DC128(0, 3);
+        temp_v1 = arg1 + index;
+        temp_a0 = (*(s8 *)((s8 *)(var_s1) + (0x60)));
+        (*(s8 *)((s8 *)(var_s1) + (0x60))) = (s8) (*(s8 *)((s8 *)(temp_v1) + (0x60)));
+        (*(s8 *)((s8 *)(temp_v1) + (0x60))) = temp_a0;
+    }
+}
 
 s8 func_80800E38_chquiz(s32 arg0, s32 arg1) {
     return (*(s8 *)((s8 *)((arg0 + arg1)) + (0x60)));
