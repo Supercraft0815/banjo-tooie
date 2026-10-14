@@ -21,7 +21,29 @@ void func_800D1510(void) {
     func_800D1490();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D154C.s")
+void func_800D154C(void) {
+    s32 func_8001210C(s32);
+    void *heap_alloc_sided(s32, s32);
+    s32 heap_free(s32);
+    void rare_memcpy(void *, void *, int);
+    extern s32 D_8012B250;
+    s32 sp1C;
+    void *temp_v0;
+    s32 var_a1;
+
+    if (func_8001210C(0x3FF) == 0x1FF) {
+        sp1C = (*(s32 *)((s8 *)(&D_8012B250) + (0)));
+        var_a1 = ++(*(s32 *)((s8 *)(&D_8012B250) + (4)));
+        if (var_a1 == 3) {
+            (*(s32 *)((s8 *)(&D_8012B250) + (4))) = 0;
+            var_a1 = 0;
+        }
+        temp_v0 = heap_alloc_sided(0x2A, var_a1);
+        (*(s32 *)((s8 *)(&D_8012B250) + (0))) = (s32)temp_v0;
+        rare_memcpy(temp_v0, (void *)sp1C, 0x2A);
+        heap_free(sp1C);
+    }
+}
 
 void func_800D15CC(void) {
     s32 defrag(s32);
