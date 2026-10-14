@@ -14,7 +14,24 @@ OSThread *chstarspinnerplanet_entrypoint_1(void)
     return (OSThread *) D_808002A8_chstarspinnerplanet;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/planet/func_80800018_chstarspinnerplanet.s")
+void func_80800018_chstarspinnerplanet(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    f32 func_800136E4(f32);
+    f32 func_800D8FF8(void);
+    s32 func_800DA298(s32);
+    f32 func_800F15F8(f32, f32, f32);
+    extern u32 D_808002F0_chstarspinnerplanet;
+    f32 sp24;
+
+    if (func_800DA298(0) != 0) {
+        sp24 = func_800D8FF8();
+        ((f32 *)arg0->actorData)[5] = func_800F15F8(((f32 *)arg0->actorData)[5], 20.0f, 0.5f);
+        ((f32 *)arg0->actorData)[4] = func_800F15F8(((f32 *)arg0->actorData)[4], 40.0f, 0.8f);
+        arg0->rotation[1] = func_800136E4(arg0->rotation[1] + ((f32 *)arg0->actorData)[5] * sp24);
+        arg0->rotation[0] = func_800136E4(arg0->rotation[0] + ((f32 *)arg0->actorData)[4] * sp24);
+    }
+    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, func_800DA298(0), &D_808002F0_chstarspinnerplanet);
+}
 
 /* extern */
 
@@ -42,13 +59,13 @@ void func_80800170_chstarspinnerplanet(void *arg0) {
     f32 func_800136E4(f32);
     f32 func_800D8FF8();
     s32 func_800DA298(s32);
-    f32 func_800F15F8(f32, f32, s32);
+    f32 func_800F15F8(f32, f32, f32);
     f32 sp1C;
     f32 temp_f0;
 
     if (func_800DA298(0) != 0) {
         sp1C = func_800D8FF8();
-        temp_f0 = func_800F15F8((*(f32 *)((s8 *)(arg0) + (0x2C))), 25.0f, 0x3F19999A);
+        temp_f0 = func_800F15F8((*(f32 *)((s8 *)(arg0) + (0x2C))), 25.0f, 0.6f);
         (*(f32 *)((s8 *)(arg0) + (0x2C))) = temp_f0;
         (*(f32 *)((s8 *)(arg0) + (0x48))) = func_800136E4((*(f32 *)((s8 *)(arg0) + (0x48))) - (temp_f0 * sp1C));
     }
