@@ -1,6 +1,21 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/func_80800000_chmolehill.s")
+/* extern */
+
+s32 func_80800000_chmolehill(u8 *arg0) {
+    f32 func_800F1DCC(f32, f32);
+    s32 func_8010CAC0(u8 *, s32);
+    f32 func_8010CD28(u8 *);
+    f32 mlAbsF(f32);
+
+    if (func_8010CAC0(arg0 + 4, 0x87) != 0) {
+        return 0;
+    }
+    if (mlAbsF(func_800F1DCC(func_8010CD28(arg0), (*(f32 *)((s8 *)(arg0) + (0x48))) + 15.0f)) > 5.0f) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/func_80800088_chmolehill.s")
 
