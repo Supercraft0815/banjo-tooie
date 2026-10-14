@@ -6,7 +6,18 @@ s32 baboost_entrypoint_0(void) {
     return sizeof(BaBoost);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/boost/baboost_entrypoint_1.s")
+s32 baboost_entrypoint_1(PlayerState *self) {
+    s32 count;
+    s32 i;
+
+    count = 0;
+    for (i = 0; i < 5; i++) {
+        if (self->boost->unk8[i] != 0.0f) {
+            count++;
+        }
+    }
+    return count;
+}
 
 s32 baboost_entrypoint_2(PlayerState *self, f32 arg1);
 s32 baboost_entrypoint_2(PlayerState *self, f32 arg1) {
