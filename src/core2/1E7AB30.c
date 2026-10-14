@@ -1,6 +1,20 @@
 #include "core2/1E7AB30.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A1240.s")
+s32 func_800A1240(u32 arg0) {
+    extern s8 D_80127090;
+    u8 func_800D5210(s32);
+    void func_800D2748(s32, s32);
+    u32 value = func_800D5210(arg0);
+
+    *(u8 *)((s8 *)&D_80127090 + 9) = value;
+    *(s8 *)((s8 *)&D_80127090 + 6) = arg0;
+    /* The block preserves IDO's global-address reuse after the call. */
+    do {
+        func_800D2748(0xCF, value & 0xFF);
+    } while (0);
+    value = *(u8 *)((s8 *)&D_80127090 + 9);
+    func_800D2748(0xCD, value);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A1294.s")
 
