@@ -1,6 +1,24 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39740/func_80021C10.s")
+f32 func_80021C10(s32 arg0) {
+    extern f32 D_80041990;
+    f32 sp4;
+    f32 sp0;
+
+    arg0 &= 0xFF;
+    sp4 = D_80041990;
+    sp0 = 1.0f;
+    if (arg0 != 0) {
+        do {
+            if (arg0 & 1) {
+                sp0 *= sp4;
+            }
+            sp4 *= sp4;
+            arg0 = ((u32)arg0 >> 1) & 0xFF;
+        } while (arg0 != 0);
+    }
+    return sp0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39740/func_80021C8C.s")
 
