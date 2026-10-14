@@ -11,10 +11,10 @@ MapId func_800EA05C(void)
 	return D_80132DC2;
 }
 
-void func_800EA068(s32 arg0) {
+s32 func_800EA068(s32 arg0) {
     s32 _gcsectionDll_entrypoint_3(s32, s32);
     extern s32 D_80132DC4;
-    _gcsectionDll_entrypoint_3(D_80132DC4, arg0);
+    return _gcsectionDll_entrypoint_3(D_80132DC4, arg0);
 }
 
 s32 func_800EA090(void) {
