@@ -549,7 +549,31 @@ OSThread *chdragonbrothers_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_8080449C_chdragonbrothers.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80804610_chdragonbrothers.s")
+/* extern */
+
+void func_80804610_chdragonbrothers(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    f32 func_800F13C4(f32, f32);
+    void *func_80100094(Actor *, u32);
+    struct {
+        s32 unk0;
+        f32 frame;
+        s32 unk8;
+        s32 frameCount;
+    } *sp1C;
+    struct {
+        u8 unk0[10];
+        u8 frame : 5;
+        u8 unkA_5 : 3;
+    } *temp_v0;
+    f32 temp_f0;
+
+    sp1C = func_80100094(arg0, 0);
+    temp_f0 = func_800F13C4((func_800D8FF8() * 30.0f) + sp1C->frame, (f32) sp1C->frameCount);
+    sp1C->frame = temp_f0;
+    temp_v0 = (void *)arg0->unk0->unk0;
+    temp_v0->frame = (s32) temp_f0 % sp1C->frameCount;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808046CC_chdragonbrothers.s")
 
