@@ -91,9 +91,9 @@ void func_80104580(void) {
 
 /* extern */
 
-f32 func_8010473C(s32 arg0, s32 arg1) {
+f32 func_8010473C(s32 arg0, f32 *arg1) {
     void *func_801043D8();
-    s32 func_801048E4(void *, s32);
+    void func_801048E4(s8 *, f32 *);
     void *var_a0;
 
     var_a0 = func_801043D8(arg0);
@@ -107,7 +107,17 @@ f32 func_8010473C(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_8010486C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_801048E4.s")
+void func_801048E4(s8 *arg0, f32 *arg1) {
+    extern f32 D_80126440;
+    s32 i;
+    f32 *dst;
+    s8 *src;
+    f32 scale;
+
+    for (i = 0, dst = arg1, src = arg0, scale = D_80126440; i < 3; i++, dst++, src++) {
+        *dst = *src * scale;
+    }
+}
 
 /* extern */
 
