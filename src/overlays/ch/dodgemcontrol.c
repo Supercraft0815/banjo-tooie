@@ -123,7 +123,42 @@ void func_808012C8_chdodgemcontrol(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080160C_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801744_chdodgemcontrol.s")
+typedef struct {
+    u8 pad0[0x64];
+    u32 pad64_30 : 2;
+    u32 unk64_29 : 1;
+    u32 unk64_27 : 2;
+    u32 unk64_26 : 1;
+    u32 unk64_25 : 1;
+    u32 unk64_24 : 1;
+    u32 pad64_0 : 24;
+    s32 pad68;
+    u32 pad6C_21 : 11;
+    u32 unk6C_9 : 12;
+    u32 unk6C_0 : 9;
+} DodgemControlActor;
+
+void func_80801744_chdodgemcontrol(Actor *arg0, DodgemControlActor *arg1) {
+    switch (arg0->unk79_4) {
+    case 0:
+    case 1:
+    case 2:
+        switch (arg1->unk6C_0) {
+        case 0:
+            arg1->unk64_29 = 1;
+            arg1->unk64_27 = 0;
+            return;
+        case 1:
+            arg1->unk64_24 = 1;
+            return;
+        }
+        break;
+    case 3:
+        arg1->unk64_29 = 0;
+        arg1->unk64_27 = arg1->unk6C_0;
+        return;
+    }
+}
 
 void func_808017F0_chdodgemcontrol(Actor *arg0) {
     void* func_80100094(Actor*, u32);
