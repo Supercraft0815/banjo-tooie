@@ -117,7 +117,21 @@ void func_80800AF8_chjiggygamenew(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_808019E0_chjiggygamenew.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80801C20_chjiggygamenew.s")
+/* extern */
+
+int func_80801C20_chjiggygamenew(Actor *arg0) {
+    struct Entry { u8 pad0[4]; u16 unk4; u8 pad6[0x12]; };
+    struct Entry *entries;
+    s32 i;
+
+    entries = func_80100094(arg0, 0U);
+    for (i = 0; i < 20; i++) {
+        if (entries[i].unk4 != 0x18) {
+            return 0;
+        }
+    }
+    return 1;
+}
 
 int func_80801CB0_chjiggygamenew(u8 arg0, s32 arg1, void *arg2) {
     struct Entry { u8 pad0[4]; u16 unk4; u8 pad6[0x12]; };
