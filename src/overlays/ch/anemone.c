@@ -9,7 +9,16 @@ OSThread *chanemone_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anemone/func_8080000C_chanemone.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anemone/func_80800260_chanemone.s")
+/* extern */
+
+void func_80800260_chanemone(Actor *arg0) { s32 _subaddiesect_entrypoint_1(Actor *);
+    s32 _subaddiesect_entrypoint_2(void *, s32, s32);
+    f32 func_800DC178(f32, f32);
+    void func_80102FDC(Actor *, f32);
+    s32 temp_v0;
+
+    func_80102FDC(arg0, arg0->scale * 0.5f); arg0->unk54 = 0.0f; ((f32 *)arg0->actorData)[4] = 0.0f; arg0->unk50 = 0.0f; ((f32 *)arg0->actorData)[5] = 0.0f; ((f32 *)arg0->actorData)[7] = func_800DC178(0.5f, 2.0f); temp_v0 = _subaddiesect_entrypoint_1(arg0); arg0->actorData[6] = temp_v0; _subaddiesect_entrypoint_2(arg0, temp_v0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anemone/func_808002E8_chanemone.s")
 
