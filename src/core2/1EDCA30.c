@@ -91,7 +91,41 @@ s32 func_80103AE4(u8 *arg0) {
     return (s32)func_800D674C(temp_a1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103B24.s")
+/* extern */
+
+int func_80103B24(u8 *arg0, s32 arg1, u8 *arg2) {
+    struct ModelActor {
+        u8 pad0[0x60];
+        s16 id;
+        u8 pad62[0xE];
+        u32 pad70_25 : 7;
+        u32 flag24 : 1;
+        u32 flag23 : 1;
+        u32 pad70_22 : 1;
+        u32 flag21 : 1;
+        u32 pad70_0 : 21;
+    } *actor = (struct ModelActor *)arg0;
+    s32 func_800B2840(s32);
+    s32 func_80100A74(s16, s32);
+    s16 id;
+
+    if (arg2 == 0) {
+        return 0;
+    }
+    if (actor->flag24) {
+        id = actor->id;
+        if (id != 0) {
+            return func_80100A74(id, actor->flag23 ^ arg1);
+        }
+    }
+    if (actor->flag21) {
+        id = actor->id;
+        if (id != 0) {
+            return func_80100A74(id, 0);
+        }
+    }
+    return func_800B2840((s32)arg2);
+}
 
 void func_80103BBC(Actor *arg0) {
     int func_80103B24(u8 *, s32, u8 *);
