@@ -159,7 +159,22 @@ void func_8080041C_chlagoonbits(Actor *volatile arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/func_808004B0_chlagoonbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/func_80800548_chlagoonbits.s")
+void func_80800548_chlagoonbits(Actor *volatile arg0) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    s32 func_800DA544(s32);
+    void func_800FFAB0(Actor *);
+    extern s32 D_808007D0_chlagoonbits;
+    f32 *temp_s0;
+
+    temp_s0 = arg0->position;
+    func_800D1000(0x14, 0, temp_s0, 1, 0);
+    _chexploder_entrypoint_3(arg0, temp_s0, 7);
+    func_800BBCB8(temp_s0, temp_s0, 0.8f, 5, &D_808007D0_chlagoonbits);
+    func_800DA544(0x45);
+    func_800FFAB0(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/func_808005D0_chlagoonbits.s")
 
