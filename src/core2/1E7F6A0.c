@@ -26,7 +26,17 @@ void func_800A61D4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A6EF4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A6FF0.s")
+/* extern */
+
+void func_800A6FF0(Actor *arg0) {
+    f32 func_800F5628(s32);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F8874(s32);
+    func_800F5A00(arg0->unk74_7, arg0->position);
+    *(f32 *)&arg0->actorData[3] = func_800F5628(arg0->unk74_7);
+    arg0->unk64_20 = arg0->unk74_29;
+    arg0->unk74_30 = func_800F8874(arg0->unk74_7);
+}
 
 /* extern */
 
