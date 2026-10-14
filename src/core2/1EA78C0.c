@@ -2,7 +2,26 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CDFD0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CE1A8.s")
+int func_800CE1A8(void *arg0, void *arg1, s32 arg2) {
+    extern f32 D_801259B0;
+    s32 temp_a0;
+    s32 temp_a1;
+    s32 temp_a3;
+    s32 temp_f16;
+    s32 temp_t0;
+    s32 temp_v1;
+
+    temp_f16 = (s32) ((f32) arg2 * D_801259B0);
+    temp_v1 = ((*(s32 *)((s8 *)(arg0) + (0))) - (*(s32 *)((s8 *)(arg1) + (0)))) + temp_f16;
+    temp_a3 = (*(s32 *)((s8 *)(arg0) + (8))) - (*(s32 *)((s8 *)(arg1) + (8)));
+    temp_t0 = temp_v1 + temp_a3;
+    temp_a0 = temp_v1 - temp_a3;
+    temp_a1 = temp_f16 * 2;
+    if ((temp_t0 < 0) || (temp_a1 < temp_t0)) {
+        return 0;
+    }
+    return temp_a0 > 0 && temp_a0 < temp_a1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CE21C.s")
 
