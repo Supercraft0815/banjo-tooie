@@ -263,7 +263,7 @@ s32 func_8010D248(void) {
     return D_80136F5E;
 }
 
-void func_8010D254(s32 *arg0) {
+void func_8010D254(f32 *arg0) {
     s32 func_800EE7F8();
     extern s32 D_80136F50;
     func_800EE7F8(arg0, &D_80136F50);
