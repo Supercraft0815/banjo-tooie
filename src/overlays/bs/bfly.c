@@ -3,7 +3,20 @@
 
 struct anctrl_s;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800000_bsbfly.s")
+void func_8009C128(PlayerState *, f32[3]);
+
+void func_80800000_bsbfly(PlayerState *arg0) {
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    f32 func_800DC178(f32, f32);
+    extern s32 D_80801D20_bsbfly;
+    f32 sp24[3];
+
+    func_8009C128(arg0, sp24);
+    sp24[0] += func_800DC178(-30.0f, 30.0f);
+    sp24[1] += 50.0f + func_800DC178(0.0f, 30.0f);
+    sp24[2] += func_800DC178(-30.0f, 30.0f);
+    func_800BBCB8(sp24, NULL, 1.0f, 1, &D_80801D20_bsbfly);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_808000AC_bsbfly.s")
 
