@@ -40,7 +40,24 @@ void func_80800310_chdinofoot(s32 arg0, s32 arg1) {
     _subaddiefade_entrypoint_1(arg0, sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/foot/func_8080035C_chdinofoot.s")
+/* extern */
+
+void func_8080035C_chdinofoot(Actor *arg0, Unk80132ED0 *arg1) {
+    s32 func_800F54E4();
+    s32 func_800F79DC(s32, s32, s32);
+    s32 func_800F7B9C(s32, s32);
+    f32 func_80101F24(Actor *);
+    void func_8010A570(Actor *);
+    if ((arg1->unk24 >> 22) == 0) {
+        if ((arg0->unk70_10 == 4) && (func_80101F24(arg0) < 0.4f)) {
+            func_800F7B9C(func_800F54E4(), 0x5A);
+            func_8010A570(arg0);
+            return;
+        }
+        func_800F79DC(func_800F54E4(), 0xA, arg0->unk0);
+        func_8010A570(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/foot/func_80800408_chdinofoot.s")
 
