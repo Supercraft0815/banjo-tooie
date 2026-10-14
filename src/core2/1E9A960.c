@@ -595,7 +595,23 @@ void func_800C3A40(u8 arg0, f32 arg1, f32 arg2, f32 arg3) { struct Flags { u8 pa
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3AE0.s")
+/* extern */
+
+void func_800C3AE0(u8 arg0, f32 arg1) {
+    struct Flags { u8 padding[0x78]; u32 high : 28; u32 varying_rate : 1; u32 low : 3; };
+    struct Source { u8 pad[0x4C]; s16 start, end; f32 step, timer; s16 unk58, sample_rate; };
+    struct Source *ptr;
+
+    if (arg0) {
+        ptr = func_800C1414(arg0);
+        if (((struct Flags *)ptr)->varying_rate) {
+            ptr->start = (s32)(ptr->start * arg1);
+            ptr->end = (s32)(ptr->end * arg1);
+        } else {
+            ptr->sample_rate = (s32)(ptr->sample_rate * arg1);
+        }
+    }
+}
 
 /* extern */
 
