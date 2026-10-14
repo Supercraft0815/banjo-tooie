@@ -1,6 +1,6 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/data/sucoasterdata_entrypoint_0.s")
+s32 sucoasterdata_entrypoint_0(void **arg0) { extern s32 D_808003C0_sucoasterdata; extern s32 D_8080041C_sucoasterdata; u8 *var_a0; s32 var_v1; u32 temp_t7; temp_t7 = *(u32 *)((u8 *)*arg0 + 0x24) >> 22; var_v1 = 1; if (temp_t7 == *(u16 *)&D_808003C0_sucoasterdata) { return 0; } var_a0 = (u8 *)&D_8080041C_sucoasterdata; loop_3: if (temp_t7 == *(u16 *)var_a0) { return var_v1; } if (temp_t7 == *(u16 *)(var_a0 + 0x5C)) { return var_v1 + 1; } if (temp_t7 == *(u16 *)(var_a0 + 0xB8)) { return var_v1 + 2; } if (temp_t7 == *(u16 *)(var_a0 + 0x114)) { return var_v1 + 3; } var_v1 += 4; var_a0 += 0x170; if (var_v1 == 9) { return 0; } goto loop_3; }
 
 void *sucoasterdata_entrypoint_1(s32 arg0) {
     extern s32 D_808003C0_sucoasterdata;
