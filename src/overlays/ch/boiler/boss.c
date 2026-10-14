@@ -129,7 +129,33 @@ void func_80801F10_chboilerboss(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80802114_chboilerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_8080221C_chboilerboss.s")
+/* extern */
+
+void func_8080221C_chboilerboss(Actor *arg0, s32 arg1, volatile s32 arg2) {
+    s32 _chboilerid_entrypoint_5(Actor *);
+    s32 _chboilerid_entrypoint_6(Actor *, s32);
+    Actor *_subaddiefind_entrypoint_0(f32 *, s32, s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 pad[2];
+    f32 *sp24;
+    Actor *temp_v0;
+    if (arg0->unk3C == NULL) {
+        temp_v0 = _subaddiefind_entrypoint_0(arg0->position, 0x321, -1, 0);
+        if (temp_v0 == NULL) {
+            return;
+        }
+        arg0->unk3C = temp_v0->unk0;
+    }
+    sp24 = arg0->position;
+    arg0 = func_80106790(arg0->unk3C);
+    if (arg1 != 0) {
+        _chboilerid_entrypoint_6(arg0, arg2);
+    } else {
+        _chboilerid_entrypoint_5(arg0);
+    }
+    func_800EE7F8((f32 *)arg0->actorData, sp24);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808022BC_chboilerboss.s")
 
