@@ -129,4 +129,34 @@ void func_80801448_chmasterjiggy(s32 *arg0) {
     _glid_entrypoint_0(func_800BEA88(0), 1, &_chmasterjiggy_entrypoint_2, *arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_80801488_chmasterjiggy.s")
+/* extern */
+
+void func_80801488_chmasterjiggy(Actor *arg0) {
+    typedef struct {
+        f32 amount;
+        s32 unused[5];
+        s32 handle;
+    } MasterJiggyData;
+    void func_800E13F0(s32, f32);
+    s32 func_800E15CC(s32, f32, f32);
+    s32 func_800E1720(s32);
+    f32 var_f0;
+    s32 var_v1;
+
+    var_f0 = ((MasterJiggyData *)arg0->actorData)->amount;
+    if (var_f0 > 0.0f) {
+        var_v1 = ((MasterJiggyData *)arg0->actorData)->handle;
+        if (var_v1 == 0) {
+            var_v1 = func_800E15CC(0, 0.0f, 1.0f) + 1;
+            ((MasterJiggyData *)arg0->actorData)->handle = var_v1;
+            var_f0 = ((MasterJiggyData *)arg0->actorData)->amount;
+        }
+        func_800E13F0(var_v1 - 1, var_f0 * 10.0f);
+        return;
+    }
+    var_v1 = ((MasterJiggyData *)arg0->actorData)->handle;
+    if (var_v1 != 0) {
+        func_800E1720(var_v1 - 1);
+        ((MasterJiggyData *)arg0->actorData)->handle = 0;
+    }
+}
