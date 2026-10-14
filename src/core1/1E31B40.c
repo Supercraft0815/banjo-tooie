@@ -193,7 +193,40 @@ void func_8001A4B8(void *arg0) {
 void func_8001A570(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E31B40/func_8001A578.s")
+void func_8001A578(s32 arg0) {
+    s32 func_800D3948(void);
+    void *heap_alloc(s32);
+    extern s32 D_8007BCE8;
+    extern s32 D_8007BCF0;
+    void *sp34;
+    void *sp30;
+    void *sp2C;
+    void *sp28;
+    s32 var_v0;
+    s32 var_v1;
+
+    if (func_800D3948() != 0) {
+        var_v0 = 0x1388;
+        if (arg0 != 0) {
+            var_v0 = arg0 * 0xE00;
+            var_v1 = arg0 * 0x1DB;
+        } else {
+            var_v1 = 0;
+        }
+        if (var_v0 != 0) {
+            sp34 = heap_alloc(var_v0 * 8);
+            sp30 = heap_alloc(var_v0 * 8);
+            (*(s32 *)((s8 *)(&D_8007BCE8) + (4))) = sp30;
+            (*(s32 *)((s8 *)(&D_8007BCE8) + (0))) = sp34;
+        }
+        if (var_v1 != 0) {
+            sp2C = heap_alloc(var_v1 << 6);
+            sp28 = heap_alloc(var_v1 << 6);
+            (*(s32 *)((s8 *)(&D_8007BCF0) + (4))) = sp28;
+            (*(s32 *)((s8 *)(&D_8007BCF0) + (0))) = sp2C;
+        }
+    }
+}
 
 s32 func_8001A63C(void) {
     s32 heap_free(s32);
