@@ -106,7 +106,25 @@ s32 gccubesearch_entrypoint_10(s32 arg0, u32 arg1) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_11.s")
+/* extern */
+
+s32 gccubesearch_entrypoint_11(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _gspropmarker_entrypoint_2(s32, s32, s32, s32);
+    void func_800BE52C(s32 *, s32 *);
+    s32 var_s0;
+    s32 sp38;
+    s32 sp34;
+
+    var_s0 = 0;
+    func_800BE52C(&sp38, &sp34);
+    if ((u32)sp38 < (u32)sp34) {
+        do {
+            var_s0 += _gspropmarker_entrypoint_2(sp38, arg0, (var_s0 * 0xC) + arg1, arg2 - var_s0);
+            sp38 += 8;
+        } while ((u32)sp38 < (u32)sp34);
+    }
+    return var_s0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/func_80800590_gccubesearch.s")
 
