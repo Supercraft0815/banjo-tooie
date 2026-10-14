@@ -33,7 +33,25 @@ void func_800E204C(u8 *arg0, u8 *arg1) {
 
 void func_800E2260(u8 *arg0, u8 *arg1) { extern s32 D_8012D470; Gfx *temp_v1; if ((((*(s16 *)((s8 *)(&D_8012D470) + (0))) != (*(s16 *)((s8 *)(arg1) + (4)))) && ((*(s16 *)((s8 *)(&D_8012D470) + (0))) != 0)) || (((*(s16 *)((s8 *)(&D_8012D470) + (2))) != (*(s16 *)((s8 *)(arg1) + (6)))) && ((*(s16 *)((s8 *)(&D_8012D470) + (2))) != 0)) || ((*(f32 *)((s8 *)(&D_8012D470) + (0x2C))) != 1.0f) || ((*(f32 *)((s8 *)(&D_8012D470) + (0x30))) != 1.0f)) { temp_v1 = (*(Gfx **)arg0)++; temp_v1->words.w0 = 0xD8380002; temp_v1->words.w1 = 0x40; } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E22F0.s")
+s32 func_800E22F0(s32 arg0, s32 arg1) { void func_800E8078(Gfx **); void func_800E23A4(void); extern s32 D_8012D470;
+    if (*(u8 *)((u8 *)&D_8012D470 + 0x1F) == 0 || *(u8 *)((u8 *)&D_8012D470 + 0x20) != 0) {
+        Gfx *ptr = (*(Gfx **)arg0)++;
+        ptr->words.w1 = 0;
+        ptr->words.w0 = 0xE7000000;
+        if (*(u8 *)((u8 *)&D_8012D470 + 0x1F) == 0) {
+            Gfx *ptr = (*(Gfx **)arg0)++;
+            ptr->words.w1 = 0;
+            ptr->words.w0 = 0xE3001801;
+        }
+        if (*(u8 *)((u8 *)&D_8012D470 + 0x20) != 0) {
+            Gfx *ptr = (*(Gfx **)arg0)++;
+            ptr->words.w1 = 0;
+            ptr->words.w0 = 0xE2001E01;
+        }
+    }
+    func_800E8078((Gfx **)arg0);
+    func_800E23A4();
+}
 
 void func_800E23A4(void) {
     extern s32 D_8012D470;
