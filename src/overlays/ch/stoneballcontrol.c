@@ -103,7 +103,20 @@ void func_80800BCC_chstoneballcontrol(u8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800EBC_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800F24_chstoneballcontrol.s")
+/* extern */
+
+void func_80800F24_chstoneballcontrol(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    s32 _chintrotext_entrypoint_2(s32);
+    s32 func_800D395C(void);
+    if ((arg1 != 0) || (func_800D395C() != 0)) {
+        arg0->unk64_19 = 1;
+        _chintrotext_entrypoint_1(0x18AF, arg2 + 0xF, 0, 0);
+        return;
+    }
+    arg0->unk64_19 = 0;
+    _chintrotext_entrypoint_2(1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800F9C_chstoneballcontrol.s")
 
