@@ -38,7 +38,36 @@ void chjinjo_entrypoint_1(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/chjinjo_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/chjinjo_entrypoint_3.s")
+s16 chjinjo_entrypoint_3(s32 arg0) {
+    extern s16 D_80801300_chjinjo;
+    extern s16 D_80801302_chjinjo;
+    extern s32 D_80801304_chjinjo;
+    extern s32 D_80801324_chjinjo;
+    s32 *var_v1;
+
+    var_v1 = &D_80801304_chjinjo;
+    if (arg0 == D_80801302_chjinjo) {
+        return D_80801300_chjinjo;
+    }
+loop_3:
+    if (arg0 == (*(s16 *)((s8 *)(var_v1) + (2)))) {
+        return (*(s16 *)((s8 *)(var_v1) + (0)));
+    }
+    if (arg0 == (*(s16 *)((s8 *)(var_v1) + (6)))) {
+        return (*(s16 *)((s8 *)(var_v1) + (4)));
+    }
+    if (arg0 == (*(s16 *)((s8 *)(var_v1) + (0xA)))) {
+        return (*(s16 *)((s8 *)(var_v1) + (8)));
+    }
+    if (arg0 == (*(s16 *)((s8 *)(var_v1) + (0xE)))) {
+        return (*(s16 *)((s8 *)(var_v1) + (0xC)));
+    }
+    var_v1 += 4;
+    if (var_v1 == &D_80801324_chjinjo) {
+        return -1;
+    }
+    goto loop_3;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/func_808002E0_chjinjo.s")
 
