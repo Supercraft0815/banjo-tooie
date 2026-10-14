@@ -1,6 +1,16 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80800000_ncpoddialog.s")
+/* extern */
+
+void func_80800000_ncpoddialog(u8 *arg0, s32 arg1, f32 *arg2) {
+    void func_800EE7F8(f32 *, f32 *);
+    f32 *temp_v0;
+
+    func_800EE7F8(arg2, ((f32 (*)[3])(arg0 + 0x28))[arg1]);
+    temp_v0 = ((f32 (*)[4])arg0)[arg1];
+    arg2[1] += temp_v0[3];
+    arg2[1] += 0.5f * (temp_v0[0] - temp_v0[3]);
+}
 
 /* extern */
 
