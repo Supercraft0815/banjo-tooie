@@ -52,7 +52,37 @@ s32 *func_80104410(void *arg0) {
     return freelist_at(D_80136E80, temp_a1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104460.s")
+void func_80104460(u8 *arg0) {
+    void *freelist_next(s32 *, s32 *);
+    void func_800EFD4C(s16 vec[3]);
+    extern s32 D_80136E80;
+    s32 index;
+    struct Entry {
+        u8 header[3];
+        u8 active;
+        s16 vectors[3][3];
+        u8 padding[2];
+        u8 colors[3][4];
+        s32 value;
+        u8 flag;
+    } *entry;
+    s32 i;
+    s32 j;
+    s32 pad;
+
+    index = 0;
+    entry = freelist_next(&D_80136E80, &index);
+    *(s16 *)(arg0 + 0x8E) = index;
+    entry->active = 0;
+    entry->value = 0;
+    entry->flag = 0;
+    for (i = 0; i < 3; i++) {
+        func_800EFD4C(entry->vectors[i]);
+        for (j = 0; j < 4; j++) {
+            entry->colors[i][j] = 255;
+        }
+    }
+}
 
 void func_80104504(void *arg0) {
     s32 freelist_erase(s32, s16, void *);
