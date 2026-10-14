@@ -1376,7 +1376,20 @@ void func_800F7F50(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5) {
     func_80098730(D_80135490[arg0], arg1, arg2, arg3, arg4, arg5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7F98.s")
+/* extern */
+
+s32 func_800F7F98(s32 arg0, u32 arg1) {
+    s32 bastick_func_8009F18C(PlayerState *, s32);
+    PlayerState *sp1C;
+
+    sp1C = D_80135490[arg0];
+    if (arg1 != 0) {
+        bakey_func_80091C14(sp1C, 1);
+        return bastick_func_8009F18C(sp1C, 1);
+    }
+    bakey_func_80091C14(sp1C, 0);
+    return bastick_func_8009F18C(sp1C, 0);
+}
 
 /* extern */
 
