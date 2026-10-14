@@ -46,6 +46,23 @@ void func_80800178_sumissilehome(void *arg0, void *arg1) {
     func_800EF368(saved.vector, saved.length);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/missilehome/func_808001C8_sumissilehome.s")
+/* extern */
+
+void func_808001C8_sumissilehome(void *arg0, void *arg1, f32 arg2) {
+    f32 func_800D8FF8(void);
+    f32 func_800EEF94(f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    struct { f32 length; f32 delta[3]; } saved;
+    f32 dt;
+
+    saved.length = func_800EEF94((f32 *)((s8 *)arg0 + 0x28));
+    func_800EFB24(saved.delta, arg1, (s8 *)arg0 + 4);
+    dt = func_800D8FF8();
+    func_800EF368(saved.delta, dt * arg2);
+    func_800EF04C((f32 *)((s8 *)arg0 + 0x28), saved.delta);
+    func_800EF368((f32 *)((s8 *)arg0 + 0x28), saved.length);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/missilehome/sumissilehome_entrypoint_6.s")
