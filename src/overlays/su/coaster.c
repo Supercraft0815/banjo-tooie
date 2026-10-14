@@ -517,7 +517,29 @@ void func_808020B8_sucoaster(Actor *arg0, void *arg1, f32 arg2) {
     func_80102BF8(arg0, config->acceleration * arg2, (f32)config->speed * arg2, (f32)config->distance * arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_80802130_sucoaster.s")
+void func_80802130_sucoaster(Actor *arg0, void *arg1, s16 arg2) {
+    typedef struct {
+        u8 pad0[0x10];
+        s16 value;
+        u8 pad12[7];
+        u8 pad19_5 : 3;
+        u8 flag : 1;
+        u8 pad19_0 : 4;
+    } CoasterData;
+    CoasterData *data = arg1;
+    u32 temp_t1;
+
+    if (arg0->unk7A_5) {
+        temp_t1 = arg0->unk74_7;
+        if (temp_t1 != 0x32) {
+            data->value = temp_t1;
+            data->flag = 1;
+            return;
+        }
+    }
+    data->value = (s32)(arg0->scale * (f32)arg2);
+    data->flag = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_808021A8_sucoaster.s")
 
