@@ -14,7 +14,7 @@ OSThread *chdiggerground_entrypoint_0(void)
 void func_80800070_chdiggerground(Actor *arg0) {
     void func_80101FDC(Actor*, u32);
     void func_8010A3E8(void *arg0, f32 arg1);
-    s32 func_808000C4_chdiggerground(Actor *);
+    void func_808000C4_chdiggerground(Actor *);
     if (((u32) (*(u32 *)((s8 *)(arg0) + (0x6C))) >> 0x15) != 0) {
         func_80101FDC(arg0, 1U);
         func_808000C4_chdiggerground(arg0);
@@ -23,7 +23,26 @@ void func_80800070_chdiggerground(Actor *arg0) {
     func_8010A3E8(arg0, 0.75f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/ground/func_808000C4_chdiggerground.s")
+/* extern */
+
+void func_808000C4_chdiggerground(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_1(Actor *);
+    s32 _sucoaster_entrypoint_0(void *, s32);
+    s32 _sucoaster_entrypoint_10(Actor *, s32);
+    s32 func_800D9058(f32);
+    int func_800DC298(f32);
+    void func_8010A590(Actor *);
+
+    _subaddieDll_entrypoint_1(arg0);
+    if (_sucoaster_entrypoint_0(arg0, 0) != 0) {
+        _sucoaster_entrypoint_10(arg0, func_800DC298(0.65f) ? 3 : 2);
+        if (arg0->pad6C_21 == 0) {
+            arg0->unk6C_0 = func_800D9058(1.5f);
+        }
+        arg0->unk64_24 = 1;
+        func_8010A590(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/ground/func_80800168_chdiggerground.s")
 
