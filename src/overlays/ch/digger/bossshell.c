@@ -14,7 +14,25 @@ OSThread *chdiggerbossshell_entrypoint_1(void)
     return (OSThread *) D_808005A8_chdiggerbossshell;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossshell/func_80800018_chdiggerbossshell.s")
+/* extern */
+
+void func_80800018_chdiggerbossshell(Actor *arg0) {
+    void func_800EEC30(f32 *, f32, f32, f32);
+    f32 func_800EFB8C(f32 *, f32 *);
+    f32 func_80102D78(Actor *, f32 *);
+    f32 sp34;
+    f32 sp30;
+    f32 temp_f0;
+    f32 *temp_a1;
+
+    temp_a1 = (f32 *)arg0->actorData;
+    temp_f0 = func_800EFB8C(arg0->position, temp_a1);
+    sp30 = arg0->position[1] - ((f32 *)arg0->actorData)[1];
+    arg0->rotation[0] = 45.0f;
+    sp34 = temp_f0;
+    arg0->rotation[1] = func_80102D78(arg0, temp_a1);
+    func_800EEC30((f32 *)&arg0->actorData[4], arg0->rotation[0], arg0->rotation[1], sqrtf((sp34 * sp34 * 9800.0f) / (sp34 + sp30)));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossshell/func_808000B4_chdiggerbossshell.s")
 
