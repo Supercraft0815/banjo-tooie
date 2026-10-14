@@ -7,7 +7,30 @@ void func_80800000_chfactoryroofbits(s32 arg0) {
     func_800EFA4C(arg0 + 4, 0xC48C8000, 0x460CA800, 0x44C78000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_8080003C_chfactoryroofbits.s")
+/* extern */
+
+int func_8080003C_chfactoryroofbits(Actor *arg0, s32 arg1, s32 arg2) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_808000D4_chfactoryroofbits(Actor *);
+    f32 position[3];
+    int result;
+
+    if (arg1 == 0x40) {
+        func_800EE7F8(position, arg0->position);
+        func_800EF1B8(position, arg0->rotation[1], -150.0f);
+        position[1] -= 50.0f;
+        _chexploder_entrypoint_3(arg0, position, 0xC);
+        return 1;
+    }
+    result = 0;
+    if (arg1 == 0x90) {
+        func_808000D4_chfactoryroofbits(arg0);
+        return 1;
+    }
+    return result;
+}
 
 void func_808000D4_chfactoryroofbits(Actor *arg0) {
     s32 _chexploder_entrypoint_6(s32, s32, s32);
