@@ -20,7 +20,17 @@ void func_80800000_chboggyfish(s32 *arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fish/func_80800064_chboggyfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fish/func_8080018C_chboggyfish.s")
+void func_8080018C_chboggyfish(void *arg0) {
+    (*(f32 *)((s8 *)arg0 + 0x28)) += (*(f32 *)((s8 *)arg0 + 0x2C));
+    if ((*(f32 *)((s8 *)(arg0) + (0x28))) <= 0.0f) {
+        (*(f32 *)((s8 *)(arg0) + (0x28))) = 0.0f;
+        (*(f32 *)((s8 *)(arg0) + (0x2C))) = (f32) (0.0f - (*(f32 *)((s8 *)arg0 + 0x2C)));
+    }
+    if ((*(f32 *)((s8 *)(arg0) + (0x28))) >= 4.0f) {
+        (*(f32 *)((s8 *)(arg0) + (0x28))) = 4.0f;
+        (*(f32 *)((s8 *)(arg0) + (0x2C))) = (f32) (0.0f - (*(f32 *)((s8 *)(arg0) + (0x2C))));
+    }
+}
 
 OSThread *chboggyfish_entrypoint_0(void)
 {
