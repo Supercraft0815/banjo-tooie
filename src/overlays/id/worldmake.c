@@ -175,7 +175,33 @@ void idworldmake_entrypoint_1(s32 arg0, s32 arg1, volatile unsigned int arg2, s3
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/worldmake/idworldmake_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/worldmake/idworldmake_entrypoint_3.s")
+void idworldmake_entrypoint_3(void) {
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    s32 vector_free(s32);
+    extern s32 D_80127EF8;
+    extern struct {
+        s32 unk0;
+        void (*destroy)(u32);
+    } D_80800AB0_idworldmake[];
+    u32 temp_s1;
+    u32 temp_v0;
+    u32 var_s0;
+
+    if (D_80127EF8 != 0) {
+        temp_s1 = vector_end(D_80127EF8);
+        temp_v0 = vector_begin(D_80127EF8);
+        var_s0 = temp_v0;
+        if (temp_v0 < temp_s1) {
+            do {
+                D_80800AB0_idworldmake[*(u8 *)(var_s0 + 6)].destroy(var_s0 + 8);
+                var_s0 += 0xA8;
+            } while (var_s0 < temp_s1);
+        }
+        vector_free(D_80127EF8);
+        D_80127EF8 = 0;
+    }
+}
 
 void idworldmake_entrypoint_4(void) {
 }
