@@ -4,9 +4,9 @@ void func_8010A730(s32 arg0, s32 arg1) {
 }
 /* extern */
 
-void func_8010A73C(s32 *arg0, s32 arg1) {
-    s32 func_801039E4(s32);
-    func_801039E4(*arg0);
+void func_8010A73C(Actor *arg0, s32 arg1) {
+    s32 func_801039E4(Unk80132ED0 *);
+    func_801039E4(arg0->unk0);
 }
 
 /* extern */
