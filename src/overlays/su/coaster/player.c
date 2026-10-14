@@ -1,7 +1,7 @@
 #include "common.h"
 
 void sucoasterplayer_entrypoint_0(void *arg0) {
-    s32 _subaddiejoy_entrypoint_9(void *, void *, s32);
+    f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
     s32 _sucoaster_entrypoint_11(void *, f32);
     s32 _sucoaster_entrypoint_16(void *, s32);
     s32 _sucoaster_entrypoint_19(void *);
@@ -17,7 +17,7 @@ void sucoasterplayer_entrypoint_0(void *arg0) {
     void func_80102BF8(void *, s32, f32, f32);
     s32 func_8080076C_sucoasterplayer(void *, void *);
     s32 sucoasterplayer_entrypoint_2(void *, f32);
-    s32 sucoasterplayer_entrypoint_3(void *);
+    int sucoasterplayer_entrypoint_3(void *);
     struct CoasterFlags {
         u8 pad[0x18];
         u32 : 10;
@@ -122,7 +122,21 @@ void sucoasterplayer_entrypoint_0(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/player/sucoasterplayer_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/player/sucoasterplayer_entrypoint_3.s")
+/* extern */
+
+int sucoasterplayer_entrypoint_3(void *arg0) {
+    f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
+    s32 _sucoaster_entrypoint_6(void *, f32);
+    s32 _sucoasterdata_entrypoint_4(u32);
+    void *func_80100094(Actor *, u32);
+    Actor *sp1C;
+    f32 sp18;
+
+    sp1C = func_80100094(arg0, 0);
+    sp18 = _subaddiejoy_entrypoint_9(arg0, &((Actor *)arg0)->unk54, 1);
+    _sucoaster_entrypoint_6(arg0, (f32) _sucoasterdata_entrypoint_4(sp1C->actorData[0] >> 28) * sp18);
+    return sp18 != 0.0f;
+}
 
 /* extern */
 
