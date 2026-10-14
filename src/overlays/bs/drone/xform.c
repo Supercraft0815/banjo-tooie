@@ -8,7 +8,21 @@ void func_80800000_bsdronexform(s32 arg0, s32 arg1, s32 arg2) {
     func_800BA3FC(arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/func_80800050_bsdronexform.s")
+/* extern */
+
+void func_80800050_bsdronexform(void *arg0, s32 arg1, f32 arg2, f32 arg3) {
+    void func_800BA7C4(void *, f32, f32);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    f32 temp_f0;
+    s32 temp_f10;
+    s32 temp_f6;
+
+    temp_f6 = (s32) (arg2 * 30.0f);
+    temp_f10 = (s32) (arg3 * 30.0f);
+    func_800BA930(arg1, (s16) temp_f6, 0xA, (s16) temp_f10, (s16) temp_f6, 0xA, (s16) temp_f10);
+    temp_f0 = (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x18C)))) + (0x14)));
+    func_800BA7C4(arg1, temp_f0, temp_f0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/func_808000E4_bsdronexform.s")
 
