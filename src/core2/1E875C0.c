@@ -48,7 +48,26 @@ u32 func_800ADE50(u8 *arg0, u8 *arg1, s32 arg2) {
     return 0U;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800ADEC4.s")
+/* extern */
+
+void func_800ADEC4(u8 *arg0, u8 *arg1, s32 arg2, f32 arg3[4][4]) {
+    void func_800F293C(f32 arg0[4][4], f32 arg1[4][4]);
+    s32 temp_v1;
+    u8 *var_s0;
+    u8 *var_s1;
+
+    var_s1 = arg1 + 8;
+    if (*(s16 *)(arg1 + 4) == (temp_v1 = *(s32 *)arg0)) {
+        var_s0 = arg0 + 0x50;
+        while (var_s0 < (temp_v1 << 6) + arg0 + 0x50) {
+            if (arg2 == (*(s16 *)((s8 *)(var_s1) + (0xC)))) {
+                func_800F293C((f32 (*)[4])var_s0, arg3);
+            }
+            var_s0 += 0x40;
+            var_s1 += 0x10;
+        }
+    }
+}
 
 /* extern */
 
