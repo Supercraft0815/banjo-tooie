@@ -297,7 +297,20 @@ void func_800C0BC0(Gfx** gfx, void* destination, void* source) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0BC0.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0F8C.s")
+void func_800C0F8C(s32 arg0) {
+    s32 func_800EA34C(s32);
+    s32 func_80014F00();
+    s32 func_8001A0A8();
+    s32 func_800C0BC0(s32, s32, s32);
+    extern s32 D_80128B00;
+    s32 unused;
+    s32 sp18;
+
+    func_800EA34C(0);
+    D_80128B00 = 2;
+    sp18 = func_8001A0A8();
+    func_800C0BC0(arg0, sp18, func_80014F00());
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0FD8.s")
 
