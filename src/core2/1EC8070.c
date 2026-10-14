@@ -153,7 +153,9 @@ int func_800EECE0(f32 a[3], f32 b[3]) {
     return a[0] == b[0] && a[1] == b[1] && a[2] == b[2];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EED58.s")
+int func_800EED58(s32 *arg0, s32 *arg1) {
+    return (arg0[0] == arg1[0]) && (arg0[1] == arg1[1]) && (arg0[2] == arg1[2]);
+}
 
 int func_800EEDA0(s16 *arg0, s16 *arg1) { return arg0[0] == arg1[0] && arg0[1] == arg1[1] && arg0[2] == arg1[2]; }
 
