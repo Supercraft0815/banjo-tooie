@@ -24,7 +24,27 @@ void func_8080000C_chdinofoot(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/foot/func_80800084_chdinofoot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/foot/func_808002A8_chdinofoot.s")
+/* extern */
+
+s32 func_808002A8_chdinofoot(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
+    u32 func_800FDC28(u32);
+    void func_8080035C_chdinofoot(Actor *, Unk80132ED0 *);
+    Unk80132ED0 **data = &arg2;
+    s32 result;
+    switch (arg1) {
+        case 0x3F:
+            func_8080035C_chdinofoot(arg0, *data);
+            return 1;
+        case 0xB:
+            arg0->unk64_20 = 0;
+            func_800FDC28(0);
+            result = 3;
+            break;
+        default:
+            return 0;
+    }
+    return result;
+}
 
 /* extern */
 
