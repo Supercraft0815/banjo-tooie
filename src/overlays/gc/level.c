@@ -74,7 +74,33 @@ s32 gclevel_entrypoint_4(s32 arg0)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/level/func_80800270_gclevel.s")
+/* extern */
+
+s32 func_80800270_gclevel(s32 arg0, s32 arg1, s32 arg2) {
+    void *func_80800314_gclevel(s32);
+    s32 temp_v1;
+    void *temp_v0;
+
+    temp_v0 = func_80800314_gclevel(arg2);
+    if (temp_v0 == NULL) {
+        return 1;
+    } else {
+        temp_v1 = (*(s16 *)((s8 *)(temp_v0) + (4)));
+        if (temp_v1 == -1) {
+            func_800DA544((enum flag_e) (*(u16 *)((s8 *)(temp_v0) + (2))));
+            goto done;
+        } else {
+        if ((arg0 == temp_v1) && ((arg1 == (*(s8 *)((s8 *)(temp_v0) + (6)))) || (arg1 == (*(s8 *)((s8 *)(temp_v0) + (7)))))) {
+            func_800DA544((enum flag_e) (*(u16 *)((s8 *)(temp_v0) + (2))));
+            goto done;
+        } else {
+            return func_800DA298((enum flag_e) (*(u16 *)((s8 *)(temp_v0) + (2))));
+        }
+        }
+    }
+done:
+    return 1;
+}
 
 void *func_80800314_gclevel(s32 arg0) {
     struct LevelEntry {
