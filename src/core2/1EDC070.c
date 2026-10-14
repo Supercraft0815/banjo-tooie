@@ -39,7 +39,23 @@ void func_80102950(void *arg0, f32 arg1) {
     (*(f32 *)((s8 *)(arg0) + (0x50))) = func_800136E4(arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_8010297C.s")
+/* extern */
+
+void func_8010297C(void *arg0, f32 arg1, f32 arg2, f32 arg3) {
+    f32 func_800DC0C0(void);
+    f32 temp_f16;
+    f32 var_f0;
+    f32 sum;
+
+    temp_f16 = 2.0f * ((func_800DC0C0() - 0.5f) * (arg3 - arg2));
+    if (temp_f16 >= 0.0f) {
+        var_f0 = arg2;
+    } else {
+        var_f0 = -arg2;
+    }
+    sum = arg1 + temp_f16;
+    func_80102924(arg0, var_f0 + sum);
+}
 
 /* extern */
 
