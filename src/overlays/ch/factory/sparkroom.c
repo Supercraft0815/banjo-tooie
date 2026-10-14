@@ -76,7 +76,44 @@ u32 func_80800D90_chfactorysparkroom(s32 unused, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800DC8_chfactorysparkroom.s")
+/* extern */
+
+void func_80800DC8_chfactorysparkroom(Actor *arg0) {
+    f32 func_800DC178(f32, f32);
+    void *func_80100094(Actor *, u32);
+    struct Spark {
+        f32 values[7];
+        s32 handle;
+    };
+    struct SparkData {
+        struct Spark sparks[16];
+        s32 handles[4];
+    };
+    u32 var_s1;
+    struct SparkData *temp_s3;
+    struct SparkData *temp_v0;
+    struct Spark *var_s0;
+
+    temp_v0 = func_80100094(arg0, 0);
+    temp_s3 = temp_v0;
+    arg0->actorData[7] = 0;
+    var_s1 = 0;
+    arg0->unk54 = 0.0f;
+    if (arg0->unk6C_0) {
+        var_s0 = temp_v0->sparks;
+        do {
+            var_s0->handle = 0;
+            var_s0->values[0] = func_800DC178(0.0f, 3.0f);
+            var_s0->values[1] = 0.0f;
+            var_s1 += 1;
+            var_s0++;
+        } while (var_s1 < arg0->unk6C_0);
+    }
+    temp_s3->handles[1] = 0;
+    temp_s3->handles[2] = 0;
+    temp_s3->handles[3] = 0;
+    temp_s3->handles[0] = 0;
+}
 
 OSThread *chfactorysparkroom_entrypoint_0(void)
 {
