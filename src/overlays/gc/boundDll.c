@@ -65,7 +65,32 @@ void gcboundDll_entrypoint_2(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_808001A8_gcboundDll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_80800280_gcboundDll.s")
+/* extern */
+
+void *func_80800280_gcboundDll(s32 *arg0, void **arg1, s32 arg2) {
+    void func_800B4290(void *);
+    void *heap_realloc(void *, s32);
+    struct BoundEntry {
+        u32 index : 23;
+        u32 active : 1;
+        u8 count : 8;
+        u8 data[16];
+        s32 value;
+        u8 tail[4];
+    } *entry;
+    u8 *data;
+
+    *arg0 += 1;
+    data = heap_realloc(*arg1, *arg0 * 0x1C);
+    *arg1 = data;
+    entry = (struct BoundEntry *)(data + *arg0 * 0x1C) - 1;
+    entry->index = 0;
+    entry->count = 0;
+    entry->value = arg2;
+    entry->active = 1;
+    func_800B4290(entry->tail);
+    return entry;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/gcboundDll_entrypoint_3.s")
 
