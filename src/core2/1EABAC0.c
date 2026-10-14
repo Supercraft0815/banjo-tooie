@@ -51,7 +51,16 @@ u8 func_800D22C8(s32 arg0) { extern struct D_8011B460_entry { u8 *ptr; u32 pad; 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D22E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D2398.s")
+/* extern */
+
+int func_800D2398(void *arg0, s32 arg1) {
+    s32 func_800D21F0(s32, s32);
+    s32 func_800FA8E8(s32, u8);
+    s32 temp_v0;
+
+    temp_v0 = func_800D21F0(arg1, (*(u8 *)((s8 *)(arg0) + (0))));
+    return temp_v0 >= 0 && func_800FA8E8(temp_v0, (*(u8 *)((s8 *)(arg0) + (1)))) == 1;
+}
 
 /* extern */
 
