@@ -50,7 +50,14 @@ void func_80800AF0_chfishshootgame(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80800B30_chfishshootgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80800C24_chfishshootgame.s")
+void func_80800C24_chfishshootgame(u8 *arg0) {
+    u8 func_800C4350(u8, f32[3], s32 *);
+    extern s32 D_808019A8_chfishshootgame;
+    if (arg0[0x5F] == 0) {
+        arg0[0x5F] = func_800C4350(0, NULL, &D_808019A8_chfishshootgame);
+    }
+    func_800C4350(arg0[0x5F], NULL, NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80800C78_chfishshootgame.s")
 
