@@ -228,7 +228,24 @@ void func_808012E4_chgameselect(Actor *arg0, u8 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808013C8_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080145C_chgameselect.s")
+/* extern */
+
+void func_8080145C_chgameselect(f32 *arg0, f32 arg1, f32 *arg2, f32 *arg3) {
+    void func_800E3980(f32 *);
+    void func_800EE7B4(f32[3], f32[3], f32[3], f32);
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EF3DC(f32[3], f32[3]);
+    f32 sp1C[3];
+    f32 temp_f0;
+
+    func_800E3980(sp1C);
+    func_800EF3DC(sp1C, arg3);
+    temp_f0 = func_800EEAA4(sp1C, arg0);
+    if (temp_f0 != 0.0f) {
+        temp_f0 = (arg1 - func_800EEAA4(arg3, arg0)) / temp_f0;
+        func_800EE7B4(arg2, arg3, sp1C, temp_f0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808014F0_chgameselect.s")
 
