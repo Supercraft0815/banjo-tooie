@@ -19,7 +19,23 @@ void func_80800050_bsbabykaz(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x170))) = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_8080005C_bsbabykaz.s")
+/* extern */
+
+void func_8080005C_bsbabykaz(void *arg0) {
+    void *func_80092AD8(void *);
+    f32 func_800D8FF8(void);
+    void func_800E0AF0(void *, f32);
+    void func_800E0AFC(void *, u8, f32, f32, f32, f32);
+    void *sp24;
+    void *temp_v0;
+
+    temp_v0 = func_80092AD8(arg0);
+    sp24 = temp_v0;
+    func_800E0AF0(temp_v0, 1.0f);
+    func_800E0AFC(sp24, 0x5B, 1.0f, -50.0f, 0.0f, 0.0f);
+    func_800E0AFC(sp24, 0x5D, 1.0f, 0.0f, (*(f32 *)((s8 *)(arg0) + (0x170))), 0.0f);
+    (*(f32 *)((s8 *)(arg0) + (0x170))) += func_800D8FF8() * 500.0f;
+}
 
 /* extern */
 
