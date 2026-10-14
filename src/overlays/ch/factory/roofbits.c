@@ -9,7 +9,20 @@ void func_80800000_chfactoryroofbits(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_8080003C_chfactoryroofbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_808000D4_chfactoryroofbits.s")
+void func_808000D4_chfactoryroofbits(Actor *arg0) {
+    s32 _chexploder_entrypoint_6(s32, s32, s32);
+    s32 _subaddieaudioquick_entrypoint_2(s32, s32, s32 *);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    Unk80132ED0 *func_80101080(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s32 D_80800920_chfactoryroofbits;
+    extern s32 D_80800968_chfactoryroofbits;
+    Actor *actor = func_80106790(func_80101080());
+    _chexploder_entrypoint_6(actor, 0x44160000, 0x44480000);
+    func_800DA544(FLAG_196_UNK);
+    func_800BABB8(0, arg0->position, arg0->position, arg0->scale, &D_80800920_chfactoryroofbits);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800968_chfactoryroofbits);
+}
 
 OSThread *chfactoryroofbits_entrypoint_0(void)
 {
