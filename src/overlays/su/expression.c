@@ -69,7 +69,43 @@ void suexpression_entrypoint_5(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_6.s")
+/* extern */
+
+void suexpression_entrypoint_6(u8 *arg0, s16 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 _suexpressjoint_entrypoint_2(u8 *, s16);
+    s32 _suexpressmorph_entrypoint_5(u8 *, s16);
+    s16 temp_v0;
+    s16 temp_v0_2;
+
+    if (arg3 == 0) {
+        (*(s16 *)((s8 *)(arg0) + (2))) = 0;
+    } else {
+        (*(s16 *)((s8 *)(arg0) + (2))) = arg2;
+    }
+    if (arg4 == 0) {
+        (*(s16 *)((s8 *)(arg0) + (0))) = 0;
+    } else {
+        (*(s16 *)((s8 *)(arg0) + (0))) = (s16) (arg2 + arg3);
+    }
+    temp_v0 = (*(s16 *)((s8 *)(arg0) + (2)));
+    if (temp_v0 != 0) {
+        _suexpressmorph_entrypoint_5((u8 *)((s8 *)arg0 + temp_v0), arg1);
+    }
+    temp_v0_2 = (*(s16 *)((s8 *)(arg0) + (0)));
+    if (temp_v0_2 != 0) {
+        _suexpressjoint_entrypoint_2((u8 *)((s8 *)arg0 + temp_v0_2), arg1);
+    }
+    (*(s16 *)((s8 *)(arg0) + (6))) = 0;
+    (*(s16 *)((s8 *)(arg0) + (4))) = 0;
+    (*(s16 *)((s8 *)(arg0) + (0xA))) = 0;
+    (*(s16 *)((s8 *)(arg0) + (8))) = 0;
+    (*(s8 *)((s8 *)(arg0) + (0x10))) = 0x4B;
+    (*(s8 *)((s8 *)(arg0) + (0x11))) = 0x4B;
+    (*(s8 *)((s8 *)(arg0) + (0x12))) = 1;
+    (*(s16 *)((s8 *)(arg0) + (0xE))) = 0;
+    (*(s8 *)((s8 *)(arg0) + (0x13))) = 0;
+    (*(s16 *)((s8 *)(arg0) + (0xC))) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_7.s")
 
