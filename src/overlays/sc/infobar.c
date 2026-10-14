@@ -165,6 +165,17 @@ s32 scinfobar_entrypoint_23(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/func_80800608_scinfobar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/func_808006EC_scinfobar.s")
+/* extern */
+
+void func_808006EC_scinfobar(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
+    s32 _fxdialog_entrypoint_0();
+    s32 _fxdialog_entrypoint_1(s32, s32);
+    s32 _fxdialog_entrypoint_2(f32);
+    s32 _fxdialog_entrypoint_3(s32, f32, u8, s32);
+    _fxdialog_entrypoint_0();
+    _fxdialog_entrypoint_1(arg2, arg3);
+    _fxdialog_entrypoint_2((*(f32 *)((s8 *)(arg1) + (0xC))));
+    _fxdialog_entrypoint_3(arg0, (f32) (*(s16 *)((s8 *)(arg1) + (8))) * (*(f32 *)((s8 *)(arg1) + (0x14))), (*(u8 *)((s8 *)(arg1) + (1))), 0xFF);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/scinfobar_entrypoint_24.s")
