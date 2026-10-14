@@ -126,7 +126,16 @@ Actor *func_80800AF8_chwaspnestgame(Actor *arg0, f32 *arg1, f32 *arg2, s32 arg3)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80800B80_chwaspnestgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80800C00_chwaspnestgame.s")
+/* extern */
+
+void func_80800C00_chwaspnestgame(void *arg0, s32 arg1) {
+    f32 func_800DC178(f32, f32);
+    s32 func_800EF368(void *, s32);
+    (*(f32 *)((s8 *)(arg0) + (0))) = func_800DC178(-100.0f, 100.0f);
+    (*(f32 *)((s8 *)(arg0) + (4))) = func_800DC178(-100.0f, 100.0f);
+    (*(f32 *)((s8 *)(arg0) + (8))) = func_800DC178(-100.0f, 100.0f);
+    func_800EF368(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80800C7C_chwaspnestgame.s")
 
