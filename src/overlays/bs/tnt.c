@@ -37,7 +37,21 @@ void func_8080009C_bstnt(void *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x160))) = 0U;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_808000D4_bstnt.s")
+/* extern */
+
+void func_808000D4_bstnt(void *arg0, f32 arg1) {
+    void _bapulse_entrypoint_3(void *, f32, f32);
+    f32 _batimer_get(void *, s32);
+    void _batimer_set(void *, s32, f32);
+    void func_80092744(s32 *, s32);
+    void func_80092750(void *, s32, s32, s32, s32);
+    if (_batimer_get(arg0, 2) == 0.0f) {
+        _bapulse_entrypoint_3(arg0, 0.0f, 0.15f);
+        func_80092744(arg0, 1);
+        func_80092750(arg0, 0xFF, 0xFF, 0xFF, 0xFF);
+    }
+    _batimer_set(arg0, 2, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80800164_bstnt.s")
 
