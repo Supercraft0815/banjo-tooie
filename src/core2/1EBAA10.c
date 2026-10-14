@@ -140,7 +140,25 @@ void func_800E14F8(s32 arg0, u8 *arg1, s16 arg2) {
     rare_memcpy((u8 *)(entry + 0x34), arg1, count * 8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1540.s")
+s32 func_800E1540(s32 arg0) {
+    s32 func_800DC128(s32, s32);
+    s32 index;
+    Entry *entry;
+
+    for (index = 0; index < 10; index++) {
+        if ((u8)D_8012CF90[index].active == 1) {
+            break;
+        }
+    }
+    if (index == 10) {
+        index = func_800DC128(0, 10);
+    }
+    entry = &D_8012CF90[index];
+    entry->unk75 = arg0;
+    entry->active = 2;
+    entry->pad77[0] = 0;
+    return index;
+}
 
 s32 func_800E15CC(s32 arg0, f32 arg1, f32 arg2) {
     s32 func_800E1540(s32);
