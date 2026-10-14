@@ -85,7 +85,24 @@ void func_808001F4_chlagoonbits(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/func_8080023C_chlagoonbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/func_808002CC_chlagoonbits.s")
+void func_808002CC_chlagoonbits(Actor *arg0) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 func_800DA544(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    extern s32 D_808007D0_chlagoonbits;
+    extern s32 D_808009B4_chlagoonbits;
+    f32 sp24[3];
+
+    func_800EE7F8(sp24, arg0->position);
+    func_800EF1B8(sp24, arg0->rotation[1], -100.0f);
+    _chexploder_entrypoint_3(arg0, sp24, 0xE);
+    func_800BBCB8(arg0->position, sp24, 0.8f, 5, &D_808007D0_chlagoonbits);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808009B4_chlagoonbits);
+    func_800DA544(0xCE);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/func_80800360_chlagoonbits.s")
 
