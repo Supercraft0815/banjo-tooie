@@ -103,7 +103,13 @@ void func_801006E0(s32 *arg0) {
     freelist_next(&D_80135A64, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_8010072C.s")
+int func_8010072C(s32 *arg0, u8 *arg1) {
+    if (arg0 != NULL) {
+        return arg0[0] == arg1[0] && arg0[1] == arg1[1] && arg0[2] == arg1[2];
+    } else {
+        return arg1[0] == 0xFF && arg1[1] == 0xFF && arg1[2] == 0xFF;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_801007B8.s")
 
