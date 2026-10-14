@@ -1,6 +1,20 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_80800000_bsbeefly.s")
+typedef struct player_state_s PlayerState;
+void func_8009C128(PlayerState *, f32[3]);
+
+void func_80800000_bsbeefly(PlayerState *arg0) {
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    f32 func_800DC178(f32, f32);
+    extern s32 D_80800DC0_bsbeefly;
+    f32 sp24[3];
+
+    func_8009C128(arg0, sp24);
+    sp24[0] += func_800DC178(-30.0f, 30.0f);
+    sp24[1] += 30.0f + func_800DC178(0.0f, 30.0f);
+    sp24[2] += func_800DC178(-30.0f, 30.0f);
+    func_800BBCB8(sp24, NULL, 1.0f, 1, &D_80800DC0_bsbeefly);
+}
 
 void func_808000A4_bsbeefly(s32 arg0) {
     s32 func_800BABB8(s32, f32 *, s32, s32, s32 *);
