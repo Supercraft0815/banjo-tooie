@@ -57,6 +57,29 @@ void func_80800194_chpumproomswitch(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pumproomswit/func_808001E4_chpumproomswitch.s")
+void func_808001E4_chpumproomswitch(Actor *arg0) {
+    void func_800C31DC(u8, f32);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    u8 func_800D9078(f32 *);
+    s32 func_800EA05C();
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    extern s32 D_80800410_chpumproomswitch;
+    extern s32 D_80800424_chpumproomswitch;
+    s32 *var_a2;
+
+    if (arg0->unk70_10 == 2) {
+        if (arg0->unk5F == 0) {
+            if (func_800EA05C() == 0xE3) {
+                var_a2 = &D_80800410_chpumproomswitch;
+            } else {
+                var_a2 = &D_80800424_chpumproomswitch;
+            }
+            arg0->unk5F = func_800C4350(0U, arg0->position, var_a2);
+        }
+        func_800D9078(&arg0->unk58);
+        func_800C31DC(arg0->unk5F, func_800F12D4(arg0->unk58, 0.0f, 3.5f, 1.0f, 0.3f));
+        func_800C4350(arg0->unk5F, NULL, NULL);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pumproomswit/func_808002A0_chpumproomswitch.s")

@@ -152,7 +152,26 @@ void ncpoddialog_entrypoint_3(s16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80801B98_ncpoddialog.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80801DB8_ncpoddialog.s")
+/* extern */
+
+void func_80801DB8_ncpoddialog(u8 *arg0, s32 arg1, f32 arg2) {
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    f32 distance;
+
+    func_80800000_ncpoddialog(arg0, arg1, (f32 *)(arg0 + 0x148));
+    arg2 += ((f32 (*)[3])(arg0 + 0x44))[arg1][0];
+    distance = ((f32 (*)[4])arg0)[arg1][0] - ((f32 (*)[4])arg0)[arg1][3];
+    if (distance < ((f32 (*)[4])arg0)[arg1][1]) {
+        distance = ((f32 (*)[4])arg0)[arg1][1];
+    }
+    if (distance < ((f32 (*)[4])arg0)[arg1][2]) {
+        distance = ((f32 (*)[4])arg0)[arg1][2];
+    }
+    func_800EEB9C((f32 *)(arg0 + 0xC4), arg2, distance);
+    func_800EF04C((f32 *)(arg0 + 0xC4), (f32 *)(arg0 + 0x148));
+    *(f32 *)(arg0 + 0xC8) = *(f32 *)(arg0 + 0x14C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80801E78_ncpoddialog.s")
 

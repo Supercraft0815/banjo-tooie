@@ -257,7 +257,32 @@ void bstaxi_entrypoint_24(void *arg0) {
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_25.s")
+/* extern */
+
+void bstaxi_entrypoint_25(void *arg0) {
+    void _babackpack_set_state(void *, s32);
+    f32 baanim_getTimer(struct player_state_s *);
+    s32 baanim_isAt(void *, f32);
+    s32 bs_setState(void *, s32);
+    void func_8009D3A8(void *, s32);
+    void func_8009DEC0(struct player_state_s *, s32, f32, f32, s32, s32);
+    void func_800A0CD0(void *, s32);
+    s32 sp2C;
+
+    sp2C = 0;
+    func_8009D3A8(arg0, 0);
+    if (baanim_isAt(arg0, 0.5053f) != 0) {
+        _babackpack_set_state(arg0, 1);
+        func_800A0CD0(arg0, 1);
+    }
+    if (baanim_isAt(arg0, 0.48f) != 0) {
+        func_8009DEC0(arg0, 0x584, 0.95f, 1.05f, 0x55F0, 0x55F0);
+    }
+    if (baanim_getTimer(arg0) > 0.5053f) {
+        sp2C = 0x20;
+    }
+    bs_setState(arg0, sp2C);
+}
 
 s32 bstaxi_entrypoint_26(s32 arg0) {
     extern s32 D_808021D8_bstaxi[];

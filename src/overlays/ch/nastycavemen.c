@@ -71,7 +71,25 @@ void func_80800968_chnastycavemen(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_808009BC_chnastycavemen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_80800B10_chnastycavemen.s")
+/* extern */
+
+void func_80800B10_chnastycavemen(Actor *arg0, void *arg1) {
+    void func_800DF3E0(void);
+    void func_800DF440(s32);
+    void func_800DF744(s32, s32);
+    void func_80101870(Actor *, void *);
+
+    func_800DF3E0();
+    func_800DF744(5, 2);
+    func_800DF744(6, 2);
+    func_800DF744(8, 1);
+    func_800DF744(4, arg0->unk64_20 ? 0 : 2);
+    func_800DF744(7, arg0->unk64_20 ? 2 : 0);
+    if (arg0->unk70_10 == 5) {
+        func_800DF440(0);
+    }
+    func_80101870(arg0, arg1);
+}
 
 OSThread *chnastycavemen_entrypoint_1(void)
 {

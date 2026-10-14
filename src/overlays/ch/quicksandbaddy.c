@@ -15,7 +15,28 @@ f32 func_80800CC0_chquicksandbaddy(u8 *arg0) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quicksandbaddy/func_80800CFC_chquicksandbaddy.s")
+/* extern */
+
+s32 func_80800CFC_chquicksandbaddy(Actor *arg0, f32 arg1[3], f32 arg2[3]) {
+    void *func_800C6A7C(f32[3], f32[3], f32[3], u32);
+    f32 func_800EEB40(f32 *, f32 *);
+    f32 mlAbsF(f32);
+    f32 sp1C[3];
+
+    if (!arg0->unk64_20) {
+        return 0;
+    }
+    if (func_800EEB40(arg1, arg2) > 4000000.0f) {
+        return 0;
+    }
+    if (mlAbsF(arg2[1] - arg1[1]) > 500.0f) {
+        return 0;
+    }
+    if (func_800C6A7C(arg1, arg2, sp1C, 0) != 0) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quicksandbaddy/func_80800DBC_chquicksandbaddy.s")
 

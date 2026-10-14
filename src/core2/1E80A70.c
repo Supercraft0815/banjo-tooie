@@ -467,7 +467,29 @@ int func_800A8264(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A8380.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A8424.s")
+void func_800A8424(s32 arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4) {
+    extern s16 D_8011A420[][4];
+    extern s32 D_80127670;
+    s16 *temp_v0;
+
+    temp_v0 = D_8011A420[arg0];
+    *arg1 = (*(s32 *)((s8 *)(&D_80127670) + 0xC)) * temp_v0[0];
+    if ((*(s16 *)((s8 *)(temp_v0) + (0))) == 1) {
+        *arg1 += 1;
+    }
+    *arg2 = (*(s32 *)((s8 *)(&D_80127670) + 0x10)) * temp_v0[1];
+    if ((*(s16 *)((s8 *)(temp_v0) + (2))) != 0) {
+        *arg2 += 1;
+    }
+    *arg3 = (*(s32 *)((s8 *)(&D_80127670) + 0xC)) * temp_v0[2];
+    if ((*(s16 *)((s8 *)(temp_v0) + (4))) == 1) {
+        *arg3 -= 1;
+    }
+    *arg4 = (*(s32 *)((s8 *)(&D_80127670) + 0x10)) * temp_v0[3];
+    if ((*(s16 *)((s8 *)(temp_v0) + (6))) == 1) {
+        *arg4 -= 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A84EC.s")
 
@@ -610,9 +632,9 @@ void func_800A8A04(s32 arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4)
 
 /* extern */
 
-void func_800A8A44(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+void func_800A8A44(s32 arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4) {
     s32 func_800A8380(s32);
-    s32 func_800A8424(s32, s32, s32, s32, s32);
+    void func_800A8424(s32, s32 *, s32 *, s32 *, s32 *);
     func_800A8424(func_800A8380(arg0), arg1, arg2, arg3, arg4);
 }
 

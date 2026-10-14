@@ -554,7 +554,30 @@ s32 func_800D8070(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D8588.s")
+s32 func_800D8588(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 _glsplinecs_entrypoint_1(s32 *, Actor *);
+    void *func_80105494(Actor *);
+    extern s32 D_8012BE70;
+    u8 *sp30[2];
+    s32 var_s1;
+    s32 var_v1;
+
+    var_s1 = 0;
+    sp30[0] = func_80105494(arg0);
+    do {
+        (*(s32 *)((s8 *)(&D_8012BE70) + (0x18C))) = 0;
+        var_s1 += func_800D8070(arg0, arg1, arg2, arg3);
+    } while ((*(s32 *)((s8 *)(&D_8012BE70) + (0x18C))) != 0);
+    if (*sp30[0] != 0) {
+        _glsplinecs_entrypoint_1(&D_8012BE70, arg0);
+    }
+    if (var_s1 != 0) {
+        var_v1 = 1;
+    } else {
+        var_v1 = 0;
+    }
+    return var_v1;
+}
 
 void func_800D8648(s32 arg0, f32 *arg1) {
     void func_800EE7F8(f32 *, f32 *);

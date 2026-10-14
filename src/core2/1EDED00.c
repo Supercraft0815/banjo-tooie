@@ -1,29 +1,40 @@
 #include "common.h"
+
+typedef struct {
+    s16 next_free;
+    u8 data[];
+} FreeListElement;
+typedef struct {
+    s16 element_size;
+    s16 capacity;
+    FreeListElement data[];
+} FreeList;
+
 extern s32 D_80136ED8;
 
 void func_80105410(void) {
-    s32 freelist_new(s32, s32);
-    extern s32 D_80136EC0;
+    FreeList *freelist_new(s32, s32);
+    extern FreeList *D_80136EC0;
     D_80136EC0 = freelist_new(0x48, 8);
 }
 
 void func_80105438(void) {
-    s32 freelist_free(s32);
-    extern s32 D_80136EC0;
+    void freelist_free(FreeList *);
+    extern FreeList *D_80136EC0;
     freelist_free(D_80136EC0);
 }
 
 void func_8010545C(void) {
-    s32 freelist_defrag(s32);
-    extern s32 D_80136EC0;
+    FreeList *freelist_defrag(FreeList *);
+    extern FreeList *D_80136EC0;
     if (D_80136EC0 != 0) {
         D_80136EC0 = freelist_defrag(D_80136EC0);
     }
 }
 
 void *func_80105494(Actor *arg0) {
-    extern s32 D_80136EC0;
-    void *freelist_at(s32, s32);
+    extern FreeList *D_80136EC0;
+    void *freelist_at(FreeList *, s32);
     if (arg0->unk7C_0 == 0) {
         return NULL;
     }
@@ -32,11 +43,47 @@ void *func_80105494(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_801054D4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_8010556C.s")
+void *func_8010556C(Actor *arg0) {
+    typedef struct {
+        s16 unk0;
+        s16 pad2_11 : 5;
+        s16 unk2_1 : 10;
+        s16 pad2_0 : 1;
+        u8 pad4[0x10];
+        f32 unk14;
+        u8 unk18_7 : 1;
+        u8 unk18_6 : 1;
+        u8 unk18_0 : 6;
+        u8 pad19[0xE];
+        u8 pad27_6 : 2;
+        u8 unk27_5 : 1;
+        u8 pad27_0 : 5;
+        u8 unk28_5 : 3;
+        u8 pad28_0 : 5;
+    } Entry;
+    void *freelist_next(FreeList **, s32 *);
+    void rare_memset(void *, u8, int);
+    u32 func_800E6A00(void);
+    extern FreeList *D_80136EC0;
+    s32 sp1C;
+    Entry *sp18;
+
+    sp1C = 0;
+    sp18 = freelist_next(&D_80136EC0, &sp1C);
+    arg0->unk7C_0 = sp1C;
+    rare_memset(sp18, 0, 0x48);
+    sp18->unk2_1 = -1;
+    sp18->unk28_5 = 7;
+    sp18->unk18_7 = 0;
+    sp18->unk14 = 100.0f;
+    sp18->unk18_6 = func_800E6A00();
+    sp18->unk27_5 = 0;
+    return sp18;
+}
 
 void func_80105634(Actor *arg0) {
-    s32 freelist_erase(s32, s32);
-    extern s32 D_80136EC0;
+    void freelist_erase(FreeList *, s32);
+    extern FreeList *D_80136EC0;
     if (arg0->unk7C_0 != 0) {
         freelist_erase(D_80136EC0, arg0->unk7C_0);
         (*(u16 *)((s8 *)(arg0) + (0x7E))) = (u16) ((*(u16 *)((s8 *)(arg0) + (0x7E))) & 0xF000);
@@ -133,17 +180,17 @@ void func_80105BE0(Actor *arg0, s32 arg1) {
 }
 
 void func_80105C20(void) {
-    s32 freelist_new(s32, s32);
-    extern s32 D_80136ED0;
+    FreeList *freelist_new(s32, s32);
+    extern FreeList *D_80136ED0;
     D_80136ED0 = freelist_new(0x8, 0);
 }
 
 void func_80105C48(void) {
-    s32 freelist_capacity(s32);
-    s32 freelist_free(s32);
-    s32 freelist_is_element_alive(s32, s32);
+    s16 freelist_capacity(FreeList *);
+    void freelist_free(FreeList *);
+    s32 freelist_is_element_alive(FreeList *, s32);
     void func_801060E4(s16);
-    extern s32 D_80136ED0;
+    extern FreeList *D_80136ED0;
     s32 var_s0;
     s32 temp_v0;
 
@@ -166,11 +213,11 @@ void func_80105C48(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105DFC.s")
 
 void func_801060E4(s16 arg0) {
-    void *freelist_at(s32, s32);
-    s32 freelist_erase(s32, s32);
+    void *freelist_at(FreeList *, s32);
+    void freelist_erase(FreeList *, s32);
     s32 vector_free(s32);
     s32 _glidmake_entrypoint_4(s32);
-    extern s32 D_80136ED0;
+    extern FreeList *D_80136ED0;
     s32 *entry;
 
     entry = freelist_at(D_80136ED0, arg0);
@@ -191,8 +238,8 @@ s32 func_80106314()
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80106320.s")
 
 void *func_801063C0(void *arg0) {
-    void *freelist_at(s32, s32);
-    extern s32 D_80136ED0;
+    void *freelist_at(FreeList *, s32);
+    extern FreeList *D_80136ED0;
     return freelist_at(D_80136ED0, (*(s16 *)((s8 *)(arg0) + (0x90))));
 }
 

@@ -44,7 +44,35 @@ void baeggfire_entrypoint_2(void) {
     (*(s8 *)((s8 *)((*(void **)((s8 *)(func_800F53D0()) + (0x6C)))) + (0x13))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/fire/func_808000B8_baeggfire.s")
+void func_808000B8_baeggfire(void *arg0) {
+    s32 _baeggsetup_entrypoint_10(void *);
+    s32 _baeggsetup_entrypoint_8(void *, u8);
+    s32 func_800C9DE4(f32, s32 *, s32);
+    extern s32 _baeggfire_entrypoint_1;
+    extern s32 _baeggfire_entrypoint_2;
+    void *temp_v0;
+    void *temp_v0_2;
+    void *temp_v0_3;
+
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x6C)));
+    if ((*(u8 *)((s8 *)(temp_v0) + (0x13))) == 0) {
+        if ((*(u8 *)((s8 *)(temp_v0) + (0x12))) != 0) {
+            func_800C9DE4(0.25f, &_baeggfire_entrypoint_1, (*(s32 *)((s8 *)(arg0) + (0x184))));
+            (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x6C)))) + (0x13))) = 1;
+            _baeggsetup_entrypoint_10(arg0);
+            temp_v0_2 = (*(void **)((s8 *)(arg0) + (0x6C)));
+            (*(u8 *)((s8 *)(temp_v0_2) + (0x12))) = (u8) ((*(u8 *)((s8 *)(temp_v0_2) + (0x12))) - 1);
+            return;
+        }
+        if ((*(u8 *)((s8 *)(temp_v0) + (0x11))) != 0) {
+            func_800C9DE4(0.17f, &_baeggfire_entrypoint_2, (*(s32 *)((s8 *)(arg0) + (0x184))));
+            (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x6C)))) + (0x13))) = 1;
+            _baeggsetup_entrypoint_8(arg0, (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x6C)))) + (0x10))));
+            temp_v0_3 = (*(void **)((s8 *)(arg0) + (0x6C)));
+            (*(u8 *)((s8 *)(temp_v0_3) + (0x11))) = (u8) ((*(u8 *)((s8 *)(temp_v0_3) + (0x11))) - 1);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/fire/func_80800180_baeggfire.s")
 

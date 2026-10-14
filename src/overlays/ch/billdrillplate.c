@@ -74,7 +74,42 @@ void func_80800924_chbilldrillplate(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_80800B9C_chbilldrillplate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_80800C98_chbilldrillplate.s")
+/* extern */
+
+s32 func_80800C98_chbilldrillplate(Actor *volatile arg0, f32 *arg1, f32 arg2) {
+    void *func_800C6A7C(f32[3], f32[3], f32[3], u32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_8010A624(Actor *);
+    void func_8010A63C(Actor *);
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp24[3];
+    s32 var_v1;
+    union {
+        f32 *position;
+        void *collision;
+    } sp1C;
+    Actor *actor;
+
+    sp1C.position = arg0->position;
+    func_800EE7F8(sp3C, sp1C.position);
+    func_800EE7F8(sp30, sp1C.position);
+    sp3C[1] += 20.0f + arg2;
+    sp30[1] -= 20.0f;
+    func_8010A624(arg0);
+    sp1C.collision = func_800C6A7C(sp3C, sp30, sp24, 0x20020);
+    actor = arg0;
+    if (sp1C.collision) {
+        var_v1 = 1;
+    } else {
+        var_v1 = 0;
+    }
+    func_8010A63C(actor);
+    if (var_v1 != 0) {
+        *arg1 = sp30[1];
+    }
+    return var_v1;
+}
 
 /* extern */
 

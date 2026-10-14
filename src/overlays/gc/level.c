@@ -63,7 +63,47 @@ u32 gclevel_entrypoint_3(void) {
     return func_800DA298((enum flag_e) (*(u16 *)((s8 *)(temp_v0) + (2))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/level/func_8080016C_gclevel.s")
+/* extern */
+
+void func_8080016C_gclevel(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    u32 func_8009E958(void);
+    void func_8009EB8C(s16, s16);
+    u32 func_8009EC7C(void);
+    s32 func_800D395C(void);
+    s16 var_a0;
+    s16 var_a1;
+    s32 *arg3_ptr = &arg3;
+
+    if ((arg0 != arg1) && ((func_8009E958() == 1) || (func_800D395C() != 0))) {
+        if (arg1 != 0xD) {
+            if (arg1 != 0x19) {
+                if (arg1 == 0x1A) {
+                    arg2 = 0x142;
+                    arg3 = 3;
+                }
+                goto block_8;
+            }
+            if (arg0 != 0xD) {
+block_8:
+                func_8009EB8C((s16) arg2, (s16) arg3);
+                goto block_9;
+            }
+        }
+    } else {
+block_9:
+        if (func_8009EC7C() == 0) {
+            var_a0 = (s16) arg2;
+            if (arg2 == 0x194) {
+                *arg3_ptr = 1;
+                var_a0 = 0x15D;
+                var_a1 = 1;
+            } else {
+                var_a1 = (s16) arg3;
+            }
+            func_8009EB8C(var_a0, var_a1);
+        }
+    }
+}
 
 s32 gclevel_entrypoint_4(s32 arg0)
 {

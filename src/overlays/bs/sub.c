@@ -20,7 +20,32 @@ f32 func_80800048_bssub(f32 arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800634_bssub.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800768_bssub.s")
+/* extern */
+
+struct player_state_s;
+void func_80800768_bssub(struct player_state_s *arg0) {
+    f32 bastick_getY(struct player_state_s *);
+    void func_8009BF5C(struct player_state_s *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 player_inWater(struct player_state_s *);
+    f32 temp_f0;
+    f32 var_f2;
+    f32 var_f16;
+
+    if (player_inWater(arg0) != 0) {
+        var_f2 = 275.0f;
+        var_f16 = 85.0f;
+    } else {
+        var_f2 = 325.0f;
+        var_f16 = 30.0f;
+    }
+    temp_f0 = bastick_getY(arg0);
+    if (temp_f0 < 0.0f) {
+        func_8009BF5C(arg0, func_800F10B4(temp_f0, -1.0f, 0.0f, var_f2, 360.0f));
+        return;
+    }
+    func_8009BF5C(arg0, func_800F10B4(temp_f0, 0.0f, 1.0f, 0.0f, var_f16));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800834_bssub.s")
 

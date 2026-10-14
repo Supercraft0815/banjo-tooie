@@ -137,7 +137,24 @@ void func_80800C70_chpawnbroker(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800CB4_chpawnbroker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800D5C_chpawnbroker.s")
+s32 func_80800D5C_chpawnbroker(Actor *arg0, s32 arg1, s32 arg2) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800FFAB0(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_8010A590(Actor *);
+    extern s32 D_80801100_chpawnbroker;
+    extern s32 D_80801134_chpawnbroker;
+
+    if (arg1 == 5) {
+        func_800BBCB8(arg0->position, arg0->position, arg0->scale, 0x28, &D_80801100_chpawnbroker);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801134_chpawnbroker);
+        func_8010A590(func_80106790(arg0->unk3C));
+        func_800FFAB0(arg0);
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 

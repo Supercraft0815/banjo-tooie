@@ -73,7 +73,36 @@ s32 func_8008F4F0(struct player_state_s *arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008F568.s")
+/* extern */
+
+s32 func_8008F568(s32 arg0, s32 arg1, Actor **arg2) {
+    Unk80132ED0 *_bahold_entrypoint_5(s32);
+    void func_8008E9A0(void *, s32);
+    void func_800904C8(s32);
+    s32 func_800D1B34(s32);
+    s32 func_800D1C38(s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    Unk80132ED0 *sp24;
+    Unk80132ED0 *sp20;
+    Actor *sp1C;
+
+    sp24 = (*arg2)->unk0;
+    sp20 = _bahold_entrypoint_5(arg0);
+    if (sp20 != 0) {
+        sp1C = func_80106790(sp20);
+    }
+    if ((sp20 != 0) && (arg1 != sp1C->unk6C_9)) {
+        return 0;
+    }
+    func_8008E9A0(arg0, arg1);
+    if (func_800D1C38(func_800D1B34(arg1)) == 0) {
+        func_800904C8(0x12);
+    } else {
+        return 0;
+    }
+    *arg2 = func_80106790(sp24);
+    return 1;
+}
 
 /* extern */
 

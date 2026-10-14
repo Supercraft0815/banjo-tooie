@@ -82,7 +82,26 @@ void func_80112D2C(PlayerState *arg0) {
     (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x60)))) + (0x18))) = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80112D90.s")
+void func_80112D90(PlayerState *arg0, f32 arg1, f32 arg2, s32 arg3, s32 arg4) {
+    f32 func_800F1DCC(f32, f32);
+    f32 mlAbsF(f32);
+    extern f32 D_801265A8;
+    void *var_v0;
+
+    var_v0 = (*(void **)((s8 *)(arg0) + (0x60)));
+    if (arg4 >= (*(s16 *)((s8 *)(var_v0) + (0xE)))) {
+        if (arg3 != (*(s16 *)((s8 *)(var_v0) + (0xC)))) {
+            func_80112D2C(arg0);
+            var_v0 = (*(void **)((s8 *)(arg0) + (0x60)));
+        }
+        (*(f32 *)((s8 *)(var_v0) + (0x10))) = arg1;
+        (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x60)))) + (0x1C))) = 0.0f;
+        var_v0 = (*(void **)((s8 *)(arg0) + (0x60)));
+        (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x60)))) + (0x20))) = (f32) ((mlAbsF(func_800F1DCC((*(f32 *)((s8 *)(var_v0) + (0x10))), (*(f32 *)((s8 *)(var_v0) + (0x14))))) * D_801265A8) / arg2);
+        (*(s16 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x60)))) + (0xC))) = (s16) arg3;
+        (*(s16 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x60)))) + (0xE))) = (s16) arg4;
+    }
+}
 
 void func_80112E50(void *arg0, f32 arg1, s32 arg2) {
     void *temp_v0;

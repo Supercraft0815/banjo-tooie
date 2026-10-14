@@ -310,7 +310,29 @@ OSThread *chgameselect_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802070_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808020CC_chgameselect.s")
+/* extern */
+
+void func_808020CC_chgameselect(Actor *arg0, s32 arg1) {
+    void _subaddiefade_entrypoint_4(Actor *);
+    s32 _subaddiefade_entrypoint_5();
+    u32 temp_t0;
+    u32 temp_t9;
+
+    if (arg1 != arg0->unk64_19) {
+        if (arg1 != 0) {
+            temp_t9 = arg0->unk79_4;
+            if ((temp_t9 != 0) && (temp_t9 != 1) && (temp_t9 != 2)) {
+                _subaddiefade_entrypoint_4(arg0);
+            }
+        } else {
+            temp_t0 = arg0->unk79_4;
+            if ((temp_t0 != 0) && (temp_t0 != 1) && (temp_t0 != 2)) {
+                _subaddiefade_entrypoint_5(arg0);
+            }
+        }
+        arg0->unk64_19 = arg1;
+    }
+}
 
 s32 func_8080218C_chgameselect(s32 arg0, s32 arg1) {
     union {

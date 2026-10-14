@@ -1,6 +1,44 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/introsyncDll/func_80800000_glintrosyncDll.s")
+s32 func_80800000_glintrosyncDll(s32 arg0) {
+    extern s32 D_808004A0_glintrosyncDll;
+    extern s32 D_808004A8_glintrosyncDll;
+    extern s32 D_808004B0_glintrosyncDll;
+    extern s32 D_808004B8_glintrosyncDll;
+    s32 *var_v0;
+    s32 var_v1;
+
+    if (arg0 == D_808004A0_glintrosyncDll) {
+        return 0;
+    }
+    if (arg0 == D_808004A8_glintrosyncDll) {
+        return 1;
+    }
+    var_v0 = &D_808004B8_glintrosyncDll;
+    var_v1 = 3;
+    if (arg0 == D_808004B0_glintrosyncDll) {
+        return 2;
+    }
+loop_7:
+    if (arg0 == (*(s32 *)((s8 *)(var_v0) + (0)))) {
+        return var_v1;
+    }
+    if (arg0 == (*(s32 *)((s8 *)(var_v0) + (8)))) {
+        return var_v1 + 1;
+    }
+    if (arg0 == (*(s32 *)((s8 *)(var_v0) + (0x10)))) {
+        return var_v1 + 2;
+    }
+    if (arg0 == (*(s32 *)((s8 *)(var_v0) + (0x18)))) {
+        return var_v1 + 3;
+    }
+    var_v1 += 4;
+    var_v0 += 8;
+    if (var_v1 == 0xB) {
+        return -1;
+    }
+    goto loop_7;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/introsyncDll/func_808000BC_glintrosyncDll.s")
 

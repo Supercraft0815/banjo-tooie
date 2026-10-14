@@ -27,7 +27,44 @@ void func_8080002C_gcdialogexec(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_808000A0_gcdialogexec.s")
+/* extern */
+
+void func_808000A0_gcdialogexec(u8 *arg0) {
+    s32 _gldialog_entrypoint_5(s16);
+    s32 heap_free(s32);
+    s16 temp_a0;
+    s32 var_s2;
+    s32 var_v0;
+    s32 var_v1;
+    u8 *var_s0;
+    u8 *var_s1;
+
+    var_s0 = arg0;
+    var_s1 = arg0;
+    var_s2 = 0;
+    do {
+        var_v0 = 0;
+        var_v1 = 0;
+        if ((s32) (*(u8 *)((s8 *)(var_s0) + (0x114))) > 0) {
+            do {
+                var_v0 += 1;
+                (*(s32 *)((s8 *)(((*(s32 *)((s8 *)(var_s1) + (0x104))) + var_v1)) + (4))) = 0;
+                var_v1 += 8;
+            } while (var_v0 < (s32) (*(u8 *)((s8 *)(var_s0) + (0x114))));
+        }
+        (*(u8 *)((s8 *)(var_s0) + (0x114))) = 0U;
+        heap_free((*(s32 *)((s8 *)(var_s1) + (0x104))));
+        var_s2 += 1;
+        var_s0 += 1;
+        var_s1 += 4;
+        (*(s32 *)((s8 *)(var_s1) + (0x100))) = 0;
+    } while (var_s2 != 2);
+    temp_a0 = (*(s16 *)((s8 *)(arg0) + (0x162)));
+    if (temp_a0 != -1) {
+        _gldialog_entrypoint_5(temp_a0);
+    }
+    (*(s32 *)((s8 *)(arg0) + (0x100))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80800164_gcdialogexec.s")
 
@@ -87,7 +124,23 @@ s32 func_80801020_gcdialogexec(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80801038_gcdialogexec.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_808011A4_gcdialogexec.s")
+/* extern */
+
+void func_808011A4_gcdialogexec(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    typedef struct {
+        u8 pad[0x120];
+        s32 box[2];
+    } Dialog;
+    s32 _gczoombox_entrypoint_20(s32, f32, s32, s32, f32, s32, s32);
+    s32 i;
+    f32 box_background_animation_duration = 0.4f;
+
+    for (i = 0; i < 2; i++) {
+        if (((Dialog *)arg0)->box[i]) {
+            _gczoombox_entrypoint_20(((Dialog *)arg0)->box[i], arg3, arg1, arg2, box_background_animation_duration, arg4, arg5);
+        }
+    }
+}
 
 void func_80801268_gcdialogexec(void *arg0, s32 arg1, s32 arg2, void *arg3, s32 arg4, s32 arg5, s32 arg6, s16 arg7)
 {
@@ -154,7 +207,7 @@ void func_80801268_gcdialogexec(void *arg0, s32 arg1, s32 arg2, void *arg3, s32 
   s32 func_800A9C98(void);
   int func_80801038_gcdialogexec(void *, s32);
   int func_80800A50_gcdialogexec();
-  s32 func_808011A4_gcdialogexec(s32, s32, f32 *, void *, void *, void *);
+  void func_808011A4_gcdialogexec(u8 *, s32, s32, s32, s32, s32);
   extern void func_800C01D8(void);
   Text *text;
   s32 i;
@@ -267,7 +320,7 @@ void func_80801268_gcdialogexec(void *arg0, s32 arg1, s32 arg2, void *arg3, s32 
     ((Dialog *) arg0)->speed = -1;
   }
   func_80800A50_gcdialogexec(arg0, (func_800A9C98() && ((Dialog *) arg0)->fast) ? (6) : (1));
-  func_808011A4_gcdialogexec((s32) arg0, 5, (f32 *) 2, (void *) 0xF, (void *) (arg2 & 2), (void *) (arg2 & 0x80));
+  func_808011A4_gcdialogexec(arg0, 5, 2, 0xF, arg2 & 2, arg2 & 0x80);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/gcdialogexec_entrypoint_0.s")
@@ -278,17 +331,17 @@ void func_80801268_gcdialogexec(void *arg0, s32 arg1, s32 arg2, void *arg3, s32 
 
 /* extern */
 
-s32 gcdialogexec_entrypoint_3(s32 arg0, s32 arg1, void *arg2, s32 arg3, f32 *arg4, void *arg5) {
-    s32 func_808011A4_gcdialogexec(s32, s32, f32 *, void *, void *, void *);
+s32 gcdialogexec_entrypoint_3(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, void *arg5) {
+    void func_808011A4_gcdialogexec(u8 *, s32, s32, s32, s32, s32);
     s32 gcdialogexec_entrypoint_0(s32, s32, s32, void *, void *, void *, void *, void *, void *);
     gcdialogexec_entrypoint_0(arg0, arg1 + 0xE06, 0x44, 0, 0, 0, 0, arg5, 0);
     func_808011A4_gcdialogexec(arg0, arg3, arg4, arg2, 0, 0);
     return 1;
 }
 
-s32 gcdialogexec_entrypoint_4(s32 text_id, s32 arg1, f32 *pos, void *marker, void *callback, void *arg5) {
-    s32 func_808011A4_gcdialogexec(s32, s32, f32 *, void *, void *, void *);
-    return func_808011A4_gcdialogexec(text_id, arg1, pos, marker, callback, arg5);
+void gcdialogexec_entrypoint_4(u8 *text_id, s32 arg1, s32 pos, s32 marker, s32 callback, s32 arg5) {
+    void func_808011A4_gcdialogexec(u8 *, s32, s32, s32, s32, s32);
+    func_808011A4_gcdialogexec(text_id, arg1, pos, marker, callback, arg5);
 }
 
 void gcdialogexec_entrypoint_5()

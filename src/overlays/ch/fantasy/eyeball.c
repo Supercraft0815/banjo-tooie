@@ -27,7 +27,24 @@ void func_80800F78_chfantasyeyeball(Actor *arg0, Actor *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_808010B0_chfantasyeyeball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_808011D0_chfantasyeyeball.s")
+/* extern */
+
+void func_808011D0_chfantasyeyeball(Actor *arg0, f32 arg1, f32 arg2, f32 arg3) {
+    void func_800A516C(f32 *, f32 *, f32 *);
+    void func_800E39D8(s32, s32);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp24[3];
+
+    func_800EEC30(sp30, arg1, arg2, (500.0f * arg3) + 2000.0f);
+    func_800EF04C(sp30, arg0->position);
+    func_800EFA4C(sp24, arg0->position[0], arg0->position[1] + arg0->scale * 224.0f, arg0->position[2]);
+    func_800A516C(sp3C, sp24, sp30);
+    func_800E39D8(sp30, sp3C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80801290_chfantasyeyeball.s")
 

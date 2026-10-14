@@ -68,7 +68,25 @@ u32 func_800AADE4(u16 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AAEF4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AAFEC.s")
+/* extern */
+
+void func_800AAFEC(f32 *arg0, f32 *arg1, s32 *arg2, s32 *arg3, f32 *arg4) {
+    void func_800EFB24(void *, void *, void *);
+    int i;
+
+    for (i = 0; i < 3; i++) {
+        if (arg0[i] < arg1[i]) {
+            arg2[i] = (s32) arg0[i];
+            arg3[i] = (s32) arg1[i];
+        } else {
+            arg2[i] = (s32) arg1[i];
+            arg3[i] = (s32) arg0[i];
+        }
+        arg2[i] -= 1;
+        arg3[i] += 1;
+    }
+    func_800EFB24(arg4, arg1, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AB0BC.s")
 

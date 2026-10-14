@@ -1,6 +1,34 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swampplatform/func_80800000_chswampplatform.s")
+/* extern */
+void func_80101FDC(Actor *, u32);
+
+void func_80800000_chswampplatform(Actor *arg0) {
+    typedef struct {
+        f32 position[3];
+        u32 unk24;
+        f32 scale[3];
+        f32 unk34;
+    } PlatformData;
+    s32 _gccubesearch_entrypoint_10(s32, u32);
+    s32 func_800DA298(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+
+    if (func_800DA298(0x160) == 0) {
+        if (_gccubesearch_entrypoint_10(0x28E, arg0->pad6C_21) == 0) {
+            func_80101FDC(arg0, 0);
+        }
+        arg0->scale = 2.0f;
+    } else {
+        arg0->scale = 7.0f;
+    }
+    func_800EE7F8(((PlatformData *)arg0->actorData)->position, arg0->position);
+    func_800EFA4C(((PlatformData *)arg0->actorData)->scale, 1.0f, 1.0f, 1.0f);
+    arg0->unk64_20 = 0;
+    arg0->unk64_19 = 0;
+    ((PlatformData *)arg0->actorData)->unk34 = 0.0f;
+}
 
 void func_808000BC_chswampplatform(Actor *arg0) {
     typedef struct {

@@ -66,7 +66,29 @@ void baswim_entrypoint_10(void *arg0, f32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_11.s")
+/* extern */
+
+struct player_state_s;
+void baswim_entrypoint_11(struct player_state_s *arg0) {
+    f32 _bafpctrl_entrypoint_3(struct player_state_s *);
+    void baroll_setIdeal(struct player_state_s *, f32);
+    f32 bastick_getX(struct player_state_s *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 yaw_getIdeal(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    void yaw_setVelocityBounded(struct player_state_s *, f32, f32);
+    f32 sp34;
+    f32 sp30 = 4.3f;
+    f32 sp2C = 45.0f;
+    f32 sp28;
+
+    sp28 = bastick_getX(arg0);
+    yaw_setVelocityBounded(arg0, 250.0f, 20.0f);
+    baroll_setIdeal(arg0, func_800F10B4(sp28, -1.0f, 1.0f, -sp2C, sp2C));
+    sp34 = func_800F10B4(sp28, -1.0f, 1.0f, sp30, -sp30);
+    sp34 *= _bafpctrl_entrypoint_3(arg0);
+    yaw_setIdeal(arg0, yaw_getIdeal(arg0) + sp34);
+}
 
 /* extern */
 

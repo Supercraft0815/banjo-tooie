@@ -20,7 +20,44 @@ s32 chlensflare_entrypoint_0(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lensflare/func_80800084_chlensflare.s")
+void func_80800084_chlensflare(Actor *arg0) {
+    typedef struct {
+        s32 pad0[3];
+        s32 index;
+        s32 pad10[3];
+        f32 intensity;
+    } LensFlareActorData;
+    s32 func_800EA05C();
+    void func_800FFAB0(Actor *);
+    extern s32 D_808008F0_chlensflare[][2];
+    s32 (*var_v1)[2];
+    s32 temp_a0;
+    s32 temp_v0;
+    s32 var_a1;
+    s32 sentinel;
+
+    temp_v0 = func_800EA05C();
+    var_v1 = D_808008F0_chlensflare;
+    var_a1 = 0;
+    sentinel = -1;
+loop_1:
+    temp_a0 = (*var_v1)[0];
+    var_v1++;
+    if (sentinel != temp_a0) {
+        goto compare;
+    }
+    func_800FFAB0(arg0);
+    return;
+compare:
+    if (temp_v0 == temp_a0) {
+        ((LensFlareActorData *)arg0->actorData)->index = var_a1;
+        goto found;
+    }
+    var_a1 += 1;
+    goto loop_1;
+found:
+    ((LensFlareActorData *)arg0->actorData)->intensity = 1.01f;
+}
 
 void func_808000FC_chlensflare(void *arg0, s32 arg1) {
     typedef struct {

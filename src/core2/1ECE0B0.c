@@ -16,7 +16,7 @@ extern f32 D_8013550C;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F482C.s")
 
-void func_800F48BC(s32 arg0, s32 arg1) {
+void func_800F48BC(s32 arg0, f32 *arg1) {
     f32 func_800D8FF8(void);
     void func_800EFA20(void *, void *, f32);
     f32 sp2C[3];
@@ -25,7 +25,7 @@ void func_800F48BC(s32 arg0, s32 arg1) {
 
     sp1C = D_80135490[arg0];
     func_800F4200(sp1C, sp2C);
-    func_800EFA20(sp20, (void *)arg1, func_800D8FF8());
+    func_800EFA20(sp20, arg1, func_800D8FF8());
     func_800EF04C(sp2C, sp20);
     func_800F4648(sp1C, sp2C);
 }
@@ -1100,9 +1100,29 @@ void func_800F71D4(s32 arg0)
     func_8008E37C(D_80135490[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7200.s")
+/* extern */
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7270.s")
+s32 func_800F7200(s32 arg0, f32 arg1[3], f32 arg2, s32 arg3, Actor **arg4) {
+    s32 func_8008DDEC(PlayerState *, f32[3], f32);
+    s32 func_8008F568(s32, s32, Actor **);
+    PlayerState *sp1C;
+
+    sp1C = D_80135490[arg0];
+    if ((arg2 < 0.0f) || (func_8008DDEC(sp1C, arg1, arg2) != 0)) {
+        return func_8008F568(sp1C, arg3, arg4);
+    }
+    return 0;
+}
+
+/* extern */
+
+s32 func_800F7270(s32 arg0, f32 arg1[3], f32 arg2, f32 arg3, s32 arg4, Actor **arg5) {
+    int func_8008DEA4(PlayerState *, f32[3], f32);
+    if (func_8008DEA4(D_80135490[arg0], arg1, arg3) != 0) {
+        return func_800F7200(arg0, arg1, arg2, arg4, arg5);
+    }
+    return 0;
+}
 
 /* extern */
 

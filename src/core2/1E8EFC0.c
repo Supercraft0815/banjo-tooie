@@ -30,7 +30,21 @@ void *func_800B56D0(u8 index) {
     return D_80127F28[index].emitter;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8EFC0/func_800B5758.s")
+u8 func_800B5758(s32 count) {
+    extern EmitterData D_80127F28[];
+    int i;
+
+    for (i = 1; i < 45; i++) {
+        if (D_80127F28[i].isActive == 0) {
+            D_80127F28[i].isActive++;
+            D_80127F28[i].emitter = NULL;
+            D_80127F28[i].capacity = count;
+            return i;
+        }
+    }
+
+    return 0;
+}
 
 void func_800B5824(void) {
     extern EmitterData D_80127F28[];

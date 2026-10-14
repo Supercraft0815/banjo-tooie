@@ -14,7 +14,32 @@ OSThread *chweldarbossdoors_entrypoint_1(void)
     return (OSThread *) D_808002B8_chweldarbossdoors;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/doors/func_80800018_chweldarbossdoors.s")
+/* extern */
+
+void func_80800018_chweldarbossdoors(Actor *arg0) {
+    s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    void _chdoormake_entrypoint_6(Actor *, s32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    s32 _subaddiefade_entrypoint_14(s32);
+    f32 var_f0;
+    s32 var_v0;
+
+    var_f0 = arg0->rotation[1];
+    var_v0 = 0;
+    if (arg0->unk74_7 == 0x32) {
+        var_v0 = 1;
+        var_f0 += 180.0f;
+    }
+    _subaddiefade_entrypoint_14((s32)arg0);
+    if (_chdoormake_entrypoint_3(arg0, var_f0 + 90.0f, 0.0f, 750.0f, 0x102, -1) != 0) {
+        _chdoormake_entrypoint_5(arg0, 8.5f);
+        _chdoormake_entrypoint_6(arg0, 0x3F800000);
+        if (var_v0 != 0) {
+            _chdoormake_entrypoint_8(arg0, 8);
+        }
+    }
+}
 
 void func_808000E0_chweldarbossdoors(Actor *arg0, s32 arg1, s32 arg2)
 {

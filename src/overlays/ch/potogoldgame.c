@@ -92,7 +92,45 @@ void func_808011DC_chpotogoldgame(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_808013BC_chpotogoldgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80801494_chpotogoldgame.s")
+/* extern */
+
+void func_80801494_chpotogoldgame(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80801870_chpotogoldgame(s32, s32, s32, s32);
+    s32 var_s0;
+    s32 var_s3;
+    s32 var_s4;
+    s8 *var_fp;
+    s8 *var_s1;
+    s8 *var_s6;
+    s8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0);
+    var_s4 = 0;
+    var_fp = temp_v0;
+    do {
+        var_s3 = 0;
+        var_s6 = var_fp;
+loop_2:
+        var_s0 = 0;
+        var_s1 = var_s6;
+loop_3:
+        *var_s1 = arg1;
+        func_80801870_chpotogoldgame(var_s3, var_s4, var_s0, arg1);
+        var_s0 += 1;
+        var_s1 += 1;
+        if (var_s0 != 5) {
+            goto loop_3;
+        }
+        var_s3 += 1;
+        var_s6 += 5;
+        if (var_s3 != 4) {
+            goto loop_2;
+        }
+        var_s4 += 1;
+        var_fp += 0x14;
+    } while (var_s4 != 5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80801558_chpotogoldgame.s")
 
@@ -106,7 +144,30 @@ void func_80801870_chpotogoldgame(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     _glid_entrypoint_0(func_800BEA88(0), ((arg0 * 5) - arg2) + 5, &_chpotogoldgame_entrypoint_1, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/chpotogoldgame_entrypoint_1.s")
+/* extern */
+
+void chpotogoldgame_entrypoint_1(u8 arg0, s16 *arg1, Vtx *arg2, s32 arg3, s32 arg4) { s32 func_80801998_chpotogoldgame(s16 *); s16 *var_s1; Vtx *temp_s6; Vtx *var_s0; s32 flag; var_s0 = arg2; var_s1 = arg1;
+    flag = arg4 & 0x10;
+    arg4 &= 0xF;
+    temp_s6 = arg2 + arg3;
+    if (arg2 < temp_s6) {
+        do {
+            if (func_80801998_chpotogoldgame(var_s1) == arg4) {
+                if (flag) {
+                    var_s0->v.cn[0] = 0x64;
+                    var_s0->v.cn[1] = 0x64;
+                    var_s0->v.cn[2] = 0x64;
+                } else {
+                    var_s0->v.cn[0] = 0xFF;
+                    var_s0->v.cn[1] = 0xFF;
+                    var_s0->v.cn[2] = 0xFF;
+                }
+            }
+            var_s0++;
+            var_s1 += 8;
+        } while (var_s0 < temp_s6);
+    }
+}
 
 s32 func_80801998_chpotogoldgame(s16 *arg0) {
     void func_800EE88C(f32 dst[3], s16 src[3]);

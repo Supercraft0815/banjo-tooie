@@ -172,7 +172,34 @@ s32 func_80800940_chburgerstand(Actor *arg0) {
 void func_808009C4_chburgerstand(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/func_808009CC_chburgerstand.s")
+/* extern */
+
+void func_808009CC_chburgerstand(void *arg0) {
+    s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800EA05C();
+    void func_80101FDC(Actor *, u32);
+    void func_8010A624(void ***);
+    s32 var_v0;
+
+    if (func_800EA05C() == 0x124) {
+        func_8010A624(arg0);
+    }
+    (*(f32 *)((s8 *)(arg0) + (8))) = (f32) ((*(f32 *)((s8 *)(arg0) + (8))) - 225.0f);
+    if (_glcutDll_entrypoint_20() != 0) {
+        var_v0 = -1;
+        func_80101FDC(arg0, 4);
+    } else {
+        var_v0 = 0x9F;
+    }
+    if (_chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, 225.0f, 0x20, var_v0) != 0) {
+        _chdoormake_entrypoint_5(arg0, 2.0f);
+        _chdoormake_entrypoint_5(arg0, 2.0f);
+        _chdoormake_entrypoint_8(arg0, 3);
+    }
+}
 
 void func_80800A8C_chburgerstand(s32 arg0)
 {

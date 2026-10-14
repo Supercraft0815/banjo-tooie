@@ -78,7 +78,46 @@ void func_808006F0_basetup(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/func_8080071C_basetup.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/func_80800778_basetup.s")
+/* extern */
+
+s32 func_80800778_basetup(s32 arg0) {
+    u32 func_8009E958(void);
+    void func_8009E9D8(s32);
+    void func_8009EB18(s32);
+    int func_800C6E38(s32);
+    s32 func_800EA05C();
+    s32 func_800EA068(s32);
+    s32 temp_v0;
+    s32 temp_v0_2;
+    s32 var_s0;
+
+    temp_v0 = func_8009E958();
+    var_s0 = temp_v0;
+    if (temp_v0 != 1) {
+        if ((temp_v0 == 9) && (func_800EA05C() == 0x116)) {
+            var_s0 = 1;
+            func_8009EB18(0);
+        }
+    } else if ((func_800EA068(8) != 0) && (func_800C6E38(0x15) != 0)) {
+        var_s0 = 9;
+    }
+    if (func_800EA068(0x40) != 0) {
+        temp_v0_2 = func_800EA05C();
+        switch (temp_v0_2) {
+            case 0x182:
+                var_s0 = 0xC;
+                break;
+            case 0x188:
+                var_s0 = 6;
+                break;
+            default:
+                var_s0 = 9;
+                break;
+        }
+        func_8009E9D8(var_s0);
+    }
+    return var_s0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/basetup_entrypoint_2.s")
 

@@ -19,9 +19,49 @@ void func_8080012C_chbanjoctrl(Actor *arg0) { if ((u32) arg0->unk70_10 == 0xB) {
 s32 func_808007D8_chbanjoctrl(u8 *);
 void func_8080025C_chbanjoctrl(u8 *arg0) { if (func_808007D8_chbanjoctrl(arg0) && (*(f32 *)(arg0 + 0x1C) < *(f32 *)(arg0 + 8))) func_800904C8(0x91); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_808002A4_chbanjoctrl.s")
+/* extern */
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800360_chbanjoctrl.s")
+s32 func_808002A4_chbanjoctrl(f32 arg0) {
+    f32 func_800F2094(f32, f32);
+    s32 i;
+
+    for (i = 0; i < 0x168; i += 0x5A) {
+        if (func_800F2094((f32) i, arg0) < 6.0f) {
+            return 0;
+        }
+    }
+    for (i = 0x2D; i != 0x195; i += 0x5A) {
+        if (func_800F2094((f32) i, arg0) < 7.0f) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+/* extern */
+
+f32 func_80800360_chbanjoctrl(f32 arg0) {
+    s32 func_808002A4_chbanjoctrl(f32);
+    f32 temp_f22;
+    f32 temp_f22_2;
+    f32 var_f20;
+    s32 done;
+
+    var_f20 = 1.0f;
+    done = 0;
+    do {
+        temp_f22_2 = arg0 + var_f20;
+        if (func_808002A4_chbanjoctrl(temp_f22_2) != 0) {
+            return temp_f22_2;
+        }
+        temp_f22 = arg0 - var_f20;
+        if (func_808002A4_chbanjoctrl(temp_f22) != 0) {
+            return temp_f22;
+        }
+        var_f20 += 2.0f;
+    } while (!done);
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_808003F8_chbanjoctrl.s")
 
