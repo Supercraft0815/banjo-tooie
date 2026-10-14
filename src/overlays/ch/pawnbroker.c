@@ -53,7 +53,23 @@ void func_80800694_chpawnbroker(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_808006FC_chpawnbroker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_808007BC_chpawnbroker.s")
+/* extern */
+
+s32 func_808007BC_chpawnbroker(Actor *arg0, void *arg1, s32 *arg2, s32 arg3, s32 arg4) {
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
+    s32 temp_v0;
+
+    *(s16 *)arg1 = arg4;
+    temp_v0 = _subaddiedialog_entrypoint_8((s32)arg0, arg0->position, arg1, arg2, arg3);
+    if (temp_v0 == 0) {
+        return 0;
+    }
+    if (_subaddiedialog_entrypoint_9((s32)arg0, temp_v0, arg2, arg3) != 3) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_8080083C_chpawnbroker.s")
 
