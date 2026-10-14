@@ -48,7 +48,21 @@ void func_80800774_chevilmumbo(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800C50_chevilmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800E50_chevilmumbo.s")
+/* extern */
+
+int func_80800E50_chevilmumbo(Actor *arg0) {
+    f32 func_800F1DCC(f32, f32);
+    f32 temp_f0;
+    int var_v0;
+
+    temp_f0 = func_800F1DCC(arg0->unk54, arg0->rotation[1]);
+    if ((temp_f0 < -3.0f) || (var_v0 = 1, (temp_f0 > 3.0f))) {
+        var_v0 = 0;
+        arg0->rotation[1] += temp_f0 * 0.1f;
+        return var_v0;
+    }
+    return var_v0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800ECC_chevilmumbo.s")
 
