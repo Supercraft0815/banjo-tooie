@@ -129,7 +129,36 @@ void gcboundDll_entrypoint_7(s32 arg0) {
     func_80800F6C_gcboundDll(arg0, arg0 + 0x10, arg0 + 0x14);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_80800CA8_gcboundDll.s")
+void *func_80800CA8_gcboundDll(s32 arg0, s32 arg1, s32 arg2, s32 *arg3) {
+    s32 *count = &arg0;
+    u32 temp_t0;
+    u32 var_a0;
+    u32 var_v1;
+
+    var_v1 = 0;
+    if ((arg1 == 0) || (arg2 == *arg3)) {
+        return NULL;
+    }
+    var_a0 = arg1;
+    temp_t0 = (*count * 0x1C) + var_a0;
+    if (var_a0 < temp_t0) {
+        do {
+            arg1 = *(s16 *)((s8 *)var_a0 + 0x18);
+            if (arg1 >= arg2) {
+                if ((*arg3 == 0) || (arg1 < *arg3)) {
+                    *arg3 = arg1;
+                    arg1 = *(s16 *)((s8 *)var_a0 + 0x18);
+                    var_v1 = var_a0;
+                }
+                if (arg2 == arg1) {
+                    return (void *)var_a0;
+                }
+            }
+            var_a0 += 0x1C;
+        } while (var_a0 < temp_t0);
+    }
+    return (void *)var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_80800D40_gcboundDll.s")
 
