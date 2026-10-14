@@ -48,6 +48,8 @@ void func_808000CC_chjigsawcollect(Actor *arg0) {
     f32 func_800F1DF4(f32 *, f32 *);
     void func_800F5A00(s32, f32 *);
     s32 func_800FFAB0(s32);
+    void func_800FCA90(u32);
+    void func_800FCAE0(u32, u32, u32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     s32 func_80103DFC(u8 *, f32 *);
@@ -132,7 +134,33 @@ void func_808000CC_chjigsawcollect(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/collect/func_80800524_chjigsawcollect.s")
+/* extern */
+
+void func_80800524_chjigsawcollect(Actor *arg0) {
+    typedef struct {
+        f32 angle;
+        f32 rotation;
+        f32 speed;
+        f32 unkC;
+        s32 light;
+    } CollectData;
+    void func_800C8B84(volatile s32);
+    void func_800FCA90(u32);
+    void func_800FCAE0(u32, u32, u32);
+    void *func_80100094(Actor *, u32);
+    CollectData *data;
+
+    data = func_80100094(arg0, 0);
+    if (data->light != 0) {
+        func_800C8B84(data->light);
+        data->light = 0;
+    }
+    if (arg0->unk64_20) {
+        func_800FCAE0(0x1C, 0, 0x1F4);
+        func_800FCA90(0x1C);
+        arg0->unk64_20 = 0;
+    }
+}
 
 s32 func_808005A4_chjigsawcollect(s32 arg0, s32 arg1, s32 arg2) 
 {
