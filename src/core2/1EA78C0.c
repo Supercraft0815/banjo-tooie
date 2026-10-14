@@ -84,7 +84,25 @@ void func_800CE524(void) {
     } while (var_s0 != 9);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CE59C.s")
+s32 func_800CE59C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    extern u16 D_8011AA34[][3];
+    u16 temp_v0;
+
+    temp_v0 = D_8011AA34[arg0][0];
+    if ((arg1 != 0) && (temp_v0 & 4)) {
+        return 0;
+    }
+    if ((arg2 != 0) && (temp_v0 & 1)) {
+        return 0;
+    }
+    if ((arg3 != 0) && (temp_v0 & 2)) {
+        return 0;
+    }
+    if ((arg4 != 0) && (temp_v0 & 8)) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CE628.s")
 
