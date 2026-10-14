@@ -43,7 +43,25 @@ void bsvan_entrypoint_2(struct player_state_s *arg0) {
     func_800BABB8(sp20, sp24, NULL, 1.0f, &D_80801B90_bsvan);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_8080032C_bsvan.s")
+void func_8080032C_bsvan(void *arg0) {
+    void func_80092C90(void *, f32[3], s32);
+    s32 func_800B5BE4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA77C(s32, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_800DC178(f32, f32);
+    extern s32 D_80801C40_bsvan;
+    f32 sp2C[3];
+    s32 sp28;
+    s32 temp_v0;
+
+    func_80092C90(arg0, sp2C, 4);
+    temp_v0 = func_800B5BE4(8);
+    sp28 = temp_v0;
+    func_800BABB8(temp_v0, sp2C, NULL, 1.0f, &D_80801C40_bsvan);
+    func_800BA77C(sp28, 0, 0, (s16) (s32) func_800DC178(0.0f, 359.0f));
+    func_800BA22C(sp28, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/bsvan_entrypoint_3.s")
 
