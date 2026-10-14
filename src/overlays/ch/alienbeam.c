@@ -7,7 +7,25 @@ OSThread *chalienbeam_entrypoint_0(void)
     return (OSThread *) D_808001A0_chalienbeam;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienbeam/func_8080000C_chalienbeam.s")
+/* extern */
+
+void func_8080000C_chalienbeam(Actor *arg0) {
+    s32 _subaddiefade_entrypoint_1(Actor *, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    struct BeamFlags {
+        u8 unk78;
+        u8 unk79;
+        u8 state : 2;
+        u8 rest : 6;
+    };
+
+    func_800EE7F8((f32 *)&arg0->actorData[0], arg0->position);
+    arg0->position[1] += 600.0f;
+    func_800EE7F8((f32 *)&arg0->actorData[4], arg0->position);
+    arg0->unk58 = 3.0f;
+    ((struct BeamFlags *)&arg0->unk78)->state = 2;
+    _subaddiefade_entrypoint_1(arg0, 0xC0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienbeam/func_80800088_chalienbeam.s")
 
