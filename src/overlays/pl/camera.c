@@ -2,7 +2,30 @@
 
 void plcamera_entrypoint_0(s32 *arg0) { s32 func_80110014(s32); int sp1C = func_800F5EF8(arg0); func_801108A0(func_80110014(sp1C)); func_8010FD88(sp1C); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/pl/camera/plcamera_entrypoint_1.s")
+/* extern */
+
+s32 plcamera_entrypoint_1(s32 arg0) {
+    struct player_state_s;
+    void _bsfirstp_entrypoint_2(struct player_state_s *);
+    u32 func_800A3404(void *);
+    s32 func_800EA068(s32);
+    struct player_state_s *func_800F53E4(s32);
+    s32 func_800F693C(s32);
+    struct player_state_s *self;
+
+    self = func_800F53E4(arg0);
+    if (self == NULL) {
+        return 0;
+    }
+    if ((func_800A3404(self) != 0) && (func_800F693C(arg0) != 0) && (func_800EA068(8) != 0)) {
+        _bsfirstp_entrypoint_2(self);
+        return 1;
+    }
+    if (func_800A3404(self) != 0) {
+        return 1;
+    }
+    return 0;
+}
 
 void plcamera_entrypoint_2(s32 *arg0, s32 arg1) { s32 func_80110014(s32); func_801106A8(func_80110014(func_800F5EF8(arg0)), arg1); }
 
