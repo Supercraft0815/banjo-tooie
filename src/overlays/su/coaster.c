@@ -543,7 +543,34 @@ void func_80802130_sucoaster(Actor *arg0, void *arg1, s16 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_808021A8_sucoaster.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_80802260_sucoaster.s")
+/* extern */
+
+void func_80802260_sucoaster(Actor *arg0, s32 arg1) {
+    typedef struct {
+        u8 pad0[0x64];
+        u32 flag31 : 1;
+        u32 flag30 : 1;
+        u32 pad64 : 30;
+        u8 pad68[8];
+        u32 upper : 7;
+        u32 pad70 : 15;
+        u32 lower : 6;
+        u32 pad73 : 4;
+        u32 pad74 : 28;
+        u32 mode : 4;
+    } CoasterFlags;
+    void func_8010A570(Actor *);
+    CoasterFlags *flags = (void *)arg0;
+
+    func_8010A570(arg0);
+    arg0->unk64_24 = 0;
+    flags->lower = 0;
+    flags->upper = flags->lower;
+    flags->flag30 = 0;
+    flags->flag31 = flags->flag30;
+    arg0->unk14 &= ~0x80000;
+    flags->mode = 2;
+}
 
 /* extern */
 
