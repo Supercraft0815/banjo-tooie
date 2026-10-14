@@ -77,4 +77,25 @@ void func_80800604_chstatuebossbits(s32 arg0, s32 arg1) {
     func_800BBCB8(sp24, sp24, 1.0f, 4, &D_80800864_chstatuebossbits);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statuebossbits/func_8080064C_chstatuebossbits.s")
+/* extern */
+
+void func_8080064C_chstatuebossbits(s32 arg0) {
+    s32 _chdoormake_entrypoint_3(s32, f32, f32, f32, s32, s32);
+    s32 _chdoormake_entrypoint_5(s32, f32);
+    s32 _chdoormake_entrypoint_8(s32, s32);
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800DA298(s32);
+    s32 func_80101FDC(s32, s32);
+    s32 var_v1;
+
+    var_v1 = func_800DA298(0x88) != 0;
+    if (var_v1 == 0) {
+        var_v1 = _glcutDll_entrypoint_20() != 0;
+    }
+    if (var_v1 != 0) {
+        func_80101FDC(arg0, 1);
+    }
+    _chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, 180.0f, 0x102, -1);
+    _chdoormake_entrypoint_5(arg0, 2.0f);
+    _chdoormake_entrypoint_8(arg0, 0xD);
+}
