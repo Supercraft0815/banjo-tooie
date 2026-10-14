@@ -65,7 +65,33 @@ void func_800FFA88(Unk80132ED0* a0)
     func_800FFAB0(func_80106790(a0));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FFAB0.s")
+void func_800FFAB0(Actor *arg0) {
+    extern s32 D_80135A50;
+    Actor *temp_v0;
+    s32 temp_a2;
+    struct ActorFlags {
+        u8 prefix[0x74];
+        u32 pad74_25 : 7;
+        u32 flag74_24 : 1;
+        u32 pad74_0 : 24;
+        u32 pad78_3 : 29;
+        u32 flag78_2 : 1;
+        u32 pad78_0 : 2;
+    } *flags = (void *)arg0;
+
+    arg0->unk64_17 = 1;
+    D_80135A50 += 1;
+    temp_a2 = arg0->pad40;
+    if ((temp_a2 != 0) && (arg0->unk6C_9 != 0x243)) {
+        temp_v0 = func_80106790((Unk80132ED0 *) temp_a2);
+        temp_v0->unk64_17 = 1;
+        arg0->pad40 = 0;
+        temp_v0->pad40 = 0;
+        D_80135A50 += 1;
+    }
+    flags->flag78_2 = 0;
+    flags->flag74_24 = flags->flag78_2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FFB74.s")
 
