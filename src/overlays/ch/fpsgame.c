@@ -31,7 +31,32 @@ s32 func_80800074_chfpsgame(Actor *arg0, s32 arg1) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_808000BC_chfpsgame.s")
+/* extern */
+
+s32 func_808000BC_chfpsgame(u16 arg0) {
+    s32 _gcstatusDll_entrypoint_11();
+    s32 func_80016BBC(s32, u16);
+    s32 temp_v0;
+    s32 var_s0;
+    s32 var_s1;
+    s32 var_v1;
+
+    var_s1 = 0;
+    var_s0 = 0;
+    if (_gcstatusDll_entrypoint_11() > 0) {
+        do {
+            temp_v0 = func_80016BBC(var_s0, arg0 & 0xFFFF);
+            var_s0 += 1;
+            var_s1 |= temp_v0;
+        } while (var_s0 < _gcstatusDll_entrypoint_11());
+    }
+    if (var_s1 != 0) {
+        var_v1 = 1;
+    } else {
+        var_v1 = 0;
+    }
+    return var_v1;
+}
 
 /* extern */
 
