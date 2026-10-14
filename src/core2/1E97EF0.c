@@ -305,7 +305,18 @@ void func_800BF8BC(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF8E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF99C.s")
+/* extern */
+
+void func_800BF99C(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _idworldmake_entrypoint_7(s32, s32, s32);
+    s32 _vpmodule_entrypoint_4(s32, s32, s32, s32);
+    if (*(s32 *)((s8 *)&D_801285B0 + arg0 * 0x2C + 0x1C) != 0) {
+        _vpmodule_entrypoint_4(*(s32 *)((s8 *)&D_801285B0 + arg0 * 0x2C + 0x1C), *(s32 *)((s8 *)&D_801285B0 + arg0 * 0x2C + 0x18), arg1, arg2);
+    }
+    if (*(s32 *)((s8 *)&D_801285B0 + arg0 * 0x2C + 4) != 0) {
+        _idworldmake_entrypoint_7(*(s32 *)((s8 *)&D_801285B0 + arg0 * 0x2C + 4), arg1, arg2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BFA1C.s")
 
