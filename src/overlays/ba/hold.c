@@ -38,12 +38,25 @@ void func_80800088_bahold(Unk80132ED0 *arg0, f32 arg1[3], f32 arg2[3]) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/hold/func_808000E0_bahold.s")
+/* extern */
+
+void func_808000E0_bahold(PlayerState *arg0) {
+    f32 func_800136E4(f32);
+    void func_8008FF40(f32[3]);
+    void func_80092D44(PlayerState *, f32[3]);
+    f32 position[3];
+    f32 rotation[3];
+
+    func_8008FF40(rotation);
+    func_80092D44(arg0, position);
+    rotation[1] = func_800136E4(((f32 *)arg0->unk9C)[1] + rotation[1]);
+    position[1] += ((f32 *)arg0->unk9C)[0];
+    func_80800088_bahold(*(Unk80132ED0 **)((s8 *)arg0->unk9C + 8), position, rotation);
+}
 
 /* extern */
 
-void bahold_entrypoint_3(u8 *arg0) {
-    s32 func_808000E0_bahold();
+void bahold_entrypoint_3(PlayerState *arg0) {
     void *temp_v0;
 
     temp_v0 = (*(void **)((s8 *)(arg0) + (0x9C)));
@@ -52,7 +65,7 @@ void bahold_entrypoint_3(u8 *arg0) {
             func_80800008_bahold(arg0, 0);
             return;
         }
-        func_808000E0_bahold();
+        func_808000E0_bahold(arg0);
         (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x9C)))) + (0xC))) = 0;
     }
 }
@@ -68,8 +81,7 @@ Unk80132ED0 *bahold_entrypoint_5(PlayerState *arg0) {
 
 /* extern */
 
-void bahold_entrypoint_6(u8 *arg0, s32 arg1) {
-    s32 func_808000E0_bahold(u8 *);
+void bahold_entrypoint_6(PlayerState *arg0, s32 arg1) {
     func_80800008_bahold(arg0, arg1);
     func_808000E0_bahold(arg0);
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x9C)))) + (0xC))) = 1;

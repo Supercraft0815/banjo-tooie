@@ -190,7 +190,7 @@ s32 func_8008FF18()
     return func_800F5B0C(func_800F54E4());
 }
 
-void func_8008FF40(s32 arg0)
+void func_8008FF40(f32 arg0[3])
 {
     func_800F5B38(func_800F54E4(),arg0);
 }
