@@ -96,7 +96,32 @@ void func_80800188_chintroticker(u8 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/ticker/func_80800254_chintroticker.s")
+/* extern */
+
+void func_80800254_chintroticker(Actor *arg0) {
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    switch (arg0->unk79_4) {
+    case 2:
+        func_800DA524(0x578);
+        return;
+    case 3:
+        func_800DA544(0x360);
+        func_800DA524(0x3B);
+        return;
+    case 4:
+        func_800DA524(0x360);
+        func_800DA544(0x3B);
+        func_800DA524(0x1A5);
+        func_800DA544(0x578);
+        /* fallthrough */
+    default:
+    case 0:
+    case 1:
+    case 5:
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/ticker/func_808002DC_chintroticker.s")
 
