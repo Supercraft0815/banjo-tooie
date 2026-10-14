@@ -488,7 +488,19 @@ void func_80801424_gczoombox(void *arg0, s32 arg1) {
     _fxdialog_entrypoint_3(arg1, (216.0f * (*(f32 *)((s8 *)arg0 + 0x1DC))) * (*(f32 *)((s8 *)arg0 + 0x1EC)), direction, (*(s16 *)((s8 *)(arg0) + (0x1BC))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_808014A8_gczoombox.s")
+/* extern */
+
+void func_808014A8_gczoombox(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 arg5) {
+    void _fxdialog_entrypoint_4(s32, s32, s32, f32, f32, s32, s32);
+    struct {
+        u8 pad[0x1DC];
+        f32 scale;
+    } *box = arg0;
+
+    if ((*(s16 *)((s8 *)(arg0) + (0x172))) != 0x44) {
+        _fxdialog_entrypoint_4(arg1, arg4, *(s8 *)((s8 *)arg0 + 0x1CF), (f32) arg2 * box->scale, (f32) arg3 * box->scale, (s32) (((f32) ((*(s16 *)((s8 *)(arg0) + (0x1BC))) * (*(s16 *)((s8 *)(arg0) + (0x1AC)))) * arg5) / 255.0f), (*(u8 *)((s8 *)(arg0) + (0x1E4))) & 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_8080156C_gczoombox.s")
 
