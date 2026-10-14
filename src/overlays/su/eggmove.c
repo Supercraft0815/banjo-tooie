@@ -1,6 +1,26 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/func_80800000_sueggmove.s")
+/* extern */
+
+void func_80800000_sueggmove(Actor *arg0, f32 *arg1, f32 *arg2) {
+    f32 func_800D8FF8(void);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EFA20(void *, void *, f32);
+    f32 *velocity;
+    f32 sp20[3];
+    f32 temp_f0;
+    f32 temp_f2;
+
+    temp_f0 = func_800D8FF8();
+    velocity = (f32 *)&arg0->actorData[4];
+    velocity[1] += ((f32 *)arg0->actorData)[7] * temp_f0;
+    temp_f2 = arg0->unk54 * temp_f0;
+    if (velocity[1] < temp_f2) {
+        velocity[1] = temp_f2;
+    }
+    func_800EFA20(sp20, velocity, temp_f0);
+    func_800EE780(arg2, arg1, sp20);
+}
 
 /* extern */
 
