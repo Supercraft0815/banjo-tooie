@@ -1,6 +1,19 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bosskogsdoor/func_80800000_chbosskogsdoor.s")
+/* extern */
+
+void func_80800000_chbosskogsdoor(Actor *arg0) {
+    s32 func_800DA298(s32);
+    void func_80101FDC(Actor *, u32);
+
+    if (func_800DA298(0x1B8) != 0) {
+        arg0->unk58 = arg0->unk74_7 / 10.0f;
+        func_80101FDC(arg0, 9);
+    } else {
+        arg0->unk58 = 0.0f;
+    }
+    *(f32 *)&arg0->actorData[7] = arg0->position[1];
+}
 
 void func_80800090_chbosskogsdoor(u8 *arg0) {
     s32 _subaddieaudioloop_entrypoint_2(u8 *);
