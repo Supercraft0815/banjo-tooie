@@ -1,6 +1,37 @@
 #include "ch/factory/entrydoors.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/entrydoors/func_80800000_chfactoryentrydoors.s")
+/* extern */
+
+void func_80800000_chfactoryentrydoors(Actor *arg0) {
+    void _chdoormake_entrypoint_0(void *, f32, u32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    s32 _glcutDll_entrypoint_19(u32);
+    s32 _sujiggy_entrypoint_20(u32);
+    s32 func_800D3E40(s32);
+    s32 func_800DA544(s32);
+    void func_80101FDC(Actor *, u32);
+    f32 var_f0;
+    s32 var_a3;
+
+    if (_sujiggy_entrypoint_20(5) != 0) {
+        func_800DA544(0x397);
+    }
+    if ((func_800D3E40(0xB) != 0) && (_glcutDll_entrypoint_19(0x7F) == 0)) {
+        var_a3 = -1;
+        func_80101FDC(arg0, 4);
+    } else {
+        var_a3 = 0x397;
+    }
+    if (arg0->unk74_7 == 0x33) {
+        var_f0 = -75.0f;
+    } else {
+        var_f0 = 75.0f;
+    }
+    _chdoormake_entrypoint_0(arg0, var_f0, 0, var_a3);
+    _chdoormake_entrypoint_8(arg0, 1);
+    _chdoormake_entrypoint_5(arg0, 0.0f);
+}
 
 /* extern */
 
