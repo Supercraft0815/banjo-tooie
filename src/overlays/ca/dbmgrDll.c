@@ -42,7 +42,16 @@ s32 func_808004C4_cadbmgrDll(s32 *arg0, s32 arg1, s32 arg2) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ca/dbmgrDll/func_80800528_cadbmgrDll.s")
+/* extern */
+
+void func_80800528_cadbmgrDll(s32 arg0, s32 arg1, s32 arg2) {
+    void func_808005AC_cadbmgrDll(s32, s32, s32, s32);
+    s32 var_s0;
+
+    for (var_s0 = *((s32 *)arg0 + arg1 - 1) - 1; arg2 < var_s0; var_s0--) {
+        func_808005AC_cadbmgrDll(arg0, arg1, var_s0 - 1, var_s0);
+    }
+}
 
 /* extern */
 
