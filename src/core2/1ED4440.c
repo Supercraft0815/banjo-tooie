@@ -84,7 +84,16 @@ s32 func_800FB338(void *arg0, s32 arg1, s32 arg2, f32 *arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FB350.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FB3C0.s")
+/* extern */
+
+void *func_800FB3C0(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4, u32 arg5) {
+    void *func_800C6B78(f32 *, f32 *, f32, f32 *, s32, u32);
+    f32 func_800EEB40(f32 *, f32 *);
+    if ((arg2 * arg2) < func_800EEB40(arg0, arg1)) {
+        return 0;
+    }
+    return func_800C6B78(arg0, arg1, arg2, arg3, arg4, arg5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FB434.s")
 
