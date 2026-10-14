@@ -1,6 +1,19 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80800000_chdragonbrothers.s")
+/* extern */
+
+void func_80800000_chdragonbrothers(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    u8 *data;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    for (i = 0; i < 4; i++) {
+        if (data[i] != 2) {
+            data[i] = arg1;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80800070_chdragonbrothers.s")
 
