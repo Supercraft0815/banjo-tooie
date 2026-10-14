@@ -9,7 +9,20 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_8080019C_bsbansnooze.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_808001FC_bsbansnooze.s")
+void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
+void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+
+void func_808001FC_bsbansnooze(PlayerState *arg0) {
+    void bainput_enable(PlayerState *, s32, s32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void func_8009DE38(PlayerState *, s32, f32);
+    (*(s8 *)((s8 *)(arg0) + (0x15D))) = 0;
+    baanim_playForDuration_onceSmooth(arg0, 0x276, 1.5f);
+    func_8009FFD8(arg0, 1, 1, 3, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_8009DE38(arg0, 0x583, 1.0f);
+    bainput_enable(arg0, 1, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_80800278_bsbansnooze.s")
 
@@ -23,7 +36,7 @@ void func_8080037C_bsbansnooze()
     func_80800000_bsbansnooze();
 }
 
-void func_8080039C_bsbansnooze(PlayerState *arg0) { void baphysics_set_target_horizontal_velocity(PlayerState *, f32); void func_8009DF94(PlayerState *, s32, f32, s32); func_80800098_bsbansnooze(arg0); baanim_playForDuration_onceSmooth(arg0, 0x279, 0x3FCCCCCD); func_8009FFD8(arg0, 1, 1, 3, 2); baphysics_set_target_horizontal_velocity(arg0, 0.0f); func_8009DF94(arg0, 0x58D, 1.0f, 0x7530); }
+void func_8080039C_bsbansnooze(PlayerState *arg0) { void baphysics_set_target_horizontal_velocity(PlayerState *, f32); void func_8009DF94(PlayerState *, s32, f32, s32); func_80800098_bsbansnooze(arg0); baanim_playForDuration_onceSmooth(arg0, 0x279, 1.6f); func_8009FFD8(arg0, 1, 1, 3, 2); baphysics_set_target_horizontal_velocity(arg0, 0.0f); func_8009DF94(arg0, 0x58D, 1.0f, 0x7530); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_80800414_bsbansnooze.s")
 
