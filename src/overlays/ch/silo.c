@@ -93,7 +93,24 @@ void func_80800398_chsilo(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_80800420_chsilo.s")
+/* extern */
+
+s32 func_80800420_chsilo(Actor *arg0, s32 arg1) {
+    s32 func_800F54E4(void);
+    s32 func_800F7B9C(s32, s32);
+    if (arg1 != 0) {
+        if (!arg0->unk64_19) {
+            if (func_800F7B9C(func_800F54E4(), 0x8B) != 2) {
+                return 0;
+            }
+            arg0->unk64_19 = 1;
+        }
+    } else if (arg0->unk64_19) {
+        func_800F7B9C(func_800F54E4(), 0x90);
+        arg0->unk64_19 = 0;
+    }
+    return 1;
+}
 
 s32 func_808004C0_chsilo(u8 *arg0, s32 arg1) {
     s32 _gcnewoption_entrypoint_10(s32, s32);
@@ -120,7 +137,7 @@ s32 func_808004C0_chsilo(u8 *arg0, s32 arg1) {
     s32 func_80102424(u8 *, s32);
     void func_8010A828(void **, s32);
     void func_80800398_chsilo(Actor *, s32);
-    s32 func_80800420_chsilo(u8 *, s32);
+    s32 func_80800420_chsilo(Actor *, s32);
     extern s32 D_808012C0_chsilo;
     extern s32 _gcnewoption_entrypoint_35;
     s32 camera;
