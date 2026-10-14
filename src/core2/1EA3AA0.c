@@ -236,7 +236,30 @@ s32 func_800CAA24(f32 *arg0, f32 *arg1, f32 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CAB70.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CACEC.s")
+/* extern */
+
+s32 func_800CACEC(f32 *arg0, f32 *arg1, f32 arg2) {
+    f32 func_800EEAA4(f32 *, f32 *);
+    f32 delta[3];
+    s32 var_s0;
+    f32 *var_s1;
+
+    var_s0 = 0;
+    var_s1 = arg0 + 9;
+    delta[0] = arg1[0] - arg0[0];
+    delta[1] = arg1[1] - arg0[1];
+    delta[2] = arg1[2] - arg0[2];
+loop_1:
+    if (arg2 <= func_800EEAA4(delta, var_s1)) {
+        return 0;
+    }
+    var_s0 += 0x10;
+    var_s1 += 4;
+    if (var_s0 == 0x40) {
+        return 1;
+    }
+    goto loop_1;
+}
 
 s32 func_800CAD9C(void *arg0, f32 arg1, f32 arg2, f32 arg3) {
     f32 *p = arg0;
