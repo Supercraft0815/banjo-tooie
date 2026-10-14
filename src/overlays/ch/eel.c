@@ -1,6 +1,30 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_80800000_cheel.s")
+/* extern */
+
+void func_80800000_cheel(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    struct {
+        s32 unk0;
+        f32 unk4[9];
+        f32 unk28[9];
+        f32 unk4C[9];
+        f32 unk70[9];
+        f32 unk94[9];
+        f32 unkB8[9];
+    } *data;
+    s32 i;
+
+    data = func_80100094(arg0, 0U);
+    for (i = 0; i < 9; i++) {
+        data->unk28[i] = 0.0f;
+        data->unk4[i] = 0.0f;
+        data->unk94[i] = 0.0f;
+        data->unk70[i] = 0.0f;
+        data->unk4C[i] = 0.0f;
+        data->unkB8[i] = 0.0f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_808000B4_cheel.s")
 
