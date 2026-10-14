@@ -30,7 +30,24 @@ void func_800C00E0(void) {
     (*(s8 *)((s8 *)(&D_801288B0) + (0x180))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0130.s")
+void func_800C0130(s32 arg0) {
+    s32 _gczoombox_entrypoint_2(s32, s32);
+    extern s32 D_801288B8;
+    extern s32 D_801289DC;
+    s32 *var_s0;
+    s32 temp_a0;
+
+    var_s0 = &D_801288B0; do {
+        temp_a0 = var_s0[0x48];
+        if (temp_a0 != 0) {
+            _gczoombox_entrypoint_2(temp_a0, arg0);
+        }
+        var_s0++;
+    } while (var_s0 != &D_801288B8);
+    if (D_801289DC != 0) {
+        _gczoombox_entrypoint_2(D_801289DC, arg0);
+    }
+}
 
 /* extern */
 
