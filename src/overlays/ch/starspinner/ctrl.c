@@ -46,7 +46,15 @@ void func_80800374_chstarspinnerctrl(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/func_808003B8_chstarspinnerctrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/func_8080044C_chstarspinnerctrl.s")
+void func_8080044C_chstarspinnerctrl(Actor *arg0, s32 arg1) {
+    void func_800DF744(s32, s32);
+    s32 func_80101808(void *, s32 (*)(Actor *));
+    s32 func_801015D0(Actor *);
+
+    func_800DF744(1, arg0->unk64_20 ? 0 : 1);
+    func_800DF744(2, arg0->unk64_20 ? 1 : 0);
+    func_80101808(arg0, &func_801015D0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/func_808004CC_chstarspinnerctrl.s")
 
