@@ -83,4 +83,20 @@ void func_80800D84_chdippy(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80801200_chdippy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/chdippy_entrypoint_3.s")
+/* extern */
+
+void chdippy_entrypoint_3(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4) {
+    Actor *func_80106790(Unk80132ED0 *);
+    s16 offset;
+    Vtx *end;
+
+    offset = *(f32 *)&func_80106790(arg4)->actorData[0];
+    end = arg2 + arg3;
+    if (arg2 < end) {
+        do {
+            arg2++;
+            arg1++;
+            arg2[-1].v.ob[1] = arg1[-1].v.ob[1] + offset;
+        } while (arg2 < end);
+    }
+}
