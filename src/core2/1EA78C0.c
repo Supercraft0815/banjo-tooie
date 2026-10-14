@@ -23,7 +23,17 @@ int func_800CE1A8(void *arg0, void *arg1, s32 arg2) {
     return temp_a0 > 0 && temp_a0 < temp_a1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CE21C.s")
+s32 func_800CE21C(s32 arg0) {
+    extern u16 D_8011AA10[7][2];
+    s32 i;
+
+    for (i = 0; i < 7; i++) {
+        if (arg0 == D_8011AA10[i][0]) {
+            return D_8011AA10[i][1];
+        }
+    }
+    return -1;
+}
 
 void func_800CE2DC(void) {
     s32 func_800DAA8C(s32 *, s32, s32);
