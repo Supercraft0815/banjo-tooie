@@ -65,7 +65,24 @@ void scinfobar_entrypoint_6(u8 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/scinfobar_entrypoint_7.s")
+s32 scinfobar_entrypoint_7(void *arg0, s32 arg1) {
+    u8 temp_v0;
+
+    if ((*(u8 *)((s8 *)(arg0) + (2))) != 0) {
+        return 0;
+    }
+    if ((arg1 == (*(s16 *)((s8 *)(arg0) + (4)))) || (arg1 == (*(s16 *)((s8 *)(arg0) + (6))))) {
+        return 1;
+    }
+    temp_v0 = (*(u8 *)((s8 *)(arg0) + (0)));
+    (*(s16 *)((s8 *)(arg0) + (6))) = arg1;
+    if ((temp_v0 == 0x66) || (temp_v0 == 0x65)) {
+        (*(u8 *)((s8 *)(arg0) + (2))) = 0x67U;
+    } else {
+        (*(u8 *)((s8 *)(arg0) + (2))) = 0x65U;
+    }
+    return 1;
+}
 
 void scinfobar_entrypoint_8(u32 *arg0, s32 arg1) {
     if (((u8 *)arg0)[2] != 0) {
