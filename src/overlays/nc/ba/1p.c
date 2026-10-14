@@ -30,7 +30,26 @@ void func_8080004C_ncba1p(void **arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/1p/func_808003DC_ncba1p.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/1p/ncba1p_entrypoint_1.s")
+/* extern */
+
+void ncba1p_entrypoint_1(u8 **arg0) {
+    s32 _plcamera_entrypoint_1(s32);
+    s32 func_800EFD24(u8 *);
+    s32 func_80110840();
+    s32 func_80111590(u8 **, s32, s32, s32, f32);
+    if (_plcamera_entrypoint_1(func_80110840()) == 0) {
+        func_800EFD24(*arg0);
+        func_800EFD24(*arg0 + 0xC);
+        func_800EFD24(*arg0 + 0x18);
+        func_800EFD24(*arg0 + 0x24);
+        func_800EFD24(*arg0 + 0x30);
+        func_800EFD24(*arg0 + 0x3C);
+        (*(s32 *)((s8 *)(*arg0) + (0x4C))) = 0;
+        (*(s8 *)((s8 *)(*arg0) + (0x50))) = 1;
+        (*(s8 *)((s8 *)(*arg0) + (0x51))) = 0;
+        func_80111590(arg0, 0x41200000, 0x41A00000, 0x42F00000, 300.0f);
+    }
+}
 
 /* extern */
 
