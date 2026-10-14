@@ -35,7 +35,18 @@ void func_80800018_chtntbox(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/func_80800624_chtntbox.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/func_808007B0_chtntbox.s")
+void func_808007B0_chtntbox(f32 *arg0) {
+    s32 func_8001211C();
+    void func_800BA22C(s32, s32);
+    void func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    extern s32 D_80800A80_chtntbox;
+    s32 sp24;
+
+    sp24 = func_800BABB8(0, arg0 + 1, 0, 1.4f, &D_80800A80_chtntbox);
+    func_800BA3FC(sp24, (func_8001211C() & 1) ? 0x9E3 : 0x9E2);
+    func_800BA22C(sp24, 1);
+}
 
 void func_80800824_chtntbox(s32 arg0, f32 arg1) {
     s32 _chlightfader_entrypoint_1(s32, s32, s32);
