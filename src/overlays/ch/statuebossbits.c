@@ -106,7 +106,19 @@ void func_80800360_chstatuebossbits(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statuebossbits/func_8080040C_chstatuebossbits.s")
+/* extern */
+
+void func_8080040C_chstatuebossbits(Actor *arg0, void *arg1) {
+    void func_800DF744(s32, s32);
+    void func_80101870(Actor *, void *);
+
+    func_800DF744(1, *(s32 *)&arg0->unk54 == 0 ? 1 : 0);
+    func_800DF744(2, *(s32 *)&arg0->unk54 == 1 ? 1 : 0);
+    func_800DF744(3, *(s32 *)&arg0->unk54 == 2 ? 1 : 0);
+    func_800DF744(4, *(s32 *)&arg0->unk54 == 3 ? 1 : 0);
+    func_800DF744(5, 0);
+    func_80101870(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statuebossbits/func_808004D8_chstatuebossbits.s")
 
