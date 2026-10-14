@@ -61,7 +61,27 @@ void func_800A2D70(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2D94.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2E18.s")
+/* extern */
+
+void func_800A2E18(PlayerState *arg0) {
+    s32 _fxstep_entrypoint_8(s32, f32, f32);
+    s32 bs_getCurrentState(PlayerState *);
+    s32 func_8009CA70(PlayerState *, s32, s32);
+    s16 func_8009CBDC(PlayerState *, s32);
+    s32 sp24;
+    void *temp_v0;
+    void *temp_v0_2;
+
+    sp24 = bs_getCurrentState(arg0);
+    func_800A2C84(arg0);
+    if ((func_8009CBDC(arg0, sp24) == 8) || (func_8009CA70(arg0, sp24, 0x40) != 0)) {
+        temp_v0 = (*(void **)((s8 *)(arg0) + (0x124)));
+        _fxstep_entrypoint_8((*(s32 *)((s8 *)(temp_v0) + (0))), 0.2f, (*(f32 *)((s8 *)(temp_v0) + (8))));
+        return;
+    }
+    temp_v0_2 = (*(void **)((s8 *)(arg0) + (0x124)));
+    _fxstep_entrypoint_8((*(s32 *)((s8 *)(temp_v0_2) + (0))), 0.0f, (*(f32 *)((s8 *)(temp_v0_2) + (8))));
+}
 
 /* extern */
 

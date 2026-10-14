@@ -51,7 +51,7 @@ void (*func_8009CB90(PlayerState *arg0, s32 arg1))(PlayerState *) {
     return 0;
 }
 
-s16 func_8009CBDC(s32 arg0, s32 arg1) {
+s16 func_8009CBDC(PlayerState *arg0, s32 arg1) {
     extern s16 D_80117F32[];
     return *(s16 *)((u8 *)D_80117F32 + arg1 * 12);
 }

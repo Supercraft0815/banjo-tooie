@@ -7,5 +7,6 @@
 #include "overlays/ba/playerstate.h"
 
 s32 func_8009CA70(PlayerState *, s32, s32);
+s16 func_8009CBDC(PlayerState *, s32);
 
 #endif // __CORE2_1E76360_H__
