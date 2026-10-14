@@ -5,7 +5,28 @@ s32 func_800A26B0()
     return 0xC;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A26B8.s")
+void func_800A26B8(PlayerState *arg0) {
+    s32 _fxsplash_entrypoint_2(f32[3], f32);
+    void func_80095870(void *, f32 *, f32 *);
+    f32 func_800964DC(PlayerState *);
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_8009FC34(PlayerState *, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    extern s32 D_80119320[];
+    f32 sp34[3];
+    f32 sp30;
+    f32 sp2C;
+    f32 sp28;
+
+    func_8009C128(arg0, sp34);
+    sp30 = func_800964DC(arg0);
+    func_80095870(arg0, &sp2C, &sp28);
+    if (!((sp2C + sp28) < (sp30 - sp34[1]))) {
+        sp34[1] = sp30;
+        func_8009FC34(arg0, 1);
+        func_800BABB8(_fxsplash_entrypoint_2(sp34, 25.0f), 0, 0, 1.0f, D_80119320);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A275C.s")
 
