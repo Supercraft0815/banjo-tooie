@@ -2,8 +2,8 @@
 
 extern s32 D_8012AAC4;
 
-f32 func_800C6920(s32 arg0, f32 arg1, f32 arg2, s32 arg3) {
-    s32 func_800C696C(s32, f32, f32, s32, f32 *);
+f32 func_800C6920(f32 arg0[3], f32 arg1, f32 arg2, s32 arg3) {
+    s32 func_800C696C(f32 *, f32, f32, s32, f32 *);
     f32 result;
     if (func_800C696C(arg0, arg1, arg2, arg3, &result) == 0) {
         result = 100.0f;
@@ -11,7 +11,25 @@ f32 func_800C6920(s32 arg0, f32 arg1, f32 arg2, s32 arg3) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0210/func_800C696C.s")
+/* extern */
+
+s32 func_800C696C(f32 arg0[3], f32 arg1, f32 arg2, s32 arg3, f32 *arg4) {
+    void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp1C[3];
+
+    func_800EE7F8(sp34, arg0);
+    sp34[1] += arg1;
+    func_800EE7F8(sp28, arg0);
+    sp28[1] += arg2;
+    if (func_800C6A7C(sp34, sp28, sp1C, arg3) != NULL) {
+        *arg4 = sp28[1];
+        return 1;
+    }
+    return 0;
+}
 
 s32 func_800C69FC()
 {
