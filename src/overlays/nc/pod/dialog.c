@@ -68,7 +68,22 @@ s32 func_808006D4_ncpoddialog(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80800710_ncpoddialog.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80800A98_ncpoddialog.s")
+/* extern */
+
+void func_80800A98_ncpoddialog(f32 *arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4) {
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF8BC(f32 *, f32 *, f32);
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EF9A8(f32 *, f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 sp24[3];
+
+    func_800EFA4C(sp24, arg2, arg3, arg4);
+    func_800EF9A8(sp24, sp24, arg1[2]);
+    func_800EF8BC(sp24, sp24, arg1[0]);
+    func_800EF934(sp24, sp24, arg1[1]);
+    func_800EF04C(arg0, sp24);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80800B28_ncpoddialog.s")
 
