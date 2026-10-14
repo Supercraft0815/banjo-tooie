@@ -23,7 +23,29 @@ void func_800D2970(void) {
     (*(s8 *)((s8 *)(&D_8012B320) + (0))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D298C.s")
+void func_800D298C(void) {
+    s32 func_800EA05C();
+    extern u8 D_8011B530[][0x10];
+    extern s32 D_8012B320;
+    u8 (*var_s0)[0x10];
+    int temp_v0;
+
+    var_s0 = D_8011B530;
+    temp_v0 = func_800EA05C();
+    *((u8 *)&D_8012B320 + 1) = *(u8 *)&D_8012B320 = 0;
+    *((u8 *)&D_8012B320 + 4) = *((u8 *)&D_8012B320 + 0x18) = 0;
+    while (*(s16 *)*var_s0 != -1) {
+            if (temp_v0 == *(s16 *)*var_s0) {
+                if ((*var_s0)[2] & 1) {
+                    func_800D2910(0, *var_s0);
+                }
+                if ((*var_s0)[2] & 2) {
+                    func_800D2910(1, *var_s0);
+                }
+            }
+            var_s0++;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D2A44.s")
 
