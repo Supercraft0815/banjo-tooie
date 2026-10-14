@@ -82,7 +82,23 @@ s32 func_80800890_chfiregen(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_808008F4_chfiregen.s")
+/* extern */
+
+void func_808008F4_chfiregen(Actor *arg0, s32 arg1) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 func_800DA298(s32);
+    void func_800DA3B8(s32, s32);
+    s32 sp1C;
+
+    func_800DA3B8(func_80800824_chfiregen(arg0), arg1);
+    if ((arg1 != 0) && (func_800DA298(0x678) == 0)) {
+        sp1C = func_80800890_chfiregen(arg0);
+        if (sp1C != -1) {
+            func_800DA3B8(0x678, 1);
+            _capod_entrypoint_13(arg0->unk0, NULL, sp1C, 0x10);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_80800978_chfiregen.s")
 
