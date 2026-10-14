@@ -80,7 +80,33 @@ void func_80800998_chcoderoombits(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_80800BF4_chcoderoombits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_80800D90_chcoderoombits.s")
+/* extern */
+
+void func_80800D90_chcoderoombits(Actor *arg0, s32 arg1) {
+    s32 temp_v1;
+    struct {
+        u8 pad[0x20];
+        struct { f32 fraction; s32 state; f32 unk8; } bits[1];
+    } *data;
+    f32 fraction;
+
+    data = func_80100094(arg0, 0);
+    temp_v1 = data->bits[arg1].state;
+    switch (temp_v1) {
+        case 1:
+        case 2:
+            break;
+        case 3:
+            data->bits[arg1].state = 1;
+            fraction = (0.6f - data->bits[arg1].fraction) / 0.6f;
+            data->bits[arg1].fraction = fraction * 0.2f;
+            break;
+        case 0:
+        data->bits[arg1].state = 1;
+        data->bits[arg1].fraction = 0.0f;
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_80800E28_chcoderoombits.s")
 
