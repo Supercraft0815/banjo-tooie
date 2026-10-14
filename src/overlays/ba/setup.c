@@ -38,7 +38,27 @@ void func_80800140_basetup(void *arg0) {
     func_800C6A7C(sp18, arg0, sp24, 0x420025);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/func_80800194_basetup.s")
+/* extern */
+
+struct player_state_s;
+
+void func_80800194_basetup(struct player_state_s *self, void *arg1, void *arg2) {
+    int func_800A3274(struct player_state_s *);
+    s32 func_800DB9B0();
+    s32 func_800EA05C();
+    s32 func_800EA090(void);
+    s32 sp24;
+    s32 sp20;
+    s32 sp1C;
+
+    sp24 = func_800A3274(self);
+    sp20 = func_800EA05C();
+    sp1C = func_800EA090();
+    if ((func_800DB9B0() == 0) && (((sp20 == 0x112) && (sp1C == 0xF)) || ((sp20 == 0x116) && (sp1C == 2))) && (sp24 == 0x12)) {
+        func_80800140_basetup(arg1);
+        func_80800140_basetup(arg2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/basetup_entrypoint_1.s")
 
