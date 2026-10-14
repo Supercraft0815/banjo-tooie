@@ -1,6 +1,24 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lensflare/chlensflare_entrypoint_0.s")
+s32 chlensflare_entrypoint_0(void) {
+    s32 _gcskyDll_entrypoint_3();
+    s32 func_800EA05C();
+    extern s32 D_808008F0_chlensflare[][2];
+    s32 sp1C;
+    s32 sp18;
+
+    sp1C = 0;
+    sp18 = func_800EA05C();
+    if (_gcskyDll_entrypoint_3() == 0) {
+        return 0;
+    }
+    for (; -1 != D_808008F0_chlensflare[sp1C][0]; sp1C++) {
+        if (sp18 == D_808008F0_chlensflare[sp1C][0]) {
+            return 1;
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lensflare/func_80800084_chlensflare.s")
 
