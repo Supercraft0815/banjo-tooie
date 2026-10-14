@@ -46,7 +46,29 @@ void func_80800164_bssnowball(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/bssnowball_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/bssnowball_entrypoint_2.s")
+/* extern */
+
+void bssnowball_entrypoint_2(void *arg0) {
+    s32 _basnowball_entrypoint_12(void *);
+    s32 _basnowball_entrypoint_8(void *, s32);
+    s32 _basnowball_entrypoint_9(void *, f32);
+    f32 baphysics_get_target_horizontal_velocity(void *);
+    f32 func_8009BB5C(void *);
+    s32 func_800A3274();
+    if (func_800A3274() == 2) {
+        if ((*(u8 *)((s8 *)(arg0) + (0x165))) != 0) {
+            _basnowball_entrypoint_9(arg0, 0.0f);
+        } else {
+            _basnowball_entrypoint_9(arg0, func_8009BB5C(arg0));
+        }
+        if (((*(u8 *)((s8 *)(arg0) + (0x165))) != 0) || (baphysics_get_target_horizontal_velocity(arg0) == 0.0f)) {
+            _basnowball_entrypoint_8(arg0, 1);
+        } else {
+            _basnowball_entrypoint_8(arg0, 0);
+        }
+        _basnowball_entrypoint_12(arg0);
+    }
+}
 
 void func_808003B0_bssnowball(s32 arg0)
 {
