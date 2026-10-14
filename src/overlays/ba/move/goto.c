@@ -12,7 +12,21 @@ void func_80800000_bamovegoto(void *arg0, s32 arg1) {
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x54))) = (s8) arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/goto/bamovegoto_entrypoint_0.s")
+/* extern */
+
+void bamovegoto_entrypoint_0(u8 *arg0) {
+    void func_800EFD24(f32 *);
+    (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x80))) = 0;
+    (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x7C))) = 0;
+    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x78))) = 0.0f;
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x55))) = 1;
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x56))) = 0;
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x54))) = 0;
+    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x70))) = 1.0f;
+    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x74))) = 0.0;
+    func_800EFD24((f32 *)((*(u8 **)((s8 *)(arg0) + (0xC8))) + 0x58));
+    func_800EFD24((f32 *)((*(u8 **)((s8 *)(arg0) + (0xC8))) + 0x64));
+}
 
 void bamovegoto_entrypoint_1(void *arg0) {
     void func_800EE7F8(f32 *, f32 *);
