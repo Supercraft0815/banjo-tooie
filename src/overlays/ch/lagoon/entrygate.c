@@ -1,6 +1,29 @@
 #include "ch/lagoonentrygate.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/entrygate/func_80800000_chlagoonentrygate.s")
+/* extern */
+
+void func_80800000_chlagoonentrygate(Actor *arg0) {
+    void _chdoormake_entrypoint_0(void *, f32, u32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    s32 _glcutDll_entrypoint_19(u32);
+    s32 _sujiggy_entrypoint_20(u32);
+    s32 func_800D3E40(s32);
+    void func_800DA544(GameFlag);
+    void func_80101FDC(Actor *, u32);
+    s32 var_a3;
+
+    if (_sujiggy_entrypoint_20(3) != 0) {
+        func_800DA544(0x395);
+    }
+    if ((func_800D3E40(0xB) != 0) && (_glcutDll_entrypoint_19(0x7D) == 0)) {
+        var_a3 = -1;
+        func_80101FDC(arg0, 4);
+    } else {
+        var_a3 = 0x395;
+    }
+    _chdoormake_entrypoint_0(arg0, -150.0f, 0, var_a3);
+    _chdoormake_entrypoint_5(arg0, 0.0f);
+}
 
 void func_8080008C_chlagoonentrygate(Actor *arg0) {
     s32 _chdoor_entrypoint_0();
