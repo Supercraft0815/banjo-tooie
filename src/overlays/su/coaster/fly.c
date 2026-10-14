@@ -32,7 +32,27 @@ void func_80800EF0_sucoasterfly(Unk80132ED0 *arg0, u8 *arg1)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80800F44_sucoasterfly.s")
+/* extern */
+
+void func_80800F44_sucoasterfly(Unk80132ED0 *arg0, s32 arg1) {
+    int func_801021BC(Actor *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_808014AC_sucoasterfly(Actor *, s32);
+    Actor *temp_v0;
+    Actor *sp1C;
+    u32 flags;
+
+    temp_v0 = func_80106790(arg0);
+    if (temp_v0->unk70_10 != 0xA) {
+        flags = temp_v0->pad7A_0;
+        if (((s32)(flags << 29) >> 31) == 0) {
+        sp1C = temp_v0;
+        if (func_801021BC(temp_v0, 0xA) != 0) {
+            func_808014AC_sucoasterfly(sp1C, 0xA);
+        }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80800FA8_sucoasterfly.s")
 
