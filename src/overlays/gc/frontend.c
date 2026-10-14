@@ -26,7 +26,30 @@ void gcfrontend_entrypoint_0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/gcfrontend_entrypoint_1.s")
+s32 gcfrontend_entrypoint_1(s32 arg0) {
+    s32 func_800DA298(s32);
+    extern s32 D_80800D80_gcfrontend;
+    s32 var_s0;
+    s32 temp_s1;
+    void *temp_v0;
+
+    temp_v0 = (arg0 * 0xC) + (u8 *)&D_80800D80_gcfrontend;
+    var_s0 = (*(s16 *)((s8 *)(temp_v0) + (2)));
+    temp_s1 = (*(u8 *)((s8 *)(temp_v0) + (1))) + var_s0;
+    if (var_s0 < temp_s1) {
+loop_1:
+        if (func_800DA298(var_s0) != 0) {
+            return 1;
+        }
+        var_s0 += 1;
+        if (var_s0 >= temp_s1) {
+            goto block_4;
+        }
+        goto loop_1;
+    }
+block_4:
+    return 0;
+}
 
 int gcfrontend_entrypoint_2(void) {
     s32 gcfrontend_entrypoint_1(s32);
