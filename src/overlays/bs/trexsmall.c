@@ -63,7 +63,16 @@ s32 bstrexsmall_entrypoint_0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/bstrexsmall_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80800680_bstrexsmall.s")
+/* extern */
+
+void func_80800680_bstrexsmall(PlayerState *self) {
+    void _badust_entrypoint_5(PlayerState *, f32, f32);
+    f32 angle;
+
+    for (angle = 0.0f; angle < 360.0f; angle += 45.0f) {
+        _badust_entrypoint_5(self, angle, 230.0f);
+    }
+}
 
 /* extern */
 
