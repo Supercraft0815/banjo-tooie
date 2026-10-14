@@ -44,7 +44,21 @@ void func_80800374_chstarspinnerctrl(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/func_808003B8_chstarspinnerctrl.s")
+void func_808003B8_chstarspinnerctrl(Actor *arg0) {
+    s32 func_8001210C(s32);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    extern s32 D_808009BC_chstarspinnerctrl;
+    f32 sp24[3];
+
+    if (arg0->unk64_20 && (func_8001210C(3) == 0)) {
+        func_800EE7F8(sp24, arg0->position);
+        func_800EF1B8(sp24, arg0->rotation[1], 40.0f);
+        sp24[1] += 30.0f;
+        func_800BBCB8(sp24, sp24, 0.8f, 1, &D_808009BC_chstarspinnerctrl);
+    }
+}
 
 void func_8080044C_chstarspinnerctrl(Actor *arg0, s32 arg1) {
     void func_800DF744(s32, s32);
