@@ -76,4 +76,21 @@ s32 gclevel_entrypoint_4(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/level/func_80800270_gclevel.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/level/func_80800314_gclevel.s")
+void *func_80800314_gclevel(s32 arg0) {
+    struct LevelEntry {
+        s16 id;
+        s16 flag;
+        s32 unk4;
+    };
+    extern struct LevelEntry D_808003D0_gclevel[];
+    struct LevelEntry *entry;
+    s32 i;
+
+    for (i = 0; i < 10; i++) {
+        entry = &D_808003D0_gclevel[i];
+        if (arg0 == entry->id) {
+            return entry;
+        }
+    }
+    return NULL;
+}
