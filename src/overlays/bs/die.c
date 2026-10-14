@@ -1,6 +1,17 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/die/func_80800000_bsdie.s")
+/* extern */
+
+struct player_state_s;
+
+void func_80800000_bsdie(struct player_state_s *self) {
+    void _badust_entrypoint_5(struct player_state_s *, f32, f32);
+    f32 angle;
+
+    for (angle = 0.0f; angle < 360.0f; angle += 45.0f) {
+        _badust_entrypoint_5(self, angle, 230.0f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/die/bsdie_entrypoint_0.s")
 
