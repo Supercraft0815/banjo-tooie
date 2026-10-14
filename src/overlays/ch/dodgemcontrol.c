@@ -100,7 +100,20 @@ void func_80801258_chdodgemcontrol(s32 arg0, f32 arg1[3]) {
     func_800EE7F8(arg1, values.values[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808012C8_chdodgemcontrol.s")
+/* extern */
+
+void func_808012C8_chdodgemcontrol(Actor *arg0, s32 arg1) {
+    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    s32 _chintrotext_entrypoint_2(s32);
+    s32 func_800D395C(void);
+    if ((arg1 != 0) || (func_800D395C() != 0)) {
+        arg0->unk64_19 = 1;
+        _chintrotext_entrypoint_1(0x18B1, arg0->unk79_4 + 0x12, 0, 0);
+        return;
+    }
+    arg0->unk64_19 = 0;
+    _chintrotext_entrypoint_2(1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801344_chdodgemcontrol.s")
 
