@@ -1,9 +1,43 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressjoint/func_80800000_suexpressjoint.s")
+s32 func_80800000_suexpressjoint(s32 arg0) {
+    extern s16 D_80801820_suexpressjoint;
+    extern s16 D_80801830_suexpressjoint;
+    extern s32 D_80801838_suexpressjoint;
+    s32 *var_v0;
+    s32 var_v1;
+
+    if (arg0 == D_80801820_suexpressjoint) {
+        return 0;
+    }
+    var_v0 = &D_80801838_suexpressjoint;
+    var_v1 = 2;
+    if (arg0 == D_80801830_suexpressjoint) {
+        return 1;
+    }
+loop_5:
+    if (arg0 == (*(s16 *)((s8 *)(var_v0) + (8)))) {
+        return var_v1;
+    }
+    if (arg0 == (*(s16 *)((s8 *)(var_v0) + (0x18)))) {
+        return var_v1 + 1;
+    }
+    if (arg0 == (*(s16 *)((s8 *)(var_v0) + (0x28)))) {
+        return var_v1 + 2;
+    }
+    if (arg0 == (*(s16 *)((s8 *)(var_v0) + (0x38)))) {
+        return var_v1 + 3;
+    }
+    var_v1 += 4;
+    var_v0 += 0x10;
+    if (var_v1 == 0x16) {
+        return -1;
+    }
+    goto loop_5;
+}
 
 s32 suexpressjoint_entrypoint_0(s16 arg0) {
-    s16 func_80800000_suexpressjoint(s16);
+    s32 func_80800000_suexpressjoint(s32);
     extern u8 D_80801824_suexpressjoint[][16];
     s32 temp_v0;
     u8 value;
@@ -19,7 +53,7 @@ s32 suexpressjoint_entrypoint_0(s16 arg0) {
 /* extern */
 
 void suexpressjoint_entrypoint_1(void *arg0, s16 arg1) {
-    s16 func_80800000_suexpressjoint(s16);
+    s32 func_80800000_suexpressjoint(s32);
     (*(s16 *)((s8 *)(arg0) + (4))) = arg1; (*(s16 *)((s8 *)(arg0) + (6))) = func_80800000_suexpressjoint((*(s16 *)((s8 *)(arg0) + (4))));
 }
 
