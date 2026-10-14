@@ -75,7 +75,29 @@ s32 func_8008F4F0(struct player_state_s *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008F568.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008F62C.s")
+/* extern */
+
+void func_8008F62C(s32 arg0, u32 arg1) {
+    s32 _bahold_entrypoint_6(struct player_state_s *, Unk80132ED0 *);
+    void bs_setState();
+    void func_80092D44(struct player_state_s *, f32[3]);
+    s32 func_8009E674(struct player_state_s *, s32);
+    struct player_state_s *func_800F53D0(s32);
+    Actor *func_80108474(u32, f32 *, s32);
+    f32 yaw_get(struct player_state_s *);
+    struct player_state_s *temp_v0;
+    Actor *temp_v0_2;
+    f32 sp24[3];
+
+    temp_v0 = func_800F53D0(arg0);
+    func_80092D44(temp_v0, sp24);
+    temp_v0_2 = func_80108474(arg1, sp24, (s32) yaw_get(temp_v0));
+    temp_v0_2->unk64_23 = 1;
+    _bahold_entrypoint_6(temp_v0, temp_v0_2->unk0);
+    if (func_8009E674(temp_v0, 0x400) == 0) {
+        bs_setState(temp_v0, 0x3A);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008F6B8.s")
 
