@@ -3,7 +3,7 @@
 typedef struct { void *ptr; s32 type; } Entry;
 extern Entry D_8007BF10[];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E32FE0/func_8001B4B0.s")
+void func_8001B4B0(void){extern s32 D_8007BF18,D_8007C6E0;s32 i;D_8007BF18=0;i=2;do{i+=4;D_8007BF10[i-3].ptr=0;D_8007BF10[i-2].ptr=0;D_8007BF10[i-1].ptr=0;D_8007BF10[i-4].ptr=0;}while((Entry *)&D_8007C6E0 != &D_8007BF10[i]);}
 
 void func_8001B4E8(void)
 {
