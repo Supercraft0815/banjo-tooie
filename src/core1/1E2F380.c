@@ -3,7 +3,11 @@
 typedef struct {
     s32 unk0;
     s32 active;
-    u8 unk8[0x14];
+    s32 unk8;
+    f32 unkC;
+    f32 unk10;
+    f32 unk14;
+    f32 unk18;
     OSPfs pfs;
 } Motor;
 extern Motor D_8007B2D0[];
@@ -210,7 +214,20 @@ void func_8001862C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_80018634.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_80018704.s")
+void func_80018704(s32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
+    extern f32 D_80041730;
+    Motor *motor;
+
+    if (arg3 != 0.0f) {
+        motor = &D_8007B2D0[arg0];
+        if (motor->unk0 != 0 && (arg4 != 0 || !(D_80041730 < motor->unkC - motor->unk10) || !(arg1 + arg2 < motor->unk18 + motor->unk14))) {
+            motor->unkC = arg3;
+            motor->unk14 = arg1;
+            motor->unk10 = 0;
+            motor->unk18 = arg2;
+        }
+    }
+}
 
 void func_800187B4(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     void func_80018704(s32, f32, f32, f32, s32);
