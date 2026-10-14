@@ -1089,7 +1089,19 @@ void func_800F71D4(s32 arg0)
     func_8008E37C(D_80135490[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7200.s")
+/* extern */
+
+s32 func_800F7200(s32 arg0, f32 arg1[3], f32 arg2, s32 arg3, Actor **arg4) {
+    s32 func_8008DDEC(PlayerState *, f32[3], f32);
+    s32 func_8008F568(s32, s32, Actor **);
+    PlayerState *sp1C;
+
+    sp1C = D_80135490[arg0];
+    if ((arg2 < 0.0f) || (func_8008DDEC(sp1C, arg1, arg2) != 0)) {
+        return func_8008F568(sp1C, arg3, arg4);
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7270.s")
 
