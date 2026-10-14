@@ -62,7 +62,25 @@ void func_808005E0_chcablecar(Actor* arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_8080069C_chcablecar.s")
+void func_8080069C_chcablecar(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    extern u32 D_80800F68_chcablecar;
+    u32 var_a2;
+
+    switch (arg0->unk70_10) {
+        case 4:
+        case 5:
+        case 6:
+            var_a2 = 1;
+            break;
+        default:
+            var_a2 = 0;
+            break;
+    }
+    if ((var_a2 != 0) || ((var_a2 == 0) && (arg0->unk5F != 0))) {
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, var_a2, &D_80800F68_chcablecar);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_8080070C_chcablecar.s")
 
