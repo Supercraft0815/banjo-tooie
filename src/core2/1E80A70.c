@@ -602,7 +602,7 @@ s32 func_800A89F8()
     return D_80127674;
 }
 
-void func_800A8A04(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4)
+void func_800A8A04(s32 arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4)
 {
     func_80015CC0(D_80127688[arg0].unk0, arg1, arg2, arg3, arg4);
 }

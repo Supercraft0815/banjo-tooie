@@ -6,7 +6,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C4E58.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C5008.s")
+/* extern */
+
+void func_800C5008(s32 arg0, f32 *arg1, f32 *arg2) {
+    void func_800A8A04(s32, s32 *, s32 *, s32 *, s32 *);
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+    s32 sp20;
+
+    func_800A8A04(arg0, &sp2C, &sp28, &sp24, &sp20);
+    arg2[0] = arg1[0] * ((f32) sp24 / 304.0f);
+    arg2[1] = arg1[1] * ((f32) sp20 / 228.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C5094.s")
 
