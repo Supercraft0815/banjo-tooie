@@ -194,7 +194,12 @@ void func_80018108(s32 arg0) { void func_80016934(s32); extern OSMesgQueue *D_80
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_8001817C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_800183D4.s")
+/* extern */
+
+void func_800183D4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void func_800187B4(s32, f32, f32, f32);
+    func_800187B4(arg0, (f32) arg1 / 524288.0f, (f32) arg2 / 524288.0f, (f32) arg3 / 524288.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_80018444.s")
 
