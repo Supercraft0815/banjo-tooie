@@ -32,7 +32,32 @@ s32 susubgame_entrypoint_3(s32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/susubgame_entrypoint_4.s")
+/* extern */
+
+int susubgame_entrypoint_4(s32 arg0, u8 *arg1) {
+    void _glcutDll_entrypoint_17();
+    s32 _ncpod_entrypoint_17(s32, s32);
+    s32 func_800A93E4(s32);
+    int func_808008DC_susubgame(s32);
+    s32 var_s0;
+
+    var_s0 = 0;
+    if (arg1[0] != 0) {
+        do {
+            if (func_808008DC_susubgame(var_s0) != 0) {
+                _ncpod_entrypoint_17(func_800A93E4(var_s0), 0);
+            }
+            var_s0 += 1;
+        } while (var_s0 != 8);
+        arg1[0] = 0;
+        if (arg1[1] != 0) {
+            arg1[1] = 0;
+            _glcutDll_entrypoint_17();
+        }
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/susubgame_entrypoint_5.s")
 
