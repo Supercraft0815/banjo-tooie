@@ -44,7 +44,17 @@ void func_808001D4_gczoombox(u8 *arg0, s32 size){
      }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80800228_gczoombox.s")
+void func_80800228_gczoombox(void *arg0) {
+    u32 flag;
+    s32 height;
+
+    flag = (*(u32 *)((u8 *)arg0 + 0x1E4) << 12) >> 31;
+    height = flag ? 15 : 12;
+    *(f32 *)((u8 *)arg0 + 0x1A4) = *(s16 *)((u8 *)arg0 + 0x1B0) - height / 2;
+    height = flag ? 15 : 12;
+    *(f32 *)((u8 *)arg0 + 0x1A8) = height;
+    *(f32 *)((u8 *)arg0 + 0x1A8) += *(f32 *)((u8 *)arg0 + 0x1A4);
+}
 
 void func_80800228_gczoombox(void *);
 
