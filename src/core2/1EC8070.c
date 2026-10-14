@@ -461,7 +461,25 @@ void func_800EFD4C(s16 vec[3]) {
     vec[0] = vec[1] = vec[2] = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EFD60.s")
+/* extern */
+
+void func_800EFD60(f32 arg0[3], f32 arg1[3], f32 arg2) {
+    f32 func_800137AC(f32);
+    f32 func_800137C4(void);
+    f32 mlAbsF(f32);
+    f32 sp1C;
+    f32 temp_f0;
+    f32 temp_f12;
+    f32 temp_f2;
+
+    sp1C = mlAbsF(func_800137AC(arg2));
+    temp_f0 = mlAbsF(func_800137C4());
+    temp_f2 = (*(f32 *)((s8 *)(arg1) + (0)));
+    temp_f12 = (*(f32 *)((s8 *)(arg1) + (8)));
+    (*(f32 *)((s8 *)(arg0) + (0))) = (f32) ((temp_f2 * sp1C) + (temp_f12 * temp_f0));
+    arg0[1] = arg1[1];
+    (*(f32 *)((s8 *)(arg0) + (8))) = (f32) ((temp_f12 * sp1C) + (temp_f2 * temp_f0));
+}
 
 void func_800EFDE8(f32 *arg0, u8 *arg1, f32 *arg2) {
     f32 sp1C[3];
