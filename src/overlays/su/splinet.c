@@ -240,7 +240,38 @@ void susplinet_entrypoint_17(u8 *spline) {
     spline[0x58] = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/func_8080111C_susplinet.s")
+void func_8080111C_susplinet(u8 *arg0) {
+    s32 var_v0;
+    s32 var_a1;
+    u8 *var_v1;
+    u8 *var_v1_2;
+
+    (*(s16 *)((s8 *)(arg0) + (0x30))) = 0x5C;
+    var_v0 = (*(s16 *)((s8 *)(arg0) + (0x4E))) * 2 + 0x5C;
+    (*(s16 *)((s8 *)(arg0) + (0x32))) = var_v0;
+    var_v0 += (*(s16 *)((s8 *)(arg0) + (0x4E))) * 2;
+    var_a1 = 0;
+    if ((s32) (*(u8 *)((s8 *)(arg0) + (0x51))) > 0) {
+        var_v1 = arg0;
+        do {
+            (*(s16 *)((s8 *)(var_v1) + (0x36))) = var_v0;
+            var_a1 += 1;
+            var_v1 += 2;
+            var_v0 += (*(s16 *)((s8 *)(arg0) + (0x4E))) * 0xC;
+        } while (var_a1 < (s32) (*(u8 *)((s8 *)(arg0) + (0x51))));
+        var_a1 = 0;
+    }
+    var_v1_2 = arg0;
+    if ((s32) (*(u8 *)((s8 *)(arg0) + (0x52))) > 0) {
+        do {
+            (*(s16 *)((s8 *)(var_v1_2) + (0x3E))) = var_v0;
+            var_a1 += 1;
+            var_v1_2 += 2;
+            var_v0 += (*(s16 *)((s8 *)(arg0) + (0x4E))) * 4;
+        } while (var_a1 < (s32) (*(u8 *)((s8 *)(arg0) + (0x52))));
+    }
+    (*(s16 *)((s8 *)(arg0) + (0x34))) = var_v0;
+}
 
 s32 func_808011B8_susplinet(s32 arg0, s32 arg1) {
     return (arg0 * 0xC) + (arg1 * 4) + 6;
