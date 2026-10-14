@@ -1,6 +1,47 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/func_80800000_chdoormake.s")
+void *func_80800000_chdoormake(Actor *arg0, s32 arg1, u32 arg2, s32 arg3) {
+    struct DoorPart {
+        u8 state;
+        u8 unused1;
+        u8 active : 1;
+        u8 unused2 : 7;
+        u8 unused3[5];
+    };
+    struct DoorData {
+        u32 flags;
+        s16 value;
+        u8 unused6[2];
+        u8 kind : 6;
+        u8 unused8 : 2;
+        u8 unused9;
+        s16 scale;
+        s16 angle;
+        s16 angle2;
+        u8 unused10[16];
+        struct DoorPart parts[2];
+    };
+    u32 *func_80100074(Actor *, u32, u32);
+    void func_80103110(Actor *, u32);
+    struct DoorData *data;
+    s32 i;
+
+    data = (struct DoorData *)func_80100074(arg0, 0, 0x48);
+    data->kind = arg1;
+    data->flags = arg2;
+    data->value = arg3;
+    data->scale = 0x200;
+    data->angle = 0;
+    data->angle2 = 0;
+    for (i = 0; i < 2; i++) {
+        data->parts[i].active = 0;
+        data->parts[i].state = 0;
+    }
+    if (arg2 & 4) {
+        func_80103110(arg0, 1);
+    }
+    return data;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/func_808000B8_chdoormake.s")
 
