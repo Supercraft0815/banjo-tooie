@@ -170,7 +170,29 @@ s32 func_800E15CC(s32 arg0, f32 arg1, f32 arg2) {
 
 s32 func_800E1610(s32 arg0, f32 arg1, f32 arg2, f32 *arg3) { s32 func_800E1540(s32); s32 entry = func_800E1540(arg0); func_800E13F0(entry, arg1); func_800E144C(entry, arg2); func_800E14B8(entry, arg3); return entry; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1664.s")
+s32 func_800E1664(s32 arg0, f32 arg1, f32 arg2, f32 *arg3, u8 *arg4, s16 arg5) {
+    s32 sp1C;
+    s32 temp_v0;
+    Entry *temp_v0_2;
+
+    temp_v0 = func_800E1540(arg0);
+    sp1C = temp_v0;
+    func_800E14F8(temp_v0, arg4, arg5);
+    temp_v0_2 = &D_8012CF90[sp1C];
+    temp_v0_2->active = 4;
+    (*(f32 *)((s8 *)(temp_v0_2) + (0x20))) = arg1;
+    (*(f32 *)((s8 *)(temp_v0_2) + (0x30))) = 0.0f;
+    (*(f32 *)((s8 *)(temp_v0_2) + (0x18))) = arg2;
+    if (arg1 >= 0.0f) {
+        (*(f32 *)((s8 *)(temp_v0_2) + (0x2C))) = 1.0f;
+    } else {
+        (*(f32 *)((s8 *)(temp_v0_2) + (0x2C))) = -1.0f;
+    }
+    if (arg3 != 0) {
+        func_800E14B8(sp1C, arg3);
+    }
+    return sp1C;
+}
 
 s32 func_800E1720(s32 arg0) {
     Entry *entry;
