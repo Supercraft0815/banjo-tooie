@@ -308,7 +308,22 @@ void func_800EDD68(void *self, f32 arg1[4], f32 arg2[4], f32 arg3) {
     arg0->unk74 = (arg3 > 0.0f) ? arg3 : D_80125E64;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EDDDC.s")
+void func_800EDDDC(void *self, f32 arg1[4], f32 arg2[4], f32 arg3) {
+    extern f32 D_80125E68;
+    MeshEffect *arg0 = self;
+    arg0->unk50[0] = arg1[0];
+    arg0->unk50[1] = arg1[1];
+    arg0->unk50[2] = arg1[2];
+    arg0->unk50[3] = arg1[3];
+    arg0->unk60[0] = arg2[0];
+    arg0->unk60[1] = arg2[1];
+    arg0->unk60[2] = arg2[2];
+    arg0->unk60[3] = arg2[3];
+    arg0->unk70 = 0.0f;
+    arg0->unk28 = 0;
+    arg0->unk74 = (arg3 > 0.0f) ? arg3 : D_80125E68;
+    arg0->unk29 = 6;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EDE54.s")
 
