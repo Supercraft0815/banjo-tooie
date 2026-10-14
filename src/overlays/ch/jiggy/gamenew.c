@@ -142,7 +142,35 @@ int func_80801CB0_chjiggygamenew(u8 arg0, s32 arg1, void *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80801CE8_chjiggygamenew.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80801E4C_chjiggygamenew.s")
+/* extern */
+
+void func_80801E4C_chjiggygamenew(Actor *arg0, s32 arg1) {
+    struct JiggyGameData {
+        f32 timer;
+        u32 count;
+        u8 pad8[8];
+        s32 state;
+        s32 jiggy;
+        f32 duration;
+    };
+    f32 _sujiggy_entrypoint_3(s32);
+    void func_800CE88C(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    void func_800DA544(GameFlag);
+    f32 temp_f0;
+
+    func_800DA544(0xD49);
+    if (arg1 == 0) {
+        temp_f0 = _sujiggy_entrypoint_3(((struct JiggyGameData *)arg0->actorData)->jiggy);
+        ((struct JiggyGameData *)arg0->actorData)->timer = temp_f0;
+        ((struct JiggyGameData *)arg0->actorData)->duration = temp_f0;
+        func_800CE8D8(4, temp_f0, (s32) temp_f0);
+        func_800CE88C(4, 1);
+        ((struct JiggyGameData *)arg0->actorData)->count = osGetCount();
+    }
+    ((struct JiggyGameData *)arg0->actorData)->state = 5;
+    arg0->unk64_20 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80801EE8_chjiggygamenew.s")
 
