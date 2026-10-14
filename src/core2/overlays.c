@@ -38,7 +38,9 @@ void func_80081724()
     func_80081744();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/overlays/func_80081744.s")
+int func_80081744(void) {
+    while (D_80117C60) ovl_unload(D_80126738[0],1);
+}
 
 struct Overlay* ovl_load(s32 overlay_index, s32 arg1, s32 arg2) {
     s32 overlay_size;
