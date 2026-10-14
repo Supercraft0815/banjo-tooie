@@ -2,7 +2,22 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/func_80800000_bstaxi.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/func_80800064_bstaxi.s")
+/* extern */
+
+s32 func_80800064_bstaxi(struct player_state_s *arg0, s32 arg1) {
+    int bakey_pressed(struct player_state_s *, int);
+    int bakey_released(struct player_state_s *, int);
+    if (bakey_released(arg0, 1) != 0) {
+        arg1 = 0x127;
+    }
+    if (bakey_pressed(arg0, 9) != 0) {
+        arg1 = 0x124;
+    }
+    if (bakey_pressed(arg0, 8) != 0) {
+        arg1 = 0x126;
+    }
+    return arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_0.s")
 
