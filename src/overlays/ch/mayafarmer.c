@@ -161,7 +161,25 @@ void func_80800D18_chmayafarmer(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_80800D60_chmayafarmer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_80801040_chmayafarmer.s")
+/* extern */
+
+void func_80801040_chmayafarmer(Actor *arg0) {
+    void func_800EF04C(f32 *, f32 *);
+    void func_80102B2C(Actor *, f32);
+    s32 func_80102CF4(Actor *, s32);
+    int func_80102EC8(Actor *, f32 (*)[3]);
+    if (func_80102EC8(arg0, &arg0->position) == 0) {
+        ((f32 *)arg0->actorData)[6] = ((f32 *)arg0->actorData)[4] = 0.0f;
+    }
+    func_800EF04C(arg0->position, &((f32 *)arg0->actorData)[4]);
+    ((f32 *)arg0->actorData)[5] -= 5.0f;
+    if (arg0->position[1] < arg0->unk58) {
+        arg0->position[1] = arg0->unk58;
+    }
+    if (func_80102CF4(arg0, 0x40C00000) == 0) {
+        func_80102B2C(arg0, 4.0f);
+    }
+}
 
 void func_808010DC_chmayafarmer(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
