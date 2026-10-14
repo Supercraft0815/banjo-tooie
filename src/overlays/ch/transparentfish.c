@@ -119,4 +119,14 @@ OSThread *chtransparentfish_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparentfish/func_80800E10_chtransparentfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparentfish/func_80800EE0_chtransparentfish.s")
+s32 func_80800EE0_chtransparentfish(s32 arg0) {
+    extern s32 B_808010E0_chtransparentfish[20][3];
+    s32 i;
+
+    for (i = 0; i < 20; i++) {
+        if (arg0 == B_808010E0_chtransparentfish[i][0]) {
+            return B_808010E0_chtransparentfish[i][2];
+        }
+    }
+    return 0;
+}
