@@ -11,7 +11,7 @@ s32 func_80800000_sccustom(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     void func_800B7F14(s32);
     void func_800B811C(s32);
     void func_800B8DEC(s32, s32, s32, u8);
-    s32 func_800E7188(s32);
+    s32 func_800E7188(u8 *);
     s32 distance;
     f32 scale;
     s32 direction;
@@ -90,7 +90,7 @@ s32 func_80800264_sccustom(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     void func_800B7F14(s32);
     void func_800B811C(s32);
     void func_800B8DEC(s32, s32, s32, u8);
-    s32 func_800E7188(s32);
+    s32 func_800E7188(u8 *);
     s32 distance;
     f32 scale;
     s32 direction;
@@ -192,7 +192,7 @@ void sccustom_entrypoint_0(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 void sccustom_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _scinfobar_entrypoint_19(s32);
-    extern s32 D_80800920_sccustom;
+    extern u8 *D_80800920_sccustom;
     if (_scinfobar_entrypoint_19(arg1) == 0x3E7) {
         func_80800264_sccustom(arg0, arg1, arg2, arg3, D_80800920_sccustom);
         return;
@@ -219,7 +219,7 @@ void sccustom_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 s32 func_808006C4_sccustom(s32 arg0, s32 arg1) {
     f32 _scinfobar_entrypoint_18(s32);
-    s32 func_800E7188(s32);
+    s32 func_800E7188(u8 *);
     int sp1C;
     f32 temp_f0;
     int var_v1;
@@ -242,7 +242,28 @@ void sccustom_entrypoint_3(s32 arg0) {
     func_808006C4_sccustom(arg0, func_808004C8_sccustom());
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/custom/sccustom_entrypoint_4.s")
+s32 sccustom_entrypoint_4(s32 arg0) {
+    f32 _scinfobar_entrypoint_18(s32);
+    s32 _scinfobar_entrypoint_19(s32);
+    s32 func_800E7188(u8 *);
+    s32 func_808006C4_sccustom(s32, s32);
+    extern u8 *D_80800920_sccustom;
+    int sp1C;
+    f32 temp_f0;
+    int var_v1;
+
+    if (_scinfobar_entrypoint_19(arg0) == 0x3E7) {
+        sp1C = func_800E7188(D_80800920_sccustom);
+        temp_f0 = _scinfobar_entrypoint_18(arg0);
+        var_v1 = sp1C;
+        if (var_v1 < 3) {
+            var_v1 = 3;
+        }
+        var_v1--;
+        return (s32) ((24.0f * temp_f0) + 4.0f + (10.0f * (f32) var_v1));
+    }
+    return func_808006C4_sccustom(arg0, func_808004C8_sccustom(arg0));
+}
 
 void sccustom_entrypoint_5(s32 arg0) {
     s32 func_808006C4_sccustom(s32, s32);
