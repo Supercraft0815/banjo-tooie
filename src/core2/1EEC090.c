@@ -412,4 +412,26 @@ void* func_80114CD4(void* arg0)
 {
     return defrag(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80114CF4.s")
+/* extern */
+
+void func_80114CF4(u8 *arg0, f32 *arg1, s32 arg2, f32 *arg3) {
+    void func_800EE7F8(f32 *, f32 *);
+    s32 var_s0;
+    f32 *var_s1;
+    f32 *var_s2;
+
+    if (!(arg2 & 0x40000)) {
+        var_s0 = 0;
+        var_s1 = (f32 *)(arg0 + 0x14);
+        var_s2 = arg1;
+        do {
+            func_800EE7F8(var_s1, var_s2);
+            var_s0 += 0xC;
+            var_s1 += 3;
+            var_s2 += 3;
+        } while (var_s0 != 0x24);
+        func_800EE7F8((f32 *)(arg0 + 0x3C), arg3);
+        (*(s32 *)((s8 *)(arg0) + (0x38))) = arg2;
+        (*(s8 *)((s8 *)(arg0) + (3))) = 1;
+    }
+}
