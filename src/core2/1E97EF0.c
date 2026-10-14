@@ -73,7 +73,6 @@ void func_800BEAF4(void) {
 }
 
 s32 func_800BEB28(s32 arg0) {
-    struct Entry { s32 value; u8 padding[40]; };
     extern struct Entry D_801285BC[];
     return D_801285BC[arg0].value;
 }
@@ -318,7 +317,7 @@ void func_800BF99C(s32 arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BFA1C.s")
+s32 func_800BFA1C(f32 *arg0, s32 *var_a1) { extern struct Entry D_801285BC[]; s32 *end; s32 i = 0; f32 temp_f0; var_a1 = &D_801285B0; end = (s32 *)D_801285BC; while (1) { temp_f0 = arg0[i]; if (temp_f0 < (f32)(var_a1[96] - 100)) { return 0; } if ((f32)(var_a1[99] + 100) < temp_f0) { return 0; } var_a1++; i++; if (var_a1 == end) { break; } } return 1; }
 
 u8 func_800BFAA4(void) {
     return (*(u8 *)((s8 *)(func_800BF704()) + (0x77)));
