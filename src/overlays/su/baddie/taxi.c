@@ -4,7 +4,23 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/func_80800220_subaddietaxi.s")
+/* extern */
+
+s32 func_80800220_subaddietaxi(f32 *arg0, f32 arg1) {
+    f32 func_80090010();
+    f32 func_800F1DCC(f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void func_8010D254(f32 *);
+    f32 mlAbsF(f32);
+    f32 sp24[3];
+    f32 currentYaw;
+    f32 sp1C;
+
+    func_8010D254(sp24);
+    sp1C = func_800F1DF4(sp24, arg0 + 1);
+    currentYaw = func_80090010();
+    return mlAbsF(func_800F1DCC(currentYaw, sp1C)) < arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_2.s")
 
