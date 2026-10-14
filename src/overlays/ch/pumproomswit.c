@@ -14,7 +14,28 @@ OSThread *chpumproomswitch_entrypoint_1(void)
     return (OSThread *) D_808003C8_chpumproomswitch;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pumproomswit/func_80800018_chpumproomswitch.s")
+/* extern */
+
+void func_80800018_chpumproomswitch(void *arg0) {
+    s32 _chswitch_entrypoint_7(s32, s32);
+    s32 _chswitch_entrypoint_8(s32, s32);
+    s32 _chswitch_entrypoint_9(s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    void func_80103110(void *, s32);
+    s32 func_8080016C_chpumproomswitch(u8 *);
+    Actor *actor = arg0;
+
+    if (func_800DA298(0xB2) != 0) {
+        func_800DA544(func_8080016C_chpumproomswitch(arg0));
+    }
+    _chswitch_entrypoint_7(arg0, func_8080016C_chpumproomswitch(arg0));
+    _chswitch_entrypoint_8(arg0, actor->unk74_7 == 0x32 ? 0x400 : 0x200);
+    if (func_800DA298(0xB2) != 0) {
+        _chswitch_entrypoint_9(arg0);
+        func_80103110(arg0, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pumproomswit/func_808000BC_chpumproomswitch.s")
 
