@@ -72,7 +72,18 @@ void chfactorymagnet_entrypoint_0(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_808016A4_chfactorymagnet.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_808019F4_chfactorymagnet.s")
+/* extern */
+
+void func_808019F4_chfactorymagnet(Actor *arg0, f32 *arg1, f32 *arg2) {
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 sp1C[3];
+
+    func_800EFA4C(sp1C, (*&arg0)->scale * -195.0f, arg0->scale * 60.0f, arg0->scale * 390.0f);
+    func_800EE780(arg1, arg0->position, sp1C);
+    sp1C[0] = arg0->scale * 205.0f;
+    func_800EE780(arg2, arg0->position, sp1C);
+}
 
 void func_80801A9C_chfactorymagnet(s32 arg0, f32 *arg1, f32 *arg2) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
