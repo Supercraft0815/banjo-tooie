@@ -367,7 +367,29 @@ void func_8011413C(s32 camera, f32 rotation[3], f32 scale, s32 index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80114184.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_801143A4.s")
+/* extern */
+
+s32 func_801143A4(f32 *arg0, f32 *arg1, f32 arg2, f32 *arg3) {
+    void func_800CA8F4(f32 *, f32 *, f32 *);
+    s32 func_800CACEC(f32 *, f32 *, f32);
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EFB24(void *, void *, void *);
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp1C[3];
+    f32 temp_f12;
+
+    func_800CA8F4(arg0, sp34, sp28);
+    func_800EFB24(sp1C, arg1, sp34);
+    temp_f12 = func_800EEAA4(sp1C, sp28) - arg2;
+    if (temp_f12 < *arg3) {
+        if (func_800CACEC(arg0, arg1, arg2) != 0) {
+            *arg3 = temp_f12;
+            return 1;
+        }
+    }
+    return 0;
+}
 
 f32 func_80114444(void) {
     s32 func_800F5410();
