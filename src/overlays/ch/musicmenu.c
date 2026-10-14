@@ -19,7 +19,24 @@ s32 func_808000B4_chmusicmenu(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_80800610_chmusicmenu.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_80800714_chmusicmenu.s")
+/* extern */
+
+void func_80800714_chmusicmenu(Actor *arg0) {
+    s32 func_800DA524(s32);
+    void func_800FCA90(u32);
+    void func_800FCAE0(u32, u32, u32);
+    void func_800FE8AC(void);
+    void func_800FECB8(u32);
+    if (arg0->unk64_20) {
+        func_800FECB8(5);
+        arg0->unk64_20 = 0;
+        func_800FE8AC();
+        func_800FCAE0(arg0->unk74_7, 0, 0x14D);
+        func_800FCA90(arg0->unk74_7);
+        arg0->unk74_7 = 0;
+        func_800DA524(0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_8080079C_chmusicmenu.s")
 
@@ -47,7 +64,7 @@ void func_80800930_chmusicmenu(u8 *arg0, s32 arg1) {
     s32 func_80101238(s32, s32);
     s32 func_80102424(u8 *, s32);
     s32 func_808000D0_chmusicmenu(u8 *, s32);
-    void func_80800714_chmusicmenu(u8 *);
+    void func_80800714_chmusicmenu(Actor *);
     extern u8 D_808014F8_chmusicmenu[];
     extern s32 _gcnewoption_entrypoint_35;
     extern s32 func_8010D5DC;
@@ -137,7 +154,7 @@ void func_80800930_chmusicmenu(u8 *arg0, s32 arg1) {
 
 void func_80800F50_chmusicmenu(u8 *arg0) {
     s32 _gcnewoption_entrypoint_6(u8 *, s32);
-    void func_80800714_chmusicmenu(u8 *);
+    void func_80800714_chmusicmenu(Actor *);
     u32 temp_t6;
 
     func_80800714_chmusicmenu(arg0);
