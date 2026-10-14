@@ -40,7 +40,13 @@ void func_80021820(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E38AA0/func_80021884.s")
+void func_80021884(ALLink *arg0) {
+    void func_80020E40(ALLink *, ALLink *);
+    void func_80020E74(ALLink *);
+    extern PoolFreeList *D_800411F4;
+    func_80020E74(arg0);
+    func_80020E40(arg0, (ALLink *)((u8 *)D_800411F4 + 0x14));
+}
 
 s32 func_800218C4(s32 arg0) {
     extern PoolFreeList *D_800411F4;

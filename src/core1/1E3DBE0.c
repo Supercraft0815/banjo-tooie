@@ -1,9 +1,8 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3DBE0/func_800260B0.s")
-
-void func_800260EC(void) {
-}
-
-void func_800260F4(void) {
+s32 func_800260B0(void *arg0) {
+    if (*(void **)((s8 *)arg0 + 0x18) == NULL) {
+        return 0;
+    }
+    return (s32) ((f32) (*(s32 *)((s8 *)arg0 + 0x24)) / (*(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x18) + 8)));
 }
