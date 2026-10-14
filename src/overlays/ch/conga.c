@@ -27,7 +27,23 @@ s32 func_80800478_chconga(s32 arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/conga/func_808004BC_chconga.s")
+/* extern */
+
+s32 func_808004BC_chconga(s32 arg0, s32 arg1) {
+    int func_800C6E38(s32);
+    s32 var_v1;
+
+    if ((func_800C6E38(0x1B) != 0) && (func_800C6E38(0x2D) != 0)) {
+        var_v1 = arg1;
+    } else if (func_800C6E38(0x1B) != 0) {
+        var_v1 = 0x1112;
+    } else if (func_800C6E38(0x2D) != 0) {
+        var_v1 = 0x10FF;
+    } else {
+        var_v1 = 0x1113;
+    }
+    return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/conga/func_80800538_chconga.s")
 
