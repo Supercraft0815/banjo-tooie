@@ -38,7 +38,30 @@ s32 func_808002A4_chbanjoctrl(f32 arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800360_chbanjoctrl.s")
+/* extern */
+
+f32 func_80800360_chbanjoctrl(f32 arg0) {
+    s32 func_808002A4_chbanjoctrl(f32);
+    f32 temp_f22;
+    f32 temp_f22_2;
+    f32 var_f20;
+    s32 done;
+
+    var_f20 = 1.0f;
+    done = 0;
+    do {
+        temp_f22_2 = arg0 + var_f20;
+        if (func_808002A4_chbanjoctrl(temp_f22_2) != 0) {
+            return temp_f22_2;
+        }
+        temp_f22 = arg0 - var_f20;
+        if (func_808002A4_chbanjoctrl(temp_f22) != 0) {
+            return temp_f22;
+        }
+        var_f20 += 2.0f;
+    } while (!done);
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_808003F8_chbanjoctrl.s")
 
