@@ -277,7 +277,18 @@ void sucoaster_entrypoint_5(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_80800C68_sucoaster.s")
+/* extern */
+
+void func_80800C68_sucoaster(void *arg0, void *arg1, f32 arg2) {
+    f32 func_800F15F8(f32, f32, f32);
+    s32 func_800F20BC(f32, f32, s32);
+    f32 func_80107C00();
+    if (((0.6f * (f32) (*(s16 *)((s8 *)(arg1) + (0xE)))) < (*(f32 *)((s8 *)(arg0) + (0x24)))) && (func_800F20BC((*(f32 *)((s8 *)(arg0) + (0x48))), (*(f32 *)((s8 *)(arg0) + (0x54))), 0x42700000) == 0)) {
+        (*(f32 *)((s8 *)(arg0) + (0x24))) = (f32) ((*(f32 *)((s8 *)(arg0) + (0x24))) * 0.95f);
+        return;
+    }
+    (*(f32 *)((s8 *)(arg0) + (0x24))) = func_800F15F8((*(f32 *)((s8 *)(arg0) + (0x24))), (f32) (*(s16 *)((s8 *)(arg1) + (0xE))), func_80107C00() * arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_6.s")
 
