@@ -1,6 +1,29 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/statue/func_80800000_chgoldstatue.s")
+/* extern */
+
+void func_80800000_chgoldstatue(s32 arg0) {
+    s16 _chmumbopad_entrypoint_0(s32);
+    s32 _sumumbofx_entrypoint_0(s32, s32, s32, s16);
+    s32 _sumumbofx_entrypoint_15(s32, s32);
+    s32 _sumumbofx_entrypoint_2(s32);
+    s32 _sumumbofx_entrypoint_24(s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_80100094(s32, s32);
+    s32 sp1C;
+    s32 temp_v0;
+
+    _sumumbofx_entrypoint_0(arg0, 1, 0x2D, _chmumbopad_entrypoint_0(2));
+    temp_v0 = func_80100094(arg0, 1);
+    sp1C = temp_v0;
+    _sumumbofx_entrypoint_2(temp_v0);
+    _sumumbofx_entrypoint_24(sp1C, 0x3F266666);
+    if (func_800DA298(0x57C) == 0) {
+        _sumumbofx_entrypoint_15(sp1C, 0x40400000);
+        return;
+    }
+    _sumumbofx_entrypoint_15(sp1C, 0x3E800000);
+}
 
 void func_80800094_chgoldstatue(s32 arg0)
 {
