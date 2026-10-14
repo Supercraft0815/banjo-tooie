@@ -252,4 +252,20 @@ void func_808007DC_chtrashcompactor(s32 arg0, s32 arg1, s32 arg2) {
     _chswitch_entrypoint_10(arg0, arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcompactor/func_8080081C_chtrashcompactor.s")
+/* extern */
+
+void func_8080081C_chtrashcompactor(Actor *arg0) {
+    s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
+    void _subaddiefade_entrypoint_11(Actor *, s32 *);
+    void func_800C87DC(s32 *);
+    s32 sp24[3];
+
+    if (_chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, 200.0f, 1, 0x9F5) != 0) {
+        _chdoormake_entrypoint_9(arg0, 0, 0, 0x10);
+        _chdoormake_entrypoint_8(arg0, 0xC);
+    }
+    func_800C87DC(sp24);
+    _subaddiefade_entrypoint_11(arg0, sp24);
+}
