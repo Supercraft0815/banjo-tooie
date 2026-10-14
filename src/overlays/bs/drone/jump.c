@@ -1,6 +1,21 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/jump/bsdronejump_entrypoint_0.s")
+/* extern */
+
+void bsdronejump_entrypoint_0(void *arg0, void *arg1, f32 arg2) {
+    f32 _bamovegoto_entrypoint_3();
+    f32 func_80013970(f32);
+    void func_8008C990(void *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 pad[1];
+    f32 sp20;
+    f32 new_var;
+
+    func_8008C990(arg0, func_800F10B4(arg2, 0.0f, 1.0f, *(f32 *)((s8 *)arg0 + 0x190), *(f32 *)((s8 *)arg0 + 0x194)));
+    sp20 = _bamovegoto_entrypoint_3(arg0);
+    new_var = func_80013970(arg2 * 180.0f) * sp20 * 0.5f;
+    (*(f32 *)((s8 *)(arg1) + (4))) += new_var;
+}
 
 void bsdronejump_entrypoint_1(s32 arg0)
 {
