@@ -6,7 +6,27 @@ void func_80800000_cheggclockwork(Actor *arg0) { void *func_80100094(Actor *, u3
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/clockwork/func_80800124_cheggclockwork.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/clockwork/func_80800270_cheggclockwork.s")
+/* extern */
+
+s32 func_80800270_cheggclockwork(Actor *arg0) {
+    int func_800DB9B0(void);
+    s32 func_800F6D24(s32);
+    int func_800F8088(s32);
+    void *func_80100094(Actor *, u32);
+    void *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    if (func_800DB9B0() != 0) {
+        return 0;
+    }
+    if (func_800F6D24((*(s16 *)((s8 *)(sp1C) + (0x3A)))) != 0) {
+        return 0;
+    }
+    if (func_800F8088((*(s16 *)((s8 *)(sp1C) + (0x3A)))) != 0) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/clockwork/func_808002DC_cheggclockwork.s")
 
