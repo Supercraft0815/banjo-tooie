@@ -473,7 +473,29 @@ void func_8009337C(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 80) + 24) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093388.s")
+void func_80093388(void *arg0) {
+    f32 mlAbsF(f32);
+    extern f32 D_80124D40;
+    f32 difference;
+    f32 step;
+
+    difference = *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x50) + 0x3C)
+               - *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x50) + 0x30);
+    step = mlAbsF(difference);
+    if (step < D_80124D40) {
+        *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x50) + 0x30) =
+            *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x50) + 0x3C);
+    } else {
+        if (step > 5.0f) {
+            step = 1.0f;
+        }
+        if (difference > 0.0f) {
+            *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x50) + 0x30) += step;
+        } else {
+            *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x50) + 0x30) -= step;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093448.s")
 
