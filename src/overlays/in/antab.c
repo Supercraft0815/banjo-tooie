@@ -879,4 +879,25 @@ void inantab_entrypoint_2(s32 arg0,s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/in/antab/inantab_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/in/antab/inantab_entrypoint_4.s")
+void inantab_entrypoint_4(s32 arg0, Actor *arg1, s16 *arg2, s16 arg3) {
+    extern s16 *D_80806D5C_inantab[];
+    s16 var_s0;
+    s16 *var_v0;
+
+    var_v0 = D_80806D5C_inantab[arg0];
+    var_s0 = var_v0[1];
+    if (var_s0 != 0) {
+loop_1:
+        if (arg3 == var_v0[0]) {
+            func_808064DC_inantab((s32) var_s0, arg2, arg1);
+            return;
+        }
+        var_s0 = var_v0[3];
+        var_v0 += 2;
+        if (var_s0 == 0) {
+
+        } else {
+            goto loop_1;
+        }
+    }
+}
