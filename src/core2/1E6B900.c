@@ -306,7 +306,27 @@ void func_8009316C(PlayerState *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_800931AC.s")
+/* extern */
+
+void func_800931AC(PlayerState *arg0, s32 arg1) {
+    f32 func_800136E4(f32);
+    void yaw_applyIdeal(PlayerState *);
+    f32 yaw_get(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+    s32 temp_v1;
+    s32 temp_a0;
+    void *var_v0;
+
+    var_v0 = (*(void **)((s8 *)(arg0) + (0x50)));
+    temp_a0 = 2;
+    temp_v1 = (*(u8 *)((s8 *)(var_v0) + (0x15)));
+    if ((arg1 != temp_v1) && ((arg1 == temp_a0) || (temp_a0 == temp_v1))) {
+        yaw_setIdeal(arg0, func_800136E4(yaw_get(arg0) + 180.0f));
+        yaw_applyIdeal(arg0);
+        var_v0 = (*(void **)((s8 *)(arg0) + (0x50)));
+    }
+    (*(s8 *)((s8 *)(var_v0) + (0x15))) = (s8) arg1;
+}
 
 /* extern */
 
