@@ -58,7 +58,30 @@ void sumumbofx_entrypoint_2(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_4.s")
+void sumumbofx_entrypoint_4(u8 *arg0) {
+    struct FlagByte {
+        u8 unused : 7;
+        u8 flag : 1;
+    };
+    s32 var_v1;
+    u8 *var_v0;
+
+    var_v0 = arg0 + 0x64;
+    var_v1 = 0;
+    (*(f32 *)((s8 *)(arg0) + (8))) = 0.0f;
+    if ((*(s16 *)((s8 *)(arg0) + (0x58))) > 0) {
+        do {
+            (*(f32 *)((s8 *)(var_v0) + (0x28))) = 1.0f;
+            var_v1 += 1;
+            var_v0 += 0x2C;
+            (*(f32 *)((s8 *)(arg0) + (8))) = (f32) ((*(f32 *)((s8 *)(arg0) + (8))) + 1.0f);
+        } while (var_v1 < (*(s16 *)((s8 *)(arg0) + (0x58))));
+    }
+    if ((*(f32 *)((s8 *)(arg0) + (4))) != 1.0f) {
+        (*(f32 *)((s8 *)(arg0) + (4))) = 1.0f;
+        ((struct FlagByte *)(arg0 + 0x60))->flag = 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/func_808003E4_sumumbofx.s")
 
