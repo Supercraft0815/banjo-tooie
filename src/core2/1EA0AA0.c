@@ -19,7 +19,23 @@ extern s16 D_8011A910[];
 extern D_8012760C_unk D_8012760C;
 extern s8 D_8012AAF0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0AA0/func_800C71B0.s")
+/* extern */
+
+f32 func_800C71B0(s32 arg0, f32 arg1) {
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 var_f12;
+    f32 var_f2;
+    u32 temp_t7;
+
+    temp_t7 = (u32) (*(u16 *)((s8 *)((*(void **)((s8 *)(arg0) + (4)))) + (6))) >> 7;
+    if (temp_t7 == 0x32) {
+        var_f2 = arg1;
+    } else {
+        var_f12 = (f32) temp_t7;
+        var_f2 = func_800F10B4(var_f12, 50.0f, 100.0f, 0.0f, 1.0f);
+    }
+    return var_f2;
+}
 
 void func_800C7230(s32 arg0)
 {
