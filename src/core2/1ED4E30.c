@@ -16,7 +16,24 @@ void func_800FCB00(s32, s32, s32, s32);
 
 extern s32 D_80135960;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FB540.s")
+void func_800FB540(void *arg0) {
+    void func_800DA544(GameFlag);
+    s32 func_800FED70(s16, void *);
+    extern s16 D_80123DE0;
+    s16 *var_v1;
+    s32 var_v0;
+
+    if ((*(u8 *)((s8 *)(arg0) + (0x33))) == 0) {
+        func_800FED70((*(s16 *)((s8 *)(arg0) + (0x28))), arg0);
+        (*(u8 *)((s8 *)(arg0) + (0x33))) = 1U;
+        for (var_v1 = &D_80123DE0, var_v0 = 0; var_v0 < 0x30; var_v0++, var_v1++) {
+            if ((*(s16 *)((s8 *)(arg0) + (0x28))) == *var_v1) {
+                func_800DA544(var_v0 + 0x53E);
+                return;
+            }
+        }
+    }
+}
 
 /* extern */
 
