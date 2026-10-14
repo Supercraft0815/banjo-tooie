@@ -113,4 +113,18 @@ u32 func_80800D3C_chpoolkids(s32 unused, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/chpoolkids_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_808011A8_chpoolkids.s")
+void func_808011A8_chpoolkids(Actor *arg0) {
+    s32 func_800B5BE4(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    extern s32 D_808015A0_chpoolkids[];
+    extern f32 D_808015EC_chpoolkids[3];
+    s32 temp_s2;
+    s32 count;
+    int var_s0;
+
+    temp_s2 = func_800B5BE4(0x23);
+    count = 1;
+    for (var_s0 = 0; var_s0 < count; var_s0++) {
+        func_800BABB8(temp_s2, D_808015EC_chpoolkids, D_808015EC_chpoolkids, arg0->scale * 1.15f, D_808015A0_chpoolkids);
+    }
+}
