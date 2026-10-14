@@ -151,7 +151,29 @@ s32 func_801000D8(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_801001D8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_80100230.s")
+int func_80100230(Actor *arg0, f32 *arg1) {
+    f32 func_800EEB40(f32 *, f32 *);
+    struct {
+        u8 padding[0x7C];
+        u32 radius : 16;
+        u32 pad7E_15 : 1;
+        u32 enabled : 1;
+        u32 pad7E_0 : 14;
+    } *range;
+    void *data;
+    f32 distance;
+
+    data = arg0;
+    range = data;
+    if (!range->enabled) {
+        return 0;
+    }
+    if (range->radius == 0) {
+        return 1;
+    }
+    distance = func_800EEB40(arg1, arg0->position);
+    return (f32)(s32)(range->radius * range->radius) < distance;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_801002C0.s")
 
