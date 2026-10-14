@@ -17,7 +17,45 @@ void func_80800058_chtimetable(Actor *arg0) {
     func_80800000_chtimetable((s32) arg0, 1, (f32 *)((s8 *)arg0 + 0x18));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_808000B0_chtimetable.s")
+s32 func_808000B0_chtimetable(s32 arg0) {
+    extern s32 D_80800730_chtimetable;
+    extern s32 D_80800744_chtimetable;
+    extern s32 D_80800758_chtimetable;
+    extern s32 D_8080076C_chtimetable;
+    s32 *var_v0;
+    s32 var_v1;
+
+    if (arg0 == D_80800730_chtimetable) {
+        return 0;
+    }
+    if (arg0 == D_80800744_chtimetable) {
+        return 1;
+    }
+    var_v0 = &D_8080076C_chtimetable;
+    var_v1 = 3;
+    if (arg0 == D_80800758_chtimetable) {
+        return 2;
+    }
+loop_7:
+    if (arg0 == (*(s32 *)((s8 *)(var_v0) + (0)))) {
+        return var_v1;
+    }
+    if (arg0 == (*(s32 *)((s8 *)(var_v0) + (0x14)))) {
+        return var_v1 + 1;
+    }
+    if (arg0 == (*(s32 *)((s8 *)(var_v0) + (0x28)))) {
+        return var_v1 + 2;
+    }
+    if (arg0 == (*(s32 *)((s8 *)(var_v0) + (0x3C)))) {
+        return var_v1 + 3;
+    }
+    var_v1 += 4;
+    var_v0 += 0x14;
+    if (var_v1 == 0xB) {
+        return -1;
+    }
+    goto loop_7;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_8080016C_chtimetable.s")
 
