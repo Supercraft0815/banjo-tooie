@@ -86,4 +86,22 @@ void chfactorytoxicpools_entrypoint_3(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3) 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxicpools/func_80800670_chfactorytoxicpools.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxicpools/func_80800898_chfactorytoxicpools.s")
+void func_80800898_chfactorytoxicpools(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    extern s32 D_80800A38_chfactorytoxicpools;
+    extern s32 D_80800A74_chfactorytoxicpools;
+    extern s32 D_80800AB0_chfactorytoxicpools;
+    extern f32 D_80800AC8_chfactorytoxicpools[3];
+    f32 sp34[3];
+    f32 sp28[3];
+
+    func_800F5A00(func_800F54E4(), sp28);
+    func_800BBCB8(sp28, NULL, 1.0f, 8, &D_80800A38_chfactorytoxicpools);
+    func_800EE780(sp34, sp28, D_80800AC8_chfactorytoxicpools);
+    func_800BBCB8(sp28, sp34, 1.0f, 4, &D_80800A74_chfactorytoxicpools);
+    _subaddieaudioquick_entrypoint_2(arg0, sp28, &D_80800AB0_chfactorytoxicpools);
+}
