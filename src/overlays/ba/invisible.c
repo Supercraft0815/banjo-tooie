@@ -71,7 +71,29 @@ void bainvisible_entrypoint_5(s32 arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/invisible/bainvisible_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/invisible/bainvisible_entrypoint_7.s")
+void bainvisible_entrypoint_7(u8 *arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+    s8 var_v0;
+    u8 *temp_v1;
+    u8 *temp_v1_2;
+
+    var_v0 = arg4 != 0.0f ? 1 : 0;
+    if (arg1 & 1) {
+        temp_v1 = (*(u8 **)((s8 *)(arg0) + (0xA8)));
+        (*(s8 *)((s8 *)(temp_v1) + (0x38))) = var_v0;
+        (*(f32 *)((s8 *)(temp_v1) + (0x34))) = arg4;
+        (*(f32 *)((s8 *)(temp_v1) + (0x2C))) = arg2;
+        temp_v1 += 0x1C;
+        (*(f32 *)((s8 *)(temp_v1) + 0x14)) = arg3;
+    }
+    if (arg1 & 2) {
+        temp_v1_2 = (*(u8 **)((s8 *)(arg0) + (0xA8)));
+        (*(s8 *)((s8 *)(temp_v1_2) + (0x68))) = var_v0;
+        (*(f32 *)((s8 *)(temp_v1_2) + (0x64))) = arg4;
+        (*(f32 *)((s8 *)(temp_v1_2) + (0x5C))) = arg2;
+        temp_v1_2 += 0x4C;
+        (*(f32 *)((s8 *)(temp_v1_2) + 0x14)) = arg3;
+    }
+}
 
 /* extern */
 
