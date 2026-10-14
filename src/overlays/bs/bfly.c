@@ -26,7 +26,36 @@ void func_80800000_bsbfly(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800248_bsbfly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800320_bsbfly.s")
+/* extern */
+
+void func_80800320_bsbfly(PlayerState *arg0) {
+    int anctrl_isAt(struct anctrl_s *, f32);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    f32 baphysics_get_vertical_velocity(PlayerState *);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    void bs_setState(PlayerState *, s32);
+    void func_8009DE38(PlayerState *, s32, f32);
+    s32 sp24;
+    struct anctrl_s *sp20;
+
+    sp24 = 0;
+    sp20 = baanim_getAnimCtrlPtr(arg0);
+    if (arg0->unk160.word == 0) {
+        if (anctrl_isAt(sp20, 0.2416f) != 0) {
+            anctrl_setDuration(sp20, 2.4f);
+            baphysics_set_vertical_velocity(arg0, 1600.0f);
+            func_8009DE38(arg0, 0x406, 0.7f);
+            arg0->unk160.word = 1;
+        }
+    } else {
+        func_80800000_bsbfly(arg0);
+        if (baphysics_get_vertical_velocity(arg0) < 0.0f) {
+            sp24 = 0x24;
+        }
+    }
+    bs_setState(arg0, sp24);
+}
 
 /* extern */
 
