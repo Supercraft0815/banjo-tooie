@@ -428,7 +428,23 @@ void func_808010E0_gcnewoption(u8 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80801114_gcnewoption.s")
+s32 func_80801114_gcnewoption(void *arg0) {
+    s16 temp_v0;
+
+    temp_v0 = (*(s16 *)((s8 *)(arg0) + (6)));
+    if (temp_v0 <= 0) {
+        return 0;
+    }
+    (*(s16 *)((s8 *)(arg0) + (6))) = (s16) (temp_v0 - 1);
+    if (func_80800038_gcnewoption(arg0, (s32) (*(s16 *)((s8 *)(arg0) + (6)))) == -1) {
+        (*(s16 *)((s8 *)(arg0) + (8))) = (s16) ((*(s16 *)((s8 *)(arg0) + (8))) - 1);
+        (*(s16 *)((s8 *)(arg0) + (0xA))) = (s16) ((*(s16 *)((s8 *)(arg0) + (0xA))) - 1);
+        if ((*(s16 *)((s8 *)(arg0) + (0xA))) < 0) {
+            (*(s16 *)((s8 *)(arg0) + (0xA))) = (s16) ((*(s16 *)((s8 *)(arg0) + (2))) - 1);
+        }
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80801190_gcnewoption.s")
 
