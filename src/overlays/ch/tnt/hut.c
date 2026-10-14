@@ -10,7 +10,20 @@ OSThread *chtnthut_entrypoint_0(void)
 void func_8080000C_chtnthut(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/hut/func_80800014_chtnthut.s")
+/* extern */
+
+void func_80800014_chtnthut(Actor *arg0) {
+    void func_800C4104(s32, f32, s32, s32, f32, f32);
+    f32 func_800D8FF8(void);
+    void func_800FFAB0(Actor *);
+    if (arg0->unk70_10 == 2) {
+        arg0->unk58 += func_800D8FF8();
+        if (arg0->unk58 > 0.5f) {
+            func_800C4104(0x43F, 0.9f, 0x6D60, arg0->position, 1250.0f, 2500.0f);
+            func_800FFAB0(arg0);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/hut/func_808000B0_chtnthut.s")
 
