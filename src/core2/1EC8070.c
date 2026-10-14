@@ -239,7 +239,19 @@ void func_800EF1B8(f32 *arg0, f32 arg1, f32 arg2) {
     arg0[2] += arg2 * func_80013788();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF214.s")
+/* extern */
+
+void func_800EF214(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
+    f32 func_80013788();
+    f32 func_800137AC(f32);
+    f32 func_800137C4(void);
+    f32 func_800137F4(f32);
+    f32 sp24;
+    sp24 = func_800137AC(arg1) * arg3;
+    arg0[1] += arg3 * func_800137C4();
+    arg0[0] += sp24 * func_800137F4(arg2);
+    arg0[2] += sp24 * func_80013788();
+}
 
 void func_800EF2A0(f32 vec[3])
 {
