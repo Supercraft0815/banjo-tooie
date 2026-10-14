@@ -5,7 +5,26 @@ void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800000_bsbansack.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800084_bsbansack.s")
+/* extern */
+
+s32 func_80800084_bsbansack(PlayerState *arg0, s32 arg1) {
+    int bakey_pressed(PlayerState *, int);
+    int bakey_released(PlayerState *, int);
+    int func_8008E148(PlayerState *);
+
+    if (bakey_pressed(arg0, 8) != 0) {
+        arg1 = 0x169;
+    }
+    if (func_8008E148(arg0) != 0) {
+        arg1 = 1;
+    }
+    if ((*(u8 *)((s8 *)(arg0) + (0x15F))) == 0) {
+        if (bakey_released(arg0, 1) != 0) {
+            arg1 = 0x164;
+        }
+    }
+    return arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800100_bsbansack.s")
 
@@ -80,10 +99,10 @@ void func_8080045C_bsbansack(PlayerState *arg0) {
 
 /* extern */
 
-void func_808004B0_bsbansack(s32 arg0) {
+void func_808004B0_bsbansack(PlayerState *arg0) {
     s32 bs_setState(s32, s32);
     s32 bastick_getZone();
-    s32 func_80800084_bsbansack(s32, s32);
+    s32 func_80800084_bsbansack(PlayerState *, s32);
     s32 var_a1;
     s32 sp1C;
 
