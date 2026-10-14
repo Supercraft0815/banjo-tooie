@@ -16,7 +16,24 @@ void func_8008B610(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008B64C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008B6E0.s")
+void func_8008B6E0(void) {
+    void func_800DFCC0(s16);
+    extern s32 D_80126CC0;
+    s16 temp_a0;
+    s16 *var_s0;
+
+    var_s0 = (s16 *)D_80126CC0;
+    while (var_s0 < *(s16 **)((s8 *)&D_80126CC0 + 4)) {
+            if (var_s0[2] != 0) {
+                temp_a0 = var_s0[0];
+                if ((temp_a0 != 0) && (var_s0[1] < 0x3B)) {
+                    func_800DFCC0(temp_a0);
+                    var_s0[0] = 0;
+                }
+            }
+            var_s0 += 3;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008B768.s")
 
