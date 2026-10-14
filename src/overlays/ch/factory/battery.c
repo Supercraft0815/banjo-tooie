@@ -74,7 +74,30 @@ void func_80800558_chfactorybattery(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80800760_chfactorybattery.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_808008C8_chfactorybattery.s")
+/* extern */
+
+void func_808008C8_chfactorybattery(Actor *arg0) {
+    s32 func_800DC128(s32, s32);
+
+    switch (arg0->unk70_10) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 6:
+    case 9:
+        arg0->unk79_4 = 0;
+        return;
+    case 5:
+    case 7:
+    case 10:
+    case 13:
+        arg0->unk79_4 = func_800DC128(1, 4);
+        /* fallthrough */
+    default:
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80800948_chfactorybattery.s")
 
