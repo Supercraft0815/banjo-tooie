@@ -86,7 +86,52 @@ void func_80092778(PlayerState *arg0) {
     func_8009312C(arg0, sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_800927C4.s")
+/* extern */
+
+void func_800927C4(u32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
+    typedef struct {
+        u32 *unk0;
+        u32 *unk4;
+        u32 *unk8;
+        u32 unkC;
+        u32 unk10;
+        u16 unk14;
+        u16 unk16;
+        u32 unk18;
+        u32 unk1C;
+        u32 unk20;
+        u32 unk24;
+        u32 unk28;
+        u32 unk2C;
+    } Unk80132ED0;
+    typedef struct Actor {
+        Unk80132ED0 *unk0;
+    } Actor;
+    void func_800A70D0(Unk80132ED0 *, s32);
+    void func_800A7108(Unk80132ED0 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    PlayerState *func_800F53D0(s32);
+    s32 func_800F6BE4(s32);
+    Actor *func_80108474(u32, f32 *, s32);
+    struct unknown50_s {
+        u8 pad0[0x78];
+        f32 unk78;
+        u8 pad7C[8];
+        Unk80132ED0 *unk84;
+    };
+    f32 sp28[4];
+    PlayerState *temp_s0;
+    struct unknown50_s *temp_v0;
+
+    if (func_800F6BE4(arg4) != 0) {
+        temp_s0 = func_800F53D0(arg4);
+        func_800EFA4C(sp28, arg1, arg2, arg3);
+        (*(struct unknown50_s **)&temp_s0->pad48[8])->unk84 = func_80108474(arg0, sp28, 0)->unk0;
+        func_800A70D0((*(struct unknown50_s **)&temp_s0->pad48[8])->unk84, temp_s0->unk184);
+        temp_v0 = *(struct unknown50_s **)&temp_s0->pad48[8];
+        func_800A7108(temp_v0->unk84, temp_v0->unk78);
+    }
+}
 
 void func_80092864(PlayerState *arg0, f32 arg1) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x78))) = arg1;
