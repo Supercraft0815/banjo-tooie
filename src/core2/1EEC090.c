@@ -387,7 +387,24 @@ f32 func_80114444(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_8011490C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80114BD4.s")
+void *func_80114BD4(void) {
+    void *heap_alloc(s32);
+    u8 *ptr;
+    s32 i;
+
+    ptr = heap_alloc(0x9C);
+    *(s8 *)(ptr + 2) = 0;
+    *(s16 *)(ptr + 0) = 0;
+    *(s8 *)(ptr + 3) = 0;
+    *(s8 *)(ptr + 4) = 0;
+    *(f32 *)(ptr + 8) = 0.0f;
+    for (i = 0; i < 7; i++) {
+        *(s32 *)(ptr + 0x48 + i * 0xC) = 0;
+        *(f32 *)(ptr + 0x4C + i * 0xC) = -1.0f;
+        *(s8 *)(ptr + 0x50 + i * 0xC) = 0;
+    }
+    return ptr;
+}
 
 void func_80114C7C(void* arg0) 
 {
