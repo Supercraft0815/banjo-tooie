@@ -16,7 +16,32 @@ s32 func_80800084_glgamedata(s32 *arg0) {
     return 4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamedata/func_80800098_glgamedata.s")
+void func_80800098_glgamedata(u8 *arg0, s32 *arg1, u8 arg2) {
+    typedef s32 (*GameDataCallback)(void);
+    typedef struct {
+        GameDataCallback getSize;
+        GameDataCallback unknown;
+        void (*write)(u8 *, s32, u32, s32 *);
+    } GameDataEntry;
+    extern GameDataEntry D_808004F0_glgamedata[];
+    s32 size;
+    u8 *data;
+
+    arg2 = arg2;
+    if (D_808004F0_glgamedata[arg2].getSize != NULL) {
+        size = D_808004F0_glgamedata[arg2].getSize();
+    } else {
+        size = 0;
+    }
+    data = *arg1 + arg0;
+    data[0] = arg2;
+    data[1] = size;
+    data += 2;
+    if (D_808004F0_glgamedata[arg2].write != NULL) {
+        D_808004F0_glgamedata[arg2].write(data, size, arg2, arg1);
+    }
+    *arg1 = *arg1 + size + 2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamedata/glgamedata_entrypoint_1.s")
 
