@@ -17,7 +17,20 @@ void func_800E1120(f32 *arg0, f32 *arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E119C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1218.s")
+/* extern */
+
+void func_800E1218(f32 *arg0, f32 *arg1, f32 arg2) {
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF8BC(f32 *, f32 *, f32);
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 sp24[3];
+
+    func_800EFA4C(sp24, arg2, 0.0f, 0.0f);
+    func_800EF8BC(sp24, sp24, arg1[0]);
+    func_800EF934(sp24, sp24, arg1[1]);
+    func_800EF04C(arg0, sp24);
+}
 
 void func_800E1294(s32 arg0, f32 position[3], f32 rotation[3], f32 delta) {
     void func_800E1218(f32 *, f32 *, f32);
