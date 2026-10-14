@@ -412,7 +412,24 @@ void func_8080216C_chquiz(u8 *arg0) {
     } while (var_s1 != 8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808021C8_chquiz.s")
+/* extern */
+
+void func_808021C8_chquiz(void *arg0, s32 arg1, f32 *arg2) {
+    s32 _gcstatusDll_entrypoint_11();
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800F4CEC(s32, u32);
+    s32 func_800F6438(u32);
+    s32 func_800F8294(s32, f32 *);
+    s32 func_800F832C(s32, f32 *);
+    f32 sp24[3];
+
+    if ((arg1 < _gcstatusDll_entrypoint_11()) && (func_800F6438(arg1) != 0)) {
+        func_800F8294(arg1, arg2);
+        func_800EFA4C(sp24, 0.0f, (*(f32 *)((s8 *)(arg0) + (0x48))), 0.0f);
+        func_800F832C(arg1, sp24);
+        func_800F4CEC(arg1, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80802250_chquiz.s")
 
