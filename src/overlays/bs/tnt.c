@@ -179,7 +179,15 @@ void func_808006EC_bstnt(s32 arg0) {
     baflag_clear(arg0, 0x32);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80800720_bstnt.s")
+/* extern */
+
+void func_80800720_bstnt(s32 arg0) {
+    f32 func_800F0E00(f32, f32);
+    (*(u8 *)((s8 *)(arg0) + (0x169))) = func_800F0E00((f32) ((*(u8 *)((s8 *)(arg0) + (0x169))) - 1), 0.0f);
+    if (!(*(u8 *)((s8 *)(arg0) + (0x169)))) {
+        func_808006EC_bstnt(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_808007EC_bstnt.s")
 
