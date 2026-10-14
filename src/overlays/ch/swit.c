@@ -23,7 +23,20 @@ OSThread *chswitch_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swit/func_80800024_chswitch.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swit/func_808000B8_chswitch.s")
+/* extern */
+
+void func_808000B8_chswitch(Unk80132ED0 *arg0, s32 arg1) {
+    void func_80103110(void *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *actor;
+
+    actor = func_80106790(arg0);
+    if (!(actor->unk58 > 0.0f)) {
+        actor->unk64_20 = (s32)actor->unk64_20 ^ 1;
+        actor->unk58 = 2.0f;
+        func_80103110(actor, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swit/func_8080012C_chswitch.s")
 
@@ -32,7 +45,7 @@ OSThread *chswitch_entrypoint_2(void)
 s32 chswitch_entrypoint_3(void *arg0, s32 arg1) {
     s32 func_800DA298(s32);
     s32 func_80102E08(void *);
-    s32 func_80103110(void *, s32);
+    void func_80103110(void *, s32);
     s32 sp1C;
     s32 temp_v0;
 
