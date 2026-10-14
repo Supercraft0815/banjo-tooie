@@ -1,6 +1,28 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubeDll/gccubeDll_entrypoint_0.s")
+/* extern */
+
+void gccubeDll_entrypoint_0(void *arg0) {
+    s32 _gspropsDll_entrypoint_0(u32, s32 *, s32 *);
+    s32 _gspropsDll_entrypoint_1(s32 *, s32);
+    u32 var_s0;
+    s32 sp34[500];
+    s32 i;
+    s32 sp2C;
+
+    for (i = 0; i < 500; i++) {
+        sp34[i] = 0;
+    }
+    sp2C = 0;
+    var_s0 = (*(u32 *)((s8 *)(arg0) + (0)));
+    if (var_s0 < (u32) (((*(s32 *)((s8 *)(arg0) + (0x24))) * 8) + var_s0)) {
+        do {
+            _gspropsDll_entrypoint_0(var_s0, sp34, &sp2C);
+            var_s0 += 8;
+        } while (var_s0 < (*(u32 *)((s8 *)arg0 + 0)) + (*(s32 *)((s8 *)arg0 + 0x24)) * 8);
+    }
+    _gspropsDll_entrypoint_1(sp34, sp2C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubeDll/func_808000B8_gccubeDll.s")
 
