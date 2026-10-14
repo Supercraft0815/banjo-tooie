@@ -247,7 +247,18 @@ s32 bswalk_entrypoint_17(s32 arg0) {
 void bswalk_entrypoint_18(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_19.s")
+/* extern */
+
+void bswalk_entrypoint_19(PlayerState *arg0) {
+    void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
+    void baanim_setDurationRange(PlayerState *, f32, f32);
+    void func_8008C9F0(PlayerState *, f32, f32, f32, f32);
+    void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+    baanim_playForDuration_loopSmooth(arg0, 0xB, 0.43f);
+    func_8009FFD8(arg0, 2, 1, 1, 2);
+    baanim_setDurationRange(arg0, 0.3f, 1.5f);
+    func_8008C9F0(arg0, 30.0f, 150.0f, 1.2f, 0.9f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_20.s")
 
