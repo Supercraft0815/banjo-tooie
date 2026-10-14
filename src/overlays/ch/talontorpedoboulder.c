@@ -7,7 +7,22 @@ OSThread *chtalontorpedoboulder_entrypoint_0(void)
     return (OSThread *) D_808002B4_chtalontorpedoboulder;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/talontorpedoboulder/func_8080000C_chtalontorpedoboulder.s")
+/* extern */
+
+void func_8080000C_chtalontorpedoboulder(Actor *arg0) {
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
+    void func_80102FDC(Actor *, f32);
+    s32 func_808001CC_chtalontorpedoboulder(u8 *);
+    s32 temp_v0;
+
+    temp_v0 = func_808001CC_chtalontorpedoboulder((u8 *)arg0);
+    if ((temp_v0 != 0) && (func_800DA298(temp_v0) != 0)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    func_80102FDC(arg0, 2.0f * arg0->scale);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/talontorpedoboulder/func_80800070_chtalontorpedoboulder.s")
 
