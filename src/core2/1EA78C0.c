@@ -50,7 +50,14 @@ s32 func_800CE438(u8 *arg0, s32 arg1) {
     func_800CE3F4(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CE49C.s")
+void func_800CE49C(u8 *arg0, s32 arg1, s32 arg2) {
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    extern f32 D_801259C0;
+    (*(s16 *)(arg0 + 0xA)) = (s32) (func_800F10B4(*(f32 *)arg0, 0.0f, *(f32 *)(arg0 + 0xC), 1.0f, (f32) *(s16 *)(arg0 + 0x10) + 1.0f) - D_801259C0);
+    if (arg2 != 0) {
+        func_800CE3F4(arg0, arg1);
+    }
+}
 
 /* extern */
 
