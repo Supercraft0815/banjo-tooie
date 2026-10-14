@@ -13,7 +13,27 @@ void func_80800008_chtemplebrokendoorpiece(Actor *arg0) {
     _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800100_chtemplebrokendoorpiece);
     func_800DA544(0xC9);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/temple/brokendoorpiece/func_80800068_chtemplebrokendoorpiece.s")
+/* extern */
+
+int func_80800068_chtemplebrokendoorpiece(Actor *arg0, s32 arg1, s32 arg2) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 position[3];
+    int result;
+
+    if (arg1 == 0x40) {
+        func_800EE7F8(position, arg0->position);
+        func_800EF1B8(position, arg0->rotation[1], 400.0f);
+        position[1] -= 100.0f;
+        _chexploder_entrypoint_3(arg0, position, 0xC);
+        func_80800008_chtemplebrokendoorpiece(arg0);
+        result = 1;
+    } else {
+        return 0;
+    }
+    return result;
+}
 
 OSThread *chtemplebrokendoorpiece_entrypoint_0(void)
 {
