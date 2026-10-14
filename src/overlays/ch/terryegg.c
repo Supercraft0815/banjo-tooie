@@ -173,4 +173,20 @@ s32 func_80801138_chterryegg(void *arg0)
   return (temp_v0 + 0x31) == (((unsigned long) ((u16) (*((u16 *) (((s8 *) arg0) + 0x76))))) >> 7);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80801188_chterryegg.s")
+f32 func_80801188_chterryegg(Actor *arg0, s32 arg1) {
+    f32 var_f2;
+
+    if (arg1 != 0) {
+        if (func_808010DC_chterryegg() == 1) {
+            var_f2 = 4.0f;
+        } else {
+            var_f2 = 2.0f;
+        }
+        return var_f2;
+    } else if (func_80801138_chterryegg(arg0) != 0) {
+        var_f2 = 4.0f;
+    } else {
+        var_f2 = 2.0f;
+    }
+    return var_f2;
+}
