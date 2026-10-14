@@ -107,4 +107,26 @@ void func_80800528_chhotwaterpoolbits(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/waterpoolbits/func_80800718_chhotwaterpoolbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/waterpoolbits/chhotwaterpoolbits_entrypoint_5.s")
+void chhotwaterpoolbits_entrypoint_5(Actor *arg0, f32 arg1) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    void func_800F7620(s32, f32, f32, f32);
+    extern s32 D_80800A88_chhotwaterpoolbits[];
+    extern s32 D_80800AC0_chhotwaterpoolbits;
+    extern f32 D_80800AD8_chhotwaterpoolbits[3];
+    f32 sp34[3];
+    f32 sp28[3];
+    s32 sp24;
+    s32 temp_v0;
+
+    temp_v0 = func_800F54E4();
+    sp24 = temp_v0;
+    func_800F7620(temp_v0, 1.0f, 0.5f, 0.4f);
+    func_800F5A00(sp24, sp28);
+    func_800EE780(sp34, sp28, D_80800AD8_chhotwaterpoolbits);
+    func_800BABB8(0, sp28, sp34, arg1, D_80800A88_chhotwaterpoolbits);
+    _subaddieaudioquick_entrypoint_2(arg0, sp28, &D_80800AC0_chhotwaterpoolbits);
+}
