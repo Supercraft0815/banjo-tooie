@@ -19,7 +19,18 @@ void func_8080000C_chflowerbaddie(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flowerbaddie/func_80800380_chflowerbaddie.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flowerbaddie/func_80800610_chflowerbaddie.s")
+/* extern */
+
+void func_80800610_chflowerbaddie(Actor *arg0, void *arg1) {
+    void func_800DF744(s32, s32);
+    void func_80101870(Actor *, void *);
+
+    func_800DF744(3, arg0->unk64_20 ? 1 : 0);
+    func_800DF744(4, arg0->unk64_20 ? 2 : 1);
+    func_800DF744(5, 1);
+    func_800DF744(6, 0);
+    func_80101870(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flowerbaddie/func_808006A0_chflowerbaddie.s")
 
