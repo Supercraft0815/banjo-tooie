@@ -22,7 +22,25 @@ void func_80800058_ncbatarget(PlayerState* arg0, f32* arg1)
     func_80112524(arg0,arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/target/ncbatarget_entrypoint_1.s")
+/* extern */
+
+void ncbatarget_entrypoint_1(void *arg0) {
+    void func_800EFD24(f32 *);
+    void func_80111B8C(s32 *, f32, f32);
+    void func_801120CC(s32 *, f32, f32, f32);
+    void func_801124D0(s32, s32);
+    void func_80115858(void *, s32);
+    void func_80115870(void *, f32);
+    void func_8011607C(void *, s32);
+    func_801120CC(arg0, 2000.0f, 4000.0f, -4000.0f);
+    func_80111B8C(arg0, 4.0f, 8.0f);
+    func_801124D0((s32) arg0, 1);
+    func_80115858(arg0, 1);
+    func_80115870(arg0, 5.0f);
+    func_800EFD24((*(void **)((s8 *)(arg0) + (0x58))));
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x58)))) + (0xC))) = 0.5f;
+    func_8011607C(arg0, 1);
+}
 
 void ncbatarget_entrypoint_2(s32 arg0) 
 {
