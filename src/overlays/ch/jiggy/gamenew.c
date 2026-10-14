@@ -84,7 +84,32 @@ void func_808007E4_chjiggygamenew(s16 arg0[][12], s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80800834_chjiggygamenew.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80800AF8_chjiggygamenew.s")
+/* extern */
+
+void func_80800AF8_chjiggygamenew(Actor *arg0) {
+    struct Entry {
+        u8 pad0[4];
+        u16 unk4;
+        u16 pad6;
+        f32 unk8;
+        u8 padC[12];
+    };
+    s32 var_s0;
+    void *temp_v0;
+    struct Entry *var_s1;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    var_s0 = 0;
+    var_s1 = temp_v0;
+    do {
+        if (var_s1->unk4 == 0x3000) {
+            func_808007E4_chjiggygamenew(temp_v0, 0x844, var_s0);
+            var_s1->unk8 = 0.0f;
+        }
+        var_s0 += 1;
+        var_s1 += 1;
+    } while (var_s0 != 0x14);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80800B88_chjiggygamenew.s")
 
