@@ -28,7 +28,25 @@ s32 func_800ADE2C(s32 arg0, s32 arg1) {
     return (arg0 + 0x50) + (arg1 << 6);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800ADE50.s")
+u32 func_800ADE50(u8 *arg0, u8 *arg1, s32 arg2) {
+    s32 temp_v1;
+    u8 *var_a1;
+    u8 *var_v0;
+
+    var_v0 = arg1 + 8;
+    if (*(s16 *)(arg1 + 4) != (temp_v1 = *(s32 *)arg0)) {
+        return 0;
+    }
+    var_a1 = arg0 + 0x50;
+    while (var_a1 < (temp_v1 << 6) + arg0 + 0x50) {
+        if (arg2 == *(s16 *)(var_v0 + 0xC)) {
+            return (u32) var_a1;
+        }
+        var_a1 += 0x40;
+        var_v0 += 0x10;
+    }
+    return 0U;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800ADEC4.s")
 
