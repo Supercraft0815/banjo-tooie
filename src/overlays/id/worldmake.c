@@ -180,7 +180,26 @@ void idworldmake_entrypoint_1(s32 arg0, s32 arg1, volatile unsigned int arg2, s3
 void idworldmake_entrypoint_4(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/worldmake/idworldmake_entrypoint_5.s")
+void idworldmake_entrypoint_5(s32 arg0, s32 arg1) {
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    extern s32 D_80127EF8;
+    u32 temp_v0;
+    u32 sp18;
+    u32 var_v1;
+
+    sp18 = vector_end(D_80127EF8);
+    temp_v0 = vector_begin(D_80127EF8);
+    var_v1 = temp_v0;
+    if (temp_v0 < sp18) {
+        do {
+            if (arg0 == (*(s32 *)((s8 *)(var_v1) + (0)))) {
+                (*(s8 *)((s8 *)(var_v1) + (7))) = (s8) arg1;
+            }
+            var_v1 += 0xA8;
+        } while (var_v1 < sp18);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/worldmake/idworldmake_entrypoint_6.s")
 
