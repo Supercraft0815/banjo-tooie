@@ -78,7 +78,17 @@ void func_8080032C_chweldarbossfusebox(s32 arg0) {
     func_800BF744(4, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fusebox/func_80800384_chweldarbossfusebox.s")
+void func_80800384_chweldarbossfusebox(f32 *arg0) {
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800EE7F8(f32 *, f32 *);
+    extern s32 D_80800748_chweldarbossfusebox;
+    f32 sp24[3];
+
+    func_800EE7F8(sp24, arg0 + 6);
+    sp24[1] += 400.0f;
+    sp24[2] -= 100.0f;
+    func_800BABB8(0, arg0 + 6, sp24, 1.0f, &D_80800748_chweldarbossfusebox);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fusebox/func_808003F8_chweldarbossfusebox.s")
 
