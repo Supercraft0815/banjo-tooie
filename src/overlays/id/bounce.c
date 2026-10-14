@@ -150,7 +150,15 @@ int func_808008B4_idbounce(void) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/bounce/idbounce_entrypoint_3.s")
+void idbounce_entrypoint_3(void *arg0) {
+    void heap_free(void *);
+    extern u8 D_80135480[];
+    u8 *state;
+
+    heap_free(*(void **)((u8 *)arg0 + 0x24));
+    state = D_80135480;
+    state[3]--;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/bounce/idbounce_entrypoint_4.s")
 
@@ -158,4 +166,11 @@ int func_808008B4_idbounce(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/bounce/idbounce_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/bounce/idbounce_entrypoint_7.s")
+void idbounce_entrypoint_7(void) {
+    s32 func_800F54E4(void);
+    void func_800F83E4(s32, f32);
+    extern u8 D_80135480[];
+    if (D_80135480[1] != 0 && D_80135480[2] == 0) {
+        func_800F83E4(func_800F54E4(), -1.0f);
+    }
+}

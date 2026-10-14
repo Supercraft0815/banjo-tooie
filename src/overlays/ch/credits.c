@@ -47,7 +47,14 @@ void func_808000C8_chcredits()
 
 void chcredits_entrypoint_0(s32 arg0) { s32 func_800DA544(s32); s32 func_808000E8_chcredits(); extern s32 D_8012760D; volatile s8 *ptr; ptr = (s8 *)(u32)((s8 *)&D_8012760D + 3); ptr[1] = 0; ptr[2] = arg0; func_808000E8_chcredits(); func_800DA544(0x650); _glcutDll_entrypoint_0(); _glcutDll_entrypoint_7(func_80800000_chcredits(-1)); _glcutDll_entrypoint_22(0x8C); _glcutDll_entrypoint_16(); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/chcredits_entrypoint_1.s")
+s32 chcredits_entrypoint_1(void) {
+    extern volatile u8 D_80127610[];
+    volatile u8 *ptr = D_80127610;
+    if (ptr[1] == 2) {
+        return func_8080003C_chcredits(ptr[0]);
+    }
+    return -1;
+}
 
 void func_808002A4_chcredits(s32 *arg0) { void func_80800710_chcredits(s32 *, s32); void func_808003E8_chcredits(s32 *, s32); extern s32 D_8012760D; if ((*(u8 *)((s8 *)(&D_8012760D) + 3)) == 0) { func_80800710_chcredits(arg0, 2); } else { func_80800710_chcredits(arg0, 3); } func_808003E8_chcredits(arg0, func_8080003C_chcredits(*(u8 *)((s8 *)(&D_8012760D) + 3))); }
 
