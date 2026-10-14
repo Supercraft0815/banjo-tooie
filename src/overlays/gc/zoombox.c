@@ -105,7 +105,38 @@ void func_80800358_gczoombox(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)arg0 + 496) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80800364_gczoombox.s")
+/* extern */
+
+f32 func_80800364_gczoombox(void *arg0) {
+    f32 _glintrosyncDll_entrypoint_5(void);
+    f32 func_800D8FF8(void);
+    f32 sp1C;
+    f32 var_f0;
+    f32 var_f2;
+    struct {
+        u8 pad[0x1E4];
+        u32 padFlags:29;
+        u32 direction:1;
+        u32 sync:1;
+        u32 lastFlag:1;
+        u8 pad1E8[4];
+        f32 position;
+        f32 duration;
+    } *this = arg0;
+
+    sp1C = (*(f32 *)((s8 *)(arg0) + (0x1EC)));
+    if (this->sync) {
+        var_f0 = _glintrosyncDll_entrypoint_5();
+    } else {
+        var_f0 = func_800D8FF8();
+    }
+    var_f2 = var_f0 / (*(f32 *)((s8 *)(arg0) + (0x1F0)));
+    if (!this->direction) {
+        var_f2 = -var_f2;
+    }
+    (*(f32 *)((s8 *)(arg0) + (0x1EC))) = (f32) ((*(f32 *)((s8 *)(arg0) + (0x1EC))) + var_f2);
+    return sp1C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_808003D8_gczoombox.s")
 
