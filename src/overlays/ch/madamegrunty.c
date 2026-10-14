@@ -68,4 +68,14 @@ s32 func_80800898_chmadamegrunty(f32 arg0, f32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_808009AC_chmadamegrunty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_80800A30_chmadamegrunty.s")
+/* extern */
+
+void func_80800A30_chmadamegrunty(Actor *arg0) {
+    s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    s32 _chdoormake_entrypoint_7(void *, f32);
+    if (_chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, arg0->scale * 200.0f, 0x2812, 0xA02) != 0) {
+        _chdoormake_entrypoint_5(arg0, 1.0f);
+        _chdoormake_entrypoint_7(arg0, 1.0f);
+    }
+}
