@@ -4,7 +4,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/func_808000A8_chstonedartgunhead.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/func_808001B4_chstonedartgunhead.s")
+/* extern */
+
+void func_808001B4_chstonedartgunhead(Actor *arg0) {
+    f32 func_800136E4(f32);
+    s32 sp1C;
+
+    sp1C = (s32) arg0->rotation[1];
+    arg0->rotation[1] = func_800136E4(arg0->rotation[1] + (*(f32 *)((s8 *)arg0 + 0x2C)) * (*(f32 *)((s8 *)arg0 + 0x30)));
+    if (sp1C != (s32) arg0->rotation[1]) {
+        (*(f32 *)((s8 *)(arg0) + (0x34))) = 0.2f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/func_80800224_chstonedartgunhead.s")
 
