@@ -9,7 +9,7 @@
 void func_80800348_chtransparentfish(Actor *actor)
 {
     void _subaddiesect_entrypoint_0(Actor *, s32, s32);
-    void func_80800AC4_chtransparentfish(Actor *, s32, s32);
+    void func_80800AC4_chtransparentfish(Actor *, f32 *, s32);
     s32 func_800F54E4(void);
     s32 func_800F52B8(s32, Unk80132ED0 *);
     s32 func_800F690C(s32);
@@ -84,7 +84,24 @@ void func_80800348_chtransparentfish(Actor *actor)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparentfish/func_8080078C_chtransparentfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparentfish/func_80800AC4_chtransparentfish.s")
+void func_80800AC4_chtransparentfish(Actor *arg0, f32 *arg1, s32 arg2) {
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    Actor *temp_v0;
+    Actor *var_v1;
+    s32 pad;
+
+    temp_v0 = _subaddielink_entrypoint_4(func_80100094(arg0, 0));
+    var_v1 = temp_v0;
+    if (temp_v0 != NULL) {
+        if (arg1 != 0) {
+            func_800EE7F8(temp_v0->position, arg1);
+            var_v1 = temp_v0;
+        }
+        var_v1->unk64_16 = arg2;
+    }
+}
 
 void func_80800B30_chtransparentfish(s32 arg0)
 {
