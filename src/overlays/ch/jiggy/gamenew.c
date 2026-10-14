@@ -265,7 +265,44 @@ OSThread *chjiggygamenew_entrypoint_3(void)
     return (OSThread *) D_80803E50_chjiggygamenew;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80802E80_chjiggygamenew.s")
+/* extern */
+
+void func_80802E80_chjiggygamenew(Actor *arg0) {
+    struct JiggyGameInitData {
+        f32 position[3];
+        u8 padC[0x1C];
+        s32 unk28;
+        s32 unk2C;
+        f32 unk30;
+        f32 unk34;
+        s32 buttons;
+        f32 unk3C;
+        f32 unk40;
+    };
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    OSContPad *func_800169A8(void);
+    void func_800EE7F8(f32 *, f32 *);
+    OSContPad *sp24;
+    struct JiggyGameInitData *sp20;
+    struct JiggyGameInitData *temp_v0;
+
+    sp24 = func_800169A8();
+    temp_v0 = func_80100094(arg0, 0);
+    sp20 = temp_v0;
+    func_800EE7F8(temp_v0->position, arg0->position);
+    arg0->scale = 0.18f;
+    arg0->rotation[0] = 59.0f;
+    arg0->rotation[2] = 63.0f;
+    arg0->rotation[1] = -6.0f;
+    sp20->unk30 = 1.0f;
+    sp20->unk34 = 1.0f;
+    sp20->unk28 = -1;
+    sp20->unk2C = sp20->unk28;
+    sp20->buttons = sp24->button;
+    sp20->unk3C = 0.0f;
+    sp20->unk40 = 0.0f;
+    _subaddiefade_entrypoint_1(arg0, 0xB9);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80802F3C_chjiggygamenew.s")
 
