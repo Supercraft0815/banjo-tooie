@@ -91,7 +91,25 @@ void func_8009B414(PlayerState *arg0) {
     func_800EFB24(temp_v0 + 0x28, temp_v0 + 4, sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009B450.s")
+void func_8009B450(void *arg0) {
+    f32 func_80013970(f32);
+    f32 func_800D8FF8(void);
+    f32 func_800F0F9C(f32, f32);
+    extern f32 D_801252A8;
+    void *temp_v0;
+    f32 temp_f0;
+
+    temp_f0 = func_800D8FF8();
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0xC8)));
+    (*(f32 *)((s8 *)(temp_v0) + (0x4C))) += temp_f0;
+    temp_f0 = func_800F0F9C((*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x4C))), D_801252A8);
+    temp_f0 *= 360.0f;
+    temp_f0 = func_80013970(temp_f0);
+    temp_f0 *= 5.0f;
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0xC8)));
+    (*(f32 *)((s8 *)(temp_v0) + (8))) = temp_f0;
+    (*(f32 *)((s8 *)(temp_v0) + (8))) += (*(f32 *)((s8 *)(temp_v0) + (0x48)));
+}
 
 void func_8009B4D0(void *arg0, s32 arg1) {
     s32 func_800EE7F8();
