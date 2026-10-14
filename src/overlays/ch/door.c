@@ -10,7 +10,7 @@ int func_80800028_chdoor(u8 *arg0) {
     u8 func_800D9078(f32 *);
     s32 func_800DA298(s32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    u8 *func_80100094(u8 *, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_8010108C();
     void func_8080032C_chdoor(u8 *, f32);
     void func_8080069C_chdoor(u8 *, s32);
@@ -121,12 +121,12 @@ void func_80800B14_chdoor(u8 *arg0, s32 arg1) {
         u8 unused : 7;
         u8 active : 1;
     };
-    u8 *func_80100094(u8 *, s32);
+    void *func_80100094(Actor *, u32);
     void func_80101FDC(u8 *, s32);
     void func_80103110(u8 *, s32);
     void func_80800FC0_chdoor(u8 *, s32);
     void func_808005E4_chdoor(u8 *, s32);
-    void func_80801330_chdoor(u8 *, s32);
+    void func_80801330_chdoor(Actor *, s32);
     s32 _subaddieaudioloop_entrypoint_2(u8 *);
     void func_800FC660(u32);
     void func_800FFAB0(u8 *);
@@ -248,6 +248,32 @@ void func_80800B14_chdoor(u8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/door/chdoor_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/door/func_80801330_chdoor.s")
+void func_80801330_chdoor(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_800DA3B8(s32, s32);
+    struct DoorData {
+        s32 flags;
+        s16 index;
+    };
+    s32 temp_v1;
+    s32 var_a1;
+    s32 var_a1_2;
+    struct DoorData *data;
+
+    data = func_80100094(arg0, 0);
+    if (data->index != -1 && (temp_v1 = data->flags, (temp_v1 & 0x20) == 0)) {
+        var_a1 = arg1 != 0 ? 1 : 0;
+        if (temp_v1 & 0x10) {
+            if (var_a1 != 0) {
+                var_a1_2 = 0;
+            } else {
+                var_a1_2 = 1;
+            }
+            func_800DA3B8(data->index, var_a1_2);
+            return;
+        }
+        func_800DA3B8(data->index, var_a1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/door/func_808013C0_chdoor.s")
