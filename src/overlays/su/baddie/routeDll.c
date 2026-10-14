@@ -60,7 +60,15 @@ void subaddierouteDll_entrypoint_5(Actor *arg0, void *arg1, s32 arg2, f32 arg3, 
     func_80102BF8(arg0, arg3, arg4, arg5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/subaddierouteDll_entrypoint_6.s")
+/* extern */
+
+s32 subaddierouteDll_entrypoint_6(Actor *arg0, void *arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6) {
+    s32 func_80102D98(Actor *, s32, s32, f32, f32, f32);
+    if (arg2 & 0x1C) {
+        return 0;
+    }
+    return func_80102D98(arg0, arg3, 0, arg4, (f32) arg5, (f32) arg6);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/func_808006D0_subaddierouteDll.s")
 
