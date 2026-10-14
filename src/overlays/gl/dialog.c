@@ -41,4 +41,17 @@ s32 gldialog_entrypoint_4(s32 arg0) {
     return temp_v0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/dialog/gldialog_entrypoint_5.s")
+void gldialog_entrypoint_5(volatile s32 arg0) {
+    s32 func_800D6CEC(s32);
+    s32 func_800D70F8(s32, s32);
+    s32 func_800D721C(s32, s32);
+    extern u32 D_801275E0[];
+    extern u32 D_80127600[];
+    u32 *p;
+    func_800D721C(D_801275E0[9], 0);
+    func_800D70F8(D_801275E0[9], 0);
+    func_800D6CEC(D_801275E0[9]);
+    p = D_80127600;
+    p[0] = 0;
+    p[1] = -1;
+}

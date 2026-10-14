@@ -191,7 +191,10 @@ dlabel D_801275E0
     /* 801275E0 */ .space 0x8
 
 dlabel D_801275E8
-    /* 801275E8 */ .space 0x24
+    /* 801275E8 */ .space 0x18
+
+dlabel D_80127600
+    /* 80127600 */ .space 0x0C
 
 dlabel D_8012760C
     /* 8012760C */ .space 0x01
