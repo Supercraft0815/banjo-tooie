@@ -1,6 +1,18 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/flydata/sucoasterflydata_entrypoint_0.s")
+s32 sucoasterflydata_entrypoint_0(void **arg0) {
+    extern s32 D_80800290_sucoasterflydata;
+    u32 id;
+    s32 i;
+
+    id = *(u32 *)((u8 *)*arg0 + 0x24) >> 22;
+    for (i = 0; i < 5; i++) {
+        if (id == *(u16 *)((u8 *)&D_80800290_sucoasterflydata + i * 0x28)) {
+            return i;
+        }
+    }
+    return 0;
+}
 
 void *sucoasterflydata_entrypoint_1(s32 arg0) {
     extern s32 D_80800290_sucoasterflydata;
