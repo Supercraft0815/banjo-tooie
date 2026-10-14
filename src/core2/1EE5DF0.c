@@ -279,7 +279,33 @@ s32 func_8010D284()
     return D_80136F64;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010D290.s")
+/* extern */
+
+s32 func_8010D290(s32 arg0) {
+    s32 func_800F54E4();
+    s32 func_800F6438(u32);
+    s32 func_800F64A4(s32, s32);
+    s32 temp_v0;
+    s32 var_s0;
+
+    temp_v0 = func_800F54E4();
+    if (temp_v0 == -1) {
+        return -1;
+    }
+    if ((func_800F6438(temp_v0) != 0) && (func_800F64A4(temp_v0, arg0) == 0)) {
+        return temp_v0;
+    }
+    var_s0 = 0;
+loop_6:
+    if ((var_s0 != temp_v0) && (func_800F6438(var_s0) != 0) && (func_800F64A4(var_s0, arg0) == 0)) {
+        return var_s0;
+    }
+    var_s0 += 1;
+    if (var_s0 == 8) {
+        return -1;
+    }
+    goto loop_6;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010D350.s")
 
