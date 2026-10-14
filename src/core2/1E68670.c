@@ -5,7 +5,21 @@ s32 func_8008ED80(void)
 	return 0x1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008ED88.s")
+void func_8008ED88(void *arg0, s32 arg1, Unk80132ED0 *arg2) {
+    void func_800F497C(s32);
+    void func_800F49A8(s32, s32);
+    void func_800F49D4(s32, void *, s32);
+    void func_800F4A58(s32, s32, f32);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s32 func_8010D5DC;
+    Actor *sp1C;
+
+    sp1C = func_80106790(arg2);
+    func_800F497C(*(s32 *)((s8 *)arg0 + 0x184));
+    func_800F49A8(*(s32 *)((s8 *)arg0 + 0x184), 1);
+    func_800F49D4(*(s32 *)((s8 *)arg0 + 0x184), &func_8010D5DC, (s32)sp1C->unk0);
+    func_800F4A58(*(s32 *)((s8 *)arg0 + 0x184), (s32)sp1C->position, 500.0f);
+}
 
 s32 func_8008EE04(s32 arg0, s32 arg1) {
     if (arg0 != 0) {
