@@ -95,7 +95,20 @@ s32 func_800FA8E8(s32 arg0, s32 arg1) {
     return (*((u8 *)temp_v1 + 0xC)) != 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA934.s")
+int func_800FA934(s32 arg0, s32 arg1) {
+    s32 _scinfobar_entrypoint_21(s32);
+    extern s32 D_80123880[][7];
+    s32 temp_a2;
+    s32 *temp_v1;
+
+    temp_v1 = D_80123880[arg0];
+    temp_a2 = temp_v1[6];
+    if ((temp_a2 == 0) || (arg1 != (*(s8 *)((s8 *)(temp_v1) + (0xE))))) {
+        return -1;
+    }
+    return (*(u8 *)((s8 *)(temp_v1) + (0xC))) == 2 &&
+        _scinfobar_entrypoint_21(temp_a2) != 0;
+}
 
 void func_800FA9A8(s32 arg0) {
     extern u8 D_801357B0;
