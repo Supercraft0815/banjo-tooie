@@ -501,7 +501,19 @@ void func_800C99F0(u8 *arg0) {
     func_800C4244((*(s32 *)((s8 *)(arg0) + (0))), (*(s32 *)((s8 *)(arg0) + (4))), (*(s32 *)((s8 *)(arg0) + (8))), arg0 + 0xC, (*(f32 *)((s8 *)(arg0) + (0x18))), (*(f32 *)((s8 *)(arg0) + (0x1C))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9A38.s")
+/* extern */
+
+void func_800C9A38(void *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    int func_800EEEA8(f32 vec[3]);
+    f32 *position = (f32 *)((u8 *)arg0 + 0xC);
+
+    if (func_800EEEA8(position) != 0) {
+        _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, *(u32 *)((u8 *)arg0 + 4), *(u32 *)((u8 *)arg0 + 8), NULL, *(s16 *)((u8 *)arg0 + 0x18));
+    } else {
+        _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, *(u32 *)((u8 *)arg0 + 4), *(u32 *)((u8 *)arg0 + 8), position, *(s16 *)((u8 *)arg0 + 0x18));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9AB0.s")
 
