@@ -35,7 +35,7 @@ void func_808003D0_chtrashcangame(void *arg0, s32 arg1) {
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
     s32 func_800F53D0(s32);
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     void func_800FC6B0(u32);
     u32 func_800FDC28(u32);
     s32 func_80101180(s32, s32, s32);
@@ -313,7 +313,7 @@ void func_8080223C_chtrashcangame(Actor *arg0) {
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
     s32 func_800F4F34(u32, f32 *, f32, f32);
-    s32 func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800FFA88(Unk80132ED0 *);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
@@ -406,7 +406,20 @@ OSThread *chtrashcangame_entrypoint_2(void)
     return (OSThread *) D_808033A0_chtrashcangame;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80802C40_chtrashcangame.s")
+/* extern */
+
+void func_80802C40_chtrashcangame(Actor *arg0) {
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    u32 func_800F54E4(void);
+    f32 sp1C[3];
+
+    if (func_800F64A4(func_800F54E4(), 0x400) != 0) {
+        func_800EFA4C(sp1C, arg0->position[0], 1300.0f, arg0->position[2]);
+        sp1C[1] += 150.0f;
+        _sudeflect_entrypoint_0(sp1C, 0.0f, 200.0f, 2);
+    }
+}
 
 OSThread *chtrashcangame_entrypoint_3(void)
 {
