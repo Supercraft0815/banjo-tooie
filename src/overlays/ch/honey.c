@@ -24,7 +24,17 @@ void func_80800634_chhoney(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_80800754_chhoney.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_80800870_chhoney.s")
+void func_80800870_chhoney(Actor *arg0, s32 arg1) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_800C4B64(f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    extern s32 D_80801028_chhoney;
+    if ((*(f32 *)((s8 *)(arg0) + (0x30))) <= 0.0f) {
+        func_800C4B64(func_800F10B4((f32) arg1, 1.0f, 10.0f, 0.8f, 1.5f));
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801028_chhoney);
+        (*(f32 *)((s8 *)(arg0) + (0x30))) = 0.1f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_808008F8_chhoney.s")
 
