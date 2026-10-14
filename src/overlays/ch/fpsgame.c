@@ -117,7 +117,31 @@ void func_8080090C_chfpsgame(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_8080121C_chfpsgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_808012CC_chfpsgame.s")
+/* extern */
+
+s32 func_808012CC_chfpsgame(s32 arg0) {
+    s16 _badeathmatch_entrypoint_9(void *, s32);
+    s32 _gcstatusDll_entrypoint_11();
+    s32 _gcstatusDll_entrypoint_14();
+    struct player_state_s *func_800F53D0(s32);
+    s32 temp_v0;
+    s32 var_s0;
+    s32 var_s1;
+
+    if (_gcstatusDll_entrypoint_14() == 3) {
+        var_s1 = 0;
+        var_s0 = 0;
+        if (_gcstatusDll_entrypoint_11() > 0) {
+            do {
+                temp_v0 = _badeathmatch_entrypoint_9(func_800F53D0(var_s0), 1);
+                var_s0 += 1;
+                var_s1 += temp_v0;
+            } while (var_s0 < _gcstatusDll_entrypoint_11());
+        }
+        return var_s1 ? 0 : 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_8080135C_chfpsgame.s")
 
