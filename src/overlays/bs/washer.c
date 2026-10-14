@@ -1,4 +1,5 @@
 #include "common.h"
+struct player_state_s;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80800000_bswasher.s")
 
@@ -33,7 +34,7 @@ void func_808000BC_bswasher(s32 arg0) {
 void bswasher_entrypoint_0(s32 arg0) {
     s32 func_800B5BE4(s32);
     s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
-    s32 func_8009C128(s32, f32 *);
+    void func_8009C128(struct player_state_s *, f32[3]);
     extern s32 D_80801D60_bswasher;
     f32 sp24[3];
     s32 sp20;
@@ -150,7 +151,25 @@ void func_80800F54_bswasher(void *arg0) {
     (*(s8 *)((s8 *)(arg0) + (0x165))) = func_8009D454(arg0, 0, &D_80801E50_bswasher);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80800F88_bswasher.s")
+/* extern */
+
+void func_80800F88_bswasher(struct player_state_s *arg0) {
+    f32 func_8009BB5C(struct player_state_s *);
+    void func_8009C128(struct player_state_s *, f32[3]);
+    void func_800C31DC(u8, f32);
+    void func_800C35E8(u8, f32[3]);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 pad;
+    f32 sp38;
+    f32 sp2C[3];
+
+    if ((*(u8 *)((s8 *)(arg0) + (0x165))) != 0) {
+        sp38 = func_8009BB5C(arg0);
+        func_8009C128(arg0, sp2C);
+        func_800C35E8((*(u8 *)((s8 *)(arg0) + (0x165))), sp2C);
+        func_800C31DC((*(u8 *)((s8 *)(arg0) + (0x165))), func_800F10B4(sp38, 0.0f, 900.0f, 0.9f, 1.2f));
+    }
+}
 
 void func_8080100C_bswasher(s32 arg0)
 {
