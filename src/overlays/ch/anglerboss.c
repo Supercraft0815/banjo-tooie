@@ -101,7 +101,23 @@ void func_808018E8_changlerboss(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80801AF0_changlerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80801BC8_changlerboss.s")
+/* extern */
+
+void func_80801BC8_changlerboss(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    void *func_80100094(Actor *, u32);
+    void *temp_v0;
+    f32 temp_f2;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    if ((*(f32 *)((s8 *)(arg0) + (8))) < (*(f32 *)((s8 *)(temp_v0) + (0xF0)))) {
+        (*(f32 *)((s8 *)(arg0) + (8))) += func_800D8FF8() * 120.0f;
+        temp_f2 = (*(f32 *)((s8 *)(temp_v0) + (0xF0)));
+        if (temp_f2 < (*(f32 *)((s8 *)(arg0) + (8)))) {
+            (*(f32 *)((s8 *)(arg0) + (8))) = temp_f2;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80801C50_changlerboss.s")
 
