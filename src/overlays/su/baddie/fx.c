@@ -28,7 +28,7 @@ void subaddiefx_entrypoint_0(u8 *arg0, s32 arg1, u8 *arg2) {
     void func_800EEB9C(f32 *, f32, f32);
     f32 func_80103EAC(u8 *);
     f32 func_80103EF4(u8 *);
-    f32 *func_80104118(void);
+    OSThread *func_80104118(void);
     f32 func_8010A40C(u8 *);
     extern s32 D_808004E0_subaddiefx;
     extern s32 D_80800500_subaddiefx;
@@ -78,7 +78,7 @@ void subaddiefx_entrypoint_0(u8 *arg0, s32 arg1, u8 *arg2) {
         ((FxState *)arg2)->phase0 = (s32)(256.0f * phase1);
     }
     {
-    f32 *temp_v0_2;
+    void *temp_v0_2;
     f32 sp70[3];
     temp_v0_2 = func_80104118();
     if ((*(s16 *)((u8 *)temp_v0_2 + 0xE) == 0) || (*((u8 *)temp_v0_2 + 0xD) == 0)) {
@@ -98,4 +98,31 @@ void subaddiefx_entrypoint_0(u8 *arg0, s32 arg1, u8 *arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/fx/subaddiefx_entrypoint_1.s")
+/* extern */
+
+void subaddiefx_entrypoint_1(s32 arg0, void *arg1) {
+    typedef struct {
+        s32 angle0 : 15;
+        s32 angle1 : 15;
+        u32 active : 2;
+        s16 phase0;
+        s16 phase1;
+    } FxState;
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    OSThread *func_80104118(void);
+    void *temp_v0;
+    void *sp1C;
+
+    if (((FxState *)arg1)->active) {
+        temp_v0 = func_80104118();
+        ((FxState *)arg1)->phase0 = 0;
+        ((FxState *)arg1)->phase1 = 0;
+        ((FxState *)arg1)->active = 0;
+        (*(s8 *)((s8 *)(temp_v0) + (0xD))) = 0;
+        (*(s16 *)((s8 *)(temp_v0) + (0xE))) = (s16) ((*(s16 *)((s8 *)(temp_v0) + (0xE))) - 1);
+        if ((*(s16 *)((s8 *)(temp_v0) + (0xE))) == 0) {
+            sp1C = temp_v0;
+            (*(u8 *)((s8 *)(sp1C) + (0xC))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(temp_v0) + (0xC))));
+        }
+    }
+}
