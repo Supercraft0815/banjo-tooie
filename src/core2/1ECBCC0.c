@@ -194,10 +194,14 @@ void func_800F31FC(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     (*(s8 *)((s8 *)(arg0) + (3))) = arg4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F3214.s")
+int func_800F3214(void *arg0, void *arg1, void *arg2, f32 arg3) {
+    (*(s32 *)((s8 *)arg0 + 0)) = (s32) ((f32) (*(s32 *)((s8 *)arg1 + 0)) + (f32) (*(s32 *)((s8 *)arg2 + 0) - *(s32 *)((s8 *)arg1 + 0)) * arg3);
+    (*(s32 *)((s8 *)arg0 + 4)) = (s32) ((f32) (*(s32 *)((s8 *)arg1 + 4)) + (f32) (*(s32 *)((s8 *)arg2 + 4) - *(s32 *)((s8 *)arg1 + 4)) * arg3);
+    (*(s32 *)((s8 *)arg0 + 8)) = (s32) ((f32) (*(s32 *)((s8 *)arg1 + 8)) + (f32) (*(s32 *)((s8 *)arg2 + 8) - *(s32 *)((s8 *)arg1 + 8)) * arg3);
+    return arg3 == 1.0f;
+}
 
-void func_800F32D4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4) {
-    void func_800F3214(s32, s32, s32, f32);
+void func_800F32D4(void *arg0, void *arg1, void *arg2, f32 arg3, f32 arg4) {
     f32 ratio;
 
     ratio = arg3 / arg4;
