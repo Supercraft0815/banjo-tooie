@@ -7,7 +7,11 @@ OSThread *chdodgemcontrol_entrypoint_0(void)
     return (OSThread *) D_80804DB4_chdodgemcontrol;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080000C_chdodgemcontrol.s")
+Actor *func_8080000C_chdodgemcontrol(Actor *arg0,s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    return func_80106790(((Unk80132ED0 **)func_80100094(arg0,0))[arg1]);
+}
 
 /* extern */
 
