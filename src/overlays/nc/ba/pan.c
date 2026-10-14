@@ -31,7 +31,21 @@ void func_80800048_ncbapan(PlayerState *arg0) {
     func_800F1EA4(sp28, *(f32 **)((s8 *)arg0 + 0x38));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/pan/ncbapan_entrypoint_1.s")
+/* extern */
+
+void ncbapan_entrypoint_1(PlayerState *arg0) {
+    void func_80111B8C(s32 *, f32, f32);
+    void func_801120CC(s32 *, f32, f32, f32);
+    void func_801124D0(s32, s32);
+    void func_80115858(void *, s32);
+    void func_80115870(void *, f32);
+    func_801120CC(arg0, 2000.0f, 4000.0f, -4000.0f);
+    func_80111B8C(arg0, 4.0f, 8.0f);
+    func_801124D0((s32) arg0, 1);
+    func_80115858(arg0, 1);
+    func_80115870(arg0, 5.0f);
+    func_80800048_ncbapan(arg0);
+}
 
 void ncbapan_entrypoint_2(s32 arg0) 
 {
