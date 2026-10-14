@@ -2,7 +2,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/zone/dbzone_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/zone/func_8080010C_dbzone.s")
+int func_8080010C_dbzone(s16 *arg0, s16 *arg1) {
+    s32 temp_v1;
+
+    temp_v1 = arg1[0];
+    return temp_v1 >= arg0[0] && arg0[3] >= temp_v1 &&
+        (temp_v1 = arg1[1]) >= arg0[1] && arg0[4] >= temp_v1 &&
+        (temp_v1 = arg1[2]) >= arg0[2] && arg0[5] >= temp_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/zone/dbzone_entrypoint_1.s")
 
@@ -10,7 +17,7 @@
 
 void dbzone_entrypoint_2(s16 arg0[][7], f32 *arg1, s32 arg2) {
     void func_800EE940(s16 dst[3], f32 src[3]);
-    s32 func_8080010C_dbzone(s16 *, s16 *);
+    int func_8080010C_dbzone(s16 *, s16 *);
     s16 sp1C[6];
     s16 (*temp)[7];
 
