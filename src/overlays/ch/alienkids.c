@@ -142,7 +142,22 @@ void func_80801A50_chalienkids(u8 *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x7A))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x7A))) & 0xFF3F) | 0x80);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80801A88_chalienkids.s")
+/* extern */
+
+void func_80801A88_chalienkids(Actor *arg0) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    s32 _subaddieDll_entrypoint_6(Actor *, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_8010A570(Actor *);
+    f32 sp24[3];
+
+    if ((arg0->unk70_10 == 2) && (_subaddieDll_entrypoint_6(arg0, 0xA) != 0)) {
+        func_8010A570(arg0);
+        func_800EE7F8(sp24, arg0->position);
+        sp24[1] -= 100.0f;
+        _chexploder_entrypoint_3(arg0, sp24, 0);
+    }
+}
 
 /* extern */
 
