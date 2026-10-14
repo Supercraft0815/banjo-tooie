@@ -180,7 +180,29 @@ void func_80800CC8_chnicecavemen(Actor *arg0) {
     _subaddieaudioloop_entrypoint_4(arg0, arg0->position, loop, D_80801BA8_chnicecavemen);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_80801178_chnicecavemen.s")
+/* extern */
+
+s32 func_80801178_chnicecavemen(Actor *arg0) {
+    typedef struct { u8 pad[0x824]; s32 unk824; } CavemanData;
+    s32 _subaddieitem_entrypoint_3(Actor *, f32 *, void *);
+    s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
+    void func_800DA544(s32);
+    u32 func_800F54E4(void);
+    void func_800F8300();
+    void *func_80100094(Actor *, u32);
+    CavemanData *sp34;
+    f32 sp28[3];
+
+    sp34 = func_80100094(arg0, 0U);
+    _subaddieskeleton_entrypoint_3(arg0->unk0, 4, sp28);
+    if (_subaddieitem_entrypoint_3(arg0, sp28, sp34) != 0) {
+        sp34->unk824 = 1;
+        func_800F8300(func_800F54E4(), 2, arg0->position);
+        func_800DA544(arg0->actorData[5]);
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
@@ -236,7 +258,7 @@ void func_80801428_chnicecavemen(void *arg0) {
 /* extern */
 
 int func_80801580_chnicecavemen(f32 *arg0) {
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F640C(s32, s32);
     s32 func_800F64A4(s32, s32);
     s32 func_8010CB84(f32 *, u32);
