@@ -45,4 +45,25 @@ void func_80800000_bapreload(void *arg0, s32 arg1, s16 *arg2, s16 *arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/preload/bapreload_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/preload/bapreload_entrypoint_1.s")
+s32 bapreload_entrypoint_1(s32 arg0, s32 *arg1) {
+    s32 func_8009EA2C(void);
+    extern s16 D_808002A2_bapreload;
+    s32 var_v1;
+
+    var_v1 = *(s16 *)((s32)&D_808002A2_bapreload + arg0 * 4);
+    *arg1 = 0;
+    switch (arg0) {
+    case 0xB:
+        if (func_8009EA2C() != 0) {
+            var_v1 = 0x62E;
+        }
+        break;
+    case 1:
+    case 0xA:
+        if (func_8009EA2C() != 0) {
+            *arg1 = 1;
+        }
+        break;
+    }
+    return var_v1;
+}
