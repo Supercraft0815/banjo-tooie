@@ -221,7 +221,27 @@ s32 func_8010CE70(u8 *arg0, s32 arg1, s32 arg2) { extern s32 D_80136F50; s32 fun
 
 void func_8010CEAC(void *arg0) { void func_8010D600(s32); f32 func_80102D78(void *, s32 *); void func_80102BF8(void *, f32, f32, f32); s32 sp1C[3]; func_8010D600((s32) sp1C); ((Actor *) arg0)->unk54 = func_80102D78(arg0, sp1C); func_80102BF8(arg0, 0.1f, 4.0f, 180.0f); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010CEF8.s")
+/* extern */
+
+s32 func_8010CEF8(f32 *arg0, s32 arg1) {
+    s32 func_800F0008(f32[3], f32, f32[3], f32);
+    s32 func_800F54E4();
+    f32 func_800F5794(s32, f32[3], s32);
+    s32 func_800F57C0(s32);
+    f32 sp54[3];
+    s32 temp_v0;
+    s32 temp_v0_2;
+    s32 var_s0;
+
+    temp_v0 = func_800F54E4();
+    temp_v0_2 = func_800F57C0(temp_v0);
+    for (var_s0 = 0; var_s0 < temp_v0_2; var_s0++) {
+        if (func_800F0008(arg0 + 1, (f32) arg1, sp54, func_800F5794(temp_v0, sp54, var_s0)) != 0) {
+            return 1;
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010CFBC.s")
 
