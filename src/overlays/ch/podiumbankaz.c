@@ -12,7 +12,20 @@ void func_80800000_chpodiumbankaz(s32 arg0) {
     _subaddiefade_entrypoint_1(arg0, 0x87);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/podiumbankaz/func_80800044_chpodiumbankaz.s")
+/* extern */
+
+void func_80800044_chpodiumbankaz(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_1(f32 *, u32, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+
+    if (func_800DA298(0x4F4) == 0) {
+        if ((_subaddiedialog_entrypoint_1(arg0->position, 0xFA, 0) != 0) && (_subaddiedialog_entrypoint_11(arg0->unk0, 0xD82, 0xE, arg0->position, 0) != 0)) {
+            func_800DA544(0x4F4);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/podiumbankaz/func_808000B8_chpodiumbankaz.s")
 
