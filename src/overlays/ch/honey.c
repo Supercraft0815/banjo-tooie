@@ -1,6 +1,34 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_80800000_chhoney.s")
+f32 func_80800000_chhoney(void) {
+    extern u8 D_8012762C;
+    switch (D_8012762C) {
+    case 19:
+        return 1.0f;
+    case 16:
+        return 0.7999878f;
+    case 15:
+        return 0.59999084f;
+    case 18:
+        return 0.3999939f;
+    case 20:
+        return 0.2999878f;
+    case 21:
+        return 0.19999695f;
+    case 22:
+        return 0.099990845f;
+    case 23:
+        return 0.07499695f;
+    case 24:
+        return 0.049987793f;
+    case 25:
+        return 0.049987793f;
+    case 26:
+        return 0.7999878f;
+    default:
+        return 0.0f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_808000C4_chhoney.s")
 
