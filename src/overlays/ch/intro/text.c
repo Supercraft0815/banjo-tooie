@@ -45,4 +45,36 @@ s32 chintrotext_entrypoint_2(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/text/chintrotext_entrypoint_3.s")
+/* extern */
+
+void chintrotext_entrypoint_3(s32 arg0, s16 arg1, s32 arg2, s32 arg3) {
+    u32 *_gldbstring_entrypoint_0(u32 *, u32);
+    u32 *_gldbstring_entrypoint_1(u32 *, s16);
+    void _gldbstring_entrypoint_2(s32);
+    void func_800E715C(u8 *, u8 *);
+    s32 func_800E7188(u8 *);
+    void func_800EFD24(f32 [3]);
+    u32 *func_80100074(Actor *, u32, u32);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80108474(u32, f32 *, s32);
+    f32 sp2C[3];
+    Actor *sp28;
+    struct {
+        u8 unk0[0x3E];
+        s8 unk3E;
+        s8 unk3F;
+    } *sp24;
+    u32 *sp20;
+
+    func_800EFD24(sp2C);
+    sp28 = func_80108474(0x3B0, sp2C, 0);
+    if (sp28 != 0) {
+        sp24 = func_80100094(sp28, 1);
+        sp20 = _gldbstring_entrypoint_1(_gldbstring_entrypoint_0(0, arg0), arg1);
+        func_80100074(sp28, 0, func_800E7188((u8 *)sp20) + 1);
+        func_800E715C(func_80100094(sp28, 0), (u8 *)sp20);
+        _gldbstring_entrypoint_2(arg0);
+        sp24->unk3E = arg2;
+        sp24->unk3F = arg3;
+    }
+}
