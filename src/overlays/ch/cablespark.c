@@ -31,7 +31,22 @@ void func_808002BC_chcablespark(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablespark/func_80800668_chcablespark.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablespark/func_808007B8_chcablespark.s")
+/* extern */
+
+int func_808007B8_chcablespark(Actor *arg0) {
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_8010D254(s32 *);
+    union {
+        s32 words[3];
+        f32 floats[3];
+    } sp1C;
+
+    if (arg0->unk74_7 == 0x35) {
+        return 0;
+    }
+    func_8010D254(sp1C.words);
+    return func_800EEB40(arg0->position, sp1C.floats) > 1000000.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablespark/func_80800828_chcablespark.s")
 
