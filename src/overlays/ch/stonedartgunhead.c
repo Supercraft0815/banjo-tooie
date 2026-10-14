@@ -1,6 +1,42 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/func_80800000_chstonedartgunhead.s")
+void func_80800000_chstonedartgunhead(Actor *arg0)
+{
+  Prop *_gccubesearch_entrypoint_1(u32, f32 [3]);
+  s32 _gccubesearch_entrypoint_13(f32 *, u32, f32 *);
+  s32 _gspropctrl_entrypoint_12(Prop *);
+  s32 _gspropctrl_entrypoint_13(Prop *);
+  f32 func_800EFB8C(f32 *, f32 *);
+  struct StoneDartGunHeadData
+  {
+    f32 distance;
+    f32 count;
+    f32 unk8;
+    f32 unkC;
+    f32 speed;
+  };
+  struct StoneDartGunHeadMarker
+  {
+    u32 pad[10];
+    u32 pad28_14 : 18;
+    u32 unk28_13 : 1;
+    u32 pad28_0 : 13;
+  };
+  Prop *sp34;
+  f32 sp28[3];
+  f32 * volatile sp24;
+  if (((!arg0) && (!arg0)) && (!arg0))
+  {
+  }
+  sp24 = arg0->position;
+  _gccubesearch_entrypoint_13(sp28, 0x122, arg0->position);
+  ((struct StoneDartGunHeadData *) arg0->actorData)->distance = func_800EFB8C(sp24, sp28);
+  sp34 = _gccubesearch_entrypoint_1(0x122, sp28);
+  ((struct StoneDartGunHeadData *) arg0->actorData)->count = ((f32) _gspropctrl_entrypoint_12(sp34)) + 1.0f;
+  ((struct StoneDartGunHeadData *) arg0->actorData)->speed = (f32) _gspropctrl_entrypoint_13(sp34);
+  arg0->unk64_24 = 1;
+  ((struct StoneDartGunHeadMarker *) arg0->unk0)->unk28_13 = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/func_808000A8_chstonedartgunhead.s")
 
