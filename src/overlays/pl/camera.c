@@ -28,7 +28,20 @@ void plcamera_entrypoint_10(s32 *arg0) {
     func_801106A0(func_80110014(func_800F5EF8(arg0)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/pl/camera/func_80800300_plcamera.s")
+int func_80800300_plcamera(f32 *arg0, f32 *arg1) {
+    Prop *_gccubesearch_entrypoint_6(s32 *, f32 *);
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    f32 func_800EEB40(f32 *, f32 *);
+    extern s32 D_80800510_plcamera;
+    Prop *temp_v0;
+
+    temp_v0 = _gccubesearch_entrypoint_6(&D_80800510_plcamera, arg0);
+    if (temp_v0 == 0) {
+        return 0;
+    }
+    _gspropctrl_entrypoint_11(temp_v0, arg1);
+    return func_800EEB40(arg0, arg1) < 4000000.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/pl/camera/plcamera_entrypoint_11.s")
 
