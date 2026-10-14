@@ -108,7 +108,26 @@ void suspline_entrypoint_14(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_15.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_16.s")
+/* extern */
+
+void suspline_entrypoint_16(u8 *arg0) {
+    struct SplineSpeed {
+        u8 pad[0x54];
+        f32 speed;
+        u8 pad58[0xC];
+        f32 scale;
+    };
+    f32 func_800EEAD4(f32 *, f32 *);
+    int func_800EECE0(f32 a[3], f32 b[3]);
+
+    if (suspline_entrypoint_1(arg0) == 0) {
+        if ((*(f32 *)((s8 *)(arg0) + (0x64))) != 0.0f) {
+            if (func_800EECE0((f32 *)(arg0 + 0x48), (f32 *)(arg0 + 0x3C)) == 0) {
+                ((struct SplineSpeed *)arg0)->speed *= ((struct SplineSpeed *)arg0)->scale / func_800EEAD4((f32 *)(arg0 + 0x48), (f32 *)(arg0 + 0x3C));
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_17.s")
 
