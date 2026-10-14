@@ -643,7 +643,28 @@ void func_8080071C_chintrochar(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80803388_chintrochar.s")
+/* extern */
+
+void func_80803388_chintrochar(Actor *volatile arg0, s32 *arg1) {
+    void *func_800C6A7C(f32 [3], f32 [3], f32 [3], u32);
+    s32 func_800C84B0(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp24[3];
+    f32 *position[2];
+    s32 *temp_v0;
+
+    position[0] = arg0->position;
+    func_800EE7F8(sp30, position[0]);
+    func_800EE7F8(sp3C, position[0]);
+    sp30[1] -= 100.0f;
+    sp3C[1] += 100.0f;
+    temp_v0 = func_800C6A7C(sp3C, sp30, sp24, arg0->unk14);
+    if (temp_v0 != NULL) {
+        arg1[0x33] = func_800C84B0(temp_v0[2]);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80803418_chintrochar.s")
 
