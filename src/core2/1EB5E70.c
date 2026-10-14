@@ -207,7 +207,29 @@ void func_800DD1C0(Gfx **gfx, u8 *data) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD37C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD410.s")
+void func_800DD410(s32 arg0, u8 *arg1) {
+    void func_800193C4(f32 *, f32 *);
+    void func_80019AA0(void *, s32);
+    s32 func_800ADE2C(s32, s32);
+    void func_800DC028(s32, s32, s32);
+    void mlMtxPop(void);
+    extern s32 D_8012C844;
+    extern s32 D_8012C968;
+    extern s32 D_8012CE58;
+    struct Command { u8 padding[8]; s16 index; s16 anim_mtx_id; f32 point[3]; };
+    f32 sp20[4];
+
+    if (D_8012C844 != 0) {
+        if (D_8012C968 != 0) {
+            func_80019AA0(&D_8012CE58, func_800ADE2C(D_8012C968, ((struct Command *)arg1)->anim_mtx_id));
+            func_800193C4(sp20, ((struct Command *)arg1)->point);
+            mlMtxPop();
+        } else {
+            func_800193C4(sp20, ((struct Command *)arg1)->point);
+        }
+        func_800DC028(D_8012C844, ((struct Command *)arg1)->index, sp20);
+    }
+}
 
 /* extern */
 
@@ -215,7 +237,7 @@ void func_800DD4AC(s32 arg0, u8 *arg1) {
     extern s32 D_8012C844;
     extern f32 D_8012C948;
     void func_800EFA20(void *arg0, void *arg1, f32 arg2);
-    s32 func_800DC028(s32, s16, s32 *);
+    void func_800DC028(s32, s32, s32);
     f32 sp18[4];
 
     if (D_8012C844 != 0) {
@@ -224,7 +246,7 @@ void func_800DD4AC(s32 arg0, u8 *arg1) {
     }
 }
 
-void func_800DD504(s32 arg0, u8 *arg1) { extern s32 D_8012C844; extern f32 D_8012C948; void func_800EF04C(f32[3], f32[3]); void func_800EFA20(void *, void *, f32); s32 func_800DC028(s32, s16, s32 *); extern f32 *D_8012C94C; f32 sp18[4]; if (D_8012C844 != 0) { func_800EFA20(sp18, arg1 + 0xC, D_8012C948); func_800EF04C(sp18, D_8012C94C); func_800DC028(D_8012C844, (*(s16 *)((s8 *)(arg1) + (8))), sp18); } }
+void func_800DD504(s32 arg0, u8 *arg1) { extern s32 D_8012C844; extern f32 D_8012C948; void func_800EF04C(f32[3], f32[3]); void func_800EFA20(void *, void *, f32); void func_800DC028(s32, s32, s32); extern f32 *D_8012C94C; f32 sp18[4]; if (D_8012C844 != 0) { func_800EFA20(sp18, arg1 + 0xC, D_8012C948); func_800EF04C(sp18, D_8012C94C); func_800DC028(D_8012C844, (*(s16 *)((s8 *)(arg1) + (8))), sp18); } }
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD56C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD65C.s")
