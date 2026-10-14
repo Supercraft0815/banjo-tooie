@@ -229,7 +229,28 @@ void func_80800D98_chdragonbrothers(u8 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_8080110C_chdragonbrothers.s")
+/* extern */
+
+s32 func_8080110C_chdragonbrothers(s32 arg0, f32 arg1, f32 arg2, s32 arg3) {
+    f32 func_800F2094(f32, f32);
+    s32 temp_cond;
+    s32 var_s0;
+
+    var_s0 = 0;
+loop_1:
+    temp_cond = func_800F2094((f32) var_s0, arg1) < 10.0f;
+    var_s0 += 0x5A;
+    if (temp_cond) {
+        return 0;
+    }
+    if (var_s0 == 0x168) {
+        if (func_800F2094(arg2, arg1) < 5.0f) {
+            return 0;
+        }
+        return 1;
+    }
+    goto loop_1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808011C0_chdragonbrothers.s")
 
