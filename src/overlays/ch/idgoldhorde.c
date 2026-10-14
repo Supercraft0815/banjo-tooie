@@ -30,4 +30,27 @@ void func_8080000C_chidgoldhorde(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/idgoldhorde/chidgoldhorde_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/idgoldhorde/func_8080015C_chidgoldhorde.s")
+void func_8080015C_chidgoldhorde(Actor *arg0) {
+    s32 _glid_entrypoint_3(s32, s16, s32 *, Unk80132ED0 *);
+    s32 func_800BEA88(s32);
+    f32 func_800DC0C0(void);
+    s32 func_800DC128(s32, s32);
+    void *func_80100094(Actor *, u32);
+    extern s32 _chidgoldhorde_entrypoint_1;
+    struct {
+        s16 unk0;
+        s16 unk2;
+        s16 unk4;
+        s16 unk6;
+        f32 unk8;
+    } *temp_s0;
+    s32 sp20;
+
+    temp_s0 = func_80100094(arg0, 0);
+    if (func_800DC0C0() < temp_s0->unk8) {
+        sp20 = func_800BEA88(0);
+        temp_s0->unk4 = 0;
+        temp_s0->unk6 = func_800DC128(0, temp_s0->unk2);
+        _glid_entrypoint_3(sp20, temp_s0->unk0, &_chidgoldhorde_entrypoint_1, arg0->unk0);
+    }
+}
