@@ -38,7 +38,26 @@ void func_8008EEC4(void *arg0, f32 *arg1, f32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008EF3C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008F4F0.s")
+/* extern */
+
+s32 func_8008F4F0(struct player_state_s *arg0) {
+    int baflag_isTrue(struct player_state_s *, s32);
+    s32 func_8008EF3C(struct player_state_s *);
+    s32 result;
+
+    result = func_8008EF3C(arg0);
+    if (result == 0xB) {
+        if (baflag_isTrue(arg0, 0x26) != 0) {
+            return result;
+        }
+    }
+    if (result == 1) {
+        if (baflag_isTrue(arg0, 0x27) != 0) {
+            return result;
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008F568.s")
 
