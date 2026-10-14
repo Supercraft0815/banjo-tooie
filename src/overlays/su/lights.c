@@ -28,7 +28,7 @@ void func_80800340_sulights(u8 *arg0) {
     } while (i != 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/func_8080038C_sulights.s")
+void func_8080038C_sulights(u8 *arg0) { s32 i; f32 *p; f32 value; i = 0; p = (f32 *)arg0; *(f32 *)(arg0 + 0x34) = 0.0f; do { value = p[10]; i++; p++; p[6] += value; p[9] = value * -1.0f; } while (i != 2); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/sulights_entrypoint_0.s")
 
