@@ -5,7 +5,22 @@ s32 func_8009CC10()
     return 0x84;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76500/func_8009CC18.s")
+s32 func_8009CC18(PlayerState *self, f32 *arg1)
+{
+  void func_800EE7F8(f32 dst[3], f32 src[3]);
+  u8 *temp_v0;
+  u8 *temp_v1;
+  temp_v0 = *((u8 **) (((s8 *) self) + 0xF0));
+  temp_v0 = temp_v0;
+  temp_v1 = temp_v0;
+  temp_v1 += (*((u8 *) (((s8 *) temp_v0) + 0x80))) * ((char) 0x10);
+  if (!(*((u8 *) (((s8 *) temp_v1) + ((-0xF) & 0xFFFFFFFFFFFFFFFF)))))
+  {
+    return 0;
+  }
+  func_800EE7F8(arg1, temp_v1 - 0xC);
+  return 1;
+}
 
 s32 func_8009CC68(PlayerState *self) {
     u8 temp_a1;
