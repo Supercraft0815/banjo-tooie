@@ -87,7 +87,23 @@ void sumultiscore_entrypoint_11(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_12.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/func_80801160_sumultiscore.s")
+/* extern */
+
+void func_80801160_sumultiscore(u16 (*arg0)[2], void *arg1, s32 arg2) {
+    void _fxdialog_entrypoint_1(s32, s32);
+    void _fxdialog_entrypoint_2(f32);
+    void _fxdialog_entrypoint_4(s32, u16, u8, f32, f32, s32, s32);
+    u16 *temp_v0;
+    s32 x;
+    s32 y;
+
+    temp_v0 = arg0[*(u8 *)((s8 *)arg1 + 1)];
+    x = temp_v0[0] + *(s8 *)((s8 *)arg1 + 0xC);
+    y = temp_v0[1] + *(s8 *)((s8 *)arg1 + 0xD);
+    _fxdialog_entrypoint_1(x, y);
+    _fxdialog_entrypoint_2((*(f32 *)((s8 *)(arg1) + (0x10))));
+    _fxdialog_entrypoint_4(arg2, (*(u16 *)((s8 *)(arg1) + (2))), (*(u8 *)((s8 *)(arg1) + (4))), 0.0f, 0.0f, (s32) (*(u8 *)((s8 *)(arg1) + (5))), 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/func_808011E0_sumultiscore.s")
 
