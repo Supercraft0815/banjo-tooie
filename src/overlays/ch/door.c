@@ -176,7 +176,7 @@ void func_80800B14_chdoor(u8 *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     void func_80101FDC(u8 *, s32);
     void func_80103110(u8 *, s32);
-    void func_80800FC0_chdoor(u8 *, s32);
+    void func_80800FC0_chdoor(Actor *, s32);
     void func_808005E4_chdoor(Actor *, s32);
     void func_80801330_chdoor(Actor *, s32);
     s32 _subaddieaudioloop_entrypoint_2(u8 *);
@@ -296,7 +296,34 @@ void func_80800B14_chdoor(u8 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/door/func_80800FC0_chdoor.s")
+void func_80800FC0_chdoor(Actor *arg0, s32 arg1) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 func_800DA9E4(s32, s32);
+    void *func_80100094(Actor *, u32);
+    struct DoorData {
+        s32 flags;
+        u8 padding[0x1A];
+        struct {
+            u16 pod;
+            u8 unused20;
+            u8 action;
+            u16 flag;
+            u16 unused24;
+        } entries[2];
+    };
+    struct DoorData *data;
+
+    data = func_80100094(arg0, 0);
+    if (((u32)data->entries[arg1].flag >> 15) != 0) {
+        if ((data->flags & 0x80) && (data->entries[arg1].flag & 0x7FFF)) {
+            if (func_800DA9E4(data->entries[arg1].flag & 0x7FFF, 1) == 0) {
+                _capod_entrypoint_13(arg0->unk0, 0, data->entries[arg1].action, data->entries[arg1].pod);
+            }
+        } else {
+            _capod_entrypoint_13(arg0->unk0, 0, data->entries[arg1].action, data->entries[arg1].pod);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/door/chdoor_entrypoint_1.s")
 
