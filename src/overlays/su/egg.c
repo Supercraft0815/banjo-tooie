@@ -75,7 +75,24 @@ void suegg_entrypoint_8(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_9.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_10.s")
+/* extern */
+
+void suegg_entrypoint_10(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
+    struct Flags {
+        u8 pad[0x39];
+        u8 active : 1;
+        u8 rest : 7;
+    };
+    s32 _glhittableDll_entrypoint_6(s32);
+    s32 _glhittableDll_entrypoint_9(s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    struct Flags *temp_v0;
+
+    if ((_glhittableDll_entrypoint_6(arg2) != 0) && (_glhittableDll_entrypoint_9(arg2) != 0)) {
+        temp_v0 = func_80100094(func_80106790(arg0), 0);
+        temp_v0->active = 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_11.s")
 
