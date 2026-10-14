@@ -280,7 +280,7 @@ void func_800EC3C4(void *arg0) {
 
 /* extern */
 
-s32 func_800EC3E8(u8 *arg0) {
+void *func_800EC3E8(u8 *arg0) {
     void *func_800D674C(s32);
     s32 temp_a1;
 
@@ -288,7 +288,7 @@ s32 func_800EC3E8(u8 *arg0) {
     if ((temp_a1 == 0) || (temp_a1 == 0xFFFF)) {
         return 0;
     }
-    return (s32)func_800D674C(temp_a1);
+    return func_800D674C(temp_a1);
 }
 
 /* extern */
@@ -308,7 +308,23 @@ s32 func_800EC428(void *arg0) {
     return (s32)func_800D674C(temp_a0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC48C.s")
+/* extern */
+
+f32 func_800EC48C(void *arg0) {
+    s32 func_800B0CFC(void *);
+    typedef struct { u8 pad0[0x14]; u16 model; u8 pad16[0xA]; s16 radius; } PropView;
+    PropView *prop = arg0;
+    f32 temp_f2;
+    u16 temp_v0;
+
+    temp_v0 = prop->model;
+    if ((temp_v0 == 0) || (temp_v0 == 0xFFFF)) {
+        return 0.0f;
+    }
+    temp_f2 = (f32) func_800B0CFC(func_800EC3E8(arg0)) * 0.5f;
+    prop->radius = (s16) (s32) temp_f2;
+    return temp_f2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC504.s")
 
@@ -317,7 +333,7 @@ s32 func_800EC428(void *arg0) {
 f32 func_800EC708(void **marker) {
     f32 func_800EC5C0(void *, void *);
     void func_800EC504(void);
-    void func_800EC48C(void);
+    f32 func_800EC48C(void *);
     typedef struct { u8 pad0[8]; u32 reserved : 30; u32 isModel : 1; u32 flag : 1; } PropView;
     PropView *prop = *marker;
     if (prop->isModel) return func_800EC5C0(prop, func_800EC504);
