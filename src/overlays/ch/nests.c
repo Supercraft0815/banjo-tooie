@@ -312,7 +312,16 @@ u8 chnests_entrypoint_13(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80801014_chnests.s")
+int func_80801014_chnests(Actor *arg0) {
+    return arg0->unk6C_9 == 0x1C8
+        || arg0->unk6C_9 == 0x1C9
+        || arg0->unk6C_9 == 0x1CA
+        || arg0->unk6C_9 == 0x1CB
+        || arg0->unk6C_9 == 0x1CC
+        || arg0->unk6C_9 == 0x1CD
+        || arg0->unk6C_9 == 0x2B8
+        || arg0->unk6C_9 == 0x1E9;
+}
 
 int func_808010A0_chnests(void *arg0) {
     return ((u32)(*(s32 *)((u8 *)arg0 + 0x6C) << 11) >> 20) == 0x1CE
