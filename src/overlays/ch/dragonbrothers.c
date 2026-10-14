@@ -57,7 +57,25 @@ s32 func_80800438_chdragonbrothers(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808005A4_chdragonbrothers.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_8080063C_chdragonbrothers.s")
+/* extern */
+
+f32 func_8080063C_chdragonbrothers(Actor *arg0) {
+    void func_8008FFBC(s32);
+    f32 func_800EF030(void *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F1DCC(f32, f32);
+    void *func_80100094(Actor *, u32);
+    f32 sp3C;
+    f32 sp38;
+    f32 sp28[4];
+
+    sp3C = ((f32 *)func_80100094(arg0, 0))[6];
+    sp38 = func_800F1DCC(sp3C, ((f32 *)arg0->actorData)[0]) * 20.0f;
+    func_8008FFBC((s32)sp28);
+    sp28[1] = func_800EF030(sp28);
+    sp38 *= func_800F10B4(sp28[1], 0.0f, 5000.0f, 0.0f, 1.0f);
+    return sp3C + sp38;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808006C8_chdragonbrothers.s")
 
