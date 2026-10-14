@@ -157,7 +157,46 @@ void func_80800668_gcmapDll(s32 arg0, u8 *arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapDll/gcmapDll_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapDll/func_80800A94_gcmapDll.s")
+/* extern */
+
+void func_80800A94_gcmapDll(s32 arg0[][11], s32 arg1) {
+    s32 _dbtex_entrypoint_1(s32);
+    s32 _glidmake_entrypoint_4(s32);
+    s32 _rtlight_entrypoint_0(s32);
+    s32 _vpmodule_entrypoint_1(s32, s32);
+    void func_800B23E0(void *);
+    void *temp_a0;
+    s32 temp_a0_2;
+    s32 temp_a0_3;
+    s32 temp_a0_4;
+    s32 temp_a2;
+    void *temp_s0;
+
+    temp_s0 = arg0[arg1];
+    temp_a2 = (*(s32 *)((s8 *)(temp_s0) + (0x24)));
+    if (temp_a2 != 0) {
+        _dbtex_entrypoint_1(temp_a2);
+        (*(s32 *)((s8 *)(temp_s0) + (0x24))) = 0;
+    }
+    temp_a0 = (*(void **)((s8 *)(temp_s0) + (0x14)));
+    if (temp_a0 != 0) {
+        func_800B23E0(temp_a0);
+    }
+    temp_a0_2 = (*(s32 *)((s8 *)(temp_s0) + (4)));
+    if (temp_a0_2 != 0) {
+        _glidmake_entrypoint_4(temp_a0_2);
+    }
+    temp_a0_3 = (*(s32 *)((s8 *)(temp_s0) + (8)));
+    if (temp_a0_3 != 0) {
+        _rtlight_entrypoint_0(temp_a0_3);
+        (*(s32 *)((s8 *)(temp_s0) + (8))) = 0;
+    }
+    temp_a0_4 = (*(s32 *)((s8 *)(temp_s0) + (0x1C)));
+    if (temp_a0_4 != 0) {
+        _vpmodule_entrypoint_1(temp_a0_4, (*(s32 *)((s8 *)(temp_s0) + (0x18))));
+        (*(s32 *)((s8 *)(temp_s0) + (0x1C))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapDll/gcmapDll_entrypoint_4.s")
 
