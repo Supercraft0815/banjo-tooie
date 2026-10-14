@@ -64,7 +64,29 @@ void func_8080086C_chvolcanobits(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_808008A4_chvolcanobits.s")
+/* extern */
+
+s32 func_808008A4_chvolcanobits(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chexploder_entrypoint_6(s32, s32, s32);
+    void _subaddiefade_entrypoint_3(Actor *);
+    Unk80132ED0 *func_80101080(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *sp1C;
+    Actor *temp_v0;
+
+    if (arg1 == 0x90) {
+        temp_v0 = func_80106790(func_80101080());
+        sp1C = temp_v0;
+        _chexploder_entrypoint_6((s32)temp_v0, 0x44960000, 0x44AF0000);
+        _subaddiefade_entrypoint_3(sp1C);
+        return 1;
+    }
+    if (arg1 == 0x95) {
+        arg0->actorData[0] = 0;
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_80800914_chvolcanobits.s")
 
