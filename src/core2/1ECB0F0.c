@@ -82,7 +82,37 @@ void func_800F1F0C(f32 *arg0, f32 *arg1, f32 arg2) {
     func_800F1DCC(func_800F1DF4(arg0, arg1), arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1F38.s")
+/* extern */
+
+f32 func_800F1F38(f32 arg0, f32 arg1, f32 arg2) {
+    f32 func_800136E4(f32);
+    f32 func_800F1DCC(f32, f32);
+    f32 temp_f2;
+    f32 var_f0;
+    f32 var_f12;
+
+    if (arg1 == arg0) {
+        return arg1;
+    }
+    var_f0 = func_800F1DCC(arg1, arg0);
+    if (var_f0 > 0.0f) {
+        if (var_f0 < arg2) {
+            temp_f2 = var_f0;
+        } else {
+            temp_f2 = arg2;
+        }
+        var_f0 = temp_f2;
+    } else {
+        temp_f2 = -arg2;
+        if (temp_f2 < var_f0) {
+            var_f12 = var_f0;
+        } else {
+            var_f12 = temp_f2;
+        }
+        var_f0 = var_f12;
+    }
+    return func_800136E4(arg0 + var_f0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1FF0.s")
 
