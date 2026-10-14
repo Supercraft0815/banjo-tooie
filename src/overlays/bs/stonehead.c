@@ -21,13 +21,30 @@ void func_80800000_bsstonehead(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/func_80800194_bsstonehead.s")
 
-int func_808003B8_bsstonehead(s32 arg0) {
-    s32 bakey_pressed(s32, s32);
+int func_808003B8_bsstonehead(PlayerState *arg0) {
+    int bakey_pressed();
     s32 func_800DA298(s32);
     return bakey_pressed(arg0, 8) && !func_800DA298(0x65A);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/func_808003F4_bsstonehead.s")
+/* extern */
+
+s32 func_808003F4_bsstonehead(PlayerState *arg0, s32 arg1) {
+    s32 _badrone_entrypoint_24(PlayerState *);
+    int bainput_should_enter_first_person(PlayerState *);
+    s32 bastick_getZone();
+
+    if (bainput_should_enter_first_person(arg0) != 0) {
+        arg1 = _badrone_entrypoint_24(arg0);
+    }
+    if (bastick_getZone(arg0) > 0) {
+        arg1 = 0xB2;
+    }
+    if (func_808003B8_bsstonehead(arg0) != 0) {
+        arg1 = 0xAE;
+    }
+    return arg1;
+}
 
 void bsstonehead_entrypoint_0(s32 arg0)
 {
