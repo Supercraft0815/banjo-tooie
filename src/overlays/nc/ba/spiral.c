@@ -44,4 +44,22 @@ void ncbaspiral_entrypoint_4(void *arg0) {
     *(*(s32 **)((s8 *)(arg0) + (0x48))) = -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/spiral/ncbaspiral_entrypoint_5.s")
+/* extern */
+
+void ncbaspiral_entrypoint_5(void *arg0, s32 arg1) {
+    void _cadbfunc_entrypoint_24(s32 *);
+    Prop *_gccubesearch_entrypoint_1(u32, f32[3]);
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    s32 func_800A5800(s32);
+    void func_801107B0(void *, f32 *);
+    s32 sp2C;
+    f32 sp1C[4];
+
+    if (arg1 != *(*(s32 **)((s8 *)(arg0) + (0x48)))) {
+        func_800A5800(arg1);
+        _cadbfunc_entrypoint_24(&sp2C);
+        func_801107B0(arg0, sp1C);
+        _gspropctrl_entrypoint_11(_gccubesearch_entrypoint_1(sp2C + 0x1D1, sp1C), (f32 *)((*(s32 **)((s8 *)(arg0) + (0x48))) + 1));
+        *(*(s32 **)((s8 *)(arg0) + (0x48))) = arg1;
+    }
+}
