@@ -1,7 +1,23 @@
 #include "common.h"
 #include "overlays/ba/playerstate.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_80800000_bsbanshack.s")
+/* extern */
+
+s32 func_80800000_bsbanshack(PlayerState *arg0, s32 arg1) { int bakey_pressed(PlayerState *, ButtonId); int bakey_released(PlayerState *, ButtonId); int func_8008E148(PlayerState *); s32 func_8008E260(PlayerState *); s32 var_s0; var_s0 = arg1;
+    if (bakey_pressed(arg0, 8) != 0) {
+        var_s0 = 0x16E;
+    }
+    if (func_8008E148(arg0) != 0) {
+        var_s0 = 1;
+    }
+    if (func_8008E260(arg0) != 0) {
+        var_s0 = 0x3D;
+    }
+    if (bakey_released(arg0, 1) != 0) {
+        var_s0 = 0x16B;
+    }
+    return var_s0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_80800074_bsbanshack.s")
 
