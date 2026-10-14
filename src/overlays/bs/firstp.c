@@ -2089,20 +2089,38 @@ void func_808080B4_bsfirstp(s32 arg0, s16 *arg1, u8 arg2) {
 
 void func_80808100_bsfirstp(s32 arg0, s16 *arg1) {
     s32 func_80808148_bsfirstp(s32, s32 *);
-    s32 func_808084AC_bsfirstp(s32 *, s32);
+    void func_808084AC_bsfirstp(f32 *, f32);
     void func_8080853C_bsfirstp(f32 *, f32);
     void func_808085A8_bsfirstp(f32 *, s16 *);
     f32 sp1C[3];
 
     func_80808148_bsfirstp(arg0, sp1C);
     func_8080853C_bsfirstp(sp1C, 20.0f);
-    func_808084AC_bsfirstp(sp1C, 0x3F000000);
+    func_808084AC_bsfirstp(sp1C, 0.5f);
     func_808085A8_bsfirstp(sp1C, arg1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80808148_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808084AC_bsfirstp.s")
+/* extern */
+
+void func_808084AC_bsfirstp(f32 *arg0, f32 arg1) {
+    f32 func_800F1214(f32, f32, f32);
+    f32 *var_s0;
+    f32 temp_f0;
+    f32 temp_f20;
+    s32 var_s1;
+
+    var_s0 = arg0;
+    var_s1 = 0;
+    temp_f20 = (arg0[0] + arg0[1] + arg0[2]) * 0.33333334f;
+    do {
+        temp_f0 = func_800F1214(arg1, temp_f20, *var_s0);
+        var_s1 += 1;
+        var_s0++;
+        var_s0[-1] = temp_f0;
+    } while (var_s1 != 3);
+}
 
 void func_8080853C_bsfirstp(f32 *arg0, f32 arg1) {
     f32 scale = 1.0f - arg1 * 0.00390625f;
