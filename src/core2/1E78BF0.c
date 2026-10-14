@@ -246,6 +246,27 @@ s32 func_800A04F4(PlayerState *arg0, s32 arg1) {
     return arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A055C.s")
+/* extern */
+
+s32 func_800A055C(PlayerState *arg0, s32 arg1) {
+    int func_8008D1B0(PlayerState *);
+    int func_8008D568(PlayerState *);
+    s32 func_8008E23C(PlayerState *);
+    s32 func_8009EA2C(void);
+    if (func_8008E23C(arg0) != 0) {
+        if (func_8008D568(arg0) != 0) {
+            return 0xE4;
+        }
+        return arg1;
+    } else {
+        if (func_8008D1B0(arg0) != 0) {
+            if (func_8009EA2C() != 0) {
+                return 0x18A;
+            }
+            return 6;
+        }
+    }
+    return arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A05DC.s")
