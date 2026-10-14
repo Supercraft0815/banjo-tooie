@@ -20,7 +20,31 @@ void func_80800A34_chfactorytoxiccloud(s32 arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_80800AD8_chfactorytoxiccloud.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_80800BF8_chfactorytoxiccloud.s")
+/* extern */
+
+typedef union {
+    Actor actor;
+    struct {
+        u8 pad0[0x64];
+        u32 pad64_30 : 2;
+        u32 unk64_29 : 1;
+        u32 pad64_0 : 29;
+    } flags;
+} ToxicCloudActor;
+
+int func_80800BF8_chfactorytoxiccloud(ToxicCloudActor *arg0, f32 *arg1) {
+    f32 func_800EEB40(f32 *, f32 *);
+    f32 temp_f2;
+    f32 var_f12;
+
+    if (arg0->flags.unk64_29) {
+        var_f12 = 6.0f;
+    } else {
+        var_f12 = 2.0f;
+    }
+    temp_f2 = var_f12 * 25.0f;
+    return func_800EEB40(arg1, (f32 *)arg0->actor.actorData) < (temp_f2 * temp_f2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_80800C7C_chfactorytoxiccloud.s")
 
