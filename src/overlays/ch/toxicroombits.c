@@ -68,7 +68,7 @@ void func_80800630_chtoxicroombits(u8 *arg0) {
     u8 *func_80106790(s32);
     f32 func_80800458_chtoxicroombits(void);
     void func_80800960_chtoxicroombits(u8 *, s32);
-    s32 func_80800BE4_chtoxicroombits(u8 *);
+    int func_80800BE4_chtoxicroombits(u8 *);
     extern u32 D_80801004_chtoxicroombits;
     u8 *found[20];
     f32 movement;
@@ -129,7 +129,26 @@ void func_80800630_chtoxicroombits(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_80800A2C_chtoxicroombits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_80800BE4_chtoxicroombits.s")
+/* extern */
+
+int func_80800BE4_chtoxicroombits(u8 *arg0) {
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800F48BC(s32, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6C5C(s32);
+    f32 sp1C[3];
+
+    func_800F5A00(func_800F54E4(), sp1C);
+    if ((sp1C[0] >= -600.0f) && (sp1C[0] <= -200.0f)) {
+        if (func_800F6C5C(func_800F54E4()) != 0) {
+            func_800EFA4C(sp1C, 0.0f, 0.0f, -(4000.0f / *(f32 *)(arg0 + 0x34)));
+            func_800F48BC(func_800F54E4(), sp1C);
+        }
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_80800CB0_chtoxicroombits.s")
 
