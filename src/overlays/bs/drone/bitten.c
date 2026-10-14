@@ -7,7 +7,34 @@ void bsdronebitten_entrypoint_0(s32 arg0)
     func_8008E95C();
     bastick_popZone(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bitten/bsdronebitten_entrypoint_1.s")
+/* extern */
+typedef struct player_state_s PlayerState;
+typedef enum asset_e AssetId;
+
+void bsdronebitten_entrypoint_1(PlayerState *arg0) {
+    void _badata_entrypoint_4(PlayerState *, AssetId *, f32 *);
+    void baanim_playForDuration_loopSmooth(PlayerState *, AssetId, f32);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    void bastick_pushZone(PlayerState *);
+    void bastick_setZoneMax(PlayerState *, s32, f32);
+    void func_8008E944(PlayerState *);
+    void func_8009D9D4(PlayerState *);
+    void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+    f32 sp2C;
+    AssetId sp28;
+
+    _badata_entrypoint_4(arg0, &sp28, &sp2C);
+    baanim_playForDuration_loopSmooth(arg0, sp28, sp2C);
+    func_8009FFD8(arg0, 1, 1, 3, 6);
+    baphysics_set_vertical_velocity(arg0, 900.0f);
+    baphysics_set_gravity(arg0, -1200.0f);
+    bastick_pushZone(arg0);
+    bastick_setZoneMax(arg0, 0, 0.12f);
+    bastick_setZoneMax(arg0, 1, 1.0f);
+    func_8008E944(arg0);
+    func_8009D9D4(arg0);
+}
 
 void bsdronebitten_entrypoint_2()
 {
