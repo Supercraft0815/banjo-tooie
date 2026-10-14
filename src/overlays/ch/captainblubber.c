@@ -1,6 +1,22 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/captainblubber/func_80800000_chcaptainblubber.s")
+void func_80800000_chcaptainblubber(Actor *arg0) {
+    s32 func_8008F8B0();
+    s32 func_8008F8D8(s32);
+    s32 func_8008F904(s32 *, s32);
+    s32 func_8008F938(s32);
+    s32 func_8008F990(s32 *, s32);
+    extern s32 D_808016C0_chcaptainblubber;
+    extern s32 func_8010D5DC;
+    if (!arg0->unk64_20) {
+        func_8008F8B0();
+        func_8008F8D8(1);
+        func_8008F904(&func_8010D5DC, (s32)arg0->unk0);
+        func_8008F938(1);
+        func_8008F990(&D_808016C0_chcaptainblubber, 0x43FA0000);
+        arg0->unk64_20 = 1;
+    }
+}
 
 void func_80800078_chcaptainblubber(Actor *arg0) {
     void _subaddieitem_entrypoint_0(s32, u32, s32, s32);
