@@ -32,4 +32,24 @@ OSThread *chegggrenade_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/grenade/chegggrenade_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/grenade/chegggrenade_entrypoint_3.s")
+/* extern */
+
+void *chegggrenade_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 _suegg_entrypoint_1(void *, f32);
+    void *_suegg_entrypoint_11(s32, s32, s32);
+    s32 _sueggmove_entrypoint_10(s32);
+    s32 _sueggmove_entrypoint_5(void *, s32);
+    s32 _sueggmove_entrypoint_6(void *, f32, f32);
+    s32 _sueggmove_entrypoint_7(void *, s32);
+    Actor *temp_v0;
+
+    _sueggmove_entrypoint_10(arg0);
+    temp_v0 = _suegg_entrypoint_11(0x15D, arg1, arg3);
+    temp_v0->scale = 0.25f;
+    _sueggmove_entrypoint_5(temp_v0, 0);
+    _sueggmove_entrypoint_6(temp_v0, 0.0f, -100000.0f);
+    _suegg_entrypoint_1(temp_v0, 30.0f);
+    _sueggmove_entrypoint_7(temp_v0, arg2);
+    temp_v0->unk70_10 = 1;
+    return temp_v0;
+}
