@@ -284,6 +284,26 @@ f32 func_800F15F8(f32 arg0, f32 arg1, f32 arg2) {
     return arg1 < arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F16AC.s")
+/* extern */
+
+void func_800F16AC(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
+    f32 func_800F1DCC(f32, f32);
+    f32 *var_s0;
+    f32 *var_s2;
+    s32 var_s1;
+    u8 *var_s3;
+
+    var_s0 = arg1;
+    var_s1 = 0;
+    var_s2 = arg2;
+    var_s3 = arg0;
+    do {
+        *(f32 *)var_s3 = *var_s0 - func_800F1DCC(*var_s0, *var_s2) * arg3;
+        var_s1 += 1;
+        var_s0++;
+        var_s2++;
+        var_s3 += 4;
+    } while (var_s1 != 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F1738.s")
