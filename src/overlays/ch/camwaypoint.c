@@ -14,4 +14,23 @@ void func_8080000C_chcamwaypoint(u8 *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x24))) = func_800EEAA4(arg0 + 4, (f32 *)(arg0 + 0x18));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/camwaypoint/func_8080005C_chcamwaypoint.s")
+/* extern */
+
+void func_8080005C_chcamwaypoint(Actor *arg0) {
+    s32 _ncbawaypoint_entrypoint_2(s32, f32 *, u32 *, u32);
+    void func_8008FE68(f32 *);
+    s32 func_8008FFE8();
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    s32 func_8010FAE4(s16 *);
+    s32 func_80110014(s32 *);
+    void func_801107F0(void *, f32 *);
+    s32 sp34;
+    s32 sp30;
+    f32 sp2C;
+    struct { f32 *point; f32 position[3]; } sp1C;
+
+    sp30 = func_8008FFE8();
+    if ((func_8010FAE4(sp30) == 2) && ((sp34 = func_80110014(sp30), sp2C = (f32) ((s32)arg0->unk74_7 * 10), func_8008FE68(sp1C.position), sp1C.point = arg0->position, (func_800EFFB4(sp1C.point, sp2C, sp1C.position) != 0)) || (func_801107F0(sp34, sp1C.position), (func_800EFFB4(sp1C.point, sp2C, sp1C.position) != 0)))) {
+        _ncbawaypoint_entrypoint_2(sp34, sp1C.point, arg0->actorData, arg0->actorData[3]);
+    }
+}
