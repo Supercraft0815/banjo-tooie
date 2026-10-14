@@ -22,7 +22,18 @@ void func_808002DC_chtoothyfish(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800350_chtoothyfish.s")
+void func_80800350_chtoothyfish(Actor *arg0, u8 *arg1, s32 arg2) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_80108B04(Actor *, u32);
+    extern s32 D_808017AC_chtoothyfish;
+    if ((arg1 + arg2)[0x39] >= 0x1E) {
+        func_80108B04(arg0, arg2);
+        arg0->unk74_29 = 1;
+        return;
+    }
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808017AC_chtoothyfish);
+    ((f32 *)(arg1 + 0x18))[arg2] = 1.0f;
+}
 
 void func_808003D4_chtoothyfish(s32 arg0, u8 *arg1)
 {
