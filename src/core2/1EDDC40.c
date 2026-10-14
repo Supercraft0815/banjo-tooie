@@ -265,7 +265,19 @@ void func_801049B4(u8 *arg0, f32 *arg1, s32 *arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104D80.s")
+void func_80104D80(s32 *arg0, s32 arg1) {
+    f32 scale;
+    f32 offset;
+    s32 i;
+    s32 *ptr;
+
+    scale = 1.0f - (f32)arg1 * 0.00390625f;
+    offset = (f32)arg1;
+    for (i = 0, ptr = arg0; i < 3; i++) {
+        *ptr = (s32)((f32)*ptr * scale + offset);
+        ptr++;
+    }
+}
 
 void func_80104E24(s32 *arg0, s32 *arg1) {
     s32 i;
