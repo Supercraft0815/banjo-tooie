@@ -1,5 +1,7 @@
 #include "common.h"
 
+struct player_state_s;
+
 /* extern */
 
 void func_80800000_bsjump(s32 arg0) {
@@ -110,7 +112,7 @@ void bsjump_entrypoint_1(void *arg0) {
     bs_setState((s32)arg0, next_state);
 }
 
-void bsjump_entrypoint_2(s32 arg0) { if (func_800C6E38(0xA) != 0) { func_800C6DA0(0x3C); } if (bs_getNextState(arg0) != 0x11) { baphysics_reset_gravity(arg0); } }
+void bsjump_entrypoint_2(s32 arg0) { s32 bs_getNextState(struct player_state_s *); if (func_800C6E38(0xA) != 0) { func_800C6DA0(0x3C); } if (bs_getNextState(arg0) != 0x11) { baphysics_reset_gravity(arg0); } }
 
 s32 bsjump_entrypoint_3(s32 arg0) {
     extern s32 D_80801110_bsjump[];
@@ -166,7 +168,24 @@ s32 bsjump_entrypoint_16(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_18.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_19.s")
+/* extern */
+
+void bsjump_entrypoint_19(struct player_state_s *arg0) {
+    s32 bs_getNextState(struct player_state_s *);
+    void func_80093360(struct player_state_s *, f32);
+    void func_80095588(struct player_state_s *, s32);
+    void func_8009E0DC(struct player_state_s *);
+    void func_800A042C(struct player_state_s *);
+    s32 temp_v0;
+
+    temp_v0 = bs_getNextState(arg0);
+    if ((temp_v0 == 0xF) || (temp_v0 == 0x10) || (temp_v0 == 0x11)) {
+        func_80095588(arg0, 3);
+    }
+    func_800A042C(arg0);
+    func_80093360(arg0, 0.0f);
+    func_8009E0DC(arg0);
+}
 
 s32 bsjump_entrypoint_20(s32 arg0) {
     extern s32 D_80801150_bsjump[];
