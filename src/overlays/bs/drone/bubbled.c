@@ -38,7 +38,25 @@ void bsdronebubbled_entrypoint_1(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bubbled/bsdronebubbled_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bubbled/bsdronebubbled_entrypoint_3.s")
+/* extern */
+
+struct player_state_s;
+struct anctrl_s;
+
+void bsdronebubbled_entrypoint_3(struct player_state_s *arg0) {
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    f32 func_800D8FF8(void);
+    f32 func_800F1214(f32, f32, f32);
+    s32 func_800F1574(f32 *, f32);
+    f32 sp24;
+    s32 pad;
+    struct anctrl_s *sp1C;
+
+    sp24 = (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x54)))) + (0x44)));
+    func_800F1574((f32 *)(*(u8 **)((s8 *)arg0 + 0x54) + 0x40), func_800D8FF8() * 0.8333333f);
+    sp1C = baanim_getAnimCtrlPtr(arg0); anctrl_setDuration(sp1C, func_800F1214((*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x54)))) + (0x40))), sp24, sp24 * 0.33333334f));
+}
 
 void bsdronebubbled_entrypoint_4(s32 arg0) 
 {
