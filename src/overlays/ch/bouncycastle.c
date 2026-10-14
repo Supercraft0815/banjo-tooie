@@ -78,4 +78,30 @@ void func_80800670_chbouncycastle(u8 *arg0) {
 void func_80800828_chbouncycastle(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bouncycastle/func_80800830_chbouncycastle.s")
+/* extern */
+
+s32 func_80800830_chbouncycastle(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800BF744(s32, s32);
+    void func_8010A624(Actor *);
+    s32 func_8010D278();
+    s32 var_v1;
+    s32 var_a0;
+
+    if (arg1 == 0x95) {
+        var_v1 = arg0->unk6C_9 == 0x3C7 ? 1 : 0xB;
+        if (arg0->unk6C_9 == 0x3C7) {
+            var_a0 = 2;
+        } else {
+            var_a0 = 1;
+        }
+        if (func_8010D278() == var_v1) {
+            func_800BF744(var_a0, 0);
+            func_8010A624(arg0);
+            arg0->unk64_16 = 0;
+            return 1;
+        }
+        func_800BF744(var_a0, 1);
+        return 1;
+    }
+    return 0;
+}
