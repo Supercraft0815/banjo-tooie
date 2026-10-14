@@ -102,7 +102,23 @@ void func_800D5688(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D56C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5804.s")
+s32 func_800D5804(s32 arg0, s32 arg1) {
+    s32 defrag(s32);
+    extern s32 D_8012B450[];
+    extern s8 D_8012B7E4;
+    s32 i;
+    s32 result;
+
+    for (i = 0; i < (u8) D_8012B7E4 && arg0 != D_8012B450[i]; i++);
+    if (i == (u8) D_8012B7E4) {
+        return arg0;
+    }
+    result = defrag(arg0);
+    if (result != arg0) {
+        D_8012B450[i] = result;
+    }
+    return result;
+}
 
 void func_800D58AC()
 {
