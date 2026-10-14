@@ -16,7 +16,7 @@ f32 func_800DC0C0(void) {
     return (result = sp4.f - 1.0f, result);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5980/func_800DC128.s")
+s32 func_800DC128(s32 arg0, s32 arg1) { return (s32)((func_800DC0C0() * (f32)(arg1 - arg0)) + (f32)arg0); }
 
 f32 func_800DC178(f32 arg0, f32 arg1) {
     return (func_800DC0C0() * (arg1 - arg0)) + arg0;
