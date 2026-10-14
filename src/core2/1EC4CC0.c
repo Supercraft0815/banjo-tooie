@@ -229,7 +229,37 @@ void func_800EBE74(s32 arg0, void *arg1, s32 arg2) {
     func_800EBC0C(var_v0, arg0, arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBED4.s")
+/* extern */
+
+void *func_800EBED4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    struct Entry {
+        u8 pad0[8];
+        OSThread *(*callback)(void);
+        u8 padC[6];
+        u16 id : 15;
+        u16 flag : 1;
+        u8 pad14[16];
+        u16 type : 10;
+        u16 low24 : 6;
+        u8 pad26[4];
+        u8 high2A : 6;
+        u8 active : 1;
+        u8 low2A : 1;
+        u8 pad2B[5];
+    };
+    s32 func_800EC854(void);
+    struct Entry *entry;
+
+    entry = func_800EBD78();
+    bzero(entry, 0x30);
+    entry->id = func_800EC854();
+    entry->type = arg2;
+    entry->flag = arg3;
+    entry->callback = func_800EBB50;
+    entry->active = 1;
+    func_800EBE74(arg0, entry, arg1);
+    return entry;
+}
 
 void func_800EBF8C(f32 *arg0, s32 *arg1, u32 arg2, Prop *arg3) {
     void func_800EE904(s32 *, f32 *);
