@@ -50,7 +50,7 @@ void func_8080027C_sucoaster(Actor *arg0, void *arg1) {
     s32 func_800DC298(f32);
     s32 func_80101DDC(Actor *);
     void func_80102924(void *, f32);
-    void func_80102BF8(void *, s32, f32, f32);
+    void func_80102BF8(void *, f32, f32, f32);
     s32 func_80102CF4(Actor *, f32);
     s32 func_80107070(Actor *, s32);
     void func_808020B8_sucoaster(Actor *, void *, f32);
@@ -135,7 +135,7 @@ void func_8080027C_sucoaster(Actor *arg0, void *arg1) {
         sucoaster_entrypoint_8(arg0);
         break;
     case 6:
-        func_80102BF8(arg0, *(s32 *)(config + 0x4C), *(s16 *)(config + 0x50), *(s16 *)(config + 0x52));
+        func_80102BF8(arg0, *(f32 *)(config + 0x4C), *(s16 *)(config + 0x50), *(s16 *)(config + 0x52));
         if (func_80102CF4(arg0, 20.0f)) {
             if (((u8 *)arg0)[0x74] & 1) {
                 sucoaster_entrypoint_9(arg0, 18, 0);
@@ -495,7 +495,27 @@ s32 sucoaster_entrypoint_21(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_8080202C_sucoaster.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_808020B8_sucoaster.s")
+/* extern */
+
+void func_808020B8_sucoaster(Actor *arg0, void *arg1, f32 arg2) {
+    typedef struct {
+        u8 pad0[0x18];
+        u32 track : 4;
+        u32 pad18 : 28;
+    } CoasterData;
+    typedef struct {
+        u8 pad0[0x4C];
+        f32 acceleration;
+        s16 speed;
+        s16 distance;
+    } CoasterConfig;
+    void *_sucoasterdata_entrypoint_1(u32);
+    void func_80102BF8(void *, f32, f32, f32);
+    CoasterConfig *config;
+
+    config = _sucoasterdata_entrypoint_1(((CoasterData *)arg1)->track);
+    func_80102BF8(arg0, config->acceleration * arg2, (f32)config->speed * arg2, (f32)config->distance * arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_80802130_sucoaster.s")
 
