@@ -29,7 +29,7 @@ void func_8080083C_chfactorymagnet(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_808012E4_chfactorymagnet.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80801368_chfactorymagnet.s")
+/* extern */ void func_80801368_chfactorymagnet(u8 *arg0) { s32 func_800D90F8(u8 *, f32); s32 func_800D91EC(u8 *, f32); f32 func_800DC178(f32, f32); f32 temp_f0; s32 var_v0; temp_f0 = (*(f32 *)((s8 *)(arg0) + (0x1C))); if (temp_f0 < (*(f32 *)((s8 *)(arg0) + (0x58)))) { var_v0 = func_800D90F8(arg0 + 0x58, temp_f0); } else { var_v0 = func_800D91EC(arg0 + 0x58, temp_f0); } if (var_v0 != 0) { (*(f32 *)((s8 *)(arg0) + (0x1C))) = func_800DC178(0.0f, 1.0f); } }
 
 /* extern */
 
