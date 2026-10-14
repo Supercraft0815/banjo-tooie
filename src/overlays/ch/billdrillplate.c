@@ -92,7 +92,32 @@ void func_80800D5C_chbilldrillplate(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_80800DA4_chbilldrillplate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_80800F24_chbilldrillplate.s")
+/* extern */
+
+s32 func_80800F24_chbilldrillplate(Actor *arg0, s32 arg1, s32 arg2) {
+    void _chexploder_entrypoint_6(Actor *, f32, f32);
+    s32 func_800DA298(u16);
+    Unk80132ED0 *func_80101080(void);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(void *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void *func_80800FCC_chbilldrillplate(void);
+    switch (arg1) {
+    case 0x95:
+        if (func_800DA298(((u16 *)func_80800FCC_chbilldrillplate())[6])) {
+            func_80101FDC(arg0, 2);
+            arg0->unk58 = 0.16f;
+            func_80103110(arg0, 1);
+        }
+        break;
+    case 0x90:
+        _chexploder_entrypoint_6(func_80106790(func_80101080()), 500.0f, 600.0f);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void *func_80800FCC_chbilldrillplate(void)
 {
