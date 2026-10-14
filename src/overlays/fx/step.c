@@ -1,6 +1,22 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/func_80800000_fxstep.s")
+/* extern */
+
+s32 func_80800000_fxstep(void *arg0) {
+    s32 func_800C84B0(s32);
+    f32 temp_f0;
+    s32 temp_a1;
+
+    temp_f0 = (*(f32 *)((s8 *)(arg0) + (0x10))) - (*(f32 *)((s8 *)(arg0) + (8)));
+    if ((temp_f0 > 0.0f) && (temp_f0 < 60.0f)) {
+        return 4;
+    }
+    temp_a1 = (*(s32 *)((s8 *)(arg0) + (0)));
+    if (temp_a1 == 0) {
+        return 0;
+    }
+    return func_800C84B0(temp_a1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/func_80800078_fxstep.s")
 
