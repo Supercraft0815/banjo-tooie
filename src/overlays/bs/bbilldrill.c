@@ -79,7 +79,29 @@ void func_808005C0_bsbbilldrill(u8 *arg0) {
     func_8009328C(arg0, *position);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/bsbbilldrill_entrypoint_0.s")
+/* extern */
+
+void bsbbilldrill_entrypoint_0(void *arg0) {
+    typedef struct player_state_s PlayerState;
+    void baflag_clear(PlayerState *, int);
+    void baphysics_reset_gravity(PlayerState *);
+    void baphysics_reset_terminal_velocity(PlayerState *);
+    void func_800931AC(PlayerState *, s32);
+    void func_80093300(void *, f32);
+    void func_80098520(void *, f32);
+    void func_8009E474(PlayerState *);
+    void func_800A0CF4(PlayerState *, s32);
+    func_800931AC(arg0, 1);
+    func_80093300(arg0, 0.0f);
+    func_80098520(arg0, 1.0f);
+    baphysics_reset_gravity(arg0);
+    baphysics_reset_terminal_velocity(arg0);
+    func_800A0CF4(arg0, 0);
+    baflag_clear(arg0, 0x22);
+    baflag_clear(arg0, 0x26);
+    func_8009E474(arg0);
+    func_808000C0_bsbbilldrill(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/bsbbilldrill_entrypoint_1.s")
 
