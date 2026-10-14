@@ -236,7 +236,29 @@ s32 bstnt_entrypoint_1(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/bstnt_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/bstnt_entrypoint_4.s")
+/* extern */
+
+void bstnt_entrypoint_4(void *arg0) {
+    f32 _bapulse_entrypoint_1(void *);
+    s32 _bapulse_entrypoint_2(void *);
+    s32 _bapulse_entrypoint_4(void *);
+    s32 _batimer_decrement(void *, s32);
+    f32 _batimer_get(void *, s32);
+    void func_80092744(s32 *, s32);
+    void func_80092750(void *, s32, s32, s32, s32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    s32 temp_f8;
+
+    if (_batimer_decrement(arg0, 2) != 0) {
+        func_80092744(arg0, 0);
+        _bapulse_entrypoint_2(arg0);
+    } else if (_batimer_get(arg0, 2) > 0.0f) {
+        _bapulse_entrypoint_4(arg0);
+        temp_f8 = (s32) func_800F12D4(_bapulse_entrypoint_1(arg0), 0.0f, 1.0f, 0.0f, 255.0f);
+        func_80092750(arg0, 0xFF, temp_f8, temp_f8, 0xFF);
+    }
+    (*(s8 *)((s8 *)(arg0) + (0x168))) = 0;
+}
 
 void func_80801058_bstnt(s32 arg0)
 {
