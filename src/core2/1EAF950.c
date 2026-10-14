@@ -561,7 +561,21 @@ void func_800D8648(s32 arg0, f32 *arg1) {
     func_800EE7F8((f32 *)((u8 *)func_800D7520(arg0) + 0x14), arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D8674.s")
+/* extern */
+
+void func_800D8674(void) {
+    s32 defrag(s32);
+    s32 i;
+
+    if ((*(s32 *)((s8 *)(&D_8012BE70) + (0x1A4))) != 0) {
+        (*(s32 *)((s8 *)(&D_8012BE70) + (0x1A4))) = defrag((*(s32 *)((s8 *)(&D_8012BE70) + (0x1A4))));
+    }
+    for (i = 0; i < (*(s32 *)((s8 *)(&D_8012BE70) + (0x188))); i++) {
+    }
+    if ((*(s32 *)((s8 *)(&D_8012BE70) + (0x19C))) != 0) {
+        (*(s32 *)((s8 *)(&D_8012BE70) + (0x19C))) = defrag((*(s32 *)((s8 *)(&D_8012BE70) + (0x19C))));
+    }
+}
 
 void func_800D86F0(s32 arg0, f32 arg1, s32 arg2) {
     void *func_8001B798(s16);
