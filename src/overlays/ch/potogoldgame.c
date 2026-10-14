@@ -92,7 +92,45 @@ void func_808011DC_chpotogoldgame(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_808013BC_chpotogoldgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80801494_chpotogoldgame.s")
+/* extern */
+
+void func_80801494_chpotogoldgame(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80801870_chpotogoldgame(s32, s32, s32, s32);
+    s32 var_s0;
+    s32 var_s3;
+    s32 var_s4;
+    s8 *var_fp;
+    s8 *var_s1;
+    s8 *var_s6;
+    s8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0);
+    var_s4 = 0;
+    var_fp = temp_v0;
+    do {
+        var_s3 = 0;
+        var_s6 = var_fp;
+loop_2:
+        var_s0 = 0;
+        var_s1 = var_s6;
+loop_3:
+        *var_s1 = arg1;
+        func_80801870_chpotogoldgame(var_s3, var_s4, var_s0, arg1);
+        var_s0 += 1;
+        var_s1 += 1;
+        if (var_s0 != 5) {
+            goto loop_3;
+        }
+        var_s3 += 1;
+        var_s6 += 5;
+        if (var_s3 != 4) {
+            goto loop_2;
+        }
+        var_s4 += 1;
+        var_fp += 0x14;
+    } while (var_s4 != 5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80801558_chpotogoldgame.s")
 
