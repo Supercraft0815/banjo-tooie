@@ -114,4 +114,35 @@ void fxstep_entrypoint_13(u8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/fxstep_entrypoint_14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/fxstep_entrypoint_15.s")
+s32 fxstep_entrypoint_15(s32 arg0, s32 arg1, s32 *arg2, s32 *arg3, f32 *arg4) {
+    typedef struct {
+        s16 id;
+        s16 value1;
+        s16 value2;
+        s16 pad6;
+        f32 value8;
+        f32 valueC;
+        f32 value10;
+        s16 value14;
+        s16 pad16;
+    } StepEntry;
+    f32 func_800DC178(f32, f32);
+    extern StepEntry D_80800830_fxstep[];
+    s32 var_v0;
+
+    for (var_v0 = 0; D_80800830_fxstep[var_v0].id != 0; var_v0++) {
+        if (arg0 == D_80800830_fxstep[var_v0].id) {
+            if (arg1 != 0) {
+                *arg4 = D_80800830_fxstep[var_v0].value8;
+                *arg2 = D_80800830_fxstep[var_v0].value1;
+            } else {
+                *arg4 = D_80800830_fxstep[var_v0].valueC;
+                *arg2 = D_80800830_fxstep[var_v0].value2;
+            }
+            *arg4 += func_800DC178(-0.05f, 0.05f);
+            *arg3 = D_80800830_fxstep[var_v0].value14;
+            return 1;
+        }
+    }
+    return 0;
+}
