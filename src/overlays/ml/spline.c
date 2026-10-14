@@ -23,7 +23,8 @@ void mlspline_entrypoint_1(f32 arg0, s32 arg1, u8 *arg2, f32 *arg3) {
     *arg3 = (((*(f32 *)((s8 *)(arg2) + (4))) - temp_f0) * arg0) + temp_f0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_2.s")
+void mlspline_entrypoint_2(f32 arg0, s32 arg1, u8 *arg2, u8 *arg3) { f32 temp_f10; f32 temp_f12; f32 temp_f4; f32 temp_f6; f32 temp_f8; s32 var_v0; u8 *var_a0; u8 *var_v1;
+    var_v0 = 0; var_v1 = arg2; var_a0 = arg3; do { temp_f12 = *(f32 *)var_v1; temp_f10 = *(f32 *)(var_v1 + 0xC); temp_f8 = *(f32 *)(var_v1 + 0x18); var_v0 += 1; temp_f6 = 2.0f * temp_f10; temp_f4 = 3.0f * temp_f12; var_v1 += 4; *(volatile f32 *)var_a0 = (((temp_f8 + temp_f12) - temp_f6) * (2.0f * arg0)) + (((4.0f * temp_f10) - temp_f4) - temp_f8); *(volatile f32 *)var_a0 = *(volatile f32 *)var_a0 * arg0; *(volatile f32 *)var_a0 = *(volatile f32 *)var_a0 + temp_f12; var_a0 += 4; } while (var_v0 != 3); }
 
 void mlspline_entrypoint_3(f32 arg0, s32 arg1, void *arg2, f32 *arg3) {
     f32 temp_f0;
