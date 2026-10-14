@@ -80,7 +80,29 @@ void func_808003E4_chcrusher(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_80800508_chcrusher.s")
+/* extern */
+
+void func_80800508_chcrusher(Actor *arg0) {
+    void func_8008FA94(f32 *, f32 *);
+    void func_8010D254(f32 *);
+    f32 upper[3];
+    f32 lower[3];
+    f32 x;
+    f32 z;
+    f32 position[3];
+
+    z = ((f32 *)arg0->actorData)[2] - arg0->position[2];
+    x = arg0->position[0] - ((f32 *)arg0->actorData)[0];
+    z += 25.0f;
+    func_8010D254(position);
+    upper[0] = arg0->position[0] - x;
+    lower[0] = arg0->position[0] + x;
+    upper[1] = ((f32 *)arg0->actorData)[1];
+    lower[1] = ((f32 *)arg0->actorData)[1] + 1000.0f;
+    upper[2] = arg0->position[2] - z;
+    lower[2] = arg0->position[2] + z;
+    func_8008FA94(upper, lower);
+}
 
 void func_808005C0_chcrusher(s32 arg0) 
 {
