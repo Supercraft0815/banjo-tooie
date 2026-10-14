@@ -17,7 +17,22 @@ void sumultiscore_entrypoint_0(s32 *arg0, s32 *arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_1.s")
+void sumultiscore_entrypoint_1(s32 *arg0, s32 *arg1, s32 arg2) {
+    s32 i;
+    s32 j;
+    s32 temp;
+
+    for (i = 1; i < arg2; i++) {
+        for (j = i; j > 0 && arg0[j] < arg0[j - 1]; j--) {
+            temp = arg0[j];
+            arg0[j] = arg0[j - 1];
+            arg0[j - 1] = temp;
+            temp = arg1[j];
+            arg1[j] = arg1[j - 1];
+            arg1[j - 1] = temp;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/func_80800140_sumultiscore.s")
 
