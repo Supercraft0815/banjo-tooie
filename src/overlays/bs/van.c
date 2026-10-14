@@ -30,10 +30,10 @@ void func_808000BC_bsvan(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/bsvan_entrypoint_1.s")
 
-void bsvan_entrypoint_2(s32 arg0) {
+void bsvan_entrypoint_2(struct player_state_s *arg0) {
     s32 func_800B5BE4(s32);
     s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
-    s32 func_8009C128(s32, f32 *);
+    void func_8009C128(struct player_state_s *, f32[3]);
     extern s32 D_80801B90_bsvan;
     f32 sp24[3];
     s32 sp20;
@@ -300,7 +300,24 @@ void func_808017A0_bsvan(register void *arg0) {
     func_8080164C_bsvan(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/bsvan_entrypoint_15.s")
+/* extern */
+
+void bsvan_entrypoint_15(s32 arg0) {
+    void _chfaircoin_entrypoint_0(f32 *, f32 *, f32);
+    void func_8009C128(struct player_state_s *, f32[3]);
+    void func_800EE7F8(f32 *, f32 *);
+    struct player_state_s *func_800F53D0(s32);
+    struct player_state_s *sp34;
+    f32 sp28[3];
+    f32 sp1C[3];
+
+    sp34 = func_800F53D0(arg0);
+    func_8009C128(sp34, sp28);
+    func_800EE7F8(sp1C, *(f32 **)((s8 *)sp34 + 0x188) + 1);
+    sp28[1] += 20.0f;
+    sp1C[1] += 40.0f;
+    _chfaircoin_entrypoint_0(sp28, sp1C, 0.5f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80801890_bsvan.s")
 
