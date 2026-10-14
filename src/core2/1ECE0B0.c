@@ -346,9 +346,10 @@ void func_800F55A4(s32 arg0)
     func_800A1760(D_80135490[arg0]);
 }
 
-void func_800F55D0(s32 arg0)
+Unk80132ED0 *func_800F55D0(s32 arg0)
 {
-    func_800965D4(D_80135490[arg0]);
+    Unk80132ED0 *func_800965D4(s32);
+    return func_800965D4(D_80135490[arg0]);
 }
 
 void func_800F55FC(s32 arg0)
