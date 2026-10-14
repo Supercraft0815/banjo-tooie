@@ -1,6 +1,21 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/kern/func_80800000_fxkern.s")
+void func_80800000_fxkern(u8 arg0, u8 arg1, s32 *arg2, s32 *arg3) {
+    typedef struct { u8 first; u8 key; s8 value2; s8 value3; } KernEntry;
+    extern KernEntry D_80800420_fxkern[];
+    s32 key = arg0;
+    s32 i;
+
+    *arg3 = 0;
+    *arg2 = 0;
+    for (i = 0; D_80800420_fxkern[i].first != 0; i++) {
+            if (key == D_80800420_fxkern[i].key && (D_80800420_fxkern[i].first == arg1 || D_80800420_fxkern[i].first == 0x2A)) {
+                *arg2 = D_80800420_fxkern[i].value2;
+                *arg3 = D_80800420_fxkern[i].value3;
+                return;
+            }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/kern/func_80800084_fxkern.s")
 
