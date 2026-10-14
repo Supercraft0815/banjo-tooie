@@ -28,7 +28,19 @@ void func_80800258_bsclimb(void *arg0, f32 arg1, f32 arg2) {
     (*(f32 *)((s8 *)(arg0) + (0x16C))) = (f32) ((func_800DC0C0() * arg2) + arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/func_80800298_bsclimb.s")
+/* extern */
+
+struct player_state_s;
+
+int func_80800298_bsclimb(struct player_state_s *arg0) {
+    f32 func_8009BB0C(void *);
+    f32 mlAbsF(f32);
+    f32 yaw_get(struct player_state_s *);
+    f32 yaw_getIdeal(struct player_state_s *);
+
+    return mlAbsF(func_8009BB0C(arg0)) > 0.0f
+        || yaw_get(arg0) != yaw_getIdeal(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/bsclimb_entrypoint_0.s")
 
