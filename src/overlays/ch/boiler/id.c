@@ -65,7 +65,19 @@ void func_80800468_chboilerid(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_8080084C_chboilerid.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_80800918_chboilerid.s")
+/* extern */
+
+void func_80800918_chboilerid(s16 *arg0, s16 *arg1, s16 *arg2) {
+    f32 _mlwave_entrypoint_4(u8 *, f32, f32, f32);
+    void func_800EE88C(f32 *, s16 *);
+    f32 func_800EEF94(f32 *);
+    f32 sp24[3];
+    f32 height;
+
+    func_800EE88C(sp24, arg0);
+    height = _mlwave_entrypoint_4((u8 *)arg2 + 0x3C, func_800EEF94(sp24), 0.0f, (f32)arg2[0x2E]);
+    arg1[1] = arg0[1] + (s16) height;
+}
 
 void func_80800998_chboilerid(s32 arg0) 
 {
