@@ -5,7 +5,39 @@ s32 func_80092010(void)
 	return 0x118;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092018.s")
+/* extern */
+
+void func_80092018(u8 *arg0) {
+    void func_80019750(f32 *, f32 *, f32, f32 *);
+    s32 func_80019CD4(void);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void mlMtxGet(void *);
+    void mlMtxRotPitch(f32);
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 var_f0;
+    u8 *temp_s0;
+
+    temp_s0 = (*(u8 **)((s8 *)(arg0) + (0x50)));
+    if ((*(u8 *)((s8 *)(temp_s0) + (0xC4))) != 0) {
+        var_f0 = (*(f32 *)((s8 *)(temp_s0) + (0xC8)));
+    } else {
+        var_f0 = (*(f32 *)((s8 *)(temp_s0) + (0x28)));
+    }
+    func_800EFA4C(sp34, *(f32 *)(temp_s0 + 0x20), var_f0, *(f32 *)(temp_s0 + 0x24));
+    temp_s0 = *(u8 **)(arg0 + 0x50);
+    func_800EE780(sp28, (f32 *)(temp_s0 + 0x2C), (f32 *)(temp_s0 + 0x44));
+    func_80019CD4();
+    temp_s0 = *(u8 **)(arg0 + 0x50);
+    func_80019750((f32 *)(temp_s0 + 0x44), sp34, *(f32 *)(temp_s0 + 0x1C), sp28);
+    temp_s0 = *(u8 **)(arg0 + 0x50);
+    if (*(u8 *)(temp_s0 + 0xC4) != 0) {
+        mlMtxRotPitch(*(f32 *)(temp_s0 + 0x28));
+        temp_s0 = *(u8 **)(arg0 + 0x50);
+    }
+    mlMtxGet(temp_s0 + 0xCC);
+}
 
 void func_800920C8(void *arg0) {
     void func_80093504();
