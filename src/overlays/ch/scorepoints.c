@@ -7,7 +7,33 @@ OSThread *chscorepoints_entrypoint_0(void)
     return (OSThread *) D_808003C0_chscorepoints;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/scorepoints/func_8080000C_chscorepoints.s")
+/* extern */
+
+void func_8080000C_chscorepoints(Actor *arg0) {
+    void func_800E6DB4(char *, s32);
+    s32 func_800E7188(u8 *);
+    void func_800E73D4(s8 *);
+    void func_800FC660(u32);
+    u32 *func_80100074(Actor *, u32, u32);
+    void *func_80100094(Actor *, u32);
+    void rare_memcpy(void *, void *, int);
+    char sp28[32];
+    s32 sp24;
+
+    func_800E73D4(sp28);
+    func_800E6DB4(sp28, arg0->actorData[4]);
+    sp24 = func_800E7188(sp28);
+    func_80100074(arg0, 0, sp24 + 1);
+    rare_memcpy(func_80100094(arg0, 0), sp28, sp24 + 1);
+    arg0->unk58 = 0.8f;
+    if (arg0->actorData[5] & 1) {
+        if ((s32)arg0->actorData[4] < 0) {
+            func_800FC660(0xF);
+            return;
+        }
+        func_800FC660(0xE);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/scorepoints/func_808000BC_chscorepoints.s")
 
