@@ -49,7 +49,35 @@ void func_80800024_chfactoryrobot(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80800920_chfactoryrobot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80800DC4_chfactoryrobot.s")
+/* extern */
+
+void func_80800DC4_chfactoryrobot(Actor *arg0) {
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    void func_800C8B84(volatile s32);
+    void *func_80100094(Actor *, u32);
+    u8 *sp2C;
+    s32 temp_a0;
+    s32 var_s1;
+    u8 temp_v0_2;
+    u8 *temp_v0;
+    u8 *var_s0;
+
+    temp_v0 = func_80100094(arg0, 0);
+    var_s1 = 0;
+    var_s0 = temp_v0;
+    sp2C = temp_v0;
+    do {
+        temp_v0_2 = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(var_s0) + (8))));
+        var_s1 += 1;
+        var_s0 += 1;
+        (*(s8 *)((s8 *)(var_s0) + (7))) = temp_v0_2;
+    } while (var_s1 != 2);
+    temp_a0 = (*(s32 *)((s8 *)(sp2C) + (0x14)));
+    if (temp_a0 != 0) {
+        func_800C8B84(temp_a0);
+        (*(s32 *)((s8 *)(sp2C) + (0x14))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80800E40_chfactoryrobot.s")
 
