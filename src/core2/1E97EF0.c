@@ -105,9 +105,9 @@ s32 func_800BEB98(s32 arg0) {
     return D_801285C4[arg0].value != 0 ? 2 : 1;
 }
 
-void func_800BEBD4(s32 arg0) {
+u8 *func_800BEBD4(s32 arg0) {
     u8 *func_800B27A0(u8 *arg0);
-    func_800B27A0(*(u8 **)((u8 *)&D_801285B0 + 0xC + arg0 * 44));
+    return func_800B27A0(*(u8 **)((u8 *)&D_801285B0 + 0xC + arg0 * 44));
 }
 
 s32 func_800BEC10()
@@ -326,7 +326,36 @@ void func_800BF774(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF7E0.s")
+/* extern */
+
+void func_800BF7E0(void) {
+    s32 _rtlight_entrypoint_2(s32, s32, u8 *, s32);
+    s32 _vpmodule_entrypoint_2(s32, s32);
+    s32 func_800BEB64(s32);
+    s32 func_800BEB98(s32);
+    s32 sp20;
+    u8 *sp28;
+    s32 sp24;
+
+    if ((*(s32 *)((s8 *)(&D_801285B0) + (8))) != 0) {
+        sp24 = func_800BEB64(0);
+        sp28 = func_800BEBD4(0);
+        sp20 = func_800BEB98(0);
+        _rtlight_entrypoint_2((*(s32 *)((s8 *)(&D_801285B0) + (8))), sp24, sp28, sp20);
+    }
+    if ((*(s32 *)((s8 *)(&D_801285B0) + (0x34))) != 0) {
+        sp24 = func_800BEB64(1);
+        sp28 = func_800BEBD4(1);
+        sp20 = func_800BEB98(1);
+        _rtlight_entrypoint_2((*(s32 *)((s8 *)(&D_801285B0) + (0x34))), sp24, sp28, sp20);
+    }
+    if ((*(s32 *)((s8 *)(&D_801285B0) + (0x1C))) != 0) {
+        _vpmodule_entrypoint_2((*(s32 *)((s8 *)(&D_801285B0) + (0x1C))), (*(s32 *)((s8 *)(&D_801285B0) + (0x18))));
+    }
+    if ((*(s32 *)((s8 *)(&D_801285B0) + (0x48))) != 0) {
+        _vpmodule_entrypoint_2((*(s32 *)((s8 *)(&D_801285B0) + (0x48))), (*(s32 *)((s8 *)(&D_801285B0) + (0x44))));
+    }
+}
 
 u32 func_800BF8B0(void) {
     extern u8 D_80128627;
