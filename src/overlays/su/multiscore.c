@@ -71,7 +71,33 @@ void func_80800D64_sumultiscore(s32 arg0, s32 arg1, void *arg2) {
     (*(s16 *)((s8 *)(arg2) + (8))) = _badeathmatch_entrypoint_9(func_800F53D0(arg1), sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/func_80800DD0_sumultiscore.s")
+/* extern */
+
+void func_80800DD0_sumultiscore(s32 arg0, s32 arg1, u8 *arg2) {
+    f32 func_800D8FF8();
+    u8 func_800F1418(s32, s32);
+    s32 func_800F1574(u8 *, f32);
+    u8 temp_v0;
+
+    if ((*(f32 *)((s8 *)(arg2) + (0x14))) != 0.0f) {
+        func_800F1574(arg2 + 0x14, func_800D8FF8());
+        if ((*(u8 *)((s8 *)(arg2) + (6))) == 0) {
+            (*(u8 *)((s8 *)(arg2) + (6))) = 1U;
+            (*(u8 *)((s8 *)(arg2) + (5))) = 0U;
+            return;
+        }
+        (*(u8 *)((s8 *)(arg2) + (5))) = func_800F1418((*(u8 *)((s8 *)(arg2) + (5))) + 0x20, 0xFF);
+        return;
+    }
+    if ((*(u8 *)((s8 *)(arg2) + (6))) != 0) {
+        temp_v0 = (*(u8 *)((s8 *)(arg2) + (5)));
+        if ((s32) temp_v0 >= 0x21) {
+            (*(u8 *)((s8 *)(arg2) + (5))) = (u8) (temp_v0 - 0x20);
+            return;
+        }
+        (*(u8 *)((s8 *)(arg2) + (6))) = 0U;
+    }
+}
 
 void func_80800E84_sumultiscore(s32 arg0, s32 arg1, s32 arg2) {
 }
