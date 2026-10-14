@@ -9,7 +9,7 @@ void func_80800000_chgoldstatue(s32 arg0) {
     s32 _sumumbofx_entrypoint_2(s32);
     s32 _sumumbofx_entrypoint_24(s32, s32);
     s32 func_800DA298(s32);
-    s32 func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s32 sp1C;
     s32 temp_v0;
 
@@ -30,7 +30,25 @@ void func_80800094_chgoldstatue(s32 arg0)
     _sumumbofx_entrypoint_1(arg0,1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/statue/func_808000B4_chgoldstatue.s")
+/* extern */
+
+void func_808000B4_chgoldstatue(Actor *arg0, s32 arg1) {
+    s32 _sumumbofx_entrypoint_10(u8 *);
+    s32 _sumumbofx_entrypoint_8(u8 *, s32);
+    void func_800DF5D8(u32, u32, u32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101870(s32, s32);
+    u8 *sp1C;
+    s32 sp18;
+
+    sp1C = func_80100094(arg0, 1);
+    func_80101870(arg0, arg1);
+    if (sp1C != 0) {
+        sp18 = _sumumbofx_entrypoint_10(sp1C);
+        _sumumbofx_entrypoint_8(sp1C, arg1);
+        func_800DF5D8(0xFF, (s32) (((f32) sp18 * 0.5f) + 128.0f), 0xFF, 0xFF);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/statue/func_80800150_chgoldstatue.s")
 
