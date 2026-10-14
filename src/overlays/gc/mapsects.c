@@ -75,7 +75,49 @@ u32 gcmapsects_entrypoint_5(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/func_80801320_gcmapsects.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/func_808013C0_gcmapsects.s")
+void func_808013C0_gcmapsects(void *arg0, s32 arg1)
+{
+  struct section
+  {
+    u8 pad0[0x3C];
+    u8 neighbors[4];
+    u8 pad40[0xC];
+    u32 high : 1;
+    u32 flag : 1;
+    u32 rest : 30;
+    u8 pad50[8];
+  };
+  struct map
+  {
+    u8 pad0[0x68];
+    struct section *sections;
+  };
+  struct section *temp_v0;
+  s32 var_v1;
+  u8 temp_a2;
+  struct section *temp_a3;
+  temp_v0 = 0;
+  var_v1 = 0;
+  if (((struct map *) arg0)->sections[arg1].flag)
+  {
+    do
+    {
+      temp_v0 = *((struct section * volatile *) (((u8 *) arg0) + 0x68));
+      temp_a2 = temp_v0[arg1].neighbors[var_v1];
+      if (temp_a2 == 0xFF)
+      {
+        break;
+      }
+      var_v1 += 1;
+      ;
+      (&temp_v0[temp_a2])->high = 0;
+      if ((!var_v1) && (!var_v1))
+      {
+      }
+    }
+    while (var_v1 != 4);
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_7.s")
 
