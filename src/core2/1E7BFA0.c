@@ -101,7 +101,19 @@ s32 func_800A3040()
     return 0x58;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3048.s")
+f32 func_800A3048(PlayerState *arg0) {
+    s32 func_8008E40C(PlayerState *);
+    s32 func_800D3E40(s32);
+    extern f32 D_801194D0[];
+    extern f32 D_80125560;
+    if (func_800D3E40(7) == 0) {
+        return 1.0f;
+    }
+    if (func_8008E40C(arg0) != 0) {
+        return D_80125560;
+    }
+    return D_801194D0[*(u8 *)((s8 *)*(void **)((s8 *)arg0 + 0xA0) + 0x29)];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A30B4.s")
 

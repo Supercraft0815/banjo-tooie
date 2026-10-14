@@ -316,9 +316,9 @@ s32 func_8008E3E8(PlayerState *arg0) {
 
 /* extern */
 
-s32 func_8008E40C(void) {
-    s32 _bashoes_entrypoint_1();
-    return _bashoes_entrypoint_1() == 4;
+s32 func_8008E40C(PlayerState *arg0) {
+    s32 _bashoes_entrypoint_1(PlayerState *);
+    return _bashoes_entrypoint_1(arg0) == 4;
 }
 
 /* extern */
