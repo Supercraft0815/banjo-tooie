@@ -18,7 +18,23 @@ OSThread *chstarspinnerplanet_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/planet/func_808000E4_chstarspinnerplanet.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/planet/func_80800170_chstarspinnerplanet.s")
+/* extern */
+
+void func_80800170_chstarspinnerplanet(void *arg0) {
+    f32 func_800136E4(f32);
+    f32 func_800D8FF8();
+    s32 func_800DA298(s32);
+    f32 func_800F15F8(f32, f32, s32);
+    f32 sp1C;
+    f32 temp_f0;
+
+    if (func_800DA298(0) != 0) {
+        sp1C = func_800D8FF8();
+        temp_f0 = func_800F15F8((*(f32 *)((s8 *)(arg0) + (0x2C))), 25.0f, 0x3F19999A);
+        (*(f32 *)((s8 *)(arg0) + (0x2C))) = temp_f0;
+        (*(f32 *)((s8 *)(arg0) + (0x48))) = func_800136E4((*(f32 *)((s8 *)(arg0) + (0x48))) - (temp_f0 * sp1C));
+    }
+}
 
 /* extern */
 
