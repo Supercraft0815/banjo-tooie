@@ -1,4 +1,3 @@
 #include "common.h"
 
-void func_80024E80(void) {
-}
+/* This return sequence is emitted by func_80024E70. */

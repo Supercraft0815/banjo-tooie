@@ -827,4 +827,4 @@ void func_80024D90(MusicPlayer *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39CE0/func_80024DD8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39CE0/func_80024E70.s")
+void func_80024E70(register u8 *arg0, register u8 arg1) { arg0[0x88] = arg1; }
