@@ -81,9 +81,9 @@ s32 func_8010FFA8(s16 *arg0) {
 
 /* extern */
 
-void func_8010FFB0(s32 *arg0) {
-    s32 func_800CA8B4(s32);
-    func_800CA8B4(*arg0);
+void func_8010FFB0(s32 *arg0, f32 *arg1, f32 *arg2) {
+    void func_800CA8B4(s32, f32 *, f32 *);
+    func_800CA8B4(*arg0, arg1, arg2);
 }
 
 u32 func_8010FFD0(u8 *arg0) {
@@ -132,7 +132,9 @@ s32 func_80110060(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_80110068.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_801100E4.s")
+/* extern */
+
+void func_801100E4(s32 *arg0, s32 *arg1) { void func_800CA314(s32, s32); void func_80110770(s32, f32 *); void func_80110790(s32, f32 *); void func_80111018(s32, s32); f32 sp2C[3]; f32 sp20[3]; if (arg0 != arg1) { func_800CA314(arg0[0], arg1[0]); if (arg0[1] != 0) { func_8010FFB0(arg1, sp2C, sp20); func_80110770(arg0[1], sp2C); func_80110790(arg0[1], sp20); func_80111018(arg0[1], arg1[1]); } } }
 
 /* extern */
 

@@ -45,9 +45,9 @@ void func_80110730(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void func_80110770(s32 arg0) {
+void func_80110770(s32 arg0, f32 *arg1) {
     void func_800EE7F8();
-    func_800EE7F8(arg0 + 0x74);
+    func_800EE7F8(arg0 + 0x74, arg1);
 }
 
 /* extern */
