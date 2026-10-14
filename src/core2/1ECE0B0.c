@@ -1508,7 +1508,7 @@ void func_800F8418(s32 arg0)
     func_800F4648(D_80135490[arg0]);
 }
 
-void func_800F8444(s32 arg0, u8 *arg1) {
+void func_800F8444(s32 arg0, f32 *arg1) {
     void baroll_setIdeal(PlayerState *, f32);
     void func_8009BF5C(PlayerState *, f32);
     PlayerState *sp1C;

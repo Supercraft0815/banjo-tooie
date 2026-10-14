@@ -133,7 +133,32 @@ loop_1:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dumbwaiterlift/func_808009B8_chdumbwaiterlift.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dumbwaiterlift/func_80800A8C_chdumbwaiterlift.s")
+/* extern */
+
+void func_80800A8C_chdumbwaiterlift(Actor *arg0) {
+    void _capod_entrypoint_11(u32, f32 *);
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_7(s32, s32);
+    void _capod_entrypoint_8(s32);
+    s32 _gcdialogcamera_entrypoint_8();
+    void _subaddieDll_entrypoint_4(Actor *, u32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F8444(s32, f32 *);
+    f32 sp24[3];
+
+    if (!arg0->unk64_20) {
+        func_800EFA4C(sp24, 0.0f, arg0->rotation[1], 0.0f);
+        func_800F8444(func_800F54E4(), sp24);
+        _capod_entrypoint_2(arg0->unk0, 0x1B, 0x10);
+        _capod_entrypoint_8(1);
+        _gcdialogcamera_entrypoint_8();
+        _capod_entrypoint_11(1, sp24);
+        _capod_entrypoint_7(5, 0);
+        _subaddieDll_entrypoint_4(arg0, 1);
+        arg0->unk64_20 = 1;
+    }
+}
 
 void func_80800B40_chdumbwaiterlift(Actor *arg0) {
     void _capod_entrypoint_3(u32);
