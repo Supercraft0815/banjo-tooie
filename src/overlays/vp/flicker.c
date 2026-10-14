@@ -1,6 +1,31 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/flicker/vpflicker_entrypoint_0.s")
+/* extern */
+
+u8 *vpflicker_entrypoint_0(u8 *arg0, u8 *arg1) {
+    void *heap_alloc(s32);
+    u8 *temp_a0;
+    u8 *temp_a1;
+    u8 *var_v1;
+    u8 *temp_v0;
+
+    temp_v0 = heap_alloc(((*(s32 *)((s8 *)(arg0) + (0x14))) * 2) + 8);
+    temp_a0 = arg1 + 0x14;
+    temp_a1 = ((*(s32 *)((s8 *)(arg0) + (0x14))) * 4) + arg1 + 0x14;
+    (*(s32 *)((s8 *)(temp_v0) + (4))) = 0;
+    var_v1 = temp_a0;
+    (*(f32 *)((s8 *)(temp_v0) + (0))) = 1.0f;
+    if (temp_a0 < temp_a1) {
+        do {
+            if ((*(u16 *)((s8 *)(var_v1) + (2))) != 0) {
+                (*(s16 *)((s8 *)((temp_v0 + ((*(s32 *)((s8 *)(temp_v0) + (4))) * 2))) + (8))) = (s16) ((s32) (var_v1 - temp_a0) >> 2);
+                (*(s32 *)((s8 *)(temp_v0) + (4))) = (s32) ((*(s32 *)((s8 *)(temp_v0) + (4))) + 1);
+            }
+            var_v1 += 4;
+        } while (var_v1 < temp_a1);
+    }
+    return temp_v0;
+}
 
 void vpflicker_entrypoint_1(void* arg0) 
 {
