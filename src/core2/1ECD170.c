@@ -68,7 +68,49 @@ s32 func_800F4244(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F4354.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F43A8.s")
+/* extern */
+
+u8 *func_800F43A8(s32 arg0) {
+    void func_800F44DC(void *, s32);
+    s32 func_80098C48(u8 *);
+    s32 func_800F4354(u32);
+    void *heap_alloc(s32);
+    void *heap_realloc(void *, s32);
+    s32 temp_v0;
+    s32 temp_v0_3;
+    s32 temp_v1;
+    s32 temp_v1_2;
+    s32 var_a2;
+    s32 var_a2_2;
+    s32 var_s1;
+    s32 var_s1_2;
+    u32 var_s0;
+    u8 *temp_v0_2;
+    u8 *var_s2;
+
+    var_s1 = 0x19C;
+    var_s2 = heap_alloc(0x19C);
+    for (var_s0 = 0; var_s0 < 0x56U; var_s0++) {
+        temp_v0 = func_800F4354(var_s0);
+        var_s1 += temp_v0 + (temp_v0 % 4 ? 4 - temp_v0 % 4 : 0L);
+        temp_v0_2 = heap_realloc(var_s2, var_s1);
+        var_s2 = temp_v0_2;
+    }
+    bzero(var_s2, var_s1);
+    var_s1_2 = 0x19C;
+    var_s0 = 0;
+    do {
+        *(u8 **)((u32)var_s2 + (var_s0 << 2)) = var_s2 + var_s1_2;
+        temp_v0_3 = func_800F4354(var_s0);
+        var_s1_2 += temp_v0_3 + (temp_v0_3 % 4 ? 4 - temp_v0_3 % 4 : 0L);
+        var_s0 += 1;
+    } while (var_s0 <= 0x55U);
+    (*(s32 *)((s8 *)(var_s2) + (0x180))) = 0;
+    (*(s32 *)((s8 *)(var_s2) + (0x184))) = arg0;
+    func_80098C48(var_s2);
+    func_800F44DC(var_s2, 1);
+    return var_s2;
+}
 
 /* extern */
 
