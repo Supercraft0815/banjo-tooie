@@ -20,7 +20,47 @@ OSThread *changlerboss_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80800B7C_changlerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80800F14_changlerboss.s")
+/* extern */
+
+void func_80800F14_changlerboss(Actor *arg0, s32 arg1) {
+    void func_800DF660(s32, s32, s32, s32);
+    void func_800DF720(s32);
+    void func_800DF744(s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80100AC4(s16);
+    s32 func_801015D0(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    struct AnglerBossRenderData {
+        u8 visibility[0x9C];
+        Unk80132ED0 *unk9C;
+    } *temp_v0, *sp30;
+    s32 sp2C;
+    Unk80132ED0 *temp_a0;
+    s32 var_s0;
+    u8 *var_s1;
+    Actor *child;
+
+    temp_v0 = func_80100094(arg0, 0);
+    sp2C = 0;
+    var_s0 = 1;
+    var_s1 = temp_v0->visibility + 1;
+    sp30 = temp_v0;
+    do {
+        func_800DF744(var_s0, *var_s1);
+        var_s0 += 1;
+        var_s1 += 1;
+    } while (var_s0 != 0x1B);
+    func_801015D0(arg0);
+    temp_a0 = sp30->unk9C;
+    if (temp_a0 != NULL) {
+        child = func_80106790(temp_a0);
+        if (child->unk64_16) {
+            sp2C = *(s32 *)&child->unk54;
+        }
+    }
+    func_800DF660(4, (sp2C & 0xFFFF) | 0x30000, 0, arg0->alpha);
+    func_800DF720(func_80100AC4(*(s16 *)&arg0->pad60));
+}
 
 /* extern */
 
