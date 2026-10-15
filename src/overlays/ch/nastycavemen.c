@@ -78,7 +78,34 @@ int func_80800194_chnastycavemen(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_80800268_chnastycavemen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_808003FC_chnastycavemen.s")
+/* extern */
+
+void func_808003FC_chnastycavemen(Actor *arg0) {
+    void _glcutDll_entrypoint_17(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80105230();
+    void func_80105834(Actor *);
+    s32 func_80105A5C(Actor *);
+    void func_80105BAC(Actor *);
+    void func_80800268_chnastycavemen(Actor *, s32, s32);
+    f32 *data;
+
+    data = func_80100094(arg0, 0);
+    func_800EE7F8(arg0->position, data + 6);
+    func_800EE7F8(arg0->rotation, data + 9);
+    func_80105BAC(arg0);
+    func_80105230(arg0, 0);
+    func_80105834(arg0);
+    func_800EE7F8(data + 6, arg0->position);
+    func_800EE7F8(data + 9, arg0->rotation);
+    func_800EE7F8(arg0->position, data);
+    func_800EE7F8(arg0->rotation, data + 3);
+    if (func_80105A5C(arg0) != 0) {
+        func_80800268_chnastycavemen(arg0, 6, 1);
+        _glcutDll_entrypoint_17();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_808004C4_chnastycavemen.s")
 
