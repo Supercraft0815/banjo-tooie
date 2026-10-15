@@ -287,6 +287,20 @@ s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EB210.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EB2DC.s")
+/* extern */
+
+void func_800EB2DC(void *arg0, s32 arg1, s32 arg2) {
+    struct Flags { u32 pad[10]; unsigned int :22; unsigned int enabled:1; unsigned int :9; };
+    s32 func_800EB15C(void *);
+    void *func_800EC3C4(void *);
+    void *temp_v0;
+
+    if ((func_800EB15C(arg0) != 0) && ((struct Flags *)arg0)->enabled) {
+        temp_v0 = func_800EC3C4(arg0);
+        if ((arg0 != NULL) && ((*(s32 (**)(void *, s32, s32))((s8 *)(temp_v0) + (0xC))) != NULL)) {
+            (*(s32 (**)(void *, s32, s32))((s8 *)(temp_v0) + (0xC)))(arg0, arg1, arg2);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EB350.s")

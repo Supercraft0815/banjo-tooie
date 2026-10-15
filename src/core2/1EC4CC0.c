@@ -485,8 +485,8 @@ void func_800EC398(s32 *arg0, f32 *arg1) {
     func_800EE88C(arg1, *arg0 + 4);
 }
 
-void func_800EC3C4(void *arg0) {
-    (*(s32 (**)())((s8 *)(arg0) + (8)))();
+void *func_800EC3C4(void *arg0) {
+    return (*(void *(**)())((s8 *)(arg0) + (8)))();
 }
 
 /* extern */
