@@ -53,7 +53,33 @@ int func_800F0130(s32 vec2[3], s32 distance, s32 vec1[3])
     return (diff[0] * diff[0] + diff[2] * diff[2]) < distance * distance;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F018C.s")
+void func_800F018C(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    f32 func_800EEFD4(f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFA20(f32 *, f32 *, f32);
+    void func_800EFB24(f32 *, f32 *, f32 *);
+    extern f32 D_80125EB0;
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 temp_f0;
+    f32 temp_f2;
+
+    func_800EFB24(sp34, arg2, arg1);
+    temp_f0 = func_800EEFD4(sp34);
+    if (temp_f0 < D_80125EB0) {
+        func_800EE7F8(arg0, arg1);
+        return;
+    }
+    temp_f2 = 1.0f / sqrtf(temp_f0);
+    sp34[0] *= temp_f2;
+    sp34[1] *= temp_f2;
+    sp34[2] *= temp_f2;
+    func_800EFB24(sp28, arg3, arg1);
+    func_800EFA20(arg0, sp34, func_800EEAA4(sp28, sp34));
+    func_800EF04C(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F0274.s")
 
