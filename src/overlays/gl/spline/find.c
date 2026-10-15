@@ -58,4 +58,45 @@ s32 glsplinefind_entrypoint_3(f32 arg0[3]) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/spline/find/glsplinefind_entrypoint_4.s")
+/* extern */
+
+s32 glsplinefind_entrypoint_4(s32 arg0[3], s32 arg1[3]) {
+    void *func_8001B798(s16);
+    void *func_800D7400(void);
+    void func_800EE84C(f32 *, s32 *);
+    int func_800EECE0(f32 a[3], f32 b[3]);
+    s32 var_s1;
+    s32 var_s5;
+    s32 var_s6;
+    f32 sp58[3];
+    f32 sp4C[3];
+    u8 temp_s2;
+    u8 *temp_s7;
+    f32 *var_s0;
+
+    temp_s7 = func_800D7400();
+    func_800EE84C(sp58, arg0);
+    func_800EE84C(sp4C, arg1);
+    var_s6 = 0;
+    var_s5 = 0;
+    if (*(s32 *)(temp_s7 + 0x188) > 0) {
+        do {
+            var_s0 = func_8001B798(*(s16 *)((u8 *)func_8001B798(*(s16 *)(temp_s7 + 0x184)) + var_s5));
+            var_s1 = 0;
+            temp_s2 = ((u8 *)var_s0)[2];
+            var_s0 = (f32 *)((u8 *)var_s0 + 0x14);
+            if (temp_s2 > 0) {
+                do {
+                    if (func_800EECE0(sp58, var_s0) != 0 && func_800EECE0(sp4C, var_s0 + 3) != 0) {
+                        return var_s6;
+                    }
+                    var_s1++;
+                    var_s0 += 3;
+                } while (var_s1 != temp_s2);
+            }
+            var_s6++;
+            var_s5 += 2;
+        } while (var_s6 < *(s32 *)(temp_s7 + 0x188));
+    }
+    return -1;
+}
