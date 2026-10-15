@@ -261,7 +261,32 @@ f32 func_80103FB8(Actor *arg0) {
     return (f32) (u32) (u16) arg0->pad68 * arg0->scale;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80104004.s")
+/* extern */
+
+s32 func_80104004(Actor *arg0, f32 *arg1, f32 *arg2) {
+    void func_800B2198(void *, void *, void *);
+    s32 func_800B2840(s32);
+    s32 func_800D62E4(s32);
+    void func_800EE84C(f32 *, s32 *);
+    void func_800EF334(f32 *, f32);
+    s32 func_801039E4(Unk80132ED0 *);
+    s32 sp2C[3];
+    s32 sp20[3];
+    s32 vertices;
+    s32 temp_v0;
+
+    if ((temp_v0 = func_801039E4(arg0->unk0)) == 0) {
+        return 0;
+    }
+    (void)func_800D62E4(arg0->unk0->unk14);
+    vertices = func_800B2840(temp_v0);
+    func_800B2198((void *)vertices, sp2C, sp20);
+    func_800EE84C(arg1, sp2C);
+    func_800EE84C(arg2, sp20);
+    func_800EF334(arg1, arg0->scale);
+    func_800EF334(arg2, arg0->scale);
+    return 1;
+}
 
 /* extern */
 
