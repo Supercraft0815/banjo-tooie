@@ -67,7 +67,45 @@ s16 *func_800B3C40(u8 **arg0, s32 arg1, s32 arg2) { u8 *data; s32 old_count; s32
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B3FD0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B4134.s")
+/* extern */
+
+s32 func_800B4134(u8 **arg0, void *arg1) {
+    s32 aligned4_memcpy(void *, void *, s32);
+    s32 sp34[5];
+    s16 *temp_v0;
+    s16 *var_s0;
+    s16 *var_s4;
+    s16 temp_a1;
+    s32 var_s1;
+    u8 *temp_s2;
+
+    temp_s2 = *arg0;
+    var_s4 = NULL;
+    var_s1 = 0;
+    var_s0 = temp_s2 + 4;
+    if ((*(s16 *)((s8 *)(temp_s2) + (4))) != 0) {
+loop_1:
+        if ((*(s16 *)((s8 *)(arg1) + (0))) == ((*(s16 *)((s8 *)(var_s0) + (2))) + var_s1)) {
+            *var_s4 = (*(s16 *)((s8 *)(var_s0) + (0)));
+            sp34[0] = (s32) (*(s16 *)((s8 *)(var_s0) + (2)));
+            aligned4_memcpy(var_s0, func_800B39D0(temp_s2, (*(s16 *)((s8 *)(arg1) + (0)))), (*(s16 *)((s8 *)(temp_s2) + (0))) * (*(s16 *)((s8 *)(arg1) + (2))));
+            (*(s16 *)((s8 *)(arg1) + (0))) = var_s1;
+            func_800B3B08(temp_s2, (*(s16 *)((s8 *)(arg1) + (2))) + (*(s16 *)((s8 *)(arg1) + (0))), sp34[0]);
+            return 1;
+        }
+        temp_a1 = (*(s16 *)((s8 *)(var_s0) + (0)));
+        var_s4 = var_s0;
+        var_s1 = temp_a1;
+        temp_v0 = func_800B39D0(temp_s2, temp_a1);
+        var_s0 = temp_v0;
+        if (*temp_v0 == 0) {
+            goto block_4;
+        }
+        goto loop_1;
+    }
+block_4:
+    return 0;
+}
 
 void func_800B422C(u8 **arg0, s16 *arg1) { u8 *data; s32 count; data = *arg0; count = arg1[0]; if (count != 0) { func_800B3B08(data, count, arg1[1]); func_800B3EDC(arg0, 0xA); arg1[1] = 0; arg1[0] = arg1[1]; } }
 
