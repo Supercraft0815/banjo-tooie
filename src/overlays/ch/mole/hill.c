@@ -17,7 +17,37 @@ s32 func_80800000_chmolehill(u8 *arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/func_80800088_chmolehill.s")
+/* extern */
+
+void func_80800088_chmolehill(u8 *arg0) {
+    f32 func_80013728(f32);
+    void func_8008F964(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800F1DCC(f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void func_8010D254(f32 *);
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp24;
+    f32 var_f2;
+
+    if (((Actor *)arg0)->unk64_20) {
+        func_8010D254(sp28);
+        sp24 = func_800F1DF4(((Actor *)arg0)->position, sp28);
+        var_f2 = func_80013728(func_800F1DCC(sp24, ((Actor *)arg0)->rotation[1] + 15.0f));
+        if (var_f2 < -15.0f) {
+            var_f2 = -15.0f;
+        }
+        if (var_f2 > 15.0f) {
+            var_f2 = 15.0f;
+        }
+        sp24 -= var_f2;
+        func_800EE7F8(sp34, ((Actor *)arg0)->position);
+        func_800EF1B8(sp34, sp24, 150.0f);
+        func_8008F964(sp34);
+    }
+}
 
 void func_80800160_chmolehill(u8 *arg0) {
     typedef struct { s32 values[5]; } AnimationTimes;
@@ -32,7 +62,7 @@ void func_80800160_chmolehill(u8 *arg0) {
     s32 func_801022E4(u8 *);
     s32 func_80104248(u8 *);
     s32 func_80800000_chmolehill(u8 *);
-    s32 func_80800088_chmolehill(u8 *);
+    void func_80800088_chmolehill(u8 *);
     extern s32 D_80800AC0_chmolehill;
     extern s32 D_80800ACC_chmolehill;
     extern s32 D_80800ADC_chmolehill;
