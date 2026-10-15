@@ -61,7 +61,7 @@ typedef struct {
 } MoveData;
 void _sumole_entrypoint_0(Actor*, u32);
 void sumole_entrypoint_2(Actor*, s32);
-void _sumole_entrypoint_3(Actor*, u32, u32, MoveData*);
+s32 _sumole_entrypoint_3(Actor*, u32, u32, MoveData*);
 void _sumole_entrypoint_4(Actor*, MoveData*);
 s32 sumole_entrypoint_5(Actor*, s32, AllowedTransformation, s32);
 void sumole_entrypoint_7(Actor*);
