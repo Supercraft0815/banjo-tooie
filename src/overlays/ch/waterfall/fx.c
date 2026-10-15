@@ -78,7 +78,27 @@ void func_8080000C_chwaterfallfx(Actor *arg0) {
     arg0->unk50 = ((struct WaterfallData *)arg0->actorData)->count * 1.5f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waterfall/fx/func_80800148_chwaterfallfx.s")
+void func_80800148_chwaterfallfx(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_5(s32, s32, s32, s32, s32 *);
+    void func_800C3058(u8, s32);
+    s32 func_808001F8_chwaterfallfx(Actor *);
+    extern s32 D_80800458_chwaterfallfx;
+    u8 temp_a0;
+
+    _subaddieaudioloop_entrypoint_5((s32)arg0, (s32)arg0->position, 1, 0xC80, &D_80800458_chwaterfallfx);
+    temp_a0 = arg0->unk5F;
+    if (temp_a0 != 0) {
+        if (!arg0->unk64_19) {
+            func_800C3058(temp_a0, 0x2AF8);
+            arg0->unk64_19 = 1;
+        }
+    } else {
+        arg0->unk64_19 = 0;
+    }
+    if (!arg0->unk64_20) {
+        func_808001F8_chwaterfallfx(arg0);
+    }
+}
 
 s32 func_808001E4_chwaterfallfx(s32 arg0, s32 arg1, s32 arg2) 
 {
