@@ -134,7 +134,38 @@ int func_8010072C(s32 *arg0, u8 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100938.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_801009C4.s")
+void func_801009C4(void **arg0, s32 arg1) {
+    void freelist_erase(FreeList *, s32);
+    void freelist_free(FreeList *);
+    s32 freelist_used_count(FreeList *);
+    void func_800B23E0(void *);
+    void func_80100938(s32);
+    extern FreeList *D_80135A60;
+    void **var_s1;
+    void *temp_a0;
+    s32 var_s0;
+    struct EntryBits { void *lists[2]; u32 index : 8; u32 used : 8; u32 padding : 16; };
+
+    var_s0 = 0;
+    var_s1 = arg0;
+    do {
+        temp_a0 = *var_s1;
+        if (temp_a0 != 0) {
+            func_800B23E0(temp_a0);
+        }
+        var_s0 += 4;
+        var_s1++;
+    } while (var_s0 != 8);
+    if (((struct EntryBits *)arg0)->index != 0) {
+        func_80100938(((struct EntryBits *)arg0)->index);
+    }
+    (*(s8 *)((s8 *)(arg0) + (9))) = 0;
+    freelist_erase(D_80135A60, arg1);
+    if (freelist_used_count(D_80135A60) == 0) {
+        freelist_free(D_80135A60);
+        D_80135A60 = 0;
+    }
+}
 
 s32 func_80100A74(s16 arg0, s32 arg1) { extern FreeList *D_80135A60; void *freelist_at(FreeList *, s32); s32 var_v1; u8 *temp_v0;
     temp_v0 = freelist_at(D_80135A60, arg0); if (temp_v0[9] != 0) { var_v1 = ((s32 *)temp_v0)[arg1]; } else { var_v1 = 0; } return var_v1; }
