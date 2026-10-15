@@ -30,7 +30,21 @@ void func_808005B4_chevilspirit(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80800A4C_chevilspirit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80800BFC_chevilspirit.s")
+void func_80800BFC_chevilspirit(Actor *arg0, Gfx **arg1, s32 *arg2, s16 *arg3, u8 *arg4) {
+    s32 x;
+    s32 y;
+    s32 alpha;
+
+    x = (arg2[0] + arg3[0]) & 0xFFFC;
+    y = (arg2[1] + arg3[1]) & 0xFFFC;
+    gDPPipeSync((*arg1)++);
+    alpha = (arg4[3] * arg0->alpha) >> 8;
+    gDPSetFogColor((*arg1)++, arg4[0] >> 2, arg4[1] >> 2, arg4[2] >> 2, (alpha >> 1) + (alpha >> 2));
+    gSPTextureRectangle((*arg1)++, x - 8, y - 8, x + 8, y + 8, 0, 0, 0, 256, 256);
+    gDPPipeSync((*arg1)++);
+    gDPSetFogColor((*arg1)++, arg4[0], arg4[1], arg4[2], alpha);
+    gSPTextureRectangle((*arg1)++, x - 4, y - 4, x + 4, y + 4, 0, 0, 0, 256, 256);
+}
 
 void func_80800E20_chevilspirit(Actor *arg0, Gfx **arg1, s32 *arg2)
 {
