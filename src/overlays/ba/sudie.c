@@ -60,7 +60,26 @@ void basudie_entrypoint_6(s32 arg0) {
     func_800951B4(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sudie/basudie_entrypoint_7.s")
+/* extern */
+
+int basudie_entrypoint_7(struct player_state_s *arg0) {
+    f32 _batimer_get(void *, s32);
+    f32 func_80096364(struct player_state_s *);
+    f32 func_800964DC(struct player_state_s *);
+    s32 func_80096544(struct player_state_s *);
+    f32 func_8009C150(struct player_state_s *);
+    s32 player_inWater(struct player_state_s *);
+    f32 sp24;
+    f32 sp20;
+
+    sp24 = func_800964DC(arg0);
+    sp20 = func_80096364(arg0);
+    return _batimer_get(arg0, 9) != 0.0f
+        && func_80096544(arg0) != 0
+        && player_inWater(arg0) != 0
+        && func_8009C150(arg0) < sp24 - 150.0f
+        && sp24 - sp20 > 100.0f;
+}
 
 /* extern */
 
