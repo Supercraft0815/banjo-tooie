@@ -106,7 +106,49 @@ void func_808001C8_sucoasterhit(Unk80132ED0 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/hit/func_80800294_sucoasterhit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/hit/func_80800870_sucoasterhit.s")
+void func_80800870_sucoasterhit(Actor *arg0, Actor *arg1, s32 arg2, s32 arg3) {
+    void *_sucoasterdata_entrypoint_1(u32);
+    s32 func_800C2FDC(u8);
+    void func_800C301C(u8, s32);
+    void func_800C3058(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C3BDC(u8);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    f32 func_800DC178(f32, f32);
+    extern s32 D_80800CDC_sucoasterhit;
+    struct SoundData {
+        s16 pad[2];
+        s16 id;
+        s16 rate;
+        s16 volume;
+    };
+    u8 *data;
+    f32 volume;
+
+    data = _sucoasterdata_entrypoint_1(arg1->actorData[0] >> 28);
+    if (((struct SoundData *)((u32)data + (arg2 << 3)))->id != 0) {
+        if (arg3 != 0) {
+            if (arg0->unk5F == 0) {
+                arg0->unk5F = func_800C4350(arg0->unk5F, arg0->position, &D_80800CDC_sucoasterhit);
+                volume = func_800DC178(-0.05f, 0.05f);
+                arg1 = (Actor *)((u32)data + (arg2 << 3));
+                volume += ((struct SoundData *)arg1)->volume * 0.00390625f;
+                func_800C301C(arg0->unk5F, ((struct SoundData *)arg1)->id);
+                func_800C3058(arg0->unk5F, ((struct SoundData *)arg1)->rate);
+                func_800C31DC(arg0->unk5F, volume);
+            }
+            if (arg0->unk5F != 0) {
+                func_800C4350(arg0->unk5F, arg0->position, NULL);
+                func_800C3BDC(arg0->unk5F);
+            }
+        } else {
+            if (arg0->unk5F != 0) {
+                func_800C2FDC(arg0->unk5F);
+                arg0->unk5F = 0;
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/hit/sucoasterhit_entrypoint_1.s")
 
