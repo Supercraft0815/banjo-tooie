@@ -169,7 +169,35 @@ s32 func_800178C4(s32 arg0, s32 arg1, f32 arg2)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_80017D74.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_80017EC0.s")
+void func_80017EC0(s32 arg0) {
+    int func_80017778(s32);
+    u8 *func_80017810(s32);
+    u32 func_800260B0(void *);
+    void func_80026330(u8 *, s32);
+    extern u8 D_8007AEA0[];
+    extern s32 D_8007AEB8[];
+    u8 *player;
+    s32 current;
+
+    player = func_80017810(arg0);
+    if (player != NULL && *(s32 *)(player + 0x18) != 0 &&
+        D_8007AEB8[arg0] != 0 && !func_80017778(arg0)) {
+        current = func_800260B0(player);
+        if (current == (*(s32 *)(D_8007AEA0 + arg0 * 4))) {
+            D_8007AEB8[arg0] = 0;
+            return;
+        }
+        if (D_8007AEB8[arg0] + current < (*(s32 *)(D_8007AEA0 + arg0 * 4))) {
+            current = (*(s32 *)(D_8007AEA0 + arg0 * 4)) < D_8007AEB8[arg0] + current ? (*(s32 *)(D_8007AEA0 + arg0 * 4)) : D_8007AEB8[arg0] + current;
+        } else if ((*(s32 *)(D_8007AEA0 + arg0 * 4)) < current - D_8007AEB8[arg0]) {
+            current = current - D_8007AEB8[arg0] < (*(s32 *)(D_8007AEA0 + arg0 * 4)) ? (*(s32 *)(D_8007AEA0 + arg0 * 4)) : current - D_8007AEB8[arg0];
+        } else {
+            D_8007AEB8[arg0] = 0;
+            current = (*(s32 *)(D_8007AEA0 + arg0 * 4));
+        }
+        func_80026330(player, current);
+    }
+}
 
 void func_80017FC0(s32 arg0) {
     void func_80016934(s32);
