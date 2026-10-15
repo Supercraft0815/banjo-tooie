@@ -154,7 +154,30 @@ void func_80800928_bsbanshack()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_80800948_bsbanshack.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_808009E4_bsbanshack.s")
+/* extern */
+
+void func_808009E4_bsbanshack(PlayerState *arg0) {
+    int baanim_isAt(PlayerState *, f32);
+    int bastick_getZone(PlayerState *);
+    s32 bs_setState(PlayerState *, s32);
+    s32 func_8009BCD4(PlayerState *, f32);
+    void func_8009DF18(PlayerState *, s32, f32, s32);
+    void func_800A2CE8(PlayerState *, f32, s32);
+    f32 func_800DC0C0(void);
+    s32 sp24;
+
+    sp24 = 0;
+    func_80800100_bsbanshack();
+    func_800A2CE8(arg0, 0.25f, 4);
+    func_800A2CE8(arg0, 0.75f, 3);
+    if (baanim_isAt(arg0, 0.51f) != 0) {
+        func_8009DF18(arg0, func_800DC0C0() < 0.5f ? 0x58A : 0x58B, 1.0f, 0x1388);
+    }
+    if ((bastick_getZone(arg0) == 0) && (func_8009BCD4(arg0, 3.0f) != 0)) {
+        sp24 = 0x16C;
+    }
+    bs_setState(arg0, func_80800000_bsbanshack(arg0, sp24));
+}
 
 s32 bsbanshack_entrypoint_3(s32 arg0) {
     extern s32 D_80800CE0_bsbanshack[];
