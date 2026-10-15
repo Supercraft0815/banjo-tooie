@@ -51,4 +51,22 @@ void fxdialog_entrypoint_3(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
     func_800DF944(arg0, &B_80800290_fxdialog, (f32) arg2 * 90.0f, (*(f32 *)((s8 *)(&B_80800290_fxdialog) + (0x10))), sp40, 0, func_800D674C(0x9F1));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/dialog/fxdialog_entrypoint_4.s")
+void fxdialog_entrypoint_4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4, s32 arg5, s32 arg6) {
+    s32 func_800D674C(s32);
+    void func_800E2554(f32, f32);
+    void func_800E257C(s32);
+    s32 func_800E30E0(s32, s32, s32, s32 *);
+    extern s32 B_80800290_fxdialog;
+    extern f32 B_808002A0_fxdialog;
+    s32 sp28[2];
+    f32 var_f12;
+    f32 sp20;
+
+    var_f12 = arg6 != 0 ? -B_808002A0_fxdialog : B_808002A0_fxdialog;
+    sp20 = B_808002A0_fxdialog;
+    func_800E2554(var_f12, sp20);
+    func_800E257C(arg5);
+    sp28[0] = (s32) ((f32) (*(s32 *)((s8 *)(&B_80800290_fxdialog) + (8))) + (arg3 * 4.0f * var_f12));
+    sp28[1] = (s32) ((f32) (*(s32 *)((s8 *)(&B_80800290_fxdialog) + (0xC))) + (arg4 * 4.0f * sp20));
+    func_800E30E0(arg0, func_800D674C(arg1), arg2, sp28);
+}
