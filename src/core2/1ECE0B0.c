@@ -1164,7 +1164,27 @@ void func_800F739C(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F73C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F759C.s")
+void func_800F759C(s32 arg0) {
+    s32 func_800A91F4(s32);
+    s32 func_800F3880(PlayerState *);
+    s32 func_80101238(s32, s32);
+    extern u8 D_801354B0[];
+    extern u8 D_801354D9;
+    PlayerState **sp24[1];
+    PlayerState *player;
+
+    if (D_801354D9 != 0) {
+        func_800F82C0(arg0);
+        return;
+    }
+    func_80101238(0xB5, arg0);
+    player = D_80135490[arg0];
+    sp24[0] = &D_80135490[arg0];
+    func_800F3880(player);
+    func_800A91F4(arg0);
+    *sp24[0] = NULL;
+    D_801354B0[arg0] = 0;
+}
 
 void func_800F7620(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     void _bamotor_entrypoint_1(PlayerState *, f32, f32, f32);
