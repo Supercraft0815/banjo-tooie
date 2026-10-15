@@ -53,4 +53,28 @@ void func_8080034C_chgruntyfireballbig(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/grunty/fireballbig/func_808004C4_chgruntyfireballbig.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/grunty/fireballbig/func_80800590_chgruntyfireballbig.s")
+/* extern */
+
+void func_80800590_chgruntyfireballbig(Actor *arg0) {
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800EEBF0(f32 *, f32 *, f32);
+    f32 func_800EEF94(f32 *);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6438(u32);
+    f32 sp3C[3];
+    f32 sp34[2];
+    f32 distance;
+
+    if (!arg0->unk64_20 && func_800F6438(arg0->unk6C_0)) {
+        func_800F5A00(arg0->unk6C_0, sp3C);
+        sp3C[1] += 50.0f;
+        distance = func_800EEB40(arg0->position, sp3C);
+        if (distance < (((f32 *)arg0->actorData)[0] * ((f32 *)arg0->actorData)[0])) {
+            arg0->unk64_20 = 1;
+            return;
+        }
+        func_800F18FC(arg0->position, sp3C, sp34);
+        func_800EEBF0((f32 *)&arg0->actorData[4], sp34, func_800EEF94((f32 *)&arg0->actorData[4]));
+    }
+}
