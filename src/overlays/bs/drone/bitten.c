@@ -43,7 +43,21 @@ void bsdronebitten_entrypoint_2()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bitten/bsdronebitten_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bitten/bsdronebitten_entrypoint_4.s")
+f32 bsdronebitten_entrypoint_4(void *arg0, f32 arg1) {
+    f32 temp_f2;
+    u8 temp_v0;
+
+    temp_v0 = *((u8 *)arg0 + 0x191);
+    switch (temp_v0) {
+    case 1:
+        return arg1;
+    case 2:
+        temp_f2 = 1.0f - arg1;
+        return 1.0f - temp_f2 * temp_f2;
+    default:
+        return arg1;
+    }
+}
 
 void bsdronebitten_entrypoint_5(void *arg0, void *arg1, f32 arg2)
 {
