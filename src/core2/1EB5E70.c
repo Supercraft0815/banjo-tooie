@@ -662,7 +662,7 @@ void func_800DF7DC(s32 arg0)
     D_8012C95C = arg0;
 }
 
-void func_800DF7E8(s8 arg0) {
+void func_800DF7E8(u8 arg0) {
     extern s8 D_8012C96C;
     D_8012C96C = arg0;
 }
