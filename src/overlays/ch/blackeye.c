@@ -12,7 +12,33 @@ void func_80800000_chblackeye(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_8080003C_chblackeye.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_80800128_chblackeye.s")
+void func_80800128_chblackeye(Actor *arg0, s32 arg1) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800D0B68(u32, u32);
+    s32 func_800DA9E4(s32, s32);
+    s32 func_800DC128(s32, s32);
+    extern f32 D_80800EAC_chblackeye;
+    s16 var_a1;
+    s32 sp28;
+
+    sp28 = 4;
+    if (func_800DA9E4(0xE4, 1) == 0) {
+        var_a1 = 0x100C;
+        sp28 = 0xC;
+    } else if ((arg1 != 0) && (func_800D0B68(0x19, 7) == 0)) {
+        var_a1 = arg0->unk6C_0 + 0x1010;
+        sp28 = 0xC;
+        if (arg0->unk6C_0 < 2U) {
+            arg0->unk6C_0++;
+        } else {
+            arg0->unk6C_0 = 0;
+        }
+    } else {
+        var_a1 = func_800DC128(0x100D, 0x1010);
+    }
+    _subaddiedialog_entrypoint_11(arg0->unk0, var_a1, sp28, &D_80800EAC_chblackeye, 0x6E);
+    arg0->unk74_30 = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_80800224_chblackeye.s")
 
