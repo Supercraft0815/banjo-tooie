@@ -12,7 +12,37 @@ void func_8080000C_chkingjinjobits(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjobits/func_80800014_chkingjinjobits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjobits/func_8080029C_chkingjinjobits.s")
+/* extern */
+
+s32 func_8080029C_chkingjinjobits(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_800EA05C(void);
+    s32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    void func_800FFAB0(Actor *);
+    void func_80800354_chkingjinjobits(Actor *);
+    void func_80800744_chkingjinjobits(Actor *, s16, s16);
+
+    switch (arg1) {
+        case 0x95:
+            func_80800354_chkingjinjobits(arg0);
+            break;
+        case 0x2E:
+            func_80800744_chkingjinjobits(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x32:
+            arg0->unk64_20 = 1;
+            func_800F82D4(func_800F54E4(), 1);
+            break;
+        case 0xB:
+            if (func_800EA05C() == 0x14F) {
+                func_800FFAB0(arg0);
+            }
+            return 3;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800354_chkingjinjobits(Actor *arg0) {
     s32 _capod_entrypoint_13(s32, s32, s32, s32);
