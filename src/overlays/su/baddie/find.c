@@ -2,7 +2,38 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/find/subaddiefind_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/find/subaddiefind_entrypoint_1.s")
+/* extern */
+
+Actor *subaddiefind_entrypoint_1(Actor *arg0, s32 arg1, s32 arg2, f32 *arg3) {
+    f32 func_800EEAD4(f32 *, f32 *);
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    f32 temp_f0;
+    f32 var_f20;
+    Actor *var_s0;
+    s32 sp48;
+    Actor *var_s5;
+
+    var_s5 = NULL;
+    var_f20 = 1e10f;
+    var_s0 = (Actor *)func_801067C4(&sp48);
+    if (var_s0 != NULL) {
+        do {
+            if (((arg1 == var_s0->unk6C_9) || (arg1 < 0)) && (arg2 != var_s0->unk70_10) && (0x215 != var_s0->unk6C_9) && (0x243 != var_s0->unk6C_9) && !var_s0->unk64_17 && (var_s0->unk0 != arg0->unk0)) {
+                temp_f0 = func_800EEAD4(arg0->position, var_s0->position);
+                if (temp_f0 < var_f20) {
+                    var_f20 = temp_f0;
+                    var_s5 = var_s0;
+                }
+            }
+            var_s0 = (Actor *)func_8010682C(&sp48);
+                } while (var_s0 != NULL);
+    }
+    if (arg3 != NULL) {
+        *arg3 = var_f20;
+    }
+    return var_s5;
+}
 
 /* extern */
 
