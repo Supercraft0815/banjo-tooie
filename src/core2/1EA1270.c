@@ -71,12 +71,32 @@ f32 func_800C7B7C(Unk800C7A68 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C7E28.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C7FD4.s")
+/* extern */
+
+f32 func_800C7FD4(u8 *arg0, f32 arg1, f32 arg2) {
+    f32 _glintrosyncDll_entrypoint_5(void);
+    f32 _mlspline_entrypoint_13(s16, u8 *, f32, f32, f32, s32 *);
+    s32 func_800C7980();
+    f32 func_800C7E28(void *);
+    f32 func_800D8FF8(void);
+    f32 sp2C;
+    f32 sp30;
+    f32 var_f0;
+
+    if ((*(u8 *)((s8 *)(arg0) + (4))) != 0) {
+        var_f0 = _glintrosyncDll_entrypoint_5();
+    } else {
+        var_f0 = func_800D8FF8();
+    }
+    sp2C = var_f0;
+    sp30 = func_800C7E28(arg0);
+    return _mlspline_entrypoint_13((*(u8 *)((s8 *)(arg0) + (2))), arg0 + 0x14, arg1, var_f0 * arg2, sp30, func_800C7980(arg0));
+}
 
 /* extern */
 
-f32 func_800C8070(s32 arg0, f32 arg1, f32 arg2, s32 *arg3) {
-    f32 func_800C7FD4(s32, f32, f32);
+f32 func_800C8070(u8 *arg0, f32 arg1, f32 arg2, s32 *arg3) {
+    f32 func_800C7FD4(u8 *, f32, f32);
     f32 temp_f0;
     f32 temp_f2;
 
