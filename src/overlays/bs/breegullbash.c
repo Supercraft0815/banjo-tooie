@@ -19,7 +19,19 @@ void func_80800000_bsbreegullbash(struct player_state_s *arg0, f32 arg1, f32 arg
     _badust_entrypoint_2(arg0, sp20, sp2C, 0.1f, 0.8f, 0.7f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/breegullbash/func_808000A4_bsbreegullbash.s")
+/* extern */
+
+void func_808000A4_bsbreegullbash(struct player_state_s *arg0) {
+    f32 func_800136E4(f32);
+    f32 var_f20;
+
+    for (var_f20 = 0.0f; var_f20 < 359.0f; var_f20 += 60.0f) {
+        func_80800000_bsbreegullbash(arg0, var_f20, 730.0f, 100.0f);
+    }
+    for (var_f20 = 0.0f; var_f20 < 359.0f; var_f20 += 60.0f) {
+        func_80800000_bsbreegullbash(arg0, func_800136E4(var_f20 + 30.0f), 430.0f, 40.0f);
+    }
+}
 
 void func_808001B4_bsbreegullbash(s32 arg0)
 {
