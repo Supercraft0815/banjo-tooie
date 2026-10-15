@@ -42,6 +42,29 @@ void chshockjump_entrypoint_2(void) {
     _subaddieaudioquick_entrypoint_2(sp24, sp24 + 4, &D_80800340_chshockjump);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/shockjump/func_80800148_chshockjump.s")
+/* extern */
+
+void func_80800148_chshockjump(Actor *arg0, s32 arg1) {
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    void _subaddiefade_entrypoint_8(Actor *, s32);
+    int func_800C6E38(s32);
+    f32 func_800F15F8(f32, f32, f32);
+    s32 func_800F54E4();
+    s32 func_800F64A4(s32, s32);
+    s32 func_80101870(void *, s32);
+    s32 var_a0;
+    s32 sp18;
+    s32 var_a1;
+
+    sp18 = _subaddiefade_entrypoint_0(arg0);
+    var_a0 = arg0->unk6C_9 == 0x210 ? 0xD : 9;
+    if ((func_800C6E38(var_a0) != 0) && (func_800F64A4(func_800F54E4(), 0x401) != 0)) {
+        var_a1 = (s32) func_800F15F8((f32) sp18, 255.0f, 5.0f);
+    } else {
+        var_a1 = (s32) func_800F15F8((f32) sp18, 90.0f, 5.0f);
+    }
+    _subaddiefade_entrypoint_8(arg0, var_a1);
+    func_80101870(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/shockjump/func_80800228_chshockjump.s")
