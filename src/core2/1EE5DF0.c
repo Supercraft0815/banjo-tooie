@@ -424,4 +424,20 @@ void func_8010D690(u8 *arg0) {
     func_8010D6E0(arg0, sp24, 0.0f, func_8010A40C(arg0) * sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010D6E0.s")
+/* extern */
+
+s32 func_8010D6E0(u8 *arg0, f32 *arg1, f32 arg2, f32 arg3) {
+    s32 func_800F4F34(u32, f32 *, f32, f32);
+    s32 func_800F6438(u32);
+    s32 func_800F682C(s32);
+    s32 func_80109EE0(void *, s32);
+    s32 var_s0;
+
+    var_s0 = 0;
+    do {
+        if ((func_800F6438(var_s0) != 0) && ((func_800F682C(var_s0) == 0) || (func_80109EE0(arg0, 1) != 0))) {
+            func_800F4F34(var_s0, arg1, arg2, arg3);
+        }
+        var_s0 += 1;
+    } while (var_s0 != 8);
+}
