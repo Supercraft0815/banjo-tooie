@@ -6,7 +6,40 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/func_8080011C_subaddierouteDll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/func_8080024C_subaddierouteDll.s")
+/* extern */
+
+void func_8080024C_subaddierouteDll(s8 *arg0, s32 arg1, s32 arg2) {
+    u32 func_800CC5F4(s32);
+    void *func_800CC63C(s32, s32);
+    f32 func_800EFC7C(void *, void *);
+    s32 temp_s4;
+    s32 temp_v0_2;
+    s8 *var_s2;
+    s32 var_s0;
+    void *temp_s3;
+    void *temp_v0;
+    f32 distance;
+
+    var_s2 = arg0 + 1;
+    temp_s4 = func_800CC5F4(arg1);
+    temp_s3 = func_800CC63C(arg1, arg2);
+    var_s0 = 0;
+    if (temp_s4 > 0) {
+        do {
+            if (arg2 != var_s0) {
+                temp_v0 = func_800CC63C(arg1, var_s0);
+                distance = func_800EFC7C(temp_s3, temp_v0);
+                temp_v0_2 = (*(s16 *)((s8 *)(temp_v0) + (0xC))) + (*(s16 *)((s8 *)(temp_s3) + (0xC)));
+                if (distance < (f32) (temp_v0_2 * temp_v0_2)) {
+                    *var_s2 = var_s0;
+                    var_s2 += 1;
+                }
+            }
+            var_s0 += 1;
+        } while (var_s0 != temp_s4);
+    }
+    *arg0 = (var_s2 - arg0) - 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/subaddierouteDll_entrypoint_1.s")
 
