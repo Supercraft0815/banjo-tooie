@@ -120,7 +120,28 @@ void func_80800254_chfantasyonion(u8 *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x28))) = func_80800000_chfantasyonion(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/onion/func_80800624_chfantasyonion.s")
+void func_80800624_chfantasyonion(Actor *arg0, void *arg1) {
+    s32 func_800D674C(s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF830(s32);
+    s32 func_800E88E4(u8);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_80101870(Actor *, void *);
+    extern f32 D_80800748_chfantasyonion[3];
+    f32 sp34[3];
+    f32 sp30;
+
+    if (func_800E88E4(((u8 *)arg0->actorData)[3]) != 0) {
+        sp30 = ((f32 *)arg0->actorData)[4];
+        func_800EFA4C(sp34, arg0->position[0], sp30, arg0->position[2]);
+        func_800DF830(0);
+        func_800DE498(arg1, sp34, D_80800748_chfantasyonion,
+            func_800F10B4(arg0->position[1] - sp30, 1400.0f, 0.0f, 0.25f, 1.0f),
+            NULL, func_800D674C(0x637));
+    }
+    func_80101870(arg0, arg1);
+}
 
 /* extern */
 
