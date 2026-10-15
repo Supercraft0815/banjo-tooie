@@ -65,4 +65,44 @@ void func_808001C8_sumissilehome(void *arg0, void *arg1, f32 arg2) {
     func_800EF368((f32 *)((s8 *)arg0 + 0x28), saved.length);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/missilehome/sumissilehome_entrypoint_6.s")
+/* extern */
+
+void sumissilehome_entrypoint_6(Actor *arg0, void *arg1) {
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    void func_800F5A00(s32, f32 *);
+    void func_8010A2FC(Actor *, f32 *, f32 *);
+    f32 position[3];
+    struct MissileHomeData {
+        s8 unk0;
+        s8 unk1;
+        u8 pad2[2];
+        f32 speed;
+        u8 linked;
+        u8 player;
+        u8 mode;
+        u8 padB;
+        u8 link[1];
+    } *data = arg1;
+    Actor *temp_v0;
+    s8 temp_a0;
+
+    if (data->linked != 0) {
+        temp_v0 = _subaddielink_entrypoint_4(data->link);
+        if (temp_v0 == 0) {
+            data->linked = 0;
+            return;
+        }
+        func_8010A2FC(temp_v0, position, arg0->position);
+        goto block_7;
+    }
+    if ((data->player != 0) && (temp_a0 = data->unk1, temp_a0 >= 0)) {
+        func_800F5A00(temp_a0, position);
+        position[1] += 60.0f;
+block_7:
+        if (data->mode == 1) {
+            func_808001C8_sumissilehome(arg0, position, data->speed);
+            return;
+        }
+        func_80800178_sumissilehome(arg0, position);
+    }
+}
