@@ -128,7 +128,36 @@ void func_80800D84_chdippy(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800D9C_chdippy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80801110_chdippy.s")
+/* extern */
+
+s32 func_80801110_chdippy(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800DF500(f32, f32, f32);
+    void func_800E3980(f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    s32 func_801015D0(Actor *);
+    s32 func_80801200_chdippy();
+    f32 sp34[3];
+
+    switch (arg1) {
+        case 0x95:
+            func_80801200_chdippy();
+            return 1;
+        case 0x1F:
+            if (arg0->unk64_16) {
+                func_801015D0(arg0);
+                func_800E3980(sp34);
+                arg0->rotation[1] = func_800F1DF4(arg0->position, sp34);
+                if (arg0->unk58 < 3.0f) {
+                    func_800DF500(1.0f, func_800F10B4(arg0->unk58, 3.0f, 0.0f, 5.0f, 0.001f), 1.0f);
+                } else {
+                    func_800DF500(1.0f, 5.0f, 1.0f);
+                }
+            }
+            return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80801200_chdippy.s")
 
