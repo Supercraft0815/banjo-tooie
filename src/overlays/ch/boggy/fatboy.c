@@ -23,7 +23,26 @@ void func_80800078_chboggyfatboy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_808000AC_chboggyfatboy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_8080052C_chboggyfatboy.s")
+/* extern */
+
+void func_8080052C_chboggyfatboy(Actor *arg0) {
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    s32 func_800DA980(s32, s32);
+    void func_800FFAB0(Actor *);
+    s32 func_80101180(s32, s32, s32);
+    s32 func_80105230();
+    void func_80105834(Actor *);
+    s32 func_80105A5C(Actor *);
+    func_80105834(arg0);
+    func_80105230(arg0, 0);
+    _sudeflect_entrypoint_0(arg0->position, 100.0f, 50.0f, 0xA);
+    if (func_80105A5C(arg0) != 0) {
+        if (func_800DA980(0x8C, 3) != 3) {
+            func_80101180(0x13F, 0x4F, 0);
+        }
+        func_800FFAB0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_808005AC_chboggyfatboy.s")
 
