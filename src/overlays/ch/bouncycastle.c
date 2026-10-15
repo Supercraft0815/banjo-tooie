@@ -28,7 +28,52 @@ OSThread *chbouncycastle_entrypoint_3(void)
     return (OSThread *) D_80800A08_chbouncycastle;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bouncycastle/chbouncycastle_entrypoint_4.s")
+/* extern */
+
+void chbouncycastle_entrypoint_4(Actor *arg0) {
+    struct anctrl_s;
+    void func_8008B304(s32);
+    s32 func_8008B4D4(struct anctrl_s *);
+    void func_800DF41C(s32);
+    void func_800DF818(s32);
+    void func_800DF830(s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_801039E4(s32);
+    s32 func_80103CDC(u8 *, u8 *);
+    void func_80103D48(void **);
+    void func_80103D70(void **);
+    struct anctrl_s *func_80104248(void *);
+    struct RenderFlags {
+        u8 pad0[0x70];
+        u32 pad70_25 : 7;
+        u32 flag24 : 1;
+        u32 pad70_22 : 2;
+        u32 flag21 : 1;
+        u32 pad70_0 : 21;
+    };
+    s32 pad;
+    Unk80132ED0 *sp28;
+    s32 *sp24;
+    struct anctrl_s *sp20;
+
+    sp28 = (Unk80132ED0 *)func_801039E4((s32)arg0->unk0);
+    sp24 = func_80100094(arg0, 0);
+    func_80103D48((void **)arg0);
+    *sp24 = sp28->unk28;
+    if (*(s16 *)&arg0->pad8C != 0 && (arg0->unk70_10 == 2 || arg0->unk79_4 != 0)) {
+        sp20 = func_80104248(arg0);
+        func_8008B304((s32)sp20);
+        func_800DF41C(func_8008B4D4(sp20));
+    } else {
+        sp28->unk28 = 0;
+    }
+    if (arg0->unk79_4 != 1 && (((struct RenderFlags *)arg0)->flag24 || ((struct RenderFlags *)arg0)->flag21)) {
+        func_800DF818(func_80103CDC((u8 *)arg0, (u8 *)sp28));
+    }
+    func_800DF830(1);
+    func_80103D70((void **)arg0);
+    arg0->unk7C_12 = 1;
+}
 
 /* extern */
 
