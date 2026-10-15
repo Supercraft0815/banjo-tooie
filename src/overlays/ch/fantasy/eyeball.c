@@ -1,6 +1,28 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80800000_chfantasyeyeball.s")
+/* extern */
+
+void func_80800000_chfantasyeyeball(Actor *arg0) {
+    s32 _subaddielink_entrypoint_0(u8 *);
+    s32 func_800D0B68(u32, u32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    s32 func_808010B0_chfantasyeyeball(Actor *, u32 *, u32 *);
+    if (func_800D0B68(0x4C, 1) != 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    if (!(arg0->unk74_7 - 0x32) && (func_800D0B68(0x4C, 1) == 0)) {
+        arg0->unk64_20 = 1;
+    } else {
+        arg0->unk64_20 = 0;
+    }
+    func_808010B0_chfantasyeyeball(arg0, &arg0->actorData[2], &arg0->actorData[4]);
+    func_808010B0_chfantasyeyeball(arg0, &arg0->actorData[0], &arg0->actorData[1]);
+    arg0->unk64_19 = 0;
+    _subaddielink_entrypoint_0(func_80100094(arg0, 0));
+    ((f32 *)arg0->actorData)[6] = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_808000D8_chfantasyeyeball.s")
 
