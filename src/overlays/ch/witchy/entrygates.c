@@ -31,7 +31,22 @@ void func_80800000_chwitchyentrygates(Actor* arg0)
     _chdoormake_entrypoint_5(arg0, 0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/witchy/entrygates/func_808000B8_chwitchyentrygates.s")
+void func_808000B8_chwitchyentrygates(Actor *arg0) {
+    s32 _chdoor_entrypoint_0();
+    void func_800C3F48(u32);
+    s32 func_800D90A4(f32 *);
+    if (arg0->unk70_10 == 3) {
+        if (!arg0->unk64_20) {
+            func_800C3F48(0x66509D6D);
+            *(f32 *)&arg0->actorData[7] = 1.5f;
+            arg0->unk64_20 = 1;
+        } else if (func_800D90A4((f32 *)&arg0->actorData[7]) != 0) {
+            func_800C3F48(0x66509CA1);
+            *(f32 *)&arg0->actorData[7] = 1.0f;
+        }
+    }
+    _chdoor_entrypoint_0(arg0);
+}
 
 /* extern */
 
