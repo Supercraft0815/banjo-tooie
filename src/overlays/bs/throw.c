@@ -1,6 +1,37 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/throw/bsthrow_entrypoint_0.s")
+/* extern */
+
+void bsthrow_entrypoint_0(void *arg0) {
+    typedef struct player_state_s PlayerState;
+    s32 anctrl_reset(s32);
+    s32 anctrl_setDuration(s32, s32);
+    s32 anctrl_setIndex(s32, s32);
+    s32 anctrl_setPlaybackType(s32, s32);
+    s32 anctrl_start(s32);
+    s32 baanim_getAnimCtrlPtr();
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 baphysics_set_type(void *, s32);
+    s32 func_8008CA4C(void *, s32);
+    s32 func_8009BA9C(void *, s32);
+    s32 func_8009D2D8(void *, s32);
+    s32 yaw_setUpdateType(void *, s32);
+    s32 temp_v0;
+
+    temp_v0 = baanim_getAnimCtrlPtr();
+    anctrl_reset(temp_v0);
+    anctrl_setIndex(temp_v0, 0x11B);
+    anctrl_setDuration(temp_v0, 0x3F800000);
+    anctrl_setPlaybackType(temp_v0, 1);
+    anctrl_start(temp_v0);
+    func_8008CA4C(arg0, 1);
+    yaw_setUpdateType(arg0, 1);
+    func_8009D2D8(arg0, 3);
+    baphysics_set_type(arg0, 3);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_8009BA9C(arg0, 0);
+    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+}
 
 
 void bsthrow_entrypoint_1(void *arg0) {
