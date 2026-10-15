@@ -90,11 +90,59 @@ void func_8080066C_chmrsicecube(u8 *arg0, u8 *arg1)
   *((f32 *) (((s8 *) arg1) + 4)) += (*((f32 *) (((s8 *) arg0) + 0x38))) * 100.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/func_808006C4_chmrsicecube.s")
+void func_808006C4_chmrsicecube(Actor *arg0) {
+    void _chbounce_entrypoint_5(s32, void *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddielink_entrypoint_0(u8 *);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    void func_800DA544(s32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80102190(void *, s32);
+    s32 func_80102F74(Unk80132ED0 *, s32);
+    void func_80103110(Actor *, u32);
+    void func_8010A590(Actor *);
+    u32 func_8010A654(void ***, s32);
+    void func_80800818_chmrsicecube(u8 *);
+    extern u16 D_80800912_chmrsicecube[][2];
+    extern s32 D_80800A54_chmrsicecube;
+    struct MrsIceCubeLinkData { s32 unk0; s32 unk4; s32 unk8; } *sp2C;
+    struct MrsIceCubeFlags {
+        u8 pad[0x74];
+        u32 pad74_21 : 11;
+        u32 unk74_20 : 1;
+        u32 pad74_0 : 20;
+    };
+    Actor *temp_s0;
+    s32 temp_v1;
+
+    sp2C = func_80100094(arg0, 0);
+    temp_s0 = _subaddielink_entrypoint_4(sp2C);
+    temp_v1 = arg0->actorData[4];
+    if (temp_v1 == 0) {
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x12D3, 0x44, 0, 0xA7);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800A54_chmrsicecube);
+        func_800DA544(0x378);
+    }
+    if (temp_s0 != NULL) {
+        _subaddielink_entrypoint_0(sp2C);
+        func_8010A590(temp_s0);
+        func_8010A654(temp_s0, func_80102F74(temp_s0, 0x800));
+        func_80102190(temp_s0, 0);
+        func_80103110(temp_s0, func_80102F74(temp_s0, 0x80000800) == 0);
+        temp_s0->unk64_24 = func_80102F74(temp_s0, 0x80000001);
+        temp_s0->unk64_16 = 1;
+        ((struct MrsIceCubeFlags *)temp_s0)->unk74_20 = sp2C->unk8;
+        _chbounce_entrypoint_5(D_80800912_chmrsicecube[arg0->actorData[4]][0], temp_s0);
+    }
+    func_80800818_chmrsicecube(arg0);
+    func_800FFAB0(arg0);
+}
 
 void func_80800818_chmrsicecube(u8 *arg0) {
     s32 pad[2];
-    s32 _subaddieaudioquick_entrypoint_2(u8 *, u8 *, s32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     s32 func_800BBCB8(u8 *, u8 *, f32, s32, s32 *);
     s32 func_801094E0(u8 *, f32);
     extern s32 D_80800A64_chmrsicecube;
