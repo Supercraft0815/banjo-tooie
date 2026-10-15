@@ -70,7 +70,43 @@ s32 func_80800150_chmermaidstatue(void) {
     return func_800DA564(0x6AF, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mermaidstatue/func_808001B0_chmermaidstatue.s")
+void func_808001B0_chmermaidstatue(Actor *arg0) {
+    void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, u32, u32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    s32 func_800DA564(s32, s32);
+    s32 func_800DA7A8(s32, s32, s32);
+    void func_800FC660(u32);
+    s32 func_80101180(s32, s32, s32);
+    s32 func_80800150_chmermaidstatue(void);
+    extern s16 D_80800330_chmermaidstatue[][6];
+    s32 statue;
+    s32 row;
+    s32 count;
+
+    statue = arg0->unk74_7 - 0x32;
+    count = func_800DA564(0x6B1, 3);
+    if (count != 6) {
+        row = func_80800150_chmermaidstatue();
+        if (statue == D_80800330_chmermaidstatue[row][count]) {
+            count++;
+            func_800DA7A8(0x6B1, count, 3);
+            if (count == 6) {
+                if (func_800DA298(0x18D) == 0) {
+                    func_800FC660(0x10);
+                    _capod_entrypoint_13(arg0->unk0, NULL, 0x1E, 0x10);
+                    func_80101180(0x3C1, 7, 0);
+                    func_800DA544(0x18D);
+                }
+            } else {
+                func_800FC660(0xE);
+            }
+        } else {
+            func_800DA7A8(0x6B1, 0, 3);
+            func_800FC660(0xF);
+        }
+    }
+}
 
 void func_808002C8_chmermaidstatue(Actor *arg0) {
     s32 _chdoormake_entrypoint_3(Actor*, f32, f32, f32, s32, s32);
