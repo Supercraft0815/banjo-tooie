@@ -208,7 +208,31 @@ s32 func_80800D2C_chhumba(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800D74_chhumba.s")
+void func_80800D74_chhumba(Actor *arg0) {
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_800DC0C0(void);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    void func_800EEB9C(f32[3], f32, f32);
+    extern s32 D_808026A0_chhumba;
+    s32 sp3C;
+    s32 sp38;
+    f32 sp2C[3];
+    f32 sp28;
+    f32 sp24;
+
+    if (func_800DC0C0() < 0.1f) {
+        sp3C = func_800DC128(1, 3);
+        sp38 = func_800B53A4(sp3C);
+        sp24 = func_800DC178(0.0f, 360.0f);
+        func_800EEB9C(sp2C, sp24, arg0->scale * func_800DC178(0.0f, 1000.0f));
+        sp2C[1] = -50.0f;
+        func_800BABB8(sp38, sp2C, NULL, 1.0f, &D_808026A0_chhumba);
+        func_800BA22C(sp38, sp3C);
+    }
+}
 
 void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
     s32 _fxsplash25d_entrypoint_0(f32 *);
