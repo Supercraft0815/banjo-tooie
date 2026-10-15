@@ -18,7 +18,27 @@ void func_8080025C_chstinger(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stinger/func_80800264_chstinger.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stinger/func_808003B0_chstinger.s")
+/* extern */
+
+s32 func_808003B0_chstinger(s32 arg0) {
+    s32 func_800EA068(s32);
+    s32 func_800F7A7C(s32, s8, s32, s32, s32 *);
+    s8 *func_80100094(s32, s32);
+    s32 func_80800264_chstinger(s32, s32 *);
+    s32 sp2C[3];
+    s32 sp28;
+    s32 temp_v0;
+
+    if (func_800EA068(0x4000) != 0) {
+        temp_v0 = func_80800264_chstinger(arg0, sp2C);
+        sp28 = temp_v0;
+        if (temp_v0 >= 0) {
+            func_800F7A7C(sp28, *func_80100094(arg0, 0), 1, 3, sp2C);
+            return 1;
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stinger/func_80800420_chstinger.s")
 
