@@ -43,7 +43,7 @@ void func_8080009C_chgoldfish(u8 *arg0) {
     s32 func_808005F0_chgoldfish(u8 *, s32);
     void func_80800924_chgoldfish(u8 *);
     void func_80800964_chgoldfish(u8 *);
-    f32 func_80800AB4_chgoldfish(u8 *, u8 *, u8 *, u8 *, f32, f32);
+    f32 func_80800AB4_chgoldfish(Actor *, f32 *, f32 *, f32 *, f32, f32);
     s32 func_80800BA8_chgoldfish(u8 *, f32 *);
     extern s32 D_80800D20_chgoldfish;
     f32 sp3C;
@@ -183,7 +183,24 @@ void func_80800964_chgoldfish(u8 *arg0) {
     func_800BA22C(temp_v0, 8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/fish/func_80800AB4_chgoldfish.s")
+/* extern */
+
+f32 func_80800AB4_chgoldfish(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 arg5) {
+    f32 func_80013970(f32);
+    s32 func_800D90A4(f32 *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F1FF0(f32, f32, f32, f32, f32);
+    f32 sp2C;
+
+    func_800D90A4(&arg0->unk58);
+    sp2C = func_800F10B4(arg0->unk58, arg4, 0.0f, 0.0f, 1.0f);
+    func_800EFE50(arg3, arg1, arg2, sp2C);
+    arg3[1] += func_80013970(sp2C * 180.0f) * arg5;
+    arg0->rotation[1] = func_800F1FF0(arg0->rotation[1], arg0->unk54, 0.5f, 0.1f, 10.0f);
+    arg0->rotation[2] = func_800F1FF0(arg0->rotation[2], arg0->unk50, 0.5f, 0.1f, 10.0f);
+    return sp2C;
+}
 
 /* extern */
 
