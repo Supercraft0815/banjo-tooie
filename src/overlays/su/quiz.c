@@ -55,7 +55,21 @@ s32 suquiz_entrypoint_3(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_4.s")
+s32 suquiz_entrypoint_4(void) {
+    s32 temp_v0;
+
+    temp_v0 = func_800DA564(FLAG_442_UNK, 3);
+    switch (temp_v0) {
+    case 2:
+        return 1;
+    case 3:
+        return 2;
+    case 4:
+        return 3;
+    default:
+        return 0;
+    }
+}
 
 s32 suquiz_entrypoint_5(void) {
     extern void *D_80127614;
