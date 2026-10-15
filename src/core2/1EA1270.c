@@ -4,11 +4,11 @@
 
 /* extern */
 
-void (*func_800C79EC(Unk800C7A68 *arg0))(f32, u8, s32 *, s32) {
-    void _mlspline_entrypoint_0(f32, u8, s32 *, s32);
-    void _mlspline_entrypoint_2(f32, u8, s32 *, s32);
-    void _mlspline_entrypoint_4(f32, u8, s32 *, s32);
-    void _mlspline_entrypoint_5(f32, u8, s32 *, s32);
+void (*func_800C79EC(Unk800C7A68 *arg0))(f32, u8, s32 *, f32 *) {
+    void _mlspline_entrypoint_0(f32, u8, s32 *, f32 *);
+    void _mlspline_entrypoint_2(f32, u8, s32 *, f32 *);
+    void _mlspline_entrypoint_4(f32, u8, s32 *, f32 *);
+    void _mlspline_entrypoint_5(f32, u8, s32 *, f32 *);
     s32 temp_v0;
     s32 temp_v1;
 
@@ -35,7 +35,7 @@ void func_800C7A58(void) {
 void func_800C7A60(void) {
 }
 
-void func_800C7A68(Unk800C7A68* arg0, f32 arg1, s32 arg2) {
+void func_800C7A68(Unk800C7A68* arg0, f32 arg1, f32 *arg2) {
     if (arg1 < 0.0f) {
         arg1 = 0.0f;
     } else if (arg1 > 1.0f) {

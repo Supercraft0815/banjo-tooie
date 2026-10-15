@@ -112,7 +112,34 @@ void func_80800970_chmineprospector(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800AF0_chmineprospector.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800BF4_chmineprospector.s")
+/* extern */
+
+void func_80800BF4_chmineprospector(Actor *arg0) {
+    struct Unk800C7A68;
+    s32 _glcutDll_entrypoint_20();
+    void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
+    void *func_800D7520(s32);
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
+    void func_80102424(Actor *, s32);
+    void *func_80105494(Actor *);
+    void func_80105A9C(Actor *, f32);
+    if ((func_800DA298(0x5C) == 0) && (_glcutDll_entrypoint_20() == 0)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    if ((func_800DA298(0x83) != 0) || (_glcutDll_entrypoint_20() != 0)) {
+        func_800C7A68(func_800D7520((s32) (*(s32 *)func_80105494(arg0) << 0x15) >> 0x16), 0.999f, arg0->position);
+        func_80102424(arg0, 2);
+        goto block_8;
+    }
+    if (arg0->unk7A_5) {
+        func_800FFAB0(arg0);
+        return;
+    }
+block_8:
+    func_80105A9C(arg0, 450.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800CD4_chmineprospector.s")
 
