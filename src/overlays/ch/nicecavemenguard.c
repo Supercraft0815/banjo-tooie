@@ -18,7 +18,39 @@ void func_80800388_chnicecavemenguard(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemenguard/func_808003A8_chnicecavemenguard.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemenguard/func_808004FC_chnicecavemenguard.s")
+void func_808004FC_chnicecavemenguard(void *arg0)
+{
+  s32 func_800DF744(s32, s32);
+  s32 func_801015D0();
+  f32 func_80101F24(void *);
+  u32 temp_t6;
+  func_801015D0();
+  func_800DF744(5, 1);
+  func_800DF744(6, 1);
+  func_800DF744(8, 3);
+  temp_t6 = (u16) (*((u16 *) (((s8 *) arg0) + 0x72)));
+  temp_t6 = temp_t6 >> 0xA;
+  if (temp_t6 != 4)
+  {
+    if (temp_t6 == 5)
+    {
+      func_800DF744(4, 0);
+      func_800DF744(7, 0);
+      return;
+    }
+    goto block_5;
+  }
+  if (func_80101F24(arg0) > 0.26f)
+  {
+    func_800DF744(4, 0);
+    func_800DF744(7, 1);
+    return;
+  }
+  block_5:
+  func_800DF744(4, 1);
+
+  func_800DF744(7, 0);
+}
 
 void func_808005D4_chnicecavemenguard(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80102424(Actor*, s32);
