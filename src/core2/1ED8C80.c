@@ -134,7 +134,24 @@ void func_800FFAB0(Actor *arg0) {
     flags->flag74_24 = flags->flag78_2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FFB74.s")
+void func_800FFB74(void) {
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    extern s32 D_80135A50;
+    Actor *actor;
+    s32 sp20;
+
+    if (D_80135A50 > 0) {
+        if ((actor = (Actor *)func_801067C4(&sp20)) != NULL) {
+            do {
+                if (actor->unk64_17) {
+                    func_800FFA3C(actor);
+                }
+            } while ((actor = (Actor *)func_8010682C(&sp20)) != NULL);
+        }
+        D_80135A50 = 0;
+    }
+}
 
 void func_800FFBE4(void) {
 }
