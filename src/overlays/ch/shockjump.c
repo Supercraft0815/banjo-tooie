@@ -67,4 +67,24 @@ void func_80800148_chshockjump(Actor *arg0, s32 arg1) {
     func_80101870(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/shockjump/func_80800228_chshockjump.s")
+/* extern */
+
+void func_80800228_chshockjump(Actor *arg0) {
+    s32 _subaddiesect_entrypoint_1(Actor *);
+    void _subaddiesect_entrypoint_2(Actor *, s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_80102E08(void *);
+    u32 func_8010A654(Actor *, s32);
+    s32 temp_v0;
+
+    temp_v0 = _subaddiesect_entrypoint_1(arg0);
+    arg0->actorData[4] = temp_v0;
+    if (temp_v0 == -1) {
+        if (arg0->unk74_7 != 0x33) {
+            func_80102E08(arg0);
+        }
+    } else {
+        _subaddiesect_entrypoint_2(arg0, arg0->actorData[4], arg0->unk74_7 != 0x33);
+    }
+    func_8010A654(arg0, func_800DA298(0x661));
+}
