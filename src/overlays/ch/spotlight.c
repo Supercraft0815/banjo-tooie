@@ -50,7 +50,23 @@ void func_80800580_chspotlight(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_80800600_chspotlight.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_808006B8_chspotlight.s")
+void func_808006B8_chspotlight(Actor *arg0) {
+    void func_800C8D4C(s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern f32 D_80800990_chspotlight[];
+    s32 *sp24;
+    f32 sp1C[2];
+    Actor *temp_v0_2;
+
+    sp24 = func_80100094(arg0, 0);
+    if (*sp24 != 0) {
+        temp_v0_2 = func_80106790(arg0->unk3C);
+        sp1C[0] = D_80800990_chspotlight[0] * ((f32 *)temp_v0_2->actorData)[4];
+        sp1C[1] = D_80800990_chspotlight[1] * ((f32 *)temp_v0_2->actorData)[4];
+        func_800C8D4C(*sp24, sp1C);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_80800730_chspotlight.s")
 
