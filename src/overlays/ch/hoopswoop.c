@@ -249,7 +249,22 @@ void func_808013C4_chhoopswoop(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_808013F8_chhoopswoop.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80801494_chhoopswoop.s")
+void func_80801494_chhoopswoop(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcfrontend_entrypoint_10(void);
+    s32 _subaddiemulti_entrypoint_2();
+    void func_80101FDC(Actor *, u32);
+    switch (arg1) {
+    case 0xCEC:
+        func_808006A0_chhoopswoop(arg0);
+        return;
+    case 0x10CD:
+    case 0x10CE:
+        _subaddiemulti_entrypoint_2();
+        func_80101FDC(arg0, 6);
+        _gcfrontend_entrypoint_10();
+        return;
+    }
+}
 
 s32 func_80801500_chhoopswoop(u8 *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
@@ -283,7 +298,7 @@ s32 func_80801A10_chhoopswoop(u8 *arg0, s32 arg1, s32 arg2)
 {
   s32 _subaddiefade_entrypoint_5(u8 *);
   u8 *new_var;
-  s32 func_80101FDC(u8 *, s32);
+  void func_80101FDC(Actor *, u32);
   s32 func_8010D930(s32, s32, u8 *, s32 *);
   extern s32 D_80801F98_chhoopswoop;
   if (arg1 == 0x4F)
