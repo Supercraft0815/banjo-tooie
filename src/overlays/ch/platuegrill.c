@@ -34,7 +34,25 @@ void func_808000A0_chplatuegrill(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/platuegrill/func_808000DC_chplatuegrill.s")
+/* extern */
+
+void func_808000DC_chplatuegrill(Actor *arg0) {
+    s32 func_80101180(s32, s32, s32);
+    s32 func_80101DDC(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_80103110(Actor *, u32);
+    u32 temp_t6;
+
+    temp_t6 = arg0->unk70_10;
+    if (temp_t6 != 2) {
+        if ((temp_t6 == 3) && (func_80101DDC(arg0) != 0)) {
+            func_80102424(arg0, 2);
+            func_80101180(0x518, 7, 0);
+        }
+    } else {
+        func_80103110(arg0, 0);
+    }
+}
 
 /* extern */
 
