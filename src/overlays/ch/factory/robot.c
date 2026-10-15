@@ -43,7 +43,23 @@ void func_80800024_chfactoryrobot(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_808005D4_chfactoryrobot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_808006DC_chfactoryrobot.s")
+/* extern */
+
+void func_808006DC_chfactoryrobot(Actor *arg0, f32 arg1, f32 arg2) {
+    f32 func_80013728(f32);
+    f32 func_800D8FF8(void);
+    f32 func_800F0D50(f32, f32, f32);
+    f32 func_800F1FF0(f32, f32, f32, f32, f32);
+    int func_800F20BC(f32, f32, f32);
+    f32 dt;
+
+    dt = func_800D8FF8();
+    arg0->unk54 = func_800F0D50(func_80013728(arg0->unk54), -80.0f, 80.0f);
+    arg0->unk50 = func_800F0D50(func_80013728(arg0->unk50), -60.0f, 60.0f);
+    ((f32 *)arg0->actorData)[5] = func_800F1FF0(((f32 *)arg0->actorData)[5], arg0->unk54, 0.15f, dt * arg1, dt * arg2);
+    ((f32 *)arg0->actorData)[6] = func_800F1FF0(((f32 *)arg0->actorData)[6], arg0->unk50, 0.15f, dt * arg1, dt * arg2);
+    func_800F20BC(((f32 *)arg0->actorData)[5], arg0->unk54, 4.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_808007C4_chfactoryrobot.s")
 
