@@ -218,7 +218,32 @@ void chfactoryempspell_entrypoint_0(s32 arg0, s32 arg1) {
     func_800DA524(0xA05);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801130_chfactoryempspell.s")
+void func_80801130_chfactoryempspell(Actor *arg0, void *arg1, f32 arg2) {
+    s32 _sumumbofx_entrypoint_14(void *);
+    s32 _sumumbofx_entrypoint_6(void *, f32, f32, s32, s32, u8 *, f32 *, f32 *);
+    void func_800E3980(f32 *);
+    extern f32 D_808021BC_chfactoryempspell[][3];
+    extern f32 D_808021D4_chfactoryempspell[][3];
+    extern f32 D_808021EC_chfactoryempspell[][3];
+    extern f32 D_80802204_chfactoryempspell[][3];
+    extern u8 D_8080221C_chfactoryempspell[];
+    extern f32 D_80802228_chfactoryempspell[];
+    extern f32 D_80802234_chfactoryempspell[];
+    f32 position[3];
+    s32 side;
+
+    func_800E3980(position);
+    if (position[0] < 0.0f) {
+        side = 0;
+    } else {
+        side = 1;
+    }
+    _sumumbofx_entrypoint_6(arg1, 500.0f * arg2, 300.0f, 0, 0xA, D_8080221C_chfactoryempspell, D_808021BC_chfactoryempspell[side], D_80802228_chfactoryempspell);
+    _sumumbofx_entrypoint_6(arg1, 500.0f * arg2, 300.0f, 0xA, 0x14, D_8080221C_chfactoryempspell, D_808021D4_chfactoryempspell[side], D_80802228_chfactoryempspell);
+    _sumumbofx_entrypoint_6(arg1, 500.0f * arg2, 300.0f, 0x14, 0x1E, D_8080221C_chfactoryempspell, D_808021EC_chfactoryempspell[side], D_80802234_chfactoryempspell);
+    _sumumbofx_entrypoint_6(arg1, 500.0f * arg2, 300.0f, 0x1E, 0x28, D_8080221C_chfactoryempspell, D_80802204_chfactoryempspell[side], D_80802234_chfactoryempspell);
+    _sumumbofx_entrypoint_14(arg1);
+}
 
 void func_808012C0_chfactoryempspell(f32 arg0, f32 arg1) {
     void func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
