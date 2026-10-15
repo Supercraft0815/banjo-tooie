@@ -51,7 +51,20 @@ s32 func_80800074_bsbanshack(PlayerState *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_8080021C_bsbanshack.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_808002AC_bsbanshack.s")
+void func_808002AC_bsbanshack(PlayerState *arg0) {
+    int _babackpack_get_state();
+    void _babackpack_set_state(void *, s32);
+    void func_800A0CD0(void *, s32);
+    int func_80800164_bsbanshack();
+    if (arg0->unk15C.bytes[1] != 0) {
+        func_80800164_bsbanshack(arg0);
+        return;
+    }
+    if (_babackpack_get_state(arg0) != 1) {
+        func_800A0CD0(arg0, 1);
+        _babackpack_set_state(arg0, 1);
+    }
+}
 
 /* extern */
 
