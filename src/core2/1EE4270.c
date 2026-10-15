@@ -1,16 +1,41 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010A980.s")
+s32 func_8010A980(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
+    void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_8010A624(Actor *);
+    u32 func_8010A654(Actor *, s32);
+    u32 func_8010A698(Actor *);
+    extern f32 D_80136F20[3];
+    extern f32 D_80136F30[3];
+    f32 sp3C[3];
+    f32 sp30[3];
+    s32 sp2C;
+    void *sp28;
+
+    sp2C = func_8010A698(arg0);
+    func_8010A624(arg0);
+    sp3C[0] = arg1[0];
+    sp3C[1] = arg1[1] + 4.0f;
+    sp3C[2] = arg1[2];
+    sp30[0] = arg0->position[0];
+    sp30[1] = arg0->position[1] + 4.0f;
+    sp30[2] = arg0->position[2];
+    sp28 = func_800C6A7C(sp3C, sp30, D_80136F30, arg0->unk14);
+    func_800EE7F8(D_80136F20, sp30);
+    func_8010A654(arg0, sp2C);
+    return sp28 ? 1 : 0;
+}
 
 void func_8010AA54(s32 *arg0) {
     void func_800EE7F8();
-    extern s32 D_80136F30;
+    extern f32 D_80136F30[3];
     func_800EE7F8(arg0, &D_80136F30);
 }
 
 void func_8010AA78(s32 *arg0) {
     void func_800EE7F8();
-    extern s32 D_80136F20;
+    extern f32 D_80136F20[3];
     func_800EE7F8(arg0, &D_80136F20);
 }
 
