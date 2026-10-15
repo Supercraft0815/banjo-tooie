@@ -66,7 +66,22 @@ s32 func_80800898_chmadamegrunty(f32 arg0, f32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_808008D4_chmadamegrunty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_808009AC_chmadamegrunty.s")
+void func_808009AC_chmadamegrunty(Actor *arg0, s32 arg1, f32 arg2) {
+    u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);
+    void func_800C301C(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C3BDC(u8);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    f32 func_800DC178(f32, f32);
+    extern s32 D_80800C4C_chmadamegrunty;
+    u8 sp27;
+
+    sp27 = _subaddieaudioquick_entrypoint_1(arg0, arg0->position);
+    func_800C4350(sp27 & 0xFF, arg0->position, &D_80800C4C_chmadamegrunty);
+    func_800C301C(sp27, arg1);
+    func_800C31DC(sp27, func_800DC178(-0.05f, 0.05f) + arg2);
+    func_800C3BDC(sp27);
+}
 
 /* extern */
 
