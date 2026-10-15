@@ -9,7 +9,20 @@ OSThread *chcablespark_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablespark/func_8080000C_chcablespark.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablespark/func_8080024C_chcablespark.s")
+/* extern */
+
+void func_8080024C_chcablespark(Actor *arg0) {
+    void _subaddieDll_entrypoint_4(Actor *, u32);
+    f32 func_800DC178(f32, f32);
+    s32 func_80800828_chcablespark(void *);
+    void func_808008BC_chcablespark(void *);
+    ((s8 *)arg0->actorData)[0] = 0;
+    arg0->unk58 = func_800DC178(0.0f, 2.0f);
+    if ((arg0->unk74_7 == 0x35) && (func_80800828_chcablespark(arg0) != 0)) {
+        _subaddieDll_entrypoint_4(arg0, 1);
+    }
+    func_808008BC_chcablespark(arg0);
+}
 
 /* extern */
 
