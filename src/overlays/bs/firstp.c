@@ -2539,7 +2539,37 @@ void func_808099A8_bsfirstp(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808099B4_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809A10_bsfirstp.s")
+/* extern */
+
+void func_80809A10_bsfirstp(void *arg0) {
+    s32 func_80809AF8_bsfirstp(void *, f32, f32, f32);
+    f32 temp_f0;
+    f32 temp_f12;
+    f32 var_f2;
+    struct {
+        u8 pad0[0x168];
+        f32 scale;
+        f32 divisor;
+        s32 flag;
+        u8 pad174[0xBC];
+        f32 value;
+        f32 pad234;
+        f32 numerator;
+        f32 pad23C;
+        f32 fallback;
+    } *temp_v0;
+
+    temp_v0 = *(void **)((s8 *)arg0 + 0x188);
+    temp_f0 = temp_v0->value;
+    temp_f12 = -temp_f0;
+    temp_f12 *= temp_v0->scale;
+    if (temp_v0->flag != 0) {
+        var_f2 = temp_v0->numerator / (1.0f + temp_v0->divisor);
+    } else {
+        var_f2 = temp_v0->fallback;
+    }
+    func_80809AF8_bsfirstp(arg0, temp_f12, var_f2, temp_f0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809A7C_bsfirstp.s")
 
