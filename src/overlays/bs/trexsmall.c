@@ -32,7 +32,26 @@ void func_8080007C_bstrexsmall(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_8080020C_bstrexsmall.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_808002B8_bstrexsmall.s")
+void func_808002B8_bstrexsmall(PlayerState *arg0) {
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 bastick_getZone(PlayerState *);
+    f32 bastick_getZonePosition(PlayerState *);
+    f32 func_800F1214(f32, f32, f32);
+    f32 sp24;
+
+    sp24 = bastick_getZonePosition(arg0);
+    switch (bastick_getZone(arg0)) {
+        case 0:
+            baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+            break;
+        case 1:
+            baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp24, 100.0f, 300.0f));
+            break;
+        case 2:
+            baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp24, 300.0f, 600.0f));
+            break;
+    }
+}
 
 void func_80800364_bstrexsmall()
 {
