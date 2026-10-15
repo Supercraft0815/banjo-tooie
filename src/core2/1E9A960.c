@@ -340,7 +340,38 @@ void func_800C2A90()
     func_800C2A68();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2AB8.s")
+void func_800C2AB8(void) {
+    s32 func_800C269C(u8);
+    s32 func_800C2B80();
+    extern s32 D_80128C10;
+    s8 *var_s1;
+    s32 temp_s0;
+    s32 var_s2;
+    s32 var_s3;
+
+    func_800C2B80();
+    do {
+        var_s1 = (s8 *)&D_80128C10;
+        var_s2 = 1;
+        var_s3 = 0;
+loop_2:
+        if ((*(u8 *)((s8 *)(var_s1) + (0x78))) != 0) {
+            temp_s0 = var_s2 & 0xFF;
+            if ((*(u32 *)(var_s1 + 0x78) << 0x13 >> 0x1D) == 3) {
+                if (func_800C269C(temp_s0 & 0xFF) != 0) {
+                    func_800C16A4(temp_s0 & 0xFF);
+                } else {
+                    var_s3 += 1;
+                }
+            }
+        }
+        var_s2 += 1;
+        var_s1 += 0x80;
+        if (var_s2 != 0x3C) {
+            goto loop_2;
+        }
+    } while (var_s3 != 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2B80.s")
 
