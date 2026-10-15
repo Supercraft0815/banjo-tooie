@@ -142,7 +142,7 @@ s16 *func_800B42FC(s32 size, s32 count) {
     return ptr;
 }
 
-void func_800B4354(s32 arg0)
+void func_800B4354(u8 **arg0)
 {
     func_800B3EDC(arg0,0);
 }
