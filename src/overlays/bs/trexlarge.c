@@ -187,7 +187,36 @@ s32 bstrexlarge_entrypoint_5(s32 arg0) {
     return ((s32 *)&D_808019B0_bstrexlarge)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80800934_bstrexlarge.s")
+void func_80800934_bstrexlarge(void *arg0, s32 arg1) {
+    struct anctrl_s;
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setIndex();
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_start(struct anctrl_s *);
+    void baanim_setEndAndDuration(PlayerState *, f32, f32);
+    struct anctrl_s *control;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    switch (arg1) {
+        case 1:
+            anctrl_reset(control);
+            anctrl_setIndex(control, 0x1D1);
+            anctrl_setDuration(control, 4.0f);
+            anctrl_setSubrange(control, 0.0f, 0.715f);
+            anctrl_setPlaybackType(control, 1);
+            anctrl_setStart(control, 0.45f);
+            anctrl_start(control);
+            break;
+        case 2:
+            baanim_setEndAndDuration(arg0, 1.0f, 0.8f);
+            break;
+    }
+    *(s8 *)((u8 *)arg0 + 0x15C) = arg1;
+}
 
 void func_80800A00_bstrexlarge(void)
 {
