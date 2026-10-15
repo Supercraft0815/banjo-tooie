@@ -143,7 +143,33 @@ void func_80801AE8_chfactorymagnet(Actor *arg0) {
     func_800C8F64((*(s32 *)((s8 *)(temp_s0) + (0x34C))), 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80801B74_chfactorymagnet.s")
+void func_80801B74_chfactorymagnet(Actor *arg0) {
+    void func_800C8CB8(s32, f32[3]);
+    void func_800C8FB0(s32, u32, u32, u32);
+    void func_800C8FE0(s32, s32);
+    s32 func_800DC128(s32, s32);
+    void *func_80100094(Actor *, u32);
+    typedef struct { f32 v[3]; } MagnetVector;
+    typedef struct { u8 pad[0x348]; s32 first; s32 second; } MagnetData;
+    extern MagnetVector D_808029A4_chfactorymagnet;
+    extern MagnetVector D_808029B0_chfactorymagnet;
+    MagnetVector sp3C = D_808029A4_chfactorymagnet;
+    MagnetVector sp30 = D_808029B0_chfactorymagnet;
+    MagnetData *data;
+
+    data = func_80100094(arg0, 1);
+    if (arg0->unk70_10 == 4) {
+        func_800C8FE0(data->first, 1);
+        func_800C8FE0(data->second, 1);
+        func_800C8CB8(data->first, sp3C.v);
+        func_800C8CB8(data->second, sp30.v);
+        func_800C8FB0(data->first, func_800DC128(0xE6, 0x100), func_800DC128(0, 0x29), func_800DC128(0xE6, 0x100));
+        func_800C8FB0(data->second, func_800DC128(0xE6, 0x100), func_800DC128(0, 0x29), func_800DC128(0xE6, 0x100));
+    } else {
+        func_800C8FE0(data->first, 0);
+        func_800C8FE0(data->second, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80801CD8_chfactorymagnet.s")
 
