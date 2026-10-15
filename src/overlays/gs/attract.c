@@ -48,4 +48,26 @@ void func_80800274_gsattract(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/attract/func_808002A4_gsattract.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/attract/gsattract_entrypoint_5.s")
+void gsattract_entrypoint_5(s32 arg0) {
+    void func_800A9B84(void);
+    void func_800A9B8C(s32, s32);
+    void func_800FE4E4(void);
+    extern s32 D_8013546C;
+    extern s32 D_80800490_gsattract;
+    extern s16 widescreen_enabled;
+    void *temp_v0;
+
+    if (func_800A8264() == 0) {
+        if (widescreen_enabled != 0) {
+            arg0 = 1;
+        }
+        if (arg0 != (*(u8 *)((s8 *)(&D_8013546C) + (4)))) {
+            func_80800274_gsattract(arg0);
+        }
+        func_800FE4E4();
+        func_800A9B84();
+        temp_v0 = ((*(u8 *)((s8 *)(&D_8013546C) + (4))) * 0xC) + (u8 *)&D_80800490_gsattract;
+        func_800A9B8C((*(s16 *)((s8 *)(temp_v0) + (0))), (*(u8 *)((s8 *)(temp_v0) + (2))));
+        gsattract_entrypoint_3();
+    }
+}
