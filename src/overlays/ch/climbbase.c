@@ -45,7 +45,25 @@ s32 func_808000FC_chclimbbase(void) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/climbbase/func_80800128_chclimbbase.s")
+void func_80800128_chclimbbase(Actor *arg0) {
+    f32 func_800EEAD4(f32 *, f32 *);
+    struct ClimbEntry { s32 id; f32 scale; };
+    struct ClimbFields { u8 pad[0x7C]; s16 distance; };
+    extern struct ClimbEntry D_808003B0_chclimbbase;
+    struct ClimbEntry *entry;
+
+    func_80800000_chclimbbase(arg0, (f32 *)arg0->actorData);
+    entry = &D_808003B0_chclimbbase;
+    if (1.0f == arg0->scale) {
+        arg0->actorData[3] = func_808000FC_chclimbbase();
+    } else {
+        while (entry->id != 4 && entry->scale != arg0->scale) {
+            entry++;
+        }
+        arg0->actorData[3] = entry->id;
+    }
+    ((struct ClimbFields *)arg0)->distance = (s32)func_800EEAD4(arg0->position, (f32 *)arg0->actorData) + 500;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/climbbase/func_80800200_chclimbbase.s")
 
