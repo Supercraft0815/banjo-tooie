@@ -33,7 +33,39 @@ void func_80800064_chlakemonster(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80800724_chlakemonster.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80800838_chlakemonster.s")
+/* extern */
+
+void func_80800838_chlakemonster(Actor *arg0) {
+    s32 _dbmorph_entrypoint_4(u8 *, u8 *, s32, u8, s32);
+    s32 func_800AE080(s16);
+    s32 func_800AE0E8(s16);
+    u8 *func_800B2768(u8 *);
+    s32 func_800B2840(s32);
+    s32 func_801015D0(Actor *);
+    s32 func_801039E4(Unk80132ED0 *);
+    s32 func_80103CB8(Actor *, u32);
+    s32 func_80800724_chlakemonster(Actor *);
+    s32 sp34;
+    u8 *sp30;
+    struct {
+        u8 pad[0x17];
+        u8 unused : 7;
+        u8 active : 1;
+    } *sp2C;
+    s32 sp28;
+
+    sp34 = func_801039E4(arg0->unk0);
+    sp30 = func_800B2768(sp34);
+    sp2C = func_80103CB8(arg0, sp34);
+    sp28 = func_800B2840(sp34);
+    func_80800724_chlakemonster(arg0);
+    if (func_801015D0(arg0)) {
+    }
+    sp2C->active = 1;
+    if (func_800AE0E8(*(s16 *)&arg0->unk0->unk10) != 0) {
+        _dbmorph_entrypoint_4(sp30, sp2C, sp28, 1, func_800AE080(*(s16 *)&arg0->unk0->unk10));
+    }
+}
 
 void func_808008E8_chlakemonster(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);

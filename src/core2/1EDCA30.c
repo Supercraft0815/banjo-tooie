@@ -236,9 +236,9 @@ s32 func_80103C94(Actor *arg0) {
     return func_80103BF0(arg0, 0U, 0U);
 }
 
-void func_80103CB8(Actor *arg0, u32 arg1) {
+s32 func_80103CB8(Actor *arg0, u32 arg1) {
     s32 func_80103BF0(Actor*, u32, u32);
-    func_80103BF0(arg0, 0U, arg1);
+    return func_80103BF0(arg0, 0U, arg1);
 }
 
 s32 func_80103CDC(u8 *arg0, u8 *arg1) {
