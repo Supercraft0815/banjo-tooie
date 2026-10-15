@@ -40,7 +40,26 @@ void func_808001B4_chweldarbossfireball(Actor *arg0, s32 arg1) {
     func_801018A4(actor, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fireball/func_80800214_chweldarbossfireball.s")
+/* extern */
+
+void func_80800214_chweldarbossfireball(Actor *arg0, s32 arg1) {
+    void func_800D93A0(f32[4], f32[3]);
+    void func_800DF41C(s32);
+    void func_800DFF2C(u8 **, s32, f32[4]);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    s32 func_801015D0(Actor *);
+    s32 func_801040D0(void);
+    s32 sp34;
+    f32 sp28[3];
+    f32 sp18[4];
+
+    sp34 = func_801040D0();
+    func_801015D0(arg0);
+    func_800DF41C(sp34);
+    func_800EFA4C(sp28, arg0->unk50, 0.0f, 0.0f);
+    func_800D93A0(sp18, sp28);
+    func_800DFF2C(sp34, 0x2A, sp18);
+}
 
 /* extern */
 
