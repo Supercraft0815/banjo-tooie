@@ -248,4 +248,41 @@ void *func_80100368(void *arg0) {
     return (*(void *(**)())((s8 *)(arg0) + (0x10)))();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_8010038C.s")
+s32 func_8010038C(Actor *arg0, f32 *arg1) {
+    s32 func_80081D34(s32);
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    s32 func_8010108C();
+    struct {
+        u8 padding[0x7C];
+        u32 radius : 16;
+        u32 initialized : 1;
+        u32 enabled : 1;
+        u32 flag13 : 1;
+        u32 flag12 : 1;
+        u32 padding0 : 12;
+    } *range;
+    void *data;
+
+    data = arg0;
+    range = data;
+    if (!range->initialized) {
+        range->initialized = 1;
+        func_8010108C(arg0, 0x95, 0);
+        if (arg0->unk64_17) {
+            return 0;
+        }
+        if (arg0->unk7A_5) {
+            func_80081D34(arg0->pointerToSyscallEntry);
+        }
+    }
+    if (!range->enabled) {
+        return 0;
+    }
+    if (range->radius == 0) {
+        return 1;
+    }
+    if (range->flag13 && range->flag12) {
+        return 1;
+    }
+    return func_800EFFB4(arg0->position, (f32)(s32)range->radius, arg1);
+}
