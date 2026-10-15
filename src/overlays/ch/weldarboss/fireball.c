@@ -80,7 +80,45 @@ s32 func_80800284_chweldarbossfireball(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fireball/func_808002E0_chweldarbossfireball.s")
+void func_808002E0_chweldarbossfireball(Actor *arg0) {
+    s32 _chlightfader_entrypoint_1(s32, f32, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800C8CB8(s32, f32[3]);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    void func_80103DFC(Actor *, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_8010A570(Actor *);
+    extern f32 B_808004E0_chweldarbossfireball[3];
+    extern s32 D_80800480_chweldarbossfireball;
+    extern s32 D_808004C4_chweldarbossfireball;
+    f32 sp54[3];
+    f32 sp48[3];
+    f32 sp44;
+    Actor *sp40;
+    f32 sp34[3];
+
+    sp40 = func_80106790(arg0->unk3C);
+    func_80103DFC(arg0, sp54);
+    func_800EE7F8(sp48, sp54);
+    sp44 = func_800F1DF4(arg0->position,
+        sp40 != NULL ? sp40->position : B_808004E0_chweldarbossfireball);
+    func_800EF1B8(sp48, sp44, 60.0f);
+    sp48[1] -= 40.0f;
+    func_800BBCB8(sp54, sp48, 1.0f, 0xA, &D_80800480_chweldarbossfireball);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808004C4_chweldarbossfireball);
+    if (arg0->actorData[7] != 0) {
+        func_800EE7F8(sp34, arg0->position);
+        sp34[1] += 100.0f;
+        func_800C8CB8(arg0->actorData[7], sp34);
+        arg0->actorData[7] = _chlightfader_entrypoint_1(arg0->actorData[7], 1.4f, 1);
+    }
+    func_8010A570(arg0);
+    func_800FFAB0(arg0);
+}
 
 void func_80800404_chweldarbossfireball(s32 arg0) {
 }
