@@ -62,7 +62,32 @@ void chquicksandbaddy_entrypoint_0(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quicksandbaddy/func_80800FC8_chquicksandbaddy.s")
+void func_80800FC8_chquicksandbaddy(s32 arg0, f32 arg1, s32 arg2) {
+    s32 func_800B53A4(s32);
+    s32 func_800BA22C(s32, s32);
+    s32 func_800BA4D0(s32, s16);
+    s32 func_800BA544(s32, s32 *);
+    s32 func_800BA714(s32, s32, s32);
+    s32 func_800BAB80(s32, s32 *);
+    s32 func_800BABB8(s32, s32, s32, s32, s32 *);
+    s32 func_808010A0_chquicksandbaddy(s32 *);
+    extern s32 D_80801394_chquicksandbaddy;
+    extern s32 D_808013D4_chquicksandbaddy;
+    extern s32 _chquicksandbaddy_entrypoint_0;
+    s32 temp_v0;
+
+    if (func_808010A0_chquicksandbaddy(&D_808013D4_chquicksandbaddy) != 0) {
+        temp_v0 = func_800B53A4(arg2);
+        func_800BABB8(temp_v0, arg0, arg0, 0x3F800000, &D_80801394_chquicksandbaddy);
+        if (arg2 >= 2) {
+            func_800BA714(temp_v0, 0x32, 0x64);
+        }
+        func_800BAB80(temp_v0, &D_808013D4_chquicksandbaddy);
+        func_800BA4D0(temp_v0, (s16) (s32) arg1);
+        func_800BA544(temp_v0, &_chquicksandbaddy_entrypoint_0);
+        func_800BA22C(temp_v0, arg2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quicksandbaddy/func_808010A0_chquicksandbaddy.s")
 
