@@ -34,7 +34,29 @@ void func_80800018_chdiggerbossshell(Actor *arg0) {
     func_800EEC30((f32 *)&arg0->actorData[4], arg0->rotation[0], arg0->rotation[1], sqrtf((sp34 * sp34 * 9800.0f) / (sp34 + sp30)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossshell/func_808000B4_chdiggerbossshell.s")
+/* extern */
+
+void func_808000B4_chdiggerbossshell(Actor *arg0) {
+    void _fxegg_entrypoint_5(f32 *, f32 *, f32);
+    f32 func_800D8FF8(void);
+    void func_800EF174(f32 *, f32 *, f32);
+    void func_800F1A88(f32 *, f32 *);
+    void func_808001EC_chdiggerbossshell(Actor *);
+    f32 sp2C;
+
+    if (arg0->unk70_10 == 1) {
+        sp2C = func_800D8FF8();
+        _fxegg_entrypoint_5(arg0->position, (f32 *)&arg0->actorData[4], 1.0f);
+        func_800EF174(arg0->position, (f32 *)&arg0->actorData[4], func_800D8FF8());
+        if (((f32 *)arg0->actorData)[1] > arg0->position[1]) {
+            arg0->position[1] = ((f32 *)arg0->actorData)[1];
+            func_808001EC_chdiggerbossshell(arg0);
+        }
+        ((f32 *)arg0->actorData)[5] = ((f32 *)arg0->actorData)[5] + -9800.0f * sp2C;
+        func_800F1A88((f32 *)&arg0->actorData[4], arg0->rotation);
+        arg0->rotation[0] = arg0->rotation[0] + 90.0f;
+    }
+}
 
 /* extern */
 
