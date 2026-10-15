@@ -246,7 +246,21 @@ OSThread *chfactorybattery_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80801728_chfactorybattery.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80801804_chfactorybattery.s")
+/* extern */
+
+void func_80801804_chfactorybattery(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chdoor_entrypoint_1(Actor *, s32, s32);
+    s32 func_800EA05C(void);
+    s32 func_80103140(Actor *, u32, u16);
+    if (arg1 == 0x95) {
+        if (func_800EA05C() == 0x101) {
+            func_80103140(arg0, 0x87F, 0);
+        }
+        _chdoor_entrypoint_1(arg0, arg1, arg2);
+        return;
+    }
+    _chdoor_entrypoint_1(arg0, arg1, arg2);
+}
 
 OSThread *chfactorybattery_entrypoint_2(void)
 {
