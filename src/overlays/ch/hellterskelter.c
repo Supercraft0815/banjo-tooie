@@ -91,4 +91,38 @@ void func_808005E0_chhellterskelter(Actor *arg0) {
     _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800974_chhellterskelter);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/func_80800680_chhellterskelter.s")
+void func_80800680_chhellterskelter(Actor *arg0, s32 arg1)
+{
+  void _chappearfx_entrypoint_1(Actor *, u32, u32, f32);
+  s32 _subaddiefade_entrypoint_2();
+  void func_80102FDC(Actor *, f32);
+  void func_80105A9C(Actor *, f32);
+  Actor *func_80106790(Unk80132ED0 *);
+  Actor *func_80108528(s32, f32 [3], s32, Actor **);
+  Actor *func_8010856C(s32, f32 *, f32 *);
+  f32 sp28[2];
+  Actor *sp24;
+  Unk80132ED0 *sp20;
+  Actor *sp1C;
+  if (arg1 != 0x210)
+  {
+    if (arg1 == 0x33A)
+    {
+ do { sp20 = arg0->unk0; sp28[0] = 0.0f; sp28[1] = arg0->rotation[1]; sp24 = func_8010856C(arg1, (f32 *) arg0->actorData, sp28); arg0 = func_80106790(sp20); func_80102FDC(sp24, arg0->scale); } while (0);
+      func_80105A9C(sp24, 700.0f);
+    }
+  }
+  else
+  {
+    sp1C = func_80108528(arg1, (f32 *) (&arg0->actorData[4]), 0, &arg0);
+    func_80102FDC(sp1C, 0.7f);
+    if (arg0->unk64_20 != 0)
+    {
+      _subaddiefade_entrypoint_2(sp1C);
+      _chappearfx_entrypoint_1(sp1C, 0x22, 1, 1.0f);
+    }
+    arg0->unk64_20 = 0;
+    arg0->unk64_19 = 1;
+    arg0->unk3C = sp1C->unk0;
+  }
+}
