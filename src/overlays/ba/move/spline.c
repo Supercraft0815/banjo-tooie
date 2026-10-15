@@ -1,6 +1,37 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/spline/func_80800000_bamovespline.s")
+/* extern */
+
+void func_80800000_bamovespline(u8 *arg0) {
+    f32 func_800D8840(s32);
+    f32 func_800D8FF8(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32 dst[3], f32 angle, f32 distance);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF3DC(f32 dst[3], f32 src[3]);
+    void func_800EFA20(void *, void *, f32);
+    s32 func_800F2168(u8 *, s32);
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+    f32 sp28[3];
+    u8 *temp_v0;
+
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0xC8)));
+    func_800EEB9C((f32 *)(temp_v0 + 0x1C), *(f32 *)(temp_v0 + 0x40), *(f32 *)(temp_v0 + 0x3C));
+    sp34[0] = *(f32 *)(*(u8 **)(arg0 + 0xC8) + 0x10);
+    sp34[1] = 0.0f;
+    sp34[2] = *(f32 *)(*(u8 **)(arg0 + 0xC8) + 0x18);
+    func_800EE7F8(sp28, (f32 *)(*(u8 **)(arg0 + 0xC8) + 0x1C));
+    sp28[1] = 0.0f;
+    func_800EFA20(sp4C, sp28, func_800D8840(2));
+    func_800EFA20(sp40, sp34, func_800D8840(2));
+    func_800EF3DC(sp4C, sp40);
+    func_800EF334(sp4C, func_800D8FF8() * 30.0f);
+    func_800EF04C((f32 *)(*(u8 **)(arg0 + 0xC8) + 0x10), sp4C);
+    func_800F2168((*(u8 **)((s8 *)(arg0) + (0xC8))) + 0x10, 0x38D1B717);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/spline/func_808000F4_bamovespline.s")
 
