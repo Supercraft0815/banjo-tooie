@@ -7,7 +7,25 @@ OSThread *chlagoonbilldrillcover_entrypoint_0(void)
     return (OSThread *) D_80800330_chlagoonbilldrillcover;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/billdrillcover/func_8080000C_chlagoonbilldrillcover.s")
+/* extern */
+
+void func_8080000C_chlagoonbilldrillcover(Actor *arg0) {
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
+    void func_80108B04(Actor *, u32);
+    void func_8010A570(Actor *);
+    void func_8010A624(Actor *);
+    if (func_800DA298(arg0->unk74_7 + 0x3C2) != 0) {
+        if ((s32) arg0->unk74_7 >= 0x35) {
+            func_8010A570(arg0);
+            func_8010A624(arg0);
+            arg0->unk64_16 = 0;
+            func_80108B04(arg0, 0);
+            return;
+        }
+        func_800FFAB0(arg0);
+    }
+}
 
 /* extern */
 
