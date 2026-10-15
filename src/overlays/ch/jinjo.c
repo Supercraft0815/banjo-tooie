@@ -6,7 +6,7 @@ void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
 void func_80800000_chjinjo(Actor *arg0) {
     s16 chjinjo_entrypoint_2(s32);
     u8 func_800D0CC8(s32);
-    s32 func_800D1338(s32);
+    u32 func_800D1338(u32);
     s32 func_800DA298(s32);
     void func_800FC660(u32);
     void func_800FFAB0(Actor *);
@@ -21,7 +21,7 @@ void func_80800000_chjinjo(Actor *arg0) {
     } else {
         var_v0 = func_800D0CC8(arg0->unk6C_0);
     }
-    if ((arg0->unk6C_9 == 0x48F) && ((f32) func_800D1338(var_v0) <= arg0->rotation[1])) {
+    if ((arg0->unk6C_9 == 0x48F) && ((f32) (s32) func_800D1338(var_v0) <= arg0->rotation[1])) {
         func_800FFAB0(arg0);
     }
     if (arg0->unk64_20) {
@@ -175,7 +175,41 @@ s32 func_8080102C_chjinjo(Actor *arg0, s32 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/func_80801098_chjinjo.s")
+/* extern */
+
+u32 func_80801098_chjinjo(Actor *arg0, s32 arg1) {
+    s32 func_800D035C(s32);
+    u8 func_800D0CC8(s32);
+    s32 func_800D129C(u32);
+    u32 func_800D1338(u32);
+    s32 func_800DA298(s32);
+    s32 func_800DA7A8(s32, s32, s32);
+    void func_800F82D4(s32, s32);
+    s32 sp2C;
+    s32 temp_v0;
+    s32 sp24;
+    u32 sp20;
+
+    temp_v0 = func_800D0CC8(arg0->unk6C_0);
+    sp24 = temp_v0;
+    arg0->unk64_19 = 0;
+    arg0->unk74_30 = 0;
+    arg0->actorData[4] = arg1;
+    sp20 = func_800D1338(temp_v0);
+    sp2C = func_800D129C(sp24) == sp20;
+    if (func_800D035C(0) == 1) {
+        func_800DA7A8(0x6D0, func_800D0CC8(arg0->unk6C_0), 4);
+    } else if (sp2C != 0) {
+        arg0->unk74_30 = 1;
+        if (func_800DA298(0x43D) == 0) {
+            arg0->unk64_19 = 1;
+            func_800F82D4(arg0->actorData[4], 2);
+        } else {
+            func_80800FC4_chjinjo(arg0);
+        }
+    }
+    return arg0->unk74_30;
+}
 
 OSThread *chjinjo_entrypoint_5(void)
 {
