@@ -295,7 +295,44 @@ void func_800D5E94(s32 arg0)
     func_800D54F0((void *)arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5EB4.s")
+s32 func_800D5EB4(s32 arg0, u8 *arg1, s32 arg2) {
+    s32 func_800E6950(s32, s32, u8 *);
+    void rom_dma_read(u8 *, u8 *, u32);
+    s32 rom_read_word(s32, u32 *);
+    extern s32 D_8011B900;
+    extern u32 D_8012B440;
+    extern u32 D_8012B444;
+    extern s32 D_8012B448;
+    s32 var_a2;
+    u32 temp_t3;
+    s32 var_v1;
+
+    if (func_800D5AB4(arg0) < 0) {
+        return 0;
+    }
+    var_v1 = arg0 * 4;
+    rom_read_word(D_8011B900 + var_v1, &D_8012B440);
+    if (((u32) (D_8012B440 << 0x1A) >> 0x1E) & 1) {
+        func_800E6950(arg0, 0, arg1);
+        var_v1 = D_8012B7E8;
+    } else {
+    rom_read_word(D_8011B900 + var_v1 + 4, &D_8012B444);
+    var_a2 = ((u32) D_8012B444 >> 6) - (temp_t3 = (u32) D_8012B440 >> 6);
+    if (var_a2 & 1) {
+        var_a2 += 1;
+    }
+    var_v1 = var_a2;
+    if ((var_a2 & 0xF) != 0) {
+        var_v1 = (var_a2 - (var_a2 & 0xF)) + 0x10;
+    }
+    if (arg2 >= var_a2) {
+        rom_dma_read(arg1, D_8012B448 + temp_t3, var_a2);
+    } else {
+        return 0;
+    }
+    }
+    return var_v1;
+}
 
 void func_800D5FDC(s32 arg0) {
     *(s32 *)((u8 *)&D_8012B7E8 + 0) = arg0;
