@@ -77,7 +77,37 @@ s32 chdoormake_entrypoint_0(Actor *arg0, f32 arg1, u32 arg2, s32 arg3) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/chdoormake_entrypoint_1.s")
+/* extern */
+
+s32 chdoormake_entrypoint_1(Actor *arg0, f32 arg1, u32 arg2, s32 arg3) {
+    struct DoorAngles {
+        u8 unused[0x10];
+        s16 angle;
+        s16 angle2;
+    };
+    f32 func_800136E4(f32);
+    void func_800FFAB0(Actor *);
+    void func_80101FDC(Actor *, u32);
+    s32 func_808000B8_chdoormake(Actor *);
+    s32 func_808008C4_chdoormake(Actor *);
+    struct DoorAngles *data;
+
+    data = func_80800000_chdoormake(arg0, 3, arg2, arg3);
+    data->angle = (s32) func_800136E4(arg0->rotation[0] + arg1);
+    data->angle2 = (s32) arg0->rotation[0];
+    if ((func_808008C4_chdoormake(arg0) != 0) || (arg0->unk70_10 == 4)) {
+        if (arg2 & 1) {
+            func_800FFAB0(arg0);
+            return 0;
+        }
+        arg0->rotation[0] = data->angle;
+        func_80101FDC(arg0, 4);
+        func_808000B8_chdoormake(arg0);
+        return 2;
+    }
+    func_808000B8_chdoormake(arg0);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/chdoormake_entrypoint_2.s")
 
