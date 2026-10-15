@@ -26,7 +26,33 @@ void bstimeout_entrypoint_0(struct player_state_s *arg0) {
     func_8008E944(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/timeout/bstimeout_entrypoint_1.s")
+/* extern */
+
+void bstimeout_entrypoint_1(struct player_state_s *arg0) {
+    struct anctrl_s;
+    int anctrl_isAt(struct anctrl_s *, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void func_8009514C(struct player_state_s *);
+    void func_8009518C(struct player_state_s *, s32, f32);
+    void func_8009DF18(struct player_state_s *, s32, f32, s32);
+    s32 func_800A05DC();
+    struct anctrl_s *sp24;
+
+    sp24 = baanim_getAnimCtrlPtr(arg0);
+    if (anctrl_isAt(sp24, 0.0625f) != 0) {
+        func_8009514C(arg0);
+    }
+    if (anctrl_isAt(sp24, 0.18f) != 0) {
+        func_8009DF18(arg0, 0x3EB, 1.0f, 0x4650);
+    }
+    if (anctrl_isAt(sp24, 0.8421f) != 0) {
+        func_8009518C(arg0, 0, 0.3f);
+        func_8009518C(arg0, 1, 0.3f);
+    }
+    if (anctrl_isAt(sp24, 0.84f) != 0) {
+        func_800A05DC(arg0);
+    }
+}
 
 void bstimeout_entrypoint_2(s32 arg0)
 {
