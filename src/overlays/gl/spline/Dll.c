@@ -32,6 +32,44 @@ s16 func_80800C70_glsplineDll(void) {
     return D_80800FC8_glsplineDll[i].result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/spline/Dll/glsplineDll_entrypoint_1.s")
+/* extern */
+
+void glsplineDll_entrypoint_1(void *arg0) {
+    void func_8001B754(s16);
+    void *func_8001B798(s16);
+    void heap_free(void *);
+    s16 *temp_v0;
+    s16 *sp28;
+    s16 *var_s0;
+    s16 *var_s2;
+    s32 var_s1;
+
+    sp28 = func_8001B798((*(s16 *)((s8 *)(arg0) + (0x184))));
+    temp_v0 = func_8001B798((*(s16 *)((s8 *)(arg0) + (0x186))));
+    var_s1 = 0;
+    var_s0 = sp28;
+    var_s2 = temp_v0;
+    if ((*(s32 *)((s8 *)(arg0) + (0x188))) > 0) {
+        do {
+            func_8001B754((*(s16 *)((s8 *)(func_8001B798(*var_s0)) + (0x10))));
+            func_8001B754(*var_s0);
+            func_8001B754(*var_s2);
+            var_s1 += 1;
+            var_s0++;
+            var_s2++;
+        } while (var_s1 < (*(s32 *)((s8 *)(arg0) + (0x188))));
+    }
+    func_8001B754((*(s16 *)((s8 *)(arg0) + (0x184))));
+    func_8001B754((*(s16 *)((s8 *)(arg0) + (0x186))));
+    (*(s16 *)((s8 *)(arg0) + (0x184))) = 0;
+    (*(s16 *)((s8 *)(arg0) + (0x186))) = 0;
+    heap_free((*(void **)((s8 *)(arg0) + (0x1A4))));
+    (*(s32 *)((s8 *)(arg0) + (0x188))) = 0;
+    (*(s32 *)((s8 *)(arg0) + (0x1A4))) = 0;
+    (*(s32 *)((s8 *)(arg0) + (0x198))) = 0;
+    heap_free((*(void **)((s8 *)(arg0) + (0x19C))));
+    (*(s32 *)((s8 *)(arg0) + (0x19C))) = 0;
+    (*(s32 *)((s8 *)(arg0) + (0x1A0))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/spline/Dll/glsplineDll_entrypoint_2.s")
