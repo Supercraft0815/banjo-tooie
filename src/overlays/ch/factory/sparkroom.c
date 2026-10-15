@@ -1,6 +1,50 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800000_chfactorysparkroom.s")
+void func_80800000_chfactorysparkroom(Actor *arg0) {
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    s32 _glsplinefind_entrypoint_3(f32 *);
+    void _gspropctrl_entrypoint_11(Prop *, f32 *);
+    s32 _gspropctrl_entrypoint_8(Prop *);
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u8, s32 *, s32);
+    void *func_80100094(Actor *, u32);
+    extern s32 D_80801070_chfactorysparkroom;
+    Prop *sp68[16];
+    Prop **var_s0;
+    u32 var_s2;
+    f32 sp54[3];
+    struct SparkRoomActorData {
+        u8 pad0[0x38];
+        u8 audio;
+        u8 pad39[0x1F];
+        u32 pad58 : 31;
+        u32 active : 1;
+    };
+    struct SparkRoomEntry {
+        f32 unk0[4];
+        f32 unk10;
+        f32 unk14;
+        s32 unk18;
+        s32 unk1C;
+    } *temp_s3, *var_s1;
+
+    temp_s3 = func_80100094(arg0, 0);
+    arg0->unk6C_0 = _gccubesearch_entrypoint_9(0x299, sp68, 0x10);
+    var_s2 = 0;
+    var_s0 = sp68;
+    var_s1 = temp_s3;
+    if (arg0->unk6C_0) {
+        do {
+            var_s1->unk10 = (f32)_gspropctrl_entrypoint_8(*var_s0) * 10.0f;
+            var_s1->unk14 = (f32)_gspropctrl_entrypoint_8(*var_s0) * 20.0f;
+            _gspropctrl_entrypoint_11(*var_s0, sp54);
+            var_s1->unk18 = _glsplinefind_entrypoint_3(sp54);
+            var_s2 += 1;
+            var_s0++;
+            var_s1++;
+        } while (var_s2 < arg0->unk6C_0);
+    }
+    ((struct SparkRoomActorData *)arg0->actorData)->audio = _subaddieaudioloop_entrypoint_7(((struct SparkRoomActorData *)arg0->actorData)->audio, arg0->position, 0, &D_80801070_chfactorysparkroom, ((struct SparkRoomActorData *)arg0->actorData)->active);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_8080013C_chfactorysparkroom.s")
 
