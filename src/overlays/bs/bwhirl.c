@@ -5,7 +5,38 @@ void func_80800000_bsbwhirl(void *arg0) {
     *(s32 *)((u8 *)arg0 + 0x160) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/func_80800008_bsbwhirl.s")
+void func_80800008_bsbwhirl(PlayerState *arg0) {
+    f32 func_80092B8C(PlayerState *, f32 *);
+    f32 func_80092BE8(PlayerState *);
+    void func_8009C128(PlayerState *, f32[3]);
+    s8 func_800BF8E4(void);
+    s32 func_800C8A98();
+    void func_800C8CB8(s32, f32[3]);
+    void func_800C8E54(s32, f32, f32);
+    s32 func_800C8E84(s32, s32 *);
+    void func_800C8F64(s32, s32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    extern s32 D_80800F50_bsbwhirl;
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp24;
+
+    if (func_800BF8E4() > 0) {
+        if ((*(s32 *)((s8 *)(arg0) + (0x160))) == 0) {
+            (*(s32 *)((s8 *)(arg0) + (0x160))) = func_800C8A98();
+            func_800C8E54((*(s32 *)((s8 *)(arg0) + (0x160))), 80.0f, 350.0f);
+            func_800C8F64((*(s32 *)((s8 *)(arg0) + (0x160))), 0xB);
+            func_800C8E84((*(s32 *)((s8 *)(arg0) + (0x160))), &D_80800F50_bsbwhirl);
+        }
+        sp24 = func_80092B8C(arg0, sp28);
+        func_8009C128(arg0, sp34);
+        func_800EF04C(sp34, sp28);
+        func_800EF1B8(sp34, func_80092BE8(arg0), sp24);
+        sp34[1] += sp24;
+        func_800C8CB8((*(s32 *)((s8 *)(arg0) + (0x160))), sp34);
+    }
+}
 
 void func_808000D8_bsbwhirl(u8 *arg0) {
     s32 _chlightfader_entrypoint_1(s32, f32, s32);
@@ -250,7 +281,7 @@ void bsbwhirl_entrypoint_25()
 
 void bsbwhirl_entrypoint_26(PlayerState *arg0) {
     int func_80800200_bsbwhirl(PlayerState *);
-    int func_80800008_bsbwhirl(PlayerState *);
+    void func_80800008_bsbwhirl(PlayerState *);
     s32 _bsrest_entrypoint_13(PlayerState *);
     s32 _bsrest_entrypoint_20(PlayerState *);
     void bs_setState(PlayerState *, int);
