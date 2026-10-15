@@ -110,7 +110,31 @@ void func_80800FF8_chevilmumbo(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_808010C4_chevilmumbo.s")
+void func_808010C4_chevilmumbo(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    void func_800BA22C(s32, s32);
+    void func_800BA77C(s32, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_80800F60_chevilmumbo(Actor *, f32 *, f32 *);
+    extern s32 D_808042D0_chevilmumbo;
+    extern s32 D_808042F4_chevilmumbo;
+    f32 sp3C[3];
+    f32 sp30[3];
+    s32 sp2C;
+    s32 temp_v0;
+
+    _subaddieskeleton_entrypoint_2(arg0->unk0, 0xC, sp30);
+    sp3C[1] = arg0->rotation[1];
+    sp3C[0] = 0.0f;
+    sp3C[2] = 0.0f;
+    func_80800F60_chevilmumbo(arg0, sp30, sp3C);
+    temp_v0 = func_800BABB8(0, sp30, 0, arg0->scale * 0.25f, &D_808042D0_chevilmumbo);
+    sp2C = temp_v0;
+    func_800BA77C(temp_v0, (s16) (s32) sp3C[0], (s16) (s32) sp3C[1], (s16) (s32) sp3C[2]);
+    func_800BA22C(sp2C, 1);
+    _subaddieaudioquick_entrypoint_2(arg0, sp30, &D_808042F4_chevilmumbo);
+}
 
 void func_808011B8_chevilmumbo(s32 arg0) {
     s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
