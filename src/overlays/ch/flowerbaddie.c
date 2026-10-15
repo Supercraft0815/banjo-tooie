@@ -68,6 +68,20 @@ s32 func_808008D4_chflowerbaddie(Actor *arg0) {
     return _suchase_entrypoint_0() != arg0->unk0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flowerbaddie/func_80800980_chflowerbaddie.s")
+void func_80800980_chflowerbaddie(Actor *arg0, f32 *arg1) {
+    u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);
+    void func_800C3BDC(u8);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    s32 func_80101E4C(Actor *, f32 *);
+    extern s32 D_80800D28_chflowerbaddie;
+
+    if (func_80101E4C(arg0, arg1) != 0) {
+        if (arg0->unk5F == 0) {
+            arg0->unk5F = _subaddieaudioquick_entrypoint_1(arg0, arg0->position);
+            func_800C4350(arg0->unk5F, arg0->position, &D_80800D28_chflowerbaddie);
+        }
+        func_800C3BDC(arg0->unk5F);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flowerbaddie/func_808009F0_chflowerbaddie.s")
