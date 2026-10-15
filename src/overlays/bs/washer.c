@@ -178,7 +178,42 @@ void func_8080100C_bswasher(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80801034_bswasher.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_808010DC_bswasher.s")
+/* extern */
+
+void func_808010DC_bswasher(struct player_state_s *arg0) {
+    s32 _badrone_entrypoint_25(struct player_state_s *);
+    s32 bakey_pressed(s32, s32);
+    s32 bastick_getZone(struct player_state_s *);
+    void bs_setState(struct player_state_s *, int);
+    int func_8008DD04(struct player_state_s *);
+    int func_8008E148(struct player_state_s *);
+    void func_8009D3A8(struct player_state_s *, s32);
+    s32 func_80800000_bswasher(s32);
+    s32 func_80800300_bswasher(s32);
+    s32 var_s1;
+
+    var_s1 = 0;
+    func_80800F88_bswasher(arg0);
+    func_8009D3A8(arg0, 0);
+    func_80800000_bswasher(arg0);
+    if (bastick_getZone(arg0) == 0) {
+        var_s1 = 0x32;
+    }
+    if (func_8008DD04(arg0) != 0) {
+        var_s1 = 0x36;
+    }
+    if (bakey_pressed(arg0, 8) != 0) {
+        var_s1 = 0x35;
+    }
+    if (bakey_pressed(arg0, 1) != 0) {
+        var_s1 = 0x38;
+    }
+    if (func_8008E148(arg0) != 0) {
+        var_s1 = _badrone_entrypoint_25(arg0);
+    }
+    func_80800300_bswasher(arg0);
+    bs_setState(arg0, var_s1);
+}
 
 s32 bswasher_entrypoint_5(s32 arg0) {
     extern s32 D_80801E60_bswasher[];
