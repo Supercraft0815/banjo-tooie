@@ -24,7 +24,32 @@ void func_800A61D4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A6DAC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A6EF4.s")
+void func_800A6EF4(Actor *arg0) {
+    s32 func_800A946C(void);
+    s32 func_800A9C98(void);
+    u32 func_800A9CD0(void);
+    u32 func_800BCC84(void);
+    s32 func_800D3948(void);
+    s32 func_800EA05C();
+    void func_8010A800(Actor *, s32);
+    extern s16 D_8011A2E0[];
+    s32 i;
+    s32 sp20;
+
+    sp20 = func_800EA05C();
+    func_8010A800(arg0, 5);
+    arg0->unk74_29 = 0;
+    arg0->unk58 = 1.0f;
+    for (i = 0; D_8011A2E0[i] != -1; i++) {
+        if (sp20 == D_8011A2E0[i]) {
+            arg0->unk74_29 = 1;
+            break;
+        }
+    }
+    if (((func_800A9C98() != 0) && (func_800A9CD0() != 2)) || (func_800BCC84() != 0) || (func_800D3948() != 0) || (func_800A946C() >= 2)) {
+        arg0->unk74_29 = 1;
+    }
+}
 
 /* extern */
 
