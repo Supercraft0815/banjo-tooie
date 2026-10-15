@@ -27,7 +27,7 @@ f32 func_8080009C_chcollballcontrol() {
 
 /* extern */
 
-f32 func_808000C8_chcollballcontrol(void) {
+f32 func_808000C8_chcollballcontrol() {
     f32 func_80800040_chcollballcontrol();
     return func_80800040_chcollballcontrol() * 0.05f;
 }
@@ -692,7 +692,13 @@ void func_808044F4_chcollballcontrol(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_8080486C_chcollballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80804A48_chcollballcontrol.s")
+void func_80804A48_chcollballcontrol(void *arg0) {
+    if ((*(f32 *)((s8 *)(arg0) + (0x24))) < func_80800040_chcollballcontrol(arg0)) {
+        *(f32 *)((s8 *)arg0 + 0x24) += func_808000C8_chcollballcontrol(arg0);
+        return;
+    }
+    (*(f32 *)((s8 *)(arg0) + (0x24))) = func_80800040_chcollballcontrol(arg0);
+}
 
 void func_80804AA8_chcollballcontrol(void *arg0) {
     f32 func_8080009C_chcollballcontrol();
