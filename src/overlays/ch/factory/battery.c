@@ -72,7 +72,45 @@ void func_80800558_chfactorybattery(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_808006E4_chfactorybattery.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80800760_chfactorybattery.s")
+void func_80800760_chfactorybattery(Actor *arg0) {
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    void func_800C8CB8(s32, f32[3]);
+    void func_800C8E84(s32, u32[3]);
+    void func_800C8FE0(s32, s32);
+    f32 func_800DC178(f32, f32);
+    int func_800F3214(void *, void *, void *, f32);
+    typedef struct { u32 v[3]; } Color;
+    extern Color D_80801B3C_chfactorybattery;
+    extern Color D_80801B48_chfactorybattery;
+    extern Color D_80801B54_chfactorybattery;
+    f32 sp5C[3];
+    Color sp50;
+    u32 sp44[3];
+    Color sp38;
+    Color sp2C;
+    s32 temp_a0;
+
+    if (_subaddieskeleton_entrypoint_2(arg0->unk0, 4, sp5C) &&
+        (temp_a0 = *(s32 *)&arg0->unk50) != 0) {
+        if (arg0->unk70_10 == 1 || arg0->unk70_10 == 9) {
+            sp50 = D_80801B3C_chfactorybattery;
+            func_800C8CB8(*(s32 *)&arg0->unk50, sp5C);
+            func_800C8E84(*(s32 *)&arg0->unk50, sp50.v);
+            func_800C8FE0(*(s32 *)&arg0->unk50, 1);
+            return;
+        }
+        if (arg0->unk79_4) {
+            sp38 = D_80801B48_chfactorybattery;
+            sp2C = D_80801B54_chfactorybattery;
+            func_800F3214(sp44, &sp38, &sp2C, func_800DC178(0.7f, 1.0f));
+            func_800C8CB8(*(s32 *)&arg0->unk50, sp5C);
+            func_800C8E84(*(s32 *)&arg0->unk50, sp44);
+            func_800C8FE0(*(s32 *)&arg0->unk50, 1);
+            return;
+        }
+        func_800C8FE0(temp_a0, 0);
+    }
+}
 
 /* extern */
 
