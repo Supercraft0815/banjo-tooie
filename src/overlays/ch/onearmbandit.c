@@ -259,4 +259,22 @@ void func_80801114_chonearmbandit(Actor *arg0) {
     func_800BBCB8(arg0->position, 0, arg0->scale, 1, &D_808013E8_chonearmbandit);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80801154_chonearmbandit.s")
+/* extern */
+
+s32 func_80801154_chonearmbandit(Actor *arg0) {
+    void func_801096C8(Actor *, s32);
+    s32 func_8010B990(Actor *, s32);
+    s32 var_a1;
+
+    (void)&arg0;
+    var_a1 = 6;
+    if (!arg0->unk64_20) {
+        var_a1 = 0x100006;
+    }
+    if (func_8010B990(arg0, var_a1) & 0x30) {
+        func_801096C8(arg0, 0);
+        func_808010AC_chonearmbandit(arg0, 0);
+        return 1;
+    }
+    return 0;
+}
