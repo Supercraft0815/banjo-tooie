@@ -53,7 +53,43 @@ void func_808002F8_chfriendlystonehead(void) {
     func_800DA524(0x427);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_80800328_chfriendlystonehead.s")
+void func_80800328_chfriendlystonehead(Actor *arg0) {
+    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800DA298(s32);
+    s32 func_800DA9E4(s32, s32);
+    void func_80800830_chfriendlystonehead(Actor *, s16);
+    extern s32 D_808008C0_chfriendlystonehead;
+    extern s32 D_80800978_chfriendlystonehead;
+    s32 var_v1;
+
+    var_v1 = func_800DA298(0x9CB) != 0;
+    if (var_v1 != 0) {
+        var_v1 = func_800DA298(0x5F) != 0;
+    }
+    if ((var_v1 != 0) && (func_800D0A9C(3, 1) == 0)) {
+        func_80800830_chfriendlystonehead(arg0, 0xF20);
+        _capod_entrypoint_13(arg0->unk0, 0, 1, 0x2010);
+        return;
+    }
+    if (func_800DA9E4(0x9CA, 0) != 0) {
+        func_80800830_chfriendlystonehead(arg0, 0xF22);
+        return;
+    }
+    if (func_800DA9E4(0x9CB, 0) != 0) {
+        func_808002F8_chfriendlystonehead();
+        if (func_800DA298(0x5E) == 0) {
+            func_80800830_chfriendlystonehead(arg0, 0xF1E);
+            return;
+        }
+        if (func_800DA298(0x5F) == 0) {
+            func_80800830_chfriendlystonehead(arg0, 0xF1F);
+        }
+    } else {
+        _subaddiedialog_entrypoint_8(arg0, arg0->position, &D_80800978_chfriendlystonehead, &D_808008C0_chfriendlystonehead, 4);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_80800444_chfriendlystonehead.s")
 
