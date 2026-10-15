@@ -1,5 +1,8 @@
 #include "common.h"
 
+void *func_80100094(Actor *, u32);
+s8 func_800BF8E4(void);
+
 OSThread *chflamer_entrypoint_0(void)
 {
     extern u8 D_80800B20_chflamer[];
@@ -10,7 +13,6 @@ OSThread *chflamer_entrypoint_0(void)
 /* extern */
 
 void func_8080000C_chflamer(Actor *arg0) {
-    s32 func_800BF8E4();
     u8 *sp1C;
     u8 *temp_v0;
 
@@ -28,7 +30,34 @@ void func_8080000C_chflamer(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flamer/func_80800434_chflamer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flamer/func_80800594_chflamer.s")
+/* extern */
+
+s32 func_80800594_chflamer(Actor *arg0, s32 arg1, s32 arg2) {
+    struct FlamerData {
+        s32 unk0;
+        u8 pad4[0x10];
+        s8 unk14;
+        u8 pad15[0x19F];
+        u8 link[1];
+    };
+    s32 _subaddielink_entrypoint_3(u8 *);
+    s32 func_800C8A98(void);
+    struct FlamerData *sp1C;
+    struct FlamerData *temp_v0;
+
+    if (arg1 == 0x95) {
+        temp_v0 = func_80100094(arg0, 0U);
+        sp1C = temp_v0;
+        _subaddielink_entrypoint_3(temp_v0->link);
+        if (func_800BF8E4() > 0) {
+            sp1C->unk0 = func_800C8A98();
+            sp1C->unk14 = 0;
+        }
+    } else {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flamer/chflamer_entrypoint_1.s")
 
