@@ -31,7 +31,41 @@ void func_800B7EA0(s32 arg0, s32 arg1) {
     D_801282C0.data[0xB] = (u8) sp34;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B7F14.s")
+void func_800B7F14(Gfx **arg0) {
+    s32 func_800D3724(s32);
+    extern s32 D_8011A630;
+
+    { Gfx *g = (*arg0)++; g->words.w0 = 0xDE000000; g->words.w1 = (u32)((u8 *)&D_8011A630 - (u8 *)0x80000000); }
+    { Gfx *g = (*arg0)++;
+    g->words.w0 = 0xE3001201;
+    if (D_801282C0.data[6] == 1) {
+        g->words.w1 = 0x2000;
+    } else {
+        g->words.w1 = 0;
+    }
+    }
+    { Gfx *g = (*arg0)++;
+    g->words.w0 = 0xFA000000;
+    g->words.w1 = ((u32)D_801282C0.data[3] & 0xFF) | (u32)(((D_801282C0.data[1] & 0xFF) << 16) | ((D_801282C0.data[2] & 0xFF) << 8) | ((D_801282C0.data[0] & 0xFF) << 24)); }
+    if (D_801282C0.data[9] != 0) {
+        { Gfx *g = (*arg0)++;
+        g->words.w0 = 0xE3000A01; g->words.w1 = 0x100000; }
+        { Gfx *g = (*arg0)++;
+        g->words.w0 = 0xFC117E03; g->words.w1 = 0xFF0FF3FF; }
+        { Gfx *g = (*arg0)++;
+        g->words.w0 = 0xE200001C; g->words.w1 = 0x0C184A40; }
+        func_800B7EA0((s32)arg0, D_801282C0.data[9] + 0xC24);
+    } else {
+        { Gfx *g = (*arg0)++;
+        g->words.w0 = 0xE3000A01; g->words.w1 = 0; }
+        { Gfx *g = (*arg0)++;
+        g->words.w0 = 0xFC119623; g->words.w1 = 0xFF2FFFFF; }
+        { Gfx *g = (*arg0)++;
+        g->words.w0 = 0xE200001C; g->words.w1 = 0x504A40; }
+    }
+    D_801282C0.data[5] = 1;
+    D_801282C0.data[0xC] = func_800D3724(D_801282C0.data[6]);
+}
 
 void func_800B80D0(Gfx **arg0) {
     Gfx *g = (*arg0)++;
