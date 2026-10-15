@@ -970,7 +970,21 @@ f32 func_8080458C_chdodgemcontrol(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080460C_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808046EC_chdodgemcontrol.s")
+f32 func_808046EC_chdodgemcontrol(Actor *arg0) {
+    switch (arg0->unk79_4) {
+        case 0:
+        case 1:
+        case 2:
+            if (!arg0->unk6C_0) {
+                return 800.0f;
+            }
+            return 600.0f;
+        case 3:
+            return 600.0f;
+        default:
+            return 0.0f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080476C_chdodgemcontrol.s")
 
