@@ -25,7 +25,38 @@ void func_8080000C_changlerbossflare(Actor *arg0) {
     self->initialized = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/flare/func_80800068_changlerbossflare.s")
+void func_80800068_changlerbossflare(Actor *arg0) {
+    struct FlareActorFields {
+        u8 pad0[0x18];
+        f32 angle;
+        u8 pad1C[0x38];
+        s32 unk54;
+    };
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    void func_800C8CB8(s32, f32[3]);
+    void func_800C8E54(s32, f32, f32);
+    s32 func_800C8E84(s32, s32 *);
+    f32 func_800D8FF8(void);
+    s32 func_8010B990(Actor *, s32);
+    void func_80800190_changlerbossflare(Actor *);
+    void func_8080021C_changlerbossflare(Actor *);
+    void func_808003A4_changlerbossflare(Actor *);
+    extern u32 D_808004DC_changlerbossflare;
+    extern s32 D_808004F4_changlerbossflare;
+
+    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808004DC_changlerbossflare);
+    ((struct FlareActorFields *)arg0)->angle += func_800D8FF8() * 300.0f;
+    if (arg0->unk70_10 == 1) {
+        func_800C8E54(((struct FlareActorFields *)arg0)->unk54, arg0->scale * 400.0f, arg0->scale * 1000.0f);
+        func_800C8E84(((struct FlareActorFields *)arg0)->unk54, &D_808004F4_changlerbossflare);
+        func_800C8CB8(((struct FlareActorFields *)arg0)->unk54, arg0->position);
+        func_8080021C_changlerbossflare(arg0);
+        func_808003A4_changlerbossflare(arg0);
+        if (func_8010B990(arg0, 0x400007) & 0x20) {
+            func_80800190_changlerbossflare(arg0);
+        }
+    }
+}
 
 /* extern */
 
