@@ -172,7 +172,7 @@ void func_800C75E8(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0AA0/func_800C7618.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0AA0/func_800C76E8.s")
+void func_800C76E8(void) { extern s8 D_8012760D; s8 var_v1; s32 temp_v0; var_v1 = D_8012760C.unk1; if (var_v1 == 0) { switch (D_8012760C.unk0) { case 0: case 1: break; default: temp_v0 = func_800C75A0((s32) D_8012760C.unk0); func_800C7618(temp_v0, 1); func_800FECB8(0xAU); var_v1 = D_8012760D; break; } } D_8012760C.unk1 = var_v1 + 1; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0AA0/func_800C775C.s")
 
