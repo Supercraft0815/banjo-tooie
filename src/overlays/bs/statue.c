@@ -1,6 +1,16 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80800000_bsstatue.s")
+void func_800CE88C(s32, s32);
+s32 func_800CEAA8(s32);
+
+void func_80800000_bsstatue(s32 arg0, s32 arg1) {
+    s32 temp_v0;
+
+    temp_v0 = func_800CEAA8(2);
+    if (((temp_v0 != 0) && (arg1 == 0)) || ((temp_v0 == 0) && (arg1 != 0))) {
+        func_800CE88C(2, arg1);
+    }
+}
 
 /* extern */
 
@@ -58,7 +68,7 @@ void bsstatue_entrypoint_1(s32 arg0) {
 
 void func_80800474_bsstatue(s32 arg0) {
     s32 _badrone_entrypoint_31(s32);
-    s32 func_80800000_bsstatue(s32, s32);
+    void func_80800000_bsstatue(s32, s32);
     int func_80800130_bsstatue();
     if (_badrone_entrypoint_31(arg0) != 0) {
         func_80800000_bsstatue(arg0, 1);
@@ -72,7 +82,7 @@ void func_80800474_bsstatue(s32 arg0) {
 void func_808004B4_bsstatue(s32 arg0) {
     s32 _badrone_entrypoint_31(s32);
     s32 _bsdrone_entrypoint_0(s32);
-    s32 func_80800000_bsstatue(s32, s32);
+    void func_80800000_bsstatue(s32, s32);
     s32 func_808001FC_bsstatue();
     func_808001FC_bsstatue();
     _bsdrone_entrypoint_0(arg0);
@@ -174,7 +184,7 @@ s32 bsstatue_entrypoint_4(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80800BEC_bsstatue.s")
 
 void func_80800C64_bsstatue(PlayerState *arg0) {
-    s32 func_80800000_bsstatue(s32, s32);
+    void func_80800000_bsstatue(s32, s32);
     func_80800000_bsstatue(arg0, 1);
     _bsrest_entrypoint_14(arg0);
     func_80800130_bsstatue(arg0);
@@ -184,7 +194,7 @@ void func_80800C64_bsstatue(PlayerState *arg0) {
 
 void func_80800C98_bsstatue(s32 arg0) {
     s32 _bsrest_entrypoint_16(s32);
-    s32 func_80800000_bsstatue(s32, s32);
+    void func_80800000_bsstatue(s32, s32);
     s32 func_808001FC_bsstatue();
     func_808001FC_bsstatue();
     _bsrest_entrypoint_16(arg0);
