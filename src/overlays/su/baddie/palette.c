@@ -31,7 +31,39 @@ s32 subaddiepalette_entrypoint_2(void **arg0, void *arg1, u16 arg2, f32 arg3) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/palette/subaddiepalette_entrypoint_3.s")
+/* extern */
+
+void subaddiepalette_entrypoint_3(Actor *arg0, u8 *arg1, s32 arg2) {
+    typedef struct VertexListView VertexListView;
+    void func_800B25D8(VertexListView *, VertexListView *, s32);
+    s32 func_800B2840(s32);
+    void func_800DF720(s32);
+    s32 func_80100AC4(s16);
+    void func_80100F0C(s16, u8 *);
+    s32 func_80103C94(Actor *);
+    s32 pad[2];
+    s32 sp24;
+    s16 temp_a0;
+    s16 var_v0;
+    u8 *temp_s0;
+
+    var_v0 = *(s16 *)(arg1 + 6);
+    temp_s0 = arg1;
+    if (var_v0 != 0) {
+        temp_a0 = *(s16 *)&arg0->pad60;
+        if (temp_a0 != 0 && arg0->pad7A_7 != 0) {
+            func_80100F0C(temp_a0, arg1 + 0x10);
+            func_800DF720(func_80100AC4(*(s16 *)&arg0->pad60));
+        } else {
+            sp24 = func_80103C94(arg0);
+            func_800B25D8(sp24, func_800B2840(arg2), temp_s0 + 0x10);
+        }
+        var_v0 = *(s16 *)(temp_s0 + 6);
+    }
+    if (var_v0 != 0) {
+        *(s16 *)(temp_s0 + 6) = var_v0 - 1;
+    }
+}
 
 void subaddiepalette_entrypoint_4(void *arg0, void *arg1) {
     (*(s16 *)((s8 *)(arg1) + (6))) = 1;

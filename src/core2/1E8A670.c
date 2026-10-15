@@ -1,6 +1,6 @@
 #include "common.h"
 
-typedef struct {
+typedef struct VertexListView {
     u8 pad0[0x16];
     u16 count : 15;
     u16 flags : 1;
