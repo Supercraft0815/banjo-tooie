@@ -329,7 +329,18 @@ OSThread *chgameselect_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80801D74_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802070_chgameselect.s")
+/* extern */
+
+void func_80802070_chgameselect(Actor *arg0, s32 arg1) {
+    void func_80102424(Actor *, s32);
+    if (arg1 != 0) {
+        if (arg0->unk70_10 != 3) {
+            func_80102424(arg0, 3);
+        }
+    } else if (arg0->unk70_10 == 3) {
+        func_80102424(arg0, 4);
+    }
+}
 
 /* extern */
 
