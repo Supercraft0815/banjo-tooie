@@ -118,7 +118,33 @@ f32 func_8080063C_chdragonbrothers(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808006C8_chdragonbrothers.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808008C8_chdragonbrothers.s")
+void func_808008C8_chdragonbrothers(Actor *arg0) {
+    s32 _ncpod_entrypoint_16(s32, s32, s32, s32);
+    void func_800A5144();
+    f32 func_800F1DF4(f32 *, f32 *);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F5EF8(s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_808005A4_chdragonbrothers(u8 *, u8);
+    s32 func_808006C8_chdragonbrothers(Actor *);
+    extern f32 D_8080557C_chdragonbrothers[3];
+    u8 *temp_s0;
+    f32 sp28[3];
+
+    temp_s0 = func_80100094(arg0, 0);
+    if (!arg0->unk74_29) {
+        func_800F5A00(((s32 *)temp_s0)[8], sp28);
+        ((f32 *)temp_s0)[15] = ((f32 *)temp_s0)[16] = func_800F1DF4(D_8080557C_chdragonbrothers, sp28);
+        ((f32 *)temp_s0)[17] = 0.0f;
+        ((f32 *)temp_s0)[18] = 0.0f;
+        func_808005A4_chdragonbrothers(temp_s0 + 0x24, temp_s0[0x55]);
+        func_808005A4_chdragonbrothers(temp_s0 + 0x30, temp_s0[0x55]);
+        _ncpod_entrypoint_16(func_800F5EF8(((s32 *)temp_s0)[8]), (s32)arg0->unk0, 3, 0x804);
+        arg0->unk74_29 = 1;
+        func_808006C8_chdragonbrothers(arg0);
+        func_800A5144();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_8080098C_chdragonbrothers.s")
 
@@ -130,7 +156,7 @@ void func_80800B34_chdragonbrothers(Actor *arg0, s32 arg1) {
     s32 _ncpod_entrypoint_17(s32, s32);
     s32 func_800F5EF8(s32);
     void *func_80100094(Actor *, u32);
-    s32 func_808008C8_chdragonbrothers(Actor *);
+    void func_808008C8_chdragonbrothers(Actor *);
     u8 *sp1C;
     s32 pad;
 
