@@ -135,7 +135,32 @@ void func_8080167C_chchuffy(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_808017D4_chchuffy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_808018F8_chchuffy.s")
+void func_808018F8_chchuffy(Actor *arg0) {
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
+    s32 func_80800110_chchuffy(s32);
+    s32 func_80800264_chchuffy();
+    void func_808017D4_chchuffy(Actor *, s32);
+    extern struct Entry D_8080247E_chchuffy[];
+    s32 sp1C;
+    s32 temp_v0;
+
+    temp_v0 = func_80800110_chchuffy(4);
+    sp1C = temp_v0;
+    if (func_800DA298(D_8080247C_chchuffy[temp_v0].pad[0]) != 0) {
+        if (func_80800264_chchuffy() != 0) {
+            func_808017D4_chchuffy(arg0, 6);
+            return;
+        }
+        func_808017D4_chchuffy(arg0, 5);
+        return;
+    }
+    if (func_800DA298(D_8080247E_chchuffy[sp1C].pad[0]) != 0) {
+        func_808017D4_chchuffy(arg0, 8);
+        return;
+    }
+    func_800FFAB0(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_808019A4_chchuffy.s")
 
