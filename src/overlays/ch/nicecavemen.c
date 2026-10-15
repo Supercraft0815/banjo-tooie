@@ -87,7 +87,7 @@ void func_80800CC8_chnicecavemen(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
     s32 _subaddieaudioquick_entrypoint_4(Actor *, f32 *, s32 *, s32 *);
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
-    s32 func_800DC298(f32);
+    int func_800DC298(f32);
     s32 func_800DC128(s32, s32);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
     s32 animation;
@@ -223,7 +223,33 @@ void func_80801200_chnicecavemen(Actor *arg0) {
     _subaddiepalette_entrypoint_0(arg0, sp1C + 0x14, var_v0 & 0xFFFF);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_8080126C_chnicecavemen.s")
+/* extern */
+
+s32 func_8080126C_chnicecavemen(void *arg0) {
+    int func_800DC298(f32);
+    u32 func_800F54E4(void);
+    s32 func_800F640C(s32, s32);
+    s32 sp24;
+    s32 var_v1;
+
+    sp24 = func_800F54E4();
+    if ((*(s32 *)((s8 *)arg0 + 0x30)) == 0) {
+        if (func_800DC298(0.5f) != 0) {
+            if (func_800F640C(sp24, 0x3CA) > 0) {
+                (*(s32 *)((s8 *)(arg0) + (0x30))) = 0x3CA;
+            } else {
+                (*(s32 *)((s8 *)(arg0) + (0x30))) = 0x3CB;
+            }
+        } else if (func_800F640C(sp24, 0x3CB) > 0) {
+            (*(s32 *)((s8 *)(arg0) + (0x30))) = 0x3CB;
+        } else {
+            (*(s32 *)((s8 *)(arg0) + (0x30))) = 0x3CA;
+        }
+    } else if (func_800F640C(sp24, (*(s32 *)((s8 *)arg0 + 0x30))) == 0) {
+        (*(s32 *)((s8 *)arg0 + 0x30)) = (*(s32 *)((s8 *)arg0 + 0x30)) == 0x3CA ? 0x3CB : 0x3CA;
+    }
+    return (*(s32 *)((s8 *)arg0 + 0x30)) == 0x3CA ? 0x17D5 : 0x1803;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_8080134C_chnicecavemen.s")
 
