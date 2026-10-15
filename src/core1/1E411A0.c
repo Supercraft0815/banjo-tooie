@@ -98,7 +98,25 @@ s32 func_80029F5C(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_80029FA0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_8002A024.s")
+/* extern */
+
+void func_8002A024(void *arg0, s32 arg1) {
+    void func_8002A150(void *, s32);
+    s32 func_8002A318(void *, s32, s32);
+    s16 func_800E9054(s32);
+    s32 sp1C;
+    s32 sp18;
+
+    sp18 = 0;
+    if (func_800E9054(0) == 0) {
+        do {
+        } while (func_800E9054(++sp18) == 0);
+    }
+    for (sp1C = 0; sp1C < (s32) (*(u8 *)((s8 *)(arg0) + (0x36))); sp1C++) {
+        func_8002A150(arg0, sp1C);
+        func_8002A318(arg0, sp18, sp1C);
+    }
+}
 
 /* extern */
 
