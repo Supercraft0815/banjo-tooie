@@ -82,7 +82,17 @@ void func_800E8DB0(u8 arg0, s32 arg1) {
     *(s16 *)func_800E8CB0(arg0) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8DE4.s")
+void func_800E8DE4(u8 *arg0, f32 arg1) {
+    void func_800E8E3C(u8 *);
+    f32 temp_f0;
+    f32 temp_f2;
+
+    temp_f2 = arg1 / *(f32 *)(arg0 + 8);
+    *(f32 *)(arg0 + 4) = *(f32 *)(arg0 + 4) + temp_f2;
+    temp_f0 = *(f32 *)(arg0 + 4);
+    *(f32 *)(arg0 + 4) = temp_f0 - (f32)(s32)temp_f0;
+    func_800E8E3C(arg0);
+}
 
 /* extern */
 
