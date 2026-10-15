@@ -210,7 +210,19 @@ void suquiz_entrypoint_22(s32 arg0, s32 arg1) {
     func_800EE7F8((u8 *) D_80127614 + 0xC, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_23.s")
+void suquiz_entrypoint_23(void) {
+    s32 _gcstatusDll_entrypoint_17();
+    s32 func_800D3948();
+    s32 suquiz_entrypoint_4();
+    extern void *D_80127614;
+    extern f32 D_80800F70_suquiz[][2];
+    if (func_800D3948() != 0) {
+        (*(f32 *)((s8 *)(D_80127614) + (0x20))) = (f32) ((f32) _gcstatusDll_entrypoint_17() * 60.0f);
+    } else {
+        (*(f32 *)((s8 *)(D_80127614) + (0x20))) = D_80800F70_suquiz[suquiz_entrypoint_4()][0];
+    }
+    (*(s8 *)((s8 *)(D_80127614) + (0x24))) = 1;
+}
 
 void suquiz_entrypoint_24(u32 arg0, s32 arg1) {
     extern void *D_80127614;
