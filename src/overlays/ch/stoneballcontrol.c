@@ -220,7 +220,7 @@ void func_80801944_chstoneballcontrol(u8 *arg0, s32 arg1) {
     s32 func_80101FDC(u8 *, s32);
     u8 *func_80106790(s32);
     void func_808024F8_chstoneballcontrol(u8 *);
-    void func_80802588_chstoneballcontrol(u8 *, s32);
+    void func_80802588_chstoneballcontrol(Actor *volatile, volatile s32);
     extern u8 D_8080511C_chstoneballcontrol[];
     u8 *data;
     s32 linked;
@@ -310,7 +310,24 @@ void func_80802418_chstoneballcontrol(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_808024F8_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80802588_chstoneballcontrol.s")
+void func_80802588_chstoneballcontrol(Actor *volatile arg0, volatile s32 arg1) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_800BA22C(s32, s32);
+    void func_800BA670(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    extern s32 D_80805134_chstoneballcontrol;
+    extern s32 D_80804FE8_chstoneballcontrol;
+    s32 emitter;
+    s32 model;
+    f32 *position;
+
+    position = arg0->position;
+    emitter = func_800BABB8(0, position, NULL, 1.0f, &D_80805134_chstoneballcontrol);
+    model = (arg1 == 1) ? 0x679 : 0x67A;
+    func_800BA670(emitter, model);
+    func_800BA22C(emitter, 0xA);
+    _subaddieaudioquick_entrypoint_2(arg0, position, &D_80804FE8_chstoneballcontrol);
+}
 
 void func_80802614_chstoneballcontrol(f32 *arg0) {
     void func_800BBCB8(f32[3], s32, f32, s32, s32 *);
