@@ -1,6 +1,39 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/store/subaddiestore_entrypoint_0.s")
+/* extern */
+
+u8 *subaddiestore_entrypoint_0(u8 *arg0, u8 *arg1) {
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    s32 func_808003AC_subaddiestore(s32 *, s32 *);
+    u8 *func_808004FC_subaddiestore(u8 *, u8 *);
+    u32 *func_80800AD8_subaddiestore(void *, u32 *);
+    void *heap_realloc(void *, s32);
+    s32 temp_s1;
+    s32 next_entry;
+    s32 entry;
+    u8 *temp_v1;
+    u8 *var_s0;
+    u32 *var_s1;
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+     entry = func_808003AC_subaddiestore(&sp34, &sp30);
+    temp_s1 = arg1 - arg0;
+    arg0 = heap_realloc(arg0, temp_s1 + entry);
+    temp_v1 = arg0 + temp_s1;
+    (*(s16 *)((s8 *)(temp_v1) + (0))) = (s16) sp34;
+    var_s0 = temp_v1 + 4;
+    (*(s16 *)((s8 *)(temp_v1) + (2))) = (s16) sp30;
+    for (entry = func_801067C4(&sp2C); entry != 0; entry = func_8010682C(&sp2C)) {
+        var_s0 = func_808004FC_subaddiestore((u8 *)entry, var_s0);
+    }
+    var_s1 = (u32 *)var_s0;
+    for (entry = func_801067C4(&sp2C); entry != 0; entry = func_8010682C(&sp2C)) {
+        var_s1 = func_80800AD8_subaddiestore((void *)entry, var_s1);
+    }
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/store/subaddiestore_entrypoint_1.s")
 
