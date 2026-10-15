@@ -114,7 +114,45 @@ void func_80800AEC_chvolcanobits(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_80800B20_chvolcanobits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_80800C5C_chvolcanobits.s")
+/* extern */
+
+int func_80800C5C_chvolcanobits(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    void func_800187B4(s32, f32, f32, f32);
+    void func_800E1378(s32);
+    void func_800E13F0(s32, f32);
+    void func_800E1410(s32, f32, f32);
+    s32 func_800E1540(s32);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(void *, s32);
+    s32 func_80800EF0_chvolcanobits(void *);
+    void *func_8080108C_chvolcanobits(void *);
+    s32 sp20[2];
+    s32 temp_v0;
+    void *temp_s0;
+
+    if (arg1 == 0xA) {
+        temp_s0 = func_8080108C_chvolcanobits(arg0);
+        temp_v0 = func_800E1540(0);
+        sp20[0] = temp_v0;
+        func_800E1378(temp_v0);
+        func_800E13F0(sp20[0], 5.0f);
+        func_800E1410(sp20[0], -5.0f, (*(f32 *)temp_s0) * 0.95f);
+        func_800187B4(0, 3.0f, 1.0f, (*(f32 *)temp_s0) * 0.95f);
+        func_80101FDC(arg0, 2);
+        func_80103110(arg0, 1);
+        arg0->unk58 = *(f32 *)temp_s0;
+        if (*(s16 *)((s8 *)temp_s0 + 8) != -1) {
+            _capod_entrypoint_13((s32)arg0->unk0, 0, *(s16 *)((s8 *)temp_s0 + 8), 0x10);
+        }
+        return 1;
+    }
+    if (arg1 == 0x95) {
+        func_80800EF0_chvolcanobits(arg0);
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_80800D6C_chvolcanobits.s")
 
