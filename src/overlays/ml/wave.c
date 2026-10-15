@@ -67,4 +67,6 @@ void mlwave_entrypoint_7(void *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/wave/mlwave_entrypoint_8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/wave/mlwave_entrypoint_9.s")
+/* extern */
+
+s32 mlwave_entrypoint_9(s32 arg0, f32 *arg1) { s32 mlwave_entrypoint_8(s32, f32); f32 *var_s0 = arg1; f32 var_f0 = *arg1; f32 sentinel = -1.0f; goto check; loop: if (mlwave_entrypoint_8(arg0, var_f0) != 0) { return 1; } var_f0 = var_s0[1]; var_s0++; check: if (sentinel != var_f0) { goto loop; } return 0; }
