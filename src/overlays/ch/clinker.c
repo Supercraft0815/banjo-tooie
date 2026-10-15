@@ -44,7 +44,29 @@ void func_80800368_chclinker(Actor *arg0, u8 *arg1) {
     func_80101870(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_808003A8_chclinker.s")
+/* extern */
+
+void func_808003A8_chclinker(Actor *arg0) {
+    void _subaddiezone_entrypoint_0(void *);
+    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_80103014(u8 *);
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp24[3];
+
+    func_800EE7F8(sp3C, arg0->position);
+    func_800EF1B8(sp3C, arg0->rotation[1], 100.0f);
+    func_800EE7F8(sp30, arg0->position);
+    func_800EF1B8(sp30, arg0->rotation[1], -200.0f);
+    if (func_800BEF00(sp3C, sp30, sp24, arg0->unk14) != 0) {
+        func_800EE7F8(arg0->position, sp30);
+        func_800EF1B8(arg0->position, arg0->rotation[1], 5.0f);
+        func_80103014((u8 *)arg0);
+        _subaddiezone_entrypoint_0(arg0);
+    }
+}
 
 OSThread *chclinker_entrypoint_0(void)
 {
