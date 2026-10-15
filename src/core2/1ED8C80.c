@@ -338,7 +338,32 @@ int func_80100230(Actor *arg0, f32 *arg1) {
     return (f32)(s32)(range->radius * range->radius) < distance;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_801002C0.s")
+/* extern */
+
+void func_801002C0(void) {
+    s32 _suautobaddies_entrypoint_1();
+    void func_800819B4(void *);
+    s32 func_80081D34(s32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    s32 sp3C;
+    Actor *var_s0;
+    f32 sp2C[3];
+
+    func_801001D8();
+    _suautobaddies_entrypoint_1();
+    func_800FFB74();
+    func_800F5A00(func_800F54E4(), sp2C);
+    if ((var_s0 = func_801067C4(&sp3C)) != NULL) {
+        do {
+            if ((func_80100230(var_s0, sp2C) != 0) && (func_80081D34(var_s0->pointerToSyscallEntry) != 0)) {
+                func_800819B4(var_s0->pointerToSyscallEntry);
+            }
+        } while ((var_s0 = func_8010682C(&sp3C)) != NULL);
+    }
+}
 
 void *func_80100368(void *arg0) {
     return (*(void *(**)())((s8 *)(arg0) + (0x10)))();
