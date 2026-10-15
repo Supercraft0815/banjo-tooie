@@ -59,7 +59,55 @@ void func_808001B0_chlagoonlockerdoorhits(void) {
     func_800BF744(sp1C + 0xA, func_800DA298(0x3A8) ? 0 : 0xF);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/lockerdoorhits/func_8080022C_chlagoonlockerdoorhits.s")
+void func_8080022C_chlagoonlockerdoorhits(Actor *arg0) {
+    void func_800BF744(s32, s32);
+    s32 func_800DA564(s32, s32);
+    s32 func_800DA7A8(s32, s32, s32);
+    s32 func_800DC090(void);
+    s32 func_80103140(Actor *, u32, u16);
+    void func_8010A590(Actor *);
+    void func_808001B0_chlagoonlockerdoorhits(void);
+    extern u16 D_808003E4_chlagoonlockerdoorhits[];
+    extern u8 D_80800430_chlagoonlockerdoorhits[];
+    s32 sp2C;
+    s32 temp_v0;
+    s32 var_s0;
+    u8 *var_s2;
+    s32 var_s1;
+
+    sp2C = arg0->unk74_7 - 0x33;
+    temp_v0 = func_800DA564(0x3A4, 4);
+    var_s0 = temp_v0;
+    if (temp_v0 == 0) {
+        if ((temp_v0 == 0) || (temp_v0 >= 0xA)) {
+            do {
+loop_3:
+                var_s0 = func_800DC090() & 0xF;
+                func_800DA7A8(0x39F, func_800DC090() & 0x1F, 5);
+                if (var_s0 == 0) {
+                    goto loop_3;
+                }
+            } while (var_s0 >= 0xA);
+        }
+        func_800DA7A8(0x3A4, var_s0, 4);
+    }
+    temp_v0 = func_800DA564(0x39F, 5);
+    var_s1 = 0xB; var_s2 = temp_v0 + D_80800430_chlagoonlockerdoorhits;
+    var_s0 = 0xC;
+    do {
+        func_800BF744(var_s1, 1U);
+        func_800BF744(var_s0, *var_s2);
+        var_s0 += 2;
+        var_s1 += 2;
+        var_s2 += 1;
+    } while (var_s0 != 0x1E);
+    func_808001B0_chlagoonlockerdoorhits();
+    temp_v0 = func_800DA564(0x3A4, 4) + 0x32;
+    if (arg0->unk74_7 == temp_v0) {
+        func_8010A590(arg0);
+    }
+    func_80103140(arg0, D_808003E4_chlagoonlockerdoorhits[sp2C], 0);
+}
 
 OSThread *chlagoonlockerdoorhits_entrypoint_0(void)
 {
