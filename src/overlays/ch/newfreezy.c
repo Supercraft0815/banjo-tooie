@@ -38,7 +38,48 @@ void func_808000AC_chnewfreezy(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_80800824_chnewfreezy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_80800974_chnewfreezy.s")
+/* extern */
+
+void func_80800974_chnewfreezy(Actor *arg0, u8 *arg1) {
+    typedef struct { f32 m[4][4]; } MtxF;
+    s32 _dbskeleton_entrypoint_4(u8 *, u32);
+    u32 func_800ADE50(u8 *, u8 *, s32);
+    s32 func_800AE080(s16);
+    s32 func_800AE290(s16, s32, s32);
+    s32 func_800DF324(void);
+    void func_800F2C1C(MtxF *, f32 *);
+    void mlMtxGet(void *);
+    void mlMtxSet(void *);
+    void mlMtxRotatePYR(f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    f32 temp_f8;
+    s32 temp_s5;
+    u32 var_s1;
+    struct FreezyPartTransform {
+        f32 position[3];
+        f32 rotation[3];
+        u8 pad18[0x48];
+    } *var_s0;
+    MtxF sp48;
+
+    var_s0 = func_80100094(arg0, 0);
+    func_800AE290(*(s16 *)&arg0->unk0->unk10, arg1, func_800DF324());
+    temp_s5 = func_800AE080(*(s16 *)&arg0->unk0->unk10);
+    var_s1 = 0;
+    if (arg0->unk6C_0) {
+        do {
+            mlMtxSet(func_800ADE50(temp_s5, arg1, _dbskeleton_entrypoint_4(arg1, var_s1)));
+            mlMtxRotatePYR(arg0->rotation[0], arg0->rotation[1], arg0->rotation[2]);
+            mlMtxGet(&sp48);
+            func_800F2C1C(&sp48, var_s0->rotation);
+            var_s0->rotation[1] -= 90.0f;
+            var_s0->rotation[2] = -var_s0->rotation[0];
+            var_s0->rotation[0] = 0.0f;
+            var_s1 += 1;
+            var_s0++;
+        } while (var_s1 < arg0->unk6C_0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_80800AA4_chnewfreezy.s")
 
