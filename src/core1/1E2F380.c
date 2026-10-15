@@ -285,4 +285,21 @@ void func_80018820(s32 arg0, f32 arg1, f32 arg2) { func_800187B4(arg0, arg1, arg
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_80018854.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_800189A8.s")
+void func_800189A8(s32 arg0, f32 arg1[][2], s16 arg2, f32 arg3, f32 arg4) {
+    void func_800C9EAC(f32, void *, s32, s32, s32, s32);
+    f32 temp_f12;
+    f32 temp_f0;
+    f32 temp_f2;
+    f32 temp_f14;
+    s32 var_s1;
+
+    if (D_8007B2D0[arg0].unk0 != 0) {
+        for (var_s1 = 0; var_s1 < arg2 - 1; var_s1++) {
+                temp_f12 = arg1[var_s1][0] * arg3;
+                temp_f0 = arg1[var_s1 + 1][0] * arg3;
+                temp_f2 = arg1[var_s1][1] * arg4;
+                temp_f14 = arg1[var_s1 + 1][1] * arg4;
+                func_800C9EAC(temp_f12, func_800183D4, arg0, (s32) (temp_f2 * 524288.0f), (s32) (temp_f14 * 524288.0f), (s32) ((temp_f0 - temp_f12) * 524288.0f));
+        }
+    }
+}
