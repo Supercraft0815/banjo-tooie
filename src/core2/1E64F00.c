@@ -35,7 +35,35 @@ void func_8008B6E0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008B768.s")
+void func_8008B768(void) {
+    void func_800DFCC0(s16);
+    void *heap_realloc(void *, s32);
+    extern s32 D_80126CC0;
+    struct Entry { s16 value, age, active; };
+    struct Entry *entry;
+    s32 count;
+    s32 size;
+    struct Entry *data;
+
+    count = 0;
+    entry = *(struct Entry **)&D_80126CC0;
+    while (entry < ((struct Entry **)&D_80126CC0)[1]) {
+        if (entry->active != 0) {
+            entry->age = 0;
+            func_800DFCC0(entry->value);
+            entry->value = 0;
+            count = entry - *(struct Entry **)&D_80126CC0 + 1;
+        }
+        entry++;
+    }
+    if (count < 10) {
+        count = 10;
+    }
+    size = count * 6;
+    data = heap_realloc(*(void **)&D_80126CC0, size);
+    D_80126CC0 = (s32)data;
+    *(s32 *)((s32)&D_80126CC0 + 4) = size + D_80126CC0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008B850.s")
 
