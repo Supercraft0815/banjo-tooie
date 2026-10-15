@@ -103,7 +103,23 @@ void func_80800724_bsdronexform(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/func_80800758_bsdronexform.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/bsdronexform_entrypoint_1.s")
+/* extern */
+
+void bsdronexform_entrypoint_1(void *arg0) {
+    struct player_state_s;
+    s32 _badronemem_entrypoint_1(void *);
+    void baflag_clear(struct player_state_s *, s32);
+    void func_800961AC(struct player_state_s *, s32);
+    void func_8009CEE8(void *);
+    void func_800C59F0(s32, s32, s32);
+    func_800961AC(arg0, 1);
+    func_800C59F0(0xFF, 0xFF, 0xFF);
+    func_808002CC_bsdronexform(arg0);
+    func_8080069C_bsdronexform((s32) arg0);
+    func_8009CEE8(arg0);
+    baflag_clear(arg0, 0x1B);
+    _badronemem_entrypoint_1(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/bsdronexform_entrypoint_2.s")
 
