@@ -53,7 +53,28 @@ void *func_80800000_chdoormake(Actor *arg0, s32 arg1, u32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/chdoormake_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/chdoormake_entrypoint_4.s")
+/* extern */
+
+s32 chdoormake_entrypoint_4(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void func_800FFAB0(Actor *);
+    void func_80101FDC(Actor *, u32);
+    s32 func_808000B8_chdoormake(Actor *);
+    s32 func_808008C4_chdoormake(Actor *);
+    func_80800000_chdoormake(arg0, 5, arg1, arg2);
+    if ((func_808008C4_chdoormake(arg0) != 0) || (arg0->unk70_10 == 4)) {
+        if (arg1 & 1) {
+            func_800FFAB0(arg0);
+            return 0;
+        }
+        _subaddiefade_entrypoint_1(arg0, 0);
+        func_80101FDC(arg0, 4);
+        func_808000B8_chdoormake(arg0);
+        return 2;
+    }
+    func_808000B8_chdoormake(arg0);
+    return 1;
+}
 
 void chdoormake_entrypoint_5(Actor *arg0, f32 arg1) {
     void* func_80100094(Actor*, u32);
