@@ -41,4 +41,31 @@ s32 func_8001C070(void) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E33860/func_8001C0A0.s")
+void *func_8001C0A0(s32 arg0) {
+    struct HeapHeader *block;
+    struct HeapHeader *next;
+    u32 size;
+
+    block = FIRST_BLOCK()->header.next;
+    size = func_8001BD30(arg0 > 0 ? arg0 : 1);
+    next = block->next;
+    if ((u32)((char *)next - (char *)block - sizeof(struct HeapHeader)) < size || ((u32)((u8 *)block)[15] >> 6) != 0) {
+        if ((heap_bytes_allocated() + D_8007E990) != (char *)(next = block->next) + sizeof(struct EmptyHeapBlock)) {
+loop:
+            block = next;
+            next = next->next;
+            if ((u32)((char *)next - (char *)block - sizeof(struct HeapHeader)) < size || ((u32)((u8 *)block)[15] >> 6) != 0) {
+                if ((heap_bytes_allocated() + D_8007E990) != (char *)(next = block->next) + sizeof(struct EmptyHeapBlock)) {
+                    goto loop;
+                }
+            }
+        }
+    }
+    if (((u32)((volatile u8 *)block)[15] >> 6) != 0) {
+        return NULL;
+    }
+    if ((u32)((char *)next - (char *)block - sizeof(struct HeapHeader)) < size) {
+        return NULL;
+    }
+    return block;
+}
