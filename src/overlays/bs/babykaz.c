@@ -104,7 +104,25 @@ void func_808003F0_bsbabykaz(void *arg0) {
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80800438_bsbabykaz.s")
+/* extern */
+
+void func_80800438_bsbabykaz(s32 arg0) {
+    int baanim_isStopped(struct player_state_s *);
+    s32 bs_setState(s32, s32);
+    s32 bsbabykaz_entrypoint_5(s32);
+    int func_8008DD04(struct player_state_s *);
+    s32 sp24;
+
+    sp24 = 0;
+    bsbabykaz_entrypoint_5(arg0);
+    if (baanim_isStopped(arg0) != 0) {
+        sp24 = 0x136;
+    }
+    if (func_8008DD04(arg0) != 0) {
+        sp24 = 0x133;
+    }
+    bs_setState(arg0, func_808001A8_bsbabykaz(arg0, sp24));
+}
 
 s32 bsbabykaz_entrypoint_2(s32 arg0) {
     extern s32 D_80801730_bsbabykaz[];
@@ -258,7 +276,7 @@ void func_808010AC_bsbabykaz(s32 arg0) {
     s32 _badrone_entrypoint_25(s32);
     s32 bs_setState(s32, s32);
     s32 bsbabykaz_entrypoint_5();
-    s32 func_8008DD04(s32);
+    int func_8008DD04(struct player_state_s *);
     int func_8008E148(s32);
     s32 func_808001A8_bsbabykaz(struct player_state_s *, s32);
     s32 sp24;
