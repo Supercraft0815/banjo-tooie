@@ -242,4 +242,11 @@ void suquiz_entrypoint_27(void) {
     func_80108474(0x217, &D_808010F0_suquiz, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_28.s")
+void suquiz_entrypoint_28(s32 arg0, s32 arg1, s32 arg2) {
+    void func_800C3F48(u32);
+    extern s32 D_808010FC_suquiz;
+    void *temp_v0;
+
+    temp_v0 = (arg1 * 0x30) + (arg0 * 0xC) + (s8 *)&D_808010FC_suquiz;
+    func_800C3F48(((*(s32 *)temp_v0 & 0x7FF) + (((*(s32 *)((s8 *)temp_v0 + 8) >> 5) & 0x3FF) << 11)) + (((u32)(*(f32 *)((s8 *)temp_v0 + 4) * 1023.0f) & 0x7FF) << 21));
+}
