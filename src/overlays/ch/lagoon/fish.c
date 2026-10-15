@@ -2,7 +2,26 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/fish/func_80800000_chlagoonfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/fish/func_808001A0_chlagoonfish.s")
+/* extern */
+
+void func_808001A0_chlagoonfish(Actor *arg0) {
+    s32 _subaddiesect_entrypoint_1(Actor *);
+    void func_800FFAB0(Actor *);
+    s32 func_80800000_chlagoonfish(Actor *);
+    s32 func_80800A44_chlagoonfish(Actor *, s32);
+    s32 temp;
+
+    temp = arg0->unk74_7;
+    if (temp < 0x33) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    arg0->unk6C_0 = temp - 0x32;
+    func_80800000_chlagoonfish(arg0);
+    func_80800A44_chlagoonfish(arg0, 1);
+    ((f32 *)arg0->actorData)[3] = arg0->scale * 600.0f;
+    ((f32 *)arg0->actorData)[7] = (f32) _subaddiesect_entrypoint_1(arg0);
+}
 
 void func_80800240_chlagoonfish(Actor *arg0) { func_80100074(arg0, 0U, 0U); }
 
