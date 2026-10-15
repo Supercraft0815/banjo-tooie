@@ -84,7 +84,14 @@ void badust_entrypoint_5(PlayerState *arg0, f32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/badust_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/badust_entrypoint_8.s")
+void badust_entrypoint_8(struct player_state_s *self) {
+    void badust_entrypoint_5(struct player_state_s *, f32, f32);
+    f32 angle;
+
+    for (angle = 0.0f; angle < 360.0f; angle += 45.0f) {
+        badust_entrypoint_5(self, angle, 230.0f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/badust_entrypoint_9.s")
 
