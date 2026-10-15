@@ -38,7 +38,61 @@ s32 func_8010347C(Unk80132ED0 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103508.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_8010381C.s")
+/* extern */
+
+void func_8010381C(Actor *arg0) {
+    void func_800ADFE0(s16);
+    void func_800D8954(s16);
+    void func_800DBFD8(void *);
+    void func_80100E18(s16);
+    s32 func_8010108C();
+    void func_80104328(s32);
+    void func_80104504(void *);
+    void func_80106138(Actor *);
+    Unk80132ED0 *var_v0;
+    struct {
+        u8 pad0[0x70];
+        u32 pad70_4 : 28;
+        u32 active : 1;
+        u32 pad70_0 : 3;
+        u32 pad74_24 : 8;
+        u32 hasResource : 1;
+        u32 pad74_0 : 23;
+    } *flags = (void *)arg0;
+    u16 temp_v0;
+
+    var_v0 = arg0->unk0;
+    if (flags->active) {
+        if (((s16 *)&arg0->pad60)[0] != 0) {
+            func_80100E18(((s16 *)&arg0->pad60)[0]);
+            ((s16 *)&arg0->pad60)[0] = 0;
+        }
+        if (var_v0->unk4 != 0) {
+            func_800DBFD8(var_v0->unk4);
+            var_v0->unk4 = 0;
+        }
+        if (((s16 *)&arg0->pad90)[0] != 0) {
+            func_80106138(arg0);
+        }
+        if (((s16 *)&var_v0->unk10)[0] != 0) {
+            func_800ADFE0(((s16 *)&var_v0->unk10)[0]);
+            ((s16 *)&var_v0->unk10)[0] = 0;
+        }
+        temp_v0 = ((u16 *)&arg0->pad80)[0];
+        if (temp_v0 != 0) {
+            func_800D8954((s16)temp_v0);
+            ((u16 *)&arg0->pad80)[0] = 0;
+        }
+        if ((flags->hasResource) && ((s16 *)&arg0->pad8C)[0] != 0) {
+            func_80104328((s32)arg0);
+        }
+        if (((s16 *)&arg0->pad8C)[1] != 0) {
+            func_80104504(arg0);
+        }
+        flags->active = 0;
+        func_8010108C(arg0, 0x2A, 0);
+    }
+}
 
 void func_80103930(s32 arg0) 
 {
@@ -46,7 +100,7 @@ void func_80103930(s32 arg0)
 /* extern */
 
 void func_80103938(void *arg0) {
-    s32 func_80104504();
+    void func_80104504();
     if ((*(s16 *)((s8 *)(arg0) + (0x8E))) != 0) {
         func_80104504();
     }
