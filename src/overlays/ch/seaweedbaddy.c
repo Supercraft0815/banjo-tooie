@@ -99,6 +99,39 @@ s32 func_80800910_chseaweedbaddy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_808009BC_chseaweedbaddy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_80800BCC_chseaweedbaddy.s")
+void func_80800BCC_chseaweedbaddy(Actor *arg0) {
+    void _chexploder_entrypoint_10(Actor *, s32 *);
+    s32 _chexploder_entrypoint_14(Actor *, s32);
+    s32 _chexploder_entrypoint_6(Actor *, f32, f32);
+    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800FFAB0(Actor *);
+    void *func_80101080(void);
+    void func_80103DFC(Actor *, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_80107070(Actor *, s32);
+    extern s32 D_80800F5C_chseaweedbaddy;
+    extern s32 D_80800F90_chseaweedbaddy;
+    extern s32 D_80800F9C_chseaweedbaddy;
+    f32 sp30[4];
+    Actor *temp_v0;
+
+    temp_v0 = func_80106790(func_80101080());
+    _chexploder_entrypoint_9(temp_v0, 1, 0);
+    _chexploder_entrypoint_9(temp_v0, 2, 0);
+    _chexploder_entrypoint_9(temp_v0, 3, 0);
+    _chexploder_entrypoint_9(temp_v0, 4, 1);
+    _chexploder_entrypoint_9(temp_v0, 5, 0);
+    _chexploder_entrypoint_10(temp_v0, &D_80800F9C_chseaweedbaddy);
+    _chexploder_entrypoint_6(temp_v0, 500.0f, 600.0f);
+    _chexploder_entrypoint_14(temp_v0, 3);
+    func_80103DFC(arg0, sp30);
+    func_800BBCB8(sp30, sp30, arg0->scale, 4, &D_80800F5C_chseaweedbaddy);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800F90_chseaweedbaddy);
+    if (func_80107070(arg0, 3) == 0) {
+        func_800FFAB0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_80800CE0_chseaweedbaddy.s")
