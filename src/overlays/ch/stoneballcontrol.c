@@ -609,7 +609,33 @@ OSThread *chstoneballcontrol_entrypoint_4(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80803724_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80803FF4_chstoneballcontrol.s")
+s32 func_80803FF4_chstoneballcontrol(s32 arg0, s32 arg1) {
+    s32 func_800DC128(s32, s32);
+    int func_800DC298(f32);
+    s32 choice = arg0;
+
+    switch (arg1) {
+        case 0:
+            if (func_800DC298(0.1499938965f)) {
+                return 0;
+            }
+            break;
+        case 1:
+            if (func_800DC298(0.2249908447f)) {
+                return 0;
+            }
+            break;
+        case 2:
+            if (func_800DC298(0.299987793f)) {
+                return 0;
+            }
+            break;
+    }
+    while (choice == arg0) {
+        choice = func_800DC128(1, 4);
+    }
+    return choice;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_808040B8_chstoneballcontrol.s")
 
