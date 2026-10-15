@@ -98,7 +98,28 @@ void func_80800980_chbiggafoot(void *arg0) {
 
 void func_80800BA4_chbiggafoot(Actor *arg0) { void func_80102424(Actor *, s32); void func_80800CDC_chbiggafoot(Actor *); extern s16 D_80801030_chbiggafoot; func_80102424(arg0, 6); arg0->unk3C = NULL; arg0->unk6C_0 = 0; ((f32 *)arg0->actorData)[3] = 1.0f; _capod_entrypoint_20(arg0->unk0, D_80801030_chbiggafoot, 0x10); func_80800CDC_chbiggafoot(arg0); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_80800C04_chbiggafoot.s")
+void func_80800C04_chbiggafoot(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u8 func_800D9078(f32 *);
+    void func_80102424(Actor *, s32);
+    void func_80800CDC_chbiggafoot(Actor *);
+    extern s16 D_80801030_chbiggafoot;
+    s32 temp_t3;
+
+    if (func_800D9078(&((f32 *)arg0->actorData)[3]) != 0) {
+        arg0->unk6C_0++;
+        temp_t3 = arg0->unk6C_0;
+        if (temp_t3 == 4) {
+            _capod_entrypoint_20(arg0->unk0, 0x7F, 0x10);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x12B2, 6, arg0->position, 0xA8);
+            func_80102424(arg0, 8);
+            return;
+        }
+        _capod_entrypoint_20(arg0->unk0, (&D_80801030_chbiggafoot)[temp_t3], 0x10);
+        func_80800CDC_chbiggafoot(arg0);
+        ((f32 *)arg0->actorData)[3] = 1.0f;
+    }
+}
 
 void func_80800CDC_chbiggafoot(Actor *arg0) {
     void func_800C3BDC(u8 id);
