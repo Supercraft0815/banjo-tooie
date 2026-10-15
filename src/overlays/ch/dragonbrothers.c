@@ -609,7 +609,29 @@ OSThread *chdragonbrothers_entrypoint_3(void)
     return (OSThread *) D_80805A08_chdragonbrothers;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80804CD0_chdragonbrothers.s")
+/* extern */
+
+void func_80804CD0_chdragonbrothers(Actor *arg0) {
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_80103110(void *, s32);
+
+    func_800EFA4C(arg0->position, 0.0f, -500.0f, 3150.0f);
+    arg0->rotation[2] = 180.0f;
+    arg0->scale = 1.68f;
+    if (func_800EA05C() == 0x12B) {
+        arg0->unk7A_8 = 0;
+    } else {
+        arg0->unk7A_8 = 1;
+    }
+    if ((arg0->unk7A_8 && !func_800DA298(0x1D5)) ||
+        (!arg0->unk7A_8 && !func_800DA298(0x1D6))) {
+        arg0->unk3C = _subaddiefind_entrypoint_2(0x377, 0)->unk0;
+        func_80103110(arg0, 1);
+    }
+}
 
 void func_80804DB0_chdragonbrothers(s32 arg0) 
 {
