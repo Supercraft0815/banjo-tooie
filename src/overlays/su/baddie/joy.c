@@ -27,7 +27,22 @@ s32 subaddiejoy_entrypoint_1(void *arg0) {
     return sp1C[0] == 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/joy/subaddiejoy_entrypoint_2.s")
+/* extern */
+
+s32 subaddiejoy_entrypoint_2(void *arg0, s32 arg1, s32 arg2) {
+    f32 func_800136E4(f32);
+    s32 func_80016A74(u32, s32);
+    f32 func_800E3A80(void);
+    s32 var_v1;
+
+    var_v1 = func_80016A74((u32) ((*(s32 *)((s8 *)(arg0) + (0x64))) * 8) >> 0x1E, arg2);
+    if (var_v1 == -1) {
+        var_v1 = arg1;
+    } else {
+        var_v1 = (s32) func_800E3A80() + var_v1 + 0x5A;
+    }
+    return (s32) func_800136E4((f32) var_v1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/joy/subaddiejoy_entrypoint_3.s")
 
