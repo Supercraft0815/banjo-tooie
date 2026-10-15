@@ -39,7 +39,26 @@ void func_80800030_bsswim(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_808000E0_bsswim.s")
+void func_808000E0_bsswim(u32 *arg0, struct anctrl_s *arg1) {
+    f32 anctrl_getAnimTimer(struct anctrl_s *);
+    int anctrl_getIndex(struct anctrl_s *);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_start(struct anctrl_s *);
+    extern s16 D_80800B90_bsswim[];
+    s32 sp24;
+
+    sp24 = D_80800B90_bsswim[arg0[0x57]];
+    if (anctrl_getIndex(arg1) != sp24) {
+        anctrl_setStart(arg1, anctrl_getAnimTimer(arg1));
+        anctrl_setIndex(arg1, sp24);
+        anctrl_start(arg1);
+    }
+    arg0[0x57]++;
+    if (arg0[0x57] >= 0xAU) {
+        arg0[0x57] = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_80800178_bsswim.s")
 
