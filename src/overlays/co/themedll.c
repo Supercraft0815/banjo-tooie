@@ -1,5 +1,7 @@
 #include "common.h"
 
+u32 func_800FE890(void);
+
 s32 func_80800000_cothemedll(s32 arg0) {
     s32 func_800DA298(s32);
     extern s16 D_80800730_cothemedll[][3];
@@ -85,7 +87,30 @@ void func_80800388_cothemedll(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/co/themedll/cothemedll_entrypoint_4.s")
+void cothemedll_entrypoint_4(void *arg0, s32 arg1) {
+    s32 func_800DA298(s32);
+    void func_800FC2C4(s32, s32);
+    u32 func_800FDC28(u32);
+    void func_800FE3EC(void);
+    s32 func_80800000_cothemedll(s32);
+    extern s16 D_80800732_cothemedll[];
+    s32 theme;
+    (*(s8 *)((s8 *)(arg0) + (0x12))) = 1;
+    if (func_800DA298(0x674) == 0) {
+        func_800FDC28(0);
+    }
+    func_80800388_cothemedll(arg1);
+    if (func_800FE890() == 0) {
+        theme = *(s16 *)((s8 *)D_80800732_cothemedll + func_80800000_cothemedll(arg1) * 6);
+        if (((theme >> 2) != (*(s16 *)((s8 *)(arg0) + (8)))) || ((*(u8 *)((s8 *)(arg0) + (0x41))) != 0)) {
+            func_800FC2C4(0, 0x7D0);
+            func_800FE3EC();
+        } else {
+            (*(s8 *)((s8 *)(arg0) + (0xE))) = 1;
+        }
+    }
+    (*(u8 *)((s8 *)(arg0) + (0x41))) = 1U;
+}
 
 /* extern */
 
