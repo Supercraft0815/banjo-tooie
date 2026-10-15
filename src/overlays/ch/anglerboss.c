@@ -382,7 +382,34 @@ void func_808022C4_changlerboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80802340_changlerboss.s")
+void func_80802340_changlerboss(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    int func_800DC298(f32);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_801022E4(Actor *);
+    s32 func_80102320(Actor *, f32, f32);
+    s32 func_80802430_changlerboss(Actor *);
+    extern u32 D_80802FF8_changlerboss;
+
+    switch (func_801022E4(arg0)) {
+    case 0x3EC:
+        if ((func_80102320(arg0, 0.25f, 0.8f) != 0) && (func_800DC298(0.15f) != 0)) {
+            func_80802430_changlerboss(arg0);
+        }
+        break;
+    case 0x330:
+        if ((func_80102320(arg0, 0.25f, 0.75f) != 0) && (func_800DC298(0.1f) != 0)) {
+            func_80802430_changlerboss(arg0);
+        }
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80802FF8_changlerboss, 0.4f);
+        break;
+    case 0x33F:
+        if (func_80101E14(arg0, 0.85f) != 0) {
+            func_80802430_changlerboss(arg0);
+        }
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80802430_changlerboss.s")
 
