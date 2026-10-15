@@ -2,10 +2,36 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E95650/func_800BBD60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E95650/func_800BBED8.s")
+/* extern */
+
+void func_800BBED8(void *arg0, f32 arg1, f32 *arg2) {
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F13C4(f32, f32);
+    f32 mlAbsF(f32);
+    f32 *temp_s1;
+    f32 temp_f20;
+    f32 temp_f2;
+    f32 value;
+    s32 var_s2;
+    u8 *var_s0;
+
+    temp_f20 = (*(f32 *)((s8 *)(arg0) + (0x5C))) * 0.5f;
+    var_s0 = arg0;
+    var_s2 = 0;
+    do {
+        temp_s1 = (f32 *)((s8 *)arg2 + var_s2);
+        if ((*(f32 *)((s8 *)(var_s0) + (0x6C))) != 0.0f) {
+            value = mlAbsF(func_800F13C4((*(f32 *)((s8 *)(var_s0) + (0x60))) + arg1, (*(f32 *)((s8 *)(arg0) + (0x5C)))) - temp_f20);
+            temp_f2 = (*(f32 *)((s8 *)(var_s0) + (0x6C)));
+            *temp_s1 *= func_800F10B4(value, 0.0f, temp_f20, 1.0f - temp_f2, temp_f2 + 1.0f);
+        }
+        var_s2 += 4;
+        var_s0 += 4;
+    } while (var_s2 != 0xC);
+}
 
 void func_800BBFDC(void *arg0, s32 arg1) {
-    s32 func_800BBED8(void *, s32, f32 *);
+    void func_800BBED8(void *, f32, f32 *);
     s32 func_800D674C(s32);
     void func_800E2440(s32, s32, s32);
     void func_800E24B4(s32);
@@ -52,7 +78,7 @@ void func_800BBFDC(void *arg0, s32 arg1) {
             sp78[2] = (f32) ((*(s16 *)((s8 *)(var_s0) + (0xA))) + (*(s16 *)((s8 *)(arg0) + (0x10))));
             sp60[0] = sp60[1] = sp60[2] = (f32) (*(s16 *)((s8 *)(var_s0) + (0x30))) * 0.00390625f;
             if ((*(f32 *)((s8 *)(arg0) + (0x5C))) != 0.0f) {
-                func_800BBED8(arg0, (*(s32 *)((s8 *)(var_s0) + (0x1C))), sp60);
+                func_800BBED8(arg0, (*(f32 *)((s8 *)(var_s0) + (0x1C))), sp60);
             }
             if ((*(u16 *)((s8 *)(arg0) + (0))) & 1) {
                 ((struct DrawFlags *)((u8 *)var_s0 + 0x39))->drawn |= func_800E28A4(arg1, (s16) (*(s16 *)((s8 *)(var_s0) + (0x2C))) >> 8, var_s4, sp78, sp6C, sp60, (s32) ((*(f32 *)((s8 *)(var_s0) + (0xC))) * (f32) (u32) (*(u8 *)((s8 *)(arg0) + (0x83)))));
