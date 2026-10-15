@@ -645,7 +645,33 @@ s32 func_80803420_chcollballcontrol(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80803484_chcollballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80803D54_chcollballcontrol.s")
+s32 func_80803D54_chcollballcontrol(s32 arg0, s32 arg1) {
+    s32 func_800DC128(s32, s32);
+    int func_800DC298(f32);
+    s32 choice = arg0;
+
+    switch (arg1) {
+        case 0:
+            if (func_800DC298(0.1999969482f)) {
+                return 0;
+            }
+            break;
+        case 1:
+            if (func_800DC298(0.2249908447f)) {
+                return 0;
+            }
+            break;
+        case 2:
+            if (func_800DC298(0.3299865723f)) {
+                return 0;
+            }
+            break;
+    }
+    while (choice == arg0) {
+        choice = func_800DC128(1, 4);
+    }
+    return choice;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80803E18_chcollballcontrol.s")
 
