@@ -178,7 +178,38 @@ s32 func_8010B330(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B410.s")
+s32 func_8010B410(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 *func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_801045AC(Actor *, f32 *, f32 *, s32);
+    s32 func_8010C3E8(Actor *);
+    f32 func_8010C460(void);
+    extern s32 D_80136F40;
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp2C;
+    s32 *temp_v0;
+
+    sp2C = func_8010C460();
+    func_800EE7F8(sp3C, arg0->position);
+    sp3C[1] += sp2C;
+    func_800EE7F8(sp30, arg0->position);
+    sp30[1] -= 200.0f;
+    temp_v0 = func_800BEF00(sp3C, sp30, (f32 *)&D_80136F40, arg0->unk14);
+    if (temp_v0 != NULL) {
+        if (((s16 *)&arg0->pad8C)[1] != 0) {
+            func_801045AC(arg0, (f32 *)&D_80136F40, sp30, temp_v0[2]);
+        }
+        if (arg0->position[1] < sp30[1]) {
+            arg0->position[1] = sp30[1] + 1.0f;
+            return 1;
+        }
+    }
+    if (func_8010C3E8(arg0) != 0) {
+        return -1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B514.s")
 
