@@ -127,7 +127,36 @@ void func_800EA400(s32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA45C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA51C.s")
+void func_800EA51C(void) {
+    s32 func_800D89C8(s16, s32, f32 *, f32 *, f32, s32, s32, f32 *, f32 *);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F8418(s32, f32 *);
+    s32 func_80103C94(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s32 D_80132DD0;
+    s32 *var_s2;
+    f32 sp60[3];
+    Unk80132ED0 *temp_a0;
+    s32 var_s1;
+    Actor *temp_s0;
+
+    var_s2 = &D_80132DD0;
+    var_s1 = 0;
+    do {
+        temp_a0 = *(Unk80132ED0 **)&var_s2[5];
+        if (temp_a0 != 0) {
+            temp_s0 = func_80106790(temp_a0);
+            func_800F5A00(var_s1, sp60);
+            if (func_800D89C8(*(s16 *)&temp_s0->pad80, var_s1, temp_s0->position, temp_s0->rotation, temp_s0->scale, 0, func_80103C94(temp_s0), sp60, sp60) != 0) {
+                sp60[1] -= 10.0f;
+                func_800F8418(var_s1, sp60);
+            }
+            (*(s32 *)((s8 *)(var_s2) + (0x14))) = 0;
+        }
+        var_s1 += 1;
+        var_s2 += 5;
+    } while (var_s1 != 8);
+}
 
 void func_800EA600(s32 arg0, s32 arg1) {
     extern s32 D_80132DD0;
