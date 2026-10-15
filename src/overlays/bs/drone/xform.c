@@ -50,7 +50,27 @@ void func_808003DC_bsdronexform(void *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/func_808003EC_bsdronexform.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/func_8080051C_bsdronexform.s")
+/* extern */
+
+void func_8080051C_bsdronexform(void *arg0) {
+    f32 func_800D8FF8(void);
+    s32 func_808000E4_bsdronexform(void *);
+    f32 delta;
+    void *temp_v0;
+
+    delta = func_800D8FF8();
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x18C)));
+    (*(f32 *)((s8 *)(temp_v0) + (0x10))) = (f32) ((*(f32 *)((s8 *)(temp_v0) + (0x10))) - delta);
+    if ((*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x18C)))) + (0x10))) < 0.0f) {
+        do {
+            func_808000E4_bsdronexform(arg0);
+            temp_v0 = (*(void **)((s8 *)(arg0) + (0x18C)));
+            (*(f32 *)((s8 *)(temp_v0) + (8))) += 0.017f * (*(f32 *)((s8 *)(temp_v0) + (0xC)));
+            temp_v0 = (*(void **)((s8 *)(arg0) + (0x18C)));
+            (*(f32 *)((s8 *)(temp_v0) + (0x10))) += 0.017f;
+        } while ((*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x18C)))) + (0x10))) < 0.0f);
+    }
+}
 
 /* extern */
 
@@ -136,7 +156,7 @@ void bsdronexform_entrypoint_3(void *arg0)
   s32 bs_setState(void *, s32);
   void func_8009C118(void *, f32);
   void func_800C59F0(s32, s32, s32);
-  s32 func_8080051C_bsdronexform();
+  void func_8080051C_bsdronexform(void *);
   s32 func_80800758_bsdronexform(void *, s32);
   f32 func_80800B5C_bsdronexform(void *, s32, f32, f32, f32);
   s32 sp34;
@@ -145,7 +165,7 @@ void bsdronexform_entrypoint_3(void *arg0)
   f32 sp28;
   if ((*((u8 *) (((s8 *) (*((void **) (((s8 *) arg0) + 0x18C)))) + 0x1C))) != 0)
   {
-    func_8080051C_bsdronexform();
+    func_8080051C_bsdronexform(arg0);
   }
   func_80800724_bsdronexform(arg0);
   switch (*((u8 *) (((s8 *) (*((void **) (((s8 *) arg0) + 0x18C)))) + 0x32)))
