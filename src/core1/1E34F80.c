@@ -74,7 +74,26 @@ void func_8001DA58(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E34F80/func_8001DA60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E34F80/func_8001DB90.s")
+/* extern */
+
+void func_8001DB90(u16 *arg0, int arg1, u32 arg2, int arg3) {
+    s32 func_8001D5C4(u16 *, s32);
+    int var_s0;
+    int var_s4;
+    u16 *temp_s1;
+
+    arg1 += 2;
+    arg2++;
+    arg0 += (arg2 * 0x850) + (arg1 * 5) + 0x260;
+    for (var_s4 = 0; var_s4 != 0x850; var_s4 += 0x130) {
+        temp_s1 = arg0 + var_s4;
+        osInvalDCache(temp_s1, 5);
+        for (var_s0 = 0; var_s0 != 5; var_s0++) {
+            func_8001D5C4(temp_s1 + var_s0, arg3);
+            osWritebackDCache(temp_s1, 5);
+        }
+    }
+}
 
 void func_8001DC6C(void) {
     extern s32 D_8007D170;
