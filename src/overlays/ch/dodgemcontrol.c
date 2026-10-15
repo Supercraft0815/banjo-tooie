@@ -282,7 +282,25 @@ void func_80801A3C_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801A8C_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801B94_chdodgemcontrol.s")
+void func_80801B94_chdodgemcontrol(s32 arg0, s32 arg1) {
+    s32 _subaddieaudioquick_entrypoint_2(s32, s32 *, s32 *);
+    s32 func_800B53A4(s32);
+    s32 func_800BA22C(s32, s32);
+    s32 func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, s32 *, s32 *, s32, s32 *);
+    s32 func_80103DFC(s32, s32 *);
+    extern s32 D_80804E78_chdodgemcontrol;
+    extern s32 D_80804EA4_chdodgemcontrol;
+    s32 sp2C;
+    s32 sp20[3];
+
+    sp2C = func_800B53A4(0xC);
+    func_80103DFC(arg0, sp20);
+    func_800BABB8(sp2C, sp20, sp20, 0x3F800000, &D_80804E78_chdodgemcontrol);
+    func_800BA3FC(sp2C, arg1);
+    func_800BA22C(sp2C, 0xC);
+    _subaddieaudioquick_entrypoint_2(arg0, sp20, &D_80804EA4_chdodgemcontrol);
+}
 
 void func_80801C18_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _subaddiefade_entrypoint_5();
