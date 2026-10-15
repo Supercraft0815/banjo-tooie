@@ -25,7 +25,28 @@ void func_808004B0_chbiggafoot(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_808004D4_chbiggafoot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_80800840_chbiggafoot.s")
+/* extern */
+
+void func_80800840_chbiggafoot(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_80102424(Actor *, s32);
+    f32 *temp_a0;
+
+    arg0->unk58 = 1.5f;
+    if (arg1 != 0x12B1) {
+        temp_a0 = (f32 *)arg0->actorData;
+        if (arg1 == 0x12B2) {
+            func_800EE7F8(temp_a0, arg0->position);
+            func_800EF1B8(temp_a0, arg0->unk50, 1000.0f);
+            func_80102424(arg0, 9);
+            _capod_entrypoint_6(arg0->unk0, 0x50, 0x2010);
+            return;
+        }
+        func_80102424(arg0, 1);
+    }
+}
 
 void func_808008D4_chbiggafoot(s32 arg0) {
     s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
