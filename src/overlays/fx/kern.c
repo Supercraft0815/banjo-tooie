@@ -29,7 +29,16 @@ void fxkern_entrypoint_0(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_80800224_fxkern(arg0, arg1, arg2, arg3, func_80800084_fxkern(arg3));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/kern/fxkern_entrypoint_1.s")
+void fxkern_entrypoint_1(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_80800084_fxkern(s32);
+    s32 func_80800224_fxkern(s32, s32, s32, s32, s32);
+    extern f32 B_80800488_fxkern[][2];
+    s32 temp_v0;
+    f32 divisor = 2.0f;
+
+    temp_v0 = func_80800084_fxkern(arg2);
+    func_80800224_fxkern(arg0, (s32) ((304.0f - B_80800488_fxkern[temp_v0][0]) / divisor), arg1, arg2, temp_v0);
+}
 
 void fxkern_entrypoint_2(void) {
     s32 func_800B8C50();
