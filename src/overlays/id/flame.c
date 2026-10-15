@@ -20,7 +20,33 @@ end:
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/flame/idflame_entrypoint_0.s")
+/* extern */
+
+void idflame_entrypoint_0(s32 arg0, u32 arg1, u8 *arg2, s32 arg3, u8 *arg4) {
+    f32 func_8001395C(f32);
+    s32 func_80800000_idflame(u8 *, s16);
+    s16 temp_s4;
+    s32 temp_v0;
+    u32 temp_s5;
+    u32 var_s0;
+    u8 *temp_v1;
+    u8 *var_s1;
+
+    temp_s4 = (*(s16 *)((s8 *)(arg4) + (8)));
+    temp_s5 = (arg3 * 0x10) + arg1;
+    var_s0 = arg1;
+    var_s1 = arg2;
+    if (arg1 < temp_s5) {
+        do {
+            (*(s16 *)((s8 *)(var_s1) + (0xA))) = (s16) ((*(s16 *)((s8 *)(var_s0) + (0xA))) + temp_s4);
+            temp_v0 = func_80800000_idflame(arg4, (*(s16 *)((s8 *)(var_s0) + (0))));
+            temp_v1 = (u8 *)((f32 *)arg4 + temp_v0);
+            *(s16 *)var_s1 = (s16)(s32)((f32)*(s16 *)var_s0 + ((f32 *)arg4)[temp_v0 + 0x1F] * func_8001395C((*(f32 *)(temp_v1 + 0x1C) - (f32)*(s16 *)(var_s0 + 2)) * *(f32 *)(temp_v1 + 0x3C)));
+            var_s0 += 0x10;
+            var_s1 += 0x10;
+        } while (var_s0 < temp_s5);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/flame/idflame_entrypoint_1.s")
 
