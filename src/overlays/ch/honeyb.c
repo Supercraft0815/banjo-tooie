@@ -41,7 +41,27 @@ void func_8080011C_chhoneyb(void *arg0) {
     func_800FC6B0(0xA);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800194_chhoneyb.s")
+void func_80800194_chhoneyb(Actor *arg0) {
+    void _subaddieitem_entrypoint_0(s32, u32, s32, s32);
+    s32 _subaddiemarker_entrypoint_0(Actor *, s32, f32 *, s32);
+    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
+    s32 _susubgame_entrypoint_12(u32 *, s32 *);
+    void func_800A16BC(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80800058_chhoneyb(void *);
+    extern s32 D_808010B0_chhoneyb;
+    f32 sp28[6];
+
+    if (_subaddiemarker_entrypoint_0(arg0, 0x1C1, sp28, 1) != 0) {
+        func_800EE7F8((f32 *)arg0->actorData, sp28);
+    }
+    _subaddieitem_entrypoint_0((s8 *)func_80100094(arg0, 1) + 0x18, 0x4B7, 0x258, 3);
+    func_80800058_chhoneyb(arg0);
+    _susubgame_entrypoint_0(arg0, func_80100094(arg0, 1), 0);
+    _susubgame_entrypoint_12(func_80100094(arg0, 1), &D_808010B0_chhoneyb);
+    func_800A16BC(1);
+}
 
 /* extern */
 
@@ -50,7 +70,7 @@ void func_80800240_chhoneyb(s32 arg0) {
     s32 _suexpression_entrypoint_8(s32, s32);
     s32 _susubgame_entrypoint_2(s32, s32);
     s32 _susubgame_entrypoint_4(s32, s32);
-    s32 func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     if (_suexpression_entrypoint_20() != 0) {
         _suexpression_entrypoint_8(arg0, 0);
     }
