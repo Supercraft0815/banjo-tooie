@@ -1798,7 +1798,29 @@ void func_808078F0_chgameselect(void *arg0) {
     (*(u16 *)((s8 *)(arg0) + (0x6E))) = (u16) ((*(u16 *)((s8 *)(arg0) + (0x6E))) & 0xFE00);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80807900_chgameselect.s")
+/* extern */
+
+void func_80807900_chgameselect(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    void func_800E39D8(s32, s32);
+    void func_800EFE50(f32 *, void *, void *, f32);
+    void func_800F16AC(u8 *, f32 *, f32 *, f32);
+    void func_80101FDC(Actor *, u32);
+    f32 sp34[3];
+    u8 sp28[12];
+
+    if (arg0->unk70_10 == 2) {
+        ((f32 *)arg0->actorData)[7] += ((f32 *)arg0->actorData)[3] * func_800D8FF8();
+        if (((f32 *)arg0->actorData)[7] >= 1.0f) {
+            ((f32 *)arg0->actorData)[7] = 1.0f;
+            func_80101FDC(arg0, 1);
+        }
+        func_800EFE50(sp34, arg0->position, arg0->actorData, ((f32 *)arg0->actorData)[7]);
+        func_800F16AC(sp28, arg0->rotation, &((f32 *)arg0->actorData)[4], ((f32 *)arg0->actorData)[7]);
+        func_800E39D8(sp34, sp28);
+        func_80101180(0x4AB, 0x23, 0);
+    }
+}
 
 void func_808079C8_chgameselect(s32 arg0) 
 {
