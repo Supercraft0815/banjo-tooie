@@ -120,7 +120,42 @@ void func_80801604_chtntmineshoot(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80801658_chtntmineshoot.s")
+/* extern */
+
+s32 func_80801658_chtntmineshoot(Actor **arg0) {
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800D395C(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_801085CC(s32, s16 *, u32);
+    Actor *temp_v0;
+    Unk80132ED0 *sp88;
+    Prop *sp38[20];
+    s32 var_s0;
+    s32 var_s2;
+    Prop **var_s1;
+    Prop *temp_a1;
+
+    temp_v0 = *arg0;
+    sp88 = temp_v0->unk0;
+    if ((func_800D0A9C(0xF, 1) == 0) || (func_800D395C() != 0)) {
+        var_s2 = _gccubesearch_entrypoint_9(0x2BA, sp38, 0x14);
+    } else {
+        var_s2 = 0;
+    }
+    var_s0 = 0;
+    if (var_s2 > 0) {
+        var_s1 = sp38;
+        do {
+            temp_a1 = *var_s1;
+            func_801085CC(0x2BE, temp_a1->position, temp_a1->FlagOrRotation);
+            var_s0 += 1;
+            var_s1++;
+        } while (var_s0 != var_s2);
+    }
+    *arg0 = func_80106790(sp88);
+    return var_s2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80801714_chtntmineshoot.s")
 
