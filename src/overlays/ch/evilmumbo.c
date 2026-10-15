@@ -90,7 +90,25 @@ int func_80800E50_chevilmumbo(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800F60_chevilmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800FF8_chevilmumbo.s")
+void func_80800FF8_chevilmumbo(Actor *arg0) {
+    void _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    void func_800BA22C(s32, s32);
+    s32 func_800BA994(s32, s32, s16, s32, s32, s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    int func_800DC298(f32);
+    extern s32 D_808042A0_chevilmumbo;
+    f32 sp34[3];
+    s32 sp30;
+
+    _subaddieskeleton_entrypoint_2(arg0->unk0, 0xC, sp34);
+    sp30 = func_800BABB8(0, sp34, 0, arg0->scale, &D_808042A0_chevilmumbo);
+    func_800BA994(sp30, -0x4B, (s16)arg0->unk50, 0x96, -0x4B, (s16)arg0->unk50, 0xFA);
+    func_800BA22C(sp30, 8);
+    arg0->unk50 += ((f32 *)arg0->actorData)[3];
+    if (func_800DC298(0.2f) != 0) {
+        ((f32 *)arg0->actorData)[3] = -((f32 *)arg0->actorData)[3];
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_808010C4_chevilmumbo.s")
 
