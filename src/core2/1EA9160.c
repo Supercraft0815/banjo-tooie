@@ -288,7 +288,26 @@ void func_800D1254(u32 arg0, u32 arg1, f32 *arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D129C.s")
+s32 func_800D129C(u32 arg0) {
+    extern u8 D_8011AB40[];
+    s32 var_s1;
+    s32 var_s2;
+    u8 *var_s0;
+
+    var_s2 = 0;
+    var_s1 = func_800D0820(0);
+    if (func_800D0894(0) >= var_s1) {
+        var_s0 = (var_s1 * 3) + D_8011AB40;
+        do {
+            if (arg0 == var_s0[-2]) {
+                var_s2 += 1;
+            }
+            var_s1 += 1;
+            var_s0 += 3;
+        } while (func_800D0894(0) >= var_s1);
+    }
+    return var_s2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D1338.s")
 
