@@ -4,7 +4,48 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/store/subaddiestore_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/store/func_80800260_subaddiestore.s")
+s32 func_80800260_subaddiestore(Unk80132ED0 *arg0) {
+    typedef struct {
+        u8 pad0[0x64];
+        u32 pad64:14;
+        u32 flag64:1;
+        u32 rest64:17;
+        u32 pad68[2];
+        u32 pad70:14;
+        u32 flag70:1;
+        u32 rest70:17;
+        u32 pad74:14;
+        u32 flag74:1;
+        u32 rest74:17;
+    } StoreFlags;
+    s32 _glcutDll_entrypoint_8(void);
+    int func_800DB9B0(void);
+    s32 func_800EA05C(void);
+    s32 func_80102F74(Unk80132ED0 *, s32);
+    s32 sp1C[3];
+    s32 var_a0;
+
+    if (*(u32 **)arg0 == NULL) {
+        return 0;
+    }
+    if (!((StoreFlags *)arg0)->flag74 || ((StoreFlags *)arg0)->flag64) {
+        return 0;
+    }
+    if (((StoreFlags *)arg0)->flag70) {
+        var_a0 = func_800DB9B0() != 0;
+        if (var_a0 != 0) {
+            sp1C[0] = _glcutDll_entrypoint_8();
+            var_a0 = func_800EA05C() != sp1C[0];
+        }
+        var_a0 = var_a0 ? 1 : 0;
+        return var_a0;
+    } else {
+        if (func_80102F74(arg0, 0x80) != 0) {
+            return 2;
+        }
+        return arg0 != NULL ? 1 : 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/store/func_80800330_subaddiestore.s")
 
@@ -67,7 +108,7 @@ u8 *func_808004FC_subaddiestore(u8 *arg0, u8 *arg1) {
     u8 *func_80105494(u8 *);
     u8 *func_80106F30(u8 *);
     s32 func_8010A698(u8 *);
-    s32 func_80800260_subaddiestore(void);
+    s32 func_80800260_subaddiestore(Unk80132ED0 *);
     s32 func_80800F98_subaddiestore(u8 *);
     void rare_memcpy(void *, void *, int);
     Extra48 *first;
@@ -83,7 +124,7 @@ u8 *func_808004FC_subaddiestore(u8 *arg0, u8 *arg1) {
     s32 i;
     u8 *entry;
 
-    if (func_80800260_subaddiestore() != 1) {
+    if (func_80800260_subaddiestore((Unk80132ED0 *)arg0) != 1) {
         return arg1;
     }
     rare_memcpy(arg1, arg0, 0x9C);
