@@ -10,7 +10,20 @@ OSThread *chexploder_entrypoint_0(void)
 void func_8080000C_chexploder(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_80800014_chexploder.s")
+/* extern */
+
+void func_80800014_chexploder(Actor *arg0)
+{
+    void _subaddiefade_entrypoint_3(Actor *);
+    void func_80101FDC(Actor *, u32);
+    void func_8010A800(Actor *, s32);
+    s32 func_808002FC_chexploder(Actor *);
+    if (arg0->unk70_10 == 1 && func_808002FC_chexploder(arg0) == 0) {
+        func_80101FDC(arg0, 2);
+        _subaddiefade_entrypoint_3(arg0);
+        func_8010A800(arg0, 2);
+    }
+}
 
 /* extern */
 
