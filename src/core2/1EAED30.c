@@ -10,7 +10,7 @@ void func_800D5440(void *ptr){
     void *vector_begin(void *);
     void *vector_push_back(void **);
     void vector_clear(void *);
-    void func_800D56C4(void *);
+    s32 func_800D56C4(void *);
 
     AssetReference *start_ptr;
     AssetReference *end_ptr;
@@ -37,7 +37,7 @@ int func_800D54F0(void *arg0) {
     void *vector_begin(void *);
     void *vector_push_back(void **);
     void vector_clear(void *);
-    void func_800D56C4(void *);
+    s32 func_800D56C4(void *);
 
     AssetReference *start_ptr;
     AssetReference *end_ptr;
@@ -70,7 +70,7 @@ void func_800D55DC(void){
     void *vector_begin(void *);
     void *vector_push_back(void **);
     void vector_clear(void *);
-    void func_800D56C4(void *);
+    s32 func_800D56C4(void *);
 
     void *tmp_a0;
     AssetReference *iPtr;
@@ -100,14 +100,44 @@ void func_800D5688(void) {
     D_8012B7F4 = vector_defrag((*(s32 *)((s8 *)(&D_8012B7F0) + (4))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D56C4.s")
+s32 func_800D56C4(void *arg0) {
+    extern void *D_8012B450[];
+    extern u8 D_8012B658[];
+    extern s16 D_8012B6E0[];
+    extern s8 D_8012B7E4;
+    extern s8 D_8012B7E5;
+    s32 i;
+    s32 count;
 
-s32 func_800D5804(s32 arg0, s32 arg1) {
-    s32 defrag(s32);
-    extern s32 D_8012B450[];
+    if (arg0) {
+        for (i = 0; i < (u8) D_8012B7E4 && arg0 != D_8012B450[i]; i++);
+        if (i == (u8) D_8012B7E4)
+            return 2;
+        D_8012B7E5 = i;
+        count = D_8012B658[i];
+        if (count == 1) {
+            heap_free(arg0);
+            count = (u8) ((u8) D_8012B7E4 - 1);
+            D_8012B7E4 = count;
+            D_8012B658[i] = D_8012B658[count];
+            D_8012B450[i] = D_8012B450[(u8) D_8012B7E4];
+            D_8012B6E0[i] = D_8012B6E0[(u8) D_8012B7E4];
+            return 0;
+        } else {
+            D_8012B658[i] = count - 1;
+            return 1;
+        }
+    } else {
+        return 3;
+    }
+}
+
+void *func_800D5804(void *arg0, s32 arg1) {
+    void *defrag(void *);
+    extern void *D_8012B450[];
     extern s8 D_8012B7E4;
     s32 i;
-    s32 result;
+    void *result;
 
     for (i = 0; i < (u8) D_8012B7E4 && arg0 != D_8012B450[i]; i++);
     if (i == (u8) D_8012B7E4) {
@@ -271,8 +301,8 @@ void func_800D5FDC(s32 arg0) {
     *(s32 *)((u8 *)&D_8012B7E8 + 0) = arg0;
 }
 
-s32 func_800D5FE8(s32 arg0) {
-    extern s32 D_8012B450[];
+void *func_800D5FE8(s32 arg0) {
+    extern void *D_8012B450[];
     extern s16 D_8012B6E0[];
     extern s8 D_8012B7E4;
     s32 var_v1;
