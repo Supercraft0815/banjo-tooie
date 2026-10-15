@@ -573,7 +573,26 @@ void func_808032CC_chcollballcontrol(u8 *arg0, s32 arg1) {
     func_8080324C_chcollballcontrol(arg0, 7);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80803420_chcollballcontrol.s")
+s32 func_80803420_chcollballcontrol(Actor *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u8 pad[0x64];
+        u32 : 3;
+        u32 controller_index : 2;
+    } BallFlags;
+    void *func_80100094(Actor *, u32);
+    void func_800BD268();
+    void **data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 1:
+        func_800BD268(*data, ((BallFlags *)arg0)->controller_index);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80803484_chcollballcontrol.s")
 
