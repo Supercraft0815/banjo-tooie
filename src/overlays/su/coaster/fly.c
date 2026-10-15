@@ -86,7 +86,23 @@ void func_80801A80_sucoasterfly(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80801E5C_sucoasterfly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80801FE4_sucoasterfly.s")
+s32 func_80801FE4_sucoasterfly(Actor *arg0, f32 *arg1, f32 arg2, f32 arg3) {
+    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp1C[3];
+
+    func_800EE7F8(sp34, arg0->position);
+    func_800EE7F8(sp28, arg0->position);
+    sp34[1] += arg2;
+    sp28[1] += arg3;
+    if (func_800BEF00(sp34, sp28, sp1C, arg0->unk14) != 0) {
+        *arg1 = sp28[1];
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80802080_sucoasterfly.s")
 
