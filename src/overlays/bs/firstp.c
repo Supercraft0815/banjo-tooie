@@ -176,7 +176,7 @@ void func_80800488_bsfirstp(struct player_state_s *self, s32 arg1, f32 arg2) {
 
 s32 func_808004F8_bsfirstp(u8 *arg0) {
     s32 func_800EEC70(u8 *, f32, f32, s32);
-    f32 yaw_get(u8 *);
+    f32 yaw_get(struct player_state_s *);
     u8 *sp1C;
     f32 sp18;
     sp1C = (*(u8 **)((s8 *)(arg0) + (0x188)));
@@ -2729,6 +2729,7 @@ void func_80809CF8_bsfirstp(void *arg0) {
 }
 
 void func_8080A194_bsfirstp(void *arg0);
+void func_80809F74_bsfirstp(struct player_state_s *arg0);
 
 void func_80809D24_bsfirstp(void *arg0) {
     void func_80809DD0_bsfirstp(void *);
@@ -2824,7 +2825,43 @@ void func_80809EF8_bsfirstp(f32 *arg0, f32 *arg1, f32 *arg2) {
     func_800BEF00(sp1C, arg1, arg2, 0x08020020);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809F74_bsfirstp.s")
+/* extern */
+
+void func_80809F74_bsfirstp(struct player_state_s *arg0) {
+    void func_800963C0(struct player_state_s *, f32 *);
+    s32 func_80096628(struct player_state_s *);
+    s32 func_800F1B78(f32 *, f32 *, f32, f32);
+    f32 yaw_get(struct player_state_s *);
+    s32 sp44[1];
+    f32 sp34[4];
+    f32 sp28[3];
+    f32 sp24;
+    s32 sp20;
+    s32 temp_v0;
+    s32 temp_v0_2;
+
+    sp44[0] = (*(s32 *)((s8 *)(arg0) + (0x188)));
+    sp20 = func_80096628(arg0);
+    sp24 = yaw_get(arg0);
+    func_800963C0(arg0, sp34);
+    if ((func_800F1B78(sp28, sp34, sp24, 1.0f) != 0) && !(sp20 & 0x08000000)) {
+        temp_v0 = sp44[0] + 0x254;
+        (*(f32 *)((s8 *)(temp_v0) + (0x1C))) = -sp28[0];
+        if (sp20 & 0x10000000) {
+            (*(s32 *)((s8 *)(temp_v0) + (0x18))) = 3;
+            return;
+        }
+        (*(s32 *)((s8 *)(temp_v0) + (0x18))) = 1;
+        return;
+    }
+    temp_v0_2 = sp44[0] + 0x254;
+    (*(f32 *)((s8 *)(temp_v0_2) + (0x1C))) = 0.0f;
+    if (sp20 & 0x10000000) {
+        (*(s32 *)((s8 *)(temp_v0_2) + (0x18))) = 2;
+        return;
+    }
+    (*(s32 *)((s8 *)(temp_v0_2) + (0x18))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080A03C_bsfirstp.s")
 
