@@ -36,7 +36,24 @@ void func_80800018_chdiggerbossshell(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossshell/func_808000B4_chdiggerbossshell.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossshell/func_80800188_chdiggerbossshell.s")
+/* extern */
+
+s32 func_80800188_chdiggerbossshell(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800FFAB0(Actor *);
+    void func_808001EC_chdiggerbossshell(Actor *);
+    Actor *func_80800330_chdiggerbossshell(Actor *);
+    switch (arg1) {
+        case 0x40:
+            func_808001EC_chdiggerbossshell(arg0);
+            break;
+        case 0x3D:
+            func_800FFAB0(func_80800330_chdiggerbossshell(arg0));
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossshell/func_808001EC_chdiggerbossshell.s")
 
@@ -82,7 +99,7 @@ s32 func_808004C8_chdiggerbossshell(s32 arg0, s32 arg1, s32 arg2) {
 
 void func_80800504_chdiggerbossshell(s32 arg0) {
     s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
-    s32 func_800FFAB0(s32);
+    void func_800FFAB0(Actor *);
     s32 func_8010A570(s32);
     extern s32 D_8080060C_chdiggerbossshell;
     s32 temp_a0;
