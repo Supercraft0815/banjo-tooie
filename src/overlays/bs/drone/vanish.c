@@ -55,7 +55,27 @@ void func_808002A4_bsdronevanish(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/vanish/bsdronevanish_entrypoint_0.s")
+/* extern */
+
+void bsdronevanish_entrypoint_0(void *arg0) {
+    s32 _badata_entrypoint_3(void *, s32 *, s32 *);
+    void _bastatemem_entrypoint_0(void *, s32);
+    s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
+    s32 func_800961AC(void *, s32);
+    s32 func_8009FFD8(void *, s32, s32, s32, s32);
+    s32 func_80800000_bsdronevanish(void *, s32);
+    s32 sp2C;
+    s32 sp28;
+
+    _bastatemem_entrypoint_0(arg0, 0x1C);
+    _badata_entrypoint_3(arg0, &sp28, &sp2C);
+    baanim_playForDuration_loopSmooth(arg0, sp28, sp2C);
+    func_8009FFD8(arg0, 1, 1, 3, 7);
+    func_800961AC(arg0, 6);
+    func_8080021C_bsdronevanish(arg0);
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x188)))) + (0x18))) = 0;
+    func_80800000_bsdronevanish(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/vanish/bsdronevanish_entrypoint_1.s")
 
