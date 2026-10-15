@@ -31,7 +31,30 @@ void subaddieDll_entrypoint_1(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/Dll/subaddieDll_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/Dll/subaddieDll_entrypoint_3.s")
+/* extern */
+
+s32 subaddieDll_entrypoint_3(Actor *arg0) {
+    s32 func_800CC338(f32 (*)[3], s32, s32);
+    struct BaddieFlags {
+        u8 pad[0x70];
+        u32 index : 7;
+        u32 unused : 15;
+        u32 value : 6;
+        u32 lower : 4;
+    } *flags = (void *)arg0;
+    s32 value;
+    s32 result;
+
+    if (flags->index == 0 || (value = flags->value) == 0) {
+        return 0;
+    }
+    result = func_800CC338(&arg0->position, flags->index - 1, value - 1);
+    if (result != -1) {
+        flags->value = result + 1;
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
