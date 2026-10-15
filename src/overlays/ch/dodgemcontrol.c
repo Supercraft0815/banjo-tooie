@@ -265,7 +265,46 @@ void func_808017F0_chdodgemcontrol(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801844_chdodgemcontrol.s")
+/* extern */
+
+Actor *func_80801844_chdodgemcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    Actor *func_801084B0(s32, Actor **);
+    void func_80108944(Actor *, Actor *);
+    s32 func_80801928_chdodgemcontrol(Actor *, s32);
+    struct {
+        Unk80132ED0 *words[12];
+        u8 bytes[0x92];
+        u8 count;
+    } *temp_v0;
+    Unk80132ED0 **var_s2;
+    s32 var_s1;
+    u32 temp_s0;
+    u8 temp_s4;
+    Actor *temp_v0_2;
+    void *child;
+
+    temp_s0 = arg0->unk79_4;
+    temp_v0 = func_80100094(arg0, 0U);
+    temp_s4 = temp_v0->count;
+    var_s1 = 0;
+    var_s2 = temp_v0->words;
+    if ((s32) temp_s4 > 0) {
+        do {
+            temp_v0_2 = func_801084B0(0x305, &arg0);
+            temp_v0_2->unk3C = arg0->unk0;
+            *var_s2 = temp_v0_2->unk0;
+            temp_v0_2->unk79_4 = temp_s0;
+            func_80801928_chdodgemcontrol(arg0, var_s1);
+            func_80108944(temp_v0_2, arg0);
+            child = temp_v0_2;
+            func_80801744_chdodgemcontrol(arg0, child);
+            var_s1 += 1;
+            var_s2++;
+        } while (var_s1 != temp_s4);
+    }
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801928_chdodgemcontrol.s")
 
