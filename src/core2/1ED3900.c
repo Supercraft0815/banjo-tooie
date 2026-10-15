@@ -8,7 +8,34 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA2C0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA508.s")
+void func_800FA508(s32 arg0) {
+    s32 _scinfobar_entrypoint_24(s32, s32, s16, s16);
+    s32 func_800A9C98(void);
+    int func_800DB9B0(void);
+    extern s32 D_80123880[][7];
+    extern s32 D_80123998;
+    extern s32 D_801239B4;
+    extern s32 D_80123D6C;
+    extern s32 D_80123DC0;
+    extern u8 D_801357B0;
+    s32 (*var_s0)[7];
+    s32 temp_a1;
+    int var_v1;
+    int var_v1_2;
+
+    if (D_801357B0 != 0) {
+        var_v1 = func_800A9C98() != 0 || func_800DB9B0() != 0;
+        var_s0 = D_80123880; do { temp_a1 = var_s0[0][6];
+            if (temp_a1 != 0) {
+                var_v1_2 = (s32) var_s0 != (s32) &D_801239B4 && (s32) var_s0 != (s32) &D_80123998 && (s32) var_s0 != (s32) &D_80123D6C;
+                if ((var_v1 == 0) || (var_v1_2 == 0)) {
+                    _scinfobar_entrypoint_24(arg0, temp_a1, *(s16 *)((s8 *)var_s0 + 6), *(s16 *)((s8 *)var_s0 + 8));
+                }
+            }
+            var_s0++;
+        } while (var_s0 != (s32 (*)[7]) &D_80123DC0);
+    }
+}
 
 void func_800FA608(void)
 {
