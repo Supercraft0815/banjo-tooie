@@ -139,7 +139,24 @@ void func_800C157C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C15BC.s")
+s32 func_800C15BC(void) {
+    extern s32 D_80128B10;
+    s32 count;
+    s32 i;
+
+    do {
+        count = 0;
+        for (i = 0; i < 16; i++) {
+            if ((&D_80128B10)[i * 2 + 1] != 0) {
+                count++;
+            } else if ((&D_80128B10)[i * 2] == 0) {
+                (&D_80128B10)[i * 2 + 1] = 1;
+                return i + 1;
+            }
+        }
+    } while (count < 16);
+    return 0;
+}
 
 void func_800C16A4(u8 index) {
     extern u8 D_80128C08[][0x80];
