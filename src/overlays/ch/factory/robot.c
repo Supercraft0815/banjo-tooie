@@ -39,7 +39,39 @@ void func_80800024_chfactoryrobot(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80800424_chfactoryrobot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80800508_chfactoryrobot.s")
+/* extern */
+
+void func_80101FDC(Actor *, u32);
+
+void func_80800508_chfactoryrobot(Actor *arg0) {
+    s32 _subaddiefind_entrypoint_10(Actor *, s32, u32);
+    void func_80103110(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80107200(Actor *);
+    struct RobotFlags {
+        u8 pad0[0x70];
+        u32 flags25 : 7;
+        u32 pad10 : 15;
+        u32 flags4 : 6;
+        u32 pad0bits : 4;
+    };
+    Actor *sp24;
+    u32 flags;
+
+    _subaddiefind_entrypoint_10(arg0, 0x3BF, arg0->unk74_7);
+    sp24 = func_80106790(arg0->unk3C);
+    sp24->unk3C = arg0->unk0;
+    func_80101FDC(sp24, 1);
+    func_80103110(sp24, 1);
+    ((struct RobotFlags *)arg0)->flags25 = ((struct RobotFlags *)sp24)->flags25;
+    flags = ((struct RobotFlags *)sp24)->flags4;
+    if (flags != 0) {
+        ((struct RobotFlags *)arg0)->flags4 = flags;
+    } else {
+        ((struct RobotFlags *)arg0)->flags4 = 1;
+    }
+    func_80107200(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_808005D4_chfactoryrobot.s")
 
