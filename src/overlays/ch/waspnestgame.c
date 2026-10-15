@@ -16,7 +16,42 @@ OSThread *chwaspnestgame_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80800018_chwaspnestgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_808002EC_chwaspnestgame.s")
+/* extern */
+
+void func_808002EC_chwaspnestgame(Actor *arg0) {
+    s32 _subaddiemarker_entrypoint_0(Actor *, s32, f32 *, s32);
+    void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
+    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
+    s32 _susubgame_entrypoint_11(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFD24(f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 var_s0;
+    int var_s1;
+    u8 *temp_s6;
+    u8 *var_s1_2;
+    u8 *var_s2;
+    f32 sp58[3];
+    u8 *var_s3;
+
+    temp_s6 = func_80100094(arg0, 0);
+    _subaddiemarker_entrypoint_0(arg0, 0x201, sp58, 1);
+    func_800EE7F8((f32 *)arg0->actorData, sp58);
+    for (var_s0 = 0; var_s0 * 12 < 24; var_s0++) {
+        func_800EFD24((f32 *)(temp_s6 + var_s0 * 12));
+        *(f32 *)(temp_s6 + 0x18 + var_s0 * 4) = -1.0f;
+    }
+    var_s0 = 0;
+    var_s1_2 = temp_s6 + 0x3C;
+    do {
+        _subaddiemarker_entrypoint_1(arg0, 0x1C0, var_s0 + 0x33, sp58, 1);
+        func_800EE7F8((f32 *)var_s1_2, sp58);
+        var_s0 += 1;
+        var_s1_2 += 12;
+    } while (var_s0 != 3);
+    _susubgame_entrypoint_0(arg0, (u32 *)(temp_s6 + 0x24), 0);
+    _susubgame_entrypoint_11(0);
+}
 
 /* extern */
 
