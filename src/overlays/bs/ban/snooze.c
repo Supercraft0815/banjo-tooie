@@ -52,7 +52,37 @@ void func_808004C0_bsbansnooze()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_808004E0_bsbansnooze.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_80800588_bsbansnooze.s")
+void func_80800588_bsbansnooze(s32 arg0)
+{
+  f32 anctrl_getAnimTimer(s32);
+  s32 baanim_getAnimCtrlPtr();
+  s32 bakey_released(s32, s32);
+  s32 bastick_getZone(s32);
+  s32 bs_setState(s32, s32);
+  s32 func_8009BCD4(s32, s32);
+  f32 func_800F3780(f32, s32 *, s32);
+  s32 func_80800128_bsbansnooze(s32, f32);
+  s32 player_inWater(s32);
+  extern s32 D_80800A60_bsbansnooze;
+  s32 var_s1;
+  s32 new_var;
+  new_var = baanim_getAnimCtrlPtr();
+  var_s1 = 0;
+  func_80800128_bsbansnooze(arg0, func_800F3780(anctrl_getAnimTimer(new_var), &D_80800A60_bsbansnooze, 3));
+  if ((bastick_getZone(arg0) == 0) && (func_8009BCD4(arg0, 0x40400000) != 0))
+  {
+    var_s1 = 0x16F;
+  }
+  if (bakey_released(arg0, 1) != 0)
+  {
+    var_s1 = 0x172;
+  }
+  if (player_inWater(arg0) != 0)
+  {
+    var_s1 = 0x4C;
+  }
+  bs_setState(arg0, var_s1);
+}
 
 s32 bsbansnooze_entrypoint_2(s32 arg0) {
     extern s32 D_80800A78_bsbansnooze[];
