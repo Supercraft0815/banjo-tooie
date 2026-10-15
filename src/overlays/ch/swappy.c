@@ -28,7 +28,32 @@ void func_80800000_chswappy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swappy/func_80800108_chswappy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swappy/func_80800234_chswappy.s")
+/* extern */
+
+void func_80800234_chswappy(Actor *arg0, void *arg1) {
+    struct SwappyContact {
+        u8 pad0[0x1A];
+        u16 characterIndex : 11;
+        u16 pad1A : 5;
+        u8 pad1C[8];
+        u32 flags : 10;
+        u32 pad24 : 22;
+    };
+    Unk80132ED0 *func_800F55D0(s32);
+    s32 func_800F64A4(s32, s32);
+    s32 func_800F7CF4(s32, s32, void *);
+    s32 func_808000B0_chswappy(void *, s32);
+    struct SwappyContact *contact = arg1;
+    s32 temp_a0;
+
+    if (contact->flags == 0) {
+        temp_a0 = contact->characterIndex;
+        if ((func_800F64A4(temp_a0, 0x600) != 0) && ((arg0->unk74_7 != 0x32) || (func_800F55D0(temp_a0) != 0)) && ((arg0->unk70_10 == 3) || (func_800F7CF4(temp_a0, 0x40, arg0->position) == 2))) {
+            arg0->unk79_4 = temp_a0;
+            func_808000B0_chswappy(arg0, 2);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swappy/func_80800300_chswappy.s")
 
