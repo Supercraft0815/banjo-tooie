@@ -4,7 +4,21 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparentfish/func_80800204_chtransparentfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparentfish/func_808002B8_chtransparentfish.s")
+/* extern */
+
+void func_808002B8_chtransparentfish(Actor *arg0) {
+    s32 _subaddiesect_entrypoint_1(Actor *);
+    s32 func_80800B60_chtransparentfish();
+    s32 func_80800EE0_chtransparentfish(s32);
+    if (func_800DA298(FLAG3_9F4_UNK) == 0) {
+        func_800DA544(FLAG3_9F4_UNK);
+        func_80800B60_chtransparentfish();
+    }
+    arg0->unk6C_0 = func_80800EE0_chtransparentfish(arg0->pad6C_21);
+    ((f32 *)arg0->actorData)[3] = 150.0f;
+    ((f32 *)arg0->actorData)[7] = 150.0f;
+    ((f32 *)arg0->actorData)[5] = (f32) _subaddiesect_entrypoint_1(arg0);
+}
 
 void func_80800348_chtransparentfish(Actor *actor)
 {
