@@ -31,7 +31,35 @@ void func_80800044_chpodiumbankaz(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/podiumbankaz/func_80800170_chpodiumbankaz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/podiumbankaz/func_80800228_chpodiumbankaz.s")
+/* extern */
+
+void func_80800228_chpodiumbankaz(Unk80132ED0 *arg0, s32 arg1) {
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    s32 func_800C6E38(s32);
+    s32 func_800F5410(s32);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F7D38(s32, s32, void *, f32);
+    void func_80101FDC(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *actor;
+    s32 sp38;
+    f32 sp2C[3];
+
+    if (func_800C6E38(0x1C) != 0) {
+        sp38 = func_800F5410(arg1);
+        actor = func_80106790(arg0);
+        if (((sp38 == 1) || (sp38 == 0xA)) &&
+            ((actor->unk70_10 == 3) ||
+             (func_800F7D38(arg1, 0x3A, actor->position, actor->rotation[1]) == 2))) {
+            if (sp38 == 0xA) {
+                func_800F5A00(arg1, sp2C);
+                _sudeflect_entrypoint_1(sp2C, 125.0f, 0.0f, 40.0f, 0x1C);
+            }
+            actor->unk79_4 = arg1;
+            func_80101FDC(actor, 2);
+        }
+    }
+}
 
 /* extern */
 

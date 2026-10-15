@@ -1321,7 +1321,7 @@ s32 func_800F7CF4(s32 arg0, s32 arg1, void *arg2) {
     return func_8009E7C8((u8 *)sp1C, arg1);
 }
 
-void func_800F7D38(s32 arg0, s32 arg1, void *arg2, f32 arg3) {
+s32 func_800F7D38(s32 arg0, s32 arg1, void *arg2, f32 arg3) {
     void func_8009AD44(void *, void *);
     void func_8009ACF4(void *, f32);
     s32 func_8009E7C8(u8 *, s32);
@@ -1329,7 +1329,7 @@ void func_800F7D38(s32 arg0, s32 arg1, void *arg2, f32 arg3) {
     sp1C = D_80135490[arg0];
     func_8009AD44((void *)sp1C, arg2);
     func_8009ACF4((void *)sp1C, arg3);
-    func_8009E7C8((u8 *)sp1C, arg1);
+    return func_8009E7C8((u8 *)sp1C, arg1);
 }
 
 void func_800F7D90(s32 arg0, s32 arg1, void *arg2, s32 arg3) {
