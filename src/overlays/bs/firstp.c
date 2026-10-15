@@ -646,7 +646,23 @@ void func_80801DC0_bsfirstp(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80801FD0_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080222C_bsfirstp.s")
+/* extern */
+
+f32 func_8080222C_bsfirstp(f32 arg0, f32 arg1, f32 arg2) { s32 func_800D8FEC(); f32 func_800F0DC0(f32, f32); f32 mlAbsF(f32); f32 sp4C; f32 temp_f0; f32 var_f20; s32 var_s0; var_f20 = arg0;
+    var_s0 = 0;
+    if ((func_800D8FEC() * 5) > 0) {
+        do {
+            temp_f0 = func_800F0DC0((arg1 - var_f20) * 0.04f, arg2);
+            var_s0 += 1;
+            sp4C = temp_f0;
+            var_f20 += temp_f0;
+        } while (var_s0 < (func_800D8FEC() * 5));
+    }
+    if (mlAbsF(sp4C) < 0.02f) {
+        var_f20 = arg1;
+    }
+    return var_f20;
+}
 
 /* extern */
 
