@@ -80,7 +80,22 @@ void badust_entrypoint_5(PlayerState *arg0, f32 arg1, f32 arg2) {
     badust_entrypoint_2(arg0, sp20, sp2C, 0.1f, 0.8f, 1.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/badust_entrypoint_6.s")
+/* extern */
+
+void badust_entrypoint_6(PlayerState *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+    void badust_entrypoint_2(PlayerState *, f32 *, f32 *, f32, f32, f32);
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_800EFCD8(f32 *, f32, f32);
+    f32 sp2C[3];
+    f32 sp20[3];
+
+    arg3 *= 0.51f;
+    func_8009C128(arg0, sp20);
+    sp20[1] += 12.0f + arg1;
+    func_800EFCD8(sp2C, arg2, arg3);
+    sp2C[1] = arg4;
+    badust_entrypoint_2(arg0, sp20, sp2C, 0.1f, 0.8f, 0.7f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/badust_entrypoint_7.s")
 
