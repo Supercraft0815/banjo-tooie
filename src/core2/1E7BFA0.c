@@ -335,7 +335,33 @@ void func_800A380C(void *arg0) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xA0)))) + (0x38))) = (f32) D_80125568;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3820.s")
+/* extern */
+
+void func_800A3820(PlayerState *arg0) {
+    void func_8009C128(PlayerState *, f32[3]);
+    f32 func_8009C150(PlayerState *);
+    u32 func_8009E958(void);
+    void func_800EFD24(f32 *);
+    f32 temp_f0;
+
+    func_800EFD24((*(f32 **)((s8 *)(arg0) + (0xA0))));
+    func_800EFD24((*(f32 **)((s8 *)(arg0) + (0xA0))) + 3);
+    func_8009C128(arg0, (*(f32 **)((s8 *)(arg0) + (0xA0))) + 11);
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xA0)))) + (0x3D))) = 0;
+    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xA0)))) + (0x38))) = 0.0f;
+    func_800A380C(arg0);
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xA0)))) + (0x3C))) = 1;
+    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xA0)))) + (0x40))) = 0.0f;
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xA0)))) + (0x50))) = 0;
+    temp_f0 = func_8009C150(arg0);
+    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xA0)))) + (0x48))) = temp_f0;
+    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xA0)))) + (0x4C))) = temp_f0;
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xA0)))) + (0x29))) = 0;
+    func_800A3410(arg0, func_8009E958());
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xA0)))) + (0x54))) = 1;
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xA0)))) + (0x55))) = 1;
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xA0)))) + (0x3E))) = 1;
+}
 
 void func_800A38F0(PlayerState *arg0, s32 arg1, s32 arg2) {
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xA0)))) + (0x54))) = (s8) arg1;
