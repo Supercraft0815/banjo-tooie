@@ -44,7 +44,20 @@ void func_808000C4_chdiggerground(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/ground/func_80800168_chdiggerground.s")
+/* extern */
+
+s32 func_80800168_chdiggerground(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _sucoaster_entrypoint_21(Actor *, s32, s32);
+    void *func_80100094(Actor *, u32);
+    void func_80800214_chdiggerground(Actor *);
+    if (func_80100094(arg0, 0U) == NULL) {
+        return 0;
+    }
+    if (arg1 == 0xB6) {
+        func_80800214_chdiggerground(arg0);
+    }
+    return _sucoaster_entrypoint_21(arg0, arg1, arg2);
+}
 
 /* extern */
 
