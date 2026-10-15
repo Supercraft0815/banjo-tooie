@@ -30,7 +30,45 @@ void cadbmgrDll_entrypoint_1(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ca/dbmgrDll/cadbmgrDll_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ca/dbmgrDll/func_808003D8_cadbmgrDll.s")
+/* extern */
+
+struct CadbmgrData {
+    s32 counts[8];
+    s16 handles[8];
+    s32 invalid;
+    s32 zero;
+};
+
+s32 func_808003D8_cadbmgrDll(struct CadbmgrData *arg0, s32 arg1, s32 arg2) {
+    s16 func_8001B668(s32, s32);
+    void *func_8001B710(s16, s32);
+    void func_8001B754(s16);
+    s32 func_800A57EC(s32);
+    s16 handle;
+    s16 *temp_v0;
+    s16 *saved[2];
+
+    if (arg2 != 0) {
+        if (arg0->counts[arg1 - 1] != 0) {
+            func_8001B710(arg0->handles[arg1 - 1], func_800A57EC(arg1) * arg2);
+        } else {
+            arg0->handles[arg1 - 1] = func_8001B668(0, func_800A57EC(arg1));
+        }
+    } else {
+        temp_v0 = (s16 *)arg0 + arg1;
+        if (arg0->counts[arg1 - 1] != 0) {
+            handle = temp_v0[15];
+            saved[1] = temp_v0;
+            func_8001B754(handle);
+            temp_v0 = saved[1];
+            temp_v0[15] = 0;
+        }
+    }
+    arg0->counts[arg1 - 1] = arg2;
+    arg0->invalid = -1;
+    arg0->zero = 0;
+    return 1;
+}
 
 s32 func_808004C4_cadbmgrDll(s32 *arg0, s32 arg1, s32 arg2) {
     s32 var_v0;
