@@ -805,7 +805,38 @@ s32 gcnewoption_entrypoint_43(u8 *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_44.s")
+/* extern */
+
+void gcnewoption_entrypoint_44(void *arg0, s32 arg1) {
+    s32 _gczoombox_entrypoint_20(s32, f32, s32, s32, f32, s32, s32);
+    int _gczoombox_entrypoint_32();
+    int _gczoombox_entrypoint_8();
+    u32 *_gldbstring_entrypoint_1(u32 *, s16);
+    struct Flags {
+        u8 padding[0x1C];
+        u32 upper : 10;
+        u32 wide : 1;
+        u32 hidden : 1;
+        u32 middle : 1;
+        u32 initialized : 1;
+        u32 lower : 18;
+    };
+    ((struct Flags *)arg0)->hidden = arg1;
+    if (arg1 != 0) {
+        _gczoombox_entrypoint_20((*(s32 *)((s8 *)(arg0) + (0x20))), 0.0f, 0, 2, 0.1f, 0, 0);
+        return;
+    }
+    if (!((struct Flags *)arg0)->initialized) {
+        _gczoombox_entrypoint_32((*(s32 *)((s8 *)(arg0) + (0x20))));
+        _gczoombox_entrypoint_8((*(s32 *)((s8 *)(arg0) + (0x20))), _gldbstring_entrypoint_1((*(u32 **)((s8 *)(arg0) + (0x23C))), (*(s16 *)((s8 *)(arg0) + (0x26)))));
+        ((struct Flags *)arg0)->initialized = 1;
+    }
+    if (((struct Flags *)arg0)->wide) {
+        _gczoombox_entrypoint_20((*(s32 *)((s8 *)(arg0) + (0x20))), 30.0f, 0, 2, 0.1f, 0, 0);
+        return;
+    }
+    _gczoombox_entrypoint_20((*(s32 *)((s8 *)(arg0) + (0x20))), 15.0f, 0, 2, 0.1f, 0, 0);
+}
 
 s32 gcnewoption_entrypoint_45(s16 *arg0) {
     return arg0[3];
