@@ -4,9 +4,9 @@
 
 void func_80800000_chlakemonster(s32 arg0) {
     s32 _glcutDll_entrypoint_20();
-    s32 func_800EFA4C(s32, f32, f32, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
     s32 func_80801494_chlakemonster(s32, s32);
-    func_800EFA4C(arg0 + 4, 0.0f, -3050.0f, 0.0f);
+    func_800EFA4C((f32 *)(arg0 + 4), 0.0f, -3050.0f, 0.0f);
     if (_glcutDll_entrypoint_20() != 0) {
         func_80801494_chlakemonster(arg0, 7);
         return;
@@ -116,9 +116,25 @@ OSThread *chlakemonster_entrypoint_0(void)
     return (OSThread *) D_80802204_chlakemonster;
 }
 
+void func_80801790_chlakemonster();
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80801790_chlakemonster.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80801834_chlakemonster.s")
+/* extern */
+
+void func_80801834_chlakemonster(s16 *arg0) {
+    s32 func_800DA298(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_80801790_chlakemonster();
+
+    func_800EE7F8((f32 *)(arg0 + 12), (f32 *)(arg0 + 2));
+    func_800EFA4C((f32 *)(arg0 + 2), 0.0f, 0.0f, 0.0f);
+    if (func_800DA298(0x187) != 0) {
+        func_80801790_chlakemonster(arg0, 3);
+        return;
+    }
+    func_80801790_chlakemonster(arg0, 1);
+}
 
 void func_808018AC_chlakemonster(s32 arg0) 
 {
