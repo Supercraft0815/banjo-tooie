@@ -40,7 +40,48 @@ void func_800FF44C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FF4A4.s")
+/* extern */
+
+void func_800FF4A4(Actor *arg0) {
+    typedef struct {
+        u32 pad0[9];
+        u32 pad24_14 : 18;
+        u32 player : 1;
+        u32 pad24_9 : 4;
+        u32 target : 3;
+        u32 pad24_0 : 6;
+    } PathState;
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    void func_800D8808(s32);
+    s32 func_8010381C(s32);
+    void func_80103938(void *);
+    void func_80104328(s32);
+    void func_80104504(void *);
+    void *func_80105494(Actor *);
+    void func_80105634(Actor *);
+    void func_80106EE0(void *);
+    Unk80132ED0 *temp_s0;
+    u32 var_s0;
+
+    temp_s0 = arg0->unk0;
+    func_8010381C((s32)arg0);
+    func_80103938(arg0);
+    if (arg0->unk7C_0) {
+        PathState *state = func_80105494(arg0);
+        func_800D8808(state->target);
+        func_80105634(arg0);
+    }
+    *(u16 *)&temp_s0->unk24 &= 0x3F;
+    func_80104328((s32)arg0);
+    _subaddieaudioloop_entrypoint_2(arg0);
+    func_80104504(arg0);
+    func_80106EE0(arg0);
+    var_s0 = 0;
+    do {
+        func_80100074(arg0, var_s0, 0U);
+        var_s0 += 1;
+    } while (var_s0 != 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FF564.s")
 
@@ -51,7 +92,7 @@ void func_800FF44C(void) {
 void func_800FFA3C(Actor *arg0) {
     void func_800EBFF4(void *arg0);
     s32 func_800FF3EC(Actor *);
-    s32 func_800FF4A4(Actor *);
+    void func_800FF4A4(Actor *);
     s32 func_801066C0(u32);
     Unk80132ED0 *sp1C = arg0->unk0;
     func_800FF3EC(arg0);
