@@ -204,7 +204,33 @@ void func_800B2540(VertexListView *this, s32 color[3]) {
     osWritebackDCache(start_ptr, (end_ptr - start_ptr) * sizeof(Vtx));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B25D8.s")
+/* extern */
+
+void func_800B25D8(VertexListView *arg0, VertexListView *arg1, s32 arg2) {
+    s32 _dbpalette_entrypoint_0(s32, s32, s32 *);
+    s32 sp5C[5];
+    int i;
+    Vtx *temp_s4;
+    Vtx *temp_s6;
+    Vtx *var_s1;
+    Vtx *var_s2;
+
+    temp_s6 = arg0->vertices;
+    temp_s4 = arg0->count + arg0->vertices;
+    var_s1 = temp_s6;
+    var_s2 = arg1->vertices;
+    if ((u32) temp_s6 < (u32) temp_s4) {
+        do {
+            _dbpalette_entrypoint_0(arg2, var_s2->v.flag & 0x1FF, sp5C);
+            for (i = 0; i < 3; i++) {
+                var_s1->v.cn[i] = (var_s2->v.cn[i] * sp5C[i]) >> 8;
+            }
+            var_s1++;
+            var_s2++;
+        } while ((u32) var_s1 < (u32) temp_s4);
+    }
+    osWritebackDCache(temp_s6, (temp_s4 - temp_s6) * sizeof(Vtx));
+}
 
 /* extern */
 
