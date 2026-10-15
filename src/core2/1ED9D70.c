@@ -114,12 +114,12 @@ void func_80100690(s32 *arg0) {
 
 extern FreeList *D_80135A64;
 
-void func_801006E0(s32 *arg0) {
+void *func_801006E0(s32 *arg0) {
     FreeList *volatile *list = &D_80135A64;
     if (D_80135A64 == 0) {
         *list = freelist_new(0xC, 2);
     }
-    freelist_next(&D_80135A64, arg0);
+    return freelist_next(&D_80135A64, arg0);
 }
 
 int func_8010072C(s32 *arg0, u8 *arg1) {
@@ -210,4 +210,39 @@ void func_80100E18(s16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100E54.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100F0C.s")
+void func_80100F0C(s16 arg0, s32 arg1) {
+    void *freelist_at(FreeList *, s32);
+    s32 _glpackvtx_entrypoint_0(s32, s32, s32);
+    s32 _glpackvtx_entrypoint_1(s32);
+    s32 func_800B2840(s32);
+    s32 func_800D674C(s32);
+    void func_80100938(s32);
+    extern FreeList *D_80135A60;
+    struct Entry { s32 value; s16 asset; s16 age; u32 index : 8; u32 rest : 24; };
+    struct Entry *sp34;
+    struct Entry *var_s0;
+    s32 temp_value;
+    struct { s32 index; s32 asset; } sp24;
+
+    sp34 = freelist_at(D_80135A60, arg0);
+    if (sp34->index != 0) {
+        var_s0 = freelist_at(D_80135A64, sp34->index);
+        if (var_s0->index != 0) {
+            sp24.asset = var_s0->asset;
+            if (var_s0->age < 0x3666) {
+                func_80100938(sp34->index);
+                var_s0 = func_801006E0(&sp24.index);
+                sp34->index = sp24.index;
+            } else {
+                _glpackvtx_entrypoint_1(var_s0->value);
+            }
+            temp_value = func_800D674C(sp24.asset);
+            temp_value = func_800B2840(temp_value);
+            var_s0->value = _glpackvtx_entrypoint_0(temp_value, arg1, 0);
+            var_s0->asset = sp24.asset;
+            var_s0->age = *(s32 *)((u8 *)&D_80135A60 + 8);
+            *(s32 *)((u8 *)&D_80135A60 + 8) += 1;
+            var_s0->index = 1;
+        }
+    }
+}
