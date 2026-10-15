@@ -113,7 +113,28 @@ void func_80800EDC_chtoothyfish(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800EE4_chtoothyfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800F6C_chtoothyfish.s")
+void func_80800F6C_chtoothyfish(f32 *arg0, f32 arg1, f32 arg2) {
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA568(s16 *, s16);
+    void func_800BA7C4(void *, f32, f32);
+    void func_800BA7FC(void *, f32, f32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800DC128(s32, s32);
+    extern s32 D_808018B8_chtoothyfish;
+    s32 sp2C;
+    s32 temp_v0;
+    s32 temp_v0_2;
+
+    temp_v0 = func_800DC128(0, 5);
+    sp2C = temp_v0;
+    temp_v0_2 = func_800B53A4(temp_v0);
+    func_800BABB8(temp_v0_2, arg0, 0, 1.0f, &D_808018B8_chtoothyfish);
+    func_800BA568(temp_v0_2, (s16) (s32) (arg0[1] + arg1));
+    func_800BA7C4(temp_v0_2, 0.08f * arg2, 0.15f * arg2);
+    func_800BA7FC(temp_v0_2, 0.09f * arg2, 0.18f * arg2);
+    func_800BA22C(temp_v0_2, sp2C);
+}
 
 void func_8080106C_chtoothyfish(Actor *self)
 {
