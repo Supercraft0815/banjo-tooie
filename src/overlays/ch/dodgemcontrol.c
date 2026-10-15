@@ -282,7 +282,21 @@ OSThread *chdodgemcontrol_entrypoint_1(void)
     return (OSThread *) D_80804EDC_chdodgemcontrol;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080207C_chdodgemcontrol.s")
+s32 func_8080207C_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800DF744(s32, s32);
+    s32 func_801015D0(Actor *);
+    extern s32 D_80804F64_chdodgemcontrol[];
+    s32 result;
+    if (arg1 == 0x1F) {
+        func_801015D0(arg0);
+        func_800DF744(3, D_80804F64_chdodgemcontrol[arg0->unk6C_0]);
+        func_800DF744(4, D_80804F64_chdodgemcontrol[arg0->unk6C_0]);
+        result = 1;
+    } else {
+        return 0;
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80802104_chdodgemcontrol.s")
 
