@@ -1,6 +1,20 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/func_80800000_chjigsaw.s")
+/* extern */
+
+void func_80800000_chjigsaw(Actor *arg0, void *arg1) {
+    struct { u8 unk0[0x1A]; u16 unk1A; } *data = arg1;
+    s32 _suautobaddies_entrypoint_3();
+    void func_800D0BD4(s32, u32);
+    s32 func_800DA298(s32);
+    void func_80108B04(Actor *, u32);
+    s32 func_8010A6B0(Actor *, u32);
+    if ((func_8010A6B0(arg0, (u32)data->unk1A >> 5) != 0) && (func_800DA298(0x665) == 0)) {
+        func_80108B04(arg0, 0);
+        func_800D0BD4((s32)arg0->unk50, 1);
+        _suautobaddies_entrypoint_3();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/func_80800070_chjigsaw.s")
 
