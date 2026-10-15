@@ -30,7 +30,7 @@ s32 func_808000A8_chlavaexplodbuild(void *arg0, s32 arg1, s32 arg2) {
     void func_80018820(s32, f32, f32);
     void func_800C4AF0(f32 *, void *);
     s32 func_800E15CC(s32, f32, f32);
-    s32 func_80800138_chlavaexplodbuild(void *);
+    void func_80800138_chlavaexplodbuild(void *);
     extern s32 D_80800290_chlavaexplodbuild;
     void *sp1C[1];
 
@@ -48,7 +48,28 @@ s32 func_808000A8_chlavaexplodbuild(void *arg0, s32 arg1, s32 arg2) {
     return arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/explodbuild/func_80800138_chlavaexplodbuild.s")
+void func_80800138_chlavaexplodbuild(void *arg0) {
+    s32 func_800B53A4(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    extern s32 D_808002A4_chlavaexplodbuild;
+    s32 temp_s3;
+    f32 sp80[3];
+    f32 sp74[3];
+    s32 var_s0;
+
+    func_800EE7F8(sp74, (f32 *)((u8 *)arg0 + 4));
+    temp_s3 = func_800B53A4(0xA);
+    for (var_s0 = 0; var_s0 != 0xA; var_s0++) {
+        func_800EEB9C(sp80, (f32) var_s0 * 36.0f, func_800DC178(300.0f, 400.0f));
+        func_800EF04C(sp80, (f32 *)((u8 *)arg0 + 4));
+        sp80[1] += func_800DC178(400.0f, 600.0f);
+        func_800BABB8(temp_s3, sp80, sp74, 2.25f, &D_808002A4_chlavaexplodbuild);
+    }
+}
 
 OSThread *chlavaexplodbuild_entrypoint_0(void)
 {
