@@ -5,7 +5,30 @@ s32 func_80115EA0()
     return 0x5C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEF790/func_80115EA8.s")
+void func_80115EA8(f32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) {
+    f32 func_800D8FF8(void);
+    f32 func_800FF060(f32, f32 *, f32, f32, f32, f32);
+    f32 mlAbsF(f32);
+    extern f32 D_80126620;
+    f32 sp34;
+    f32 sp30;
+    f32 sp2C;
+
+    sp34 = arg0 - *arg1;
+    sp30 = mlAbsF(sp34);
+    if (D_80126620 < sp30) {
+        sp2C = func_800FF060(sp34, arg2, arg4, arg5, arg3, func_800D8FF8());
+        if (sp30 < mlAbsF(sp2C)) {
+            *arg2 = 0.0f;
+            *arg1 = arg0;
+            return;
+        }
+        *arg1 += sp2C;
+        return;
+    }
+    *arg2 = 0.0f;
+    *arg1 = arg0;
+}
 
 void func_80115F98(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (8))) = 0.0f;
