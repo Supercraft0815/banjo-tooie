@@ -69,4 +69,42 @@ void func_80026860(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3DEF0/func_800268D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3DEF0/func_80026AA4.s")
+s32 func_80026AA4(ALLink **arg0, s16 arg1) {
+    void func_80020E40(ALLink *, ALLink *);
+    void func_80020E74(ALLink *);
+    extern s32 *D_800411F4;
+    struct PhysicalVoice {
+        ALLink node;
+        ALVoice *voice;
+        u8 padC[0x7C];
+        s32 offset;
+    };
+    ALLink *sp24;
+    struct PhysicalVoice *sp20;
+    s32 sp1C;
+
+    sp1C = 0;
+    if ((sp24 = (ALLink *)D_800411F4[5]) != NULL) {
+        *arg0 = sp24;
+        func_80020E74(sp24);
+        func_80020E40(sp24, (ALLink *)&D_800411F4[3]);
+    } else {
+        if ((sp24 = (ALLink *)D_800411F4[1]) != NULL) {
+            *arg0 = sp24;
+            func_80020E74(sp24);
+            func_80020E40(sp24, (ALLink *)&D_800411F4[3]);
+        } else {
+            if ((sp24 = (ALLink *)D_800411F4[3]) != NULL) {
+                do {
+                    sp20 = (struct PhysicalVoice *)sp24;
+                    if (sp20->voice->priority <= arg1 && sp20->offset == 0) {
+                        *arg0 = &sp20->node;
+                        arg1 = sp20->voice->priority;
+                        sp1C = 1;
+                    }
+                } while ((sp24 = sp24->next) != NULL);
+            }
+        }
+    }
+    return sp1C;
+}
