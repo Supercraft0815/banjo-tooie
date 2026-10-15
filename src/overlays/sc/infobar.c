@@ -1,6 +1,30 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/func_80800000_scinfobar.s")
+extern s32 D_808008B0_scinfobar;
+
+void func_80800000_scinfobar(void *arg0, s32 arg1) {
+    u8 func_800E8B74(u32);
+    void func_800E8D28(u8, f32);
+    void func_800E8D5C(u8, void *, s16);
+    struct InfobarEntry {
+        s16 id;
+        s16 pad;
+        s32 value;
+        void *data;
+    };
+    f32 sp1C;
+
+    if ((((struct InfobarEntry *)&D_808008B0_scinfobar)[arg1].value << 17 >> 17) != 0) {
+        sp1C = (f32) (((struct InfobarEntry *)&D_808008B0_scinfobar)[arg1].value << 17 >> 17) * 0.00390625f;
+        (*(u8 *)((s8 *)(arg0) + (0x32))) = func_800E8B74(((struct InfobarEntry *)&D_808008B0_scinfobar)[arg1].id);
+        if (((struct InfobarEntry *)&D_808008B0_scinfobar)[arg1].data != 0) {
+            func_800E8D5C((*(u8 *)((s8 *)(arg0) + (0x32))), ((struct InfobarEntry *)&D_808008B0_scinfobar)[arg1].data, 0);
+        }
+        func_800E8D28((*(u8 *)((s8 *)(arg0) + (0x32))), sp1C);
+        return;
+    }
+    (*(u8 *)((s8 *)(arg0) + (0x32))) = 0U;
+}
 
 void func_808000B0_scinfobar(void *arg0) {
     s16 temp_v0;
