@@ -395,7 +395,18 @@ void func_808014A4_bstrexlarge(void)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_808014C4_bstrexlarge.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80801574_bstrexlarge.s")
+void func_80801574_bstrexlarge(PlayerState *arg0) {
+    s32 bs_setState(s32, s32);
+    void func_800A2D2C(PlayerState *, f32, s32);
+    s32 func_808002E0_bstrexlarge(PlayerState *, s32, s32);
+
+    func_8080000C_bstrexlarge(arg0);
+    bstrexlarge_entrypoint_3((s32)arg0);
+    func_808004B4_bstrexlarge(arg0);
+    func_800A2D2C(arg0, 0.5702f, 3);
+    func_800A2D2C(arg0, 0.0702f, 4);
+    bs_setState((s32)arg0, func_808002E0_bstrexlarge(arg0, 0, 1));
+}
 
 s32 bstrexlarge_entrypoint_13(s32 arg0) {
     extern s32 D_80801A20_bstrexlarge[];
