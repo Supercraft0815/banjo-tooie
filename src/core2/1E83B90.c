@@ -123,7 +123,30 @@ void func_800AB9D0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800ABA9C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800ABB34.s")
+void func_800ABB34(void *arg0, void **arg1) {
+    s32 func_8001211C(void);
+    void *heap_alloc(s32);
+    u8 **cursor = arg0;
+    u8 *temp_v1;
+    void *var_a0;
+
+    *cursor += 0x4C;
+    temp_v1 = *arg1;
+    if (((s32) ((*cursor - temp_v1) - 0x10) / 76) >= *(s32 *)(temp_v1 + 0xC)) {
+        var_a0 = *(void **)(temp_v1 + 4);
+        if (var_a0 == NULL) {
+            *(void **)((u8 *)*arg1 + 4) = heap_alloc(0xEE8);
+            temp_v1 = *arg1;
+            **(void ***)(temp_v1 + 4) = temp_v1;
+            *(s32 *)((u8 *)*(void **)((u8 *)*arg1 + 4) + 4) = 0;
+            *(s32 *)((u8 *)*(void **)((u8 *)*arg1 + 4) + 0xC) = 0x32;
+            var_a0 = *(void **)((u8 *)*arg1 + 4);
+        }
+        *arg1 = var_a0;
+        *(s32 *)((u8 *)*arg1 + 8) = func_8001211C();
+        *cursor = (u8 *)*arg1 + 0x10;
+    }
+}
 
 void func_800ABC0C(u8 **arg0, u8 **arg1) {
     u8 *temp_v0;
@@ -165,7 +188,7 @@ s32 func_800ABCE0(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 a
         f32 point[3][3];
     } ProcessedTriangle;
     void func_800AA4D4(void *, f32 *, f32 *, Geometry ***, Geometry ***);
-    void func_800ABB34(ProcessedTriangle **, void **);
+    void func_800ABB34(void *, void **);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EE88C(f32 *, s16 *);
     void func_800EE97C(f32 *, f32 *, f32 *);
