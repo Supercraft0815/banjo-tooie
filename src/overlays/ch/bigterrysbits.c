@@ -21,7 +21,40 @@ OSThread *chbigterrysbits_entrypoint_2(void)
     return (OSThread *) D_80800410_chbigterrysbits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bigterrysbits/func_80800024_chbigterrysbits.s")
+/* extern */
+
+void func_80800024_chbigterrysbits(void *arg0) {
+    s32 _chdoormake_entrypoint_3(void *, f32, f32, f32, s32, s32);
+    s32 _chdoormake_entrypoint_5(void *, f32);
+    s32 _chdoormake_entrypoint_6(void *, s32);
+    s32 _chdoormake_entrypoint_8(void *, s32);
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800D395C();
+    s32 func_800DA298(s32);
+    s32 func_800F54E4();
+    s32 func_800F64A4(s32, s32);
+    s32 func_8010108C(void *, s32, s32);
+    s32 func_80101FDC(void *, s32);
+    s32 func_8010A800(void *, s32);
+    s32 sp2C;
+    s32 sp28;
+
+    sp2C = func_800D395C();
+    sp28 = func_800DA298(0x172);
+    if ((func_800F64A4(func_800F54E4(), 0x1000) != 0) || (_glcutDll_entrypoint_20() != 0)) {
+        func_80101FDC(arg0, 1);
+    }
+    (*(f32 *)((s8 *)(arg0) + (0x44))) = -50.0f;
+    func_8010A800(arg0, 0);
+    if (_chdoormake_entrypoint_3(arg0, 0.0f, (*(f32 *)((s8 *)(arg0) + (0x44))) + 90.0f, -400.0f, 0x802, -1) != 0) {
+        _chdoormake_entrypoint_5(arg0, 3.0f);
+        _chdoormake_entrypoint_6(arg0, 0x3F4CCCCD);
+        _chdoormake_entrypoint_8(arg0, 0xE);
+    }
+    if ((_glcutDll_entrypoint_20() == 0) && (sp2C != 0) && (sp28 == 0)) {
+        func_8010108C(arg0, 8, 0);
+    }
+}
 
 /* extern */
 
