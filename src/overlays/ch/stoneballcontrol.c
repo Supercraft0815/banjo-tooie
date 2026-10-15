@@ -113,7 +113,37 @@ void func_80800D20_chstoneballcontrol(u8 *arg0) {
     actor->unk64_20 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800DB4_chstoneballcontrol.s")
+void func_80800DB4_chstoneballcontrol(void *arg0, f32 *arg1) {
+    s32 _sukickball_entrypoint_6(u8 *, s32);
+    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    int func_800F0064(f32 *, f32, f32 *);
+    void func_800F5A00(s32, f32 *);
+    void func_800F7B9C(s32, u32);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    struct {
+        u8 pad[0x3A];
+        u8 count;
+    } *data;
+    f32 position[4];
+    s32 i;
+    Actor *actor;
+
+    data = func_80100094(arg0, 0);
+    for (i = 0; i < data->count; i++) {
+        if (_sukickball_entrypoint_6(arg0, i)) {
+            func_800F5A00(i, position);
+            if (func_800F0064(position, 200.0f, arg1)) {
+                func_800F7B9C(i, 0x38);
+            }
+        } else {
+            actor = func_80106790(_sukickball_entrypoint_8(arg0, i));
+            if (func_800F0064(actor->position, 200.0f, arg1)) {
+                func_80800D20_chstoneballcontrol((u8 *)actor);
+            }
+        }
+    }
+}
 
 void func_80800EBC_chstoneballcontrol(s32 arg0, s32 arg1) {
     struct player_state_s;
@@ -218,7 +248,7 @@ void func_80801944_chstoneballcontrol(u8 *arg0, s32 arg1) {
     void func_800F4F98(s32, void *);
     void *func_80100094(Actor *, u32);
     s32 func_80101FDC(u8 *, s32);
-    u8 *func_80106790(s32);
+    Actor *func_80106790(Unk80132ED0 *);
     void func_808024F8_chstoneballcontrol(u8 *);
     void func_80802588_chstoneballcontrol(Actor *volatile, volatile s32);
     extern u8 D_8080511C_chstoneballcontrol[];
@@ -427,7 +457,7 @@ void func_80802C30_chstoneballcontrol(s32 *arg0) {
     s32 *func_800BE3F8(void *);
     Entry *func_800E9E88(s32);
     Entry *func_800E9EB4(s32);
-    u8 *func_80106790(s32);
+    Actor *func_80106790(Unk80132ED0 *);
     void func_80802D9C_chstoneballcontrol(s32 *, u8 *);
     void func_80802E30_chstoneballcontrol(s32 *, u32);
     void func_80802EA0_chstoneballcontrol(s32 *, u8 *);
@@ -483,10 +513,10 @@ void func_80803148_chstoneballcontrol(u8 *arg0) {
     extern Position D_808052C0_chstoneballcontrol;
     extern void _chstoneballcontrol_entrypoint_1(void);
     void *func_80100094(Actor *, u32);
-    u8 *func_80106790(s32);
+    Actor *func_80106790(Unk80132ED0 *);
     s32 _sukickball_entrypoint_6(u8 *, s32);
     s32 _sukickball_entrypoint_7(u8 *, s32);
-    s32 _sukickball_entrypoint_8(u8 *, s32);
+    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
     void _sukickball_entrypoint_10(u8 *, s32, s32);
     void _sukickball_entrypoint_11(u8 *, s32);
     s32 _sukickball_entrypoint_12(u8 *, s32);
@@ -527,7 +557,7 @@ void func_80803148_chstoneballcontrol(u8 *arg0) {
                         }
                     }
                 } else {
-                    func_800EE7F8(position, (f32 *)(func_80106790(_sukickball_entrypoint_8(parent, i)) + 4));
+                    func_800EE7F8(position, func_80106790(_sukickball_entrypoint_8(parent, i))->position);
                     if (func_800EFFB4((f32 *)(arg0 + 4), 65.0f, position)) {
                         distances[i] = func_800EEB40((f32 *)(arg0 + 4), position);
                     }
@@ -651,7 +681,7 @@ void func_80804304_chstoneballcontrol(u8 *arg0) {
     void _sukickball_entrypoint_13(f32 *, f32 *, f32);
     s32 _sukickball_entrypoint_6(u8 *, s32);
     s32 _sukickball_entrypoint_7(u8 *, s32);
-    s32 _sukickball_entrypoint_8(u8 *, s32);
+    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
     f32 func_800D8FF8(void);
     f32 func_800DC0C0(void);
     f32 func_800EEF94(f32 *);
@@ -665,7 +695,7 @@ void func_80804304_chstoneballcontrol(u8 *arg0) {
     s32 func_800F8294(s32, f32 *);
     void *func_80100094(Actor *, u32);
     f32 func_80102D78();
-    u8 *func_80106790(s32);
+    Actor *func_80106790(Unk80132ED0 *);
     s32 func_80800B4C_chstoneballcontrol(u8 *, s32);
     s32 i;
     u8 *parent;
