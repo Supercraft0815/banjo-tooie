@@ -64,7 +64,46 @@ void func_80800150_bsdronegoto(void *arg0) {
     _bamovegoto_entrypoint_13(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/goto/func_8080026C_bsdronegoto.s")
+/* extern */
+
+void func_8080026C_bsdronegoto(void *arg0) {
+    s32 _badata_entrypoint_32(void *);
+    s32 _badata_entrypoint_34(void *);
+    s32 _badrone_entrypoint_6(void *);
+    s32 _badrone_entrypoint_9(void *);
+    s32 _bamovegoto_entrypoint_4(void *);
+    s32 bs_setState(void *, s32);
+    s32 func_8008E124(struct player_state_s *);
+    void func_8009BB24(void *, f32 *);
+    void func_8009FF00(struct player_state_s *);
+    s32 func_800F1EA4(f32 *, f32 *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    f32 sp34;
+    f32 sp28[3];
+    s32 temp_v0;
+    s32 var_v0;
+
+    func_8009BB24(arg0, sp28);
+    if (func_800F1EA4(sp28, &sp34) != 0) {
+        yaw_setIdeal(arg0, sp34);
+    }
+    func_8009FF00(arg0);
+    if (_bamovegoto_entrypoint_4(arg0) != 0) {
+        temp_v0 = (*(s32 *)((s8 *)(arg0) + (0x194)));
+        if (temp_v0 == 0) {
+            (*(s32 *)((s8 *)(arg0) + (0x194))) = (s32) (temp_v0 + 1);
+            if (_badrone_entrypoint_9(arg0) == 1) {
+                if (func_8008E124(arg0) != 0) {
+                    var_v0 = _badata_entrypoint_32(arg0);
+                } else {
+                    var_v0 = _badata_entrypoint_34(arg0);
+                }
+                bs_setState(arg0, var_v0);
+            }
+            _badrone_entrypoint_6(arg0);
+        }
+    }
+}
 
 /* extern */
 
