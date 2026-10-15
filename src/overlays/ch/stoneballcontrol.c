@@ -251,7 +251,11 @@ void func_80801B00_chstoneballcontrol(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_808023AC_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80802418_chstoneballcontrol.s")
+void func_80802418_chstoneballcontrol(Actor *arg0) {
+    arg0->position[1] -= 5.0f;
+    arg0->alpha = (u32)arg0->alpha * 0.7f;
+    arg0->scale *= 0.95f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_808024F8_chstoneballcontrol.s")
 
