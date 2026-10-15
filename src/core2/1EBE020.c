@@ -560,7 +560,44 @@ int func_800E589C(unsigned int *b, unsigned int n, unsigned int s, u16 *d, u8 *e
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E5EC0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E659C.s")
+s32 func_800E659C(void *arg0) {
+    extern u16 D_80123204[];
+    extern u8 D_80123244[];
+    extern u16 D_80123264[];
+    extern u8 D_801232A0[];
+    unsigned int i;
+    struct huft *tl;
+    struct huft *td;
+    int bl;
+    int bd;
+    unsigned int l[288];
+
+    for (i = 0; i < 144; i++) {
+        l[i] = 8;
+    }
+    for (; i < 256; i++) {
+        l[i] = 9;
+    }
+    for (; i < 280; i++) {
+        l[i] = 7;
+    }
+    for (; i < 288; i++) {
+        l[i] = 8;
+    }
+    bl = 7;
+    func_800E589C(l, 288, 257, D_80123204, D_80123244, &tl, &bl, arg0);
+    for (i = 0; i < 30; i++) {
+        l[i] = 5;
+    }
+    bd = 5;
+    func_800E589C(l, 30, 0, D_80123264, D_801232A0, &td, &bd, arg0);
+    *(int *)((u8 *)arg0 + 0x20) = bl;
+    *(int *)((u8 *)arg0 + 0x24) = bd;
+    *(struct huft **)((u8 *)arg0 + 0x18) = tl;
+    *(struct huft **)((u8 *)arg0 + 0x1C) = td;
+    func_800E5390(arg0);
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E6728.s")
 
