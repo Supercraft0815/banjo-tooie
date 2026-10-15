@@ -97,7 +97,31 @@ void func_8080047C_chjiggytemple(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_80800688_chjiggytemple.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_80800784_chjiggytemple.s")
+/* extern */
+
+void func_80800784_chjiggytemple(void *arg0) {
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    void func_800B5450(void *);
+    s32 func_800E1720(s32);
+    void *temp_a2;
+    s32 temp_v0;
+    u8 temp_a0;
+
+    temp_a2 = (*(void **)((s8 *)(arg0) + (0x2C)));
+    if (temp_a2 != NULL) {
+        func_800B5450(temp_a2);
+        (*(void **)((s8 *)(arg0) + (0x2C))) = NULL;
+    }
+    temp_v0 = (*(s32 *)((s8 *)(arg0) + (0x30)));
+    if (temp_v0 != 0) {
+        func_800E1720(temp_v0 - 1);
+        (*(s32 *)((s8 *)(arg0) + (0x30))) = 0;
+    }
+    temp_a0 = (*(u8 *)((s8 *)(arg0) + (0x24)));
+    if (temp_a0 != 0) {
+        (*(u8 *)((s8 *)(arg0) + (0x24))) = _subaddieaudioloop_entrypoint_3(temp_a0);
+    }
+}
 
 s32 func_808007F4_chjiggytemple(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
