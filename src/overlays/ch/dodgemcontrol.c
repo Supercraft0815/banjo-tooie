@@ -96,7 +96,38 @@ s32 func_8080040C_chdodgemcontrol(Actor *arg0, f32 *arg1, s32 arg2) {
 
 s32 func_808005CC_chdodgemcontrol(s32 arg0) { switch (arg0) { case 0: return 0x2D; case 1: return 0x2D; case 2: return 0x2D; case 3: return 0x3C; default: return 0; } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080061C_chdodgemcontrol.s")
+/* extern */
+
+void func_8080061C_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    void func_800FC6B0(u32);
+    u32 func_800FDC28(u32);
+    arg2 |= 6;
+    switch (arg1) {
+    case 0x10D9:
+    case 0x10DA:
+        func_800FC6B0(0x10);
+        func_800FDC28(0);
+        break;
+    case 0x10D4:
+    case 0x10D5:
+    case 0x10D6:
+    case 0x10EC:
+    case 0x10EE:
+    case 0x10F0:
+        func_800FC6B0(0x16);
+        func_800FDC28(0);
+        break;
+    case 0x10D7:
+    case 0x10ED:
+    case 0x10EF:
+    case 0x10F1:
+        func_800FC6B0(0x17);
+        func_800FDC28(0);
+        break;
+    }
+    _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, arg0->position, 0x22);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808006CC_chdodgemcontrol.s")
 
