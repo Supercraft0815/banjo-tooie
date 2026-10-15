@@ -247,7 +247,22 @@ void func_80800FCC_bsstatue()
     func_80800130_bsstatue();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80800FEC_bsstatue.s")
+/* extern */
+
+void func_80800FEC_bsstatue(register void *arg0) {
+    s32 baanim_playForDuration_onceSmooth(void *, s32, s32);
+    void baphysics_set_target_horizontal_velocity(void *, f32);
+    void func_8009BA9C(PlayerState *, f32 *);
+    s32 func_8009FFD8(void *, s32, s32, s32, s32);
+    void func_800FC660(u32);
+    s32 func_808001FC_bsstatue();
+    func_808001FC_bsstatue(arg0);
+    baanim_playForDuration_onceSmooth(arg0, 0x1F1, 0x40000000);
+    func_8009FFD8(arg0, 1, 1, 2, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_8009BA9C(arg0, 0);
+    func_800FC660(0x17);
+}
 
 /* extern */
 
