@@ -84,7 +84,32 @@ void func_8080029C_bscarry(PlayerState *arg0) {
     func_8008C9F0(arg0, 30.0f, 60.0f, 1.8f, 1.2f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_80800310_bscarry.s")
+void func_80800310_bscarry(PlayerState *arg0) {
+    Unk80132ED0 *_bahold_entrypoint_5(s32);
+    s32 bastick_getZone(PlayerState *);
+    s32 bs_setState(s32, s32);
+    s32 func_8009BCD4(PlayerState *, f32);
+    void func_800A2CE8(PlayerState *, f32, s32);
+    s32 next_state = 0;
+
+    func_800A2CE8(arg0, 0.4f, 4);
+    func_800A2CE8(arg0, 0.9f, 3);
+    func_80800128_bscarry(arg0);
+    switch (bastick_getZone(arg0)) {
+        case 0:
+            if (func_8009BCD4(arg0, 1.0f)) {
+                next_state = 0x3A;
+            }
+            break;
+        case 2:
+            next_state = 0x3B;
+            break;
+    }
+    if (!_bahold_entrypoint_5(arg0)) {
+        next_state = 1;
+    }
+    bs_setState(arg0, next_state);
+}
 
 s32 bscarry_entrypoint_0(s32 arg0) {
     extern s32 D_808007B0_bscarry[];
@@ -158,7 +183,7 @@ void func_80800708_bscarry(s32 arg0)
 void func_80800730_bscarry(s32 arg0) {
     s32 _bsrest_entrypoint_20();
     s32 bs_setState(s32, s32);
-    s32 _bahold_entrypoint_5(s32);
+    Unk80132ED0 *_bahold_entrypoint_5(s32);
     s32 sp1C;
 
     sp1C = 0;
