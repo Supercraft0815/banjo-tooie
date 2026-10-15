@@ -186,7 +186,18 @@ OSThread *chfiregen_entrypoint_11(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_80800C44_chfiregen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_80800E54_chfiregen.s")
+/* extern */
+
+void func_80800E54_chfiregen(u8 *arg0) {
+    s32 func_800C8E84(s32, s32 *, u8 *);
+    s32 func_800EE904(s32 *, u8 *, u8 *);
+    s32 sp1C[3];
+
+    if ((s32) (*(f32 *)((s8 *)(arg0) + (0x50))) != -1) {
+        func_800EE904(sp1C, arg0 + 0x18, arg0);
+        func_800C8E84((s32) (*(f32 *)((s8 *)(arg0) + (0x50))), sp1C, arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_80800EB8_chfiregen.s")
 
