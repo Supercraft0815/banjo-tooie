@@ -150,7 +150,31 @@ OSThread *chfantasyeyeball_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80801A50_chfantasyeyeball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80801BC4_chfantasyeyeball.s")
+void func_80801BC4_chfantasyeyeball(Actor *arg0, f32 *arg1) {
+    void _chskeletonexplode_entrypoint_7(Actor *, f32 *);
+    void func_800BA22C(s32, s32);
+    void func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800C4140(s32, f32 *, s32);
+    extern s32 D_80801FC0_chfantasyeyeball;
+    s32 temp_v0;
+    f32 *var_a2;
+    s32 var_s0;
+
+    for (var_s0 = 0; var_s0 < 8; var_s0++) {
+        var_a2 = arg1 != NULL ? arg1 : arg0->position;
+        temp_v0 = func_800BABB8(0, arg0->position, var_a2, 1.0f, &D_80801FC0_chfantasyeyeball);
+        func_800BA3FC(temp_v0, var_s0 + 0x9DF);
+        func_800BA22C(temp_v0, 3);
+    }
+    if (arg1 != NULL) {
+        var_a2 = arg1;
+    } else {
+        var_a2 = arg0->position;
+    }
+    _chskeletonexplode_entrypoint_7(arg0, var_a2);
+    func_800C4140(0x7FFF441F, arg0->position, 0x04B000FA);
+}
 
 OSThread *chfantasyeyeball_entrypoint_1(void)
 {
