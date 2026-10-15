@@ -275,7 +275,27 @@ void func_808014BC_chwaspnestgame(Actor *arg0, f32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_808017DC_chwaspnestgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801880_chwaspnestgame.s")
+/* extern */
+
+void func_80801880_chwaspnestgame(Actor *arg0, f32 arg1, f32 arg2, f32 arg3) {
+    f32 func_800138D0(f32);
+    f32 func_80013970(f32);
+    f32 func_800D8FF8(void);
+    f32 temp_f0;
+    struct Motion {
+        f32 origin[3];
+        f32 angle;
+        f32 scale[3];
+        f32 phase;
+    };
+
+    temp_f0 = func_800D8FF8();
+    ((struct Motion *)arg0->actorData)->phase += arg2 * temp_f0;
+    ((struct Motion *)arg0->actorData)->angle += arg3 * temp_f0;
+    arg0->position[0] = ((struct Motion *)arg0->actorData)->origin[0] + (((struct Motion *)arg0->actorData)->scale[0] * arg1) * func_800138D0(((struct Motion *)arg0->actorData)->phase);
+    arg0->position[2] = ((struct Motion *)arg0->actorData)->origin[2] + (((struct Motion *)arg0->actorData)->scale[2] * arg1) * func_800138D0(((struct Motion *)arg0->actorData)->phase);
+    arg0->position[1] = ((struct Motion *)arg0->actorData)->origin[1] + (((struct Motion *)arg0->actorData)->scale[1] * arg1) * func_80013970(((struct Motion *)arg0->actorData)->angle);
+}
 
 /* extern */
 
