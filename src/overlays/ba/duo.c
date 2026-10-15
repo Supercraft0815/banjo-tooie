@@ -24,7 +24,21 @@ u32 baduo_entrypoint_1(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 88) + 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_2.s")
+s32 baduo_entrypoint_2(PlayerState *self) {
+    int func_800A3274(PlayerState *);
+    s32 _plsu_entrypoint_1(s32);
+    s32 temp_v0;
+
+    temp_v0 = func_800A3274(self);
+    switch (temp_v0) {
+        case 10:
+            return _plsu_entrypoint_1(0xB);
+        case 11:
+            return _plsu_entrypoint_1(0xA);
+        default:
+            return 0;
+    }
+}
 
 u32 baduo_entrypoint_3(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 88) + 1);
