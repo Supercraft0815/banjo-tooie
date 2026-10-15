@@ -173,17 +173,27 @@ void idworldmake_entrypoint_1(s32 arg0, s32 arg1, volatile unsigned int arg2, s3
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/worldmake/idworldmake_entrypoint_2.s")
+extern struct {
+    s32 unk0;
+    void (*destroy)(u32);
+} D_80800AB0_idworldmake[];
+
+void idworldmake_entrypoint_2(s32 arg0) {
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    void vector_erase(s32, s32);
+    s32 vector_index_of(s32, void *);
+    extern s32 D_80127EF0;
+    u32 var_s0;
+    u32 var_v1;
+    var_v1 = vector_end((*(s32 *)((s8 *)(&D_80127EF0) + (8))));
+    var_s0 = vector_begin((*(s32 *)((s8 *)(&D_80127EF0) + (8)))); if (var_s0 < var_v1) { do { if (arg0 == (*(s32 *)((s8 *)(var_s0) + (0)))) { D_80800AB0_idworldmake[*(u8 *)(var_s0 + 6)].destroy(var_s0 + 8); vector_erase((*(s32 *)((s8 *)(&D_80127EF0) + (8))), vector_index_of((*(s32 *)((s8 *)(&D_80127EF0) + (8))), (void *) var_s0)); var_s0 = vector_begin((*(s32 *)((s8 *)(&D_80127EF0) + (8)))); var_v1 = vector_end((*(s32 *)((s8 *)(&D_80127EF0) + (8)))); } var_s0 += 0xA8; } while (var_s0 < var_v1); } }
 
 void idworldmake_entrypoint_3(void) {
     u32 vector_begin(s32);
     u32 vector_end(s32);
     s32 vector_free(s32);
     extern s32 D_80127EF8;
-    extern struct {
-        s32 unk0;
-        void (*destroy)(u32);
-    } D_80800AB0_idworldmake[];
     u32 temp_s1;
     u32 temp_v0;
     u32 var_s0;
