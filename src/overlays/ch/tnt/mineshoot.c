@@ -257,7 +257,35 @@ void func_80802198_chtntmineshoot(s32 arg0) {
     func_808022A8_chtntmineshoot(arg0, func_808021C4_chtntmineshoot());
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_808021C4_chtntmineshoot.s")
+/* extern */
+
+s32 func_808021C4_chtntmineshoot(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA20(void *, void *, f32);
+    void func_800F059C(f32 *, f32 *, f32 *);
+    void *func_800FAB50(f32 *, f32 *, f32 *, u32, f32);
+    void *sp54;
+    f32 sp48[3];
+    f32 dt;
+    f32 sp38[3];
+    f32 sp2C[3];
+
+    dt = func_800D8FF8();
+    ((f32 *)arg0->actorData)[5] += ((f32 *)arg0->actorData)[7] * dt;
+    if (((f32 *)arg0->actorData)[5] < arg0->unk54) {
+        ((f32 *)arg0->actorData)[5] = arg0->unk54;
+    }
+    func_800EFA20(sp38, &((f32 *)arg0->actorData)[4], dt);
+    func_800EE780(sp48, arg0->position, sp38);
+    sp54 = func_800FAB50(arg0->position, sp48, sp2C, 0x024200A1, 15.0f);
+    if (sp54 != NULL) {
+        func_800F059C(&((f32 *)arg0->actorData)[4], &((f32 *)arg0->actorData)[4], sp2C);
+    }
+    func_800EE7F8(arg0->position, sp48);
+    return sp54 ? 1 : 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_808022A8_chtntmineshoot.s")
 
