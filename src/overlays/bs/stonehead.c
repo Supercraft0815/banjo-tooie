@@ -138,7 +138,50 @@ s32 bsstonehead_entrypoint_19(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_20.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_21.s")
+/* extern */
+
+void bsstonehead_entrypoint_21(PlayerState *arg0) {
+    void _baattach_entrypoint_6(PlayerState *, s32, s32, s32);
+    s32 _badrone_entrypoint_25(PlayerState *);
+    s32 bakey_func_80091940(PlayerState *, s32, s32);
+    int bakey_newlyReleased(PlayerState *, s32);
+    int bakey_pressed(PlayerState *, s32);
+    s32 bastick_getZone(PlayerState *);
+    s32 bs_setState(s32, s32);
+    int func_8008DD04(PlayerState *);
+    int func_8008E148(PlayerState *);
+    s32 func_8009BCD4(PlayerState *, f32);
+    void func_8009D3A8(PlayerState *, s32);
+    void func_800A2CE8(PlayerState *, f32, s32);
+    s32 func_808000CC_bsstonehead(s32);
+    int func_808003B8_bsstonehead(PlayerState *);
+    s32 sp24;
+
+    sp24 = 0;
+    func_8009D3A8(arg0, 0);
+    func_808000CC_bsstonehead(arg0);
+    func_800A2CE8(arg0, 0.1f, 4);
+    func_800A2CE8(arg0, 0.6f, 3);
+    if ((bastick_getZone(arg0) == 0) && (func_8009BCD4(arg0, 1.0f) != 0)) {
+        sp24 = 0xB3;
+    }
+    if (func_8008E148(arg0) != 0) {
+        sp24 = _badrone_entrypoint_25(arg0);
+    }
+    if (func_8008DD04(arg0) != 0) {
+        sp24 = 0xAD;
+    }
+    if (func_808003B8_bsstonehead(arg0) != 0) {
+        sp24 = 0xAE;
+    }
+    if (bakey_pressed(arg0, 9) != 0) {
+        sp24 = 0xB4;
+    }
+    if (bakey_newlyReleased(arg0, 1) != 0) {
+        _baattach_entrypoint_6(arg0, 1, bakey_func_80091940(arg0, 1, 1), 0);
+    }
+    bs_setState(arg0, sp24);
+}
 
 void bsstonehead_entrypoint_22(PlayerState *arg0)
 {
