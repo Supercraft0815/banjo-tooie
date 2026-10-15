@@ -2,6 +2,9 @@
 
 /* extern */
 
+struct player_state_s;
+struct anctrl_s;
+
 void func_800A0CF4(struct player_state_s *, s32);
 
 void bstimeout_entrypoint_0(struct player_state_s *arg0) {
@@ -29,7 +32,6 @@ void bstimeout_entrypoint_0(struct player_state_s *arg0) {
 /* extern */
 
 void bstimeout_entrypoint_1(struct player_state_s *arg0) {
-    struct anctrl_s;
     int anctrl_isAt(struct anctrl_s *, f32);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     void func_8009514C(struct player_state_s *);
@@ -64,7 +66,42 @@ s32 bstimeout_entrypoint_3(s32 arg0) {
     return ((s32 *)&D_80800330_bstimeout)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/timeout/bstimeout_entrypoint_4.s")
+/* extern */
+
+void bstimeout_entrypoint_4(struct player_state_s *arg0) {
+    void _batimer_set(struct player_state_s *, s32, f32);
+    void _ncbadie_entrypoint_3(struct player_state_s *, f32);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void func_8008E944(struct player_state_s *);
+    f32 func_8009F308(struct player_state_s *);
+    void func_8009FFD8(struct player_state_s *, s32, s32, s32, s32);
+    void func_800A0110(struct player_state_s *, struct anctrl_s *);
+    struct player_state_s *func_800A4CA8(struct player_state_s *);
+    void func_800A4DA4(struct player_state_s *, s32);
+    void func_800FC6B0(u32);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    struct anctrl_s *sp2C;
+    struct anctrl_s *temp_v0;
+
+    temp_v0 = baanim_getAnimCtrlPtr(arg0);
+    sp2C = temp_v0;
+    anctrl_reset(temp_v0);
+    func_800A0110(arg0, sp2C);
+    anctrl_setPlaybackType(sp2C, 2);
+    anctrl_start(sp2C);
+    func_8009FFD8(arg0, 1, 1, 3, 7);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_800A4DA4(arg0, 0xA);
+    yaw_setIdeal(arg0, func_8009F308(arg0) + 35.0f);
+    _ncbadie_entrypoint_3(func_800A4CA8(arg0), 80.0f);
+    func_800FC6B0(0x17);
+    func_8008E944(arg0);
+    _batimer_set(arg0, 0, 2.9f);
+}
 
 void bstimeout_entrypoint_5(u8 *arg0) {
     s32 _batimer_decrement(void *, s32);
