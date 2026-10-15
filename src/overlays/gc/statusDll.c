@@ -110,4 +110,24 @@ u8 gcstatusDll_entrypoint_19(void) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/statusDll/gcstatusDll_entrypoint_20.s")
+s32 gcstatusDll_entrypoint_20(void) {
+    s32 func_800D3948(void);
+    u8 status;
+
+    if (func_800D3948() != 0) {
+        status = gcstatusDll_entrypoint_14();
+        switch (status) {
+        case 3:
+        case 5:
+            return 1;
+        case 0:
+        case 1:
+        case 2:
+        case 4:
+        case 6:
+        default:
+            break;
+        }
+    }
+    return 0;
+}
