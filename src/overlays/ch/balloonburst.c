@@ -178,7 +178,28 @@ void func_808010D8_chballoonburst(Actor *arg0, s32 arg1) {
     _sumultiscore_entrypoint_12((s32)func_80100094(arg0, 0U) + 0x30, arg1, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_8080110C_chballoonburst.s")
+s32 func_8080110C_chballoonburst(void *arg0, s32 arg1, s32 arg2) {
+    void func_808011A8_chballoonburst(Actor *, s32, s32);
+    s32 func_80801254_chballoonburst(u8 *, s32, s32);
+    void func_80801290_chballoonburst(void *);
+
+    switch (arg1) {
+    case 0x2E:
+        func_808011A8_chballoonburst(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x30:
+        return func_80801254_chballoonburst(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+    case 0x3D:
+        func_80800BE8_chballoonburst(arg0, -1);
+        break;
+    case 0x95:
+        func_80801290_chballoonburst(arg0);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_808011A8_chballoonburst.s")
 
