@@ -369,7 +369,7 @@ s32 func_80111340()
 /* extern */
 
 void func_801113B8(void *arg0) {
-    s32 func_800EFD24(s32);
+    void func_800EFD24(f32 *);
     func_800EFD24((*(s32 *)((s8 *)(arg0) + (0x34))) + 0x10);
     func_800EFD24((*(s32 *)((s8 *)(arg0) + (0x34))) + 0x24);
     func_800EFD24((*(s32 *)((s8 *)(arg0) + (0x34))) + 0x38);
@@ -405,8 +405,8 @@ s32 func_801115C8(f32 *arg0, f32 arg1, f32 *arg2, f32 *arg3, f32 *arg4) {
 
 /* extern */
 
-void func_80111A38(PlayerState *arg0, s32 arg1, s32 arg2) {
-    void func_80111680(s32, s32, f32 *, void *, f32, f32, void *);
+void func_80111A38(PlayerState *arg0, f32 *arg1, f32 *arg2) {
+    void func_80111680(f32 *, f32 *, f32 *, void *, f32, f32, void *);
     void func_80112550(PlayerState *, f32[3]);
     f32 sp2C[3];
     u8 *temp_v0;
@@ -421,9 +421,9 @@ void func_80111A98(u8 *arg0) {
 
 /* extern */
 
-void func_80111ABC(void *arg0) {
-    void func_800EE7F8();
-    func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x34))) + 0x68);
+void func_80111ABC(void *arg0, f32 *arg1) {
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    func_800EE7F8((*(f32 **)((s8 *)arg0 + 0x34)) + 26, arg1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111AE0.s")
@@ -448,7 +448,40 @@ void func_80111B8C(s32 *arg0, f32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111C04.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111CC8.s")
+/* extern */
+
+s32 func_80111CC8(void *arg0, f32 *arg1) {
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFD24(f32 *);
+    u32 func_8010FFD0(u8 *);
+    s32 func_80111C04(void *);
+    s32 func_8011329C(PlayerState *);
+    void func_80113640(s32, f32 *, f32 *);
+    f32 sp34[3];
+    f32 sp28[3];
+    s32 sp24;
+
+    sp24 = func_80110898(arg0);
+    func_801107F0(arg0, sp34);
+    if (func_8010FFD0(sp24) != 0) {
+        func_800EFD24((*(f32 **)((s8 *)arg0 + 0x34)) + 9);
+        func_80113640(arg0, sp34, arg1);
+        func_80110770(arg0, arg1);
+        goto block_4;
+    }
+    func_80111A98(arg0);
+    func_80111ABC(arg0, arg1);
+    func_80111A38(arg0, arg1, sp34);
+    func_8011106C(arg0, sp28);
+    func_800EF04C(sp34, sp28);
+    func_80110770(arg0, sp34);
+    if (func_8011329C(arg0) != 0) {
+        func_80111C04(arg0);
+        return 1;
+    }
+block_4:
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111DB0.s")
 
