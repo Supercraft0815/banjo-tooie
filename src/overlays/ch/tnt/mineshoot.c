@@ -10,7 +10,28 @@ void func_8080003C_chtntmineshoot(s32 arg0) {
     func_800BBCB8((f32 *)(arg0 + 4), 0, 1.0f, 4, &D_808025A8_chtntmineshoot);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800078_chtntmineshoot.s")
+void func_80800078_chtntmineshoot(f32 *arg0, f32 arg1) {
+    void func_800187B4(s32, f32, f32, f32);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    extern s32 D_808025CC_chtntmineshoot;
+    f32 sp1C[3];
+
+    if (arg0 != NULL) {
+        func_800C4AF0(arg0, &D_808025CC_chtntmineshoot);
+        if (arg1 != 0.0f) {
+            func_800E1610(0, 50.0f, arg1, arg0);
+        }
+    } else {
+        func_800F5A00(func_800F54E4(), sp1C);
+        func_800C4AF0(sp1C, &D_808025CC_chtntmineshoot);
+        if (arg1 != 0.0f) {
+            func_800E1610(0, 50.0f, arg1, sp1C);
+        }
+    }
+    func_800187B4(0, 0.5f, 2.0f, 0.5f);
+}
 
 void func_80800150_chtntmineshoot(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
