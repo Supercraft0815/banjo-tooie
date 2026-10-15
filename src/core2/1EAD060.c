@@ -33,7 +33,26 @@ s32 func_800D37F0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D37FC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D389C.s")
+void func_800D389C(void) {
+    s32 _glgamedata_entrypoint_1(void *);
+    s32 _glsavegame_entrypoint_7(s8);
+    s16 func_8001B668(s32, s32);
+    void *func_8001B798(s16);
+    extern s32 D_8012B3F0;
+
+    if (func_800D3770() != 0) {
+        _glsavegame_entrypoint_7((*(s8 *)((s8 *)(&D_8012B3F0) + (1))));
+    }
+    if ((*(u8 *)((s8 *)(&D_8012B3F0) + (9))) == 1) {
+        (*(s16 *)((s8 *)(&D_8012B3F0) + (6))) = func_8001B668(0, 0x1C0);
+        _glgamedata_entrypoint_1(func_8001B798((*(s16 *)((s8 *)(&D_8012B3F0) + (6)))));
+        (*(s8 *)((s8 *)(&D_8012B3F0) + (8))) = (*(s8 *)((s8 *)(&D_8012B3F0) + (1)));
+        (*(u8 *)((s8 *)(&D_8012B3F0) + (0xB))) = (u8) (*(u8 *)((s8 *)(&D_8012B3F0) + (3)));
+        (*(u8 *)((s8 *)(&D_8012B3F0) + (0xA))) = (u8) (*(u8 *)((s8 *)(&D_8012B3F0) + (2)));
+        (*(s8 *)((s8 *)(&D_8012B3F0) + (1))) = -1;
+        (*(u8 *)((s8 *)(&D_8012B3F0) + (9))) = 2U;
+    }
+}
 
 s32 func_800D3934(void) {
     extern s8 D_8012B3F2;
