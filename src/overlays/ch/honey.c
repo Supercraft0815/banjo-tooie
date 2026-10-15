@@ -50,7 +50,35 @@ void func_80800634_chhoney(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_80800688_chhoney.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_80800754_chhoney.s")
+/* extern */
+
+void func_80800754_chhoney(Actor *arg0) {
+    void _fxtwinkle_entrypoint_0(f32 *);
+    void _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    void func_800EF214(f32 *, f32, f32, f32);
+    f32 sp60[4];
+    f32 temp_f20;
+    s32 var_s1;
+    u32 temp_t7;
+
+    temp_t7 = arg0->unk0->unk24 >> 22;
+    if ((temp_t7 != 0x55) && ((temp_t7 == 0x22B) || (temp_t7 == 0x22C))) {
+        var_s1 = 0;
+        if (arg0->unk7C_12) {
+            do {
+                if (func_800DC298(0.03f) != 0) {
+                    _subaddieskeleton_entrypoint_0(arg0, 1, sp60);
+                    temp_f20 = func_800DC178(0.0f, 360.0f);
+                    func_800EF214(sp60, temp_f20, func_800DC178(0.0f, 360.0f), 50.0f);
+                    _fxtwinkle_entrypoint_0(sp60);
+                }
+                var_s1 += 1;
+            } while (var_s1 != 4);
+        }
+    }
+}
 
 void func_80800870_chhoney(Actor *arg0, s32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
@@ -139,7 +167,7 @@ void func_80800A5C_chhoney(u8 *arg0) {
     s32 func_8010DC50(s32);
     s32 func_8010DCB4(s32);
     s32 func_808000C4_chhoney(u8 *, s32);
-    s32 func_80800754_chhoney(u8 *);
+    void func_80800754_chhoney(Actor *);
     void func_808008F8_chhoney(Actor *, s32);
     s32 func_808009BC_chhoney(u8 *);
     s32 func_80800EB0_chhoney();
