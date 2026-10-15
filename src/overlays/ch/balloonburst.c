@@ -44,7 +44,21 @@ void func_80800024_chballoonburst(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_808003C4_chballoonburst.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_8080066C_chballoonburst.s")
+s32 func_8080066C_chballoonburst(Actor *arg0, s32 arg1, s32 arg2) {
+    s16 func_800D211C(s32);
+
+    switch (arg1) {
+        case 0x10BE:
+            return arg2 == 0 ? arg0->unk74_7 : 50;
+        case 0x10C0:
+        case 0x10F9:
+            return func_800D211C(0x80);
+        case 0x1118:
+            return arg2 == 0 ? arg0->unk74_7 : func_800D211C(0x80);
+        default:
+            return 0;
+    }
+}
 
 void func_80800704_chballoonburst(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80108B04(Actor *, u32);

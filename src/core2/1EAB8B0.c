@@ -29,9 +29,9 @@ void func_800D2014(void) {
 
 /* extern */
 
-s16 func_800D211C(void) {
-    s16 *func_800D1FC0();
-    return *func_800D1FC0();
+s16 func_800D211C(s32 arg0) {
+    s16 *func_800D1FC0(s32);
+    return *func_800D1FC0(arg0);
 }
 
 s32 func_800D2140() 
