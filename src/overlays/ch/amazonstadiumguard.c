@@ -26,7 +26,23 @@ void func_808002F4_chamazonstadiumguard(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazonstadiumguard/func_80800488_chamazonstadiumguard.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazonstadiumguard/func_80800530_chamazonstadiumguard.s")
+/* extern */
+
+void func_80800530_chamazonstadiumguard(Actor *arg0) {
+    s32 func_800DA298(GameFlag);
+    void func_80102424(Actor *, s32);
+    s32 func_8010CAC0(f32 *, u32);
+    s32 func_8010D278();
+    s32 func_8010D284();
+
+    if ((func_8010CAC0(arg0->position, 0x1F4) != 0) && (func_8010D284() != 5) && (func_8010D284() != 0xA)) {
+        if (func_8010D278() == 8) {
+            func_80102424(arg0, func_800DA298(0x59) ? 5 : 2);
+            return;
+        }
+        func_80102424(arg0, 2);
+    }
+}
 
 void func_808005CC_chamazonstadiumguard(s32 arg0) {
     s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
