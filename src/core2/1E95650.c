@@ -106,8 +106,8 @@ void* func_800BC3F0(void* arg0)
 {
     return defrag(arg0);
 }
-void func_800BC410(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 func_800BC474(s32, s32, s32, s32, s32, s32, s32, s32);
+void func_800BC410(Gfx **arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void func_800BC474(Gfx **, s32, s32, s32, s32, s32, s32, s32);
     s32 func_800E7FCC(s32 *);
     s32 sp[4];
 
@@ -115,12 +115,23 @@ void func_800BC410(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_800BC474(arg0, sp[0], sp[1], sp[2], sp[3], arg1, arg2, arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E95650/func_800BC474.s")
+void func_800BC474(Gfx **arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7) {
+    extern Gfx D_8011A730[];
+    gSPDisplayList((*arg0)++, (u8 *)D_8011A730 - 0x80000000);
+    gDPSetFillColor((*arg0)++,
+        (((arg5 << 8) & 0xF800) | ((arg6 << 3) & 0x7C0) | ((arg7 >> 2) & 0x3E) | 1) << 16 |
+        (((arg5 << 8) & 0xF800) | ((arg6 << 3) & 0x7C0) | ((arg7 >> 2) & 0x3E) | 1));
+    gDPFillRectangle((*arg0)++,
+        (arg1 > 0 ? arg1 : 0),
+        (arg2 > 0 ? arg2 : 0),
+        (arg1 + arg3 - 1 > 0 ? arg1 + arg3 - 1 : 0),
+        (arg2 + arg4 - 1 > 0 ? arg2 + arg4 - 1 : 0));
+}
 
 /* extern */
 
-void func_800BC580(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    s32 func_800BC474(s32, s32, s32, s32, s32, s32, s32, s32);
+void func_800BC580(Gfx **arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    void func_800BC474(Gfx **, s32, s32, s32, s32, s32, s32, s32);
     func_800BC474(arg0, arg1, arg2, arg3, arg4, 0, 0, 0);
 }
 
