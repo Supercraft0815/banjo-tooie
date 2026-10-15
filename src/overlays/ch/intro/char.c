@@ -4,7 +4,24 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_808000FC_chintrochar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_808002FC_chintrochar.s")
+void func_808002FC_chintrochar(Actor *arg0) {
+    s16 func_800AE020(void);
+    u8 *func_800DBFF8(void);
+    s32 func_80105DFC(Actor *);
+    extern u32 func_80804158_chintrochar[][8];
+    u32 flags;
+
+    flags = func_80804158_chintrochar[arg0->unk74_7][0] & 0x3FFFFFFF;
+    if (flags & 0x40) {
+        arg0->unk0->unk4 = func_800DBFF8();
+    }
+    if (flags & 0x1000) {
+        func_80105DFC(arg0);
+    }
+    if (flags & 0x20) {
+        *(s16 *)&arg0->unk0->unk10 = func_800AE020();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80800398_chintrochar.s")
 
