@@ -31,7 +31,29 @@ void func_808002B4_chstarspinnerctrl(s32 *arg0) {
     _glid_entrypoint_0(func_800BEA88(0), 1, &_chstarspinnerctrl_entrypoint_2, *arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/chstarspinnerctrl_entrypoint_2.s")
+/* extern */
+
+void chstarspinnerctrl_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4) {
+    s32 func_800F2FD0(s32, s32, f32);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    struct SpinnerData {
+        u8 pad[0x18];
+        f32 value;
+    } *data;
+    f32 temp_f20;
+
+    data = func_80100094(func_80106790(arg4), 0);
+    temp_f20 = data->value;
+    if (arg3 > 0) {
+        do {
+            func_800F2FD0(arg2 + 0xC, arg1 + 0xC, temp_f20);
+            arg3 -= 1;
+            arg1 += 0x10;
+            arg2 += 0x10;
+        } while (arg3 > 0);
+    }
+}
 
 /* extern */
 
