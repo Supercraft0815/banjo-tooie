@@ -75,7 +75,29 @@ void func_800FB1B0(s32 arg0, f32 *arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FB1EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FB2AC.s")
+/* extern */
+
+void *func_800FB2AC(f32 arg0[3], f32 arg1) {
+    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(f32 *, f32 *, f32 *);
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp2C[3];
+    f32 sp20[3];
+    s32 sp1C;
+
+    func_800EFA4C(sp20, 0.0f, arg1, 0.0f);
+    func_800EE780(sp2C, arg0, sp20);
+    func_800EFB24(sp38, arg0, sp20);
+    sp1C = func_800BEF00(sp2C, sp38, sp44, 0x1F00);
+    if (sp1C != 0) {
+        func_800EE7F8(arg0, sp38);
+    }
+    return sp1C;
+}
 
 s32 func_800FB338(void *arg0, void *arg1, s32 *arg2, f32 *arg3) {
     *arg3 = (*(f32 *)((s8 *)(arg0) + (4)));
