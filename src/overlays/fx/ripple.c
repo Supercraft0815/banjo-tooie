@@ -1,6 +1,26 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/ripple/func_80800000_fxripple.s")
+/* extern */
+
+s32 func_80800000_fxripple(f32 arg0[3], s32 *arg1, void *arg2) {
+    void *func_800FB2AC(f32 arg0[3], f32 arg1);
+    s32 func_800FB338(void *, void *, s32 *, f32 *);
+    f32 sp1C;
+
+    *arg1 = 0;
+    if (arg2 != 0) {
+        arg0[1] += 1.0f;
+    } else {
+        arg2 = func_800FB2AC(arg0, 50.0f);
+        if (arg2 == 0) {
+            return 0;
+        }
+    }
+    if (func_800FB338(arg0, arg2, arg1, &sp1C) != 0) {
+        arg0[1] = sp1C;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/ripple/func_80800094_fxripple.s")
 
