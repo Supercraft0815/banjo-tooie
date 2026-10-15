@@ -4,7 +4,30 @@ void func_80800000_bsbbilldrill(void *arg0) {
     *(u32 *)((u8 *)arg0 + 0x168) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/func_80800008_bsbbilldrill.s")
+void func_80800008_bsbbilldrill(void *arg0) {
+    s32 func_8001210C(s32);
+    void func_8009C128(void *, f32[3]);
+    s8 func_800BF8E4(void);
+    s32 func_800C8A98();
+    void func_800C8CB8(s32, f32[3]);
+    void func_800C8E54(s32, f32, f32);
+    s32 func_800C8E84(s32, s32 *);
+    void func_800C8F64(s32, s32);
+    extern s32 D_80800AB0_bsbbilldrill[][3];
+    f32 sp24[3];
+
+    if (func_800BF8E4() > 0) {
+        if ((*(s32 *)((s8 *)(arg0) + (0x168))) == 0) {
+            (*(s32 *)((s8 *)(arg0) + (0x168))) = func_800C8A98();
+            func_800C8E54((*(s32 *)((s8 *)(arg0) + (0x168))), 80.0f, 350.0f);
+            func_800C8F64((*(s32 *)((s8 *)(arg0) + (0x168))), 0xB);
+        }
+        func_8009C128(arg0, sp24);
+        sp24[1] -= 10.0f;
+        func_800C8CB8((*(s32 *)((s8 *)(arg0) + (0x168))), sp24);
+        func_800C8E84((*(s32 *)((s8 *)(arg0) + (0x168))), D_80800AB0_bsbbilldrill[func_8001210C(1)]);
+    }
+}
 
 void func_808000C0_bsbbilldrill(u8 *arg0) {
     s32 _chlightfader_entrypoint_1(s32, f32, s32);
