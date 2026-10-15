@@ -32,7 +32,33 @@ void func_80090E48(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6A730/func_80090F38.s")
+void func_80090F38(void *arg0) {
+    f32 func_800DC0C0();
+    s8 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    extern f32 D_80124D08;
+    extern f32 D_80124D0C;
+    extern f32 D_80124D10;
+    extern f32 D_80124D14;
+    extern f32 D_80124D18;
+    extern f32 D_80124D1C;
+    f32 temp_f0;
+
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (8))) = 0.0f;
+    temp_f0 = func_800DC0C0();
+    if (temp_f0 < 0.5f) {
+        (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (4))) = func_800DC178(D_80124D08, D_80124D0C);
+        (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (0xC))) = 1;
+        return;
+    }
+    if (temp_f0 < D_80124D10) {
+        (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (4))) = func_800DC178(D_80124D14, 1.0f);
+        (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (0xC))) = func_800DC128(1, 4);
+        return;
+    }
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (4))) = func_800DC178(D_80124D18, D_80124D1C);
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (0xC))) = func_800DC128(6, 0xF);
+}
 
 void func_80091030(void *arg0) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (8))) = 0.0f;
