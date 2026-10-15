@@ -161,7 +161,30 @@ void func_80800DDC_chmasterjiggy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_80801030_chmasterjiggy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_808010E4_chmasterjiggy.s")
+void func_808010E4_chmasterjiggy(Actor *arg0) {
+    typedef struct {
+        f32 amount;
+        s32 unused[4];
+        s32 emitter;
+    } MasterJiggyData;
+    s32 func_800B53A4(s32);
+    void func_800B5534(s8 *);
+    void func_800BA22C(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    extern s32 D_8080179C_chmasterjiggy[];
+    extern f32 D_808017E0_chmasterjiggy[3];
+    f32 sp2C[3];
+    if ((((MasterJiggyData *)arg0->actorData)->amount > 0.0f) && arg0->unk64_20) {
+        if (((MasterJiggyData *)arg0->actorData)->emitter == 0) {
+            func_800EE780(sp2C, arg0->position, D_808017E0_chmasterjiggy);
+            ((MasterJiggyData *)arg0->actorData)->emitter = func_800B53A4(0x32);
+            func_800B5534(((MasterJiggyData *)arg0->actorData)->emitter);
+            ((MasterJiggyData *)arg0->actorData)->emitter = func_800BABB8(((MasterJiggyData *)arg0->actorData)->emitter, arg0->position, sp2C, 1.0f, D_8080179C_chmasterjiggy);
+        }
+        func_800BA22C(((MasterJiggyData *)arg0->actorData)->emitter, 4);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/chmasterjiggy_entrypoint_2.s")
 
