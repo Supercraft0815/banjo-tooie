@@ -451,4 +451,24 @@ u32 func_8010A698(void ***arg0) {
     return (u32) ((*(s32 *)((s8 *)(**arg0) + (8))) << 0x1C) >> 0x1F;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A6B0.s")
+/* extern */
+
+s32 func_8010A6B0(Actor *arg0, s32 arg1) {
+    void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
+    s32 func_800F4B4C(s32);
+    f32 func_800F57F0(s32, f32 *);
+    void func_80103DFC(void *, f32 *);
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp1C[3];
+
+    if (func_800F4B4C(arg1) == 0) {
+        return 0;
+    }
+    func_800F57F0(arg1, sp28);
+    func_80103DFC(arg0, sp34);
+    if (func_800C6A7C(sp28, sp34, sp1C, 0x4A0021) != 0) {
+        return 0;
+    }
+    return 1;
+}
