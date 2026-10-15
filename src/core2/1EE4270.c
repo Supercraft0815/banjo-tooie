@@ -189,7 +189,35 @@ int func_8010B69C(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
     return y == arg0->position[1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B71C.s")
+s32 func_8010B71C(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 *func_800BEF00(f32[3], f32[3], f32[3], s32);
+    f32 func_800D8FF8(void);
+    s32 func_801045AC(Actor *, f32 *, f32 *, s32);
+    f32 func_8010C460(void);
+    extern s32 D_80136F40;
+    f32 sp34[3];
+    f32 sp30;
+    f32 sp2C;
+    s32 *temp_v0;
+
+    sp30 = func_8010C460();
+    sp2C = func_800D8FF8();
+    sp34[0] = arg0->position[0];
+    sp34[1] = arg0->position[1] + sp30;
+    sp34[2] = arg0->position[2];
+    arg0->position[1] += *(f32 *)&arg0->actorData[5] * sp2C;
+    temp_v0 = func_800BEF00(sp34, arg0->position, (f32 *)&D_80136F40, arg0->unk14);
+    if (temp_v0 != NULL) {
+        *(f32 *)&arg0->actorData[5] = 0.0f;
+        *(f32 *)&arg0->actorData[7] = 0.0f;
+        if (((s16 *)&arg0->pad8C)[1] != 0) {
+            func_801045AC(arg0, (f32 *)&D_80136F40, arg0->position, temp_v0[2]);
+        }
+        return 1;
+    }
+    *(f32 *)&arg0->actorData[5] -= *(f32 *)&arg0->actorData[7] * sp2C;
+    return 0;
+}
 
 typedef struct {
     s32 marker;
