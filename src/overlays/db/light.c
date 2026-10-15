@@ -1,6 +1,31 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/light/dblight_entrypoint_0.s")
+void dblight_entrypoint_0(u8 *arg0, void *arg1, s32 *arg2) {
+    void *func_800B2190(void *);
+    s32 pad[4];
+    s16 *index;
+    Vtx *vertices;
+    s32 i;
+    s32 j;
+    s32 *color;
+    Vtx *vertex;
+
+    if (arg2[0] != 255 || arg2[1] != 255 || arg2[2] != 255) {
+        index = (s16 *)(*(u16 *)(arg0 + 0x10) * 4 + arg0 + 0x18);
+        vertices = func_800B2190(arg1);
+        i = 0;
+        if (*(s32 *)(arg0 + 0x14) > 0) {
+          do {
+            vertex = vertices + *index;
+            for (j = 0; j < 3; j++) {
+                vertex->v.cn[j] = (vertex->v.cn[j] * arg2[j]) >> 8;
+            }
+            i++;
+            index++;
+          } while (i < *(s32 *)(arg0 + 0x14));
+        }
+    }
+}
 
 void dblight_entrypoint_1(u8 *arg0, void *arg1, s32 arg2) {
     typedef struct {
