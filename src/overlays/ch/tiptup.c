@@ -23,7 +23,34 @@ OSThread *chtiptup_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800024_chtiptup.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800200_chtiptup.s")
+/* extern */
+
+void func_80800200_chtiptup(Actor *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 _subaddiesect_entrypoint_1(Actor *);
+    s32 _subaddiesect_entrypoint_2(void *, s32, s32);
+    s32 func_800D0A9C(u32, u32);
+    void func_800FFAB0(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_80105A9C(Actor *, f32);
+    Actor *temp_v0;
+
+    if ((func_800D0A9C(0x20, 1) != 0) && (_glcutDll_entrypoint_20() == 0)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    arg0->unk6C_0 = _subaddiesect_entrypoint_1(arg0);
+    _subaddiesect_entrypoint_2(arg0, arg0->unk6C_0, 0);
+    temp_v0 = _subaddiefind_entrypoint_2(0x359, 0);
+    if (temp_v0 != NULL) {
+        arg0->unk3C = temp_v0->unk0;
+    }
+    func_80105A9C(arg0, 400.0f);
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80102424(arg0, 6);
+    }
+}
 
 /* extern */
 
