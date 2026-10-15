@@ -135,7 +135,54 @@ void func_80800DC4_chfactoryrobot(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80801278_chfactoryrobot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_8080183C_chfactoryrobot.s")
+void func_8080183C_chfactoryrobot(Actor *arg0) {
+    typedef struct {
+        u8 pad0[8];
+        s8 unk8[2];
+        u8 padA[0xA];
+        s32 unk14;
+        u8 pad18[8];
+        f32 unk20;
+    } RobotData;
+    typedef struct {
+        f32 values[2];
+    } RobotSize;
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32[3]);
+    void func_800C8D4C(s32, f32 *);
+    s32 func_800C8E84(s32, s32 *);
+    void func_800C8F64(s32, s32);
+    void func_800C8FE0(s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80802398_chfactoryrobot(Actor *);
+    extern s32 D_80802890_chfactoryrobot;
+    extern RobotSize D_80802ACC_chfactoryrobot;
+    struct {
+        RobotSize size;
+        f32 pad;
+    } local;
+    s32 i;
+    RobotData *data;
+
+    data = func_80100094(arg0, 0);
+    local.size = D_80802ACC_chfactoryrobot;
+    for (i = 0; i != 2; i++) {
+        data->unk8[i] = 0;
+    }
+    func_80802398_chfactoryrobot(arg0);
+    local.size.values[0] *= arg0->scale;
+    local.size.values[1] *= arg0->scale;
+    data->unk14 = func_800C8A98();
+    func_800C8E84(data->unk14, &D_80802890_chfactoryrobot);
+    func_800C8CB8(data->unk14, arg0->position);
+    func_800C8F64(data->unk14, 3);
+    func_800C8D4C(data->unk14, local.size.values);
+    func_800C8FE0(data->unk14, data->unk20 > 0.0f);
+    if (arg0->unk70_10 != 1) {
+        _subaddierouteDll_entrypoint_1(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80801954_chfactoryrobot.s")
 
