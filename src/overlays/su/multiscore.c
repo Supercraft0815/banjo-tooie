@@ -42,7 +42,59 @@ void sumultiscore_entrypoint_1(s32 *arg0, s32 *arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_5.s")
+struct player_state_s;
+struct player_state_s *func_800F53D0(s32);
+
+struct Entry {
+    u8 unk0, unk1;
+    s16 unk2;
+    u8 unk4, unk5, unk6, unk7;
+    s16 unk8;
+    u8 padA[6];
+    f32 unk10, unk14;
+    s32 unk18, unk1C;
+};
+struct Row {
+    u8 pad0[0x18];
+    struct Entry entries[9];
+    s32 previous;
+};
+struct Multi {
+    s32 unk0;
+    s32 order[9];
+    struct Row rows[4];
+};
+
+void sumultiscore_entrypoint_5(struct Multi *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s16 _badeathmatch_entrypoint_9(s32, s32);
+    extern s32 D_808014B0_sumultiscore[];
+    struct Row *row;
+    struct Entry *src;
+    struct Entry *dst;
+    s32 var_a1;
+
+    var_a1 = arg1;
+    row = &arg0->rows[var_a1];
+    src = arg0->order[arg2] + row->entries;
+    dst = arg0->order[0] + row->entries;
+    if (row->previous != 0) {
+        var_a1 = (s32)(arg0->order[row->previous] + row->entries);
+        ((struct Entry *)var_a1)->unk6 = dst->unk6;
+    }
+    row->previous = arg2;
+    dst->unk1 = src->unk1;
+    dst->unk10 = src->unk10;
+    dst->unk1C = arg3;
+    dst->unk6 = src->unk6;
+    src->unk6 = 0;
+    if (arg2 == 3) {
+        dst->unk2 = D_808014B0_sumultiscore[arg3];
+        dst->unk4 = 0;
+        dst->unk8 = _badeathmatch_entrypoint_9(func_800F53D0(arg1), arg3);
+        dst->unk5 = 0;
+        dst->unk14 = 1.0f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_6.s")
 
@@ -60,7 +112,6 @@ void func_80800D54_sumultiscore(s32 arg0, s32 arg1, s32 arg2) {
 void func_80800D64_sumultiscore(s32 arg0, s32 arg1, void *arg2) {
     s32 _badeathmatch_entrypoint_6(s32);
     s16 _badeathmatch_entrypoint_9(s32, s32);
-    s32 func_800F53D0(s32);
     extern s32 D_808014B0_sumultiscore[];
     s32 sp1C;
     s32 temp_v0;
