@@ -98,4 +98,13 @@ void func_800BC580(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     func_800BC474(arg0, arg1, arg2, arg3, arg4, 0, 0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E95650/func_800BC5B0.s")
+void func_800BC5B0(Gfx **arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    extern Gfx D_8011A730[];
+    gSPDisplayList((*arg0)++, (u8 *)D_8011A730 - 0x80000000);
+    gDPSetFillColor((*arg0)++, 0xFFFCFFFC);
+    gDPFillRectangle((*arg0)++,
+        (arg1 > 0 ? arg1 : 0),
+        (arg2 > 0 ? arg2 : 0),
+        (arg1 + arg3 - 1 > 0 ? arg1 + arg3 - 1 : 0),
+        (arg2 + arg4 - 1 > 0 ? arg2 + arg4 - 1 : 0));
+}
