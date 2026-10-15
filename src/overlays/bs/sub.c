@@ -75,7 +75,45 @@ void func_80800768_bssub(struct player_state_s *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800834_bssub.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_808008D8_bssub.s")
+/* extern */
+
+void func_808008D8_bssub(struct player_state_s *arg0) {
+    s32 _bafpctrl_entrypoint_18(struct player_state_s *, s32);
+    s32 _basub_entrypoint_9(struct player_state_s *);
+    void baroll_resetAngularVelocity(struct player_state_s *);
+    void baroll_setIdeal(struct player_state_s *, f32);
+    void bastick_resetZones(struct player_state_s *);
+    void func_800910BC(struct player_state_s *, s32);
+    void func_80092864(struct player_state_s *, f32);
+    void func_80093360(struct player_state_s *, f32);
+    void func_800947EC(struct player_state_s *, s32, s32);
+    void func_80095964(void *, s32);
+    void func_80095A40(struct player_state_s *);
+    void func_800961AC(struct player_state_s *, s32);
+    void func_8009BC34(struct player_state_s *);
+    void func_8009BF5C(struct player_state_s *, f32);
+    void func_8009C000(struct player_state_s *);
+    void func_8009E474(struct player_state_s *);
+    s32 func_8009E74C(struct player_state_s *, s32);
+    if (func_8009E74C(arg0, 0xF) == 0) {
+        func_800947EC(arg0, 1, 0);
+        func_800961AC(arg0, 1);
+        func_8009BC34(arg0);
+        func_8009BF5C(arg0, 0.0f);
+        baroll_setIdeal(arg0, 0.0f);
+        func_8009C000(arg0);
+        baroll_resetAngularVelocity(arg0);
+        bastick_resetZones(arg0);
+        func_80095A40(arg0);
+        func_80095964(arg0, 0);
+        func_80093360(arg0, 0.0f);
+        _basub_entrypoint_9(arg0);
+        func_800910BC(arg0, 1);
+        _bafpctrl_entrypoint_18(arg0, 0);
+        func_8009E474(arg0);
+        func_80092864(arg0, 1.0f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_808009B0_bssub.s")
 
