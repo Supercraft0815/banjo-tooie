@@ -326,7 +326,28 @@ int func_80803844_chflysaucer(void) {
     return 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808038C4_chflysaucer.s")
+/* extern */
+
+void func_808038C4_chflysaucer(Unk80132ED0 *arg0, f32 *arg1, f32 *arg2, s32 arg3, s32 arg4, f32 arg5) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF6A8(f32 *, f32 *, f32, f32, f32);
+    Actor *func_80108474(u32, f32 *, s32);
+    f32 sp24[3];
+    Actor *sp20;
+
+    sp20 = func_80108474(0x2A4, arg1, (s32)(arg2[1] + 180.0f));
+    sp24[0] = arg2[0];
+    sp24[1] = arg2[1];
+    sp24[2] = (f32)arg3 - arg2[2];
+    sp20->unk3C = arg0;
+    sp20->rotation[0] = -sp24[0];
+    sp20->unk79_4 = arg4;
+    func_800EF6A8(sp20->position, sp24, 0.0f, 150.0f, 1000.0f);
+    func_800EF04C(sp20->position, arg1);
+    func_800EE7F8((f32 *)&sp20->actorData[4], arg1);
+    sp20->unk58 = arg5;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808039B8_chflysaucer.s")
 
