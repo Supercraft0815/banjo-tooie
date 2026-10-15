@@ -211,7 +211,32 @@ s32 func_80800DC4_bsbtrot(s32 arg0) {
     return func_80800000_bsbtrot(arg0, 0x15, 0x44, 0x29C, 0xA1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80800DF4_bsbtrot.s")
+/* extern */
+
+void func_80800DF4_bsbtrot(s32 arg0) {
+    s32 pad[2];
+    s32 func_8008C9F0(s32, f32, f32, f32, f32);
+    s32 func_8008CA30(s32, f32);
+    s32 func_8008E1A0(s32);
+    f32 func_8009BBB8(s32);
+    f32 func_800F10B4(f32, f32, f32, s32, f32);
+    f32 func_80800164_bsbtrot(s32);
+    f32 func_808001B8_bsbtrot();
+    f32 func_80800248_bsbtrot(s32);
+    f32 sp34;
+    f32 sp30;
+    f32 sp2C;
+
+    sp2C = func_808001B8_bsbtrot();
+    sp30 = func_80800164_bsbtrot(arg0);
+    sp34 = func_80800248_bsbtrot(arg0);
+    func_8008C9F0(arg0, sp2C, sp30, sp34, func_808001EC_bsbtrot(arg0));
+    if (func_8008E1A0(arg0) != 0) {
+        func_8008CA30(arg0, func_800F10B4(func_8009BBB8(arg0), 0.0f, 1.0f, 0x3F19999A, 0.9f));
+        return;
+    }
+    func_8008CA30(arg0, 1.0f);
+}
 
 void bsbtrot_entrypoint_8(s32 arg0) {
     baanim_playForDuration_loopSmooth(arg0, func_80800DC4_bsbtrot(arg0), 0x3F07AE14);
