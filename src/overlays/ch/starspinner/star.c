@@ -19,7 +19,7 @@ void func_8080000C_chstarspinnerstar(Actor *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_80101FDC(Actor *, u32);
     s32 func_80800454_chstarspinnerstar(Actor *, f32);
-    f32 *func_80800660_chstarspinnerstar(s32);
+    f32 *func_80800660_chstarspinnerstar(Actor *);
     extern u32 D_808006F8_chstarspinnerstar[];
     f32 dt;
     s32 enabled;
@@ -27,7 +27,7 @@ void func_8080000C_chstarspinnerstar(Actor *arg0) {
 
     dt = func_800D8FF8();
     enabled = func_800DA298(0xEA) || _glcutDll_entrypoint_20();
-    arg0->actorData[6] = _chstarspinnerctrl_entrypoint_4(arg0, func_80800660_chstarspinnerstar((s32)arg0), arg0->actorData[6]);
+    arg0->actorData[6] = _chstarspinnerctrl_entrypoint_4(arg0, func_80800660_chstarspinnerstar(arg0), arg0->actorData[6]);
     switch (arg0->unk70_10) {
         case 1:
             if (enabled && arg0->unk64_20) {
@@ -77,7 +77,33 @@ void func_8080000C_chstarspinnerstar(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/star/func_80800320_chstarspinnerstar.s")
+/* extern */
+
+void func_80800320_chstarspinnerstar(Actor *arg0) {
+    s32 _chstarspinnerctrl_entrypoint_3(Actor *, f32 *);
+    Actor *_subaddiefind_entrypoint_0(f32 *, s32, s32, s32);
+    s32 func_800EA05C(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_8010A624(Actor *);
+    f32 *func_80800660_chstarspinnerstar(Actor *);
+    f32 *point;
+
+    arg0->unk3C = _subaddiefind_entrypoint_0(arg0->position, 0x337, -1, 0)->unk0;
+    point = func_80800660_chstarspinnerstar(arg0);
+    arg0->actorData[6] = _chstarspinnerctrl_entrypoint_3(arg0, point);
+    arg0->unk54 = arg0->rotation[1];
+    func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+    if (1.0f == arg0->rotation[1]) {
+        ((f32 *)arg0->actorData)[4] = -1.0;
+    } else {
+        ((f32 *)arg0->actorData)[4] = 1.0;
+    }
+    arg0->rotation[1] = 0.0;
+    ((f32 *)arg0->actorData)[5] = 1.0;
+    if (func_800EA05C() != 0xE6) {
+        func_8010A624(arg0);
+    }
+}
 
 /* extern */
 
@@ -117,11 +143,11 @@ void func_808005F8_chstarspinnerstar(void **arg0, s32 arg1) {
     }
 }
 
-f32 *func_80800660_chstarspinnerstar(s32 arg0) {
+f32 *func_80800660_chstarspinnerstar(Actor * arg0) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
     extern f32 B_80800710_chstarspinnerstar;
     f32 *position;
-    func_800EE7F8(&B_80800710_chstarspinnerstar, arg0 + 4);
+    func_800EE7F8(&B_80800710_chstarspinnerstar, arg0->position);
     position = &B_80800710_chstarspinnerstar;
     position[1] = position[1];
     return position;
