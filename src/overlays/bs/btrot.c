@@ -26,6 +26,7 @@ s32 func_80800000_bsbtrot(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 /* extern */
 
 typedef struct PlayerState PlayerState;
+void func_8009D3A8(PlayerState *, s32);
 s32 func_8008E260(PlayerState *);
 s32 player_inWater(PlayerState *);
 void func_800951B4(PlayerState *);
@@ -201,7 +202,29 @@ s32 func_80800710_bsbtrot(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_1.s")
+/* extern */
+
+void bsbtrot_entrypoint_1(PlayerState *arg0) {
+    f32 anctrl_getAnimTimer(AnimCtrl *);
+    s32 anctrl_isStopped(AnimCtrl *);
+    AnimCtrl *baanim_getAnimCtrlPtr(PlayerState *);
+    s32 func_808007E0_bsbtrot(PlayerState *, s32);
+    s32 pad;
+    AnimCtrl *sp20;
+    s32 var_s0;
+
+    var_s0 = 0;
+    sp20 = baanim_getAnimCtrlPtr(arg0);
+    bainput_enable(arg0, 0, 1);
+    func_8009D3A8(arg0, 1);
+    if (anctrl_isStopped(sp20) != 0) {
+        var_s0 = 0x15;
+    }
+    if (anctrl_getAnimTimer(sp20) > 0.5f) {
+        var_s0 = func_808007E0_bsbtrot(arg0, var_s0);
+    }
+    bs_setState(arg0, var_s0);
+}
 
 void bsbtrot_entrypoint_2(s32 arg0) { bainput_enable(arg0, 0, 1); func_8080061C_bsbtrot(arg0); }
 
