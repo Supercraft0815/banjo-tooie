@@ -35,7 +35,22 @@ void func_80800000_bamovespline(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/spline/func_808000F4_bamovespline.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/spline/bamovespline_entrypoint_0.s")
+/* extern */
+
+void bamovespline_entrypoint_0(void *arg0, f32 *arg1) {
+    void func_800C810C(void *, f32, f32 *, f32 *);
+    void *func_800D7520(s32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 sp20[4];
+    void *temp_v0;
+
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0xC8)));
+    if ((*(u8 *)((s8 *)(temp_v0) + (0x90))) == 4) {
+        func_800C810C(func_800D7520((*(s16 *)((s8 *)(temp_v0) + (0x94)))), (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x98))), arg1, sp20);
+        return;
+    }
+    func_800EFA4C(arg1, 0.0f, 1.0f, 0.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/spline/bamovespline_entrypoint_1.s")
 
