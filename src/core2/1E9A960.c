@@ -683,7 +683,36 @@ void func_800C3B8C(u8 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3BDC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3CE8.s")
+/* extern */
+
+void func_800C3CE8(u8 id) {
+    void func_800C1860(void *);
+    void func_800FECB8(u32);
+    struct Source {
+        u8 pad[0x64];
+        void (*callback)(u8, s32, void *);
+        s32 callback_arg;
+        u8 pad6C[0xC];
+        u32 first : 19;
+        u32 state : 3;
+        u32 middle : 7;
+        u32 flag : 1;
+        u32 last : 2;
+    } *source;
+
+    if (id) {
+        source = func_800C1414(id);
+        if (source->state == 1) {
+            func_800C1860(source);
+            if (source->flag) {
+                func_800FECB8(4);
+            }
+            if (source->callback) {
+                source->callback(id, source->callback_arg, source);
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3D78.s")
 
