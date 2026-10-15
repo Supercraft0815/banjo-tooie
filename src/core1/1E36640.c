@@ -342,7 +342,19 @@ void func_800200B8(SfxState *arg0) {
     func_800201A4(&D_800411DC->queue, arg0, 0xFFFF);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E36640/func_80020128.s")
+/* extern */
+
+void func_80020128(SfxState *arg0) {
+    f32 func_80027170(s32);
+    SfxEvent event;
+    f32 sp1C;
+
+    sp1C = func_80027170(arg0->sound->key.detune) * arg0->pitchRatio;
+    event.type = 0x10;
+    event.state = arg0;
+    event.value.data = *(s32 *)&sp1C;
+    func_80026500(&D_800411DC->queue, &event, 0x8235, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E36640/func_800201A4.s")
 
