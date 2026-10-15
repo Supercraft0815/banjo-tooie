@@ -1,5 +1,11 @@
 #include "common.h"
 
+typedef struct {
+    u8 start;
+    u8 count;
+    u8 unk2[10];
+} GCFrontendRange;
+
 /* extern */
 
 void gcfrontend_entrypoint_0(void) {
@@ -28,7 +34,7 @@ void gcfrontend_entrypoint_0(void) {
 
 s32 gcfrontend_entrypoint_1(s32 arg0) {
     s32 func_800DA298(s32);
-    extern s32 D_80800D80_gcfrontend;
+    extern GCFrontendRange D_80800D80_gcfrontend[4];
     s32 var_s0;
     s32 temp_s1;
     void *temp_v0;
@@ -59,7 +65,7 @@ int gcfrontend_entrypoint_2(void) {
 void gcfrontend_entrypoint_3(s32 arg0) {
     s32 func_800DA298(s32);
     s32 func_80800450_gcfrontend();
-    extern s32 D_80800D80_gcfrontend;
+    extern GCFrontendRange D_80800D80_gcfrontend[4];
     void *temp_v1;
 
     temp_v1 = (func_80800450_gcfrontend() * 0xC) + (u8 *)&D_80800D80_gcfrontend;
@@ -67,18 +73,18 @@ void gcfrontend_entrypoint_3(s32 arg0) {
 }
 
 u8 gcfrontend_entrypoint_4(s32 arg0) {
-    extern s32 D_80800D80_gcfrontend;
+    extern GCFrontendRange D_80800D80_gcfrontend[4];
     return *((u8 *)&D_80800D80_gcfrontend + arg0 * 0xC + 1);
 }
 
 u8 gcfrontend_entrypoint_5(s32 arg0) {
-    extern s32 D_80800D80_gcfrontend;
+    extern GCFrontendRange D_80800D80_gcfrontend[4];
     return *((u8 *)&D_80800D80_gcfrontend + arg0 * 0xC);
 }
 
 u8 gcfrontend_entrypoint_6(s32 arg0) {
     s32 func_80800450_gcfrontend();
-    extern s32 D_80800D80_gcfrontend;
+    extern GCFrontendRange D_80800D80_gcfrontend[4];
     u8 *temp_v1;
 
     temp_v1 = (func_80800450_gcfrontend() * 0xC) + (u8 *)&D_80800D80_gcfrontend;
@@ -111,7 +117,7 @@ void gcfrontend_entrypoint_8(s32 arg0, s32 arg1) {
 void gcfrontend_entrypoint_9(s32 arg0) {
     s32 func_800DA544(s32);
     s32 func_80800450_gcfrontend();
-    extern s32 D_80800D80_gcfrontend;
+    extern GCFrontendRange D_80800D80_gcfrontend[4];
     void *temp_v1;
 
     temp_v1 = (func_80800450_gcfrontend() * 0xC) + (u8 *)&D_80800D80_gcfrontend;
@@ -154,7 +160,20 @@ void gcfrontend_entrypoint_13(void) {
     func_808002DC_gcfrontend(0xA6, -1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/func_80800450_gcfrontend.s")
+s32 func_80800450_gcfrontend(s32 arg0) {
+    extern GCFrontendRange D_80800D80_gcfrontend[4];
+    int i;
+    int end;
+    int start;
+    for (i = 0; i < 4; i++) {
+        end = D_80800D80_gcfrontend[i].start + D_80800D80_gcfrontend[i].count;
+        start = D_80800D80_gcfrontend[i].start;
+        if (arg0 >= start && arg0 < end) {
+            return i;
+        }
+    }
+    return 4;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/func_80800520_gcfrontend.s")
 
@@ -190,7 +209,7 @@ void func_80800738_gcfrontend(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 s16 gcfrontend_entrypoint_14(s32 arg0) {
     s32 func_80800450_gcfrontend();
-    extern s32 D_80800D80_gcfrontend;
+    extern GCFrontendRange D_80800D80_gcfrontend[4];
     void *temp_v1;
 
     temp_v1 = (func_80800450_gcfrontend() * 0xC) + (u8 *)&D_80800D80_gcfrontend;
