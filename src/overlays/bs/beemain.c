@@ -31,7 +31,45 @@ void func_808000C0_bsbeemain(void *arg0) {
     func_800909CC(self);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80800128_bsbeemain.s")
+/* extern */
+
+void func_80800128_bsbeemain(struct player_state_s *arg0) {
+    s32 _badrone_entrypoint_24(struct player_state_s *);
+    s32 _bsbee_entrypoint_2();
+    int bainput_should_enter_first_person(struct player_state_s *);
+    int bakey_held(struct player_state_s *, s32);
+    int bakey_pressed(struct player_state_s *, s32);
+    s32 bastick_getZone(struct player_state_s *);
+    s32 bs_setState(s32, s32);
+    int func_8008DD04(struct player_state_s *);
+    void func_8009D3A8(struct player_state_s *, s32);
+    s32 func_800A02DC(struct player_state_s *, s32);
+    s32 player_inWater(struct player_state_s *);
+    s32 var_s1;
+
+    var_s1 = 0;
+    _bsbee_entrypoint_2();
+    func_8009D3A8(arg0, 0);
+    if (func_8008DD04(arg0) != 0) {
+        var_s1 = 0x88;
+    }
+    if (bakey_held(arg0, 1) != 0) {
+        _babee_entrypoint_2(arg0);
+    }
+    if (bainput_should_enter_first_person(arg0) != 0) {
+        var_s1 = _badrone_entrypoint_24(arg0);
+    }
+    if (bastick_getZone(arg0) > 0) {
+        var_s1 = 0x86;
+    }
+    if (bakey_pressed(arg0, 8) != 0) {
+        var_s1 = 0x87;
+    }
+    if (player_inWater(arg0) != 0) {
+        var_s1 = 0x8C;
+    }
+    bs_setState(arg0, func_800A02DC(arg0, var_s1));
+}
 
 void func_808001FC_bsbeemain(s32 arg0)
 {
