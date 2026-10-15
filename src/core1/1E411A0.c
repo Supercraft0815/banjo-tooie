@@ -6,7 +6,35 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_800298E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_80029A04.s")
+/* extern */
+
+s32 *func_80029A04(void *arg0, u8 arg1, u8 arg2, u8 arg3, s32 arg4) {
+    void func_800E9070(s32, s32);
+    s32 *sp1C;
+
+    sp1C = (*(s32 **)((s8 *)(arg0) + (0x6C)));
+    if ((s32) (*(u8 *)((s8 *)(arg0) + (0x89))) > (s32) (*(u8 *)((s8 *)(arg0) + (0x88)))) {
+        return NULL;
+    }
+    if (sp1C != NULL) {
+        (*(s32 **)((s8 *)(arg0) + (0x6C))) = (s32 *) (*(s32 **)((s8 *)(sp1C) + (0)));
+        (*(s32 **)((s8 *)(sp1C) + (0))) = NULL;
+        if ((*(s32 **)((s8 *)(arg0) + (0x64))) == NULL) {
+            (*(s32 **)((s8 *)(arg0) + (0x64))) = sp1C;
+        } else {
+            *(*(s32 **)((s8 *)(arg0) + (0x68))) = sp1C;
+        }
+        (*(s32 **)((s8 *)(arg0) + (0x68))) = sp1C;
+        (*(u8 *)((s8 *)(sp1C) + (0x35))) = arg3;
+        (*(u8 *)((s8 *)(sp1C) + (0x36))) = arg1;
+        (*(u8 *)((s8 *)(sp1C) + (0x37))) = arg2;
+        (*(s32 **)((s8 *)(sp1C) + (0x14))) = sp1C;
+        (*(s32 *)((s8 *)(sp1C) + (0x28))) = 0;
+        (*(u8 *)((s8 *)(arg0) + (0x89))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x89))) + 1);
+        func_800E9070(arg4, 1);
+    }
+    return sp1C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_80029B18.s")
 
