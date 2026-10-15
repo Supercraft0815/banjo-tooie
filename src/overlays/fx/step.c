@@ -211,7 +211,35 @@ void fxstep_entrypoint_13(u8 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/fxstep_entrypoint_14.s")
+/* extern */
+
+void fxstep_entrypoint_14(s32 arg0, s32 arg1, f32 *arg2, s32 arg3, s32 arg4) {
+    s32 func_800C2E04(void);
+    void func_800C301C(u8, s32);
+    void func_800C3058(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C330C(u8, s32);
+    void func_800C3584(u8, f32, f32);
+    void func_800C35E8(u8, f32[3]);
+    void func_800C3BDC(u8);
+    f32 func_800DC178(f32, f32);
+    s32 fxstep_entrypoint_15(s32, s32, s32 *, s32 *, f32 *);
+    s32 sp3C;
+    s32 sp38;
+    f32 sp34;
+    u8 temp_s0;
+
+    if (fxstep_entrypoint_15(arg0, arg1, &sp3C, &sp38, &sp34) != 0) {
+        temp_s0 = func_800C2E04();
+        func_800C330C(temp_s0, 1);
+        func_800C35E8(temp_s0, arg2);
+        func_800C301C(temp_s0, sp3C);
+        func_800C31DC(temp_s0, func_800DC178(-0.05f, 0.05f) + sp34);
+        func_800C3058(temp_s0, sp38);
+        func_800C3584(temp_s0, (f32) arg3, (f32) arg4);
+        func_800C3BDC(temp_s0);
+    }
+}
 
 s32 fxstep_entrypoint_15(s32 arg0, s32 arg1, s32 *arg2, s32 *arg3, f32 *arg4) {
     f32 func_800DC178(f32, f32);
