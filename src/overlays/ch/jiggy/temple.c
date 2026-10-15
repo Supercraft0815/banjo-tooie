@@ -41,7 +41,7 @@ void func_80800320_chjiggytemple(s32 arg0) {
     s32 func_800DA298(s32);
     s32 func_800EA090();
     s32 func_8010108C(s32, s32, s32);
-    s32 func_80101FDC(s32, s32);
+    void func_80101FDC(Actor *, u32);
     f32 func_80103EF4(s32);
     s32 sp2C;
     s32 sp28;
@@ -99,4 +99,26 @@ void func_8080047C_chjiggytemple(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_80800784_chjiggytemple.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_808007F4_chjiggytemple.s")
+s32 func_808007F4_chjiggytemple(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _glcutDll_entrypoint_19(u32);
+    void func_800FFAB0(Actor *);
+    void func_80101FDC(Actor *, u32);
+    switch (arg1) {
+        case 0x95:
+            if (!_glcutDll_entrypoint_19(0x67) && !_glcutDll_entrypoint_19(0x7A)) {
+                func_800FFAB0(arg0);
+            } else {
+                _capod_entrypoint_13(arg0->unk0, NULL, 0x14, 0x2820);
+            }
+            break;
+        case 0xB:
+            func_80101FDC(arg0, 2);
+            ((f32 *)arg0->actorData)[2] = 0.0f;
+            ((f32 *)arg0->actorData)[4] = 2.0f;
+            return 3;
+        default:
+            return 0;
+    }
+    return 1;
+}
