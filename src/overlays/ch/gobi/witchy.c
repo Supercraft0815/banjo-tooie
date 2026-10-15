@@ -49,4 +49,32 @@ void func_8080024C_chgobiwitchy(Actor *arg0, s32 arg1, s32 arg2) {
     func_80101FDC(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gobi/witchy/func_808002DC_chgobiwitchy.s")
+void func_808002DC_chgobiwitchy(Actor *arg0) { s32 _capod_entrypoint_21(Unk80132ED0 *, s32, s32, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    s32 _subaddiedialog_entrypoint_8(Actor *, f32 *, s32 *, s32 *, s32);
+    s32 func_800DA298(s32);
+    void func_800DA524(GameFlag);
+    int func_800DB9B0(void);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    void func_80101FDC(Actor *, u32);
+    extern s32 D_808003C0_chgobiwitchy;
+    extern s32 D_80800468_chgobiwitchy;
+    s32 var_v1;
+
+    var_v1 = 0;
+    if (func_800DA298(0x97) != 0) {
+        if (func_800DB9B0() == 0) {
+            func_800F82D4(func_800F54E4(), 0);
+            func_800DA524(0x87);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x107B, 0xE, 0, 0x38);
+            func_80101FDC(arg0, 3);
+            var_v1 = 1;
+        }
+    } else {
+        var_v1 = _subaddiedialog_entrypoint_8(arg0, arg0->position, &D_80800468_chgobiwitchy, &D_808003C0_chgobiwitchy, 5);
+    }
+    if (var_v1 != 0) {
+        _capod_entrypoint_21(arg0->unk0, 0, 0xA, 0);
+    }
+}
