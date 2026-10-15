@@ -74,7 +74,19 @@ void func_80800224_chblackeye(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_80800314_chblackeye.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_808003C0_chblackeye.s")
+/* extern */
+
+void func_808003C0_chblackeye(Actor *arg0) {
+    s32 func_800D0B68(u32, u32);
+    void func_80800314_chblackeye(Actor *, s32);
+    arg0->unk64_20 = 1;
+    arg0->unk64_19 = func_800D0B68(0x19, 7);
+    if (!arg0->unk64_19) {
+        func_80800314_chblackeye(arg0, 1);
+        return;
+    }
+    func_80800314_chblackeye(arg0, 3);
+}
 
 void func_80800444_chblackeye(Actor* arg0) 
 {
