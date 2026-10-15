@@ -29,7 +29,43 @@ void func_80800504_chboggy(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/func_80800554_chboggy.s")
+void func_80800554_chboggy(s32 arg0) {
+    f32 _idglowa_entrypoint_1(s32);
+    s32 _idworld_entrypoint_0(s32);
+    void func_800C36F4(u8, s32);
+    void func_800C3A40(u8, f32, f32, f32);
+    void func_800C3BDC(u8);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    extern s32 D_80800830_chboggy;
+    s32 temp_f8;
+    s32 sp24;
+    u8 sp1F;
+    s32 temp_v0;
+    s32 var_v1;
+    u8 temp_v0_2;
+
+    temp_v0 = _idworld_entrypoint_0(0x35C);
+    if (temp_v0 != 0) {
+        temp_f8 = (s32) (_idglowa_entrypoint_1(temp_v0) * 32.0f);
+        var_v1 = temp_f8;
+        if (temp_f8 == 0x13) {
+            sp24 = temp_f8;
+            func_800DA544(0xA2E);
+            var_v1 = sp24;
+        }
+        if ((var_v1 == 0x12) && (func_800DA298(0xA2E) != 0)) {
+            temp_v0_2 = func_800C4350(0, 0, &D_80800830_chboggy);
+            sp1F = temp_v0_2;
+            func_800C36F4(temp_v0_2, 1);
+            func_800C3A40(sp1F, 1.0f, 1.4f, 1.0f);
+            func_800C3BDC(sp1F);
+            func_800DA524(0xA2E);
+        }
+    }
+}
 
 OSThread *chboggy_entrypoint_0(void)
 {
