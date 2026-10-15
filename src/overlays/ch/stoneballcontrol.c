@@ -249,7 +249,30 @@ void func_80801B00_chstoneballcontrol(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80801BE0_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_808023AC_chstoneballcontrol.s")
+/* extern */
+
+void func_808023AC_chstoneballcontrol(u8 *volatile arg0) {
+    s32 func_800EA05C();
+    s32 func_808026A0_chstoneballcontrol();
+    void func_8080282C_chstoneballcontrol(u8 *, s32);
+    s32 sp1C[1];
+    s32 map;
+    s32 kind;
+    u8 *data;
+
+    sp1C[0] = func_808026A0_chstoneballcontrol();
+    map = func_800EA05C();
+    data = arg0;
+    kind = sp1C[0];
+    if (map != 0xBB) {
+        *(f32 *)(data + 8) = 30.0f;
+    } else {
+        *(f32 *)(data + 8) = -320.0f;
+    }
+    if (kind != -1) {
+        func_8080282C_chstoneballcontrol(data, kind);
+    }
+}
 
 void func_80802418_chstoneballcontrol(Actor *arg0) {
     arg0->position[1] -= 5.0f;
