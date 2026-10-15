@@ -786,7 +786,23 @@ void func_800C431C(u8 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C4350.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C4AF0.s")
+/* extern */
+
+void func_800C4AF0(f32 *arg0, void *arg1) {
+    void func_800C33DC(u8, s32);
+    void func_800C36F4(u8, s32);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    u8 temp_s0;
+
+    if (temp_s0 = func_800C4350(0, arg0, arg1)) {
+        if (arg0 == NULL) {
+            func_800C33DC(temp_s0, 0);
+        }
+        func_800C330C(temp_s0, 1);
+        func_800C36F4(temp_s0, 0);
+        func_800C3BDC(temp_s0);
+    }
+}
 
 void func_800C4B64(f32 arg0) {
     extern f32 D_8012A990;
