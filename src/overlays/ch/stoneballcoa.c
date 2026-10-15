@@ -1,6 +1,26 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcoa/func_80800000_chstoneballcoach.s")
+s32 func_80800000_chstoneballcoach(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void func_800DF744(s32, s32);
+    s32 func_801015D0(Actor *);
+    extern s32 D_808003B8_chstoneballcoach;
+    switch (arg1) {
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_808003B8_chstoneballcoach, arg0->scale);
+        break;
+    case 0x2E:
+        arg0->unk70_10 = 1;
+        break;
+    case 0x1F:
+        func_801015D0(arg0);
+        func_800DF744(3, 1);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
