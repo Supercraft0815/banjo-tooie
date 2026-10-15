@@ -251,7 +251,33 @@ void func_800DD4AC(s32 arg0, u8 *arg1) {
 void func_800DD504(s32 arg0, u8 *arg1) { extern s32 D_8012C844; extern f32 D_8012C948; void func_800EF04C(f32[3], f32[3]); void func_800EFA20(void *, void *, f32); void func_800DC028(s32, s32, s32); extern f32 *D_8012C94C; f32 sp18[4]; if (D_8012C844 != 0) { func_800EFA20(sp18, arg1 + 0xC, D_8012C948); func_800EF04C(sp18, D_8012C94C); func_800DC028(D_8012C844, (*(s16 *)((s8 *)(arg1) + (8))), sp18); } }
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD56C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD65C.s")
+void func_800DD65C(Gfx **arg0, void *arg1) {
+    typedef struct { f32 m[4][4]; } MtxF;
+    s32 func_8010F070(MtxF *, s32 *, s16);
+    MtxF *mlMtx_get_stack_pointer(void);
+    extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
+    s32 sp38[2];
+    MtxF *mtx;
+    s32 sp2C[2];
+    Gfx *packet;
+    Gfx *list;
+
+    sp38[0] = *(s16 *)((u8 *)arg1 + 0xA);
+    mtx = mlMtx_get_stack_pointer();
+    if (*(s16 *)((u8 *)arg1 + 0xE)) {
+        sp2C[0] = sp38[0];
+        if (*(s16 *)((u8 *)arg1 + 0xE) & 1) {
+            func_8010F070(mtx, sp2C, *(s16 *)((u8 *)arg1 + 0xC));
+        }
+    }
+    if (D_8012CEC4 != NULL) {
+        D_8012CEC4(mtx, sp38, *(s16 *)((u8 *)arg1 + 0xC));
+    }
+    list = &D_8012C960->commands[*(s16 *)((u8 *)arg1 + 8)];
+    packet = (*arg0)++;
+    packet->words.w0 = 0xDE000000;
+    packet->words.w1 = osVirtualToPhysical(list);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD728.s")
 
