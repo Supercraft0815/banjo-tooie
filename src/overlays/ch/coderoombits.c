@@ -134,7 +134,32 @@ void func_80800D90_chcoderoombits(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_80800E28_chcoderoombits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/chcoderoombits_entrypoint_2.s")
+void chcoderoombits_entrypoint_2(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4) {
+    void func_800F2EA0(void *, void *);
+    void func_800F3320(void *, void *, void *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s32 D_80801318_chcoderoombits;
+    Vtx *temp_s2;
+    typedef struct {
+        u8 pad[0x10];
+        struct { s32 value; s32 pad[2]; } entries[1];
+    } CodeRoomData;
+    CodeRoomData *data;
+    Actor *actor;
+    f32 sp28[1];
+
+    actor = func_80106790(arg4);
+    data = func_80100094(actor, 0);
+    func_800F3320(sp28, arg1->v.cn, &D_80801318_chcoderoombits, data->entries[arg0].value);
+    temp_s2 = arg1 + arg3;
+    if (arg1 < temp_s2) {
+        do {
+            func_800F2EA0(arg2->v.cn, sp28);
+            arg1++;
+            arg2++;
+        } while (arg1 < temp_s2);
+    }
+}
 
 s32 func_80800FDC_chcoderoombits(void) {
     s32 func_800D3E14(s32);
