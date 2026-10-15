@@ -163,14 +163,30 @@ s32 scinfobar_entrypoint_23(u8 *arg0) {
     return *arg0 == 101;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/func_80800608_scinfobar.s")
+void func_80800608_scinfobar(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    void _fxdialog_entrypoint_2(f32);
+    void _fxdialog_entrypoint_4(s32, s32, s32, f32, f32, s32, s32);
+    s32 func_800E8C58(u8);
+    extern s32 D_808008B0_scinfobar;
+    union { struct { s16 temp; void *value; } fields; f64 alignment; } entry;
+
+    if ((arg1 >= 0) && (arg1 < 0x64) && (arg1 != 0)) {
+        entry.fields.value = (arg1 * 0xC) + (s8 *)&D_808008B0_scinfobar;
+        entry.fields.temp = *(s16 *)((s8 *)entry.fields.value + 4);
+        if (entry.fields.temp != 0) {
+            _fxdialog_entrypoint_2((f32) entry.fields.temp * 0.00390625f);
+        }
+        arg2 = arg5 != 0 ? func_800E8C58(arg5) : 0;
+        _fxdialog_entrypoint_4(arg0, (*(s16 *)((s8 *)(entry.fields.value) + (0))), arg2, (f32) (*(s8 *)((s8 *)(entry.fields.value) + (2))), (f32) (*(s8 *)((s8 *)(entry.fields.value) + (3))), arg4, (u32) (*(u16 *)((s8 *)(entry.fields.value) + (6))) >> 0xF);
+    }
+}
 
 /* extern */
 
 void func_808006EC_scinfobar(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
     s32 _fxdialog_entrypoint_0();
     s32 _fxdialog_entrypoint_1(s32, s32);
-    s32 _fxdialog_entrypoint_2(f32);
+    void _fxdialog_entrypoint_2(f32);
     s32 _fxdialog_entrypoint_3(s32, f32, u8, s32);
     _fxdialog_entrypoint_0();
     _fxdialog_entrypoint_1(arg2, arg3);
