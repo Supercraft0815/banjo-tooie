@@ -85,7 +85,24 @@ void func_80801B9C_chaliendad(s32 arg0) {
     _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, &D_80802824_chaliendad, &D_808025C0_chaliendad, 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801BD4_chaliendad.s")
+/* extern */
+
+void func_80801BD4_chaliendad(Actor *arg0) {
+    void _subaddieDll_entrypoint_4(Actor *, u32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    void func_80102424(Actor *, s32);
+    s32 func_80801D40_chaliendad(Actor *, s32, s32, s32);
+    Actor *temp_v0;
+
+    arg0->unk64_16 = 1;
+    _subaddieDll_entrypoint_4(arg0, 1);
+    func_80102424(arg0, 2);
+    _subaddiedialog_entrypoint_11(arg0->unk0, 0x12B3, 0x44, arg0->position, 0x62);
+    func_80801D40_chaliendad(arg0, 0x22, 0x30, 0);
+    temp_v0 = _subaddiefind_entrypoint_2(0x45B, 0);
+    temp_v0->unk64_16 = 0;
+}
 
 /* extern */
 
