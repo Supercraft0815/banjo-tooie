@@ -27,7 +27,24 @@ void func_8080000C_chalienbeam(Actor *arg0) {
     _subaddiefade_entrypoint_1(arg0, 0xC0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienbeam/func_80800088_chalienbeam.s")
+/* extern */
+
+void func_80102424(Actor *, s32);
+
+void func_80800088_chalienbeam(Actor *arg0) {
+    u8 func_800D9078(f32 *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    s32 sp2C;
+
+    if (arg0->unk70_10 == 1) {
+        sp2C = func_800D9078(&arg0->unk58);
+        func_800EFE50(arg0->position, (f32 *)&arg0->actorData[4], (f32 *)&arg0->actorData[0], func_800F12D4(arg0->unk58, 0.0f, 3.0f, 1.0f, 0.0f));
+        if (sp2C != 0) {
+            func_80102424(arg0, 2);
+        }
+    }
+}
 
 /* extern */
 
