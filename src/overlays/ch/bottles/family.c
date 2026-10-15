@@ -126,7 +126,36 @@ s32 func_808009F0_chbottlesfamily(s32 arg0, s32 *arg1) {
 
  s32 func_80800A44_chbottlesfamily(Actor *arg0) { u32 temp_t7; temp_t7 = arg0->unk6C_9; switch (temp_t7) { case 0x43C: return 0xB0; case 0x43D: return 0xB1; default: return 0xAF; } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_80800A84_chbottlesfamily.s")
+void func_80800A84_chbottlesfamily(Actor *arg0) {
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    void _gcdialogcamera_entrypoint_5(f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 func_8010CD28(Actor *);
+    extern s32 D_80800F88_chbottlesfamily;
+    extern s32 D_80800F98_chbottlesfamily;
+    extern s32 D_80800FA8_chbottlesfamily;
+    f32 sp2C[3];
+    u32 temp_t7;
+
+    temp_t7 = arg0->unk6C_9;
+    if (temp_t7 != 0x43B) {
+        if (temp_t7 != 0x43C) {
+            if (temp_t7 == 0x43D) {
+                _gcdialogcamera_entrypoint_3(&D_80800F88_chbottlesfamily, arg0->scale);
+                _gcdialogcamera_entrypoint_5(arg0->rotation);
+            }
+        } else {
+            func_800EFA4C(sp2C, 0.0f, func_8010CD28(arg0), 0.0f);
+            _gcdialogcamera_entrypoint_3(&D_80800F98_chbottlesfamily, arg0->scale);
+            _gcdialogcamera_entrypoint_5(sp2C);
+        }
+    } else {
+        _gcdialogcamera_entrypoint_3(&D_80800FA8_chbottlesfamily, arg0->scale * 3.0f);
+        _gcdialogcamera_entrypoint_5(arg0->rotation);
+    }
+    _gcdialogcamera_entrypoint_4(arg0->position);
+}
 
 /* extern */
 
