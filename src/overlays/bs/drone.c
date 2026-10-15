@@ -23,7 +23,14 @@ void bsdrone_entrypoint_1(struct player_state_s *arg0) {
     D_80800188_bsdrone[func_80800000_bsdrone()].callback(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bsdrone_entrypoint_2.s")
+void bsdrone_entrypoint_2(struct player_state_s *arg0) {
+    extern struct {
+        void (*callback)(struct player_state_s *);
+        u8 padding[0x10];
+    } D_8080018C_bsdrone[];
+
+    D_8080018C_bsdrone[func_80800000_bsdrone()].callback(arg0);
+}
 
 void bsdrone_entrypoint_3(struct player_state_s *arg0) {
     extern struct {
