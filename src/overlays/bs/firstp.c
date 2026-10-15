@@ -2476,7 +2476,20 @@ s32 bsfirstp_entrypoint_36(s32 arg0) {
     return ((s32 *)&D_8080B5D0_bsfirstp)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808094A4_bsfirstp.s")
+/* extern */
+
+s32 func_808094A4_bsfirstp(s32 arg0) {
+    s32 func_80802D50_bsfirstp(s32, s32 *);
+    s32 sp1C;
+
+    if (func_80802D50_bsfirstp(arg0, &sp1C) != 0) {
+        return sp1C;
+    }
+    if (func_80808630_bsfirstp(arg0) != 0) {
+        return 0xD2;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808094F4_bsfirstp.s")
 
