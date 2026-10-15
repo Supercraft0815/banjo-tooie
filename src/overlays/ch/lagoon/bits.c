@@ -77,13 +77,41 @@ void func_808000AC_chlagoonbits(void *arg0) {
 
 void func_808001F4_chlagoonbits(Actor *arg0) {
     s32 _subaddieDll_entrypoint_6(Actor*, s32);
-    s32 func_8080023C_chlagoonbits(Actor *);
+    void func_8080023C_chlagoonbits(Actor *);
     if (((((u32) (*(u16 *)((s8 *)(arg0) + (0x72)))) >> 0xA) == 2) && (_subaddieDll_entrypoint_6(arg0, 0xB) != 0)) {
         func_8080023C_chlagoonbits(arg0);
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/func_8080023C_chlagoonbits.s")
+/* extern */
+
+void func_8080023C_chlagoonbits(Actor *arg0) {
+    void func_808002CC_chlagoonbits(Actor *);
+    void func_80800360_chlagoonbits(Actor *);
+    void func_8080041C_chlagoonbits(Actor *volatile);
+    void func_808004B0_chlagoonbits(Actor *);
+    void func_80800548_chlagoonbits(Actor *volatile);
+    switch (arg0->unk6C_9) {
+    case 0x366:
+        func_808002CC_chlagoonbits(arg0);
+        return;
+    case 0x367:
+    case 0x368:
+        func_80800360_chlagoonbits(arg0);
+        return;
+    case 0x369:
+        func_8080041C_chlagoonbits(arg0);
+        return;
+    case 0x36C:
+        func_808004B0_chlagoonbits(arg0);
+        return;
+    case 0x36D:
+        func_80800548_chlagoonbits(arg0);
+        /* fallthrough */
+    default:
+        return;
+    }
+}
 
 void func_808002CC_chlagoonbits(Actor *arg0) {
     void _chexploder_entrypoint_3(void *, void *, u32);
