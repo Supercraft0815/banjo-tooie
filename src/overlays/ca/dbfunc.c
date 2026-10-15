@@ -134,16 +134,30 @@ s32 cadbfunc_entrypoint_5(s32 arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ca/dbfunc/func_808002F8_cadbfunc.s")
+s32 func_808002F8_cadbfunc(void) {
+    s32 func_800A586C(void);
+    u8 func_800A587C(void);
+    s32 temp_v0;
+
+    temp_v0 = func_800A587C();
+    switch (temp_v0) {
+        case 1:
+            return func_800A586C() + 0xC;
+        case 3:
+            return func_800A586C() + 0xC;
+        default:
+            return 0;
+    }
+}
 
 /* extern */
 
 s32 cadbfunc_entrypoint_6(f32 *arg0, f32 *arg1) {
-    void *func_808002F8_cadbfunc();
-    void *temp_v0;
+    s32 func_808002F8_cadbfunc(void);
+    s32 temp_v0;
 
     temp_v0 = func_808002F8_cadbfunc();
-    if (temp_v0 == NULL) {
+    if (temp_v0 == 0) {
         return 0;
     }
     *arg0 = (*(f32 *)((s8 *)(temp_v0) + (0)));
@@ -154,11 +168,11 @@ s32 cadbfunc_entrypoint_6(f32 *arg0, f32 *arg1) {
 /* extern */
 
 s32 cadbfunc_entrypoint_7(f32 arg0, f32 arg1) {
-    void *func_808002F8_cadbfunc();
-    void *temp_v0;
+    s32 func_808002F8_cadbfunc(void);
+    s32 temp_v0;
 
     temp_v0 = func_808002F8_cadbfunc();
-    if (temp_v0 == NULL) {
+    if (temp_v0 == 0) {
         return 0;
     }
     (*(f32 *)((s8 *)(temp_v0) + (0))) = arg0;
