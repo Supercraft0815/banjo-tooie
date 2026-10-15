@@ -297,7 +297,54 @@ void gcmapsects_entrypoint_17(void *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_19.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_20.s")
+/* extern */
+
+s32 gcmapsects_entrypoint_20(u8 *arg0, f32 *arg1, f32 *arg2, s16 (**arg3)[3], s32 arg4, f32 arg5) {
+    s32 func_800AD2C8(void *, void *, f32 *, f32 *, f32 *, s16 (**)[3], s32, f32);
+    u8 *func_800B2720(u8 *);
+    s32 func_800B2840(s32);
+    s32 func_800D674C(s32);
+    struct Section {
+        u8 pad0[0x40];
+        u16 asset;
+        u8 pad42[0xA];
+        u32 unused : 1;
+        u32 flag : 1;
+        u32 rest : 30;
+        u8 pad50[8];
+    };
+    s32 sp3C;
+    u8 *sp38;
+    s32 temp_v0;
+    s32 asset_id;
+    struct Section *sections;
+    s32 offset;
+    s32 i;
+    u8 count;
+    struct Section *section;
+
+    count = arg0[0x77];
+    i = 0;
+    offset = 0;
+    if (count > 0) {
+        sections = *(struct Section **)(arg0 + 0x68);
+        section = sections;
+        do {
+            i++;
+            if (section->flag) {
+                asset_id = section->asset;
+                temp_v0 = func_800D674C(asset_id);
+                sp3C = temp_v0;
+                sp38 = func_800B2720(sp3C);
+                return func_800AD2C8(sp38, func_800B2840(sp3C), arg1, arg2,
+                    (f32 *)(*(u8 **)(arg0 + 0x68) + offset), arg3, arg4, arg5);
+            }
+            offset += 0x58;
+            section++;
+        } while (i < arg0[0x77]);
+    }
+    return 0;
+}
 
 /* extern */
 
