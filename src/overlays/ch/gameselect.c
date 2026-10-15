@@ -247,7 +247,28 @@ void func_8080145C_chgameselect(f32 *arg0, f32 arg1, f32 *arg2, f32 *arg3) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808014F0_chgameselect.s")
+/* extern */
+
+s32 func_808014F0_chgameselect(void *arg0, void *arg1) {
+    void _subaddieskeleton_entrypoint_1(Actor *, s32, f32 *);
+    f32 func_800D8FF8(void);
+    f32 func_800EEF94(f32 *);
+    void func_800EF174(f32[3], f32[3], f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800FF060(f32, f32 *, f32, f32, f32, f32);
+    f32 sp3C[3];
+    f32 sp30[3];
+    s32 var_v1;
+    f32 sp28;
+
+    _subaddieskeleton_entrypoint_1(arg0, 5, sp30);
+    func_800EFB24(sp3C, arg1, sp30);
+    sp28 = func_800EEF94(sp3C);
+    if (sp28 != 0.0f) {
+        func_800EF174((f32 *)arg0 + 1, sp3C, func_800FF060(sp28, (f32 *)arg0 + 9, 4000.0f, -4000.0f, 3000.0f, func_800D8FF8()) / sp28);
+    }
+    if (sp28 == 0.0f || ((f32 *)arg0)[9] < 0.01f) { var_v1 = 1; } else { var_v1 = 0; } return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808015DC_chgameselect.s")
 
