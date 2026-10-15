@@ -38,17 +38,31 @@ void func_8080092C_charmouredcaveman(Actor *arg0) {
     _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800C20_charmouredcaveman, 0.1f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/armouredcaveman/func_8080095C_charmouredcaveman.s")
+/* extern */
+
+void func_8080095C_charmouredcaveman(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800DA298(s32);
+    void func_80102424(Actor *, s32);
+    void func_8010A570(Actor *);
+    arg0->unk64_19 = 0;
+    if (func_800DA298(0x66C) == 0) {
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x17E2, 0xE, arg0->position, 0xA6);
+        arg0->unk64_20 = 1;
+        func_8010A570(arg0);
+    }
+    func_80102424(arg0, 3);
+}
 
 /* extern */
 
 void func_808009D4_charmouredcaveman(Actor *arg0) {
-    void func_8080095C_charmouredcaveman(void);
+    void func_8080095C_charmouredcaveman(Actor *);
     if (arg0->unk70_10 != 3) {
         if (arg0->unk70_10 == 4) {
             arg0->unk64_19 = 1;
             return;
         }
-        func_8080095C_charmouredcaveman();
+        func_8080095C_charmouredcaveman(arg0);
     }
 }
