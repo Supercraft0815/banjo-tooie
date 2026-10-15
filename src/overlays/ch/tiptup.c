@@ -157,6 +157,29 @@ void func_80800E2C_chtiptup(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800FE8_chtiptup.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_808010CC_chtiptup.s")
+/* extern */
+
+void func_808010CC_chtiptup(Actor *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 _subaddiesect_entrypoint_1(Actor *);
+    s32 _subaddiesect_entrypoint_2(void *, s32, s32);
+    s32 func_800DA298(GameFlag);
+    void func_80102424(Actor *, s32);
+    void func_8010A570(Actor *);
+    void func_8010A63C(void ***);
+    arg0->unk6C_0 = _subaddiesect_entrypoint_1(arg0);
+    _subaddiesect_entrypoint_2(arg0, arg0->unk6C_0, 0);
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80102424(arg0, 4);
+        return;
+    }
+    if (func_800DA298(0xBD) != 0) {
+        func_8010A570(arg0);
+        func_80102424(arg0, 3);
+        return;
+    }
+    func_8010A63C(arg0);
+    func_80102424(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80801180_chtiptup.s")
