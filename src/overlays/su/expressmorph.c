@@ -28,7 +28,29 @@ s32 func_80800000_suexpressmorph(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressmorph/func_808002BC_suexpressmorph.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressmorph/suexpressmorph_entrypoint_1.s")
+void suexpressmorph_entrypoint_1(u8 *arg0) {
+    struct MorphEntry {
+        f32 (*data)[9];
+        s16 id;
+        u8 unk6;
+        u8 count;
+        s32 unk8;
+    };
+    s32 func_808000EC_suexpressmorph(f32 *, void *);
+    s32 func_808002BC_suexpressmorph(f32 *, void *);
+    extern struct MorphEntry D_80801320_suexpressmorph[];
+    struct MorphEntry *var_v0;
+    f32 sp28[3];
+    s32 var_v1;
+
+    var_v0 = &D_80801320_suexpressmorph[*(s16 *)(arg0 + 2)];
+    for (var_v1 = 0; var_v1 < (s32)var_v0->count; var_v1++) {
+        sp28[var_v1] = var_v0->data[arg0[5]][var_v1 + 1];
+        var_v0 = &D_80801320_suexpressmorph[*(s16 *)(arg0 + 2)];
+    }
+    func_808002BC_suexpressmorph(sp28, arg0);
+    func_808000EC_suexpressmorph(sp28, arg0);
+}
 
 void suexpressmorph_entrypoint_2(u8 *arg0, void *arg1) {
     struct MorphFlags {
