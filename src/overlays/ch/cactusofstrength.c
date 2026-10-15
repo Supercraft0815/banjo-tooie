@@ -26,12 +26,44 @@ OSThread *chcactusofstrength_entrypoint_2(void)
 void func_80800108_chcactusofstrength(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_80800110_chcactusofstrength.s")
+/* extern */
+
+void func_80800110_chcactusofstrength(Actor *arg0, s32 arg1) {
+    int _gcaudiolist_entrypoint_0();
+    s32 func_8008FCC8(Unk80132ED0 *);
+    s32 func_80101180(s32, s32, s32);
+    void func_80102424(Actor *, s32);
+    void func_80103110(Actor *, u32);
+    s32 var_a2;
+    s32 temp_v0;
+
+    if (arg0->unk70_10 == 1) {
+        temp_v0 = func_8008FCC8(arg0->unk0);
+        switch (temp_v0) {
+        case 1:
+            var_a2 = 1;
+            break;
+        case 0xB:
+            var_a2 = 2;
+            break;
+        default:
+            var_a2 = 4;
+            break;
+        }
+        if (var_a2 != -1) {
+            func_80102424(arg0, 2);
+            _gcaudiolist_entrypoint_0(0);
+            func_80103110(arg0, 1);
+            arg0->unk6C_0 = 8;
+            func_80101180(0x13B, 0xA, var_a2);
+        }
+    }
+}
 
 /* extern */
 
-s32 func_808001C4_chcactusofstrength(s32 arg0, s32 arg1, volatile s32 arg2) {
-    s32 func_80800110_chcactusofstrength(s32, s32);
+s32 func_808001C4_chcactusofstrength(Actor *arg0, s32 arg1, volatile s32 arg2) {
+    void func_80800110_chcactusofstrength(Actor *, s32);
     s32 result;
     if (arg1 == 0x40) {
         func_80800110_chcactusofstrength(arg0, *(s32 *)&arg2);
@@ -82,7 +114,7 @@ void func_80800718_chcactusofstrength(void *arg0) {
     s32 _mlwave_entrypoint_0(s32, s32, s32);
     s32 func_80100074(void *, s32, s32);
     s32 func_80101FDC(void *, s32);
-    s32 func_80103110(void *, s32);
+    void func_80103110(Actor *, u32);
     void *func_80106790(s32);
     void *sp1C;
     void *temp_v0;
