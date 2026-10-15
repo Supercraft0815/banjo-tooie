@@ -190,7 +190,30 @@ void func_80800F04_chsabreman(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_80800F74_chsabreman.s")
+/* extern */
+
+s32 func_80800F74_chsabreman(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _gccubesearch_entrypoint_15(s32, s32, s32);
+    s32 func_800C05B8(s32, s32, s32, s32, s32, s32, s32);
+    s32 func_800CBC3C(s32);
+    s32 func_800EA05C();
+    s32 func_800EE88C(s32, s32);
+    s32 temp_v0;
+    s32 sp28;
+
+    if (func_800EA05C() == 0x127) {
+        temp_v0 = _gccubesearch_entrypoint_15(0x154, 0, arg1);
+        if (temp_v0 != 0) {
+            func_800EE88C(arg2, temp_v0);
+            sp28 = func_800CBC3C(arg2);
+            if (func_800CBC3C(arg1) == sp28) {
+                return 2;
+            }
+        }
+    }
+    func_800C05B8(0x1276, 1, 0, 0, 0, 0, 0);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_80801010_chsabreman.s")
 
