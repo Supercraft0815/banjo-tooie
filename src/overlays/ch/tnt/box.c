@@ -44,7 +44,29 @@ s32 func_808002FC_chtntbox(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/func_80800358_chtntbox.s")
+/* extern */
+
+void func_80800358_chtntbox(Actor *arg0) {
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    s32 func_800D674C(s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF410(s32);
+    void func_800DF830(s32);
+    s32 func_80101870();
+    s32 func_80101970();
+    f32 *func_801027F4(Actor *);
+    s32 pad;
+    f32 *sp28;
+
+    func_80101870();
+    if (arg0->unk7C_12) {
+        func_80101970(arg0);
+        func_800DF830(3);
+        func_800DF410(_subaddiefade_entrypoint_0(arg0));
+        sp28 = func_801027F4(arg0);
+        func_800DE448(arg0->position, sp28, arg0->scale * 0.25f, NULL, func_800D674C(0x6AC));
+    }
+}
 
 void func_808003F0_chtntbox(s32 arg0, f32 arg1[3]) {
     s32 func_800B53A4(s32);
