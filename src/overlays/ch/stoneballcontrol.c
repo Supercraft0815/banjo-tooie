@@ -115,7 +115,21 @@ void func_80800D20_chstoneballcontrol(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800DB4_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800EBC_chstoneballcontrol.s")
+void func_80800EBC_chstoneballcontrol(s32 arg0, s32 arg1) {
+    struct player_state_s;
+    struct player_state_s *func_800F53D0(s32);
+    void func_800F82D4(s32, s32);
+    void _baattach_entrypoint_6(struct player_state_s *, s32, s32, s32);
+    switch (arg1) {
+        case 0:
+            func_800F82D4(arg0, 0);
+            break;
+        case 1:
+            func_800F82D4(arg0, 2);
+            _baattach_entrypoint_6(func_800F53D0(arg0), 3, 0, 0);
+            break;
+    }
+}
 
 /* extern */
 
