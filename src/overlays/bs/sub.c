@@ -178,7 +178,38 @@ void func_80801004_bssub(s32 arg0)
     func_80090A2C();
     func_808008D8_bssub(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_8080102C_bssub.s")
+/* extern */
+
+void func_8080102C_bssub(struct player_state_s *arg0) {
+    int anctrl_getIndex(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    void func_8008C9F0(struct player_state_s *, f32, f32, f32, f32);
+    void func_8008CA4C(struct player_state_s *, s32);
+    f32 func_8009BB94(struct player_state_s *);
+    struct anctrl_s *sp2C;
+    s32 sp28;
+    struct anctrl_s *temp_v0;
+
+    temp_v0 = baanim_getAnimCtrlPtr(arg0);
+    sp2C = temp_v0;
+    sp28 = anctrl_getIndex(temp_v0);
+    func_8008CA4C(arg0, 2);
+    if (func_8009BB94(arg0) < 300.0f) {
+        if (sp28 != 0x12E) {
+            baanim_playForDuration_loopSmooth(arg0, 0x12E, 6.0f);
+            func_8008B1C8(sp2C, 0.4f);
+        }
+        func_8008C9F0(arg0, 0.0f, 900.0f, 6.0f, 6.0f);
+        return;
+    }
+    if (sp28 != 0x12F) {
+        baanim_playForDuration_loopSmooth(arg0, 0x12F, 0.45f);
+        func_8008B1C8(sp2C, 0.4f);
+    }
+    func_8008C9F0(arg0, 0.0f, 900.0f, 1.5f, 0.45f);
+}
 
 /* extern */
 
