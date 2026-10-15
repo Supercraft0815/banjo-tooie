@@ -195,7 +195,37 @@ s32 func_800A4E94(void *arg0) { func_800A3F14((s32)arg0, 9); func_80110BF0(func_
 
 s32 func_800A4EC8(void *arg0) { func_800A3F14((s32)arg0, 2); func_80110C2C(func_800A4CA8(arg0)); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4EFC.s")
+/* extern */
+
+void func_800A4EFC(void *arg0, f32 arg1) {
+    s32 func_80090E30(PlayerState *);
+    f32 mlAbsF(f32);
+    f32 sp34[3];
+    s32 var_a3;
+    f32 *var_v1;
+    s32 var_v0;
+    void *temp_v0;
+
+    if (arg0 != NULL) {
+        temp_v0 = (*(void **)((s8 *)(arg0) + (0x38)));
+        if ((*(u8 *)((s8 *)(temp_v0) + (4))) == 0) {
+            sp34[0] = mlAbsF(arg1 - (f32) (*(s32 *)((s8 *)(temp_v0) + (8))));
+            sp34[1] = mlAbsF(arg1 - (f32) (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (0x14))));
+            sp34[2] = mlAbsF(arg1 - (f32) (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (0x20))));
+            var_a3 = 0;
+            var_v0 = 1;
+            var_v1 = &sp34[1];
+            do {
+                if (*var_v1 < sp34[var_a3]) {
+                    var_a3 = var_v0;
+                }
+                var_v0 += 1;
+                var_v1++;
+            } while (var_v0 != 3);
+            func_800A3D78(arg0, var_a3 + 1, func_80090E30(arg0));
+        }
+    }
+}
 
 /* extern */
 
