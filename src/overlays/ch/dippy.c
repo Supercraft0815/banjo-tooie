@@ -14,7 +14,40 @@ OSThread *chdippy_entrypoint_1(void)
     return (OSThread *) D_808015C8_chdippy;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800018_chdippy.s")
+void func_80800018_chdippy(Actor *actor) {
+    struct DippyFlags {
+        u8 pad[0x70];
+        u8 index : 7;
+        u8 pad70 : 1;
+        u8 pad71;
+        u16 pad72 : 6;
+        u16 state : 6;
+        u16 pad73 : 4;
+    };
+    s32 _chcredits_entrypoint_1(void);
+    s32 _gccubesearch_entrypoint_3(s32, f32[3]);
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800CBC3C(f32 *);
+    s32 func_800DA298(s32);
+    void func_800DA544(s32);
+    void func_80800654_chdippy(Actor *, s32);
+    f32 sp2C[3];
+    s32 pad;
+    s32 flag;
+
+    flag = _glcutDll_entrypoint_20() != 0;
+    if (flag) {
+        flag = _chcredits_entrypoint_1() == 0x61;
+    }
+    _gccubesearch_entrypoint_3(0x3AD, sp2C);
+    ((struct DippyFlags *)actor)->index = func_800CBC3C(sp2C) + 1;
+    ((struct DippyFlags *)actor)->state = 1;
+    if (func_800DA298(0x327)) {
+        func_800DA544(0x328);
+    }
+    flag = flag ? 0xE : 1;
+    func_80800654_chdippy(actor, flag);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_808000D8_chdippy.s")
 
