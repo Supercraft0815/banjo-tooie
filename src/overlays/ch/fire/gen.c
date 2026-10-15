@@ -102,7 +102,23 @@ void func_808008F4_chfiregen(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_80800978_chfiregen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_80800A78_chfiregen.s")
+/* extern */
+
+void func_80800A78_chfiregen(Actor *arg0) {
+    s32 func_800DA298(s32);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    arg0->unk64_20 = 0;
+    arg0->scale = 3.0f;
+    arg0->unk50 = -1.0f;
+    ((f32 *)arg0->actorData)[3] = func_800DC178(0.0f, 0.25f);
+    ((f32 *)arg0->actorData)[0] = func_800DC178(0.0f, 1.0f);
+    arg0->unk64_19 = func_800DC298(0.5f);
+    if (func_800DA298(func_80800824_chfiregen(arg0)) != 0) {
+        arg0->unk58 = (s32)arg0->unk74_7 - 50;
+        arg0->unk70_10 = 2;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_80800B4C_chfiregen.s")
 
