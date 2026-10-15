@@ -15,7 +15,23 @@ void func_8001207C(void)
     func_800D5E74();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E29B60/func_8001209C.s")
+void func_8001209C(s32 arg0) {
+    s32 func_800155BC();
+    s32 func_8001A2B0();
+    s32 func_800A7B24();
+    s32 func_800A7BB8(s32);
+    extern s32 D_800459CC;
+    func_8001A2B0();
+    func_800155BC();
+    if (D_80043380 == 1) {
+        func_800A7B24();
+    }
+    func_8001207C();
+    D_80043380 = arg0;
+    if (D_80043380 == 1) {
+        func_800A7BB8(D_800459CC);
+    }
+}
 
 s32 func_8001210C(s32 arg0) {
     return D_800459C8 & arg0;
