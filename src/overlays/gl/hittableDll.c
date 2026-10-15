@@ -25,7 +25,24 @@ void glhittableDll_entrypoint_0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/hittableDll/glhittableDll_entrypoint_1.s")
+/* extern */
+
+s32 glhittableDll_entrypoint_1(s32 arg0, s32 arg1) {
+    void func_800EB2DC(void *, s32, s32);
+    s32 glhittableDll_entrypoint_4();
+    s32 temp_v0;
+
+    temp_v0 = glhittableDll_entrypoint_4();
+    if (temp_v0 == -1) {
+        return 0;
+    }
+    if (temp_v0 == -2) {
+        return 1;
+    }
+    func_800EB2DC(arg1, arg0, temp_v0);
+    func_800EB2DC(arg0, arg1, temp_v0);
+    return 1;
+}
 
 int glhittableDll_entrypoint_2(s32 arg0) {
     return ((arg0 + 1) != 0) && ((arg0 + 2) != 0);
