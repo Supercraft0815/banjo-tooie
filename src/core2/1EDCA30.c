@@ -22,7 +22,19 @@ s32 func_801032B0(Actor *arg0, u16 arg1, u16 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103328.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_8010347C.s")
+/* extern */
+
+s32 func_8010347C(Unk80132ED0 *arg0) {
+    void func_800DF7F8(s32, f32, f32);
+    s32 func_80103328();
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *sp1C;
+
+    sp1C = func_80106790(arg0);
+    func_80103328(sp1C);
+    func_800DF7F8(arg0->unk14, (f32)(u32)((u16 *)&sp1C->pad68)[0], (f32)(u32)((u16 *)&sp1C->pad68)[1]);
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103508.s")
 
