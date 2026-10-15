@@ -7,12 +7,46 @@ void func_80800000_badeathmatch(void *arg0) {
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x158)))) + (0x23))) = 0;
 }
 
-u8 func_80800028_badeathmatch(s32 arg0) {
+s32 func_80800028_badeathmatch(s32 arg0) {
     extern u8 D_80800550_badeathmatch[];
     return D_80800550_badeathmatch[arg0 - 1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/deathmatch/badeathmatch_entrypoint_0.s")
+/* extern */
+
+s32 badeathmatch_entrypoint_0(u8 *arg0) {
+    s32 _gcegg_entrypoint_2();
+    void func_800FC6B0(u32);
+    s16 *temp_v1;
+    s32 var_s0;
+    s32 temp_v0;
+    s32 temp_v0_2;
+    s32 var_s1;
+    u8 *temp_s2;
+
+    temp_s2 = (*(u8 **)((s8 *)(arg0) + (0x158)));
+    var_s0 = 1;
+    var_s1 = (*(u8 *)((s8 *)(temp_s2) + (0x20)));
+loop_1:
+    temp_v0 = func_80800028_badeathmatch(var_s1);
+    temp_v1 = &((s16 *)temp_s2)[temp_v0];
+    var_s0 += 1;
+    var_s1 = temp_v0;
+    if (temp_v1[8] == 0) {
+        if (var_s0 != 8) {
+            goto loop_1;
+        }
+    }
+    if ((*(s16 *)((s8 *)(temp_v1) + (0))) == 0) {
+        do {
+            temp_v0_2 = func_80800028_badeathmatch(var_s1);
+            var_s1 = temp_v0_2;
+        } while (((s16 *)temp_s2)[temp_v0_2] == 0);
+    }
+    (*(u8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x158)))) + (0x20))) = var_s1;
+    func_800FC6B0(_gcegg_entrypoint_2(var_s1));
+    return var_s1;
+}
 
 /* extern */
 
