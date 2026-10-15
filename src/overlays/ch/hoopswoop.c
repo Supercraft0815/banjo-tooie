@@ -103,7 +103,21 @@ s32 func_808007A4_chhoopswoop(void *arg0, s32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80800910_chhoopswoop.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80800C04_chhoopswoop.s")
+s32 func_80800C04_chhoopswoop(Actor *arg0, s32 arg1, s32 arg2) {
+    s16 func_800D211C(s32);
+
+    switch (arg1) {
+        case 0x10C1:
+            return arg2 == 0 ? arg0->unk74_7 : 30;
+        case 0x10C3:
+        case 0x10F6:
+            return func_800D211C(0x81);
+        case 0x1119:
+            return arg2 == 0 ? arg0->unk74_7 : func_800D211C(0x81);
+        default:
+            return 0;
+    }
+}
 
 void func_80800C9C_chhoopswoop(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80108B04(Actor *, u32);
