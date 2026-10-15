@@ -92,17 +92,40 @@ void baswim_entrypoint_11(struct player_state_s *arg0) {
 
 /* extern */
 
-void func_808003B8_baswim(void *self) {
+f32 func_808003B8_baswim(void *self) {
     f32 func_800EEF94(f32*);
     f32 func_800F10B4(f32 value, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
     void func_8009BB24(void *, f32 *);
     f32 sp24[3];
 
     func_8009BB24(self, sp24);
-    func_800F10B4(func_800EEF94(sp24), 50.0f, 200.0f, 0.0f, 1.0f);
+    return func_800F10B4(func_800EEF94(sp24), 50.0f, 200.0f, 0.0f, 1.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_12.s")
+/* extern */
+
+void baswim_entrypoint_12(struct player_state_s *arg0) {
+    f32 _bafpctrl_entrypoint_3(struct player_state_s *);
+    f32 bastick_getY(struct player_state_s *);
+    void func_8009BF5C(struct player_state_s *, f32);
+    void func_8009BFE4(struct player_state_s *, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F1214(f32, f32, f32);
+    f32 sp2C;
+    f32 temp_f0;
+    f32 temp_f0_2;
+
+    sp2C = func_800F1214(func_808003B8_baswim(arg0), 140.0f, 90.0f);
+    temp_f0 = _bafpctrl_entrypoint_3(arg0);
+    sp2C *= func_800F10B4(temp_f0, 0.1f, 1.0f, temp_f0 * temp_f0, 1.0f);
+    func_8009BFE4(arg0, sp2C, 1.6f);
+    temp_f0_2 = bastick_getY(arg0);
+    if (temp_f0_2 < 0.0f) {
+        func_8009BF5C(arg0, func_800F10B4(temp_f0_2, -1.0f, 0.0f, 275.0f, 360.0f));
+        return;
+    }
+    func_8009BF5C(arg0, func_800F10B4(temp_f0_2, 0.0f, 1.0f, 0.0f, 85.0f));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_13.s")
 
