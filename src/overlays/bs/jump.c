@@ -164,7 +164,28 @@ s32 bsjump_entrypoint_16(s32 *arg0) {
     return arg0[88];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_17.s")
+/* extern */
+
+void bsjump_entrypoint_17(struct player_state_s *arg0) {
+    void _batimer_set(struct player_state_s *, s32, f32);
+    void baanim_playForDuration_loop(struct player_state_s *, s32, f32);
+    void func_80093360(struct player_state_s *, f32);
+    s32 func_8009557C(struct player_state_s *);
+    void func_8009DF18(struct player_state_s *, s32, f32, s32);
+    void func_8009FFD8(struct player_state_s *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+    baanim_playForDuration_loop(arg0, 0x68, 0.35f);
+    func_8009FFD8(arg0, 1, 1, 3, 6);
+    func_80093360(arg0, 60.0f);
+    if (func_8009557C(arg0) == 1) {
+        _batimer_set(arg0, 0, 0.5f);
+        _batimer_set(arg0, 1, 0.41f);
+        func_8009DF18(arg0, 0x439, 1.0f, 0x55F0);
+    } else {
+        _batimer_set(arg0, 0, 0.0f);
+        _batimer_set(arg0, 1, 0.01f);
+    }
+    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_18.s")
 
