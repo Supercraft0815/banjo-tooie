@@ -1,5 +1,7 @@
 #include "common.h"
 
+typedef struct player_state_s PlayerState;
+
 s32 baduo_entrypoint_0() 
 {
     return 0x14;
@@ -72,7 +74,45 @@ void baduo_entrypoint_12(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_13.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_14.s")
+/* extern */
+
+void baduo_entrypoint_14(void *arg0, s32 arg1) {
+    s32 _bababykaz_entrypoint_10(s32, s32);
+    s32 _bababykaz_entrypoint_8(s32);
+    s32 _bsfirstp_entrypoint_28(void *, s32);
+    s32 bs_setState(s32, s32);
+    void func_80092778(PlayerState *);
+    void func_800A3410(PlayerState *, s32);
+    void func_800A38F0(PlayerState *, s32, s32);
+    void func_800A91A8(s32);
+    s32 func_800F452C(s32, s32);
+    PlayerState *func_800F53D0(s32);
+    s32 func_800F6224(s32);
+    void func_80800008_baduo(s32, s32);
+    f32 yaw_get(PlayerState *);
+    f32 yaw_getIdeal(PlayerState *);
+    s32 yaw_set(s32, f32);
+    void yaw_setIdeal(PlayerState *, f32);
+    s32 sp24;
+    s32 temp_v0;
+    PlayerState *temp_v0_2;
+
+    temp_v0 = func_800F6224((*(s32 *)((s8 *)(arg0) + (0x184))));
+    sp24 = temp_v0;
+    temp_v0_2 = func_800F53D0(temp_v0);
+    func_800F452C(temp_v0_2, arg1);
+    func_800A3410(temp_v0_2, 0x11);
+    func_80092778(temp_v0_2);
+    func_80800008_baduo(arg0, temp_v0_2);
+    _bababykaz_entrypoint_8(temp_v0_2);
+    bs_setState(temp_v0_2, 0x139);
+    yaw_set(temp_v0_2, yaw_get(arg0));
+    yaw_setIdeal(temp_v0_2, yaw_getIdeal(arg0));
+    _bababykaz_entrypoint_10(temp_v0_2, (*(s32 *)((s8 *)(arg0) + (0x184))));
+    _bsfirstp_entrypoint_28(arg0, temp_v0_2);
+    func_800A91A8(sp24);
+    func_800A38F0(arg0, 0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_15.s")
 
@@ -85,7 +125,7 @@ void baduo_entrypoint_17(void *arg0, s32 arg1) {
     void func_8009C128(void *, f32[3]);
     s32 func_800F452C(s32, s32);
     s32 func_800F45B0(s32, s32, s32);
-    void *func_800F53D0(s32);
+    PlayerState *func_800F53D0(s32);
     s32 func_800F6224(s32);
     void *temp_v0;
     void *sp28;
