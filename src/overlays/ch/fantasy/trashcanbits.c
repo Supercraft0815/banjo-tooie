@@ -2,7 +2,32 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/trashcanbits/func_80800000_chfantasytrashcanbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/trashcanbits/func_808000EC_chfantasytrashcanbits.s")
+/* extern */
+
+void func_808000EC_chfantasytrashcanbits(Actor *arg0) {
+    s32 _chdoor_entrypoint_0();
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    f32 func_800EFC7C(void *, void *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_8010108C();
+    f32 sp2C[3];
+    u32 temp_t6;
+
+    temp_t6 = arg0->unk70_10;
+    if (temp_t6 != 1) {
+        if (temp_t6 == 4) {
+            func_800F5A00(func_800F54E4(), sp2C);
+            _subaddieDll_entrypoint_4(arg0, 1);
+            if (func_800EFC7C(arg0->position, sp2C) > 4000000.0f) {
+                func_8010108C(arg0, 8, 0);
+            }
+        }
+    } else {
+        _subaddieDll_entrypoint_4(arg0, 0);
+    }
+    _chdoor_entrypoint_0(arg0);
+}
 
 OSThread *chfantasytrashcanbits_entrypoint_0(void)
 {
