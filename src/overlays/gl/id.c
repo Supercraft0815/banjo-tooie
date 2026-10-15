@@ -2,23 +2,60 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/id/glid_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/id/glid_entrypoint_1.s")
+/* extern */
+
+void glid_entrypoint_1(u8 *arg0, s32 arg1, s32 (*arg2)(u8 *, u8 *, u8 *, s16, s32), s32 arg3) {
+    void *func_800B2190(void *);
+    s32 temp_a1;
+    u8 *temp_s3;
+    u8 *temp_s4;
+    s32 temp_t9;
+    u32 var_a0;
+    u8 *temp_s2;
+    u8 *var_s0;
+    u8 *var_s1;
+    u8 *var_v1;
+
+    temp_s3 = func_800B2190(*(void **)(arg0 + 0x14));
+    temp_s4 = func_800B2190(*(void **)(arg0 + 0x18));
+    temp_a1 = (*(s32 *)((s8 *)(arg0) + (4)));
+    var_v1 = arg0 + 0x1C;
+    var_a0 = 0;
+    while ((s32)var_a0 < temp_a1) {
+        var_a0++;
+        if (arg1 == (*(s16 *)((s8 *)(var_v1) + (0)))) {
+            var_s0 = var_v1 + 8;
+            temp_s2 = ((*(s16 *)((s8 *)(var_v1) + (2))) * 4) + var_v1 + 8;
+            var_s1 = temp_s2;
+            if ((u32) var_s0 < (u32) temp_s2) {
+                do {
+                    temp_t9 = (*(s16 *)((s8 *)(var_s0) + (0))) * 0x10;
+                    arg2(var_s1, temp_t9 + temp_s3, temp_t9 + temp_s4, (*(s16 *)((s8 *)(var_s0) + (2))), arg3);
+                    var_s1 += (*(s16 *)((s8 *)(var_s0) + (2))) * 0x10;
+                    var_s0 += 4;
+                } while ((u32) var_s0 < (u32) temp_s2);
+            }
+            break;
+        }
+        var_v1 += (*(s32 *)((s8 *)(var_v1) + (4)));
+    }
+}
 
 /* extern */
 
-void glid_entrypoint_2(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u32, s32), s32 arg3) {
-    s32 func_800B2190(s32);
+void glid_entrypoint_2(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s32), s32 arg3) {
+    void *func_800B2190(void *);
     s32 temp_a0;
-    s32 temp_fp;
+    u8 *temp_fp;
     s32 var_v1;
-    u32 temp_s2;
-    u32 var_s0;
+    u8 *temp_s2;
+    u8 *var_s0;
     u8 *temp_s7;
     u8 *var_s1;
     u8 *var_s3;
     u8 *var_s6;
 
-    temp_fp = func_800B2190((*(s32 *)((s8 *)(arg0) + (0x14))));
+    temp_fp = func_800B2190(*(void **)(arg0 + 0x14));
     temp_a0 = (*(s32 *)((s8 *)(arg0) + (4)));
     var_s3 = arg0 + 0x1C;
     var_v1 = 0;
