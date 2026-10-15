@@ -67,7 +67,24 @@ void func_808001A0_chfactoryentrydoors(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/entrydoors/func_808001F0_chfactoryentrydoors.s")
+s32 func_808001F0_chfactoryentrydoors(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800C4AF0(f32 *, void *);
+    void func_80103110(Actor *, u32);
+    extern s32 D_808002F8_chfactoryentrydoors;
+    extern s32 D_80800390_chfactoryentrydoors;
+
+    if (arg1 == 7) {
+        func_800BABB8(0, arg0->position, arg0->position, arg0->scale, &D_808002F8_chfactoryentrydoors);
+        func_800C4AF0(arg0->position, &D_80800390_chfactoryentrydoors);
+        arg0->unk64_16 = 0;
+        arg0->unk58 = 2.0f;
+        func_80103110(arg0, 1);
+        *(f32 *)&arg0->actorData[7] = (f32) arg2;
+        return 1;
+    }
+    return 0;
+}
 
 OSThread *chfactoryentrydoors_entrypoint_1(void)
 {
