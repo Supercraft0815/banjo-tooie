@@ -241,7 +241,23 @@ void func_80109600(void *arg0, void *arg1) {
 
 void func_8010963C(void *arg0, f32 *arg1, void *arg2) { void func_80109538(void *, f32 *, void *, s32); func_80109538(arg0, arg1, arg2, 1); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010965C.s")
+/* extern */
+
+void func_8010965C(Actor *arg0) {
+    s32 _subaddiecustomhits_entrypoint_4(Actor *, f32 *, s32);
+    s32 func_800B53A4(s32);
+    void func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_80109524(s32);
+    f32 sp2C[3];
+    s32 sp28;
+
+    if (_subaddiecustomhits_entrypoint_4(arg0, sp2C, 0) != 0) {
+        sp28 = func_800B53A4(0xA);
+        func_800BA3FC(sp28, func_80109524(2));
+        func_800BABB8(sp28, sp2C, sp2C, 1.0f, func_80109518());
+    }
+}
 
 /* extern */
 
