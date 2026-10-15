@@ -532,7 +532,26 @@ void func_80802C30_chstoneballcontrol(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80802FBC_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/chstoneballcontrol_entrypoint_1.s")
+void chstoneballcontrol_entrypoint_1(Unk80132ED0 *arg0, s32 arg1, u32 arg2, s32 arg3) {
+    typedef struct { f32 unknown; f32 timer; } ControlData;
+    f32 func_800D8FF8(void);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80803538_chstoneballcontrol(u8 *);
+    void *actor;
+    ControlData *data;
+
+    actor = func_80106790(arg0);
+    data = func_80100094(actor, 0);
+    if (arg1 != 1) {
+        if (arg1 == 3) {
+            func_80801944_chstoneballcontrol(actor, 1);
+        }
+    } else {
+        data->timer = func_800D8FF8() * arg2;
+        func_80803538_chstoneballcontrol(actor);
+    }
+}
 
 void func_80803148_chstoneballcontrol(u8 *arg0) {
     typedef struct { f32 v[4]; } Distances;
