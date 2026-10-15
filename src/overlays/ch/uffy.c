@@ -11,10 +11,32 @@ OSThread *chchuffy_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80800110_chchuffy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_808001DC_chchuffy.s")
-
 struct Entry { s16 pad[2]; s16 value; s16 tail; };
 extern struct Entry D_8080247C_chchuffy[];
+
+void func_808001DC_chchuffy(void) {
+    void func_800DA524(GameFlag);
+    void func_800DA544(GameFlag);
+    s32 func_800EA05C();
+    s32 func_8080000C_chchuffy(s32);
+    struct Entry *var_s0;
+    s32 temp_s2;
+    s32 var_s1;
+
+    temp_s2 = func_800EA05C();
+    var_s0 = D_8080247C_chchuffy;
+    var_s1 = 0;
+    do {
+        if (func_8080000C_chchuffy(var_s1) == temp_s2) {
+            func_800DA544(var_s0->pad[0]);
+            func_800DA524(var_s0->pad[1]);
+        } else {
+            func_800DA524(var_s0->pad[0]);
+        }
+        var_s1 += 1;
+        var_s0++;
+    } while (var_s1 != 7);
+}
 
 s32 func_80800264_chchuffy(void) {
     s32 func_800DA298(s32);
