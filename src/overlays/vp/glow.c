@@ -32,7 +32,40 @@ void vpglow_entrypoint_1(void* arg0)
 {
     heap_free(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/glow/vpglow_entrypoint_2.s")
+/* extern */
+
+void vpglow_entrypoint_2(u8 *arg0, u8 *arg1) {
+    f32 func_800D8FF8(void);
+    f32 delta;
+    f32 temp_f12;
+    f32 temp_f2;
+    s16 *var_v1;
+    s32 var_v0;
+    u8 *base;
+
+    delta = func_800D8FF8();
+    temp_f2 = (*(f32 *)((s8 *)(arg0) + (4)));
+    (*(f32 *)((s8 *)(arg0) + (0))) = (f32) ((*(f32 *)((s8 *)(arg0) + (0))) + (temp_f2 * delta));
+    temp_f12 = (*(f32 *)((s8 *)(arg0) + (0)));
+    if (temp_f12 >= 1.0f) {
+        (*(f32 *)((s8 *)(arg0) + (0))) = 1.0f;
+        (*(f32 *)((s8 *)(arg0) + (4))) = (f32) -temp_f2;
+    } else if (temp_f12 < 0.3f) {
+        (*(f32 *)((s8 *)(arg0) + (0))) = 0.3f;
+        (*(f32 *)((s8 *)(arg0) + (4))) = (f32) -temp_f2;
+    }
+    base = arg1;
+    base += *(s32 *)(arg1 + 0x1C);
+    var_v0 = 0;
+    if (*(s32 *)(arg0 + 8) > 0) {
+        var_v1 = (s16 *)(arg0 + 0xC);
+        do {
+            *(s8 *)(base + *var_v1 * 0x14 + 3) = 1;
+            var_v0++;
+            var_v1++;
+        } while (var_v0 < *(s32 *)(arg0 + 8));
+    }
+}
 
 void vpglow_entrypoint_3(f32 *arg0, s16 arg1, Vtx *arg2, s32 arg3)
 {
