@@ -119,7 +119,34 @@ s32 bsjump_entrypoint_3(s32 arg0) {
     return ((s32 *)&D_80801110_bsjump)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_4.s")
+/* extern */
+
+void bsjump_entrypoint_4(void *arg0) {
+    struct anctrl_s;
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    s32 baflag_isTrue(void *, s32);
+    f32 baphysics_get_vertical_velocity(void *);
+    void baphysics_set_vertical_velocity(struct player_state_s *, f32);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    void func_8009FFD8();
+    struct anctrl_s *temp_s0;
+
+    temp_s0 = baanim_getAnimCtrlPtr(arg0);
+    if ((baflag_isTrue(arg0, 7) != 0) && (baphysics_get_vertical_velocity(arg0) > 700.0f)) {
+        baphysics_set_vertical_velocity(arg0, 700.0f);
+    }
+    anctrl_reset(temp_s0);
+    anctrl_setIndex(temp_s0, 0xB0);
+    func_8008B1C8(temp_s0, 0.3f);
+    anctrl_setDuration(temp_s0, 0.38f);
+    anctrl_start(temp_s0);
+    func_8009FFD8(arg0, 1, 1, 3, 6);
+    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_5.s")
 
