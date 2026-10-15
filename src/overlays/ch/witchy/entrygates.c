@@ -33,7 +33,18 @@ void func_80800000_chwitchyentrygates(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/witchy/entrygates/func_808000B8_chwitchyentrygates.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/witchy/entrygates/func_80800168_chwitchyentrygates.s")
+/* extern */
+
+void func_80800168_chwitchyentrygates(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chdoor_entrypoint_1(s32, s32, s32);
+    s32 var_v0;
+
+    if (arg1 == 0x95) {
+        var_v0 = (arg0->unk74_7 == 0x33) ? 0x96C : 0x96D;
+        func_80103140(arg0, var_v0 & 0xFFFF, arg0->unk0->unk16);
+    }
+    _chdoor_entrypoint_1((s32)arg0, arg1, arg2);
+}
 
 void* chwitchyentrygates_entrypoint_0(void) {
     return &D_808001F0_chwitchyentrygates;
