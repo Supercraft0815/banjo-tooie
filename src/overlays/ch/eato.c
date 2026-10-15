@@ -101,7 +101,31 @@ void func_8080098C_chcheato(s32 arg0, s32 arg1) {
     _gcnewoption_entrypoint_32(arg1, 0x37);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800A04_chcheato.s")
+/* extern */
+
+void func_80800A04_chcheato(s32 arg0) {
+    s32 _gcnewoption_entrypoint_21(s32, s32);
+    void _gcnewoption_entrypoint_23(s32, s32);
+    void _gcnewoption_entrypoint_31(s32, s32, s16);
+    s32 func_800D3E14(s32);
+    u32 func_800D3FC0(s32);
+    s32 func_80800C0C_chcheato(void);
+    s32 temp_s1;
+    s32 temp_v0;
+    s32 var_s0;
+
+    temp_v0 = func_80800C0C_chcheato();
+    for (var_s0 = 0; var_s0 < temp_v0; var_s0++) {
+            temp_s1 = var_s0 + 1;
+            if (func_800D3E14(temp_s1) != 0) {
+                _gcnewoption_entrypoint_21(arg0, var_s0);
+            } else {
+                _gcnewoption_entrypoint_23(arg0, var_s0);
+            }
+            func_808008B8_chcheato(arg0, var_s0);
+            _gcnewoption_entrypoint_31(arg0, var_s0, func_800D3FC0(temp_s1));
+    }
+}
 
 void func_80800AB4_chcheato(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     void func_80800A04_chcheato(s32);
