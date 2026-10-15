@@ -54,7 +54,7 @@ f32 func_80800164_bsbtrot(s32 arg0) {
     return func_80800070_bsbtrot(arg0, 700.0f, 1000.0f, 700.0f, 700.0f);
 }
 
-void func_808001B8_bsbtrot(s32 arg0) { f32 func_80800070_bsbtrot(s32, f32, f32, f32, f32); func_80800070_bsbtrot(arg0, 30.0f, 80.0f, 30.0f, 30.0f); }
+f32 func_808001B8_bsbtrot(s32 arg0) { f32 func_80800070_bsbtrot(s32, f32, f32, f32, f32); return func_80800070_bsbtrot(arg0, 30.0f, 80.0f, 30.0f, 30.0f); }
 
 /* extern */
 
@@ -96,7 +96,30 @@ void func_808003F0_bsbtrot(void *arg0) {
     func_80099B94(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80800438_bsbtrot.s")
+/* extern */
+
+void func_80800438_bsbtrot(PlayerState *arg0) {
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 bastick_getZone(PlayerState *);
+    f32 bastick_getZonePosition(PlayerState *);
+    f32 func_800F1214(f32, f32, f32);
+    f32 func_80800164_bsbtrot(s32);
+    f32 func_808001B8_bsbtrot(s32);
+    f32 sp2C;
+    f32 maxVelocity;
+    f32 velocity;
+    f32 sp20;
+
+    sp2C = bastick_getZonePosition(arg0);
+    if (bastick_getZone(arg0) == 0) {
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+        return;
+    }
+    sp20 = func_808001B8_bsbtrot(arg0);
+    maxVelocity = func_80800164_bsbtrot(arg0);
+    velocity = func_800F1214(sp2C, sp20, maxVelocity);
+    baphysics_set_target_horizontal_velocity(arg0, velocity);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_808004B4_bsbtrot.s")
 
