@@ -18,7 +18,33 @@ s32 func_80800000_fxstep(void *arg0) {
     return func_800C84B0(temp_a1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/func_80800078_fxstep.s")
+/* extern */
+
+void func_80800078_fxstep(u8 *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
+    void func_800C301C(u8, s32);
+    void func_800C3058(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C35E8(u8, f32[3]);
+    void func_800C3BDC(u8);
+    f32 func_800DC178(f32, f32);
+    f32 temp_f0;
+    f32 sp20;
+    u8 var_s0;
+
+    temp_f0 = arg3 * 0.5f;
+    sp20 = func_800DC178(arg2 - temp_f0, arg2 + temp_f0);
+    if ((*(u8 *)((s8 *)(arg0) + (0x26))) != 0) {
+        var_s0 = (*(u8 *)((s8 *)(arg0) + (0x24)));
+    } else {
+        var_s0 = (*(u8 *)((s8 *)(arg0) + (0x25)));
+    }
+    func_800C35E8(var_s0, (f32 *)(arg0 + 4));
+    func_800C301C(var_s0, arg1);
+    func_800C31DC(var_s0, sp20);
+    func_800C3058(var_s0, arg4);
+    func_800C3BDC(var_s0);
+    (*(u8 *)((s8 *)(arg0) + (0x26))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x26))) ^ 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/func_8080012C_fxstep.s")
 
@@ -49,12 +75,12 @@ s32 func_80800210_fxstep(u8 *arg0, f32 arg1, f32 arg2, s32 arg3) {
 }
 
 s32 func_808002B4_fxstep(s32 arg0, f32 arg1, f32 arg2, s32 arg3) {
-    s32 func_80800078_fxstep(s32, s16, f32, s32, s32);
+    void func_80800078_fxstep(u8 *, s32, f32, f32, s32);
     typedef struct {
         s16 id;
         s16 sound;
         f32 offset;
-        s32 flags;
+        f32 flags;
         s16 scale;
         s16 pad;
     } StepEntry;
