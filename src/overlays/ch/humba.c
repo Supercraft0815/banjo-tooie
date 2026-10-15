@@ -382,7 +382,28 @@ void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80801260_chhumba.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_8080138C_chhumba.s")
+/* extern */
+
+void func_8080138C_chhumba(u8 *arg0) {
+    s32 func_8008FD48();
+    s32 func_80090270();
+    s32 func_8009EA2C(void);
+    s32 func_80800A50_chhumba();
+    s32 sp1C;
+    s32 temp_v0;
+
+    if ((func_80800A50_chhumba() != 0) && (func_80090270() == 0)) {
+        temp_v0 = func_8008FD48();
+        sp1C = temp_v0;
+        if ((temp_v0 == 1) && ((func_8009EA2C() == 0) || !((Actor *)arg0)->unk74_29)) {
+            func_80800E44_chhumba(arg0, 8);
+            return;
+        }
+        if ((func_80800384_chhumba(arg0) == sp1C) || ((func_8009EA2C() != 0) && ((Actor *)arg0)->unk74_29)) {
+            func_80800E44_chhumba(arg0, 0xD);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_8080144C_chhumba.s")
 
