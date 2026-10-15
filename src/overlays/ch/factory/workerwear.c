@@ -45,4 +45,28 @@ void func_80800320_chfactoryworkerwear(Actor *arg0) {
     (*(f32 *)((s8 *)(sp1C) + (0x20))) = func_80101068();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerwear/func_80800350_chfactoryworkerwear.s")
+/* extern */
+
+s32 func_80800350_chfactoryworkerwear(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800FFA88(Unk80132ED0 *);
+    void func_80800260_chfactoryworkerwear(Actor *, s16);
+    switch (arg1) {                                 /* switch 1; irregular */
+    case 33:                                        /* switch 1 */
+        switch (((s16 *)&arg2)[0]) {                 /* switch 2; irregular */
+        case 1:                                     /* switch 2 */
+            func_80800260_chfactoryworkerwear(arg0, ((s16 *)&arg2)[1]);
+            break;
+        case 2:                                     /* switch 2 */
+            func_80800320_chfactoryworkerwear(arg0);
+            break;
+        case 3:                                     /* switch 2 */
+            func_808002E4_chfactoryworkerwear(arg0);
+            break;
+        }
+        break;
+    case 44:                                        /* switch 1 */
+        func_800FFA88(arg0->unk0);
+        break;
+    }
+    return 0;
+}
