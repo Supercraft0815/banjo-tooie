@@ -83,7 +83,47 @@ void func_80800974_chnewfreezy(Actor *arg0, u8 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_80800AA4_chnewfreezy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_80800BFC_chnewfreezy.s")
+/* extern */
+
+void func_80800BFC_chnewfreezy(Actor *arg0, u8 *arg1) {
+    s32 _dbskeleton_entrypoint_4(u8 *, u32);
+    s32 func_800AE080(s16);
+    s32 func_800AE1E8(s16, s32, s32);
+    s32 func_800AE630(u8 *, u8 *, s32, s32);
+    s32 func_800DF324(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF5A0(f32 *, f32 *, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 temp_s4;
+    u32 var_s1;
+    struct FreezyPartPosition {
+        f32 position[3];
+        u8 pad0C[0x18];
+        f32 previousPosition[3];
+        u8 pad30[0x1C];
+        f32 unk4C;
+        u8 pad50[0x10];
+    } *var_s0;
+
+    var_s0 = func_80100094(arg0, 0);
+    func_800AE1E8(*(s16 *)&arg0->unk0->unk10, arg1, func_800DF324());
+    temp_s4 = func_800AE080(*(s16 *)&arg0->unk0->unk10);
+    var_s1 = 0;
+    if (arg0->unk6C_0) {
+        do {
+            func_800AE630(temp_s4, arg1, _dbskeleton_entrypoint_4(arg1, var_s1), var_s0);
+            func_800EF334(var_s0->position, *(f32 *)&arg0->actorData[7]);
+            func_800EF5A0(var_s0->position, arg0->rotation, var_s0->position[0], var_s0->position[1], var_s0->position[2]);
+            func_800EF04C(var_s0->position, arg0->position);
+            var_s0->unk4C = 0.0f;
+            func_800EE7F8(var_s0->previousPosition, var_s0->position);
+            var_s1 += 1;
+            var_s0++;
+        } while (var_s1 < arg0->unk6C_0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_80800D28_chnewfreezy.s")
 
