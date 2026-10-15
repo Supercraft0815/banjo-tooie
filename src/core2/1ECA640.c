@@ -85,7 +85,12 @@ f32 func_800F0FC4(f32 value, f32 period) {
     return (func_80013970(phase * 360.0f) + 1.0f) / 2.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F101C.s")
+f32 func_800F101C(f32 value, f32 period) {
+    f32 func_800138D0(f32);
+    f32 func_800F13C4(f32, f32);
+    f32 phase = func_800F13C4(value, period) / period;
+    return (func_800138D0(phase * 360.0f) + 1.0f) / 2.0f;
+}
 
 f32 func_800F1074(f32 value, f32 period) {
     f32 func_800F13C4(f32, f32);
