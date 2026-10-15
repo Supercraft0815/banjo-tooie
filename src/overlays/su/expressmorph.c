@@ -30,7 +30,41 @@ s32 func_80800000_suexpressmorph(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressmorph/suexpressmorph_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressmorph/suexpressmorph_entrypoint_2.s")
+void suexpressmorph_entrypoint_2(u8 *arg0, void *arg1) {
+    struct MorphFlags {
+        u8 pad[0x17];
+        u8 other : 7;
+        u8 active : 1;
+    };
+    s32 pad0;
+    u8 *sp38;
+    s32 sp34;
+    s32 pad;
+    u8 *sp2C;
+    u8 *morph;
+    s32 _dbmorph_entrypoint_3(u8 *, u8 *, s32, u8, u8 *);
+    s32 _dbmorph_entrypoint_4(u8 *, u8 *, s32, u8, s32);
+    s32 func_800AE080(s16);
+    u8 *func_800B2768(u8 *);
+    s32 func_800B2840(s32);
+    u8 *func_80103AA0(u8 *);
+    s32 func_80103CDC(u8 *, u8 *);
+    extern u8 D_80801328_suexpressmorph[];
+
+    sp38 = func_80103AA0(*(u8 **)arg1);
+    if (sp38 != NULL) {
+        morph = (u8 *)func_80103CDC(arg1, sp38);
+        if (morph != NULL) {
+            sp34 = func_800B2840((s32)sp38);
+            sp2C = func_800B2768(sp38);
+            _dbmorph_entrypoint_3(sp2C, morph, sp34, arg0[6], arg0 + 8);
+            if (D_80801328_suexpressmorph[*(s16 *)(arg0 + 2) * 12] & 1) {
+                ((struct MorphFlags *)morph)->active = 1;
+                _dbmorph_entrypoint_4(sp2C, morph, sp34, arg0[6], func_800AE080(*(s16 *)(*(u8 **)arg1 + 0x10)));
+            }
+        }
+    }
+}
 
 /* extern */
 
