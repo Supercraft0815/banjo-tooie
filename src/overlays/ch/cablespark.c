@@ -119,4 +119,34 @@ s32 func_80800970_chcablespark(Actor *arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablespark/func_80800A48_chcablespark.s")
+void func_80800A48_chcablespark(Actor *arg0) {
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32[3]);
+    void func_800C8D4C(s32, f32 *);
+    s32 func_800C8E84(s32, s32 *);
+    void func_800C8F64(s32, s32);
+    void func_800C8FE0(s32, s32);
+    s8 func_800E8714(s32);
+    void func_800E8830(u8, f32[3]);
+    s32 func_80800828_chcablespark(void *);
+    extern s32 D_80800B70_chcablespark;
+    struct SparkRange { f32 values[2]; };
+    extern struct SparkRange D_80800BDC_chcablespark;
+    f32 sp28[2];
+
+    *(struct SparkRange *)sp28 = D_80800BDC_chcablespark;
+    sp28[0] *= arg0->scale;
+    sp28[1] *= arg0->scale;
+    arg0->actorData[6] = func_800C8A98();
+    func_800C8E84(arg0->actorData[6], &D_80800B70_chcablespark);
+    func_800C8CB8(arg0->actorData[6], arg0->position);
+    func_800C8F64(arg0->actorData[6], 0xB);
+    func_800C8D4C(arg0->actorData[6], sp28);
+    func_800C8FE0(arg0->actorData[6], arg0->unk70_10 == 3);
+    ((u8 *)arg0->actorData)[0] = func_800E8714(1);
+    func_800E8830(((u8 *)arg0->actorData)[0], arg0->position);
+    arg0->unk64_24 = func_80800828_chcablespark(arg0);
+    if (arg0->unk74_7 == 0x35) {
+        arg0->unk64_24 = 0;
+    }
+}
