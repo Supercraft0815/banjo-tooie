@@ -58,7 +58,30 @@ void chmoley_entrypoint_0(void *arg0, s32 arg1) {
     ((struct Fields *)arg0)->upper = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/y/chmoley_entrypoint_1.s")
+/* extern */
+
+void chmoley_entrypoint_1(Actor *arg0, s32 arg1) {
+    void func_800FCA90(u32);
+    void func_800FCAE0(u32, u32, u32);
+    void func_80102424(Actor *, s32);
+
+    if (arg1 != arg0->unk70_10) {
+        if (arg0->unk70_10 == 5) {
+            func_800FCAE0(0x3A, 0, 0x7D0);
+            func_800FCA90(0x3A);
+        }
+        func_80102424(arg0, arg1);
+        if (arg0->unk70_10 != 1) {
+            if (arg0->unk70_10 != 5) {
+                arg0->unk64_16 = 1;
+                return;
+            }
+            func_800FCAE0(0x3A, -1, 0x7D0);
+            return;
+        }
+        arg0->unk64_16 = 0;
+    }
+}
 
 OSThread *chmoley_entrypoint_2(void)
 {
