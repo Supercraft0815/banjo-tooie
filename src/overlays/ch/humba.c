@@ -103,7 +103,19 @@ s32 func_808007EC_chhumba(s32 arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_808007F8_chhumba.s")
+/* extern */
+
+void func_808007F8_chhumba(Actor *arg0) {
+    void func_800D175C(s32, s32);
+    void func_800DA544(GameFlag);
+    func_800DA544(arg0->unk6C_0 + 0xD5);
+    if (arg0->unk74_29) {
+        func_800D175C(0x54, -func_808007EC_chhumba((s32) arg0));
+    } else {
+        func_800D175C(0x48, -func_808007EC_chhumba((s32) arg0));
+    }
+    arg0->unk64_20 = 1;
+}
 
 /* extern */
 
@@ -224,7 +236,7 @@ void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
     void func_80800338_chhumba(u8 *, s32, s32);
     s32 func_80800384_chhumba(u8 *);
     s32 func_808003CC_chhumba(u8 *);
-    s32 func_808007F8_chhumba(u8 *);
+    void func_808007F8_chhumba(Actor *);
     s32 func_80800B40_chhumba(u8 *);
     s32 func_80800C20_chhumba(u8 *);
     void func_80800C6C_chhumba(s32 *);
