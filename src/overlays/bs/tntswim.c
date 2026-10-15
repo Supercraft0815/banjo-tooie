@@ -114,7 +114,27 @@ s32 bstntswim_entrypoint_1(s32 arg0) {
     return ((s32 *)&D_808009C0_bstntswim)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tntswim/func_80800630_bstntswim.s")
+/* extern */
+
+void func_80800630_bstntswim(struct player_state_s *arg0) {
+    s32 baanim_playForDuration_loopSmooth(struct player_state_s *, s32, s32);
+    s32 baanim_setDurationRange(struct player_state_s *, s32, s32);
+    s32 baphysics_set_type(struct player_state_s *, s32);
+    s32 func_8008C9F0(struct player_state_s *, s32, s32, s32, f32);
+    s32 func_8008CA4C(struct player_state_s *, s32);
+    s32 func_8009D2D8(struct player_state_s *, s32);
+    s32 yaw_setUpdateType(struct player_state_s *, s32);
+    s32 yaw_setVelocityBounded(struct player_state_s *, s32, s32);
+    func_80800114_bstntswim(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0xE8, 0x3F4CCCCD);
+    func_8008CA4C(arg0, 2);
+    baanim_setDurationRange(arg0, 0x3E99999A, 0x3FC00000);
+    func_8008C9F0(arg0, 0x41F00000, 0x43480000, 0x3F4CCCCD, 0.45f);
+    yaw_setUpdateType(arg0, 3);
+    yaw_setVelocityBounded(arg0, 0x43FA0000, 0x40A00000);
+    func_8009D2D8(arg0, 1);
+    baphysics_set_type(arg0, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tntswim/func_808006E4_bstntswim.s")
 
