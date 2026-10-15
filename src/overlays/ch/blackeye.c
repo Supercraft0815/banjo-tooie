@@ -40,7 +40,37 @@ void func_80800128_chblackeye(Actor *arg0, s32 arg1) {
     arg0->unk74_30 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_80800224_chblackeye.s")
+void func_80800224_chblackeye(Actor *arg0) {
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 *position[5];
+    Actor *var_v0;
+    f32 temp;
+    s32 var_v1;
+
+    func_800EFA4C((f32 *)arg0->actorData, -250.0f, 0.0f, -200.0f);
+    func_800EFA4C((f32 *)&arg0->actorData[4], 250.0f, 450.0f, -950.0f);
+    func_800EF334((f32 *)arg0->actorData, arg0->scale);
+    func_800EF334((f32 *)&arg0->actorData[4], arg0->scale);
+    func_800EF934((f32 *)arg0->actorData, (f32 *)arg0->actorData, arg0->rotation[1]);
+    func_800EF934((f32 *)&arg0->actorData[4], (f32 *)&arg0->actorData[4], arg0->rotation[1]);
+    position[0] = arg0->position;
+    func_800EF04C((f32 *)&arg0->actorData[4], position[0]);
+    func_800EF04C((f32 *)arg0->actorData, position[0]);
+    var_v1 = 0;
+    var_v0 = arg0;
+    do {
+        var_v1 += 4;
+        if (((f32 *)var_v0->actorData)[0] < ((f32 *)var_v0->actorData)[4]) {
+            temp = ((f32 *)var_v0->actorData)[4];
+            ((f32 *)var_v0->actorData)[4] = ((f32 *)var_v0->actorData)[0];
+            ((f32 *)var_v0->actorData)[0] = temp;
+        }
+        var_v0 = (Actor *)((u8 *)var_v0 + 4);
+    } while (var_v1 != 0xC);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_80800314_chblackeye.s")
 
@@ -57,22 +87,22 @@ void func_80800444_chblackeye(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_8080061C_chblackeye.s")
 
-void func_80800774_chblackeye(u8 *arg0) {
+void func_80800774_chblackeye(Actor *arg0) {
     s32 pad[2];
     s32 func_800BBCB8(s32 *, s32 *, f32, s32, s32 *);
-    s32 func_800EF04C(s32 *, u8 *);
-    s32 func_800EF334(s32 *, s32);
-    s32 func_800EF934(s32 *, s32 *, s32);
-    s32 func_800EFA4C(s32 *, f32, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
     extern s32 D_80800E20_chblackeye;
     extern s32 D_80800F18_chblackeye;
     extern s32 D_80800F6C_chblackeye;
-    s32 sp2C;
+    f32 sp2C;
 
     func_800EFA4C(&sp2C, 0.0f, 40.0f, -800.0f);
-    func_800EF334(&sp2C, (*(s32 *)((s8 *)(arg0) + (0x38))));
-    func_800EF934(&sp2C, &sp2C, (*(s32 *)((s8 *)(arg0) + (0x48))));
-    func_800EF04C(&sp2C, arg0 + 4);
+    func_800EF334(&sp2C, arg0->scale);
+    func_800EF934(&sp2C, &sp2C, arg0->rotation[1]);
+    func_800EF04C(&sp2C, arg0->position);
     func_800BBCB8(&sp2C, &sp2C, 1.0f, 3, &D_80800F18_chblackeye);
     func_800BBCB8(&sp2C, &sp2C, 1.0f, 1, &D_80800F6C_chblackeye);
     func_80800000_chblackeye((s32) arg0, (s32) &D_80800E20_chblackeye);
