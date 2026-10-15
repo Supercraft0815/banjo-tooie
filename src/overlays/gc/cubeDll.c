@@ -32,7 +32,26 @@ void gccubeDll_entrypoint_0(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubeDll/gccubeDll_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubeDll/gccubeDll_entrypoint_2.s")
+/* extern */
+
+void gccubeDll_entrypoint_2(u8 *arg0) {
+    s32 func_800E9C44(u8 *);
+    s32 heap_free(u32);
+    u32 var_s0;
+
+    var_s0 = (*(u32 *)((s8 *)(arg0) + (0)));
+    if (var_s0 < (u32) (((*(s32 *)((s8 *)(arg0) + (0x24))) * 8) + var_s0)) {
+        do {
+            func_800E9C44((u8 *) var_s0);
+            var_s0 += 8;
+        } while (var_s0 < (*(u32 *)((s8 *)arg0 + 0)) + (*(s32 *)((s8 *)arg0 + 0x24)) * 8);
+    }
+    func_800E9C44(arg0 + 0x34);
+    heap_free((*(u32 *)((s8 *)(arg0) + (0))));
+    (*(u32 *)((s8 *)(arg0) + (0))) = 0U;
+    heap_free((*(u32 *)((s8 *)(arg0) + (0x44))));
+    (*(u32 *)((s8 *)(arg0) + (0x44))) = 0U;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubeDll/gccubeDll_entrypoint_3.s")
 
