@@ -203,7 +203,25 @@ s32 subaddierouteDll_entrypoint_6(Actor *arg0, void *arg1, s32 arg2, s32 arg3, f
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/subaddierouteDll_entrypoint_9.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/func_8080160C_subaddierouteDll.s")
+/* extern */
+
+s32 func_8080160C_subaddierouteDll(Actor *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4) {
+    s32 func_800DC128(s32, s32);
+    s32 func_808006D0_subaddierouteDll(Actor *, s32, f32, s32, s32);
+    s32 func_80800828_subaddierouteDll(void *, s32, f32, s32, s32);
+    s32 func_80800A74_subaddierouteDll(void *, s32, f32, s32, s32);
+    if (!(arg4 & 0x200) && (func_808006D0_subaddierouteDll(arg0, arg1, arg2, arg3, arg4) == 0)) {
+        return 0;
+    }
+    if (!(arg4 & 0x100) && (func_80800828_subaddierouteDll(arg0, arg1, arg2, arg3, arg4) == 0)) {
+        return 0;
+    }
+    if (!(arg4 & 0x400) && (func_80800A74_subaddierouteDll(arg0, arg1, (f32) func_800DC128(-0x14, 0x14) + arg2, arg3, arg4) == 0)) {
+        return 0;
+    }
+    arg0->unk54 = arg2;
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/func_808016F0_subaddierouteDll.s")
 
