@@ -90,7 +90,19 @@ void func_808013B8_chfishshootgame(void *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80801424_chfishshootgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80801568_chfishshootgame.s")
+/* extern */
+
+void func_80801568_chfishshootgame(Actor *arg0) {
+    f32 func_800DC178(f32, f32);
+    s32 func_80801424_chfishshootgame(s32, s32);
+    arg0->scale = 0.3f;
+    if (arg0->unk58 < 100.0f) {
+        arg0->unk58 = func_800DC178(100.0f, 200.0f);
+    }
+    func_80801358_chfishshootgame(arg0);
+    arg0->unk70_10 = 0;
+    func_80801424_chfishshootgame(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_808015DC_chfishshootgame.s")
 
