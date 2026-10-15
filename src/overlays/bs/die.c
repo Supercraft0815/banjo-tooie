@@ -68,7 +68,38 @@ s32 bsdie_entrypoint_3(s32 arg0) {
     return ((s32 *)&D_80800960_bsdie)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/die/bsdie_entrypoint_4.s")
+/* extern */
+
+void bsdie_entrypoint_4(struct player_state_s *arg0) {
+    void _basudie_entrypoint_4(struct player_state_s *, f32, f32, f32, f32, f32);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setSmoothTransition(struct anctrl_s *, s32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void func_8009BFE4(struct player_state_s *, f32, f32);
+    void func_8009D820(struct player_state_s *, f32);
+    void func_800A0CF4(struct player_state_s *, s32);
+    struct anctrl_s *temp_v0;
+
+    temp_v0 = baanim_getAnimCtrlPtr(arg0);
+    anctrl_reset(temp_v0);
+    anctrl_setSmoothTransition(temp_v0, 0);
+    anctrl_setIndex(temp_v0, 0xD8);
+    anctrl_setSubrange(temp_v0, 0.0f, 0.0932f);
+    anctrl_setDuration(temp_v0, 4.7f);
+    anctrl_setPlaybackType(temp_v0, 1);
+    anctrl_start(temp_v0);
+    (*(f32 *)((s8 *)(arg0) + (0x16C))) = 250.0f;
+    _basudie_entrypoint_4(arg0, *(f32 *)((s8 *)arg0 + 0x16C), 510.0f, -1400.0f, 30.0f, 4.0f);
+    func_800A0CF4(arg0, 1);
+    func_8009BFE4(arg0, 1000.0f, 12.0f);
+    func_8009D820(arg0, 1.0f);
+    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/die/bsdie_entrypoint_5.s")
 
