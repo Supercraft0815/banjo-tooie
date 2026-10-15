@@ -337,7 +337,23 @@ void func_808014BC_chwaspnestgame(Actor *arg0, f32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801590_chwaspnestgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_808017DC_chwaspnestgame.s")
+/* extern */
+
+s32 func_808017DC_chwaspnestgame(Actor *arg0, f32 arg1, s32 arg2) {
+    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    struct {
+        f32 sp24[3];
+        f32 sp30[3];
+        f32 sp3C[3];
+    } vectors;
+
+    func_800EFA4C(vectors.sp3C, 0.0f, -arg1, 0.0f);
+    func_800EE7F8(vectors.sp30, arg0->position);
+    func_808014BC_chwaspnestgame(arg0, vectors.sp3C);
+    return arg2 ? (func_800BEF00(vectors.sp30, arg0->position, vectors.sp24, 0x20020) ? 1 : 0) : 0;
+}
 
 /* extern */
 
