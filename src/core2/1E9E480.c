@@ -91,4 +91,27 @@ void func_800C54CC(s32 arg0, f32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C54F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C5668.s")
+void func_800C5668(s32 arg0, Gfx **arg1) {
+    void func_800A8A04(s32, s32 *, s32 *, s32 *, s32 *);
+    void func_800B9A24(Gfx **, s32, s32 *, s32, s32, s32, s32);
+    extern s32 D_8011A880;
+    extern f32 D_8012A9A0[];
+    s8 *entry;
+    s32 alpha;
+    s32 sp44;
+    s32 sp40;
+    s32 sp3C;
+    s32 sp38;
+    s32 sp34;
+    f32 ratio;
+
+    entry = (s8 *)D_8012A9A0 + arg0 * 0x10;
+    if (((u8 *)entry)[0xC] == 3 || ((u8 *)entry)[0xC] == 1) {
+        func_800A8A04(arg0, &sp44, &sp40, &sp3C, &sp38);
+        ratio = (f32)*(s32 *)entry / (f32)*(s32 *)(entry + 8);
+        sp34 = *(s32 *)entry;
+        alpha = (s32)(ratio * 255.0f);
+        func_800B9A24(arg1, alpha, &D_8011A880, sp44, sp40, sp3C, sp34);
+        func_800B9A24(arg1, alpha, &D_8011A880, sp44, (sp40 + sp38) - sp34, sp3C, sp34);
+    }
+}
