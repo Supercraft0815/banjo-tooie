@@ -1950,7 +1950,29 @@ f32 func_808069BC_bsfirstp(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808069FC_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80806AD0_bsfirstp.s")
+/* extern */
+
+f32 func_80806AD0_bsfirstp(u8 *arg0, s32 arg1, f32 arg2) {
+    f32 func_800D9004();
+    f32 func_808057C8_bsfirstp(f32 *, s32, s32, f32, f32);
+    f32 unused0;
+    f32 unused1;
+    f32 *temp_s0;
+    f32 temp_f2;
+    f32 sp34;
+    f32 sp30;
+
+    temp_s0 = (*(f32 **)((s8 *)(arg0) + (0x188)));
+    temp_f2 = func_800D9004() - 0.033333335f;
+    sp34 = func_808057C8_bsfirstp(temp_s0 + 0x84, arg1, (*(s32 *)((s8 *)(temp_s0) + (0x1F0))), 0.033333335f, arg2);
+    if (temp_f2 != 0.0f) {
+        sp30 = func_808057C8_bsfirstp(temp_s0 + 0x84, arg1, (*(s32 *)((s8 *)(temp_s0) + (0x1F0))), temp_f2, arg2);
+    } else {
+        sp30 = 0.0f;
+    }
+    func_808052A4_bsfirstp(&sp30, temp_s0 + 0x85);
+    return sp34 + sp30;
+}
 
 void bsfirstp_entrypoint_28(void *arg0, void *arg1) {
     s32 *ptr0 = *(s32 **)((s8 *)arg0 + 0x188);
