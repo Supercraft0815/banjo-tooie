@@ -339,7 +339,32 @@ void func_80803208_chklungo(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80803304_chklungo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80803390_chklungo.s")
+/* extern */
+
+s32 func_80803390_chklungo(void *arg0, s32 arg1) {
+    s32 func_800CC5F4(s32);
+    s32 func_800CC63C(s32, s32);
+    f32 func_800EEB40(s32, s32);
+    f32 temp_f20;
+    s32 temp_v0;
+    s32 temp_v0_2;
+    s32 var_s0;
+    s32 var_s2;
+
+    temp_v0 = func_800CC5F4(((u32) (*(u32 *)((s8 *)(arg0) + (0x70))) >> 0x19) - 1);
+    var_s2 = 0;
+    var_s0 = 0;
+    if (temp_v0 > 0) {
+        do {
+            temp_v0_2 = func_800CC63C(((u32) (*(u32 *)((s8 *)(arg0) + (0x70))) >> 0x19) - 1, var_s0);
+            if ((var_s2 == 0) || (temp_f20 = func_800EEB40(temp_v0_2, arg1), (temp_f20 < func_800EEB40(var_s2, arg1)))) {
+                var_s2 = temp_v0_2;
+            }
+            var_s0 += 1;
+        } while (var_s0 < temp_v0);
+    }
+    return var_s2;
+}
 
 /* extern */
 
