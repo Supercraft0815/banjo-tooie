@@ -248,7 +248,21 @@ void func_80800EAC_bsstatue(s32 arg0)
     func_8008E95C();
     func_80800130_bsstatue(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80800ED4_bsstatue.s")
+/* extern */
+
+void func_80800ED4_bsstatue(PlayerState *arg0) {
+    s32 _badialog_entrypoint_4(PlayerState *, s32, s32, s32);
+    void func_8008E944(PlayerState *);
+    s32 func_808001FC_bsstatue();
+    s32 func_80800DB8_bsstatue(PlayerState *, s32);
+    func_808001FC_bsstatue(arg0);
+    func_8008E944(arg0);
+    if (_badialog_entrypoint_4(arg0, 0x11E8, 4, 0x51) != 0) {
+        func_80800DB8_bsstatue(arg0, 1);
+        return;
+    }
+    func_80800DB8_bsstatue(arg0, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80800F3C_bsstatue.s")
 
