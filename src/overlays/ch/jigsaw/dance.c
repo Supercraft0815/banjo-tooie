@@ -1,6 +1,20 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/dance/func_80800000_chjigsawdance.s")
+/* extern */
+
+void func_80800000_chjigsawdance(Actor *arg0) {
+    s32 func_800C8A98();
+    void func_800C8CB8(s32, f32[3]);
+    s32 func_800CF9E4(s32, s32, s32);
+    s32 func_800CFA70(s32, s32);
+    if (func_800CFA70((s32)arg0->unk50, 1) != -1) {
+        arg0->unk6C_0 = func_800C8A98();
+        func_800CF9E4((s32)arg0->unk50, 1, arg0->unk6C_0);
+        func_800C8CB8(arg0->unk6C_0, arg0->position);
+        return;
+    }
+    arg0->unk6C_0 = 0;
+}
 
 void func_808000AC_chjigsawdance(Actor *arg0) {
     void func_800C8B84(s32);
