@@ -58,7 +58,30 @@ f32 func_80800278_chbadjinjo(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_80800358_chbadjinjo.s")
+/* extern */
+
+void func_80800358_chbadjinjo(Actor *arg0) {
+    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    s32 func_800D395C(void);
+    s32 func_800DC128(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    f32 func_80800278_chbadjinjo(void);
+    u8 *sp24;
+
+    sp24 = func_80100094(arg0, 0);
+    if (func_800D395C() != 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    _subaddierouteDll_entrypoint_3(arg0, sp24, arg0->position);
+    (*(f32 *)((s8 *)(arg0) + (0x24))) = 0.0f;
+    (*(f32 *)((s8 *)(arg0) + (0x2C))) = 0.0f;
+    func_800EE7F8((f32 *)(sp24 + 0x10), arg0->position);
+    (*(s8 *)((s8 *)(sp24) + (0x24))) = func_800DC128(0, 9);
+    (*(f32 *)((s8 *)(arg0) + (0x30))) = func_80800278_chbadjinjo();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_808003EC_chbadjinjo.s")
 
