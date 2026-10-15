@@ -13,7 +13,24 @@ OSThread *chchuffy_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_808001DC_chchuffy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80800264_chchuffy.s")
+struct Entry { s16 pad[2]; s16 value; s16 tail; };
+extern struct Entry D_8080247C_chchuffy[];
+
+s32 func_80800264_chchuffy(void) {
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+    s32 func_8080000C_chchuffy(s32);
+    s32 map;
+    s32 i;
+
+    map = func_800EA05C();
+    for (i = 0; i != 7; i++) {
+        if (func_8080000C_chchuffy(i) != map && func_800DA298(D_8080247C_chchuffy[i].pad[1])) {
+            return 1;
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/chchuffy_entrypoint_1.s")
 
@@ -52,9 +69,6 @@ void func_80800818_chchuffy(u8 *arg0, u32 arg1, s32 arg2) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80800864_chchuffy.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_808009CC_chchuffy.s")
-
-struct Entry { s16 pad[2]; s16 value; s16 tail; };
-extern struct Entry D_8080247C_chchuffy[];
 
 void func_80800EF4_chchuffy(Unk80132ED0 *arg0) { void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, u32, u32); s32 func_80800110_chchuffy(s32); s32 temp_v0; temp_v0 = func_80800110_chchuffy(4); if (D_8080247C_chchuffy[temp_v0].value != -1) { _capod_entrypoint_13(arg0->unk0, 0, D_8080247C_chchuffy[temp_v0].value, 0x2830); } }
 
