@@ -18,7 +18,37 @@ void func_800A61D4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A6250.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A69F0.s")
+s32 func_800A69F0(Actor *arg0, f32 *arg1, f32 *arg2, s32 arg3) {
+    s32 func_800A6250(Actor *, f32 *, f32 *, f32 *, s32);
+    void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF174(f32 *, f32 *, f32);
+    void func_800F5680(s32, f32 *);
+    f32 mlAbsF(f32);
+    extern f32 D_801255DC;
+    extern f32 D_801255E0;
+    f32 sp3C[3];
+    f32 sp38;
+    f32 sp2C[3];
+
+    func_800EE7F8(arg1, arg0->position);
+    sp38 = *(f32 *)&arg0->actorData[3];
+    if ((mlAbsF(arg1[1] - sp38) < D_801255DC) || (D_801255E0 < arg2[1])) {
+        func_800F5680(arg0->unk74_7, sp3C);
+        arg1[1] = sp38;
+        func_800A6250(arg0, arg1, sp3C, arg2, arg3);
+        goto block_6;
+    }
+    func_800EE7F8(sp2C, arg1);
+    func_800EF174(arg1, arg2, -2000.0f);
+    if (func_800C6A7C(sp2C, arg1, sp3C, 0x20020) == 0) {
+        return 1;
+    }
+    func_800A6250(arg0, arg1, sp3C, arg2, arg3);
+block_6:
+    arg0->unk7C_12 = 1;
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A6B24.s")
 
