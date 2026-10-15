@@ -22,7 +22,36 @@ s32 *func_80800000_vpwibble(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/wibble/func_808000B0_vpwibble.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/wibble/vpwibble_entrypoint_0.s")
+/* extern */
+
+u8 *vpwibble_entrypoint_0(u8 *arg0, u8 *arg1) {
+    void func_800EE88C(f32 *, s16 *);
+    s32 func_808000B0_vpwibble(u8 *, s32);
+    void *heap_alloc(s32);
+    u32 temp_a0;
+    u32 temp_a1;
+    u32 var_v1;
+    u8 *temp_v0;
+
+    temp_v0 = heap_alloc(((*(s32 *)((s8 *)(arg0) + (0x14))) * 2) + 0x38);
+    temp_a0 = arg1 + 0x14;
+    temp_a1 = ((*(s32 *)((s8 *)(arg0) + (0x14))) * 4) + arg1 + 0x14;
+    (*(s32 *)((s8 *)(temp_v0) + (0x34))) = 0;
+    var_v1 = temp_a0;
+    if (temp_a0 < temp_a1) {
+        do {
+            if ((*(u16 *)((s8 *)(var_v1) + (2))) != 0) {
+                (*(s16 *)((s8 *)((temp_v0 + ((*(s32 *)((s8 *)(temp_v0) + (0x34))) * 2))) + (0x38))) = (s16) ((s32) (var_v1 - temp_a0) >> 2);
+                (*(s32 *)((s8 *)(temp_v0) + (0x34))) = (s32) ((*(s32 *)((s8 *)(temp_v0) + (0x34))) + 1);
+            }
+            var_v1 += 4;
+        } while (var_v1 < temp_a1);
+    }
+    func_800EE88C((f32 *)temp_v0, (s16 *)(arg1 + 8));
+    func_800EE88C((f32 *)(temp_v0 + 0xC), (s16 *)(arg1 + 0xE));
+    func_808000B0_vpwibble(temp_v0, *(s32 *)arg1);
+    return temp_v0;
+}
 
 void vpwibble_entrypoint_1(void* arg0) 
 {
