@@ -34,7 +34,50 @@ void func_8080017C_chchompaslunch(Actor *arg0) {
     func_800DF744(8, D_8080042E_chchompaslunch[arg0->unk6C_0][0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/ompaslun/func_80800250_chchompaslunch.s")
+void func_80800250_chchompaslunch(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    void func_800C301C(u8, s32);
+    void func_800C3058(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C3BDC(u8);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    f32 func_800DC178(f32, f32);
+    s32 func_80101E14(Actor *, f32);
+    extern u32 D_8080044C_chchompaslunch;
+    extern u32 D_80800458_chchompaslunch;
+    extern f32 D_80800468_chchompaslunch[];
+    extern f32 D_80800478_chchompaslunch[];
+    extern s16 D_80800488_chchompaslunch[];
+    extern s16 D_80800490_chchompaslunch[];
+    extern s32 D_80800498_chchompaslunch;
+    s32 i;
+    f32 *ptr;
+    s32 offset;
+    s32 result;
+
+    if (arg0->unk5F == 0) {
+        arg0->unk5F = func_800C4350(0, arg0->position, &D_80800498_chchompaslunch);
+    }
+    ptr = D_80800468_chchompaslunch;
+    i = 0;
+    offset = 0;
+    do {
+    result = func_80101E14(arg0, *ptr);
+    ptr++;
+    if (result != 0) {
+        func_800C301C(arg0->unk5F, D_80800488_chchompaslunch[i]);
+        func_800C31DC(arg0->unk5F, *(f32 *)((u8 *)D_80800478_chchompaslunch + offset) + func_800DC178(-0.02f, 0.02f));
+        func_800C3058(arg0->unk5F, D_80800490_chchompaslunch[i]);
+        func_800C3BDC(arg0->unk5F);
+        break;
+    }
+    i++;
+    offset += 4;
+    } while (i != 4);
+    if (!arg0->unk6C_0) {
+        _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_8080044C_chchompaslunch, &D_80800458_chchompaslunch);
+    }
+}
 
 void func_8080037C_chchompaslunch(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
