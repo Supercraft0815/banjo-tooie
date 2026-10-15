@@ -360,7 +360,29 @@ s32 func_8002241C(MusicPlayer *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39CE0/func_80022E20.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39CE0/func_80022ECC.s")
+/* extern */
+
+void func_80022ECC(MusicPlayer *arg0, u8 arg1) {
+    void func_8002A890(void *, u8);
+    MusicVoiceState *sp2C;
+    s16 sp2A;
+    s8 sp29;
+    f32 sp24;
+
+    sp29 = (s8) arg0->chanState[arg1].filterPitch - 0x40;
+    sp24 = arg0->chanState[arg1].pitchBend;
+    if ((sp2C = arg0->vAllocHead) != NULL) {
+        do {
+            if (sp2C->channel == arg1) {
+                sp2A = (s16) arg0->chanState[arg1].filterType;
+                func_8002A890(&sp2C->voice, sp2A);
+                if (sp2A != 0) {
+                    func_8002A7E0(&sp2C->voice, func_80028B74((sp2C->key - sp2C->sound->keyBase) + sp29) * 440.0f * sp24);
+                }
+            }
+        } while ((sp2C = sp2C->next) != NULL);
+    }
+}
 
 void func_80023008(MusicPlayer *seqp, MusicEvent *event) {
     ALVoice *voice;
