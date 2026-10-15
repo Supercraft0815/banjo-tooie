@@ -91,7 +91,50 @@ void func_80800DC4_chfactoryrobot(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80801954_chfactoryrobot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80801A80_chfactoryrobot.s")
+/* extern */
+
+s32 func_80801A80_chfactoryrobot(Actor *arg0) {
+    typedef struct {
+        u8 pad0[0x18];
+        s16 unk18;
+        u8 pad1A[6];
+        f32 unk20;
+    } RobotData;
+    typedef struct {
+        u8 pad0[0x64];
+        u32 pad64_30 : 2;
+        u32 unk64_29 : 1;
+        u32 pad64_0 : 29;
+    } RobotFlags;
+    s32 _subaddiejoy_entrypoint_6(u8 *, s32);
+    u8 func_800D9078(f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80801160_chfactoryrobot(u8 *, s32);
+    RobotData *sp24;
+    u32 var_v0;
+    RobotData *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0);
+    sp24 = temp_v0;
+    if (temp_v0->unk20 > 0.0f) {
+        return 0;
+    }
+    if (((RobotFlags *)arg0)->unk64_29) {
+        var_v0 = _subaddiejoy_entrypoint_6((u8 *)arg0, 0);
+    } else {
+        if (temp_v0->unk18 != 0) {
+            return 0;
+        }
+        var_v0 = func_800D9078(&arg0->unk58);
+    }
+    if (var_v0 != 0) {
+        func_80801160_chfactoryrobot((u8 *)arg0, 4);
+        sp24->unk20 = 0.0f;
+        return 1;
+    } else {
+        return 0;
+    }
+}
 
 /* extern */
 u8 func_800D9078(f32 *);
