@@ -4,7 +4,30 @@ extern s32 D_80137074;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE7960/func_8010E070.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE7960/func_8010E204.s")
+void func_8010E204(void *arg0, s32 arg1, f32 arg2) {
+    void func_80019224(f32 *, f32 *);
+    void func_800B237C(void *, f32 *, f32 *);
+    void func_800B3494(s32, f32 *, f32);
+    void func_800B3748(s32);
+    void func_800B388C(u8 *, s32);
+    void func_800B38C8(s32);
+    s32 func_800DF8B4(s32 *);
+    f32 func_800DF8C4(f32 *);
+    extern s32 D_80137074;
+    f32 sp24[3];
+    f32 sp20;
+    f32 sp1C;
+    func_800B388C(D_80137074, arg1 < 0 ? -arg1 : arg1);
+    func_800B237C(func_800DF8B4(arg0), sp24, &sp20);
+    sp1C = func_800DF8C4(arg0);
+    func_80019224(sp24, sp24);
+    sp20 *= sp1C;
+    func_800B3494(D_80137074, sp24, sp20);
+    if (arg1 < 0) {
+        func_800B3748(D_80137074);
+    }
+    func_800B38C8(D_80137074);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE7960/func_8010E2C4.s")
 
