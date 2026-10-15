@@ -111,7 +111,7 @@ s32 func_800A1718(PlayerState *arg0) {
 s32 func_800A1760(PlayerState *arg0) {
     s32 func_800F9F18(s32);
     s32 func_800A3274(PlayerState *);
-    s32 func_800D4EB8(s32);
+    u8 func_800D4EB8(s32);
     if ((*(s32 *)((s8 *)(arg0) + (0x158))) != 0) {
         return func_800F9F18(arg0->unk184);
     }
@@ -142,4 +142,22 @@ void func_800A18C8(void *arg0) {
     func_800F9F74((*(s32 *)((s8 *)(arg0) + (0x184))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A18E8.s")
+/* extern */
+
+void func_800A18E8(PlayerState *arg0) {
+    s32 _batimer_decrement(void *, s32);
+    s32 func_800A3274(PlayerState *);
+    s32 func_800D4E7C(s32);
+    u8 func_800D4EB8(s32);
+    void func_800FC660(u32);
+    s32 sp1C;
+    s32 sp18;
+
+    if (_batimer_decrement(arg0, 0xE) != 0) {
+        sp1C = func_800A3274(arg0);
+        if ((sp18 = func_800D4E7C(sp1C)) != 0 && sp18 < func_800D4EB8(sp1C)) {
+            func_800FC660(8);
+            func_800A17A8(arg0, 1);
+        }
+    }
+}
