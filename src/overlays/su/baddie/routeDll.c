@@ -1,6 +1,27 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/func_80800000_subaddierouteDll.s")
+/* extern */
+
+void func_80800000_subaddierouteDll(void) {
+    s16 func_8001B668(s32, s32);
+    void func_8001B7F0(s16, u8, int);
+    s32 func_800CC5E8(void);
+    OSThread *func_801015B0(void);
+    void func_801015BC(void);
+    s32 sp1C;
+    s16 *sp18;
+
+    sp18 = (s16 *)func_801015B0();
+    sp18[1] = func_800CC5E8();
+    sp1C = sp18[1] * 4;
+    if (sp1C != 0) {
+        sp18[0] = func_8001B668(0, sp1C);
+        func_8001B7F0(sp18[0], 0, sp1C);
+        func_801015BC();
+        return;
+    }
+    sp18[0] = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/subaddierouteDll_entrypoint_0.s")
 
