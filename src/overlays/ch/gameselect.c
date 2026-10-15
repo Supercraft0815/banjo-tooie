@@ -288,7 +288,20 @@ void func_80801338_chgameselect(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808013C8_chgameselect.s")
+/* extern */
+
+void func_808013C8_chgameselect(void *arg0, s32 arg1) {
+    s32 func_80101238(s32, s32);
+    void func_80102424(Actor *, s32);
+
+    if (!((Actor *)arg0)->unk64_20 || (arg1 < 3)) {
+        ((Actor *)arg0)->unk79_4 = arg1;
+        func_80101238(0xA, ((Actor *)arg0)->unk79_4);
+        ((Actor *)arg0)->unk6C_0 = 1;
+        func_80102424(arg0, 1);
+        ((Actor *)arg0)->unk58 = 0.5f;
+    }
+}
 
 /* extern */
 
