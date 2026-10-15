@@ -55,4 +55,40 @@ s32 func_80800980_chklungophial(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/phial/func_808009BC_chklungophial.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/phial/func_80800AEC_chklungophial.s")
+/* extern */
+
+s32 func_80800AEC_chklungophial(Actor *arg0, f32 *arg1, f32 arg2) {
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    struct PhialEntry {
+        f32 position[3];
+        f32 scale;
+        f32 elapsed;
+        f32 duration;
+        f32 speed;
+        f32 height;
+        f32 angle;
+    };
+    struct PhialData {
+        s32 count;
+        struct PhialEntry entries[50];
+    } *temp_v0;
+    struct PhialEntry *temp_s0;
+
+    temp_v0 = func_80100094(arg0, 0);
+    if (temp_v0->count == 0x32) {
+        return 0;
+    }
+    temp_s0 = &temp_v0->entries[temp_v0->count];
+    bzero(temp_s0, 0x24);
+    func_800EE7F8(temp_s0->position, arg1);
+    temp_s0->scale = func_800DC178(0.55f, 1.25f);
+    temp_s0->elapsed = 0.0f;
+    temp_s0->duration = arg2;
+    temp_s0->speed = func_800DC178(0.85f, 1.15f);
+    temp_s0->height = func_800DC178(40.0f, 80.0f);
+    temp_s0->angle = func_800DC178(0.0f, 359.0f);
+    temp_v0->count += 1;
+    return 1;
+}
