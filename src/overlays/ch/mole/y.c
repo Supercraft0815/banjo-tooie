@@ -4,7 +4,39 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/y/func_808000AC_chmoley.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/y/func_80800190_chmoley.s")
+/* extern */
+
+s32 func_80800190_chmoley(Actor *arg0) {
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_801022E4(Actor *);
+    struct anctrl_s *func_80104248(void *);
+
+    if (func_80104248(arg0) == 0) {
+        return 1;
+    }
+    switch (func_801022E4(arg0)) {
+    case 0x2BC:
+    case 0x2C8:
+        return 1;
+    case 0x2BF:
+        if (func_80101E14(arg0, 0.0909f) != 0) {
+            arg0->unk64_19 = 1;
+        } else if (func_80101E14(arg0, 0.8295f) != 0) {
+            arg0->unk64_19 = 0;
+        }
+        if (func_80101DDC(arg0)) {
+            return 1;
+        }
+        break;
+    default:
+        if (func_80101E14(arg0, 0.999f)) {
+            return 1;
+        }
+        break;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/y/func_80800274_chmoley.s")
 
