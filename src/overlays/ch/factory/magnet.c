@@ -122,7 +122,26 @@ void func_80801A9C_chfactorymagnet(s32 arg0, f32 *arg1, f32 *arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80801AE8_chfactorymagnet.s")
+/* extern */
+
+void func_80801AE8_chfactorymagnet(Actor *arg0) {
+    s32 func_800C8A98();
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8F64(s32, s32);
+    void func_800C8FE0(s32, s32);
+    void *func_80100094(Actor *, u32);
+    void *temp_s0;
+
+    temp_s0 = func_80100094(arg0, 1);
+    (*(s32 *)((s8 *)(temp_s0) + (0x348))) = func_800C8A98();
+    (*(s32 *)((s8 *)(temp_s0) + (0x34C))) = func_800C8A98();
+    func_800C8E54((*(s32 *)((s8 *)(temp_s0) + (0x348))), 300.0f, 450.0f);
+    func_800C8E54((*(s32 *)((s8 *)(temp_s0) + (0x34C))), 300.0f, 450.0f);
+    func_800C8FE0((*(s32 *)((s8 *)(temp_s0) + (0x348))), 0);
+    func_800C8FE0((*(s32 *)((s8 *)(temp_s0) + (0x34C))), 0);
+    func_800C8F64((*(s32 *)((s8 *)(temp_s0) + (0x348))), 3);
+    func_800C8F64((*(s32 *)((s8 *)(temp_s0) + (0x34C))), 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80801B74_chfactorymagnet.s")
 
