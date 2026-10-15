@@ -28,7 +28,42 @@ OSThread *chdinoswitches_entrypoint_3(void)
     return (OSThread *) D_80800D08_chdinoswitches;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/func_80800030_chdinoswitches.s")
+void func_80800030_chdinoswitches(Actor *arg0) {
+    s32 _chswitch_entrypoint_7(Actor *, s32);
+    s32 _chswitch_entrypoint_8(Actor *, s32);
+    s32 _chswitch_entrypoint_9(Actor *);
+    s32 func_800D0B68(u32, u32);
+    s32 func_800DA298(s32);
+    void func_800DA544(s32);
+    void func_80103110(Actor *, u32);
+    s32 func_80800108_chdinoswitches(void);
+    struct SwitchEntry {
+        u16 unk0;
+        u16 flag;
+        s32 unk4;
+        u8 unk8[12];
+    };
+    extern struct SwitchEntry D_80800B20_chdinoswitches;
+    s32 sp24[1];
+    struct SwitchEntry *sp20;
+
+    arg0->actorData[0] = sp24[0] = func_80800108_chdinoswitches();
+    if (arg0->actorData[0] == 4) {
+        if (func_800DA298(0x676U) != 0 || func_800D0B68(0x18, 0) != 0) {
+            func_800DA544(0xA10);
+        }
+    }
+    sp20 = &D_80800B20_chdinoswitches + sp24[0];
+    _chswitch_entrypoint_7(arg0, sp20->flag);
+    _chswitch_entrypoint_8(arg0, sp20->unk4);
+    if (arg0->actorData[0] == 4) {
+        if (func_800DA298(sp20->flag) != 0) {
+            func_80103110(arg0, 0);
+        }
+    } else {
+        _chswitch_entrypoint_9(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/func_80800108_chdinoswitches.s")
 
