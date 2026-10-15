@@ -12,7 +12,24 @@ s32 gcintrotext_entrypoint_1(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/introtext/gcintrotext_entrypoint_2.s")
+/* extern */
+
+s32 gcintrotext_entrypoint_2(s32 arg0, u32 *arg1, s32 *arg2) {
+    s32 func_800EA05C();
+    s32 *func_808000C8_gcintrotext(s32);
+    s32 func_808001AC_gcintrotext(s32);
+    s32 *temp_v0;
+    if (arg0 == -1) {
+        arg0 = func_800EA05C();
+    }
+    temp_v0 = func_808000C8_gcintrotext(arg0);
+    if (temp_v0 == NULL) {
+        return -1;
+    }
+    *arg1 = (u32) (*temp_v0 << 0xA) >> 0x10;
+    *arg2 = *temp_v0 & 0x3F;
+    return func_808001AC_gcintrotext(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/introtext/func_808000C8_gcintrotext.s")
 
