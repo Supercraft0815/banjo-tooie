@@ -16,7 +16,50 @@ s32 func_8080000C_chjiggygamenew(void) {
     return (*(s32 *)((s8 *)(func_80106790()) + (0x20)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80800030_chjiggygamenew.s")
+/* extern */
+
+s32 func_80800030_chjiggygamenew(Unk80132ED0 *arg0, s32 arg1) {
+    Actor *func_80106790();
+    void func_808007E4_chjiggygamenew(s16 arg0[][12], s32 arg1, s32 arg2);
+    typedef struct {
+        s16 selection;
+        s16 slot;
+        u16 state;
+            s16 pad6;
+        f32 timer;
+        f32 position[3];
+    } JiggyGameEntry;
+    typedef struct {
+        u8 pad0[0x1F4];
+        s8 slots[20];
+        s8 extraSlots[20];
+    } JiggyGameData;
+    Actor *actor;
+    s16 (*data)[12];
+
+    actor = func_80106790(arg0);
+    data = func_80100094(actor, 0);
+    if (arg1 < 20) {
+        if (((JiggyGameEntry *)data)[((JiggyGameData *)data)->slots[arg1]].state == 0x6B54 ||
+            ((JiggyGameEntry *)data)[((JiggyGameData *)data)->slots[arg1]].state == 0xC) {
+            ((JiggyGameEntry *)data)[((JiggyGameData *)data)->slots[arg1]].timer = 0.0f;
+            func_808007E4_chjiggygamenew(data, 0x78, ((JiggyGameData *)data)->slots[arg1]);
+            actor->actorData[3] = ((JiggyGameData *)data)->slots[arg1];
+            ((JiggyGameData *)data)->slots[arg1] = -1;
+            return 1;
+        }
+        return 0;
+    }
+    arg1 -= 20;
+    if (((JiggyGameData *)data)->extraSlots[arg1] != -1) {
+        ((JiggyGameEntry *)data)[((JiggyGameData *)data)->extraSlots[arg1]].timer = 0.0f;
+        func_808007E4_chjiggygamenew(data, 0xF54, ((JiggyGameData *)data)->extraSlots[arg1]);
+        actor->actorData[3] = ((JiggyGameData *)data)->extraSlots[arg1];
+        ((JiggyGameData *)data)->extraSlots[arg1] = -1;
+        return 2;
+    }
+    return 0;
+}
 
 /* extern */
 
