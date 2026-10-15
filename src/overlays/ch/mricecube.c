@@ -12,7 +12,7 @@ OSThread *chmricecube_entrypoint_0(void)
 void func_8080000C_chmricecube(u8 *arg0) {
     s32 _glcutDll_entrypoint_20();
     s32 func_800DA298(s32);
-    s32 func_800EE7F8(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
     s32 func_800FFAB0(u8 *);
     s32 func_80102424(u8 *, s32);
     s32 func_8010A5B0(u8 *, s32);
@@ -164,7 +164,24 @@ void func_80800778_chmricecube(s32 arg0) {
     _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, &D_808009B8_chmricecube, &D_808008B0_chmricecube, 5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mricecube/func_808007B0_chmricecube.s")
+void func_808007B0_chmricecube(Actor *arg0) {
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 func_800D90A4(f32 *);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    extern s32 D_808009C8_chmricecube;
+    f32 sp34[3];
+    f32 sp28[3];
+
+    if (func_800D90A4((f32 *)arg0->actorData + 4) != 0) {
+        func_800EE7F8(sp34, arg0->position);
+        sp34[1] = 200.0f;
+        func_800EE7F8(sp28, arg0->position);
+        sp28[1] = 600.0f;
+        func_800BBCB8(sp28, sp34, arg0->scale, 5, &D_808009C8_chmricecube);
+        ((f32 *)arg0->actorData)[4] = func_800DC178(0.1f, 0.15f);
+    }
+}
 
 void func_80800850_chmricecube(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
