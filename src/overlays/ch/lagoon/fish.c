@@ -32,7 +32,20 @@ void func_808009FC_chlagoonfish(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/fish/func_80800A44_chlagoonfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/fish/func_80800AE0_chlagoonfish.s")
+int func_80800AE0_chlagoonfish(Actor *arg0, s32 arg1, u8 *arg2) {
+    s32 func_80103140(Actor *, u32, u16);
+    extern u8 D_8012762C;
+    switch (arg1) {
+        case 0x95:
+            if (D_8012762C == 0x15) {
+                func_80103140(arg0, 0x698U, arg0->unk0->unk16);
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chlagoonfish_entrypoint_0(void)
 {
