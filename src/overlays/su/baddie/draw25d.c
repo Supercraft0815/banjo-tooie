@@ -12,7 +12,62 @@ void subaddiedraw25d_entrypoint_0(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/draw25d/subaddiedraw25d_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/draw25d/subaddiedraw25d_entrypoint_2.s")
+void subaddiedraw25d_entrypoint_2(Actor *arg0, s32 arg1) {
+    struct DrawFlags {
+        u8 pad[0x78];
+        union {
+            struct {
+                u16 upper : 14;
+                u16 flags : 2;
+            } half;
+            struct {
+                u32 next : 30;
+                u32 tinted : 1;
+                u32 low : 1;
+            } word;
+        } bits;
+    };
+    struct ModelFlags {
+        u8 pad[8];
+        u32 upper : 16;
+        u32 index : 5;
+        u32 middle : 5;
+        u32 flag : 1;
+        u32 low : 5;
+    };
+    s32 func_800AF5A8(s16 *);
+    void func_800E24E4(s32, s32);
+    void func_800E24F8(s32, s32, s32);
+    void func_800E257C(s32);
+    void func_800E2588(u32);
+    void func_800E2AA4(s32, s32, s32, s32, void *, f32 *);
+    s32 func_80103AE4(u8 *);
+    void subaddiedraw25d_entrypoint_3(Actor *);
+    void _subaddiedraw25d_entrypoint_0(void *);
+    f32 scale[3];
+    Unk80132ED0 *sp38;
+    s32 sp34;
+    struct ModelFlags *model;
+
+    sp38 = arg0->unk0;
+    sp34 = func_80103AE4(sp38);
+    scale[0] = scale[1] = scale[2] = arg0->scale;
+    if (((struct DrawFlags *)arg0)->bits.half.flags) {
+        func_800E257C(arg0->alpha);
+        func_800E2588(1);
+    } else if (func_800AF5A8(sp34) & 0xB00) {
+        func_800E2588(1);
+    } else {
+        func_800E2588(3);
+    }
+    if (((struct DrawFlags *)arg0)->bits.word.tinted) {
+        func_800E24F8(arg0->pad98, arg0->pad99, arg0->pad9A);
+    }
+    subaddiedraw25d_entrypoint_3(arg0);
+    func_800E24E4(_subaddiedraw25d_entrypoint_0, arg0);
+    model = sp38->unk0;
+    func_800E2AA4(arg1, sp34, model->index, model->flag, arg0->position, scale);
+}
 
 /* extern */
 
