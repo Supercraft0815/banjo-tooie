@@ -877,7 +877,42 @@ void inantab_entrypoint_2(s32 arg0,s32 arg1)
     func_8010114C(arg0,0x5A,arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/in/antab/inantab_entrypoint_3.s")
+void inantab_entrypoint_3(s32 arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        f32 volume;
+        f32 pitch;
+        f32 duration;
+        f32 pan;
+        u8 *data;
+        u8 priority;
+        u8 sound;
+        u8 pad[2];
+    } SoundEntry;
+    void func_800E13F0(s32, f32);
+    void func_800E1410(s32, f32, f32);
+    void func_800E144C(s32, f32);
+    s32 func_800E1540(s32);
+    s32 func_800E1664(s32, f32, f32, f32 *, u8 *, s16);
+    extern SoundEntry D_80806E30_inantab[];
+    s32 sound;
+    s32 handle;
+
+    sound = D_80806E30_inantab[arg1].sound;
+    if (D_80806E30_inantab[arg1].data != NULL) {
+        func_800E1664(D_80806E30_inantab[arg1].sound, D_80806E30_inantab[arg1].volume, D_80806E30_inantab[arg1].duration, NULL, D_80806E30_inantab[arg1].data, D_80806E30_inantab[arg1].priority);
+    } else {
+        handle = func_800E1540(sound);
+        if (-1.0f != D_80806E30_inantab[arg1].volume) {
+            func_800E13F0(handle, D_80806E30_inantab[arg1].volume);
+        }
+        if (-1.0f != D_80806E30_inantab[arg1].pitch) {
+            func_800E1410(handle, D_80806E30_inantab[arg1].pitch, D_80806E30_inantab[arg1].duration);
+        }
+        if (-1.0f != D_80806E30_inantab[arg1].pan) {
+            func_800E144C(handle, D_80806E30_inantab[arg1].pan);
+        }
+    }
+}
 
 void inantab_entrypoint_4(s32 arg0, Actor *arg1, s16 *arg2, s16 arg3) {
     extern s16 *D_80806D5C_inantab[];
