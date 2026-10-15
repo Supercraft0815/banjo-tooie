@@ -42,7 +42,20 @@ s32 func_808002A0_chklungospiral(void *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/spiral/func_808002FC_chklungospiral.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/spiral/func_808003AC_chklungospiral.s")
+void func_808003AC_chklungospiral(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+
+    switch (arg0->unk6C_0) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0xC, arg2);
+        case 2:
+            arg0->unk6C_0 = 1;
+        case 1:
+            _capod_entrypoint_6(arg0->unk0, arg1, arg2);
+            break;
+    }
+}
 
 int func_80800430_chklungospiral(void *arg0) {
     s32 _capod_entrypoint_3(s32, void *);
