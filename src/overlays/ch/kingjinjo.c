@@ -41,7 +41,7 @@ s32 func_80800634_chkingjinjo(Actor *arg0, s32 arg1, s32 arg2) {
     void func_808009FC_chkingjinjo(void *, s16, s16);
     void func_80800B28_chkingjinjo(Actor *);
     s32 func_80800BBC_chkingjinjo(void *, s32, s32);
-    s32 func_80800C60_chkingjinjo(void *, s32, s32);
+    void func_80800C60_chkingjinjo(Actor *, s32, s32);
     void func_80800CFC_chkingjinjo(Actor *, s32, s32);
     void func_8010D5DC(void);
     s32 expression_id;
@@ -145,12 +145,12 @@ void func_808009D0_chkingjinjo(s32 arg0) {
 
 void func_80800AE4_chkingjinjo(s32 arg0, s32 *arg1) {
     s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
-    s32 func_80800C60_chkingjinjo(void *, s32, s32);
+    void func_80800C60_chkingjinjo(Actor *, s32, s32);
     s32 temp_v0;
 
     temp_v0 = _subaddiedialog_entrypoint_7(arg0, arg0 + 4, arg1);
     if ((temp_v0 != 0) && (temp_v0 != 0x1208)) {
-        func_80800C60_chkingjinjo((u8 *) arg0, 3, 0);
+        func_80800C60_chkingjinjo((Actor *) arg0, 3, 0);
     }
 }
 
@@ -182,7 +182,7 @@ void func_80800B28_chkingjinjo(Actor *arg0) {
 
 s32 func_80800BBC_chkingjinjo(void *arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_0(s32, s32);
-    s32 func_80800C60_chkingjinjo(void *, s32, s32);
+    void func_80800C60_chkingjinjo(Actor *, s32, s32);
     if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
         if (((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF) != 2) {
             func_80800C60_chkingjinjo(arg0, 2, 1);
@@ -200,7 +200,25 @@ s32 func_80800C18_chkingjinjo(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_80800C60_chkingjinjo.s")
+void func_80800C60_chkingjinjo(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_7(s32, s32);
+    s32 _capod_entrypoint_8(s32);
+    void _gcdialogcamera_entrypoint_8(void);
+
+    switch (arg0->unk6C_0) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x17, 0);
+        case 1:
+            _capod_entrypoint_8(1);
+            arg0->unk6C_0 = 2;
+            func_80800B28_chkingjinjo(arg0);
+            _gcdialogcamera_entrypoint_8();
+        case 2:
+            _capod_entrypoint_7(arg1, arg2);
+            break;
+    }
+}
 
 void func_80800CFC_chkingjinjo(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
