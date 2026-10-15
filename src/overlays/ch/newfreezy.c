@@ -129,7 +129,39 @@ void func_80800BFC_chnewfreezy(Actor *arg0, u8 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_80800E74_chnewfreezy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_808011A8_chnewfreezy.s")
+void func_808011A8_chnewfreezy(f32 arg0, f32 arg1) {
+    void func_800D93A0(f32[4], f32[3]);
+    void func_800D9470(f32[4], f32[4], f32[4]);
+    s32 func_800DF324(void);
+    void func_800DFB40(s32 *, s32, u8 *);
+    void func_800DFF2C(u8 **, s32, f32[4]);
+    struct Quaternion { f32 v[4]; };
+    struct Vector { f32 v[3]; };
+    extern struct Quaternion D_8080195C_chnewfreezy;
+    extern struct Vector D_8080196C_chnewfreezy;
+    struct Quaternion sp58;
+    struct Vector sp4C;
+    f32 sp3C[4];
+    f32 sp2C[4];
+    s32 sp28;
+
+
+    sp58 = D_8080195C_chnewfreezy;
+    sp4C = D_8080196C_chnewfreezy;
+    sp28 = func_800DF324();
+    func_800DFB40(sp28, 0x12, sp3C);
+    sp4C.v[1] = arg0 * 0.75f;
+    sp4C.v[0] = -arg1 * 0.9f;
+    func_800D93A0(sp58.v, sp4C.v);
+    func_800D9470(sp58.v, sp58.v, sp3C);
+    func_800DFF2C(sp28, 0x12, sp58.v);
+    func_800DFB40(sp28, 1, sp2C);
+    sp4C.v[1] = arg0 * 0.25f;
+    sp4C.v[0] = -arg1 * 0.1f;
+    func_800D93A0(sp58.v, sp4C.v);
+    func_800D9470(sp58.v, sp58.v, sp2C);
+    func_800DFF2C(sp28, 1, sp58.v);
+}
 
 /* extern */
 
