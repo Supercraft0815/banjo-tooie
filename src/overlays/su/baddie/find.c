@@ -68,7 +68,27 @@ Actor *subaddiefind_entrypoint_8(s32 arg0) {
     return NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/find/subaddiefind_entrypoint_9.s")
+/* extern */
+
+s32 subaddiefind_entrypoint_9(s32 arg0) {
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    s32 var_s0;
+    Actor *var_v0;
+    s32 sp2C;
+
+    var_s0 = 0;
+    var_v0 = (Actor *)func_801067C4(&sp2C);
+    if (var_v0 != NULL) {
+        do {
+            if (arg0 == var_v0->unk6C_9 && !var_v0->unk64_17) {
+                var_s0 += 1;
+            }
+            var_v0 = (Actor *)func_8010682C(&sp2C);
+        } while (var_v0 != NULL);
+    }
+    return var_s0;
+}
 
 /* extern */
 
