@@ -188,7 +188,7 @@ void func_80801764_chcollballcontrol(u8 *arg0, s32 arg1) {
     void func_800F4F98(s32, void *);
     void *func_80100094(Actor *, u32);
     s32 func_80101FDC(u8 *, s32);
-    u8 *func_80106790(s32);
+    Actor *func_80106790(Unk80132ED0 *);
     void func_808021D4_chcollballcontrol(u8 *);
     void func_80802264_chcollballcontrol(u8 *, s32);
     extern u8 D_80804DF0_chcollballcontrol[];
@@ -382,7 +382,7 @@ void func_80802764_chcollballcontrol(s32 *arg0) {
     s32 *func_800BE3F8(void *);
     Entry *func_800E9E88(s32);
     Entry *func_800E9EB4(s32);
-    u8 *func_80106790(s32);
+    Actor *func_80106790(Unk80132ED0 *);
     void func_808028D0_chcollballcontrol(s32 *, u8 *);
     void func_80802964_chcollballcontrol(s32 *, u32);
     void func_808029D8_chcollballcontrol(s32 *, u8 *);
@@ -421,7 +421,29 @@ void func_80802764_chcollballcontrol(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808029D8_chcollballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80802A50_chcollballcontrol.s")
+void func_80802A50_chcollballcontrol(Actor *arg0) {
+    typedef struct { f32 timer; u8 pad[0x1C]; u8 owner; } BallData;
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 _sukickball_entrypoint_6(u8 *, s32);
+    void _sukickball_entrypoint_11(u8 *, s32);
+    void func_800F4F98(s32, void *);
+    BallData *data;
+    Actor *parent;
+
+    data = func_80100094(arg0, 0);
+    parent = func_80106790(arg0->unk3C);
+    if (data->owner != 0x7F) {
+        if (_sukickball_entrypoint_6(parent, data->owner)) {
+            func_800F4F98(data->owner, arg0->unk0);
+            _sukickball_entrypoint_11(parent, data->owner);
+        } else {
+            _sukickball_entrypoint_11(parent, data->owner);
+        }
+        data->owner = 0x7F;
+        data->timer = 10000000.0f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80802AF8_chcollballcontrol.s")
 
@@ -438,7 +460,7 @@ void func_80802CE0_chcollballcontrol(u8 *arg0) {
     extern Position D_80804F4C_chcollballcontrol;
     extern void _chcollballcontrol_entrypoint_1(void);
     void *func_80100094(Actor *, u32);
-    u8 *func_80106790(s32);
+    Actor *func_80106790(Unk80132ED0 *);
     s32 _sukickball_entrypoint_6(u8 *, s32);
     s32 _sukickball_entrypoint_7(u8 *, s32);
     s32 _sukickball_entrypoint_8(u8 *, s32);
@@ -482,7 +504,7 @@ void func_80802CE0_chcollballcontrol(u8 *arg0) {
                         }
                     }
                 } else {
-                    func_800EE7F8(position, (f32 *)(func_80106790(_sukickball_entrypoint_8(parent, i)) + 4));
+                    func_800EE7F8(position, (f32 *)func_80106790(_sukickball_entrypoint_8(parent, i)) + 1);
                     if (func_800EFFB4((f32 *)(arg0 + 4), 65.0f, position)) {
                         distances[i] = func_800EEB40((f32 *)(arg0 + 4), position);
                     }
@@ -640,7 +662,7 @@ void func_8080405C_chcollballcontrol(u8 *arg0) {
         u8 : 4;
     } BallFlags;
     extern Vec3 D_808050B4_chcollballcontrol;
-    u8 *func_80106790(s32);
+    Actor *func_80106790(Unk80132ED0 *);
     void *func_80100094(Actor *, u32);
     s32 _sukickball_entrypoint_6(u8 *, s32);
     s32 _sukickball_entrypoint_7(u8 *, s32);
