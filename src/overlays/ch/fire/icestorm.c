@@ -25,7 +25,48 @@ void func_80800360_chfireicestorm(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_80800384_chfireicestorm.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_8080048C_chfireicestorm.s")
+/* extern */
+
+void func_8080048C_chfireicestorm(Actor *arg0) {
+    s32 _idworldmake_entrypoint_1(s32, s32, s32, s32);
+    s32 func_800BEA88(s32);
+    s32 func_800EA090(void);
+    void func_800FFAB0(Actor *);
+    s32 sp2C;
+    volatile s32 sp28;
+    s32 pad;
+    s32 sp20;
+    s32 sp1C;
+    s32 temp_v0;
+    s32 var_v1;
+
+    sp2C = 0;
+    sp28 = 0;
+    temp_v0 = func_800EA090();
+    var_v1 = sp28;
+    if (arg0->unk64_20) {
+        if (temp_v0 == 6) {
+            sp2C = 1;
+        }
+        if (temp_v0 == 0xA) {
+            sp2C = 1;
+            var_v1 = 1;
+        }
+    }
+    if (var_v1 != 0) {
+        sp20 = func_800BEA88(0);
+        sp1C = func_800BEA88(1);
+        if (sp20 != 0) {
+            _idworldmake_entrypoint_1(sp20, 0x596, 1, 1);
+        }
+        if (sp1C != 0) {
+            _idworldmake_entrypoint_1(sp1C, 0x65E, 2, 1);
+        }
+    }
+    if (sp2C != 0) {
+        func_800FFAB0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_80800558_chfireicestorm.s")
 
