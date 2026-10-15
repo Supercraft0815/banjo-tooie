@@ -14,7 +14,29 @@ OSThread *chfirefx_entrypoint_1(void)
     return (OSThread *) D_80801248_chfirefx;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/func_80800018_chfirefx.s")
+/* extern */
+
+typedef union {
+    Actor actor;
+    struct {
+        u8 pad0[0x74];
+        u32 pad74_7 : 25;
+        u32 unk74_6 : 1;
+        u32 pad74_0 : 6;
+    } flags;
+} ChFireFxActor;
+
+void func_80800018_chfirefx(ChFireFxActor *arg0) {
+    void chfirefx_entrypoint_2(Actor *, f32, f32, s32, s32);
+    s32 var_v0;
+
+    var_v0 = 0xD;
+    if (arg0->flags.unk74_6) {
+        var_v0 = 0x2D;
+    }
+    arg0->flags.unk74_6 = 0;
+    chfirefx_entrypoint_2(&arg0->actor, arg0->actor.scale, (f32)arg0->actor.unk74_7, (s32)arg0->actor.rotation[1], var_v0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/chfirefx_entrypoint_2.s")
 
