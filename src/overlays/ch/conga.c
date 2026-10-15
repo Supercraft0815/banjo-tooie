@@ -7,7 +7,48 @@ OSThread *chconga_entrypoint_0(void)
     return (OSThread *) D_808006A0_chconga;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/conga/func_8080000C_chconga.s")
+/* extern */
+
+void func_8080000C_chconga(s32 arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 _subaddieitem_entrypoint_0(s32, s32, s32, s32);
+    s32 _subaddieitem_entrypoint_1(s32, s32);
+    s32 func_800D395C();
+    s32 func_800DA298(s32);
+    s32 func_800F54E4();
+    s32 func_800F64A4(s32, s32);
+    s32 func_800FFAB0(s32);
+    s32 func_80100094(s32, s32);
+    s32 func_80102424(s32, s32);
+    s32 func_80105A9C(s32, s32);
+    s32 sp24;
+    s32 sp20;
+    s32 sp1C;
+
+    sp24 = func_800DA298(0x17F);
+    sp20 = func_800F64A4(func_800F54E4(), 1);
+    sp1C = func_800D395C();
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80102424(arg0, 5);
+        goto block_10;
+    }
+    if (func_800DA298(0x9C) != 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    if ((sp1C != 0) && (sp24 == 0)) {
+        func_80102424(arg0, 4);
+        func_80105A9C(arg0, 0x43C80000);
+        goto block_10;
+    }
+    if ((sp24 != 0) && (sp20 != 0)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+block_10:
+    _subaddieitem_entrypoint_0(func_80100094(arg0, 0), 0x4E2, -1, 3);
+    _subaddieitem_entrypoint_1(func_80100094(arg0, 0), 4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/conga/func_80800118_chconga.s")
 
