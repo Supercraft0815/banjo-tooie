@@ -92,7 +92,35 @@ void func_800B5E3C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B5E74.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B5FE4.s")
+s32 func_800B5FE4(u8 arg0, f32 *arg1, u8 arg2, f32 arg3) {
+    s32 func_800B5E74(u8);
+    int func_800D3574(s32);
+    u8 func_800D35BC(s32);
+    s32 func_800D35D0();
+    extern s32 D_80128180;
+    s32 result;
+    s32 var_v0;
+
+    if (((u8 *)&D_80128180)[0x1C] == 0) {
+        result = func_800D35D0(((u8 *)&D_80128180)[0x20], (s32)arg0);
+        if (result != -1) {
+            return result;
+        }
+        if ((s32)arg0 == 0x20) {
+            if (((u8 *)&D_80128180)[0x21] != 0) {
+                var_v0 = func_800D35BC(((u8 *)&D_80128180)[0x20]);
+            } else {
+                var_v0 = func_800D3574(((u8 *)&D_80128180)[0x20]);
+            }
+            *arg1 += (f32) var_v0 * arg3;
+            return -1;
+        }
+    }
+    if (func_800B5E74(arg0) != 0) {
+        return -1;
+    }
+    return -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B60C0.s")
 
@@ -125,7 +153,7 @@ void func_800B7448(Gfx **arg0) {
     void func_800B7174(u8 *);
     s32 func_800B71F4(Gfx **, u8 *);
     void func_800B7A98(void);
-    s32 func_800D35BC(u32);
+    u8 func_800D35BC(s32);
     s32 func_800D3724(u32);
     s32 func_800E7188(u8 *);
     void func_800E7694(void);
