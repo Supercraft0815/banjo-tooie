@@ -124,7 +124,47 @@ void func_808005B8_bstaxi(s32 arg0) {
     bstaxi_entrypoint_0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/func_808005F0_bstaxi.s")
+/* extern */
+
+void func_808005F0_bstaxi(void *arg0) {
+    typedef struct player_state_s PlayerState;
+    typedef struct anctrl_s AnimCtrl;
+    enum asset_e;
+    void _bamovehover_entrypoint_3(PlayerState *, f32[3]);
+    void _batimer_set(PlayerState *, s32, f32);
+    void anctrl_reset(AnimCtrl *);
+    void anctrl_setDuration(AnimCtrl *, f32);
+    void anctrl_setIndex(AnimCtrl *, enum asset_e);
+    void anctrl_setPlaybackType(AnimCtrl *, s32);
+    void anctrl_start(AnimCtrl *);
+    AnimCtrl *baanim_getAnimCtrlPtr(PlayerState *);
+    void func_8008B1C8(AnimCtrl *, f32);
+    f32 func_80096364(PlayerState *);
+    void func_8009C128(PlayerState *, f32[3]);
+    void yaw_setVelocityBounded(PlayerState *, f32, f32);
+    f32 height;
+    f32 position[3];
+    AnimCtrl *animCtrl;
+
+    bstaxi_entrypoint_1(arg0);
+    _batimer_set(arg0, 0, *(f32 *)((u8 *)arg0 + 0x16C));
+    animCtrl = baanim_getAnimCtrlPtr(arg0);
+    anctrl_reset(animCtrl);
+    anctrl_setIndex(animCtrl, 0x24A);
+    anctrl_setDuration(animCtrl, 3.0f);
+    func_8008B1C8(animCtrl, 0.6f);
+    anctrl_setPlaybackType(animCtrl, 2);
+    anctrl_start(animCtrl);
+    func_8009FFD8(arg0, 1, 3, 1, 0x13);
+    yaw_setVelocityBounded(arg0, 300.0f, 3.5f);
+    func_8009C128(arg0, position);
+    height = func_80096364(arg0) + 200.0f;
+    if (height < position[1]) {
+        height = position[1] + 200.0f;
+    }
+    position[1] = height;
+    _bamovehover_entrypoint_3(arg0, position);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/func_808006F4_bstaxi.s")
 
