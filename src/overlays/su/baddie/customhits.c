@@ -16,7 +16,16 @@ OSThread *subaddiecustomhits_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/customhits/subaddiecustomhits_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/customhits/subaddiecustomhits_entrypoint_3.s")
+/* extern */
+
+s32 subaddiecustomhits_entrypoint_3(Actor *arg0, f32 arg1[3], f32 arg2) {
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    void func_80103DFC(Actor *, f32 *);
+    f32 sp1C[3];
+
+    func_80103DFC(arg0, sp1C);
+    return func_800EFFB4(sp1C, (f32)(u16)arg0->pad68 * arg0->scale + arg2, arg1) == 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/customhits/subaddiecustomhits_entrypoint_4.s")
 
