@@ -78,7 +78,27 @@ s32 gccubesearch_entrypoint_7(s32 *arg0, Actor **arg1, s32 arg2) {
     return var_s0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_8.s")
+/* extern */
+
+s32 gccubesearch_entrypoint_8(s32 *arg0, Actor **arg1, s32 arg2, f32 *arg3) {
+    s32 _gspropmarker_entrypoint_1(s32, s32 *, Actor **, s32);
+    s32 *func_800BDD24(s32 *);
+    void func_800EE904(s32 dst[3], f32 src[3]);
+    s32 *var_s0;
+    s32 temp_v0_2;
+    s32 sp3C[3];
+    s32 var_s2;
+
+    var_s2 = 0;
+    func_800EE904(sp3C, arg3);
+    var_s0 = func_800BDD24(sp3C);
+    while (*var_s0 != 0) {
+        temp_v0_2 = _gspropmarker_entrypoint_1(*var_s0, arg0, arg1 + var_s2, arg2 - var_s2);
+        var_s0++;
+        var_s2 += temp_v0_2;
+    }
+    return var_s2;
+}
 
 /* extern */
 
