@@ -91,7 +91,49 @@ loop_1:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/id/glid_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/id/glid_entrypoint_4.s")
+/* extern */
+
+void glid_entrypoint_4(u8 *arg0, s32 (*arg1)(s16, u8 *, u8 *, s32), s32 arg2) {
+    void *func_800B2190(void *);
+    s32 sp44[5];
+    u8 *temp_v0;
+    s32 var_v1;
+    u8 *temp_s2;
+    u8 *var_s0;
+    u8 *temp_s7;
+    u8 *var_s1;
+    u8 *var_s3;
+    u8 *var_s6;
+
+    temp_v0 = func_800B2190(*(void **)(arg0 + 0x14));
+    sp44[0] = 0;
+    var_v1 = (*(s32 *)((s8 *)(arg0) + (4)));
+    var_s3 = arg0 + 0x1C;
+    if (var_v1 > 0) {
+        do {
+            var_s6 = var_s3 + 8;
+            temp_s7 = ((*(s16 *)((s8 *)(var_s3) + (2))) * 4) + var_s3 + 8;
+            var_s1 = temp_s7;
+            if ((u32) var_s6 < (u32) temp_s7) {
+                do {
+                    var_s0 = ((*(s16 *)((s8 *)(var_s6) + (0))) * 0x10) + temp_v0;
+                    temp_s2 = ((*(s16 *)((s8 *)(var_s6) + (2))) * 0x10) + var_s0;
+                    if (var_s0 < temp_s2) {
+                        do {
+                            arg1((*(s16 *)((s8 *)(var_s3) + (0))), var_s1, var_s0, arg2);
+                            var_s0 += 0x10;
+                            var_s1 += 0x10;
+                        } while (var_s0 < temp_s2);
+                    }
+                    var_s6 += 4;
+                } while ((u32) var_s6 < (u32) temp_s7);
+                var_v1 = (*(s32 *)((s8 *)(arg0) + (4)));
+            }
+            var_s3 += (*(s32 *)((s8 *)(var_s3) + (4)));
+            sp44[0]++;
+        } while (sp44[0] < var_v1);
+    }
+}
 
 void glid_entrypoint_5(s32 *arg0, s32 arg1) {
     arg0[5] = arg1;
