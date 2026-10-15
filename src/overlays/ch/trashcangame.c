@@ -298,7 +298,24 @@ OSThread *chtrashcangame_entrypoint_1(void)
     return (OSThread *) D_808031FC_chtrashcangame;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_808021BC_chtrashcangame.s")
+/* extern */
+
+void func_808021BC_chtrashcangame(Actor *arg0) {
+    f32 func_800C6920(f32 *, f32, f32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    void func_80102424(void *, s32);
+    f32 sp2C[3];
+
+    arg0->position[1] = func_800C6920(arg0->position, 1000.0f, -1000.0f, 0);
+    func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+    func_80102424(arg0, 1);
+    arg0->unk58 = 0.0f;
+    func_800F5A00(func_800F54E4(), sp2C);
+    arg0->rotation[1] = func_800F1DF4(arg0->position, sp2C);
+}
 
 void func_8080223C_chtrashcangame(Actor *arg0) {
     f32 func_80013970(f32);
