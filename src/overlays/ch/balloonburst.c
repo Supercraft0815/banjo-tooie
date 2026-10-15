@@ -46,7 +46,25 @@ void func_80800024_chballoonburst(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_8080066C_chballoonburst.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80800704_chballoonburst.s")
+void func_80800704_chballoonburst(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80108B04(Actor *, u32);
+    void func_800DA544(GameFlag);
+
+    switch (arg2) {
+        case 1:
+            func_80108B04(arg0, 1);
+            func_800DA544(3);
+            break;
+        case 2:
+            func_80108B04(arg0, 2);
+            func_800DA544(2);
+            break;
+        case 3:
+            func_800DA544(1);
+            arg0->unk3C = NULL;
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80800790_chballoonburst.s")
 
