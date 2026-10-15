@@ -21,20 +21,44 @@ void func_80800000_bsdroneslide(struct player_state_s *arg0, s32 arg1, f32 arg2)
 
 /* extern */
 
-void func_80800110_bsdroneslide(s32 arg0, s32 arg1, s32 arg2) {
+typedef struct player_state_s PlayerState;
+
+void func_80800110_bsdroneslide(PlayerState *arg0, s32 *arg1, f32 *arg2) {
     void func_800963C0(s32 *, f32 *);
-    void func_800F1988(f32 *, s32, s32);
+    void func_800F1988(f32 *, s32 *, f32 *);
     f32 sp1C[3];
 
     func_800963C0((s32 *)arg0, sp1C);
     func_800F1988(sp1C, arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/slide/bsdroneslide_entrypoint_0.s")
-
 /* extern */
 
-typedef struct player_state_s PlayerState;
+void bsdroneslide_entrypoint_0(PlayerState *arg0) {
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    f32 func_800136E4(f32);
+    int func_8008E148(PlayerState *);
+    s32 func_80800080_bsdroneslide(void *, s32);
+    f32 yaw_get(PlayerState *);
+    s32 sp30[2];
+    f32 sp2C;
+    s32 sp28;
+    f32 temp_f0;
+
+    (*(s8 *)((s8 *)(arg0) + (0x190))) = 0;
+    sp28 = 1;
+    if (func_8008E148(arg0) != 0) {
+        func_80800110_bsdroneslide(arg0, sp30, &sp2C);
+        temp_f0 = func_800136E4(yaw_get(arg0) - sp2C);
+        if ((temp_f0 < 90.0f) || (temp_f0 > 270.0f)) {
+            sp28 = 2;
+        }
+        baphysics_set_target_yaw(arg0, sp2C);
+    }
+    func_80800080_bsdroneslide(arg0, sp28);
+}
+
+/* extern */
 
 void func_808001F4_bsdroneslide(PlayerState *arg0, f32 arg1) {
     s32 pad;
