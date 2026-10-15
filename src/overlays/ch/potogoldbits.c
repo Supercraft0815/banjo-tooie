@@ -39,7 +39,7 @@ void func_80800188_chpotogoldbits(u8 *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
     s32 func_800FFA88(s32);
-    s32 func_80101FDC(u8 *, s32);
+    void func_80101FDC(Actor *, u32);
     s32 func_80103110(u8 *, s32);
     extern s32 D_80800968_chpotogoldbits;
     extern s32 D_80800978_chpotogoldbits;
@@ -156,7 +156,27 @@ OSThread *chpotogoldbits_entrypoint_2(void)
     return (OSThread *) D_80800988_chpotogoldbits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldbits/func_80800810_chpotogoldbits.s")
+/* extern */
+
+void func_80800810_chpotogoldbits(Actor *arg0) {
+    s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    s32 _chdoormake_entrypoint_7(s32, f32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    s32 func_800EA090(void);
+    s32 func_8010108C(void *, s32, s32);
+    void func_80101FDC(Actor *, u32);
+    if (func_800EA090() == 0xD) {
+        func_80101FDC(arg0, 4);
+    }
+    _chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, arg0->scale * 212.0f, 2, -1);
+    _chdoormake_entrypoint_5(arg0, 1.0f);
+    _chdoormake_entrypoint_7(arg0, 0.5f);
+    _chdoormake_entrypoint_8(arg0, 2);
+    if (arg0->unk70_10 == 4) {
+        func_8010108C(arg0, 8, 0);
+    }
+}
 
 OSThread *chpotogoldbits_entrypoint_3(void)
 {
