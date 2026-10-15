@@ -25,7 +25,24 @@ void func_80800018_chtntbox(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/func_8080015C_chtntbox.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/func_808002FC_chtntbox.s")
+/* extern */
+
+s32 func_808002FC_chtntbox(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_8080015C_chtntbox(Actor *, s32);
+    void func_808004F8_chtntbox(Actor *);
+    s32 *data = &arg2;
+    switch (arg1) {
+        case 0x40:
+            func_8080015C_chtntbox(arg0, *data);
+            break;
+        case 0x3D:
+            func_808004F8_chtntbox(arg0);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/func_80800358_chtntbox.s")
 
