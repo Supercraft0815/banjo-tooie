@@ -50,4 +50,32 @@ void gspropsDll_entrypoint_3(s16 *arg0) {
     func_80800524_gspropsDll(sp2C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propsDll/gspropsDll_entrypoint_4.s")
+/* extern */
+
+void gspropsDll_entrypoint_4(s16 *arg0) {
+    void aligned4_memcpy(void *, void *, int);
+    s32 func_800BDBC4(s32);
+    void *func_800E98C0(s32);
+    void func_800EE8CC(s32 *, s16 *);
+    typedef struct {
+        u8 pad[8];
+        u32 reserved : 26;
+        u32 flag5 : 1;
+        u32 flag4 : 1;
+        u32 reserved2 : 2;
+        u32 flag1 : 1;
+        u32 reserved3 : 1;
+    } PropFlags;
+    s32 sp2C;
+    s32 sp20[3];
+    PropFlags *sp1C;
+
+    func_800EE8CC(sp20, arg0 + 2);
+    sp2C = func_800BDBC4((s32)sp20);
+    sp1C = func_800E98C0(sp2C);
+    aligned4_memcpy(sp1C, arg0, 0xC);
+    sp1C->flag4 = 1;
+    if (sp1C->flag1) {
+        sp1C->flag5 = 0;
+    }
+}
