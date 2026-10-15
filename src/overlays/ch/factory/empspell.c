@@ -306,7 +306,36 @@ void func_808012C0_chfactoryempspell(f32 arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801AB4_chfactoryempspell.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801B2C_chfactoryempspell.s")
+/* extern */
+
+void func_80801B2C_chfactoryempspell(Actor *arg0) {
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32[3]);
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8F64(s32, s32);
+    void func_800C8FB0(s32, u32, u32, u32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 var_s1;
+    struct {
+        u8 pad[0x3C];
+        s32 handles[4];
+    } *var_s0;
+    f32 sp44[3];
+
+    var_s0 = func_80100094(arg0, 1);
+    var_s1 = 0;
+    do {
+        func_800F5A00(func_800F54E4(), sp44);
+        var_s0->handles[var_s1] = func_800C8A98();
+        func_800C8E54(var_s0->handles[var_s1], 300.0f, 400.0f);
+        func_800C8FB0(var_s0->handles[var_s1], 0x50, 0xFF, 0xFF);
+        func_800C8F64(var_s0->handles[var_s1], 1);
+        func_800C8CB8(var_s0->handles[var_s1], sp44);
+        var_s1++;
+    } while (var_s1 != 4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801C00_chfactoryempspell.s")
 
@@ -340,7 +369,7 @@ void func_80801F30_chfactoryempspell(Actor *arg0) {
     s32 _sumumbofx_entrypoint_28(void *, f32 *, f32, f32);
     void *func_80100094(Actor *, u32);
     void func_808016AC_chfactoryempspell(Actor *);
-    s32 func_80801B2C_chfactoryempspell(Actor *);
+    void func_80801B2C_chfactoryempspell(Actor *);
     s32 sp2C[3];
     s32 pad;
     void *sp24;
