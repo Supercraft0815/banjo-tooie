@@ -28,7 +28,31 @@ void func_800A26B8(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A275C.s")
+/* extern */
+
+void func_800A275C(PlayerState *arg0, s32 arg1) {
+    s32 _fxsplash_entrypoint_2(f32[3], f32);
+    void func_8008FE94(s32, f32 *);
+    f32 func_800964DC(PlayerState *);
+    f32 func_8009BB5C(PlayerState *);
+    void func_8009FC34(PlayerState *, s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 sp34[3];
+    f32 sp30;
+    s32 sp2C;
+
+    func_8009FC34(arg0, 2);
+    sp30 = func_800F10B4(func_8009BB5C(arg0), 0.0f, 500.0f, 70.0f, 250.0f);
+    func_8008FE94((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x124)))) + (4))), sp34);
+    if (arg1 == 0) {
+        sp34[1] = func_800964DC(arg0);
+    }
+    sp2C = _fxsplash_entrypoint_2(sp34, 8.0f);
+    func_800BA930(sp2C, (s16) -sp30, 0x12C, (s16) -sp30, (s16) sp30, 0x15E, (s16) sp30);
+    func_800BA22C(sp2C, 5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2848.s")
 
