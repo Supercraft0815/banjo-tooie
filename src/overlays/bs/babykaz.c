@@ -289,4 +289,32 @@ void bsbabykaz_entrypoint_13(s32 arg0)
     _bababykaz_entrypoint_7(arg0,1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/bsbabykaz_entrypoint_14.s")
+/* extern */
+
+s32 bsbabykaz_entrypoint_14(f32 *arg0) {
+    void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
+    void *func_800C6C94(f32 *, f32, f32 *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    s32 pad;
+    f32 sp48[3];
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp24[3];
+
+    func_800EE7F8(sp48, arg0);
+    func_800EFA4C(sp30, arg0[0], arg0[1] + 35.0f, arg0[2]);
+    if (func_800C6A7C(sp30, sp48, sp3C, 0x400005) != 0) {
+        return 0;
+    }
+    func_800EE7F8(sp48, arg0);
+    func_800EE7F8(sp24, sp30);
+    if (func_800C6A7C(sp48, sp30, sp3C, 0x400005) != 0) {
+        return 0;
+    }
+    func_800EE7F8(sp30, sp24);
+    if (func_800C6C94(sp30, 12.0f, sp3C, 0x400005) != 0) {
+        return 0;
+    }
+    return 1;
+}
