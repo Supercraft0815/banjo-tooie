@@ -167,7 +167,28 @@ void choildrill_entrypoint_0(s32 arg0, s32 arg1) {
     func_800BBCB8(arg1, 0, 0x3F800000, 1, &D_808013DC_choildrill);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_808008AC_choildrill.s")
+void func_808008AC_choildrill(f32 *arg0) {
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    s32 func_800BA4D0(s32, s16);
+    void func_800BA544(s32 *, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_800C6920(f32[3], f32, f32, s32);
+    extern s32 D_80801404_choildrill;
+    extern s32 _choildrill_entrypoint_0;
+    s32 temp_s1;
+    f32 sp28;
+
+    temp_s1 = func_800B53A4(8);
+    sp28 = arg0[1];
+    arg0[1] = func_800C6920(arg0, 200.0f, -200.0f, 0) + 5.0f;
+    func_800BABB8(temp_s1, arg0, arg0, 1.0f, &D_80801404_choildrill);
+    func_800BA4D0(temp_s1, (s16) (s32) arg0[1]);
+    func_800BA544((s32 *) temp_s1, (s32) &_choildrill_entrypoint_0);
+    func_800BA22C(temp_s1, 8);
+    choildrill_entrypoint_0(0, (s32) arg0);
+    arg0[1] = sp28;
+}
 
 /* extern */
 
