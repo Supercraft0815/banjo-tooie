@@ -18,7 +18,30 @@ void func_8010FAEC(s32 arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FB34.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FBD4.s")
+/* extern */
+
+void func_8010FBD4(void *arg0) {
+    struct player_state_s;
+    s32 func_8010F9C0(s32, s32);
+    void func_801104F4(struct player_state_s *);
+    void func_80114C7C(void *);
+    void func_801150F8(void *);
+    void heap_free(void *);
+    struct player_state_s *temp_a0;
+    void *temp_a0_2;
+
+    func_8010F9C0(arg0, 1);
+    temp_a0 = (*(struct player_state_s **)((s8 *)(arg0) + (4)));
+    if (temp_a0 != 0) {
+        func_801104F4(temp_a0);
+    }
+    temp_a0_2 = (*(void **)((s8 *)(arg0) + (0xC)));
+    if (temp_a0_2 != 0) {
+        func_801150F8(temp_a0_2);
+    }
+    func_80114C7C((*(void **)((s8 *)(arg0) + (0x10))));
+    heap_free(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FC38.s")
 
