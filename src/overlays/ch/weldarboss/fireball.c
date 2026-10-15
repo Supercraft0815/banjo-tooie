@@ -42,7 +42,24 @@ void func_808001B4_chweldarbossfireball(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fireball/func_80800214_chweldarbossfireball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fireball/func_80800284_chweldarbossfireball.s")
+/* extern */
+
+s32 func_80800284_chweldarbossfireball(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80800214_chweldarbossfireball(Actor *, s32);
+    void func_808002E0_chweldarbossfireball(Actor *);
+    s32 *data = &arg2;
+    switch (arg1) {
+        case 0x40:
+            func_808002E0_chweldarbossfireball(arg0);
+            break;
+        case 0x1F:
+            func_80800214_chweldarbossfireball(arg0, *data);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fireball/func_808002E0_chweldarbossfireball.s")
 
