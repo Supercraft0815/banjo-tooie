@@ -165,7 +165,38 @@ void func_80800BD4_chcredits(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80800C84_chcredits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80800E4C_chcredits.s")
+/* extern */
+
+void func_80800E4C_chcredits(s32 arg0, s32 arg1, Gfx **arg2, s32 arg3) {
+    s32 _glglobalsettings_entrypoint_3();
+    void func_800B80D0(Gfx **);
+    void func_800B8C8C(s32);
+    void func_800B8CBC(u8, u8, u8);
+    void func_800B8CF0(f32);
+    s32 func_800B8CFC(s32);
+    s32 func_800B8E28(Gfx **, s32, s32, s32);
+    f32 var_f20;
+    s32 sp28;
+    s32 sp24;
+    f32 divisor = 2.0f;
+
+    if (_glglobalsettings_entrypoint_3() != 0) {
+        var_f20 = 0.95f;
+    } else {
+        var_f20 = 1.0f;
+    }
+    sp28 = (s32) ((304.0f - ((f32) func_800B8CFC(arg0) * var_f20)) / divisor);
+    func_800B8C8C(arg3);
+    func_800B8CBC(0, 0, 0);
+    func_800B8CF0(var_f20);
+    func_800B80D0(arg2);
+    sp24 = arg1 + 1;
+    func_800B8E28(arg2, sp28 + 1, sp24, arg0);
+    func_800B8CBC(0xFF, 0xFF, 0xFF);
+    func_800B8CF0(var_f20);
+    func_800B80D0(arg2);
+    func_800B8E28(arg2, sp28, sp24, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80800F50_chcredits.s")
 
