@@ -64,13 +64,33 @@ void func_80800340_sulights(u8 *arg0) {
 
 void func_8080038C_sulights(u8 *arg0) { s32 i; f32 *p; f32 value; i = 0; p = (f32 *)arg0; *(f32 *)(arg0 + 0x34) = 0.0f; do { value = p[10]; i++; p++; p[6] += value; p[9] = value * -1.0f; } while (i != 2); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/sulights_entrypoint_0.s")
+/* extern */
+
+void sulights_entrypoint_0(s32 arg0, s32 *arg1, s32 *arg2, f32 arg3) {
+    s32 func_800C8E84(s32, s32 *);
+    void func_800EE830(s32 dst[3], s32 src[3]);
+    u8 *func_80800000_sulights(s32, s32);
+    s32 i;
+    u8 *temp_v0;
+
+    temp_v0 = func_80800000_sulights(1, arg0);
+    if (arg3 < 0.001f) {
+        (*(f32 *)((s8 *)(temp_v0) + (0x38))) = 0.001f;
+    } else {
+        (*(f32 *)((s8 *)(temp_v0) + (0x38))) = arg3;
+    }
+    func_800EE830((s32 *)(temp_v0 + 4), arg1);
+    for (i = 0; i < 3; i++) {
+        ((s32 *)temp_v0)[i + 4] = arg2[i] - arg1[i];
+    }
+    func_800C8E84(arg0, arg1);
+}
 
 /* extern */
 
-void sulights_entrypoint_1(s32 arg0, s32 arg1, s32 arg2) {
+void sulights_entrypoint_1(s32 arg0, s32 *arg1, f32 arg2) {
     void func_800C8900(s32, u8 *);
-    s32 sulights_entrypoint_0(s32, s32 *, s32, s32);
+    void sulights_entrypoint_0(s32, s32 *, s32 *, f32);
     s32 sp1C[3];
 
     func_800C8900(arg0, (u8 *) sp1C);
