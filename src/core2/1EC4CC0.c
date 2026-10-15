@@ -7,7 +7,46 @@ typedef struct {
 
 EntryGroup D_80132E80;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB3D0.s")
+void func_800EB3D0(void *arg0, s32 arg1, s16 *arg2) {
+    typedef struct { void *prop; s32 distance; } Element;
+    void aligned4_memmove(void *, void *, int);
+    void *vector_begin(s32);
+    void *vector_end(s32);
+    s32 vector_new(s32, s32);
+    void *vector_push_back(void **);
+    s32 dx, dy, dz;
+    Element *current;
+    Element *begin;
+    Element *end;
+    s32 vector;
+    s32 *vec;
+
+    vec = &D_80132E80.entries[arg1];
+    if (*vec == 0) {
+        *vec = vector_new(8, 5);
+    }
+    vector_push_back((void **)vec);
+    vector = *vec;
+    dx = ((s16 *)arg0)[2] - arg2[0];
+    dy = ((s16 *)arg0)[3] - arg2[1];
+    dz = ((s16 *)arg0)[4] - arg2[2];
+    dx = dx * dx + dy * dy + dz * dz;
+    begin = vector_begin(vector);
+    end = (Element *)vector_end(vector) - 1;
+    current = end - 1;
+    while (current >= begin) {
+        if (dx < current->distance) {
+            break;
+        }
+        current--;
+    }
+    current++;
+    if (current < end) {
+        aligned4_memmove(current + 1, current, (end - current) * sizeof(Element));
+    }
+    current->distance = dx;
+    current->prop = arg0;
+}
 
 void func_800EB51C(s32 arg0, s32 arg1) {
     typedef struct {
