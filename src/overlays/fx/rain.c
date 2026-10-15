@@ -13,7 +13,33 @@ void fxrain_entrypoint_0(void *arg0) {
     vector_clear((*(s32 *)((s8 *)(arg0) + (0x20))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/rain/fxrain_entrypoint_1.s")
+/* extern */
+
+void fxrain_entrypoint_1(void *arg0) {
+    s32 func_800D674C(s32);
+    s32 func_800DE448(u32, s32, f32, s32, s32);
+    s32 func_800DF350(void);
+    void func_800DF830(s32);
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    u32 sp3C;
+    s32 temp_s1;
+    u32 temp_v0;
+    u32 var_s0;
+
+    temp_s1 = func_800D674C(0x9EC);
+    sp3C = vector_begin((*(s32 *)((s8 *)(arg0) + (0x20))));
+    temp_v0 = vector_end((*(s32 *)((s8 *)(arg0) + (0x20))));
+    var_s0 = sp3C;
+    if (var_s0 < temp_v0) {
+        do {
+            func_800DF830(2);
+            func_800DE448(var_s0, 0, 1.0f, 0, temp_s1);
+            (*(s8 *)((s8 *)(var_s0) + (0x18))) = func_800DF350();
+            var_s0 += 0x1C;
+        } while (var_s0 < temp_v0);
+    }
+}
 
 int fxrain_entrypoint_2(void *arg0) {
     s32 vector_size(s32);
