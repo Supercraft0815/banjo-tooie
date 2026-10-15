@@ -65,7 +65,38 @@ f32 func_800C5190(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C524C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C52F4.s")
+s32 func_800C52F4(s32 arg0, s32 arg1) {
+    void func_800A8A44(s32, s32 *, s32 *, s32 *, s32 *);
+    s32 func_800C524C(s32, s32);
+    extern f32 D_8012A9A0[];
+    void *temp_v0;
+    s32 sp38;
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 temp_f16;
+
+    temp_v0 = (s8 *)D_8012A9A0 + arg0 * 0x10;
+    if ((*(u8 *)((s8 *)temp_v0 + 0xC) == 1) ||
+        (*(u8 *)((s8 *)temp_v0 + 0xC) == 2)) {
+        return 0;
+    }
+    (*(u8 *)((s8 *)(temp_v0) + (0xC))) = 1U;
+    (*(s32 *)((s8 *)(temp_v0) + (0))) = 0;
+    (*(s32 *)((s8 *)(temp_v0) + (4))) = arg1;
+    func_800A8A44(arg0, &sp38, &sp34, &sp30, &sp2C);
+    temp_f16 = (s32) ((f32) sp30 * 0.5625f);
+    if (temp_f16 & 1) {
+        temp_f16++;
+    }
+    (*(s32 *)((s8 *)(temp_v0) + (8))) = (sp2C - temp_f16) / 2;
+    if (arg1 == 0) {
+        (*(s32 *)((s8 *)(temp_v0) + (0))) = (*(s32 *)((s8 *)temp_v0 + 8));
+        (*(s8 *)((s8 *)(temp_v0) + (0xC))) = 2;
+        func_800C524C(arg0, (*(s32 *)((s8 *)temp_v0 + 8)));
+    }
+    return 1;
+}
 
 s32 func_800C53EC(s32 arg0, s32 arg1) {
     s32 func_800C524C(s32, s32);
