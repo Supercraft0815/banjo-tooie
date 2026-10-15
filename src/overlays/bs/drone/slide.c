@@ -1,6 +1,21 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/slide/func_80800000_bsdroneslide.s")
+/* extern */
+
+void func_80800000_bsdroneslide(struct player_state_s *arg0, s32 arg1, f32 arg2) {
+    void _batimer_set(struct player_state_s *, s32, f32);
+    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void func_8009BFE4(struct player_state_s *, f32, f32);
+    void func_8009D658(struct player_state_s *);
+    void func_8009FFD8(struct player_state_s *, s32, s32, s32, s32);
+    baanim_playForDuration_loopSmooth(arg0, arg1, arg2);
+    func_8009FFD8(arg0, 1, 1, 3, 3);
+    func_8009BFE4(arg0, 800.0f, 8.0f);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_8009D658(arg0);
+    _batimer_set(arg0, 0xA, 1.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/slide/func_80800080_bsdroneslide.s")
 
