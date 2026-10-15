@@ -11,7 +11,19 @@ void func_80800264_chlagoonfish(Actor *arg0)
     func_80800240_chlagoonfish(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/fish/func_80800284_chlagoonfish.s")
+/* extern */
+
+void func_80800284_chlagoonfish(Actor *arg0) {
+    void func_80102B2C(Actor *, f32);
+    void func_80102B6C(u8 *, f32);
+    s32 func_8010B990(Actor *, s32);
+    s32 func_80800A44_chlagoonfish(Actor *, s32);
+    func_80102B6C(arg0, 2.0f);
+    func_80102B2C(arg0, 2.0f);
+    if ((func_8010B990(arg0, 0x500106) & 0x24) && (arg0->unk70_10 != 2)) {
+        func_80800A44_chlagoonfish(arg0, 2);
+    }
+}
 
 /* extern */
 
