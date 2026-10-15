@@ -95,7 +95,40 @@ void func_808018E8_changlerboss(Actor *arg0) {
     temp_v0->unk98 = 400.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80801948_changlerboss.s")
+/* extern */
+
+int func_80801948_changlerboss(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    f32 func_800EEB40(f32 *, f32 *);
+    f32 func_800F15F8(f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010B990(Actor *, s32);
+    struct {
+        u8 pad0[0x90];
+        s16 index;
+        u8 pad92[6];
+        f32 speed;
+        u8 pad9C[8];
+        struct {
+            f32 position[3];
+            f32 padC[3];
+        } points[5];
+        u8 pad11C[0x13];
+        u8 active;
+    } *temp_s1;
+
+    temp_s1 = func_80100094(arg0, 0);
+    *(f32 *)&arg0->actorData[3] = func_800F15F8(*(f32 *)&arg0->actorData[3], temp_s1->speed, func_800D8FF8() * 600.0f);
+    func_8010B990(arg0, 6);
+    if (func_800EEB40(arg0->position, temp_s1->points[temp_s1->index].position) < 160000.0f) {
+        if (temp_s1->active != 0) {
+            temp_s1->active = 0;
+            temp_s1->speed = 400.0f;
+        }
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80801A10_changlerboss.s")
 
