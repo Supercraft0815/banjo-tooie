@@ -153,7 +153,17 @@ void bafpctrl_entrypoint_13(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/bafpctrl_entrypoint_14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_80800E30_bafpctrl.s")
+/* extern */
+
+int func_80800E30_bafpctrl(PlayerState *arg0) {
+    s32 _ncba1p_entrypoint_10();
+    int bakey_pressed(PlayerState *, int);
+    s32 func_800F6774(u32);
+
+    return bakey_pressed(arg0, 0xC) && bafpctrl_entrypoint_6(arg0)
+        && func_800F6774(*(u32 *)((s8 *)arg0 + 0x184))
+        && _ncba1p_entrypoint_10(func_800A4CA8(arg0)) != 3;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/bafpctrl_entrypoint_15.s")
 
