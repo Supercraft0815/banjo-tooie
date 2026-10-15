@@ -209,7 +209,21 @@ void func_80801DB8_ncpoddialog(u8 *arg0, s32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_808023B4_ncpoddialog.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/ncpoddialog_entrypoint_4.s")
+void ncpoddialog_entrypoint_4(u8 *arg0, s32 arg1, f32 *arg2) {
+    f32 first;
+    f32 second;
+    f32 *values;
+    s32 i;
+    s32 changed = 0;
+    for (i = 0; i < 4; i++) {
+        if (arg2[i] + 10.0f < ((f32 (*)[4])arg0)[arg1][i] ||
+            ((f32 (*)[4])arg0)[arg1][i] < arg2[i] - 10.0f) {
+            ((f32 (*)[4])arg0)[arg1][i] = arg2[i];
+            changed = 1;
+        }
+    }
+    if (changed) { values = ((f32 (*)[4])arg0)[arg1]; first = values[2]; second = values[1]; if (first < second) { *(f32 *)(arg0 + arg1 * 4 + 0x20) = second; } else { *(f32 *)(arg0 + arg1 * 4 + 0x20) = first; } arg0[0x216] = 1; }
+}
 
 /* extern */
 
