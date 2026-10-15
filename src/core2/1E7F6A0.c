@@ -1,6 +1,40 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A5DB0.s")
+void func_800A5DB0(Actor *arg0) {
+    s32 func_800D674C(s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF830(s32);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800F1988(f32 *, f32 *, f32 *);
+    f32 func_800F554C(s32);
+    void func_800F5680(s32, f32 *);
+    extern f32 D_801255D0;
+    f32 pad;
+    f32 sp58[3];
+    f32 sp4C[3];
+    f32 sp48;
+    f32 sp44;
+    f32 sp38[3];
+    f32 sp34;
+
+    func_800EE7F8(sp58, arg0->position);
+    sp44 = ((f32 *)arg0->actorData)[3];
+    sp34 = func_800F10B4(sp58[1] - sp44, 0.0f, 300.0f, 0.43f, D_801255D0);
+    sp48 = func_800F554C(arg0->unk74_7) * (sp34 * arg0->unk58);
+    sp58[1] = sp44;
+    func_800F5680(arg0->unk74_7, sp38);
+    func_800F1988(sp38, &arg0->rotation[0], &arg0->rotation[1]);
+    sp4C[0] = arg0->rotation[0];
+    sp4C[1] = arg0->rotation[1];
+    sp4C[2] = 0.0;
+    func_800EF334(sp38, 0.0f);
+    func_800EE780(arg0->position, sp58, sp38);
+    func_800DF830(3);
+    func_800DE448(arg0->position, sp4C, sp48, NULL, func_800D674C(0x637));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A5EC4.s")
 
