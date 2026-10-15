@@ -1361,7 +1361,39 @@ void func_8080436C_bsfirstp(s32 arg0)
     func_808090D8_bsfirstp();
     func_80807C8C_bsfirstp(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80804394_bsfirstp.s")
+void func_80804394_bsfirstp(struct player_state_s *arg0) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    s32 anctrl_isStopped(struct anctrl_s *);
+    void _batimer_set(struct player_state_s *, s32, f32);
+    int _batimer_decrement(struct player_state_s *, s32);
+    void _basudie_entrypoint_0(struct player_state_s *);
+    void func_800A38F0(struct player_state_s *, s32, s32);
+    s32 func_800D3948(void);
+    s32 func_80101180(s32, s32, s32);
+
+    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+    case 0:
+        if (anctrl_isStopped(baanim_getAnimCtrlPtr(arg0))) {
+            _batimer_set(arg0, 0, 3.0f);
+            func_800A38F0(arg0, 0, 1);
+            *(s32 *)((s8 *)arg0 + 0x15C) = 1;
+        }
+        break;
+    case 1:
+        if (_batimer_decrement(arg0, 0)) {
+            if (func_800D3948()) {
+                func_80101180(0x2C4, 0x71, *(s32 *)((s8 *)arg0 + 0x184));
+            } else {
+                _basudie_entrypoint_0(arg0);
+            }
+            *(s32 *)((s8 *)arg0 + 0x15C) = 2;
+        }
+        break;
+    }
+    func_80809198_bsfirstp(arg0);
+    func_80809250_bsfirstp((s32)arg0);
+    func_80807D48_bsfirstp(arg0);
+}
 
 s32 bsfirstp_entrypoint_17(s32 arg0) {
     extern s32 D_8080B4F0_bsfirstp[];
