@@ -4,7 +4,41 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_8002976C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_800298E4.s")
+/* extern */
+
+u8 func_800298E4(u8 *arg0, s32 arg1, s32 arg2) {
+    void func_80020E40(ALLink *, ALLink *);
+    void func_80020E74(ALLink *);
+    ALLink *sp2C;
+    ALLink *sp28;
+    ALLink *volatile sp24;
+    s32 sp20;
+    u8 sp1F;
+
+    sp20 = 0;
+    sp1F = 1;
+    sp2C = (*(ALLink **)((s8 *)(arg0) + (0x50)));
+    while (sp2C != NULL) {
+        sp28 = sp2C->next;
+        sp24 = sp2C;
+        sp20 += (*(s32 *)((s8 *)(sp24) + (8)));
+        if (((*(s16 *)((s8 *)(sp24) + (0xC))) == 5) &&
+            ((*(s32 *)((s8 *)(sp24) + (0x10))) == arg1)) {
+            if (sp20 > arg2) {
+                if (sp28 != NULL) {
+                    (*(s32 *)((s8 *)(sp28) + (8))) += (*(s32 *)((s8 *)(sp24) + (8)));
+                }
+                func_80020E74(sp2C);
+                func_80020E40(sp2C, (ALLink *)(arg0 + 0x48));
+            } else {
+                sp1F = 0;
+            }
+            break;
+        }
+        sp2C = sp28;
+    }
+    return sp1F;
+}
 
 /* extern */
 
