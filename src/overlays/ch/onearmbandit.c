@@ -169,7 +169,25 @@ void func_8080063C_chonearmbandit(s32 arg0, s32 arg1) {
     func_80101870(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80800680_chonearmbandit.s")
+void func_80800680_chonearmbandit(u8 *arg0, s32 arg1) {
+    struct InteractionFlags {
+        unsigned int : 2;
+        unsigned int interacting : 1;
+        unsigned int : 29;
+    };
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_80102424(Actor *, s32);
+    extern s32 D_80801354_chonearmbandit;
+    func_80102424((Actor *)arg0, arg1);
+    if (arg1 == 5) {
+        _subaddieaudioquick_entrypoint_2((Actor *)arg0, (f32 *)(arg0 + 4), &D_80801354_chonearmbandit);
+        if (((struct InteractionFlags *)(arg0 + 0x64))->interacting) {
+            ((Actor *)arg0)->unk58 = 0.36f;
+            return;
+        }
+        ((Actor *)arg0)->unk58 = 1.2f;
+    }
+}
 
 /* extern */
 
