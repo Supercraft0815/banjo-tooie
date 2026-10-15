@@ -1,6 +1,8 @@
 #include "common.h"
 
 struct player_state_s;
+struct anctrl_s;
+enum asset_e;
 
 /* extern */
 
@@ -122,7 +124,6 @@ s32 bsjump_entrypoint_3(s32 arg0) {
 /* extern */
 
 void bsjump_entrypoint_4(void *arg0) {
-    struct anctrl_s;
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setDuration(struct anctrl_s *, f32);
     void anctrl_setIndex(struct anctrl_s *, enum asset_e);
@@ -173,7 +174,54 @@ s32 bsjump_entrypoint_11(s32 arg0) {
     return ((s32 *)&D_80801130_bsjump)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_12.s")
+/* extern */
+
+void bsjump_entrypoint_12(struct player_state_s *arg0) {
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setSmoothTransition(struct anctrl_s *, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_start(struct anctrl_s *);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    s32 baphysics_set_type(void *, s32);
+    s32 bs_getPreviousState(struct player_state_s *);
+    s32 func_8008CA4C(void *, s32);
+    void func_8008E944(struct player_state_s *);
+    void func_8009BA9C(struct player_state_s *, f32 *);
+    void func_8009D2D8(struct player_state_s *, s32);
+    f32 func_8009F308(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    s32 yaw_setUpdateType(void *, s32);
+    struct anctrl_s *temp_s0;
+    s32 sp20;
+
+    temp_s0 = baanim_getAnimCtrlPtr(arg0);
+    sp20 = 1;
+    if (bs_getPreviousState(arg0) == 0x12) {
+        sp20 = 0;
+    }
+    anctrl_reset(temp_s0);
+    anctrl_setSmoothTransition(temp_s0, sp20);
+    anctrl_setIndex(temp_s0, 8);
+    func_8008B1C8(temp_s0, 0.3f);
+    anctrl_setDuration(temp_s0, 1.9f);
+    anctrl_setStart(temp_s0, 0.6667f);
+    anctrl_setPlaybackType(temp_s0, 3);
+    anctrl_start(temp_s0);
+    yaw_setIdeal(arg0, func_8009F308(arg0));
+    func_8008CA4C(arg0, 1);
+    yaw_setUpdateType(arg0, 1);
+    func_8009D2D8(arg0, 3);
+    baphysics_set_type(arg0, 6);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_8009BA9C(arg0, 0);
+    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+    func_8008E944(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_13.s")
 
