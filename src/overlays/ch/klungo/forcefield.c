@@ -9,7 +9,29 @@ OSThread *chklungoforcefield_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/forcefield/func_8080000C_chklungoforcefield.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/forcefield/func_808000F0_chklungoforcefield.s")
+void func_808000F0_chklungoforcefield(Actor *arg0) {
+    typedef struct {
+        s32 sound;
+        f32 timer;
+        f32 speed;
+    } ForcefieldData;
+    void _subaddieaudioloop_entrypoint_1(u8 *, s32);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    void func_800C8E54(s32, f32, f32);
+    f32 func_800D8FF8(void);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    extern u32 D_8080046C_chklungoforcefield;
+    f32 temp_f0;
+
+    ((ForcefieldData *)arg0->actorData)->timer += ((ForcefieldData *)arg0->actorData)->speed * func_800D8FF8();
+    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_8080046C_chklungoforcefield);
+    _subaddieaudioloop_entrypoint_1((u8 *)arg0, (s32) func_800F12D4((f32) _subaddiefade_entrypoint_0(arg0), 0.0f, 255.0f, 8000.0f, 32767.0f));
+    if (((ForcefieldData *)arg0->actorData)->sound != 0) {
+        temp_f0 = func_800F12D4((f32) _subaddiefade_entrypoint_0(arg0), 0.0f, 255.0f, 300.0f, 800.0f);
+        func_800C8E54(((ForcefieldData *)arg0->actorData)->sound, temp_f0, 2.0f * temp_f0);
+    }
+}
 
 void func_808001D4_chklungoforcefield(u8 *arg0) {
     void func_800C8B84(s32);
