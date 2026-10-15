@@ -266,7 +266,48 @@ void func_800FFDBC(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FFE08.s")
+void func_800FFE08(void) {
+    s32 func_800DC060(s32);
+    void func_801041C8(void);
+    void func_801043A0(void);
+    void func_8010545C(void);
+    void func_80105CD0(void);
+    void func_80106630(void);
+    Actor *func_801068A8(s32 *);
+    Actor *func_80106920(s32 *);
+    void func_80106A60(void);
+    void func_80106E50(void);
+    void func_80107C10(void);
+    extern s32 D_80124394;
+    s32 temp_a0;
+    s32 var_s1;
+    Actor *var_v0;
+    Unk80132ED0 *temp_s0;
+
+    var_s1 = 0;
+    var_v0 = func_801068A8(&D_80124394);
+    if (var_v0 != NULL) {
+loop_1:
+        temp_s0 = var_v0->unk0;
+        temp_a0 = (s32)temp_s0->unk4;
+        if (temp_a0 != 0) {
+            temp_s0->unk4 = (u32 *)func_800DC060(temp_a0);
+        }
+        var_v0 = func_80106920(&D_80124394);
+        var_s1 += 1;
+        if ((var_v0 != NULL) && (var_s1 != 8)) {
+            goto loop_1;
+        }
+    }
+    func_80106630();
+    func_801041C8();
+    func_801043A0();
+    func_8010545C();
+    func_80105CD0();
+    func_80106A60();
+    func_80106E50();
+    func_80107C10();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FFECC.s")
 
