@@ -27,7 +27,43 @@ void func_80800150_chcheatomenu(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_80800364_chcheatomenu.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_80800428_chcheatomenu.s")
+/* extern */
+
+void func_80800428_chcheatomenu(s32 arg0, s32 arg1) {
+    s32 _gcnewoption_entrypoint_21(s32, s32);
+    s32 _gcnewoption_entrypoint_22(s32, s32);
+    s32 _gcnewoption_entrypoint_23(s32, s32);
+    s32 _gcnewoption_entrypoint_31(s32, s32, s16);
+    s32 func_800D3DD0(s32);
+    s32 func_800D3E14(s32);
+    s32 func_800D3E40(s32);
+    s16 func_800D3FC0(s32);
+    s32 func_80800194_chcheatomenu(s32, s32, s32, s32);
+    s32 var_s0;
+    s32 var_s1;
+
+    var_s0 = 0;
+    var_s1 = 1;
+    do {
+        _gcnewoption_entrypoint_31(arg1, var_s0, func_800D3FC0(var_s1));
+        if (func_800D3E14(var_s1) != 0) {
+            if (func_800D3E40(var_s1) != 0) {
+                _gcnewoption_entrypoint_21(arg1, var_s0);
+            } else {
+                _gcnewoption_entrypoint_22(arg1, var_s0);
+            }
+            func_80800194_chcheatomenu(arg0, arg1, var_s0, 0);
+            goto block_8;
+        }
+        if (func_800D3DD0(var_s1) != 0) {
+            _gcnewoption_entrypoint_23(arg1, var_s0);
+            func_80800194_chcheatomenu(arg0, arg1, var_s0, 0);
+block_8:
+            var_s0 += 1;
+        }
+        var_s1 += 1;
+    } while (var_s1 != 0xD);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_8080052C_chcheatomenu.s")
 
