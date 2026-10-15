@@ -292,7 +292,36 @@ s32 ncpoddialog_entrypoint_8(void *arg0, s32 arg1) {
     return 5;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/ncpoddialog_entrypoint_9.s")
+/* extern */
+
+void ncpoddialog_entrypoint_9(void *arg0, s16 *arg1, int arg2, s32 arg3) {
+    s32 _ncpod_entrypoint_5(s16 *, void *, s32, s8, s32);
+    void func_8009055C(s32, s32);
+    void *func_80110024(s16 *);
+    s32 func_80800338_ncpoddialog(void *, s32, s32);
+    s32 func_80801310_ncpoddialog();
+    s32 var_v1;
+
+    var_v1 = (*(s8 *)((s8 *)(arg0) + (0x211)));
+    if (var_v1 == -1) {
+        func_80801310_ncpoddialog();
+        var_v1 = (*(s8 *)((s8 *)(arg0) + (0x211)));
+    }
+    if ((var_v1 != arg2) || ((*(u8 *)((s8 *)(arg0) + (0x216))) != 0)) {
+        (*(u8 *)((s8 *)(arg0) + (0x216))) = 0U;
+        (*(s8 *)((s8 *)(arg0) + (0x211))) = (s8) arg2;
+        (*(u8 *)((s8 *)(arg0) + (0x213))) = (u8) arg3;
+        func_8009055C(0x64, (arg3 << 0x10) | arg2);
+        var_v1 = (*(s8 *)((s8 *)(arg0) + (0x211)));
+        if (((var_v1 == 0) && ((*(u8 *)((s8 *)(arg0) + (0x213))) == 1)) || (var_v1 == 7)) {
+            if (_ncpod_entrypoint_5(arg1, func_80110024(arg1), 0x58, (*(s8 *)((s8 *)(arg0) + (0x211))), 0) != 4) {
+                func_80800338_ncpoddialog(arg0, arg1, 1);
+            }
+        } else {
+            (*(s8 *)((s8 *)(arg0) + (0x212))) = 1;
+        }
+    }
+}
 
 /* extern */
 
