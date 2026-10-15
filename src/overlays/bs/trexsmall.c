@@ -356,7 +356,17 @@ void func_808015BC_bstrexsmall()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_808015DC_bstrexsmall.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80801688_bstrexsmall.s")
+void func_80801688_bstrexsmall(PlayerState *arg0) {
+    s32 func_80800154_bstrexsmall(PlayerState *, s32);
+    void func_800A2CE8(PlayerState *, f32, s32);
+
+    bstrexsmall_entrypoint_3((s32)arg0);
+    func_808002B8_bstrexsmall(arg0);
+    func_8009D3A8(arg0, 0);
+    func_800A2CE8(arg0, 0.5702f, 3);
+    func_800A2CE8(arg0, 0.0702f, 4);
+    bs_setState(arg0, func_80800154_bstrexsmall(arg0, 0));
+}
 
 s32 bstrexsmall_entrypoint_13(s32 arg0) {
     extern s32 D_80801B98_bstrexsmall[];
