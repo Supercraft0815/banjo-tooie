@@ -69,4 +69,33 @@ void func_80800140_chweldarbossdoors(void *arg0, s32 arg1)
   func_80101870(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/doors/func_80800194_chweldarbossdoors.s")
+/* extern */
+
+void func_80800194_chweldarbossdoors(Actor *arg0) {
+    s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    void _chdoormake_entrypoint_6(Actor *, s32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800DA298(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F64A4(s32, s32);
+    void func_80101FDC(Actor *, u32);
+    s32 var_a0;
+
+    var_a0 = func_800DA298(0x174) != 0;
+    if (var_a0 != 0) {
+        var_a0 = func_800DA298(0x18C) == 0;
+        if (var_a0 != 0) {
+            var_a0 = func_800F64A4(func_800F54E4(), 1) != 0;
+        }
+    }
+    if ((var_a0 != 0) || (_glcutDll_entrypoint_20() != 0)) {
+        func_80101FDC(arg0, 1);
+    }
+    if (_chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, 350.0f, 2, -1) != 0) {
+        _chdoormake_entrypoint_5(arg0, 3.0f);
+        _chdoormake_entrypoint_6(arg0, 0x3E19999A);
+        _chdoormake_entrypoint_8(arg0, 4);
+    }
+}
