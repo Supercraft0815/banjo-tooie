@@ -16,7 +16,44 @@ s32 func_80800018_bsstand(s32 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stand/func_80800038_bsstand.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stand/bsstand_entrypoint_0.s")
+/* extern */
+
+void bsstand_entrypoint_0(void *arg0) {
+    s32 baanim_playForDuration_once(void *, s32, f32);
+    void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 bs_getPreviousState(PlayerState *);
+    s32 func_8008E23C(PlayerState *);
+    void func_800909CC(PlayerState *);
+    void func_80098840(u8 *);
+    s16 func_8009CBDC(PlayerState *, s32);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+    s32 sp2C;
+    s32 temp_v0;
+
+    temp_v0 = bs_getPreviousState(arg0);
+    sp2C = temp_v0;
+    if (func_8009CBDC(arg0, temp_v0) == 0xA) {
+        func_80098840(arg0);
+    }
+    if (sp2C == 0x5B) {
+        baanim_playForDuration_once(arg0, 0x6F, 5.5f);
+    } else {
+        baanim_playForDuration_onceSmooth(arg0, 0x6F, 5.5f);
+    }
+    func_8009FFD8(arg0, 1, 1, 1, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_800909CC(arg0);
+    if (func_8008E23C(arg0) != 0) {
+        (*(s32 *)((s8 *)(arg0) + (0x160))) = 0;
+        (*(s32 *)((s8 *)(arg0) + (0x164))) = 6;
+    } else {
+        (*(s32 *)((s8 *)(arg0) + (0x160))) = 1;
+        (*(s32 *)((s8 *)(arg0) + (0x164))) = 0x15;
+    }
+    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+    (*(s32 *)((s8 *)(arg0) + (0x168))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stand/func_80800274_bsstand.s")
 
