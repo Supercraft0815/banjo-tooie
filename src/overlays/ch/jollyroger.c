@@ -31,7 +31,7 @@ void func_808002E8_chjollyroger(s32 arg0) {
     s32 _subaddieitem_entrypoint_1(s32, s32);
     s32 func_800DA298(s32);
     s32 func_80100094(s32, s32);
-    s32 func_80102424(s32, s32);
+    void func_80102424(Actor *, s32);
     if (_glcutDll_entrypoint_20() != 0) {
         func_80102424(arg0, 9);
     } else if (func_800DA298(0xC0) != 0) {
@@ -59,14 +59,26 @@ void func_8080056C_chjollyroger(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800BA0_chjollyroger.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800CC4_chjollyroger.s")
+/* extern */
+
+void func_80800CC4_chjollyroger(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800F54E4();
+    s32 func_800F64A4(s32, s32);
+    void func_80102424(Actor *, s32);
+    s32 var_a1;
+
+    var_a1 = func_800F64A4(func_800F54E4(), 0x200) ? 0x1054 : 0xFFB;
+    _subaddiedialog_entrypoint_11(arg0->unk0, var_a1, 6, arg0->position, 0x56);
+    func_80102424(arg0, 3);
+}
 
 /* extern */
 
 void func_80800D28_chjollyroger(s32 arg0, s32 arg1, s32 arg2) {
     s32 func_800F54E4();
     s32 func_800F82D4(s32, s32);
-    s32 func_80102424(s32, s32);
+    void func_80102424(Actor *, s32);
     s32 func_80105A9C(s32, s32);
     s32 func_80105BAC(s32);
     s32 func_80800F3C_chjollyroger(s32, s32, s32);
