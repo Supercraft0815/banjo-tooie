@@ -31,7 +31,20 @@ void chbadshad_entrypoint_1(void *arg0, void *arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/chbadshad_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/chbadshad_entrypoint_3.s")
+/* extern */
+
+void chbadshad_entrypoint_3(Actor *arg0, void *arg1, s32 arg2, f32 arg3, s16 *arg4) {
+    void chbadshad_entrypoint_2(Actor *, s32, f32, s32);
+
+    while (*arg4 != -1) {
+        if (arg0->unk70_10 == *arg4) {
+            chbadshad_entrypoint_2(arg0, arg2, arg3, 0);
+            return;
+        }
+        arg4++;
+    }
+    chbadshad_entrypoint_1(arg0, arg1, arg3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/chbadshad_entrypoint_4.s")
 
