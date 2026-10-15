@@ -1,6 +1,58 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/light/vplight_entrypoint_0.s")
+/* extern */
+
+u8 *vplight_entrypoint_0(u8 *arg0, u8 *arg1) {
+    void *heap_alloc(s32);
+    void rare_memset(void *, u8, int);
+    struct {
+        s32 size;
+        s32 unused[8];
+        u8 *allocation;
+    } work;
+    s32 temp_t4;
+    u8 *temp_a1;
+    u8 *temp_a2;
+    u8 *var_v1;
+    u8 *temp_a0_2;
+    u8 *temp_t2;
+    u8 *var_a0;
+    u8 *var_v0;
+    u8 *base;
+
+    work.size = ((*(s32 *)(arg0 + 0x14)) * 0x10) + ((*(u16 *)(arg0 + 0x10)) * 2);
+    work.allocation = heap_alloc(work.size);
+    rare_memset(work.allocation, 0, work.size);
+    temp_t2 = work.allocation;
+    temp_t2 += *(s32 *)(arg0 + 0x14) * 0x10;
+    temp_a0_2 = ((*(u16 *)((s8 *)(arg0) + (0x10))) * 2) + temp_t2;
+    var_v0 = temp_t2;
+    if ((u32) temp_t2 < (u32) temp_a0_2) {
+        do {
+            var_v0 += 2;
+            (*(s16 *)((s8 *)(var_v0) + (-2))) = -1;
+        } while ((u32) var_v0 < (u32) temp_a0_2);
+    }
+    temp_a2 = ((*(s32 *)((s8 *)(arg0) + (0x14))) * 4) + arg1 + 0x14;
+    temp_a1 = arg1 + 0x14;
+    var_a0 = work.allocation;
+    var_v1 = temp_a1;
+    base = arg0;
+    base += *(s32 *)(arg0 + 0x1C);
+    if (temp_a1 < temp_a2) {
+        do {
+            temp_t4 = (var_v1 - temp_a1) >> 2;
+            if ((*(u16 *)((s8 *)(var_v1) + (2))) != 0) {
+                (*(s8 *)((s8 *)(var_a0) + (0))) = 1;
+                (*(s8 *)((s8 *)(var_a0) + (1))) = 0;
+                *(s16 *)(temp_t2 + *(s32 *)(temp_t4 * 0x14 + base + 0x10) * 2) = temp_t4;
+            }
+            var_v1 += 4;
+            var_a0 += 0x10;
+        } while (var_v1 < temp_a2);
+    }
+    return work.allocation;
+}
 
 void vplight_entrypoint_1(void* arg0) 
 {
