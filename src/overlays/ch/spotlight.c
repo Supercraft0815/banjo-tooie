@@ -11,7 +11,31 @@ OSThread *chspotlight_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_80800210_chspotlight.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_8080047C_chspotlight.s")
+/* extern */
+
+void func_8080047C_chspotlight(Actor *arg0) {
+    void func_800D93A0(f32[4], f32[3]);
+    void func_800DF41C(s32);
+    void func_800DF744(s32, s32);
+    void func_800DFF2C(u8 **, s32, f32[4]);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_801015D0(Actor *);
+    s32 func_801040D0(void);
+    s32 *sp3C;
+    s32 sp38;
+    f32 sp2C[3];
+    f32 sp1C[4];
+
+    sp3C = func_80100094(arg0, 0);
+    sp38 = func_801040D0();
+    func_801015D0(arg0);
+    func_800DF41C(sp38);
+    func_800EFA4C(sp2C, arg0->rotation[0] + 90.0f, 0.0f, 0.0f);
+    func_800D93A0(sp1C, sp2C);
+    func_800DFF2C((u8 **)sp38, 1, sp1C);
+    func_800DF744(1, sp3C[9]);
+}
 
 /* extern */
 
