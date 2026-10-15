@@ -64,7 +64,43 @@ void func_80800614_chtiptup(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 *arg4) {
     func_800BA22C(sp24, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800694_chtiptup.s")
+void func_80800694_chtiptup(Actor *arg0) {
+    u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    s32 func_80101E4C(Actor *, f32 *);
+    s32 func_801022E4(Actor *);
+    extern u32 D_808015B0_chtiptup;
+    extern u32 D_808015C0_chtiptup;
+    extern u32 D_808015CC_chtiptup;
+    extern u32 D_808015DC_chtiptup;
+    extern s32 D_808015EC_chtiptup;
+    extern f32 D_80801600_chtiptup;
+    f32 *sp20[2];
+    s32 temp_v0;
+    u8 temp_v0_2;
+    u8 var_a0;
+
+    switch (func_801022E4(arg0)) {
+        case 0x18A:
+            _subaddieaudioquick_entrypoint_3(arg0, sp20[0] = arg0->position, &D_808015B0_chtiptup, 0.7f);
+            _subaddieaudioquick_entrypoint_3(arg0, sp20[0], &D_808015C0_chtiptup, 0.35f);
+            _subaddieaudioquick_entrypoint_4(arg0, sp20[0], &D_808015CC_chtiptup, &D_808015DC_chtiptup);
+            break;
+        case 0x189:
+        if (func_80101E4C(arg0, &D_80801600_chtiptup) != 0) {
+        var_a0 = *((u8 *)arg0 + 0x28);
+        if (var_a0 == 0) {
+            temp_v0_2 = _subaddieaudioquick_entrypoint_1(arg0, arg0->position);
+            *((u8 *)arg0 + 0x28) = temp_v0_2;
+            var_a0 = temp_v0_2 & 0xFF;
+        }
+        func_800C4350(var_a0, arg0->position, &D_808015EC_chtiptup);
+        }
+        break;
+    }
+}
 
 /* extern */
 
