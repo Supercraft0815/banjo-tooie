@@ -31,4 +31,16 @@ void bsdronefalldie_entrypoint_2(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/falldie/bsdronefalldie_entrypoint_3.s")
+void bsdronefalldie_entrypoint_3(void *arg0) {
+    s32 _badata_entrypoint_16(void);
+    s32 func_800FCCD4(s32);
+
+    switch (*(s32 *)((s8 *)arg0 + 0x190)) {
+        case 1:
+            if (func_800FCCD4(_badata_entrypoint_16()) == 0) {
+                func_80800000_bsdronefalldie(arg0, 2);
+            }
+        case 2:
+            return;
+    }
+}
