@@ -398,7 +398,41 @@ OSThread *chgameselect_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080179C_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80801AC4_chgameselect.s")
+/* extern */
+
+s32 func_80101180(s32, s32, s32);
+
+void func_80801AC4_chgameselect(Actor *arg0) {
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void func_800B237C(void *, f32[3], f32 *);
+    void func_80101010(s32);
+    s32 func_80101DDC(Actor *);
+    void func_80102424(Actor *, s32);
+    s32 func_80103C94(Actor *);
+    void func_8080179C_chgameselect(Actor *);
+    s32 temp_v0;
+    f32 sp28[3];
+    f32 sp24;
+
+    if (!arg0->unk64_20) {
+        temp_v0 = func_80103C94(arg0);
+        if (temp_v0 != 0) {
+            func_800B237C(temp_v0, sp28, &sp24);
+            func_80101010(sp28);
+            if (func_80101180(0x4AB, 0x31, arg0->unk79_4) != 0) {
+                arg0->unk64_20 = 1;
+            }
+        }
+    }
+    if (_subaddiefade_entrypoint_0(arg0) < 0x64) {
+        _subaddiefade_entrypoint_1(arg0, 0x64);
+    }
+    if ((arg0->unk70_10 != 2) && (arg0->unk70_10 != 3) && (arg0->unk70_10 == 4) && (func_80101DDC(arg0) != 0)) {
+        func_80102424(arg0, 2);
+    }
+    func_8080179C_chgameselect(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80801BA8_chgameselect.s")
 
