@@ -122,7 +122,41 @@ f32 func_800A0E58(void *arg0) {
     return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 336) + 8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E79FD0/func_800A0E64.s")
+void func_800A0E64(PlayerState *arg0) {
+    s32 _fxairbub_entrypoint_1(f32 *, f32, f32, f32);
+    s32 _fxripple_entrypoint_0(s32, f32 *);
+    s32 _fxsplash25d_entrypoint_0(f32 *);
+    s32 _fxsplash_entrypoint_2(f32 *, f32);
+    f32 func_800964DC(PlayerState *);
+    s32 func_80096544(PlayerState *);
+    void func_8009C128(PlayerState *, f32[3]);
+    s32 func_8009DBF0(PlayerState *, s32, f32);
+    void func_800BA22C(s32, s32);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    f32 func_800DC178(f32, f32);
+    extern f32 D_80125490;
+    f32 sp3C[3];
+    s32 temp_s0;
+    f32 sp34;
+
+    if (func_80096544(arg0) != 0) {
+        func_8009DBF0(arg0, 0x409, func_800DC178(D_80125490, 0.75f));
+        func_8009C128(arg0, sp3C);
+        sp34 = func_800964DC(arg0);
+        sp3C[1] = sp34;
+        temp_s0 = _fxsplash_entrypoint_2(sp3C, 35.0f);
+        _fxripple_entrypoint_0(3, sp3C);
+        func_800BA930(temp_s0, -0x15E, 0x12C, -0x15E, 0x15E, 0x1F4, 0x15E);
+        func_800BA22C(temp_s0, 0xA);
+        func_800BA930(temp_s0, -0x96, 0x1F4, -0x96, 0x96, 0x320, 0x96);
+        func_800BA22C(temp_s0, 0xA);
+        _fxsplash25d_entrypoint_0(sp3C);
+        sp3C[1] -= 30.0f;
+        temp_s0 = _fxairbub_entrypoint_1(sp3C, 20.0f, sp34, 1.0f);
+        func_800BA930(temp_s0, -0x3C, -0xFA, -0x3C, 0x3C, -0x96, 0x3C);
+        func_800BA22C(temp_s0, 8);
+    }
+}
 
 u32 func_800A0FCC(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 336) + 2);
