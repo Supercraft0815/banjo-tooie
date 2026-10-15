@@ -16,7 +16,36 @@ void func_8010FAEC(s32 arg0, void *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FB34.s")
+/* extern */
+
+void *func_8010FB34(s32 arg0, s32 arg1) {
+    s32 func_800DA298(s32);
+    s32 func_8010F9C0(s32, s32);
+    s32 func_80110424(void *, s32);
+    void *func_80114BD4(void);
+    void *func_80115118(s32);
+    void *heap_alloc(s32);
+    void *temp_v0;
+
+    temp_v0 = heap_alloc(0x40);
+    (*(s32 *)((s8 *)(temp_v0) + (0))) = arg0;
+    (*(s8 *)((s8 *)(temp_v0) + (0x18))) = 0;
+    (*(s8 *)((s8 *)(temp_v0) + (0x19))) = 0;
+    (*(s8 *)((s8 *)(temp_v0) + (0x20))) = 0;
+    (*(void **)((s8 *)(temp_v0) + (0x10))) = func_80114BD4();
+    if (func_800DA298(0x6B5) != 0) {
+        (*(void **)((s8 *)(temp_v0) + (0xC))) = func_80115118(temp_v0);
+    } else {
+        (*(s32 *)((s8 *)(temp_v0) + (0xC))) = 0;
+    }
+    (*(s32 *)((s8 *)(temp_v0) + (0x1C))) = arg1;
+    (*(s32 *)((s8 *)(temp_v0) + (4))) = func_80110424(temp_v0, arg1);
+    (*(s32 *)((s8 *)(temp_v0) + (8))) = 0;
+    (*(s16 *)((s8 *)(temp_v0) + (0x14))) = 0;
+    (*(s16 *)((s8 *)(temp_v0) + (0x16))) = 0;
+    func_8010F9C0(temp_v0, 1);
+    return temp_v0;
+}
 
 /* extern */
 
