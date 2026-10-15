@@ -1,6 +1,23 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/bssplitup_entrypoint_0.s")
+typedef struct player_state_s PlayerState;
+
+/* extern */
+
+void bssplitup_entrypoint_0(void *arg0) {
+    void _bapackctrl_entrypoint_5(PlayerState *, s32);
+    void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
+    void func_8009B94C(u8 *, f32 *);
+    void func_8009BA9C(PlayerState *, f32 *);
+    void func_8009FFD8();
+    void func_800A3410(PlayerState *, s32);
+    func_800A3410(arg0, 0xA);
+    _bapackctrl_entrypoint_5(arg0, 3);
+    baanim_playForDuration_onceSmooth(arg0, 0xA2, 2.2f);
+    func_8009FFD8(arg0, 1, 1, 3, 2);
+    func_8009B94C(arg0, 0);
+    func_8009BA9C(arg0, 0);
+}
 
 /* extern */
 
@@ -42,8 +59,6 @@ s32 bssplitup_entrypoint_3(s32 arg0) {
 
 /* extern */
 
-typedef struct player_state_s PlayerState;
-
 void bssplitup_entrypoint_4(PlayerState *arg0) {
     void bastick_func_8009F258(PlayerState *);
     void func_80092778(PlayerState *);
@@ -76,13 +91,13 @@ s32 bssplitup_entrypoint_7(s32 arg0) {
 
 /* extern */
 
-void bssplitup_entrypoint_8(s32 arg0) {
+void bssplitup_entrypoint_8(void *arg0) {
     s32 _batimer_set(s32, s32, s32);
-    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
-    s32 func_8009B94C(s32, s32);
-    s32 func_8009BA9C(s32, s32);
-    s32 func_8009FFD8(s32, s32, s32, s32, s32);
-    baanim_playForDuration_loopSmooth(arg0, 0x6F, 0x40B00000);
+    void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
+    void func_8009B94C(u8 *, f32 *);
+    void func_8009BA9C(PlayerState *, f32 *);
+    void func_8009FFD8();
+    baanim_playForDuration_loopSmooth(arg0, 0x6F, 5.5f);
     func_8009FFD8(arg0, 1, 1, 3, 2);
     func_8009B94C(arg0, 0);
     func_8009BA9C(arg0, 0);
