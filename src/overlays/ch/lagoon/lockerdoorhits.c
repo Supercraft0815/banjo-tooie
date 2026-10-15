@@ -1,6 +1,25 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/lockerdoorhits/func_80800000_chlagoonlockerdoorhits.s")
+void func_80800000_chlagoonlockerdoorhits(Actor *arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800DA564(s32, s32);
+    void func_800FFAB0(Actor *);
+    void func_80103014(u8 *);
+    extern s16 D_808003F8_chlagoonlockerdoorhits[];
+    s32 sp1C;
+    s16 *temp_v0;
+
+    sp1C = arg0->unk74_7 - 0x33;
+    if ((func_800DA298(0x3A8) != 0) && ((func_800DA564(0x3A4, 4) + 0x32) == (s32)arg0->unk74_7)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    temp_v0 = D_808003F8_chlagoonlockerdoorhits + sp1C * 3;
+    arg0->position[0] = temp_v0[0] * 100.0f + 8500.0f;
+    arg0->position[1] = temp_v0[1] * 100.0f + -8000.0f;
+    arg0->position[2] = temp_v0[2] * 100.0f + -8200.0f;
+    func_80103014(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/lockerdoorhits/func_8080010C_chlagoonlockerdoorhits.s")
 
