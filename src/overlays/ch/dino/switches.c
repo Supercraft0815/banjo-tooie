@@ -80,7 +80,35 @@ void func_80800270_chdinoswitches(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/func_808003E8_chdinoswitches.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/chdinoswitches_entrypoint_4.s")
+/* extern */
+
+void chdinoswitches_entrypoint_4(s32 arg0, s32 arg1) {
+    void _glcutDll_entrypoint_6(u32, u32);
+    Actor *_subaddiefind_entrypoint_11(s32, s32);
+    s32 func_800DA298(s32);
+    void func_800DA524(s32);
+    s32 func_800EA05C();
+    s32 func_8010108C();
+    s32 func_80101180(s32, s32, s32);
+    void func_80103110(Actor *, u32);
+    Actor *sp1C;
+    Actor *sp18;
+
+    if (func_800EA05C() == 0x112) {
+        sp1C = _subaddiefind_entrypoint_11(0x364, 0x35);
+        sp18 = _subaddiefind_entrypoint_11(0x433, 0x35);
+        func_80101180(0x433, 8, 0);
+        func_8010108C(sp1C, 8, 0);
+        func_80103110(sp18, 1);
+        return;
+    }
+    if (func_800DA298(0xA3A) == 0) {
+        _glcutDll_entrypoint_6(0x112, 0x37);
+        return;
+    }
+    func_800DA524(0xA10);
+    func_800DA524(0x676);
+}
 
 void func_80800714_chdinoswitches(Actor *arg0) {
     s32 func_800DA298(s32);
