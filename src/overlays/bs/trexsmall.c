@@ -135,7 +135,29 @@ s32 bstrexsmall_entrypoint_6(s32 arg0) {
     return ((s32 *)&D_80801B38_bstrexsmall)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/bstrexsmall_entrypoint_7.s")
+/* extern */
+
+void func_8009C128(PlayerState *, f32[3]);
+
+s32 bstrexsmall_entrypoint_7(PlayerState *arg0, f32 *arg1) {
+    s32 func_8008DAE8(PlayerState *, f32 *, f32);
+    f32 func_800EFC7C(void *, void *);
+    f32 temp_f0;
+    f32 sp18[3];
+
+    func_8009C128(arg0, sp18);
+    temp_f0 = func_800EFC7C(sp18, arg1);
+    if (temp_f0 < 40000.0f) {
+        return 1;
+    }
+    if (temp_f0 > 250000.0f) {
+        return 0;
+    }
+    if (func_8008DAE8(arg0, arg1, 90.0f) == 0) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80800CA4_bstrexsmall.s")
 
