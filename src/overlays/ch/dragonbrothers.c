@@ -53,7 +53,46 @@ s32 func_80800438_chdragonbrothers(Actor *arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808004A4_chdragonbrothers.s")
+/* extern */
+
+void func_808004A4_chdragonbrothers(Actor *arg0, s32 arg1) {
+    void func_800A516C(f32 *, f32 *, f32 *);
+    void func_800A51C0();
+    void func_800A5240();
+    void func_800A526C();
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF334(f32 *, f32);
+    s32 func_800F1EA4(f32[3], f32 *);
+    void func_800F5A00(s32, f32 *);
+    void func_800F5A2C(s32, s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 *temp_v0;
+    f32 sp38[3];
+    f32 sp2C[3];
+    f32 sp20[3];
+
+    temp_v0 = func_80100094(arg0, 0);
+    if (arg1 != 0) {
+        func_800F5A2C(temp_v0[8], 5, sp20);
+        func_800EE7F8(sp38, sp20);
+        func_800EF334(sp38, 1.25f);
+        sp38[1] += 375.0f;
+        func_800A516C(sp2C, sp20, sp38);
+    } else {
+        func_800F5A00(temp_v0[8], sp38);
+        func_800F1EA4(sp38, &sp2C[1]);
+        sp2C[2] = 0.0f;
+        sp2C[0] = 0.0f;
+        func_800EEC30(sp38, 0.0f, sp2C[1], 4500.0f);
+        sp2C[1] = -sp2C[1];
+    }
+    func_800A5240(sp38);
+    func_800A526C(sp2C);
+    func_800A51C0();
+    func_800A5240(sp38);
+    func_800A526C(sp2C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808005A4_chdragonbrothers.s")
 
