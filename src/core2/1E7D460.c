@@ -48,7 +48,42 @@ void func_800A3EC8(PlayerState *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A3F14.s")
+/* extern */
+
+void func_800A3F14(PlayerState *arg0, s32 arg1) {
+    void func_80090C28(PlayerState *, s32);
+    u8 *temp_v0;
+
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x38)));
+    if (arg1 != temp_v0[6]) {
+        switch (temp_v0[6]) {                          /* switch 1; irregular */
+        case 5:                                     /* switch 1 */
+            func_80090C28(arg0, 1);
+            break;
+        case 7:                                     /* switch 1 */
+            func_800A3D78(arg0, (*(u8 *)((s8 *)(temp_v0) + (0x3A))), 1);
+            (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (0x3A))) = 0;
+            break;
+        }
+        switch (arg1) {                             /* switch 2; irregular */
+        case 2:                                     /* switch 2 */
+            func_800A3B78(arg0, 0x13);
+            break;
+        case 7:                                     /* switch 2 */
+            func_800A3B78(arg0, 0x1A);
+            (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (0x3A))) = func_800A3DAC(arg0);
+            func_800A3D78(arg0, 4U, 1);
+            break;
+        case 8:                                     /* switch 2 */
+            func_800A3B78(arg0, 0x18);
+            break;
+        case 6:                                     /* switch 2 */
+            func_800A3B78(arg0, 2);
+            break;
+        }
+        (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (6))) = (s8) arg1;
+    }
+}
 
 /* extern */
 
