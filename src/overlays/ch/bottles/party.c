@@ -66,7 +66,30 @@ void func_8080022C_chbottlesparty(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/party/func_80800234_chbottlesparty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/party/func_80800330_chbottlesparty.s")
+void func_80800330_chbottlesparty(Actor *arg0) {
+    void func_800C8E84(s32, u32[3]);
+    f32 func_800D8FF8(void);
+    f32 func_800F0F9C(f32, f32);
+    int func_800F3214(void *, void *, void *, f32);
+    f32 func_800F3780(f32, u8 *, s16);
+    void func_80103DFC(Actor *, f32 *);
+    extern f32 D_808004CC_chbottlesparty[][3];
+    extern f32 D_808004FC_chbottlesparty[3];
+    extern u8 D_80800508_chbottlesparty[3];
+    u32 sp3C[3];
+    f32 sp30[3];
+    f32 delta;
+    f32 sp28;
+
+    if (arg0->actorData[4] != 0) {
+        sp28 = func_800F3780(func_800F0F9C(arg0->unk58, *(f32 *)&arg0->actorData[5]), D_80800508_chbottlesparty, 3);
+        func_80103DFC(arg0, sp30);
+        func_800F3214(sp3C, D_808004FC_chbottlesparty, D_808004CC_chbottlesparty[arg0->unk6C_0], sp28);
+        func_800C8E84(arg0->actorData[4], sp3C);
+        delta = func_800D8FF8();
+        arg0->unk58 += delta;
+    }
+}
 
 s32 func_808003E4_chbottlesparty(s32 arg0, s32 arg1, s32 arg2) {
     return 0;
