@@ -1,5 +1,5 @@
 #include "core2/1EDA900.h"
-extern Unk80132ED0* D_80135A80;
+extern void *D_80135A80;
 
 void func_80101010(s32 arg0) {
     s32 func_800EE7F8(s32 *, s32);
@@ -23,12 +23,12 @@ f32 func_80101068(void) {
     return *(f32 *)((u8 *)&D_80135A7C + 0);
 }
 
-void func_80101074(s32 arg0)
+void func_80101074(void *arg0)
 {
     D_80135A80 = arg0;
 }
 
-Unk80132ED0* func_80101080()
+void *func_80101080()
 {
     return D_80135A80;
 }

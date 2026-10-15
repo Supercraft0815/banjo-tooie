@@ -392,7 +392,36 @@ void func_80109FE8(void **arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A01C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A2FC.s")
+void func_8010A2FC(Actor *arg0, f32 *arg1, f32 *arg2) {
+    void func_800EC75C(Unk80132ED0 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void *func_80101080(void);
+    s32 func_8010108C(Actor *, s32, s32);
+    extern f32 D_801264B4;
+    f32 *var_s0;
+    f32 temp_f0;
+    f32 var_f22;
+    f32 sp48[3];
+    s32 var_s2;
+
+    var_s2 = func_8010108C(arg0, 0xA2, 0);
+    if (var_s2 > 0) {
+        var_s0 = func_80101080();
+        var_f22 = D_801264B4;
+        while (var_s2--) {
+            func_800EE7F8(sp48, var_s0);
+            temp_f0 = func_800EEB40(sp48, arg2);
+            if (temp_f0 < var_f22) {
+                func_800EE7F8(arg1, sp48);
+                var_f22 = temp_f0;
+            }
+            var_s0 += 3;
+        }
+    } else {
+        func_800EC75C(arg0->unk0, arg1);
+    }
+}
 
 void func_8010A3E8(void *arg0, f32 arg1) {
     (*(s16 *)((s8 *)(arg0) + (0x92))) = (s16) (s32) (256.0f * arg1);
