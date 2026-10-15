@@ -160,7 +160,24 @@ void func_80800A30_chlavahand(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/hand/func_80800AAC_chlavahand.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/hand/func_80800D8C_chlavahand.s")
+/* extern */
+
+void func_80800D8C_chlavahand(Actor *arg0, s32 arg1) {
+    s32 func_80101870(Actor *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80800FB4_chlavahand(Actor *, s32);
+    Unk80132ED0 *temp_a1;
+    s32 temp_t9;
+
+    func_80101870(arg0, arg1);
+    temp_a1 = arg0->unk3C;
+    if ((temp_a1 != NULL) && arg0->unk7C_12) {
+        temp_t9 = arg0->unk70_10;
+        if ((temp_t9 >= 2) && (temp_t9 < 8)) {
+            func_80800FB4_chlavahand(func_80106790(temp_a1), arg1);
+        }
+    }
+}
 
 OSThread *chlavahand_entrypoint_0(void)
 {
