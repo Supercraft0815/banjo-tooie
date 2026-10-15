@@ -226,7 +226,30 @@ s32 func_80109524(s32 arg0) {
     return D_801245A0[arg0][0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109538.s")
+/* extern */
+
+void func_80109538(void *arg0, f32 *arg1, void *arg2, s32 arg3) {
+    s32 _subaddiecustomhits_entrypoint_4(Actor *, f32 *, s32);
+    s32 func_800B53A4(s32);
+    void func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_80109524(s32);
+    f32 sp2C[3];
+    s32 var_a1;
+    s32 sp24;
+
+    if (_subaddiecustomhits_entrypoint_4(arg0, sp2C, 0) == 0) {
+        func_800EE7F8(sp2C, arg1);
+    }
+    arg2 != NULL ? (var_a1 = ((u32) (*(u32 *)((s8 *)(arg2) + 0x24)) >> 0x16) == 0 ? 0 : 1) : (var_a1 = 0);
+    if (arg3 != 0) {
+        sp24 = func_800B53A4(0xA);
+        func_800BA3FC(sp24, func_80109524(var_a1));
+        func_800BABB8(sp24, sp2C, sp2C, 1.0f, func_80109518());
+    }
+    func_801094E0(sp2C, 1.0f);
+}
 
 void func_80109600(void *arg0, void *arg1) {
     void func_80103DFC(void *, f32 *);
