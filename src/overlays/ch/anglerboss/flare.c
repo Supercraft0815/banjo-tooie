@@ -65,4 +65,23 @@ void func_80800190_changlerbossflare(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/flare/func_8080021C_changlerbossflare.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/flare/func_808003A4_changlerbossflare.s")
+void func_808003A4_changlerbossflare(Actor *arg0) {
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800EEBF0(f32 *, f32 *, f32);
+    f32 func_800EEF94(f32 *);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6438(u32);
+    f32 sp34[3];
+    f32 sp2C[2];
+
+    if (arg0->unk64_20 && func_800F6438(arg0->unk6C_0)) {
+        func_800F5A00(arg0->unk6C_0, sp34);
+        if (func_800EEB40(arg0->position, sp34) < 1440000.0f) {
+            arg0->unk64_20 = 0;
+            return;
+        }
+        func_800F18FC(arg0->position, sp34, sp2C);
+        func_800EEBF0((f32 *)&arg0->actorData[4], sp2C, func_800EEF94((f32 *)&arg0->actorData[4]));
+    }
+}
