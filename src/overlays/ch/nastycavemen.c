@@ -47,7 +47,34 @@ int func_808000AC_chnastycavemen(int arg0, s32 *arg1, s32 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_8080010C_chnastycavemen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_80800194_chnastycavemen.s")
+/* extern */
+
+int func_80800194_chnastycavemen(s32 arg0, s32 arg1) {
+    s32 func_800F56AC(s32);
+    s32 func_800F6478(s32);
+    s32 func_800F64A4(s32, s32);
+    s32 func_800F651C(s32);
+    s32 func_800F6C5C(s32);
+    int func_800F72DC(s32);
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+    s32 temp_t0;
+    s32 temp_t1;
+    s32 temp_t2;
+    s32 temp_t8;
+    s32 temp_t9;
+    s32 var_v0;
+
+    sp34 = func_800F64A4(arg1, 0x10000) == 0;
+    sp30 = func_800F651C(arg1);
+    sp2C = func_800F6C5C(arg1);
+    sp28 = func_800F72DC(arg1);
+    sp24 = func_800F56AC(arg1) == 0x10;
+    return func_800F6478(arg1) && sp34 && sp24 && (sp28 || (sp2C && !sp30));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_80800268_chnastycavemen.s")
 
