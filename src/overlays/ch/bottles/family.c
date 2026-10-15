@@ -109,7 +109,7 @@ void func_8080099C_chbottlesfamily(Actor *arg0, s32 arg1, s32 arg2) {
 
 s32 func_808009F0_chbottlesfamily(s32 arg0, s32 *arg1) {
     s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
-    s32 func_80800C08_chbottlesfamily(void *, s32, s32);
+    void func_80800C08_chbottlesfamily(Actor *, s32, s32);
     s32 temp_v0;
     s32 var_v1;
     s32 sp1C;
@@ -161,7 +161,7 @@ void func_80800A84_chbottlesfamily(Actor *arg0) {
 
 s32 func_80800B64_chbottlesfamily(void *arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_0(s32, s32);
-    s32 func_80800C08_chbottlesfamily(void *, s32, s32);
+    void func_80800C08_chbottlesfamily(Actor *, s32, s32);
     if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
         if (((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF) != 2) {
             func_80800C08_chbottlesfamily(arg0, 2, 1);
@@ -181,7 +181,25 @@ void func_80800BC0_chbottlesfamily(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_80800C08_chbottlesfamily.s")
+void func_80800C08_chbottlesfamily(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_7(s32, s32);
+    s32 _capod_entrypoint_8(s32);
+    void _gcdialogcamera_entrypoint_8(void);
+
+    switch (arg0->unk6C_0) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x18, 0);
+        case 1:
+            _capod_entrypoint_8(1);
+            arg0->unk6C_0 = 2;
+            func_80800A84_chbottlesfamily(arg0);
+            _gcdialogcamera_entrypoint_8();
+        case 2:
+            _capod_entrypoint_7(arg1, arg2);
+            break;
+    }
+}
 
 void func_80800CA4_chbottlesfamily(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
