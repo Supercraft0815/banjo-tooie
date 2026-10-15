@@ -251,7 +251,29 @@ void func_800DD1C0(Gfx **gfx, u8 *data) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD214.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD2E8.s")
+void func_800DD2E8(s32 model, u8 *data) {
+    void func_800DE2A4(s32, u8 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    extern s32 D_8012CE98;
+    extern f32 D_8012CF70[3];
+    struct Command {
+        u8 padding[8];
+        f32 max;
+        f32 min;
+        f32 position[3];
+        s32 branch_offset;
+    };
+    struct Command *cmd = (struct Command *)data;
+    f32 dist;
+
+    if (cmd->branch_offset) {
+        func_800DC580(D_8012CF70, cmd->position);
+        dist = func_800EEB40(D_8012CF70, (f32 *)&D_8012CE98);
+        if ((cmd->min * cmd->min < dist) && (dist <= cmd->max * cmd->max)) {
+            func_800DE2A4(model, (u8 *)cmd + cmd->branch_offset);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD37C.s")
 
