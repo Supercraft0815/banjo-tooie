@@ -105,7 +105,25 @@ s32 func_808007A4_chhoopswoop(void *arg0, s32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80800C04_chhoopswoop.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80800C9C_chhoopswoop.s")
+void func_80800C9C_chhoopswoop(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80108B04(Actor *, u32);
+    void func_800DA544(GameFlag);
+
+    switch (arg2) {
+        case 1:
+            func_80108B04(arg0, 1);
+            func_800DA544(3);
+            break;
+        case 2:
+            func_80108B04(arg0, 2);
+            func_800DA544(2);
+            break;
+        case 3:
+            func_800DA544(1);
+            arg0->unk3C = NULL;
+            break;
+    }
+}
 
 void func_80800D28_chhoopswoop(void *arg0, s32 arg1) {
     typedef struct {
