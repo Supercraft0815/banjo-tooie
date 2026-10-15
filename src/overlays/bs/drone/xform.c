@@ -52,7 +52,23 @@ void func_808003DC_bsdronexform(void *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/func_8080051C_bsdronexform.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/bsdronexform_entrypoint_0.s")
+/* extern */
+
+void bsdronexform_entrypoint_0(s32 *arg0, s32 arg1) {
+    void func_800DFF64(s32 *, s32, f32 *);
+    f32 func_800F1074(f32, f32);
+    struct player_state_s *func_800F53D0(s32);
+    f32 values[3];
+    struct player_state_s *self;
+
+    self = func_800F53D0(arg1);
+    arg1 = 0;
+    do {
+        values[arg1] = (*(f32 **)((s8 *)self + 0x18C))[9] + ((*(f32 **)((s8 *)self + 0x18C))[9] * (*(f32 **)((s8 *)self + 0x18C))[10]) * func_800F1074((*(f32 **)((s8 *)self + 0x18C))[8] + ((f32)arg1 / 3.0f) * 0.5f, 0.5f);
+        arg1++;
+    } while (arg1 != 3);
+    func_800DFF64(arg0, 3, values);
+}
 
 void func_8080069C_bsdronexform(s32 arg0)
 {
