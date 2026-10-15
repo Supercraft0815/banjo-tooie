@@ -14,7 +14,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_80029D54.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_80029E64.s")
+u8 func_80029E64(void *arg0, void *arg1) {
+    s32 sp14;
+    s32 sp10;
+
+    sp14 = (*(u8 (**)[0x38])((u8 *)arg1 + 0x60))[*(u8 *)((u8 *)arg0 + 0x35)][6] & 0x80;
+    sp10 = (s32)(*(f32 *)((u8 *)arg1 + 0x80) * (f32)((s32)(*(f32 *)((u8 *)arg1 + 0x7C) * 127.0f) + ((*(u8 (**)[0x38])((u8 *)arg1 + 0x60))[*(u8 *)((u8 *)arg0 + 0x35)][6] & 0x7F)));
+    return ((sp10 >= 0x80 ? 0x7F : sp10) < 0 ? 0 : (sp10 >= 0x80 ? 0x7F : sp10)) | sp14;
+}
 
 s32 func_80029F5C(void *arg0, s32 arg1) {
     s32 sp4;
