@@ -29,7 +29,24 @@ void func_80800018_chtntbox(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/func_80800358_chtntbox.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/func_808003F0_chtntbox.s")
+void func_808003F0_chtntbox(s32 arg0, f32 arg1[3]) {
+    s32 func_800B53A4(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_800DC178(f32, f32);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    extern s32 D_80800A3C_chtntbox;
+    s32 temp_s5;
+    f32 sp60[3];
+    s32 var_s1;
+
+    temp_s5 = func_800B53A4(8);
+    for (var_s1 = 0; var_s1 != 8; var_s1++) {
+        func_800EEB9C(sp60, (f32) var_s1 * 45.0f, func_800DC178(60.0f, 80.0f));
+        func_800EF04C(sp60, arg1);
+        func_800BABB8(temp_s5, sp60, arg1, 0.6f, &D_80800A3C_chtntbox);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/func_808004F8_chtntbox.s")
 
