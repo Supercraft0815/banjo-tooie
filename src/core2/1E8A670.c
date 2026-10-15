@@ -172,7 +172,21 @@ void *func_800B2400(VertexListView *list, s32 side) {
     return copy;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B2464.s")
+void func_800B2464(VertexListView *this, s32 color[3], VertexListView *src) {
+    Vtx *start_ptr, *end_ptr, *i_ptr, *src_ptr;
+    int i;
+
+    if (color[0] != 0xFF || color[1] != 0xFF || color[2] != 0xFF) {
+        start_ptr = this->vertices;
+        end_ptr = start_ptr + this->count;
+        for (i_ptr = start_ptr, src_ptr = src->vertices; i_ptr < end_ptr; i_ptr++, src_ptr++) {
+            for (i = 0; i < 3; i++) {
+                i_ptr->v.cn[i] = (src_ptr->v.cn[i] * color[i]) >> 8;
+            }
+        }
+        osWritebackDCache(start_ptr, (end_ptr - start_ptr) * sizeof(Vtx));
+    }
+}
 
 void func_800B2540(VertexListView *this, s32 color[3]) {
     Vtx *start_ptr, *end_ptr, *i_ptr;
