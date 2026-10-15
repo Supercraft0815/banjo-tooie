@@ -244,7 +244,39 @@ void func_808010C0_choildrill(s32 arg0) {
     ((Actor *)arg0)->unk64_20 = func_800DA298(0x351);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_80801110_choildrill.s")
+/* extern */
+
+s32 func_80801110_choildrill(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800DA298(s32);
+    u32 func_800F54E4(void);
+    int func_800F6B94(s32);
+    s32 func_80101180(s32, s32, s32);
+    Actor *actor = (Actor *)arg0;
+    if (arg1 != 7) {
+        if (arg1 == 0x91) {
+            if (func_800F6B94(func_800F54E4()) != 0) {
+                if (!actor->unk74_29 && (func_800DA298(0x351) == 0)) {
+                    _subaddiedialog_entrypoint_11(actor->unk0, 0x12BE, 0xC, actor->position, 0x6F);
+                    actor->unk74_29 = 1;
+                    return _chswitch_entrypoint_10(arg0, arg1, arg2);
+                }
+                goto block_9;
+            }
+            if (!actor->unk74_30 && (func_800DA298(0x351) == 0)) {
+                _subaddiedialog_entrypoint_11(actor->unk0, 0x12BD, 4, actor->position, 0x6F);
+                actor->unk74_30 = 1;
+            }
+block_9:
+            return 0;
+        }
+        goto block_11;
+    }
+    func_80101180(0x484, 0xA, 0);
+block_11:
+    return _chswitch_entrypoint_10(arg0, arg1, arg2);
+}
 
 OSThread *choildrill_entrypoint_2(void)
 {
