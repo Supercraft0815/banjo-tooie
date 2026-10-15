@@ -81,7 +81,44 @@ void func_80800430_bsbanshack()
 
 void func_80800450_bsbanshack(PlayerState *arg0) { s32 baanim_playForDuration_onceSmooth(void *, s32, s32); void baphysics_set_target_horizontal_velocity(PlayerState *, f32); s32 func_8009FFD8(PlayerState *, s32, s32, s32, s32); func_8080021C_bsbanshack(); baanim_playForDuration_onceSmooth(arg0, 0x295, 0x3FB33333); func_8009FFD8(arg0, 1, 1, 1, 2); baphysics_set_target_horizontal_velocity(arg0, 0.0f); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_808004AC_bsbanshack.s")
+/* extern */
+
+void func_808004AC_bsbanshack(PlayerState *arg0) {
+    struct anctrl_s;
+    void _babackpack_set_state(void *, s32);
+    int anctrl_isAt(struct anctrl_s *, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    int baanim_isAt(PlayerState *, f32);
+    int baanim_isStopped(PlayerState *);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    s32 bs_setState(PlayerState *, s32);
+    void func_8009DEC0(PlayerState *, s32, f32, f32, s32, s32);
+    void func_800A0CD0(void *, s32);
+    s32 sp2C;
+    struct anctrl_s *sp28;
+    struct anctrl_s *temp_v0;
+
+    sp2C = 0;
+    temp_v0 = baanim_getAnimCtrlPtr(arg0);
+    sp28 = temp_v0;
+    if (anctrl_isAt(temp_v0, 0.29f) != 0) {
+        func_8009DEC0(arg0, 0x583, 0.95f, 1.05f, 0x55F0, 0x55F0);
+    }
+    if (anctrl_isAt(sp28, 0.74f) != 0) {
+        func_8009DEC0(arg0, 0x584, 0.95f, 1.05f, 0x55F0, 0x55F0);
+    }
+    if (baanim_isAt(arg0, 0.1351f) != 0) {
+        baphysics_set_vertical_velocity(arg0, 600.0f);
+    }
+    if (baanim_isAt(arg0, 0.6757f) != 0) {
+        _babackpack_set_state(arg0, 1);
+        func_800A0CD0(arg0, 1);
+    }
+    if (baanim_isStopped(arg0) != 0) {
+        sp2C = 1;
+    }
+    bs_setState(arg0, sp2C);
+}
 
 s32 bsbanshack_entrypoint_1(s32 arg0) {
     extern s32 D_80800CC0_bsbanshack[];
