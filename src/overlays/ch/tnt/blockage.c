@@ -7,7 +7,19 @@ OSThread *chtntblockage_entrypoint_0(void)
     return (OSThread *) D_80800240_chtntblockage;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/blockage/func_8080000C_chtntblockage.s")
+void func_8080000C_chtntblockage(Actor *arg0) {
+    void func_800C4AF0(f32 *, void *);
+    f32 func_800D8FF8(void);
+    void func_800FFAB0(Actor *);
+    extern s32 D_80800288_chtntblockage;
+    if (arg0->unk70_10 == 2) {
+        arg0->unk58 += func_800D8FF8();
+        if (arg0->unk58 > 0.5f) {
+            func_800C4AF0(arg0->position, &D_80800288_chtntblockage);
+            func_800FFAB0(arg0);
+        }
+    }
+}
 
 void func_80800088_chtntblockage()
 {
