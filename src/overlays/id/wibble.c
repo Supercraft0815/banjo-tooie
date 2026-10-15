@@ -62,7 +62,24 @@ s32 *func_80800324_idwibble(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/wibble/idwibble_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/wibble/idwibble_entrypoint_3.s")
+void idwibble_entrypoint_3(f32 *arg0, s32 arg1, s32 arg2) {
+    s32 _glid_entrypoint_0(s32, s32, s32 *, void *);
+    f32 func_800D8FF8(void);
+    s32 func_800E3D0C(void *, void *);
+    void func_800EE7F8(f32 *, f32 *);
+    extern s32 _idwibble_entrypoint_0;
+    arg0[9] += func_800D8FF8() * arg0[11];
+    {
+    struct { f32 x, y, z; } sp34, sp28;
+    func_800EE7F8(&sp34.x, arg0);
+    func_800EE7F8(&sp28.x, arg0 + 3);
+    sp34.y += *(s16 *)((s8 *)arg0 + 0x34);
+    sp28.y += *(s16 *)((s8 *)arg0 + 0x34);
+    if (*(u8 *)((s8 *)arg0 + 0x37) || func_800E3D0C(arg0, arg0 + 3)) {
+        _glid_entrypoint_0(arg1, arg2, &_idwibble_entrypoint_0, arg0);
+    }
+    }
+}
 
 void idwibble_entrypoint_4(void *arg0, s32 arg1, s32 arg2) { s32 _glid_entrypoint_0(s32, s32, s32 *, void *); f32 func_800D8FF8(void); extern s32 _idwibble_entrypoint_0; f32 dt = func_800D8FF8(); f32 *velocity = (f32 *) ((s8 *) arg0 + 0x2C); f32 *position = (f32 *) ((s8 *) arg0 + 0x24); *position += dt * *velocity; _glid_entrypoint_0(arg1, arg2, &_idwibble_entrypoint_0, arg0); }
 
