@@ -7,7 +7,40 @@ OSThread *charmouredcaveman_entrypoint_0(void)
     return (OSThread *) D_80800B20_charmouredcaveman;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/armouredcaveman/func_8080000C_charmouredcaveman.s")
+/* extern */
+
+void func_8080000C_charmouredcaveman(Actor *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800D0B68(u32, u32);
+    void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
+    s32 func_800DA298(s32);
+    s32 func_800DA564(s32, s32);
+    void func_800FFAB0(Actor *);
+    void func_80102424(Actor *, s32);
+    s32 func_8010B990(Actor *, s32);
+    s32 temp_v0;
+
+    temp_v0 = arg0->unk74_7 - 0x32;
+    arg0->actorData[5] = temp_v0;
+    arg0->actorData[4] = temp_v0 + 0x17A;
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80102424(arg0, 7);
+        goto block_9;
+    }
+    if (func_800DA298(0x5D) != 0) {
+        if ((func_800DA564(0x17A, 5) == arg0->actorData[5]) && (func_800D0B68(0x31, 1) == 0)) {
+            func_800D1000(0x31, 1, arg0->position, 3, NULL);
+        }
+        func_800FFAB0(arg0);
+        return;
+    }
+    if (func_800DA298(arg0->actorData[4]) != 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+block_9:
+    func_8010B990(arg0, 0x1000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/armouredcaveman/func_808000EC_charmouredcaveman.s")
 
