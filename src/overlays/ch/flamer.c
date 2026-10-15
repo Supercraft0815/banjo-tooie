@@ -59,7 +59,33 @@ s32 func_80800594_chflamer(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flamer/chflamer_entrypoint_1.s")
+s32 func_8010108C();
+s32 func_8010114C(s32, s32, s32);
+
+void chflamer_entrypoint_1(Actor *arg0, Unk80132ED0 *arg1) {
+    struct LinkedActorFlags {
+        u8 pad[0x74];
+        u8 pad74_1 : 7;
+        u8 unk74_0 : 1;
+    };
+    struct LinkFlags {
+        u8 pad[0x18];
+        u16 flags;
+    };
+    void _chbaddiesetup_entrypoint_2(s32 *, Unk80132ED0 *, s32);
+    extern s32 _chflamer_entrypoint_2;
+
+    if (!arg0->unk64_17) {
+        if (!((struct LinkedActorFlags *)arg0)->unk74_0) {
+            if ((arg1 != NULL) && (((struct LinkFlags *)arg1)->flags & 1)) {
+                func_8010114C(arg1, 0x92, 0);
+            }
+            ((struct LinkedActorFlags *)arg0)->unk74_0 = 1;
+            func_8010108C(arg0, 0x2B, 1);
+            _chbaddiesetup_entrypoint_2(&_chflamer_entrypoint_2, arg0->unk0, 0);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flamer/chflamer_entrypoint_2.s")
 
