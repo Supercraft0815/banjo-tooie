@@ -120,4 +120,24 @@ void func_80800674_chfactoryprop(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/prop/func_80800988_chfactoryprop.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/prop/func_80800B44_chfactoryprop.s")
+/* extern */
+
+void func_80800B44_chfactoryprop(s32 arg0) {
+    s32 _chdoormake_entrypoint_12(s32, s32, s32);
+    s32 _chdoormake_entrypoint_3(s32, f32, f32, f32, s32, s32);
+    s32 _chdoormake_entrypoint_6(s32, f32);
+    s32 _chdoormake_entrypoint_8(s32, s32);
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 func_800DA298(s32);
+    s32 func_800FFAB0(s32);
+    s32 func_8010A63C();
+    func_8010A63C();
+    if (_chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, 200.0f, 0x20, 0x18C) != 0) {
+        _chdoormake_entrypoint_6(arg0, 2.25f);
+        _chdoormake_entrypoint_12(arg0, 0, 0x45);
+        _chdoormake_entrypoint_8(arg0, 0xC);
+    }
+    if ((func_800DA298(0x18C) != 0) && (_glcutDll_entrypoint_19(0x45) == 0)) {
+        func_800FFAB0(arg0);
+    }
+}
