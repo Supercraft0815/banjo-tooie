@@ -87,4 +87,31 @@ void subaddieaudioloop_entrypoint_6(u8 arg0, f32 *arg1, u32 arg2, s32 arg3, u32 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/audioloop/subaddieaudioloop_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/audioloop/subaddieaudioloop_entrypoint_8.s")
+f32 subaddieaudioloop_entrypoint_8(Actor *arg0, s32 arg1, s32 arg2, f32 arg3) {
+    s32 func_800C2FDC(u8);
+    void func_800C3BDC(u8);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    int func_800D9154(f32 *, f32);
+    extern s32 D_808003CC_subaddieaudioloop;
+    u8 temp_a0;
+    u8 temp_a0_2;
+
+    if (arg2 != 0) {
+        if (arg0->unk5F == 0) {
+            arg0->unk5F = func_800C4350(0, arg0->position, &D_808003CC_subaddieaudioloop);
+            arg3 = 0.7f;
+        } else if (func_800D9154(&arg3, 0.7f) != 0) {
+            temp_a0 = arg0->unk5F;
+            if (temp_a0 != 0) {
+                func_800C3BDC(temp_a0);
+            }
+        }
+    } else {
+        temp_a0_2 = arg0->unk5F;
+        if (temp_a0_2 != 0) {
+            func_800C2FDC(temp_a0_2);
+            arg0->unk5F = 0;
+        }
+    }
+    return arg3;
+}
