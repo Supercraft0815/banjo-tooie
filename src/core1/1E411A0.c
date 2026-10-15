@@ -166,7 +166,25 @@ void func_8002A150(register void *arg0, register s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_8002A6A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_8002A7E0.s")
+void func_8002A7E0(void *arg0, f32 arg1) {
+    typedef struct { ALPlayer *players; ALLink list; u8 padC[8]; ALLink *head; u8 pad18[8]; s32 curSamples; u8 pad24[8]; ALLink *free; u8 pad30[0x10]; s32 unk40; } PoolFreeList;
+    s32 *func_80021794(void);
+    s32 func_8002B684(void *, s32, void *);
+    extern PoolFreeList *D_800411F4;
+    void *sp1C;
+
+    if ((*(void **)((s8 *)(arg0) + (8))) != NULL) {
+        sp1C = func_80021794();
+        if (sp1C == NULL) {
+            return;
+        }
+        (*(s32 *)((s8 *)(sp1C) + (4))) = (s32) ((*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (8)))) + (0x88))) + (*(s32 *)((s8 *)(D_800411F4) + (0x1C))));
+        (*(s16 *)((s8 *)(sp1C) + (8))) = 0x13;
+        (*(f32 *)((s8 *)(sp1C) + (0xC))) = arg1;
+        (*(s32 *)((s8 *)(sp1C) + (0))) = 0;
+        func_8002B684((*(void **)((s8 *)(arg0) + (8))), 3, sp1C);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_8002A890.s")
 
