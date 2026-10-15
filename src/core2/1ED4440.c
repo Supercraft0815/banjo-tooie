@@ -77,12 +77,28 @@ void func_800FB1B0(s32 arg0, f32 *arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FB2AC.s")
 
-s32 func_800FB338(void *arg0, s32 arg1, s32 arg2, f32 *arg3) {
+s32 func_800FB338(void *arg0, void *arg1, s32 *arg2, f32 *arg3) {
     *arg3 = (*(f32 *)((s8 *)(arg0) + (4)));
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FB350.s")
+/* extern */
+
+s32 func_800FB350(f32 arg0[3], s32 *arg1, f32 *arg2) {
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_800FB2AC(f32 *, f32);
+    void *temp_v0;
+    f32 sp18[3];
+
+    *arg1 = 0;
+    *arg2 = arg0[1];
+    func_800EE7F8(sp18, arg0);
+    temp_v0 = func_800FB2AC(sp18, 20.0f);
+    if (temp_v0 == 0) {
+        return 0;
+    }
+    return func_800FB338(sp18, temp_v0, arg1, arg2);
+}
 
 /* extern */
 
