@@ -31,7 +31,17 @@ s32 func_80029F5C(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_8002A024.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_8002A0CC.s")
+/* extern */
+
+void func_8002A0CC(void *arg0) {
+    void func_8002A150(void *, s32);
+    s32 sp1C;
+
+    for (sp1C = 0; sp1C < (s32) (*(u8 *)((s8 *)(arg0) + (0x36))); sp1C++) {
+        (*(s8 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x60))) + (sp1C * 0x38))) + (0x33))) = 0;
+        func_8002A150(arg0, sp1C);
+    }
+}
 
 void func_8002A150(register void *arg0, register s32 arg1) {
     typedef struct {
