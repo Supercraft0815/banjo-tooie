@@ -28,7 +28,37 @@ void cadbmgrDll_entrypoint_1(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ca/dbmgrDll/func_808000F4_cadbmgrDll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ca/dbmgrDll/cadbmgrDll_entrypoint_2.s")
+/* extern */
+
+struct CadbmgrData;
+s32 cadbmgrDll_entrypoint_2(s32 *arg0, s32 arg1, s32 arg2) {
+    s32 func_808000F4_cadbmgrDll(s32);
+    s32 func_808003D8_cadbmgrDll(struct CadbmgrData *, s32, s32);
+    s32 func_808004C4_cadbmgrDll(s32 *, s32, s32);
+    void func_80800528_cadbmgrDll(s32, s32, s32);
+    s32 result;
+    s32 index;
+
+    if (((u8 *)arg0 + arg2 * 2)[0x3C] != 0) {
+        return 0;
+    }
+    result = func_808004C4_cadbmgrDll(arg0, arg1, arg2);
+    for (index = 0; index < arg0[14]; index++) {
+        if (arg1 == ((u8 *)arg0)[index * 2 + 0x3C]) {
+            if (((u8 *)arg0)[index * 2 + 0x3D] >= result) {
+                ((u8 *)arg0)[index * 2 + 0x3D]++;
+            }
+        }
+    }
+    ((u8 *)arg0 + arg2 * 2)[0x3C] = arg1;
+    ((u8 *)arg0 + arg2 * 2)[0x3D] = result;
+    func_808003D8_cadbmgrDll((struct CadbmgrData *)arg0, arg1, ((s32 *)((u8 *)arg0 + arg1 * 4))[-1] + 1);
+    if (result < ((s32 *)((u8 *)arg0 + arg1 * 4))[-1] - 1) {
+        func_80800528_cadbmgrDll((s32)arg0, arg1, result);
+    }
+    func_808000F4_cadbmgrDll(arg2);
+    return 1;
+}
 
 /* extern */
 
