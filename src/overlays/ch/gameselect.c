@@ -819,11 +819,26 @@ void func_80803718_chgameselect()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808037C0_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803888_chgameselect.s")
+void func_80803888_chgameselect(s32 arg0, u32 arg1, u32 arg2) {
+    void func_80016BDC(s32);
+    void func_800C9E20(f32, u32 *, u32, u32);
+    s32 func_80800478_chgameselect(s32, s32);
+    extern u32 _gcfrontend_entrypoint_8;
+    s32 var_a0;
+
+    if (arg2 != 0) {
+        var_a0 = 2;
+    } else {
+        var_a0 = 1;
+    }
+    func_80016BDC(var_a0);
+    func_800C9E20(1.5f, &_gcfrontend_entrypoint_8, arg1, arg2);
+    func_80800478_chgameselect(arg0, 8);
+}
 
 void func_808038EC_chgameselect(s32 arg0, u32 arg1, u32 arg2) {
     void func_800C9E20(f32 timerLength, u32* callback, u32 callbackArg0, u32 callbackArg1);
-    s32 func_80016BDC(s32);
+    void func_80016BDC(s32);
     s32 func_80800478_chgameselect(s32, s32);
     extern u32 _gcfrontend_entrypoint_7;
     func_80016BDC(1);
@@ -903,7 +918,7 @@ void func_80803A88_chgameselect(void) {
 
 void func_80803B3C_chgameselect(s32 arg0) {
     s32 _gcstatusDll_entrypoint_10(void);
-    s32 func_80016BDC(s32);
+    void func_80016BDC(s32);
     void func_800C9DAC(f32, void *);
     s32 func_80800478_chgameselect(s32, s32);
     extern void func_800AA1A0(void);
