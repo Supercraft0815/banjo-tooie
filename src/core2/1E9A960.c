@@ -256,7 +256,24 @@ s32 func_800C19E4(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C1AA4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C1CCC.s")
+/* extern */
+
+s32 func_800C1CCC(u16 *arg0, s32 arg1) {
+    s32 func_800C1104(u16 *);
+    s32 sp24;
+
+    if (func_800C13C4(arg0, 0x40U) != 0) {
+        sp24 = func_800C1104(arg0);
+        if (func_800C13C4(arg0, 0x80U) != 0) {
+            if (sp24 == 1) {
+                arg1 *= *(f32 *)((s8 *)arg0 + 0x74);
+            }
+        } else if (sp24 == 0) {
+            arg1 *= *(f32 *)((s8 *)arg0 + 0x70);
+        }
+    }
+    return arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C1D80.s")
 
