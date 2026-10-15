@@ -45,7 +45,34 @@ s32 func_808004BC_chconga(s32 arg0, s32 arg1) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/conga/func_80800538_chconga.s")
+void func_80800538_chconga(s32 arg0) {
+    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    s32 func_800D1A04(s32);
+    s32 func_800DA298(s32);
+    s32 func_800F54E4();
+    s32 func_800F64A4(s32, s32);
+    s32 func_80101180(s32, s32, s32);
+    extern s32 D_808006F8_chconga;
+    extern s16 D_808006FC_chconga;
+    extern s16 D_808006FE_chconga;
+    if ((func_800DA298(0x4A) != 0) && (func_800F64A4(func_800F54E4(), 1) != 0)) {
+        D_808006FE_chconga = func_808004BC_chconga(arg0, 0x1101);
+    } else {
+        if (func_800D1A04(0x4D) >= 4) {
+            D_808006FC_chconga = 0x10B1;
+        } else {
+            D_808006FC_chconga = 0x10B0;
+        }
+        if (func_800D1A04(0x4D) >= 4) {
+            D_808006FE_chconga = 0x10B3;
+        } else {
+            D_808006FE_chconga = 0x10B2;
+        }
+    }
+    if (_subaddiedialog_entrypoint_7(arg0, arg0 + 4, &D_808006F8_chconga) == 0x1101) {
+        func_80101180(0x46E, 7, 0);
+    }
+}
 
 void func_80800618_chconga(Actor *arg0) {
     extern u32 D_80800714_chconga;
