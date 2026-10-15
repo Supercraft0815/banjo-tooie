@@ -26,7 +26,15 @@ void func_80800544_rtlight(void *arg0, s32 position[3]) {
     position[2] = (s32)pos[2];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/rt/light/func_808005AC_rtlight.s")
+void func_808005AC_rtlight(s32 arg0, s32 *range) {
+    void func_800C8898(s32, f32 *);
+    f32 values[3];
+
+    func_800C8898(arg0, values);
+    range[0] = (s32)(values[0] * 256.0f);
+    range[1] = (s32)(values[1] * values[1]);
+    range[2] = (s32)(values[2] * 16384.0f);
+}
 
 void rtlight_entrypoint_2(u8 *arg0, void *arg1, s32 arg2, s32 arg3) {
     typedef struct {
