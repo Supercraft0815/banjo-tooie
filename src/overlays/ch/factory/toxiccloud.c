@@ -2,7 +2,44 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_80800000_chfactorytoxiccloud.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_808000F0_chfactorytoxiccloud.s")
+/* extern */
+
+s32 func_808000F0_chfactorytoxiccloud(void *arg0, void *arg1) {
+    union CloudActor {
+        Actor actor;
+        struct {
+            u8 pad[0x70];
+            u32 first : 7;
+            u32 unused : 9;
+            u32 state : 6;
+            u32 second : 6;
+            u32 tail : 4;
+        } data;
+    };
+    s32 func_800CC338(s32 *, s32, s32);
+    s32 func_800F54E4();
+    s32 func_800F64A4(s32, s32);
+    int func_80800BF8_chfactorytoxiccloud();
+    u32 temp_t9;
+
+    if (func_800CC338(arg1, ((union CloudActor *)arg0)->data.first - 1, ((union CloudActor *)arg0)->data.second - 1) == -1) {
+        return 0;
+    }
+    if (func_80800BF8_chfactorytoxiccloud(arg0, arg1) == 0) {
+        return 0;
+    }
+    temp_t9 = ((Actor *)arg0)->unk70_10;
+    if (temp_t9 == 5) {
+        return 0;
+    }
+    if (temp_t9 == 1) {
+        return 0;
+    }
+    if (func_800F64A4(func_800F54E4(), 0x1601) == 0) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_808001B8_chfactorytoxiccloud.s")
 
