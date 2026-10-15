@@ -2741,7 +2741,25 @@ void func_808099A8_bsfirstp(void *arg0, s32 arg1) {
     *(s16 *)((u8 *)state + 584) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808099B4_bsfirstp.s")
+void func_808099B4_bsfirstp(void *arg0) {
+    void func_80809A10_bsfirstp(void *);
+    void func_80809A7C_bsfirstp(void *);
+    void *data;
+    s16 state;
+
+    data = *(void **)((u8 *)arg0 + 0x188);
+    state = *(s16 *)((u8 *)data + 0x248);
+    switch (state) {
+    case 0:
+        return;
+    case 1:
+        func_80809A10_bsfirstp(arg0);
+        return;
+    case 2:
+        func_80809A7C_bsfirstp(arg0);
+        return;
+    }
+}
 
 /* extern */
 
