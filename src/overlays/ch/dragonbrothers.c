@@ -600,7 +600,26 @@ void func_808048A4_chdragonbrothers(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808048AC_chdragonbrothers.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808049D4_chdragonbrothers.s")
+void func_808049D4_chdragonbrothers(Actor *arg0) {
+    s32 _fxegg_entrypoint_0(u32, f32 *, f32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern s32 D_80805918_chdragonbrothers;
+    extern s32 D_80805960_chdragonbrothers;
+    extern s32 D_808059A8_chdragonbrothers;
+    extern s32 D_808059D8_chdragonbrothers;
+    switch (arg0->unk79_4) {
+    case 4:
+        func_800BABB8(0, arg0->position, NULL, arg0->scale, &D_80805918_chdragonbrothers);
+        func_800BABB8(0, arg0->position, NULL, arg0->scale, &D_80805960_chdragonbrothers);
+        func_800BABB8(0, arg0->position, NULL, arg0->scale, &D_808059A8_chdragonbrothers);
+        func_8010D930(6, -1, arg0->position, &D_808059D8_chdragonbrothers);
+        break;
+    default:
+        _fxegg_entrypoint_0(arg0->unk79_4, arg0->position, arg0->scale);
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80804AA4_chdragonbrothers.s")
 
