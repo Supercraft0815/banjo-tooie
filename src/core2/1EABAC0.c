@@ -49,7 +49,36 @@ s32 func_800D225C(s32 arg0) {
 
 u8 func_800D22C8(s32 arg0) { extern struct D_8011B460_entry { u8 *ptr; u32 pad; } D_8011B460[]; return D_8011B460[arg0].ptr[0]; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D22E0.s")
+s32 func_800D22E0(u8 *arg0, u32 arg1) {
+    s32 func_800FA708(u32, s32, s32, u32);
+    void func_800FA9B4(s32, s32);
+    extern s32 D_8012B2C0;
+    s32 sp24;
+    s32 temp_v0;
+    s32 var_s0;
+    u32 var_v0;
+
+    sp24 = 0;
+    var_v0 = func_800D21F0(arg1, (*(u8 *)((s8 *)(arg0) + (0))));
+    var_s0 = var_v0;
+    if ((s32)var_v0 < 0) {
+        var_v0 = func_800D225C((*(u8 *)((s8 *)(arg0) + (0))));
+        var_s0 = var_v0;
+    }
+    if ((s32)var_v0 < 0) {
+        var_v0 = func_800D22C8((*(u8 *)((s8 *)(arg0) + (0))));
+        var_s0 = var_v0;
+    }
+    if ((s32)var_v0 >= 0) {
+        temp_v0 = func_800FA708((s32) (*(f32 *)((s8 *)(arg0) + (8))), var_s0, (*(u8 *)((s8 *)(arg0) + (1))), (*(u8 *)((s8 *)(arg0) + (2))));
+        sp24 = temp_v0;
+        if (temp_v0 != 0) {
+            func_800FA9B4(var_s0, (*(s16 *)((s8 *)(arg0) + (6))));
+            ((s16 *)&D_8012B2C0)[var_s0] = arg1;
+        }
+    }
+    return sp24;
+}
 
 /* extern */
 

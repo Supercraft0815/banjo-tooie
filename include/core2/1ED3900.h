@@ -3,7 +3,7 @@
 
 #include "common.h"
 
-void func_800FA708(u32 arg0, s32 arg1, s32 arg2, u32 arg3);
+s32 func_800FA708(u32 arg0, s32 arg1, s32 arg2, u32 arg3);
 s32 func_800FA818(s32, s32);
 s32 func_800FA8E8(s32, s32);
 int func_800FA934(s32, s32);
