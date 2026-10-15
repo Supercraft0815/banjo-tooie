@@ -116,7 +116,29 @@ void func_8009D874(PlayerState *arg0) {
     func_8009DE38(arg0, 0x442E, 1.117f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009D89C.s")
+void func_8009D89C(PlayerState *arg0, f32 arg1) {
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_800C301C(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C35E8(u8, f32[3]);
+    void func_800C3BDC(u8);
+    extern s16 D_80119200[];
+    f32 sp24[3];
+    void *temp_v0;
+
+    func_8009C128(arg0, sp24);
+    func_800C35E8((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x104)))) + (0))), sp24);
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x104)));
+    func_800C301C((*(u8 *)((s8 *)(temp_v0) + (0))), D_80119200[*(u32 *)((s8 *)temp_v0 + 8)]);
+    func_800C31DC((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x104)))) + (0))), arg1);
+    func_800C3BDC((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x104)))) + (0))));
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x104)));
+    (*(u32 *)((s8 *)(temp_v0) + (8))) = (u32) ((*(u32 *)((s8 *)(temp_v0) + (8))) + 1);
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x104)));
+    if ((u32) (*(u32 *)((s8 *)(temp_v0) + (8))) >= 4U) {
+        (*(u32 *)((s8 *)(temp_v0) + (8))) = 0U;
+    }
+}
 
 /* extern */
 
