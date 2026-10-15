@@ -59,7 +59,39 @@ void *func_800E9898(s32 arg0) {
     return (void *)func_800B3CDC(&D_80132DB0, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E98C0.s")
+/* extern */
+
+void *func_800E98C0(s32 arg0) {
+    typedef struct {
+        u8 pad0[3];
+        u8 reserved0 : 6;
+        u8 isMirrored : 1;
+        u8 reserved1 : 1;
+        u8 pad4[6];
+        u16 frame : 5;
+        u16 random : 5;
+        u16 reserved2 : 1;
+        u16 flag10 : 1;
+        u16 flag8 : 1;
+        u16 flag4 : 1;
+        u16 isModelProp : 1;
+        u16 isActorProp : 1;
+    } SpriteProp;
+    f32 func_800DC0C0(void);
+    void *func_800E9804();
+    SpriteProp *sp1C;
+
+    sp1C = func_800E9804(arg0);
+    sp1C->isActorProp = 0;
+    sp1C->isModelProp = 0;
+    sp1C->frame = 0;
+    sp1C->isMirrored = 0;
+    sp1C->random = func_800DC0C0() * 32.0f;
+    sp1C->flag8 = 0;
+    sp1C->flag4 = 0;
+    sp1C->flag10 = 1;
+    return sp1C;
+}
 
 void func_800E99E0(void) {
     typedef struct {
@@ -71,7 +103,7 @@ void func_800E99E0(void) {
         u8 reserved2 : 1;
         u8 flag1 : 1;
     } Flags;
-    Flags *func_800E9804();
+    void *func_800E9804();
     Flags *p;
     p = func_800E9804();
     p->flag1 = 1;
