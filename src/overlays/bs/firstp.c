@@ -2557,7 +2557,18 @@ void bsfirstp_entrypoint_37(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809C30_bsfirstp.s")
+/* extern */
+
+void func_80809C30_bsfirstp(void *arg0) {
+    s32 func_8009239C(u8 **);
+    u32 func_800936F4(void *);
+    s32 func_80093DF4(void *, s32);
+    s32 func_80093E18(void *, s32 *);
+    s32 *func_800A7180(void);
+    if ((func_80093DF4(arg0, 2) != 0) && (func_800936F4(arg0) != 0) && (func_8009239C(arg0) != 0)) {
+        func_80093E18(arg0, func_800A7180());
+    }
+}
 
 void func_80809C90_bsfirstp(s32 arg0) {
     s32 func_8009ADF0(void *, s32, s32);
