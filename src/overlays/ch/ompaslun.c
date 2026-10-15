@@ -19,7 +19,20 @@ void func_8080000C_chchompaslunch(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/ompaslun/func_80800118_chchompaslunch.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/ompaslun/func_8080017C_chchompaslunch.s")
+void func_8080017C_chchompaslunch(Actor *arg0) {
+    void func_800DF744(s32, s32);
+    s32 func_801015D0(Actor *);
+    extern s16 D_80800428_chchompaslunch[][6];
+    extern s16 D_8080042A_chchompaslunch[][6];
+    extern s16 D_8080042C_chchompaslunch[][6];
+    extern s16 D_8080042E_chchompaslunch[][6];
+    func_801015D0(arg0);
+    func_800DF744(4, D_80800428_chchompaslunch[arg0->unk6C_0][0]);
+    func_800DF744(5, D_8080042A_chchompaslunch[arg0->unk6C_0][0]);
+    func_800DF744(6, D_8080042C_chchompaslunch[arg0->unk6C_0][0]);
+    func_800DF744(7, 0);
+    func_800DF744(8, D_8080042E_chchompaslunch[arg0->unk6C_0][0]);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/ompaslun/func_80800250_chchompaslunch.s")
 
