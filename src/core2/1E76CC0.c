@@ -118,7 +118,26 @@ void func_8009D874(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009D89C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009D940.s")
+/* extern */
+
+void func_8009D940(PlayerState *arg0, s32 arg1, f32 arg2, s32 arg3) {
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_8009DAAC(s32 *, f32 *);
+    void func_800C301C(u8, s32);
+    void func_800C3058(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C35E8(u8, f32[3]);
+    void func_800C3BDC(u8);
+    f32 sp24[3];
+
+    func_8009DAAC(&arg1, &arg2);
+    func_8009C128(arg0, sp24);
+    func_800C35E8(*(*(u8 **)((s8 *)(arg0) + (0x104))), sp24);
+    func_800C301C(*(*(u8 **)((s8 *)(arg0) + (0x104))), arg1);
+    func_800C31DC(*(*(u8 **)((s8 *)(arg0) + (0x104))), arg2);
+    func_800C3058(*(*(u8 **)((s8 *)(arg0) + (0x104))), arg3);
+    func_800C3BDC(*(*(u8 **)((s8 *)(arg0) + (0x104))));
+}
 
 void func_8009D9D4(PlayerState *arg0) {
     s32 _badata_entrypoint_17(PlayerState *, s32, s32 *, f32 *, s32 *);
