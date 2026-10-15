@@ -49,7 +49,38 @@ void subaddietaxi_entrypoint_3(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_5.s")
+s32 subaddietaxi_entrypoint_5(Actor *arg0, s32 arg1) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddiefade_entrypoint_2();
+    f32 func_800CB45C(volatile s32, f32 *, s32 *, s32 *);
+    s32 func_800CB698(s32, s32);
+    void func_800CB70C(s32);
+    s32 func_800EA05C();
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    extern s32 D_80800D5C_subaddietaxi;
+    s32 sp3C;
+    s32 sp38;
+    f32 sp2C[3];
+    f32 sp28;
+    s32 sp24;
+
+    sp24 = 0;
+    sp28 = func_800CB45C(arg1, sp2C, &sp3C, &sp38);
+    if (func_800EA05C() == sp3C) {
+        arg0->rotation[1] = sp28;
+        func_800EE7F8(arg0->position, sp2C);
+        arg0->unk74_7 = sp38;
+        sp24 = 1;
+        _subaddiefade_entrypoint_2(arg0);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800D5C_subaddietaxi);
+    } else {
+        func_800FFAB0(arg0);
+    }
+    func_800CB698(arg1, 1);
+    func_800CB70C(arg1);
+    return sp24;
+}
 
 /* extern */
 
