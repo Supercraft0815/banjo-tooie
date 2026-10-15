@@ -11,7 +11,27 @@ u16 func_8001D450(u16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E34F80/func_8001D5C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E34F80/func_8001D6C0.s")
+void func_8001D6C0(u16 *arg0, int arg1, int arg2, u8 arg3) {
+    u16 func_8001D450(u16);
+    extern u16 D_8003F778[];
+    int sp40;
+    int var_s0;
+    int var_s6;
+    int var_s7;
+
+    arg2++;
+    arg1 += 2;
+    arg0 += ((arg2 * 0x850) + (arg1 * 5) + 0x260);
+    sp40 = ((arg3 * 5) - 0xA0) << 1;
+    for (var_s6 = 0, var_s7 = 0; var_s6 != 0x850; var_s6 += 0x130, var_s7 += 0x1DC) {
+        osInvalDCache((var_s6 + arg0), 5);
+        for (var_s0 = 0; var_s0 != 0xA; var_s0 += 2) {
+            u16 temp_v0;
+            temp_v0 = *(u16 *)((u8 *)(D_8003F778 + var_s7) + sp40 + var_s0); if (temp_v0 != 0x11) { *(u16 *)((u8 *)(var_s6 + arg0) + var_s0) = temp_v0; } else { *(u16 *)((u8 *)(var_s6 + arg0) + var_s0) = func_8001D450(*(u16 *)((u8 *)(var_s6 + arg0) + var_s0)); }
+        }
+        osWritebackDCache((var_s6 + arg0), 5);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E34F80/func_8001D800.s")
 
