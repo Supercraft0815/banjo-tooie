@@ -240,7 +240,35 @@ s32 chmolehill_entrypoint_5(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/func_80800884_chmolehill.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/func_808009A0_chmolehill.s")
+/* extern */
+
+s32 func_808009A0_chmolehill(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _glcutDll_entrypoint_20();
+    void func_800DF744(s32, s32);
+    s32 func_801015D0(Actor *);
+    s32 func_8080058C_chmolehill(Actor *);
+    s32 func_80800884_chmolehill(Actor *);
+    s32 var_a1;
+
+    switch (arg1) {
+    case 0x32:
+        func_8080058C_chmolehill(arg0);
+        break;
+    case 0x1F:
+        func_801015D0(arg0);
+        func_80800884_chmolehill(arg0);
+        if (arg0->unk74_29 || _glcutDll_entrypoint_20()) {
+            var_a1 = 2;
+        } else {
+            var_a1 = 1;
+        }
+        func_800DF744(3, var_a1);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 OSThread *chmolehill_entrypoint_6(void)
 {
