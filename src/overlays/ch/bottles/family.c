@@ -99,9 +99,9 @@ void func_8080086C_chbottlesfamily(Actor* arg0)
 
 /* extern */
 
-void func_8080099C_chbottlesfamily(s32 arg0, s32 arg1, s32 arg2) {
+void func_8080099C_chbottlesfamily(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800C07F4();
-    s32 func_80800CA4_chbottlesfamily(s32, s32, s32);
+    void func_80800CA4_chbottlesfamily(Actor *, s32, s32);
     if (((arg1 == 0x1501) || (arg1 == 0x1539)) && (arg2 == 1) && (func_800C07F4() == 0)) {
         func_80800CA4_chbottlesfamily(arg0, 4, 0x2020);
     }
@@ -183,4 +183,17 @@ void func_80800BC0_chbottlesfamily(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_80800C08_chbottlesfamily.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_80800CA4_chbottlesfamily.s")
+void func_80800CA4_chbottlesfamily(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+
+    switch (arg0->unk6C_0) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x18, arg2);
+        case 2:
+            arg0->unk6C_0 = 1;
+        case 1:
+            _capod_entrypoint_6(arg0->unk0, arg1, arg2);
+            break;
+    }
+}
