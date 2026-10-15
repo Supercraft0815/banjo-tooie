@@ -408,4 +408,24 @@ int gcmapsects_entrypoint_24(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_26.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_27.s")
+/* extern */
+
+s32 gcmapsects_entrypoint_27(s32 arg0) {
+    void *func_800BF704(void);
+    s32 func_800D62E4(s32);
+    s32 func_800D6B0C(s32);
+    void *map;
+    s32 temp_t7;
+
+    if ((*(u8 *)((s8 *)(map = func_800BF704()) + (0x77))) == 0) {
+        return 0;
+    }
+    temp_t7 = arg0 * 0x58;
+    if (((u32) (*(u32 *)((s8 *)(((*(s32 *)((s8 *)(map) + (0x68))) + temp_t7)) + (0x4C))) >> 0x1F) != 0) {
+        if (func_800D6B0C((*(u16 *)((s8 *)(((*(s32 *)((s8 *)(map) + (0x68))) + temp_t7)) + (0x40)))) != 0) {
+            func_800D62E4((*(u16 *)((s8 *)(((*(s32 *)((s8 *)(map) + (0x68))) + temp_t7)) + (0x40))));
+            return 1;
+        }
+    }
+    return 0;
+}
