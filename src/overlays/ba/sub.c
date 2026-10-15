@@ -20,7 +20,16 @@ void func_808000CC_basub(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/func_80800110_basub.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/func_80800254_basub.s")
+void func_80800254_basub(u8 *arg0, s32 arg1) {
+    s32 i;
+    for (i = 0; i < 10; i++) {
+        if ((*(s32 **)(arg0 + 0x130))[i + 11] == 0) {
+            (*(s32 **)(arg0 + 0x130))[i + 11] = arg1;
+            (*(s32 **)(arg0 + 0x130))[10]++;
+            return;
+        }
+    }
+}
 
 void func_80800358_basub(u8 *arg0, s32 arg1) {
     s32 i;
