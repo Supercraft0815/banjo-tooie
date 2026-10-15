@@ -29,7 +29,20 @@ void func_8010E204(void *arg0, s32 arg1, f32 arg2) {
     func_800B38C8(D_80137074);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE7960/func_8010E2C4.s")
+void func_8010E2C4(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
+    s32 func_800B37E4(s32, s32);
+    int func_800DF8D4(s32 *);
+    s32 func_8010E070();
+    extern s32 D_80137060;
+    (*(s32 **)((s8 *)(&D_80137060) + (0))) = arg0;
+    (*(s8 *)((s8 *)(&D_80137060) + (0x10))) = func_800DF8D4(arg0);
+    if (arg2 != 0) {
+        func_800B37E4((*(s32 *)((s8 *)(&D_80137060) + (0x14))), arg2);
+    } else {
+        func_8010E204(arg0, arg1, arg3);
+    }
+    func_8010E070();
+}
 
 /* extern */
 
