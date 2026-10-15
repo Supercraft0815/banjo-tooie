@@ -101,7 +101,36 @@ void func_80800528_chhotwaterpoolbits(s32 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/waterpoolbits/chhotwaterpoolbits_entrypoint_4.s")
+/* extern */
+
+void chhotwaterpoolbits_entrypoint_4(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4) {
+    Actor *func_80106790(Unk80132ED0 *);
+    struct WaterData {
+        f32 alpha;
+        f32 height;
+        s32 unused[2];
+        s32 color[3];
+    };
+    Actor *actor;
+    Vtx *end;
+    u32 alpha;
+    s16 height;
+    s32 i;
+
+    actor = func_80106790(arg4);
+    alpha = (u32)((struct WaterData *)actor->actorData)->alpha & 0xFF;
+    height = (s16)(s32)((struct WaterData *)actor->actorData)->height;
+    end = arg2 + arg3;
+    while (arg2 < end) {
+        for (i = 0; i != 3; i++) {
+            arg2->v.cn[i] = (arg1->v.cn[i] * ((struct WaterData *)actor->actorData)->color[i]) >> 8;
+        }
+        arg2->v.cn[3] = alpha;
+        arg2++;
+        arg1++;
+        arg2[-1].v.ob[1] = arg1[-1].v.ob[1] + height;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/waterpoolbits/func_808006BC_chhotwaterpoolbits.s")
 
