@@ -154,13 +154,13 @@ void func_800F4D18(s32 arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-void func_800F4E5C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+s32 func_800F4E5C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     s32 func_8009F440(PlayerState *, s32, s32, s32, s32, f32);
     f32 func_800A3048(PlayerState *);
     PlayerState *sp24;
 
     sp24 = D_80135490[arg0];
-    func_8009F440(sp24, arg1, arg2, arg3, arg4, func_800A3048(sp24) * 1000.0f);
+    return func_8009F440(sp24, arg1, arg2, arg3, arg4, func_800A3048(sp24) * 1000.0f);
 }
 
 /* extern */

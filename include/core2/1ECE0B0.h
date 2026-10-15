@@ -21,6 +21,7 @@ s32 func_800F4B8C(u32, u32, s32);
 s32 func_800F4BB8(u32, u32, s32);
 void func_800F4CC0(s32);
 void func_800F4CEC(s32, u32);
+s32 func_800F4E5C(s32, s32, s32, s32, s32);
 s32 func_800F52B8(s32, Unk80132ED0 *);
 PlayerState* func_800F53D0(s32 arg0);
 PlayerState* func_800F53E4(s32 arg0);

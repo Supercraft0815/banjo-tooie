@@ -6,15 +6,36 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/deflect/sudeflect_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/deflect/sudeflect_entrypoint_3.s")
+extern struct {
+    s32 entries[9];
+    s32 count;
+} B_80801020_sudeflect;
+
+s32 sudeflect_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 func_800F4E5C(s32, s32, s32, s32, s32);
+    s32 func_800F6438(u32);
+    s32 var_s0;
+    s32 var_s2;
+
+    var_s2 = 0;
+    B_80801020_sudeflect.count = 0;
+    if (arg4 & 2) {
+        var_s0 = 0;
+        do {
+            if ((func_800F6438(var_s0) != 0) && (func_800F4E5C(var_s0, arg0, arg1, arg2, arg3) != 0)) {
+                B_80801020_sudeflect.entries[B_80801020_sudeflect.count + 1] = var_s0;
+                B_80801020_sudeflect.count++;
+                var_s2 |= 2;
+            }
+            var_s0 += 1;
+        } while (var_s0 != 8);
+    }
+    return var_s2;
+}
 
 void sudeflect_entrypoint_4(s32 arg0, f32 *arg1) {
     int func_800F7700(s32, s32, f32 *);
     s32 func_80800630_sudeflect(s32);
-    extern struct {
-        s32 entries[9];
-        s32 count;
-    } B_80801020_sudeflect;
     s32 temp_s0;
     s32 var_s1;
 
