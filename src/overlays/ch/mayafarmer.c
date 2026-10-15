@@ -1,6 +1,29 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_80800000_chmayafarmer.s")
+void func_80800000_chmayafarmer(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    s32 _capod_entrypoint_7(s32, s32);
+    s32 _capod_entrypoint_8(s32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    void _gcdialogcamera_entrypoint_5(f32 *);
+    s32 _gcdialogcamera_entrypoint_8(void);
+    extern s32 D_8080124C_chmayafarmer;
+
+    switch (arg0->unk6C_0) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 8, 0);
+        case 1:
+            _capod_entrypoint_8(1);
+            arg0->unk6C_0 = 2;
+            _gcdialogcamera_entrypoint_3(&D_8080124C_chmayafarmer, arg0->scale);
+            _gcdialogcamera_entrypoint_4(arg0->position);
+            _gcdialogcamera_entrypoint_5(arg0->rotation);
+            _gcdialogcamera_entrypoint_8();
+        case 2:
+            _capod_entrypoint_7(arg1, arg2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_808000B0_chmayafarmer.s")
 
@@ -54,7 +77,7 @@ s32 func_80800228_chmayafarmer(u8 *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     s32 *func_80108528(s32, u8 *, s32, u8 **);
     void func_80108B04(Actor *, u32);
-    void func_80800000_chmayafarmer(u8 *, s32, s32);
+    void func_80800000_chmayafarmer(Actor *, s32, s32);
     void func_808000B0_chmayafarmer(u8 *, s32, s32, s32);
     void func_808001CC_chmayafarmer(u8 *, s32);
     extern s32 D_8080125C_chmayafarmer[];
