@@ -14,7 +14,7 @@ void sucoasterplayer_entrypoint_0(void *arg0) {
     void *func_80100094(Actor *, u32);
     s32 func_80101DDC(Actor *);
     s32 func_801021BC(void *, s32);
-    void func_80102BF8(void *, s32, f32, f32);
+    void func_80102BF8(void *, f32, f32, f32);
     s32 func_8080076C_sucoasterplayer(void *, void *);
     s32 sucoasterplayer_entrypoint_2(void *, f32);
     int sucoasterplayer_entrypoint_3(void *);
@@ -80,7 +80,7 @@ void sucoasterplayer_entrypoint_0(void *arg0) {
     case 9:
         _sucoaster_entrypoint_19(arg0);
         _subaddiejoy_entrypoint_9(arg0, (s8 *)arg0 + 0x54, 1);
-        func_80102BF8(arg0, 0x3E99999A, 1.0f, 1000.0f);
+        func_80102BF8(arg0, 0.3f, 1.0f, 1000.0f);
         sucoasterplayer_entrypoint_2(arg0, 30.0f);
         _sucoaster_entrypoint_16(arg0, 1);
         _sucoaster_entrypoint_16(arg0, 6);
@@ -110,7 +110,7 @@ void sucoasterplayer_entrypoint_0(void *arg0) {
         _sucoaster_entrypoint_19(arg0);
         sucoasterplayer_entrypoint_3(arg0);
         _sucoaster_entrypoint_16(arg0, 0);
-        func_80102BF8(arg0, 0x3E99999A, 1.0f, 1000.0f);
+        func_80102BF8(arg0, 0.3f, 1.0f, 1000.0f);
         if (func_80101DDC(arg0) != 0) {
             _sucoaster_entrypoint_9(arg0, 2, 6);
         }
@@ -120,7 +120,31 @@ void sucoasterplayer_entrypoint_0(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/player/sucoasterplayer_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/player/sucoasterplayer_entrypoint_2.s")
+/* extern */
+
+s32 sucoasterplayer_entrypoint_2(void *arg0, f32 arg1) {
+    s32 _sucoaster_entrypoint_18(void *);
+    f32 func_800F15F8(f32, f32, f32);
+    f32 func_800F2094(f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80102BF8(void *, f32, f32, f32);
+    f32 func_80107C00(void);
+    s32 func_8010B990(Actor *, s32);
+    void *sp24;
+    f32 sp20;
+
+    sp24 = func_80100094(arg0, 0);
+    (*(f32 *)((s8 *)(arg0) + (0x24))) = func_800F15F8((*(f32 *)((s8 *)(arg0) + (0x24))), (f32) (*(s16 *)((s8 *)(sp24) + (0xE))), func_80107C00() * arg1);
+    _sucoaster_entrypoint_18(arg0);
+    sp20 = func_800F2094(((Actor *)arg0)->unk54, ((Actor *)arg0)->rotation[1]);
+    func_80102BF8(arg0, 0.3f, 1.0f, 1000.0f);
+    if (sp20 >= 100.0f) {
+        return 1;
+    } else {
+        func_8010B990(arg0, 0x205025);
+    }
+    return 1;
+}
 
 /* extern */
 
