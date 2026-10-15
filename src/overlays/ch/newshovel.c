@@ -76,7 +76,31 @@ s32 func_80800B5C_chnewshovel(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800BC0_chnewshovel.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800C58_chnewshovel.s")
+/* extern */
+
+int func_80800C58_chnewshovel(Actor *arg0) {
+    typedef union {
+        Actor actor;
+        struct {
+            u32 header[25];
+            u32 pad64_30 : 2;
+            u32 unk64_29 : 1;
+        } flags;
+    } NewShovelActor;
+    f32 func_800EEB40(f32 *, f32 *);
+    s32 func_80800BC0_chnewshovel(Actor *);
+    NewShovelActor *actor = (NewShovelActor *)arg0;
+    f32 *temp_a1;
+
+    temp_a1 = (f32 *)actor->actor.actorData;
+    if (actor->flags.unk64_29) {
+        return func_80800BC0_chnewshovel(&actor->actor);
+    }
+    if (func_800EEB40(actor->actor.position, temp_a1) > 40000.0f) {
+        return 0;
+    }
+    return 1;
+}
 
 s32 func_80800CC4_chnewshovel(s32 arg0) {
     s32 func_800DC298(f32);
