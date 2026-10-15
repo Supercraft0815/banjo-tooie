@@ -6,7 +6,7 @@ void func_80800000_chgoldfish(u8 *arg0) {
     s32 func_800DA298(s32);
     s32 func_800FFA88(s32);
     s32 func_808005F0_chgoldfish(u8 *, s32);
-    s32 func_80800BA8_chgoldfish(u8 *, u8 *);
+    s32 func_80800BA8_chgoldfish(u8 *, f32 *);
     if (func_800DA298(0x1BF) != 0) {
         func_800FFA88((*(s32 *)((s8 *)(arg0) + (0))));
         return;
@@ -44,7 +44,7 @@ void func_8080009C_chgoldfish(u8 *arg0) {
     void func_80800924_chgoldfish(u8 *);
     void func_80800964_chgoldfish(u8 *);
     f32 func_80800AB4_chgoldfish(u8 *, u8 *, u8 *, u8 *, f32, f32);
-    s32 func_80800BA8_chgoldfish(u8 *, u8 *);
+    s32 func_80800BA8_chgoldfish(u8 *, f32 *);
     extern s32 D_80800D20_chgoldfish;
     f32 sp3C;
     f32 sp38;
@@ -153,7 +153,22 @@ void func_80800924_chgoldfish(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/fish/func_80800AB4_chgoldfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/fish/func_80800BA8_chgoldfish.s")
+/* extern */
+
+s32 func_80800BA8_chgoldfish(u8 *arg0, f32 *arg1) {
+    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 sp2C[3];
+    f32 sp20[3];
+
+    func_800EFA4C(sp2C, arg1[0], arg1[1] + 300.0f, arg1[2]);
+    arg1[1] -= 300.0f;
+    if (func_800BEF00(sp2C, arg1, sp20, 0) != 0) {
+        arg1[1] += 20.0f;
+        return 1;
+    }
+    return 0;
+}
 
 OSThread *chgoldfish_entrypoint_0(void)
 {
