@@ -130,7 +130,32 @@ void func_8080096C_chmasterjiggy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_80800C08_chmasterjiggy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_80800DDC_chmasterjiggy.s")
+/* extern */
+
+void func_80800DDC_chmasterjiggy(Actor *arg0) {
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    void func_800B5450(void *);
+    s32 func_800E1720(s32);
+    void *temp_a2;
+    s32 temp_v0;
+    u8 temp_a0;
+
+    temp_a2 = (*(void **)((s8 *)(arg0) + (0x2C)));
+    if (temp_a2 != NULL) {
+        func_800B5450(temp_a2);
+        (*(void **)((s8 *)(arg0) + (0x2C))) = NULL;
+    }
+    temp_v0 = (*(s32 *)((s8 *)(arg0) + (0x30)));
+    if (temp_v0 != 0) {
+        func_800E1720(temp_v0 - 1);
+        (*(s32 *)((s8 *)(arg0) + (0x30))) = 0;
+    }
+    temp_a0 = (*(u8 *)((s8 *)(arg0) + (0x24)));
+    if (temp_a0 != 0) {
+        (*(u8 *)((s8 *)(arg0) + (0x24))) = _subaddieaudioloop_entrypoint_3(temp_a0);
+    }
+    arg0->unk54 = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_80800E58_chmasterjiggy.s")
 
