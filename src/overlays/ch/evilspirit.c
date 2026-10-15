@@ -140,7 +140,41 @@ void func_808015A4_chevilspirit(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801A6C_chevilspirit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801B00_chevilspirit.s")
+void func_80801B00_chevilspirit(s32 arg0, Actor *arg1, s32 arg2) {
+    s32 _subaddievolume_entrypoint_0(Actor *, f32 *, s32, s32, s32);
+    s32 func_8001210C(s32);
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    extern s32 D_808022F4_chevilspirit;
+    f32 sp4C[15][3];
+    f32 *var_s1;
+    s32 temp_s0;
+    s32 temp_v0;
+    s32 temp_v0_2;
+    s32 var_s0;
+
+    temp_s0 = ((u32)(u16)arg1->unk0->unk10 >> 1) & 3;
+    if (func_8001210C(3) == temp_s0) {
+        temp_v0 = _subaddievolume_entrypoint_0(arg1, sp4C[0], 1, 0xF, arg0 + 0x30);
+        if (temp_v0 > 0) {
+            temp_v0_2 = func_800B53A4(temp_v0);
+            func_800BA3FC(temp_v0_2, arg2);
+            func_800BABB8(temp_v0_2, NULL, 0, 1.0f, &D_808022F4_chevilspirit);
+            var_s0 = 0;
+            if (temp_v0 > 0) {
+                var_s1 = sp4C[0];
+                do {
+                    func_800BABB8(temp_v0_2, var_s1, 0, 1.0f, NULL);
+                    func_800BA22C(temp_v0_2, 1);
+                    var_s0 += 1;
+                    var_s1 += 3;
+                } while (var_s0 != temp_v0);
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801C04_chevilspirit.s")
 
