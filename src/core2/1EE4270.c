@@ -248,7 +248,29 @@ void func_8010C3A8(Actor *arg0, u32 arg1, f32 arg2) {
     *(f32 *)((s8 *)arg0 + 0x24) = sp18[0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010C3E8.s")
+/* extern */
+
+s32 func_8010C3E8(Actor *arg0) {
+    f32 func_800BECCC(void);
+    void func_800FFAB0(Actor *);
+    s32 func_8010108C(Actor *, s32, s32);
+    f32 temp_f12;
+    s32 var_v0;
+
+    temp_f12 = func_800BECCC() - 1000.0f;
+    var_v0 = 0;
+    if ((*(f32 *)((s8 *)(arg0) + (8))) < temp_f12) {
+        (*(f32 *)((s8 *)(arg0) + (8))) = temp_f12;
+        if (func_8010108C(arg0, 0x4D, 1) > 0) {
+            return 0;
+        }
+        func_800FFAB0(arg0);
+        var_v0 = 1;
+        /* Duplicate return node #4. Try simplifying control flow for better match */
+        return var_v0;
+    }
+    return var_v0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010C460.s")
 
