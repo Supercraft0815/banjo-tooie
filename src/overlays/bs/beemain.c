@@ -17,7 +17,20 @@ void func_8080002C_bsbeemain(s32 arg0) {
     func_8009D7A4(arg0, 1.35f, 1.45f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80800058_bsbeemain.s")
+void func_80800058_bsbeemain(struct player_state_s *arg0) {
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    s32 bastick_getZone(struct player_state_s *);
+    f32 bastick_getZonePosition(struct player_state_s *);
+    f32 func_800F1214(f32, f32, f32);
+    f32 sp1C;
+
+    sp1C = bastick_getZonePosition(arg0);
+    if (bastick_getZone(arg0) == 0) {
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+        return;
+    }
+    baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp1C, 30.0f, 375.0f));
+}
 
 void func_808000C0_bsbeemain(void *arg0) {
     void *self;
