@@ -149,7 +149,39 @@ void func_80800924_chgoldfish(u8 *arg0) {
     func_800BBCB8(arg0 + 4, 0, (*(s32 *)((s8 *)(arg0) + (0x38))), 1, &D_80800D4C_chgoldfish);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/fish/func_80800964_chgoldfish.s")
+/* extern */
+
+void func_80800964_chgoldfish(u8 *arg0) {
+    s32 _fxairbub_entrypoint_1(f32 *, f32, f32, s32);
+    s32 _fxripple_entrypoint_0(s32, f32 *);
+    s32 _fxsplash25d_entrypoint_0(f32 *);
+    s32 _fxsplash_entrypoint_2(f32[3], f32);
+    void func_800BA22C(s32, s32);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    f32 func_800BED50();
+    void func_800C4140(s32, f32 *, s32);
+    f32 sp3C[3];
+    f32 sp38;
+    s32 temp_s0;
+    s32 temp_v0;
+
+    sp38 = func_800BED50();
+    sp3C[0] = ((f32 *)arg0)[0];
+    sp3C[1] = sp38;
+    sp3C[2] = ((f32 *)arg0)[2];
+    func_800C4140(0x7FFB5C09, (f32 *)arg0, 0x04B000FA);
+    temp_s0 = _fxsplash_entrypoint_2(sp3C, 35.0f);
+    _fxripple_entrypoint_0(3, sp3C);
+    func_800BA930(temp_s0, -0x15E, 0x12C, -0x15E, 0x15E, 0x1F4, 0x15E);
+    func_800BA22C(temp_s0, 0xA);
+    func_800BA930(temp_s0, -0x96, 0x1F4, -0x96, 0x96, 0x320, 0x96);
+    func_800BA22C(temp_s0, 0xA);
+    _fxsplash25d_entrypoint_0(sp3C);
+    sp3C[1] -= 30.0f;
+    temp_v0 = _fxairbub_entrypoint_1(sp3C, 20.0f, sp38, 0x3F800000);
+    func_800BA930(temp_v0, -0x3C, -0xFA, -0x3C, 0x3C, -0x96, 0x3C);
+    func_800BA22C(temp_v0, 8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/fish/func_80800AB4_chgoldfish.s")
 
