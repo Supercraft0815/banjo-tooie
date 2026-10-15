@@ -43,7 +43,16 @@ void func_80800120_bsbtrot(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80800164_bsbtrot.s")
+/* extern */
+
+f32 func_80800164_bsbtrot(s32 arg0) {
+    s32 func_8008DE24();
+    f32 func_80800070_bsbtrot(s32, f32, f32, f32, f32);
+    if (func_8008DE24() != 0) {
+        return 300.0f;
+    }
+    return func_80800070_bsbtrot(arg0, 700.0f, 1000.0f, 700.0f, 700.0f);
+}
 
 void func_808001B8_bsbtrot(s32 arg0) { f32 func_80800070_bsbtrot(s32, f32, f32, f32, f32); func_80800070_bsbtrot(arg0, 30.0f, 80.0f, 30.0f, 30.0f); }
 
