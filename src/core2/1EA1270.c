@@ -73,7 +73,25 @@ f32 func_800C7B7C(Unk800C7A68 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C7FD4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C8070.s")
+/* extern */
+
+f32 func_800C8070(s32 arg0, f32 arg1, f32 arg2, s32 *arg3) {
+    f32 func_800C7FD4(s32, f32, f32);
+    f32 temp_f0;
+    f32 temp_f2;
+
+    temp_f0 = func_800C7FD4(arg0, arg1, arg2);
+    temp_f2 = temp_f0;
+    *arg3 = 0;
+    if (arg2 > 0.0f) {
+        if (temp_f0 < arg1) {
+            *arg3 = 1;
+        }
+    } else if ((arg2 < 0.0f) && (arg1 < temp_f0)) {
+        *arg3 = 1;
+    }
+    return temp_f2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C810C.s")
 
