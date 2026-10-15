@@ -49,4 +49,30 @@ void func_80800588_chtntdetonator(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/detonator/chtntdetonator_entrypoint_1.s")
+/* extern */
+
+s32 chtntdetonator_entrypoint_1(Actor *arg0, s32 arg1) {
+    s32 _subaddiefind_entrypoint_7(Actor *, s32, s32);
+    s32 func_800DA298(GameFlag);
+    void func_800FFA88(Unk80132ED0 *);
+    void func_800FFAB0(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *var_v1;
+
+    if (func_800DA298(arg1) != 0) {
+        if (_subaddiefind_entrypoint_7(arg0, 0x149, 0x320) != -1) {
+            func_800FFA88(arg0->unk3C);
+        }
+        func_800FFAB0(arg0);
+        return 0;
+    }
+    if (_subaddiefind_entrypoint_7(arg0, 0x149, 0x320) != 0) {
+        var_v1 = func_80106790(arg0->unk3C);
+    } else {
+        var_v1 = NULL;
+    }
+    if (var_v1 != NULL) {
+        var_v1->unk3C = arg0->unk0;
+    }
+    return 1;
+}
