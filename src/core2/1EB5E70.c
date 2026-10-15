@@ -28,7 +28,53 @@ void func_800DC61C(s32 arg0, s32 arg1) {
 }
 void func_800DC628(s32 arg0, s32 arg1) {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DC634.s")
+struct GeoCommand800DC634 {
+    u32 header[2];
+    s16 branch_offset;
+    s16 do_pitch_rotate;
+    f32 position[3];
+};
+
+void func_800DC634(s32 model, struct GeoCommand800DC634 *cmd) {
+    void func_800193C4(f32 *, f32 *);
+    void func_800DE2A4(s32, u8 *);
+    void mlMtxApply(Mtx *);
+    void mlMtxPop(void);
+    void mlMtxRotPitch(f32);
+    void mlMtxRotYaw(f32);
+    void mlMtxScale(f32);
+    void mlMtxTranslate(f32, f32, f32);
+    void mlMtx_push_translation(f32, f32, f32);
+    extern f32 D_8012C948;
+    extern f32 D_8012CEA8;
+    extern f32 D_8012CEAC;
+    struct ModelContext {
+        Gfx *gfx;
+        Mtx *mtx;
+    };
+    struct ModelContext *context = (struct ModelContext *)model;
+    f32 transformed_pos[3];
+    Gfx *gfx;
+
+    if (cmd->branch_offset) {
+        func_800193C4(transformed_pos, cmd->position);
+        mlMtx_push_translation(transformed_pos[0], transformed_pos[1], transformed_pos[2]);
+        mlMtxRotYaw(D_8012CEAC);
+        if (!cmd->do_pitch_rotate) {
+            mlMtxRotPitch(D_8012CEA8);
+        }
+        mlMtxScale(D_8012C948);
+        mlMtxTranslate(-cmd->position[0], -cmd->position[1], -cmd->position[2]);
+        mlMtxApply(context->mtx);
+        gfx = context->gfx++;
+        gfx->words.w0 = 0xDA380002;
+        gfx->words.w1 = (u32)context->mtx;
+        context->mtx++;
+        func_800DE2A4(model, (u8 *)cmd + cmd->branch_offset);
+        mlMtxPop();
+        gSPPopMatrix(context->gfx++, G_MTX_MODELVIEW);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DC740.s")
 
