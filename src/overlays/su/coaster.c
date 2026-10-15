@@ -1,6 +1,38 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_0.s")
+/* extern */
+
+ s32 sucoaster_entrypoint_0(Actor *arg0, s32 arg1) {
+    typedef struct {
+        u8 pad0[0xC];
+        s16 scale;
+        u8 padE[9];
+        s8 sector;
+        u32 track : 4;
+        u32 pad18_24 : 4;
+        u32 route : 1;
+        u32 active : 1;
+        u32 pad18_0 : 22;
+    } CoasterData;
+    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    s32 _subaddiesect_entrypoint_1(Actor *);
+    s32 _sucoasterdata_entrypoint_0(Actor *);
+    u32 *func_80100074(Actor *, u32, u32);
+    void func_80107200(Actor *);
+    void func_80802130_sucoaster(Actor *, void *, s16);
+    CoasterData *temp_s0;
+
+    temp_s0 = (CoasterData *)func_80100074(arg0, 0, arg1 + 0x1C);
+    temp_s0->track = _sucoasterdata_entrypoint_0(arg0);
+    temp_s0->sector = _subaddiesect_entrypoint_1(arg0);
+    _subaddierouteDll_entrypoint_3(arg0, temp_s0, arg0->position);
+    func_80802130_sucoaster(arg0, temp_s0, 0x190);
+    temp_s0->route = 1;
+    temp_s0->active = 1;
+    temp_s0->scale = arg0->scale * 256.0f;
+    func_80107200(arg0);
+    return 1;
+}
 
 /* extern */
 
