@@ -30,7 +30,49 @@ void gcmapsects_entrypoint_2(s16 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/func_80800A08_gcmapsects.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/func_80800B58_gcmapsects.s")
+/* extern */
+
+void func_80800B58_gcmapsects(void *arg0) {
+    s32 func_800D674C(s32);
+    s32 func_800D70F8(s32, s32);
+    s32 func_800D73CC(s32);
+    s32 func_800E488C(s32);
+    struct Section {
+        u8 pad[0x40];
+        u16 id;
+        u8 pad42[0xA];
+        u32 flag0 : 1;
+        u32 flag1 : 1;
+        u32 active : 1;
+        u32 loaded : 1;
+        u32 rest : 28;
+    } *section;
+    s32 var_s0;
+    s32 var_s2;
+
+    var_s0 = 0;
+    var_s2 = 0;
+    if (*(u8 *)((u8 *)arg0 + 0x77) > 0) {
+        do {
+            section = (void *)(*(u8 **)((u8 *)arg0 + 0x68) + var_s0);
+            if (section->active && func_800D73CC(section->id) == 0) {
+                if (func_800E488C(((struct Section *)(*(u8 **)((u8 *)arg0 + 0x68) + var_s0))->id) != 0) {
+                    func_800D674C(((struct Section *)(*(u8 **)((u8 *)arg0 + 0x68) + var_s0))->id);
+                    func_800D70F8(((struct Section *)(*(u8 **)((u8 *)arg0 + 0x68) + var_s0))->id, 1);
+                    section = (void *)(*(u8 **)((u8 *)arg0 + 0x68) + var_s0);
+                    section->loaded = 1;
+                } else {
+                    section = (void *)(*(u8 **)((u8 *)arg0 + 0x68) + var_s0);
+                    section->flag0 = 0;
+                    section = (void *)(*(u8 **)((u8 *)arg0 + 0x68) + var_s0);
+                    section->flag1 = 0;
+                }
+            }
+            var_s2 += 1;
+            var_s0 += 0x58;
+        } while (var_s2 < *(u8 *)((u8 *)arg0 + 0x77));
+    }
+}
 
 /* extern */
 
