@@ -1,6 +1,7 @@
 #include "bs/trexsmall.h"
 
 void bstrexsmall_entrypoint_3(s32 arg0);
+void yaw_setVelocityBounded(PlayerState *, f32, f32);
 
 int func_80800000_bstrexsmall(PlayerState *arg0) {
     s32 func_800C6E38(s32);
@@ -58,7 +59,7 @@ void func_80800364_bstrexsmall()
     bstrexsmall_entrypoint_1();
 }
 
-void func_80800384_bstrexsmall(PlayerState *arg0) { bstrexsmall_entrypoint_2(); func_8009FFD8(arg0, 1, 3, 3, 2); yaw_setVelocityBounded((s32)arg0, 0x43FA0000, 0x40D00000); }
+void func_80800384_bstrexsmall(PlayerState *arg0) { bstrexsmall_entrypoint_2(); func_8009FFD8(arg0, 1, 3, 3, 2); yaw_setVelocityBounded(arg0, 500.0f, 6.5f); }
 
 void func_808003D0_bstrexsmall(PlayerState *arg0) {
     s32 func_8080020C_bstrexsmall(s32, s32);
@@ -354,7 +355,20 @@ void func_808015BC_bstrexsmall()
     bstrexsmall_entrypoint_1();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_808015DC_bstrexsmall.s")
+void func_808015DC_bstrexsmall(PlayerState *arg0) {
+    void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
+    void baanim_setDurationRange(PlayerState *, f32, f32);
+    void func_8008C9F0(PlayerState *, f32, f32, f32, f32);
+    void func_8008CA30(PlayerState *, f32);
+
+    bstrexsmall_entrypoint_2();
+    baanim_playForDuration_loopSmooth(arg0, 0x1CF, 0.7f);
+    func_8009FFD8(arg0, 2, 3, 1, 2);
+    yaw_setVelocityBounded(arg0, 500.0f, 6.5f);
+    baanim_setDurationRange(arg0, 0.1f, 10.0f);
+    func_8008C9F0(arg0, 300.0f, 600.0f, 0.86f, 0.48f);
+    func_8008CA30(arg0, 1.0f);
+}
 
 void func_80801688_bstrexsmall(PlayerState *arg0) {
     s32 func_80800154_bstrexsmall(PlayerState *, s32);
