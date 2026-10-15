@@ -81,7 +81,33 @@ s32 func_800E4BB8(void) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E4BF4.s")
+s32 func_800E4BF4(s32 arg0) {
+    s32 func_800E488C(s32);
+    void heap_free(void *);
+    extern void *D_8012D560;
+    s32 sp24;
+    s32 sp20;
+    s32 temp_v0;
+    void **temp_s0;
+    void *temp_a0;
+
+    temp_v0 = func_800E4730(arg0);
+    sp24 = temp_v0;
+    if (temp_v0 == -1) {
+        return 0;
+    }
+    if (func_800E488C(arg0) == 0) {
+        do {
+
+        } while (func_800E488C(arg0) == 0);
+    }
+    temp_s0 = &(&D_8012D560)[sp24];
+    temp_a0 = *temp_s0;
+    sp20 = (*(s32 *)((s8 *)(temp_a0) + (0x34)));
+    heap_free(temp_a0);
+    *temp_s0 = NULL;
+    return sp20;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E4C7C.s")
 
