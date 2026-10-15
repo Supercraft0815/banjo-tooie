@@ -26,7 +26,32 @@ f32 func_8080000C_chlaundry(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/laundry/func_80800058_chlaundry.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/laundry/func_80800218_chlaundry.s")
+/* extern */
+
+void func_80800218_chlaundry(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80800058_chlaundry(Actor *, f32);
+    void func_808003A0_chlaundry(u8 *volatile);
+    f32 sp24;
+    f32 sp20;
+    struct {
+        u8 unk0;
+        u8 unk1;
+        f32 unk4;
+    } *sp1C;
+
+    sp1C = func_80100094(arg0, 0);
+    sp24 = sp1C->unk4;
+    sp20 = func_800D8FF8();
+    func_80800058_chlaundry(arg0, sp20);
+    sp1C->unk4 = sp24 + sp20;
+    if (sp1C->unk1 != 0) {
+        func_808003A0_chlaundry((u8 *)arg0);
+        func_800FFAB0(arg0);
+    }
+}
 
 s32 func_80800288_chlaundry(s32 arg0, s32 arg1, s32 arg2) 
 {
