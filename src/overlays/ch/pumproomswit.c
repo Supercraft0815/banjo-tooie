@@ -37,7 +37,28 @@ void func_80800018_chpumproomswitch(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pumproomswit/func_808000BC_chpumproomswitch.s")
+/* extern */
+
+void func_808000BC_chpumproomswitch(void *arg0, s32 arg1, s32 arg2) {
+    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80103110(void *, s32);
+    s32 func_801032B0(Actor *, u16, u16);
+    Actor *actor = arg0;
+
+    if (arg1 != 7) {
+        if (arg1 == 0x95) {
+            func_801032B0(actor, actor->unk74_7 == 0x32 ? 0x7B9 : 0x7B8, actor->unk0->unk16);
+            if (func_800DA298(0xB2) != 0) {
+                func_80103110(arg0, 0);
+            }
+        }
+    } else {
+        func_80101180(0x3D2, 0xA, 0);
+    }
+    _chswitch_entrypoint_10(arg0, arg1, arg2);
+}
 
 s32 func_8080016C_chpumproomswitch(u8 *arg0) {
     u32 value = *(u16 *)((u8 *)arg0 + 0x76);
