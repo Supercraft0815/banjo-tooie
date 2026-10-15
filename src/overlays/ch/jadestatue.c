@@ -7,7 +7,27 @@ OSThread *chjadestatue_entrypoint_0(void)
     return (OSThread *) D_80800310_chjadestatue;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadestatue/func_8080000C_chjadestatue.s")
+/* extern */
+
+void func_8080000C_chjadestatue(Actor *arg0) {
+    s32 func_800D035C(s32);
+    s32 func_800D0B68(u32, u32);
+    s32 func_800DA298(s32);
+    void func_800FFA88(Unk80132ED0 *);
+    void func_80102FDC(Actor *, f32);
+    u32 func_8010A5B0(Actor *, s32);
+    s32 sp24;
+    s32 temp_at;
+
+    func_80102FDC(arg0, 0.75f);
+    sp24 = func_800D0B68(arg0->unk74_7 - 0x32, 5);
+    temp_at = func_800D035C(5);
+    if ((sp24 != 0) || (temp_at >= 0x14)) {
+        func_800FFA88(arg0->unk0);
+    }
+    arg0->unk64_20 = 0;
+    func_8010A5B0(arg0, func_800DA298(0x680) == 0);
+}
 
 /* extern */
 
