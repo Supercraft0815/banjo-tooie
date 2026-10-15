@@ -284,4 +284,30 @@ s32 susplinet_entrypoint_18(s32 arg0, s32 arg1, s32 arg2) {
     return result + 0x5C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_19.s")
+/* extern */
+
+void susplinet_entrypoint_19(u8 *arg0, s32 arg1, u32 arg2, u32 arg3) {
+    void func_800DA524(s32);
+    u8 *values;
+    u8 *indices;
+    s32 i;
+
+    *(s16 *)(arg0 + 0x4E) = arg1;
+    *(u8 *)(arg0 + 0x51) = arg2;
+    *(u8 *)(arg0 + 0x52) = arg3;
+    *(u8 *)(arg0 + 0x50) = 0;
+    *(s16 *)(arg0 + 0x4C) = 0;
+    *(u8 *)(arg0 + 0x58) = 0;
+    *(f32 *)(arg0 + 0x44) = 0.0f;
+    *(f32 *)(arg0 + 0x48) = 0.0f;
+    func_8080111C_susplinet(arg0);
+    values = arg0;
+    indices = arg0;
+    values += *(s16 *)(arg0 + 0x32);
+    indices += *(s16 *)(arg0 + 0x34);
+    for (i = 0; i < arg1; i++) {
+        *(s16 *)(values + i * 2) = 0;
+        *(s16 *)(indices + i * 2) = -1;
+    }
+    func_800DA524(0x644);
+}
