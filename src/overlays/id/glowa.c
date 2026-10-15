@@ -2,7 +2,14 @@
 
 typedef struct { s32 unk0; f32 unk4; f32 unk8; f32 unkC; } GlowEffect;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/glowa/idglowa_entrypoint_0.s")
+void idglowa_entrypoint_0(u8 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, GlowEffect *arg4) {
+    f32 scale = arg4->unk4;
+    Vtx *end = arg1 + arg3;
+
+    for (; arg1 < end; arg2++) {
+        arg2->v.cn[3] = (u32)(arg1++)->v.cn[3] * scale;
+    }
+}
 
 f32 idglowa_entrypoint_1(f32 *arg0) {
     return arg0[1];
