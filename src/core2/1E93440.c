@@ -274,9 +274,9 @@ void func_800BAB60(s32 arg0) {
 
 /* extern */
 
-void func_800BAB80(s32 arg0) {
-    s32 func_800F2EBC(s32);
-    func_800F2EBC(arg0 + 0x80);
+void func_800BAB80(s32 arg0, f32 *arg1) {
+    s32 func_800F2EBC(s32, f32 *);
+    func_800F2EBC(arg0 + 0x80, arg1);
 }
 
 void func_800BABA0(void *arg0, f32 arg1) {

@@ -363,7 +363,21 @@ u8 func_808042D8_chdiggerboss(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808042FC_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808043D8_chdiggerboss.s")
+void func_808043D8_chdiggerboss(Actor *arg0, f32 arg1, f32 *arg2) {
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    s32 func_800B53A4(s32);
+    void func_800BAB80(s32, f32 *);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    extern s32 D_80809FE0_chdiggerboss;
+    f32 sp24[3];
+    s32 sp20;
+
+    if (_subaddieskeleton_entrypoint_2(arg0->unk0, 7, sp24) != 0) {
+        sp20 = func_800B53A4(1);
+        func_800BAB80(sp20, arg2);
+        func_800BABB8(sp20, sp24, arg0->position, arg1, &D_80809FE0_chdiggerboss);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80804450_chdiggerboss.s")
 
