@@ -28,7 +28,35 @@ void func_8080010C_chbadjinjo(s32 arg0, f32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_808001B0_chbadjinjo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_80800278_chbadjinjo.s")
+f32 func_80800278_chbadjinjo(void) {
+    extern u8 D_8012762C;
+    switch (D_8012762C) {
+    case 19:
+        return 420.0f;
+    case 16:
+        return 440.0f;
+    case 15:
+        return 460.0f;
+    case 18:
+        return 450.0f;
+    case 20:
+        return 500.0f;
+    case 21:
+        return 550.0f;
+    case 22:
+        return 600.0f;
+    case 23:
+        return 650.0f;
+    case 24:
+        return 700.0f;
+    case 25:
+        return 630.0f;
+    case 26:
+        return 600.0f;
+    default:
+        return 0.0f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_80800358_chbadjinjo.s")
 
