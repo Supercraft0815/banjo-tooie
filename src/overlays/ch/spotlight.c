@@ -72,7 +72,35 @@ void func_80800580_chspotlight(Actor *arg0) {
     sp1C[14] = ((f32 *)sp18->actorData)[4] * 1500.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_80800600_chspotlight.s")
+void func_80800600_chspotlight(Actor *arg0, f32 arg1) {
+    void func_800C8CB8(s32, f32[3]);
+    void func_800C8E84(s32, u32[3]);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    int func_800F3214(void *, void *, void *, f32);
+    void *func_80100094(Actor *, u32);
+    extern u32 D_80800998_chspotlight[3];
+    extern u32 D_808009A4_chspotlight[3];
+    typedef struct {
+        s32 light;
+        f32 position[3];
+        f32 direction[3];
+    } SpotlightData;
+    SpotlightData *data;
+    u32 sp30[3];
+    f32 distance;
+
+    data = func_80100094(arg0, 0);
+    distance = func_800EEAD4(arg0->position, data->position);
+    func_800EEC30(data->direction, -arg0->rotation[0], arg0->rotation[1], distance);
+    func_800EF04C(data->direction, arg0->position);
+    if (data->light != 0) {
+        func_800F3214(sp30, D_80800998_chspotlight, D_808009A4_chspotlight, arg1);
+        func_800C8E84(data->light, sp30);
+        func_800C8CB8(data->light, data->direction);
+    }
+}
 
 void func_808006B8_chspotlight(Actor *arg0) {
     void func_800C8D4C(s32, f32 *);
