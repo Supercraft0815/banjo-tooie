@@ -11,7 +11,34 @@ void func_80800000_chminegrilldoor(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/grilldoor/func_80800068_chminegrilldoor.s")
+/* extern */
+
+s32 func_80800068_chminegrilldoor(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, u32, u32);
+    s32 _chdoor_entrypoint_1(Actor *, s32, s32);
+    s32 func_800DA298(s32);
+    void func_800DA544(s32);
+    s32 temp_v1;
+    s32 var_v0;
+
+    if ((func_800DA298(0x43B) == 0) && (arg1 >= 0x79)) {
+        temp_v1 = arg1 - 0x79;
+        if (arg1 < 0x7D) {
+            if (temp_v1 & 2) {
+                var_v0 = 2;
+            } else {
+                var_v0 = 1;
+            }
+            arg0->unk6C_0 = (arg0->unk6C_0 & (3 - var_v0)) + ((temp_v1 & 1) * var_v0);
+            if (arg0->unk6C_0 == 3) {
+                func_800DA544(0x43B);
+                _capod_entrypoint_13(arg0->unk0, NULL, 8, 0x10);
+            }
+            return 1;
+        }
+    }
+    return _chdoor_entrypoint_1(arg0, arg1, arg2);
+}
 
 /* extern */
 
