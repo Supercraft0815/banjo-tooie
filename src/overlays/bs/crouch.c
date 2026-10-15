@@ -161,6 +161,28 @@ s32 bscrouch_entrypoint_3(s32 arg0) {
     return ((s32 *)&D_80800990_bscrouch)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/crouch/func_808006A4_bscrouch.s")
+/* extern */
+
+s32 func_808006A4_bscrouch(void *arg0) {
+    s32 _bapackctrl_entrypoint_1(void *);
+    void func_8009C128(void *, f32[3]);
+    s32 func_800CB7C4(s32, f32 *, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void yaw_setIdeal(void *, f32);
+    f32 sp34[3];
+    f32 sp28[3];
+    s32 sp24;
+    s32 sp20;
+    s32 temp_v0;
+
+    sp24 = _bapackctrl_entrypoint_1(arg0);
+    func_8009C128(arg0, sp34);
+    temp_v0 = func_800CB7C4(sp24, sp34, sp28);
+    sp20 = temp_v0;
+    if (temp_v0 == 2) {
+        yaw_setIdeal(arg0, func_800F1DF4(sp34, sp28));
+    }
+    return sp20;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/crouch/bscrouch_entrypoint_4.s")
