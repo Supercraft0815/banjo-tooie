@@ -24,7 +24,36 @@ void func_80800260_chanemone(Actor *arg0) { s32 _subaddiesect_entrypoint_1(Actor
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anemone/func_808003A8_chanemone.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anemone/func_808005A0_chanemone.s")
+void func_808005A0_chanemone(Actor *arg0, s32 arg1) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_80102424(Actor *, s32);
+    void func_8010A570(Actor *);
+    extern s32 D_80800954_chanemone;
+    u32 state;
+
+    if ((s32)arg0->unk6C_0 == 1) {
+        state = arg0->unk70_10;
+        if (state == 1) {
+            goto activate;
+        }
+        if (state == 3) {
+            goto extend;
+        }
+        if (state == 4) {
+activate:
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800954_chanemone);
+            func_80102424(arg0, 2);
+            _subaddieDll_entrypoint_4(arg0, 1);
+            func_8010A570(arg0);
+            goto done;
+        }
+        goto done;
+extend:
+        arg0->unk58 = 6.0f;
+    }
+done:;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anemone/func_80800648_chanemone.s")
 
