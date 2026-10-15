@@ -191,7 +191,45 @@ s32 func_800CC6CC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CCDF4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CCEF4.s")
+/* extern */
+
+s32 func_800CCEF4(s32 arg0, s32 *arg1, s32 *arg2, s32 arg3) {
+    s32 func_800CC078(s32);
+    s32 func_800CC6F4(s32, s32, s32);
+    s32 temp_v0;
+    s32 temp_v0_2;
+    s32 temp_v0_3;
+    s32 temp_v0_4;
+    s32 temp_v0_5;
+    s32 var_a2;
+
+    if (*arg1 == -1) {
+        temp_v0 = func_800CC078(arg0);
+        *arg1 = temp_v0;
+        if (temp_v0 == -1) {
+            *arg2 = -1;
+            return 0;
+        }
+    }
+    temp_v0_3 = func_800CC6F4(arg0, *arg1, *arg2 == -1 ? 0 : *arg2);
+    *arg2 = temp_v0_3;
+    if (temp_v0_3 >= 0) {
+        return 1;
+    }
+    temp_v0_4 = func_800CC078(arg0);
+    *arg1 = temp_v0_4;
+    if (temp_v0_4 == -1) {
+        *arg2 = -1;
+        return 0;
+    }
+    temp_v0_5 = func_800CC6F4(arg0, *arg1, 0);
+    *arg2 = temp_v0_5;
+    if (temp_v0_5 >= 0) {
+        return 1;
+    }
+    *arg1 = -1;
+    return 0;
+}
 
 void func_800CCFEC(void) {
     s32 defrag(s32);
