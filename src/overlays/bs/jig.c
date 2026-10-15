@@ -23,7 +23,43 @@ void bsjig_entrypoint_2(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jig/bsjig_entrypoint_3.s")
+void bsjig_entrypoint_3(void *arg0) {
+    s32 anctrl_isAt(s32, s32);
+    s32 anctrl_isStopped(s32);
+    s32 baanim_getAnimCtrlPtr();
+    s32 bs_setState(void *, s32);
+    s32 func_8009919C(void *, s32 *, s32);
+    s32 func_8009D874(void *);
+    s32 func_8009DE38(void *, s32, s32);
+    f32 func_8009F308(void *);
+    s32 yaw_setIdeal(void *, f32);
+    extern s32 _bsjig_entrypoint_2;
+    s32 sp24;
+    s32 sp20;
+
+    sp24 = 0;
+    sp20 = baanim_getAnimCtrlPtr();
+    yaw_setIdeal(arg0, func_8009F308(arg0));
+    if (anctrl_isAt(sp20, 0x3F267382) != 0) {
+        func_8009D874(arg0);
+    }
+    if (anctrl_isAt(sp20, 0x3F55C28F) != 0) {
+        (*(s32 *)((s8 *)(arg0) + (0x15C))) = (s32) ((*(s32 *)((s8 *)(arg0) + (0x15C))) + 1);
+        func_8009DE38(arg0, 0x434, 0x3FA66666);
+    }
+    if (anctrl_isAt(sp20, 0x3F70A3D7) != 0) {
+        func_8009DE38(arg0, 0x3EA, 0x3F800000);
+    }
+    if (anctrl_isStopped(sp20) != 0) {
+        if ((*(s32 *)((s8 *)(arg0) + (0x160))) != 0) {
+            sp24 = 0x34;
+        } else {
+            sp24 = 1;
+        }
+    }
+    func_8009919C(arg0, &_bsjig_entrypoint_2, (*(s32 *)((s8 *)(arg0) + (0x184))));
+    bs_setState(arg0, sp24);
+}
 
 /* extern */
 
