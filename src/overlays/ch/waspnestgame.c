@@ -192,7 +192,36 @@ void func_80800C00_chwaspnestgame(void *arg0, s32 arg1) {
     func_800EF368(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80800C7C_chwaspnestgame.s")
+/* extern */
+
+void func_80800C7C_chwaspnestgame(Actor *arg0, s32 arg1) {
+    void func_800EE7B4(f32[3], f32[3], f32[3], f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF3DC(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    s32 func_800F0734(f32 *, f32 *, f32 *, f32, f32, f32 *, f32 *);
+    s32 sp7C;
+    f32 sp70[3];
+    f32 sp64[3];
+    f32 sp58[3];
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+    f32 sp28[3];
+
+    func_80800C00_chwaspnestgame(sp40, 0x43FA0000);
+    sp40[1] += 1950.0f;
+    func_80800C00_chwaspnestgame(sp34, 0x42C80000);
+    func_800EE7B4(sp64, sp40, sp34, 100.0f);
+    func_800EE7B4(sp70, sp40, sp34, -100.0f);
+    func_800EFA4C(sp28, 0.0f, -600.0f, 0.0f);
+    if (func_800F0734(sp70, sp64, sp28, 4000.0f, 5100.0f, sp58, sp4C) != 0) {
+        func_800EF3DC(sp58, sp34);
+        func_800EF04C(sp4C, sp34);
+        func_80800AF8_chwaspnestgame(arg0, sp58, sp4C, arg1);
+        arg0->actorData[7]++;
+    }
+}
 
 /* extern */
 
