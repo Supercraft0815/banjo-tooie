@@ -72,6 +72,38 @@ void func_808008BC_chcablespark(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablespark/func_80800970_chcablespark.s")
+/* extern */
+
+s32 func_80800970_chcablespark(Actor *arg0) {
+    void _chelectricfence_entrypoint_1(Actor *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    s32 func_800F0008(f32[3], f32, f32[3], f32);
+    u32 func_800F54E4(void);
+    f32 func_800F57F0(s32, f32 *);
+    s32 func_800F6478(s32);
+    s32 func_800F7B9C(s32, s32);
+    f32 sp3C[3];
+    f32 temp_f0;
+    f32 sp2C[3];
+    f32 sp28;
+    s32 sp24;
+    s32 temp_v0;
+
+    temp_v0 = func_800F54E4();
+    sp24 = temp_v0;
+    if (func_800F6478(temp_v0) == 0) {
+        return 0;
+    }
+    sp28 = func_800F57F0(sp24, sp2C);
+    func_800EE7F8(sp3C, arg0->position);
+    func_800EF1B8(sp3C, arg0->rotation[1], arg0->scale * 40.0f);
+    temp_f0 = arg0->scale * 50.0f;
+    if ((func_800F0008(sp3C, temp_f0, sp2C, sp28) != 0) && (func_800F7B9C(sp24, 0x51) == 2)) {
+        _chelectricfence_entrypoint_1(arg0, sp2C);
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablespark/func_80800A48_chcablespark.s")
