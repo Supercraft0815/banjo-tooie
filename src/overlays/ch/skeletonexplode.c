@@ -26,7 +26,31 @@ void func_80800034_chskeletonexplode(void **arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_808001BC_chskeletonexplode.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_808004DC_chskeletonexplode.s")
+/* extern */
+
+void func_808004DC_chskeletonexplode(Actor *arg0, Actor *arg1, u16 arg2, s32 arg3) {
+    s32 func_80103140(Actor *, u32, u16);
+    struct SkeletonExplodeFlags {
+        u8 pad[0x74];
+        u32 pad74_4 : 28;
+        u32 unk74_0 : 4;
+        u32 pad78_14 : 18;
+        u32 unk7A_13 : 2;
+        u32 unk7A_11 : 3;
+        u32 pad7A_8 : 9;
+    };
+    struct SkeletonExplodeFlags *dst = (void *)arg0;
+    struct SkeletonExplodeFlags *src = (void *)arg1;
+
+    arg0->rotation[0] = arg1->rotation[0];
+    arg0->rotation[2] = arg1->rotation[2];
+    arg0->rotation[1] = arg1->rotation[1];
+    arg0->scale = arg1->scale;
+    func_80103140(arg0, arg2, arg3);
+    dst->unk74_0 = src->unk74_0;
+    dst->unk7A_11 = src->unk7A_11;
+    dst->unk7A_13 = src->unk7A_13;
+}
 
 void func_80800594_chskeletonexplode(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x30))) = 15.0f;
