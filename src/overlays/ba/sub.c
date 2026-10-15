@@ -103,7 +103,20 @@ void basub_entrypoint_4(void) {
     _chping_entrypoint_0((*(s32 *)((s8 *)(func_800F53D0()) + (0x184))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_5.s")
+void basub_entrypoint_5(void *arg0) {
+    struct player_state_s;
+    s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
+    void func_8009DB04(struct player_state_s *, s32, f32, s32);
+    extern s32 _basub_entrypoint_4;
+    void *temp_v0;
+
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x130)));
+    if ((*(f32 *)((s8 *)(temp_v0) + (0x1C))) == 0.0f) {
+        (*(f32 *)((s8 *)(temp_v0) + (0x1C))) = 3.0f;
+        func_8009DB04(arg0, 0x52A, 1.0f, 0x7FFF);
+        _chbaddiesetup_entrypoint_1(&_basub_entrypoint_4, (*(s32 *)((s8 *)(arg0) + (0x184))));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_6.s")
 
