@@ -284,7 +284,31 @@ void func_80801318_bsbansack(s32 arg0)
 
 void func_80801348_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(); baanim_playForDuration_onceSmooth(arg0, 0x28C, 1.2f); _babounce_entrypoint_4(arg0, 1); func_80801178_bsbansack(arg0); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80801390_bsbansack.s")
+void func_80801390_bsbansack(PlayerState *arg0) {
+    s32 _babounce_entrypoint_10();
+    s32 _babounce_entrypoint_2();
+    s32 bastick_getZone(PlayerState *);
+    void bs_setState(PlayerState *, int);
+    s32 func_8008DF8C(PlayerState *, s32);
+    s32 func_8080119C_bsbansack(PlayerState *);
+    s32 var_s1;
+
+    var_s1 = 0;
+    if (_babounce_entrypoint_2() != 0) {
+        func_808001D4_bsbansack(arg0);
+    }
+    _babounce_entrypoint_10(arg0);
+    if (func_8080119C_bsbansack(arg0) != 0) {
+        var_s1 = 0x165;
+    }
+    if (func_8008DF8C(arg0, 1) != 0) {
+        if (bastick_getZone(arg0) > 0) {
+            var_s1 = 0x166;
+        }
+        var_s1 = func_80800084_bsbansack(arg0, var_s1);
+    }
+    bs_setState(arg0, var_s1);
+}
 
 s32 bsbansack_entrypoint_4(s32 arg0) {
     extern s32 D_80801E50_bsbansack[];
