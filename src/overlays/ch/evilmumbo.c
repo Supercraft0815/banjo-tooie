@@ -103,7 +103,28 @@ void func_808011B8_chevilmumbo(s32 arg0) {
     func_800BBCB8(temp_a0, temp_a0, 0x3F800000, 1, &D_80804304_chevilmumbo);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_808011F4_chevilmumbo.s")
+void func_808011F4_chevilmumbo(Actor *arg0) {
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    int func_800DC298(f32);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    extern s32 D_8080434C_chevilmumbo;
+    s32 sp34;
+    f32 sp28[3];
+    f32 angle;
+
+    sp34 = func_800B53A4(4);
+    angle = arg0->unk58 * 720.0f;
+    func_800EEB9C(sp28, angle, 30.0f);
+    func_800EF04C(sp28, arg0->position);
+    func_800BABB8(sp34, sp28, NULL, 1.0f, &D_8080434C_chevilmumbo);
+    func_800BA22C(sp34, 4);
+    if (func_800DC298(0.4f) != 0) {
+        func_808011B8_chevilmumbo((s32) arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_8080129C_chevilmumbo.s")
 
