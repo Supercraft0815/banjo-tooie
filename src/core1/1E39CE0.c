@@ -815,7 +815,29 @@ void func_80023008(MusicPlayer *seqp, MusicEvent *event) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39CE0/func_80024A5C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39CE0/func_80024C9C.s")
+void func_80024C9C(ALEventQueue *evtq, ALEventListItem *item) {
+    void func_80020E40(ALLink *, ALLink *);
+    u32 mask;
+    ALLink *node;
+    ALEventListItem *next;
+
+    mask = osSetIntMask(1U);
+    for (node = &evtq->allocList; node != NULL; node = node->next) {
+        if (node->next == NULL) {
+            func_80020E40(&item->node, node);
+            break;
+        } else {
+            next = (ALEventListItem *)node->next;
+            if (item->delta < next->delta) {
+                next->delta -= item->delta;
+                func_80020E40(&item->node, node);
+                break;
+            }
+            item->delta -= next->delta;
+        }
+    }
+    osSetIntMask(mask);
+}
 
 void func_80024D90(MusicPlayer *arg0, f32 arg1) {
     if (arg0->target != NULL) {
