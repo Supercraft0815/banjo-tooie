@@ -333,7 +333,40 @@ s32 func_80108618(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108658.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_801088A8.s")
+/* extern */
+
+void func_801088A8(void *arg0, s32 arg1, s32 arg2, void *arg3) {
+    s8 func_800BF8E4(void);
+    void func_80108658(void *, s32, s32, void *);
+    struct ActorFlags {
+        u8 pad0[0x74];
+        u8 pad74_26 : 6;
+        u8 flag74_25 : 1;
+        u8 pad74_24 : 1;
+        u8 pad75[2];
+        u8 pad74_7 : 1;
+        u8 flag74_6 : 1;
+        u8 pad74_0 : 6;
+        u16 pad78;
+        u16 pad7A_8 : 8;
+        u16 flag7A_6 : 2;
+        u16 pad7A_0 : 6;
+        u8 pad7C[0x18];
+        union {
+            u16 value : 16;
+            struct {
+                u32 pad94_16 : 16;
+                u32 flag96_15 : 1;
+                u32 pad96_0 : 15;
+            } bits;
+        } flags96;
+    } *actor = arg0;
+
+    actor->flag7A_6 = actor->flag74_6 = actor->flag74_25 = actor->flags96.bits.flag96_15 = 0;
+    if (func_800BF8E4() != 0) {
+        func_80108658(arg0, arg1, arg2, arg3);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108944.s")
 
