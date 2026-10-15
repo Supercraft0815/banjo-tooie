@@ -1,7 +1,9 @@
 #include "core2/1ED4E30.h"
 
 typedef struct {
-    u8 unk0[0x28];
+    u8 unk0[8];
+    f32 fade[2];
+    u8 unk10[0x18];
     s16 track_id;
     s16 unk2A;
     u8 unk2C[0xC];
@@ -308,7 +310,29 @@ void func_800FC97C(s32 arg0, f32 arg1, f32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC9B4.s")
+void func_800FC9B4(s32 arg0, f32 arg1) {
+    s32 func_800FE7A8(s32);
+    extern f32 D_801359B4;
+    extern f32 D_801359B8;
+    s32 index;
+    s16 temp_a0;
+
+    if (arg0 != 0) {
+        D_801359B4 = arg1;
+        D_801359B8 = 1.0f;
+    } else {
+        D_801359B4 = 0.0f;
+        D_801359B8 = 1.0f;
+    }
+    index = 0; do {
+        temp_a0 = D_801357D0[index].track_id;
+        if ((temp_a0 >= 0) && (func_800FE7A8(temp_a0) == 0) && !(D_801357D0[index].unk2C[4] & 0xF)) {
+            D_801357D0[index].fade[0] = D_801359B4;
+            D_801357D0[index].fade[1] = D_801359B8;
+        }
+        index++;
+    } while (&D_80135960 != (void *)&D_801357D0[index]);
+}
 
 void func_800FCA90(u32 track_id) {
     void *func_800FB5F8(s32);
