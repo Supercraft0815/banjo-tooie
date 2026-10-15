@@ -91,7 +91,38 @@ void func_808003F0_bsbtrot(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_808004B4_bsbtrot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80800538_bsbtrot.s")
+/* extern */
+
+void func_800931AC(PlayerState *, s32);
+
+void func_80800538_bsbtrot(void *arg0) {
+    void _bashoes_entrypoint_15();
+    void baflag_set(PlayerState *, s32);
+    void baroll_setAngularVelocity(PlayerState *, f32, f32);
+    void bastick_setZoneMax(PlayerState *, s32, f32);
+    s32 bs_getPreviousState(PlayerState *);
+    void func_80094F14(u8 *, s32, s32, f32);
+    void func_8009BFE4(PlayerState *, f32, f32);
+    s32 func_8009CA70(PlayerState *, s32, s32);
+    void func_8009E4AC(PlayerState *);
+    void func_800A0CE8(PlayerState *, s32);
+    void func_800A0CF4(PlayerState *, s32);
+    if (func_8009CA70(arg0, bs_getPreviousState(arg0), 0x40) == 0) {
+        _bashoes_entrypoint_15(arg0);
+        bastick_setZoneMax(arg0, 0, 0.03f);
+        bastick_setZoneMax(arg0, 1, 1.0f);
+        func_800A0CF4(arg0, 1);
+        func_800A0CE8(arg0, 1);
+        func_8009BFE4(arg0, 1000.0f, 12.0f);
+        baroll_setAngularVelocity(arg0, 1000.0f, 12.0f);
+        baflag_set(arg0, 3);
+        func_80094F14(arg0, 4, 1, 0.24f);
+        func_800931AC(arg0, 2);
+        func_8009E4AC(arg0);
+        (*(s32 *)((s8 *)(arg0) + (0x160))) = 0;
+        (*(s32 *)((s8 *)(arg0) + (0x164))) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_8080061C_bsbtrot.s")
 
@@ -236,7 +267,7 @@ void bsbtrot_entrypoint_17(PlayerState *arg0) {
 }
 
 void bsbtrot_entrypoint_18(s32 arg0) {
-    s32 func_8009CA70(void *, s32, s32);
+    s32 func_8009CA70(PlayerState *, s32, s32);
     if (func_8009CA70((PlayerState *)arg0, bs_getNextState((PlayerState *)arg0), 0x40) != 0) {
         func_800931AC((PlayerState *)arg0, 2);
     }
@@ -435,7 +466,7 @@ s32 bsbtrot_entrypoint_39(s32 arg0) {
 
 void bsbtrot_entrypoint_40(PlayerState *arg0) { func_80802380_bsbtrot(arg0, 0); _bashoes_entrypoint_6(arg0, 2); _bashoes_entrypoint_5(arg0, 0); func_8080061C_bsbtrot(arg0); }
 
-void bsbtrot_entrypoint_41(s32 arg0) { func_80800538_bsbtrot(); _bashoes_entrypoint_5(arg0, 1); *(s32 *)(arg0 + 0x15C) = 0; func_80802380_bsbtrot(arg0, 1); }
+void bsbtrot_entrypoint_41(PlayerState *arg0) { func_80800538_bsbtrot(arg0); _bashoes_entrypoint_5(arg0, 1); *(s32 *)((s8 *)arg0 + 0x15C) = 0; func_80802380_bsbtrot(arg0, 1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_42.s")
 
@@ -473,7 +504,7 @@ void func_808029D8_bsbtrot(void *arg0) {
     s32 _bashoessuck_entrypoint_3(void *);
     s32 bs_getPreviousState();
     s32 func_80092880(void *, s32);
-    s32 func_8009CA70(void *, s32, s32);
+    s32 func_8009CA70(PlayerState *, s32, s32);
     s32 func_800A2018(void *, s32);
     s32 func_800A4DA4(void *, s32);
     if (func_8009CA70(arg0, bs_getPreviousState(), 0x800) == 0) {
