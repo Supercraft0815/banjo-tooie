@@ -18,7 +18,36 @@ void func_80800A34_chfactorytoxiccloud(s32 arg0, void *arg1) {
     (*(s32 *)((s8 *)(arg1) + (8))) = func_800DC128(0, 0x10);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_80800AD8_chfactorytoxiccloud.s")
+/* extern */
+
+void func_80800AD8_chfactorytoxiccloud(s32 arg0, f32 *volatile arg1) {
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    s32 func_800F5410(s32);
+    s32 func_800F54E4();
+    void func_800F5A00(s32, f32 *);
+    void func_800F5A2C(s32, s32, f32 *);
+    f32 func_800F5F24(u32);
+    f32 sp34[3];
+    f32 sp28[3];
+    s32 temp_v0;
+
+    temp_v0 = func_800F5410(func_800F54E4());
+    if ((temp_v0 == 1) || (temp_v0 == 0xA) || (temp_v0 == 0xB)) {
+        func_800F5A2C(func_800F54E4(), 5, sp34);
+        func_800F5A2C(func_800F54E4(), 2, sp28);
+        func_800EFE50(arg1, sp34, sp28, 0.5f);
+        func_800EEB9C(sp34, func_800F5F24(func_800F54E4()), 20.0f);
+        sp34[1] += 20.0f;
+        func_800EF04C(arg1, sp34);
+        return;
+    }
+    func_800F5A00(func_800F54E4(), arg1);
+    func_800EF1B8(arg1, func_800F5F24(func_800F54E4()), 30.0f);
+    arg1[1] += 140.0f;
+}
 
 /* extern */
 
