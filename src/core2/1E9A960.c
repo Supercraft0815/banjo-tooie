@@ -687,7 +687,24 @@ void func_800C3B8C(u8 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3D78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3E00.s")
+s32 func_800C3E00(s32 arg0) {
+    s32 func_800C3D78(s32);
+    extern s32 D_80128C10;
+    s32 var_s0;
+    s8 *var_s1;
+
+    var_s0 = 1; var_s1 = (s8 *)&D_80128C10;
+loop_1:
+    if (((*(u8 *)((s8 *)(var_s1) + (0x78))) != 0) && (func_800C3D78(var_s0 & 0xFF) != 0) && (arg0 == (*(s16 *)((s8 *)(var_s1) + (0x58))))) {
+        return 1;
+    }
+    var_s0 += 1;
+    var_s1 += 0x80;
+    if (var_s0 == 0x3C) {
+        return 0;
+    }
+    goto loop_1;
+}
 
 void func_800C3E88(s32 uid){
     void func_800C2840(s32, f32, s32, s32, s32);
