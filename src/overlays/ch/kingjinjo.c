@@ -42,7 +42,7 @@ s32 func_80800634_chkingjinjo(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80800B28_chkingjinjo(Actor *);
     s32 func_80800BBC_chkingjinjo(void *, s32, s32);
     s32 func_80800C60_chkingjinjo(void *, s32, s32);
-    s32 func_80800CFC_chkingjinjo(void *, s32, s32);
+    void func_80800CFC_chkingjinjo(Actor *, s32, s32);
     void func_8010D5DC(void);
     s32 expression_id;
     Actor *found;
@@ -202,7 +202,20 @@ s32 func_80800C18_chkingjinjo(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_80800C60_chkingjinjo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_80800CFC_chkingjinjo.s")
+void func_80800CFC_chkingjinjo(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+
+    switch (arg0->unk6C_0) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x17, arg2);
+        case 2:
+            arg0->unk6C_0 = 1;
+        case 1:
+            _capod_entrypoint_6(arg0->unk0, arg1, arg2);
+            break;
+    }
+}
 
 /* extern */
 
