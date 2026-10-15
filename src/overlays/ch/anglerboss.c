@@ -65,7 +65,7 @@ void func_80800F14_changlerboss(Actor *arg0, s32 arg1) {
 /* extern */
 
 void func_80800FEC_changlerboss(Actor *arg0, s32 arg1) {
-    void _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
     void *func_80100094(Actor *, u32);
     void func_80101870(Actor *, void *);
     void func_801018A4(Actor *, s32);
@@ -224,7 +224,7 @@ void func_80801CD8_changlerboss(s32 arg0) {
 
 void func_80801D0C_changlerboss(Actor *arg0) {
     s32 _subaddieDll_entrypoint_0(Actor *);
-    void _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
     void *func_80100094(Actor *, u32);
     Actor *func_801084B0(s32, Actor **);
     void func_8010A570(Actor *);
@@ -279,7 +279,50 @@ Actor *func_80801DA0_changlerboss(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80801F54_changlerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80802108_changlerboss.s")
+/* extern */
+
+void func_80802108_changlerboss(Actor *arg0) {
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    Unk80132ED0 *func_800D10D4(s32, s32, f32 *, s32, s32);
+    void func_800FFA88(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010114C(s32, s32, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80802210_changlerboss(Actor *, Unk80132ED0 *, u32, u32);
+    struct AnglerBossCleanupData {
+        u8 pad0[0x9C];
+        s32 unk9C;
+        Unk80132ED0 *unkA0;
+    } *sp44;
+    Unk80132ED0 *sp40;
+    Unk80132ED0 *sp3C;
+    f32 sp30[3];
+    f32 *sp2C;
+    struct AnglerBossFlagData {
+        u8 pad0[0x73];
+        u8 pad73_1 : 7;
+        u8 flag : 1;
+    };
+    Actor *temp_v0;
+
+    sp44 = func_80100094(arg0, 0);
+    sp3C = arg0->unk0;
+    sp2C = NULL;
+    func_800FFA88(sp44->unkA0);
+    sp44->unkA0 = NULL;
+    func_8010114C(sp44->unk9C, 0x2C, 0);
+    sp44->unk9C = 0;
+    if (_subaddieskeleton_entrypoint_2(arg0->unk0, 0xB, sp30) != 0) {
+        sp2C = sp30;
+    }
+    sp40 = func_800D10D4(0x25, 1, sp2C, 0, 0);
+    arg0 = func_80106790(sp3C);
+    if (sp40 != NULL) {
+        temp_v0 = func_80106790(sp40);
+        ((struct AnglerBossFlagData *)temp_v0)->flag = 1;
+        func_80802210_changlerboss(arg0, sp40, 0x19, 0x438);
+    }
+}
 
 void func_808021E4_changlerboss(Actor *arg0, u32 arg1, u32 arg2) {
     void func_80802210_changlerboss(Actor *, Unk80132ED0 *, u32, u32);
@@ -360,7 +403,7 @@ s32 func_808025AC_changlerboss(s32 arg0) {
 }
 
 void func_808025EC_changlerboss(Actor *arg0) {
-    void _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
     void *func_80100094(Actor *, u32);
     extern s16 D_80803054_changlerboss;
     s32 i;
