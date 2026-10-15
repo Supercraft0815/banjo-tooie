@@ -688,7 +688,30 @@ void func_800A8BA8(Gfx** arg0, s32 arg1)
     func_800E7E70(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A8BD4.s")
+s32 func_800A8BD4(Gfx **arg0, s32 arg1, s32 arg2) {
+    void func_800C5668(s32, Gfx **);
+    extern s32 D_80127670;
+
+    if (arg1 >= 0) {
+        ((s32 *)&D_80127670)[1] = arg1 - 1;
+    }
+    if ((((s32 *)&D_80127670)[1] >= 0) &&
+        (D_80127688[((s32 *)&D_80127670)[1]].unk4 != 0)) {
+        func_800C5668(((s32 *)&D_80127670)[1], arg0);
+    }
+    ((s32 *)&D_80127670)[1]++;
+    for (; ((s32 *)&D_80127670)[1] < 4; ((s32 *)&D_80127670)[1]++) {
+        if (D_80127688[((s32 *)&D_80127670)[1]].unk0 != 0) {
+            break;
+        }
+    }
+    if (((s32 *)&D_80127670)[1] >= 4) {
+        return 0;
+    }
+    func_800A89BC(((s32 *)&D_80127670)[1]);
+    func_800A8B24(arg0, arg2);
+    return 1;
+}
 
 void func_800A8CCC(s32 arg0, s32 arg1)
 {
