@@ -271,9 +271,9 @@ void *func_80107C2C(s32 *arg0, s32 arg1, void *arg2, s32 arg3, void *arg4) {
     return actor;
 }
 
-void func_80108454(s32 arg0, s32 *arg1, u32 arg2) {
+Actor *func_80108454(s32 arg0, s32 *arg1, u32 arg2) {
     Actor*  func_80108C90(s32, s32*, u32, Prop*);
-    func_80108C90(arg0, arg1, arg2, NULL);
+    return func_80108C90(arg0, arg1, arg2, NULL);
 }
 
 Actor *func_80108474(u32 arg0, f32 *arg1, s32 arg2) {
