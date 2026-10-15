@@ -311,4 +311,27 @@ s32 func_800D129C(u32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D1338.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D13E8.s")
+s32 func_800D13E8(s32 arg0, s32 arg1) {
+    extern u8 D_8011AD08[];
+    s32 var_s1;
+    u8 *var_s0;
+
+    if (arg0 == 6) {
+        var_s1 = func_800D0820(arg0);
+        if (func_800D0894(arg0) >= var_s1) {
+            var_s0 = (var_s1 * 2) + D_8011AD08;
+loop_3:
+            if (arg1 == var_s0[-2]) {
+                return var_s1 - 1;
+            }
+            var_s0 += 2;
+            var_s1 += 1;
+            if (func_800D0894(arg0) < var_s1) {
+                goto block_6;
+            }
+            goto loop_3;
+        }
+    }
+block_6:
+    return 0;
+}
