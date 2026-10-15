@@ -33,7 +33,17 @@ void func_8080038C_chcrystalbaddie(s32 arg0, s32 arg1) {
     func_80101870(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crystalbaddie/func_808003C4_chcrystalbaddie.s")
+/* extern */
+
+void func_808003C4_chcrystalbaddie(Actor *arg0, s32 arg1) {
+    f32 func_800DC178(f32, f32);
+    void func_80102424(Actor *, s32);
+    func_80102424(arg0, arg1);
+    if ((arg1 != 1) && (arg1 == 3)) {
+        (*(f32 *)((s8 *)(arg0) + (0x2C))) = func_800DC178(400.0f, 450.0f);
+        (*(f32 *)((s8 *)(arg0) + (0x24))) = 0.0f;
+    }
+}
 
 /* extern */
 
