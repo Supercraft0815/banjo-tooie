@@ -28,7 +28,27 @@ Actor *subaddiefind_entrypoint_3(s32 arg0, s32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/find/subaddiefind_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/find/subaddiefind_entrypoint_7.s")
+/* extern */
+
+s32 subaddiefind_entrypoint_7(Actor *arg0, s32 arg1, s32 arg2) {
+    Actor *subaddiefind_entrypoint_0(f32 *, s32, s32, f32 *);
+    f32 sp24;
+    f32 var_f0;
+    Actor *temp_v0;
+
+    temp_v0 = subaddiefind_entrypoint_0(arg0->position, arg1, -1, &sp24);
+    if ((temp_v0 != NULL) && (sp24 < (f32) arg2)) {
+        arg0->unk3C = temp_v0->unk0;
+    } else {
+        arg0->unk3C = NULL;
+    }
+    if (arg0->unk3C != NULL) {
+        var_f0 = sp24;
+    } else {
+        var_f0 = -1.0f;
+    }
+    return (s32) var_f0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/find/subaddiefind_entrypoint_8.s")
 
