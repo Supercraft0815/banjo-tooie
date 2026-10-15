@@ -1,6 +1,18 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80800000_chlakemonster.s")
+/* extern */
+
+void func_80800000_chlakemonster(s32 arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800EFA4C(s32, f32, f32, f32);
+    s32 func_80801494_chlakemonster(s32, s32);
+    func_800EFA4C(arg0 + 4, 0.0f, -3050.0f, 0.0f);
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80801494_chlakemonster(arg0, 7);
+        return;
+    }
+    func_80801494_chlakemonster(arg0, 1);
+}
 
 void func_80800064_chlakemonster(Actor *arg0) {
     u32 func_800FDC28(u32);
