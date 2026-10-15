@@ -10,7 +10,34 @@ void func_80800008_badust(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/func_80800010_badust.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/badust_entrypoint_1.s")
+/* extern */
+
+void badust_entrypoint_1(void *arg0) {
+    s32 badust_entrypoint_4(void *, f32, f32);
+    f32 func_800964DC(void *);
+    s32 func_80096544();
+    f32 func_8009BB18(void *);
+    f32 func_8009BB5C(void *);
+    f32 func_8009C150(void *);
+    f32 sp24;
+    void *temp_v0;
+
+    if ((func_80096544() == 0) || (sp24 = func_800964DC(arg0), !(func_8009C150(arg0) < sp24))) {
+        temp_v0 = (*(void **)((s8 *)(arg0) + (0x5C)));
+        if ((*(s32 *)((s8 *)(temp_v0) + (4))) != 0) {
+            (*(s32 *)((s8 *)(temp_v0) + (4))) = 0;
+        } else {
+            (*(s32 *)((s8 *)(temp_v0) + (4))) = 1;
+        }
+        if (func_8009BB5C(arg0) > 100.0f) {
+            if ((*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x5C)))) + (4))) != 0) {
+                badust_entrypoint_4(arg0, func_8009BB18(arg0) - 20.0f, 20.0f);
+                return;
+            }
+            badust_entrypoint_4(arg0, func_8009BB18(arg0) + 20.0f, 20.0f);
+        }
+    }
+}
 
 /* extern */
 
