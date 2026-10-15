@@ -2,7 +2,33 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/smalltrexdoor/func_80800000_chsmalltrexdoor.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/smalltrexdoor/func_80800150_chsmalltrexdoor.s")
+/* extern */
+
+void func_80800150_chsmalltrexdoor(Actor *arg0) {
+    s32 _chdoor_entrypoint_0();
+    s32 func_800D90A4(f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    f32 func_800F2094(f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_8010108C();
+    f32 sp2C[3];
+    f32 sp28;
+
+    if ((arg0->unk70_10 == 4) && (func_800D90A4((f32 *)&arg0->actorData[7]) != 0)) {
+        func_800F5A00(func_800F54E4(), sp2C);
+        sp28 = func_800F1DF4(arg0->position, sp2C);
+        if (func_800EEAD4(sp2C, arg0->position) < 400.0f) {
+            if (func_800F2094(arg0->rotation[1] - 90.0f, sp28) > 30.0f) {
+                func_8010108C(arg0, 8, 0);
+            }
+        } else {
+            func_8010108C(arg0, 8, 0);
+        }
+    }
+    _chdoor_entrypoint_0(arg0);
+}
 
 /* extern */
 
