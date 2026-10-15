@@ -1,6 +1,30 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/trashcanbits/func_80800000_chfantasytrashcanbits.s")
+/* extern */
+
+void func_80800000_chfantasytrashcanbits(Actor *arg0) {
+    s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
+    s32 func_800EA090(void);
+    u32 func_800F54E4(void);
+    s32 func_800F64A4(s32, s32);
+    s32 func_8010108C();
+    void func_80101FDC(Actor *, u32);
+    if (func_800EA090() == 0x11) {
+        func_80101FDC(arg0, 4);
+    } else {
+        func_80101FDC(arg0, 1);
+    }
+    _chdoormake_entrypoint_3(arg0, arg0->rotation[1], 90.0f, arg0->scale * 325.0f, 0x80A, 0);
+    _chdoormake_entrypoint_8(arg0, 2);
+    _chdoormake_entrypoint_5(arg0, 2.0f);
+    _chdoormake_entrypoint_9(arg0, 0, 7, 0x10);
+    if ((func_800F64A4(func_800F54E4(), 0x400) == 0) && (arg0->unk70_10 == 4)) {
+        func_8010108C(arg0, 8, 0);
+    }
+}
 
 /* extern */
 
