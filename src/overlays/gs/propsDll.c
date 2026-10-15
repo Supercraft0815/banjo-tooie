@@ -23,6 +23,31 @@ s32 func_808004E0_gspropsDll(Prop *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propsDll/func_80800524_gspropsDll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propsDll/gspropsDll_entrypoint_3.s")
+/* extern */
+
+void gspropsDll_entrypoint_3(s16 *arg0) {
+    void aligned4_memcpy(void *, void *, int);
+    s32 func_800BDBC4(s32);
+    void *func_800E9A24(s32);
+    void func_800EE8CC(s32 *, s16 *);
+    s32 func_80800524_gspropsDll(s32);
+    typedef struct {
+        u8 pad[0x12];
+        u8 reserved : 7;
+        u8 enabled : 1;
+    } PropFlags;
+    s32 sp2C;
+    s32 sp20[3];
+    PropFlags *sp1C;
+
+    func_800EE8CC(sp20, arg0);
+    sp2C = func_800BDBC4((s32)sp20);
+    sp1C = func_800E9A24(sp2C);
+    aligned4_memcpy(sp1C, arg0, 0x14);
+    if (!((*(s32 *)((s8 *)(sp1C) + (4))) & 1)) {
+        sp1C->enabled = 1;
+    }
+    func_80800524_gspropsDll(sp2C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propsDll/gspropsDll_entrypoint_4.s")

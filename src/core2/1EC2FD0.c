@@ -80,7 +80,7 @@ void func_800E99E0(void) {
     p->flag10 = 1;
 }
 
-void func_800E9A24(s32 arg0) {
+void *func_800E9A24(s32 arg0) {
     typedef struct {
     u8 pad[6];
     u16 value : 9;
@@ -118,7 +118,7 @@ void func_800E9A24(s32 arg0) {
     p->flag13d = 0;
     p->flag13e = 0;
     p->flag13f = 0;
-   
+    return p;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9AC0.s")
