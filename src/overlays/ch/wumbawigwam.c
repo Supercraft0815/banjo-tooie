@@ -174,7 +174,26 @@ void func_80800158_chwumbawigwam(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/wumbawigwam/func_80800E04_chwumbawigwam.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/wumbawigwam/func_80800FEC_chwumbawigwam.s")
+/* extern */
+
+s32 func_80800FEC_chwumbawigwam(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 func_800DA524(s32);
+    void func_80800B9C_chwumbawigwam(u8 *, s32);
+    switch (arg1) {
+    case 0x4B:
+        if ((arg2 == 9) && ((s32)((Actor *)arg0)->unk70_10 < 5)) {
+            func_80800B9C_chwumbawigwam(arg0, 4);
+            return 1;
+        }
+        return 0;
+    case 0x2E:
+        return 1;
+    case 0xB:
+        func_800DA524(0x9DE);
+        return 3;
+    }
+    return 0;
+}
 
 OSThread *chwumbawigwam_entrypoint_0(void)
 {
