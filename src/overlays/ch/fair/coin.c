@@ -1,6 +1,25 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coin/func_80800000_chfaircoin.s")
+void func_80800000_chfaircoin(Actor *arg0) {
+    f32 func_8001395C(f32);
+    u8 func_800D9078(f32 *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800FC660(u32);
+    void func_800FFAB0(Actor *);
+    f32 sp2C;
+    f32 temp_f0;
+
+    func_800D9078((f32 *)arg0->actorData + 3);
+    temp_f0 = func_800F10B4(((f32 *)arg0->actorData)[3], arg0->unk58, 0.0f, 0.0f, 1.0f);
+    sp2C = temp_f0;
+    func_800EFE50(arg0->position, (f32 *)arg0->actorData + 4, (f32 *)arg0->actorData, temp_f0);
+    arg0->position[1] += func_8001395C(sp2C * 3.1415927f) * 200.0f;
+    if (((f32 *)arg0->actorData)[3] == 0.0f) {
+        func_800FFAB0(arg0);
+        func_800FC660(0xE);
+    }
+}
 
 u8 *chfaircoin_entrypoint_0(s32 arg0, s32 arg1, f32 arg2) {
     s32 func_800C4AF0(s32, s32 *);
