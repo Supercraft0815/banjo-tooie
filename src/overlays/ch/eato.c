@@ -63,7 +63,32 @@ s32 func_80800888_chcheato(void) {
     return sp1C + 0x114A;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_808008B8_chcheato.s")
+void func_808008B8_chcheato(s32 arg0, s32 arg1) {
+    typedef struct {
+        s16 data[3];
+    } OptionColors;
+    s32 _gcnewoption_entrypoint_12(s32, s32, s16);
+    s32 _gcnewoption_entrypoint_13(s32, s32, void *);
+    s32 _gcnewoption_entrypoint_17();
+    s32 _gcnewoption_entrypoint_19(s32, s32);
+    extern OptionColors D_80800F20_chcheato;
+    extern OptionColors D_80800F28_chcheato;
+    s32 pad;
+    OptionColors sp2C;
+    OptionColors sp24;
+
+    if (_gcnewoption_entrypoint_17() != 0) {
+        sp2C = D_80800F20_chcheato;
+        _gcnewoption_entrypoint_13(arg0, arg1, &sp2C);
+        _gcnewoption_entrypoint_12(arg0, arg1, (s16) ((arg1 * 2) + 3));
+        return;
+    }
+    if (_gcnewoption_entrypoint_19(arg0, arg1) != 0) {
+        sp24 = D_80800F28_chcheato;
+        _gcnewoption_entrypoint_13(arg0, arg1, &sp24);
+        _gcnewoption_entrypoint_12(arg0, arg1, (s16) ((arg1 * 2) + 4));
+    }
+}
 
 /* extern */
 
