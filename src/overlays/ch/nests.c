@@ -135,9 +135,9 @@ void func_80800960_chnests(s32 arg0)
 {
 }
 void func_80800968_chnests(void *arg0, s32 arg1) {
-    s32 func_800DF3E0();
-    s32 func_800DF744(s32, s32);
-    s32 func_801018A4(s32, s32);
+    void func_800DF3E0(void);
+    void func_800DF744(s32, s32);
+    void func_801018A4(Actor *, s32);
     s32 func_80800898_chnests(void *, s32, s32);
     extern s32 D_80801124_chnests;
     if (func_80800898_chnests(arg0, arg1, *(s32 *)((s8 *)arg0 + 0x48)) != 0) {
@@ -156,9 +156,9 @@ void func_808009F8_chnests(s32 arg0)
 {
 }
 void func_80800A00_chnests(void *arg0, s32 arg1) {
-    s32 func_800DF3E0();
-    s32 func_800DF744(s32, s32);
-    s32 func_801018A4(s32, s32);
+    void func_800DF3E0(void);
+    void func_800DF744(s32, s32);
+    void func_801018A4(Actor *, s32);
     s32 func_80800898_chnests(void *, s32, s32);
     extern s32 D_80801124_chnests;
     if (func_80800898_chnests(arg0, arg1, *(s32 *)((s8 *)arg0 + 0x48)) != 0) {
@@ -203,7 +203,36 @@ void func_80800BD8_chnests(Actor *arg0, s32 arg1, f32 arg2, f32 arg3) { struct F
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800C3C_chnests.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800D8C_chnests.s")
+void func_80800D8C_chnests(Actor *arg0, s32 arg1) {
+    struct Flags { u8 pad[0x7A]; u16 mode : 2; u16 rest : 14; };
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void func_800DF3E0(void);
+    void func_800DF744(s32, s32);
+    void func_801018A4(Actor *, s32);
+    s32 func_80800898_chnests(void *, s32, s32);
+    extern s32 D_80801124_chnests;
+    s32 sp24;
+
+    if (func_80800898_chnests(arg0, arg1, *(s32 *)&arg0->rotation[1]) != 0) {
+        func_800DF3E0();
+        func_800DF744(((u8 *)&D_80801124_chnests)[arg0->actorData[1] * 14], 1);
+        if (arg0->actorData[6] == 1) {
+            sp24 = (s32)((arg0->unk58 / 0.25f) * 255.0f);
+            ((struct Flags *)arg0)->mode = 2;
+            _subaddiefade_entrypoint_1((s32)arg0, sp24);
+            func_801018A4(arg0, arg1);
+            func_800DF3E0();
+            func_800DF744(((u8 *)&D_80801124_chnests)[arg0->unk6C_0 * 14], 1);
+            ((struct Flags *)arg0)->mode = 1;
+            _subaddiefade_entrypoint_1((s32)arg0, 255 - sp24);
+            func_801018A4(arg0, arg1);
+            ((struct Flags *)arg0)->mode = 1;
+            _subaddiefade_entrypoint_1((s32)arg0, 255);
+            return;
+        }
+        func_801018A4(arg0, arg1);
+    }
+}
 
 /* extern */
 
