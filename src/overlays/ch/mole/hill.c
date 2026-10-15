@@ -55,7 +55,7 @@ void func_80800160_chmolehill(u8 *arg0) {
     s32 _subaddieaudioquick_entrypoint_2(u8 *, u8 *, s32 *);
     s32 anctrl_getPlaybackType(s32);
     s32 chmolehill_entrypoint_1(u8 *, s32);
-    s32 chmolehill_entrypoint_2(u8 *, s32);
+    void chmolehill_entrypoint_2(Actor *, s32);
     s32 func_8008F8B0();
     s32 func_80101E14(u8 *, s32);
     s32 func_80101E4C(u8 *, s32 *);
@@ -163,7 +163,7 @@ void func_80800160_chmolehill(u8 *arg0) {
 void chmolehill_entrypoint_0(s32 arg0)
 {
   s32 _chmoley_entrypoint_1(void *, u32);
-  void *func_80106790();
+  Actor *func_80106790();
   void *func_801084B0(s32, void **);
   s32 func_80108944(void *, void *);
   void *sp24;
@@ -182,7 +182,27 @@ void chmolehill_entrypoint_0(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/chmolehill_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/chmolehill_entrypoint_2.s")
+/* extern */
+
+void chmolehill_entrypoint_2(Actor *arg0, s32 arg1) {
+    s32 _chmoley_entrypoint_1(void *, u32);
+    void func_800FFA88(Unk80132ED0 *);
+    void func_80102424(Actor *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+
+    if (arg1 != arg0->unk70_10) {
+        func_80102424(arg0, arg1);
+        if (arg0->unk70_10 == 1) {
+            if (arg0->unk3C != NULL) {
+                func_800FFA88(arg0->unk3C);
+                arg0->unk3C = NULL;
+            }
+        }
+        if (arg0->unk3C != NULL) {
+            _chmoley_entrypoint_1(func_80106790(arg0->unk3C), arg1);
+        }
+    }
+}
 
 s32 chmolehill_entrypoint_3(Actor *arg0) {
     switch (arg0->unk70_10) {
