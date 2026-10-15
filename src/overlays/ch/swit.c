@@ -166,4 +166,26 @@ void chswitch_entrypoint_9(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swit/chswitch_entrypoint_13.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swit/chswitch_entrypoint_14.s")
+/* extern */
+
+s32 chswitch_entrypoint_14(Actor *arg0, s32 arg1) {
+    s32 func_800DA298(s32);
+    void func_80101EE4(Actor *, f32);
+    void func_80102424(Actor *, s32);
+    void func_80103110(void *, s32);
+    s32 sp24;
+    s32 temp_v0;
+
+    temp_v0 = func_800DA298(arg1);
+    sp24 = temp_v0;
+    arg0->actorData[7] = arg1;
+    if (temp_v0 != 0) {
+        func_80102424(arg0, 3);
+        func_80101EE4(arg0, 0.5f);
+    } else {
+        func_80102424(arg0, 1);
+    }
+    arg0->unk64_20 = sp24;
+    func_80103110(arg0, 0);
+    return sp24;
+}
