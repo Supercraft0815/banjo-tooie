@@ -224,7 +224,22 @@ f32 func_80103EF4(Actor *arg0) {
     return (f32) ((*(s16 *)((s8 *)(arg0) + (0x8A))) - (*(s16 *)((s8 *)(arg0) + (0x88)))) * arg0->scale;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103F38.s")
+/* extern */
+
+f32 func_80103F38(Actor *arg0, f32 *arg1) {
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    s32 func_80103328();
+
+    func_80103328(arg0);
+    if (arg1 != 0) {
+        func_800EE88C(arg1, (s16 *)&arg0->unk0->unk1C + 1);
+        func_800EF334(arg1, arg0->scale);
+        func_800EF04C(arg1, arg0->position);
+    }
+    return (f32)(u32)*(u16 *)&arg0->pad68 * arg0->scale;
+}
 
 /* extern */
 
