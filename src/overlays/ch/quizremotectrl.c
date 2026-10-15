@@ -36,7 +36,19 @@ void func_8080012C_chquizremotectrl(s32 *arg0) {
 void func_808003A0_chquizremotectrl(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quizremotectrl/func_808003A8_chquizremotectrl.s")
+/* extern */
+
+void func_808003A8_chquizremotectrl(Actor *arg0) {
+    void func_800CEA38(s32, s32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    s32 func_808001BC_chquizremotectrl(Actor *, s32);
+    func_800CEA38(0, 1);
+    func_800EFA4C(arg0->position, 0.0f, 0.0f, 0.0f);
+    arg0->rotation[2] = 0.0f;
+    arg0->rotation[0] = 0.0f;
+    arg0->rotation[1] = 0.0f;
+    func_808001BC_chquizremotectrl(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quizremotectrl/func_80800410_chquizremotectrl.s")
 
