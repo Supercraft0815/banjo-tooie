@@ -43,7 +43,40 @@ OSThread *chmonsterinterior_entrypoint_4(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_8080060C_chmonsterinterior.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_8080068C_chmonsterinterior.s")
+/* extern */
+
+void func_8080068C_chmonsterinterior(Actor *arg0) {
+    s32 _gcstatusDll_entrypoint_11();
+    s32 _subaddiemulti_entrypoint_2();
+    void func_800CE88C(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    s32 func_800D3948(void);
+    void func_800F7B9C(s32, u32);
+    void func_800F7C0C(s32, s32, f32);
+    u32 func_800FDC28(u32);
+    void func_80101FDC(Actor *, u32);
+    s32 var_s0;
+    s32 duration = 60;
+
+    _subaddiemulti_entrypoint_2();
+    func_80101FDC(arg0, 3);
+    var_s0 = 0;
+    if (_gcstatusDll_entrypoint_11() > 0) {
+        do {
+            if (func_800D3948() == 0) {
+                func_800F7B9C(var_s0, 0x73);
+                func_800F7C0C(var_s0, 0x5F, -1.0f);
+            } else {
+                func_800F7C0C(var_s0, 0x5F, -1.0f);
+            }
+            var_s0 += 1;
+        } while (var_s0 < _gcstatusDll_entrypoint_11());
+    }
+    func_800CE8D8(arg0->unk6C_0, duration, 60);
+    func_800CE88C(arg0->unk6C_0, 1);
+    arg0->unk58 = 0.01f;
+    func_800FDC28(0xC);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_8080078C_chmonsterinterior.s")
 
