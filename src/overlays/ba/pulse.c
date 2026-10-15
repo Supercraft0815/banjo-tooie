@@ -22,4 +22,36 @@ void bapulse_entrypoint_3(void *arg0, f32 arg1, f32 arg2) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xE8)))) + (4))) = arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/pulse/bapulse_entrypoint_4.s")
+/* extern */
+
+void bapulse_entrypoint_4(void *arg0) {
+    f32 func_800D8FF8(void);
+    f32 func_800F13C4(f32, f32);
+    f32 temp_f0;
+    f32 temp_f14;
+    f32 temp_f20;
+    void *temp_v0;
+
+    temp_f0 = func_800D8FF8();
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0xE8)));
+    if ((*(u8 *)((s8 *)(temp_v0) + (0))) == 0) {
+        (*(f32 *)((s8 *)(temp_v0) + (8))) = (f32) ((*(f32 *)((s8 *)(temp_v0) + (8))) + temp_f0);
+        temp_v0 = (*(void **)((s8 *)(arg0) + (0xE8)));
+        temp_f20 = (*(f32 *)((s8 *)(temp_v0) + (8)));
+        temp_f14 = (*(f32 *)((s8 *)(temp_v0) + (4)));
+        if (temp_f14 <= temp_f20) {
+            temp_f0 = func_800F13C4(temp_f20, temp_f14);
+            temp_v0 = (*(void **)((s8 *)(arg0) + (0xE8)));
+            (*(f32 *)((s8 *)(temp_v0) + (8))) = (*(f32 *)((s8 *)(temp_v0) + (4))) - temp_f0;
+            (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xE8)))) + (0))) = 1;
+        }
+    } else {
+        (*(f32 *)((s8 *)(temp_v0) + (8))) = (f32) ((*(f32 *)((s8 *)(temp_v0) + (8))) - temp_f0);
+        temp_v0 = (*(void **)((s8 *)(arg0) + (0xE8)));
+        temp_f20 = (*(f32 *)((s8 *)(temp_v0) + (8)));
+        if (temp_f20 < 0.0f) {
+            (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xE8)))) + (8))) = func_800F13C4(-temp_f20, (*(f32 *)((s8 *)(temp_v0) + (4))));
+            (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xE8)))) + (0))) = 0;
+        }
+    }
+}
