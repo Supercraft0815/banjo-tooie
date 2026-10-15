@@ -48,7 +48,35 @@ void func_808000CC_chblink(f32 *arg0, s32 arg1, f32 arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blink/func_80800118_chblink.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blink/chblink_entrypoint_2.s")
+void chblink_entrypoint_2(s16 arg0) {
+    void *func_8001B798(s16);
+    f32 func_800D8FF8(void);
+    void func_80800118_chblink(void *, s32 *, s32);
+    extern s32 D_80800430_chblink;
+    f32 *sp1C;
+    f32 sp18;
+    f32 temp_f2;
+    s32 var_v1;
+    f32 *var_v0;
+
+    sp1C = func_8001B798(arg0);
+    sp18 = func_800D8FF8();
+    func_80800118_chblink(sp1C, &D_80800430_chblink, 1);
+    var_v1 = 0;
+    var_v0 = sp1C;
+    do {
+        var_v1 += 4;
+        if (var_v0[2] != var_v0[0]) {
+            temp_f2 = var_v0[4];
+            var_v0[0] += temp_f2 * sp18;
+            if ((temp_f2 > 0.0f && var_v0[2] < var_v0[0]) ||
+                (temp_f2 < 0.0f && var_v0[0] < var_v0[2])) {
+                var_v0[0] = var_v0[2];
+            }
+        }
+        var_v0++;
+    } while (var_v1 != 8);
+}
 
 /* extern */
 
