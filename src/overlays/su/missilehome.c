@@ -31,7 +31,35 @@ void sumissilehome_entrypoint_4(s32 arg0, s32 *arg1, s32 arg2) {
     (*(s8 *)((s8 *)(arg1) + (9))) = (s8)arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/missilehome/sumissilehome_entrypoint_5.s")
+/* extern */
+
+void sumissilehome_entrypoint_5(s32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
+    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    s32 func_800EA068(s32);
+    Unk80132ED0 *func_8010A01C(s32, s32, s32, s32, s32);
+    s32 func_8010D490(s32, s32, s32, s32, s32);
+    s32 sp34;
+    Unk80132ED0 *temp_v0_2;
+    u8 * volatile sp2C;
+
+    sp34 = -1;
+    if ((arg1[8] != 0) || ((*(u8 *)((s8 *)(arg1) + (9))) != 0)) {
+        if (arg1[8] != 0) {
+            temp_v0_2 = func_8010A01C(arg0 + 4, arg0 + 0x28, arg2, arg3, (s32) (*(s16 *)((s8 *)(arg1) + (2))));
+            _subaddielink_entrypoint_1(sp2C = arg1 + 0xC, temp_v0_2);
+            if (_subaddielink_entrypoint_4(sp2C) == 0) {
+                (*(u8 *)((s8 *)(arg1) + (8))) = 0U;
+            }
+        }
+        if ((*(u8 *)((s8 *)(arg1) + (9))) != 0) {
+            if (((*(u8 *)((s8 *)(arg1) + (8))) == 0) && (func_800EA068(0x4000) != 0)) {
+                sp34 = func_8010D490(arg0 + 4, arg0 + 0x28, arg2, arg3, (s32) (*(s8 *)((s8 *)(arg1) + (0))));
+            }
+            (*(s8 *)((s8 *)(arg1) + (1))) = (s8) sp34;
+        }
+    }
+}
 
 /* extern */
 
