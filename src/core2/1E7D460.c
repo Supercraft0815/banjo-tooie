@@ -36,7 +36,27 @@ u32 func_800A3DAC(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 56) + 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A3DB8.s")
+/* extern */
+
+void func_800A3DB8(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 func_800A3BA8(s32, s32);
+    void func_800A59B8(s32, s32 *, s32 *, s32 *, s32 *, s32 *, s32 *, s32 *, s32 *, s32 *);
+    u8 *temp_v0;
+
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x38)));
+    if ((arg1 != (*(u8 *)((s8 *)(temp_v0) + (1)))) || (arg2 != (*(s16 *)((s8 *)(temp_v0) + (0x34)))) || (arg3 != (*(u8 *)((s8 *)(temp_v0) + (0x39))))) {
+        (*(u8 *)((s8 *)(temp_v0) + (1))) = (u8) arg1;
+        temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x38)));
+        func_800A59B8((*(u8 *)((s8 *)(temp_v0) + (1))), (s32 *)(temp_v0 + 8), (s32 *)(temp_v0 + 0xC), (s32 *)(temp_v0 + 0x10), (s32 *)(temp_v0 + 0x14), (s32 *)(temp_v0 + 0x18), (s32 *)(temp_v0 + 0x1C), (s32 *)(temp_v0 + 0x20), (s32 *)(temp_v0 + 0x24), (s32 *)(temp_v0 + 0x28));
+        (*(s16 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x38)))) + (0x34))) = (s16) arg2;
+        (*(u8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x38)))) + (0x39))) = (u8) arg3;
+        if ((func_800A3DAC(arg0) == 3) && ((temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x38))), ((*(s32 *)((s8 *)(temp_v0) + (0x20))) == 0)) || ((*(u8 *)((s8 *)(temp_v0) + (0x39))) != 0))) {
+            func_800A3D78(arg0, 2, arg4);
+            return;
+        }
+        func_800A3BA8((s32)arg0, arg4);
+    }
+}
 
 /* extern */
 
