@@ -1,6 +1,34 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/floorbubbles/func_80800000_chfloorbubbles.s")
+void func_80800000_chfloorbubbles(Actor *arg0) {
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA568(s16 *, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_800DC0C0(void);
+    s32 func_800DC128(s32, s32);
+    void *func_80100094(Actor *, u32);
+    extern s32 D_80800270_chfloorbubbles[];
+    f32 (*sp34)[3];
+    s32 sp30;
+    s32 sp2C;
+    s32 temp_v0;
+    s32 temp_v0_2;
+
+    sp34 = func_80100094(arg0, 0);
+    if (func_800DC0C0() < 0.1f) {
+        temp_v0 = func_800DC128(0, 5);
+        sp30 = temp_v0;
+        temp_v0_2 = func_800B53A4(temp_v0);
+        sp2C = temp_v0_2;
+        func_800BABB8(temp_v0_2, sp34[arg0->unk6C_0], NULL, 1.0f, D_80800270_chfloorbubbles);
+        func_800BA568((s16 *)sp2C, (s16) (s32) (*(f32 *)&arg0->actorData[1]));
+        func_800BA22C(sp2C, sp30);
+        if (func_800DC0C0() < 0.75f) {
+            arg0->unk6C_0 = func_800DC128(0, 0xA);
+        }
+    }
+}
 
 /* extern */
 
