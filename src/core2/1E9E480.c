@@ -67,7 +67,24 @@ f32 func_800C5190(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C52F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C53EC.s")
+s32 func_800C53EC(s32 arg0, s32 arg1) {
+    s32 func_800C524C(s32, s32);
+    extern f32 D_8012A9A0[];
+    void *temp_v0;
+
+    temp_v0 = (s8 *)D_8012A9A0 + arg0 * 0x10;
+    if ((*(u8 *)((s8 *)temp_v0 + 0xC) == 0) ||
+        (*(u8 *)((s8 *)temp_v0 + 0xC) == 3)) {
+        return 0;
+    }
+    (*(u8 *)((s8 *)(temp_v0) + (0xC))) = 3U;
+    (*(s32 *)((s8 *)(temp_v0) + (4))) = arg1;
+    func_800C524C(arg0, 0);
+    if (arg1 == 0) {
+        (*(s32 *)((s8 *)(temp_v0) + (0))) = 0;
+    }
+    return 1;
+}
 
 /* extern */
 
