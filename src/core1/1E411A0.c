@@ -216,4 +216,14 @@ void func_8002AA30(void *arg0, s16 arg1, s32 arg2) {
     func_80027AF0(saved, arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_8002AA74.s")
+void func_8002AA74(void * volatile arg0, volatile s16 arg1, s32 * volatile arg2) {
+    s32 func_80028C04(void *, f32);
+    extern PoolFreeList *D_800411F4;
+    extern f32 D_80041D30;
+    if (arg1 == 8) {
+        (*(s16 *)((s8 *)arg0 + 2)) = (s16)(s32)((f32)*arg2 * D_80041D30);
+    } else if (arg1 == 9) {
+        (*(s16 *)((s8 *)arg0 + 0)) = (s16)*arg2;
+    }
+    func_80028C04(arg0, (f32)(*(s32 *)((s8 *)D_800411F4 + 0x40)));
+}
