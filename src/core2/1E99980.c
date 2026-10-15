@@ -77,7 +77,47 @@ s16 func_800C0258(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0284.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0308.s")
+void func_800C0308(void) {
+    s32 _gczoombox_entrypoint_38(s32, s16);
+    extern s8 D_8011A7C0[];
+    struct DialogFlags {
+        u32 unused:18;
+        u32 queued:1;
+        u32 decremented:1;
+        u32 rest:12;
+    };
+    s32 y_position_change;
+
+    if (((struct DialogFlags *)((s8 *)&D_801288B0 + 0x15C))->decremented) {
+        (*(s8 *)((s8 *)&D_801288B0 + 0x166))++;
+        y_position_change = D_8011A7C0[*(s8 *)((s8 *)&D_801288B0 + 0x166)];
+        if (*(s32 *)((s8 *)&D_801288B0 + 0x120) != 0) {
+            *(s16 *)((s8 *)&D_801288B0 + 0x128) -= y_position_change;
+            _gczoombox_entrypoint_38(*(s32 *)((s8 *)&D_801288B0 + 0x120), *(s16 *)((s8 *)&D_801288B0 + 0x128));
+        }
+        if (*(s32 *)((s8 *)&D_801288B0 + 0x124) != 0) {
+            *(s16 *)((s8 *)&D_801288B0 + 0x12A) += y_position_change;
+            _gczoombox_entrypoint_38(*(s32 *)((s8 *)&D_801288B0 + 0x124), *(s16 *)((s8 *)&D_801288B0 + 0x12A));
+        }
+        if (*(s8 *)((s8 *)&D_801288B0 + 0x166) == 12) {
+            ((struct DialogFlags *)((s8 *)&D_801288B0 + 0x15C))->queued = 0;
+        }
+    } else {
+        (*(s8 *)((s8 *)&D_801288B0 + 0x166))--;
+        y_position_change = D_8011A7C0[*(s8 *)((s8 *)&D_801288B0 + 0x166)];
+        if (*(s32 *)((s8 *)&D_801288B0 + 0x120) != 0) {
+            *(s16 *)((s8 *)&D_801288B0 + 0x128) += y_position_change;
+            _gczoombox_entrypoint_38(*(s32 *)((s8 *)&D_801288B0 + 0x120), *(s16 *)((s8 *)&D_801288B0 + 0x128));
+        }
+        if (*(s32 *)((s8 *)&D_801288B0 + 0x124) != 0) {
+            *(s16 *)((s8 *)&D_801288B0 + 0x12A) -= y_position_change;
+            _gczoombox_entrypoint_38(*(s32 *)((s8 *)&D_801288B0 + 0x124), *(s16 *)((s8 *)&D_801288B0 + 0x12A));
+        }
+        if (*(s8 *)((s8 *)&D_801288B0 + 0x166) == 0) {
+            ((struct DialogFlags *)((s8 *)&D_801288B0 + 0x15C))->queued = 0;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0438.s")
 
