@@ -116,7 +116,26 @@ s32 func_808002A4_chburgerstand(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/func_808004DC_chburgerstand.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/func_808005AC_chburgerstand.s")
+void func_808005AC_chburgerstand(Actor *arg0) {
+    s32 _subaddieskeleton_entrypoint_3(s32, s32, s32 *);
+    void func_800BA22C(s32, s32);
+    s32 func_800BA994(s32, s32, s16, s32, s32, s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_80101E4C(Actor *, f32 *);
+    extern f32 D_80800DDC_chburgerstand[];
+    extern s32 D_80800DEC_chburgerstand[];
+    f32 position[3];
+    s32 emitter;
+
+    if (func_80101E4C(arg0, D_80800DDC_chburgerstand) &&
+        _subaddieskeleton_entrypoint_3(arg0->unk0, 4, position)) {
+        position[1] -= 30.0f;
+        emitter = func_800BABB8(0, position, NULL, arg0->scale, D_80800DEC_chburgerstand);
+        func_800BA994(emitter, 0x2D, (s16)(s32)(arg0->rotation[1] - 50.0f),
+            (s16)(s32)(arg0->scale * 10.0f), 0x3C, (s32)(arg0->rotation[1] + 50.0f), (s32)(arg0->scale * 20.0f));
+        func_800BA22C(emitter, 3);
+    }
+}
 
 s32 func_808006B4_chburgerstand(Actor *arg0) {
     s32 _suexpression_entrypoint_12(void *, s32, s32);
