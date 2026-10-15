@@ -22,7 +22,31 @@ s32 func_80800000_fxstep(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/func_8080012C_fxstep.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/func_80800210_fxstep.s")
+typedef struct {
+    s16 id;
+    s16 value1;
+    s16 value2;
+    s16 pad6;
+    f32 value8;
+    f32 valueC;
+    f32 value10;
+    s16 value14;
+    s16 pad16;
+} FxStepEntry;
+
+s32 func_80800210_fxstep(u8 *arg0, f32 arg1, f32 arg2, s32 arg3) {
+    s32 func_8080012C_fxstep(u8 *, s16, s16, f32, f32, f32, s32);
+    extern FxStepEntry D_80800830_fxstep[];
+    s32 i;
+
+    for (i = 0; D_80800830_fxstep[i].id != 0; i++) {
+        if (arg3 == D_80800830_fxstep[i].id) {
+            func_8080012C_fxstep(arg0, D_80800830_fxstep[i].value1, D_80800830_fxstep[i].value2, D_80800830_fxstep[i].value8 + arg1, D_80800830_fxstep[i].valueC + arg1, D_80800830_fxstep[i].value10, (s32) ((f32) D_80800830_fxstep[i].value14 * arg2));
+            return 1;
+        }
+    }
+    return 0;
+}
 
 s32 func_808002B4_fxstep(s32 arg0, f32 arg1, f32 arg2, s32 arg3) {
     s32 func_80800078_fxstep(s32, s16, f32, s32, s32);
@@ -164,19 +188,8 @@ void fxstep_entrypoint_13(u8 *arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/fxstep_entrypoint_14.s")
 
 s32 fxstep_entrypoint_15(s32 arg0, s32 arg1, s32 *arg2, s32 *arg3, f32 *arg4) {
-    typedef struct {
-        s16 id;
-        s16 value1;
-        s16 value2;
-        s16 pad6;
-        f32 value8;
-        f32 valueC;
-        f32 value10;
-        s16 value14;
-        s16 pad16;
-    } StepEntry;
     f32 func_800DC178(f32, f32);
-    extern StepEntry D_80800830_fxstep[];
+    extern FxStepEntry D_80800830_fxstep[];
     s32 var_v0;
 
     for (var_v0 = 0; D_80800830_fxstep[var_v0].id != 0; var_v0++) {
