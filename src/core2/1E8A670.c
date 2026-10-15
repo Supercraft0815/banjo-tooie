@@ -109,7 +109,28 @@ void func_800B21CC(void *arg0, void *arg1, void *arg2) {
     (*(f32 *)((s8 *)(arg2) + (8))) = (f32) (*(s16 *)((s8 *)(arg0) + (0xA)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B2248.s")
+/* extern */
+
+s32 func_800B2248(void *arg0) {
+    f32 mlAbsF(f32);
+    s32 maximum;
+    s32 value;
+
+    maximum = (s32) mlAbsF((f32) (*(s16 *)((s8 *)arg0 + 0)));
+    value = (s32) mlAbsF((f32) (*(s16 *)((s8 *)arg0 + 4)));
+    if (maximum < value) {
+        maximum = value;
+    }
+    value = (s32) mlAbsF((f32) (*(s16 *)((s8 *)arg0 + 6)));
+    if (maximum < value) {
+        maximum = value;
+    }
+    value = (s32) mlAbsF((f32) (*(s16 *)((s8 *)arg0 + 0xA)));
+    if (maximum < value) {
+        maximum = value;
+    }
+    return maximum;
+}
 
 u8 *func_800B2324(u8 *arg0, u8 **arg1, u8 **arg2) {
     u8 *base;
