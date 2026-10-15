@@ -31,7 +31,31 @@ f32 func_80800CAC_chpiranha(void) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_80800CEC_chpiranha.s")
+/* extern */
+
+void func_80800CEC_chpiranha(s32 arg0, s32 arg1, f32 arg2, f32 *arg3, f32 arg4, f32 arg5) {
+    f32 func_800DC178(f32, f32);
+    s32 func_800EFA4C(s32, f32, f32, f32);
+    f32 func_800EFC7C(s32, s32);
+    f32 temp_f22;
+    f32 temp_f24;
+    f32 temp_f26;
+    s32 var_s0;
+
+    var_s0 = 0;
+    temp_f22 = -arg2;
+loop_1:
+    temp_f24 = func_800DC178(temp_f22, arg2);
+    temp_f26 = func_800DC178(temp_f22, arg2);
+    func_800EFA4C(arg1, temp_f24, temp_f26, func_800DC178(temp_f22, arg2));
+    var_s0 += 1;
+    if (var_s0 < 0xA) {
+        if (func_800EFC7C(arg0, arg1) < (arg2 * arg2)) {
+            goto loop_1;
+        }
+    }
+    *arg3 = func_800DC178(arg4, arg5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_80800DD0_chpiranha.s")
 
