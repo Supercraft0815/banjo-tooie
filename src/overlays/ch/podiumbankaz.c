@@ -106,7 +106,22 @@ s32 func_808003EC_chpodiumbankaz(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/podiumbankaz/func_80800464_chpodiumbankaz.s")
+s32 func_80800464_chpodiumbankaz(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_800DA298(s32);
+
+    switch (arg1) {
+        case 0x1A:
+            func_808003C4_chpodiumbankaz((s32)arg0, arg2);
+            return 1;
+        case 0x91:
+            if (func_800DA298(0xAC2) != 0) {
+                func_80800318_chpodiumbankaz(arg0->unk0, arg2);
+            }
+            return 1;
+        default:
+            return 0;
+    }
+}
 
 OSThread *chpodiumbankaz_entrypoint_0(void)
 {
