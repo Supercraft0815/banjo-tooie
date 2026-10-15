@@ -54,7 +54,31 @@ void chfactorylight_entrypoint_1(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/light/func_8080057C_chfactorylight.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/light/func_808006B8_chfactorylight.s")
+void func_808006B8_chfactorylight(Actor *arg0, s32 arg1) {
+    void func_800DF5D8(u32, u32, u32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101808(Actor *, s32 (*)(Actor *));
+    s32 func_80101970();
+    s32 func_801015D0(Actor *);
+    struct LightColor {
+        u8 pad[0x10];
+        s32 red;
+        s32 green;
+        s32 blue;
+    };
+    f32 temp_f0;
+    u32 temp_t6;
+    struct LightColor *temp_v1;
+
+    temp_v1 = func_80100094(arg0, 0U);
+    temp_t6 = arg0->unk70_10;
+    if ((temp_t6 == 1) || (temp_t6 == 3)) {
+        temp_f0 = arg0->unk54;
+        func_800DF5D8((s32) ((f32) temp_v1->red * temp_f0), (s32) ((f32) temp_v1->green * temp_f0), (s32) ((f32) temp_v1->blue * temp_f0), 0xFF);
+    }
+    func_80101970(arg0);
+    func_80101808(arg0, &func_801015D0);
+}
 
 void func_80800778_chfactorylight(void *arg0, s32 *arg1)
 {
