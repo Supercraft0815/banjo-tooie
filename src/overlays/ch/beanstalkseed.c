@@ -12,7 +12,33 @@ void func_80800000_chbeanstalkseed(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beanstalkseed/func_8080003C_chbeanstalkseed.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beanstalkseed/func_8080026C_chbeanstalkseed.s")
+s32 func_8080026C_chbeanstalkseed(u8 *arg0, s32 arg1, s32 arg2)
+{
+  s32 _subaddiedialog_entrypoint_11(s32, s32, s32, u8 *, s32);
+  s32 func_800D1844(s32);
+  s32 func_800DA298(s32);
+  s32 func_800DA544(s32);
+  s32 func_800F5410(s32);
+  s32 *new_var;
+  s32 func_800F54E4();
+  s32 func_800FC6B0(s32);
+  s32 func_800FFA88(s32);
+  if (arg1 == 0x3E)
+  {
+    new_var = (s32 *) (((s8 *) arg0) + 0);
+    func_800DA544(((((u16) (*((u16 *) (((s8 *) arg0) + 0x76)))) & 0xFFFFFFFFu) >> 7) + 0x33D);
+    func_800FC6B0(0);
+    func_800D1844(0x50);
+    if ((func_800DA298(0x6BE) == 0) && (func_800F5410(func_800F54E4()) == 1))
+    {
+      _subaddiedialog_entrypoint_11(*((s32 *) (((s8 *) arg0) + 0)), 0x1430, 6, arg0 + 4, 0xC);
+      func_800DA544(0x6BE);
+    }
+    func_800FFA88(*new_var);
+    return 1 ^ 0;
+  }
+  return 0;
+}
 
 OSThread *chbeanstalkseed_entrypoint_0(void)
 {
