@@ -131,7 +131,23 @@ void func_80800520_chmayafarmer(Actor* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_80800540_chmayafarmer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_8080085C_chmayafarmer.s")
+/* extern */
+
+void func_8080085C_chmayafarmer(void *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800D0A9C(u32, u32);
+    Actor *actor = arg0;
+    actor->scale = 0.375f;
+    if (func_800D0A9C(4, 1) != 0) {
+        actor->unk74_7 = 0;
+        func_808001CC_chmayafarmer(arg0, 5);
+    }
+    if (_glcutDll_entrypoint_20() != 0) {
+        actor->unk74_7 = 0;
+        func_808001CC_chmayafarmer(arg0, 5);
+        actor->unk64_19 = 1;
+    }
+}
 
 OSThread *chmayafarmer_entrypoint_0(void)
 {
