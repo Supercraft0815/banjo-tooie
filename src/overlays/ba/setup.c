@@ -94,12 +94,24 @@ void func_808002D4_basetup(s32 arg0) {
 /* extern */
 
 void func_808006F0_basetup(void) {
-    s32 _gccubesearch_entrypoint_14(s32, s32);
+    Prop *_gccubesearch_entrypoint_14(s32, s32);
     s32 _gemarkersDll_entrypoint_1();
     _gccubesearch_entrypoint_14(_gemarkersDll_entrypoint_1(), 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/func_8080071C_basetup.s")
+Prop *func_8080071C_basetup(s32 arg0) {
+    Prop *_gccubesearch_entrypoint_14(s32, s32);
+    s32 func_800A9C98(void);
+    s32 id = 0x52;
+
+    if (func_800A9C98() != 0) {
+        return NULL;
+    }
+    if ((arg0 > 0) && (arg0 < 0x29)) {
+        id = arg0 + 0x52;
+    }
+    return _gccubesearch_entrypoint_14(id, 0);
+}
 
 /* extern */
 
