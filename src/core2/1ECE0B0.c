@@ -1830,16 +1830,16 @@ void func_800F9070(s32 arg0, s32 arg1) {
     (*(s8 *)((s8 *)(func_800F88A0(arg0)) + (1))) = (s8) arg1;
 }
 
-void func_800F9098(s32 arg0) {
+void func_800F9098(s32 arg0, f32 *arg1) {
     s32 func_800EA05C();
-    void func_800EE7F8();
+    void func_800EE7F8(f32 *, f32 *);
     extern s32 D_80135500;
     extern s32 D_80135510;
     extern s32 D_8013551C;
     if (arg0 == 0xA) {
-        func_800EE7F8(&D_80135500);
+        func_800EE7F8((f32 *)&D_80135500, arg1);
     } else if (arg0 == 0xB) {
-        func_800EE7F8(&D_80135510);
+        func_800EE7F8((f32 *)&D_80135510, arg1);
     }
     D_8013551C = func_800EA05C();
 }
