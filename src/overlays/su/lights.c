@@ -10,7 +10,41 @@ void func_808000D0_sulights(s8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/func_80800194_sulights.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/func_8080021C_sulights.s")
+/* extern */
+
+void func_8080021C_sulights(u8 *arg0) {
+    void func_800C8900(s32, u8 *);
+    s32 func_800C8E84(s32, s32 *);
+    f32 func_800DC0C0(void);
+    s32 sp4C;
+    s32 sp40[3];
+    f32 sp3C;
+    s32 *var_v0;
+    s32 var_a0;
+    u8 *var_v1;
+
+    if (func_800DC0C0() > 0.5f) {
+        sp3C = 1.0f;
+    } else {
+        sp3C = -1.0f;
+    }
+    func_800C8900(arg0[1], (u8 *)sp40);
+    var_v0 = sp40;
+    var_v1 = arg0;
+    do {
+        *var_v0 += sp3C * (*(f32 *)(arg0 + 0x38) * (f32)*(s32 *)(var_v1 + 0x10) * *(f32 *)(arg0 + 0x34));
+        if (*var_v0 > *(s32 *)(var_v1 + 4) + *(s32 *)(var_v1 + 0x10)) {
+            *var_v0 = *(s32 *)(var_v1 + 4) + *(s32 *)(var_v1 + 0x10);
+        }
+        if (*var_v0 < *(s32 *)(var_v1 + 4) - *(s32 *)(var_v1 + 0x10)) {
+            *var_v0 = *(s32 *)(var_v1 + 4) - *(s32 *)(var_v1 + 0x10);
+        }
+        var_v0++;
+        var_v1 += 4;
+    } while (var_v0 != &sp4C);
+    func_800C8E84(arg0[1], sp40);
+    *(f32 *)(arg0 + 0x34) = 0.0f;
+}
 
 void func_80800340_sulights(u8 *arg0) {
     s32 i;
