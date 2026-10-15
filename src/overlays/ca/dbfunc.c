@@ -4,7 +4,7 @@
 
 s32 func_80800000_cadbfunc(void) {
     s32 func_800A586C();
-    s32 func_800A587C();
+    u8 func_800A587C(void);
     s32 temp_v0;
 
     temp_v0 = func_800A587C();
@@ -88,7 +88,21 @@ s32 cadbfunc_entrypoint_3(s32 arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ca/dbfunc/func_80800224_cadbfunc.s")
+s32 func_80800224_cadbfunc(void) {
+    s32 func_800A586C(void);
+    u8 func_800A587C(void);
+    s32 temp_v0;
+
+    temp_v0 = func_800A587C();
+    switch (temp_v0) {
+        case 1:
+            return func_800A586C() + 0x1C;
+        case 3:
+            return func_800A586C() + 0x24;
+        default:
+            return 0;
+    }
+}
 
 /* extern */
 
@@ -338,7 +352,7 @@ s32 cadbfunc_entrypoint_19(f32 arg0) {
 
 f32 *func_80800960_cadbfunc(void) {
     s32 func_800A586C(void);
-    s32 func_800A587C();
+    u8 func_800A587C(void);
     if (func_800A587C() == 3) {
         return func_800A586C() + 0x20;
     }
@@ -377,7 +391,7 @@ s32 cadbfunc_entrypoint_21(f32 arg0) {
 
 s32 *func_80800A1C_cadbfunc(void) {
     s32 func_800A586C(void);
-    s32 func_800A587C();
+    u8 func_800A587C(void);
     if (func_800A587C() == 4) {
         return func_800A586C();
     }
@@ -446,7 +460,7 @@ s32 cadbfunc_entrypoint_25(s32 arg0) {
 
 s32 *func_80800BE0_cadbfunc(void) {
     s32 func_800A586C(void);
-    s32 func_800A587C();
+    u8 func_800A587C(void);
     if (func_800A587C() == 4) {
         return func_800A586C() + 0xC;
     }
@@ -551,7 +565,7 @@ s32 cadbfunc_entrypoint_31(s32 arg0) {
 
 f32 *func_80800E80_cadbfunc(void) {
     s32 func_800A586C(void);
-    s32 func_800A587C();
+    u8 func_800A587C(void);
     if (func_800A587C() == 4) {
         return func_800A586C() + 0x10;
     }
@@ -590,7 +604,7 @@ s32 cadbfunc_entrypoint_33(f32 arg0) {
 
 s32 *func_80800F3C_cadbfunc(void) {
     s32 func_800A586C(void);
-    s32 func_800A587C();
+    u8 func_800A587C(void);
     if (func_800A587C() == 4) {
         return func_800A586C() + 0x14;
     }
