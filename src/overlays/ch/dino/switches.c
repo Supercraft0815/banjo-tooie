@@ -82,7 +82,27 @@ void func_80800270_chdinoswitches(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/chdinoswitches_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/func_80800714_chdinoswitches.s")
+void func_80800714_chdinoswitches(Actor *arg0) {
+    s32 func_800DA298(s32);
+    void func_80101EE4(Actor *, f32);
+    void func_80102424(Actor *, s32);
+    void func_80109EEC(s16 *, s32);
+    void func_8010A570(Actor *);
+    s32 func_80800108_chdinoswitches(void);
+    extern u16 D_80800B22_chdinoswitches[][10];
+    s32 temp_v0;
+
+    temp_v0 = func_80800108_chdinoswitches();
+    arg0->actorData[0] = temp_v0;
+    if (func_800DA298(D_80800B22_chdinoswitches[temp_v0][0]) != 0) {
+        func_80102424(arg0, 3);
+        func_80101EE4(arg0, 0.3f);
+        func_8010A570(arg0);
+    }
+    if (arg0->actorData[0] == 3) {
+        func_80109EEC(arg0, 0x44);
+    }
+}
 
 void func_808007A0_chdinoswitches(Actor *arg0) {
     void func_800DA544(GameFlag);
