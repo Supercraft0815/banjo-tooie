@@ -165,7 +165,32 @@ int func_8010B69C(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B71C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B800.s")
+typedef struct {
+    s32 marker;
+    f32 position[3];
+    u8 pad10[0x60];
+    u32 path_index : 7;
+    u32 pad70_10 : 15;
+    u32 path_node : 6;
+    u32 pad70_0 : 4;
+} ActorPath;
+
+s32 func_8010B800(ActorPath *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
+    s32 func_800CC338(f32 *, s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 result;
+
+    if (arg0->path_index != 0) {
+        result = func_800CC338(arg0->position, arg0->path_index - 1, arg0->path_node - 1);
+        if (result == -1) {
+            func_800EE7F8(arg0->position, arg1);
+            return 1;
+        }
+        arg0->path_node = result + 1;
+        return 0;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B8A4.s")
 
