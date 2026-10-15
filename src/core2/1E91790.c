@@ -79,7 +79,26 @@ void func_800B811C(Gfx **arg0) {
     Gfx *v1 = (*arg0)++; v1->words.w0 = 0xDE000000; v1->words.w1 = (u32)((u8 *)&D_8011A668 - (u8 *)0x80000000); D_801282C5 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B8148.s")
+void *func_800B8148(u8 *ch) {
+    s32 func_800B0D58(s16 *);
+    s16 *func_800D3524(s32);
+    s32 func_800D35D0();
+    extern s32 D_801282D0;
+    s32 sp1C;
+    s16 *temp_v0;
+
+    sp1C = func_800D35D0((u8) D_801282C6, *ch);
+    if (sp1C == -1) {
+        return NULL;
+    }
+    temp_v0 = func_800D3524((u8) D_801282C6);
+    if (temp_v0 == NULL) {
+        return NULL;
+    }
+    D_801282D0 = func_800B0D58(temp_v0);
+    *ch = (u8) sp1C;
+    return temp_v0;
+}
 
 s32 func_800B81CC(Gfx **gfx, s32 x, s32 y, u8 ch) {
     void *font;
