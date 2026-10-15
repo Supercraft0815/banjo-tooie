@@ -68,7 +68,57 @@ void gcmapsects_entrypoint_2(s16 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/func_80800A08_gcmapsects.s")
+/* extern */
+
+void func_80800A08_gcmapsects(void *arg0, s32 arg1) {
+    void func_800D5B24(void);
+    s32 func_800D674C(s32);
+    s32 func_800D70F8(s32, s32);
+    s32 func_800D73CC(s32);
+    s32 func_800DB9B0();
+    s32 var_s0;
+    s32 var_s2;
+    u16 temp_v0;
+    u16 temp_v0_2;
+    struct Section {
+        u8 pad[0x4C];
+        u32 flag0 : 1;
+        u32 flag1 : 1;
+        u32 active : 1;
+        u32 loaded : 1;
+        u32 rest : 28;
+    } *temp_v1, *temp_v1_2;
+
+    var_s2 = 0;
+    if ((s32) (*(u8 *)((s8 *)(arg0) + (0x77))) > 0) {
+        var_s0 = 0;
+        do {
+            temp_v1 = (*(s32 *)((s8 *)(arg0) + (0x68))) + var_s0;
+            if (temp_v1->active || (arg1 != 0)) {
+                temp_v0 = *(u16 *)((s8 *)temp_v1 + 0x40);
+                if ((temp_v0 != 0) && (func_800D73CC(temp_v0 & 0xFFFFFFFFU) == 0)) {
+                    func_800D5B24();
+                    func_800D674C((*(u16 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x68))) + var_s0)) + (0x40))));
+                    func_800D70F8((*(u16 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x68))) + var_s0)) + (0x40))), 1);
+                    temp_v1_2 = (*(s32 *)((s8 *)(arg0) + (0x68))) + var_s0;
+                    temp_v1_2->loaded = 1;
+                }
+                temp_v0_2 = *(u16 *)((s8 *)(*(s32 *)((s8 *)arg0 + 0x68) + var_s0) + 0x42);
+                if ((temp_v0_2 != 0) && (func_800D73CC(temp_v0_2 & 0xFFFFFFFFU) == 0)) {
+                    func_800D5B24();
+                    func_800D674C((*(u16 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x68))) + var_s0)) + (0x42))));
+                    func_800D70F8((*(u16 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x68))) + var_s0)) + (0x42))), 1);
+                }
+            }
+            func_80800250_gcmapsects(arg0, var_s2);
+            var_s2 += 1;
+            var_s0 += 0x58;
+        } while (var_s2 < (s32) (*(u8 *)((s8 *)(arg0) + (0x77))));
+    }
+    if (func_800DB9B0() == 0) {
+        (*(s8 *)((s8 *)(arg0) + (0x78))) = 1;
+    }
+}
 
 /* extern */
 
