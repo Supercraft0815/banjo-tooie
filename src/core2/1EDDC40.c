@@ -295,7 +295,29 @@ void func_80104E24(s32 *arg0, s32 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104E78.s")
+/* extern */
+
+s32 func_80104E78(Actor *arg0) {
+    s32 _subaddiefade_entrypoint_12(s32, s32, s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_801045AC(Actor *, f32 *, f32 *, s32);
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp24[3];
+    s32 *temp_v0;
+
+    func_800EE7F8(sp3C, (f32 *)((u8 *)arg0 + 4));
+    func_800EE7F8(sp30, (f32 *)((u8 *)arg0 + 4));
+    sp3C[1] -= 300.0f;
+    sp30[1] += 100.0f;
+    temp_v0 = (s32 *)func_800BEF00(sp30, sp3C, sp24, *(s32 *)((u8 *)arg0 + 0x14));
+    if (temp_v0 != NULL) {
+        func_801045AC(arg0, sp24, sp3C, temp_v0[2]);
+        return 1;
+    }
+    _subaddiefade_entrypoint_12((s32)arg0, 0xFF, 0xFF, 0xFF);
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104F2C.s")
 
