@@ -279,7 +279,51 @@ void func_80801E4C_chjiggygamenew(Actor *arg0, s32 arg1) {
     arg0->unk64_20 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80801EE8_chjiggygamenew.s")
+/* extern */
+
+void func_80801EE8_chjiggygamenew(Actor *arg0) {
+    struct JiggyGameData {
+        f32 timer;
+        u32 count;
+        u8 pad8[8];
+        s32 state;
+        s32 jiggy;
+        f32 duration;
+    };
+    u32 *_gldbstring_entrypoint_0(u32 *, u32);
+    u32 *_gldbstring_entrypoint_1(u32 *, s16);
+    void _gldbstring_entrypoint_2(s32);
+    s32 _sujiggy_entrypoint_12(void);
+    s32 var_s1;
+    s32 var_s3;
+    s32 var_s4;
+    u8 *temp_a1;
+    u8 *temp_v0;
+    u8 *var_s0;
+    u8 *var_v0;
+    u8 var_a0;
+    u8 *temp_t0;
+
+    ((struct JiggyGameData *)arg0->actorData)->jiggy = _sujiggy_entrypoint_12();
+    ((struct JiggyGameData *)arg0->actorData)->state = 1;
+    temp_v0 = (u8 *)_gldbstring_entrypoint_1(_gldbstring_entrypoint_0(0, 0x186D), (s16)((struct JiggyGameData *)arg0->actorData)->jiggy);
+    var_s3 = 0;
+    for (var_s4 = 0; temp_v0[var_s3 - 1] != 0 && var_s4 != 3; var_s4++, var_s3++) {
+        temp_a1 = (u8 *)func_80100094(arg0, 0) + var_s4 * 0x1E + 0x21C;
+        var_s1 = 0;
+        while (temp_v0[var_s3] != 0 && temp_v0[var_s3] != 0xA) {
+            temp_a1[var_s1] = temp_v0[var_s3];
+            var_s3++;
+            var_s1++;
+        }
+        temp_a1[var_s1 + 1] = 0;
+    }
+    for (; var_s4 < 3; var_s4++) {
+        temp_t0 = (u8 *)func_80100094(arg0, 0) + var_s4 * 0x1E;
+        temp_t0[0x21C] = 0;
+    }
+    _gldbstring_entrypoint_2(0x186D);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80802030_chjiggygamenew.s")
 
