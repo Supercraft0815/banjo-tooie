@@ -326,7 +326,31 @@ void func_800A3550(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 80) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A355C.s")
+/* extern */
+
+void func_800A355C(void *arg0) {
+    s32 func_8008EF3C(void *, s32);
+    f32 func_8009C150();
+    s32 func_800F3ED0(void *);
+    s32 player_inWater(void *);
+    s32 player_isStable(void *);
+    f32 sp24;
+    s32 sp20;
+    void *temp_v0;
+
+    sp24 = func_8009C150();
+    sp20 = func_800F3ED0(arg0);
+    if ((player_isStable(arg0) != 0) || (player_inWater(arg0) != 0) || ((sp20 == 0xA) && (func_8008EF3C(arg0, 0) != 3)) || (sp20 == 5)) {
+        func_800A3550(arg0, 1);
+    } else {
+        func_800A3550(arg0, 2);
+    }
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0xA0)));
+    if (((*(u8 *)((s8 *)(temp_v0) + (0x50))) != 2) || !(sp24 <= (*(f32 *)((s8 *)(temp_v0) + (0x4C))))) {
+        (*(f32 *)((s8 *)(temp_v0) + (0x48))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (0x4C)));
+        (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xA0)))) + (0x4C))) = sp24;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3644.s")
 
