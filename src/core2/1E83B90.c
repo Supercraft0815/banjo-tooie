@@ -331,7 +331,43 @@ s32 func_800ABCE0(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 a
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AC638.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AC848.s")
+s32 func_800AC848(s32 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, f32 *arg6, f32 arg7, f32 *arg8, s32 arg9, s32 arg10) {
+    void func_80019224(f32 *, f32 *);
+    void func_80019750(f32 *, f32 *, f32, f32 *);
+    void func_8001980C(f32 *, f32 *, f32, f32 *);
+    s32 func_80019CD4(void);
+    s32 func_800AC638(s32, s32, f32 *, f32 *, f32, f32 *, s32, s32);
+    extern f32 D_80127938[];
+    extern f32 D_8012795C[];
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 *var_s0;
+    s32 sp38;
+    f32 *end;
+    s32 temp_v0;
+
+    func_80019CD4();
+    func_8001980C(arg2, arg3, arg4, 0);
+    func_80019224(sp4C, arg5);
+    func_80019224(sp40, arg6);
+    temp_v0 = func_800AC638(arg0, arg1, sp4C, sp40, arg7 / arg4, arg8, arg9, arg10);
+    sp38 = temp_v0;
+    if (temp_v0 == 0) {
+        return 0;
+    }
+    func_80019CD4();
+    func_80019750(arg2, arg3, arg4, 0);
+    func_80019224(arg6, sp40);
+    var_s0 = D_80127938; end = D_8012795C;
+    do {
+        func_80019224(var_s0, var_s0);
+        var_s0 += 3;
+    } while (var_s0 != end);
+    func_80019CD4();
+    func_80019750(0, arg3, 1.0f, 0);
+    func_80019224(arg8, arg8);
+    return sp38;
+}
 
 void *func_800AC978(u16 *list, u16 *vertices, f32 position[3], f32 radius, f32 normal[3], u32 flag_filter)
 {
