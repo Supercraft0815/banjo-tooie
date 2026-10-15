@@ -75,7 +75,35 @@ void func_808002CC_chdiggerbossshell(s32 arg0) {
     _chlightfader_entrypoint_1(sp1C, 0x3FB33333, 5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossshell/func_80800330_chdiggerbossshell.s")
+/* extern */
+
+Actor *func_80800330_chdiggerbossshell(Actor *arg0) {
+    f32 func_800136E4(f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80102FDC(Actor *, f32);
+    s32 func_80103140(Actor *, u32, u16);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    f32 func_8010CD28(Actor *);
+    f32 var_f20;
+    s32 var_s1;
+    Actor *temp_v0;
+    f32 position[3];
+
+    var_f20 = func_8010CD28(arg0) + arg0->unk54;
+    func_800EE7F8(position, arg0->position);
+    if (position[1] < 7500.0f) {
+        position[1] = 7500.0f;
+    }
+    position[1] += 60.0f;
+    for (var_s1 = 0; var_s1 != 4; var_s1++) {
+        temp_v0 = func_80108528(0x4F4, position, (s32) var_f20, &arg0);
+        func_80102FDC(temp_v0, arg0->scale);
+        func_80103140(temp_v0, (var_s1 + 0x905) & 0xFFFF, 0);
+        *(f32 *)&temp_v0->actorData[3] = *(f32 *)&arg0->actorData[3];
+        var_f20 = func_800136E4(var_f20 + 90.0f);
+    }
+    return arg0;
+}
 
 void func_8080044C_chdiggerbossshell(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x58))) = 1.75f;
