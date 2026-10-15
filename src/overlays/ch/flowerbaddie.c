@@ -32,7 +32,33 @@ void func_80800610_chflowerbaddie(Actor *arg0, void *arg1) {
     func_80101870(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flowerbaddie/func_808006A0_chflowerbaddie.s")
+void func_808006A0_chflowerbaddie(Actor *arg0) {
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_80103DFC(Actor *, f32 *);
+    extern s32 D_80800CCC_chflowerbaddie;
+    extern s32 D_80800CF0_chflowerbaddie;
+    extern s32 D_80800D04_chflowerbaddie;
+    extern s32 D_80800D18_chflowerbaddie;
+    f32 sp34[3];
+    s32 emitter;
+
+    func_80103DFC(arg0, sp34);
+    emitter = func_800B53A4(1);
+    func_800BABB8(emitter, sp34, sp34, arg0->scale, &D_80800CCC_chflowerbaddie);
+    func_800BABB8(emitter, sp34, sp34, arg0->scale, &D_80800D18_chflowerbaddie);
+    func_800BA22C(emitter, 1);
+    emitter = func_800B53A4(2);
+    func_800BABB8(emitter, sp34, sp34, arg0->scale, &D_80800CCC_chflowerbaddie);
+    func_800BABB8(emitter, sp34, sp34, arg0->scale, &D_80800CF0_chflowerbaddie);
+    func_800BA22C(emitter, 2);
+    emitter = func_800B53A4(4);
+    func_800BABB8(emitter, sp34, sp34, arg0->scale, &D_80800CCC_chflowerbaddie);
+    func_800BABB8(emitter, sp34, sp34, arg0->scale, &D_80800D04_chflowerbaddie);
+    func_800BA22C(emitter, 4);
+    arg0->unk64_20 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flowerbaddie/func_808007F0_chflowerbaddie.s")
 
