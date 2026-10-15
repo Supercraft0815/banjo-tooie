@@ -334,7 +334,84 @@ void gcnewoption_entrypoint_4(Actor *arg0, volatile s16 arg1, s32 arg2, s32 arg3
     gcnewoption_entrypoint_5(func_80100094(arg0, arg1), arg2, arg3, arg4, arg0->unk0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_5.s")
+/* extern */
+
+void gcnewoption_entrypoint_5(void *arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4) {
+    struct OptionInit {
+        s16 state;
+        u8 pad2[10];
+        s16 dialog;
+        u8 padE[10];
+        f32 timer;
+        u8 flag80 : 1;
+        u8 flag40 : 1;
+        u8 flag20 : 1;
+        u8 flag10 : 1;
+        u8 flag08 : 1;
+        u8 kind : 3;
+        u8 flag180 : 1;
+        u8 flag140 : 1;
+        u8 flag120 : 1;
+        u8 flag110 : 1;
+        u8 flag108 : 1;
+        u8 flag104 : 1;
+        u8 flag102 : 1;
+        u8 flag101 : 1;
+        u16 rest;
+        u8 pad20[0x90];
+        s16 values[30];
+        s16 positions[30];
+        s16 colors[30][3];
+        s16 sizes[30];
+        s8 enabled[30];
+        s16 mode;
+        s16 count;
+        s16 pad23A;
+        u32 *text;
+        s16 textId;
+        s16 pad242;
+        s32 callback;
+        s32 parameter;
+        Unk80132ED0 *context;
+        s8 controller;
+    };
+    u32 *_gldbstring_entrypoint_0(u32 *, u32);
+    s16 _gldialog_entrypoint_0();
+    void gcnewoption_entrypoint_40(void *, s32, s32, s32, f32, f32);
+    struct OptionInit *option = arg0;
+    s32 i;
+
+    option->state = 0;
+    option->text = _gldbstring_entrypoint_0(option->text, arg3);
+    option->textId = arg3;
+    option->callback = arg1;
+    option->parameter = arg2;
+    option->context = arg4;
+    option->flag10 = 0;
+    option->flag08 = 0;
+    option->flag110 = 0;
+    option->flag140 = 0;
+    option->flag180 = 0;
+    option->flag120 = 0;
+    option->flag108 = 0;
+    option->count = 0;
+    option->flag104 = 0;
+    option->mode = 13;
+    option->dialog = _gldialog_entrypoint_0();
+    option->flag102 = 0;
+    gcnewoption_entrypoint_40(arg0, 44, 28, 50, 1.0f, 1.0f);
+    option->controller = 0;
+    option->timer = 0.0f;
+    for (i = 0; i < 30; i++) {
+        option->values[i] = 0;
+        option->positions[i] = -1;
+        option->colors[i][0] = 255;
+        option->colors[i][1] = 255;
+        option->colors[i][2] = 255;
+        option->sizes[i] = 12;
+        option->enabled[i] = 0;
+    }
+}
 
 /* extern */
 
