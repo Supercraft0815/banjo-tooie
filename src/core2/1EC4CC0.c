@@ -83,7 +83,62 @@ void func_800EB51C(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB5E0.s")
+void func_800EB5E0(s32 arg0, s32 arg1) {
+    typedef struct {
+        Unk80132ED0 *actor;
+        s32 unknown;
+        unsigned int unused : 27;
+        unsigned int active : 1;
+        unsigned int group : 1;
+        unsigned int unknown2 : 1;
+        unsigned int ready : 1;
+        unsigned int is_actor : 1;
+    } Prop;
+    void _gspropprop_entrypoint_2(void *);
+    void func_800E3A30(s32);
+    s32 func_800E9E88(s32);
+    u32 func_800E9EB4(s16 *);
+    int func_800EC800(void *);
+    s32 group;
+    s32 i;
+    s16 sp40[3];
+    u32 end;
+    u32 prop;
+    Unk80132ED0 *actor;
+
+    func_800E3A30((s32)sp40);
+    prop = func_800E9E88(arg0);
+    end = func_800E9EB4((s16 *)arg0);
+    if (prop < end) {
+        do {
+            if (((Prop *)prop)->active) {
+                if (!((Prop *)prop)->ready) {
+                    _gspropprop_entrypoint_2((void *)prop);
+                }
+                if (((Prop *)prop)->is_actor) {
+                    actor = ((Prop *)prop)->actor;
+                    if (func_800EC800(actor) != 0) {
+                        i = 0;
+                        do {
+                            if (((actor->unk28 << 23) >> 24) & (1 << i)) {
+                                func_800EB3D0((void *)prop, i, sp40);
+                            }
+                            i++;
+                        } while (i != 7);
+                    }
+                } else {
+                    if (((Prop *)prop)->group) {
+                        group = 1;
+                    } else {
+                        group = 0;
+                    }
+                    func_800EB3D0((void *)prop, group, sp40);
+                }
+            }
+            prop += 12;
+        } while (prop < end);
+    }
+}
 
 void func_800EB70C(void) {
     s32 i;
