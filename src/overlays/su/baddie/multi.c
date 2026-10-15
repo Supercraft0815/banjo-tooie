@@ -56,7 +56,36 @@ void subaddiemulti_entrypoint_2(void) {
     } while (var_s0 != 8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/multi/subaddiemulti_entrypoint_3.s")
+/* extern */
+
+void subaddiemulti_entrypoint_3(s32 arg0) {
+    Prop *_gccubesearch_entrypoint_14(s32, s32);
+    void _plcamera_entrypoint_8(s32);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EFD24(f32 *);
+    s32 func_800F6438(s32);
+    void func_800F8294(s32, f32 *);
+    s32 func_800F832C(s32, f32 *);
+    s32 var_s0;
+    Prop *temp_v0;
+    f32 sp3C[3];
+    f32 sp30[3];
+
+    func_800EFD24(sp30);
+    var_s0 = 0;
+    do {
+        if (func_800F6438(var_s0) != 0) {
+            temp_v0 = _gccubesearch_entrypoint_14(arg0, 0);
+            func_800EE88C(sp3C, temp_v0->position);
+            sp30[1] = temp_v0->FlagOrRotation;
+            func_800F8294(var_s0, sp3C);
+            func_800F832C(var_s0, sp30);
+            _plcamera_entrypoint_8(var_s0);
+        }
+        var_s0 += 1;
+        arg0 += 1;
+    } while (var_s0 != 8);
+}
 
 /* extern */
 
