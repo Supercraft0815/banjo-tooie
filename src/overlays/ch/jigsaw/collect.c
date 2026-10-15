@@ -7,7 +7,39 @@ OSThread *chjigsawcollect_entrypoint_0(void)
     return (OSThread *) D_80800670_chjigsawcollect;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/collect/func_8080000C_chjigsawcollect.s")
+void func_8080000C_chjigsawcollect(Actor *arg0) {
+    typedef struct {
+        f32 angle;
+        f32 rotation;
+        f32 speed;
+        s32 unkC;
+        s32 light;
+    } CollectData;
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32[3]);
+    s32 func_800CF9E4(s32, s32, s32);
+    s32 func_800CFA70(s32, s32);
+    void func_800FC660(u32);
+    void *func_80100094(Actor *, u32);
+    s32 light;
+    CollectData *data;
+
+    data = func_80100094(arg0, 0);
+    if (func_800CFA70(data->unkC, 1) != -1) {
+        light = func_800C8A98();
+        data->light = light;
+        func_800CF9E4(data->unkC, 1, light);
+        func_800C8CB8(data->light, arg0->position);
+    } else {
+        data->light = 0;
+    }
+    data->rotation = 0.0f;
+    data->angle = -70.0f;
+    data->speed = 500.0f;
+    func_800FC660(0x1C);
+    func_800FC660(5);
+    arg0->unk64_20 = 1;
+}
 
 void func_808000CC_chjigsawcollect(Actor *arg0) {
     typedef struct {
@@ -37,7 +69,7 @@ void func_808000CC_chjigsawcollect(Actor *arg0) {
     f32 func_800136E4(f32);
     f32 func_80013728(f32);
     void func_800C4B64(f32);
-    s32 func_800C8CB8(s32, f32 *);
+    void func_800C8CB8(s32, f32 *);
     f32 func_800D8FF8(void);
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
