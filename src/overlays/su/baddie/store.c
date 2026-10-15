@@ -47,7 +47,34 @@ s32 func_80800260_subaddiestore(Unk80132ED0 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/store/func_80800330_subaddiestore.s")
+/* extern */
+
+s32 func_80800330_subaddiestore(Actor *arg0) {
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    s32 sp28[2];
+    u32 temp_t6;
+    Actor *var_v0;
+
+    temp_t6 = arg0->pad6C_21;
+    if (temp_t6 == 0) {
+        return 1;
+    }
+    var_v0 = (Actor *)func_801067C4(sp28);
+    if (var_v0 != NULL) {
+loop_3:
+        if (temp_t6 == var_v0->pad6C_21) {
+            return 0;
+        }
+        var_v0 = (Actor *)func_8010682C(sp28);
+        if (var_v0 == NULL) {
+            goto block_6;
+        }
+        goto loop_3;
+    }
+block_6:
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/store/func_808003AC_subaddiestore.s")
 
