@@ -33,7 +33,29 @@ void func_80800440_chgameselect(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808006A0_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080086C_chgameselect.s")
+/* extern */
+
+void func_8080086C_chgameselect(Actor *arg0, s32 arg1) {
+    s32 func_80800478_chgameselect(s32, s32);
+    s32 func_80803D00_chgameselect(s32, s32);
+    switch (arg0->unk70_10) {
+    case 1:
+        func_80803D00_chgameselect(0, 3);
+        return;
+    default:
+    case 3:
+    case 4:
+        func_80800478_chgameselect(arg0, 1);
+        /* fallthrough */
+    case 2:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9:
+        return;
+    }
+}
 
 void func_808008D0_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     typedef struct {
