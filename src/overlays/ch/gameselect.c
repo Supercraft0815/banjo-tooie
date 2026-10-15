@@ -1152,7 +1152,23 @@ void func_80804694_chgameselect(void *arg0) {
     _glglobalsettings_entrypoint_2();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808046D0_chgameselect.s")
+void func_808046D0_chgameselect(s32 arg0, s32 arg1) {
+    void _gcnewoption_entrypoint_31(s32, s32, s16);
+    s32 func_80804948_chgameselect(s32);
+    void func_808049E8_chgameselect(s32, s32, s32);
+    extern s16 D_808083E0_chgameselect;
+    s16 *var_s1;
+    s32 var_s0;
+
+    var_s1 = &D_808083E0_chgameselect;
+    var_s0 = 0;
+    do {
+        func_808049E8_chgameselect(arg1, var_s0, func_80804948_chgameselect(var_s0));
+        _gcnewoption_entrypoint_31(arg1, var_s0, *var_s1);
+        var_s0 += 1;
+        var_s1++;
+    } while (var_s0 != 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80804750_chgameselect.s")
 
