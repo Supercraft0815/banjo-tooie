@@ -24,7 +24,19 @@ void func_80800000_chswappy(Actor *arg0) {
     func_808000B0_chswappy(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swappy/func_808000B0_chswappy.s")
+s32 func_808000B0_chswappy(void *arg0, s32 arg1) {
+    void func_80101FDC(Actor *, u32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+
+    func_80101FDC(arg0, arg1);
+    switch (arg1) {
+    case 1:
+        _subaddieDll_entrypoint_4(arg0, 0);
+    case 2:
+    case 3:
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swappy/func_80800108_chswappy.s")
 
