@@ -97,7 +97,45 @@ s32 func_808002A0_cheel(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_80800D60_cheel.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_80801120_cheel.s")
+/* extern */
+
+void func_80801120_cheel(Actor *arg0) {
+    void *func_800CC63C(s32, s32);
+    f32 func_800EEB40(f32 *, f32 *);
+    struct EelRegion {
+        f32 position[3];
+        s16 unkC;
+        s16 height;
+        f32 radius;
+    } *region;
+    f32 y;
+    f32 actorY;
+    f32 height;
+    s32 flag;
+    union EelActorView {
+        Actor actor;
+        struct {
+            u32 prefix[28];
+            u32 regionGroup : 7;
+            u32 unused : 15;
+            u32 regionIndex : 6;
+            u32 remaining : 4;
+        } regions;
+    } *eel = (void *)arg0;
+
+    region = func_800CC63C(eel->regions.regionGroup - 1, eel->regions.regionIndex - 1);
+    y = region->position[1];
+    actorY = arg0->position[1];
+    height = region->height;
+    if (y + height <= actorY || actorY <= y - height) {
+        ((f32 *)arg0->actorData)[1] = y;
+    }
+    flag = func_800EEB40(arg0->position, region->position) == 0.0f;
+    if ((f32)flag < region->radius) {
+        ((f32 *)arg0->actorData)[0] = region->position[0];
+        ((f32 *)arg0->actorData)[2] = region->position[2];
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_80801200_cheel.s")
 
