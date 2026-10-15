@@ -1,9 +1,9 @@
 #include "core2/1EA0AA0.h"
 
 typedef struct CallbackEntry {
-    s32 unk0;
-    s32 enabled;
-    void *unk8;
+    s16 unk0;
+    Prop *enabled;
+    void (*unk8)(struct CallbackEntry *);
     void (*callback)(struct CallbackEntry *);
     void (*update)(struct CallbackEntry *);
 } CallbackEntry;
@@ -94,7 +94,30 @@ void func_800C7364(s32 arg0, s32 arg1, s32* arg2)
         *arg2 = arg1;
     }
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0AA0/func_800C73A4.s")
+void func_800C73A4(void) {
+    Prop *_gccubesearch_entrypoint_14(s32, s32);
+    void func_800FF000(s32);
+    CallbackEntry *ptr;
+    s32 sp28;
+
+    ptr = D_8011A8A0;
+    func_800FF000(0);
+    func_800FC9B4(0, 0.0f);
+    for (; ptr != &D_8011A8A0[5]; ptr++) {
+        ptr->enabled = _gccubesearch_entrypoint_14(ptr->unk0, 0);
+        if (ptr->enabled != 0 && ptr->unk8 != NULL) {
+            ptr->unk8(ptr);
+        }
+    }
+    sp28 = 0;
+    func_800C7364(0x7B, 1, &sp28);
+    func_800C7364(0x7C, 2, &sp28);
+    func_800C7364(0x7D, 3, &sp28);
+    func_800C7364(0x7E, 4, &sp28);
+    func_800C7364(0x7F, 5, &sp28);
+    sp28 = (sp28 == 0) ? 2 : sp28;
+    func_80015178(sp28);
+}
 
 void func_800C7494(void) {
     CallbackEntry *ptr;
