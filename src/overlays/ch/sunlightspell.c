@@ -43,7 +43,25 @@ void func_80800768_chsunlightspell(Actor *arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sunlightspell/func_808007CC_chsunlightspell.s")
+/* extern */
+
+s32 func_808007CC_chsunlightspell(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddieDll_entrypoint_0(Actor *);
+    void func_800FFA88(Unk80132ED0 *);
+    void func_80800404_chsunlightspell(Actor *, s32);
+
+    switch (arg1) {
+    case 0x4B:
+        _subaddieDll_entrypoint_0(arg0);
+        func_80800404_chsunlightspell(arg0, 2);
+        return 1;
+    case 0x2E:
+        func_800FFA88(arg0->unk0);
+        return 1;
+    default:
+        return 0;
+    }
+}
 
 OSThread *chsunlightspell_entrypoint_0(void)
 {
