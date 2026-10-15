@@ -4,7 +4,26 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/find/subaddiefind_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/find/subaddiefind_entrypoint_2.s")
+/* extern */
+
+Actor *subaddiefind_entrypoint_2(s32 arg0, s32 *arg1) {
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    Actor *actor;
+    s32 sp20;
+
+    actor = (Actor *)func_801067C4(&sp20);
+    while (actor != NULL) {
+        if (arg0 == actor->unk6C_9 && !actor->unk64_17) {
+            if (arg1 != NULL) {
+                *arg1 = sp20;
+            }
+            return actor;
+        }
+        actor = (Actor *)func_8010682C(&sp20);
+    }
+    return NULL;
+}
 
 /* extern */
 
