@@ -173,7 +173,7 @@ s32 func_80800C0C_chcheato(void) {
 
 s32 func_80800C64_chcheato(void *arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_0(s32, s32);
-    s32 func_80800D08_chcheato(void *, s32, s32);
+    void func_80800D08_chcheato(Actor *, s32, s32);
     if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
         if (((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF) != 2) {
             func_80800D08_chcheato(arg0, 2, 1);
@@ -193,4 +193,27 @@ void func_80800CC0_chcheato(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800D08_chcheato.s")
+void func_80800D08_chcheato(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_7(s32, s32);
+    void _capod_entrypoint_8(s32);
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    void _gcdialogcamera_entrypoint_5(f32 *);
+    void _gcdialogcamera_entrypoint_8(void);
+    extern u32 D_80800E50_chcheato;
+
+    switch (arg0->unk6C_0) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x19, 0);
+        case 1:
+            _capod_entrypoint_8(1);
+            arg0->unk6C_0 = 2;
+            _gcdialogcamera_entrypoint_3(&D_80800E50_chcheato, arg0->scale);
+            _gcdialogcamera_entrypoint_4(arg0->position);
+            _gcdialogcamera_entrypoint_5(arg0->rotation);
+            _gcdialogcamera_entrypoint_8();
+        case 2:
+            _capod_entrypoint_7(arg1, arg2);
+    }
+}
