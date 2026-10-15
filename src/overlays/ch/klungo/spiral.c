@@ -54,4 +54,25 @@ int func_80800430_chklungospiral(void *arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/spiral/func_80800480_chklungospiral.s")
+void func_80800480_chklungospiral(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_80018820(s32, f32, f32);
+    s32 func_800E15CC(s32, f32, f32);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80101E4C(Actor *, f32 *);
+    extern s32 D_80800674_chklungospiral;
+    extern f32 D_80800688_chklungospiral;
+    if (arg0->unk7C_12) {
+        if (func_80101E4C(arg0, &D_80800688_chklungospiral) != 0) {
+            func_80018820(0, 0.8f, 0.3f);
+            func_800E15CC(0, 5.0f, 0.7f);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800674_chklungospiral);
+            return;
+        }
+        if (func_80101E14(arg0, 0.7f) != 0) {
+            func_80018820(0, 1.0f, 0.4f);
+            func_800E15CC(0, 10.0f, 0.8f);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800674_chklungospiral);
+        }
+    }
+}
