@@ -119,7 +119,29 @@ void func_800C0308(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0438.s")
+void func_800C0438(void) {
+    s32 _gcdialogexec_entrypoint_1(s32 *);
+    int func_800A819C(void);
+    s32 func_800C0284();
+    extern s32 D_80128A0C;
+    extern u8 D_80128A11;
+    struct DialogFlags {
+        u32 unused:18;
+        u32 queued:1;
+        u32 decremented:1;
+        u32 rest:12;
+    };
+    if (((struct DialogFlags *)&D_80128A0C)->queued) {
+        func_800C0308();
+    }
+    if ((func_800A819C() != 0) && !((struct DialogFlags *)&D_80128A0C)->queued) {
+        if ((func_800C0638() == 0) && ((s32) ((u32) D_80128A11 >> 4) > 0)) {
+            _gcdialogexec_entrypoint_1(&D_801288B0);
+            return;
+        }
+        func_800C0284();
+    }
+}
 
 s32 func_800C04C8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     s32 _gcdialogexec_entrypoint_3(s32 *, s32, s32, s32, s32, s32);
