@@ -416,4 +416,48 @@ u8 *func_80800FD0_subaddiestore(u8 *arg0) {
     return var_a1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/store/func_80801054_subaddiestore.s")
+/* extern */
+
+s32 func_80801054_subaddiestore(u8 *arg0, u8 *arg1, u8 **arg2) {
+    s16 temp_v1;
+    u8 *var_s1;
+    s32 *var_v0;
+    s32 var_s0;
+    u32 temp_s2;
+
+    temp_s2 = (u32) (*(u32 *)((s8 *)(arg1) + (0x6C))) >> 0x15;
+    var_s1 = arg0 + 4;
+    var_s0 = 0;
+    if ((*(s16 *)((s8 *)(arg0) + (0))) > 0) {
+loop_1:
+        if (temp_s2 == ((u32) (*(u32 *)((s8 *)(var_s1) + (0x6C))) >> 0x15)) {
+            *arg2 = var_s1;
+            return 1;
+        }
+        var_s1 = func_80800FD0_subaddiestore(var_s1);
+        var_s0 += 1;
+        if (var_s0 >= (*(s16 *)((s8 *)(arg0) + (0)))) {
+            var_s0 = 0;
+            goto block_5;
+        }
+        goto loop_1;
+    }
+block_5:
+    temp_v1 = (*(s16 *)((s8 *)(arg0) + (2)));
+    var_v0 = (s32 *)var_s1;
+    if (temp_v1 > 0) {
+loop_6:
+        var_s0 += 1;
+        if (temp_s2 == *var_v0) {
+            *arg2 = NULL;
+            return 2;
+        }
+        var_v0++;
+        if (var_s0 >= temp_v1) {
+            goto block_9;
+        }
+        goto loop_6;
+    }
+block_9:
+    return 0;
+}
