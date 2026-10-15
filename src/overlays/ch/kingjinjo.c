@@ -204,7 +204,30 @@ s32 func_80800C18_chkingjinjo(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_80800CFC_chkingjinjo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_80800D80_chkingjinjo.s")
+/* extern */
+
+void func_80800D80_chkingjinjo(Actor *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800DA298(s32);
+    void func_80102424(Actor *, s32);
+    if (_glcutDll_entrypoint_20() != 0) {
+        arg0->unk64_19 = 1;
+        arg0->unk6C_0 = 1;
+        return;
+    }
+    if ((func_800DA298(0x3B) != 0) && (func_800DA298(0x43) == 0)) {
+        arg0->unk6C_0 = 1;
+        return;
+    }
+    if (func_800DA298(0x360) != 0) {
+        func_80102424(arg0, 2);
+        arg0->unk64_19 = 0;
+        arg0->unk6C_0 = 2;
+        return;
+    }
+    arg0->unk64_19 = 1;
+    arg0->unk6C_0 = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_80800E58_chkingjinjo.s")
 
