@@ -25,7 +25,16 @@ void func_800B537C(s32 arg0)
     func_800B525C();
     func_800B52EC(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B53A4.s")
+s32 func_800B53A4(s32 arg0) {
+    s32 func_800BA2E8(s32);
+    void *heap_realloc(void *, s32);
+    extern s32 D_80127F10;
+    extern s16 D_80127F18;
+    D_80127F10 = (s32)heap_realloc((void *)D_80127F10, ++D_80127F18 * 4);
+    (*(s32 *)((s8 *)((D_80127F10 + (D_80127F18 * 4))) + (-4))) = func_800BA2E8(arg0);
+    (*(s8 *)((s8 *)((*(void **)((s8 *)((D_80127F10 + (D_80127F18 * 4))) + (-4)))) + (9))) = 1;
+    return ((s32 *)D_80127F10 + D_80127F18)[-1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B5450.s")
 
