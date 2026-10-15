@@ -27,7 +27,26 @@ void func_80800044_chpodiumbankaz(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/podiumbankaz/func_808000B8_chpodiumbankaz.s")
+void func_808000B8_chpodiumbankaz(Actor *arg0) {
+    s32 func_800F6BE4(s32);
+    s32 func_800F7B9C(s32, s32);
+    void func_80101FDC(Actor *, u32);
+
+    switch (arg0->unk70_10) {
+        case 1:
+            func_80800044_chpodiumbankaz(arg0);
+            return;
+        case 2:
+            func_80101FDC(arg0, 3);
+            return;
+        case 3:
+            if ((func_800F6BE4(arg0->unk79_4) == 0) ||
+                (func_800F7B9C(arg0->unk79_4, 4) == 2)) {
+                func_80101FDC(arg0, 1);
+            }
+            return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/podiumbankaz/func_80800170_chpodiumbankaz.s")
 
