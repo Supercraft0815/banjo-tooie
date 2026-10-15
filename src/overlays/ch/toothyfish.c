@@ -106,7 +106,27 @@ OSThread *chtoothyfish_entrypoint_0(void)
     return (OSThread *) D_80801870_chtoothyfish;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800E04_chtoothyfish.s")
+void func_80800E04_chtoothyfish(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    void func_800EFCD8(f32 *, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    s32 func_80103140(Actor *, u32, u16);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s32 D_808017C4_chtoothyfish;
+    Actor *sp2C;
+
+    sp2C = func_80106790(arg0->unk3C);
+    _subaddieskeleton_entrypoint_2(arg0->unk3C, arg0->unk6C_0 + 4, arg0->position);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808017C4_chtoothyfish);
+    arg0->scale = sp2C->scale;
+    arg0->rotation[2] = sp2C->rotation[2];
+    arg0->rotation[0] = sp2C->rotation[0];
+    func_800EFCD8((f32 *)&arg0->actorData[4], func_800F1DF4(sp2C->position, arg0->position), 3000.0f);
+    *(f32 *)&arg0->actorData[5] = 200.0f;
+    *(f32 *)&arg0->actorData[7] = -1000.0f;
+    func_80103140(arg0, (arg0->unk6C_0 + 0x73A) & 0xFFFF, arg0->unk0->unk16);
+}
 
 void func_80800EDC_chtoothyfish(s32 arg0) 
 {
