@@ -59,7 +59,22 @@ void func_80800468_chboilerid(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/chboilerid_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_80800700_chboilerid.s")
+void func_80800700_chboilerid(s16 *arg0, s16 *arg1, u8 *arg2) {
+    f32 _mlwave_entrypoint_4(u8 *, f32, f32, f32);
+    void func_800EE88C(f32 *, s16 *);
+    f32 func_800EEF94(f32 *);
+    s32 func_800F2FD0(void *, void *, f32);
+    void func_800F3320(void *, void *, void *, f32);
+    extern s32 D_80800DFC_chboilerid;
+    f32 sp24[3];
+    s32 sp20;
+    f32 sp1C;
+
+    func_800EE88C(sp24, arg0);
+    sp1C = _mlwave_entrypoint_4(arg2, func_800EEF94(sp24), 0.6f, 1.0f);
+    func_800F3320(&sp20, arg0 + 6, &D_80800DFC_chboilerid, *(f32 *)(arg2 + 0x1C) * 0.6666667f);
+    func_800F2FD0(arg1 + 6, &sp20, sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_8080079C_chboilerid.s")
 
