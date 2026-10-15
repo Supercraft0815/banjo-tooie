@@ -1,6 +1,20 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ca/dbmgrDll/cadbmgrDll_entrypoint_0.s")
+/* extern */
+
+void cadbmgrDll_entrypoint_0(u8 **arg0, s32 arg1) {
+    s32 func_800A56A4();
+    void *heap_alloc(s32);
+    s32 i;
+
+    *arg0 = heap_alloc((arg1 * 2) + 0x40);
+    for (i = 1; i < 9; i++) {
+        ((s16 *)*arg0)[i + 15] = 0;
+        ((s32 *)*arg0)[i - 1] = 0;
+    }
+    (*(s32 *)((s8 *)(*arg0) + (0x38))) = arg1;
+    func_800A56A4();
+}
 
 /* extern */
 
