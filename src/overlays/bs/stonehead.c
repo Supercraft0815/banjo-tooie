@@ -307,7 +307,41 @@ void bsstonehead_entrypoint_41(PlayerState *arg0) {
     func_800909CC(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_42.s")
+/* extern */
+
+void bsstonehead_entrypoint_42(PlayerState *arg0) {
+    void _baattach_entrypoint_6(PlayerState *, s32, s32, s32);
+    s32 _badrone_entrypoint_24(PlayerState *);
+    s32 _badrone_entrypoint_25(PlayerState *);
+    int bainput_should_enter_first_person(PlayerState *);
+    s32 bakey_func_80091940(PlayerState *, s32, s32);
+    int bakey_newlyReleased(PlayerState *, s32);
+    int bakey_pressed(PlayerState *, s32);
+    s32 bs_setState();
+    int func_8008DD04(PlayerState *);
+    int func_8008E148(PlayerState *);
+    s32 func_800A02DC(PlayerState *, s32);
+    s32 var_s1;
+
+    var_s1 = 0;
+    if (func_8008DD04(arg0) != 0) {
+        var_s1 = 0xAD;
+    }
+    var_s1 = func_808003F4_bsstonehead(arg0, var_s1);
+    if (func_8008E148(arg0) != 0) {
+        var_s1 = _badrone_entrypoint_25(arg0);
+    }
+    if (bakey_pressed(arg0, 9) != 0) {
+        var_s1 = 0xB4;
+    }
+    if (bakey_newlyReleased(arg0, 1) != 0) {
+        _baattach_entrypoint_6(arg0, 1, bakey_func_80091940(arg0, 1, 1), 0);
+    }
+    if (bainput_should_enter_first_person(arg0) != 0) {
+        var_s1 = _badrone_entrypoint_24(arg0);
+    }
+    bs_setState(arg0, func_800A02DC(arg0, var_s1));
+}
 
 s32 bsstonehead_entrypoint_43(s32 arg0) {
     extern s32 D_808016D0_bsstonehead[];
