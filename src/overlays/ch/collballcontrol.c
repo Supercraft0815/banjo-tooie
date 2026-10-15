@@ -165,7 +165,24 @@ s32 func_808010F8_chcollballcontrol(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80801350_chcollballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80801500_chcollballcontrol.s")
+void func_80801500_chcollballcontrol(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_808015D4_chcollballcontrol(Actor *, s32, s32);
+    s32 var_s0;
+    struct {
+        u8 pad[0x3A];
+        u8 count;
+    } *data;
+
+    data = func_80100094(arg0, 0U);
+    var_s0 = 0;
+    if ((s32) data->count > 0) {
+        do {
+            func_808015D4_chcollballcontrol(arg0, var_s0, arg1);
+            var_s0 += 1;
+        } while (var_s0 < (s32) data->count);
+    }
+}
 
 void func_80801578_chcollballcontrol(Unk80132ED0 *arg0, s32 arg1) {
     Actor *func_80106790(Unk80132ED0 *);
