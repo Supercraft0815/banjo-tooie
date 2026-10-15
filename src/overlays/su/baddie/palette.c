@@ -16,7 +16,47 @@ void subaddiepalette_entrypoint_0(Actor *arg0, u8 *arg1, u16 arg2) {
     func_801032B0(arg0, arg0->unk0->unk14, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/palette/subaddiepalette_entrypoint_1.s")
+/* extern */
+
+void subaddiepalette_entrypoint_1(void *arg0, u8 *arg1) {
+    s32 _dbpalette_entrypoint_0(void *, s32, s32 *);
+    s32 _dbpalette_entrypoint_1(u8 *, s32, s32 *);
+    void *func_800D674C(s32);
+    u8 func_800D9078(f32 *);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    int func_800F3214(void *, void *, void *, f32);
+    void subaddiepalette_entrypoint_4(void *, void *);
+    s32 sp90[4];
+    s32 sp80[4];
+    s32 sp70[4];
+    s32 pad;
+    s32 sp68;
+    f32 temp_f20;
+    s16 temp_v0;
+    void *temp_s5;
+    void *temp_s6;
+    s32 var_s0;
+
+    temp_v0 = (*(s16 *)((s8 *)(arg1) + (4)));
+    if ((temp_v0 != 0) && (temp_v0 == 1)) {
+        sp68 = func_800D9078((f32 *)(arg1 + 8));
+        temp_f20 = func_800F12D4((*(f32 *)((s8 *)(arg1) + (8))), 0.0f, (*(f32 *)((s8 *)(arg1) + (0xC))), 1.0f, 0.0f);
+        temp_s5 = func_800D674C((*(u16 *)((s8 *)(arg1) + (2))));
+        temp_s6 = func_800D674C((*(u16 *)((s8 *)(arg1) + (0))));
+        var_s0 = 0;
+        do {
+            _dbpalette_entrypoint_0(temp_s5, var_s0, sp90);
+            _dbpalette_entrypoint_0(temp_s6, var_s0, sp80);
+            func_800F3214(sp70, sp90, sp80, temp_f20);
+            _dbpalette_entrypoint_1(arg1 + 0x10, var_s0, sp70);
+            var_s0 += 1;
+        } while (var_s0 != 0x200);
+        subaddiepalette_entrypoint_4(arg0, arg1);
+        if (sp68 != 0) {
+            (*(s16 *)((s8 *)(arg1) + (4))) = 0;
+        }
+    }
+}
 
 s32 subaddiepalette_entrypoint_2(void **arg0, void *arg1, u16 arg2, f32 arg3) {
     u16 old;
