@@ -165,7 +165,38 @@ s32 bsbswim_entrypoint_3(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80800B10_bsbswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80800C0C_bsbswim.s")
+/* extern */
+
+struct player_state_s;
+struct anctrl_s;
+void func_800951B4(struct player_state_s *);
+void func_80800C0C_bsbswim(struct player_state_s *arg0) {
+    s32 anctrl_isStopped(struct anctrl_s *);
+    s32 baanim_getAnimCtrlPtr();
+    s32 baanim_isAt(void *, f32);
+    s32 bs_setState(s32, s32);
+    void func_8009C128(struct player_state_s *, f32[3]);
+    s32 func_8009FBB0(struct player_state_s *, f32 *, f32);
+    void func_800BA22C(s32, s32);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    s32 sp44;
+    f32 sp38[3];
+    s32 sp34;
+
+    sp44 = 0;
+    func_8009C128(arg0, sp38);
+    sp38[1] += 60.0f;
+    sp34 = func_8009FBB0(arg0, sp38, 25.0f);
+    func_800BA930(sp34, -60, -50, -60, 60, 100, 60);
+    func_800BA22C(sp34, 1);
+    if (baanim_isAt(arg0, 0.3f) != 0) {
+        func_800951B4(arg0);
+    }
+    if (anctrl_isStopped(baanim_getAnimCtrlPtr(arg0)) != 0) {
+        sp44 = 0x2B;
+    }
+    bs_setState(arg0, sp44);
+}
 
 void func_80800CE4_bsbswim(s32 arg0) { func_8009BD88(); func_8008E95C(arg0); func_800951B4(arg0); func_80800104_bsbswim(arg0); }
 
