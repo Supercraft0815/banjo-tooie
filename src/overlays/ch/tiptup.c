@@ -161,7 +161,37 @@ void func_808007CC_chtiptup(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_808009B4_chtiptup.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800C70_chtiptup.s")
+/* extern */
+
+void func_80800C70_chtiptup(Actor *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 _subaddiesect_entrypoint_1(Actor *);
+    s32 _subaddiesect_entrypoint_2(void *, s32, s32);
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_80103110(Actor *, u32);
+    void func_80105BAC(Actor *);
+    void func_8010A590(Actor *);
+    if ((func_800DA298(0xBE) != 0) && (_glcutDll_entrypoint_20() == 0)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    arg0->unk6C_0 = _subaddiesect_entrypoint_1(arg0);
+    _subaddiesect_entrypoint_2(arg0, arg0->unk6C_0, 0);
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80102424(arg0, 6);
+    } else if (func_800DA298(0xBD) != 0) {
+        func_80102424(arg0, 3);
+        func_8010A590(arg0);
+    } else {
+        func_80102424(arg0, 1);
+        func_80103110(arg0, 0);
+        arg0->unk64_16 = 0;
+    }
+    func_80105BAC(arg0);
+    ((u8 *)&arg0->pad94)[1] = (((u8 *)&arg0->pad94)[1] & ~1) | 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800D78_chtiptup.s")
 
