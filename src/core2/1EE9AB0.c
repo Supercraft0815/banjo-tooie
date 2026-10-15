@@ -45,9 +45,9 @@ void func_80110730(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void func_80110770(s32 arg0, f32 *arg1) {
+void func_80110770(void *arg0, f32 *arg1) {
     void func_800EE7F8();
-    func_800EE7F8(arg0 + 0x74, arg1);
+    func_800EE7F8((u8 *)arg0 + 0x74, arg1);
 }
 
 /* extern */
@@ -517,8 +517,8 @@ void func_80111E88(f32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4) {
 
 /* extern */
 
-void func_80111F70(u8 *arg0, u8 *arg1, u8 *arg2, u32 arg3, f32 *arg4) {
-    void func_80111DB0(u8 *, u8 *, u8 *, u32);
+void func_80111F70(u8 *arg0, u8 *arg1, u8 *arg2, void *arg3, f32 *arg4) {
+    void func_80111DB0(u8 *, u8 *, u8 *, void *);
     f32 sp24;
     f32 temp_f12;
     u8 *temp_v0;
@@ -531,7 +531,41 @@ void func_80111F70(u8 *arg0, u8 *arg1, u8 *arg2, u32 arg3, f32 *arg4) {
     func_80111E88(temp_f12, arg2 + 4, arg4, (*(f32 *)((s8 *)(temp_v0) + (0x30))), (*(f32 *)((s8 *)(temp_v0) + (0x34))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111FD4.s")
+/* extern */
+
+s32 func_80111FD4(void *arg0, f32 *arg1) {
+    void func_800EF04C(f32 *, f32 *);
+    u32 func_8010FFD0(u8 *);
+    s32 func_80111C04(void *);
+    s32 func_8011329C(PlayerState *);
+    void func_80113640(s32, f32 *, f32 *);
+    f32 sp3C[3];
+    f32 sp30[3];
+    s32 sp2C;
+    u8 *temp_v0;
+
+    sp2C = func_80110898(arg0);
+    func_801107F0(arg0, sp3C);
+    if (func_8010FFD0(sp2C) != 0) {
+        (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x34)))) + (0x78))) = 0.0f;
+        func_80113640(arg0, sp3C, arg1);
+        func_80110770(arg0, arg1);
+        goto block_4;
+    }
+    func_80111A98((u8 *) arg0);
+    func_80111ABC(arg0, arg1);
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x34)));
+    func_80111F70(arg0, arg1, sp3C, temp_v0 + 0x78, temp_v0 + 0x88);
+    func_8011106C(arg0, sp30);
+    func_800EF04C(sp3C, sp30);
+    func_80110770(arg0, sp3C);
+    if (func_8011329C(arg0) != 0) {
+        func_80111C04(arg0);
+        return 1;
+    }
+block_4:
+    return 0;
+}
 
 /* extern */
 
