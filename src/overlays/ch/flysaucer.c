@@ -139,7 +139,41 @@ void func_80801034_chflysaucer(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0xC))) = -2900.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_8080105C_chflysaucer.s")
+/* extern */
+
+void func_8080105C_chflysaucer(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    s32 func_80800388_chflysaucer(Actor *, s32, s32);
+    arg2 |= 6;
+    if (func_80800FF0_chflysaucer(arg0) == 0) {
+        arg2 |= 8;
+    }
+    switch (arg1) {
+    case 0x10C6:
+    case 0x10C7:
+    case 0x10C8:
+    case 0x10C9:
+    case 0x10E2:
+    case 0x10E3:
+    case 0x10E4:
+    case 0x10E5:
+    case 0x10E6:
+    case 0x10E7:
+    case 0x10E8:
+        func_80800388_chflysaucer(arg0, 2, 1);
+        break;
+    case 0x10DB:
+    case 0x10DD:
+        func_80800388_chflysaucer(arg0, 4, 0);
+        break;
+    case 0x10DC:
+    case 0x10DE:
+        func_80800388_chflysaucer(arg0, 2, 1);
+        break;
+    }
+    _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, arg0->position, 0x41);
+    arg0->unk74_30 = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80801130_chflysaucer.s")
 
