@@ -32,7 +32,38 @@ void fxfontstring_entrypoint_1(u8 *arg0, s32 arg1) {
     *p = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/fontstring/fxfontstring_entrypoint_2.s")
+/* extern */
+
+void fxfontstring_entrypoint_2(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    u8 *p;
+    s32 value;
+
+    p = func_80800000_fxfontstring(arg0);
+    *p++ = 0xFD;
+    *p++ = 0x63;
+    if (arg1 <= 0) {
+        *p = 1;
+    } else {
+        value = arg1 >= 0x100 ? 0xFF : arg1;
+        *p = value;
+    }
+    p++;
+    if (arg2 <= 0) {
+        *p = 1;
+    } else {
+        value = arg2 >= 0x100 ? 0xFF : arg2;
+        *p = value;
+    }
+    p++;
+    if (arg3 <= 0) {
+        *p = 1;
+    } else {
+        value = arg3 >= 0x100 ? 0xFF : arg3;
+        *p = value;
+    }
+    p++;
+    *p++ = 0;
+}
 
 /* extern */
 
