@@ -9,7 +9,37 @@ void func_800F3880(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F3930.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F3A78.s")
+/* extern */
+
+struct player_state_s;
+s32 func_800F3A78(struct player_state_s *arg0, s32 arg1, s32 arg2) {
+    int func_8009C128(void *, f32[3]);
+    f32 bastick_distance(struct player_state_s *);
+    s32 func_8009E674(struct player_state_s *, s32);
+    s32 func_800A9C98(void);
+    s32 func_800F38A8(struct player_state_s *, s32);
+    s32 func_800F3930(struct player_state_s *, s32);
+    s32 func_800F5FA8(s32);
+    s32 sp24;
+
+    if (func_800F3930(arg0, arg1) == 0) {
+        return 0;
+    }
+    if (func_8009E674(arg0, 0x8000) != 0) {
+        return 0;
+    }
+    sp24 = func_800F38A8(arg0, arg2);
+    if ((bastick_distance(arg0) != 0.0f) && (sp24 == 0)) {
+        return 0;
+    }
+    if (func_800F5FA8((*(s32 *)((s8 *)(arg0) + (0x184)))) == 0) {
+        return 0;
+    }
+    if (func_800A9C98() != 0) {
+        return 0;
+    }
+    return 1;
+}
 
 typedef struct player_state_s PlayerState;
 f32 func_800F3B3C(PlayerState *arg0, f32 *arg1, s32 arg2) {
