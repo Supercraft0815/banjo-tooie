@@ -178,7 +178,32 @@ void func_80801B00_chevilspirit(s32 arg0, Actor *arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801C04_chevilspirit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801E18_chevilspirit.s")
+void func_80801E18_chevilspirit(void *arg0) {
+    void func_800C8CB8(s32, f32[3]);
+    void func_800C8E84(s32, u32[3]);
+    f32 func_800D8FF8(void);
+    f32 func_800F0F9C(f32, f32);
+    int func_800F3214(void *, void *, void *, f32);
+    f32 func_800F3780(f32, u8 *, s16);
+    void func_80103DFC(Actor *, f32 *);
+    extern u32 D_80802320_chevilspirit[3];
+    extern u32 D_8080232C_chevilspirit[3];
+    extern u8 D_80802338_chevilspirit[3];
+    u32 sp3C[3];
+    f32 sp30[3];
+    f32 delta;
+    f32 sp28;
+
+    if ((*(s32 *)((s8 *)(arg0) + (0x24))) != 0) {
+        sp28 = func_800F3780(func_800F0F9C((*(f32 *)((s8 *)(arg0) + (0x34))), 0.5f), D_80802338_chevilspirit, 3);
+        func_80103DFC(arg0, sp30);
+        func_800F3214(sp3C, D_80802320_chevilspirit, D_8080232C_chevilspirit, sp28);
+        func_800C8CB8((*(s32 *)((s8 *)(arg0) + (0x24))), sp30);
+        func_800C8E84((*(s32 *)((s8 *)(arg0) + (0x24))), sp3C);
+        delta = func_800D8FF8();
+        (*(f32 *)((s8 *)(arg0) + (0x34))) += delta;
+    }
+}
 
 /* extern */
 
