@@ -12,7 +12,33 @@ f32 func_80800048_bssub(f32 arg0, f32 arg1) {
     return -arg1 * 428.57144f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800064_bssub.s")
+/* extern */
+
+void func_80800064_bssub(s32 arg0) {
+    s32 _basub_entrypoint_15(s32, s32);
+    s32 bs_setState(s32, s32);
+    s32 func_800995B8(s32, s32);
+    s32 func_80099A58(s32);
+    s32 func_80099B94(s32);
+    s32 func_8009E6EC();
+    s32 func_8009E830(s32, s32);
+    s32 temp_v0;
+
+    temp_v0 = func_8009E6EC();
+    switch (temp_v0) {
+        case 0x85:
+            _basub_entrypoint_15(arg0, func_80099A58(arg0));
+            break;
+        case 0x2D:
+            func_800995B8(arg0, 3);
+            func_8009E830(arg0, 2);
+            bs_setState(arg0, 0x46);
+            break;
+        default:
+            func_80099B94(arg0);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_808000F0_bssub.s")
 
