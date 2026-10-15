@@ -130,7 +130,32 @@ void func_8080045C_chbouncycastle(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bouncycastle/func_8080051C_chbouncycastle.s")
+void func_8080051C_chbouncycastle(Actor *arg0) {
+    u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);
+    s32 func_800C3868(s32, f32, f32, f32, f32);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_80101E14(Actor *, f32);
+    extern s32 D_80800A50_chbouncycastle;
+    extern f32 D_80800A5C_chbouncycastle[4];
+    f32 temp_f20;
+    f32 *var_s2;
+    f32 *temp_s0;
+    u8 temp_v0;
+    s32 var_s1;
+    s32 count = sizeof(D_80800A5C_chbouncycastle) / sizeof(f32);
+    s32 *audio_params = &D_80800A50_chbouncycastle;
+
+    for (var_s1 = 0, var_s2 = D_80800A5C_chbouncycastle; var_s1 < count; var_s1++, var_s2++) {
+        if (func_80101E14(arg0, *var_s2) != 0) {
+            temp_s0 = arg0->position;
+            temp_f20 = func_800F10B4((f32) var_s1, 0.0f, (f32) (count - 1), 0.3f, 0.5f);
+            temp_v0 = _subaddieaudioquick_entrypoint_1(arg0, temp_s0);
+            func_800C3868(temp_v0 & 0xFF, 0.15f, 0.25f, temp_f20, temp_f20 + 0.12f);
+            func_800C4350(temp_v0 & 0xFF, temp_s0, audio_params);
+        }
+    }
+}
 
 /* extern */
 
