@@ -239,7 +239,48 @@ int func_801021BC(Actor *arg0, s32 arg1) {
     return temp_v0 != 0 && *(u16 *)((s8 *)temp_v0 + arg1 * 8 + 4) != 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80102204.s")
+/* extern */
+
+void func_80102204(Actor *arg0) {
+    struct Flags { u8 pad[0x70]; u8 upper:7; u8 flag:1; };
+    void _dbanim_entrypoint_0(u8 *, s32, u8 *);
+    void func_8008B304(s32);
+    s32 func_8008B4D4(struct anctrl_s *);
+    void func_800AE160(u8 **, u8 *, s32);
+    u8 *func_800B26F0(u8 *);
+    u8 *func_800B27E0(u8 *);
+    void *func_800DF330(void);
+    void func_800DF41C(s32);
+    void func_800DF72C(s32);
+    u8 *func_801039E4(Unk80132ED0 *);
+    s32 func_80103CDC(u8 *, u8 *);
+    s32 func_80103D00(void *, u8 *);
+    u8 *sp2C;
+    u8 *sp28;
+    s32 sp24;
+    u8 **sp20;
+    s32 sp1C;
+    struct anctrl_s *sp18;
+    struct anctrl_s *temp_v0;
+
+    temp_v0 = func_80104248(arg0);
+    sp18 = temp_v0;
+    if (temp_v0 != 0) {
+        sp2C = func_801039E4(arg0->unk0);
+        func_8008B304(sp18);
+        sp24 = func_8008B4D4(sp18);
+        sp20 = func_800DF330();
+        sp1C = func_80103CDC(arg0, sp2C);
+        sp28 = func_800B26F0(sp2C);
+        func_800AE160(sp20, func_800B27E0(sp2C), sp24);
+        _dbanim_entrypoint_0(sp28, sp1C, *sp20);
+        if (((struct Flags *)arg0)->flag) {
+            _dbanim_entrypoint_0(sp28, func_80103D00(arg0, sp2C), *sp20);
+        }
+        func_800DF41C(0);
+        func_800DF72C(0);
+    }
+}
 
 /* extern */
 
