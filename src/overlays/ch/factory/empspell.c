@@ -329,7 +329,34 @@ void func_80801E48_chfactoryempspell(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801E9C_chfactoryempspell.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801F30_chfactoryempspell.s")
+/* extern */
+
+void func_80801F30_chfactoryempspell(Actor *arg0) {
+    s16 _chmumbopad_entrypoint_0(s32);
+    s32 _sumumbofx_entrypoint_0(s32, s32, s32, s16);
+    s32 _sumumbofx_entrypoint_2(s32);
+    s32 _sumumbofx_entrypoint_24(s32, s32);
+    void _sumumbofx_entrypoint_25(void *, s32, s32 *);
+    s32 _sumumbofx_entrypoint_28(void *, f32 *, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_808016AC_chfactoryempspell(Actor *);
+    s32 func_80801B2C_chfactoryempspell(Actor *);
+    s32 sp2C[3];
+    s32 pad;
+    void *sp24;
+
+    sp2C[0] = 0;
+    sp2C[1] = 0;
+    sp2C[2] = 0;
+    _sumumbofx_entrypoint_0(arg0, 0, 0x28, _chmumbopad_entrypoint_0(0xB));
+    sp24 = func_80100094(arg0, 0);
+    _sumumbofx_entrypoint_2(sp24);
+    _sumumbofx_entrypoint_24(sp24, 0x3F000000);
+    _sumumbofx_entrypoint_25(sp24, 0x8C, sp2C);
+    func_80801B2C_chfactoryempspell(arg0);
+    func_808016AC_chfactoryempspell(arg0);
+    _sumumbofx_entrypoint_28(sp24, arg0->position, 4000.0f, 5000.0f);
+}
 
 /* extern */
 
