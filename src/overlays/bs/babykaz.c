@@ -127,7 +127,20 @@ void func_80800754_bsbabykaz(s32 arg0)
     bsbabykaz_entrypoint_4();
     _bsdrone_entrypoint_0(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_8080077C_bsbabykaz.s")
+/* extern */
+
+void func_8080077C_bsbabykaz(struct player_state_s *arg0) {
+    s32 _bababykaz_entrypoint_3(struct player_state_s *);
+    s32 _badrone_entrypoint_3(struct player_state_s *);
+    void _bsdrone_entrypoint_1(struct player_state_s *);
+    s32 bs_setState(s32, s32);
+    s32 bsbabykaz_entrypoint_5(s32);
+    _bsdrone_entrypoint_1(arg0);
+    bsbabykaz_entrypoint_5(arg0);
+    if ((_bababykaz_entrypoint_3(arg0) != 0) && (_badrone_entrypoint_3(arg0) != 1)) {
+        bs_setState(arg0, 0x94);
+    }
+}
 
 s32 bsbabykaz_entrypoint_6(s32 arg0) {
     extern s32 D_80801740_bsbabykaz[];
