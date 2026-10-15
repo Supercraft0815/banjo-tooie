@@ -1120,7 +1120,42 @@ s32 bsfirstp_entrypoint_9(s32 arg0) {
     return ((s32 *)&D_8080B484_bsfirstp)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_10.s")
+/* extern */
+
+void bsfirstp_entrypoint_10(s32 arg0) {
+    s32 _baeggcursor_entrypoint_8(void *);
+    s32 _baeggsetup_entrypoint_3(s32, s32, f32 *, f32 *, f32 *);
+    void _bainvisible_entrypoint_7(Actor *, s32, f32, f32, f32);
+    void func_8009E0AC(void *, s32);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800EF368(f32 *, f32);
+    struct player_state_s *func_800F53D0(s32);
+    s32 func_808035EC_bsfirstp(void *, f32 *, f32 *);
+    f32 yaw_get(struct player_state_s *);
+    void *temp_s2;
+    void *temp_v0;
+    u8 *sp5C;
+    f32 sp50[3];
+    f32 sp44[3];
+    f32 sp38[3];
+
+    temp_v0 = func_800F53D0(arg0);
+    temp_s2 = *(void **)((s8 *)temp_v0 + 0x188);
+    sp5C = func_808027A8_bsfirstp(*(s16 *)((s8 *)temp_s2 + 0xE8));
+    func_808035EC_bsfirstp(temp_v0, sp50, sp38);
+    func_800EF368(sp38, 90.0f);
+    func_800EE780(sp44, sp50, sp38);
+    func_800EF368(sp38, *(f32 *)(sp5C + 4));
+    func_800EF1B8(sp38, yaw_get(temp_v0) - 90.0f, *(f32 *)((s8 *)temp_s2 + 0x1D4) * 0.33f);
+    func_8009E0AC(temp_v0, 0);
+    func_80802A40_bsfirstp(temp_v0, *(s16 *)((s8 *)temp_s2 + 0xE8));
+    func_8009E0AC(temp_v0, 1);
+    _baeggcursor_entrypoint_8(temp_v0);
+    _bainvisible_entrypoint_7(temp_v0, 3, 1.0f, 1.0f, 0.25f);
+    _baeggsetup_entrypoint_3(arg0, *(s16 *)((s8 *)temp_s2 + 0xE8), sp50, sp44, sp38);
+    func_80802CD8_bsfirstp(temp_v0, *(s16 *)((s8 *)temp_s2 + 0xE8));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808035EC_bsfirstp.s")
 
@@ -1327,7 +1362,7 @@ void func_8080483C_bsfirstp(void *arg0, s32 arg1) {
 
 void bsfirstp_entrypoint_18(s32 arg0, s32 arg1) {
     s32 bs_setState(void *, s32);
-    void *func_800F53D0(s32);
+    struct player_state_s *func_800F53D0(s32);
     void *sp1C;
     void *temp_v0;
 
