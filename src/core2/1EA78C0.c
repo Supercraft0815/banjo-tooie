@@ -208,9 +208,9 @@ s16 func_800CEA84(s32 arg0) {
 
 /* extern */
 
-s32 func_800CEAA8(void) {
-    void *func_800CE3E0();
-    return (*(s8 *)((s8 *)(func_800CE3E0()) + (0x12))) > 0;
+s32 func_800CEAA8(s32 arg0) {
+    void *func_800CE3E0(s32);
+    return (*(s8 *)((s8 *)(func_800CE3E0(arg0)) + (0x12))) > 0;
 }
 
 s32 func_800CEAD0(s32 arg0) {
