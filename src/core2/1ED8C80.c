@@ -296,7 +296,23 @@ s32 func_801000D8(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_80100120.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_801001D8.s")
+/* extern */
+
+void func_801001D8(void) {
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    s32 func_8010D1E8(void);
+    s32 sp24;
+    Actor *var_a0;
+
+    func_8010D1E8();
+    if ((var_a0 = func_801067C4(&sp24)) != NULL) {
+        do {
+            func_80100120(var_a0);
+        } while ((var_a0 = func_8010682C(&sp24)) != NULL);
+    }
+    func_800FFB74();
+}
 
 int func_80100230(Actor *arg0, f32 *arg1) {
     f32 func_800EEB40(f32 *, f32 *);
