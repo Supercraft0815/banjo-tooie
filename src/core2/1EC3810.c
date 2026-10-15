@@ -163,7 +163,7 @@ s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     typedef CollisionTable *(*GetCollisionTable)(void);
     typedef struct { u32 upper : 14; u32 excluded : 1; u32 lower : 17; } ActorFlags;
     s32 _gsproplookup_entrypoint_0();
-    s32 func_800AAEF4(f32 *, f32, s32, s32);
+    s32 func_800AAEF4(f32 *, f32, f32 *, f32 *);
     s32 func_800AB868(u8 *, s32, f32 *, f32 *, f32, s32, s32, s32, s32);
     f32 func_800B2354(void *);
     u8 *func_800B2720(u8 *);
@@ -176,7 +176,7 @@ s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     Prop *func_800E9E88(s32);
     Prop *func_800E9EB4(s32);
     void func_800EA400(s32, u8 *, s32, s32);
-    s32 func_800EB350(u8 *, s32, s32);
+    s32 func_800EB350(Actor *, f32 *, f32 *);
     void func_80103508(u8 *);
     s32 func_801039E4(s32);
     u8 *func_80103AA0(u8 *);
@@ -325,4 +325,11 @@ void func_800EB2DC(void *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EB350.s")
+s32 func_800EB350(Actor *arg0, f32 *arg1, f32 *arg2) {
+    s32 func_800AAEF4(f32 *, f32, f32 *, f32 *);
+    void func_80103328();
+    extern f32 D_80125E5C;
+
+    func_80103328();
+    return func_800AAEF4(arg0->position, (f32)(u16)arg0->pad68 * arg0->scale * D_80125E5C, arg1, arg2) == 0;
+}
