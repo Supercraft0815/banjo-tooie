@@ -11,7 +11,29 @@ void func_80800000_chfactorylinkgrill(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/linkgrill/func_8080006C_chfactorylinkgrill.s")
+int func_8080006C_chfactorylinkgrill(Actor *arg0, s32 arg1, s32 arg2) {
+    void _chskeletonexplode_entrypoint_7(Actor *, f32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    extern s32 D_80800200_chfactorylinkgrill;
+    extern s32 D_80800244_chfactorylinkgrill;
+    f32 *position;
+
+    switch (arg1) {
+        case 0x40:
+            func_800DA544(arg0->unk79_4 + 0x1C0);
+            position = arg0->position;
+            _chskeletonexplode_entrypoint_7(arg0, position);
+            _subaddieaudioquick_entrypoint_2(arg0, position, &D_80800244_chfactorylinkgrill);
+            func_800BBCB8(position, position, 1.0f, 5, &D_80800200_chfactorylinkgrill);
+            return 1;
+        case 0xF:
+            func_800FFAB0(arg0);
+            return 1;
+        default:
+            return 0;
+    }
+}
 
 OSThread *chfactorylinkgrill_entrypoint_0(void)
 {
