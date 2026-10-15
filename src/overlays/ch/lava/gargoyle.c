@@ -102,7 +102,24 @@ void func_80800054_chlavagargoyle(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/gargoyle/func_80800394_chlavagargoyle.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/gargoyle/func_8080064C_chlavagargoyle.s")
+/* extern */
+
+s32 func_8080064C_chlavagargoyle(Actor *arg0) {
+    u32 func_800F54E4(void);
+    s32 func_800F6478(s32);
+    s32 func_8010C710(Actor *);
+    s32 func_8010CD88(Actor *, f32, f32);
+    f32 sp1C;
+
+    sp1C = (f32) func_8010C710(arg0);
+    if (func_8010CD88(arg0, 45.0f, 75.0f) == 0) {
+        return 0;
+    }
+    if ((sp1C >= 9e6f) || (sp1C < 90000.0f)) {
+        return 0;
+    }
+    return func_800F6478(func_800F54E4());
+}
 
 OSThread *chlavagargoyle_entrypoint_0(void)
 {
