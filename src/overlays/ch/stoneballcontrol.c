@@ -97,7 +97,21 @@ void func_80800BCC_chstoneballcontrol(u8 *arg0, s32 arg1) {
     func_80800B4C_chstoneballcontrol(arg0, 7);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800D20_chstoneballcontrol.s")
+/* extern */
+
+void func_80800D20_chstoneballcontrol(u8 *arg0) {
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    s32 func_80800B4C_chstoneballcontrol(u8 *, s32);
+    Actor *actor = (Actor *)arg0;
+    ((f32 *)actor->actorData)[3] = func_8080009C_chstoneballcontrol();
+    ((f32 *)actor->actorData)[7] = func_800DC178(0.9f, 1.1f) * 45.0f;
+    if (func_800DC0C0() < 0.5f) {
+        ((f32 *)actor->actorData)[7] = -((f32 *)actor->actorData)[7];
+    }
+    func_80800B4C_chstoneballcontrol(arg0, 9);
+    actor->unk64_20 = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800DB4_chstoneballcontrol.s")
 
