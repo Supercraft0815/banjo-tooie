@@ -24,7 +24,26 @@ void gcsectionDll_entrypoint_0(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionDll/gcsectionDll_entrypoint_1.s")
+void gcsectionDll_entrypoint_1(s32 arg0) {
+    s32 _glglobalsettings_entrypoint_2();
+    void func_80018634(void);
+    s32 func_8001A63C(void);
+    void func_800C0A2C(void);
+    void func_800D389C();
+    extern u8 D_8012762C;
+    s32 temp_v0;
+
+    temp_v0 = D_8012762C;
+    if (arg0 != 0) {
+        func_800D389C();
+        _glglobalsettings_entrypoint_2();
+    }
+    if ((temp_v0 > 0) && (temp_v0 < 0x20)) {
+        func_8001A63C();
+    }
+    func_80018634();
+    func_800C0A2C();
+}
 
 s16 *func_808000F0_gcsectionDll(s32 arg0, s32 arg1) {
     extern s16 D_80800212_gcsectionDll[][3];
