@@ -5,7 +5,38 @@ s32 func_80095790()
     return 0xAC;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80095798.s")
+/* extern */
+
+void func_80095798(void *arg0) {
+    void func_80098590(f32 **, f32 *);
+    f32 func_800985B8(f32 **);
+    f32 func_8009864C(void *);
+    f32 func_800F1DCC(f32, f32);
+    s32 func_800F1E6C(f32 *, f32 *, f32 *);
+    f32 mlAbsF(f32);
+    void yaw_applyIdeal(PlayerState *);
+    f32 yaw_get(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+    f32 sp3C[3];
+    f32 sp38;
+    f32 temp_f0;
+    f32 sp30;
+
+    sp38 = func_800985B8(arg0);
+    temp_f0 = func_8009864C(arg0);
+    if (temp_f0 < (*(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x94)) + 0x7C))) {
+        (*(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x94)) + 0x7C)) = temp_f0;
+    }
+    if ((*(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x94)) + 0x7C)) < sp38) {
+        (*(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x94)) + 0x7C)) = sp38;
+    }
+    func_80098590(arg0, sp3C);
+    func_800F1E6C((f32 *)((*(u8 **)((s8 *)(arg0) + (0x94))) + 0x78), sp3C, &sp30);
+    if (mlAbsF(func_800F1DCC(sp30, yaw_get(arg0))) > 1.0f) {
+        yaw_setIdeal(arg0, sp30);
+        yaw_applyIdeal(arg0);
+    }
+}
 
 void func_80095870(void *arg0, f32 *arg1, f32 *arg2) {
     *arg1 = (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x94)))) + (4)));
