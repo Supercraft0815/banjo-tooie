@@ -428,7 +428,35 @@ void bstaxi_entrypoint_33(void *arg0) {
     func_800909CC(self);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_34.s")
+/* extern */
+
+void bstaxi_entrypoint_34(struct player_state_s *arg0) {
+    s32 bastick_getZone(struct player_state_s *);
+    s32 bs_setState(void *, s32);
+    int func_8008E148(struct player_state_s *);
+    s32 func_8008E260(struct player_state_s *);
+    void func_8009D3A8(void *, s32);
+    s32 func_800A02DC(struct player_state_s *, s32);
+    s32 player_inWater(struct player_state_s *);
+    s32 var_s0;
+
+    var_s0 = 0;
+    func_8009D3A8(arg0, 0);
+    if (bastick_getZone(arg0) > 0) {
+        var_s0 = 0x123;
+    }
+    var_s0 = func_80800064_bstaxi(arg0, var_s0);
+    if (func_8008E148(arg0) != 0) {
+        var_s0 = 1;
+    }
+    if (func_8008E260(arg0) != 0) {
+        var_s0 = 0x3D;
+    }
+    if (player_inWater(arg0) != 0) {
+        var_s0 = 0x4C;
+    }
+    bs_setState(arg0, func_800A02DC(arg0, var_s0));
+}
 
 s32 bstaxi_entrypoint_35(s32 arg0) {
     extern s32 D_808021F8_bstaxi[];
