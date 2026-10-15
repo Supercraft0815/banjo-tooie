@@ -109,7 +109,7 @@ void func_800DFF64(s32 *arg0, s32 arg1, f32 *arg2) {
 
 /* extern */
 
-void func_800DFFA0(s32 *arg0, s32 arg1, s32 arg2) {
+void func_800DFFA0(s32 *arg0, s32 arg1, f32 *arg2) {
     void func_800EE7F8(f32 *, f32 *);
     s32 **base = &arg0;
     func_800EE7F8(**base + (arg1 * 0x28) + 0x1C, arg2);
