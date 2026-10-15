@@ -73,4 +73,47 @@ void func_8010A85C(u8 *arg0, s32 arg1) {
     ((struct Fields *)arg0)->low = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4020/func_8010A874.s")
+void func_8010A874(s32 arg0)
+{
+  s32 _subaddiezone_entrypoint_1(void *);
+  void func_800E3A30(s16 *);
+  void func_800EB3D0(void *, s32, s16 *);
+  void func_800EB800(void);
+  void *func_801067C4(s32 *);
+  void *func_8010682C(s32 *);
+  s32 var_s0;
+  s32 sp50;
+  s32 var_s1;
+  unsigned int temp_s2;
+  s16 sp40[3];
+  void *temp_s3;
+  void *var_v0;
+  func_800EB800();
+  func_800E3A30(sp40);
+  var_v0 = func_801067C4(&sp50);
+  if (var_v0 != NULL)
+  {
+    do
+    {
+      temp_s3 = *((void **) (((s8 *) var_v0) + 0));
+      if ((((*((u16 *) (((s8 *) temp_s3) + 0x14))) != 0) && ((*((u16 *) (((s8 *) var_v0) + 0x64))) & 1)) && (((*((u8 *) (((s8 *) var_v0) + 0x78))) == 0) || (_subaddiezone_entrypoint_1(var_v0) != 0)))
+      {
+        var_s1 = 1;
+        var_s0 = 0;
+        temp_s2 = ((u32) ((*((s32 *) (((s8 *) temp_s3) + 0x28))) << 0x17)) >> 0x18;
+        do
+        {
+          if (temp_s2 & var_s1)
+          {
+            func_800EB3D0(*((void **) (((s8 *) temp_s3) + 0)), var_s0, sp40);
+          }
+          var_s0 += 1;
+          var_s1 *= 2;
+        }
+        while (var_s0 != 7);
+      }
+      var_v0 = func_8010682C(&sp50);
+        }
+    while (var_v0 != NULL);
+  }
+}

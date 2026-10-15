@@ -121,8 +121,8 @@ void func_800E3A08(s32 arg0) {
 
 /* extern */
 
-void func_800E3A30(s32 arg0) {
-    s32 func_800CA934(s32, s32);
+void func_800E3A30(s16 *arg0) {
+    s32 func_800CA934(s32, s16 *);
     func_800CA934(D_8012D500, arg0);
 }
 
