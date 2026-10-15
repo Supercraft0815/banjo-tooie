@@ -143,7 +143,7 @@ void bsdronexform_entrypoint_1(void *arg0) {
     struct player_state_s;
     s32 _badronemem_entrypoint_1(void *);
     void baflag_clear(struct player_state_s *, s32);
-    void func_800961AC(struct player_state_s *, s32);
+    void func_800961AC();
     void func_8009CEE8(void *);
     void func_800C59F0(s32, s32, s32);
     func_800961AC(arg0, 1);
@@ -155,7 +155,43 @@ void bsdronexform_entrypoint_1(void *arg0) {
     _badronemem_entrypoint_1(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/bsdronexform_entrypoint_2.s")
+/* extern */
+
+void bsdronexform_entrypoint_2(void *arg0) {
+    struct player_state_s;
+    void _badata_entrypoint_2(struct player_state_s *, s32 *, f32 *);
+    void _badronemem_entrypoint_0(void *, s32);
+    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    void baflag_set(struct player_state_s *, s32);
+    void baroll_setIdeal(struct player_state_s *, f32);
+    void func_800961AC(struct player_state_s *, s32);
+    void func_8009B94C(u8 *, f32 *);
+    void func_8009BA9C(struct player_state_s *, f32 *);
+    void func_8009BF5C(struct player_state_s *, f32);
+    void func_8009FFD8(struct player_state_s *, s32, s32, s32, s32);
+    s32 func_800A3274(struct player_state_s *);
+    u32 func_800A33F8(void *);
+    s32 func_80800758_bsdronexform(void *, s32);
+    f32 sp2C;
+    s32 sp28;
+
+    _badronemem_entrypoint_0(arg0, 0x34);
+    _badata_entrypoint_2(arg0, &sp28, &sp2C);
+    baanim_playForDuration_loopSmooth(arg0, sp28, sp2C);
+    func_8009FFD8(arg0, 1, 1, 3, 7);
+    func_8009BA9C(arg0, 0);
+    func_8009B94C(arg0, 0);
+    func_8009BF5C(arg0, 0.0f);
+    baroll_setIdeal(arg0, 0.0f);
+    func_800961AC(arg0, 6);
+    func_80800304_bsdronexform(arg0);
+    func_808006BC_bsdronexform(arg0);
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x18C)))) + (0x31))) = func_800A3274(arg0);
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x18C)))) + (0x30))) = func_800A33F8(arg0);
+    baflag_set(arg0, 0x1B);
+    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x18C)))) + (0x32))) = 0;
+    func_80800758_bsdronexform(arg0, 1);
+}
 
 f32 func_80800B5C_bsdronexform(void *self, s32 id, f32 arg2, f32 arg3, f32 arg4) {
     f32 func_800F10B4(f32 value, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
