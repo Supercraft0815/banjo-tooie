@@ -150,7 +150,25 @@ loop_1:
     goto loop_1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dumbwaiterlift/func_808009B8_chdumbwaiterlift.s")
+s32 func_808009B8_chdumbwaiterlift(s32 arg0) {
+    s32 func_800EA05C();
+    extern s16 D_80800BC0_chdumbwaiterlift[][4];
+    s32 map;
+    s32 count;
+    s32 i;
+
+    map = func_800EA05C();
+    count = 0;
+    for (i = 0; i < 5; i++) {
+        if (map != D_80800BC0_chdumbwaiterlift[i][0]) {
+            if (arg0 == count) {
+                return i;
+            }
+            count++;
+        }
+    }
+    return -1;
+}
 
 /* extern */
 
