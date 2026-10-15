@@ -22,7 +22,7 @@ void func_80800054_chlavagargoyle(Actor *arg0) {
         u32 : 2;
     };
     void _subaddieaudioloop_entrypoint_0(Actor *, f32);
-    s32 _subaddieaudioloop_entrypoint_2(u8 *);
+    void _subaddieaudioloop_entrypoint_2(Actor *);
     s32 _subaddieaudioloop_entrypoint_5(s32, s32, s32, s32, s32 *);
     s32 _subaddiejoy_entrypoint_6(u8 *, s32);
     f32 func_800136E4(f32);
@@ -73,7 +73,7 @@ void func_80800054_chlavagargoyle(Actor *arg0) {
                         arg0->unk58 = func_800DC178(5.0f, 8.0f);
                     }
                     func_80102424((s32)arg0, 1);
-                    _subaddieaudioloop_entrypoint_2((u8 *)arg0);
+                    _subaddieaudioloop_entrypoint_2(arg0);
                 } else if (progress <= 0.35f) {
                     _subaddieaudioloop_entrypoint_5((s32)arg0, (s32)arg0->position, 1, 2500, &D_80800D2C_chlavagargoyle);
                     _subaddieaudioloop_entrypoint_0(arg0, func_800F10B4(progress, 0.0f, 0.35f, 0.8f, 0.9f));
@@ -81,7 +81,7 @@ void func_80800054_chlavagargoyle(Actor *arg0) {
                     _subaddieaudioloop_entrypoint_5((s32)arg0, (s32)arg0->position, 1, 2500, &D_80800D2C_chlavagargoyle);
                     _subaddieaudioloop_entrypoint_0(arg0, func_800F10B4(progress, 0.65f, 1.0f, 0.9f, 0.8f));
                 } else {
-                    _subaddieaudioloop_entrypoint_2((u8 *)arg0);
+                    _subaddieaudioloop_entrypoint_2(arg0);
                 }
                 if (func_80101E14(arg0, 0.18f) && func_8080064C_chlavagargoyle(arg0)) {
                     func_80108B04(arg0, 0);
@@ -146,12 +146,37 @@ void func_8080099C_chlavagargoyle(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/gargoyle/func_80800A2C_chlavagargoyle.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/gargoyle/func_80800B8C_chlavagargoyle.s")
+void func_80800B8C_chlavagargoyle(Actor *arg0, f32 *arg1, s32 arg2) {
+    s32 _chlightfader_entrypoint_1(s32, f32, s32);
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA544(s32 *, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800C4140(s32, f32 *, s32);
+    void func_800FFA88(Unk80132ED0 *);
+    extern s32 D_80800E50_chlavagargoyle;
+    extern s32 D_80800E98_chlavagargoyle;
+    extern s32 _chlavagargoyle_entrypoint_1;
+    s32 sp2C;
 
-void chlavagargoyle_entrypoint_1(s32 arg0, s32 arg1) {
-    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+    sp2C = func_800B53A4(6);
+    func_800BA544(sp2C, &_chlavagargoyle_entrypoint_1);
+    func_800BABB8(sp2C, arg1, arg1, arg0->scale, &D_80800E50_chlavagargoyle);
+    func_800BA22C(sp2C, 6);
+    func_800BBCB8(arg1, arg1, arg0->scale, 2, &D_80800E98_chlavagargoyle);
+    func_800C4140(0x7FFB5C13, arg0->position, 0x04B000FA);
+    func_800C4140(0x7FFB5C17, arg0->position, 0x04B000FA);
+    _subaddieaudioloop_entrypoint_2(arg0);
+    _chlightfader_entrypoint_1(arg0->unk14, 1.5f, 5);
+    func_800FFA88(arg0->unk0);
+}
+
+void chlavagargoyle_entrypoint_1(s32 arg0, f32 *arg1) {
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern s32 D_80800ED8_chlavagargoyle;
-    func_800BBCB8(arg1, 0, 0x3F800000, 1, &D_80800ED8_chlavagargoyle);
+    func_800BBCB8(arg1, 0, 1.0f, 1, &D_80800ED8_chlavagargoyle);
 }
 
 OSThread *chlavagargoyle_entrypoint_2(void)
