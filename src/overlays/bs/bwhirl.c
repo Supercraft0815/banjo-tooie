@@ -159,7 +159,36 @@ s32 bsbwhirl_entrypoint_15(s32 arg0) {
     return ((s32 *)&D_80800FC8_bsbwhirl)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_16.s")
+/* extern */
+
+void bsbwhirl_entrypoint_16(PlayerState *arg0) {
+    s32 anctrl_reset(s32);
+    s32 anctrl_setDuration(s32, f32);
+    s32 anctrl_setIndex(s32, s32);
+    s32 anctrl_setPlaybackType(s32, s32);
+    s32 anctrl_setSmoothTransition(s32, s32);
+    s32 anctrl_start(s32);
+    s32 baanim_getAnimCtrlPtr();
+    void baphysics_set_target_horizontal_velocity(void *, f32);
+    s32 func_8008B188(s32, s32);
+    s32 func_8008CA4C(s32, s32);
+    s32 func_8009D2D8(s32, s32);
+    s32 func_800FCAE0(s32, s32, s32);
+    s32 temp_v0;
+
+    temp_v0 = baanim_getAnimCtrlPtr(arg0);
+    anctrl_reset(temp_v0);
+    anctrl_setSmoothTransition(temp_v0, 0);
+    func_8008B188(temp_v0, 0);
+    anctrl_setIndex(temp_v0, 0x22);
+    anctrl_setDuration(temp_v0, 0.5f);
+    anctrl_setPlaybackType(temp_v0, 1);
+    anctrl_start(temp_v0);
+    func_8008CA4C(arg0, 1);
+    func_8009D2D8(arg0, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_800FCAE0(0xD, 0, 0xFA0);
+}
 
 /* extern */
 
