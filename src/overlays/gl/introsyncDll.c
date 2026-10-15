@@ -63,7 +63,7 @@ f32 glintrosyncDll_entrypoint_3(void) {
     return *(f32 *)((u8 *)&D_80127194 + 1092);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/introsyncDll/glintrosyncDll_entrypoint_4.s")
+void glintrosyncDll_entrypoint_4(f32 arg0) { extern f32 D_80127194; f32 temp_f0; f32 *temp_v0; temp_v0 = (f32 *)(u32)((u8 *)&D_80127194 + 0x43C); temp_f0 = temp_v0[2]; if ((temp_f0 < 364.5f) && ((temp_f0 + arg0) >= 364.5f)) { temp_v0[3] = 0.86f; } temp_v0[2] = temp_f0 + arg0; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/introsyncDll/glintrosyncDll_entrypoint_5.s")
 
