@@ -1,7 +1,33 @@
 #include "common.h"
 void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/func_80800000_chjinjo.s")
+/* extern */
+
+void func_80800000_chjinjo(Actor *arg0) {
+    s16 chjinjo_entrypoint_2(s32);
+    u8 func_800D0CC8(s32);
+    s32 func_800D1338(s32);
+    s32 func_800DA298(s32);
+    void func_800FC660(u32);
+    void func_800FFAB0(Actor *);
+    s32 var_v0;
+
+    arg0->unk79_4 = 1;
+    if (func_800DA298(0x653) != 0) {
+        func_800FFAB0(arg0);
+    }
+    if (arg0->unk6C_9 == 0x48F) {
+        var_v0 = chjinjo_entrypoint_2(-1);
+    } else {
+        var_v0 = func_800D0CC8(arg0->unk6C_0);
+    }
+    if ((arg0->unk6C_9 == 0x48F) && ((f32) func_800D1338(var_v0) <= arg0->rotation[1])) {
+        func_800FFAB0(arg0);
+    }
+    if (arg0->unk64_20) {
+        func_800FC660(0x10);
+    }
+}
 
 u8 func_800D0CC8(s32);
 s32 chjinjo_entrypoint_0(s32);
