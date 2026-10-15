@@ -1,6 +1,46 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B46B0.s")
+/* extern */
+
+int func_800B46B0(void *arg0, s32 arg1, f32 arg2[3], f32 arg3[3]) {
+    struct Bounds {
+        u16 flags;
+        u8 pad2[0xAA];
+        s16 lower;
+        s16 upper;
+    };
+    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    f32 sp2C[3];
+    s32 var_a3;
+    f32 temp_f0;
+    s16 temp_v0;
+
+    if ((((struct Bounds *)arg0)->lower == -0x8000) && (((struct Bounds *)arg0)->upper == 0x7FFF)) {
+        if (((struct Bounds *)arg0)->flags & 0x100) {
+            var_a3 = 0x420021;
+        } else {
+            var_a3 = 0x400000;
+        }
+        return func_800BEF00(arg2, arg3, sp2C, var_a3);
+    } else {
+    temp_v0 = ((struct Bounds *)arg0)->upper;
+    if (temp_v0 != 0x7FFF) {
+        temp_f0 = (f32) temp_v0;
+        if (temp_f0 < arg3[1]) {
+            arg3[1] = temp_f0;
+            return 1;
+        }
+    }
+    if (((struct Bounds *)arg0)->lower != -0x8000) {
+        temp_f0 = (f32) ((struct Bounds *)arg0)->lower;
+        if (arg3[1] < temp_f0) {
+            arg3[1] = temp_f0;
+            return 1;
+        }
+    }
+    return 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B4790.s")
 
