@@ -72,7 +72,25 @@ void func_8080044C_chstarspinnerctrl(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/func_808004CC_chstarspinnerctrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/func_80800554_chstarspinnerctrl.s")
+void func_80800554_chstarspinnerctrl(Actor *arg0) {
+    void func_80018820(s32, f32, f32);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800C4AF0(f32 *, void *);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    extern s32 D_80800A00_chstarspinnerctrl;
+    extern s32 D_80800A50_chstarspinnerctrl;
+    extern s32 D_80800A98_chstarspinnerctrl;
+    extern s32 D_80800AA8_chstarspinnerctrl;
+    f32 *temp_s0;
+
+    temp_s0 = arg0->position;
+    func_800BBCB8(temp_s0, NULL, 1.0f, 8, &D_80800A50_chstarspinnerctrl);
+    func_800BBCB8(temp_s0, NULL, 1.0f, 0xC, &D_80800A00_chstarspinnerctrl);
+    func_800C4AF0(temp_s0, &D_80800A98_chstarspinnerctrl);
+    func_800C4AF0(temp_s0, &D_80800AA8_chstarspinnerctrl);
+    func_800E1610(0, 10.0f, 0.9f, temp_s0);
+    func_80018820(0, 2.0f, 0.25f);
+}
 
 s32 chstarspinnerctrl_entrypoint_3(s32 arg0, s32 arg1) {
     s32 _glcutDll_entrypoint_20();
