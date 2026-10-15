@@ -128,7 +128,52 @@ f32 func_808012F8_chnewfreezy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/chnewfreezy_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_808016B4_chnewfreezy.s")
+/* extern */
+
+void func_808016B4_chnewfreezy(Actor *arg0, s32 arg1) {
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    s32 func_800D674C(s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF410(s32);
+    void func_800DF830(s32);
+    s32 func_800E3E8C(f32 *, f32);
+    void *func_80100094(Actor *, u32);
+    s32 models[4];
+    u32 i;
+    struct FreezyRenderPart {
+        u8 pad00[0xC];
+        f32 rotation[3];
+        u8 pad18[0x24];
+        f32 position[3];
+        f32 pad48;
+        f32 scale;
+        u8 pad50[0xC];
+        s8 state;
+        s8 model;
+        u8 pad5E[2];
+    } *part;
+
+    if (func_800E3E8C((f32 *)&arg0->actorData[4], arg0->unk74_7)) {
+        part = func_80100094(arg0, 0);
+        models[0] = func_800D674C(0x74C);
+        models[1] = func_800D674C(0x74D);
+        models[2] = func_800D674C(0x74E);
+        i = 0;
+        if (arg0->unk6C_0) {
+            do {
+                if (part->state != 3) {
+                    if (_subaddiefade_entrypoint_0(arg0) < 0xFF) {
+                        func_800DF410(_subaddiefade_entrypoint_0(arg0));
+                    }
+                    func_800DF830(2);
+                    func_800DE448(part->position, part->rotation, part->scale, 0, models[part->model]);
+                }
+                i++;
+                part++;
+            } while (i < arg0->unk6C_0);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_808017FC_chnewfreezy.s")
 
