@@ -1,6 +1,33 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_80800000_chmusicmenu.s")
+/* extern */
+
+void func_80800000_chmusicmenu(void *arg0) {
+    s32 _capod_entrypoint_21(s32, s32, s32, s32);
+    s32 _capod_entrypoint_22();
+    s32 func_800DA298(s32);
+    s32 func_80101238(s32, s32);
+    s32 temp_a0;
+    s32 temp_a0_2;
+
+    if (func_800DA298(0xC0) != 0) {
+        if ((*(s32 *)((s8 *)(arg0) + (0x28))) != 0) {
+            (*(f32 *)((s8 *)(arg0) + (0x58))) = 10.0f;
+            _capod_entrypoint_22();
+            temp_a0 = (*(s32 *)((s8 *)(arg0) + (0)));
+            _capod_entrypoint_21(temp_a0, temp_a0, 0x11, 4);
+            (*(s32 *)((s8 *)(arg0) + (0x28))) = 0;
+            func_80101238(0x6E, 0);
+            return;
+        }
+        (*(f32 *)((s8 *)(arg0) + (0x58))) = 15.0f;
+        _capod_entrypoint_22();
+        temp_a0_2 = (*(s32 *)((s8 *)(arg0) + (0)));
+        _capod_entrypoint_21(temp_a0_2, temp_a0_2, 0x12, 4);
+        (*(s32 *)((s8 *)(arg0) + (0x28))) = 1;
+        func_80101238(0x6E, 1);
+    }
+}
 
 s32 func_808000B4_chmusicmenu(s32 arg0) {
     if (arg0 < 9) {
