@@ -183,7 +183,34 @@ void func_800FFC3C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FFC90.s")
+/* extern */
+
+void func_800FFC90(void) {
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    struct ActorFlags {
+        u8 pad0[0x70];
+        u8 pad70 : 7;
+        u8 active : 1;
+        u8 toggle : 1;
+        u8 pad71 : 7;
+        u8 pad72[10];
+        u32 pad7C : 19;
+        u32 unk7C_12 : 1;
+        u32 pad7C_0 : 12;
+    } *var_v0;
+    s32 sp20;
+
+    var_v0 = (struct ActorFlags *)func_801067C4(&sp20);
+    if (var_v0 != NULL) {
+        do {
+            if (var_v0->unk7C_12 && var_v0->active) {
+                var_v0->toggle ^= 1;
+            }
+            var_v0 = (struct ActorFlags *)func_8010682C(&sp20);
+        } while (var_v0 != NULL);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FFD10.s")
 
