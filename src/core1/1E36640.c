@@ -346,6 +346,28 @@ void func_800200B8(SfxState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E36640/func_800201A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E36640/func_80020298.s")
+s32 func_80020298(u16 *arg0, u16 *arg1) {
+    extern SfxState *D_800411D0;
+    extern SfxState *D_800411D8;
+    u32 sp2C;
+    u16 sp2A;
+    u16 sp28;
+    u16 sp26;
+    SfxState *sp20;
+    SfxState *sp1C;
+    SfxState *sp18;
+
+    sp2C = osSetIntMask(1U);
+    sp20 = D_800411D0;
+    sp1C = D_800411D8;
+    sp18 = D_800411D4;
+    for (sp2A = 0; sp20 != NULL; sp2A++, sp20 = sp20->next) {}
+    for (sp28 = 0; sp1C != NULL; sp28++, sp1C = sp1C->next) {}
+    for (sp26 = 0; sp18 != NULL; sp26++, sp18 = sp18->prev) {}
+    *arg0 = sp28;
+    *arg1 = sp2A;
+    osSetIntMask(sp2C);
+    return (s32) sp26;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E36640/func_8002039C.s")
