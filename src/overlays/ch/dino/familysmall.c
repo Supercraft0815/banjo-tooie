@@ -1,6 +1,22 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysmall/func_80800000_chdinofamilysmall.s")
+/* extern */
+
+void func_80800000_chdinofamilysmall(u8 *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800DA298(s32);
+    s32 func_800EFA4C(u8 *, f32, f32, f32);
+    s32 func_808008B4_chdinofamilysmall(u8 *, s32);
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_808008B4_chdinofamilysmall(arg0, 0xA);
+    } else if (func_800DA298(0x15F) == 0) {
+        func_808008B4_chdinofamilysmall(arg0, 1);
+    } else {
+        func_808008B4_chdinofamilysmall(arg0, 9);
+    }
+    (*(f32 *)((s8 *)(arg0) + (0x34))) = (f32) (*(f32 *)((s8 *)(arg0) + (8)));
+    func_800EFA4C(arg0 + 0x28, 1.0f, 1.0f, 1.0f);
+}
 
 void func_80800090_chdinofamilysmall(u8 *arg0) {
     s32 _chdinofamilyfx_entrypoint_0(u8 *);
