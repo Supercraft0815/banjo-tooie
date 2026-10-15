@@ -52,7 +52,38 @@ void func_80800148_chbouncycastle(void **arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bouncycastle/func_80800308_chbouncycastle.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bouncycastle/func_8080045C_chbouncycastle.s")
+/* extern */
+
+void func_8080045C_chbouncycastle(Actor *arg0) {
+    s32 _subaddiemarker_entrypoint_0(Actor *, s32, f32 *, s32);
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+    void *func_80100094(Actor *, u32);
+    void func_80101EE4(Actor *, f32);
+    void func_80102424(Actor *, s32);
+    void func_80108A30(s32, void *, f32, s32);
+    void func_8010A624(Actor *);
+    struct {
+        s32 unk0;
+        f32 position[3];
+        s32 unk10;
+        f32 unk14;
+    } *sp24;
+
+    sp24 = func_80100094(arg0, 0);
+    _subaddiemarker_entrypoint_0(arg0, 0x154, sp24->position, 1);
+    if (func_800DA298(0xB2) == 0) {
+        func_80102424(arg0, 1);
+        func_80101EE4(arg0, 0.21590909f);
+    } else {
+        func_80108A30(0x210, sp24->position, sp24->unk14, sp24->unk10);
+        func_80102424(arg0, 3);
+    }
+    arg0->unk79_4 = 3;
+    if (func_800EA05C() != 0xE1) {
+        func_8010A624(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bouncycastle/func_8080051C_chbouncycastle.s")
 
