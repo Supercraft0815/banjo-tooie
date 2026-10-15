@@ -45,7 +45,25 @@ void func_808001D8_chfactoryprop(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/prop/func_80800324_chfactoryprop.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/prop/chfactoryprop_entrypoint_3.s")
+/* extern */
+
+void chfactoryprop_entrypoint_3(s32 arg0, s32 arg1, u8 *arg2, s32 arg3, Unk80132ED0 *arg4) {
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 temp_f0;
+    u8 *temp_v0;
+    u8 alpha;
+
+    temp_f0 = func_800F12D4(*(f32 *)&func_80106790(arg4)->actorData[4], 0.0f, 160.0f, 0.0, 64.0f);
+    temp_v0 = (arg3 * 0x10) + arg2;
+    if (arg2 < temp_v0) {
+        alpha = (u32)temp_f0;
+        do {
+            arg2 += 0x10;
+            arg2[-1] = alpha;
+        } while (arg2 < temp_v0);
+    }
+}
 
 void func_80800674_chfactoryprop(u8 *arg0) {
     u8 _subaddieaudioquick_entrypoint_1(u8 *, u8 *);
