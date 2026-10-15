@@ -266,7 +266,18 @@ void func_80800DB0_bssnowball(s32 arg0)
     func_80090A2C();
     bssnowball_entrypoint_0(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_80800DD8_bssnowball.s")
+void func_80800DD8_bssnowball(s32 arg0) {
+    struct player_state_s;
+    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void func_800909CC(struct player_state_s *);
+    bssnowball_entrypoint_1();
+    baanim_playForDuration_loopSmooth(arg0, 0x5E, 0x3F99999A);
+    func_8009FFD8(arg0, 1, 3, 1, 2);
+    func_80800164_bssnowball(arg0);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_800909CC(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_80800E4C_bssnowball.s")
 
