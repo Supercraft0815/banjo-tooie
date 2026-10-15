@@ -122,7 +122,7 @@ void baduo_entrypoint_14(void *arg0, s32 arg1) {
 
 void baduo_entrypoint_17(void *arg0, s32 arg1) {
     s32 bs_setState(s32, s32);
-    void func_8009C128(void *, f32[3]);
+    void func_8009C128(PlayerState *, f32[3]);
     s32 func_800F452C(s32, s32);
     s32 func_800F45B0(s32, s32, s32);
     PlayerState *func_800F53D0(s32);
@@ -145,7 +145,55 @@ void baduo_entrypoint_17(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_20.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_21.s")
+/* extern */
+
+void baduo_entrypoint_21(PlayerState *arg0) {
+    s32 _bakaztorpedo_entrypoint_3(void *);
+    s32 bs_setState(s32, s32);
+    void func_80092778(PlayerState *);
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_800A1694(void);
+    void func_800A16BC(s32);
+    void func_800A3410(PlayerState *, s32);
+    void func_800A38F0(PlayerState *, s32, s32);
+    void func_800A91A8(s32);
+    void func_800D5234(s32);
+    s32 func_800F452C(s32, s32);
+    PlayerState *func_800F53D0(s32);
+    s32 func_800F6224(s32);
+    s32 func_800F80D8(s32);
+    s32 func_800F8EE4(s32);
+    void func_800F911C(s32);
+    void func_80800008_baduo(s32, s32);
+    s32 yaw_applyIdeal(void *);
+    f32 yaw_get(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+    s32 sp34;
+    PlayerState *temp_s1;
+    f32 sp24[3];
+
+    func_800F911C(3);
+    sp34 = func_800F6224((*(s32 *)((s8 *)(arg0) + (0x184))));
+    temp_s1 = func_800F53D0(sp34);
+    func_8009C128(arg0, sp24);
+    func_800F452C((s32)temp_s1, (s32)sp24);
+    func_800A3410(arg0, 0xA);
+    func_800A3410(temp_s1, 0xB);
+    func_80092778(temp_s1);
+    yaw_setIdeal(arg0, yaw_get(arg0));
+    yaw_setIdeal(temp_s1, yaw_get(arg0));
+    yaw_applyIdeal(temp_s1);
+    func_800F80D8(sp34);
+    bs_setState((s32)temp_s1, 0x153);
+    func_800A91A8(sp34);
+    func_80800008_baduo((s32)arg0, (s32)temp_s1);
+    func_800F8EE4((*(s32 *)((s8 *)(arg0) + (0x184))));
+    func_800A38F0(arg0, 0, 1);
+    func_800D5234(1);
+    func_800A16BC(1);
+    func_800A1694();
+    _bakaztorpedo_entrypoint_3(temp_s1);
+}
 
 /* extern */
 
