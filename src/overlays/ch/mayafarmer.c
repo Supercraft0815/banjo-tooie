@@ -156,7 +156,34 @@ OSThread *chmayafarmer_entrypoint_0(void)
     return (OSThread *) D_80801278_chmayafarmer;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_808008F8_chmayafarmer.s")
+int func_808008F8_chmayafarmer(Actor *arg0, s32 arg1, s32 arg2) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_800EC398(s32 *, f32 *);
+    void func_800EFCD8(f32 *, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    s32 func_8010114C(s32, s32, s32);
+    void func_80102424(Actor *, s32);
+    void func_8010A570(Actor *);
+    extern s32 D_80801230_chmayafarmer;
+    f32 sp2C[3];
+    f32 angle;
+    f32 *volatile sp24;
+
+    if (arg1 == 0x40) {
+        func_800EC398(arg2, sp2C);
+        sp24 = arg0->position;
+        angle = func_800F1DF4(sp2C, arg0->position);
+        func_800EFCD8((f32 *)&arg0->actorData[4], angle, 25.0f);
+        _subaddieaudioquick_entrypoint_2(arg0, sp24, &D_80801230_chmayafarmer);
+        func_80102424(arg0, 3);
+        func_8010A570(arg0);
+        func_8010114C(arg0->unk3C, arg1, arg2);
+        arg1 = 1;
+    } else {
+        return 0;
+    }
+    return arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_808009A0_chmayafarmer.s")
 
