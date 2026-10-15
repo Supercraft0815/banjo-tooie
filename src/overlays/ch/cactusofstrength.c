@@ -101,7 +101,38 @@ void func_80800718_chcactusofstrength(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_8080094C_chcactusofstrength.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_80800A44_chcactusofstrength.s")
+void func_80800A44_chcactusofstrength(Actor *arg0) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    s32 _mlwave_entrypoint_1(u8 *);
+    f32 _mlwave_entrypoint_5(u8 *, f32, f32);
+    s32 _mlwave_entrypoint_8(u8 *, f32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    u8 func_800D9078(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void *func_80100094(Actor *, u32);
+    extern s32 D_80800E18_chcactusofstrength;
+    f32 sp28;
+    u8 *sp30;
+    f32 sp24[3];
+    u8 *temp_v0;
+
+    if (arg0->unk70_10 == 2) {
+        temp_v0 = func_80100094(arg0, 1);
+        sp30 = temp_v0;
+        _mlwave_entrypoint_1(temp_v0);
+        arg0->rotation[2] = _mlwave_entrypoint_5(sp30, -20.0f, 20.0f);
+        if ((_mlwave_entrypoint_8(sp30, 0.75f) != 0) || (_mlwave_entrypoint_8(sp30, 0.25f) != 0)) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800E18_chcactusofstrength);
+        }
+        if (func_800D9078(&arg0->unk58) != 0) {
+            func_800EE7F8(sp24, (f32 *)arg0->actorData);
+            func_800EF1B8(sp24, arg0->rotation[1], -60.0f);
+            sp24[1] -= 40.0f;
+            _chexploder_entrypoint_3(arg0, sp24, 3);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_80800B24_chcactusofstrength.s")
 
