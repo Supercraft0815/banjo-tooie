@@ -181,7 +181,7 @@ s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     s32 func_801039E4(s32);
     u8 *func_80103AA0(u8 *);
     s32 func_80103CDC(u8 *, u8 *);
-    u8 *func_80106790(u8 *);
+    Actor *func_80106790(Unk80132ED0 *);
     extern s32 D_80132DD0;
     extern s32 D_80132DD4;
     extern f32 D_80125E50;
@@ -283,7 +283,29 @@ s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EADFC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EB15C.s")
+/* extern */
+
+s32 func_800EB15C(void *arg0) {
+    s32 func_800D3948(void);
+    u32 func_800F54E4(void);
+    s32 func_800F6774(u32);
+    s32 func_80102F74(Unk80132ED0 *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    Unk80132ED0 *marker = arg0;
+    if (marker->unk18 & 1) {
+        return 0;
+    }
+    if ((marker->unk24 >> 22) == 0) {
+        return 1;
+    }
+    if (func_800D3948() == 0 && func_800F6774(func_800F54E4()) == 0) {
+        if ((((u16 *)&marker->unk18)[0] & 1) && func_80102F74(func_80106790(marker), 0x88000000) != 0) {
+            return 1;
+        }
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EB210.s")
 
