@@ -1,5 +1,7 @@
 #include "common.h"
 
+struct player_state_s;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/func_80800000_bstaxi.s")
 
 /* extern */
@@ -72,10 +74,10 @@ s32 bstaxi_entrypoint_5(s32 arg0) {
 
 /* extern */
 
-void func_808004A8_bstaxi(s32 arg0) {
-    s32 func_80099B94(s32);
+void func_808004A8_bstaxi(struct player_state_s *arg0) {
+    s32 func_80099B94(struct player_state_s *);
     s32 func_8009E6EC();
-    s32 func_80800420_bstaxi(s32);
+    s32 func_80800420_bstaxi(struct player_state_s *);
     s32 temp_v0;
 
     temp_v0 = func_8009E6EC();
@@ -166,7 +168,49 @@ void func_808005F0_bstaxi(void *arg0) {
     _bamovehover_entrypoint_3(arg0, position);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/func_808006F4_bstaxi.s")
+void func_808006F4_bstaxi(struct player_state_s *arg0) {
+    int _batimer_decrement(struct player_state_s *, s32);
+    f32 _batimer_get(struct player_state_s *, s32);
+    int _batimer_isZero(struct player_state_s *, s32);
+    int bakey_pressed(struct player_state_s *, int);
+    s32 bs_setState(void *, s32);
+    s32 func_8001210C(s32);
+    s32 func_800B5BE4(s32);
+    void func_800BA22C(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800D2498(u32, s32, u32);
+    void func_800F3BB0(struct player_state_s *, f32[3]);
+    s32 func_80800420_bstaxi(struct player_state_s *);
+    s32 func_80800524_bstaxi(struct player_state_s *);
+    extern s32 D_80802140_bstaxi[];
+    s32 sp44;
+    s32 sp40;
+    s32 sp3C;
+    f32 sp30[3];
+
+    sp44 = 0;
+    sp40 = 0;
+    _batimer_decrement(arg0, 0);
+    func_800D2498(0x100, (s32) _batimer_get(arg0, 0), 0);
+    func_80800524_bstaxi(arg0);
+    if (func_8001210C(1) != 0) {
+        sp3C = func_800B5BE4(0x1C);
+        func_800F3BB0(arg0, sp30);
+        func_800BABB8(sp3C, sp30, sp30, 1.0f, D_80802140_bstaxi);
+        func_800BA22C(sp3C, 1);
+    }
+    if (_batimer_isZero(arg0, 0) != 0) {
+        sp40 = 1;
+        sp44 = 0x2F;
+    } else if (bakey_pressed(arg0, 9) != 0) {
+        sp40 = 1;
+        sp44 = 0x2F;
+    }
+    if (sp40 != 0) {
+        func_80800420_bstaxi(arg0);
+    }
+    bs_setState(arg0, sp44);
+}
 
 s32 bstaxi_entrypoint_6(s32 arg0) {
     extern s32 D_80802188_bstaxi[];
@@ -385,8 +429,8 @@ void bstaxi_entrypoint_30(void *arg0) {
     void _babackpack_set_state(void *, s32);
     s32 _bapackctrl_entrypoint_1(void *);
     s32 _bapackctrl_entrypoint_5(void *, s32);
-    s32 _batimer_decrement(void *, s32);
-    f32 _batimer_get(void *, s32);
+    int _batimer_decrement(struct player_state_s *, s32);
+    f32 _batimer_get(struct player_state_s *, s32);
     void _subaddietaxi_entrypoint_8(s32, f32 *, f32, f32, s32);
     s32 baanim_isAt(void *, f32);
     s32 baanim_isStopped(void *);
