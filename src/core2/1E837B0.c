@@ -174,6 +174,6 @@ s32 func_800AA240(void) {
     return sp1C >= (func_800AA0D0() - 1);
 }
 
-void func_800AA274(s32 arg0) {
-    func_800A9F80(arg0);
+s32 func_800AA274(s32 arg0) {
+    return func_800A9F80(arg0);
 }
