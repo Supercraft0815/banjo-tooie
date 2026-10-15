@@ -63,7 +63,31 @@ void gcboundDll_entrypoint_2(s32 arg0) {
     (*(s32 *)((s8 *)(arg0) + (0xE0))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_808001A8_gcboundDll.s")
+/* extern */
+
+void func_808001A8_gcboundDll(s32 arg0, s32 arg1, s16 *arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8) {
+    s32 func_800B3CDC(s32 *, s32);
+    void func_800EE88C(f32 *, s16 *);
+    struct BoundData {
+        f32 position[3];
+        s16 value;
+        s16 radius;
+        u8 pad10[4];
+        u16 index : 11;
+        u16 flag7 : 1;
+        u16 kind : 3;
+        u16 flag6 : 1;
+    } *entry;
+
+    entry = (struct BoundData *)func_800B3CDC((s32 *)(arg0 + 0xE0), arg1 + 0x18);
+    func_800EE88C(entry->position, arg2);
+    entry->value = arg3;
+    entry->radius = (s32)((f32)arg4 * 0.5f);
+    entry->index = arg5;
+    entry->flag6 = arg6;
+    entry->flag7 = arg7;
+    entry->kind = arg8;
+}
 
 /* extern */
 
