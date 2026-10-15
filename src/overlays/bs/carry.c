@@ -19,7 +19,26 @@ void func_808000D0_bscarry(s32 arg0) {
     _bsdrone_entrypoint_3(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_80800128_bscarry.s")
+void func_80800128_bscarry(PlayerState *arg0) {
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 bastick_getZone(PlayerState *);
+    f32 bastick_getZonePosition(PlayerState *);
+    f32 func_800F1214(f32, f32, f32);
+    f32 sp24;
+
+    sp24 = bastick_getZonePosition(arg0);
+    switch (bastick_getZone(arg0)) {
+        case 0:
+            baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+            break;
+        case 1:
+            baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp24, 30.0f, 60.0f));
+            break;
+        case 2:
+            baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp24, 60.0f, 300.0f));
+            break;
+    }
+}
 
 /* extern */
 
