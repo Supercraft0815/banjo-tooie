@@ -37,7 +37,7 @@ void func_80800124_chlavahand(u8 *arg0) {
     s32 func_8010C754(u8 *);
     s32 func_8010C9FC(f32 *, s32, s32, s32);
     void func_80800024_chlavahand(u8 *);
-    void func_80800910_chlavahand(u8 *);
+    void func_80800910_chlavahand(Actor *);
     void func_80800A30_chlavahand(Actor *);
     extern u32 D_80801324_chlavahand;
     struct Flags {
@@ -143,7 +143,41 @@ void func_80800124_chlavahand(u8 *arg0) {
     func_80800910_chlavahand(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/hand/func_80800910_chlavahand.s")
+/* extern */
+
+void func_80800910_chlavahand(Actor *arg0) {
+    s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    s32 func_800C8A98(void);
+    void func_800C8B84(volatile s32);
+    void func_800C8CB8(s32, f32[3]);
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8F64(s32, s32);
+    void func_800C8FB0(s32, u32, u32, u32);
+    void func_800C8FE0(s32, s32);
+    f32 sp2C[3];
+    s32 var_a0;
+
+    arg0->unk64_16 = (s32)arg0->unk70_10 >= 2 && (s32)arg0->unk70_10 < 8;
+    var_a0 = arg0->actorData[4];
+    if (var_a0 != 0 && !arg0->unk64_16) {
+        func_800C8B84(var_a0);
+        arg0->actorData[4] = 0;
+        var_a0 = 0;
+    } else if (var_a0 == 0 && arg0->unk64_16) {
+        arg0->actorData[4] = func_800C8A98();
+        func_800C8CB8(arg0->actorData[4], arg0->position);
+        func_800C8FB0(arg0->actorData[4], 0xFF, 0xE1, 0xF);
+        func_800C8F64(arg0->actorData[4], 1);
+        func_800C8E54(arg0->actorData[4], *(f32 *)&arg0->actorData[5], *(f32 *)&arg0->actorData[6]);
+        func_800C8FE0(arg0->actorData[4], 1);
+        var_a0 = arg0->actorData[4];
+        }
+    if (var_a0 != 0) {
+        _subaddieskeleton_entrypoint_0(arg0, 0x2D, sp2C);
+        func_800C8CB8(arg0->actorData[4], sp2C);
+        func_800C8E54(arg0->actorData[4], *(f32 *)&arg0->actorData[5], *(f32 *)&arg0->actorData[6]);
+    }
+}
 
 void func_80800A30_chlavahand(Actor *arg0) {
     s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
