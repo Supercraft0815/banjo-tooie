@@ -38,7 +38,47 @@ void sumultiscore_entrypoint_1(s32 *arg0, s32 *arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_3.s")
+/* extern */
+
+void sumultiscore_entrypoint_3(u8 *arg0) {
+    s32 _gcstatusDll_entrypoint_11();
+    void func_800A8A04(s32, s32 *, s32 *, s32 *, s32 *);
+    s32 func_800A940C(s32);
+    s32 sumultiscore_entrypoint_4(u8 *, s32, s32, s32);
+    register s32 var_s2;
+    register u8 *temp_s1;
+    s32 sp54;
+    s32 sp50;
+    s32 sp4C;
+    s32 sp48;
+    register u8 *var_s0;
+
+    (*(s32 *)((s8 *)(arg0) + (0x518))) = _gcstatusDll_entrypoint_11();
+    var_s2 = 0;
+    if ((*(s32 *)((s8 *)(arg0) + (0x518))) > 0) {
+        var_s0 = arg0 + 0x28;
+        do {
+            temp_s1 = var_s0;
+            func_800A8A04(func_800A940C(var_s2), &sp54, &sp50, &sp4C, &sp48);
+            var_s2 += 1;
+            var_s0 += 0x13C;
+            (*(s16 *)((s8 *)(var_s0) + (-0x13C))) = (s16) (sp54 + 0x1C);
+            (*(s16 *)((s8 *)(var_s0) + (-0x13A))) = (s16) (sp50 + 0xE);
+            (*(s16 *)((s8 *)(var_s0) + (-0x138))) = (s16) ((sp4C / 2) + sp54);
+            (*(s16 *)((s8 *)(var_s0) + (-0x136))) = (s16) (sp50 + 0xE);
+            (*(s16 *)((s8 *)(var_s0) + (-0x134))) = (s16) ((sp4C + sp54) - 0x1C);
+            (*(s16 *)((s8 *)(var_s0) + (-0x132))) = (s16) (sp50 + 0xE);
+            (*(s16 *)((s8 *)(var_s0) + (-0x130))) = (s16) (sp54 + 0x1C);
+            (*(s16 *)((s8 *)(var_s0) + (-0x12E))) = (s16) ((sp48 + sp50) - 0xE);
+            (*(s16 *)((s8 *)(var_s0) + (-0x12C))) = (s16) ((sp4C + sp54) - 0x1C);
+            (*(s16 *)((s8 *)(temp_s1) + (0x12))) = (s16) ((sp48 + sp50) - 0xE);
+            (*(s16 *)((s8 *)(temp_s1) + (0x14))) = (s16) ((sp4C / 2) + sp54);
+            (*(s16 *)((s8 *)(temp_s1) + (0x16))) = (s16) ((sp48 / 2) + sp50);
+        } while (var_s2 < (*(s32 *)((s8 *)(arg0) + (0x518))));
+    }
+    (*(s32 *)((s8 *)(arg0) + (0))) = 0;
+    sumultiscore_entrypoint_4(arg0, 0, 5, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_4.s")
 
