@@ -279,7 +279,28 @@ void func_8080153C_chhoopswoop(void *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80801838_chhoopswoop.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80801A10_chhoopswoop.s")
+s32 func_80801A10_chhoopswoop(u8 *arg0, s32 arg1, s32 arg2)
+{
+  s32 _subaddiefade_entrypoint_5(u8 *);
+  u8 *new_var;
+  s32 func_80101FDC(u8 *, s32);
+  s32 func_8010D930(s32, s32, u8 *, s32 *);
+  extern s32 D_80801F98_chhoopswoop;
+  if (arg1 == 0x4F)
+  {
+    if (((((((((((u16) (*((u16 *) (((s8 *) arg0) + 0x72)))) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) >> 0xA) != 5)
+    {
+      if (arg2 != 0)
+      {
+        func_8010D930(5, (*((s32 *) (((s8 *) arg0) + 0x70))) & 1, arg0 + 4, &D_80801F98_chhoopswoop);
+      }
+      _subaddiefade_entrypoint_5(arg0);
+      func_80101FDC(new_var = arg0, 5);
+    }
+    return 1;
+  }
+  return 0;
+}
 
 void func_80801A94_chhoopswoop()
 {
