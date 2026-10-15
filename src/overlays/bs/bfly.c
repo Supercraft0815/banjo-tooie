@@ -18,7 +18,24 @@ void func_80800000_bsbfly(PlayerState *arg0) {
     func_800BBCB8(sp24, NULL, 1.0f, 1, &D_80801D20_bsbfly);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_808000AC_bsbfly.s")
+/* extern */
+
+void func_808000AC_bsbfly(PlayerState *arg0) {
+    void _bafly_entrypoint_20(void *);
+    void baroll_setAngularVelocity(PlayerState *, f32, f32);
+    void func_80093360(PlayerState *, f32);
+    void func_800959C8(PlayerState *, f32, f32);
+    void func_800961AC(PlayerState *, s32);
+    void yaw_setUpdateType(PlayerState *, s32);
+    void yaw_setVelocityBounded(PlayerState *, f32, f32);
+    func_80093360(arg0, 60.0f);
+    yaw_setUpdateType(arg0, 3);
+    yaw_setVelocityBounded(arg0, 500.0f, 2.0f);
+    baroll_setAngularVelocity(arg0, 500.0f, 2.0f);
+    _bafly_entrypoint_20(arg0);
+    func_800959C8(arg0, 65.0f, 50.0f);
+    func_800961AC(arg0, 4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800128_bsbfly.s")
 
