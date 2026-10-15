@@ -107,4 +107,33 @@ void sukickball_entrypoint_17(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_18.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_19.s")
+/* extern */
+
+void sukickball_entrypoint_19(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_800D24E8(s32, s32, s32);
+    void func_800D2770(s32, s32);
+    s32 func_800D28A0(s32);
+    void *func_80100094(Actor *, u32);
+    s32 var_s0;
+    s32 var_s1;
+    u8 *temp_s2;
+
+    temp_s2 = func_80100094(arg0, 0U);
+    var_s0 = 0;
+    if (arg2 > 0) {
+        do {
+            var_s1 = var_s0 + 0xC3;
+            if ((*(u8 *)((s8 *)(temp_s2) + (0x38))) == 0) {
+                var_s1 = var_s0 + 0xC3;
+                func_800D2770(var_s1, 0);
+            } else {
+                func_800D24E8(var_s1, ((s32 *)temp_s2)[var_s0 + 8], 0);
+            }
+            if ((arg1 != 0) && ((*(u8 *)((s8 *)((temp_s2 + var_s0)) + (0x30))) != 0)) {
+                func_800D28A0(var_s1);
+            }
+            var_s0 += 1;
+        } while (var_s0 != arg2);
+    }
+    (*(u8 *)((s8 *)(temp_s2) + (0x38))) = 1U;
+}
