@@ -4,9 +4,35 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionskip/func_8080019C_gcsectionskip.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionskip/func_808002A0_gcsectionskip.s")
-
 /* extern */
+
+void func_808002A0_gcsectionskip(s32 arg0, s16 *arg1) {
+    void func_800EFB24(void *, void *, void *);
+    void func_800F5D70(s32, f32 *);
+    void func_800F5D9C(s32, f32 *);
+    s32 func_800F8418(s32, f32 *);
+    s32 func_8080019C_gcsectionskip(f32 *, f32 *, f32 *, f32, f32);
+    f32 sp54[3];
+    f32 sp48[3];
+    f32 sp3C[3];
+    f32 sp30[3];
+    s32 sp2C;
+    f32 sp28;
+
+    register s16 *node = arg1;
+
+    if (node != NULL) {
+        sp2C = (u32)*((u8 *)node + 0x13) >> 7;
+        sp28 = (f32)((u32)*(u16 *)((u8 *)node + 6) >> 7);
+        func_800F5D9C(arg0, sp30);
+        func_800F5D70(arg0, sp3C);
+        func_800EF334(sp3C, func_800D8FF8());
+        func_800EFB24(sp48, sp30, sp3C);
+        func_800EE88C(sp54, arg1);
+        func_8080019C_gcsectionskip(sp48, sp30, sp54, sp28, (f32)sp2C);
+        func_800F8418(arg0, sp30);
+    }
+}
 
 void func_80800374_gcsectionskip(s32 arg0, s32 arg1) {
     func_800F7E3C(arg0, 0);
