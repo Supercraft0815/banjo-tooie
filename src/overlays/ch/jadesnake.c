@@ -11,7 +11,36 @@ void func_80800000_chjadesnake(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadesnake/func_80800048_chjadesnake.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadesnake/func_8080009C_chjadesnake.s")
+/* extern */
+
+int func_8080009C_chjadesnake(s32 arg0) {
+    s32 pad;
+    u32 func_800F54E4(void);
+    s32 func_800F56AC(s32);
+    s32 func_800F6478(s32);
+    s32 func_800F651C(s32);
+    s32 func_800F6C5C(s32);
+    int func_800F72DC(s32);
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+    s32 temp_t8;
+    s32 temp_t9;
+    s32 temp_v0;
+    s32 var_v0;
+
+    temp_v0 = func_800F54E4();
+    sp30 = func_800F651C(temp_v0);
+    sp2C = func_800F6C5C(temp_v0);
+    sp28 = func_800F72DC(temp_v0);
+    sp24 = func_800F56AC(temp_v0) == 0x10;
+    var_v0 = func_800F6478(temp_v0);
+    if (sp24 == 0) {
+        return 0;
+    }
+    return var_v0 && (sp28 || (sp2C && !sp30));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadesnake/func_80800150_chjadesnake.s")
 
