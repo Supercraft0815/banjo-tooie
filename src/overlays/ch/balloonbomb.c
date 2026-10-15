@@ -9,7 +9,37 @@ OSThread *chballoonbomb_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonbomb/func_8080000C_chballoonbomb.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonbomb/func_80800118_chballoonbomb.s")
+/* extern */
+
+void func_80800118_chballoonbomb(Actor *arg0) {
+    f32 func_800136E4(f32);
+    s32 func_8008FF18();
+    f32 func_800D8FF8();
+    s32 func_800DA298(s32);
+    f32 func_800F15F8(f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80800230_chballoonbomb(Actor *, s32, s32);
+    void func_80800294_chballoonbomb(Actor *);
+    f32 *sp24;
+    union {
+        f32 f;
+        s32 i;
+    } sp20;
+
+    sp24 = func_80100094(arg0, 0);
+    sp20.f = func_800D8FF8();
+    if (!arg0->unk64_17) {
+        if (func_800DA298(0) != 0) {
+            func_80800294_chballoonbomb(arg0);
+            return;
+        }
+        if ((func_800DA298(0x641) == 0) && (func_8008FF18() == 0)) {
+            arg0->rotation[1] = func_800136E4((*sp24 * sp20.f) + arg0->rotation[1]);
+            func_80800230_chballoonbomb(arg0, sp20.i, 1);
+            arg0->scale = func_800F15F8(arg0->scale, 1.4f, sp20.f * 1.5f);
+        }
+    }
+}
 
 u32 func_808001F8_chballoonbomb(s32 unused, s32 arg1, s32 arg2) {
     void func_80800294_chballoonbomb(Actor *);
