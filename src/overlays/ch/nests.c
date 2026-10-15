@@ -110,7 +110,19 @@ void func_808007C8_chnests(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_8080082C_chnests.s")
+/* extern */
+
+void func_8080082C_chnests(Actor *arg0, s32 arg1) {
+    s32 func_80101870(s32, s32);
+    void func_80103110(void *, s32);
+    s32 func_80800898_chnests(void *, s32, s32);
+    if (func_80800898_chnests(arg0, arg1, arg0->actorData[4]) != 0) {
+        func_80101870((s32)arg0, arg1);
+        if (arg0->unk7C_12 && arg0->unk70_10 == 2) {
+            func_80103110(arg0, 1);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800898_chnests.s")
 
