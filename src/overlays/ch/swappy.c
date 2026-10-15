@@ -1,6 +1,28 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swappy/func_80800000_chswappy.s")
+/* extern */
+
+void func_80800000_chswappy(Actor *arg0) {
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    s32 func_800F8B88();
+    void func_80102FDC(Actor *, f32);
+    void func_80103110(Actor *, u32);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    s32 func_808000B0_chswappy(void *, s32);
+    func_80102FDC(arg0, arg0->scale * 0.6f);
+    if (func_800F8B88() == 2) {
+        _subaddiefade_entrypoint_1(arg0, 0xFF);
+        func_80103110(arg0, 1);
+        func_8010A590(arg0);
+        func_808000B0_chswappy(arg0, 1);
+        return;
+    }
+    _subaddiefade_entrypoint_1(arg0, 0);
+    func_80103110(arg0, 0);
+    func_8010A570(arg0);
+    func_808000B0_chswappy(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swappy/func_808000B0_chswappy.s")
 
