@@ -196,7 +196,44 @@ void func_800B7448(Gfx **arg0) {
     func_800B7A98();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B798C.s")
+void func_800B798C(s32 arg0, s32 arg1, u8 *arg2) {
+    s32 vector_new(s32, s32);
+    void *vector_push_back(void **);
+    extern s32 D_80128180;
+    typedef struct {
+        s16 x, y, z;
+        u8 upper : 4;
+        u8 flag18 : 1;
+        u8 flag16 : 1;
+        u8 flag19 : 1;
+        u8 unused : 1;
+        u8 pad;
+        f32 scale;
+        u8 *text;
+        u8 color[4];
+    } Entry;
+    Entry *entry;
+
+    if (arg2 != 0) {
+        if (D_80128180 == 0) {
+            D_80128180 = vector_new(0x14, 8);
+        }
+        entry = vector_push_back((void **)&D_80128180);
+        entry->x = arg0;
+        entry->y = arg1;
+        entry->text = arg2;
+        entry->upper = *((u8 *)&D_80128180 + 0x11);
+        entry->flag18 = *((u8 *)&D_80128180 + 0x12);
+        entry->flag16 = *((u8 *)&D_80128180 + 0x10);
+        entry->flag19 = *((u8 *)&D_80128180 + 0x13);
+        entry->z = *(s16 *)((u8 *)&D_80128180 + 0x14);
+        entry->scale = *(f32 *)((u8 *)&D_80128180 + 0x18);
+        entry->color[0] = *((u8 *)&D_80128180 + 0xC);
+        entry->color[1] = *((u8 *)&D_80128180 + 0xD);
+        entry->color[2] = *((u8 *)&D_80128180 + 0xE);
+        entry->color[3] = *((u8 *)&D_80128180 + 0xF);
+    }
+}
 
 void func_800B7A98(void) {
     extern s32 D_80128180;
