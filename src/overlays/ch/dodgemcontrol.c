@@ -69,7 +69,28 @@ void func_808003B0_chdodgemcontrol(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (8))) = func_800DC178(-645.0f, 645.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080040C_chdodgemcontrol.s")
+/* extern */
+
+s32 func_8080040C_chdodgemcontrol(Actor *arg0, f32 *arg1, s32 arg2) {
+    f32 func_800EEB40(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    typedef struct {
+        u8 pad[0x34];
+        f32 positions[10][3];
+        u8 flags[0x19];
+        u8 count;
+    } DodgemData;
+    s32 var_s0;
+    DodgemData *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0);
+    for (var_s0 = 0; var_s0 < temp_v0->count; var_s0++) {
+        if ((var_s0 != arg2) && (temp_v0->flags[var_s0] == 1) && (func_800EEB40(temp_v0->positions[var_s0], arg1) < 40000.0f)) {
+            return 0;
+        }
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808004E4_chdodgemcontrol.s")
 
