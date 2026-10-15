@@ -244,7 +244,28 @@ OSThread *chfactorybattery_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_8080150C_chfactorybattery.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80801728_chfactorybattery.s")
+/* extern */
+
+void func_80801728_chfactorybattery(Actor *arg0) {
+    s32 _chdoor_entrypoint_0();
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    s32 func_8010CA74(f32 *, s32);
+    s32 func_80800480_chfactorybattery();
+    if (func_800DA298(0x343) == 0) {
+        if ((func_8010CA74(arg0->position, 0x2EE) != 0) && (func_800DA298(func_80800480_chfactorybattery()) == 0)) {
+            func_800DA544(0x343);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x1352, 6, arg0->position, 0);
+            arg0->unk74_30 = 1;
+        }
+    }
+    if (!arg0->unk74_29 && (func_800DA298(func_80800480_chfactorybattery()) != 0)) {
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x1353, 6, arg0->position, 0);
+        arg0->unk74_29 = 1;
+    }
+    _chdoor_entrypoint_0(arg0);
+}
 
 /* extern */
 
