@@ -7,7 +7,21 @@ OSThread *chdiggerground_entrypoint_0(void)
     return (OSThread *) D_80800408_chdiggerground;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/ground/func_8080000C_chdiggerground.s")
+/* extern */
+
+void func_8080000C_chdiggerground(Actor *arg0) {
+    s32 _sucoaster_entrypoint_2();
+    void *func_80100094(Actor *, u32);
+    s32 func_8010108C();
+    void func_808000C4_chdiggerground(Actor *);
+    if (arg0->unk64_20) {
+        if (func_80100094(arg0, 0) == 0) {
+            func_808000C4_chdiggerground(arg0);
+            func_8010108C(arg0, 0x95, 0);
+        }
+        _sucoaster_entrypoint_2(arg0);
+    }
+}
 
 /* extern */
 
