@@ -124,7 +124,7 @@ s32 bswasher_entrypoint_4(s32 arg0) {
 /* extern */
 
 void func_80800EC8_bswasher(u8 *arg0) {
-    s32 bs_setState(s32, s32);
+    void bs_setState(struct player_state_s *, int);
     s32 func_80099A4C(void *);
     s32 func_80099B94(u8 *);
     s32 func_8009E6EC();
@@ -192,7 +192,28 @@ void func_808011B4_bswasher(s32 arg0)
 }
 void func_808011DC_bswasher(s32 arg0) { func_808001A8_bswasher(); _baspin_entrypoint_2(arg0, 0x358, 0x3FE66666, 2, 0); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80801218_bswasher.s")
+/* extern */
+
+void func_80801218_bswasher(struct player_state_s *arg0) {
+    s32 _baspin_entrypoint_3(struct player_state_s *);
+    void bs_setState(struct player_state_s *, int);
+    int func_8009640C(struct player_state_s *);
+    void func_800A2EAC(void *);
+    s32 func_80800300_bswasher(s32);
+    s32 sp24;
+    struct player_state_s *self;
+
+    self = arg0;
+    sp24 = 0;
+    func_80800300_bswasher(self);
+    if (func_8009640C(self) != 0) {
+        func_800A2EAC(self);
+    }
+    if (_baspin_entrypoint_3(self) == 2) {
+        sp24 = 0x32;
+    }
+    bs_setState(self, sp24);
+}
 
 s32 bswasher_entrypoint_6(s32 arg0) {
     extern s32 D_80801E70_bswasher[];
@@ -223,7 +244,7 @@ void func_808012BC_bswasher(struct player_state_s *arg0) {
 void func_80801314_bswasher(s32 arg0) {
     s32 _babounce_entrypoint_2();
     s32 _babounce_entrypoint_9(s32);
-    s32 bs_setState(s32, s32);
+    void bs_setState(struct player_state_s *, int);
     s32 func_80800000_bswasher(s32);
     s32 sp1C;
 
@@ -257,7 +278,7 @@ void func_808013A4_bswasher(s32 arg0)
 void func_808013CC_bswasher(s32 arg0) {
     s32 _bsrest_entrypoint_13(s32);
     s32 _bsrest_entrypoint_20();
-    s32 bs_setState(s32, s32);
+    void bs_setState(struct player_state_s *, int);
     s32 func_80800300_bswasher(s32);
     s32 sp1C;
 
