@@ -41,7 +41,21 @@ void func_800BD600(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BD708.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BD860.s")
+void func_800BD860(s32 arg0, s32 *arg1) {
+    extern s32 D_8012841C;
+    s32 i;
+    s32 offset;
+    s32 remainder;
+
+    offset = (arg0 - D_80128410) >> 3;
+    arg1[2] = offset / (&D_80128410)[8];
+    remainder = offset - arg1[2] * (&D_80128410)[8];
+    arg1[1] = remainder / (&D_80128410)[7];
+    arg1[0] = remainder - arg1[1] * (&D_80128410)[7];
+    for (i = 0; i < 3; i++) {
+        arg1[i] += (&D_80128410)[i + 1];
+    }
+}
 
 s32 func_800BD948(s32 arg0) {
     s32 base = (s32)&D_80128410;
