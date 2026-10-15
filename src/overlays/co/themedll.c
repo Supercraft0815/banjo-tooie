@@ -41,7 +41,55 @@ s16 cothemedll_entrypoint_1(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/co/themedll/cothemedll_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/co/themedll/cothemedll_entrypoint_3.s")
+void cothemedll_entrypoint_3(void *arg0) {
+    u32 func_80017764(s32);
+    s32 func_800EA05C();
+    s32 func_80800000_cothemedll(s32);
+    extern s16 D_80800730_cothemedll[][3];
+    extern s16 D_80800CB4_cothemedll[][2];
+    s32 sp24;
+    s32 sp20;
+    s16 *var_v0;
+    s16 temp_a0;
+    s32 var_v1;
+    s32 temp_v0;
+    void *temp_v0_2;
+
+    temp_v0 = func_800EA05C();
+    sp24 = temp_v0;
+    sp20 = func_80800000_cothemedll(temp_v0);
+    (*(s8 *)((s8 *)(arg0) + (0x41))) = 0;
+    (*(s32 *)((s8 *)(arg0) + (0x28))) = -1;
+    (*(s32 *)((s8 *)(arg0) + (0x2C))) = -1;
+    (*(u8 *)((s8 *)(arg0) + (0x10))) = 0xFF;
+    (*(u8 *)((s8 *)(arg0) + (0x11))) = 0xFF;
+    if (func_800FE890() != 2) {
+        (*(s32 *)((s8 *)(arg0) + (0x1C))) = 0;
+        (*(s16 *)((s8 *)(arg0) + (0x22))) = 0;
+        (*(s16 *)((s8 *)(arg0) + (0x20))) = 0;
+        (*(s8 *)((s8 *)(arg0) + (0x12))) = 0;
+        (*(s8 *)((s8 *)(arg0) + (0x13))) = 0;
+        (*(s8 *)((s8 *)(arg0) + (0x14))) = 1;
+        (*(s8 *)((s8 *)(arg0) + (0x15))) = 1;
+        (*(f32 *)((s8 *)(arg0) + (4))) = 1.0f;
+        if ((*(u8 *)((s8 *)(arg0) + (0x16))) != 0) {
+            temp_v0_2 = D_80800730_cothemedll[sp20];
+            (*(s16 *)((s8 *)(arg0) + (0xC))) = (s16) ((*(u16 *)((s8 *)(temp_v0_2) + (2))) & 3);
+            (*(s16 *)((s8 *)(arg0) + (8))) = (s16) ((s16) (*(u16 *)((s8 *)(temp_v0_2) + (2))) >> 2);
+            if ((*(s16 *)((s8 *)(arg0) + (8))) != -1) {
+                (*(s16 *)((s8 *)(arg0) + (0xA))) = func_80017764((*(s16 *)((s8 *)(arg0) + (8))));
+            } else {
+                (*(s16 *)((s8 *)(arg0) + (0xA))) = 0x4E20;
+            }
+            (*(s16 *)((s8 *)(arg0) + (0x24))) = 0;
+            for (var_v1 = 0; D_80800CB4_cothemedll[var_v1][0] != -1; var_v1++) {
+                if (sp24 == D_80800CB4_cothemedll[var_v1][0]) {
+                    (*(s16 *)((s8 *)(arg0) + (0x20))) = D_80800CB4_cothemedll[var_v1][1];
+                }
+            }
+        }
+    }
+}
 
 /* extern */
 
