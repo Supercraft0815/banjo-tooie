@@ -1,6 +1,34 @@
 #include "ch/cauldronentrydoor.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cauldronentrydoor/func_80800000_chcauldronentrydoor.s")
+/* extern */
+
+void func_80800000_chcauldronentrydoor(Actor *arg0) {
+    s32 _chdoormake_entrypoint_4(Actor *, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    void _chdoormake_entrypoint_6(Actor *, s32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
+    s32 _glcutDll_entrypoint_19(s32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80104004(Actor *, f32 *, f32 *);
+    void func_8010A800(Actor *, s32);
+    f32 *temp_s1;
+
+    temp_s1 = func_80100094(arg0, 1);
+    if (_chdoormake_entrypoint_4(arg0, 1, 0x58E) != 0) {
+        _chdoormake_entrypoint_5(arg0, 1.0f);
+        _chdoormake_entrypoint_6(arg0, 0x40000000);
+        _chdoormake_entrypoint_8(arg0, 0xB);
+        _chdoormake_entrypoint_9(arg0, 0, 0x56, 0x14);
+    }
+    func_8010A800(arg0, 0);
+    func_80104004(arg0, temp_s1, temp_s1 + 3);
+    temp_s1[5] = temp_s1[2] + 40.0f;
+    if (_glcutDll_entrypoint_19(0x5B) != 0) {
+        func_800FFAB0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cauldronentrydoor/func_808000C8_chcauldronentrydoor.s")
 
