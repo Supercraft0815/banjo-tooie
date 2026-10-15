@@ -1,5 +1,7 @@
 #include "bs/trexsmall.h"
 
+void bstrexsmall_entrypoint_3(s32 arg0);
+
 int func_80800000_bstrexsmall(PlayerState *arg0) {
     s32 func_800C6E38(s32);
     return bakey_pressed(arg0, BUTTON_B) && func_800C6E38(0x20);
@@ -61,7 +63,30 @@ s32 bstrexsmall_entrypoint_0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/bstrexsmall_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/bstrexsmall_entrypoint_3.s")
+/* extern */
+
+void bstrexsmall_entrypoint_3(s32 arg0) {
+    void func_800C3058(u8, s32);
+    s16 func_800C3920(u8);
+    f32 func_800D8FF8(void);
+    s32 func_800F0E28(s32, s32);
+    void func_808000C8_bstrexsmall(s32, s32);
+    s32 pad[2];
+    s32 sp1C;
+    s32 temp_v0;
+    u8 temp_a1;
+
+    temp_a1 = (*(u8 *)((s8 *)(arg0) + (0x160)));
+    if ((temp_a1 != 0) && ((*(u8 *)((s8 *)(arg0) + (0x15E))) == 3)) {
+        sp1C = func_800C3920(temp_a1);
+        temp_v0 = func_800F0E28(0, (s32) ((f32) sp1C - (func_800D8FF8() * 60000.0f)));
+        if (temp_v0 != 0) {
+            func_800C3058((*(u8 *)((s8 *)(arg0) + (0x160))), temp_v0);
+            return;
+        }
+        func_808000C8_bstrexsmall(arg0, 1);
+    }
+}
 
 /* extern */
 
