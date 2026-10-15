@@ -95,7 +95,25 @@ void func_80800080_chlinkpipefan(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/linkpipefan/func_808003B4_chlinkpipefan.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/linkpipefan/chlinkpipefan_entrypoint_0.s")
+/* extern */
+
+void chlinkpipefan_entrypoint_0(s32 arg0, s32 arg1, u8 *arg2, s32 arg3, Unk80132ED0 *arg4) {
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 temp_f0;
+    u8 *temp_v0;
+    u8 alpha;
+
+    temp_f0 = func_800F12D4(func_80106790(arg4)->unk54, 225.0f, 450.0f, 0.0, 255.0f);
+    temp_v0 = (arg3 * 0x10) + arg2;
+    if (arg2 < temp_v0) {
+        alpha = (u32)temp_f0;
+        do {
+            arg2 += 0x10;
+            arg2[-1] = alpha;
+        } while (arg2 < temp_v0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/linkpipefan/func_80800638_chlinkpipefan.s")
 
