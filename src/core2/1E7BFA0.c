@@ -332,8 +332,8 @@ void func_800A355C(void *arg0) {
     s32 func_8008EF3C(void *, s32);
     f32 func_8009C150();
     s32 func_800F3ED0(void *);
-    s32 player_inWater(void *);
-    s32 player_isStable(void *);
+    s32 player_inWater(PlayerState *);
+    int player_isStable(PlayerState *);
     f32 sp24;
     s32 sp20;
     void *temp_v0;
@@ -415,4 +415,38 @@ void func_800A392C(PlayerState *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3970.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3A80.s")
+/* extern */
+
+void func_800A3A80(PlayerState *arg0) {
+    s32 baflag_clear(s32, s32);
+    s32 func_80096568(void *, s32);
+    void func_8009BD18(void *, f32);
+    void func_8009C128(PlayerState *, f32[3]);
+    s32 func_8009E71C(void *, s32);
+    s32 func_800A3644(void *);
+    u8 func_800D9078(f32 *);
+    s32 player_inWater(PlayerState *);
+    int player_isStable(PlayerState *);
+    u8 *temp_v0;
+
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0xA0)));
+    if ((*(f32 *)((s8 *)(temp_v0) + (0x40))) != 0.0f) {
+        func_800D9078((f32 *)(temp_v0 + 0x40));
+    }
+    if (player_isStable(arg0) != 0) {
+        func_8009C128(arg0, (f32 *)((*(u8 **)((s8 *)(arg0) + (0xA0))) + 0x2C));
+    }
+    if ((player_isStable(arg0) != 0) || (func_8009E71C(arg0, 0xA) != 0)) {
+        baflag_clear(arg0, 5);
+        baflag_clear(arg0, 0x12);
+    }
+    if (player_inWater(arg0) != 0) {
+        baflag_clear(arg0, 5);
+        baflag_clear(arg0, 0x12);
+    }
+    func_800A3644(arg0);
+    func_800A355C(arg0);
+    if (func_80096568(arg0, 0x600) != 0) {
+        func_8009BD18(arg0, 0.75f);
+    }
+}
