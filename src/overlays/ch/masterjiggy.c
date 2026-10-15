@@ -106,7 +106,25 @@ void func_8080095C_chmasterjiggy(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x38))) = 1.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_8080096C_chmasterjiggy.s")
+void func_8080096C_chmasterjiggy(Actor *arg0) {
+    typedef struct {
+        f32 amount;
+        s32 pad4[2];
+        u8 sound;
+    } MasterJiggyData;
+    void _subaddieaudioloop_entrypoint_1(u8 *, s32);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
+    f32 func_800F1214(f32, f32, f32);
+    extern u32 D_80801740_chmasterjiggy;
+    extern s32 D_80801750_chmasterjiggy;
+    _subaddieaudioloop_entrypoint_4(arg0, arg0->position,
+        arg0->unk64_20 && ((MasterJiggyData *)arg0->actorData)->amount > 0.0f, &D_80801740_chmasterjiggy);
+    _subaddieaudioloop_entrypoint_1((u8 *)arg0,
+        (s32)func_800F1214(((MasterJiggyData *)arg0->actorData)->amount, 5000.0f, 13000.0f));
+    ((MasterJiggyData *)arg0->actorData)->sound = _subaddieaudioloop_entrypoint_7(((MasterJiggyData *)arg0->actorData)->sound, arg0->position,
+        ((MasterJiggyData *)arg0->actorData)->amount > 0.0f, &D_80801750_chmasterjiggy, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_80800A40_chmasterjiggy.s")
 
