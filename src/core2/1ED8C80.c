@@ -53,7 +53,7 @@ void func_800FF4A4(Actor *arg0) {
     } PathState;
     void _subaddieaudioloop_entrypoint_2(Actor *);
     void func_800D8808(s32);
-    s32 func_8010381C(s32);
+    void func_8010381C(Actor *);
     void func_80103938(void *);
     void func_80104328(s32);
     void func_80104504(void *);
@@ -64,7 +64,7 @@ void func_800FF4A4(Actor *arg0) {
     u32 var_s0;
 
     temp_s0 = arg0->unk0;
-    func_8010381C((s32)arg0);
+    func_8010381C(arg0);
     func_80103938(arg0);
     if (arg0->unk7C_0) {
         PathState *state = func_80105494(arg0);
@@ -212,15 +212,51 @@ void func_800FFC90(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FFD10.s")
+void func_800FFD10(s32 arg0) {
+    void func_8010381C(Actor *);
+    s32 func_80103AC0(Actor *);
+    s32 func_80106730(void);
+    Actor *func_801068A8(s32 *);
+    Actor *func_80106920(s32 *);
+    extern s32 D_80124390;
+    struct ActorFlags {
+        u8 pad0[0x70];
+        u32 pad70 : 28;
+        u32 active : 1;
+        u32 pad70_0 : 3;
+    };
+    s32 var_s1;
+    Actor *var_s0;
+    Actor *var_v0;
+
+    if (arg0 == 1) {
+        var_s1 = 0xA;
+    } else {
+        var_s1 = func_80106730();
+    }
+    var_v0 = func_801068A8(&D_80124390);
+    var_s0 = var_v0;
+    if ((var_v0 != NULL) && (var_s1 > 0)) {
+loop_5:
+        if (((struct ActorFlags *)var_v0)->active && (func_80103AC0(var_s0) == 0)) {
+            func_8010381C(var_s0);
+        }
+        var_v0 = func_80106920(&D_80124390);
+        var_s0 = var_v0;
+        var_s1 -= 1;
+        if ((var_v0 != NULL) && (var_s1 > 0)) {
+            goto loop_5;
+        }
+    }
+}
 
 /* extern */
 
 void func_800FFDBC(void) {
-    s32 func_8010381C(s32);
+    void func_8010381C(Actor *);
     s32 func_801067C4(s32 *);
     s32 func_8010682C(s32 *);
-    s32 var_a0;
+    Actor *var_a0;
     s32 sp20;
 
     if ((var_a0 = func_801067C4(&sp20)) != 0) {

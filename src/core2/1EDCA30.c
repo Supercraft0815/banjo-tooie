@@ -139,9 +139,9 @@ void func_80103AA0(u8 *arg0)
 
 /* extern */
 
-void func_80103AC0(void **arg0) {
+s32 func_80103AC0(Actor *arg0) {
     s32 func_800D6C34(u16);
-    func_800D6C34((*(u16 *)((s8 *)(*arg0) + (0x14))));
+    return func_800D6C34((*(u16 *)((s8 *)(arg0->unk0) + (0x14))));
 }
 
 /* extern */
