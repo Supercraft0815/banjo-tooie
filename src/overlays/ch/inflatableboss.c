@@ -267,7 +267,20 @@ void func_8080200C_chinflatableboss(u8 *arg0, f32 *arg1, f32 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_808023B0_chinflatableboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80802450_chinflatableboss.s")
+/* extern */
+
+void func_80802450_chinflatableboss(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    f32 func_80101F24(Actor *);
+    void func_80102FDC(Actor *, f32);
+    f32 func_808023B0_chinflatableboss(Actor *);
+    Actor *sp1C;
+    f32 sp18;
+
+    sp1C = func_80100094(arg0, 0);
+    sp18 = sp1C->rotation[0] - func_808023B0_chinflatableboss(arg0);
+    func_80102FDC(arg0, sp1C->rotation[0] - (func_80101F24(arg0) * sp18));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_808024BC_chinflatableboss.s")
 
