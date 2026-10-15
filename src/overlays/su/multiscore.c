@@ -98,7 +98,39 @@ void sumultiscore_entrypoint_5(struct Multi *arg0, s32 arg1, s32 arg2, s32 arg3)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/func_80800BFC_sumultiscore.s")
+/* extern */
+
+void func_80800BFC_sumultiscore(struct Multi *arg0, s32 arg1, struct Entry *arg2) {
+    s16 _badeathmatch_entrypoint_9(s32, s32);
+    f32 func_80013970(f32);
+    f32 func_800D8FF8(void);
+    s32 func_800F1574(f32 *, f32);
+    f32 mlAbsF(f32);
+    s32 var_a1;
+    s32 sp38;
+    struct Multi *row;
+    f32 temp_f0;
+    s32 integerPart;
+
+    if (arg2->unk6 != 0) {
+        row = (struct Multi *)((u8 *)arg0 + arg1 * sizeof(struct Row));
+        if (row->rows[0].previous == 3) {
+            sp38 = arg2->unk1C;
+            arg2->unk8 = _badeathmatch_entrypoint_9(func_800F53D0(arg1), sp38);
+        }
+        if (func_800F1574(&arg2->unk14, func_800D8FF8()) != 0) {
+            var_a1 = (s32)(row->rows[0].entries + arg0->order[row->rows[0].previous]);
+            ((struct Entry *)var_a1)->unk6 = arg2->unk6;
+            row->rows[0].previous = 0;
+            arg2->unk6 = 0;
+        } else {
+        temp_f0 = arg2->unk14;
+        integerPart = (s32)temp_f0;
+        temp_f0 -= (f32)integerPart;
+        arg2->unk5 = (s32)(mlAbsF(func_80013970(temp_f0 * 720.0f)) * 255.99f);
+        }
+    }
+}
 
 /* extern */
 
@@ -127,7 +159,7 @@ void func_80800D64_sumultiscore(s32 arg0, s32 arg1, void *arg2) {
 void func_80800DD0_sumultiscore(s32 arg0, s32 arg1, u8 *arg2) {
     f32 func_800D8FF8();
     u8 func_800F1418(s32, s32);
-    s32 func_800F1574(u8 *, f32);
+    s32 func_800F1574(f32 *, f32);
     u8 temp_v0;
 
     if ((*(f32 *)((s8 *)(arg2) + (0x14))) != 0.0f) {
