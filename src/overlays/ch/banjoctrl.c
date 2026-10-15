@@ -7,7 +7,27 @@ OSThread *chbanjoctrl_entrypoint_0(void)
     return (OSThread *) D_80801270_chbanjoctrl;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_8080000C_chbanjoctrl.s")
+/* extern */
+
+void func_8080000C_chbanjoctrl(Actor *arg0) {
+    s32 func_800EA05C();
+    void func_80101FDC(Actor *, u32);
+    void func_80800098_chbanjoctrl(Actor *);
+    s32 state;
+
+    state = (s32) arg0->rotation[1];
+    if (state == 3) {
+        arg0->position[0] = 0.0f;
+        arg0->position[2] = 0.0f;
+        if (func_800EA05C() == 0x12B) {
+            arg0->unk64_20 = 0;
+        } else {
+            arg0->unk64_20 = 1;
+        }
+    }
+    func_80101FDC(arg0, state);
+    func_80800098_chbanjoctrl(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800098_chbanjoctrl.s")
 
