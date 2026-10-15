@@ -102,7 +102,38 @@ s32 func_808002E4_gcdialogexec(volatile u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80800478_gcdialogexec.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_8080052C_gcdialogexec.s")
+void func_8080052C_gcdialogexec(u8 *arg0) {
+    int _gczoombox_entrypoint_11();
+    s32 _gczoombox_entrypoint_20(s32, f32, s32, s32, f32, s32, s32);
+    s32 _gczoombox_entrypoint_26(s32, s32, f32, f32, s32);
+    s32 _gczoombox_entrypoint_5(s32, s32, s32, s32, s32);
+    int _gczoombox_entrypoint_8();
+    s32 _gczoombox_entrypoint_9(s32);
+    u32 *_gldbstring_entrypoint_0(u32 *, u32);
+    u32 *_gldbstring_entrypoint_1(u32 *, s16);
+    void _gldbstring_entrypoint_2(s32);
+    void func_800E715C(u8 *, u8 *);
+    extern f32 D_80802EA0_gcdialogexec[];
+    void func_800C0890(s32, s32);
+    u8 *sp30[4];
+
+    if ((*(s8 *)((s8 *)(arg0) + (0x158))) >= 0) {
+        func_800E715C(sp30[0] = arg0 + 0x130, (u8 *)_gldbstring_entrypoint_1(_gldbstring_entrypoint_0(0, 0x1865), (*(s8 *)((s8 *)(arg0) + (0x158)))));
+        _gldbstring_entrypoint_2(0x1865);
+        {
+        f32 temp_f0;
+        s32 temp_v0_2;
+        temp_v0_2 = _gczoombox_entrypoint_5(0x72, 0x44, 2, 0, (s32)func_800C0890);
+        (*(s32 *)((s8 *)(arg0) + (0x12C))) = temp_v0_2;
+        temp_f0 = D_80802EA0_gcdialogexec[*(s8 *)(arg0 + 0x158)];
+        _gczoombox_entrypoint_26(temp_v0_2, (s32) ((304.0f - (temp_f0 * 216.0f)) * 0.5f), 1.0f, temp_f0, 0);
+        }
+        _gczoombox_entrypoint_20((*(s32 *)((s8 *)(arg0) + (0x12C))), 100.0f, 0, 2, 0.1f, 0, 0);
+        _gczoombox_entrypoint_8((*(s32 *)((s8 *)(arg0) + (0x12C))), sp30[0]);
+        _gczoombox_entrypoint_9((*(s32 *)((s8 *)(arg0) + (0x12C))));
+        _gczoombox_entrypoint_11((*(s32 *)((s8 *)(arg0) + (0x12C))));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_8080064C_gcdialogexec.s")
 
