@@ -24,7 +24,28 @@ void func_80800054_chmumboskullfakearchpanellava(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/skullfakearchpanellava/func_8080008C_chmumboskullfakearchpanellava.s")
+s32 func_8080008C_chmumboskullfakearchpanellava(Actor *arg0, s32 arg1, s32 arg2) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800C4AF0(f32 *, void *);
+    s32 func_800DA544(s32);
+    extern s32 D_80800160_chmumboskullfakearchpanellava;
+    extern s32 D_808001CC_chmumboskullfakearchpanellava;
+    f32 *temp_s0;
+    s32 result;
+
+    if (arg1 == 0x40) {
+        temp_s0 = arg0->position;
+        _chexploder_entrypoint_3(arg0, temp_s0, 0xC);
+        func_800BABB8(0, temp_s0, temp_s0, arg0->scale, &D_80800160_chmumboskullfakearchpanellava);
+        func_800C4AF0(temp_s0, &D_808001CC_chmumboskullfakearchpanellava);
+        func_800DA544(func_80800000_chmumboskullfakearchpanellava());
+        result = 1;
+    } else {
+        return 0;
+    }
+    return result;
+}
 
 OSThread *chmumboskullfakearchpanellava_entrypoint_0(void)
 {
