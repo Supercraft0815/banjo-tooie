@@ -424,7 +424,41 @@ void func_808021D4_chfactoryrobot(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80802240_chfactoryrobot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80802398_chfactoryrobot.s")
+/* extern */
+
+s32 func_80802398_chfactoryrobot(Actor *arg0) {
+    s32 _subaddiefind_entrypoint_10(Actor *, s32, u32);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_808025D4_chfactoryrobot(Actor *);
+    struct RobotFlags {
+        u8 pad[0x7E];
+        u16 initialized : 1;
+        u16 remaining : 15;
+    };
+    struct RobotData {
+        Unk80132ED0 *markers[4];
+        u8 count;
+    };
+    Actor *robot;
+    struct RobotData *data;
+
+    if (arg0->unk7A_5) {
+        return 0;
+    }
+    if (_subaddiefind_entrypoint_10(arg0, 0x3BF, arg0->unk74_7) == 0) {
+        return 0;
+    }
+    robot = func_80106790(arg0->unk3C);
+    data = func_80100094(robot, 0);
+    if (!((struct RobotFlags *)robot)->initialized) {
+        func_808025D4_chfactoryrobot(robot);
+        ((struct RobotFlags *)robot)->initialized = 1;
+    }
+    data->markers[data->count] = arg0->unk0;
+    data->count++;
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80802470_chfactoryrobot.s")
 
