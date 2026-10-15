@@ -1,5 +1,13 @@
 #include "common.h"
 
+typedef s32 (*GameDataCallback)(void);
+typedef struct {
+    GameDataCallback getSize;
+    GameDataCallback unknown;
+    void (*write)(u8 *, s32, u32, s32 *);
+} GameDataEntry;
+extern GameDataEntry D_808004F0_glgamedata[];
+
 s32 func_80800000_glgamedata() 
 {
     return 0x2;
@@ -17,13 +25,6 @@ s32 func_80800084_glgamedata(s32 *arg0) {
 }
 
 void func_80800098_glgamedata(u8 *arg0, s32 *arg1, u8 arg2) {
-    typedef s32 (*GameDataCallback)(void);
-    typedef struct {
-        GameDataCallback getSize;
-        GameDataCallback unknown;
-        void (*write)(u8 *, s32, u32, s32 *);
-    } GameDataEntry;
-    extern GameDataEntry D_808004F0_glgamedata[];
     s32 size;
     u8 *data;
 
@@ -132,7 +133,39 @@ loop_3:
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamedata/glgamedata_entrypoint_5.s")
+s32 glgamedata_entrypoint_5(s32 *arg0) {
+    s32 offset;
+    s32 size;
+    u8 type;
+    u8 *data;
+    u8 *sizePtr;
+    GameDataCallback callback;
+
+    offset = func_808002CC_glgamedata(arg0);
+    if (offset == 0) {
+        return 2;
+    }
+    do {
+        data = (u8 *)arg0 + offset;
+        type = *data++;
+        sizePtr = data;
+        if (type >= 7) {
+            return 2;
+        }
+        callback = D_808004F0_glgamedata[type].getSize;
+        if (callback != NULL) {
+            size = callback();
+        } else {
+            size = 0;
+        }
+        if (size != *data) {
+            return 1;
+        }
+        offset += *sizePtr;
+        offset += 2;
+    } while (type != 0);
+    return 0;
+}
 
 void glgamedata_entrypoint_6(u8 *arg0) {
     s32 i;
