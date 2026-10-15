@@ -256,7 +256,35 @@ void func_8080145C_bsbfly(PlayerState *self) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_808014E8_bsbfly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_808015C4_bsbfly.s")
+/* extern */
+
+void func_808015C4_bsbfly(PlayerState *arg0) {
+    void _badust_entrypoint_9(void *);
+    f32 anctrl_getAnimTimer(struct anctrl_s *);
+    int anctrl_isAt(struct anctrl_s *, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void func_8009DF18(PlayerState *, s32, f32, s32);
+    struct anctrl_s *sp24;
+    struct anctrl_s *temp_v0;
+
+    temp_v0 = baanim_getAnimCtrlPtr(arg0);
+    sp24 = temp_v0;
+    if (anctrl_isAt(temp_v0, 0.3659f) != 0) {
+        func_8009DF18(arg0, 0x417, 1.0f, 0x36B0);
+        func_8009DF18(arg0, 0x4454, 1.0f, 0x6D60);
+    }
+    if (anctrl_isAt(sp24, 0.6862f) != 0) {
+        func_8009DF18(arg0, 0x417, 0.8f, 0x4650);
+        func_8009DF18(arg0, 0x427, 1.0f, 0x55F0);
+    }
+    if (anctrl_isAt(sp24, 0.92f) != 0) {
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    }
+    if (anctrl_getAnimTimer(sp24) < 0.8f) {
+        _badust_entrypoint_9(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_808016B4_bsbfly.s")
 
