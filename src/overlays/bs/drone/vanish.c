@@ -33,7 +33,27 @@ void func_8080021C_bsdronevanish(void *arg0) {
     func_8080019C_bsdronevanish((*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x188)))) + (4))), 0x9E2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/vanish/func_808002A4_bsdronevanish.s")
+/* extern */
+
+void func_808002A4_bsdronevanish(void *arg0) {
+    f32 func_800D8FF8(void);
+    s32 func_808000CC_bsdronevanish(void *);
+    f32 delta;
+    void *temp_v0;
+
+    delta = func_800D8FF8();
+    temp_v0 = (*(void **)((s8 *)(arg0) + (0x188)));
+    (*(f32 *)((s8 *)(temp_v0) + (0x10))) = (f32) ((*(f32 *)((s8 *)(temp_v0) + (0x10))) - delta);
+    if ((*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x188)))) + (0x10))) < 0.0f) {
+        do {
+            func_808000CC_bsdronevanish(arg0);
+            temp_v0 = (*(void **)((s8 *)(arg0) + (0x188)));
+            (*(f32 *)((s8 *)(temp_v0) + (8))) += 0.02f * (*(f32 *)((s8 *)(temp_v0) + (0xC)));
+            temp_v0 = (*(void **)((s8 *)(arg0) + (0x188)));
+            (*(f32 *)((s8 *)(temp_v0) + (0x10))) += 0.02f;
+        } while ((*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x188)))) + (0x10))) < 0.0f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/vanish/bsdronevanish_entrypoint_0.s")
 
