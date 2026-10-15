@@ -21,7 +21,20 @@ u32 func_808001F8_chballoonbomb(s32 unused, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonbomb/func_80800230_chballoonbomb.s")
+/* extern */
+
+void func_80800230_chballoonbomb(Actor *arg0, s32 arg1, s32 arg2) {
+    f32 func_800D8FF8(void);
+    s32 func_8010B990(Actor *, s32);
+    void func_80800294_chballoonbomb(Actor *);
+    f32 delta;
+
+    delta = func_800D8FF8();
+    (*(f32 *)((s8 *)(arg0) + (0x2C))) = (f32) ((*(f32 *)((s8 *)(arg0) + (0x2C))) - (500.0f * delta));
+    if (func_8010B990(arg0, 0x500007) & 0x20) {
+        func_80800294_chballoonbomb(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonbomb/func_80800294_chballoonbomb.s")
 
