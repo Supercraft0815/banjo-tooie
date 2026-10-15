@@ -88,6 +88,22 @@ Actor *subaddiefind_entrypoint_11(s32 arg0, u32 arg1) {
     return NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/find/subaddiefind_entrypoint_12.s")
+/* extern */
+
+Actor *subaddiefind_entrypoint_12(s32 arg0) {
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    Actor *actor;
+    s32 sp20;
+
+    actor = (Actor *)func_801067C4(&sp20);
+    while (actor != NULL) {
+        if (!actor->unk64_17 && arg0 == actor->pad6C_21) {
+            return actor;
+        }
+        actor = (Actor *)func_8010682C(&sp20);
+    }
+    return NULL;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/find/subaddiefind_entrypoint_13.s")
