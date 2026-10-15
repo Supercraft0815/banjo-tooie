@@ -2446,7 +2446,32 @@ s32 bsfirstp_entrypoint_35(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80808B24_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80808B8C_bsfirstp.s")
+/* extern */
+
+void func_80808B8C_bsfirstp(struct player_state_s *arg0) {
+    f32 func_800D9004(void);
+    s32 func_80808CAC_bsfirstp(struct player_state_s *, s32);
+    s32 temp_v0;
+
+    if (func_80802444_bsfirstp(arg0) == 1) {
+        if ((*(s32 *)((s8 *)(arg0) + (0x15C))) >= 2) {
+            (*(s32 *)((s8 *)(arg0) + (0x160))) = 0;
+            func_80808CAC_bsfirstp(arg0, 1);
+        }
+    } else {
+        temp_v0 = (*(s32 *)((s8 *)(arg0) + (0x15C)));
+        if (temp_v0 != 0) {
+            if (temp_v0 == 1) {
+                (*(f32 *)((s8 *)(arg0) + (0x16C))) = (f32) ((*(f32 *)((s8 *)(arg0) + (0x16C))) - func_800D9004());
+                if ((*(f32 *)((s8 *)(arg0) + (0x16C))) < 0.0f) {
+                    func_80808CAC_bsfirstp(arg0, 1);
+                }
+            } else if (func_80800228_bsfirstp(arg0) != 0) {
+                func_80808CAC_bsfirstp(arg0, 1);
+            }
+        }
+    }
+}
 
 void func_80808C48_bsfirstp(struct player_state_s *arg0) {
     s32 func_80808CAC_bsfirstp(struct player_state_s *, s32);
