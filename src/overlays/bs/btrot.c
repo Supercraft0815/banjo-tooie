@@ -1,4 +1,5 @@
 #include "common.h"
+typedef struct anctrl_s AnimCtrl;
 
 void bs_setState();
 
@@ -25,6 +26,9 @@ s32 func_80800000_bsbtrot(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 /* extern */
 
 typedef struct PlayerState PlayerState;
+s32 func_8008E260(PlayerState *);
+s32 player_inWater(PlayerState *);
+void func_800951B4(PlayerState *);
 
 void func_808000DC_bsbtrot(PlayerState *arg0, s32 arg1) {
     void func_8009DE38(PlayerState *, s32, f32);
@@ -355,15 +359,15 @@ s32 bsbtrot_entrypoint_23(s32 arg0) {
 void bsbtrot_entrypoint_25(void *arg0) {
     s32 func_8008E3E8(s32);
     s32 bakey_pressed(s32, s32);
-    s32 baanim_getAnimCtrlPtr();
-    void anctrl_setSubrange(s32, f32, f32);
-    void anctrl_setDuration(s32, f32);
-    s32 anctrl_setPlaybackType(s32, s32);
-    s32 anctrl_isStopped(s32);
+    AnimCtrl *baanim_getAnimCtrlPtr(PlayerState *);
+    void anctrl_setSubrange(AnimCtrl *, f32, f32);
+    void anctrl_setDuration(AnimCtrl *, f32);
+    void anctrl_setPlaybackType(AnimCtrl *, s32);
+    s32 anctrl_isStopped(AnimCtrl *);
     f32 baphysics_get_target_horizontal_velocity(void *);
     void func_8009BB24(void *, f32 *);
     s32 next_state;
-    s32 anim_ctrl;
+    AnimCtrl *anim_ctrl;
     f32 velocity[3];
 
     next_state = 0;
@@ -383,7 +387,7 @@ void bsbtrot_entrypoint_25(void *arg0) {
             if (func_8008DF8C(arg0, 0x8C) != 0) {
                 anctrl_setSubrange(anim_ctrl, 0.0f, 0.7328f);
                 anctrl_setDuration(anim_ctrl, 1.4f);
-                anctrl_setPlaybackType((s32)anim_ctrl, 1);
+                anctrl_setPlaybackType(anim_ctrl, 1);
                 *(u32 *)((u8 *)arg0 + 0x15C) = 1;
             }
             break;
@@ -393,7 +397,7 @@ void bsbtrot_entrypoint_25(void *arg0) {
                 func_8009FE58(arg0);
                 anctrl_setSubrange(anim_ctrl, 0.0f, 0.8798f);
                 anctrl_setDuration(anim_ctrl, 0.9f);
-                anctrl_setPlaybackType((s32)anim_ctrl, 1);
+                anctrl_setPlaybackType(anim_ctrl, 1);
                 func_8009D2D8(arg0, 1);
                 if (baphysics_get_target_horizontal_velocity(arg0) > 220.0f) {
                     func_8009D658(arg0);
@@ -410,7 +414,7 @@ void bsbtrot_entrypoint_25(void *arg0) {
             if (anctrl_isStopped(anim_ctrl) != 0) {
                 anctrl_setSubrange(anim_ctrl, 0.0f, 0.8898f);
                 anctrl_setDuration(anim_ctrl, 2.0f);
-                anctrl_setPlaybackType((s32)anim_ctrl, 1);
+                anctrl_setPlaybackType(anim_ctrl, 1);
                 *(u32 *)((u8 *)arg0 + 0x15C) = 3;
             }
             _badust_entrypoint_1(arg0);
@@ -423,7 +427,7 @@ void bsbtrot_entrypoint_25(void *arg0) {
             if (anctrl_isStopped(anim_ctrl) != 0) {
                 anctrl_setSubrange(anim_ctrl, 0.0f, 1.0f);
                 anctrl_setDuration(anim_ctrl, 1.2f);
-                anctrl_setPlaybackType((s32)anim_ctrl, 1);
+                anctrl_setPlaybackType(anim_ctrl, 1);
                 *(u32 *)((u8 *)arg0 + 0x15C) = 4;
             }
             _badust_entrypoint_1(arg0);
@@ -481,7 +485,38 @@ s32 bsbtrot_entrypoint_31(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_32.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_33.s")
+/* extern */
+
+void bsbtrot_entrypoint_33(PlayerState *arg0) {
+    s32 _bareact_entrypoint_2();
+    s32 anctrl_isStopped(AnimCtrl *);
+    AnimCtrl *baanim_getAnimCtrlPtr(PlayerState *);
+    int baanim_isAt(PlayerState *, f32);
+    int baanim_isStopped(PlayerState *);
+    s32 func_8008E260(PlayerState *);
+    void func_800951B4(PlayerState *);
+    s32 player_inWater(PlayerState *);
+    int player_isStable(PlayerState *);
+    s32 sp24;
+
+    sp24 = 0;
+    if (_bareact_entrypoint_2() == 2) {
+        func_80800438_bsbtrot(arg0);
+    }
+    if (baanim_isAt(arg0, 0.3f) != 0) {
+        func_800951B4(arg0);
+    }
+    if (func_8008E260(arg0) != 0) {
+        sp24 = 0x3D;
+    }
+    if ((player_isStable(arg0) != 0) && (baanim_isStopped(arg0) != 0)) {
+        sp24 = 0x15;
+    }
+    if ((anctrl_isStopped(baanim_getAnimCtrlPtr(arg0)) != 0) && (player_inWater(arg0) != 0)) {
+        sp24 = 0x2D;
+    }
+    bs_setState(arg0, sp24);
+}
 
 void bsbtrot_entrypoint_34(void *arg0) {
     void func_8009BD88(void *);
