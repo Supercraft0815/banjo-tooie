@@ -132,7 +132,36 @@ void func_808003E8_chcredits(s32 *arg0, s32 arg1) {
 void func_80800BCC_chcredits(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80800BD4_chcredits.s")
+/* extern */
+
+void func_80800BD4_chcredits(s32 *arg0) {
+    s32 func_800DA9E4(s32, s32);
+    s32 func_800EA05C();
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_80800710_chcredits(s32 *, s32);
+    struct {
+        s32 marker;
+        f32 position[3];
+        u8 pad10[0x6A];
+        u8 flags7A : 2;
+    } *actor = (void *)arg0;
+    s32 temp_v0;
+    f32 zero = 0.0f;
+
+    actor->flags7A = 0;
+    func_800EFA4C(actor->position, zero, zero, zero);
+    temp_v0 = func_800EA05C();
+    if ((temp_v0 == 0x19C) || (temp_v0 == 0x19D)) {
+        if (func_800DA9E4(0x650, 0) != 0) {
+            func_80800710_chcredits(arg0, 6);
+        } else {
+            func_80800710_chcredits(arg0, 7);
+        }
+        func_808003E8_chcredits(arg0, 0);
+        return;
+    }
+    func_808002A4_chcredits(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80800C84_chcredits.s")
 
