@@ -14,7 +14,36 @@ OSThread *chmrsicecube_entrypoint_1(void)
     return (OSThread *) D_808009E4_chmrsicecube;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/func_80800018_chmrsicecube.s")
+/* extern */
+
+void func_80800018_chmrsicecube(Actor *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    void _subaddielink_entrypoint_0(void *);
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    u32 func_8010A5B0(Actor *, s32);
+    void func_8010A800(Actor *, s32);
+    u8 *sp24;
+    s32 temp_v0;
+
+    sp24 = func_80100094(arg0, 0);
+    func_8010A800(arg0, 0);
+    _subaddielink_entrypoint_0(sp24);
+    temp_v0 = arg0->unk74_7 - 0x32;
+    arg0->actorData[4] = temp_v0;
+    if (temp_v0 == 0) {
+        func_8010A5B0(arg0, func_800DA298(0x1C5));
+        if (_glcutDll_entrypoint_20() != 0) {
+            func_80102424(arg0, 7);
+            return;
+        }
+        if (func_800DA298(0x378) != 0) {
+            func_800FFAB0(arg0);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/func_808000BC_chmrsicecube.s")
 
@@ -94,7 +123,7 @@ void func_808006C4_chmrsicecube(Actor *arg0) {
     void _chbounce_entrypoint_5(s32, void *);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    s32 _subaddielink_entrypoint_0(u8 *);
+    void _subaddielink_entrypoint_0(void *);
     Actor *_subaddielink_entrypoint_4(u8 *);
     void func_800DA544(s32);
     void func_800FFAB0(Actor *);
