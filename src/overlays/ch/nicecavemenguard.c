@@ -62,7 +62,38 @@ void func_808005D4_chnicecavemenguard(Actor *arg0, s32 arg1, s32 arg2) {
 void func_80800600_chnicecavemenguard(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemenguard/func_80800608_chnicecavemenguard.s")
+void func_80800608_chnicecavemenguard(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    void func_800C301C(u8, s32);
+    void func_800C3058(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C3BDC(u8);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    f32 func_800DC178(f32, f32);
+    s32 func_80101E14(Actor *, f32);
+    extern u32 D_80800990_chnicecavemenguard;
+    extern u32 D_8080099C_chnicecavemenguard;
+    extern f32 D_808009AC_chnicecavemenguard[];
+    extern f32 D_808009BC_chnicecavemenguard[];
+    extern s16 D_808009CC_chnicecavemenguard[];
+    extern s16 D_808009D4_chnicecavemenguard[];
+    extern s32 D_808009DC_chnicecavemenguard;
+    s32 i;
+
+    if (arg0->unk5F == 0) {
+        arg0->unk5F = func_800C4350(0, arg0->position, &D_808009DC_chnicecavemenguard);
+    }
+    for (i = 0; i < 4; i++) {
+        if (func_80101E14(arg0, D_808009AC_chnicecavemenguard[i]) != 0) {
+            func_800C301C(arg0->unk5F, D_808009CC_chnicecavemenguard[i]);
+            func_800C31DC(arg0->unk5F, D_808009BC_chnicecavemenguard[i] + func_800DC178(-0.02f, 0.02f));
+            func_800C3058(arg0->unk5F, D_808009D4_chnicecavemenguard[i]);
+            func_800C3BDC(arg0->unk5F);
+            break;
+        }
+    }
+    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80800990_chnicecavemenguard, &D_8080099C_chnicecavemenguard);
+}
 
 void func_80800730_chnicecavemenguard(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
@@ -71,14 +102,14 @@ void func_80800730_chnicecavemenguard(Actor *arg0) {
 }
 
 void func_8080075C_chnicecavemenguard(Actor *arg0) {
-    s32 _subaddieaudioquick_entrypoint_4(s32, s32, s32 *, s32 *);
-    struct AudioValues { s32 values[3]; };
+    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    struct AudioValues { u32 values[3]; };
     extern struct AudioValues D_808009F0_chnicecavemenguard;
-    extern s32 D_808009FC_chnicecavemenguard;
+    extern u32 D_808009FC_chnicecavemenguard;
     struct AudioValues sp1C;
 
     sp1C = D_808009F0_chnicecavemenguard;
-    _subaddieaudioquick_entrypoint_4((s32)arg0, (s32)((s8 *)arg0 + 4), &D_808009FC_chnicecavemenguard, sp1C.values);
+    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_808009FC_chnicecavemenguard, sp1C.values);
 }
 
 /* extern */
