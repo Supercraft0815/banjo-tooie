@@ -82,7 +82,24 @@ f32 func_80800248_bsbtrot(s32 arg0) {
     return func_80800070_bsbtrot(arg0, 0.56f, 0.51f, 1.2f, 1.4f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_808002A4_bsbtrot.s")
+/* extern */
+
+void func_808002A4_bsbtrot(PlayerState *arg0, s32 arg1) {
+    f32 anctrl_getAnimTimer(AnimCtrl *);
+    int anctrl_getIndex(AnimCtrl *);
+    void anctrl_setIndex(AnimCtrl *, s32);
+    void anctrl_setStart(AnimCtrl *, f32);
+    void anctrl_start(AnimCtrl *);
+    AnimCtrl *baanim_getAnimCtrlPtr(PlayerState *);
+    AnimCtrl *temp_v0;
+
+    temp_v0 = baanim_getAnimCtrlPtr(arg0);
+    if (anctrl_getIndex(temp_v0) != arg1) {
+        anctrl_setIndex(temp_v0, arg1);
+        anctrl_setStart(temp_v0, anctrl_getAnimTimer(temp_v0));
+        anctrl_start(temp_v0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80800308_bsbtrot.s")
 
