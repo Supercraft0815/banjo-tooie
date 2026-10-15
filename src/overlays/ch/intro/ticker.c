@@ -132,7 +132,36 @@ void func_808003BC_chintroticker(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/ticker/func_808004A8_chintroticker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/ticker/func_80800530_chintroticker.s")
+void func_80800530_chintroticker(s32 arg0, s32 arg1) {
+    s32 func_808004A8_chintroticker(s32, s16);
+    extern s16 D_808008C4_chintroticker;
+    s16 *var_v1;
+    s16 temp_a1;
+    u32 var_v0;
+
+    var_v1 = &D_808008C4_chintroticker;
+    for (var_v0 = 0; var_v0 != 0x1C; var_v0++) {
+        if (arg1 == *var_v1) {
+            break;
+        }
+        var_v1 += 2;
+    }
+    if (var_v0 < 0x1CU) {
+loop_4:
+        temp_a1 = var_v1[1];
+        var_v0 += 1;
+        if (temp_a1 < 0) {
+            func_808004A8_chintroticker(arg0, temp_a1);
+            return;
+        }
+        var_v1 += 2;
+        if (var_v0 >= 0x1CU) {
+
+        } else {
+            goto loop_4;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/ticker/func_808005AC_chintroticker.s")
 
