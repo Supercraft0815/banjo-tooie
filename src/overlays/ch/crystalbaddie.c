@@ -76,4 +76,32 @@ void func_808004D4_chcrystalbaddie(Actor *arg0, s32 *arg1) {
     (*(u8 *)((s8 *)(arg0) + 0x64)) = (u8)((*(u8 *)((s8 *)(arg0) + 0x64)) & 0xFFFE);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crystalbaddie/func_8080052C_chcrystalbaddie.s")
+void func_8080052C_chcrystalbaddie(s32 arg0) {
+    s32 _chexploder_entrypoint_12(s32, s32);
+    s32 _chexploder_entrypoint_14(s32, s32);
+    s32 _chexploder_entrypoint_15(s32, s32, s32);
+    s32 _chexploder_entrypoint_9(s32, s32, s32);
+    s32 _subaddieaudioquick_entrypoint_2(s32, s32, s32 *);
+    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+    s32 func_800FFAB0(s32);
+    s32 func_80101080();
+    s32 func_80106790(s32);
+    s32 func_80107070(s32, s32);
+    extern s32 D_808006BC_chcrystalbaddie;
+    extern s32 D_808006CC_chcrystalbaddie;
+    s32 temp_a0;
+    s32 temp_v0;
+
+    temp_v0 = func_80106790(func_80101080());
+    _chexploder_entrypoint_12(temp_v0, 0x14);
+    _chexploder_entrypoint_14(temp_v0, 3);
+    _chexploder_entrypoint_9(temp_v0, 2, 0);
+    _chexploder_entrypoint_9(temp_v0, 3, 2);
+    _chexploder_entrypoint_15(temp_v0, 2, 0x3F000000);
+    temp_a0 = temp_v0 + 0x18;
+    func_800BBCB8(temp_a0, temp_a0, 0x3F800000, 4, &D_808006CC_chcrystalbaddie);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_808006BC_chcrystalbaddie);
+    if (func_80107070(arg0, 3) == 0) {
+        func_800FFAB0(arg0);
+    }
+}
