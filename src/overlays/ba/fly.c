@@ -80,7 +80,7 @@ void bafly_entrypoint_7(void *arg0, s32 arg1) {
 /* extern */
 
 void bafly_entrypoint_9(s32 arg0) {
-    f32 _bafpctrl_entrypoint_3(s32);
+    f32 _bafpctrl_entrypoint_3(PlayerState *);
     s32 bakey_held(s32, s32);
     s32 baroll_setIdeal(s32, f32);
     f32 bastick_getX(s32);
@@ -202,6 +202,15 @@ void bafly_entrypoint_19(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_20.s")
+void bafly_entrypoint_20(PlayerState *arg0) {
+    f32 _bafpctrl_entrypoint_3(PlayerState *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_8009BFE4(PlayerState *, f32, f32);
+    f32 value;
+
+    value = _bafpctrl_entrypoint_3(arg0);
+    value = func_800F10B4(value, 0.1f, 1.0f, value * value, 1.0f);
+    func_8009BFE4(arg0, 500.0f * value, 1.2f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_21.s")
