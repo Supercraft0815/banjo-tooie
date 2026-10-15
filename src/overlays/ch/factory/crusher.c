@@ -14,7 +14,43 @@ OSThread *chfactorycrusher_entrypoint_1(void)
     return (OSThread *) D_80800A98_chfactorycrusher;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/crusher/func_80800018_chfactorycrusher.s")
+/* extern */
+
+void func_80800018_chfactorycrusher(Actor *arg0) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800EF934(f32 *, f32 *, f32);
+    f32 func_800F0E00(f32, f32);
+    f32 func_800F13F0(f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(Actor *, u32);
+    s32 func_80104004(Actor *, f32 *, f32 *);
+    void func_8010A63C(void *);
+    f32 *temp_s3;
+    f32 sp50[3];
+    f32 sp44[3];
+    s32 i;
+
+    func_800EE7F8((f32 *)&arg0->actorData[0], arg0->position);
+    func_800EE7F8((f32 *)&arg0->actorData[4], arg0->position);
+    func_800EF1B8((f32 *)&arg0->actorData[4], arg0->rotation[1], 500.0f);
+    arg0->unk58 = 0.0f;
+    func_8010A63C(arg0);
+    temp_s3 = func_80100094(arg0, 0);
+    if (func_80104004(arg0, sp50, sp44) != 0) {
+        func_800EF934(sp50, sp50, arg0->rotation[1]);
+        func_800EF934(sp44, sp44, arg0->rotation[1]);
+        for (i = 0; i < 3; i++) {
+            temp_s3[i] = func_800F13F0(sp50[i], sp44[i]);
+            temp_s3[i + 3] = func_800F0E00(sp50[i], sp44[i]);
+        }
+    }
+    if (arg0->unk74_7 != 0x32) {
+        func_80101FDC(arg0, 6);
+        func_80103110(arg0, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/crusher/func_80800150_chfactorycrusher.s")
 
