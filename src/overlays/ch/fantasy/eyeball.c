@@ -7,7 +7,7 @@ void func_80800000_chfantasyeyeball(Actor *arg0) {
     s32 func_800D0B68(u32, u32);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
-    s32 func_808010B0_chfantasyeyeball(Actor *, u32 *, u32 *);
+    void func_808010B0_chfantasyeyeball(Actor *, f32 *, f32 *);
     if (func_800D0B68(0x4C, 1) != 0) {
         func_800FFAB0(arg0);
         return;
@@ -47,7 +47,28 @@ void func_80800F78_chfantasyeyeball(Actor *arg0, Actor *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80800FEC_chfantasyeyeball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_808010B0_chfantasyeyeball.s")
+/* extern */
+
+void func_808010B0_chfantasyeyeball(Actor *arg0, f32 *arg1, f32 *arg2) {
+    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    f32 func_800DC0C0(void);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    f32 sp64[3];
+    f32 temp_f20;
+    f32 sp54[3];
+
+    temp_f20 = func_800DC0C0() * 360.0f;
+    *arg1 = (func_800DC0C0() * 20.0f) + 20;
+    *arg2 = temp_f20;
+    for (; *arg2 < temp_f20 + 360.0f; *arg2 += 30.0f) {
+        func_800EEC30(sp54, *arg1, *arg2, 2500.0f);
+        func_800EF04C(sp54, arg0->position);
+        if (func_800BEF00(arg0->position, sp54, sp64, 0) == 0) {
+            break;
+        }
+    }
+}
 
 /* extern */
 
