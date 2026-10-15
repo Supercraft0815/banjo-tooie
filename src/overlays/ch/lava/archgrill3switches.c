@@ -5,7 +5,23 @@ void func_80800000_chlavaarchgrill3switches()
     _chswitch_entrypoint_7();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/archgrill3switches/func_80800020_chlavaarchgrill3switches.s")
+void func_80800020_chlavaarchgrill3switches(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    s32 func_80101180(s32, s32, s32);
+    switch (arg1) {
+    case 7:
+        func_80101180(0x288, arg3, 0);
+        _chswitch_entrypoint_10(arg0, arg1, arg2);
+        return;
+    case 8:
+        func_80101180(0x288, arg4, 0);
+        _chswitch_entrypoint_10(arg0, arg1, arg2);
+        return;
+    default:
+        _chswitch_entrypoint_10(arg0, arg1, arg2);
+        return;
+    }
+}
 
 /* extern */
 
