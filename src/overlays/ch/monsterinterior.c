@@ -124,7 +124,22 @@ void func_8080101C_chmonsterinterior(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_80801050_chmonsterinterior.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_80801114_chmonsterinterior.s")
+void func_80801114_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcfrontend_entrypoint_10(void);
+    s32 _subaddiemulti_entrypoint_2();
+    void func_80101FDC(Actor *, u32);
+    switch (arg1) {
+    case 0xCEC:
+        func_8080068C_chmonsterinterior(arg0);
+        return;
+    case 0x17F8:
+    case 0x17F9:
+        _subaddiemulti_entrypoint_2();
+        func_80101FDC(arg0, 6);
+        _gcfrontend_entrypoint_10();
+        return;
+    }
+}
 
 s32 func_80801180_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2) {
     void* func_80100094(Actor*, u32);
