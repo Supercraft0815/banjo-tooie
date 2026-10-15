@@ -169,7 +169,25 @@ void func_80800BD4_chcredits(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80800F50_chcredits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80801108_chcredits.s")
+void func_80801108_chcredits(Actor *arg0, Gfx **arg1) {
+    void func_800B99CC(Gfx **, s32, s32 *);
+    s32 func_80800C84_chcredits(Actor *, Gfx **);
+    s32 func_80800F50_chcredits(Actor *, Gfx **);
+    extern s32 D_80801590_chcredits;
+    s32 var_a1;
+
+    if (!arg0->unk64_19) {
+        var_a1 = 0xFF - arg0->unk6C_0;
+        if (var_a1 >= 0xF6) {
+            var_a1 = 0xFF;
+        } else if (var_a1 < 0xA) {
+            var_a1 = 0;
+        }
+        func_800B99CC(arg1, var_a1, &D_80801590_chcredits);
+    }
+    func_80800F50_chcredits(arg0, arg1);
+    func_80800C84_chcredits(arg0, arg1);
+}
 
 OSThread *chcredits_entrypoint_2(void)
 {
