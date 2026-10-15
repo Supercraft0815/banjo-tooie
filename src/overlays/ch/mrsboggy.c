@@ -98,7 +98,21 @@ void func_80800790_chmrsboggy(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggy/func_80800878_chmrsboggy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggy/func_80800910_chmrsboggy.s")
+void func_80800910_chmrsboggy(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_20(Unk80132ED0 *, s32, s32);
+
+    switch (arg0->actorData[4]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x12, arg2);
+        case 1:
+        case 2:
+            arg0->actorData[4] = 1;
+        case 3:
+            _capod_entrypoint_20(arg0->unk0, arg1, arg2);
+            break;
+    }
+}
 
 /* extern */
 
