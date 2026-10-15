@@ -41,7 +41,41 @@ void func_8080000C_chvandoor(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/vandoor/func_80800104_chvandoor.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/vandoor/func_80800280_chvandoor.s")
+/* extern */
+
+s32 func_80800280_chvandoor(Actor *arg0, s32 arg1, s32 arg2) {
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800F5A00(s32, f32 *);
+    s32 func_80101180(s32, s32, s32);
+    void func_80800388_chvandoor(Actor *, s32);
+    f32 sp1C[3];
+
+    switch (arg1) {
+    case 0x19:
+        if (arg0->unk70_10 == 1) {
+            func_800F5A00(arg2, sp1C);
+            if (func_800EEB40(sp1C, arg0->position) < 250000.0f) {
+                func_80101180(0x3CC, 7, arg0->unk74_7);
+            }
+        }
+        break;
+    case 7:
+        if (arg2 != arg0->unk74_7) {
+            return 0;
+        }
+        func_80800388_chvandoor(arg0, 2);
+        break;
+    case 8:
+        if (arg2 != arg0->unk74_7) {
+            return 0;
+        }
+        func_80800388_chvandoor(arg0, 4);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/vandoor/func_80800388_chvandoor.s")
 
