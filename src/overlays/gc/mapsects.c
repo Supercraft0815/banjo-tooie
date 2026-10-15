@@ -153,7 +153,44 @@ void gcmapsects_entrypoint_8(void *arg0) {
     *(u8 *)((u8 *)arg0 + 0x78) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/func_80801554_gcmapsects.s")
+/* extern */
+
+void func_80801554_gcmapsects(void *arg0) {
+    void func_8008FE68(f32 *);
+    s32 func_80090128();
+    s32 func_80800DC8_gcmapsects(void *, s32, f32 *);
+    s32 temp_v0;
+    f32 sp38[3];
+    s32 var_s3;
+    s32 var_s0;
+
+    func_8008FE68(sp38);
+    if (func_80090128() != 0) {
+        if ((*(u8 *)((s8 *)(arg0) + (0x80))) == 0) {
+            var_s3 = -1;
+            var_s0 = 0;
+            if ((s32) (*(u8 *)((s8 *)(arg0) + (0x77))) > 0) {
+                do {
+                    temp_v0 = func_80800DC8_gcmapsects(arg0, var_s0, sp38);
+                    if (temp_v0 != -1) {
+                        var_s3 = temp_v0;
+                    }
+                    var_s0 += 1;
+                } while (var_s0 < (s32) (*(u8 *)((s8 *)(arg0) + (0x77))));
+            }
+            (*(s16 *)((s8 *)(arg0) + (0x74))) = var_s3;
+            (*(s8 *)((s8 *)(arg0) + (0x82))) = 1;
+            return;
+        }
+        var_s0 = 0;
+        if ((s32) (*(u8 *)((s8 *)(arg0) + (0x77))) > 0) {
+            do {
+                func_80801320_gcmapsects(arg0, var_s0, sp38);
+                var_s0 += 1;
+            } while (var_s0 < (s32) (*(u8 *)((s8 *)(arg0) + (0x77))));
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/func_80801640_gcmapsects.s")
 
