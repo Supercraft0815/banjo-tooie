@@ -48,9 +48,25 @@ void gcgoto_entrypoint_2(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/goto/func_808001E0_gcgoto.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/goto/func_808003D0_gcgoto.s")
+/* extern */
 
-void gcgoto_entrypoint_3(s32 arg0, s32 arg1, s32 arg2) {
+void func_808003D0_gcgoto(s16 *arg0, s32 arg1) {
+    void func_800EE88C(f32 *, s16 *);
+    void func_808001E0_gcgoto(f32 *, s32, s32, s32);
+    f32 vec[3];
+    f32 unused[3];
+
+    if (D_80127194.unk42C == 0) {
+        if (arg0 != 0) {
+            func_800EE88C(vec, arg0);
+            func_808001E0_gcgoto(vec, arg1 >> 8, arg1 & 0xFF, 0);
+            return;
+        }
+        func_808001E0_gcgoto(NULL, arg1 >> 8, arg1 & 0xFF, 1);
+    }
+}
+
+void gcgoto_entrypoint_3(s16 *arg0, s32 arg1, s32 arg2) {
     func_808003D0_gcgoto(arg0, (arg1 << 8) + arg2);
 }
 
