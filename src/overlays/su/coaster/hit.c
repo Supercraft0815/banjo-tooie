@@ -112,4 +112,28 @@ void func_808001C8_sucoasterhit(Unk80132ED0 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/hit/func_80800AEC_sucoasterhit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/hit/sucoasterhit_entrypoint_2.s")
+/* extern */
+
+void sucoasterhit_entrypoint_2(Actor *arg0) {
+    void _subaddiejoy_entrypoint_10(void *, f32, f32);
+    void *_sucoasterdata_entrypoint_1(u32);
+    void func_80018820(s32, f32, f32);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010108C();
+    struct CoasterData {
+        u8 padding[0x44];
+        u32 flags;
+    };
+    Actor *data;
+    struct CoasterData *coaster;
+
+    data = func_80100094(arg0, 0);
+    coaster = _sucoasterdata_entrypoint_1(data->actorData[0] >> 28);
+    if (coaster->flags & 2) {
+        func_800E1610(0, 12.0f, 0.85f, arg0->position);
+        func_80018820(0, 1.5f, 0.4f);
+        _subaddiejoy_entrypoint_10(arg0, 1.5f, 0.6f);
+        func_8010108C(arg0, 0xB6, 0);
+    }
+}
