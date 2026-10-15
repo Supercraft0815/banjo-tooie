@@ -167,7 +167,21 @@ s32 func_808010F8_chcollballcontrol(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80801500_chcollballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80801578_chcollballcontrol.s")
+void func_80801578_chcollballcontrol(Unk80132ED0 *arg0, s32 arg1) {
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_8080324C_chcollballcontrol(u8 *, s32);
+    void *actor;
+
+    actor = func_80106790(arg0);
+    switch (arg1) {
+        case 0:
+            func_8080324C_chcollballcontrol(actor, 2);
+            return;
+        case 1:
+            func_8080324C_chcollballcontrol(actor, 0xB);
+            return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808015D4_chcollballcontrol.s")
 
