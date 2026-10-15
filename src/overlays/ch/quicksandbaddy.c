@@ -66,7 +66,55 @@ void chquicksandbaddy_entrypoint_0(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quicksandbaddy/func_808010A0_chquicksandbaddy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quicksandbaddy/func_80801154_chquicksandbaddy.s")
+/* extern */
+
+s32 func_80801154_chquicksandbaddy(Actor *arg0, f32 *arg1) {
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    int func_800EEF24(f32 *);
+    void *func_80100094(Actor *, u32);
+    f32 (*volatile points)[3];
+    f32 (*temp)[3];
+    f32 *position;
+    f32 (*p)[3];
+    s32 i;
+    s32 best;
+    f32 distance;
+    f32 d;
+
+    temp = func_80100094(arg0, 1);
+    best = -1;
+    if (temp != NULL) {
+        distance = 0.0f;
+        i = 0;
+        p = temp;
+        points = temp;
+do {
+            if (func_800EEF24(*p)) {
+            position = arg0->position;
+            if (best != -1) {
+                d = func_800EEB40(position, *p);
+                if (d < distance) {
+                    distance = d;
+                    best = i;
+                }
+            } else {
+                distance = func_800EEB40(position, *p);
+                best = i;
+            }
+            i++;
+            p++;
+            } else {
+                break;
+            }
+        } while (i != 3);
+        if (best != -1) {
+            func_800EE7F8(arg1, points[best]);
+        }
+        return best;
+    }
+    return -1;
+}
 
 OSThread *chquicksandbaddy_entrypoint_1(void)
 {
