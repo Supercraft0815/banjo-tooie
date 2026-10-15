@@ -318,4 +318,26 @@ int func_80801580_chnicecavemen(f32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_80801604_chnicecavemen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_808016E8_chnicecavemen.s")
+/* extern */
+
+s32 func_808016E8_chnicecavemen(Actor *arg0, s32 arg1, volatile s32 arg2) {
+    typedef struct { u8 pad[0x18]; u16 unused : 15; u16 flags : 1; } CavemanEvent;
+    s32 _chfirefx_entrypoint_5(Actor *, s32, s32);
+    void func_800DA544(s32);
+    void func_800FC6B0(u32);
+    s32 func_8010114C(s32, s32, s32);
+    void func_80101FDC(Actor *, u32);
+    void func_8010A570(Actor *);
+    (void)&arg2;
+    if (arg1 == 0x40) {
+        if (((CavemanEvent *)*(s32 *)&arg2)->flags) {
+            func_8010114C(*(s32 *)&arg2, 0x92, 0);
+        }
+        func_8010A570(arg0);
+        func_80101FDC(arg0, 2);
+        func_800DA544(arg0->actorData[4]);
+        func_800FC6B0(0xE);
+        return 1;
+    }
+    return _chfirefx_entrypoint_5(arg0, arg1, arg2);
+}
