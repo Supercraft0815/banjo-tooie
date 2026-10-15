@@ -249,7 +249,27 @@ void func_80801324_chwaspnestgame(f32 *arg0, f32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801364_chwaspnestgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_808014BC_chwaspnestgame.s")
+/* extern */
+
+void func_808014BC_chwaspnestgame(Actor *arg0, f32 *arg1) {
+    f32 func_800D8FF8(void);
+    f32 dt;
+    struct {
+        u32 unk0[4];
+        f32 x;
+        f32 y;
+        f32 z;
+    } *velocity;
+
+    dt = func_800D8FF8();
+    velocity = (void *)arg0->actorData;
+    arg0->position[0] += velocity->x * dt + arg1[0] * dt * dt;
+    arg0->position[1] += velocity->y * dt + arg1[1] * dt * dt;
+    arg0->position[2] += velocity->z * dt + arg1[2] * dt * dt;
+    velocity->x += arg1[0] * dt;
+    velocity->y += arg1[1] * dt;
+    velocity->z += arg1[2] * dt;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801590_chwaspnestgame.s")
 
