@@ -24,7 +24,26 @@ s32 func_80800000_fxstep(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/func_80800210_fxstep.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/func_808002B4_fxstep.s")
+s32 func_808002B4_fxstep(s32 arg0, f32 arg1, f32 arg2, s32 arg3) {
+    s32 func_80800078_fxstep(s32, s16, f32, s32, s32);
+    typedef struct {
+        s16 id;
+        s16 sound;
+        f32 offset;
+        s32 flags;
+        s16 scale;
+        s16 pad;
+    } StepEntry;
+    extern StepEntry D_80800AA0_fxstep[];
+    s32 i;
+    for (i = 0; D_80800AA0_fxstep[i].id != 0; i++) {
+        if (arg3 == D_80800AA0_fxstep[i].id) {
+            func_80800078_fxstep(arg0, D_80800AA0_fxstep[i].sound, D_80800AA0_fxstep[i].offset + arg1, D_80800AA0_fxstep[i].flags, (s32) ((f32) D_80800AA0_fxstep[i].scale * arg2));
+            return 1;
+        }
+    }
+    return 0;
+}
 
 /* extern */
 
