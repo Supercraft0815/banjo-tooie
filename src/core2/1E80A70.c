@@ -50,7 +50,45 @@ void func_800A718C(void) {
     func_800E3CE8();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A71E0.s")
+void func_800A71E0(void) {
+    void func_8001A570(void);
+    void func_8001B840(void);
+    void func_800D58CC(void);
+    void func_800D58AC(void);
+    void func_800CA174(void);
+    void func_800FCD5C(void);
+    void func_8001B518(s32);
+    void func_800DF874(void);
+    void func_800C9484(void);
+    void func_800B5E3C(void);
+    void func_800A9D00(void);
+    void func_800B4380(void);
+    void func_8008BA5C(void);
+    void func_800DA1E0(void);
+    void func_800D15CC(void);
+    s32 i;
+
+    func_800D58CC();
+    func_8001A570();
+    func_8001B840();
+    for (i = 0; i < 0xF; i++) {
+        func_8001B518(1);
+        func_800DF874();
+        _cosectionstor_entrypoint_2();
+        func_800C9484();
+        func_800B5E3C();
+        func_800D58AC();
+        func_800E4C7C();
+        func_800CA174();
+        func_800FCD5C();
+        func_800A9D00();
+        func_800C9484();
+        func_800B4380();
+        func_8008BA5C();
+        func_800DA1E0();
+        func_800D15CC();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A72A4.s")
 
@@ -60,10 +98,10 @@ void func_800A7380(s32 arg0) {
     s32 func_8001A2B0();
     s32 func_80081724();
     s32 func_8008B768();
-    s32 func_800A71E0();
+    void func_800A71E0(void);
     s32 func_800A8F68();
     s32 func_800C2AB8();
-    s32 func_800D58CC();
+    void func_800D58CC(void);
     s32 func_800D6C64();
     s32 func_800EA0A8();
     func_800EA0A8();
