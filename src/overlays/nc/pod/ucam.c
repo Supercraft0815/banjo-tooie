@@ -232,7 +232,36 @@ void func_808007D0_ncpoducam(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/func_80800854_ncpoducam.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/func_80800944_ncpoducam.s")
+void func_80800944_ncpoducam(u8 *arg0) {
+    f32 _glintrosyncDll_entrypoint_5(void);
+    f32 func_800D8FF8(void);
+    void *func_8001B798(s16);
+    void _suspline_entrypoint_16(void *);
+    f32 _susplinet_entrypoint_9(void *);
+    void _susplinet_entrypoint_11(void *, f32);
+    void _susplinet_entrypoint_16(void *, f32, f32);
+    f32 delta;
+    void *spline;
+    f32 position;
+    u8 mode;
+
+    if (arg0[0x65]) {
+        delta = _glintrosyncDll_entrypoint_5();
+    } else {
+        delta = func_800D8FF8();
+    }
+    mode = arg0[0x60];
+    if (mode != 5 && mode != 6) {
+        if (mode == 8) {
+            spline = func_8001B798(*(s16 *)(arg0 + 2));
+            position = _susplinet_entrypoint_9(spline);
+            _susplinet_entrypoint_11(spline, position);
+            _susplinet_entrypoint_16(spline, position, 100.0f * delta + position);
+        }
+    } else {
+        _suspline_entrypoint_16(func_8001B798(*(s16 *)arg0));
+    }
+}
 
 /* extern */
 
