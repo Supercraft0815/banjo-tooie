@@ -1975,7 +1975,23 @@ s32 func_800F929C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F92CC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F9354.s")
+void func_800F9354(u32 *arg0, s32 *arg1, s32 *arg2) {
+    u32 temp_v0;
+    s32 temp_v0_2;
+
+    temp_v0 = func_800F54E4();
+    *arg0 = temp_v0;
+    temp_v0_2 = func_800F5410((s32) temp_v0);
+    *arg1 = temp_v0_2;
+    switch (temp_v0_2) {
+        case 10:
+            *arg2 = 11;
+            break;
+        case 11:
+            *arg2 = 10;
+            break;
+    }
+}
 
 void func_800F93C4(u32 *arg0, s32 *arg1) {
     u32 temp_v0;
