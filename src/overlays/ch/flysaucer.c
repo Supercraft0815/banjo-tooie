@@ -30,7 +30,29 @@ void func_8080003C_chflysaucer(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808001B4_chflysaucer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800388_chflysaucer.s")
+void func_80800388_chflysaucer(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_7(s32, s32);
+    s32 _capod_entrypoint_8(s32);
+    void _gcdialogcamera_entrypoint_6(Unk80132ED0 *);
+    void _gcdialogcamera_entrypoint_8(void);
+    u8 *data;
+
+    data = func_80100094(arg0, 0U);
+    switch (data[0x28]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 5, 0);
+        case 2:
+            _capod_entrypoint_8(1);
+            data[0x28] = 1;
+            _gcdialogcamera_entrypoint_6(arg0->unk0);
+            _gcdialogcamera_entrypoint_8();
+        case 1:
+            _capod_entrypoint_7(arg1, arg2);
+            break;
+    }
+}
 
 void func_80800424_chflysaucer(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *arg3) {
     void *func_80100094(Actor *, u32);
@@ -159,7 +181,7 @@ void func_80801034_chflysaucer(void *arg0) {
 
 void func_8080105C_chflysaucer(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
-    s32 func_80800388_chflysaucer(Actor *, s32, s32);
+    void func_80800388_chflysaucer(Actor *, s32, s32);
     arg2 |= 6;
     if (func_80800FF0_chflysaucer(arg0) == 0) {
         arg2 |= 8;
