@@ -104,7 +104,22 @@ void func_800A2D70(void *arg0) {
     _fxstep_entrypoint_0(*(*(s32 **)((s8 *)(arg0) + (0x124))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2D94.s")
+void func_800A2D94(void *arg0) {
+    s32 _fxstep_entrypoint_1(void);
+    s32 _fxstep_entrypoint_3(s32, s32);
+    s32 _fxstep_entrypoint_4(s32, s32 *, s32);
+    s32 _fxstep_entrypoint_7(s32, s32 *, s32);
+    void func_800A2EDC(void *, f32);
+    s32 func_800D3948(void);
+    extern s32 func_800A2848;
+    extern s32 func_800A2A00;
+
+    **(s32 **)((s8 *)arg0 + 0x124) = _fxstep_entrypoint_1();
+    func_800A2EDC(arg0, 1.0f);
+    _fxstep_entrypoint_3(**(s32 **)((s8 *)arg0 + 0x124), func_800D3948() == 0);
+    _fxstep_entrypoint_4(**(s32 **)((s8 *)arg0 + 0x124), &func_800A2A00, *(s32 *)((s8 *)arg0 + 0x184));
+    _fxstep_entrypoint_7(**(s32 **)((s8 *)arg0 + 0x124), &func_800A2848, *(s32 *)((s8 *)arg0 + 0x184));
+}
 
 /* extern */
 
