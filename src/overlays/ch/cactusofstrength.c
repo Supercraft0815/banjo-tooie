@@ -96,7 +96,7 @@ void func_808003EC_chcactusofstrength(void *arg0) {
 /* extern */
 
 void func_808006BC_chcactusofstrength(void *arg0) {
-    s32 func_800CE88C(s32, s32);
+    void func_800CE88C(s32, s32);
     s32 func_800CEAA8(s32);
     s32 func_800CEAD0(s32);
     s32 func_80101FDC(void *, s32);
@@ -115,11 +115,11 @@ void func_80800718_chcactusofstrength(void *arg0) {
     s32 func_80100074(void *, s32, s32);
     s32 func_80101FDC(void *, s32);
     void func_80103110(Actor *, u32);
-    void *func_80106790(s32);
+    Actor *func_80106790(Unk80132ED0 *);
     void *sp1C;
     void *temp_v0;
 
-    temp_v0 = func_80106790((*(s32 *)((s8 *)(arg0) + (0x3C))));
+    temp_v0 = func_80106790(((Actor *)arg0)->unk3C);
     sp1C = temp_v0;
     func_80101FDC(temp_v0, 2);
     func_80103110(sp1C, 1);
@@ -213,4 +213,23 @@ void func_80800B24_chcactusofstrength(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_80800B90_chcactusofstrength.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_80800C18_chcactusofstrength.s")
+void func_80800C18_chcactusofstrength(Actor *arg0) {
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    s32 func_800CEAA8(s32);
+    void func_800CE88C(s32, s32);
+    extern s32 D_80800E24_chcactusofstrength;
+    extern s32 D_80800E64_chcactusofstrength;
+    Actor *sp24;
+
+    sp24 = func_80106790(arg0->unk3C);
+    func_800BABB8(0, arg0->position, arg0->position, arg0->scale, &D_80800E24_chcactusofstrength);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800E64_chcactusofstrength);
+    func_800D1000(0x1E, 1, NULL, 1, 0);
+    *(s32 *)&sp24->unk50 = 0;
+    if (func_800CEAA8(0) != 0) {
+        func_800CE88C(0, 0);
+    }
+}
