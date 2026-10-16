@@ -6,6 +6,7 @@ void bs_setState();
 /* extern */
 
 typedef struct PlayerState PlayerState;
+void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
 s32 bs_getNextState(struct player_state_s *);
 s32 func_80800000_bsbtrot(PlayerState *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     s32 func_8008E3E8(PlayerState *);
@@ -323,7 +324,7 @@ void func_80800DF4_bsbtrot(s32 arg0) {
 }
 
 void bsbtrot_entrypoint_8(s32 arg0) {
-    baanim_playForDuration_loopSmooth(arg0, func_80800DC4_bsbtrot(arg0), 0x3F07AE14);
+    baanim_playForDuration_loopSmooth(arg0, func_80800DC4_bsbtrot(arg0), 0.53f);
     func_8009FFD8(arg0, 2, 1, 1, 2);
     func_80800538_bsbtrot(arg0);
     func_80800DF4_bsbtrot(arg0);
@@ -554,7 +555,22 @@ void bsbtrot_entrypoint_28(s32 arg0)
     _bsrest_entrypoint_14();
     func_8080061C_bsbtrot(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_29.s")
+void bsbtrot_entrypoint_29(PlayerState *arg0) {
+    void _bsrest_entrypoint_18(PlayerState *);
+    s32 func_8008E40C(PlayerState *);
+    s32 func_8008E430(PlayerState *);
+
+    func_80800538_bsbtrot(arg0);
+    _bsrest_entrypoint_18(arg0);
+    if (func_8008E430(arg0) != 0) {
+        baanim_playForDuration_loopSmooth(arg0, 0x29B, 1.3f);
+    } else if (func_8008E40C(arg0) != 0) {
+        baanim_playForDuration_loopSmooth(arg0, 0x86, 1.3f);
+    } else {
+        baanim_playForDuration_loopSmooth(arg0, 0x26, 1.2f);
+    }
+    func_800931AC(arg0, 2);
+}
 
 /* extern */
 
@@ -722,7 +738,7 @@ void func_80802A4C_bsbtrot(void *arg0) {
 void bsbtrot_entrypoint_48(void *arg0) {
     func_80800538_bsbtrot(arg0);
     func_808029D8_bsbtrot(arg0);
-    baanim_playForDuration_loopSmooth(arg0, func_80800DC4_bsbtrot((s32)arg0), 0x3F07AE14);
+    baanim_playForDuration_loopSmooth(arg0, func_80800DC4_bsbtrot((s32)arg0), 0.53f);
     func_8009FFD8(arg0, 2, 1, 9, 0x12);
     func_80800DF4_bsbtrot((s32)arg0);
 }
@@ -743,7 +759,7 @@ void bsbtrot_entrypoint_52(void *arg0) {
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     func_80800538_bsbtrot(arg0);
     func_808029D8_bsbtrot(arg0);
-    baanim_playForDuration_loopSmooth(arg0, 0x86, 0x3FA66666);
+    baanim_playForDuration_loopSmooth(arg0, 0x86, 1.3f);
     func_8009FFD8(arg0, 1, 1, 9, 0x12);
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
 }
