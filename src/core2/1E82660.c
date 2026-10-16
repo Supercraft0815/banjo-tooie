@@ -67,7 +67,7 @@ s32 func_800A9010(void) {
 
 void func_800A91A8(s32 arg0) {
     extern s16 D_801276D0;
-    s32 func_800A88C4(s16, s32, s32);
+    s32 func_800A88C4();
     s16 temp_a0;
 
     if (arg0 >= 0) {
@@ -164,7 +164,34 @@ s32 func_800A946C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A9514.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A95C4.s")
+void func_800A95C4(void) {
+    extern s16 D_801276D0;
+    extern s16 D_801276F0;
+    s32 func_800A88C4();
+    s32 func_800A8984(s32);
+    void *func_800CA384(void *);
+    void *func_80110068(void *, s32);
+    s32 *var_s0;
+    s32 *end;
+    s32 old;
+    void *temp;
+
+    var_s0 = (s32 *)&D_801276D0; end = (s32 *)&D_801276F0;
+    do {
+        old = var_s0[14];
+        if (old != 0) {
+            var_s0[14] = (s32)func_800CA384((void *)var_s0[14]);
+            if (var_s0[14] != old && func_800A8984(var_s0[6]) == old) {
+                func_800A88C4(var_s0[6], var_s0[14]);
+            }
+        }
+        temp = *(void **)(var_s0 + 22);
+        if (temp != NULL) {
+            *(void **)(var_s0 + 22) = func_80110068(temp, var_s0[14]);
+        }
+        var_s0++;
+    } while (var_s0 != end);
+}
 
 s32 func_800A965C(void) {
     extern s16 D_801276D2;
