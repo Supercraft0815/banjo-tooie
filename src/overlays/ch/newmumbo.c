@@ -1,5 +1,7 @@
 #include "common.h"
 
+void *func_80100094(Actor *, u32);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_80800000_chnewmumbo.s")
 
 void func_8080009C_chnewmumbo(Actor *arg0) {
@@ -88,7 +90,22 @@ void func_808007B0_chnewmumbo(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_808007FC_chnewmumbo.s")
+void func_808007FC_chnewmumbo(Actor *arg0, s32 arg1) {
+    void func_800DBEFC(s32 *, s32, s32);
+    void func_801017D0(Actor *);
+    void func_80101808(Actor *, void (*)(Actor *));
+    u8 *data;
+    u8 *sp1C;
+
+    data = func_80100094(arg0, 0);
+    if (data[0] == 0) {
+        sp1C = data;
+        func_80101808(arg0, func_801017D0);
+        if (sp1C[1] != 0 && arg0->unk7C_12) {
+            func_800DBEFC(arg0->unk0->unk4, 0xB, (s32)(sp1C + 4));
+        }
+    }
+}
 
 void func_80800878_chnewmumbo(s32 arg0)
 {
