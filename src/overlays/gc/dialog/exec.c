@@ -66,7 +66,19 @@ void func_808000A0_gcdialogexec(u8 *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x100))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80800164_gcdialogexec.s")
+void func_80800164_gcdialogexec(u8 *arg0) {
+    func_808000A0_gcdialogexec(arg0);
+    if (((u32)arg0[0x11C] >> 6) == 0 && ((u32)arg0[0x11D] >> 6) == 0) {
+        func_8080002C_gcdialogexec(arg0);
+    }
+    *(s16 *)(arg0 + 0x162) = -1;
+    *(s16 *)(arg0 + 0x15A) = arg0[0x15D] = 0;
+    *(s32 *)(arg0 + 0x168) = 0;
+    arg0[0x167] = 0;
+    *(s32 *)(arg0 + 0x170) = 0;
+    *(s32 *)(arg0 + 0x174) = 0;
+    *(s32 *)(arg0 + 0x178) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_808001DC_gcdialogexec.s")
 
@@ -385,9 +397,9 @@ void gcdialogexec_entrypoint_6()
     func_80800A50_gcdialogexec();
 }
 
-void gcdialogexec_entrypoint_7()
+void gcdialogexec_entrypoint_7(u8 *arg0)
 {
-    func_80800164_gcdialogexec();
+    func_80800164_gcdialogexec(arg0);
 }
 
 void gcdialogexec_entrypoint_8(s32 arg0)
