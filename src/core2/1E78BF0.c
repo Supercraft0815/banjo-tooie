@@ -111,7 +111,25 @@ void func_8009FE78(PlayerState *arg0)
     **(s32 **)((u8 *)arg0 + 0x12C) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/bs_getTypeOfJump.s")
+/* extern */
+
+enum bs_state_e bs_getTypeOfJump(PlayerState *self) {
+    s32 baflag_isTrue(PlayerState *, s32);
+    int bakey_held(PlayerState *, s32);
+    int func_8008D370(PlayerState *);
+    int func_8008D3B0(PlayerState *);
+    if ((bakey_held(self, 1) != 0) && (func_8008D370(self) != 0)) {
+        return 0x12;
+    }
+    if (baflag_isTrue(self, 2) != 0) {
+        return 5;
+    } else {
+        if (func_8008D3B0(self) != 0) {
+            return 0x23;
+        }
+    }
+    return 5;
+}
 
 /* extern */
 
