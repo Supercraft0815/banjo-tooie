@@ -771,9 +771,9 @@ s32 func_800F6438(u32 arg0) {
     return func_800F4244((s32 *) temp_a1);
 }
 
-void func_800F6478(s32 arg0)
+s32 func_800F6478(s32 arg0)
 {
-    func_800F424C(D_80135490[arg0]);
+    return func_800F424C(D_80135490[arg0]);
 }
 
 //Tranformation Type is a bitfield so you can check multiple transformations at once
@@ -903,7 +903,26 @@ void func_800F67EC(s32 arg0) {
     func_8009CA70(sp1C, bs_getCurrentState(sp1C), 0x200);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F682C.s")
+s32 func_800F682C(s32 arg0) {
+    u32 func_8009BD44(void *);
+    s32 func_800F6478(s32);
+    s32 func_800F6C1C(s32);
+    s32 func_800F6D24(s32);
+
+    if (func_800F6D24(arg0) != 0) {
+        return 0;
+    }
+    if (func_800F6478(arg0) == 0) {
+        return 0;
+    }
+    if (func_8009BD44(D_80135490[arg0]) == 3) {
+        return 0;
+    }
+    if (func_800F6C1C(arg0) == 0) {
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
@@ -1139,7 +1158,7 @@ void func_800F70BC(s32 arg0) {
 /* extern */
 
 s32 func_800F70EC(s32 arg0) {
-    s32 func_8009BD44(PlayerState *);
+    u32 func_8009BD44(void *);
     return func_8009BD44(D_80135490[arg0]) != 3;
 }
 
