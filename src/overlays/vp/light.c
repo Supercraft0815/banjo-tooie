@@ -108,7 +108,15 @@ void func_808004B0_vplight(void *arg0, s32 position[3]) {
     position[2] = (s32)pos[2];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/light/func_80800518_vplight.s")
+void func_80800518_vplight(s32 arg0, s32 *range) {
+    void func_800C8898(s32, f32 *);
+    f32 values[3];
+
+    func_800C8898(arg0, values);
+    range[0] = (s32)(values[0] * 256.0f);
+    range[1] = (s32)(values[1] * values[1]);
+    range[2] = (s32)(values[2] * 16384.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/light/vplight_entrypoint_3.s")
 
