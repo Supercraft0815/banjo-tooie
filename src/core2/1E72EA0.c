@@ -47,7 +47,27 @@ void func_80099840(PlayerState *arg0, s32 arg1) {
     _badata_entrypoint_20(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72EA0/func_8009989C.s")
+/* extern */
+
+void func_8009989C(PlayerState *arg0, s32 arg1) {
+    void func_800EE7F8(f32 *, f32 *);
+    struct Saved { f32 x, y, vec[3]; s32 a, b, c, d, id; };
+    s32 i;
+    for (i = 0; i < 5; i++) {
+        if (((struct Saved *)arg0->unkC0)[i + 1].id == arg1) return;
+    }
+    for (i = 0; i < 5; i++) {
+        if (((struct Saved *)arg0->unkC0)[i + 1].id == 0) {
+            ((struct Saved *)arg0->unkC0)[i + 1].id = arg1;
+            ((struct Saved *)arg0->unkC0)[i + 1].b = arg0->unkC0->unk18;
+            ((struct Saved *)arg0->unkC0)[i + 1].x = arg0->unkC0->unk0;
+            ((struct Saved *)arg0->unkC0)[i + 1].y = arg0->unkC0->unk4;
+            ((struct Saved *)arg0->unkC0)[i + 1].a = arg0->unkC0->unk14;
+            func_800EE7F8(((struct Saved *)arg0->unkC0)[i + 1].vec, (f32 *)((u8 *)arg0->unkC0 + 8));
+            return;
+        }
+    }
+}
 
 void func_80099970(PlayerState *arg0) {
     void func_8009ACF4(void *, f32);
@@ -105,7 +125,7 @@ s32 func_80099A70(PlayerState *self) {
 }
 
 
-void func_80099A7C(PlayerState *arg0, f32 *arg1) { s32 func_800EE7F8(); func_800EE7F8(arg1, arg0->unkC0->pad8); return; }
+void func_80099A7C(PlayerState *arg0, f32 *arg1) { void func_800EE7F8(f32 *, f32 *); func_800EE7F8(arg1, arg0->unkC0->pad8); return; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72EA0/func_80099AA8.s")
 
@@ -167,6 +187,6 @@ void func_8009AD38(void *arg0, s32 arg1) {
 /* extern */
 
 void func_8009AD44(PlayerState *arg0, f32 *arg1) {
-    s32 func_800EE7F8();
+    void func_800EE7F8(f32 *, f32 *);
     func_800EE7F8(arg0->unkC0->pad8, arg1);
 }
