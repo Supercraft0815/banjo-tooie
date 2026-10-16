@@ -90,7 +90,27 @@ s32 func_801067C4(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDFED0/func_8010682C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDFED0/func_801068A8.s")
+Actor *func_801068A8(s32 *arg0) {
+    s32 vector_size(s32);
+    s32 vector_at(s32, s32);
+    extern s32 D_80136EE0;
+    s32 size;
+    s32 index;
+
+    if (D_80136EE0 == 0) {
+        return NULL;
+    }
+    size = vector_size(D_80136EE0);
+    if (size > 0) {
+        index = *arg0;
+        if (index < 0 || index >= size) {
+            *arg0 = 0;
+            index = 0;
+        }
+        return vector_at(D_80136EE0, index);
+    }
+    return NULL;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDFED0/func_80106920.s")
 
