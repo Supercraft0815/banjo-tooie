@@ -85,7 +85,7 @@ void func_80800558_chfactorybattery(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80800580_chfactorybattery.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80800678_chfactorybattery.s")
+s32 func_80800678_chfactorybattery(Actor *arg0) { switch (arg0->pad6C_21) { case 0x51: return 3; case 0x5C: return 4; case 0x63: return 5; case 0x65: return 6; case 0: return arg0->unk6C_0; default: return 0; } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_808006E4_chfactorybattery.s")
 
