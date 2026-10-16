@@ -81,7 +81,33 @@ void func_80801138_chalienkids(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80801158_chalienkids.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_808014B0_chalienkids.s")
+void *func_80100094(Actor *, u32);
+
+typedef union {
+    Actor actor;
+    struct {
+        u8 pad0[0x74];
+        u32 pad74_6 : 26;
+        u32 unk74_5 : 1;
+        u32 pad74_0 : 5;
+    } flags;
+} AlienKidsActor;
+
+void func_808014B0_chalienkids(AlienKidsActor *arg0, s32 arg1) {
+    s32 func_800DA544(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80103014(u8 *);
+    s32 func_80104E78(Actor *);
+    f32 *data;
+
+    data = func_80100094(&arg0->actor, 0);
+    func_800EE7F8(arg0->actor.position, data);
+    arg0->actor.rotation[1] = data[4];
+    arg0->flags.unk74_5 = 1;
+    func_80103014((u8 *)arg0);
+    func_80104E78(&arg0->actor);
+    func_800DA544(arg1);
+}
 
 /* extern */
 
@@ -90,7 +116,7 @@ void func_80801520_chalienkids(void *arg0, s32 arg1) {
     s32 _subaddiefade_entrypoint_2();
     s32 func_80102424(void *, s32);
     s32 func_8010A3E8(void *, s32);
-    s32 func_808014B0_chalienkids(void *, s32);
+    void func_808014B0_chalienkids(AlienKidsActor *, s32);
     (*(f32 *)((s8 *)(arg0) + (0x58))) = 2.0f;
     _subaddiefade_entrypoint_2();
     _subaddieDll_entrypoint_4(arg0, 1);
