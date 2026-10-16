@@ -20,7 +20,7 @@ s32 func_8080029C_chkingjinjobits(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800F82D4(s32, s32);
     void func_800FFAB0(Actor *);
     void func_80800354_chkingjinjobits(Actor *);
-    void func_80800744_chkingjinjobits(Actor *, s16, s16);
+    void func_80800744_chkingjinjobits(Actor *, s32, s16);
 
     switch (arg1) {
         case 0x95:
@@ -165,6 +165,20 @@ void func_80800354_chkingjinjobits(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjobits/func_80800744_chkingjinjobits.s")
+void func_80800744_chkingjinjobits(Actor *arg0, s32 arg1, s16 arg2) {
+    void func_800FFAB0(Actor *);
+    switch (arg1) {
+        case 0x1536:
+            _glcutDll_entrypoint_6(0x142, 0x66);
+            break;
+        case 0x154C:
+            arg0->unk64_19 = 1;
+            break;
+        case 0x14D7:
+            _capod_entrypoint_3(0);
+            func_800FFAB0(arg0);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjobits/chkingjinjobits_entrypoint_1.s")
