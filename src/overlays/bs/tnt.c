@@ -277,7 +277,32 @@ void bstnt_entrypoint_2(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/bstnt_entrypoint_3.s")
+void bstnt_entrypoint_3(void *arg0) {
+    typedef struct player_state_s PlayerState;
+    void _batimer_set(void *, s32, f32);
+    void baroll_setAngularVelocity(PlayerState *, f32, f32);
+    void bastick_pushZone(PlayerState *);
+    void bastick_setZoneMax(PlayerState *, s32, f32);
+    void func_80092864(PlayerState *, f32);
+    void func_800947EC(PlayerState *, s32, s32);
+    void func_800959C8(PlayerState *, f32, f32);
+    void func_8009BFE4(PlayerState *, f32, f32);
+    s32 func_8009E77C(PlayerState *, s32);
+    if (func_8009E77C(arg0, 0xC) == 0) {
+        *(s32 *)((u8 *)arg0 + 0x164) = 0;
+        *(s8 *)((u8 *)arg0 + 0x168) = 0;
+        *(s8 *)((u8 *)arg0 + 0x16A) = 0;
+        _batimer_set(arg0, 2, 0.0f);
+        func_80092864(arg0, 0.8999939f);
+        func_8009BFE4(arg0, 1000.0f, 12.0f);
+        baroll_setAngularVelocity(arg0, 1000.0f, 12.0f);
+        bastick_pushZone(arg0);
+        bastick_setZoneMax(arg0, 0, 0.12f);
+        bastick_setZoneMax(arg0, 1, 1.0f);
+        func_800959C8(arg0, 85.0f, 38.0f);
+        func_800947EC(arg0, 1, 1);
+    }
+}
 
 /* extern */
 
@@ -322,7 +347,7 @@ s32 bstnt_entrypoint_5(s32 arg0) {
 
 void func_808011CC_bstnt(s32 arg0)
 {
-    bstnt_entrypoint_3();
+    bstnt_entrypoint_3(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
 void func_808011F4_bstnt(s32 arg0)
@@ -411,7 +436,7 @@ void bstnt_entrypoint_10(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80801980_bstnt.s")
 
-void func_80801C0C_bstnt(s32 arg0) { bstnt_entrypoint_3(); *(s32 *)((u8 *)arg0 + 0x15C) = 0; func_80801980_bstnt(arg0, 1); }
+void func_80801C0C_bstnt(s32 arg0) { bstnt_entrypoint_3(arg0); *(s32 *)((u8 *)arg0 + 0x15C) = 0; func_80801980_bstnt(arg0, 1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80801C3C_bstnt.s")
 
@@ -426,7 +451,7 @@ s32 bstnt_entrypoint_11(s32 arg0) {
     return ((s32 *)&D_8080258C_bstnt)[arg0];
 }
 
-void func_80801E60_bstnt(s32 arg0) { bstnt_entrypoint_3(); _babounce_entrypoint_4(arg0, 1); _babounce_entrypoint_5(arg0, 0xE9, (s32) 0x3ED0FF97); }
+void func_80801E60_bstnt(s32 arg0) { bstnt_entrypoint_3(arg0); _babounce_entrypoint_4(arg0, 1); _babounce_entrypoint_5(arg0, 0xE9, (s32) 0x3ED0FF97); }
 
 void func_80801EA0_bstnt(struct player_state_s *arg0) {
     int _babounce_entrypoint_2(struct player_state_s *);
@@ -460,7 +485,7 @@ s32 bstnt_entrypoint_12(s32 arg0) {
     return ((s32 *)&D_8080259C_bstnt)[arg0];
 }
 
-void func_80801F5C_bstnt(s32 arg0) { bstnt_entrypoint_3(); _babounce_entrypoint_4(arg0, 2); _babounce_entrypoint_5(arg0, 0xE9, (s32) 0x3ED0FF97); }
+void func_80801F5C_bstnt(s32 arg0) { bstnt_entrypoint_3(arg0); _babounce_entrypoint_4(arg0, 2); _babounce_entrypoint_5(arg0, 0xE9, (s32) 0x3ED0FF97); }
 
 void func_80801F9C_bstnt(struct player_state_s *arg0) {
     int _babounce_entrypoint_2(struct player_state_s *);
@@ -498,7 +523,7 @@ void func_8080203C_bstnt(s32 arg0)
 }
 void func_80802064_bstnt(s32 arg0)
 {
-    bstnt_entrypoint_3();
+    bstnt_entrypoint_3(arg0);
     _bsrest_entrypoint_16(arg0);
 }
 /* extern */
