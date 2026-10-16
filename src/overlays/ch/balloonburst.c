@@ -276,7 +276,26 @@ void func_8080154C_chballoonburst(BalloonBurstActor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_808017A4_chballoonburst.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80801948_chballoonburst.s")
+void func_80801948_chballoonburst(BalloonBurstActor *arg0) {
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    void func_80801A10_chballoonburst(Actor *);
+    void func_80801A50_chballoonburst(u8 *, s32, s32);
+    void func_80801ABC_chballoonburst(Actor *);
+    extern s32 D_80801D18_chballoonburst;
+
+    func_8010D930(1, arg0->balloon.flag, arg0->actor.position, &D_80801D18_chballoonburst);
+    if (arg0->actor.unk64_20) {
+        func_80801A50_chballoonburst((u8 *)arg0, 0x771, 2);
+        func_80801A50_chballoonburst((u8 *)arg0, 0x772, 3);
+        func_80801A50_chballoonburst((u8 *)arg0, 0x773, 4);
+        func_80801ABC_chballoonburst(&arg0->actor);
+        func_80801A10_chballoonburst(&arg0->actor);
+        return;
+    }
+    func_80801A50_chballoonburst((u8 *)arg0, 0x771, 2);
+    func_80801A50_chballoonburst((u8 *)arg0, 0x772, 2);
+    func_80801A50_chballoonburst((u8 *)arg0, 0x773, 2);
+}
 
 void func_80801A10_chballoonburst(Actor *arg0) {
     s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
