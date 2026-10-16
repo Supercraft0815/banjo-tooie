@@ -71,7 +71,7 @@ s32 func_8080016C_chpumproomswitch(u8 *arg0) {
 void func_80800194_chpumproomswitch(void *arg0) {
     s32 _glcutDll_entrypoint_19(s32);
     s32 func_800DA298(s32);
-    s32 func_80101FDC(void *, s32);
+    void func_80101FDC(Actor *, u32);
     (*(f32 *)((s8 *)(arg0) + (0x58))) = 0.0f;
     if ((func_800DA298(0xB2) != 0) || (_glcutDll_entrypoint_19(0x20) != 0)) {
         func_80101FDC(arg0, 2);
@@ -103,4 +103,27 @@ void func_808001E4_chpumproomswitch(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pumproomswit/func_808002A0_chpumproomswitch.s")
+s32 func_808002A0_chpumproomswitch(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _capod_entrypoint_14(void);
+    void _glcutDll_entrypoint_6(u32, u32);
+    s32 func_800DA298(s32);
+    void func_80101FDC(Actor *, u32);
+
+    switch (arg1) {
+        case 10:
+            if (arg0->unk70_10 == 1 && func_800DA298(0x9E6) != 0 && func_800DA298(0x9E7) != 0) {
+                arg0->unk58 = 3.5f;
+                func_80101FDC(arg0, 2);
+                _capod_entrypoint_13(arg0->unk0, NULL, 0, 0x10);
+            }
+            break;
+        case 11:
+            _capod_entrypoint_14();
+            _glcutDll_entrypoint_6(0xE1, 0x20);
+            return 4;
+        default:
+            return 0;
+    }
+    return 1;
+}
