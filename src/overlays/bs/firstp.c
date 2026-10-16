@@ -1930,7 +1930,36 @@ void func_80805380_bsfirstp(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808057C8_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808058F0_bsfirstp.s")
+void func_808058F0_bsfirstp(void *arg0) {
+    typedef struct player_state_s PlayerState;
+    s32 bs_setState(void *, s32);
+    void func_80093370(void *, s32);
+    void func_8009337C(void *, s32);
+    void func_800936E8(void *, s32);
+    void func_8009BDAC(PlayerState *, f32);
+    s32 func_8009E6EC();
+    void func_8009E830(PlayerState *, s32);
+    void func_80807D70_bsfirstp(s32);
+    s32 sp2C;
+    s32 event;
+    s32 sp24;
+
+    sp2C = 0;
+    event = func_8009E6EC(arg0);
+    sp24 = 1;
+    if (event == 0x83) {
+        sp24 = 2;
+        sp2C = 0xCA;
+        func_8009BDAC(arg0, 1.5f);
+        func_80807D70_bsfirstp(arg0);
+        func_80801A5C_bsfirstp(arg0);
+        func_8009337C(arg0, 0);
+        func_800936E8(arg0, 1);
+        func_80093370(arg0, 1);
+    }
+    func_8009E830(arg0, sp24);
+    bs_setState(arg0, sp2C);
+}
 
 void bsfirstp_entrypoint_26(s32 arg0) {
     s32 _badeathmatch_entrypoint_5(s32, s32, s32);
