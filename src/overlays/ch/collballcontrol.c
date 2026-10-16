@@ -47,7 +47,26 @@ s32 func_80800138_chcollballcontrol(s32 arg0) {
     return ((s32 *)&D_80804D68_chcollballcontrol)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_8080014C_chcollballcontrol.s")
+void func_8080014C_chcollballcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    struct {
+        u8 pad0[0x20];
+        s32 words[6];
+        u8 pad38;
+        u8 mode;
+        u8 count;
+    } *data;
+    s32 i;
+
+    data = func_80100094(arg0, 0U);
+    for (i = 0; i < data->count; i++) {
+        if (data->mode == 1) {
+            data->words[i] = 50;
+        } else {
+            data->words[i] = 0;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808001B8_chcollballcontrol.s")
 
