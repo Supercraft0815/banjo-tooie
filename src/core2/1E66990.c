@@ -165,7 +165,18 @@ void func_8008DD70(s32 arg0)
     func_8009E71C(arg0,0x5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DD90.s")
+s32 func_8008DD90(PlayerState *arg0) {
+    s32 _badrone_entrypoint_1(PlayerState *);
+    s32 func_8009E674(PlayerState *, s32);
+
+    if (func_8009E674(arg0, 0x10) != 0) {
+        return 1;
+    }
+    if (func_8009E674(arg0, 8) != 0) {
+        return _badrone_entrypoint_1(arg0) == 0;
+    }
+    return 0;
+}
 
 s32 func_8008DDEC(PlayerState *player, f32 position[3], f32 radius) {
     void func_8009C128(PlayerState *, f32 *);
