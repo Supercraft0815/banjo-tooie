@@ -36,7 +36,33 @@ void bsdronebubbled_entrypoint_1(s32 arg0) {
     func_8009D9D4(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bubbled/bsdronebubbled_entrypoint_2.s")
+void bsdronebubbled_entrypoint_2(struct player_state_s *arg0) {
+    s32 _badata_entrypoint_34(struct player_state_s *);
+    s32 bs_setState(struct player_state_s *, s32);
+    void func_80099B94(struct player_state_s *);
+    s32 func_8009E6EC(struct player_state_s *);
+    void func_8009E830(struct player_state_s *, s32);
+    f32 func_800F13F0(f32, f32);
+
+    switch (func_8009E6EC(arg0)) {
+    case 0x21:
+        func_80099B94(arg0);
+        break;
+    case 0x6F:
+        func_8009E830(arg0, 1);
+        break;
+    case 0x70:
+        bs_setState(arg0, _badata_entrypoint_34(arg0));
+        break;
+    case 0x7B:
+        *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x54) + 0x40) =
+            func_800F13F0(1.0f, *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x54) + 0x40) + 0.2f);
+        break;
+    default:
+        func_80099B94(arg0);
+        break;
+    }
+}
 
 /* extern */
 
@@ -78,6 +104,7 @@ void bsdronebubbled_entrypoint_5(s32 arg0) {
 
 void bsdronebubbled_entrypoint_6()
 {
+    void func_80099B94();
     func_80099B94();
 }
 
