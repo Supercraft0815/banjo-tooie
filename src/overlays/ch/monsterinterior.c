@@ -35,7 +35,25 @@ OSThread *chmonsterinterior_entrypoint_4(void)
     return (OSThread *) D_80801FA0_chmonsterinterior;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_8080003C_chmonsterinterior.s")
+void func_8080003C_chmonsterinterior(Actor *arg0) {
+    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
+    s32 _susubgame_entrypoint_11(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F6438(u32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    u32 *data;
+
+    data = func_80100094(arg0, 0);
+    if (func_800F6438(func_800F54E4()) == 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    *data = 0;
+    _susubgame_entrypoint_0(arg0, data + 4, 0);
+    _susubgame_entrypoint_11(0);
+    arg0->unk6C_0 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_808000BC_chmonsterinterior.s")
 
