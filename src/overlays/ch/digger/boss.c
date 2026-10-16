@@ -173,9 +173,9 @@ s32 func_80802288_chdiggerboss(void *arg0) {
 void func_80802298_chdiggerboss(u8 *arg0, u8 *arg1)
 {
   void func_800EE7F8(f32 *, f32 *);
-  s32 func_800EF1B8(u8 *, s32, f32);
+  void func_800EF1B8(f32 *, f32, f32);
   func_800EE7F8(arg1, arg0 + 4);
-  func_800EF1B8(arg1, *((s32 *) (((s8 *) arg0) + 0x48)), (*((f32 *) (((s8 *) arg0) + 0x38))) * 600.0f);
+  func_800EF1B8(arg1, *((f32 *) (((s8 *) arg0) + 0x48)), (*((f32 *) (((s8 *) arg0) + 0x38))) * 600.0f);
   *((f32 *) (((s8 *) arg1) + 4)) = (f32) (((*((f32 *) (((s8 *) arg0) + 0x38))) * 2500.0f) + (*((f32 *) (((s8 *) arg1) + 4))));
 }
 
@@ -1040,7 +1040,22 @@ void func_8080815C_chdiggerboss(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808081AC_chdiggerboss.s")
+void func_808081AC_chdiggerboss(u8 *volatile arg0) {
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    extern s32 D_8080A16C_chdiggerboss;
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 *volatile sp24;
+
+    func_800EE7F8(sp28, sp24 = (f32 *)(arg0 + 4));
+    func_800EF1B8(sp28, *(f32 *)(arg0 + 0x48), -80.0f);
+    sp28[1] += 80.0f;
+    func_800EE7F8(sp34, sp28);
+    func_800EF1B8(sp34, *(f32 *)(arg0 + 0x48) + 90.0f, 200.0f);
+    func_800BBCB8(sp34, sp24, 1.0f, 1, &D_8080A16C_chdiggerboss);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80808258_chdiggerboss.s")
 
