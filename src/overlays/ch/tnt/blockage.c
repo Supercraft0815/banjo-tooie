@@ -30,7 +30,32 @@ s32 func_808000A8_chtntblockage(s32 arg0) {
     return ((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7) + 0x4C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/blockage/func_808000B8_chtntblockage.s")
+s32 func_808000B8_chtntblockage(Actor *arg0, s32 arg1, volatile s32 arg2) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    void _chtntdetonator_entrypoint_1(Actor *, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_80800184_chtntblockage(Actor *);
+    f32 position[3];
+
+    switch (arg1) {
+    case 5:
+        func_800EE7F8(position, arg0->position);
+        func_800EF1B8(position, arg0->rotation[1], -300.0f);
+        position[1] -= 110.0f;
+        _chexploder_entrypoint_3(arg0, position, 0);
+        break;
+    case 0x90:
+        func_80800184_chtntblockage(arg0);
+        break;
+    case 0x95:
+        _chtntdetonator_entrypoint_1(arg0, func_808000A8_chtntblockage((s32)arg0));
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800184_chtntblockage(Actor *arg0) {
     s32 _chexploder_entrypoint_12(s32, s32);
