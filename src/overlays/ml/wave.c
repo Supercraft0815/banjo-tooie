@@ -58,7 +58,14 @@ void mlwave_entrypoint_4(void *arg0, f32 arg1, f32 arg2, f32 arg3) {
 
 void mlwave_entrypoint_5(void *arg0, f32 arg1, f32 arg2) { void mlwave_entrypoint_4(void *, f32, f32, f32); mlwave_entrypoint_4(arg0, 0.0f, arg1, arg2); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/wave/mlwave_entrypoint_6.s")
+f32 mlwave_entrypoint_6(void *arg0) {
+    f32 func_800F13C4(f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 value;
+
+    value = func_800F13C4(*(f32 *)arg0, *(f32 *)((s8 *)arg0 + 8));
+    return func_800F10B4(value, 0, *(f32 *)arg0 < 0.0f ? -*(f32 *)((s8 *)arg0 + 8) : *(f32 *)((s8 *)arg0 + 8), 0, 1.0f);
+}
 
 void mlwave_entrypoint_7(void *arg0, f32 arg1) {
     (*(f32 *)((s8 *)(arg0) + (0x18))) = arg1;
