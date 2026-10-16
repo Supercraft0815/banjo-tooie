@@ -38,7 +38,7 @@ void func_80800068_chboggykidshome(u8 *arg0)
   s32 _suexpression_entrypoint_10(s32, s32, s32);
   s32 _suexpression_entrypoint_20(u8 *);
   u8 *new_var;
-  s32 func_80800214_chboggykidshome();
+  void func_80800214_chboggykidshome();
   s32 func_80800300_chboggykidshome(u8 *);
   if (((((u16) (*((u16 *) (((s8 *) arg0) + 0x72)))) & 0xFFFFFFFF) >> 0xA) == 1)
   {
@@ -62,7 +62,29 @@ void func_808000DC_chboggykidshome(Actor* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/kidshome/func_808000FC_chboggykidshome.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/kidshome/func_80800214_chboggykidshome.s")
+void func_80800214_chboggykidshome(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    extern s32 D_808003C0_chboggykidshome;
+    extern s32 D_808003E8_chboggykidshome;
+    extern s32 D_80800408_chboggykidshome;
+    extern s32 D_80800570_chboggykidshome;
+    extern s32 D_80800580_chboggykidshome;
+    extern s32 D_80800590_chboggykidshome;
+    u32 id;
+
+    id = arg0->unk6C_9;
+    if (id != 0x34E) {
+        if (id != 0x3E4) {
+            if (id == 0x41D) {
+                _subaddiedialog_entrypoint_8((s32)arg0, arg0->position, &D_80800570_chboggykidshome, &D_808003C0_chboggykidshome, 5);
+            }
+        } else {
+            _subaddiedialog_entrypoint_8((s32)arg0, arg0->position, &D_80800580_chboggykidshome, &D_808003E8_chboggykidshome, 4);
+        }
+    } else {
+        _subaddiedialog_entrypoint_8((s32)arg0, arg0->position, &D_80800590_chboggykidshome, &D_80800408_chboggykidshome, 3);
+    }
+}
 
 s32 func_808002C0_chboggykidshome(void *arg0) {
     u32 temp_v0;
