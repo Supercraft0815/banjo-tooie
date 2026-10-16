@@ -1253,7 +1253,27 @@ s32 bsfirstp_entrypoint_11(s32 arg0) {
     return ((s32 *)&D_8080B494_bsfirstp)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_12.s")
+void bsfirstp_entrypoint_12(s32 arg0) {
+    void _batimer_set(struct player_state_s *, s32, f32);
+    s32 _ch1pfreeze_entrypoint_1(s32);
+    s32 bs_getCurrentState(struct player_state_s *);
+    void func_8009C128(struct player_state_s *, f32[3]);
+    struct player_state_s *func_800F53D0(s32);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern s32 D_8080B4A4_bsfirstp;
+    struct player_state_s *sp2C;
+    u8 *sp28;
+    f32 sp1C[3];
+
+    sp2C = func_800F53D0(arg0);
+    if (bs_getCurrentState(sp2C) == 0xD9) {
+        sp28 = *(u8 **)((u8 *)sp2C + 0x188);
+        *(s32 *)(sp28 + 0x114) = _ch1pfreeze_entrypoint_1(arg0);
+        func_8009C128(sp2C, sp1C);
+        func_8010D930(7, -1, sp1C, &D_8080B4A4_bsfirstp);
+        _batimer_set(sp2C, 0, 5.0f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_13.s")
 
@@ -1699,7 +1719,7 @@ void bsfirstp_entrypoint_26(s32 arg0) {
     s32 _gcegg_entrypoint_7(s32);
     s32 _suegg_entrypoint_6(s32, f32 *, s32 *);
     s32 _sueggmisc_entrypoint_2(f32 *, s32);
-    s32 bs_getCurrentState(s32);
+    s32 bs_getCurrentState(struct player_state_s *);
     s32 bs_setState(void *, s32);
     f32 func_80099A34(s32);
     s32 func_80099A4C(s32);
