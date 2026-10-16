@@ -86,7 +86,24 @@ OSThread *chfactoryroofbits_entrypoint_1(void)
     return (OSThread *) D_80800A08_chfactoryroofbits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_80800624_chfactoryroofbits.s")
+void func_80800624_chfactoryroofbits(Actor *arg0) {
+    s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    void _chdoormake_entrypoint_6(Actor *, s32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
+    s32 _chdoormake_entrypoint_10(void *, s32, s32);
+    f32 func_80103EF4(Actor *);
+
+    _chdoormake_entrypoint_3(arg0, arg0->rotation[1], 90.0f, func_80103EF4(arg0), 0x20AE, 0xA08);
+    _chdoormake_entrypoint_5(arg0, 3.0f);
+    _chdoormake_entrypoint_6(arg0, 0x40E00000);
+    _chdoormake_entrypoint_8(arg0, 4);
+    _chdoormake_entrypoint_9(arg0, 0, 1, 0x10);
+    _chdoormake_entrypoint_10(arg0, 0, 0x19C);
+    _chdoormake_entrypoint_9(arg0, 1, 0xB, 0x10);
+    _chdoormake_entrypoint_10(arg0, 1, 0x19D);
+}
 
 OSThread *chfactoryroofbits_entrypoint_2(void)
 {
