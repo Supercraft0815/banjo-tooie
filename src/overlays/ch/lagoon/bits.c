@@ -61,7 +61,7 @@ void func_808000A4_chlagoonbits(s32 arg0)
 void func_808000AC_chlagoonbits(void *arg0) {
     s32 _subaddiesect_entrypoint_1();
     s32 func_800DA298(s32);
-    s32 func_80101FDC(void *, s32);
+    void func_80101FDC(Actor *, u32);
     s32 func_80108B04(void *, s32);
     (*(s32 *)((s8 *)(arg0) + (0x28))) = _subaddiesect_entrypoint_1();
     if (func_800DA298(0xCF) != 0) {
@@ -221,4 +221,18 @@ void func_808005D0_chlagoonbits(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/func_80800658_chlagoonbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/func_80800730_chlagoonbits.s")
+void func_80800730_chlagoonbits(Actor *arg0, s32 arg1) {
+    s32 _subaddieDll_entrypoint_5(Actor *, s32);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(Actor *, u32);
+    if (arg0->unk6C_9 == 0x369) {
+        if (_subaddieDll_entrypoint_5(arg0, arg1) != 0) {
+            func_80103110(arg0, 1);
+            func_80101FDC(arg0, 2);
+            return;
+        }
+        func_8080023C_chlagoonbits(arg0);
+        return;
+    }
+    func_8080023C_chlagoonbits(arg0);
+}
