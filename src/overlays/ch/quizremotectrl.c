@@ -1,6 +1,20 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quizremotectrl/func_80800000_chquizremotectrl.s")
+void func_80800000_chquizremotectrl(Actor *arg0, s32 arg1) {
+    switch (arg1) {
+        case 1:
+        case 3:
+            break;
+        case 0:
+            arg0->unk54 = 0.0f;
+            arg0->unk50 = 0.5f;
+            break;
+        case 2:
+            arg0->unk54 = 1.0f;
+            break;
+    }
+    arg0->unk79_4 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quizremotectrl/func_80800068_chquizremotectrl.s")
 
@@ -11,7 +25,7 @@ void func_8080012C_chquizremotectrl(s32 *arg0) {
     s32 _capod_entrypoint_21(s32, s32, s32, s32);
     s32 _suquiz_entrypoint_26();
     s32 func_800A5854(s32);
-    s32 func_80800000_chquizremotectrl(s32 *, s32);
+    void func_80800000_chquizremotectrl(Actor *, s32);
     s32 sp1C;
     s32 temp_v0;
     s32 temp_v0_2;
@@ -26,7 +40,7 @@ void func_8080012C_chquizremotectrl(s32 *arg0) {
     } else {
         _capod_entrypoint_21(*arg0, 0, sp1C, 0x814);
     }
-    func_80800000_chquizremotectrl(arg0, 0);
+    func_80800000_chquizremotectrl((Actor *)arg0, 0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quizremotectrl/func_808001BC_chquizremotectrl.s")
