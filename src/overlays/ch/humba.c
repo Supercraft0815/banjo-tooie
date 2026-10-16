@@ -7,7 +7,28 @@ void func_80800000_chhumba(s32 *arg0, s32 arg1) {
     _capod_entrypoint_2(*arg0, 9, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800028_chhumba.s")
+void func_80800028_chhumba(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_7(s32, s32);
+    void _capod_entrypoint_8(s32);
+    void _capod_entrypoint_12(s32);
+    void _gcdialogcamera_entrypoint_6(Unk80132ED0 *);
+    void _gcdialogcamera_entrypoint_8(void);
+
+    switch (arg0->unk74_7) {
+        case 0:
+            func_80800000_chhumba(arg0, 0);
+        case 1:
+        case 3:
+            _capod_entrypoint_8(1);
+            arg0->unk74_7 = 2;
+            _gcdialogcamera_entrypoint_6(arg0->unk0);
+            _gcdialogcamera_entrypoint_8();
+            _capod_entrypoint_12(0);
+        case 2:
+            _capod_entrypoint_7(arg1, arg2);
+            break;
+    }
+}
 
 void func_808000D4_chhumba(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *arg3) {
     void _capod_entrypoint_20(Unk80132ED0 *, s32, s32);
@@ -327,7 +348,7 @@ void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
     void func_800FC6B0(u32);
     void func_80101FDC(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
-    s32 func_80800028_chhumba(u8 *, s32, s32);
+    void func_80800028_chhumba(Actor *, s32, s32);
     void func_808000D4_chhumba(Actor *, s32, s32, Unk80132ED0 *);
     void func_8080015C_chhumba(Actor *, s32, s32, Unk80132ED0 *);
     void func_808001E4_chhumba(Actor *);
