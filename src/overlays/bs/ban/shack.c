@@ -45,7 +45,20 @@ s32 func_80800074_bsbanshack(PlayerState *arg0, s32 arg1) {
     return arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_80800100_bsbanshack.s")
+void func_80800100_bsbanshack(PlayerState *arg0) {
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    int bastick_getZone(PlayerState *);
+    f32 bastick_getZonePosition(PlayerState *);
+    f32 func_800F1214(f32, f32, f32);
+    f32 sp1C;
+
+    sp1C = bastick_getZonePosition(arg0);
+    if (bastick_getZone(arg0) == 0) {
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+        return;
+    }
+    baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp1C, 30.0f, 300.0f));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_80800164_bsbanshack.s")
 
@@ -180,7 +193,7 @@ void func_808009E4_bsbanshack(PlayerState *arg0) {
     s32 sp24;
 
     sp24 = 0;
-    func_80800100_bsbanshack();
+    func_80800100_bsbanshack(arg0);
     func_800A2CE8(arg0, 0.25f, 4);
     func_800A2CE8(arg0, 0.75f, 3);
     if (baanim_isAt(arg0, 0.51f) != 0) {
