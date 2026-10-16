@@ -190,7 +190,21 @@ void func_8008DAC8(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DAE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DC90.s")
+int func_8008DC90(PlayerState *player, f32 *target, f32 tolerance) {
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_8008FF40(f32[3]);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    int func_800F20BC(f32, f32, f32);
+    f32 rotation[3];
+    f32 position[3];
+    f32 angles[2];
+
+    func_8009C128(player, position);
+    func_8008FF40(rotation);
+    func_800F18FC(position, target, angles);
+    return func_800F20BC(rotation[0], angles[0], tolerance) != 0 &&
+           func_800F20BC(rotation[1], angles[1], tolerance) != 0;
+}
 
 /* extern */
 
