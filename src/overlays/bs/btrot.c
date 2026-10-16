@@ -161,7 +161,17 @@ void func_80800438_bsbtrot(PlayerState *arg0) {
     baphysics_set_target_horizontal_velocity(arg0, velocity);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_808004B4_bsbtrot.s")
+void func_808004B4_bsbtrot(PlayerState *arg0) {
+    s32 bastick_getZone(PlayerState *);
+    f32 bastick_getZonePosition(PlayerState *);
+    s32 func_8008E3E8(PlayerState *);
+    void func_800962B0(PlayerState *, s32);
+    if ((func_8008E3E8(arg0) != 0) && (bastick_getZone(arg0) == 1) && (bastick_getZonePosition(arg0) > 0.8f)) {
+        func_800962B0(arg0, 1);
+        return;
+    }
+    func_800962B0(arg0, 0);
+}
 
 /* extern */
 
@@ -590,9 +600,9 @@ s32 bsbtrot_entrypoint_35(s32 arg0) {
     return ((s32 *)&D_80802ED0_bsbtrot)[arg0];
 }
 
-void bsbtrot_entrypoint_36(s32 arg0)
+void bsbtrot_entrypoint_36(PlayerState *arg0)
 {
-    func_808004B4_bsbtrot();
+    func_808004B4_bsbtrot(arg0);
     func_80800538_bsbtrot(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
