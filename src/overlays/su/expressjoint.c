@@ -57,7 +57,34 @@ void suexpressjoint_entrypoint_1(void *arg0, s16 arg1) {
     (*(s16 *)((s8 *)(arg0) + (4))) = arg1; (*(s16 *)((s8 *)(arg0) + (6))) = func_80800000_suexpressjoint((*(s16 *)((s8 *)(arg0) + (4))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressjoint/suexpressjoint_entrypoint_2.s")
+typedef struct {
+        void *unk0;
+        u8 (*values)[4];
+        u8 pad8[2];
+        u8 defaultValue;
+        u8 padB;
+        u8 count;
+        u8 padD[3];
+} JointInfo;
+
+void suexpressjoint_entrypoint_2(void *arg0, s16 arg1) {
+    extern JointInfo D_80801818_suexpressjoint[];
+    u8 *dest;
+    JointInfo *info;
+    s32 i;
+
+    dest = (u8 *)arg0 + 0x20;
+    suexpressjoint_entrypoint_1(arg0, arg1);
+    *(s8 *)((u8 *)arg0 + 8) = 0;
+    info = &D_80801818_suexpressjoint[*(s16 *)((u8 *)arg0 + 6)];
+    i = 0;
+    if (info->count > 0) {
+        do {
+            *dest++ = info->values[info->defaultValue][i++];
+            info = &D_80801818_suexpressjoint[*(s16 *)((u8 *)arg0 + 6)];
+        } while (i < info->count);
+    }
+}
 
 void suexpressjoint_entrypoint_3(s32 arg0, void *arg1, s32 arg2) {
     typedef struct {
@@ -70,15 +97,6 @@ void suexpressjoint_entrypoint_3(s32 arg0, void *arg1, s32 arg2) {
         f32 total;
         u8 current[4];
     } Joint;
-    typedef struct {
-        void *unk0;
-        u8 (*values)[4];
-        u8 pad8[2];
-        u8 defaultValue;
-        u8 padB;
-        u8 count;
-        u8 padD[3];
-    } JointInfo;
     extern JointInfo D_80801818_suexpressjoint[];
     u32 func_800D5298(void);
     u32 func_800D52A4(void);
