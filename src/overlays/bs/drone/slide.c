@@ -1,4 +1,5 @@
 #include "common.h"
+struct player_state_s;
 
 /* extern */
 
@@ -17,7 +18,24 @@ void func_80800000_bsdroneslide(struct player_state_s *arg0, s32 arg1, f32 arg2)
     _batimer_set(arg0, 0xA, 1.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/slide/func_80800080_bsdroneslide.s")
+void func_80800080_bsdroneslide(struct player_state_s *arg0, s32 arg1) {
+    void _badata_entrypoint_12(struct player_state_s *, s32 *, f32 *);
+    void _badata_entrypoint_13(struct player_state_s *, s32 *, f32 *);
+    f32 sp2C;
+    s32 sp28;
+
+    switch (arg1) {
+    case 1:
+        _badata_entrypoint_13(arg0, &sp28, &sp2C);
+        func_80800000_bsdroneslide(arg0, sp28, sp2C);
+        break;
+    case 2:
+        _badata_entrypoint_12(arg0, &sp28, &sp2C);
+        func_80800000_bsdroneslide(arg0, sp28, sp2C);
+        break;
+    }
+    *((s8 *)arg0 + 0x190) = arg1;
+}
 
 /* extern */
 
@@ -38,7 +56,7 @@ void bsdroneslide_entrypoint_0(PlayerState *arg0) {
     void baphysics_set_target_yaw(PlayerState *, f32);
     f32 func_800136E4(f32);
     int func_8008E148(PlayerState *);
-    s32 func_80800080_bsdroneslide(void *, s32);
+    void func_80800080_bsdroneslide(PlayerState *, s32);
     f32 yaw_get(PlayerState *);
     s32 sp30[2];
     f32 sp2C;
