@@ -33,7 +33,18 @@ void func_8080093C_chboggygirl(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/girl/func_8080097C_chboggygirl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/girl/func_80800A4C_chboggygirl.s")
+void func_80800A4C_chboggygirl(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800DA980(s32, s32);
+    struct Flags { u8 pad[0x16]; u8 high : 1; u8 flag : 1; u8 low : 6; };
+    struct Flags *data;
+    s32 dialog;
+
+    dialog = (func_800DA980(0x8C, 3) == 3) ? 0x1099 : 0x1098;
+    _subaddiedialog_entrypoint_11(arg0->unk0, dialog, 0xF, arg0->position, 0x3C);
+    data = func_80100094(arg0, 0);
+    data->flag = 1;
+}
 
 /* extern */
 
