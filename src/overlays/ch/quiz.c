@@ -234,7 +234,25 @@ s32 func_80800C24_chquiz(Actor *arg0) {
     return value;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800CE8_chquiz.s")
+void func_80800CE8_chquiz(Actor *arg0, s32 *arg1, s32 *arg2) {
+    u32 *_gldbstring_entrypoint_0(u32 *, u32);
+    void _gldbstring_entrypoint_2(s32);
+    u8 *data;
+    s32 offset;
+    s32 textId;
+
+    textId = func_80800B6C_chquiz(arg0);
+    data = (u8 *)_gldbstring_entrypoint_0(NULL, textId);
+    offset = 3;
+    while (data[offset] != 0x8E) {
+        offset += data[offset + 1] + 2;
+    }
+    offset += 3;
+    *arg1 = func_80800C8C_chquiz(data, &offset);
+    offset++;
+    *arg2 = func_80800C8C_chquiz(data, &offset);
+    _gldbstring_entrypoint_2(textId);
+}
 
 /* extern */
 
