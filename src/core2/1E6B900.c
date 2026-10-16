@@ -814,7 +814,33 @@ void func_80094538(PlayerState *arg0) {
     func_8009E9F0(_batimer_get(arg0, 0xD));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094574.s")
+s32 func_80094574(void *arg0, s32 arg1) {
+    s32 _gcegg_entrypoint_6(s32);
+    s32 current;
+    u8 *state;
+
+    (*(u8 **)((u8 *)arg0 + 0x64))[1] = 0;
+    current = func_80094510(arg0);
+    while (current != 0) {
+        if (_gcegg_entrypoint_6(current) != 0 && current == arg1) {
+            return;
+        }
+        state = *(u8 **)((u8 *)arg0 + 0x64);
+        state[1]++;
+        current = func_80094510(arg0);
+    }
+    (*(u8 **)((u8 *)arg0 + 0x64))[1] = 0;
+    current = func_80094510(arg0);
+    while (current != 0) {
+        if (_gcegg_entrypoint_6(current) != 0) {
+            return;
+        }
+        state = *(u8 **)((u8 *)arg0 + 0x64);
+        state[1]++;
+        current = func_80094510(arg0);
+    }
+    (*(u8 **)((u8 *)arg0 + 0x64))[1] = 0;
+}
 
 /* extern */
 
