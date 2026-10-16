@@ -28,7 +28,22 @@ OSThread *chterryegg_entrypoint_3(void)
     return (OSThread *) D_808013B8_chterryegg;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80800030_chterryegg.s")
+void func_80800030_chterryegg(Actor *arg0) {
+    s16 _glsplinefind_entrypoint_0(u32, f32 *);
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
+    void func_80103014(u8 *);
+    s32 func_80800CF4_chterryegg(Actor *, f32);
+    s32 func_80801138_chterryegg(void *);
+
+    if (func_800DA298(arg0->unk74_7 + 0x143) || func_80801138_chterryegg(arg0)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    _glsplinefind_entrypoint_0(0x357, arg0->position);
+    func_80103014(arg0);
+    func_80800CF4_chterryegg(arg0, 4.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_808000A8_chterryegg.s")
 
