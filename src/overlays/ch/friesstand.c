@@ -119,7 +119,23 @@ void func_808005F0_chfriesstand(Actor *arg0) {
     _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80801000_chfriesstand, &D_8080100C_chfriesstand);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/func_80800620_chfriesstand.s")
+void func_80800620_chfriesstand(Actor *arg0) {
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    extern u32 D_8080101C_chfriesstand;
+    extern u32 D_8080102C_chfriesstand;
+    extern u32 D_80801038_chfriesstand;
+    extern u32 D_80801044_chfriesstand;
+    extern u32 D_80801050_chfriesstand;
+    extern u32 D_8080105C_chfriesstand;
+    f32 *temp_s1;
+
+    temp_s1 = (f32 *)((s8 *)arg0 + 4);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_8080102C_chfriesstand, 0.08f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80801038_chfriesstand, 0.23f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80801044_chfriesstand, 0.34f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80801050_chfriesstand, 0.42f);
+    _subaddieaudioquick_entrypoint_4(arg0, temp_s1, &D_8080101C_chfriesstand, &D_8080105C_chfriesstand);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/func_808006D4_chfriesstand.s")
 
