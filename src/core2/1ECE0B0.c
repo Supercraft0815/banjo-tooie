@@ -144,7 +144,30 @@ s32 func_800F4BE4(s32 arg0) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F4C24.s")
+s32 func_800F4C24(s32 arg0) {
+    s32 bs_getCurrentState(PlayerState *);
+    s32 func_800F6D24(s32);
+    s32 func_800F68B8(s32);
+    s32 func_800F6CC8(s32);
+    PlayerState *sp1C;
+    s32 temp_v0;
+
+    sp1C = D_80135490[arg0];
+    if (func_800F6D24(arg0) != 0) {
+        return 0;
+    }
+    if (func_800F68B8(arg0) != 0) {
+        return 0;
+    }
+    if (func_800F6CC8(arg0) != 0) {
+        return 0;
+    }
+    temp_v0 = bs_getCurrentState(sp1C);
+    if ((temp_v0 == 0xED) || (temp_v0 == 0x157)) {
+        return 0;
+    }
+    return 1;
+}
 
 void func_800F4CC0(s32 arg0)
 {
