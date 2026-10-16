@@ -180,7 +180,19 @@ void func_800C16A4(u8 index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C16F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C1860.s")
+/* extern */
+
+void func_800C1860(void *arg0) {
+    void func_800DC4D4(s32);
+
+    if (((u32) ((*(s32 *)((s8 *)(arg0) + (0x78))) << 0x13) >> 0x1D) == 1) {
+        func_800C13B0(arg0, 0x20);
+        func_800C1210(arg0, 2);
+        if (*(u8 *)((s8 *)arg0 + 0x79)) {
+            func_800DC4D4(func_800C1448(*(u8 *)((s8 *)arg0 + 0x79)));
+        }
+    }
+}
 
 void func_800C18C8(s32 index, s32 a, s32 b, s32 c, s32 d) {
     s32 func_800C122C(s32, s32, s32, s32);
