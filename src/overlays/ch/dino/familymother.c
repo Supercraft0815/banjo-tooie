@@ -152,7 +152,26 @@ void func_80801118_chdinofamilymother(Actor *arg0, Unk80132ED0 *arg1, s32 arg2, 
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familymother/func_8080119C_chdinofamilymother.s")
+void func_8080119C_chdinofamilymother(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_7(s32, s32);
+    s32 _capod_entrypoint_8(s32);
+    void _gcdialogcamera_entrypoint_6(Unk80132ED0 *);
+    void _gcdialogcamera_entrypoint_8(void);
+
+    switch (arg0->actorData[7]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x27, arg3 | 0x10);
+        case 2:
+            _capod_entrypoint_8(1);
+            arg0->actorData[7] = 1;
+            _gcdialogcamera_entrypoint_6(arg0->unk0);
+            _gcdialogcamera_entrypoint_8();
+        case 1:
+            _capod_entrypoint_7(arg1, arg2);
+            break;
+    }
+}
 
 /* extern */
 
