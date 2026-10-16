@@ -591,7 +591,7 @@ void func_8080187C_bsfirstp(void *arg0) {
 
 void func_808018E0_bsfirstp(s32 arg0) {
     s32 func_800A4C88(s32);
-    s32 func_800A4CA8();
+    struct player_state_s *func_800A4CA8();
     void func_8010FD38(s32, f32);
     s32 func_800A5044(s32);
     s32 func_80110730(s32, s32);
@@ -600,7 +600,26 @@ void func_808018E0_bsfirstp(s32 arg0) {
     func_800A5044(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80801928_bsfirstp.s")
+void func_80801928_bsfirstp(struct player_state_s *arg0) {
+    void _ncba1p_entrypoint_6(struct player_state_s *, f32[3]);
+    void _ncba1p_entrypoint_7(struct player_state_s *, f32[3]);
+    struct player_state_s *func_800A4CA8(struct player_state_s *);
+    s32 func_800A5090(void *);
+    void func_808019B0_bsfirstp(s32);
+    u8 *sp3C;
+    f32 sp30[3];
+    f32 sp24[3];
+
+    if (func_800A5090(arg0) != 0) {
+        sp3C = *(u8 **)((u8 *)arg0 + 0x188);
+        func_808015C0_bsfirstp(arg0, sp30, sp24);
+        sp24[0] = *(f32 *)(sp3C + 0x20C);
+        _ncba1p_entrypoint_6(func_800A4CA8(arg0), sp30);
+        _ncba1p_entrypoint_7(func_800A4CA8(arg0), sp24);
+        func_808019B0_bsfirstp((s32)arg0);
+    }
+    func_808016A0_bsfirstp(arg0);
+}
 
 /* extern */
 
@@ -643,7 +662,7 @@ void func_80801A5C_bsfirstp(void *arg0) {
 
 s32 func_80801A98_bsfirstp(void) {
     s32 _ncba1p_entrypoint_10(s32);
-    s32 func_800A4CA8();
+    struct player_state_s *func_800A4CA8();
     return _ncba1p_entrypoint_10(func_800A4CA8()) == 2;
 }
 
@@ -2282,7 +2301,7 @@ void bsfirstp_entrypoint_28(void *arg0, void *arg1) {
 
 void func_80806D64_bsfirstp(Actor *arg0) {
     void func_8080633C_bsfirstp(Actor*, f32);
-    s32 func_80801928_bsfirstp(Actor *);
+    void func_80801928_bsfirstp(struct player_state_s *);
     func_8080633C_bsfirstp(arg0, 1.0f);
     func_80801928_bsfirstp(arg0);
 }
