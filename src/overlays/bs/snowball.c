@@ -235,7 +235,19 @@ void func_80800910_bssnowball(struct player_state_s *arg0)
     bssnowball_entrypoint_0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_80800930_bssnowball.s")
+void func_80800930_bssnowball(PlayerState *arg0) {
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    void func_8009FFD8();
+    bssnowball_entrypoint_1(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0x5F, 0x41200000);
+    func_8009FFD8(arg0, 2, 3, 1, 0xE);
+    anctrl_setPlaybackType(baanim_getAnimCtrlPtr(arg0), 3);
+    func_80800164_bssnowball(arg0);
+    *(s8 *)((u8 *)arg0 + 0x164) = 0;
+    *(f32 *)((u8 *)arg0 + 0x174) = 1.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_808009B0_bssnowball.s")
 
