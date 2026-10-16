@@ -137,7 +137,20 @@ void func_80802950_chfantasyathlete(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_8080298C_chfantasyathlete.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80802C18_chfantasyathlete.s")
+void func_80802C18_chfantasyathlete(Actor *arg0, Unk80132ED0 *arg1, s32 arg2, s32 arg3) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+
+    switch (arg0->actorData[0]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x2B, 0x10);
+        case 1:
+            arg0->actorData[0] = 2;
+        case 2:
+            _capod_entrypoint_6(arg1, arg2, arg3);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80802C94_chfantasyathlete.s")
 
