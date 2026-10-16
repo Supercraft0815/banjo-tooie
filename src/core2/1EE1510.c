@@ -371,12 +371,25 @@ void func_801088A8(void *arg0, s32 arg1, s32 arg2, void *arg3) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108944.s")
 
 void func_80108A30(s32 arg0, void *arg1, f32 arg2, s32 arg3) {
-    s32 _chbaddiesetup_entrypoint_6(s32 *, s32, s32, s32, s32, s32, s32);
-    extern s32 func_80108A8C;
+    s32 _chbaddiesetup_entrypoint_6(void (*)(u32, s32, s32, s32, s32, s32), s32, s32, s32, s32, s32, s32);
+    void func_80108A8C(u32, s32, s32, s32, s32, s32);
     _chbaddiesetup_entrypoint_6(&func_80108A8C, arg0, (*(s32 *)((s8 *)(arg1) + (0))), (*(s32 *)((s8 *)(arg1) + (4))), (*(s32 *)((s8 *)(arg1) + (8))), *(s32 *)&arg2, arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108A8C.s")
+void func_80108A8C(u32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    f32 position[3];
+    f32 yaw;
+    Actor *actor;
+    yaw = *(f32 *)&arg4;
+    position[0] = *(f32 *)&arg1;
+    position[1] = *(f32 *)&arg2;
+    position[2] = *(f32 *)&arg3;
+    actor = func_80108474(arg0, position, (s32)yaw);
+    if (actor != NULL) {
+        actor->rotation[1] = yaw;
+        actor->unk74_7 = arg5;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108B04.s")
 
