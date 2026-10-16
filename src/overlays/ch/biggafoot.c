@@ -58,7 +58,7 @@ void func_808008D4_chbiggafoot(s32 arg0) {
 
 s32 func_808008FC_chbiggafoot(Actor *arg0) {
     s32 func_800F0008(f32 [3], f32, f32 [3], f32);
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     f32 func_800F5BF0(s32, f32 *);
     s32 func_800F6478(s32);
     f32 sp24[3];
@@ -78,7 +78,7 @@ s32 func_808008FC_chbiggafoot(Actor *arg0) {
 /* extern */
 
 void func_80800980_chbiggafoot(void *arg0) {
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F5A00(s32, s32 *);
     s32 func_800F6438(s32);
     s32 func_80102BF8(void *, s32, s32, s32);
@@ -92,7 +92,27 @@ void func_80800980_chbiggafoot(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_808009EC_chbiggafoot.s")
+s32 func_808009EC_chbiggafoot(Actor *arg0) {
+    s32 func_800D9078(f32 *);
+    u32 func_800F54E4(void);
+    s32 func_800F6478(s32);
+    s32 func_8010C9B0(f32 *, u32);
+    s32 sp1C;
+
+    sp1C = func_8010C9B0(arg0->position, 0x320);
+    func_800DA3B8(FLAG2_6CD_UNK, sp1C);
+    if (sp1C == 0) {
+        ((f32 *)arg0->actorData)[7] = 3.0f;
+        return 0;
+    }
+    if (func_800F6478(func_800F54E4()) == 0) {
+        return 0;
+    }
+    if (func_800DA298(FLAG3_9FB_UNK) && func_800DA298(FLAG_1C7_UNK)) {
+        return func_800D9078(&((f32 *)arg0->actorData)[7]);
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_80800A9C_chbiggafoot.s")
 
@@ -100,7 +120,7 @@ void func_80800BA4_chbiggafoot(Actor *arg0) { void func_80102424(Actor *, s32); 
 
 void func_80800C04_chbiggafoot(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    u8 func_800D9078(f32 *);
+    s32 func_800D9078(f32 *);
     void func_80102424(Actor *, s32);
     void func_80800CDC_chbiggafoot(Actor *);
     extern s16 D_80801030_chbiggafoot;
