@@ -90,7 +90,30 @@ void bssnowball_entrypoint_0(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/bssnowball_entrypoint_1.s")
+void bssnowball_entrypoint_1(PlayerState *arg0) {
+    void _basnowball_entrypoint_2(PlayerState *);
+    void baflag_set(PlayerState *, s32);
+    void baroll_setAngularVelocity(PlayerState *, f32, f32);
+    void bastick_pushZone(PlayerState *);
+    void bastick_setZoneMax(PlayerState *, s32, f32);
+    void func_80092864(PlayerState *, f32);
+    void func_800947EC(PlayerState *, s32, s32);
+    void func_8009BFE4(PlayerState *, f32, f32);
+    s32 func_8009E77C(PlayerState *, s32);
+    if (func_8009E77C(arg0, 0x16) == 0) {
+        _basnowball_entrypoint_2(arg0);
+        func_8009BFE4(arg0, 1000.0f, 12.0f);
+        baroll_setAngularVelocity(arg0, 1000.0f, 12.0f);
+        bastick_pushZone(arg0);
+        bastick_setZoneMax(arg0, 0, 0.12f);
+        bastick_setZoneMax(arg0, 1, 1.0f);
+        baflag_set(arg0, 3);
+        baflag_set(arg0, 4);
+        func_800947EC(arg0, 1, 1);
+        *(u8 *)((u8 *)arg0 + 0x165) = 0;
+        func_80092864(arg0, 1.0999908447265625f);
+    }
+}
 
 /* extern */
 
@@ -140,7 +163,7 @@ void func_808004E0_bssnowball(s32 arg0)
 }
 void func_80800508_bssnowball(s32 arg0)
 {
-    bssnowball_entrypoint_1();
+    bssnowball_entrypoint_1(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
 void func_80800530_bssnowball(s32 arg0)
@@ -211,7 +234,7 @@ s32 bssnowball_entrypoint_7(s32 arg0) {
 
 void func_80800B44_bssnowball(s32 arg0) { _baspin_entrypoint_1(); *(u8 *)(arg0 + 0x165) = 0; bssnowball_entrypoint_0(arg0); }
 
-void func_80800B70_bssnowball(s32 arg0) { bssnowball_entrypoint_1(); *(u8 *)(arg0 + 0x165) = 1; _basnowball_entrypoint_10(arg0); _baspin_entrypoint_2(arg0, 0x5E, 0x3FE66666, 3, 0); }
+void func_80800B70_bssnowball(s32 arg0) { bssnowball_entrypoint_1(arg0); *(u8 *)(arg0 + 0x165) = 1; _basnowball_entrypoint_10(arg0); _baspin_entrypoint_2(arg0, 0x5E, 0x3FE66666, 3, 0); }
 
 /* extern */
 
@@ -246,7 +269,7 @@ void func_80800C40_bssnowball(struct player_state_s *arg0) {
     void _babounce_entrypoint_5(struct player_state_s *, s32, f32);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     void func_8008B10C(struct anctrl_s *, f32);
-    bssnowball_entrypoint_1();
+    bssnowball_entrypoint_1(arg0);
     _babounce_entrypoint_4(arg0, 2);
     _babounce_entrypoint_5(arg0, 0x5E, 0.5128f);
     func_8008B10C(baanim_getAnimCtrlPtr(arg0), 0.1026f);
@@ -283,7 +306,7 @@ void func_80800D00_bssnowball(s32 arg0)
 }
 void func_80800D28_bssnowball(s32 arg0)
 {
-    bssnowball_entrypoint_1();
+    bssnowball_entrypoint_1(arg0);
     _bsrest_entrypoint_16(arg0);
 }
 /* extern */
@@ -316,7 +339,7 @@ void func_80800DD8_bssnowball(s32 arg0) {
     s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     void func_800909CC(struct player_state_s *);
-    bssnowball_entrypoint_1();
+    bssnowball_entrypoint_1(arg0);
     baanim_playForDuration_loopSmooth(arg0, 0x5E, 0x3F99999A);
     func_8009FFD8(arg0, 1, 3, 1, 2);
     func_80800164_bssnowball(arg0);
