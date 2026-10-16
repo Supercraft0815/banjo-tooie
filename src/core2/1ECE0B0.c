@@ -2045,7 +2045,25 @@ s32 func_800F929C(void) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F92CC.s")
+void func_800F92CC(u32 *arg0, s32 *arg1, s32 *arg2, s32 *arg3) {
+    s32 _plsu_entrypoint_1(s32);
+    u32 temp_v0;
+    s32 temp_v0_2;
+
+    temp_v0 = func_800F54E4();
+    *arg0 = temp_v0;
+    temp_v0_2 = func_800F5410((s32) temp_v0);
+    *arg1 = temp_v0_2;
+    switch (temp_v0_2) {
+        case 10:
+            *arg3 = 11;
+            break;
+        case 11:
+            *arg3 = 10;
+            break;
+    }
+    *arg2 = _plsu_entrypoint_1(*arg3);
+}
 
 void func_800F9354(u32 *arg0, s32 *arg1, s32 *arg2) {
     u32 temp_v0;
