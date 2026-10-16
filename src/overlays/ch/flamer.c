@@ -87,7 +87,26 @@ void chflamer_entrypoint_1(Actor *arg0, Unk80132ED0 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flamer/chflamer_entrypoint_2.s")
+void chflamer_entrypoint_2(Unk80132ED0 *arg0, s32 arg1) {
+    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    f32 func_800DC178(f32, f32);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *func_801084B0(s32, Actor **);
+    Actor *sp24;
+    Actor *sp20;
+    u8 *data;
+
+    sp24 = func_80106790(arg0);
+    if (!sp24->unk64_17) {
+        sp20 = func_801084B0(0x3A2, &sp24);
+        if (sp20 != NULL) {
+            data = func_80100094(sp20, 0U);
+            _subaddielink_entrypoint_1(data + 0x1B4, arg0);
+            sp20->unk58 = func_800DC178(4.0f, 6.0f);
+            sp20->unk70_10 = 1;
+        }
+    }
+}
 
 Actor *func_80800738_chflamer(Actor *arg0) {
     struct LinkedActorFlags {
