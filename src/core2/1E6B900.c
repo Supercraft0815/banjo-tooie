@@ -47,7 +47,23 @@ void func_800920C8(void *arg0) {
     func_80093504(arg0, temp_v0 + 0x64, temp_v0 + 0x50);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_800920F0.s")
+void func_800920F0(PlayerState *arg0) {
+    f32 yaw_get(PlayerState *);
+    f32 func_800136E4(f32);
+    u8 temp_v0;
+
+    temp_v0 = (*(u8 **)((u8 *)arg0 + 0x50))[0x15];
+    switch (temp_v0) {
+        case 2:
+            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x28) = func_800136E4(yaw_get(arg0) + 180.0f);
+            break;
+        default:
+            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x28) = yaw_get(arg0);
+            break;
+        case 3:
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_8009216C.s")
 
