@@ -193,7 +193,29 @@ int func_808006A8_chbanjoctrl(void *arg0) {
         && ((struct BanjoCtrl *)arg0)->callback(player);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800728_chbanjoctrl.s")
+void func_80800728_chbanjoctrl(void *arg0) {
+    s32 func_800D9078(f32 *);
+    u8 state;
+
+    state = *(u8 *)((s8 *)arg0 + 0x30);
+    switch (state) {
+        case 1:
+            if (func_808006A8_chbanjoctrl(arg0)) {
+                func_80800638_chbanjoctrl(arg0, 2);
+            }
+            break;
+        case 2:
+            func_800D9078((f32 *)((s8 *)arg0 + 0x28));
+            if (*(f32 *)((s8 *)arg0 + 0x28) == 0.0f) {
+                if (func_808006A8_chbanjoctrl(arg0)) {
+                    func_80800638_chbanjoctrl(arg0, 2);
+                } else {
+                    func_80800638_chbanjoctrl(arg0, 1);
+                }
+            }
+            break;
+    }
+}
 
 /* extern */
 
