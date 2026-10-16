@@ -193,7 +193,27 @@ void func_808006C4_chbouncycastle(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bouncycastle/func_80800774_chbouncycastle.s")
+s32 func_80800774_chbouncycastle(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _glcutDll_entrypoint_19(u32);
+    void func_80101FDC(Actor *, u32);
+
+    if (arg1 == 0x49) {
+        if (_glcutDll_entrypoint_19(0x22) != 0) {
+            _capod_entrypoint_13(arg0->unk0, NULL, 0xF, 0x2910);
+            func_80101FDC(arg0, 2);
+            arg0->unk58 = 0.15f;
+            return 1;
+        }
+        if (_glcutDll_entrypoint_19(0x21) != 0) {
+            _capod_entrypoint_13(arg0->unk0, NULL, 0xC, 0x2910);
+            func_80101FDC(arg0, 3);
+            arg0->unk58 = 0.15f;
+            return 1;
+        }
+    }
+    return 0;
+}
 
 void func_80800828_chbouncycastle(s32 arg0) 
 {
