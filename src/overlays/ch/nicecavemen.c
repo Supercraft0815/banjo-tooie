@@ -293,7 +293,20 @@ void func_80801428_chnicecavemen(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_80801464_chnicecavemen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_80801508_chnicecavemen.s")
+void func_80801508_chnicecavemen(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+
+    switch (arg0->actorData[0]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x13, arg2);
+        case 2:
+            arg0->actorData[0] = 1;
+        case 1:
+            _capod_entrypoint_6(arg0->unk0, arg1, arg2);
+            break;
+    }
+}
 
 /* extern */
 
