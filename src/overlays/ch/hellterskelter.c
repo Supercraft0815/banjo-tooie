@@ -63,17 +63,33 @@ void func_808002E8_chhellterskelter(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/func_808002F0_chhellterskelter.s")
 
-void func_808004D0_chhellterskelter(s32 arg0) {
-    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+void func_808004D0_chhellterskelter(Actor *arg0) {
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 func_800DC298(f32);
     void *func_80105494();
     extern s32 D_808008C0_chhellterskelter;
     if (!((*(f32 *)((s8 *)(func_80105494()) + (0xC))) > 0.9f) && (func_800DC298(0.1f) != 0)) {
-        func_800BBCB8(arg0 + 4, 0, 0x3F800000, 1, &D_808008C0_chhellterskelter);
+        func_800BBCB8(arg0->position, 0, 1.0f, 1, &D_808008C0_chhellterskelter);
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/func_80800540_chhellterskelter.s")
+void func_80800540_chhellterskelter(Actor *volatile arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    extern s32 D_808008F4_chhellterskelter;
+    extern s32 D_80800924_chhellterskelter;
+    f32 sp24[3];
+    f32 *sp20;
+
+    sp20 = arg0->position;
+    func_800EE7F8(sp24, sp20);
+    sp24[1] -= 100.0f;
+    func_800EF1B8(sp24, arg0->rotation[1] + 180.0f, 50.0f);
+    func_800BBCB8(sp20, sp24, 1.0f, 0xA, &D_808008F4_chhellterskelter);
+    _subaddieaudioquick_entrypoint_2(arg0, sp20, &D_80800924_chhellterskelter);
+}
 
 void func_808005E0_chhellterskelter(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
