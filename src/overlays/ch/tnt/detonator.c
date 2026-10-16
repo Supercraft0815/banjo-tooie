@@ -22,18 +22,38 @@ void func_8080000C_chtntdetonator(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/detonator/func_8080021C_chtntdetonator.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/detonator/func_808002D8_chtntdetonator.s")
+void func_808002D8_chtntdetonator(u8 *arg0) {
+    s32 *_fxgenlist_entrypoint_2(void);
+    void func_80018820(s32, f32, f32);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800C4AF0(f32 *, void *);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80800380_chtntdetonator(u8 *);
+    void func_808003C0_chtntdetonator(u8 *);
+    extern s32 D_808006F0_chtntdetonator;
+    f32 position[3];
+
+    func_800EE7F8(position, (f32 *)(arg0 + 4));
+    position[1] += 270.0f;
+    func_800BBCB8(position, NULL, 1.5f, 1, _fxgenlist_entrypoint_2());
+    func_808003C0_chtntdetonator(arg0);
+    func_80800380_chtntdetonator(arg0);
+    func_800C4AF0((f32 *)(arg0 + 4), &D_808006F0_chtntdetonator);
+    func_800E1610(0, 30.0f, 0.9f, (f32 *)(arg0 + 4));
+    func_80018820(0, 3.0f, 0.25f);
+}
 
 void func_80800380_chtntdetonator(u8 *arg0) {
-    s32 func_800BBCB8(u8 *, s32, s32, s32, s32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern s32 D_80800704_chtntdetonator;
-    func_800BBCB8(arg0 + 4, 0, (*(s32 *)((s8 *)(arg0) + (0x38))), 12, &D_80800704_chtntdetonator);
+    func_800BBCB8((f32 *)(arg0 + 4), NULL, (*(f32 *)((s8 *)(arg0) + (0x38))), 12, &D_80800704_chtntdetonator);
 }
 
 void func_808003C0_chtntdetonator(u8 *arg0) {
-    s32 func_800BBCB8(u8 *, s32, s32, s32, s32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern s32 D_80800754_chtntdetonator;
-    func_800BBCB8(arg0 + 4, 0, (*(s32 *)((s8 *)(arg0) + (0x38))), 15, &D_80800754_chtntdetonator);
+    func_800BBCB8((f32 *)(arg0 + 4), NULL, (*(f32 *)((s8 *)(arg0) + (0x38))), 15, &D_80800754_chtntdetonator);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/detonator/func_80800400_chtntdetonator.s")
