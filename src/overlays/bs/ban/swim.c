@@ -2,7 +2,7 @@
 
 struct player_state_s;
 
-void func_80800000_bsbanswim(s32 arg0) {
+void func_80800000_bsbanswim(struct player_state_s *arg0) {
     func_8009FFD8(arg0, 0x1, 0x3, 0x3, 0x9);
 }
 
@@ -72,7 +72,23 @@ void func_808001A8_bsbanswim(struct player_state_s *arg0)
     func_80800104_bsbanswim(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/swim/func_808001C8_bsbanswim.s")
+void func_808001C8_bsbanswim(struct player_state_s *arg0) {
+    void _baswim_entrypoint_10(void *, f32);
+    void _baswim_entrypoint_8(void *, f32);
+    void baanim_playForDuration_onceSmoothStartingAt(void *, s32, f32, f32);
+    void func_8009BFE4(struct player_state_s *, f32, f32);
+    void func_800C6DA0(s32);
+    void yaw_setVelocityBounded(struct player_state_s *, f32, f32);
+    func_800C6DA0(0x3F);
+    baanim_playForDuration_onceSmoothStartingAt(arg0, 0x27D, 1.7f, 0.1f);
+    func_80800000_bsbanswim(arg0);
+    yaw_setVelocityBounded(arg0, 500.0f, 5.0f);
+    func_80800030_bsbanswim(arg0);
+    _baswim_entrypoint_10(arg0, 0.0f);
+    _baswim_entrypoint_8(arg0, 600.0f);
+    func_8009BFE4(arg0, 200.0f, 2.5f);
+    *(u8 *)((s8 *)arg0 + 0x164) = 0;
+}
 
 void func_8080025C_bsbanswim(void *arg0) {
     s32 _baswim_entrypoint_1(void *);
