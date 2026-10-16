@@ -79,7 +79,26 @@ void func_808004B8_chcoderoombits(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_8080077C_chcoderoombits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_8080091C_chcoderoombits.s")
+void func_8080091C_chcoderoombits(Actor *arg0) {
+    void *data;
+    s16 *room;
+    struct CodeRoomBit *bit;
+
+    room = (s16 *)func_80100094(arg0, 0U) + 0xAA;
+    data = func_80100094(arg0, 0U);
+    bit = D_808011F4_chcoderoombits;
+    *room = 0;
+    *(u8 *)((u8 *)data + 0x19) = 0;
+    if (bit->unk0 != 0) {
+        do {
+            if (bit->flag != 0) {
+                *room = 0;
+            }
+            bit++;
+            room++;
+        } while (bit->unk0 != 0);
+    }
+}
 
 void func_80800998_chcoderoombits(Actor *arg0) {
     struct CodeRoomBit *bit;
