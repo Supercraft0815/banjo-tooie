@@ -229,7 +229,18 @@ s32 func_800D721C(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D725C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D731C.s")
+u8 func_800D731C(s32 arg0) {
+    extern u8 D_8012B800[];
+    s32 func_800D6254(s32);
+    s32 index;
+    s32 size = 12;
+
+    index = func_800D6254(arg0);
+    if (index != -1 && ((*(u32 *)(D_8012B800 + index * size) << 27) >> 28) == 2) {
+        return D_8012B800[index * size + 11];
+    }
+    return 0;
+}
 
 void func_800D738C()
 {
