@@ -750,7 +750,20 @@ void func_80802500_chdinoboss(Actor *arg0) {
     (*(s8 *)((s8 *)(var_v1) + (0x12B))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80802540_chdinoboss.s")
+void func_80802540_chdinoboss(Actor *arg0) {
+    s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    s32 func_800F4F34(u32, f32 *, f32, f32);
+    u32 func_800F54E4(void);
+    f32 sp1C[3];
+
+    func_800F4F34(func_800F54E4(), arg0->position, 500.0f, 500.0f);
+    if (_subaddieskeleton_entrypoint_0(arg0, 6, sp1C) != 0) {
+        func_800F4F34(func_800F54E4(), sp1C, 0.0f, 300.0f);
+    }
+    if (_subaddieskeleton_entrypoint_0(arg0, 0x14, sp1C) != 0) {
+        func_800F4F34(func_800F54E4(), sp1C, 0.0f, 300.0f);
+    }
+}
 
 void func_808025E8_chdinoboss(Actor *arg0) {
     s32 _glcutDll_entrypoint_19(s32);
