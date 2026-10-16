@@ -107,7 +107,30 @@ void func_80800508_chcrusher(Actor *arg0) {
 void func_808005C0_chcrusher(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_808005C8_chcrusher.s")
+void func_808005C8_chcrusher(Actor *arg0) {
+    void func_80101EE4(Actor *, f32);
+    void func_80101FDC(Actor *, u32);
+
+    switch (arg0->unk74_7) {
+        default:
+            arg0->unk6C_0 = 0;
+            break;
+        case 0x32:
+            arg0->unk6C_0 = 0;
+            break;
+        case 0x33:
+            arg0->unk6C_0 = 1;
+            break;
+        case 0x34:
+            arg0->unk6C_0 = 2;
+            break;
+    }
+    ((f32 *)arg0->actorData)[7] = 0.0f;
+    arg0->position[2] = -365.0f;
+    arg0->position[1] = 10.0f;
+    func_80101FDC(arg0, 1);
+    func_80101EE4(arg0, 0.48f);
+}
 
 /* extern */
 
