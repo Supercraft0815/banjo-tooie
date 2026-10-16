@@ -133,10 +133,10 @@ s32 func_8080112C_chstonepillar(Actor *arg0) {
 
 /* extern */
 
-void func_80801174_chstonepillar(s32 arg0) {
+void func_80801174_chstonepillar(Actor *arg0) {
     s32 func_800DA524(s32);
     s32 func_800DA7A8(s32, s32, s32);
-    s32 func_80101FDC(s32, s32);
+    void func_80101FDC(Actor *, u32);
     func_800DA7A8(0x9CD, 0, 3);
     func_800DA7A8(0x9CD, 0, 3);
     func_800DA524(0x9D6);
@@ -144,7 +144,20 @@ void func_80801174_chstonepillar(s32 arg0) {
     func_80101FDC(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_808011CC_chstonepillar.s")
+void func_808011CC_chstonepillar(Actor *arg0, u32 arg1, f32 arg2, f32 arg3) {
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80018820(s32, f32, f32);
+    f32 *data;
+
+    if (arg1 != arg0->unk70_10) {
+        func_80101FDC(arg0, arg1);
+        data = func_80100094(arg0, 0);
+        data[9] = arg2;
+        arg0->unk58 = 0.3f;
+        func_80018820(0, 3.0f, arg3);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80801238_chstonepillar.s")
 
