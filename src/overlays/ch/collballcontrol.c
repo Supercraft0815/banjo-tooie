@@ -489,7 +489,7 @@ void func_80802764_chcollballcontrol(s32 *arg0) {
     Entry *func_800E9E88(s32);
     Entry *func_800E9EB4(s32);
     Actor *func_80106790(Unk80132ED0 *);
-    void func_808028D0_chcollballcontrol(s32 *, u8 *);
+    void func_808028D0_chcollballcontrol(Actor *, Actor *);
     void func_80802964_chcollballcontrol(Actor *, u32);
     void func_808029D8_chcollballcontrol(Actor *, Actor *);
     s32 *list;
@@ -521,11 +521,23 @@ void func_80802764_chcollballcontrol(s32 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808028D0_chcollballcontrol.s")
+void func_808028D0_chcollballcontrol(Actor *arg0, Actor *arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 _sukickball_entrypoint_13(f32 *, f32 *, f32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    extern s32 D_80804C84_chcollballcontrol;
+    f32 *sp1C;
+
+    sp1C = func_80100094(arg0, 0);
+    if (_sukickball_entrypoint_13(arg0->position, arg1->position, 60.0f) && sp1C[7] <= 0.0f) {
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804C84_chcollballcontrol);
+        sp1C[7] = 0.75f;
+    }
+}
 
 void func_80802964_chcollballcontrol(Actor *arg0, u32 arg1) {
     s32 _sukickball_entrypoint_12(u8 *, s32);
-    void _sukickball_entrypoint_13(f32 *, f32 *, f32);
+    s32 _sukickball_entrypoint_13(f32 *, f32 *, f32);
     void func_800F5A00(s32, f32 *);
     Actor *func_80106790(Unk80132ED0 *);
     Actor *parent;
@@ -540,7 +552,7 @@ void func_80802964_chcollballcontrol(Actor *arg0, u32 arg1) {
 
 void func_808029D8_chcollballcontrol(Actor *arg0, Actor *arg1) {
     s32 _sukickball_entrypoint_12(u8 *, s32);
-    void _sukickball_entrypoint_13(f32 *, f32 *, f32);
+    s32 _sukickball_entrypoint_13(f32 *, f32 *, f32);
     Actor *func_80106790(Unk80132ED0 *);
     Actor *parent;
 
@@ -865,7 +877,7 @@ void func_8080405C_chcollballcontrol(u8 *arg0) {
     s32 _sukickball_entrypoint_7(u8 *, s32);
     Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
     s32 _sukickball_entrypoint_12(u8 *, s32);
-    void _sukickball_entrypoint_13(f32 *, f32 *, f32);
+    s32 _sukickball_entrypoint_13(f32 *, f32 *, f32);
     f32 func_800D8FF8(void);
     f32 func_800DC0C0(void);
     void func_800EEB9C(f32 *, f32, f32);
