@@ -129,7 +129,27 @@ void func_80800A9C_chgameselect(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80800AEC_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80800CA0_chgameselect.s")
+void func_80800CA0_chgameselect(Unk80132ED0 *arg0) {
+    typedef struct {
+        u8 pad0[0x28];
+        void (*callback)(Actor *, s32 *);
+        u8 pad2C[8];
+    } GameSelectCallback;
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_808026C8_chgameselect(Unk80132ED0 *, s32);
+    extern GameSelectCallback D_80807DD0_chgameselect[];
+    s32 sp1C;
+    Actor *actor;
+
+    sp1C = -1;
+    actor = func_80106790(arg0);
+    if (D_80807DD0_chgameselect[actor->unk70_10].callback != NULL) {
+        D_80807DD0_chgameselect[actor->unk70_10].callback(actor, &sp1C);
+    }
+    if (sp1C != -1) {
+        func_808026C8_chgameselect((Unk80132ED0 *)actor->actorData[5], sp1C);
+    }
+}
 
 s32 func_80800D3C_chgameselect(Unk80132ED0 *arg0) {
     Actor *func_80106790(Unk80132ED0 *);
@@ -578,7 +598,7 @@ void func_808024D4_chgameselect(void *arg0) {
 void func_80802530_chgameselect(void *arg0) {
     s32 _gczoombox_entrypoint_3(s32, void *);
     s32 _gczoombox_entrypoint_4(s32, void *);
-    s32 func_80800CA0_chgameselect(s32, void *);
+    void func_80800CA0_chgameselect();
     s32 temp_v0;
 
     _gczoombox_entrypoint_4((*(s32 *)((s8 *)(arg0) + (0x28))), arg0);
