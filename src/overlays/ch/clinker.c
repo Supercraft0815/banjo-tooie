@@ -211,7 +211,22 @@ void func_80801004_chclinker(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_8080100C_chclinker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_8080112C_chclinker.s")
+void func_8080112C_chclinker(Actor *arg0) {
+    s32 func_800D9078(f32 *);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void func_80101FDC(Actor *, u32);
+
+    switch (arg0->unk70_10) {
+    case 3:
+        if (func_800D9078(&arg0->unk58) != 0) {
+            func_800D1000(0x35, 1, NULL, 1, 0);
+            func_80101FDC(arg0, 1);
+        }
+    case 2:
+    case 4:
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_808011A8_chclinker.s")
 
