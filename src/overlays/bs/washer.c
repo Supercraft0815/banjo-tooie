@@ -40,7 +40,39 @@ void func_808000BC_bswasher(s32 arg0) {
     yaw_setVelocityBounded(arg0, 0x43960000, 0x40C00000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_808000F0_bswasher.s")
+struct player_state_s;
+void func_800947EC(struct player_state_s *, s32, s32);
+
+void func_808000F0_bswasher(struct player_state_s *arg0) {
+    void _bawasher_entrypoint_1(struct player_state_s *);
+    void baflag_clear(struct player_state_s *, s32);
+    void baroll_resetAngularVelocity(struct player_state_s *);
+    void baroll_setIdeal(struct player_state_s *, f32);
+    void bastick_popZone(struct player_state_s *);
+    void func_80092864(struct player_state_s *, f32);
+    void func_80095964(void *, s32);
+    void func_80095A40(struct player_state_s *);
+    void func_8009BF5C(struct player_state_s *, f32);
+    void func_8009C000(struct player_state_s *);
+    void func_8009E474(struct player_state_s *);
+    s32 func_8009E74C(struct player_state_s *, s32);
+
+    if (func_8009E74C(arg0, 0x15) == 0) {
+        func_800947EC(arg0, 1, 0);
+        func_8009BF5C(arg0, 0.0f);
+        baroll_setIdeal(arg0, 0.0f);
+        func_8009C000(arg0);
+        baroll_resetAngularVelocity(arg0);
+        bastick_popZone(arg0);
+        func_80095A40(arg0);
+        func_80095964(arg0, 0);
+        func_8009E474(arg0);
+        baflag_clear(arg0, 3);
+        baflag_clear(arg0, 4);
+        _bawasher_entrypoint_1(arg0);
+        func_80092864(arg0, 1.0f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_808001A8_bswasher.s")
 
@@ -100,8 +132,8 @@ s32 bswasher_entrypoint_2(s32 arg0) {
 /* extern */
 
 void func_808008BC_bswasher(s32 arg0) {
-    void func_8009BF5C(s32, f32);
-    void baroll_setIdeal(s32, f32);
+    void func_8009BF5C(struct player_state_s *, f32);
+    void baroll_setIdeal(struct player_state_s *, f32);
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
     func_808000F0_bswasher(arg0);
@@ -121,8 +153,8 @@ s32 bswasher_entrypoint_3(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80800C70_bswasher.s")
 
 void func_80800E74_bswasher(s32 arg0) {
-    void func_8009BF5C(s32, f32);
-    void baroll_setIdeal(s32, f32);
+    void func_8009BF5C(struct player_state_s *, f32);
+    void baroll_setIdeal(struct player_state_s *, f32);
     baphysics_reset_gravity();
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
@@ -345,7 +377,7 @@ s32 bswasher_entrypoint_8(s32 arg0) {
 
 void func_8080142C_bswasher(s32 arg0)
 {
-    func_808000F0_bswasher();
+    func_808000F0_bswasher(arg0);
     func_80090A2C(arg0);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80801454_bswasher.s")
@@ -411,9 +443,9 @@ s32 bswasher_entrypoint_10(s32 arg0) {
     return ((s32 *)&D_80801EC4_bswasher)[arg0];
 }
 
-void func_80801B10_bswasher()
+void func_80801B10_bswasher(struct player_state_s *arg0)
 {
-    func_808000F0_bswasher();
+    func_808000F0_bswasher(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80801B30_bswasher.s")
