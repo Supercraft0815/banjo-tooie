@@ -791,7 +791,22 @@ void func_800F64DC(s32 arg0) {
     func_8009CA70((PlayerState *)sp1C, bs_getCurrentState((PlayerState *)sp1C), 0x400000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F651C.s")
+/* extern */
+
+s32 func_800F651C(s32 arg0) {
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    s32 bs_getCurrentState(PlayerState *);
+    PlayerState *sp1C;
+
+    sp1C = D_80135490[arg0];
+    if (baphysics_get_target_horizontal_velocity(sp1C) == 0.0f) {
+        return 1;
+    }
+    if (bs_getCurrentState(sp1C) == 1) {
+        return 1;
+    }
+    return func_8009E674(sp1C, 0x1000);
+}
 
 /* extern */
 
