@@ -25,12 +25,32 @@ void func_800B3370(void* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8CC00/func_800B3494.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8CC00/func_800B36C0.s")
+void func_800EE830(s32 *, s32 *);
+
+int func_800B36C0(s32 arg0, f32 *arg1, s32 *arg2, f32 arg3) {
+    void func_800EE7F8(f32 *, f32 *);
+    struct entry {
+        f32 position[3];
+        s32 value[3];
+        f32 radius;
+    };
+    struct entry *sp1C[2];
+
+    sp1C[1] = *(struct entry **)(arg0 + 0x10);
+    if (sp1C[1] < *(struct entry **)(arg0 + 0x14)) {
+        func_800EE7F8(sp1C[1]->position, arg1);
+        func_800EE830((*(struct entry **)(arg0 + 0x10))->value, arg2);
+        (*(struct entry **)(arg0 + 0x10))->radius = arg3;
+        (*(struct entry **)(arg0 + 0x10))++;
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
 void func_800B3748(s32 arg0) {
-    s32 func_800B36C0(s32, f32 *, s32 *, f32);
+    int func_800B36C0(s32, f32 *, s32 *, f32);
     s32 func_800C8960(s32 *, f32 *);
     f32 sp24[3];
     s32 pad[2];
@@ -55,9 +75,9 @@ void func_800B388C(u8 *arg0, s32 arg1) {
     (*(s32 *)((s8 *)(arg0) + (0x14))) = (s32) ((arg0 + 0x18) + (arg1 * 0x1C));
 }
 
-void func_800B38A8()
+void func_800B38A8(s32 *arg0, s32 *arg1)
 {
-    func_800EE830();
+    func_800EE830(arg0, arg1);
 }
 
 void func_800B38C8()
