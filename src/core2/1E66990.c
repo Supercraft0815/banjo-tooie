@@ -6,7 +6,12 @@ int func_8008D0A0(PlayerState *player) {
     return func_800C6E38(0) && func_800A3304(player);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008D0E0.s")
+int func_8008D0E0(PlayerState *player) {
+    int func_800C6E38(s32);
+    s32 func_800A3304(PlayerState *);
+    return func_800C6E38(1) && baflag_isFalse(player, 0x39)
+        && (func_800A3304(player) || func_800A3274(player) == 0xB);
+}
 
 int func_8008D14C(PlayerState *player) {
     int func_800C6E38(s32);
