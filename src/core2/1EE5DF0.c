@@ -248,7 +248,17 @@ f32 func_8010CD50(Actor *arg0, u32 arg1) {
     func_800F1DF4((s32)arg0 + 4, (s32 *)sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010CD88.s")
+int func_8010CD88(Actor *arg0, f32 arg1, f32 arg2) {
+    void func_8010CE28(s32, f32 *);
+    f32 func_80013728(f32);
+    f32 mlAbsF(f32);
+    f32 rotation[2];
+
+    func_8010CE28((s32)arg0, rotation);
+    rotation[0] = mlAbsF(func_80013728(arg0->rotation[0] - rotation[0]));
+    return mlAbsF(func_80013728(arg0->rotation[1] - rotation[1])) < arg2 &&
+        rotation[0] < arg1;
+}
 
 void func_8010CE28(s32 arg0, f32 *arg1) {
     s32 func_800F18FC(s32, s32 *, f32 *);
