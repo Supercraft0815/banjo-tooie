@@ -1,6 +1,28 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FAB50.s")
+void *func_800FAB50(f32 arg0[3], f32 arg1[3], f32 arg2[3], u32 arg3, f32 arg4) {
+    void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EF3DC(f32 *, f32 *);
+    void func_800EFB24(void *, void *, void *);
+    f32 sp34[3];
+    f32 sp28[3];
+    void *sp24;
+
+    func_800EE7F8(sp28, arg1);
+    func_800EFB24(sp34, sp28, arg0);
+    func_800EF368(sp34, arg4);
+    func_800EF04C(sp28, sp34);
+    sp24 = func_800C6A7C(arg0, sp28, arg2, arg3);
+    if (sp24 == NULL) {
+        return NULL;
+    }
+    func_800EF3DC(sp28, sp34);
+    func_800EE7F8(arg1, sp28);
+    return sp24;
+}
 
 void *func_800FABF4(f32 start[3], f32 end[3], f32 normal[3], u32 flags, f32 radius, f32 height) {
     void func_800EE7F8(f32 *, f32 *);
@@ -21,7 +43,7 @@ void *func_800FABF4(f32 start[3], f32 end[3], f32 normal[3], u32 flags, f32 radi
 
 void func_800FACA0(f32 arg0[3], s32 unused, u32 arg1) {
     void func_800EE7F8(f32 *, f32 *);
-    s32 func_800C6A7C(s32, f32 *, f32 *, s32);
+    void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
     f32 sp34[3];
     f32 sp28[3];
     f32 sp1C[3];
@@ -31,7 +53,7 @@ void func_800FACA0(f32 arg0[3], s32 unused, u32 arg1) {
     func_800EE7F8(sp1C, arg0);
     sp28[1] += 100.0f;
     sp1C[1] -= 500.0f;
-    temp_v0 = (u8 *)func_800C6A7C((s32)sp28, sp1C, sp34, arg1);
+    temp_v0 = func_800C6A7C(sp28, sp1C, sp34, arg1);
     if ((temp_v0 != NULL) && (!(sp34[1] < 0.0f) || (*(u32 *)(temp_v0 + 8) & 0x10000)) && (arg0[1] < sp1C[1])) {
         arg0[1] = sp1C[1];
     }
@@ -42,7 +64,7 @@ void func_800FACA0(f32 arg0[3], s32 unused, u32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FAE44.s")
 
 void func_800FAF78(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3], f32 arg4[3]) {
-    void func_800EFB24(f32 *, f32 *, f32 *);
+    void func_800EFB24(void *, void *, void *);
     f32 func_800EEAA4(f32 *, f32 *);
     f32 sp3C[3];
     f32 sp30[3];
@@ -63,8 +85,8 @@ void func_800FAF78(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3], f32 arg4[
 
 /* extern */
 
-void func_800FB1B0(s32 arg0, f32 *arg1, s32 arg2) {
-    s32 func_800C6A7C(s32, f32 *, f32 *, s32);
+void func_800FB1B0(f32 *arg0, f32 *arg1, s32 arg2) {
+    void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
     void func_800EE7F8(f32 *, f32 *);
     f32 sp24[3];
     f32 sp18[3];
@@ -82,7 +104,7 @@ void *func_800FB2AC(f32 arg0[3], f32 arg1) {
     void func_800EE780(f32 *, f32 *, f32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    void func_800EFB24(f32 *, f32 *, f32 *);
+    void func_800EFB24(void *, void *, void *);
     f32 sp44[3];
     f32 sp38[3];
     f32 sp2C[3];
