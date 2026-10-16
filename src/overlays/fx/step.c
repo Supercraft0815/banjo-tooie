@@ -176,7 +176,39 @@ void fxstep_entrypoint_0(void *arg0) {
     heap_free(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/step/fxstep_entrypoint_1.s")
+void *fxstep_entrypoint_1(void) {
+    s32 func_800C2E04(void);
+    void func_800C330C(u8, s32);
+    void func_800C3418(u8, s32);
+    void func_800EFD24(f32 *);
+    void *heap_alloc(s32);
+    void fxstep_entrypoint_4(void *, s32, s32);
+    void fxstep_entrypoint_5(void *, s32, f32);
+    void fxstep_entrypoint_7(void *, s32, s32);
+    struct {
+        s32 unk0;
+        f32 position[3];
+        s32 unk10[5];
+        u8 sound0;
+        u8 sound1;
+        u8 flag0;
+        u8 flag1;
+    } *this = heap_alloc(0x28);
+
+    this->flag0 = 0;
+    this->flag1 = 1;
+    this->sound0 = func_800C2E04();
+    func_800C330C(this->sound0, 3);
+    func_800C3418(this->sound0, 0);
+    this->sound1 = func_800C2E04();
+    func_800C330C(this->sound1, 3);
+    func_800C3418(this->sound1, 0);
+    func_800EFD24(this->position);
+    fxstep_entrypoint_4(this, 0, 0);
+    fxstep_entrypoint_5(this, 0, 0.0f);
+    fxstep_entrypoint_7(this, 0, 0);
+    return this;
+}
 
 void fxstep_entrypoint_2(s8 *arg0, s32 arg1) {
     arg0[38] = arg1;
