@@ -36,7 +36,7 @@ void func_800D37FC(void) {
     s32 _glsavegame_entrypoint_8(s8);
     void func_8001B754(s16);
     void *func_8001B798(s16);
-    s32 func_800D3C70();
+    void func_800D3C70(void);
     extern s32 D_8012B3F0;
 
     if ((*(u8 *)((s8 *)(&D_8012B3F0) + (9))) == 3) {
@@ -196,7 +196,29 @@ void func_800D3BC8(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD060/func_800D3C70.s")
+void func_800D3C70(void) {
+    struct Vector;
+    struct Vector *func_800B2890(s16);
+    void *vector_begin(struct Vector *);
+    void *vector_end(struct Vector *);
+    void func_800B2D48(s16);
+    extern s16 D_8012B3FC;
+    struct Vector *vec;
+    u8 *entry;
+    u8 *end;
+
+    if (D_8012B3FC != 0) {
+        vec = func_800B2890(D_8012B3FC);
+        entry = vector_begin(vec);
+        end = vector_end(vec);
+        while (entry < end) {
+            func_800D3BC8(entry);
+            entry += 0x14;
+        }
+        func_800B2D48(D_8012B3FC);
+        D_8012B3FC = 0;
+    }
+}
 
 void func_800D3CF8(s32 arg0) {
     extern s8 D_8012B3F4;
