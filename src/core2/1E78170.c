@@ -241,4 +241,18 @@ u32 func_8009EC7C(void) {
     return *(u8 *)((u8 *)&D_80127060 + 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78170/func_8009EC88.s")
+s32 func_8009EC88(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    extern f32 D_80127040;
+    extern u8 D_80127060;
+    s32 i;
+
+    for (i = 0; i < D_80127060; i++) {
+        if (arg0 == *(s16 *)((s8 *)&D_80127040 + i * 4 + 0x10) &&
+            arg1 == *(s16 *)((s8 *)&D_80127040 + i * 4 + 0x12)) {
+            *(s16 *)((s8 *)&D_80127040 + i * 4 + 0x10) = arg2;
+            *(s16 *)((s8 *)&D_80127040 + i * 4 + 0x12) = arg3;
+            return 1;
+        }
+    }
+    return 0;
+}
