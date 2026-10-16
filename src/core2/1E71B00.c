@@ -7,7 +7,21 @@ s32 func_80098210()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E71B00/func_80098218.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E71B00/func_80098408.s")
+void func_80098408(u8 *arg0) {
+    void func_80098480(u8 *, s32, s32);
+    void func_80098494(void *, f32, f32, f32, f32);
+    void func_800984F0(u8 *, f32 *);
+    void func_800984CC(void *, f32 *);
+    void func_80098520(void *, f32);
+    extern f32 D_80117E9C[3];
+    extern f32 D_80117E90[3];
+
+    func_80098480(arg0, 0, 0);
+    func_80098494(arg0, 0.0f, 0.0f, 0.0f, 0.0f);
+    func_800984F0(arg0, D_80117E9C);
+    func_800984CC(arg0, D_80117E90);
+    func_80098520(arg0, 1.0f);
+}
 
 void func_80098480(u8 *arg0, s32 arg1, s32 arg2) {
     (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xAC)))) + (0x28))) = arg1;
@@ -23,15 +37,15 @@ void func_80098494(void *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
 
 /* extern */
 
-void func_800984CC(void *arg0) {
-    void func_800EE7F8();
-    func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xAC))) + 0x1C);
+void func_800984CC(void *arg0, f32 *arg1) {
+    void func_800EE7F8(f32 *, f32 *);
+    func_800EE7F8((f32 *)((u8 *)*(void **)((u8 *)arg0 + 0xAC) + 0x1C), arg1);
 }
 
-void func_800984F0(u8 *arg0) {
-    void func_800EE7F8();
+void func_800984F0(u8 *arg0, f32 *arg1) {
+    void func_800EE7F8(f32 *, f32 *);
     (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xAC)))) + (0x29))) = 1;
-    func_800EE7F8((s32) ((*(u8 **)((s8 *)(arg0) + (0xAC))) + 0x10));
+    func_800EE7F8((f32 *)((*(u8 **)((s8 *)(arg0) + (0xAC))) + 0x10), arg1);
 }
 
 void func_80098520(void *arg0, f32 arg1) {
