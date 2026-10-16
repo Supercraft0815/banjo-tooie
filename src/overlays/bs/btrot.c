@@ -228,7 +228,19 @@ s32 func_80800710_bsbtrot(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_808008D0_bsbtrot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_0.s")
+void bsbtrot_entrypoint_0(PlayerState *arg0) {
+    void baanim_playForDuration_once(void *, s32, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void func_8009D874(PlayerState *);
+
+    func_80800538_bsbtrot(arg0);
+    func_808004B4_bsbtrot(arg0);
+    baanim_playForDuration_once(arg0, func_80800000_bsbtrot(arg0, 0x16, 0x16, 0x29F, 0xA0), 1.0f);
+    func_8009FFD8(arg0, 1, 1, 2, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_8009D874(arg0);
+    bainput_enable(arg0, 0, 0);
+}
 
 /* extern */
 
