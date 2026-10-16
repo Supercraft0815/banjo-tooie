@@ -1920,7 +1920,22 @@ void func_80806AF4_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
     _gcnewoption_entrypoint_12(arg0, arg1, (s16) (sp1C + arg2));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80806B5C_chgameselect.s")
+void func_80806B5C_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _gcnewoption_entrypoint_20();
+    s32 option;
+    s32 count;
+
+    option = _gcnewoption_entrypoint_20(arg1, arg2) + 1;
+    if (arg2 == 3) {
+        count = func_80806AA8_chgameselect();
+    } else {
+        count = func_80806AD4_chgameselect();
+    }
+    if (option >= count) {
+        option = 0;
+    }
+    func_80806AF4_chgameselect(arg1, arg2, option);
+}
 
 void func_80806BD4_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
     s32 _gcnewoption_entrypoint_20();
