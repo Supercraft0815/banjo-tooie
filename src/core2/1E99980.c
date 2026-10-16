@@ -2,6 +2,8 @@
 #include "gfx.h"
 #include "core2/1E99980.h"
 
+typedef struct PauseState PauseState;
+
 extern s32 D_801288B0;
 extern s32 D_80128AF4;
 
@@ -266,7 +268,7 @@ void func_800C0710(void) {
 }
 
 void func_800C075C(void) {
-    s32 defrag(s32); s32 func_800C7150(s32); extern s32 D_801288B8; s32 *var_s0; s32 temp_a0; s32 temp_a0_2; var_s0 = &D_801288B8 - 2; do { temp_a0 = *(s32 *)((s8 *)var_s0 + 0x120); if (temp_a0 != 0) { *(s32 *)((s8 *)var_s0 + 0x120) = func_800C7150(temp_a0); } if (*(s32 *)((s8 *)&D_801288B0 + 0x12C) != 0) { *(s32 *)((s8 *)&D_801288B0 + 0x12C) = func_800C7150(*(s32 *)((s8 *)&D_801288B0 + 0x12C)); } temp_a0_2 = *(s32 *)((s8 *)var_s0 + 0x104); if (temp_a0_2 != 0) { *(s32 *)((s8 *)var_s0 + 0x104) = defrag(temp_a0_2); } var_s0++; } while (var_s0 != &D_801288B8); }
+    void *defrag(void *); s32 func_800C7150(s32); extern s32 D_801288B8; s32 *var_s0; s32 temp_a0; s32 temp_a0_2; var_s0 = &D_801288B8 - 2; do { temp_a0 = *(s32 *)((s8 *)var_s0 + 0x120); if (temp_a0 != 0) { *(s32 *)((s8 *)var_s0 + 0x120) = func_800C7150(temp_a0); } if (*(s32 *)((s8 *)&D_801288B0 + 0x12C) != 0) { *(s32 *)((s8 *)&D_801288B0 + 0x12C) = func_800C7150(*(s32 *)((s8 *)&D_801288B0 + 0x12C)); } temp_a0_2 = *(s32 *)((s8 *)var_s0 + 0x104); if (temp_a0_2 != 0) { *(s32 *)((s8 *)var_s0 + 0x104) = defrag(temp_a0_2); } var_s0++; } while (var_s0 != &D_801288B8); }
 
 u32 func_800C07F4(void) {
     extern s32 D_80128A0C;
@@ -304,29 +306,29 @@ void func_800C0890(s32 arg0, s32 arg1) {
 }
 
 void func_800C08C0(void) {
-    s32 defrag(s32);
-    extern s32 D_80128AF0;
+    void *defrag(void *);
+    extern PauseState *D_80128AF0;
     if (D_80128AF0 != 0) {
         D_80128AF0 = defrag(D_80128AF0);
     }
 }
 
 void func_800C08F8(void) {
-    s32 _gcnewpause_entrypoint_0(s32);
-    extern s32 D_80128AF0;
+    PauseState *_gcnewpause_entrypoint_0(u32);
+    extern PauseState *D_80128AF0;
     D_80128AF0 = _gcnewpause_entrypoint_0(D_80128AF4);
 }
 
 void func_800C0920(void) {
-    s32 _gcnewpause_entrypoint_1(s32);
-    extern s32 D_80128AF0;
+    void _gcnewpause_entrypoint_1(PauseState *);
+    extern PauseState *D_80128AF0;
     _gcnewpause_entrypoint_1(D_80128AF0);
     D_80128AF0 = 0;
 }
 
 s32 func_800C0948(void) {
-    s32 _gcnewpause_entrypoint_2(s32);
-    extern s32 D_80128AF0;
+    u32 _gcnewpause_entrypoint_2(PauseState *);
+    extern PauseState *D_80128AF0;
     s32 var_v1;
 
     if (D_80128AF0 != 0) {
@@ -337,7 +339,37 @@ s32 func_800C0948(void) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0984.s")
+void func_800C0984(s32 arg0) {
+    void _gcnewpause_entrypoint_3(u32, PauseState *);
+    s32 func_800A8178(void);
+    s32 func_800A8184(void);
+    void func_800C0F8C(s32);
+    void func_800C0FD8(s32);
+    void func_800C1044(s32);
+    void func_800D58CC(void);
+    extern s32 D_8011A7D0;
+    extern PauseState *D_80128AF0;
+
+    if (func_800A8184() != 4) {
+        if (D_8011A7D0 == 0) {
+            func_800C1044(arg0);
+        }
+        D_8011A7D0 = 1;
+        return;
+    }
+    if (func_800A8178() == 0) {
+        if (D_8011A7D0 != 0) {
+            func_800D58CC();
+            func_800C0F8C(arg0);
+            D_8011A7D0 = 0;
+        } else {
+            func_800C0FD8(arg0);
+        }
+        if (D_80128AF0 != 0) {
+            _gcnewpause_entrypoint_3(arg0, D_80128AF0);
+        }
+    }
+}
 
 void func_800C0A2C(void) {
 }

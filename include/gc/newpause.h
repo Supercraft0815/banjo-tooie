@@ -7,7 +7,7 @@
 
 #include "gc/newoption.h"
 
-typedef struct {
+typedef struct PauseState {
 	u8 PageIndex; //0x0
 	u8 SubPage; //0x1
 	u8 ExitType; //Flag for exiting the pause Menu
