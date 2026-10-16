@@ -128,7 +128,24 @@ void bsjig_entrypoint_8(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jig/bsjig_entrypoint_9.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jig/bsjig_entrypoint_10.s")
+typedef struct player_state_s PlayerState;
+
+void bsjig_entrypoint_10(PlayerState *arg0) {
+    int baanim_isAt(PlayerState *, f32);
+    int baanim_isStopped(PlayerState *);
+    void func_8009DF18(PlayerState *, s32, f32, s32);
+    s32 bs_setState(void *, s32);
+    s32 sp24;
+
+    sp24 = 0;
+    if ((baanim_isAt(arg0, 0.59f) != 0) || (baanim_isAt(arg0, 0.84f) != 0)) {
+        func_8009DF18(arg0, 0x3EA, 1.0f, 0x7530);
+    }
+    if (baanim_isStopped(arg0) != 0) {
+        sp24 = 1;
+    }
+    bs_setState(arg0, sp24);
+}
 
 s32 bsjig_entrypoint_11(s32 arg0) {
     extern s32 D_808005C0_bsjig[];
