@@ -53,7 +53,37 @@ void func_808000C8_bstrexsmall(PlayerState *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80800154_bstrexsmall.s")
+s32 func_80800154_bstrexsmall(PlayerState *arg0, s32 arg1) {
+    s32 bastick_getZone(PlayerState *);
+    s32 bs_getCurrentState(PlayerState *);
+    int func_8008DD04(PlayerState *);
+    s32 state;
+
+    switch (bastick_getZone(arg0)) {
+        case 0:
+            state = 0x145;
+            break;
+        case 1:
+            state = 0x146;
+            break;
+        case 2:
+            state = 0x144;
+            break;
+    }
+    if (bs_getCurrentState(arg0) != state) {
+        arg1 = state;
+    }
+    if (func_80800000_bstrexsmall(arg0) != 0) {
+        arg1 = 0x143;
+    }
+    if (func_8008DD04(arg0) != 0) {
+        arg1 = 0x13E;
+    }
+    if (func_8080003C_bstrexsmall(arg0) != 0) {
+        arg1 = 0x13F;
+    }
+    return arg1;
+}
 
 s32 func_8080020C_bstrexsmall(PlayerState *arg0, s32 arg1) { s32 bastick_getZone(PlayerState *); int bainput_should_enter_first_person(PlayerState *); s32 _badrone_entrypoint_24(PlayerState *); int func_8008DD04(PlayerState *); s32 state; s32 zone; state = arg1; zone = bastick_getZone(arg0); switch (zone) { case 0: break; case 1: state = 0x146; break; case 2: state = 0x144; break; } if (bainput_should_enter_first_person(arg0) != 0) { state = _badrone_entrypoint_24(arg0); } if (func_80800000_bstrexsmall(arg0) != 0) { state = 0x143; } if (func_8008DD04(arg0) != 0) { state = 0x13E; } if (func_8080003C_bstrexsmall(arg0) != 0) { state = 0x13F; } return state; }
 
