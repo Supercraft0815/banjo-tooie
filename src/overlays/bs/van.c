@@ -40,7 +40,37 @@ void func_808000BC_bsvan(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/bsvan_entrypoint_0.s")
+void bsvan_entrypoint_0(struct player_state_s *arg0) {
+    s32 _bastatemem_entrypoint_1(void *);
+    s32 _bavan_entrypoint_2(struct player_state_s *);
+    void baflag_clear(struct player_state_s *, s32);
+    void baroll_resetAngularVelocity(struct player_state_s *);
+    void baroll_setIdeal(struct player_state_s *, f32);
+    void bastick_popZone(struct player_state_s *);
+    void func_80092864(struct player_state_s *, f32);
+    void func_800947EC(struct player_state_s *, s32, s32);
+    void func_80095A40(struct player_state_s *);
+    void func_8009BF5C(struct player_state_s *, f32);
+    void func_8009C000(struct player_state_s *);
+    void func_8009E474(struct player_state_s *);
+    s32 func_8009E74C(struct player_state_s *, s32);
+
+    if (func_8009E74C(arg0, 0xD) == 0) {
+        _bastatemem_entrypoint_1(arg0);
+        func_80092864(arg0, 1.0f);
+        func_800947EC(arg0, 1, 0);
+        func_8009BF5C(arg0, 0.0f);
+        baroll_setIdeal(arg0, 0.0f);
+        func_8009C000(arg0);
+        baroll_resetAngularVelocity(arg0);
+        bastick_popZone(arg0);
+        func_80095A40(arg0);
+        func_8009E474(arg0);
+        baflag_clear(arg0, 3);
+        baflag_clear(arg0, 4);
+        _bavan_entrypoint_2(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/bsvan_entrypoint_1.s")
 
@@ -115,9 +145,9 @@ s32 bsvan_entrypoint_5(s32 arg0) {
 
 /* extern */
 
-void func_808007EC_bsvan(s32 arg0) {
-    void func_8009BF5C(s32, f32);
-    void baroll_setIdeal(s32, f32);
+void func_808007EC_bsvan(struct player_state_s *arg0) {
+    void func_8009BF5C(struct player_state_s *, f32);
+    void baroll_setIdeal(struct player_state_s *, f32);
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
     bsvan_entrypoint_0(arg0);
@@ -136,9 +166,9 @@ s32 bsvan_entrypoint_6(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80800BDC_bsvan.s")
 
-void func_80800E0C_bsvan(s32 arg0) {
-    void func_8009BF5C(s32, f32);
-    void baroll_setIdeal(s32, f32);
+void func_80800E0C_bsvan(struct player_state_s *arg0) {
+    void func_8009BF5C(struct player_state_s *, f32);
+    void baroll_setIdeal(struct player_state_s *, f32);
     baphysics_reset_gravity();
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
@@ -194,9 +224,9 @@ void bsvan_entrypoint_9(s32 *arg0) {
     func_80800E60_bsvan(arg0, &_bsdrone_entrypoint_3);
 }
 
-void func_80800F50_bsvan()
+void func_80800F50_bsvan(struct player_state_s *arg0)
 {
-    bsvan_entrypoint_0();
+    bsvan_entrypoint_0(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80800F70_bsvan.s")
@@ -323,9 +353,9 @@ s32 bsvan_entrypoint_13(s32 arg0) {
     return ((s32 *)&D_80801CFC_bsvan)[arg0];
 }
 
-void func_808013BC_bsvan(s32 arg0)
+void func_808013BC_bsvan(struct player_state_s *arg0)
 {
-    bsvan_entrypoint_0();
+    bsvan_entrypoint_0(arg0);
     func_80090A2C(arg0);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_808013E4_bsvan.s")
