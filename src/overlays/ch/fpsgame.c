@@ -157,7 +157,26 @@ s32 func_80801758_chfpsgame(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80801780_chfpsgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80801814_chfpsgame.s")
+void func_80801814_chfpsgame(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _gcstatusDll_entrypoint_17();
+    void func_80801A8C_chfpsgame(Actor *, f32);
+    s32 temp_v0;
+    u8 *temp_s0;
+
+    temp_s0 = func_80100094(arg0, 0U);
+    temp_v0 = _gcstatusDll_entrypoint_17();
+    if (temp_v0 != 0) {
+        *(s8 *)(temp_s0 + 0x55A) = temp_v0;
+        *(s8 *)(temp_s0 + 0x55B) = 0;
+        *(f32 *)(temp_s0 + 0x55C) = (f32)temp_v0 * 60.0f + 0.99f;
+        func_80801A8C_chfpsgame(arg0, 10.99f);
+    } else {
+        *(f32 *)(temp_s0 + 0x55C) = 0;
+        func_80801A8C_chfpsgame(arg0, 0.0f);
+    }
+    *(f32 *)(temp_s0 + 0x560) = *(f32 *)(temp_s0 + 0x55C);
+}
 
 void func_808018B0_chfpsgame(Actor *arg0) {
     void* func_80100094(Actor*, u32);
