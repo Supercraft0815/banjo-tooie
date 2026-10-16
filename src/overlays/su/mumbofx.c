@@ -153,7 +153,44 @@ s32 sumumbofx_entrypoint_5(u8 *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_8.s")
+void sumumbofx_entrypoint_8(u8 *arg0, s32 arg1) {
+    s32 func_800D674C(s32);
+    void func_800E24D8(s32);
+    void func_800E2588(u32);
+    s32 func_800E2594(s32, s32);
+    s32 func_800E2720(s32, s32, s32, f32 *, f32 *, s32);
+    void func_800E2A14(s32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    struct Vec { s32 x, y, z; };
+    extern struct Vec D_808014D0_sumumbofx;
+    struct Vec sp74;
+    f32 sp68[3];
+    f32 temp_f0;
+    s32 temp_s0;
+    s32 var_s1;
+    u8 *var_s0;
+
+    sp74 = D_808014D0_sumumbofx;
+    *(s8 *)(arg0 + 0x61) = 1;
+    temp_s0 = func_800D674C(*(s32 *)arg0);
+    func_800E2588(2);
+    func_800E2594(arg1, temp_s0);
+    func_800E24D8(1);
+    var_s0 = arg0 + 0x64;
+    var_s1 = 0;
+    if (*(s16 *)(arg0 + 0x58) > 0) {
+        do {
+            temp_f0 = *(f32 *)(var_s0 + 0x1C);
+            if (temp_f0 > 0.005f) {
+                func_800EFA4C(sp68, temp_f0, temp_f0, temp_f0);
+                func_800E2720(arg1, 0, 0, (f32 *)(var_s0 + 0x10), sp68, (s32) ((*(f32 *)(arg0 + 4) * 127.0f) + 128.0f));
+            }
+            var_s1 += 1;
+            var_s0 += 0x2C;
+        } while (var_s1 < *(s16 *)(arg0 + 0x58));
+    }
+    func_800E2A14(arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_9.s")
 
