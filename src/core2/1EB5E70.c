@@ -254,7 +254,38 @@ void func_800DD1C0(Gfx **gfx, u8 *data) {
     gSPDisplayList((*gfx)++, osVirtualToPhysical(&D_8012C960->commands[((struct Command *)data)->index]));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD214.s")
+void func_800DD214(s32 model, u8 *data) {
+    void func_800193C4(f32 *, f32 *);
+    void func_800DE2A4(s32, u8 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    extern s16 D_8012CA38;
+    extern s32 D_8012CE98;
+    extern f32 D_8012CF60[3];
+    struct Command {
+        u8 padding[8];
+        f32 max;
+        f32 min;
+        f32 position[3];
+        s32 branch_offset;
+    };
+    struct Command *cmd = (struct Command *)data;
+    f32 dist;
+
+    if (cmd->branch_offset) {
+        if (D_8012CA38) {
+            (&D_8012CA38)[1]++;
+            if (D_8012CA38 == (&D_8012CA38)[1]) {
+                func_800DE2A4(model, (u8 *)cmd + cmd->branch_offset);
+            }
+        } else {
+            func_800193C4(D_8012CF60, cmd->position);
+            dist = func_800EEB40(D_8012CF60, (f32 *)&D_8012CE98);
+            if ((cmd->min * cmd->min < dist) && (dist <= cmd->max * cmd->max)) {
+                func_800DE2A4(model, (u8 *)cmd + cmd->branch_offset);
+            }
+        }
+    }
+}
 
 void func_800DD2E8(s32 model, u8 *data) {
     void func_800DE2A4(s32, u8 *);
