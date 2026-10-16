@@ -90,7 +90,7 @@ int func_80800FF8_chevilspirit(s32 arg0) {
 void func_80801344_chevilspirit(u8 *arg0) {
     s32 func_8008FE94(s32, s32, u8 *);
     f32 func_80090010();
-    s32 func_808013DC_chevilspirit(u8 *);
+    void func_808013DC_chevilspirit(void *);
     func_8008FE94(5, arg0 + 0x18, arg0);
     (*(f32 *)((s8 *)(arg0) + (0x1C))) = (f32) ((*(f32 *)((s8 *)(arg0) + (0x1C))) + 100.0f);
     (*(f32 *)((s8 *)(arg0) + (0x54))) = func_80090010();
@@ -101,7 +101,7 @@ void func_80801344_chevilspirit(u8 *arg0) {
 
 void func_80801398_chevilspirit(Actor *arg0) {
     void* func_80100094(Actor*, u32);
-    s32 func_808013DC_chevilspirit(u8 *);
+    void func_808013DC_chevilspirit(void *);
     s32 func_80801458_chevilspirit();
     s32 _subaddielink_entrypoint_4(u8 *);
     if (_subaddielink_entrypoint_4(func_80100094(arg0, 0U)) != 0) {
@@ -110,7 +110,16 @@ void func_80801398_chevilspirit(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_808013DC_chevilspirit.s")
+void func_808013DC_chevilspirit(void *arg0) {
+    void func_80102BF8(void *, f32, f32, f32);
+    Actor *actor = arg0;
+    struct { f32 position[3]; } *data = (void *) actor->actorData;
+
+    actor->position[0] += 0.3f * (data->position[0] - actor->position[0]);
+    actor->position[1] += 0.3f * (data->position[1] - actor->position[1]);
+    actor->position[2] += 0.3f * (data->position[2] - actor->position[2]);
+    func_80102BF8(arg0, 0.2f, 15.0f, 1200.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801458_chevilspirit.s")
 
