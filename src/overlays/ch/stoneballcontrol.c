@@ -490,7 +490,7 @@ void func_80802C30_chstoneballcontrol(s32 *arg0) {
     Entry *func_800E9EB4(s32);
     Actor *func_80106790(Unk80132ED0 *);
     void func_80802D9C_chstoneballcontrol(s32 *, u8 *);
-    void func_80802E30_chstoneballcontrol(s32 *, u32);
+    void func_80802E30_chstoneballcontrol(Actor *, u32);
     void func_80802EA0_chstoneballcontrol(s32 *, u8 *);
     s32 *list;
     Entry *entry;
@@ -523,7 +523,20 @@ void func_80802C30_chstoneballcontrol(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80802D9C_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80802E30_chstoneballcontrol.s")
+void func_80802E30_chstoneballcontrol(Actor *arg0, u32 arg1) {
+    s32 _sukickball_entrypoint_12(u8 *, s32);
+    void _sukickball_entrypoint_13(f32 *, f32 *, f32);
+    void func_800F5A00(s32, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *parent;
+    f32 sp18[3];
+
+    parent = func_80106790(arg0->unk3C);
+    if (arg0->unk70_10 != 2 && _sukickball_entrypoint_12((u8 *)parent, arg1)) {
+        func_800F5A00(arg1, sp18);
+        _sukickball_entrypoint_13(sp18, arg0->position, 60.0f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80802EA0_chstoneballcontrol.s")
 
