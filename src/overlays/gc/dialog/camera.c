@@ -31,7 +31,24 @@ s32 gcdialogcamera_entrypoint_0(s32 arg0, s32 arg1) {
     return 1 - _ncpoddialog_entrypoint_11(arg0, arg1, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/camera/gcdialogcamera_entrypoint_1.s")
+/* extern */
+
+s32 gcdialogcamera_entrypoint_1(s32 arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_3(u32);
+    s32 _ncpoddialog_entrypoint_11(s32, s32, s32);
+    s32 sp1C;
+    s32 sp18;
+
+    func_80800000_gcdialogcamera(arg1, &sp1C, &sp18);
+    if (arg0 == 0x58) {
+        if (_ncpoddialog_entrypoint_11(sp1C, sp18, 0) != 0) {
+            _capod_entrypoint_3(0);
+            return 4;
+        }
+        return 3;
+    }
+    return 0;
+}
 
 /* extern */
 
