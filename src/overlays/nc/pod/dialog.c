@@ -16,11 +16,11 @@ void func_80800000_ncpoddialog(u8 *arg0, s32 arg1, f32 *arg2) {
 
 void func_8080008C_ncpoddialog(u8 *arg0) {
     f32 func_800F1DCC(f32, f32, u8 *);
-    f32 func_800F1DF4(s32, s32, u8 *);
+    f32 func_800F1DF4(f32 *, f32 *);
     f32 temp_f0;
     f32 var_f2;
 
-    temp_f0 = func_800F1DCC(func_800F1DF4(arg0 + 0x28, arg0 + 0x34, arg0), (*(f32 *)((s8 *)(arg0) + (0x44))), arg0);
+    temp_f0 = func_800F1DCC(func_800F1DF4((f32 *)(arg0 + 0x28), (f32 *)(arg0 + 0x34)), (*(f32 *)((s8 *)(arg0) + (0x44))), arg0);
     var_f2 = temp_f0;
     if ((temp_f0 < -90.0f) || (temp_f0 > 90.0f)) {
         var_f2 = -temp_f0;
@@ -242,7 +242,32 @@ void func_80801DB8_ncpoddialog(u8 *arg0, s32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80801E78_ncpoddialog.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80801F88_ncpoddialog.s")
+void func_80801F88_ncpoddialog(u8 *arg0, f32 arg1) {
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7B4(f32 *, f32 *, f32 *, f32);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    f32 func_800F1828(f32 *, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    f32 distance;
+    f32 unused;
+    f32 position[3];
+    f32 midpoint[3];
+    f32 *volatile vector;
+
+    func_80800000_ncpoddialog(arg0, 1, position);
+    vector = (f32 *)(arg0 + 0x28);
+    func_800EE780(midpoint, (f32 *)(arg0 + 0x28), position);
+    func_800EF334(midpoint, 0.5f);
+    distance = func_800F1DF4(vector, position);
+    func_800F1828(vector, position);
+    vector = (f32 *)(arg0 + 0xC4);
+    distance += arg1;
+    func_800EEC30((f32 *)(arg0 + 0xC4), 0.0f, distance, 500.0f);
+    func_800EE7B4((f32 *)(arg0 + 0x148), midpoint, vector, -0.1f);
+    func_800EF04C(vector, midpoint);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80802048_ncpoddialog.s")
 
