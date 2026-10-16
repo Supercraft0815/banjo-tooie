@@ -22,7 +22,12 @@ void func_800DC580(void *arg0, void *arg1) {
     (*(f32 *)((s8 *)(arg0) + (8))) = (f32) ((*(f32 *)((s8 *)(arg1) + (8))) * D_8012C948);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DC5BC.s")
+void func_800DC5BC(void *arg0, void *arg1) {
+    extern f32 D_8012C948;
+    ((f32 *)arg0)[0] = ((f32 *)arg1)[0] * D_8012C948 + (*(f32 **)((u8 *)&D_8012C948 + 4))[0];
+    ((f32 *)arg0)[1] = ((f32 *)arg1)[1] * D_8012C948 + (*(f32 **)((u8 *)&D_8012C948 + 4))[1];
+    ((f32 *)arg0)[2] = ((f32 *)arg1)[2] * D_8012C948 + (*(f32 **)((u8 *)&D_8012C948 + 4))[2];
+}
 
 void func_800DC61C(s32 arg0, s32 arg1) {
 }
