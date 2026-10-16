@@ -158,13 +158,13 @@ void func_808010C4_chevilmumbo(Actor *arg0) {
     _subaddieaudioquick_entrypoint_2(arg0, sp30, &D_808042F4_chevilmumbo);
 }
 
-void func_808011B8_chevilmumbo(s32 arg0) {
-    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+void func_808011B8_chevilmumbo(Actor *arg0) {
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern s32 D_80804304_chevilmumbo;
-    s32 temp_a0;
+    f32 *temp_a0;
 
-    temp_a0 = arg0 + 4;
-    func_800BBCB8(temp_a0, temp_a0, 0x3F800000, 1, &D_80804304_chevilmumbo);
+    temp_a0 = arg0->position;
+    func_800BBCB8(temp_a0, temp_a0, 1.0f, 1, &D_80804304_chevilmumbo);
 }
 
 void func_808011F4_chevilmumbo(Actor *arg0) {
@@ -186,7 +186,7 @@ void func_808011F4_chevilmumbo(Actor *arg0) {
     func_800BABB8(sp34, sp28, NULL, 1.0f, &D_8080434C_chevilmumbo);
     func_800BA22C(sp34, 4);
     if (func_800DC298(0.4f) != 0) {
-        func_808011B8_chevilmumbo((s32) arg0);
+        func_808011B8_chevilmumbo(arg0);
     }
 }
 
@@ -210,7 +210,23 @@ OSThread *chevilmumbo_entrypoint_0(void)
     return (OSThread *) D_80804460_chevilmumbo;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_8080300C_chevilmumbo.s")
+void func_8080300C_chevilmumbo(Actor *arg0) {
+    s32 _chlightfader_entrypoint_1(s32, f32, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_8010A570(Actor *);
+    void func_800FFAB0(Actor *);
+    extern s32 D_80804220_chevilmumbo;
+    extern s32 D_808044A8_chevilmumbo;
+
+    if (arg0->unk6C_0 != 0) {
+        arg0->unk6C_0 = _chlightfader_entrypoint_1(arg0->unk6C_0, 1.4f, 3);
+    }
+    func_800BBCB8(arg0->position, arg0->position, 1.0f, 12, &D_808044A8_chevilmumbo);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804220_chevilmumbo);
+    func_8010A570(arg0);
+    func_800FFAB0(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_808030AC_chevilmumbo.s")
 
