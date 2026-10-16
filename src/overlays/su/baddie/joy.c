@@ -44,7 +44,28 @@ s32 subaddiejoy_entrypoint_2(void *arg0, s32 arg1, s32 arg2) {
     return (s32) func_800136E4((f32) var_v1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/joy/subaddiejoy_entrypoint_3.s")
+f32 subaddiejoy_entrypoint_3(void *arg0) {
+    f32 func_800136E4(f32);
+    f32 func_80013B70(f32, f32, f32);
+    void func_80016068(u32, f32 *);
+    f32 func_800E3A80(void);
+    f32 func_800F13F0(f32, f32);
+    f32 sqrtf(f32);
+    struct { f32 x; f32 y; } stick;
+    f32 y;
+    f32 length;
+    f32 angle;
+
+    func_80016068((u32) ((*(s32 *)((s8 *)arg0 + 0x64)) * 8) >> 30, &stick.x);
+    y = stick.y;
+    length = sqrtf(y * y + stick.x * stick.x);
+    if (length != 0.0f) {
+        angle = func_80013B70(stick.y, stick.x, length);
+        *(f32 *)((s8 *)arg0 + 0x54) = func_800136E4(func_800E3A80() + angle + 90.0f);
+        length = func_800F13F0(1.0f, length);
+    }
+    return length;
+}
 
 int subaddiejoy_entrypoint_4(void *arg0) {
     void func_80015F28(s32, void *);
@@ -96,9 +117,9 @@ void subaddiejoy_entrypoint_7(void *arg0) {
 
 /* extern */
 
-void subaddiejoy_entrypoint_8(void *arg0) {
-    s32 func_80016068(u32);
-    func_80016068((u32) ((*(s32 *)((s8 *)(arg0) + (0x64))) * 8) >> 0x1E);
+void subaddiejoy_entrypoint_8(void *arg0, f32 *arg1) {
+    void func_80016068(u32, f32 *);
+    func_80016068((u32) ((*(s32 *)((s8 *)(arg0) + (0x64))) * 8) >> 0x1E, arg1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/joy/subaddiejoy_entrypoint_9.s")
