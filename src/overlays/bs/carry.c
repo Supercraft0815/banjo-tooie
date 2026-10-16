@@ -123,7 +123,25 @@ void func_808003D8_bscarry(PlayerState *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_808003F8_bscarry.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_8080047C_bscarry.s")
+void func_8080047C_bscarry(PlayerState *arg0) {
+    Unk80132ED0 *_bahold_entrypoint_5(s32);
+    s32 bastick_getZone(PlayerState *);
+    s32 bs_setState(s32, s32);
+    s32 next_state = 0;
+
+    switch (bastick_getZone(arg0)) {
+        case 1:
+            next_state = 0x9F;
+            break;
+        case 2:
+            next_state = 0x3B;
+            break;
+    }
+    if (!_bahold_entrypoint_5(arg0)) {
+        next_state = 1;
+    }
+    bs_setState(arg0, next_state);
+}
 
 s32 bscarry_entrypoint_1(s32 arg0) {
     extern s32 D_808007C0_bscarry[];
