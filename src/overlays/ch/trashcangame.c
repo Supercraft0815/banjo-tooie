@@ -284,7 +284,28 @@ void func_808016B4_chtrashcangame(Actor *arg0, Unk80132ED0 *arg1, s32 arg2, s32 
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80801740_chtrashcangame.s")
+void func_80801740_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_7(s32, s32);
+    s32 _capod_entrypoint_8(s32);
+    void _gcdialogcamera_entrypoint_6(Unk80132ED0 *);
+    void _gcdialogcamera_entrypoint_8(void);
+
+    switch (arg0->unk74_7) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x2A, 0x10);
+        case 2:
+            _capod_entrypoint_8(1);
+            arg0->unk74_7 = 1;
+            arg1 = 2;
+            arg2 = 1;
+            _gcdialogcamera_entrypoint_6(arg0->unk0);
+            _gcdialogcamera_entrypoint_8();
+        case 1:
+            _capod_entrypoint_7(arg1, arg2);
+            break;
+    }
+}
 
 void func_808017F0_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
