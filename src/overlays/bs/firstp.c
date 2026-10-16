@@ -2383,13 +2383,39 @@ f32 func_808069BC_bsfirstp(s32 arg0) {
     return func_80013728((*(f32 *)((s8 *)(temp_v0) + (0x208))) - (*(f32 *)((s8 *)(temp_v0) + (0x20C)))) / 6.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808069FC_bsfirstp.s")
+f32 func_808069FC_bsfirstp(s32 arg0) {
+    f32 func_800F122C(f32, f32, f32);
+    f32 func_80806AD0_bsfirstp(u8 *, f32, f32);
+    void *temp_v0;
+    volatile struct { f32 x, y, z; s32 active; } *temp_v1;
+    f32 var_f2;
+    f32 var_f0;
+
+    temp_v0 = *(void **)((s8 *)arg0 + 0x188);
+    if (*(s32 *)((s8 *)temp_v0 + 0xA8) == 0) {
+        temp_v1 = (void *)((s8 *)temp_v0 + 0x180);
+        var_f2 = func_800F122C(-temp_v1->x, 0.0f, *(f32 *)((s8 *)temp_v0 + 0x1F0));
+        if (temp_v1->active != 0) {
+            var_f0 = *(f32 *)((s8 *)temp_v0 + 0x1F8) / (1.0f + temp_v1->z);
+        } else {
+            var_f0 = *(f32 *)((s8 *)temp_v0 + 0x200);
+        }
+    } else {
+        var_f2 = func_800F122C(-*(f32 *)((s8 *)temp_v0 + 0xC4), 0.0f, *(f32 *)((s8 *)temp_v0 + 0x1F4));
+        if (*(f32 *)((s8 *)temp_v0 + 0xC4) != 0.0f) {
+            var_f0 = *(f32 *)((s8 *)temp_v0 + 0x1FC);
+        } else {
+            var_f0 = *(f32 *)((s8 *)temp_v0 + 0x204);
+        }
+    }
+    return func_80806AD0_bsfirstp((u8 *)arg0, var_f2, var_f0);
+}
 
 /* extern */
 
-f32 func_80806AD0_bsfirstp(u8 *arg0, s32 arg1, f32 arg2) {
+f32 func_80806AD0_bsfirstp(u8 *arg0, f32 arg1, f32 arg2) {
     f32 func_800D9004();
-    f32 func_808057C8_bsfirstp(f32 *, s32, s32, f32, f32);
+    f32 func_808057C8_bsfirstp(f32 *, f32, s32, f32, f32);
     f32 unused0;
     f32 unused1;
     f32 *temp_s0;
