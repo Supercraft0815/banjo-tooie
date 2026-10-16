@@ -29,7 +29,32 @@ void func_8080000C_chbanjoctrl(Actor *arg0) {
     func_80800098_chbanjoctrl(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800098_chbanjoctrl.s")
+void func_80800098_chbanjoctrl(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_1(Actor *);
+    int func_800F6968(s32);
+    int func_800F69E8(s32);
+    void _chbanjoctrl_entrypoint_1(void);
+    void _chbanjoctrl_entrypoint_2(void);
+    void func_80800684_chbanjoctrl(void *, f32, s32, s32);
+    struct BanjoCtrlFlags {
+        u8 pad0[0x70];
+        u8 unk70_1 : 7;
+        u8 pad70_0 : 1;
+    } *flags = (void *) arg0;
+
+    flags->unk70_1 = 0;
+    switch ((u32) arg0->unk70_10) {
+        case 2:
+            _subaddieDll_entrypoint_1(arg0);
+            break;
+        case 4:
+            func_80800684_chbanjoctrl(arg0, 3.0f, (s32) func_800F69E8, (s32) _chbanjoctrl_entrypoint_1);
+            break;
+        case 5:
+            func_80800684_chbanjoctrl(arg0, 3.0f, (s32) func_800F6968, (s32) _chbanjoctrl_entrypoint_2);
+            break;
+    }
+}
 
 void func_808011F4_chbanjoctrl(void);
 void func_8080012C_chbanjoctrl(Actor *arg0) { if ((u32) arg0->unk70_10 == 0xB) { func_808011F4_chbanjoctrl(); } }
