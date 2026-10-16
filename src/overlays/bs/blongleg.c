@@ -14,7 +14,20 @@ void func_80800020_bsblongleg(PlayerState *arg0, s32 arg1) {
     func_8009DE38(arg0, 0x4433, 0.96f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/func_80800064_bsblongleg.s")
+void func_80800064_bsblongleg(PlayerState *arg0) {
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 bastick_getZone(PlayerState *);
+    f32 bastick_getZonePosition(PlayerState *);
+    f32 func_800F1214(f32, f32, f32);
+    f32 sp1C;
+
+    sp1C = bastick_getZonePosition(arg0);
+    if (bastick_getZone(arg0) == 0) {
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+        return;
+    }
+    baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp1C, 80.0f, 500.0f));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/func_808000C8_bsblongleg.s")
 
