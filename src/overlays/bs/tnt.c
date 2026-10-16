@@ -498,7 +498,23 @@ void func_80802114_bstnt(void *arg0) {
     func_800909CC(self);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_8080217C_bstnt.s")
+void func_8080217C_bstnt(struct player_state_s *arg0) {
+    s32 bastick_getZone(struct player_state_s *);
+    s32 bs_setState(s32, s32);
+    s32 player_inWater(struct player_state_s *);
+    s32 next_state;
+
+    next_state = 0;
+    if (bastick_getZone(arg0) > 0) {
+        next_state = 0x108;
+    }
+    if (player_inWater(arg0) != 0) {
+        next_state = 0x111;
+    }
+    next_state = func_80800218_bstnt(arg0, next_state);
+    bstnt_entrypoint_4(arg0);
+    bs_setState(arg0, next_state);
+}
 
 s32 bstnt_entrypoint_15(s32 arg0) {
     extern s32 D_808025CC_bstnt[];
