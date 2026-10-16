@@ -60,7 +60,44 @@ void func_80800194_basetup(struct player_state_s *self, void *arg1, void *arg2) 
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/basetup_entrypoint_1.s")
+void basetup_entrypoint_1(s32 arg0, s32 arg1) {
+    s32 _badata_entrypoint_35(s32);
+    s32 bs_setState(s32, s32);
+    u32 func_8009E958(void);
+    void func_800A3544(void *, s32);
+    int func_800C6E38(s32);
+    s32 func_800EA068(s32);
+    struct player_state_s *func_800F53D0(s32);
+    struct player_state_s *self;
+    s32 pad28;
+    s32 flag;
+    s32 pad20;
+    struct player_state_s *player;
+    u32 mode;
+    s32 state;
+
+    player = func_800F53D0(arg1);
+    self = player;
+    state = _badata_entrypoint_35(player);
+    flag = func_800EA068(8);
+    mode = func_8009E958();
+    switch (mode) {
+        case 1:
+            if (flag != 0 && func_800C6E38(0x15) != 0) {
+                state = 0xC8;
+            }
+            break;
+        case 9:
+            if (flag != 0) {
+                state = 0xCB;
+            } else {
+                state = 0xC9;
+            }
+            break;
+    }
+    func_800A3544(self, 0);
+    bs_setState(self, state);
+}
 
 /* extern */
 
