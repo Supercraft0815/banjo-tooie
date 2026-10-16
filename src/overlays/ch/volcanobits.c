@@ -154,7 +154,17 @@ int func_80800C5C_chvolcanobits(Actor *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_80800D6C_chvolcanobits.s")
+void func_80800D6C_chvolcanobits(Actor *arg0) {
+    void _subaddieaudioloop_entrypoint_1(u8 *, s32);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void *func_8080108C_chvolcanobits(void *);
+    extern u32 D_808012EC_chvolcanobits;
+    if (_subaddieaudioloop_entrypoint_4(arg0, func_80100094(arg0, 0), 1, &D_808012EC_chvolcanobits)) {
+        _subaddieaudioloop_entrypoint_1((u8 *)arg0, (s32)func_800F12D4(arg0->unk58, 0.0f, *(f32 *)func_8080108C_chvolcanobits(arg0) * 0.6f, 32767.0f, 22000.0f));
+    }
+}
 
 /* extern */
 
