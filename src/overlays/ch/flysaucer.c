@@ -32,7 +32,23 @@ void func_8080003C_chflysaucer(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800388_chflysaucer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800424_chflysaucer.s")
+void func_80800424_chflysaucer(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *arg3) {
+    void *func_80100094(Actor *, u32);
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+    u8 *data;
+
+    data = func_80100094(arg0, 0U);
+    switch (data[0x28]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 5, arg2);
+        case 1:
+            data[0x28] = 2;
+        case 2:
+            _capod_entrypoint_6(arg3, arg1, arg2);
+            break;
+    }
+}
 
 void func_808004B0_chflysaucer(Actor *arg0) {
     void _capod_entrypoint_3(u32);
