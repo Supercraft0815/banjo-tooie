@@ -468,7 +468,7 @@ void func_80802108_chquiz(u8 *arg0, s32 arg1) {
 /* extern */
 
 void func_8080216C_chquiz(u8 *arg0) {
-    s32 func_800C8B84(s32);
+    void func_800C8B84(volatile s32);
     s32 temp_a0;
     s32 var_s1;
     u8 *var_s0;
@@ -649,7 +649,7 @@ void func_80803320_chquiz(s32 arg0, Unk80132ED0 *arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80803588_chquiz.s")
 
 void func_80803910_chquiz(u8 *arg0) {
-    s32 func_800C8B84(s32);
+    void func_800C8B84(volatile s32);
     s32 temp_a1;
 
     temp_a1 = (*(s32 *)((s8 *)(arg0) + (0x24)));
@@ -666,7 +666,25 @@ OSThread *chquiz_entrypoint_2(void)
     return (OSThread *) D_80807480_chquiz;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80803954_chquiz.s")
+void func_80803954_chquiz(Actor *arg0) {
+    void func_800C8B84(volatile s32);
+    s32 func_800D90A4(f32 *);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(Actor *, u32);
+
+    switch (arg0->unk70_10) {
+    case 1:
+        func_80103110(arg0, 0);
+        return;
+    case 2:
+        if (func_800D90A4(&arg0->unk58) != 0) {
+            func_800C8B84(arg0->actorData[7]);
+            arg0->actorData[7] = 0;
+            func_80101FDC(arg0, 1);
+        }
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808039D4_chquiz.s")
 
