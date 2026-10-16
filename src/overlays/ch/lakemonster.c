@@ -149,7 +149,27 @@ OSThread *chlakemonster_entrypoint_0(void)
 }
 
 void func_80801790_chlakemonster();
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80801790_chlakemonster.s")
+void func_80801790_chlakemonster(Actor *arg0, u32 arg1) {
+    struct Flags { u8 pad[0x7E]; u8 high : 1; u8 flag : 1; u8 low : 6; };
+    void func_80101FDC(Actor *, u32);
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+
+    func_80101FDC(arg0, arg1);
+    switch (arg0->unk70_10) {
+        case 1:
+            arg0->position[1] = -1000.0f;
+            break;
+        case 3:
+            ((struct Flags *)arg0)->flag = 0;
+            arg0->position[1] = 0.0f;
+            break;
+        case 2:
+            _capod_entrypoint_13(arg0->unk0, NULL, 0, 0x10);
+            *(f32 *)&arg0->actorData[7] = 0.0f;
+            arg0->unk50 = 50.0f;
+            break;
+    }
+}
 
 /* extern */
 
