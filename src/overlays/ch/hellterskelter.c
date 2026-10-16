@@ -40,7 +40,27 @@ void func_80800024_chhellterskelter(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/func_808000A8_chhellterskelter.s")
+/* extern */
+
+void func_808000A8_chhellterskelter(Actor *arg0) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _chshockjump_entrypoint_2(Unk80132ED0 *);
+    s32 func_800D90A4(f32 *);
+    f32 func_800DC178(f32, f32);
+    s32 func_80108B04();
+    if (arg0->unk64_19 && (func_800DA298(FLAG3_A4B_UNK) == 0)) {
+        if (func_800DA9E4(FLAG2_6A2_UNK, 1) == 0) {
+            _capod_entrypoint_13(arg0->unk0, 0, 5, 0x10);
+        }
+        _chshockjump_entrypoint_2(arg0->unk3C);
+        arg0->unk3C = 0;
+        arg0->unk64_19 = 0;
+    }
+    if (func_800D90A4(&arg0->unk58) != 0) {
+        func_80108B04(arg0, 0x33A);
+        arg0->unk58 = func_800DC178(6.0f, 8.0f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/func_80800158_chhellterskelter.s")
 
