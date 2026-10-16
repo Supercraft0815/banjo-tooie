@@ -286,13 +286,25 @@ s32 func_8010B800(ActorPath *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B8A4.s")
+s32 func_8010B8A4(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    f32 func_800D8FF8(void);
+    void func_800EFA20(void *, void *, f32);
+    void func_800EF04C(f32 *, f32 *);
+    f32 delta;
+    f32 scaled[3];
+
+    delta = func_800D8FF8();
+    *(f32 *)(arg0 + 0x2C) += *(f32 *)(arg0 + 0x34) * delta;
+    func_800EFA20(scaled, arg0 + 0x28, delta);
+    func_800EF04C((f32 *)(arg0 + 4), scaled);
+    return 0;
+}
 
 /* extern */
 
-s32 func_8010B910(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 func_800EF04C(s32, s32, s32);
-    func_800EF04C(arg0 + 4, arg0 + 0x28, arg0);
+s32 func_8010B910(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void func_800EF04C(f32 *, f32 *);
+    func_800EF04C((f32 *)(arg0 + 4), (f32 *)(arg0 + 0x28));
     return 0;
 }
 
