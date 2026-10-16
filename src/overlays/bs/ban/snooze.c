@@ -60,7 +60,19 @@ void func_80800128_bsbansnooze(PlayerState *arg0, f32 arg1) {
     baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp1C, 50.0f, 100.0f) * arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_8080019C_bsbansnooze.s")
+void func_8080019C_bsbansnooze(PlayerState *arg0) {
+    int _babackpack_get_state();
+    void _babackpack_set_state(void *, s32);
+    void func_800A0CD0(void *, s32);
+    if (arg0->unk15C.bytes[1] != 0) {
+        func_80800000_bsbansnooze(arg0);
+        return;
+    }
+    if (_babackpack_get_state(arg0) != 1) {
+        func_800A0CD0(arg0, 1);
+        _babackpack_set_state(arg0, 1);
+    }
+}
 
 void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
 void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
