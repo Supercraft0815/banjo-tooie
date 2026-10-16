@@ -852,9 +852,9 @@ void func_800947EC(PlayerState *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-void func_80094824(s32 arg0) {
+void func_80094824(PlayerState *arg0) {
     s32 bainput_func_80097C7C();
-    s32 func_80094A10(s32);
+    s32 func_80094A10(PlayerState *);
     void func_80094C88(void *);
     s32 func_80094D04(s32);
     if (bainput_func_80097C7C() != 0) {
@@ -880,7 +880,33 @@ int func_800949BC(PlayerState *arg0) {
            (_bafpctrl_entrypoint_5(arg0) != 0 && _baeggfire_entrypoint_8(arg0) != 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094A10.s")
+s32 func_80094A10(PlayerState *arg0) {
+    s32 _gcegg_entrypoint_6(s32);
+    void func_80094E40(s32);
+    s32 result;
+    s32 previous;
+    s32 current;
+    u8 *state;
+
+    previous = func_80094510(arg0);
+    if (func_800949BC(arg0) != 0) {
+        return previous;
+    }
+    do {
+        state = *(u8 **)((u8 *)arg0 + 0x64);
+        state[1]++;
+        result = func_80094510(arg0);
+        current = result;
+        if (result == 0) {
+            (*(u8 **)((u8 *)arg0 + 0x64))[1] = 0;
+            current = func_80094510(arg0);
+        }
+    } while (_gcegg_entrypoint_6(current) == 0);
+    if (current != previous) {
+        func_80094E40(current);
+    }
+    return current;
+}
 
 /* extern */
 
@@ -985,8 +1011,8 @@ s32 func_80094DA8(void *arg0) {
 
 /* extern */
 
-void func_80094E40(void) {
-    s32 _gcegg_entrypoint_2();
+void func_80094E40(s32 arg0) {
+    s32 _gcegg_entrypoint_2(s32);
     s32 func_800FC660(s32);
-    func_800FC660(_gcegg_entrypoint_2());
+    func_800FC660(_gcegg_entrypoint_2(arg0));
 }
