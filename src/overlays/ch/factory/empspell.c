@@ -31,7 +31,7 @@ void func_80800000_chfactoryempspell(Actor *arg0) {
     void func_808012C0_chfactoryempspell(f32, f32);
     void func_808016AC_chfactoryempspell(Actor *);
     void func_80801844_chfactoryempspell(Actor *);
-    s32 func_80801AB4_chfactoryempspell(void *);
+    void func_80801AB4_chfactoryempspell(Actor *);
     void func_80801C00_chfactoryempspell(Actor *, f32);
     void func_80801E48_chfactoryempspell(Actor *);
     void func_80801E9C_chfactoryempspell(Actor *, f32);
@@ -316,7 +316,37 @@ void func_808012C0_chfactoryempspell(f32 arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801844_chfactoryempspell.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801AB4_chfactoryempspell.s")
+void func_80801AB4_chfactoryempspell(Actor *arg0) {
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    void func_800C8B84(volatile s32);
+    void *func_80100094(Actor *, u32);
+    struct {
+        u8 pad0[8];
+        u8 audio;
+        u8 pad9[3];
+        s32 handle;
+        u8 active : 7;
+        u8 flag : 1;
+        u8 pad11[3];
+    } *entry;
+    s32 i;
+    u8 audio;
+    void *data;
+
+    data = func_80100094(arg0, 1);
+    i = 0;
+    entry = data;
+    do {
+        if (entry->handle != 0) {
+            func_800C8B84(entry->handle);
+        }
+        audio = _subaddieaudioloop_entrypoint_3(entry->audio);
+        i++;
+        entry++;
+        entry[-1].audio = audio;
+        entry[-1].active = 0;
+    } while (i != 3);
+}
 
 /* extern */
 
@@ -352,7 +382,7 @@ void func_80801B2C_chfactoryempspell(Actor *arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801C00_chfactoryempspell.s")
 
 void func_80801E48_chfactoryempspell(Actor *arg0) {
-    void func_800C8B84(s32);
+    void func_800C8B84(volatile s32);
     void* func_80100094(Actor*, u32);
     s32 var_s0;
     u8 *var_s1;
@@ -405,7 +435,7 @@ void func_80801FE0_chfactoryempspell(void *arg0) {
     s32 _subaddieaudioloop_entrypoint_2();
     u8 _subaddieaudioloop_entrypoint_3(u8);
     s32 _sumumbofx_entrypoint_1(void *, s32);
-    s32 func_80801AB4_chfactoryempspell(void *);
+    void func_80801AB4_chfactoryempspell(Actor *);
     _subaddieaudioloop_entrypoint_2();
     (*(u8 *)((s8 *)(arg0) + (0x28))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(arg0) + (0x28))));
     func_80801AB4_chfactoryempspell(arg0);
