@@ -27,7 +27,15 @@ f32 *func_801027F4(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102844.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_801028C4.s")
+f32 func_801028C4(Actor *arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4) {
+    f32 func_80102D78(Actor *, f32 *);
+    f32 func_800F1FF0(f32, f32, f32, f32, f32);
+    f32 func_800F2094(f32, f32);
+
+    arg0->unk54 = func_80102D78(arg0, arg1);
+    arg0->rotation[1] = func_800F1FF0(arg0->rotation[1], arg0->unk54, arg2, arg3, arg4);
+    return func_800F2094(arg0->rotation[1], arg0->unk54);
+}
 
 void func_80102924(void *arg0, f32 arg1) {
     f32 func_800136E4(f32);
@@ -148,9 +156,9 @@ void func_80102D4C(u8 *arg0, s32 arg1) { s32 *p = &arg1;
 
 /* extern */
 
-void func_80102D78(s32 arg0) {
-    s32 func_800F1DF4(s32);
-    func_800F1DF4(arg0 + 0x4);
+f32 func_80102D78(Actor *arg0, f32 *arg1) {
+    f32 func_800F1DF4(f32 *, f32 *);
+    return func_800F1DF4(arg0->position, arg1);
 }
 
 /* extern */
