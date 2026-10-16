@@ -569,7 +569,25 @@ void gcnewoption_entrypoint_14(void *arg0, s16 arg1, s16 arg2, s16 arg3, f32 arg
     (*(f32 *)((s8 *)(arg0) + (0x30))) = arg4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_808012C8_gcnewoption.s")
+void func_808012C8_gcnewoption(s32 arg0) {
+    void func_800FC6B0(u32 track_id);
+    s32 track_id = 0;
+
+    switch (arg0) {
+        case 0:
+            track_id = 0x96;
+            break;
+        case 1:
+            track_id = 0x97;
+            break;
+        case -1:
+            track_id = 0xF;
+            break;
+    }
+    if (track_id != 0) {
+        func_800FC6B0(track_id);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_15.s")
 
