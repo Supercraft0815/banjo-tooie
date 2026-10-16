@@ -366,7 +366,29 @@ void func_8010BF4C(Actor *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4) { s32 fu
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010C100.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010C2D8.s")
+s32 func_8010C2D8(Actor *arg0, f32 *arg1, f32 arg2, Actor *arg3) {
+    f32 func_800EEFD4(f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_80103F38(Actor *, f32 *);
+    f32 func_8010A40C(void *);
+    f32 sqrtf(f32);
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp24;
+    f32 temp_f0;
+
+    sp24 = func_80103F38(arg3, sp34) * func_8010A40C(arg3);
+    func_800EFB24(sp28, arg1, sp34);
+    temp_f0 = func_800EEFD4(sp28);
+    if (temp_f0 < (sp24 + arg2) * (sp24 + arg2)) {
+        func_800EF368(sp28, ((sp24 + arg2) + 4.0f) - sqrtf(temp_f0));
+        func_800EF04C(arg0->position, sp28);
+        return 1;
+    }
+    return 0;
+}
 
 void func_8010C3A8(Actor *arg0, u32 arg1, f32 arg2) {
     f32 sp18[2];
