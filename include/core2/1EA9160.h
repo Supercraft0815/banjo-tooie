@@ -17,7 +17,7 @@ void func_800D05E4(s32, s32, s32);
 s32 func_800D0634(u32, u32);
 //Get Associated Level Id of given item
 s32 func_800D06D4(s32 itemIndex, s32 itemType);
-void func_800D0778(s32, s32, s32*);
+void func_800D0778(s32, s32, f32*);
 //Check if collectable is valid type
 s32 func_800D0820(s32 itemType);
 void func_800CF870(s32);

@@ -16,7 +16,22 @@ void func_80800000_chjigsaw(Actor *arg0, void *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/func_80800070_chjigsaw.s")
+void func_80800070_chjigsaw(Actor *arg0) {
+    void func_800D05E4(s32, s32, s32);
+    void func_800D0778(s32, s32, f32 *);
+    s32 func_800D0B68(u32, u32);
+    void func_800FC6B0(u32);
+    void func_800FFAB0(Actor *);
+    if (func_800D0B68((s32)arg0->unk50, 1) != 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    func_800D05E4((s32)arg0->unk50, 1, (s32)arg0->unk0);
+    if (arg0->unk58 != 0.0f) {
+        func_800FC6B0(0x18);
+    }
+    func_800D0778((s32)arg0->unk50, 1, arg0->position);
+}
 
 /* extern */
 
@@ -81,7 +96,7 @@ void func_808006CC_chjigsaw(s32 arg0) {
     s32 _subaddiedialog_entrypoint_11(s32, s32, s32, s32, s32);
     s32 _subaddiedialog_entrypoint_16();
     s32 func_800D395C();
-    s32 func_800FFAB0(s32);
+    void func_800FFAB0(Actor *);
     if (func_800D395C() != 0) {
         func_800FFAB0(arg0);
         return;
