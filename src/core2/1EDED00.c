@@ -164,7 +164,36 @@ f32 func_80105AE8(Actor *arg0) {
     return (*(f32 *)((s8 *)(func_80105494(arg0)) + (0xC)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105B0C.s")
+f32 func_80105B0C(Actor *arg0, s32 arg1) {
+    void func_800C810C(u8 *, f32, f32 *, f32 *);
+    void *func_800D7520(s32);
+    s32 func_800D7DE8(Actor *);
+    f32 position[3];
+    f32 rotation[3];
+    struct {
+        s32 upper : 21;
+        s32 path_index : 10;
+        u32 lower : 1;
+        f32 unk4;
+        f32 unk8;
+        f32 progress;
+    } *state;
+    s32 flags;
+    f32 result;
+
+    state = func_80105494(arg0);
+    flags = func_800D7DE8(arg0);
+    func_800C810C(func_800D7520(state->path_index), state->progress, position, rotation);
+    if (flags & 0x100) {
+        if (rotation[1] >= 180.0f) {
+            result = rotation[1] - 180.0f;
+        } else {
+            result = rotation[1] + 180.0f;
+        }
+        return result;
+    }
+    return rotation[1];
+}
 
 void func_80105BAC(Actor *arg0) {
     void *func_80105494(Actor *);
