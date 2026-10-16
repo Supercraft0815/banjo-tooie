@@ -733,7 +733,30 @@ void func_80802500_chdinoboss(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80802540_chdinoboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_808025E8_chdinoboss.s")
+void func_808025E8_chdinoboss(Actor *arg0) {
+    s32 _glcutDll_entrypoint_19(s32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
+    void func_80108B04(Actor *, u32);
+    s32 sp1C;
+    s32 sp18;
+
+    sp1C = func_800EA05C();
+    sp18 = 1;
+    arg0->actorData[4] = -1;
+    if (_glcutDll_entrypoint_19(0x33) == 0) {
+        if ((func_800DA298(0xE5) != 0) && (sp1C == 0x112) && (_subaddiefind_entrypoint_2(0x234, 0) == NULL)) {
+            func_80108B04(arg0, 0);
+            sp18 = 0;
+        }
+    } else {
+        sp18 = 0;
+    }
+    if (sp18 != 0) {
+        func_800FFAB0(arg0);
+    }
+}
 
 void func_80802684_chdinoboss(Actor *arg0) {
     u8 func_800D9078(f32*);
@@ -748,7 +771,7 @@ void func_80802684_chdinoboss(Actor *arg0) {
 void func_80802864_chdinoboss(s32 arg0, s32 arg1) {
     s32 _chappearfx_entrypoint_1(s32, s32, s32, s32);
     s32 _glcutDll_entrypoint_19(s32);
-    s32 func_800FFAB0(s32);
+    void func_800FFAB0(Actor *);
     s32 func_80102FDC(s32, s32);
     s32 func_80108528(s32, s32 *, s32, s32 *);
     extern s32 D_80802CA8_chdinoboss;
