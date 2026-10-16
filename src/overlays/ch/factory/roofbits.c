@@ -100,7 +100,28 @@ void func_808006E8_chfactoryroofbits(s32 arg0)
     _chswitch_entrypoint_7(arg0,FLAG3_A08_UNK);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_80800708_chfactoryroofbits.s")
+void func_80800708_chfactoryroofbits(Actor *arg0, s32 arg1, s32 arg2) {
+    struct RoofPosition { f32 position[3]; };
+    extern struct RoofPosition D_80800A98_chfactoryroofbits;
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    void func_80108B04(Actor *, u32);
+    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    struct RoofPosition sp1C;
+
+    switch (arg1) {
+        case 0x3D:
+            sp1C = D_80800A98_chfactoryroofbits;
+            func_80108528(0x3F3, sp1C.position, 0x10E, &arg0);
+            break;
+        case 0x95:
+            if (_subaddiefind_entrypoint_2(0x3F3, 0) == NULL) {
+                func_80108B04(arg0, 0);
+            }
+            break;
+    }
+    _chswitch_entrypoint_10(arg0, arg1, arg2);
+}
 
 OSThread *chfactoryroofbits_entrypoint_3(void)
 {
