@@ -270,7 +270,22 @@ void func_80103D70(void **arg0) {
     func_800D70F8((*(u16 *)((s8 *)(*arg0) + (0x14))), 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103D98.s")
+u8 *func_80103D98(Unk80132ED0 *arg0) {
+    s32 func_800AE0E8(s16);
+    void func_800D62E4(s32);
+    u8 *func_800B2824(u8 *);
+    u8 *value;
+
+    if (func_800AE0E8(*(s16 *)&arg0->unk10) == 0) {
+        return NULL;
+    }
+    value = func_801039A4(arg0);
+    if (value == NULL) {
+        return NULL;
+    }
+    func_800D62E4(arg0->unk14);
+    return func_800B2824(value);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103DFC.s")
 
@@ -320,7 +335,7 @@ f32 func_80103FB8(Actor *arg0) {
 s32 func_80104004(Actor *arg0, f32 *arg1, f32 *arg2) {
     void func_800B2198(void *, void *, void *);
     s32 func_800B2840(s32);
-    s32 func_800D62E4(s32);
+    void func_800D62E4(s32);
     void func_800EE84C(f32 *, s32 *);
     void func_800EF334(f32 *, f32);
     s32 func_801039E4(Unk80132ED0 *);
