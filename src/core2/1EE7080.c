@@ -6,7 +6,22 @@ void func_8010D790(void) { int i; u32 j; u8 *counts; int count; i = 0; j = 0; do
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE7080/func_8010D7EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE7080/func_8010D89C.s")
+void func_8010D89C(void) {
+    void func_8010DA30(u8 *arg0);
+    int j;
+    u32 i;
+    u8 *counts;
+
+    counts = D_80124730;
+    i = 0;
+    do {
+        for (j = 0; j < (s32)*counts; j++) {
+            func_8010DA30((u8 *)&D_80136F90[i][j]);
+        }
+        i++;
+        counts++;
+    } while (i != 13);
+}
 
 /* extern */
 
