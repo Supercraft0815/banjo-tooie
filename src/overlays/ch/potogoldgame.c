@@ -12,7 +12,7 @@
 
 void chpotogoldgame_entrypoint_0(s32 arg0, s32 arg1) {
     s32 func_800D395C();
-    s32 func_80106790(s32);
+    Actor *func_80106790(Unk80132ED0 *);
     s32 func_80800434_chpotogoldgame(s32, s32);
     if (func_800D395C() != 0) {
         func_80800434_chpotogoldgame(func_80106790(arg1), 0xE);
@@ -180,13 +180,40 @@ s32 func_80801998_chpotogoldgame(s16 *arg0) {
     return (s32) (sp24 / 72.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/chpotogoldgame_entrypoint_2.s")
+void chpotogoldgame_entrypoint_2(s32 arg0, Unk80132ED0 *arg1) {
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_800DA298(s32);
+    void func_800DA544(s32);
+    void func_800FC6B0(u32);
+    s32 flag;
+
+    switch (func_80106790(arg1)->unk6C_9) {
+    case 0x15A:
+        flag = 0x9F6;
+        break;
+    case 0x15B:
+        flag = 0x9F7;
+        break;
+    case 0x15C:
+        flag = 0x9F8;
+        break;
+    case 0x15D:
+        flag = 0x9F9;
+        break;
+    default:
+        return;
+    }
+    if (!func_800DA298(flag)) {
+        func_800FC6B0(0xE);
+        func_800DA544(flag);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80801A7C_chpotogoldgame.s")
 
 void chpotogoldgame_entrypoint_3(s32 arg0, s32 arg1, Vtx *arg2, s32 arg3, s32 arg4) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    s32 func_80106790(s32);
+    Actor *func_80106790(Unk80132ED0 *);
     s32 pad;
     u8 *actor;
     u8 color;
