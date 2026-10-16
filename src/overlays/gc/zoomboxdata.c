@@ -36,7 +36,23 @@ void gczoomboxdata_entrypoint_4(s32 arg0, s32 arg1, s16 *arg2, s16 *arg3, f32 *a
     *arg4 = *(f32 *)(*(s32 *)(entry + 4) + arg1 * 8 + 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoomboxdata/gczoomboxdata_entrypoint_5.s")
+s32 gczoomboxdata_entrypoint_5(register s32 arg0) {
+    s32 func_800D58FC(s32 arg0);
+    extern u8 D_80800AA8_gczoomboxdata[];
+    union { struct { u16 pad; u16 value; } write; struct { u16 pad; volatile u16 value; } read; } saved;
+    u16 asset;
+    s32 flag;
+
+    if (arg0 == 0x44) {
+        return 0;
+    }
+    arg0 *= 0xC;
+    asset = *(u16 *)(D_80800AA8_gczoomboxdata + arg0);
+    if (asset == 0 || (saved.write.value = asset, flag = func_800D58FC(asset), asset = saved.read.value, flag == 4)) {
+        return 0;
+    }
+    return asset;
+}
 
 /* extern */
 
