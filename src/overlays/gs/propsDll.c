@@ -1,6 +1,27 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propsDll/gspropsDll_entrypoint_0.s")
+void gspropsDll_entrypoint_0(s16 *arg0, Prop **arg1, s32 *arg2) {
+    Prop *func_800E9D68(s16 *);
+    u32 func_800E9D90(s16 *);
+    Prop *start;
+    u32 end;
+    Prop *prop;
+
+    if (arg0 != NULL && arg0[1] != 0) {
+        start = func_800E9D68(arg0);
+        end = func_800E9D90(arg0);
+        prop = start;
+        if ((u32)prop < end) {
+            do {
+                if (prop->unk6_1 == 6) {
+                    arg1[*arg2] = prop;
+                    *arg2 += 1;
+                }
+                prop++;
+            } while ((u32)prop < end);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propsDll/gspropsDll_entrypoint_1.s")
 
