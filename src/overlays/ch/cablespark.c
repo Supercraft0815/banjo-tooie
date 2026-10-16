@@ -61,7 +61,28 @@ int func_808007B8_chcablespark(Actor *arg0) {
     return func_800EEB40(arg0->position, sp1C.floats) > 1000000.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablespark/func_80800828_chcablespark.s")
+s32 func_80800828_chcablespark(void *arg0) {
+    s32 func_800DA298(s32);
+
+    switch (((Actor *)arg0)->unk74_7 - 0x32) {
+        case 1:
+            if (func_800DA298(0xEB) == 0) {
+                return 0;
+            }
+            break;
+        case 2:
+            if (func_800DA298(0xEC) == 0) {
+                return 0;
+            }
+            break;
+        case 3:
+            if (func_800DA298(0x18C) == 0) {
+                return 0;
+            }
+            break;
+    }
+    return 1;
+}
 
 /* extern */
 
