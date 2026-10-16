@@ -763,7 +763,22 @@ s32 func_80803FF4_chstoneballcontrol(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_808040B8_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_8080419C_chstoneballcontrol.s")
+void func_8080419C_chstoneballcontrol(Actor *arg0, s32 arg1) {
+    s32 _sukickball_entrypoint_6(u8 *, s32);
+    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800F5A00(s32, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    u8 *parent;
+
+    parent = (u8 *)func_80106790(arg0->unk3C);
+    if (_sukickball_entrypoint_6(parent, arg1)) {
+        func_800F5A00(arg1, (f32 *)arg0->actorData);
+        return;
+    }
+    func_800EE7F8((f32 *)arg0->actorData,
+                 func_80106790(_sukickball_entrypoint_8(parent, arg1))->position);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80804218_chstoneballcontrol.s")
 
