@@ -73,7 +73,28 @@ void func_80800768_bssub(struct player_state_s *arg0) {
     func_8009BF5C(arg0, func_800F10B4(temp_f0, 0.0f, 1.0f, 0.0f, var_f16));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800834_bssub.s")
+void func_80800834_bssub(struct player_state_s *arg0) {
+    void _basub_entrypoint_1(struct player_state_s *);
+    void _basub_entrypoint_3(struct player_state_s *, f32, f32);
+    void _basub_entrypoint_5(struct player_state_s *);
+    void _basub_entrypoint_8(struct player_state_s *, f32);
+    int bakey_pressed(struct player_state_s *, int);
+    f32 func_8009BB94(struct player_state_s *);
+    s32 func_800EA068(s32);
+    if (bakey_pressed(arg0, 2) != 0) {
+        _basub_entrypoint_1(arg0);
+    }
+    if (bakey_pressed(arg0, 1) != 0) {
+        _basub_entrypoint_8(arg0, func_8009BB94(arg0));
+    }
+    if (bakey_pressed(arg0, 9) != 0) {
+        if (func_800EA068(0x40) != 0) {
+            _basub_entrypoint_3(arg0, 160.0f, 1.0f);
+            return;
+        }
+        _basub_entrypoint_5(arg0);
+    }
+}
 
 /* extern */
 
