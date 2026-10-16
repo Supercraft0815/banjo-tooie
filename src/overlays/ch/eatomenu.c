@@ -25,7 +25,28 @@ void func_80800150_chcheatomenu(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_80800194_chcheatomenu.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_80800364_chcheatomenu.s")
+s32 func_80800364_chcheatomenu(Actor *arg0, void *arg1) {
+    s32 _gcnewoption_entrypoint_14(s32, s32, s32, s32, f32);
+    s32 _gcnewoption_entrypoint_31(s32, s32, s16);
+    s32 _gcnewoption_entrypoint_32(s32, s32);
+    s32 _gcnewoption_entrypoint_40(s32, s32, s32, s32, f32, f32);
+    s32 func_800F1418(s32, s32);
+    s32 func_80800800_chcheatomenu(void);
+    s32 count;
+    s32 i;
+
+    count = func_800F1418(5, func_80800800_chcheatomenu());
+    _gcnewoption_entrypoint_14(arg1, 0, 1, 3, 4.0f);
+    _gcnewoption_entrypoint_40(arg1, 0x41, 0x22, 0x20, 0.8f, 1.0f);
+    _gcnewoption_entrypoint_32(arg1, 0x37);
+    i = 0;
+    if (count > 0) {
+        do {
+            _gcnewoption_entrypoint_31(arg1, i, 0x37);
+            i++;
+        } while (i != count);
+    }
+}
 
 /* extern */
 
