@@ -98,7 +98,28 @@ void func_808001D4_bsbansack(PlayerState *arg0) {
     baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp1C, 100.0f, 500.0f));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800238_bsbansack.s")
+void func_80800238_bsbansack(PlayerState *arg0) {
+    int _babackpack_get_state();
+    void _babackpack_set_state(void *, s32);
+    void bastick_popZone(PlayerState *);
+    s32 func_8009E74C(PlayerState *, s32);
+    void func_800A0CD0(void *, s32);
+    void func_800A1040(PlayerState *);
+
+    if (func_8009E74C(arg0, 0x12) != 0) {
+        if (_babackpack_get_state(arg0) != 4) {
+            func_800A0CD0(arg0, 0);
+            _babackpack_set_state(arg0, 4);
+        }
+    } else {
+        if (_babackpack_get_state(arg0) != 1) {
+            _babackpack_set_state(arg0, 1);
+        }
+        func_800A0CD0(arg0, 1);
+        bastick_popZone(arg0);
+        func_800A1040(arg0);
+    }
+}
 
 void func_808002D4_bsbansack(PlayerState *arg0) {
     void _babackpack_set_state(void *, s32);
@@ -533,9 +554,9 @@ s32 bsbansack_entrypoint_8(s32 arg0) {
     return ((s32 *)&D_80801E90_bsbansack)[arg0];
 }
 
-void func_80801CB4_bsbansack()
+void func_80801CB4_bsbansack(PlayerState *arg0)
 {
-    func_80800238_bsbansack();
+    func_80800238_bsbansack(arg0);
 }
 
 void func_80801CD4_bsbansack(PlayerState *arg0) {
