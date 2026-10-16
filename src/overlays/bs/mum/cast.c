@@ -30,7 +30,20 @@ void bsmumcast_entrypoint_1(PlayerState *self) {
 }
 
 #ifndef NONMATCHINGS
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/mum/cast/bsmumcast_entrypoint_2.s")
+void bsmumcast_entrypoint_2(PlayerState *self) {
+    switch (func_8009E6EC(self)) {
+        case 0x15:
+        case 0x1C:
+        case 0x1D:
+        case 0x1E:
+        case 0x25:
+        case 0x43:
+            break;
+        default:
+            func_80099B94(self);
+            break;
+    }
+}
 #else
 // Decomp failure
 #endif
