@@ -138,7 +138,19 @@ void func_8009B4D0(void *arg0, s32 arg1) {
     func_800EE7F8(arg1, *(s32 *)((u8 *)arg0 + 0xC8) + 0x28);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009B4FC.s")
+void func_8009B4FC(PlayerState *arg0) {
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFD24(f32 *);
+
+    *(s32 *)(*(u8 **)((u8 *)arg0 + 0xC8)) = 0;
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x50) = 1.0f;
+    func_800EFA4C((f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x10), 0.0f, -1.0f, 0.0f);
+    func_800EFD24((f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x1C));
+    func_800EFD24((f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x28));
+    func_800EFD24((f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 4));
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x44) = 2.0f;
+    func_8009BC34(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009B590.s")
 
