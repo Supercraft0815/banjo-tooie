@@ -983,9 +983,9 @@ s32 func_808036F8_chgameselect()
     return _glsavegame_entrypoint_2();
 }
 
-void func_80803718_chgameselect()
+s32 func_80803718_chgameselect()
 {
-    _glsavegame_entrypoint_3();
+    return _glsavegame_entrypoint_3();
 }
 
 s32 func_80803738_chgameselect(s32 arg0, s32 *arg1, s32 *arg2) {
@@ -1328,7 +1328,7 @@ void func_808040DC_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080413C_chgameselect.s")
+s32 func_8080413C_chgameselect(Actor *arg0) { void func_800DA3B8(s32, s32); func_8080218C_chgameselect(arg0->unk79_4, 1); func_80801658_chgameselect(arg0->actorData[4], 1); func_80803D00_chgameselect(arg0->unk79_4 + 8, 1); func_800DA3B8(0xD69, func_80803718_chgameselect()); func_80803888_chgameselect((s32)arg0, func_808037C0_chgameselect(arg0->unk79_4), 0); return -1; }
 
 /* extern */
 
