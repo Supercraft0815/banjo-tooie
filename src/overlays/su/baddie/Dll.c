@@ -160,7 +160,37 @@ void subaddieDll_entrypoint_9(s32 arg0, s32 arg1) {
     subaddieDll_entrypoint_8(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/Dll/subaddieDll_entrypoint_10.s")
+void subaddieDll_entrypoint_10(s32 arg0, s16 *arg1) {
+    void _gccubesearch_entrypoint_7(s32 *, s16 **, s32);
+    s32 query[2];
+    s16 *results[3];
+    s32 first;
+    s32 second;
+    s32 i;
+    s16 *out;
+
+    query[0] = arg0;
+    query[1] = -1;
+    _gccubesearch_entrypoint_7(query, results, 2);
+    i = 0;
+    out = arg1;
+    do {
+        first = *(s16 *)((u8 *)results[0] + i);
+        second = *(s16 *)((u8 *)results[1] + i);
+        i += 4;
+        if (first < second) {
+            out[0] = first;
+        } else {
+            out[0] = second;
+        }
+        if (second < first) {
+            out[2] = first;
+        } else {
+            out[2] = second;
+        }
+        out++;
+    } while (i != 8);
+}
 
 /* extern */
 
