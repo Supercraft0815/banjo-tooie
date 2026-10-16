@@ -104,4 +104,25 @@ void func_808009FC_chpowerhutwitchy(s32 arg0) {
     (*(s8 *)((s8 *)(func_80100094(arg0, 0)) + (0x19))) = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/func_80800A58_chpowerhutwitchy.s")
+/* extern */
+
+void func_80800A58_chpowerhutwitchy(Actor *arg0) {
+    s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_6(Actor *, s32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    f32 var_f0;
+    s32 var_v1;
+
+    var_f0 = -90.0f;
+    var_v1 = 0;
+    if (arg0->unk6C_9 == 0x39E) {
+        var_f0 = 90.0f;
+        var_v1 = 1;
+    }
+    if (_chdoormake_entrypoint_3(arg0, var_f0, 0.0f, 100.0f, 1, 0xEC) != 0) {
+        _chdoormake_entrypoint_6(arg0, 0x3F400000);
+        if (var_v1 != 0) {
+            _chdoormake_entrypoint_8(arg0, 0x10);
+        }
+    }
+}
