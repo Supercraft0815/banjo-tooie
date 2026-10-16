@@ -3,7 +3,18 @@
 
 void func_800F274C(MtxF *);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F23D0.s")
+void func_800F23D0(MtxF *arg0, f32 *arg1, f32 *arg2) {
+    void func_800EE7F8(f32 *, f32 *);
+    s32 i;
+    f32 vec[3];
+
+    func_800EE7F8(vec, arg2);
+    i = 0;
+    do {
+        arg1[i] = (vec[0] * arg0->m[0][i] + vec[1] * arg0->m[1][i] + vec[2] * arg0->m[2][i]) + arg0->m[3][i];
+        i++;
+    } while (i != 3);
+}
 
 void func_800F2454(MtxF *arg0, f32 *arg1, f32 *arg2) {
     void func_800EE7F8(f32 *, f32 *);
