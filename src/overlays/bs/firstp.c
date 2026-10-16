@@ -1654,7 +1654,25 @@ s32 bsfirstp_entrypoint_24(s32 arg0) {
     return ((s32 *)&D_8080B550_bsfirstp)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_25.s")
+void bsfirstp_entrypoint_25(struct player_state_s *self, f32 speed) {
+    f32 mlAbsF(f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    struct anctrl_s *func_8008D04C(struct player_state_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    f32 duration;
+    f32 one = 1.0f;
+    f32 ratio;
+    struct anctrl_s *ctrl;
+
+    ratio = mlAbsF(speed) * 0.0033333334f;
+    if (ratio > one) {
+        ratio = one;
+    }
+    ctrl = baanim_getAnimCtrlPtr(self);
+    duration = (0.75f - one) * ratio + one;
+    anctrl_setDuration(ctrl, duration);
+    anctrl_setDuration(func_8008D04C(self), duration);
+}
 
 void func_808052A4_bsfirstp(f32 *arg0, f32 *arg1) {
     f32 temp_f0;
