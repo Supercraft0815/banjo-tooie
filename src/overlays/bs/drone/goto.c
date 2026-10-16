@@ -36,10 +36,27 @@ s32 func_8080009C_bsdronegoto(void) {
 
 void func_808000C0_bsdronegoto()
 {
+    void func_8009B7C0();
     func_8009B7C0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/goto/func_808000E0_bsdronegoto.s")
+struct player_state_s;
+void func_808000E0_bsdronegoto(struct player_state_s *arg0) {
+    void func_8009B7C0(struct player_state_s *);
+    s32 func_8080009C_bsdronegoto();
+    s32 player_inWater(struct player_state_s *);
+    int player_isStable(struct player_state_s *);
+    s32 var_v1;
+
+    func_8009B7C0(arg0);
+    var_v1 = func_8080009C_bsdronegoto(arg0) != 0;
+    if (var_v1 != 0) {
+        var_v1 = player_inWater(arg0) != 0;
+    }
+    if ((var_v1 != 0) || (player_isStable(arg0) != 0)) {
+        func_80800000_bsdronegoto(arg0, 2);
+    }
+}
 
 void func_80800148_bsdronegoto(s32 arg0) 
 {
@@ -144,7 +161,7 @@ void bsdronegoto_entrypoint_0(void *arg0) {
     s32 _gcgoto_entrypoint_14(s32);
     s32 func_80091E48(void *, s32);
     s32 func_80800000_bsdronegoto(void *, s32);
-    int player_isStable(void *);
+    int player_isStable(struct player_state_s *);
     (*(s32 *)((s8 *)(arg0) + (0x190))) = 0;
     (*(s32 *)((s8 *)(arg0) + (0x194))) = 0;
     _gcgoto_entrypoint_14(1);
