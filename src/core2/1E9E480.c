@@ -79,7 +79,17 @@ f32 func_800C5190(s32 arg0) {
     return ((f32 *)&D_8012AA04)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C51A4.s")
+void func_800C51A4(s32 arg0, f32 arg1) {
+    extern f32 D_8012AA04[];
+    f32 func_800139F8(f32);
+    f32 func_80013B7C(f32, f32);
+    D_8012AA04[arg0] = arg1;
+    if (arg1 != 1.0f) {
+        func_800C5094(arg0, 2.0f * func_80013B7C(func_800139F8(func_800C517C(arg0) * 0.5f), arg1));
+        return;
+    }
+    func_800C5094(arg0, func_800C517C(arg0));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C524C.s")
 
