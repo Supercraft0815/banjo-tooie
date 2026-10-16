@@ -252,7 +252,31 @@ s32 func_8080160C_subaddierouteDll(Actor *arg0, s32 arg1, f32 arg2, s32 arg3, s3
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/func_808016F0_subaddierouteDll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/func_80801784_subaddierouteDll.s")
+s32 func_80801784_subaddierouteDll(Actor *arg0, Unk80132ED0 *arg1, s32 arg2, f32 *arg3) {
+    s32 func_808016F0_subaddierouteDll(Actor *, Unk80132ED0 *, s32, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 func_800EC708(Unk80132ED0 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF11C(f32 *, s16 *);
+    f32 func_8008FE3C(f32 *);
+    Actor *sp20[2];
+    s32 temp_v0;
+
+    temp_v0 = func_808016F0_subaddierouteDll(arg0, arg1, arg2, arg3);
+    switch (temp_v0) {
+    case 0:
+        sp20[0] = func_80106790(arg1);
+        arg3[3] = func_800EC708(arg0->unk0) * 0.7f;
+        func_800EE7F8(arg3, sp20[0]->position);
+        func_800EF11C(arg3, (s16 *)&arg1->unk1C + 1);
+        return 1;
+    case 1:
+        arg3[3] = func_8008FE3C(arg3) * 4.0f;
+        return 1;
+    default:
+        return 0;
+    }
+}
 
 /* extern */
 
