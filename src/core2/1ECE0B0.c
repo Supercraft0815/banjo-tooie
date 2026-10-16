@@ -1351,12 +1351,12 @@ int func_800F7A7C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 *arg4) { void func
 
 /* extern */
 
-void func_800F7AF4(s32 arg0, s32 arg1) {
-    void func_800F7B1C(s32, s32, s32, s32);
-    func_800F7B1C(arg0, arg1, 0x44520000, 0xC4BB8000);
+void func_800F7AF4(s32 arg0, f32 *arg1) {
+    int func_800F7B1C(s32, f32 *, f32, f32);
+    func_800F7B1C(arg0, arg1, 840.0f, -1500.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F7B1C.s")
+int func_800F7B1C(s32 moving, f32 *target, f32 verticalSpeed, f32 horizontalSpeed) { void func_8009ACF4(void *, f32); void func_8009AD04(void *, f32); void func_8009AD20(void *, s32); void func_8009AD44(void *, void *); s32 func_8009E7C8(PlayerState *, s32); PlayerState *sp1C; sp1C = D_80135490[moving]; func_8009ACF4(sp1C, verticalSpeed); func_8009AD04(sp1C, horizontalSpeed); func_8009AD20(sp1C, 0x10); func_8009AD44(sp1C, target); return func_8009E7C8(sp1C, 0x2E) == 2; }
 
 void func_800F7B9C(s32 arg0,u32 a1)
 {
