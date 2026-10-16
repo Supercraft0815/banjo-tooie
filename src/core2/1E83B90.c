@@ -178,7 +178,34 @@ void func_800AB9D0(void) {
     D_8012798C = NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800ABA20.s")
+void func_800ABA20(void) {
+    void *defrag(void *);
+    extern void *D_8012798C;
+    void *current;
+    void *old;
+    void *neighbor;
+
+    current = D_8012798C;
+    if (current != NULL) {
+        do {
+            old = current;
+            current = defrag(current);
+            if (current != old) {
+                neighbor = *(void **)current;
+                if (neighbor != NULL) {
+                    *(void **)((u8 *)neighbor + 4) = current;
+                } else {
+                    D_8012798C = current;
+                }
+                neighbor = *(void **)((u8 *)current + 4);
+                if (neighbor != NULL) {
+                    *(void **)neighbor = current;
+                }
+            }
+            current = *(void **)((u8 *)current + 4);
+        } while (current != NULL);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800ABA9C.s")
 
