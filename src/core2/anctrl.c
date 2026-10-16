@@ -105,7 +105,7 @@ void func_8008AB84(AnimCtrl *this) {
 AnimCtrl *func_8008AD80(s32 arg0) {
     s32 func_8008C0B8();
     void* heap_alloc(s32 size);
-    s32 func_8008B518(AnimCtrl *, s32);
+    void func_8008B518(AnimCtrl *, s32);
     AnimCtrl *sp1C;
     AnimCtrl *temp_v0;
 
@@ -153,7 +153,7 @@ void func_8008AF04(AnimCtrl *arg0, s32 arg1) {
 
 void anctrl_reset(AnimCtrl *control) {
     typedef struct { f32 start; u8 padding4[0x10]; f32 time; u8 padding18[2]; u8 type; u8 high : 2; u8 flag : 1; u8 low : 5; } ResetState;
-    s32 func_800E6A00(void);
+    u32 func_800E6A00(void);
     ResetState *state = (ResetState *)control;
     s32 mode;
     state->type = 2;
@@ -389,7 +389,40 @@ s32 func_8008B4F4(void) {
     return func_8008C0B8() + 0x1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008B518.s")
+void func_8008B518(AnimCtrl *arg0, s32 arg1) {
+    struct State {
+        f32 timer;
+        u8 padding[0x10];
+        f32 start;
+        s16 index;
+        s8 unk1A;
+        u8 high : 2;
+        u8 bit5 : 1;
+        u8 mode : 2;
+        u8 smooth : 1;
+        u8 low : 2;
+    };
+    void func_8008C124(s16 *, s32);
+    u32 func_800E6A00(void);
+
+    func_8008C124((s16 *)((u8 *)arg0 + 0x1C), 1);
+    ((struct State *)arg0)->unk1A = 0;
+    ((struct State *)arg0)->index = 0;
+    ((struct State *)arg0)->bit5 = 1;
+    ((struct State *)arg0)->timer = 0.0f;
+    ((struct State *)arg0)->start = 0.0f;
+    if (func_800E6A00()) {
+        ((struct State *)arg0)->mode = 2;
+    } else {
+        ((struct State *)arg0)->mode = 0;
+    }
+    ((struct State *)arg0)->smooth = 1;
+    anctrl_setSubrange(arg0, 0.0f, 1.0f);
+    anctrl_setDuration(arg0, 2.1234f);
+    func_8008B1C8(arg0, 0.2f);
+    anctrl_setSmoothTransition(arg0, 1);
+    func_8008B188(arg0, 1);
+}
 
 void func_8008B5E8(AnimCtrl *arg0) {
     void func_8008C0D8(void *);
