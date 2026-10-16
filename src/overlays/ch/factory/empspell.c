@@ -398,7 +398,26 @@ void func_80801E48_chfactoryempspell(Actor *arg0) {
     } while (var_s0 != 0x10);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801E9C_chfactoryempspell.s")
+void func_80801E9C_chfactoryempspell(Actor *arg0, f32 arg1) {
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u8, s32 *, s32);
+    void func_800C31DC(u8, f32);
+    f32 func_800DC0C0(void);
+    f32 func_800F1214(f32, f32, f32);
+    extern s32 D_80802408_chfactoryempspell;
+    typedef struct {
+        s32 pad[10];
+        u8 sound;
+        u8 pad29[0x47];
+        u32 pad70_1 : 31;
+        u32 active : 1;
+    } EmpSpellData;
+    s32 pad;
+    volatile f32 volume;
+
+    ((EmpSpellData *)arg0)->sound = _subaddieaudioloop_entrypoint_7(((EmpSpellData *)arg0)->sound, arg0->position, 1, &D_80802408_chfactoryempspell, ((EmpSpellData *)arg0)->active);
+    volume = func_800F1214(arg1, 1.0f, 0.8f);
+    func_800C31DC(((EmpSpellData *)arg0)->sound, func_800DC0C0() * 0.1f + volume);
+}
 
 /* extern */
 
