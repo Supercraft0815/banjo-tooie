@@ -24,7 +24,7 @@ f32 func_8009F308(PlayerState *arg0) {
 
 s32 func_8009F354(PlayerState *arg0) {
     s32 _badata_entrypoint_24(PlayerState *);
-    s32 baflag_isTrue(PlayerState *, s32);
+    int baflag_isTrue(PlayerState *, s32);
     s32 baflag_set(PlayerState *, s32);
     s32 bs_getCurrentState(PlayerState *);
     s32 sp1C;
@@ -114,7 +114,7 @@ void func_8009FE78(PlayerState *arg0)
 /* extern */
 
 enum bs_state_e bs_getTypeOfJump(PlayerState *self) {
-    s32 baflag_isTrue(PlayerState *, s32);
+    int baflag_isTrue(PlayerState *, s32);
     int bakey_held(PlayerState *, s32);
     int func_8008D370(PlayerState *);
     int func_8008D3B0(PlayerState *);
@@ -224,7 +224,7 @@ void func_800A0110(AnimCtrl *arg0, AnimCtrl *arg1) {
 
 void func_800A0150(s32 arg0) {
     s32 func_800FC240(s32, s32);
-    s32 func_800FC660(s32);
+    void func_800FC660(u32);
     func_800FC240(0, 0xFA0);
     func_800FC660(arg0);
 }
@@ -233,7 +233,7 @@ void func_800A0150(s32 arg0) {
 
 void func_800A0180(PlayerState *arg0) {
     s32 _badata_entrypoint_16();
-    s32 baflag_isTrue(PlayerState *, s32);
+    int baflag_isTrue(PlayerState *, s32);
     s32 baflag_set(PlayerState *, s32);
     s32 func_800D395C();
     s32 func_800FCCD4(s32);
@@ -269,7 +269,21 @@ void func_800A042C(PlayerState *arg0) {
     baroll_applyIdeal(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A046C.s")
+void func_800A046C(PlayerState *arg0) {
+    void _bsjig_entrypoint_4(PlayerState *);
+    void baflag_clear(PlayerState *, s32);
+    int baflag_isFalse(PlayerState *, s32);
+    int baflag_isTrue(PlayerState *, s32);
+    void func_800FC660(u32);
+    if (baflag_isFalse(arg0, 7) == 0) {
+        if (baflag_isTrue(arg0, 0xF) != 0 && baflag_isFalse(arg0, 6) != 0 && baflag_isFalse(arg0, 0x14) != 0) {
+            baflag_clear(arg0, 0xF);
+        }
+        baflag_clear(arg0, 7);
+        _bsjig_entrypoint_4(arg0);
+        func_800FC660(5);
+    }
+}
 
 /* extern */
 
