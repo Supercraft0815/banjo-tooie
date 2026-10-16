@@ -2125,7 +2125,24 @@ s32 func_808070C0_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808075D0_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80807790_chgameselect.s")
+s32 func_80807790_chgameselect(Actor *arg0, s32 arg1) {
+    s32 _gczoombox_entrypoint_3();
+    void *func_80100094(Actor *, u32);
+    s32 *entry;
+    s32 *data;
+    u32 i;
+
+    i = 0;
+    data = func_80100094(arg0, 0);
+    i = 0;
+    entry = data;
+    for (; i < arg0->unk6C_0; i++, entry++) {
+        if (_gczoombox_entrypoint_3(*entry) != arg1) {
+            return 0;
+        }
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80807824_chgameselect.s")
 
