@@ -39,7 +39,29 @@ void func_80800024_chweldarbossfusebox(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fusebox/func_80800098_chweldarbossfusebox.s")
+s32 func_80800098_chweldarbossfusebox(Actor *arg0, s32 arg1, volatile s32 arg2) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80800140_chweldarbossfusebox(s32);
+    f32 sp1C[3];
+
+    switch (arg1) {
+    case 5:
+        func_800EE7F8(sp1C, arg0->position);
+        func_800EF1B8(sp1C, arg0->rotation[1], -400.0f);
+        _chexploder_entrypoint_3(arg0, sp1C, 0xB);
+        func_80101180(0x33D, 0xA, 0);
+        break;
+    case 0x90:
+        func_80800140_chweldarbossfusebox((s32)arg0);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800140_chweldarbossfusebox(s32 arg0) {
     s32 _chexploder_entrypoint_15(s32, s32, s32);
