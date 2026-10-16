@@ -1,5 +1,7 @@
 #include "common.h"
 
+struct anctrl_s;
+
 /* extern */
 
 f32 func_80800000_bssnowball(s32 arg0) {
@@ -186,7 +188,17 @@ void func_8080056C_bssnowball(s32 arg0) {
     bssnowball_entrypoint_0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_808005A4_bssnowball.s")
+void func_808005A4_bssnowball(s32 arg0) {
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    void func_8009FFD8();
+    bssnowball_entrypoint_1(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0x5F, 0x41200000);
+    func_8009FFD8(arg0, 2, 3, 1, 0xE);
+    anctrl_setPlaybackType(baanim_getAnimCtrlPtr(arg0), 3);
+    func_80800164_bssnowball(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_80800614_bssnowball.s")
 
@@ -264,7 +276,6 @@ void func_80800C18_bssnowball(s32 arg0)
 /* extern */
 
 void func_80800C40_bssnowball(struct player_state_s *arg0) {
-    struct anctrl_s;
     void _babounce_entrypoint_4(struct player_state_s *, s32);
     void _babounce_entrypoint_5(struct player_state_s *, s32, f32);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
@@ -336,6 +347,7 @@ void func_80800DB0_bssnowball(s32 arg0)
     bssnowball_entrypoint_0(arg0);
 }
 void func_80800DD8_bssnowball(s32 arg0) {
+    void func_8009FFD8();
     s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     void func_800909CC(struct player_state_s *);
