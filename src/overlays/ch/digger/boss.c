@@ -22,7 +22,23 @@ OSThread *chdiggerboss_entrypoint_1(void)
     return (OSThread *) D_80809E8C_chdiggerboss;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80800508_chdiggerboss.s")
+void func_80800508_chdiggerboss(Actor *arg0, u32 arg1) {
+    void _gcnewoption_entrypoint_1();
+    s32 func_800EB854(void);
+    void *func_80100094(Actor *, u32);
+    void func_801017D0(Actor *);
+    void func_80101808();
+    s32 temp_v0;
+
+    temp_v0 = func_800EB854();
+    if (temp_v0 != 0) {
+        if (temp_v0 == 3) {
+            _gcnewoption_entrypoint_1((u8 *)func_80100094(arg0, 0) + 0x10C, arg1);
+        }
+    } else {
+        func_80101808(arg0, func_801017D0);
+    }
+}
 
 void func_80800568_chdiggerboss(Actor *arg0, volatile s32 arg1)
 {
