@@ -80,7 +80,34 @@ void func_808001CC_bsvanswim(struct player_state_s *arg0) {
     _bsvan_entrypoint_0((s32)arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_80800200_bsvanswim.s")
+void func_80800200_bsvanswim(struct player_state_s *arg0) {
+    void _bsvan_entrypoint_1(struct player_state_s *);
+    void baphysics_set_gravity(struct player_state_s *, f32);
+    void baphysics_set_terminal_velocity(struct player_state_s *, f32);
+    void baphysics_set_vertical_velocity(void *, f32);
+    void func_800961AC(struct player_state_s *, s32);
+    void func_8009BC5C(struct player_state_s *, f32);
+    void func_800A046C(struct player_state_s *);
+    f32 func_800A3298(struct player_state_s *);
+    s32 baanim_playForDuration_loopSmooth(struct player_state_s *, s32, s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_8009FFD8(struct player_state_s *, s32, s32, s32, s32);
+    f32 speed;
+    f32 velocity;
+
+    _bsvan_entrypoint_1(arg0);
+    baphysics_set_gravity(arg0, 0.0f);
+    baphysics_set_terminal_velocity(arg0, -399.99f);
+    func_800961AC(arg0, 3);
+    func_8009BC5C(arg0, 2.0f);
+    func_800A046C(arg0);
+    speed = func_800A3298(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0xE7, 0x40D00000);
+    velocity = func_800F10B4(speed, 40.0f, 1000.0f, -300.0f, -1200.0f);
+    *(f32 *)((u8 *)arg0 + 0x16C) = velocity;
+    baphysics_set_vertical_velocity(arg0, velocity);
+    func_8009FFD8(arg0, 1, 3, 3, 6);
+}
 
 void func_808002D0_bsvanswim(void *arg0) {
     f32 baphysics_get_vertical_velocity(void *);
