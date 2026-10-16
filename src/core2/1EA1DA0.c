@@ -34,12 +34,28 @@ u32 func_800C8594(u8 *arg0, u32 arg1) {
     return arg0[0x15] & arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C85A0.s")
+s32 func_800C85A0(s32 (*arg0)(u32, s32), s32 arg1) {
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    u32 begin;
+    u32 end;
+    u32 current;
+
+    begin = vector_begin(D_8012AB00);
+    end = vector_end(D_8012AB00);
+    for (current = begin; current < end; current += 0x1C) {
+        if (((u8 *)current)[0x15] && arg0(current, arg1)
+            && (((u8 *)current)[0x17] || ((u8 *)current)[0x18])) {
+            return (s32)(current - begin) / 28 + 1;
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8678.s")
 
 void func_800C8760(s32 arg0) {
-    s32 func_800C85A0(s32);
+    s32 func_800C85A0();
     extern s32 D_8011A9C0;
     func_800C85A0(*(s32 *)((u8 *)&D_8011A9C0 + (arg0 * 4)));
 }
