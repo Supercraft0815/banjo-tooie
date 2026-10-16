@@ -65,7 +65,36 @@ s32 bsbeefly_entrypoint_0(s32 arg0) {
     return ((s32 *)&D_80800E18_bsbeefly)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_808002E4_bsbeefly.s")
+void func_808002E4_bsbeefly(PlayerState *arg0) {
+    void _babee_entrypoint_5(PlayerState *);
+    void _baboost_entrypoint_4(PlayerState *, s32);
+    void _babuzz_entrypoint_1(PlayerState *);
+    void _bafly_entrypoint_4(PlayerState *);
+    s32 _bafpctrl_entrypoint_18(PlayerState *, s32);
+    void baphysics_reset_gravity(PlayerState *);
+    void baphysics_reset_terminal_velocity(PlayerState *);
+    void baroll_setIdeal(PlayerState *, f32);
+    s32 bs_getNextState(PlayerState *);
+    void func_80093360(PlayerState *, f32);
+    void func_800947EC(PlayerState *, s32, s32);
+    void func_8009BF5C(PlayerState *, f32);
+    s32 func_8009CA70(PlayerState *, s32, s32);
+    void func_800A4E30(PlayerState *);
+    if (func_8009CA70(arg0, bs_getNextState(arg0), 0x4000) == 0) {
+        func_80093360(arg0, 0.0f);
+        baroll_setIdeal(arg0, 0.0f);
+        func_8009BF5C(arg0, 0.0f);
+        func_800A4E30(arg0);
+        baphysics_reset_gravity(arg0);
+        baphysics_reset_terminal_velocity(arg0);
+        _baboost_entrypoint_4(arg0, 0);
+        _babuzz_entrypoint_1(arg0);
+        _babee_entrypoint_5(arg0);
+        _bafly_entrypoint_4(arg0);
+        _bafpctrl_entrypoint_18(arg0, 0);
+        func_800947EC(arg0, 1, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_8080039C_bsbeefly.s")
 
@@ -110,7 +139,7 @@ void func_80800708_bsbeefly(void *arg0) {
     f32 baphysics_get_vertical_velocity(void *);
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     void baphysics_set_vertical_velocity(void *, f32);
-    void func_8009BF5C(void *, f32);
+    void func_8009BF5C(PlayerState *, f32);
     f32 func_8009BFCC(void *);
     f32 func_8009BFD8(void *);
     f32 func_8009C150(void *);
@@ -205,9 +234,9 @@ void func_80800708_bsbeefly(void *arg0) {
     bs_setState((s32)arg0, next_state);
 }
 
-void func_80800B18_bsbeefly(s32 arg0)
+void func_80800B18_bsbeefly(PlayerState *arg0)
 {
-    func_808002E4_bsbeefly();
+    func_808002E4_bsbeefly(arg0);
     _bsbee_entrypoint_0(arg0);
 }
 s32 bsbeefly_entrypoint_1(s32 arg0) {
