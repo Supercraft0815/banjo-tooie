@@ -113,7 +113,26 @@ s32 glhittableDll_entrypoint_10(s32 arg0) {
            (table->entries[arg0 & 0xFFFF] & 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/hittableDll/func_80800444_glhittableDll.s")
+u32 func_80800444_glhittableDll(void *arg0, Unk80132ED0 *arg1) {
+    s32 func_800F52B8(s32, Unk80132ED0 *);
+    s32 func_800F64A4(s32, s32);
+    u32 sp1C;
+    s32 pad;
+
+    if (arg0 != NULL) {
+        if (((u32) (*(u32 *)((s8 *)arg0 + 0x24)) >> 22) == 0) {
+            sp1C = (u32) (*(u16 *)((s8 *)arg0 + 0x1A)) >> 5;
+            if (func_800F52B8(sp1C, arg1) == 6) {
+                return -1U;
+            }
+            if (func_800F64A4(sp1C, 0x42000) != 0) {
+                return -1U;
+            }
+        }
+        return (u32) (*(u32 *)((s8 *)arg0 + 0x24)) >> 22;
+    }
+    return -1U;
+}
 
 /* extern */
 
