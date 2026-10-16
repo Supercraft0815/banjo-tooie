@@ -21,7 +21,24 @@ OSThread *chphlegm_entrypoint_2(void)
     return (OSThread *) D_80800BE8_chphlegm;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_80800024_chphlegm.s")
+void func_80800024_chphlegm(Actor *arg0) {
+    int func_800DC298(f32);
+    void func_8010A570(Actor *);
+
+    if (func_800DC298(0.5f)) {
+        arg0->unk50 = 600.0f;
+    } else {
+        arg0->unk50 = -600.0f;
+    }
+    if (func_800DC298(0.5f)) {
+        arg0->unk54 = 50.0f;
+    } else {
+        arg0->unk54 = -50.0f;
+    }
+    if (arg0->unk64_20) {
+        func_8010A570(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_808000C4_chphlegm.s")
 
