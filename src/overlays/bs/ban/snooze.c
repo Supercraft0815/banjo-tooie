@@ -1,7 +1,29 @@
 #include "common.h"
 #include "overlays/ba/playerstate.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_80800000_bsbansnooze.s")
+void func_80800000_bsbansnooze(PlayerState *arg0) {
+    int _babackpack_get_state();
+    void _babackpack_set_state(void *, s32);
+    void bastick_popZone(PlayerState *);
+    void func_80095A40(PlayerState *);
+    s32 func_8009E74C(PlayerState *, s32);
+    void func_800A0CD0(void *, s32);
+    void func_800A4E30(PlayerState *);
+
+    if (func_8009E74C(arg0, 0x14) != 0) {
+        if (_babackpack_get_state(arg0) != 6) {
+            _babackpack_set_state(arg0, 6);
+        }
+    } else {
+        if (_babackpack_get_state(arg0) != 1) {
+            _babackpack_set_state(arg0, 1);
+        }
+        func_800A0CD0(arg0, 1);
+        func_80095A40(arg0);
+        bastick_popZone(arg0);
+        func_800A4E30(arg0);
+    }
+}
 
 void func_80800098_bsbansnooze(PlayerState *arg0) {
     void _babackpack_set_state(void *, s32);
@@ -62,9 +84,9 @@ s32 bsbansnooze_entrypoint_0(s32 arg0) {
     return ((s32 *)&D_80800A40_bsbansnooze)[arg0];
 }
 
-void func_8080037C_bsbansnooze()
+void func_8080037C_bsbansnooze(PlayerState *arg0)
 {
-    func_80800000_bsbansnooze();
+    func_80800000_bsbansnooze(arg0);
 }
 
 void func_8080039C_bsbansnooze(PlayerState *arg0) { void baphysics_set_target_horizontal_velocity(PlayerState *, f32); void func_8009DF94(PlayerState *, s32, f32, s32); func_80800098_bsbansnooze(arg0); baanim_playForDuration_onceSmooth(arg0, 0x279, 1.6f); func_8009FFD8(arg0, 1, 1, 3, 2); baphysics_set_target_horizontal_velocity(arg0, 0.0f); func_8009DF94(arg0, 0x58D, 1.0f, 0x7530); }
@@ -76,9 +98,9 @@ s32 bsbansnooze_entrypoint_1(s32 arg0) {
     return ((s32 *)&D_80800A50_bsbansnooze)[arg0];
 }
 
-void func_808004C0_bsbansnooze()
+void func_808004C0_bsbansnooze(PlayerState *arg0)
 {
-    func_80800000_bsbansnooze();
+    func_80800000_bsbansnooze(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_808004E0_bsbansnooze.s")
