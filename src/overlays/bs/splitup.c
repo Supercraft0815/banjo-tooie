@@ -145,6 +145,7 @@ void bssplitup_entrypoint_13(s32 arg0) {
     bs_setState(arg0, sp1C);
 }
 
+void func_800A0CF4(PlayerState *, s32);
 void bssplitup_entrypoint_14(s32 arg0)
 {
     func_800A0CF4(arg0,0);
@@ -155,7 +156,21 @@ s32 bssplitup_entrypoint_15(s32 arg0) {
     return ((s32 *)&D_80800730_bssplitup)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/bssplitup_entrypoint_16.s")
+void bssplitup_entrypoint_16(void *arg0) {
+    s32 baanim_playForDuration_once(void *, s32, f32);
+    void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+    void func_8009B94C(u8 *, f32 *);
+    void func_8009DF18(PlayerState *, s32, f32, s32);
+    void func_8009FFD8();
+    void func_800A0CF4(PlayerState *, s32);
+    f32 yaw_get(PlayerState *);
+    baanim_playForDuration_once(arg0, 0x292, 0.8f);
+    func_8009FFD8(arg0, 1, 1, 3, 2);
+    func_8009B94C(arg0, 0);
+    baphysics_set_horizontal_velocity(arg0, yaw_get(arg0), 800.0f);
+    func_800A0CF4(arg0, 1);
+    func_8009DF18(arg0, 0x3EA, 1.0f, 0x6D60);
+}
 
 void bssplitup_entrypoint_17(void *arg0) {
     s32 baanim_isStopped();
