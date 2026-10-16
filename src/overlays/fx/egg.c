@@ -103,7 +103,20 @@ s32 fxegg_entrypoint_4(f32 arg0[3], f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/egg/fxegg_entrypoint_5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/egg/fxegg_entrypoint_6.s")
+s32 fxegg_entrypoint_6(f32 arg0[3], f32 arg1, f32 arg2[3]) {
+    s32 func_800B5BE4(s32);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    void func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    extern s32 D_80800630_fxegg;
+    s32 sp2C;
+
+    sp2C = func_800B5BE4(0x17);
+    func_800BA930(sp2C, (s16)arg2[0], (s16)arg2[1], (s16)arg2[2], (s16)arg2[0], (s16)arg2[1], (s16)arg2[2]);
+    func_800BA3FC(sp2C, 0x9E2);
+    func_800BABB8(sp2C, arg0, 0, arg1, &D_80800630_fxegg);
+    return sp2C;
+}
 
 void func_80800410_fxegg(s32 arg0, f32 arg1[3], f32 arg2[3], s32 arg3, f32 arg4) {
     void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
