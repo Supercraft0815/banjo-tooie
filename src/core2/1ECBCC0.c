@@ -18,7 +18,18 @@ void func_800F2454(MtxF *arg0, f32 *arg1, f32 *arg2) {
     } while (i != 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F24D0.s")
+void func_800F24D0(MtxF *arg0, f32 *arg1, f32 *arg2) {
+    void func_800EE7F8(f32 *, f32 *);
+    s32 i;
+    f32 vec[3];
+
+    func_800EE7F8(vec, arg2);
+    i = 0;
+    do {
+        arg1[i] = vec[0] * arg0->m[i][0] + vec[1] * arg0->m[i][1] + vec[2] * arg0->m[i][2];
+        i++;
+    } while (i != 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F254C.s")
 
