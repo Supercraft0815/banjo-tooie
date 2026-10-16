@@ -43,7 +43,30 @@ void func_8080005C_bsclimb(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/func_808000E8_bsclimb.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/func_808001D0_bsclimb.s")
+struct player_state_s;
+void func_808001D0_bsclimb(struct player_state_s *arg0) {
+    void _bapackctrl_entrypoint_5(struct player_state_s *, s32);
+    s32 baphysics_set_type(void *, s32);
+    void bastick_resetZones(struct player_state_s *);
+    s32 func_8008CA4C(void *, s32);
+    int func_8008E0E8(struct player_state_s *);
+    void func_80095A40(struct player_state_s *);
+    void func_800961AC(struct player_state_s *, s32);
+    s32 func_8009E74C(struct player_state_s *, s32);
+    void func_800A4E30(struct player_state_s *);
+
+    if (func_8009E74C(arg0, 0xA) == 0) {
+        func_800A4E30(arg0);
+        bastick_resetZones(arg0);
+        func_8008CA4C(arg0, 1);
+        baphysics_set_type(arg0, 2);
+        func_800961AC(arg0, 1);
+        func_80095A40(arg0);
+        if (func_8008E0E8(arg0) != 0) {
+            _bapackctrl_entrypoint_5(arg0, 3);
+        }
+    }
+}
 
 /* extern */
 
@@ -70,9 +93,9 @@ int func_80800298_bsclimb(struct player_state_s *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/bsclimb_entrypoint_1.s")
 
-void bsclimb_entrypoint_2()
+void bsclimb_entrypoint_2(struct player_state_s *arg0)
 {
-    func_808001D0_bsclimb();
+    func_808001D0_bsclimb(arg0);
 }
 
 s32 bsclimb_entrypoint_3(s32 arg0) {
@@ -84,9 +107,9 @@ s32 bsclimb_entrypoint_3(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/bsclimb_entrypoint_5.s")
 
-void bsclimb_entrypoint_6()
+void bsclimb_entrypoint_6(struct player_state_s *arg0)
 {
-    func_808001D0_bsclimb();
+    func_808001D0_bsclimb(arg0);
 }
 
 s32 bsclimb_entrypoint_7(s32 arg0) {
@@ -98,8 +121,8 @@ s32 bsclimb_entrypoint_7(s32 arg0) {
 
 void bsclimb_entrypoint_8(s32 arg0) {
     s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
-    s32 baphysics_set_type(s32, s32);
-    s32 func_8008CA4C(s32, s32);
+    s32 baphysics_set_type(void *, s32);
+    s32 func_8008CA4C(void *, s32);
     s32 func_808000E8_bsclimb(s32);
     baanim_playForDuration_loopSmooth(arg0, 0xB2, 0x4028F5C3);
     func_8008CA4C(arg0, 1);
@@ -124,9 +147,9 @@ void bsclimb_entrypoint_9(struct player_state_s *arg0) {
     bs_setState(arg0, var_a1);
 }
 
-void bsclimb_entrypoint_10()
+void bsclimb_entrypoint_10(struct player_state_s *arg0)
 {
-    func_808001D0_bsclimb();
+    func_808001D0_bsclimb(arg0);
 }
 
 s32 bsclimb_entrypoint_11(s32 arg0) {
