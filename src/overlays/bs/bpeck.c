@@ -2,7 +2,30 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bpeck/bsbpeck_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bpeck/func_80800168_bsbpeck.s")
+typedef struct player_state_s PlayerState;
+
+void func_80800168_bsbpeck(PlayerState *self) {
+    s32 baflag_set(PlayerState *, s32);
+    void func_8009DE38(PlayerState *, s32, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    f32 rate = 1.0f;
+
+    switch (((s32 *)self)[0x58]) {
+        case 0:
+            rate = 1.13f;
+            break;
+        case 1:
+            rate = 1.1f;
+            break;
+        case 2:
+            rate = 1.32f;
+            break;
+    }
+    baflag_set(self, 5);
+    func_8009DE38(self, 0x442C, rate);
+    baphysics_set_vertical_velocity(self, 120.0f);
+    ((s32 *)self)[0x58]++;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bpeck/bsbpeck_entrypoint_1.s")
 
