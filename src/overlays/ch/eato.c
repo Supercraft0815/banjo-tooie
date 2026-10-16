@@ -42,7 +42,24 @@ void func_8080035C_chcheato(void *arg0, s32 arg1)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_808003C4_chcheato.s")
+void func_808003C4_chcheato(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_7(Actor *, f32 *, s32 *);
+    int func_80800824_chcheato(s32 *);
+    void func_80800D08_chcheato(Actor *, s32, s32);
+    extern s32 D_80800EE0_chcheato;
+    extern s16 D_80800EE6_chcheato;
+    extern s16 D_80800EF4_chcheato;
+    s32 sp1C;
+    s32 temp_v0;
+
+    sp1C = 0xE;
+    D_80800EE6_chcheato = func_80800824_chcheato(&sp1C);
+    D_80800EF4_chcheato = sp1C;
+    temp_v0 = _subaddiedialog_entrypoint_7(arg0, arg0->position, &D_80800EE0_chcheato);
+    if ((temp_v0 != 0) && (temp_v0 != 0x1208)) {
+        func_80800D08_chcheato(arg0, 3, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800434_chcheato.s")
 
