@@ -218,7 +218,27 @@ s32 func_800A96F0(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A9768.s")
+s32 func_800A9768(s32 arg0) {
+    extern s16 D_801276D0;
+    extern s32 D_801276E8[];
+    extern s32 D_801276EC[];
+    extern s16 D_801276F0;
+    extern s32 D_801276F4[];
+    s16 *var_v0;
+    s32 var_v1;
+
+    var_v0 = &D_801276D0;
+    var_v1 = 0;
+    for (;;) {
+        if (arg0 == var_v0[4]) return D_801276E8[var_v1];
+        if (arg0 == var_v0[5]) return D_801276EC[var_v1];
+        if (arg0 == var_v0[6]) return ((s32 *)&D_801276F0)[var_v1];
+        if (arg0 == var_v0[7]) return D_801276F4[var_v1];
+        var_v1 += 4;
+        var_v0 += 4;
+        if (var_v1 == 8) return -1;
+    }
+}
 
 /* extern */
 
