@@ -58,7 +58,28 @@ s32 func_800D6060(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D61B4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6254.s")
+s32 func_800D6254(s32 arg0) {
+    extern u8 D_8012B800[];
+    extern s16 D_8012BE62;
+    s32 high = D_8012BE62 - 1;
+    s32 low = 0;
+    s32 mid;
+    s32 value;
+    s32 size = 12;
+
+    while (low <= high) {
+        mid = (high + low) >> 1;
+        value = *(u32 *)(D_8012B800 + mid * size + 8) >> 18;
+        if (value < arg0) {
+            low = mid + 1;
+        } else if (arg0 < value) {
+            high = mid - 1;
+        } else {
+            return mid;
+        }
+    }
+    return -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D62E4.s")
 
