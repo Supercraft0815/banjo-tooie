@@ -45,7 +45,32 @@ int func_808000AC_chnastycavemen(int arg0, s32 *arg1, s32 *arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_8080010C_chnastycavemen.s")
+int func_8080010C_chnastycavemen(s32 arg0) {
+    extern f32 D_80127194;
+    u32 _gcgoto_entrypoint_1(u32, u32);
+    s32 func_8008FD48();
+    void func_800900D0(s32);
+    void func_800904C8(s32);
+    s32 sp24;
+    s32 sp20;
+
+    if (func_80800060_chnastycavemen() != 0) {
+        func_800900D0(0x1D9);
+    }
+    switch (func_8008FD48()) {
+        case 17:
+            break;
+        case 10:
+        case 11:
+            func_800904C8(0x97);
+            break;
+        default:
+            func_808000AC_chnastycavemen(*(s16 *)((s8 *)&D_80127194 + 0x436), &sp24, &sp20);
+            _gcgoto_entrypoint_1(sp24, sp20);
+            break;
+    }
+    return 1;
+}
 
 /* extern */
 
