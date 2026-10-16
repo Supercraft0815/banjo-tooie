@@ -918,9 +918,9 @@ void func_808036D8_chgameselect()
     _glsavegame_entrypoint_1();
 }
 
-void func_808036F8_chgameselect()
+s32 func_808036F8_chgameselect()
 {
-    _glsavegame_entrypoint_2();
+    return _glsavegame_entrypoint_2();
 }
 
 void func_80803718_chgameselect()
@@ -928,7 +928,20 @@ void func_80803718_chgameselect()
     _glsavegame_entrypoint_3();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803738_chgameselect.s")
+s32 func_80803738_chgameselect(s32 arg0, s32 *arg1, s32 *arg2) {
+    u8 *_glsavegame_entrypoint_4(s32);
+    s32 func_800DB7C0(u8 *);
+    s32 func_800D04A0(s32, s32);
+    u8 *save;
+
+    if (func_808036F8_chgameselect() != 0) {
+        save = _glsavegame_entrypoint_4(arg0);
+        *arg1 = func_800DB7C0(save);
+        *arg2 = func_800D04A0(save, 1);
+        return *arg1 < 0 ? 0 : 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808037C0_chgameselect.s")
 
