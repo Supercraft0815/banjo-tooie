@@ -379,4 +379,23 @@ void func_808026F0_chboilerboss(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80802730_chboilerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808027E4_chboilerboss.s")
+void func_808027E4_chboilerboss(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *arg3) {
+    void *func_80100094(Actor *, u32);
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    if (arg3 == NULL) {
+        arg3 = arg0->unk0;
+    }
+    switch (data[0x59]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x14, arg2);
+        case 2:
+            data[0x59] = 1;
+        case 1:
+            _capod_entrypoint_6(arg3, arg1, arg2);
+            break;
+    }
+}
