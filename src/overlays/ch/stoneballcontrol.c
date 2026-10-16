@@ -242,7 +242,27 @@ void func_808017AC_chstoneballcontrol(Unk80132ED0 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80801808_chstoneballcontrol.s")
+void func_80801808_chstoneballcontrol(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    struct {
+        u8 unk0[0xA];
+        u8 kind[6];
+        Unk80132ED0 *entries[6];
+    } *data;
+    u8 kind;
+
+    data = func_80100094(arg0, 0);
+    kind = data->kind[arg1];
+    if (kind != 0) {
+        if (kind != 1) {
+            if (kind == 2) {
+                func_80800EBC_chstoneballcontrol(arg1, arg2);
+            }
+        } else {
+            func_808017AC_chstoneballcontrol(data->entries[arg1], arg2);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80801884_chstoneballcontrol.s")
 
