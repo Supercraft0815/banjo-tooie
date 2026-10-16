@@ -1779,7 +1779,25 @@ void func_808062EC_chgameselect(s32 arg0, s32 arg1, s32 arg2, u8 *arg3) {
     func_80806218_chgameselect(arg0, arg1, var_a2, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80806370_chgameselect.s")
+void func_80806370_chgameselect(Actor *arg0, s32 arg1) {
+    s32 _gcstatusDll_entrypoint_10(void);
+    s32 _gcnewoption_entrypoint_20();
+    u32 *func_80100074(Actor *, u32, u32);
+    s32 count;
+    s32 i;
+
+    count = _gcstatusDll_entrypoint_10();
+    i = 0;
+    arg0->unk64_20 = 0;
+    if (count > 0) {
+        do {
+            func_808062CC_chgameselect(i, _gcnewoption_entrypoint_20(arg1, i));
+            i++;
+        } while (i < count);
+    }
+    func_80802BE8_chgameselect((Unk80132ED0 *)arg0->actorData[6]);
+    func_80100074(arg0, 1, 0);
+}
 
 /* extern */
 
