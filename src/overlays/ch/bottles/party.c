@@ -30,7 +30,28 @@ void func_80800018_chbottlesparty(s32 arg0) {
 void func_8080022C_chbottlesparty(s32);
 void func_8080005C_chbottlesparty(s32 arg0) { void func_80800170_chbottlesparty(s32); func_8080022C_chbottlesparty(arg0); if (((Actor *)arg0)->unk70_10 == 1) { func_80800170_chbottlesparty(arg0); } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/party/func_8080009C_chbottlesparty.s")
+s32 func_8080009C_chbottlesparty(Actor *arg0, s32 arg1, volatile s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void func_80101FDC(Actor *, u32);
+    void func_80800138_chbottlesparty(Actor *);
+    extern s32 D_808004A0_chbottlesparty;
+
+    switch (arg1) {
+    case 0x2E:
+        *(f32 *)&arg0->actorData[4] = 6.0f;
+        func_80101FDC(arg0, 1);
+        break;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_808004A0_chbottlesparty, arg0->scale);
+        break;
+    case 0x95:
+        func_80800138_chbottlesparty(arg0);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800138_chbottlesparty(Actor *arg0) {
     if ((u32) arg0->unk74_7 == 0x32) {
