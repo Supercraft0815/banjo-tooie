@@ -41,7 +41,22 @@ void func_8080048C_chfantasydrillfield(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x34))) = func_808003C8_chfantasydrillfield((u32) (*(u32 *)((s8 *)(arg0) + (0x6C))) >> 0x15);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/drillfield/func_808004E8_chfantasydrillfield.s")
+void func_808004E8_chfantasydrillfield(Actor *arg0) {
+    void func_80103110(Actor *, u32);
+    s32 _subaddieDll_entrypoint_6(Actor *, s32);
+    void func_80108B04(Actor *, u32);
+
+    switch (arg0->unk70_10) {
+    case 1:
+        func_80103110(arg0, 0);
+        return;
+    case 2:
+        if (_subaddieDll_entrypoint_6(arg0, 0xB) != 0) {
+            func_80108B04(arg0, 1);
+        }
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/drillfield/func_8080054C_chfantasydrillfield.s")
 
