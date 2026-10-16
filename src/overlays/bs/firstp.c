@@ -1596,7 +1596,22 @@ void func_80804FB4_bsfirstp(void)
 {
     func_80807C8C_bsfirstp();
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80804FD4_bsfirstp.s")
+void func_80804FD4_bsfirstp(struct player_state_s *arg0) {
+    int baanim_isAt(struct player_state_s *, f32);
+    int baanim_isStopped(struct player_state_s *);
+    s32 bs_setState(void *, s32);
+    void func_8009DBF0(struct player_state_s *, s32, f32);
+    void func_800A3410(struct player_state_s *, s32);
+
+    func_80807D48_bsfirstp(arg0);
+    if (baanim_isAt(arg0, 0.3f) != 0) {
+        func_8009DBF0(arg0, 0x45A5, 1.0f);
+    }
+    if (baanim_isStopped(arg0) != 0) {
+        func_800A3410(arg0, 1);
+        bs_setState(arg0, 1);
+    }
+}
 
 s32 bsfirstp_entrypoint_22(s32 arg0) {
     extern s32 D_8080B530_bsfirstp[];
