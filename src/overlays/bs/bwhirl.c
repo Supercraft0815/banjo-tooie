@@ -38,7 +38,7 @@ void func_80800008_bsbwhirl(PlayerState *arg0) {
     }
 }
 
-void func_808000D8_bsbwhirl(u8 *arg0) {
+void func_808000D8_bsbwhirl(PlayerState *arg0) {
     s32 _chlightfader_entrypoint_1(s32, f32, s32);
     s32 temp_a3;
 
@@ -63,7 +63,23 @@ void func_80800114_bsbwhirl(PlayerState *arg0) {
     baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp1C, 80.0f, 425.0f));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/func_8080017C_bsbwhirl.s")
+void func_8080017C_bsbwhirl(PlayerState *volatile arg0) {
+    void bastick_resetZones(PlayerState *);
+    s32 bs_getNextState(PlayerState *);
+    void func_8008CA4C(PlayerState *, s32);
+    void func_800A0CF4(PlayerState *, s32);
+    void func_800FC74C(u32);
+    s32 nextState;
+
+    nextState = bs_getNextState(*(PlayerState **)&arg0);
+    if ((nextState != 0x1B) && (nextState != 0x1C) && (nextState != 0x1D) && (nextState != 0x1E) && (nextState != 0xA4) && (nextState != 0xA5)) {
+        bastick_resetZones(arg0);
+        func_800A0CF4(arg0, 0);
+        func_800FC74C(0xD);
+        func_808000D8_bsbwhirl(arg0);
+    }
+    func_8008CA4C(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/func_80800200_bsbwhirl.s")
 
@@ -156,9 +172,9 @@ void bsbwhirl_entrypoint_4(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_5.s")
 
-void bsbwhirl_entrypoint_6()
+void bsbwhirl_entrypoint_6(PlayerState *arg0)
 {
-    func_8080017C_bsbwhirl();
+    func_8080017C_bsbwhirl(arg0);
 }
 
 s32 bsbwhirl_entrypoint_7(s32 arg0) {
@@ -179,9 +195,9 @@ void bsbwhirl_entrypoint_8(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_9.s")
 
-void bsbwhirl_entrypoint_10()
+void bsbwhirl_entrypoint_10(PlayerState *arg0)
 {
-    func_8080017C_bsbwhirl();
+    func_8080017C_bsbwhirl(arg0);
 }
 
 s32 bsbwhirl_entrypoint_11(s32 arg0) {
@@ -215,7 +231,7 @@ void bsbwhirl_entrypoint_16(PlayerState *arg0) {
     s32 baanim_getAnimCtrlPtr();
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     s32 func_8008B188(s32, s32);
-    s32 func_8008CA4C(s32, s32);
+    void func_8008CA4C(PlayerState *, s32);
     s32 func_8009D2D8(s32, s32);
     s32 func_800FCAE0(s32, s32, s32);
     s32 temp_v0;
@@ -250,9 +266,9 @@ void bsbwhirl_entrypoint_17(s32 arg0) {
     bs_setState(arg0, sp1C);
 }
 
-void bsbwhirl_entrypoint_18()
+void bsbwhirl_entrypoint_18(PlayerState *arg0)
 {
-    func_8080017C_bsbwhirl();
+    func_8080017C_bsbwhirl(arg0);
 }
 
 s32 bsbwhirl_entrypoint_19(s32 arg0) {
