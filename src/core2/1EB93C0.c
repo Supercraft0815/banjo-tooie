@@ -70,9 +70,9 @@ void func_800DFCC0(s16 arg0) {
 
 /* extern */
 
-void func_800DFCE8(s16 arg0) {
+s32 func_800DFCE8(s16 arg0) {
     s32 func_8001B798(s16);
-    func_8001B798(arg0);
+    return func_8001B798(arg0);
 }
 
 /* extern */

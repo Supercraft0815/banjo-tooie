@@ -98,7 +98,23 @@ void func_8008B954(s16 arg0) {
     entry[1] = entry[2];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008B9C4.s")
+s32 func_8008B9C4(s16 arg0, s32 *arg1) {
+    extern s32 D_80126CC0;
+    s32 func_800DFCE8(s16 arg0);
+    s16 func_800DFD10(void);
+    s16 *entry;
+
+    entry = (s16 *)(D_80126CC0 + arg0 * 6 - 6);
+    entry[1] = 0x3C;
+    if (entry[0]) {
+        *arg1 = func_800DFCE8(entry[0]);
+        return 0;
+    } else {
+        entry[0] = func_800DFD10();
+        *arg1 = func_800DFCE8(entry[0]);
+        return 1;
+    }
+}
 
 void func_8008BA5C(void) {
     s32 defrag(s32);
