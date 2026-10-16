@@ -985,7 +985,21 @@ s32 func_800F6A38(s32 arg0) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6AA4.s")
+/* extern */
+
+int func_800F6AA4(s32 arg0) {
+    s32 bs_getCurrentState(PlayerState *);
+    s32 state;
+
+    state = bs_getCurrentState(D_80135490[arg0]);
+    return state == 0x1B
+        || state == 0x1C
+        || state == 0x1D
+        || state == 0x1E
+        || state == 0x1A
+        || state == 0xA4
+        || state == 0xA5;
+}
 
 u8 func_800F6B34(void) {
 	return D_801354DA;
