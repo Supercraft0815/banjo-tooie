@@ -425,7 +425,14 @@ void func_80800F28_chdinoboss(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_808015AC_chdinoboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80801660_chdinoboss.s")
+void func_80801660_chdinoboss(Actor *arg0, f32 arg1, f32 arg2) {
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    f32 *data;
+
+    data = func_80100094(arg0, 0);
+    func_800EEC30(arg0->position, data[0x12C / 4] + arg1, data[0x130 / 4], data[0x134 / 4] + arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_808016C0_chdinoboss.s")
 
