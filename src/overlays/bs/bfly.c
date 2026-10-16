@@ -141,7 +141,32 @@ void func_8080042C_bsbfly(PlayerState *arg0)
     func_8009E6EC(arg0);
     func_80801BB4_bsbfly(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800454_bsbfly.s")
+void func_80800454_bsbfly(PlayerState *arg0) {
+    void baflag_clear(PlayerState *, s32);
+    void baflag_set(PlayerState *, s32);
+    s32 bs_getNextState(PlayerState *);
+    s32 _bafpctrl_entrypoint_4(PlayerState *);
+    s32 _bafpctrl_entrypoint_5(PlayerState *);
+    void _bafpctrl_entrypoint_17(PlayerState *);
+    void _bafly_entrypoint_6(PlayerState *, f32);
+    void _bafly_entrypoint_7(void *, s32);
+    s32 next_state;
+
+    baflag_clear(arg0, 0x2F);
+    baflag_clear(arg0, 0x30);
+    next_state = bs_getNextState(arg0);
+    if (((next_state == 0x18) || (next_state == 0x2A) || (next_state == 0x91)) &&
+        (_bafpctrl_entrypoint_4(arg0) == 3)) {
+        baflag_set(arg0, 0x2F);
+        if (_bafpctrl_entrypoint_5(arg0) != 0) {
+            baflag_set(arg0, 0x30);
+        }
+    }
+    _bafpctrl_entrypoint_17(arg0);
+    _bafly_entrypoint_6(arg0, 0.0f);
+    _bafly_entrypoint_7(arg0, 0);
+    func_80800188_bsbfly(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_8080050C_bsbfly.s")
 
