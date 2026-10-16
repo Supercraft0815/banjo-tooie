@@ -15,7 +15,26 @@ void func_80800014_chmumbopad(s32 arg0, s32 arg1, s32 arg2) {
 
 s32 func_80800048_chmumbopad(void *arg0) { s32 func_800DA298(s32); extern s16 D_808010C8_chmumbopad[]; s16 temp_a1; temp_a1 = D_808010C8_chmumbopad[(*(s32 *)((s8 *)arg0 + 0x6C)) & 0x1FF]; if (temp_a1 != -1) { return func_800DA298(temp_a1); } else { return 0; } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/pad/func_80800098_chmumbopad.s")
+int func_80800098_chmumbopad(Actor *arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800DA564(s32, s32);
+    extern s16 D_808010EC_chmumbopad[];
+    s16 flag;
+
+    switch (arg0->unk6C_0) {
+        case 12:
+            return (func_800DA298(0x358) != 0) && (func_800DA298(0x359) != 0);
+        case 13:
+            return func_800DA564(0x1CA, 2) != 0;
+        default:
+            flag = D_808010EC_chmumbopad[arg0->unk6C_0];
+            if (flag != -1) {
+                return func_800DA298(flag);
+            } else {
+                return 0;
+            }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/pad/func_80800140_chmumbopad.s")
 
