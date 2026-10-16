@@ -32,4 +32,6 @@ s32 subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 ar
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/audioquick/subaddieaudioquick_entrypoint_4.s")
+/* extern */
+
+s32 subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3) { s32 func_80101E14(Actor *, f32); f32 *var_s0 = arg3; f32 var_f0 = *arg3; f32 sentinel = -1.0f; goto check; loop: if (func_80101E14(arg0, var_f0) != 0) { subaddieaudioquick_entrypoint_2(arg0, arg1, arg2); return 1; } var_f0 = var_s0[1]; var_s0++; check: if (sentinel != var_f0) { goto loop; } return 0; }
