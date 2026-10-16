@@ -326,7 +326,28 @@ void func_80801554_gcmapsects(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/func_80801640_gcmapsects.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/func_80801724_gcmapsects.s")
+void func_80801724_gcmapsects(void *arg0, s32 arg1) {
+    void func_800F4CC0(s32);
+    void func_800F4CEC(s32, u32);
+    u32 func_800F54E4(void);
+    u8 *ptr = arg0;
+
+    switch (ptr[0x7F]) {
+    case 1:
+        break;
+    case 2:
+        func_800F4CC0(func_800F54E4());
+        break;
+    }
+    ptr[0x7F] = arg1;
+    switch (ptr[0x7F]) {
+    case 1:
+        break;
+    case 2:
+        func_800F4CEC(func_800F54E4(), 0x77);
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_9.s")
 
