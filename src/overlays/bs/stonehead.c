@@ -29,7 +29,31 @@ void func_80800060_bsstonehead(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/func_808000CC_bsstonehead.s")
+void func_808000CC_bsstonehead(PlayerState *arg0) {
+    s32 _baattach_entrypoint_1(PlayerState *);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 bastick_getZone(PlayerState *);
+    f32 bastick_getZonePosition(PlayerState *);
+    s32 func_8008DE24(PlayerState *);
+    f32 func_800F1214(f32, f32, f32);
+    int player_isStable(PlayerState *);
+    f32 sp24;
+    f32 sp20;
+
+    sp24 = bastick_getZonePosition(arg0);
+    if (_baattach_entrypoint_1(arg0) != 0) {
+        sp20 = 250.0f;
+    } else if (func_8008DE24(arg0) != 0 && player_isStable(arg0) != 0) {
+        sp20 = 80.0f;
+    } else {
+        sp20 = 400.0f;
+    }
+    if (bastick_getZone(arg0) == 0) {
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    } else {
+        baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp24, 30.0f, sp20));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/func_80800194_bsstonehead.s")
 
@@ -179,7 +203,7 @@ void bsstonehead_entrypoint_21(PlayerState *arg0) {
     s32 func_8009BCD4(PlayerState *, f32);
     void func_8009D3A8(PlayerState *, s32);
     void func_800A2CE8(PlayerState *, f32, s32);
-    s32 func_808000CC_bsstonehead(s32);
+    void func_808000CC_bsstonehead(PlayerState *);
     int func_808003B8_bsstonehead(PlayerState *);
     s32 sp24;
 
@@ -266,7 +290,7 @@ void bsstonehead_entrypoint_30(s32 arg0) {
     s32 _babounce_entrypoint_2();
     s32 _babounce_entrypoint_9(s32);
     s32 bs_setState(s32, s32);
-    s32 func_808000CC_bsstonehead(s32);
+    void func_808000CC_bsstonehead(PlayerState *);
     s32 sp1C;
 
     sp1C = 0;
