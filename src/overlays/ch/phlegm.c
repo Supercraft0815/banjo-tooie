@@ -72,7 +72,24 @@ void func_80800704_chphlegm(s32 arg0, s32 arg1) {
     func_80101870(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_80800748_chphlegm.s")
+void func_80800748_chphlegm(Actor *arg0, f32 arg1, s32 arg2) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800B53A4(s32);
+    void func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800EE7F8(f32 *, f32 *);
+    extern s32 D_80800C5C_chphlegm;
+    extern s32 D_80800C88_chphlegm;
+    f32 sp2C[3];
+    s32 sp28;
+
+    func_800EE7F8(sp2C, arg0->position);
+    sp2C[1] += arg0->scale * arg1;
+    sp28 = func_800B53A4(10);
+    func_800BA3FC(sp28, arg2);
+    func_800BABB8(sp28, arg0->position, sp2C, arg0->scale, &D_80800C5C_chphlegm);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800C88_chphlegm);
+}
 
 void func_808007EC_chphlegm(u8 *arg0, s32 arg1) {
     s32 func_800B53A4(s32);
