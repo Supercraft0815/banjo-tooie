@@ -52,7 +52,7 @@ void func_80800144_chtrashcangame(s32 arg0, s32 arg1, s32 arg2) {
 void func_808003D0_chtrashcangame(void *arg0, s32 arg1) {
     typedef struct { u8 padding[0x79]; u8 variant : 4; u8 other : 4; } TrashFlags;
     s32 _gcfrontend_entrypoint_9(s32);
-    s32 _subaddiedialog_entrypoint_11(s32, s32, s32, f32 *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
     s32 func_800946C4(s32, s32);
     s32 func_800CE88C(s32, s32);
     s32 func_800CE8D8(s32, f32, s32);
@@ -71,7 +71,7 @@ void func_808003D0_chtrashcangame(void *arg0, s32 arg1) {
     s32 func_80800014_chtrashcangame();
     void func_80800098_chtrashcangame(Actor *, s32, s32);
     void func_808016B4_chtrashcangame(Actor *, Unk80132ED0 *, s32, s32);
-    void func_808017F0_chtrashcangame(void *, s32, s32);
+    void func_808017F0_chtrashcangame(Actor *, s32, s32);
     void func_8080189C_chtrashcangame(void *);
     s32 dialog;
 
@@ -286,7 +286,28 @@ void func_808016B4_chtrashcangame(Actor *arg0, Unk80132ED0 *arg1, s32 arg2, s32 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80801740_chtrashcangame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_808017F0_chtrashcangame.s")
+void func_808017F0_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_7(s32, s32);
+    s32 _capod_entrypoint_8(s32);
+    void _gcdialogcamera_entrypoint_6(Unk80132ED0 *);
+    void _gcdialogcamera_entrypoint_8(void);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+
+    switch (arg0->unk74_7) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x2A, 0x10);
+        case 2:
+            _capod_entrypoint_8(1);
+            arg0->unk74_7 = 1;
+            _gcdialogcamera_entrypoint_6(arg0->unk0);
+            _gcdialogcamera_entrypoint_8();
+            _capod_entrypoint_7(2, 1);
+            break;
+    }
+    _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2,
+                                 (f32 *)((u8 *)arg0 + 4), 0x6A);
+}
 
 void func_8080189C_chtrashcangame(void *arg0) {
     s32 _capod_entrypoint_3(s32, void *);
