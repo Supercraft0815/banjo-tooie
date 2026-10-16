@@ -107,7 +107,22 @@ void func_800FB6E0(s32 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FB774.s")
+void func_800FB774(void *arg0) {
+    void func_800172D4(u8, s32);
+    void func_80017404(u8, s16);
+    u32 func_80017764(s32);
+    u32 index;
+
+    index = func_80017764(((s16 *)arg0)[0x28 / 2]);
+    func_800FB6C0(arg0, index);
+    func_800FB5BC(arg0);
+    ((s16 *)arg0)[0x28 / 2] = -1;
+    ((u8 *)arg0)[0x30] &= 0xFF0F;
+    index = (u8)((MusicTrack *)arg0 - D_801357D0);
+    func_80017404(index, ((s16 *)arg0)[0x22 / 2]);
+    func_800FB6E0(arg0, 0);
+    func_800172D4(index, -1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FB808.s")
 
@@ -154,8 +169,8 @@ void func_800FBEC8(u8 *track, s32 *minimum_first, s32 *minimum_second) {
 
 void func_800FC124(u32 arg0)
 {
-  s32 func_800172D4(s32, u32);
-  s32 func_80017764(u32);
+  void func_800172D4(u8, s32);
+  u32 func_80017764(s32);
   void func_800FB6C0(s32 *, s32);
   void func_800FB6E0();
   extern f32 D_80135964;
