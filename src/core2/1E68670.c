@@ -149,7 +149,28 @@ void func_8008F62C(s32 arg0, u32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008F6B8.s")
+struct player_state_s {
+    u8 pad0[0x184];
+    s32 unk184;
+};
+
+void func_8008F6B8(struct player_state_s *player, s32 actor_id) {
+    Unk80132ED0 *_bahold_entrypoint_5();
+    s32 _bahold_entrypoint_6(struct player_state_s *, Unk80132ED0 *);
+    s32 _chbaddiesetup_entrypoint_2(void (*)(s32, u32), s32, s32);
+    s32 func_8008E9AC(void *);
+    Actor *func_80106790(Unk80132ED0 *);
+    Unk80132ED0 *marker;
+    Actor *actor;
+
+    marker = _bahold_entrypoint_5(player);
+    if (marker) actor = func_80106790(marker);
+    if (marker && actor_id == actor->unk6C_9) {
+        _bahold_entrypoint_6(player, marker);
+        return;
+    }
+    _chbaddiesetup_entrypoint_2(func_8008F62C, player->unk184, func_8008E9AC(player));
+}
 
 /* extern */
 
