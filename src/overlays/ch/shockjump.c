@@ -14,7 +14,28 @@ OSThread *chshockjump_entrypoint_1(void)
     return (OSThread *) D_808002F8_chshockjump;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/shockjump/func_80800018_chshockjump.s")
+s32 func_80800018_chshockjump(s32 arg0, s32 arg1, s32 arg2) {
+    void *func_80101080(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_800F7B9C(s32, u32);
+    s32 _chexploder_entrypoint_6(Actor *, f32, f32);
+    s32 _chexploder_entrypoint_7(Actor *, f32, f32);
+    Actor *actor;
+
+    switch (arg1) {
+    case 0x90:
+        actor = func_80106790(func_80101080());
+        _chexploder_entrypoint_6(actor, 400.0f, 600.0f);
+        _chexploder_entrypoint_7(actor, -600.0f, -400.0f);
+        break;
+    case 0x91:
+        func_800F7B9C(arg2, 0x49U);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 s32 func_808000AC_chshockjump(s32 arg0, s32 arg1, s32 arg2) {
     void func_800F7B9C(s32, u32);
@@ -28,15 +49,15 @@ s32 func_808000AC_chshockjump(s32 arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-void chshockjump_entrypoint_2(void) {
+void chshockjump_entrypoint_2(Unk80132ED0 *arg0) {
     s32 _chexploder_entrypoint_5(u8 *, s32, u8 *, s32, f32, s32);
     s32 _subaddieaudioquick_entrypoint_2(u8 *, u8 *, s32 *);
-    u8 *func_80106790();
+    Actor *func_80106790(Unk80132ED0 *);
     extern s32 D_80800340_chshockjump;
     u8 *sp24;
     u8 *temp_v0;
 
-    temp_v0 = func_80106790();
+    temp_v0 = func_80106790(arg0);
     sp24 = temp_v0;
     _chexploder_entrypoint_5(temp_v0, 0x756, temp_v0 + 4, (*(s32 *)((s8 *)(temp_v0) + (0x48))), (*(f32 *)((s8 *)(temp_v0) + (0x38))), 0xC);
     _subaddieaudioquick_entrypoint_2(sp24, sp24 + 4, &D_80800340_chshockjump);
