@@ -269,7 +269,37 @@ void func_8010647C(void *arg0) {
     func_801063EC((*(s16 *)((s8 *)(arg0) + (0x90))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_8010649C.s")
+/* extern */
+
+void *func_8010649C(void *arg0, s32 arg1) {
+    s32 pad;
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    u32 sp20;
+    void *sp1C;
+    u32 temp_v0_2;
+    u32 var_v1;
+    void *temp_v0;
+
+    temp_v0 = func_801063C0(arg0);
+    sp1C = temp_v0;
+    sp20 = vector_end((*(s32 *)((s8 *)(temp_v0) + (4))));
+    temp_v0_2 = vector_begin((*(s32 *)((s8 *)(sp1C) + (4))));
+    var_v1 = temp_v0_2;
+    if (temp_v0_2 < sp20) {
+loop_2:
+        if (((*(s16 *)((s8 *)(var_v1) + (4))) == 2) && (arg1 == (*(s16 *)((s8 *)(var_v1) + (6))))) {
+            return var_v1 + 8;
+        }
+        var_v1 += 0xA8;
+        if (var_v1 >= sp20) {
+            goto block_6;
+        }
+        goto loop_2;
+    }
+block_6:
+    return NULL;
+}
 
 void *func_80106520(s32 arg0) {
     u32 vector_begin(s32);
