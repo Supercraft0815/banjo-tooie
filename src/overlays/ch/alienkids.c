@@ -181,7 +181,41 @@ void func_80801994_chalienkids(Actor* arg0)
         _suexpression_entrypoint_8(arg0, 1);
     }
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_808019C8_chalienkids.s")
+/* extern */
+
+void func_808019C8_chalienkids(Actor *arg0) {
+    s32 _suexpression_entrypoint_10(void *, Unk80132ED0 *, s32);
+    s32 _suexpression_entrypoint_18(void *, s32);
+    s32 func_801022E4(Actor *);
+    void *sp1C;
+    s32 temp_v0_2;
+    void *temp_v0;
+
+    if ((*(u16 *)((s8 *)(arg0) + (0x64))) & 1) {
+        temp_v0 = func_80100094(arg0, 1U);
+        sp1C = temp_v0;
+        if (temp_v0 != NULL) {
+            temp_v0_2 = func_801022E4(arg0);
+            switch (temp_v0_2) {
+            case 0x325:
+            case 0x326:
+            case 0x329:
+            case 0x32C:
+            case 0x32E:
+                break;
+            default:
+            case 0x327:
+            case 0x328:
+            case 0x32A:
+            case 0x32B:
+            case 0x32D:
+                _suexpression_entrypoint_18(sp1C, 1);
+                break;
+            }
+            _suexpression_entrypoint_10(sp1C, arg0->unk0, 0);
+        }
+    }
+}
 
 void func_80801A50_chalienkids(u8 *arg0) {
     void func_80109F08(void *arg0, s32 arg1);
