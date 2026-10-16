@@ -26,7 +26,37 @@ s32 func_80800050_chfaircoinbox(s32 arg0) {
     return ((s32 *)arg0)[0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/func_808000A4_chfaircoinbox.s")
+void func_808000A4_chfaircoinbox(Actor *arg0, u32 arg1) {
+    void func_800904F4(s32, Unk80132ED0 *);
+    void func_80090708(s32);
+    void func_800C01A8(s16, s32);
+    void func_800FC660(u32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80101FDC(Actor *, u32);
+    s32 index;
+
+    func_80101FDC(arg0, arg1);
+    switch (arg0->unk70_10) {
+        case 2:
+            func_800904F4(0x46, arg0->unk0);
+            break;
+        case 3:
+            func_800C01A8(0x64, 0);
+            func_8080001C_chfaircoinbox((u8 *)arg0);
+            func_80090708(0);
+            func_800FC660(0x10);
+            index = arg0->unk74_7 - 0x32;
+            switch (index) {
+                case 0:
+                    func_80101180(0x340, 0xA, 0);
+                    break;
+                case 1:
+                    func_80101180(0x307, 0xA, 0);
+                    break;
+            }
+            break;
+    }
+}
 
 void func_8080016C_chfaircoinbox(s32 arg0) 
 {
@@ -37,13 +67,13 @@ void func_80800174_chfaircoinbox(s32 arg0) {
     s32 func_800DA298(s32);
     s32 func_8010A63C();
     s32 func_80800050_chfaircoinbox(s32);
-    s32 func_808000A4_chfaircoinbox(s32, s32);
+    void func_808000A4_chfaircoinbox(Actor *, u32);
     func_8010A63C();
     if (func_800DA298(func_80800050_chfaircoinbox(arg0)) != 0) {
-        func_808000A4_chfaircoinbox(arg0, 4);
+        func_808000A4_chfaircoinbox((Actor *)arg0, 4);
         return;
     }
-    func_808000A4_chfaircoinbox(arg0, 1);
+    func_808000A4_chfaircoinbox((Actor *)arg0, 1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/func_808001C8_chfaircoinbox.s")
