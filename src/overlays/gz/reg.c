@@ -220,7 +220,41 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800B44_gzreg.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/func_80800000_gzreg.s")
+struct GzRegEntry {
+    s32 mask;
+    s32 value : 32;
+    s8 *name;
+};
+
+void func_80800000_gzreg(s32 arg0, s8 *arg1, struct GzRegEntry *arg2) {
+    void func_8001D37C(s32 arg0, ...);
+    s32 first;
+    s32 mask;
+    s8 *separator;
+    s8 *format;
+
+    first = 1;
+    func_8001D37C("%s: x%08X ", arg1, arg0);
+    func_8001D37C("<");
+    separator = ",";
+    format = "%s";
+    mask = arg2->mask;
+    if (mask != 0) {
+        do {
+            if ((mask & arg0) == arg2->value) {
+                if (first != 0) {
+                    first = 0;
+                } else {
+                    func_8001D37C(separator);
+                }
+                func_8001D37C(format, arg2->name);
+            }
+            arg2++;
+            mask = arg2->mask;
+        } while (mask != 0);
+    }
+    func_8001D37C(">\n");
+}
 
 void func_808000CC_gzreg(s8 *arg0, f32 arg1) {
     u32 func_800F21C4(f32);
