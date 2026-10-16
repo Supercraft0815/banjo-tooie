@@ -46,7 +46,23 @@ int fxrain_entrypoint_2(void *arg0) {
     return ((*(s32 *)((s8 *)(arg0) + (0x28))) != 1) && (vector_size((*(s32 *)((s8 *)(arg0) + (0x20)))) == 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/rain/fxrain_entrypoint_3.s")
+int fxrain_entrypoint_3(void *arg0) {
+    s32 state;
+
+    if ((*(s32 *)((s8 *)arg0 + 0x28)) != 1) {
+        return 0;
+    }
+    state = (*(u8 *)((s8 *)arg0 + 0x30));
+    switch (state) {
+    case 1:
+    case 2:
+        return 1;
+    case 3:
+        return ((*(f32 *)((s8 *)arg0 + 0x44)) * 0.9f) > (*(f32 *)((s8 *)arg0 + 0x34));
+    default:
+        return 0;
+    }
+}
 
 /* extern */
 
