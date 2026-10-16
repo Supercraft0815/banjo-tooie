@@ -93,7 +93,26 @@ s16 func_800DFD10(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB93C0/func_800DFD64.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB93C0/func_800DFEA8.s")
+void func_800DFEA8(BoneTransformList *arg0, BoneTransformList *arg1) {
+    void func_800D9600(void *, void *);
+    void func_800EE7F8(f32 *, f32 *);
+    BoneTransform *src;
+    BoneTransform *dst;
+    BoneTransform *end;
+
+    src = arg0->ptr;
+    dst = arg1->ptr;
+    end = src + arg0->count;
+    if (src < end) {
+        do {
+            func_800D9600(dst->unk0, src->unk0);
+            func_800EE7F8(dst->scale, src->scale);
+            func_800EE7F8(dst->unk1C, src->unk1C);
+            src++;
+            dst++;
+        } while (src < end);
+    }
+}
 
 void func_800DFF2C(u8 **arg0, s32 arg1, f32 arg2[4]) {
     void func_800D9600(void *arg0, void *arg1);
