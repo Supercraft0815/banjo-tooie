@@ -211,7 +211,28 @@ void func_80800B24_chcactusofstrength(Actor *arg0) {
     arg0->position[1] += 225.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_80800B90_chcactusofstrength.s")
+s32 func_80800B90_chcactusofstrength(Actor *arg0, s32 arg1, s32 arg2) {
+    Actor *_subaddiefind_entrypoint_0(f32 *, s32, s32, s32);
+    void func_800FFAB0(Actor *);
+    void func_80800C18_chcactusofstrength(Actor *);
+    Actor *temp_v0;
+
+    switch (arg1) {
+        case 0x90:
+            func_80800C18_chcactusofstrength(arg0);
+            func_800FFAB0(arg0);
+            return 1;
+        case 0x95:
+            temp_v0 = _subaddiefind_entrypoint_0(arg0->position, 0x13B, -1, 0);
+            if (temp_v0 != NULL) {
+                arg0->unk3C = temp_v0->unk0;
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800C18_chcactusofstrength(Actor *arg0) {
     Actor *func_80106790(Unk80132ED0 *);
