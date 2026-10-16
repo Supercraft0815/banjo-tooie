@@ -76,8 +76,8 @@ s32 func_800CFFBC(u32 arg0, s32 arg1) {
 
 /* extern */
 
-s32 func_800D046C(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_800DAC78(s32, s32);
+s32 func_800D046C(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 func_800DAC78(u8 *, s32);
     return func_800DAC78(arg0, func_800D0A80(arg1, arg2));
 }
 

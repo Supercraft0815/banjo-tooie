@@ -1003,7 +1003,31 @@ s32 func_80803738_chgameselect(s32 arg0, s32 *arg1, s32 *arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808037C0_chgameselect.s")
+s32 func_808037C0_chgameselect(s32 arg0) {
+    u8 *_glsavegame_entrypoint_4(s32);
+    s32 func_800D046C(u8 *, s32, s32);
+    s32 func_800DAC78(u8 *, s32);
+    s32 func_800DB83C(u8 *, s32);
+    u8 *save;
+    s32 flag441;
+    s32 flag5A;
+    s32 flag360;
+
+    if (func_808036F8_chgameselect() != 0) {
+        save = _glsavegame_entrypoint_4(arg0);
+        flag441 = func_800DAC78(save, 0x441);
+        flag5A = func_800D046C(save, 0x5A, 1);
+        flag360 = func_800DAC78(save, 0x360);
+        if ((flag441 == 0) && (flag5A != 0) && (flag360 == 0)) {
+            return 0xA4;
+        }
+        if ((flag441 != 0) && (flag360 != 0)) {
+            return 0xA5;
+        }
+        return func_800DB83C(save, 0x1A) > 0 ? 0xA3 : 0xA2;
+    }
+    return 0xA1;
+}
 
 void func_80803888_chgameselect(s32 arg0, u32 arg1, u32 arg2) {
     void func_80016BDC(s32);
