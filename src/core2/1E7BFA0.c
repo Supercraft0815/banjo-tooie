@@ -214,7 +214,18 @@ f32 func_800A3048(PlayerState *arg0) {
     return D_801194D0[*(u8 *)((s8 *)*(void **)((s8 *)arg0 + 0xA0) + 0x29)];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A30B4.s")
+void func_800A30B4(PlayerState *arg0, f32 *arg1, f32 *arg2) {
+    void func_800A3148(PlayerState *, f32 *, f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 sp24;
+    f32 sp20;
+    f32 sp1C;
+    f32 sp18;
+    func_800A3148(arg0, &sp24, &sp20, &sp1C);
+    sp18 = sp1C * 0.5f;
+    func_800EFA4C(arg1, -sp24, sp20 - sp18, -sp24);
+    func_800EFA4C(arg2, sp24, sp20 + sp18, sp24);
+}
 
 void func_800A3148(PlayerState *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
     f32 _basnowball_entrypoint_4(PlayerState *);
