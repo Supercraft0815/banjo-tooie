@@ -120,7 +120,31 @@ void anctrl_reset(AnimCtrl *control) {
     func_8008B2E8(control, mode);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008AFCC.s")
+void func_8008AFCC(AnimCtrl *control) {
+    struct StartState {
+        f32 timer;
+        u8 padding[0x10];
+        f32 start;
+        u32 high : 26;
+        u32 default_start : 1;
+        u32 low : 5;
+        f32 animation[1];
+    };
+    struct StartState *state = (struct StartState *)control;
+    f32 func_8008C0C8(f32 *);
+    void func_8008C1C0(f32 *, f32);
+
+    if (state->default_start) {
+        if (((u32)*((u8 *)control + 0x1B) >> 7) == 1) {
+            func_8008C1C0(state->animation, 0.0f);
+        } else {
+            func_8008C1C0(state->animation, 0.99999899f);
+        }
+    } else {
+        func_8008C1C0(state->animation, state->start);
+    }
+    state->timer = func_8008C0C8(state->animation);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_start.s")
 
