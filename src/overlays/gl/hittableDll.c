@@ -48,7 +48,19 @@ int glhittableDll_entrypoint_2(s32 arg0) {
     return ((arg0 + 1) != 0) && ((arg0 + 2) != 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/hittableDll/glhittableDll_entrypoint_3.s")
+s32 glhittableDll_entrypoint_3(s32 arg0, s32 arg1, s32 arg2) {
+    void func_800EB2DC(void *, s32, s32);
+
+    if (arg2 == -1) {
+        return 0;
+    }
+    if (arg2 == -2) {
+        return 1;
+    }
+    func_800EB2DC(arg1, arg0, arg2);
+    func_800EB2DC(arg0, arg1, arg2);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/hittableDll/glhittableDll_entrypoint_4.s")
 
