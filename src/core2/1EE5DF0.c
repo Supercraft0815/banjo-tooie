@@ -80,18 +80,35 @@ void func_8010C820(s32 arg0, s32 arg1, s32 arg2) {
     func_8010C788(arg0 + 4, (f32) arg1, 0.0f, (f32) (arg2 + 0x1E));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010C878.s")
+void func_8010C878(s32 arg0, s32 arg1, volatile f32 arg2) {
+    f32 scale;
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 extent;
+    u32 size;
+
+    scale = *(f32 *)(arg0 + 0x38);
+    x = (f32)*(s16 *)(arg0 + 0x8A) * scale;
+    y = (f32)*(s16 *)(arg0 + 0x88) * scale;
+    size = *(u16 *)(arg0 + 0x62);
+    extent = (f32)size;
+    z = scale * extent * arg2;
+    if (size != 0) {
+        func_8010C788(arg1, x, y, z);
+    }
+}
 
 /* extern */
 
 void func_8010C908(s32 arg0, s32 arg1) {
     f32 func_8010A40C();
-    s32 func_8010C878(s32, s32, f32);
+    void func_8010C878(s32, s32, volatile f32);
     func_8010C878(arg0, arg1, func_8010A40C());
 }
 
 void func_8010C93C(s32 arg0, s32 arg1, f32 arg2) {
-    s32 func_8010C878(s32, s32, f32);
+    void func_8010C878(s32, s32, volatile f32);
     func_8010C878(arg0, arg1, arg2);
 }
 
