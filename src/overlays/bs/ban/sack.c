@@ -47,7 +47,23 @@ s32 func_80800084_bsbansack(PlayerState *arg0, s32 arg1) {
     return arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800100_bsbansack.s")
+s32 func_80800100_bsbansack(PlayerState *arg0, void (*arg1)(PlayerState *)) {
+    s32 func_8009E6EC(PlayerState *);
+
+    switch (func_8009E6EC(arg0)) {
+        case 0x7F:
+            *((u8 *)arg0 + 0x15F) = 1;
+            break;
+        case 0x80:
+            *((u8 *)arg0 + 0x15F) = 0;
+            break;
+        default:
+            arg1(arg0);
+            break;
+        case 0xC:
+            break;
+    }
+}
 
 s32 func_80800168_bsbansack(s32 arg0) {
     s32 func_80800100_bsbansack();
