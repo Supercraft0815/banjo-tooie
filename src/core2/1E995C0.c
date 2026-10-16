@@ -56,8 +56,8 @@ s32 func_800BFFA0(s32 arg0) {
 
 /* extern */
 
-s32 func_800BFFB4(s32 arg0, s32 arg1, s32 arg2) {
-    void func_800DBEFC(s32 *, s32, s32);
+s32 func_800BFFB4(s32 arg0, s32 arg1, f32 *arg2) {
+    void func_800DBEFC(s32 *, s32, f32 *);
     s32 temp_a3;
     s32 var_v0;
 

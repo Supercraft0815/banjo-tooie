@@ -17,7 +17,27 @@ void func_80800000_chsunlightspell(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sunlightspell/func_80800404_chsunlightspell.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sunlightspell/func_80800668_chsunlightspell.s")
+void func_80800668_chsunlightspell(Actor *arg0) {
+    s32 func_800BFFB4(s32, s32, f32 *);
+    void func_800E3980(f32 *);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EEBF0(f32 *, f32 *, f32);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    extern f32 D_808008B0_chsunlightspell[3];
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp20[2];
+
+    if (func_800BFFB4(0, 4, sp34) != 0) {
+        func_800E3980(sp28);
+        func_800F18FC(sp28, sp34, sp20);
+        func_800EEBF0(sp34, sp20, 1000.0f);
+        func_800EE780(arg0->position, sp28, sp34);
+        func_800F18FC(arg0->position, D_808008B0_chsunlightspell, sp20);
+        arg0->rotation[1] = sp20[1];
+        arg0->rotation[0] = sp20[0];
+    }
+}
 
 /* extern */
 
