@@ -124,7 +124,7 @@ void func_808003F0_bsbabykaz(void *arg0) {
 void func_80800438_bsbabykaz(s32 arg0) {
     int baanim_isStopped(struct player_state_s *);
     s32 bs_setState(s32, s32);
-    s32 bsbabykaz_entrypoint_5(s32);
+    void bsbabykaz_entrypoint_5();
     int func_8008DD04(struct player_state_s *);
     s32 sp24;
 
@@ -148,7 +148,26 @@ s32 bsbabykaz_entrypoint_2(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/bsbabykaz_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/bsbabykaz_entrypoint_5.s")
+void bsbabykaz_entrypoint_5(struct player_state_s *arg0) {
+    s32 func_8008DD70(struct player_state_s *);
+    s32 _bababykaz_entrypoint_5(struct player_state_s *);
+    s32 func_800F7180(s32);
+    s32 func_80096694();
+    int player_isStable(struct player_state_s *);
+    s32 temp_v0;
+
+    if (func_8008DD70(arg0) == 0) {
+        temp_v0 = _bababykaz_entrypoint_5(arg0);
+        if ((temp_v0 != -1) && (func_800F7180(temp_v0) == 0)) {
+            _bababykaz_entrypoint_7(arg0, 1);
+        }
+        if ((player_isStable(arg0) != 0) && (func_80096694(arg0) == 0x14)) {
+            _bababykaz_entrypoint_7(arg0, 1);
+        }
+    }
+    func_8080005C_bsbabykaz(arg0);
+    _bababykaz_entrypoint_11(arg0);
+}
 
 void func_8080072C_bsbabykaz(s32 arg0)
 {
@@ -167,7 +186,7 @@ void func_8080077C_bsbabykaz(struct player_state_s *arg0) {
     s32 _badrone_entrypoint_3(struct player_state_s *);
     void _bsdrone_entrypoint_1(struct player_state_s *);
     s32 bs_setState(s32, s32);
-    s32 bsbabykaz_entrypoint_5(s32);
+    void bsbabykaz_entrypoint_5();
     _bsdrone_entrypoint_1(arg0);
     bsbabykaz_entrypoint_5(arg0);
     if ((_bababykaz_entrypoint_3(arg0) != 0) && (_badrone_entrypoint_3(arg0) != 1)) {
@@ -230,7 +249,7 @@ void func_80800D68_bsbabykaz(s32 arg0) {
     s32 _bababykaz_entrypoint_3(struct player_state_s *);
     s32 _bsrest_entrypoint_20();
     s32 bs_setState(s32, s32);
-    s32 bsbabykaz_entrypoint_5(s32);
+    void bsbabykaz_entrypoint_5();
     s32 sp1C;
 
     sp1C = 0;
@@ -290,7 +309,7 @@ void func_80801044_bsbabykaz(s32 arg0) {
 void func_808010AC_bsbabykaz(s32 arg0) {
     s32 _badrone_entrypoint_25(s32);
     s32 bs_setState(s32, s32);
-    s32 bsbabykaz_entrypoint_5();
+    void bsbabykaz_entrypoint_5();
     int func_8008DD04(struct player_state_s *);
     int func_8008E148(s32);
     s32 func_808001A8_bsbabykaz(struct player_state_s *, s32);
