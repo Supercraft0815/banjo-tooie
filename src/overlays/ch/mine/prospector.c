@@ -83,7 +83,7 @@ void func_8080084C_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _subaddiedialog_entrypoint_10(s32);
     s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
     s32 func_80108B04(s32, s32);
-    s32 func_80800A64_chmineprospector(s32, s32, s32);
+    void func_80800A64_chmineprospector(Actor *, s32, s32);
     extern s32 D_80800F58_chmineprospector;
     if (_subaddiedialog_entrypoint_10(_subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80800F58_chmineprospector, 7)) != 0) {
         func_80800A64_chmineprospector(arg0, 1, 0x30);
@@ -110,7 +110,23 @@ void func_80800970_chmineprospector(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_808009B0_chmineprospector.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800A64_chmineprospector.s")
+void func_80800A64_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+    s32 *data;
+
+    data = func_80100094(arg0, 0U);
+    switch (data[4]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0xF, arg2);
+        case 2:
+            data[4] = 1;
+        case 1:
+            _capod_entrypoint_6(arg0->unk0, arg1, arg2);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800AF0_chmineprospector.s")
 
