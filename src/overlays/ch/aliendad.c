@@ -92,7 +92,7 @@ void func_80801BD4_chaliendad(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
     Actor *_subaddiefind_entrypoint_2(s32, s32);
     void func_80102424(Actor *, s32);
-    s32 func_80801D40_chaliendad(Actor *, s32, s32, s32);
+    void func_80801D40_chaliendad(Actor *, s32, s32, Unk80132ED0 *);
     Actor *temp_v0;
 
     arg0->unk64_16 = 1;
@@ -116,7 +116,23 @@ void func_80801C60_chaliendad(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801C9C_chaliendad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801D40_chaliendad.s")
+void func_80801D40_chaliendad(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *arg3) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+
+    if (arg3 == NULL) {
+        arg3 = arg0->unk0;
+    }
+    switch (arg0->actorData[1]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0xD, arg2);
+        case 2:
+            arg0->actorData[1] = 1;
+        case 1:
+            _capod_entrypoint_6(arg3, arg1, arg2);
+            break;
+    }
+}
 
 s32 func_80801DD0_chaliendad(void) {
     s32 func_800DA298(s32);
