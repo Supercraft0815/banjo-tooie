@@ -430,4 +430,27 @@ void func_80801D8C_chhoopswoop(u8 *arg0) {
     func_8010D930(4, (*(s32 *)((s8 *)(arg0) + (0x70))) & 1, arg0 + 4, &D_80801FDC_chhoopswoop);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80801DCC_chhoopswoop.s")
+void func_80801DCC_chhoopswoop(Actor *arg0) {
+    typedef struct {
+        s32 kind : 15;
+        u32 used : 1;
+        s16 position[3];
+        f32 timer;
+    } Hoop;
+    typedef struct {
+        s32 count;
+        u8 pad[16];
+        Hoop hoops[1];
+    } HoopData;
+    Actor *func_80106790(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    Actor *actor;
+    HoopData *data;
+
+    actor = func_80106790(arg0->unk3C);
+    if (arg0->actorData[5] != -1) {
+        data = func_80100094(actor, 0);
+        data->hoops[arg0->actorData[5]].used = 0;
+        data->hoops[arg0->actorData[5]].timer = 5.0f;
+    }
+}
