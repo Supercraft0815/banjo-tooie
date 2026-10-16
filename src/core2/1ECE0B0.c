@@ -1716,7 +1716,25 @@ void func_800F8874(s32 arg0)
     func_8009224C(D_80135490[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F88A0.s")
+void *func_800F88A0(s32 arg0) {
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    extern s32 D_801354F0;
+    u32 sp1C;
+    u32 temp_v0;
+    u32 var_v1;
+    u32 result;
+
+    sp1C = vector_begin(D_801354F0);
+    temp_v0 = vector_end(D_801354F0);
+    result = 0;
+    for (var_v1 = sp1C; var_v1 < temp_v0; var_v1 += 0x3C) {
+        if (arg0 == *(u8 *)var_v1) {
+            return (void *)var_v1;
+        }
+    }
+    return (void *)result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8914.s")
 
