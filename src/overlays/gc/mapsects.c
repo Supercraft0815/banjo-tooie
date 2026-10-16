@@ -79,7 +79,28 @@ void gcmapsects_entrypoint_2(s16 arg0, s32 arg1) {
     temp_v1->flag = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_3.s")
+void gcmapsects_entrypoint_3(s16 arg0, s16 arg1) {
+    void *func_800BF704(void);
+    struct Section { u8 pad[0x38]; u8 neighbor : 8; };
+    struct Map { u8 pad[0x68]; u8 *sections; };
+    s32 i;
+    struct Map *map;
+
+    map = func_800BF704();
+    for (i = 0; i < 4; i++) {
+        if (((struct Section *)(map->sections + arg0 * 0x58 + i))->neighbor == 0xFF) {
+            ((struct Section *)(map->sections + arg0 * 0x58 + i))->neighbor = arg1;
+            break;
+        }
+    }
+
+    for (i = 0; i < 4; i++) {
+        if (((struct Section *)(map->sections + arg1 * 0x58 + i))->neighbor == 0xFF) {
+            ((struct Section *)(map->sections + arg1 * 0x58 + i))->neighbor = arg0;
+            break;
+        }
+    }
+}
 
 /* extern */
 
