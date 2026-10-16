@@ -220,7 +220,18 @@ void func_800C8C90(s32 arg0) {
 
 void func_800C8E54(s32 arg0, f32 arg1, f32 arg2) { f32 sp18[2]; sp18[0] = arg1; sp18[1] = arg2; func_800C8D4C(arg0, sp18); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8E84.s")
+void func_800C8E84(s32 arg0, u32 *arg1) {
+    void *vector_at(s32, s32);
+    u8 *entry;
+
+    entry = vector_at(D_8012AB00, arg0 - 1);
+    if (entry[0xA] != arg1[0] || entry[0xB] != arg1[1] || entry[0xC] != arg1[2]) {
+        entry[0xA] = arg1[0];
+        entry[0xB] = arg1[1];
+        entry[0xC] = arg1[2];
+        entry[0x16] = 1;
+    }
+}
 
 void func_800C8F08(s32 arg0, f32 *arg1) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
