@@ -68,4 +68,28 @@ void func_808004F8_chloggo(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/loggo/func_80800528_chloggo.s")
+int func_80800528_chloggo(Actor *arg0, s32 arg1, volatile s32 arg2) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    void _chexploder_entrypoint_13(s32, u32);
+    void func_800DA544(GameFlag);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void *func_80101080(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 sp24[3];
+
+    switch (arg1) {
+    case 0x40:
+        func_800EE7F8(sp24, arg0->position);
+        func_800EF1B8(sp24, arg0->rotation[1], -200.0f);
+        _chexploder_entrypoint_3(arg0, sp24, 0xF);
+        func_800DA544(0x181);
+        break;
+    case 0x90:
+        _chexploder_entrypoint_13(func_80106790(func_80101080()), 1);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
