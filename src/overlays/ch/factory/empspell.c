@@ -198,7 +198,19 @@ void func_80800000_chfactoryempspell(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80800C7C_chfactoryempspell.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801038_chfactoryempspell.s")
+void func_80801038_chfactoryempspell(Actor *arg0) {
+    void func_800CE88C(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    void func_800CE928(s32, s32, s32);
+    extern s32 _chfactoryempspell_entrypoint_0;
+    if (arg0->unk64_20) {
+        func_800CE8D8(0, 45.0f, 0x2D);
+        func_800CE928(0, (s32)&_chfactoryempspell_entrypoint_0, (s32)arg0->unk0);
+        func_800CE88C(0, 1);
+        return;
+    }
+    arg0->unk64_20 = 1;
+}
 
 /* extern */
 
