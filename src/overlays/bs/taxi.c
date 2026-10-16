@@ -34,7 +34,24 @@ s32 func_80800064_bstaxi(struct player_state_s *arg0, s32 arg1) {
     return arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_0.s")
+void bstaxi_entrypoint_0(struct player_state_s *arg0) {
+    typedef struct player_state_s PlayerState;
+    void _babackpack_set_state(void *, s32);
+    void baroll_setIdeal(PlayerState *, f32);
+    void bastick_popZone(PlayerState *);
+    void func_8009BF5C(PlayerState *, f32);
+    void func_8009E474(PlayerState *);
+    s32 func_8009E74C(PlayerState *, s32);
+    void func_800A0CD0(void *, s32);
+    if (func_8009E74C(arg0, 0xE) == 0) {
+        func_800A0CD0(arg0, 1);
+        _babackpack_set_state(arg0, 1);
+        func_8009BF5C(arg0, 0.0f);
+        baroll_setIdeal(arg0, 0.0f);
+        bastick_popZone(arg0);
+        func_8009E474(arg0);
+    }
+}
 
 /* extern */
 
@@ -54,7 +71,7 @@ void bstaxi_entrypoint_1(void *arg0) {
 
 void bstaxi_entrypoint_2(void *arg0) {
     *(s32 *)((u8 *)arg0 + 0x160) = 0;
-    bstaxi_entrypoint_0();
+    bstaxi_entrypoint_0(arg0);
 }
 
 /* extern */
@@ -131,9 +148,9 @@ void func_808004A8_bstaxi(struct player_state_s *arg0) {
 
 /* extern */
 
-void func_808005B8_bstaxi(s32 arg0) {
-    void baroll_setIdeal(s32, f32);
-    void func_8009BF5C(s32, f32);
+void func_808005B8_bstaxi(struct player_state_s *arg0) {
+    void baroll_setIdeal(struct player_state_s *, f32);
+    void func_8009BF5C(struct player_state_s *, f32);
     baroll_setIdeal(arg0, 0.0f);
     func_8009BF5C(arg0, 0.0f);
     bstaxi_entrypoint_0(arg0);
@@ -230,9 +247,9 @@ s32 bstaxi_entrypoint_6(s32 arg0) {
     return ((s32 *)&D_80802188_bstaxi)[arg0];
 }
 
-void bstaxi_entrypoint_7()
+void bstaxi_entrypoint_7(struct player_state_s *arg0)
 {
-    bstaxi_entrypoint_0();
+    bstaxi_entrypoint_0(arg0);
 }
 
 void bstaxi_entrypoint_8(void *arg0) {
@@ -311,9 +328,9 @@ s32 bstaxi_entrypoint_14(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_16.s")
 
-void bstaxi_entrypoint_17(s32 arg0) {
-    void func_8009BF5C(s32, f32);
-    void baroll_setIdeal(s32, f32);
+void bstaxi_entrypoint_17(struct player_state_s *arg0) {
+    void func_8009BF5C(struct player_state_s *, f32);
+    void baroll_setIdeal(struct player_state_s *, f32);
     baphysics_reset_gravity();
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
@@ -325,9 +342,9 @@ s32 bstaxi_entrypoint_18(s32 arg0) {
     return ((s32 *)&D_808021B8_bstaxi)[arg0];
 }
 
-void bstaxi_entrypoint_19()
+void bstaxi_entrypoint_19(struct player_state_s *arg0)
 {
-    bstaxi_entrypoint_0();
+    bstaxi_entrypoint_0(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_20.s")
@@ -371,9 +388,9 @@ s32 bstaxi_entrypoint_22(s32 arg0) {
     return ((s32 *)&D_808021C8_bstaxi)[arg0];
 }
 
-void bstaxi_entrypoint_23()
+void bstaxi_entrypoint_23(struct player_state_s *arg0)
 {
-    bstaxi_entrypoint_0();
+    bstaxi_entrypoint_0(arg0);
 }
 
 void bstaxi_entrypoint_24(void *arg0) {
