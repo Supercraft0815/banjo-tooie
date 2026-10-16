@@ -219,7 +219,26 @@ void func_80100B3C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100B4C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100C74.s")
+void func_80100C74(void) {
+    void *freelist_at(FreeList *, s32);
+    s16 freelist_capacity(FreeList *);
+    s32 freelist_is_element_alive(FreeList *, s32);
+    extern FreeList *D_80135A60;
+    s32 i;
+    void **entry;
+    u8 age;
+    u8 next_age;
+
+    for (i = 1; D_80135A60 != 0 && i < freelist_capacity(D_80135A60); i++) {
+        if (freelist_is_element_alive(D_80135A60, i)) {
+            entry = freelist_at(D_80135A60, i);
+            if (*(u8 *)((s8 *)entry + 0xA) != 0 &&
+                --*(u8 *)((s8 *)entry + 0xA) == 0) {
+                func_801009C4(entry, i);
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100D24.s")
 
