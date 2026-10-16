@@ -533,7 +533,7 @@ void func_80802CE0_chcollballcontrol(u8 *arg0) {
     Actor *func_80106790(Unk80132ED0 *);
     s32 _sukickball_entrypoint_6(u8 *, s32);
     s32 _sukickball_entrypoint_7(u8 *, s32);
-    s32 _sukickball_entrypoint_8(u8 *, s32);
+    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
     void _sukickball_entrypoint_10(u8 *, s32, s32);
     void _sukickball_entrypoint_11(u8 *, s32);
     s32 _sukickball_entrypoint_12(u8 *, s32);
@@ -745,7 +745,22 @@ s32 func_80803D54_chcollballcontrol(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80803E18_chcollballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80803EF4_chcollballcontrol.s")
+void func_80803EF4_chcollballcontrol(Actor *arg0, s32 arg1) {
+    s32 _sukickball_entrypoint_6(u8 *, s32);
+    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800F5A00(s32, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    u8 *parent;
+
+    parent = (u8 *)func_80106790(arg0->unk3C);
+    if (_sukickball_entrypoint_6(parent, arg1)) {
+        func_800F5A00(arg1, (f32 *)arg0->actorData);
+        return;
+    }
+    func_800EE7F8((f32 *)arg0->actorData,
+                 func_80106790(_sukickball_entrypoint_8(parent, arg1))->position);
+}
 
 void func_80803F70_chcollballcontrol(Actor *arg0) {
     f32 func_800DC178(f32, f32);
@@ -787,7 +802,7 @@ void func_8080405C_chcollballcontrol(u8 *arg0) {
     void *func_80100094(Actor *, u32);
     s32 _sukickball_entrypoint_6(u8 *, s32);
     s32 _sukickball_entrypoint_7(u8 *, s32);
-    s32 _sukickball_entrypoint_8(u8 *, s32);
+    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
     s32 _sukickball_entrypoint_12(u8 *, s32);
     void _sukickball_entrypoint_13(f32 *, f32 *, f32);
     f32 func_800D8FF8(void);
