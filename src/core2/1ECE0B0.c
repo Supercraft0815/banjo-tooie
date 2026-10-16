@@ -1667,7 +1667,23 @@ void func_800F86D8(void)
   while (var_s0 != (PlayerState **) D_801354B0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8730.s")
+/* extern */
+
+s32 func_800F8730(s32 arg0, s32 arg1) {
+    void _surestart_entrypoint_0(s32);
+    s32 func_8009E7C8(PlayerState *, s32);
+    void func_800A3538(void *, s32);
+    PlayerState *sp1C;
+    s32 sp18;
+
+    sp1C = D_80135490[arg0];
+    func_800A3538(sp1C, arg1);
+    sp18 = func_8009E7C8(sp1C, 0xA) == 2;
+    if ((sp18 != 0) && (func_800F5410(arg0) != arg1)) {
+        _surestart_entrypoint_0(arg1);
+    }
+    return sp18;
+}
 
 s32 func_800F87A4(s32 arg0) {
     s32 func_8009E7C8(PlayerState *, s32);
