@@ -230,7 +230,29 @@ void func_80802778_chdiggerboss(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808027F4_chdiggerboss.s")
+s32 func_808027F4_chdiggerboss(s32 arg0) {
+    void _capod_entrypoint_3(u32);
+    void _plcamera_entrypoint_8(s32);
+    s32 func_800F7F98(s32, u32);
+    void *func_80100094(Actor *, u32);
+    int result;
+    s32 sp20;
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    sp20 = func_80802248_chdiggerboss(arg0);
+    if (*(s16 *)(data + 0xA) != 0) {
+        func_800F7F98(sp20, 0);
+        *(s16 *)(data + 0xA) = 0;
+    }
+    if (*(s16 *)(data + 8) != 0) {
+        _capod_entrypoint_3(0);
+        _plcamera_entrypoint_8(sp20);
+        *(s16 *)(data + 8) = 0;
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80802878_chdiggerboss.s")
 
