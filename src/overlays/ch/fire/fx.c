@@ -78,7 +78,26 @@ void func_80800E9C_chfirefx(Actor *arg0) {
     func_8080116C_chfirefx(temp_v0, &arg0->unk0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/func_80800F00_chfirefx.s")
+void func_80800F00_chfirefx(Actor *arg0) {
+    s32 _subaddielink_entrypoint_0(u8 *);
+    void *func_80100094(Actor *, u32);
+    s32 *sp2C;
+    s32 var_s0;
+    u8 *var_s1;
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    var_s0 = 0;
+    var_s1 = temp_v0 + 8;
+    sp2C = (s32 *)temp_v0;
+    do {
+        _subaddielink_entrypoint_0(var_s1);
+        var_s0 += 8;
+        var_s1 += 8;
+    } while (var_s0 != 0x80);
+    sp2C[1] = 0;
+    sp2C[0] = (s32)arg0->rotation[1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/func_80800F7C_chfirefx.s")
 
