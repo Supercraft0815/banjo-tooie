@@ -335,4 +335,22 @@ void func_800F16AC(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     } while (var_s1 != 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F1738.s")
+f32 func_800F1738(register f32 arg0, f32 arg1, f32 arg2) {
+    f32 func_800F1DCC(f32, f32);
+    f32 sp24;
+    f32 temp_f0;
+    sp24 = func_800F1DCC(arg0, arg1);
+    temp_f0 = func_800F1DCC(arg2, arg1);
+    if (temp_f0 > 0.0f) {
+        if (sp24 < 0.0f) {
+            arg0 = arg1;
+        } else if (temp_f0 < sp24) {
+            arg0 = arg2;
+        }
+    } else if (sp24 > 0.0f) {
+        arg0 = arg1;
+    } else if (sp24 < temp_f0) {
+        arg0 = arg2;
+    }
+    return arg0;
+}
