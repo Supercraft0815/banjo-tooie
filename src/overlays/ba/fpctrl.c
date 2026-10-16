@@ -91,7 +91,14 @@ void func_808008CC_bafpctrl(s32 arg0) {
     _ncba1p_entrypoint_6(func_800A4CA8((void *)arg0), sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_80800904_bafpctrl.s")
+int func_80800904_bafpctrl(PlayerState *arg0) {
+    int bakey_pressed(PlayerState *, int);
+    int func_800C6E38(s32);
+    u32 bafpctrl_entrypoint_6(void *);
+    return bakey_pressed(arg0, 0xB) && func_800C6E38(0x16)
+        && bafpctrl_entrypoint_6(arg0)
+        && ((*(*(s32 **)((s8 *)arg0 + 0x90)) & 4) == 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_80800970_bafpctrl.s")
 
