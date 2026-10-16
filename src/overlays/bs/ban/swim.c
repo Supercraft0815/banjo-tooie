@@ -146,7 +146,27 @@ void func_808003BC_bsbanswim(struct player_state_s *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/swim/func_8080040C_bsbanswim.s")
+void func_8080040C_bsbanswim(struct player_state_s *arg0) {
+    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    s32 bs_getPreviousState(struct player_state_s *);
+    void _baswim_entrypoint_10(void *, f32);
+    void _baswim_entrypoint_8(void *, f32);
+    void func_8009BC5C(struct player_state_s *, f32);
+    int func_8008E0E8(struct player_state_s *);
+    void _bapackctrl_entrypoint_5(struct player_state_s *, s32);
+
+    if (func_80800390_bsbanswim(bs_getPreviousState(arg0)) == 0) {
+        baanim_playForDuration_loopSmooth(arg0, 0x27E, 0.75f);
+        func_80800000_bsbanswim(arg0);
+        func_80800030_bsbanswim(arg0);
+        _baswim_entrypoint_10(arg0, 0.0f);
+        _baswim_entrypoint_8(arg0, 600.0f);
+        func_8009BC5C(arg0, 2.0f);
+        if (func_8008E0E8(arg0) != 0) {
+            _bapackctrl_entrypoint_5(arg0, 4);
+        }
+    }
+}
 
 void func_8080049C_bsbanswim(struct player_state_s *arg0)
 {
@@ -158,7 +178,7 @@ void func_8080049C_bsbanswim(struct player_state_s *arg0)
 void func_808004BC_bsbanswim(s32 arg0) {
     s32 anctrl_setDuration(s32, s32);
     s32 baanim_getAnimCtrlPtr();
-    s32 func_8080040C_bsbanswim(s32);
+    void func_8080040C_bsbanswim(struct player_state_s *);
     s32 sp1C;
 
     sp1C = baanim_getAnimCtrlPtr();
@@ -183,7 +203,7 @@ void func_80800670_bsbanswim(struct player_state_s *arg0)
 void func_80800690_bsbanswim(s32 arg0) {
     s32 anctrl_setDuration(s32, s32);
     s32 baanim_getAnimCtrlPtr();
-    s32 func_8080040C_bsbanswim(s32);
+    void func_8080040C_bsbanswim(struct player_state_s *);
     s32 sp1C;
 
     sp1C = baanim_getAnimCtrlPtr();
@@ -208,7 +228,7 @@ void func_80800848_bsbanswim(struct player_state_s *arg0)
 void func_80800868_bsbanswim(s32 arg0) {
     s32 anctrl_setDuration(s32, s32);
     s32 baanim_getAnimCtrlPtr();
-    s32 func_8080040C_bsbanswim(s32);
+    void func_8080040C_bsbanswim(struct player_state_s *);
     s32 sp1C;
 
     sp1C = baanim_getAnimCtrlPtr();
