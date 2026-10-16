@@ -190,7 +190,30 @@ s32 func_80802314_chdiggerboss(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808023D8_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80802550_chdiggerboss.s")
+void func_80802550_chdiggerboss(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_800FFA88(Unk80132ED0 *);
+    s32 func_801069A4(Unk80132ED0 *);
+    void func_808040D8_chdiggerboss(s32);
+    void func_808049A8_chdiggerboss(s32);
+    void func_808053BC_chdiggerboss(Actor *);
+    void func_80807664_chdiggerboss(s32);
+    void func_80808000_chdiggerboss(s32);
+    void func_80808948_chdiggerboss(Actor *);
+    Actor *sp24;
+
+    sp24 = func_80100094(arg0, 0);
+    func_808040D8_chdiggerboss(arg0);
+    func_808049A8_chdiggerboss(arg0);
+    func_808053BC_chdiggerboss(arg0);
+    func_80807664_chdiggerboss(arg0);
+    func_80808000_chdiggerboss(arg0);
+    func_80808948_chdiggerboss(arg0);
+    if (func_801069A4(sp24->unk0) != 0) {
+        func_800FFA88(sp24->unk0);
+        sp24->unk0 = NULL;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808025D4_chdiggerboss.s")
 
