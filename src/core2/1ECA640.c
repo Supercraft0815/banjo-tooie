@@ -77,7 +77,24 @@ f32 func_800F0E7C(f32 arg0, f32 arg1) {
     return arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECA640/func_800F0EF0.s")
+void func_800F0EF0(s32 arg0, f32 *arg1) {
+    s32 i;
+    f32 value;
+
+    for (i = 0; i < arg0 * 3 - 3; i++) {
+        value = arg1[i];
+        if (arg1[i + 3] + 180.0f <= value) {
+            do {
+                arg1[i + 3] += 360.0f;
+            } while (arg1[i + 3] + 180.0f <= value);
+        }
+        if (value <= arg1[i + 3] - 180.0f) {
+            do {
+                arg1[i + 3] -= 360.0f;
+            } while (value <= arg1[i + 3] - 180.0f);
+        }
+    }
+}
 
 f32 func_800F0F9C(f32 val1, f32 val2)
 {
