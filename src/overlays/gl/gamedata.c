@@ -17,7 +17,24 @@ void func_80800008_glgamedata(s8 *arg0) {
     *arg0 = 0x1E;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamedata/glgamedata_entrypoint_0.s")
+void glgamedata_entrypoint_0(void) {
+    extern GameDataEntry D_80800544_glgamedata;
+    GameDataEntry *entry;
+    s32 total;
+    GameDataEntry *end;
+    s32 size;
+    GameDataCallback callback;
+
+    total = 4;
+    entry = D_808004F0_glgamedata; end = &D_80800544_glgamedata;
+    do {
+        callback = entry->getSize;
+        size = callback != NULL ? callback() : 0;
+        entry++;
+        total += size;
+        total += 2;
+    } while (entry != end);
+}
 
 s32 func_80800084_glgamedata(s32 *arg0) {
     *arg0 = 0x4B484A43;
