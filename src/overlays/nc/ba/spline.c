@@ -12,11 +12,23 @@ void func_80800008_ncbaspline(void *arg0) {
     func_800D7520(*(*(s32 **)((s8 *)(arg0) + (0x44))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/spline/func_8080002C_ncbaspline.s")
+void func_8080002C_ncbaspline(void *arg0) {
+    void func_800EFD24(f32 *);
+    *(s32 *)(*(u8 **)((u8 *)arg0 + 0x44)) = -1;
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0x44) + 4) = 0.0f;
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0x44) + 8) = 0.0f;
+    *(s32 *)(*(u8 **)((u8 *)arg0 + 0x44) + 0x28) = 0;
+    *(u8 *)(*(u8 **)((u8 *)arg0 + 0x44) + 0x2C) = 0;
+    *(u8 *)(*(u8 **)((u8 *)arg0 + 0x44) + 0x2F) = 0;
+    *(u8 *)(*(u8 **)((u8 *)arg0 + 0x44) + 0x2E) = *(u8 *)(*(u8 **)((u8 *)arg0 + 0x44) + 0x2F);
+    func_800EFD24((f32 *)(*(u8 **)((u8 *)arg0 + 0x44) + 0xC));
+    func_800EFD24((f32 *)(*(u8 **)((u8 *)arg0 + 0x44) + 0x1C));
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0x44) + 0x18) = 0.0f;
+}
 
-void ncbaspline_entrypoint_1()
+void ncbaspline_entrypoint_1(void *arg0)
 {
-    func_8080002C_ncbaspline();
+    func_8080002C_ncbaspline(arg0);
 }
 
 /* extern */
@@ -28,9 +40,9 @@ void ncbaspline_entrypoint_2(s32 arg0) {
     func_80111B8C(arg0, 0x40400000, 0x41000000);
 }
 
-void ncbaspline_entrypoint_3()
+void ncbaspline_entrypoint_3(void *arg0)
 {
-    func_8080002C_ncbaspline();
+    func_8080002C_ncbaspline(arg0);
 }
 
 /* extern */
