@@ -39,7 +39,23 @@ s32 func_800F1884(f32 *arg0, f32 *arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F18FC.s")
+/* extern */
+
+void func_800F18FC(f32 *arg0, f32 *arg1, f32 *arg2) {
+    f32 func_80013B70(f32, f32, f32);
+    f32 func_80013B7C(f32, f32);
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 length;
+
+    x = arg1[0] - arg0[0];
+    y = arg1[1] - arg0[1];
+    z = arg1[2] - arg0[2];
+    length = sqrtf(x * x + z * z);
+    arg2[1] = func_80013B70(x, z, length);
+    arg2[0] = func_80013B7C(y, length);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1988.s")
 
