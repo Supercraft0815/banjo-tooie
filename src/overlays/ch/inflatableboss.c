@@ -170,7 +170,33 @@ void func_8080000C_chinflatableboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80800408_chinflatableboss.s")
+void func_80800408_chinflatableboss(Actor *arg0) {
+    void _suexpression_entrypoint_8(Actor *, u32);
+    s32 func_800BA2C4(void *);
+    void *func_80100094(Actor *, u32);
+    u8 *sp2C;
+    void *temp_a0;
+    void *temp_a0_2;
+    s32 var_s1;
+    u8 *var_s0;
+
+    sp2C = func_80100094(arg0, 0);
+    _suexpression_entrypoint_8(arg0, 1);
+    var_s1 = 0;
+    var_s0 = sp2C;
+    do {
+        temp_a0 = *(void **)(var_s0 + 0x43C);
+        if (temp_a0 != NULL) {
+            *(s32 *)(var_s0 + 0x43C) = func_800BA2C4(temp_a0);
+        }
+        var_s1 += 4;
+        var_s0 += 4;
+    } while (var_s1 != 0x30);
+    temp_a0_2 = *(void **)(sp2C + 0x434);
+    if (temp_a0_2 != NULL) {
+        *(s32 *)(sp2C + 0x434) = func_800BA2C4(temp_a0_2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_808004A0_chinflatableboss.s")
 

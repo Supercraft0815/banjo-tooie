@@ -41,9 +41,9 @@ int func_800BA28C(void *arg0) {
 
 /* extern */
 
-s32 func_800BA2C4(void) {
+s32 func_800BA2C4(void *arg0) {
     s32 heap_free();
-    heap_free();
+    heap_free(arg0);
     return 0;
 }
 
