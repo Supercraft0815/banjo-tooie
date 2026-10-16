@@ -327,7 +327,23 @@ void func_800EF49C(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (8))) = func_800136E4((*(f32 *)((s8 *)(arg0) + (8))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF4E4.s")
+void func_800EF4E4(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
+    f32 func_800137F4(f32);
+    f32 func_80013788(void);
+    f32 value[3];
+    f32 sine, cosine;
+    f32 rotated;
+
+    sine = func_800137F4(arg1);
+    cosine = func_80013788();
+    value[0] = arg4 * sine + arg5 * cosine;
+    arg0[1] = arg4 * cosine - arg5 * sine;
+    sine = func_800137F4(arg2);
+    cosine = func_80013788();
+    rotated = value[0];
+    arg0[0] = rotated * sine + arg3 * cosine;
+    arg0[2] = rotated * cosine - arg3 * sine;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC8070/func_800EF5A0.s")
 
