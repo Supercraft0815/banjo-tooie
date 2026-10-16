@@ -23,7 +23,7 @@ void func_8080034C_chgruntyfireballbig(u8 *arg0) {
     s32 func_800B53A4(s32);
     s32 func_800BABB8(s32, f32 *, f32 *, f32, s32 *);
     f32 func_800DC178(f32, f32);
-    s32 func_800EE7F8(f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
     void func_800EEB9C(f32 *, f32, f32);
     void func_800EF04C(f32 *, f32 *);
     s32 func_800FFAB0(u8 *);
@@ -51,7 +51,23 @@ void func_8080034C_chgruntyfireballbig(u8 *arg0) {
     func_800FFAB0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/grunty/fireballbig/func_808004C4_chgruntyfireballbig.s")
+void func_808004C4_chgruntyfireballbig(Actor *arg0) {
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF368(f32 *, f32);
+    extern s32 D_80800754_chgruntyfireballbig;
+    extern s32 D_80800788_chgruntyfireballbig;
+    f32 sp2C[3];
+
+    func_800BBCB8(arg0->position, arg0->position, arg0->scale * 1.2f, 1, &D_80800788_chgruntyfireballbig);
+    func_800EE7F8(sp2C, (f32 *)&arg0->actorData[4]);
+    func_800EF368(sp2C, 100.0f);
+    func_800EF334(sp2C, -1.0f);
+    func_800EF04C(sp2C, arg0->position);
+    func_800BBCB8(sp2C, arg0->position, arg0->scale * 0.8f, 1, &D_80800754_chgruntyfireballbig);
+}
 
 /* extern */
 
