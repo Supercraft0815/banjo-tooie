@@ -31,7 +31,7 @@ void func_808004C8_chtoxicroombits(s32 arg0) {
 /* extern */
 
 s32 func_808004F0_chtoxicroombits(void) {
-    s32 _glcutDll_entrypoint_19(s32);
+    s32 _glcutDll_entrypoint_19(u32);
     s32 func_800D0A9C(s32, s32);
     s32 func_800DA564(s32, s32);
     if ((func_800D0A9C(0x38, 1) == 0) && (_glcutDll_entrypoint_19(0x41) == 0)) {
@@ -129,7 +129,27 @@ void func_80800630_chtoxicroombits(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_80800960_chtoxicroombits.s")
+/* extern */
+
+void func_80800960_chtoxicroombits(u8 *arg0, s32 arg1) {
+    s32 _glcutDll_entrypoint_19(u32);
+    void func_80108B04(Actor *, u32);
+    Actor *actor = (Actor *)arg0;
+
+    if (_glcutDll_entrypoint_19(0x41) != 0) {
+        if ((1 << actor->unk6C_0) & 0x410) {
+            arg1 += 0x64;
+        }
+        actor->unk6C_0++;
+    } else {
+        if (--actor->unk6C_0 == 0) {
+            arg1 += 0x64;
+            actor->unk6C_0 = 8;
+        }
+    }
+    func_80108B04(actor, arg1);
+    actor->unk79_4 = func_80800410_chtoxicroombits();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_80800A2C_chtoxicroombits.s")
 
