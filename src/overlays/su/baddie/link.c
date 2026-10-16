@@ -14,7 +14,24 @@ void subaddielink_entrypoint_1(u8 *arg0, u8 *arg1) {
     subaddielink_entrypoint_0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/link/subaddielink_entrypoint_2.s")
+s32 subaddielink_entrypoint_2(void *arg0) {
+    Actor *func_80106790(Unk80132ED0 *);
+    struct {
+        Unk80132ED0 *marker;
+        u32 id;
+    } *link = arg0;
+    Unk80132ED0 *marker = link->marker;
+
+    if (marker != NULL) {
+        if (link->id == ((u32)(u16)marker->unk10 >> 1) &&
+            !func_80106790(marker)->unk64_17) {
+            return 1;
+        }
+        link->marker = NULL;
+        link->id = 0;
+    }
+    return 0;
+}
 
 /* extern */
 
@@ -35,10 +52,10 @@ s32 subaddielink_entrypoint_3(s32 *arg0) {
 
 /* extern */
 
-s32 subaddielink_entrypoint_4(s32 *arg0) {
-    s32 func_80106790(s32);
+Actor *subaddielink_entrypoint_4(Unk80132ED0 **arg0) {
+    Actor *func_80106790(Unk80132ED0 *);
     s32 subaddielink_entrypoint_2();
-    if (subaddielink_entrypoint_2() == 0) {
+    if (subaddielink_entrypoint_2(arg0) == 0) {
         return 0;
     }
     return func_80106790(*arg0);
