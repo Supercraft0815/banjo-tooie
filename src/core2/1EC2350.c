@@ -3,7 +3,29 @@
 void func_800E8A60(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8A68.s")
+void func_800E8A68(void) {
+    s32 freelist_capacity(s32);
+    s32 freelist_is_element_alive(s32, s32);
+    f32 func_800D8FF8(void);
+    void *func_800E8CB0(u8);
+    void func_800E8DE4(u8 *, f32);
+    extern s32 D_8012D680;
+    f32 delta;
+    s32 i;
+
+    delta = func_800D8FF8();
+    if (D_8012D680 != 0) {
+        i = 1;
+        if (freelist_capacity(D_8012D680) >= 2) {
+            do {
+                if (freelist_is_element_alive(D_8012D680, i) != 0) {
+                    func_800E8DE4(func_800E8CB0(i), delta);
+                }
+                i++;
+            } while (i < freelist_capacity(D_8012D680));
+        }
+    }
+}
 
 void func_800E8B04(void) {
     s32 freelist_free(s32);
