@@ -22,7 +22,22 @@ f32 func_800F1828(f32 *arg0, f32 *arg1) {
     return func_80013B7C(sp18[0], sqrtf((temp_f0 * temp_f0) + (temp_f2 * temp_f2)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1884.s")
+s32 func_800F1884(f32 *arg0, f32 *arg1) {
+    f32 func_80013B7C(f32, f32);
+    f32 z;
+    f32 x;
+    f32 length;
+
+    z = arg0[2];
+    x = arg0[0];
+    length = sqrtf(z * z + x * x);
+    if (length == 0.0f) {
+        *arg1 = 0.0f;
+        return 0;
+    }
+    *arg1 = func_80013B7C(arg0[1], length);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F18FC.s")
 
