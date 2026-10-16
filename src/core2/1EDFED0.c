@@ -94,4 +94,17 @@ s32 func_801067C4(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDFED0/func_80106920.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDFED0/func_801069A4.s")
+s32 func_801069A4(Unk80132ED0 *arg0) {
+    s32 vector_size(s32);
+    extern s32 D_80136EE0;
+    s32 result;
+
+    if (D_80136EE0 == 0) {
+        return 0;
+    }
+    if (arg0 == NULL || !(((u16 *)&arg0->unk18)[0] & 1)) {
+        return 0;
+    }
+    result = (s32)((u32)((u16 *)&arg0->unk18)[1] >> 5) < vector_size(D_80136EE0);
+    return result;
+}
