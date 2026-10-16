@@ -1,6 +1,19 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obaldata/glglobaldata_entrypoint_0.s")
+void glglobaldata_entrypoint_0(void) {
+    extern void (*D_80800230_glglobaldata[])(s32 *, s32 *);
+    extern void (*D_80800238_glglobaldata[])(s32 *, s32 *);
+    s32 size[3];
+    s32 data;
+    void (**entry)(s32 *, s32 *);
+    s32 total = 1;
+
+    entry = D_80800230_glglobaldata; do {
+        (*entry)(size, &data);
+        total += size[0];
+        entry++;
+    } while (entry != D_80800238_glglobaldata);
+}
 
 s32 glglobaldata_entrypoint_1(u8 *arg0) {
     return *arg0 == 8;
