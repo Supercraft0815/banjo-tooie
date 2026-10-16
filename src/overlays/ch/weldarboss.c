@@ -642,7 +642,18 @@ void func_80802ABC_chweldarboss(Actor *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_808032A8_chweldarboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80803378_chweldarboss.s")
+f32 func_80803378_chweldarboss(Actor *arg0) {
+    typedef struct {
+        u8 pad0[0x6F];
+        u8 unk6F;
+    } WeldarData;
+    void *func_80100094(Actor *, u32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    WeldarData *data;
+
+    data = func_80100094(arg0, 0);
+    return func_800F10B4(data->unk6F, 1.0f, 6.0f, 0.0f, 3.0f);
+}
 
 s32 func_808033D8_chweldarboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
