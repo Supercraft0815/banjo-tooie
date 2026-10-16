@@ -1,6 +1,7 @@
 #include "common.h"
 
 s32 func_800D395C(void);
+s16 func_800D211C(s32);
 
 void func_80800000_chclinker(Actor *arg0) {
     s32 func_800D0A9C(u32, u32);
@@ -216,7 +217,7 @@ int func_808008E0_chclinker(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_80800BDC_chclinker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_80800C9C_chclinker.s")
+s32 func_80800C9C_chclinker(Actor *arg0, s32 arg1, s32 arg2) { void *func_80100094(Actor *, u32); s16 func_800D211C(s32); struct { s32 unk0; f32 value; } *data; data = func_80100094(arg0, 0); switch (arg1) { case 0x137C: return func_800D211C(0x94); case 0x137D: case 0x137E: case 0x137F: return (s32)data->value; default: return 0; } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_80800D24_chclinker.s")
 
