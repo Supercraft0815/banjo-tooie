@@ -48,7 +48,44 @@ void func_80800634_chhoney(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_80800688_chhoney.s")
+void func_80800688_chhoney(Actor *arg0) {
+    void _fxsparkle_entrypoint_1(f32 *, u32);
+    s32 _subaddiefind_entrypoint_6(u8 *, Actor **, s32);
+    s32 func_8001211C(void);
+    void func_800FFA88(Unk80132ED0 *);
+    extern u8 D_80801020_chhoney[];
+    Actor *actors[14];
+    Actor *self;
+    Actor *chosen;
+    int index;
+    s32 oldest;
+    Actor *actor;
+    s32 count;
+    s32 stamp;
+    Unk80132ED0 *marker;
+
+    self = arg0;
+    marker = NULL;
+    oldest = func_8001211C();
+    count = _subaddiefind_entrypoint_6(D_80801020_chhoney, actors, 14);
+    for (index = 0; index < count; index++) {
+        actor = actors[index];
+        if (self == actor) {
+            continue;
+        }
+        if (oldest >= (stamp = *(s32 *)&actor->unk54) && actor->unk64_16) {
+            marker = actor->unk0;
+            oldest = stamp;
+            chosen = actor;
+        }
+    }
+    if (marker == NULL) {
+        marker = actors[0]->unk0;
+        chosen = actors[0];
+    }
+    _fxsparkle_entrypoint_1(chosen->position, 0);
+    func_800FFA88(marker);
+}
 
 /* extern */
 
