@@ -1,6 +1,32 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F3A0/func_800A5AB0.s")
+void func_800A5AB0(void) {
+    struct Entry { s16 map; u8 data[10]; };
+    struct Level { s32 level; struct Entry *entries; };
+    extern struct Entry D_8011A1B0;
+    extern struct Level D_8011A1BC[];
+    extern void *D_80127100;
+    extern u8 D_8012762C;
+    s32 func_800EA05C();
+    s32 i;
+    s32 level = D_8012762C;
+    s32 map;
+    struct Entry *entries = &D_8011A1B0;
+    struct Entry *scan;
+
+    for (i = 0; D_8011A1BC[i].level != 0; i++) {
+        if (level == D_8011A1BC[i].level) {
+            entries = D_8011A1BC[i].entries;
+        }
+    }
+    map = func_800EA05C();
+    for (i = 0; entries[i].map != 0; i++) {
+        if (map == entries[i].map) {
+            break;
+        }
+    }
+    D_80127100 = &entries[i];
+}
 
 s8 func_800A5B6C(void) {
     extern void *D_80127100;
