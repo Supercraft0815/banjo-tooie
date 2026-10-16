@@ -1,4 +1,5 @@
 #include "common.h"
+typedef struct player_state_s PlayerState;
 
 s32 bashoes_entrypoint_0() 
 {
@@ -101,7 +102,7 @@ void bashoes_entrypoint_14(void *arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/bashoes_entrypoint_15.s")
 
 void bashoes_entrypoint_16(s32 arg0) {
-    s32 func_8009C128(s32, s32 *);
+    void func_8009C128(PlayerState *, f32[3]);
     s32 func_800B53A4(s32);
     s32 func_800BABB8(s32, s32 *, s32 *, s32, s32 *);
     extern s32 D_80800AD0_bashoes;
@@ -114,7 +115,7 @@ void bashoes_entrypoint_16(s32 arg0) {
 }
 
 void bashoes_entrypoint_17(s32 arg0) {
-    s32 func_8009C128(s32, s32 *);
+    void func_8009C128(PlayerState *, f32[3]);
     s32 func_800B53A4(s32);
     s32 func_800BABB8(s32, s32 *, s32 *, s32, s32 *);
     extern s32 D_80800B4C_bashoes;
@@ -156,4 +157,26 @@ void bashoes_entrypoint_19(s32 arg0) {
     func_800BABB8(sp20, sp24, sp24, 0x3F800000, &D_80800B90_bashoes);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/bashoes_entrypoint_20.s")
+void bashoes_entrypoint_20(PlayerState *arg0) {
+    f32 func_80090010(void);
+    f32 func_8009BB5C(PlayerState *);
+    void func_8009C128(PlayerState *, f32[3]);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800EFCD8(f32[3], f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    extern s32 D_80800BD4_bashoes;
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp2C;
+    f32 sp28;
+
+    func_8009C128(arg0, sp30);
+    sp28 = func_800F10B4(func_8009BB5C(arg0), 0.0f, 1000.0f, 10.0f, 50.0f);
+    func_800EFCD8(sp3C, func_80090010(), sp28);
+    sp3C[1] = 0.0f;
+    sp30[0] += sp3C[0];
+    sp30[1] += sp3C[1];
+    sp30[2] += sp3C[2];
+    sp30[1] += 6.0f;
+    func_800BBCB8(sp30, 0, 1.0f, 1, &D_80800BD4_bashoes);
+}
