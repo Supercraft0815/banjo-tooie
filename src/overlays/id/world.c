@@ -126,4 +126,24 @@ block_9:
     return NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/world/idworld_entrypoint_5.s")
+void idworld_entrypoint_5(void) {
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    extern s32 D_80127EF0;
+    extern void (*D_808002C0_idworld[])(u32, s32, s32);
+    u32 end;
+    u32 begin;
+    u32 item;
+
+    end = vector_end(*(s32 *)((s8 *)&D_80127EF0 + 8));
+    begin = vector_begin(*(s32 *)((s8 *)&D_80127EF0 + 8));
+    item = begin;
+    if (begin < end) {
+        do {
+            if (*(u8 *)(item + 7) != 0) {
+                D_808002C0_idworld[*(u8 *)(item + 6)](item + 8, *(s32 *)item, *(s16 *)(item + 4));
+            }
+            item += 0xA8;
+        } while (item < end);
+    }
+}
