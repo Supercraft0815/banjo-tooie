@@ -14,7 +14,21 @@ OSThread *chboggyfatboy_entrypoint_1(void)
     return (OSThread *) D_808011DC_chboggyfatboy;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_80800018_chboggyfatboy.s")
+s32 func_80800018_chboggyfatboy(Actor *arg0) {
+    s32 _chboggykids_entrypoint_0(void);
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
+
+    if (_chboggykids_entrypoint_0() == 0) {
+        func_800FFAB0(arg0);
+        return 0;
+    }
+    *(f32 *)&arg0->actorData[3] = 270.0f;
+    if (func_800DA298(0x8E) != 0) {
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800078_chboggyfatboy(Actor *arg0) {
     void *data = func_80100094(arg0, 0);
