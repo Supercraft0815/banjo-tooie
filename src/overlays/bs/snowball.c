@@ -146,7 +146,30 @@ void func_808003B0_bssnowball(s32 arg0)
     _basudie_entrypoint_8();
     bssnowball_entrypoint_0(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_808003D8_bssnowball.s")
+void func_808003D8_bssnowball(PlayerState *arg0) {
+    s32 _basudie_entrypoint_9(PlayerState *, f32);
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_8009DB04(PlayerState *, s32, f32, s32);
+    s32 func_800B53A4(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    extern s32 D_80800F30_bssnowball[];
+    extern s32 D_80800F84_bssnowball[];
+    extern s32 D_80801028_bssnowball[];
+    f32 sp2C[3];
+    s32 sp28;
+
+    sp28 = func_800B53A4(0x32);
+    bssnowball_entrypoint_1(arg0);
+    _basudie_entrypoint_9(arg0, 90.0f);
+    func_8009C128(arg0, sp2C);
+    func_8009DB04(arg0, 0x694, 1.0f, 0x7FFF);
+    func_8009D9D4(arg0);
+    func_800BBCB8(sp2C, NULL, 1.0f, 1, D_80801028_bssnowball);
+    func_800BBCB8(sp2C, NULL, 1.0f, 1, D_80800F30_bssnowball);
+    func_800BABB8(sp28, sp2C, sp2C, 1.0f, D_80800F84_bssnowball);
+    _basnowball_entrypoint_10(arg0);
+}
 
 void func_808004AC_bssnowball()
 {
