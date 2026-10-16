@@ -19,7 +19,24 @@ void func_800ADCD0(u8 **list_ptr, u8 *animation) {
     for (matrix = start; matrix < end; matrix += 64) mlMtxGet(matrix);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800ADD80.s")
+void func_800ADD80(s16 arg0, u8 *animation) {
+    s32 func_800AE080(s16);
+    void *func_8001B710(s16, s32);
+    s32 func_80019CD4(void);
+    void mlMtxGet(void *);
+    u8 *list;
+    u8 *end, *matrix;
+    s16 *handle = &arg0;
+    list = (u8 *)func_800AE080(*handle);
+    if (*(s32 *)(list + 4) < *(s16 *)(animation + 4)) {
+        list = func_8001B710(*handle, *(s16 *)(animation + 4) * 64 + 0x50);
+        *(s32 *)(list + 4) = *(s16 *)(animation + 4);
+    }
+    *(s32 *)list = *(s16 *)(animation + 4);
+    end = *(s32 *)list * 64 + list + 0x50;
+    func_80019CD4();
+    for (matrix = list + 0x50; matrix < end; matrix += 64) mlMtxGet(matrix);
+}
 
 s32 func_800ADE2C(s32 arg0, s32 arg1) {
     if (arg1 == -1) {
