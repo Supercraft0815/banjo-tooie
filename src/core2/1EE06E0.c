@@ -76,7 +76,42 @@ void *func_80106F30(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107070.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107200.s")
+/* extern */
+
+void func_80107200(void *arg0) {
+    void func_800EE940(s16 dst[3], f32 src[3]);
+    struct {
+        f32 timer;
+        s16 position[3];
+        s16 state;
+        u32 flags : 12;
+        u32 value : 12;
+        u32 pad : 8;
+        s16 unk10;
+        s16 rotation;
+    } *entry;
+    struct {
+        u8 pad0[4];
+        f32 position[3];
+        u8 pad10[0x34];
+        f32 rotation[3];
+        u8 pad50[0x20];
+        u32 flags : 7;
+        u32 pad70 : 15;
+        u32 value : 6;
+        u32 pad73 : 4;
+    } *actor = arg0;
+
+    entry = func_80106F30(arg0);
+    if (entry != NULL) {
+        func_800EE940(entry->position, actor->position);
+        entry->value = actor->value;
+        entry->flags = actor->flags;
+        entry->rotation = (s32)actor->rotation[1];
+        entry->state = 0;
+        entry->timer = 0.0f;
+    }
+}
 
 /* extern */
 
