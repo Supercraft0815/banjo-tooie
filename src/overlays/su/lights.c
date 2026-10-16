@@ -1,6 +1,34 @@
 #include "common.h"
+struct Vector;
+struct Vector *vector_new(u32 element_size, u32 count);
+void *vector_begin(struct Vector *vec);
+void *vector_end(struct Vector *vec);
+void *vector_push_back(struct Vector **vec_ptr);
+void vector_free(struct Vector *vec);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/func_80800000_sulights.s")
+u8 *func_80800000_sulights(s32 arg0, s32 arg1) {
+    extern struct Vector *D_80127EF0;
+    u8 *begin;
+    u8 *end;
+    u8 *p;
+
+    if (D_80127EF0 == NULL) {
+        D_80127EF0 = vector_new(0x3C, 1);
+    }
+    end = vector_end(D_80127EF0);
+    begin = vector_begin(D_80127EF0);
+    p = begin;
+    while (p < end && *p != 0) {
+        p += 0x3C;
+    }
+    if (p == end) {
+        p = vector_push_back(&D_80127EF0);
+    }
+    p[0] = arg0;
+    p[1] = arg1;
+    *(f32 *)(p + 0x34) = 0.0f;
+    return p;
+}
 
 void func_808000D0_sulights(s8 *arg0) {
     arg0[0] = 0;
@@ -206,9 +234,7 @@ void sulights_entrypoint_6(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3) {
 }
 
 void sulights_entrypoint_7(s32 arg0) {
-    u32 vector_begin(s32);
-    u32 vector_end(s32);
-    extern s32 D_80127EF0;
+    extern struct Vector *D_80127EF0;
     u32 end;
     u32 begin;
     u32 ptr;
@@ -229,8 +255,7 @@ void sulights_entrypoint_7(s32 arg0) {
 }
 
 void sulights_entrypoint_8(void) {
-    s32 vector_free(s32);
-    extern s32 D_80127EF0;
+    extern struct Vector *D_80127EF0;
     if (D_80127EF0 != 0) {
         vector_free(D_80127EF0);
         D_80127EF0 = 0;
@@ -239,9 +264,7 @@ void sulights_entrypoint_8(void) {
 
 void sulights_entrypoint_9(void) {
     f32 func_800D8FF8();
-    u32 vector_begin(s32);
-    u32 vector_end(s32);
-    extern s32 D_80127EF0;
+    extern struct Vector *D_80127EF0;
     typedef struct {
         s32 (*update)(u32);
         s32 (*finish)(u32);
