@@ -31,7 +31,24 @@ void func_800F47C0(void (*arg0)(PlayerState *)) {
     } while (current != end);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F482C.s")
+void func_800F482C(s32 arg0) {
+    void func_800A91F4(s32);
+    s32 func_800F3880(PlayerState *);
+    PlayerState **current;
+    s32 i;
+
+    current = D_80135490;
+    i = 0;
+    do {
+        if (*current != NULL && (arg0 == 0 || func_800A3274(*current) == arg0)) {
+            func_800F3880(*current);
+            func_800A91F4(i);
+            *current = NULL;
+        }
+        i++;
+        current++;
+    } while (i != 8);
+}
 
 void func_800F48BC(s32 arg0, f32 *arg1) {
     f32 func_800D8FF8(void);
@@ -1268,7 +1285,7 @@ int func_800F72DC(s32 arg0) {
 /* extern */
 
 void func_800F732C(void) {
-    s32 func_800F482C(s32);
+    void func_800F482C(s32);
     D_801354DA = 1;
     func_800F482C(0x11);
     func_800F482C(0);
@@ -1295,7 +1312,7 @@ void func_800F739C(s32 arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F73C4.s")
 
 void func_800F759C(s32 arg0) {
-    s32 func_800A91F4(s32);
+    void func_800A91F4(s32);
     s32 func_800F3880(PlayerState *);
     s32 func_80101238(s32, s32);
     extern u8 D_801354B0[];
