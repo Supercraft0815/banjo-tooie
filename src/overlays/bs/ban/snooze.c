@@ -103,7 +103,28 @@ void func_8080037C_bsbansnooze(PlayerState *arg0)
 
 void func_8080039C_bsbansnooze(PlayerState *arg0) { void baphysics_set_target_horizontal_velocity(PlayerState *, f32); void func_8009DF94(PlayerState *, s32, f32, s32); func_80800098_bsbansnooze(arg0); baanim_playForDuration_onceSmooth(arg0, 0x279, 1.6f); func_8009FFD8(arg0, 1, 1, 3, 2); baphysics_set_target_horizontal_velocity(arg0, 0.0f); func_8009DF94(arg0, 0x58D, 1.0f, 0x7530); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_80800414_bsbansnooze.s")
+void func_80800414_bsbansnooze(PlayerState *arg0) {
+    void _babackpack_set_state(void *, s32);
+    int baanim_isAt(PlayerState *, f32);
+    int baanim_isStopped(PlayerState *);
+    s32 bs_setState(s32, s32);
+    void func_8009DE38(PlayerState *, s32, f32);
+    void func_800A0CD0(void *, s32);
+    s32 sp24;
+
+    sp24 = 0;
+    if (baanim_isAt(arg0, 0.77f) != 0) {
+        func_8009DE38(arg0, 0x584, 1.1f);
+    }
+    if (baanim_isAt(arg0, 0.6556f) != 0) {
+        _babackpack_set_state(arg0, 1);
+        func_800A0CD0(arg0, 1);
+    }
+    if (baanim_isStopped(arg0) != 0) {
+        sp24 = 1;
+    }
+    bs_setState(arg0, sp24);
+}
 
 s32 bsbansnooze_entrypoint_1(s32 arg0) {
     extern s32 D_80800A50_bsbansnooze[];
