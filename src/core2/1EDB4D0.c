@@ -132,7 +132,29 @@ f32 func_80101F24(Actor *arg0) {
     return 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80101F64.s")
+s32 func_80101F64(Actor *arg0, s32 arg1) {
+    typedef struct {
+        f32 duration;
+        u16 index;
+        u16 playback;
+    } AnimationEntry;
+    s32 func_80102394(Actor *);
+    s32 anctrl_getIndex(struct anctrl_s *);
+    s32 sp1C;
+    s32 result;
+    struct anctrl_s *temp_v0;
+
+    sp1C = func_80102394(arg0);
+    temp_v0 = func_80104248(arg0);
+    if (temp_v0 == NULL) {
+        return 1;
+    }
+    result = 1;
+    if (sp1C != 0) {
+        return anctrl_getIndex(temp_v0) != ((AnimationEntry *)sp1C)[arg1].index;
+    }
+    return result;
+}
 
 /* extern */
 
