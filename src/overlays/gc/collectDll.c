@@ -148,7 +148,31 @@ void func_808005BC_gccollectDll(u32 arg0, Prop* arg1)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/collectDll/func_80800660_gccollectDll.s")
+s32 func_80800660_gccollectDll(void* arg0, void* arg1) {
+    s16* cursor;
+    s16 entry;
+    s32 count;
+    int i;
+    u32 id;
+
+    i = 0;
+    cursor = (s16*)((u8*)arg0 + (*(s32*)arg1 * 4));
+    count = *cursor;
+    cursor += 2;
+    if (count > 0) {
+        do {
+            entry = *cursor++;
+            id = func_800CF87C() + entry;
+            if ((func_800D0A9C(id, 1U) != 0) && (func_800D0B68(id, 1U) == 0)) {
+                func_808005BC_gccollectDll(id, (Prop*)cursor);
+            }
+            i++;
+            cursor += 3;
+        } while (i != count);
+    }
+    *(s32*)arg1 = ((u8*)cursor - (u8*)arg0) >> 2;
+    return (s32)arg0;
+}
 
 s32 gccollectDll_entrypoint_6(void* arg0, void* arg1)
 {
