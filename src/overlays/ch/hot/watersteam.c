@@ -9,15 +9,36 @@ OSThread *chhotwatersteam_entrypoint_0(void)
 
 /* extern */
 
-void func_8080000C_chhotwatersteam(s32 *arg0) {
-    s32 func_800FFA88(s32);
+void func_8080000C_chhotwatersteam(Unk80132ED0 **arg0) {
+    void func_800FFA88(Unk80132ED0 *);
     s32 func_808001E8_chhotwatersteam();
     if (func_808001E8_chhotwatersteam() == 0) {
         func_800FFA88(*arg0);
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/watersteam/func_8080003C_chhotwatersteam.s")
+void func_8080003C_chhotwatersteam(Actor *arg0) {
+    void func_800FFA88(Unk80132ED0 *);
+    s32 func_800D9078(f32 *);
+    void func_80101FDC(Actor *, u32);
+    void func_808000D8_chhotwatersteam(Actor *);
+    s32 func_808001E8_chhotwatersteam(void *);
+
+    if (func_808001E8_chhotwatersteam(arg0) == 0) {
+        func_800FFA88(arg0->unk0);
+        return;
+    }
+    switch (arg0->unk70_10) {
+    case 1:
+        func_808000D8_chhotwatersteam(arg0);
+        return;
+    case 2:
+        if (func_800D9078(&arg0->unk58) != 0) {
+            func_80101FDC(arg0, 1);
+        }
+        return;
+    }
+}
 
 s32 func_808000C4_chhotwatersteam(s32 arg0, s32 arg1, s32 arg2) 
 {
