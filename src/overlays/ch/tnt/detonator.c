@@ -20,7 +20,25 @@ void func_8080000C_chtntdetonator(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/detonator/func_80800148_chtntdetonator.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/detonator/func_8080021C_chtntdetonator.s")
+void func_8080021C_chtntdetonator(Actor *arg0) {
+    void func_800904F4(s32, Unk80132ED0 *);
+    int func_800EEEA8(f32 vec[3]);
+    f32 func_800EFC7C(void *, void *);
+    void func_8010D254(f32 *);
+    s32 func_8010D278();
+    f32 position[3];
+
+    if (func_8010D278() == 0xF) {
+        if (func_800EEEA8((f32 *)arg0->actorData) == 0) {
+            func_8010D254(position);
+            if (func_800EFC7C(arg0->actorData, position) < 4900.0f) {
+                if (position[1] < ((f32 *)arg0->actorData)[1] + 140.0f && ((f32 *)arg0->actorData)[1] + -50.0f < position[1]) {
+                    func_800904F4(0x42, arg0->unk0);
+                }
+            }
+        }
+    }
+}
 
 void func_808002D8_chtntdetonator(u8 *arg0) {
     s32 *_fxgenlist_entrypoint_2(void);
