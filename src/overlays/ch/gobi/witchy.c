@@ -9,7 +9,32 @@ OSThread *chgobiwitchy_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gobi/witchy/func_8080000C_chgobiwitchy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gobi/witchy/func_80800104_chgobiwitchy.s")
+s32 func_80800104_chgobiwitchy(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void *_suexpression_entrypoint_7(Actor *, u32, u32);
+    void _suexpression_entrypoint_12(void *, f32, f32);
+    void _suexpression_entrypoint_14(void *, f32, f32);
+    void func_8080024C_chgobiwitchy(Actor *, s32, s32);
+    extern u32 D_80800458_chgobiwitchy;
+    void *expression;
+
+    switch (arg1) {
+        case 0x2E:
+            func_8080024C_chgobiwitchy(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x52:
+            _gcdialogcamera_entrypoint_3(&D_80800458_chgobiwitchy, arg0->scale);
+            break;
+        case 0x95:
+            expression = _suexpression_entrypoint_7(arg0, 1, 0x38);
+            _suexpression_entrypoint_12(expression, 40.0f, 60.0f);
+            _suexpression_entrypoint_14(expression, 1.0f, 1.0f);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_808001C8_chgobiwitchy(Actor* arg0) 
 {
