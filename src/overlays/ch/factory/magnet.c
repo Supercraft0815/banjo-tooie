@@ -91,7 +91,22 @@ void chfactorymagnet_entrypoint_0(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80801460_chfactorymagnet.s")
+void func_80801460_chfactorymagnet(Actor *arg0, s32 arg1) {
+    s32 _sumumbofx_entrypoint_7(s32, f32, s32, s32, f32 *, s32, s32);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    f32 func_80103EAC(Actor *);
+    void func_80801A9C_chfactorymagnet(s32, f32 *, f32 *);
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+    f32 sp30;
+
+    sp30 = func_800F12D4(arg0->unk58, 0.25f, 1.0f, 0.0f, 1.0f);
+    func_80801A9C_chfactorymagnet((s32)arg0, sp40, sp34);
+    func_800EFE50(sp4C, sp40, sp34, sp30);
+    _sumumbofx_entrypoint_7(arg1, func_80103EAC(arg0) * 0.6f, 0, 0x28, sp4C, 0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80801508_chfactorymagnet.s")
 
