@@ -150,7 +150,22 @@ void func_80800878_chhumba(void *arg0) {
     func_800DA298(((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF) + 0xD5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_808008A0_chhumba.s")
+s32 func_808008A0_chhumba(Actor *arg0) {
+    int func_800F0064(f32 *, f32, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 sp24[3];
+    Actor *sp20;
+    f32 temp_f0;
+
+    sp20 = func_80106790(arg0->unk3C);
+    func_80800238_chhumba(arg0, sp24);
+    temp_f0 = arg0->scale;
+    if ((sp20->position[1] < -202.5f * temp_f0) &&
+        (func_800F0064(sp20->position, temp_f0 * 1550.0f, sp24) != 0)) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800934_chhumba.s")
 
