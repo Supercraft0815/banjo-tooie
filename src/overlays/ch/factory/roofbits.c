@@ -54,7 +54,7 @@ OSThread *chfactoryroofbits_entrypoint_0(void)
     return (OSThread *) D_80800974_chfactoryroofbits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_8080015C_chfactoryroofbits.s")
+s32 func_8080015C_chfactoryroofbits(s32 arg0) { switch (arg0) { case 0x4B: return 0x197; case 0x4C: return 0x198; case 0x4D: return 0x199; case 0x4E: return 0x19A; case 0xE: return 0x19B; default: return 0; } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_808001C0_chfactoryroofbits.s")
 
