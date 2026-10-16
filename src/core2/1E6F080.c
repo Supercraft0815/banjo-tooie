@@ -466,7 +466,19 @@ s32 func_80096DD4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80096E30.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_8009700C.s")
+int func_8009700C(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4) {
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
+    f32 sp2C[3];
+    f32 sp20[3];
+
+    func_800EFA4C(sp20, arg2[0], arg2[1] + arg3, arg2[2]);
+    func_800EFA4C(sp2C, arg2[0], arg2[1] + arg4, arg2[2]);
+    if (func_800C6A7C(sp20, sp2C, arg1, 0x420025) != 0) {
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
