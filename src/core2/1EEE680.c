@@ -17,4 +17,28 @@ void func_80114D98(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEE680/func_80114DD8.s")
+void func_80114DD8(void *arg0) {
+    void func_80112E50(void *, f32, s32);
+    s16 *var_v0;
+
+    var_v0 = *(s16 **)((u8 *)arg0 + 8);
+    if (var_v0[2] == 0) {
+        if (var_v0[0] >= 5) {
+            func_80112E50(arg0, -5.0f, 2);
+            var_v0 = *(s16 **)((u8 *)arg0 + 8);
+        }
+        var_v0[0] = 0;
+        var_v0 = *(s16 **)((u8 *)arg0 + 8);
+    }
+    if (var_v0[3] == 0) {
+        if (var_v0[1] >= 5) {
+            func_80112E50(arg0, 5.0f, 2);
+            var_v0 = *(s16 **)((u8 *)arg0 + 8);
+        }
+        var_v0[1] = 0;
+        var_v0 = *(s16 **)((u8 *)arg0 + 8);
+    }
+    var_v0[3] = 0;
+    var_v0 = *(s16 **)((u8 *)arg0 + 8);
+    var_v0[2] = var_v0[3];
+}
