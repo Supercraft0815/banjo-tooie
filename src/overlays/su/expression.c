@@ -107,12 +107,30 @@ void suexpression_entrypoint_6(u8 *arg0, s16 arg1, s32 arg2, s32 arg3, s32 arg4)
     (*(s16 *)((s8 *)(arg0) + (0xC))) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_7.s")
+void *suexpression_entrypoint_7(Actor *arg0, s32 arg1, s16 arg2) {
+    u32 *func_80100074(Actor *, u32, u32);
+    struct ExpressionFlags {
+        u8 unused;
+        u8 high : 4;
+        u8 index : 2;
+        u8 low : 2;
+    };
+    void *data;
+    s32 sp28;
+    s32 sp24;
+    s32 sp20;
+
+    suexpression_entrypoint_3(arg2, &sp28, &sp24, &sp20);
+    data = func_80100074(arg0, arg1, sp24 + sp28 + sp20);
+    suexpression_entrypoint_6(data, arg2, sp20, sp28, sp24);
+    ((struct ExpressionFlags *)&arg0->pad94)->index = arg1 + 1;
+    return data;
+}
 
 /* extern */
 
 void suexpression_entrypoint_8(void *arg0, s32 arg1) {
-    s32 func_80100074(void *, s32, s32);
+    u32 *func_80100074(Actor *, u32, u32);
     void *func_80100094();
     if (func_80100094() != 0) {
         func_80100074(arg0, arg1, 0);
