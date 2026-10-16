@@ -2133,7 +2133,39 @@ void func_80806FAC_chgameselect(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80807030_chgameselect.s")
+void func_80807030_chgameselect(Actor *arg0) {
+    s32 _gczoombox_entrypoint_0(s32);
+    void *func_80100094(Actor *, u32);
+    s32 pad;
+    u8 *sp28;
+    s32 temp_a0;
+    void *temp_a0_2;
+    void *temp_a0_3;
+    s32 var_s1;
+    u8 *temp_v0;
+    u8 *var_s0;
+
+    temp_v0 = func_80100094(arg0, 0);
+    sp28 = temp_v0;
+    var_s1 = 0;
+    var_s0 = temp_v0;
+    do {
+        temp_a0 = *(s32 *)var_s0;
+        if (temp_a0 != 0) {
+            _gczoombox_entrypoint_0(temp_a0);
+        }
+        temp_a0_2 = *(void **)(var_s0 + 0x10);
+        if (temp_a0_2 != NULL) {
+            heap_free(temp_a0_2);
+        }
+        var_s1 += 4;
+        var_s0 += 4;
+    } while (var_s1 != 0x10);
+    temp_a0_3 = *(void **)(sp28 + 0x20);
+    if (temp_a0_3 != NULL) {
+        heap_free(temp_a0_3);
+    }
+}
 
 s32 func_808070C0_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     void _gczoombox_entrypoint_18();
