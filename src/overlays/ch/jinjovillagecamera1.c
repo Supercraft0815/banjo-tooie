@@ -1,6 +1,21 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjovillagecamera1/func_80800000_chjinjovillagecamera1.s")
+void func_80800000_chjinjovillagecamera1(Actor *arg0, s32 arg1, s32 arg2) {
+    void _glcutDll_entrypoint_17();
+    void func_80101FDC(Actor *, u32);
+
+    switch (arg1) {
+    case 0x1522:
+        _glcutDll_entrypoint_17();
+        return;
+    case 0x1523:
+    case 0x1524:
+    case 0x1565:
+        func_80101FDC(arg0, 2);
+        arg0->unk58 = 1.5f;
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjovillagecamera1/func_80800078_chjinjovillagecamera1.s")
 
