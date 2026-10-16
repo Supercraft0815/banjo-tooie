@@ -53,7 +53,29 @@ void func_808000C8_chcauldronentrydoor(Actor *arg0) {
     _chdoor_entrypoint_0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cauldronentrydoor/func_80800168_chcauldronentrydoor.s")
+s32 func_80800168_chcauldronentrydoor(Actor *arg0, s32 arg1, void *arg2) {
+    s32 _chdoor_entrypoint_1(s32, s32, s32);
+    void _chelectricfence_entrypoint_1(Actor *, f32 *);
+    f32 func_800EC75C(void *, f32 *);
+    void func_800FC6B0(u32);
+    void func_8010A570(Actor *);
+    f32 sp20[4];
+    void **marker = &arg2;
+
+    switch (arg1) {
+        case 7:
+            func_800FC6B0(0xE);
+            return _chdoor_entrypoint_1(arg0, arg1, *marker);
+        case 0x3F:
+            func_800EC75C(*marker, sp20);
+            _chelectricfence_entrypoint_1(arg0, sp20);
+            func_8010A570(arg0);
+            *(f32 *)&arg0->actorData[4] = 0.2f;
+            return 1;
+        default:
+            return 0;
+    }
+}
 
 /* extern */
 
