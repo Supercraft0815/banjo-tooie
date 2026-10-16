@@ -15,7 +15,31 @@ void func_8080000C_chsquits(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/squits/func_80800054_chsquits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/squits/func_80800108_chsquits.s")
+s32 func_80800108_chsquits(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800BF744(s32, s32);
+    int func_800DC298(f32);
+    void func_800FFAB0(Actor *);
+    void func_80101FDC(Actor *, u32);
+
+    switch (arg1) {
+        case 0x2E:
+            func_80101FDC(arg0, 1);
+            return 1;
+        case 0x95:
+            if (func_800DC298(0.2f) == 0) {
+                func_800BF744(1, 0);
+                func_800FFAB0(arg0);
+                break;
+            } else {
+                func_800BF744(1, 1);
+                break;
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/squits/func_808001A4_chsquits.s")
 
