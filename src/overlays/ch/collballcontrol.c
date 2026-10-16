@@ -474,7 +474,7 @@ void func_80802764_chcollballcontrol(s32 *arg0) {
     Actor *func_80106790(Unk80132ED0 *);
     void func_808028D0_chcollballcontrol(s32 *, u8 *);
     void func_80802964_chcollballcontrol(Actor *, u32);
-    void func_808029D8_chcollballcontrol(s32 *, u8 *);
+    void func_808029D8_chcollballcontrol(Actor *, Actor *);
     s32 *list;
     Entry *entry;
     Entry *end;
@@ -521,7 +521,19 @@ void func_80802964_chcollballcontrol(Actor *arg0, u32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808029D8_chcollballcontrol.s")
+void func_808029D8_chcollballcontrol(Actor *arg0, Actor *arg1) {
+    s32 _sukickball_entrypoint_12(u8 *, s32);
+    void _sukickball_entrypoint_13(f32 *, f32 *, f32);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *parent;
+
+    parent = func_80106790(arg0->unk3C);
+    if (arg0->unk70_10 != 2) {
+        if (_sukickball_entrypoint_12((u8 *)parent, func_808010F8_chcollballcontrol(arg1))) {
+            _sukickball_entrypoint_13(arg1->position, arg0->position, 62.999996185302734375f);
+        }
+    }
+}
 
 void func_80802A50_chcollballcontrol(Actor *arg0) {
     typedef struct { f32 timer; u8 pad[0x1C]; u8 owner; } BallData;
