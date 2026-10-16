@@ -423,14 +423,28 @@ s32 bsbswim_entrypoint_8(s32 arg0) {
     return ((s32 *)&D_80801EE0_bsbswim)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80801428_bsbswim.s")
+void func_80801428_bsbswim(void *arg0) {
+    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    void func_8009B94C(u8 *, f32 *);
+    void _baswim_entrypoint_9(struct player_state_s *, f32);
+    void func_8009BA9C(struct player_state_s *, f32 *);
+    void func_800A0024(struct player_state_s *);
+    baanim_playForDuration_loopSmooth(arg0, 0x70, 2.0f);
+    func_80800000_bsbswim((s32)arg0);
+    func_8009B94C(arg0, 0);
+    _baswim_entrypoint_9(arg0, 0.0f);
+    func_8009BA9C(arg0, 0);
+    func_80800030_bsbswim(arg0);
+    func_800A0024(arg0);
+    _baswim_entrypoint_6(arg0, 0);
+}
 
 /* extern */
 
 void func_808014A0_bsbswim(s32 arg0) {
     s32 bs_setState(s32, s32);
     s32 func_8009CC68(s32);
-    s32 func_800A0024();
+    void func_800A0024();
     s32 player_inWater(s32);
     s32 sp1C;
 
@@ -524,8 +538,8 @@ void func_80801930_bsbswim(u8 *arg0) { s32 _baduo_entrypoint_7(u8 *, s32); if (a
 
 void func_8080196C_bsbswim(struct player_state_s *arg0) {
     s32 baanim_playForDuration_onceSmooth(struct player_state_s *, s32, s32);
-    s32 func_8009B94C(struct player_state_s *, s32);
-    s32 func_8009BA9C(struct player_state_s *, s32);
+    void func_8009B94C(u8 *, f32 *);
+    void func_8009BA9C(struct player_state_s *, f32 *);
     func_80800030_bsbswim(arg0);
     baanim_playForDuration_onceSmooth(arg0, 0x131, 0x3FC00000);
     func_80800000_bsbswim((s32) arg0);
