@@ -64,7 +64,32 @@ s32 func_80800240_chbilldrillplate(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_808002A0_chbilldrillplate.s")
+void func_808002A0_chbilldrillplate(s32 arg0) {
+    s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
+    void _glcutDll_entrypoint_6(u32, u32);
+    void func_800DA544(GameFlag);
+    void *func_80800FCC_chbilldrillplate(void);
+    u8 *actors[4];
+    s32 found;
+    s32 state;
+    s32 count;
+    u16 *data;
+
+    found = _subaddiefind_entrypoint_4(0x3DC, actors, 4);
+    count = found;
+    for (state = 0; state < found; state++) {
+        if ((s32)((Actor *)actors[state])->unk70_10 >= 3) {
+            count--;
+        }
+    }
+    if (count == 3 || count == 0) {
+        data = func_80800FCC_chbilldrillplate();
+        if (count == 0) {
+            func_800DA544(data[6]);
+        }
+        _glcutDll_entrypoint_6(data[1], data[7]);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_80800358_chbilldrillplate.s")
 
