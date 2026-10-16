@@ -16,7 +16,28 @@ f32 func_80800000_bssnowball(s32 arg0) {
     return temp_f0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_80800064_bssnowball.s")
+struct player_state_s;
+void func_80800064_bssnowball(struct player_state_s *arg0, s32 arg1) {
+    void _basnowball_entrypoint_7(struct player_state_s *);
+    int bakey_held(struct player_state_s *, s32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    s32 bastick_getZone(struct player_state_s *);
+    f32 bastick_getZonePosition(struct player_state_s *);
+    f32 func_800F1214(f32, f32, f32);
+    f32 sp24;
+
+    sp24 = bastick_getZonePosition(arg0);
+    if ((arg1 != 0) && (bakey_held(arg0, 9) != 0)) {
+        baphysics_set_target_horizontal_velocity(arg0, 1400.0f);
+        _basnowball_entrypoint_7(arg0);
+        return;
+    }
+    if (bastick_getZone(arg0) == 0) {
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+        return;
+    }
+    baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp24, 30.0f, 700.0f));
+}
 
 /* extern */
 
@@ -237,7 +258,7 @@ void func_80800C98_bssnowball(s32 arg0) {
     s32 _babounce_entrypoint_2();
     s32 _babounce_entrypoint_9(s32);
     s32 bs_setState(s32, s32);
-    s32 func_80800064_bssnowball(s32, s32);
+    void func_80800064_bssnowball(struct player_state_s *, s32);
     s32 sp1C;
 
     sp1C = 0;
@@ -292,7 +313,6 @@ void func_80800DB0_bssnowball(s32 arg0)
     bssnowball_entrypoint_0(arg0);
 }
 void func_80800DD8_bssnowball(s32 arg0) {
-    struct player_state_s;
     s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     void func_800909CC(struct player_state_s *);
