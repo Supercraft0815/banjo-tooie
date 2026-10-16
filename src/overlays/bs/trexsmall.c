@@ -286,7 +286,20 @@ void func_80801004_bstrexsmall(s32 arg0)
 }
 void func_8080102C_bstrexsmall(s32 arg0) { bstrexsmall_entrypoint_2(); _babounce_entrypoint_4(arg0, 1); _babounce_entrypoint_5(arg0, 0x147, (s32) 0x3F30A3D7); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_8080106C_bstrexsmall.s")
+void func_8080106C_bstrexsmall(PlayerState *arg0) {
+    int baanim_isAt(PlayerState *, f32);
+    s32 sp24;
+
+    sp24 = 0;
+    bstrexsmall_entrypoint_3((s32) arg0);
+    if (baanim_isAt(arg0, 0.5f) != 0) {
+        func_800951B4(arg0);
+    }
+    if (_babounce_entrypoint_9(arg0) != 0) {
+        sp24 = 0x145;
+    }
+    bs_setState(arg0, sp24);
+}
 
 s32 bstrexsmall_entrypoint_9(s32 arg0) {
     extern s32 D_80801B58_bstrexsmall[];
