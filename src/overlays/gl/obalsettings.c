@@ -88,7 +88,21 @@ s32 func_80800168_glglobalsettings(void **arg0) {
     return var_s5;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/glglobalsettings_entrypoint_1.s")
+/* extern */
+
+void glglobalsettings_entrypoint_1(void) {
+    s32 _glglobaldata_entrypoint_2(void *);
+    void *sp18[2];
+
+    sp18[0] = func_80800084_glglobalsettings();
+    if (func_80800168_glglobalsettings(sp18) == -1) {
+        glglobalsettings_entrypoint_0();
+    } else {
+        _glglobaldata_entrypoint_2(sp18[0]);
+        func_80800034_glglobalsettings();
+    }
+    heap_free(sp18[0]);
+}
 
 s32 func_80800278_glglobalsettings(s32 arg0, s32 arg1) {
     s32 _glgamestore_entrypoint_3(s32, s32);
