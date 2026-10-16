@@ -29,7 +29,31 @@ void func_80800440_chgameselect(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80800478_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808005D4_chgameselect.s")
+void func_808005D4_chgameselect(Actor *arg0, s32 arg1) {
+    extern s32 D_80807DB0_chgameselect[];
+    void func_80802640_chgameselect(Unk80132ED0 *, s32, s32);
+    void func_808026C8_chgameselect(Unk80132ED0 *, s32);
+    void func_80803678_chgameselect();
+    void func_808036B8_chgameselect();
+    s32 func_80803DCC_chgameselect(s32);
+    u32 state;
+    u32 option;
+
+    arg0->unk79_4 = arg1;
+    state = arg0->unk70_10;
+    if (state == 1 || state == 9) {
+        option = arg0->unk79_4;
+        if (option == 0 || option == 1 || option == 2) {
+            func_80803678_chgameselect(option);
+        } else {
+            func_808036B8_chgameselect(option);
+        }
+        func_80802640_chgameselect((Unk80132ED0 *)arg0->actorData[5],
+            *(s16 *)&D_80807DB0_chgameselect[(u32)arg0->unk79_4], 0);
+        func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[5],
+            func_80803DCC_chgameselect(arg0->unk79_4));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808006A0_chgameselect.s")
 
