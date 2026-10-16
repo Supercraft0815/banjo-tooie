@@ -154,7 +154,7 @@ s32 bsvan_entrypoint_7(s32 arg0) {
 
 void func_80800E60_bsvan(u8 *arg0, s32 (*arg1)(u8 *)) {
     s32 _chfaircoinbox_entrypoint_0(s32, u8 *);
-    s32 bs_setState(u8 *, s32);
+    void bs_setState(struct player_state_s *, int);
     s32 func_80099A4C(u8 *);
     s32 func_8009E6EC();
     s32 func_8009E830(u8 *, s32);
@@ -228,7 +228,26 @@ void func_80801140_bsvan(struct player_state_s *arg0) {
     func_8008B10C(baanim_getAnimCtrlPtr(arg0), 0.1026f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80801198_bsvan.s")
+void func_80801198_bsvan(struct player_state_s *arg0) {
+    void bs_setState(struct player_state_s *, int);
+    int _babounce_entrypoint_2(struct player_state_s *);
+    s32 _babounce_entrypoint_9(struct player_state_s *);
+    int baanim_isAt(struct player_state_s *, f32);
+    void func_800951B4(struct player_state_s *);
+    s32 sp24;
+
+    sp24 = 0;
+    if (baanim_isAt(arg0, 0.5f) != 0) {
+        func_800951B4(arg0);
+    }
+    if (_babounce_entrypoint_2(arg0) != 0) {
+        func_80800000_bsvan(arg0);
+    }
+    if (_babounce_entrypoint_9(arg0) != 0) {
+        sp24 = 0x11A;
+    }
+    bs_setState(arg0, sp24);
+}
 
 s32 bsvan_entrypoint_11(s32 arg0) {
     extern s32 D_80801CDC_bsvan[];
@@ -254,9 +273,9 @@ void func_8080124C_bsvan(struct player_state_s *arg0) {
 /* extern */
 
 void func_808012A4_bsvan(s32 arg0) {
-    s32 _babounce_entrypoint_2();
-    s32 _babounce_entrypoint_9(s32);
-    s32 bs_setState(u8 *, s32);
+    void bs_setState(struct player_state_s *, int);
+    int _babounce_entrypoint_2();
+    s32 _babounce_entrypoint_9(struct player_state_s *);
     void func_80800000_bsvan(struct player_state_s *);
     s32 sp1C;
 
@@ -286,9 +305,9 @@ void func_80801334_bsvan(s32 arg0)
     _bsrest_entrypoint_16(arg0);
 }
 void func_8080135C_bsvan(u8 *arg0) {
+    void bs_setState(struct player_state_s *, int);
     s32 _bsrest_entrypoint_13(s32);
     s32 _bsrest_entrypoint_20();
-    s32 bs_setState(u8 *, s32);
     s32 sp1C;
 
     sp1C = 0;
