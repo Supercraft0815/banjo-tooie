@@ -309,7 +309,29 @@ void func_80801D38_chinflatableboss(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80801DE0_chinflatableboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80801EA0_chinflatableboss.s")
+void func_80801EA0_chinflatableboss(Actor *arg0) {
+    typedef struct {
+        f32 position[3];
+        f32 unkC;
+        f32 rotation;
+        f32 unk14;
+    } BossSpawn;
+    typedef struct {
+        u8 pad0[0x6C];
+        s32 count;
+        BossSpawn spawns[20];
+    } BossSpawns;
+    void *func_80100094(Actor *, u32);
+    Actor *func_80108474(u32, f32 *, s32);
+    void _chappearfx_entrypoint_2(Actor *, s32, s32, f32);
+    s32 i;
+    BossSpawns *data;
+
+    data = func_80100094(arg0, 0);
+    for (i = 0; i < data->count; i++) {
+        _chappearfx_entrypoint_2(func_80108474(0x234, data->spawns[i].position, (s32)data->spawns[i].rotation), 0x20, 2, 1.0f);
+    }
+}
 
 /* extern */
 
