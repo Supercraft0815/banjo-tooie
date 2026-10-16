@@ -49,7 +49,36 @@ void func_80099840(PlayerState *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72EA0/func_8009989C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72EA0/func_80099970.s")
+void func_80099970(PlayerState *arg0) {
+    void func_8009ACF4(void *, f32);
+    void func_8009AD04(void *, f32);
+    void func_8009AD14(void *, s32);
+    void func_8009AD20(void *, s32);
+    void func_8009AD44(PlayerState *, f32 *);
+    s32 func_8009E7C8(PlayerState *, s32);
+    s32 temp_a1;
+    s32 offset;
+    u8 *entry;
+
+    entry = (u8 *)arg0->unkC0;
+    offset = 0;
+    do {
+        if (*(s32 *)(entry + 0x4C) != 0) {
+            func_8009ACF4(arg0, *(f32 *)(entry + 0x28));
+            func_8009AD04(arg0, *(f32 *)((u8 *)arg0->unkC0 + offset + 0x2C));
+            func_8009AD14(arg0, *(s32 *)((u8 *)arg0->unkC0 + offset + 0x3C));
+            func_8009AD20(arg0, *(s32 *)((u8 *)arg0->unkC0 + offset + 0x40));
+            func_8009AD44(arg0, (f32 *)((u8 *)arg0->unkC0 + offset + 0x30));
+            entry = (u8 *)arg0->unkC0 + offset;
+            temp_a1 = *(s32 *)(entry + 0x4C);
+            *(s32 *)(entry + 0x4C) = 0;
+            func_8009E7C8(arg0, temp_a1);
+            return;
+        }
+        offset += 0x28;
+        entry += 0x28;
+    } while (offset != 0xC8);
+}
 
 f32 func_80099A34(PlayerState *self) {
     return self->unkC0->unk0;
@@ -137,7 +166,7 @@ void func_8009AD38(void *arg0, s32 arg1) {
 
 /* extern */
 
-void func_8009AD44(void *arg0) {
-    s32 func_800EE7F8(s32);
-    func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xC0))) + 8);
+void func_8009AD44(PlayerState *arg0, f32 *arg1) {
+    s32 func_800EE7F8();
+    func_800EE7F8(arg0->unkC0->pad8, arg1);
 }
