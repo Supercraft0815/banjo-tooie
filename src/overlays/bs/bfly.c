@@ -103,9 +103,11 @@ s32 bsbfly_entrypoint_0(s32 arg0) {
     return ((s32 *)&D_80801D48_bsbfly)[arg0];
 }
 
-void func_8080042C_bsbfly(s32 arg0)
+void func_8080042C_bsbfly(PlayerState *arg0)
 {
-    func_8009E6EC();
+    s32 func_8009E6EC(PlayerState *);
+    void func_80801BB4_bsbfly(PlayerState *);
+    func_8009E6EC(arg0);
     func_80801BB4_bsbfly(arg0);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800454_bsbfly.s")
@@ -114,7 +116,7 @@ void func_8080042C_bsbfly(s32 arg0)
 
 void func_80800624_bsbfly(PlayerState *arg0) {
     s32 _baboost_entrypoint_1(void *);
-    s32 _baboost_entrypoint_2(s32, s32);
+    void _baboost_entrypoint_2(PlayerState *, f32);
     void _baboost_entrypoint_5(void *);
     void _bafly_entrypoint_10(void *, f32, f32);
     void _bafly_entrypoint_11(void *);
@@ -169,9 +171,9 @@ void func_80800624_bsbfly(PlayerState *arg0) {
         }
         if (arg0->unk15C.word) {
             arg0->unk15C.word = 0;
-            _baboost_entrypoint_2((s32)arg0, 0x3EB33333);
+            _baboost_entrypoint_2(arg0, 0.35f);
         } else {
-            _baboost_entrypoint_2((s32)arg0, 0x3F800000);
+            _baboost_entrypoint_2(arg0, 1.0f);
         }
     }
     boost = _baboost_entrypoint_1(arg0);
@@ -448,7 +450,32 @@ s32 bsbfly_entrypoint_8(s32 arg0) {
     return ((s32 *)&D_80801DC8_bsbfly)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80801BB4_bsbfly.s")
+void func_80801BB4_bsbfly(PlayerState *arg0) {
+    void _baboost_entrypoint_2(PlayerState *, f32);
+    void baflag_set(PlayerState *, s32);
+    s32 bs_getCurrentState(PlayerState *);
+    void func_80099B94(PlayerState *);
+    s32 func_8009E6EC(PlayerState *);
+    void func_8009E830(PlayerState *, s32);
+    void func_800A046C(PlayerState *);
+
+    switch (func_8009E6EC(arg0)) {
+    case 9:
+        func_8009E830(arg0, 2);
+        baflag_set(arg0, 7);
+        func_800A046C(arg0);
+        break;
+    case 24:
+        if (bs_getCurrentState(arg0) == 0x24) {
+            _baboost_entrypoint_2(arg0, 6.0f);
+            func_8009E830(arg0, 2);
+        }
+        break;
+    default:
+        func_80099B94(arg0);
+        break;
+    }
+}
 
 /* extern */
 
