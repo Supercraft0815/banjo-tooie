@@ -27,7 +27,21 @@ void func_80800040_bsfirstp()
     _bastatemem_entrypoint_1();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_0.s")
+void bsfirstp_entrypoint_0(u8 *arg0, f32 *arg1, f32 *arg2) {
+    s32 *func_80802484_bsfirstp(void *);
+    u8 *sp1C;
+    s32 *temp_v0;
+
+    sp1C = *(u8 **)(arg0 + 0x188);
+    temp_v0 = func_80802484_bsfirstp(arg0);
+    arg2[0] = *(f32 *)((u8 *)temp_v0 + 0x1C);
+    arg2[1] = *(f32 *)((u8 *)temp_v0 + 0x20);
+    arg2[2] = *(f32 *)((u8 *)temp_v0 + 0x24);
+    arg1[0] = *(f32 *)((u8 *)temp_v0 + 0x10) + *(f32 *)(sp1C + 0x18);
+    arg1[1] = *(f32 *)((u8 *)temp_v0 + 0x14) + *(f32 *)(sp1C + 0x1C);
+    arg1[2] = *(f32 *)((u8 *)temp_v0 + 0x18);
+    func_8080800C_bsfirstp((s32)arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_1.s")
 
