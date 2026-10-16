@@ -1,5 +1,7 @@
 #include "gl/globalsettings.h"
 
+void heap_free(void *mem);
+
 /* extern */
 
 void glglobalsettings_entrypoint_0(void) {
@@ -58,7 +60,33 @@ void func_80800114_glglobalsettings(s32 arg0) {
     } while (var_s0 != 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/func_80800168_glglobalsettings.s")
+s32 func_80800168_glglobalsettings(void **arg0) {
+    s32 var_s0;
+    s32 var_s2;
+    s32 var_s5;
+    void *temp_v0;
+    void *var_s1;
+
+    var_s1 = func_80800084_glglobalsettings();
+    var_s5 = -1;
+    var_s0 = 0;
+    var_s2 = 0;
+    do {
+        if (func_808000A4_glglobalsettings(var_s0, var_s1) == 0) {
+            temp_v0 = var_s1;
+            var_s1 = *arg0;
+            var_s2 += 1;
+            var_s5 = var_s0;
+            *arg0 = temp_v0;
+        }
+        var_s0 += 1;
+    } while (var_s0 != 2);
+    if (var_s2 >= 2) {
+        func_80800114_glglobalsettings(var_s5);
+    }
+    heap_free(var_s1);
+    return var_s5;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/glglobalsettings_entrypoint_1.s")
 
