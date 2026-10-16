@@ -46,7 +46,22 @@ s32 subaddiejoy_entrypoint_2(void *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/joy/subaddiejoy_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/joy/subaddiejoy_entrypoint_4.s")
+int subaddiejoy_entrypoint_4(void *arg0) {
+    void func_80015F28(s32, void *);
+    void func_80015E80(s32, void *);
+    s32 side[3];
+    s32 face[6];
+
+    func_80015F28((u32) ((*(s32 *)((s8 *)arg0 + 0x64)) * 8) >> 30, side);
+    if (side[0] != 0) {
+        return 1;
+    }
+    func_80015E80((u32) ((*(s32 *)((s8 *)arg0 + 0x64)) * 8) >> 30, face);
+    if ((face[0] != 0) || (face[1] != 0)) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/joy/subaddiejoy_entrypoint_5.s")
 
