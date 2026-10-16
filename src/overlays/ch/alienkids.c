@@ -168,7 +168,29 @@ void func_8080158C_chalienkids(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80801628_chalienkids.s")
+/* extern */
+
+void func_80801628_chalienkids(Actor *arg0) {
+    s32 _chbadshad_entrypoint_2(Actor *, s32, f32, s32);
+    s32 func_80106790(s32);
+    u32 func_8010A654(void ***, s32);
+    Unk80132ED0 **temp_v0;
+    u32 sp20;
+    void *var_s0;
+
+    if (arg0->unk7C_12) {
+        temp_v0 = func_80100094(arg0, 0U);
+        sp20 = 0;
+        var_s0 = temp_v0[12] != NULL ? func_80106790(temp_v0[12]) : NULL;
+        if (var_s0 != 0) {
+            sp20 = func_8010A654(var_s0, 0);
+        }
+        _chbadshad_entrypoint_2(arg0, 3, arg0->scale * 1.4f, 0);
+        if (var_s0 != 0) {
+            func_8010A654(var_s0, sp20);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_808016D4_chalienkids.s")
 
