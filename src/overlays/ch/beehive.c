@@ -31,7 +31,28 @@ void func_80800078_chbeehive(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beehive/func_808000CC_chbeehive.s")
+void func_808000CC_chbeehive(Actor *arg0, s16 **arg1) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 func_8010114C(s32, s32, s32);
+    void func_800EE88C(f32 *, s16 *);
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    extern s32 D_808002F0_chbeehive;
+    extern s32 D_80800300_chbeehive;
+    extern s32 D_80800320_chbeehive;
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808002F0_chbeehive);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800300_chbeehive);
+    func_800BBCB8(arg0->position, NULL, arg0->scale, 1, &D_80800320_chbeehive);
+    if ((s32)arg0->unk3C != 0) {
+        func_8010114C((s32)arg0->unk3C, 0x53, 0);
+    }
+    {
+        struct { f32 x, y, z; } position;
+        func_800EE88C(&position.x, *arg1 + 2);
+        position.y = arg0->position[1];
+        _chexploder_entrypoint_3(arg0, &position, 0x2C);
+    }
+}
 
 s32 func_80800180_chbeehive(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_0(u8, s32);
