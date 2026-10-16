@@ -60,7 +60,31 @@ void chanim_entrypoint_6(Actor *arg0) {
     *data = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anim/chanim_entrypoint_7.s")
+void chanim_entrypoint_7(Actor *arg0, s32 arg1) {
+    u32 *func_80100074(Actor *, u32, u32);
+    void *func_80100094(Actor *, u32);
+    s16 _anseq_entrypoint_6(void);
+    s32 i;
+    struct {
+        s16 handle;
+        s16 pad;
+        s32 entries[60];
+        s32 enabled;
+        s32 unkF8;
+    } *data;
+
+    func_80100074(arg0, 0, 0xFC);
+    data = func_80100094(arg0, 0);
+    data->handle = 0;
+    data->unkF8 = 0;
+    data->enabled = arg1;
+    for (i = 0; i < 60; i++) {
+        data->entries[i] = 0;
+    }
+    if (data->enabled != 0) {
+        data->handle = _anseq_entrypoint_6();
+    }
+}
 
 void chanim_entrypoint_8(Actor *arg0) {
     void *func_80100094(Actor *, u32);
