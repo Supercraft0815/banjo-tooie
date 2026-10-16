@@ -822,7 +822,34 @@ void func_800CA098(void) {
     D_8012AB64 = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800CA0A8.s")
+void func_800CA0A8(void) {
+    void func_800C986C(void *);
+    f32 func_800D8FF8(void);
+    void rare_memcpy(void *, void *, int);
+    u32 vector_begin(s32);
+    void vector_erase(s32, s32);
+    s32 vector_free(s32);
+    s32 vector_size(s32);
+    extern s32 D_8012AB60;
+    f32 *iPtr;
+    u8 iFunc[0x70];
+
+    if (func_800C9F94() == 0) {
+        ((f32 *)&D_8012AB60)[1] += func_800D8FF8();
+        while (vector_size(D_8012AB60) > 0) {
+            iPtr = (f32 *)vector_begin(D_8012AB60);
+            if (((f32 *)&D_8012AB60)[1] < *iPtr)
+                break;
+            rare_memcpy(iFunc, iPtr, sizeof(iFunc));
+            vector_erase(D_8012AB60, 0);
+            func_800C986C(iFunc);
+        }
+        if (vector_size(D_8012AB60) == 0) {
+            vector_free(D_8012AB60);
+            D_8012AB60 = 0;
+        }
+    }
+}
 
 void func_800CA174(void) {
     s32 vector_defrag(s32);
