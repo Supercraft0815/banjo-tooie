@@ -29,12 +29,12 @@ void chbadshad_entrypoint_1(void *arg0, void *arg1, f32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/chbadshad_entrypoint_2.s")
+s32 chbadshad_entrypoint_2(Actor *arg0, s32 arg1, f32 arg2, f32 *arg3) { s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *); void func_800EE7F8(f32 *, f32 *); Actor *func_80106790(Unk80132ED0 *); f32 sp2C[3]; f32 *var_s0; Unk80132ED0 *marker;  var_s0 = arg3; if (arg3 == NULL) { var_s0 = sp2C; } if (_subaddieskeleton_entrypoint_0(arg0, arg1, var_s0) != 0) { chbadshad_entrypoint_1(arg0, var_s0, arg2); marker = arg0->pad40; if (marker != NULL) { func_800EE7F8(var_s0, func_80106790(marker)->position); } return 1; } return 0; }
 
 /* extern */
 
 void chbadshad_entrypoint_3(Actor *arg0, void *arg1, s32 arg2, f32 arg3, s16 *arg4) {
-    void chbadshad_entrypoint_2(Actor *, s32, f32, s32);
+    s32 chbadshad_entrypoint_2(Actor *, s32, f32, f32 *);
 
     while (*arg4 != -1) {
         if (arg0->unk70_10 == *arg4) {
