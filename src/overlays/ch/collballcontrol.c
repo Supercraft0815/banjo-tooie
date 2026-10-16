@@ -747,7 +747,32 @@ s32 func_80803D54_chcollballcontrol(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80803EF4_chcollballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80803F70_chcollballcontrol.s")
+void func_80803F70_chcollballcontrol(Actor *arg0) {
+    f32 func_800DC178(f32, f32);
+    s32 _sukickball_entrypoint_12(u8 *, s32);
+    void _sukickball_entrypoint_4(s32, void *);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 func_80102D78();
+    s32 func_80102CF4(Actor *, s32);
+    void func_80102B2C(Actor *, f32);
+    s32 func_8080324C_chcollballcontrol(u8 *, s32);
+
+    if (_sukickball_entrypoint_12((u8 *)func_80106790(arg0->unk3C), arg0->unk6C_0) == 2) {
+        _sukickball_entrypoint_4(arg0->unk6C_0, arg0->actorData);
+    }
+    arg0->unk54 = func_80102D78(arg0, arg0->actorData);
+    if (!func_80102CF4(arg0, 0x41800000)) {
+        func_80102B2C(arg0, 16.0f);
+        return;
+    }
+    if (!func_80102CF4(arg0, 0x40800000)) {
+        func_80102B2C(arg0, 4.0f);
+        return;
+    }
+    arg0->unk58 = func_800DC178(10.0f, 16.0f);
+    arg0->unk64_20 = 1;
+    func_8080324C_chcollballcontrol((u8 *)arg0, 2);
+}
 
 void func_8080405C_chcollballcontrol(u8 *arg0) {
     typedef struct { f32 v[3]; } Vec3;
