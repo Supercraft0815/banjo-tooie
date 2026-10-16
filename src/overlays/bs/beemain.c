@@ -94,7 +94,16 @@ s32 bsbeemain_entrypoint_0(s32 arg0) {
     return ((s32 *)&D_80801260_bsbeemain)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80800238_bsbeemain.s")
+void func_80800238_bsbeemain(struct player_state_s *arg0) {
+    s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
+    void func_8008C9F0(struct player_state_s *, f32, f32, f32, f32);
+
+    _bsbee_entrypoint_1(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0x1DD, 0x3EC28F5C);
+    func_8009FFD8(arg0, 2, 1, 1, 2);
+    func_8008C9F0(arg0, 30.0f, 375.0f, 0.6f, 0.4f);
+    func_800909CC(arg0);
+}
 
 /* extern */
 
