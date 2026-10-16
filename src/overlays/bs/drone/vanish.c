@@ -1,6 +1,29 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/vanish/func_80800000_bsdronevanish.s")
+void func_80800000_bsdronevanish(void *arg0, s32 arg1) {
+    void _batimer_set(struct player_state_s *, s32, f32);
+    void func_80093370(void *, s32);
+    void func_800FC618(s32, s32);
+    void func_800FCA90(u32);
+    void func_800FCAE0(u32, u32, u32);
+
+    switch (arg1) {
+        case 1:
+            _batimer_set(arg0, 0, 0.3f);
+            break;
+        case 2:
+            func_800FC618(0x1C, -1);
+            func_800FCA90(0x1C);
+            _batimer_set(arg0, 0, 0.4f);
+            break;
+        case 3:
+            func_80093370(arg0, 0);
+            func_800FCAE0(0x1C, 0, 0x7D0);
+            _batimer_set(arg0, 0, 2.0f);
+            break;
+    }
+    *(s8 *)((s8 *)*(void **)((s8 *)arg0 + 0x188) + 0x18) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/vanish/func_808000CC_bsdronevanish.s")
 
@@ -63,7 +86,7 @@ void bsdronevanish_entrypoint_0(void *arg0) {
     s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
     s32 func_800961AC(void *, s32);
     s32 func_8009FFD8(void *, s32, s32, s32, s32);
-    s32 func_80800000_bsdronevanish(void *, s32);
+    void func_80800000_bsdronevanish(void *, s32);
     s32 sp2C;
     s32 sp28;
 
