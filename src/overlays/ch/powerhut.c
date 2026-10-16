@@ -17,7 +17,7 @@ void func_80800400_chpowerhut(s32 arg0) {
     s32 _sumumbofx_entrypoint_2(s32);
     s32 _sumumbofx_entrypoint_20(s32, s32);
     s32 _sumumbofx_entrypoint_24(s32, s32);
-    s32 func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s32 sp1C;
     s32 temp_v0;
 
@@ -32,7 +32,31 @@ void func_80800400_chpowerhut(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhut/func_8080047C_chpowerhut.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhut/func_808005F4_chpowerhut.s")
+s32 func_808005F4_chpowerhut(Actor *arg0) {
+    s32 _sumumbofx_entrypoint_1(void *, s32);
+    f32 _sumumbofx_entrypoint_22(u8 *);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_800DA524(s32);
+    void func_800DA544(s32);
+    u16 *data;
+    s32 result = 0;
+
+    if (_sumumbofx_entrypoint_22(func_80100094(arg0, 1)) < 0.05f) {
+        data = func_80100094(arg0, 0);
+        if (*data != 0) {
+            *data -= 1;
+            return 0;
+        }
+        _sumumbofx_entrypoint_1(arg0, 1);
+        func_80101FDC(arg0, 5);
+        func_800DA524(0x9DE);
+        func_800DA544(0x9DF);
+        result = 1;
+        return result;
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhut/func_80800698_chpowerhut.s")
 
