@@ -1,6 +1,18 @@
 #include "ch/factory/maindoor.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/maindoor/func_80800000_chfactorymaindoor.s")
+/* extern */
+
+void func_80800000_chfactorymaindoor(Actor *arg0) {
+    void func_80101FDC(Actor *, u32);
+    f32 func_80103EF4(Actor *);
+    if (func_800DA298(FLAG_1AB_PHYSICAL_GI_MainEntranceOpen) != 0) {
+        func_80101FDC(arg0, 3);
+        arg0->position[1] += func_80103EF4(arg0) * 0.8f;
+    } else {
+        arg0->unk58 = 8.0f;
+    }
+    ((f32 *)arg0->actorData)[7] = arg0->position[1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/maindoor/func_80800078_chfactorymaindoor.s")
 
