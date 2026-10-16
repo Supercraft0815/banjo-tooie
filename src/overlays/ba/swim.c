@@ -60,12 +60,41 @@ void baswim_entrypoint_5(struct player_state_s *arg0) {
     baswim_entrypoint_8(arg0, 0.0f);
 }
 
-void baswim_entrypoint_6(Actor *arg0, u32 arg1) {
-    u32* baswim_entrypoint_7(Actor*, u32, u32);
+void baswim_entrypoint_6(struct player_state_s *arg0, u32 arg1) {
+    void baswim_entrypoint_7(struct player_state_s *, u32, u32);
     baswim_entrypoint_7(arg0, arg1, 0U);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_7.s")
+void baswim_entrypoint_7(struct player_state_s *arg0, u32 arg1, u32 arg2) {
+    s32 _bafpctrl_entrypoint_4(struct player_state_s *);
+    void _bafpctrl_entrypoint_9(struct player_state_s *, s32);
+    void _bafpctrl_entrypoint_11(struct player_state_s *, s32, s32);
+    void _bafpctrl_entrypoint_16(struct player_state_s *, s32);
+    void _bafpctrl_entrypoint_17(struct player_state_s *);
+    int func_800A3274(struct player_state_s *);
+    int func_800C6E38(s32);
+    s32 sp24;
+
+    if (arg1 != 0) {
+        sp24 = 0;
+        _bafpctrl_entrypoint_9(arg0, 1);
+        if (_bafpctrl_entrypoint_4(arg0) != 3) {
+            _bafpctrl_entrypoint_16(arg0, 2);
+            if (func_800C6E38(0x1F) == 0) {
+                sp24 = 1;
+            }
+            if ((arg2 == 0) && (func_800A3274(arg0) == 0xA)) {
+                sp24 += 1;
+            }
+            if (sp24 != 0) {
+                _bafpctrl_entrypoint_11(arg0, 4, 1);
+            }
+        }
+    } else {
+        _bafpctrl_entrypoint_17(arg0);
+        _bafpctrl_entrypoint_9(arg0, 0);
+    }
+}
 
 void baswim_entrypoint_8(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 308) + 4) = arg1;
