@@ -123,7 +123,37 @@ s32 func_80800278_glglobalsettings(s32 arg0, s32 arg1) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obalsettings/glglobalsettings_entrypoint_2.s")
+/* extern */
+
+s32 glglobalsettings_entrypoint_2(void) {
+    s32 _glglobaldata_entrypoint_3(void *);
+    s32 sp24;
+    s32 sp20;
+    s32 var_a0;
+    void *sp18;
+
+    if (func_800DA298(FLAG5_D54_IF_GLOBALFLAGS_CHANGED) == 0) {
+        return 0;
+    }
+    sp18 = func_80800084_glglobalsettings();
+    sp20 = func_80800168_glglobalsettings(&sp18);
+    _glglobaldata_entrypoint_3(sp18);
+    var_a0 = 0;
+loop_3:
+    if (var_a0 == sp20) {
+        var_a0 += 1;
+        if (var_a0 != 2) {
+            goto loop_3;
+        }
+    }
+    sp24 = func_80800278_glglobalsettings(var_a0, (s32) sp18);
+    if (sp24 == 0) {
+        func_80800114_glglobalsettings(var_a0);
+        func_800DA524(FLAG5_D54_IF_GLOBALFLAGS_CHANGED);
+    }
+    heap_free(sp18);
+    return sp24;
+}
 
 s32 glglobalsettings_entrypoint_3()
 {
