@@ -56,7 +56,29 @@ s32 func_800D6060(s32 arg0) {
     return mid;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D61B4.s")
+void func_800D61B4(u8 *arg0) {
+    void aligned4_memmove(void *, void *, int);
+    extern u8 D_8012B800[];
+    extern s16 D_8012BE62;
+    int remaining;
+    struct Entry {
+        u32 unused0 : 27;
+        u32 flags : 4;
+        u32 unused1 : 1;
+        u32 unused4;
+        u16 field : 14;
+        u16 unused8 : 2;
+        u16 unusedA;
+    } *last;
+
+    remaining = D_8012BE62 - ((struct Entry *)arg0 - (struct Entry *)D_8012B800) - 1;
+    if (remaining > 0) {
+        aligned4_memmove(arg0, arg0 + 12, remaining * 12);
+    }
+    D_8012BE62--;
+    ((struct Entry *)D_8012B800)[D_8012BE62].flags = 0;
+    ((struct Entry *)D_8012B800)[D_8012BE62].field = 0x3FFF;
+}
 
 s32 func_800D6254(s32 arg0) {
     extern u8 D_8012B800[];
@@ -66,7 +88,6 @@ s32 func_800D6254(s32 arg0) {
     s32 mid;
     s32 value;
     s32 size = 12;
-
     while (low <= high) {
         mid = (high + low) >> 1;
         value = *(u32 *)(D_8012B800 + mid * size + 8) >> 18;
