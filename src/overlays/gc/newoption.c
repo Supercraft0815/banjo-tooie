@@ -869,7 +869,26 @@ u32 gcnewoption_entrypoint_37(OptionState *a0, u32 a1) {
     return 0U;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_38.s")
+/* extern */
+
+s32 gcnewoption_entrypoint_38(u8 *arg0, s32 arg1) {
+    s32 _gczoombox_entrypoint_41(s32, s32);
+    s32 sp24;
+    s16 temp_v0;
+
+    temp_v0 = (*(s16 *)((s8 *)(arg0) + (0)));
+    if ((temp_v0 == 5) || (temp_v0 == 0xA)) {
+        sp24 = func_80800000_gcnewoption(arg0, func_80800038_gcnewoption(arg0, (s32) (*(s16 *)((s8 *)(arg0) + (6)))));
+        func_80802A9C_gcnewoption(arg0);
+        (*(s16 *)((s8 *)(arg0) + (0))) = 9;
+        func_80802B24_gcnewoption(arg0, 1);
+        if (arg1 != 0) {
+            _gczoombox_entrypoint_41((*(s32 *)((s8 *)(((0, arg0) + (sp24 * 4))) + (0x3C))), 0x447A0000);
+        }
+        return 1;
+    }
+    return 0;
+}
 
 s32 gcnewoption_entrypoint_39(u8 *arg0)
 {
