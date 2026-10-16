@@ -316,10 +316,20 @@ s32 bsbwhirl_entrypoint_27(s32 arg0) {
     return ((s32 *)&D_80800FF8_bsbwhirl)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/func_80800EA0_bsbwhirl.s")
+void func_80800EA0_bsbwhirl(PlayerState *arg0, void (*arg1)(PlayerState *)) {
+    s32 func_8009E6EC(PlayerState *);
+    void func_8009E830(PlayerState *, s32);
+    s32 temp_v0;
 
-void bsbwhirl_entrypoint_28(s32 *arg0) {
-    s32 func_80800EA0_bsbwhirl();
-    extern s32 func_80099B94;
+    temp_v0 = func_8009E6EC(arg0);
+    if ((temp_v0 == 0x1F) || (temp_v0 == 0x20) || (temp_v0 == 0x21) || (temp_v0 == 0x4E) || (temp_v0 == 0x51) || (temp_v0 == 0x52)) {
+        func_8009E830(arg0, 1);
+        return;
+    }
+    arg1(arg0);
+}
+
+void bsbwhirl_entrypoint_28(PlayerState *arg0) {
+    void func_80099B94(PlayerState *);
     func_80800EA0_bsbwhirl(arg0, &func_80099B94);
 }
