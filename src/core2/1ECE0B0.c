@@ -2,6 +2,8 @@
 
 extern PlayerState* D_80135490[];
 extern s32 func_800966BC(void *);
+extern f32 func_800964DC(PlayerState *);
+extern f32 func_8009C150(PlayerState *);
 extern s32 func_8009E674(PlayerState *, s32);
 extern u8 D_801354DA;
 
@@ -929,7 +931,17 @@ void func_800F693C(s32 arg0)
     func_8008DD70(D_80135490[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6968.s")
+int func_800F6968(s32 arg0) {
+    PlayerState *self;
+    s32 pad;
+    f32 height;
+    s32 result;
+
+    self = D_80135490[arg0];
+    height = func_800964DC(self);
+    result = height - func_8009C150(self) > 4.0f;
+    return result && (func_800966BC(self) & 0x2000);
+}
 
 int func_800F69E8(s32 arg0) {
     PlayerState *self;
