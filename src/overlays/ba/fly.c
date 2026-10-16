@@ -109,7 +109,19 @@ void bafly_entrypoint_9(s32 arg0) {
     yaw_setIdeal(arg0, yaw_getIdeal(arg0) + sp34);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_10.s")
+void bafly_entrypoint_10(PlayerState *arg0, f32 arg1, f32 arg2) {
+    f32 bastick_getY(PlayerState *);
+    void func_8009BF5C(PlayerState *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 temp_f0;
+
+    temp_f0 = bastick_getY(arg0);
+    if (temp_f0 < 0.0f) {
+        func_8009BF5C(arg0, func_800F10B4(temp_f0, -1.0f, 0.0f, arg1, 360.0f));
+    } else {
+        func_8009BF5C(arg0, func_800F10B4(temp_f0, 0.0f, 1.0f, 0.0f, arg2));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_11.s")
 
