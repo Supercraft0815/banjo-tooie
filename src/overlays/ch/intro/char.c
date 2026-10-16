@@ -31,7 +31,7 @@ void func_80800484_chintrochar(Actor *arg0) {
     s32 func_80800000_chintrochar(void *);
     s32 func_808000FC_chintrochar();
     s32 func_80800398_chintrochar(void *);
-    s32 func_80803E98_chintrochar(void *);
+    void func_80803E98_chintrochar(Actor *);
     extern u16 D_80804790_chintrochar[][16];
     extern u32 func_80804160_chintrochar[][8];
     s32 temp_s1;
@@ -732,7 +732,21 @@ OSThread *chintrochar_entrypoint_0(void)
     return (OSThread *) D_8080532C_chintrochar;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80803E98_chintrochar.s")
+void func_80803E98_chintrochar(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    u8 *data;
+    s32 i;
+
+    data = func_80100094(arg0, 2);
+    for (i = 0; i < 2; i++) {
+        ((f32 *)(data + 0xD0))[i] = 0.0f;
+    }
+    func_800EE7F8((f32 *)(data + 0xF4), (f32 *)((u8 *)arg0 + 4));
+    func_800EE7F8((f32 *)(data + 0xE4), (f32 *)((u8 *)arg0 + 4));
+    *(f32 *)(data + 0x100) = *(f32 *)((u8 *)arg0 + 0x48);
+    *(f32 *)(data + 0xF0) = *(f32 *)((u8 *)arg0 + 0x48);
+}
 
 void func_80803F24_chintrochar(Actor *arg0, u8 *arg1, s32 arg2) { void func_800DBEFC(s32 *, s32, s32); void func_80103014(u8 *); extern s32 D_80805374_chintrochar[]; if (arg0->unk7C_12) { func_800DBEFC(*(s32 **)((u8 *)arg0->unk0 + 4), D_80805374_chintrochar[arg2], (s32)(arg1 + 4)); } func_80103014(arg1); }
 
