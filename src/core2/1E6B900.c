@@ -929,7 +929,27 @@ void func_80094AB4(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094B14.s")
+s32 func_80094B14(PlayerState *arg0) {
+    s32 _gcegg_entrypoint_5(s32);
+    s32 _plsu_entrypoint_1(s32);
+    int baflag_isTrue(PlayerState *, s32);
+    void func_800D1824(s32);
+    s32 func_800D1C38(s32);
+    void func_800FC660(u32);
+    s32 sp1C;
+
+    sp1C = _gcegg_entrypoint_5(func_80094510(arg0));
+    if ((baflag_isTrue(arg0, 0x34) != 0) ||
+        ((func_80094348(arg0, 4) == 0) && (func_800D1C38(sp1C) != 0))) {
+        func_800D1824(sp1C);
+        func_800FC660(0xF);
+        return 0;
+    }
+    if ((func_80094510(arg0) == 5) && (_plsu_entrypoint_1(0x11) != -1)) {
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
@@ -1041,6 +1061,6 @@ s32 func_80094DA8(void *arg0) {
 
 void func_80094E40(s32 arg0) {
     s32 _gcegg_entrypoint_2(s32);
-    s32 func_800FC660(s32);
+    void func_800FC660(u32);
     func_800FC660(_gcegg_entrypoint_2(arg0));
 }
