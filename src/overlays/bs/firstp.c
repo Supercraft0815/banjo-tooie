@@ -456,7 +456,19 @@ void func_80801000_bsfirstp(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808015C0_bsfirstp.s")
+void func_808015C0_bsfirstp(struct player_state_s *arg0, f32 arg1[3], f32 arg2[3]) {
+    void func_8009C128(struct player_state_s *, f32[3]);
+    s32 *func_80802484_bsfirstp(void *);
+    f32 yaw_get(struct player_state_s *);
+    s32 *sp1C;
+
+    sp1C = func_80802484_bsfirstp(arg0);
+    func_8009C128(arg0, arg1);
+    arg1[1] += *(f32 *)((u8 *)sp1C + 8);
+    arg2[0] = 0.0f;
+    arg2[1] = yaw_get(arg0) + 180.0f;
+    arg2[2] = 0.0f;
+}
 
 int func_800A4C68(void *);
 
@@ -2639,7 +2651,7 @@ void func_80808D80_bsfirstp(s32 arg0) {
 
 void func_80808EF0_bsfirstp(s32 arg0) {
     s32 bakey_pressed(s32, s32);
-    void func_8009C128(s32, f32 *);
+    void func_8009C128(struct player_state_s *, f32 *);
     s32 func_801013A8(f32 *, s32, s32);
     f32 sp18[3];
 
