@@ -45,15 +45,15 @@ s16 func_800CB518(s32 arg0) {
     return D_8012AB72[arg0][0];
 }
 
-s32 func_800CB534(s32 arg0, s32 arg1, s32 arg2) {
+s32 func_800CB534(s32 arg0, f32 *arg1, f32 arg2) {
     extern u8 D_8012AB70[];
-    return (*(s32 (**)(s32, s32, s32, s32))((*(u8 *(**)(void))(D_8012AB70 + arg0 * 0x30 + 4))() + 4))(arg0, arg1, arg2, *(s16 *)(D_8012AB70 + arg0 * 0x30 + 0x1A));
+    return (*(s32 (**)(s32, f32 *, f32, s32))((*(u8 *(**)(void))(D_8012AB70 + arg0 * 0x30 + 4))() + 4))(arg0, arg1, arg2, *(s16 *)(D_8012AB70 + arg0 * 0x30 + 0x1A));
 }
 
 /* extern */
 
-void func_800CB598(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_800CB534(s32, s32, s32);
+void func_800CB598(s32 arg0, f32 *arg1, f32 arg2) {
+    s32 func_800CB534(s32, f32 *, f32);
     s32 func_800CB698(s32, s32);
     func_800CB698(arg0, 4);
     func_800CB534(arg0, arg1, arg2);
@@ -61,8 +61,8 @@ void func_800CB598(s32 arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-void func_800CB5D4(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_800CB534(s32, s32, s32);
+void func_800CB5D4(s32 arg0, f32 *arg1, f32 arg2) {
+    s32 func_800CB534(s32, f32 *, f32);
     s32 func_800CB698(s32, s32);
     func_800CB698(arg0, 3);
     func_800CB534(arg0, arg1, arg2);

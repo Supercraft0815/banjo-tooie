@@ -100,7 +100,23 @@ s32 bstaxi_entrypoint_5(s32 arg0) {
     return ((s32 *)&D_80802130_bstaxi)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/func_80800420_bstaxi.s")
+s32 func_80800420_bstaxi(struct player_state_s *arg0) {
+    s32 _bapackctrl_entrypoint_1(void *);
+    void _bapackctrl_entrypoint_4(void *, s32);
+    void func_8009C128(struct player_state_s *, f32[3]);
+    void func_8009DB04(struct player_state_s *, s32, f32, s32);
+    void func_800CB598(s32, f32 *, f32);
+    f32 yaw_get(struct player_state_s *);
+    f32 position[3];
+    s32 pack;
+
+    func_8009C128(arg0, position);
+    position[1] += 50.0f;
+    pack = _bapackctrl_entrypoint_1(arg0);
+    _bapackctrl_entrypoint_4(arg0, 0);
+    func_8009DB04(arg0, 0x5C2, 1.8f, 0x7FFF);
+    func_800CB598(pack, position, yaw_get(arg0));
+}
 
 /* extern */
 
