@@ -1,6 +1,32 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_80800000_chclinker.s")
+s32 func_800D395C(void);
+
+void func_80800000_chclinker(Actor *arg0) {
+    s32 func_800D0A9C(u32, u32);
+    void *func_80100094(Actor *, u32);
+    void func_80103110(Actor *, u32);
+    void func_8010A570(Actor *);
+    void func_808003A8_chclinker(Actor *);
+    struct {
+        s32 unk0;
+        s32 disabled;
+    } *sp1C;
+    s32 sp18;
+    s32 temp_t7;
+
+    sp1C = func_80100094(arg0, 0);
+    func_808003A8_chclinker(arg0);
+    sp18 = func_800D395C();
+    temp_t7 = func_800D0A9C(0x35, 1) == 0;
+    if ((sp18 != 0) || (temp_t7 != 0)) {
+        sp1C->disabled = 1;
+    } else {
+        sp1C->disabled = 0;
+        func_8010A570(arg0);
+        func_80103110(arg0, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_80800088_chclinker.s")
 
