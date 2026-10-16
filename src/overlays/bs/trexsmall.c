@@ -55,7 +55,7 @@ void func_808000C8_bstrexsmall(PlayerState *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80800154_bstrexsmall.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_8080020C_bstrexsmall.s")
+s32 func_8080020C_bstrexsmall(PlayerState *arg0, s32 arg1) { s32 bastick_getZone(PlayerState *); int bainput_should_enter_first_person(PlayerState *); s32 _badrone_entrypoint_24(PlayerState *); int func_8008DD04(PlayerState *); s32 state; s32 zone; state = arg1; zone = bastick_getZone(arg0); switch (zone) { case 0: break; case 1: state = 0x146; break; case 2: state = 0x144; break; } if (bainput_should_enter_first_person(arg0) != 0) { state = _badrone_entrypoint_24(arg0); } if (func_80800000_bstrexsmall(arg0) != 0) { state = 0x143; } if (func_8008DD04(arg0) != 0) { state = 0x13E; } if (func_8080003C_bstrexsmall(arg0) != 0) { state = 0x13F; } return state; }
 
 void func_808002B8_bstrexsmall(PlayerState *arg0) {
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
@@ -86,7 +86,7 @@ void func_80800364_bstrexsmall(PlayerState *arg0)
 void func_80800384_bstrexsmall(PlayerState *arg0) { bstrexsmall_entrypoint_2(); func_8009FFD8(arg0, 1, 3, 3, 2); yaw_setVelocityBounded(arg0, 500.0f, 6.5f); }
 
 void func_808003D0_bstrexsmall(PlayerState *arg0) {
-    s32 func_8080020C_bstrexsmall(s32, s32);
+    s32 func_8080020C_bstrexsmall(PlayerState *, s32);
     s32 sp24;
 
     sp24 = 0;
@@ -95,7 +95,7 @@ void func_808003D0_bstrexsmall(PlayerState *arg0) {
     if (baanim_isStopped(arg0) != 0) {
         sp24 = 0x145;
     }
-    bs_setState((s32) arg0, func_8080020C_bstrexsmall((s32) arg0, sp24));
+    bs_setState((s32) arg0, func_8080020C_bstrexsmall(arg0, sp24));
 }
 
 s32 bstrexsmall_entrypoint_0(s32 arg0) {
