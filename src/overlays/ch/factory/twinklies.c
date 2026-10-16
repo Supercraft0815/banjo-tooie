@@ -136,7 +136,25 @@ s32 func_80801174_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_808011B0_chfactorytwinklies.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_808013BC_chfactorytwinklies.s")
+void func_808013BC_chfactorytwinklies(Actor *arg0, s32 arg1) {
+    s32 _gcstatusDll_entrypoint_11();
+    s32 func_800D24E8(s32, s32, u32);
+    s32 func_800D28A0(s32);
+    void *func_80100094(Actor *, u32);
+    s32 *data;
+    s32 id;
+    s32 i;
+    s32 *entry;
+
+    data = func_80100094(arg0, 0);
+    for (i = 0; i < _gcstatusDll_entrypoint_11(); i++) {
+        id = i + 0xC3;
+        func_800D24E8(id, data[i], 0);
+        if (arg1 && data[i + 8]) {
+            func_800D28A0(id);
+        }
+    }
+}
 
 void func_8080145C_chfactorytwinklies(Actor *arg0) {
     s32 temp_v0;
