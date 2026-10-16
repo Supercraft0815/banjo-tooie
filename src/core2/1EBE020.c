@@ -64,7 +64,23 @@ s32 func_800E4AF0(void) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E4B1C.s")
+s32 func_800E4B1C(s32 arg0) {
+    void heap_free(void *);
+    extern void *D_8012D560;
+    if ((&D_8012D560)[arg0] != NULL) {
+        if (*(void **)((s8 *)(&D_8012D560)[arg0] + 0x34) != NULL) {
+            heap_free(*(void **)((s8 *)(&D_8012D560)[arg0] + 0x34));
+        }
+        if (*(void **)(&D_8012D560)[arg0] != NULL) {
+            heap_free(*(void **)(&D_8012D560)[arg0]);
+        }
+        if (*(void **)((s8 *)(&D_8012D560)[arg0] + 0x28) != NULL) {
+            heap_free(*(void **)((s8 *)(&D_8012D560)[arg0] + 0x28));
+        }
+        heap_free((&D_8012D560)[arg0]);
+        (&D_8012D560)[arg0] = NULL;
+    }
+}
 
 /* extern */
 
