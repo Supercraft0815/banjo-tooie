@@ -76,7 +76,20 @@ u8 sukickball_entrypoint_12(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_13.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_14.s")
+void sukickball_entrypoint_14(Actor *arg0) {
+    void func_80102B2C(Actor *, f32);
+    s32 func_80102CF4(Actor *, s32);
+    f32 func_80102D78(Actor *, void *);
+    f32 sukickball_entrypoint_15(s32);
+
+    arg0->unk54 = func_80102D78(arg0, arg0->actorData);
+    if (arg0->unk70_10 == 3) {
+        arg0->unk54 = sukickball_entrypoint_15(arg0->unk6C_0);
+    }
+    if (func_80102CF4(arg0, 0x41000000) == 0) {
+        func_80102B2C(arg0, 8.0f);
+    }
+}
 
 f32 sukickball_entrypoint_15(s32 arg0) {
     extern f32 D_80801234_sukickball[];
