@@ -1,6 +1,22 @@
 #include "core2/anctrl.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008A990.s")
+f32 func_8008A990(AnimCtrl *this) {
+    struct Flags { u8 padding[0x18]; u32 high : 27; u32 mode : 2; u32 low : 3; };
+    f32 func_800D8FF8(void);
+    f32 _glintrosyncDll_entrypoint_5(void);
+    extern f32 D_80124A90;
+
+    switch (((struct Flags *)this)->mode) {
+        case 0:
+            return func_800D8FF8();
+        case 1:
+            return D_80124A90;
+        case 2:
+            return _glintrosyncDll_entrypoint_5();
+        default:
+            return func_800D8FF8();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008AA0C.s")
 
