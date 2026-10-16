@@ -1,5 +1,7 @@
 #include "common.h"
 
+void func_808017D8_chsabreman(Actor *, s32, s32);
+
 OSThread *chsabreman_entrypoint_0(void)
 {
     extern u8 D_80801BE0_chsabreman[];
@@ -325,7 +327,23 @@ void func_808016E4_chsabreman(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_80801724_chsabreman.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_808017D8_chsabreman.s")
+void func_808017D8_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+    s16 *data;
+
+    data = func_80100094(arg0, 0U);
+    switch (data[0x410]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0xE, arg2);
+        case 2:
+            data[0x410] = 1;
+        case 1:
+            _capod_entrypoint_6(arg0->unk0, arg1, arg2);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_80801864_chsabreman.s")
 
