@@ -58,7 +58,21 @@ void func_80800140_chstatictorch(Actor *arg0) {
         1U, &D_80800230_chstatictorch);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statictor/func_80800180_chstatictorch.s")
+s32 func_80800180_chstatictorch(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void _suflamefx_entrypoint_0(Actor *, s32, s32, s32);
+    void _suflamefx_entrypoint_7(void *, f32 *, f32, f32, f32, s32, f32);
+    s32 result;
+    if (arg1 == 0x95) {
+        _suflamefx_entrypoint_0(arg0, 1, 0xF, 0x9EB);
+        _suflamefx_entrypoint_7(func_80100094(arg0, 1U), arg0->position,
+            0.4f, 0.5f, 11.0f, 3, 0.95f);
+        result = 1;
+    } else {
+        return 0;
+    }
+    return result;
+}
 
 OSThread *chstatictorch_entrypoint_0(void)
 {
