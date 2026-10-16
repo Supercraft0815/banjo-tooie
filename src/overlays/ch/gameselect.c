@@ -604,7 +604,7 @@ void func_80802588_chgameselect(void *arg0) {
 /* extern */
 
 void func_808025CC_chgameselect(void *arg0) {
-    s32 _gczoombox_entrypoint_2(s32);
+    s32 _gczoombox_entrypoint_2();
     _gczoombox_entrypoint_2((*(s32 *)((s8 *)(arg0) + (0x28))));
 }
 
@@ -2047,7 +2047,21 @@ OSThread *chgameselect_entrypoint_6(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80806D98_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80806FAC_chgameselect.s")
+void func_80806FAC_chgameselect(Actor *arg0, s32 arg1) {
+    s32 _gczoombox_entrypoint_2();
+    void *func_80100094(Actor *, u32);
+    s32 *entry;
+    s32 *data;
+    u32 i;
+
+    i = 0;
+    data = func_80100094(arg0, 0);
+    i = 0;
+    entry = data;
+    for (; i < arg0->unk6C_0; i++, entry++) {
+        _gczoombox_entrypoint_2(*entry, arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80807030_chgameselect.s")
 
