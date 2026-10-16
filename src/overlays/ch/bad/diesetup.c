@@ -22,7 +22,18 @@ void chbaddiesetup_entrypoint_0(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/diesetup/chbaddiesetup_entrypoint_1.s")
+void chbaddiesetup_entrypoint_1(s32 arg0, s32 arg1) {
+    void *func_800A5D60(void);
+    Actor *actor;
+
+    actor = func_800A5D60();
+    if (func_80800000_chbaddiesetup(actor) != 0) {
+        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5)) = arg0;
+        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 4) = arg1;
+        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x1C) = 1;
+        ((u8 *)actor->position)[0]++;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/diesetup/chbaddiesetup_entrypoint_2.s")
 
