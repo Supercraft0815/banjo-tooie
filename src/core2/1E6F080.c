@@ -390,9 +390,9 @@ void func_80096694(PlayerState* a0)
 
 /* extern */
 
-void func_800966BC(void *arg0) {
+s32 func_800966BC(void *arg0) {
     s32 func_800C67E0(s32);
-    func_800C67E0(*(*(s32 **)((s8 *)(arg0) + (0x94))));
+    return func_800C67E0(*(*(s32 **)((s8 *)(arg0) + (0x94))));
 }
 
 /* extern */

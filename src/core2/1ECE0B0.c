@@ -1,6 +1,7 @@
 #include "core2/1ECE0B0.h"
 
 extern PlayerState* D_80135490[];
+extern s32 func_800966BC(void *);
 extern s32 func_8009E674(PlayerState *, s32);
 extern u8 D_801354DA;
 
@@ -911,7 +912,21 @@ int func_800F69E8(s32 arg0) {
     return player_isStable(self) && func_8009659C(self, 0x2000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6A38.s")
+s32 func_800F6A38(s32 arg0) {
+    PlayerState *self;
+    s32 result;
+
+    self = D_80135490[arg0];
+    if (player_inWater(self) == 0) {
+        return 0;
+    }
+    if ((func_800966BC(self) & 0x22000) == 0x22000) {
+        result = 1;
+    } else {
+        result = 0;
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6AA4.s")
 
