@@ -32,7 +32,22 @@ void func_80800024_chbottlesfamily(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_80800080_chbottlesfamily.s")
+void func_80800080_chbottlesfamily(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    u32 *_suexpression_entrypoint_20(Actor *);
+    s32 func_808009F0_chbottlesfamily(s32, s32 *);
+    extern u32 D_80800EB8_chbottlesfamily;
+    extern u32 D_80800ECC_chbottlesfamily;
+    extern s32 D_80800EDC_chbottlesfamily;
+    _sudeflect_entrypoint_0(arg0->position, arg0->scale * 50.0f, arg0->scale * 50.0f, 0xA);
+    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80800EB8_chbottlesfamily, &D_80800ECC_chbottlesfamily);
+    _suexpression_entrypoint_10(_suexpression_entrypoint_20(arg0), arg0->unk0, 0);
+    if (arg0->unk70_10 == 1) {
+        func_808009F0_chbottlesfamily((s32)arg0, &D_80800EDC_chbottlesfamily);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_80800124_chbottlesfamily.s")
 
