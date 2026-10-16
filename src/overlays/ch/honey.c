@@ -123,7 +123,27 @@ void func_808008F8_chhoney(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_808009BC_chhoney.s")
+void func_808009BC_chhoney(Actor *arg0) {
+    s32 func_8008FC00();
+    s32 func_8008FC28();
+    s32 func_8008FC70(s32);
+    f32 func_800D8FF8(void);
+    f32 dt;
+    s32 next;
+
+    dt = func_800D8FF8();
+    arg0->unk58 -= dt;
+    ((f32 *)arg0->actorData)[6] -= dt;
+    if (arg0->unk58 <= 0.0f) {
+        next = func_8008FC00() + 1;
+        if (func_8008FC28() < next) {
+            next = 1;
+        }
+        func_8008FC70(next);
+        func_80800870_chhoney(arg0, next);
+        arg0->unk58 = ((f32 *)arg0->actorData)[5];
+    }
+}
 
 void func_80800A5C_chhoney(u8 *arg0) {
     struct HoneyFlags {
@@ -169,7 +189,7 @@ void func_80800A5C_chhoney(u8 *arg0) {
     s32 func_808000C4_chhoney(u8 *, s32);
     void func_80800754_chhoney(Actor *);
     void func_808008F8_chhoney(Actor *, s32);
-    s32 func_808009BC_chhoney(u8 *);
+    void func_808009BC_chhoney(Actor *);
     s32 func_80800EB0_chhoney();
     extern s32 D_80801038_chhoney;
     f32 sp34;
