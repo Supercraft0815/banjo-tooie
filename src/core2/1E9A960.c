@@ -795,17 +795,32 @@ void func_800C3CE8(u8 id) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3D78.s")
+int func_800C3D78(u8 id) {
+    struct Source {
+        u8 pad[0x78];
+        u32 first : 19;
+        u32 state : 3;
+        u32 rest : 10;
+    } *source;
+
+    if (!id) {
+        return 0;
+    }
+    source = func_800C1414(id);
+    return id && source->state == 1
+        && *((u8 *)source + 0x79)
+        && func_800C1448(*((u8 *)source + 0x79));
+}
 
 s32 func_800C3E00(s32 arg0) {
-    s32 func_800C3D78(s32);
+    int func_800C3D78(u8);
     extern s32 D_80128C10;
     s32 var_s0;
     s8 *var_s1;
 
     var_s0 = 1; var_s1 = (s8 *)&D_80128C10;
 loop_1:
-    if (((*(u8 *)((s8 *)(var_s1) + (0x78))) != 0) && (func_800C3D78(var_s0 & 0xFF) != 0) && (arg0 == (*(s16 *)((s8 *)(var_s1) + (0x58))))) {
+    if (((*(u8 *)((s8 *)(var_s1) + (0x78))) != 0) && (func_800C3D78(var_s0) != 0) && (arg0 == (*(s16 *)((s8 *)(var_s1) + (0x58))))) {
         return 1;
     }
     var_s0 += 1;
