@@ -502,7 +502,26 @@ void func_80016A48() {
     osSendMesg(&D_80079F70, NULL, OS_MESG_NOBLOCK);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2D890/func_80016A74.s")
+s32 func_80016A74(u32 arg0, f32 *arg1) {
+    f32 func_80013B70(f32, f32, f32);
+    f32 stick[2];
+    f32 length;
+    f32 angle = -1.0f;
+
+    func_80016068(arg0, stick);
+    length = sqrtf(stick[0] * stick[0] + stick[1] * stick[1]);
+    if (length != 0.0f) {
+        angle = func_80013B70(stick[1], stick[0], length);
+    }
+    if (arg1 != NULL) {
+        if (length > 1.0f) {
+            *arg1 = 1.0f;
+        } else {
+            *arg1 = length;
+        }
+    }
+    return (s32) angle;
+}
 
 s32 func_80016B30(s32 arg0, s32 arg1) {
     return D_800799E0[arg0].unk0[arg1];
