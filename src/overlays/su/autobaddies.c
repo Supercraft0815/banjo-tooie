@@ -1,6 +1,36 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/autobaddies/suautobaddies_entrypoint_0.s")
+void suautobaddies_entrypoint_0(void) {
+    u32 _chbaddiesetup_entrypoint_0(u32 *);
+    s32 _chbaddiesetup_entrypoint_4(s32 *, s32, s32, s32, s32);
+    s32 _gcsectionDll_entrypoint_2(s32);
+    s32 _gcsectionDll_entrypoint_3(s32, s32);
+    u32 func_800A9CD0(void);
+    s32 func_800EA05C();
+    void func_80800104_suautobaddies(void);
+    void func_80800194_suautobaddies(void);
+    void func_80800258_suautobaddies(void);
+    void func_80800298_suautobaddies(void);
+    void func_8080036C_suautobaddies(void);
+    void func_808003DC_suautobaddies(void);
+    void suautobaddies_entrypoint_3(void);
+    extern s32 _chbaddiesetup_entrypoint_8;
+    extern u32 _chjiggygamenew_entrypoint_1;
+
+    func_80800104_suautobaddies();
+    func_80800194_suautobaddies();
+    func_80800258_suautobaddies();
+    func_80800298_suautobaddies();
+    func_8080036C_suautobaddies();
+    func_808003DC_suautobaddies();
+    suautobaddies_entrypoint_3();
+    if (_gcsectionDll_entrypoint_3(_gcsectionDll_entrypoint_2(func_800EA05C()), 0x2000) != 0) {
+        _chbaddiesetup_entrypoint_4(&_chbaddiesetup_entrypoint_8, 0x374, 0, 0, 0);
+    }
+    if (func_800A9CD0() == 1) {
+        _chbaddiesetup_entrypoint_0(&_chjiggygamenew_entrypoint_1);
+    }
+}
 
 /* extern */
 
