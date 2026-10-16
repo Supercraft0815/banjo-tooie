@@ -816,7 +816,7 @@ void func_808062B8_chdiggerboss(Actor *arg0) {
 
 void func_808064CC_chdiggerboss(s32 arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
-    s8 _subaddieaudioloop_entrypoint_7(u8, s32, s32, s32 *, s32);
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
     extern s32 D_8080A0EC_chdiggerboss;
     u8 *sp24;
     u8 *temp_v0;
@@ -1003,7 +1003,32 @@ void func_80808000_chdiggerboss(s32 arg0) {
     (*(u8 *)((s8 *)(sp1C) + (0xA6))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(temp_v0) + (0xA6))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80808034_chdiggerboss.s")
+void func_80808034_chdiggerboss(Actor *arg0) {
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
+    s32 func_8001210C(s32);
+    void *func_80100094(Actor *, u32);
+    void func_808081AC_chdiggerboss(u8 *volatile);
+    extern s32 D_8080A160_chdiggerboss;
+    u8 *sp24;
+    s32 sp20;
+    u8 *temp_v0;
+    u32 flags;
+    u8 sound;
+
+    temp_v0 = func_80100094(arg0, 0);
+    sp24 = temp_v0;
+    sp20 = 0;
+    if (*(s16 *)(temp_v0 + 0xA4) == 1) {
+        sp20 = 1;
+        if (func_8001210C(1) != 0) {
+            func_808081AC_chdiggerboss((u8 *)arg0);
+        }
+    }
+    sound = sp24[0xA6];
+    flags = arg0->pad70_0;
+    flags &= 1;
+    sp24[0xA6] = _subaddieaudioloop_entrypoint_7(sound, arg0->position, sp20, &D_8080A160_chdiggerboss, flags);
+}
 
 void func_808080C0_chdiggerboss(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
