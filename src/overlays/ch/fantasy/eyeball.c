@@ -89,14 +89,29 @@ void func_808011D0_chfantasyeyeball(Actor *arg0, f32 arg1, f32 arg2, f32 arg3) {
     func_800E39D8(sp30, sp3C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80801290_chfantasyeyeball.s")
+void func_80801290_chfantasyeyeball(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 func_800A50B0(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F7B9C(s32, s32);
+    s32 func_800F82D4(s32, s32);
+
+    _subaddieDll_entrypoint_4(arg0, 1);
+    arg0->unk58 = 2.708f;
+    arg0->unk64_19 = 1;
+    if (arg2 == 0) {
+        func_800F7B9C(func_800F54E4(), 0x6B);
+        func_800A50B0(1);
+        func_800F82D4(func_800F54E4(), 2);
+    }
+}
 
 /* extern */
 
 void func_80801314_chfantasyeyeball(void *arg0) {
     s32 _subaddieDll_entrypoint_4(void *, s32);
     s32 func_800A50B0(s32);
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F7B9C(s32, s32);
     s32 func_800F82D4(s32, s32);
     func_800F82D4(func_800F54E4(), 0);
