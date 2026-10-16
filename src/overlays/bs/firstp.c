@@ -530,7 +530,37 @@ void func_80801668_bsfirstp(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)temp_v0 + 0x98) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808016A0_bsfirstp.s")
+void func_808016A0_bsfirstp(void *arg0) {
+    void func_800C5148(s32, f32);
+    f32 func_800F2108(f32);
+    f32 mlAbsF(f32);
+    void *data;
+    f32 magnitude;
+    f32 current;
+    f32 step;
+    f32 sign;
+    f32 difference;
+
+    data = *(void **)((u8 *)arg0 + 0x188);
+    magnitude = *(f32 *)((u8 *)data + 0x98);
+    current = *(f32 *)((u8 *)data + 0x9C);
+    if (magnitude != current) {
+        difference = magnitude - current;
+        sign = func_800F2108(difference);
+        magnitude = mlAbsF(difference);
+        step = magnitude * 0.5f;
+        if (step < 0.5f) {
+            if (magnitude > 0.5f) {
+                step = 0.5f;
+            } else {
+                step = magnitude;
+            }
+        }
+        current += step * sign;
+        *(f32 *)((u8 *)data + 0x9C) = current;
+        func_800C5148(func_800A4C68(arg0), current);
+    }
+}
 
 void func_8080175C_bsfirstp(void *arg0) {
     int func_800A4C68(void *);
