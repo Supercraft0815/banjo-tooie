@@ -23,13 +23,27 @@ s32 func_80800014_chtrashcangame(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80800098_chtrashcangame.s")
+void func_80800098_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_800D3948(void);
+    if (func_800D3948() != 0) {
+        if ((s32)arg0->unk70_10 == 3) {
+            switch (arg1) {
+                case 0: arg0->actorData[4] = arg2; break;
+                case 1: arg0->actorData[5] = arg2; break;
+                case 2: arg0->actorData[6] = arg2; break;
+                case 3: arg0->actorData[0] = arg2; break;
+            }
+        }
+    } else if (arg0->unk70_10 == 8) {
+        arg0->actorData[4] = arg2;
+    }
+}
 
 /* extern */
 
 void func_80800144_chtrashcangame(s32 arg0, s32 arg1, s32 arg2) {
     s32 func_80800014_chtrashcangame();
-    s32 func_80800098_chtrashcangame(s32, s32, s32);
+    void func_80800098_chtrashcangame(Actor *, s32, s32);
     func_80800098_chtrashcangame(arg0, arg1, func_80800014_chtrashcangame() + arg2);
 }
 
@@ -55,7 +69,7 @@ void func_808003D0_chtrashcangame(void *arg0, s32 arg1) {
     s32 func_80101180(s32, s32, s32);
     void func_80102424(void *, s32);
     s32 func_80800014_chtrashcangame();
-    s32 func_80800098_chtrashcangame(s32, s32, s32);
+    void func_80800098_chtrashcangame(Actor *, s32, s32);
     void func_808016B4_chtrashcangame(Actor *, Unk80132ED0 *, s32, s32);
     void func_808017F0_chtrashcangame(void *, s32, s32);
     void func_8080189C_chtrashcangame(void *);
