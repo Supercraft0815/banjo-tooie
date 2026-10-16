@@ -1930,7 +1930,7 @@ void func_80806540_chgameselect(s32 arg0) {
     s32 _gcfrontend_entrypoint_5(s32);
     void func_800AA054(s32);
     void func_800AA074();
-    s32 func_80806744_chgameselect(s32);
+    void func_80806744_chgameselect(void *);
     s32 temp_s2;
     s32 temp_v0;
     s32 var_s0;
@@ -1993,7 +1993,39 @@ s32 func_808066CC_chgameselect(void) {
     return var_s2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80806744_chgameselect.s")
+void func_80806744_chgameselect(void *arg0) {
+    s32 _gcfrontend_entrypoint_5(s32);
+    s32 func_800AA0C4(void);
+    s32 func_800AA0D0(void);
+    s32 func_800AA120(void);
+    void func_800E6A58(char *, char);
+    extern s16 B_80808550_chgameselect[];
+    struct Fields {
+        u8 pad0[0x18];
+        s32 state;
+        u8 pad1[0x10];
+        Unk80132ED0 *text;
+        u8 pad2[0x20];
+        char *buffer;
+    };
+    s32 count;
+    s32 total;
+
+    count = func_800AA0C4() + 1;
+    B_80808550_chgameselect[0] = 0x18F2;
+    if (func_800AA0D0() == count + 1) {
+        B_80808550_chgameselect[1] = 0x27;
+    } else {
+        B_80808550_chgameselect[1] = count;
+    }
+    B_80808550_chgameselect[2] = 0x18E4;
+    total = func_800AA120();
+    B_80808550_chgameselect[3] = total - _gcfrontend_entrypoint_5(3);
+    func_80803F90_chgameselect(((struct Fields *)arg0)->buffer, 2, B_80808550_chgameselect);
+    func_800E6A58(((struct Fields *)arg0)->buffer, 0x21);
+    func_80802730_chgameselect(((struct Fields *)arg0)->text, (s32) ((struct Fields *)arg0)->buffer);
+    ((struct Fields *)arg0)->state = 9;
+}
 
 /* extern */
 
