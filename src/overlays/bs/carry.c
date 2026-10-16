@@ -1,14 +1,43 @@
 #include "common.h"
 #include "overlays/ba/playerstate.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_80800000_bscarry.s")
+void func_80800000_bscarry(PlayerState *arg0) {
+    int bastatetimer_isDone(PlayerState *, s32);
+    void bs_setState(PlayerState *, s32);
+    s32 func_8008E9AC(void *);
+    void func_8008F6B8(PlayerState *, s32);
+    void func_80099B94(PlayerState *);
+    s32 func_8009E6EC(PlayerState *);
+    void func_8009E830(PlayerState *, s32);
+
+    switch (func_8009E6EC(arg0)) {
+    case 8:
+        func_8009E830(arg0, 2);
+        bs_setState(arg0, 0x3C);
+        break;
+    case 18:
+        func_8008F6B8(arg0, func_8008E9AC(arg0));
+        break;
+    case 22:
+        if (bastatetimer_isDone(arg0, 1)) {
+            bs_setState(arg0, 0x5B);
+            func_8009E830(arg0, 2);
+        } else {
+            func_8009E830(arg0, 1);
+        }
+        break;
+    default:
+        func_80099B94(arg0);
+        break;
+    }
+}
 
 /* extern */
 
 void func_808000D0_bscarry(s32 arg0) {
     s32 _bsdrone_entrypoint_3(s32);
     s32 func_8009E6EC();
-    s32 func_80800000_bscarry(s32);
+    void func_80800000_bscarry(PlayerState *);
     s32 temp_v0;
 
     temp_v0 = func_8009E6EC();
@@ -87,7 +116,7 @@ void func_8080029C_bscarry(PlayerState *arg0) {
 void func_80800310_bscarry(PlayerState *arg0) {
     Unk80132ED0 *_bahold_entrypoint_5(s32);
     s32 bastick_getZone(PlayerState *);
-    s32 bs_setState(s32, s32);
+    void bs_setState(PlayerState *, s32);
     s32 func_8009BCD4(PlayerState *, f32);
     void func_800A2CE8(PlayerState *, f32, s32);
     s32 next_state = 0;
@@ -136,7 +165,7 @@ void func_808003F8_bscarry(PlayerState *arg0) {
 void func_8080047C_bscarry(PlayerState *arg0) {
     Unk80132ED0 *_bahold_entrypoint_5(s32);
     s32 bastick_getZone(PlayerState *);
-    s32 bs_setState(s32, s32);
+    void bs_setState(PlayerState *, s32);
     s32 next_state = 0;
 
     switch (bastick_getZone(arg0)) {
@@ -173,7 +202,7 @@ void func_80800520_bscarry(PlayerState *arg0) {
 void func_80800594_bscarry(PlayerState *arg0) {
     Unk80132ED0 *_bahold_entrypoint_5(s32);
     s32 bastick_getZone(PlayerState *);
-    s32 bs_setState(s32, s32);
+    void bs_setState(PlayerState *, s32);
     s32 func_8009BCD4(PlayerState *, f32);
     void func_800A2CE8(PlayerState *, f32, s32);
     s32 next_state = 0;
@@ -235,7 +264,7 @@ void func_80800708_bscarry(s32 arg0)
 
 void func_80800730_bscarry(s32 arg0) {
     s32 _bsrest_entrypoint_20();
-    s32 bs_setState(s32, s32);
+    void bs_setState(PlayerState *, s32);
     Unk80132ED0 *_bahold_entrypoint_5(s32);
     s32 sp1C;
 
