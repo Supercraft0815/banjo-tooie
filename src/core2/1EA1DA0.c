@@ -404,7 +404,26 @@ void func_800C9310(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9358.s")
+void func_800C9358(Gfx **arg0, s32 arg1) {
+    s32 _gctransitionDll_entrypoint_0(s32 *, s32);
+    s32 func_800A8BD4(Gfx **, s32, s32);
+    void func_800A8CCC(s32, s32);
+    extern s32 D_8012AB40;
+    s32 value;
+    s32 i;
+    u8 count = D_8012AB54;
+
+    if (count != 0) {
+        for (i = 0; i < (s32)D_8012AB54; i++) {
+                value = *((s32 **)&D_8012AB40)[i];
+                if (value != 4) {
+                    func_800A8BD4(arg0, value, arg1);
+                    _gctransitionDll_entrypoint_0(((s32 **)&D_8012AB40)[i], arg0);
+                }
+        }
+        func_800A8CCC(arg0, arg1);
+    }
+}
 
 s32 func_800C940C(volatile s32 arg0, volatile s32 arg1) {
     s32 _gctransitionDll_entrypoint_0(s32 *, s32);
