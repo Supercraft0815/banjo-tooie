@@ -6,11 +6,38 @@ void func_80800000_bsbswim(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80800030_bsbswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80800104_bsbswim.s")
+struct player_state_s;
+s32 _baairbar_entrypoint_0(struct player_state_s *, s32);
+s32 _baswim_entrypoint_4(struct player_state_s *);
+s32 _baswim_entrypoint_6(struct player_state_s *, s32);
+void baroll_setIdeal(struct player_state_s *, f32);
+s32 bs_getCurrentState(struct player_state_s *);
+void func_80093360(struct player_state_s *, f32);
+void func_800961AC(struct player_state_s *, s32);
+void func_8009BC34(struct player_state_s *);
+void func_8009BF5C(struct player_state_s *, f32);
+s32 func_8009E74C(struct player_state_s *, s32);
+void func_800A0CF4(struct player_state_s *, s32);
 
-void func_808001A8_bsbswim()
+void func_80800104_bsbswim(struct player_state_s *arg0) {
+    if (func_8009E74C(arg0, 0xB) == 0) {
+        func_8009BF5C(arg0, 0.0f);
+        baroll_setIdeal(arg0, 0.0f);
+        func_8009BC34(arg0);
+        func_800A0CF4(arg0, 0);
+        func_800961AC(arg0, 1);
+        func_80093360(arg0, 0.0f);
+        _baswim_entrypoint_6(arg0, 0);
+        if (bs_getCurrentState(arg0) != 0x4C) {
+            _baairbar_entrypoint_0(arg0, 1);
+        }
+        _baswim_entrypoint_4(arg0);
+    }
+}
+
+void func_808001A8_bsbswim(struct player_state_s *arg0)
 {
-    func_80800104_bsbswim();
+    func_80800104_bsbswim(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_808001C8_bsbswim.s")
@@ -240,14 +267,13 @@ s32 bsbswim_entrypoint_5(s32 arg0) {
     return ((s32 *)&D_80801EB0_bsbswim)[arg0];
 }
 
-void func_80800DFC_bsbswim(u8 *arg0) { s32 func_800961AC(s32, s32); _babounce_entrypoint_3(); func_800961AC((s32)arg0, 3); func_80800104_bsbswim(arg0); }
+void func_80800DFC_bsbswim(u8 *arg0) { _babounce_entrypoint_3(); func_800961AC((s32)arg0, 3); func_80800104_bsbswim(arg0); }
 
 /* extern */
 
 void func_80800E30_bsbswim(s32 arg0) {
     s32 _babounce_entrypoint_4(s32, s32);
     s32 _babounce_entrypoint_5(s32, s32, s32);
-    s32 func_800961AC(s32, s32);
     s32 func_80800030_bsbswim();
     func_80800030_bsbswim();
     func_800961AC(arg0, 1);
@@ -285,7 +311,6 @@ void func_80800F64_bsbswim(void *arg0) {
     void func_800A0E64(void *);
     s32 baanim_getAnimCtrlPtr();
     s32 anctrl_isAt(s32, f32);
-    void func_8009BF5C(void *, f32);
     void func_8009DE38(void *, s32, f32);
     s32 player_inWater();
     s32 bs_setState(s32, s32);
@@ -325,9 +350,9 @@ void func_80800F64_bsbswim(void *arg0) {
     bs_setState((s32)arg0, sp24);
 }
 
-void func_80801084_bsbswim()
+void func_80801084_bsbswim(struct player_state_s *arg0)
 {
-    func_80800104_bsbswim();
+    func_80800104_bsbswim(arg0);
 }
 
 s32 bsbswim_entrypoint_7(s32 arg0) {
@@ -389,9 +414,9 @@ s32 bsbswim_entrypoint_9(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_808016B8_bsbswim.s")
 
-void func_808017F8_bsbswim()
+void func_808017F8_bsbswim(struct player_state_s *arg0)
 {
-    func_80800104_bsbswim();
+    func_80800104_bsbswim(arg0);
 }
 
 s32 bsbswim_entrypoint_10(s32 arg0) {
@@ -401,8 +426,6 @@ s32 bsbswim_entrypoint_10(s32 arg0) {
 
 void func_8080182C_bsbswim(s32 arg0) {
     s32 _bsdrone_entrypoint_0(s32);
-    s32 baroll_setIdeal(s32, f32);
-    void func_8009BF5C(void *, f32);
     s32 func_80800030_bsbswim();
     func_80800030_bsbswim();
     _bsdrone_entrypoint_0(arg0);
@@ -497,9 +520,9 @@ void func_80801CE4_bsbswim(s32 arg0) {
     bs_setState(arg0, sp1C);
 }
 
-void func_80801D30_bsbswim()
+void func_80801D30_bsbswim(struct player_state_s *arg0)
 {
-    func_80800104_bsbswim();
+    func_80800104_bsbswim(arg0);
 }
 
 s32 bsbswim_entrypoint_14(s32 arg0) {
