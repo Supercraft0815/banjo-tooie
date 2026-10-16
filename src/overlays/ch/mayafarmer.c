@@ -223,15 +223,49 @@ int func_808008F8_chmayafarmer(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_808009A0_chmayafarmer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_80800B9C_chmayafarmer.s")
+typedef union {
+    Actor actor;
+    struct {
+        u8 padding[0x70];
+        u32 group : 7;
+        u32 unused : 15;
+        u32 point : 6;
+        u32 unusedLow : 4;
+    } path;
+} MayaFarmerActor;
+
+void func_80800B9C_chmayafarmer(MayaFarmerActor *arg0) {
+    void *func_800CC63C(s32, s32);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    struct {
+        f32 position[3];
+        s16 radius;
+    } *sp24;
+    f32 radius;
+    f32 sp1C;
+    f32 *volatile sp18;
+    f32 *position;
+
+    sp24 = func_800CC63C(arg0->path.group - 1, arg0->path.point - 1);
+    position = arg0->actor.position;
+    sp18 = position;
+    func_800EE7F8(position, sp24->position);
+    sp1C = func_800DC178(0.0f, 360.0f);
+    radius = sp24->radius;
+    func_800EF1B8(sp18, sp1C, func_800DC178(radius * 0.3f, radius));
+    arg0->actor.unk58 = 2605.0f;
+    arg0->actor.scale = 0.5f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_80800C58_chmayafarmer.s")
 
 /* extern */
 
 void func_80800D18_chmayafarmer(u8 *arg0) {
-    s32 func_800CC63C(s32, s32);
-    s32 func_800EE7F8(u8 *, s32);
+    void *func_800CC63C(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
     u32 temp_v0;
 
     temp_v0 = (*(u32 *)((s8 *)(arg0) + (0x70)));
