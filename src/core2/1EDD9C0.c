@@ -10,11 +10,11 @@ s32 func_801040D0(void) {
     return (s32) &D_80135AB0;
 }
 
-OSThread *func_8010410C(void)
+void *func_8010410C(void)
 {
     extern u8 D_80136BC0[];
 
-    return (OSThread *) D_80136BC0;
+    return D_80136BC0;
 }
 
 OSThread *func_80104118(void)

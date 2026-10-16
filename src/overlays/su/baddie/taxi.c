@@ -94,7 +94,33 @@ void subaddietaxi_entrypoint_6(s32 *arg0, volatile f32 arg1) {
     func_800DFF64(arg0, 0x12, (s32)sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_7.s")
+void *func_8010410C(void);
+
+void subaddietaxi_entrypoint_7(Unk80132ED0 *arg0) {
+    typedef struct { f32 position[3]; f32 rotation[3]; f32 scale; } TaxiState;
+    Actor *func_80106790(Unk80132ED0 *);
+    struct anctrl_s *func_80104248(void *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_8008AEE4(struct anctrl_s *, void (*)(s32 *, f32));
+    void func_8008AF04(struct anctrl_s *, s32);
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    extern void _subaddietaxi_entrypoint_6(s32 *, f32);
+    s32 pad;
+    TaxiState *sp28;
+    struct anctrl_s *sp24;
+    union { f32 value; s32 bits; } sp20;
+    Actor *actor;
+
+    actor = func_80106790(arg0);
+    sp28 = func_8010410C();
+    sp24 = func_80104248(actor);
+    func_800EE7F8(sp28->position, actor->position);
+    sp28->scale = actor->scale;
+    func_8008AEE4(sp24, _subaddietaxi_entrypoint_6);
+    sp20.value = 1.0f;
+    func_8008AF04(sp24, sp20.bits);
+    _subaddiefade_entrypoint_1((s32)actor, 0xFF);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_8.s")
 

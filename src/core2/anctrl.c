@@ -90,16 +90,16 @@ void *func_8008AEDC(void *arg0)
 
 /* extern */
 
-void func_8008AEE4(s32 arg0) {
-    s32 func_8008C1D4(s32);
-    func_8008C1D4(arg0 + 0x1C);
+void func_8008AEE4(AnimCtrl *arg0, void (*arg1)(s32 *, f32)) {
+    void func_8008C1D4(void *, void (*)(s32 *, f32));
+    func_8008C1D4((u8 *)arg0 + 0x1C, arg1);
 }
 
 /* extern */
 
-void func_8008AF04(s32 arg0) {
-    s32 func_8008C1DC(s32);
-    func_8008C1DC(arg0 + 0x1C);
+void func_8008AF04(AnimCtrl *arg0, s32 arg1) {
+    void func_8008C1DC(void *, s32);
+    func_8008C1DC((u8 *)arg0 + 0x1C, arg1);
 }
 
 void anctrl_reset(AnimCtrl *control) {
