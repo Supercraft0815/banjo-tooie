@@ -43,7 +43,34 @@ void func_80800000_bapreload(void *arg0, s32 arg1, s16 *arg2, s16 *arg3) {
     *arg3 = table->second;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/preload/bapreload_entrypoint_0.s")
+void bapreload_entrypoint_0(void *arg0, s32 arg1, s16 *arg2, s16 *arg3) {
+    s32 func_8009EA2C(void);
+    s32 func_800D3948(void);
+    extern u8 D_8012762C;
+    extern s16 D_808002A0_bapreload;
+    if (func_800D3948() != 0) {
+        func_80800000_bapreload(arg0, arg1, arg2, arg3);
+        return;
+    }
+    if (arg1 == 0xB) {
+        if (func_8009EA2C() != 0) {
+            *arg2 = 0x83A;
+        } else {
+            *arg2 = 0x61C;
+        }
+        *arg3 = 0;
+        return;
+    }
+    *arg2 = *(s16 *)((s32)&D_808002A0_bapreload + arg1 * 4);
+    *arg3 = 0;
+    if (*arg2 == 0) {
+        if (D_8012762C == 0xD) {
+            *arg2 = 0;
+            return;
+        }
+        *arg2 = 0x607;
+    }
+}
 
 s32 bapreload_entrypoint_1(s32 arg0, s32 *arg1) {
     s32 func_8009EA2C(void);
