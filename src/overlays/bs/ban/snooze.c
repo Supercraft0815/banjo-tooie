@@ -136,7 +136,22 @@ void func_808004C0_bsbansnooze(PlayerState *arg0)
     func_80800000_bsbansnooze(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_808004E0_bsbansnooze.s")
+/* extern */
+
+void func_808004E0_bsbansnooze(PlayerState *arg0) {
+    s32 baanim_playForDuration_loopSmooth(PlayerState *, s32, s32);
+    s32 baanim_setDurationRange(PlayerState *, s32, s32);
+    s32 func_8008C9F0(PlayerState *, s32, s32, f32, f32);
+    s32 func_8008CA30(PlayerState *, s32);
+    s32 yaw_setVelocityBounded(PlayerState *, s32, s32);
+    func_80800098_bsbansnooze(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0x278, 0x3F333333);
+    func_8009FFD8(arg0, 2, 3, 8, 0xE);
+    yaw_setVelocityBounded(arg0, 0x42C80000, 0x40600000);
+    baanim_setDurationRange(arg0, 0x3DCCCCCD, 0x40A00000);
+    func_8008C9F0(arg0, 0x42480000, 0x42C80000, 0.7f, 0.7f);
+    func_8008CA30(arg0, 0x3F800000);
+}
 
 void func_80800588_bsbansnooze(s32 arg0)
 {
