@@ -224,7 +224,24 @@ s32 func_80801320_chstoneballcontrol(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80801638_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80801734_chstoneballcontrol.s")
+void func_80801734_chstoneballcontrol(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80801808_chstoneballcontrol(Actor *, s32, s32);
+    s32 var_s0;
+    struct {
+        u8 pad[0x3A];
+        u8 count;
+    } *data;
+
+    data = func_80100094(arg0, 0U);
+    var_s0 = 0;
+    if ((s32) data->count > 0) {
+        do {
+            func_80801808_chstoneballcontrol(arg0, var_s0, arg1);
+            var_s0 += 1;
+        } while (var_s0 < (s32) data->count);
+    }
+}
 
 void func_808017AC_chstoneballcontrol(Unk80132ED0 *arg0, s32 arg1) {
     Actor *func_80106790(Unk80132ED0 *);
