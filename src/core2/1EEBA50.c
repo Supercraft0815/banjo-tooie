@@ -76,9 +76,9 @@ void func_80112524(PlayerState *arg0, f32 *arg1) {
     func_800EE7F8(arg1, (*(s32 *)((s8 *)(arg0) + (0x30))) + 4);
 }
 
-void func_80112550(PlayerState* arg0, f32* arg1)
+f32 func_80112550(PlayerState* arg0, f32* arg1)
 {
-    func_80112168(arg0,arg1);
+    return func_80112168(arg0,arg1);
 }
 
 void func_80112570(u8 *arg0, s32 arg1, f32 arg2) {
