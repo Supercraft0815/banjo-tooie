@@ -278,7 +278,17 @@ void func_800F52E4(s32 arg0)
     func_8008F4F0(D_80135490[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F5310.s")
+s32 func_800F5310(void) {
+    s32 count = 0;
+    s32 i;
+
+    for (i = 0; i < 8; i++) {
+        if (D_80135490[i] != NULL) {
+            count++;
+        }
+    }
+    return count;
+}
 
 AnimCtrl* func_800F5378(s32 arg0)
 {
