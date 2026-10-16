@@ -63,7 +63,28 @@ void func_808003C4_chcheato(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800434_chcheato.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_808006B8_chcheato.s")
+void func_808006B8_chcheato(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_800C4B7C(s32);
+    s32 func_80101E14(Actor *, f32);
+    struct CheatoTimes { f32 values[2]; };
+    struct CheatoSounds { s16 values[2]; };
+    extern struct CheatoTimes D_80800EFC_chcheato;
+    extern struct CheatoSounds D_80800F04_chcheato;
+    extern s32 D_80800F08_chcheato;
+    struct CheatoTimes times;
+    struct CheatoSounds sounds;
+    s32 i;
+
+    times = D_80800EFC_chcheato;
+    sounds = D_80800F04_chcheato;
+    for (i = 0; i < 2; i++) {
+        if (func_80101E14(arg0, times.values[i]) != 0) {
+            func_800C4B7C(sounds.values[i]);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800F08_chcheato);
+        }
+    }
+}
 
 /* extern */
 
