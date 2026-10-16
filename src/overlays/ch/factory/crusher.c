@@ -139,9 +139,9 @@ int func_80800800_chfactorycrusher(Actor *arg0) {
 
 /* extern */
 
-void func_80800898_chfactorycrusher(void *arg0) {
-    s32 func_80106790(s32);
-    func_80106790((*(s32 *)((s8 *)(arg0) + (0x3C))));
+Actor *func_80800898_chfactorycrusher(Actor *arg0) {
+    Actor *func_80106790(Unk80132ED0 *);
+    return func_80106790(arg0->unk3C);
 }
 
 void func_808008B8_chfactorycrusher(s32 arg0, f32 arg1) {
@@ -149,7 +149,29 @@ void func_808008B8_chfactorycrusher(s32 arg0, f32 arg1) {
     func_800EFE50(arg0 + 4, arg0 + 0x18, arg0 + 0x28, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/crusher/func_808008F0_chfactorycrusher.s")
+void func_808008F0_chfactorycrusher(Actor *arg0) {
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F8418(s32, f32 *);
+    f32 lower;
+    f32 upper;
+    f32 position[3];
+    s32 player;
+    Actor *crusher;
+
+    player = func_800F54E4();
+    crusher = func_80800898_chfactorycrusher(arg0);
+    upper = arg0->position[2];
+    lower = crusher->position[2];
+    func_800F5A00(player, position);
+    if (position[2] < lower) {
+        position[2] = lower;
+        func_800F8418(player, position);
+    } else if (upper < position[2]) {
+        position[2] = upper;
+        func_800F8418(player, position);
+    }
+}
 
 /* extern */
 
