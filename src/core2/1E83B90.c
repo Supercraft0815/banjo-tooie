@@ -207,7 +207,30 @@ void func_800ABA20(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800ABA9C.s")
+void func_800ABA9C(void) {
+    s32 func_8001211C(void);
+    s32 heap_free(void *);
+    extern void *D_8012798C;
+    s32 cutoff;
+    void *next;
+    void *current;
+
+    cutoff = func_8001211C() - 0x28;
+    current = *(void **)((u8 *)D_8012798C + 4);
+    while ((current != NULL) && (cutoff < *(s32 *)((u8 *)current + 8))) {
+        current = *(void **)((u8 *)current + 4);
+    }
+    if (current != NULL) {
+        *(s32 *)((u8 *)*(void **)current + 4) = 0;
+        if (current != NULL) {
+            do {
+                next = *(void **)((u8 *)current + 4);
+                heap_free(current);
+                current = next;
+            } while (next != NULL);
+        }
+    }
+}
 
 void func_800ABB34(void *arg0, void **arg1) {
     s32 func_8001211C(void);
