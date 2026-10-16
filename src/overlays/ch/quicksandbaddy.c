@@ -47,7 +47,7 @@ void chquicksandbaddy_entrypoint_0(s32 arg0, s32 arg1) {
     s32 func_800BAB80(s32, s32 *);
     s32 func_800BABB8(s32, s32, s32, s32, s32 *);
     f32 func_800DC0C0();
-    s32 func_808010A0_chquicksandbaddy(s32 *);
+    s32 func_808010A0_chquicksandbaddy(void *);
     extern s32 D_80801370_chquicksandbaddy;
     extern s32 D_80801390_chquicksandbaddy;
     s32 sp24;
@@ -70,7 +70,7 @@ void func_80800FC8_chquicksandbaddy(s32 arg0, f32 arg1, s32 arg2) {
     s32 func_800BA714(s32, s32, s32);
     s32 func_800BAB80(s32, s32 *);
     s32 func_800BABB8(s32, s32, s32, s32, s32 *);
-    s32 func_808010A0_chquicksandbaddy(s32 *);
+    s32 func_808010A0_chquicksandbaddy(void *);
     extern s32 D_80801394_chquicksandbaddy;
     extern s32 D_808013D4_chquicksandbaddy;
     extern s32 _chquicksandbaddy_entrypoint_0;
@@ -89,7 +89,33 @@ void func_80800FC8_chquicksandbaddy(s32 arg0, f32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quicksandbaddy/func_808010A0_chquicksandbaddy.s")
+s32 func_808010A0_chquicksandbaddy(void *arg0) {
+    s32 func_800EA05C();
+    u8 *color = arg0;
+
+    switch (func_800EA05C()) {
+        case 0xB9:
+        case 0xC4:
+            color[0] = 0xC8;
+            color[1] = 0xA0;
+            color[2] = 0x32;
+            return 1;
+        case 0x100:
+        case 0x10F:
+        case 0x15C:
+            color[0] = 0xB4;
+            color[1] = 0xB4;
+            color[2] = 0xB4;
+            return 1;
+        case 0x106:
+            color[0] = 0x32;
+            color[1] = 0xA0;
+            color[2] = 0x32;
+            return 1;
+        default:
+            return 0;
+    }
+}
 
 /* extern */
 
