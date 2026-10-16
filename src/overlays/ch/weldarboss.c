@@ -735,7 +735,23 @@ void func_8080367C_chweldarboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_808036C8_chweldarboss.s")
+void func_808036C8_chweldarboss(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _mlwave_entrypoint_0(void *, f32, f32);
+    void _mlwave_entrypoint_7(void *, f32);
+    void func_800BF744(s32, s32);
+    u8 *sp1C;
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    sp1C = temp_v0;
+    (*(s8 *)((s8 *)temp_v0 + 0x62)) = 1;
+    (*(s16 *)((s8 *)temp_v0 + 0xAC)) = 2;
+    (*(f32 *)((s8 *)temp_v0 + 0xA8)) = 10.0f;
+    _mlwave_entrypoint_0(temp_v0 + 0x88, 300.0f, 300.0f);
+    _mlwave_entrypoint_7(sp1C + 0x88, 0.25f);
+    func_800BF744(3, 1);
+}
 
 void func_8080373C_chweldarboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
