@@ -1,6 +1,24 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/crashout/func_80800000_bscrashout.s")
+struct player_state_s;
+
+void func_80800000_bscrashout(struct player_state_s *self) {
+    int baanim_isAt(struct player_state_s *, f32);
+    f32 baanim_getTimer(struct player_state_s *);
+    void func_8009DB04(struct player_state_s *, s32, f32, s32);
+    void _badust_entrypoint_9(struct player_state_s *);
+
+    if (baanim_isAt(self, 0.3659f) != 0) {
+        func_8009DB04(self, 0x417, 1.0f, 0x36B0);
+    }
+    if (baanim_isAt(self, 0.6862f) != 0) {
+        func_8009DB04(self, 0x417, 0.8f, 0x4650);
+        func_8009DB04(self, 0x427, 1.0f, 0x55F0);
+    }
+    if (baanim_getTimer(self) < 0.8f) {
+        _badust_entrypoint_9(self);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/crashout/func_808000B0_bscrashout.s")
 
