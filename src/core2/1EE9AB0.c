@@ -1,6 +1,32 @@
 #include "core2/1EE9AB0.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_801101C0.s")
+void func_801101C0(void) {
+    extern s16 (*D_80124950)(void);
+    extern s16 D_80137340[25];
+    extern s16 D_80137372;
+    s16 (**var_s1)(void);
+    s16 *var_s0;
+    s16 temp_v1;
+    s32 var_a0;
+    s32 var_v0;
+    u32 end;
+
+    D_80137372 = 0x98;
+    var_s0 = D_80137340; var_s1 = &D_80124950; end = (u32)&D_80137340[25];
+    do {
+        *var_s0 = (*var_s1)();
+        temp_v1 = *var_s0;
+        var_a0 = temp_v1 % 4;
+        if (var_a0 != 0) {
+            var_v0 = 4 - var_a0;
+        } else {
+            var_v0 = 0;
+        }
+        var_s0++;
+        var_s1++;
+        D_80137372 = D_80137372 + temp_v1 + var_v0;
+    } while ((u32)var_s0 != end);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110280.s")
 
