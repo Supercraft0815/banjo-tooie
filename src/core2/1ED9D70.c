@@ -132,7 +132,28 @@ int func_8010072C(s32 *arg0, u8 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_801007B8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100938.s")
+void func_80100938(s32 arg0) {
+    s32 _glpackvtx_entrypoint_1(s32);
+    void *freelist_at(FreeList *, s32);
+    void freelist_erase(FreeList *, s32);
+    void freelist_free(FreeList *);
+    s32 freelist_used_count(FreeList *);
+    struct Entry { s32 data; s16 value; u8 padding[2]; u32 count : 8; u32 unused : 24; };
+    struct Entry *entry;
+
+    entry = freelist_at(D_80135A64, arg0);
+    entry->count--;
+    if (entry->count == 0) {
+        _glpackvtx_entrypoint_1(entry->data);
+        entry->data = 0;
+        entry->value = 0;
+        freelist_erase(D_80135A64, arg0);
+        if (freelist_used_count(D_80135A64) == 0) {
+            freelist_free(D_80135A64);
+            D_80135A64 = NULL;
+        }
+    }
+}
 
 void func_801009C4(void **arg0, s32 arg1) {
     void freelist_erase(FreeList *, s32);
