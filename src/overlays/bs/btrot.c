@@ -681,7 +681,13 @@ void func_80802A4C_bsbtrot(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_48.s")
+void bsbtrot_entrypoint_48(void *arg0) {
+    func_80800538_bsbtrot(arg0);
+    func_808029D8_bsbtrot(arg0);
+    baanim_playForDuration_loopSmooth(arg0, func_80800DC4_bsbtrot((s32)arg0), 0x3F07AE14);
+    func_8009FFD8(arg0, 2, 1, 9, 0x12);
+    func_80800DF4_bsbtrot((s32)arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_49.s")
 
