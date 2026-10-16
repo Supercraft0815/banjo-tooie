@@ -392,4 +392,20 @@ s32 func_8010262C(Unk80132ED0 *arg0, u32 arg1) {
     return model;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_801026CC.s")
+void func_801026CC(Actor *arg0, Vec3s32 arg1, f32 arg2) {
+    s32 func_800D3E40(s32);
+    f32 var_f0;
+
+    if (func_800D3E40(8) != 0) {
+        arg2 *= 1.5f;
+    }
+    if (arg2 < 100.0f) {
+        var_f0 = arg1.x;
+    } else {
+        var_f0 = ((arg2 - 100.0f) * arg1.y) + arg1.x;
+    }
+    if (var_f0 < arg1.z) {
+        var_f0 = arg1.z;
+    }
+    func_80101CDC(arg0, var_f0);
+}
