@@ -28,7 +28,19 @@ f32 func_800F1828(f32 *arg0, f32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1988.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1A88.s")
+void func_800F1A88(f32 *arg0, f32 *arg1) {
+    f32 func_80013B70(f32, f32, f32);
+    f32 func_80013B7C(f32, f32);
+    f32 sp1C;
+    f32 z;
+    f32 x;
+
+    z = arg0[2];
+    x = arg0[0];
+    sp1C = sqrtf(z * z + x * x);
+    arg1[1] = func_80013B70(arg0[0], arg0[2], sp1C);
+    arg1[0] = func_80013B7C(arg0[1], sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1AFC.s")
 
