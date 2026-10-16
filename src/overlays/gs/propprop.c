@@ -17,15 +17,34 @@ f32 func_8080001C_gspropprop(void) {
 
 /* extern */
 
-void func_80800050_gspropprop(void) {
+f32 func_80800050_gspropprop(void) {
     s32 _gsproplookup_entrypoint_0();
-    s32 func_800B2354(s32);
+    f32 func_800B2354(s32);
     s32 func_800B2840(s32);
     s32 func_800BFC34(s32);
-    func_800B2354(func_800B2840(func_800BFC34(_gsproplookup_entrypoint_0())));
+    return func_800B2354(func_800B2840(func_800BFC34(_gsproplookup_entrypoint_0())));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propprop/gspropprop_entrypoint_1.s")
+f32 gspropprop_entrypoint_1(void *arg0) {
+    typedef struct {
+        u32 pad0 : 22;
+        u32 scale : 8;
+        u32 pad3 : 2;
+        u8 pad4[4];
+        u32 pad8 : 16;
+        u32 scale2 : 8;
+        u32 padB : 6;
+        u32 flag : 1;
+        u32 padB2 : 1;
+    } Prop;
+    Prop *prop = arg0;
+
+    if (prop->flag) {
+        return func_80800050_gspropprop() * 0.5f * prop->scale2 * 0.01f;
+    } else {
+        return func_8080001C_gspropprop() * 0.5f * prop->scale * 0.01f;
+    }
+}
 
 void gspropprop_entrypoint_2(void *prop) {
     typedef struct {
