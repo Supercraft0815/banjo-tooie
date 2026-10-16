@@ -53,7 +53,61 @@ s32 func_80800980_chklungophial(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/phial/func_808009BC_chklungophial.s")
+/* extern */
+
+void func_808009BC_chklungophial(Actor *arg0, s32 arg1) {
+    s32 func_800D674C(s32);
+    void func_800E24D8(s32);
+    void func_800E2530(f32);
+    void func_800E2588(u32);
+    s32 func_800E2594(s32, s32);
+    s32 func_800E2720(s32, s32, s32, f32 *, f32 *, s32);
+    void func_800E2A14(s32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    struct PhialEntry {
+        f32 position[3];
+        f32 scale;
+        f32 elapsed;
+        f32 duration;
+        f32 speed;
+        f32 height;
+        f32 angle;
+    };
+    struct PhialData {
+        s32 count;
+        struct PhialEntry entries[50];
+    } *temp_v0;
+    f32 temp_f0;
+    s32 temp_s1;
+    s32 var_s1;
+    f32 sp4C[3];
+    struct PhialEntry *var_s0;
+
+    temp_v0 = func_80100094(arg0, 0);
+    var_s0 = temp_v0->entries;
+    arg0->unk7C_12 = 1;
+    if (temp_v0->count != 0) {
+        temp_s1 = func_800D674C(0x9CF);
+        func_800E2588(1);
+        func_800E2594(arg1, temp_s1);
+        func_800E24D8(1);
+        var_s1 = 0;
+        if (temp_v0->count > 0) {
+            do {
+                if (var_s0->duration == 0.0f) {
+                    temp_f0 = var_s0->speed;
+                    func_800EFA4C(sp4C, temp_f0, temp_f0, temp_f0);
+                    func_800E2530(var_s0->angle);
+                    func_800E2720(arg1, (s32) var_s0->elapsed, 0, var_s0->position, sp4C, 0xFF);
+                }
+                var_s1 += 1;
+                var_s0++;
+            } while (var_s1 < temp_v0->count);
+        }
+        func_800E2A14(arg1);
+    }
+}
 
 /* extern */
 
