@@ -241,4 +241,21 @@ void func_808020EC_chstatueboss(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80802268_chstatueboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_8080232C_chstatueboss.s")
+void func_8080232C_chstatueboss(Actor *arg0) {
+    s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    f32 position[3];
+
+    if (_subaddieskeleton_entrypoint_0(arg0, 0x1E, position)) {
+        func_800EF1B8(position, func_800F1DF4(arg0->position, position), 80.0f);
+        position[1] = arg0->position[1];
+        _sudeflect_entrypoint_1(position, 300.0f, -50.0f, 250.0f, 2);
+    }
+    if (_subaddieskeleton_entrypoint_0(arg0, 0x10, position)) {
+        func_800EF1B8(position, func_800F1DF4(arg0->position, position), 80.0f);
+        position[1] = arg0->position[1];
+        _sudeflect_entrypoint_1(position, 300.0f, -50.0f, 250.0f, 2);
+    }
+}
