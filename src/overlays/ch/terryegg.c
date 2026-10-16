@@ -102,7 +102,23 @@ void func_80800C48_chterryegg(s32 arg0)
     func_8010C964();
     func_80801080_chterryegg(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80800C70_chterryegg.s")
+s32 func_80800C70_chterryegg(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_800DA298(s32);
+    f32 func_800DC0C0(void);
+    void func_800FFAB0(Actor *);
+    void func_80101EE4(Actor *, f32);
+    s32 func_80800CF4_chterryegg(Actor *, f32);
+    f32 func_80801188_chterryegg(Actor *, s32);
+    if (arg1 == 0x95) {
+        func_80800CF4_chterryegg(arg0, func_80801188_chterryegg(arg0, 0));
+        func_80101EE4(arg0, func_800DC0C0());
+        if (func_800DA298(arg0->unk74_7 + 0x143) == 0) {
+            func_800FFAB0(arg0);
+        }
+        return 1;
+    }
+    return 0;
+}
 
 s32 func_80800CF4_chterryegg(Actor *arg0, f32 arg1) {
     void func_80102FDC(Actor*, f32);
