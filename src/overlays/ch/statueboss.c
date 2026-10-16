@@ -60,7 +60,25 @@ s32 func_808011A0_chstatueboss(s32 arg0) {
     return ((s16 *)&D_808027D4_chstatueboss)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_808011B4_chstatueboss.s")
+void func_808011B4_chstatueboss(Actor *arg0) {
+    f32 func_800136E4(f32);
+    f32 func_800D8FF8(void);
+    extern f32 D_80802630_chstatueboss[];
+    extern f32 D_80802644_chstatueboss[];
+    typedef struct {
+        u8 pad[0x70];
+        f32 angles[5];
+        s16 index;
+    } StatueData;
+    int temp_v1;
+    StatueData *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    for (temp_v1 = temp_v0->index; temp_v1 < 5; temp_v1++) {
+        temp_v0->angles[temp_v1] += func_800D8FF8() * D_80802630_chstatueboss[temp_v1];
+        temp_v0->angles[temp_v1] = func_800136E4(temp_v0->angles[temp_v1]);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_8080124C_chstatueboss.s")
 
