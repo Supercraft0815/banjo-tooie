@@ -152,7 +152,28 @@ void func_80802C18_chfantasyathlete(Actor *arg0, Unk80132ED0 *arg1, s32 arg2, s3
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80802C94_chfantasyathlete.s")
+void func_80802C94_chfantasyathlete(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_7(s32, s32);
+    s32 _capod_entrypoint_8(s32);
+    void _gcdialogcamera_entrypoint_6(Unk80132ED0 *);
+    void _gcdialogcamera_entrypoint_8(void);
+
+    switch (arg0->actorData[0]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x2B, 0);
+        case 2:
+            _capod_entrypoint_8(1);
+            arg0->actorData[0] = 1;
+            arg1 = 2;
+            arg2 = 1;
+            _gcdialogcamera_entrypoint_6(arg0->unk0);
+            _gcdialogcamera_entrypoint_8();
+        case 1:
+            _capod_entrypoint_7(arg1, arg2);
+            break;
+    }
+}
 
 /* extern */
 
@@ -167,7 +188,7 @@ void func_80802D38_chfantasyathlete(void *arg0) {
 /* extern */
 
 void func_80802D74_chfantasyathlete(u8 *arg0) {
-    s32 func_80802C94_chfantasyathlete(void *, s32, s32);
+    void func_80802C94_chfantasyathlete(Actor *, s32, s32);
     if ((*(s32 *)((s8 *)(arg0) + (0x18))) != 1) {
         func_80802C94_chfantasyathlete(arg0, 2, 0);
     }
