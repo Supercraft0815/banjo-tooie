@@ -193,7 +193,23 @@ void func_808012C8_chdodgemcontrol(Actor *arg0, s32 arg1) {
     _chintrotext_entrypoint_2(1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801344_chdodgemcontrol.s")
+void func_80801344_chdodgemcontrol(Actor *arg0) {
+    void func_800D2748(s32, s32);
+
+    switch (arg0->unk79_4) {
+    case 0:
+    case 1:
+    case 2:
+        func_800D2748(0xC3, 0x5B);
+        break;
+    case 3:
+        func_800D2748(0xC3, 0x23);
+        break;
+    }
+    func_800D2748(0xC4, 0x24);
+    func_800D2748(0xC5, 0x25);
+    func_800D2748(0xC6, 0x26);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808013D0_chdodgemcontrol.s")
 
