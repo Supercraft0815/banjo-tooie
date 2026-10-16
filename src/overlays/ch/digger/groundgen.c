@@ -17,7 +17,23 @@ void func_8080000C_chdiggergroundgen(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/groundgen/func_80800034_chdiggergroundgen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/groundgen/func_808000AC_chdiggergroundgen.s")
+s32 func_808000AC_chdiggergroundgen(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_808002C4_chdiggergroundgen(Actor *);
+    void *func_80100094(Actor *, u32);
+    s32 _subaddielink_entrypoint_3(u8 *);
+    s32 *data = &arg2;
+    switch (arg1) {
+        case 0x3D:
+            func_808002C4_chdiggergroundgen(arg0);
+            break;
+        case 0x95:
+            _subaddielink_entrypoint_3(func_80100094(arg0, 0));
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/groundgen/func_80800118_chdiggergroundgen.s")
 
