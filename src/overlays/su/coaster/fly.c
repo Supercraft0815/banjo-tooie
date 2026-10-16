@@ -7,7 +7,33 @@ OSThread *sucoasterfly_entrypoint_0(void)
     return (OSThread *) D_80802280_sucoasterfly;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/sucoasterfly_entrypoint_1.s")
+s32 sucoasterfly_entrypoint_1(Actor *arg0, s32 arg1) {
+    u32 *func_80100074(Actor *, u32, u32);
+    s32 _sucoasterflydata_entrypoint_0(Actor *);
+    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    s32 func_80801FE4_sucoasterfly(Actor *, f32 *, f32, f32);
+    struct CoasterFlyData {
+        f32 position[3];
+        f32 unkC;
+        u8 unk10;
+        u8 variant : 4;
+        u8 flags : 4;
+        s16 unk12;
+        s32 unk14;
+        s16 height;
+        s16 unk1A;
+    } *data;
+    f32 groundY;
+
+    data = (struct CoasterFlyData *)func_80100074(arg0, 0, arg1 + 0x1C);
+    data->variant = _sucoasterflydata_entrypoint_0(arg0);
+    _subaddierouteDll_entrypoint_3(arg0, data, arg0->position);
+    data->unkC = 0.0f;
+    groundY = arg0->position[1] - 400.0f;
+    func_80801FE4_sucoasterfly(arg0, &groundY, 50.0f, -1500.0f);
+    data->height = (s32)(arg0->position[1] - groundY);
+    return 1;
+}
 
 void sucoasterfly_entrypoint_2(Actor* arg0)
 {
