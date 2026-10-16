@@ -74,7 +74,32 @@ void func_808000B8_baeggfire(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/fire/func_80800180_baeggfire.s")
+void func_80800180_baeggfire(void *arg0, s32 arg1) {
+    typedef struct player_state_s PlayerState;
+    s32 func_800944F8(PlayerState *arg0, s32 arg1);
+
+    *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x6C) + 8) = arg1;
+    switch (arg1) {
+        case 1:
+            *(f32 *)*(void **)((u8 *)arg0 + 0x6C) = 0.0f;
+            *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x6C) + 4) = 0;
+            *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x6C) + 0xC) = 0;
+            break;
+        case 2:
+            if (func_800944F8(arg0, *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x6C) + 0x10))) {
+                *(f32 *)*(void **)((u8 *)arg0 + 0x6C) = 0.15f;
+            } else {
+                *(f32 *)*(void **)((u8 *)arg0 + 0x6C) = 0.28f;
+            }
+            break;
+        case 3:
+            *(f32 *)*(void **)((u8 *)arg0 + 0x6C) = 0.2f;
+            break;
+        case 4:
+            *(f32 *)*(void **)((u8 *)arg0 + 0x6C) = 0.5f;
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/fire/func_80800250_baeggfire.s")
 
