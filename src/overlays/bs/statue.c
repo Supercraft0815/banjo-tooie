@@ -115,10 +115,11 @@ s32 bsstatue_entrypoint_2(s32 arg0) {
 
 /* extern */
 
+struct player_state_s;
 void func_80800790_bsstatue(struct player_state_s *arg0) {
     s32 baflag_isTrue(struct player_state_s *, s32);
     void func_8009B7C0(struct player_state_s *);
-    s32 func_80800BEC_bsstatue(struct player_state_s *);
+    void func_80800BEC_bsstatue(struct player_state_s *);
     if (baflag_isTrue(arg0, 0xF) != 0) {
         func_8009B7C0(arg0);
         return;
@@ -129,7 +130,7 @@ void func_80800790_bsstatue(struct player_state_s *arg0) {
 void func_808007D4_bsstatue(void *arg0) {
     int func_80800130_bsstatue();
     s32 func_8080054C_bsstatue(void *, s32);
-    void baphysics_set_target_horizontal_velocity(void *, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     func_80800130_bsstatue();
     func_8080054C_bsstatue(arg0, 0);
     if (bs_getNextState(arg0) == 0xF9) {
@@ -161,7 +162,7 @@ void func_808009C0_bsstatue(PlayerState *arg0) { void func_8009E53C(PlayerState 
 
 void func_80800A24_bsstatue(PlayerState *arg0) {
     s32 baanim_playForDuration_onceSmooth(void *, s32, s32);
-    void baphysics_set_target_horizontal_velocity(void *, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     void func_8009E55C(PlayerState *, s32, f32);
     void func_8009E5A4(PlayerState *, s32, s32);
     s32 func_8009FFD8(void *, s32, s32, s32, s32);
@@ -181,7 +182,23 @@ s32 bsstatue_entrypoint_4(s32 arg0) {
     return ((s32 *)&D_808015C0_bsstatue)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80800BEC_bsstatue.s")
+void func_80800BEC_bsstatue(PlayerState *arg0) {
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 bastick_getZone(PlayerState *);
+    f32 bastick_getZonePosition(PlayerState *);
+    f32 func_800F1214(f32, f32, f32);
+    f32 sp1C;
+
+    sp1C = bastick_getZonePosition(arg0);
+    switch (bastick_getZone(arg0)) {
+        case 0:
+            baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+            return;
+        case 1:
+            baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp1C, 100.0f, 650.0f));
+            return;
+    }
+}
 
 void func_80800C64_bsstatue(PlayerState *arg0) {
     void func_80800000_bsstatue(s32, s32);
@@ -290,7 +307,7 @@ void func_80800FCC_bsstatue()
 
 void func_80800FEC_bsstatue(register void *arg0) {
     s32 baanim_playForDuration_onceSmooth(void *, s32, s32);
-    void baphysics_set_target_horizontal_velocity(void *, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     void func_8009BA9C(PlayerState *, f32 *);
     s32 func_8009FFD8(void *, s32, s32, s32, s32);
     void func_800FC660(u32);
@@ -325,7 +342,7 @@ void func_808010B4_bsstatue()
 }
 
 void func_808010D4_bsstatue(register void *arg0) {
-    void baphysics_set_target_horizontal_velocity(void *, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
     s32 func_8009FFD8(void *, s32, s32, s32, s32);
     s32 func_808001FC_bsstatue();
