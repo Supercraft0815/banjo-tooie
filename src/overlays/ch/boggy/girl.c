@@ -1,5 +1,7 @@
 #include "ch/boggy/girl.h"
 
+void *func_80100094(Actor *, u32);
+
 OSThread *chboggygirl_entrypoint_0(void)
 {
     extern u8 D_80800CF0_chboggygirl[];
@@ -7,7 +9,38 @@ OSThread *chboggygirl_entrypoint_0(void)
     return (OSThread *) D_80800CF0_chboggygirl;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/girl/func_8080000C_chboggygirl.s")
+void func_8080000C_chboggygirl(Actor *arg0) {
+    typedef struct {
+        u8 unk0[8];
+        u8 route[0xC];
+        s16 unk14;
+        s16 unk16;
+        u8 item[1];
+    } GirlData;
+    typedef struct {
+        f32 unk18[3];
+        f32 unk24;
+    } GirlActorData;
+    s32 _chboggykids_entrypoint_0(Actor *);
+    void func_800FFAB0(Actor *);
+    s32 _subaddieDll_entrypoint_1(Actor *);
+    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    void _subaddieitem_entrypoint_0(void *, u32, s32, s32);
+    void func_8080093C_chboggygirl(Actor *);
+    GirlData *sp24;
+
+    sp24 = func_80100094(arg0, 0);
+    if (_chboggykids_entrypoint_0(arg0) == 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    ((GirlActorData *)arg0->actorData)->unk24 = 240.0f;
+    _subaddieDll_entrypoint_1(arg0);
+    _subaddierouteDll_entrypoint_3(arg0, sp24->route, arg0->position);
+    _subaddieitem_entrypoint_0(sp24->item, 0x3CB, 0x190, 1);
+    sp24->unk14 = 0;
+    func_8080093C_chboggygirl(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/girl/func_808000A8_chboggygirl.s")
 
