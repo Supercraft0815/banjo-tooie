@@ -1313,7 +1313,23 @@ void func_808046D0_chgameselect(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80804750_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80804878_chgameselect.s")
+void func_80804878_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
+    void _glglobalsettings_entrypoint_6(s32, s32);
+    s32 func_80804948_chgameselect(s32);
+    void func_808049E8_chgameselect(s32, s32, s32);
+    void func_80804A38_chgameselect(void *);
+
+    if (arg0->actorData[0] != 0) {
+        func_80804A38_chgameselect(arg0);
+        if (arg2 == 0) {
+            _glglobalsettings_entrypoint_6(0, 0);
+            return;
+        }
+        func_808049E8_chgameselect(arg1, arg2, func_80804948_chgameselect(arg2));
+        return;
+    }
+    func_80802C7C_chgameselect((Unk80132ED0 *)arg0->actorData[6]);
+}
 
 void func_808048F8_chgameselect(u8 *arg0, s32 *arg1) {
     s32 func_80802C48_chgameselect(Unk80132ED0 *);
