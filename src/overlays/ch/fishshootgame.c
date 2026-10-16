@@ -29,7 +29,22 @@ void func_808002E8_chfishshootgame(Actor *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_808009C0_chfishshootgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80800A28_chfishshootgame.s")
+void func_80800A28_chfishshootgame(Actor *arg0) {
+    void *func_8008AEDC(void *);
+    s32 *func_8008C27C(void *);
+    void *func_80100094(Actor *, u32);
+    struct anctrl_s *func_80104248(void *);
+    void func_800DFC20(s32 *, s32, f32 *);
+    s32 pad;
+    s32 *sp30;
+    u8 *sp2C;
+    f32 sp20[3];
+
+    sp30 = func_8008C27C(func_8008AEDC(func_80104248(arg0)));
+    sp2C = func_80100094(arg0, 0U);
+    func_800DFC20(sp30, 0x5D, sp20);
+    *(f32 *)(sp2C + 0x24) = *(f32 *)(sp2C + 0x28) * sp20[1];
+}
 
 void func_80800A90_chfishshootgame(Actor *arg0, f32 *arg1) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
