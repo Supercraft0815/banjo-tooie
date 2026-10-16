@@ -7,7 +7,28 @@ OSThread *chdiggerbossdoor_entrypoint_0(void)
     return (OSThread *) D_80800430_chdiggerbossdoor;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossdoor/func_8080000C_chdiggerbossdoor.s")
+void func_8080000C_chdiggerbossdoor(void *arg0) {
+    s32 _capod_entrypoint_21(s32, s32, s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800EA090(void);
+    u32 func_800F54E4(void);
+    void func_800F8294(s32, f32 *);
+    s32 func_8010108C(Actor *, s32, s32);
+    void func_80800370_chdiggerbossdoor(s32 *);
+    Actor *actor = arg0;
+
+    *(f32 *)&actor->actorData[4] = 0.0f;
+    if (func_800EA090() == 6) {
+        *(f32 *)&actor->actorData[4] = -500.0f;
+        if (func_800DA298(0x43) != 0) {
+            func_80800370_chdiggerbossdoor(arg0);
+            func_8010108C(actor, 7, 0);
+            func_800F8294(func_800F54E4(), actor->position);
+            _capod_entrypoint_21((s32)actor->unk0, 0, 0x55, 0x2010);
+            actor->unk6C_0 = 1;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossdoor/func_808000B0_chdiggerbossdoor.s")
 
