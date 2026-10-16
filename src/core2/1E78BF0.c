@@ -173,7 +173,7 @@ void func_8009FFD8(PlayerState *arg0, enum baanim_update_type_e anim_update_type
 void func_800A0024(PlayerState *arg0) {
     s32 func_8009CC18(PlayerState *self, f32[3]);
     s32 func_8009CC68(PlayerState *self);
-    s32 func_800A0064(PlayerState *, f32 *);
+    void func_800A0064(PlayerState *, f32 *);
     f32 sp1C[3];
     if (func_8009CC68(arg0) != 0) {
         if (func_8009CC18(arg0, sp1C) != 0) {
@@ -182,10 +182,24 @@ void func_800A0024(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A0064.s")
+void func_800A0064(PlayerState *arg0, f32 *arg1) {
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    void func_8009BF5C(PlayerState *, f32);
+    void baroll_setIdeal(PlayerState *, f32);
+    f32 sp24[3];
+    f32 sp18[3];
+
+    func_8009C128(arg0, sp24);
+    func_800F18FC(sp24, arg1, sp18);
+    func_8009BF5C(arg0, -sp18[0]);
+    yaw_setIdeal(arg0, sp18[1]);
+    baroll_setIdeal(arg0, 0.0f);
+}
 
  s32 func_800A00CC(PlayerState *arg0, f32 arg1[3]) {
     void func_8009C128(PlayerState *, f32[3]);
+    void func_800F18FC(f32 *, f32 *, f32 *);
     f32 sp24[3];
     s32 sp18[3];
 
@@ -245,13 +259,13 @@ void func_800A0180(PlayerState *arg0) {
 /* extern */
 
 void func_800A042C(PlayerState *arg0) {
-    s32 baroll_setIdeal(s32, f32);
+    void baroll_setIdeal(PlayerState *, f32);
     void func_8009BF5C(PlayerState *, f32);
     void func_8009BFBC(void *arg0);
     s32 baroll_applyIdeal(PlayerState *);
     func_8009BF5C(arg0, 0.0f);
     func_8009BFBC(arg0);
-    baroll_setIdeal((s32) arg0, 0.0f);
+    baroll_setIdeal(arg0, 0.0f);
     baroll_applyIdeal(arg0);
 }
 
