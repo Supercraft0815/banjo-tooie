@@ -114,7 +114,20 @@ void func_80800C10_chstonepillar(f32 *arg0) {
     func_800BBCB8(arg0, arg0, 1.0f, 3, &D_808014B8_chstonepillar);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800C44_chstonepillar.s")
+void func_80800C44_chstonepillar(Actor *arg0) {
+    f32 func_800136E4(f32);
+    s32 func_800D0B68(u32, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    arg0->rotation[1] = func_800136E4((f32)(3 - *(s16 *)(data + 0x2C)) * 72.0f);
+    if (func_800D0B68(8, 1) != 0) {
+        *(s16 *)(data + 0x2C) = -1;
+    }
+    func_800EE7F8(arg0->position, (f32 *)arg0->actorData);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800CC8_chstonepillar.s")
 
