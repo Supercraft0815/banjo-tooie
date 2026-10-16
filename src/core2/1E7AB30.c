@@ -36,7 +36,29 @@ void func_800A13A0(void) {
     D_80127090 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A13B0.s")
+void func_800A13B0(s32 arg0) {
+    extern s8 D_80127090;
+    s32 _gcsectionDll_entrypoint_2(s32);
+    s32 _gcsectionDll_entrypoint_3(s32, s32);
+    s32 func_800F8B64(void);
+    s32 func_800F99E8(void);
+
+    *((s8 *)&D_80127090 + 2) = _gcsectionDll_entrypoint_3(_gcsectionDll_entrypoint_2(arg0), 0x1000);
+    *((s8 *)&D_80127090 + 1) = 0;
+    if (func_800F8B64() != 0) {
+        *((s8 *)&D_80127090 + 1) = 1;
+        *((s8 *)&D_80127090 + 3) = 1;
+    }
+    if (func_800F99E8() != 0) {
+        *((s8 *)&D_80127090 + 1) = 1;
+    }
+    *((s8 *)&D_80127090 + 4) = 1;
+    if (_gcsectionDll_entrypoint_3(_gcsectionDll_entrypoint_2(arg0), 0x1000) != 0) {
+        *((s8 *)&D_80127090 + 5) = 1;
+    } else {
+        *((s8 *)&D_80127090 + 5) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A1450.s")
 
