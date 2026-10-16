@@ -262,7 +262,34 @@ void func_8080221C_chboilerboss(Actor *arg0, s32 arg1, volatile s32 arg2) {
     func_800EE7F8((f32 *)arg0->actorData, sp24);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808022BC_chboilerboss.s")
+void func_808022BC_chboilerboss(Actor *arg0) {
+    s32 _chexploder_entrypoint_12(s32, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
+    s32 func_800D395C(void);
+    void func_800DA524(GameFlag);
+    void func_800DA544(GameFlag);
+    void *func_80101080(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_808027E4_chboilerboss(Actor *, s32, s32, Unk80132ED0 *);
+    extern s32 D_80802EF8_chboilerboss[];
+    extern s32 D_80802F60_chboilerboss[];
+    Actor *actor;
+    f32 *position;
+
+    actor = func_80106790(func_80101080());
+    _chexploder_entrypoint_12(func_80106790(func_80101080()), 0x4B);
+    func_808027E4_chboilerboss(arg0, 8, 0x30, actor->unk0);
+    position = arg0->position;
+    _subaddieaudioquick_entrypoint_2(arg0, position, D_80802F60_chboilerboss);
+    func_800BABB8(0, position, position, arg0->scale, D_80802EF8_chboilerboss);
+    if (func_800D395C() == 0) {
+        func_800D1000(0xB, 1, position, 1, NULL);
+    }
+    func_800DA544(0x86);
+    func_800DA524(0x670);
+}
 
 void func_8080238C_chboilerboss(Unk80132ED0 **arg0, s32 arg1, s32 arg2) {
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
