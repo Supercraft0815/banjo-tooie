@@ -3,7 +3,7 @@
 typedef s32 (*GameDataCallback)(void);
 typedef struct {
     GameDataCallback getSize;
-    GameDataCallback unknown;
+    void (*unknown)(u8 *, s32);
     void (*write)(u8 *, s32, u32, s32 *);
 } GameDataEntry;
 extern GameDataEntry D_808004F0_glgamedata[];
@@ -85,7 +85,23 @@ s32 func_808001E4_glgamedata(s32 arg0) {
     return 4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/gamedata/func_808001F0_glgamedata.s")
+s32 func_808001F0_glgamedata(s32 arg0, s32 *arg1) {
+    s32 size;
+    void (*callback)(u8 *, s32);
+    u8 type;
+    u8 *data;
+
+    data = (u8 *)(*arg1 + arg0);
+    type = data[0];
+    size = data[1];
+    data += 2;
+    callback = D_808004F0_glgamedata[type].unknown;
+    if (callback != NULL) {
+        callback(data, size);
+    }
+    *arg1 = *arg1 + size + 2;
+    return type;
+}
 
 /* extern */
 
