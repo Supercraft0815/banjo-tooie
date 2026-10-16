@@ -88,7 +88,17 @@ u32 func_800D3FC0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD6C0/func_800D3FD4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAD6C0/func_800D41D8.s")
+s32 func_800D41D8(s32 arg0) {
+    extern s16 D_8011B620[][2];
+    s32 i;
+
+    for (i = 0; i < 7; i++) {
+        if (arg0 == D_8011B620[i][0]) {
+            return D_8011B620[i][1];
+        }
+    }
+    return 0x3C;
+}
 
 /* extern */
 
