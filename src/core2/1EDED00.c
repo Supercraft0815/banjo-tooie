@@ -260,13 +260,36 @@ void *func_801063C0(void *arg0) {
     return freelist_at(D_80136ED0, (*(s16 *)((s8 *)(arg0) + (0x90))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_801063EC.s")
+void func_801063EC(s16 arg0, s32 arg1) {
+    void *freelist_at(FreeList *, s32);
+    extern FreeList *D_80136ED0;
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    s32 *entry;
+    s32 pad;
+    u32 end;
+    u32 begin;
+    u32 item;
+
+    entry = freelist_at(D_80136ED0, arg0);
+    if (arg1 != entry[0]) {
+        end = vector_end(entry[1]);
+        begin = vector_begin(entry[1]);
+        item = begin;
+        if (begin < end) {
+            do {
+                item += 0xA8;
+                *(s32 *)(item - 0xA8) = arg1;
+            } while (item < end);
+        }
+        entry[0] = arg1;
+    }
+}
 
 /* extern */
 
-void func_8010647C(void *arg0) {
-    s32 func_801063EC(s16);
-    func_801063EC((*(s16 *)((s8 *)(arg0) + (0x90))));
+void func_8010647C(void *arg0, s32 arg1) {
+    func_801063EC((*(s16 *)((s8 *)(arg0) + (0x90))), arg1);
 }
 
 /* extern */
