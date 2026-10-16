@@ -694,7 +694,7 @@ void func_80801D70_bsfirstp(u8 *arg0) {
 void func_80801DC0_bsfirstp(u8 *arg0) {
     s32 func_80801E18_bsfirstp(u8 *);
     s32 func_80801FD0_bsfirstp(u8 *, s32);
-    s32 func_808023A0_bsfirstp(u8 *);
+    void func_808023A0_bsfirstp(u8 *);
     u8 *temp_v0;
     s32 temp_v1;
 
@@ -751,7 +751,25 @@ f32 func_80802304_bsfirstp(f32 arg0, f32 arg1, f32 arg2) {
     return var_f20;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808023A0_bsfirstp.s")
+void func_808023A0_bsfirstp(u8 *arg0) {
+    f32 func_80013728(f32);
+    f32 func_80013B7C(f32, f32);
+    f32 func_800A8AF0(s32);
+    void *volatile sp34;
+    s32 pad[6];
+    void *sp18;
+    register f32 scale;
+    f32 angle;
+
+    sp34 = *(void **)(arg0 + 0x188);
+    scale = func_800A8AF0(func_800A4C68(arg0));
+    scale *= 0.75f;
+    sp18 = (u8 *)sp34 + 0xB8;
+    angle = 152.0f - *(f32 *)sp18;
+    angle *= scale;
+    *(f32 *)((u8 *)sp34 + 0xCC) = func_80013728(func_80013B7C(angle, 152.0f));
+    *(f32 *)((u8 *)sp34 + 0xC8) = func_80013728(func_80013B7C(114.0f - *(f32 *)((u8 *)sp18 + 4), 114.0f));
+}
 
 void func_80802438_bsfirstp(void *arg0, s32 arg1) {
     register void *target;
