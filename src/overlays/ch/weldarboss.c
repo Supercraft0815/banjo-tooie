@@ -751,7 +751,28 @@ void func_808034A0_chweldarboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80803528_chweldarboss.s")
+void func_80803528_chweldarboss(Actor *arg0, f32 *arg1) {
+    typedef struct {
+        u8 pad0[0x65];
+        u8 unk65;
+        u8 pad66[0x12];
+        s16 unk78;
+    } WeldarTriggerData;
+    void *func_80100094(Actor *, u32);
+    f32 func_800EFC7C(f32 *, f32 *);
+    void func_800F82D4(s32, s32);
+    int func_80803B48_chweldarboss(s32);
+    WeldarTriggerData *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    if (sp1C->unk65 == 0 && arg0->position[1] < 300.0f) {
+        if (func_800EFC7C(arg1, arg0->position) < 40000.0f &&
+            func_80803B48_chweldarboss(sp1C->unk78) != 0) {
+            sp1C->unk65 = 1;
+            func_800F82D4(sp1C->unk78, 2);
+        }
+    }
+}
 
 void func_808035D0_chweldarboss(Actor *arg0) {
     void func_800F7B9C(s32, u32);
