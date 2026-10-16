@@ -45,7 +45,40 @@ void func_80800F78_chfantasyeyeball(Actor *arg0, Actor *arg1) {
     _subaddielink_entrypoint_5(sp18[0], func_80100094(arg1, 0U));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80800FEC_chfantasyeyeball.s")
+s32 func_80800FEC_chfantasyeyeball(Actor *arg0) {
+    s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
+    u8 *actors[15];
+    s32 count;
+    s32 index;
+    s32 minimum;
+    s32 best;
+    s32 value;
+    Actor *actor;
+
+    count = _subaddiefind_entrypoint_4(0x482, actors, 15);
+    best = -1;
+    minimum = 255;
+    index = 0;
+    if (count > 0) {
+        do {
+            actor = (Actor *)actors[index];
+            if ((s32)actor->unk70_10 < 7 && arg0 != actor) {
+                value = actor->unk74_7;
+                if (value < minimum) {
+                    best = index;
+                    minimum = value;
+                }
+            }
+            index++;
+        } while (index < count);
+    }
+    if (best == -1) {
+        arg0->actorData[7] = 0;
+        return 0;
+    }
+    arg0->actorData[7] = (u32)((Actor *)actors[best])->unk0;
+    return 1;
+}
 
 /* extern */
 
