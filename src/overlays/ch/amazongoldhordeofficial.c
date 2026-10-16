@@ -180,13 +180,36 @@ void func_80800E18_chamazongoldhordeofficial(Actor *arg0) {
     (*(s16 *)((s8 *)(sp1C) + (8))) = -0x3E7;
 }
 
+void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+
 void func_80800E64_chamazongoldhordeofficial(Actor *arg0) {
     extern u32 D_808011D0_chamazongoldhordeofficial;
     extern u32 D_8080135C_chamazongoldhordeofficial;
     _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_808011D0_chamazongoldhordeofficial, &D_8080135C_chamazongoldhordeofficial);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800E94_chamazongoldhordeofficial.s")
+void func_80800E94_chamazongoldhordeofficial(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _glcutDll_entrypoint_20();
+    s32 func_80101E14(Actor *, f32);
+    void *func_80100094(Actor *, u32);
+    extern u32 D_808011D0_chamazongoldhordeofficial;
+    extern u32 D_80801368_chamazongoldhordeofficial;
+    extern u32 D_80801380_chamazongoldhordeofficial;
+    struct HordeData {
+        u8 pad[0x68];
+        u8 counter;
+    } *data;
+    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_808011D0_chamazongoldhordeofficial, &D_80801368_chamazongoldhordeofficial);
+    if (func_80101E14(arg0, 0.5f)) {
+        data = func_80100094(arg0, 0U);
+        data->counter++;
+        if ((_glcutDll_entrypoint_20() ? 1 : 5) < data->counter) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801380_chamazongoldhordeofficial);
+            data->counter = 0;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800F40_chamazongoldhordeofficial.s")
 
