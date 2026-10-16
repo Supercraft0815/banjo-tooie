@@ -153,7 +153,7 @@ s32 func_80800700_gcboundDll(u8 *arg0, s16 *arg1)
 /* extern */
 
 void func_80800720_gcboundDll(s32 arg0, s32 arg1, u32 arg2) {
-    s32 func_80800EBC_gcboundDll(s32, u32);
+    void func_80800EBC_gcboundDll(u8 *, s16 *);
     u32 temp_s1;
     u32 var_s0;
 
@@ -161,7 +161,7 @@ void func_80800720_gcboundDll(s32 arg0, s32 arg1, u32 arg2) {
     var_s0 = arg2;
     if (arg2 < temp_s1) {
         do {
-            func_80800EBC_gcboundDll(arg0, var_s0);
+            func_80800EBC_gcboundDll((u8 *)arg0, (s16 *)var_s0);
             var_s0 += 0x1C;
         } while (var_s0 < temp_s1);
     }
@@ -250,8 +250,7 @@ void gcboundDll_entrypoint_8(void *arg0) { void func_808008D8_gcboundDll(void *,
 
 void func_80800E6C_gcboundDll(u8 *arg0, u8 *arg1) { void rare_memcpy(void *, void *, int); u8 sp18[0x18]; rare_memcpy(sp18, arg0, 0x18); rare_memcpy(arg0, arg1, 0x18); rare_memcpy(arg1, sp18, 0x18); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_80800EBC_gcboundDll.s")
-
+void func_80800EBC_gcboundDll(u8 *arg0, s16 *arg1) {     struct BoundEntry {         u32 unused[5];         u32 pad : 11;         u32 flag : 1;         u32 rest : 20;     };     s32 start;     struct BoundEntry *end;     int n;     struct BoundEntry *entry;     u32 old;      n = 0;     start = func_80800630_gcboundDll(arg0, arg1);     end = (struct BoundEntry *)func_80800654_gcboundDll(arg0, arg1) - 1;     entry = end;     if ((u32)end >= (u32)start) {         if (end->flag) {         do {             entry--;             n++;         } while ((u32)entry >= (u32)start && entry->flag);         }     }     old = *(u32 *)arg1;     *(u32 *)arg1 = (((((arg1[13] - n) & 0x7FFFFF) ^ (old >> 9)) << 9) ^ old);     ((s8 *)arg1)[3] = n; } 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_80800F6C_gcboundDll.s")
 
 s32 func_8080132C_gcboundDll(s32 arg0) { switch (arg0) { case 1: return 1; case 2: return 2; case 3: return 4; default: return 7; } }
