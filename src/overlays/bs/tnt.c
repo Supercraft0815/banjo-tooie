@@ -421,7 +421,24 @@ s32 bstnt_entrypoint_12(s32 arg0) {
 
 void func_80801F5C_bstnt(s32 arg0) { bstnt_entrypoint_3(); _babounce_entrypoint_4(arg0, 2); _babounce_entrypoint_5(arg0, 0xE9, (s32) 0x3ED0FF97); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80801F9C_bstnt.s")
+void func_80801F9C_bstnt(struct player_state_s *arg0) {
+    int _babounce_entrypoint_2(struct player_state_s *);
+    s32 _babounce_entrypoint_9(struct player_state_s *);
+    s32 bs_setState(s32, s32);
+    s32 sp24;
+    struct player_state_s *self;
+
+    self = arg0;
+    sp24 = 0;
+    if (_babounce_entrypoint_2(self) != 0) {
+        func_80800164_bstnt(self);
+    }
+    if (_babounce_entrypoint_9(self) != 0) {
+        sp24 = 0x10C;
+    }
+    bstnt_entrypoint_4(self);
+    bs_setState(self, sp24);
+}
 
 void func_80802000_bstnt(s32 arg0)
 {
