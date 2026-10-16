@@ -79,12 +79,12 @@ s32 func_808001C4_chcactusofstrength(Actor *arg0, s32 arg1, volatile s32 arg2) {
 /* extern */
 
 void func_808003EC_chcactusofstrength(void *arg0) {
-    s32 func_800D0A9C(s32, s32, void *);
-    s32 func_800FFAB0(void *);
+    s32 func_800D0A9C(u32, u32);
+    void func_800FFAB0(Actor *);
     (*(s32 *)((s8 *)(arg0) + (0x50))) = 0;
     (*(f32 *)((s8 *)(arg0) + (0x28))) = (f32) (*(f32 *)((s8 *)(arg0) + (8)));
     (*(f32 *)((s8 *)(arg0) + (0x2C))) = 1200.0f;
-    if (func_800D0A9C(0x1E, 1, arg0) != 0) {
+    if (func_800D0A9C(0x1E, 1) != 0) {
         func_800FFAB0(arg0);
     }
 }
@@ -199,7 +199,17 @@ void func_80800A44_chcactusofstrength(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_80800B24_chcactusofstrength.s")
+void func_80800B24_chcactusofstrength(Actor *arg0) {
+    s32 func_800D0A9C(u32, u32);
+    void func_800FFAB0(Actor *);
+    void func_800EE7F8(f32 *, f32 *);
+    if (func_800D0A9C(0x1E, 1) != 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+    arg0->position[1] += 225.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_80800B90_chcactusofstrength.s")
 
