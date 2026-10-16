@@ -91,7 +91,24 @@ void func_80105634(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_8010568C.s")
+void func_800FFAB0(Actor *);
+
+int func_8010568C(Actor *arg0, s32 arg1) {
+    struct {
+        s32 pad0 : 21;
+        s32 unk2_1 : 10;
+        s32 pad2_0 : 1;
+    } *temp_v0;
+
+    temp_v0 = func_80105494(arg0);
+    if ((temp_v0 == NULL) || (temp_v0->unk2_1 == -1)) {
+        if (arg1 != 0) {
+            func_800FFAB0(arg0);
+        }
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
