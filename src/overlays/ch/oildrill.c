@@ -159,12 +159,30 @@ void func_80800104_choildrill(Actor *arg0)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_808007DC_choildrill.s")
+void func_808007DC_choildrill(Actor *arg0, f32 arg1, s32 arg2) {
+    void _subaddieaudioloop_entrypoint_0(Actor *, f32);
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    f32 func_800DC0C0(void);
+    extern u32 D_8080138C_choildrill;
+    extern s32 D_80801398_choildrill;
+    extern f32 D_808013D0_choildrill[3];
+    if (arg2 != 0) {
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_8080138C_choildrill);
+        _subaddieaudioloop_entrypoint_0(arg0, arg1);
+        if (func_800DC0C0() < 0.4f) {
+            func_800BBCB8(D_808013D0_choildrill, NULL, 1.0f, 1, &D_80801398_choildrill);
+        }
+    } else {
+        _subaddieaudioloop_entrypoint_2(arg0);
+    }
+}
 
-void choildrill_entrypoint_0(s32 arg0, s32 arg1) {
-    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+void choildrill_entrypoint_0(s32 arg0, f32 *arg1) {
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern s32 D_808013DC_choildrill;
-    func_800BBCB8(arg1, 0, 0x3F800000, 1, &D_808013DC_choildrill);
+    func_800BBCB8(arg1, NULL, 1.0f, 1, &D_808013DC_choildrill);
 }
 
 void func_808008AC_choildrill(f32 *arg0) {
@@ -186,7 +204,7 @@ void func_808008AC_choildrill(f32 *arg0) {
     func_800BA4D0(temp_s1, (s16) (s32) arg0[1]);
     func_800BA544((s32 *) temp_s1, (s32) &_choildrill_entrypoint_0);
     func_800BA22C(temp_s1, 8);
-    choildrill_entrypoint_0(0, (s32) arg0);
+    choildrill_entrypoint_0(0, arg0);
     arg0[1] = sp28;
 }
 
@@ -202,7 +220,7 @@ void func_8080097C_choildrill(Actor *arg0) {
     if (func_800D90A4(&arg0->unk58) != 0) {
         func_800EE7F8(sp1C, arg0->position);
         sp1C[1] = func_800C6920(sp1C, 200.0f, -200.0f, 0) + 5.0f;
-        choildrill_entrypoint_0(0, (s32) sp1C);
+        choildrill_entrypoint_0(0, sp1C);
         arg0->unk58 = 2.0f * func_800DC0C0();
     }
 }
