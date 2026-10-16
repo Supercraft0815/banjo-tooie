@@ -194,7 +194,40 @@ void func_80800C54_gcmapsects(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_4.s")
+/* extern */
+
+s32 gcmapsects_entrypoint_4(f32 arg0[3]) {
+    void *func_800BF704(void);
+    int func_800EFED0(f32 min[3], f32 max[3], f32 vec[3]);
+    u8 *temp_v0_2;
+    s32 var_s0;
+    s32 var_s1;
+    s32 temp_v1;
+    void *temp_v0;
+
+    temp_v0 = func_800BF704();
+    temp_v1 = (*(u8 *)((s8 *)(temp_v0) + (0x77)));
+    if (temp_v1 == 0) {
+        return -1;
+    }
+    var_s1 = 0;
+    if ((s32) temp_v1 > 0) {
+        var_s0 = 0;
+loop_4:
+        temp_v0_2 = (*(u8 **)((s8 *)(temp_v0) + (0x68))) + var_s0;
+        if (func_800EFED0((f32 *)(temp_v0_2 + 0xC), (f32 *)(temp_v0_2 + 0x18), arg0) != 0) {
+            return var_s1;
+        }
+        var_s1 += 1;
+        var_s0 += 0x58;
+        if (var_s1 >= (s32) (*(u8 *)((s8 *)(temp_v0) + (0x77)))) {
+            goto block_7;
+        }
+        goto loop_4;
+    }
+block_7:
+    return -1;
+}
 
 /* extern */
 
