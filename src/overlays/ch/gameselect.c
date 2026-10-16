@@ -2065,7 +2065,26 @@ void func_80806FAC_chgameselect(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80807030_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808070C0_chgameselect.s")
+s32 func_808070C0_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gczoombox_entrypoint_18();
+    void _gczoombox_entrypoint_16(s32);
+    s32 _gczoombox_entrypoint_9(s32);
+    s32 _gczoombox_entrypoint_11(s32);
+    void *func_80100094(Actor *, u32);
+    s32 *data;
+
+    if (arg1 == 0x22) {
+        data = func_80100094(arg0, 0);
+        _gczoombox_entrypoint_18(data[arg2]);
+        _gczoombox_entrypoint_16(data[arg2]);
+        _gczoombox_entrypoint_9(data[arg2]);
+        _gczoombox_entrypoint_11(data[arg2]);
+        arg1 = 1;
+    } else {
+        return 0;
+    }
+    return arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080714C_chgameselect.s")
 
