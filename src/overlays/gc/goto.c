@@ -20,7 +20,29 @@ s32 func_80800000_gcgoto(s8 *arg0, s16 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/goto/gcgoto_entrypoint_0.s")
+void gcgoto_entrypoint_0(s32 *arg0, s32 *arg1) {
+    extern s8 D_80800710_gcgoto;
+    extern s8 D_80800720_gcgoto;
+    extern s8 D_8080072C_gcgoto;
+    extern s8 D_8080073C_gcgoto;
+    if (*arg0 == 0xFB) {
+        if (func_80800000_gcgoto(&D_80800710_gcgoto, (*(s16 *)((s8 *)(arg1) + (2)))) != 0) {
+            *arg0 = 0x1A7;
+            return;
+        }
+        if (func_80800000_gcgoto(&D_80800720_gcgoto, (*(s16 *)((s8 *)(arg1) + (2)))) != 0) {
+            *arg0 = 0x1A8;
+            return;
+        }
+        if (func_80800000_gcgoto(&D_8080072C_gcgoto, (*(s16 *)((s8 *)(arg1) + (2)))) != 0) {
+            *arg0 = 0x1A9;
+            return;
+        }
+        if (func_80800000_gcgoto(&D_8080073C_gcgoto, (*(s16 *)((s8 *)(arg1) + (2)))) != 0) {
+            *arg0 = 0x1A6;
+        }
+    }
+}
 
 void func_8080011C_gcgoto(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
 {
