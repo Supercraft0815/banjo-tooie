@@ -46,7 +46,24 @@ s32 func_80800444_chfactorybattery(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80800480_chfactorybattery.s")
+s32 func_80800480_chfactorybattery(void) {
+    s32 func_800EA05C();
+    s32 temp_v0;
+
+    temp_v0 = func_800EA05C();
+    switch (temp_v0) {
+    case 0x101:
+        return 0x1B0;
+    case 0x106:
+        return 0x1B1;
+    case 0x109:
+        return 0x1B2;
+    case 0x10B:
+        return 0x1B3;
+    default:
+        return 0;
+    }
+}
 
 /* extern */
 
