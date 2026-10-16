@@ -55,7 +55,29 @@ void func_80800238_chhumba(u8 *arg0, f32 *arg1) {
     func_800EFA4C(arg1, 0.0f, (*(f32 *)((s8 *)(arg0) + (0x38))) * 5.0f * -50.0f, 0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800294_chhumba.s")
+void func_80800294_chhumba(u8 *arg0, s32 arg1) {
+    void func_800904C8(s32);
+    void func_80090658(s32);
+    void func_80090708(s32);
+    void func_80090734(s32, f32 *);
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+
+    if ((arg1 != 0) && (func_800DA298(0x9C8) != 0)) {
+        func_800904C8(0x8D);
+    }
+    if (func_800EA05C() != 0x122) {
+        if (arg1 != 0) {
+            func_80090734(1, (f32 *)(arg0 + 4));
+            return;
+        }
+        if (func_800DA298(0x9C8) != 0) {
+            func_80090708(0);
+        }
+    } else if (func_800DA298(0x9C8) != 0) {
+        func_80090658(arg1);
+    }
+}
 
 void func_80800338_chhumba(u8 *arg0, s32 arg1, s32 arg2) {
     struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
@@ -293,8 +315,8 @@ void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
     s32 _subaddieaudioquick_entrypoint_2(u8 *, u8 *, s32 *);
     s32 func_8008FD48(void);
     Unk80132ED0 *func_8008FDEC(void);
-    s32 func_80090658(s32);
-    s32 func_80090708(s32);
+    void func_80090658(s32);
+    void func_80090708(s32);
     s32 func_80090768(f32 *);
     s32 func_800907EC(s32);
     s32 func_8009EA2C(void);
@@ -309,7 +331,7 @@ void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
     void func_808000D4_chhumba(Actor *, s32, s32, Unk80132ED0 *);
     void func_8080015C_chhumba(Actor *, s32, s32, Unk80132ED0 *);
     void func_808001E4_chhumba(Actor *);
-    s32 func_80800294_chhumba(u8 *, s32);
+    void func_80800294_chhumba(u8 *, s32);
     void func_80800338_chhumba(u8 *, s32, s32);
     s32 func_80800384_chhumba(u8 *);
     s32 func_808003CC_chhumba(u8 *);
