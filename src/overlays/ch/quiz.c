@@ -1323,7 +1323,31 @@ void func_808053BC_chquiz(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80805404_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80805878_chquiz.s")
+void func_80805878_chquiz(Actor *arg0) {
+    s32 _suexpression_entrypoint_8(Actor *, s32);
+    s32 _suquiz_entrypoint_17();
+    s32 _suquiz_entrypoint_2();
+    void *func_80100094(Actor *, u32);
+
+    struct QuizActorFlags {
+        u8 pad0[0x74];
+        u32 pad74_22 : 10;
+        u32 quizActive : 1;
+        u32 pad74_0 : 21;
+    } *flags = (void *)arg0;
+
+    if (!flags->quizActive) {
+        return;
+    }
+    func_80800FBC_chquiz((s32)arg0);
+    func_808008D4_chquiz(arg0);
+    if (func_80100094(arg0, 1) != 0) {
+        _suexpression_entrypoint_8(arg0, 1);
+    }
+    if (_suquiz_entrypoint_17() == 0) {
+        _suquiz_entrypoint_2();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808058F0_chquiz.s")
 
