@@ -36,7 +36,20 @@ void func_80115F98(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0))) = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEF790/func_80115FB0.s")
+void func_80115FB0(u8 *arg0) {
+    f32 temp_f0;
+    u8 *temp_v0;
+
+    func_80115F98((*(u8 **)((s8 *)(arg0) + (4))));
+    func_80115F98((*(u8 **)((s8 *)(arg0) + (4))) + 0x14);
+    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (4)))) + (0x4C))) = 0.0f;
+    temp_v0 = (*(u8 **)((s8 *)(arg0) + (4)));
+    temp_f0 = (*(f32 *)((s8 *)(temp_v0) + (0x4C)));
+    (*(f32 *)((s8 *)(temp_v0) + (0x54))) = temp_f0;
+    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (4)))) + (0x50))) = temp_f0;
+    (*(s16 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (4)))) + (0x2E))) = 0;
+    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (4)))) + (0x58))) = 1.0f;
+}
 
 /* extern */
 
