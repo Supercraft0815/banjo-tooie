@@ -72,4 +72,23 @@ void func_808003E0_chgoldsnakehead(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/snakehead/func_80800440_chgoldsnakehead.s")
+void func_80800440_chgoldsnakehead(Actor *arg0) {
+    s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_6(Actor *, s32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    s32 _chdoormake_entrypoint_12(Actor *, s32, s32);
+    s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
+
+    if (_chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, 200.0f, 0x60, 0x59C) != 0) {
+        _chdoormake_entrypoint_6(arg0, 0x40400000);
+        _chdoormake_entrypoint_8(arg0, 5U);
+        _chdoormake_entrypoint_12(arg0, 0, 0xD);
+        _chdoormake_entrypoint_9(arg0, 0, 0x2B, 0x2900);
+    }
+    if ((func_800DA298(0x59C) != 0) && (_glcutDll_entrypoint_19(0xD) == 0)) {
+        func_800FFAB0(arg0);
+    }
+}
