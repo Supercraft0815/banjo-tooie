@@ -56,14 +56,35 @@ void func_80800100_bsbbilldrill(void *arg0) {
     func_80093300(arg0, var_f2);
 }
 
-void func_80800158_bsbbilldrill(s32 arg0) {
+s32 func_80800158_bsbbilldrill(f32 arg0[3]) {
     s32 func_800B5BE4(s32);
-    s32 func_800BABB8(s32, s32, s32, s32, s32 *);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
     extern s32 D_80800AC8_bsbbilldrill;
-    func_800BABB8(func_800B5BE4(9), arg0, 0, 0x3F800000, &D_80800AC8_bsbbilldrill);
+    return func_800BABB8(func_800B5BE4(9), arg0, NULL, 1.0f, &D_80800AC8_bsbbilldrill);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/func_8080019C_bsbbilldrill.s")
+void func_8080019C_bsbbilldrill(void *arg0) {
+    void func_8009C128(void *, f32[3]);
+    void func_800BA22C(s32, s32);
+    void func_800BA7C4(void *, f32, f32);
+    void func_800BA7FC(void *, f32, f32);
+    f32 func_800DC0C0(void);
+    f32 position[3];
+    f32 scale;
+    s32 emitter;
+
+    if (func_800DC0C0() <= 0.2f) {
+        scale = 0.15f;
+    } else {
+        scale = 0.09f;
+    }
+    func_8009C128(arg0, position);
+    position[1] -= 80.0f;
+    emitter = func_80800158_bsbbilldrill(position);
+    func_800BA7C4((void *)emitter, scale, scale);
+    func_800BA7FC((void *)emitter, scale, scale);
+    func_800BA22C(emitter, 2);
+}
 
 /* extern */
 
