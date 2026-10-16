@@ -215,7 +215,28 @@ void func_80801B08_chalienkids(s32 arg0, s32 arg1) {
     func_80101870(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80801B40_chalienkids.s")
+s32 func_80801B40_chalienkids(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddieDll_entrypoint_5(Actor *, s32);
+    void func_80103110(void *, s32);
+    void func_80101FDC(Actor *, u32);
+    void func_80801BC4_chalienkids(u8 *);
+    s32 *data = &arg2;
+    switch (arg1) {
+        case 0x40:
+            if (_subaddieDll_entrypoint_5(arg0, arg2) != 0) {
+                func_80103110(arg0, 1);
+                func_80101FDC(arg0, 2);
+                return 0;
+            }
+            break;
+        case 0x90:
+            func_80801BC4_chalienkids((u8 *)arg0);
+            return 0;
+        default:
+            return 0;
+    }
+    return 0;
+}
 
 void func_80801BC4_chalienkids(u8 *arg0) {
     s32 _chexploder_entrypoint_9(s32, s32, s32);
