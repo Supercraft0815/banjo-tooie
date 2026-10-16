@@ -25,7 +25,27 @@ void sukickball_entrypoint_1(Actor *arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_3.s")
+s32 sukickball_entrypoint_3(void) {
+    s32 func_800EA05C();
+
+    switch (func_800EA05C()) {
+        case 0xC6:
+        case 0x12E:
+            return 0;
+        case 0xC8:
+        case 0x12F:
+            return 1;
+        case 0xC9:
+        case 0x130:
+            return 2;
+        case 0x17F:
+        case 0x180:
+            return 4;
+        case 0xBB:
+            return 3;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_4.s")
 
