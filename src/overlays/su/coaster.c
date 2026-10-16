@@ -88,7 +88,7 @@ void func_8080027C_sucoaster(Actor *arg0, void *arg1) {
     void func_808020B8_sucoaster(Actor *, void *, f32);
     f32 func_8080230C_sucoaster(Actor *, void *);
     s32 func_80802400_sucoaster(Actor *, void *);
-    s32 func_80802550_sucoaster(s32, s32);
+    s32 func_80802550_sucoaster(Actor *, Actor *);
     f32 func_8080264C_sucoaster(void *, s32);
     s32 sucoaster_entrypoint_7(Actor *, s32, f32);
     void sucoaster_entrypoint_8(Actor *);
@@ -724,16 +724,46 @@ s32 func_80802384_sucoaster(Actor *arg0, void *arg1, f32 arg2) {
 
 /* extern */
 
-s32 func_80802550_sucoaster(s32 arg0, s32 arg1) {
+s32 func_80802550_sucoaster(Actor *arg0, Actor *arg1) {
     s32 func_8080202C_sucoaster();
-    s32 func_80802594_sucoaster(s32, s32);
+    s32 func_80802594_sucoaster(Actor *, Actor *);
     if (func_8080202C_sucoaster() != 0) {
         return func_80802594_sucoaster(arg0, arg1) == 0;
     }
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_80802594_sucoaster.s")
+s32 func_80802594_sucoaster(Actor *arg0, Actor *arg1) {
+    typedef struct {
+        u8 pad0[0x40];
+        s32 flags;
+    } CoasterData;
+    void *_sucoasterdata_entrypoint_1(u32);
+    s32 func_800F64A4(s32, s32);
+    s32 func_800F5C94(s32);
+    s32 func_800F52B8(s32, Unk80132ED0 *);
+    CoasterData *data;
+    s32 object;
+    s32 result;
+    s32 func_80802760_sucoaster(s32);
+
+    data = _sucoasterdata_entrypoint_1(arg1->actorData[0] >> 28);
+    object = func_80802760_sucoaster((s32)arg1);
+    if (object == -1) {
+        return 0;
+    }
+    if (func_800F64A4(object, data->flags) != 0) {
+        return 1;
+    }
+    if (func_800F5C94(object) == 3) {
+        return 1;
+    }
+    result = func_800F52B8(object, arg0->unk0);
+    if (result == 0xF || result == 0x19) {
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
