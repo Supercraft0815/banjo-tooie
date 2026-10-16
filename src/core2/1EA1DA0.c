@@ -381,7 +381,27 @@ void func_800C9310(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9358.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C940C.s")
+s32 func_800C940C(volatile s32 arg0, volatile s32 arg1) {
+    s32 _gctransitionDll_entrypoint_0(s32 *, s32);
+    extern s32 D_8012AB40;
+    s32 count = D_8012AB54;
+    s32 value;
+    s32 i;
+    s32 limit;
+    s32 *transition;
+
+    if (count != 0) {
+        i = 0;
+        limit = count;
+        for (; i < limit; i++) {
+            transition = ((s32 **)&D_8012AB40)[i];
+            value = *transition;
+            if (value == 4) {
+                return _gctransitionDll_entrypoint_0(transition, arg0);
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9484.s")
 
