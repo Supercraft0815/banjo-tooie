@@ -100,7 +100,26 @@ void func_808001D4_bsbansack(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800238_bsbansack.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_808002D4_bsbansack.s")
+void func_808002D4_bsbansack(PlayerState *arg0) {
+    void _babackpack_set_state(void *, s32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void bastick_pushZone(PlayerState *);
+    void bastick_setZoneMax(PlayerState *, s32, f32);
+    s32 func_8009E77C(PlayerState *, s32);
+    void func_800A0CD0(void *, s32);
+    void func_800A106C(PlayerState *, f32, f32);
+
+    if (func_8009E77C(arg0, 0x12) == 0) {
+        func_800A0CD0(arg0, 0);
+        _babackpack_set_state(arg0, 4);
+        bastick_pushZone(arg0);
+        bastick_setZoneMax(arg0, 0, 0.12f);
+        bastick_setZoneMax(arg0, 1, 1.0f);
+        func_800A106C(arg0, -10.0f, 10.0f);
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+        *(s8 *)((u8 *)arg0 + 0x15F) = 0;
+    }
+}
 
 void func_80800368_bsbansack(PlayerState *arg0) {
     s32 baroll_setIdeal(s32, f32);
@@ -141,7 +160,7 @@ void func_80800434_bsbansack(s32 arg0)
 void func_8080045C_bsbansack(PlayerState *arg0) {
     void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
     void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
-    func_808002D4_bsbansack();
+    func_808002D4_bsbansack(arg0);
     baanim_playForDuration_loopSmooth(arg0, 0x28B, 1.5f);
     func_8009FFD8(arg0, 1, 1, 1, 2);
     func_808003C0_bsbansack(arg0);
@@ -169,7 +188,7 @@ s32 bsbansack_entrypoint_0(s32 arg0) {
     return ((s32 *)&D_80801E10_bsbansack)[arg0];
 }
 
-void func_80800508_bsbansack(PlayerState *arg0) { if (*(u8 *)((u8 *)arg0 + 0x15E) == 0) func_808002D4_bsbansack(); func_80800238_bsbansack(arg0); }
+void func_80800508_bsbansack(PlayerState *arg0) { if (*(u8 *)((u8 *)arg0 + 0x15E) == 0) func_808002D4_bsbansack(arg0); func_80800238_bsbansack(arg0); }
 
 /* extern */
 
@@ -269,7 +288,7 @@ void func_80800D4C_bsbansack(s32 arg0)
     func_80800238_bsbansack(arg0);
 }
 
-void func_80800D78_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(); *(u8 *)((u8 *)arg0 + 0x15D) = 0; *(u8 *)((u8 *)arg0 + 0x15C) = 0; func_80800AF4_bsbansack(arg0, 1); }
+void func_80800D78_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(arg0); *(u8 *)((u8 *)arg0 + 0x15D) = 0; *(u8 *)((u8 *)arg0 + 0x15C) = 0; func_80800AF4_bsbansack(arg0, 1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800DAC_bsbansack.s")
 
@@ -298,7 +317,7 @@ void func_80801318_bsbansack(s32 arg0)
 
 /* extern */
 
-void func_80801348_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(); baanim_playForDuration_onceSmooth(arg0, 0x28C, 1.2f); _babounce_entrypoint_4(arg0, 1); func_80801178_bsbansack(arg0); }
+void func_80801348_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(arg0); baanim_playForDuration_onceSmooth(arg0, 0x28C, 1.2f); _babounce_entrypoint_4(arg0, 1); func_80801178_bsbansack(arg0); }
 
 void func_80801390_bsbansack(PlayerState *arg0) {
     s32 _babounce_entrypoint_10();
@@ -340,7 +359,7 @@ void func_8080143C_bsbansack(s32 arg0)
 
 /* extern */
 
-void func_8080146C_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(); baanim_playForDuration_onceSmooth(arg0, 0x28C, 1.2f); _babounce_entrypoint_4(arg0, 2); func_80801178_bsbansack(arg0); }
+void func_8080146C_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(arg0); baanim_playForDuration_onceSmooth(arg0, 0x28C, 1.2f); _babounce_entrypoint_4(arg0, 2); func_80801178_bsbansack(arg0); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_808014B4_bsbansack.s")
 
@@ -354,9 +373,9 @@ void func_80801560_bsbansack(s32 arg0)
     _bsdrone_entrypoint_2();
     func_80800238_bsbansack(arg0);
 }
-void func_80801588_bsbansack(s32 arg0)
+void func_80801588_bsbansack(PlayerState *arg0)
 {
-    func_808002D4_bsbansack();
+    func_808002D4_bsbansack(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
 void func_808015B0_bsbansack(PlayerState* self)
@@ -373,9 +392,9 @@ void func_808015E4_bsbansack(s32 arg0)
     _bsrest_entrypoint_14();
     func_80800238_bsbansack(arg0);
 }
-void func_8080160C_bsbansack(s32 arg0)
+void func_8080160C_bsbansack(PlayerState *arg0)
 {
-    func_808002D4_bsbansack();
+    func_808002D4_bsbansack(arg0);
     _bsrest_entrypoint_16(arg0);
 }
 /* extern */
@@ -505,7 +524,7 @@ void func_80801A04_bsbansack(s32 arg0)
     func_80800238_bsbansack(arg0);
 }
 
-void func_80801A30_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(); *(u8 *)((u8 *)arg0 + 0x15D) = 0; *(u8 *)((u8 *)arg0 + 0x15C) = 0; func_80801680_bsbansack(arg0, 1); }
+void func_80801A30_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(arg0); *(u8 *)((u8 *)arg0 + 0x15D) = 0; *(u8 *)((u8 *)arg0 + 0x15C) = 0; func_80801680_bsbansack(arg0, 1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80801A64_bsbansack.s")
 
@@ -522,7 +541,7 @@ void func_80801CB4_bsbansack()
 void func_80801CD4_bsbansack(PlayerState *arg0) {
     void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
     void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
-    func_808002D4_bsbansack();
+    func_808002D4_bsbansack(arg0);
     baanim_playForDuration_loopSmooth(arg0, 0x289, 1.0f);
     func_8009FFD8(arg0, 1, 1, 1, 2);
 }
