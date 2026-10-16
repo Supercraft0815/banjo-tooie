@@ -371,7 +371,19 @@ void bstaxi_entrypoint_19(struct player_state_s *arg0)
     bstaxi_entrypoint_0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_20.s")
+void bstaxi_entrypoint_20(struct player_state_s *arg0) {
+    s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
+    void baanim_setDurationRange(struct player_state_s *, f32, f32);
+    void func_8008C9F0(struct player_state_s *, f32, f32, f32, f32);
+    void func_8008CA30(struct player_state_s *, f32);
+
+    bstaxi_entrypoint_1(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0xF4, 0x3F800000);
+    func_8009FFD8(arg0, 2, 1, 1, 2);
+    baanim_setDurationRange(arg0, 0.3f, 1.5f);
+    func_8008C9F0(arg0, 30.0f, 200.0f, 1.1f, 0.53f);
+    func_8008CA30(arg0, 1.0f);
+}
 
 /* extern */
 
