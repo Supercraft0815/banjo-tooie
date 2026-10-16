@@ -65,7 +65,28 @@ void func_808003C4_chcheato(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_808006B8_chcheato.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_8080078C_chcheato.s")
+/* extern */
+
+void func_8080078C_chcheato(Actor *arg0) {
+    void func_800FC63C(u32, u32);
+    void func_800FCA90(u32);
+    void func_800FCAE0(u32, u32, u32);
+    s32 func_8010CAC0(f32 *, u32);
+    s32 temp_v0;
+
+    temp_v0 = func_8010CAC0(arg0->position, 0x2EE);
+    if (!arg0->unk64_20) {
+        if (temp_v0 != 0) {
+            func_800FC63C(0x44, 0);
+            func_800FCAE0(0x44, -1, 0x1F4);
+            arg0->unk64_20 = 1;
+        }
+    } else if (temp_v0 == 0) {
+        func_800FCAE0(0x44, 0, 0x1F4);
+        func_800FCA90(0x44);
+        arg0->unk64_20 = 0;
+    }
+}
 
 int func_80800824_chcheato(s32 *arg0) {
     s32 func_800D1A04(s32);
