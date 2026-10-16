@@ -21,7 +21,27 @@ void func_808002A8_chdiggerbossdoor(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossdoor/func_808002E8_chdiggerbossdoor.s")
+s32 func_808002E8_chdiggerbossdoor(void *arg0, s32 arg1, s32 arg2) {
+    void func_80101FDC(Actor *, u32);
+    void func_80800370_chdiggerbossdoor(s32 *);
+    Actor *actor = arg0;
+    s32 *data = &arg2;
+
+    switch (arg1) {
+        case 7:
+            if (actor->unk70_10 == 1) {
+                func_80101FDC(actor, 2);
+                actor->unk58 = 6.0f;
+            }
+            break;
+        case 0x95:
+            func_80800370_chdiggerbossdoor(arg0);
+            return 1;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800370_chdiggerbossdoor(s32 *arg0) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
