@@ -5,7 +5,27 @@ s32 bafly_entrypoint_0()
     return 0x10;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_1.s")
+struct player_state_s;
+
+void bafly_entrypoint_1(struct player_state_s *arg0, f32 *arg1, s32 *arg2, f32 arg3) {
+    void _baeggfire_entrypoint_3(struct player_state_s *, f32 *, f32 *);
+    int baflag_isTrue(struct player_state_s *, s32);
+    f32 *func_800A4C48(struct player_state_s *);
+    void func_800CA740(void *, f32 *);
+    void func_800CA9D8(f32 *, s32 *);
+    void func_800EF334(f32 *, f32);
+    f32 sp24[3];
+
+    if (baflag_isTrue(arg0, 0x30) != 0) {
+        _baeggfire_entrypoint_3(arg0, sp24, arg1);
+        func_800EF334(arg1, arg3);
+        func_800CA9D8(func_800A4C48(arg0), arg2);
+        return;
+    }
+    func_800CA740(func_800A4C48(arg0), arg1);
+    func_800EF334(arg1, arg3);
+    func_800CA9D8(func_800A4C48(arg0), arg2);
+}
 
 /* extern */
 
@@ -199,7 +219,7 @@ void bafly_entrypoint_19(s32 arg0) {
     s32 _bafpctrl_entrypoint_14(s32, s32);
     s32 _bafpctrl_entrypoint_4();
     s32 _bafpctrl_entrypoint_9(s32, s32);
-    s32 baflag_isTrue(s32, s32);
+    int baflag_isTrue(PlayerState *, s32);
     s32 func_800C6E38(s32);
     if (_bafpctrl_entrypoint_4() != 3) {
         if (baflag_isTrue(arg0, 0x2F) != 0) {
