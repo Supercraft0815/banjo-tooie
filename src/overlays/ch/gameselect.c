@@ -999,9 +999,9 @@ void func_80803B3C_chgameselect(s32 arg0) {
     func_80800478_chgameselect(arg0, 8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803B84_chgameselect.s")
-
 struct Entry { s32 id; void (*callback)(void *); };
+void func_80803B84_chgameselect(s32 arg0) { s32 func_800AA120(void); extern struct Entry D_80808370_chgameselect[]; extern struct Entry D_808083A0_chgameselect[]; struct Entry *var_v1; struct Entry *end; s32 temp_v0; temp_v0 = func_800AA120(); end = D_808083A0_chgameselect; var_v1 = D_80808370_chgameselect; loop_1: if (temp_v0 == var_v1->id) { var_v1->callback(end); } else { var_v1++; if (var_v1 != end) { goto loop_1; } } func_80803B3C_chgameselect(arg0); }
+
 void func_80803BE8_chgameselect(Actor *arg0) { void func_800AA054(s32); void func_800AA074(); s32 func_800AA120(void); extern struct Entry D_808083A0_chgameselect[]; extern struct Entry D_808083C8_chgameselect[]; struct Entry *var_v1; struct Entry *end; s32 temp_v0;  func_800AA074(); func_800AA054(*(s32 *)&arg0->unk54); temp_v0 = func_800AA120(); end = D_808083C8_chgameselect; var_v1 = D_808083A0_chgameselect; loop_1: if (temp_v0 == var_v1->id) { var_v1->callback(end); } else { var_v1++; if (var_v1 != end) { goto loop_1; } } func_80803B3C_chgameselect(arg0); }
 
 void func_80803C60_chgameselect()
@@ -1784,7 +1784,7 @@ s32 func_808066CC_chgameselect(void) {
 /* extern */
 
 void func_80806800_chgameselect(void *arg0, s32 arg1) {
-    s32 func_80803B84_chgameselect();
+    void func_80803B84_chgameselect();
     if ((*(s32 *)((s8 *)(arg0) + (0x18))) == 9) {
         func_80803B84_chgameselect();
     }
