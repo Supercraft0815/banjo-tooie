@@ -302,7 +302,21 @@ void func_8080084C_bsride(s32 arg0)
     func_8080008C_bsride(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_80800878_bsride.s")
+void func_80800878_bsride(PlayerState *arg0) {
+    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void func_800961AC(PlayerState *, s32);
+    void func_8009FFD8();
+    void func_800A34E4(void *, s32);
+    func_80800000_bsride(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0x481, 0x3F547AE1);
+    func_8009FFD8(arg0, 1, 1, 3, 7);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_800A34E4(arg0, 0);
+    func_800961AC(arg0, 6);
+    arg0->unk160.word = 0;
+    func_808006D0_bsride(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_80800904_bsride.s")
 
