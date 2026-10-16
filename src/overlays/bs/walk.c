@@ -29,7 +29,21 @@ void func_808001E4_bswalk(u8 *arg0) {
 s32 func_80800220_bswalk(void *arg0) {
     return 0.0f == *(f32 *)((s8 *)arg0 + 0x16C);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/func_80800248_bswalk.s")
+s32 func_80800248_bswalk(PlayerState *self, s32 state) {
+    int bakey_pressed(PlayerState *, ButtonId);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    s32 func_800A04F4(PlayerState *, s32);
+    s32 func_800A055C(PlayerState *, s32);
+
+    if (bakey_pressed(self, 9)) {
+        if (baphysics_get_target_horizontal_velocity(self) > 225.0f) {
+            state = func_800A04F4(self, state);
+        } else {
+            state = func_800A055C(self, state);
+        }
+    }
+    return state;
+}
 
 f32 bswalk_entrypoint_0(s32 arg0) {
     return 500.0f;
