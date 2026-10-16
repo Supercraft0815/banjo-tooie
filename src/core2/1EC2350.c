@@ -132,7 +132,26 @@ u8 *func_800E8F68(u8 *arg0) {
     return NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8F8C.s")
+void func_800E8F8C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void func_800E8E70(s32, void *, s32, s32);
+    extern s32 D_80123524;
+    extern s32 D_8012D690;
+    extern s32 D_8012D960;
+    extern s16 D_80132560[];
+    extern s32 unknown3_ROM_START;
+    s32 index;
+    u8 *saved;
+    u8 *dest;
+
+    index = (u16)D_80132560[arg1] + arg2;
+    func_800E8E70((s32)&D_8012D960,
+                  (u8 *)D_80123524 + index * 0xD8,
+                  0xD8, arg3);
+    dest = (u8 *)(arg0 * 0xD8 + 0x3A8 + (s32)&D_8012D690);
+    saved = dest;
+    rare_memcpy(dest, &D_8012D960, 0xD8);
+    *(s32 *)(saved + 0x18) += (s32)&unknown3_ROM_START;
+}
 
 s32 func_800E9048(void) {
     extern s16 D_80131CE0;
