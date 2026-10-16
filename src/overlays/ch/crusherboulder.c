@@ -175,7 +175,17 @@ void func_80800ED0_chcrusherboulder(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80800F38_chcrusherboulder.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80801064_chcrusherboulder.s")
+void func_80801064_chcrusherboulder(f32 arg0[3], f32 arg1) {
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    extern s32 D_808013FC_chcrusherboulder;
+    extern s32 D_8080143C_chcrusherboulder;
+    extern s32 D_80801450_chcrusherboulder;
+    s32 temp_a0;
+
+    temp_a0 = func_800BABB8(0, arg0, NULL, 1.0f, &D_808013FC_chcrusherboulder);
+    func_800BABB8(temp_a0, arg0, NULL, 1.0f,
+        arg0[2] < -325.0f ? &D_8080143C_chcrusherboulder : &D_80801450_chcrusherboulder);
+}
 
 void func_808010EC_chcrusherboulder(void) {
     s32 func_800BBCB8(s32 *, s32, s32, s32, s32 *);
@@ -184,15 +194,15 @@ void func_808010EC_chcrusherboulder(void) {
     func_800BBCB8(&D_80801464_chcrusherboulder, 0, 0x3F800000, 3, &D_80801470_chcrusherboulder);
 }
 
-void func_80801128_chcrusherboulder(s32 arg0, s32 arg1) {
+void func_80801128_chcrusherboulder(f32 arg0[3], s32 arg1) {
     s32 func_800BA22C(s32, s32);
     s32 func_800BA3FC(s32, s32);
-    s32 func_800BABB8(s32, s32, s32, s32, s32 *);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
     extern s32 D_808014BC_chcrusherboulder;
     s32 sp24;
     s32 temp_v0;
 
-    temp_v0 = func_800BABB8(0, arg0, 0, 0x3F800000, &D_808014BC_chcrusherboulder);
+    temp_v0 = func_800BABB8(0, arg0, NULL, 1.0f, &D_808014BC_chcrusherboulder);
     sp24 = temp_v0;
     func_800BA3FC(temp_v0, 0x9DD);
     func_800BA22C(sp24, 1);
