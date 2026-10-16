@@ -326,8 +326,24 @@ void ncpoddialog_entrypoint_9(void *arg0, s16 *arg1, int arg2, s32 arg3) {
 /* extern */
 
 void ncpoddialog_entrypoint_10(s32 arg0) {
-    s32 ncpoddialog_entrypoint_11(s32, u32, s32, s32);
+    s32 ncpoddialog_entrypoint_11();
     ncpoddialog_entrypoint_11(arg0 & 0xFFFF, (u32) (arg0 & 0xFFFF0000) >> 0x10, 1, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/ncpoddialog_entrypoint_11.s")
+s32 ncpoddialog_entrypoint_11(s32 arg0, s32 arg1, s32 arg2) {
+    switch (arg2) {
+        case 0:
+            if ((arg0 == 0) || (arg0 == 7)) {
+                return 1;
+            }
+            break;
+        case 1:
+            if ((arg1 == 1) && ((arg0 == 0) || (arg0 == 1))) {
+                return 1;
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 0;
+}
