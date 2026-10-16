@@ -40,7 +40,19 @@ loop_7:
     goto loop_7;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/introsyncDll/func_808000BC_glintrosyncDll.s")
+u32 func_808000BC_glintrosyncDll(s32 arg0) {
+    extern f32 D_80127194;
+    s32 var_a0;
+    u32 temp_v0;
+
+    temp_v0 = osGetCount();
+    if (temp_v0 >= (*(u32 *)((s8 *)&D_80127194 + 0x43C))) {
+        var_a0 = temp_v0 - (*(u32 *)((s8 *)&D_80127194 + 0x43C));
+    } else {
+        var_a0 = (0xFFFFFFFF - (*(u32 *)((s8 *)&D_80127194 + 0x43C))) + temp_v0 + 1;
+    }
+    return (u32)((f32)var_a0 * 0.021333333f);
+}
 
 /* extern */
 
