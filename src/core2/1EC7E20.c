@@ -23,7 +23,34 @@ void func_800EE5AC(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x24))) = defrag((*(s32 *)((s8 *)(arg0) + (0x24))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC7E20/func_800EE5D8.s")
+s32 func_800EE5D8(s32 arg0) {
+    s32 defrag(s32);
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    extern s32 D_80127EF8;
+    s32 var_a3;
+    s32 temp_v0;
+    u32 sp1C;
+    u32 temp_v0_2;
+    u32 var_v1;
+
+    temp_v0 = defrag(arg0);
+    var_a3 = temp_v0;
+    if ((D_80127EF8 != 0) && (temp_v0 != arg0)) {
+        sp1C = vector_end(D_80127EF8);
+        temp_v0_2 = vector_begin(D_80127EF8);
+        var_v1 = temp_v0_2;
+        if (temp_v0_2 < sp1C) {
+            do {
+                if (arg0 == *(s32 *)var_v1) {
+                    *(s32 *)var_v1 = var_a3;
+                }
+                var_v1 += 0xA8;
+            } while (var_v1 < sp1C);
+        }
+    }
+    return var_a3;
+}
 
 void func_800EE670(void) {
     u32 vector_begin(s32);
