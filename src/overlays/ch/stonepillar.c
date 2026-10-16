@@ -59,7 +59,30 @@ void func_808006AC_chstonepillar(Unk80132ED0 **arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800704_chstonepillar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_808007C8_chstonepillar.s")
+void func_808007C8_chstonepillar(Actor *arg0) {
+    Actor *_subaddiefind_entrypoint_2(s32, s32 *);
+    Actor *_subaddiefind_entrypoint_3(s32, s32 *);
+    void *func_80100094(Actor *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    Actor *actor;
+    f32 *data;
+    f32 *other;
+    s32 iterator;
+
+    data = func_80100094(arg0, 0);
+    actor = _subaddiefind_entrypoint_2(arg0->unk6C_9, &iterator);
+    if (actor != NULL) {
+        do {
+            if (actor != arg0) {
+                other = func_80100094(actor, 0);
+                if (((s16 *)other)[0x16] == ((s16 *)data)[0x16] + 1) {
+                    func_800EE7F8(data + 3, other);
+                }
+            }
+            actor = _subaddiefind_entrypoint_3(arg0->unk6C_9, &iterator);
+        } while (actor != NULL);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800870_chstonepillar.s")
 
