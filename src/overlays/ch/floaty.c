@@ -135,7 +135,18 @@ void func_80800118_chfloaty(Actor *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/floaty/func_8080090C_chfloaty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/floaty/func_80800B68_chfloaty.s")
+f32 func_80800B68_chfloaty(Actor *arg0) {
+    switch (arg0->unk74_7 - 0x32) {
+        case 0:
+            return 15.0f;
+        case 1:
+            return 15.0f;
+        case 2:
+            return 15.0f;
+        default:
+            return 1000.0f;
+    }
+}
 
 void func_80800BD8_chfloaty(s32 arg0, s32 arg1) {
     s32 func_8001210C(s32);
