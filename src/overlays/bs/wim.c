@@ -593,7 +593,19 @@ s32 bsbswim_entrypoint_13(s32 arg0) {
     return ((s32 *)&D_80801F88_bsbswim)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80801C64_bsbswim.s")
+void func_80801C64_bsbswim(struct player_state_s *arg0) {
+    s32 baanim_playForDuration_once(void *, s32, f32);
+    void func_8009B94C(u8 *, f32 *);
+    void func_8009BA9C(struct player_state_s *, f32 *);
+    func_80800030_bsbswim(arg0);
+    baanim_playForDuration_once(arg0, 0x136, 0.6f);
+    func_80800000_bsbswim((s32)arg0);
+    func_8009B94C(arg0, 0);
+    func_8009BA9C(arg0, 0);
+    func_8009BF5C(arg0, 0.0f);
+    baroll_setIdeal(arg0, 0.0f);
+    func_800A0CF4(arg0, 1);
+}
 
 /* extern */
 
