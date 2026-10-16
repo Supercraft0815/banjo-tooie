@@ -94,7 +94,28 @@ void func_80800700_chboilerid(s16 *arg0, s16 *arg1, u8 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_8080079C_chboilerid.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_8080084C_chboilerid.s")
+void func_8080084C_chboilerid(u8 *arg0, s16 *arg1, f32 *arg2) {
+    f32 func_800136D0(f32);
+    f32 func_800138BC(f32);
+    void func_800EE88C(f32 *, s16 *);
+    f32 func_800EEF94(f32 *);
+    f32 sp34;
+    f32 ratio;
+    f32 sp24[3];
+    f32 scale;
+
+    func_800EE88C(sp24, arg1);
+    sp34 = func_800EEF94(sp24);
+    scale = *(f32 *)(arg0 + 0x24) * ((f32)*(s16 *)(arg0 + 0x5A) * func_800138BC(func_800136D0((sp34 - *(f32 *)(arg0 + 0x20)) * *(f32 *)(arg0 + 0x24))));
+    if (sp34 != 0.0f) {
+        ratio = scale / sp34;
+        arg2[0] = sp24[0] * ratio;
+        arg2[1] = sp24[2] * ratio;
+    } else {
+        arg2[0] = sp24[0] * scale;
+        arg2[1] = sp24[2] * scale;
+    }
+}
 
 /* extern */
 
