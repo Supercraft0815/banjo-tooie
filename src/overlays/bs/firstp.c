@@ -104,7 +104,25 @@ void func_80800290_bsfirstp(struct player_state_s *arg0, s32 arg1, f32 arg2) {
     baanim_playForDuration_loopStartingAt(arg0, arg1, arg2, baanim_getTimer());
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808002CC_bsfirstp.s")
+void anctrl_reset(struct anctrl_s *);
+void anctrl_setDuration(struct anctrl_s *, f32);
+void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+void anctrl_setPlaybackType(struct anctrl_s *, s32);
+void anctrl_setStart(struct anctrl_s *, f32);
+void anctrl_start(struct anctrl_s *);
+
+void func_808002CC_bsfirstp(struct player_state_s *self, s32 arg1, f32 arg2, f32 arg3) {
+    struct anctrl_s *func_8008D04C(struct player_state_s *);
+    struct anctrl_s *temp_v0;
+
+    temp_v0 = func_8008D04C(self);
+    anctrl_reset(temp_v0);
+    anctrl_setIndex(temp_v0, arg1);
+    anctrl_setDuration(temp_v0, arg2);
+    anctrl_setStart(temp_v0, arg3);
+    anctrl_setPlaybackType(temp_v0, 2);
+    anctrl_start(temp_v0);
+}
 
 /* extern */
 
@@ -1552,11 +1570,11 @@ void func_80804D18_bsfirstp(struct player_state_s *arg0) {
     void baanim_playForDuration_loopStartingAt(struct player_state_s *, enum asset_e, f32, f32);
     s32 func_80807BB8_bsfirstp();
     s32 func_80807DD4_bsfirstp(s32);
-    s32 func_808002CC_bsfirstp(s32, s32, s32, s32);
+    void func_808002CC_bsfirstp(struct player_state_s *, s32, f32, f32);
     func_80807BB8_bsfirstp(arg0);
     func_80807DD4_bsfirstp(arg0);
     baanim_playForDuration_loopStartingAt(arg0, 0x30D, 2.0f, 0.5036f);
-    func_808002CC_bsfirstp(arg0, 0x311, 0x40000000, 0x3F00EBEE);
+    func_808002CC_bsfirstp(arg0, 0x311, 2.0f, 0.5036f);
     func_80801A34_bsfirstp(arg0);
 }
 
@@ -1624,11 +1642,11 @@ void func_80805058_bsfirstp(struct player_state_s *arg0) {
     s32 _bsdrone_entrypoint_0(s32);
     void baanim_playForDuration_loopStartingAt(struct player_state_s *, enum asset_e, f32, f32);
     s32 func_80807BB8_bsfirstp();
-    s32 func_808002CC_bsfirstp(s32, s32, s32, s32);
+    void func_808002CC_bsfirstp(struct player_state_s *, s32, f32, f32);
     _bsdrone_entrypoint_0(arg0);
     func_80807BB8_bsfirstp(arg0);
     baanim_playForDuration_loopStartingAt(arg0, 0x30D, 2.0f, 0.5036f);
-    func_808002CC_bsfirstp(arg0, 0x311, 0x40000000, 0x3F00EBEE);
+    func_808002CC_bsfirstp(arg0, 0x311, 2.0f, 0.5036f);
 }
 
 void func_80809D24_bsfirstp(void *);
