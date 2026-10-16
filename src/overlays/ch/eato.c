@@ -50,7 +50,22 @@ void func_8080035C_chcheato(void *arg0, s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_8080078C_chcheato.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800824_chcheato.s")
+int func_80800824_chcheato(s32 *arg0) {
+    s32 func_800D1A04(s32);
+    s32 func_80800BB8_chcheato(void);
+    s32 sp1C;
+
+    sp1C = func_800D1A04(0x4A);
+    if (func_80800BB8_chcheato() == -1) {
+        return 0x1147;
+    }
+    if (sp1C < 5) {
+        *arg0 |= 1;
+        return 0x1145;
+    } else {
+        return 0x1144;
+    }
+}
 
 s32 func_80800888_chcheato(void) {
     s32 func_80800BB8_chcheato(void);
