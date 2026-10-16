@@ -133,7 +133,24 @@ int func_8008D750(PlayerState *player) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008D790.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008D850.s")
+int func_8008D850(PlayerState *player) {
+    int func_800C6E38(s32);
+    s32 func_800A3304(PlayerState *);
+    s32 _bafpctrl_entrypoint_5(PlayerState *);
+    void func_8009C128(PlayerState *, f32[3]);
+    s32 func_800EA05C();
+    extern f32 D_80124AD4;
+    f32 position[3];
+
+    if (func_800C6E38(0x1E) && func_800A3304(player) && !_bafpctrl_entrypoint_5(player)) {
+        func_8009C128(player, position);
+        if (func_800EA05C() == 0x117 && position[2] < D_80124AD4) {
+            return 0;
+        }
+        return 1;
+    }
+    return 0;
+}
 
 int func_8008D8E4(PlayerState *player) {
     int func_800C6E38(s32);
