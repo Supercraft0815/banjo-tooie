@@ -125,7 +125,31 @@ s32 bsbswim_entrypoint_0(s32 arg0) {
     return ((s32 *)&D_80801E60_bsbswim)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_8080039C_bsbswim.s")
+struct anctrl_s;
+void func_8080039C_bsbswim(struct player_state_s *arg0) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    f32 anctrl_getAnimTimer(struct anctrl_s *);
+    s32 bs_getPreviousState(struct player_state_s *);
+    void baanim_playForDuration_loopStartingAt(struct player_state_s *, enum asset_e, f32, f32);
+    void _baswim_entrypoint_8(void *, f32);
+    void func_8009BC5C(struct player_state_s *, f32);
+    void func_800910BC(struct player_state_s *, s32);
+    struct anctrl_s *sp24;
+    f32 var_f2;
+
+    sp24 = baanim_getAnimCtrlPtr(arg0);
+    if (bs_getPreviousState(arg0) == 0x19) {
+        var_f2 = anctrl_getAnimTimer(sp24);
+    } else {
+        var_f2 = 0.5f;
+    }
+    baanim_playForDuration_loopStartingAt(arg0, 0x3F, 1.0f, var_f2);
+    func_80800000_bsbswim((s32)arg0);
+    func_80800030_bsbswim(arg0);
+    _baswim_entrypoint_8(arg0, 300.0f);
+    func_8009BC5C(arg0, 1.0f);
+    func_800910BC(arg0, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80800440_bsbswim.s")
 
@@ -179,7 +203,7 @@ void func_8080097C_bsbswim(s32 arg0) {
     s32 _baswim_entrypoint_2(s32);
     s32 _baswim_entrypoint_3(s32);
     void func_8009DF18(s32, s32, f32, s32);
-    s32 baanim_getAnimCtrlPtr();
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     s32 anctrl_isAt(s32, f32);
     s32 bs_setState(s32, s32);
     s32 player_inWater();
@@ -245,7 +269,7 @@ struct anctrl_s;
 void func_800951B4(struct player_state_s *);
 void func_80800C0C_bsbswim(struct player_state_s *arg0) {
     s32 anctrl_isStopped(struct anctrl_s *);
-    s32 baanim_getAnimCtrlPtr();
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     s32 baanim_isAt(void *, f32);
     s32 bs_setState(s32, s32);
     void func_8009C128(struct player_state_s *, f32[3]);
@@ -375,7 +399,7 @@ void func_80800F64_bsbswim(void *arg0) {
     void _baswim_entrypoint_11(void *);
     void _baswim_entrypoint_13(void *);
     void func_800A0E64(void *);
-    s32 baanim_getAnimCtrlPtr();
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     s32 anctrl_isAt(s32, f32);
     void func_8009DE38(void *, s32, f32);
     s32 player_inWater();
