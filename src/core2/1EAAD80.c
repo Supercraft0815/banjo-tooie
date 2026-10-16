@@ -60,7 +60,17 @@ void func_800D1604(void) {
     D_8012B250 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D162C.s")
+extern struct { s16 padding; s16 value; } D_8011AF50[];
+
+void func_800D162C(void) {
+    void func_800D2770(s32, s32);
+    extern s32 D_8012B250;
+    s16 *var_s1;
+    s32 var_s0;
+    s32 var_s2;
+
+    var_s1 = (s16 *)D_8011AF50; var_s0 = 0; var_s2 = 0; do { func_800D2770(*var_s1, *(s16 *)((s8 *)D_8012B250 + var_s0) ^ *(s16 *)((s8 *)&func_800D1A04 + var_s2)); var_s0 += 2; var_s1 += 2; var_s2 += 8; } while (var_s0 != 0x2A);
+}
 
 s32 func_800D16C4(s32 arg0)
 {
@@ -106,7 +116,6 @@ s32 func_800D1A04(s32 a0) {
 }
 
 u32 func_800D1A6C(u32 arg0) {
-    extern struct { s16 padding; s16 value; } D_8011AF50[];
     s16 temp_v1;
     s32 temp_v0;
 
