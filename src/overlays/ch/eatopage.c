@@ -8,9 +8,31 @@ OSThread *chcheatopage_entrypoint_0(void)
 }
 
 /* extern */
-void func_8080000C_chcheatopage(Actor *arg0) { s32 func_80103110(void *, s32); func_80103110(arg0, 0); func_8010A5B0(arg0, func_800DA298(0x666) == 0); if (arg0->unk64_20) { func_800FC660(0x77); arg0->unk64_20 = 0; } }
+void func_8080000C_chcheatopage(Actor *arg0) { void func_80103110(void *, s32); func_80103110(arg0, 0); func_8010A5B0(arg0, func_800DA298(0x666) == 0); if (arg0->unk64_20) { func_800FC660(0x77); arg0->unk64_20 = 0; } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatopage/func_80800070_chcheatopage.s")
+void func_80800070_chcheatopage(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    void func_800FFAB0(Actor *);
+    void func_80103110(void *, s32);
+    void _glcutDll_entrypoint_6(u32, u32);
+
+    switch (arg0->unk70_10) {
+        case 1:
+            arg0->rotation[1] += 186.0f * func_800D8FF8();
+            func_80103110(arg0, 0);
+            break;
+        case 2:
+            if (func_800D9078(&arg0->unk58)) {
+                func_800F82D4(func_800F54E4(), 0);
+                func_800FFAB0(arg0);
+                _glcutDll_entrypoint_6(0xAD, 1);
+            }
+            break;
+    }
+}
 
 /* extern */
 
@@ -45,7 +67,7 @@ void func_80800194_chcheatopage(Actor *arg0, s32 arg1) {
     void func_800F82D4(s32, s32);
     void func_800FFAB0(Actor *);
     void func_80101FDC(Actor *, u32);
-    s32 func_80103110(void *, s32);
+    void func_80103110(void *, s32);
     void func_8010A570(Actor *);
     s32 func_8010A6B0(Actor *, s32);
     int func_808002F0_chcheatopage(Actor *);
@@ -81,7 +103,7 @@ void func_80800194_chcheatopage(Actor *arg0, s32 arg1) {
 
 void func_808002A0_chcheatopage(void *arg0) {
     s32 func_80101870();
-    s32 func_80103110(void *, s32);
+    void func_80103110(void *, s32);
     func_80101870();
     if ((((struct { unsigned int : 19; unsigned int active : 1; unsigned int : 12; } *)((s8 *)arg0 + 0x7C))->active) && (((u32) (*(u16 *)((s8 *)(arg0) + (0x72))) >> 0xA) == 1)) {
         func_80103110(arg0, 1);
