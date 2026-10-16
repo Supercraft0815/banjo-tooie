@@ -146,7 +146,34 @@ void func_8008AFCC(AnimCtrl *control) {
     state->timer = func_8008C0C8(state->animation);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/anctrl_start.s")
+void anctrl_start(AnimCtrl *control) {
+    struct StartFlags {
+        u8 padding[0x18];
+        s32 index : 16;
+        u32 high : 9;
+        u32 smooth : 1;
+        u32 low : 6;
+        s8 animation[1];
+    };
+    struct StartFlags *state = (struct StartFlags *)control;
+    void func_8008C0AC(s8 *);
+    s32 func_8008C0C0(s16 *);
+    void func_8008C1B8(s16 *, s32);
+    void func_8008C1E4(f32 *, f32);
+    void func_8008C270(s8 *);
+
+    if (state->smooth && func_8008C0C0((s16 *)state->animation) != 0) {
+        func_8008C0AC(state->animation);
+        func_8008C1B8((s16 *)state->animation, state->index);
+        func_8008AFCC(control);
+        func_8008C1E4((f32 *)state->animation, 0.0f);
+    } else {
+        func_8008C270(state->animation);
+        func_8008C1B8((s16 *)state->animation, state->index);
+        func_8008AFCC(control);
+        func_8008C1E4((f32 *)state->animation, 1.0f);
+    }
+}
 
 void func_8008B10C(AnimCtrl *arg0, f32 arg1) {
     void func_8008C1C0(f32 *arg0, f32 arg1);
