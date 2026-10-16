@@ -208,7 +208,27 @@ void func_808006F8_chonearmbandit(u8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_808008E0_chonearmbandit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80800A14_chonearmbandit.s")
+void func_80800A14_chonearmbandit(u8 *arg0, f32 arg1) {
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void _subaddiejoy_entrypoint_10(void *, f32, f32);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    extern u32 D_808011F0_chonearmbandit[];
+    extern s32 D_80801364_chonearmbandit;
+    f32 position[3];
+    f32 height;
+
+    if (_subaddieaudioquick_entrypoint_3((Actor *)arg0, ((Actor *)arg0)->position, D_808011F0_chonearmbandit, arg1)) {
+        if (_subaddieskeleton_entrypoint_2(((Actor *)arg0)->unk0, 5, position)) {
+            height = ((Actor *)arg0)->position[1];
+            if (height < position[1]) {
+                position[1] = height;
+            }
+            func_800BBCB8(position, position, 0.7f, 6, &D_80801364_chonearmbandit);
+        }
+        _subaddiejoy_entrypoint_10(arg0, 1.4f, 0.3f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80800AB8_chonearmbandit.s")
 
