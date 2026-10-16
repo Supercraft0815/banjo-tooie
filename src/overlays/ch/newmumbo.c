@@ -112,7 +112,29 @@ void func_80800878_chnewmumbo(s32 arg0)
     func_80800264_chnewmumbo(arg0,0xE);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_80800898_chnewmumbo.s")
+void func_80800898_chnewmumbo(Actor *arg0) {
+    extern f32 D_80801A00_chnewmumbo[3];
+    extern s32 D_80801A0C_chnewmumbo;
+    s32 i;
+    f32 target;
+    f32 current;
+    f32 delta;
+
+    for (i = 0; i != 3; i++) {
+        target = D_80801A00_chnewmumbo[i];
+        current = arg0->position[i];
+        if (target != current) {
+            delta = (target - current) * 0.25f;
+            arg0->position[i] = current + delta;
+        }
+    }
+    if (arg0->rotation[1] != 0.0f) {
+        arg0->rotation[1] *= 0.25f;
+    }
+    if (arg0->rotation[0] != 0.0f) {
+        arg0->rotation[0] *= 0.25f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_8080092C_chnewmumbo.s")
 
