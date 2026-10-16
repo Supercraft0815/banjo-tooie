@@ -322,7 +322,25 @@ Actor *func_80801844_chdodgemcontrol(Actor *arg0) {
     return arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801928_chdodgemcontrol.s")
+s32 func_80801928_chdodgemcontrol(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    struct {
+        Unk80132ED0 *markers[4];
+        s32 state[8];
+        s8 active[4];
+    } *data;
+    Actor *actor;
+
+    data = func_80100094(arg0, 0U);
+    actor = func_80106790(data->markers[arg1]);
+    func_80801258_chdodgemcontrol(arg1, actor->position);
+    actor->rotation[1] = func_80801214_chdodgemcontrol(arg1);
+    actor->unk54 = actor->rotation[1];
+    actor->unk6C_0 = arg1;
+    data->state[arg1] = 0;
+    data->active[arg1] = 1;
+}
 
 /* extern */
 
