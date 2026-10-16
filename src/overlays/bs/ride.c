@@ -77,7 +77,24 @@ void func_808004D8_bsride(struct player_state_s *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x160))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_80800524_bsride.s")
+void func_80800524_bsride(struct player_state_s *arg0) {
+    int baanim_isStopped(struct player_state_s *);
+    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    void bs_setState(void *, s32);
+    s32 next_state;
+
+    next_state = 0;
+    if (*(s32 *)((s8 *)arg0 + 0x160) == 1) {
+        if (baanim_isStopped(arg0)) {
+            baanim_playForDuration_loopSmooth(arg0, 0x281, 0x3F333333);
+            *(s32 *)((s8 *)arg0 + 0x160) = 0;
+        }
+    }
+    if (*(s32 *)((s8 *)arg0 + 0x15C) == 0) {
+        next_state = 0x2F;
+    }
+    bs_setState(arg0, next_state);
+}
 
 s32 bsride_entrypoint_1(s32 arg0) {
     extern s32 D_80800A70_bsride[];
