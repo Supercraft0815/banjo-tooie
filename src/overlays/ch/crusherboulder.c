@@ -2,7 +2,22 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80800000_chcrusherboulder.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80800100_chcrusherboulder.s")
+s32 func_80800100_chcrusherboulder(u8 *arg0, f32 *arg1) {
+    struct Vector { s32 v[3]; };
+    extern struct Vector D_80801388_chcrusherboulder;
+    extern struct Vector D_80801394_chcrusherboulder;
+    s32 _sumumbofx_entrypoint_7(u8 *, f32, s32, s32, f32 *, struct Vector *, struct Vector *);
+    s32 _sumumbofx_entrypoint_14(u8 *);
+    s32 _sumumbofx_entrypoint_11(u8 *, f32 *);
+    struct Vector sp3C = D_80801388_chcrusherboulder;
+    struct Vector sp30 = D_80801394_chcrusherboulder;
+
+    _sumumbofx_entrypoint_7(arg0, 225.0f, 0, 0x19, arg1, &sp30, &sp3C);
+    _sumumbofx_entrypoint_14(arg0);
+    arg1[1] += 300.0f;
+    _sumumbofx_entrypoint_11(arg0, arg1);
+    arg1[1] -= 300.0f;
+}
 
 /* extern */
 
