@@ -16,7 +16,32 @@ void sumumbofx_entrypoint_0(Actor *arg0, u32 arg1, s32 arg2, s16 arg3) {
     (*(s8 *)((s8 *)(sp1C) + (0x63))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_1.s")
+void sumumbofx_entrypoint_1(Actor *arg0, u32 arg1) {
+    void func_800FCA90(u32);
+    void func_800FCAE0(u32, u32, u32);
+    u32 *func_80100074(Actor *, u32, u32);
+    void *func_80100094(Actor *, u32);
+    void sumumbofx_entrypoint_13(void *);
+    struct {
+        u8 pad0[0x5E];
+        s16 unk5E;
+        u8 unk60;
+        u8 unk61;
+        u8 unk62;
+    } *data;
+    u8 state;
+
+    data = func_80100094(arg0, arg1);
+    if (data->unk5E != 0) {
+        sumumbofx_entrypoint_13(data);
+    }
+    state = data->unk62;
+    if ((state != 1) && (state == 2)) {
+        func_800FCAE0(0x1C, 0, 0x4E20);
+        func_800FCA90(0x1C);
+    }
+    func_80100074(arg0, arg1, 0);
+}
 
 /* extern */
 
