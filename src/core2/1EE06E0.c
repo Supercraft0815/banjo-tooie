@@ -137,7 +137,39 @@ s32 func_801073F8(s32 arg0, s32 arg1, s32 arg2) { s32 func_80107388(); s32 var_v
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107448.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_8010754C.s")
+void func_8010754C(void *arg0, void *arg1) {
+    struct ActorFields {
+        u8 pad0[4];
+        f32 position[3];
+        u8 pad10[0x38];
+        f32 rotation;
+        u8 pad4C[0x24];
+        u32 flags : 7;
+        u32 pad70 : 15;
+        u32 index : 6;
+        u32 pad73 : 4;
+    };
+    struct EntryFields {
+        u8 pad0[4];
+        s16 position[3];
+        u16 padA;
+        u32 flags : 12;
+        u32 index : 12;
+        u32 padF : 8;
+        s16 pad10;
+        s16 rotation;
+    };
+    void func_800EE88C(f32 *, s16 *);
+    void func_80103014(u8 *);
+    struct ActorFields *actor = arg0;
+    struct EntryFields *entry = arg1;
+
+    func_800EE88C(actor->position, entry->position);
+    actor->index = entry->index;
+    actor->flags = entry->flags;
+    actor->rotation = entry->rotation;
+    func_80103014((u8 *)actor);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_801075E4.s")
 
