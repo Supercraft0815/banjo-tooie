@@ -1,4 +1,5 @@
 #include "common.h"
+struct player_state_s;
 
 /* extern */
 
@@ -75,7 +76,26 @@ void func_80800178_bsswim(struct player_state_s *arg0) {
     baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp1C, 30.0f, 300.0f));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_808001DC_bsswim.s")
+void func_808001DC_bsswim(struct player_state_s *arg0) {
+    void _bapackctrl_entrypoint_5(struct player_state_s *, s32);
+    void baphysics_set_gravity(struct player_state_s *, f32);
+    void baphysics_set_terminal_velocity(struct player_state_s *, f32);
+    void bastick_setZoneMax(struct player_state_s *, s32, f32);
+    int func_8008E0E8(struct player_state_s *);
+    void func_800961AC(struct player_state_s *, s32);
+    s32 func_8009E6C4(struct player_state_s *, s32);
+
+    if (func_8009E6C4(arg0, 1) == 0) {
+        baphysics_set_gravity(arg0, 100.0f);
+        baphysics_set_terminal_velocity(arg0, 133.33f);
+        bastick_setZoneMax(arg0, 0, 0.03f);
+        bastick_setZoneMax(arg0, 1, 1.0f);
+        func_800961AC(arg0, 3);
+        if (func_8008E0E8(arg0) != 0) {
+            _bapackctrl_entrypoint_5(arg0, 4);
+        }
+    }
+}
 
 void func_80800270_bsswim(struct player_state_s *arg0) {
     void _bapackctrl_entrypoint_5(struct player_state_s *, s32);
@@ -130,9 +150,9 @@ void func_80800A24_bsswim(struct player_state_s *arg0)
     _bsrest_entrypoint_14();
     func_80800270_bsswim(arg0);
 }
-void func_80800A4C_bsswim(s32 arg0)
+void func_80800A4C_bsswim(struct player_state_s *arg0)
 {
-    func_808001DC_bsswim();
+    func_808001DC_bsswim(arg0);
     _bsrest_entrypoint_16(arg0);
 }
 /* extern */
@@ -157,9 +177,9 @@ s32 bsswim_entrypoint_2(s32 arg0) {
     return ((s32 *)&D_80800BC4_bsswim)[arg0];
 }
 
-void func_80800AC8_bsswim(s32 arg0)
+void func_80800AC8_bsswim(struct player_state_s *arg0)
 {
-    func_808001DC_bsswim();
+    func_808001DC_bsswim(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
 /* extern */
