@@ -123,7 +123,24 @@ void func_8001559C(s32 arg0) {
     osViBlack((u8) arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_800155BC.s")
+void func_800155BC(void) {
+    s32 aligned8_memset(s32 dst, s32 value, s32 size);
+    extern s32 D_80078F80;
+    extern s32 D_80078F84;
+
+    if (D_80078F80 != 0) {
+        aligned8_memset(D_80078F80, 0x10001, 0x21D80);
+        osWritebackDCache(D_80078F80, 0x21D80);
+    }
+    if (D_80078F84 != 0) {
+        aligned8_memset(D_80078F84, 0x10001, 0x21D80);
+        osWritebackDCache(D_80078F84, 0x21D80);
+    }
+    if (D_80078F88 != 0) {
+        aligned8_memset(D_80078F88, 0x10001, 0x10EC0);
+        osWritebackDCache(D_80078F88, 0x10EC0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80015670.s")
 
