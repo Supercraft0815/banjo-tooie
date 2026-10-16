@@ -21,12 +21,27 @@ void func_800FF390(void) {
     func_80107BB0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FF3EC.s")
+void func_800FF3EC(Actor *arg0) {
+    typedef struct {
+        u32 pad0[10];
+        s32 (*unk28)(Actor *);
+    } ActorCallbacks;
+    void *func_80100368(void *);
+    ActorCallbacks *callbacks;
+
+    if (!arg0->unk64_26) {
+        callbacks = func_80100368(arg0);
+        if (callbacks->unk28 != NULL) {
+            callbacks->unk28(arg0);
+        }
+        arg0->unk64_26 = 1;
+    }
+}
 
 /* extern */
 
 void func_800FF44C(void) {
-    s32 func_800FF3EC(Actor *);
+    void func_800FF3EC(Actor *);
     s32 func_801067C4(s32 *);
     s32 func_8010682C(s32 *);
     s32 sp24;
@@ -91,7 +106,7 @@ void func_800FF4A4(Actor *arg0) {
 
 void func_800FFA3C(Actor *arg0) {
     void func_800EBFF4(void *arg0);
-    s32 func_800FF3EC(Actor *);
+    void func_800FF3EC(Actor *);
     void func_800FF4A4(Actor *);
     s32 func_801066C0(u32);
     Unk80132ED0 *sp1C = arg0->unk0;
