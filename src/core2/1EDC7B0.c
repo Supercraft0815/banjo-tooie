@@ -50,7 +50,7 @@ s32 func_80102F44(void *arg0) {
 /* extern */
 
 s32 func_80102F74(Unk80132ED0 *arg0, s32 arg1) {
-    Actor* func_80100368(Unk80132ED0 *);
+    void *func_80100368(void *);
     s32 func_80102FA0(Actor *, s32);
     return func_80102FA0(func_80100368(arg0), arg1);
 }
@@ -97,7 +97,37 @@ void func_80103014(u8 *arg0) {
     func_800EC124(arg0 + 4, *(s32 *)arg0, arg0 + 0x44, (s32 *)arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC7B0/func_80103040.s")
+void func_80103040(Actor *arg0) {
+    struct ShadowFlags {
+        u8 pad0[0x74];
+        u32 : 11;
+        u32 enabled : 1;
+        u32 : 20;
+    };
+    typedef struct {
+        u8 pad0[0x1C];
+        f32 scale;
+    } ActorCallbacks;
+    void *func_80100368(void *);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 _chbadshad_entrypoint_1(Actor *, f32 *, f32);
+    Actor *parent;
+    ActorCallbacks *callbacks;
+    s32 marker;
+
+    if (((struct ShadowFlags *)arg0)->enabled) {
+        if (arg0->unk7C_12) {
+            callbacks = func_80100368(arg0);
+            _chbadshad_entrypoint_1(arg0, arg0->position, arg0->scale * callbacks->scale);
+            return;
+        }
+        marker = arg0->pad40;
+        if (marker != 0 && ((parent = func_80106790(marker), parent->unk7C_12) || !parent->unk64_16)) {
+            callbacks = func_80100368(arg0);
+            _chbadshad_entrypoint_1(arg0, arg0->position, arg0->scale * callbacks->scale);
+        }
+    }
+}
 
 void func_80103110(void *arg0, s32 arg1) {
     struct Flags {
