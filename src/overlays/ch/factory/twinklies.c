@@ -175,7 +175,17 @@ s32 func_80801D94_chfactorytwinklies(s32 arg0, s32 arg1, u8 *arg2) {
 
 f32 func_80801F5C_chfactorytwinklies(void *arg0) { switch (*(s32 *)((u8 *)arg0 + 0x2C)) { case 0: return 900.0f; case 1: return 700.0f; default: return 500.0f; } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80801FAC_chfactorytwinklies.s")
+f32 func_80801FAC_chfactorytwinklies(void *arg0) {
+    f32 func_800DC178(f32, f32);
+    switch (*(s32 *)((u8 *)arg0 + 0x2C)) {
+    case 0:
+        return func_800DC178(4.0f, 4.0f);
+    case 1:
+        return func_800DC178(4.0f, 4.0f);
+    default:
+        return func_800DC178(4.0f, 4.0f);
+    }
+}
 
 /* extern */
 s32 func_80802020_chfactorytwinklies(u8 *arg0) {
