@@ -19,7 +19,22 @@ s32 glglobaldata_entrypoint_1(u8 *arg0) {
     return *arg0 == 8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/obaldata/glglobaldata_entrypoint_2.s")
+void glglobaldata_entrypoint_2(u8 *arg0) {
+    void rare_memcpy(void *, void *, int);
+    extern void (*D_80800230_glglobaldata[])(s32 *, s32 *);
+    extern void (*D_80800238_glglobaldata[])(s32 *, s32 *);
+    s32 size[3];
+    s32 data;
+    void (**entry)(s32 *, s32 *);
+    s32 offset = 1;
+
+    entry = D_80800230_glglobaldata; do {
+        (*entry)(size, &data);
+        rare_memcpy((void *)data, arg0 + offset, size[0]);
+        entry++;
+        offset += size[0];
+    } while (entry != D_80800238_glglobaldata);
+}
 
 void func_80800124_glglobaldata(u8 *arg0, s32 *arg1) { arg0[*arg1] = 8; *arg1 += 1; }
 
