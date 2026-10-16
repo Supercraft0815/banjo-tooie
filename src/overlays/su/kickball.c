@@ -96,14 +96,37 @@ f32 sukickball_entrypoint_15(s32 arg0) {
     return ((f32 *)&D_80801234_sukickball)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_16.s")
+void sukickball_entrypoint_16(s32 arg0, f32 *arg1) {
+    switch (arg0) {
+    case 0:
+        arg1[1] = 0.0f;
+        arg1[2] = 0.0f;
+        arg1[0] = 720.0f;
+        return;
+    case 2:
+        arg1[0] = 0.0f;
+        arg1[1] = 0.0f;
+        arg1[2] = 720.0f;
+        return;
+    case 1:
+        arg1[1] = 0.0f;
+        arg1[2] = 0.0f;
+        arg1[0] = -720.0f;
+        return;
+    case 3:
+        arg1[0] = 0.0f;
+        arg1[1] = 0.0f;
+        arg1[2] = -720.0f;
+        return;
+    }
+}
 
 /* extern */
 
 void sukickball_entrypoint_17(Actor *arg0) {
     void func_800F8294(s32, f32 *);
     void *func_80100094(Actor *, u32);
-    s32 sukickball_entrypoint_16(s32, f32 *);
+    void sukickball_entrypoint_16(s32, f32 *);
     f64 pad;
     f32 sp2C[3];
     s32 var_s0;
