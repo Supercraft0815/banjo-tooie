@@ -36,7 +36,20 @@ f32 func_808000E0_chquiz(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808000FC_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800218_chquiz.s")
+void func_80800218_chquiz(s32 arg0, s32 arg1) {
+    s32 _gcnewoption_entrypoint_12(s32, s32, s16);
+    void _gcnewoption_entrypoint_30(s32, s32 *);
+    s8 func_80800E38_chquiz(s32, s32);
+    extern s32 D_808070A8_chquiz;
+    s32 var_s0;
+
+    _gcnewoption_entrypoint_30(arg0, &D_808070A8_chquiz);
+    var_s0 = 0;
+    do {
+        _gcnewoption_entrypoint_12(arg0, var_s0, (s16)(func_80800E38_chquiz(arg1, var_s0) + 0xA));
+        var_s0 += 1;
+    } while (var_s0 != 3);
+}
 
 /* extern */
 
