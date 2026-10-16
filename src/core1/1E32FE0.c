@@ -33,10 +33,10 @@ void func_8001B518(s32 arg0)
     void *old;
     void *saved;
     void *moved;
+    Entry *entry;
     s32 type;
     s32 i;
     s32 count;
-    Entry *entry;
 
     if (D_8007C6E0 == 0 || arg0 != 0) {
         D_8007C6E0 = 1;
@@ -76,7 +76,21 @@ void func_8001B518(s32 arg0)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E32FE0/func_8001B668.s")
+s16 func_8001B668(s32 arg0, s32 arg1) {
+    s32 func_8001B3A0(void *);
+    void *heap_alloc_sided(s32, s32);
+    s32 index;
+
+    for (index = 1; D_8007BF10[index].ptr != 0; index++) {}
+    if (index < 250) {
+        D_8007BF10[index].ptr = heap_alloc_sided(arg1, 2);
+        D_8007BF10[index].type = arg0;
+        func_8001B3A0(D_8007BF10[index].ptr);
+        return index;
+    } else {
+        return 0;
+    }
+}
 
 /* extern */
 
