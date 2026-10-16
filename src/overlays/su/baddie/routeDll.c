@@ -23,7 +23,34 @@ void func_80800000_subaddierouteDll(void) {
     sp18[0] = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/subaddierouteDll_entrypoint_0.s")
+void subaddierouteDll_entrypoint_0(void) {
+    void func_8001B754(s16);
+    void *func_8001B798(s16);
+    OSThread *func_801015B0(void);
+    s16 *state;
+    s16 *entries;
+    s32 offset;
+    s32 i;
+
+    state = (s16 *)func_801015B0();
+    if (state[0] != 0) {
+        i = 0;
+        offset = 0;
+        if (state[1] > 0) {
+            do {
+                entries = func_8001B798(state[0]);
+                if (*(s16 *)((u8 *)entries + offset) != 0) {
+                    func_8001B754(*(s16 *)((u8 *)entries + offset));
+                }
+                i++;
+                offset += 4;
+            } while (i < state[1]);
+        }
+        func_8001B754(state[0]);
+        state[0] = 0;
+    }
+    state[1] = 0;
+}
 
 /* extern */
 
