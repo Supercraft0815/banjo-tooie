@@ -29,7 +29,30 @@ void func_80800018_chmadamegrunty(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_80800198_chmadamegrunty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_80800200_chmadamegrunty.s")
+void func_80800200_chmadamegrunty(Actor *arg0) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void func_800F497C(s32);
+    void func_800F49D4(s32, void *, s32);
+    void func_800F4AC0(s32, s32, f32);
+    u32 func_800F54E4(void);
+    s32 func_800F6438(u32);
+    s32 func_800F6478(s32);
+    s32 func_800F64A4(s32, s32);
+    s32 func_8010C500(void *);
+    void func_8080082C_chmadamegrunty(void *, s32);
+    extern s32 func_8010D5DC;
+    u32 temp_v0;
+
+    temp_v0 = func_800F54E4();
+    if (func_800F6438(temp_v0) && func_800F6478(temp_v0) &&
+        func_8010C500(arg0) && !func_800F64A4(temp_v0, 0x10000)) {
+        func_800F497C(temp_v0);
+        func_800F49D4(temp_v0, &func_8010D5DC, arg0->unk0);
+        func_800F4AC0(temp_v0, arg0->position, 170.0f);
+        func_8080082C_chmadamegrunty(arg0, 2);
+        _capod_entrypoint_13(arg0->unk0, NULL, 0xAE, 0x20);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_808002BC_chmadamegrunty.s")
 
