@@ -48,7 +48,37 @@ void idflame_entrypoint_0(s32 arg0, u32 arg1, u8 *arg2, s32 arg3, u8 *arg4) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/flame/idflame_entrypoint_1.s")
+void idflame_entrypoint_1(s32 arg0, s16 *arg1, s32 arg2, s32 arg3) {
+    extern struct {
+        s16 *start;
+        s16 *end;
+    } B_80800560_idflame;
+    s16 value;
+    s16 *pos;
+    s16 *end;
+    s16 *dst;
+
+    value = *arg1; pos = B_80800560_idflame.start; end = B_80800560_idflame.end; arg1 = end - 1;
+    while (pos < end) {
+        if (value < *pos) {
+            break;
+        }
+        pos++;
+    }
+    if (pos == end) {
+        *pos = value;
+        B_80800560_idflame.end++;
+        return;
+    }
+    dst = end;
+    while (pos < dst) {
+        *dst = *arg1;
+        dst--;
+        arg1--;
+    }
+    *pos = value;
+    B_80800560_idflame.end++;
+}
 
 void idflame_entrypoint_2(s32 arg0) 
 {
