@@ -178,7 +178,18 @@ s32 func_800C04C8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0534.s")
+u32 func_800C0534(u32 arg0, u32 arg1, f32 *arg2, Unk80132ED0 *arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7) {
+    s32 _gcdialogexec_entrypoint_0(s32 *, s32, s32, f32 *, Unk80132ED0 *, s32, s32, s32, s32);
+    extern u8 D_80128A30;
+    u32 var_v1;
+
+    if (D_80128A30 != 0) {
+        var_v1 = _gcdialogexec_entrypoint_0(&D_801288B0, arg0, arg1, arg2, arg3, arg4, arg5, arg6, (s16) arg7);
+    } else {
+        var_v1 = 0;
+    }
+    return var_v1;
+}
 
  s32 func_800C05B8(s32 arg0, s32 arg1, f32 *arg2, Unk80132ED0 *arg3, s32 arg4, s32 arg5, s16 arg6) {
     s32 _gcdialogexec_entrypoint_0(s32 *, s32, s32, f32 *, Unk80132ED0 *, s32, s32, s32, s32);
