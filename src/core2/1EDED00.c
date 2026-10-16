@@ -143,7 +143,21 @@ void func_8010588C(Actor *arg0) { void func_8010A570(Actor *); struct { u32 word
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_801058C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105998.s")
+s32 func_80105998(Actor *arg0, f32 arg1) {
+    void *state;
+    f32 current;
+    f32 previous;
+
+    state = func_80105494(arg0);
+    current = *(f32 *)((s8 *)state + 0xC);
+    previous = *(f32 *)((s8 *)state + 0x10);
+    if (previous == current) {
+        return 0;
+    }
+    return previous < current
+        ? (previous <= arg1 && arg1 < current)
+        : (previous <= arg1 || arg1 < current);
+}
 
 /* extern */
 
