@@ -65,9 +65,9 @@ void func_808002C8_chtiptup(void *arg0) {
 
 /* extern */
 
-void func_80800534_chtiptup(s32 arg0, s32 arg1, s32 arg2) {
+void func_80800534_chtiptup(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800D1000(u32, u32, f32*, u32, Unk80132ED0*);
-    s32 func_80800934_chtiptup(s32, s32, s32);
+    void func_80800934_chtiptup(Actor *, s32, s32);
     func_80800934_chtiptup(arg0, 0x40, 0);
     func_800D1000(0x20U, 1U, NULL, 0U, NULL);
 }
@@ -171,7 +171,21 @@ void func_808008B4_chtiptup(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800934_chtiptup.s")
+void func_80800934_chtiptup(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_20(Unk80132ED0 *, s32, s32);
+
+    switch (arg0->actorData[5]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x16, arg2);
+        case 1:
+        case 2:
+            arg0->actorData[5] = 3;
+        case 3:
+            _capod_entrypoint_20(arg0->unk0, arg1, arg2);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_808009B4_chtiptup.s")
 
