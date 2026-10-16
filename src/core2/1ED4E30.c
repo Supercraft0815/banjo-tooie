@@ -276,7 +276,27 @@ void func_800FC688(u32 track_id, s32 volume) {
     func_800FC508(track_id, 1, 1, volume);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC6B0.s")
+void func_800FC6B0(u32 track_id) {
+    void func_800172D4(u8, s32);
+    u32 func_80017764(s32);
+    s32 *track;
+    s32 volume;
+
+    track = func_800FB5F8(track_id);
+    if (track != NULL) {
+        if (((s16 *)track)[0x28 / 2] < 0) {
+            func_800FB6E0(track, 0);
+            ((s16 *)track)[0x2A / 2] = 0;
+            ((s16 *)track)[0x28 / 2] = track_id;
+            ((f32 *)track)[1] = 0.0f;
+            func_800172D4(((u8 *)track - (u8 *)D_801357D0) / 80, track_id);
+            volume = func_80017764(track_id) ^ 0;
+            track[0x20 / 4] = volume;
+            func_800FB6C0(track, volume);
+        }
+        func_800FB540(track);
+    }
+}
 
 void func_800FC74C(u32 track_id) {
     void *func_800FB5F8(s32);
