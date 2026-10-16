@@ -128,4 +128,16 @@ void func_800CB764(s32 arg0, f32 *arg1, f32 arg2, s32 arg3, s32 arg4) {
     ((struct Entry *)D_8012AB70)[arg0].tail = arg4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA4CD0/func_800CB7C4.s")
+s32 func_800CB7C4(s32 arg0, f32 *arg1, f32 *arg2) {
+    struct Handler { s32 (*call)(s32, f32 *, f32 *); };
+    struct Entry { struct Handler *(*get)(void); u8 pad[44]; };
+    extern struct Entry D_8012AB74[];
+    void func_800FC63C(u32, u32);
+    s32 result;
+
+    result = D_8012AB74[arg0].get()->call(arg0, arg1, arg2);
+    if (result == 2) {
+        func_800FC63C(0xE, 0x7FFF);
+    }
+    return result;
+}
