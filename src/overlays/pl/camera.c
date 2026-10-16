@@ -37,7 +37,20 @@ void plcamera_entrypoint_4(s32 *arg0, s32 arg1) { s32 func_80110014(s32 *); func
 
 void plcamera_entrypoint_5(s32 *arg0, s32 arg1) { s32 func_80110014(s32 *); func_80110790(func_80110014(func_800F5EF8(arg0)), arg1); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/pl/camera/plcamera_entrypoint_6.s")
+void plcamera_entrypoint_6(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4) {
+    s32 func_80110014(s32 *);
+    void _ncbadeflect_entrypoint_0(s32, s32, s32, s32, f32, f32);
+    s32 *camera;
+    s32 deflect;
+
+    camera = func_800F5EF8(arg0);
+    if (camera != NULL) {
+        deflect = func_80110014(camera);
+        if (deflect != 0) {
+            _ncbadeflect_entrypoint_0(deflect, arg1, arg2, arg3, arg4, 1000.0f);
+        }
+    }
+}
 
 void plcamera_entrypoint_7(s32 arg0, f32 *arg1, f32 arg2, f32 arg3) {
     s32 func_80110014(s32 *);
