@@ -256,7 +256,22 @@ void func_80800E6C_gcboundDll(u8 *arg0, u8 *arg1) { void rare_memcpy(void *, voi
 
 s32 func_8080132C_gcboundDll(s32 arg0) { switch (arg0) { case 1: return 1; case 2: return 2; case 3: return 4; default: return 7; } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_80801370_gcboundDll.s")
+s32 func_80801370_gcboundDll(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    u32 end;
+
+    end = arg0 * 0x1C + arg1;
+    if (arg2 == 0) {
+        arg2 = arg1 - 0x1C;
+    }
+    arg2 += 0x1C;
+    while ((u32)arg2 < end) {
+        if (arg3 == *(s32 *)(arg2 + 0x14) || arg4 != 0) {
+            return arg2;
+        }
+        arg2 += 0x1C;
+    }
+    return 0;
+}
 
 /* extern */
 
