@@ -1,6 +1,27 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/bounce/subaddiebounce_entrypoint_0.s")
+void subaddiebounce_entrypoint_0(u8 *arg0) {
+    void func_800EF334(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    s32 pad;
+    f32 time;
+    f32 velocity;
+    f32 height;
+    f32 *delta;
+
+    velocity = *(f32 *)(arg0 + 0x24);
+    height = *(f32 *)(arg0 + 8);
+    time = 0.0f;
+    while (velocity > 0.0f || *(f32 *)(arg0 + 0x1C) < height) {
+        time += 0.016666668f;
+        height += velocity * 0.016666668f;
+        velocity += *(f32 *)(arg0 + 0x34) * 0.016666668f;
+    }
+    delta = (f32 *)(arg0 + 0x28);
+    func_800EFB24(delta, arg0 + 0x18, arg0 + 4);
+    func_800EF334(delta, 1.0f / time);
+    *(f32 *)(arg0 + 0x2C) = *(f32 *)(arg0 + 0x24);
+}
 
 /* extern */
 
