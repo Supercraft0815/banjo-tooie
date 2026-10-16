@@ -21,7 +21,39 @@ OSThread *chfactorytoxicpools_entrypoint_2(void)
     return (OSThread *) D_808009D0_chfactorytoxicpools;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxicpools/func_80800024_chfactorytoxicpools.s")
+void func_80800024_chfactorytoxicpools(Actor *arg0) {
+    s32 _chswitch_entrypoint_7(s32, s32);
+    s32 func_800DA298(s32);
+    void *func_80100094(Actor *, u32);
+    void func_80103110(Actor *, u32);
+    void func_8010A570(Actor *);
+    struct ToxicPoolData {
+        s16 unk0;
+        s16 state;
+        f32 timer;
+    } *sp1C;
+    s32 sp18;
+
+    sp1C = func_80100094(arg0, 1);
+    sp18 = func_800DA298(0x18E);
+    if (_chswitch_entrypoint_7(arg0, 0x18E) != 0) {
+        func_80103110(arg0, 0);
+    }
+    sp1C->timer = 8.0f;
+    if (sp18 != 0) {
+        sp1C->unk0 = 0x384;
+    } else {
+        sp1C->unk0 = 0;
+    }
+    if (sp18 != 0) {
+        sp1C->state = 2;
+    } else {
+        sp1C->state = 0;
+    }
+    if (sp18 != 0) {
+        func_8010A570(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxicpools/func_808000D0_chfactorytoxicpools.s")
 
