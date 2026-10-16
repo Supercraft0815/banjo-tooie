@@ -224,7 +224,7 @@ void func_80801C5C_chfpsgame(Actor *arg0) {
     (*(s32 *)((s8 *)(temp_v0) + (0x56C))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80801C9C_chfpsgame.s")
+void func_80801C9C_chfpsgame(Actor *arg0) { void *func_80100094(Actor *, u32); s32 func_8010114C(s32, s32, s32); struct Entry { s32 actor; s32 unused; }; struct Group { s32 count; struct Entry entries[10]; }; struct Data { s8 pad[0x568]; struct Group groups[4]; }; struct Data *data; struct Group *cursor; s32 *count; s32 offset; s32 index; data = func_80100094(arg0, 0U); for (offset = 0; offset < 4; offset++) { cursor = &data->groups[offset]; count = &cursor->count; if (data->groups[offset].count != 0) { do { index = cursor->count - 1; cursor->count = index; func_8010114C(cursor->entries[index].actor, 0x45, 0); } while (*count != 0); } } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80801D40_chfpsgame.s")
 
