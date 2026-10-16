@@ -80,7 +80,7 @@ void chfreezy_entrypoint_1(Actor *arg0, s16 *arg1) {
 void func_8080044C_chfreezy(u8 **arg0, Actor *arg1, s32 arg2) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
     void func_80103DFC(Actor*, f32*);
-    s32 func_808004B8_chfreezy(u8 **, Actor *, s32);
+    void func_808004B8_chfreezy(Actor *, Actor *, s32);
     if (((u32) (*(u32 *)((s8 *)(*arg0) + (0x24))) >> 0x16) == 0x2F6) {
         func_800EE7F8((f32 *)((u8 *)arg0 + 0x44), (f32 *)((u8 *)arg1 + 0x44));
         func_80103DFC(arg1, (f32 *)((u8 *)arg0 + 4));
@@ -88,7 +88,20 @@ void func_8080044C_chfreezy(u8 **arg0, Actor *arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/freezy/func_808004B8_chfreezy.s")
+void func_808004B8_chfreezy(Actor *arg0, Actor *arg1, s32 arg2) {
+    f32 func_800EC708(Unk80132ED0 *marker);
+    f32 sp1C;
+    f32 ratio;
+
+    if ((arg0->unk0->unk24 >> 22) == 0x2F6) {
+        sp1C = func_800EC708(arg1->unk0);
+        ratio = func_800EC708(arg0->unk0) / arg0->scale;
+        arg0->unk50 = sp1C / ratio;
+        if (arg2 != 0) {
+            arg0->scale = arg0->unk50;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/freezy/func_80800538_chfreezy.s")
 
