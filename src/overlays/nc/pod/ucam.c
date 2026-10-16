@@ -285,7 +285,22 @@ s32 ncpoducam_entrypoint_8(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/ncpoducam_entrypoint_9.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/ncpoducam_entrypoint_10.s")
+f32 ncpoducam_entrypoint_10(void *arg0) {
+    f32 _suspline_entrypoint_6(void *);
+    f32 _susplinet_entrypoint_9(void *);
+    void *func_8001B798(s16);
+    u8 temp_v0;
+
+    temp_v0 = *(u8 *)((s8 *)arg0 + 0x60);
+    if ((temp_v0 != 5) && (temp_v0 != 6)) {
+        if (temp_v0 == 8) {
+            return _susplinet_entrypoint_9(func_8001B798(*(s16 *)((s8 *)arg0 + 2)));
+        }
+    } else {
+        return _suspline_entrypoint_6(func_8001B798(*(s16 *)arg0));
+    }
+    return 0.0f;
+}
 
 /* extern */
 
