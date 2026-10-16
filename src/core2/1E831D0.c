@@ -12,7 +12,20 @@ void func_800A98E0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E831D0/func_800A9924.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E831D0/func_800A9998.s")
+void func_800A9998(void) {
+    extern u8 D_80127760;
+    void func_800E80A0(void);
+    void _gsattract_entrypoint_0(void);
+    void func_800A1618(s32 arg0);
+    switch (D_80127760) {
+        case 1: func_800E80A0(); break;
+        case 2: _gsattract_entrypoint_0(); break;
+    }
+    if (*(&D_80127760 + 4) != 0) {
+        *(&D_80127760 + 4) = 0;
+    }
+    func_800A1618(1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E831D0/func_800A9A14.s")
 
