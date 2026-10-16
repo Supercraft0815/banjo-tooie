@@ -313,11 +313,42 @@ void func_800CF184(void)
     D_8012B16C = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF190.s")
+void func_800CF190(void) {
+    void func_8008FBC0(void);
+    void func_8008FBE0(u32);
+    s32 func_8008FC00(void);
+    s32 func_800CF580(void);
+    f32 func_800CF67C(void);
+    s32 func_800D9078(f32 *);
+    u32 func_800F54E4(void);
+    void func_800F7B9C(s32, u32);
+    extern f32 D_8012B174;
+    extern s32 D_8012B160;
+    extern f32 D_8012B178;
+    extern s32 D_8012B17C;
+
+    if (func_800CF67C() != 0.0f) {
+        func_800CF184();
+        return;
+    }
+    if (func_800CF580() != 0) {
+        func_800CF7F4(1U);
+        func_8008FBE0(1);
+        func_800D9078(&D_8012B178);
+        if (D_8012B178 <= 0.0f) {
+            *(f32 *)((u8 *)&D_8012B160 + 0x18) = D_8012B174;
+            func_8008FBC0();
+            if (func_8008FC00() == 0) {
+                func_800F7B9C(func_800F54E4(), D_8012B17C);
+                func_800CF184();
+            }
+        }
+    }
+}
 
 void func_800CF264(void) {
     s32 func_800CF01C();
-    s32 func_800CF190();
+    void func_800CF190(void);
     s32 func_800EA09C();
     extern u8 D_8012B16C;
     if (func_800EA09C() == 2) {
