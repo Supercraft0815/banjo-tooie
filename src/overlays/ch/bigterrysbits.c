@@ -34,7 +34,7 @@ void func_80800024_chbigterrysbits(void *arg0) {
     s32 func_800F54E4();
     s32 func_800F64A4(s32, s32);
     s32 func_8010108C(void *, s32, s32);
-    s32 func_80101FDC(void *, s32);
+    void func_80101FDC(Actor *, u32);
     s32 func_8010A800(void *, s32);
     s32 sp2C;
     s32 sp28;
@@ -76,7 +76,28 @@ void func_80800160_chbigterrysbits(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bigterrysbits/func_808001A8_chbigterrysbits.s")
+s32 func_808001A8_chbigterrysbits(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddieDll_entrypoint_5(Actor *, s32);
+    void func_80103110(void *, s32);
+    void func_80101FDC(Actor *, u32);
+    void func_8080022C_chbigterrysbits(Actor *volatile);
+    s32 *data = &arg2;
+    switch (arg1) {
+        case 0x3F:
+            if (_subaddieDll_entrypoint_5(arg0, arg2) != 0) {
+                func_80103110(arg0, 1);
+                func_80101FDC(arg0, 2);
+                return 1;
+            }
+            break;
+        case 0x40:
+            func_8080022C_chbigterrysbits(arg0);
+            return 1;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_8080022C_chbigterrysbits(Actor *volatile arg0) {
     void _chexploder_entrypoint_3(void *, void *, u32);
