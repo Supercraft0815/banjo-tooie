@@ -859,7 +859,28 @@ void func_80802FE4_chgameselect(Actor *arg0) {
     func_80802640_chgameselect(func_80106790(arg0->unk3C)->actorData[3], 0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803048_chgameselect.s")
+void func_80803048_chgameselect(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 _gcnewoption_entrypoint_12(s32, s32, s16);
+    void _gcnewoption_entrypoint_41(OptionState *, s32);
+    void func_8080401C_chgameselect(s32, s32, s32);
+    s32 var_s0;
+    u8 *var_s1;
+
+    var_s1 = func_80100094(arg0, 1U);
+    var_s0 = 0;
+    if ((s32)arg0->actorData[5] > 0) {
+        do {
+            _gcnewoption_entrypoint_12(arg1, var_s0, var_s1[1]);
+            if (*(s8 *)(var_s1 + 2) >= 0) {
+                func_8080401C_chgameselect(arg1, var_s0, 0);
+            }
+            var_s0 += 1;
+            var_s1 += 6;
+        } while (var_s0 < (s32)arg0->actorData[5]);
+    }
+    _gcnewoption_entrypoint_41(arg1, arg0->actorData[6]);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808030EC_chgameselect.s")
 
