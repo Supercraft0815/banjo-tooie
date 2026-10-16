@@ -25,7 +25,35 @@ void func_808002FC_chintrochar(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80800398_chintrochar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80800484_chintrochar.s")
+void func_80800484_chintrochar(Actor *arg0) {
+    s32 func_800DA544(s32);
+    s32 func_80103140(Actor *, u32, u16);
+    s32 func_80800000_chintrochar(void *);
+    s32 func_808000FC_chintrochar();
+    s32 func_80800398_chintrochar(void *);
+    s32 func_80803E98_chintrochar(void *);
+    extern u16 D_80804790_chintrochar[][16];
+    extern u32 func_80804160_chintrochar[][8];
+    s32 temp_s1;
+    u16 *temp_v0;
+
+    temp_s1 = func_80804160_chintrochar[arg0->unk74_7][0];
+    func_808000FC_chintrochar();
+    temp_v0 = D_80804790_chintrochar[arg0->unk74_7];
+    func_80103140(arg0, temp_v0[-0x320], temp_v0[-0x31F]);
+    if (temp_s1 & 0x40) {
+        func_80800000_chintrochar(arg0);
+    }
+    if (temp_s1 & 0x1000) {
+        func_80800398_chintrochar(arg0);
+    }
+    if (temp_s1 & 0x10000) {
+        func_80803E98_chintrochar(arg0);
+    }
+    if (temp_s1 & 0x80000) {
+        func_800DA544(0xD);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80800540_chintrochar.s")
 
