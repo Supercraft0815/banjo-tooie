@@ -80,7 +80,7 @@ s32 func_800A2C84(PlayerState *arg0) {
 void func_800A2CE8(PlayerState *arg0, f32 arg1, s32 arg2) {
     s32 anctrl_isAt(s32, f32);
     s32 baanim_getAnimCtrlPtr();
-    s32 func_800A2EEC(void *, s32);
+    void func_800A2EEC(PlayerState *, s32);
     if (anctrl_isAt(baanim_getAnimCtrlPtr(), arg1) != 0) {
         func_800A2EEC(arg0, arg2);
     }
@@ -156,13 +156,32 @@ void func_800A2EDC(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 292) + 8) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2EEC.s")
+void func_800A2EEC(PlayerState *arg0, s32 arg1) {
+    s32 _fxstep_entrypoint_11(s32, f32, f32);
+    s32 bs_getCurrentState(PlayerState *);
+    s32 func_8009CA70(PlayerState *, s32, s32);
+    s16 func_8009CBDC(PlayerState *, s32);
+    s32 sp24;
+    void *temp_v0;
+    void *temp_v0_2;
+
+    sp24 = bs_getCurrentState(arg0);
+    func_800A2C84(arg0);
+    *(s8 *)((s8 *)*(void **)((s8 *)arg0 + 0x124) + 4) = arg1;
+    if ((func_8009CBDC(arg0, sp24) == 8) || (func_8009CA70(arg0, sp24, 0x40) != 0)) {
+        temp_v0 = *(void **)((s8 *)arg0 + 0x124);
+        _fxstep_entrypoint_11(*(s32 *)temp_v0, 0.2f, *(f32 *)((s8 *)temp_v0 + 8));
+        return;
+    }
+    temp_v0_2 = *(void **)((s8 *)arg0 + 0x124);
+    _fxstep_entrypoint_11(*(s32 *)temp_v0_2, 0.0f, *(f32 *)((s8 *)temp_v0_2 + 8));
+}
 
 /* extern */
 
 void func_800A2F90(void *arg0, s32 arg1) {
     s32 _fxstep_entrypoint_2(s32, s32);
-    s32 func_800A2EEC(void *, s32);
+    void func_800A2EEC(PlayerState *, s32);
     _fxstep_entrypoint_2(*(*(s32 **)((s8 *)(arg0) + (0x124))), 0);
     func_800A2EEC(arg0, arg1);
 }
