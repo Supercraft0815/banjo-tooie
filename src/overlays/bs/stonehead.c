@@ -15,7 +15,19 @@ void func_80800000_bsstonehead(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/func_80800060_bsstonehead.s")
+void func_80800060_bsstonehead(PlayerState *arg0) {
+    void func_80092864(PlayerState *, f32);
+    void func_800947EC(PlayerState *, s32, s32);
+    void func_800959C8(PlayerState *, f32, f32);
+    void func_80095A74(void *, s32);
+    s32 func_8009E77C(PlayerState *, s32);
+    if (func_8009E77C(arg0, 3) == 0) {
+        func_800959C8(arg0, 65.0f, 35.0f);
+        func_80092864(arg0, 0.8999939f);
+        func_800947EC(arg0, 1, 1);
+        func_80095A74(arg0, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/func_808000CC_bsstonehead.s")
 
@@ -83,9 +95,9 @@ s32 bsstonehead_entrypoint_7(s32 arg0) {
     return ((s32 *)&D_80801640_bsstonehead)[arg0];
 }
 
-void bsstonehead_entrypoint_8(s32 arg0)
+void bsstonehead_entrypoint_8(PlayerState *arg0)
 {
-    func_80800060_bsstonehead();
+    func_80800060_bsstonehead(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
 void bsstonehead_entrypoint_9(PlayerState* self)
@@ -110,7 +122,7 @@ void bsstonehead_entrypoint_12(PlayerState *arg0)
     func_80800000_bsstonehead(arg0);
 }
 
-void bsstonehead_entrypoint_13(PlayerState *arg0) { func_80800060_bsstonehead(); (*(s32 *)((s8 *)(arg0) + 0x15C)) = 1; func_808008CC_bsstonehead(arg0, 1); }
+void bsstonehead_entrypoint_13(PlayerState *arg0) { func_80800060_bsstonehead(arg0); (*(s32 *)((s8 *)(arg0) + 0x15C)) = 1; func_808008CC_bsstonehead(arg0, 1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_14.s")
 
@@ -127,7 +139,7 @@ void bsstonehead_entrypoint_16(PlayerState *arg0)
     func_80800000_bsstonehead(arg0);
 }
 
-void bsstonehead_entrypoint_17(PlayerState *arg0) { func_80800060_bsstonehead(); (*(s32 *)((s8 *)(arg0) + 0x15C)) = 0; func_80800B38_bsstonehead(arg0, 1); }
+void bsstonehead_entrypoint_17(PlayerState *arg0) { func_80800060_bsstonehead(arg0); (*(s32 *)((s8 *)(arg0) + 0x15C)) = 0; func_80800B38_bsstonehead(arg0, 1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_18.s")
 
@@ -263,9 +275,9 @@ void bsstonehead_entrypoint_32(PlayerState *arg0)
     _bsrest_entrypoint_14();
     func_80800000_bsstonehead(arg0);
 }
-void bsstonehead_entrypoint_33(s32 arg0)
+void bsstonehead_entrypoint_33(PlayerState *arg0)
 {
-    func_80800060_bsstonehead();
+    func_80800060_bsstonehead(arg0);
     _bsrest_entrypoint_16(arg0);
 }
 /* extern */
