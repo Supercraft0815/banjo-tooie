@@ -39,7 +39,7 @@ void func_808000DC_gczoombox(void *arg0) {
 /* extern */
 
 void gczoombox_entrypoint_0(void *arg0) {
-    s32 func_800D52B0();
+    int func_800D52B0(void);
     void func_80800000_gczoombox(void *);
     s32 heap_free(void *);
     if (arg0 != NULL) {
@@ -244,7 +244,25 @@ u8 func_808008F4_gczoombox(void *arg0, s32 arg1, s32 arg2) {
     return sp1F;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80800964_gczoombox.s")
+void func_80800964_gczoombox(void *arg0) {
+    typedef struct {
+        u32 pad : 11;
+        u32 enabled : 1;
+        u32 rest : 20;
+    } Flags;
+    int func_800D52B0(void);
+    int i;
+
+    func_800D52B0();
+    func_80800000_gczoombox(arg0);
+    func_808000DC_gczoombox(arg0);
+    for (i = 0; i < 8; i++) {
+        ((void **)((u8 *)arg0 + 0x17C))[i] = NULL;
+    }
+    *(u8 *)((u8 *)arg0 + 0x171) = 0;
+    *(u8 *)((u8 *)arg0 + 0x174) =
+        ((Flags *)((u8 *)arg0 + 0x1E4))->enabled = 0;
+}
 
 void func_808009E4_gczoombox(u8 *this, s32 arg1) {
     typedef struct {
