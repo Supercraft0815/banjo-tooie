@@ -127,6 +127,10 @@ void func_808008C0_chclinker(s32 arg0)
     func_808008E0_chclinker(arg0,0x5);
 }
 
+u32 func_800F54E4(void);
+s32 func_800F7F98(s32, u32);
+s32 func_80800BDC_chclinker(Actor *, s32);
+
 int func_808008E0_chclinker(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
@@ -215,7 +219,37 @@ int func_808008E0_chclinker(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_80800BDC_chclinker.s")
+s32 func_80800BDC_chclinker(Actor *arg0, s32 arg1) {
+    u32 func_800F54E4(void);
+    s32 func_800F7F98(s32, u32);
+    s32 _chmrtannoy_entrypoint_0(void);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 dialog;
+
+    switch (arg1) {
+        default:
+        case 0x1372:
+            dialog = 0x22;
+            func_800F7F98(func_800F54E4(), 1);
+            break;
+        case 0x1371:
+            dialog = 0x23;
+            break;
+        case 0x1373:
+            dialog = 7;
+            break;
+        case 0xCEC:
+        case 0x137C:
+            dialog = 0x23;
+            break;
+        case 0xCEB:
+            dialog = 0x144;
+            break;
+    }
+    _chmrtannoy_entrypoint_0();
+    _subaddiedialog_entrypoint_11(arg0->unk0, arg1, dialog, arg0->position, 0xA3);
+    return 1;
+}
 
 s32 func_80800C9C_chclinker(Actor *arg0, s32 arg1, s32 arg2) { void *func_80100094(Actor *, u32); s16 func_800D211C(s32); struct { s32 unk0; f32 value; } *data; data = func_80100094(arg0, 0); switch (arg1) { case 0x137C: return func_800D211C(0x94); case 0x137D: case 0x137E: case 0x137F: return (s32)data->value; default: return 0; } }
 
