@@ -380,7 +380,23 @@ void func_80801B00_chstoneballcontrol(u8 *arg0) {
     *(f32 *)(arg0 + 0x24) = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80801B44_chstoneballcontrol.s")
+void func_80801B44_chstoneballcontrol(Actor *arg0) {
+    f32 func_800DC178(f32, f32);
+    s32 func_800EA05C();
+    void func_8010A590(Actor *);
+
+    arg0->unk74_17 = 0;
+    func_8010A590(arg0);
+    arg0->scale = 1.5f;
+    arg0->rotation[0] = func_800DC178(0.0f, 45.0f);
+    arg0->rotation[2] = func_800DC178(0.0f, 45.0f);
+    func_80801B00_chstoneballcontrol(arg0);
+    if (func_800EA05C() != 0xBB) {
+        arg0->position[1] = -75.0f;
+    } else {
+        arg0->position[1] = -425.0f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80801BE0_chstoneballcontrol.s")
 
