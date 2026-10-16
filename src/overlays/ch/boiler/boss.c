@@ -59,7 +59,17 @@ void func_80800E64_chboilerboss(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808013C4_chboilerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80801464_chboilerboss.s")
+void func_80801464_chboilerboss(Actor *arg0, f32 *arg1, f32 arg2) {
+    f32 func_800136E4(f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void *func_80100094(Actor *, u32);
+
+    func_800EE7F8(arg1, func_80100094(arg0, 0));
+    func_800EF1B8(arg1, func_800136E4(arg0->rotation[1] + 90.0f), 15.0f);
+    func_800EF1B8(arg1, arg0->rotation[1], arg2);
+    arg1[1] -= 10.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808014F4_chboilerboss.s")
 
