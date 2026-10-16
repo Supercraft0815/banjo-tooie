@@ -96,7 +96,28 @@ s32 func_80029F5C(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_80029FA0.s")
+u8 func_80029FA0(void *arg0, void *arg1) {
+    union {
+        s32 value;
+        struct {
+            u8 b0;
+            u8 b1;
+            u8 b2;
+            u8 b3;
+        } bytes;
+    } sp4;
+
+    sp4.value = *(u8 *)(*(u8 **)((u8 *)arg0 + 0x20) + 0xD4) + (*(u8 (**)[0x38])((u8 *)arg1 + 0x60))[*(u8 *)((u8 *)arg0 + 0x35)][3] - 0x40;
+    if (sp4.value > 0) {
+    } else {
+        sp4.value = 0;
+    }
+    if (sp4.value < 0x7F) {
+    } else {
+        sp4.value = 0x7F;
+    }
+    return sp4.bytes.b3;
+}
 
 /* extern */
 
