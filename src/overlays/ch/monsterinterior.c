@@ -230,7 +230,19 @@ f32 func_80801ADC_chmonsterinterior(s32 arg0, f32 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_80801B7C_chmonsterinterior.s")
+f32 func_80801B7C_chmonsterinterior(s32 arg0) {
+    f32 func_800DC178(f32, f32);
+    switch (arg0) {
+    case 0:
+        return func_800DC178(2.5f, 3.0f);
+    case 1:
+        return func_800DC178(3.0f, 3.5f);
+    case 2:
+        return func_800DC178(3.5f, 4.5f);
+    default:
+        return -1.0f;
+    }
+}
 
 /* extern */
 s32 func_80801C1C_chmonsterinterior(u8 *arg0) {
