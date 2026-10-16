@@ -7,7 +7,21 @@ void func_80800000_chtrashcangame(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x28))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80800014_chtrashcangame.s")
+s32 func_80800014_chtrashcangame(Actor *arg0, s32 arg1) {
+    s32 func_800D3948(void);
+
+    if (func_800D3948() != 0) {
+        switch (arg1) {
+            case 0: return arg0->actorData[4];
+            case 1: return arg0->actorData[5];
+            case 2: return arg0->actorData[6];
+            case 3: return arg0->actorData[0];
+        }
+        return 0;
+    } else {
+        return arg0->actorData[4];
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80800098_chtrashcangame.s")
 
