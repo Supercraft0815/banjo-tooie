@@ -1,5 +1,6 @@
 #include "common.h"
 struct player_state_s;
+struct anctrl_s;
 void func_80093230(struct player_state_s *, f32);
 
 typedef struct player_state_s {
@@ -127,14 +128,41 @@ void func_8080016C_bsride()
 
 void func_8080018C_bsride(s32 arg0) {
     s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
-    s32 func_8009C128(s32, s32);
+    void func_8009C128(PlayerState *, f32[3]);
     void func_80800000_bsride(PlayerState *);
     func_80800000_bsride(arg0);
     baanim_playForDuration_loopSmooth(arg0, 0x256, 0x3F666666);
     func_8009C128(arg0, arg0 + 0x16C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_808001CC_bsride.s")
+void func_808001CC_bsride(PlayerState *arg0) {
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void bs_setState(void *, s32);
+    void func_8009C128(PlayerState *, f32[3]);
+    f32 func_800D8FF8(void);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEF94(f32 *);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 next_state;
+    f32 distance;
+    f32 duration;
+    f32 delta[3];
+    f32 position[3];
+
+    next_state = 0;
+    func_8009C128(arg0, position);
+    func_800EFB24(delta, position, &arg0->unk16C);
+    func_800EE7F8(&arg0->unk16C, position);
+    distance = func_800EEF94(delta);
+    duration = func_800F10B4(distance / func_800D8FF8(), 0.0f, 2000.0f, 0.9f, 0.22f);
+    anctrl_setDuration(baanim_getAnimCtrlPtr(arg0), duration);
+    if (arg0->unk15C.word == 0) {
+        next_state = 0x2F;
+    }
+    bs_setState(arg0, next_state);
+}
 
 s32 bsride_entrypoint_0(s32 arg0) {
     extern s32 D_808009C0_bsride[];
@@ -201,8 +229,6 @@ void func_808005D8_bsride(s32 arg0) {
 /* extern */
 
 void func_8080060C_bsride(void *arg0) {
-    struct player_state_s;
-    struct anctrl_s;
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     void func_8008B10C(struct anctrl_s *, f32);
     void bs_setState(void *, s32);
