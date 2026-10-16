@@ -364,7 +364,7 @@ void func_800C2A90()
 
 void func_800C2AB8(void) {
     s32 func_800C269C(u8);
-    s32 func_800C2B80();
+    void func_800C2B80(void);
     extern s32 D_80128C10;
     s8 *var_s1;
     s32 temp_s0;
@@ -395,7 +395,31 @@ loop_2:
     } while (var_s3 != 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2B80.s")
+void func_800C2B80(void) {
+    extern s32 D_80128C10;
+    s8 *ptr;
+    u32 index;
+    u8 count;
+
+    ptr = (s8 *)&D_80128C10;
+    for (index = 1; index < 0x3C; index++, ptr += 0x80) {
+        if (*(u8 *)(ptr + 0x78) == 0) continue;
+        if ((*(u32 *)(ptr + 0x78) << 19 >> 29) == 3) continue;
+            count = *(u8 *)(ptr + 0x62);
+            if (count != 0xFF) {
+                if (count == 0) {
+                    func_800C2FDC(index);
+                } else {
+                    count--;
+                    *(u8 *)(ptr + 0x62) = count;
+                    if (!(count & 0xFF)) {
+                        *(f32 *)(ptr + 0x54) = 0.0f;
+                        ((struct { u32 pad : 26; u32 flag : 1; u32 rest : 5; } *)(ptr + 0x78))->flag = 1;
+                    }
+                }
+            }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2C4C.s")
 
