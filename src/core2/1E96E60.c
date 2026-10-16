@@ -70,7 +70,20 @@ s32 func_800BD948(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BD97C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BDAD4.s")
+s32 func_800BDAD4(s32 position[3]) {
+    extern u8 D_80128444;
+    if ((position[0] < (&D_80128410)[1]) ||
+        (position[1] < (&D_80128410)[2]) ||
+        (position[2] < (&D_80128410)[3]) ||
+        ((&D_80128410)[4] < position[0]) ||
+        ((&D_80128410)[5] < position[1]) ||
+        ((&D_80128410)[6] < position[2])) {
+        return (s32)&D_80128444;
+    }
+    return D_80128410 + (position[0] - (&D_80128410)[1]) * 8 +
+        (position[1] - (&D_80128410)[2]) * (&D_80128410)[7] * 8 +
+        (position[2] - (&D_80128410)[3]) * (&D_80128410)[8] * 8;
+}
 
 s32 func_800BDB9C(s32 arg0) {
     extern u8 D_80128444;
