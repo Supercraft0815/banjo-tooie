@@ -2987,7 +2987,7 @@ s32 bsfirstp_entrypoint_34(s32 arg0) {
 void func_80808A24_bsfirstp(struct player_state_s *arg0) {
     void func_80807BB8_bsfirstp();
     s32 func_80808DB0_bsfirstp(void *);
-    s32 func_80808CAC_bsfirstp(struct player_state_s *, s32);
+    void func_80808CAC_bsfirstp(struct player_state_s *, s32);
     void func_80808D80_bsfirstp(void *);
     void *sp24;
 
@@ -3035,7 +3035,7 @@ s32 func_80808B24_bsfirstp(s32 arg0) {
 
 void func_80808B8C_bsfirstp(struct player_state_s *arg0) {
     f32 func_800D9004(void);
-    s32 func_80808CAC_bsfirstp(struct player_state_s *, s32);
+    void func_80808CAC_bsfirstp(struct player_state_s *, s32);
     s32 temp_v0;
 
     if (func_80802444_bsfirstp(arg0) == 1) {
@@ -3059,7 +3059,7 @@ void func_80808B8C_bsfirstp(struct player_state_s *arg0) {
 }
 
 void func_80808C48_bsfirstp(struct player_state_s *arg0) {
-    s32 func_80808CAC_bsfirstp(struct player_state_s *, s32);
+    void func_80808CAC_bsfirstp(struct player_state_s *, s32);
     void func_80808D80_bsfirstp(void *);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     struct anctrl_s *func_8008D04C(struct player_state_s *);
@@ -3073,7 +3073,37 @@ void func_80808C48_bsfirstp(struct player_state_s *arg0) {
     func_8008B304(func_8008D04C(arg0));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80808CAC_bsfirstp.s")
+void func_80808CAC_bsfirstp(struct player_state_s *arg0, s32 arg1) {
+    struct firstp_entry_s {
+        s16 anim;
+        s16 flags;
+        f32 duration;
+    } *entry;
+    s32 base;
+    s32 index;
+
+    base = func_808024DC_bsfirstp(arg0);
+    index = *(s32 *)((u8 *)arg0 + 0x160);
+    entry = (struct firstp_entry_s *)(index * 8 + base);
+    *(s32 *)((u8 *)arg0 + 0x160) = index + 1;
+    if (arg1 != 0) {
+        func_80800424_bsfirstp(arg0, entry->anim, entry->duration);
+    } else {
+        func_808003B4_bsfirstp(arg0, entry->anim, entry->duration);
+    }
+    *(s32 *)((u8 *)arg0 + 0x15C) = 2;
+    if (entry->flags & 1) {
+        func_808001FC_bsfirstp(arg0);
+        *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+    }
+    if (entry->flags & 2) {
+        *(f32 *)((u8 *)arg0 + 0x16C) = entry->duration;
+        *(s32 *)((u8 *)arg0 + 0x15C) = 1;
+    }
+    if ((++entry)->anim == 0) {
+        *(s32 *)((u8 *)arg0 + 0x160) = entry->flags;
+    }
+}
 
 /* extern */
 
