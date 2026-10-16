@@ -877,7 +877,18 @@ int func_800F6720(s32 arg0) {
     return func_8009E71C(self, 9) || func_8008DE74(self);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6774.s")
+int func_800F6774(u32 arg0) {
+    int func_800A8264(void);
+    s32 func_800F6D24(s32);
+    int func_800F8088(s32);
+    s32 func_800F68B8(s32);
+    s32 func_800F6CC8(s32);
+    return func_800F6D24(arg0) == 0
+        && func_800F8088(arg0) == 0
+        && func_800F68B8(arg0) == 0
+        && func_800F6CC8(arg0) == 0
+        && func_800A8264() == 0;
+}
 
 /* extern */
 
@@ -1011,9 +1022,9 @@ s32 func_800F6CC8(s32 arg0) {
     return 0;
 }
 
-void func_800F6D24(s32 arg0)
+s32 func_800F6D24(s32 arg0)
 {
-    func_8008E124(D_80135490[arg0]);
+    return func_8008E124(D_80135490[arg0]);
 }
 
 int func_800F6D50(s32 arg0) {
