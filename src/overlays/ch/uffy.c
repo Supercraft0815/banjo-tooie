@@ -227,7 +227,28 @@ void func_80801EAC_chchuffy(Actor *arg0) {
     *sp24 = _subaddieaudioloop_entrypoint_7(*temp_v0, temp_v0 + 0x20, 1, &D_80802690_chchuffy, (*(s32 *)((s8 *)(arg0) + (0x70))) & 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80801F04_chchuffy.s")
+void func_80801F04_chchuffy(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_800C3058(u8, s32);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    extern s32 D_808023DC_chchuffy;
+    struct {
+        u8 unk0;
+        u8 soundIndex;
+        u8 pad2[2];
+        f32 sampleRate;
+        u8 pad8[0x18];
+        f32 position[3];
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    if (data->soundIndex == 0) {
+        data->soundIndex = func_800C4350(0, data->position, &D_808023DC_chchuffy);
+    } else {
+        func_800C3058(data->soundIndex, (s32)data->sampleRate);
+        func_800C4350(data->soundIndex, data->position, NULL);
+    }
+}
 
 /* extern */
 
