@@ -5,14 +5,35 @@
 void func_80800000_chboggy(void *arg0) {
     s32 _glcutDll_entrypoint_20();
     s32 func_800DA298(s32);
-    s32 func_80101FDC(void *, s32);
+    void func_80101FDC(Actor *, u32);
     (*(f32 *)((s8 *)(arg0) + (0x38))) = 0.18f;
     if ((func_800DA298(0x439) != 0) || (_glcutDll_entrypoint_20() != 0)) {
         func_80101FDC(arg0, 3);
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/func_80800054_chboggy.s")
+void func_80800054_chboggy(Actor *arg0, s32 arg1, s32 arg2) {
+    u8 _subaddiedialog_entrypoint_9();
+    s32 func_800DA544(s32);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    void func_80101FDC(Actor *, u32);
+    extern s32 D_80800790_chboggy;
+    extern s32 D_808007C8_chboggy;
+    s32 first;
+    s32 second;
+
+    first = _subaddiedialog_entrypoint_9(arg0, arg1, &D_80800790_chboggy, 7);
+    second = _subaddiedialog_entrypoint_9(arg0, arg1, &D_808007C8_chboggy, 7);
+    if (first == 1) {
+        func_80101FDC(arg0, 1);
+        func_800DA544(0x447);
+        return;
+    }
+    if (second == 1) {
+        func_800F82D4(func_800F54E4(), 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/func_808000EC_chboggy.s")
 
