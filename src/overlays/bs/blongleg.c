@@ -215,7 +215,26 @@ void func_80800A18_bsblongleg(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x15C))) = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_12.s")
+void bsblongleg_entrypoint_12(PlayerState *arg0) {
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 func_8008CA4C(void *, s32);
+    void func_8009D2D8(PlayerState *, s32);
+    s32 func_800C2E04(void);
+    void func_800C301C(u8, s32);
+    void func_800C330C(u8, s32);
+    void func_800C3730(u8, f32, f32, f32);
+    u8 index;
+
+    func_80800994_bsblongleg(arg0);
+    func_8008CA4C(arg0, 1);
+    func_8009D2D8(arg0, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    index = func_800C2E04();
+    *(u8 *)((s8 *)arg0 + 0x160) = index;
+    func_800C301C(index, 0x41D);
+    func_800C330C(*(u8 *)((s8 *)arg0 + 0x160), 3);
+    func_800C3730(*(u8 *)((s8 *)arg0 + 0x160), 1.4f, 0.4f, -1.2f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_13.s")
 
