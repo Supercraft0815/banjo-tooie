@@ -40,13 +40,31 @@ void func_800C5008(s32 arg0, f32 *arg1, f32 *arg2) {
     arg2[1] = arg1[1] * ((f32) sp20 / 228.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C5094.s")
+void func_800C5094(s32 arg0, f32 arg1) {
+    f32 func_800139F8(f32);
+    f32 func_80013B7C(f32, f32);
+    void func_800A8A44(s32, s32 *, s32 *, s32 *, s32 *);
+    void func_800A8A04(s32, s32 *, s32 *, s32 *, s32 *);
+    void func_800A8A88(s32, f32);
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+
+    func_800A8A44(arg0, &sp34, &sp30, &sp2C, &sp28);
+    func_800A8A04(arg0, &sp34, &sp30, &sp2C, &sp24);
+    if (sp28 != sp24) {
+        arg1 = 2.0f * func_80013B7C((f32) sp24, (f32) sp28 / func_800139F8(arg1 * 0.5f));
+    }
+    func_800A8A88(arg0, arg1);
+}
 
 /* extern */
 
 void func_800C5148(s32 arg0, f32 arg1) {
     extern f32 D_8012A9F0[];
-    s32 func_800C5094(s32, f32);
+    void func_800C5094(s32, f32);
     D_8012A9F0[arg0] = arg1;
     func_800C5094(arg0, arg1);
 }
