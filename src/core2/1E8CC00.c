@@ -69,7 +69,20 @@ void func_800B37A4(u8 *arg0, s32 *arg1, s32 *arg2) {
 
 void func_800B37B8(s32 arg0, s32 *arg1) { func_800EE830(arg1, (s32 *)arg0); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8CC00/func_800B37E4.s")
+void func_800B37E4(s32 *arg0, s32 *arg1) {
+    s32 aligned4_memcpy(void *, void *, s32);
+    u8 *cursor;
+
+    *(u8 **)((u8 *)arg0 + 0x10) = (u8 *)arg0 + 0x18;
+    for (cursor = (u8 *)arg1 + 0x18;
+         cursor < *(u8 **)((u8 *)arg1 + 0x10) &&
+         *(u8 **)((u8 *)arg0 + 0x10) < *(u8 **)((u8 *)arg0 + 0x14);
+         cursor += 0x1C) {
+        aligned4_memcpy(*(u8 **)((u8 *)arg0 + 0x10), cursor, 0x1C);
+        *(u8 **)((u8 *)arg0 + 0x10) += 0x1C;
+    }
+    func_800EE830(arg0, arg1);
+}
 
 void func_800B388C(u8 *arg0, s32 arg1) {
     (*(s32 *)((s8 *)(arg0) + (0x14))) = (s32) ((arg0 + 0x18) + (arg1 * 0x1C));
