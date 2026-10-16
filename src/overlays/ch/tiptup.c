@@ -133,7 +133,7 @@ void func_80800694_chtiptup(Actor *arg0) {
 
 s32 func_80800774_chtiptup(void *arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_0(s32, s32);
-    s32 func_80800808_chtiptup(void *, s32, s32);
+    void func_80800808_chtiptup(Actor *, s32, s32);
     if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
         if ((*(s32 *)((s8 *)(arg0) + (0x2C))) != 2) {
             func_80800808_chtiptup(arg0, 2, 1);
@@ -153,7 +153,32 @@ void func_808007CC_chtiptup(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800808_chtiptup.s")
+void func_80800808_chtiptup(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_7(s32, s32);
+    s32 _capod_entrypoint_8(s32);
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    void _gcdialogcamera_entrypoint_5(f32 *);
+    void _gcdialogcamera_entrypoint_8(void);
+    extern u32 D_80801398_chtiptup;
+
+    switch (arg0->actorData[5]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x16, 0);
+        case 1:
+        case 3:
+            _capod_entrypoint_8(1);
+            arg0->actorData[5] = 2;
+            _gcdialogcamera_entrypoint_3(&D_80801398_chtiptup, arg0->scale);
+            _gcdialogcamera_entrypoint_4(arg0->position);
+            _gcdialogcamera_entrypoint_5(arg0->rotation);
+            _gcdialogcamera_entrypoint_8();
+        case 2:
+            _capod_entrypoint_7(arg1, arg2);
+            break;
+    }
+}
 
 void func_808008B4_chtiptup(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
