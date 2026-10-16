@@ -183,7 +183,21 @@ void func_80801B88_chboilerboss(Actor *arg0, s32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80801C24_chboilerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80801CE8_chboilerboss.s")
+void func_80801CE8_chboilerboss(Actor *arg0) {
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void func_80018820(s32, f32, f32);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    void *func_80100094(Actor *, u32);
+    extern u32 D_80802B20_chboilerboss;
+    f32 *sp1C;
+
+    sp1C = func_80100094(arg0, 0);
+    if (_subaddieaudioquick_entrypoint_3(arg0, sp1C + 9, &D_80802B20_chboilerboss, 0.0f) ||
+        _subaddieaudioquick_entrypoint_3(arg0, sp1C + 12, &D_80802B20_chboilerboss, 0.5f)) {
+        func_800E1610(0, 15.0f, 0.6f, arg0->position);
+        func_80018820(0, 0.5f, 0.2f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80801D80_chboilerboss.s")
 
