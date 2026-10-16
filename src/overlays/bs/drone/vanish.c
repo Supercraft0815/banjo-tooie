@@ -25,7 +25,20 @@ void func_80800000_bsdronevanish(void *arg0, s32 arg1) {
     *(s8 *)((s8 *)*(void **)((s8 *)arg0 + 0x188) + 0x18) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/vanish/func_808000CC_bsdronevanish.s")
+void func_808000CC_bsdronevanish(void *arg0) {
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800F3BB0(struct player_state_s *, f32[3]);
+    extern s32 D_80800560_bsdronevanish;
+    extern s32 D_8080056C_bsdronevanish;
+    f32 pos[3];
+
+    func_800F3BB0(arg0, pos);
+    func_800BABB8((*(s32 **)((s8 *)arg0 + 0x188))[1], pos, NULL, 1.0f, &D_80800560_bsdronevanish);
+    func_800BABB8((*(s32 **)((s8 *)arg0 + 0x188))[0], pos, NULL, 1.0f, &D_80800560_bsdronevanish);
+    pos[1] += 130.0f;
+    func_800BABB8((*(s32 **)((s8 *)arg0 + 0x188))[1], pos, NULL, 1.0f, &D_8080056C_bsdronevanish);
+    func_800BABB8((*(s32 **)((s8 *)arg0 + 0x188))[0], pos, NULL, 1.0f, &D_8080056C_bsdronevanish);
+}
 
 void func_8080019C_bsdronevanish(s32 arg0, s32 arg1) {
     void func_800BA3FC(s32, s32);
@@ -60,7 +73,7 @@ void func_8080021C_bsdronevanish(void *arg0) {
 
 void func_808002A4_bsdronevanish(void *arg0) {
     f32 func_800D8FF8(void);
-    s32 func_808000CC_bsdronevanish(void *);
+    void func_808000CC_bsdronevanish(void *);
     f32 delta;
     void *temp_v0;
 
