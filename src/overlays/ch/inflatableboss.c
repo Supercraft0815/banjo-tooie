@@ -223,7 +223,21 @@ s32 func_80801C7C_chinflatableboss(void) {
     return (s32) (0xC - func_80801CB4_chinflatableboss()) / 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80801CB4_chinflatableboss.s")
+s32 func_80801CB4_chinflatableboss(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 remaining;
+    s32 i;
+    u8 *data;
+
+    data = func_80100094(arg0, 0U);
+    remaining = 12;
+    for (i = 0; i < 12; i++) {
+        if (data[0x487 + i] == 2) {
+            remaining--;
+        }
+    }
+    return remaining;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80801D38_chinflatableboss.s")
 
@@ -294,10 +308,10 @@ void func_80802450_chinflatableboss(Actor *arg0) {
 
 /* extern */
 
-void func_808029AC_chinflatableboss(s32 arg0) {
+void func_808029AC_chinflatableboss(Actor *arg0) {
     s32 func_800D2498(s32, s32, s32);
     s32 func_800DA298(s32);
-    s32 func_80801CB4_chinflatableboss(s32);
+    s32 func_80801CB4_chinflatableboss(Actor *);
     if ((func_800DA298(1) != 0) && (func_800DA298(3) == 0)) {
         func_800D2498(0xEC, func_80801CB4_chinflatableboss(arg0), 0);
     }
