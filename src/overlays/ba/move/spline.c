@@ -33,7 +33,23 @@ void func_80800000_bamovespline(u8 *arg0) {
     func_800F2168((*(u8 **)((s8 *)(arg0) + (0xC8))) + 0x10, 0x38D1B717);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/spline/func_808000F4_bamovespline.s")
+void func_808000F4_bamovespline(void *arg0, s32 arg1) {
+    void func_8009C128(void *, f32[3]);
+    switch (arg1) {
+        case 2:
+        case 4:
+            break;
+        case 1:
+            (*(u8 **)((u8 *)arg0 + 0xC8))[0x91] = 0;
+            (*(u8 **)((u8 *)arg0 + 0xC8))[0x92] = 0;
+            *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0xA8) = 0.0f;
+            break;
+        case 3:
+            func_8009C128(arg0, (f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x9C));
+            break;
+    }
+    (*(u8 **)((u8 *)arg0 + 0xC8))[0x90] = arg1;
+}
 
 /* extern */
 
