@@ -1,6 +1,25 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/drillfield/func_80800000_chfantasydrillfield.s")
+void func_80800000_chfantasydrillfield(Actor *arg0) {
+    s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_80103014(u8 *);
+    extern f32 D_808008D0_chfantasydrillfield[][4];
+    u8 *actors[8];
+    int index;
+    int count;
+
+    index = _subaddiefind_entrypoint_4(0x40A, actors, 8) - 1;
+    count = 0;
+    for (; index >= 0; --index) {
+        if (((Actor *)actors[index])->pad6C_21 < arg0->pad6C_21) {
+            ++count;
+        }
+    }
+    func_800EFA4C(arg0->position, D_808008D0_chfantasydrillfield[count][0], D_808008D0_chfantasydrillfield[count][1], D_808008D0_chfantasydrillfield[count][2]);
+    arg0->rotation[1] = D_808008D0_chfantasydrillfield[count][3];
+    func_80103014((u8 *)arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/drillfield/func_808000C4_chfantasydrillfield.s")
 
@@ -30,10 +49,10 @@ s32 func_80800360_chfantasydrillfield(s32 *entry, s32 *end) {
 void func_8080048C_chfantasydrillfield(void *arg0) {
     s32 func_800DA298(s32);
     s32 func_800DA544(s32);
-    s32 func_80800000_chfantasydrillfield();
+    void func_80800000_chfantasydrillfield(Actor *);
     s32 func_808000C4_chfantasydrillfield(void *);
     s32 func_808003C8_chfantasydrillfield(u32);
-    func_80800000_chfantasydrillfield();
+    func_80800000_chfantasydrillfield(arg0);
     if (func_800DA298(0xA0F) == 0) {
         func_800DA544(0xA0F);
         func_808000C4_chfantasydrillfield(arg0);
