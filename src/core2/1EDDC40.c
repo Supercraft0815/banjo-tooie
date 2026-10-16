@@ -117,7 +117,29 @@ void func_80104580(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_801045AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104668.s")
+s32 func_80104668(s32 arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *arg4) {
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F0E00(f32, f32);
+    void func_800F1988(f32 *, f32 *, f32 *);
+    void func_801048E4(s8 *, f32 *);
+    s8 *sp24;
+    f32 sp18[3];
+
+    if (func_80104544() == 0) {
+        return 0;
+    }
+    sp24 = func_801043D8(arg0);
+    if (*(s32 *)(sp24 + 0x24) & 0x8000) {
+        return 0;
+    }
+    func_800EE7F8(arg2, arg1);
+    arg2[1] = (f32)*(s16 *)(sp24 + 0x16);
+    *arg4 = func_800F0E00(0.0f, arg1[1] - arg2[1]);
+    func_801048E4(sp24, sp18);
+    func_800F1988(sp18, arg3, arg3 + 1);
+    arg3[2] = 0.0f;
+    return 1;
+}
 
 /* extern */
 
