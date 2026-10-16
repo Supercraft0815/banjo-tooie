@@ -3,7 +3,22 @@
 void func_80800000_chgruntylairexttowerwindow(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/grunty/lairexttowerwindow/func_80800008_chgruntylairexttowerwindow.s")
+s32 func_80800008_chgruntylairexttowerwindow(Actor *arg0, s32 arg1, s32 arg2) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    void func_80800070_chgruntylairexttowerwindow(Actor *);
+    s32 *data = &arg2;
+    switch (arg1) {
+        case 0x40:
+            _chexploder_entrypoint_3(arg0, arg0->position, 0xC);
+            break;
+        case 0x90:
+            func_80800070_chgruntylairexttowerwindow(arg0);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800070_chgruntylairexttowerwindow(Actor *arg0) {
     s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
