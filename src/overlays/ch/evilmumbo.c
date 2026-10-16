@@ -208,7 +208,7 @@ void func_80803358_chevilmumbo(u8 *arg0) {
 void func_808035A8_chevilmumbo(u8 *arg0, s32 arg1) {
     s32 func_800D674C(s32);
     s32 func_800DE448(u8 *, u8 *, s32, s32, s32);
-    s32 func_800DF830(s32);
+    void func_800DF830(s32);
     s32 func_801018A4(u8 *, s32);
     s32 func_80101970();
     (*(f32 *)((s8 *)(arg0) + (0x44))) = (f32) -(*(f32 *)((s8 *)(arg0) + (0x44)));
@@ -302,7 +302,21 @@ void func_80803B48_chevilmumbo(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80803B50_chevilmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80803C88_chevilmumbo.s")
+s32 func_80803C88_chevilmumbo(void *arg0, s32 arg1, s32 arg2) {
+    s32 result;
+    void func_800DF410(s32);
+    void func_800DF830(s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+
+    if (arg1 == 0x1F) {
+        func_800DF410((s32)func_800F10B4(*(f32 *)((u8 *)arg0 + 0x2C), 0.0f, 1.0f, 0.0f, 255.0f));
+        func_800DF830(2);
+        result = 1;
+    } else {
+        return 0;
+    }
+    return result;
+}
 
 OSThread *chevilmumbo_entrypoint_3(void)
 {
