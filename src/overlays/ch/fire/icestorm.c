@@ -68,7 +68,30 @@ void func_8080048C_chfireicestorm(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_80800558_chfireicestorm.s")
+void func_80800558_chfireicestorm(Actor *arg0, u32 arg1) {
+    s32 func_800A9C98(void);
+    f32 func_800DC178(f32, f32);
+    void func_80101FDC(Actor *, u32);
+    s32 sp24;
+
+    sp24 = 0;
+    func_80101FDC(arg0, arg1);
+    switch (arg1) {
+        case 3:
+            if (func_800A9C98() != 0) {
+                arg0->unk58 = 5.0f;
+            } else {
+                arg0->unk58 = 30.0f;
+            }
+            break;
+        case 4:
+            sp24 = 1;
+            arg0->unk58 = 15.0f;
+            ((f32 *)arg0->actorData)[3] = func_800DC178(3.0f, 4.0f);
+            break;
+    }
+    func_800DA3B8(FLAG3_9FB_UNK, sp24);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_80800608_chfireicestorm.s")
 
