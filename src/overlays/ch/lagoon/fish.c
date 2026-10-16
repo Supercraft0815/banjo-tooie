@@ -8,7 +8,7 @@ void func_808001A0_chlagoonfish(Actor *arg0) {
     s32 _subaddiesect_entrypoint_1(Actor *);
     void func_800FFAB0(Actor *);
     s32 func_80800000_chlagoonfish(Actor *);
-    s32 func_80800A44_chlagoonfish(Actor *, s32);
+    void func_80800A44_chlagoonfish(Actor *, s32);
     s32 temp;
 
     temp = arg0->unk74_7;
@@ -36,7 +36,7 @@ void func_80800284_chlagoonfish(Actor *arg0) {
     void func_80102B2C(Actor *, f32);
     void func_80102B6C(u8 *, f32);
     s32 func_8010B990(Actor *, s32);
-    s32 func_80800A44_chlagoonfish(Actor *, s32);
+    void func_80800A44_chlagoonfish(Actor *, s32);
     func_80102B6C(arg0, 2.0f);
     func_80102B2C(arg0, 2.0f);
     if ((func_8010B990(arg0, 0x500106) & 0x24) && (arg0->unk70_10 != 2)) {
@@ -89,7 +89,21 @@ void func_808009FC_chlagoonfish(u8 *arg0) {
     func_800EE7F8(arg0 + 0x18, func_800CC63C((temp_v0 >> 0x19) - 1, ((u32) (temp_v0 << 0x16) >> 0x1A) - 1));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/fish/func_80800A44_chlagoonfish.s")
+void func_80800A44_chlagoonfish(Actor *arg0, s32 arg1) {
+    f32 func_800DC178(f32, f32);
+    void func_80101FDC(Actor *, u32);
+
+    func_80101FDC(arg0, arg1);
+    switch (arg1) {
+        case 1:
+            arg0->unk54 = arg0->rotation[1] + func_800DC178(-90.0f, 90.0f);
+            arg0->unk50 = arg0->rotation[0] + func_800DC178(-90.0f, 90.0f);
+            break;
+        case 2:
+            func_808009FC_chlagoonfish((u8 *)arg0);
+            break;
+    }
+}
 
 int func_80800AE0_chlagoonfish(Actor *arg0, s32 arg1, u8 *arg2) {
     s32 func_80103140(Actor *, u32, u16);
