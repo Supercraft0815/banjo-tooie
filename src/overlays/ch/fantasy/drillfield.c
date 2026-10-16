@@ -42,7 +42,31 @@ s32 func_80800360_chfantasydrillfield(s32 *entry, s32 *end) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/drillfield/func_808003C8_chfantasydrillfield.s")
+s32 func_808003C8_chfantasydrillfield(u32 arg0) {
+    extern s32 B_80800A10_chfantasydrillfield[];
+    extern s32 B_80800A18_chfantasydrillfield[];
+    void func_800DA524(GameFlag);
+    s32 result;
+    register s32 value;
+    int i;
+
+    value = 0;
+    for (i = 0; i < 8; i++) {
+        if (arg0 == B_80800A10_chfantasydrillfield[i * 2]) {
+            value = B_80800A10_chfantasydrillfield[i * 2 + 1];
+            B_80800A10_chfantasydrillfield[i * 2] = 0;
+            break;
+        }
+    }
+    result = 1;
+    for (i = 0; i < 9; i++) {
+        result &= (B_80800A10_chfantasydrillfield[i * 2] == 0);
+    }
+    if (result) {
+        func_800DA524(0xA0F);
+    }
+    return value;
+}
 
 /* extern */
 
