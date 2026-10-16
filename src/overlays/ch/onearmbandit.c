@@ -244,7 +244,31 @@ u32 func_80800E78_chonearmbandit(Actor *arg0) {
     return temp_a0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80800EBC_chonearmbandit.s")
+void _subaddiefade_entrypoint_3(Actor *);
+s32 func_8001210C(s32);
+f32 func_800D8FF8(void);
+s32 func_800D90A4(f32 *);
+void func_8010A570(Actor *);
+void func_80801114_chonearmbandit(Actor *);
+s32 func_80801154_chonearmbandit(Actor *);
+
+void func_80800EBC_chonearmbandit(Actor *arg0) {
+    f32 sp24;
+
+    sp24 = func_800D8FF8();
+    if (func_800D90A4(&arg0->unk58) && !arg0->unk7C_12 && !arg0->unk64_20) {
+        func_8010A570(arg0);
+        _subaddiefade_entrypoint_3(arg0);
+        arg0->unk64_20 = 1;
+    }
+    arg0->unk54 += sp24 * ((f32 *)arg0->actorData)[4];
+    if (func_8001210C(1)) {
+        func_80801114_chonearmbandit(arg0);
+    }
+    if (arg0->unk70_10 == 1) {
+        func_80801154_chonearmbandit(arg0);
+    }
+}
 
 /* extern */
 
