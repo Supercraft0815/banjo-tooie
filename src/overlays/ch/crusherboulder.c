@@ -156,7 +156,22 @@ void func_808009C0_chcrusherboulder(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80800D3C_chcrusherboulder.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80800ED0_chcrusherboulder.s")
+void func_80800ED0_chcrusherboulder(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _sumumbofx_entrypoint_1(void *, s32);
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    void func_800DA524(GameFlag);
+    u8 sp27;
+
+    if (func_80100094(arg0, 1) != 0) {
+        _sumumbofx_entrypoint_1(arg0, 1);
+    }
+    _subaddieaudioloop_entrypoint_2(arg0);
+    sp27 = _subaddieaudioloop_entrypoint_3(((u8 *)arg0)[0x24]);
+    *(f32 *)&arg0->actorData[3] = *(f32 *)&sp27;
+    func_800DA524(0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80800F38_chcrusherboulder.s")
 
