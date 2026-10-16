@@ -15,7 +15,11 @@ extern u32 D_80801004_chtoxicroombits;
 s32 func_808004F0_chtoxicroombits(void);
 u8 func_80800410_chtoxicroombits(void) { s32 value = func_808004F0_chtoxicroombits() ? func_808004F0_chtoxicroombits() : 6; return ((u8 *)&D_80801004_chtoxicroombits)[-(value * 2)]; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_80800458_chtoxicroombits.s")
+f32 func_80800458_chtoxicroombits(void) {
+    extern u8 D_80801005_chtoxicroombits[];
+    s32 value = func_808004F0_chtoxicroombits() ? func_808004F0_chtoxicroombits() : 6;
+    return (f32)(u32)D_80801005_chtoxicroombits[-(value * 2)] / 10.0f;
+}
 
 /* extern */
 
