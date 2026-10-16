@@ -345,7 +345,24 @@ s32 func_808014F0_chgameselect(void *arg0, void *arg1) {
     if (sp28 == 0.0f || ((f32 *)arg0)[9] < 0.01f) { var_v1 = 1; } else { var_v1 = 0; } return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808015DC_chgameselect.s")
+void func_808015DC_chgameselect(Unk80132ED0 *arg0, s32 arg1) {
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 _subaddiefade_entrypoint_12(Actor *, s32, s32, s32);
+    Actor *actor;
+
+    actor = func_80106790(arg0);
+    switch (arg1) {
+        case 1:
+            _subaddiefade_entrypoint_12(actor, 0xFF, 0, 0);
+            break;
+        case 2:
+            _subaddiefade_entrypoint_12(actor, 0, 0xFF, 0);
+            break;
+        default:
+            _subaddiefade_entrypoint_12(actor, 0xFF, 0xFF, 0xFF);
+            break;
+    }
+}
 
  s32 func_80801658_chgameselect(s32 arg0, s32 arg1) {
     Actor *func_80106790(Unk80132ED0 *);
@@ -1170,7 +1187,7 @@ void func_808040DC_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 s32 func_808041C8_chgameselect(void *arg0) {
-    s32 func_808015DC_chgameselect(s32, s32);
+    void func_808015DC_chgameselect(Unk80132ED0 *, s32);
     s32 func_808016A0_chgameselect(s32, s32);
     void func_808016E8_chgameselect(Unk80132ED0 *, s32);
     s32 func_80803D00_chgameselect(s32, s32);
@@ -1184,7 +1201,7 @@ s32 func_808041C8_chgameselect(void *arg0) {
 /* extern */
 
 void func_80804220_chgameselect(void *arg0) {
-    s32 func_808015DC_chgameselect(s32, s32);
+    void func_808015DC_chgameselect(Unk80132ED0 *, s32);
     s32 func_80801658_chgameselect(s32, s32);
     s32 func_808016A0_chgameselect(s32, s32);
     void func_808016E8_chgameselect(Unk80132ED0 *, s32);
@@ -1215,7 +1232,7 @@ void func_80804404_chgameselect(u8 *arg0, s32 arg1) {
 /* extern */
 
 s32 func_8080444C_chgameselect(void *arg0) {
-    s32 func_808015DC_chgameselect(s32, s32);
+    void func_808015DC_chgameselect(Unk80132ED0 *, s32);
     s32 func_808016A0_chgameselect(s32, s32);
     void func_808016E8_chgameselect(Unk80132ED0 *, s32);
     s32 func_80803D00_chgameselect(s32, s32);
@@ -1229,7 +1246,7 @@ s32 func_8080444C_chgameselect(void *arg0) {
 /* extern */
 
 void func_808044A4_chgameselect(void *arg0) {
-    s32 func_808015DC_chgameselect(s32, s32);
+    void func_808015DC_chgameselect(Unk80132ED0 *, s32);
     s32 func_80801658_chgameselect(s32, s32);
     s32 func_808016A0_chgameselect(s32, s32);
     void func_808016E8_chgameselect(Unk80132ED0 *, s32);
