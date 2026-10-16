@@ -29,7 +29,20 @@ void func_80800064_bsblongleg(PlayerState *arg0) {
     baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp1C, 80.0f, 500.0f));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/func_808000C8_bsblongleg.s")
+void func_808000C8_bsblongleg(PlayerState *arg0) {
+    void _baalarm_entrypoint_3(PlayerState *, f32, f32);
+    f32 bastatetimer_get(PlayerState *, int);
+    f32 bastatetimer_getPrevious(PlayerState *, int);
+    int bastatetimer_isAt(PlayerState *, int, f32);
+    void func_8009DE38(PlayerState *, s32, f32);
+    f32 sp20[2];
+
+    sp20[0] = bastatetimer_getPrevious(arg0, 2);
+    _baalarm_entrypoint_3(arg0, sp20[0], bastatetimer_get(arg0, 2));
+    if (bastatetimer_isAt(arg0, 2, 0.01f) != 0) {
+        func_8009DE38(arg0, 0x3EB, 1.0f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/func_8080013C_bsblongleg.s")
 
@@ -256,7 +269,7 @@ void bsblongleg_entrypoint_26(PlayerState *arg0) {
     s32 _bsrest_entrypoint_20(PlayerState *);
     void bs_setState(PlayerState *, int);
     void func_8009D3A8(PlayerState *, s32);
-    s32 func_808000C8_bsblongleg(PlayerState *);
+    void func_808000C8_bsblongleg(PlayerState *);
     s32 sp24;
 
     sp24 = 0;
@@ -284,8 +297,8 @@ void bsblongleg_entrypoint_29(PlayerState *arg0) {
     s32 _bsdrone_entrypoint_1(s32);
     s32 bastatetimer_isDone(s32, s32);
     void bs_setState(PlayerState *, int);
-    s32 func_808000C8_bsblongleg();
-    func_808000C8_bsblongleg();
+    void func_808000C8_bsblongleg(PlayerState *);
+    func_808000C8_bsblongleg(arg0);
     _bsdrone_entrypoint_1(arg0);
     if (bastatetimer_isDone(arg0, 2) != 0) {
         bs_setState(arg0, 0x29);
