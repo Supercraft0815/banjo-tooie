@@ -115,8 +115,8 @@ void func_808007C8_chnests(Actor *arg0) {
 void func_8080082C_chnests(Actor *arg0, s32 arg1) {
     s32 func_80101870(s32, s32);
     void func_80103110(void *, s32);
-    s32 func_80800898_chnests(void *, s32, s32);
-    if (func_80800898_chnests(arg0, arg1, arg0->actorData[4]) != 0) {
+    void *func_80800898_chnests(Actor *, s32, f32);
+    if (func_80800898_chnests(arg0, arg1, *(f32 *)&arg0->actorData[4]) != 0) {
         func_80101870((s32)arg0, arg1);
         if (arg0->unk7C_12 && arg0->unk70_10 == 2) {
             func_80103110(arg0, 1);
@@ -124,7 +124,29 @@ void func_8080082C_chnests(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800898_chnests.s")
+/* extern */
+
+void *func_80800898_chnests(Actor *arg0, s32 arg1, f32 arg2) {
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    s32 func_800D674C(s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF410(s32);
+    void func_800DF830(s32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 *func_801018D8(Actor *);
+    s32 func_80101970();
+    s32 func_80106A98(Actor *, s32);
+    f32 sp34[3];
+    s32 sp30;
+
+    sp30 = func_800D674C(0x85C);
+    func_80101970(arg0);
+    func_80106A98(arg0, sp30);
+    func_800DF830(1);
+    func_800DF410(_subaddiefade_entrypoint_0(arg0));
+    func_800EFA4C(sp34, 0.0f, arg2, 0.0f);
+    return func_800DE448(arg0->position, sp34, arg0->scale, func_801018D8(arg0), sp30);
+}
 
 s32 func_8080093C_chnests(u8 *arg0, u8 *arg1) {
     int func_8010DD20(u8 *, s32, u8 *);
@@ -138,9 +160,9 @@ void func_80800968_chnests(void *arg0, s32 arg1) {
     void func_800DF3E0(void);
     void func_800DF744(s32, s32);
     void func_801018A4(Actor *, s32);
-    s32 func_80800898_chnests(void *, s32, s32);
+    void *func_80800898_chnests(Actor *, s32, f32);
     extern s32 D_80801124_chnests;
-    if (func_80800898_chnests(arg0, arg1, *(s32 *)((s8 *)arg0 + 0x48)) != 0) {
+    if (func_80800898_chnests(arg0, arg1, *(f32 *)((s8 *)arg0 + 0x48)) != 0) {
         func_800DF3E0();
         func_800DF744(((u8 *)&D_80801124_chnests)[(*(s32 *)((s8 *)arg0 + 0x1C)) * 14], 1);
         func_801018A4((s32)arg0, arg1);
@@ -159,9 +181,9 @@ void func_80800A00_chnests(void *arg0, s32 arg1) {
     void func_800DF3E0(void);
     void func_800DF744(s32, s32);
     void func_801018A4(Actor *, s32);
-    s32 func_80800898_chnests(void *, s32, s32);
+    void *func_80800898_chnests(Actor *, s32, f32);
     extern s32 D_80801124_chnests;
-    if (func_80800898_chnests(arg0, arg1, *(s32 *)((s8 *)arg0 + 0x48)) != 0) {
+    if (func_80800898_chnests(arg0, arg1, *(f32 *)((s8 *)arg0 + 0x48)) != 0) {
         func_800DF3E0();
         func_800DF744(((u8 *)&D_80801124_chnests)[(*(s32 *)((s8 *)arg0 + 0x1C)) * 14], 1);
         func_801018A4((s32)arg0, arg1);
@@ -209,11 +231,11 @@ void func_80800D8C_chnests(Actor *arg0, s32 arg1) {
     void func_800DF3E0(void);
     void func_800DF744(s32, s32);
     void func_801018A4(Actor *, s32);
-    s32 func_80800898_chnests(void *, s32, s32);
+    void *func_80800898_chnests(Actor *, s32, f32);
     extern s32 D_80801124_chnests;
     s32 sp24;
 
-    if (func_80800898_chnests(arg0, arg1, *(s32 *)&arg0->rotation[1]) != 0) {
+    if (func_80800898_chnests(arg0, arg1, arg0->rotation[1]) != 0) {
         func_800DF3E0();
         func_800DF744(((u8 *)&D_80801124_chnests)[arg0->actorData[1] * 14], 1);
         if (arg0->actorData[6] == 1) {
