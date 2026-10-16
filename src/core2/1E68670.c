@@ -28,7 +28,29 @@ s32 func_8008EE04(s32 arg0, s32 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008EE1C.s")
+struct player_state_s;
+typedef struct {
+    u8 pad0[0x74];
+    u32 pad74_20 : 12;
+    u32 unk74_19 : 1;
+    u32 pad74_17 : 2;
+    u32 unk74_16 : 1;
+    u32 pad74_0 : 16;
+} Unk8008EE1C;
+
+s32 func_8008EE1C(Unk8008EE1C *arg0, s32 arg1) {
+    s32 bs_getCurrentState(struct player_state_s *);
+    struct player_state_s *func_800F53D0(s32);
+
+    switch (bs_getCurrentState(func_800F53D0(arg1))) {
+        case 15:
+            return arg0->unk74_19 == 0;
+        case 19:
+            return arg0->unk74_16 == 0;
+        default:
+            return 1;
+    }
+}
 
 void func_8008EE88(void *arg0, f32 arg1) {
     void func_8009C128(void *, f32[3]);
@@ -43,8 +65,7 @@ void func_8008EEC4(void *arg0, f32 *arg1, f32 arg2, s32 arg3) {
     s32 func_8008E938(void *);
     s32 func_800CB840(s32, s32);
     s32 func_800CB870();
-    s32 func_80109C4C(f32 *, f32, s32, s32 *, s32, s32, s32);
-    extern s32 func_8008EE1C;
+    s32 func_80109C4C(f32 *, f32, s32, s32 (*)(Unk8008EE1C *, s32), s32, s32, s32);
     func_800CB840(1, (*(s32 *)((s8 *)(arg0) + (0x184))));
     func_80109C4C(arg1, arg2, 2, &func_8008EE1C, (*(s32 *)((s8 *)(arg0) + (0x184))), func_8008E938(arg0), arg3);
     func_800CB870();
