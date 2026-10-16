@@ -88,7 +88,28 @@ OSThread *chstatueboss_entrypoint_1(void)
     return (OSThread *) D_808027E8_chstatueboss;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801694_chstatueboss.s")
+s32 func_80801694_chstatueboss(Actor *arg0) {
+    extern s16 D_808025C0_chstatueboss[][6];
+    struct StatueBossData {
+        u8 pad[0x84];
+        s16 index;
+    } *data;
+    s32 i;
+    s16 index;
+    s32 offset;
+    s32 flags;
+
+    data = func_80100094(arg0, 0U);
+    index = data->index;
+    flags = 0;
+    for (i = 0; D_808025C0_chstatueboss[index][i] != -1; i++) {
+        offset = D_808025C0_chstatueboss[index][i];
+        if (((u8 *)data)[offset] == 1) {
+            flags |= 1 << (offset + 0x1F);
+        }
+    }
+    return -1 ^ flags;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801724_chstatueboss.s")
 
