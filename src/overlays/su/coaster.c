@@ -322,7 +322,14 @@ void func_80800C68_sucoaster(void *arg0, void *arg1, f32 arg2) {
     (*(f32 *)((s8 *)(arg0) + (0x24))) = func_800F15F8((*(f32 *)((s8 *)(arg0) + (0x24))), (f32) (*(s16 *)((s8 *)(arg1) + (0xE))), func_80107C00() * arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_6.s")
+void sucoaster_entrypoint_6(Actor *arg0, f32 arg1) {
+    void *func_80100094(Actor *, u32);
+    f32 func_80107C00(void);
+    void *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    *(s16 *)((s8 *)sp1C + 0xE) = (s32)(((f32)*(s16 *)((s8 *)sp1C + 0xC) * 0.00390625f) * func_80107C00() * arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_7.s")
 
