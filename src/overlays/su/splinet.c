@@ -144,7 +144,34 @@ s32 susplinet_entrypoint_15(s32 arg0, s32 arg1) {
     return arg0 + *ptr;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/func_80800384_susplinet.s")
+s16 func_80800384_susplinet(u8 *arg0, s16 arg1) {
+    s16 *base;
+    s16 index;
+    s16 *cursor;
+    s32 limit;
+    u8 *bytes;
+
+    bytes = arg0;
+    bytes += *(s16 *)(arg0 + 0x30);
+    base = (s16 *)bytes;
+    index = *(s16 *)(arg0 + 0x4C);
+    cursor = (s16 *)((s32)base + index * 2);
+    while (arg1 < *cursor && index > 0) {
+        index--;
+        cursor = (s16 *)((s32)base + index * 2);
+    }
+    if (cursor[1] < arg1) {
+        limit = *(s16 *)(arg0 + 0x4E) - 1;
+        while (index < limit) {
+            index++;
+            if (base[index + 1] >= arg1) {
+                break;
+            }
+        }
+    }
+    *(s16 *)(arg0 + 0x4C) = index;
+    return index;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_16.s")
 
