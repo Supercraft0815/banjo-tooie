@@ -46,7 +46,25 @@ void func_80800228_chtntmineshoot(Actor *arg0) { void *func_80100094(Actor *, u3
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800280_chtntmineshoot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800440_chtntmineshoot.s")
+void func_80800440_chtntmineshoot(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    u8 *sp1C;
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    sp1C = temp_v0;
+    if (*temp_v0 != 2) {
+        if (arg1 != 0) {
+            if ((arg1 == 1) || (arg1 == 2)) {
+                _subaddieDll_entrypoint_4(arg0, 1);
+            }
+        } else {
+            _subaddieDll_entrypoint_4(arg0, 0);
+        }
+        *sp1C = arg1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_808004BC_chtntmineshoot.s")
 
