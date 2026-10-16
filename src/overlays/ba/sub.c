@@ -177,7 +177,26 @@ void basub_entrypoint_9(void *arg0) {
     _bawobble_entrypoint_2(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_10.s")
+void basub_entrypoint_10(u8 *arg0) {
+    struct player_state_s;
+    s32 _bawobble_entrypoint_3();
+    s32 func_8009D454(struct player_state_s *, volatile u8, s32 *);
+    void basub_entrypoint_15(void *, s32);
+    extern s32 D_80800C30_basub;
+
+    _bawobble_entrypoint_3();
+    func_808000CC_basub(arg0);
+    *(f32 *)(*(u8 **)(arg0 + 0x130) + 0) = 0.0f;
+    *(f32 *)(*(u8 **)(arg0 + 0x130) + 4) = *(f32 *)(*(u8 **)(arg0 + 0x130) + 8) = 0.0f;
+    *(s8 *)(*(u8 **)(arg0 + 0x130) + 0xC) = func_8009D454(arg0, 0, &D_80800C30_basub);
+    *(f32 *)(*(u8 **)(arg0 + 0x130) + 0x10) = 1.0f;
+    *(f32 *)(*(u8 **)(arg0 + 0x130) + 0x14) = *(f32 *)(*(u8 **)(arg0 + 0x130) + 0x18) = 0;
+    *(f32 *)(*(u8 **)(arg0 + 0x130) + 0x1C) = 0.0f;
+    *(f32 *)(*(u8 **)(arg0 + 0x130) + 0x20) = 0.0f;
+    *(f32 *)(*(u8 **)(arg0 + 0x130) + 0x24) = 0.0f;
+    func_808004C8_basub(arg0);
+    basub_entrypoint_15(arg0, 0);
+}
 
 void basub_entrypoint_11(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 304) + 16) = arg1;
