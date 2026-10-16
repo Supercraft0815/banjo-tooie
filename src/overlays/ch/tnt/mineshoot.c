@@ -108,7 +108,31 @@ void func_80800BCC_chtntmineshoot(Actor *arg0) {
     (*(s8 *)((s8 *)(temp_v0) + (4))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800BF4_chtntmineshoot.s")
+void func_80800BF4_chtntmineshoot(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800DC090(void);
+    f32 func_800DC0C0(void);
+    struct { u8 unk0; s8 state; u8 pad2[2]; s8 mode; u8 pad5[3]; f32 timer; } *data;
+
+    data = func_80100094(arg0, 0U);
+    data->state = arg1;
+    switch (arg1) {
+        case 0:
+            data->mode = 0;
+            break;
+        case 1:
+            if (func_800DC090() & 1) {
+                data->mode = 1;
+            } else {
+                data->mode = 2;
+            }
+            data->timer = func_800DC0C0();
+            break;
+        case 2:
+            data->mode = 3;
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800C90_chtntmineshoot.s")
 
