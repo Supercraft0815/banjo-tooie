@@ -51,7 +51,22 @@ s32 func_808000F8_bsbabykaz(struct player_state_s *arg0) {
     return _bababykaz_entrypoint_3(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80800134_bsbabykaz.s")
+void func_80800134_bsbabykaz(struct player_state_s *arg0) {
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    f32 bastick_getZonePosition(struct player_state_s *);
+    f32 func_800F1214(f32, f32, f32);
+    f32 sp1C;
+
+    sp1C = bastick_getZonePosition(arg0);
+    switch (bastick_getZone(arg0)) {
+        case 0:
+            baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+            return;
+        case 1:
+            baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp1C, 80.0f, 400.0f));
+            return;
+    }
+}
 
 /* extern */
 
@@ -97,7 +112,7 @@ void func_808003D0_bsbabykaz()
 /* extern */
 
 void func_808003F0_bsbabykaz(void *arg0) {
-    void baphysics_set_target_horizontal_velocity(void *, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     void func_8009FFD8(void *, s32, s32, s32, s32);
     bsbabykaz_entrypoint_4();
     func_8009FFD8(arg0, 1, 1, 1, 2);
@@ -261,7 +276,7 @@ void func_80801014_bsbabykaz(s32 arg0)
 }
 
 void func_80801044_bsbabykaz(s32 arg0) {
-    void baphysics_set_target_horizontal_velocity(void *, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     void func_8009FFD8(void *, s32, s32, s32, s32);
     bsbabykaz_entrypoint_4(arg0);
     baanim_playForDuration_loopSmooth(arg0, 0xA4, 0x40D00000);
