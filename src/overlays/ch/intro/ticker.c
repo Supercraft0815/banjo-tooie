@@ -1,6 +1,41 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/ticker/func_80800000_chintroticker.s")
+s32 func_80800000_chintroticker(u8 *arg0) {
+    s32 func_800EA05C();
+    void func_800FC6B0(u32);
+    void func_800FCA90(u32);
+    void func_800FCAE0(u32, u32, u32);
+    s32 func_800FCCD4(s32);
+    struct TickerMusic {
+        s16 map;
+        s16 stopTrack;
+        s16 playTrack;
+        s16 padding;
+    };
+    extern struct TickerMusic D_80800830_chintroticker[];
+    extern s32 D_808008A8_chintroticker[];
+    struct TickerMusic *entry;
+    void *end;
+    s32 map;
+    s32 playTrack;
+    s32 none = -1;
+
+    map = func_800EA05C();
+    entry = D_80800830_chintroticker; end = D_808008A8_chintroticker;
+    do {
+        if (map == entry->map) {
+            if (entry->stopTrack != none && func_800FCCD4(entry->stopTrack)) {
+                func_800FCAE0(entry->stopTrack, 0, 0x2EE0);
+                func_800FCA90(entry->stopTrack);
+            }
+            playTrack = entry->playTrack;
+            if (none != playTrack) {
+                func_800FC6B0(playTrack);
+            }
+        }
+        entry++;
+    } while (entry != end);
+}
 
 s32 func_808000B0_chintroticker(u8 *arg0, s32 arg1) {
     void _gcfrontend_entrypoint_9(s32);
