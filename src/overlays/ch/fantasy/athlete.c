@@ -44,7 +44,32 @@ void func_808015D8_chfantasyathlete(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 
     *arg4 = func_800EEAD4(arg1, arg0) * 0.5f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80801654_chfantasyathlete.s")
+struct AthletePaths {
+        u8 pad0[0x78];
+        s32 unk78[7];
+        f32 unk94[7];
+};
+
+void func_80801654_chfantasyathlete(s32 arg0, struct AthletePaths *data) {
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    s32 _gspropctrl_entrypoint_8(Prop *);
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    s32 _gspropctrl_entrypoint_12(Prop *);
+    s32 _glsplinefind_entrypoint_3(f32 *);
+    Prop *props[10];
+    s32 i;
+    s32 index;
+    f32 position[3];
+    s32 count;
+
+    count = _gccubesearch_entrypoint_9(0x479, props, 10);
+    for (i = 0; i < count; i++) {
+            index = _gspropctrl_entrypoint_8(props[i]) - 50;
+            _gspropctrl_entrypoint_11(props[i], position);
+            data->unk94[index] = (f32)_gspropctrl_entrypoint_12(props[i]);
+            data->unk78[index] = _glsplinefind_entrypoint_3(position);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80801718_chfantasyathlete.s")
 
