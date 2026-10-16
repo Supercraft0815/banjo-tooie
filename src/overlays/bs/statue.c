@@ -355,7 +355,37 @@ void func_808010D4_bsstatue(register void *arg0) {
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80801144_bsstatue.s")
+void func_80801144_bsstatue(PlayerState *arg0) {
+    s32 _badrone_entrypoint_24(PlayerState *);
+    s32 bainput_should_enter_first_person();
+    s32 bakey_pressed(s32, s32);
+    s32 bastick_getZone(PlayerState *);
+    s32 bs_setState(s32, s32);
+    s32 var_s1;
+
+    var_s1 = 0;
+    bsstatue_entrypoint_0(arg0);
+    if (bainput_should_enter_first_person(arg0) != 0) {
+        var_s1 = _badrone_entrypoint_24(arg0);
+    }
+    if (bastick_getZone(arg0) == 1) {
+        var_s1 = 0xFA;
+    }
+    if (bakey_pressed(arg0, 9) != 0) {
+        if (func_80800104_bsstatue(arg0) != 0) {
+            var_s1 = 0xF8;
+        } else {
+            var_s1 = 0xFC;
+        }
+    }
+    if (bakey_pressed(arg0, 8) != 0) {
+        var_s1 = 0xFB;
+    }
+    if (func_80800078_bsstatue(arg0) != 0) {
+        var_s1 = 0xFD;
+    }
+    bs_setState(arg0, var_s1);
+}
 
 s32 bsstatue_entrypoint_8(s32 arg0) {
     extern s32 D_80801600_bsstatue[];
