@@ -156,7 +156,7 @@ s32 func_80802288_chdiggerboss(void *arg0) {
 
 void func_80802298_chdiggerboss(u8 *arg0, u8 *arg1)
 {
-  s32 func_800EE7F8(u8 *, s32);
+  void func_800EE7F8(f32 *, f32 *);
   s32 func_800EF1B8(u8 *, s32, f32);
   func_800EE7F8(arg1, arg0 + 4);
   func_800EF1B8(arg1, *((s32 *) (((s8 *) arg0) + 0x48)), (*((f32 *) (((s8 *) arg0) + 0x38))) * 600.0f);
@@ -230,7 +230,22 @@ void func_80802C0C_chdiggerboss(s32 arg0) {
     func_80802C40_chdiggerboss(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80802C40_chdiggerboss.s")
+void func_80802C40_chdiggerboss(s32 arg0) {
+    void _plcamera_entrypoint_9(s32, f32 *, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800F5EF8(s32);
+    s32 func_80110014(s32 *);
+    void func_80116088(u8 *, s32);
+    f32 sp2C[3];
+    s32 sp28;
+    s32 sp24;
+
+    sp24 = func_80802248_chdiggerboss(arg0);
+    func_800EE7F8(sp2C, arg0 + 4);
+    sp2C[1] += 500.0f;
+    _plcamera_entrypoint_9(sp24, sp2C, 0.0f);
+    func_80116088(func_80110014(func_800F5EF8(sp24)), sp2C);
+}
 
 void func_80802CB4_chdiggerboss()
 {
