@@ -194,7 +194,28 @@ void sulights_entrypoint_6(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     func_800C8D4C(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/sulights_entrypoint_7.s")
+void sulights_entrypoint_7(s32 arg0) {
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    extern s32 D_80127EF0;
+    u32 end;
+    u32 begin;
+    u32 ptr;
+
+    if (D_80127EF0 != 0) {
+        end = vector_end(D_80127EF0);
+        begin = vector_begin(D_80127EF0);
+        ptr = begin;
+        if (begin < end) {
+            do {
+                if (*(u8 *)ptr != 0 && arg0 == *(u8 *)(ptr + 1)) {
+                    func_808000D0_sulights((s8 *)ptr);
+                }
+                ptr += 0x3C;
+            } while (ptr < end);
+        }
+    }
+}
 
 void sulights_entrypoint_8(void) {
     s32 vector_free(s32);
