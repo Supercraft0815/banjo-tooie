@@ -364,7 +364,30 @@ s32 sucoaster_entrypoint_9(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_11.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_12.s")
+s32 sucoaster_entrypoint_12(Actor *arg0) {
+    typedef struct {
+        u8 pad0[0x10];
+        s16 radius;
+        u8 pad12[6];
+        u32 pad18_24 : 8;
+        u32 route : 1;
+        u32 pad18_0 : 23;
+    } CoasterData;
+    void *func_80100094(Actor *, u32);
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    CoasterData *data;
+    f32 rotation;
+
+    data = func_80100094(arg0, 0);
+    if (!data->route) {
+        if (_subaddierouteDll_entrypoint_4(arg0) == 0) {
+            return 0;
+        }
+    }
+    rotation = arg0->rotation[1];
+    return _subaddierouteDll_entrypoint_7(arg0, data, rotation, rotation, (f32)data->radius, 0x102);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_808015F8_sucoaster.s")
 
