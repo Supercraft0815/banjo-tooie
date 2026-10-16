@@ -130,7 +130,30 @@ void func_80800430_bsbwhirl(void *arg0, s32 *arg1)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_0.s")
+void bainput_enable(PlayerState *, int, s32);
+
+void bsbwhirl_entrypoint_0(PlayerState *arg0) {
+    void baanim_playForDuration_once(PlayerState *, int, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void bastick_setZoneMax(PlayerState *, s32, f32);
+    void func_8009D874(PlayerState *);
+    void func_8009FFD8(PlayerState *, int, int, s32, int);
+    void func_800A0CF4(PlayerState *, s32);
+    void func_800FC660(u32);
+
+    baanim_playForDuration_once(arg0, 0x22, 0.5f);
+    func_8009FFD8(arg0, 1, 1, 1, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    bastick_setZoneMax(arg0, 0, 0.03f);
+    bastick_setZoneMax(arg0, 1, 1.0f);
+    func_800A0CF4(arg0, 1);
+    *(f32 *)((u8 *)arg0 + 0x170) = 0.0f;
+    *(f32 *)((u8 *)arg0 + 0x16C) = 0.0f;
+    func_800FC660(0xD);
+    func_80800000_bsbwhirl(arg0);
+    func_8009D874(arg0);
+    bainput_enable(arg0, 1, 0);
+}
 
 /* extern */
 
@@ -164,7 +187,7 @@ s32 bsbwhirl_entrypoint_3(s32 arg0) {
 void bsbwhirl_entrypoint_4(s32 arg0) {
     s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
-    s32 func_8009FFD8(s32, s32, s32, s32, s32);
+    void func_8009FFD8(PlayerState *, int, int, s32, int);
     baanim_playForDuration_loopSmooth(arg0, 0x23, 0x3F800000);
     func_8009FFD8(arg0, 1, 1, 1, 2);
     baphysics_set_target_horizontal_velocity((void *)arg0, 0.0f);
@@ -187,7 +210,7 @@ s32 bsbwhirl_entrypoint_7(s32 arg0) {
 void bsbwhirl_entrypoint_8(s32 arg0) {
     s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
     s32 func_8008C9F0(s32, s32, s32, s32, f32);
-    s32 func_8009FFD8(s32, s32, s32, s32, s32);
+    void func_8009FFD8(PlayerState *, int, int, s32, int);
     baanim_playForDuration_loopSmooth(arg0, 0x11, 0x3F07AE14);
     func_8008C9F0(arg0, 0x42A00000, 0x43D48000, 0x3F0F5C29, 0.4f);
     func_8009FFD8(arg0, 2, 1, 1, 2);
