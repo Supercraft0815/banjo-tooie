@@ -10,7 +10,7 @@ s32 func_800995B0(void) {
 
 s32 func_800996E0(s32 arg0) {
     s32 func_800A1718();
-    s32 func_800A17A8(s32, s32);
+    void func_800A17A8(PlayerState *, s32);
     s32 temp_v0;
 
     temp_v0 = func_800A1718();
@@ -24,7 +24,23 @@ s32 func_800996E0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72EA0/func_80099730.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72EA0/func_800997BC.s")
+void func_800997BC(PlayerState *arg0) {
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_800A17A8(PlayerState *, s32);
+    void func_800A34AC(PlayerState *, f32[3]);
+    void func_800EEB9C(f32[3], f32, f32);
+    f32 yaw_get(PlayerState *);
+    f32 offset[3];
+    f32 position[3];
+
+    func_8009C128(arg0, position);
+    func_800EEB9C(offset, yaw_get(arg0), 100.0f);
+    position[0] += offset[0];
+    position[1] += offset[1];
+    position[2] += offset[2];
+    func_800A34AC(arg0, position);
+    func_800A17A8(arg0, -1);
+}
 
 /* extern */
 
