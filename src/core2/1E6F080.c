@@ -173,7 +173,36 @@ s32 func_800961A0(s32 *arg0, s32 arg1)
     ((u8 *) arg0[0x25])[0xA2] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_800961AC.s")
+void func_800961AC(PlayerState *arg0, s32 arg1) {
+    void func_80097858(void *);
+    void func_8009788C(void *);
+    void _bahitspline_entrypoint_0();
+    void _bahitspline_entrypoint_1(PlayerState *, s32);
+    s32 state;
+    void *data;
+
+    data = *(void **)((s8 *)arg0 + 0x94);
+    state = *(s32 *)((s8 *)data + 0x9C);
+    switch (state) {
+    case 7:
+        func_80097858(arg0);
+        data = *(void **)((s8 *)arg0 + 0x94);
+        break;
+    case 10:
+        _bahitspline_entrypoint_0(arg0, arg1);
+        data = *(void **)((s8 *)arg0 + 0x94);
+        break;
+    }
+    *(s32 *)((s8 *)data + 0x9C) = arg1;
+    switch (arg1) {
+    case 7:
+        func_8009788C(arg0);
+        return;
+    case 10:
+        _bahitspline_entrypoint_1(arg0, arg1);
+        return;
+    }
+}
 
 void func_80096254(s32 *arg0, s32 arg1)
 {
