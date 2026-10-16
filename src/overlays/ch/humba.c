@@ -9,7 +9,20 @@ void func_80800000_chhumba(s32 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800028_chhumba.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_808000D4_chhumba.s")
+void func_808000D4_chhumba(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *arg3) {
+    void _capod_entrypoint_20(Unk80132ED0 *, s32, s32);
+
+    switch (arg0->unk74_7) {
+        case 0:
+            func_80800000_chhumba(arg0, arg2);
+        case 1:
+        case 2:
+            arg0->unk74_7 = 3;
+        case 3:
+            _capod_entrypoint_20(arg3, arg1, arg2);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_8080015C_chhumba.s")
 
@@ -265,7 +278,7 @@ void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
     void func_80101FDC(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_80800028_chhumba(u8 *, s32, s32);
-    s32 func_808000D4_chhumba(u8 *, s32, s32, Unk80132ED0 *);
+    void func_808000D4_chhumba(Actor *, s32, s32, Unk80132ED0 *);
     s32 func_8080015C_chhumba(u8 *, s32, s32, s32);
     void func_808001E4_chhumba(Actor *);
     s32 func_80800294_chhumba(u8 *, s32);
