@@ -6,9 +6,9 @@
 
 void func_8008F8B0();
 void func_8008F8D8(s32);
-void func_8008F904(void*, s32);
+void func_8008F904(void*, Unk80132ED0*);
 void func_8008F938(s32);
-void func_8008F990(s32, f32);
+void func_8008F990(f32*, f32);
 void func_8008FB58(f32[3], f32, f32);
 void func_8008FBE0(u32 a0);
 s32 func_8008FC00();

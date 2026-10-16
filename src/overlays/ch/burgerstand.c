@@ -50,7 +50,7 @@ s32 func_808002A4_chburgerstand(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_80108B04(Actor *, s32);
     s32 func_808006B4_chburgerstand(Actor *);
     s32 func_808007A0_chburgerstand(Actor *, s16, s16);
-    s32 func_8080087C_chburgerstand(Actor *, s16, s16);
+    void func_8080087C_chburgerstand(Actor *, s32, s16);
     s32 func_80800940_chburgerstand(Actor *);
     extern s32 D_80800D50_chburgerstand;
     Unk80132ED0 *temp_a0;
@@ -170,7 +170,34 @@ void func_80800754_chburgerstand(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/func_808007A0_chburgerstand.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/func_8080087C_chburgerstand.s")
+void func_8080087C_chburgerstand(Actor *arg0, s32 arg1, s16 arg2) {
+    s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);
+    void func_8010D254(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_80090708(s32);
+    void func_8008F8B0(void);
+    void func_8008F904(void *, Unk80132ED0 *);
+    void func_8008F990(f32 *, f32);
+    extern s32 D_80800BC0_chburgerstand;
+    extern s32 func_8010D5DC;
+    f32 sp34[3];
+    f32 sp28[3];
+    s32 pad[2];
+
+    if (arg0->unk3C != NULL && _subaddiedialog_entrypoint_9(arg0, arg1, &D_80800BC0_chburgerstand, 5) == 2) {
+        func_8010D254(sp28);
+        func_800EE7F8(sp34, arg0->position);
+        func_800EF1B8(sp34, arg0->rotation[1], 340.0f);
+        if (func_800EEAD4(sp28, sp34) > 50.0f) {
+            func_80090708(0);
+            func_8008F8B0();
+            func_8008F904(&func_8010D5DC, arg0->unk0);
+            func_8008F990(sp34, 170.0f);
+        }
+    }
+}
 
 s32 func_80800940_chburgerstand(Actor *arg0) {
     Actor *func_801084B0(s32, Actor **);
