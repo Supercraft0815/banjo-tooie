@@ -178,7 +178,17 @@ s32 func_800CE95C(void) {
     return (*(s32 *)((s8 *)(func_800CE3E0()) + (0x18)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CE980.s")
+void func_800CE980(s32 arg0, f32 arg1, s32 arg2) {
+    u8 *temp_v0;
+
+    temp_v0 = func_800CE3E0(arg0);
+    if ((*(f32 *)((s8 *)(temp_v0) + (0xC))) < arg1) {
+        (*(f32 *)((s8 *)(temp_v0) + (0xC))) = arg1;
+    }
+    (*(f32 *)((s8 *)(temp_v0) + (4))) = arg1;
+    (*(f32 *)((s8 *)(temp_v0) + (0))) = arg1;
+    func_800CE49C(temp_v0, arg0, arg2 == 0);
+}
 
 s32 func_800CE9E8(s32 arg0, s32 arg1) {
     void *func_800CE3E0();
