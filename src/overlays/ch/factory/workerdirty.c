@@ -56,7 +56,27 @@ void func_8080036C_chfactoryworkerdirty(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_8080061C_chfactoryworkerdirty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800700_chfactoryworkerdirty.s")
+void func_80800700_chfactoryworkerdirty(Actor *arg0) {
+    s32 func_808009E4_chfactoryworkerdirty(void);
+    s32 func_80800A54_chfactoryworkerdirty(void);
+    s32 _subaddiedialog_entrypoint_7(Actor *, f32 *, s32 *);
+    void func_80090734(s32, f32 *);
+    extern s32 D_80801008_chfactoryworkerdirty;
+    extern s16 D_8080100C_chfactoryworkerdirty;
+    f32 *position[1];
+
+    if (func_808009E4_chfactoryworkerdirty() != 0) {
+        D_8080100C_chfactoryworkerdirty = 0x1350;
+    } else if (func_80800A54_chfactoryworkerdirty() == 1) {
+        D_8080100C_chfactoryworkerdirty = 0x134F;
+    } else {
+        D_8080100C_chfactoryworkerdirty = 0x134E;
+    }
+    position[0] = arg0->position;
+    if (_subaddiedialog_entrypoint_7(arg0, position[0], &D_80801008_chfactoryworkerdirty) != 0) {
+        func_80090734(1, position[0]);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800788_chfactoryworkerdirty.s")
 
