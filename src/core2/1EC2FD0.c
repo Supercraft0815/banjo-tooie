@@ -160,7 +160,33 @@ void *func_800E9A24(s32 arg0) {
 Prop *func_800E9D68(s16 *);
 s32 func_800E9BF4(s16 *arg0, s32 arg1) { if ((arg1 < 0) || (arg1 >= arg0[1])) return 0; return (s32)func_800E9D68(arg0) + arg1 * 20; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9C44.s")
+void func_800E9C44(s16 *arg0) {
+    void func_800B422C(u8 **, s16 *);
+    u8 *func_800BE5C4(u8 *);
+    void func_800EBE24(void *);
+    s32 func_800E9E88(s32);
+    u32 func_800E9EB4(s16 *);
+    extern s32 D_80132DB0;
+    extern s32 D_80132DB4;
+    s32 entry;
+    u32 end;
+
+    if (func_800E9E88((s32)arg0) != 0) {
+        entry = func_800E9E88((s32)arg0);
+        end = func_800E9EB4(arg0);
+        if ((u32)entry < end) {
+            do {
+                if (*(s32 *)(entry + 8) & 1) {
+                    func_800EBE24(*(void **)entry);
+                }
+                entry += 12;
+            } while ((u32)entry < end);
+        }
+        func_800B422C((u8 **)&D_80132DB4, arg0 + 2);
+    }
+    func_800B422C((u8 **)&D_80132DB0, arg0);
+    *func_800BE5C4((u8 *)arg0) = 0;
+}
 
 void func_800E9CF4(s16 *arg0) {
     s32 func_800E9E88(s32);
