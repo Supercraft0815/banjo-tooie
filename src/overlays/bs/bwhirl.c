@@ -48,7 +48,20 @@ void func_808000D8_bsbwhirl(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/func_80800114_bsbwhirl.s")
+void func_80800114_bsbwhirl(PlayerState *arg0) {
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    int bastick_getZone(PlayerState *);
+    f32 bastick_getZonePosition(PlayerState *);
+    f32 func_800F1214(f32, f32, f32);
+    f32 sp1C;
+
+    sp1C = bastick_getZonePosition(arg0);
+    if (bastick_getZone(arg0) == 0) {
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+        return;
+    }
+    baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp1C, 80.0f, 425.0f));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/func_8080017C_bsbwhirl.s")
 
@@ -134,7 +147,7 @@ s32 bsbwhirl_entrypoint_3(s32 arg0) {
 
 void bsbwhirl_entrypoint_4(s32 arg0) {
     s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
-    void baphysics_set_target_horizontal_velocity(void *, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     s32 func_8009FFD8(s32, s32, s32, s32, s32);
     baanim_playForDuration_loopSmooth(arg0, 0x23, 0x3F800000);
     func_8009FFD8(arg0, 1, 1, 1, 2);
@@ -200,7 +213,7 @@ void bsbwhirl_entrypoint_16(PlayerState *arg0) {
     s32 anctrl_setSmoothTransition(s32, s32);
     s32 anctrl_start(s32);
     s32 baanim_getAnimCtrlPtr();
-    void baphysics_set_target_horizontal_velocity(void *, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     s32 func_8008B188(s32, s32);
     s32 func_8008CA4C(s32, s32);
     s32 func_8009D2D8(s32, s32);
