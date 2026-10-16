@@ -169,7 +169,30 @@ s32 bsbeemain_entrypoint_2(s32 arg0) {
     return ((s32 *)&D_80801280_bsbeemain)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_808007C4_bsbeemain.s")
+void func_808007C4_bsbeemain(struct player_state_s *arg0) {
+    struct anctrl_s;
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setIndex(struct anctrl_s *, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *control;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    _bsbee_entrypoint_1(arg0);
+    anctrl_reset(control);
+    anctrl_setIndex(control, 0x1E2);
+    anctrl_setStart(control, 0.34f);
+    anctrl_setDuration(control, 8.0f);
+    anctrl_setSubrange(control, 0.0f, 0.51f);
+    anctrl_setPlaybackType(control, 1);
+    anctrl_start(control);
+    func_8009FFD8(arg0, 1, 1, 3, 6);
+    ((s32 *)arg0)[0x57] = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80800874_bsbeemain.s")
 
