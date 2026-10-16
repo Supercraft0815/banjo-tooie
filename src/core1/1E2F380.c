@@ -247,7 +247,7 @@ void func_800183D4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_800187B4(arg0, (f32) arg1 / 524288.0f, (f32) arg2 / 524288.0f, (f32) arg3 / 524288.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_80018444.s")
+void func_80018444(void) { f32 func_800D8FF8(void); extern Motor D_8007B4E0[]; Motor *motor; Motor *end; f32 delta; f32 limit; f32 elapsed; delta = func_800D8FF8(); end = D_8007B4E0; motor = D_8007B2D0; loop: if (motor->unk0 != 0) { limit = motor->unkC; elapsed = motor->unk10 + delta; if (limit < elapsed) { motor->unk10 = limit; } else { motor->unk10 = elapsed; } } if (motor[1].unk0 != 0) { limit = motor[1].unkC; elapsed = motor[1].unk10 + delta; if (limit < elapsed) { motor[1].unk10 = limit; } else { motor[1].unk10 = elapsed; } } motor += 2; if (motor != end) { goto loop; } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_800184E8.s")
 
