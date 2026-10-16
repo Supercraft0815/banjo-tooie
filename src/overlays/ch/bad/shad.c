@@ -7,7 +7,37 @@ OSThread *chbadshad_entrypoint_0(void)
     return (OSThread *) D_80800A10_chbadshad;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/func_8080000C_chbadshad.s")
+typedef union {
+    Actor actor;
+    struct {
+        u8 reserved[0x7A];
+        u8 shadowState : 2;
+        u8 otherFlags : 6;
+    } shadow;
+} ShadActor;
+
+void func_8080000C_chbadshad(ShadActor *arg0) {
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_80102F74(Unk80132ED0 *, s32);
+    void func_8010A800(Actor *, s32);
+    Unk80132ED0 *marker;
+    void *parent;
+
+    func_8010A800(&arg0->actor, 5);
+    marker = arg0->actor.pad40;
+    if (marker != NULL) {
+        parent = func_80106790(marker);
+    } else {
+        parent = NULL;
+    }
+    if (parent != NULL) {
+        if (func_80102F74(parent, 0x82000000)) {
+            arg0->shadow.shadowState = 3;
+        } else {
+            arg0->shadow.shadowState = 2;
+        }
+    }
+}
 
 void func_8080082C_chbadshad(Actor *arg0);
 
