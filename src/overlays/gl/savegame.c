@@ -20,7 +20,26 @@ s32 func_80800000_glsavegame()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/glsavegame_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/func_808002E0_glsavegame.s")
+s32 func_808002E0_glsavegame(s32 arg0, s32 arg1) {
+    s32 _glgamestore_entrypoint_2(s32, s32);
+    s32 func_80800020_glsavegame(s32, s32);
+    s32 heap_free(s32);
+    s32 count;
+    s32 result;
+    s32 buffer;
+
+    count = 3;
+    buffer = func_80800000_glsavegame();
+    do {
+        result = _glgamestore_entrypoint_2(arg0, arg1);
+        if (result == 0) {
+            func_80800020_glsavegame(arg0, buffer);
+        }
+        count--;
+    } while (result != 0 && count != 0);
+    heap_free(buffer);
+    return result;
+}
 
 /* extern */
 
@@ -107,7 +126,7 @@ s32 glsavegame_entrypoint_8(s32 arg0) {
     s32 temp_v0;
     s32 sp1C;
     extern void *D_80127614;
-    extern s32 func_80800020_glsavegame(s8, s32);
+    extern s32 func_80800020_glsavegame(s32, s32);
     extern s32 heap_free(s32);
     extern s32 func_80800000_glsavegame(void);
     extern void _glgamedata_entrypoint_2(s32);
