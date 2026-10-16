@@ -133,7 +133,28 @@ s32 func_808002A4_chburgerstand(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/func_808004DC_chburgerstand.s")
+void func_808004DC_chburgerstand(Actor *arg0) {
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    extern u32 D_80800D60_chburgerstand;
+    extern u32 D_80800D6C_chburgerstand;
+    extern u32 D_80800D7C_chburgerstand;
+    extern u32 D_80800D88_chburgerstand;
+    extern u32 D_80800D94_chburgerstand;
+    extern u32 D_80800DA0_chburgerstand;
+    extern u32 D_80800DAC_chburgerstand;
+    extern u32 D_80800DB8_chburgerstand;
+    extern u32 D_80800DCC_chburgerstand;
+    f32 *temp_s1;
+
+    temp_s1 = arg0->position;
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80800D7C_chburgerstand, 0.02f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80800D88_chburgerstand, 0.04f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80800D94_chburgerstand, 0.11f);
+    _subaddieaudioquick_entrypoint_4(arg0, temp_s1, &D_80800D60_chburgerstand, &D_80800DAC_chburgerstand);
+    _subaddieaudioquick_entrypoint_4(arg0, temp_s1, &D_80800D6C_chburgerstand, &D_80800DB8_chburgerstand);
+    _subaddieaudioquick_entrypoint_4(arg0, temp_s1, &D_80800DA0_chburgerstand, &D_80800DCC_chburgerstand);
+}
 
 void func_808005AC_chburgerstand(Actor *arg0) {
     s32 _subaddieskeleton_entrypoint_3(s32, s32, s32 *);
