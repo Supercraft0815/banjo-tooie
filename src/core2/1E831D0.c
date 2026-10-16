@@ -41,7 +41,22 @@ void func_800A9998(void) {
     func_800A1618(1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E831D0/func_800A9A14.s")
+void func_800A9A14(void) {
+    extern u8 D_80127760;
+    s32 func_8001211C(void);
+    s32 _gcgoto_entrypoint_14(s32);
+    void func_800E8144(void);
+    void _gsattract_entrypoint_1(void);
+    func_8001211C();
+    _gcgoto_entrypoint_14(1);
+    if (*(&D_80127760 + 2) != 0 && *(&D_80127760 + 3) == 0) {
+        func_800A98E0();
+    }
+    switch (D_80127760) {
+        case 1: func_800E8144(); break;
+        case 2: _gsattract_entrypoint_1(); break;
+    }
+}
 
 void func_800A9AA4(void) {
     extern u8 D_80127760;
