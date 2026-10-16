@@ -2,7 +2,28 @@
 
 void *func_80100094(Actor *, u32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_80800000_chnewmumbo.s")
+void func_80800000_chnewmumbo(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_7(s32, s32);
+    s32 _capod_entrypoint_8(s32);
+    void _gcdialogcamera_entrypoint_6(Unk80132ED0 *);
+    void _gcdialogcamera_entrypoint_8(void);
+    u8 *data;
+
+    data = func_80100094(arg0, 0U);
+    switch (data[0x24]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0xA, 0);
+        case 1:
+            _capod_entrypoint_8(1);
+            data[0x24] = 2;
+            _gcdialogcamera_entrypoint_6(arg0->unk0);
+            _gcdialogcamera_entrypoint_8();
+        case 2:
+            _capod_entrypoint_7(arg1, arg2);
+            break;
+    }
+}
 
 void func_8080009C_chnewmumbo(Actor *arg0) {
     void _capod_entrypoint_3(u32);
