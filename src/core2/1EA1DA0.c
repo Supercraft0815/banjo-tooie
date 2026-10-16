@@ -734,7 +734,7 @@ void func_800C9EAC(f32 time, void *funcPtr, s32 arg0, s32 arg1, s32 arg2, s32 ar
 
 void func_800C9EF8(f32 time, void *funcPtr, void *argPtr) {
     void *func_800C9750(f32, s32, void *, s32, s32, s32, s32, s32);
-    void rare_memcpy(void *, void *, s32);
+    void rare_memcpy(void *, void *, int);
     u8 *q = func_800C9750(time, 6, funcPtr, 0, 0, 0, 0, 0);
     rare_memcpy(q + 0x20, argPtr, 0x50);
 }
@@ -752,7 +752,28 @@ int func_800C9F94(void) {
     return D_8012AB60 == 0 || vector_size(D_8012AB60) == 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9FD0.s")
+void func_800C9FD0(void) {
+    void func_800C986C(void *);
+    void rare_memcpy(void *, void *, int);
+    u32 vector_begin(s32);
+    void vector_erase(s32, s32);
+    s32 vector_free(s32);
+    s32 vector_size(s32);
+    extern s32 D_8012AB60;
+    void *iPtr;
+    u8 iFunc[0x70];
+
+    if (D_8012AB60 != 0) {
+        while (vector_size(D_8012AB60) > 0) {
+            iPtr = vector_begin(D_8012AB60);
+            rare_memcpy(iFunc, iPtr, sizeof(iFunc));
+            vector_erase(D_8012AB60, 0);
+            func_800C986C(iFunc);
+        }
+        vector_free(D_8012AB60);
+        D_8012AB60 = 0;
+    }
+}
 
 void func_800CA060(void) {
     s32 vector_free(s32);
