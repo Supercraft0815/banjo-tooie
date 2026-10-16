@@ -278,7 +278,22 @@ void func_80800C20_bsbtrot(s32 arg0) {
     func_80800000_bsbtrot(arg0, 0x26, 0x26, 0x29B, 0x86);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_4.s")
+void bsbtrot_entrypoint_4(PlayerState *arg0) {
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 func_8008E40C(PlayerState *);
+    s32 func_8008E430(PlayerState *);
+
+    if (func_8008E430(arg0) != 0) {
+        baanim_playForDuration_loopSmooth(arg0, 0x29B, 1.3f);
+    } else if (func_8008E40C(arg0) != 0) {
+        baanim_playForDuration_loopSmooth(arg0, 0x86, 1.3f);
+    } else {
+        baanim_playForDuration_loopSmooth(arg0, 0x26, 1.2f);
+    }
+    func_8009FFD8(arg0, 1, 1, 1, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_80800538_bsbtrot(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_5.s")
 
