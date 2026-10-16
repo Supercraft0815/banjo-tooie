@@ -104,9 +104,11 @@ void func_80800214_bsbabykaz(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/bsbabykaz_entrypoint_1.s")
 
-void func_808003D0_bsbabykaz()
+void bsbabykaz_entrypoint_3(struct player_state_s *arg0);
+
+void func_808003D0_bsbabykaz(struct player_state_s *arg0)
 {
-    bsbabykaz_entrypoint_3();
+    bsbabykaz_entrypoint_3(arg0);
 }
 
 /* extern */
@@ -144,7 +146,30 @@ s32 bsbabykaz_entrypoint_2(s32 arg0) {
     return ((s32 *)&D_80801730_bsbabykaz)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/bsbabykaz_entrypoint_3.s")
+void bsbabykaz_entrypoint_3(struct player_state_s *arg0) {
+    void bastick_popZone(struct player_state_s *);
+    void func_80092864(struct player_state_s *, f32);
+    void func_800947EC(struct player_state_s *, s32, s32);
+    void func_8009590C(struct player_state_s *, f32);
+    void func_80095A40(struct player_state_s *);
+    void func_80095A74(void *, s32);
+    void func_8009E474(struct player_state_s *);
+    s32 func_8009E69C(struct player_state_s *, s32);
+    void func_800A1040(struct player_state_s *);
+    void func_800A4D6C(u8 *, f32, f32);
+
+    if (func_8009E69C(arg0, 0x20) == 0) {
+        bastick_popZone(arg0);
+        func_800A4D6C(arg0, 1.0f, 1.0f);
+        func_80095A40(arg0);
+        func_8009590C(arg0, 0.0f);
+        func_800A1040(arg0);
+        func_8009E474(arg0);
+        func_800947EC(arg0, 1, 0);
+        func_80092864(arg0, 1.0f);
+        func_80095A74(arg0, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/bsbabykaz_entrypoint_4.s")
 
@@ -171,7 +196,7 @@ void bsbabykaz_entrypoint_5(struct player_state_s *arg0) {
 
 void func_8080072C_bsbabykaz(s32 arg0)
 {
-    bsbabykaz_entrypoint_3();
+    bsbabykaz_entrypoint_3(arg0);
     _bsdrone_entrypoint_2(arg0);
 }
 void func_80800754_bsbabykaz(s32 arg0)
@@ -199,9 +224,9 @@ s32 bsbabykaz_entrypoint_6(s32 arg0) {
     return ((s32 *)&D_80801740_bsbabykaz)[arg0];
 }
 
-void func_808007EC_bsbabykaz()
+void func_808007EC_bsbabykaz(struct player_state_s *arg0)
 {
-    bsbabykaz_entrypoint_3();
+    bsbabykaz_entrypoint_3(arg0);
 }
 
 void func_8080080C_bsbabykaz(void *arg0) {
