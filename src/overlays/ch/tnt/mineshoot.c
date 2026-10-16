@@ -251,10 +251,10 @@ void func_80802148_chtntmineshoot(void *arg0, s32 arg1) {
 
 /* extern */
 
-void func_80802198_chtntmineshoot(s32 arg0) {
-    s32 func_808021C4_chtntmineshoot();
-    s32 func_808022A8_chtntmineshoot(s32, s32);
-    func_808022A8_chtntmineshoot(arg0, func_808021C4_chtntmineshoot());
+void func_80802198_chtntmineshoot(Actor *arg0) {
+    s32 func_808021C4_chtntmineshoot(Actor *);
+    void func_808022A8_chtntmineshoot(Actor *, s32);
+    func_808022A8_chtntmineshoot(arg0, func_808021C4_chtntmineshoot(arg0));
 }
 
 /* extern */
@@ -287,7 +287,22 @@ s32 func_808021C4_chtntmineshoot(Actor *arg0) {
     return sp54 ? 1 : 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_808022A8_chtntmineshoot.s")
+void func_808022A8_chtntmineshoot(Actor *arg0, s32 arg1) {
+    void _subaddiefade_entrypoint_3(Actor *);
+    f32 func_800D8FF8(void);
+    void func_800EF334(f32 *, f32);
+    int func_800F1EA4(f32 *, f32 *);
+    f32 sp2C;
+
+    if (arg1 != 0) {
+        if (func_800F1EA4(&((f32 *)arg0->actorData)[4], &sp2C) != 0) {
+            arg0->rotation[1] = sp2C;
+        }
+        func_800EF334(&((f32 *)arg0->actorData)[4], 0.8f);
+        _subaddiefade_entrypoint_3(arg0);
+    }
+    arg0->rotation[0] += arg0->unk50 * func_800D8FF8();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80802320_chtntmineshoot.s")
 
