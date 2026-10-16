@@ -45,7 +45,36 @@ s32 func_80800104_bsstatue(void *arg0) {
     return func_8001211C() == (*(s32 *)((s8 *)(arg0) + (0x168)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80800130_bsstatue.s")
+void func_80800130_bsstatue(s32 arg0) {
+    typedef struct player_state_s PlayerState;
+    void bastick_popZone(PlayerState *);
+    void func_80092864(PlayerState *, f32);
+    void func_800947EC(PlayerState *, s32, s32);
+    void func_8009590C(PlayerState *, f32);
+    void func_80095964(void *, s32);
+    void func_80095A40(PlayerState *);
+    void func_8009E474(PlayerState *);
+    s32 func_8009E74C(PlayerState *, s32);
+    void func_8009EB00(f32);
+    void func_800A2018(PlayerState *, s32);
+    int func_800A25DC(s32, s32);
+    void func_800A4D6C(u8 *, f32, f32);
+
+    if (func_8009E74C(arg0, 7) == 0) {
+        func_800947EC(arg0, 1, 0);
+        func_8009E474(arg0);
+        bastick_popZone(arg0);
+        func_80095A40(arg0);
+        func_8009590C(arg0, 0.0f);
+        func_800A4D6C(arg0, 1.0f, 1.0f);
+        func_80092864(arg0, 1.0f);
+        func_80095964(arg0, 0);
+        func_800A25DC(arg0, 1);
+        func_800A2018(arg0, -1);
+        func_8009EB00(func_80800050_bsstatue(arg0));
+        func_80800000_bsstatue(arg0, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_808001FC_bsstatue.s")
 
@@ -69,7 +98,7 @@ void bsstatue_entrypoint_1(s32 arg0) {
 void func_80800474_bsstatue(s32 arg0) {
     s32 _badrone_entrypoint_31(s32);
     void func_80800000_bsstatue(s32, s32);
-    int func_80800130_bsstatue();
+    void func_80800130_bsstatue(s32);
     if (_badrone_entrypoint_31(arg0) != 0) {
         func_80800000_bsstatue(arg0, 1);
     }
@@ -128,10 +157,10 @@ void func_80800790_bsstatue(struct player_state_s *arg0) {
 }
 
 void func_808007D4_bsstatue(void *arg0) {
-    int func_80800130_bsstatue();
+    void func_80800130_bsstatue(s32);
     s32 func_8080054C_bsstatue(void *, s32);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
-    func_80800130_bsstatue();
+    func_80800130_bsstatue(arg0);
     func_8080054C_bsstatue(arg0, 0);
     if (bs_getNextState(arg0) == 0xF9) {
         baphysics_set_target_horizontal_velocity(arg0, 0.0f);
@@ -298,9 +327,9 @@ s32 bsstatue_entrypoint_6(s32 arg0) {
     return ((s32 *)&D_808015E0_bsstatue)[arg0];
 }
 
-void func_80800FCC_bsstatue()
+void func_80800FCC_bsstatue(s32 arg0)
 {
-    func_80800130_bsstatue();
+    func_80800130_bsstatue(arg0);
 }
 
 /* extern */
@@ -336,9 +365,9 @@ s32 bsstatue_entrypoint_7(s32 arg0) {
     return ((s32 *)&D_808015F0_bsstatue)[arg0];
 }
 
-void func_808010B4_bsstatue()
+void func_808010B4_bsstatue(s32 arg0)
 {
-    func_80800130_bsstatue();
+    func_80800130_bsstatue(arg0);
 }
 
 void func_808010D4_bsstatue(register void *arg0) {
@@ -392,9 +421,9 @@ s32 bsstatue_entrypoint_8(s32 arg0) {
     return ((s32 *)&D_80801600_bsstatue)[arg0];
 }
 
-void func_80801218_bsstatue()
+void func_80801218_bsstatue(s32 arg0)
 {
-    func_80800130_bsstatue();
+    func_80800130_bsstatue(arg0);
 }
 
 /* extern */
