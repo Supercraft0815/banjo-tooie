@@ -1,6 +1,31 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/goto/func_80800000_bsdronegoto.s")
+s32 func_80800000_bsdronegoto(void *arg0, s32 arg1) {
+    void func_808000C0_bsdronegoto();
+    void func_80800148_bsdronegoto(s32);
+    void func_80800150_bsdronegoto(void *);
+    void func_8080032C_bsdronegoto(void *);
+    s32 state;
+
+    state = *(s32 *)((s8 *)arg0 + 0x190);
+    switch (state) {
+    case 1:
+        func_80800148_bsdronegoto((s32)arg0);
+        break;
+    case 2:
+        func_8080032C_bsdronegoto(arg0);
+        break;
+    }
+    *(s32 *)((s8 *)arg0 + 0x190) = arg1;
+    switch (arg1) {
+    case 1:
+        func_808000C0_bsdronegoto(arg0, arg1);
+        return;
+    case 2:
+        func_80800150_bsdronegoto(arg0);
+        return;
+    }
+}
 
 /* extern */
 
