@@ -6,6 +6,7 @@ void bs_setState();
 /* extern */
 
 typedef struct PlayerState PlayerState;
+s32 bs_getNextState(struct player_state_s *);
 s32 func_80800000_bsbtrot(PlayerState *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     s32 func_8008E3E8(PlayerState *);
     s32 func_8008E40C(PlayerState *);
@@ -652,9 +653,9 @@ s32 bsbtrot_entrypoint_47(s32 arg0) {
 void func_808029D8_bsbtrot(void *arg0) {
     s32 _bashoessuck_entrypoint_3(void *);
     s32 bs_getPreviousState();
-    s32 func_80092880(void *, s32);
+    void func_80092880(PlayerState *, s32);
     s32 func_8009CA70(PlayerState *, s32, s32);
-    s32 func_800A2018(void *, s32);
+    void func_800A2018(PlayerState *, s32);
     s32 func_800A4DA4(void *, s32);
     if (func_8009CA70(arg0, bs_getPreviousState(), 0x800) == 0) {
         _bashoessuck_entrypoint_3(arg0);
@@ -665,7 +666,20 @@ void func_808029D8_bsbtrot(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80802A4C_bsbtrot.s")
+void func_80802A4C_bsbtrot(void *arg0) {
+    void _bashoessuck_entrypoint_2(void *);
+    s32 func_8009CA70(PlayerState *, s32, s32);
+    void func_80092880(PlayerState *, s32);
+    void func_800A2018(PlayerState *, s32);
+    void func_800A4E30(PlayerState *);
+    if (func_8009CA70(arg0, bs_getNextState(arg0), 0x800) == 0) {
+        _bashoessuck_entrypoint_2(arg0);
+        (*(s32 *)((s8 *)arg0 + 0x160)) = 0;
+        func_80092880(arg0, 1);
+        func_800A2018(arg0, -1);
+        func_800A4E30(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_48.s")
 
@@ -673,7 +687,7 @@ void func_808029D8_bsbtrot(void *arg0) {
 
 void bsbtrot_entrypoint_50(s32 arg0)
 {
-    func_80802A4C_bsbtrot();
+    func_80802A4C_bsbtrot((void *)arg0);
     func_8080061C_bsbtrot(arg0);
 }
 s32 bsbtrot_entrypoint_51(s32 arg0) {
@@ -694,7 +708,7 @@ void bsbtrot_entrypoint_52(void *arg0) {
 
 void bsbtrot_entrypoint_54(s32 arg0)
 {
-    func_80802A4C_bsbtrot();
+    func_80802A4C_bsbtrot((void *)arg0);
     func_8080061C_bsbtrot(arg0);
 }
 s32 bsbtrot_entrypoint_55(s32 arg0) {
