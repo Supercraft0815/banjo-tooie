@@ -109,9 +109,9 @@ void func_8010FE00(void *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-void func_8010FE14(s32 *arg0) {
-    s32 func_800CA628(s32);
-    func_800CA628(*arg0);
+void func_8010FE14(s32 *arg0, f32 *arg1, f32 *arg2) {
+    void func_800CA628(f32 *, f32 *, f32 *);
+    func_800CA628(*(f32 **)arg0, arg1, arg2);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FE34.s")

@@ -83,9 +83,9 @@ void func_80110790(s32 arg0, f32 *arg1) {
 
 /* extern */
 
-void func_801107B0(void *arg0) {
-    s32 func_800F5A00(s32);
-    func_800F5A00((*(s32 *)((s8 *)(arg0) + (0x68))));
+void func_801107B0(void *arg0, f32 *arg1) {
+    void func_800F5A00(s32, f32 *);
+    func_800F5A00((*(s32 *)((s8 *)(arg0) + (0x68))), arg1);
 }
 
 /* extern */
@@ -153,7 +153,26 @@ void func_80110928(void *arg0) {
     func_80110970(arg0, func_800136E4(rotation[1] + 180.0f));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110970.s")
+void func_80110970(void *arg0, f32 arg1) {
+    void func_800F5A00(s32, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_8010FE14(s32 *, f32 *, f32 *);
+    s32 func_8010FF80(s32 *);
+    void func_800CA3A4(s32, f32);
+    f32 position[3];
+    f32 rotation[3];
+    s32 state;
+
+    state = *(s32 *)((u8 *)arg0 + 0x6C);
+    if (state == 8 || state == 0x11 || state == 0x13 || state == 2) {
+        func_800F5A00(*(s32 *)((u8 *)arg0 + 0x68), position);
+        position[1] += 100.0f;
+        func_800EFA4C(rotation, 0.0f, arg1, 0.0f);
+        func_8010FE14(*(s32 **)((u8 *)arg0 + 0x64), position, rotation);
+        func_800CA3A4(func_8010FF80(*(s32 **)((u8 *)arg0 + 0x64)), 300.0f);
+        func_801108A0(arg0);
+    }
+}
 
 void func_80110A24(PlayerState *player, f32 position[3], f32 rotation[3]) {
     void func_80112524(PlayerState *, f32 *);
