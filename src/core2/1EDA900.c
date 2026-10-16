@@ -33,7 +33,43 @@ void *func_80101080()
     return D_80135A80;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDA900/func_8010108C.s")
+/* extern */
+
+s32 func_8010108C(Actor *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u32 pad0[16];
+        s32 (*unk40)(Actor *, s32, s32);
+    } ActorCallbacks;
+    typedef struct {
+        u32 pad0[29];
+        u32 pad74_31 : 3;
+        u32 unk74_28 : 1;
+        u32 pad74_0 : 28;
+    } ActorFlags;
+    void func_800819B4(void *);
+    s32 func_80081D34(s32);
+    s32 func_80081D80(s32);
+    void *func_80100368(void *);
+    s32 unused;
+    s32 var_a1;
+    s32 var_v1;
+    s32 temp_v0;
+
+    if (((ActorFlags *)arg0)->unk74_28) {
+        temp_v0 = func_80081D34((s32)arg0->pointerToSyscallEntry);
+        if (temp_v0 != 0) {
+            var_v1 = func_80081D80(temp_v0);
+        } else {
+            var_v1 = 0;
+        }
+        var_a1 = ((ActorCallbacks *)func_80100368(arg0))->unk40(arg0, arg1, arg2);
+        if ((temp_v0 != 0) && (var_v1 == 0) && (var_a1 <= 0)) {
+            func_800819B4(arg0->pointerToSyscallEntry);
+        }
+        return var_a1;
+    }
+    return -1;
+}
 
 s32 func_8010114C(s32 arg0, s32 arg1, s32 arg2) {
     s32 func_8010108C();
