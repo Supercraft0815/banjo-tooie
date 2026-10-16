@@ -79,7 +79,16 @@ s32 func_800D16C4(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D16CC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D175C.s")
+void func_800D175C(s32 arg0, s32 arg1) {
+    void func_800D16CC(s32, u32);
+    s32 func_800D24E8(s32, s32, u32);
+    extern s32 D_8012B250;
+    register s32 index;
+
+    index = func_800D16C4(arg0);
+    func_800D16CC(index, (((s16 *)D_8012B250)[index] ^ ((s16 *)&func_800D1A04)[index * 4]) + arg1);
+    func_800D24E8(D_8011AF50[index].padding, ((s16 *)D_8012B250)[index] ^ ((s16 *)&func_800D1A04)[index * 4], 0);
+}
 
 void func_800D1804(s32 arg0) {
     func_800D175C(arg0, -1);
