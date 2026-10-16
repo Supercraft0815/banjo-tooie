@@ -338,7 +338,15 @@ s32 func_8010518C(s32 arg0) {
     return (*(s32 *)((s8 *)(func_801043D8(arg0)) + (0x24)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_801051C8.s")
+s32 func_801051C8(s32 arg0, f32 *arg1) {
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    if (func_80104544() == 0) {
+        func_800EFA4C(arg1, 0.0f, 1.0f, 0.0f);
+        return 0;
+    }
+    func_801048E4(func_801043D8(arg0), arg1);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80105230.s")
 
