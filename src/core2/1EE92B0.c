@@ -182,7 +182,38 @@ s32 func_80110060(s32 *arg0) {
     return arg0[4];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_80110068.s")
+/* extern */
+
+void *func_80110068(void *arg0, s32 arg1) {
+    void *defrag(void *);
+    s32 *func_80110FCC(s32 *, s32);
+    void *func_80114CD4(void *);
+    s32 *func_80115324(s32 *, s32);
+    struct {
+        s32 owner;
+        s32 *field4;
+        s32 field8;
+        s32 *fieldC;
+        void *field10;
+    } *temp_v0;
+    s32 *temp_a0;
+    void *temp_a0_2;
+
+    temp_v0 = defrag(arg0);
+    temp_v0->owner = arg1;
+    if (temp_v0->field4 != 0) {
+        temp_v0->field4 = func_80110FCC(temp_v0->field4, (s32)temp_v0);
+    }
+    temp_a0 = temp_v0->fieldC;
+    if (temp_a0 != 0) {
+        temp_v0->fieldC = func_80115324(temp_a0, (s32)temp_v0);
+    }
+    temp_a0_2 = temp_v0->field10;
+    if (temp_a0_2 != 0) {
+        temp_v0->field10 = func_80114CD4(temp_a0_2);
+    }
+    return temp_v0;
+}
 
 /* extern */
 

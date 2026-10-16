@@ -65,8 +65,8 @@ void *func_80115118(s32 arg0) {
 
 /* extern */
 
-void func_80115324(s32 *arg0, s32 arg1) {
-    s32 defrag();
+s32 *func_80115324(s32 *arg0, s32 arg1) {
+    void *defrag(void *);
     *arg0 = arg1;
-    defrag();
+    return defrag(arg0);
 }
