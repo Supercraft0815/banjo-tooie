@@ -60,7 +60,34 @@ void func_80800100_bsbanshack(PlayerState *arg0) {
     baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp1C, 30.0f, 300.0f));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_80800164_bsbanshack.s")
+void func_80800164_bsbanshack(PlayerState *arg0) {
+    int _babackpack_get_state();
+    void _babackpack_set_state(void *, s32);
+    s32 baanim_playForDuration_once(void *, s32, f32);
+    void bastick_popZone(PlayerState *);
+    s32 bs_getCurrentState(PlayerState *);
+    void func_8008CA98(PlayerState *);
+    void func_80095A40(PlayerState *);
+    s32 func_8009E74C(PlayerState *, s32);
+    void func_800A0CD0(void *, s32);
+
+    if (func_8009E74C(arg0, 0x13) != 0) {
+        if (_babackpack_get_state(arg0) != 5) {
+            _babackpack_set_state(arg0, 5);
+        }
+    } else {
+        if (_babackpack_get_state(arg0) != 1) {
+            _babackpack_set_state(arg0, 1);
+        }
+        func_800A0CD0(arg0, 1);
+        if (bs_getCurrentState(arg0) != 0x16B) {
+            baanim_playForDuration_once(arg0, 0x6F, 5.5f);
+            func_8008CA98(arg0);
+        }
+        func_80095A40(arg0);
+        bastick_popZone(arg0);
+    }
+}
 
 void func_8080021C_bsbanshack(PlayerState *arg0) {
     void _babackpack_set_state(void *, s32);
@@ -86,7 +113,7 @@ void func_808002AC_bsbanshack(PlayerState *arg0) {
     int _babackpack_get_state();
     void _babackpack_set_state(void *, s32);
     void func_800A0CD0(void *, s32);
-    int func_80800164_bsbanshack();
+    void func_80800164_bsbanshack(PlayerState *);
     if (arg0->unk15C.bytes[1] != 0) {
         func_80800164_bsbanshack(arg0);
         return;
@@ -139,9 +166,9 @@ s32 bsbanshack_entrypoint_0(s32 arg0) {
     return ((s32 *)&D_80800CB0_bsbanshack)[arg0];
 }
 
-void func_80800430_bsbanshack()
+void func_80800430_bsbanshack(PlayerState *arg0)
 {
-    func_80800164_bsbanshack();
+    func_80800164_bsbanshack(arg0);
 }
 
 void func_80800450_bsbanshack(PlayerState *arg0) { s32 baanim_playForDuration_onceSmooth(void *, s32, s32); void baphysics_set_target_horizontal_velocity(PlayerState *, f32); s32 func_8009FFD8(PlayerState *, s32, s32, s32, s32); func_8080021C_bsbanshack(arg0); baanim_playForDuration_onceSmooth(arg0, 0x295, 0x3FB33333); func_8009FFD8(arg0, 1, 1, 1, 2); baphysics_set_target_horizontal_velocity(arg0, 0.0f); }
@@ -212,9 +239,9 @@ s32 bsbanshack_entrypoint_2(s32 arg0) {
     return ((s32 *)&D_80800CD0_bsbanshack)[arg0];
 }
 
-void func_80800928_bsbanshack()
+void func_80800928_bsbanshack(PlayerState *arg0)
 {
-    func_80800164_bsbanshack();
+    func_80800164_bsbanshack(arg0);
 }
 
 void func_80800948_bsbanshack(PlayerState *arg0) {
@@ -309,9 +336,9 @@ s32 bsbanshack_entrypoint_5(s32 arg0) {
     return ((s32 *)&D_80800D00_bsbanshack)[arg0];
 }
 
-void func_80800BF0_bsbanshack()
+void func_80800BF0_bsbanshack(PlayerState *arg0)
 {
-    func_80800164_bsbanshack();
+    func_80800164_bsbanshack(arg0);
 }
 
 void func_80800C10_bsbanshack(PlayerState *arg0) { s32 baanim_playForDuration_loopSmooth(void *, s32, s32); void baphysics_set_target_horizontal_velocity(PlayerState *, f32); s32 func_8009FFD8(PlayerState *, s32, s32, s32, s32); func_8080021C_bsbanshack(arg0); baanim_playForDuration_loopSmooth(arg0, 0x293, 0x40ACCCCD); func_8009FFD8(arg0, 1, 1, 1, 2); baphysics_set_target_horizontal_velocity(arg0, 0.0f); }
