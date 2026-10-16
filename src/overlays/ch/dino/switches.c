@@ -167,4 +167,20 @@ void func_80800A48_chdinoswitches(void *arg0) {
                   *(u16 *)((u8 *)*(void **)arg0 + 0x16));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/func_80800A88_chdinoswitches.s")
+s32 func_80800A88_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chdoor_entrypoint_1(s32, s32, s32);
+    void _glcutDll_entrypoint_17(void);
+    s32 _glcutDll_entrypoint_19(s32);
+
+    switch (arg1) {
+        case 0xB:
+            if (arg0->actorData[0] == 4 && arg2 == 0x23 && _glcutDll_entrypoint_19(0x37) != 0) {
+                _glcutDll_entrypoint_17();
+            }
+            return 3;
+        case 0x95:
+            func_80800A48_chdinoswitches(arg0);
+        default:
+            return _chdoor_entrypoint_1((s32)arg0, arg1, arg2);
+    }
+}
