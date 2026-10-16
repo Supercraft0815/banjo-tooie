@@ -272,7 +272,43 @@ void func_801060E4(s16 arg0) {
     freelist_erase(D_80136ED0, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80106138.s")
+void func_80106138(void *arg0) {
+    void *func_801063C0(void *);
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    typedef struct {
+        s32 unk0;
+        s16 type;
+        s16 unk6;
+        u8 data[0xA0];
+    } Item;
+    typedef struct {
+        s32 unk0;
+        s32 unk4;
+        void (*destroy)(void *);
+        s32 unkC;
+    } ItemType;
+    typedef struct {
+        u8 pad[0x90];
+        s16 index;
+    } Owner;
+    extern ItemType D_80124440[];
+    s32 *entry;
+    Item *end;
+    Item *item;
+
+    entry = func_801063C0(arg0);
+    end = (Item *)vector_end(entry[1]);
+    item = (Item *)vector_begin(entry[1]);
+    if (item < end) {
+        do {
+            D_80124440[item->type].destroy(item->data);
+            item++;
+        } while (item < end);
+    }
+    func_801060E4(((Owner *)arg0)->index);
+    ((Owner *)arg0)->index = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_801061D8.s")
 
