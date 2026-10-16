@@ -698,7 +698,26 @@ OSThread *chstoneballcontrol_entrypoint_4(void)
     return (OSThread *) D_8080535C_chstoneballcontrol;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_808036C0_chstoneballcontrol.s")
+s32 func_808036C0_chstoneballcontrol(Actor *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u8 pad[0x64];
+        u32 : 3;
+        u32 controller_index : 2;
+    } BallFlags;
+    void *func_80100094(Actor *, u32);
+    void func_800BD268();
+    void **data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 1:
+        func_800BD268(*data, ((BallFlags *)arg0)->controller_index);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80803724_chstoneballcontrol.s")
 
