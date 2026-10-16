@@ -551,7 +551,30 @@ f32 func_800EC708(void **marker) {
     else return func_800EC5C0(prop, func_800EC48C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC75C.s")
+f32 func_800EC75C(void *marker, f32 *arg1) {
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    Actor *func_80106790(Unk80132ED0 *);
+    typedef struct {
+        u8 pad0[0x18];
+        u16 flags;
+        u8 pad1A[4];
+        s16 rotation[3];
+    } MarkerView;
+    f32 sp34;
+    f32 sp28[3];
+    MarkerView *prop = marker;
+
+    sp34 = func_800EC708(marker);
+    func_800EE88C(arg1, prop->rotation);
+    if (prop->flags & 1) {
+        func_800EF334(arg1, func_80106790(marker)->scale);
+    }
+    func_800EC398(marker, sp28);
+    func_800EF04C(arg1, sp28);
+    return sp34;
+}
 
 /* extern */
 
