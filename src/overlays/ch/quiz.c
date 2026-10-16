@@ -404,7 +404,33 @@ s32 func_80801544_chquiz(s32 arg0) {
     return arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_8080154C_chquiz.s")
+s32 func_8080154C_chquiz(void *arg0) {
+    s32 _gcstatusDll_entrypoint_17();
+    s32 _gcstatusDll_entrypoint_18(void);
+    s32 _suquiz_entrypoint_16();
+    s32 func_800D3948(void);
+    s32 func_80801784_chquiz(void *, s32);
+    s32 threshold;
+    s32 comparison;
+    s32 i;
+    s32 result;
+
+    if (func_800D3948() != 0) {
+        if (_gcstatusDll_entrypoint_17() != 0) {
+            return _suquiz_entrypoint_16();
+        }
+        threshold = _gcstatusDll_entrypoint_18();
+        result = 0;
+        i = 3;
+        do {
+            comparison = func_80801784_chquiz(arg0, i) >= threshold;
+            i += 1;
+            result |= comparison;
+        } while (i != 7);
+        return result;
+    }
+    return _suquiz_entrypoint_16();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801600_chquiz.s")
 
