@@ -123,4 +123,33 @@ void func_800A9CDC(void) {
 void func_800A9D00(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E831D0/func_800A9D08.s")
+void func_800A9D08(void) {
+    void func_800D39A8(void);
+    void func_800D39DC(s32 arg0);
+    void func_800D3A20(s32 arg0);
+    void func_800D3A88(void);
+    void func_800D3AF0(s32 arg0);
+    extern u8 D_8011A470[];
+    extern s16 D_8011A478;
+    extern s16 D_8011A47C;
+    s16 *short_ptr;
+    u32 i;
+    u8 *byte_ptr;
+    s16 *short_end;
+
+    func_800D39A8();
+    func_800D39DC(0);
+    func_800D3A88();
+    byte_ptr = D_8011A470;
+    i = 0;
+    do {
+        func_800D3AF0(*byte_ptr);
+        i++;
+        byte_ptr++;
+    } while ((u32)(u64)i < 7U);
+    short_ptr = &D_8011A478; short_end = &D_8011A47C;
+    do {
+        func_800D3A20(*short_ptr);
+        short_ptr++;
+    } while (short_ptr != short_end);
+}
