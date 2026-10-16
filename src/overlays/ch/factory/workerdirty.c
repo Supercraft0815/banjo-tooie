@@ -78,7 +78,27 @@ void func_80800700_chfactoryworkerdirty(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800788_chfactoryworkerdirty.s")
+void func_80800788_chfactoryworkerdirty(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80090708(s32);
+    void func_800904F4(s32, Unk80132ED0 *);
+    void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
+    void func_80800B40_chfactoryworkerdirty();
+    switch (arg1) {
+    case 0x134C:
+    case 0x134D:
+        func_80090708(0);
+        func_800904F4(0x65, arg0->unk0);
+        return;
+    case 0x1350:
+        func_80800B40_chfactoryworkerdirty(arg0);
+        func_80090708(0);
+        func_800D1000(0x36, 1, arg0->position, 0, NULL);
+        return;
+    default:
+        func_80090708(0);
+        return;
+    }
+}
 
 /* extern */
 
