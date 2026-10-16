@@ -706,7 +706,31 @@ void func_80803460_chweldarboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_808034A0_chweldarboss.s")
+void func_808034A0_chweldarboss(Actor *arg0) {
+    typedef struct {
+        u8 pad0[0x64];
+        u8 unk64;
+        u8 pad65[0x13];
+        s16 unk78;
+    } WeldarCameraData;
+    void *func_80100094(Actor *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    void _plcamera_entrypoint_9(s32, f32 *, f32);
+    s32 func_800F5EF8(s32);
+    s32 func_80110014(s32 *);
+    void func_80116088(u8 *, s32);
+    WeldarCameraData *sp34;
+    f32 sp28[3];
+    s32 pad[2];
+
+    sp34 = func_80100094(arg0, 0U);
+    if (sp34->unk64 != 0) {
+        func_800EE7F8(sp28, arg0->position);
+        sp28[1] += 700.0f;
+        _plcamera_entrypoint_9(sp34->unk78, sp28, 0.0f);
+        func_80116088(func_80110014(func_800F5EF8(sp34->unk78)), sp28);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80803528_chweldarboss.s")
 
