@@ -350,7 +350,47 @@ s32 func_801000D8(Actor *arg0, s32 arg1, s32 arg2) {
     return func_80100094(arg0, (u32) arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_80100120.s")
+void func_80100120(Actor *arg0) {
+    typedef struct {
+        u32 padding[13];
+        void (*update)(Actor *);
+    } ActorCallbacks;
+    typedef struct {
+        u8 padding[0x70];
+        u32 pad70 : 28;
+        u32 flag70 : 1;
+        u32 pad70_0 : 3;
+        u32 pad74 : 10;
+        u32 flag74 : 1;
+        u32 pad74_0 : 21;
+        u32 pad78;
+        u32 pad7C : 16;
+        u32 initialized : 1;
+        u32 enabled : 1;
+        u32 pad7C_0 : 14;
+    } ActorFlags;
+    void *func_80100368(void *);
+    s32 func_80102F74(Unk80132ED0 *, s32);
+    void func_8010381C(Actor *);
+    register void (*update)(Actor *);
+
+    if (!((ActorFlags *)arg0)->flag74) {
+        update = ((ActorCallbacks *)func_80100368(arg0))->update;
+        if (update != NULL) {
+            if (((ActorFlags *)arg0)->flag70) {
+                if (func_80102F74(arg0, 0x80080000) != 0) {
+                    func_8010381C(arg0);
+                }
+            }
+            update(arg0);
+            if (arg0->unk64_17) {
+                ((ActorFlags *)arg0)->initialized = 1;
+                ((ActorFlags *)arg0)->enabled = 0;
+            }
+        }
+        ((ActorFlags *)arg0)->flag74 = 1;
+    }
+}
 
 /* extern */
 
