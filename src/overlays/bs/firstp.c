@@ -725,7 +725,37 @@ void func_80801C18_bsfirstp(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80801C74_bsfirstp.s")
+void func_80801C74_bsfirstp(u8 *arg0) {
+    s32 _baeggcursor_entrypoint_7(void *, s32);
+    void func_80801D70_bsfirstp(u8 *);
+    void func_80802438_bsfirstp(void *, s32);
+    u8 *temp_v1;
+    s32 temp_v0;
+
+    temp_v1 = *(u8 **)((s8 *)arg0 + 0x188);
+    if (*(s32 *)((s8 *)temp_v1 + 0xA8) == 2) {
+        temp_v0 = *(s32 *)((s8 *)temp_v1 + 0xAC);
+        switch (temp_v0) {
+        case 0:
+            *(s32 *)((s8 *)temp_v1 + 0xA8) = 0;
+            break;
+        case 1:
+            *(s32 *)((s8 *)temp_v1 + 0xA8) = 1;
+            func_80801D70_bsfirstp(arg0);
+            temp_v0 = *(s32 *)((s8 *)temp_v1 + 0xA4);
+            if (temp_v0 != 0) {
+                if (temp_v0 == 1) {
+                    _baeggcursor_entrypoint_7(arg0, 2);
+                    func_80802438_bsfirstp(arg0, 1);
+                }
+            } else {
+                _baeggcursor_entrypoint_7(arg0, 1);
+                func_80802438_bsfirstp(arg0, 0);
+            }
+            break;
+        }
+    }
+}
 
 /* extern */
 
