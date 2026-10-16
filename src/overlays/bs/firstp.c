@@ -666,8 +666,9 @@ s32 func_80801A98_bsfirstp(void) {
     return _ncba1p_entrypoint_10(func_800A4CA8()) == 2;
 }
 
+void func_80801B64_bsfirstp(u8 *, s32);
+
 void func_80801AC4_bsfirstp(s32 arg0) {
-    int func_80801B64_bsfirstp(s32, s32);
     register s32 temp = *(s32 *)(arg0 + 0x188);
     *(s32 *)(temp + 0xA0) = 0;
     func_80801B64_bsfirstp(arg0, 0);
@@ -695,7 +696,27 @@ void func_80801B0C_bsfirstp(s32 arg0, s32 *arg1, s32 *arg2) {
     *arg2 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80801B64_bsfirstp.s")
+void func_80801B64_bsfirstp(u8 *arg0, s32 arg1) {
+    void func_80801BDC_bsfirstp(u8 *);
+    void func_80801C18_bsfirstp(u8 *);
+    void func_80801C74_bsfirstp(u8 *);
+    void func_80801D30_bsfirstp(void *);
+
+    switch (arg1) {
+    case 0:
+        func_80801BDC_bsfirstp(arg0);
+        return;
+    case 1:
+        func_80801D30_bsfirstp(arg0);
+        return;
+    case 2:
+        func_80801C18_bsfirstp(arg0);
+        return;
+    case 3:
+        func_80801C74_bsfirstp(arg0);
+        return;
+    }
+}
 
 /* extern */
 
@@ -2471,7 +2492,7 @@ s32 bsfirstp_entrypoint_32(s32 arg0) {
 }
 
 void func_808077AC_bsfirstp(s32 arg0) {
-    int func_80801B64_bsfirstp(s32, s32);
+    void func_80801B64_bsfirstp(u8 *, s32);
     int func_80807C8C_bsfirstp(void *);
     func_80801B64_bsfirstp(arg0, 3);
     _bsrest_entrypoint_14(arg0);
