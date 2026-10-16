@@ -39,7 +39,7 @@ void func_80800068_chboggykidshome(u8 *arg0)
   s32 _suexpression_entrypoint_20(u8 *);
   u8 *new_var;
   void func_80800214_chboggykidshome();
-  s32 func_80800300_chboggykidshome(u8 *);
+  void func_80800300_chboggykidshome(Actor *);
   if (((((u16) (*((u16 *) (((s8 *) arg0) + 0x72)))) & 0xFFFFFFFF) >> 0xA) == 1)
   {
     if (1)
@@ -99,4 +99,28 @@ s32 func_808002C0_chboggykidshome(void *arg0) {
     return 0x3D;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/kidshome/func_80800300_chboggykidshome.s")
+void func_80800300_chboggykidshome(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_800C4B7C(s32);
+    s32 func_800DC128(s32, s32);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80101E4C(Actor *, f32 *);
+    s32 func_801022E4(Actor *);
+    extern s16 D_808005A0_chboggykidshome[];
+    extern f32 D_808005AC_chboggykidshome[];
+    extern s32 D_808005BC_chboggykidshome;
+    extern s32 D_808005CC_chboggykidshome;
+    extern s32 D_808005E8_chboggykidshome;
+    if (func_801022E4(arg0) == 0x246) {
+        if (func_80101E14(arg0, 0.0f) != 0) {
+            func_800C4B7C(D_808005A0_chboggykidshome[func_800DC128(0, 5)]);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808005BC_chboggykidshome);
+        }
+        if (func_80101E14(arg0, 0.5f) != 0) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808005CC_chboggykidshome);
+        }
+        if (func_80101E4C(arg0, D_808005AC_chboggykidshome) != 0) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808005E8_chboggykidshome);
+        }
+    }
+}
