@@ -133,7 +133,27 @@ Actor *func_801068A8(s32 *arg0) {
     return NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDFED0/func_80106920.s")
+Actor *func_80106920(s32 *arg0) {
+    s32 vector_size(s32);
+    s32 vector_at(s32, s32);
+    extern s32 D_80136EE0;
+    s32 size;
+    s32 index;
+
+    if (D_80136EE0 == 0) {
+        return NULL;
+    }
+    size = vector_size(D_80136EE0);
+    index = --*arg0;
+    if (index < 0 || index >= size) {
+        index = size - 1;
+        *arg0 = index;
+    }
+    if (index >= 0) {
+        return vector_at(D_80136EE0, index);
+    }
+    return NULL;
+}
 
 s32 func_801069A4(Unk80132ED0 *arg0) {
     s32 vector_size(s32);
