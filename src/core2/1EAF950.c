@@ -279,7 +279,26 @@ s32 func_800D7488(s16 arg0, s16 arg1) {
 
 void *func_800D7520(s32 arg0) { void *func_8001B798(s16); extern s16 D_8012BFF4; if (arg0 == -1) { return NULL; } return func_8001B798(*(s16 *)((s8 *)func_8001B798(D_8012BFF4) + arg0 * 2)); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7570.s")
+u8 *func_800D7570(s32 arg0) {
+    void *func_8001B798(s16);
+    extern s16 D_8012BFF6;
+    typedef struct {
+        s32 count;
+        u8 data[1];
+    } Entry;
+    s16 *table;
+    Entry *entry;
+
+    table = func_8001B798(D_8012BFF6);
+    if (arg0 == -1) {
+        return NULL;
+    }
+    entry = func_8001B798(table[arg0]);
+    if (entry->count == 0) {
+        return NULL;
+    }
+    return entry->data;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D75DC.s")
 
