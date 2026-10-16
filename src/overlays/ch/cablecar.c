@@ -126,7 +126,38 @@ void func_80800B74_chcablecar(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800BD0_chcablecar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800D14_chcablecar.s")
+void func_80800D14_chcablecar(Actor *arg0, s32 arg1) {
+    void _subaddieDll_entrypoint_4(Actor *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800F4F34(u32, f32 *, f32, f32);
+    u32 func_800F54E4(void);
+    s32 func_800F6C88(s32);
+    s32 func_800F76B0(s32, s32, s32);
+    void func_80103014(u8 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    union {
+        Actor *actor;
+        struct {
+            u8 reserved[0x7C];
+            u16 flags;
+        } *fields;
+    } view;
+    u32 sp20;
+    Actor *actor;
+
+    if (arg0->unk3C != NULL) {
+        sp20 = func_800F54E4();
+        actor = func_80106790(arg0->unk3C);
+        actor->rotation[0] = arg0->rotation[0];
+        func_800EE7F8(actor->position, arg0->position);
+        func_80103014((u8 *)actor);
+        view.actor = arg0;
+        _subaddieDll_entrypoint_4(actor, view.fields->flags);
+        if (func_800F6C88(sp20) && func_800F4F34(sp20, actor->position, 0.0f, 80.0f) && arg1) {
+            func_800F76B0(sp20, 10, (s32)actor->unk0);
+        }
+    }
+}
 
 void func_80800DC8_chcablecar(Actor *arg0) {
     void _subaddieDll_entrypoint_4(Actor*, u32);
