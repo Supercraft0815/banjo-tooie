@@ -131,7 +131,21 @@ int func_8008D750(PlayerState *player) {
     return func_800C6E38(14) && func_800A3304(player);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008D790.s")
+int func_8008D790(PlayerState *player) {
+    s32 _baduo_entrypoint_4(void);
+    s32 func_800C954C(void);
+    int func_800DB9B0(void);
+    s32 func_800F6D24(s32);
+    int func_800F8004(s32);
+    return _baduo_entrypoint_4()
+        && !func_8008E39C(player)
+        && player_isStable(player)
+        && !func_800C954C()
+        && !func_800DB9B0()
+        && !func_800F8004(player->unk184)
+        && !func_800F6D24(player->unk184)
+        && baflag_isFalse(player, 0x34);
+}
 
 int func_8008D850(PlayerState *player) {
     int func_800C6E38(s32);
@@ -201,7 +215,7 @@ void func_8008DAA8(void *arg0) {
 /* extern */
 
 void func_8008DAC8(s32 arg0) {
-    s32 func_800DB9B0();
+    int func_800DB9B0(void);
     func_800DB9B0();
 }
 
@@ -421,7 +435,7 @@ s32 func_8008E454(PlayerState *arg0) {
     s32 _gcmapsects_entrypoint_4(f32 *);
     void func_8009C128(PlayerState *, f32[3]);
     u8 func_800BFAA4(void);
-    s32 func_800DB9B0();
+    int func_800DB9B0(void);
     f32 sp1C[3];
 
     if ((func_800DB9B0() != 0) && (func_800BFAA4() != 0)) {
