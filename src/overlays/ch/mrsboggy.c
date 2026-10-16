@@ -65,7 +65,7 @@ void func_80800548_chmrsboggy(Actor* arg0)
 void func_80800568_chmrsboggy(void *arg0) {
     s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
     s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
-    s32 func_808007CC_chmrsboggy(void *, s32, s32);
+    void func_808007CC_chmrsboggy(Actor *, s32, s32);
     extern s32 D_80800A20_chmrsboggy;
     extern s32 D_80800B30_chmrsboggy;
     s32 temp_v0;
@@ -86,7 +86,7 @@ s32 func_8080070C_chmrsboggy(s32 arg0, s32 arg1, s32 arg2) { s32 func_80800990_c
 
 s32 func_80800738_chmrsboggy(void *arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_0(s32, s32);
-    s32 func_808007CC_chmrsboggy(void *, s32, s32);
+    void func_808007CC_chmrsboggy(Actor *, s32, s32);
     if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
         if ((*(s32 *)((s8 *)(arg0) + (0x28))) != 2) {
             func_808007CC_chmrsboggy(arg0, 2, 1);
@@ -106,7 +106,32 @@ void func_80800790_chmrsboggy(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggy/func_808007CC_chmrsboggy.s")
+void func_808007CC_chmrsboggy(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_7(s32, s32);
+    s32 _capod_entrypoint_8(s32);
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    void _gcdialogcamera_entrypoint_5(f32 *);
+    void _gcdialogcamera_entrypoint_8(void);
+    extern u32 D_80800A80_chmrsboggy;
+
+    switch (arg0->actorData[4]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x12, 0);
+        case 1:
+        case 3:
+            _capod_entrypoint_8(1);
+            arg0->actorData[4] = 2;
+            _gcdialogcamera_entrypoint_3(&D_80800A80_chmrsboggy, arg0->scale);
+            _gcdialogcamera_entrypoint_4(arg0->position);
+            _gcdialogcamera_entrypoint_5(arg0->rotation);
+            _gcdialogcamera_entrypoint_8();
+        case 2:
+            _capod_entrypoint_7(arg1, arg2);
+            break;
+    }
+}
 
 void func_80800878_chmrsboggy(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *arg3) {
     void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
