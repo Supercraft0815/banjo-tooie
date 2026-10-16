@@ -162,7 +162,27 @@ s32 func_800E9BF4(s16 *arg0, s32 arg1) { if ((arg1 < 0) || (arg1 >= arg0[1])) re
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9C44.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9CF4.s")
+void func_800E9CF4(s16 *arg0) {
+    s32 func_800E9E88(s32);
+    u32 func_800E9EB4(s16 *);
+    s32 start;
+    s32 entry;
+    u32 end;
+
+    if (arg0[3] != 0) {
+        start = func_800E9E88((s32)arg0);
+        end = func_800E9EB4(arg0);
+        entry = start;
+        if ((u32)entry < end) {
+            do {
+                if ((*(s32 *)(entry + 8) & 1) == 1) {
+                    **(s32 **)entry = entry;
+                }
+                entry += 12;
+            } while ((u32)entry < end);
+        }
+    }
+}
 
 Prop *func_800E9D68(s16 *arg0) {
     s32 func_800B42A0(s32, s32);
