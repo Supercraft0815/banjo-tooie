@@ -391,7 +391,20 @@ s32 func_80801784_chquiz(void *arg0, s32 arg1) { return ((s32 *)arg0)[arg1 + 0x1
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801B7C_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801C08_chquiz.s")
+s32 func_80801C08_chquiz(void *arg0, s32 arg1) {
+    s32 var_s0;
+
+    var_s0 = 3;
+loop_1:
+    if (func_80801784_chquiz(arg0, var_s0) >= arg1) {
+        return var_s0;
+    }
+    var_s0 += 1;
+    if (var_s0 == 7) {
+        return -1;
+    }
+    goto loop_1;
+}
 
 /* extern */
 
