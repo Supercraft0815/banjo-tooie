@@ -65,7 +65,20 @@ void func_800920F0(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_8009216C.s")
+void func_8009216C(PlayerState *arg0, f32 arg1[3], f32 arg2[3]) {
+    f32 baroll_get(PlayerState *);
+    f32 func_8009BFCC(PlayerState *);
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    u8 *temp_v0;
+
+    func_800920F0(arg0);
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x24) = baroll_get(arg0);
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x20) = func_8009BFCC(arg0);
+    temp_v0 = *(u8 **)((u8 *)arg0 + 0x50);
+    func_800EFA4C(arg2, *(f32 *)(temp_v0 + 0x20), *(f32 *)(temp_v0 + 0x28), *(f32 *)(temp_v0 + 0x24));
+    func_8009C128(arg0, arg1);
+}
 
 void func_800921E0(PlayerState *player, s32 id, f32 dst[3]) {
     void func_8009C2A0(void *, s32, f32 *);
@@ -668,7 +681,7 @@ void func_80093E18(u8 *arg0, Gfx **arg1) {
 f32 func_80093ECC(u8 *arg0, f32 *arg1, s32 arg2, f32 *arg3) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF04C(f32[3], f32[3]);
-    s32 func_8009216C(u8 *, f32 *, s32);
+    void func_8009216C(PlayerState *, f32 *, f32 *);
     u8 *self = arg0;
     func_8009216C(self, arg1, arg2);
     func_800EE7F8(arg3, (f32 *)(*(u8 **)(self + 0x50) + 0x2C));
