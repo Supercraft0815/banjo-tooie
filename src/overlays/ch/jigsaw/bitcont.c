@@ -28,7 +28,31 @@ OSThread *chjigsawbitcont_entrypoint_0(void)
     return (OSThread *) D_808009B8_chjigsawbitcont;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_80800570_chjigsawbitcont.s")
+void func_80800570_chjigsawbitcont(Actor *arg0, u32 arg1) {
+    void func_80101FDC(Actor *, u32);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void _subaddiebounce_entrypoint_0(Actor *);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+
+    func_80101FDC(arg0, arg1);
+    switch (arg0->unk70_10) {
+        case 2:
+            arg0->unk79_4 = 3;
+            ((f32 *)arg0->actorData)[3] = func_800DC178(0.0f, 250.0f);
+            _subaddiebounce_entrypoint_0(arg0);
+            arg0->unk64_16 = 1;
+            break;
+        case 3:
+            func_800EE7F8(arg0->position, (f32 *)arg0->actorData);
+            _subaddieDll_entrypoint_4(arg0, 0);
+            break;
+        case 4:
+            func_800EE7F8(arg0->position, (f32 *)arg0->actorData);
+            arg0->unk64_16 = 1;
+            break;
+    }
+}
 
 void func_80800634_chjigsawbitcont(s32 arg0) {
     s32 func_8001211C();
