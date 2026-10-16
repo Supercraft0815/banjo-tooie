@@ -285,7 +285,22 @@ void func_8080290C_chdiggerboss(Actor *arg0, u32 arg1, u32 arg2) {
     func_80802938_chdiggerboss(arg0, arg0->unk0, arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80802938_chdiggerboss.s")
+void func_80802938_chdiggerboss(Actor *arg0, Unk80132ED0 *arg1, u32 arg2, u32 arg3) {
+    void *func_80100094(Actor *, u32);
+    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+    s16 *data;
+
+    data = func_80100094(arg0, 0U);
+    switch (data[4]) {
+        case 0:
+            func_80802778_chdiggerboss(arg0, arg3);
+        case 2:
+            data[4] = 1;
+        case 1:
+            _capod_entrypoint_6(arg1, arg2, arg3 | 0x80000);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808029C8_chdiggerboss.s")
 
