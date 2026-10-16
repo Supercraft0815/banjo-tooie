@@ -1,7 +1,20 @@
 #include "common.h"
 struct player_state_s;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80800000_bswasher.s")
+void func_80800000_bswasher(struct player_state_s *arg0) {
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    s32 bastick_getZone(struct player_state_s *);
+    f32 bastick_getZonePosition(struct player_state_s *);
+    f32 func_800F1214(f32, f32, f32);
+    f32 sp1C;
+
+    sp1C = bastick_getZonePosition(arg0);
+    if (bastick_getZone(arg0) == 0) {
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+        return;
+    }
+    baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp1C, 30.0f, 900.0f));
+}
 
 /* extern */
 
@@ -188,7 +201,7 @@ void func_808010DC_bswasher(struct player_state_s *arg0) {
     int func_8008DD04(struct player_state_s *);
     int func_8008E148(struct player_state_s *);
     void func_8009D3A8(struct player_state_s *, s32);
-    s32 func_80800000_bswasher(s32);
+    void func_80800000_bswasher(struct player_state_s *);
     s32 func_80800300_bswasher(s32);
     s32 var_s1;
 
@@ -280,7 +293,7 @@ void func_80801314_bswasher(s32 arg0) {
     s32 _babounce_entrypoint_2();
     s32 _babounce_entrypoint_9(s32);
     void bs_setState(struct player_state_s *, int);
-    s32 func_80800000_bswasher(s32);
+    void func_80800000_bswasher(struct player_state_s *);
     s32 sp1C;
 
     sp1C = 0;
