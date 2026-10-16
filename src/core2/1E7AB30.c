@@ -111,9 +111,9 @@ void func_800A16BC(s32 arg0) {
     (*(u8 *)((s8 *)(&D_80127090) + (5))) = (u8) ((*(u8 *)((s8 *)(&D_80127090) + (5))) - 1);
 }
 
-void func_800A16F4(s32 arg0) {
-    s32 _batimer_set(s32, s32, s32);
-    _batimer_set(arg0, 0xE, 0x40400000);
+void func_800A16F4(PlayerState *arg0) {
+    void _batimer_set(PlayerState *, s32, f32);
+    _batimer_set(arg0, 0xE, 3.0f);
 }
 
 /* extern */
@@ -140,7 +140,35 @@ s32 func_800A1760(PlayerState *arg0) {
     return func_800D4EB8(func_800A3274(arg0));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A17A8.s")
+void func_800A17A8(PlayerState *arg0, s32 arg1) {
+    void _batimer_set(PlayerState *, s32, f32);
+    s32 func_800A1294(s32);
+    s32 func_800A3274(PlayerState *);
+    s32 func_800D3E40(s32);
+    void func_800D4E18(s32, s32);
+    u8 func_800D4EB8(s32);
+    void func_800F9EC0(s32, s32);
+    extern s8 D_80127092;
+    s32 transformation;
+
+    if (*(s32 *)((s8 *)arg0 + 0x158) != 0) {
+        func_800F9EC0(arg0->unk184, arg1);
+        return;
+    }
+    transformation = func_800A3274(arg0);
+    if (arg1 >= 0 || (u8)D_80127092 == 0) {
+        if (func_800D4EB8(transformation) != 0) {
+            if (func_800D3E40(9) != 0) {
+                arg1 = func_800D4EB8(transformation);
+            }
+            func_800D4E18(transformation, arg1);
+            func_800A1294(0);
+            if (func_800D3E40(4) != 0) {
+                _batimer_set(arg0, 0xE, 3.0f);
+            }
+        }
+    }
+}
 
 /* extern */
 
