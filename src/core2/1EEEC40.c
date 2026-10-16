@@ -60,7 +60,34 @@ void func_80115484(PlayerState* arg0, f32* arg1)
     func_80112524(arg0,arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEC40/func_801154A4.s")
+void func_801154A4(PlayerState *arg0) {
+    f32 func_800EEF94(f32 *);
+    void func_800EFB24(void *, void *, void *);
+    void func_801107F0(void *, f32 *);
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp2C[3];
+    f32 distance;
+    f32 limit;
+
+    limit = ((f32 *)arg0->backpack)[5];
+    if (((f32 *)arg0->backpack)[3] < limit) {
+        func_80115484(arg0, sp38);
+        func_801107F0(arg0, sp44);
+        func_800EFB24(sp2C, sp44, sp38);
+        distance = func_800EEF94(sp2C);
+            limit = ((f32 *)arg0->backpack)[5];
+        if (limit < distance) {
+            ((f32 *)arg0->backpack)[3] = limit;
+        } else if (((f32 *)arg0->backpack)[3] < distance) {
+            ((f32 *)arg0->backpack)[3] = distance;
+        }
+    } else {
+        ((f32 *)arg0->backpack)[3] = limit;
+    }
+    ((f32 *)arg0->backpack)[4] =
+        ((f32 *)arg0->backpack)[6];
+}
 
 void func_80115564(u8 *arg0) {
     u8 *temp_v0;
