@@ -5,17 +5,40 @@ s32 basub_entrypoint_0()
     return 0x6C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/func_80800008_basub.s")
+void func_80800008_basub(u8 *arg0, s32 arg1) {
+    void func_80800834_basub(u8 *arg0);
+
+    switch (arg1) {
+        case 1:
+            if ((*(u8 **)(arg0 + 0x130))[0x5D] == 2) {
+                (*(u8 **)(arg0 + 0x130))[0x5E] = 0;
+                *(f32 *)(*(u8 **)(arg0 + 0x130) + 0x54) =
+                    *(f32 *)(*(u8 **)(arg0 + 0x130) + 0x60) -
+                    *(f32 *)(*(u8 **)(arg0 + 0x130) + 0x64);
+            }
+            break;
+        case 2:
+            if ((*(u8 **)(arg0 + 0x130))[0x5D] == 1) {
+                (*(u8 **)(arg0 + 0x130))[0x5C] = (*(u8 **)(arg0 + 0x130))[0x5F] - 1;
+            } else {
+                (*(u8 **)(arg0 + 0x130))[0x5C]--;
+            }
+            *(f32 *)(*(u8 **)(arg0 + 0x130) + 0x54) +=
+                *(f32 *)(*(u8 **)(arg0 + 0x130) + 0x64);
+            func_80800834_basub(arg0);
+            break;
+    }
+    (*(u8 **)(arg0 + 0x130))[0x5D] = arg1;
+}
 
 /* extern */
 
 void func_808000CC_basub(u8 *arg0) {
-    s32 func_80800008_basub(s32, s32);
     (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x130)))) + (0x58))) = 0.0f;
     (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x130)))) + (0x5E))) = 0;
     (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x130)))) + (0x54))) = 0.0f;
     (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x130)))) + (0x5D))) = 0;
-    func_80800008_basub((s32)arg0, 1);
+    func_80800008_basub(arg0, 1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/func_80800110_basub.s")
