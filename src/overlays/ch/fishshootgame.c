@@ -41,7 +41,20 @@ void func_808002E8_chfishshootgame(Actor *arg0, f32 arg1) {
     _subaddieaudioquick_entrypoint_2(arg0, (f32 *)((u8 *)arg0 + 4), &D_80801978_chfishshootgame);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80800320_chfishshootgame.s")
+void func_80800320_chfishshootgame(Actor *arg0) {
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    u8 *sp34;
+    f32 sp28[3];
+
+    sp34 = func_80100094(arg0, 0);
+    func_800EE7F8(sp28, arg0->position);
+    sp28[1] -= 100.0f;
+    func_800D1000(0x21, 1, arg0->position, 4, arg0->unk0);
+    _susubgame_entrypoint_6(arg0, sp34 + 0xB0, 0, 0x2090, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_808003B0_chfishshootgame.s")
 
