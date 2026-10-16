@@ -81,7 +81,7 @@ void func_80800D28_chjollyroger(s32 arg0, s32 arg1, s32 arg2) {
     void func_80102424(Actor *, s32);
     s32 func_80105A9C(s32, s32);
     s32 func_80105BAC(s32);
-    s32 func_80800F3C_chjollyroger(s32, s32, s32);
+    void func_80800F3C_chjollyroger(Actor *, s32, s32);
     if ((arg1 == 0xFFB) || (arg1 == 0x1054)) {
         func_80102424(arg0, 4);
         func_80105A9C(arg0, 0x43AF0000);
@@ -123,7 +123,21 @@ void func_80800E30_chjollyroger(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800E6C_chjollyroger.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800F3C_chjollyroger.s")
+void func_80800F3C_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+
+    switch (arg0->actorData[4]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x10, arg2);
+        case 2:
+        case 3:
+            arg0->actorData[4] = 1;
+        case 1:
+            _capod_entrypoint_6(arg0->unk0, arg1, arg2);
+            break;
+    }
+}
 
 void func_80800FBC_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
