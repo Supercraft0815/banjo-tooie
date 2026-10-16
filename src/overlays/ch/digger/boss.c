@@ -618,7 +618,32 @@ void func_80804FE4_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808053BC_chdiggerboss.s")
+void func_808053BC_chdiggerboss(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    void func_800C8B84(volatile s32);
+    void func_800E87E0(u8);
+    s32 temp_a0;
+    s32 var_s1;
+    u8 temp_a0_2;
+    u8 *temp_v0;
+    u8 *var_s0;
+
+    temp_v0 = func_80100094(arg0, 0);
+    temp_v0[0x24] = _subaddieaudioloop_entrypoint_3(temp_v0[0x24]);
+    for (var_s1 = 0, var_s0 = temp_v0; var_s1 != 0x70; var_s1 += 0x1C, var_s0 += 0x1C) {
+        temp_a0 = *(s32 *)(var_s0 + 0x30);
+        if (temp_a0 != 0) {
+            func_800C8B84(temp_a0);
+            *(s32 *)(var_s0 + 0x30) = 0;
+        }
+        temp_a0_2 = var_s0[0x48];
+        if (temp_a0_2 != 0) {
+            func_800E87E0(temp_a0_2);
+            var_s0[0x48] = 0;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80805448_chdiggerboss.s")
 
