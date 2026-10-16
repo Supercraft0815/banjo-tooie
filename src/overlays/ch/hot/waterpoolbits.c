@@ -67,7 +67,7 @@ s32 func_808001A8_chhotwaterpoolbits(s32 arg0, s32 arg1, s32 arg2) {
     s32 _capod_entrypoint_14();
     s32 _chdoor_entrypoint_1(s32);
     s32 _glcutDll_entrypoint_6(s32, s32);
-    s32 func_800FFAB0(s32);
+    void func_800FFAB0(Actor *);
     if ((arg1 == 0xB) && (arg2 == 0xD)) {
         _capod_entrypoint_14();
         _glcutDll_entrypoint_6(0x1A7, 0x29);
@@ -132,7 +132,16 @@ void chhotwaterpoolbits_entrypoint_4(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, U
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/waterpoolbits/func_808006BC_chhotwaterpoolbits.s")
+void func_808006BC_chhotwaterpoolbits(Actor *arg0) {
+    s32 func_800DA298(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    if ((arg0->unk74_7 == 0x33) && (func_800DA298(0x31B) != 0)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/waterpoolbits/func_80800718_chhotwaterpoolbits.s")
 
