@@ -265,7 +265,22 @@ s32 func_8080126C_chnicecavemen(void *arg0) {
     return (*(s32 *)((s8 *)arg0 + 0x30)) == 0x3CA ? 0x17D5 : 0x1803;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_8080134C_chnicecavemen.s")
+s32 func_8080134C_chnicecavemen(Actor *arg0, s32 *arg1, s32 *arg2, s32 arg3, s32 arg4) {
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
+    void func_80801464_chnicecavemen(Actor *, s32, s32);
+    s32 temp_v0;
+
+    *(s8 *)((s8 *)arg1 + 0xE) = arg4;
+    temp_v0 = _subaddiedialog_entrypoint_8((s32)arg0, arg0->position, arg1, arg2, arg3);
+    if (temp_v0 == 0) {
+        return 0;
+    }
+    if (_subaddiedialog_entrypoint_9((s32)arg0, temp_v0, arg2, arg3) != 3) {
+        func_80801464_chnicecavemen(arg0, 2, 0);
+    }
+    return 1;
+}
 
 /* extern */
 
