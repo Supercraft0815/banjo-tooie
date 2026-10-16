@@ -189,7 +189,7 @@ void func_808025CC_chklungo(Actor *arg0, s32 arg1) {
 }
 
 void func_80802634_chklungo(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
     void _subaddieaudioquick_entrypoint_4(Actor*, f32*, u32*, u32*);
     extern u32 D_80803BE0_chklungo;
     extern u32 D_80803BEC_chklungo;
@@ -227,18 +227,37 @@ void func_808026CC_chklungo(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80802798_chklungo.s")
+void func_80802798_chklungo(Actor *arg0) {
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    extern void _chbaddiesetup_entrypoint_10(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80018820(s32, f32, f32);
+    s32 func_800E15CC(s32, f32, f32);
+    extern u32 D_80803C6C_chklungo;
+    extern u32 D_80803C74_chklungo;
+    f32 position[3];
+
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80803C74_chklungo, 0.7f);
+    if (_subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80803C6C_chklungo, 0.8f)) {
+        func_800EE7F8(position, arg0->position);
+        position[1] += 80.0f;
+        _chbaddiesetup_entrypoint_5(_chbaddiesetup_entrypoint_10, 5, *(s32 *)&position[0], *(s32 *)&position[1], *(s32 *)&position[2], *(s32 *)&arg0->rotation[1]);
+        func_80018820(0, 1.0f, 0.4f);
+        func_800E15CC(0, 10.0f, 0.8f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80802864_chklungo.s")
 
 void func_808028E8_chklungo(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
     extern u32 D_80803C98_chklungo;
     _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80803C98_chklungo, 0.0f);
 }
 
 void func_80802914_chklungo(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
     extern u32 D_80803CA8_chklungo;
     _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80803CA8_chklungo, 0.0f);
 }
