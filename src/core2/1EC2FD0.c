@@ -93,7 +93,7 @@ void *func_800E98C0(s32 arg0) {
     return sp1C;
 }
 
-void func_800E99E0(void) {
+void *func_800E99E0(void) {
     typedef struct {
         u8 pad[0xB];
         u8 reserved : 3;
@@ -110,6 +110,7 @@ void func_800E99E0(void) {
     p->flag8 = 0;
     p->flag4 = 0;
     p->flag10 = 1;
+    return p;
 }
 
 void *func_800E9A24(s32 arg0) {

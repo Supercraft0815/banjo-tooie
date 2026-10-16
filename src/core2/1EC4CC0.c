@@ -280,11 +280,40 @@ void func_800EBB94(void) {
 void func_800EBC04(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EBC0C.s")
+void func_800EBC0C(s32 arg0, s32 *arg1, void *arg2, s32 arg3) {
+    typedef struct {
+        void *owner;
+        s16 position[3];
+        u16 frame : 5;
+        u16 random : 5;
+        u16 flag20 : 1;
+        u16 flag10 : 1;
+        u16 flag8 : 1;
+        u16 flag4 : 1;
+        u16 isModelProp : 1;
+        u16 isActorProp : 1;
+    } Prop;
+    s32 func_800BD948(s32);
+    s32 func_800DC214(s32, s32);
+    void *func_800E99E0(void);
+    Prop *prop;
+
+    prop = func_800E99E0();
+    prop->position[0] = arg1[0];
+    prop->position[1] = arg1[1];
+    prop->position[2] = arg1[2];
+    prop->owner = arg2;
+    prop->isModelProp = arg3;
+    prop->frame = 0;
+    prop->flag20 = 0;
+    prop->random = func_800DC214(0, 0x20);
+    *(Prop **)arg2 = prop;
+    *(s16 *)((u8 *)arg2 + 0x1C) = func_800BD948(arg0);
+}
 
 void func_800EBCD0(u8 **arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 func_800E9AC0(s32, s32);
-    s32 func_800EBC0C(s32, s32, void *, s32);
+    void func_800EBC0C(s32, s32 *, void *, s32);
     volatile struct {
         u16 pad[3];
         u16 saved;
@@ -367,7 +396,7 @@ void func_800EBE24(void *arg0) {
 void func_800EBE74(s32 arg0, void *arg1, s32 arg2) {
     s32 func_800BDBC4(s32);
     s32 func_800BDC44();
-    s32 func_800EBC0C(s32, s32, void *, s32);
+    void func_800EBC0C(s32, s32 *, void *, s32);
     s32 var_v0;
 
     if ((*(s32 *)((s8 *)(arg1) + (0x10))) & 1) {
