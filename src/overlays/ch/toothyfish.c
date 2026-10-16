@@ -131,7 +131,20 @@ void func_80800E04_chtoothyfish(Actor *arg0) {
 void func_80800EDC_chtoothyfish(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800EE4_chtoothyfish.s")
+void func_80800EE4_chtoothyfish(Actor *arg0, s32 arg1) {
+    f32 func_800DC178(f32, f32);
+    void func_80101FDC(Actor *, u32);
+
+    func_80101FDC(arg0, arg1);
+    switch (arg1) {
+        case 2:
+            arg0->unk50 = func_800DC178(165.0f, 195.0f);
+            break;
+        case 4:
+            arg0->unk50 = func_800DC178(45.0f, 135.0f);
+            break;
+    }
+}
 
 void func_80800F6C_chtoothyfish(f32 *arg0, f32 arg1, f32 arg2) {
     s32 func_800B53A4(s32);
