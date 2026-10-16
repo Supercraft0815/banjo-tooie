@@ -657,7 +657,26 @@ void gcnewoption_entrypoint_26(u8 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_27.s")
+/* extern */
+
+void gcnewoption_entrypoint_27(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 _gczoombox_entrypoint_40(s32, s32);
+    s32 pad;
+    s32 sp20;
+    s32 temp_v0;
+    s32 temp_v0_2;
+
+    (*(s8 *)((s8 *)((arg0 + arg1)) + (0x218))) = arg2;
+    temp_v0 = func_80800038_gcnewoption(arg0, arg1);
+    sp20 = temp_v0;
+    func_80800000_gcnewoption(arg0, temp_v0);
+    if (sp20 != -1) {
+        temp_v0_2 = func_80800000_gcnewoption(arg0, sp20);
+        if (*(s32 *)((s32)arg0 + temp_v0_2 * 4 + 0x3C) != 0) {
+            _gczoombox_entrypoint_40(*(s32 *)((s32)arg0 + temp_v0_2 * 4 + 0x3C), arg2);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_28.s")
 
