@@ -61,7 +61,19 @@ void func_808002C8_chtiptup(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_808002F4_chtiptup.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_808004C4_chtiptup.s")
+void func_808004C4_chtiptup(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
+    void func_80800808_chtiptup(Actor *, s32, s32);
+    extern s32 D_80801360_chtiptup;
+    extern s32 D_80801570_chtiptup;
+    s32 temp_v0;
+
+    temp_v0 = _subaddiedialog_entrypoint_8((s32)arg0, (s8 *)arg0 + 4, &D_80801570_chtiptup, &D_80801360_chtiptup, 7);
+    if ((temp_v0 != 0) && (_subaddiedialog_entrypoint_9((s32)arg0, temp_v0, &D_80801360_chtiptup, 7) != 3)) {
+        func_80800808_chtiptup(arg0, 2, 0);
+    }
+}
 
 /* extern */
 
