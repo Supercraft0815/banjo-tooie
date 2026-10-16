@@ -43,4 +43,13 @@ s32 glzone_entrypoint_5(s32 arg0, s32 arg1, s32 arg2) {
     return _dbzone_entrypoint_3(arg0, arg1) + 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/zone/glzone_entrypoint_6.s")
+s32 glzone_entrypoint_6(u8 *arg0, u8 *arg1, s32 arg2) {
+    s32 i;
+
+    for (i = 0; i < arg2; i++) {
+        if (arg0[arg1[i] + 1] != 0) {
+            return 1;
+        }
+    }
+    return 0;
+}
