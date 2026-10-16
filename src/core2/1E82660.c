@@ -27,7 +27,30 @@ void func_800A8EF0(s32 arg0, s32 arg1) {
     } while (var_s0 != (s32 *)&D_801276F0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A8F68.s")
+void func_800A8F68(void) {
+    s32 func_800A87FC(s32);
+    void func_800A91F4(s32);
+    extern s16 D_801276D0;
+    s32 i;
+    volatile s16 *ptr;
+    s32 address;
+
+    i = 0;
+    do {
+        func_800A91F4(i);
+        i++;
+    } while (i != 8);
+    address = (s32)&D_801276D0;
+    ptr = (volatile s16 *)address;
+    i = ptr[1];
+    if (i != 0) {
+        do {
+            func_800A87FC(i - 1);
+            ptr[1] = ptr[1] - 1;
+            i = ptr[1];
+        } while (i != 0);
+    }
+}
 
 /* extern */
 
