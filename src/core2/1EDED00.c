@@ -141,7 +141,45 @@ void func_80105854(Actor *arg0) { s32 func_80105A5C(Actor *); func_801054D4(); i
 
 void func_8010588C(Actor *arg0) { void func_8010A570(Actor *); struct { u32 words[10]; u32 upper : 21; u32 flag : 1; u32 lower : 10; } *flags; func_8010A570(arg0); flags = (void *)arg0->unk0; flags->flag = 1; func_801054D4(arg0); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_801058C4.s")
+/* extern */
+
+void func_801058C4(Actor *arg0, s32 arg1, f32 arg2, u32 arg3) {
+    void func_800D8648(s32, f32 *);
+    struct State {
+        u32 upper : 21;
+        s32 id : 10;
+        u32 active : 1;
+        s32 unk4;
+        s32 unk8;
+        f32 current;
+        f32 previous;
+        f32 speed;
+        s32 unk18[4];
+        u32 mode : 3;
+        u32 lower28 : 29;
+    } *var_v1, *var_v0;
+    struct { u32 words[29]; u32 upper : 27; u32 flag : 1; u32 lower : 4; } *actorFlags;
+
+    var_v0 = func_80105494(arg0);
+    var_v1 = var_v0;
+    if (var_v0 == NULL) {
+        var_v0 = func_8010556C(arg0);
+        var_v1 = var_v0;
+    }
+    if (arg1 != -1) {
+        var_v0->id = arg1;
+    }
+    if (arg3 != 0) {
+        func_800D8648(var_v1->id, arg0->position);
+    }
+    var_v1->current = 0.0f;
+    var_v1->previous = 0.0f;
+    var_v1->speed = arg2;
+    actorFlags = (void *)arg0;
+    actorFlags->flag = 1;
+    var_v1->active = 1;
+    var_v1->mode = 0;
+}
 
 s32 func_80105998(Actor *arg0, f32 arg1) {
     void *state;
