@@ -25,7 +25,20 @@ void func_80800000_chmayafarmer(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_808000B0_chmayafarmer.s")
+void func_808000B0_chmayafarmer(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *arg3) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+
+    switch (arg0->unk6C_0) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 8, arg2);
+        case 2:
+            arg0->unk6C_0 = 1;
+        case 1:
+            _capod_entrypoint_6(arg3, arg1, arg2);
+            break;
+    }
+}
 
 /* extern */
 
@@ -78,7 +91,7 @@ s32 func_80800228_chmayafarmer(u8 *arg0, s32 arg1, s32 arg2) {
     s32 *func_80108528(s32, u8 *, s32, u8 **);
     void func_80108B04(Actor *, u32);
     void func_80800000_chmayafarmer(Actor *, s32, s32);
-    void func_808000B0_chmayafarmer(u8 *, s32, s32, s32);
+    void func_808000B0_chmayafarmer(Actor *, s32, s32, Unk80132ED0 *);
     void func_808001CC_chmayafarmer(u8 *, s32);
     extern s32 D_8080125C_chmayafarmer[];
     extern u8 D_8080126C_chmayafarmer[];
