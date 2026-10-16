@@ -76,7 +76,19 @@ s32 func_800F1E6C(f32 *arg0, f32 *arg1, f32 *target_yaw) {
     return func_800F1EA4(sp1C, target_yaw);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1EA4.s")
+/* extern */
+
+int func_800F1EA4(f32 *arg0, f32 *arg1) {
+    f32 func_80013B7C(f32, f32);
+
+    if (arg0[0] != 0.0f || arg0[2] != 0.0f) {
+        *arg1 = func_80013B7C(arg0[0], arg0[2]);
+        return 1;
+    } else {
+        *arg1 = 0.0f;
+        return 0;
+    }
+}
 
 void func_800F1F0C(f32 *arg0, f32 *arg1, f32 arg2) {
     func_800F1DCC(func_800F1DF4(arg0, arg1), arg2);
