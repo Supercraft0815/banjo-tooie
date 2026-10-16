@@ -44,7 +44,20 @@ void func_80800250_gcmapsects(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/func_8080035C_gcmapsects.s")
+void func_8080035C_gcmapsects(void *arg0, s32 arg1) {
+    s32 _dbtex_entrypoint_1(s32);
+    struct Section { u8 pad[0x44]; s32 first; s32 second; u8 end[0xC]; };
+    struct Map { u8 pad[0x68]; struct Section *sections; };
+
+    if (((struct Map *)arg0)->sections[arg1].first != 0) {
+        _dbtex_entrypoint_1(((struct Map *)arg0)->sections[arg1].first);
+        ((struct Map *)arg0)->sections[arg1].first = 0;
+    }
+    if (((struct Map *)arg0)->sections[arg1].second != 0) {
+        _dbtex_entrypoint_1(((struct Map *)arg0)->sections[arg1].second);
+        ((struct Map *)arg0)->sections[arg1].second = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/func_808003F4_gcmapsects.s")
 
@@ -167,7 +180,7 @@ void func_80800B58_gcmapsects(void *arg0) {
 /* extern */
 
 void func_80800C54_gcmapsects(void *arg0) {
-    s32 func_8080035C_gcmapsects(void *, s32);
+    void func_8080035C_gcmapsects(void *, s32);
     s32 func_808003F4_gcmapsects(void *, s32);
     s32 var_s0;
 
