@@ -311,7 +311,25 @@ s32 func_8010CFBC(f32 *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010D09C.s")
+void func_8010D09C(s32 arg0, f32 *arg1, f32 arg2) {
+    f32 func_800D8FF8(void);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_800F5A00(s32, f32 *);
+    void func_800F5A2C(s32, s32, f32 *);
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp1C[3];
+    f32 sp18;
+
+    sp18 = 1.0f / func_800D8FF8();
+    func_800F5A00(arg0, sp28);
+    func_800F5A2C(arg0, 8, sp34);
+    func_800EFB24(sp1C, sp28, sp34);
+    func_800EF334(sp1C, arg2 * sp18);
+    func_800EE780(arg1, sp28, sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010D12C.s")
 
