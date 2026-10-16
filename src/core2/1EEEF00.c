@@ -124,7 +124,27 @@ void func_80115CA4(void *arg0, f32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEF00/func_80115D08.s")
+void func_80115D08(void *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+    f32 func_800136E4(f32);
+    f32 func_80013B7C(f32, f32);
+    f32 sp24;
+    f32 temp_f0;
+    f32 var_f14;
+    f32 var_f12;
+    f32 sp1C;
+
+    temp_f0 = func_80013B7C(arg3, arg2);
+    if (arg4 >= 0.0f) {
+        var_f12 = temp_f0;
+        var_f14 = temp_f0 + arg4;
+    } else {
+        var_f12 = temp_f0 + arg4;
+        var_f14 = temp_f0 - arg4;
+    }
+    sp24 = var_f14;
+    sp1C = func_800136E4(var_f12);
+    func_801158B0(arg0, sp1C, func_800136E4(sp24));
+}
 
 void func_80115D88(PlayerState *arg0) { void func_801107F0(void *, f32 *); void func_800EFB24(void *, void *, void *); f32 sp34[3]; f32 sp28[3]; f32 sp1C[3]; func_801107F0(arg0, sp34); func_801158CC(arg0, sp1C); func_800EFB24(sp28, sp34, sp1C); func_800F1884(sp28, (u8 *)arg0->state_timer + 0x24); (*(f32 *)((s8 *)(arg0->state_timer) + 0x28)) = 0.0f; }
 
