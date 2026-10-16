@@ -1,10 +1,12 @@
 #include "core2/1EA1270.h"
 
-s32 *func_800C7980(u8 *arg0) {
-    extern s32 _mlspline_entrypoint_6;
-    extern s32 _mlspline_entrypoint_7;
-    extern s32 _mlspline_entrypoint_8;
-    extern s32 _mlspline_entrypoint_10;
+typedef void (*SplineDerivativeFunc)(f32, u8, s32 *, f32 *);
+
+SplineDerivativeFunc func_800C7980(u8 *arg0) {
+    void _mlspline_entrypoint_6(f32, u8, s32 *, f32 *);
+    void _mlspline_entrypoint_7(f32, u8, s32 *, f32 *);
+    void _mlspline_entrypoint_8(f32, u8, s32 *, f32 *);
+    void _mlspline_entrypoint_10(f32, u8, s32 *, f32 *);
     s32 temp_v0;
     s32 temp_v1;
 
@@ -71,22 +73,22 @@ void func_800C7A68(Unk800C7A68* arg0, f32 arg1, f32 *arg2) {
 /* extern */
 
 void func_800C7AE4(u8 *arg0, s32 arg1, s32 arg2) {
-    s32 _mlspline_entrypoint_11(u8, u8 *, s32, s32, s32 *);
-    s32 *func_800C7980();
+    s32 _mlspline_entrypoint_11(u8, u8 *, s32, s32, void (*)(f32, u8, s32 *, f32 *));
+    SplineDerivativeFunc func_800C7980();
     _mlspline_entrypoint_11((*(u8 *)((s8 *)(arg0) + (2))), arg0 + 0x14, arg1, arg2, func_800C7980());
 }
 
 /* extern */
 
 void func_800C7B28(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 _mlspline_entrypoint_12(u8, u8 *, s32, s32, s32, s32 *);
-    s32 *func_800C7980();
+    s32 _mlspline_entrypoint_12(u8, u8 *, s32, s32, s32, void (*)(f32, u8, s32 *, f32 *));
+    SplineDerivativeFunc func_800C7980();
     _mlspline_entrypoint_12((*(u8 *)((s8 *)(arg0) + (2))), arg0 + 0x14, arg1, arg2, arg3 * 2, func_800C7980());
 }
 
 f32 func_800C7B7C(Unk800C7A68 *arg0, f32 arg1, f32 arg2, f32 arg3) {
-    f32 _mlspline_entrypoint_13(s16, u8 *, f32, f32, f32, s32 *);
-    s32 *func_800C7980();
+    f32 _mlspline_entrypoint_13(s16, u8 *, f32, f32, f32, void (*)(f32, u8, s32 *, f32 *));
+    SplineDerivativeFunc func_800C7980();
     return _mlspline_entrypoint_13((s16) arg0->unk2, (u8 *) &arg0->unk14, arg1, arg2, 0.0f, func_800C7980());
 }
 
@@ -98,8 +100,8 @@ f32 func_800C7B7C(Unk800C7A68 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 
 f32 func_800C7FD4(u8 *arg0, f32 arg1, f32 arg2) {
     f32 _glintrosyncDll_entrypoint_5(void);
-    f32 _mlspline_entrypoint_13(s16, u8 *, f32, f32, f32, s32 *);
-    s32 *func_800C7980();
+    f32 _mlspline_entrypoint_13(s16, u8 *, f32, f32, f32, void (*)(f32, u8, s32 *, f32 *));
+    SplineDerivativeFunc func_800C7980();
     f32 func_800C7E28(void *);
     f32 func_800D8FF8(void);
     f32 sp2C;
@@ -136,7 +138,18 @@ f32 func_800C8070(u8 *arg0, f32 arg1, f32 arg2, s32 *arg3) {
     return temp_f2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C810C.s")
+void func_800C810C(u8 *arg0, f32 arg1, f32 *arg2, f32 *arg3) {
+    f32 func_800136E4(f32);
+    void func_800EF2A0(f32 *);
+    void func_800F1A88(f32 *, f32 *);
+
+    func_800C7980(arg0)(arg1, arg0[2], (s32 *)(arg0 + 0x14), arg2);
+    func_800F1A88(arg2, arg3);
+    arg3[0] = func_800136E4(arg3[0]);
+    arg3[1] = func_800136E4(arg3[1] + 180.0f);
+    arg3[2] = 0.0f;
+    func_800EF2A0(arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C8198.s")
 
