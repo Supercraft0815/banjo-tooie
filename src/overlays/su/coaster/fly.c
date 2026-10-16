@@ -143,7 +143,35 @@ s32 func_80801FE4_sucoasterfly(Actor *arg0, f32 *arg1, f32 arg2, f32 arg3) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80802080_sucoasterfly.s")
+/* extern */
+
+void func_80802080_sucoasterfly(Actor *arg0) {
+    typedef struct {
+        u8 pad0[0x11];
+        u8 track;
+    } CoasterFlyData;
+    typedef struct {
+        u8 pad0[2];
+        union {
+            s16 id;
+            u8 bytes[2];
+        } expression;
+    } TrackData;
+    void *_sucoasterflydata_entrypoint_1(u32);
+    s32 _suexpression_entrypoint_1(u8);
+    s32 _suexpression_entrypoint_12(void *, s32, s32);
+    s32 _suexpression_entrypoint_17(void *, s32);
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    s32 pad;
+    TrackData *sp20;
+
+    sp20 = _sucoasterflydata_entrypoint_1((u32)((CoasterFlyData *)func_80100094(arg0, 0U))->track >> 4);
+    if ((func_80100094(arg0, 1U) == NULL) && (_suexpression_entrypoint_1(sp20->expression.bytes[1]) != 0)) {
+        _suexpression_entrypoint_7(arg0, 1, sp20->expression.id);
+        _suexpression_entrypoint_12(func_80100094(arg0, 1U), 0x42480000, 0x42200000);
+        _suexpression_entrypoint_17(func_80100094(arg0, 1U), 0x7D0);
+    }
+}
 
 void func_80802128_sucoasterfly(Actor* arg0) 
 {
