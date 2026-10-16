@@ -81,7 +81,20 @@ void func_800BA4C4(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)arg0 + 176) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA4D0.s")
+void func_800BA4D0(s16 *arg0, s16 arg1) {
+    s32 func_800B5698(s16 *);
+    void func_800BA54C(s16 *, s32);
+    s16 sp1E;
+    if (func_800B5698(&sp1E) != 0) {
+        if (arg1 < sp1E) {
+            arg1 = sp1E;
+        }
+        if (arg0[84] == 0) {
+            func_800BA54C(arg0, 2);
+        }
+    }
+    arg0[86] = arg1;
+}
 
 void func_800BA544(s32 *arg0, s32 arg1) {
     arg0[48] = arg1;
