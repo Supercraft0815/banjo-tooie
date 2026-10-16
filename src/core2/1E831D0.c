@@ -10,7 +10,21 @@ void func_800A98E0(void) {
     D_80127763 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E831D0/func_800A9924.s")
+void func_800A9924(s16 arg0, u8 arg1) {
+    extern u8 D_80127760;
+    s32 _glrecord_entrypoint_3(s16, s16);
+    s32 func_800D3D28(void);
+    void func_800A9D08(void);
+    void func_8001608C(void);
+    D_80127760 = *(&D_80127760 + 1);
+    *(&D_80127760 + 1) = 0;
+    func_800D3D28();
+    if (D_80127760 == 1 || D_80127760 == 2) {
+        _glrecord_entrypoint_3(*(s16 *)(&D_80127760 + 6), *(s16 *)(&D_80127760 + 8));
+    }
+    func_800A9D08();
+    func_8001608C();
+}
 
 void func_800A9998(void) {
     extern u8 D_80127760;
