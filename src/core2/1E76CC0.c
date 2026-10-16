@@ -99,7 +99,19 @@ void func_8009D5E0(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009D658.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009D7A4.s")
+void func_8009D7A4(PlayerState *arg0, f32 arg1, f32 arg2) {
+    f32 func_800DC178(f32, f32);
+    extern s16 D_80119208[];
+    void *temp_v0;
+
+    func_8009DF18(arg0, D_80119208[*(s32 *)((s8 *)*(void **)((s8 *)arg0 + 0x104) + 0x18)], func_800DC178(arg1, arg2), 0x61A8);
+    temp_v0 = *(void **)((s8 *)arg0 + 0x104);
+    (*(s32 *)((s8 *)temp_v0 + 0x18))++;
+    temp_v0 = *(void **)((s8 *)arg0 + 0x104);
+    if (*(s32 *)((s8 *)temp_v0 + 0x18) >= 3) {
+        *(s32 *)((s8 *)temp_v0 + 0x18) = 0;
+    }
+}
 
 void func_8009D820(PlayerState *arg0, f32 arg1) {
     f32 func_800DC0C0(void);
