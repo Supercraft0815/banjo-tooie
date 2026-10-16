@@ -52,7 +52,21 @@ void func_800B5028(void) {
     D_80127F18 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B5054.s")
+void func_800B5054(void) {
+    s32 func_800BA2C4(void *);
+    void heap_free(void *);
+    extern s32 D_80127F10;
+    extern s16 D_80127F18;
+    extern u8 D_80127F1D;
+    s32 i;
+    for (i = 0; i < D_80127F18; i++) {
+        func_800BA2C4(((void **)D_80127F10)[i]);
+    }
+    heap_free((void *)D_80127F10);
+    D_80127F10 = 0;
+    D_80127F18 = 0;
+    D_80127F1D = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B50F0.s")
 
