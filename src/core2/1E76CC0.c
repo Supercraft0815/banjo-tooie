@@ -215,7 +215,22 @@ void func_8009DAAC(s32 *arg0, f32 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76CC0/func_8009DB04.s")
+void func_8009DB04(PlayerState *arg0, s32 arg1, f32 arg2, s32 arg3) {
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_800C4208(s32, f32, u32, f32[3], f32, f32);
+    void func_800C4244(s32, f32, u32, f32[3], f32, f32);
+    extern f32 D_80125390;
+    extern f32 D_80125394;
+    f32 position[3];
+
+    func_8009DAAC(&arg1, &arg2);
+    func_8009C128(arg0, position);
+    if (func_8009D3D8(arg0) != 0) {
+        func_800C4208(arg1, arg2, arg3, position, 250.0f, D_80125390);
+    } else {
+        func_800C4244(arg1, arg2, arg3, position, 250.0f, D_80125394);
+    }
+}
 
 void func_8009DBB0(PlayerState *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     f32 func_800DC178(f32, f32);
