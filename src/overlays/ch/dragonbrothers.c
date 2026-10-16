@@ -94,7 +94,27 @@ void func_808004A4_chdragonbrothers(Actor *arg0, s32 arg1) {
     func_800A526C(sp2C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808005A4_chdragonbrothers.s")
+void func_808005A4_chdragonbrothers(void *arg0, s32 arg1) {
+    f32 *position = arg0;
+
+    switch (arg1) {
+        case 0:
+            position[0] = 5500.0f;
+            position[1] = -10.0f;
+            position[2] = 1200.0f;
+            return;
+        case 1:
+            position[0] = 4750.0f;
+            position[1] = -5.0f;
+            position[2] = 650.0f;
+            return;
+        case 2:
+            position[0] = 4000.0f;
+            position[1] = 0.0f;
+            position[2] = 300.0f;
+            return;
+    }
+}
 
 /* extern */
 
@@ -125,7 +145,7 @@ void func_808008C8_chdragonbrothers(Actor *arg0) {
     void func_800F5A00(s32, f32 *);
     s32 func_800F5EF8(s32);
     void *func_80100094(Actor *, u32);
-    s32 func_808005A4_chdragonbrothers(u8 *, u8);
+    void func_808005A4_chdragonbrothers(void *, s32);
     s32 func_808006C8_chdragonbrothers(Actor *);
     extern f32 D_8080557C_chdragonbrothers[3];
     u8 *temp_s0;
