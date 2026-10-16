@@ -20,7 +20,7 @@ OSThread *chboxingglove_entrypoint_1(void)
 
 void func_80800168_chboxingglove(void *arg0) {
     void *_subaddiefind_entrypoint_2(s32, s32 *, void *);
-    s32 func_80800630_chboxingglove(void *);
+    void func_80800630_chboxingglove(Actor *);
     s32 sp18[1];
     void *temp_v0;
 
@@ -63,4 +63,22 @@ s32 func_808004F8_chboxingglove(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/func_80800544_chboxingglove.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/func_80800630_chboxingglove.s")
+void func_80800630_chboxingglove(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    u8 *actors[4];
+    s32 count;
+    s32 i;
+    f32 (*data[1])[4];
+    f32 (*dst)[4];
+
+    data[0] = func_80100094(arg0, 0);
+    count = _subaddiefind_entrypoint_4(0x34D, actors, 4);
+    dst = data[0];
+    for (i = 0; i < count; i++) {
+        func_800EE7F8(*dst, ((Actor *)actors[i])->position);
+        (*dst)[3] = ((Actor *)actors[i])->scale * 150.0f;
+        dst++;
+    }
+}
