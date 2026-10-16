@@ -146,7 +146,16 @@ s32 func_8010B13C(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B190.s")
+s32 func_8010B190(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void func_800EF214(f32 *, f32, f32, f32);
+    f32 func_800D8FF8(void);
+    f32 func_8010C4AC(void *);
+    f32 sp18[2];
+
+    sp18[0] = func_8010C4AC(arg0);
+    func_800EF214(arg0->position, -arg0->rotation[0], arg0->rotation[1], sp18[0] * func_800D8FF8());
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B1F4.s")
 
