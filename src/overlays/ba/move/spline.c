@@ -68,7 +68,27 @@ void bamovespline_entrypoint_0(void *arg0, f32 *arg1) {
     func_800EFA4C(arg1, 0.0f, 1.0f, 0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/spline/bamovespline_entrypoint_1.s")
+int bamovespline_entrypoint_1(void *arg0, f32 arg1) {
+    struct Unk800C7A68 *sp34;
+    f32 sp28[3];
+    f32 sp1C[3];
+    void *temp_v0;
+    void *func_800D7520(s32);
+    void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+
+    temp_v0 = *(void **)((u8 *)arg0 + 0xC8);
+    if (*(u8 *)((u8 *)temp_v0 + 0x90) != 4) {
+        return 0;
+    }
+    if (*(f32 *)((u8 *)temp_v0 + 0xA8) >= 0.0f) {
+        return 0;
+    }
+    sp34 = func_800D7520(*(s16 *)((u8 *)temp_v0 + 0x94));
+    func_800C7A68(sp34, *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x98), sp28);
+    func_800C7A68(sp34, 0.0f, sp1C);
+    return func_800EEB40(sp28, sp1C) < arg1 * arg1;
+}
 
 u32 bamovespline_entrypoint_2(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 145);
