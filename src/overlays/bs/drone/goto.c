@@ -173,7 +173,16 @@ void bsdronegoto_entrypoint_0(void *arg0) {
     func_80800000_bsdronegoto(arg0, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/goto/bsdronegoto_entrypoint_1.s")
+void bsdronegoto_entrypoint_1(struct player_state_s *arg0) {
+    switch (*(s32 *)((u8 *)arg0 + 0x190)) {
+        case 1:
+            func_808000E0_bsdronegoto(arg0);
+            break;
+        case 2:
+            func_8080026C_bsdronegoto(arg0);
+            break;
+    }
+}
 
 /* extern */
 
