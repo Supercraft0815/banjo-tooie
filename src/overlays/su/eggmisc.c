@@ -1,6 +1,25 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmisc/sueggmisc_entrypoint_0.s")
+s32 sueggmisc_entrypoint_0(Unk80132ED0 *arg0) {
+    void *func_80100368(void *);
+    Actor *func_80106790(Unk80132ED0 *);
+
+    if (!(*(u16 *)&arg0->unk18 & 1)) {
+        return 0;
+    }
+    switch ((s32)(arg0->unk24 >> 22)) {
+    case 0x16D:
+    case 0x26C:
+    case 0x26D:
+    case 0x26E:
+        return 1;
+    case 0x26F:
+    case 0x270:
+        return (arg0->unk24 >> 22) == *(s16 *)func_80100368(func_80106790(arg0));
+    default:
+        return 0;
+    }
+}
 
 /* extern */
 
