@@ -243,7 +243,32 @@ s32 func_80801658_chtntmineshoot(Actor **arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80801714_chtntmineshoot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80801974_chtntmineshoot.s")
+s32 func_80801974_chtntmineshoot(Actor *arg0, s32 arg1) {
+    u32 func_800F54E4(void);
+    s32 func_800F7F98(s32, u32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 dialog;
+
+    dialog = 7;
+    switch (arg1) {
+        case 0xFA4:
+            break;
+        default:
+        case 0xFA2:
+        case 0xFA3:
+            func_800F7F98(func_800F54E4(), 1);
+            break;
+        case 0xCEC:
+        case 0xFB3:
+            dialog = 0x23;
+            break;
+        case 0xCEB:
+            dialog = 0x144;
+            break;
+    }
+    _subaddiedialog_entrypoint_11(arg0->unk0, arg1, dialog, NULL, 0x3F);
+    return 1;
+}
 
 /* extern */
 
