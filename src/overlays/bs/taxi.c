@@ -144,7 +144,31 @@ void func_808004A8_bstaxi(struct player_state_s *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/func_80800524_bstaxi.s")
+void func_80800524_bstaxi(struct player_state_s *arg0) {
+    void _bamovehover_entrypoint_4(struct player_state_s *, f32[3]);
+    f32 bastick_distance(struct player_state_s *);
+    f32 bastick_getAngleRelativeToBanjo(struct player_state_s *);
+    void func_800EEB9C(f32[3], f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 distance;
+    union {
+        struct {
+            f32 velocity[3];
+            f32 angle;
+        } values;
+        f64 alignment;
+    } movement;
+
+    distance = bastick_distance(arg0);
+    if (distance == 0.0f) {
+        _bamovehover_entrypoint_4(arg0, NULL);
+        return;
+    }
+    movement.values.angle = bastick_getAngleRelativeToBanjo(arg0);
+    distance = func_800F10B4(distance, 0.0f, 1.0f, 0.0f, 400.0f);
+    func_800EEB9C(movement.values.velocity, movement.values.angle, distance);
+    _bamovehover_entrypoint_4(arg0, movement.values.velocity);
+}
 
 /* extern */
 
@@ -211,7 +235,7 @@ void func_808006F4_bstaxi(struct player_state_s *arg0) {
     void func_800D2498(u32, s32, u32);
     void func_800F3BB0(struct player_state_s *, f32[3]);
     s32 func_80800420_bstaxi(struct player_state_s *);
-    s32 func_80800524_bstaxi(struct player_state_s *);
+    void func_80800524_bstaxi(struct player_state_s *);
     extern s32 D_80802140_bstaxi[];
     s32 sp44;
     s32 sp40;
