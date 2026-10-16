@@ -2270,6 +2270,10 @@ void func_80807A70_bsfirstp(void *arg0) {
 
 /* extern */
 
+enum baanim_update_type_e;
+enum yaw_type_e;
+enum ba_physics_type_e;
+
 void func_80807AF8_bsfirstp(struct player_state_s *arg0) {
     s32 _gcstatusDll_entrypoint_13();
     s32 _gcstatusDll_entrypoint_3(s32, s32);
@@ -2659,7 +2663,21 @@ void func_808090D8_bsfirstp(void *arg0) {
     func_800F7F98(*(s32 *)((s8 *)(arg0) + 0x184), 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080911C_bsfirstp.s")
+void func_8080911C_bsfirstp(struct player_state_s *arg0, s32 arg1) {
+    void func_8009FFD8(struct player_state_s *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+    s32 *sp24;
+
+    sp24 = *(s32 **)((s8 *)arg0 + 0x188);
+    switch (arg1) {
+        case 0:
+            func_8009FFD8(arg0, 1, 1, 2, 3);
+            break;
+        case 1:
+            func_8009FFD8(arg0, 1, 0, 0, 0x10);
+            break;
+    }
+    sp24[0x108 / sizeof(s32)] = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809198_bsfirstp.s")
 
