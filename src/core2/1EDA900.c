@@ -7,7 +7,7 @@ void func_80101010(s32 arg0) {
     func_800EE7F8(&D_80135A70, arg0);
 }
 
-void func_80101038(s32 *arg0) {
+void func_80101038(f32 *arg0) {
     s32 func_800EE7F8();
     extern s32 D_80135A70;
     func_800EE7F8(arg0, &D_80135A70);
