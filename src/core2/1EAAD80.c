@@ -104,7 +104,21 @@ void func_800D1844(s32 arg0)
     func_800D175C(arg0,1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1864.s")
+void func_800D1864(u32 arg0, u32 arg1, u32 arg2) {
+    void func_800D16CC(s32, u32);
+    s32 func_800D2498(u32, s32, u32);
+    void func_800D2770(s32, s32);
+    extern s32 D_8012B250;
+    s32 index;
+
+    index = func_800D16C4(arg0);
+    func_800D16CC(index, arg1);
+    if (arg2 != 0) {
+        func_800D2498(D_8011AF50[index].padding, ((s16 *)D_8012B250)[index] ^ ((s16 *)&func_800D1A04)[index * 4], D_8011AF50[index].value);
+    } else {
+        func_800D2770(D_8011AF50[index].padding, ((s16 *)D_8012B250)[index] ^ ((s16 *)&func_800D1A04)[index * 4]);
+    }
+}
 
 void func_800D192C(s32 arg0, u32 arg1) {
     func_800D1864((u32) arg0, func_800D1A04(arg0), arg1);
