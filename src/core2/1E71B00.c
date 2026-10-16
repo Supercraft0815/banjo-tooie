@@ -119,20 +119,33 @@ f32 func_8009864C(void *arg0) {
     return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 224) + 16);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E71B00/func_80098658.s")
+void func_80098658(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, s32 arg4, s32 arg5) {
+    void func_800EE7F8(f32 *, f32 *);
+    f32 *temp_a3;
+
+    temp_a3 = *(f32 **)(arg0 + 0xE0);
+    if (!(temp_a3[10] > 0.0f) || temp_a3[7] != arg1[0] || temp_a3[8] != arg1[1] || temp_a3[9] != arg1[2]) {
+        func_800EE7F8(temp_a3, arg1);
+        func_800EE7F8(*(f32 **)(arg0 + 0xE0) + 3, arg2);
+        (*(f32 **)(arg0 + 0xE0))[6] = arg3;
+        (*(s8 **)(arg0 + 0xE0))[0x2D] = arg4;
+        (*(s8 **)(arg0 + 0xE0))[0x2F] = arg5;
+        (*(s8 **)(arg0 + 0xE0))[0x2C] = 1;
+    }
+}
 
 /* extern */
 
-void func_80098730(u8 *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5) {
-    void func_80098658(u8 *, s32, s32, f32, s32, s32);
+void func_80098730(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, s32 arg4, s32 arg5) {
+    void func_80098658(u8 *, f32 *, f32 *, f32, s32, s32);
     func_80098658(arg0, arg1, arg2, arg3, arg4, arg5);
     (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xE0)))) + (0x2E))) = 1;
 }
 
 /* extern */
 
-void func_80098778(u8 *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5, f32 arg6) {
-    void func_80098658(u8 *, s32, s32, f32, s32, s32);
+void func_80098778(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, s32 arg4, s32 arg5, f32 arg6) {
+    void func_80098658(u8 *, f32 *, f32 *, f32, s32, s32);
     func_80098658(arg0, arg1, arg2, arg3, arg4, arg5);
     (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xE0)))) + (0x2E))) = 2;
     (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xE0)))) + (0x30))) = arg6;
