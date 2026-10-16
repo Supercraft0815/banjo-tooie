@@ -151,7 +151,32 @@ s32 func_80800944_chquiz(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808009D8_chquiz.s")
+void func_808009D8_chquiz(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 func_80800B90_chquiz(s32);
+    u8 *data;
+    s32 index;
+    s32 bits;
+    u8 *byte;
+
+    data = func_80100094(arg0, 0U);
+    switch (func_80800B90_chquiz(arg1)) {
+        case 0:
+            index = arg1 - 0x1910;
+            byte = (u8 *)((s32)data + (index >> 3));
+            bits = byte[0x9C];
+            bits = (1 << (index & 7)) | bits;
+            byte[0x9C] = bits;
+            break;
+        case 1:
+            index = arg1 - 0x1A00;
+            byte = (u8 *)((s32)data + (index >> 3));
+            bits = byte[0xBA];
+            bits = (1 << (index & 7)) | bits;
+            byte[0xBA] = bits;
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800A70_chquiz.s")
 
