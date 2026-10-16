@@ -7,7 +7,29 @@ OSThread *cheggproximity_entrypoint_0(void)
     return (OSThread *) D_80800CE0_cheggproximity;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/cheggproximity_entrypoint_1.s")
+/* extern */
+
+void *cheggproximity_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 _suegg_entrypoint_1(void *, f32);
+    void *_suegg_entrypoint_11(s32, s32, s32);
+    s32 _sueggmove_entrypoint_10(s32);
+    s32 _sueggmove_entrypoint_5(void *, s32);
+    s32 _sueggmove_entrypoint_6(void *, f32, f32);
+    s32 _sueggmove_entrypoint_7(void *, s32);
+    f32 func_80013B7C(f32, f32);
+    Actor *temp_v0;
+    f32 *position = (f32 *)arg2;
+
+    _sueggmove_entrypoint_10(arg0);
+    temp_v0 = _suegg_entrypoint_11(0x160, arg1, arg3);
+    temp_v0->scale = 0.25f;
+    temp_v0->rotation[1] = func_80013B7C(position[0], position[2]);
+    _sueggmove_entrypoint_5(temp_v0, 0);
+    _sueggmove_entrypoint_6(temp_v0, 0.0f, -22000.0f);
+    _sueggmove_entrypoint_7(temp_v0, arg2);
+    _suegg_entrypoint_1(temp_v0, 30.0f);
+    return temp_v0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_808000A8_cheggproximity.s")
 
