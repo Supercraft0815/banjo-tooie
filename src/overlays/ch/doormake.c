@@ -151,7 +151,19 @@ void chdoormake_entrypoint_7(Actor *arg0, f32 arg1) {
     (*(s16 *)((s8 *)(func_80100094(arg0, 0U)) + (0xE))) = (s16) (s32) (256.0f * arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/chdoormake_entrypoint_8.s")
+void chdoormake_entrypoint_8(Actor *arg0, u32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void rare_memcpy(void *, void *, int);
+    extern u8 D_808009A0_chdoormake[];
+    extern u8 D_80800A0C_chdoormake[];
+    extern u8 D_80800AC0_chdoormake[];
+    u8 *data;
+
+    data = func_80100094(arg0, 0U);
+    rare_memcpy(data + 0x2E, D_808009A0_chdoormake + arg1 * 6, 6);
+    rare_memcpy(data + 0x34, D_80800A0C_chdoormake + arg1 * 10, 10);
+    rare_memcpy(data + 0x3E, D_80800AC0_chdoormake + arg1 * 10, 10);
+}
 
 void chdoormake_entrypoint_9(Actor *arg0, s32 arg1, u16 arg2, s32 arg3) {
     void *func_80100094(Actor *, u32);
