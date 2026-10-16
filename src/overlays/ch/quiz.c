@@ -402,7 +402,25 @@ s32 func_80801784_chquiz(void *arg0, s32 arg1) { return ((s32 *)arg0)[arg1 + 0x1
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801A54_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801B7C_chquiz.s")
+/* extern */
+
+s32 func_80801B7C_chquiz(void *arg0) {
+    s32 _suquiz_entrypoint_9(s32);
+    s32 temp_v0;
+    s32 var_s0;
+    s32 var_s2;
+
+    var_s2 = 0x186A0;
+    var_s0 = 0;
+    do {
+        temp_v0 = func_80801784_chquiz(arg0, var_s0);
+        if ((temp_v0 < var_s2) && (_suquiz_entrypoint_9(var_s0) == 0)) {
+            var_s2 = temp_v0;
+        }
+        var_s0 += 1;
+    } while (var_s0 != 3);
+    return var_s2;
+}
 
 s32 func_80801C08_chquiz(void *arg0, s32 arg1) {
     s32 var_s0;
