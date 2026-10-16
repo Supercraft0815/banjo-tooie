@@ -130,9 +130,9 @@ s32 func_800CBC00(s32 arg0) {
 
 /* extern */
 
-s32 func_800CBD84(s32 arg0) {
+s32 func_800CBD84(f32 *arg0) {
     s32 func_800CBC3C();
-    s32 func_800CC4D4(s32, s32);
+    s32 func_800CC4D4(f32 *, s32);
     s32 sp1C;
     s32 var_a1;
 

@@ -427,9 +427,9 @@ s32 func_80803390_chklungo(void *arg0, s32 arg1) {
 
 /* extern */
 
-void func_80803464_chklungo(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
+void func_80803464_chklungo(s32 arg0, void *arg1, s32 arg2, f32 *arg3) {
     void func_800EE7F8(f32 *, f32 *);
-    s32 func_800EF1B8(s32, f32, f32);
+    void func_800EF1B8(f32 *, f32, f32);
     f32 func_800F1DF4(void *, s32);
     f32 sp1C;
 
@@ -438,4 +438,24 @@ void func_80803464_chklungo(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
     func_800EF1B8(arg3, sp1C, (f32) (*(s16 *)((s8 *)(arg1) + (0xC))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_808034CC_chklungo.s")
+s32 func_808034CC_chklungo(void *arg0) {
+    s32 func_800CBD84(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 sp2C[3];
+    f32 sp20[3];
+    f32 *sp18;
+
+    sp18 = (f32 *)((u8 *)arg0 + 4);
+    func_800EE7F8(sp2C, sp18);
+    func_800EF1B8(sp2C, *(f32 *)((u8 *)arg0 + 0x48) + 90.0f, 150.0f);
+    if (func_800CBD84(sp2C) == -1) {
+        return 0;
+    }
+    func_800EE7F8(sp20, sp18);
+    func_800EF1B8(sp20, *(f32 *)((u8 *)arg0 + 0x48) - 90.0f, 150.0f);
+    if (func_800CBD84(sp20) == -1) {
+        return 0;
+    }
+    return 1;
+}
