@@ -23,7 +23,7 @@ void func_80800260_chgruntyfireball(u8 *arg0) {
     s32 func_800B53A4(s32);
     s32 func_800BABB8(s32, f32 *, f32 *, f32, s32 *);
     f32 func_800DC178(f32, f32);
-    s32 func_800EE7F8(f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
     void func_800EEB9C(f32 *, f32, f32);
     void func_800EF04C(f32 *, f32 *);
     s32 func_800FFAB0(u8 *);
@@ -51,4 +51,19 @@ void func_80800260_chgruntyfireball(u8 *arg0) {
     func_800FFAB0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/grunty/fireball/func_808003D8_chgruntyfireball.s")
+void func_808003D8_chgruntyfireball(f32 *arg0) {
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF368(f32 *, f32);
+    extern s32 D_80800554_chgruntyfireball;
+    extern s32 D_80800588_chgruntyfireball;
+    f32 sp2C[3];
+    func_800BBCB8(arg0 + 1, arg0 + 1, 1.0f, 1, &D_80800588_chgruntyfireball);
+    func_800EE7F8(sp2C, arg0 + 10);
+    func_800EF368(sp2C, 100.0f);
+    func_800EF334(sp2C, -1.0f);
+    func_800EF04C(sp2C, arg0 + 1);
+    func_800BBCB8(sp2C, arg0 + 1, 0.8f, 1, &D_80800554_chgruntyfireball);
+}
