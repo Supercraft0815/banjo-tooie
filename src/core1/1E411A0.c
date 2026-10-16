@@ -205,7 +205,18 @@ void func_8002A890(void *arg0, u8 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_8002A940.s")
+s32 func_8002A940(s16 arg0) {
+    extern PoolFreeList *D_800411F4;
+    void func_800272B0(void);
+    void *sp4;
+
+    sp4 = *(void **)((s8 *)D_800411F4 + 0x30);
+    if (*(void (**)(void))((s8 *)sp4 + 4) == func_800272B0) {
+        return *(s32 *)((s8 *)*(void **)((s8 *)D_800411F4 + 0x34) + arg0 * 0x48 + 0x20);
+    } else {
+        return 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_8002A9B8.s")
 
