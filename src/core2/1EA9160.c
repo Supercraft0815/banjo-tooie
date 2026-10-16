@@ -41,13 +41,45 @@ s32 func_800CF8D0(s32 arg0, s32 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800CF918.s")
+s32 func_800CF918(s32 arg0, s32 arg1) {
+    extern s16 D_8011AE74[][2];
+    extern s16 D_8011AE76;
+    extern s16 D_8011AE84[][8];
+    s16 (*entry)[8];
+    s32 i;
+
+    i = 1;
+    if (arg0 == D_8011AE74[0][0] && arg1 == D_8011AE76) {
+        return 0;
+    }
+    i = 1;
+    entry = D_8011AE84;
+loop:
+        if (arg0 == entry[0][0] && arg1 == entry[0][1]) {
+            return i;
+        }
+        if (arg0 == entry[1][0] && arg1 == entry[1][1]) {
+            return i + 1;
+        }
+        if (arg0 == entry[2][0] && arg1 == entry[2][1]) {
+            return i + 2;
+        }
+        if (arg0 == entry[3][0] && arg1 == entry[3][1]) {
+            return i + 3;
+        }
+        i += 4;
+        entry += 4;
+    if (i != 9) {
+        goto loop;
+    }
+    return -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800CF9E4.s")
 
-void func_800CFA70()
+void func_800CFA70(s32 arg0, s32 arg1)
 {
-    func_800CF918();
+    func_800CF918(arg0, arg1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800CFA90.s")
