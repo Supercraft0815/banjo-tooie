@@ -28,14 +28,15 @@ s32 func_80800000_suexpressmorph(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressmorph/func_808002BC_suexpressmorph.s")
 
+struct MorphEntry {
+    f32 (*data)[9];
+    s16 id;
+    u8 unk6;
+    u8 count;
+    s32 unk8;
+};
+
 void suexpressmorph_entrypoint_1(u8 *arg0) {
-    struct MorphEntry {
-        f32 (*data)[9];
-        s16 id;
-        u8 unk6;
-        u8 count;
-        s32 unk8;
-    };
     s32 func_808000EC_suexpressmorph(f32 *, void *);
     s32 func_808002BC_suexpressmorph(f32 *, void *);
     extern struct MorphEntry D_80801320_suexpressmorph[];
@@ -100,4 +101,27 @@ void suexpressmorph_entrypoint_4(s8 *arg0, s32 arg1) {
     arg0[6] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressmorph/suexpressmorph_entrypoint_5.s")
+void suexpressmorph_entrypoint_5(s16 *arg0, s16 arg1) {
+    extern struct MorphEntry D_80801320_suexpressmorph[];
+    s32 var_a0;
+    f32 *var_v0;
+    f32 *var_v1;
+    s32 count;
+
+    suexpressmorph_entrypoint_3(arg0, arg1);
+    ((s8 *)arg0)[5] = 0;
+    ((s8 *)arg0)[6] = 1;
+    var_v0 = (f32 *)((u8 *)arg0 + 8);
+    count = D_80801320_suexpressmorph[arg0[1]].count;
+    var_v1 = (f32 *)(count * 4 + (u8 *)arg0 + 8);
+    var_a0 = 0;
+    if ((s32)count > 0) {
+        do {
+            *var_v0 = 0.0f;
+            *var_v1 = 0.0f;
+            var_a0++;
+            var_v0++;
+            var_v1++;
+        } while (var_a0 < (s32)D_80801320_suexpressmorph[arg0[1]].count);
+    }
+}
