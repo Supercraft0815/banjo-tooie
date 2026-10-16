@@ -201,13 +201,34 @@ void func_800E93CC(s32 arg0) {
     D_80123524 += (s32)sp1C[1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E9438.s")
+void func_800E9438(s32 arg0) {
+    void *heap_alloc(s32);
+    void heap_free(void *);
+    extern s32 D_8012D690;
+    extern s16 D_80132560[];
+    s32 var_s1;
+    s32 var_s0;
+    s16 *temp_s3;
+
+    var_s1 = 0;
+    temp_s3 = heap_alloc(0x12);
+    var_s0 = 0;
+    if (*(s16 *)((u8 *)&D_8012D690 + 0x4650) > 0) {
+        do {
+            func_800E9340(temp_s3, var_s0, arg0);
+            D_80132560[var_s0] = var_s1;
+            var_s0++;
+            var_s1 += temp_s3[7];
+        } while (var_s0 < *(s16 *)((u8 *)&D_8012D690 + 0x4650));
+    }
+    heap_free(temp_s3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E94E4.s")
 
 void func_800E9574(void) {
     void func_800E93CC(s32);
-    s32 func_800E9438(s32);
+    void func_800E9438(s32);
     s32 func_800E94E4();
     extern s32 D_80123510;
     func_800E94E4();
