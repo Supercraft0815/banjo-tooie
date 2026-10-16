@@ -63,7 +63,28 @@ void func_80800310_chjinjovillagecamera1(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjovillagecamera1/func_808003C0_chjinjovillagecamera1.s")
+void func_808003C0_chjinjovillagecamera1(Actor *arg0) {
+    s32 _chjinjo_entrypoint_2(s32);
+    void _chjinjo_entrypoint_1(s32, s32);
+    s32 func_800D9078(f32 *);
+    void func_80101FDC(Actor *, u32);
+    void _glcutDll_entrypoint_17(void);
+
+    switch (arg0->unk70_10) {
+        case 2:
+            if (func_800D9078(&arg0->unk58) != 0) {
+                _chjinjo_entrypoint_1(_chjinjo_entrypoint_2(-1), 0);
+                func_80101FDC(arg0, 3);
+                arg0->unk58 = 2.5f;
+            }
+            break;
+        case 3:
+            if (func_800D9078(&arg0->unk58) != 0) {
+                _glcutDll_entrypoint_17();
+            }
+            break;
+    }
+}
 
 OSThread *chjinjovillagecamera1_entrypoint_0(void)
 {
