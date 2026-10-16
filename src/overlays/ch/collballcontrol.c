@@ -232,7 +232,7 @@ OSThread *chcollballcontrol_entrypoint_0(void)
 }
 
 void func_80801764_chcollballcontrol(u8 *arg0, s32 arg1) {
-    void _subaddiefade_entrypoint_3(u8 *);
+    void _subaddiefade_entrypoint_3(Actor *);
     void _sukickball_entrypoint_11(u8 *, s32);
     s32 _sukickball_entrypoint_6(u8 *, s32);
     void func_800B4470(u8 *, s32, void *, s32, f32, f32, s32, s32, s32);
@@ -240,7 +240,7 @@ void func_80801764_chcollballcontrol(u8 *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     s32 func_80101FDC(u8 *, s32);
     Actor *func_80106790(Unk80132ED0 *);
-    void func_808021D4_chcollballcontrol(u8 *);
+    void func_808021D4_chcollballcontrol(Actor *);
     void func_80802264_chcollballcontrol(u8 *, s32);
     extern u8 D_80804DF0_chcollballcontrol[];
     u8 *data;
@@ -320,7 +320,26 @@ void func_808020F4_chcollballcontrol(Actor *arg0) {
     arg0->scale *= 0.95f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808021D4_chcollballcontrol.s")
+void func_808021D4_chcollballcontrol(Actor *arg0) {
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80802324_chcollballcontrol(f32 *);
+    void func_80802A50_chcollballcontrol(Actor *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    void func_80800BF0_chcollballcontrol(Actor *, f32 *);
+    extern s32 D_80804C64_chcollballcontrol;
+    Actor *sp24;
+
+    sp24 = func_80106790(arg0->unk3C);
+    if ((arg0->unk0->unk24 >> 22) == 0x42) {
+        func_80802324_chcollballcontrol(arg0->position);
+        func_80802A50_chcollballcontrol(arg0);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804C64_chcollballcontrol);
+        _subaddiefade_entrypoint_3(arg0);
+        func_80801764_chcollballcontrol((u8 *)arg0, 4);
+        func_80800BF0_chcollballcontrol(sp24, arg0->position);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80802264_chcollballcontrol.s")
 
