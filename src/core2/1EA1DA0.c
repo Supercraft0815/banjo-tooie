@@ -414,7 +414,33 @@ s32 func_800C940C(volatile s32 arg0, volatile s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9484.s")
+void func_800C9484(void) {
+    struct anctrl_s;
+    void *defrag(void *);
+    struct anctrl_s *func_8008AEB4(struct anctrl_s *);
+    extern s32 D_8012AB40;
+    s32 i;
+    void **slot;
+    void *entry;
+    struct anctrl_s *anim;
+
+    i = 0;
+    if ((s32)D_8012AB54 > 0) {
+        slot = (void **)&D_8012AB40;
+        do {
+            entry = *slot;
+            if (entry != NULL) {
+                anim = *(struct anctrl_s **)((u8 *)entry + 0x2C);
+                if (anim != NULL) {
+                    *(struct anctrl_s **)((u8 *)*slot + 0x2C) = func_8008AEB4(anim);
+                }
+                *slot = defrag(*slot);
+            }
+            i++;
+            slot++;
+        } while (i < (s32)D_8012AB54);
+    }
+}
 
 /* extern */
 
