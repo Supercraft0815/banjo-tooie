@@ -111,7 +111,28 @@ void func_8080030C_bsbanshack(PlayerState *arg0) {
     bainput_enable(arg0, 5, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_8080037C_bsbanshack.s")
+void func_8080037C_bsbanshack(PlayerState *arg0) {
+    int baanim_isAt(PlayerState *, f32);
+    int baanim_isStopped(PlayerState *);
+    s32 bainput_enable(void *, s32, s32);
+    s32 bs_setState(PlayerState *, s32);
+    void func_8009DBF0(PlayerState *, s32, f32);
+    s32 sp24;
+
+    sp24 = 0;
+    bainput_enable(arg0, 5, 1);
+    if (baanim_isAt(arg0, 0.31f) != 0) {
+        func_8009DBF0(arg0, 0x3FF, 0.9f);
+    }
+    if (baanim_isAt(arg0, 0.1976f) != 0) {
+        arg0->unk15C.bytes[1] = 1;
+        func_8080021C_bsbanshack(arg0);
+    }
+    if (baanim_isStopped(arg0) != 0) {
+        sp24 = 0x16C;
+    }
+    bs_setState(arg0, sp24);
+}
 
 s32 bsbanshack_entrypoint_0(s32 arg0) {
     extern s32 D_80800CB0_bsbanshack[];
