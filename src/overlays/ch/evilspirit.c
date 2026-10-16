@@ -127,17 +127,32 @@ void func_808013DC_chevilspirit(void *arg0) {
 
 /* extern */
 
-void func_808015A4_chevilspirit(s32 arg0) {
-    s32 func_80102424(s32, s32);
+void func_808015A4_chevilspirit(Actor *arg0) {
+    s32 func_80102424(Actor *, s32);
     s32 func_80801458_chevilspirit();
-    s32 func_808015E0_chevilspirit(s32, s32);
+    s32 func_808015E0_chevilspirit(Actor *, f32);
     func_80801458_chevilspirit();
-    if (func_808015E0_chevilspirit(arg0, 0x42C80000) != 0) {
+    if (func_808015E0_chevilspirit(arg0, 100.0f) != 0) {
         func_80102424(arg0, 6);
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_808015E0_chevilspirit.s")
+s32 func_808015E0_chevilspirit(Actor *arg0, f32 arg1) {
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    void func_80102BF8(void *, f32, f32, f32);
+    f32 angles[2];
+
+    if (func_800EEB40(arg0->position, (f32 *) arg0->actorData) < arg1 * arg1) {
+        return 1;
+    }
+    func_800F18FC(arg0->position, (f32 *) arg0->actorData, angles);
+    func_800EF214(arg0->position, angles[0], angles[1], arg1);
+    arg0->unk54 = angles[1];
+    func_80102BF8(arg0, 0.2f, 15.0f, 1200.0f);
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801684_chevilspirit.s")
 
