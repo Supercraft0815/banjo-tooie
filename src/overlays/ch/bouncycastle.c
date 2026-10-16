@@ -172,7 +172,26 @@ void func_80800670_chbouncycastle(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bouncycastle/func_808006C4_chbouncycastle.s")
+void func_808006C4_chbouncycastle(Actor *arg0) {
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    s32 func_800D9078(f32 *);
+    void func_80101FDC(Actor *, u32);
+
+    switch (arg0->unk70_10) {
+        case 2:
+            if (func_800D9078(&arg0->unk58) != 0) {
+                func_800D1000(0x19, 1, NULL, 1, 0);
+                func_80101FDC(arg0, 1);
+            }
+            break;
+        case 3:
+            if (func_800D9078(&arg0->unk58) != 0) {
+                func_800D1000(0x15, 1, NULL, 1, 0);
+                func_80101FDC(arg0, 1);
+            }
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bouncycastle/func_80800774_chbouncycastle.s")
 
