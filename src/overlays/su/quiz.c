@@ -1,6 +1,21 @@
 #include "su/quiz.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/func_80800000_suquiz.s")
+s32 func_80800000_suquiz(u32 arg0) {
+    extern void *D_80127614;
+    s32 suquiz_entrypoint_4(void);
+    switch (arg0) {
+    case 0:
+    case 1:
+        return suquiz_entrypoint_4() == 0 ? ((u8 *)D_80127614)[arg0 + 0x31] : 2;
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+        return 1;
+    default:
+        return 0;
+    }
+}
 
 f32 func_80800074_suquiz(s32 arg0, s32 arg1, s32 arg2) {
     extern f32 D_80801050_suquiz[][3][2];
