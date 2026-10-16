@@ -266,7 +266,33 @@ s32 bsride_entrypoint_2(s32 arg0) {
     return ((s32 *)&D_80800A80_bsride)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_808006D0_bsride.s")
+void func_808006D0_bsride(PlayerState *arg0, s32 arg1) {
+    void _bafpctrl_entrypoint_9(PlayerState *, s32);
+    void _bafpctrl_entrypoint_11(PlayerState *, s32, s32);
+    void _bafpctrl_entrypoint_14(PlayerState *, s32);
+    void baflag_set(PlayerState *, s32);
+    void baflag_clear(PlayerState *, s32);
+    void func_800F817C(s32, s32);
+
+    *(s32 *)((s8 *)arg0 + 0x160) = arg1;
+    switch (arg1) {
+        case 1:
+            _bafpctrl_entrypoint_14(arg0, 1);
+            func_800F817C(arg0->unk184, 1);
+            break;
+        case 2:
+            _bafpctrl_entrypoint_9(arg0, 0);
+            _bafpctrl_entrypoint_11(arg0, 0xF, 1);
+            _bafpctrl_entrypoint_14(arg0, 3);
+            baflag_set(arg0, 0x24);
+            break;
+        case 0:
+            _bafpctrl_entrypoint_14(arg0, 1);
+            _bafpctrl_entrypoint_11(arg0, 0xF, 0);
+            baflag_clear(arg0, 0x2E);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_80800798_bsride.s")
 
