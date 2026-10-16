@@ -14,7 +14,32 @@ s32 *func_8008E4B8(PlayerState *self) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E67DA0/func_8008E530.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E67DA0/func_8008E618.s")
+void func_8008E618(PlayerState *self) {
+    struct Entry {
+        u8 pad0[8];
+        u8 *(*callback)(void);
+        u8 padC[14];
+        u16 player : 11;
+        u16 low1A : 5;
+        u8 pad1C[14];
+        u8 high2A : 5;
+        u8 flag : 1;
+        u8 low2A : 2;
+    };
+    void func_8009C128(PlayerState *, f32[3]);
+    void *func_800EBFD4(f32 *, s32, u32);
+    u8 *func_8008ED70(void);
+    void baflag_clear(PlayerState *, int);
+    f32 position[3];
+
+    func_8009C128(self, position);
+    *(struct Entry **)self->unkC = func_800EBFD4(position, 1, 0);
+    (*(struct Entry **)self->unkC)->flag = 1;
+    (*(struct Entry **)self->unkC)->callback = func_8008ED70;
+    (*(struct Entry **)self->unkC)->player = self->unk184;
+    baflag_clear(self, 8);
+    *(s32 *)((u8 *)self->unkC + 0x18) = -1;
+}
 
 /* extern */
 

@@ -410,16 +410,16 @@ void *func_800EBED4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     return entry;
 }
 
-void func_800EBF8C(f32 *arg0, s32 *arg1, u32 arg2, Prop *arg3) {
+void *func_800EBF8C(f32 *arg0, s32 arg1, u32 arg2, Prop *arg3) {
     void func_800EE904(s32 *, f32 *);
     s32 vec[3];
     func_800EE904(vec, arg0);
-    func_800EBED4(vec, (s32)arg1, arg2, (s32)arg3);
+    return func_800EBED4(vec, arg1, arg2, (s32)arg3);
 }
 
-void func_800EBFD4(s32 arg0, s32 *arg1, u32 arg2) {
-    void func_800EBF8C(f32 *, s32 *, u32, Prop *);
-    func_800EBF8C(arg0, arg1, arg2, NULL);
+void *func_800EBFD4(f32 *arg0, s32 arg1, u32 arg2) {
+    void *func_800EBF8C(f32 *, s32, u32, Prop *);
+    return func_800EBF8C(arg0, arg1, arg2, NULL);
 }
 
 /* extern */
