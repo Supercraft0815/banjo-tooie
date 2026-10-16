@@ -108,9 +108,11 @@ void func_808004B4_bstrexlarge(PlayerState *arg0) {
     }
 }
 
-void func_80800560_bstrexlarge(void)
+void bstrexlarge_entrypoint_1(PlayerState *);
+
+void func_80800560_bstrexlarge(PlayerState *arg0)
 {
-    bstrexlarge_entrypoint_1();
+    bstrexlarge_entrypoint_1(arg0);
 }
 void func_80800580_bstrexlarge(PlayerState *arg0) { bstrexlarge_entrypoint_2(); func_8009FFD8(arg0, 1, 3, 3, 2); yaw_setVelocityBounded((s32)arg0, 0x43960000, 0x40600000); func_80800000_bstrexlarge(arg0); }
 
@@ -135,7 +137,30 @@ s32 bstrexlarge_entrypoint_0(s32 arg0) {
     return ((s32 *)&D_80801990_bstrexlarge)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/bstrexlarge_entrypoint_1.s")
+void bstrexlarge_entrypoint_1(PlayerState *arg0) {
+    void baphysics_reset_gravity(PlayerState *);
+    void bastick_popZone(PlayerState *);
+    void func_80092864(PlayerState *, f32);
+    void func_800947EC(PlayerState *, s32, s32);
+    void func_8009590C(PlayerState *, f32);
+    void func_80095964(void *, s32);
+    void func_80095A40(PlayerState *);
+    void func_8009E474(PlayerState *);
+    s32 func_8009E74C(PlayerState *, s32);
+    void func_800A4D6C(u8 *, f32, f32);
+
+    if (func_8009E74C(arg0, 0x11) == 0) {
+        bastick_popZone(arg0);
+        func_800A4D6C(arg0, 1.0f, 1.0f);
+        func_80092864(arg0, 1.0f);
+        func_8009E474(arg0);
+        func_80095A40(arg0);
+        func_8009590C(arg0, 0.0f);
+        baphysics_reset_gravity(arg0);
+        func_80095964(arg0, 0);
+        func_800947EC(arg0, 1, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/bstrexlarge_entrypoint_2.s")
 
@@ -148,9 +173,9 @@ void bstrexlarge_entrypoint_3(s32 arg0) {
     }
 }
 
-void func_80800834_bstrexlarge(void)
+void func_80800834_bstrexlarge(PlayerState *arg0)
 {
-    bstrexlarge_entrypoint_1();
+    bstrexlarge_entrypoint_1(arg0);
 }
 void func_80800854_bstrexlarge()
 {
@@ -169,7 +194,7 @@ s32 bstrexlarge_entrypoint_4(s32 arg0) {
 
 void func_808008A8_bstrexlarge(s32 arg0)
 {
-    bstrexlarge_entrypoint_1();
+    bstrexlarge_entrypoint_1(arg0);
     _bsdrone_entrypoint_2(arg0);
 }
 void func_808008D0_bstrexlarge(s32 arg0)
@@ -218,9 +243,9 @@ void func_80800934_bstrexlarge(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)arg0 + 0x15C) = arg1;
 }
 
-void func_80800A00_bstrexlarge(void)
+void func_80800A00_bstrexlarge(PlayerState *arg0)
 {
-    bstrexlarge_entrypoint_1();
+    bstrexlarge_entrypoint_1(arg0);
 }
 void func_80800A20_bstrexlarge(s32 arg0)
 {
@@ -281,9 +306,9 @@ s32 bstrexlarge_entrypoint_8(s32 arg0) {
     return ((s32 *)&D_808019D0_bstrexlarge)[arg0];
 }
 
-void func_80800F2C_bstrexlarge(void)
+void func_80800F2C_bstrexlarge(PlayerState *arg0)
 {
-    bstrexlarge_entrypoint_1();
+    bstrexlarge_entrypoint_1(arg0);
 }
 void func_80800F4C_bstrexlarge()
 {
@@ -406,7 +431,7 @@ void func_80801230_bstrexlarge(void *arg0) {
 
 void func_80801244_bstrexlarge(s32 arg0)
 {
-    bstrexlarge_entrypoint_1();
+    bstrexlarge_entrypoint_1(arg0);
     func_80801208_bstrexlarge(arg0);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_8080126C_bstrexlarge.s")
@@ -418,9 +443,9 @@ s32 bstrexlarge_entrypoint_12(s32 arg0) {
     return ((s32 *)&D_80801A10_bstrexlarge)[arg0];
 }
 
-void func_808014A4_bstrexlarge(void)
+void func_808014A4_bstrexlarge(PlayerState *arg0)
 {
-    bstrexlarge_entrypoint_1();
+    bstrexlarge_entrypoint_1(arg0);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_808014C4_bstrexlarge.s")
 
@@ -458,9 +483,9 @@ s32 bstrexlarge_entrypoint_14(s32 arg0) {
     return ((s32 *)&D_80801A30_bstrexlarge)[arg0];
 }
 
-void func_808017DC_bstrexlarge(void)
+void func_808017DC_bstrexlarge(PlayerState *arg0)
 {
-    bstrexlarge_entrypoint_1();
+    bstrexlarge_entrypoint_1(arg0);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_808017FC_bstrexlarge.s")
 
