@@ -25,7 +25,27 @@ void func_80800018_chicestationbits(s32 arg0) {
     _chswitch_entrypoint_8(arg0, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/icestationbits/func_80800050_chicestationbits.s")
+s32 func_80800050_chicestationbits(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    void _glcutDll_entrypoint_6(u32, u32);
+    u32 func_800F54E4(void);
+    int func_800F6B94(s32);
+    s32 result;
+
+    switch (arg1) {
+        case 7:
+            _glcutDll_entrypoint_6(0x12A, 0x48);
+            result = 1;
+            break;
+        case 0x91:
+            if (func_800F6B94(func_800F54E4()) == 0) {
+                return 0;
+            }
+        default:
+            return _chswitch_entrypoint_10(arg0, arg1, arg2);
+    }
+    return result;
+}
 
 /* extern */
 
