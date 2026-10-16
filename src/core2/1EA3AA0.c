@@ -1,6 +1,16 @@
 #include "core2/1EA3AA0.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CA1B0.s")
+void func_800CA1B0(void *arg0) {
+    void func_800EF934(f32 dst[3], f32 src[3], f32 yaw);
+    void func_800EFA4C(f32 *arg0, f32 arg1, f32 arg2, f32 arg3);
+    f32 *vec[1];
+    register f32 *temp;
+
+    vec[0] = (f32 *)((u8 *)arg0 + 0xF8);
+    func_800EFA4C(vec[0], -1.0f, 0.0f, 0.0f);
+    temp = vec[0];
+    func_800EF934(temp, temp, *(f32 *)((u8 *)arg0 + 0xE8) * (*(f32 *)((u8 *)arg0 + 0xE4) * 0.5f));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CA218.s")
 
@@ -55,10 +65,10 @@ void func_800CA3F4(f32 *arg0, f32 *arg1, f32 arg2) {
 /* extern */
 
 void func_800CA510(void *arg0, f32 arg1) {
-    s32 func_800CA1B0(f32);
+    void func_800CA1B0(void *);
     s32 func_800CA2A8(void *, f32);
     (*(f32 *)((s8 *)(arg0) + (0xE8))) = arg1;
-    func_800CA1B0(arg1);
+    func_800CA1B0(arg0);
     func_800CA2A8(arg0, (*(f32 *)((s8 *)(arg0) + (0xE4))) * 0.5f);
 }
 
