@@ -4,7 +4,27 @@ typedef struct { s8 flag; s32 value; } Entry; extern u8 D_80124730[13]; extern E
 
 void func_8010D790(void) { int i; u32 j; u8 *counts; int count; i = 0; j = 0; do { counts = &D_80124730[i]; count = *counts; j = 0; if (count > 0) { loop: j++; D_80136F90[i][(s32)j - 1].flag = 0; D_80136F90[i][(s32)j - 1].value = -1; count = D_80124730[i]; if ((s32)j < count) goto loop; } i++; } while (i != 13); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE7080/func_8010D7EC.s")
+void func_8010D7EC(void) {
+    int func_800C3D78(u8);
+    void func_8010DA30(u8 *arg0);
+    int j;
+    u32 i;
+    u8 *counts;
+    u8 id;
+
+    counts = D_80124730;
+    i = 0;
+    do {
+        for (j = 0; j < (s32)*counts; j++) {
+            id = (u8)D_80136F90[i][j].flag;
+            if (id != 0 && func_800C3D78(id) == 0) {
+                func_8010DA30((u8 *)&D_80136F90[i][j]);
+            }
+        }
+        i++;
+        counts++;
+    } while (i != 13);
+}
 
 void func_8010D89C(void) {
     void func_8010DA30(u8 *arg0);
