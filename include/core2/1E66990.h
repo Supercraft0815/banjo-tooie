@@ -20,7 +20,7 @@ s32 func_8008E23C(PlayerState *);
 s32 func_8008E260(PlayerState *);
 int func_8008E39C(PlayerState *);
 s32 func_8008E3E8(PlayerState *);
-s32 func_8008E430(void);
+s32 func_8008E430();
 
 
 #endif // __CORE2_1E66990_H__

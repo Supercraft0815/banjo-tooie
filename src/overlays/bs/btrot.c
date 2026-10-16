@@ -5,11 +5,12 @@ void bs_setState();
 
 /* extern */
 
-s32 func_80800000_bsbtrot(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    s32 func_8008E3E8(s32);
-    s32 func_8008E40C();
-    s32 func_8008E430(s32);
-    if (func_8008E40C() != 0) {
+typedef struct PlayerState PlayerState;
+s32 func_80800000_bsbtrot(PlayerState *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 func_8008E3E8(PlayerState *);
+    s32 func_8008E40C(PlayerState *);
+    s32 func_8008E430(PlayerState *);
+    if (func_8008E40C(arg0) != 0) {
         return arg4;
     }
     if (func_8008E3E8(arg0) != 0) {
@@ -21,11 +22,27 @@ s32 func_80800000_bsbtrot(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     return arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80800070_bsbtrot.s")
+/* extern */
+
+f32 func_80800070_bsbtrot(PlayerState *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+    s32 func_8008E3E8(PlayerState *);
+    s32 func_8008E40C(PlayerState *);
+    s32 func_8008E430(PlayerState *);
+
+    if (func_8008E40C(arg0) != 0) {
+        return arg4;
+    }
+    if (func_8008E3E8(arg0) != 0) {
+        return arg2;
+    }
+    if (func_8008E430(arg0) != 0) {
+        return arg3;
+    }
+    return arg1;
+}
 
 /* extern */
 
-typedef struct PlayerState PlayerState;
 void func_8009D3A8(PlayerState *, s32);
 s32 func_8008E260(PlayerState *);
 s32 player_inWater(PlayerState *);
@@ -50,22 +67,22 @@ void func_80800120_bsbtrot(s32 arg0) {
 
 /* extern */
 
-f32 func_80800164_bsbtrot(s32 arg0) {
+f32 func_80800164_bsbtrot(PlayerState *arg0) {
     s32 func_8008DE24();
-    f32 func_80800070_bsbtrot(s32, f32, f32, f32, f32);
+    f32 func_80800070_bsbtrot(PlayerState *, f32, f32, f32, f32);
     if (func_8008DE24() != 0) {
         return 300.0f;
     }
     return func_80800070_bsbtrot(arg0, 700.0f, 1000.0f, 700.0f, 700.0f);
 }
 
-f32 func_808001B8_bsbtrot(s32 arg0) { f32 func_80800070_bsbtrot(s32, f32, f32, f32, f32); return func_80800070_bsbtrot(arg0, 30.0f, 80.0f, 30.0f, 30.0f); }
+f32 func_808001B8_bsbtrot(PlayerState *arg0) { f32 func_80800070_bsbtrot(PlayerState *, f32, f32, f32, f32); return func_80800070_bsbtrot(arg0, 30.0f, 80.0f, 30.0f, 30.0f); }
 
 /* extern */
 
-f32 func_808001EC_bsbtrot(s32 arg0) {
+f32 func_808001EC_bsbtrot(PlayerState *arg0) {
     s32 func_8008DE24();
-    f32 func_80800070_bsbtrot(s32, f32, f32, f32, f32);
+    f32 func_80800070_bsbtrot(PlayerState *, f32, f32, f32, f32);
     if (func_8008DE24() != 0) {
         return 0.7f;
     }
@@ -74,9 +91,9 @@ f32 func_808001EC_bsbtrot(s32 arg0) {
 
 /* extern */
 
-f32 func_80800248_bsbtrot(s32 arg0) {
+f32 func_80800248_bsbtrot(PlayerState *arg0) {
     s32 func_8008DE24();
-    f32 func_80800070_bsbtrot(s32, f32, f32, f32, f32);
+    f32 func_80800070_bsbtrot(PlayerState *, f32, f32, f32, f32);
     if (func_8008DE24() != 0) {
         return 0.8f;
     }
@@ -125,8 +142,8 @@ void func_80800438_bsbtrot(PlayerState *arg0) {
     s32 bastick_getZone(PlayerState *);
     f32 bastick_getZonePosition(PlayerState *);
     f32 func_800F1214(f32, f32, f32);
-    f32 func_80800164_bsbtrot(s32);
-    f32 func_808001B8_bsbtrot(s32);
+    f32 func_80800164_bsbtrot(PlayerState *);
+    f32 func_808001B8_bsbtrot(PlayerState *);
     f32 sp2C;
     f32 maxVelocity;
     f32 velocity;
@@ -264,9 +281,9 @@ void func_80800DF4_bsbtrot(s32 arg0) {
     s32 func_8008E1A0(s32);
     f32 func_8009BBB8(s32);
     f32 func_800F10B4(f32, f32, f32, s32, f32);
-    f32 func_80800164_bsbtrot(s32);
+    f32 func_80800164_bsbtrot(PlayerState *);
     f32 func_808001B8_bsbtrot();
-    f32 func_80800248_bsbtrot(s32);
+    f32 func_80800248_bsbtrot(PlayerState *);
     f32 sp34;
     f32 sp30;
     f32 sp2C;
@@ -397,7 +414,7 @@ s32 bsbtrot_entrypoint_23(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_24.s")
 
 void bsbtrot_entrypoint_25(void *arg0) {
-    s32 func_8008E3E8(s32);
+    s32 func_8008E3E8(PlayerState *);
     s32 bakey_pressed(s32, s32);
     AnimCtrl *baanim_getAnimCtrlPtr(PlayerState *);
     void anctrl_setSubrange(AnimCtrl *, f32, f32);
