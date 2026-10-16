@@ -2302,19 +2302,50 @@ void func_808067E8_bsfirstp(u8 *arg0) {
     func_808067B0_bsfirstp(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080682C_bsfirstp.s")
+f32 func_808068E8_bsfirstp(s32);
+
+void func_8080682C_bsfirstp(void *arg0) {
+    f32 func_80013728(f32);
+    f32 func_80806928_bsfirstp(void *);
+    f32 func_80809D94_bsfirstp(void *);
+    struct {
+        f32 delta;
+        s32 pad;
+    } local;
+    f32 upper;
+    f32 lower;
+    u8 *data;
+
+    data = *(u8 **)((u8 *)arg0 + 0x188);
+    switch (*(s32 *)(data + 0xC)) {
+        case 0:
+            local.delta = func_808068E8_bsfirstp((s32)arg0);
+            break;
+        case 1:
+            local.delta = func_80806928_bsfirstp(arg0);
+            break;
+    }
+    *(f32 *)(data + 0x20C) = func_80013728(*(f32 *)(data + 0x20C) + local.delta);
+    lower = func_80809D94_bsfirstp(arg0) + *(f32 *)(data + 0x1EC);
+    upper = *(f32 *)(data + 0x1E8);
+    if (*(f32 *)(data + 0x20C) < lower) {
+        *(f32 *)(data + 0x20C) = lower;
+    }
+    if (upper < *(f32 *)(data + 0x20C)) {
+        *(f32 *)(data + 0x20C) = upper;
+    }
+}
 
 /* extern */
 
-void func_808068E8_bsfirstp(s32 arg0) {
+f32 func_808068E8_bsfirstp(s32 arg0) {
     f32 func_808069BC_bsfirstp(s32);
-    s32 func_808069FC_bsfirstp(s32);
+    f32 func_808069FC_bsfirstp(s32);
     s32 func_80809D6C_bsfirstp();
     if (func_80809D6C_bsfirstp() != 0) {
-        func_808069BC_bsfirstp(arg0);
-        return;
+        return func_808069BC_bsfirstp(arg0);
     }
-    func_808069FC_bsfirstp(arg0);
+    return func_808069FC_bsfirstp(arg0);
 }
 
 /* extern */
