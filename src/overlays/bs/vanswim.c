@@ -2,7 +2,29 @@
 
 struct player_state_s;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_80800000_bsvanswim.s")
+void func_800BA22C(s32, s32);
+
+void func_80800000_bsvanswim(struct player_state_s *arg0) {
+    void func_80092C00(struct player_state_s *, f32 *);
+    void func_80092C24(struct player_state_s *, f32 *);
+    s32 func_80096544(struct player_state_s *);
+    s32 func_8009FBB0(struct player_state_s *, f32 *, f32);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    f32 func_800DC0C0(void);
+    f32 sp2C[3];
+    s32 sp28;
+
+    if (func_80096544(arg0) != 0) {
+        if (func_800DC0C0() > 0.5f) {
+            func_80092C00(arg0, sp2C);
+        } else {
+            func_80092C24(arg0, sp2C);
+        }
+        sp28 = func_8009FBB0(arg0, sp2C, 0.0f);
+        func_800BA930(sp28, -0x3C, -0x64, -0x3C, 0x3C, 0, 0x3C);
+        func_800BA22C(sp28, 1);
+    }
+}
 
 void func_808000B0_bsvanswim(struct player_state_s *arg0) {
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
@@ -64,8 +86,8 @@ void func_808002D0_bsvanswim(void *arg0) {
     f32 baphysics_get_vertical_velocity(void *);
     void baphysics_set_vertical_velocity(void *, f32);
     void func_8009C128(void *, f32 *);
-    s32 func_8009FBB0(void *, f32 *, f32);
-    void func_800BA930(s32, s32, s32, s32, s32, s32, s32);
+    s32 func_8009FBB0(struct player_state_s *, f32 *, f32);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
     f32 func_800F0E00(f32, f32);
     f32 mlAbsF(f32);
     s32 next_state;
