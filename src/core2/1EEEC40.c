@@ -22,7 +22,16 @@ f32 func_80115358(void *arg0, f32 arg1) {
     return arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEC40/func_8011539C.s")
+void func_8011539C(void *arg0, f32 arg1, f32 arg2, f32 arg3) {
+    void func_80115428(void *arg0, f32 arg1, f32 arg2);
+    f32 sqrtf(f32);
+
+    *(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x14) + 0) = arg1;
+    *(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x14) + 4) = arg2;
+    *(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x14) + 8) = arg3;
+    func_80115428(arg0, sqrtf(arg1 * arg1 + arg3 * arg3),
+                  sqrtf(arg2 * arg2 + arg3 * arg3));
+}
 
 void func_80115428(void *arg0, f32 arg1, f32 arg2) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x14)))) + (0x14))) = arg1;
