@@ -1,6 +1,29 @@
 #include "core2/1EA1270.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C7980.s")
+s32 *func_800C7980(u8 *arg0) {
+    extern s32 _mlspline_entrypoint_6;
+    extern s32 _mlspline_entrypoint_7;
+    extern s32 _mlspline_entrypoint_8;
+    extern s32 _mlspline_entrypoint_10;
+    s32 temp_v0;
+    s32 temp_v1;
+
+    temp_v0 = arg0[2];
+    temp_v1 = arg0[3];
+    if (temp_v0 < 2) {
+        return NULL;
+    }
+    if (temp_v0 == 2) {
+        return &_mlspline_entrypoint_6;
+    }
+    if (temp_v0 == 3) {
+        return &_mlspline_entrypoint_7;
+    }
+    if (temp_v1 == 1) {
+        return &_mlspline_entrypoint_10;
+    }
+    return &_mlspline_entrypoint_8;
+}
 
 /* extern */
 
@@ -48,22 +71,22 @@ void func_800C7A68(Unk800C7A68* arg0, f32 arg1, f32 *arg2) {
 /* extern */
 
 void func_800C7AE4(u8 *arg0, s32 arg1, s32 arg2) {
-    s32 _mlspline_entrypoint_11(u8, u8 *, s32, s32, s32);
-    s32 func_800C7980();
+    s32 _mlspline_entrypoint_11(u8, u8 *, s32, s32, s32 *);
+    s32 *func_800C7980();
     _mlspline_entrypoint_11((*(u8 *)((s8 *)(arg0) + (2))), arg0 + 0x14, arg1, arg2, func_800C7980());
 }
 
 /* extern */
 
 void func_800C7B28(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 _mlspline_entrypoint_12(u8, u8 *, s32, s32, s32, s32);
-    s32 func_800C7980();
+    s32 _mlspline_entrypoint_12(u8, u8 *, s32, s32, s32, s32 *);
+    s32 *func_800C7980();
     _mlspline_entrypoint_12((*(u8 *)((s8 *)(arg0) + (2))), arg0 + 0x14, arg1, arg2, arg3 * 2, func_800C7980());
 }
 
 f32 func_800C7B7C(Unk800C7A68 *arg0, f32 arg1, f32 arg2, f32 arg3) {
     f32 _mlspline_entrypoint_13(s16, u8 *, f32, f32, f32, s32 *);
-    s32 func_800C7980();
+    s32 *func_800C7980();
     return _mlspline_entrypoint_13((s16) arg0->unk2, (u8 *) &arg0->unk14, arg1, arg2, 0.0f, func_800C7980());
 }
 
@@ -76,7 +99,7 @@ f32 func_800C7B7C(Unk800C7A68 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 f32 func_800C7FD4(u8 *arg0, f32 arg1, f32 arg2) {
     f32 _glintrosyncDll_entrypoint_5(void);
     f32 _mlspline_entrypoint_13(s16, u8 *, f32, f32, f32, s32 *);
-    s32 func_800C7980();
+    s32 *func_800C7980();
     f32 func_800C7E28(void *);
     f32 func_800D8FF8(void);
     f32 sp2C;
