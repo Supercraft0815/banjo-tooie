@@ -256,7 +256,23 @@ s32 func_800E3EFC(f32 arg0, f32 arg1, f32 arg2) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBCFC0/func_800E3F8C.s")
+s32 func_800E3F8C(f32 arg0, f32 arg1, f32 arg2) {
+    void func_800BCC28(s32, s32);
+    int func_800BCC58(void);
+    s32 func_800CAEA4(void *, f32, f32, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    s32 var_v1;
+    f32 sp28[3];
+    f32 sp1C[3];
+
+    var_v1 = func_800CAEA4(D_8012D500, arg0, arg1, arg2);
+    if ((func_800BCC58() != 0) && (var_v1 == 0)) {
+        func_800EFA4C(sp1C, arg0, arg1, arg2);
+        func_800BCC28(sp28, sp1C);
+        var_v1 = func_800CAEA4(D_8012D500, sp28[0], sp28[1], sp28[2]);
+    }
+    return var_v1;
+}
 
 /* extern */
 
