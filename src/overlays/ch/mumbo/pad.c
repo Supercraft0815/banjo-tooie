@@ -38,7 +38,31 @@ int func_80800098_chmumbopad(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/pad/func_80800140_chmumbopad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/pad/func_8080044C_chmumbopad.s")
+void func_8080044C_chmumbopad(Actor *arg0) {
+    void func_80103110(void *, s32);
+    void func_80101FDC(Actor *, u32);
+    void _subaddiefade_entrypoint_3(Actor *);
+
+    switch (arg0->unk70_10) {
+        case 1:
+            if (!arg0->unk74_29) {
+                func_80103110(arg0, 0);
+                if (func_80800098_chmumbopad(arg0)) {
+                    _subaddiefade_entrypoint_3(arg0);
+                    func_80101FDC(arg0, 3);
+                }
+            }
+            arg0->unk74_29 = 0;
+            break;
+        case 2:
+            if (!arg0->unk74_29) {
+                _subaddiefade_entrypoint_3(arg0);
+                func_80101FDC(arg0, 3);
+            }
+            arg0->unk74_29 = 0;
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/pad/func_80800514_chmumbopad.s")
 
