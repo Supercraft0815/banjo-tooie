@@ -445,6 +445,43 @@ void func_80108C14(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108C90.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108CF4.s")
+void *func_80108CF4(s32 arg0)
+{
+  s32 _gccubesearch_entrypoint_17(s32, s32);
+  struct CubeSearchNode
+  {
+    u32 unk0;
+    u32 flags;
+    u32 unk8;
+    u32 unkC;
+    u32 unk10 : 11;
+    u32 next : 11;
+    u32 unk10low : 10;
+  };
+  s32 pad;
+  u32 sp20;
+  struct CubeSearchNode *node;
+  struct CubeSearchNode *result;
+  node = (struct CubeSearchNode *) _gccubesearch_entrypoint_17(arg0, 0);
+  sp20 = 1;
+  if ((node != NULL) && (node->next != (((node->flags & 1) == 1) * 0)))
+  {
+    do
+    {
+      sp20 = 0;
+      node = (struct CubeSearchNode *) _gccubesearch_entrypoint_17(node->next, 0);
+    }
+    while (((node != NULL) && ((node->flags & 1) == 1)) && (node->next != 0));
+  }
+  if (((sp20 == 1) || (node == NULL)) || ((node->flags & 1) == 1))
+  {
+    result = NULL;
+  }
+  else
+  {
+    result = node;
+  }
+  return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108DC0.s")
