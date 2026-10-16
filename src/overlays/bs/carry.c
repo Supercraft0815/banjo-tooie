@@ -121,7 +121,17 @@ void func_808003D8_bscarry(PlayerState *arg0)
     func_808001D4_bscarry(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/carry/func_808003F8_bscarry.s")
+void func_808003F8_bscarry(PlayerState *arg0) {
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void func_8009BFE4(PlayerState *, f32, f32);
+    void baroll_setAngularVelocity(PlayerState *, f32, f32);
+    func_80800208_bscarry(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0x72, 1.2f);
+    func_8009FFD8(arg0, 1, 1, 1, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_8009BFE4(arg0, 1000.0f, 12.0f);
+    baroll_setAngularVelocity(arg0, 1000.0f, 12.0f);
+}
 
 void func_8080047C_bscarry(PlayerState *arg0) {
     Unk80132ED0 *_bahold_entrypoint_5(s32);
