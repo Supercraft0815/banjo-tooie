@@ -123,7 +123,25 @@ s32 func_80110898(s32 *arg0) {
     return arg0[25];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_801108A0.s")
+void func_801108A0(void *arg0) {
+    s32 _ncba1p_entrypoint_1(s32);
+    void func_8010FFB0(s32 *, f32 *, f32 *);
+    void func_80111348(s32 *);
+    void func_80112398(u8 *);
+    s32 sp3C;
+    f32 sp30[3];
+    f32 sp24[3];
+
+    func_8010FFB0(*(s32 **)((u8 *)arg0 + 0x64), sp30, sp24);
+    func_80110770(arg0, sp30);
+    func_80110790((s32)arg0, sp24);
+    func_80111348(arg0);
+    sp3C = func_801106A0(arg0);
+    func_801106A8(arg0, 0);
+    func_801106A8(arg0, sp3C);
+    _ncba1p_entrypoint_1((s32)arg0);
+    func_80112398(arg0);
+}
 
 void func_80110928(void *arg0) {
     void func_800F5B38(s32, f32 *);
