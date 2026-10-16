@@ -113,7 +113,44 @@ u32 ncpod_entrypoint_13(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/func_808007D8_ncpod.s")
+void func_808007D8_ncpod(void *arg0, s32 arg1) {
+    void func_80015178(s32);
+    void ncpod_entrypoint_15(void *, s32, s32);
+    s32 mode;
+    s32 active;
+    s32 active2;
+
+    if (arg1 & 0x10) {
+        func_80800000_ncpod(arg0);
+    } else {
+        func_80800038_ncpod(arg0);
+    }
+    if (arg1 & 0x60000) {
+        if (arg1 & 0x40000) {
+            mode = 4;
+        } else if (arg1 & 0x20000) {
+            mode = 3;
+        } else {
+            mode = *(s32 *)((u8 *)arg0 + 0x14);
+        }
+        func_80015178(mode);
+    }
+    if (arg1 & 4) {
+        if (arg1 & 0x4000) {
+            active = 0;
+        } else {
+            active = 1;
+        }
+        ncpod_entrypoint_15(arg0, 0, active);
+        return;
+    }
+    if (arg1 & 0x2000) {
+        active2 = 0;
+    } else {
+        active2 = 1;
+    }
+    ncpod_entrypoint_15(arg0, 1, active2);
+}
 
 /* extern */
 
@@ -156,8 +193,7 @@ s16 ncpod_entrypoint_18(void) {
 /* extern */
 
 void ncpod_entrypoint_19(void *arg0, s32 arg1) {
-    s32 func_808007D8_ncpod();
-    func_808007D8_ncpod();
+    func_808007D8_ncpod(arg0, arg1);
     (*(s32 *)((s8 *)(arg0) + (0x10))) = arg1;
 }
 
