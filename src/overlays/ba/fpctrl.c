@@ -40,7 +40,17 @@ void func_8080022C_bafpctrl(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_808002A4_bafpctrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_808003BC_bafpctrl.s")
+void func_808003BC_bafpctrl(PlayerState *arg0) {
+    s32 _ncba1p_entrypoint_10();
+    void _ncba1p_entrypoint_8(PlayerState *, f32[3]);
+    void yaw_setIdeal(PlayerState *, f32);
+    f32 sp1C[3];
+
+    if (_ncba1p_entrypoint_10(func_800A4CA8(arg0)) == 2) {
+        _ncba1p_entrypoint_8(func_800A4CA8(arg0), sp1C);
+        yaw_setIdeal(arg0, sp1C[1] + 180.0f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_80800424_bafpctrl.s")
 
