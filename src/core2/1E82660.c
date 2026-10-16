@@ -166,11 +166,31 @@ s32 func_800A9670(s32 *arg0) { extern u8 D_801276D4; extern u8 D_801276D5; exter
 /* extern */
 
 void func_800A9800(void) {
-    s32 func_800A9828(s32, s32, s32);
+    void func_800A9828(s32, s32, s32);
     func_800A9828(0, 0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A9828.s")
+void func_800A9828(s32 arg0, s32 arg1, s32 arg2) {
+    void func_800A8D00(s32, s32);
+    s32 func_800E7F60(void);
+    extern s16 D_80127750;
+    extern s16 D_80127752;
+    extern s32 D_80127754;
+
+    D_80127754 = arg0;
+    if (arg1 != 0) {
+        D_80127750 = arg1;
+    } else {
+        D_80127750 = 0x130;
+    }
+    if (arg2 != 0) {
+        D_80127752 = arg2;
+    } else {
+        D_80127752 = 0xE4;
+    }
+    func_800E7F60();
+    func_800A8D00(D_80127750, D_80127752);
+}
 
 s32 func_800A989C(void) {
     s32 func_80014F00(void);
