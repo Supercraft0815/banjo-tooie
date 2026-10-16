@@ -46,7 +46,7 @@ void func_8080111C_chpotogoldgame(s32 arg0) {
     s32 _gccubesearch_entrypoint_1(s32, s32);
     s32 _gspropctrl_entrypoint_11(s32, s32 *);
     s32 func_800D1000(s32, s32, s32 *, s32, s32);
-    s32 func_80802124_chpotogoldgame(s32, s32, s32);
+    void func_80802124_chpotogoldgame(Actor *, s32, s32);
     s32 pad[2];
     s32 sp24;
 
@@ -61,7 +61,7 @@ void func_8080117C_chpotogoldgame(s32 arg0) {
     s32 _gccubesearch_entrypoint_1(s32, s32);
     s32 _gspropctrl_entrypoint_11(s32, s32 *);
     s32 func_800D1000(s32, s32, s32 *, s32, s32);
-    s32 func_80802124_chpotogoldgame(s32, s32, s32);
+    void func_80802124_chpotogoldgame(Actor *, s32, s32);
     s32 sp24[3];
 
     _gspropctrl_entrypoint_11(_gccubesearch_entrypoint_1(0x201, arg0 + 4), sp24);
@@ -219,7 +219,20 @@ void chpotogoldgame_entrypoint_3(s32 arg0, s32 arg1, Vtx *arg2, s32 arg3, s32 ar
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_8080206C_chpotogoldgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80802124_chpotogoldgame.s")
+void func_80802124_chpotogoldgame(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+
+    switch (arg0->actorData[7]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x29, 0x10);
+        case 1:
+            arg0->actorData[7] = 2;
+        case 2:
+            _capod_entrypoint_6(arg0->unk0, arg1, arg2);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_8080219C_chpotogoldgame.s")
 
