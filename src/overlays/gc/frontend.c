@@ -137,7 +137,7 @@ void gcfrontend_entrypoint_10(void) {
 
 void gcfrontend_entrypoint_11(void) {
     s32 gcfrontend_entrypoint_7(s32, s32);
-    s32 func_800D3D04();
+    u32 func_800D3D04(void);
     gcfrontend_entrypoint_7(func_800D3D04(), 0);
 }
 
@@ -177,7 +177,35 @@ s32 func_80800450_gcfrontend(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/func_80800520_gcfrontend.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/func_8080068C_gcfrontend.s")
+void func_8080068C_gcfrontend(s32 *arg0, s32 *arg1) {
+    void func_800D3A20(s32);
+    u32 func_800D3D04(void);
+    u32 func_800D3D1C(void);
+    extern s16 D_80800DB0_gcfrontend[16][4];
+    s16 (*entry)[4];
+    s16 (*end)[4];
+    u32 current;
+    s16 value;
+
+    if (func_800D3D1C() == 0) {
+        current = func_800D3D04();
+        entry = D_80800DB0_gcfrontend; end = D_80800DB0_gcfrontend + 16;
+        do {
+            if (current == (*entry)[0]) {
+                func_800D3A20((*entry)[1]);
+                value = (*entry)[2];
+                if (value != 0) {
+                    *arg0 = value;
+                }
+                value = (*entry)[3];
+                if (value != 0) {
+                    *arg1 = value;
+                }
+            }
+            entry++;
+        } while (entry != end);
+    }
+}
 
 /* extern */
 
@@ -188,7 +216,7 @@ void func_80800738_gcfrontend(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 func_800D3B24();
     s32 func_800EA334(s32);
     s32 func_80800520_gcfrontend(s32);
-    s32 func_8080068C_gcfrontend(s32 *, s32 *);
+    void func_8080068C_gcfrontend(s32 *, s32 *);
     s32 sp1C;
     s32 sp18;
 
