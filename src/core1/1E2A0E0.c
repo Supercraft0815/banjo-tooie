@@ -94,7 +94,17 @@ void *func_80012F6C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/rom_dma_read.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_8001311C.s")
+void func_8001311C(u8 *arg0, s32 arg1) {
+    extern s32 D_8003CC70;
+    extern u8 D_80076940[];
+    extern u8 D_8007695C[];
+    osWritebackDCache(arg0, 0x1800);
+    D_8003CC70++;
+    osPiStartDma((OSIoMesg *) D_80076940, 0, 0, arg1, arg0, 0x1800, (OSMesgQueue *) D_8007695C);
+    osRecvMesg((OSMesgQueue *) D_8007695C, NULL, 1);
+    D_8003CC70--;
+    osInvalDCache(arg0, 0x1800);
+}
 
 void func_800131C0(void) {
     extern u8 D_8007695C[];
