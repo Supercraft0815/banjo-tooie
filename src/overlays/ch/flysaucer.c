@@ -236,7 +236,29 @@ void func_8080105C_chflysaucer(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808012A4_chflysaucer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808013B4_chflysaucer.s")
+struct anctrl_s;
+enum asset_e;
+void func_808013B4_chflysaucer(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    struct anctrl_s *func_80104200(s16);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void func_8008B188(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    s16 *data;
+    struct anctrl_s *control;
+
+    data = func_80100094(arg0, 0);
+    control = func_80104200(data[1]);
+    anctrl_reset(control);
+    anctrl_setPlaybackType(control, 3);
+    anctrl_setIndex(control, 0x481);
+    anctrl_setDuration(control, 1.0f);
+    func_8008B188(control, 1);
+    anctrl_start(control);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80801428_chflysaucer.s")
 
