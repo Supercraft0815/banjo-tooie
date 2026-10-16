@@ -838,7 +838,7 @@ void func_80803248_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3,
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808034BC_chgameselect.s")
 
 void func_80803604_chgameselect(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 func_8080407C_chgameselect(s32, s32, s32);
+    void func_8080407C_chgameselect(s32, s32, s32);
     void func_808040DC_chgameselect(s32, s32, s32);
     if (arg2 != 0) {
         func_8080407C_chgameselect(arg0, arg1, arg3);
@@ -1110,7 +1110,19 @@ void func_8080401C_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080407C_chgameselect.s")
+void func_8080407C_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _gcnewoption_entrypoint_13(s32, s32, s32 *);
+    s32 _gcnewoption_entrypoint_17();
+    s32 _gcnewoption_entrypoint_21(s32, s32);
+    extern s32 D_808083D0_chgameselect;
+    if (_gcnewoption_entrypoint_17() == 0) {
+        _gcnewoption_entrypoint_21(arg0, arg1);
+        _gcnewoption_entrypoint_13(arg0, arg1, &D_808083D0_chgameselect);
+        if (arg2 != 0) {
+            func_80803CC0_chgameselect();
+        }
+    }
+}
 
 void func_808040DC_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
     s32 _gcnewoption_entrypoint_13(s32, s32, s32 *);
@@ -1443,7 +1455,7 @@ void func_80805474_chgameselect(s32 arg0,s32 arg1)
 void func_80805BA0_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
     s32 func_80803E40_chgameselect();
     void func_8080401C_chgameselect(s32, s32, s32);
-    s32 func_8080407C_chgameselect(s32, s32, s32);
+    void func_8080407C_chgameselect(s32, s32, s32);
     if (func_80803E40_chgameselect() >= (arg1 + 2)) {
         func_8080407C_chgameselect(arg0, arg1, arg2);
         return;
