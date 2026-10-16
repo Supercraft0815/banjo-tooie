@@ -30,17 +30,38 @@ void func_80800000_chcauldronentrydoor(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cauldronentrydoor/func_808000C8_chcauldronentrydoor.s")
+void func_808000C8_chcauldronentrydoor(Actor *arg0) {
+    s32 _chdoor_entrypoint_0();
+    s32 _chelectricfence_entrypoint_2(Actor *, u8 *, u8 *);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 func_800D9078(f32 *);
+    s32 func_800DA298(s32);
+    int func_800DC298(f32);
+    void *func_80100094(Actor *, u32);
+    void func_8010A590(Actor *);
+    extern u32 D_80800520_chcauldronentrydoor[];
+    u8 *temp_v0;
+
+    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_80800520_chcauldronentrydoor);
+    if (func_800D9078((f32 *)&arg0->actorData[4]) != 0) {
+        func_8010A590(arg0);
+    }
+    if (arg0->unk7C_12 && func_800DA298(0x436) != 0 && func_800DC298(0.2f) != 0) {
+        temp_v0 = func_80100094(arg0, 1);
+        _chelectricfence_entrypoint_2(arg0, temp_v0, temp_v0 + 0xC);
+    }
+    _chdoor_entrypoint_0(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cauldronentrydoor/func_80800168_chcauldronentrydoor.s")
 
 /* extern */
 
 void func_808001FC_chcauldronentrydoor(void *arg0) {
-    s32 func_800DA298(s32, void *);
+    s32 func_800DA298(s32);
     (*(u16 *)((s8 *)(arg0) + (0x6E))) = (u16) ((*(u16 *)((s8 *)(arg0) + (0x6E))) & 0xFE00);
     (*(f32 *)((s8 *)(arg0) + (0x18))) = 0.0f;
-    if (func_800DA298(0x436, arg0) != 0) {
+    if (func_800DA298(0x436) != 0) {
         (*(f32 *)((s8 *)(arg0) + (0x1C))) = 360.0f;
     } else {
         (*(f32 *)((s8 *)(arg0) + (0x1C))) = 270.0f;
