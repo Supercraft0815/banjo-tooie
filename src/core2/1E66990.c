@@ -42,7 +42,24 @@ int func_8008D214(PlayerState *player) {
     return func_800C6E38(0xF) && func_800964DC(player) - func_80096364(player) > 100.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008D280.s")
+int func_8008D280(PlayerState *player) {
+    int func_800C6E38(s32);
+    s32 func_800A3304(PlayerState *);
+    s32 func_800DA298(s32);
+    s32 transformation;
+
+    if (func_800C6E38(6) == 0) {
+        return 0;
+    }
+    if (func_800DA298(0x6B6) != 0) {
+        return 0;
+    }
+    transformation = func_800A3274(player);
+    if (((transformation == 1) || (transformation == 0xA)) && (func_800A3304(player) == 0)) {
+        return 0;
+    }
+    return 1;
+}
 
 int func_8008D304(PlayerState *player) {
     int func_800C6E38(s32);
