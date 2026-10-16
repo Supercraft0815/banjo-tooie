@@ -18,7 +18,20 @@ void sufreezy_entrypoint_3(Actor *arg0) {
     _subaddieaudioquick_entrypoint_2(arg0, NULL, &D_80800300_sufreezy);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/freezy/sufreezy_entrypoint_4.s")
+void sufreezy_entrypoint_4(Unk80132ED0 *arg0, s32 arg1) {
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_801094E0(f32 *, f32);
+    extern s32 D_80800314_sufreezy;
+    extern s32 D_80800328_sufreezy;
+    Actor *actor;
+
+    actor = func_80106790(arg0);
+    func_800BBCB8(actor->position, actor->position, actor->scale, arg1, &D_80800328_sufreezy);
+    _subaddieaudioquick_entrypoint_2(actor, NULL, &D_80800314_sufreezy);
+    func_801094E0(actor->position, actor->scale * 1.4f);
+}
 
 /* extern */
 
