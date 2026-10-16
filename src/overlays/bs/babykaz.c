@@ -356,7 +356,31 @@ s32 bsbabykaz_entrypoint_11(s32 arg0) {
     return ((s32 *)&D_80801790_bsbabykaz)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80801134_bsbabykaz.s")
+void func_80801134_bsbabykaz(struct player_state_s *arg0, s32 arg1) {
+    void _batimer_set(struct player_state_s *, s32, f32);
+    s32 func_800EA068(s32);
+    f32 duration;
+
+    switch (arg1) {
+        case 1:
+            if (func_800EA068(0x400) != 0) {
+                duration = 0.3f;
+            } else {
+                duration = 2.0f;
+            }
+            _batimer_set(arg0, 0, duration);
+            break;
+        case 2:
+            if (func_800EA068(0x400) != 0) {
+                duration = 0.3f;
+            } else {
+                duration = 2.0f;
+            }
+            _batimer_set(arg0, 0, duration);
+            break;
+    }
+    *(s32 *)((u8 *)arg0 + 0x15C) = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_808011EC_bsbabykaz.s")
 
