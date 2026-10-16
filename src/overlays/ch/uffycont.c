@@ -19,7 +19,25 @@ void func_8080046C_chchuffycont(s32 arg0, s32 arg1) {
     _gcnewoption_entrypoint_32(arg1, 66);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_80800494_chchuffycont.s")
+void func_80800494_chchuffycont(s32 arg0, s32 arg1) {
+    s32 _gcnewoption_entrypoint_12(s32, s32, s16);
+    void _gcnewoption_entrypoint_31(s32, s32, s16);
+    int func_808006A4_chchuffycont(s32);
+    extern s16 D_80800B20_chchuffycont;
+    s32 var_s0;
+    s32 var_s1;
+
+    var_s1 = 0;
+    var_s0 = 0;
+    do {
+        if (func_808006A4_chchuffycont(var_s0) != 0) {
+            _gcnewoption_entrypoint_12(arg1, var_s1, (s16) (var_s0 + 0xA));
+            _gcnewoption_entrypoint_31(arg1, var_s1, ((s16 *)((u8 *)&D_80800B20_chchuffycont + var_s0 * 10))[4]);
+            var_s1 += 1;
+        }
+        var_s0 += 1;
+    } while (var_s0 != 7);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_80800540_chchuffycont.s")
 
