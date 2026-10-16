@@ -230,7 +230,30 @@ s32 func_808007D8_chbanjoctrl(u8 *arg0) {
     return (func_800CC338(arg0 + 0x18, temp_t6 - 1, 0, arg0) + 1) != 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800824_chbanjoctrl.s")
+s32 func_80800824_chbanjoctrl(s32 arg0, s32 arg1) {
+    u32 func_800F54E4(void);
+    void func_800F5D70(s32, f32 *);
+    int func_800F6720(s32);
+    s32 func_800F7B9C(s32, s32);
+    f32 sp24[3];
+    f32 temp_f0;
+    f32 temp_f2;
+
+    func_800F5D70(arg1, sp24);
+    if (sp24[1] <= 0.0f) {
+        temp_f0 = *(f32 *)(arg0 + 8);
+        temp_f2 = *(f32 *)(arg0 + 0x1C);
+        if (temp_f2 <= temp_f0 + 200.0f) {
+            if (temp_f2 <= temp_f0) {
+                func_8080025C_chbanjoctrl(arg0);
+                return;
+            }
+            if (func_800F6720(arg1) != 0) {
+                func_800F7B9C(func_800F54E4(), 0x18);
+            }
+        }
+    }
+}
 
 void func_808008D8_chbanjoctrl(f32 *arg0, f32 arg1, f32 arg2) {
     void func_800EFA4C(f32[3], f32, f32, f32);
