@@ -5,7 +5,7 @@ void func_80800000_chtntmineshoot(Actor *arg0) { extern s32 D_80802590_chtntmine
 }
 
 void func_8080003C_chtntmineshoot(s32 arg0) {
-    s32 func_800BBCB8(f32 *, s32, f32, s32, s32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern s32 D_808025A8_chtntmineshoot;
     func_800BBCB8((f32 *)(arg0 + 4), 0, 1.0f, 4, &D_808025A8_chtntmineshoot);
 }
@@ -40,7 +40,28 @@ void func_80800150_chtntmineshoot(Actor *arg0) {
     arg0->unk5F = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800188_chtntmineshoot.s")
+void func_80800188_chtntmineshoot(f32 *arg0) {
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    f32 func_800F5F24(u32);
+    extern s32 D_808025F8_chtntmineshoot;
+    extern s32 D_80802644_chtntmineshoot;
+    f32 sp2C[3];
+    u32 sp28;
+
+    if (arg0 != NULL) {
+        func_800EE7F8(sp2C, arg0);
+    } else {
+        sp28 = func_800F54E4();
+        func_800F5A00(sp28, sp2C);
+        func_800EF1B8(sp2C, func_800F5F24(sp28), 200.0f);
+    }
+    func_800BBCB8(sp2C, NULL, 1.0f, 1, &D_808025F8_chtntmineshoot);
+    func_800BBCB8(sp2C, NULL, 1.0f, 1, &D_80802644_chtntmineshoot);
+}
 
 void func_80800228_chtntmineshoot(Actor *arg0) { void *func_80100094(Actor *, u32); void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *); void func_80800440_chtntmineshoot(Actor *, s32); void func_80800BCC_chtntmineshoot(Actor *); u8 *sp24; sp24 = func_80100094(arg0, 0U); func_80800BCC_chtntmineshoot(arg0); func_80800440_chtntmineshoot(arg0, 0); _subaddierouteDll_entrypoint_3(arg0, sp24 + 0x18, (f32 *)((u8 *)arg0 + 4)); }
 
@@ -220,7 +241,7 @@ OSThread *chtntmineshoot_entrypoint_1(void)
 }
 
 void func_80801BA0_chtntmineshoot(void) {
-    s32 func_800BBCB8(f32 *, s32, f32, s32, s32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 func_800E1610(s32, f32, f32, f32 *);
     struct Vec { f32 v[3]; };
     extern struct Vec D_80802720_chtntmineshoot;
