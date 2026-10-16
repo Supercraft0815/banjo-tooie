@@ -1,6 +1,21 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statictor/func_80800000_chstatictorch.s")
+void func_80800000_chstatictorch(Actor *arg0, void *arg1) {
+    void func_80101870(Actor *, void *);
+    OSThread *func_80104130(void);
+    void func_800DBEFC(s32 *, s32, s32);
+    void *func_80100094(Actor *, u32);
+    void _suflamefx_entrypoint_3(void *, void *);
+
+    func_80101870(arg0, arg1);
+    if (arg0->unk7C_12) {
+        func_800DBEFC((s32 *)func_80104130(), 5, (s32)arg0->actorData);
+        ((f32 *)arg0->actorData)[1] += 10.0f;
+        if (func_80100094(arg0, 1) != NULL) {
+            _suflamefx_entrypoint_3(func_80100094(arg0, 1), arg1);
+        }
+    }
+}
 
 /* extern */
 
