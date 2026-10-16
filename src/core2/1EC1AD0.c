@@ -1,9 +1,11 @@
 #include "common.h"
 
+typedef struct FreeList FreeList;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC1AD0/func_800E81E0.s")
 
 void func_800E829C(void) {
-    extern s32 D_8012D600;
+    extern FreeList *D_8012D600;
     extern s32 D_8012D678;
     int i;
     int j;
@@ -17,9 +19,9 @@ void func_800E829C(void) {
 
 void func_800E82EC(void) {
     void _chjiggygamenew_entrypoint_2(void);
-    void *freelist_at(s32, s32);
-    s32 freelist_capacity(s32);
-    s32 freelist_is_element_alive(s32, s32);
+    void *freelist_at(FreeList *, s32);
+    s16 freelist_capacity(FreeList *);
+    s32 freelist_is_element_alive(FreeList *, s32);
     s32 func_8001A0C0(s32, s32);
     s32 func_800A8984(s32);
     void func_800CA6D4(void *, f32 *, f32 *);
@@ -29,7 +31,7 @@ void func_800E82EC(void) {
     void func_800EF334(f32 *, f32);
     void func_800EFB24(void *, void *, void *);
     f32 mlAbsF(f32);
-    extern s32 D_8012D600;
+    extern FreeList *D_8012D600;
     typedef struct {
         f32 a;
         f32 b;
@@ -41,7 +43,7 @@ void func_800E82EC(void) {
         s32 active;
     } DepthView;
     typedef struct {
-        s32 list;
+        FreeList *list;
         Depth depth[2][5];
         s32 index;
     } State;
@@ -136,21 +138,55 @@ void func_800E82EC(void) {
 }
 
 void func_800E86DC(void) {
-    s32 freelist_free(s32);
-    extern s32 D_8012D600;
+    void freelist_free(FreeList *);
+    extern FreeList *D_8012D600;
     if (D_8012D600 != 0) {
         freelist_free(D_8012D600);
         D_8012D600 = 0;
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC1AD0/func_800E8714.s")
+u8 func_800E8714(s32 arg0) {
+    FreeList *freelist_new(s32, s32);
+    void *freelist_next(FreeList **, s32 *);
+    void bzero(void *, int);
+    extern FreeList *D_8012D600;
+    typedef struct {
+        f32 data[13];
+        s16 visible;
+        s16 valid;
+    } Sample;
+    typedef struct {
+        f32 position[3];
+        f32 radius;
+        Sample samples[2][5];
+        s16 mode;
+    } Entry;
+    s32 index;
+    Entry *entry;
+    s32 i;
+    s32 j;
+
+    if (D_8012D600 == NULL) {
+        D_8012D600 = freelist_new(0x244, 4);
+    }
+    entry = freelist_next(&D_8012D600, &index);
+    bzero(entry, 0x244);
+    for (i = 0; i < 2; i++) {
+        for (j = 0; j < 5; j++) {
+            entry->samples[i][j].visible = -1;
+        }
+    }
+    entry->radius = 20.0f;
+    entry->mode = arg0;
+    return index;
+}
 
 void func_800E87E0(u8 arg0) {
-    s32 freelist_erase(s32, s32);
-    s32 freelist_free(s32);
-    s32 freelist_used_count(s32);
-    extern s32 D_8012D600;
+    void freelist_erase(FreeList *, s32);
+    void freelist_free(FreeList *);
+    s32 freelist_used_count(FreeList *);
+    extern FreeList *D_8012D600;
     freelist_erase(D_8012D600, arg0);
     if (freelist_used_count(D_8012D600) == 0) {
         freelist_free(D_8012D600);
@@ -159,15 +195,15 @@ void func_800E87E0(u8 arg0) {
 }
 
 void func_800E8830(u8 arg0, f32 arg1[3]) {
-    extern s32 D_8012D600;
-    void *freelist_at(s32, s32);
+    extern FreeList *D_8012D600;
+    void *freelist_at(FreeList *, s32);
     void func_800EE7F8(f32 *, f32 *);
     func_800EE7F8(freelist_at(D_8012D600, arg0), arg1);
 }
 
 void func_800E8870(u8 arg0, f32 arg1) {
-    void *freelist_at(s32, s32);
-    extern s32 D_8012D600;
+    void *freelist_at(FreeList *, s32);
+    extern FreeList *D_8012D600;
     (*(f32 *)((s8 *)freelist_at(D_8012D600, arg0) + 0xC)) = arg1;
 }
 
@@ -190,8 +226,8 @@ void func_800E88E4(u8 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC1AD0/func_800E8918.s")
 
 void func_800E8A20(void) {
-    s32 freelist_defrag(s32);
-    extern s32 D_8012D600;
+    FreeList *freelist_defrag(FreeList *);
+    extern FreeList *D_8012D600;
     if (D_8012D600 != 0) {
         D_8012D600 = freelist_defrag(D_8012D600);
     }

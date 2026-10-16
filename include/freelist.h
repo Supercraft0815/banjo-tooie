@@ -8,7 +8,7 @@ typedef struct {
     u8 data[];
 } FreeListElement;
 
-typedef struct {
+typedef struct FreeList {
     s16 element_size;
     s16 capacity;
     FreeListElement data[];
