@@ -310,7 +310,20 @@ void func_800CF2B0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF2D4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF40C.s")
+void func_800CF40C(s32 arg0) {
+    s16 func_800CF640(void);
+    s32 func_800CF6D0(void);
+    f32 sp1C;
+    f32 sp18;
+
+    sp1C = func_800CEA60(1);
+    sp18 = func_800CEF00(func_800CF640());
+    sp1C += ((f32) arg0 * sp18) / (f32) func_800CF6D0();
+    if (sp18 < sp1C) {
+        sp1C = sp18;
+    }
+    func_800CE980(1, sp1C, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF494.s")
 
