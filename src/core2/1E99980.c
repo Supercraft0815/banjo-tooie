@@ -75,7 +75,29 @@ s16 func_800C0258(void) {
     return ((s16 *)&D_801288B0)[((u32)*(u16 *)((s8 *)&D_801288B0 + 0x15E) >> 15) + 0x8C] + 12;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0284.s")
+s32 func_800C0284(void) {
+    s32 _gcdialogexec_entrypoint_10(s32 *);
+    s32 _gczoombox_entrypoint_4(s32);
+    extern s32 D_801288B8;
+    extern s32 D_801289DC;
+    extern s32 D_80128A0C;
+    s32 *var_s0;
+    s32 temp_a0;
+
+    if (*(u8 *)&D_80128A0C != 0) {
+        _gcdialogexec_entrypoint_10(&D_801288B0);
+    }
+    var_s0 = &D_801288B0; do {
+        temp_a0 = var_s0[0x48];
+        if (temp_a0 != 0) {
+            _gczoombox_entrypoint_4(temp_a0);
+        }
+        var_s0++;
+    } while (var_s0 != &D_801288B8);
+    if (D_801289DC != 0) {
+        _gczoombox_entrypoint_4(D_801289DC);
+    }
+}
 
 void func_800C0308(void) {
     s32 _gczoombox_entrypoint_38(s32, s16);
