@@ -24,7 +24,31 @@ void func_8080000C_suegg(Actor *arg0) {
 
 void suegg_entrypoint_1(Actor *arg0, f32 arg1) { *(f32 *)func_80100094(arg0, 0) = arg1; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_2.s")
+void suegg_entrypoint_2(Actor *arg0) {
+    s32 _chlightfader_entrypoint_1(s32, f32, s32);
+    void func_800C8B84(volatile s32);
+    void func_800C8CB8(s32, f32 *);
+    void suegg_entrypoint_15(s32);
+    struct {
+        u32 pad[14];
+        u32 unk38_0 : 10;
+        u32 unk38_10 : 1;
+        u32 unk38_11 : 21;
+        s32 unk3C;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    if (data->unk3C != 0) {
+        if (data->unk38_10) {
+            func_800C8B84(data->unk3C);
+        } else {
+            func_800C8CB8(data->unk3C, arg0->position);
+            data->unk3C = _chlightfader_entrypoint_1(data->unk3C, 1.0f, 2);
+        }
+        data->unk3C = 0;
+    }
+    suegg_entrypoint_15((s32)arg0);
+}
 
 void suegg_entrypoint_3(Actor *arg0)
 {
