@@ -15,7 +15,27 @@ void func_8080000C_chsignpost(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/signpost/func_80800058_chsignpost.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/signpost/func_8080019C_chsignpost.s")
+s32 func_8080019C_chsignpost(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void func_80800230_chsignpost(u8 *, s32, s32);
+    void func_80800264_chsignpost(s32, s32, s32);
+    extern u32 D_80800328_chsignpost;
+
+    switch (arg1) {
+    case 0x2E:
+        func_80800230_chsignpost((u8 *)arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x2F:
+        func_80800264_chsignpost((s32)arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_80800328_chsignpost, arg0->scale);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800230_chsignpost(u8 *arg0, s32 arg1, s32 arg2) {
     if (((u32)*(u16 *)(arg0 + 0x72) >> 10) == 2) {
