@@ -336,7 +336,25 @@ void func_80803338_chdiggerboss(s32 arg0) {
     } while (var_s0 != 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808033A0_chdiggerboss.s")
+void *func_808033A0_chdiggerboss(Actor *arg0, s32 arg1, s32 *arg2) {
+    void *func_80100094(Actor *, u32);
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0:
+            *arg2 = 0x14;
+            return data + 0x50;
+        case 1:
+            *arg2 = 0x14;
+            return data + 0x53;
+        case 2:
+            *arg2 = 0x14;
+            return data + 0x56;
+        default:
+            return NULL;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80803424_chdiggerboss.s")
 
