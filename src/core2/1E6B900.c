@@ -555,7 +555,24 @@ void func_80093388(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093448.s")
+void func_80093448(void *arg0) {
+    void func_8009C128(PlayerState *, f32[3]);
+    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    union {
+        f32 f[3];
+        s32 i[3];
+    } position;
+
+    if (*(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x50) + 0x84) == 0) {
+        func_8009C128(arg0, position.f);
+        _chbaddiesetup_entrypoint_5(func_800927C4, 0x215,
+            position.i[0], position.i[1], position.i[2],
+            *(s32 *)((u8 *)arg0 + 0x184));
+    }
+    func_80093388(arg0);
+    func_80092018(arg0);
+    func_800920C8(arg0);
+}
 
 /* extern */
 
