@@ -292,7 +292,23 @@ u32 func_800A3404(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 63);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3410.s")
+void func_800A3410(PlayerState *arg0, s32 arg1) {
+    void func_800947EC(PlayerState *, s32, s32);
+    void func_800A0D68(void *, s32);
+    void *var_v0;
+
+    var_v0 = *(void **)((u8 *)arg0 + 0xA0);
+    if (*(u8 *)((u8 *)var_v0 + 0x29) == 0xA) {
+        func_800947EC(arg0, 1, 0);
+        func_800A0D68(arg0, 0);
+        var_v0 = *(void **)((u8 *)arg0 + 0xA0);
+    }
+    *(s8 *)((u8 *)var_v0 + 0x29) = arg1;
+    if (*(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0xA0) + 0x29) == 0xA) {
+        func_800947EC(arg0, 1, 1);
+        func_800A0D68(arg0, 1);
+    }
+}
 
 void func_800A34A0(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 42) = arg1;
