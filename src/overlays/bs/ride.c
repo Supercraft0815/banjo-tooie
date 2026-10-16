@@ -106,9 +106,9 @@ s32 func_808000F0_bsride(s32 arg0) { func_8009EAE8(0); func_8080008C_bsride(arg0
 /* extern */
 
 void func_8080011C_bsride(s32 arg0) {
-    s32 func_80099B94(s32);
+    void func_80099B94(PlayerState *);
     s32 func_8009E6EC();
-    s32 func_8009E830(s32, s32);
+    void func_8009E830(PlayerState *, s32);
     s32 func_808000F0_bsride(s32);
     if (func_8009E6EC() == 0x28) {
         func_808000F0_bsride(arg0);
@@ -249,9 +249,9 @@ void func_8080060C_bsride(void *arg0) {
 /* extern */
 
 void func_8080066C_bsride(s32 arg0) {
-    s32 func_80099B94(s32);
+    void func_80099B94(PlayerState *);
     s32 func_8009E6EC();
-    s32 func_8009E830(s32, s32);
+    void func_8009E830(PlayerState *, s32);
     s32 func_808000F0_bsride(s32);
     if (func_8009E6EC() == 0x28) {
         func_808000F0_bsride(arg0);
@@ -294,7 +294,32 @@ void func_808006D0_bsride(PlayerState *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_80800798_bsride.s")
+void func_80800798_bsride(PlayerState *arg0) {
+    s32 func_8009E6EC(PlayerState *);
+    void func_8009E830(PlayerState *, s32);
+    void func_80099B94(PlayerState *);
+    s32 temp_v0;
+
+    temp_v0 = func_8009E6EC(arg0);
+    switch (temp_v0) {
+        case 0x28:
+            func_808000F0_bsride((s32)arg0);
+            func_8009E830(arg0, 2);
+            break;
+        case 0x4B:
+            if (arg0->unk160.word == 2) {
+                func_808006D0_bsride(arg0, 1);
+                func_8009E830(arg0, 2);
+            } else {
+                func_808006D0_bsride(arg0, 2);
+                func_8009E830(arg0, 2);
+            }
+            break;
+        default:
+            func_80099B94(arg0);
+            break;
+    }
+}
 
 void func_8080084C_bsride(s32 arg0)
 {
