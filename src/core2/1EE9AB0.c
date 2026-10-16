@@ -494,7 +494,26 @@ void func_80111ABC(void *arg0, f32 *arg1) {
     func_800EE7F8((*(f32 **)((s8 *)arg0 + 0x34)) + 26, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111AE0.s")
+void func_80111AE0(void *arg0, f32 *arg1) {
+    void func_800EFD24(f32 *);
+    u32 func_8010FFD0(u8 *);
+    void func_80113640(s32, f32 *, f32 *);
+    f32 sp24[3];
+    s32 sp20;
+
+    sp20 = func_80110898(arg0);
+    func_801107F0(arg0, sp24);
+    if (func_8010FFD0(sp20) != 0) {
+        func_800EFD24((*(f32 **)((s8 *)arg0 + 0x34)) + 9);
+        func_80113640(arg0, sp24, arg1);
+        func_80110770(arg0, arg1);
+        return;
+    }
+    func_80111A98(arg0);
+    func_80111ABC(arg0, arg1);
+    func_80111A38(arg0, arg1, sp24);
+    func_80110770(arg0, sp24);
+}
 
 /* extern */
 
