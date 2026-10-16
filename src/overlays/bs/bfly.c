@@ -37,7 +37,20 @@ void func_808000AC_bsbfly(PlayerState *arg0) {
     func_800961AC(arg0, 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800128_bsbfly.s")
+void func_80800128_bsbfly(PlayerState *arg0) {
+    void _baboost_entrypoint_3(PlayerState *);
+    void _baboost_entrypoint_4(PlayerState *, s32);
+    void _bafly_entrypoint_5(PlayerState *);
+    void _bastatemem_entrypoint_0(PlayerState *, s32);
+    s32 func_8009E77C(PlayerState *, s32);
+    if (func_8009E77C(arg0, 9) == 0) {
+        _bastatemem_entrypoint_0(arg0, 0x20);
+        _bafly_entrypoint_5(arg0);
+        func_808000AC_bsbfly(arg0);
+        _baboost_entrypoint_3(arg0);
+        _baboost_entrypoint_4(arg0, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800188_bsbfly.s")
 
@@ -232,7 +245,7 @@ void func_808009D0_bsbfly(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800C38_bsbfly.s")
 
-void func_80800D50_bsbfly(s32 arg0) { s32 func_80800128_bsbfly(void); func_80800128_bsbfly(); (*(s32 *)((s8 *)(arg0) + 0x160)) = 0; func_80800A24_bsbfly(arg0, 1); }
+void func_80800D50_bsbfly(PlayerState *arg0) { func_80800128_bsbfly(arg0); (*(s32 *)((s8 *)(arg0) + 0x160)) = 0; func_80800A24_bsbfly(arg0, 1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800D80_bsbfly.s")
 
@@ -325,11 +338,10 @@ s32 bsbfly_entrypoint_4(s32 arg0) {
 
 /* extern */
 
-void func_8080188C_bsbfly(s32 arg0) {
+void func_8080188C_bsbfly(PlayerState *arg0) {
     s32 _bafly_entrypoint_13(s32, s32, s32, s32);
     s32 func_800A0CF4(s32, s32);
-    s32 func_80800128_bsbfly();
-    func_80800128_bsbfly();
+    func_80800128_bsbfly(arg0);
     _bafly_entrypoint_13(arg0, 0, 0xD3, 0x3F99999A);
     func_800A0CF4(arg0, 1);
 }
@@ -348,11 +360,10 @@ s32 bsbfly_entrypoint_5(s32 arg0) {
 
 /* extern */
 
-void func_8080193C_bsbfly(s32 arg0) {
+void func_8080193C_bsbfly(PlayerState *arg0) {
     s32 _bafly_entrypoint_13(s32, s32, s32, s32);
     s32 func_800A0CF4(s32, s32);
-    s32 func_80800128_bsbfly();
-    func_80800128_bsbfly();
+    func_80800128_bsbfly(arg0);
     _bafly_entrypoint_13(arg0, 1, 0xD3, 0x3F99999A);
     func_800A0CF4(arg0, 1);
 }
@@ -371,10 +382,9 @@ s32 bsbfly_entrypoint_6(s32 arg0) {
 
 /* extern */
 
-void func_808019EC_bsbfly(s32 arg0) {
+void func_808019EC_bsbfly(PlayerState *arg0) {
     s32 _bafly_entrypoint_16(s32, s32, s32);
-    s32 func_80800128_bsbfly();
-    func_80800128_bsbfly();
+    func_80800128_bsbfly(arg0);
     _bafly_entrypoint_16(arg0, 0x10D, 0x3F800000);
 }
 
@@ -393,8 +403,7 @@ s32 bsbfly_entrypoint_7(s32 arg0) {
     return ((s32 *)&D_80801DB8_bsbfly)[arg0];
 }
 
-void func_80801A80_bsbfly(s32 arg0) {
-    s32 func_80800128_bsbfly();
+void func_80801A80_bsbfly(PlayerState *arg0) {
     s32 baanim_playForDuration_loopSmooth(s32, s32, f32);
     s32 func_8009FFD8(s32, s32, s32, s32, s32);
     s32 func_800A0CF4(s32, s32);
@@ -447,8 +456,7 @@ void func_80801C58_bsbfly(s32 arg0) {
     s32 _badrone_entrypoint_3(s32);
     s32 _bsdrone_entrypoint_0(s32);
     s32 baphysics_set_type(s32, s32);
-    s32 func_80800128_bsbfly();
-    func_80800128_bsbfly();
+    func_80800128_bsbfly(arg0);
     _bsdrone_entrypoint_0(arg0);
     if (_badrone_entrypoint_3(arg0) == 0xE) {
         baphysics_set_type(arg0, 7);
