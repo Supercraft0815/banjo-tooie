@@ -58,7 +58,40 @@ u8 func_800D35BC(s32 arg0) {
     return D_8011B560[arg0].size;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC810/func_800D35D0.s")
+s32 func_800D35D0(s32 arg0, s32 arg1) {
+    extern s8 D_8012B370[];
+    s32 temp;
+
+    if ((arg0 != 2) && (arg0 != 0) && (arg1 >= 0x61) && (arg1 < 0x7B)) {
+        arg1 -= 0x20;
+    }
+    switch (arg0) {
+        case 0:
+            if ((arg1 >= 0x21) && (arg1 < 0x7B)) {
+                return arg1 - 0x21;
+            }
+            break;
+        case 1:
+            if (arg1 < 0x80) {
+                temp = D_8012B370[arg1];
+                if (temp >= 0) {
+                    return temp;
+                }
+            }
+            break;
+        case 2:
+            if ((arg1 > 0) && (arg1 < 0xFD)) {
+                return arg1;
+            }
+            break;
+        case 3:
+            if ((arg1 >= 0x30) && (arg1 < 0x3B)) {
+                return arg1 - 0x30;
+            }
+            return 0xB;
+    }
+    return -1;
+}
 
 void func_800D36A8(void) {
     s32 i;
