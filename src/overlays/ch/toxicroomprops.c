@@ -2,7 +2,29 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroomprops/func_80800000_chtoxicroomprops.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroomprops/func_8080030C_chtoxicroomprops.s")
+s32 func_8080030C_chtoxicroomprops(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800DA524(s32);
+    s32 _subaddieaudioloop_entrypoint_2(u8 *);
+    void _glcutDll_entrypoint_17(void);
+    void func_80101FDC(Actor *, u32);
+
+    switch (arg1) {
+        case 0xB:
+            func_800DA524(0xA04);
+            func_800DA524(0x1BD);
+            _subaddieaudioloop_entrypoint_2((u8 *)arg0);
+            _glcutDll_entrypoint_17();
+            return 3;
+        case 0x49:
+            if (arg2 == 0x41) {
+                func_80101FDC(arg0, 2);
+                return 1;
+            }
+            return 0;
+        default:
+            return 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroomprops/func_80800390_chtoxicroomprops.s")
 
