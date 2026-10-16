@@ -136,7 +136,24 @@ int func_8008D964(PlayerState *player) {
     return func_800C6E38(18) && func_800A3304(player);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008D9A4.s")
+int func_8008D9A4(PlayerState *player) {
+    s32 _ncba1p_entrypoint_10();
+    PlayerState *func_800A4CA8(PlayerState *);
+    s32 func_800A4D40(void *);
+    int player_isStable(PlayerState *);
+    s32 player_inWater(PlayerState *);
+
+    if (_ncba1p_entrypoint_10(func_800A4CA8(player)) == 3) {
+        return 0;
+    }
+    if (!func_800A4D40(player)) {
+        return 0;
+    }
+    if (!player_isStable(player) && !player_inWater(player)) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DA24.s")
 
@@ -314,9 +331,10 @@ int func_8008E300(PlayerState *player) {
     return 135.0f < mlAbsF(func_800F1DCC(yaw_getIdeal(player), yaw_get(player)));
 }
 
-void player_inWater()
+s32 player_inWater(PlayerState *player)
 {
-    func_800A0FD8();
+    s32 func_800A0FD8(PlayerState *);
+    return func_800A0FD8(player);
 }
 
 void func_8008E37C()
