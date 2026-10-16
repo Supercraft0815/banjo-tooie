@@ -321,9 +321,9 @@ void func_801085CC(s32 arg0, s16 *arg1, u32 arg2) {
 
 /* extern */
 
-s32 func_80108618(s32 arg0, s32 arg1) {
+s32 func_80108618(Actor *arg0, s32 arg1) {
     s32 func_800DA298(s32);
-    s32 func_800FFAB0(s32);
+    void func_800FFAB0(Actor *);
     if (func_800DA298(arg1) != 0) {
         func_800FFAB0(arg0);
         return 1;
@@ -415,7 +415,33 @@ void func_80108B8C(u8 *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108BD4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108C14.s")
+void func_80108C14(void) {
+    void func_800819B4(void *);
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
+    void *func_80100368(void *);
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    struct ActorSettings {
+        u8 pad[0x20];
+        u32 flag : 16;
+    };
+    s32 index;
+    Actor *actor;
+    struct ActorSettings *settings;
+
+    actor = (Actor *)func_801067C4(&index);
+    if (actor != NULL) {
+        do {
+            settings = func_80100368(actor);
+            if (settings->flag != 0 && func_800DA298(settings->flag) != 0) {
+                func_800FFAB0(actor);
+                func_800819B4(actor->pointerToSyscallEntry);
+            }
+            actor = (Actor *)func_8010682C(&index);
+        } while (actor != NULL);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108C90.s")
 
