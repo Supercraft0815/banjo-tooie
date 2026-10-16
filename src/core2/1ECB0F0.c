@@ -182,7 +182,28 @@ f32 func_800F1F38(f32 arg0, f32 arg1, f32 arg2) {
     return func_800136E4(arg0 + var_f0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1FF0.s")
+/* extern */
+
+f32 func_800F1FF0(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+    f32 func_800136E4(f32);
+    f32 mlAbsF(f32);
+    f32 var_f2;
+    f32 temp_f0;
+
+    var_f2 = func_800F1DCC(arg1, arg0) * arg2;
+    temp_f0 = mlAbsF(var_f2);
+    if (temp_f0 < arg3) {
+        return arg1;
+    }
+    if (arg4 < temp_f0) {
+        if (var_f2 < 0.0f) {
+            var_f2 = -arg4;
+        } else {
+            var_f2 = arg4;
+        }
+    }
+    return func_800136E4(arg0 + var_f2);
+}
 
 /* extern */
 
