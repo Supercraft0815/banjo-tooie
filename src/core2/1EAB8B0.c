@@ -25,7 +25,35 @@ void func_800D2014(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAB8B0/func_800D2054.s")
+s32 func_800D2054(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_800D395C(void);
+    s32 func_800DA544(s32);
+    s32 result;
+    s16 *value;
+    s32 difference;
+
+    value = func_800D1FC0(arg1);
+    if (*value == 0) {
+        result = 1;
+    } else {
+        switch (arg0) {
+            case 0:
+                difference = arg2 - *value;
+                break;
+            case 1:
+                difference = *value - arg2;
+                break;
+        }
+        result = difference <= 0 ? (difference != 0 ? -1 : 0) : 1;
+    }
+    if (result == 1) {
+        if (func_800D395C() != 0) {
+            func_800DA544(0xD54);
+        }
+        *value = arg2;
+    }
+    return result;
+}
 
 /* extern */
 
