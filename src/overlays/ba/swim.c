@@ -25,7 +25,25 @@ int baswim_entrypoint_2(struct player_state_s *arg0) {
         func_8009C150(arg0) > func_800964DC(arg0) - 130.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/swim/baswim_entrypoint_3.s")
+int baswim_entrypoint_3(struct player_state_s *arg0) {
+    int bakey_held(struct player_state_s *, s32);
+    int func_800C6E38(s32);
+    int sp1C;
+    int sp18;
+
+    sp1C = bakey_held(arg0, 8);
+    sp18 = bakey_held(arg0, 9);
+    if (func_800C6E38(0x30) && sp1C && sp18) {
+        return 3;
+    }
+    if (sp18) {
+        return 2;
+    }
+    if (sp1C) {
+        return 1;
+    }
+    return 0;
+}
 
 void baswim_entrypoint_4()
 {
