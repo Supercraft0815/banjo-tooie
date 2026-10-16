@@ -76,4 +76,36 @@ f32 glintrosyncDll_entrypoint_5(void) {
     return *(f32 *)((u8 *)&D_80127194 + 0x448) * func_800D9004();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/introsyncDll/glintrosyncDll_entrypoint_6.s")
+void glintrosyncDll_entrypoint_6(s32 arg0)
+{
+  struct IntroSyncEntry
+  {
+    s32 id;
+    f32 value;
+  };
+  extern struct IntroSyncEntry D_808004F8_glintrosyncDll[27];
+  extern f32 D_80127194;
+  s32 _gcsectionDll_entrypoint_4(s32);
+  struct IntroSyncEntry *entry;
+  u8 *state;
+  if (_gcsectionDll_entrypoint_4(arg0) == 0xD)
+  {
+    state = (u8 *) ((u32) (((u8 *) (&D_80127194)) + 0x43C));
+    state[0x10] = 1;
+  }
+  else
+  {
+    state = (u8 *) ((u32) (((u8 *) (&D_80127194)) + 0x43C));
+    state[0x10] = 0;
+  }
+ *((f32 *) (state + 0xC)) = 1.0f; if (state[0x10] != 0) { entry = D_808004F8_glintrosyncDll; do {
+      if (arg0 == entry->id)
+      {
+        *((f32 *) (state + 0xC)) = entry->value;
+        break;
+      }
+      entry++;
+    }
+    while (entry != ((struct IntroSyncEntry *) ((u32) (&D_808004F8_glintrosyncDll[27]))));
+  }
+}
