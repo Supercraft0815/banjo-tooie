@@ -465,7 +465,29 @@ int func_800A8264(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A8278.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A8380.s")
+s32 func_800A8380(s32 arg0) {
+    extern s32 D_80127670;
+    s32 base;
+
+    if (*(s32 *)((s8 *)&D_80127670 + 8) == 0) {
+        base = 1;
+    } else {
+        base = 7;
+    }
+    switch (D_80127670) {
+        case 2:
+            return base + arg0;
+        case 3:
+            if (base == 1) {
+                return arg0 != 0 ? arg0 + 4 : base;
+            }
+            return arg0 != 0 ? arg0 * 2 + 2 : base;
+        case 4:
+            return arg0 + 3;
+        default:
+            return 0;
+    }
+}
 
 void func_800A8424(s32 arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4) {
     extern s16 D_8011A420[][4];
