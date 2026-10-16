@@ -77,15 +77,33 @@ void func_80800178_bsswim(struct player_state_s *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_808001DC_bsswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_80800270_bsswim.s")
+void func_80800270_bsswim(struct player_state_s *arg0) {
+    void _bapackctrl_entrypoint_5(struct player_state_s *, s32);
+    void baphysics_reset_gravity(struct player_state_s *);
+    void baphysics_reset_terminal_velocity(struct player_state_s *);
+    void bastick_resetZones(struct player_state_s *);
+    int func_8008E0E8(struct player_state_s *);
+    void func_800961AC(struct player_state_s *, s32);
+    s32 func_8009E69C(struct player_state_s *, s32);
+
+    if (func_8009E69C(arg0, 1) == 0) {
+        baphysics_reset_terminal_velocity(arg0);
+        baphysics_reset_gravity(arg0);
+        bastick_resetZones(arg0);
+        func_800961AC(arg0, 1);
+        if (func_8008E0E8(arg0) != 0) {
+            _bapackctrl_entrypoint_5(arg0, 3);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_808002E0_bsswim.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_808004C4_bsswim.s")
 
-void func_80800688_bsswim(s32 arg0)
+void func_80800688_bsswim(struct player_state_s *arg0)
 {
-    func_80800270_bsswim();
+    func_80800270_bsswim(arg0);
     func_800A4E30(arg0);
 }
 s32 bsswim_entrypoint_0(s32 arg0) {
@@ -97,9 +115,9 @@ s32 bsswim_entrypoint_0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_808007F8_bsswim.s")
 
-void func_808009F0_bsswim()
+void func_808009F0_bsswim(struct player_state_s *arg0)
 {
-    func_80800270_bsswim();
+    func_80800270_bsswim(arg0);
 }
 
 s32 bsswim_entrypoint_1(s32 arg0) {
@@ -107,7 +125,7 @@ s32 bsswim_entrypoint_1(s32 arg0) {
     return ((s32 *)&D_80800BB4_bsswim)[arg0];
 }
 
-void func_80800A24_bsswim(s32 arg0)
+void func_80800A24_bsswim(struct player_state_s *arg0)
 {
     _bsrest_entrypoint_14();
     func_80800270_bsswim(arg0);
