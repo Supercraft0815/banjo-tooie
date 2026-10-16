@@ -316,7 +316,24 @@ void func_800C9128(s32 arg0) {
     _gclightsDll_entrypoint_3(&D_8012AB00, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9150.s")
+s32 func_800C9150(s32 arg0) {
+    s32 func_800C91C8(s32);
+    void *heap_alloc(s32);
+    void bzero(void *, int);
+    void _gctransitionDll_entrypoint_8(void *, s32);
+    extern s32 D_8012AB40;
+    void *result;
+
+    result = (void *)func_800C91C8(arg0);
+    if (result == NULL) {
+        result = heap_alloc(0x34);
+        bzero(result, 0x34);
+        ((void **)&D_8012AB40)[*(u8 *)((s8 *)&D_8012AB40 + 0x14)] = result;
+        *(u8 *)((s8 *)&D_8012AB40 + 0x14) += 1;
+        _gctransitionDll_entrypoint_8(result, arg0);
+    }
+    return (s32)result;
+}
 
 s32 func_800C91C8(s32 arg0) { extern s32 D_8012AB40; register s32 key = arg0; s32 i = 0; register s32 count = D_8012AB54; s32 *p = &D_8012AB40; s32 *entry; if (count > 0) { loop: entry = (s32 *) *p; i++; if (key == *entry) return (s32) entry; p++; count = D_8012AB54; if (i < count) goto loop; } return 0; }
 
