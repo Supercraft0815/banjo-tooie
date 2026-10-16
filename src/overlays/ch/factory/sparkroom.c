@@ -48,7 +48,43 @@ void func_80800000_chfactorysparkroom(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_8080013C_chfactorysparkroom.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_808005E0_chfactorysparkroom.s")
+void func_808005E0_chfactorysparkroom(Actor *arg0, f32 *arg1) {
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32[3]);
+    void func_800C8D4C(s32, f32 *);
+    s32 func_800C8E84(s32, s32 *);
+    void func_800C8F64(s32, s32);
+    void func_800C8FE0(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    struct SparkRoomInitColor { s32 values[3]; };
+    struct SparkRoomLight { u8 pad[0x200]; s32 light; };
+    extern struct SparkRoomInitColor D_80801094_chfactorysparkroom;
+    extern f32 D_808010A0_chfactorysparkroom[];
+    extern f32 D_808010A8_chfactorysparkroom[4][3];
+    extern f32 D_808010D8_chfactorysparkroom[3];
+    struct { struct SparkRoomInitColor color; s32 alpha; } sp40;
+    f32 (*var_s1)[3];
+    s32 temp_v0;
+    struct SparkRoomLight *temp_s2;
+    struct SparkRoomLight *var_s0;
+
+    sp40.color = D_80801094_chfactorysparkroom;
+    temp_s2 = func_80100094(arg0, 0);
+    func_800EE7F8(D_808010A8_chfactorysparkroom[4], arg1);
+    var_s0 = temp_s2;
+    var_s1 = D_808010A8_chfactorysparkroom; do {
+        temp_v0 = func_800C8A98();
+        var_s0->light = temp_v0;
+        func_800C8CB8(temp_v0, *var_s1);
+        func_800C8D4C(var_s0->light, D_808010A0_chfactorysparkroom);
+        func_800C8F64(var_s0->light, 3);
+        func_800C8FE0(var_s0->light, 3);
+        func_800C8E84(var_s0->light, sp40.color.values);
+        var_s1++;
+        var_s0 = (struct SparkRoomLight *)((u8 *)var_s0 + 4);
+    } while (var_s1 != &D_808010D8_chfactorysparkroom);
+}
 
 void func_808006D0_chfactorysparkroom(Actor *arg0, f32 arg1) {
     s32 func_800C8E84(s32, s32 *);
