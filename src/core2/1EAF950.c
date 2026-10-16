@@ -81,7 +81,28 @@ s32 func_800D6254(s32 arg0) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D62E4.s")
+void func_800D62E4(s32 arg0) {
+    extern u8 D_8012B800[];
+    extern s16 D_8012BE64;
+    struct Entry {
+        u32 unused : 27;
+        u32 flags : 4;
+        u32 low : 1;
+        s32 value;
+        u32 index : 14;
+        u32 active : 1;
+        u32 other : 1;
+        u32 tail : 16;
+    } *ptr;
+
+    if (D_8012BE64 != 0) {
+        ptr = (struct Entry *)(D_8012B800 + func_800D6254(arg0) * 12);
+        if (ptr->flags == 2 && ptr->active && !ptr->other) {
+            ptr->active = 0;
+        }
+        D_8012BE64 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6378.s")
 
