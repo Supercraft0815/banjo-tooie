@@ -1,6 +1,7 @@
 #include "bs/trexsmall.h"
 
 void bstrexsmall_entrypoint_3(s32 arg0);
+void bstrexsmall_entrypoint_1(PlayerState *);
 void yaw_setVelocityBounded(PlayerState *, f32, f32);
 
 int func_80800000_bstrexsmall(PlayerState *arg0) {
@@ -77,9 +78,9 @@ void func_808002B8_bstrexsmall(PlayerState *arg0) {
     }
 }
 
-void func_80800364_bstrexsmall()
+void func_80800364_bstrexsmall(PlayerState *arg0)
 {
-    bstrexsmall_entrypoint_1();
+    bstrexsmall_entrypoint_1(arg0);
 }
 
 void func_80800384_bstrexsmall(PlayerState *arg0) { bstrexsmall_entrypoint_2(); func_8009FFD8(arg0, 1, 3, 3, 2); yaw_setVelocityBounded(arg0, 500.0f, 6.5f); }
@@ -102,7 +103,27 @@ s32 bstrexsmall_entrypoint_0(s32 arg0) {
     return ((s32 *)&D_80801B08_bstrexsmall)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/bstrexsmall_entrypoint_1.s")
+void bstrexsmall_entrypoint_1(PlayerState *arg0) {
+    void baphysics_reset_gravity(PlayerState *);
+    void bastick_popZone(PlayerState *);
+    void func_80092864(PlayerState *, f32);
+    void func_800947EC(PlayerState *, s32, s32);
+    void func_8009590C(PlayerState *, f32);
+    void func_80095A40(PlayerState *);
+    void func_8009E474(PlayerState *);
+    s32 func_8009E74C(PlayerState *, s32);
+
+    if (func_8009E74C(arg0, 0x10) == 0) {
+        func_808000C8_bstrexsmall(arg0, 0);
+        bastick_popZone(arg0);
+        func_80092864(arg0, 1.0f);
+        func_8009E474(arg0);
+        func_80095A40(arg0);
+        func_8009590C(arg0, 0.0f);
+        baphysics_reset_gravity(arg0);
+        func_800947EC(arg0, 1, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/bstrexsmall_entrypoint_2.s")
 
@@ -198,7 +219,7 @@ s32 bstrexsmall_entrypoint_4(s32 arg0) {
 
 void func_80800998_bstrexsmall(s32 arg0)
 {
-    bstrexsmall_entrypoint_1();
+    bstrexsmall_entrypoint_1(arg0);
     _bsdrone_entrypoint_2(arg0);
 }
 void func_808009C0_bstrexsmall(s32 arg0)
@@ -237,9 +258,9 @@ void func_80800A24_bstrexsmall(PlayerState *arg0, s32 arg1) {
     arg0->unk15C.bytes[0] = arg1;
 }
 
-void func_80800AF0_bstrexsmall()
+void func_80800AF0_bstrexsmall(PlayerState *arg0)
 {
-    bstrexsmall_entrypoint_1();
+    bstrexsmall_entrypoint_1(arg0);
 }
 
 void func_80800B10_bstrexsmall(s32 arg0)
@@ -391,7 +412,7 @@ void func_80801258_bstrexsmall(PlayerState *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80801294_bstrexsmall.s")
 
-void func_808013E8_bstrexsmall(void *arg0) { s32 func_80801294_bstrexsmall(void *, s32); bstrexsmall_entrypoint_1(); func_80801294_bstrexsmall(arg0, 0); }
+void func_808013E8_bstrexsmall(void *arg0) { s32 func_80801294_bstrexsmall(void *, s32); bstrexsmall_entrypoint_1(arg0); func_80801294_bstrexsmall(arg0, 0); }
 
 /* extern */
 
@@ -408,9 +429,9 @@ s32 bstrexsmall_entrypoint_12(s32 arg0) {
     return ((s32 *)&D_80801B88_bstrexsmall)[arg0];
 }
 
-void func_808015BC_bstrexsmall()
+void func_808015BC_bstrexsmall(PlayerState *arg0)
 {
-    bstrexsmall_entrypoint_1();
+    bstrexsmall_entrypoint_1(arg0);
 }
 
 void func_808015DC_bstrexsmall(PlayerState *arg0) {
@@ -461,9 +482,9 @@ s32 bstrexsmall_entrypoint_14(s32 arg0) {
     return ((s32 *)&D_80801BA8_bstrexsmall)[arg0];
 }
 
-void func_80801970_bstrexsmall()
+void func_80801970_bstrexsmall(PlayerState *arg0)
 {
-    bstrexsmall_entrypoint_1();
+    bstrexsmall_entrypoint_1(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80801990_bstrexsmall.s")
