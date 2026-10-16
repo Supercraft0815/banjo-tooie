@@ -343,7 +343,20 @@ void func_8080153C_chhoopswoop(void *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_808015A4_chhoopswoop.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_808017C4_chhoopswoop.s")
+void func_808017C4_chhoopswoop(Actor *arg0) {
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    void func_80801D8C_chhoopswoop(u8 *);
+    f32 var_f2;
+
+    if (func_800DC298(0.5f) != 0) {
+        var_f2 = 1.0f;
+    } else {
+        var_f2 = -1.0f;
+    }
+    arg0->unk50 = func_800DC178(50.0f, 100.0f) * var_f2;
+    func_80801D8C_chhoopswoop(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80801838_chhoopswoop.s")
 
