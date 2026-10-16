@@ -856,7 +856,7 @@ void func_80094824(PlayerState *arg0) {
     s32 bainput_func_80097C7C();
     s32 func_80094A10(PlayerState *);
     void func_80094C88(void *);
-    s32 func_80094D04(s32);
+    void func_80094D04(void *);
     if (bainput_func_80097C7C() != 0) {
         func_80094A10(arg0);
         func_80094C88(arg0);
@@ -981,7 +981,35 @@ void func_80094C88(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094D04.s")
+void func_80094D04(void *arg0) {
+    s32 _gcegg_entrypoint_5(s32);
+    s32 _gcegg_entrypoint_6(s32);
+    s32 func_800D1C5C(u32);
+    s32 func_800D27C8(s32);
+    void func_800FAA34(s32);
+    s32 temp_v0_3;
+    s32 var_s1;
+    s32 temp_v0;
+    s32 temp_v0_2;
+    s32 var_s0;
+
+    var_s1 = 0;
+    temp_v0 = func_80094C64(arg0, 0);
+    var_s0 = temp_v0;
+    if (temp_v0 != 0) {
+        do {
+            if ((var_s1 != (*(u8 **)((u8 *)arg0 + 0x64))[1]) && (_gcegg_entrypoint_6(var_s0) != 0)) {
+                temp_v0_3 = func_800D27C8(func_800D1C5C(_gcegg_entrypoint_5(var_s0)));
+                if (temp_v0_3 >= 0) {
+                    func_800FAA34(temp_v0_3);
+                }
+            }
+            var_s1 += 1;
+            temp_v0_2 = func_80094C64(arg0, var_s1);
+            var_s0 = temp_v0_2;
+        } while (temp_v0_2 != 0);
+    }
+}
 
 s32 func_80094DA8(void *arg0) {
     s32 _gcegg_entrypoint_5(s32);

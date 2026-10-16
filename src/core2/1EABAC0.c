@@ -155,8 +155,8 @@ s32 func_800D27A4(s32 arg0) {
     return (s32) (*(u8 *)((s8 *)(func_800D21D0(arg0)) + (1)));
 }
 
-void func_800D27C8(s32 arg0) {
-    func_800D21F0(arg0, (s32) *func_800D21D0(arg0));
+s32 func_800D27C8(s32 arg0) {
+    return func_800D21F0(arg0, (s32) *func_800D21D0(arg0));
 }
 
 int func_800D27F4(s32 arg0)
