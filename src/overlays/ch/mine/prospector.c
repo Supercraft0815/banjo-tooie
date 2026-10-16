@@ -1,5 +1,7 @@
 #include "common.h"
 
+void *func_80100094(Actor *, u32);
+
 OSThread *chmineprospector_entrypoint_0(void)
 {
     extern u8 D_8080102C_chmineprospector[];
@@ -141,7 +143,17 @@ block_8:
     func_80105A9C(arg0, 450.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800CD4_chmineprospector.s")
+s32 func_80800CD4_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    s32 _suexpression_entrypoint_12(void *, s32, s32);
+    if (arg1 == 0x95) {
+        _suexpression_entrypoint_7(arg0, 1, 0x32);
+        _suexpression_entrypoint_12(func_80100094(arg0, 1), 0x42700000, 0x41A00000);
+    } else {
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800D34_chmineprospector(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, u32 *);
