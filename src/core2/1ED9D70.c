@@ -48,7 +48,7 @@ void func_80100534(void) {
 
 void func_801005B8(void)
 {
-  s32 defrag(s32);
+  void *defrag(void *);
   extern s32 D_801243A0;
   extern s32 D_801243DC;
   s32 (*var_s0)[3];
@@ -105,11 +105,11 @@ void *freelist_next(FreeList **, s32 *);
 void func_80100690(s32 *arg0) {
     FreeList *freelist_new(s32, s32);
     void *freelist_next(FreeList **, s32 *);
-    extern FreeList *D_80135A60;
-    if (D_80135A60 == 0) {
-        D_80135A60 = freelist_new(0xC, 2);
+    extern FreeList *D_80135A60[2];
+    if (D_80135A60[0] == 0) {
+        D_80135A60[0] = freelist_new(0xC, 2);
     }
-    freelist_next(&D_80135A60, arg0);
+    freelist_next(&D_80135A60[0], arg0);
 }
 
 extern FreeList *D_80135A64;
@@ -161,7 +161,7 @@ void func_801009C4(void **arg0, s32 arg1) {
     s32 freelist_used_count(FreeList *);
     void func_800B23E0(void *);
     void func_80100938(s32);
-    extern FreeList *D_80135A60;
+    extern FreeList *D_80135A60[2];
     void **var_s1;
     void *temp_a0;
     s32 var_s0;
@@ -181,25 +181,25 @@ void func_801009C4(void **arg0, s32 arg1) {
         func_80100938(((struct EntryBits *)arg0)->index);
     }
     (*(s8 *)((s8 *)(arg0) + (9))) = 0;
-    freelist_erase(D_80135A60, arg1);
-    if (freelist_used_count(D_80135A60) == 0) {
-        freelist_free(D_80135A60);
-        D_80135A60 = 0;
+    freelist_erase(D_80135A60[0], arg1);
+    if (freelist_used_count(D_80135A60[0]) == 0) {
+        freelist_free(D_80135A60[0]);
+        D_80135A60[0] = 0;
     }
 }
 
-s32 func_80100A74(s16 arg0, s32 arg1) { extern FreeList *D_80135A60; void *freelist_at(FreeList *, s32); s32 var_v1; u8 *temp_v0;
-    temp_v0 = freelist_at(D_80135A60, arg0); if (temp_v0[9] != 0) { var_v1 = ((s32 *)temp_v0)[arg1]; } else { var_v1 = 0; } return var_v1; }
+s32 func_80100A74(s16 arg0, s32 arg1) { extern FreeList *D_80135A60[2]; void *freelist_at(FreeList *, s32); s32 var_v1; u8 *temp_v0;
+    temp_v0 = freelist_at(D_80135A60[0], arg0); if (temp_v0[9] != 0) { var_v1 = ((s32 *)temp_v0)[arg1]; } else { var_v1 = 0; } return var_v1; }
 
 s32 func_80100AC4(s16 arg0) {
     void *freelist_at(FreeList *, s32);
-    extern FreeList *D_80135A60;
+    extern FreeList *D_80135A60[2];
     extern FreeList *D_80135A64;
     s32 var_v1;
     void *temp_v0;
     void *temp_v0_2;
 
-    temp_v0 = freelist_at(D_80135A60, arg0);
+    temp_v0 = freelist_at(D_80135A60[0], arg0);
     if ((*(u8 *)((s8 *)(temp_v0) + (8))) == 0) {
         return 0;
     }
@@ -223,15 +223,15 @@ void func_80100C74(void) {
     void *freelist_at(FreeList *, s32);
     s16 freelist_capacity(FreeList *);
     s32 freelist_is_element_alive(FreeList *, s32);
-    extern FreeList *D_80135A60;
+    extern FreeList *D_80135A60[2];
     s32 i;
     void **entry;
     u8 age;
     u8 next_age;
 
-    for (i = 1; D_80135A60 != 0 && i < freelist_capacity(D_80135A60); i++) {
-        if (freelist_is_element_alive(D_80135A60, i)) {
-            entry = freelist_at(D_80135A60, i);
+    for (i = 1; D_80135A60[0] != 0 && i < freelist_capacity(D_80135A60[0]); i++) {
+        if (freelist_is_element_alive(D_80135A60[0], i)) {
+            entry = freelist_at(D_80135A60[0], i);
             if (*(u8 *)((s8 *)entry + 0xA) != 0 &&
                 --*(u8 *)((s8 *)entry + 0xA) == 0) {
                 func_801009C4(entry, i);
@@ -244,11 +244,11 @@ void func_80100C74(void) {
 
 void func_80100E18(s16 arg0) {
     void *freelist_at(FreeList *, s32);
-    extern FreeList *D_80135A60;
-    (*(s8 *)((s8 *)(freelist_at(D_80135A60, arg0)) + (0xA))) = 2;
+    extern FreeList *D_80135A60[2];
+    (*(s8 *)((s8 *)(freelist_at(D_80135A60[0], arg0)) + (0xA))) = 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100E54.s")
+void func_80100E54(void) { void *defrag(void *); void *freelist_at(FreeList *, s32); s16 freelist_capacity(FreeList *); s32 freelist_is_element_alive(FreeList *, s32); FreeList *freelist_defrag(FreeList *); extern FreeList *D_80135A60[2]; s32 i; void **entry; if (D_80135A60[0] != NULL) { D_80135A60[0] = freelist_defrag(D_80135A60[0]); } if (D_80135A60[1] != NULL) { for (i = 1; i < freelist_capacity(D_80135A60[1]); i++) { if (freelist_is_element_alive(D_80135A60[1], i)) { entry = freelist_at(D_80135A60[1], i); *entry = defrag(*entry); } } D_80135A60[1] = freelist_defrag(D_80135A60[1]); } }
 
 void func_80100F0C(s16 arg0, s32 arg1) {
     void *freelist_at(FreeList *, s32);
@@ -257,14 +257,14 @@ void func_80100F0C(s16 arg0, s32 arg1) {
     s32 func_800B2840(s32);
     s32 func_800D674C(s32);
     void func_80100938(s32);
-    extern FreeList *D_80135A60;
+    extern FreeList *D_80135A60[2];
     struct Entry { s32 value; s16 asset; s16 age; u32 index : 8; u32 rest : 24; };
     struct Entry *sp34;
     struct Entry *var_s0;
     s32 temp_value;
     struct { s32 index; s32 asset; } sp24;
 
-    sp34 = freelist_at(D_80135A60, arg0);
+    sp34 = freelist_at(D_80135A60[0], arg0);
     if (sp34->index != 0) {
         var_s0 = freelist_at(D_80135A64, sp34->index);
         if (var_s0->index != 0) {
