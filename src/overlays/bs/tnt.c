@@ -254,7 +254,26 @@ s32 bstnt_entrypoint_1(s32 arg0) {
     return ((s32 *)&D_80802408_bstnt)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/bstnt_entrypoint_2.s")
+void bstnt_entrypoint_2(void *arg0) {
+    typedef struct player_state_s PlayerState;
+    void baroll_resetAngularVelocity(PlayerState *);
+    void bastick_popZone(PlayerState *);
+    void func_80092744(s32 *, s32);
+    void func_80092864(PlayerState *, f32);
+    void func_800947EC(PlayerState *, s32, s32);
+    void func_80095A40(PlayerState *);
+    void func_8009C000(PlayerState *);
+    s32 func_8009E74C(PlayerState *, s32);
+    if (func_8009E74C(arg0, 0xC) == 0) {
+        func_800947EC(arg0, 1, 0);
+        func_80092864(arg0, 1.0f);
+        func_8009C000(arg0);
+        baroll_resetAngularVelocity(arg0);
+        bastick_popZone(arg0);
+        func_80095A40(arg0);
+        func_80092744(arg0, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/bstnt_entrypoint_3.s")
 
@@ -311,7 +330,7 @@ void func_808011F4_bstnt(s32 arg0)
 }
 void func_8080121C_bstnt(s32 arg0)
 {
-    bstnt_entrypoint_2();
+    bstnt_entrypoint_2(arg0);
     _bsdrone_entrypoint_2(arg0);
 }
 s32 bstnt_entrypoint_6(s32 arg0) {
@@ -483,7 +502,7 @@ s32 bstnt_entrypoint_14(s32 arg0) {
 
 void func_808020EC_bstnt(s32 arg0)
 {
-    bstnt_entrypoint_2();
+    bstnt_entrypoint_2(arg0);
     func_80090A2C(arg0);
 }
 void func_80802114_bstnt(void *arg0) {
