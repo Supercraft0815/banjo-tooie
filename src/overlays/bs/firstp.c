@@ -1260,9 +1260,10 @@ void func_80803134_bsfirstp(void *arg0) {
     func_800A0D94(arg0, 1);
 }
 
+void func_80807C8C_bsfirstp();
+
 void func_808031D0_bsfirstp(void *arg0) {
     void func_800A0D94(void *, s32);
-    int func_80807C8C_bsfirstp(void *);
     void *state = *(void **)((s8 *)arg0 + 0x188);
 
     *(s16 *)((s8 *)state + 0xE0) = 0;
@@ -2536,7 +2537,6 @@ void func_808072C8_bsfirstp(void *arg0) {
 
 void func_808074D0_bsfirstp(void *arg0) {
     void func_800936E8(void *, s32);
-    int func_80807C8C_bsfirstp(void *);
     func_800936E8(arg0, 1);
     _bsrest_entrypoint_14(arg0);
     func_80807C8C_bsfirstp(arg0);
@@ -2553,7 +2553,6 @@ s32 bsfirstp_entrypoint_32(s32 arg0) {
 
 void func_808077AC_bsfirstp(s32 arg0) {
     void func_80801B64_bsfirstp(u8 *, s32);
-    int func_80807C8C_bsfirstp(void *);
     func_80801B64_bsfirstp(arg0, 3);
     _bsrest_entrypoint_14(arg0);
     func_80807C8C_bsfirstp(arg0);
@@ -2639,7 +2638,35 @@ void func_80807AF8_bsfirstp(struct player_state_s *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80807BB8_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80807C8C_bsfirstp.s")
+void func_80807C8C_bsfirstp(void *arg0) {
+    s32 bainput_enable(void *, s32, s32);
+    void func_800947EC(struct player_state_s *, s32, s32);
+    s32 func_8009E74C(struct player_state_s *, s32);
+    void func_800F7B9C(s32, u32);
+    void func_80808084_bsfirstp(s32);
+    void func_80809CB4_bsfirstp(u8 *);
+    void *sp24;
+    s32 temp_a0;
+
+    sp24 = *(void **)((s8 *)arg0 + 0x188);
+    if (func_8009E74C(arg0, 5) == 0) {
+        temp_a0 = *(s32 *)((s8 *)sp24 + 0x68);
+        if (temp_a0 >= 0) {
+            func_800F7B9C(temp_a0, 0x4F);
+            *(s32 *)((s8 *)sp24 + 0x68) = -1;
+        }
+        func_80807A70_bsfirstp(arg0);
+        func_80801AEC_bsfirstp((s32)arg0);
+        func_80805F68_bsfirstp(arg0);
+        bainput_enable(arg0, 3, 1);
+        func_800947EC(arg0, 8, 0);
+        func_80809CB4_bsfirstp(arg0);
+        func_80803B04_bsfirstp((s32)arg0);
+        func_808018E0_bsfirstp((s32)arg0);
+        func_80808084_bsfirstp((s32)arg0);
+        func_80800040_bsfirstp(arg0);
+    }
+}
 
 void func_80807D48_bsfirstp(s32 arg0)
 {
@@ -2883,9 +2910,9 @@ void func_80808A24_bsfirstp(struct player_state_s *arg0) {
     func_80808D80_bsfirstp((s32)arg0);
 }
 
-void func_80808A8C_bsfirstp(void)
+void func_80808A8C_bsfirstp(void *arg0)
 {
-    func_80807C8C_bsfirstp();
+    func_80807C8C_bsfirstp(arg0);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80808AAC_bsfirstp.s")
 
@@ -3033,9 +3060,9 @@ void func_80809334_bsfirstp(void *arg0) {
     func_80809684_bsfirstp(arg0, 0);
 }
 
-void func_80809384_bsfirstp(void)
+void func_80809384_bsfirstp(void *arg0)
 {
-    func_80807C8C_bsfirstp();
+    func_80807C8C_bsfirstp(arg0);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808093A4_bsfirstp.s")
 
