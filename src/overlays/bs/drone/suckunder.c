@@ -17,7 +17,21 @@ void bsdronesuckunder_entrypoint_0(s32 arg0)
     func_800961A0(arg0,0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/suckunder/bsdronesuckunder_entrypoint_1.s")
+void bsdronesuckunder_entrypoint_1(struct player_state_s *arg0) {
+    void _badata_entrypoint_4(struct player_state_s *, s32 *, f32 *);
+    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    void func_8009FFD8(struct player_state_s *, s32, s32, s32, s32);
+    void _batimer_set(struct player_state_s *, s32, f32);
+    f32 duration;
+    s32 animation;
+
+    _badata_entrypoint_4(arg0, &animation, &duration);
+    baanim_playForDuration_loopSmooth(arg0, animation, duration);
+    func_8009FFD8(arg0, 1, 1, 3, 8);
+    _batimer_set(arg0, 0xA, 0.3f);
+    func_800961A0(arg0, 1);
+    func_80800000_bsdronesuckunder(arg0);
+}
 
 /* extern */
 
