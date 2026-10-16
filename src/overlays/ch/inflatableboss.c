@@ -40,7 +40,7 @@ void func_8080000C_chinflatableboss(Actor *arg0) {
     s32 _glcutDll_entrypoint_20(void);
     void _plcamera_entrypoint_8(s32);
     void _subaddieDll_entrypoint_10(s32, void *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
     s32 _subaddiemarker_entrypoint_0(Actor *, s32, BossMarker *, s32);
     s32 _subaddiemarker_entrypoint_1(Actor *, s32, s32, BossMarker *, s32);
     s32 _suexpression_entrypoint_7(Actor *, s32, s32);
@@ -204,7 +204,31 @@ void func_80800408_chinflatableboss(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80800F84_chinflatableboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_808010BC_chinflatableboss.s")
+void func_808010BC_chinflatableboss(Actor *arg0, s32 arg1) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800DA298(s32);
+    void func_800DA544(s32);
+    void *func_80100094(Actor *, u32);
+    u8 *sp2C;
+    u32 state;
+    s32 index;
+    Unk80132ED0 *marker;
+
+    sp2C = func_80100094(arg0, 0);
+    if (func_800DA298(5) == 0) {
+        marker = arg0->unk0;
+        state = (marker->unk18 << 11) >> 28;
+        index = state;
+        if ((s32)state >= 3 && (s32)state < 15) {
+            index -= 3;
+            if ((sp2C + index)[0x487] != 2) {
+            _subaddiedialog_entrypoint_11(marker, 0x1086, 0x10E, arg0->position, 0x3A);
+            func_800DA544(5);
+            arg0->unk74_30 = 1;
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80801164_chinflatableboss.s")
 
