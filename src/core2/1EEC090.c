@@ -130,7 +130,22 @@ s32 func_80112E90()
 /* extern */
 s32 func_80113320(PlayerState *arg0, f32 *arg1) { void func_800EE7F8(f32 *, f32 *); s32 func_80110840(PlayerState *); void *func_800C6A7C(f32 *, f32 *, f32 *, u32); s32 pad; f32 sp38[3]; f32 sp2C[3]; f32 sp20[3]; s32 pad2; func_800EE7F8(sp20, arg1); func_800F5B64(func_80110840(arg0), sp38); if (func_800C6A7C(sp38, sp20, sp2C, 0x860020) != 0) return 0; return 1; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_8011337C.s")
+void func_8011337C(PlayerState *arg0) {
+    u8 func_800E8714(s32);
+    void func_800E8870(u8, f32);
+    void func_801107F0(PlayerState *, f32 *);
+    s32 i;
+
+    func_801107F0(arg0, arg0->bounce);
+    *(s32 *)((u8 *)arg0->bounce + 0x10) = 0;
+    i = 0;
+    *((u8 *)arg0->bounce + 0x14) = 0;
+    do {
+        ((u8 *)arg0->bounce)[i + 0x34] = func_800E8714(1);
+        func_800E8870(((u8 *)arg0->bounce)[i + 0x34], 10.0f);
+        i++;
+    } while (i != 4);
+}
 
 /* extern */
 
