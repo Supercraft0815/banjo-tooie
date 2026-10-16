@@ -3049,6 +3049,8 @@ void func_8080911C_bsfirstp(struct player_state_s *arg0, s32 arg1) {
 
 /* extern */
 
+void func_80809684_bsfirstp(struct player_state_s *arg0, s32 arg1);
+
 void func_80809334_bsfirstp(void *arg0) {
     s32 func_80807BB8_bsfirstp();
     s32 func_80808DB0_bsfirstp(void *);
@@ -3090,7 +3092,34 @@ s32 func_808094A4_bsfirstp(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809540_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809684_bsfirstp.s")
+void func_80809684_bsfirstp(struct player_state_s *arg0, s32 arg1) {
+    f32 *sp28[2];
+    struct {
+        s16 unk0;
+        f32 unk4;
+        f32 unk8;
+    } *sp24;
+    void *temp_s0;
+
+    temp_s0 = *(void **)((s8 *)arg0 + 0x188);
+    sp28[0] = func_808024B0_bsfirstp(arg0);
+    *(s8 *)((s8 *)temp_s0 + 0x218) = arg1;
+    switch (arg1) {
+        case 0:
+            return;
+        case 1:
+            sp24 = func_80802560_bsfirstp(arg0);
+            break;
+        case 2:
+            sp24 = func_80802594_bsfirstp(arg0);
+            break;
+    }
+    func_80800290_bsfirstp(arg0, sp24->unk0, sp24->unk4);
+    *(f32 *)((s8 *)temp_s0 + 0x21C) = sp24->unk4;
+    *(f32 *)((s8 *)temp_s0 + 0x220) = sp24->unk8;
+    *(f32 *)((s8 *)temp_s0 + 0x224) = sp28[0][0];
+    *(f32 *)((s8 *)temp_s0 + 0x228) = sp28[0][1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809740_bsfirstp.s")
 
