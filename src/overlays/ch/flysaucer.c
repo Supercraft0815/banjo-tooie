@@ -128,7 +128,26 @@ s32 func_80800758_chflysaucer(s16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800C3C_chflysaucer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800DAC_chflysaucer.s")
+s32 func_80800DAC_chflysaucer(Actor *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
+    void *func_80100094(Actor *, u32);
+    f32 _suspline_entrypoint_6(void *);
+    void _suspline_entrypoint_15(void *, f32);
+    void _suspline_entrypoint_17(void *);
+    void _suspline_entrypoint_3(void *, s32, f32 *);
+    void _suspline_entrypoint_8(void *, f32);
+    void *data;
+    f32 sp20;
+
+    data = func_80100094(arg0, 1U);
+    sp20 = _suspline_entrypoint_6(data);
+    _suspline_entrypoint_15(data, arg3);
+    _suspline_entrypoint_17(data);
+    _suspline_entrypoint_3(data, 0, arg1);
+    _suspline_entrypoint_3(data, 1, arg2);
+    arg2[1] += 180.0f;
+    _suspline_entrypoint_8(data, sp20);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800E48_chflysaucer.s")
 
@@ -390,7 +409,7 @@ void func_808038C4_chflysaucer(Unk80132ED0 *arg0, f32 *arg1, f32 *arg2, s32 arg3
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808039B8_chflysaucer.s")
 
 void func_80803AF0_chflysaucer(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
-    s32 func_80800DAC_chflysaucer(s32 *, s32 *, f32 *, s32);
+    s32 func_80800DAC_chflysaucer(Actor *, f32 *, f32 *, f32);
     s32 func_808039B8_chflysaucer(s32, s32 *, f32 *, s32 *, s32, f32);
     extern s32 D_808046C4_chflysaucer;
     s32 sp34[3];
@@ -398,7 +417,7 @@ void func_80803AF0_chflysaucer(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
     s32 sp20[2];
 
     sp20[0] = *arg0;
-    func_80800DAC_chflysaucer(arg0, sp34, sp28, 0x447A0000);
+    func_80800DAC_chflysaucer(arg0, sp34, sp28, 1000.0f);
     sp28[0] = -sp28[0];
     func_808039B8_chflysaucer(sp20[0], sp34, sp28, &D_808046C4_chflysaucer, arg1, arg3);
 }
