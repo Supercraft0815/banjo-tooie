@@ -2,7 +2,24 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparentfish/func_80800000_chtransparentfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparentfish/func_80800204_chtransparentfish.s")
+void func_80800204_chtransparentfish(Actor *arg0) {
+    f32 _subaddiejoy_entrypoint_3();
+    void func_80102BAC(Actor *, f32, f32, f32);
+    s32 func_8010BA80(Actor *, s32, s32);
+    f32 speed;
+
+    speed = _subaddiejoy_entrypoint_3() * 300.0f;
+    func_80102BAC(arg0, 0.5f, 0.5, 5.0f);
+    if (((f32 *)arg0->actorData)[3] <= speed) {
+        ((f32 *)arg0->actorData)[3] = speed;
+    } else {
+        ((f32 *)arg0->actorData)[3] -= ((f32 *)arg0->actorData)[3] * 0.02f;
+        if (((f32 *)arg0->actorData)[3] < 30.0f) {
+            ((f32 *)arg0->actorData)[3] = 0.0f;
+        }
+    }
+    func_8010BA80(arg0, 0x200006, 0x20);
+}
 
 /* extern */
 
@@ -40,7 +57,7 @@ void func_80800348_chtransparentfish(Actor *actor)
     void func_80800000_chtransparentfish(Actor *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_80101CDC(Actor *, f32);
-    s32 func_80102BAC(Actor *, f32, f32, f32);
+    void func_80102BAC(Actor *, f32, f32, f32);
     void func_80102C58(void *, f32, f32, f32);
     f32 func_800F15F8(f32, f32, f32);
     s32 func_8010BA80(Actor *, s32, s32);
