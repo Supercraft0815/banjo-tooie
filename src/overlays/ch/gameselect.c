@@ -1497,7 +1497,21 @@ void func_80805BFC_chgameselect(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80805CD8_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80805ECC_chgameselect.s")
+s32 func_80805ECC_chgameselect(s32 *arg0, s32 arg1) {
+    s32 _gcstatusDll_entrypoint_14();
+    s32 _gcstatusDll_entrypoint_19(void);
+
+    switch (arg1) {
+    case 1:
+        return arg0[8];
+    case 2:
+        return _gcstatusDll_entrypoint_14() - 1;
+    case 3:
+        return _gcstatusDll_entrypoint_19() - 2;
+    default:
+        return 0;
+    }
+}
 
 void func_80805F30_chgameselect(s32 arg0, s32 arg1) {
     s32 _gcstatusDll_entrypoint_7(s32);
