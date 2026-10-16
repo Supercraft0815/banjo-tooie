@@ -82,7 +82,30 @@ void func_800FB6C0(s32 *ptr, s32 volume) {
     func_800FB650(ptr, volume, volume);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FB6E0.s")
+void func_800FB6E0(s32 *arg0, s32 arg1) {
+    extern f32 D_801359B4;
+    extern f32 D_801359B8;
+    ((f32 *)arg0)[0] = 0.0f;
+    ((f32 *)arg0)[1] = 0.0f;
+    ((f32 *)arg0)[2] = D_801359B4;
+    ((f32 *)arg0)[3] = D_801359B8;
+    ((f32 *)arg0)[6] = D_801359B4;
+    ((f32 *)arg0)[7] = D_801359B8;
+    ((f32 *)arg0)[4] = 0.0;
+    ((f32 *)arg0)[5] = 1.0f;
+    arg0[8] = 0;
+    arg0[9] = 0;
+    ((s16 *)arg0)[0x28 / 2] = -1;
+    ((s16 *)arg0)[0x2A / 2] = 0;
+    ((u32 *)arg0)[0x2C / 4] = 0xFFFFFFFF;
+    ((u8 *)arg0)[0x30] = ((u8 *)arg0)[0x30] & 0xFFF0;
+    ((s8 *)arg0)[0x31] = 0;
+    ((s8 *)arg0)[0x32] = 0;
+    ((s8 *)arg0)[0x34] = 0;
+    if (arg1 == 0) {
+        ((s8 *)arg0)[0x33] = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FB774.s")
 
@@ -134,7 +157,7 @@ void func_800FC124(u32 arg0)
   s32 func_800172D4(s32, u32);
   s32 func_80017764(u32);
   void func_800FB6C0(s32 *, s32);
-  s32 func_800FB6E0(s32 *, s32, u32);
+  void func_800FB6E0();
   extern f32 D_80135964;
   extern s32 D_80135980;
   extern s16 D_80135988;
