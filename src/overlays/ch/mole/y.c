@@ -1,6 +1,30 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/y/func_80800000_chmoley.s")
+s32 func_80800000_chmoley(Actor *arg0, s32 arg1, s32 arg2) {
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 _chmolehill_entrypoint_5(Actor *);
+    s32 func_8010114C(s32, s32, s32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    extern s32 D_80800BD0_chmoley;
+    int result;
+
+    if (arg0->unk64_17) {
+        return 0;
+    }
+    switch (arg1) {
+    case 0x2E:
+    case 0x2F:
+    case 0x30:
+        return func_8010114C(_chmolehill_entrypoint_5(func_80106790(arg0->unk3C)), arg1, arg2);
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_80800BD0_chmoley, 1.0f);
+        result = 1;
+        break;
+    default:
+        return 0;
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/y/func_808000AC_chmoley.s")
 
