@@ -520,7 +520,21 @@ void func_808018EC_bsbswim(s32 arg0) {
 
 void func_80801930_bsbswim(u8 *arg0) { s32 _baduo_entrypoint_7(u8 *, s32); if (arg0[0x165] != 0) _baduo_entrypoint_7(arg0, 3); func_80800104_bsbswim(arg0); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_8080196C_bsbswim.s")
+/* extern */
+
+void func_8080196C_bsbswim(struct player_state_s *arg0) {
+    s32 baanim_playForDuration_onceSmooth(struct player_state_s *, s32, s32);
+    s32 func_8009B94C(struct player_state_s *, s32);
+    s32 func_8009BA9C(struct player_state_s *, s32);
+    func_80800030_bsbswim(arg0);
+    baanim_playForDuration_onceSmooth(arg0, 0x131, 0x3FC00000);
+    func_80800000_bsbswim((s32) arg0);
+    func_8009B94C(arg0, 0);
+    func_8009BA9C(arg0, 0);
+    func_8009BF5C(arg0, 0.0f);
+    baroll_setIdeal(arg0, 0.0f);
+    (*(s8 *)((s8 *)(arg0) + (0x165))) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_808019E0_bsbswim.s")
 
