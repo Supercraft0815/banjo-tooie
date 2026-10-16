@@ -667,7 +667,33 @@ s32 func_800A877C(s32 arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A87FC.s")
+s32 func_800A87FC(s32 arg0) {
+    void func_800158E4(s32 *);
+    extern s32 D_80127670;
+    s32 i;
+
+    if (D_80127688[arg0].unk0 == NULL) {
+        return 0;
+    }
+    func_800158E4(D_80127688[arg0].unk0);
+    D_80127688[arg0].unk0 = NULL;
+    D_80127688[arg0].unk4 = 0;
+    if (arg0 + 1 == D_80127670) {
+        D_80127670 = 0;
+        i = 0;
+        do {
+            i++;
+            if (D_80127688[arg0].unk0 != NULL) {
+                D_80127670++;
+            }
+        } while (i != 4);
+        func_800A85A8();
+    }
+    if (D_80127670 == 0) {
+        func_800E42B4((s32)D_801276BC);
+    }
+    return 1;
+}
 
 /* extern */
 
