@@ -5,7 +5,20 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_80800098_bsbansnooze.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_80800128_bsbansnooze.s")
+void func_80800128_bsbansnooze(PlayerState *arg0, f32 arg1) {
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 bastick_getZone(PlayerState *);
+    f32 bastick_getZonePosition(PlayerState *);
+    f32 func_800F1214(f32, f32, f32);
+    f32 sp1C;
+
+    sp1C = bastick_getZonePosition(arg0);
+    if (bastick_getZone(arg0) == 0) {
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+        return;
+    }
+    baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp1C, 50.0f, 100.0f) * arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_8080019C_bsbansnooze.s")
 
@@ -57,11 +70,11 @@ void func_80800588_bsbansnooze(s32 arg0)
   f32 anctrl_getAnimTimer(s32);
   s32 baanim_getAnimCtrlPtr();
   s32 bakey_released(s32, s32);
-  s32 bastick_getZone(s32);
+  s32 bastick_getZone(PlayerState *);
   s32 bs_setState(s32, s32);
   s32 func_8009BCD4(s32, s32);
   f32 func_800F3780(f32, s32 *, s32);
-  s32 func_80800128_bsbansnooze(s32, f32);
+  void func_80800128_bsbansnooze(PlayerState *, f32);
   s32 player_inWater(s32);
   extern s32 D_80800A60_bsbansnooze;
   s32 var_s1;
