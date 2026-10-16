@@ -114,7 +114,7 @@ f32 func_80800360_chbanjoctrl(f32 arg0) {
 
 s32 chbanjoctrl_entrypoint_1(s32 arg0) {
     s32 _chhotwaterpoolbits_entrypoint_5(s32, s32);
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F7B9C(s32, s32);
     if (func_800F7B9C(func_800F54E4(), 0x51) == 2) {
         _chhotwaterpoolbits_entrypoint_5(arg0, 0x3F800000);
@@ -123,14 +123,35 @@ s32 chbanjoctrl_entrypoint_1(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800544_chbanjoctrl.s")
+void func_80800544_chbanjoctrl(s32 arg0) {
+    void func_800C4AF0(f32 *, void *);
+    s32 func_800F5410(s32);
+    u32 func_800F54E4(void);
+    void func_800F7620(s32, f32, f32, f32);
+    extern f32 D_808012C4_chbanjoctrl[];
+    extern f32 D_808012D4_chbanjoctrl[];
+    extern f32 D_808012E4_chbanjoctrl[];
+
+    switch (func_800F5410(func_800F54E4())) {
+        case 11:
+            func_800C4AF0((f32 *)(arg0 + 4), D_808012C4_chbanjoctrl);
+            break;
+        case 13:
+            func_800C4AF0((f32 *)(arg0 + 4), D_808012D4_chbanjoctrl);
+            break;
+        default:
+            func_800C4AF0((f32 *)(arg0 + 4), D_808012E4_chbanjoctrl);
+            break;
+    }
+    func_800F7620(func_800F54E4(), 1.0f, 0.5f, 0.4f);
+}
 
 /* extern */
 
 s32 chbanjoctrl_entrypoint_2(s32 arg0) {
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F798C(s32, s32, s32);
-    s32 func_80800544_chbanjoctrl(s32);
+    void func_80800544_chbanjoctrl(s32);
     if (func_800F798C(func_800F54E4(), 0xD, 3) != 0) {
         func_80800544_chbanjoctrl(arg0);
         return 1;
@@ -156,7 +177,7 @@ void func_80800684_chbanjoctrl(void *arg0, f32 arg1, s32 arg2, s32 arg3) {
 /* extern */
 
 int func_808006A8_chbanjoctrl(void *arg0) {
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F64A4(s32, s32);
     s32 func_800F6DA0(s32);
     s32 func_800F6E40(s32);
@@ -199,7 +220,7 @@ void func_808008D8_chbanjoctrl(f32 *arg0, f32 arg1, f32 arg2) {
 /* extern */
 
 void func_80800ADC_chbanjoctrl(s32 arg0) {
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_80800824_chbanjoctrl(s32, s32);
     s32 func_8080091C_chbanjoctrl(s32, s32);
     s32 sp1C;
@@ -213,13 +234,13 @@ void func_80800ADC_chbanjoctrl(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800B18_chbanjoctrl.s")
 
-/* extern */ void func_80800D04_chbanjoctrl(u8 *arg0) { s32 func_800F54E4(); s32 func_800F8418(s32, u8 *, u8 *); f32 temp_f0; temp_f0 = (*(f32 *)((s8 *)(arg0) + (8))); if (temp_f0 < (*(f32 *)((s8 *)(arg0) + (0x1C)))) { (*(f32 *)((s8 *)(arg0) + (0x1C))) = temp_f0; func_800F8418(func_800F54E4(), arg0 + 0x18, arg0); } }
+/* extern */ void func_80800D04_chbanjoctrl(u8 *arg0) { u32 func_800F54E4(void); s32 func_800F8418(s32, u8 *, u8 *); f32 temp_f0; temp_f0 = (*(f32 *)((s8 *)(arg0) + (8))); if (temp_f0 < (*(f32 *)((s8 *)(arg0) + (0x1C)))) { (*(f32 *)((s8 *)(arg0) + (0x1C))) = temp_f0; func_800F8418(func_800F54E4(), arg0 + 0x18, arg0); } }
 
 /* extern */
 
 void func_80800D50_chbanjoctrl(u8 *arg0) {
     s32 func_800D90A4(s32);
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F56AC(s32);
     s32 func_800F6C5C(s32);
     s32 func_800F6DA0(s32);
@@ -244,7 +265,7 @@ void func_8080102C_chbanjoctrl(Actor *arg0) {
 
 void func_80801088_chbanjoctrl(Actor *arg0) {
     s32 func_800F4F34(u32, f32 *, f32, f32);
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     int func_800F6720(s32);
     s32 sp1C;
 
