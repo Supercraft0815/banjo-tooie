@@ -15,7 +15,29 @@ void func_80800098_chevilmumbo(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_808001F4_chevilmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800290_chevilmumbo.s")
+void *func_80100094(Actor *, u32);
+
+void func_80800290_chevilmumbo(Actor *arg0) {
+    s32 func_800F4B20(u32);
+    u32 func_800F54E4(void);
+    struct {
+        u8 pad0[0x95];
+        u8 unk95;
+    } *sp1C, *temp_v0;
+    u8 temp_v1;
+
+    temp_v0 = func_80100094(arg0, 0);
+    sp1C = temp_v0;
+    temp_v1 = temp_v0->unk95;
+    if ((temp_v1 != 1) && (temp_v1 != 2)) {
+        if (temp_v1 == 3) {
+            func_800F4B20(func_800F54E4());
+        }
+    } else {
+        func_80800098_chevilmumbo(arg0);
+    }
+    sp1C->unk95 = 0;
+}
 
 void func_80800300_chevilmumbo(s32 *arg0) {
     s32 func_8008F8B0();
