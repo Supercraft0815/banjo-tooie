@@ -75,7 +75,12 @@ int func_8008D568(PlayerState *player) {
     return func_800C6E38(0x29) && baflag_isFalse(player, 5) && baflag_isFalse(player, 0x12);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008D5C4.s")
+int func_8008D5C4(PlayerState *player) {
+    int func_800C6E38(s32);
+    s32 func_800A3304(PlayerState *);
+    return baflag_isFalse(player, 0x5) && baflag_isFalse(player, 18)
+        && func_800C6E38(11) && func_800A3304(player);
+}
 
 int func_8008D630(PlayerState *player) {
     s32 bs_getCurrentState(PlayerState *);
