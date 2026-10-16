@@ -95,7 +95,7 @@ void func_808006C0_chfactorytwinklies(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80800748_chfactorytwinklies.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_808009EC_chfactorytwinklies.s")
+s32 func_808009EC_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) { void *func_80100094(Actor *, u32); s16 func_800D211C(s32); u32 func_800F54E4(void); s32 *data; data = func_80100094(arg0, 0); switch (arg1) { case 0x1347: return data[func_800F54E4()]; case 0x1345: return 0x28; case 0x1375: case 0x1385: return func_800D211C(0x83); default: return 0; } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80800A84_chfactorytwinklies.s")
 
