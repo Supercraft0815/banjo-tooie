@@ -159,7 +159,33 @@ void func_80800D38_chbiggafoot(Actor *arg0) {
     func_80102FDC(arg0, 1.4f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_80800D5C_chbiggafoot.s")
+void func_80800D5C_chbiggafoot(Actor *arg0) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800D9078(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFE50(f32[3], f32[3], f32[3], f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_8010114C(s32, s32, s32);
+    void func_80101FDC(Actor *, u32);
+    void func_80800E98_chbiggafoot(u8 *);
+    extern u8 D_80801238_chbiggafoot[];
+    s32 sp3C;
+    f32 t;
+    f32 sp2C[3];
+
+    sp3C = func_800D9078(&arg0->unk58);
+    t = func_800F10B4(arg0->unk58, 0.0f, ((f32 *)arg0->actorData)[3], 1.0f, 0.0f);
+    func_800EFE50(arg0->position, &((f32 *)arg0->actorData)[4], (f32 *)arg0->actorData, t);
+    func_80800E98_chbiggafoot((u8 *)arg0);
+    if (arg0->unk70_10 == 1 && sp3C != 0) {
+        func_800EE7F8(sp2C, arg0->position);
+        _chexploder_entrypoint_3(arg0, sp2C, 0xB);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801238_chbiggafoot);
+        func_80101FDC(arg0, 2);
+        func_8010114C(arg0->unk3C, 0xA, 0);
+    }
+}
 
 /* extern */
 
