@@ -244,9 +244,9 @@ void func_80801AD8_chinflatableboss(Actor *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-s32 func_80801C7C_chinflatableboss(void) {
-    s32 func_80801CB4_chinflatableboss();
-    return (s32) (0xC - func_80801CB4_chinflatableboss()) / 2;
+s32 func_80801C7C_chinflatableboss(Actor *arg0) {
+    s32 func_80801CB4_chinflatableboss(Actor *);
+    return (s32) (0xC - func_80801CB4_chinflatableboss(arg0)) / 2;
 }
 
 s32 func_80801CB4_chinflatableboss(Actor *arg0) {
@@ -265,7 +265,23 @@ s32 func_80801CB4_chinflatableboss(Actor *arg0) {
     return remaining;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80801D38_chinflatableboss.s")
+void func_80801D38_chinflatableboss(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_80102FDC(Actor *, f32);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    extern f32 D_80802D98_chinflatableboss[];
+    u8 *sp24;
+    Actor *sp20;
+    s32 sp1C;
+
+    sp24 = func_80100094(arg0, 0);
+    sp1C = func_80801C7C_chinflatableboss(arg0);
+    sp20 = func_80108528(0x13D, (f32 *)(sp24 + 0x1C), 0, &arg0);
+    func_80102FDC(sp20, arg0->scale);
+    sp20->unk3C = arg0->unk0;
+    sp20->unk6C_0 = func_80801CB4_chinflatableboss(arg0);
+    sp20->unk58 = D_80802D98_chinflatableboss[sp1C];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80801DE0_chinflatableboss.s")
 
