@@ -148,7 +148,21 @@ s32 bsstonehead_entrypoint_19(s32 arg0) {
     return ((s32 *)&D_80801670_bsstonehead)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_20.s")
+enum baanim_update_type_e;
+enum yaw_type_e;
+enum ba_physics_type_e;
+void func_800909CC(PlayerState *);
+void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+
+void bsstonehead_entrypoint_20(PlayerState *arg0) {
+    void baanim_playForDuration_loopStartingAt(struct player_state_s *, enum asset_e, f32, f32);
+    void func_8008C9F0(PlayerState *, f32, f32, f32, f32);
+    func_80800060_bsstonehead(arg0);
+    baanim_playForDuration_loopStartingAt(arg0, 0x62, 0.8f, 0.4f);
+    func_8009FFD8(arg0, 2, 1, 1, 2);
+    func_8008C9F0(arg0, 30.0f, 400.0f, 1.0f, 0.45f);
+    func_800909CC(arg0);
+}
 
 /* extern */
 
