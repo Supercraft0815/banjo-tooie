@@ -97,9 +97,10 @@ void basub_entrypoint_3(u8 *arg0, f32 arg1, f32 arg2) {
 
 /* extern */
 
+struct player_state_s;
 void basub_entrypoint_4(void) {
     s32 _chping_entrypoint_0(s32);
-    void *func_800F53D0();
+    struct player_state_s *func_800F53D0();
     _chping_entrypoint_0((*(s32 *)((s8 *)(func_800F53D0()) + (0x184))));
 }
 
@@ -118,7 +119,25 @@ void basub_entrypoint_5(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_6.s")
+void basub_entrypoint_6(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
+    void func_8008F880(Unk80132ED0 *, f32 *);
+    struct player_state_s *func_800F53D0(s32);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern s32 D_80800C10_basub;
+    f32 sp24[3];
+    void *sp20;
+
+    sp20 = func_800F53D0(arg2);
+    switch (arg1) {
+        case 0x78:
+            break;
+        case 5:
+            func_8008F880(arg0, sp24);
+            func_8010D930(6, -1, sp24, &D_80800C10_basub);
+            break;
+    }
+    func_80800358_basub(sp20, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_7.s")
 
