@@ -18,7 +18,28 @@ f32 func_8008A990(AnimCtrl *this) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008AA0C.s")
+void func_8008AA0C(AnimCtrl *this) {
+    struct Flags { u8 padding[0x18]; u32 high : 25; u32 smooth : 1; u32 low : 6; };
+    void *func_8008AEDC(void *);
+    f32 func_8008C0D0(f32 *);
+    void func_8008C1E4(f32 *, f32);
+    void func_8008C1F0(void *, s32);
+    void *anim;
+    f32 duration;
+
+    if (((struct Flags *)this)->smooth) {
+        anim = func_8008AEDC(this);
+        duration = func_8008C0D0(anim);
+        if (duration < 1.0f) {
+            duration += func_8008A990(this) / ((f32 *)this)[4];
+            if (duration >= 1.0f) {
+                func_8008C1F0(anim, 1);
+                duration = 1.0f;
+            }
+            func_8008C1E4(anim, duration);
+        }
+    }
+}
 
 void func_8008AAC0(AnimCtrl *this) {
     struct Flags { u8 padding[0x1B]; u8 high : 1; u8 smooth : 1; u8 low : 6; };
