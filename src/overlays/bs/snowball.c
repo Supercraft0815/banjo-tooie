@@ -42,7 +42,32 @@ void func_80800164_bssnowball(s32 arg0) {
     yaw_setVelocityBounded(arg0, 0x43960000, 0x40C00000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/bssnowball_entrypoint_0.s")
+typedef struct player_state_s PlayerState;
+
+void bssnowball_entrypoint_0(PlayerState *arg0) {
+    void _basnowball_entrypoint_1(PlayerState *);
+    void baflag_clear(PlayerState *, s32);
+    void baroll_resetAngularVelocity(PlayerState *);
+    void baroll_setIdeal(PlayerState *, f32);
+    void bastick_popZone(PlayerState *);
+    void func_80092864(PlayerState *, f32);
+    void func_800947EC(PlayerState *, s32, s32);
+    void func_8009BF5C(PlayerState *, f32);
+    void func_8009C000(PlayerState *);
+    s32 func_8009E74C(PlayerState *, s32);
+    if (func_8009E74C(arg0, 0x16) == 0) {
+        func_800947EC(arg0, 1, 0);
+        func_8009BF5C(arg0, 0.0f);
+        baroll_setIdeal(arg0, 0.0f);
+        func_8009C000(arg0);
+        baroll_resetAngularVelocity(arg0);
+        bastick_popZone(arg0);
+        baflag_clear(arg0, 3);
+        baflag_clear(arg0, 4);
+        _basnowball_entrypoint_1(arg0);
+        func_80092864(arg0, 1.0f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/bssnowball_entrypoint_1.s")
 
@@ -110,8 +135,8 @@ s32 bssnowball_entrypoint_4(s32 arg0) {
 /* extern */
 
 void func_8080056C_bssnowball(s32 arg0) {
-    void func_8009BF5C(s32, f32);
-    void baroll_setIdeal(s32, f32);
+    void func_8009BF5C(struct player_state_s *, f32);
+    void baroll_setIdeal(struct player_state_s *, f32);
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
     bssnowball_entrypoint_0(arg0);
@@ -131,8 +156,8 @@ s32 bssnowball_entrypoint_5(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_808007D8_bssnowball.s")
 
 void func_8080089C_bssnowball(s32 arg0) {
-    void func_8009BF5C(s32, f32);
-    void baroll_setIdeal(s32, f32);
+    void func_8009BF5C(struct player_state_s *, f32);
+    void baroll_setIdeal(struct player_state_s *, f32);
     baphysics_reset_gravity();
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
@@ -149,9 +174,9 @@ void func_808008F0_bssnowball()
     func_80099B94();
 }
 
-void func_80800910_bssnowball()
+void func_80800910_bssnowball(struct player_state_s *arg0)
 {
-    bssnowball_entrypoint_0();
+    bssnowball_entrypoint_0(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_80800930_bssnowball.s")
