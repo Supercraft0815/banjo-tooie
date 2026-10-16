@@ -295,7 +295,27 @@ s32 bsbfly_entrypoint_2(s32 arg0) {
     return ((s32 *)&D_80801D68_bsbfly)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80801178_bsbfly.s")
+void func_80801178_bsbfly(PlayerState *arg0) {
+    s32 bs_getNextState(PlayerState *);
+    void func_8009DBF0(PlayerState *, s32, f32);
+    void func_8009E0DC(PlayerState *);
+    void func_8009E100(PlayerState *);
+    s32 func_8009E74C(PlayerState *, s32);
+    void func_800A0CF4(PlayerState *, s32);
+    s32 next_state;
+
+    func_8009E0DC(arg0);
+    func_8009E100(arg0);
+    if (func_8009E74C(arg0, 9) != 0) {
+        func_808000AC_bsbfly(arg0);
+    }
+    next_state = bs_getNextState(arg0);
+    if (next_state == 0x20 || next_state == 0x24 || next_state == 0x2D) {
+        func_8009DBF0(arg0, 0x3EA, 1.0f);
+    }
+    func_80800188_bsbfly(arg0);
+    func_800A0CF4(arg0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80801208_bsbfly.s")
 
