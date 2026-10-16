@@ -365,7 +365,35 @@ s32 bstnt_entrypoint_6(s32 arg0) {
     return ((s32 *)&D_8080255C_bstnt)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80801258_bstnt.s")
+struct player_state_s;
+enum baanim_update_type_e;
+enum yaw_type_e;
+enum ba_physics_type_e;
+void func_8009FFD8(struct player_state_s *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+
+void func_80801258_bstnt(void *arg0) {
+    struct anctrl_s;
+    enum asset_e;
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *control;
+
+    bstnt_entrypoint_3(arg0);
+    control = baanim_getAnimCtrlPtr(arg0);
+    anctrl_reset(control);
+    anctrl_setIndex(control, 0xE5);
+    anctrl_setStart(control, 0.5036f);
+    anctrl_setDuration(control, 0.7f);
+    anctrl_setPlaybackType(control, 3);
+    anctrl_start(control);
+    func_8009FFD8(arg0, 1, 1, 3, 6);
+    *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_808012F8_bstnt.s")
 
