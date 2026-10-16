@@ -16,7 +16,26 @@ void func_80800000_chquizremotectrl(Actor *arg0, s32 arg1) {
     arg0->unk79_4 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quizremotectrl/func_80800068_chquizremotectrl.s")
+void func_80800068_chquizremotectrl(Actor *arg0) {
+    s32 func_800D90A4(f32 *);
+    int func_800D91EC(f32 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+
+    switch (arg0->unk79_4) {
+        case 1:
+            if (func_800D90A4(&arg0->unk50) != 0) {
+                func_80800000_chquizremotectrl(arg0, 2);
+            }
+            arg0->unk54 = func_800F10B4(arg0->unk50, 0.5f, 0.0f, 0.0f, 1.0f);
+            break;
+        case 3:
+            if (func_800D91EC(&arg0->unk50, 0.5f) != 0) {
+                func_80800000_chquizremotectrl(arg0, 0);
+            }
+            arg0->unk54 = func_800F10B4(arg0->unk50, 0.0f, 0.5f, 1.0f, 0.0f);
+            break;
+    }
+}
 
 /* extern */
 
