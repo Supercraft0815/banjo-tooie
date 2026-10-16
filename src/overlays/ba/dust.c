@@ -142,13 +142,31 @@ void badust_entrypoint_8(struct player_state_s *self) {
 /* extern */
 
 void badust_entrypoint_11(void *arg0) {
-    s32 badust_entrypoint_12(void *, s32);
+    void badust_entrypoint_12(void *, s32);
     (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x5C)))) + (4))) = 0;
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x5C)))) + (8))) = 0;
     (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x5C)))) + (0))) = 0;
     badust_entrypoint_12(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/badust_entrypoint_12.s")
+void badust_entrypoint_12(void *arg0, s32 arg1) {
+    void func_8009ADF0(void *, s32, s32);
+    void _batimer_set(struct player_state_s *, s32, f32);
+
+    **(s32 **)((u8 *)arg0 + 0x5C) = arg1;
+    switch (arg1) {
+        case 2:
+            func_8009ADF0(arg0, 3, 1);
+            *((s8 *)*(void **)((u8 *)arg0 + 0x5C) + 9) = 0;
+            _batimer_set(arg0, 8, 0.01f);
+            break;
+        case 3:
+            func_8009ADF0(arg0, 3, 1);
+            break;
+        case 1:
+            func_8009ADF0(arg0, 3, 0);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/badust_entrypoint_13.s")
