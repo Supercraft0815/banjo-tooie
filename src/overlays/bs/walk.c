@@ -3,7 +3,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/func_80800000_bswalk.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/func_8080016C_bswalk.s")
+void func_8080016C_bswalk(PlayerState *self) {
+    void func_8008CA30(PlayerState *, f32);
+    s32 func_8008E1A0(void);
+    f32 func_8009BBB8(PlayerState *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+
+    if (func_8008E1A0()) {
+        func_8008CA30(self, func_800F10B4(func_8009BBB8(self), 0.0f, 1.0f, 0.5f, 0.9f));
+    } else {
+        func_8008CA30(self, 1.0f);
+    }
+}
 
 void func_808001D8_bswalk(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)arg0 + 364) = arg1;
@@ -56,7 +67,7 @@ void bswalk_entrypoint_4(PlayerState *self) {
     s32 next_state;
 
     next_state = 0;
-    func_8080016C_bswalk();
+    func_8080016C_bswalk(self);
     if (bastick_distance(self) == 0.0f) {
         yaw_setIdeal(self, yaw_get(self));
     }
@@ -133,7 +144,7 @@ void bswalk_entrypoint_7(PlayerState *self) {
     s32 func_8008E148(PlayerState *);
     s32 next_state = 0;
 
-    func_8080016C_bswalk();
+    func_8080016C_bswalk(self);
     if (bastick_distance(self) == 0.0f) {
         yaw_setIdeal(self, yaw_get(self));
     }
