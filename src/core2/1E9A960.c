@@ -291,7 +291,17 @@ s32 func_800C1CCC(u16 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2000.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C269C.s")
+s32 func_800C269C(u8 arg0) {
+    u8 *source = func_800C1414(arg0);
+
+    if ((*(u32 *)(source + 0x78) << 19 >> 29) != 3)
+        return 0;
+    if (!source[0x79])
+        return 1;
+    if (func_800C1448(source[0x79]))
+        return 0;
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2718.s")
 
