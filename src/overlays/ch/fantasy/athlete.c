@@ -73,7 +73,18 @@ void func_80801654_chfantasyathlete(s32 arg0, struct AthletePaths *data) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80801718_chfantasyathlete.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_808018B8_chfantasyathlete.s")
+void func_808018B8_chfantasyathlete(Actor *arg0, struct AthletePaths *arg1, s32 arg2, u8 arg3) {
+    void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
+    void *func_800D7520(s32);
+    void func_801058C4(Actor *, s32, f32, u32);
+    if (arg3 & 2) {
+        func_800C7A68(func_800D7520(arg1->unk78[arg2]), 0.0f, arg0->position);
+    }
+    func_801058C4(arg0, arg1->unk78[arg2], 0.0f, (arg3 & 2) ? 0 : 1);
+    if (arg3 & 8) {
+        arg0->rotation[1] = arg1->unk94[arg2];
+    }
+}
 
 void func_80801974_chfantasyathlete(Actor *arg0) {
     switch (D_80803034_chfantasyathlete[arg0->unk70_10][0]) {
