@@ -1,6 +1,25 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gobi/common/chgobicommon_entrypoint_0.s")
+void chgobicommon_entrypoint_0(Actor *arg0) {
+    s32 func_801022E4(Actor *);
+    void func_80800070_chgobicommon(Actor *);
+    void func_808000EC_chgobicommon(Actor *);
+    void func_808001AC_chgobicommon(Actor *);
+    s32 temp_v0;
+
+    temp_v0 = func_801022E4(arg0);
+    switch (temp_v0) {
+        case 0x221:
+            func_80800070_chgobicommon(arg0);
+            return;
+        case 0x222:
+            func_808000EC_chgobicommon(arg0);
+            return;
+        case 0x223:
+            func_808001AC_chgobicommon(arg0);
+            return;
+    }
+}
 
 void func_80800070_chgobicommon(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
