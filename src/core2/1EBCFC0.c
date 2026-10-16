@@ -163,8 +163,8 @@ void func_800E3B88(void) {
 
 /* extern */
 
-void func_800E3BAC(s32 arg0) {
-    s32 func_800CA5B8(s32, s32);
+void func_800E3BAC(f32 *arg0) {
+    s32 func_800CA5B8(s32, f32 *);
     func_800CA5B8(D_8012D500, arg0);
 }
 
@@ -184,8 +184,8 @@ void func_800E3BFC(f32 arg0, f32 arg1, f32 arg2) {
 
 /* extern */
 
-void func_800E3C30(s32 arg0) {
-    s32 func_800CA668(s32, s32);
+void func_800E3C30(f32 *arg0) {
+    s32 func_800CA668(s32, f32 *);
     func_800CA668(D_8012D500, arg0);
 }
 

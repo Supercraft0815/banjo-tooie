@@ -330,7 +330,26 @@ void func_80801EE8_chjiggygamenew(Actor *arg0) {
 void func_8080245C_chjiggygamenew(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80802464_chjiggygamenew.s")
+void func_800E44FC(Gfx **);
+
+f32 func_80802464_chjiggygamenew(Gfx **arg0) {
+    void func_800E3BAC(f32 *);
+    void func_800E3C30(f32 *);
+    void func_800E3C8C(f32, f32);
+    void func_800E3CE8(void);
+    void func_800E41CC(void);
+    extern f32 D_80803D10_chjiggygamenew[3];
+    extern f32 D_80803D1C_chjiggygamenew[3];
+    extern f32 D_80803D28_chjiggygamenew;
+
+    func_800E41CC();
+    func_800E3C8C(50.0f, 2000.0f);
+    func_800E3BAC(D_80803D10_chjiggygamenew);
+    func_800E3C30(D_80803D1C_chjiggygamenew);
+    func_800E3CE8();
+    func_800E44FC(arg0);
+    return D_80803D28_chjiggygamenew;
+}
 
 void func_808024C8_chjiggygamenew(s32 arg0)
 {
