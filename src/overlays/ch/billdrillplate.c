@@ -21,7 +21,26 @@ OSThread *chbilldrillplate_entrypoint_2(void)
     return (OSThread *) D_8080116C_chbilldrillplate;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_80800024_chbilldrillplate.s")
+void func_80800024_chbilldrillplate(Actor *arg0) {
+    s32 _subaddiefade_entrypoint_14(s32);
+    s32 func_800DA298(s32);
+    int func_800DC298(f32);
+    void func_800FFAB0(Actor *);
+    void *func_80800FCC_chbilldrillplate(void);
+    f32 direction;
+
+    if (func_800DA298(((u16 *)func_80800FCC_chbilldrillplate())[6])) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    _subaddiefade_entrypoint_14(arg0);
+    if (func_800DC298(0.5f)) {
+        direction = -1.0f;
+    } else {
+        direction = 1.0f;
+    }
+    *(f32 *)&arg0->actorData[4] = direction * 200.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_808000B0_chbilldrillplate.s")
 
@@ -115,8 +134,8 @@ s32 func_80800C98_chbilldrillplate(Actor *volatile arg0, f32 *arg1, f32 arg2) {
 
 void func_80800D5C_chbilldrillplate(s32 arg0) {
     s32 _subaddiefade_entrypoint_14(s32);
-    s32 func_800DA298(u16);
-    s32 func_800FFAB0(s32);
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
     void *func_80800FCC_chbilldrillplate();
     if (func_800DA298((*(u16 *)((s8 *)(func_80800FCC_chbilldrillplate()) + (0xC)))) != 0) {
         func_800FFAB0(arg0);
@@ -131,7 +150,7 @@ void func_80800D5C_chbilldrillplate(s32 arg0) {
 
 s32 func_80800F24_chbilldrillplate(Actor *arg0, s32 arg1, s32 arg2) {
     void _chexploder_entrypoint_6(Actor *, f32, f32);
-    s32 func_800DA298(u16);
+    s32 func_800DA298(s32);
     Unk80132ED0 *func_80101080(void);
     void func_80101FDC(Actor *, u32);
     void func_80103110(void *, s32);
