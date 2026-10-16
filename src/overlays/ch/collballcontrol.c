@@ -260,7 +260,7 @@ void func_80801764_chcollballcontrol(u8 *arg0, s32 arg1) {
     s32 func_80101FDC(u8 *, s32);
     Actor *func_80106790(Unk80132ED0 *);
     void func_808021D4_chcollballcontrol(Actor *);
-    void func_80802264_chcollballcontrol(u8 *, s32);
+    void func_80802264_chcollballcontrol(Actor *volatile, volatile s32);
     extern u8 D_80804DF0_chcollballcontrol[];
     u8 *data;
     s32 linked;
@@ -360,7 +360,24 @@ void func_808021D4_chcollballcontrol(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80802264_chcollballcontrol.s")
+void func_80802264_chcollballcontrol(Actor *volatile arg0, volatile s32 arg1) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_800BA22C(s32, s32);
+    void func_800BA670(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    extern s32 D_80804E08_chcollballcontrol;
+    extern s32 D_80804C74_chcollballcontrol;
+    s32 emitter;
+    s32 model;
+    f32 *position;
+
+    position = arg0->position;
+    emitter = func_800BABB8(0, position, NULL, 1.0f, &D_80804E08_chcollballcontrol);
+    model = (arg1 == 1) ? 0x679 : 0x67A;
+    func_800BA670(emitter, model);
+    func_800BA22C(emitter, 0xA);
+    _subaddieaudioquick_entrypoint_2(arg0, position, &D_80804C74_chcollballcontrol);
+}
 
 void func_808022F0_chcollballcontrol(f32 *arg0) {
     void func_800BBCB8(f32[3], s32, f32, s32, s32 *);
