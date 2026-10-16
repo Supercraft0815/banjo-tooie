@@ -1054,7 +1054,23 @@ s32 func_80803D00_chgameselect(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803D60_chgameselect.s")
+s32 func_80803D60_chgameselect(s32 arg0) {
+    s32 _gcfrontend_entrypoint_1(s32);
+    s32 _gcfrontend_entrypoint_2(void);
+    switch (arg0) {
+    case 0:
+    case 1:
+    case 2:
+        func_808036F8_chgameselect();
+        return;
+    case 5:
+        return _gcfrontend_entrypoint_1(3);
+    case 7:
+        return _gcfrontend_entrypoint_2();
+    default:
+        return 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803DCC_chgameselect.s")
 
