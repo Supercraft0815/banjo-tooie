@@ -195,7 +195,30 @@ void baduo_entrypoint_17(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_18.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_19.s")
+void baduo_entrypoint_19(PlayerState *arg0) {
+    s32 _plsu_entrypoint_1(s32);
+    void func_8009DB04(PlayerState *, s32, f32, s32);
+    void func_800A38F0(PlayerState *, s32, s32);
+    void func_800F457C(void *, s32);
+    PlayerState *func_800F53D0(s32);
+    void func_800F759C(s32);
+    void func_800F8128(s32);
+    void func_800F8EBC(s32);
+    void func_80800C78_baduo(s32, s32);
+    void func_80800CA8_baduo(s32, s32);
+    s32 sp24;
+
+    sp24 = _plsu_entrypoint_1(0xD);
+    func_800F457C(arg0, 0);
+    func_800A38F0(arg0, 1, 1);
+    func_800F8EBC(*(s32 *)((s8 *)arg0 + 0x184));
+    func_80800008_baduo((s32)func_800F53D0(sp24), (s32)arg0);
+    func_800F8128(*(s32 *)((s8 *)arg0 + 0x184));
+    func_80800CA8_baduo((s32)func_800F53D0(sp24), (s32)arg0);
+    func_800F759C(sp24);
+    func_80800C78_baduo((s32)arg0, 1);
+    func_8009DB04(arg0, 0x5A4, 0.9f, 0x6D60);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_20.s")
 
