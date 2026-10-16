@@ -28,7 +28,25 @@ f32 func_800A0C38(void *arg0) {
     return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 312) + 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E79FD0/func_800A0C44.s")
+void func_800A0C44(PlayerState *arg0) {
+    void func_800A0CF4(PlayerState *, s32);
+    void func_800A0D74(void *, f32);
+    void func_800A0D84(void *, f32);
+    void func_800A0DB8(void *, s32);
+    void func_800A0DD0(PlayerState *, s32);
+    void func_800A0CD0(void *, s32);
+    void func_800A0DC4(PlayerState *, s32);
+
+    func_800A0CF4(arg0, 0);
+    func_800A0CE8(arg0, 0);
+    func_800A0CDC(arg0, 0);
+    func_800A0D74(arg0, 0.0f);
+    func_800A0D84(arg0, 0.0f);
+    func_800A0DB8(arg0, 1);
+    func_800A0DD0(arg0, 0);
+    func_800A0CD0(arg0, 1);
+    func_800A0DC4(arg0, 0);
+}
 
 void func_800A0CD0(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 312) + 18) = arg1;
