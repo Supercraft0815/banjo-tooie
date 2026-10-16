@@ -214,7 +214,21 @@ void func_800C8C90(s32 arg0) {
     func_800EE830(&D_8012AB04, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8CB8.s")
+void func_800C8CB8(s32 arg0, f32 *arg1) {
+    void *vector_at(s32, s32);
+    void func_800EE814(s16 dst[3], s16 src[3]);
+    void func_800EE940(s16 dst[3], f32 src[3]);
+    s16 *entry;
+    s16 position[3];
+
+    entry = vector_at(D_8012AB00, arg0 - 1);
+    func_800EE940(position, arg1);
+    if (entry[0] != position[0] || entry[1] != position[1] || entry[2] != position[2]) {
+        func_800EE814(entry, position);
+        ((u8 *)entry)[0x19] = 1;
+        ((u8 *)entry)[0x16] = ((u8 *)entry)[0x19];
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8D4C.s")
 
