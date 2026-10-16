@@ -92,7 +92,14 @@ void func_80800700_chboilerid(s16 *arg0, s16 *arg1, u8 *arg2) {
     func_800F2FD0(arg1 + 6, &sp20, sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_8080079C_chboilerid.s")
+void func_8080079C_chboilerid(s16 *arg0, s16 *arg1, u8 *arg2) {
+    void func_8080084C_chboilerid(u8 *, s16 *, f32 *);
+    f32 sp18[2];
+
+    func_8080084C_chboilerid(arg2, arg0, sp18);
+    arg1[4] = (s32)((f32)arg0[4] + (f32)*(s16 *)(arg2 + 0x58) * sp18[0]);
+    arg1[5] = (s32)((f32)arg0[5] + (f32)*(s16 *)(arg2 + 0x58) * sp18[1]);
+}
 
 void func_8080084C_chboilerid(u8 *arg0, s16 *arg1, f32 *arg2) {
     f32 func_800136D0(f32);
