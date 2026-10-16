@@ -18,7 +18,31 @@ void func_8010DC50(s32 arg0) {
     *((u8 *)ptr + 4) = *((u8 *)ptr + 4) + 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE73D0/func_8010DCB4.s")
+void func_8010DCB4(s32 arg0) {
+    void *func_80104148(s32);
+    s32 func_801042D8(s32);
+    void func_800ADFE0(s16);
+    void func_80100E18(s16);
+    s16 *ptr;
+    s16 temp_a0;
+    s32 count;
+
+    ptr = func_80104148(arg0);
+    count = *((u8 *)ptr + 4);
+    if ((s32)count > 0) {
+        *((u8 *)ptr + 4) = count - 1;
+        if (*((u8 *)ptr + 4) == 0) {
+            func_801042D8((s32)((u8 *)ptr + 2));
+            func_800ADFE0(ptr[0]);
+            temp_a0 = ptr[4];
+            ptr[0] = 0;
+            if (temp_a0 != 0) {
+                func_80100E18(temp_a0);
+                ptr[4] = 0;
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE73D0/func_8010DD20.s")
 
@@ -59,7 +83,7 @@ void func_8010DF3C(void) {
 /* extern */
 
 void func_8010DF98(void) {
-    s32 func_800ADFE0(s16);
+    void func_800ADFE0(s16);
     void *func_80104148(s32);
     s32 var_s0;
     void *temp_v0;
