@@ -295,7 +295,30 @@ void func_800B8FEC(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B9038.s")
+void func_800B9038(void) {
+    typedef struct {
+        f32 position[3];
+        f32 velocity[3];
+        u8 mode;
+        void *particles;
+    } Emitter;
+    typedef struct {
+        Emitter *emitter;
+        s32 unk4;
+        s32 unk8;
+        s32 unkC;
+    } State;
+    void *heap_alloc(s32);
+    extern s32 D_80127128;
+
+    func_800B8FEC();
+    ((State *)&D_80127128)->emitter = heap_alloc(sizeof(Emitter));
+    ((State *)&D_80127128)->emitter->position[0] = ((State *)&D_80127128)->emitter->position[1] = ((State *)&D_80127128)->emitter->position[2] = 0.0f;
+    ((State *)&D_80127128)->emitter->velocity[0] = ((State *)&D_80127128)->emitter->velocity[1] = ((State *)&D_80127128)->emitter->velocity[2] = 0.0f;
+    ((State *)&D_80127128)->unkC = 0;
+    ((State *)&D_80127128)->emitter->particles = heap_alloc(0x960);
+    ((State *)&D_80127128)->emitter->mode = 0;
+}
 
 void func_800B90C8(void) {
     extern s32 D_80127128;
