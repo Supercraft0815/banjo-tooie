@@ -6,7 +6,18 @@ void func_808000D0_sulights(s8 *arg0) {
     arg0[0] = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/func_808000D8_sulights.s")
+void func_808000D8_sulights(u8 *arg0) {
+    void func_800C8E84(s32, u32 *);
+    f32 fraction;
+    u32 rgb[3];
+    s32 i;
+
+    fraction = *(f32 *)(arg0 + 0x34) / *(f32 *)(arg0 + 0x38);
+    for (i = 0; i < 3; i++) {
+        rgb[i] = (s32)((f32)((s32 *)arg0)[i + 1] + (f32)((s32 *)arg0)[i + 4] * fraction);
+    }
+    func_800C8E84(arg0[1], rgb);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/func_80800194_sulights.s")
 
@@ -14,7 +25,7 @@ void func_808000D0_sulights(s8 *arg0) {
 
 void func_8080021C_sulights(u8 *arg0) {
     void func_800C8900(s32, u8 *);
-    s32 func_800C8E84(s32, s32 *);
+    void func_800C8E84(s32, u32 *);
     f32 func_800DC0C0(void);
     s32 sp4C;
     s32 sp40[3];
@@ -67,7 +78,7 @@ void func_8080038C_sulights(u8 *arg0) { s32 i; f32 *p; f32 value; i = 0; p = (f3
 /* extern */
 
 void sulights_entrypoint_0(s32 arg0, s32 *arg1, s32 *arg2, f32 arg3) {
-    s32 func_800C8E84(s32, s32 *);
+    void func_800C8E84(s32, u32 *);
     void func_800EE830(s32 dst[3], s32 src[3]);
     u8 *func_80800000_sulights(s32, s32);
     s32 i;
@@ -130,7 +141,7 @@ void sulights_entrypoint_3(s32 arg0, f32 *arg1, f32 arg2) {
 /* extern */
 
 void sulights_entrypoint_4(s32 arg0, void *arg1, void *arg2, f32 arg3) {
-    s32 func_800C8E84(s32, s32 *);
+    void func_800C8E84(s32, u32 *);
     u8 *func_80800000_sulights(s32, s32);
     f32 var_f0;
     void *temp_v1;
@@ -154,7 +165,7 @@ void sulights_entrypoint_4(s32 arg0, void *arg1, void *arg2, f32 arg3) {
 /* extern */
 
 void sulights_entrypoint_5(s32 arg0, s32 *arg1, s32 *arg2, f32 arg3) {
-    s32 func_800C8E84(s32, s32 *);
+    void func_800C8E84(s32, u32 *);
     u8 *func_80800000_sulights(s32, s32);
     s32 i;
     u8 *temp_v0;
