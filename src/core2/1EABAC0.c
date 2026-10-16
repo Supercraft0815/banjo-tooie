@@ -107,7 +107,7 @@ void func_800D2438(void) { extern s32 D_8011AFB0; extern s32 D_8011B3F4; extern 
 
 /* extern */
 
-void func_800D2498(u32 itemDisplayUI, s32 value, u32 a2) {
+s32 func_800D2498(u32 itemDisplayUI, s32 value, u32 a2) {
     s32 func_800D22E0(u8 *, u32);
     u8 *temp_v0;
 
@@ -115,10 +115,27 @@ void func_800D2498(u32 itemDisplayUI, s32 value, u32 a2) {
     (*(s16 *)((s8 *)(temp_v0) + (4))) = (s16) value;
     (*(f32 *)((s8 *)(temp_v0) + (8))) = (f32) value;
     (*(s16 *)((s8 *)(temp_v0) + (6))) = (s16) a2;
-    func_800D22E0(temp_v0, itemDisplayUI);
+    return func_800D22E0(temp_v0, itemDisplayUI);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D24E8.s")
+s32 func_800D24E8(s32 arg0, s32 arg1, u32 arg2) {
+    u8 *sp18;
+    u8 *temp_v0;
+    s32 result;
+
+    temp_v0 = func_800D21D0(arg0);
+    if ((*(s16 *)((s8 *)(temp_v0) + (4))) < 0) {
+        return func_800D2498((u32) arg0, arg1, arg2);
+    }
+    (*(s16 *)((s8 *)(temp_v0) + (4))) = (s16) arg1;
+    (*(s16 *)((s8 *)(temp_v0) + (6))) = (s16) arg2;
+    sp18 = temp_v0;
+    result = func_800D22E0(temp_v0, (u32) arg0);
+    if (result == 0) {
+        (*(f32 *)((s8 *)(temp_v0) + (8))) = (f32) (*(s16 *)((s8 *)(temp_v0) + (4)));
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D2574.s")
 
