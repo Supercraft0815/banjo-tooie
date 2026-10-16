@@ -213,4 +213,13 @@ void bafly_entrypoint_20(PlayerState *arg0) {
     func_8009BFE4(arg0, 500.0f * value, 1.2f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_21.s")
+void bafly_entrypoint_21(PlayerState *arg0) {
+    f32 _bafpctrl_entrypoint_3(PlayerState *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_8009BFE4(PlayerState *, f32, f32);
+    f32 value;
+
+    value = _bafpctrl_entrypoint_3(arg0);
+    value = func_800F10B4(value, 0.1f, 1.0f, value * value, 1.0f);
+    func_8009BFE4(arg0, 1000.0f * value, 2.2f);
+}
