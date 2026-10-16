@@ -48,7 +48,27 @@ OSThread *chfactorytwinklies_entrypoint_5(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_8080040C_chfactorytwinklies.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_8080064C_chfactorytwinklies.s")
+void func_8080064C_chfactorytwinklies(Actor *arg0) {
+    s32 _susubgame_entrypoint_2(void *, s32);
+    s32 _susubgame_entrypoint_4(void *, s32);
+    void func_800A16BC(s32);
+    void func_800CE88C(s32, s32);
+    s32 func_800CEAA8(s32);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    s32 data[2];
+
+    data[1] = func_80100094(arg0, 0);
+    func_800A16BC(0);
+    if (func_800CEAA8(0) != 0) {
+        func_800CE88C(0, 0);
+    }
+    data[0] = data[1] + 0xAC;
+    if (_susubgame_entrypoint_2(arg0, data[0]) != 0) {
+        _susubgame_entrypoint_4(arg0, data[0]);
+    }
+    func_800FDC28(0);
+}
 
 /* extern */
 
