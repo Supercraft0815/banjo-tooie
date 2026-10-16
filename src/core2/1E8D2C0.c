@@ -27,13 +27,32 @@ void func_800B39E8(void *arg0) {
     *var_v0 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B3A40.s")
+void func_800B3A40(u8 *arg0, s16 *arg1, s32 arg2, s32 arg3) {
+    s16 *entry;
+    s16 *next;
+
+    entry = func_800B39D0(arg0, arg2);
+    if (arg2 + arg3 == arg1[0]) {
+        next = func_800B39D0(arg0, arg1[0]);
+        entry[0] = next[0];
+        entry[1] = next[1] + arg3;
+    } else {
+        entry[0] = arg1[0];
+        entry[1] = arg3;
+    }
+    if (func_800B39D0(arg0, arg2 - arg1[1]) == arg1) {
+        arg1[1] += entry[1];
+        arg1[0] = entry[0];
+    } else {
+        arg1[0] = arg2;
+    }
+}
 
 /* extern */
 
 void func_800B3B08(u8 *arg0, s32 arg1, s32 arg2) {
     s16 *func_800B39D0(u8 *, s32);
-    s32 func_800B3A40(u8 *, s16 *, s32, s32);
+    void func_800B3A40(u8 *, s16 *, s32, s32);
     s16 *temp_v0;
     s16 *var_s0;
     s16 temp_a1;
