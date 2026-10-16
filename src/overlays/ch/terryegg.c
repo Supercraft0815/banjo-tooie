@@ -135,15 +135,40 @@ void func_80800D20_chterryegg(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80800D88_chterryegg.s")
+void func_80800D88_chterryegg(s32 arg0, f32 *arg1) {
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    void func_800EE88C(f32 *, s16 *);
+    extern Prop *B_80801460_chterryegg[4];
+    s32 count;
+    s32 i;
+    s32 id;
+    Prop **cursor;
+    Prop *prop;
+
+    count = _gccubesearch_entrypoint_9(0x3D7, B_80801460_chterryegg, 4);
+    i = 0;
+    if (count > 0) {
+        cursor = B_80801460_chterryegg;
+        id = arg0 + 0x2B;
+        do {
+            prop = *cursor;
+            i++;
+            if (id == prop->unk6_7) {
+                func_800EE88C(arg1, prop->position);
+                return;
+            }
+            cursor++;
+        } while (i < count);
+    }
+}
 
 /* extern */
 
-s32 func_80800E0C_chterryegg(s32 arg0, s32 arg1, s32 arg2) {
+s32 func_80800E0C_chterryegg(s32 arg0, s32 arg1, f32 *arg2) {
     s32 func_800C05B8(s32, s32, s32, s32, s32, s32, s32);
     s32 func_800CBD84(s32);
     s32 func_800EA05C();
-    s32 func_80800D88_chterryegg(s32, s32);
+    void func_80800D88_chterryegg(s32, f32 *);
     if ((func_800EA05C() == 0x113) && (func_800CBD84(arg1) != -1)) {
         func_80800D88_chterryegg(arg0, arg2);
         return 2;
