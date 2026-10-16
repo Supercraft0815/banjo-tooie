@@ -166,7 +166,25 @@ void func_808018F8_chchuffy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80801B8C_chchuffy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80801C78_chchuffy.s")
+void func_80801C78_chchuffy(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800C2FDC(u8);
+    s32 _sumumbofx_entrypoint_1(void *, s32);
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    if (data[0] != 0) {
+        func_800C2FDC(data[0]);
+        data[0] = 0;
+    }
+    if (data[1] != 0) {
+        func_800C2FDC(data[1]);
+        data[1] = 0;
+    }
+    if (func_80100094(arg0, 1) != NULL) {
+        _sumumbofx_entrypoint_1(arg0, 1);
+    }
+}
 
 void func_80801CF8_chchuffy(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
