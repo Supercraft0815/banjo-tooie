@@ -1,6 +1,27 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80800000_gczoombox.s")
+void func_80800000_gczoombox(void *arg0) {
+    s32 func_800C2FDC(u8 index);
+    void func_800FC74C(u32 track_id);
+    s32 func_800FCCD4(s32 track_id);
+    s32 i = 0;
+
+    if (-1.0f == *(f32 *)((u8 *)arg0 + 0x14C)) {
+        if (func_800FCCD4(((u8 *)arg0)[0x144])) {
+            func_800FC74C(((u8 *)arg0)[0x144]);
+        }
+    } else {
+        for (i = 0; i < 5; i++) {
+            if (((u8 *)arg0)[0x144 + i]) {
+                func_800C2FDC(((u8 *)arg0)[0x144 + i]);
+                ((u8 *)arg0)[0x178]--;
+            }
+        }
+    }
+    for (i = 0; i < 5; i++) {
+        ((u8 *)arg0)[0x144 + i] = 0;
+    }
+}
 
 void func_808000C4_gczoombox(void *arg0) {
     if ((*(u16 *)((s8 *)(arg0) + (0x142))) != 0) {
@@ -19,7 +40,7 @@ void func_808000DC_gczoombox(void *arg0) {
 
 void gczoombox_entrypoint_0(void *arg0) {
     s32 func_800D52B0();
-    s32 func_80800000_gczoombox(void *);
+    void func_80800000_gczoombox(void *);
     s32 heap_free(void *);
     if (arg0 != NULL) {
         func_800D52B0();
