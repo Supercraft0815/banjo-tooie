@@ -44,7 +44,33 @@ void func_808000C8_bsblongleg(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/func_8080013C_bsblongleg.s")
+void func_800931AC(PlayerState *, s32);
+
+void func_8080013C_bsblongleg(PlayerState *arg0) {
+    void _baalarm_new(PlayerState *);
+    void baflag_set(PlayerState *, s32);
+    void baroll_setAngularVelocity(PlayerState *, f32, f32);
+    void bastick_setZoneMax(PlayerState *, s32, f32);
+    void func_8009BFE4(PlayerState *, f32, f32);
+    void func_8009E53C(PlayerState *, s32, f32);
+    s32 func_8009E77C(PlayerState *, s32);
+    void func_800A0CE8(PlayerState *, s32);
+    void func_800A0CF4(PlayerState *, s32);
+    void func_800A0DD0(PlayerState *, s32);
+    if (func_8009E77C(arg0, 8) == 0) {
+        func_8009E53C(arg0, 1, -50.0f);
+        bastick_setZoneMax(arg0, 0, 0.03f);
+        bastick_setZoneMax(arg0, 1, 1.0f);
+        func_800A0CF4(arg0, 1);
+        func_800A0CE8(arg0, 1);
+        func_800A0DD0(arg0, 1);
+        func_8009BFE4(arg0, 1000.0f, 12.0f);
+        baroll_setAngularVelocity(arg0, 1000.0f, 12.0f);
+        baflag_set(arg0, 3);
+        func_800931AC(arg0, 2);
+        _baalarm_new(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/func_80800204_bsblongleg.s")
 
@@ -278,9 +304,9 @@ void bsblongleg_entrypoint_24(s32 arg0)
     _bsrest_entrypoint_14();
     func_80800204_bsblongleg(arg0);
 }
-void bsblongleg_entrypoint_25(s32 arg0)
+void bsblongleg_entrypoint_25(PlayerState *arg0)
 {
-    func_8080013C_bsblongleg();
+    func_8080013C_bsblongleg(arg0);
     _bsrest_entrypoint_16(arg0);
 }
 void bsblongleg_entrypoint_26(PlayerState *arg0) {
@@ -305,9 +331,9 @@ s32 bsblongleg_entrypoint_27(s32 arg0) {
     return ((s32 *)&D_808014D0_bsblongleg)[arg0];
 }
 
-void bsblongleg_entrypoint_28(s32 arg0)
+void bsblongleg_entrypoint_28(PlayerState *arg0)
 {
-    func_8080013C_bsblongleg();
+    func_8080013C_bsblongleg(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
 /* extern */
