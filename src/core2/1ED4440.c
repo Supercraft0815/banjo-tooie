@@ -155,7 +155,21 @@ void *func_800FB3C0(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4, u
     return func_800C6B78(arg0, arg1, arg2, arg3, arg4, arg5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FB434.s")
+void *func_800FB434(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3, f32 arg4[3], s32 arg5, u32 arg6) {
+    void *func_800C6B78(f32 *, f32 *, f32, f32 *, s32, u32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void *result;
+    f32 sp30[3];
+    f32 sp24[3];
+
+    func_800EFA4C(sp30, arg0[0], arg0[1] + arg2, arg0[2]);
+    func_800EFA4C(sp24, arg1[0], arg1[1] + arg2, arg1[2]);
+    result = func_800C6B78(sp30, sp24, arg3, arg4, arg5, arg6);
+    if (result != 0) {
+        func_800EFA4C(arg1, sp24[0], sp24[1] - arg2, sp24[2]);
+    }
+    return result;
+}
 
 void func_800FB508(void *arg0, void *arg1) {
     (*(u16 *)((s8 *)(arg0) + (0))) = (u16) (*(u16 *)((s8 *)(arg1) + (0)));
