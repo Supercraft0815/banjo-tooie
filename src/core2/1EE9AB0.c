@@ -23,7 +23,31 @@ s32 func_801106A0(s32 *arg0) {
     return arg0[27];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_801106A8.s")
+s32 func_801106A8(PlayerState *arg0, s32 arg1) {
+    struct StateCallbacks {
+        void (*enter)(PlayerState *, s32);
+        void (*unk4)();
+        void (*exit)();
+        void (*unkC)();
+    };
+    extern s16 D_801247A0[];
+    void (*exit)();
+    void (*enter)(PlayerState *, s32);
+    s32 oldState;
+
+    oldState = ((s32 *)arg0)[27];
+    if (arg1 != oldState) {
+        exit = ((struct StateCallbacks *)D_801247A0)[oldState].exit;
+        if (exit != NULL) {
+            exit();
+        }
+        enter = ((struct StateCallbacks *)D_801247A0)[arg1].enter;
+        if (enter != NULL) {
+            enter(arg0, arg1);
+        }
+        ((s32 *)arg0)[27] = arg1;
+    }
+}
 
 void func_80110720(s8 *arg0, s32 arg1) {
     arg0[112] = arg1;
