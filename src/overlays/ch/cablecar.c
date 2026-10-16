@@ -88,14 +88,34 @@ void func_8080069C_chcablecar(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800914_chcablecar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800AF4_chcablecar.s")
+void func_80800AF4_chcablecar(Actor *arg0, u32 arg1) {
+    void _subaddieDll_entrypoint_4(Actor *, u32);
+    void func_80015178(s32);
+    void func_80101FDC(Actor *, u32);
+    void func_80103D70(void **);
+    typedef struct {
+        u32 upper : 18;
+        u32 active : 1;
+        u32 lower : 13;
+    } CablecarFlags;
+
+    _subaddieDll_entrypoint_4(arg0, 0);
+    func_80103D70((void **)arg0);
+    func_80101FDC(arg0, arg1);
+    if (((CablecarFlags *)&arg0->unk0->unk28)->active) {
+        func_80015178(2);
+        ((CablecarFlags *)&arg0->unk0->unk28)->active = 0;
+    }
+    arg0->actorData[4] = 0;
+    arg0->unk64_19 = 0;
+}
 
 /* extern */
 
 void func_80800B74_chcablecar(s32 arg0, s32 arg1, s32 arg2) {
     void _subaddieDll_entrypoint_4(Actor*, u32);
     s32 func_800DA298(s32);
-    s32 func_80101FDC(s32, s32);
+    void func_80101FDC(Actor *, u32);
     if (func_800DA298(0x67E) == 0) {
         func_80101FDC(arg0, 2);
         return;
