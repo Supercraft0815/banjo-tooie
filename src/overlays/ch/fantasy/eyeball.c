@@ -146,7 +146,20 @@ void func_80801378_chfantasyeyeball(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_808013F8_chfantasyeyeball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_808016B4_chfantasyeyeball.s")
+f32 func_808016B4_chfantasyeyeball(s32 arg0) {
+    s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
+    u8 *found[10];
+    s32 count;
+    s32 i;
+
+    count = 0;
+    for (i = _subaddiefind_entrypoint_4(0x482, found, 10) - 1; i >= 0; i--) {
+        if ((s32)((Actor *)found[i])->unk70_10 < 7) {
+            count++;
+        }
+    }
+    return (f32)count * 0.5f;
+}
 
 /* extern */
 
