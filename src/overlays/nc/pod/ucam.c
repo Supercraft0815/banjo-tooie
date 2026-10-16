@@ -3,17 +3,41 @@
 /* extern */
 
 void func_80800000_ncpoducam(u8 *arg0) {
-    s32 func_800EFD24(s32);
-    func_800EFD24(arg0 + 4);
-    func_800EFD24(arg0 + 0x10);
-    func_800EFD24(arg0 + 0x24);
-    func_800EFD24(arg0 + 0x30);
+    void func_800EFD24(f32 *);
+    func_800EFD24((f32 *)(arg0 + 4));
+    func_800EFD24((f32 *)(arg0 + 0x10));
+    func_800EFD24((f32 *)(arg0 + 0x24));
+    func_800EFD24((f32 *)(arg0 + 0x30));
     (*(s8 *)((s8 *)(arg0) + (0x63))) = 0;
     (*(f32 *)((s8 *)(arg0) + (0x50))) = 40.0f;
     (*(f32 *)((s8 *)(arg0) + (0x54))) = 1.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/ncpoducam_entrypoint_0.s")
+s16 ncpoducam_entrypoint_0(void) {
+    s16 func_8001B668(s32, s32);
+    u32 func_800E6A00(void);
+    void func_800EFD24(f32 *);
+    void *ncpoducam_entrypoint_1(s16);
+    s16 handle;
+    u8 *data;
+
+    handle = func_8001B668(0, 0x68);
+    data = ncpoducam_entrypoint_1(handle);
+    *(s32 *)(data + 0x5C) = 0;
+    *(s32 *)(data + 0x1C) = 0;
+    *(s16 *)(data + 0) = 0;
+    *(s16 *)(data + 2) = 0;
+    func_800EFD24((f32 *)(data + 0x3C));
+    func_800EFD24((f32 *)(data + 4));
+    func_800EFD24((f32 *)(data + 0x10));
+    *(s16 *)(data + 0x48) = 0;
+    *(s32 *)(data + 0x4C) = 0;
+    *(s16 *)(data + 0x58) = -1;
+    data[0x60] = 0xFF;
+    data[0x62] = 0;
+    data[0x65] = func_800E6A00();
+    return handle;
+}
 
 /* extern */
 
