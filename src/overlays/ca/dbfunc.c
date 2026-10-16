@@ -635,7 +635,29 @@ s32 cadbfunc_entrypoint_27(s32 arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ca/dbfunc/func_80800C9C_cadbfunc.s")
+s32 *func_80800C9C_cadbfunc(void) {
+    s32 func_800A586C(void);
+    u8 func_800A587C(void);
+    s32 temp_v0;
+
+    temp_v0 = func_800A587C();
+    switch (temp_v0) {
+    case 4:
+        return func_800A586C() + 4;
+    case 3:
+        return func_800A586C() + 0x30;
+    case 1:
+        return func_800A586C() + 0x28;
+    case 5:
+        return func_800A586C() + 0x24;
+    case 6:
+        return func_800A586C() + 0x28;
+    case 8:
+        return func_800A586C() + 0x24;
+    default:
+        return NULL;
+    }
+}
 
 /* extern */
 
