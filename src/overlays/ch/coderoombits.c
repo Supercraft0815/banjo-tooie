@@ -119,7 +119,39 @@ void func_80800998_chcoderoombits(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/chcoderoombits_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_80800B40_chcoderoombits.s")
+s32 func_80800B40_chcoderoombits(s32 arg0, void *arg1) {
+    s32 func_800D3EC8(s32);
+    s32 func_800D3E6C(s32);
+    s32 _gcfrontend_entrypoint_3(s32);
+    s32 func_800DA298(s32);
+    struct { s32 unk0; u16 unk4; u16 unk6; u8 unk8[2]; u8 flag; } *bit;
+
+    bit = arg1;
+    switch (bit->unk4) {
+        case 1:
+            if (bit->flag != 0) {
+                if (func_800D3EC8(bit->unk6) == 0) {
+                    return 1;
+                }
+            } else {
+                if (func_800D3E6C(bit->unk6) == 0) {
+                    return 1;
+                }
+            }
+            break;
+        case 2:
+            if (_gcfrontend_entrypoint_3(bit->unk6) != 0) {
+                return 1;
+            }
+            break;
+        case 3:
+            if (func_800DA298(0xC0C) != 0) {
+                return 1;
+            }
+            break;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_80800BF4_chcoderoombits.s")
 
