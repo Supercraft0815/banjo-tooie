@@ -77,7 +77,28 @@ void badeathmatch_entrypoint_2(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/deathmatch/badeathmatch_entrypoint_3.s")
+void badeathmatch_entrypoint_3(void *arg0) {
+    struct player_state_s;
+    int _batimer_decrement(struct player_state_s *, s32);
+    int bainput_func_80097D28(struct player_state_s *);
+    s32 bs_getCurrentState(struct player_state_s *);
+    int func_800A3274(struct player_state_s *);
+    void badeathmatch_entrypoint_8(void *, f32);
+    u8 *temp_v0;
+    s32 temp_v1;
+
+    if ((func_800A3274(arg0) != 0x11) && (bs_getCurrentState(arg0) != 0xD7)) {
+        temp_v0 = *(void **)((u8 *)arg0 + 0x158);
+        if (temp_v0[0x21] == 0) {
+            temp_v1 = temp_v0[0x23];
+            if (((temp_v1 == 0) & 1) && (bainput_func_80097D28(arg0) != 0)) {
+                badeathmatch_entrypoint_0(arg0);
+            }
+        } else if ((temp_v0[0x22] != 0) && (_batimer_decrement(arg0, 0xD) != 0)) {
+            badeathmatch_entrypoint_8(arg0, 0.0f);
+        }
+    }
+}
 
 s32 badeathmatch_entrypoint_4(s32 arg0) {
     switch (arg0) {
