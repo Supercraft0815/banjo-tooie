@@ -544,7 +544,23 @@ void bsbtrot_entrypoint_28(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_29.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_30.s")
+/* extern */
+
+void bsbtrot_entrypoint_30(PlayerState *arg0) {
+    s32 _bsrest_entrypoint_13(PlayerState *);
+    s32 _bsrest_entrypoint_20(PlayerState *);
+    s32 sp24;
+
+    sp24 = 0;
+    func_808004B4_bsbtrot(arg0);
+    func_8009D3A8(arg0, 1);
+    if ((*(s32 *)((s8 *)(arg0) + (0x164))) != 0) {
+        sp24 = 0x17;
+    } else if (_bsrest_entrypoint_20(arg0) != 0) {
+        sp24 = _bsrest_entrypoint_13(arg0);
+    }
+    bs_setState(arg0, sp24);
+}
 
 s32 bsbtrot_entrypoint_31(s32 arg0) {
     extern s32 D_80802EC0_bsbtrot[];
