@@ -12,6 +12,14 @@ typedef struct {
 
 extern s32 D_80136ED8;
 
+typedef struct {
+    void (*create)(void *, s32, s32, s32, s32);
+    s32 unk4;
+    void (*destroy)(void *);
+    s32 unkC;
+} ItemType;
+extern ItemType D_80124440[];
+
 void func_80105410(void) {
     FreeList *freelist_new(s32, s32);
     extern FreeList *D_80136EC0;
@@ -283,16 +291,9 @@ void func_80106138(void *arg0) {
         u8 data[0xA0];
     } Item;
     typedef struct {
-        s32 unk0;
-        s32 unk4;
-        void (*destroy)(void *);
-        s32 unkC;
-    } ItemType;
-    typedef struct {
         u8 pad[0x90];
         s16 index;
     } Owner;
-    extern ItemType D_80124440[];
     s32 *entry;
     Item *end;
     Item *item;
@@ -317,7 +318,31 @@ s32 func_80106314()
     return D_80136ED8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80106320.s")
+void *func_80106320(s32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void *func_801063C0(void *);
+    void *vector_push_back(void **);
+    typedef struct {
+        s32 unk0;
+        void *items;
+    } Entry;
+    typedef struct {
+        s32 unk0;
+        s16 type;
+        s16 unk6;
+        u8 data[0xA0];
+    } Item;
+    Entry *entry;
+    Item *item;
+
+    entry = func_801063C0(arg0);
+    item = vector_push_back(&entry->items);
+    item->type = arg2;
+    item->unk0 = entry->unk0;
+    item->unk6 = arg1;
+    D_80136ED8 = *arg0;
+    D_80124440[item->type].create(item->data, arg3, item->unk0, item->unk6, 4);
+    return item;
+}
 
 void *func_801063C0(void *arg0) {
     void *freelist_at(FreeList *, s32);
