@@ -83,4 +83,20 @@ void func_808000D4_chicestationbits(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/icestationbits/func_808001E0_chicestationbits.s")
+void func_808001E0_chicestationbits(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chdoor_entrypoint_1(s32, s32, s32);
+    void func_800FFAB0(Actor *);
+    s32 func_80103140(Actor *, u32, u16);
+    s32 id;
+
+    switch (arg1) {
+        case 0x95:
+            id = arg0->unk74_7 == 0x32 ? 0x872 : 0x873;
+            func_80103140(arg0, (u16)id, arg0->unk0->unk16);
+            break;
+        case 0x9D:
+            func_800FFAB0(arg0);
+            break;
+    }
+    _chdoor_entrypoint_1((s32)arg0, arg1, arg2);
+}
