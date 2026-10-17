@@ -54,7 +54,32 @@ s32 func_80800264_chchuffy(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/chchuffy_entrypoint_1.s")
+struct ChuffyData {
+    u8 pad[0x4C];
+    f32 position[3];
+    f32 rotation[3];
+};
+
+int chchuffy_entrypoint_1(Unk80132ED0 *marker, f32 *position, f32 *rotation) {
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F1828(f32 *, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *actor;
+    struct ChuffyData *data;
+
+    actor = func_80106790(marker);
+    data = func_80100094(actor, 0);
+    func_800EE7F8(position, &data->position[0]);
+    rotation[0] = 90.0f - func_800F1828(&data->position[0], &data->rotation[0]);
+    rotation[1] = func_800F1DF4(&data->position[0], &data->rotation[0]);
+    rotation[2] = 0.0f;
+    if ((s32)actor->unk70_10 < 4) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80800398_chchuffy.s")
 
