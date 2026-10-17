@@ -31,7 +31,40 @@ void func_800815CC(void) {
     D_80126CB8 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/overlays/func_8008160C.s")
+/* extern */
+
+void func_8008160C(s32 arg0) {
+    s32 func_800A9F30(void);
+    s16 temp_v0;
+    s32 temp_s3;
+    s32 var_s0;
+    struct Overlay **var_s1;
+    struct Overlay *temp_a0;
+
+    temp_s3 = func_800A9F30();
+    var_s0 = 0;
+    if (D_80117C60 > 0) {
+        var_s1 = D_80126738;
+        do {
+            temp_a0 = *var_s1;
+            if (arg0 == 2) {
+                if ((temp_a0->fields.unk32 >= 3) && (temp_a0->header.flags & 2) && (ovl_unload(temp_a0, 0) != 0)) {
+                    var_s0 -= 1;
+                    var_s1 -= 1;
+                }
+            } else {
+                temp_a0->fields.unk32 += 1;
+                temp_v0 = temp_a0->fields.unk32;
+                if ((temp_v0 >= 0x1F) && (((temp_s3 == 0) && (temp_v0 >= 6)) || (temp_v0 >= 0x1F)) && (ovl_unload(temp_a0, 0) != 0)) {
+                    var_s0 -= 1;
+                    var_s1 -= 1;
+                }
+            }
+            var_s0 += 1;
+            var_s1 += 1;
+        } while (var_s0 < D_80117C60);
+    }
+}
 
 void func_80081724()
 {
