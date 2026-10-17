@@ -61,4 +61,21 @@ s32 func_808000F4_chdiggerbossinterior(Actor *arg0, s32 arg1, u8 arg2) {
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossinterior/func_80800178_chdiggerbossinterior.s")
+Actor *func_80800178_chdiggerbossinterior(Actor *arg0, s32 arg1) {
+    s32 _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
+    void func_80102FDC(Actor *, f32);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    void func_80108658(void *, s32, s32, void *);
+    f32 sp28[6];
+    Actor *actor;
+
+    if (_subaddiemarker_entrypoint_1(arg0, 0x154, arg1, sp28, 1)) {
+        actor = func_80108528(0x131, sp28, (s32)sp28[4], &arg0);
+        actor->unk64_20 = 1;
+        actor->unk74_17 = 0;
+        actor->unk74_7 = 100;
+        func_80102FDC(actor, sp28[5]);
+        func_80108658(actor, 0x20002000, 0, NULL);
+    }
+    return arg0;
+}
