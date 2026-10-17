@@ -950,7 +950,29 @@ s32 func_80803D98_chweldarboss(s32 arg0) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80803DD8_chweldarboss.s")
+s32 func_80803DD8_chweldarboss(Actor *arg0) {
+    void func_80801AA0_chweldarboss(Actor *, s32);
+    s32 result = 0;
+
+    switch (arg0->unk70_10) {
+        case 11:
+        case 12:
+            func_80801AA0_chweldarboss(arg0, 14);
+            result = 1;
+            break;
+        case 22:
+        case 23:
+            func_80801AA0_chweldarboss(arg0, 25);
+            result = 1;
+            break;
+        case 38:
+        case 39:
+            func_80801AA0_chweldarboss(arg0, 41);
+            result = 1;
+            break;
+    }
+    return result;
+}
 
 /* extern */
 
