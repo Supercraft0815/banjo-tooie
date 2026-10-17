@@ -1667,7 +1667,34 @@ void func_80804BF4_chgameselect(u8 *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80804D30_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80804E34_chgameselect.s")
+s32 func_80804E34_chgameselect(u8 *arg0) {
+    s32 _gcstatusDll_entrypoint_17();
+    s32 _gcstatusDll_entrypoint_18(void);
+    u32 func_800AA0B8(void);
+    void func_80805310_chgameselect(u8 *);
+    void func_808065C0_chgameselect(s32);
+
+    func_80801658_chgameselect(((Actor *)arg0)->actorData[4], 1);
+    if (_gcstatusDll_entrypoint_18() == 10) {
+        ((Actor *)arg0)->actorData[2] = 0;
+    } else if (_gcstatusDll_entrypoint_18() == 20) {
+        ((Actor *)arg0)->actorData[2] = 1;
+    } else if (_gcstatusDll_entrypoint_17() == 5) {
+        ((Actor *)arg0)->actorData[2] = 2;
+    } else if (_gcstatusDll_entrypoint_17() == 10) {
+        ((Actor *)arg0)->actorData[2] = 3;
+    } else {
+        ((Actor *)arg0)->actorData[2] = 0;
+    }
+    ((Actor *)arg0)->unk64_20 = 0;
+    if (func_800AA0B8()) {
+        func_808065C0_chgameselect((s32)arg0);
+    } else {
+        func_80805310_chgameselect(arg0);
+        func_80803D00_chgameselect(4, 1);
+    }
+    return -1;
+}
 
 /* extern */
 
