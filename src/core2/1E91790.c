@@ -258,7 +258,23 @@ void func_800B8CF0(f32 size)
 	D_801282D4 = size;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B8CFC.s")
+s32 func_800B8CFC(u8 *arg0) {
+    int func_800D36C4(s32, s32);
+    s32 func_800E7188(u8 *);
+    s32 temp_v0;
+    s32 var_s1;
+    s32 var_s2;
+    s32 var_s3;
+
+    var_s2 = 0;
+    var_s3 = 0;
+    for (var_s1 = 0; var_s1 < func_800E7188(arg0); var_s1++) {
+        temp_v0 = func_800D36C4(D_801282C0.data[6], arg0[var_s1]);
+        var_s2 = (s32) ((f32) var_s2 + ((f32) (temp_v0 + var_s3) * 0.5f));
+        var_s3 = temp_v0;
+    }
+    return (s32) ((f32) var_s2 * D_801282C0.value);
+}
 
 void func_800B8DEC(Gfx **arg0, s32 arg1, s32 arg2, u8 arg3) {
     arg3 = (u8) arg3;
@@ -272,9 +288,8 @@ void func_800B8DEC(Gfx **arg0, s32 arg1, s32 arg2, u8 arg3) {
 
 /* extern */
 
-void func_800B8F88(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_800B8CFC(s32);
-    s32 func_800B8E28(s32, s32, s32, s32);
+void func_800B8F88(s32 arg0, s32 arg1, u8 *arg2) {
+    s32 func_800B8E28(s32, s32, s32, u8 *);
     func_800B8E28(arg0, (s32) (0x130 - func_800B8CFC(arg2)) / 2, arg1, arg2);
 }
 
