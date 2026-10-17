@@ -5,7 +5,38 @@ s32 func_800A21C0()
     return 0x14;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BAB0/func_800A21C8.s")
+void func_800A21C8(void *arg0) {
+    struct MapEntry { s16 map; u8 first; u8 second; };
+    extern struct MapEntry D_80119270[];
+    s32 func_800C8C18(void);
+    s32 func_800EA05C();
+    s32 map;
+    s32 i;
+    struct MapEntry *entry;
+    s8 first;
+    void *data;
+
+    map = func_800EA05C();
+    for (i = 0; D_80119270[i].map != -1; i++) {
+        if (map == D_80119270[i].map) {
+            break;
+        }
+    }
+    entry = &D_80119270[i];
+    (*(u8 **)((u8 *)arg0 + 0xB4))[0] = entry->first;
+    (*(u8 **)((u8 *)arg0 + 0xB4))[1] = entry->second;
+    if (entry->map == -1 && func_800C8C18() > 0) {
+        (*(s8 **)((u8 *)arg0 + 0xB4))[0] = 2;
+        (*(s8 **)((u8 *)arg0 + 0xB4))[1] = 0;
+    }
+    data = *(void **)((u8 *)arg0 + 0xB4);
+    first = *(s8 *)data;
+    if (first >= 3) {
+        *(u8 *)data = 2;
+        first = (*(s8 **)((u8 *)arg0 + 0xB4))[0];
+    }
+    func_800A25DC((s32)arg0, first);
+}
 
 void func_800A22A8(s32 arg0)
 {
