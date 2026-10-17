@@ -103,7 +103,33 @@ s32 func_808009EC_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) { void *fu
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80800D00_chfactorytwinklies.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80800DE0_chfactorytwinklies.s")
+void func_80800DE0_chfactorytwinklies(Actor *arg0) {
+    typedef struct player_state_s PlayerState;
+    s32 _gcstatusDll_entrypoint_11(void);
+    s32 _subaddiemulti_entrypoint_3(s32);
+    void func_800946C4(PlayerState *, s32);
+    void func_800A16BC(s32);
+    void func_800D2748(s32, s32);
+    PlayerState *func_800F53D0(s32);
+    void *func_80100094(Actor *, u32);
+    struct {
+        s32 unk0[16];
+        s32 unk40[4][3];
+    } *data;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    func_800A16BC(1);
+    for (i = 0; i < _gcstatusDll_entrypoint_11(); i++) {
+        data->unk0[i] = 0;
+        data->unk40[i][0] = 0;
+        data->unk40[i][1] = 0;
+        data->unk40[i][2] = 0;
+        func_800946C4(func_800F53D0(i), 1);
+        func_800D2748(i + 0xC3, i + 0x5B);
+    }
+    _subaddiemulti_entrypoint_3(0xA);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80800E9C_chfactorytwinklies.s")
 
