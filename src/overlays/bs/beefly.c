@@ -53,7 +53,44 @@ void func_8080010C_bsbeefly(PlayerState *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_808001C4_bsbeefly.s")
+struct anctrl_s;
+
+void func_808001C4_bsbeefly(PlayerState *arg0) {
+    void _bsbee_entrypoint_2();
+    int anctrl_isAt(struct anctrl_s *, f32);
+    s32 anctrl_isStopped(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
+    f32 baphysics_get_vertical_velocity(PlayerState *);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    void bs_setState(PlayerState *, s32);
+    void func_8009DE38(PlayerState *, s32, f32);
+    s32 sp24;
+    struct anctrl_s *sp20;
+
+    sp24 = 0;
+    sp20 = baanim_getAnimCtrlPtr(arg0);
+    _bsbee_entrypoint_2(arg0);
+    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+        case 0:
+            if (anctrl_isAt(sp20, 0.266f) != 0) {
+                baphysics_set_vertical_velocity(arg0, 1600.0f);
+                func_8009DE38(arg0, 0x406, 0.7f);
+                *(s32 *)((s8 *)arg0 + 0x15C) = 1;
+            }
+            break;
+        case 1:
+            func_80800000_bsbeefly(arg0);
+            if (anctrl_isStopped(sp20) != 0) {
+                baanim_playForDuration_loopSmooth(arg0, 0x1DC, 0.38f);
+            }
+            if (baphysics_get_vertical_velocity(arg0) < 0.0f) {
+                sp24 = 0x8C;
+            }
+            break;
+    }
+    bs_setState(arg0, sp24);
+}
 
 void func_808002B0_bsbeefly()
 {
@@ -151,8 +188,8 @@ void func_808005B0_bsbeefly(s32 arg0) {
 void func_80800708_bsbeefly(void *arg0) {
     extern f32 D_80800E28_bsbeefly[];
     extern f32 D_80800E3C_bsbeefly[];
-    s32 _bsbee_entrypoint_2();
-    s32 bs_setState(s32, s32);
+    void _bsbee_entrypoint_2();
+    void bs_setState(PlayerState *, s32);
     s32 _baboost_entrypoint_1(void *);
     s32 _baboost_entrypoint_2(s32, s32);
     void _baboost_entrypoint_5(void *);
@@ -164,12 +201,12 @@ void func_80800708_bsbeefly(void *arg0) {
     void _bafly_entrypoint_11(void *);
     void _bafly_entrypoint_20(void *);
     void _bafly_entrypoint_21(void *);
-    s32 baanim_getAnimCtrlPtr(void *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     void anctrl_setDuration(s32, f32);
     f32 baphysics_get_target_horizontal_velocity(void *);
-    f32 baphysics_get_vertical_velocity(void *);
+    f32 baphysics_get_vertical_velocity(PlayerState *);
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
-    void baphysics_set_vertical_velocity(void *, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
     void func_8009BF5C(PlayerState *, f32);
     f32 func_8009BFCC(void *);
     f32 func_8009BFD8(void *);
@@ -294,9 +331,9 @@ void func_80800B54_bsbeefly(void *arg0) {
 /* extern */
 
 void func_80800BA4_bsbeefly(s32 arg0) {
-    s32 _bsbee_entrypoint_2();
+    void _bsbee_entrypoint_2();
     s32 _bsrest_entrypoint_20(s32);
-    s32 bs_setState(s32, s32);
+    void bs_setState(PlayerState *, s32);
     s32 sp1C;
 
     sp1C = 0;
@@ -341,7 +378,7 @@ void func_80800C5C_bsbeefly(s32 arg0) {
 
 void func_80800C94_bsbeefly(s32 arg0) {
     s32 _bafly_entrypoint_17(s32, s32, s32, s32 *);
-    s32 _bsbee_entrypoint_2();
+    void _bsbee_entrypoint_2();
     s32 sp1C;
 
     sp1C = 0;
@@ -376,7 +413,7 @@ void func_80800D10_bsbeefly(s32 arg0) {
 
 void func_80800D50_bsbeefly(s32 arg0) {
     s32 _bafly_entrypoint_14(s32, s32, s32);
-    s32 _bsbee_entrypoint_2();
+    void _bsbee_entrypoint_2();
     _bsbee_entrypoint_2();
     _bafly_entrypoint_14(arg0, 0x8C, 0x85);
 }
