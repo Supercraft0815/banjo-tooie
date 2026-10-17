@@ -146,7 +146,45 @@ void func_80095A74(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80095AD0.s")
+void func_80095AD0(s32 *arg0) {
+    void baflag_clear(PlayerState *, int);
+    u8 *func_800C5A38(void);
+    void func_800EFD24(f32 *);
+    void func_80096254(s32 *, s32);
+    u8 temp_v0;
+    u8 *temp_v1;
+
+    (*(u8 **)((u8 *)arg0 + 0x94))[0xA3] = 0;
+    temp_v1 = *(u8 **)((u8 *)arg0 + 0x94);
+    temp_v0 = temp_v1[0xA3];
+    temp_v1[0x54] = temp_v0;
+    (*(u8 **)((u8 *)arg0 + 0x94))[0xA1] = temp_v0;
+    (*(u8 **)((u8 *)arg0 + 0x94))[0x18] = temp_v0;
+    (*(u8 **)((u8 *)arg0 + 0x94))[0x56] = temp_v0;
+    (*(u8 **)((u8 *)arg0 + 0x94))[0xA0] = temp_v0;
+    func_800959FC(arg0, 0x400005);
+    **(u8 ***)((u8 *)arg0 + 0x94) = func_800C5A38();
+    func_800EFD24((f32 *)(*(u8 **)((u8 *)arg0 + 0x94) + 0x90));
+    func_800EFD24((f32 *)(*(u8 **)((u8 *)arg0 + 0x94) + 0x78));
+    func_800EFD24((f32 *)(*(u8 **)((u8 *)arg0 + 0x94) + 0x84));
+    func_800EFD24((f32 *)(*(u8 **)((u8 *)arg0 + 0x94) + 0x44));
+    *(s32 *)(*(u8 **)((u8 *)arg0 + 0x94) + 0x1C) = 0;
+    (*(u8 **)((u8 *)arg0 + 0x94))[0xA2] = 0;
+    func_80095A40((PlayerState *)arg0);
+    temp_v1 = *(u8 **)((u8 *)arg0 + 0x94);
+    *(f32 *)(temp_v1 + 4) = *(f32 *)(temp_v1 + 0x64);
+    temp_v1 = *(u8 **)((u8 *)arg0 + 0x94);
+    *(f32 *)(temp_v1 + 8) = *(f32 *)(temp_v1 + 0x68);
+    func_80096254(arg0, 1);
+    func_8009590C((PlayerState *)arg0, 0.0f);
+    *(s32 *)(*(u8 **)((u8 *)arg0 + 0x94) + 0x9C) = 0;
+    func_800961AC((PlayerState *)arg0, 1);
+    baflag_clear((PlayerState *)arg0, 1);
+    baflag_clear((PlayerState *)arg0, 2);
+    *(void (**)(s32 *, s32 *))(*(u8 **)((u8 *)arg0 + 0x94) + 0xC) = func_80095A6C;
+    *(void (**)(s32 *))(*(u8 **)((u8 *)arg0 + 0x94) + 0x10) = func_80095A64;
+    (*(u8 **)((u8 *)arg0 + 0x94))[0xA4] = 0;
+}
 
 /* extern */
 
