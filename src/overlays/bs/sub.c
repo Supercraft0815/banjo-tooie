@@ -484,7 +484,21 @@ void func_808015A0_bssub(struct player_state_s *arg0) {
     func_80800000_bssub(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80801618_bssub.s")
+void func_80801618_bssub(struct player_state_s *arg0) {
+    s32 bs_setState(s32, s32);
+    s32 sp24;
+
+    sp24 = 0;
+    func_80800AEC_bssub();
+    func_80800634_bssub(arg0);
+    func_80800768_bssub(arg0);
+    func_80800254_bssub(arg0);
+    func_80800834_bssub(arg0);
+    if (*(f32 *)((s8 *)arg0 + 0x16C) != 0.0f) {
+        sp24 = 0x12C;
+    }
+    bs_setState(arg0, sp24);
+}
 
 s32 bssub_entrypoint_7(s32 arg0) {
     extern s32 D_80801900_bssub[];
