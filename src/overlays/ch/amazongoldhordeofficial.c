@@ -211,7 +211,34 @@ void func_80800E94_chamazongoldhordeofficial(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800F40_chamazongoldhordeofficial.s")
+int func_80800F40_chamazongoldhordeofficial(Actor *arg0, s32 arg1, s32 arg2) {
+    f32 func_800D8FF8(void);
+    int func_800F0064(f32 *, f32, f32 *);
+    void func_80102924(void *, f32);
+    void func_80102B2C(Actor *, f32);
+    s32 func_80102CF4(Actor *, s32);
+    f32 func_80102D78(Actor *, f32 *);
+    s32 func_8010B990(Actor *, s32);
+    f32 target[3];
+    f32 speed;
+    int near;
+
+    target[0] = arg1;
+    target[1] = arg0->position[1];
+    target[2] = arg2;
+    if (func_800F0064(arg0->position, 200.0f, target)) {
+        speed = func_800D8FF8() * 630.0f;
+    } else {
+        speed = func_800D8FF8() * 180.0f;
+    }
+    func_80102924(arg0, func_80102D78(arg0, target));
+    func_80102B2C(arg0, speed);
+    near = func_800F0064(arg0->position, 80.0f, target);
+    if (!near) {
+        func_8010B990(arg0, 0x201005);
+    }
+    return func_80102CF4(arg0, 0x41200000) && near;
+}
 
 /* extern */
 
