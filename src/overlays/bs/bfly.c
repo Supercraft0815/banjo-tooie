@@ -85,7 +85,33 @@ void func_80800188_bsbfly(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800248_bsbfly.s")
+void func_80800248_bsbfly(PlayerState *arg0) {
+    s32 baanim_playForDuration_once(void *, s32, f32);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    f32 bastick_distance(PlayerState *);
+    f32 bastick_getAngleRelativeToBanjo(PlayerState *);
+    void func_8009BA9C(PlayerState *, f32 *);
+    void func_8009D874(PlayerState *);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+    void func_800A0CF4(PlayerState *, s32);
+    f32 yaw_getIdeal(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+    baanim_playForDuration_once(arg0, 0x45, 1.4f);
+    func_8009FFD8(arg0, 1, 1, 3, 6);
+    if (bastick_distance(arg0) != 0.0f) {
+        yaw_setIdeal(arg0, bastick_getAngleRelativeToBanjo(arg0));
+    }
+    baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+    func_8009BA9C(arg0, NULL);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    baphysics_set_gravity(arg0, -1200.0f);
+    func_800A0CF4(arg0, 1);
+    func_8009D874(arg0);
+    arg0->unk160.word = 0;
+    arg0->unk15C.word = 0;
+}
 
 /* extern */
 
@@ -483,7 +509,7 @@ s32 bsbfly_entrypoint_7(s32 arg0) {
 
 void func_80801A80_bsbfly(PlayerState *arg0) {
     s32 baanim_playForDuration_loopSmooth(s32, s32, f32);
-    s32 func_8009FFD8(s32, s32, s32, s32, s32);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
     void func_800A0CF4(PlayerState *, s32);
     void func_800A0024(PlayerState *);
 
