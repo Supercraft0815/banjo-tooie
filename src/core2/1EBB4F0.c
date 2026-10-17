@@ -198,7 +198,7 @@ void func_800E2588(u32 arg0) {
     D_8012D48E = (s8) arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E2594.s")
+void func_800E2594(u32 arg0, void *arg1) { u8 *func_800AF5D8(s16 *); void *func_800AF5E4(void *); void func_800E1DF4(void); extern s32 D_8012D4F0; Gfx *first; Gfx *second; Gfx **gfx = (Gfx **)arg0; arg0 = 0; func_800E1DF4(); first = (*gfx)++; first->words.w0 = 0xDB060008; first->words.w1 = osVirtualToPhysical(func_800AF5D8(arg1)); second = (*gfx)++; second->words.w0 = 0xDB060004; second->words.w1 = osVirtualToPhysical(func_800AF5E4(arg1)); D_8012D4F0 = (s32)arg1; }
 
 void func_800E2630(u8 *arg0, s32 arg1, s32 arg2) {
     void *func_800AF5F0(void *);
