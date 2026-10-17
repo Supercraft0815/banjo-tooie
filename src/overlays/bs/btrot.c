@@ -59,8 +59,8 @@ void func_808000DC_bsbtrot(PlayerState *arg0, s32 arg1) {
     func_8009DE38(arg0, 0x4433, 1.04f);
 }
 
-void func_80800120_bsbtrot(s32 arg0) {
-    s32 bakey_pressed(s32, s32);
+void func_80800120_bsbtrot(PlayerState *arg0) {
+    int bakey_pressed(PlayerState *, int);
     s32 func_8008E39C();
     if ((bakey_pressed(arg0, 9) != 0) && (func_8008E39C(arg0) != 0)) {
         _bashoes_entrypoint_6(arg0, 2);
@@ -263,7 +263,44 @@ s32 func_80800710_bsbtrot(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_8080075C_bsbtrot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_808007E0_bsbtrot.s")
+s32 func_808007E0_bsbtrot(PlayerState *arg0, s32 arg1) {
+    s32 _badrone_entrypoint_24(PlayerState *);
+    s32 bainput_should_enter_first_person();
+    int bakey_pressed(PlayerState *, int);
+    s32 bastick_getZone(PlayerState *);
+    int func_8008DD04(PlayerState *);
+    int func_8008DF18(PlayerState *);
+    int func_8080075C_bsbtrot(PlayerState *, s32);
+    s32 var_s1;
+
+    var_s1 = arg1;
+    if (bastick_getZone(arg0) > 0) {
+        if ((*(s32 *)((s8 *)arg0 + 0x160)) != 0) {
+            var_s1 = 0x17C;
+        } else {
+            var_s1 = 0x16;
+        }
+    }
+    if (bainput_should_enter_first_person(arg0) != 0) {
+        var_s1 = _badrone_entrypoint_24(arg0);
+    }
+    if ((*(s32 *)((s8 *)arg0 + 0x160)) == 0 && func_8008DD04(arg0) != 0) {
+        var_s1 = 0x71;
+    }
+    if (func_80800710_bsbtrot(arg0) != 0) {
+        var_s1 = 0x17;
+    }
+    if (bakey_pressed(arg0, 8) != 0) {
+        var_s1 = func_8080075C_bsbtrot(arg0, var_s1);
+    }
+    if ((*(s32 *)((s8 *)arg0 + 0x160)) == 0 && func_8008DF18(arg0) != 0) {
+        var_s1 = 0x45;
+    }
+    if (player_inWater(arg0) != 0) {
+        var_s1 = 0x2D;
+    }
+    return var_s1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_808008D0_bsbtrot.s")
 
@@ -521,7 +558,7 @@ void bsbtrot_entrypoint_24(PlayerState *arg0) {
 
 void bsbtrot_entrypoint_25(void *arg0) {
     s32 func_8008E3E8(PlayerState *);
-    s32 bakey_pressed(s32, s32);
+    int bakey_pressed(PlayerState *, int);
     AnimCtrl *baanim_getAnimCtrlPtr(PlayerState *);
     void anctrl_setSubrange(AnimCtrl *, f32, f32);
     void anctrl_setDuration(AnimCtrl *, f32);
@@ -609,7 +646,7 @@ void bsbtrot_entrypoint_25(void *arg0) {
         next_state = 0x4C;
     }
     if (player_isStable(arg0) != 0) {
-        if (bakey_pressed((s32)arg0, 8) != 0) {
+        if (bakey_pressed(arg0, 8) != 0) {
             next_state = func_8080075C_bsbtrot(arg0, next_state);
         }
         if (func_8008DF18(arg0) != 0) {
