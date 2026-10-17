@@ -630,12 +630,44 @@ OSThread *chquiz_entrypoint_0(void)
     return (OSThread *) D_808072CC_chquiz;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80802004_chquiz.s")
+void func_80802004_chquiz(Actor *arg0) {
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8D4C(s32, f32 *);
+    void func_800C8E84(s32, u32 *);
+    void func_800C8F64(s32, s32);
+    void func_800C8FE0(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    f32 func_80103EF4(Actor *);
+    extern f32 D_80807314_chquiz[];
+    extern u32 D_8080731C_chquiz[];
+    f32 sp54[3];
+    f32 sp48[3];
+    s32 temp_v0;
+    s32 var_s1;
+    u8 *var_s0;
+
+    func_800EE7F8(sp54, arg0->position);
+    func_800EEB9C(sp48, arg0->rotation[1], 50.0f);
+    func_800EF04C(sp54, sp48);
+    for (var_s1 = 0, var_s0 = (u8 *)arg0; var_s1 != 8; var_s1 += 4, var_s0 += 4) {
+        temp_v0 = func_800C8A98();
+        *(s32 *)(var_s0 + 0x28) = temp_v0;
+        func_800C8F64(temp_v0, 0xF);
+        func_800C8E84(*(s32 *)(var_s0 + 0x28), D_8080731C_chquiz);
+        func_800C8D4C(*(s32 *)(var_s0 + 0x28), D_80807314_chquiz);
+        func_800C8CB8(*(s32 *)(var_s0 + 0x28), sp54);
+        func_800C8FE0(*(s32 *)(var_s0 + 0x28), 1);
+        sp54[1] += func_80103EF4(arg0);
+    }
+}
 
 /* extern */
 
 void func_80802108_chquiz(u8 *arg0, s32 arg1) {
-    s32 func_800C8FE0(s32, s32);
+    void func_800C8FE0(s32, s32);
     s32 temp_a0;
     s32 var_s0;
     u8 *var_s1;
@@ -914,10 +946,10 @@ s32 func_80803B54_chquiz(Actor *arg0, s32 arg1, s32 arg2) {
 void func_80803B88_chquiz(s32 arg0) {
     s32 _chlightfader_entrypoint_1(s32, s32, s32);
     s32 func_800C8A98();
-    s32 func_800C8CB8(s32, s32);
-    s32 func_800C8D4C(s32, s32 *);
-    s32 func_800C8E84(s32, s32 *);
-    s32 func_800C8F64(s32, s32);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8D4C(s32, f32 *);
+    void func_800C8E84(s32, u32 *);
+    void func_800C8F64(s32, s32);
     extern s32 D_8080755C_chquiz;
     extern s32 D_80807564_chquiz;
     s32 temp_v0;
