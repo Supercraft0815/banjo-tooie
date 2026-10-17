@@ -1,6 +1,21 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/zone/dbzone_entrypoint_0.s")
+s32 dbzone_entrypoint_0(u8 *arg0, u8 *arg1, u32 arg2) {
+    struct {
+        s16 bounds[6];
+        u8 in_bounds;
+        u8 pad;
+    } *data_ptr = (void *)(arg0 + 2);
+
+    while (arg2 != 0) {
+        if (data_ptr[*arg1].in_bounds) {
+            return 1;
+        }
+        arg2--;
+        arg1++;
+    }
+    return 0;
+}
 
 int func_8080010C_dbzone(s16 *arg0, s16 *arg1) {
     s32 temp_v1;
