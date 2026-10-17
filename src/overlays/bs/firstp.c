@@ -43,7 +43,34 @@ void bsfirstp_entrypoint_0(u8 *arg0, f32 *arg1, f32 *arg2) {
     func_8080800C_bsfirstp((s32)arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_1.s")
+void bsfirstp_entrypoint_1(struct player_state_s *arg0, s32 arg1) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    struct anctrl_s *func_8008D04C(struct player_state_s *);
+    void func_8008B304(struct anctrl_s *);
+    s32 func_8008B4D4(struct anctrl_s *);
+    void func_800DF41C(s32);
+    s32 func_80800864_bsfirstp(void *);
+    void func_80800F14_bsfirstp(void *);
+    void func_80801000_bsfirstp(void *);
+    struct anctrl_s *control;
+
+    switch (arg1) {
+    case 0:
+        control = baanim_getAnimCtrlPtr(arg0);
+        func_80801000_bsfirstp(arg0);
+        func_8008B304(control);
+        func_800DF41C(func_8008B4D4(control));
+        break;
+    case 1:
+        control = func_8008D04C(arg0);
+        if (func_80800864_bsfirstp(arg0)) {
+            func_80800F14_bsfirstp(arg0);
+        }
+        func_8008B304(control);
+        func_800DF41C(func_8008B4D4(control));
+        break;
+    }
+}
 
 void func_80800190_bsfirstp(u8 *arg0) {
     s32 func_800EFD24(s32);
