@@ -115,7 +115,34 @@ void func_8080090C_chfpsgame(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80800FF4_chfpsgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_8080121C_chfpsgame.s")
+s32 func_8080121C_chfpsgame(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _gcstatusDll_entrypoint_11();
+    s32 _gcstatusDll_entrypoint_18(void);
+    s32 _sumultiscore_entrypoint_8(void *, s32, s32);
+    s32 func_80801ADC_chfpsgame(Actor *);
+    u8 *data;
+    s32 status;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    status = _gcstatusDll_entrypoint_18();
+    if (func_80801ADC_chfpsgame(arg0) != 0) {
+        return 1;
+    }
+    if (status != 0) {
+        i = 0;
+        if (_gcstatusDll_entrypoint_11() > 0) {
+            do {
+                if (_sumultiscore_entrypoint_8(data + 0x14, i, 2) == status) {
+                    return 1;
+                }
+                i++;
+            } while (i < _gcstatusDll_entrypoint_11());
+        }
+    }
+    return 0;
+}
 
 /* extern */
 
