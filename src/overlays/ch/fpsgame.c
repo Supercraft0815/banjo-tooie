@@ -87,7 +87,40 @@ void func_80800138_chfpsgame(u32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_808005B0_chfpsgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_808006A8_chfpsgame.s")
+typedef struct player_state_s PlayerState;
+
+void func_808006A8_chfpsgame(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    PlayerState *func_800F53D0(s32);
+    void func_800A18C8();
+    void func_800A1870(PlayerState *, s32);
+    void _badeathmatch_entrypoint_11(PlayerState *, s32, s32);
+    s32 _sumultiscore_entrypoint_3(u8 *);
+    s32 _sumultiscore_entrypoint_4(u8 *, s32, s32, s32);
+    struct {
+        s32 count;
+        u8 unk4[0x10];
+        u8 score[1];
+    } *data;
+    u8 *score;
+    PlayerState *player;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    score = data->score;
+    i = 0;
+    if (data->count > 0) {
+        do {
+            player = func_800F53D0(i);
+            func_800A18C8(player, 1);
+            func_800A1870(player, 1);
+            _badeathmatch_entrypoint_11(player, 1, 1);
+            i += 1;
+        } while (i < data->count);
+    }
+    _sumultiscore_entrypoint_3(score);
+    _sumultiscore_entrypoint_4(score, 2, 0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_8080075C_chfpsgame.s")
 
