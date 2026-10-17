@@ -22,7 +22,32 @@ s32 func_80800000_fxripple(f32 arg0[3], s32 *arg1, void *arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/ripple/func_80800094_fxripple.s")
+s32 func_80800094_fxripple(s32 arg0, f32 *arg1, void *arg2) {
+    s32 func_800B5BE4(s32);
+    void func_800BA660(void *, s32, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800EE7F8(f32 *, f32 *);
+    extern s32 *D_80800320_fxripple[];
+    extern s32 D_80800334_fxripple[];
+    s32 sp3C;
+    f32 sp30[3];
+    s32 emitter;
+
+    func_800EE7F8(sp30, arg1);
+    if (func_80800000_fxripple(sp30, &sp3C, arg2) == 0) {
+        return 0;
+    }
+    sp30[1] += 3.0f;
+    emitter = func_800B5BE4(3);
+    if (sp3C != 0) {
+        func_800BA660(emitter, sp3C, (s16)(s32)sp30[1]);
+    } else {
+        func_800BA660(emitter, 0, 0);
+    }
+    func_800BABB8(emitter, sp30, NULL, 1.0f, D_80800334_fxripple);
+    func_800BABB8(emitter, NULL, NULL, 1.0f, D_80800320_fxripple[arg0]);
+    return emitter;
+}
 
 void fxripple_entrypoint_0(s32 arg0, s32 arg1) {
     s32 temp_v0;
@@ -33,6 +58,7 @@ void fxripple_entrypoint_0(s32 arg0, s32 arg1) {
 }
 
 void fxripple_entrypoint_1(void) {
+    s32 func_80800094_fxripple();
     s32 temp_v0;
     temp_v0 = func_80800094_fxripple();
     if (temp_v0 != 0) {
@@ -46,6 +72,7 @@ void fxripple_entrypoint_2(s32 arg0, s32 arg1) {
 
 void fxripple_entrypoint_3()
 {
+    s32 func_80800094_fxripple();
     func_80800094_fxripple();
 }
 
