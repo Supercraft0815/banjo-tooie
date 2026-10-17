@@ -13,7 +13,7 @@ void func_8080000C_chmrsboggyhome(s32 arg0) {
     s32 _glcutDll_entrypoint_20();
     s32 func_800DA298(s32);
     s32 func_800FFAB0(s32);
-    s32 func_80102424(s32, s32);
+    void func_80102424(Actor *, s32);
     if (_glcutDll_entrypoint_20() != 0) {
         func_80102424(arg0, 3);
         return;
@@ -41,7 +41,28 @@ void func_808000D0_chmrsboggyhome(Actor* arg0)
 {
     _suexpression_entrypoint_8(arg0, 1);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggyhome/func_808000F0_chmrsboggyhome.s")
+s32 func_808000F0_chmrsboggyhome(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80102424(Actor *, s32);
+    void *_suexpression_entrypoint_7(Actor *, u32, u32);
+    void _suexpression_entrypoint_12(void *, f32, f32);
+    s32 _suexpression_entrypoint_17(void *, s32);
+    void *expression;
+    s32 *data = &arg2;
+
+    switch (arg1) {
+        case 0x2E:
+            func_80102424(arg0, 1);
+            break;
+        case 0x95:
+            expression = _suexpression_entrypoint_7(arg0, 1, 0x3E);
+            _suexpression_entrypoint_12(expression, 60.0f, 20.0f);
+            _suexpression_entrypoint_17(expression, 1000);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800174_chmrsboggyhome(s32 arg0) {
     s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
