@@ -20,7 +20,32 @@ void func_8080000C_suegg(Actor *arg0) {
     *(f32 *)((s8 *)sp1C + 0) = 1.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/func_80800064_suegg.s")
+/* extern */
+
+void func_80800064_suegg(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    f32 func_800F13C4(f32, f32);
+    struct {
+        f32 speed;
+        f32 frame;
+        s32 frameCount;
+    } *sp1C;
+    f32 temp_f0;
+    struct {
+        u8 unk0[10];
+        u8 frame : 5;
+        u8 unkA_5 : 3;
+    } *temp_v0;
+
+    sp1C = func_80100094(arg0, 0U);
+    temp_f0 = func_800D8FF8();
+    temp_f0 *= sp1C->speed;
+    temp_f0 += sp1C->frame;
+    temp_f0 = func_800F13C4(temp_f0, (f32) sp1C->frameCount);
+    sp1C->frame = temp_f0;
+    temp_v0 = (void *)arg0->unk0->unk0;
+    temp_v0->frame = (s32) temp_f0 % sp1C->frameCount;
+}
 
 void suegg_entrypoint_1(Actor *arg0, f32 arg1) { *(f32 *)func_80100094(arg0, 0) = arg1; }
 
