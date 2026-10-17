@@ -430,7 +430,49 @@ void func_80801178_bsbfly(PlayerState *arg0) {
     func_800A0CF4(arg0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80801208_bsbfly.s")
+void func_80801208_bsbfly(PlayerState *arg0) {
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex();
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void baphysics_reset_gravity(PlayerState *);
+    void baphysics_reset_terminal_velocity(PlayerState *);
+    void baroll_setIdeal(PlayerState *, f32);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    void func_80093360(PlayerState *, f32);
+    void func_80095A40(PlayerState *);
+    void func_800961AC(PlayerState *, s32);
+    void func_8009BF5C(PlayerState *, f32);
+    void func_8009DB04(PlayerState *, s32, f32, s32);
+    void func_8009DF94(PlayerState *, s32, f32, s32);
+    void func_8009FFD8();
+    void func_800A0CF4(PlayerState *, s32);
+    struct anctrl_s *control;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    anctrl_reset(control);
+    func_8008B1C8(control, 0.3f);
+    anctrl_setIndex(control, 0xCC);
+    anctrl_setDuration(control, 0.38f);
+    anctrl_setPlaybackType(control, 2);
+    anctrl_start(control);
+    func_8009FFD8(arg0, 1, 1, 3, 3);
+    func_800A0CF4(arg0, 1);
+    func_80800128_bsbfly(arg0);
+    func_80095A40(arg0);
+    func_800961AC(arg0, 1);
+    baroll_setIdeal(arg0, 0.0f);
+    func_8009BF5C(arg0, 0.0f);
+    baphysics_reset_gravity(arg0);
+    baphysics_reset_terminal_velocity(arg0);
+    func_80093360(arg0, 0.0f);
+    func_8009DF94(arg0, 0x420, 1.0f, 0x7FFF);
+    func_8009DB04(arg0, 0x444, 1.0f, 0x7FFF);
+    *(f32 *)arg0->kazfly = 0.35f;
+    arg0->unk160.word = 0;
+}
 
 void func_80801334_bsbfly(PlayerState *arg0) {
     void baanim_playForDuration_onceSmoothStartingAt(void *, s32, f32, f32);
