@@ -31,7 +31,23 @@ s32 func_8010C550(u8 *arg0, s32 arg1) {
     return (func_800CC338((s32 *) sp1C, (temp_v0 >> 0x19) - 1, ((u32) (temp_v0 << 0x16) >> 0x1A) - 1) + 1) != 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010C5C0.s")
+int func_8010C5C0(void *arg0, f32 arg1) {
+    s32 func_800CC338(s32 *, s32, s32);
+    extern s32 D_80136F50;
+    extern f32 D_80136F54;
+    u32 temp_a3;
+    u32 temp_v1;
+
+    temp_v1 = *(u32 *)((s8 *)arg0 + 0x70);
+    temp_a3 = temp_v1 >> 25;
+    if (temp_a3 == 0) {
+        return 1;
+    }
+    return D_80136F54 < *(f32 *)((s8 *)arg0 + 8) + arg1
+        && *(f32 *)((s8 *)arg0 + 8) - arg1 < D_80136F54
+        && (func_800CC338(&D_80136F50, temp_a3 - 1,
+            ((u32)(temp_v1 << 22) >> 26) - 1) + 1) != 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010C668.s")
 
