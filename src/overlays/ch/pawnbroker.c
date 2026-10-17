@@ -157,7 +157,7 @@ s32 func_80800C00_chpawnbroker(s32 arg0, s32 arg1) {
 }
 
 /* extern */
-void func_80800CB4_chpawnbroker(void);
+void func_80800CB4_chpawnbroker(Actor *arg0);
 
 void func_80800C70_chpawnbroker(Actor *arg0) {
     u32 temp_t6;
@@ -165,14 +165,32 @@ void func_80800C70_chpawnbroker(Actor *arg0) {
     temp_t6 = (u32) arg0->unk70_10;
     switch (temp_t6) {
     case 1:
-        func_80800CB4_chpawnbroker();
+        func_80800CB4_chpawnbroker(arg0);
         break;
     case 2:
         return;
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800CB4_chpawnbroker.s")
+void func_80800CB4_chpawnbroker(Actor *arg0) {
+    Unk80132ED0 *func_800D0634(u32, u32);
+    s32 func_800D0B68(u32, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *_subaddiefind_entrypoint_0(f32 *, s32, s32, s32);
+    void func_8010A570(Actor *);
+    void func_80102424(Actor *, s32);
+    Actor *sp24;
+
+    arg0->position[1] -= 40.0f;
+    if (func_800D0B68(0x27, 1) == 0) {
+        sp24 = func_80106790(func_800D0634(0x27, 1));
+    } else if (func_800D0B68(0xA, 4) == 0) {
+        sp24 = _subaddiefind_entrypoint_0(arg0->position, 0x136, -1, 0);
+    }
+    arg0->unk3C = sp24->unk0;
+    func_8010A570(sp24);
+    func_80102424(arg0, 2);
+}
 
 s32 func_80800D5C_chpawnbroker(Actor *arg0, s32 arg1, s32 arg2) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);

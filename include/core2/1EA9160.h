@@ -14,7 +14,7 @@ s32 func_800D035C(s32 a0);
 void func_800D053C(u32, u32);
 void func_800D0594(s32, s32, s32);
 void func_800D05E4(s32, s32, s32);
-s32 func_800D0634(u32, u32);
+Unk80132ED0 *func_800D0634(u32, u32);
 //Get Associated Level Id of given item
 s32 func_800D06D4(s32 itemIndex, s32 itemType);
 void func_800D0778(s32, s32, f32*);
