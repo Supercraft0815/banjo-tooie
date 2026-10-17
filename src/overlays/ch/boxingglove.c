@@ -33,7 +33,29 @@ void func_80800168_chboxingglove(void *arg0) {
     func_80800630_chboxingglove(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/func_808001CC_chboxingglove.s")
+void func_808001CC_chboxingglove(Actor *arg0) {
+    s32 func_800D90A4(f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    extern u32 D_80800798_chboxingglove;
+    s32 active = 0;
+
+    switch (arg0->unk70_10) {
+        case 2:
+            func_800D90A4(&arg0->unk58);
+            arg0->position[1] = ((f32 *)arg0->actorData)[4] - func_800F10B4(arg0->unk58, 0.0f, 1.5f, 0.0f, 70.0f);
+            active = 1;
+            break;
+        case 4:
+            func_800D90A4(&arg0->unk58);
+            arg0->position[1] = ((f32 *)arg0->actorData)[4] - func_800F10B4(arg0->unk58, 0.0f, 1.5f, 70.0f, 0.0f);
+            active = 1;
+            break;
+    }
+    if (active || (!active && arg0->unk5F)) {
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, active, &D_80800798_chboxingglove);
+    }
+}
 
 void func_808002AC_chboxingglove(void *arg0) {
     f32 temp_f0;
