@@ -120,7 +120,33 @@ void func_808006B8_chspotlight(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_80800730_chspotlight.s")
+void func_80800730_chspotlight(Actor *arg0) {
+    s32 func_800DA298(s32);
+    void func_800EF214(f32 *, f32, f32, f32);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80101038(f32 *);
+    s32 func_8010114C(s32, s32, s32);
+    void func_80102B2C(Actor *, f32);
+    void func_80102B6C(u8 *, f32);
+    f32 angles[2];
+    f32 *data;
+
+    data = func_80100094(arg0, 0);
+    if (func_800DA298(0) == 0) {
+        if (func_8010114C((s32)arg0->unk3C, 6, 4) != 0) {
+            func_80101038(data + 1);
+        }
+        if (func_800DA298(4) != 0) {
+            func_800EF214(data + 1, data[10], data[12], data[14]);
+        }
+        func_800F18FC(arg0->position, data + 1, angles);
+        arg0->unk50 = -angles[0];
+        arg0->unk54 = angles[1];
+        func_80102B2C(arg0, 2.0f);
+        func_80102B6C((u8 *)arg0, 2.0f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_808007F4_chspotlight.s")
 
