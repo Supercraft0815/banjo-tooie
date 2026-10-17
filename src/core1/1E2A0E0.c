@@ -34,7 +34,49 @@ s32 *func_80012D4C(s32 **arg0) {
     return &func_80012BB4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80012D84.s")
+void func_80012D84(void) {
+    void func_80020E40(ALLink *, ALLink *);
+    void func_80020E74(ALLink *);
+    extern u8 D_80069488[];
+    extern s32 D_80069A30;
+    extern u32 D_8006A148;
+    extern u32 D_8006A14C;
+    OSMesg msg[2];
+    u32 i;
+    void *next;
+    void *node;
+
+    msg[0] = NULL;
+    i = 0;
+    if (D_8006A14C != 0) {
+        do {
+            osRecvMesg((OSMesgQueue *)D_80069488, msg, OS_MESG_NOBLOCK);
+            i++;
+        } while (i < D_8006A14C);
+    }
+    node = *(void **)((u8 *)&D_80069A30 + 4);
+    if (node != NULL) {
+        do {
+            next = *(void **)node;
+            if ((u32)(*(s32 *)((u8 *)node + 0xC) + 1) < D_8006A148) {
+                if (node == *(void **)((u8 *)&D_80069A30 + 4)) {
+                    *(void **)((u8 *)&D_80069A30 + 4) = *(void **)node;
+                }
+                func_80020E74(node);
+                if (*(void **)((u8 *)&D_80069A30 + 8) != NULL) {
+                    func_80020E40(node, *(void **)((u8 *)&D_80069A30 + 8));
+                } else {
+                    *(void **)((u8 *)&D_80069A30 + 8) = node;
+                    *(void **)node = NULL;
+                    *(void **)((u8 *)node + 4) = NULL;
+                }
+            }
+            node = next;
+        } while (next != NULL);
+    }
+    D_8006A14C = 0;
+    D_8006A148++;
+}
 
 void func_80012EA0(void) {
     extern s32 D_8003CA40;
