@@ -49,7 +49,37 @@ void basquash_entrypoint_3(void *arg0, s32 arg1) {
     func_80800008_basquash(arg0, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/squash/func_80800140_basquash.s")
+void func_80800140_basquash(void *arg0) {
+    typedef struct player_state_s PlayerState;
+    struct SquashData { u8 unk0, unk1, unk2, pad3; f32 unk4, unk8; };
+    struct SquashOwner { u8 pad[0x11C]; struct SquashData *data; };
+    f32 func_80013970(f32);
+    s32 func_8009D454(PlayerState *, volatile u8, s32 *);
+    f32 func_800F0F9C(f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F13C4(f32, f32);
+    extern s32 D_808006B0_basquash[];
+    extern s32 D_808006C4_basquash[][3];
+    s32 pad[2];
+    f32 sp2C;
+    f32 sp28;
+    f32 temp_f0;
+    s32 stage;
+    struct SquashData *data;
+
+    data = ((struct SquashOwner *)arg0)->data;
+    stage = (s32)(data->unk4 / 0.56666666f);
+    if (stage != data->unk0) {
+        func_8009D454(arg0, func_8009D454(arg0, 0, D_808006B0_basquash), D_808006C4_basquash[stage]);
+        data = ((struct SquashOwner *)arg0)->data;
+    }
+    data->unk0 = stage;
+    temp_f0 = func_800F13C4(((struct SquashOwner *)arg0)->data->unk4, 0.56666666f);
+    sp2C = temp_f0;
+    sp28 = func_80013970(func_800F0F9C(temp_f0, 0.15f) * 360.0f);
+    temp_f0 = func_800F10B4(sp2C, 0.0f, 0.56666666f, 0.0f, 0.6f);
+    ((struct SquashOwner *)arg0)->data->unk8 = sp28 * temp_f0 + (f32)stage / 3.0f;
+}
 
 void func_80800260_basquash(void *arg0) {
     void *func_80092AD8(void *);
