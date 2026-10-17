@@ -132,7 +132,44 @@ Actor *func_80800738_chflamer(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flamer/func_808007A8_chflamer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flamer/func_808008C0_chflamer.s")
+/* extern */
+
+void func_808008C0_chflamer(Actor *arg0, f32 *arg1) {
+    struct FlamerParticle {
+        f32 time;
+        s16 lifetime;
+        s16 variant;
+        s16 position[3];
+        s16 padE;
+        f32 scale;
+    };
+    struct FlamerParticles {
+        u8 pad0[0x16];
+        s16 count;
+        s16 capacity;
+        s16 pad1A;
+        struct FlamerParticle particles[1];
+    };
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    void func_800EE940(s16 *, f32 *);
+    void func_800EF3DC(f32 *, f32 *);
+    struct FlamerParticle *particle;
+    struct FlamerParticles *data;
+
+    data = func_80100094(arg0, 0U);
+    if (data->count < data->capacity) {
+        particle = &data->particles[data->count];
+        particle->time = 0.0f;
+        particle->lifetime = func_800DC128(0x1E, 0x28);
+        particle->scale = func_800DC178(0.8f, 1.2f);
+        particle->variant = func_800DC298(0.5f);
+        func_800EF3DC(arg1, arg0->position);
+        func_800EE940(particle->position, arg1);
+        data->count++;
+    }
+}
 
 void func_8080098C_chflamer(s32 arg0) {
     s32 _subaddieaudioloop_entrypoint_5(s32, s32, s32, s32, s32 *);
