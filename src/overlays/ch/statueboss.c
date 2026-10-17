@@ -84,7 +84,29 @@ void func_808011B4_chstatueboss(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801320_chstatueboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801448_chstatueboss.s")
+void func_80801448_chstatueboss(Actor *arg0) {
+    s32 func_800D9078(f32 *);
+    extern s16 D_808025C0_chstatueboss[][6];
+    struct StatueData {
+        u8 flags[0x18];
+        f32 timers[27];
+        s16 index;
+    } *data;
+    s32 index;
+    s32 i;
+    s32 offset;
+    u8 *flag;
+
+    data = func_80100094(arg0, 0U);
+    index = data->index;
+    for (i = 0; D_808025C0_chstatueboss[index][i] != -1; i++) {
+            offset = D_808025C0_chstatueboss[index][i];
+            flag = &data->flags[offset];
+            if (*flag == 2 && func_800D9078(&data->timers[offset]) != 0) {
+                *flag = 1;
+            }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801518_chstatueboss.s")
 
