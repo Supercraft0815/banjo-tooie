@@ -12,7 +12,7 @@ OSThread *chelectricfence_entrypoint_0(void)
 void func_8080000C_chelectricfence(s32 arg0) {
     s32 func_800EA05C();
     s32 func_80104004(s32, s32, s32);
-    s32 func_8010A570(s32);
+    void func_8010A570(Actor *);
     s32 func_8010A624(s32);
     if (func_800EA05C() == 0x124) {
         func_8010A624(arg0);
@@ -37,7 +37,41 @@ void func_80800060_chelectricfence(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/electricfence/func_8080010C_chelectricfence.s")
+s32 func_8080010C_chelectricfence(Actor *arg0, s32 arg1, void *volatile arg2) {
+    f32 func_800EC75C(void *, f32 *);
+    u32 func_800F54E4(void);
+    s32 func_800F6438(u32);
+    s32 func_800F64A4(s32, s32);
+    void func_8010A570(Actor *);
+    u32 func_8010A5B0(Actor *, s32);
+    void chelectricfence_entrypoint_1(Actor *, f32 *);
+    f32 sp2C[3];
+    Unk80132ED0 *sp28;
+    s32 var_a1;
+    s32 pad[2];
+
+    switch (arg1) {
+        case 0x3F:
+            sp28 = arg2;
+            func_800EC75C(sp28, sp2C);
+            chelectricfence_entrypoint_1(arg0, sp2C);
+            arg0->unk58 = 0.2f;
+            func_8010A570(arg0);
+            if ((sp28->unk24 >> 22) == 0) {
+            }
+            break;
+        case 0x95:
+            var_a1 = func_800F6438(func_800F54E4()) != 0;
+            if (var_a1 != 0) {
+                var_a1 = func_800F64A4(func_800F54E4(), 0x8000) == 0;
+            }
+            func_8010A5B0(arg0, var_a1);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void chelectricfence_entrypoint_1(Actor *arg0, f32 *arg1) {
     s32 _chlightfader_entrypoint_1(s32, f32, s32);
