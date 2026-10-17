@@ -318,7 +318,26 @@ void func_80800F50_bsvan(struct player_state_s *arg0)
     bsvan_entrypoint_0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80800F70_bsvan.s")
+void func_80800F70_bsvan(struct player_state_s *arg0) {
+    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    void baanim_setDurationRange(struct player_state_s *, f32, f32);
+    void baroll_setAngularVelocity(struct player_state_s *, f32, f32);
+    void func_8008C9F0(struct player_state_s *, f32, f32, f32, f32);
+    void func_8008CA30(struct player_state_s *, f32);
+    void func_8009BFE4(struct player_state_s *, f32, f32);
+    void func_8009FFD8();
+    void yaw_setVelocityBounded(struct player_state_s *, f32, f32);
+
+    bsvan_entrypoint_1(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0xEC, 1.0f);
+    func_8009FFD8(arg0, 2, 3, 1, 0xE);
+    baanim_setDurationRange(arg0, 0.3f, 1.5f);
+    func_8008C9F0(arg0, 30.0f, 900.0f, 1.0f, 0.4f);
+    func_8008CA30(arg0, 1.0f);
+    yaw_setVelocityBounded(arg0, 300.0f, 6.5f);
+    func_8009BFE4(arg0, 1000.0f, 12.0f);
+    baroll_setAngularVelocity(arg0, 1000.0f, 12.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80801034_bsvan.s")
 
