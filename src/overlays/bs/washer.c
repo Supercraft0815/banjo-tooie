@@ -287,7 +287,22 @@ void func_8080100C_bswasher(s32 arg0)
     func_80800F1C_bswasher(arg0);
     func_808000F0_bswasher(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80801034_bswasher.s")
+void func_80801034_bswasher(struct player_state_s *arg0) {
+    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    void baanim_setDurationRange(struct player_state_s *, f32, f32);
+    void func_8008C9F0(struct player_state_s *, f32, f32, f32, f32);
+    void func_8008CA30(struct player_state_s *, f32);
+    void func_8009FFD8();
+
+    func_808001A8_bswasher(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0x359, 0x3F800000);
+    func_8009FFD8(arg0, 2, 3, 1, 0xE);
+    baanim_setDurationRange(arg0, 0.3f, 1.5f);
+    func_8008C9F0(arg0, 30.0f, 900.0f, 0.7f, 0.3f);
+    func_8008CA30(arg0, 1.0f);
+    func_808000BC_bswasher((s32)arg0);
+    func_80800F54_bswasher(arg0);
+}
 
 /* extern */
 
