@@ -1414,7 +1414,20 @@ void bsfirstp_entrypoint_10(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808035EC_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808036F0_bsfirstp.s")
+void func_808036F0_bsfirstp(struct player_state_s *arg0) {
+    s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void func_800A38F0(struct player_state_s *, s32, s32);
+    void func_80807BB8_bsfirstp();
+    extern s32 _bsfirstp_entrypoint_12;
+    func_80807BB8_bsfirstp(arg0);
+    func_800A38F0(arg0, 0, 1);
+    func_808061AC_bsfirstp(arg0, 0);
+    anctrl_setPlaybackType(baanim_getAnimCtrlPtr(arg0), 3);
+    func_808001FC_bsfirstp(arg0);
+    _chbaddiesetup_entrypoint_1(&_bsfirstp_entrypoint_12, *(s32 *)((s8 *)arg0 + 0x184));
+}
 
 void func_80803760_bsfirstp(s32 arg0) {
     void _batimer_set(struct player_state_s *, s32, f32);
