@@ -107,7 +107,27 @@ void chboilerid_entrypoint_3(s32 arg0, s16 *arg1, u32 arg2, s32 arg3, Unk80132ED
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/chboilerid_entrypoint_4.s")
+void chboilerid_entrypoint_4(s32 arg0, s16 *arg1, u32 arg2, s32 arg3, Unk80132ED0 *arg4) {
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80800700_chboilerid(s16 *, s16 *, u8 *);
+    void func_8080079C_chboilerid(s16 *, s16 *, u8 *);
+    void func_80800918_chboilerid(s16 *, s16 *, s16 *);
+    u32 temp_s3;
+    u8 *temp_s2;
+
+    temp_s2 = func_80100094(func_80106790(arg4), 0);
+    temp_s3 = arg2 + arg3 * 0x10;
+    if (arg2 < temp_s3) {
+        do {
+            func_80800700_chboilerid(arg1, (s16 *)arg2, temp_s2);
+            func_8080079C_chboilerid(arg1, (s16 *)arg2, temp_s2);
+            func_80800918_chboilerid(arg1, (s16 *)arg2, (s16 *)temp_s2);
+            arg2 += 0x10;
+            arg1 += 8;
+        } while (arg2 < temp_s3);
+    }
+}
 
 void func_80800700_chboilerid(s16 *arg0, s16 *arg1, u8 *arg2) {
     f32 _mlwave_entrypoint_4(u8 *, f32, f32, f32);
