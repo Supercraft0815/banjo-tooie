@@ -2192,7 +2192,46 @@ void func_808068AC_chgameselect(void *arg0, s32 arg1) {
     func_80802640_chgameselect((*(s32 *)((s8 *)(arg0) + (0x24))), 0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808068E8_chgameselect.s")
+s32 func_808068E8_chgameselect(void) {
+    s32 _gcstatusDll_entrypoint_10(void);
+    s32 _gcstatusDll_entrypoint_16(s32);
+    s32 _gcstatusDll_entrypoint_6(s32, s32);
+    s32 func_80806AA8_chgameselect(void);
+    s32 pad0;
+    s32 pad1;
+    s32 pad2;
+    s32 limit;
+    s32 count;
+    s32 status;
+    s32 i;
+    s32 mask;
+
+    mask = 0;
+    count = _gcstatusDll_entrypoint_10();
+    limit = func_80806AA8_chgameselect();
+    for (i = 0; i < count; i++) {
+        status = _gcstatusDll_entrypoint_16(i);
+        if (status < 4) {
+            break;
+        }
+        if (status == 4) {
+            mask |= 1 << i;
+        }
+    }
+    if (i < count) {
+        _gcstatusDll_entrypoint_6(0, 4);
+        _gcstatusDll_entrypoint_6(1, 5);
+        _gcstatusDll_entrypoint_6(2, 5);
+        _gcstatusDll_entrypoint_6(3, 5);
+        mask = 1;
+    }
+    if (mask <= 0) {
+        mask = 1;
+    } else if (limit < mask) {
+        mask = limit;
+    }
+    return mask - 1;
+}
 
 void func_808069C8_chgameselect(s32 arg0)
 {
