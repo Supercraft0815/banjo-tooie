@@ -11,7 +11,38 @@ void func_80800098_chevilmumbo(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_808000BC_chevilmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800144_chevilmumbo.s")
+void func_80800144_chevilmumbo(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_7(s32, s32);
+    s32 _capod_entrypoint_8(s32);
+    void _gcdialogcamera_entrypoint_6(Unk80132ED0 *);
+    void _gcdialogcamera_entrypoint_8(void);
+    s32 func_800F4B20(u32);
+    u32 func_800F54E4(void);
+    struct {
+        u8 pad0[0x95];
+        u8 unk95;
+    } *sp1C, *temp_v0;
+    s32 temp_v1;
+
+    temp_v0 = func_80100094(arg0, 0);
+    sp1C = temp_v0;
+    temp_v1 = temp_v0->unk95;
+    switch (temp_v1) {
+    case 3:
+        func_800F4B20(func_800F54E4());
+    case 0:
+        _capod_entrypoint_2(arg0->unk0, 3, 0);
+    case 1:
+        _capod_entrypoint_8(1);
+        sp1C->unk95 = 2;
+        _gcdialogcamera_entrypoint_6(arg0->unk0);
+        _gcdialogcamera_entrypoint_8();
+    case 2:
+        _capod_entrypoint_7(arg1, arg2);
+    }
+}
 
 void func_808001F4_chevilmumbo(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *arg3) {
     void *func_80100094(Actor *, u32);
