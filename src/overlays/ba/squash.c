@@ -5,7 +5,29 @@ s32 basquash_entrypoint_0()
     return 0xC;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/squash/func_80800008_basquash.s")
+s32 func_80800008_basquash(void *arg0, s32 arg1) {
+    struct SquashData { s8 unk0, unk1, unk2, pad3; f32 unk4, unk8; };
+    struct SquashOwner { u8 pad[0x11C]; struct SquashData *data; };
+    void func_8009ADF0(void *, s32, s32);
+
+    switch (arg1) {
+        case 1:
+            ((struct SquashOwner *)arg0)->data->unk4 = 0.0f;
+            ((struct SquashOwner *)arg0)->data->unk8 = 0.0;
+            func_8009ADF0(arg0, 0xA, 0);
+            break;
+        case 2:
+            ((struct SquashOwner *)arg0)->data->unk0 = 0;
+            ((struct SquashOwner *)arg0)->data->unk4 = 5.0f;
+            ((struct SquashOwner *)arg0)->data->unk8 = 1.0f;
+            func_8009ADF0(arg0, 0xA, 1);
+            break;
+        case 3:
+            ((struct SquashOwner *)arg0)->data->unk4 = 1.7f;
+            break;
+    }
+    ((struct SquashOwner *)arg0)->data->unk1 = arg1;
+}
 
 void basquash_entrypoint_1(s32 arg0) 
 {
