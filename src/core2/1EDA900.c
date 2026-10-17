@@ -122,6 +122,28 @@ s32 func_80101238(s32 arg0, s32 arg1) {
     return var_s0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDA900/func_801012D0.s")
+s32 func_801012D0(f32 *arg0, f32 arg1, s32 arg2, s32 arg3) {
+    f32 func_800EEB40(f32 *, f32 *);
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    Actor *var_s0;
+    s32 sp40[1];
+    s32 temp_v0;
+    s32 var_s1;
+
+    var_s1 = 0;
+    arg1 *= arg1;
+    var_s0 = (Actor *)func_801067C4(sp40);
+    while (var_s0 != NULL) {
+        if (!var_s0->unk64_17 && (func_800EEB40(var_s0->position, arg0) < arg1)) {
+            temp_v0 = func_8010108C(var_s0, arg2, arg3);
+            if ((temp_v0 > 0) && (var_s1 == 0)) {
+                var_s1 = temp_v0;
+            }
+        }
+        var_s0 = (Actor *)func_8010682C(sp40);
+    }
+    return var_s1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDA900/func_801013A8.s")
