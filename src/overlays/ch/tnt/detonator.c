@@ -16,7 +16,44 @@ void func_8080000C_chtntdetonator(Actor *arg0) {
     func_8010A63C((s32) arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/detonator/func_80800054_chtntdetonator.s")
+void func_80800054_chtntdetonator(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    void func_800FFAB0(Actor *);
+    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_80101DDC(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_8080021C_chtntdetonator(Actor *);
+    void func_808002D8_chtntdetonator(u8 *);
+    void func_80800588_chtntdetonator(Actor *);
+    Actor *other;
+    Unk80132ED0 *marker;
+
+    func_80800588_chtntdetonator(arg0);
+    switch (arg0->unk70_10) {
+        case 1:
+            func_8080021C_chtntdetonator(arg0);
+            break;
+        case 2:
+            arg0->unk50 += func_800D8FF8() * 40.0f;
+            if (arg0->unk50 >= 14.0f) {
+                arg0->unk50 = 0.0f;
+            }
+            if (func_80101DDC(arg0) != 0) {
+                func_808002D8_chtntdetonator((u8 *)arg0);
+                marker = arg0->unk3C;
+                if (marker != NULL) {
+                    other = func_80106790(marker);
+                } else {
+                    other = NULL;
+                }
+                if (other != NULL) {
+                    func_8010108C(other, 5, 0);
+                }
+                func_800FFAB0(arg0);
+            }
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/detonator/func_80800148_chtntdetonator.s")
 
