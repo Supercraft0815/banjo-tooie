@@ -123,7 +123,7 @@ void bssnowball_entrypoint_2(void *arg0) {
     s32 _basnowball_entrypoint_12(void *);
     s32 _basnowball_entrypoint_8(void *, s32);
     s32 _basnowball_entrypoint_9(void *, f32);
-    f32 baphysics_get_target_horizontal_velocity(void *);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
     f32 func_8009BB5C(void *);
     s32 func_800A3274();
     if (func_800A3274() == 2) {
@@ -214,10 +214,10 @@ void func_8080056C_bssnowball(s32 arg0) {
 void func_808005A4_bssnowball(s32 arg0) {
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
-    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
     void func_8009FFD8();
     bssnowball_entrypoint_1(arg0);
-    baanim_playForDuration_loopSmooth(arg0, 0x5F, 0x41200000);
+    baanim_playForDuration_loopSmooth(arg0, 0x5F, 10.0f);
     func_8009FFD8(arg0, 2, 3, 1, 0xE);
     anctrl_setPlaybackType(baanim_getAnimCtrlPtr(arg0), 3);
     func_80800164_bssnowball(arg0);
@@ -252,7 +252,39 @@ s32 bssnowball_entrypoint_5(s32 arg0) {
     return ((s32 *)&D_80801074_bssnowball)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_808006BC_bssnowball.s")
+void func_808006BC_bssnowball(PlayerState *arg0) {
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    f32 bastick_distance(PlayerState *);
+    f32 bastick_getAngleRelativeToBanjo(PlayerState *);
+    void func_8009D7A4(PlayerState *, f32, f32);
+    void func_8009FFD8();
+    f32 yaw_getIdeal(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+    f32 sp2C[3];
+
+    bssnowball_entrypoint_1(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0x5F, 10.0f);
+    func_8009FFD8(arg0, 2, 3, 1, 0xE);
+    anctrl_setPlaybackType(baanim_getAnimCtrlPtr(arg0), 3);
+    func_80800164_bssnowball(arg0);
+    if (bastick_distance(arg0) != 0.0f) {
+        yaw_setIdeal(arg0, bastick_getAngleRelativeToBanjo(arg0));
+    }
+    baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+    func_80800064_bssnowball(arg0, 1);
+    sp2C[0] = yaw_getIdeal(arg0);
+    baphysics_set_horizontal_velocity(arg0, sp2C[0], baphysics_get_target_horizontal_velocity(arg0));
+    baphysics_set_vertical_velocity(arg0, 693.5f);
+    baphysics_set_gravity(arg0, -2400.0f);
+    func_8009D7A4(arg0, 1.35f, 1.45f);
+}
 
 void func_808007D8_bssnowball(PlayerState *arg0) {
     int bakey_released(PlayerState *, int);
@@ -308,10 +340,10 @@ void func_80800910_bssnowball(struct player_state_s *arg0)
 void func_80800930_bssnowball(PlayerState *arg0) {
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
-    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
     void func_8009FFD8();
     bssnowball_entrypoint_1(arg0);
-    baanim_playForDuration_loopSmooth(arg0, 0x5F, 0x41200000);
+    baanim_playForDuration_loopSmooth(arg0, 0x5F, 10.0f);
     func_8009FFD8(arg0, 2, 3, 1, 0xE);
     anctrl_setPlaybackType(baanim_getAnimCtrlPtr(arg0), 3);
     func_80800164_bssnowball(arg0);
@@ -430,11 +462,11 @@ void func_80800DB0_bssnowball(s32 arg0)
 }
 void func_80800DD8_bssnowball(s32 arg0) {
     void func_8009FFD8();
-    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     void func_800909CC(struct player_state_s *);
     bssnowball_entrypoint_1(arg0);
-    baanim_playForDuration_loopSmooth(arg0, 0x5E, 0x3F99999A);
+    baanim_playForDuration_loopSmooth(arg0, 0x5E, 1.2f);
     func_8009FFD8(arg0, 1, 3, 1, 2);
     func_80800164_bssnowball(arg0);
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
