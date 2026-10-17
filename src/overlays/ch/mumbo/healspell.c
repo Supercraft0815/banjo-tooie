@@ -6,7 +6,7 @@ void func_80800000_chmumbohealspell(s32 *arg0) {
     s32 func_800DA298(s32);
     s32 func_800EA05C();
     s32 func_800FFA88(s32);
-    s32 func_80103110(s32 *, s32);
+    void func_80103110(void *, s32);
     if ((func_800DA298(0x15E) != 0) && (func_800EA05C() == 0x155)) {
         func_800FFA88(*arg0);
     } else if (func_800DA298(0x189) == 0) {
@@ -17,7 +17,32 @@ void func_80800000_chmumbohealspell(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/healspell/func_80800074_chmumbohealspell.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/healspell/func_808003A8_chmumbohealspell.s")
+s32 func_808003A8_chmumbohealspell(void *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_14(void);
+    void func_80103110(void *, s32);
+    void func_80800450_chmumbohealspell(void *, s32);
+
+    switch (arg1) {
+        case 0x4B:
+            func_80800450_chmumbohealspell(arg0, 2);
+            func_80103110(arg0, 1);
+            return 1;
+        case 0xB:
+            if (arg2 == 0x10) {
+                _capod_entrypoint_14();
+                func_80800450_chmumbohealspell(arg0, 7);
+                return 4;
+            }
+            return 3;
+        case 0x49:
+            if (arg2 == 0x71) {
+                func_80800450_chmumbohealspell(arg0, 9);
+                return 1;
+            }
+            return 0;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/healspell/func_80800450_chmumbohealspell.s")
 
