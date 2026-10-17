@@ -1549,7 +1549,33 @@ void func_80808F44_chdiggerboss(s32 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/chdiggerboss_entrypoint_3.s")
+void chdiggerboss_entrypoint_3(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4) {
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s16 *data;
+    s32 offset;
+    Vtx *end;
+
+    data = func_80100094(func_80106790(arg4), 0);
+    switch (arg0) {
+    case 1:
+        offset = data[0x68];
+        end = arg1 + arg3;
+        while (arg1 < end) {
+            arg2++;
+            arg2[-1].v.tc[1] = (arg1++)->v.tc[1] + offset;
+        }
+        break;
+    case 2:
+        offset = data[0x69];
+        end = arg1 + arg3;
+        while (arg1 < end) {
+            arg2++;
+            arg2[-1].v.tc[1] = (arg1++)->v.tc[1] + offset;
+        }
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80809078_chdiggerboss.s")
 
