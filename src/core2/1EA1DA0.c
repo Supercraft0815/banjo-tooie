@@ -193,7 +193,41 @@ void func_800C8A08(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8A98.s")
+s32 func_800C8A98(void) {
+    struct Entry { u8 pad[0x14]; u8 flag14; u8 flag15; u8 flag16; u8 flag17; u8 flag18; u8 flag19; u8 tail[2]; };
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    s32 vector_index_of(s32, void *);
+    void *vector_push_back(s32 *);
+    extern f32 D_8011A9CC;
+    extern f32 D_8011A9D8;
+    extern u32 D_8011A9E0;
+    u32 sp24;
+    u32 temp_v0;
+    u32 var_a2;
+    s32 sp18;
+
+    sp24 = vector_begin(D_8012AB00);
+    temp_v0 = vector_end(D_8012AB00);
+    for (var_a2 = sp24; var_a2 < temp_v0; var_a2 += 0x1C) {
+        if (*(u8 *)(var_a2 + 0x15) == 0) {
+            break;
+        }
+    }
+    if (var_a2 == temp_v0) {
+        var_a2 = vector_push_back(&D_8012AB00);
+    }
+    sp18 = vector_index_of(D_8012AB00, (void *) var_a2) + 1;
+    ((struct Entry *)var_a2)->flag15 = 0xB;
+    ((struct Entry *)var_a2)->flag16 = ((struct Entry *)var_a2)->flag17 = 1;
+    ((struct Entry *)var_a2)->flag14 = 0;
+    ((struct Entry *)var_a2)->flag18 = 0;
+    ((struct Entry *)var_a2)->flag19 = 0;
+    func_800C8CB8(sp18, &D_8011A9CC);
+    func_800C8D4C(sp18, &D_8011A9D8);
+    func_800C8E84(sp18, &D_8011A9E0);
+    return sp18;
+}
 
 void func_800C8B84(volatile s32 arg0) {
     void *vector_at(s32, s32);
