@@ -30,7 +30,21 @@ void func_8080019C_chfactorybattery(volatile unsigned int arg0, void *arg1, s32 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_808001F8_chfactorybattery.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_808003C0_chfactorybattery.s")
+s32 func_808003C0_chfactorybattery(s32 arg0, f32 *arg1, f32 *arg2) {
+    f32 func_800EEAD4(f32 *, f32 *);
+    s32 func_80800444_chfactorybattery(void);
+    int func_808004E8_chfactorybattery(void);
+    f32 func_80800580_chfactorybattery(f32 *);
+
+    if ((func_80800444_chfactorybattery() == 0) && (func_808004E8_chfactorybattery() != 0)) {
+        func_80800580_chfactorybattery(arg2);
+        if (func_800EEAD4(arg2, arg1) < 1000.0f) {
+            return 2;
+        }
+        return 1;
+    }
+    return 1;
+}
 
 /* extern */
 
