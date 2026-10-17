@@ -778,7 +778,23 @@ void func_800F6204()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6224.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6308.s")
+void func_800F452C();
+
+PlayerState *func_800F6308(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_800A8FDC(void);
+    s32 func_800A907C(s32, s32, s32);
+    void func_800A92A8(s32, s32);
+    u8 *func_800F43A8(s32);
+    PlayerState *player;
+
+    func_800A907C(arg0, arg1, func_800A8FDC());
+    player = func_800F43A8(arg0);
+    D_80135490[arg0] = player;
+    bakey_setControllerIndex(player, arg1);
+    func_800F452C(player, arg2);
+    func_800A92A8(2, 2);
+    return player;
+}
 
 void func_800F6388(s32 arg0, s32 arg1)
 {
