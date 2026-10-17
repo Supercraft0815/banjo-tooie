@@ -11,7 +11,7 @@ OSThread *chdumbwaiterlift_entrypoint_0(void)
 
 void func_8080000C_chdumbwaiterlift(s32 arg0) {
     s32 func_800EE7F8(s32, s32, s32);
-    s32 func_8010A828(s32, s32);
+    void func_8010A828(void **, s32);
     func_800EE7F8(arg0 + 0x28, arg0 + 4, arg0);
     func_8010A828(arg0, 2);
 }
@@ -21,7 +21,7 @@ void func_8080000C_chdumbwaiterlift(s32 arg0) {
 void func_80800268_chdumbwaiterlift(u8 *arg0)
 {
   s32 func_800C53EC(s32, s32);
-  s32 func_80100094(void *, s32);
+  void *func_80100094(Actor *, u32);
   s32 _gcnewoption_entrypoint_6(u8 *, s32);
   if (((((u16) (*((u16 *) (((s8 *) arg0) + 0x72)))) & 0xFFFFFFFFu) >> 0xA) == 6)
   {
@@ -39,7 +39,7 @@ void func_8080035C_chdumbwaiterlift(void *arg0, s32 arg1)
 {
   s32 _gcnewoption_entrypoint_1(s32, s32);
   s32 func_800EB854();
-  s32 func_80100094(void *, s32);
+  void *func_80100094(Actor *, u32);
   s32 func_80101870(void *, s32);
   if (func_800EB854() == 3)
   {
@@ -111,7 +111,31 @@ void func_80800770_chdumbwaiterlift(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dumbwaiterlift/func_80800804_chdumbwaiterlift.s")
+void func_80800804_chdumbwaiterlift(Actor *arg0) {
+    s32 _gcnewoption_entrypoint_4(u8 *, s32, s32 *, s32, s32);
+    s32 _gcnewoption_entrypoint_8(s32, s32);
+    s32 _gcnewoption_entrypoint_9(s32, s32);
+    s32 _gcnewoption_entrypoint_10(s32, s32);
+    s32 _gcnewoption_entrypoint_11(s32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_8010A828(void **, s32);
+    void func_80800A8C_chdumbwaiterlift(Actor *);
+    extern s32 _gcnewoption_entrypoint_16;
+    extern s32 _gcnewoption_entrypoint_35;
+    s32 option;
+
+    _gcnewoption_entrypoint_4(arg0, 0, &_gcnewoption_entrypoint_16, &_gcnewoption_entrypoint_35, 0x184E);
+    option = func_80100094(arg0, 0);
+    _gcnewoption_entrypoint_8(option, 4);
+    _gcnewoption_entrypoint_9(option, 4);
+    _gcnewoption_entrypoint_10(option, 0);
+    func_808004E8_chdumbwaiterlift(arg0, option);
+    _gcnewoption_entrypoint_11(option);
+    func_80101FDC(arg0, 4);
+    func_80800A8C_chdumbwaiterlift(arg0);
+    func_8010A828(arg0, 0xA);
+}
 
 s32 func_808008B4_chdumbwaiterlift(void) {
     s32 func_800EA05C();
