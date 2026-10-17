@@ -77,7 +77,21 @@ void chbaddiesetup_entrypoint_4(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/diesetup/chbaddiesetup_entrypoint_5.s")
+void chbaddiesetup_entrypoint_5(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    void *func_800A5D60(void);
+    Actor *actor;
+    actor = func_800A5D60();
+    if (func_80800000_chbaddiesetup(actor) != 0) {
+        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5)) = arg0;
+        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 4) = arg1;
+        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 8) = arg2;
+        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0xC) = arg3;
+        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x10) = arg4;
+        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x14) = arg5;
+        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x1C) = 5;
+        ((u8 *)actor->position)[0]++;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/diesetup/chbaddiesetup_entrypoint_6.s")
 
