@@ -59,34 +59,66 @@ void func_80800018_chdippy(Actor *actor) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800654_chdippy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800800_chdippy.s")
-
-void func_80800948_chdippy(s32 *arg0) {
-    s32 _subaddieaudioquick_entrypoint_3(s32 *, s32 *, s32 *, s32);
-    s32 _subaddieskeleton_entrypoint_3(s32, s32, s32 *);
+void func_80800800_chdippy(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
+    s32 func_8001211C(void);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    f32 func_80101F24(Actor *);
     extern s32 D_80801480_chdippy;
-    s32 sp1C[3];
+    extern u32 D_808014A0_chdippy;
+    extern s32 D_80801620_chdippy;
+    extern u32 D_8080164C_chdippy;
+    extern u32 D_8080165C_chdippy;
+    extern u32 D_8080166C_chdippy;
+    extern u32 D_80801688_chdippy;
+    extern u32 D_80801698_chdippy;
+    f32 sp34[3];
+    f32 sp30;
+    s32 sp2C;
 
-    _subaddieskeleton_entrypoint_3(*arg0, 5, sp1C);
-    _subaddieaudioquick_entrypoint_3(arg0, sp1C, &D_80801480_chdippy, 0x3ECCCCCD);
+    sp30 = func_80101F24(arg0);
+    sp2C = func_8001211C();
+    _subaddieskeleton_entrypoint_3(arg0->unk0, 5, sp34);
+    _subaddieaudioquick_entrypoint_4(arg0, sp34, &D_808014A0_chdippy, &D_80801688_chdippy);
+    _subaddieaudioquick_entrypoint_3(arg0, sp34, &D_80801480_chdippy, 0.43f);
+    _subaddieaudioquick_entrypoint_4(arg0, sp34, &D_8080164C_chdippy, &D_80801698_chdippy);
+    _subaddieaudioquick_entrypoint_3(arg0, sp34, &D_8080165C_chdippy, 0.9f);
+    _subaddieaudioquick_entrypoint_3(arg0, sp34, &D_8080166C_chdippy, 0.61f);
+    if (sp30 > 0.61f && sp30 < 0.66f && !(sp2C & 1) &&
+        _subaddieskeleton_entrypoint_2(arg0->unk0, 4, sp34)) {
+        func_800BBCB8(sp34, NULL, 1.0f, 1, &D_80801620_chdippy);
+    }
 }
 
-void func_80800990_chdippy(s32 *arg0) {
-    s32 _subaddieaudioquick_entrypoint_3(s32 *, s32 *, s32 *, s32);
-    s32 _subaddieskeleton_entrypoint_3(s32, s32, s32 *);
-    extern s32 D_80801490_chdippy;
-    s32 sp1C[3];
+void func_80800948_chdippy(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
+    extern s32 D_80801480_chdippy;
+    f32 sp1C[3];
 
-    _subaddieskeleton_entrypoint_3(*arg0, 5, sp1C);
-    _subaddieaudioquick_entrypoint_3(arg0, sp1C, &D_80801490_chdippy, 0x3E19999A);
+    _subaddieskeleton_entrypoint_3(arg0->unk0, 5, sp1C);
+    _subaddieaudioquick_entrypoint_3(arg0, sp1C, &D_80801480_chdippy, 0.4f);
+}
+
+void func_80800990_chdippy(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
+    extern s32 D_80801490_chdippy;
+    f32 sp1C[3];
+
+    _subaddieskeleton_entrypoint_3(arg0->unk0, 5, sp1C);
+    _subaddieaudioquick_entrypoint_3(arg0, sp1C, &D_80801490_chdippy, 0.15f);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_808009D8_chdippy.s")
 
-void chdippy_entrypoint_2(s32 arg0, s32 arg1) {
-    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+void chdippy_entrypoint_2(s32 arg0, f32 *arg1) {
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern s32 D_808014B0_chdippy;
-    func_800BBCB8(arg1, 0, 0x3F99999A, 1, &D_808014B0_chdippy);
+    func_800BBCB8(arg1, NULL, 1.2f, 1, &D_808014B0_chdippy);
 }
 
 /* extern */
