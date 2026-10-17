@@ -7,7 +7,28 @@ OSThread *chlifeforcespell_entrypoint_0(void)
     return (OSThread *) D_80800460_chlifeforcespell;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lifeforcespell/func_8080000C_chlifeforcespell.s")
+void func_8080000C_chlifeforcespell(Actor *arg0) {
+    s16 _chmumbopad_entrypoint_0(s32);
+    s32 _sumumbofx_entrypoint_0(Actor *, s32, s32, s16);
+    s32 _sumumbofx_entrypoint_2(void *);
+    void _sumumbofx_entrypoint_25(void *, s32, s32 *);
+    s32 _sumumbofx_entrypoint_24(void *, f32);
+    s32 _sumumbofx_entrypoint_15(void *, f32);
+    s32 _sumumbofx_entrypoint_20(void *, f32);
+    void *func_80100094(Actor *, u32);
+    struct SpellColor { s32 values[3]; } color;
+    extern struct SpellColor D_808004A8_chlifeforcespell;
+    void *data;
+
+    color = D_808004A8_chlifeforcespell;
+    _sumumbofx_entrypoint_0(arg0, 1, 0x14, _chmumbopad_entrypoint_0(0xD));
+    data = func_80100094(arg0, 1U);
+    _sumumbofx_entrypoint_2(data);
+    _sumumbofx_entrypoint_25(data, 0x96, color.values);
+    _sumumbofx_entrypoint_24(data, 0.7f);
+    _sumumbofx_entrypoint_15(data, 2.0f);
+    _sumumbofx_entrypoint_20(data, 3.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lifeforcespell/func_808000C8_chlifeforcespell.s")
 
