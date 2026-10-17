@@ -223,7 +223,15 @@ s32 func_800D1C70()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1C78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1DFC.s")
+void func_800D1DFC(u8 *arg0) {
+    extern s32 D_8012B250;
+    s32 i;
+
+    for (i = 0; i < 0x15; i++) {
+        arg0[i * 2] = ((((s16 *)D_8012B250)[i] ^ ((s16 *)&func_800D1A04)[i * 4]) >> 8) & 0xFF;
+        arg0[i * 2 + 1] = (((s16 *)D_8012B250)[i] ^ ((s16 *)&func_800D1A04)[i * 4]) & 0xFF;
+    }
+}
 
 /* extern */
 
