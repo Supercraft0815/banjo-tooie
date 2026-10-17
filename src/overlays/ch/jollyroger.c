@@ -72,7 +72,30 @@ s32 func_8080059C_chjollyroger(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800930_chjollyroger.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800AEC_chjollyroger.s")
+void func_80800AEC_chjollyroger(Actor *arg0) {
+    s32 func_800DA298(s32);
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800EA05C();
+    void func_800FFAB0(Actor *);
+    void func_80102424(Actor *, s32);
+    s32 active;
+
+    active = func_800DA298(0xC0) || _glcutDll_entrypoint_20();
+    switch (func_800EA05C()) {
+        case 0xED:
+            if (!active) {
+                func_800FFAB0(arg0);
+            } else {
+                func_80102424(arg0, _glcutDll_entrypoint_20() ? 7 : 5);
+            }
+            break;
+        case 0xF8:
+            if (active) {
+                func_800FFAB0(arg0);
+            }
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800BA0_chjollyroger.s")
 
