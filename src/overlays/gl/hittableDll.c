@@ -62,7 +62,39 @@ s32 glhittableDll_entrypoint_3(s32 arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/hittableDll/glhittableDll_entrypoint_4.s")
+s32 glhittableDll_entrypoint_4(s32 arg0, u32 *arg1)
+{
+  typedef struct 
+  {
+    s32 (*test)(s32, u32 *);
+    s32 value;
+  } HitTest;
+  extern HitTest D_80802DD4_glhittableDll[];
+  void *func_800D8F40(void);
+  struct 
+  {
+    s32 id;
+    s32 unused;
+  } index;
+  HitTable *table;
+  u16 *cursor;
+  s32 i;
+  s32 flags;
+  HitTest *test;
+  index.id = ((s16 *) func_800D8F40())[arg1[9] >> 22];
+ i = 0; if (index.id == (-1)) { return -1; } table = &D_80800530_glhittableDll[index.id]; cursor = (u16 *) table; do {
+    test = &D_80802DD4_glhittableDll[i];
+    flags = cursor[2] | table->header[1];
+    if ((flags != 0) && (test->test(arg0, arg1) == test->value))
+    {
+      return (index.id << 16) | (i & 0xFFFF);
+    }
+    i++;
+    cursor++;
+  }
+  while (i != 32);
+  return -2;
+}
 
 s32 glhittableDll_entrypoint_5(s32 arg0) {
     HitTable *table;
