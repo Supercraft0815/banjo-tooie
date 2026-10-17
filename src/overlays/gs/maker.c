@@ -25,7 +25,7 @@ void gsmaker_entrypoint_0(void *arg0) {
     s32 func_800D6CEC(s16);
     s32 func_800D70F8(s16, s32);
     s32 func_800D721C(s16, s32);
-    s32 heap_free(void *);
+    void heap_free(void *);
     if ((*(s32 *)((s8 *)(arg0) + (0x14))) == 2) {
         func_800D721C((*(s16 *)((s8 *)(arg0) + (0x20))), 0);
         func_800D70F8((*(s16 *)((s8 *)(arg0) + (0x20))), 0);
@@ -34,19 +34,44 @@ void gsmaker_entrypoint_0(void *arg0) {
     heap_free(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/maker/gsmaker_entrypoint_1.s")
+GsFile *gsmaker_entrypoint_1(s32 arg0) {
+    void *func_800D674C(s32);
+    void *heap_alloc(s32);
+    void heap_free(void *);
+    void func_800D70D0(s32);
+    void func_800D71F4(s32);
+    GsFile *this;
+
+    this = heap_alloc(sizeof(GsFile));
+    if (this == NULL) {
+        return NULL;
+    }
+    this->mode = 2;
+    this->last_expected = -1;
+    this->unk1C = -1;
+    this->asset_id = arg0;
+    this->asset_base_ptr = func_800D674C(this->asset_id);
+    this->asset_current_ptr = this->asset_base_ptr;
+    func_800D70D0(1);
+    func_800D71F4(1);
+    if (this->asset_base_ptr != NULL) {
+        return this;
+    }
+    heap_free(this);
+    return NULL;
+}
 
 /* extern */
 
 void gsmaker_entrypoint_2(s32 arg0) {
-    s32 gsmaker_entrypoint_1(s32);
+    GsFile *gsmaker_entrypoint_1(s32);
     gsmaker_entrypoint_1(arg0 + 0x955);
 }
 
 /* extern */
 
 void gsmaker_entrypoint_3(s32 arg0, s32 arg1) {
-    s32 gsmaker_entrypoint_1(s32);
+    GsFile *gsmaker_entrypoint_1(s32);
     gsmaker_entrypoint_1(arg0 + arg1);
 }
 
