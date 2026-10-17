@@ -24,9 +24,9 @@ OSThread *chbigterrysbits_entrypoint_2(void)
 /* extern */
 
 void func_80800024_chbigterrysbits(void *arg0) {
-    s32 _chdoormake_entrypoint_3(void *, f32, f32, f32, s32, s32);
-    s32 _chdoormake_entrypoint_5(void *, f32);
-    s32 _chdoormake_entrypoint_6(void *, s32);
+    s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    void _chdoormake_entrypoint_6(Actor *, s32);
     s32 _chdoormake_entrypoint_8(void *, s32);
     s32 _glcutDll_entrypoint_20();
     s32 func_800D395C();
@@ -35,7 +35,7 @@ void func_80800024_chbigterrysbits(void *arg0) {
     s32 func_800F64A4(s32, s32);
     s32 func_8010108C(void *, s32, s32);
     void func_80101FDC(Actor *, u32);
-    s32 func_8010A800(void *, s32);
+    void func_8010A800(Actor *, s32);
     s32 sp2C;
     s32 sp28;
 
@@ -60,7 +60,7 @@ void func_80800024_chbigterrysbits(void *arg0) {
 
 void func_80800130_chbigterrysbits(s32 arg0) {
     s32 _glcutDll_entrypoint_20();
-    s32 func_800FFAB0(s32);
+    void func_800FFAB0(Actor *);
     if (_glcutDll_entrypoint_20() != 0) {
         func_800FFAB0(arg0);
     }
@@ -116,4 +116,32 @@ void func_8080022C_chbigterrysbits(Actor *volatile arg0) {
     func_800DA544(0x173);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bigterrysbits/func_8080029C_chbigterrysbits.s")
+void func_8080029C_chbigterrysbits(Actor *arg0) {
+    s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    void _chdoormake_entrypoint_6(Actor *, s32);
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800D395C(void);
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
+    void func_80101FDC(Actor *, u32);
+    void func_8010A800(Actor *, s32);
+    s32 sp2C;
+    s32 sp28;
+
+    sp2C = func_800DA298(0xE5);
+    sp28 = func_800D395C();
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    if (sp2C != 0 && sp28 == 0) {
+        func_80101FDC(arg0, 4);
+    }
+    arg0->rotation[0] = -90.0f;
+    func_8010A800(arg0, 0);
+    if (_chdoormake_entrypoint_3(arg0, arg0->rotation[1], arg0->rotation[0] + 90.0f, -400.0f, 3, -1) != 0) {
+        _chdoormake_entrypoint_5(arg0, 3.0f);
+        _chdoormake_entrypoint_6(arg0, 0x3F4CCCCD);
+    }
+}
