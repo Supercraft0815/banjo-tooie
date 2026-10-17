@@ -95,17 +95,44 @@ void func_80800884_chpoolkids(void *arg0) {
 /* extern */
 
 void func_808008DC_chpoolkids(u8 *arg0) {
-    s32 _fxripple_entrypoint_0(s32, u8 *);
+    s32 _fxripple_entrypoint_0(s32, f32 *);
     s32 func_800D9078(s32);
     f32 func_800DC178(f32, f32);
     func_800D9078(arg0 + 0x58);
     if ((*(f32 *)((s8 *)(arg0) + (0x58))) <= 0.0f) {
-        _fxripple_entrypoint_0(3, arg0 + 4);
+        _fxripple_entrypoint_0(3, (f32 *)(arg0 + 4));
         (*(f32 *)((s8 *)(arg0) + (0x58))) = func_800DC178(0.6f, 1.2f);
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_80800944_chpoolkids.s")
+void func_80800944_chpoolkids(Actor *arg0, f32 arg1) {
+    s32 _fxairbub_entrypoint_1(f32 *, f32, f32, f32);
+    s32 _fxripple_entrypoint_0(s32, f32 *);
+    s32 _fxsplash25d_entrypoint_0(f32 *);
+    s32 _fxsplash_entrypoint_2(f32 *, f32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_80101E14(Actor *, f32);
+    extern u32 D_80801520_chpoolkids;
+    f32 position[3];
+    s32 emitter;
+
+    if (func_80101E14(arg0, arg1)) {
+        func_800EE7F8(position, arg0->position);
+        _subaddieaudioquick_entrypoint_2(arg0, position, &D_80801520_chpoolkids);
+        _fxripple_entrypoint_0(3, position);
+        _fxsplash25d_entrypoint_0(position);
+        emitter = _fxsplash_entrypoint_2(position, 35.0f);
+        func_800BA930(emitter, -350, 300, -350, 350, 500, 350);
+        func_800BA22C(emitter, 6);
+        func_800BA930(emitter, -150, 500, -150, 150, 800, 150);
+        func_800BA22C(emitter, 6);
+        position[1] -= 30.0f;
+        emitter = _fxairbub_entrypoint_1(position, 20.0f, arg0->position[1], 1.0f);
+        func_800BA930(emitter, -60, -250, -60, 60, -150, 60);
+        func_800BA22C(emitter, 4);
+    }
+}
 
 void func_80800AA0_chpoolkids(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
