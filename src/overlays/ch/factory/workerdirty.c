@@ -210,7 +210,24 @@ void chfactoryworkerdirty_entrypoint_3(Unk80132ED0 *arg0, f32 arg1) {
     func_80800068_chfactoryworkerdirty(sp18[0], 2, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800C98_chfactoryworkerdirty.s")
+/* extern */
+
+void func_80800C98_chfactoryworkerdirty(Actor *arg0) {
+    s32 _suexpression_entrypoint_10(void *, Unk80132ED0 *, s32);
+    s32 _suexpression_entrypoint_18(void *, s32);
+    s32 func_801022E4(Actor *);
+    s32 func_80102320(Actor *, s32, s32);
+    if (func_80100094(arg0, 1U) != NULL) {
+        if (func_801022E4(arg0) == 0x35D) {
+            if (func_80102320(arg0, 0x3ECCCCCD, 0x3F400000) != 0) {
+                _suexpression_entrypoint_18(func_80100094(arg0, 1U), 1);
+            }
+        } else {
+            _suexpression_entrypoint_18(func_80100094(arg0, 1U), 1);
+        }
+        _suexpression_entrypoint_10(func_80100094(arg0, 1U), arg0->unk0, 0);
+    }
+}
 
 /* extern */
 
