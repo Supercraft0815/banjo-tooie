@@ -29,7 +29,39 @@ void func_800E204C(u8 *arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E2180.s")
+void func_800E2180(u8 *arg0, u8 *arg1, s32 arg2) {
+    typedef struct {
+        s16 unk0[3];
+        s16 paletteOffset;
+        s32 textureOffset;
+    } TextureFrame;
+    u8 *func_800AF5D8(s16 *);
+    void *func_800AF5E4(void *);
+    void *func_800AF5F0(void *);
+    TextureFrame *func_800AF5FC(s16 *, s32);
+    TextureFrame *frame;
+    u8 *base;
+    Gfx *ptr;
+    Gfx *ptr2;
+    Gfx *ptr3;
+    void *raw;
+    void *address;
+
+    ptr = (*(Gfx **)arg0)++;
+    ptr->words.w0 = 0xDB060008;
+    ptr->words.w1 = osVirtualToPhysical(func_800AF5D8((s16 *)arg1));
+    ptr2 = (*(Gfx **)arg0)++;
+    ptr2->words.w0 = 0xDB060004;
+    ptr2->words.w1 = osVirtualToPhysical(func_800AF5E4(arg1));
+    frame = func_800AF5FC((s16 *)arg1, arg2);
+    raw = func_800AF5F0(arg1);
+    base = raw;
+    base += frame->unk0[2] * 8;
+    address = base;
+    ptr3 = (*(Gfx **)arg0)++;
+    ptr3->words.w0 = 0xDE000000;
+    ptr3->words.w1 = osVirtualToPhysical(address);
+}
 
 void func_800E2260(u8 *arg0, u8 *arg1) { extern s32 D_8012D470; Gfx *temp_v1; if ((((*(s16 *)((s8 *)(&D_8012D470) + (0))) != (*(s16 *)((s8 *)(arg1) + (4)))) && ((*(s16 *)((s8 *)(&D_8012D470) + (0))) != 0)) || (((*(s16 *)((s8 *)(&D_8012D470) + (2))) != (*(s16 *)((s8 *)(arg1) + (6)))) && ((*(s16 *)((s8 *)(&D_8012D470) + (2))) != 0)) || ((*(f32 *)((s8 *)(&D_8012D470) + (0x2C))) != 1.0f) || ((*(f32 *)((s8 *)(&D_8012D470) + (0x30))) != 1.0f)) { temp_v1 = (*(Gfx **)arg0)++; temp_v1->words.w0 = 0xD8380002; temp_v1->words.w1 = 0x40; } }
 
