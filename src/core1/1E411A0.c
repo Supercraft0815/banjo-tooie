@@ -1,6 +1,32 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_80029670.s")
+void func_80029670(u8 *arg0, ALVoice *arg1) {
+    void func_800E90A4(s32 arg0, s32 arg1);
+    ALLink *sp1C;
+    ALLink *sp18;
+
+    sp1C = NULL;
+    if ((sp18 = *(ALLink **)(arg0 + 0x64)) != NULL) {
+        do {
+        if ((ALVoice *)((u8 *)sp18 + 4) == arg1) {
+            if (sp1C != NULL) {
+                sp1C->next = sp18->next;
+            } else {
+                *(ALLink **)(arg0 + 0x64) = sp18->next;
+            }
+            if (*(ALLink **)(arg0 + 0x68) == sp18) {
+                *(ALLink **)(arg0 + 0x68) = sp1C;
+            }
+            func_800E90A4(*(s32 *)((u8 *)sp18 + 0x20), 1);
+            sp18->next = *(ALLink **)(arg0 + 0x6C);
+            *(ALLink **)(arg0 + 0x6C) = sp18;
+            arg0[0x89]--;
+            return;
+        }
+        sp1C = sp18;
+        } while ((sp18 = sp18->next) != NULL);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_8002976C.s")
 
