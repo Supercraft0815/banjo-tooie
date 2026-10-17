@@ -27,7 +27,22 @@ void func_80800018_chmadamegrunty(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_8080005C_chmadamegrunty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_80800198_chmadamegrunty.s")
+s32 func_80800198_chmadamegrunty(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80800784_chmadamegrunty(Actor *, s16, s16);
+    void func_80800460_chmadamegrunty(Actor *);
+    s16 *data = (s16 *)&arg2;
+    switch (arg1) {
+        case 0x2E:
+            func_80800784_chmadamegrunty(arg0, data[0], data[1]);
+            break;
+        case 0x32:
+            func_80800460_chmadamegrunty(arg0);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800200_chmadamegrunty(Actor *arg0) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
