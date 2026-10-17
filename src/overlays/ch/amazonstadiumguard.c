@@ -24,7 +24,26 @@ void func_808002F4_chamazonstadiumguard(Actor* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazonstadiumguard/func_80800328_chamazonstadiumguard.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazonstadiumguard/func_80800488_chamazonstadiumguard.s")
+void func_80800488_chamazonstadiumguard(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800C01A8(s16, s32);
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void func_80102424(Actor *, s32);
+
+    switch (arg1) {
+        case 0xF0A:
+            func_800C01A8(0x64, 0);
+            _capod_entrypoint_13(arg0->unk0, NULL, 0x24, 0x2010);
+            func_80102424(arg0, 5);
+            return;
+        case 0xF0C:
+            func_80102424(arg0, 6);
+            return;
+        case 0xF09:
+        case 0xF0B:
+            func_80102424(arg0, 3);
+            return;
+    }
+}
 
 /* extern */
 
