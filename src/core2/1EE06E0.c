@@ -115,11 +115,10 @@ void func_80107200(void *arg0) {
 
 /* extern */
 
-s32 func_801072A8(void) {
-    void *func_80106F30();
+s32 func_801072A8(void *arg0) {
     void *temp_v0;
 
-    temp_v0 = func_80106F30();
+    temp_v0 = func_80106F30(arg0);
     if (temp_v0 == NULL) {
         return 0;
     }
@@ -128,11 +127,10 @@ s32 func_801072A8(void) {
 
 /* extern */
 
-s32 func_801072E4(void) {
-    void *func_80106F30();
+s32 func_801072E4(void *arg0) {
     void *temp_v0;
 
-    temp_v0 = func_80106F30();
+    temp_v0 = func_80106F30(arg0);
     if (temp_v0 == NULL) {
         return 0;
     }
