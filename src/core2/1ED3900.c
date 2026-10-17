@@ -2,7 +2,41 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA010.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA130.s")
+void func_800FA130(s32 arg0, s32 arg1) {
+    s32 _scinfobar_entrypoint_0(s32, s32, s32);
+    s32 _scinfobar_entrypoint_1(s32);
+    void _scinfobar_entrypoint_6(s32, s32);
+    extern s32 D_80123880[][7];
+
+    if (arg1 != *(u8 *)((s8 *)D_80123880[arg0] + 0xC)) {
+        *(u8 *)((s8 *)D_80123880[arg0] + 0xC) = arg1;
+        switch (arg1) {
+        case 1:
+            if (D_80123880[arg0][6] == 0) {
+                D_80123880[arg0][6] = _scinfobar_entrypoint_0(((s8 *)D_80123880[arg0])[0xE], *(u8 *)((s8 *)D_80123880[arg0] + 5), *(u8 *)((s8 *)D_80123880[arg0] + 0x12));
+            }
+            break;
+        case 2:
+            if (*(s16 *)((s8 *)D_80123880[arg0] + 6) != *(s16 *)D_80123880[arg0] || *(s16 *)((s8 *)D_80123880[arg0] + 8) != *(s16 *)((s8 *)D_80123880[arg0] + 2)) {
+                *(s16 *)((s8 *)D_80123880[arg0] + 6) = *(s16 *)D_80123880[arg0];
+                *(s16 *)((s8 *)D_80123880[arg0] + 8) = *(s16 *)((s8 *)D_80123880[arg0] + 2);
+            }
+            if (*(u8 *)((s8 *)D_80123880[arg0] + 0x11) == 0) {
+                _scinfobar_entrypoint_6(D_80123880[arg0][6], 1);
+            }
+            break;
+        case 3:
+            _scinfobar_entrypoint_6(D_80123880[arg0][6], 0);
+            break;
+        case 0:
+            if (D_80123880[arg0][6] != 0) {
+                _scinfobar_entrypoint_1(D_80123880[arg0][6]);
+                D_80123880[arg0][6] = 0;
+            }
+            break;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA240.s")
 
