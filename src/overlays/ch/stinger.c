@@ -1,6 +1,37 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stinger/func_80800000_chstinger.s")
+void func_80800000_chstinger(Actor *arg0) {
+    s32 func_800B5BE4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    f32 func_800DC178(f32, f32);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFA98(f32[3], f32[3], f32);
+    extern s32 D_808007D0_chstinger[];
+    extern s32 D_808007FC_chstinger[];
+    extern s32 D_80800844_chstinger[];
+    s32 sp5C;
+    f32 sp50[3];
+    f32 sp44[3];
+
+    if (arg0->unk7C_12) {
+        sp5C = func_800B5BE4(0x1B);
+        sp5C = func_800BABB8(sp5C, arg0->position, arg0->position, 1.0f, D_808007D0_chstinger);
+        func_800EFA98(sp50, (f32 *)&arg0->actorData[4], func_800DC178(-200.0f, -400.0f));
+        func_800BA930(sp5C, (s16)sp50[0], (s16)sp50[1], (s16)sp50[2],
+            (s16)sp50[0], (s16)sp50[1], (s16)sp50[2]);
+        func_800BA22C(sp5C, 3);
+        func_800EFA98(sp50, (f32 *)&arg0->actorData[4], -25.0f);
+        func_800EE780(sp44, arg0->position, sp50);
+        func_800BBCB8(sp44, NULL, 1.0f, 1, D_80800844_chstinger);
+        func_800EF04C(sp44, sp50);
+        sp5C = func_800B5BE4(8);
+        func_800BABB8(sp5C, sp44, NULL, 1.0f, D_808007FC_chstinger);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stinger/func_8080015C_chstinger.s")
 
