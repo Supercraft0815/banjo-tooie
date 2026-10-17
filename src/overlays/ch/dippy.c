@@ -53,7 +53,27 @@ void func_80800018_chdippy(Actor *actor) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800374_chdippy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_8080047C_chdippy.s")
+void func_8080047C_chdippy(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80800654_chdippy(Actor *, s32);
+    switch (arg1) {
+    case 0x17E9:
+        func_80800654_chdippy(arg0, 6);
+        break;
+    case 0x17EA:
+        func_80800654_chdippy(arg0, 6);
+        break;
+    case 0x17EB:
+        func_80800654_chdippy(arg0, 0xA);
+        break;
+    case 0x17EC:
+        func_800D0C78(0x2A, 1, 0);
+        func_80800654_chdippy(arg0, 9);
+        break;
+    case 0x17ED:
+        func_80800654_chdippy(arg0, 0xD);
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800530_chdippy.s")
 
