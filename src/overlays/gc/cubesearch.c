@@ -47,7 +47,42 @@ s32 func_80800160_gccubesearch(s32 arg0, s32 arg1, s32 arg2) {
     return (arg0 * arg0) + (arg1 * arg1) + (arg2 * arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_4.s")
+Actor *gccubesearch_entrypoint_4(s32 *arg0, f32 *arg1, s32 arg2) {
+    s32 gccubesearch_entrypoint_7(s32 *, Actor **, s32);
+    s32 gccubesearch_entrypoint_8(s32 *, Actor **, s32, f32 *);
+    s32 i;
+    Actor *results[40];
+    Actor *closest;
+    s32 min_dist_sq;
+    s32 count;
+    s32 dist_sq;
+    s16 position[3];
+
+    min_dist_sq = 0x7FFFFFFF;
+    closest = NULL;
+    position[0] = (s16)arg1[0];
+    position[1] = (s16)arg1[1];
+    position[2] = (s16)arg1[2];
+    if (arg2 == 0) {
+        count = gccubesearch_entrypoint_7(arg0, results, 40);
+    } else {
+        count = gccubesearch_entrypoint_8(arg0, results, 40, arg1);
+    }
+    if (count == 0) {
+        return NULL;
+    }
+    for (i = 0; i < count; i++) {
+        dist_sq = func_80800160_gccubesearch(
+            position[0] - ((s16 *)results[i])[0],
+            position[1] - ((s16 *)results[i])[1],
+            position[2] - ((s16 *)results[i])[2]);
+        if (dist_sq < min_dist_sq) {
+            min_dist_sq = dist_sq;
+            closest = results[i];
+        }
+    }
+    return closest;
+}
 
 void gccubesearch_entrypoint_5(s32 arg0, s32 arg1) {
     gccubesearch_entrypoint_4(arg0, arg1, 0);
