@@ -1,6 +1,26 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_0.s")
+void subaddietaxi_entrypoint_0(Actor *arg0, s32 arg1, f32 *arg2, s32 arg3) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80102424(Actor *, s32);
+    void *func_8010410C(void);
+    struct TaxiData {
+        f32 position[3];
+        f32 destination[3];
+        f32 scale;
+        f32 time;
+    } *data;
+
+    data = func_8010410C();
+    if (arg3 >= 0) {
+        func_80102424(arg0, arg3);
+    }
+    func_800EE7F8(data->position, arg0->position);
+    func_800EE7F8(data->destination, arg2);
+    data->scale = arg0->scale;
+    arg0->scale = 0.05f;
+    data->time = 0.5f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_1.s")
 
