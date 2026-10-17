@@ -90,7 +90,21 @@ s32 func_800B53A4(s32 arg0) {
     return ((s32 *)D_80127F10 + D_80127F18)[-1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B5450.s")
+void func_800B5450(void *arg0) {
+    s32 func_800BA2C4(void *);
+    void *heap_realloc(void *, s32);
+    extern s32 D_80127F10;
+    extern s16 D_80127F18;
+    s32 i = 0;
+
+    while (arg0 != (*(void ***)&D_80127F10)[i] && i < D_80127F18) { i++; }
+    if (i == D_80127F18)
+        return;
+    func_800BA2C4(arg0);
+    (*(void ***)&D_80127F10)[i] = (*(void ***)&D_80127F10)[D_80127F18 - 1];
+    D_80127F18--;
+    D_80127F10 = (s32)heap_realloc((void *)D_80127F10, D_80127F18 * 4);
+}
 
 void func_800B5534(s8 *arg0)
 {
