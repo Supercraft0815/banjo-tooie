@@ -330,7 +330,7 @@ void func_80800F34_chquiz(s32 *arg0, void *arg1) {
     s32 func_800A9478(s32);
     s32 func_800F5EF8(s32);
     s32 func_8010FD88(s32);
-    s32 func_80110024(s32);
+    void *func_80110024(s16 *);
     s32 func_80801170_chquiz(s32 *, void *);
     s32 sp1C;
     s32 temp_v0;
@@ -363,8 +363,24 @@ void func_80800FBC_chquiz(s32 arg0) {
     }
 }
 
+typedef struct QuizCamera {
+        f32 unk0[3];
+        f32 unkC[3];
+        s32 unk18;
+        f32 unk1C[3];
+        f32 unk28[3];
+        s32 unk34;
+        f32 unk38[3];
+        f32 unk44[3];
+        s16 unk50;
+        s16 unk52;
+        f32 unk54;
+        f32 unk58;
+        s8 unk5C;
+} QuizCamera;
+
 void func_8080100C_chquiz(Actor *arg0, void *arg1, u8 arg2) {
-    void func_80801058_chquiz(Actor *, void *, f32, s8, s8, s8);
+    void func_80801058_chquiz(Actor *, QuizCamera *, f32, s8, s8, s8);
     extern s32 D_808070E4_chquiz;
     s8 *temp_v0;
 
@@ -372,7 +388,40 @@ void func_8080100C_chquiz(Actor *arg0, void *arg1, u8 arg2) {
     func_80801058_chquiz(arg0, arg1, (*(f32 *)(temp_v0 + 4)), (*(s8 *)(temp_v0 + 2)), temp_v0[0], temp_v0[1]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801058_chquiz.s")
+void func_80801058_chquiz(Actor *arg0, QuizCamera *data, f32 arg2, s8 arg3, s8 arg4, s8 arg5) {
+    s32 _ncpod_entrypoint_12(s32, s32);
+    s32 _ncpod_entrypoint_13(s32);
+    s32 func_800A89F8();
+    s32 func_800A9478(s32);
+    s32 func_800F5EF8(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_8010FFB0(s32 *, f32 *, f32 *);
+    void *func_80110024(s16 *);
+    extern s8 D_808070C4_chquiz[][10];
+    s16 sp46;
+    s32 sp40;
+    s32 sp3C;
+    s32 temp_v0;
+    f32 duration;
+
+    sp46 = D_808070C4_chquiz[arg3][arg4];
+    temp_v0 = func_800F5EF8(func_800A9478(func_800A89F8()));
+    sp40 = temp_v0;
+    sp3C = func_80110024(temp_v0);
+    if (_ncpod_entrypoint_13(sp3C) != 0) {
+        func_8010FFB0(sp40, data->unk38, data->unk44);
+        _ncpod_entrypoint_12(sp3C, 0);
+    }
+    if (sp46 != data->unk50) {
+        func_80800EF4_chquiz(sp46, data->unk1C, data->unk28);
+        func_800EE7F8(data->unk0, data->unk38);
+        func_800EE7F8(data->unkC, data->unk44);
+        duration = arg5 == 0 ? 0.0f : arg2;
+        data->unk54 = data->unk58 = duration;
+        data->unk5C = arg5;
+        data->unk50 = sp46;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801170_chquiz.s")
 
@@ -400,8 +449,8 @@ void func_80801470_chquiz(s32 arg0, u8 *arg1) {
     s32 func_800A9478(s32);
     s32 func_800F54E4();
     s32 func_800F5EF8(s32);
-    s32 func_8010FFB0(s32, u8 *, u8 *);
-    s32 func_80110024(s32);
+    void func_8010FFB0(s32 *, f32 *, f32 *);
+    void *func_80110024(s16 *);
     if ((*(u8 *)((s8 *)(arg1) + (0x5C))) == 4) {
         func_8010FFB0(func_800F5EF8(func_800F54E4()), arg1 + 0x38, arg1 + 0x44);
         (*(u8 *)((s8 *)(arg1) + (0x5C))) = 3U;
@@ -413,7 +462,7 @@ s32 func_808014F8_chquiz(s32 arg0, s32 arg1) {
     s32 func_800A89F8();
     s32 func_800A9478(s32);
     s32 func_800F5EF8(s32);
-    s32 func_80110024(s32);
+    void *func_80110024(s16 *);
     s32 _ncpod_entrypoint_15(s32, s32, s32);
     return _ncpod_entrypoint_15(func_80110024(func_800F5EF8(func_800A9478(func_800A89F8()))), arg0, arg1);
 }
@@ -1029,7 +1078,7 @@ void func_80804170_chquiz(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     f32 func_800DC178(f32, f32);
     void func_8080100C_chquiz(Actor *, void *, u8);
-    void func_80801058_chquiz(Actor *, void *, f32, s8, s8, s8);
+    void func_80801058_chquiz(Actor *, QuizCamera *, f32, s8, s8, s8);
     void func_8008F990(void *, f32);
     s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
     s32 _gcgoto_entrypoint_2(s32, s32, s32);
