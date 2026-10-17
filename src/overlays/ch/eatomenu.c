@@ -41,7 +41,25 @@ void func_80800014_chcheatomenu(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_808000D4_chcheatomenu.s")
+s32 func_808000D4_chcheatomenu(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80101080(void);
+    void func_80101FDC(Actor *, u32);
+    void func_8080052C_chcheatomenu(Actor *, s32, s32, s32);
+    void func_808007B8_chcheatomenu(void *);
+    s16 *data = (s16 *)&arg2;
+    switch (arg1) {
+        case 0x2E:
+            func_80101FDC(arg0, 1);
+            func_808007B8_chcheatomenu(arg0);
+            break;
+        case 0x20:
+            func_8080052C_chcheatomenu(arg0, func_80101080(), data[0], data[1]);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void *func_80100094(Actor *, u32);
 
