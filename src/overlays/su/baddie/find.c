@@ -271,4 +271,53 @@ Actor *subaddiefind_entrypoint_12(s32 arg0) {
     return NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/find/subaddiefind_entrypoint_13.s")
+Actor **subaddiefind_entrypoint_13(u8 *arg0) {
+    typedef struct {
+        Unk80132ED0 *marker;
+        s32 unk4;
+        u32 unk8:31;
+        u32 isMarker:1;
+    } HitProp;
+    typedef struct {
+        u8 pad0[0x18];
+        u16 flags;
+    } MarkerFlags;
+    s32 *func_800BE3F8(u8 *);
+    s32 func_800E9E88(s32);
+    u32 func_800E9EB4(s16 *);
+    OSThread *func_8010413C(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor **actors;
+    s32 count;
+    s32 *cell;
+    HitProp *prop;
+    HitProp *end;
+    Unk80132ED0 *marker;
+    Actor *actor;
+
+    actors = (Actor **)func_8010413C();
+    count = 0;
+    cell = func_800BE3F8(arg0);
+    while (*cell != 0) {
+            prop = (HitProp *)func_800E9E88(*cell);
+            end = (HitProp *)func_800E9EB4((s16 *)*cell);
+            if (prop < end) {
+                do {
+                    if (prop->isMarker) {
+                        marker = prop->marker;
+                        if (((MarkerFlags *)marker)->flags & 1) {
+                            actor = func_80106790(marker);
+                            if (!actor->unk64_17) {
+                                actors[count] = actor;
+                                count++;
+                            }
+                        }
+                    }
+                    prop++;
+                } while (prop < end);
+            }
+            cell++;
+    }
+    actors[count] = NULL;
+    return actors;
+}
