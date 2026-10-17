@@ -7,7 +7,31 @@ OSThread *chweldarbossfireball_entrypoint_0(void)
     return (OSThread *) D_80800410_chweldarbossfireball;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fireball/func_8080000C_chweldarbossfireball.s")
+void func_8080000C_chweldarbossfireball(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800C8A98(void);
+    void func_800C8E54(s32, f32, f32);
+    f32 func_800DC178(f32, f32);
+    void func_800EF368(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    extern u8 D_80800458_chweldarbossfireball[];
+    union {
+        f64 pair;
+        f32 values[2];
+    } angles;
+
+    arg0->actorData[7] = 0;
+    arg0->unk50 = func_800DC178(0.0f, 360.0f);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800458_chweldarbossfireball);
+    func_800EFB24(&arg0->actorData[4], arg0->actorData, arg0->position);
+    func_800F18FC(arg0->position, (f32 *)arg0->actorData, angles.values);
+    arg0->rotation[0] = -angles.values[0];
+    arg0->rotation[1] = angles.values[1];
+    func_800EF368((f32 *)&arg0->actorData[4], 1800.0f);
+    arg0->actorData[7] = func_800C8A98();
+    func_800C8E54(arg0->actorData[7], 500.0f, 800.0f);
+}
 
 void func_808000C4_chweldarbossfireball(Actor *arg0) {
     s32 func_8001210C(s32);
