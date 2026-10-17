@@ -59,11 +59,36 @@ void func_800E6AFC(char *arg0, u8 arg1) {
     *arg0 = 0;
 }
 
-s32 func_800E6B7C(u8 arg0, f32 arg1) {
+s32 func_800E6B7C(char **arg0, f32 arg1) {
     return (arg1 < 0.0f) ? -1 : 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6BAC.s")
+void func_800E6BAC(char *dest, f32 val) {
+    extern char D_80125DC4[];
+    extern char D_80125DC8[];
+    extern char D_80125DCC[];
+    void func_800E6DB4(char *, s32);
+    s32 decimal;
+    char *str;
+
+    switch (func_800E6B7C(&str, val)) {
+    case 0:
+        func_800E6A10(dest, str);
+        break;
+    case -1:
+        func_800E6A10(dest, D_80125DC4);
+        val = -val;
+    case 1:
+        func_800E6DB4(dest, (s32)val);
+        func_800E6A10(dest, D_80125DC8);
+        decimal = (s32)((val - (f32)(s32)val) * 100.0f);
+        if (decimal < 10) {
+            func_800E6A10(dest, D_80125DCC);
+        }
+        func_800E6DB4(dest, decimal);
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6CA8.s")
 
