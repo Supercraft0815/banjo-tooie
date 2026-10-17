@@ -147,7 +147,7 @@ int func_8010568C(Actor *arg0, s32 arg1) {
 /* extern */
 
 void func_801056EC(Actor *arg0, f32 arg1) {
-    s32 func_800D86F0(s32, f32, void *);
+    void func_800D86F0(s32, f32, f32 *);
     void *temp_v0;
 
     temp_v0 = func_80105494(arg0);
@@ -156,7 +156,43 @@ void func_801056EC(Actor *arg0, f32 arg1) {
     func_800D86F0((s32) ((*(s32 *)((s8 *)(temp_v0) + (0))) << 0x15) >> 0x16, arg1, (s8 *)arg0 + 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_8010573C.s")
+void func_8010573C(Actor *arg0, f32 arg1) {
+    void func_800C810C(u8 *, f32, f32 *, f32 *);
+    void *func_800D7520(s32);
+    s32 func_800D7DE8(Actor *);
+    void func_800D86F0(s32, f32, f32 *);
+    f32 position[3];
+    f32 rotation[3];
+    struct {
+        s32 upper : 21;
+        s32 path_index : 10;
+        u32 lower : 1;
+        f32 unk4;
+        f32 unk8;
+        f32 progress;
+        f32 previous;
+    } *state;
+    s32 flags;
+
+    state = func_80105494(arg0);
+    flags = func_800D7DE8(arg0);
+    state->previous = state->progress;
+    state->progress = arg1;
+    func_800D86F0(state->path_index, arg1, arg0->position);
+    func_800C810C(func_800D7520(state->path_index), state->progress, position, rotation);
+    if (flags & 0x100) {
+        if (rotation[1] >= 180.0f) {
+            arg0->unk54 = rotation[1] - 180.0f;
+        } else {
+            arg0->unk54 = rotation[1] + 180.0f;
+        }
+    }
+    if (flags & 0x200) {
+        arg0->unk50 = 360.0f - rotation[0];
+    }
+    arg0->rotation[1] = arg0->unk54;
+    arg0->rotation[0] = arg0->unk50;
+}
 
 void func_80105834(Actor *arg0)
 {

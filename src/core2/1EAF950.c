@@ -551,7 +551,7 @@ s32 func_800D8070(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     f32 _glintrosyncDll_entrypoint_5(void);
     s32 _seqdefine_entrypoint_0(s32);
     void *func_8001B798(s16);
-    void func_800C7A68(struct Unk800C7A68 *, f32, s32);
+    void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
     f32 func_800C7E28(void *);
     f32 func_800C8070(s32, f32, f32, s32 *);
     s32 func_800D75DC(s32, f32);
@@ -693,9 +693,9 @@ void func_800D8674(void) {
     }
 }
 
-void func_800D86F0(s32 arg0, f32 arg1, s32 arg2) {
+void func_800D86F0(s32 arg0, f32 arg1, f32 *arg2) {
     void *func_8001B798(s16);
-    void func_800C7A68(struct Unk800C7A68 *, f32, s32);
+    void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
     extern s16 D_8012BFF4;
     func_800C7A68(func_8001B798(((s16 *)func_8001B798(D_8012BFF4))[arg0]), arg1, arg2);
 }
