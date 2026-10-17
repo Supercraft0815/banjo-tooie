@@ -110,7 +110,37 @@ s32 func_808002E4_gcdialogexec(volatile u8 *arg0) {
     return var_a2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80800350_gcdialogexec.s")
+void func_80800350_gcdialogexec(u8 *arg0, u8 *arg1, u8 *arg2, s32 arg3, s32 arg4) {
+    s32 j;
+    s32 out;
+    s32 i;
+
+    j = 0;
+    out = 0;
+    for (i = 0; arg1[i] != 0; i++) {
+        if (arg1[i] == (arg3 ? 0xAE : 0x7E)) {
+            if (arg4) {
+                arg0[out++] = 0xFD;
+                arg0[out++] = 0x68;
+            }
+            for (; arg2[j] != 0; j++) {
+                arg0[out++] = arg2[j];
+                if (arg4 && !arg3 && arg2[j] == ' ') {
+                    arg0[out++] = 0xFD;
+                    arg0[out++] = 0x68;
+                }
+            }
+            j++;
+            if (arg4) {
+                arg0[out++] = 0xFD;
+                arg0[out++] = 0x6C;
+            }
+        } else {
+            arg0[out++] = arg1[i];
+        }
+    }
+    arg0[out] = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80800478_gcdialogexec.s")
 
