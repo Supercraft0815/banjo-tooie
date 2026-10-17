@@ -261,7 +261,41 @@ void func_808012EC_chinflatableboss(Actor *arg0, f32 arg1[3], s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80801554_chinflatableboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_8080183C_chinflatableboss.s")
+void func_8080183C_chinflatableboss(Actor *arg0) {
+    typedef struct {
+        u8 points[2][8];
+        f32 position[3];
+        u8 unk1C[0x478];
+        u8 unk494;
+        u8 unk495[2];
+        u8 unk497;
+    } BossData;
+    typedef struct {
+        f32 position[3];
+    } BossActorData;
+    void *func_80100094(Actor *, u32);
+    void _subaddieDll_entrypoint_12(void *, s16 *);
+    f32 func_800DC178(f32, f32);
+    BossData *data;
+    s16 point[2];
+    void *source;
+
+    data = func_80100094(arg0, 0);
+    data->unk494 ^= 1;
+    if (data->unk494) {
+        source = data->points[0];
+    } else {
+        source = data->points[1];
+    }
+    _subaddieDll_entrypoint_12(source, point);
+    data->position[0] = point[0];
+    data->position[1] = arg0->position[1];
+    data->position[2] = point[1];
+    ((BossActorData *)arg0->actorData)->position[0] = func_800DC178(0.0f, 1000.0f);
+    ((BossActorData *)arg0->actorData)->position[1] = arg0->position[1];
+    ((BossActorData *)arg0->actorData)->position[2] = func_800DC178(0.0f, 1000.0f);
+    data->unk497 = 1;
+}
 
 void func_80801904_chinflatableboss(Actor *arg0, s32 arg1, f32 *arg2) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
