@@ -1,9 +1,36 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/fire/func_80800000_cheggfire.s")
+void func_80800000_cheggfire(void *arg0) {
+    void *func_80100094(Actor *, u32);
+    f32 func_800D8FF8(void);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 _fxegg_entrypoint_3(f32 *, f32);
+    struct FireTimer {
+        u8 pad[0x28];
+        f32 timer;
+        f32 unk2C;
+        f32 value;
+    } *data;
+    f32 interval;
+    f32 zero;
+
+    data = func_80100094(arg0, 0);
+    data->timer -= func_800D8FF8();
+    interval = func_800F10B4(data->value, 0.0f, 2.0f, 0.0333f, 0.1f);
+    zero = 0.0f;
+    if (data->timer <= zero) {
+        do {
+            data->timer += interval;
+        } while (data->timer <= zero);
+    }
+    if (func_8001210C(1) != 0) {
+        return;
+    }
+    _fxegg_entrypoint_3(((Actor *)arg0)->position, ((Actor *)arg0)->scale);
+}
 
 void func_808000B8_cheggfire(void *arg0) {
-    void *func_80100094(void *, u32);
+    void *func_80100094(Actor *, u32);
     s32 func_800EEEA8(s32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     s32 _suegg_entrypoint_8(void *);
