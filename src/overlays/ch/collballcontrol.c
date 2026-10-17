@@ -313,7 +313,26 @@ void func_80801920_chcollballcontrol(u8 *arg0) {
     *(f32 *)(arg0 + 0x24) = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80801964_chcollballcontrol.s")
+void func_80801964_chcollballcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    f32 func_800DC178(f32, f32);
+    void func_8010A590(Actor *);
+    f32 *data;
+
+    data = func_80100094(arg0, 0);
+    arg0->unk74_17 = 0;
+    func_8010A590(arg0);
+    arg0->scale = 1.5f;
+    arg0->rotation[0] = func_800DC178(0.0f, 45.0f);
+    arg0->rotation[2] = func_800DC178(0.0f, 45.0f);
+    func_80801920_chcollballcontrol((u8 *)arg0);
+    if (arg0->unk64_19) {
+        data[5] = 20.0f;
+        data[6] = 8.0f;
+    }
+    arg0->alpha = 0;
+    arg0->position[1] = -75.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80801A20_chcollballcontrol.s")
 
