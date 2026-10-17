@@ -52,7 +52,25 @@ s32 func_800C85A0(s32 (*arg0)(u32, s32), s32 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8678.s")
+s32 func_800C8678(s32 arg0, s32 (*arg1)(u32, s32), s32 arg2) {
+    void *vector_at(s32, s32);
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    u32 begin;
+    u32 end;
+    u32 current;
+
+    begin = vector_begin(D_8012AB00);
+    current = (u32)vector_at(D_8012AB00, arg0 - 1);
+    end = vector_end(D_8012AB00);
+    for (current += 0x1C; current < end; current += 0x1C) {
+        if (((u8 *)current)[0x15] && arg1(current, arg2)
+            && (((u8 *)current)[0x17] || ((u8 *)current)[0x18])) {
+            return (s32)(current - begin) / 28 + 1;
+        }
+    }
+    return 0;
+}
 
 void func_800C8760(s32 arg0) {
     s32 func_800C85A0();
@@ -61,7 +79,7 @@ void func_800C8760(s32 arg0) {
 }
 
  s32 func_800C878C(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_800C8678(s32, s32, s32);
+    s32 func_800C8678(s32, s32 (*)(u32, s32), s32);
     extern s32 D_8011A9C0;
     return func_800C8678(arg0, *(s32 *)((u8 *)&D_8011A9C0 + (arg1 * 4)), arg2);
 }
