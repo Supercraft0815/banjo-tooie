@@ -35,7 +35,30 @@ void func_8080000C_chscorepoints(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/scorepoints/func_808000BC_chscorepoints.s")
+void func_808000BC_chscorepoints(Actor *arg0) {
+    void _subaddiefade_entrypoint_3(Actor *);
+    f32 func_80013970(f32);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    void func_80101FDC(Actor *, u32);
+    s32 sp2C;
+
+    switch (arg0->unk70_10) {
+        case 1:
+            sp2C = func_800D9078(&arg0->unk58);
+            *(f32 *)&arg0->actorData[6] = func_80013970(func_800F12D4(arg0->unk58, 0.0f, 0.8f, 0.0f, 720.0f)) * 50.0f;
+            if (sp2C != 0) {
+                _subaddiefade_entrypoint_3(arg0);
+                func_80101FDC(arg0, 2);
+            }
+            break;
+        case 2:
+            *(f32 *)&arg0->actorData[6] = 0.0f;
+            arg0->position[1] += func_800D8FF8() * 120.0f;
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/scorepoints/func_8080019C_chscorepoints.s")
 
