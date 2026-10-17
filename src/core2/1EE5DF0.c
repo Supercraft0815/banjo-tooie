@@ -445,7 +445,38 @@ loop_6:
     goto loop_6;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010D350.s")
+s32 func_8010D350(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3) {
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800F0734(f32 *, f32 *, f32 *, f32, f32, f32 *, f32 *);
+    s32 func_800F5898();
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6438(u32);
+    f32 sp9C[3];
+    f32 sp90[3];
+    f32 sp84[3];
+    f32 sp78[3];
+    f32 temp_f20;
+    f32 temp_f22;
+    f32 var_f24;
+    s32 var_s0;
+
+    func_800EE7F8(sp90, arg0);
+    func_800EE7F8(sp84, arg1);
+    var_f24 = 120.0f;
+    for (var_s0 = 0; var_s0 < func_800F5898(); var_s0++) {
+        if (func_800F6438(var_s0) && var_s0 != arg3) {
+            temp_f20 = arg2 * 2;
+            temp_f22 = 55.0f + arg2;
+            func_800F5A00(var_s0, sp9C);
+            var_f24 += temp_f20;
+            sp9C[1] -= arg2;
+            if (func_800F0734(sp90, sp84, sp9C, temp_f22, var_f24, sp78, sp78)) {
+                return var_s0;
+            }
+        }
+    }
+    return -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010D490.s")
 
