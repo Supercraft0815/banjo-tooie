@@ -95,6 +95,7 @@ void subaddietaxi_entrypoint_6(s32 *arg0, volatile f32 arg1) {
 }
 
 void *func_8010410C(void);
+struct anctrl_s;
 
 void subaddietaxi_entrypoint_7(Unk80132ED0 *arg0) {
     typedef struct { f32 position[3]; f32 rotation[3]; f32 scale; } TaxiState;
@@ -122,7 +123,35 @@ void subaddietaxi_entrypoint_7(Unk80132ED0 *arg0) {
     _subaddiefade_entrypoint_1((s32)actor, 0xFF);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_8.s")
+void subaddietaxi_entrypoint_8(Unk80132ED0 *arg0, f32 *arg1, f32 arg2, f32 arg3, s32 arg4) {
+    typedef struct { f32 position[3]; f32 rotation[3]; f32 scale; } TaxiState;
+    Actor *func_80106790(Unk80132ED0 *);
+    struct anctrl_s *func_80104248(void *);
+    void _fxsparkle_entrypoint_1(f32 *, u32);
+    s16 func_800CB518(s32);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_8008AF04(struct anctrl_s *, s32);
+    s32 pad;
+    TaxiState *sp38;
+    s32 pad34;
+    f32 sp30;
+    Actor *actor;
+
+    actor = func_80106790(arg0);
+    sp38 = func_8010410C();
+    if (func_800CB518(arg4) & 1) {
+        _fxsparkle_entrypoint_1(actor->position, 0xB);
+    }
+    func_800EFE50(actor->position, arg1, sp38->position, arg2);
+    actor->scale = func_800F10B4(arg3, 0.0f, 1.0f, 0.01f, sp38->scale);
+    if (arg3 > 0.45f) {
+        sp30 = 1 / arg3;
+    } else {
+        sp30 = func_800F10B4(arg3, 0.0f, 0.45f, 0.01f, 1 / arg3);
+    }
+    func_8008AF04(func_80104248(actor), *(s32 *)&sp30);
+}
 
 /* extern */
 
