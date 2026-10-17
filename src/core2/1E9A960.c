@@ -957,7 +957,7 @@ void func_800C431C(u8 arg0, s32 arg1) {
 void func_800C4AF0(f32 *arg0, void *arg1) {
     void func_800C33DC(u8, s32);
     void func_800C36F4(u8, s32);
-    u8 func_800C4350(s32, f32[3], s32 *);
+    u8 func_800C4350(u8, f32[3], s32 *);
     u8 temp_s0;
 
     if (temp_s0 = func_800C4350(0, arg0, arg1)) {
