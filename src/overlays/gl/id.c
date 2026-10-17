@@ -1,6 +1,38 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/id/glid_entrypoint_0.s")
+void glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), s32 arg3) {
+    void *func_800B2190(void *);
+    s32 temp_a0;
+    u8 *temp_s4;
+    u32 var_v1;
+    u8 *temp_s3;
+    u8 *var_s0;
+    u8 *var_s1;
+    u8 *var_s2;
+
+    temp_s4 = func_800B2190(*(void **)(arg0 + 0x14));
+    temp_a0 = *(s32 *)(arg0 + 4);
+    var_s1 = arg0 + 0x1C;
+    var_v1 = 0;
+    while ((s32)var_v1 < temp_a0) {
+        var_v1 += 1;
+        if (arg1 == *(s16 *)(var_s1 + 0)) {
+            var_s0 = var_s1 + 8;
+            temp_s3 = (*(s16 *)(var_s1 + 2) * 4) + var_s1 + 8;
+            var_s2 = temp_s3;
+            if ((u32)var_s0 < (u32)temp_s3) {
+                do {
+                    arg2(*(s16 *)(var_s1 + 0), var_s2, (*(s16 *)(var_s0 + 0) * 0x10) + temp_s4, *(s16 *)(var_s0 + 2), arg3);
+                    var_s2 += *(s16 *)(var_s0 + 2) * 0x10;
+                    var_s0 += 4;
+                } while ((u32)var_s0 < (u32)temp_s3);
+            }
+            break;
+        } else {
+            var_s1 += *(s32 *)(var_s1 + 4);
+        }
+    }
+}
 
 /* extern */
 
