@@ -95,7 +95,36 @@ void func_8080047C_chjiggytemple(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_808004D8_chjiggytemple.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_80800688_chjiggytemple.s")
+void func_80800688_chjiggytemple(Actor *arg0, void *arg1) {
+    void _sufade_entrypoint_0(s32, void *);
+    void func_800E3980(f32 *);
+    void func_800E3A58(s32);
+    f32 func_800F1DCC(f32, f32);
+    s32 func_800F1E6C(f32 *, f32 *, f32 *);
+    void func_80101870(Actor *, void *);
+    f32 mlAbsF(f32);
+    extern u8 D_80800A50_chjiggytemple[];
+    f32 rotation[3];
+    f32 yaw;
+    f32 position[3];
+    f32 fade;
+    f32 difference;
+
+    func_800E3A58(rotation);
+    *(f32 *)((u8 *)arg0 + 0x48) = rotation[1];
+    func_80101870(arg0, arg1);
+    fade = *(f32 *)((u8 *)arg0 + 0x1C);
+    if (fade > 0.0f) {
+        _sufade_entrypoint_0((s32)(fade * 255.0f), D_80800A50_chjiggytemple);
+    }
+    func_800E3980(position);
+    if (func_800F1E6C((f32 *)((u8 *)arg0 + 4), position, &yaw)) {
+        difference = mlAbsF(func_800F1DCC(yaw, rotation[1])) / 25.0f;
+        if (difference < 1.0f) {
+            _sufade_entrypoint_0((s32)((1.0f - difference) * 100.0f), D_80800A50_chjiggytemple);
+        }
+    }
+}
 
 /* extern */
 
