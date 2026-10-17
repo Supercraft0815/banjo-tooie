@@ -199,7 +199,30 @@ int func_80800DD8_chstonepillar(Actor *arg0) {
         func_800DA298(temp_v1 + 0x65C) == 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800E30_chstonepillar.s")
+void func_80800E30_chstonepillar(Actor *arg0) {
+    void _glcutDll_entrypoint_6(u32, u32);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    s32 func_800DA7A8(s32, s32, s32);
+    u32 func_800F54E4(void);
+    s32 func_800F6CC8(s32);
+    s32 func_800F7F98(s32, u32);
+    void *func_80100094(Actor *, u32);
+    u8 *sp1C;
+
+    sp1C = func_80100094(arg0, 0);
+    if (func_80800DD8_chstonepillar(arg0) == 0) {
+        func_800DA524(0x9D5);
+        func_800DA7A8(0x9CD, *(s16 *)(sp1C + 0x2C) + 1, 3);
+        return;
+    }
+    func_800F7F98(func_800F54E4(), 0);
+    if (func_800F6CC8(func_800F54E4()) == 0) {
+        func_800DA544(0x9D5);
+        func_800DA544(*(s16 *)(sp1C + 0x2C) + 0x65C);
+        _glcutDll_entrypoint_6(0xB9, 0xB);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800EE0_chstonepillar.s")
 
@@ -237,10 +260,10 @@ void func_80800FE0_chstonepillar(Actor *arg0) {
 /* extern */
 
 void func_808010CC_chstonepillar(s32 arg0) {
-    s32 _glcutDll_entrypoint_6(s32, s32);
+    void _glcutDll_entrypoint_6(u32, u32);
     s32 func_800DA298(s32);
     s32 func_800EA05C();
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F6CC8(s32);
     if ((func_800DA298(0x9D9) == 0) && (func_800EA05C() != 0xB9) && (func_800F6CC8(func_800F54E4()) == 0)) {
         _glcutDll_entrypoint_6(0xB9, 0xB);
