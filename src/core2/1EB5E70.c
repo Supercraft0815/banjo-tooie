@@ -230,7 +230,39 @@ void func_800DCEC8(Gfx **gfx, u8 *data) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DCF48.s")
+void func_800DCF48(s32 model, u8 *data) {
+    void func_80019AA0(void *, s32);
+    s32 func_800ADE2C(s32, s32);
+    void func_800DE2A4(s32, u8 *);
+    void mlMtxApply(Mtx *);
+    void mlMtxPop(void);
+    extern s32 D_8012C968;
+    extern s32 D_8012CE58;
+    struct ModelContext {
+        Gfx *gfx;
+        Mtx *mtx;
+    };
+    struct ModelContext *context = (struct ModelContext *)model;
+    struct Command {
+        u8 padding[8];
+        u8 branch_offset;
+        s8 matrix_id;
+    };
+    struct Command *cmd = (struct Command *)data;
+
+    if (D_8012C968) {
+        func_80019AA0(&D_8012CE58, func_800ADE2C(D_8012C968, cmd->matrix_id));
+        mlMtxApply(context->mtx);
+        gSPMatrix(context->gfx++, context->mtx++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    }
+    if (cmd->branch_offset) {
+        func_800DE2A4(model, (u8 *)cmd + cmd->branch_offset);
+    }
+    if (D_8012C968) {
+        mlMtxPop();
+        gSPPopMatrix(context->gfx++, G_MTX_MODELVIEW);
+    }
+}
 
 void func_800DD024(Gfx **gfx, u8 *data) {
     struct Command { u8 padding[8]; s16 index; };
