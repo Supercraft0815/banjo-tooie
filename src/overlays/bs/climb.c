@@ -121,7 +121,35 @@ int func_80800298_bsclimb(struct player_state_s *arg0) {
         || yaw_get(arg0) != yaw_getIdeal(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/bsclimb_entrypoint_0.s")
+void bsclimb_entrypoint_0(s32 arg0) {
+    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    s32 func_8008CA4C(void *, s32);
+    void func_8008FE68(f32 *);
+    void func_80098590(f32 **, f32 *);
+    s32 func_8009E77C(struct player_state_s *, s32);
+    void func_800C6DA0(s32);
+    s32 func_800F1E6C(f32 *, f32 *, f32 *);
+    void yaw_applyIdeal(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    f32 sp3C;
+    f32 sp30[3];
+    f32 sp24[3];
+
+    func_8008FE68(sp30);
+    func_80098590(arg0, sp24);
+    if (func_8009E77C(arg0, 0xA) == 0) {
+        func_800F1E6C(sp30, sp24, &sp3C);
+        yaw_setIdeal(arg0, sp3C);
+        yaw_applyIdeal(arg0);
+    }
+    func_800C6DA0(0x40);
+    baanim_playForDuration_loopSmooth(arg0, 0xB2, 0x4028F5C3);
+    func_8008CA4C(arg0, 1);
+    func_808000E8_bsclimb(arg0);
+    *(s32 *)(arg0 + 0x160) = 1;
+    func_80800258_bsclimb(arg0, 1.0f, 0.5f);
+    *(s32 *)(arg0 + 0x15C) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/bsclimb_entrypoint_1.s")
 
