@@ -13,7 +13,29 @@ void fxleaves_entrypoint_0(void *arg0) {
     vector_clear((*(s32 *)((s8 *)(arg0) + (0x1C))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/leaves/fxleaves_entrypoint_1.s")
+void fxleaves_entrypoint_1(void *arg0) {
+    s32 func_800D674C(s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    s32 func_800DF350(void);
+    void func_800DF830(s32);
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    u32 sp34;
+    u32 temp_v0;
+    u32 var_s0;
+
+    sp34 = vector_begin(*(s32 *)((s8 *)arg0 + 0x1C));
+    temp_v0 = vector_end(*(s32 *)((s8 *)arg0 + 0x1C));
+    var_s0 = sp34;
+    if (var_s0 < temp_v0) {
+        do {
+            func_800DF830(2);
+            func_800DE448((f32 *)(var_s0 + 4), (f32 *)(var_s0 + 0x1C), 1.0f, NULL, func_800D674C(*(s32 *)var_s0));
+            *(s8 *)(var_s0 + 0x34) = func_800DF350();
+            var_s0 += 0x38;
+        } while (var_s0 < temp_v0);
+    }
+}
 
 /* extern */
 
