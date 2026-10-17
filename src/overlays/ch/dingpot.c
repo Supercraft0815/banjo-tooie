@@ -14,7 +14,28 @@ void func_8080000C_chdingpot(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dingpot/func_80800040_chdingpot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dingpot/func_8080021C_chdingpot.s")
+s32 func_8080021C_chdingpot(Actor *arg0, s32 arg1, volatile s32 arg2) {
+    void func_80102424(Actor *, s32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    u32 func_800F54E4(void);
+    s32 func_800F7F98(s32, u32);
+    extern s32 D_808005A4_chdingpot;
+
+    switch (arg1) {
+    case 0x2E:
+        func_80102424(arg0, 1);
+        break;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_808005A4_chdingpot, arg0->scale);
+        break;
+    case 0xB:
+        func_800F7F98(func_800F54E4(), 0);
+        return 3;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_808002B4_chdingpot(Actor *arg0, f32 *arg1) {
     u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);
