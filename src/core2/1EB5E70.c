@@ -443,7 +443,30 @@ void func_800DD65C(Gfx **arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DDB38.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DDC28.s")
+void func_800DDC28(volatile s32 arg0, u8 *arg1) {
+    void func_800DE2A4(s32, u8 *);
+    s32 func_800E3D0C(f32 *, f32 *);
+    extern f32 D_8012C948;
+    f32 scaled_min[3];
+    f32 scaled_max[3];
+    s32 i;
+    struct DrawDistance {
+        s32 header[2];
+        s16 min[3];
+        s16 max[3];
+        s16 branch_offset;
+    } *cmd = (struct DrawDistance *)arg1;
+
+    if (cmd->branch_offset != 0) {
+        for (i = 0; i < 3; i++) {
+            scaled_min[i] = cmd->min[i] * D_8012C948;
+            scaled_max[i] = cmd->max[i] * D_8012C948;
+        }
+        if (func_800E3D0C(scaled_min, scaled_max) != 0) {
+            func_800DE2A4(arg0, (u8 *)cmd + cmd->branch_offset);
+        }
+    }
+}
 
 void func_800DDD14(volatile s32 arg0, u8 *arg1) {
     void func_800DE2A4(s32, u8 *);
