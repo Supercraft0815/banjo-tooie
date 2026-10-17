@@ -376,7 +376,40 @@ void func_80801F84_chchuffy(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80801FA4_chchuffy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80802060_chchuffy.s")
+void func_80802060_chchuffy(Actor *arg0, void *arg1) {
+    Prop *_gccubesearch_entrypoint_6(s32 *, f32 *);
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    void func_800EF1B8(f32 *, f32, f32);
+    Unk80132ED0 *func_800F55D0(s32);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6C5C(s32);
+    void func_800F77E8(s32, f32 *);
+    extern s32 D_808026A4_chchuffy;
+    Prop *prop;
+    f32 sp38[3];
+    f32 sp2C[3];
+    s32 sp28;
+    f32 sp1C[3];
+    struct ChuffyContact { u8 pad[0x1A]; u16 flags; };
+
+    sp28 = (u32)((struct ChuffyContact *)arg1)->flags >> 5;
+    if (func_800F6C5C(sp28) && func_800F55D0(sp28) == arg0->unk0) {
+        func_800F5A00(sp28, sp38);
+        prop = _gccubesearch_entrypoint_6(&D_808026A4_chchuffy, sp38);
+        if (prop) {
+            _gspropctrl_entrypoint_11(prop, sp2C);
+        } else {
+            chchuffy_entrypoint_1(arg0->unk3C, sp2C, sp1C);
+            if (sp38[2] < sp2C[2]) {
+                func_800EF1B8(sp2C, arg0->rotation[1] - 180.0f, 500.0f);
+            } else {
+                func_800EF1B8(sp2C, arg0->rotation[1], 500.0f);
+            }
+            sp2C[0] = sp38[0];
+        }
+        func_800F77E8(sp28, sp2C);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80802164_chchuffy.s")
 
