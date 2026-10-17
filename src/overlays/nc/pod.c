@@ -303,7 +303,28 @@ void ncpod_entrypoint_15(void *arg0, s32 arg1, s32 arg2) {
         *(u8 *)((u8 *)arg0 + 0x3E) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_16.s")
+s32 ncpod_entrypoint_16(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 func_8010F9C0(s32, s32);
+    s32 func_8010FAE4(s16 *);
+    void *func_80110024(s16 *);
+    void ncpod_entrypoint_19(void *, s32);
+    void *sp1C;
+    void *temp_v0;
+
+    if (func_8010FAE4(arg0) == 8) {
+        return 0;
+    }
+    func_8010F9C0(arg0, 8);
+    temp_v0 = func_80110024(arg0);
+    sp1C = temp_v0;
+    ncpod_entrypoint_3(temp_v0, arg2);
+    if (arg1 != 0) {
+        ncpod_entrypoint_7(sp1C, arg1);
+    }
+    ncpod_entrypoint_19(sp1C, arg3);
+    func_8080006C_ncpod(sp1C);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_17.s")
 
