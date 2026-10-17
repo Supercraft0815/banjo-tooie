@@ -233,7 +233,29 @@ void *func_800BF228(f32 *position, f32 radius, f32 *normal, u32 flag_filter) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF340.s")
+s32 *func_800BF340(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 arg3, f32 arg4) {
+    s32 *func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EF3DC(f32 *, f32 *);
+    void func_800EFB24(void *, void *, void *);
+    f32 sp34[3];
+    f32 sp28[3];
+    s32 *sp24;
+
+    func_800EE7F8(sp28, arg1);
+    func_800EFB24(sp34, sp28, arg0);
+    func_800EF368(sp34, arg4);
+    func_800EF04C(sp28, sp34);
+    sp24 = func_800BEF00(arg0, sp28, arg2, arg3);
+    if (sp24 == NULL) {
+        return NULL;
+    }
+    func_800EF3DC(sp28, sp34);
+    func_800EE7F8(arg1, sp28);
+    return sp24;
+}
 
 int func_800BF3E4(void) {
     return (*(u16 *)((s8 *)&D_801285B0 + 0x5A) != 0 ||
@@ -248,8 +270,8 @@ void func_800BF420()
 
 void func_800BF444(void) {
     s32 _gcmapDll_entrypoint_3(s32 *);
-    s32 func_800C6A28(s32 *, s32 *, void *(*)(f32 *, f32, f32 *, u32), s32 (*)());
-    extern s32 func_800BEF00;
+    s32 func_800C6A28(s32 *(*)(f32 *, f32 *, f32 *, s32), s32 *, void *(*)(f32 *, f32, f32 *, u32), s32 (*)());
+    s32 *func_800BEF00(f32[3], f32[3], f32[3], s32);
     extern s32 func_800BF0E0;
     _gcmapDll_entrypoint_3(&D_801285B0);
     func_800C6A28(&func_800BEF00, &func_800BF0E0, &func_800BF228, func_800BEB4C);
