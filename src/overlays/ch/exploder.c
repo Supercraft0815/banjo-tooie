@@ -188,7 +188,44 @@ void chexploder_entrypoint_9(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/chexploder_entrypoint_10.s")
+void chexploder_entrypoint_10(Actor *arg0, s16 *arg1) {
+    void *func_80100094(Actor *, u32);
+    u8 *sp24;
+    s16 *var_v0;
+    s32 var_a3;
+    s32 var_t0;
+    struct {
+        u8 pad0[0x36];
+        u8 unk36_7 : 1;
+        u8 unk36_6 : 1;
+        u8 unk36_0 : 6;
+        u8 pad37[2];
+        u8 unk39;
+        u8 pad3A[2];
+    } *var_a2;
+
+    sp24 = func_80100094(arg0, 0U);
+    var_a2 = func_80100094(arg0, 1U);
+    var_a3 = 0;
+    if (*(s16 *)(sp24 + 0xE) > 0) {
+        do {
+            var_t0 = 0;
+            if (*arg1 != -1) {
+                var_v0 = arg1;
+                do {
+                    if (var_a2->unk39 == *var_v0) {
+                        var_t0 = 1;
+                        break;
+                    }
+                    var_v0++;
+                } while (*var_v0 != -1);
+            }
+            var_a2->unk36_6 = var_t0;
+            var_a3++;
+            var_a2++;
+        } while (var_a3 < *(s16 *)(sp24 + 0xE));
+    }
+}
 
 void chexploder_entrypoint_11(Actor *arg0, s16 *arg1) {
     void *func_80100094(Actor *, u32);
