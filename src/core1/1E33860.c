@@ -69,12 +69,31 @@ loop:
     return block;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E33860/func_8001BF80.s")
+void *func_8001BF80(s32 arg0) {
+    struct EmptyHeapBlock *block;
+    struct EmptyHeapBlock *next;
+    u32 size;
+
+    block = FIRST_BLOCK()->next_free;
+    size = func_8001BD30(arg0 > 0 ? arg0 : 1);
+    if ((u32)GET_BLOCK_MEM_SIZE(&block->header) < size) {
+        if ((heap_bytes_allocated() + D_8007E990) != (char *)(next = block->next_free) + sizeof(struct EmptyHeapBlock)) {
+loop:
+            block = next;
+            if ((u32)GET_BLOCK_MEM_SIZE(&next->header) < size) {
+                if ((heap_bytes_allocated() + D_8007E990) != (char *)(next = block->next_free) + sizeof(struct EmptyHeapBlock)) {
+                    goto loop;
+                }
+            }
+        }
+    }
+    return (u32)GET_BLOCK_MEM_SIZE(&block->header) < size ? NULL : block;
+}
 
 /* extern */
 
 s32 func_8001C070(void) {
-    s32 func_8001BF80();
+    void *func_8001BF80();
     s32 var_v1;
 
     if (func_8001BF80() != 0) {
