@@ -1,6 +1,23 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familymother/func_80800000_chdinofamilymother.s")
+void func_80800000_chdinofamilymother(Actor *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800DA298(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_808005EC_chdinofamilymother(Actor *, s32);
+
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_808005EC_chdinofamilymother(arg0, 0xA);
+    } else if ((func_800DA298(0x15E) != 0) &&
+               (func_800DA298(0x189) == 0) &&
+               (func_800DA298(0x15F) != 0) &&
+               (func_800DA298(0x8A) != 0)) {
+        func_808005EC_chdinofamilymother(arg0, 9);
+    }
+    func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+    arg0->actorData[7] = 0;
+    ((f32 *)arg0->actorData)[1] = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familymother/func_808000A0_chdinofamilymother.s")
 
