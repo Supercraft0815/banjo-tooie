@@ -133,7 +133,31 @@ void func_80800DE0_chfactorytwinklies(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80800E9C_chfactorytwinklies.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_8080105C_chfactorytwinklies.s")
+s32 func_8080105C_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80801108_chfactorytwinklies(Actor *, s32, s32);
+    s32 func_80801174_chfactorytwinklies(Actor *, s32, s32);
+    void func_80800A84_chfactorytwinklies(Actor *, s32);
+    s32 _subaddiemulti_entrypoint_1(s32, s32);
+    s32 _subaddiemulti_entrypoint_4(s32);
+
+    switch (arg1) {
+    case 0x2E:
+        func_80801108_chfactorytwinklies(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x30:
+        return func_80801174_chfactorytwinklies(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+    case 0x3D:
+        func_80800A84_chfactorytwinklies(arg0, arg2);
+        break;
+    case 0x95:
+        _subaddiemulti_entrypoint_1(0, 0);
+        _subaddiemulti_entrypoint_4(0);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80801108_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_10(void);
