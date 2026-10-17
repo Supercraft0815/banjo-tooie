@@ -67,7 +67,36 @@ void func_80800234_chswappy(Actor *arg0, void *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swappy/func_80800300_chswappy.s")
+s32 func_80800300_chswappy(Actor *arg0, s32 arg1, void * volatile arg2) {
+    s32 _subaddiefade_entrypoint_2();
+    s32 _subaddiefade_entrypoint_5();
+    void func_80103110(Actor *, u32);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    switch (arg1) {
+        case 0x95:
+            func_808000B0_chswappy(arg0, 1);
+            break;
+        case 0x16:
+            func_808000B0_chswappy(arg0, 1);
+            func_80103110(arg0, 1);
+            func_8010A590(arg0);
+            _subaddiefade_entrypoint_2(arg0);
+            break;
+        case 0x17:
+            func_808000B0_chswappy(arg0, 1);
+            func_80103110(arg0, 0);
+            func_8010A570(arg0);
+            _subaddiefade_entrypoint_5(arg0);
+            break;
+        case 0x3E:
+            func_80800234_chswappy(arg0, arg2);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
