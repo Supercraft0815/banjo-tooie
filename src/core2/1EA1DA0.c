@@ -264,7 +264,31 @@ void func_800C8CB8(s32 arg0, f32 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C8D4C.s")
+void func_800C8D4C(s32 arg0, f32 *arg1) {
+    void *vector_at(s32, s32);
+    s16 range[3];
+    s16 *entry;
+
+    entry = vector_at(D_8012AB00, arg0 - 1);
+    range[0] = (s32)arg1[0];
+    range[1] = (s32)arg1[1];
+    if (range[1] < range[0]) {
+        range[1] = range[0];
+    }
+    if (range[1] < range[0]) {
+        range[0] = range[1];
+    }
+    if (range[0] == range[1]) {
+        range[1] += 1;
+    }
+    if (entry[3] != range[0] || entry[4] != range[1]) {
+        entry[3] = range[0];
+        entry[4] = range[1];
+        *(f32 *)(entry + 8) = 1.0f / (range[1] - range[0]);
+        ((u8 *)entry)[0x19] = 1;
+        ((u8 *)entry)[0x16] = ((u8 *)entry)[0x19];
+    }
+}
 
 void func_800C8E54(s32 arg0, f32 arg1, f32 arg2) { f32 sp18[2]; sp18[0] = arg1; sp18[1] = arg2; func_800C8D4C(arg0, sp18); }
 
