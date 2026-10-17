@@ -125,7 +125,34 @@ void func_80800378_bsblongleg(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_0.s")
+void bsblongleg_entrypoint_0(PlayerState *arg0) {
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 bs_getPreviousState(PlayerState *);
+    s32 func_8009CA70(PlayerState *, s32, s32);
+    void func_8009D874(PlayerState *);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+    s32 func_800C2E04(void);
+    void func_800C301C(u8, s32);
+    void func_800C330C(u8, s32);
+    void func_800C3730(u8, f32, f32, f32);
+    s32 temp_v0;
+
+    temp_v0 = func_800C2E04();
+    arg0->unk160.bytes[0] = temp_v0;
+    func_800C301C(temp_v0, 0x41D);
+    func_800C330C(arg0->unk160.bytes[0], 3);
+    func_800C3730(arg0->unk160.bytes[0], 0.8f, 1.9f, 1.2f);
+    baflag_clear(arg0, 0xE);
+    if (func_8009CA70(arg0, bs_getPreviousState(arg0), 0x40) != 0) {
+        func_808002D8_bsblongleg(arg0);
+    } else {
+        func_80800378_bsblongleg(arg0);
+    }
+    func_8009FFD8(arg0, 1, 1, 3, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_8080013C_bsblongleg(arg0);
+    func_8009D874(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_1.s")
 
