@@ -555,7 +555,41 @@ void func_80803CC4_chflysaucer(s32 arg0, s32 arg1) {
     func_800BA22C(sp24, 6);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80803D30_chflysaucer.s")
+s32 func_80803D30_chflysaucer(Actor *arg0, s32 arg1, s32 arg2) {
+    void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    s32 func_8010114C(s32, s32, s32);
+    void func_8010A570(Actor *);
+    extern s32 D_80127194;
+    extern s16 D_80804704_chflysaucer[];
+    int sp24[1];
+    s32 *sp20;
+    s16 *temp_v0;
+    s32 temp_a0;
+
+    switch (arg1) {
+        case 0x40:
+            sp20 = &arg2;
+            sp24[0] = *sp20;
+            if (_subaddiefade_entrypoint_0(arg0) >= 0x61) {
+                func_80803CC4_chflysaucer((s32) arg0, D_80804704_chflysaucer[arg0->unk79_4]);
+                _chscorepoints_entrypoint_2(arg0->unk79_4 + 1, 0, arg0->position, 1);
+                temp_v0 = (s16 *)&D_80127194;
+                temp_v0 += 0x21A;
+                *temp_v0 = *temp_v0 + arg0->unk79_4 + 1;
+                func_80803BF0_chflysaucer(arg0, 2);
+                func_8010A570(arg0);
+            }
+            temp_a0 = sp24[0];
+            if (((u16 *)temp_a0)[12] & 1) {
+                func_8010114C(temp_a0, 0x98, 0);
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chflysaucer_entrypoint_2(void)
 {
