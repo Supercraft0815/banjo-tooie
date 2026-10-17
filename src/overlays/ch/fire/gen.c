@@ -1,6 +1,29 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_80800000_chfiregen.s")
+s32 func_80800000_chfiregen(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
+    u8 value;
+    Unk80132ED0 **param = &arg2;
+    u8 func_800D731C(s32);
+    s32 func_800DBE60(u8, s32, s32);
+    s32 func_801015D0(Actor *);
+    void func_80800978_chfiregen(Actor *, Unk80132ED0 *);
+
+    switch (arg1) {
+        case 0x1F:
+            value = func_800D731C(arg0->unk0->unk14);
+            func_801015D0(arg0);
+            if (value) {
+                func_800DBE60(value, 0, arg0->unk79_4);
+            }
+            break;
+        case 0x40:
+            func_80800978_chfiregen(arg0, *param);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chfiregen_entrypoint_0(void)
 {
