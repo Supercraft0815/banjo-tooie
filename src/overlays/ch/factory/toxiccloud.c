@@ -17,7 +17,7 @@ s32 func_808000F0_chfactorytoxiccloud(void *arg0, void *arg1) {
         } data;
     };
     s32 func_800CC338(s32 *, s32, s32);
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F64A4(s32, s32);
     int func_80800BF8_chfactorytoxiccloud();
     u32 temp_t9;
@@ -63,7 +63,7 @@ void func_80800AD8_chfactorytoxiccloud(s32 arg0, f32 *volatile arg1) {
     void func_800EF1B8(f32 *, f32, f32);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     s32 func_800F5410(s32);
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     void func_800F5A00(s32, f32 *);
     void func_800F5A2C(s32, s32, f32 *);
     f32 func_800F5F24(u32);
@@ -150,7 +150,53 @@ void func_80801164_chfactorytoxiccloud(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_808011A0_chfactorytoxiccloud.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_808012C4_chfactorytoxiccloud.s")
+s32 func_808012C4_chfactorytoxiccloud(Actor *arg0) {
+    typedef union {
+        Actor actor;
+        struct {
+            u8 pad[0x78];
+            u32 head : 29;
+            u32 inactive : 1;
+            u32 tail : 2;
+        } flags;
+    } Cloud;
+    s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
+    f32 func_800EEB40(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    u8 *actors[10];
+    f32 distance;
+    s32 count;
+    s32 i;
+    s32 result;
+    f32 position[3];
+    u8 **iter;
+    Actor *other;
+
+    count = _subaddiefind_entrypoint_4(0x3FF, actors, 10);
+    if (count >= 2) {
+        result = 1;
+        func_800F5A00(func_800F54E4(), position);
+        distance = func_800EEB40(arg0->position, position);
+        i = 0;
+        if (count > 0) {
+            iter = actors;
+            do {
+                other = (Actor *)*iter;
+                if (!((Cloud *)other)->flags.inactive && arg0 != other) {
+                    result &= distance < func_800EEB40(other->position, position);
+                    if (!result) {
+                        return 0;
+                    }
+                }
+                i++;
+                iter++;
+            } while (i != count);
+        }
+        return result;
+    }
+    return 1;
+}
 
 OSThread *chfactorytoxiccloud_entrypoint_0(void)
 {
