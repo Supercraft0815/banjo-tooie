@@ -121,12 +121,51 @@ int func_80101970(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDAEA0/func_80101A50.s")
+void func_80101A50(void *arg0) {
+    f32 func_800DC0C0(void);
+    void func_800DF744(s32, s32);
+    extern f32 D_80126434;
+    struct {
+        u8 pad0[0x78];
+        u32 pad78 : 18;
+        u32 blinkState : 2;
+        u32 blinkFrame : 3;
+        u32 pad7B : 9;
+        u32 pad7C : 19;
+        u32 disabled : 1;
+        u32 pad7F : 12;
+    } *actor = arg0;
+
+    if (!actor->disabled) {
+        switch (actor->blinkState) {
+            case 0:
+                if (func_800DC0C0() < D_80126434) {
+                    actor->blinkState = 1;
+                }
+                break;
+            case 1:
+                if (actor->blinkFrame == 3) {
+                    actor->blinkState = 2;
+                } else {
+                    actor->blinkFrame++;
+                }
+                break;
+            case 2:
+                actor->blinkFrame--;
+                if (actor->blinkFrame == 0) {
+                    actor->blinkState = 0;
+                }
+                break;
+        }
+    }
+    func_800DF744(1, actor->blinkFrame + 1);
+    func_800DF744(2, actor->blinkFrame + 1);
+}
 
 /* extern */
 
 void func_80101BA0(s32 arg0) {
-    s32 func_800DF744(s32, s32);
+    void func_800DF744(s32, s32);
     func_800DF744(1, 4);
     func_800DF744(2, 4);
 }
