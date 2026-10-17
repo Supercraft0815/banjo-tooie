@@ -86,10 +86,10 @@ void func_80800534_chtiptup(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800578_chtiptup.s")
 
-void func_80800614_chtiptup(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 *arg4) {
+void func_80800614_chtiptup(f32 *arg0, f32 *arg1, s32 arg2, f32 arg3, s32 *arg4) {
     s32 func_800B53A4(s32);
     s32 func_800BA22C(s32, s32);
-    s32 func_800BABB8(s32, s32, s32, s32, s32 *);
+    s32 func_800BABB8(s32, f32 *, f32 *, f32, s32 *);
     extern s32 D_80801580_chtiptup;
     s32 sp24;
     s32 temp_v0;
@@ -105,7 +105,7 @@ void func_80800614_chtiptup(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 *arg4) {
 
 void func_80800694_chtiptup(Actor *arg0) {
     u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
     void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
     u8 func_800C4350(s32, f32[3], s32 *);
     s32 func_80101E4C(Actor *, f32 *);
@@ -262,7 +262,7 @@ void func_80800C70_chtiptup(Actor *arg0) {
 
 void func_80800E2C_chtiptup(Actor *arg0) {
     f32 *sp1C[1];
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
     void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
     extern u32 D_8080165C_chtiptup;
     extern u32 D_80801668_chtiptup;
@@ -275,7 +275,34 @@ void func_80800E2C_chtiptup(Actor *arg0) {
     _subaddieaudioquick_entrypoint_4(arg0, sp1C[0], &D_80801674_chtiptup, &D_8080167C_chtiptup);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800E9C_chtiptup.s")
+void func_80800E9C_chtiptup(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    int func_800D9154(f32 *, f32);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    extern u32 D_80801690_chtiptup;
+    extern u32 D_808016A0_chtiptup;
+    extern s32 D_808016AC_chtiptup[];
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp2C[3];
+
+    if (func_800D9154(&arg0->unk58, 2.2f) != 0) {
+        _subaddieaudioquick_entrypoint_2(arg0, (f32 *)arg0->actorData, &D_808016A0_chtiptup);
+    }
+    if (_subaddieaudioquick_entrypoint_3(arg0, (f32 *)arg0->actorData, &D_80801690_chtiptup, 0.1f) != 0) {
+        func_800EFA4C(sp44, ((f32 *)arg0->actorData)[0], arg0->position[1], ((f32 *)arg0->actorData)[2]);
+        func_800EFA4C(sp38, ((f32 *)arg0->actorData)[0], arg0->position[1], ((f32 *)arg0->actorData)[2]);
+        func_800EFA4C(sp2C, ((f32 *)arg0->actorData)[0], arg0->position[1], ((f32 *)arg0->actorData)[2]);
+        func_800EF1B8(sp44, arg0->rotation[1], 20.0f);
+        func_800EF1B8(sp38, arg0->rotation[1] + 70.0f, 10.0f);
+        func_800EF1B8(sp2C, arg0->rotation[1] - 70.0f, 10.0f);
+        sp44[1] -= 10.0f;
+        func_80800614_chtiptup(sp38, sp44, 1, 0.5f, D_808016AC_chtiptup);
+        func_80800614_chtiptup(sp2C, sp44, 1, 0.5f, D_808016AC_chtiptup);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800FE8_chtiptup.s")
 
