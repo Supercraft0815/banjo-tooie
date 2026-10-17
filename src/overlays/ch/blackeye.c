@@ -10,7 +10,37 @@ void func_80800000_chblackeye(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_8080003C_chblackeye.s")
+void func_8080003C_chblackeye(void *arg0) {
+    void func_800C4B7C(s32);
+    f32 func_800D8FF8();
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    extern s32 D_80800E68_chblackeye;
+    extern s32 D_80800E80_chblackeye;
+    extern s16 D_80800EA0_chblackeye[];
+    f32 sp24;
+    f32 temp_f0;
+    f32 temp_f0_2;
+    f32 temp_f2;
+
+    temp_f0 = func_800D8FF8();
+    sp24 = temp_f0;
+    temp_f2 = (*(f32 *)((s8 *)(arg0) + (0x24)));
+    if (temp_f2 > 0.0f) {
+        (*(f32 *)((s8 *)(arg0) + (0x24))) = (f32) (temp_f2 - temp_f0);
+    } else {
+        func_800C4B7C(D_80800EA0_chblackeye[func_800DC128(0, 5)]);
+        func_80800000_chblackeye((s32) arg0, (s32) &D_80800E68_chblackeye);
+        (*(f32 *)((s8 *)(arg0) + (0x24))) = func_800DC178(2.5f, 5.0f);
+    }
+    temp_f0_2 = (*(f32 *)((s8 *)(arg0) + (0x34)));
+    if (temp_f0_2 > 0.0f) {
+        (*(f32 *)((s8 *)(arg0) + (0x34))) = (f32) (temp_f0_2 - sp24);
+        return;
+    }
+    func_80800000_chblackeye((s32) arg0, (s32) &D_80800E80_chblackeye);
+    (*(f32 *)((s8 *)(arg0) + (0x34))) = func_800DC178(2.5f, 5.0f);
+}
 
 void func_80800128_chblackeye(Actor *arg0, s32 arg1) {
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
