@@ -108,7 +108,38 @@ f32 func_80800360_chbanjoctrl(f32 arg0) {
     return arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_808003F8_chbanjoctrl.s")
+void func_808003F8_chbanjoctrl(Actor *arg0) {
+    s32 _chhotwaterpoolbits_entrypoint_5(s32, s32);
+    void func_800EFCD8(f32 *, f32, f32);
+    u32 func_800F54E4(void);
+    s32 func_800F6478(s32);
+    s32 func_800F6C5C(s32);
+    s32 func_800F7D90(s32, s32, void *, s32);
+    s32 func_8010CB0C(f32 *, s32, s32, s32);
+    f32 func_8010CD28(Actor *);
+    void func_80800544_chbanjoctrl(s32);
+    extern f32 D_808012B8_chbanjoctrl[];
+    s32 player;
+    f32 position[3];
+    f32 angle;
+
+    if ((((f32 *)arg0->actorData)[1] <= arg0->position[1]) &&
+        func_8010CB0C(D_808012B8_chbanjoctrl, 0xC1C, -0x8C, -0xFA) &&
+        (player = func_800F54E4(), func_800F6C5C(player)) &&
+        func_800F6478(player)) {
+        angle = func_8010CD28(arg0);
+        angle = func_80800360_chbanjoctrl(angle);
+        func_800EFCD8(position, angle, 3100.0f);
+        position[1] = 0.0f;
+        if (func_800F7D90(func_800F54E4(), 0x52, position, 1) == 2) {
+            if (arg0->unk64_20) {
+                func_80800544_chbanjoctrl((s32)arg0);
+                return;
+            }
+            _chhotwaterpoolbits_entrypoint_5((s32)arg0, 0x3F800000);
+        }
+    }
+}
 
 /* extern */
 
