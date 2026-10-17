@@ -1,6 +1,35 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/worldDll/gsworldDll_entrypoint_0.s")
+void gsworldDll_entrypoint_0(s32 arg0, s32 arg1) {
+    void func_8001A2B0(void);
+    s32 _gsmaker_entrypoint_2(s32);
+    s32 _gsmaker_entrypoint_16(s32, s32);
+    void _gsmaker_entrypoint_0(s32);
+    void _cadbio_entrypoint_0(s32);
+    void func_800BDC68(s32);
+    void func_800BDC90(s32);
+    void func_800C90F4(s32);
+    s32 world;
+
+    func_8001A2B0();
+    world = _gsmaker_entrypoint_2(arg0);
+    while (_gsmaker_entrypoint_16(world, 0) == 0) {
+        if (_gsmaker_entrypoint_16(world, 2) == 0) {
+            if (_gsmaker_entrypoint_16(world, 1) != 0) {
+                func_800BDC68(world);
+            } else if (_gsmaker_entrypoint_16(world, 4) != 0) {
+                func_800C90F4(world);
+            } else if (_gsmaker_entrypoint_16(world, 5) == 0) {
+                if (_gsmaker_entrypoint_16(world, 6) != 0) {
+                    _cadbio_entrypoint_0(world);
+                } else if (_gsmaker_entrypoint_16(world, 7) != 0) {
+                    func_800BDC90(world);
+                }
+            }
+        }
+    }
+    _gsmaker_entrypoint_0(world);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/worldDll/gsworldDll_entrypoint_1.s")
 
