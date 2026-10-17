@@ -34,7 +34,38 @@ void func_8080026C_chbilldrillboulder(Actor *arg0)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillboulder/func_808002C4_chbilldrillboulder.s")
+void func_808002C4_chbilldrillboulder(Actor *arg0) {
+    s32 func_808004D4_chbilldrillboulder(void *);
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
+    Prop *_gccubesearch_entrypoint_0(u32, Actor *);
+    s32 _gspropctrl_entrypoint_12(Prop *);
+    s32 func_800D0A9C(u32, u32);
+    s32 flag;
+
+    flag = func_808004D4_chbilldrillboulder(arg0);
+    if (flag != 0 && func_800DA298(flag) != 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    if (arg0->unk6C_9 == 0x3CF) {
+        switch (arg0->unk74_7 - 0x32) {
+        case 1:
+            arg0->unk6C_0 = _gspropctrl_entrypoint_12(_gccubesearch_entrypoint_0(0x201, arg0));
+            if (func_800D0A9C(arg0->unk6C_0, 4) != 0) {
+                func_800FFAB0(arg0);
+                return;
+            }
+            break;
+        case 6:
+            arg0->unk6C_0 = _gspropctrl_entrypoint_12(_gccubesearch_entrypoint_0(0x1F7, arg0));
+            if (func_800D0A9C(arg0->unk6C_0, 2) != 0) {
+                func_800FFAB0(arg0);
+            }
+            break;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillboulder/func_808003F0_chbilldrillboulder.s")
 
