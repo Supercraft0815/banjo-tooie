@@ -481,7 +481,35 @@ void func_800DD65C(Gfx **arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD998.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DDB38.s")
+void func_800DDB38(void *arg0, u8 *arg1) {
+    void mlMtxApply(Mtx *);
+    extern f32 D_8012C948;
+    struct DrawContext {
+        Gfx *gfx;
+        Mtx *mtx;
+    } *context = arg0;
+    Gfx *packet;
+    Gfx *list;
+    struct DrawCommand {
+        s32 header[2];
+        s16 indices[1];
+    } *command = (struct DrawCommand *)arg1;
+    u8 *cursor = (u8 *)&command->header[0];
+    s32 i;
+
+    mlMtxApply(context->mtx);
+    i = 0;
+    do {
+        list = context->gfx++;
+        list->words.w0 = 0xDE000000;
+        list->words.w1 = osVirtualToPhysical(*(u8 **)((u8 *)&D_8012C948 + 0x18) + command->indices[i] * 8 + 8);
+        packet = context->gfx++;
+        i++;
+        packet->words.w0 = 0xDA380002;
+        packet->words.w1 = (u32)context->mtx;
+    } while (*(s16 *)(cursor + i * 2 + 8) != 0);
+    context->mtx++;
+}
 
 void func_800DDC28(volatile s32 arg0, u8 *arg1) {
     void func_800DE2A4(s32, u8 *);
