@@ -48,7 +48,7 @@ void func_808006F8_chpoolkids(s32 arg0) {
     s32 _glcutDll_entrypoint_20();
     s32 func_800DA298(s32);
     s32 func_800DA524(s32);
-    s32 func_80102424(s32, s32);
+    void func_80102424(Actor *, s32);
     s32 func_80800618_chpoolkids(s32);
     s32 sp24;
     s32 sp20;
@@ -74,7 +74,28 @@ void func_808006F8_chpoolkids(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_808007F0_chpoolkids.s")
+void func_808007F0_chpoolkids(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_14(void);
+    void _glcutDll_entrypoint_17(void);
+    void func_800D0C78(u32, u32, u32);
+    void func_80102424(Actor *, s32);
+
+    switch (arg1) {
+        case 0x1020:
+        case 0x1021:
+            _capod_entrypoint_14();
+            _glcutDll_entrypoint_17();
+            break;
+        case 0x1022:
+            func_800D0C78(0x22, 1, 0);
+            arg0->unk58 = 4.5f;
+            func_80102424(arg0, 3);
+            break;
+        default:
+            func_80102424(arg0, arg0->actorData[4]);
+            break;
+    }
+}
 
 /* extern */
 
