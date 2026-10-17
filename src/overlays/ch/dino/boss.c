@@ -423,7 +423,42 @@ void func_80800F28_chdinoboss(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80801408_chdinoboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_808015AC_chdinoboss.s")
+void func_808015AC_chdinoboss(Actor *arg0) {
+    typedef struct {
+        u8 pad0[0x110];
+        f32 position[3];
+        u8 pad11C[8];
+        f32 unk124;
+        u32 initialized : 1;
+        u32 pad128 : 31;
+        f32 unk12C;
+        f32 unk130;
+        f32 unk134;
+    } DinoBossData;
+    void *func_80100094(Actor *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFD24(f32 *);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    f32 func_800136E4(f32);
+    f32 func_80013728(f32);
+    f32 func_800EEF94(f32 *);
+    DinoBossData *data;
+    f32 sp38;
+    f32 sp2C[3];
+    f32 *sp20;
+
+    data = func_80100094(arg0, 0);
+    if (!data->initialized) {
+        data->initialized = 1;
+        sp20 = arg0->position;
+        func_800EE7F8(sp20, data->position);
+        func_800EFD24(sp2C);
+        func_800F18FC(sp20, sp2C, &sp38);
+        data->unk124 = data->unk130 = func_800136E4(arg0->rotation[1] + 180.0f);
+        data->unk12C = func_80013728(-sp38);
+        data->unk134 = func_800EEF94(sp20);
+    }
+}
 
 void func_80801660_chdinoboss(Actor *arg0, f32 arg1, f32 arg2) {
     void func_800EEC30(f32 *, f32, f32, f32);
