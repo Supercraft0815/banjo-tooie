@@ -18,12 +18,24 @@ s32 func_8080016C_chscreenadjust(void *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/screenadjust/func_808001E0_chscreenadjust.s")
+void func_808001E0_chscreenadjust(Gfx **arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8, s32 arg9) {
+    void func_800BC474(Gfx **, s32, s32, s32, s32, s32, s32, s32);
+    s32 edges[4];
+
+    func_800BC474(arg0, arg1, arg2, arg5, arg6, arg7, arg8, arg9);
+    func_800BC474(arg0, arg1, arg2, arg6, arg5, arg7, arg8, arg9);
+    func_800BC474(arg0, (edges[3] = arg3 - arg5), arg2, arg5, arg6, arg7, arg8, arg9);
+    func_800BC474(arg0, (edges[2] = arg3 - arg6), arg2, arg6, arg5, arg7, arg8, arg9);
+    func_800BC474(arg0, arg1, (edges[1] = arg4 - arg6), arg5, arg6, arg7, arg8, arg9);
+    func_800BC474(arg0, arg1, (edges[0] = arg4 - arg5), arg6, arg5, arg7, arg8, arg9);
+    func_800BC474(arg0, edges[3], edges[1], arg5, arg6, arg7, arg8, arg9);
+    func_800BC474(arg0, edges[2], edges[0], arg6, arg5, arg7, arg8, arg9);
+}
 
 /* extern */
 
-void func_8080037C_chscreenadjust(s32 arg0, s32 arg1) {
-    s32 func_808001E0_chscreenadjust(s32, s32, s32, s32, s32, s32, s32, s32, s32, s32);
+void func_8080037C_chscreenadjust(s32 arg0, Gfx **arg1) {
+    void func_808001E0_chscreenadjust(Gfx **, s32, s32, s32, s32, s32, s32, s32, s32, s32);
     func_808001E0_chscreenadjust(arg1, 0, 0, 0x130, 0xE4, 0x40, 0xA, 0xFF, 0, 0);
     func_808001E0_chscreenadjust(arg1, 0x20, 0x20, 0x110, 0xC4, 0x20, 5, 0xFF, 0, 0);
 }
