@@ -31,7 +31,18 @@ s32 gcintrotext_entrypoint_2(s32 arg0, u32 *arg1, s32 *arg2) {
     return func_808001AC_gcintrotext(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/introtext/func_808000C8_gcintrotext.s")
+s32 *func_808000C8_gcintrotext(s32 arg0) {
+    extern s32 D_80800250_gcintrotext[199];
+    s32 i;
+
+    for (i = 0; i < 199; i++) {
+        if (arg0 != ((u32) D_80800250_gcintrotext[i] >> 22)) {
+            continue;
+        }
+        return &D_80800250_gcintrotext[i];
+    }
+    return NULL;
+}
 
 s32 func_808001AC_gcintrotext(s32 arg0) {
     extern u16 D_8080056C_gcintrotext;
