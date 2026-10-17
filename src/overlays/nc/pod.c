@@ -41,15 +41,55 @@ void func_808000AC_ncpod(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_0.s")
+s16 ncpod_entrypoint_0(s32 arg0) {
+    s16 func_8001B668(s32, s32);
+    void *ncpod_entrypoint_2(s16);
+    s32 func_800A940C(s32);
+    void func_800EFD24(f32 *);
+    s32 func_80015184();
+    f32 func_800C517C(s32);
+    f32 func_800C5190(s32);
+    s16 handle;
+    s32 pad;
+    s32 data;
+    s32 pad2;
+    s16 allocated;
+    void *state;
+
+    allocated = func_8001B668(0, 0x4C);
+    handle = allocated;
+    state = ncpod_entrypoint_2(allocated);
+    data = func_800A940C(arg0);
+    *(s16 *)((u8 *)state + 0) = 0;
+    *(s16 *)((u8 *)state + 2) = 0;
+    *(s16 *)((u8 *)state + 4) = 0;
+    *(s32 *)((u8 *)state + 8) = 0;
+    *(s32 *)((u8 *)state + 0xC) = -1;
+    func_800EFD24((f32 *)((u8 *)state + 0x18));
+    func_800EFD24((f32 *)((u8 *)state + 0x24));
+    *(f32 *)((u8 *)state + 0x34) = 1.0f;
+    *(f32 *)((u8 *)state + 0x30) = 40.0f;
+    *(s32 *)((u8 *)state + 0x14) = func_80015184();
+    *(s8 *)((u8 *)state + 0x3E) = 0;
+    *(s8 *)((u8 *)state + 0x42) = 0;
+    *(s8 *)((u8 *)state + 0x40) = 0;
+    *(s8 *)((u8 *)state + 0x43) = 0;
+    *(s16 *)((u8 *)state + 0x3C) = 0;
+    *(s32 *)((u8 *)state + 0x38) = arg0;
+    *(s32 *)((u8 *)state + 0x10) = 0;
+    *(s8 *)((u8 *)state + 0x41) = 0;
+    *(f32 *)((u8 *)state + 0x44) = func_800C517C(data);
+    *(f32 *)((u8 *)state + 0x48) = func_800C5190(data);
+    return handle;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_1.s")
 
 /* extern */
 
-void ncpod_entrypoint_2(s16 arg0) {
-    s32 func_8001B798(s16);
-    func_8001B798(arg0);
+void *ncpod_entrypoint_2(s16 arg0) {
+    void *func_8001B798(s16);
+    return func_8001B798(arg0);
 }
 
 void ncpod_entrypoint_3(s16 *arg0, s32 arg1) {
