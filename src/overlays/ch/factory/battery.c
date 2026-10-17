@@ -120,7 +120,22 @@ f32 func_80800580_chfactorybattery(f32 *arg0) {
 
 s32 func_80800678_chfactorybattery(Actor *arg0) { switch (arg0->pad6C_21) { case 0x51: return 3; case 0x5C: return 4; case 0x63: return 5; case 0x65: return 6; case 0: return arg0->unk6C_0; default: return 0; } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_808006E4_chfactorybattery.s")
+void func_808006E4_chfactorybattery(Actor *arg0) {
+    s32 func_800C8A98(void);
+    void func_800C8D4C(s32, f32 *);
+    void func_800C8F64(s32, s32);
+    void func_800C8FE0(s32, s32);
+    f32 func_80103EAC(Actor *);
+    f32 size[2];
+
+    size[0] = 2.0f * func_80103EAC(arg0);
+    size[1] = func_80103EAC(arg0) * 4.0f;
+    if ((*(s32 *)&arg0->unk50 = func_800C8A98()) != 0) {
+        func_800C8F64(*(s32 *)&arg0->unk50, 3);
+        func_800C8D4C(*(s32 *)&arg0->unk50, size);
+        func_800C8FE0(*(s32 *)&arg0->unk50, 0);
+    }
+}
 
 void func_80800760_chfactorybattery(Actor *arg0) {
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
