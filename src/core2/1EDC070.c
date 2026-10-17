@@ -25,7 +25,23 @@ f32 *func_801027F4(u8 *arg0) {
     return arg0 + 0x44;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102844.s")
+s32 func_80102844(Actor *arg0, f32 arg1, s32 arg2, f32 *arg3) {
+    void func_80102424(Actor *, s32);
+    void func_80102924(void *, f32);
+    void func_80102B2C(Actor *, f32);
+    s32 func_80102CF4(Actor *, s32);
+    f32 func_80102D78(Actor *, f32 *);
+
+    func_80102924(arg0, func_80102D78(arg0, arg3));
+    func_80102B2C(arg0, arg1);
+    if (func_80102CF4(arg0, 0x41200000) != 0) {
+        if (arg2 != -1) {
+            func_80102424(arg0, arg2);
+        }
+        return 1;
+    }
+    return 0;
+}
 
 f32 func_801028C4(Actor *arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4) {
     f32 func_80102D78(Actor *, f32 *);
