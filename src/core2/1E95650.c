@@ -92,12 +92,25 @@ void func_800BBFDC(void *arg0, s32 arg1) {
     func_800E2A14(arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E95650/func_800BC358.s")
+void func_800BC358(void *arg0, s32 arg1, s32 arg2) {
+    void func_800BBD60(void *, s32);
+
+    if (((*(u16 *)arg0 & 4) ^ arg2) == 0) {
+        switch (*(u8 *)((u8 *)arg0 + 0xA)) {
+        case 0:
+            func_800BBD60(arg0, arg1);
+            break;
+        case 7:
+            func_800BBFDC(arg0, arg1);
+            break;
+        }
+    }
+}
 
 /* extern */
 
-void func_800BC3B8(s32 arg0, s32 arg1) {
-    void func_800BC358(s32, s32, s32);
+void func_800BC3B8(void *arg0, s32 arg1) {
+    void func_800BC358(void *, s32, s32);
     func_800BC358(arg0, arg1, 4);
     func_800BC358(arg0, arg1, 0);
 }
