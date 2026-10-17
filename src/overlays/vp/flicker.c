@@ -31,7 +31,37 @@ void vpflicker_entrypoint_1(void* arg0)
 {
     heap_free(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/flicker/vpflicker_entrypoint_2.s")
+/* extern */
+
+void vpflicker_entrypoint_2(f32 *arg0, u8 *arg1) {
+    f32 func_800DC264(f32, f32);
+    f32 temp_f2;
+    s16 *var_v1;
+    s16 temp_t8;
+    s32 var_v0;
+    u8 *base;
+
+    temp_f2 = func_800DC264(-0.04f, 0.04f);
+    *arg0 += temp_f2;
+    temp_f2 = *arg0;
+    if (temp_f2 > 1.0f) {
+        *arg0 = 1.0f;
+    } else {
+        *arg0 = temp_f2;
+    }
+    temp_f2 = *arg0;
+    if (temp_f2 < 0.8f) {
+        *arg0 = 0.8f;
+    } else {
+        *arg0 = temp_f2;
+    }
+    base = arg1;
+    base += *(s32 *)(arg1 + 0x1C);
+    var_v1 = (s16 *)(arg0 + 2);
+    for (var_v0 = 0; var_v0 < ((s32 *)arg0)[1]; var_v0++) {
+        *(s8 *)(base + var_v1[var_v0] * 0x14 + 3) = 1;
+    }
+}
 
 void vpflicker_entrypoint_3(f32 *arg0, s16 arg1, Vtx *arg2, s32 arg3)
 {
