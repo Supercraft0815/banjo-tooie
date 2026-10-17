@@ -101,7 +101,38 @@ void func_80800508_chfactoryrobot(Actor *arg0) {
     func_80107200(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_808005D4_chfactoryrobot.s")
+void func_808005D4_chfactoryrobot(Actor *arg0) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800EF214(f32 *, f32, f32, f32);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern s32 D_80802A00_chfactoryrobot;
+    extern s32 D_80802A38_chfactoryrobot;
+    extern s32 D_80802A6C_chfactoryrobot;
+    extern s32 D_80802A7C_chfactoryrobot;
+    struct RobotRenderFlags {
+        u8 pad0[0x70];
+        u32 pad70 : 31;
+        u32 enabled : 1;
+    };
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 *position;
+
+    position = arg0->position;
+    func_800EE7F8(sp44, position);
+    func_800EF214(sp44, -arg0->rotation[0], arg0->rotation[1], 20.0f);
+    func_800BBCB8(sp44, position, 1.0f, 8, &D_80802A38_chfactoryrobot);
+    func_800BBCB8(sp44, position, 1.0f, 12, &D_80802A00_chfactoryrobot);
+    func_8010D930(6, ((struct RobotRenderFlags *)arg0)->enabled, sp44, &D_80802A6C_chfactoryrobot);
+    _subaddieaudioquick_entrypoint_2(arg0, sp44, &D_80802A7C_chfactoryrobot);
+    func_800EE7F8(sp38, position);
+    func_800EF1B8(sp38, arg0->rotation[1], -50.0f);
+    _chexploder_entrypoint_3(arg0, sp38, 0);
+}
 
 /* extern */
 
@@ -387,7 +418,7 @@ void func_80801D7C_chfactoryrobot(Actor *arg0) {
     } RobotFlags;
     s32 _capod_entrypoint_13(s32, s32, s32, s32);
     s32 _chmrtannoy_entrypoint_0(void);
-    s32 _subaddieaudioquick_entrypoint_2(s32, s32, s32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
     s32 _sudialog_entrypoint_0(s32, s32);
     s32 func_8008FDC4(void);
@@ -469,7 +500,7 @@ void func_80801D7C_chfactoryrobot(Actor *arg0) {
         pos6[1] += height6;
         func_800D1254(0x39, 1, pos6);
         if (!((RobotFlags *)arg0)->sounded && *(f32 *)((u8 *)arg0 + 0x58) < 0.7f) {
-            _subaddieaudioquick_entrypoint_2((s32)arg0, (s32)position, &D_80802AEC_chfactoryrobot);
+            _subaddieaudioquick_entrypoint_2(arg0, position, &D_80802AEC_chfactoryrobot);
             ((RobotFlags *)arg0)->sounded = 1;
         }
         if (done6) {
