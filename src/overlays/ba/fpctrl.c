@@ -93,7 +93,26 @@ void func_808005FC_bafpctrl(s32 arg0, f32 *arg1) {
     func_800EF04C(arg1, sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_8080064C_bafpctrl.s")
+void func_8080064C_bafpctrl(PlayerState *arg0) {
+    s32 baflag_clear(PlayerState *, s32);
+    s32 func_8009CC68();
+    s32 func_8009E674(PlayerState *, s32);
+    s32 func_8010D930(s32, s32, s32, s32 *);
+    s32 func_80110C2C(PlayerState *);
+    s32 func_80800424_bafpctrl(PlayerState *, s32);
+    extern s32 D_808010B0_bafpctrl;
+    if (func_8009CC68() == 0) {
+        func_8010D930(0xC, func_8009E674(arg0, 2), 0, &D_808010B0_bafpctrl);
+    }
+    func_80110C2C(func_800A4CA8(arg0));
+    baflag_clear(arg0, 0x24);
+    baflag_clear(arg0, 0x25);
+    baflag_clear(arg0, 0x2E);
+    baflag_clear(arg0, 0x17);
+    baflag_clear(arg0, 0x3A);
+    func_80800424_bafpctrl(arg0, 0);
+    func_808000DC_bafpctrl(arg0, 0x3F800000, 40.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_80800704_bafpctrl.s")
 
