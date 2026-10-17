@@ -202,7 +202,72 @@ void func_80800470_gczoombox(void *arg0) {
     gczoombox_entrypoint_17(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_808004D0_gczoombox.s")
+void func_808004D0_gczoombox(u8 *arg0) {
+    void func_800C3CE8(u8);
+    int func_800C3D78(u8);
+    void func_800FC74C(u32);
+    s32 func_800FCCD4(s32);
+    void gczoombox_entrypoint_18(void *);
+    struct {
+        u8 pad0[0x144];
+        u8 sound[8];
+        f32 mode;
+        u8 pad150[0x20];
+        s8 unk170;
+        s8 state;
+        u8 pad172[6];
+        u8 count;
+        u8 pad179[0x6B];
+        u32 flag80:1;
+        u32 flag40:1;
+        u32 flag20:1;
+        u32 pad3:1;
+        u32 flag08:1;
+        u32 flag04:1;
+        u32 pad6:2;
+        u32 flagE580:1;
+        u32 pad9:6;
+        u32 flagE501:1;
+        u32 pad16:13;
+        u32 flagE704:1;
+        u32 pad30:2;
+    } *this = arg0;
+    int i;
+    u8 *sound;
+
+    this->state = 6;
+    this->flagE704 = 0;
+    this->flagE501 = 1;
+    this->flagE580 = 0;
+    func_808001D4_gczoombox(arg0, 0x30);
+    func_808001D4_gczoombox(arg0 + 0x30, 0x30);
+    this->flag40 = 0;
+    this->flag20 = 0;
+    this->flag08 = 0;
+    this->flag04 = 0;
+    this->flag80 = 0;
+    if (-1.0f == *(f32 *)(arg0 + 0x14C)) {
+        if (func_800FCCD4(arg0[0x144])) {
+            func_800FC74C(arg0[0x144]);
+        }
+    } else {
+        if (arg0[0x178]) {
+            i = 0;
+            if (i < arg0[0x178]) {
+                sound = arg0;
+                do {
+                    if (func_800C3D78(sound[0x144])) {
+                        func_800C3CE8(sound[0x144]);
+                    }
+                    i++;
+                    sound++;
+                } while (i < arg0[0x178]);
+            }
+        }
+    }
+    arg0[0x170] = 0;
+    gczoombox_entrypoint_18(arg0);
+}
 
 int func_808005F0_gczoombox(u8 arg0, u8 arg1){
     if(arg1 == 0){
@@ -275,8 +340,8 @@ void func_808009E4_gczoombox(u8 *this, s32 arg1) {
     void func_800C3058(u8, s32);
     void func_800C31DC(u8, f32);
     void func_800C3BDC(u8);
-    s32 func_800C3CE8(u8);
-    s32 func_800C3D78(u8);
+    void func_800C3CE8(u8);
+    int func_800C3D78(u8);
     void func_800D527C(s32);
     void func_800D52CC(s32);
     s32 func_800DC214(s32, s32);
@@ -616,7 +681,7 @@ void gczoombox_entrypoint_4(u8 *box) {
     void func_808002E4_gczoombox(void *);
     f32 func_80800364_gczoombox(void *);
     int func_808003D8_gczoombox(void *, f32, f32);
-    s32 func_808004D0_gczoombox(void *);
+    void func_808004D0_gczoombox(u8 *);
     void func_808006E0_gczoombox(void *, u8);
     void func_80800964_gczoombox(void *);
     s32 func_80801C0C_gczoombox(void *, u8 *);
@@ -1160,7 +1225,7 @@ void gczoombox_entrypoint_31(void *arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_32.s")
 
 int gczoombox_entrypoint_33(u8 *box) {
-    s32 func_808004D0_gczoombox(void *);
+    void func_808004D0_gczoombox(u8 *);
     void gczoombox_entrypoint_17(void *);
     if (box == NULL || box[0x171] == 0 || box[0x171] == 7 || box[0x171] == 9) return 0;
     if (box[0x171] == 6 && box[0x170] == 4) return 0;
@@ -1178,7 +1243,7 @@ int gczoombox_entrypoint_33(u8 *box) {
 /* extern */
 
 s32 gczoombox_entrypoint_34(void *arg0) {
-    s32 func_808004D0_gczoombox(void *);
+    void func_808004D0_gczoombox(u8 *);
     u8 temp_v0;
 
     if ((arg0 == NULL) || (temp_v0 = (*(u8 *)((s8 *)(arg0) + (0x171))), (temp_v0 == 0)) || (temp_v0 == 7) || (temp_v0 == 9)) {
