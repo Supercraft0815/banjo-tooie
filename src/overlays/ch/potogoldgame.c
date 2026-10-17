@@ -261,7 +261,39 @@ void func_80802124_chpotogoldgame(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_8080219C_chpotogoldgame.s")
+void func_8080219C_chpotogoldgame(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_7(s32, s32);
+    s32 _capod_entrypoint_8(s32);
+    void _gcdialogcamera_entrypoint_6(Unk80132ED0 *);
+    void _gcdialogcamera_entrypoint_8(void);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    f32 func_800F5F24(u32);
+    f32 sp3C[3];
+    f32 sp30[3];
+
+    switch (arg0->actorData[7]) {
+        case 1:
+            break;
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x29, 0x10);
+        default:
+            _capod_entrypoint_8(1);
+            arg0->actorData[7] = 1;
+            _gcdialogcamera_entrypoint_6(arg0->unk0);
+            _gcdialogcamera_entrypoint_8();
+            _capod_entrypoint_7(5, 1);
+            break;
+    }
+    func_800F5A00(func_800F54E4(), sp3C);
+    func_800EEB9C(sp30, func_800F5F24(func_800F54E4()), 300.0f);
+    func_800EF04C(sp3C, sp30);
+    _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, sp3C, 0x22);
+}
 
 /* extern */
 
