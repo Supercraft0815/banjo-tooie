@@ -52,7 +52,39 @@ block_7:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB9940/func_800E0170.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB9940/func_800E02F8.s")
+void func_800E02F8(s16 *arg0, f32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 *arg5) {
+    f32 func_800E0414(s16 *, f32);
+    f32 func_800E04C0(u8 *, f32, s32);
+    f32 temp_f20;
+    u8 *var_s1;
+    s32 var_fp;
+    s32 var_s2;
+    s32 var_s3;
+    u16 temp_v0;
+    u32 temp_v1;
+
+    temp_f20 = func_800E0414(arg0, arg1);
+    var_s3 = 0;
+    if (arg2 != 0) {
+        var_fp = arg0[1] - arg0[0];
+    } else {
+        var_fp = 0;
+    }
+    var_s1 = (u8 *)(arg0 + 4);
+    var_s2 = 0;
+    if (arg0[2] > 0) {
+        do {
+            temp_v0 = *(u16 *)var_s1;
+            temp_v1 = (u32)temp_v0 >> 4;
+            if (((s32)temp_v1 >= arg3) && (arg4 >= (s32)temp_v1) && ((temp_v0 & 0xF) == 7)) {
+                arg5[var_s3] = func_800E04C0((u8 *)var_s1, temp_f20, var_fp);
+                var_s3 += 1;
+            }
+            var_s2 += 1;
+            var_s1 += *(s16 *)(var_s1 + 2) * 4 + 4;
+        } while (var_s2 < arg0[2]);
+    }
+}
 
 f32 func_800E0414(s16 *arg0, f32 arg1) {
     return (arg1 * (arg0[1] - arg0[0])) + arg0[0];
