@@ -39,7 +39,27 @@ s32 func_808000B8_gztrace(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/trace/func_808000E8_gztrace.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/trace/func_80800290_gztrace.s")
+u8 *func_80800290_gztrace(s32 arg0, s32 arg1, u8 *arg2) {
+    s32 i;
+    u8 *dest;
+    u8 *bytes;
+
+    bytes = (u8 *)&arg0;
+    dest = arg2;
+    for (i = 4 - arg1; i < 4; i++) {
+        *dest = (bytes[i] >> 4) + '0';
+        if (*dest >= ':') {
+            *dest += 0x27;
+        }
+        dest++;
+        *dest = (bytes[i] & 0xF) + '0';
+        if (*dest >= ':') {
+            *dest += 0x27;
+        }
+        dest++;
+    }
+    return dest;
+}
 
 void func_808003D0_gztrace(u8 *arg0) {
     struct TraceHeader {
