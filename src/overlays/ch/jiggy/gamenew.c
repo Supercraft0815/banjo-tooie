@@ -360,7 +360,37 @@ void func_808024C8_chjiggygamenew(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80802858_chjiggygamenew.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/chjiggygamenew_entrypoint_1.s")
+struct JiggyGameMarker {
+    u8 pad0[0x12];
+    u16 flags;
+};
+void chjiggygamenew_entrypoint_1(void) {
+    void func_800EC828(void);
+    Actor *func_80108474(u32, f32 *, s32);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    extern f32 D_80803DCC_chjiggygamenew[3];
+    extern f32 D_80803DD8_chjiggygamenew[3];
+    Actor *sp24;
+    register Actor *third;
+    Actor *sp1C;
+
+    D_80803DCC_chjiggygamenew[2] = 0.0f;
+    D_80803DCC_chjiggygamenew[1] = D_80803DCC_chjiggygamenew[2];
+    D_80803DCC_chjiggygamenew[0] = D_80803DCC_chjiggygamenew[2];
+    sp24 = func_80108474(0x1DF, D_80803DCC_chjiggygamenew, 0);
+    sp1C = func_80108528(0x1E2, D_80803DD8_chjiggygamenew, 0, &sp24);
+    sp24->unk3C = sp1C->unk0;
+    sp1C->unk3C = sp24->unk0;
+    third = func_80108528(0x1DE, sp24->position, 0, &sp24);
+    sp24->actorData[7] = (u32)third->unk0;
+    third->unk3C = sp24->unk0;
+    ((struct JiggyGameMarker *)sp24->unk0)->flags = (((struct JiggyGameMarker *)sp24->unk0)->flags & 1) | 2;
+    ((struct JiggyGameMarker *)sp1C->unk0)->flags = (((struct JiggyGameMarker *)sp1C->unk0)->flags & 1) | 2;
+    ((struct JiggyGameMarker *)third->unk0)->flags = (((struct JiggyGameMarker *)third->unk0)->flags & 1) | 2;
+    func_800EC828();
+    func_800EC828();
+    func_800EC828();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/chjiggygamenew_entrypoint_2.s")
 
