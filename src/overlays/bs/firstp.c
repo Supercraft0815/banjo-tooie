@@ -1848,7 +1848,20 @@ s32 bsfirstp_entrypoint_21(s32 arg0) {
     return ((s32 *)&D_8080B520_bsfirstp)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80804F28_bsfirstp.s")
+void func_80804F28_bsfirstp(struct player_state_s *arg0) {
+    void func_80807BB8_bsfirstp();
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void baanim_playForDuration_onceSmoothStartingAt(void *, s32, f32, f32);
+    void func_8008B188(struct anctrl_s *, s32);
+    struct anctrl_s *func_8008D04C(struct player_state_s *);
+    func_80807BB8_bsfirstp(arg0);
+    baanim_playForDuration_onceSmoothStartingAt(arg0, 0x30C, 2.0f, 0.375f);
+    func_8008B188(baanim_getAnimCtrlPtr(arg0), 0);
+    func_80800340_bsfirstp(arg0, 0x310, 2.0f, 0.375f);
+    func_8008B188(func_8008D04C(arg0), 0);
+    func_80804A34_bsfirstp(0);
+    func_808061AC_bsfirstp(arg0, 0);
+}
 
 void func_80804FB4_bsfirstp(void)
 {
