@@ -84,7 +84,27 @@ void func_80800534_chtiptup(Actor *arg0, s32 arg1, s32 arg2) {
     func_800D1000(0x20U, 1U, NULL, 0U, NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800578_chtiptup.s")
+void func_80800578_chtiptup(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_800DA298(s32);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    void func_80102424(Actor *, s32);
+    void func_808007CC_chtiptup(void *);
+    void func_808008B4_chtiptup(Actor *, s32, s32);
+    s32 state;
+
+    if (arg1 == 0xFFA) {
+        func_800F82D4(func_800F54E4(), 0);
+        func_80102424(arg0, 4);
+        func_808008B4_chtiptup(arg0, 4, 0x30);
+        return;
+    }
+    if (arg0->actorData[5] != 0) {
+        func_808007CC_chtiptup(arg0);
+    }
+    state = func_800DA298(0xBE) != 0 ? 3 : 1;
+    func_80102424(arg0, state);
+}
 
 void func_80800614_chtiptup(f32 *arg0, f32 *arg1, s32 arg2, f32 arg3, s32 *arg4) {
     s32 func_800B53A4(s32);
