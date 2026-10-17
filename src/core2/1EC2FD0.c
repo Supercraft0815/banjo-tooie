@@ -154,7 +154,35 @@ void *func_800E9A24(s32 arg0) {
     return p;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9AC0.s")
+u32 func_800E9AC0(s16 *arg0, void *arg1) {
+    void func_800B3FD0(u8 **, void *, s32);
+    s32 func_800BE4C4();
+    void func_800E9CF4(s16 *);
+    s32 func_800E9E88(s32);
+    extern s32 D_80132DB4;
+    typedef struct {
+        s32 words[2];
+        u32 unused : 30;
+        u32 flag : 1;
+        u32 last : 1;
+    } Entry;
+    u32 sp24;
+    s32 index;
+    s32 sp1C;
+    s32 sp18;
+
+    sp24 = ((Entry *)arg1)->flag;
+    index = ((s32)arg1 - func_800E9E88((s32)arg0)) / 12;
+    sp1C = D_80132DB4;
+    sp18 = arg0[2];
+    func_800B3FD0((u8 **)&D_80132DB4, arg0 + 2, index);
+    if (sp1C != D_80132DB4) {
+        func_800BE4C4();
+    } else if (sp18 + 1 != arg0[2]) {
+        func_800E9CF4(arg0);
+    }
+    return sp24;
+}
 
 void func_800E9B74(s16 *arg0, s32 arg1) {
     void func_800B3FD0(u8 **, void *, s32);
