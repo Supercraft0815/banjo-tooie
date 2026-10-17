@@ -1,6 +1,7 @@
 #include "common.h"
 
 s32 func_800F5EF8(s32);
+void func_80110720(s8 *, s32);
 
 void plcamera_entrypoint_0(s32 *arg0) { s32 func_80110014(s32 *); int sp1C = func_800F5EF8(arg0); func_801108A0(func_80110014(sp1C)); func_8010FD88(sp1C); }
 
@@ -94,7 +95,38 @@ int func_80800300_plcamera(f32 *arg0, f32 *arg1) {
     return func_800EEB40(arg0, arg1) < 4000000.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/pl/camera/plcamera_entrypoint_11.s")
+void plcamera_entrypoint_11(s32 arg0, f32 *arg1) {
+    void func_800A516C(f32 *, f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EFB24(void *, void *, void *);
+    void func_800F5A00(s32, f32 *);
+    void func_8010FE14(s32 *, f32 *, f32 *);
+    s32 func_80110014(s32 *);
+    void func_80110720(s8 *, s32);
+    void func_801107F0(void *, f32 *);
+    s32 *sp5C;
+    s8 *sp58;
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp24;
+    f32 sp18[3];
+
+    sp5C = func_800F5EF8(arg0);
+    sp58 = func_80110014(sp5C);
+    func_800F5A00(arg0, sp40);
+    func_801107F0(sp58, sp4C);
+    func_800EFB24(sp34, sp4C, sp40);
+    func_800EFB24(sp28, arg1, sp40);
+    sp24 = func_800EEAA4(sp34, sp28);
+    func_80110720(sp58, 0);
+    if ((sp24 > 0.0f) && func_80800300_plcamera(sp40, sp4C)) {
+        func_800A516C(sp18, arg1, sp4C);
+        sp18[0] += 10.0f;
+        func_8010FE14(sp5C, sp4C, sp18);
+    }
+}
 
 s32 plcamera_entrypoint_12(s32 arg0, s32 arg1, s32 arg2) {
     s32 func_8010FDA8();
