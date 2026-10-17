@@ -411,7 +411,41 @@ void func_800CF40C(s32 arg0) {
     func_800CE980(1, sp1C, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF494.s")
+void func_800CF494(void) {
+    s32 func_800D3E40(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F6604(s32);
+    void func_800F7B9C(s32, u32);
+    s16 func_800CF640(void);
+    f32 func_800CF67C(void);
+    s32 func_800CF6D0(void);
+    extern s32 D_8012B160;
+    s32 pad;
+    f32 sp20;
+    f32 sp1C;
+    s32 temp_a0;
+    s32 temp_v0;
+
+    if (func_800D3E40(9) == 0) {
+        temp_v0 = func_800CEAA8(1);
+        temp_a0 = temp_v0;
+        if (((s16 *)&D_8012B160)[4] != 0) {
+            ((s16 *)&D_8012B160)[4]--;
+            return;
+        }
+        if (temp_v0 > 0) {
+            ((s16 *)&D_8012B160)[temp_a0] = 9;
+            sp20 = func_800CF67C();
+            func_800CE88C(1, 0);
+            sp1C = func_800CEF00(func_800CF640());
+            func_800CE8D8(1, sp1C, func_800CF6D0());
+            func_800CE980(1, sp20 * sp1C, 0);
+            if (func_800F6604(func_800F54E4()) != 0) {
+                func_800F7B9C(func_800F54E4(), 0x57);
+            }
+        }
+    }
+}
 
 /* extern */
 
