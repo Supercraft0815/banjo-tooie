@@ -54,13 +54,13 @@ void bswalk_entrypoint_1()
     func_80800000_bswalk();
 }
 
-void bswalk_entrypoint_2(u8 *arg0) {
-    s32 _bapackctrl_entrypoint_5(s32, s32);
-    s32 func_8008E0E8();
+void bswalk_entrypoint_2(PlayerState *arg0) {
+    void _bapackctrl_entrypoint_5(PlayerState *, s32);
+    int func_8008E0E8(PlayerState *);
     void func_800A2EDC(void *arg0, f32 arg1);
     func_800A2EDC(arg0, 1.0f);
     if (func_8008E0E8(arg0) != 0) {
-        _bapackctrl_entrypoint_5((s32) arg0, 3);
+        _bapackctrl_entrypoint_5(arg0, 3);
     }
 }
 
@@ -142,7 +142,52 @@ s32 bswalk_entrypoint_5(s32 arg0) {
     return ((s32 *)&D_80801520_bswalk)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_6.s")
+enum asset_e;
+enum baanim_update_type_e;
+enum yaw_type_e;
+enum ba_physics_type_e;
+
+void bswalk_entrypoint_6(PlayerState *self) {
+    struct anctrl_s;
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void baanim_setDurationRange(PlayerState *, f32, f32);
+    void func_8008C9F0(PlayerState *, f32, f32, f32, f32);
+    void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+    void _bapackctrl_entrypoint_5(PlayerState *, s32);
+    void bastick_resetZones(PlayerState *);
+    s32 bs_getPreviousState(PlayerState *);
+    void *func_8008AEDC(void *);
+    f32 func_8008C0C8(f32 *);
+    int func_8008E0E8(PlayerState *);
+    struct anctrl_s *control;
+    f32 start;
+
+    control = baanim_getAnimCtrlPtr(self);
+    if (bs_getPreviousState(self) == 3) {
+        start = func_8008C0C8(func_8008AEDC(control));
+    } else {
+        start = 0.0f;
+    }
+    anctrl_reset(control);
+    anctrl_setIndex(control, 3);
+    anctrl_setDuration(control, 0.43f);
+    anctrl_setStart(control, start);
+    anctrl_setPlaybackType(control, 2);
+    anctrl_start(control);
+    func_8009FFD8(self, 2, 1, 1, 2);
+    baanim_setDurationRange(self, 0.3f, 1.5f);
+    func_8008C9F0(self, 80.0f, 150.0f, 1.3f, 0.6f);
+    bastick_resetZones(self);
+    if (func_8008E0E8(self) != 0) {
+        _bapackctrl_entrypoint_5(self, 2);
+    }
+}
 
 void bswalk_entrypoint_7(PlayerState *self) {
     f32 bastick_distance(PlayerState *);
@@ -216,10 +261,10 @@ void bswalk_entrypoint_7(PlayerState *self) {
 
 /* extern */
 
-void bswalk_entrypoint_8(s32 arg0) {
-    s32 _bapackctrl_entrypoint_5(s32, s32);
-    s32 func_8008E0E8();
-    if (func_8008E0E8() != 0) {
+void bswalk_entrypoint_8(PlayerState *arg0) {
+    void _bapackctrl_entrypoint_5(PlayerState *, s32);
+    int func_8008E0E8(PlayerState *);
+    if (func_8008E0E8(arg0) != 0) {
         _bapackctrl_entrypoint_5(arg0, 3);
     }
 }
@@ -235,10 +280,10 @@ s32 bswalk_entrypoint_9(s32 arg0) {
 
 /* extern */
 
-void bswalk_entrypoint_12(s32 arg0) {
-    s32 _bapackctrl_entrypoint_5(s32, s32);
-    s32 func_8008E0E8();
-    if (func_8008E0E8() != 0) {
+void bswalk_entrypoint_12(PlayerState *arg0) {
+    void _bapackctrl_entrypoint_5(PlayerState *, s32);
+    int func_8008E0E8(PlayerState *);
+    if (func_8008E0E8(arg0) != 0) {
         _bapackctrl_entrypoint_5(arg0, 3);
     }
 }
@@ -253,14 +298,14 @@ s32 bswalk_entrypoint_13(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_15.s")
 
 void bswalk_entrypoint_16(PlayerState *arg0) {
-    s32 _bapackctrl_entrypoint_5(s32, s32);
+    void _bapackctrl_entrypoint_5(PlayerState *, s32);
     s32 baroll_setIdeal(s32, f32);
-    s32 func_8008E0E8();
+    int func_8008E0E8(PlayerState *);
     void func_8009BF5C(PlayerState *, f32);
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal((s32) arg0, 0.0f);
     if (func_8008E0E8(arg0) != 0) {
-        _bapackctrl_entrypoint_5((s32) arg0, 3);
+        _bapackctrl_entrypoint_5(arg0, 3);
     }
 }
 
