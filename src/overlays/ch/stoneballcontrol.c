@@ -56,7 +56,29 @@ s32 func_80800130_chstoneballcontrol(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800908_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800B4C_chstoneballcontrol.s")
+void func_80800B4C_chstoneballcontrol(void *arg0, s32 arg1) {
+    void func_80102424(Actor *, s32);
+    struct StoneballFlags {
+        u8 pad0[0x64];
+        u32 pad64_30 : 2;
+        u32 active : 1;
+        u32 pad64_0 : 29;
+    } *flags = arg0;
+    Actor *actor = arg0;
+
+    func_80102424(arg0, arg1);
+    switch (actor->unk70_10) {
+        case 2:
+            if (flags->active) {
+                actor->unk70_10 = 10;
+                actor->unk58 = 0.0f;
+            }
+            break;
+        case 8:
+            actor->unk50 = 0.0f;
+            break;
+    }
+}
 
 void func_80800BCC_chstoneballcontrol(u8 *arg0, s32 arg1) {
     typedef struct { f32 v[3]; } Vec3;
@@ -64,7 +86,7 @@ void func_80800BCC_chstoneballcontrol(u8 *arg0, s32 arg1) {
     s32 func_800EE780(u8 *, u8 *, s32 *);
     s32 func_800EFCD8(s32 *, f32, s32);
     f32 func_80102D78(u8 *);
-    s32 func_80800B4C_chstoneballcontrol(u8 *, s32);
+    void func_80800B4C_chstoneballcontrol(void *, s32);
     f32 func_8080009C_chstoneballcontrol();
     extern Vec3 D_808050B0_chstoneballcontrol;
     Vec3 sp2C = D_808050B0_chstoneballcontrol;
@@ -101,7 +123,7 @@ void func_80800BCC_chstoneballcontrol(u8 *arg0, s32 arg1) {
 void func_80800D20_chstoneballcontrol(u8 *arg0) {
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
-    s32 func_80800B4C_chstoneballcontrol(u8 *, s32);
+    void func_80800B4C_chstoneballcontrol(void *, s32);
     Actor *actor = (Actor *)arg0;
     ((f32 *)actor->actorData)[3] = func_8080009C_chstoneballcontrol();
     ((f32 *)actor->actorData)[7] = func_800DC178(0.9f, 1.1f) * 45.0f;
@@ -301,7 +323,7 @@ void func_80801734_chstoneballcontrol(Actor *arg0, s32 arg1) {
 
 void func_808017AC_chstoneballcontrol(Unk80132ED0 *arg0, s32 arg1) {
     Actor *func_80106790(Unk80132ED0 *);
-    s32 func_80800B4C_chstoneballcontrol(u8 *, s32);
+    void func_80800B4C_chstoneballcontrol(void *, s32);
     void *actor;
 
     actor = func_80106790(arg0);
@@ -986,7 +1008,7 @@ void func_80804304_chstoneballcontrol(u8 *arg0) {
     void *func_80100094(Actor *, u32);
     f32 func_80102D78();
     Actor *func_80106790(Unk80132ED0 *);
-    s32 func_80800B4C_chstoneballcontrol(u8 *, s32);
+    void func_80800B4C_chstoneballcontrol(void *, s32);
     s32 i;
     u8 *parent;
     u8 *other;
