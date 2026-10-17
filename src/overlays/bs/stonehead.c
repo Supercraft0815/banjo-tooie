@@ -193,7 +193,39 @@ void bsstonehead_entrypoint_12(PlayerState *arg0)
 
 void bsstonehead_entrypoint_13(PlayerState *arg0) { func_80800060_bsstonehead(arg0); (*(s32 *)((s8 *)(arg0) + 0x15C)) = 1; func_808008CC_bsstonehead(arg0, 1); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_14.s")
+void bsstonehead_entrypoint_14(PlayerState *arg0) {
+    int baanim_isStopped(PlayerState *);
+    int player_isStable(PlayerState *);
+    int func_8008DF8C(PlayerState *, s32);
+    void func_8009D3A8(PlayerState *, s32);
+    s32 bs_setState(s32, s32);
+    s32 sp24;
+
+    sp24 = 0;
+    func_808000CC_bsstonehead(arg0);
+    func_8009D3A8(arg0, 0);
+    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+        case 1:
+            if (func_8008DF8C(arg0, 0x82)) {
+                func_808008CC_bsstonehead(arg0, 2);
+            }
+            break;
+        case 2:
+            if (player_isStable(arg0)) {
+                func_808008CC_bsstonehead(arg0, 3);
+            }
+            break;
+        case 3:
+            if (baanim_isStopped(arg0)) {
+                sp24 = 0xB3;
+            }
+            break;
+    }
+    if (player_isStable(arg0)) {
+        sp24 = func_808003F4_bsstonehead(arg0, sp24);
+    }
+    bs_setState(arg0, sp24);
+}
 
 s32 bsstonehead_entrypoint_15(s32 arg0) {
     extern s32 D_80801660_bsstonehead[];
