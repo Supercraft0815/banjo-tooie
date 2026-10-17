@@ -42,12 +42,13 @@ struct anctrl_s *func_80104248(void *arg0) {
     return func_80104200((*(s16 *)((s8 *)(arg0) + (0x8C))));
 }
 
-s32 func_80104268(s32 arg0) {
+struct anctrl_s *func_80104268(u32 *arg0) {
+    void *freelist_next(void *, s32 *);
     extern s32 D_80136E70;
     s32 sp1C;
-    s32 sp18;
+    struct anctrl_s *sp18;
     sp1C = 0;
-    sp18 = (s32)freelist_next(&D_80136E70, &sp1C);
+    sp18 = freelist_next(&D_80136E70, &sp1C);
     func_8008B518((void *)sp18, 0);
     *(s16 *)arg0 = (s16)sp1C;
     return sp18;
@@ -55,12 +56,11 @@ s32 func_80104268(s32 arg0) {
 
 /* extern */
 
-s32 func_801042B8(s32 arg0) {
-    s32 func_80104268(s32);
-    return func_80104268(arg0 + 0x8C);
+struct anctrl_s *func_801042B8(Actor *arg0) {
+    return func_80104268(&arg0->pad8C);
 }
 
-s32 func_801042D8(s32 arg0) {
+s32 func_801042D8(void *arg0) {
     struct anctrl_s *func_80104200(s16);
     void func_8008B5E8(struct anctrl_s *);
     void freelist_erase(s32, s32);
@@ -77,7 +77,6 @@ s32 func_801042D8(s32 arg0) {
 
 /* extern */
 
-void func_80104328(s32 arg0) {
-    s32 func_801042D8(s32);
-    func_801042D8(arg0 + 0x8C);
+void func_80104328(Actor *arg0) {
+    func_801042D8(&arg0->pad8C);
 }

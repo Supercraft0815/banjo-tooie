@@ -3,12 +3,51 @@
 struct anctrl_s;
 struct anctrl_s *func_80104248(void *);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80101BE0.s")
+s32 func_80101BE0(Actor *arg0, u32 arg1) {
+    typedef struct {
+        f32 duration;
+        u16 index;
+        u16 playback;
+    } AnimationEntry;
+    s32 func_80102394(Actor *);
+    struct anctrl_s *func_801042B8(Actor *);
+    void func_80104328(Actor *);
+    void anctrl_reset(struct anctrl_s *);
+    u32 anctrl_getPlaybackType(u8 *);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setIndex(struct anctrl_s *, int);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void func_8008B188(struct anctrl_s *, s32);
+    s32 sp2C;
+    struct anctrl_s *control;
+
+    sp2C = func_80102394(arg0);
+    arg0->unk70_10 = arg1;
+    if (sp2C == 0) {
+        return 0;
+    }
+    if (((AnimationEntry *)(sp2C + arg1 * 8))->index != 0) {
+        control = func_80104248(arg0);
+        if (control == NULL) {
+            control = func_801042B8(arg0);
+            anctrl_reset(control);
+        }
+        if (anctrl_getPlaybackType((u8 *)control) == 3) {
+            anctrl_setPlaybackType(control, 2);
+        }
+        anctrl_setIndex(control, ((AnimationEntry *)(sp2C + arg1 * 8))->index);
+        anctrl_setDuration(control, ((AnimationEntry *)(sp2C + arg1 * 8))->duration);
+        func_8008B188(control, 1);
+    } else {
+        func_80104328(arg0);
+    }
+    return 1;
+}
 
 /* extern */
 
 void func_80101CDC(Actor *arg0, f32 arg1) {
-    s32 anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setDuration(struct anctrl_s *, f32);
     struct anctrl_s *temp_v0;
 
     temp_v0 = func_80104248(arg0);
@@ -33,7 +72,7 @@ f32 func_80101D0C(Actor *arg0) {
 /* extern */
 
 void func_80101D4C(Actor *arg0) {
-    s32 anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
     struct anctrl_s *temp_v0;
 
     temp_v0 = func_80104248(arg0);
@@ -45,7 +84,7 @@ void func_80101D4C(Actor *arg0) {
 /* extern */
 
 void func_80101D7C(Actor *arg0) {
-    s32 anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
     struct anctrl_s *temp_v0;
 
     temp_v0 = func_80104248(arg0);
