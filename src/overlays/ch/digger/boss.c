@@ -1028,7 +1028,40 @@ void func_8080666C_chdiggerboss(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80806A78_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80806B38_chdiggerboss.s")
+void func_80806B38_chdiggerboss(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void func_800F5A00(s32, f32 *);
+    int func_800F7C58(s32, s32, s32);
+    void func_800F8444(s32, f32 *);
+    struct DiggerBossData {
+        u8 pad0[4];
+        u8 flag;
+        u8 pad5[0x57];
+        u8 state;
+        u8 pad5D[2];
+        u8 active;
+        f32 timer;
+    } *data;
+    f32 position[3];
+    f32 rotation[3];
+    s32 child;
+
+    data = func_80100094(arg0, 0);
+    if (data->active != 0 || data->flag != 0) {
+        data->state = 3;
+        data->timer = 0.15f;
+        return;
+    }
+    child = func_80802248_chdiggerboss(arg0);
+    data->state = 3;
+    data->timer = 1.75f;
+    func_800F5A00(child, position);
+    func_800EFA4C(rotation, 0.0f, func_800F1DF4(position, arg0->position), 0.0f);
+    func_800F8444(child, rotation);
+    func_800F7C58(child, 0x61, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80806C08_chdiggerboss.s")
 
