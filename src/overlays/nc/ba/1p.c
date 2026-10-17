@@ -28,7 +28,20 @@ void func_8080004C_ncba1p(void **arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/1p/func_80800230_ncba1p.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/1p/func_808003DC_ncba1p.s")
+void func_808003DC_ncba1p(f32 **arg0, f32 *arg1, f32 *arg2) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80111410(f32 **, f32 *, f32 *, f32);
+    void func_801163A0(void *, f32);
+    func_801163A0(arg0, 0.0f);
+    func_800EE7F8(*arg0, *arg0 + 6);
+    if (((u8 *)*arg0)[0x50] != 0) {
+        func_80111410(arg0, *arg0 + 9, *arg0 + 3, 120.0f);
+    } else {
+        func_800EE7F8(*arg0 + 3, *arg0 + 9);
+    }
+    func_800EE7F8(arg1, *arg0);
+    func_800EE7F8(arg2, *arg0 + 3);
+}
 
 /* extern */
 
