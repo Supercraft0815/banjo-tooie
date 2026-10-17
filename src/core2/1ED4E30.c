@@ -7,7 +7,7 @@ typedef struct {
     s16 track_id;
     s16 unk2A;
     u8 unk2C[0xC];
-    s32 freelist;
+    struct FreeList *freelist;
     s32 volume_indices[5];
 } MusicTrack;
 
@@ -124,12 +124,45 @@ void func_800FB774(void *arg0) {
     func_800172D4(index, -1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FB808.s")
+void func_800FB808(void) {
+    struct FreeList *freelist_new(s32, s32);
+    void func_800FB908(void);
+    void func_800FE614(void);
+    void func_80017864(void);
+    extern u8 D_80123E40;
+    extern s32 D_801359B0;
+    extern f32 D_801359B4;
+    extern f32 D_801359B8;
+    MusicTrack *track;
+    int i;
+
+    if (D_80123E40 != 0) {
+        func_800FB908();
+    }
+    D_80123E40 = 1;
+    D_801359B4 = 0;
+    D_801359B8 = 1.0f;
+    for (track = D_801357D0; track < &D_801357D0[6]; track++) {
+        track->track_id = -1;
+        ((s32 *)track)[0x20 / 4] = 0;
+        track->unk2A = 0;
+        ((s32 *)track)[0x24 / 4] = 0;
+        ((f32 *)track)[1] = 0.0f;
+        track->unk2C[4] &= 0xFF0F;
+        track->freelist = freelist_new(8, 4);
+        func_800FB6E0((s32 *)track, 0);
+        for (i = 0; i < 5; i++) {
+            track->volume_indices[i] = 0;
+        }
+    }
+    func_800FE614();
+    func_80017864();
+}
 
 void func_800FB908(void) {
     void func_80017244(void);
     void func_80016E7C(void);
-    void freelist_free(s32);
+    void freelist_free(struct FreeList *);
     extern u8 D_80123E40;
     MusicTrack *track;
     func_80017244();
