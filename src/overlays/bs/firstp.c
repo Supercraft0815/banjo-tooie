@@ -2607,7 +2607,32 @@ void func_80806C58_bsfirstp(void *arg0) {
     func_800A16BC(1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80806CC0_bsfirstp.s")
+void func_80806CC0_bsfirstp(void *arg0) {
+    s32 _bababykaz_entrypoint_9(struct player_state_s *);
+    void func_8009337C(void *, s32);
+    void func_800936E8(void *, s32);
+    void func_800A16BC(s32);
+    void func_800F7B9C(s32, u32);
+    s32 func_80808DB0_bsfirstp(void *);
+    s32 *sp24;
+    s32 temp_a2;
+
+    sp24 = *(s32 **)((s8 *)arg0 + 0x188);
+    temp_a2 = sp24[0x64 / 4];
+    if (temp_a2 >= 0) {
+        func_800F7B9C(temp_a2, 0x4F);
+        sp24[0x64 / 4] = -1;
+    }
+    func_8080175C_bsfirstp(arg0);
+    func_800936E8(arg0, 1);
+    func_8009337C(arg0, 0);
+    func_80801B64_bsfirstp(arg0, 3);
+    sp24[8 / 4] = -1;
+    func_80808DB0_bsfirstp(arg0);
+    func_80807C8C_bsfirstp(arg0);
+    func_800A16BC(0);
+    _bababykaz_entrypoint_9(arg0);
+}
 
 /* extern */
 
@@ -2667,7 +2692,7 @@ void func_808071D8_bsfirstp(s32 arg0)
 /* extern */
 
 void func_80807208_bsfirstp(s32 arg0) {
-    s32 _bababykaz_entrypoint_9(s32);
+    s32 _bababykaz_entrypoint_9(struct player_state_s *);
     void _batimer_set(struct player_state_s *, s32, f32);
     s32 _bsbabykaz_entrypoint_0(s32);
     s32 _bsbabykaz_entrypoint_4(s32);
