@@ -225,7 +225,7 @@ void func_80800624_bsbfly(PlayerState *arg0) {
     void func_8009DFD4(void *, s32, f32, f32, s32, s32);
     f32 func_800D8FF8();
     f32 func_800F0E00(f32, f32);
-    s32 player_inWater(void *);
+    s32 player_inWater(PlayerState *);
     s32 next_state;
     struct anctrl_s *anim;
     f32 pitch;
@@ -370,7 +370,48 @@ void func_80801178_bsbfly(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80801208_bsbfly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80801334_bsbfly.s")
+void func_80801334_bsbfly(PlayerState *arg0) {
+    void baanim_playForDuration_onceSmoothStartingAt(void *, s32, f32, f32);
+    s32 bainput_should_beak_bust(void *);
+    void bs_setState(PlayerState *, s32);
+    int func_8008DF8C(PlayerState *, s32);
+    void func_8009BB24(void *, f32 *);
+    void func_8009FE58(PlayerState *);
+    f32 func_800D8FF8(void);
+    s32 player_inWater(PlayerState *);
+    int player_isStable(PlayerState *);
+    s32 sp34;
+    f32 sp28[3];
+
+    sp34 = 0;
+    func_8009BB24(arg0, sp28);
+    switch (arg0->unk160.word) {
+        case 0:
+            if (func_8008DF8C(arg0, 0x5A) != 0) {
+                baanim_playForDuration_onceSmoothStartingAt(arg0, 8, 2.0f, 0.6667f);
+                arg0->unk160.word = 1;
+            }
+            break;
+        case 1:
+            break;
+    }
+    *(f32 *)arg0->kazfly -= func_800D8FF8();
+    if (*(f32 *)arg0->kazfly < 0.0f) {
+        arg0->unk15C.word = 1;
+        sp34 = 0x24;
+    }
+    if (bainput_should_beak_bust(arg0) != 0) {
+        sp34 = 0xF;
+    }
+    if (player_isStable(arg0) != 0) {
+        func_8009FE58(arg0);
+        sp34 = 0x20;
+    }
+    if (player_inWater(arg0) != 0) {
+        sp34 = 0x2D;
+    }
+    bs_setState(arg0, sp34);
+}
 
 s32 bsbfly_entrypoint_3(s32 arg0) {
     extern s32 D_80801D78_bsbfly[];
