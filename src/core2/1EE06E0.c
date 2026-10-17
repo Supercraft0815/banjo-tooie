@@ -204,7 +204,62 @@ void func_8010754C(void *arg0, void *arg1) {
     func_80103014((u8 *)actor);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_801075E4.s")
+void func_801075E4(Actor *arg0, void *arg1) {
+    struct ActorFlags {
+        u8 pad0[0x64];
+        u32 flag31 : 1;
+        u32 flag30 : 1;
+        u32 pad29 : 30;
+        u8 pad68[8];
+        u32 pad70 : 15;
+        u32 flag16 : 1;
+        u32 pad71 : 16;
+        u32 pad74 : 11;
+        u32 flag20 : 1;
+        u32 pad75 : 20;
+    };
+    struct Settings {
+        u8 pad0[0x1C];
+        f32 unk1C;
+    };
+    struct Entry {
+        f32 unk0;
+        u8 pad4[0x10];
+        s16 unk14;
+    };
+    void *func_80100368(void *);
+    s32 func_80102FA0(Actor *, s32);
+    s32 _subaddiefade_entrypoint_2();
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    extern s32 D_801244FC;
+    extern f32 D_80126474;
+    void *settings;
+    struct ActorFlags *flags = (void *)arg0;
+    struct Entry *entry = arg1;
+
+    settings = func_80100368(arg0);
+    func_8010754C(arg0, arg1);
+    if (func_801073F8((s32)arg0, 3, 4) == 0) {
+        _subaddiefade_entrypoint_2(arg0);
+        arg0->unk64_16 = 1;
+        if (((struct Settings *)settings)->unk1C != 0.0f) {
+            flags->flag20 = 1;
+        } else {
+            flags->flag20 = 0;
+        }
+        entry->unk0 = 0.0;
+    } else {
+        entry->unk0 = D_80126474;
+    }
+    flags->flag31 = func_80102FA0(settings, 0x80000004);
+    flags->flag30 = func_80102FA0(settings, 0x80000008);
+    arg0->unk14 |= 0x80000;
+    flags->flag16 = func_80102FA0(settings, 0x80001000);
+    entry->unk14 = 0;
+    if (func_801073F8((s32)arg0, 4, 2) == 0) {
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_801244FC);
+    }
+}
 
 /* extern */
 
