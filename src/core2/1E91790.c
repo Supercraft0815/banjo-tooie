@@ -260,11 +260,11 @@ void func_800B8CF0(f32 size)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B8CFC.s")
 
-void func_800B8DEC(s32 arg0, s32 arg1, s32 arg2, u8 arg3) {
+void func_800B8DEC(Gfx **arg0, s32 arg1, s32 arg2, u8 arg3) {
     arg3 = (u8) arg3;
     if (D_801282C0.data[0xC] != 0) {
         D_801282C0.data[8] = 0;
-        func_800B81CC((Gfx **) arg0, arg1, arg2, arg3);
+        func_800B81CC(arg0, arg1, arg2, arg3);
     }
 }
 

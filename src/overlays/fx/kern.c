@@ -19,19 +19,31 @@ void func_80800000_fxkern(u8 arg0, u8 arg1, s32 *arg2, s32 *arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/kern/func_80800084_fxkern.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/kern/func_80800224_fxkern.s")
+void func_80800224_fxkern(Gfx **arg0, s32 arg1, s32 arg2, u8 *arg3, s32 arg4) {
+    void func_800B7F14(Gfx **);
+    void func_800B811C(Gfx **);
+    void func_800B8DEC(Gfx **, s32, s32, u8);
+    extern f32 B_80800488_fxkern[][2];
+
+    func_800B8C98(1);
+    func_800B7F14(arg0);
+    for (; arg4 >= 0; arg4--) {
+        func_800B8DEC(arg0, (s32) (B_80800488_fxkern[arg4][0] + (f32) arg1), (s32) (B_80800488_fxkern[arg4][1] + (f32) arg2), arg3[arg4]);
+    }
+    func_800B811C(arg0);
+}
 
 /* extern */
 
-void fxkern_entrypoint_0(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 func_80800084_fxkern(s32);
-    s32 func_80800224_fxkern(s32, s32, s32, s32, s32);
+void fxkern_entrypoint_0(Gfx **arg0, s32 arg1, s32 arg2, u8 *arg3) {
+    s32 func_80800084_fxkern(u8 *);
+    void func_80800224_fxkern(Gfx **, s32, s32, u8 *, s32);
     func_80800224_fxkern(arg0, arg1, arg2, arg3, func_80800084_fxkern(arg3));
 }
 
-void fxkern_entrypoint_1(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_80800084_fxkern(s32);
-    s32 func_80800224_fxkern(s32, s32, s32, s32, s32);
+void fxkern_entrypoint_1(Gfx **arg0, s32 arg1, u8 *arg2) {
+    s32 func_80800084_fxkern(u8 *);
+    void func_80800224_fxkern(Gfx **, s32, s32, u8 *, s32);
     extern f32 B_80800488_fxkern[][2];
     s32 temp_v0;
     f32 divisor = 2.0f;
