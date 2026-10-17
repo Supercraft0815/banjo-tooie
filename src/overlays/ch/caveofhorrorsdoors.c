@@ -25,7 +25,33 @@ void func_8080000C_chcaveofhorrorsdoors(s32 arg0) {
     func_8010A63C(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/caveofhorrorsdoors/func_8080006C_chcaveofhorrorsdoors.s")
+s32 func_8080006C_chcaveofhorrorsdoors(Actor *arg0, s32 arg1, volatile s32 arg2) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    u32 func_800F54E4(void);
+    s32 func_800F8300(s32, s32, s32);
+    void func_80800144_chcaveofhorrorsdoors(s32);
+    f32 sp2C[3];
+
+    switch (arg1) {
+    case 0x40:
+        func_800EE7F8(sp2C, arg0->position);
+        sp2C[1] += 150.0f;
+        func_800EF1B8(sp2C, arg0->rotation[1], -80.0f);
+        _chexploder_entrypoint_3(arg0, sp2C, 7);
+        if ((s32)arg0->unk74_7 < 0x34) {
+            func_800F8300(func_800F54E4(), 2, (s32)arg0->position);
+        }
+        break;
+    case 0x90:
+        func_80800144_chcaveofhorrorsdoors((s32)arg0);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800144_chcaveofhorrorsdoors(s32 arg0) {
     s32 _chexploder_entrypoint_12(s32, s32);
