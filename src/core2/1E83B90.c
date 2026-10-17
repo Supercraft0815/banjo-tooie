@@ -663,7 +663,40 @@ void *func_800AC978(u16 *list, u16 *vertices, f32 position[3], f32 radius, f32 n
   return matched_tri;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AD1AC.s")
+void *func_800AD1AC(u16 *arg0, u16 *arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, f32 arg6, f32 *arg7, u32 arg8) {
+    void func_80019224(f32 *, f32 *);
+    void func_80019750(f32 *, f32 *, f32, f32 *);
+    void func_8001980C(f32 *, f32 *, f32, f32 *);
+    s32 func_80019CD4(void);
+    extern f32 D_80127938[];
+    extern f32 D_8012795C[];
+    f32 sp3C[3];
+    f32 *var_s0;
+    void *sp34;
+    f32 *end;
+    void *temp_v0;
+
+    func_80019CD4();
+    func_8001980C(arg2, arg3, arg4, 0);
+    func_80019224(sp3C, arg5);
+    temp_v0 = func_800AC978(arg0, arg1, sp3C, arg6 / arg4, arg7, arg8);
+    sp34 = temp_v0;
+    if (temp_v0 == NULL) {
+        return NULL;
+    }
+    func_80019CD4();
+    func_80019750(arg2, arg3, arg4, 0);
+    func_80019224(arg5, sp3C);
+    var_s0 = D_80127938; end = D_8012795C;
+    do {
+        func_80019224(var_s0, var_s0);
+        var_s0 += 3;
+    } while (var_s0 != end);
+    func_80019CD4();
+    func_80019750(0, arg3, 1.0f, 0);
+    func_80019224(arg7, arg7);
+    return sp34;
+}
 
 s32 func_800AD2C8(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 *arg4, s16 (**arg5)[3], s32 arg6, f32 arg7) {
     typedef struct { u16 vertex[3]; u16 pad; u32 flags; } Triangle;
