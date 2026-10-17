@@ -172,7 +172,31 @@ s32 func_800D6C34(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6C64.s")
+void func_800D6C64(void) {
+    extern u8 D_8012B800[];
+    extern s16 D_8012BE62;
+    s32 func_800D6408();
+    struct Entry {
+        u32 pad[2];
+        u32 id : 14;
+        u32 rest : 18;
+    } *ptr;
+    s32 index;
+    s32 id;
+    int size = 12;
+
+    index = D_8012BE62 - 1;
+    if (index >= 0) {
+        do {
+            ptr = (struct Entry *)(D_8012B800 + index * size);
+            id = ptr->id;
+            if (id < 0x1DDD || id >= 0x1ED8) {
+                func_800D6408(ptr);
+            }
+            index--;
+        } while (index >= 0);
+    }
+}
 
 s32 func_800D6CEC(s32 arg0) {
     extern u8 D_8012B800[];
