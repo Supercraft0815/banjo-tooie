@@ -169,4 +169,15 @@ void badust_entrypoint_12(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/badust_entrypoint_13.s")
+void badust_entrypoint_13(void *arg0) {
+    void func_80800010_badust(void *);
+
+    switch (**(s32 **)((u8 *)arg0 + 0x5C)) {
+        case 2:
+            func_80800010_badust(arg0);
+            break;
+        case 3:
+            func_80800008_badust(arg0);
+            break;
+    }
+}
