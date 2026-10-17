@@ -243,7 +243,21 @@ void bafpctrl_entrypoint_17(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/bafpctrl_entrypoint_18.s")
+void bafpctrl_entrypoint_18(void *arg0, s32 arg1) {
+    s32 bafpctrl_entrypoint_14(void *, s32);
+    void func_800947EC(struct player_state_s *, s32, s32);
+    if (arg1 != 0) {
+        bafpctrl_entrypoint_14(arg0, 2);
+        bafpctrl_entrypoint_9(arg0, 1);
+        bafpctrl_entrypoint_10(arg0, 1);
+        func_800947EC(arg0, 1, 1);
+        func_800947EC(arg0, 2, 1);
+    } else {
+        bafpctrl_entrypoint_14(arg0, 1);
+        func_800947EC(arg0, 1, 0);
+        func_800947EC(arg0, 2, 0);
+    }
+}
 
 /* extern */
 
