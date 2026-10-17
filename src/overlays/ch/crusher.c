@@ -161,7 +161,39 @@ OSThread *chcrusher_entrypoint_1(void)
     return (OSThread *) D_80800C40_chcrusher;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_80800734_chcrusher.s")
+void func_80800734_chcrusher(Actor *arg0) {
+    typedef struct { f32 v[3]; } CrusherVector;
+    extern CrusherVector D_80800C88_chcrusher;
+    extern CrusherVector D_80800C94_chcrusher;
+    extern u32 D_80800CA0_chcrusher[];
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    void func_8008FA94(f32 *, f32 *);
+    void func_80101FDC(Actor *, u32);
+    s32 flag;
+    CrusherVector sp30;
+    CrusherVector sp24;
+
+    flag = func_800DA298(FLAG_4FB_UNK);
+    if (arg0->unk74_7 == 0x32) {
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, flag, D_80800CA0_chcrusher);
+        sp30 = D_80800C88_chcrusher;
+        sp24 = D_80800C94_chcrusher;
+        func_8008FA94(sp30.v, sp24.v);
+    }
+    switch (arg0->unk70_10) {
+        case 1:
+            if (flag != 0) {
+                func_80101FDC(arg0, 2);
+            }
+            break;
+        case 2:
+            if (flag == 0) {
+                func_80101FDC(arg0, 1);
+            }
+            arg0->rotation[2] += arg0->unk54;
+            break;
+    }
+}
 
 /* extern */
 
