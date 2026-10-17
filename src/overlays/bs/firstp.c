@@ -397,7 +397,28 @@ void func_80800A18_bsfirstp(void *arg0, void *arg1) {
     func_800E0AFC(arg1, 0x2F, 1.0f, 0.0f, sp2C, sp28);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80800B44_bsfirstp.s")
+void func_80800B44_bsfirstp(void *arg0, void *arg1) {
+    s32 *func_80802484_bsfirstp(void *);
+    void func_800E0AFC(void *, u8, f32, f32, f32, f32);
+    s32 *sp5C;
+    f32 sp54[2];
+    f32 sp4C[2];
+    void *temp_v0;
+    f32 temp_f20;
+    f32 temp_f22;
+
+    sp5C = func_80802484_bsfirstp(arg0);
+    func_80800978_bsfirstp(arg0, sp5C, sp54, sp4C);
+    func_800E0AFC(arg1, *(u8 *)((u8 *)sp5C + 0x2B), 1.0f, sp54[0], sp4C[0], 0.0f);
+    func_800E0AFC(arg1, *(u8 *)((u8 *)sp5C + 0x2F), 1.0f, sp54[1], sp4C[1], 0.0f);
+    temp_v0 = *(void **)((u8 *)arg0 + 0x188);
+    temp_f20 = *(f32 *)((u8 *)temp_v0 + 0x44) * 20.0f;
+    temp_f22 = *(f32 *)((u8 *)temp_v0 + 0x60) * -15.0f;
+    func_800E0AFC(arg1, 0x2B, 0.5f, 0.0f, temp_f20, temp_f22);
+    func_800E0AFC(arg1, 0x2C, 0.5f, 0.0f, temp_f20, temp_f22);
+    func_800E0AFC(arg1, 0x2D, 0.5f, 0.0f, temp_f20, temp_f22);
+    func_800E0AFC(arg1, 0x2E, 0.5f, 0.0f, temp_f20, temp_f22);
+}
 
 void func_80800C88_bsfirstp(void *arg0, void *arg1) {
     s32 *func_80802484_bsfirstp(void *);
