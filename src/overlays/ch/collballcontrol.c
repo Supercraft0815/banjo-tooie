@@ -415,7 +415,7 @@ s32 func_8080237C_chcollballcontrol(void *arg0) {
 }
 
 s32 func_808023FC_chcollballcontrol(void *ptr, s32 arg1) {
-    void func_80802AF8_chcollballcontrol(u8 *, s32);
+    void func_80802AF8_chcollballcontrol(Actor *, s32);
     u8 *arg0 = ptr;
 
     switch (arg1) {
@@ -588,7 +588,39 @@ void func_80802A50_chcollballcontrol(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80802AF8_chcollballcontrol.s")
+void func_80802AF8_chcollballcontrol(Actor *arg0, s32 arg1) {
+    Actor *func_80106790(Unk80132ED0 *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    void _sukickball_entrypoint_9(Actor *, s32, s32);
+    extern s32 D_80804F2C_chcollballcontrol[];
+    Actor *parent;
+    u32 id;
+
+    parent = func_80106790(arg0->unk3C);
+    func_80802A50_chcollballcontrol(arg0);
+    id = arg0->unk0->unk24 >> 22;
+    switch (id) {
+    case 0x44:
+        if (arg0->unk64_19) {
+            _sukickball_entrypoint_9(parent, D_80804F2C_chcollballcontrol[arg1], 5);
+        } else {
+            _sukickball_entrypoint_9(parent, D_80804F2C_chcollballcontrol[arg1], 1);
+        }
+        break;
+    case 0x42:
+        _sukickball_entrypoint_9(parent, D_80804F2C_chcollballcontrol[arg1], 3);
+        break;
+    case 0x43:
+        if (arg0->unk64_19) {
+            _sukickball_entrypoint_9(parent, D_80804F2C_chcollballcontrol[arg1], 4);
+        } else {
+            _sukickball_entrypoint_9(parent, D_80804F2C_chcollballcontrol[arg1], 2);
+        }
+        break;
+    }
+    arg0->unk70_10 = 4;
+    _subaddiefade_entrypoint_3(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/chcollballcontrol_entrypoint_1.s")
 
