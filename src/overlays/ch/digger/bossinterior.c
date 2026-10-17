@@ -40,6 +40,25 @@ void func_8080002C_chdiggerbossinterior(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossinterior/func_808000F4_chdiggerbossinterior.s")
+s32 func_808000F4_chdiggerbossinterior(Actor *arg0, s32 arg1, u8 arg2) {
+    s32 func_800DA980(s32, s32);
+    void func_80101FDC(Actor *, u32);
+    Actor *func_80800178_chdiggerbossinterior(Actor *, s32);
+    Actor *actor;
+    s32 ret;
+
+    if (arg1 == 0x49) {
+        actor = func_80800178_chdiggerbossinterior(arg0, 0x32);
+        if (func_800DA980(0xA4F, 2) > 0) {
+            actor = func_80800178_chdiggerbossinterior(actor, 0x33);
+        }
+        func_80101FDC(actor, 2);
+        actor->unk79_4 = 1;
+        ret = 1;
+    } else {
+        return 0;
+    }
+    return ret;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossinterior/func_80800178_chdiggerbossinterior.s")
