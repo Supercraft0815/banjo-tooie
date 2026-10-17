@@ -254,7 +254,32 @@ s32 bssnowball_entrypoint_5(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_808006BC_bssnowball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_808007D8_bssnowball.s")
+void func_808007D8_bssnowball(PlayerState *arg0) {
+    int bakey_released(PlayerState *, int);
+    f32 baphysics_get_vertical_velocity(PlayerState *);
+    s32 bs_setState(s32, s32);
+    int func_8008DF8C(PlayerState *, s32);
+    void func_8009D3A8(PlayerState *, s32);
+    void func_800A2EAC(void *);
+    int player_isStable(PlayerState *);
+    s32 sp24;
+
+    sp24 = 0;
+    func_80800064_bssnowball(arg0, 1);
+    func_80800000_bssnowball(arg0);
+    if ((bakey_released(arg0, 8) != 0) && (baphysics_get_vertical_velocity(arg0) > 0.0f)) {
+        baphysics_reset_gravity(arg0);
+    }
+    if (func_8008DF8C(arg0, 0xC8) != 0) {
+        func_8009D3A8(arg0, 0);
+    }
+    if (player_isStable(arg0) != 0) {
+        func_800A2EAC(arg0);
+        sp24 = 0x17E;
+    }
+    bssnowball_entrypoint_2(arg0);
+    bs_setState(arg0, sp24);
+}
 
 void func_8080089C_bssnowball(s32 arg0) {
     void func_8009BF5C(struct player_state_s *, f32);
