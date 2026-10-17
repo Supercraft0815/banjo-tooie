@@ -84,7 +84,33 @@ void susubgame_entrypoint_6(s32 *arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/susubgame_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/susubgame_entrypoint_8.s")
+void susubgame_entrypoint_8(s32 *arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 _ncpod_entrypoint_32(s32, s32, s32, s32);
+    s32 func_800A93E4(s32);
+    void func_80800814_susubgame(s32 *, void *, s32);
+    int func_808008DC_susubgame(s32);
+    s32 var_s0;
+
+    if (arg4 == 0) {
+        arg4 = *arg0;
+    }
+    switch (*arg1) {
+    case 0:
+        func_80800814_susubgame(arg0, arg1, arg3);
+    case 1:
+    case 2:
+        *arg1 = 3;
+    case 3:
+        var_s0 = 0;
+        do {
+            if (func_808008DC_susubgame(var_s0) != 0) {
+                _ncpod_entrypoint_32(func_800A93E4(var_s0), arg4, arg2, arg3 | 0x800);
+            }
+            var_s0 += 1;
+        } while (var_s0 != 8);
+        return;
+    }
+}
 
 /* extern */
 
