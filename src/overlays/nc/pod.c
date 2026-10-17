@@ -83,7 +83,48 @@ s16 ncpod_entrypoint_0(s32 arg0) {
     return handle;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_1.s")
+void ncpod_entrypoint_1(s16 arg0) {
+    void *ncpod_entrypoint_2(s16);
+    s32 ncpod_entrypoint_12(void *, s32);
+    void ncpod_entrypoint_15(void *, s32, s32);
+    void func_80015178(s32);
+    void func_8001B754(s16);
+    s32 func_800A940C(s32);
+    void func_800C5148(s32, f32);
+    void func_800C51A4(s32, f32);
+    void *state;
+    s32 data;
+    f32 value;
+    f32 value2;
+    s32 flags;
+    s32 enabled;
+
+    state = ncpod_entrypoint_2(arg0);
+    data = func_800A940C(*(s32 *)((u8 *)state + 0x38));
+    ncpod_entrypoint_12(state, 0);
+    if (*(u8 *)((u8 *)state + 0x3E) != 0) {
+        enabled = (*(s32 *)((u8 *)state + 0x10) & 0x4000) ? 0 : 1;
+        ncpod_entrypoint_15(state, 0, enabled);
+    }
+    flags = *(s32 *)((u8 *)state + 0x10);
+    if (!(flags & 0x8000)) {
+        if (flags & 0x80000) {
+            value = 40.0f;
+        } else {
+            value = *(f32 *)((u8 *)state + 0x44);
+        }
+        func_800C5148(data, value);
+        if (*(s32 *)((u8 *)state + 0x10) & 0x80000) {
+            value2 = 1.0f;
+        } else {
+            value2 = *(f32 *)((u8 *)state + 0x48);
+        }
+        func_800C51A4(data, value2);
+    }
+    func_80015178(*(s32 *)((u8 *)state + 0x14));
+    func_808000AC_ncpod(state);
+    func_8001B754(arg0);
+}
 
 /* extern */
 
