@@ -95,7 +95,26 @@ void func_80800440_chtntmineshoot(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800830_chtntmineshoot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800A1C_chtntmineshoot.s")
+s32 func_80800A1C_chtntmineshoot(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    f32 func_8010CD28(Actor *);
+    f32 func_800136E4(f32);
+    s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    void func_80102BF8(void *, f32, f32, f32);
+    s32 func_8010B990(Actor *, s32);
+    s32 sp2C;
+    u8 *sp28;
+    f32 angle;
+
+    sp28 = func_80100094(arg0, 0U);
+    angle = func_800136E4(func_8010CD28(arg0) + 180.0f);
+    arg0->unk54 = angle;
+    _subaddierouteDll_entrypoint_7(arg0, sp28 + 0x18, arg0->rotation[1], angle, 200.0f, 0x4000);
+    func_80102BF8(arg0, 0.1f, 4.0f, 100.0f);
+    sp2C = func_8010B990(arg0, 0x325);
+    sp2C |= func_8010B990(arg0, 0x4004);
+    return sp2C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800AD0_chtntmineshoot.s")
 
