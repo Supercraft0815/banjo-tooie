@@ -596,7 +596,7 @@ void func_80802214_chweldarboss(Actor *arg0, s32 arg1, s32 arg2) {
 void func_808023BC_chweldarboss(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     Actor *_subaddielink_entrypoint_4(u8 *);
-    s32 func_808041C4_chweldarboss(Actor *, s32);
+    void func_808041C4_chweldarboss(Actor *, s32);
     Actor *temp_v0;
 
     temp_v0 = _subaddielink_entrypoint_4((u8 *)func_80100094(arg0, 0U) + 0x30);
@@ -957,7 +957,7 @@ s32 func_80803D98_chweldarboss(s32 arg0) {
 void func_80803E50_chweldarboss(Actor *arg0) {
     s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
     void *func_80100094(Actor *, u32);
-    s32 func_808041C4_chweldarboss(Actor *, s32);
+    void func_808041C4_chweldarboss(Actor *, s32);
     u8 *sp1C;
     u8 *temp_v0;
 
@@ -999,7 +999,22 @@ void func_8080412C_chweldarboss(Actor *arg0, void *arg1) {
     func_80101870(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_808041C4_chweldarboss.s")
+void func_808041C4_chweldarboss(Actor *arg0, s32 arg1) {
+    void func_80102424(Actor *, s32);
+    switch (arg1) {
+        case 2:
+            if (arg0->unk70_10 == 3) {
+                return;
+            }
+            break;
+        case 4:
+            if (arg0->unk70_10 == 1) {
+                return;
+            }
+            break;
+    }
+    func_80102424(arg0, arg1);
+}
 
 /* extern */
 
