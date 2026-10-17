@@ -187,7 +187,38 @@ OSThread *chgameselect_entrypoint_1(void)
     return (OSThread *) D_80808038_chgameselect;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80800D74_chgameselect.s")
+typedef struct {
+        u8 pad0[0x34];
+        f32 fade;
+} GameSelectInitActorFields;
+typedef struct {
+        u8 pad0[0xC8];
+        f32 direction[3];
+        f32 distance;
+} GameSelectInitData;
+
+void func_80800D74_chgameselect(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_800EFD24(f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EF2A0(f32 *);
+    void func_808015DC_chgameselect(Unk80132ED0 *, s32);
+    void *volatile data;
+    f32 *direction;
+
+    data = func_80100094(arg0, 0);
+    func_800EFD24(&arg0->position[0]);
+    arg0->rotation[0] = 45.0f;
+    arg0->rotation[2] = 45.0f;
+    arg0->rotation[1] = 60.0f;
+    func_808015DC_chgameselect(arg0->unk0, 0);
+    arg0->unk64_20 = 0;
+    ((GameSelectInitActorFields *)arg0)->fade = 1.0f;
+    direction = &((GameSelectInitData *)data)->direction[0];
+    func_800EFA4C(direction, 0.0f, 0.0f, 1.0f);
+    func_800EF2A0(direction);
+    ((GameSelectInitData *)data)->distance = 200.0f;
+}
 
 void func_80800E24_chgameselect(void *arg0) {
     typedef struct {
