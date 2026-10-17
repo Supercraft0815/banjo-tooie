@@ -67,7 +67,28 @@ void func_800A2534(s32 *arg0)
     *(u8 *)(arg0[0xB4 / 4] + 3) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BAB0/func_800A2540.s")
+void func_800A2540(void *arg0, s32 arg1) {
+    u32 func_800A25D0(void *);
+    void func_800A1F0C(void *, s32 *);
+    void func_800A235C(void *);
+    void func_800DF5D8(u32, u32, u32, s32);
+    void func_800DF660(s32, s32, s32, s32);
+    s32 color[3];
+    void *temp;
+
+    if (func_800A25D0(arg0) == 0) {
+        func_800A1F0C(arg0, color);
+        func_800DF5D8(color[0], color[1], color[2], arg1);
+        return;
+    }
+    temp = *(void **)((u8 *)arg0 + 0xB4);
+    if (*(u8 *)((u8 *)temp + 3) == 0) {
+        func_800A235C(arg0);
+        *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0xB4) + 3) = 1;
+        temp = *(void **)((u8 *)arg0 + 0xB4);
+    }
+    func_800DF660(1, 0, *(s32 *)((u8 *)temp + 4), arg1);
+}
 
 u32 func_800A25D0(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 180) + 2);
