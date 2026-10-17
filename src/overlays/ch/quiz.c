@@ -605,7 +605,38 @@ s32 func_80801930_chquiz(void *arg0, s32 *arg1) {
     return count;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801A54_chquiz.s")
+s32 func_80801A54_chquiz(void *arg0, s32 *arg1) {
+    s32 func_80801784_chquiz(void *, s32);
+    s32 maximum;
+    s32 count;
+    s32 i;
+    s32 value;
+    s32 slot;
+
+    maximum = -100000;
+    count = 1;
+    arg1[0] = -1;
+    arg1[1] = -1;
+    arg1[2] = -1;
+    arg1[3] = -1;
+    for (i = 3; i < 7; i++) {
+        value = func_80801784_chquiz(arg0, i);
+        if (maximum < value) {
+            maximum = value;
+            arg1[0] = i;
+        }
+    }
+    for (i = 3; i != 7; i++) {
+        if ((func_80801784_chquiz(arg0, i) == maximum) &&
+            (i != arg1[0]) && (i != arg1[1]) && (i != arg1[2])) {
+            for (slot = 1; arg1[slot] != -1; slot++) {
+            }
+            arg1[slot] = i;
+            count++;
+        }
+    }
+    return count;
+}
 
 /* extern */
 
