@@ -91,7 +91,28 @@ void func_80800148_chbouncycastle(void **arg0) {
     func_8010647C(arg0, _glidmake_entrypoint_5((*(u16 *)((s8 *)(*arg0) + (0x14))), 0));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bouncycastle/func_80800198_chbouncycastle.s")
+void func_80800198_chbouncycastle(Actor *arg0, s32 arg1) {
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF47C(s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010347C(Unk80132ED0 *);
+    u8 *func_80103AA0(u8 *);
+    extern void _chbouncycastle_entrypoint_4(Actor *);
+    s32 *sp2C;
+
+    sp2C = func_80100094(arg0, 0);
+    func_800DF47C((s32)_chbouncycastle_entrypoint_4, (s32)arg0);
+    func_800DE448(NULL, NULL, arg0->scale, NULL, func_8010347C(arg0->unk0));
+    if (arg0->unk7C_12) {
+        ((Unk80132ED0 *)func_80103AA0((u8 *)arg0->unk0))->unk28 = *sp2C;
+        if (arg0->unk79_4 != 0) {
+            arg0->unk79_4--;
+            if (arg0->unk79_4 == 0) {
+                func_80800148_chbouncycastle((void **)arg0);
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bouncycastle/func_80800254_chbouncycastle.s")
 
