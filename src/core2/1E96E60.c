@@ -168,7 +168,24 @@ s32 *func_800BE3F8(u8 *arg0) {
     return &D_801284C8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BE444.s")
+s32 *func_800BE444(f32 *arg0) {
+    void func_800EE904(s32 dst[3], f32 src[3]);
+    s32 func_800BE09C(s32 *, s32 *);
+    s32 func_800E9DCC(s16 *);
+    extern u8 D_80128444;
+    extern s32 D_80128538;
+    s32 sp1C[3];
+    s32 count;
+
+    func_800EE904(sp1C, arg0);
+    count = func_800BE09C(&D_80128538, sp1C);
+    if (func_800E9DCC((s16 *)&D_80128444)) {
+        (&D_80128538)[count] = (s32)&D_80128444;
+        count++;
+    }
+    (&D_80128538)[count] = 0;
+    return &D_80128538;
+}
 
 /* extern */
 
