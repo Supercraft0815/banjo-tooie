@@ -249,7 +249,36 @@ s32 func_80801320_chstoneballcontrol(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_8080145C_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80801638_chstoneballcontrol.s")
+void func_80801638_chstoneballcontrol(s32 arg0, s32 *arg1) {
+    s32 _subaddiefind_entrypoint_6(u8 *, Actor **, s32);
+    struct ActorIds { u8 ids[8]; };
+    extern struct ActorIds D_808050CC_chstoneballcontrol;
+    Actor *actors[20];
+    struct ActorIds ids;
+    Actor *current;
+    s32 count;
+    int i;
+
+    ids = D_808050CC_chstoneballcontrol;
+    count = _subaddiefind_entrypoint_6(ids.ids, actors, 20);
+    arg1[2] = 0;
+    arg1[1] = 0;
+    arg1[0] = 0;
+    for (i = 0; i < count; i++) {
+            switch (actors[i]->unk6C_9) {
+                case 0x155:
+                    arg1[1]++;
+                    break;
+                case 0x29E:
+                    arg1[2]++;
+                    break;
+                case 0x1B8:
+                    arg1[3]++;
+                    break;
+            }
+    }
+    arg1[0] = arg1[1] + arg1[2] + arg1[3];
+}
 
 void func_80801734_chstoneballcontrol(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
