@@ -100,7 +100,34 @@ void func_808008F0_chballoonburst(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80800970_chballoonburst.s")
+void func_80800970_chballoonburst(Actor *arg0, s32 arg1) {
+    s32 _gcstatusDll_entrypoint_11();
+    s32 _subaddiemulti_entrypoint_2();
+    void func_800CE88C(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    void func_800D2770(s32, s32);
+    void func_800DA524(s32);
+    void func_800F7B9C(s32, u32);
+    void func_800F7C0C(s32, s32, f32);
+    u32 func_800FDC28(u32);
+    void func_80101FDC(Actor *, u32);
+    s32 i;
+
+    _subaddiemulti_entrypoint_2();
+    func_80101FDC(arg0, 3);
+    func_800D2770(0xC1, 0);
+    func_800CE8D8(arg0->unk6C_0, arg0->unk74_7, arg0->unk74_7);
+    func_800CE88C(arg0->unk6C_0, 1);
+    func_800DA524(0);
+    func_800DA524(3);
+    func_800DA524(2);
+    func_800DA524(1);
+    func_800FDC28(0xC);
+    for (i = 0; i < _gcstatusDll_entrypoint_11(); i++) {
+        func_800F7B9C(i, 0x69);
+        func_800F7C0C(i, 0x5F, -1.0f);
+    }
+}
 
 s32 func_80800A7C_chballoonburst(void *arg0, s32 *arg1) {
     s32 func_800D0A9C(s32, s32);
