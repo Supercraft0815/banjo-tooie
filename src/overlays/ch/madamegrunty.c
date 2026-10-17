@@ -28,7 +28,7 @@ void func_80800018_chmadamegrunty(void *arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_8080005C_chmadamegrunty.s")
 
 s32 func_80800198_chmadamegrunty(Actor *arg0, s32 arg1, s32 arg2) {
-    void func_80800784_chmadamegrunty(Actor *, s16, s16);
+    void func_80800784_chmadamegrunty(Actor *, s32, s16);
     void func_80800460_chmadamegrunty(Actor *);
     s16 *data = (s16 *)&arg2;
     switch (arg1) {
@@ -185,7 +185,28 @@ s32 func_80800564_chmadamegrunty(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_80800670_chmadamegrunty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_80800784_chmadamegrunty.s")
+void func_80800784_chmadamegrunty(Actor *arg0, s32 arg1, s16 arg2) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void func_80800670_chmadamegrunty(void);
+    s32 dialog;
+    switch (arg1) {
+        case 0x109F:
+            dialog = func_80800564_chmadamegrunty(arg0);
+            _subaddiedialog_entrypoint_11(arg0->unk0, dialog, 0xE, NULL, 0x43);
+            return;
+        case 0x10A9:
+            func_808002BC_chmadamegrunty(arg0);
+            return;
+        case 0x10A0:
+            func_808002BC_chmadamegrunty(arg0);
+            return;
+        default:
+            func_80800670_chmadamegrunty();
+        case 0x10CA:
+        case 0x10CB:
+            return;
+    }
+}
 
 /* extern */
 
