@@ -72,7 +72,44 @@ void bsvan_entrypoint_0(struct player_state_s *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/bsvan_entrypoint_1.s")
+void bsvan_entrypoint_1(struct player_state_s *arg0) {
+    void _bastatemem_entrypoint_0(struct player_state_s *, s32);
+    void _batimer_set(struct player_state_s *, s32, f32);
+    void _bavan_entrypoint_3(struct player_state_s *);
+    void baflag_set(struct player_state_s *, s32);
+    void baroll_setAngularVelocity(struct player_state_s *, f32, f32);
+    void bastick_pushZone(struct player_state_s *);
+    void bastick_setZoneMax(struct player_state_s *, s32, f32);
+    void func_80092864(struct player_state_s *, f32);
+    void func_800947EC(struct player_state_s *, s32, s32);
+    void func_8009590C(struct player_state_s *, f32);
+    void func_800959C8(struct player_state_s *, f32, f32);
+    void func_8009BFE4(struct player_state_s *, f32, f32);
+    void func_8009E4AC(struct player_state_s *);
+    void func_8009E55C(struct player_state_s *, s32, f32);
+    s32 func_8009E77C(struct player_state_s *, s32);
+    if (func_8009E77C(arg0, 0xD) == 0) {
+        _bastatemem_entrypoint_0(arg0, 0x14);
+        _bavan_entrypoint_3(arg0);
+        **(s32 **)((u8 *)arg0 + 0x188) = 0;
+        *(f32 *)((u8 *)arg0 + 0x174) = 1.0f;
+        _batimer_set(arg0, 2, 0.0f);
+        func_80092864(arg0, 2.29998779296875f);
+        func_8009BFE4(arg0, 1000.0f, 12.0f);
+        baroll_setAngularVelocity(arg0, 1000.0f, 12.0f);
+        bastick_pushZone(arg0);
+        bastick_setZoneMax(arg0, 0, 0.12f);
+        bastick_setZoneMax(arg0, 1, 1.0f);
+        func_800959C8(arg0, 110.0f, 65.0f);
+        func_8009590C(arg0, 110.0f);
+        func_8009E4AC(arg0);
+        func_8009E55C(arg0, 0, 70.0f);
+        func_8009E55C(arg0, 1, 78.0f);
+        baflag_set(arg0, 3);
+        baflag_set(arg0, 4);
+        func_800947EC(arg0, 1, 1);
+    }
+}
 
 void bsvan_entrypoint_2(struct player_state_s *arg0) {
     s32 func_800B5BE4(s32);
@@ -128,9 +165,9 @@ void func_80800760_bsvan(s32 arg0)
     _bsdrone_entrypoint_2();
     bsvan_entrypoint_0(arg0);
 }
-void func_80800788_bsvan(s32 arg0)
+void func_80800788_bsvan(struct player_state_s *arg0)
 {
-    bsvan_entrypoint_1();
+    bsvan_entrypoint_1(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
 void func_808007B0_bsvan(s32 arg0)
@@ -252,7 +289,7 @@ void func_80801140_bsvan(struct player_state_s *arg0) {
     void _babounce_entrypoint_5(struct player_state_s *, s32, f32);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     void func_8008B10C(struct anctrl_s *, f32);
-    bsvan_entrypoint_1();
+    bsvan_entrypoint_1(arg0);
     _babounce_entrypoint_4(arg0, 1);
     _babounce_entrypoint_5(arg0, 0xEF, 0.5128f);
     func_8008B10C(baanim_getAnimCtrlPtr(arg0), 0.1026f);
@@ -294,7 +331,7 @@ void func_8080124C_bsvan(struct player_state_s *arg0) {
     void _babounce_entrypoint_5(struct player_state_s *, s32, f32);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     void func_8008B10C(struct anctrl_s *, f32);
-    bsvan_entrypoint_1();
+    bsvan_entrypoint_1(arg0);
     _babounce_entrypoint_4(arg0, 2);
     _babounce_entrypoint_5(arg0, 0xEF, 0.5128f);
     func_8008B10C(baanim_getAnimCtrlPtr(arg0), 0.1026f);
@@ -329,9 +366,9 @@ void func_8080130C_bsvan(s32 arg0)
     _bsrest_entrypoint_14();
     bsvan_entrypoint_0(arg0);
 }
-void func_80801334_bsvan(s32 arg0)
+void func_80801334_bsvan(struct player_state_s *arg0)
 {
-    bsvan_entrypoint_1();
+    bsvan_entrypoint_1(arg0);
     _bsrest_entrypoint_16(arg0);
 }
 void func_8080135C_bsvan(u8 *arg0) {
@@ -373,7 +410,7 @@ void func_80801770_bsvan(void *arg0) { s32 _chfaircoinbox_entrypoint_1(s32); _ch
 
 void func_808017A0_bsvan(register void *arg0) {
     s32 func_8080164C_bsvan(void *, s32);
-    bsvan_entrypoint_1();
+    bsvan_entrypoint_1(arg0);
     baanim_playForDuration_loopSmooth(arg0, 0xEE, 0x3F800000);
     func_8009FFD8(arg0, 1, 3, 3, 2);
     yaw_setVelocityBounded(arg0, 0x43960000, 0x40D00000);
