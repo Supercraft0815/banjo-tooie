@@ -49,4 +49,27 @@ void gldbDll_entrypoint_1(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/dbDll/gldbDll_entrypoint_2.s")
+void gldbDll_entrypoint_2(void) {
+    s32 _gleeprom_entrypoint_0(void);
+    s32 _glreflight_entrypoint_0();
+    void func_800DA3B8(s32, s32);
+    extern s32 D_80079D70;
+    s32 flags;
+    s32 eeprom;
+    s32 i;
+
+    eeprom = _gleeprom_entrypoint_0();
+    flags = *(s32 *)((s8 *)&D_80079D70 + 0x1EC) | _glreflight_entrypoint_0() | eeprom;
+    for (i = 0; i < 8; i++) {
+        func_800DA3B8(i + 0x648, (u32)((1 << i) & flags) >> i);
+    }
+    for (i = 8; i < 0x10; i++) {
+        func_800DA3B8(i + 0x658, (u32)((1 << i) & flags) >> i);
+    }
+    for (i = 0x10; i < 0x18; i++) {
+        func_800DA3B8(i + 0x670, (u32)((1 << i) & flags) >> i);
+    }
+    for (i = 0x18; i != 0x20; i++) {
+        func_800DA3B8(i + 0x680, (u32)((1 << i) & flags) >> i);
+    }
+}
