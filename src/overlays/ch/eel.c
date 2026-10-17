@@ -68,7 +68,32 @@ void func_80800128_cheel(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_80800168_cheel.s")
+void func_80800168_cheel(Actor *arg0) {
+    void func_80102B2C(Actor *, f32);
+    void func_80102B6C(u8 *, f32);
+    s32 func_8010B990(Actor *, s32);
+    void func_80801200_cheel(Actor *, s32);
+    union {
+        Actor actor;
+        struct {
+            u8 pad0[0x64];
+            u32 pad64_30 : 2;
+            u32 unk64_29 : 1;
+            u32 pad64_0 : 29;
+        } eel;
+    } *data = (void *)arg0;
+
+    if (data->eel.unk64_29) {
+        func_80102B6C((u8 *)arg0, 8.0f);
+        func_80102B2C(arg0, 4.0f);
+    } else {
+        func_80102B6C((u8 *)arg0, 5.0f);
+        func_80102B2C(arg0, 3.0f);
+    }
+    if ((func_8010B990(arg0, 0x500006) & 0x24) && arg0->unk70_10 != 2) {
+        func_80801200_cheel(arg0, 2);
+    }
+}
 
 /* extern */
 
