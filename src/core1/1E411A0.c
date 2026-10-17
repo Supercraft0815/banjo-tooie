@@ -100,7 +100,26 @@ s32 *func_80029A04(void *arg0, u8 arg1, u8 arg2, u8 arg3, s32 arg4) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_80029BA0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_80029D54.s")
+s16 func_80029D54(void *arg0, void *arg1) {
+    union {
+        s32 value;
+        struct {
+            s16 high;
+            s16 low;
+        } halves;
+    } sp4;
+    s32 sp0;
+
+    sp4.value = (*(u8 *)((u8 *)arg0 + 0x34) * (*(u8 *)((u8 *)arg0 + 0x37) * *(u8 *)((u8 *)arg0 + 0x3A))) >> 6;
+    sp0 = (s32)((*(u8 *)(*(u8 **)((u8 *)arg0 + 0x20) + 0xD5) * *(s16 *)((u8 *)arg1 + 0x34)) *
+           ((u8 *)(*(u8 *)((u8 *)arg0 + 0x35) * 0x38 + *(s32 *)((u8 *)arg1 + 0x60)))[5]) >> 14;
+    if (((u8 *)(*(u8 *)((u8 *)arg0 + 0x35) * 0x38 + *(s32 *)((u8 *)arg1 + 0x60)))[9] != 0xFF) {
+        sp0 = (u32)(((u8 *)(*(u8 *)((u8 *)arg0 + 0x35) * 0x38 + *(s32 *)((u8 *)arg1 + 0x60)))[9] * sp0 + 1) >> 8;
+    }
+    sp4.value *= sp0;
+    sp4.value = (u32)sp4.value >> 15;
+    return sp4.halves.low;
+}
 
 u8 func_80029E64(void *arg0, void *arg1) {
     s32 sp14;
