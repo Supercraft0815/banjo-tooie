@@ -156,7 +156,20 @@ void func_8080044C_chdiggerbossshell(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x58))) = 1.75f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossshell/func_8080045C_chdiggerbossshell.s")
+void func_8080045C_chdiggerbossshell(Actor *arg0) {
+    void _subaddiefade_entrypoint_3(Actor *);
+    s32 func_800D9078(f32 *);
+    s32 func_8010B990(Actor *, s32);
+    void func_80800504_chdiggerbossshell(s32);
+    if (arg0->unk70_10 == 1) {
+        if (func_8010B990(arg0, 0x400005) & 0x20) {
+            func_80800504_chdiggerbossshell((s32)arg0);
+        }
+        if (func_800D9078(&arg0->unk58) != 0) {
+            _subaddiefade_entrypoint_3(arg0);
+        }
+    }
+}
 
 /* extern */
 
