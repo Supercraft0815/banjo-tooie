@@ -1,4 +1,6 @@
 #include "bs/trexsmall.h"
+void func_8009D3A8(PlayerState *, s32);
+s32 bs_setState(s32, s32);
 
 void bstrexsmall_entrypoint_3(s32 arg0);
 void bstrexsmall_entrypoint_1(PlayerState *);
@@ -300,7 +302,31 @@ void func_80800B10_bstrexsmall(s32 arg0)
     func_80800A24_bstrexsmall(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80800B40_bstrexsmall.s")
+void func_80800B40_bstrexsmall(PlayerState *arg0) {
+    s32 sp24;
+    void func_800A2E18(PlayerState *);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+
+    sp24 = 0;
+    bstrexsmall_entrypoint_3((s32)arg0);
+    func_808002B8_bstrexsmall(arg0);
+    switch (arg0->unk15C.bytes[0]) {
+        case 1:
+            if (func_8008DF8C(arg0, 0x82) != 0) {
+                func_80800A24_bstrexsmall(arg0, 2);
+            }
+            break;
+        case 2:
+            func_8009D3A8(arg0, 0);
+            if (player_isStable(arg0) != 0) {
+                func_800A2E18(arg0);
+                baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+                sp24 = 0x13B;
+            }
+            break;
+    }
+    bs_setState((s32)arg0, sp24);
+}
 
 s32 bstrexsmall_entrypoint_6(s32 arg0) {
     extern s32 D_80801B38_bstrexsmall[];
