@@ -96,7 +96,38 @@ void func_808002E4_bsbeefly(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_8080039C_bsbeefly.s")
+void func_8080039C_bsbeefly(PlayerState *arg0) {
+    void _babee_entrypoint_6(PlayerState *);
+    void _babee_entrypoint_7(PlayerState *, f32, f32, f32);
+    void _baboost_entrypoint_3(PlayerState *);
+    void _baboost_entrypoint_4(PlayerState *, s32);
+    void _babuzz_entrypoint_2(PlayerState *);
+    void _bafly_entrypoint_20(void *);
+    void _bafly_entrypoint_5(PlayerState *);
+    s32 _bafpctrl_entrypoint_18(PlayerState *, s32);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_terminal_velocity(PlayerState *, f32);
+    void baroll_setAngularVelocity(PlayerState *, f32, f32);
+    s32 bs_getPreviousState(PlayerState *);
+    void func_80093360(PlayerState *, f32);
+    s32 func_8009CA70(PlayerState *, s32, s32);
+    s32 yaw_setUpdateType(void *, s32);
+    if (func_8009CA70(arg0, bs_getPreviousState(arg0), 0x4000) == 0) {
+        _bafly_entrypoint_5(arg0);
+        _babee_entrypoint_6(arg0);
+        _babee_entrypoint_7(arg0, 6000.0f, 0.2f, 12000.0f);
+        func_80093360(arg0, 65.0f);
+        yaw_setUpdateType(arg0, 3);
+        baroll_setAngularVelocity(arg0, 500.0f, 2.0f);
+        _bafly_entrypoint_20(arg0);
+        baphysics_set_gravity(arg0, -300.0f);
+        baphysics_set_terminal_velocity(arg0, -99.9f);
+        _baboost_entrypoint_3(arg0);
+        _baboost_entrypoint_4(arg0, 1);
+        _babuzz_entrypoint_2(arg0);
+        _bafpctrl_entrypoint_18(arg0, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_80800480_bsbeefly.s")
 
@@ -251,10 +282,10 @@ void func_80800B54_bsbeefly(void *arg0) {
     extern s32 _bsrest_entrypoint_16(void *);
     extern void baphysics_set_gravity(PlayerState *, f32);
     extern void func_8009BA9C(void *, f32 *);
-    extern s32 func_8080039C_bsbeefly(s32);
+    extern void func_8080039C_bsbeefly(PlayerState *);
     void *self = arg0;
     _bsbee_entrypoint_1(self);
-    func_8080039C_bsbeefly((s32)self);
+    func_8080039C_bsbeefly(self);
     _bsrest_entrypoint_16(self);
     baphysics_set_gravity(self, 0.0f);
     func_8009BA9C(self, 0);
@@ -300,7 +331,7 @@ void func_80800C2C_bsbeefly(s32 arg0)
 void func_80800C5C_bsbeefly(s32 arg0) {
     s32 _bafly_entrypoint_16(s32, s32, s32);
     s32 _bsbee_entrypoint_1();
-    s32 func_8080039C_bsbeefly(s32);
+    void func_8080039C_bsbeefly(PlayerState *);
     _bsbee_entrypoint_1();
     func_8080039C_bsbeefly(arg0);
     _bafly_entrypoint_16(arg0, 0x1E0, 0x3F800000);
@@ -335,7 +366,7 @@ void func_80800CE0_bsbeefly(s32 arg0)
 void func_80800D10_bsbeefly(s32 arg0) {
     s32 _bafly_entrypoint_13(s32, s32, s32, s32);
     s32 _bsbee_entrypoint_1();
-    s32 func_8080039C_bsbeefly(s32);
+    void func_8080039C_bsbeefly(PlayerState *);
     _bsbee_entrypoint_1();
     func_8080039C_bsbeefly(arg0);
     _bafly_entrypoint_13(arg0, 1, 0xD3, 0x3F99999A);
