@@ -500,7 +500,17 @@ void func_80801B10_bswasher(struct player_state_s *arg0)
     func_808000F0_bswasher(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80801B30_bswasher.s")
+void func_80801B30_bswasher(struct player_state_s *arg0) {
+    void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
+    void func_8009FFD8();
+    f32 yaw_get(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    func_808001A8_bswasher(arg0);
+    baanim_playForDuration_onceSmooth(arg0, 0x357, 0.8f);
+    func_8009FFD8(arg0, 1, 3, 2, 2);
+    func_808000BC_bswasher((s32)arg0);
+    yaw_setIdeal(arg0, yaw_get(arg0));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80801BA4_bswasher.s")
 
