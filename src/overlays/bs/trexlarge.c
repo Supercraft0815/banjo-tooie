@@ -658,7 +658,19 @@ void func_80801604_bstrexlarge(s32 arg0)
     bstrexlarge_entrypoint_1(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80801634_bstrexlarge.s")
+void func_80801634_bstrexlarge(PlayerState *arg0) {
+    void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void func_800909CC(PlayerState *);
+
+    bstrexlarge_entrypoint_2(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0x1D2, 8.5f);
+    func_8009FFD8(arg0, 1, 3, 2, 2);
+    yaw_setVelocityBounded(arg0, 300.0f, 3.5f);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_800909CC(arg0);
+    func_80800000_bstrexlarge(arg0);
+}
 
 void func_808016B4_bstrexlarge(PlayerState *arg0) {
     int baanim_isAt(PlayerState *, f32);
