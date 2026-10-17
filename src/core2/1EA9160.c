@@ -84,7 +84,21 @@ void func_800CFA70(s32 arg0, s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800CFA90.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800CFBC8.s")
+void func_800CFBC8(Actor *arg0, u32 arg1, s32 arg2, s32 arg3) {
+    void _subaddieDll_entrypoint_4(Actor *, u32);
+    s32 func_8010108C(Actor *, s32, s32);
+
+    func_8010108C(arg0, 0x13, arg1);
+    if (func_800CF888(arg1, arg2) != 0) {
+        _subaddieDll_entrypoint_4(arg0, 1);
+    }
+    if (func_800CF8D0(arg1, arg2) != 0) {
+        func_8010108C(arg0, 0x12, 1);
+    }
+    if (func_800CF918(arg1, arg2) != -1) {
+        func_8010108C(arg0, 0x55, 1);
+    }
+}
 
 s32 func_800CFC5C(s32 arg0) {
     if ((arg0 -= D_8011AE60) >= 0 && arg0 < 0xA) {
