@@ -1,4 +1,5 @@
 #include "common.h"
+struct anctrl_s;
 
 void func_80800000_bssub(s32 arg0) {
     func_8009FFD8(arg0, 0x1, 0x3, 0x3, 0xF);
@@ -464,7 +465,24 @@ void func_80801578_bssub(s32 arg0)
     func_80090A2C();
     func_808008D8_bssub(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_808015A0_bssub.s")
+void func_808015A0_bssub(struct player_state_s *arg0) {
+    int anctrl_getIndex(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    void func_800909CC(struct player_state_s *);
+    struct anctrl_s *sp24;
+
+    sp24 = baanim_getAnimCtrlPtr(arg0);
+    func_808009B0_bssub(arg0);
+    if (anctrl_getIndex(sp24) == 0x12E) {
+        anctrl_setDuration(sp24, 6.0f);
+    } else {
+        baanim_playForDuration_loopSmooth(arg0, 0x12E, 6.0f);
+    }
+    func_800909CC(arg0);
+    func_80800000_bssub(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80801618_bssub.s")
 
