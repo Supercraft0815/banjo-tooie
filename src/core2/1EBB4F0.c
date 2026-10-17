@@ -29,12 +29,13 @@ void func_800E204C(u8 *arg0, u8 *arg1) {
     }
 }
 
+typedef struct {
+    s16 unk0[3];
+    s16 paletteOffset;
+    s32 textureOffset;
+} TextureFrame;
+
 void func_800E2180(u8 *arg0, u8 *arg1, s32 arg2) {
-    typedef struct {
-        s16 unk0[3];
-        s16 paletteOffset;
-        s32 textureOffset;
-    } TextureFrame;
     u8 *func_800AF5D8(s16 *);
     void *func_800AF5E4(void *);
     void *func_800AF5F0(void *);
@@ -199,7 +200,35 @@ void func_800E2588(u32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E2594.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E2630.s")
+void func_800E2630(u8 *arg0, s32 arg1, s32 arg2) {
+    void *func_800AF5F0(void *);
+    TextureFrame *func_800AF5FC(s16 *, s32);
+    extern s32 D_8012D470;
+    TextureFrame *frame;
+    u8 *base;
+    Gfx *color;
+    Gfx *list;
+    void *address;
+
+    if (arg2 != *(s16 *)((u8 *)&D_8012D470 + 0x1C)) {
+        *(s16 *)((u8 *)&D_8012D470 + 0x1C) = arg2;
+        color = (*(Gfx **)arg0)++;
+        color->words.w0 = 0xFA000000;
+        color->words.w1 = ((*(s32 *)((u8 *)&D_8012D470 + 0x10) & 0xFF) << 24)
+            | ((*(s32 *)((u8 *)&D_8012D470 + 0x14) & 0xFF) << 16)
+            | (*(s16 *)((u8 *)&D_8012D470 + 0x1C) & 0xFF)
+            | ((*(s32 *)((u8 *)&D_8012D470 + 0x18) & 0xFF) << 8);
+    }
+    func_800E204C(arg0, *(u8 **)((u8 *)&D_8012D470 + 0x80));
+    frame = func_800AF5FC(*(s16 **)((u8 *)&D_8012D470 + 0x80), arg1);
+    base = func_800AF5F0(*(u8 **)((u8 *)&D_8012D470 + 0x80));
+    base += frame->unk0[2] * 8;
+    address = base;
+    list = (*(Gfx **)arg0)++;
+    list->words.w0 = 0xDE000000;
+    list->words.w1 = osVirtualToPhysical(address);
+    func_800E2260(arg0, *(u8 **)((u8 *)&D_8012D470 + 0x80));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E2720.s")
 
