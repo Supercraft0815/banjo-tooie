@@ -396,7 +396,34 @@ void func_80801F84_chchuffy(s32 arg0) {
     func_800EFD24(arg0 + 0x4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80801FA4_chchuffy.s")
+s32 func_80801FA4_chchuffy(Actor *arg0, s32 arg1, void *volatile arg2) {
+    s32 func_800DA298(s32);
+    s32 func_80103140(Actor *, u32, u16);
+    u32 func_8010A5B0(Actor *, s32);
+    void func_80802060_chchuffy(Actor *, void *);
+    s32 text;
+
+    switch (arg1) {
+        case 0x95:
+            if (func_800DA298(0x95)) {
+                text = 0x87A;
+            } else {
+                text = 0x879;
+            }
+            func_80103140(arg0, text & 0xFFFF, arg0->unk0->unk16);
+            func_8010A5B0(arg0, func_800DA298(0x95));
+            break;
+        case 0x2E:
+            arg0->unk74_30 = 0;
+            break;
+        case 0x3E:
+            func_80802060_chchuffy(arg0, arg2);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80802060_chchuffy(Actor *arg0, void *arg1) {
     Prop *_gccubesearch_entrypoint_6(s32 *, f32 *);
