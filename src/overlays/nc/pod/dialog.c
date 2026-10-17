@@ -103,14 +103,54 @@ s32 func_80801058_ncpoddialog(void *arg0, s32 arg1) {
 
 /* extern */
 
-void ncpoddialog_entrypoint_0(s16 arg0) {
-    s32 func_8001B798(s16);
-    func_8001B798(arg0);
+void *ncpoddialog_entrypoint_0(s16 arg0) {
+    void *func_8001B798(s16);
+    return func_8001B798(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/ncpoddialog_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/ncpoddialog_entrypoint_2.s")
+s16 ncpoddialog_entrypoint_2(void) {
+    s16 func_8001B668(s32, s32);
+    void func_800EFD24(f32 *);
+    s16 handle;
+    s8 *data;
+    s32 i;
+    s32 j;
+    f32 *scalar;
+
+    handle = func_8001B668(0, 0x21C);
+    data = ncpoddialog_entrypoint_0(handle);
+    data[0x210] = 1;
+    for (i = 0; i < 10; i++) {
+        func_800EFD24((f32 *)(data + 0x58 + i * 12));
+        func_800EFD24((f32 *)(data + 0xD0 + i * 12));
+        func_800EFD24((f32 *)(data + 0x188 + i * 12));
+    }
+    *(f32 *)(data + 0x20C) = 0.0f;
+    func_800EFD24((f32 *)(data + 0x148));
+    *(f32 *)(data + 0x154) = 0.0f;
+    data[0x211] = -1;
+    data[0x212] = 0;
+    data[0x213] = 0;
+    data[0x214] = 0;
+    data[0x215] = 0;
+    data[0x217] = 0;
+    func_800EFD24((f32 *)(data + 0x170));
+    func_800EFD24((f32 *)(data + 0x17C));
+    func_800EFD24((f32 *)(data + 0x200));
+    for (j = 0; j < 2; j++) {
+        func_800EFD24((f32 *)(data + 0x28 + j * 12));
+        func_800EFD24((f32 *)(data + 0x40 + j * 12));
+        scalar = (f32 *)(data + 0x20 + j * 4);
+        *(f32 *)(data + j * 16 + 4) = 0.0f;
+        *(f32 *)(data + j * 16 + 8) = 0.0f;
+        *(f32 *)(data + j * 16 + 12) = 0.0f;
+        *(f32 *)(data + j * 16) = 0.0f;
+        *scalar = 0.0f;
+    }
+    return handle;
+}
 
 /* extern */
 
