@@ -13,7 +13,29 @@ void func_8080000C_chsquits(u8 *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x2C))) = func_800DC178(5.0f, 8.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/squits/func_80800054_chsquits.s")
+void func_80800054_chsquits(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800D90A4(f32 *);
+    f32 func_800DC178(f32, f32);
+    void func_80101FDC(Actor *, u32);
+    s32 func_8010CAC0(f32 *, u32);
+    s32 func_808001A4_chsquits(Actor *);
+    void func_80800358_chsquits(Actor *);
+    f32 *sp2C;
+
+    if (arg0->unk70_10 == 1) {
+        if (func_800D90A4(&arg0->unk58) != 0) {
+            sp2C = arg0->position;
+            if (func_8010CAC0(sp2C, 0x190) != 0) {
+                if (_subaddiedialog_entrypoint_11(arg0->unk0, func_808001A4_chsquits(arg0), 0, sp2C, 0x8F) != 0) {
+                    func_80101FDC(arg0, 2);
+                }
+                arg0->unk58 = func_800DC178(5.0f, 8.0f);
+            }
+        }
+    }
+    func_80800358_chsquits(arg0);
+}
 
 s32 func_80800108_chsquits(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800BF744(s32, s32);
