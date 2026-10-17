@@ -11,7 +11,25 @@ int func_8080010C_dbzone(s16 *arg0, s16 *arg1) {
         (temp_v1 = arg1[2]) >= arg0[2] && arg0[5] >= temp_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/zone/dbzone_entrypoint_1.s")
+void dbzone_entrypoint_1(u8 *arg0, f32 *arg1, f32 arg2, f32 *arg3) {
+    u8 *cursor;
+    u8 *end;
+    f32 *src;
+    f32 *origin;
+    s16 point[3];
+    s32 i;
+
+    arg2 = 1.0f / arg2;
+    for (i = 0; i < 3; i++) {
+        point[i] = (s32)((arg1[i] - arg3[i]) * arg2);
+    }
+    cursor = arg0 + 2;
+    end = arg0 + *arg0 * 14 + 2;
+    while (cursor < end) {
+        cursor[12] = func_8080010C_dbzone((s16 *)cursor, point);
+        cursor += 14;
+    }
+}
 
 /* extern */
 
