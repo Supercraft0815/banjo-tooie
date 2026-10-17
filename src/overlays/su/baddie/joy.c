@@ -122,7 +122,30 @@ void subaddiejoy_entrypoint_8(void *arg0, f32 *arg1) {
     func_80016068((u32) ((*(s32 *)((s8 *)(arg0) + (0x64))) * 8) >> 0x1E, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/joy/subaddiejoy_entrypoint_9.s")
+f32 subaddiejoy_entrypoint_9(void *arg0, f32 *arg1, s32 arg2) {
+    f32 func_800136E4(f32);
+    f32 func_80013B70(f32, f32, f32);
+    void func_80016068(u32, f32 *);
+    f32 func_800E3A80(void);
+    f32 func_800F13F0(f32, f32);
+    f32 sqrtf(f32);
+    f32 stick[2];
+    f32 magnitude;
+
+    func_80016068((u32) ((*(s32 *)((s8 *)arg0 + 0x64)) * 8) >> 30, stick);
+    magnitude = sqrtf(stick[0] * stick[0] + stick[1] * stick[1]);
+    if (magnitude != 0.0f) {
+        f32 angle;
+        angle = func_800136E4(func_80013B70(stick[1], stick[0], magnitude) + func_800E3A80() + 90.0f);
+        magnitude = func_800F13F0(1.0f, magnitude);
+        if (arg2 & 1) {
+            *arg1 = angle;
+        }
+    } else if (arg2 & 2) {
+        *arg1 = *(f32 *)((s8 *)arg0 + 0x48);
+    }
+    return magnitude;
+}
 
 void subaddiejoy_entrypoint_10(u8 *arg0, f32 arg1, f32 arg2) {
     void func_80018820(s32, f32, f32);
