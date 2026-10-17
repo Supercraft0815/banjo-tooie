@@ -207,9 +207,9 @@ int func_8008D9A4(PlayerState *player) {
 
 /* extern */
 
-void func_8008DAA8(void *arg0) {
+s32 func_8008DAA8(void *arg0) {
     s32 func_800F65D0(s32);
-    func_800F65D0((*(s32 *)((s8 *)(arg0) + (0x184))));
+    return func_800F65D0((*(s32 *)((s8 *)(arg0) + (0x184))));
 }
 
 /* extern */

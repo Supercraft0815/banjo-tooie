@@ -53,7 +53,39 @@ void baduo_entrypoint_5(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_6.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_7.s")
+void baduo_entrypoint_7(PlayerState *arg0, s32 arg1) {
+    void baduo_entrypoint_10(void *, s32);
+    void baduo_entrypoint_11(void *, s32);
+    s32 func_8008DAA8(void *);
+    void func_8009ADF0(void *, s32, s32);
+    void func_800A38F0(PlayerState *, s32, s32);
+    void _bashoes_entrypoint_6(PlayerState *, s32);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    *(u8 *)*(void **)((u8 *)arg0 + 0x58) = arg1;
+    switch (*(u8 *)*(void **)((u8 *)arg0 + 0x58)) {
+        case 1:
+            baduo_entrypoint_11(arg0, 0);
+            func_8009ADF0(arg0, 2, 0);
+            return;
+        case 2:
+            baduo_entrypoint_10(arg0, 0);
+            baduo_entrypoint_11(arg0, 1);
+            return;
+        case 3:
+            if (func_8008DAA8(arg0) != 0) {
+                func_800A38F0(arg0, 1, 1);
+            } else {
+                func_800A38F0(arg0, 0, 1);
+            }
+            func_8009ADF0(arg0, 2, 1);
+            return;
+        case 4:
+            _bashoes_entrypoint_6(arg0, 1);
+            func_800F82D4(func_800F54E4(), 2);
+            return;
+    }
+}
 
 /* extern */
 
@@ -77,7 +109,7 @@ void baduo_entrypoint_11(void *arg0, s32 arg1) {
 /* extern */
 
 void baduo_entrypoint_12(s32 arg0) {
-    s32 _bashoes_entrypoint_6(s32, s32);
+    void _bashoes_entrypoint_6(PlayerState *, s32);
     s32 func_8008E39C();
     s32 func_800F9A6C();
     if (func_8008E39C() != 0) {
@@ -133,7 +165,7 @@ void baduo_entrypoint_14(void *arg0, s32 arg1) {
 /* extern */
 
 void baduo_entrypoint_16(PlayerState *arg0) {
-    s32 baduo_entrypoint_7(PlayerState *, s32);
+    void baduo_entrypoint_7(PlayerState *, s32);
     s32 bs_setState(s32, s32);
     int func_800D5034(s32, s32);
     PlayerState *func_800F53D0(s32);
