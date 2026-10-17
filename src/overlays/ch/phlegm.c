@@ -112,4 +112,30 @@ void func_80800848_chphlegm(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_808009DC_chphlegm.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_80800A58_chphlegm.s")
+void func_80800A58_chphlegm(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_8008FE68(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800DC178(f32, f32);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    void func_80102FDC(Actor *, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_800EF368(f32 *, f32);
+    extern s32 D_80800CC4_chphlegm;
+    extern f32 D_80800CD8_chphlegm[3];
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp2C[3];
+    Actor *actor;
+
+    _subaddieaudioquick_entrypoint_2(arg0, D_80800CD8_chphlegm, &D_80800CC4_chphlegm);
+    func_8008FE68(sp2C);
+    func_800EE7F8(sp38, sp2C);
+    func_800EE7F8(sp44, sp2C);
+    sp44[1] += 2500.0f;
+    actor = func_80108528(0x398, sp44, 0, &arg0);
+    func_80102FDC(actor, func_800DC178(3.0f, 4.0f));
+    func_800EFB24(&actor->actorData[4], sp38, sp44);
+    func_800EF368((f32 *)&actor->actorData[4], 3500.0f);
+    actor->unk64_19 = 1;
+}
