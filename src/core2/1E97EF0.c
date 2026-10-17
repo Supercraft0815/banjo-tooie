@@ -201,7 +201,37 @@ s32 func_800BEE40(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF0E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF228.s")
+void *func_800BF228(f32 *position, f32 radius, f32 *normal, u32 flag_filter) {
+    void *_gcmapsects_entrypoint_26(s32 *, f32 *, f32, f32 *, u32);
+    void *func_800AC978(u16 *, u16 *, f32 *, f32, f32 *, u32);
+    void *result;
+    void *hit;
+
+    result = 0;
+    *(s32 *)((s8 *)&D_801285B0 + 0x1B0) = 0;
+    if (*(u8 *)((s8 *)&D_801285B0 + 0x77) != 0) {
+        result = _gcmapsects_entrypoint_26(&D_801285B0, position, radius, normal, flag_filter);
+    }
+    if (result == 0 && *(u8 *)((s8 *)&D_801285B0 + 0x2A) != 0) {
+        result = func_800AC978(*(u16 **)&D_801285B0,
+            ((u16 **)&D_801285B0)[*(u8 *)((s8 *)&D_801285B0 + 0x29) + 4],
+            position, radius, normal, flag_filter);
+    }
+    if (result != 0) {
+        *(s32 *)((s8 *)&D_801285B0 + 0x1B0) = *(s32 *)((s8 *)&D_801285B0 + 0xC);
+    }
+    if (*(u8 *)((s8 *)&D_801285B0 + 0x56) == 0) {
+        return result;
+    }
+    hit = func_800AC978(*(u16 **)((s8 *)&D_801285B0 + 0x2C),
+        ((u16 **)&D_801285B0)[*(u8 *)((s8 *)&D_801285B0 + 0x55) + 15],
+        position, radius, normal, flag_filter);
+    if (hit != 0) {
+        *(s32 *)((s8 *)&D_801285B0 + 0x1B0) = *(s32 *)((s8 *)&D_801285B0 + 0x38);
+        return hit;
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF340.s")
 
@@ -218,10 +248,9 @@ void func_800BF420()
 
 void func_800BF444(void) {
     s32 _gcmapDll_entrypoint_3(s32 *);
-    s32 func_800C6A28(s32 *, s32 *, s32 *, s32 (*)());
+    s32 func_800C6A28(s32 *, s32 *, void *(*)(f32 *, f32, f32 *, u32), s32 (*)());
     extern s32 func_800BEF00;
     extern s32 func_800BF0E0;
-    extern s32 func_800BF228;
     _gcmapDll_entrypoint_3(&D_801285B0);
     func_800C6A28(&func_800BEF00, &func_800BF0E0, &func_800BF228, func_800BEB4C);
 }
