@@ -76,7 +76,25 @@ void func_80800174_chfaircoinbox(s32 arg0) {
     func_808000A4_chfaircoinbox((Actor *)arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/func_808001C8_chfaircoinbox.s")
+void func_808001C8_chfaircoinbox(Actor *arg0) {
+    s32 func_8008FB10(s32, f32, f32, f32);
+    s32 func_800DA298(GameFlag);
+    void func_808002CC_chfaircoinbox(Actor *);
+
+    func_8008FB10((s32)arg0->position, 120.0f, 0.0f, 92.0f);
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_800DA298(func_80800050_chfaircoinbox((s32)arg0)) != 0) {
+                func_808000A4_chfaircoinbox(arg0, 3);
+                return;
+            }
+            func_808002CC_chfaircoinbox(arg0);
+        case 2:
+        case 3:
+        case 4:
+            return;
+    }
+}
 
 void func_80800264_chfaircoinbox(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80090708(s32);

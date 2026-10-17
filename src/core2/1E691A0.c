@@ -64,9 +64,9 @@ void func_8008FAC8(s32 arg0, s32 arg1, s32 arg2, f32 arg3) {
 
 /* extern */
 
-void func_8008FB10(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
+s32 func_8008FB10(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     s32 func_800F4EC8(u32, s32, f32, f32, f32);
-    func_800F4EC8(func_800F54E4(), arg0, arg1, arg2, arg3);
+    return func_800F4EC8(func_800F54E4(), arg0, arg1, arg2, arg3);
 }
 
 /* extern */
