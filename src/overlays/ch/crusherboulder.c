@@ -188,7 +188,35 @@ void func_80800ED0_chcrusherboulder(Actor *arg0) {
     func_800DA524(0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80800F38_chcrusherboulder.s")
+void func_80800F38_chcrusherboulder(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 func_8001211C(void);
+    f32 func_800DC0C0(void);
+    void func_80801064_chcrusherboulder(f32[3], f32);
+    void func_80801128_chcrusherboulder(f32[3], s32);
+    struct BoulderPosition { f32 v[3]; };
+    extern struct BoulderPosition D_808013E0_chcrusherboulder;
+    extern u32 D_808013EC_chcrusherboulder;
+    struct BoulderPosition sp24 = D_808013E0_chcrusherboulder;
+
+    if (!(func_8001211C() & 3)) {
+        sp24.v[2] = *(f32 *)&arg0->actorData[7] + -325.0f;
+        if (func_800DC0C0() < 0.6f) {
+            func_80801064_chcrusherboulder(sp24.v, arg0->scale);
+        }
+        sp24.v[2] += 25.0f;
+        func_800DC0C0();
+        func_80801128_chcrusherboulder(sp24.v, *(s32 *)&arg0->scale);
+        sp24.v[2] = -325.0f - *(f32 *)&arg0->actorData[7];
+        if (func_800DC0C0() < 0.6f) {
+            func_80801064_chcrusherboulder(sp24.v, arg0->scale);
+        }
+        sp24.v[2] -= 25.0f;
+        func_800DC0C0();
+        func_80801128_chcrusherboulder(sp24.v, *(s32 *)&arg0->scale);
+    }
+    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808013EC_chcrusherboulder);
+}
 
 void func_80801064_chcrusherboulder(f32 arg0[3], f32 arg1) {
     s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
