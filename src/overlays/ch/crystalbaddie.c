@@ -19,7 +19,34 @@ void func_8080000C_chcrystalbaddie(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crystalbaddie/func_80800054_chcrystalbaddie.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crystalbaddie/func_808002E0_chcrystalbaddie.s")
+s32 func_808002E0_chcrystalbaddie(Actor *arg0, s32 arg1, s32 *arg2) {
+    s32 _subaddieDll_entrypoint_3(Actor *);
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    s32 func_80107070(Actor *, s32);
+    void func_808004D4_chcrystalbaddie(Actor *, s32 *);
+    void func_8080052C_chcrystalbaddie(s32);
+    s32 **data = &arg2;
+
+    switch (arg1) {
+    case 0x90:
+        func_8080052C_chcrystalbaddie((s32)arg0);
+        break;
+    case 0x40:
+        func_808004D4_chcrystalbaddie(arg0, arg2);
+        break;
+    case 2:
+        if (_subaddieDll_entrypoint_3(arg0) == 0) {
+            func_80107070(arg0, 1);
+        }
+        break;
+    case 0x95:
+        _subaddierouteDll_entrypoint_1(arg0);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800384_chcrystalbaddie(s32 arg0) 
 {
@@ -86,7 +113,7 @@ void func_8080052C_chcrystalbaddie(s32 arg0) {
     s32 func_800FFAB0(s32);
     s32 func_80101080();
     s32 func_80106790(s32);
-    s32 func_80107070(s32, s32);
+    s32 func_80107070(Actor *, s32);
     extern s32 D_808006BC_chcrystalbaddie;
     extern s32 D_808006CC_chcrystalbaddie;
     s32 temp_a0;
