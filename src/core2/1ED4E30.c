@@ -530,7 +530,20 @@ s32 func_800FCDE0(s32 arg0, s32 arg1, f32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FCED0.s")
+s32 func_800FCED0(s32 arg0, s32 arg1, f32 arg2) {
+    s16 func_80017108(u8);
+    s32 func_80017D74(s32, s32, f32);
+    void *track;
+
+    track = func_800FB5F8(arg0);
+    if (track != NULL) {
+        if (func_80017108(((s32)track - (s32)D_801357D0) / 80) != arg0) {
+            return 0;
+        }
+        return func_80017D74(((s32)track - (s32)D_801357D0) / 80, arg1, arg2);
+    }
+    return 0;
+}
 
 s32 func_800FCF50(s32 arg0)
 {
