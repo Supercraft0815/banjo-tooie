@@ -765,15 +765,45 @@ void func_800F604C(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F608C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6140.s")
+s32 func_800F6140(s32 arg0) {
+    s32 func_800A907C(s32, s32, s32);
+    s32 func_800A93E4(s32);
+    s32 func_800A93F8(s32);
+    s32 func_800A9768(s32);
+    u8 *func_800F43A8(s32);
+    extern u8 D_801354B0[];
+    s32 controller[2];
+    PlayerState **player;
+    s32 result;
+    s32 index;
+
+    player = D_80135490;
+    index = 0;
+    do {
+        if (*player == NULL) {
+            result = func_800A907C(index, arg0, -1);
+            controller[0] = result;
+            func_800A9768(result);
+            func_800A93F8(index);
+            func_800A93E4(index);
+            *player = func_800F43A8(index);
+            D_801354B0[index] = 0;
+            bakey_setControllerIndex(*player, controller[0]);
+            return index;
+        }
+        index++;
+        player++;
+    } while (index != 8);
+    return 0;
+}
 
 void func_800F61E4(void) {
     func_800F6140(-1);
 }
 
-void func_800F6204()
+void func_800F6204(s32 arg0)
 {
-    func_800F6140();
+    func_800F6140(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6224.s")
