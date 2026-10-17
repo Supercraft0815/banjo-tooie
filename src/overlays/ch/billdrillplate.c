@@ -91,7 +91,25 @@ void func_808002A0_chbilldrillplate(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_80800358_chbilldrillplate.s")
+void func_80800358_chbilldrillplate(Actor *arg0) {
+    s32 _subaddiefade_entrypoint_14(s32);
+    s32 _subaddielink_entrypoint_0(u8 *);
+    void *func_80100094(Actor *, u32);
+    void *func_80801020_chbilldrillplate(void);
+    u16 *sp24;
+    f32 *sp20;
+
+    sp24 = func_80801020_chbilldrillplate();
+    sp20 = func_80100094(arg0, 0);
+    *(f32 *)&arg0->actorData[7] = 600.0f;
+    *(f32 *)&arg0->actorData[4] = arg0->position[1];
+    arg0->position[1] += sp24[2];
+    _subaddielink_entrypoint_0(sp20);
+    _subaddiefade_entrypoint_14(arg0);
+    if (sp24[8] != 0) {
+        sp20[2] = 25.0f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_80800408_chbilldrillplate.s")
 
