@@ -314,7 +314,43 @@ s32 bsbswim_entrypoint_3(s32 arg0) {
     return ((s32 *)&D_80801E90_bsbswim)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80800B10_bsbswim.s")
+void func_80800B10_bsbswim(struct player_state_s *arg0) {
+    s32 _bareact_entrypoint_1(struct player_state_s *, s32);
+    f32 _bareact_entrypoint_4(struct player_state_s *);
+    s32 baanim_playForDuration_once(void *, s32, f32);
+    f32 baphysics_get_target_horizontal_velocity(struct player_state_s *);
+    void baphysics_set_horizontal_velocity(struct player_state_s *, f32, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void baphysics_set_target_yaw(struct player_state_s *, f32);
+    void func_8008E944(struct player_state_s *);
+    void func_8009514C(struct player_state_s *);
+    s32 func_80099A58(struct player_state_s *);
+    void func_8009C128(struct player_state_s *, f32[3]);
+    void func_8009D89C(struct player_state_s *, f32);
+    void func_800A32C4(struct player_state_s *, f32[3]);
+    s32 func_800F1E6C(f32 *, f32 *, f32 *);
+    void yaw_applyIdeal(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    f32 sp4C;
+    f32 sp40[3];
+    f32 sp34[3];
+
+    _bareact_entrypoint_1(arg0, func_80099A58(arg0));
+    baanim_playForDuration_once(arg0, 0x14, 1.4f);
+    func_8009D89C(arg0, 1.0f);
+    func_8009C128(arg0, sp40);
+    func_800A32C4(arg0, sp34);
+    func_800F1E6C(sp34, sp40, &sp4C);
+    yaw_setIdeal(arg0, sp4C);
+    yaw_applyIdeal(arg0);
+    baphysics_set_target_horizontal_velocity(arg0, _bareact_entrypoint_4(arg0));
+    baphysics_set_target_yaw(arg0, sp4C);
+    baphysics_set_horizontal_velocity(arg0, sp4C, baphysics_get_target_horizontal_velocity(arg0));
+    func_8009FFD8(arg0, 1, 1, 2, 3);
+    func_8008E944(arg0);
+    func_8009514C(arg0);
+    func_80800030_bsbswim(arg0);
+}
 
 /* extern */
 
