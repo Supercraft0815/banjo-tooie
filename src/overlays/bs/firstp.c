@@ -1829,7 +1829,24 @@ s32 bsfirstp_entrypoint_20(s32 arg0) {
     return ((s32 *)&D_8080B510_bsfirstp)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80804E1C_bsfirstp.s")
+void func_80804E1C_bsfirstp(struct player_state_s *arg0) {
+    s32 _glcutDll_entrypoint_1();
+    u32 func_800A3404(void *);
+    void baanim_playForDuration_loopStartingAt(struct player_state_s *, enum asset_e, f32, f32);
+    void func_80807BB8_bsfirstp();
+    s32 func_80807DD4_bsfirstp(s32);
+    void func_80807F5C_bsfirstp(s32);
+
+    if (func_800A3404(arg0) != 0 || _glcutDll_entrypoint_1() != 0) {
+        func_80807BB8_bsfirstp(arg0);
+        func_80807F5C_bsfirstp((s32)arg0);
+        return;
+    }
+    func_80807BB8_bsfirstp(arg0);
+    func_80807DD4_bsfirstp((s32)arg0);
+    baanim_playForDuration_loopStartingAt(arg0, 0x30D, 2.0f, 0.5036f);
+    func_808002CC_bsfirstp(arg0, 0x311, 2.0f, 0.5036f);
+}
 
 void func_80804EB4_bsfirstp(void)
 {
