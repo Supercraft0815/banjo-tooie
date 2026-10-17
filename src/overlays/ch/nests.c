@@ -30,13 +30,44 @@ void func_808000E8_chnests(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800144_chnests.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_808001F0_chnests.s")
+void func_808001F0_chnests(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    f32 func_800DC178(f32, f32);
+    void func_800FFA88(Unk80132ED0 *);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(void *, s32);
+    void func_8010A570(Actor *);
+    void func_80800144_chnests(void);
+    void func_80800B80_chnests(void *);
+    extern s16 D_808011DC_chnests[][2];
+    Unk80132ED0 *sp24;
+    s32 type;
+    s16 *range;
+
+    sp24 = arg0->unk0;
+    type = arg0->unk74_7 - 0x32;
+    func_80800144_chnests();
+    func_808000E8_chnests(arg0);
+    if (type == 1 || type == 2 || type == 3) {
+        range = D_808011DC_chnests[type];
+        arg0->unk58 = func_800DC178(range[-2], range[-1]);
+        arg0->unk64_16 = 0;
+        func_8010A570(arg0);
+        func_80103110(arg0, 1);
+        _subaddieDll_entrypoint_4(arg0, 1);
+        arg0->actorData[0] = arg0->unk70_10;
+        func_80101FDC(arg0, 4);
+        func_80800B80_chnests(arg0);
+    } else {
+        func_800FFA88(sp24);
+    }
+}
 
 /* extern */
 
 void func_808002E0_chnests(void *arg0) {
-    s32 func_80101FDC(void *, s32);
-    s32 func_8010A570();
+    void func_80101FDC(Actor *, u32);
+    void func_8010A570();
     (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFFE);
     func_8010A570();
     (*(u32 *)((s8 *)(arg0) + (0x18))) = ((u32) (*(u16 *)((s8 *)(arg0) + (0x72)))) >> 0xA;
@@ -55,7 +86,7 @@ void func_80800324_chnests(s32 arg0)
 void func_8080034C_chnests(void *arg0) {
     s32 _subaddieDll_entrypoint_4(void *, s32);
     s32 _subaddiefade_entrypoint_2();
-    s32 func_80101FDC(void *, s32);
+    void func_80101FDC(Actor *, u32);
     void func_80103110(void *, s32);
     s32 func_8010A590(void *);
     _subaddiefade_entrypoint_2();
