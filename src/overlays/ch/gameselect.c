@@ -10,7 +10,48 @@ OSThread *chgameselect_entrypoint_0(void)
     return (OSThread *) D_80807FD8_chgameselect;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080000C_chgameselect.s")
+void func_8080000C_chgameselect(Actor *arg0) {
+    void func_80016BDC(s32);
+    void _gcfrontend_entrypoint_0(void);
+    void func_800AA00C(void);
+    u32 func_800AA0B8(void);
+    s32 func_800D395C(void);
+    void func_80108B04(Actor *, u32);
+    void func_80803638_chgameselect(void);
+    void *heap_alloc(s32);
+    s32 temp_s0;
+    s32 i;
+
+    func_80016BDC(4);
+    temp_s0 = func_800D395C();
+    _gcfrontend_entrypoint_0();
+    if (func_800AA0B8()) {
+        arg0->unk79_4 = 5;
+        arg0->unk6C_0 = 5;
+    } else if (temp_s0 != 0) {
+        arg0->unk79_4 = 7;
+        arg0->unk6C_0 = 7;
+        func_800AA00C();
+    } else {
+        arg0->unk79_4 = 0;
+        arg0->unk6C_0 = 1;
+        func_800AA00C();
+    }
+    func_80803638_chgameselect();
+    func_80108B04(arg0, 0x4AB);
+    i = 0;
+    do {
+        func_80108B04(arg0, i);
+        i++;
+    } while (i != 8);
+    func_80108B04(arg0, 0x4AA);
+    func_80108B04(arg0, 0x4A9);
+    func_80108B04(arg0, 0x4AC);
+    func_80108B04(arg0, 0x4B9);
+    arg0->actorData[7] = 0;
+    arg0->unk58 = 0.1f;
+    *(void **)&arg0->unk50 = heap_alloc(0x100);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080015C_chgameselect.s")
 
@@ -604,7 +645,7 @@ OSThread *chgameselect_entrypoint_4(void)
 void func_808021E4_chgameselect(void *arg0) {
     s32 _gczoombox_entrypoint_19(s32);
     s32 _gczoombox_entrypoint_5(s32, s32, s32, s32, s32);
-    s32 heap_alloc(s32);
+    void *heap_alloc(s32);
     s32 temp_v0;
 
     temp_v0 = _gczoombox_entrypoint_5(0xC8, 0xC, 2, 0, 0);
@@ -2158,7 +2199,7 @@ void func_80806540_chgameselect(s32 arg0) {
 /* extern */
 
 void func_808065C0_chgameselect(s32 arg0) {
-    s32 func_80108B04(s32, s32);
+    void func_80108B04(Actor *, u32);
     s32 func_80803D00_chgameselect(s32, s32);
     func_80803D00_chgameselect(7, 1);
     func_80108B04(arg0, 0x4B6);
