@@ -96,12 +96,54 @@ s32 bsstonehead_entrypoint_3(s32 arg0) {
     return ((s32 *)&D_80801630_bsstonehead)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/func_808005F0_bsstonehead.s")
+struct anctrl_s;
+enum asset_e;
+
+void func_808005F0_bsstonehead(PlayerState *arg0, s32 arg1) {
+    void _basudie_entrypoint_2(PlayerState *, f32, f32, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void baanim_setEnd(PlayerState *, f32);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setSmoothTransition(struct anctrl_s *, s32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    void func_8009D820(PlayerState *, f32);
+    void func_8009DF94(PlayerState *, s32, f32, s32);
+    void func_8009DF18(PlayerState *, s32, f32, s32);
+    struct anctrl_s *animCtrl;
+
+    switch (arg1) {
+        case 3:
+            break;
+        case 1:
+            animCtrl = baanim_getAnimCtrlPtr(arg0);
+            arg0->unk16C = 250.0f;
+            _basudie_entrypoint_2(arg0, 250.0f, 420.0f, -1200.0f);
+            anctrl_reset(animCtrl);
+            anctrl_setSmoothTransition(animCtrl, 0);
+            anctrl_setIndex(animCtrl, 0x33);
+            anctrl_setSubrange(animCtrl, 0.0f, 0.46f);
+            anctrl_setDuration(animCtrl, 2.5f);
+            anctrl_setPlaybackType(animCtrl, 1);
+            anctrl_start(animCtrl);
+            func_8009D820(arg0, 1.8f);
+            break;
+        case 2:
+            baanim_setEnd(arg0, 1.0f);
+            func_8009DF94(arg0, 0x417, 0.8f, 0x4650);
+            func_8009DF18(arg0, 0x428, 1.8f, 0x4650);
+            break;
+    }
+    arg0->unk15C.word = arg1;
+}
 
 /* extern */
 
 void bsstonehead_entrypoint_4(s32 arg0) {
-    s32 func_808005F0_bsstonehead(s32, s32);
+    void func_808005F0_bsstonehead(PlayerState *, s32);
     func_80800060_bsstonehead(arg0);
     (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
     func_808005F0_bsstonehead(arg0, 1);
