@@ -168,7 +168,25 @@ void func_808008C8_chdragonbrothers(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_8080098C_chdragonbrothers.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80800A80_chdragonbrothers.s")
+void func_80800A80_chdragonbrothers(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 _ncpod_entrypoint_16(s32, s32, s32, s32);
+    s32 _ncpod_entrypoint_20(s32, s32, s32, s32);
+    s32 func_800F5EF8(s32);
+    void *func_80100094(Actor *, u32);
+    u8 *sp1C;
+
+    sp1C = func_80100094(arg0, 0);
+    switch (sp1C[0x5F]) {
+        case 0:
+            func_80800438_chdragonbrothers(arg0);
+            _ncpod_entrypoint_16(func_800F5EF8(((s32 *)sp1C)[8]), (s32)arg0->unk0, 3, 0);
+        case 2:
+            sp1C[0x5F] = 1;
+        case 1:
+            _ncpod_entrypoint_20(func_800F5EF8(((s32 *)sp1C)[8]), arg3, arg1, arg2);
+            break;
+    }
+}
 
 /* extern */
 
@@ -231,7 +249,7 @@ void func_80800D98_chdragonbrothers(u8 *arg0, s32 arg1) {
     s32 func_800DA9E4(s32, s32);
     void *func_80100094(Actor *, u32);
     void func_8080098C_chdragonbrothers(u8 *, s32, s32);
-    void func_80800A80_chdragonbrothers(u8 *, s32, s32, s32);
+    void func_80800A80_chdragonbrothers(Actor *, s32, s32, s32);
     void func_80800B9C_chdragonbrothers(u8 *, s32, f32 *);
     void func_80800D20_chdragonbrothers(u8 *, s16, s32);
     u8 *data;
@@ -367,7 +385,7 @@ void func_808012B4_chdragonbrothers(u8 *arg0, s32 arg1) {
     void func_800EFCD8(f32 *, f32, f32);
     f32 func_800F1DCC(f32, f32);
     void *func_80100094(Actor *, u32);
-    void func_80800A80_chdragonbrothers(u8 *, s32, s32, s32);
+    void func_80800A80_chdragonbrothers(Actor *, s32, s32, s32);
     void func_80800B9C_chdragonbrothers(u8 *, s32, f32 *);
     void func_80800D20_chdragonbrothers(u8 *, s16, s32);
     f32 func_808011C0_chdragonbrothers(u8 *, s32);
