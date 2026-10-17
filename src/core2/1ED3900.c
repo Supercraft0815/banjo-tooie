@@ -136,7 +136,46 @@ void func_800FA6B8(s32 arg0, s32 arg1, s32 arg2) {
     _scinfobar_entrypoint_8(D_80123880[arg0][6], arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA708.s")
+s32 func_800FA708(u32 arg0, s32 arg1, s32 arg2, u32 arg3)
+{
+  void _scinfobar_entrypoint_6(s32, s32);
+  s32 _scinfobar_entrypoint_16(s32);
+  s32 _scinfobar_entrypoint_22(s32);
+  s32 _scinfobar_entrypoint_23(s32);
+  s32 _scinfobar_entrypoint_7(s32, s32);
+  extern s32 D_80123880[][7];
+  s32 *entry;
+  s32 handle;
+  s32 state;
+  u32 mode;
+  entry = D_80123880[arg1];
+  if ((arg2 != (*(((s8 *) D_80123880[arg1]) + 0xE))) || (arg3 != (*(((u8 *) D_80123880[arg1]) + 0x12))))
+  {
+    handle = entry[6];
+    if ((handle != 0) && (_scinfobar_entrypoint_23(handle) != 0))
+    {
+      return 0;
+    }
+    handle = entry[6];
+    if ((handle != 0) && (_scinfobar_entrypoint_7(handle, arg2) == 0))
+    {
+      return 0;
+    }
+  }
+  state = arg2;
+  mode = arg3;
+  *(((s8 *) D_80123880[arg1]) + 0xE) = state;
+  *(((s8 *) D_80123880[arg1]) + 0x11) = 0;
+  *(((u8 *) D_80123880[arg1]) + 0x12) = mode;
+  func_800FA240(arg1, 1);
+  *(((f32 *) D_80123880[arg1]) + 5) = 2.0f;
+  if ((_scinfobar_entrypoint_16(D_80123880[arg1][6]) != arg2) && (_scinfobar_entrypoint_22(D_80123880[arg1][6]) != 0))
+  {
+    _scinfobar_entrypoint_6(D_80123880[arg1][6], 0);
+  }
+  func_800FA6B8(arg1, arg3, arg0);
+  return 1;
+}
 
 s32 func_800FA818(s32 arg0, s32 arg1) {
     void func_800FA240(s32, s32);
