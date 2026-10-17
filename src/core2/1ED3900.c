@@ -1,6 +1,44 @@
 #include "core2/1ED3900.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA010.s")
+void func_800FA010(void) {
+    extern s32 D_80123880[][7];
+    extern s32 D_80123DC0;
+    extern u8 D_801357B0;
+    s8 *entry;
+    s32 (*item)[7];
+    u32 i;
+    f32 total = 0.0f;
+
+    i = 0;
+clear_entries:
+    {
+        ((s8 *)D_80123880[i])[0x10] = 0;
+        i++;
+        if (i < 48U) goto clear_entries;
+    }
+    entry = (s8 *)&D_80123DC0;
+    i = 0;
+sum_counts:
+    {
+        total += *entry++;
+        i++;
+        if (i < 10U) goto sum_counts;
+    }
+    i = 0;
+init_entries:
+    {
+        ((s8 *)D_80123880[i])[0xA] = (*(u8 *)((s8 *)D_80123880[i] + 4) & 1) ? 0 : 1 - *(u8 *)((s8 *)D_80123880[i] + 4);
+        ((s8 *)D_80123880[i])[0xB] = (*(u8 *)((s8 *)D_80123880[i] + 4) & 1) ? *(u8 *)((s8 *)D_80123880[i] + 4) - 2 : 0;
+        ((s8 *)D_80123880[i])[0xC] = 0;
+        ((s8 *)D_80123880[i])[0x11] = 0;
+        ((s8 *)D_80123880[i])[0x12] = 0;
+        *(s16 *)((s8 *)D_80123880[i] + 6) = *(s16 *)D_80123880[i] - ((s8 *)D_80123880[i])[0xA] * total;
+        *(s16 *)((s8 *)D_80123880[i] + 8) = *(s16 *)((s8 *)D_80123880[i] + 2) - ((s8 *)D_80123880[i])[0xB] * total;
+        i++;
+        if (i != 48U) goto init_entries;
+    }
+    D_801357B0 = 1;
+}
 
 void func_800FA130(s32 arg0, s32 arg1) {
     s32 _scinfobar_entrypoint_0(s32, s32, s32);
