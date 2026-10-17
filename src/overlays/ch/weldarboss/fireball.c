@@ -9,7 +9,37 @@ OSThread *chweldarbossfireball_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fireball/func_8080000C_chweldarbossfireball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fireball/func_808000C4_chweldarbossfireball.s")
+void func_808000C4_chweldarbossfireball(Actor *arg0) {
+    s32 func_8001210C(s32);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E84(s32, u32 *);
+    f32 func_800D8FF8(void);
+    s32 func_8010B990(Actor *, s32);
+    void func_808002E0_chweldarbossfireball(Actor *);
+    void func_80800404_chweldarbossfireball(s32);
+    extern u32 D_80800468_chweldarbossfireball[];
+    extern u32 D_80800474_chweldarbossfireball[];
+    u32 *color;
+    s32 effect;
+
+    arg0->unk50 += func_800D8FF8() * 500.0f;
+    if (arg0->unk70_10 == 1) {
+        if (func_8010B990(arg0, 0x400007) & 0x20) {
+            func_808002E0_chweldarbossfireball(arg0);
+        }
+        func_80800404_chweldarbossfireball((s32)arg0);
+    }
+    effect = arg0->actorData[7];
+    if (effect != 0) {
+        func_800C8CB8(effect, arg0->position);
+        if (func_8001210C(1) != 0) {
+            color = D_80800474_chweldarbossfireball;
+        } else {
+            color = D_80800468_chweldarbossfireball;
+        }
+        func_800C8E84(arg0->actorData[7], color);
+    }
+}
 
 void func_8080017C_chweldarbossfireball(u8 *arg0) {
     void func_800C8B84(s32);
