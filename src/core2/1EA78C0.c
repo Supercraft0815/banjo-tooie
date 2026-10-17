@@ -536,7 +536,30 @@ void func_800CF700(void) {
     func_800CE9E8(1, func_800CF6D0());
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF734.s")
+void func_800CF734(s32 arg0, s32 arg1) {
+    extern f32 D_8011AA80;
+    extern s16 D_8012B168;
+    s32 index;
+    s32 count;
+    s32 i;
+    u8 *entry;
+
+    index = func_800CF640();
+    if (*(f32 *)((u8 *)&D_8011AA80 + index * 20 + 0x10) > 0.0f) {
+        entry = (u8 *)&D_8011AA80 + index * 20;
+        func_800CF160(*(f32 *)(entry + 0x10), *(s16 *)(entry + 0xC));
+    }
+    count = func_800CEAA8(1);
+    i = 0;
+    if (count > 0) {
+        do {
+            func_800CF494();
+            i++;
+        } while (i < count);
+    }
+    D_8012B168 = count;
+    func_800CE928(1, (s32)func_800CF734, 0);
+}
 
 /* extern */
 
