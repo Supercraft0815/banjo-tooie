@@ -238,4 +238,25 @@ void func_800F468C(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F46D8.s")
+void *func_800F46D8(void *arg0) {
+    void *defrag(void *);
+    void func_80099544(void *);
+    struct {
+        void *old;
+        s32 offset;
+        s32 i;
+    } relocation;
+
+    func_80099544(arg0);
+    relocation.old = arg0;
+    arg0 = defrag(arg0);
+    if (relocation.old == arg0) {
+        return arg0;
+    } else {
+        relocation.offset = (u8 *)arg0 - (u8 *)relocation.old;
+        for (relocation.i = 0; relocation.i < 0x56; relocation.i++) {
+            *(s32 *)((s32)arg0 + (relocation.i << 2)) += relocation.offset;
+        }
+    }
+    return arg0;
+}
