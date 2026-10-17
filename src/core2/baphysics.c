@@ -38,7 +38,33 @@ s32 func_8009AE00()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009AE08.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009B08C.s")
+void func_8009B08C(u8 *arg0) {
+    f32 func_800D8FF8(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EFA20(void *, void *, f32);
+    void func_800EFB24(void *, void *, void *);
+    extern f32 D_801252A4;
+    f32 sp2C[3];
+    f32 sp28;
+    u8 *temp_v0;
+
+    sp28 = func_800D8FF8();
+    temp_v0 = *(u8 **)(arg0 + 0xC8);
+    func_800EFB24(sp2C, temp_v0 + 0x1C, temp_v0 + 0x10);
+    func_800EF334(sp2C, *(f32 *)(*(u8 **)(arg0 + 0xC8) + 0x44) * sp28);
+    if ((sp2C[0] * sp2C[0] + sp2C[1] * sp2C[1]) + sp2C[2] * sp2C[2] < D_801252A4) {
+        temp_v0 = *(u8 **)(arg0 + 0xC8);
+        func_800EE7F8((f32 *)(temp_v0 + 0x10), (f32 *)(temp_v0 + 0x1C));
+    } else {
+        func_800EF04C((f32 *)(*(u8 **)(arg0 + 0xC8) + 0x10), sp2C);
+    }
+    temp_v0 = *(u8 **)(arg0 + 0xC8);
+    func_800EFA20(temp_v0 + 0x28, temp_v0 + 0x10, sp28);
+    temp_v0 = *(u8 **)(arg0 + 0xC8);
+    func_800EF04C((f32 *)(temp_v0 + 4), (f32 *)(temp_v0 + 0x28));
+}
 
 /* extern */
 
@@ -93,7 +119,7 @@ void func_8009B1FC(void *arg0) {
 
 void func_8009B3B8(u8 *arg0) {
     f32 func_800D8FF8(void);
-    s32 func_800EE7F8();
+    void func_800EE7F8(f32 *, f32 *);
     void func_800EF04C(f32[3], f32[3]);
     void func_800EF334(f32 vec[3], f32 scale);
 
@@ -134,7 +160,7 @@ void func_8009B450(void *arg0) {
 }
 
 void func_8009B4D0(void *arg0, s32 arg1) {
-    s32 func_800EE7F8();
+    void func_800EE7F8(f32 *, f32 *);
     func_800EE7F8(arg1, *(s32 *)((u8 *)arg0 + 0xC8) + 0x28);
 }
 
@@ -166,7 +192,7 @@ void func_8009B7C0(PlayerState *arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/baphysics_set_type.s")
 
 void func_8009B94C(u8 *arg0, f32 *arg1) {
-    s32 func_800EE7F8(s32);
+    void func_800EE7F8();
     void func_800EFD24(f32 vec[3]);
     if (arg1 != 0) {
         func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x1C);
@@ -178,7 +204,7 @@ void func_8009B94C(u8 *arg0, f32 *arg1) {
 /* extern */
 
 void func_8009B98C(void *arg0) {
-    s32 func_800EE7F8(s32);
+    void func_800EE7F8();
     func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xC8))) + 4);
 }
 
@@ -220,7 +246,7 @@ void baphysics_set_horizontal_velocity(PlayerState *arg0, f32 yaw, f32 vel) {
 }
 
 void func_8009BA9C(PlayerState *arg0, f32 *arg1) {
-    s32 func_800EE7F8(s32);
+    void func_800EE7F8();
     void func_800EFD24(f32 vec[3]);
     if (arg1 != NULL) {
         func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x10);
@@ -254,7 +280,7 @@ f32 func_8009BB18(void *arg0) {
 }
 
 /* Single line: IDO schedules this prologue by source line. */
-void func_8009BB24(PlayerState *arg0, f32 arg1[3]) { s32 func_800EE7F8(); func_800EE7F8(arg1, *(s32 *)((u8 *)arg0 + 0xC8) + 0x10); }
+void func_8009BB24(PlayerState *arg0, f32 arg1[3]) { void func_800EE7F8(); func_800EE7F8(arg1, *(s32 *)((u8 *)arg0 + 0xC8) + 0x10); }
 
 f32 baphysics_get_vertical_velocity(PlayerState *arg0) {
     return (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x14)));
@@ -294,7 +320,7 @@ f32 func_8009BBB8(PlayerState *arg0) {
 }
 
 void func_8009BC08(void *arg0, s32 arg1) {
-    s32 func_800EE7F8();
+    void func_800EE7F8();
     func_800EE7F8(arg1, *(s32 *)((u8 *)arg0 + 0xC8) + 0x4);
 }
 
