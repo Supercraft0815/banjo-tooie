@@ -110,7 +110,25 @@ void func_80800848_chphlegm(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_80800850_chphlegm.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_808009DC_chphlegm.s")
+s32 func_808009DC_chphlegm(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80101FDC(Actor *, u32);
+    void func_80800A58_chphlegm(Actor *);
+    s32 *data = &arg2;
+    switch (arg1) {
+        case 0x3D:
+            func_80800A58_chphlegm(arg0);
+            break;
+        case 0x2E:
+            func_80101FDC(arg0, 2);
+            break;
+        case 0x95:
+            func_80101FDC(arg0, 1);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800A58_chphlegm(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
