@@ -249,7 +249,40 @@ void func_800183D4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 void func_80018444(void) { f32 func_800D8FF8(void); extern Motor D_8007B4E0[]; Motor *motor; Motor *end; f32 delta; f32 limit; f32 elapsed; delta = func_800D8FF8(); end = D_8007B4E0; motor = D_8007B2D0; loop: if (motor->unk0 != 0) { limit = motor->unkC; elapsed = motor->unk10 + delta; if (limit < elapsed) { motor->unk10 = limit; } else { motor->unk10 = elapsed; } } if (motor[1].unk0 != 0) { limit = motor[1].unkC; elapsed = motor[1].unk10 + delta; if (limit < elapsed) { motor[1].unk10 = limit; } else { motor[1].unk10 = elapsed; } } motor += 2; if (motor != end) { goto loop; } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_800184E8.s")
+void func_800184E8(void) {
+    void func_80014F64(OSMesgQueue *, OSMesg);
+    OSMesgQueue *func_80016928(void);
+    void func_80016934(s32);
+    void func_8001DCB0(OSThread *, __OSThreadOddFpStorage *, s32, void (*)(void *), void *, void *, OSPri);
+    void func_8001817C(void *);
+    extern OSMesgQueue D_8007AEF0;
+    extern OSMesg D_8007AF08;
+    extern OSMesgQueue *D_8007AF0C;
+    extern OSThread D_8007AF10;
+    extern __OSThreadOddFpStorage D_8007B0C0;
+    extern OSPfs D_8007B2EC;
+    Motor *motor;
+    OSPfs *pfs;
+    s32 i;
+    s32 result;
+
+    func_80016934(4);
+    D_8007AF0C = func_80016928();
+    motor = D_8007B2D0; pfs = &D_8007B2EC;
+    for (i = 0; i != 4; i++, motor++, pfs = (OSPfs *)((u8 *)pfs + sizeof(Motor))) {
+        result = osPfsInit(D_8007AF0C, pfs, i);
+        if (result == 10 || result == 11) {
+            result = osMotorInit(D_8007AF0C, pfs, i);
+        }
+        motor->unk0 = result == 0;
+        motor->active = result == 0;
+    }
+    func_80016934(0);
+    osCreateMesgQueue(&D_8007AEF0, &D_8007AF08, 1);
+    func_8001DCB0(&D_8007AF10, &D_8007B0C0, 8, func_8001817C, 0, D_8007B2D0, 25);
+    osStartThread(&D_8007AF10);
+    func_80014F64(&D_8007AEF0, 0);
+}
 
 void func_8001862C(void) {
 }
