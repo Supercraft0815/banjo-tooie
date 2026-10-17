@@ -70,7 +70,7 @@ void func_80112D08(void *arg0, s32 arg1, f32 arg2, f32 arg3) {
 void func_80112D2C(PlayerState *arg0) {
     void func_800EFB24(void *arg0, void *arg1, void *arg2);
     s32 func_800F1EA4(f32[3], f32 *);
-    void func_801107F0(PlayerState *, f32 *);
+    void func_801107F0(void *, f32 *);
     f32 sp34[3];
     f32 sp28[3];
     f32 sp1C[3];
@@ -133,7 +133,7 @@ s32 func_80113320(PlayerState *arg0, f32 *arg1) { void func_800EE7F8(f32 *, f32 
 void func_8011337C(PlayerState *arg0) {
     u8 func_800E8714(s32);
     void func_800E8870(u8, f32);
-    void func_801107F0(PlayerState *, f32 *);
+    void func_801107F0(void *, f32 *);
     s32 i;
 
     func_801107F0(arg0, arg0->bounce);
@@ -166,7 +166,7 @@ void func_80113410(void *arg0) {
 }
 
 void func_8011347C(PlayerState *arg0) {
-    void func_801107F0(PlayerState *, f32 *);
+    void func_801107F0(void *, f32 *);
     func_801107F0(arg0, arg0->bounce);
 }
 
@@ -242,7 +242,23 @@ s32 func_801138A0(void *arg0) {
     return (*(s16 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x28)))) + (0xE))) >= 5;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_801138F4.s")
+void func_801138F4(PlayerState *arg0) {
+    f32 func_800EEF94(f32 *);
+    void func_800EF410(f32 *, f32 *);
+    void func_800EFB24(void *, void *, void *);
+    void func_801107F0(void *, f32 *);
+    s32 func_80112E98(PlayerState *, f32 *, f32 *, f32, s32, s32);
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+    f32 sp28[3];
+
+    func_80112550(arg0, sp4C);
+    func_801107F0(arg0, sp40);
+    func_800EFB24(sp34, sp4C, sp40);
+    func_800EF410(sp28, sp34);
+    func_80112E98(arg0, sp4C, sp28, func_800EEF94(sp34), 0, 0x20020);
+}
 
 void func_8011396C(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 40) + 20) = arg1;
