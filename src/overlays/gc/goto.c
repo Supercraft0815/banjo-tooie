@@ -92,7 +92,31 @@ void gcgoto_entrypoint_3(s16 *arg0, s32 arg1, s32 arg2) {
     func_808003D0_gcgoto(arg0, (arg1 << 8) + arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/goto/gcgoto_entrypoint_4.s")
+void gcgoto_entrypoint_4(s32 arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
+    void func_8008FE68(f32 *);
+    void func_800EEB9C(f32[3], f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    u32 func_800F54E4(void);
+    void _plcamera_entrypoint_11(u32, f32 *);
+    void func_800A1618(s32);
+    void func_80090358(f32 *, f32, void *, s32);
+    f32 pos[3];
+    f32 dest[3];
+    f32 offset[3];
+
+    func_8008FE68(pos);
+    func_800EEB9C(offset, arg3, func_800F10B4((f32)arg4, 0.0f, 200.0f, 10.0f, 800.0f));
+    offset[0] += pos[0];
+    offset[1] += pos[1];
+    offset[2] += pos[2];
+    dest[0] = offset[0];
+    dest[1] = arg2;
+    dest[2] = offset[2];
+    _plcamera_entrypoint_11(func_800F54E4(), dest);
+    func_8080011C_gcgoto(arg0, arg1, 1, 1);
+    func_800A1618(1);
+    func_80090358(dest, 1.0f, NULL, 0);
+}
 
 void gcgoto_entrypoint_5(s32 arg0, s32 arg1, f32 arg2) {
     void func_8008FE68(f32 *);

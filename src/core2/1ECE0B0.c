@@ -104,8 +104,8 @@ void func_800F4A58(s32 arg0, s32 arg1, f32 arg2) {
     _badrone_entrypoint_14(D_80135490[arg0], arg1, arg2);
 }
 
-void func_800F4A8C(s32 arg0, s32 arg1, f32 arg2) {
-    s32 _badrone_entrypoint_15(PlayerState *, s32, f32);
+void func_800F4A8C(s32 arg0, f32 *arg1, f32 arg2) {
+    s32 _badrone_entrypoint_15(PlayerState *, f32 *, f32);
     _badrone_entrypoint_15(D_80135490[arg0], arg1, arg2);
 }
 
