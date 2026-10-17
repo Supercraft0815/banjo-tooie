@@ -51,7 +51,26 @@ void func_800E97C0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9804.s")
+void *func_800E9804(s16 *arg0) {
+    s32 func_800B3CDC();
+    s32 func_800BE4C4();
+    void func_800E9CF4(s16 *);
+    extern s32 D_80132DB4;
+    void *result;
+    s32 oldList;
+    s32 oldCount;
+
+    oldList = D_80132DB4;
+    oldCount = arg0[2];
+    result = (void *)func_800B3CDC(&D_80132DB4, arg0 + 2, arg0);
+    ((u8 *)result)[0xB] &= 0xFFFE;
+    if (oldList != D_80132DB4) {
+        func_800BE4C4();
+    } else if (oldCount != arg0[2]) {
+        func_800E9CF4(arg0);
+    }
+    return result;
+}
 
 void *func_800E9898(s32 arg0) {
     s32 func_800B3CDC(s32 *, s32);
