@@ -87,7 +87,34 @@ void func_8009CD70(u8 *arg0, f32 *arg1) {
     func_800EFD24((s32)((temp_v0_3 + temp_v0_3[0x80] * 0x10) + (0, -0xC)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76500/func_8009CDE0.s")
+void func_8009CDE0(void *arg0, s32 arg1) {
+    s32 func_8009E7C8(PlayerState *, s32);
+    int val = 0;
+
+    switch (arg1) {
+        case 1:
+            if (func_8009E7C8(arg0, 0x1E) == 2)
+                val = 1;
+            break;
+        case 2:
+            if (func_8009E7C8(arg0, 0x1C) == 2)
+                val = 1;
+            break;
+        case 3:
+            if (func_8009E7C8(arg0, 0x1D) == 2)
+                val = 1;
+            break;
+        case 4:
+            if (func_8009E7C8(arg0, 0x25) == 2)
+                val = 1;
+            break;
+        default:
+            val = 1;
+            break;
+    }
+    if (val)
+        (*(u8 **)((u8 *)arg0 + 0xF0))[0x81] = arg1;
+}
 
 void func_8009CEE8(void *arg0) {
     void *temp_v0;
