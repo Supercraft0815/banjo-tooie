@@ -696,7 +696,38 @@ void gcnewoption_entrypoint_27(u8 *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_28.s")
+void gcnewoption_entrypoint_28(void *arg0) {
+    void gcnewoption_entrypoint_42(void *, f32);
+    s32 _gczoombox_entrypoint_20(s32, f32, s32, s32, f32, s32, s32);
+    struct Flags28 {
+        u8 padding[0x1D];
+        u8 upper : 2;
+        u8 flag : 1;
+        u8 lower : 5;
+    };
+    s32 temp_a0;
+    s32 i;
+    u8 *ptr;
+
+    gcnewoption_entrypoint_42(arg0, 0.1f);
+    temp_a0 = *(s32 *)((u8 *)arg0 + 0x20);
+    ((struct Flags28 *)arg0)->flag = 1;
+    if (temp_a0 != 0) {
+        _gczoombox_entrypoint_20(temp_a0, 30.0f, 0, 2, 0.1f, 0, 0);
+    }
+    i = 0;
+    if (*(s16 *)((u8 *)arg0 + 2) > 0) {
+        ptr = arg0;
+        do {
+            temp_a0 = *(s32 *)(ptr + 0x3C);
+            if (temp_a0 != 0) {
+                _gczoombox_entrypoint_20(temp_a0, 100.0f, 0, 2, 0.1f, 0, 0);
+            }
+            i++;
+            ptr += 4;
+        } while (i < *(s16 *)((u8 *)arg0 + 2));
+    }
+}
 
 void gcnewoption_entrypoint_29(void *arg0, s32 arg1) {
     struct Flags {
