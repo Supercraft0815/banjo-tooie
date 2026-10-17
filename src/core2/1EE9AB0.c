@@ -657,7 +657,34 @@ block_4:
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111DB0.s")
+void func_80111DB0(u8 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
+    f32 func_800D8FF8(void);
+    f32 func_800EEF94(f32 *);
+    void func_800EF174(f32 *, f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800FF060(f32, f32 *, f32, f32, f32, f32);
+    extern f32 D_8012655C;
+    f32 sp34[3];
+    f32 distance;
+    f32 step;
+    f32 delta;
+    u8 *data;
+
+    func_800EFB24(sp34, arg1, arg2);
+    distance = func_800EEF94(sp34);
+    if (D_8012655C < distance) {
+        delta = func_800D8FF8();
+        data = *(u8 **)(arg0 + 0x34);
+        step = func_800FF060(distance, arg3, *(f32 *)(data + 0x80), *(f32 *)(data + 0x84), *(f32 *)(data + 0x7C), delta);
+        if (distance < step) {
+            step = distance;
+            *arg3 = 0.0f;
+        }
+        func_800EF174(arg2, sp34, step / distance);
+    } else {
+        *arg3 = 0.0f;
+    }
+}
 
 /* extern */
 
@@ -692,7 +719,7 @@ void func_80111E88(f32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4) {
 /* extern */
 
 void func_80111F70(u8 *arg0, u8 *arg1, u8 *arg2, void *arg3, f32 *arg4) {
-    void func_80111DB0(u8 *, u8 *, u8 *, void *);
+    void func_80111DB0(u8 *, f32 *, f32 *, f32 *);
     f32 sp24;
     f32 temp_f12;
     u8 *temp_v0;
