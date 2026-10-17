@@ -101,7 +101,24 @@ s32 fxegg_entrypoint_4(f32 arg0[3], f32 arg1) {
     return sp1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/egg/fxegg_entrypoint_5.s")
+s32 fxegg_entrypoint_5(f32 arg0[3], f32 arg1[3], f32 arg2) {
+    s32 _fxdlsmoke_entrypoint_0(f32 *);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    void func_800EFA20(void *, void *, f32);
+    extern s32 D_80800614_fxegg;
+    s32 sp34;
+    f32 sp28[3];
+
+    sp34 = _fxdlsmoke_entrypoint_0(arg0);
+    if (arg1 != NULL) {
+        func_800EFA20(sp28, arg1, 0.15f);
+        func_800BA930(sp34, (s16)sp28[0], (s16)(sp28[1] + 60.0f), (s16)sp28[2],
+                     (s16)sp28[0], (s16)(sp28[1] + 100.0f), (s16)sp28[2]);
+    }
+    func_800BABB8(sp34, arg0, arg0, arg2, &D_80800614_fxegg);
+    return sp34;
+}
 
 s32 fxegg_entrypoint_6(f32 arg0[3], f32 arg1, f32 arg2[3]) {
     s32 func_800B5BE4(s32);
