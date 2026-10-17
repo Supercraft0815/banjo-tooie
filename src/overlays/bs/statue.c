@@ -348,7 +348,25 @@ void func_80800ED4_bsstatue(PlayerState *arg0) {
     func_80800DB8_bsstatue(arg0, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80800F3C_bsstatue.s")
+void func_80800F3C_bsstatue(PlayerState *arg0) {
+    int baanim_isAt(PlayerState *, f32);
+    void func_8080147C_bsstatue();
+
+
+    func_8080147C_bsstatue(arg0);
+    switch (*(u8 *)((s8 *)arg0 + 0x15C)) {
+        case 1:
+            if (*(s32 *)((s8 *)arg0 + 0x164) != 0) {
+                func_80800DB8_bsstatue(arg0, 2);
+            }
+            break;
+        case 2:
+            if (baanim_isAt(arg0, 0.9f) != 0) {
+                func_80800DB8_bsstatue(arg0, 3);
+            }
+            break;
+    }
+}
 
 s32 bsstatue_entrypoint_6(s32 arg0) {
     extern s32 D_808015E0_bsstatue[];
@@ -380,10 +398,10 @@ void func_80800FEC_bsstatue(register void *arg0) {
 /* extern */
 
 void func_80801060_bsstatue(s32 arg0) {
-    s32 baanim_isAt(s32, s32);
-    s32 func_8080147C_bsstatue();
+    int baanim_isAt(PlayerState *, f32);
+    void func_8080147C_bsstatue();
     func_8080147C_bsstatue();
-    if (baanim_isAt(arg0, 0x3F666666) != 0) {
+    if (baanim_isAt(arg0, 0.9f) != 0) {
         func_80800D84_bsstatue(arg0);
     }
 }
