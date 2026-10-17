@@ -65,7 +65,41 @@ void func_80800770_chjadesnake(Actor *arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadesnake/func_808007DC_chjadesnake.s")
+s32 func_808007DC_chjadesnake(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80101080(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_800EFB24(void *, void *, void *);
+    void func_800EF334(f32 *, f32);
+    void func_80102FE8(void *, s32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    extern s32 D_808009E4_chjadesnake;
+    Actor *sp1C;
+
+    switch (arg1) {
+        case 0xD:
+            switch (arg0->unk70_10) {
+                default:
+                    sp1C = func_80106790(func_80101080());
+                    func_800EFB24(&sp1C->actorData[4], arg0->actorData, &arg0->actorData[4]);
+                    func_800EF334((f32 *)&sp1C->actorData[4], 1.0f / 7.0f);
+                    arg0->unk6C_0 = 7;
+                    func_80102FE8(sp1C, 0);
+                    break;
+                case 1:
+                    break;
+            }
+            break;
+        case 0x2E:
+            func_80800728_chjadesnake(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            return 1;
+        case 0x52:
+            _gcdialogcamera_entrypoint_3(&D_808009E4_chjadesnake, arg0->scale);
+            return 1;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chjadesnake_entrypoint_0(void)
 {
