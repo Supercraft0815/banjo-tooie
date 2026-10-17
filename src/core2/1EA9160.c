@@ -141,7 +141,36 @@ s32 func_800CFFBC(u32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D0018.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D035C.s")
+s32 func_800D035C(s32 a0) {
+    s32 _chnests_entrypoint_13(s32);
+    extern u8 D_8011AD08[];
+    s32 i;
+    s32 count;
+
+    count = 0;
+    if (a0 == 6) {
+        i = func_800D0820(a0);
+        if (func_800D0894(a0) >= i) {
+            do {
+                if (func_800D0B68(i, a0) != 0) {
+                    count += _chnests_entrypoint_13(D_8011AD08[i * 2 - 1] ? 0x1DA : 0x1D9);
+                }
+                i++;
+            } while (func_800D0894(a0) >= i);
+        }
+    } else {
+        i = func_800D0820(a0);
+        if (func_800D0894(a0) >= i) {
+            do {
+                if (func_800D0B68(i, a0) != 0) {
+                    count++;
+                }
+                i++;
+            } while (func_800D0894(a0) >= i);
+        }
+    }
+    return count;
+}
 
 /* extern */
 
