@@ -450,7 +450,38 @@ s32 func_8080154C_chquiz(void *arg0) {
     return _suquiz_entrypoint_16();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801600_chquiz.s")
+struct QuizTimer {
+    u8 pad0[0x84];
+    f32 current;
+    f32 previous;
+    f32 duration;
+    u8 active;
+};
+
+s32 func_80801600_chquiz(struct QuizTimer *timer) {
+    void func_800C3FC0(s32, f32, s32);
+    s32 func_800D2498(u32, s32, u32);
+    f32 func_800D9004(void);
+    f32 func_800F13C4(f32, f32);
+    s32 expired;
+    f32 previousRemainder;
+
+    if (timer->active != 0) {
+        timer->previous = timer->current;
+        timer->current -= func_800D9004();
+        expired = timer->current <= 0.0f;
+        if (expired == 0) {
+            previousRemainder = func_800F13C4(timer->previous, 1.0f); if (previousRemainder < func_800F13C4(timer->current, 1.0f)) {
+                func_800C3FC0(0x3E9, 1.2f, 0x7D00);
+            }
+        } else {
+            func_800C3FC0(0x4D5, 1.0f, 0x2710);
+        }
+        func_800D2498(0x116, (s32) timer->current, 0);
+        return expired;
+    }
+    return 0;
+}
 
 s32 func_808016F8_chquiz(void *arg0, s32 arg1, f32 arg2) {
     (*(s8 *)((s8 *)(arg0) + (0x90))) = (s8) arg1;
