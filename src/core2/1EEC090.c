@@ -446,17 +446,44 @@ s32 func_801143A4(f32 *arg0, f32 *arg1, f32 arg2, f32 *arg3) {
     return 0;
 }
 
-f32 func_80114444(void) {
-    s32 func_800F5410();
+f32 func_80114444(s32 arg0) {
+    s32 func_800F5410(s32);
     extern f32 D_801265E4;
     extern f32 D_801265E8;
-    if (func_800F5410() == 0xD) {
+    if (func_800F5410(arg0) == 0xD) {
         return D_801265E4;
     }
     return D_801265E8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_8011447C.s")
+/* extern */
+
+s32 func_8011447C(f32 *arg0, f32 *arg1) {
+    s32 func_800F5898();
+    s32 func_800F5EF8(s32);
+    s32 func_800F6438(u32);
+    int func_800F6640(s32);
+    s32 func_800F6690(s32);
+    s32 func_800F6BE4(s32);
+    PlayerState *func_80110014(s32);
+    f32 temp_f20;
+    s32 var_s0;
+    f32 sp4C[3];
+    s32 var_s2;
+
+    var_s2 = 0;
+    var_s0 = 0;
+    if (func_800F5898() > 0) {
+        do {
+            if ((func_800F6BE4(var_s0) != 0) && (func_800F6BE4(var_s0) != 0) && (func_800F6438(var_s0) != 0) && (func_800F6640(var_s0) != 0) && (func_800F6690(var_s0) != 0)) {
+                temp_f20 = func_80112550(func_80110014(func_800F5EF8(var_s0)), sp4C);
+                var_s2 |= func_801143A4(arg0, sp4C, func_80114444(var_s0) * temp_f20, arg1);
+            }
+            var_s0 += 1;
+        } while (var_s0 < func_800F5898());
+    }
+    return var_s2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_8011458C.s")
 
