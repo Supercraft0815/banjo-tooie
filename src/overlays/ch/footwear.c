@@ -37,7 +37,33 @@ void func_80800000_chfootwear(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/footwear/func_808000B8_chfootwear.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/footwear/func_80800364_chfootwear.s")
+s32 func_80800364_chfootwear(Actor *arg0, s32 arg1, void *volatile arg2) {
+    typedef struct {
+        u8 pad0[0x1A];
+        u16 unk1A_5 : 11;
+        u16 unk1A_0 : 5;
+        u32 pad1C[2];
+        u32 unk24_22 : 10;
+        u32 unk24_0 : 22;
+    } FootwearContact;
+    FootwearContact *contact;
+    s32 func_800DA298(s32);
+    s32 func_80800664_chfootwear(Actor *, s32);
+    void func_80800424_chfootwear(Actor *, s32);
+
+    if (arg1 == 0x3E) {
+        contact = arg2;
+        if (contact->unk24_22 == 0 && func_800DA298(0x64F)) {
+            if (func_80800664_chfootwear(arg0, contact->unk1A_5)) {
+                arg0->unk79_4 = contact->unk1A_5;
+                func_80800424_chfootwear(arg0, 2);
+                return 1;
+            }
+        }
+        return 0;
+    }
+    return 0;
+}
 
 void func_80800424_chfootwear(Actor *arg0, s32 arg1) {
     typedef struct {
@@ -80,9 +106,9 @@ void func_80800424_chfootwear(Actor *arg0, s32 arg1) {
 
 void func_80800644_chfootwear(s32 arg0, s32 arg1) { func_8080050C_chfootwear(arg0, arg1, 0); }
 
-void func_80800664_chfootwear(s32 arg0,s32 arg1)
+s32 func_80800664_chfootwear(Actor *arg0,s32 arg1)
 {
-    func_8080050C_chfootwear(arg0,arg1,0x1);
+    return func_8080050C_chfootwear(arg0,arg1,0x1);
 }
 
 OSThread *chfootwear_entrypoint_0(void)
