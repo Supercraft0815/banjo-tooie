@@ -151,7 +151,35 @@ void func_808004F8_bsvan(s32 arg0)
     _basudie_entrypoint_6();
     bsvan_entrypoint_0(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80800520_bsvan.s")
+struct anctrl_s;
+enum asset_e;
+void func_80800520_bsvan(struct player_state_s *arg0) {
+    void _basudie_entrypoint_2(struct player_state_s *, f32, f32, f32);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setSmoothTransition(struct anctrl_s *, s32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void func_8009D820(struct player_state_s *, f32);
+    struct anctrl_s *control;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    bsvan_entrypoint_1(arg0);
+    *(f32 *)((s8 *)arg0 + 0x16C) = 250.0f;
+    _basudie_entrypoint_2(arg0, 250.0f, 420.0f, -1200.0f);
+    anctrl_reset(control);
+    anctrl_setSmoothTransition(control, 0);
+    anctrl_setIndex(control, 0xD7);
+    anctrl_setSubrange(control, 0.0f, 0.3966f);
+    anctrl_setDuration(control, 1.7f);
+    anctrl_setPlaybackType(control, 1);
+    anctrl_start(control);
+    func_8009D820(arg0, 1.8f);
+    *(s32 *)((s8 *)arg0 + 0x15C) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_808005E4_bsvan.s")
 
@@ -192,7 +220,6 @@ void func_808007EC_bsvan(struct player_state_s *arg0) {
 
 struct anctrl_s;
 void func_80800824_bsvan(struct player_state_s *arg0) {
-    enum asset_e;
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setIndex(struct anctrl_s *, enum asset_e);
     void anctrl_setStart(struct anctrl_s *, f32);
