@@ -40,10 +40,42 @@ s32 func_8080000C_chchuffy(s32 arg0) {
     return temp_v1 + 0xA0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80800110_chchuffy.s")
-
 struct Entry { s16 pad[2]; s16 value; s16 tail; };
 extern struct Entry D_8080247C_chchuffy[];
+
+s32 func_80800110_chchuffy(s32 arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+    u32 i;
+
+    switch (arg0) {
+        case 4: {
+            s32 map;
+            map = func_800EA05C();
+            for (i = 0; i != 7; i += 1) {
+                if (func_8080000C_chchuffy(i) == map) {
+                    break;
+                }
+            }
+            break;
+        }
+        case 0:
+        case 1: {
+            s16 *var_s0;
+            var_s0 = &D_8080247C_chchuffy[0].pad[arg0];
+            for (i = 0; i != 7; i += 1, var_s0 += 4) {
+                if (func_800DA298(*var_s0)) {
+                    break;
+                }
+            }
+            break;
+        }
+    }
+    if (i >= 7U) {
+        return -1U;
+    }
+    return i;
+}
 
 void func_808001DC_chchuffy(void) {
     void func_800DA524(GameFlag);
