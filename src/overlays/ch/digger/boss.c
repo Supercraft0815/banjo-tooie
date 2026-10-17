@@ -915,7 +915,36 @@ s32 func_80806300_chdiggerboss(Actor *arg0) {
     return func_800F20BC(temp_f0, sp28, 10.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808063C8_chdiggerboss.s")
+s32 func_808063C8_chdiggerboss(Actor *arg0, s32 arg1, f32 arg2) {
+    f32 func_800D8FF8(void);
+    f32 func_800F1DCC(f32, f32);
+    f32 func_800F1F38(f32, f32, f32);
+    int func_800F20BC(f32, f32, f32);
+    f32 func_8010CD50(Actor *, u32);
+    void func_808064CC_chdiggerboss(s32, s32);
+    f32 mlAbsF(f32);
+    f32 sp34;
+    f32 sp30;
+    f32 sp2C;
+    f32 sp28;
+    Actor *sp24;
+    s32 sp20;
+
+    sp28 = func_800D8FF8();
+    sp24 = func_80802228_chdiggerboss(arg0);
+    sp34 = func_8010CD50(arg0, func_80802248_chdiggerboss((s32) arg0));
+    sp30 = sp24->rotation[1];
+    sp24->rotation[1] = func_800F1F38(sp30, sp34, sp28 * arg2);
+    sp2C = func_800F1DCC(sp24->rotation[1], sp30);
+    if (mlAbsF(func_800F1DCC(sp30, sp34)) > 20.0f) {
+        func_80805B8C_chdiggerboss(arg0, sp2C);
+    }
+    sp20 = func_800F20BC(sp24->rotation[1], sp34, 10.0f);
+    if (arg1 != 0) {
+        func_808064CC_chdiggerboss((s32) arg0, sp20 == 0);
+    }
+    return sp20;
+}
 
 void func_808064CC_chdiggerboss(s32 arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
