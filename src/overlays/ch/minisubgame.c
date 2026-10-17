@@ -14,7 +14,36 @@ OSThread *chminisubgame_entrypoint_1(void)
     return (OSThread *) D_8080146C_chminisubgame;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/func_80800018_chminisubgame.s")
+void func_80800018_chminisubgame(Actor *arg0) {
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
+    s32 _susubgame_entrypoint_11(s32);
+    void *func_80100094(Actor *, u32);
+    extern Prop *B_80801590_chminisubgame[];
+    u32 *data;
+    Prop **prop;
+    s32 count;
+    s32 i;
+    f32 *position;
+
+    data = func_80100094(arg0, 0U);
+    count = _gccubesearch_entrypoint_9(0x1C0, B_80801590_chminisubgame, 0x3C);
+    arg0->actorData[6] = count;
+    i = 0;
+    if (count > 0) {
+        prop = B_80801590_chminisubgame;
+        position = (f32 *)data;
+        do {
+            _gspropctrl_entrypoint_11(*prop, position);
+            i++;
+            prop++;
+            position += 3;
+        } while (i < (s32)arg0->actorData[6]);
+    }
+    _susubgame_entrypoint_0(arg0, data + 0xC3, 0);
+    _susubgame_entrypoint_11(0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/func_808000C8_chminisubgame.s")
 
