@@ -883,7 +883,22 @@ void bsbtrot_entrypoint_52(void *arg0) {
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_53.s")
+/* extern */
+
+void bsbtrot_entrypoint_53(PlayerState *arg0) {
+    s32 _bashoessuck_entrypoint_4(PlayerState *);
+    s32 func_8008E40C(PlayerState *);
+    s32 sp24;
+
+    sp24 = 0;
+    func_80800120_bsbtrot(arg0);
+    func_808004B4_bsbtrot(arg0);
+    _bashoessuck_entrypoint_4(arg0);
+    if (func_8008E40C(arg0) == 0) {
+        sp24 = 0x17;
+    }
+    bs_setState(arg0, func_808007E0_bsbtrot(arg0, sp24));
+}
 
 void bsbtrot_entrypoint_54(s32 arg0)
 {
