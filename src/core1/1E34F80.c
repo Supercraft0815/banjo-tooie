@@ -88,7 +88,7 @@ void func_8001DA00(u8 *arg0, s32 arg1) {
 void func_8001DA58(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E34F80/func_8001DA60.s")
+void func_8001DA60(u16 *arg0) { u32 func_80014EC8(); s32 func_80014ED4(void); extern s32 D_8007D170; extern s32 D_8007D80C; extern s32 D_8007D810; s32 row; s32 column; s32 leading; s32 line; u16 *buffer; u8 *text; u8 *character; s32 value;  buffer = arg0; if (D_8007D810 == 0) { if (arg0 == NULL) { buffer = func_80014ED4(); } osInvalDCache(buffer, func_80014EC8()); text = (u8 *)&D_8007D170; line = 0; do { leading = 1; row = (line + D_8007D80C) % 30; column = 0; character = text; do { value = *character; if (leading != 0) { if (value != 0 && value != 0x20) { leading = 0; goto draw; } } else { draw: if (value != 0) { func_8001D6C0(buffer, column, row, value); } } column++; character++; } while (column != 0x38); line++; text += 0x38; } while (line != 30); osWritebackDCache(buffer, func_80014EC8()); } }
 
 /* extern */
 
