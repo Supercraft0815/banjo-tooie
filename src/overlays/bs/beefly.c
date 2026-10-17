@@ -171,19 +171,56 @@ void func_8080039C_bsbeefly(PlayerState *arg0) {
 /* extern */
 
 void func_808005B0_bsbeefly(s32 arg0) {
-    s32 _baboost_entrypoint_2(s32, s32);
+    void _baboost_entrypoint_2(PlayerState *, f32);
     s32 func_80099B94(s32);
     s32 func_8009E6EC();
     s32 func_8009E830(s32, s32);
     if (func_8009E6EC() == 0x18) {
-        _baboost_entrypoint_2(arg0, 0x3F800000);
+        _baboost_entrypoint_2(arg0, 1.0f);
         func_8009E830(arg0, 2);
         return;
     }
     func_80099B94(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_80800600_bsbeefly.s")
+void func_80800600_bsbeefly(PlayerState *arg0) {
+    void _baboost_entrypoint_2(PlayerState *, f32);
+    s32 _bsbee_entrypoint_1();
+    void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
+    int baflag_isTrue(PlayerState *, s32);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    s32 bs_getPreviousState(PlayerState *);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+    void func_800A4DA4(PlayerState *, s32);
+    f32 yaw_getIdeal(PlayerState *);
+    s32 sp34;
+    s32 sp30;
+    f32 sp2C;
+
+    _bsbee_entrypoint_1();
+    sp34 = bs_getPreviousState(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0x1DC, 0.38f);
+    func_8009FFD8(arg0, 1, 1, 3, 3);
+    if (baflag_isTrue(arg0, 9)) {
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    } else {
+        baphysics_set_target_horizontal_velocity(arg0, 600.0f);
+    }
+    sp2C = yaw_getIdeal(arg0);
+    baphysics_set_horizontal_velocity(arg0, sp2C, baphysics_get_target_horizontal_velocity(arg0));
+    baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+    func_800A4DA4(arg0, 0x16);
+    func_8080039C_bsbeefly(arg0);
+    if (sp34 != 0x8B) {
+        _baboost_entrypoint_2(arg0, 1.0f);
+        *(s32 *)((s8 *)arg0 + 0x15C) = 0;
+    } else {
+        *(s32 *)((s8 *)arg0 + 0x15C) = 1;
+    }
+}
 
 void func_80800708_bsbeefly(void *arg0) {
     extern f32 D_80800E28_bsbeefly[];
@@ -191,7 +228,7 @@ void func_80800708_bsbeefly(void *arg0) {
     void _bsbee_entrypoint_2();
     void bs_setState(PlayerState *, s32);
     s32 _baboost_entrypoint_1(void *);
-    s32 _baboost_entrypoint_2(s32, s32);
+    void _baboost_entrypoint_2(PlayerState *, f32);
     void _baboost_entrypoint_5(void *);
     void _babuzz_entrypoint_3(void *);
     void _babuzz_entrypoint_4(void *, f32);
@@ -203,7 +240,7 @@ void func_80800708_bsbeefly(void *arg0) {
     void _bafly_entrypoint_21(void *);
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     void anctrl_setDuration(s32, f32);
-    f32 baphysics_get_target_horizontal_velocity(void *);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
     f32 baphysics_get_vertical_velocity(PlayerState *);
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     void baphysics_set_vertical_velocity(PlayerState *, f32);
@@ -232,10 +269,10 @@ void func_80800708_bsbeefly(void *arg0) {
     _bafly_entrypoint_11(arg0);
     func_8009BFCC(arg0);
     if (bakey_pressed(arg0, 8) && func_8009C150(arg0) < 27500.0f) {
-        _baboost_entrypoint_2((s32)arg0, 0x3F800000);
+        _baboost_entrypoint_2(arg0, 1.0f);
     }
     if (!_baboost_entrypoint_1(arg0) && player_inWater(arg0)) {
-        _baboost_entrypoint_2((s32)arg0, 0x3F800000);
+        _baboost_entrypoint_2(arg0, 1.0f);
     }
     boost = _baboost_entrypoint_1(arg0);
     anctrl_setDuration(anctrl, D_80800E28_bsbeefly[boost]);
