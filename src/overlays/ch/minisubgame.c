@@ -98,4 +98,27 @@ void func_808011DC_chminisubgame(u8 *arg0, s32 arg1, s32 arg2) {
     func_800BA22C(sp24, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/func_80801248_chminisubgame.s")
+void func_80801248_chminisubgame(Actor *arg0) {
+    s32 func_80090270();
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800C4AF0(f32 *, void *);
+    s32 func_800CEAD0(s32);
+    s32 func_800DA298(s32);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    extern s32 D_808014F0_chminisubgame;
+    extern s32 D_80801534_chminisubgame;
+    extern s32 D_80801578_chminisubgame;
+    f32 *position;
+
+    if (func_80090270() == 0 && (func_800DA298(0) != 0 || func_800CEAD0(0) == 0)) {
+        position = arg0->position;
+        func_800E1610(0, 20.0f, 0.6f, position);
+        func_800C4AF0(position, &D_80801578_chminisubgame);
+    }
+    position = arg0->position;
+    func_808011DC_chminisubgame((u8 *)arg0, arg0->unk6C_0 * 3 + 0x9A4, 2);
+    func_808011DC_chminisubgame((u8 *)arg0, arg0->unk6C_0 * 3 + 0x9A5, 6);
+    func_808011DC_chminisubgame((u8 *)arg0, arg0->unk6C_0 * 3 + 0x9A6, 4);
+    func_800BABB8(0, position, NULL, 1.0f, &D_808014F0_chminisubgame);
+    func_800BABB8(0, position, NULL, 1.0f, &D_80801534_chminisubgame);
+}
