@@ -274,7 +274,34 @@ void func_800CCFEC(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CD08C.s")
+void func_800CD08C(s32 arg0, f32 *arg1) {
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    extern f32 D_80125990;
+    extern s32 D_8012AE84;
+    f32 temp_f20;
+    f32 temp_f24;
+    s16 *temp_a0;
+    s16 temp_v0;
+    s32 temp_s2;
+    u32 temp_s7;
+    void *temp_a1;
+
+    temp_a0 = (arg0 * 0x1C) + D_8012AE84;
+    temp_s7 = *(u32 *)temp_a0 >> 9;
+    temp_s2 = func_800CB8F0(temp_a0);
+    temp_f24 = D_80125990;
+    do {
+        temp_a1 = (func_800DC128(0, temp_s7) * 0x18) + temp_s2;
+        func_800EE7F8(arg1, temp_a1);
+        temp_f20 = func_800DC178(0.0f, temp_f24);
+        func_800EF1B8(arg1, temp_f20, func_800DC178(0.0f, (f32) ((*(s16 *)((s8 *)(temp_a1) + (0xC))) - 5)));
+        temp_v0 = (*(s16 *)((s8 *)(temp_a1) + (0xE)));
+        arg1[1] += func_800DC178((f32) (5 - temp_v0), (f32) (temp_v0 - 5));
+    } while (func_800CC4D4(arg1, arg0) != -1);
+}
 
 /* extern */
 
