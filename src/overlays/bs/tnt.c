@@ -158,7 +158,19 @@ void func_80800554_bstnt(struct player_state_s *arg0) {
     func_800BABB8(sp28, sp2C, NULL, 1.0f, &D_808023C8_bstnt);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_808005F4_bstnt.s")
+void func_808005F4_bstnt(struct player_state_s *arg0) {
+    void func_8009C128(struct player_state_s *, f32[3]);
+    s32 _bashake_entrypoint_0(struct player_state_s *, s32, s32);
+    void func_8009DB04(struct player_state_s *, s32, f32, s32);
+    f32 sp24[3];
+
+    func_8009C128(arg0, sp24);
+    _bashake_entrypoint_0(arg0, 3, 2);
+    func_8009DB04(arg0, 0x413, 1.0f, 0x7FFF);
+    func_808004F8_bstnt(arg0, sp24);
+    func_8080030C_bstnt(arg0, sp24);
+    func_808002AC_bstnt((s32) arg0, (s32) sp24);
+}
 
 /* extern */
 
