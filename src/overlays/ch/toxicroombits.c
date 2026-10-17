@@ -40,7 +40,32 @@ s32 func_808004F0_chtoxicroombits(void) {
     return 6;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_80800540_chtoxicroombits.s")
+void func_80800540_chtoxicroombits(Actor *arg0) {
+    s32 func_800DA298(s32);
+    void func_800DA544(s32);
+    int func_800DB9B0(void);
+    void func_80800960_chtoxicroombits(u8 *, s32);
+    s32 i;
+
+    if (func_800DA298(0x6E2) == 0) {
+        func_808004C8_chtoxicroombits(6);
+        func_800DA544(0x6E2);
+    }
+    ((f32 *)arg0->actorData)[7] = func_80800458_chtoxicroombits();
+    arg0->unk79_4 = func_80800410_chtoxicroombits();
+    if (func_800DB9B0() != 0) {
+        arg0->unk6C_0 = 0;
+    } else {
+        arg0->unk6C_0 = 8;
+    }
+    arg0->unk58 = ((f32 *)arg0->actorData)[7] / 16;
+    ((f32 *)arg0->actorData)[0] = 0.0f;
+    for (i = 16; i != 0; i--) {
+        if (--arg0->unk79_4 == 0) {
+            func_80800960_chtoxicroombits((u8 *)arg0, i);
+        }
+    }
+}
 
 void func_80800630_chtoxicroombits(u8 *arg0) {
     struct State {
@@ -63,7 +88,7 @@ void func_80800630_chtoxicroombits(u8 *arg0) {
     s32 func_800D90A4(f32 *);
     f32 func_800D91B8(f32 *);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32);
     void func_800E3980(f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800FFAB0(Actor *);
