@@ -36,7 +36,21 @@ void func_80800000_chdinotraindoor(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/traindoor/func_80800120_chdinotraindoor.s")
+void func_80800120_chdinotraindoor(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chdoor_entrypoint_1(s32, s32, s32);
+    void func_800FFAB0(Actor *);
+    s32 func_80103140(Actor *, u32, u16);
+
+    switch (arg1) {
+        case 0x95:
+            func_80103140(arg0, (u16)(arg0->unk74_7 == 0x32 ? 0x949 : 0x94A), 0);
+            break;
+        case 0x9D:
+            func_800FFAB0(arg0);
+            break;
+    }
+    _chdoor_entrypoint_1((s32)arg0, arg1, arg2);
+}
 
 OSThread *chdinotraindoor_entrypoint_0(void)
 {
