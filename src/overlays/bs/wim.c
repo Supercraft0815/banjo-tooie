@@ -648,7 +648,34 @@ void func_8080196C_bsbswim(struct player_state_s *arg0) {
     (*(s8 *)((s8 *)(arg0) + (0x165))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_808019E0_bsbswim.s")
+void func_808019E0_bsbswim(struct player_state_s *arg0) {
+    void _baduo_entrypoint_21(struct player_state_s *);
+    s32 baanim_isAt(void *, f32);
+    s32 bs_setState(s32, s32);
+    void func_8009C128(struct player_state_s *, f32[3]);
+    s32 func_8009FBB0(struct player_state_s *, f32 *, f32);
+    void func_8009DF18(s32, s32, f32, s32);
+    void func_800A3410(struct player_state_s *, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    extern s32 D_80801F20_bsbswim[];
+    s32 next_state = 0;
+    f32 position[3];
+    s32 effect;
+
+    if (baanim_isAt(arg0, 0.21f)) {
+        func_800A0CF4(arg0, 0);
+        _baduo_entrypoint_21(arg0);
+        func_800A3410(arg0, 0xA);
+        ((s8 *)arg0)[0x165] = 1;
+        func_8009C128(arg0, position);
+        position[1] += 60.0f;
+        effect = func_8009FBB0(arg0, position, 70.0f);
+        func_800BABB8(effect, position, position, 1.0f, D_80801F20_bsbswim);
+        func_8009DF18((s32)arg0, 0x4592, 1.0f, 0x55F0);
+        next_state = 0xED;
+    }
+    bs_setState((s32)arg0, next_state);
+}
 
 s32 bsbswim_entrypoint_12(s32 arg0) {
     extern s32 D_80801F78_bsbswim[];
