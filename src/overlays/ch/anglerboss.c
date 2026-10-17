@@ -95,7 +95,33 @@ void func_80800FEC_changlerboss(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_808012E0_changlerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_808015F4_changlerboss.s")
+void func_808015F4_changlerboss(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    extern s16 D_80802F8C_changlerboss[][3][3];
+    struct {
+        u8 pad0[0x1B];
+        s8 state[6];
+    } *data;
+    s32 offset;
+    s32 i;
+    s32 j;
+    s8 enabled;
+
+    data = func_80100094(arg0, 0U);
+    data->state[arg1] = arg2;
+    for (i = 0; i != 3; i++) {
+        j = 0;
+        if (i == arg2) {
+            enabled = 1;
+        } else {
+            enabled = 0;
+        }
+        for (; D_80802F8C_changlerboss[arg1][i][j] != -1; j++) {
+            offset = D_80802F8C_changlerboss[arg1][i][j];
+            ((s8 *)data)[offset] = enabled;
+        }
+    }
+}
 
 /* extern */
 
