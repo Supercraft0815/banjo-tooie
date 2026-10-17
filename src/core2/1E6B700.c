@@ -69,7 +69,25 @@ void func_80091F30(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B700/func_80091F74.s")
+int func_80091F74(void *arg0, s32 arg1) {
+    s32 func_800A05DC();
+    s32 func_800F8B70(void);
+    void func_800F9104(s32);
+    s32 func_80101238(s32, s32);
+
+    if (arg1 == 3) {
+        if (func_800F8B70() == 0) {
+            func_800F9104(1);
+            if (func_80101238(0x96, *(s32 *)((u8 *)arg0 + 0x184)) == 0) {
+                func_800A05DC(arg0);
+            }
+            goto store_state;
+        }
+    } else {
+store_state:
+        **(u8 **)((u8 *)arg0 + 0x4C) = arg1;
+    }
+}
 
 /* extern */
 
