@@ -337,7 +337,34 @@ void func_80801808_chstoneballcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80801884_chstoneballcontrol.s")
+void func_80801884_chstoneballcontrol(Actor *arg0) {
+    f32 func_800DC0C0(void);
+    s32 func_800EA05C(void);
+    void *func_80100094(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    extern f32 D_80805010_chstoneballcontrol[][2];
+    struct {
+        u8 pad0[0x39];
+        u8 kind;
+    } *sp1C;
+    f32 sp18;
+    u32 state;
+    f32 *thresholds;
+
+    sp1C = func_80100094(arg0, 0);
+    sp18 = func_800DC0C0();
+    if (func_800EA05C() != 0xBB || arg0->unk70_10 != 1) {
+        thresholds = D_80805010_chstoneballcontrol[sp1C->kind];
+        if (sp18 < thresholds[0]) {
+            state = 1;
+        } else if (sp18 < thresholds[1]) {
+            state = 2;
+        } else {
+            state = 3;
+        }
+        func_80108B04(arg0, state);
+    }
+}
 
 OSThread *chstoneballcontrol_entrypoint_0(void)
 {
