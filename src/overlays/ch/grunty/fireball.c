@@ -13,7 +13,38 @@ void func_8080000C_chgruntyfireball(s16 *arg0) {
     func_80109EEC(arg0, 0x40);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/grunty/fireball/func_80800030_chgruntyfireball.s")
+void func_80800030_chgruntyfireball(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 func_8001210C(s32);
+    void func_80018820(s32, f32, f32);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E84(s32, u32 *);
+    s32 func_800E15CC(s32, f32, f32);
+    s32 func_8010B990(Actor *, s32);
+    void func_80800260_chgruntyfireball(u8 *);
+    void func_808003D8_chgruntyfireball(f32 *);
+    extern u32 D_808004C8_chgruntyfireball[];
+    extern u32 D_808004E0_chgruntyfireball[][3];
+    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_808004C8_chgruntyfireball);
+    switch (arg0->unk70_10) {
+        case 1:
+            func_808003D8_chgruntyfireball((f32 *)arg0);
+            break;
+        case 2:
+            if (func_8010B990(arg0, 0x400007) & 0x20) {
+                func_80018820(0, 1.0f, 0.18f);
+                func_800E15CC(0, 22.0f, 0.8f);
+                func_80800260_chgruntyfireball((u8 *)arg0);
+            } else {
+                func_808003D8_chgruntyfireball((f32 *)arg0);
+            }
+            break;
+    }
+    if ((s32)arg0->actorData[3] != 0) {
+        func_800C8CB8((s32)arg0->actorData[3], arg0->position);
+        func_800C8E84(arg0->actorData[3], D_808004E0_chgruntyfireball[func_8001210C(1)]);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/grunty/fireball/func_80800130_chgruntyfireball.s")
 
