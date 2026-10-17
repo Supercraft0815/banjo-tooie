@@ -285,7 +285,21 @@ void func_80800F98_chmusicmenu(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_80801040_chmusicmenu.s")
+s32 func_80801040_chmusicmenu(u8 *arg0, s32 arg1, s32 arg2) {
+    void *func_80101080(void);
+    void func_8080079C_chmusicmenu(u8 *, void *, s16, s16);
+
+    switch (arg1) {
+        case 0x20:
+            func_8080079C_chmusicmenu(arg0, func_80101080(), *(s16 *)&arg2, *((s16 *)&arg2 + 1));
+            return 1;
+        case 0x32:
+            func_80800930_chmusicmenu(arg0, 1);
+            return 1;
+        default:
+            return 0;
+    }
+}
 
 OSThread *chmusicmenu_entrypoint_0(void)
 {
