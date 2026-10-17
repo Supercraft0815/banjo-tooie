@@ -15,7 +15,33 @@ f32 func_8009E138(PlayerState *arg0, s32 arg1) {
 void func_8009E388(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E77A20/func_8009E390.s")
+/* extern */
+
+void func_8009E390(PlayerState *arg0) {
+    void func_800EFD24(f32 *);
+    s32 var_s0;
+    u8 *temp_v0;
+
+    var_s0 = 0;
+    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x114)))) + (0xF0))) = 0;
+    for (var_s0 = 0; var_s0 < 3; var_s0++) {
+        temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x114))) + var_s0 * 0x28;
+        (*(f32 *)((s8 *)(temp_v0) + (0))) = 0.0;
+        (*(s16 *)((s8 *)(temp_v0) + (4))) = 0;
+        (*(s32 *)((s8 *)(temp_v0) + (8))) = 0;
+        (*(f32 *)((s8 *)(temp_v0) + (0x20))) = 0.0;
+        (*(f32 *)((s8 *)(temp_v0) + (0x24))) = 0.0;
+        (*(f32 *)((s8 *)(temp_v0) + (0x1C))) = 0.0;
+        (*(f32 *)((s8 *)(temp_v0) + (0x18))) = 0.0;
+        func_800EFD24((f32 *)(temp_v0 + 0xC));
+    }
+    func_8009E5A4(arg0, 0, 1);
+    func_8009E5A4(arg0, 1, 2);
+    func_8009E5A4(arg0, 2, 3);
+    func_8009E55C(arg0, 0, 32.0f);
+    func_8009E55C(arg0, 1, 28.0f);
+    func_8009E55C(arg0, 2, 0.0f);
+}
 
 void func_8009E474(PlayerState *arg0) {
     s32 rare_memcpy(u8 *, u8 *, s32);
