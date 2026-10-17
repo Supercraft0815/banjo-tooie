@@ -98,4 +98,20 @@ void func_800B38C8()
     func_800C87B8();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8CC00/func_800B38E8.s")
+void *func_800B38E8(u8 *arg0) {
+    typedef struct { u8 data[28]; } Element;
+    void *defrag(void *);
+    s32 sp1C;
+    s32 sp18;
+    u8 *temp_v0;
+
+    sp1C = (Element *)(*(u8 **)(arg0 + 0x10) - 0x18) - (Element *)arg0;
+    sp18 = (Element *)(*(u8 **)(arg0 + 0x14) - 0x18) - (Element *)arg0;
+    temp_v0 = defrag(arg0);
+    if (temp_v0 != arg0) {
+        arg0 = temp_v0;
+        *(u8 **)(temp_v0 + 0x10) = sp1C * 0x1C + temp_v0 + 0x18;
+        *(u8 **)(temp_v0 + 0x14) = sp18 * 0x1C + temp_v0 + 0x18;
+    }
+    return arg0;
+}
