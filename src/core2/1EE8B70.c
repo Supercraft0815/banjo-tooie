@@ -1,6 +1,40 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE8B70/func_8010F280.s")
+void *func_8010F280(s32 arg0) {
+    struct entry { s32 data[9]; s32 value; };
+    extern s32 *D_80137240[3];
+    extern s32 D_80137250;
+    s32 *dst;
+    s32 *src;
+    u32 cursor;
+    s32 count;
+
+    for (cursor = (u32)&D_80137250; (s32 *)cursor < D_80137240[2]; cursor += sizeof(struct entry)) {
+        if (((struct entry *)cursor)->value < arg0) {
+            break;
+        }
+    }
+    if ((s32 *)cursor == D_80137240[2]) {
+        if (D_80137240[2] < D_80137240[3]) {
+            D_80137240[2] += 10;
+            return (void *)cursor;
+        }
+        return NULL;
+    }
+    if (D_80137240[3] == D_80137240[2]) {
+        D_80137240[2] -= 10;
+    }
+    dst = D_80137240[2] + 10;
+    count = ((struct entry *)D_80137240[2] - (struct entry *)cursor) * sizeof(struct entry);
+    dst--;
+    src = D_80137240[2] - 1;
+    while (count > 0) {
+        *dst-- = *src--;
+        count -= 4;
+    }
+    D_80137240[2] += 10;
+    return (void *)cursor;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE8B70/func_8010F384.s")
 
