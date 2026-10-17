@@ -1281,7 +1281,43 @@ s32 func_80803E40_chgameselect(void) {
     return i;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80803E94_chgameselect.s")
+void func_80803E94_chgameselect(char *arg0, s32 arg1, s32 arg2, s32 arg3, s32 *arg4) {
+    u32 *_gldbstring_entrypoint_0(u32 *, u32);
+    u32 *_gldbstring_entrypoint_1(u32 *, s16);
+    void func_800E6DB4(char *, s32);
+    s32 value;
+    s32 index;
+    char *text;
+    char *dest;
+    char *src;
+    u8 ch;
+
+    text = (char *)_gldbstring_entrypoint_1(_gldbstring_entrypoint_0(0, arg1), arg2);
+    src = text;
+    dest = arg0;
+    index = 0;
+    if (*text != 0) {
+        do {
+            *dest = 0;
+            ch = *src;
+            if (ch == 0x7E) {
+                value = arg4[index];
+                index++;
+                dest = arg0;
+                func_800E6DB4(arg0, value);
+                while (*dest != 0) {
+                    dest++;
+                }
+            } else {
+                *dest = ch;
+                dest++;
+            }
+            src++;
+        } while (*src != 0);
+    }
+    *dest = 0;
+    _gldbstring_entrypoint_2(arg1);
+}
 
 /* extern */
 
