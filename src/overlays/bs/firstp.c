@@ -574,7 +574,38 @@ void func_8080175C_bsfirstp(void *arg0) {
     func_800C5148(func_800A4C68(arg0), value);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_2.s")
+void bsfirstp_entrypoint_2(struct player_state_s *arg0) {
+    void _ncba1p_entrypoint_2(struct player_state_s *);
+    s32 _ncba1p_entrypoint_4(struct player_state_s *, s32);
+    void _ncba1p_entrypoint_6(struct player_state_s *, f32[3]);
+    void _ncba1p_entrypoint_7(struct player_state_s *, f32[3]);
+    u32 func_800A3404(void *);
+    s16 *func_800A4C88(void *);
+    struct player_state_s *func_800A4CA8(struct player_state_s *);
+    void func_8010FD60(s32, f32);
+    void func_80110730(s32, s32);
+    void func_80111590(void *, f32, f32, f32, f32);
+    s32 *func_80802484_bsfirstp(void *);
+    s32 *sp4C;
+    s32 pad;
+    f32 sp3C[3];
+    f32 sp30[3];
+    struct player_state_s *camera;
+
+    sp4C = func_80802484_bsfirstp(arg0);
+    camera = func_800A4CA8(arg0);
+    func_80111590(camera, 0.0f, 0.0f, 360.0f, 360.0f);
+    func_80110730(camera, 1);
+    func_808015C0_bsfirstp(arg0, sp3C, sp30);
+    _ncba1p_entrypoint_6(camera, sp3C);
+    _ncba1p_entrypoint_7(camera, sp30);
+    if (func_800A3404(arg0) != 0) {
+        _ncba1p_entrypoint_2(camera);
+        _ncba1p_entrypoint_4(camera, 0);
+    }
+    func_8010FD60(func_800A4C88(arg0), *(f32 *)sp4C);
+    func_80801668_bsfirstp(arg0, ((f32 *)sp4C)[1]);
+}
 
 void func_8080187C_bsfirstp(void *arg0) {
     void func_800A5004(void *);
@@ -590,11 +621,11 @@ void func_8080187C_bsfirstp(void *arg0) {
 /* extern */
 
 void func_808018E0_bsfirstp(s32 arg0) {
-    s32 func_800A4C88(s32);
+    s16 *func_800A4C88(void *);
     struct player_state_s *func_800A4CA8();
     void func_8010FD38(s32, f32);
     s32 func_800A5044(s32);
-    s32 func_80110730(s32, s32);
+    void func_80110730(s32, s32);
     func_80110730(func_800A4CA8(), 0);
     func_8010FD38(func_800A4C88(arg0), 0.0f);
     func_800A5044(arg0);
@@ -624,13 +655,13 @@ void func_80801928_bsfirstp(struct player_state_s *arg0) {
 /* extern */
 
 void func_808019B0_bsfirstp(s32 arg0) {
-    s32 func_800A4C88(s32);
-    s32 func_8010FD60(s32, s32);
+    s16 *func_800A4C88(void *);
+    void func_8010FD60(s32, f32);
     s32 *func_80802484_bsfirstp();
     s32 *sp1C;
 
     sp1C = func_80802484_bsfirstp();
-    func_8010FD60(func_800A4C88(arg0), *sp1C);
+    func_8010FD60(func_800A4C88(arg0), *(f32 *)sp1C);
 }
 
 /* extern */
