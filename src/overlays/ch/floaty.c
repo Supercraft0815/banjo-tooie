@@ -153,7 +153,7 @@ void func_80800BD8_chfloaty(s32 arg0, s32 arg1) {
     s32 func_800B5BE4(s32);
     s32 func_800BA22C(s32, s32);
     s32 func_800BABB8(s32, s32, s32, s32, s32 *);
-    s32 func_80800CA0_chfloaty(s32);
+    void func_80800CA0_chfloaty(Actor *);
     extern s32 D_80800EA8_chfloaty;
     s32 sp24;
     s32 temp_a1;
@@ -166,7 +166,7 @@ void func_80800BD8_chfloaty(s32 arg0, s32 arg1) {
         func_800BABB8(temp_v0, temp_a1, temp_a1, 0x3F800000, &D_80800EA8_chfloaty);
         func_800BA22C(sp24, arg1);
     }
-    func_80800CA0_chfloaty(arg0);
+    func_80800CA0_chfloaty((Actor *) arg0);
 }
 
 void func_80800C4C_chfloaty(u8 *arg0) {
@@ -179,7 +179,34 @@ void func_80800C4C_chfloaty(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/floaty/func_80800CA0_chfloaty.s")
+void func_80800CA0_chfloaty(Actor *arg0) {
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800FC618(s32, s32);
+    void func_800FCA90(u32);
+    void func_800FCAE0(u32, u32, u32);
+    s32 func_8010C710(Actor *);
+    f32 distance;
+    u32 active;
+
+    distance = (f32) func_8010C710(arg0);
+    if (distance > 250000.0f) {
+        if (arg0->unk64_19) {
+            func_800FCAE0(0x1C, 0, 2000);
+            func_800FCA90(0x1C);
+            arg0->unk64_19 = 0;
+        }
+    } else {
+        active = arg0->unk64_19;
+        if (active != 0) {
+            func_800FCAE0(0x1C, (s32) func_800F10B4(distance, 0.0f, 250000.0f, 22000.0f, 0), 2000);
+            return;
+        }
+        if (active == 0) {
+            func_800FC618(0x1C, (s32) func_800F10B4(distance, 0.0f, 250000.0f, 22000.0f, 0.0f));
+            arg0->unk64_19 = 1;
+        }
+    }
+}
 
 OSThread *chfloaty_entrypoint_1(void)
 {
