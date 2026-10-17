@@ -123,10 +123,10 @@ void func_80800588_cheggproximity(s32 arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     s32 func_80800718_cheggproximity(s32, s32);
     s32 func_80800874_cheggproximity(s32);
-    s32 func_80800BF4_cheggproximity(s32);
+    s32 func_80800BF4_cheggproximity(Actor *);
     if ((*(s32 *)((s8 *)(func_80100094((Actor *)arg0, 1)) + (0xA4))) == 0) {
         func_80800874_cheggproximity(arg0);
-        if ((func_80800BF4_cheggproximity(arg0) == 0) && (func_800D9078((f32 *)(arg1 + 0x30)) != 0)) {
+        if ((func_80800BF4_cheggproximity((Actor *)arg0) == 0) && (func_800D9078((f32 *)(arg1 + 0x30)) != 0)) {
             func_80800718_cheggproximity(arg0, 4);
         }
     }
@@ -139,10 +139,10 @@ void func_808005EC_cheggproximity(s32 arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     s32 func_80800718_cheggproximity(s32, s32);
     s32 func_80800874_cheggproximity(s32);
-    s32 func_80800BF4_cheggproximity(s32);
+    s32 func_80800BF4_cheggproximity(Actor *);
     if ((*(s32 *)((s8 *)(func_80100094((Actor *)arg0, 1)) + (0xA4))) == 0) {
         func_80800874_cheggproximity(arg0);
-        if ((func_80800BF4_cheggproximity(arg0) == 0) && (func_800D9078((f32 *)(arg1 + 0x30)) != 0)) {
+        if ((func_80800BF4_cheggproximity((Actor *)arg0) == 0) && (func_800D9078((f32 *)(arg1 + 0x30)) != 0)) {
             func_80800718_cheggproximity(arg0, 5);
         }
     }
@@ -192,4 +192,32 @@ void func_808006A4_cheggproximity(Actor *arg0, u8 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_80800AFC_cheggproximity.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_80800BF4_cheggproximity.s")
+s32 func_80800BF4_cheggproximity(Actor *arg0) {
+    struct ProximityData {
+        u8 pad[0x40];
+        s32 states[24];
+        s32 index;
+        s32 unkA4;
+        s32 active;
+    };
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    void func_800F7664(s32, s32, s32);
+    s32 _sueggmisc_entrypoint_2(f32 *, s32);
+    void func_800FFAB0(Actor *);
+    struct ProximityData *data;
+    s32 index;
+
+    data = func_80100094(arg0, 1);
+    index = data->index;
+    if (index >= 0 && data->states[index] == 2) {
+        if (((struct ProximityData *)func_80100094(arg0, 1))->active != 0) {
+            func_80101180(0x2C4, 0x74, (s32)arg0->unk0);
+        }
+        func_800F7664(index, 0x45, 1);
+        _sueggmisc_entrypoint_2(arg0->position, 6);
+        func_800FFAB0(arg0);
+        return 1;
+    }
+    return 0;
+}
