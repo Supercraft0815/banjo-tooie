@@ -203,7 +203,12 @@ int func_8008D9A4(PlayerState *player) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DA24.s")
+int func_8008DA24(PlayerState *player) {
+    f32 baphysics_get_vertical_velocity(PlayerState *);
+    u32 func_800A0FCC(void *);
+    s32 func_800976DC(PlayerState *);
+    return func_800C6E38(0x14) && baphysics_get_vertical_velocity(player) < 100.0f && !func_800A0FCC(player) && func_800976DC(player);
+}
 
 /* extern */
 
@@ -334,9 +339,9 @@ int func_8008DF8C(PlayerState *arg0, s32 arg1) {
 }
 
 int player_isStable(PlayerState *player) {
-    s32 func_800A0FCC(void);
+    u32 func_800A0FCC(void *);
     f32 baphysics_get_vertical_velocity(PlayerState *);
-    return func_800A0FCC() && baphysics_get_vertical_velocity(player) < 0.0f;
+    return func_800A0FCC(player) && baphysics_get_vertical_velocity(player) < 0.0f;
 }
 
 s32 func_8008E0C8(PlayerState *arg0)
