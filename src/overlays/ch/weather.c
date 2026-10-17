@@ -95,7 +95,25 @@ OSThread *chweather_entrypoint_7(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weather/func_80800138_chweather.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weather/func_808002A8_chweather.s")
+void func_808002A8_chweather(s32 arg0) {
+    s32 func_80800138_chweather(s32, s32);
+    struct WeatherEntry {
+        s16 state;
+        s32 (*check)();
+    };
+    extern struct WeatherEntry D_80800410_chweather[];
+    struct WeatherEntry *entry;
+    Actor *actor = (Actor *)arg0;
+
+    entry = (struct WeatherEntry *)((u8 *)D_80800410_chweather +
+                                  ((actor->unk6C_9 - 0x204) << 3));
+    if ((actor->unk70_10 == 2) && (entry->check() != 0)) {
+        func_80800138_chweather(arg0, entry->state);
+    }
+    if ((actor->unk70_10 != 2) && (entry->check(arg0) == 0)) {
+        func_80800138_chweather(arg0, 2);
+    }
+}
 
 /* extern */
 
