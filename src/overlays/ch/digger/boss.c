@@ -2,7 +2,22 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80800000_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80800180_chdiggerboss.s")
+void func_80800180_chdiggerboss(Actor *arg0, s32 arg1) {
+    s32 func_801022E4(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_808008C0_chdiggerboss(s32, s32, s32);
+    Actor *func_80802228_chdiggerboss(Actor *);
+
+    func_80102424(arg0, arg1);
+    if (func_801022E4(arg0) != 0) {
+        arg0->unk64_16 = 1;
+    } else {
+        arg0->unk64_16 = 0;
+    }
+    if (arg0->unk3C != NULL) {
+        func_808008C0_chdiggerboss(func_80802228_chdiggerboss(arg0), 5, !arg0->unk64_16);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80800200_chdiggerboss.s")
 
