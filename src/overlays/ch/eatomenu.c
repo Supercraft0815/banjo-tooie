@@ -88,7 +88,32 @@ block_8:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_8080052C_chcheatomenu.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_8080058C_chcheatomenu.s")
+void func_8080058C_chcheatomenu(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_2(f32 *, u32, u32, u32);
+    s32 _subaddiedialog_entrypoint_5(f32 *, u32, u32, u32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_80090178(AllowedTransformation);
+    s32 func_800DA298(s32);
+    void func_800DA544(s32);
+    void func_80101FDC(Actor *, u32);
+    void func_80800720_chcheatomenu(u8 *);
+    s32 func_80800800_chcheatomenu(void);
+
+    if (func_80090178(0xFFFEFFFF) != 0) {
+        if ((func_800DA298(0xD3) == 0
+             ? _subaddiedialog_entrypoint_2(arg0->position, 0xC8, 0x32, 0)
+             : _subaddiedialog_entrypoint_5(arg0->position, 0xC8, 0x32, 0)) != 0) {
+            func_800DA544(0xD3);
+            if (func_80800800_chcheatomenu() == 0) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1149, 0xF, arg0->position, 0x37);
+                func_80101FDC(arg0, 2);
+                func_80800720_chcheatomenu((u8 *)arg0);
+                return;
+            }
+            func_80101FDC(arg0, 3);
+        }
+    }
+}
 
 void func_80800668_chcheatomenu(Actor *arg0) {
     void _gcnewoption_entrypoint_10(void *, u8);
