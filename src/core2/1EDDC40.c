@@ -155,7 +155,39 @@ f32 func_8010473C(s32 arg0, f32 *arg1) {
     return (f32) (*(s16 *)((s8 *)(var_a0) + (0x16)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104780.s")
+void func_80104780(s32 arg0) {
+    void func_801049B4(u8 *, f32 *, s32 *);
+    void func_80104D80(s32 *, s32);
+    void func_80104E24(s32 *, s32 *);
+    void func_80105390(u8 *, u8 *);
+    struct Flags {
+        u32 high:26;
+        u32 bit5:1;
+        u32 middle:2;
+        u32 bit2:1;
+        u32 bit1:1;
+        u32 bit0:1;
+    };
+    u8 *data;
+    s32 sp38[3];
+    s32 sp2C[3];
+    s32 i;
+
+    data = func_801043D8(arg0);
+    if (((struct Flags *)(arg0 + 0x78))->bit1 &&
+        !((struct Flags *)(arg0 + 0x74))->bit5 && data[3]) {
+        func_801049B4(data, (f32 *)(arg0 + 4), sp38);
+        func_80104D80(sp38, 0x28);
+        func_80104E24(sp38, sp2C);
+        if (((struct Flags *)(arg0 + 0x70))->bit2 &&
+            !(*(s32 *)(data + 0x24) & 0x04200000)) {
+            func_80105390((u8 *)sp2C, (u8 *)sp2C);
+        }
+        for (i = 0; i < 3; i++) {
+            ((u8 *)arg0)[0x98 + i] = (((u8 *)arg0)[0x98 + i] * 3 + sp2C[i]) >> 2;
+        }
+    }
+}
 
 void func_8010486C(s8 *arg0, f32 *arg1) {
     s32 i;
