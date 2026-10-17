@@ -41,7 +41,33 @@ s32 func_80800194_changlerbossbubble(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/bubble/func_80800200_changlerbossbubble.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/bubble/func_80800334_changlerbossbubble.s")
+void func_80800334_changlerbossbubble(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA568(s16 *, s16);
+    void func_800BA7C4(void *, f32, f32);
+    void func_800BA7FC(void *, f32, f32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800DC128(s32, s32);
+    void func_800FFA88(Unk80132ED0 *);
+    extern s32 D_80800618_changlerbossbubble;
+    extern s32 D_80800668_changlerbossbubble;
+    s32 sp3C;
+    f32 temp_f20;
+    s32 temp_v0_2;
+
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800668_changlerbossbubble);
+    sp3C = func_800DC128(3, 4);
+    temp_v0_2 = func_800B53A4(sp3C);
+    temp_f20 = arg0->scale;
+    func_800BABB8(temp_v0_2, arg0->position, arg0->position, 1.0f, &D_80800618_changlerbossbubble);
+    func_800BA568(temp_v0_2, (s16) (arg0->position[1] + 1000.0f));
+    func_800BA7C4(temp_v0_2, 0.25f * temp_f20, 0.6f * temp_f20);
+    func_800BA7FC(temp_v0_2, 0.1f * temp_f20, 0.2f * temp_f20);
+    func_800BA22C(temp_v0_2, sp3C);
+    func_800FFA88(arg0->unk0);
+}
 
 /* extern */
 
