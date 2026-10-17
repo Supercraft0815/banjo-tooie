@@ -57,7 +57,35 @@ loop_7:
     goto loop_7;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_8080016C_chtimetable.s")
+s32 func_8080016C_chtimetable(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_800DA298(s32);
+    extern s32 D_80800730_chtimetable;
+    struct TimetableEntry {
+        s32 unk0;
+        s32 flag;
+        s32 unk8;
+        s32 unkC;
+        s32 prerequisite;
+    };
+    s32 index;
+
+    if (func_800DA298(0x86) == 0) {
+        return 0;
+    }
+    if (arg2 == 0x12A && func_800DA298(0x171) == 0) {
+        return 0;
+    }
+    index = func_808000B0_chtimetable(arg2);
+    if (((struct TimetableEntry *)&D_80800730_chtimetable)[index].prerequisite != -1) {
+        if (func_800DA298(((struct TimetableEntry *)&D_80800730_chtimetable)[index].prerequisite) == 0) {
+            return 0;
+        }
+    }
+    if (func_800DA298(((struct TimetableEntry *)&D_80800730_chtimetable)[index].flag) != 0) {
+        return 0;
+    }
+    return 1;
+}
 
 void func_8080025C_chtimetable(s32 arg0, s32 arg1, s32 arg2) {
     void _glcutDll_entrypoint_0(void);
