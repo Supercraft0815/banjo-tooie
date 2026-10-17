@@ -138,7 +138,52 @@ s32 bsstonehead_entrypoint_11(s32 arg0) {
     return ((s32 *)&D_80801650_bsstonehead)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/func_808008CC_bsstonehead.s")
+struct anctrl_s;
+enum asset_e;
+enum baanim_update_type_e;
+enum yaw_type_e;
+enum ba_physics_type_e;
+
+void func_808008CC_bsstonehead(PlayerState *arg0, s32 arg1)
+{
+    void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void baanim_setEndAndDuration(PlayerState *, f32, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void func_800A2E18(PlayerState *);
+    struct anctrl_s *control;
+
+    switch (arg1) {
+        case 0:
+            break;
+        case 1:
+            control = baanim_getAnimCtrlPtr(arg0);
+            anctrl_reset(control);
+            anctrl_setIndex(control, 0x122);
+            anctrl_setStart(control, 0.6364f);
+            anctrl_setSubrange(control, 0.6364f, 0.7576f);
+            anctrl_setDuration(control, 4.0f);
+            anctrl_setPlaybackType(control, 1);
+            anctrl_start(control);
+            func_8009FFD8(arg0, 1, 1, 3, 6);
+            break;
+        case 2:
+            baanim_setEndAndDuration(arg0, 1.0f, 0.8f);
+            break;
+        case 3:
+            func_800A2E18(arg0);
+            baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+            break;
+    }
+    (*(s32 *)((s8 *)arg0 + 0x15C)) = arg1;
+}
 
 void bsstonehead_entrypoint_12(PlayerState *arg0)
 {
