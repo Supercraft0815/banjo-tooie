@@ -231,7 +231,51 @@ s32 bstnt_entrypoint_0(s32 arg0) {
     return ((s32 *)&D_808023F8_bstnt)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80800B60_bstnt.s")
+void func_80800B60_bstnt(struct player_state_s *arg0, s32 arg1) {
+    typedef struct player_state_s PlayerState;
+    void _bamovegoto_entrypoint_0(void *);
+    void _bamovegoto_entrypoint_12(void *, f32 *);
+    void _bamovegoto_entrypoint_13(void *);
+    void _bamovegoto_entrypoint_7(void *, f32);
+    void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void func_8008F880(Unk80132ED0 *, f32 *);
+    void func_8009C128(PlayerState *, f32 *);
+    void func_8009FFD8();
+    s32 func_800F1E6C(f32 *, f32 *, f32 *);
+    void func_80101038(f32 *);
+    s32 func_8010114C(s32, s32, s32);
+    void yaw_setIdeal(PlayerState *, f32);
+    f32 sp44;
+    f32 sp38[3];
+    f32 sp2C[3];
+
+    *(s32 *)((u8 *)arg0 + 0x15C) = arg1;
+    switch (arg1) {
+        case 1:
+            baanim_playForDuration_onceSmooth(arg0, 0xE2, 0.7f);
+            func_8009FFD8(arg0, 1, 1, 3, 0);
+            func_8010114C(*(s32 *)((u8 *)arg0 + 0x164), 6, 0);
+            func_80101038(sp2C);
+            func_8009C128(arg0, sp38);
+            func_800F1E6C(sp38, sp2C, &sp44);
+            yaw_setIdeal(arg0, sp44);
+            _bamovegoto_entrypoint_0(arg0);
+            _bamovegoto_entrypoint_12(arg0, sp2C);
+            _bamovegoto_entrypoint_7(arg0, 0.7f);
+            _bamovegoto_entrypoint_13(arg0);
+            break;
+        case 2:
+            baanim_playForDuration_onceSmooth(arg0, 0xE3, 3.4f);
+            func_8009FFD8(arg0, 1, 1, 3, 6);
+            baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+            func_8008F880(*(Unk80132ED0 **)((u8 *)arg0 + 0x164), sp2C);
+            func_8009C128(arg0, sp38);
+            func_800F1E6C(sp2C, sp38, &sp44);
+            yaw_setIdeal(arg0, sp44);
+            break;
+    }
+}
 
 void func_800951B4(struct player_state_s *);
 
@@ -243,7 +287,7 @@ void func_80800CB0_bstnt(s32 arg0)
 /* extern */
 
 void func_80800CD8_bstnt(s32 arg0) {
-    s32 func_80800B60_bstnt(s32, s32);
+    void func_80800B60_bstnt(struct player_state_s *, s32);
     func_80800060_bstnt(arg0);
     (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
     func_80800B60_bstnt(arg0, 1);
