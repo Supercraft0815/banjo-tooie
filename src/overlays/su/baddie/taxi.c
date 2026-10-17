@@ -190,7 +190,35 @@ void func_80800C00_subaddietaxi(Actor *arg0) {
     _subaddieaudioquick_entrypoint_2(arg0, sp24[1], &D_80800D50_subaddietaxi);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_16.s")
+typedef struct {
+    s32 index;
+    f32 position[3];
+    f32 rotation;
+    s32 flags;
+} TaxiSpawnArgs;
+
+void subaddietaxi_entrypoint_16(TaxiSpawnArgs args) {
+    s32 func_80800CF0_subaddietaxi(s32);
+    Actor *func_80108474(u32, f32 *, s32);
+    s32 func_8010108C(Actor *, s32, s32);
+    Actor *actor;
+    struct {
+        s32 flags;
+        s32 index;
+        f32 rotation;
+        f32 position[3];
+    } data;
+
+    data.index = args.index;
+    data.position[0] = args.position[0];
+    data.position[1] = args.position[1];
+    data.position[2] = args.position[2];
+    data.rotation = args.rotation;
+    data.flags = args.flags;
+    actor = func_80108474(func_80800CF0_subaddietaxi(args.index), data.position, (s32)data.rotation);
+    actor->unk74_7 = data.flags;
+    func_8010108C(actor, 0x44, data.index);
+}
 
 s32 func_80800CF0_subaddietaxi(s32 arg0) {
     extern s16 D_80800DB4_subaddietaxi[];
