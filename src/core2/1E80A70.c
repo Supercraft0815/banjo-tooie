@@ -1,4 +1,5 @@
 #include "core2/1E80A70.h"
+s32 _gcsectionDll_entrypoint_4(s32);
 
 typedef struct {
     s16 unk0;
@@ -90,7 +91,41 @@ void func_800A71E0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A72A4.s")
+void func_800A72A4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 _gcgame_entrypoint_0(s32);
+    s32 _gcgame_entrypoint_1();
+    s32 _gclevel_entrypoint_0(s32, s32);
+    s32 _gclevel_entrypoint_1();
+    s32 _gcsectionDll_entrypoint_0(s32, s32);
+    s32 _gcsectionDll_entrypoint_1(s32);
+    s32 func_80081724();
+    void func_800A8D70(s32, s32);
+    void func_800E96E0(void);
+    void func_800EA0CC(s32, s32, s32);
+    void func_801101C0(void);
+    extern u8 D_8012762C;
+    s32 sp1C;
+    s32 sp18;
+
+    sp1C = D_8012762C;
+    sp18 = _gcsectionDll_entrypoint_4(arg0);
+    func_800E96E0();
+    _gcsectionDll_entrypoint_1(1);
+    if (arg3 || arg2 || sp18 != sp1C) {
+        _gclevel_entrypoint_1();
+        if (arg3) {
+            _gcgame_entrypoint_1();
+            _gcgame_entrypoint_0(1);
+        }
+        _gclevel_entrypoint_0(arg0, arg1);
+    }
+    _gcsectionDll_entrypoint_0(arg0, arg1);
+    func_801101C0();
+    func_800A8D70(arg0, arg1);
+    func_80081724();
+    func_800EA0CC(arg0, arg1, 0);
+    func_800A718C();
+}
 
 /* extern */
 
