@@ -121,7 +121,42 @@ s32 func_808002E0_bstrexlarge(PlayerState *arg0, s32 arg1, s32 arg2) {
     return arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_808003C4_bstrexlarge.s")
+s32 func_808003C4_bstrexlarge(PlayerState *arg0, s32 arg1, s32 arg2) {
+    s32 _badrone_entrypoint_24(PlayerState *);
+    int bainput_should_enter_first_person(PlayerState *);
+    s32 bastick_getZone(PlayerState *);
+    int func_8008DD04(PlayerState *);
+    s32 can_fall;
+
+    if (arg2 != 0) {
+        can_fall = func_80800024_bstrexlarge(arg0);
+    } else {
+        can_fall = 1;
+    }
+    switch (bastick_getZone(arg0)) {
+        case 0:
+            break;
+        case 1:
+            arg1 = 0x152;
+            break;
+        case 2:
+            arg1 = 0x150;
+            break;
+    }
+    if (bainput_should_enter_first_person(arg0) != 0) {
+        arg1 = _badrone_entrypoint_24(arg0);
+    }
+    if (func_80800140_bstrexlarge((s32) arg0) != 0) {
+        arg1 = 0x14F;
+    }
+    if ((can_fall != 0) && (func_8008DD04(arg0) != 0)) {
+        arg1 = 0x14A;
+    }
+    if (func_80800160_bstrexlarge((s32) arg0) != 0) {
+        arg1 = 0x14B;
+    }
+    return arg1;
+}
 
 void func_808004B4_bstrexlarge(PlayerState *arg0) {
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
@@ -156,7 +191,7 @@ void func_808005D4_bstrexlarge(PlayerState *arg0) {
     int baanim_isStopped(PlayerState *);
     s32 bs_setState(s32, s32);
     void bstrexlarge_entrypoint_3(s32);
-    s32 func_808003C4_bstrexlarge(s32, s32, s32);
+    s32 func_808003C4_bstrexlarge(PlayerState *, s32, s32);
     s32 sp24;
 
     sp24 = 0;
@@ -165,7 +200,7 @@ void func_808005D4_bstrexlarge(PlayerState *arg0) {
     if (baanim_isStopped(arg0) != 0) {
         sp24 = 0x151;
     }
-    bs_setState((s32)arg0, func_808003C4_bstrexlarge((s32)arg0, sp24, 1));
+    bs_setState((s32)arg0, func_808003C4_bstrexlarge(arg0, sp24, 1));
 }
 
 s32 bstrexlarge_entrypoint_0(s32 arg0) {
