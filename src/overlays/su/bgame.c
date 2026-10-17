@@ -157,7 +157,44 @@ loop_1:
     goto loop_1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/susubgame_entrypoint_10.s")
+s32 susubgame_entrypoint_10(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 _subaddiemarker_entrypoint_0(Actor *, s32, f32 *, s32);
+    s32 func_800DA9E4(s32, s32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800F497C(s32);
+    void func_800F49A8(s32, s32);
+    void func_800F49D4(s32, void *, s32);
+    void func_800F4A58(s32, s32, f32);
+    u32 func_800F54E4(void);
+    void func_800F608C(s32, s32);
+    void func_800F8294(s32, f32 *);
+    void func_800F832C(s32, f32 *);
+    extern s32 func_8010D5DC;
+    f32 sp38[6];
+    s32 sp34;
+    f32 sp24[4];
+    s32 temp_s0;
+
+    sp34 = func_800DA9E4(arg3, 1) == 0;
+    temp_s0 = func_800F54E4();
+    if (_subaddiemarker_entrypoint_0(arg0, arg2, sp38, 1) == 0) {
+        return 0;
+    }
+    if (sp34 != 0) {
+        func_800F608C(temp_s0, arg1);
+        func_800F497C(temp_s0);
+        func_800F49A8(temp_s0, 1);
+        func_800F49D4(temp_s0, &func_8010D5DC, arg0->unk0);
+        func_800F4A58(temp_s0, sp38, 200.0f);
+    } else {
+        func_800EFA4C(sp24, 0.0f, sp38[4], 0.0f);
+        func_800F608C(temp_s0, arg1);
+        func_800F8294(temp_s0, sp38);
+        func_800F832C(temp_s0, sp24);
+        func_800F497C(temp_s0);
+    }
+    return sp34;
+}
 
 /* extern */
 
