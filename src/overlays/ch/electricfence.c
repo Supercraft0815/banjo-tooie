@@ -39,6 +39,28 @@ void func_80800060_chelectricfence(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/electricfence/func_8080010C_chelectricfence.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/electricfence/chelectricfence_entrypoint_1.s")
+void chelectricfence_entrypoint_1(Actor *arg0, f32 *arg1) {
+    s32 _chlightfader_entrypoint_1(s32, f32, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8E84(s32, u32 *);
+    extern s32 D_8080051C_chelectricfence;
+    extern s32 D_80800558_chelectricfence;
+    extern s32 D_8080058C_chelectricfence;
+    extern u32 D_80800598_chelectricfence;
+    s32 light;
+
+    func_800BBCB8(arg1, arg1, 1.0f, 3, &D_80800558_chelectricfence);
+    func_800BBCB8(arg1, arg1, 1.0f, 0xC, &D_8080051C_chelectricfence);
+    _subaddieaudioquick_entrypoint_2(arg0, arg1, &D_8080058C_chelectricfence);
+    light = func_800C8A98();
+    func_800C8CB8(light, arg1);
+    func_800C8E84(light, &D_80800598_chelectricfence);
+    func_800C8E54(light, 300.0f, 600.0f);
+    _chlightfader_entrypoint_1(light, 0.8f, 5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/electricfence/chelectricfence_entrypoint_2.s")
