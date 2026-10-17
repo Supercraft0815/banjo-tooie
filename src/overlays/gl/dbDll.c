@@ -33,7 +33,37 @@ void func_80800000_gldbDll(u8 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/dbDll/func_808000E8_gldbDll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/dbDll/gldbDll_entrypoint_0.s")
+/* extern */
+
+s32 *gldbDll_entrypoint_0(s32 arg0, s32 *arg1) {
+    s32 func_8001C2AC(u8 *, u8 *);
+    s32 func_800D5A6C(s32);
+    s32 func_800D5DB8(s32);
+    s32 func_808000E8_gldbDll(s32 *, s32, s32);
+    void *heap_alloc(s32);
+    void heap_free(void *);
+    void rom_dma_read(u8 *, u8 *, u32);
+    s32 size;
+    s32 rounded;
+    s32 buffer;
+
+    rounded = func_800D5DB8(arg0);
+    size = rounded;
+    if (rounded & 1) {
+        rounded++;
+    }
+    buffer = (s32)heap_alloc(rounded);
+    rom_dma_read((u8 *)buffer, (u8 *)func_800D5A6C(arg0), rounded);
+    func_808000E8_gldbDll((s32 *)buffer, arg0 - 0x955, size);
+    size = *(s32 *)buffer;
+    size >>= 16;
+    size <<= 4;
+    *arg1 = size;
+    size = (s32)heap_alloc(size);
+    func_8001C2AC((u8 *)buffer, (u8 *)size);
+    heap_free((void *)buffer);
+    return (s32 *)size;
+}
 
 void gldbDll_entrypoint_1(void) {
     s32 _gleeprom_entrypoint_0(void);
