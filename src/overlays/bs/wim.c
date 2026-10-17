@@ -130,7 +130,7 @@ void func_8080039C_bsbswim(struct player_state_s *arg0) {
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     f32 anctrl_getAnimTimer(struct anctrl_s *);
     s32 bs_getPreviousState(struct player_state_s *);
-    void baanim_playForDuration_loopStartingAt(struct player_state_s *, enum asset_e, f32, f32);
+    void baanim_playForDuration_loopStartingAt(struct player_state_s *, int, f32, f32);
     void _baswim_entrypoint_8(void *, f32);
     void func_8009BC5C(struct player_state_s *, f32);
     void func_800910BC(struct player_state_s *, s32);
@@ -166,7 +166,31 @@ s32 bsbswim_entrypoint_1(s32 arg0) {
     return ((s32 *)&D_80801E70_bsbswim)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80800634_bsbswim.s")
+void func_80800634_bsbswim(struct player_state_s *arg0) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    f32 anctrl_getAnimTimer(struct anctrl_s *);
+    s32 bs_getPreviousState(struct player_state_s *);
+    void baanim_playForDuration_loopStartingAt(struct player_state_s *, int, f32, f32);
+    void _baswim_entrypoint_8(void *, f32);
+    void func_8009BC5C(struct player_state_s *, f32);
+    void func_800910BC(struct player_state_s *, s32);
+    struct anctrl_s *sp24;
+    f32 var_f2;
+
+    sp24 = baanim_getAnimCtrlPtr(arg0);
+    if (bs_getPreviousState(arg0) == 0x2C) {
+        var_f2 = anctrl_getAnimTimer(sp24);
+    } else {
+        var_f2 = 0.5f;
+    }
+    baanim_playForDuration_loopStartingAt(arg0, 0xEB, 1.0f, var_f2);
+    func_80800000_bsbswim((s32)arg0);
+    func_80800030_bsbswim(arg0);
+    _baswim_entrypoint_8(arg0, 600.0f);
+    func_8009BC5C(arg0, 1.0f);
+    func_800910BC(arg0, 2);
+    ((s8 *)arg0)[0x166] = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_808006DC_bsbswim.s")
 
