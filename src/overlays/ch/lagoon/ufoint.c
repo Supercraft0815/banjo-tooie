@@ -114,7 +114,36 @@ void func_80800878_chlagoonufoint(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_808008C8_chlagoonufoint.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_80800CD4_chlagoonufoint.s")
+void func_80800CD4_chlagoonufoint(Actor *arg0, void *arg1) {
+    void func_800DF3E0(void);
+    void func_800DF5D8(u32, u32, u32, s32);
+    void func_800DF744(s32, s32);
+    void func_80101870(Actor *, void *);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 color;
+
+    func_800DF3E0();
+    switch (arg0->unk6C_9) {
+        case 0x1C6:
+            func_800DF744(3, 1);
+            func_800DF744(4, 1);
+            break;
+        case 0x1C7:
+            func_800DF744(6, 1);
+            func_800DF744(7, 1);
+            func_800DF744(8, arg0->unk79_4);
+            func_800DF744(9, arg0->unk6C_0);
+            break;
+        default:
+            func_800DF744(5, 1);
+            break;
+    }
+    if (arg0->unk3C != NULL) {
+        color = (((f32 *)func_80106790(arg0->unk3C)->actorData)[3] * 0.8f + 0.2f) * 255.0f;
+        func_800DF5D8(color, color, color, 255);
+    }
+    func_80101870(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_80800E00_chlagoonufoint.s")
 
