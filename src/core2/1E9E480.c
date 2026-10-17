@@ -91,11 +91,32 @@ void func_800C51A4(s32 arg0, f32 arg1) {
     func_800C5094(arg0, func_800C517C(arg0));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C524C.s")
+void func_800C524C(s32 arg0, s32 arg1) {
+    void func_80015B34(void *, s32, s32, s32, s32);
+    void func_80015CE8(void *, void *);
+    s32 func_800A8984(s32);
+    void *func_800A89A0(s32);
+    void func_800A8A44(s32, s32 *, s32 *, s32 *, s32 *);
+    extern f32 D_8012A9F0[];
+    s32 sp44;
+    s32 sp40;
+    s32 sp3C;
+    s32 sp38;
+    s32 pad[2];
+    void *sp2C;
+    s32 sp28;
+
+    sp2C = func_800A89A0(arg0);
+    sp28 = func_800A8984(arg0);
+    func_800A8A44(arg0, &sp44, &sp40, &sp3C, &sp38);
+    func_80015B34(sp2C, sp44, sp40 + arg1, sp3C, sp38 - arg1 * 2);
+    func_80015CE8(sp2C, sp28);
+    func_800C5148(arg0, D_8012A9F0[arg0]);
+}
 
 s32 func_800C52F4(s32 arg0, s32 arg1) {
     void func_800A8A44(s32, s32 *, s32 *, s32 *, s32 *);
-    s32 func_800C524C(s32, s32);
+    void func_800C524C(s32, s32);
     extern f32 D_8012A9A0[];
     void *temp_v0;
     s32 sp38;
@@ -127,7 +148,7 @@ s32 func_800C52F4(s32 arg0, s32 arg1) {
 }
 
 s32 func_800C53EC(s32 arg0, s32 arg1) {
-    s32 func_800C524C(s32, s32);
+    void func_800C524C(s32, s32);
     extern f32 D_8012A9A0[];
     void *temp_v0;
 
