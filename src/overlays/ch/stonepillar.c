@@ -185,7 +185,36 @@ int func_80800DD8_chstonepillar(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800EE0_chstonepillar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800FE0_chstonepillar.s")
+void func_80800FE0_chstonepillar(Actor *arg0) {
+    void func_800CE88C(s32, s32);
+    s32 func_800CEAA8(s32);
+    s32 func_800CEAD0(s32);
+    s32 func_800D0B68(u32, u32);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    void func_800FC660(u32);
+    void func_808010CC_chstonepillar(s32);
+    s32 func_8080112C_chstonepillar(Actor *);
+    void func_80801174_chstonepillar(Actor *);
+
+    if ((func_800DA298(0x9D6) != 0) && (func_800DA298(0x9D7) == 0) && (func_8080112C_chstonepillar(arg0) != 0) && ((func_800CEAD0(0) != 0) || (func_800D0B68(8, 1) != 0))) {
+        if (func_800CEAA8(0) != 0) {
+            func_800CE88C(0, 0);
+        }
+        func_800DA544(0x9D7);
+        if (func_800DA298(0x9D9) != 0) {
+            func_80801174_chstonepillar(arg0);
+            if ((arg0->unk0->unk24 >> 22) != 0x19F) {
+                func_800DA524(0x9D7);
+            }
+        }
+        if (func_800D0B68(8, 1) == 0) {
+            func_808010CC_chstonepillar((s32)arg0);
+            func_800FC660(0x17);
+        }
+    }
+}
 
 /* extern */
 
