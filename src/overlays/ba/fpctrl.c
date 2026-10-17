@@ -155,7 +155,22 @@ u32 bafpctrl_entrypoint_6(void *arg0) {
 void bafpctrl_entrypoint_7(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/bafpctrl_entrypoint_8.s")
+void bafpctrl_entrypoint_8(void *arg0) {
+    void bafpctrl_entrypoint_9(void *, s32);
+    void bafpctrl_entrypoint_10(void *, s32);
+    void bafpctrl_entrypoint_13(void *, s32);
+    s32 bafpctrl_entrypoint_14(void *, s32);
+    void func_800EFD24(f32 *);
+
+    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 0x90) + 0x10) = 0;
+    bafpctrl_entrypoint_14(arg0, 1);
+    func_800EFD24((f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x90) + 4));
+    *(s32 *)*(void **)((u8 *)arg0 + 0x90) = 0;
+    bafpctrl_entrypoint_9(arg0, 0);
+    bafpctrl_entrypoint_10(arg0, 0);
+    bafpctrl_entrypoint_13(arg0, 1);
+    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x90) + 0x18) = 40.0f;
+}
 
 void bafpctrl_entrypoint_9(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 144) + 17) = arg1;
