@@ -317,7 +317,33 @@ s32 func_8010B94C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B990.s")
+s32 func_8010B990(Actor *arg0, s32 arg1) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80104580(void);
+    extern s32 (**D_80124714[])(Actor *, f32 *, s32, s32);
+    s32 result;
+    s32 i;
+    s32 flags;
+    f32 saved[3];
+    s32 nibble;
+
+    flags = 0;
+    func_80104580();
+    func_800EE7F8(saved, arg0->position);
+    for (i = 0; i != 6; i++) {
+        nibble = ((u32)arg1 >> (i << 2)) & 0xF;
+        if (nibble != 0) {
+            result = D_80124714[i][nibble](arg0, saved, arg1, flags);
+            if (result == -1) {
+                return 0;
+            }
+            if (result != 0) {
+                flags |= result << i;
+            }
+        }
+    }
+    return flags;
+}
 
 s32 func_8010B990(Actor *, s32);
 
