@@ -143,4 +143,22 @@ void func_80800944_chhillbilly(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_808009D8_chhillbilly.s")
+void func_808009D8_chhillbilly(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_80103140(Actor *, u32, u16);
+    s32 func_801032B0(Actor *, u16, u16);
+    void func_8010A3E8(void *, f32);
+
+    if (arg2 != 0) {
+        func_801032B0(arg0, arg1, arg0->unk0->unk16);
+    } else {
+        func_80103140(arg0, (u16)arg1, arg0->unk0->unk16);
+    }
+    switch (arg1) {
+        case 0x789:
+            func_8010A3E8(arg0, 0.75f);
+            break;
+        case 0x78A:
+            func_8010A3E8(arg0, 1.0f);
+            break;
+    }
+}
