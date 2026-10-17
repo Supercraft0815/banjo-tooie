@@ -100,7 +100,20 @@ s32 func_8080042C_chhillbilly(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_8080046C_chhillbilly.s")
+void func_8080046C_chhillbilly(Actor *arg0) {
+    s32 _sucoaster_entrypoint_10(Actor *, s32);
+    void func_808009D8_chhillbilly(Actor *, s32, s32);
+
+    switch (arg0->unk70_10) {
+    case 21:
+        _sucoaster_entrypoint_10(arg0, 3);
+        return;
+    case 22:
+        func_808009D8_chhillbilly(arg0, 0x789, 0);
+        _sucoaster_entrypoint_10(arg0, 0x13);
+        return;
+    }
+}
 
 /* extern */
 
