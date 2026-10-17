@@ -379,7 +379,19 @@ void func_80801F88_ncpoddialog(u8 *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80802048_ncpoddialog.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_8080230C_ncpoddialog.s")
+void func_8080230C_ncpoddialog(u8 *arg0, void *arg1, void *arg2) {
+    void func_80802048_ncpoddialog(u8 *, void *, void *, f32 *, f32);
+    s8 state;
+
+    state = *(s8 *)(arg0 + 0x211);
+    if (state == 4 || state == 5 || state == 6 || state == 8) {
+        func_80802048_ncpoddialog(arg0, arg1, arg2, (f32 *)(arg0 + 0x28), *(f32 *)(arg0 + 0x20));
+        state = *(s8 *)(arg0 + 0x211);
+    }
+    if (state == 2 || state == 3 || state == 4 || state == 8) {
+        func_80802048_ncpoddialog(arg0, arg1, arg2, (f32 *)(arg0 + 0x34), *(f32 *)(arg0 + 0x24));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_808023B4_ncpoddialog.s")
 
