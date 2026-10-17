@@ -55,11 +55,32 @@ void func_80800098_chfairgroundworker(Actor *arg0) {
 
 void func_808000FC_chfairgroundworker(s32 arg0, s32 arg1, s32 arg2) {
     s32 _sucoaster_entrypoint_21(s32, s32, s32);
-    s32 func_8080013C_chfairgroundworker();
+    void func_8080013C_chfairgroundworker();
     if (arg1 == 0xB6) {
         func_8080013C_chfairgroundworker();
     }
     _sucoaster_entrypoint_21(arg0, arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/groundworker/func_8080013C_chfairgroundworker.s")
+void func_8080013C_chfairgroundworker(Actor *arg0) {
+    s32 func_800B53A4(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    extern s32 D_80800430_chfairgroundworker;
+    s32 temp_s3;
+    f32 sp60[3];
+    f32 sp54[3];
+    s32 var_s0;
+
+    func_800EE7F8(sp54, arg0->position);
+    func_800EF1B8(sp54, arg0->rotation[1], arg0->scale * 300.0f);
+    temp_s3 = func_800B53A4(5);
+    for (var_s0 = 0; var_s0 != 5; var_s0++) {
+        func_800EEB9C(sp60, (f32)var_s0 * 72.0f, 5.0f);
+        func_800EF04C(sp60, sp54);
+        func_800BABB8(temp_s3, sp60, sp54, 1.0f, &D_80800430_chfairgroundworker);
+    }
+}
