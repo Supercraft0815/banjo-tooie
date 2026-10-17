@@ -58,7 +58,34 @@ s32 func_80800080_chflysaucer(Actor *arg0, s32 **arg1) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_8080013C_chflysaucer.s")
+void func_8080013C_chflysaucer(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    struct FlysaucerEntry {
+        u16 value;
+        u8 pad[6];
+    };
+    struct {
+        u8 pad[0x2A];
+        s16 index;
+    } *sp24;
+    s32 *sp20;
+    s16 index;
+    s32 count;
+
+    sp24 = func_80100094(arg0, 0U);
+    sp20 = NULL;
+    count = func_80800080_chflysaucer(arg0, &sp20);
+    if (count != 0) {
+        index = sp24->index;
+        if (index < count) {
+            count = arg1;
+            if (((struct FlysaucerEntry *)sp20)[index].value < count) {
+                func_80108B04(arg0, count);
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808001B4_chflysaucer.s")
 
