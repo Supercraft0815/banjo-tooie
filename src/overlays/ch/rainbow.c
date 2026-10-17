@@ -35,7 +35,28 @@ void func_808005E0_chrainbow(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/chrainbow_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_80800CD4_chrainbow.s")
+void func_80800CD4_chrainbow(s32 arg0) {
+    s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
+    s32 func_8010114C(s32, s32, s32);
+    s32 func_80800270_chrainbow(s32, s32);
+    u8 *actors[3];
+    s32 found;
+    s32 index;
+
+    index = _subaddiefind_entrypoint_4(0x480, &actors[0], 3) - 1;
+    found = 0;
+    for (; index >= 0; index--) {
+        if (func_8010114C((s32)((Actor *)actors[index])->unk0, 0x4B, 0) != 0) {
+            found = 1;
+            break;
+        }
+    }
+    if (found != 0) {
+        func_80800270_chrainbow(arg0, 0xB);
+        return;
+    }
+    func_80800270_chrainbow(arg0, 0xC);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_80800D88_chrainbow.s")
 
