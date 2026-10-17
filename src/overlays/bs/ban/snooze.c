@@ -174,20 +174,22 @@ void func_808004E0_bsbansnooze(PlayerState *arg0) {
     s32 baanim_setDurationRange(PlayerState *, s32, s32);
     s32 func_8008C9F0(PlayerState *, s32, s32, f32, f32);
     s32 func_8008CA30(PlayerState *, s32);
-    s32 yaw_setVelocityBounded(PlayerState *, s32, s32);
+    s32 yaw_setVelocityBounded(PlayerState *, f32, f32);
     func_80800098_bsbansnooze(arg0);
     baanim_playForDuration_loopSmooth(arg0, 0x278, 0x3F333333);
     func_8009FFD8(arg0, 2, 3, 8, 0xE);
-    yaw_setVelocityBounded(arg0, 0x42C80000, 0x40600000);
+    yaw_setVelocityBounded(arg0, 100.0f, 3.5f);
     baanim_setDurationRange(arg0, 0x3DCCCCCD, 0x40A00000);
     func_8008C9F0(arg0, 0x42480000, 0x42C80000, 0.7f, 0.7f);
     func_8008CA30(arg0, 0x3F800000);
 }
 
+struct anctrl_s;
+
 void func_80800588_bsbansnooze(s32 arg0)
 {
-  f32 anctrl_getAnimTimer(s32);
-  s32 baanim_getAnimCtrlPtr();
+  f32 anctrl_getAnimTimer(struct anctrl_s *);
+  struct anctrl_s *baanim_getAnimCtrlPtr();
   s32 bakey_released(s32, s32);
   s32 bastick_getZone(PlayerState *);
   s32 bs_setState(s32, s32);
@@ -197,7 +199,7 @@ void func_80800588_bsbansnooze(s32 arg0)
   s32 player_inWater(s32);
   extern s32 D_80800A60_bsbansnooze;
   s32 var_s1;
-  s32 new_var;
+  struct anctrl_s *new_var;
   new_var = baanim_getAnimCtrlPtr();
   var_s1 = 0;
   func_80800128_bsbansnooze(arg0, func_800F3780(anctrl_getAnimTimer(new_var), &D_80800A60_bsbansnooze, 3));
@@ -274,7 +276,49 @@ void func_8080076C_bsbansnooze(s32 arg0)
     func_800951B4();
     func_80800000_bsbansnooze(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_80800794_bsbansnooze.s")
+void func_80800794_bsbansnooze(PlayerState *arg0) {
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    void _batimer_set(PlayerState *, s32, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 bs_getPreviousState(PlayerState *);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    void func_8009514C(PlayerState *);
+    void func_8009FFD8();
+    s32 func_800A1718(PlayerState *);
+    s32 func_800A1760(PlayerState *);
+    void func_800A17A8(PlayerState *, s32);
+    s32 yaw_setVelocityBounded(PlayerState *, f32, f32);
+    struct anctrl_s *animCtrl;
+    s32 state;
+
+    animCtrl = baanim_getAnimCtrlPtr(arg0);
+    func_80800098_bsbansnooze(arg0);
+    anctrl_reset(animCtrl);
+    anctrl_setIndex(animCtrl, 0x277);
+    anctrl_setDuration(animCtrl, 2.0f);
+    func_8008B1C8(animCtrl, 0.6f);
+    anctrl_setPlaybackType(animCtrl, 2);
+    anctrl_start(animCtrl);
+    func_8009FFD8(arg0, 1, 3, 8, 0xE);
+    yaw_setVelocityBounded(arg0, 100.0f, 3.5f);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_8009514C(arg0);
+    _batimer_set(arg0, 0, 1.0f);
+    state = func_800A1718(arg0);
+    if (func_800A1760(arg0) == state) {
+        func_800A17A8(arg0, 0);
+    }
+    if (bs_getPreviousState(arg0) == 0x170) {
+        arg0->unk15C.bytes[0] = 0;
+    } else {
+        arg0->unk15C.bytes[0] = 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_808008A4_bsbansnooze.s")
 
