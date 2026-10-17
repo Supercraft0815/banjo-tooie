@@ -116,7 +116,34 @@ void func_80800924_chbilldrillplate(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_80800978_chbilldrillplate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_80800B9C_chbilldrillplate.s")
+void func_80800B9C_chbilldrillplate(Actor *arg0) {
+    s32 func_800EA05C(void);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_80101010(f32 *);
+    s32 func_80101180(s32, s32, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    extern u8 D_80801220_chbilldrillplate[];
+    f32 sp2C[3];
+    f32 sp20[3];
+
+    switch (func_800EA05C()) {
+        case 0x101:
+            func_800EFA4C(sp2C, 180.0f, 680.0f, 180.0f);
+            func_800EF04C(sp2C, arg0->position);
+            func_80101010(sp2C);
+            func_80101180(0x473, 5, 0);
+            _subaddieaudioquick_entrypoint_2(arg0, sp2C, D_80801220_chbilldrillplate);
+            break;
+        case 0x107:
+            func_800EFA4C(sp20, 130.0f, 220.0f, 130.0f);
+            func_800EF04C(sp20, arg0->position);
+            func_80101010(sp20);
+            func_80101180(0x473, 5, 0);
+            _subaddieaudioquick_entrypoint_2(arg0, sp20, D_80801220_chbilldrillplate);
+            break;
+    }
+}
 
 /* extern */
 

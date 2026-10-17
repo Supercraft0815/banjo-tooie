@@ -1,16 +1,14 @@
 #include "core2/1EDA900.h"
 extern void *D_80135A80;
+extern f32 D_80135A70[3];
+void func_800EE7F8(f32 *, f32 *);
 
-void func_80101010(s32 arg0) {
-    s32 func_800EE7F8(s32 *, s32);
-    extern s32 D_80135A70;
-    func_800EE7F8(&D_80135A70, arg0);
+void func_80101010(f32 *arg0) {
+    func_800EE7F8(D_80135A70, arg0);
 }
 
 void func_80101038(f32 *arg0) {
-    s32 func_800EE7F8();
-    extern s32 D_80135A70;
-    func_800EE7F8(arg0, &D_80135A70);
+    func_800EE7F8(arg0, D_80135A70);
 }
 
 void func_8010105C(f32 arg0) {
