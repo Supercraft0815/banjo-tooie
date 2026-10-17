@@ -26,9 +26,9 @@ void *func_800CB948(s16 *arg0)
     func_800CB910(arg0);
 }
 
-void func_800CB968(s16 *arg0)
+s32 func_800CB968(s16 *arg0)
 {
-    func_800CB8BC(arg0);
+    return func_800CB8BC(arg0);
 }
 
 void func_800CB988()
@@ -152,7 +152,33 @@ s32 func_800CBD84(f32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CC338.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CC4D4.s")
+s32 func_800CC4D4(f32 *arg0, s32 arg1) {
+    extern s32 D_8012AE84;
+    f32 func_800EFC7C(void *, void *);
+    s32 pad[3];
+    s8 *start;
+    f32 center;
+    f32 y;
+    f32 extent;
+    s8 *cur;
+
+    cur = (s8 *)(D_8012AE84 + arg1 * 0x1C);
+    if (*(u8 *)(cur + 3) == 0) {
+        return -1;
+    }
+    start = func_800CB948((s16 *)cur);
+    arg1 = func_800CB968((s16 *)cur);
+    for (cur = start; (u32)cur < (u32)arg1; cur += 0x18) {
+        center = *(f32 *)(cur + 4);
+        extent = *(s16 *)(cur + 0xE);
+        y = arg0[1];
+        if (center - extent < y && y < center + extent &&
+            func_800EFC7C(cur, arg0) < *(f32 *)(cur + 0x10)) {
+            return (cur - start) / 24;
+        }
+    }
+    return -1;
+}
 
 s32 func_800CC5E8()
 {
