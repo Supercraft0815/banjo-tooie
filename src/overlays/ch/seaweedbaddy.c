@@ -134,4 +134,30 @@ void func_80800BCC_chseaweedbaddy(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_80800CE0_chseaweedbaddy.s")
+void func_80800CE0_chseaweedbaddy(Actor *arg0, f32 arg1) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    f32 func_80013728(f32);
+    void func_800C4B64(f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    extern f32 D_80800FAC_chseaweedbaddy[2];
+    extern f32 D_80800FB4_chseaweedbaddy;
+    f32 distance;
+    s32 found;
+    f32 *angle;
+    f32 *end;
+
+    found = 0;
+    for (angle = D_80800FAC_chseaweedbaddy, end = angle + 2; angle != end; angle++) {
+        if (func_80013728(arg1) <= *angle && *angle < func_80013728(arg0->rotation[1])) {
+            found = 1;
+            break;
+        }
+    }
+    if (found) {
+        distance = arg0->unk50;
+        if (distance > 100.0f) {
+            func_800C4B64(func_800F10B4(distance, 100.0f, 700.0f, 1.0f, 1.15f));
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800FB4_chseaweedbaddy);
+        }
+    }
+}
