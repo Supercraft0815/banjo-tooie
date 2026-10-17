@@ -230,7 +230,37 @@ void func_808007D0_ncpoducam(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/func_80800854_ncpoducam.s")
+s32 func_80800854_ncpoducam(u8 *arg0, s16 *arg1) {
+    s32 _ncpod_entrypoint_5(s16 *, void *, s32, s16, s32);
+    s32 _suspline_entrypoint_7(void *);
+    void *func_8001B798(s16);
+    void *func_80110024(s16 *);
+    s32 finished;
+    s32 result;
+
+    finished = 0;
+    result = _ncpod_entrypoint_5(arg1, func_80110024(arg1), 0xE, *(s16 *)(arg0 + 0x58), 0);
+    if (result == 4) {
+        return result;
+    }
+    *(s32 *)(arg0 + 0x4C) = result;
+    switch (arg0[0x60]) {
+        case 8:
+            break;
+        case 5:
+        case 6:
+            finished = _suspline_entrypoint_7(func_8001B798(*(s16 *)arg0));
+            break;
+    }
+    if (finished != 0) {
+        result = _ncpod_entrypoint_5(arg1, func_80110024(arg1), 0xC, *(s16 *)(arg0 + 0x58), 0);
+        if (result == 4) {
+            return result;
+        }
+        *(s32 *)(arg0 + 0x4C) = result;
+    }
+    return result;
+}
 
 void func_80800944_ncpoducam(u8 *arg0) {
     f32 _glintrosyncDll_entrypoint_5(void);
