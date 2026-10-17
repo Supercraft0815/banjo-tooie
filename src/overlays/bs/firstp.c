@@ -3281,7 +3281,21 @@ s32 func_808094A4_bsfirstp(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808094F4_bsfirstp.s")
+s32 func_808094F4_bsfirstp(s32 arg0) {
+    s32 func_80809540_bsfirstp(s32, s32);
+    s32 temp_v0;
+
+    temp_v0 = func_80809540_bsfirstp(arg0, 1);
+    switch (temp_v0) {
+    case 0:
+        return 0xCA;
+    case 1:
+    case 2:
+        return 0xD1;
+    default:
+        return 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809540_bsfirstp.s")
 
