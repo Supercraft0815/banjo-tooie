@@ -207,4 +207,34 @@ void gcdialogcamera_entrypoint_9(s32 arg0, s32 arg1, s32 arg2) {
     _capod_entrypoint_7(arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/camera/gcdialogcamera_entrypoint_10.s")
+void gcdialogcamera_entrypoint_10(void *arg0, s32 arg1, s32 arg2) {
+    s32 _capod_entrypoint_0(s32, s32, s32);
+    s32 _capod_entrypoint_4();
+    s32 sp24;
+    s32 sp20;
+
+    func_80800000_gcdialogcamera(arg1, &sp24, &sp20);
+    if (*(u8 *)((u8 *)arg0 + 0x167) != 0) {
+        if (func_8080003C_gcdialogcamera(*(void **)((u8 *)arg0 + 0x168), *(s32 *)((u8 *)arg0 + 0x16C)) != 0) {
+            switch (_capod_entrypoint_4()) {
+                case -1:
+                    func_80800620_gcdialogcamera(arg2);
+                case 6:
+                    gcdialogcamera_entrypoint_9(*(s32 *)((u8 *)arg0 + 0x168), sp24, sp20);
+                    return;
+                default:
+                    switch (_capod_entrypoint_0(0x57, (sp20 << 16) | sp24, *(s32 *)((u8 *)arg0 + 0x168))) {
+                        case 0:
+                        case 1:
+                            break;
+                        case 2:
+                            gcdialogcamera_entrypoint_9(*(s32 *)((u8 *)arg0 + 0x168), sp24, sp20);
+                            return;
+                    }
+                    break;
+            }
+        } else if (_capod_entrypoint_4() == 6) {
+            gcdialogcamera_entrypoint_9(*(s32 *)((u8 *)arg0 + 0x168), sp24, sp20);
+        }
+    }
+}
