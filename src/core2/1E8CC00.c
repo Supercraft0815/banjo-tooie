@@ -21,7 +21,40 @@ void func_800B3370(void* arg0)
 {
     heap_free(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8CC00/func_800B3390.s")
+void *func_800B3390(void *arg0, f32 arg1) {
+    struct entry { f32 position[3]; s32 value[3]; f32 radius; };
+    struct list { s32 unk0[3]; s32 count; struct entry *start; struct entry *end; };
+    s32 *dest;
+    s32 *src;
+    struct entry *entry;
+    int bytes;
+
+    for (entry = (struct entry *)((struct list *)arg0 + 1); entry < ((struct list *)arg0)->start; entry++) {
+        if (arg1 < entry->radius) {
+            break;
+        }
+    }
+    if (entry == ((struct list *)arg0)->start) {
+        if (((struct list *)arg0)->start < ((struct list *)arg0)->end) {
+            ((struct list *)arg0)->start = ((struct list *)arg0)->start + 1;
+            return entry;
+        }
+        return NULL;
+    }
+    if (((struct list *)arg0)->start == ((struct list *)arg0)->end) {
+        ((struct list *)arg0)->start--;
+        }
+    dest = (s32 *)(((struct list *)arg0)->start + 1);
+    bytes = (((struct list *)arg0)->start - entry) * sizeof(struct entry);
+    dest--;
+    src = (s32 *)((struct list *)arg0)->start - 1;
+    while (bytes > 0) {
+        *dest-- = *src--;
+        bytes -= 4;
+    }
+    ((struct list *)arg0)->start++;
+    return entry;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8CC00/func_800B3494.s")
 
