@@ -124,7 +124,43 @@ void func_80801A80_sucoasterfly(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80801AB0_sucoasterfly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80801B90_sucoasterfly.s")
+/* extern */
+
+s32 func_80801B90_sucoasterfly(Actor *arg0) {
+    s32 _suchase_entrypoint_1(Actor *);
+    s32 func_8010C500(Actor *);
+    s32 func_808014AC_sucoasterfly(Actor *, s32);
+    struct CoasterFlyActorFlags {
+        u8 pad0[0x64];
+        u32 pad64 : 2;
+        u32 disabled : 1;
+        u32 remaining64 : 29;
+    };
+    s32 var_v1 = 0;
+    struct {
+        u32 unk0[4];
+        u32 pad10 : 12;
+        u32 unk10_19 : 1;
+        u32 unk10_0 : 19;
+    } *data;
+
+    if (((struct CoasterFlyActorFlags *)arg0)->disabled) {
+        return 0;
+    }
+    if (func_8010C500(arg0) == 0) {
+        var_v1 = 1;
+    }
+    if (var_v1 == 0) {
+        if (_suchase_entrypoint_1(arg0) == 0) {
+            var_v1 += 1;
+        }
+    }
+    if (var_v1 != 0) {
+        data = func_80100094(arg0, 0U);
+        func_808014AC_sucoasterfly(arg0, data->unk10_19 ? 7 : 1);
+    }
+    return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80801C44_sucoasterfly.s")
 
