@@ -388,7 +388,31 @@ void func_8080145C_bsbfly(PlayerState *self) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_808014E8_bsbfly.s")
+void func_808014E8_bsbfly(PlayerState *arg0) {
+    void _bamotor_entrypoint_1(PlayerState *, f32, f32, f32);
+    void _basudie_entrypoint_1(PlayerState *);
+    void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
+    void func_8008E944(PlayerState *);
+    void func_8009D820(PlayerState *, f32);
+    void func_8009DF18(PlayerState *, s32, f32, s32);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+    void func_800A0CF4(PlayerState *, s32);
+    s32 func_800A1718(PlayerState *);
+    void func_800A17A8(PlayerState *, s32);
+    baanim_playForDuration_onceSmooth(arg0, 0x3E, 1.4f);
+    func_8009FFD8(arg0, 1, 1, 3, 3);
+    func_800A0CF4(arg0, 1);
+    func_8009DF18(arg0, 0x417, 0.8f, 0x7FFF);
+    func_8009D820(arg0, 1.8f);
+    _bamotor_entrypoint_1(arg0, 1.0f, 0.5f, 0.5f);
+    func_800A17A8(arg0, -1);
+    if (func_800A1718(arg0) == 0) {
+        _basudie_entrypoint_1(arg0);
+    }
+    func_8080145C_bsbfly(arg0);
+    func_8008E944(arg0);
+    arg0->unk160.word = 0;
+}
 
 /* extern */
 
