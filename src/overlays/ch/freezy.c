@@ -19,7 +19,7 @@ void func_8080000C_chfreezy(void *arg0) {
 
 void func_8080003C_chfreezy(Actor *arg0) {
     void* func_80100094(Actor*, u32);
-    u32 func_8010A828(Actor*, u32);
+    void func_8010A828(void **, s32);
     Actor *_subaddielink_entrypoint_4(u8 *);
     func_8010A828(_subaddielink_entrypoint_4(func_80100094(arg0, 1U)), (u32) (*(u8 *)((s8 *)(arg0) + (0x79))) >> 4);
 }
@@ -73,7 +73,32 @@ void chfreezy_entrypoint_1(Actor *arg0, s16 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/freezy/chfreezy_entrypoint_2.s")
+void chfreezy_entrypoint_2(Unk80132ED0 *arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4) {
+    Actor *_chnewfreezy_entrypoint_0(Unk80132ED0 *, s32, f32, f32);
+    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *func_801084B0(s32, Actor **);
+    void func_8010A828(void **, s32);
+    u32 func_8010A848(void **);
+    void func_8080044C_chfreezy(u8 **, Actor *, s32);
+    Actor *sp2C;
+    Actor *actor;
+
+    sp2C = func_80106790(arg0);
+    actor = _chnewfreezy_entrypoint_0(sp2C->unk0, arg2, arg3, arg4);
+    if (actor == NULL) {
+        actor = func_801084B0(0x363, &sp2C);
+    } else {
+        sp2C = func_80106790(arg0);
+    }
+    if (actor != NULL) {
+        _subaddielink_entrypoint_1(func_80100094(actor, 1), arg0);
+        func_8080044C_chfreezy(actor, sp2C, arg1);
+        actor->unk79_4 = func_8010A848(sp2C);
+        func_8010A828(sp2C, 1);
+    }
+}
 
 /* extern */
 
