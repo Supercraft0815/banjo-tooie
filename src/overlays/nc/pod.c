@@ -145,7 +145,56 @@ void ncpod_entrypoint_11(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)arg0 + 52) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_12.s")
+s32 ncpod_entrypoint_12(void *arg0, s32 arg1)
+{
+  s16 _ncpoddialog_entrypoint_2(void);
+  void _ncpoddialog_entrypoint_3(s16);
+  unsigned char new_var3;
+  s16 _ncpodfixpos_entrypoint_0(void);
+  u8 *new_var2;
+  void _ncpodfixpos_entrypoint_1(s16);
+  s16 _ncpoducam_entrypoint_0(void);
+  void _ncpoducam_entrypoint_6(s16);
+  u8 *new_var;
+  switch (*((u8 *) (((u8 *) arg0) + 0x41)))
+  {
+    case 1:
+      _ncpoddialog_entrypoint_3(*((s16 *) arg0));
+      *((s16 *) arg0) = 0;
+      break;
+
+    case 2:
+      _ncpoducam_entrypoint_6(*((s16 *) (((u8 *) arg0) + 2)));
+      *((s16 *) (((u8 *) arg0) + 2)) = 0;
+      break;
+
+    case 3:
+      _ncpodfixpos_entrypoint_1(*((s16 *) (((u8 *) arg0) + 4)));
+      new_var2 = ((u8 *) arg0) + 4;
+      *((s16 *) new_var2) = 0;
+      break;
+
+  }
+
+  new_var3 = arg1;
+  switch (*((u8 *) (((u8 *) arg0) + 0x41)) = new_var3)
+  {
+    case 1:
+      *((s16 *) arg0) = _ncpoddialog_entrypoint_2();
+      break;
+
+    case 2:
+      *((s16 *) (((u8 *) arg0) + 2)) = _ncpoducam_entrypoint_0();
+      break;
+
+    case 3:
+      new_var = ((u8 *) arg0) + 4;
+      *((s16 *) new_var) = _ncpodfixpos_entrypoint_0();
+      break;
+
+  }
+
+}
 
 u32 ncpod_entrypoint_13(u8 *arg0) {
     return arg0[65];
