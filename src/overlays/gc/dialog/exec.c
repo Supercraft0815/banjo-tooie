@@ -183,7 +183,31 @@ void func_8080052C_gcdialogexec(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80800D30_gcdialogexec.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80800F60_gcdialogexec.s")
+void func_80800F60_gcdialogexec(u8 *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u8 pad[0x11C];
+        u8 flags[2];
+    } DialogFlags;
+    int func_80800A50_gcdialogexec();
+    s32 state;
+
+    switch (arg2) {
+        case 3:
+            if (arg0[0x15C] == 0xB) {
+                func_80800A50_gcdialogexec(arg0, 4);
+                return;
+            }
+        case 1:
+        case 4:
+            return;
+        case 6:
+            if (arg0[0x15C] == 0xA) {
+                state = ((u32)((DialogFlags *)arg0)->flags[(u32)*(u16 *)(arg0 + 0x15E) >> 15] >> 6) ? 8 : 2;
+                func_80800A50_gcdialogexec(arg0, state);
+            }
+            break;
+    }
+}
 
 s32 func_80801008_gcdialogexec(s32 arg0) {
     s32 result = 0xC8;
@@ -437,9 +461,9 @@ void gcdialogexec_entrypoint_8(s32 arg0)
     func_80800A50_gcdialogexec(arg0,0x2);
 }
 
-void gcdialogexec_entrypoint_9()
+void gcdialogexec_entrypoint_9(u8 *arg0, s32 arg1, s32 arg2)
 {
-    func_80800F60_gcdialogexec();
+    func_80800F60_gcdialogexec(arg0, arg1, arg2);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80801DB4_gcdialogexec.s")
