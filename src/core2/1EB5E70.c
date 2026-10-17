@@ -409,8 +409,8 @@ void func_800DD4AC(s32 arg0, u8 *arg1) {
 void func_800DD504(s32 arg0, u8 *arg1) { extern s32 D_8012C844; extern f32 D_8012C948; void func_800EF04C(f32[3], f32[3]); void func_800EFA20(void *, void *, f32); void func_800DC028(s32, s32, s32); extern f32 *D_8012C94C; f32 sp18[4]; if (D_8012C844 != 0) { func_800EFA20(sp18, arg1 + 0xC, D_8012C948); func_800EF04C(sp18, D_8012C94C); func_800DC028(D_8012C844, (*(s16 *)((s8 *)(arg1) + (8))), sp18); } }
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD56C.s")
 
+typedef struct { f32 m[4][4]; } MtxF;
 void func_800DD65C(Gfx **arg0, void *arg1) {
-    typedef struct { f32 m[4][4]; } MtxF;
     s32 func_8010F070(MtxF *, s32 *, s16);
     MtxF *mlMtx_get_stack_pointer(void);
     extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
@@ -570,7 +570,28 @@ void func_800DE03C(s32 arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DE0D8.s")
+void func_800DE0D8(s32 arg0, u8 *arg1) {
+    void func_80019AA0(void *, s32);
+    s32 func_800ADE2C(s32, s32);
+    MtxF *mlMtx_get_stack_pointer(void);
+    void mlMtxPop(void);
+    extern f32 D_8012C948;
+    extern s32 D_8012CE58;
+    extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
+    struct command { s32 header[2]; s16 count; s16 id; struct { s16 bone; s16 tag; } entries[1]; };
+    s32 sp48[2];
+    s32 i;
+    struct command *command = (struct command *)arg1;
+
+    sp48[0] = command->id;
+    if (D_8012CEC4 != NULL) {
+        for (i = 0; i < command->count; i++) {
+                func_80019AA0(&D_8012CE58, func_800ADE2C(*(s32 *)((u8 *)&D_8012C948 + 0x20), command->entries[i].bone));
+                D_8012CEC4(mlMtx_get_stack_pointer(), sp48, command->entries[i].tag);
+                mlMtxPop();
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DE1C4.s")
 
