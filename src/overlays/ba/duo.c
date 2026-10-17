@@ -313,7 +313,45 @@ void baduo_entrypoint_19(PlayerState *arg0) {
     func_8009DB04(arg0, 0x5A4, 0.9f, 0x6D60);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_20.s")
+void baduo_entrypoint_20(PlayerState *arg0, s32 arg1, f32 arg2) {
+    void _bsstatue_entrypoint_1(PlayerState *);
+    void _sudialog_entrypoint_0(s32, s32);
+    s32 bs_setState(s32, s32);
+    void func_80092778(PlayerState *);
+    void func_800A3410(PlayerState *, s32);
+    void func_800A38F0(PlayerState *, s32, s32);
+    s32 func_800F452C(s32, s32);
+    s32 func_800F45B0(s32, s32, s32);
+    PlayerState *func_800F53D0(s32);
+    s32 func_800F6224(s32);
+    void func_800F8128(s32);
+    s32 func_800F8EE4(s32);
+    void func_80800008_baduo(s32, s32);
+    void func_80800C78_baduo(s32, s32);
+    void func_80800CA8_baduo(s32, s32);
+    void yaw_applyIdeal(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+    s32 sp24;
+    PlayerState *temp_s0;
+
+    sp24 = func_800F6224(*(s32 *)((s8 *)arg0 + 0x184));
+    temp_s0 = func_800F53D0(sp24);
+    func_800F452C((s32)temp_s0, arg1);
+    func_80800008_baduo((s32)arg0, (s32)temp_s0);
+    func_800A3410(temp_s0, 0xE);
+    func_80092778(temp_s0);
+    yaw_setIdeal(temp_s0, arg2);
+    yaw_applyIdeal(temp_s0);
+    _bsstatue_entrypoint_1(arg0);
+    bs_setState((s32)temp_s0, 0xF9);
+    func_800F8128(sp24);
+    func_800F8EE4(*(s32 *)((s8 *)arg0 + 0x184));
+    func_800F45B0((s32)arg0, 2, arg1);
+    func_800A38F0(arg0, 0, 1);
+    _sudialog_entrypoint_0(0x50, 0xE);
+    func_80800C78_baduo((s32)temp_s0, 0xE);
+    func_80800CA8_baduo((s32)arg0, (s32)temp_s0);
+}
 
 /* extern */
 
