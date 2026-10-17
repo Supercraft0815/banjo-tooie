@@ -213,7 +213,48 @@ void func_80801F10_chboilerboss(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80801F44_chboilerboss.s")
+void func_80801F44_chboilerboss(Actor *arg0) {
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_80101DDC(Actor *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    void func_80802098_chboilerboss(Actor *);
+    struct BoilerMarker {
+        u8 pad0[0x18];
+        u32 pad18_5 : 27;
+        u32 unk18_1 : 4;
+        u32 pad18_0 : 1;
+        u8 pad1C[0xC];
+        u32 pad28_14 : 18;
+        u32 unk28_13 : 1;
+        u32 unk28_12 : 1;
+        u32 unk28_11 : 1;
+        u32 pad28_0 : 11;
+    };
+    Actor *actor;
+
+    if (!arg0->unk64_20) {
+        actor = func_80106790(arg0->unk3C);
+        switch (arg0->unk6C_9) {
+        case 0x223:
+            ((struct BoilerMarker *)actor->unk0)->unk28_13 = 0;
+            ((struct BoilerMarker *)actor->unk0)->unk18_1 = (u8)(((struct BoilerMarker *)actor->unk0)->unk18_1 | 1);
+            break;
+        case 0x224:
+            ((struct BoilerMarker *)actor->unk0)->unk28_12 = 0;
+            ((struct BoilerMarker *)actor->unk0)->unk18_1 = (u8)(((struct BoilerMarker *)actor->unk0)->unk18_1 | 2);
+            break;
+        case 0x225:
+            ((struct BoilerMarker *)actor->unk0)->unk28_11 = 0;
+            ((struct BoilerMarker *)actor->unk0)->unk18_1 = (u8)(((struct BoilerMarker *)actor->unk0)->unk18_1 | 4);
+            break;
+        }
+        arg0->unk64_20 = 1;
+    }
+    if (func_80101DDC(arg0)) {
+        _subaddiefade_entrypoint_3(arg0);
+    }
+    func_80802098_chboilerboss(arg0);
+}
 
 void func_80802098_chboilerboss(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
