@@ -2,9 +2,9 @@
 
 void func_80800000_bsdronexform(s32 arg0, s32 arg1, s32 arg2) {
     s32 func_800BA3FC(s32, s32);
-    s32 func_800BABB8(s32, s32, s32, s32, s32 *);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
     extern s32 D_808011F0_bsdronexform;
-    func_800BABB8(arg1, 0, 0, 0x3F800000, &D_808011F0_bsdronexform);
+    func_800BABB8(arg1, 0, 0, 1.0f, &D_808011F0_bsdronexform);
     func_800BA3FC(arg1, arg2);
 }
 
@@ -62,7 +62,21 @@ void func_808003DC_bsdronexform(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 396) + 20) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/func_808003EC_bsdronexform.s")
+void func_808003EC_bsdronexform(s32 arg0, f32 arg1[3]) {
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    extern s32 D_8080121C_bsdronexform;
+    extern s32 D_80801248_bsdronexform;
+    extern s32 D_80801274_bsdronexform;
+    extern s32 D_808012B8_bsdronexform;
+    extern s32 D_808012D0_bsdronexform;
+    extern s32 D_808012F0_bsdronexform;
+    extern s32 D_80801334_bsdronexform;
+    extern s32 D_8080134C_bsdronexform;
+    func_800BABB8(0, arg1, 0, 1.0f, &D_8080121C_bsdronexform);
+    func_800BABB8(0, arg1, 0, 1.0f, &D_80801248_bsdronexform);
+    func_800BABB8(func_800BABB8(func_800BABB8(0, arg1, 0, 1.0f, &D_80801274_bsdronexform), arg1, 0, 1.0f, &D_808012B8_bsdronexform), arg1, 0, 1.0f, &D_808012D0_bsdronexform);
+    func_800BABB8(func_800BABB8(func_800BABB8(0, arg1, 0, 1.0f, &D_808012F0_bsdronexform), arg1, 0, 1.0f, &D_80801334_bsdronexform), arg1, 0, 1.0f, &D_8080134C_bsdronexform);
+}
 
 /* extern */
 
