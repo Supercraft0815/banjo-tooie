@@ -368,7 +368,31 @@ int func_80801580_chnicecavemen(f32 *arg0) {
     return func_800F640C(sp1C, 0x3CA) > 0 || func_800F640C(sp1C, 0x3CB) > 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_80801604_chnicecavemen.s")
+void func_80801604_chnicecavemen(Actor *arg0) {
+    void _chfirefx_entrypoint_2(Actor *, f32, f32, s32, s32);
+    s32 _glcutDll_entrypoint_20(void);
+    s32 func_800DA298(s32);
+    void func_80101FDC(Actor *, u32);
+    void func_80102FDC(Actor *, f32);
+    void func_8010A570(Actor *);
+
+    switch (arg0->unk74_7) {
+        case 0x32:
+        case 0x33:
+            _chfirefx_entrypoint_2(arg0, 1.2f, 50.0f, 0xF, 0xD);
+            arg0->actorData[4] = arg0->unk74_7 + 0x2F2;
+            break;
+        case 0x34:
+            _chfirefx_entrypoint_2(arg0, 1.5f, 100.0f, 0x14, 5);
+            arg0->actorData[4] = 0x326;
+            func_80102FDC(arg0, 1.0f);
+            break;
+    }
+    if (func_800DA298(arg0->actorData[4]) || _glcutDll_entrypoint_20()) {
+        func_8010A570(arg0);
+        func_80101FDC(arg0, 2);
+    }
+}
 
 /* extern */
 
