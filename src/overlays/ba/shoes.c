@@ -53,7 +53,28 @@ void bashoes_entrypoint_3(s32 arg0)
     bashoes_entrypoint_6(arg0,0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/bashoes_entrypoint_4.s")
+void bashoes_entrypoint_4(void *arg0) {
+    s32 func_8008DAA8(void *);
+    u32 func_8009EA4C(void);
+    u32 func_8009EA70(void);
+    u32 temp_v0;
+
+    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 0x10C) + 0x10) = 0;
+    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x10C) + 0x14) = 0.0f;
+    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 0x10C) + 5) = 0;
+    *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x10C) + 8) = 0;
+    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 0x10C) + 4) = 0;
+    if (func_8008DAA8(arg0) && func_8009EA4C() == 2) {
+        temp_v0 = func_8009EA70();
+        if (temp_v0 != 0) {
+            bashoes_entrypoint_6(arg0, temp_v0);
+            return;
+        }
+        bashoes_entrypoint_6(arg0, 1);
+        return;
+    }
+    bashoes_entrypoint_6(arg0, 1);
+}
 
 void bashoes_entrypoint_5(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 268) + 5) = arg1;
