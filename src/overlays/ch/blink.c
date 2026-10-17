@@ -46,7 +46,49 @@ void func_808000CC_chblink(f32 *arg0, s32 arg1, f32 arg2, f32 arg3) {
     temp_v0[0] = temp_v0[2];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blink/func_80800118_chblink.s")
+void func_80800118_chblink(void *arg0, s32 *arg1, s32 arg2) {
+    typedef struct {
+        f32 values[6];
+        f32 timer;
+        s32 index;
+    } BlinkState;
+    typedef struct {
+        f32 duration;
+        u8 channel;
+        u8 pad[3];
+        f32 value;
+        f32 transition;
+    } BlinkStep;
+    f32 func_800D8FF8(void);
+    f32 mlAbsF(f32);
+    BlinkState *state = arg0;
+    BlinkStep *steps = (BlinkStep *)arg1;
+    f32 remaining;
+    BlinkStep *step;
+
+    remaining = func_800D8FF8();
+    while (0.0f < remaining) {
+        state->timer -= remaining;
+        if (0.0f < state->timer)
+            break;
+        remaining = mlAbsF(state->timer);
+        step = &steps[state->index];
+        func_808000CC_chblink(arg0, step->channel, step->value, step->transition);
+        step++;
+        if (step->channel == 2) {
+            step = steps;
+            if (!arg2) {
+                chblink_entrypoint_0(arg0, 1);
+                return;
+            } else {
+                state->index = 0;
+            }
+        } else {
+            state->index++;
+        }
+        state->timer = step->duration;
+    }
+}
 
 void chblink_entrypoint_2(s16 arg0) {
     void *func_8001B798(s16);
