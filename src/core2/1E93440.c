@@ -15,7 +15,7 @@ s32 func_800BA198(void *arg0) {
 }
 
 void func_800BA1D0(s32 emitter, f32 position[3], f32 velocity[3], s32 count) {
-    s32 func_800EE940();
+    s32 func_800EE940(s16 *, f32 *);
     *(u16 *)emitter |= 0x40;
     func_800EE940((s16 *)(emitter + 0x28), position);
     func_800EE940((s16 *)(emitter + 0x2E), velocity);
@@ -47,7 +47,56 @@ s32 func_800BA2C4(void *arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BA2E8.s")
+void *heap_alloc(s32);
+void rare_memset(void *, u8, int);
+void func_800BA4C4(void *, f32);
+void func_800BA4D0(s16 *, s16);
+void func_800BA554(void *, f32, f32);
+void func_800BA568(s16 *, s16);
+void func_800BA7C4(void *, f32, f32);
+void func_800BA894(void *, f32, f32);
+void func_800BA8F8(void *, f32, f32);
+
+s16 *func_800BA2E8(s32 arg0) {
+    typedef u8 Particle[0x3C];
+    typedef struct {
+        u8 pad0[7];
+        u8 state;
+        u8 pad8[0x14];
+        f32 scale;
+        u8 pad20[0x32];
+        u8 flag52;
+        u8 flag53;
+        u8 pad54[0x2C];
+        u8 color[4];
+        u8 pad84[8];
+        Particle *begin;
+        Particle *end;
+        Particle *capacity;
+        u8 pad98[0x3C];
+        Particle particles[1];
+    } Emitter;
+    Emitter *emitter;
+
+    emitter = heap_alloc(arg0 * sizeof(Particle) + 0xD4);
+    rare_memset(emitter, 0, arg0 * sizeof(Particle) + 0xD4);
+    emitter->state = 2;
+    emitter->color[0] = emitter->color[1] = emitter->color[2] = emitter->color[3] = 0xFF;
+    emitter->scale = 1.0f;
+    func_800BA4D0((s16 *)emitter, -0x8000);
+    func_800BA568((s16 *)emitter, 0x7FFF);
+    func_800BA894(emitter, 0.0f, 5.0f);
+    func_800BA8F8(emitter, 0.0f, 5.0f);
+    func_800BA4C4(emitter, 0.9f);
+    func_800BA554(emitter, 1.0f, 1.0f);
+    func_800BA7C4(emitter, 1.0f, 1.0f);
+    emitter->begin = emitter->particles;
+    emitter->end = emitter->begin;
+    emitter->capacity = emitter->end + arg0;
+    emitter->flag52 = 1;
+    emitter->flag53 = 1;
+    return (s16 *)emitter;
+}
 
 /* extern */
 
@@ -196,8 +245,8 @@ void func_800BA730(void *arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4) {
 /* extern */
 
 void func_800BA75C(s32 arg0, f32 arg1[3]) {
-    s32 func_800EE940(s32, f32[3]);
-    func_800EE940(arg0 + 0x12, arg1);
+    s32 func_800EE940(s16 *, f32 *);
+    func_800EE940((s16 *)(arg0 + 0x12), arg1);
 }
 
 void func_800BA77C(s32 arg0, s16 arg1, s16 arg2, s16 arg3) {
@@ -260,12 +309,12 @@ void func_800BA994(u8 *arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s
     *(s16 *)(arg0 + 0xCE) = arg6;
 }
 
-void func_800BAA60(u8 *arg0, s32 arg1, s16 arg2, s16 arg3) {
-    s32 func_800EE940();
+void func_800BAA60(u8 *arg0, f32 *arg1, s16 arg2, s16 arg3) {
+    s32 func_800EE940(s16 *, f32 *);
     *(s8 *)(arg0 + 4) = 2;
     *(s16 *)(arg0 + 0xC4) = arg2;
     *(s16 *)(arg0 + 0xC6) = arg3;
-    func_800EE940((s32)(arg0 + 0xC8), arg1);
+    func_800EE940((s16 *)(arg0 + 0xC8), arg1);
 }
 
 void func_800BAA9C(void *arg0, f32 arg1) {
