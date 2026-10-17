@@ -14,7 +14,31 @@ u32 bashoes_entrypoint_2(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 268) + 16);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/func_80800020_bashoes.s")
+void func_80800020_bashoes(void *arg0) {
+    void bastatetimer_set(void *, s32, f32);
+    s32 func_800EA068(s32);
+    void func_800FC660(u32);
+    void func_800C77DC(s32);
+
+    bastatetimer_set(arg0, 3, **(f32 **)((u8 *)arg0 + 0x10C));
+    if (func_800EA068(0x800) != 0) {
+        if (*(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x10C) + 4) == 3) {
+            func_800FC660(0x2B);
+        }
+    } else {
+        switch (*(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x10C) + 4)) {
+            case 3:
+                func_800C77DC(3);
+                break;
+            case 4:
+                func_800C77DC(6);
+                break;
+            case 5:
+                func_800C77DC(5);
+                break;
+        }
+    }
+}
 
 /* extern */
 
@@ -37,7 +61,7 @@ void func_80800128_bashoes(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _baalarm_new();
     s32 baflag_clear(s32, s32);
     void func_800A0DB8(void *, s32);
-    s32 func_80800020_bashoes(s32);
+    void func_80800020_bashoes(void *);
     _baalarm_new();
     baflag_clear(arg0, arg1);
     func_800A0DB8(arg0, arg2);
