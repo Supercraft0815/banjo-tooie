@@ -89,7 +89,38 @@ void func_808001FC_bsbansnooze(PlayerState *arg0) {
     bainput_enable(arg0, 1, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_80800278_bsbansnooze.s")
+void func_80800278_bsbansnooze(PlayerState *arg0) {
+    void _babackpack_set_state(void *, s32);
+    int baanim_isAt(PlayerState *, f32);
+    int baanim_isStopped(PlayerState *);
+    void bainput_enable(PlayerState *, s32, s32);
+    s32 bs_setState(s32, s32);
+    void func_8009DB04(PlayerState *, s32, f32, s32);
+    void func_8009DF58(PlayerState *, s32, f32);
+    void func_800A0CD0(void *, s32);
+    s32 sp24;
+
+    sp24 = 0;
+    bainput_enable(arg0, 1, 1);
+    if (baanim_isAt(arg0, 0.18f) != 0) {
+        func_8009DF58(arg0, 0x58C, 1.0f);
+    }
+    if (baanim_isAt(arg0, 0.22f) != 0) {
+        func_8009DB04(arg0, 0x3FF, 1.0f, 0x55F0);
+    }
+    if (baanim_isAt(arg0, 0.1184f) != 0) {
+        func_800A0CD0(arg0, 0);
+        _babackpack_set_state(arg0, 2);
+    }
+    if (baanim_isAt(arg0, 0.3703f) != 0) {
+        arg0->unk15C.bytes[1] = 1;
+        func_80800098_bsbansnooze(arg0);
+    }
+    if (baanim_isStopped(arg0) != 0) {
+        sp24 = 0x16F;
+    }
+    bs_setState(arg0, sp24);
+}
 
 s32 bsbansnooze_entrypoint_0(s32 arg0) {
     extern s32 D_80800A40_bsbansnooze[];
