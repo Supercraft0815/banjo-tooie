@@ -300,4 +300,32 @@ void func_80801160_sumultiscore(u16 (*arg0)[2], void *arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/func_808011E0_sumultiscore.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/func_80801340_sumultiscore.s")
+void func_80801340_sumultiscore(void *arg0, s32 arg1) {
+    s32 _gcstatusDll_entrypoint_13();
+
+    switch (_gcstatusDll_entrypoint_13(arg1)) {
+        default:
+            *(s16 *)((s8 *)arg0 + 2) = 0xB50; *(s8 *)((s8 *)arg0 + 0xA) += 10; *(f32 *)((s8 *)arg0 + 0x10) = 0.5f;
+            break;
+        case 2:
+            *(s16 *)((s8 *)arg0 + 2) = 0xBD9;
+            *(f32 *)((s8 *)arg0 + 0x10) = 0.6f;
+            *(s8 *)((s8 *)arg0 + 0xC) -= 5;
+            break;
+        case 3:
+            *(s16 *)((s8 *)arg0 + 2) = 0xBD0;
+            *(f32 *)((s8 *)arg0 + 0x10) = 0.6f;
+            *(s8 *)((s8 *)arg0 + 0xC) -= 5;
+            break;
+        case 4:
+            *(s16 *)((s8 *)arg0 + 2) = 0xBAB;
+            *(f32 *)((s8 *)arg0 + 0x10) = 0.7f;
+            *(s8 *)((s8 *)arg0 + 0xC) -= 7;
+            break;
+        case 5:
+            *(s16 *)((s8 *)arg0 + 2) = 0xBA2;
+            *(f32 *)((s8 *)arg0 + 0x10) = 0.6f;
+            *(s8 *)((s8 *)arg0 + 0xC) -= 6;
+            break;
+    }
+}
