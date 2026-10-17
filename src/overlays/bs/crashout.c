@@ -20,7 +20,44 @@ void func_80800000_bscrashout(struct player_state_s *self) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/crashout/func_808000B0_bscrashout.s")
+void func_800951B4(struct player_state_s *);
+void func_808000B0_bscrashout(struct player_state_s *self, s32 state) {
+    void _basudie_entrypoint_1(struct player_state_s *);
+    void _batimer_set(struct player_state_s *, s32, f32);
+    void _ncbadie_entrypoint_3(struct player_state_s *, f32);
+    void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
+    void baphysics_set_horizontal_velocity(struct player_state_s *, f32, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void baphysics_set_target_yaw(struct player_state_s *, f32);
+    void func_800951B4(struct player_state_s *);
+    void func_8009FFD8(struct player_state_s *, s32, s32, s32, s32);
+    void func_800A0180(struct player_state_s *);
+    struct player_state_s *func_800A4CA8(struct player_state_s *);
+    void func_800A4DFC(struct player_state_s *, s32);
+    f32 yaw_getIdeal(struct player_state_s *);
+
+    *(s32 *)((s8 *)self + 0x15C) = state;
+    switch (state) {
+        case 1:
+            baanim_playForDuration_onceSmooth(self, 0x3E, 1.4f);
+            func_8009FFD8(self, 1, 3, 3, 3);
+            baphysics_set_target_yaw(self, yaw_getIdeal(self));
+            baphysics_set_target_horizontal_velocity(self, *(f32 *)((s8 *)self + 0x16C));
+            baphysics_set_horizontal_velocity(self, 100.0f, *(f32 *)((s8 *)self + 0x16C));
+            break;
+        case 2:
+            func_800951B4(self);
+            baanim_playForDuration_onceSmooth(self, 0xD2, 2.25f);
+            break;
+        case 3:
+            func_800A0180(self);
+            func_800A4DFC(self, 0xA);
+            _ncbadie_entrypoint_3(func_800A4CA8(self), 30.0f);
+            _basudie_entrypoint_1(self);
+            _batimer_set(self, 0, 3.2f);
+            break;
+    }
+}
 
 void bscrashout_entrypoint_0(s32 arg0)
 {
@@ -37,7 +74,7 @@ void bscrashout_entrypoint_1(void *arg0) {
     s32 func_8009514C(void *);
     f32 func_80099A34();
     s32 func_8009D89C(void *, f32);
-    s32 func_808000B0_bscrashout(void *, s32);
+    void func_808000B0_bscrashout(struct player_state_s *, s32);
     s32 yaw_applyIdeal(void *);
     s32 yaw_setIdeal(void *, f32);
     yaw_setIdeal(arg0, func_80099A34());
