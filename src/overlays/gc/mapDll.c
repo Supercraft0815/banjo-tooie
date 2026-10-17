@@ -178,7 +178,29 @@ void func_8080045C_gcmapDll(void *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapDll/func_808005A8_gcmapDll.s")
+/* extern */
+
+void func_808005A8_gcmapDll(u8 *arg0) {
+    void func_800EE830(s32 dst[3], s32 src[3]);
+    s32 i;
+    s32 sp40[3];
+    s32 sp34[3];
+
+    func_8080045C_gcmapDll(arg0, 0, (s32 *)(arg0 + 0x180), (s32 *)(arg0 + 0x18C));
+    func_800EE830((s32 *)(arg0 + 0x198), (s32 *)(arg0 + 0x180));
+    func_800EE830((s32 *)(arg0 + 0x1A4), (s32 *)(arg0 + 0x18C));
+    if (*(s32 *)(arg0 + 0x38)) {
+        func_8080045C_gcmapDll(arg0, 1, sp40, sp34);
+        for (i = 0; i < 3; i++) {
+            if (sp40[i] < ((s32 *)(arg0 + 0x198))[i]) {
+                ((s32 *)(arg0 + 0x198))[i] = sp40[i];
+            }
+            if (((s32 *)(arg0 + 0x1A4))[i] < sp34[i]) {
+                ((s32 *)(arg0 + 0x1A4))[i] = sp34[i];
+            }
+        }
+    }
+}
 
 /* extern */
 
