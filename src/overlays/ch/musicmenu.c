@@ -173,7 +173,31 @@ void func_80800930_chmusicmenu(u8 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_80800CBC_chmusicmenu.s")
+void func_80800CBC_chmusicmenu(Actor *arg0) {
+    s32 func_800D3E40(s32);
+    s32 func_800DA298(s32);
+    void func_800DA3B8(s32, s32);
+    void func_8010A828(void **, s32);
+    extern s16 D_808012A0_chmusicmenu;
+    s32 var_s0;
+
+    arg0->actorData[6] = -1;
+    arg0->unk74_7 = 0;
+    arg0->actorData[0] = -1;
+    var_s0 = 0;
+    func_8010A828(arg0, 9);
+    if (func_800D3E40(5) != 0) {
+        func_80800930_chmusicmenu(arg0, 4);
+    } else if (func_800DA298(0x344) != 0) {
+        func_80800930_chmusicmenu(arg0, 6);
+    } else {
+        func_80800930_chmusicmenu(arg0, 7);
+    }
+    while ((&D_808012A0_chmusicmenu)[var_s0] != 0x9A) {
+        var_s0++;
+    }
+    func_800DA3B8(var_s0 + 0x53E, func_800DA298(0x43));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_80800DA4_chmusicmenu.s")
 
