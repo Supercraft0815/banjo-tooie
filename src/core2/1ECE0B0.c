@@ -806,7 +806,39 @@ void func_800F6204(s32 arg0)
     func_800F6140(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6224.s")
+s32 func_800F6224(s32 arg0)
+{
+  s32 func_800A907C(s32, s32, s32);
+  void func_800A92A8(s32, s32);
+  u8 *func_800F43A8(s32);
+  void func_800F452C();
+  f32 position[3];
+  s32 pad;
+  PlayerState *player;
+  PlayerState *source;
+  s32 controller;
+  s32 index;
+ index = 0; loop: if (D_80135490[index] == NULL) { source = D_80135490[arg0];
+    controller = bakey_getControllerIndex(source);
+    controller = func_800A907C(index, controller, -1);
+    player = func_800F43A8(index);
+    D_80135490[index] = player;
+    bakey_setControllerIndex(player, controller);
+    func_800F3BB0(source, position);
+    func_800F452C(player, position);
+    yaw_setIdeal(player, yaw_getIdeal(source));
+    yaw_applyIdeal(player);
+    func_800A92A8(2, 2);
+    return index;
+  }
+
+  index++;
+  if (index == 8)
+  {
+    return 0;
+  }
+  goto loop;
+}
 
 void func_800F452C();
 
