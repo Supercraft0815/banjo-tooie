@@ -54,7 +54,31 @@ void bsdronebitten_entrypoint_2()
     func_80099AA8();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bitten/bsdronebitten_entrypoint_3.s")
+/* extern */
+
+void bsdronebitten_entrypoint_3(PlayerState *arg0) {
+    s32 _badata_entrypoint_24(PlayerState *);
+    f32 baphysics_get_vertical_velocity(PlayerState *);
+    s32 bs_setState(PlayerState *, s32);
+    int func_8008DA24(PlayerState *);
+    int func_8008DF8C(PlayerState *, s32);
+    s32 func_800F64A4(s32, s32);
+    s32 player_inWater(PlayerState *);
+    s32 sp2C;
+    s32 pad;
+    s32 sp24;
+
+    sp2C = 0;
+    func_80800000_bsdronebitten(arg0);
+    if ((func_800F64A4((*(s32 *)((s8 *)(arg0) + (0x184))), 0x201) != 0) && (func_8008DA24(arg0) != 0)) {
+        sp2C = 0xA8;
+    }
+    sp24 = baphysics_get_vertical_velocity(arg0) < 0.0f;
+    if ((func_8008DF8C(arg0, 0x96) != 0) || ((sp24 != 0) && (player_inWater(arg0) != 0))) {
+        sp2C = _badata_entrypoint_24(arg0);
+    }
+    bs_setState(arg0, sp2C);
+}
 
 f32 bsdronebitten_entrypoint_4(void *arg0, f32 arg1) {
     f32 temp_f2;
