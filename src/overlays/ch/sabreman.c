@@ -297,7 +297,7 @@ void func_80801620_chsabreman(Actor *arg0, void *arg1) {
 s32 func_8080167C_chsabreman(s32 arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_0(s32, s32);
     void *func_80100094(Actor *, u32);
-    s32 func_80801724_chsabreman(s32, s32, s32);
+    void func_80801724_chsabreman(Actor *, s32, s32);
     void *temp_v0;
 
     if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
@@ -325,7 +325,34 @@ void func_808016E4_chsabreman(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_80801724_chsabreman.s")
+void func_80801724_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_7(s32, s32);
+    s32 _capod_entrypoint_8(s32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    void _gcdialogcamera_entrypoint_5(f32 *);
+    void _gcdialogcamera_entrypoint_8(void);
+    extern s32 D_80801BE8_chsabreman;
+    s16 *data;
+
+    data = func_80100094(arg0, 0U);
+    switch (data[0x410]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0xE, 0);
+        case 1:
+            _capod_entrypoint_8(1);
+            data[0x410] = 2;
+            _gcdialogcamera_entrypoint_3(&D_80801BE8_chsabreman, arg0->scale);
+            _gcdialogcamera_entrypoint_4(arg0->position);
+            _gcdialogcamera_entrypoint_5(arg0->rotation);
+            _gcdialogcamera_entrypoint_8();
+        case 2:
+            _capod_entrypoint_7(arg1, arg2);
+            break;
+    }
+}
 
 void func_808017D8_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
