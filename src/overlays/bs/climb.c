@@ -41,7 +41,39 @@ void func_8080005C_bsclimb(void *arg0) {
     func_8009B94C(arg0, sp2C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/func_808000E8_bsclimb.s")
+struct player_state_s;
+s32 func_808000E8_bsclimb(s32 arg0) {
+    void _bapackctrl_entrypoint_5(struct player_state_s *, s32);
+    s32 baphysics_set_type(void *, s32);
+    void bastick_setZoneMax(struct player_state_s *, s32, f32);
+    int func_8008E0E8(struct player_state_s *);
+    void func_800959C8(struct player_state_s *, f32, f32);
+    void func_800961AC(struct player_state_s *, s32);
+    u32 func_8009861C(void *);
+    void func_8009BC5C(struct player_state_s *, f32);
+    void func_8009D2D8(struct player_state_s *, s32);
+    void func_800A4DA4(struct player_state_s *, s32);
+    s32 yaw_setUpdateType(void *, s32);
+    void yaw_setVelocityBounded(struct player_state_s *, f32, f32);
+
+    if (func_8009861C(arg0) == 2) {
+        func_8009D2D8(arg0, 3);
+    } else {
+        func_8009D2D8(arg0, 6);
+    }
+    yaw_setUpdateType(arg0, 3);
+    yaw_setVelocityBounded(arg0, 500.0f, 15.0f);
+    bastick_setZoneMax(arg0, 0, 0.03f);
+    bastick_setZoneMax(arg0, 1, 1.0f);
+    baphysics_set_type(arg0, 10);
+    func_8009BC5C(arg0, 10.0f);
+    func_800961AC(arg0, 5);
+    func_800959C8(arg0, 80.0f, 10.0f);
+    func_800A4DA4(arg0, 12);
+    if (func_8008E0E8(arg0) != 0) {
+        _bapackctrl_entrypoint_5(arg0, 4);
+    }
+}
 
 struct player_state_s;
 void func_808001D0_bsclimb(struct player_state_s *arg0) {
