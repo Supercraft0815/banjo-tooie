@@ -21,7 +21,20 @@ void func_80800000_chmumbohealspell(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/healspell/func_80800450_chmumbohealspell.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/healspell/func_80800740_chmumbohealspell.s")
+void func_80800740_chmumbohealspell(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _sumumbofx_entrypoint_6(void *, f32, f32, s32, s32, void *, void *, void *);
+    struct HealSpellVector { s32 values[3]; };
+    extern struct HealSpellVector D_808008DC_chmumbohealspell;
+    extern struct HealSpellVector D_808008E8_chmumbohealspell;
+    extern struct HealSpellVector D_808008F4_chmumbohealspell;
+    struct HealSpellVector sp44 = D_808008DC_chmumbohealspell;
+    struct HealSpellVector sp38 = D_808008E8_chmumbohealspell;
+    struct HealSpellVector sp2C = D_808008F4_chmumbohealspell;
+
+    _sumumbofx_entrypoint_6(func_80100094(arg0, 0), 1400.0f, 500.0f,
+                          0, 60, &sp38, &sp2C, &sp44);
+}
 
 /* extern */
 
