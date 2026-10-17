@@ -1,6 +1,45 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E38100/func_800205D0.s")
+void func_800205D0(void *arg0) {
+    void func_80020E74(ALLink *);
+    void func_800E90A4(s32, s32);
+    extern struct SfxState *D_800411D0;
+    extern struct SfxState *D_800411D4;
+    extern struct SfxState *D_800411D8;
+    extern s16 D_800411E0;
+    u32 mask;
+
+    mask = osSetIntMask(1U);
+    if (D_800411D0 == arg0) {
+        D_800411D0 = *(void **)arg0;
+    }
+    if (D_800411D4 == arg0) {
+        D_800411D4 = *(void **)((u8 *)arg0 + 4);
+    }
+    func_80020E74(arg0);
+    if (D_800411D8 != NULL) {
+        *(void **)arg0 = D_800411D8;
+        *(void **)((u8 *)arg0 + 4) = NULL;
+        *(void **)((u8 *)D_800411D8 + 4) = arg0;
+        D_800411D8 = arg0;
+    } else {
+        *(void **)((u8 *)arg0 + 4) = NULL;
+        *(void **)arg0 = *(void **)((u8 *)arg0 + 4);
+        D_800411D8 = arg0;
+    }
+    if (*(u8 *)((u8 *)arg0 + 0x44) & 4) {
+        D_800411E0 -= 1;
+    }
+    *(u8 *)((u8 *)arg0 + 0x45) = 0;
+    if (*(void ***)((u8 *)arg0 + 0x30) != NULL) {
+        if (**(void ***)((u8 *)arg0 + 0x30) == arg0) {
+            **(void ***)((u8 *)arg0 + 0x30) = NULL;
+        }
+        *(void ***)((u8 *)arg0 + 0x30) = NULL;
+    }
+    func_800E90A4(*(s32 *)((u8 *)arg0 + 8), 0);
+    osSetIntMask(mask);
+}
 
 void func_80020738(void *arg0, u8 arg1) {
     if (arg0 != NULL) {
