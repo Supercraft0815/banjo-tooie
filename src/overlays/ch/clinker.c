@@ -270,7 +270,39 @@ void func_80800FFC_chclinker(s32 arg0)
 void func_80801004_chclinker(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_8080100C_chclinker.s")
+void func_8080100C_chclinker(Actor *arg0, volatile s32 arg1) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _glcutDll_entrypoint_19(s32);
+    int func_800C6E38(s32);
+    s32 func_800DA9E4(s32, s32);
+    s32 func_800EA090(void);
+    void func_800F49D4(s32, void *, s32);
+    s32 func_800F5410(s32);
+    u32 func_800F54E4(void);
+    void func_80101FDC(Actor *, u32);
+    void _bsfirstp_entrypoint_18(void);
+    Actor **actor = &arg0;
+
+    if (_glcutDll_entrypoint_19(0x87) != 0) {
+        _capod_entrypoint_13((*actor)->unk0, NULL, 1, 0x900);
+        func_80101FDC(*actor, 3);
+        (*actor)->unk58 = 0.15f;
+        return;
+    }
+    switch (func_800EA090()) {
+    case 1:
+        if (func_800C6E38(0x15) != 0 && func_800F5410(0) == 1 && func_800DA9E4(0x6BA, 1) == 0) {
+            func_80101FDC(*actor, 2);
+            _capod_entrypoint_13((*actor)->unk0, NULL, 5, 0x2020);
+            func_800F49D4(func_800F54E4(), &_bsfirstp_entrypoint_18, 0);
+        }
+        return;
+    case 2:
+        func_80101FDC(*actor, 4);
+        _capod_entrypoint_13((*actor)->unk0, NULL, 3, 0x2000);
+        break;
+    }
+}
 
 void func_8080112C_chclinker(Actor *arg0) {
     s32 func_800D9078(f32 *);
