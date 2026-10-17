@@ -82,7 +82,34 @@ void func_8080069C_chcablecar(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_8080070C_chcablecar.s")
+s32 func_8080070C_chcablecar(Actor *arg0, f32 arg1) {
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    typedef struct {
+        s16 start[3];
+        s16 end[3];
+        f32 fraction;
+    } CablecarPath;
+    CablecarPath *data;
+    s32 clamped;
+    f32 end[3];
+    f32 start[3];
+
+    data = func_80100094(arg0, 0);
+    clamped = 0;
+    if (arg1 < 0.0f) {
+        arg1 = 0.0f;
+        clamped = 1;
+    } else if (arg1 > 1.0f) {
+        arg1 = 1.0f;
+        clamped = 1;
+    }
+    func_800EE88C(end, data->end);
+    func_800EE88C(start, data->start);
+    func_800EFE50(arg0->position, start, end, arg1);
+    data->fraction = arg1;
+    return clamped;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_808007C8_chcablecar.s")
 
