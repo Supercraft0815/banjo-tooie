@@ -768,7 +768,27 @@ s16 func_80805798_chdiggerboss(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808057D0_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808058B0_chdiggerboss.s")
+void func_808058B0_chdiggerboss(Actor *arg0, void *arg1) {
+    struct DiggerHit { u8 prefix[0x1A]; u16 id : 11; u16 flags : 5; };
+    struct DiggerHitData { u8 prefix[0x28]; f32 cooldown; };
+    void *func_80100094(Actor *, u32);
+    s32 func_800F79DC(s32, s32, s32);
+    f32 func_800F5BF0(s32, f32 *);
+    s32 _subaddiecustomhits_entrypoint_4(Actor *, f32 *, s32);
+    void _chelectricfence_entrypoint_1(Actor *, f32 *);
+    struct DiggerHitData *sp24;
+    f32 sp18[3];
+
+    sp24 = func_80100094(arg0, 0);
+    func_800F79DC(((struct DiggerHit *)arg1)->id, 6, (s32)arg0->unk0);
+    if (sp24->cooldown == 0.0f) {
+        if (_subaddiecustomhits_entrypoint_4(arg0, sp18, 0) == 0) {
+            func_800F5BF0(((struct DiggerHit *)arg1)->id, sp18);
+        }
+        _chelectricfence_entrypoint_1(arg0, sp18);
+        sp24->cooldown = 0.6f;
+    }
+}
 
 void func_80805960_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
