@@ -342,7 +342,7 @@ void func_80802538_chboilerboss(s32 arg0) {
     u32 func_800F54E4(void);
     void *func_80100094(Actor *, u32);
     s32 func_800F4AF4(u32, s32);
-    s32 func_808025DC_chboilerboss(s32);
+    void func_808025DC_chboilerboss(Actor *);
     u8 *sp1C;
     u8 *temp_v0;
 
@@ -372,7 +372,30 @@ void func_80802594_chboilerboss(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808025DC_chboilerboss.s")
+void func_808025DC_chboilerboss(Actor *arg0) {
+    s32 _plcamera_entrypoint_10(s32);
+    void _plcamera_entrypoint_9(s32, f32 *, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    s32 func_800F5EF8(s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80110014(s32 *);
+    void func_80116088(u8 *, s32);
+    u8 *data;
+    f32 position[3];
+
+    data = func_80100094(arg0, 0);
+    if (data[0x57] != 0) {
+        if (_plcamera_entrypoint_10(func_800F54E4()) != 0x14) {
+            data[0x57] = 0;
+            return;
+        }
+        func_800EE7F8(position, arg0->position);
+        position[1] += 400.0f;
+        _plcamera_entrypoint_9(func_800F54E4(), position, 0.0f);
+        func_80116088(func_80110014(func_800F5EF8(func_800F54E4())), position);
+    }
+}
 
 /* extern */
 
