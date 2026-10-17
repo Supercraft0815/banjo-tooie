@@ -567,7 +567,43 @@ s32 func_80801784_chquiz(void *arg0, s32 arg1) { return ((s32 *)arg0)[arg1 + 0x1
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801794_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801930_chquiz.s")
+s32 func_80801930_chquiz(void *arg0, s32 *arg1) {
+    s32 _suquiz_entrypoint_9(s32);
+    s32 temp_v0;
+    s32 i;
+    s32 count;
+    s32 minimum;
+
+    minimum = 0x186A0;
+    count = 1;
+    arg1[2] = -1;
+    arg1[1] = -1;
+    arg1[0] = -1;
+    i = 0;
+    do {
+        if (_suquiz_entrypoint_9(i) == 0) {
+            temp_v0 = func_80801784_chquiz(arg0, i);
+            if (temp_v0 < minimum) {
+                minimum = temp_v0;
+                arg1[0] = i;
+            }
+        }
+        i++;
+    } while (i < 3);
+    i = arg1[0] + 1;
+    if (i < 3) {
+        do {
+            if ((_suquiz_entrypoint_9(i) == 0) &&
+                (func_80801784_chquiz(arg0, i) == minimum) &&
+                (i != arg1[0]) && (i != arg1[1]) && (i != arg1[2])) {
+                arg1[count] = i;
+                count++;
+            }
+            i++;
+        } while (i != 3);
+    }
+    return count;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801A54_chquiz.s")
 
