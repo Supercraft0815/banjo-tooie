@@ -197,10 +197,30 @@ void func_808003BC_chintroticker(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/ticker/func_808003C4_chintroticker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/ticker/func_808004A8_chintroticker.s")
+void func_808004A8_chintroticker(s32 arg0, s32 arg1) {
+    void _glcutDll_entrypoint_14(s32);
+    void _glcutDll_entrypoint_24(u32, u32, u32);
+    void func_800A7990(s32, s32, s32);
+    int func_800A8264(void);
+    void func_808003C4_chintroticker(s32);
+    Actor *actor = (Actor *)arg0;
+
+    if (func_800A8264() == 0) {
+        if (arg1 >= 0) {
+            if (actor->unk64_20) {
+                _glcutDll_entrypoint_14(1);
+                _glcutDll_entrypoint_24(arg1, -1, -1);
+                return;
+            }
+            func_800A7990(arg1, 0, 1);
+            return;
+        }
+        func_808003C4_chintroticker(arg0);
+    }
+}
 
 void func_80800530_chintroticker(s32 arg0, s32 arg1) {
-    s32 func_808004A8_chintroticker(s32, s16);
+    void func_808004A8_chintroticker(s32, s32);
     extern s16 D_808008C4_chintroticker;
     s16 *var_v1;
     s16 temp_a1;
