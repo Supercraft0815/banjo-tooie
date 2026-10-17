@@ -176,12 +176,27 @@ OSThread *chlagoonufoint_entrypoint_4(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_80800FD4_chlagoonufoint.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_808012A4_chlagoonufoint.s")
+void func_808012A4_chlagoonufoint(Actor *arg0) {
+    s32 func_800DA298(s32);
+    void func_800FC63C(u32, u32);
+    void func_80800E80_chlagoonufoint(Actor *, s32);
+    extern s16 D_80801940_chlagoonufoint[];
+
+    if (arg0->unk70_10 == 1 && func_800DA298(0) == 0) {
+        arg0->unk79_4++;
+        func_800FC63C(0xE, 0x6D60);
+        if (arg0->unk79_4 == D_80801940_chlagoonufoint[arg0->unk74_7 - 1]) {
+            func_80800E80_chlagoonufoint(arg0, 3);
+            return;
+        }
+        func_80800E80_chlagoonufoint(arg0, 2);
+    }
+}
 
 /* extern */
 
-s32 func_8080135C_chlagoonufoint(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_808012A4_chlagoonufoint();
+s32 func_8080135C_chlagoonufoint(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_808012A4_chlagoonufoint();
     switch (arg1) {
     case 0x40:
         func_808012A4_chlagoonufoint(arg0);
