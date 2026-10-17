@@ -108,7 +108,34 @@ void func_80800970_chmineprospector(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_808009B0_chmineprospector.s")
+void func_808009B0_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_7(s32, s32);
+    s32 _capod_entrypoint_8(s32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    void _gcdialogcamera_entrypoint_5(f32 *);
+    void _gcdialogcamera_entrypoint_8(void);
+    extern s32 D_80800FBC_chmineprospector;
+    s32 *data;
+
+    data = func_80100094(arg0, 0U);
+    switch (data[4]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0xF, 0);
+        case 1:
+            _capod_entrypoint_8(1);
+            data[4] = 2;
+            _gcdialogcamera_entrypoint_3(&D_80800FBC_chmineprospector, arg0->scale);
+            _gcdialogcamera_entrypoint_4((f32 *)&arg0->actorData[4]);
+            _gcdialogcamera_entrypoint_5(arg0->rotation);
+            _gcdialogcamera_entrypoint_8();
+        case 2:
+            _capod_entrypoint_7(arg1, arg2);
+            break;
+    }
+}
 
 void func_80800A64_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
