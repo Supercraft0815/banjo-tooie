@@ -97,7 +97,49 @@ void bsdronebitten_entrypoint_6(s32 arg0)
     _bafpctrl_entrypoint_19(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bitten/bsdronebitten_entrypoint_7.s")
+void bsdronebitten_entrypoint_7(PlayerState *arg0) {
+    void _badata_entrypoint_4(PlayerState *, AssetId *, f32 *);
+    void baanim_playForDuration_loopSmooth(PlayerState *, AssetId, f32);
+    void func_8009FFD8();
+    void func_8009C128(PlayerState *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void _bamovegoto_entrypoint_0(void *);
+    void _bamovegoto_entrypoint_8(void *, f32);
+    void _bamovegoto_entrypoint_7(void *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void _bamovegoto_entrypoint_12(void *, f32 *);
+    void _bamovegoto_entrypoint_11(void *, f32 (*)(void *, f32), void (*)(void *, void *, f32));
+    void _bamovegoto_entrypoint_13(void *);
+    void func_8008E944(PlayerState *);
+    void func_8009D9D4(PlayerState *);
+    extern f32 _bsdronebitten_entrypoint_4(void *, f32);
+    extern void _bsdronebitten_entrypoint_5(void *, void *, f32);
+    f32 sp3C;
+    f32 sp38;
+    AssetId sp34;
+    f32 sp28[3];
+
+    _badata_entrypoint_4(arg0, &sp34, &sp38);
+    baanim_playForDuration_loopSmooth(arg0, sp34, sp38);
+    func_8009FFD8(arg0, 1, 1, 3, 2);
+    func_8009C128(arg0, sp28);
+    sp3C = func_800EEAD4(sp28, (f32 *)(*(s8 **)((s8 *)arg0 + 0x54) + 0x34));
+    *((u8 *)arg0 + 0x191) = *((u8 *)*(void **)((u8 *)arg0 + 0x54) + 0x30);
+    _bamovegoto_entrypoint_0(arg0);
+    if (*((u8 *)arg0 + 0x191) == 1) {
+        _bamovegoto_entrypoint_8(arg0, 2400.0f);
+    } else {
+        sp38 = func_800F10B4(sp3C, 100.0f, 5000.0f, 0.4f, 4.5f);
+        _bamovegoto_entrypoint_7(arg0, sp38);
+    }
+    _bamovegoto_entrypoint_12(arg0, (f32 *)(*(s8 **)((s8 *)arg0 + 0x54) + 0x34));
+    _bamovegoto_entrypoint_11(arg0, _bsdronebitten_entrypoint_4, _bsdronebitten_entrypoint_5);
+    _bamovegoto_entrypoint_13(arg0);
+    func_800961A0((s32 *)arg0, 1);
+    func_8008E944(arg0);
+    func_8009D9D4(arg0);
+    *((s8 *)arg0 + 0x190) = 0;
+}
 
 void bsdronebitten_entrypoint_8()
 {
