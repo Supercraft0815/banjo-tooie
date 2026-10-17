@@ -35,7 +35,39 @@ void *func_8001BDAC(s32 *arg0, s32 arg1) {
     return GET_BLOCK_CONTENTS(block);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E33860/func_8001BE94.s")
+void *func_8001BE94(s32 arg0) {
+    struct HeapHeader *block;
+    struct HeapHeader *prev;
+    struct HeapHeader *first;
+    u32 size;
+    u32 available;
+
+    block = LAST_BLOCK()->header.prev;
+    size = func_8001BD30(arg0 > 0 ? arg0 : 1);
+    available = GET_BLOCK_MEM_SIZE(block);
+    if (available < size || ((u32)((u8 *)block)[15] >> 6) != 0) {
+        first = &FIRST_BLOCK()->header;
+        prev = block->prev;
+        if (first != prev) {
+loop:
+            block = prev;
+            available = GET_BLOCK_MEM_SIZE(prev);
+            if (available < size || ((u32)((u8 *)prev)[15] >> 6) != 0) {
+                prev = block->prev;
+                if (first != prev) {
+                    goto loop;
+                }
+            }
+        }
+    }
+    if (((u32)((u8 *)block)[15] >> 6) != 0) {
+        return NULL;
+    }
+    if (available < size) {
+        return NULL;
+    }
+    return block;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E33860/func_8001BF80.s")
 
