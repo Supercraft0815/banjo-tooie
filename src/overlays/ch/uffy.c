@@ -330,7 +330,29 @@ void func_80801D94_chchuffy(Actor *arg0, s32 arg1) {
     func_800BBCB8((f32 *)((u8 *)func_80100094(*actor, 0) + 8), 0, 1.0f, arg1, &D_80802630_chchuffy);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80801DDC_chchuffy.s")
+void func_80801DDC_chchuffy(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_800C3058(u8, s32);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    extern s32 D_8080267C_chchuffy;
+    struct {
+        u8 pad0[0x14];
+        f32 position[3];
+        u8 pad20[0x1C];
+        f32 sampleRate;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    if (arg0->unk5F == 0) {
+        arg0->unk5F = func_800C4350(0, data->position, &D_8080267C_chchuffy);
+        return;
+    }
+    if (data->sampleRate > 2000.0f && arg0->unk7C_12) {
+        func_800C3058(arg0->unk5F, (s32)data->sampleRate);
+        func_800C4350(arg0->unk5F, data->position, NULL);
+    }
+    data->sampleRate -= 1000.0f;
+}
 
 void func_80801EAC_chchuffy(Actor *arg0) {
     void* func_80100094(Actor*, u32);
