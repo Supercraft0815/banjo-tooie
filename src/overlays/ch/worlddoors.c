@@ -20,7 +20,28 @@ void func_80800000_chworlddoors(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/worlddoors/func_80800388_chworlddoors.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/worlddoors/func_808006A8_chworlddoors.s")
+s32 func_808006A8_chworlddoors(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800FFAB0(Actor *);
+    void func_8010A800(Actor *, s32);
+    void func_80800214_chworlddoors(Actor *, s32);
+    switch (arg1) {
+        case 0x49:
+            if (arg2 >= 0x7A && arg2 < 0x84) {
+                arg0->unk79_4 = arg2 - 0x7A;
+                func_8010A800(arg0, 0);
+                func_80800214_chworlddoors(arg0, 1);
+                return 1;
+            }
+            func_800FFAB0(arg0);
+            return 0;
+        case 0xB:
+            if (arg0->unk70_10 == 1) {
+                func_80800214_chworlddoors(arg0, 2);
+            }
+            return 3;
+    }
+    return 0;
+}
 
 void func_80800750_chworlddoors(Actor *arg0) {
     void _subaddieaudioloop_entrypoint_2(Actor*);
