@@ -2032,7 +2032,34 @@ s32 func_800F8EE4(s32 arg0) {
     return func_800F8914(vector_push_back(&D_801354F0), arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8F3C.s")
+void func_800F8F3C(void) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    extern s32 D_801354F0;
+    extern s32 D_80135500;
+    extern s32 D_80135510;
+    u32 begin;
+    u32 end;
+    u32 entry;
+
+    if (D_801354F8 == 2 && D_801354F0 != 0) {
+        begin = vector_begin(D_801354F0);
+        end = vector_end(D_801354F0);
+        for (entry = begin; entry < end; entry += 0x3C) {
+            if (*(u8 *)entry == 0xA) {
+                func_800EE7F8((f32 *)(entry + 0x24), (f32 *)&D_80135500);
+                *(s16 *)(entry + 0x22) = *(s32 *)((u8 *)&D_801354F8 + 0x24);
+                func_800EFA4C((f32 *)(entry + 0x30), 0.0f, *(f32 *)((u8 *)&D_801354F8 + 0x14), 0.0f);
+            } else if (*(u8 *)entry == 0xB) {
+                func_800EE7F8((f32 *)(entry + 0x24), (f32 *)&D_80135510);
+                *(s16 *)(entry + 0x22) = *(s32 *)((u8 *)&D_801354F8 + 0x24);
+                func_800EFA4C((f32 *)(entry + 0x30), 0.0f, *(f32 *)((u8 *)&D_801354F8 + 0x14), 0.0f);
+            }
+        }
+    }
+}
 
 void func_800F9070(s32 arg0, s32 arg1) {
     void *func_800F88A0();
