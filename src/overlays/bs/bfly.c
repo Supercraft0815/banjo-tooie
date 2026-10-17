@@ -194,7 +194,43 @@ void func_80800454_bsbfly(PlayerState *arg0) {
     func_80800188_bsbfly(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_8080050C_bsbfly.s")
+void func_8080050C_bsbfly(PlayerState *arg0) {
+    void _bafly_entrypoint_19(PlayerState *);
+    void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
+    int baflag_isTrue(PlayerState *, s32);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    void baphysics_set_terminal_velocity(PlayerState *, f32);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+    void func_800A0CF4(PlayerState *, s32);
+    void func_800A4DA4(PlayerState *, s32);
+    f32 yaw_getIdeal(PlayerState *);
+    s32 sp2C;
+    f32 sp28;
+
+    baanim_playForDuration_loopSmooth(arg0, 0x38, 0.62f);
+    func_8009FFD8(arg0, 1, 1, 3, 3);
+    if (baflag_isTrue(arg0, 9)) {
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    } else {
+        baphysics_set_target_horizontal_velocity(arg0, 600.0f);
+    }
+    sp28 = yaw_getIdeal(arg0);
+    baphysics_set_horizontal_velocity(arg0, sp28, baphysics_get_target_horizontal_velocity(arg0));
+    baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+    func_800A0CF4(arg0, 1);
+    baphysics_set_gravity(arg0, -300.0f);
+    baphysics_set_terminal_velocity(arg0, -99.9f);
+    func_800A4DA4(arg0, 3);
+    func_80800128_bsbfly(arg0);
+    *(f32 *)arg0->kazfly = 1.0f;
+    arg0->unk160.word = 0;
+    ((u8 *)arg0->kazfly)[0x1C] = 0;
+    _bafly_entrypoint_19(arg0);
+}
 
 void func_80800624_bsbfly(PlayerState *arg0) {
     s32 _baboost_entrypoint_1(void *);
@@ -573,7 +609,7 @@ s32 bsbfly_entrypoint_7(s32 arg0) {
 }
 
 void func_80801A80_bsbfly(PlayerState *arg0) {
-    s32 baanim_playForDuration_loopSmooth(s32, s32, f32);
+    void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
     void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
     void func_800A0CF4(PlayerState *, s32);
     void func_800A0024(PlayerState *);
