@@ -47,7 +47,18 @@ void func_808000D8_sulights(u8 *arg0) {
     func_800C8E84(arg0[1], rgb);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/lights/func_80800194_sulights.s")
+void func_80800194_sulights(u8 *arg0) {
+    void func_800C8D4C(s32, f32 *);
+    f32 fraction;
+    f32 position[2];
+    s32 i;
+
+    fraction = *(f32 *)(arg0 + 0x34) / *(f32 *)(arg0 + 0x38);
+    for (i = 0; i < 2; i++) {
+        position[i] = ((f32 *)arg0)[i + 7] + ((f32 *)arg0)[i + 10] * fraction;
+    }
+    func_800C8D4C(arg0[1], position);
+}
 
 /* extern */
 
