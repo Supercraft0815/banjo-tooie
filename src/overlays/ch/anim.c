@@ -86,9 +86,11 @@ void chanim_entrypoint_7(Actor *arg0, s32 arg1) {
     }
 }
 
+struct anctrl_s;
+
 void chanim_entrypoint_8(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    s32 func_80104248(void *);
+    struct anctrl_s *func_80104248(void *);
     void func_800DF758(s32 *);
     s16 *data;
 
@@ -100,4 +102,39 @@ void chanim_entrypoint_8(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anim/chanim_entrypoint_9.s")
+void chanim_entrypoint_9(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    struct anctrl_s *func_80104248(void *);
+    s32 func_801022E4(Actor *);
+    void _anseq_entrypoint_0(s16 *);
+    s16 *_anseq_entrypoint_9(s16);
+    void _anseq_entrypoint_8(s16 *, struct anctrl_s *);
+    void _inantab_entrypoint_4(s32, Unk80132ED0 *, s16 *, s16);
+    s32 current;
+    s32 anim;
+    s16 *sequence;
+    struct {
+        s16 handle;
+        s16 pad;
+        s32 entries[60];
+        s32 enabled;
+        s32 unkF8;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    if (func_80104248(arg0) != 0) {
+        if (data->handle != 0) {
+            sequence = _anseq_entrypoint_9(data->handle);
+            current = func_801022E4(arg0);
+            if (current != data->unkF8) {
+                data->unkF8 = current;
+                anim = current;
+                _anseq_entrypoint_0(sequence);
+                if (data->enabled != 0) {
+                    _inantab_entrypoint_4(data->enabled, arg0->unk0, sequence, (s16)anim);
+                }
+            }
+            _anseq_entrypoint_8(sequence, func_80104248(arg0));
+        }
+    }
+}
