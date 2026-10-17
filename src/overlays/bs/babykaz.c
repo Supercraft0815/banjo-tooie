@@ -382,7 +382,36 @@ void func_80801134_bsbabykaz(struct player_state_s *arg0, s32 arg1) {
     *(s32 *)((u8 *)arg0 + 0x15C) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_808011EC_bsbabykaz.s")
+void func_808011EC_bsbabykaz(struct player_state_s *arg0) {
+    void _batimer_set(struct player_state_s *, s32, f32);
+    s32 func_8009E6EC(struct player_state_s *);
+    s32 func_80099A58(struct player_state_s *);
+    void func_8009E830(struct player_state_s *, s32);
+    void func_800F9BA4(void);
+    void func_800F9B54(void);
+
+    switch (func_8009E6EC(arg0)) {
+        case 0x87:
+            _batimer_set(arg0, 0, 0.0f);
+            func_8009E830(arg0, 2);
+            break;
+        case 0x17:
+            if (func_80099A58(arg0) == 1) {
+                func_800F9BA4();
+                func_80801134_bsbabykaz(arg0, 3);
+                func_8009E830(arg0, 2);
+            }
+            break;
+        case 0x86:
+            break;
+        case 0x94:
+            if (*(s32 *)((u8 *)arg0 + 0x15C) == 2) {
+                func_800F9B54();
+                func_80801134_bsbabykaz(arg0, 3);
+            }
+            break;
+    }
+}
 
 void func_808012C4_bsbabykaz(s32 arg0)
 {
