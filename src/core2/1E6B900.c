@@ -861,7 +861,30 @@ void func_80094644(void *arg0) {
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x64)))) + (3))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_800946C4.s")
+void func_800946C4(PlayerState *arg0, s32 arg1) {
+    switch (arg1) {
+        case 0:
+            func_800947EC(arg0, 1, 0);
+            func_800947EC(arg0, 2, 0);
+            func_800947EC(arg0, 4, 0);
+            func_800947EC(arg0, 8, 0);
+            break;
+        case 1:
+            func_800947EC(arg0, 1, 1);
+            func_800947EC(arg0, 2, 1);
+            func_800947EC(arg0, 4, 1);
+            func_800947EC(arg0, 8, 0);
+            break;
+        case 2:
+            func_800947EC(arg0, 1, 1);
+            func_800947EC(arg0, 2, 1);
+            func_800947EC(arg0, 4, 1);
+            func_800947EC(arg0, 8, 0);
+            break;
+    }
+    (*(u8 **)((u8 *)arg0 + 0x64))[0] = arg1;
+    (*(u8 **)((u8 *)arg0 + 0x64))[1] = 0;
+}
 
 void func_800947EC(PlayerState *arg0, s32 arg1, s32 arg2) {
     void *temp_v0;
