@@ -131,7 +131,52 @@ void gcmapDll_entrypoint_1(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapDll/func_8080045C_gcmapDll.s")
+void func_8080045C_gcmapDll(void *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
+    void func_800B2198(void *, void *, void *);
+    s32 func_800EA05C();
+    s32 pad;
+    void *vertices;
+
+    vertices = *(void **)((u8 *)arg0 + arg1 * 0x2C + 0x10);
+    if (vertices != NULL) {
+        func_800B2198(vertices, arg2, arg3);
+        return;
+    }
+    switch (func_800EA05C()) {
+        case 0x1A7:
+            arg2[0] = -18000;
+            arg2[1] = -6000;
+            arg2[2] = -16000;
+            arg3[0] = 3000;
+            arg3[1] = 12000;
+            arg3[2] = 15000;
+            break;
+        case 0x1A8:
+            arg2[0] = -20000;
+            arg2[1] = -8000;
+            arg2[2] = -3000;
+            arg3[0] = 7000;
+            arg3[1] = 2000;
+            arg3[2] = 15000;
+            break;
+        case 0x1A9:
+            arg2[0] = 1000;
+            arg2[1] = -12000;
+            arg2[2] = -13000;
+            arg3[0] = 17000;
+            arg3[1] = 0;
+            arg3[2] = 12000;
+            break;
+        case 0x159:
+            arg2[2] = -100;
+            arg2[1] = -100;
+            arg2[0] = -100;
+            arg3[0] = 100;
+            arg3[1] = 100;
+            arg3[2] = 100;
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapDll/func_808005A8_gcmapDll.s")
 
