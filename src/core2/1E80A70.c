@@ -501,7 +501,36 @@ int func_800A8264(void) {
     return D_80127630.unk12 != 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A8278.s")
+void func_800A8278(void) {
+    void func_80015E80(s32, void *);
+    void func_80015F28(s32, void *);
+    s32 func_80015F84(s32);
+    void func_80015FFC(s32, void *);
+    extern s32 D_8011A3F8[];
+    extern s32 D_8011A418;
+    s32 current;
+    s32 i;
+    s32 buttons[14];
+
+    D_8011A3F4--;
+    func_80015E80(0, buttons);
+    func_80015F28(0, &buttons[6]);
+    func_80015FFC(0, &buttons[9]);
+    buttons[13] = func_80015F84(0);
+    current = D_8011A3F8[D_8011A418];
+    if (buttons[current] == 1) {
+        D_8011A418++;
+    }
+    for (i = 0; i < 14; i++) {
+        if (i != current && buttons[i] == 1) {
+            D_8011A418 = 0;
+            break;
+        }
+    }
+    if (D_8011A3F8[D_8011A418] == -1) {
+        D_8011A3F0 = 1;
+    }
+}
 
 s32 func_800A8380(s32 arg0) {
     extern s32 D_80127670;
