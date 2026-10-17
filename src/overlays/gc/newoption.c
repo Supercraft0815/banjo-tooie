@@ -69,7 +69,7 @@ void gcnewoption_entrypoint_0(void *arg0) {
     s32 func_808020C4_gcnewoption(void *);
     s32 func_808022E0_gcnewoption(void *);
     s32 func_8080241C_gcnewoption(void *);
-    s32 func_80802534_gcnewoption(void *);
+    s32 func_80802534_gcnewoption(u8 *);
     s32 func_80802674_gcnewoption(void *);
     void func_808027DC_gcnewoption(void *, s32);
     void func_80802998_gcnewoption(void *);
@@ -812,7 +812,48 @@ void gcnewoption_entrypoint_34(void *arg0, s16 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_8080241C_gcnewoption.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80802534_gcnewoption.s")
+s32 func_80802534_gcnewoption(u8 *arg0) {
+    s32 _gczoombox_entrypoint_3();
+    s32 _gczoombox_entrypoint_9(s32);
+    int _gczoombox_entrypoint_11();
+    s32 index;
+    s32 state;
+    s32 i;
+    s32 result;
+    u8 *ptr;
+
+    result = 1;
+    i = 0;
+    if (*(s16 *)(arg0 + 2) > 0) {
+        do {
+            if (func_80800070_gcnewoption(arg0, i) != *(s16 *)(arg0 + 6)) {
+                index = func_80800000_gcnewoption(arg0, i);
+                state = _gczoombox_entrypoint_3(((s32 *)arg0 + index)[15]);
+                switch (state) {
+                    case 0:
+                        result = 0;
+                        ptr = (u8 *)((s32 *)arg0 + index);
+                        if (state != *(s8 *)(arg0 + index + 0x94)) {
+                            _gczoombox_entrypoint_9(*(s32 *)(ptr + 0x3C));
+                            _gczoombox_entrypoint_11(*(s32 *)(ptr + 0x3C));
+                        }
+                        break;
+                    case 4:
+                        result = 0;
+                        if (state != *(s8 *)(arg0 + index + 0x94)) {
+                            _gczoombox_entrypoint_11(((s32 *)arg0 + index)[15]);
+                        }
+                        break;
+                    case 2:
+                        break;
+                }
+                *(s8 *)(arg0 + index + 0x94) = state;
+            }
+            i++;
+        } while (i < *(s16 *)(arg0 + 2));
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80802674_gcnewoption.s")
 
