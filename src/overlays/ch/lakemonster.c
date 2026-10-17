@@ -21,7 +21,28 @@ void func_80800064_chlakemonster(Actor *arg0) {
     func_800FDC28(0U);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80800090_chlakemonster.s")
+void func_80800090_chlakemonster(Actor *arg0, f32 arg1[3], f32 arg2[3], s32 arg3) {
+    s32 func_800B53A4(s32);
+    void func_800BA1D0(s32, f32[3], f32[3], s32);
+    void func_800BA7C4(void *, f32, f32);
+    void func_800BA7FC(void *, f32, f32);
+    void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    extern s32 D_808020E0_chlakemonster;
+    f32 scale;
+    f32 rotation;
+    s32 emitter;
+
+    emitter = func_800B53A4(arg3);
+    scale = arg0->scale;
+    func_800BA7C4(emitter, scale * 0.02f, scale * 0.15f);
+    scale = arg0->scale;
+    func_800BA7FC(emitter, scale * 0.05f, scale * 0.1f);
+    rotation = arg0->rotation[1];
+    func_800BA994(emitter, -45, (s16)(s32)(rotation - 25.0f), 25, -25, (s32)(rotation + 25.0f), 75);
+    func_800BABB8(emitter, arg0->position, NULL, 1.0f, &D_808020E0_chlakemonster);
+    func_800BA1D0(emitter, arg1, arg2, arg3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_808001C0_chlakemonster.s")
 
@@ -202,8 +223,8 @@ void chlakemonster_entrypoint_1(s32 arg0) {
 
 void chlakemonster_entrypoint_3(void *arg0, void *arg1, s32 arg2, s32 arg3) {
     s32 func_800B53A4(s32);
-    s32 func_800BA1D0(s32, void *, void *, s32);
-    s32 func_800BABB8(s32, void *, s32, s32, s32 *);
+    void func_800BA1D0(s32, f32[3], f32[3], s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
     extern s32 D_8080229C_chlakemonster;
     s32 sp24;
     s32 temp_v0;
@@ -212,7 +233,7 @@ void chlakemonster_entrypoint_3(void *arg0, void *arg1, s32 arg2, s32 arg3) {
     sp24 = temp_v0;
     (*(f32 *)((s8 *)(arg1) + (4))) = (f32) ((*(f32 *)((s8 *)(arg1) + (4))) + 200.0f);
     (*(f32 *)((s8 *)(arg0) + (4))) = (f32) ((*(f32 *)((s8 *)(arg0) + (4))) + 200.0f);
-    func_800BABB8(temp_v0, arg1, 0, 0x3F800000, &D_8080229C_chlakemonster);
+    func_800BABB8(temp_v0, arg1, NULL, 1.0f, &D_8080229C_chlakemonster);
     func_800BA1D0(sp24, arg0, arg1, 3);
 }
 
