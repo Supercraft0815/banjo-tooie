@@ -706,7 +706,50 @@ s32 func_800C9714(void) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9750.s")
+void *func_800C9750(f32 time, s32 cnt, void *funcPtr, s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    typedef struct {
+        f32 time;
+        s8 arg_cnt;
+        void *func;
+        s32 arg[5];
+        u8 rest[0x50];
+    } TimedFunction;
+    struct Vector;
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    s32 vector_new(s32, s32);
+    void *vector_insert(struct Vector **, s32);
+    extern s32 D_8012AB60;
+    TimedFunction *startPtr;
+    TimedFunction *retVal;
+    TimedFunction *iPtr;
+    TimedFunction *endPtr;
+
+    if (D_8012AB60 == 0) {
+        D_8012AB60 = vector_new(0x70, 8);
+    }
+    startPtr = (TimedFunction *)vector_begin(D_8012AB60);
+    endPtr = (TimedFunction *)vector_end(D_8012AB60);
+    if (endPtr == startPtr) {
+        ((f32 *)&D_8012AB60)[1] = 0.0f;
+    } else {
+        time += ((f32 *)&D_8012AB60)[1];
+    }
+    for (iPtr = startPtr; iPtr < endPtr; iPtr++) {
+        if (iPtr->time > time)
+            break;
+    }
+    retVal = vector_insert((struct Vector **)&D_8012AB60, ((s32)iPtr - (s32)startPtr) / (s32)sizeof(TimedFunction));
+    retVal->time = time;
+    retVal->arg_cnt = cnt;
+    retVal->func = funcPtr;
+    retVal->arg[0] = arg0;
+    retVal->arg[1] = arg1;
+    retVal->arg[2] = arg2;
+    retVal->arg[3] = arg3;
+    retVal->arg[4] = arg4;
+    return retVal;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C986C.s")
 
