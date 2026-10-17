@@ -36,7 +36,50 @@ s32 func_808000B4_chmusicmenu(s32 arg0) {
     return arg0 + 0x1860;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_808000D0_chmusicmenu.s")
+void func_808000D0_chmusicmenu(Actor *arg0, s32 arg1) {
+    void _gcnewoption_entrypoint_31(s32, s32, s16);
+    s32 _gcnewoption_entrypoint_32(s32, s32);
+    void _gcnewoption_entrypoint_33(s32);
+    int func_800DC298(f32);
+    struct MusicMenuEntry {
+        u32 unk0;
+        u8 count;
+        u8 sound;
+        u16 unk6;
+    };
+    extern struct MusicMenuEntry D_808014F4_chmusicmenu[];
+    struct MusicMenuEntry *entry;
+    struct MusicMenuEntry *entry2;
+    s32 i;
+    s32 j;
+
+    switch (arg0->unk70_10) {
+        case 1:
+            _gcnewoption_entrypoint_32(arg1, 0x6F);
+            for (i = 0; i < 12; i++) {
+                entry = &D_808014F4_chmusicmenu[i];
+                if (entry->sound == 0x50 && func_800DC298(0.5f)) {
+                    _gcnewoption_entrypoint_31(arg1, i, 0x51);
+                } else {
+                    _gcnewoption_entrypoint_31(arg1, i, entry->sound);
+                }
+            }
+            return;
+        case 2:
+            _gcnewoption_entrypoint_32(arg1, 0x6F);
+            _gcnewoption_entrypoint_33(arg1);
+            entry2 = &D_808014F4_chmusicmenu[arg0->actorData[6]];
+            j = 0;
+            if (entry2->count > 0) {
+                do {
+                    _gcnewoption_entrypoint_31(arg1, j, entry2->sound);
+                    j++;
+                    entry2 = &D_808014F4_chmusicmenu[arg0->actorData[6]];
+                } while (j < entry2->count);
+            }
+            return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_8080021C_chmusicmenu.s")
 
@@ -90,7 +133,7 @@ void func_80800930_chmusicmenu(u8 *arg0, s32 arg1) {
     s32 func_80100094(u8 *, s32);
     s32 func_80101238(s32, s32);
     s32 func_80102424(u8 *, s32);
-    s32 func_808000D0_chmusicmenu(u8 *, s32);
+    void func_808000D0_chmusicmenu(Actor *, s32);
     void func_80800714_chmusicmenu(Actor *);
     extern u8 D_808014F8_chmusicmenu[];
     extern s32 _gcnewoption_entrypoint_35;
