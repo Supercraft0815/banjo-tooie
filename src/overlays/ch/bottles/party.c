@@ -18,10 +18,10 @@ OSThread *chbottlesparty_entrypoint_1(void)
 
 void func_80800018_chbottlesparty(s32 arg0) {
     s32 func_800DA298(s32);
-    s32 func_800FFAB0(s32);
+    void func_800FFAB0(Actor *);
     s32 func_8010A800(s32, s32);
     if (func_800DA298(0x3B) == 0) {
-        func_800FFAB0(arg0);
+        func_800FFAB0((Actor *)arg0);
         return;
     }
     func_8010A800(arg0, 0);
@@ -85,7 +85,32 @@ void func_80800170_chbottlesparty(s32 arg) {
 void func_8080022C_chbottlesparty(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/party/func_80800234_chbottlesparty.s")
+void func_80800234_chbottlesparty(Actor *arg0) {
+    void func_800FFAB0(Actor *);
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E54(s32, f32, f32);
+    s32 func_800DA298(s32);
+    f32 func_800DC178(f32, f32);
+    f32 delay;
+    s32 handle;
+
+    if ((func_800DA298(0x3B) == 0) || (func_800DA298(0x43) != 0)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    delay = func_800DC178(0.4f, 0.6f);
+    *(f32 *)&arg0->actorData[5] = delay;
+    arg0->unk58 = func_800DC178(0.0f, delay);
+    arg0->unk6C_0 = arg0->unk74_7 - 0x32;
+    if (arg0->unk6C_0 >= 5U) {
+        arg0->unk6C_0 = 0;
+    }
+    handle = func_800C8A98();
+    arg0->actorData[4] = handle;
+    func_800C8E54(handle, arg0->scale * 300.0f, arg0->scale * 600.0f);
+    func_800C8CB8(arg0->actorData[4], arg0->position);
+}
 
 void func_80800330_chbottlesparty(Actor *arg0) {
     void func_800C8E84(s32, u32[3]);
