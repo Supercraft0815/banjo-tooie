@@ -7,7 +7,10 @@ u16 func_8001D450(u16 arg0) {
     return r | g | b | 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E34F80/func_8001D4C4.s")
+u8 func_8001D4C4(u8 arg0, u8 arg1, f32 arg2) {
+    f32 start = arg0;
+    return ((f32)arg1 - start) * arg2 + start;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E34F80/func_8001D5C4.s")
 
