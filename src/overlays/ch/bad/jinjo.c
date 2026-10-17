@@ -124,15 +124,31 @@ s16 func_80800DF8_chbadjinjo(Actor *arg0) {
 
 /* extern */
 
-void func_80801054_chbadjinjo(Actor *arg0, s32 arg1, f32 arg2) {
+void func_80801054_chbadjinjo(Actor *arg0, s32 *arg1, f32 arg2) {
     s32 func_80101E14(Actor*, f32);
-    s32 func_80801090_chbadjinjo(Actor *, s32);
+    void func_80801090_chbadjinjo(Actor *, s32 *);
     if (func_80101E14(arg0, arg2) != 0) {
         func_80801090_chbadjinjo(arg0, arg1);
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_80801090_chbadjinjo.s")
+void func_80801090_chbadjinjo(Actor *arg0, s32 *arg1) {
+    u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);
+    void func_800C3058(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C330C(u8, s32);
+    void func_800C3BDC(u8);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    f32 *sp20 = arg0->position;
+    if (arg0->unk5F == 0) {
+        arg0->unk5F = _subaddieaudioquick_entrypoint_1(arg0, arg0->position);
+        func_800C330C(arg0->unk5F, 3);
+    }
+    func_800C3058(arg0->unk5F, 0x55F0);
+    func_800C31DC(arg0->unk5F, 1.0f);
+    func_800C4350(arg0->unk5F, sp20, arg1);
+    func_800C3BDC(arg0->unk5F);
+}
 
 /* extern */
 
