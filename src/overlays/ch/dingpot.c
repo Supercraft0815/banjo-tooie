@@ -16,7 +16,33 @@ void func_8080000C_chdingpot(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dingpot/func_8080021C_chdingpot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dingpot/func_808002B4_chdingpot.s")
+void func_808002B4_chdingpot(Actor *arg0, f32 *arg1) {
+    u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);
+    void func_800C301C(u8, s32);
+    void func_800C3BDC(u8);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    s32 func_800DC128(s32, s32);
+    s32 func_80101E4C(Actor *, f32 *);
+    extern s32 D_808005B8_chdingpot;
+    union SoundPair {
+        s32 word;
+        s16 sound[2];
+    } sp2C;
+    extern union SoundPair D_808005B4_chdingpot;
+    s32 pad28;
+    f32 *volatile sp24;
+
+    sp2C = D_808005B4_chdingpot;
+    if (func_80101E4C(arg0, arg1) != 0) {
+        if (arg0->unk5F == 0) {
+            arg0->unk5F = _subaddieaudioquick_entrypoint_1(arg0, arg0->position);
+        }
+        sp24 = arg0->position;
+        func_800C301C(arg0->unk5F, sp2C.sound[func_800DC128(0, 2)]);
+        func_800C4350(arg0->unk5F, sp24, &D_808005B8_chdingpot);
+        func_800C3BDC(arg0->unk5F);
+    }
+}
 
 void func_80800350_chdingpot(s32 arg0) {
     s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
