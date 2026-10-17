@@ -135,7 +135,18 @@ s32 bsclimb_entrypoint_3(s32 arg0) {
     return ((s32 *)&D_808008FC_bsclimb)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/bsclimb_entrypoint_4.s")
+void bsclimb_entrypoint_4(s32 arg0) {
+    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    void baanim_setDurationRange(struct player_state_s *, f32, f32);
+    void func_8008C9F0(struct player_state_s *, f32, f32, f32, f32);
+    s32 func_8008CA4C(void *, s32);
+
+    baanim_playForDuration_loopSmooth(arg0, 0xA, 0x3F666666);
+    func_8008CA4C(arg0, 3);
+    baanim_setDurationRange(arg0, 0.3f, 1.5f);
+    func_8008C9F0(arg0, 100.0f, 300.0f, 0.6f, 0.4f);
+    func_808000E8_bsclimb(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/bsclimb_entrypoint_5.s")
 
