@@ -57,7 +57,45 @@ void func_80800484_chintrochar(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80800540_chintrochar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80800648_chintrochar.s")
+void func_80800648_chintrochar(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void _anseq_entrypoint_5(s32);
+    void _chanim_entrypoint_6(Actor *);
+    s32 _chblink_entrypoint_3(s16);
+    void func_8001B754(s16);
+    void func_800ADFE0(s16);
+    extern u32 func_80804158_chintrochar[][8];
+    s16 *data;
+    s16 handle;
+    u32 flags;
+
+    data = func_80100094(arg0, 2);
+    flags = func_80804158_chintrochar[arg0->unk74_7][0] & 0x3FFFFFFF;
+    if (flags & 0x20) {
+        handle = *(s16 *)&arg0->unk0->unk10;
+        if (handle != 0) {
+            func_800ADFE0(handle);
+            *(s16 *)&arg0->unk0->unk10 = 0;
+        }
+    }
+    _chanim_entrypoint_6(arg0);
+    handle = data[0x60];
+    if (handle != 0) {
+        _anseq_entrypoint_5(handle);
+    }
+    handle = data[0x61];
+    if (handle != 0) {
+        _chblink_entrypoint_3(handle);
+    }
+    handle = data[0x62];
+    if (handle != 0) {
+        _chblink_entrypoint_3(handle);
+    }
+    handle = data[0x63];
+    if (handle != 0) {
+        func_8001B754(handle);
+    }
+}
 
 void func_8080071C_chintrochar(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
