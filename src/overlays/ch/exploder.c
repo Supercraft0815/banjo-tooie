@@ -48,7 +48,31 @@ void func_80800078_chexploder(void **arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_80800834_chexploder.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_80800A18_chexploder.s")
+void func_80800A18_chexploder(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void chexploder_entrypoint_9(Actor *, s32, s32);
+    struct {
+        s16 unk0, unk2, unk4, unk6, unk8, unkA, unkC, unkE, unk10;
+        s8 unk12, unk13, pad14[4], unk18, pad19[0x3F];
+        f32 unk58;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    data->unk0 = 800;
+    data->unk2 = 1000;
+    data->unk4 = 200;
+    data->unk6 = 300;
+    data->unk8 = -1050;
+    data->unkA = -950;
+    data->unkC = (s32)(arg0->scale * 30.0f);
+    data->unk10 = 4;
+    data->unk18 = 0;
+    data->unk12 = 0;
+    data->unk13 = 0;
+    data->unk58 = 1.0f;
+    chexploder_entrypoint_9(arg0, 1, 0);
+    chexploder_entrypoint_9(arg0, 2, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_80800AC8_chexploder.s")
 
