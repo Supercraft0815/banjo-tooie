@@ -162,7 +162,48 @@ void basub_entrypoint_6(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
     func_80800358_basub(sp20, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_7.s")
+void basub_entrypoint_7(s32 arg0, f32 arg1) {
+    s32 _baeggcursor_entrypoint_8(void *);
+    void _baeggfire_entrypoint_3(struct player_state_s *, f32 *, f32 *);
+    s32 _chtorpedo_entrypoint_0(f32 *, f32 *, f32 *, s32 *, s32, f32);
+    int func_80092CDC(void *, f32[3], s32);
+    u32 func_80092EB0(u32 *);
+    f32 func_800964DC(struct player_state_s *);
+    f32 func_8009BFCC(struct player_state_s *);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF368(f32 *, f32);
+    s32 func_800F3BD0(void *, s32, f32 *);
+    struct player_state_s *func_800F53D0(s32);
+    f32 yaw_get(struct player_state_s *);
+    extern s32 _basub_entrypoint_6;
+    f32 sp5C[3];
+    f32 sp50[3];
+    f32 sp44[3];
+    s32 sp40;
+    s32 ready;
+    void *self;
+    void *sub;
+    f32 pitch;
+
+    self = func_800F53D0(arg0);
+    sp40 = func_80092CDC(self, sp50, 5);
+    ready = func_80092EB0(self);
+    if (sp40 && ready) {
+        func_800F3BD0(self, 5, sp5C);
+        pitch = func_8009BFCC(self);
+        func_800EEC30(sp44, -pitch, yaw_get(self), *(f32 *)((u8 *)*(void **)((u8 *)self + 0x130) + 0x68));
+    } else {
+        _baeggfire_entrypoint_3(self, sp5C, sp44);
+        func_800EF368(sp44, 100.0f);
+        func_800EE780(sp50, sp5C, sp44);
+        func_800EF368(sp44, *(f32 *)((u8 *)*(void **)((u8 *)self + 0x130) + 0x68));
+        _baeggcursor_entrypoint_8(self);
+    }
+    sub = *(void **)((u8 *)self + 0x130);
+    (*(u8 *)((u8 *)sub + 0x5E))--;
+    func_80800254_basub(self, _chtorpedo_entrypoint_0(sp50, sp5C, sp44, &_basub_entrypoint_6, *(s32 *)((u8 *)self + 0x184), func_800964DC(self)));
+}
 
 void basub_entrypoint_8(void *arg0, s32 arg1) {
     u8 temp_v1;

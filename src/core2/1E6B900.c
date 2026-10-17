@@ -327,11 +327,11 @@ void func_80092C90(void *arg0, f32 arg1[3], s32 arg2) {
 
 /* extern */
 
-void func_80092CDC(void *arg0, f32 arg1[3], s32 arg2) {
+int func_80092CDC(void *arg0, f32 arg1[3], s32 arg2) {
     void func_800DBEFC(s32 *, s32, f32[3]);
     int func_800EEF24(f32[3]);
     func_800DBEFC((*(s32 **)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (4))), arg2, arg1);
-    func_800EEF24(arg1);
+    return func_800EEF24(arg1);
 }
 
 void func_80092D18(void *arg0, s32 arg1) {
