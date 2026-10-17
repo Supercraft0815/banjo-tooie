@@ -332,7 +332,35 @@ void func_80110DE0()
     func_80115478();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110E00.s")
+s32 func_80110E00(PlayerState *arg0, s32 arg1) {
+    extern s16 D_801247A0[];
+    f32 func_800F5AE0(s32);
+    s32 func_80111154(s32, f32);
+    s32 func_80111198(s32, f32);
+    s32 func_801111D0(PlayerState *, f32);
+    f32 func_801112B0(void *);
+    void func_80114D98(void *, s32);
+    f32 func_80115E88(void *);
+
+    func_80114D98(arg0, arg1);
+    switch (arg1) {
+        case 2:
+            switch (((s16 *)((u8 *)D_801247A0 + *(s32 *)((u8 *)arg0 + 0x6C) * 16))[7]) {
+                case 1:
+                    func_80111198((s32)arg0, func_800F5AE0(*(s32 *)((u8 *)arg0 + 0x68)));
+                    break;
+                case 2:
+                    func_80111198((s32)arg0, func_80115E88(arg0));
+                    break;
+            }
+                return func_80111154((s32)arg0, func_801112B0(arg0) + 180.0f);
+        case 0:
+            return func_801111D0(arg0, -45.0f);
+        case 1:
+            return func_801111D0(arg0, 45.0f);
+    }
+    return 0;
+}
 
 s32 func_80110EFC(u8 *arg0) {
     s32 func_80110E00();
