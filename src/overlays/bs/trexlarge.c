@@ -352,7 +352,32 @@ void func_80800A20_bstrexlarge(s32 arg0)
     func_80800934_bstrexlarge(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80800A50_bstrexlarge.s")
+void func_80800A50_bstrexlarge(PlayerState *arg0) {
+    s32 sp24;
+    void func_800A2EAC(void *);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 bs_setState(s32, s32);
+
+    sp24 = 0;
+    bstrexlarge_entrypoint_3((s32)arg0);
+    func_808004B4_bstrexlarge(arg0);
+    switch (arg0->unk15C.bytes[0]) {
+        case 1:
+            if (func_8008DF8C(arg0, 0x82) != 0) {
+                func_80800934_bstrexlarge(arg0, 2);
+            }
+            break;
+        case 2:
+            func_80800044_bstrexlarge(arg0);
+            if (player_isStable(arg0) != 0 || func_80800034_bstrexlarge(arg0) != 0) {
+                func_800A2EAC(arg0);
+                baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+                sp24 = 0x147;
+            }
+            break;
+    }
+    bs_setState((s32)arg0, sp24);
+}
 
 s32 bstrexlarge_entrypoint_6(s32 arg0) {
     extern s32 D_808019C0_bstrexlarge[];
