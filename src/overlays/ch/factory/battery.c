@@ -83,7 +83,26 @@ void func_80800558_chfactorybattery(void) {
     func_800DA298(func_80800678_chfactorybattery() + 0x1B1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80800580_chfactorybattery.s")
+f32 func_80800580_chfactorybattery(f32 *arg0) {
+    s32 func_800EA05C();
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    switch (func_800EA05C()) {
+    case 0x101:
+        func_800EFA4C(arg0, 2521.0f, 750.0f, -2529.0f);
+        return 310.0f;
+    case 0x106:
+        func_800EFA4C(arg0, 6303.0f, 1550.0f, -986.0f);
+        return 180.0f;
+    case 0x109:
+        func_800EFA4C(arg0, -293.0f, 50.0f, 2634.0f);
+        return 180.0f;
+    case 0x10B:
+        func_800EFA4C(arg0, 3678.0f, 350.0f, -1994.0f);
+        return 90.0f;
+    default:
+        return 0.0f;
+    }
+}
 
 s32 func_80800678_chfactorybattery(Actor *arg0) { switch (arg0->pad6C_21) { case 0x51: return 3; case 0x5C: return 4; case 0x63: return 5; case 0x65: return 6; case 0: return arg0->unk6C_0; default: return 0; } }
 
