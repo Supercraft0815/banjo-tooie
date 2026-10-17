@@ -10,7 +10,36 @@ OSThread *chcheatomenu_entrypoint_0(void)
 void func_8080000C_chcheatomenu(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_80800014_chcheatomenu.s")
+void func_80800014_chcheatomenu(Actor *arg0) {
+    s32 _gcnewoption_entrypoint_0(s32);
+    s32 _gcnewoption_entrypoint_6(u8 *, s32);
+    void func_80090708(s32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_8080058C_chcheatomenu(Actor *);
+    void func_80800668_chcheatomenu(Actor *);
+    void func_80800720_chcheatomenu(u8 *);
+    void func_808007B8_chcheatomenu(void *);
+
+    switch ((u32) arg0->unk70_10) {
+        case 1:
+            func_8080058C_chcheatomenu(arg0);
+            break;
+        case 3:
+            func_80800668_chcheatomenu(arg0);
+            func_80800720_chcheatomenu((u8 *) arg0);
+            break;
+        case 4:
+            _gcnewoption_entrypoint_0((s32) func_80100094(arg0, 0U));
+            break;
+        case 5:
+            _gcnewoption_entrypoint_6((u8 *) arg0, 0);
+            func_808007B8_chcheatomenu(arg0);
+            func_80090708(0);
+            func_80101FDC(arg0, 1);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_808000D4_chcheatomenu.s")
 
