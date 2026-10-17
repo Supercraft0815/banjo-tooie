@@ -86,12 +86,34 @@ void func_8080047C_chmasterjiggy(s32 arg0) {
 
 void func_80800704_chmasterjiggy(s32 *arg0, s32 arg1, s32 arg2) {
     s32 _capod_entrypoint_13(s32, s32, s32, s32);
-    s32 _capod_entrypoint_14();
+    void _capod_entrypoint_14(void);
     _capod_entrypoint_14();
     _capod_entrypoint_13(*arg0, 0, arg2, 0x2030);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_80800744_chmasterjiggy.s")
+void func_80800744_chmasterjiggy(s32 arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_14(void);
+    s32 func_800DA544(s32);
+    s32 func_80800220_chmasterjiggy(s32, s32);
+
+    switch (arg1) {
+    case 0x14F6:
+        _capod_entrypoint_14();
+        func_800DA544(0x35B);
+        func_80800220_chmasterjiggy(arg0, 1);
+        return;
+    case 0x14FC:
+    case 0x155B:
+    case 0x155C:
+    case 0x155D:
+    case 0x155E:
+        func_80800220_chmasterjiggy(arg0, 1);
+        return;
+    case 0x1511:
+        func_80800220_chmasterjiggy(arg0, 8);
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_808007F0_chmasterjiggy.s")
 
