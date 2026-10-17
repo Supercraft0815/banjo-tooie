@@ -11,7 +11,44 @@ OSThread *chklungo_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_808002D0_chklungo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_8080101C_chklungo.s")
+void func_8080101C_chklungo(Actor *arg0) {
+    void _gcfrontend_entrypoint_10(void);
+    void _glcutDll_entrypoint_6(u32, u32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 func_800D395C(void);
+    void *func_80100094(Actor *, u32);
+    void func_80105834(Actor *);
+    s32 func_80105A5C(Actor *);
+    void func_800FFAB0(Actor *);
+    void func_80803208_chklungo(s32 *);
+    void func_80801910_chklungo(u8 *);
+    void func_80802558_chklungo(Actor *);
+    u32 *sp24;
+    struct {
+        u8 pad0[8];
+        s16 unk8;
+    } *data;
+
+    sp24 = func_80100094(arg0, 1);
+    func_80105834(arg0);
+    func_80803208_chklungo((s32 *)arg0);
+    func_80801910_chklungo((u8 *)arg0);
+    if (func_80105A5C(arg0) != 0) {
+        func_80802558_chklungo(arg0);
+        if (func_800D395C() != 0) {
+            _gcfrontend_entrypoint_10();
+        } else {
+            data = func_80100094(arg0, 0);
+            if (data->unk8 == 2) {
+                _glcutDll_entrypoint_6(0x15D, 0x5B);
+            }
+        }
+        func_800FFAB0(arg0);
+    }
+    if (sp24 != NULL) {
+        _suexpression_entrypoint_10(sp24, arg0->unk0, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_808010E0_chklungo.s")
 
