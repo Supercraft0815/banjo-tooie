@@ -43,7 +43,20 @@ s32 func_80800108_chsquits(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/squits/func_808001A4_chsquits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/squits/func_80800358_chsquits.s")
+void func_80800358_chsquits(Actor *arg0) {
+    s32 func_800D90A4(f32 *);
+    void func_808003C4_chsquits(Actor *);
+    void func_80800564_chsquits(void *);
+
+    if (arg0->unk6C_0 != 0) {
+        if (arg0->unk6C_0 == 1 && func_800D90A4((f32 *)&arg0->actorData[5])) {
+            arg0->unk6C_0 = 0;
+            func_80800564_chsquits(arg0);
+        }
+    } else {
+        func_808003C4_chsquits(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/squits/func_808003C4_chsquits.s")
 
