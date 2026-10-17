@@ -93,7 +93,85 @@ void func_800C5A10(u8 *arg0, s32 arg1) {
     arg0[0x94] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C5A38.s")
+u8 *func_800C5A38(void) {
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFD24(f32 *);
+    void *heap_alloc(s32);
+    extern f32 D_801258A0;
+    extern f32 D_801258A4;
+    struct allocation {
+        s32 model;
+        s16 a[3];
+        s16 b;
+        s32 c;
+        s16 d[3];
+        s16 e;
+        s32 f;
+        f32 vectors[3][3];
+        u8 colors[3][4];
+        f32 v4C[3];
+        f32 v58[3];
+        f32 v64[3];
+        f32 x, y, z;
+        s32 f7C, f80, f84, f88;
+        s16 f8C;
+        u8 f8E, f8F, f90, f91, f92, f93, f94, f95;
+        u8 pad[6];
+        u8 f9C;
+    } *this;
+    int i;
+    s32 j;
+    u8 *ptr;
+
+    this = heap_alloc(0xA0);
+    func_800EFD24(this->v4C);
+    func_800EFD24(this->v58);
+    for (i = 0; i < 36; i += 12) {
+        func_800EFD24((f32 *)((u8 *)this + 0x1C + i));
+    }
+    i = 0;
+    j = i;
+    ptr = (u8 *)this;
+    do {
+        j++;
+        ptr += 4;
+        ptr[0x3D] = 0xFF;
+        ptr[0x3E] = 0xFF;
+        ptr[0x3F] = 0xFF;
+        ptr[0x3C] = 0xFF;
+    } while (j < 3);
+    j = 0;
+    ptr = (u8 *)this;
+    do {
+        j++;
+        ptr += 2;
+        *(s16 *)(ptr + 2) = 0;
+        *(s16 *)(ptr + 0xE) = 0;
+    } while (j != 3);
+    this->e = 0;
+    this->f = 0;
+    this->c = 0;
+    this->b = this->e;
+    func_800EFA4C(this->v64, 0.0f, 1.0f, 0.0f);
+    this->x = D_801258A0;
+    this->f7C = 0;
+    this->f8C = 0;
+    this->y = D_801258A4;
+    this->f80 = this->f7C;
+    this->f8E = 0;
+    this->f90 = this->f8E;
+    this->f8F = 0;
+    this->f91 = this->f8F;
+    this->f84 = this->f80;
+    this->model = 0;
+    this->f88 = 0x1F00;
+    this->f95 = 0;
+    this->f9C = 0;
+    this->f94 = 0;
+    this->z = 100.0f;
+    func_800C5A10((u8 *)this, 1);
+    return (u8 *)this;
+}
 
 void func_800C5B84(s32 arg0)
 {
