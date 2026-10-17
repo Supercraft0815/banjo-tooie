@@ -71,7 +71,37 @@ void func_808000AC_chlagoonbits(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/bits/func_80800108_chlagoonbits.s")
+void func_80800108_chlagoonbits(Actor *arg0) {
+    s32 _subaddiesect_entrypoint_1(Actor *);
+    void _subaddiesect_entrypoint_2(Actor *, s32, s32);
+    s32 func_800D0B68(u32, u32);
+    void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
+    s32 func_800DA298(s32);
+    s32 func_800DA564(s32, s32);
+    s32 func_800DA7A8(s32, s32, s32);
+    s32 func_800DA9E4(s32, s32);
+    s32 func_800DC128(s32, s32);
+    void func_800FFAB0(Actor *);
+    void func_80102FDC(void *, f32);
+    s32 sp2C;
+    s32 sp28;
+
+    arg0->actorData[4] = _subaddiesect_entrypoint_1(arg0);
+    func_80102FDC(arg0, 0.6f);
+    if (func_800DA9E4(0xD0, 1) == 0) {
+        func_800DA7A8(0xD1, func_800DC128(0, 4), 2);
+    }
+    sp2C = func_800DA564(0xD1, 2);
+    sp28 = arg0->unk74_7 - 0x32;
+    if ((func_800DA298(0x45) != 0) || (sp2C != sp28)) {
+        if ((sp2C == sp28) && (func_800D0B68(0x14, 0) == 0)) {
+            func_800D1000(0x14, 0, arg0->position, 3, NULL);
+        }
+        func_800FFAB0(arg0);
+    } else {
+        _subaddiesect_entrypoint_2(arg0, arg0->actorData[4], 1);
+    }
+}
 
 /* extern */
 
@@ -209,7 +239,7 @@ void func_808004B0_chlagoonbits(Actor *arg0) {
 void func_80800548_chlagoonbits(Actor *volatile arg0) {
     void _chexploder_entrypoint_3(void *, void *, u32);
     s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
-    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
     s32 func_800DA544(s32);
     void func_800FFAB0(Actor *);
     extern s32 D_808007D0_chlagoonbits;
