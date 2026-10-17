@@ -3,7 +3,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/normal/func_80800000_cheggnormal.s")
 
 void func_80800194_cheggnormal(void *arg0) {
-    void *func_80100094(void *, u32);
+    void *func_80100094(Actor *, u32);
     s32 func_800EEEA8(s32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     s32 _suegg_entrypoint_8(void *);
@@ -66,6 +66,35 @@ OSThread *cheggnormal_entrypoint_0(void)
     return (OSThread *) D_808004D0_cheggnormal;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/normal/cheggnormal_entrypoint_1.s")
+void *cheggnormal_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 _suegg_entrypoint_1(void *, f32);
+    void *_suegg_entrypoint_11(s32, s32, s32);
+    s32 _sueggmove_entrypoint_10(s32);
+    s32 _sueggmove_entrypoint_5(void *, s32);
+    s32 _sueggmove_entrypoint_6(void *, f32, f32);
+    s32 _sueggmove_entrypoint_7(void *, s32);
+    void *func_80100094(Actor *, u32);
+    Actor *temp_v0;
+    struct NormalData {
+        u8 pad[0x38];
+        u8 unk38;
+        u8 pad39_5 : 3;
+        u8 unk39_4 : 1;
+        u8 pad39_0 : 4;
+    } *data;
+
+    _sueggmove_entrypoint_10(arg0);
+    temp_v0 = _suegg_entrypoint_11(0x15A, arg1, arg3);
+    data = func_80100094(temp_v0, 0);
+    data->unk38 = 1;
+    temp_v0->scale = 0.134f;
+    _suegg_entrypoint_1(temp_v0, 30.0f);
+    _sueggmove_entrypoint_5(temp_v0, 1);
+    _sueggmove_entrypoint_6(temp_v0, -2200.0f, -22000.0f);
+    _sueggmove_entrypoint_7(temp_v0, arg2);
+    temp_v0->unk70_10 = 2;
+    data->unk39_4 = 0;
+    return temp_v0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/normal/cheggnormal_entrypoint_2.s")
