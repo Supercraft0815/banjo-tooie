@@ -103,7 +103,7 @@ void func_80801398_chevilspirit(Actor *arg0) {
     void* func_80100094(Actor*, u32);
     void func_808013DC_chevilspirit(void *);
     s32 func_80801458_chevilspirit();
-    s32 _subaddielink_entrypoint_4(u8 *);
+    Actor *_subaddielink_entrypoint_4(u8 *);
     if (_subaddielink_entrypoint_4(func_80100094(arg0, 0U)) != 0) {
         func_80801458_chevilspirit(arg0);
         func_808013DC_chevilspirit((u8 *) arg0);
@@ -158,7 +158,23 @@ s32 func_808015E0_chevilspirit(Actor *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801840_chevilspirit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_808018DC_chevilspirit.s")
+s32 func_808018DC_chevilspirit(Actor *arg0) {
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    s32 func_800BDC5C(void);
+    f32 func_800EEB40(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_8010D254(f32 *);
+    s32 func_80801A6C_chevilspirit(Actor *, s32);
+    Actor *sp2C;
+    f32 sp20[3];
+    sp2C = _subaddielink_entrypoint_4(func_80100094(arg0, 0));
+    func_8010D254(sp20);
+    if (func_800EEB40(sp20, sp2C->position) >
+        (func_800BDC5C() + 300.0f) * (func_800BDC5C() + 300.0f)) {
+        return func_80801A6C_chevilspirit(arg0, 1);
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801988_chevilspirit.s")
 
