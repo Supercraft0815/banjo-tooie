@@ -255,7 +255,24 @@ Unkfunc_800E0960_1 *func_80092AD8(PlayerState *arg0) {
     return func_800AE6BC(func_800AE080(*(*(s16 **)((s8 *)(arg0) + (0x50)))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092B04.s")
+s32 func_80092B04(PlayerState *arg0, s32 arg1) {
+    s32 func_80093F7C(u8 *, s32);
+    s32 func_800D674C(s32);
+    void func_800D62E4(s32);
+    s32 result;
+    s16 asset;
+    PlayerState *self = arg0;
+
+    asset = (*(s16 **)((u8 *)self + 0x50))[6];
+    if (asset == 0x607) {
+        return func_80093F7C((u8 *)arg0, arg1);
+    }
+    result = func_800D674C(asset);
+    if (arg1 == 0) {
+        func_800D62E4((*(s16 **)((u8 *)self + 0x50))[6]);
+    }
+    return result;
+}
 
 s32 func_80092B80(PlayerState *arg0)
 {
@@ -721,7 +738,7 @@ s32 func_80093F30(s32 arg0) {
 
 s32 func_80093F7C(u8 *arg0, s32 arg1) {
     s32 func_800D674C(s32);
-    s32 func_800D62E4(s32);
+    void func_800D62E4(s32);
     struct { s32 pad; s32 value; } sp1C;
     s32 var_v1;
 
