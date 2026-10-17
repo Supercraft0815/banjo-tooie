@@ -176,7 +176,32 @@ void func_808003D8_chbeanstalkseed(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beanstalkseed/func_80800804_chbeanstalkseed.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beanstalkseed/func_80800950_chbeanstalkseed.s")
+void func_80800950_chbeanstalkseed(Actor *arg0, void *arg1) {
+    s32 func_800D674C(s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF830(s32);
+    void func_80101870(Actor *, void *);
+    struct Rotation { f32 v[3]; };
+    extern struct Rotation D_80800C48_chbeanstalkseed;
+    struct Rotation rotation;
+
+    switch (arg0->unk70_10) {
+    case 1:
+    case 2:
+        break;
+    case 4:
+        func_80101870(arg0, arg1);
+        if (arg0->unk7C_12) {
+            rotation = D_80800C48_chbeanstalkseed;
+            func_800DF830(1);
+            func_800DE498(arg1, arg0->position, rotation.v, 1.0f, NULL, func_800D674C(0x8CF));
+        }
+        break;
+    default:
+        func_80101870(arg0, arg1);
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beanstalkseed/func_80800A0C_chbeanstalkseed.s")
 
