@@ -14,13 +14,13 @@ void func_800F22B4(void *arg0, f32 arg1) {
     (*(f32 *)((s8 *)(arg0) + (4))) = func_80013788();
 }
 
-void func_800F22EC(void *arg0) {
+f32 func_800F22EC(void *arg0) {
     f32 temp_f0;
     f32 temp_f2;
 
     temp_f0 = (*(f32 *)((s8 *)(arg0) + (4)));
     temp_f2 = (*(f32 *)((s8 *)(arg0) + (0)));
-    sqrtf((temp_f0 * temp_f0) + (temp_f2 * temp_f2));
+    return sqrtf((temp_f0 * temp_f0) + (temp_f2 * temp_f2));
 }
 
 f32 func_800F2320(void *arg0) {

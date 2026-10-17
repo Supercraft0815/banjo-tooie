@@ -96,7 +96,33 @@ void func_801160DC(PlayerState *self, f32 arg1) {
     (*(u8 *)((s8 *)(self->anim) + (0x48))) = flag;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEF790/func_80116120.s")
+void func_80116120(void *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) {
+    f32 func_800D8FF8(void);
+    f32 func_800F22EC(void *);
+    void func_800F2388(void *, void *, void *);
+    f32 func_800FF060(f32, f32 *, f32, f32, f32, f32);
+    extern f32 D_80126624;
+    f32 delta[2];
+    f32 distance;
+    f32 step;
+    f32 scale;
+
+    func_800F2388(delta, arg0, arg1);
+    distance = func_800F22EC(delta);
+    if (D_80126624 < distance) {
+        step = func_800FF060(distance, arg2, arg4, arg5, arg3, func_800D8FF8());
+        if (distance < step) {
+            scale = 1.0f;
+            *arg2 = 0.0f;
+        } else {
+            scale = step / distance;
+        }
+        arg1[0] += delta[0] * scale;
+        arg1[1] += delta[1] * scale;
+    } else {
+        *arg2 = 0.0f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEF790/func_80116218.s")
 
