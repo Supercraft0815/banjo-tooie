@@ -113,4 +113,27 @@ void bainvisible_entrypoint_8(void *arg0, s32 arg1, f32 arg2, f32 arg3) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/invisible/bainvisible_entrypoint_9.s")
+void bainvisible_entrypoint_9(void **arg0, s32 arg1, void *arg2) {
+    void func_8009BC08(void *, f32 *);
+    f32 func_800EFC7C(void *, void *);
+    f32 position[3];
+    f32 distances[8];
+    s32 i;
+    s32 j;
+    void *player;
+    f32 distance;
+
+    for (i = 0; i < arg1; i++) {
+        func_8009BC08(arg0[i], position);
+        distance = func_800EFC7C(position, arg2);
+        player = arg0[i];
+        j = i;
+        while (j > 0 && distances[j - 1] < distance) {
+            arg0[j] = arg0[j - 1];
+            distances[j] = distances[j - 1];
+            j--;
+        }
+        arg0[j] = player;
+        distances[j] = distance;
+    }
+}
