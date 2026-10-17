@@ -12,7 +12,20 @@ u8 func_8001D4C4(u8 arg0, u8 arg1, f32 arg2) {
     return ((f32)arg1 - start) * arg2 + start;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E34F80/func_8001D5C4.s")
+void func_8001D5C4(u16 *arg0, u8 *arg1) {
+    u16 r = (*arg0 >> 8) & 0xF8;
+    u16 g = (*arg0 >> 3) & 0xF8;
+    u16 b = (*arg0 << 2) & 0xF8;
+    f32 blend;
+
+    if (arg1[3] != 0) {
+        blend = (u32)arg1[3] * 0.00390625f;
+        r = func_8001D4C4(r, arg1[0], blend) & 0xF8;
+        g = func_8001D4C4(g, arg1[1], blend) & 0xF8;
+        b = func_8001D4C4(b, arg1[2], blend) & 0xF8;
+    }
+    *arg0 = (r << 8) | (g << 3) | (b >> 2) | 1;
+}
 
 void func_8001D6C0(u16 *arg0, int arg1, int arg2, u8 arg3) {
     u16 func_8001D450(u16);
@@ -79,8 +92,8 @@ void func_8001DA58(void) {
 
 /* extern */
 
-void func_8001DB90(u16 *arg0, int arg1, u32 arg2, int arg3) {
-    s32 func_8001D5C4(u16 *, s32);
+void func_8001DB90(u16 *arg0, int arg1, u32 arg2, u8 *arg3) {
+    void func_8001D5C4(u16 *, u8 *);
     int var_s0;
     int var_s4;
     u16 *temp_s1;
