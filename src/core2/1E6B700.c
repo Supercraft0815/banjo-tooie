@@ -9,17 +9,17 @@ void func_80091E18(s32 arg0)
 {
 }
 void func_80091E20(u8 *arg0) {
-    s32 func_80091E48(s32, s32);
+    s32 func_80091E48(void *, s32);
     (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x48)))) + (3))) = 0;
-    func_80091E48((s32) arg0, 0x7F);
+    func_80091E48(arg0, 0x7F);
 }
 
-s32 func_80091E48(s32 arg0, s32 arg1) {
+s32 func_80091E48(void *arg0, s32 arg1) {
     u8 *data;
 
-    data = *(u8 **)(arg0 + 0x48);
+    data = *(u8 **)((u8 *)arg0 + 0x48);
     data[data[3]] = arg1;
-    data = *(u8 **)(arg0 + 0x48);
+    data = *(u8 **)((u8 *)arg0 + 0x48);
     data[3]++;
 }
 
