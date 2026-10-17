@@ -198,7 +198,23 @@ void func_80801E80_chaliendad(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80802058_chaliendad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80802188_chaliendad.s")
+void func_80802188_chaliendad(Actor *arg0, s32 arg1) {
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF47C(s32, s32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 *func_801018D8(Actor *);
+    int func_80101970(Actor *);
+    s32 func_8010347C(Unk80132ED0 *);
+    s32 func_801015D0(Actor *);
+    f32 sp34[3];
+    f32 *sp30;
+
+    sp30 = func_80100094(arg0, 0U);
+    func_80101970(arg0);
+    func_800EFA4C(sp34, arg0->rotation[0], sp30[2], arg0->rotation[2]);
+    func_800DF47C(&func_801015D0, arg0);
+    func_800DE448(arg0->position, sp34, arg0->scale, func_801018D8(arg0), func_8010347C(arg0->unk0));
+}
 
 /* extern */
 
