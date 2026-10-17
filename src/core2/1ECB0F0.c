@@ -103,7 +103,36 @@ f32 func_800F1C98(f32 *arg0, f32 *arg1) {
     return func_800EEF94(sp1C) / (sp2C * sp28);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1CF0.s")
+f32 func_800F1CF0(f32 *arg0, f32 *arg1) {
+    f32 mlAbsF(f32);
+    f32 sqrtf(f32);
+    extern f32 D_80125ED4;
+    f32 denominator;
+    f32 cross;
+    f32 pad;
+    f32 length;
+    f32 x;
+    f32 z;
+    f32 secondZ;
+    f32 secondX;
+    f32 absolute;
+
+    x = arg0[0];
+    z = arg0[2];
+    length = sqrtf(x * x + z * z);
+    secondZ = arg1[2];
+    secondX = arg1[0];
+    denominator = sqrtf(secondZ * secondZ + secondX * secondX) * length;
+    if (D_80125ED4 < denominator) {
+        cross = arg0[2] * arg1[0] - arg0[0] * arg1[2];
+        absolute = mlAbsF(cross);
+        if (denominator < absolute) {
+            denominator = absolute;
+        }
+        return cross / denominator;
+    }
+    return 0.0f;
+}
 
 f32 func_800F1DCC(f32 arg0, f32 arg1) {
     f32 func_80013728(f32);
