@@ -177,4 +177,32 @@ void func_80800524_cothemedll(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/co/themedll/cothemedll_entrypoint_5.s")
+void cothemedll_entrypoint_5(void *arg0, s32 arg1, s32 arg2) {
+    void func_800FC348(u32, u32, u32);
+    void func_800FEC60(u32);
+    void func_800FECB8(u32);
+    void **arg = &arg0;
+
+    if (arg1 == 1) {
+        func_800FC348(-1, 0xFA0, 4);
+        func_800FECB8(2);
+    }
+    switch (arg2) {
+        case 1:
+            func_800FC348(0, 0xFA0, 4);
+            func_800FEC60(2);
+            break;
+        case 0:
+        case 2:
+            if (*(u8 *)((s8 *)*arg + 0xE) == 0) {
+                if (*(s16 *)((s8 *)*arg + 0xC) & 1) {
+                    func_80800524_cothemedll(*arg, 0);
+                } else {
+                    func_80800524_cothemedll(*arg, 1);
+                }
+            } else {
+                *(u8 *)((s8 *)*arg + 0xE) = 0;
+            }
+            break;
+    }
+}
