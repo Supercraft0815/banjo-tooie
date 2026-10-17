@@ -330,7 +330,28 @@ void func_80801D38_chinflatableboss(Actor *arg0) {
     sp20->unk58 = D_80802D98_chinflatableboss[sp1C];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80801DE0_chinflatableboss.s")
+void func_80801DE0_chinflatableboss(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    void _chappearfx_entrypoint_1(Actor *, u32, u32, f32);
+    s32 func_800DA298(s32);
+    void func_800DA544(s32);
+    void func_80802A00_chinflatableboss(Actor *, u32, u32);
+    void func_80802A9C_chinflatableboss(Actor *);
+    void func_80801EA0_chinflatableboss(Actor *);
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    _chappearfx_entrypoint_1(func_80108528(0x13E, (f32 *)(data + 0x254), (s32)*(f32 *)(data + 0x264), &arg0), 0x22, 0, 1.0f);
+    func_80108528(0x36E, (f32 *)(data + 0x254), (s32)*(f32 *)(data + 0x264), &arg0);
+    if (func_800DA298(0x6AC) == 0) {
+        func_800DA544(0x6AC);
+        func_80802A00_chinflatableboss(arg0, 8, 0x30);
+    } else {
+        func_80802A9C_chinflatableboss(arg0);
+        func_80801EA0_chinflatableboss(arg0);
+    }
+}
 
 void func_80801EA0_chinflatableboss(Actor *arg0) {
     typedef struct {
