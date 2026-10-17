@@ -49,7 +49,24 @@ void func_8080056C_chjollyroger(void *arg0) {
     _subaddieaudioquick_entrypoint_4(arg0, (u8 *)arg0 + 24, &D_80801430_chjollyroger, &D_8080143C_chjollyroger);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_8080059C_chjollyroger.s")
+s32 func_8080059C_chjollyroger(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3) {
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
+    void func_80800E6C_chjollyroger(Actor *, s32, s32);
+    extern s32 D_80801448_chjollyroger;
+    extern s8 D_80801456_chjollyroger;
+    s32 temp_v0;
+
+    D_80801456_chjollyroger = arg3;
+    temp_v0 = _subaddiedialog_entrypoint_8((s32)arg0, (u8 *)arg0 + 4, &D_80801448_chjollyroger, arg1, arg2);
+    if (temp_v0 == 0) {
+        return 0;
+    }
+    if (_subaddiedialog_entrypoint_9((s32)arg0, temp_v0, arg1, arg2) != 3) {
+        func_80800E6C_chjollyroger(arg0, 3, 0);
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800624_chjollyroger.s")
 
