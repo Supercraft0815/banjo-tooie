@@ -509,9 +509,9 @@ void func_800EC370(void **arg0, void *arg1) {
     (*(s16 *)((s8 *)(arg1) + (4))) = (s16) (*(s16 *)((s8 *)(*arg0) + (8)));
 }
 
-void func_800EC398(s32 *arg0, f32 *arg1) {
+void func_800EC398(Unk80132ED0 *arg0, f32 *arg1) {
     void func_800EE88C(f32 dst[3], s16 src[3]);
-    func_800EE88C(arg1, *arg0 + 4);
+    func_800EE88C(arg1, (s16 *)(arg0->unk0 + 1));
 }
 
 void *func_800EC3C4(void *arg0) {

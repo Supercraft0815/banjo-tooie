@@ -35,7 +35,28 @@ void func_80800024_chcrate(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crate/func_80800064_chcrate.s")
+s32 func_80800064_chcrate(Actor *arg0, s32 arg1, Unk80132ED0 *volatile arg2) {
+    void func_800EC398(Unk80132ED0 *, f32 *);
+    f32 func_800EC708(Unk80132ED0 *);
+    s32 _chexploder_entrypoint_4(void *, s32, s32);
+    void func_80800104_chcrate(Actor *);
+    Unk80132ED0 *sp1C;
+
+    switch (arg1) {
+    case 0x40:
+        sp1C = arg2;
+        func_800EC398(sp1C, (f32 *)arg0->actorData);
+        ((f32 *)arg0->actorData)[1] += func_800EC708(sp1C);
+        _chexploder_entrypoint_4(arg0, (s32)(sp1C->unk0 + 1), 4);
+        break;
+    case 0x90:
+        func_80800104_chcrate(arg0);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crate/func_80800104_chcrate.s")
 
