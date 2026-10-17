@@ -110,8 +110,8 @@ void* func_800C5BC4(void* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C5BE4.s")
 
-s32 func_800C5CC0(s32 this, f32 arg1, f32 arg2, u32 arg3, s32 arg4) {
-    s32 func_800C5BE4(s32, f32, f32, u32, s32);
+s32 func_800C5CC0(f32 *this, f32 arg1, f32 arg2, u32 arg3, void *arg4) {
+    s32 func_800C5BE4(f32 *, f32, f32, u32, void *);
     f32 mlAbsF(f32);
     s32 phi_v1;
 
@@ -213,7 +213,29 @@ void func_800C6038(void *ptr) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C6060.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C6320.s")
+void func_800C6320(u8 *arg0) {
+    void func_800EE7F8();
+    f32 sp44[7];
+    s32 triangle;
+    s32 state;
+    f32 sp30[3];
+    f32 distance;
+
+    func_800EE7F8(sp30, (f32 *)(arg0 + 0x4C));
+    triangle = func_800C5CC0(sp30, *(f32 *)(arg0 + 0x78), -1300.0f, *(u32 *)(arg0 + 0x84) | 0x20020, sp44);
+    if ((triangle != 0) && (sp44[1] >= 0.0f)) {
+        func_800C5F40(arg0, sp44, (void *)triangle);
+    }
+    distance = *(f32 *)(arg0 + 0x74) - sp30[1];
+    triangle = func_800C5CC0(sp30, distance + 50.0f, distance - 50.0f, *(u32 *)(arg0 + 0x88), sp44);
+    if ((triangle != 0) || (arg0[0x9C] != 0)) {
+        func_800C5FCC(arg0, sp44[3], triangle);
+    }
+    state = func_800C5E14(arg0);
+    if (state != 3) {
+        func_800C5A10(arg0, state);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C6420.s")
 
