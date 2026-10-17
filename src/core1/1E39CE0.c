@@ -165,7 +165,7 @@ s32 func_8002241C(MusicPlayer *arg0) {
     s32 func_80022D1C(MusicPlayer *);
     void func_80023008(MusicPlayer *, MusicEvent *);
     s32 func_80024A5C(MusicPlayer *, MusicEvent *);
-    s32 func_80024DD8(MusicPlayer *);
+    void func_80024DD8(MusicPlayer *);
     s32 func_8002645C(ALEventQueue *, MusicEvent *);
     s32 func_800266B0(ALEventQueue *, s32);
     s32 func_80026FF0(ALVoice *);
@@ -869,6 +869,19 @@ void func_80024D90(MusicPlayer *arg0, f32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39CE0/func_80024DD8.s")
+void func_80024DD8(MusicPlayer *arg0) {
+    s32 func_8002ABE0(ALCSeq *, s32 *);
+    MusicEvent event;
+    s32 delta;
+
+    if (arg0->state != 1 || arg0->target == NULL) {
+        return;
+    }
+    if (func_8002ABE0(arg0->target, &delta) == 0) {
+        return;
+    }
+    event.type = 0;
+    func_80026500(&arg0->evtq, &event, arg0->uspt * delta, 0);
+}
 
 void func_80024E70(register u8 *arg0, register u8 arg1) { arg0[0x88] = arg1; }
