@@ -54,7 +54,34 @@ void func_80800200_chmadamegrunty(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_808002BC_chmadamegrunty.s")
+void func_808002BC_chmadamegrunty(Actor *arg0) {
+    void _capod_entrypoint_14(void);
+    int func_800DC298(f32);
+    void func_800EEB9C(f32 [3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800F497C(s32);
+    void func_800F49D4(s32, void *, s32);
+    void func_800F4AC0(s32, s32, f32);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    s32 func_80101180(s32, s32, s32);
+    void func_8080082C_chmadamegrunty(void *, s32);
+    extern s32 func_8010D5DC;
+    f32 sp24[3];
+
+    func_800EEB9C(sp24, arg0->rotation[1], 400.0f);
+    func_800EF04C(sp24, arg0->position);
+    func_800F82D4(func_800F54E4(), 0);
+    func_800F497C(func_800F54E4());
+    func_800F49D4(func_800F54E4(), &func_8010D5DC, arg0->unk0);
+    func_800F4AC0(func_800F54E4(), sp24, 170.0f);
+    func_8080082C_chmadamegrunty(arg0, 4);
+    arg0->unk64_20 = func_800DC298(0.25f);
+    if (arg0->unk64_20) {
+        func_80101180(0x3D4, 8, 0);
+    }
+    _capod_entrypoint_14();
+}
 
 void func_808003B0_chmadamegrunty(Actor *arg0) {
     void _capod_entrypoint_14(void);
