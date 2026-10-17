@@ -32,7 +32,15 @@ int bastatetimer_isAt(PlayerState *self, BaStateTimerId id, f32 arg2) {
 void bastatetimerlist_free(PlayerState *self) {}
 
 #ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bastatetimer/bastatetimerlist_init.s")
+void bastatetimerlist_init(PlayerState *self) {
+    int i;
+
+    for (i = 0; i < BA_STATE_TIMER_COUNT; i++) {
+        self->state_timer->timer[i].now = 0.0f;
+        self->state_timer->timer[i].prev = 0.0f;
+        self->state_timer->timer[i].unk8 = (i == BA_STATE_TIMER_ID_2_LONGLEG || i == BA_STATE_TIMER_ID_3_TURBO_TALON);
+    }
+}
 #else
 void bastatetimerlist_init(PlayerState *self) {
     int i;
