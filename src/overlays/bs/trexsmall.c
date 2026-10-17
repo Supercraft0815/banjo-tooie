@@ -559,7 +559,35 @@ void func_80801718_bstrexsmall(s32 arg0)
     bstrexsmall_entrypoint_1(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80801748_bstrexsmall.s")
+void func_80801748_bstrexsmall(PlayerState *arg0) {
+    s32 bs_getPreviousState(PlayerState *);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    void func_800909CC(PlayerState *);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    f32 saved;
+    f32 transition;
+    struct anctrl_s *control;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    bstrexsmall_entrypoint_2(arg0);
+    if (bs_getPreviousState(arg0) == 0x143) {
+        transition = 0.5f;
+    } else {
+        transition = 0.2f;
+    }
+    saved = transition;
+    anctrl_reset(control);
+    func_8008B1C8(control, transition);
+    anctrl_setIndex(control, 0x1D2);
+    anctrl_setDuration(control, 8.5f);
+    anctrl_setStart(control, 0.13f);
+    anctrl_setPlaybackType(control, 2);
+    anctrl_start(control);
+    func_8009FFD8(arg0, 1, 3, 2, 2);
+    yaw_setVelocityBounded(arg0, 500.0f, 6.5f);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_800909CC(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80801844_bstrexsmall.s")
 
