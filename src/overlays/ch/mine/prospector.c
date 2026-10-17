@@ -40,7 +40,29 @@ void func_80800340_chmineprospector(Actor *arg0, u8 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800398_chmineprospector.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800540_chmineprospector.s")
+s32 func_80800540_chmineprospector(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3) {
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
+    void func_808009B0_chmineprospector(Actor *, s32, s32);
+    extern s32 D_8080110C_chmineprospector;
+    extern s8 D_8080111A_chmineprospector;
+    s32 temp_v0;
+
+    D_8080111A_chmineprospector = arg3;
+    temp_v0 = _subaddiedialog_entrypoint_8((s32)arg0, (u8 *)arg0 + 0x28, &D_8080110C_chmineprospector, arg1, arg2);
+    if (temp_v0 == 0) {
+        return 0;
+    }
+    switch (_subaddiedialog_entrypoint_9((s32)arg0, temp_v0, arg1, arg2)) {
+    case 1:
+        func_808009B0_chmineprospector(arg0, 3, 0);
+        break;
+    case 2:
+        func_808009B0_chmineprospector(arg0, 3, 1);
+        break;
+    }
+    return 1;
+}
 
 void func_808005F0_chmineprospector(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
