@@ -99,7 +99,7 @@ void func_808006BC_chcactusofstrength(void *arg0) {
     void func_800CE88C(s32, s32);
     s32 func_800CEAA8(s32);
     s32 func_800CEAD0(s32);
-    s32 func_80101FDC(void *, s32);
+    void func_80101FDC(Actor *, u32);
     if (((*(s32 *)((s8 *)(arg0) + (0x50))) != 0) && (func_800CEAD0(0) != 0)) {
         if (func_800CEAA8(0) != 0) {
             func_800CE88C(0, 0);
@@ -113,7 +113,7 @@ void func_808006BC_chcactusofstrength(void *arg0) {
 void func_80800718_chcactusofstrength(void *arg0) {
     s32 _mlwave_entrypoint_0(s32, s32, s32);
     s32 func_80100074(void *, s32, s32);
-    s32 func_80101FDC(void *, s32);
+    void func_80101FDC(Actor *, u32);
     void func_80103110(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
     void *sp1C;
@@ -127,7 +127,18 @@ void func_80800718_chcactusofstrength(void *arg0) {
     _mlwave_entrypoint_0(func_80100074(sp1C, 1, 0x1C), 0x42C80000, 0x42A00000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_80800780_chcactusofstrength.s")
+void func_80800780_chcactusofstrength(Actor *arg0) {
+    void func_800B4470(u8 *, s32, void *, s32, f32, f32, s32, s32, s32);
+    void func_800C4104(s32, f32, s32, s32, f32, f32);
+    void func_80101FDC(Actor *, u32);
+    void _subaddieDll_entrypoint_4(Actor *, u32);
+
+    func_800B4470(arg0->position, 0, NULL, 1, 0.5f, 0.0f, 125, 250, 0);
+    func_800C4104(0x417, 1.0f, 0x7D00, arg0->position, 1250.0f, 2500.0f);
+    func_80101FDC(arg0, 1);
+    *(s32 *)&arg0->unk50 = 0;
+    _subaddieDll_entrypoint_4(arg0, 1);
+}
 
 void func_80800824_chcactusofstrength(Actor *arg0, f32 arg1) {
     s32 func_800B53A4(s32);
