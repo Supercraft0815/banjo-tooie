@@ -212,7 +212,32 @@ s32 func_808008A0_chhumba(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800934_chhumba.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800A50_chhumba.s")
+s32 func_80800A50_chhumba(Actor *arg0) {
+    s32 func_800EA05C();
+    u32 func_800F54E4(void);
+    s32 func_800F71D4(s32);
+    s32 func_8010C9FC(f32 *, s32, s32, s32);
+    void func_8010D254(f32 *);
+    f32 sp2C[3];
+    f32 sp20[3];
+    f32 scale;
+
+    func_80800238_chhumba(arg0, sp2C);
+    sp2C[1] = 0.0f;
+    func_8010D254(sp20);
+    scale = arg0->scale;
+    if (func_8010C9FC(sp2C, (s32)(scale * 1550.0f),
+                     (s32)(scale * -202.5f), (s32)(scale * -1237.5f)) == 0) {
+        return 0;
+    }
+    if (func_800F71D4(func_800F54E4()) == 0) {
+        return 0;
+    }
+    if ((func_800EA05C() == 0x120) && (sp20[1] > -100.0f)) {
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
