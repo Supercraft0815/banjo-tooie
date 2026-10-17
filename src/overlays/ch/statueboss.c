@@ -239,7 +239,38 @@ void func_808020EC_chstatueboss(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80802144_chstatueboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80802268_chstatueboss.s")
+/* extern */
+
+void func_80802268_chstatueboss(Actor *arg0) {
+    void _chappearfx_entrypoint_2(Actor *, s32, s32, f32);
+    Actor *func_80108474(u32, f32 *, s32);
+    typedef struct {
+        f32 position[3];
+        f32 unkC;
+        f32 yaw;
+        f32 unk14;
+    } StatuePart;
+    typedef struct {
+        u8 pad[0x16C];
+        StatuePart parts[4];
+        u8 flag;
+    } StatueData;
+    s32 offset;
+    StatueData *data;
+    Actor *actor;
+
+    data = func_80100094(arg0, 0U);
+    offset = 0;
+    do {
+        actor = func_80108474(0x1C8, ((StatueData *)((u8 *)data + offset))->parts[0].position,
+                             (s32)((StatueData *)((u8 *)data + offset))->parts[0].yaw);
+        actor->unk74_7 = 0x33;
+        if (data->flag == 0) {
+            _chappearfx_entrypoint_2(actor, 0x20, 0, 1.0f);
+        }
+        offset += 0x18;
+    } while (offset != 0x60);
+}
 
 void func_8080232C_chstatueboss(Actor *arg0) {
     s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
