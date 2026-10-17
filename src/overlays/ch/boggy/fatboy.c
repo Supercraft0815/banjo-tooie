@@ -79,7 +79,44 @@ void func_80800998_chboggyfatboy(Actor *arg0) {
     func_800EE940((void *)sp1C, (u8 *)temp_v0 + 0x18);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_808009E0_chboggyfatboy.s")
+void func_808009E0_chboggyfatboy(Actor *arg0) {
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 _subaddietaxi_entrypoint_13(Actor *, s32, void *, s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    void func_800FFAB0(Actor *);
+    void func_80102FDC(void *, f32);
+    void func_801088A8(void *, s32, s32, void *);
+    s32 func_80800FE0_chboggyfatboy(s32);
+    extern OSThread *_chboggyfatboy_entrypoint_0(void);
+    Actor *temp_v0;
+
+    if (func_80800018_chboggyfatboy(arg0) == 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    if (_subaddietaxi_entrypoint_13(arg0, 1, &_chboggyfatboy_entrypoint_0, 7) != 0) {
+        func_80800078_chboggyfatboy(arg0);
+        func_80102FDC(arg0, 1.0f);
+    } else {
+        if (arg0->unk7A_5) {
+            func_800FFAB0(arg0);
+            return;
+        }
+        func_80800078_chboggyfatboy(arg0);
+        func_80102FDC(arg0, 1.0f);
+    }
+    temp_v0 = _subaddiefind_entrypoint_2(0x13F, 0);
+    if (temp_v0 != NULL) {
+        arg0->unk3C = temp_v0->unk0;
+    } else {
+        arg0->unk3C = NULL;
+    }
+    if ((func_80800FE0_chboggyfatboy(0x3CA) != 0) && (func_800DA298(0xBB) == 0)) {
+        func_800DA524(0xBA);
+    }
+    func_801088A8(arg0, 0x10002000, 0, NULL);
+}
 
 /* extern */
 
