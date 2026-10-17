@@ -83,7 +83,43 @@ void func_80800294_bstrexlarge(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_808002E0_bstrexlarge.s")
+s32 func_808002E0_bstrexlarge(PlayerState *arg0, s32 arg1, s32 arg2) {
+    s32 bastick_getZone(PlayerState *);
+    s32 bs_getCurrentState(PlayerState *);
+    int func_8008DD04(PlayerState *);
+    s32 state;
+    s32 can_fall;
+
+    if (arg2 != 0) {
+        can_fall = func_80800024_bstrexlarge(arg0);
+    } else {
+        can_fall = 1;
+    }
+    switch (bastick_getZone(arg0)) {
+        case 0:
+            state = 0x151;
+            break;
+        case 1:
+            state = 0x152;
+            break;
+        case 2:
+            state = 0x150;
+            break;
+    }
+    if (bs_getCurrentState(arg0) != state) {
+        arg1 = state;
+    }
+    if (func_80800140_bstrexlarge((s32) arg0) != 0) {
+        arg1 = 0x14F;
+    }
+    if ((can_fall != 0) && (func_8008DD04(arg0) != 0)) {
+        arg1 = 0x14A;
+    }
+    if (func_80800160_bstrexlarge((s32) arg0) != 0) {
+        arg1 = 0x14B;
+    }
+    return arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_808003C4_bstrexlarge.s")
 
