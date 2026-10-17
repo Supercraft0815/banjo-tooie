@@ -488,7 +488,7 @@ void func_80802648_chstoneballcontrol(f32 *arg0) {
 
 void func_8080282C_chstoneballcontrol(u8 *arg0, s32 arg1) {
     s32 func_800EA05C();
-    void func_80802FBC_chstoneballcontrol(u8 *, s32);
+    void func_80802FBC_chstoneballcontrol(Actor *, s32);
 
     if (func_800EA05C() != 0xBB) {
         switch (arg1) {
@@ -656,7 +656,30 @@ void func_80802F14_chstoneballcontrol(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80802FBC_chstoneballcontrol.s")
+void func_80802FBC_chstoneballcontrol(Actor *arg0, s32 arg1) { Actor *parent;
+    u32 kind;
+    void _sukickball_entrypoint_9(Actor *, s32, s32);
+    void _subaddiefade_entrypoint_3(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s32 D_808052A0_chstoneballcontrol[];
+
+    parent = func_80106790(arg0->unk3C);
+    func_80802F14_chstoneballcontrol(arg0);
+    kind = arg0->unk0->unk24 >> 22;
+    switch (kind) {
+    case 0x267:
+        _sukickball_entrypoint_9(parent, D_808052A0_chstoneballcontrol[arg1], 1);
+        break;
+    case 0x253:
+        _sukickball_entrypoint_9(parent, D_808052A0_chstoneballcontrol[arg1], 3);
+        break;
+    case 0x254:
+        _sukickball_entrypoint_9(parent, D_808052A0_chstoneballcontrol[arg1], 2);
+        break;
+    }
+    arg0->unk70_10 = 4;
+    _subaddiefade_entrypoint_3(arg0);
+}
 
 void chstoneballcontrol_entrypoint_1(Unk80132ED0 *arg0, s32 arg1, u32 arg2, s32 arg3) {
     typedef struct { f32 unknown; f32 timer; } ControlData;
