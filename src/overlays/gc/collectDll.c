@@ -126,7 +126,17 @@ void gccollectDll_entrypoint_5(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/collectDll/func_808002C4_gccollectDll.s")
+s32 func_808002C4_gccollectDll(s32 arg0, s32 arg1) {
+    u32 i;
+
+    for (i = 0; i < 0x16; i += 2) {
+        if ((arg0 == D_80800BE0_gccollectDll[i]) &&
+            (arg1 == D_80800BE0_gccollectDll[i + 1])) {
+            return 1;
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/collectDll/func_808003E0_gccollectDll.s")
 
