@@ -358,7 +358,18 @@ s32 func_8002241C(MusicPlayer *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39CE0/func_80022D1C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39CE0/func_80022E20.s")
+void func_80022E20(MusicPlayer *arg0, u8 arg1) {
+    MusicVoiceState *sp2C;
+    s16 sp2A;
+    if ((sp2C = arg0->vAllocHead) != NULL) {
+        do {
+            if ((sp2C->channel == arg1) && (sp2C->envPhase != 3)) {
+                sp2A = func_80029D54(sp2C, arg0);
+                func_80026BE0(&sp2C->voice, sp2A, func_80029F5C(sp2C, arg0->curTime));
+            }
+        } while ((sp2C = sp2C->next) != NULL);
+    }
+}
 
 /* extern */
 
