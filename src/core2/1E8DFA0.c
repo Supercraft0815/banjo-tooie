@@ -116,7 +116,35 @@ void func_800B553C(s8 *arg0)
     arg0[9] = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B5548.s")
+void *func_800B5548(void *arg0) {
+    s32 defrag(s32);
+    extern s32 D_80127F10;
+    extern s16 D_80127F18;
+    int i;
+    s32 old;
+    struct RelocatedEmitter {
+        u8 pad[0x8C];
+        void *start;
+        void *end;
+        void *capacity;
+    };
+
+    if (arg0) {
+        old = (s32)arg0;
+        i = 0;
+        while ((*(void ***)&D_80127F10)[i] != arg0 && i < D_80127F18) {
+            i++;
+        }
+        arg0 = (void *)defrag((s32)arg0);
+        ((struct RelocatedEmitter *)arg0)->start = (void *)((s32)arg0 + (u32)((s32)((struct RelocatedEmitter *)arg0)->start - old));
+        ((struct RelocatedEmitter *)arg0)->end = (void *)((s32)arg0 + (u32)((s32)((struct RelocatedEmitter *)arg0)->end - old));
+        ((struct RelocatedEmitter *)arg0)->capacity = (void *)((s32)arg0 + (u32)((s32)((struct RelocatedEmitter *)arg0)->capacity - old));
+        if (i < D_80127F18) {
+            (*(void ***)&D_80127F10)[i] = arg0;
+        }
+    }
+    return arg0;
+}
 
 void func_800B562C(void) {
     s32 defrag(s32);
