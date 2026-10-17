@@ -338,7 +338,42 @@ void func_8080189C_chtrashcangame(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_808018E4_chtrashcangame.s")
+typedef struct {
+    u8 pad0[0x24];
+    f32 particleTimer;
+    u8 pad28[0x48];
+    u32 particleIndex : 7;
+    u32 pad70_16 : 9;
+    u32 state : 6;
+    u32 pad70_0 : 10;
+} ChTrashcanParticleActor;
+
+void func_808018E4_chtrashcangame(ChTrashcanParticleActor *arg0) {
+    void func_800BA22C(s32, s32);
+    void func_800BAB80(s32, f32 *);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_800C6920(f32[3], f32, f32, s32);
+    void func_800CD08C(s32, f32 *);
+    s32 func_800D90A4(f32 *);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    struct ColorTable { f32 values[4]; };
+    extern struct ColorTable D_80803164_chtrashcangame;
+    extern s32 D_80803174_chtrashcangame[];
+    f32 position[3];
+    s32 emitter;
+    struct ColorTable colors;
+
+    if (arg0->state != 8 && func_800D90A4(&arg0->particleTimer)) {
+        colors = D_80803164_chtrashcangame;
+        func_800CD08C(arg0->particleIndex - 1, position);
+        position[1] = func_800C6920(position, 1000.0f, -1000.0f, 0);
+        emitter = func_800BABB8(0, position, position, 1.0f, D_80803174_chtrashcangame);
+        func_800BAB80(emitter, &colors.values[func_800DC128(0, 4)]);
+        func_800BA22C(emitter, 1);
+        arg0->particleTimer = func_800DC178(1.0f, 2.0f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_808019EC_chtrashcangame.s")
 
@@ -404,7 +439,7 @@ void func_8080223C_chtrashcangame(Actor *arg0) {
     f32 func_80013970(f32);
     void func_800BA22C(s32, s32);
     s32 func_800BA994(s32, s16, s16, s16, s16, s16, s16);
-    s32 func_800BABB8(s32, f32 *, f32 *, s32, s32 *);
+    s32 func_800BABB8(s32, f32 *, f32 *, f32, s32 *);
     s32 func_800BBCB8(f32 *, f32 *, s32, s32, s32 *);
     void func_800C4140(u32, f32 *, u32);
     s32 func_800D3948(void);
@@ -456,7 +491,7 @@ void func_8080223C_chtrashcangame(Actor *arg0) {
                              arg0->position, 0x05DC0190);
             }
             if (!func_800D3948() && func_80101E4C(arg0, D_80803300_chtrashcangame)) {
-                emitter = func_800BABB8(0, arg0->position, arg0->position, 0x3F800000, D_808032C0_chtrashcangame);
+                emitter = func_800BABB8(0, arg0->position, arg0->position, 1.0f, D_808032C0_chtrashcangame);
                 if (func_800DC0C0() < 0.5f) {
                     func_800BA994(emitter, -20, (s16)arg0->rotation[1] - 75, 300,
                                  -45, (s16)arg0->rotation[1] - 75, 500);
