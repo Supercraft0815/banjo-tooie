@@ -6,6 +6,7 @@ void bs_setState();
 /* extern */
 
 typedef struct PlayerState PlayerState;
+void _bashoes_entrypoint_20(PlayerState *);
 void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
 s32 bs_getNextState(PlayerState *);
 s32 func_8008CA4C(void *, s32);
@@ -384,8 +385,8 @@ s32 bsbtrot_entrypoint_3(s32 arg0) {
     return ((s32 *)&D_80802E50_bsbtrot)[arg0];
 }
 
-void func_80800C20_bsbtrot(s32 arg0) {
-    func_80800000_bsbtrot(arg0, 0x26, 0x26, 0x29B, 0x86);
+s32 func_80800C20_bsbtrot(PlayerState *arg0) {
+    return func_80800000_bsbtrot(arg0, 0x26, 0x26, 0x29B, 0x86);
 }
 
 void bsbtrot_entrypoint_4(PlayerState *arg0) {
@@ -405,7 +406,20 @@ void bsbtrot_entrypoint_4(PlayerState *arg0) {
     func_80800538_bsbtrot(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_5.s")
+void bsbtrot_entrypoint_5(PlayerState *arg0) {
+    s32 func_8008E3E8(PlayerState *);
+    void func_8009D3A8(PlayerState *, s32);
+    s32 func_800A02DC(PlayerState *, s32);
+
+    func_808002A4_bsbtrot(arg0, func_80800C20_bsbtrot(arg0));
+    func_80800120_bsbtrot(arg0);
+    func_808004B4_bsbtrot(arg0);
+    if (func_8008E3E8(arg0) != 0) {
+        _bashoes_entrypoint_20(arg0);
+    }
+    func_8009D3A8(arg0, 1);
+    bs_setState(arg0, func_800A02DC(arg0, func_808007E0_bsbtrot(arg0, 0)));
+}
 
 void bsbtrot_entrypoint_6(PlayerState *arg0)
 {
