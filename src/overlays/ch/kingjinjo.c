@@ -260,7 +260,39 @@ void func_80800D80_chkingjinjo(Actor *arg0) {
     arg0->unk6C_0 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_80800E58_chkingjinjo.s")
+void func_80800E58_chkingjinjo(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    void _sudeflect_entrypoint_2(f32 *, f32 *, s32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    extern u32 D_808012C0_chkingjinjo[];
+    extern u32 D_808012D0_chkingjinjo[];
+    extern u32 D_808012DC_chkingjinjo[];
+    extern u32 D_808012E8_chkingjinjo[];
+    extern u32 D_808012F8_chkingjinjo[];
+    extern u32 D_80801304_chkingjinjo[];
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 *position;
+
+    if (arg0->unk70_10 == 1) {
+        position = arg0->position;
+        if (arg0->unk64_19) {
+            _subaddieaudioquick_entrypoint_4(arg0, position, D_808012C0_chkingjinjo, D_808012E8_chkingjinjo);
+            _subaddieaudioquick_entrypoint_4(arg0, position, D_808012D0_chkingjinjo, D_808012F8_chkingjinjo);
+            _subaddieaudioquick_entrypoint_4(arg0, position, D_808012DC_chkingjinjo, D_80801304_chkingjinjo);
+        }
+    }
+    position = arg0->position;
+    func_800EFA4C(sp34, -280.0f, 0.0f, -250.0f);
+    func_800EFA4C(sp28, 170.0f, 400.0f, 80.0f);
+    func_800EF334(sp34, arg0->scale);
+    func_800EF334(sp28, arg0->scale);
+    func_800EF04C(sp34, position);
+    func_800EF04C(sp28, position);
+    _sudeflect_entrypoint_2(sp34, sp28, 10);
+}
 
 s32 func_80800F60_chkingjinjo(s32 arg0, s32 arg1, s32 arg2) 
 {
