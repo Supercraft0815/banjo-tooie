@@ -1,6 +1,48 @@
 #include "core2/1E82660.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E82660/func_800A8D70.s")
+void func_800A8D70(s32 arg0, s32 arg1) {
+    s32 _gcsectionDll_entrypoint_2(s32);
+    s32 _gcsectionDll_entrypoint_3(s32, s32);
+    s32 _gcstatusDll_entrypoint_1();
+    s32 _gcstatusDll_entrypoint_11();
+    s32 func_800A877C(s32);
+    extern s16 D_801276D0;
+    extern u8 D_801276D4;
+    extern s16 D_801276E0;
+    extern s16 D_801276F0;
+    s32 i;
+    u32 j;
+    s16 *p;
+    u8 *b;
+    s32 *w;
+
+    _gcstatusDll_entrypoint_1();
+    if (_gcsectionDll_entrypoint_3(_gcsectionDll_entrypoint_2(arg0), 0x20) != 0) {
+        (&D_801276D0)[1] = _gcstatusDll_entrypoint_11();
+    } else {
+        (&D_801276D0)[1] = 1;
+    }
+    i = 0;
+    if ((&D_801276D0)[1] > 0) {
+        do {
+            func_800A877C(i);
+            i++;
+        } while (i < (&D_801276D0)[1]);
+    }
+    for (i = 0; i < 8; i++) {
+        (&D_801276D0)[i + 4] = -1;
+    }
+    for (i = 0; i < 4; i++) {
+        ((u8 (*)[4])&D_801276D0)[1][i] = 0;
+    }
+    for (i = 0; i < 8; i++) {
+        ((s32 *)&D_801276D0)[i + 14] = 0;
+    }
+    for (i = 0; i < 8; i++) {
+        ((s32 *)&D_801276D0)[i + 6] = 0;
+    }
+    D_801276D0 = 0;
+}
 
 void func_800A8E9C(void) {
     extern s16 D_801276D0;
@@ -32,7 +74,7 @@ void func_800A8F68(void) {
     void func_800A91F4(s32);
     extern s16 D_801276D0;
     s32 i;
-    volatile s16 *ptr;
+    s16 *ptr;
     s32 address;
 
     i = 0;
@@ -57,7 +99,7 @@ void func_800A8F68(void) {
 s32 func_800A8FDC(void) {
     extern s16 D_801276D0;
     extern s16 D_801276D2;
-    s32 func_800A877C(s16);
+    s32 func_800A877C(s32);
     s16 *ptr;
     func_800A877C(D_801276D2);
     ptr = &D_801276D0;
