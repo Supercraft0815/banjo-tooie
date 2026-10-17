@@ -349,7 +349,29 @@ void func_800DD024(Gfx **gfx, u8 *data) {
     gSPDisplayList((*gfx)++, osVirtualToPhysical(gfx_sub_list));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD07C.s")
+void func_800DD07C(void *model, u8 *data) {
+    void mlMtxApply(Mtx *);
+    extern f32 D_8012C948;
+    struct ModelContext {
+        Gfx *gfx;
+        Mtx *mtx;
+    };
+    struct Command { u8 padding[8]; s16 gfx_index[1]; };
+    struct ModelContext *context = (struct ModelContext *)model;
+    struct Command *cmd = (struct Command *)data;
+    Gfx *gfx = context->gfx;
+    int i;
+    struct RenderState { u8 padding[0x18]; DisplayListView *list; };
+
+    gSPDisplayList(gfx++, osVirtualToPhysical(cmd->gfx_index[0] + ((struct RenderState *)&D_8012C948)->list->commands));
+    mlMtxApply(context->mtx);
+    for (i = 1; cmd->gfx_index[i] != 0; i++) {
+        gSPMatrix(gfx++, context->mtx, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+        gSPDisplayList(gfx++, osVirtualToPhysical(cmd->gfx_index[i] + ((struct RenderState *)&D_8012C948)->list->commands));
+    }
+    context->gfx = gfx;
+    context->mtx++;
+}
 
 void func_800DD19C(s32 arg0, u8 *commands) {
     void func_800DE2A4(s32, u8 *);
