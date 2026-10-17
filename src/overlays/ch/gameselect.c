@@ -1731,7 +1731,41 @@ void func_80805474_chgameselect(s32 arg0,s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080595C_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80805AC0_chgameselect.s")
+void func_80805AC0_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_808026C8_chgameselect(Unk80132ED0 *, s32);
+    s32 func_80802C48_chgameselect(Unk80132ED0 *);
+    void func_80802C7C_chgameselect(Unk80132ED0 *);
+    s32 func_808068E8_chgameselect(void);
+    s32 func_80806A30_chgameselect(void);
+    void func_80806AF4_chgameselect(s32, s32, s32);
+    s32 state;
+    s32 temp;
+    Actor *actor;
+
+    actor = arg0;
+    state = actor->actorData[0];
+    switch (state) {
+    case 0:
+        func_80802C7C_chgameselect((Unk80132ED0 *)actor->actorData[6]);
+        return;
+    case 6:
+        temp = actor->actorData[1];
+        if (temp != -1 && arg2 == temp) {
+            func_80802C48_chgameselect((Unk80132ED0 *)actor->actorData[6]);
+            func_808026C8_chgameselect((Unk80132ED0 *)actor->actorData[5], 9);
+            actor->actorData[1] = -1;
+            if (arg2 == 3) {
+                state = func_808068E8_chgameselect();
+            } else {
+                state = func_80806A30_chgameselect();
+            }
+            func_80806AF4_chgameselect(arg1, arg2, state);
+            return;
+        }
+        func_80802C7C_chgameselect((Unk80132ED0 *)actor->actorData[6]);
+        return;
+    }
+}
 
 /* extern */
 
