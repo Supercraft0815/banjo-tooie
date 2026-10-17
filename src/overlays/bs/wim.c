@@ -72,7 +72,37 @@ void func_808001A8_bsbswim(struct player_state_s *arg0)
     func_80800104_bsbswim(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_808001C8_bsbswim.s")
+struct anctrl_s;
+void func_808001C8_bsbswim(struct player_state_s *arg0) {
+    void _baswim_entrypoint_8(void *, f32);
+    void func_8009B94C(u8 *, f32 *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setIndex(struct anctrl_s *, int);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    void func_8009BC5C(struct player_state_s *, f32);
+    s32 func_8008E23C(struct player_state_s *);
+    struct anctrl_s *control;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    anctrl_reset(control);
+    anctrl_setIndex(control, 0x70);
+    anctrl_setDuration(control, 2.0f);
+    func_8008B1C8(control, 0.5f);
+    anctrl_setPlaybackType(control, 2);
+    anctrl_start(control);
+    func_80800000_bsbswim((s32)arg0);
+    func_8009B94C((u8 *)arg0, 0);
+    func_80800030_bsbswim(arg0);
+    func_8009BC5C(arg0, 0.4f);
+    _baswim_entrypoint_8(arg0, 300.0f);
+    if (func_8008E23C(arg0) != 0) {
+        func_800A0CF4(arg0, 0);
+    }
+}
 
 void func_80800288_bsbswim(s32 self)
 {
