@@ -363,7 +363,33 @@ void func_808009D0_bsbfly(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800A24_bsbfly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800C38_bsbfly.s")
+void func_80800C38_bsbfly(PlayerState *arg0) {
+    void func_8009BA9C(PlayerState *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    f32 bastick_getX(PlayerState *);
+    f32 bastick_getY(PlayerState *);
+    f32 *func_800A4C48(PlayerState *);
+    void func_800CA9D8(f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF8BC(f32 *, f32 *, f32);
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp2C[3];
+
+    func_800EE7F8(sp38, (f32 *)(*(s32 *)((s8 *)arg0 + 0x188) + 0x10));
+    func_800CA9D8(func_800A4C48(arg0), sp2C);
+    func_800EFA4C(sp44, bastick_getX(arg0) * 1000.0f, 0.0f, 0.0f);
+    func_800EF8BC(sp44, sp44, sp2C[0]);
+    func_800EF934(sp44, sp44, sp2C[1]);
+    func_800EF04C(sp38, sp44);
+    func_800EFA4C(sp44, 0.0f, -bastick_getY(arg0) * 1000.0f, 0.0f);
+    func_800EF8BC(sp44, sp44, sp2C[0]);
+    func_800EF934(sp44, sp44, sp2C[1]);
+    func_800EF04C(sp38, sp44);
+    func_8009BA9C(arg0, sp38);
+}
 
 void func_80800D50_bsbfly(PlayerState *arg0) { func_80800128_bsbfly(arg0); (*(s32 *)((s8 *)(arg0) + 0x160)) = 0; func_80800A24_bsbfly(arg0, 1); }
 

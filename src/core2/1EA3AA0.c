@@ -250,7 +250,7 @@ void func_800CA934(void *arg0, void *arg1) {
     (*(s16 *)((s8 *)(arg1) + (4))) = (s16) (s32) ((f32) (s32) ((*(f32 *)((s8 *)(arg0) + (8))) * 500.0f) / 500.0f);
 }
 
-void func_800CA9D8(f32 *arg0, s32 *arg1) {
+void func_800CA9D8(f32 *arg0, f32 *arg1) {
     func_800EE7F8(arg1, arg0 + 6);
 }
 
