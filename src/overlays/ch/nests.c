@@ -117,7 +117,38 @@ void func_80800670_chnests(void *arg0) {
     func_800FFAB0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_808006C4_chnests.s")
+void func_808006C4_chnests(Actor *arg0) {
+    s32 func_800D0B68(u32, u32);
+    s32 func_800D13E8(s32, s32);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    extern u8 D_8012762C;
+    f32 sp20;
+    f32 sign;
+    s32 index;
+    s32 flag;
+
+    index = (u32)arg0->unk74_7 - 0x32;
+    if (index <= 0 || index >= 0x12) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    flag = func_800D13E8(6, D_8012762C) + (u32)arg0->unk74_7 - 0x32;
+    arg0->actorData[2] = flag;
+    if (func_800D0B68(flag, 6)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    func_80800000_chnests(arg0);
+    *(f32 *)&arg0->actorData[4] = arg0->rotation[1];
+    if (func_800DC298(0.5f)) {
+        sign = -1.0f;
+    } else {
+        sign = 1.0f;
+    }
+    *(f32 *)&arg0->actorData[5] = func_800DC178(540.0f, 630.0f) * sign;
+    arg0->rotation[1] = func_800DC178(0.0f, 360.0f);
+}
 
 /* extern */
 
