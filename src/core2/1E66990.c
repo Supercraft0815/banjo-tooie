@@ -314,7 +314,24 @@ int func_8008DF18(PlayerState *player) {
     return bastatetimer_isActive(player, 6) || (func_800A3378(player) == 1.0f && func_8009659C(player, 0x40));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DF8C.s")
+int func_8008DF8C(PlayerState *arg0, s32 arg1) {
+    f32 baphysics_get_vertical_velocity(PlayerState *);
+    f32 func_80096364(PlayerState *);
+    void func_800963C0(PlayerState *, f32 *);
+    f32 func_8009C150(PlayerState *);
+    extern f32 D_80124AE4;
+    f32 position[3];
+
+    if (player_isStable(arg0)) {
+        return 1;
+    }
+    func_800963C0(arg0, position);
+    if (position[1] < D_80124AE4 && position[1] >= 0.0f) {
+        return 0;
+    }
+    return baphysics_get_vertical_velocity(arg0) < 0.0f &&
+        (func_8009C150(arg0) - func_80096364(arg0)) < (f32)arg1;
+}
 
 int player_isStable(PlayerState *player) {
     s32 func_800A0FCC(void);
