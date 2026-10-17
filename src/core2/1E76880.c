@@ -47,7 +47,28 @@ s32 func_8009D2E4(void *arg0) {
     return *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 252) + 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76880/func_8009D2F0.s")
+void func_8009D2F0(PlayerState *arg0, s32 arg1, f32 arg2) {
+    void baroll_setIdeal(PlayerState *, f32);
+    f32 func_800136E4(f32);
+    void func_800963C0(PlayerState *, f32 *);
+    s32 func_80096628(PlayerState *);
+    void func_8009BF5C(PlayerState *, f32);
+    s32 func_800F1B78(f32 *, f32 *, f32, f32);
+    f32 yaw_get(PlayerState *);
+    f32 sp34[3];
+    f32 sp28[3];
+
+    if (!(func_80096628(arg0) & 2)) {
+        func_800963C0(arg0, sp34);
+        if (arg1 != 0) {
+            func_800F1B78(sp28, sp34, func_800136E4(yaw_get(arg0) + 180.0f), arg2);
+        } else {
+            func_800F1B78(sp28, sp34, yaw_get(arg0), arg2);
+        }
+        func_8009BF5C(arg0, sp28[0]);
+        baroll_setIdeal(arg0, sp28[2]);
+    }
+}
 
 void func_8009D3A8(PlayerState *arg0, s32 arg1) {
     func_8009D2F0(arg0, arg1, 1.0f);
