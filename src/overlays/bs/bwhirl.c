@@ -193,7 +193,26 @@ void bsbwhirl_entrypoint_4(s32 arg0) {
     baphysics_set_target_horizontal_velocity((void *)arg0, 0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_5.s")
+void bsbwhirl_entrypoint_5(PlayerState *arg0) {
+    s32 _badrone_entrypoint_25(PlayerState *);
+    void bs_setState(PlayerState *, int);
+    int func_8008E148(PlayerState *);
+    s32 player_inWater(PlayerState *);
+    s32 sp24;
+
+    sp24 = 0;
+    func_80800200_bsbwhirl(arg0);
+    sp24 = func_808003A8_bsbwhirl(arg0, sp24);
+    func_80800430_bsbwhirl(arg0, &sp24);
+    func_80800008_bsbwhirl(arg0);
+    if (func_8008E148(arg0) != 0) {
+        sp24 = _badrone_entrypoint_25(arg0);
+    }
+    if (player_inWater(arg0) != 0) {
+        sp24 = 0x4C;
+    }
+    bs_setState(arg0, sp24);
+}
 
 void bsbwhirl_entrypoint_6(PlayerState *arg0)
 {
