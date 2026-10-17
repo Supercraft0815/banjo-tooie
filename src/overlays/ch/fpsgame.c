@@ -292,4 +292,24 @@ void func_80801C9C_chfpsgame(Actor *arg0) { void *func_80100094(Actor *, u32); s
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80801F34_chfpsgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80802020_chfpsgame.s")
+void func_80802020_chfpsgame(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    struct Entry { s32 actor; s32 unused; };
+    struct Group { s32 count; struct Entry entries[10]; };
+    struct Data { s8 pad[0x568]; struct Group groups[4]; };
+    struct Data *data;
+    struct Group *group;
+    s32 i;
+
+    data = func_80100094(arg0, 0U);
+    i = 0;
+    group = &data->groups[arg1];
+    group->count--;
+    for (; i < group->count; i++) {
+        if (arg2 == group->entries[i].actor) {
+            group->entries[i].actor = group->entries[group->count].actor;
+            group->entries[i].unused = group->entries[group->count].unused;
+            return;
+        }
+    }
+}
