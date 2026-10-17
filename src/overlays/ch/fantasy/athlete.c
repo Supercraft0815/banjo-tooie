@@ -25,7 +25,37 @@ void func_80800000_chfantasyathlete(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_8080094C_chfantasyathlete.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80801114_chfantasyathlete.s")
+s32 func_80801114_chfantasyathlete(s32 arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, f32 *arg6) {
+    void func_800EF2A0(f32 vec[3]);
+    void func_800EFB24(void *, void *, void *);
+    int func_800F00A4(f32 point[3], f32 radius, f32 upper, f32 lower, f32 center[3]);
+    f32 func_800F1CF0(f32 *, f32 *);
+    f32 temp_f0;
+    f32 sp28[3];
+    s32 var_v0;
+    s32 var_v1;
+
+    if (func_800F00A4(arg2, arg4, 1000.0f, 0.0f, arg5) != 0) {
+        func_800EFB24(sp28, arg5, arg3);
+        func_800EF2A0(sp28);
+        temp_f0 = func_800F1CF0(arg1, sp28);
+        var_v0 = 0;
+        if (temp_f0 >= 0.0f) {
+            var_v0 = 1;
+        }
+        var_v1 = var_v0;
+        if (var_v0 != 0) {
+            var_v1 = 0;
+            if (*arg6 <= 0.0f) {
+                var_v1 = 1;
+            }
+        }
+        *arg6 = temp_f0;
+        return var_v1;
+    }
+    *arg6 = 1.0f;
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_808011E4_chfantasyathlete.s")
 
@@ -34,9 +64,9 @@ void func_80800000_chfantasyathlete(s32 arg0, s32 arg1) {
 void func_808015D8_chfantasyathlete(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 *arg4) {
     s32 func_800EE780(s32, s32, s32);
     f32 func_800EEAD4(s32, s32);
-    s32 func_800EF2A0(s32);
+    void func_800EF2A0(f32 vec[3]);
     s32 func_800EF334(s32, s32);
-    s32 func_800EFB24(s32, s32, s32);
+    void func_800EFB24(void *, void *, void *);
     func_800EFB24(arg3, arg0, arg1);
     func_800EF2A0(arg3);
     func_800EE780(arg2, arg1, arg0);
