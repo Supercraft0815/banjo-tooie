@@ -114,9 +114,10 @@ void func_808003D0_bsbabykaz(struct player_state_s *arg0)
 /* extern */
 
 void func_808003F0_bsbabykaz(void *arg0) {
+    void bsbabykaz_entrypoint_4(struct player_state_s *);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     void func_8009FFD8(void *, s32, s32, s32, s32);
-    bsbabykaz_entrypoint_4();
+    bsbabykaz_entrypoint_4(arg0);
     func_8009FFD8(arg0, 1, 1, 1, 2);
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
 }
@@ -171,7 +172,44 @@ void bsbabykaz_entrypoint_3(struct player_state_s *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/bsbabykaz_entrypoint_4.s")
+void bsbabykaz_entrypoint_4(struct player_state_s *arg0) {
+    s32 _bababykaz_entrypoint_10(s32, s32);
+    void bastick_pushZone(struct player_state_s *);
+    void bastick_setZoneMax(struct player_state_s *, s32, f32);
+    void func_80092864(struct player_state_s *, f32);
+    void func_800947EC(struct player_state_s *, s32, s32);
+    void func_8009590C(struct player_state_s *, f32);
+    void func_800959C8(struct player_state_s *, f32, f32);
+    void func_80095A74(void *, s32);
+    void func_8009E4AC(struct player_state_s *);
+    void func_8009E53C(struct player_state_s *, s32, f32);
+    void func_8009E55C(struct player_state_s *, s32, f32);
+    s32 func_8009E6C4(struct player_state_s *, s32);
+    void func_800A106C(struct player_state_s *, f32, f32);
+    void func_800A4D6C(u8 *, f32, f32);
+
+    if (func_8009E6C4(arg0, 0x20) == 0) {
+        _bababykaz_entrypoint_7(arg0, 0);
+        func_800A106C(arg0, 20.0f, 40.0f);
+        bastick_pushZone(arg0);
+        bastick_setZoneMax(arg0, 0, 0.12f);
+        bastick_setZoneMax(arg0, 1, 1.0f);
+        func_800A4D6C(arg0, 0.3299865723f, 0.3299865723f);
+        func_800959C8(arg0, 35.0f, 12.0f);
+        func_8009590C(arg0, 35.0f);
+        func_8009E4AC(arg0);
+        func_8009E55C(arg0, 0, 20.0f);
+        func_8009E53C(arg0, 0, 0.0f);
+        func_8009E55C(arg0, 1, 0.0f);
+        _bababykaz_entrypoint_10(arg0, -1);
+        _bababykaz_entrypoint_6(arg0);
+        func_800947EC(arg0, 1, 1);
+        func_80800050_bsbabykaz(arg0);
+        *(s32 *)((s8 *)arg0 + 0x160) = 1;
+        func_80092864(arg0, 0.29998779296875f);
+        func_80095A74(arg0, 1);
+    }
+}
 
 void bsbabykaz_entrypoint_5(struct player_state_s *arg0) {
     s32 func_8008DD70(struct player_state_s *);
@@ -201,7 +239,7 @@ void func_8080072C_bsbabykaz(s32 arg0)
 }
 void func_80800754_bsbabykaz(s32 arg0)
 {
-    bsbabykaz_entrypoint_4();
+    bsbabykaz_entrypoint_4(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
 /* extern */
@@ -231,7 +269,7 @@ void func_808007EC_bsbabykaz(struct player_state_s *arg0)
 
 void func_8080080C_bsbabykaz(void *arg0) {
     void func_8009FFD8(void *, s32, s32, s32, s32);
-    bsbabykaz_entrypoint_4();
+    bsbabykaz_entrypoint_4(arg0);
     baanim_playForDuration_loopSmooth(arg0, 0xA9, 0x3EC28F5C);
     func_8009FFD8(arg0, 1, 1, 3, 6);
     *(s32 *)((s8 *)arg0 + 0x15C) = 0;
@@ -265,7 +303,7 @@ void func_80800D18_bsbabykaz(s32 arg0)
 }
 void func_80800D40_bsbabykaz(s32 arg0)
 {
-    bsbabykaz_entrypoint_4();
+    bsbabykaz_entrypoint_4(arg0);
     _bsrest_entrypoint_16(arg0);
 }
 /* extern */
