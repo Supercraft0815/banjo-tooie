@@ -25,7 +25,22 @@ void func_808001FC_chstonepillar(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_8080031C_chstonepillar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800390_chstonepillar.s")
+s32 func_80800390_chstonepillar(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80800CC8_chstonepillar(Actor *, s32);
+    void func_80800C44_chstonepillar(Actor *);
+    s32 *data = &arg2;
+    switch (arg1) {
+        case 0x3F:
+            func_80800CC8_chstonepillar(arg0, arg2);
+            break;
+        case 0x95:
+            func_80800C44_chstonepillar(arg0);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_808003F4_chstonepillar(Actor *arg0, s32 arg1) {
     void func_800DF744(s32, s32);
