@@ -228,7 +228,29 @@ s32 func_8080110C_chballoonburst(void *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_808011A8_chballoonburst.s")
+void func_808011A8_chballoonburst(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcfrontend_entrypoint_10(void);
+    s32 _gcstatusDll_entrypoint_11();
+    s32 _subaddiemulti_entrypoint_2();
+    int func_800F7C58(s32, s32, s32);
+    void func_80101FDC(Actor *, u32);
+    s32 i;
+
+    switch (arg1) {
+    case 0xCEC:
+        func_80800970_chballoonburst(arg0, 1);
+        break;
+    case 0x10CF:
+    case 0x10D0:
+        for (i = 0; i < _gcstatusDll_entrypoint_11(); i++) {
+            func_800F7C58(i, 0x5D, 1);
+        }
+        _subaddiemulti_entrypoint_2();
+        func_80101FDC(arg0, 6);
+        _gcfrontend_entrypoint_10();
+        break;
+    }
+}
 
 s32 func_80801254_chballoonburst(u8 *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
@@ -245,7 +267,7 @@ void func_80801290_chballoonburst(void *arg0)
   s32 func_800BF544(s32, s32, s32);
   s32 func_800BF744(s32, s32);
   s32 func_800F4CEC(s32, s32);
-  s32 func_800F7C58(s32, s32, s32);
+  int func_800F7C58(s32, s32, s32);
   s32 var_s0;
   func_800BF744(1, 1);
   func_800BF744(2, 0);
