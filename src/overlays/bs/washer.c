@@ -421,7 +421,18 @@ void func_8080142C_bswasher(s32 arg0)
     func_808000F0_bswasher(arg0);
     func_80090A2C(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80801454_bswasher.s")
+void func_80801454_bswasher(s32 arg0) {
+    void func_8009FFD8();
+    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void func_800909CC(struct player_state_s *);
+    func_808001A8_bswasher(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0x356, 0x4079999A);
+    func_8009FFD8(arg0, 1, 3, 1, 2);
+    func_808000BC_bswasher(arg0);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_800909CC(arg0);
+}
 
 /* extern */
 
