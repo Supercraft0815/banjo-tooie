@@ -154,7 +154,29 @@ void func_808007A0_chdinoswitches(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/func_80800848_chdinoswitches.s")
+s32 func_80800848_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
+    int _gcaudiolist_entrypoint_0();
+    s32 _subaddiefind_entrypoint_10(Actor *, s32, u32);
+    void func_80102424(Actor *, s32);
+    void func_8010A570(Actor *);
+    void func_80103110(Actor *, u32);
+
+    switch (arg1) {
+        case 0x40:
+            _gcaudiolist_entrypoint_0(0);
+            func_80102424(arg0, 2);
+            func_8010A570(arg0);
+            func_80103110(arg0, 1);
+            break;
+        case 0x95:
+            _subaddiefind_entrypoint_10(arg0, 0x364, arg0->unk74_7);
+            func_80800270_chdinoswitches(arg0);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/func_808008F0_chdinoswitches.s")
 
