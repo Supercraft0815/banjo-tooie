@@ -32,7 +32,31 @@ f32 func_80800000_chhoney(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_808000C4_chhoney.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_80800244_chhoney.s")
+void func_80800244_chhoney(Actor *arg0) {
+    s32 func_8001211C(void);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 func_800DA298(s32);
+    u32 func_8010A5B0(Actor *, s32);
+
+    *(s32 *)&arg0->unk54 = func_8001211C();
+    ((f32 *)arg0->actorData)[4] = 20.0f;
+    _subaddieDll_entrypoint_4(arg0, !arg0->unk7A_5);
+    arg0->scale = 0.5f;
+    switch (arg0->unk0->unk24 >> 22) {
+    case 0x55:
+        arg0->unk79_4 = 0;
+        break;
+    case 0x22C:
+        arg0->unk79_4 = 2;
+        ((f32 *)arg0->actorData)[5] = func_80800000_chhoney();
+        break;
+    case 0x22B:
+        arg0->unk79_4 = 1;
+        ((f32 *)arg0->actorData)[5] = func_80800000_chhoney();
+        break;
+    }
+    func_8010A5B0(arg0, func_800DA298(0x64C));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_80800328_chhoney.s")
 
