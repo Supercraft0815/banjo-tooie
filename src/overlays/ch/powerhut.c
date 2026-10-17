@@ -1,6 +1,49 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhut/chpowerhut_entrypoint_0.s")
+typedef struct {
+    u16 flag;
+    s16 pad2;
+    f32 pad4;
+    f32 height;
+} PowerhutConfig;
+
+typedef struct {
+    s16 timer;
+    s16 pad2;
+    f32 height;
+    s32 pad8;
+    s16 state;
+    s8 active;
+    s8 padF;
+    s32 pad10;
+    f32 progress;
+} PowerhutData;
+
+s32 chpowerhut_entrypoint_0(Actor *arg0, PowerhutConfig *arg1) {
+    Prop *_gccubesearch_entrypoint_0(u32, Actor *);
+    s32 _glcutDll_entrypoint_20(void);
+    s32 func_800D9058(f32);
+    s32 func_800DA298(s32);
+    void func_800EE88C(f32 *, s16 *);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    PowerhutData *data;
+
+    data = func_80100094(arg0, 0);
+    func_800EE88C((f32 *)arg0->actorData, _gccubesearch_entrypoint_0(0x154, arg0)->position);
+    data->height = arg1->height;
+    data->timer = func_800D9058(1.5f);
+    data->state = 1;
+    data->active = 0;
+    data->progress = 0.0f;
+    if (func_800DA298(arg1->flag) != 0 || _glcutDll_entrypoint_20() != 0) {
+        func_80101FDC(arg0, 5);
+        data->state = 4;
+        data->progress = 1.0f;
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhut/chpowerhut_entrypoint_1.s")
 
