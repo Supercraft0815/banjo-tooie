@@ -28,7 +28,7 @@ void func_80800024_chweldarbossfusebox(s32 arg0) {
     s32 func_800BF744(s32, s32);
     s32 func_800DA298(s32);
     s32 func_800EFA4C(s32, s32, s32, s32);
-    s32 func_800FFAB0(s32);
+    void func_800FFAB0(Actor *);
     s32 func_80103014(s32);
     func_800BF744(2, func_800DA298(0x18C));
     func_800EFA4C(arg0 + 4, 0xC4E10000, 0x44960000, 0xC5098000);
@@ -136,7 +136,7 @@ void func_80800384_chweldarbossfusebox(f32 *arg0) {
 
 void func_808003F8_chweldarbossfusebox(Actor *arg0) {
     s32 func_800DA298(s32);
-    s32 func_800FFAB0(s32);
+    void func_800FFAB0(Actor *);
     void func_80105A9C(Actor *arg0, f32 arg1);
     f32 height;
 
@@ -157,7 +157,49 @@ void func_808003F8_chweldarbossfusebox(Actor *arg0) {
     func_80105A9C(arg0, height);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fusebox/func_8080049C_chweldarbossfusebox.s")
+void func_8080049C_chweldarbossfusebox(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 func_8001210C(s32);
+    s32 func_800C8A98(void);
+    void func_800C8B84(volatile s32);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8D4C(s32, f32 *);
+    void func_800C8E84(s32, u32 *);
+    s32 func_800D90A4(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    s32 func_80101180(s32, s32, s32);
+    void func_80105834(Actor *);
+    s32 func_80105A5C(Actor *);
+    void func_808005F8_chweldarbossfusebox(s32);
+    struct FuseboxSettings { f32 value[2]; };
+    extern struct FuseboxSettings D_80800790_chweldarbossfusebox;
+    extern u32 D_80800798_chweldarbossfusebox[][3];
+    extern u32 D_808007B0_chweldarbossfusebox[];
+    f32 position[3];
+    struct FuseboxSettings settings;
+
+    if (func_800D90A4(&arg0->unk58) != 0) {
+        if (arg0->actorData[4] == 0) {
+            settings = D_80800790_chweldarbossfusebox;
+            arg0->actorData[4] = func_800C8A98();
+            func_800C8D4C(arg0->actorData[4], settings.value);
+        }
+        func_800EE7F8(position, arg0->position);
+        position[2] += 200.0f;
+        func_800C8CB8(arg0->actorData[4], position);
+        func_800C8E84(arg0->actorData[4], D_80800798_chweldarbossfusebox[func_8001210C(1)]);
+        func_80105834(arg0);
+        func_808005F8_chweldarbossfusebox((s32)arg0);
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_808007B0_chweldarbossfusebox);
+        if (func_80105A5C(arg0) != 0) {
+            func_800C8B84(arg0->actorData[4]);
+            arg0->actorData[4] = 0;
+            func_80101180(0x3AE, 5, 0);
+            func_800FFAB0(arg0);
+        }
+    }
+}
 
 s32 func_808005C0_chweldarbossfusebox(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80103110(Actor*, u32);
