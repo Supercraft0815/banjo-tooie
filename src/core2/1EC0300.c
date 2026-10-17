@@ -90,7 +90,32 @@ void func_800E6BAC(char *dest, f32 val) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6CA8.s")
+void func_800E6CA8(char *dest, f32 val, s32 decPlaces) {
+    extern char D_80125DD0[];
+    extern char D_80125DD4[];
+    void func_800E6DB4(char *, s32);
+    char *str;
+    u32 i;
+    switch (func_800E6B7C(&str, val)) {
+    case 0:
+        func_800E6A10(dest, str);
+        break;
+    case -1:
+        func_800E6A10(dest, D_80125DD0);
+        val = -val;
+    case 1:
+        func_800E6DB4(dest, (s32)val);
+        if (decPlaces != 0) {
+            func_800E6A10(dest, D_80125DD4);
+            for (i = decPlaces--; i > 0; i = decPlaces--) {
+                val -= (s32)val;
+                val *= 10;
+                func_800E6DB4(dest, (s32)val);
+            }
+        }
+        break;
+    }
+}
 
 void func_800E6DB4(char *str, s32 num) {
     void func_800E6DD8(char *, s32, s32, s32);
