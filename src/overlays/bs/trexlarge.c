@@ -21,7 +21,34 @@ s32 func_80800034_bstrexlarge(void *arg0) {
     return (*(s32 *)((s8 *)(arg0) + (0x164))) >= 4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80800044_bstrexlarge.s")
+void func_80800044_bstrexlarge(PlayerState *arg0) {
+    f32 baphysics_get_vertical_velocity(PlayerState *);
+    f32 func_800962D4(void *);
+    void func_80096394(PlayerState *, f32 *);
+    s32 func_8009650C(PlayerState *);
+    u32 func_80096518(PlayerState *);
+    void func_8009C128(PlayerState *, f32[3]);
+    f32 func_800F13F0(f32, f32);
+    f32 sp4C;
+    f32 sp48;
+    f32 sp3C[3];
+    f32 sp30[3];
+    s32 sp2C;
+    s32 pad[2];
+
+    func_8009C128(arg0, sp3C);
+    func_80096394(arg0, sp30);
+    sp4C = func_800962D4(arg0);
+    sp2C = func_80096518(arg0) == 0;
+    sp48 = baphysics_get_vertical_velocity(arg0);
+    if ((func_8009650C(arg0) != 0) && (sp2C != 0) &&
+        (sp4C < 70.0f) && (sp30[1] < 5.0f) && (sp48 < -100.0f)) {
+        (*(s32 *)((s8 *)arg0 + 0x164)) = (s32)func_800F13F0(
+            (f32)((*(s32 *)((s8 *)arg0 + 0x164)) + 1), 100.0f);
+    } else {
+        (*(s32 *)((s8 *)arg0 + 0x164)) = 0;
+    }
+}
 
 int func_80800140_bstrexlarge(s32 arg0)
 {
