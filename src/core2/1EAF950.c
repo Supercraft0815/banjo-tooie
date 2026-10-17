@@ -174,7 +174,26 @@ s32 func_800D6C34(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6C64.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6CEC.s")
+s32 func_800D6CEC(s32 arg0) {
+    extern u8 D_8012B800[];
+    s32 func_800D6408(void *, void *);
+    struct Entry {
+        u8 pad[10];
+        u16 upper : 4;
+        u16 rest : 12;
+    };
+    s32 index;
+    int size = 12;
+
+    index = func_800D6254(arg0);
+    if (index != -1) {
+        if (((struct Entry *)(D_8012B800 + index * size))->upper != 0) {
+            return 1;
+        }
+        return func_800D6408(D_8012B800 + index * size, D_8012B800);
+    }
+    return 2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6D68.s")
 
