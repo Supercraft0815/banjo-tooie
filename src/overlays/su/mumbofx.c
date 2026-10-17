@@ -132,7 +132,25 @@ void sumumbofx_entrypoint_4(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/func_808003E4_sumumbofx.s")
+void func_808003E4_sumumbofx(u8 *arg0, f32 arg1, f32 arg2) {
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_8010D254(f32 *);
+    f32 sp34[3];
+    f32 sp28[3];
+
+    func_8010D254(sp28);
+    func_800EEB9C(sp34, *(f32 *)(arg0 + 0), arg2);
+    sp34[1] = *(f32 *)(arg0 + 4) * 0.75f;
+    while (arg1 < sp34[1]) {
+        sp34[1] -= arg1;
+    }
+    func_800EF04C(sp34, sp28);
+    func_800EF334(sp34, 1.0f - *(f32 *)(arg0 + 0x28));
+    func_800EF334((f32 *)(arg0 + 0x10), *(f32 *)(arg0 + 0x28));
+    func_800EF04C((f32 *)(arg0 + 0x10), sp34);
+}
 
 /* extern */
 
