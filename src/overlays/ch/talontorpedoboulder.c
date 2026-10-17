@@ -24,7 +24,48 @@ void func_8080000C_chtalontorpedoboulder(Actor *arg0) {
     func_80102FDC(arg0, 2.0f * arg0->scale);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/talontorpedoboulder/func_80800070_chtalontorpedoboulder.s")
+s32 func_80800070_chtalontorpedoboulder(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800DA544(GameFlag);
+    void *func_80101080(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_808001CC_chtalontorpedoboulder(u8 *);
+    int func_808001F8_chtalontorpedoboulder(void *);
+    extern s32 D_80800240_chtalontorpedoboulder[];
+    extern u8 D_808002FC_chtalontorpedoboulder[];
+    s32 flag;
+    s32 pod;
+    f32 *position;
+
+    switch (arg1) {
+        case 0x40:
+            flag = func_808001CC_chtalontorpedoboulder((u8 *)arg0);
+            pod = func_808001F8_chtalontorpedoboulder(arg0);
+            position = arg0->position;
+            _chexploder_entrypoint_3(arg0, position, 0xF);
+            func_800BABB8(0, position, position, arg0->scale, D_80800240_chtalontorpedoboulder);
+            _subaddieaudioquick_entrypoint_2(arg0, position, D_808002FC_chtalontorpedoboulder);
+            if (flag != 0) {
+                func_800DA544(flag);
+            }
+            if (pod != -1) {
+                _capod_entrypoint_13(arg0->unk0, NULL, pod, 0x10);
+            }
+            break;
+        case 0x90:
+            arg0 = func_80106790(func_80101080());
+            _chexploder_entrypoint_9(arg0, 1, 2);
+            _chexploder_entrypoint_9(arg0, 2, 0);
+            return 1;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
