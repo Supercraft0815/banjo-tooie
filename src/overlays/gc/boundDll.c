@@ -224,7 +224,63 @@ void func_80800720_gcboundDll(s32 arg0, s32 arg1, u32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/gcboundDll_entrypoint_6.s")
+void gcboundDll_entrypoint_6(u8 *arg0) {
+    void func_80800E6C_gcboundDll(u8 *, u8 *);
+    void func_80800EBC_gcboundDll(u8 *, s16 *);
+    struct BoundEntry {
+        u8 data[0x14];
+        u32 : 11;
+        u32 flag : 1;
+        u32 : 20;
+    };
+    s16 *var_s5;
+    s32 temp_fp;
+    s32 temp_s4;
+    s32 temp_v0;
+    s32 var_s7;
+    u32 var_s0;
+    u32 var_s3;
+    u8 *temp_v0_2;
+    u8 *var_s1;
+
+    temp_fp = *(s32 *)arg0;
+    var_s5 = *(s16 **)(arg0 + 4);
+    var_s7 = 0;
+    if (temp_fp > 0) {
+        do {
+            temp_s4 = func_80800630_gcboundDll(arg0, var_s5);
+            temp_v0 = func_80800654_gcboundDll(arg0, var_s5);
+            var_s3 = temp_v0 - 0x30;
+            if (var_s3 >= (u32)temp_s4) {
+                do {
+                    temp_v0_2 = (u8 *)(var_s3 + 0x18);
+                    var_s0 = var_s3;
+                    var_s1 = temp_v0_2;
+                    if ((var_s3 < (u32)temp_v0) &&
+                        ((struct BoundEntry *)var_s3)->flag &&
+                        !((struct BoundEntry *)temp_v0_2)->flag) {
+loop_5:
+                        func_80800E6C_gcboundDll((u8 *)var_s0, var_s1);
+                        var_s0 += 0x18;
+                        var_s1 += 0x18;
+                        if ((var_s0 < (u32)temp_v0) &&
+                            ((struct BoundEntry *)var_s0)->flag) {
+                            if (!((struct BoundEntry *)var_s1)->flag) {
+                                goto loop_5;
+                            }
+                        }
+                    }
+                    var_s3 -= 0x18;
+                } while (var_s3 >= (u32)temp_s4);
+            }
+            func_80800EBC_gcboundDll(arg0, var_s5);
+            var_s7 += 1;
+            var_s5 += 0xE;
+        } while (var_s7 != temp_fp);
+    }
+    func_80800720_gcboundDll((s32)arg0, *(s32 *)(arg0 + 8), *(u32 *)(arg0 + 0xC));
+    func_80800720_gcboundDll((s32)arg0, *(s32 *)(arg0 + 0x10), *(u32 *)(arg0 + 0x14));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_808008D8_gcboundDll.s")
 
