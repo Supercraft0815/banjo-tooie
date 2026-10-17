@@ -181,7 +181,33 @@ void func_80800DDC_chmasterjiggy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_80800E58_chmasterjiggy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_80801030_chmasterjiggy.s")
+s32 func_80801030_chmasterjiggy(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_14(void);
+    void func_80800E58_chmasterjiggy(Actor *, s32);
+
+    switch (arg1) {
+        case 0x95:
+            if (arg0->unk70_10 == 1) {
+                func_80800E58_chmasterjiggy(arg0, 2);
+            } else {
+                func_80800E58_chmasterjiggy(arg0, 6);
+            }
+            break;
+        case 0x2E:
+            func_80800E58_chmasterjiggy(arg0, 5);
+            break;
+        case 0xB:
+            if (arg2 == 0x17) {
+                _capod_entrypoint_14();
+                func_80800E58_chmasterjiggy(arg0, 7);
+                return 4;
+            }
+            return 3;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_808010E4_chmasterjiggy(Actor *arg0) {
     typedef struct {
