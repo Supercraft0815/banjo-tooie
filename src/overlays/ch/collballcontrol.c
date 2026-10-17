@@ -1021,7 +1021,43 @@ void func_8080405C_chcollballcontrol(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80804420_chcollballcontrol.s")
+void func_80804420_chcollballcontrol(Actor *arg0) {
+    typedef struct {
+        void *controller;
+        u8 pad4[0x10];
+        u8 mode;
+    } BallData;
+    typedef struct {
+        u8 pad[0x64];
+        u32 active : 1;
+        u32 : 1;
+        u32 controlled : 1;
+        u32 controller_index : 2;
+    } BallFlags;
+    void *func_80100094(Actor *, u32);
+    void func_8010A590(Actor *);
+    void *func_800BD0DC(s32);
+    void func_800BD268();
+    void func_800BD28C();
+    s32 _gcstatusDll_entrypoint_11();
+    u8 _sukickball_entrypoint_3();
+    BallData *data;
+
+    data = func_80100094(arg0, 0);
+    ((BallFlags *)arg0)->active = 1;
+    arg0->scale = 0.5f;
+    func_8010A590(arg0);
+    data->mode = _sukickball_entrypoint_3();
+    if (data->mode == 4) {
+        if (arg0->unk6C_0 < _gcstatusDll_entrypoint_11()) {
+            ((BallFlags *)arg0)->controlled = 1;
+            ((BallFlags *)arg0)->controller_index = arg0->unk6C_0;
+        }
+    }
+    data->controller = func_800BD0DC(2);
+    func_800BD268(data->controller, arg0->unk6C_0);
+    func_800BD28C(data->controller, 2);
+}
 
 void func_808044F4_chcollballcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
