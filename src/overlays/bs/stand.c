@@ -57,11 +57,12 @@ void bsstand_entrypoint_0(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stand/func_80800274_bsstand.s")
 
+struct anctrl_s;
 void bsstand_entrypoint_1(PlayerState *arg0) {
-    void *baanim_getAnimCtrlPtr(PlayerState *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     f32 anctrl_getAnimTimer(void *);
-    s32 anctrl_getIndex(void *);
-    int anctrl_isAt(void *, f32);
+    int anctrl_getIndex(struct anctrl_s *);
+    int anctrl_isAt(struct anctrl_s *, f32);
     void anctrl_reset(void *);
     void anctrl_setDuration(void *, f32);
     void anctrl_setIndex(void *, s32);
@@ -228,7 +229,29 @@ void bsstand_entrypoint_4(PlayerState *arg0) {
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stand/bsstand_entrypoint_5.s")
+void bsstand_entrypoint_5(PlayerState *arg0) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    int anctrl_getIndex(struct anctrl_s *);
+    int anctrl_isAt(struct anctrl_s *, f32);
+    s32 anctrl_isStopped(struct anctrl_s *);
+    void func_8009DF18(PlayerState *, s32, f32, s32);
+    void bs_setState(PlayerState *, s32);
+    s32 sp24 = 0;
+    struct anctrl_s *sp20 = baanim_getAnimCtrlPtr(arg0);
+
+    if (anctrl_getIndex(sp20) == 0xD2) {
+        if (anctrl_isAt(sp20, 0.8264f)) {
+            func_8009DF18(arg0, 0x449, 1.0f, 0x36B0);
+        }
+        if (anctrl_isAt(sp20, 0.8864f)) {
+            func_8009DF18(arg0, 0x449, 1.0f, 0x36B0);
+        }
+    }
+    if (anctrl_isStopped(sp20)) {
+        sp24 = 1;
+    }
+    bs_setState(arg0, func_80800038_bsstand(arg0, sp24));
+}
 
 void bsstand_entrypoint_6(s32 arg0) 
 {
