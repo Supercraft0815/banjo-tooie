@@ -1,6 +1,36 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/twinkle/idtwinkle_entrypoint_0.s")
+void idtwinkle_entrypoint_0(s32 arg0, s16 *arg1, u8 *arg2, void *arg3) {
+    s32 i;
+    s32 distance;
+    s32 delta[3];
+
+    for (i = 0; &delta[i] < &delta[3]; i++) {
+        delta[i] = arg1[i] - ((s16 *)arg3)[i + 7];
+    }
+    distance = delta[0] * delta[0] + delta[1] * delta[1] + delta[2] * delta[2];
+    if (*(s32 *)((u8 *)arg3 + 0x14) >= distance) {
+        arg0 = 0;
+        if (*(s16 *)((u8 *)arg3 + 0x28) > 0) {
+            arg2 = *(u8 **)((u8 *)arg3 + 0x2C);
+            do {
+                if (*(s16 *)(arg2 + 8) == arg1[0] &&
+                    *(s16 *)(arg2 + 0xA) == arg1[1] &&
+                    *(s16 *)(arg2 + 0xC) == arg1[2]) {
+                    break;
+                }
+                arg0++;
+                arg2 += 0x10;
+            } while (arg0 < *(s16 *)((u8 *)arg3 + 0x28));
+        }
+        if (arg0 == *(s16 *)((u8 *)arg3 + 0x28) && *(s16 *)((u8 *)arg3 + 0x28) < 10) {
+            *(s16 *)(*(u8 **)((u8 *)arg3 + 0x2C) + *(s16 *)((u8 *)arg3 + 0x28) * 0x10 + 8) = arg1[0];
+            *(s16 *)(*(u8 **)((u8 *)arg3 + 0x2C) + *(s16 *)((u8 *)arg3 + 0x28) * 0x10 + 0xA) = arg1[1];
+            *(s16 *)(*(u8 **)((u8 *)arg3 + 0x2C) + *(s16 *)((u8 *)arg3 + 0x28) * 0x10 + 0xC) = arg1[2];
+            (*(s16 *)((u8 *)arg3 + 0x28))++;
+        }
+    }
+}
 
 void idtwinkle_entrypoint_1(s32 arg0, void *arg1, s32 arg2, void *arg3) {
     if ((*(s16 *)((s8 *)(arg3) + (0x26))) == (*(s16 *)((s8 *)(arg3) + (0x24)))) {
