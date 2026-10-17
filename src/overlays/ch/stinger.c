@@ -33,7 +33,30 @@ void func_80800000_chstinger(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stinger/func_8080015C_chstinger.s")
+void func_8080015C_chstinger(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_800CB840(s32, s32);
+    void func_800CB870(void);
+    void func_80109BEC(s32, f32, s32, s32, s32, s32);
+    s8 *data;
+
+    data = func_80100094(arg0, 0);
+    if (arg1 != arg0->unk70_10) {
+        func_80101FDC(arg0, arg1);
+        switch (arg0->unk70_10) {
+            case 2:
+                data[0x28] = 1;
+                break;
+            case 3:
+                func_800CB840(4, arg0);
+                func_80109BEC(arg0->position, 120.0f, 2, 0, 0, arg0->unk0);
+                func_800CB870();
+                func_80800000_chstinger(arg0);
+                break;
+        }
+    }
+}
 
 void func_80800218_chstinger(Actor *arg0) {
     void func_800F1A88(f32 *, f32 *);
@@ -54,17 +77,19 @@ void func_8080025C_chstinger(s32 arg0)
 s32 func_808003B0_chstinger(s32 arg0) {
     s32 func_800EA068(s32);
     s32 func_800F7A7C(s32, s8, s32, s32, s32 *);
-    s8 *func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_80800264_chstinger(s32, s32 *);
     s32 sp2C[3];
     s32 sp28;
     s32 temp_v0;
+    s8 *data;
 
     if (func_800EA068(0x4000) != 0) {
         temp_v0 = func_80800264_chstinger(arg0, sp2C);
         sp28 = temp_v0;
         if (temp_v0 >= 0) {
-            func_800F7A7C(sp28, *func_80100094(arg0, 0), 1, 3, sp2C);
+            data = func_80100094(arg0, 0);
+            func_800F7A7C(sp28, *data, 1, 3, sp2C);
             return 1;
         }
     }
