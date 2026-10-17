@@ -9,29 +9,6 @@ void glsplinecs_entrypoint_0(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/spline/cs/func_8080002C_glsplinecs.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/spline/cs/func_80800228_glsplinecs.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/spline/cs/func_80800310_glsplinecs.s")
-
-/* extern */
-
-s32 func_808003A8_glsplinecs(Actor *arg0) {
-    s32 func_80104248(void *);
-    s32 func_801042B8(s32);
-    struct anctrl_s;
-    void anctrl_reset(struct anctrl_s *);
-    s32 var_v1;
-    s32 temp_v0_2;
-
-    var_v1 = func_80104248(arg0);
-    if (var_v1 == 0) {
-        temp_v0_2 = func_801042B8((s32) arg0);
-        var_v1 = temp_v0_2;
-        anctrl_reset((struct anctrl_s *) var_v1);
-    }
-    return var_v1;
-}
-
 typedef struct {
     u32 id:8;
     u32 index:13;
@@ -61,6 +38,14 @@ typedef struct {
     u32 bit6:1;
     u32 actorTarget:6;
     f32 unk2C;
+    f32 unk30;
+    f32 unk34;
+    f32 unk38;
+    f32 unk3C;
+    f32 unk40;
+    u8 relative:1;
+    u8 splineMode:2;
+    u8 pad44:5;
 } SplineCSState;
 
 typedef struct { u8 pad:4; u8 mode:4; } SplineCSActorMode;
@@ -84,8 +69,50 @@ typedef struct {
     SplineCSTarget *entries;
 } SplineCSController;
 
+void func_80800228_glsplinecs(SplineCSController *arg0, Actor *arg1, s32 arg2, s32 arg3, s32 *arg4) {
+    void *func_80105494(Actor *);
+    SplineCSState *state;
+    s32 command;
+
+    state = func_80105494(arg1);
+    state->splineMode = arg3;
+    command = *arg4;
+    if (command == 0x10006) {
+        state->unk38 = state->unkC;
+        state->unk3C = (f32)arg2 / 4000000.0f;
+        state->relative = 0;
+        return;
+    }
+    if (command == 0x10005) {
+        state->unk38 = arg0->elapsed;
+        state->unk3C = (f32)arg4[state->index] + arg0->elapsed;
+        state->relative = 1;
+    }
+}
+
+#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/spline/cs/func_80800310_glsplinecs.s")
+
+/* extern */
+
+s32 func_808003A8_glsplinecs(Actor *arg0) {
+    s32 func_80104248(void *);
+    s32 func_801042B8(s32);
+    struct anctrl_s;
+    void anctrl_reset(struct anctrl_s *);
+    s32 var_v1;
+    s32 temp_v0_2;
+
+    var_v1 = func_80104248(arg0);
+    if (var_v1 == 0) {
+        temp_v0_2 = func_801042B8((s32) arg0);
+        var_v1 = temp_v0_2;
+        anctrl_reset((struct anctrl_s *) var_v1);
+    }
+    return var_v1;
+}
+
 void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
-    SplineCSState *func_80105494(Actor *);
+    void *func_80105494(Actor *);
     u8 *func_800D674C(s32);
     Actor *func_80106790(Unk80132ED0 *);
     void func_800FFA88(Unk80132ED0 *);
@@ -387,7 +414,8 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
                 } else {
                     var_a0 = func_80106790(arg0->actors[temp_v0_10]);
                 }
-                func_80105494(var_a0)->unk20 = 0.00000000000f;
+                temp_v0_7 = func_80105494(var_a0);
+                temp_v0_7->unk20 = 0.00000000000f;
                 break;
             case 0xA:
                 var_s0 = (var_s1[1] >> 6) & 0x3F;
