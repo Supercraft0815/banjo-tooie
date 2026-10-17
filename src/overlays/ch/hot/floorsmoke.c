@@ -27,7 +27,22 @@ void func_8080000C_chhotfloorsmoke(Actor *arg0) {
     arg0->unk6C_0 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/floorsmoke/func_80800090_chhotfloorsmoke.s")
+void func_80800090_chhotfloorsmoke(Actor *arg0) {
+    s32 func_800D9078(f32 *);
+    void func_80101FDC(Actor *, u32);
+    void func_808000FC_chhotfloorsmoke(Actor *);
+
+    switch (arg0->unk70_10) {
+    case 1:
+        func_808000FC_chhotfloorsmoke(arg0);
+        return;
+    case 2:
+        if (func_800D9078(&arg0->unk58) != 0) {
+            func_80101FDC(arg0, 1);
+        }
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/floorsmoke/func_808000FC_chhotfloorsmoke.s")
 
