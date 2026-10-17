@@ -74,12 +74,34 @@ void func_80800224_chprisonbits(Actor *arg0) {
     }
 }
 
+s32 func_800DA298();
+
 void func_80800280_chprisonbits()
 {
     func_800DA298();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_808002A0_chprisonbits.s")
+s32 func_808002A0_chprisonbits(s32 arg0, s32 arg1, s32 arg2) {
+    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80800344_chprisonbits(s32);
+
+    switch (arg1) {
+        case 7:
+            func_80101180(0x11F, 0xA, 0);
+            break;
+        case 0xA:
+            func_80800344_chprisonbits(arg0);
+            break;
+        case 0x91:
+            if (func_800DA298(0xD5) != 0) {
+                return 0;
+            }
+        default:
+            return _chswitch_entrypoint_10(arg0, arg1, arg2);
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_80800344_chprisonbits.s")
 
