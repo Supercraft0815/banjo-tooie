@@ -1,5 +1,7 @@
 #include "bs/blongleg.h"
 
+struct anctrl_s;
+
 s32 func_80800000_bsblongleg(PlayerState* arg0)
 {
     return player_inWater(arg0);
@@ -83,7 +85,7 @@ void func_808002D8_bsblongleg(void *arg0) {
     s32 anctrl_setPlaybackType(s32, s32);
     s32 anctrl_setSmoothTransition(s32, s32);
     s32 anctrl_start(s32);
-    s32 baanim_getAnimCtrlPtr();
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     s32 bastatetimer_set(void *, s32, f32);
     f32 func_800A3394(void *);
     s32 func_800C3BDC(u8);
@@ -112,7 +114,7 @@ void func_80800378_bsblongleg(void *arg0) {
     s32 anctrl_setPlaybackType(s32, s32);
     s32 anctrl_setSmoothTransition(s32, s32);
     s32 anctrl_start(s32);
-    s32 baanim_getAnimCtrlPtr();
+    struct anctrl_s *baanim_getAnimCtrlPtr();
     s32 temp_v0;
 
     temp_v0 = baanim_getAnimCtrlPtr();
@@ -154,7 +156,32 @@ void bsblongleg_entrypoint_0(PlayerState *arg0) {
     func_8009D874(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_1.s")
+void bsblongleg_entrypoint_1(PlayerState *arg0) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    s32 anctrl_isStopped(struct anctrl_s *);
+    void bs_setState(PlayerState *, int);
+    void func_8009D2F0(PlayerState *, s32, f32);
+    s32 next_state;
+    struct anctrl_s *anim_ctrl;
+
+    next_state = 0;
+    anim_ctrl = baanim_getAnimCtrlPtr(arg0);
+    func_808000C8_bsblongleg(arg0);
+    func_8009D2F0(arg0, 1, 0.5f);
+    switch (arg0->unk15C.word) {
+        case 0:
+            if (anctrl_isStopped(anim_ctrl)) {
+                func_808002D8_bsblongleg(arg0);
+            }
+            break;
+        case 1:
+            if (anctrl_isStopped(anim_ctrl)) {
+                next_state = 0x26;
+            }
+            break;
+    }
+    bs_setState(arg0, next_state);
+}
 
 void bsblongleg_entrypoint_2(void *arg0) { func_80800204_bsblongleg(arg0); func_800C2FDC((*(u8 *)((s8 *)(arg0) + 0x160))); }
 
@@ -194,7 +221,7 @@ void bsblongleg_entrypoint_8(PlayerState *arg0) {
     s32 anctrl_setIndex(s32, s32);
     s32 anctrl_setPlaybackType(s32, s32);
     s32 anctrl_start(s32);
-    s32 baanim_getAnimCtrlPtr();
+    struct anctrl_s *baanim_getAnimCtrlPtr();
     s32 func_8008C9F0(s32, s32, s32, s32, f32);
     void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
     s32 sp24;
@@ -231,7 +258,7 @@ void func_80800994_bsblongleg(void *arg0) {
     s32 anctrl_setPlaybackType(s32, s32);
     s32 anctrl_setSmoothTransition(s32, s32);
     s32 anctrl_start(s32);
-    s32 baanim_getAnimCtrlPtr();
+    struct anctrl_s *baanim_getAnimCtrlPtr();
     s32 func_8008B188(s32, s32);
     s32 temp_v0;
 
@@ -255,7 +282,7 @@ void func_80800A18_bsblongleg(void *arg0) {
     s32 anctrl_setPlaybackType(s32, s32);
     s32 anctrl_setSmoothTransition(s32, s32);
     s32 anctrl_start(s32);
-    s32 baanim_getAnimCtrlPtr();
+    struct anctrl_s *baanim_getAnimCtrlPtr();
     s32 temp_v0;
 
     temp_v0 = baanim_getAnimCtrlPtr();
