@@ -217,7 +217,39 @@ void func_80100B3C(void) {
     D_80135A68 = 0x3667;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100B4C.s")
+void func_80100B4C(void) {
+    void *freelist_at(FreeList *, s32);
+    s16 freelist_capacity(FreeList *);
+    void freelist_free(FreeList *);
+    s32 freelist_is_element_alive(FreeList *, s32);
+    s32 _glpackvtx_entrypoint_1(s32);
+    void func_80100C74(void);
+    extern FreeList *D_80135A60[2];
+    s32 i;
+    s32 *entry;
+
+    func_80100C74();
+    func_80100C74();
+    for (i = 1; D_80135A60[0] != 0 && i < freelist_capacity(D_80135A60[0]); i++) {
+        if (freelist_is_element_alive(D_80135A60[0], i)) {
+            func_801009C4(freelist_at(D_80135A60[0], i), i);
+        }
+    }
+    if (D_80135A60[0] != 0) {
+        freelist_free(D_80135A60[0]);
+        D_80135A60[0] = 0;
+    }
+    if (D_80135A60[1] != 0) {
+        for (i = 1; i < freelist_capacity(D_80135A60[1]); i++) {
+            if (freelist_is_element_alive(D_80135A60[1], i)) {
+                entry = freelist_at(D_80135A60[1], i);
+                _glpackvtx_entrypoint_1(*entry);
+            }
+        }
+        freelist_free(D_80135A60[1]);
+        D_80135A60[1] = 0;
+    }
+}
 
 void func_80100C74(void) {
     void *freelist_at(FreeList *, s32);
