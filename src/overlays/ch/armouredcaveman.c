@@ -46,7 +46,26 @@ block_9:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/armouredcaveman/func_80800370_charmouredcaveman.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/armouredcaveman/func_80800640_charmouredcaveman.s")
+void func_80800640_charmouredcaveman(Actor *arg0) {
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    extern s32 D_80800B78_charmouredcaveman;
+    extern u32 D_80800BA4_charmouredcaveman, D_80800BB0_charmouredcaveman, D_80800BBC_charmouredcaveman;
+    s32 sp44;
+    f32 sp38[3];
+    f32 sp2C[3];
+    sp44 = _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80800BA4_charmouredcaveman, &D_80800BBC_charmouredcaveman);
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800BB0_charmouredcaveman, 0.83f);
+    if (sp44 && arg0->unk7C_12) {
+    func_800EE7F8(sp38, arg0->position);
+    sp38[1] += arg0->scale * 180.0f;
+    func_800EE7F8(sp2C, sp38);
+    sp2C[1] -= arg0->scale * 10.0f;
+    func_800BBCB8(sp38, sp2C, 1.0f, 8, &D_80800B78_charmouredcaveman);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/armouredcaveman/func_8080072C_charmouredcaveman.s")
 
