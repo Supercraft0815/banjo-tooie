@@ -46,7 +46,35 @@ s32 func_80800130_chstoneballcontrol(s32 arg0) {
     return ((s32 *)&D_80805088_chstoneballcontrol)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800144_chstoneballcontrol.s")
+void func_80800144_chstoneballcontrol(void *arg0) {
+    void *func_80100094(Actor *, u32);
+    void _sukickball_entrypoint_17(Actor *);
+    void _capod_entrypoint_14(void);
+    void func_800A54F8(s32);
+    s32 func_800DA298(s32);
+    struct StoneballData {
+        u8 pad0[0x39];
+        u8 state;
+    } *data;
+    Actor *actor = arg0;
+    u8 state;
+
+    data = func_80100094(arg0, 0);
+    _sukickball_entrypoint_17(arg0);
+    if (func_800DA298(0x6AD) == 0) {
+        if (actor->unk79_4 != 1 && !actor->unk64_20) {
+            if (actor->unk79_4 == 2) {
+                _capod_entrypoint_14();
+            }
+            state = data->state;
+            if (state == 0 || state == 1 || state == 2) {
+                func_800A54F8(0);
+            }
+            func_80800000_chstoneballcontrol(arg0, 0xF1C, 0);
+            actor->unk70_10 = 3;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800210_chstoneballcontrol.s")
 
