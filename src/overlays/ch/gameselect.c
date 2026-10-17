@@ -2582,7 +2582,42 @@ s32 func_80807790_chgameselect(Actor *arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80807824_chgameselect.s")
+void func_80807824_chgameselect(Actor *arg0) {
+    typedef struct {
+        s32 entries[9];
+        s16 count;
+    } GameSelectZoomData;
+    void *func_80100094(Actor *, u32);
+    s32 func_8001211C(void);
+    void _gczoombox_entrypoint_27(s32, s16 *);
+    extern s16 B_80808590_chgameselect[];
+    GameSelectZoomData *data;
+    s32 *entry;
+    s32 phase;
+    s32 brightness;
+    s16 color;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    phase = (func_8001211C() << 5) & 0x1FF;
+    brightness = phase;
+    if (phase >= 0x100) {
+        brightness = 0x200 - phase;
+    }
+    color = brightness / 2 + 0x7F;
+    B_80808590_chgameselect[2] = color;
+    B_80808590_chgameselect[1] = color;
+    B_80808590_chgameselect[0] = color;
+    i = 0;
+    entry = data->entries;
+    if (data->count > 0) {
+        do {
+            _gczoombox_entrypoint_27(*entry, B_80808590_chgameselect);
+            i++;
+            entry++;
+        } while (i < data->count);
+    }
+}
 
 OSThread *chgameselect_entrypoint_7(void)
 {
