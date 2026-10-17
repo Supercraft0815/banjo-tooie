@@ -36,17 +36,18 @@ s32 func_808000B4_chmusicmenu(s32 arg0) {
     return arg0 + 0x1860;
 }
 
+struct MusicMenuEntry {
+    s16 (*unk0)[2];
+    u8 count;
+    u8 sound;
+    u16 unk6;
+};
+
 void func_808000D0_chmusicmenu(Actor *arg0, s32 arg1) {
     void _gcnewoption_entrypoint_31(s32, s32, s16);
     s32 _gcnewoption_entrypoint_32(s32, s32);
     void _gcnewoption_entrypoint_33(s32);
     int func_800DC298(f32);
-    struct MusicMenuEntry {
-        u32 unk0;
-        u8 count;
-        u8 sound;
-        u16 unk6;
-    };
     extern struct MusicMenuEntry D_808014F4_chmusicmenu[];
     struct MusicMenuEntry *entry;
     struct MusicMenuEntry *entry2;
@@ -85,7 +86,30 @@ void func_808000D0_chmusicmenu(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_80800400_chmusicmenu.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_80800560_chmusicmenu.s")
+void func_80800560_chmusicmenu(Actor *arg0, f32 arg1, f32 arg2) {
+    void func_800FC660(u32);
+    void func_800FCAE0(u32, u32, u32);
+    void func_80800400_chmusicmenu(Actor *);
+    extern struct MusicMenuEntry D_808014F4_chmusicmenu[];
+    struct MusicMenuActorData {
+        s32 selection;
+        s32 unk4[2];
+        f32 value;
+        s32 unk10[2];
+        s32 category;
+    };
+    s16 (*tracks)[2] = D_808014F4_chmusicmenu[arg0->actorData[6]].unk0;
+
+    if (arg2 == 0.0f) {
+        func_800FC660(tracks[arg0->actorData[0]][0]);
+    } else {
+        func_800FCAE0(tracks[arg0->actorData[0]][0], -1, 0x14D);
+    }
+    arg0->unk74_30 = 0;
+    arg0->unk74_29 = 0;
+    ((struct MusicMenuActorData *)arg0->actorData)->value = arg2;
+    func_80800400_chmusicmenu(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_80800610_chmusicmenu.s")
 
