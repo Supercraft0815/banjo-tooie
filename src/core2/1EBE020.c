@@ -140,7 +140,68 @@ void func_800E4CE8(void) {
     } while (var_s0 != 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E4D28.s")
+s32 func_800E4D28(void *arg0) {
+    struct decoder {
+        u8 *input;
+        s32 input_pos;
+        u8 *output;
+        u32 bits;
+        u32 count;
+        s32 unused14[7];
+        s32 offset;
+        s32 unused34;
+        u8 unused38;
+        u8 final;
+    };
+    void func_8001311C(u8 *, s32);
+    struct decoder *d = arg0;
+    u32 count;
+    u8 *input;
+    u32 bits;
+    s32 pos;
+
+    count = d->count;
+    bits = d->bits;
+    if (count == 0) {
+        input = d->input;
+        do {
+            pos = d->input_pos;
+            if (pos >= 0x1800) {
+                d->input_pos = 0;
+                func_8001311C(input, d->offset);
+                pos = d->input_pos;
+                d->offset += 0x1800;
+                input = d->input;
+            }
+            bits |= input[pos] << count;
+            d->input_pos = pos + 1;
+            count += 8;
+        } while (count == 0);
+    }
+    count--;
+    d->final = bits & 1;
+    bits >>= 1;
+    if (count < 2) {
+        input = d->input;
+        do {
+            pos = d->input_pos;
+            if (pos >= 0x1800) {
+                d->input_pos = 0;
+                func_8001311C(input, d->offset);
+                pos = d->input_pos;
+                d->offset += 0x1800;
+                input = d->input;
+            }
+            bits |= input[pos] << count;
+            d->input_pos = pos + 1;
+            count += 8;
+        } while (count < 2);
+    }
+    d->bits = bits >> 2;
+    count -= 2;
+    d->count = count;
+    return bits & 3;
+}
 
 s32 func_800E4E54(void *arg0) {
     struct code {
