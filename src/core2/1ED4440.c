@@ -41,7 +41,7 @@ void *func_800FABF4(f32 start[3], f32 end[3], f32 normal[3], u32 flags, f32 radi
     return triangle;
 }
 
-void func_800FACA0(f32 arg0[3], s32 unused, u32 arg1) {
+void func_800FACA0(f32 arg0[3], f32 unused, u32 arg1) {
     void func_800EE7F8(f32 *, f32 *);
     void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
     f32 sp34[3];
@@ -59,7 +59,26 @@ void func_800FACA0(f32 arg0[3], s32 unused, u32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FAD68.s")
+void func_800FAD68(f32 arg0[3], f32 arg1, f32 arg2, s32 arg3, u32 arg4) {
+    void *func_800C6C94(f32[3], f32, f32[3], u32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    extern const f32 D_80126140;
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 pad;
+    f32 scale;
+
+    func_800EFA4C(sp28, arg0[0], arg0[1] + arg2, arg0[2]);
+    if (func_800C6C94(sp28, arg1, sp34, arg4)) {
+        scale = D_80126140;
+        arg0[0] += scale * sp34[0];
+        arg0[1] += scale * sp34[1];
+        arg0[2] += scale * sp34[2];
+        if (arg3) {
+            func_800FACA0(arg0, arg2 + arg1, arg4);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FAE44.s")
 
