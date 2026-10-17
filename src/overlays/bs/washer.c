@@ -74,7 +74,38 @@ void func_808000F0_bswasher(struct player_state_s *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_808001A8_bswasher.s")
+void func_808001A8_bswasher(struct player_state_s *arg0) {
+    void _bawasher_entrypoint_2(struct player_state_s *);
+    void baflag_set(struct player_state_s *, s32);
+    void baroll_setAngularVelocity(struct player_state_s *, f32, f32);
+    void bastick_pushZone(struct player_state_s *);
+    void bastick_setZoneMax(struct player_state_s *, s32, f32);
+    void func_80092864(struct player_state_s *, f32);
+    void func_800947EC(struct player_state_s *, s32, s32);
+    void func_80095964(void *, s32);
+    void func_800959C8(struct player_state_s *, f32, f32);
+    void func_8009BFE4(struct player_state_s *, f32, f32);
+    void func_8009E4AC(struct player_state_s *);
+    void func_8009E55C(struct player_state_s *, s32, f32);
+    s32 func_8009E77C(struct player_state_s *, s32);
+    if (func_8009E77C(arg0, 0x15) == 0) {
+        _bawasher_entrypoint_2(arg0);
+        func_8009BFE4(arg0, 1000.0f, 12.0f);
+        baroll_setAngularVelocity(arg0, 1000.0f, 12.0f);
+        bastick_pushZone(arg0);
+        bastick_setZoneMax(arg0, 0, 0.12f);
+        bastick_setZoneMax(arg0, 1, 1.0f);
+        func_800959C8(arg0, 100.0f, 52.0f);
+        func_80095964(arg0, 1);
+        func_8009E4AC(arg0);
+        func_8009E55C(arg0, 0, 70.0f);
+        func_8009E55C(arg0, 1, 78.0f);
+        baflag_set(arg0, 3);
+        baflag_set(arg0, 4);
+        func_800947EC(arg0, 1, 1);
+        func_80092864(arg0, 1.79998779296875f);
+    }
+}
 
 void bswasher_entrypoint_0(s32 arg0) {
     s32 func_800B5BE4(s32);
@@ -104,7 +135,7 @@ void func_808005B8_bswasher(struct player_state_s *arg0) {
     void _basudie_entrypoint_2(struct player_state_s *, f32, f32, f32);
     s32 func_8080042C_bswasher(struct player_state_s *, s32);
 
-    func_808001A8_bswasher();
+    func_808001A8_bswasher(arg0);
     _basudie_entrypoint_2(arg0, *(f32 *)((s8 *)arg0 + 0x16C), 420.0f, -1200.0f);
     *(s32 *)((s8 *)arg0 + 0x15C) = 0;
     *(f32 *)((s8 *)arg0 + 0x16C) = 250.0f;
@@ -270,7 +301,7 @@ void func_808011B4_bswasher(s32 arg0)
     _baspin_entrypoint_1();
     func_808000F0_bswasher(arg0);
 }
-void func_808011DC_bswasher(s32 arg0) { func_808001A8_bswasher(); _baspin_entrypoint_2(arg0, 0x358, 0x3FE66666, 2, 0); }
+void func_808011DC_bswasher(s32 arg0) { func_808001A8_bswasher(arg0); _baspin_entrypoint_2(arg0, 0x358, 0x3FE66666, 2, 0); }
 
 /* extern */
 
@@ -313,7 +344,7 @@ void func_808012BC_bswasher(struct player_state_s *arg0) {
     void _babounce_entrypoint_5(struct player_state_s *, s32, f32);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     void func_8008B10C(struct anctrl_s *, f32);
-    func_808001A8_bswasher();
+    func_808001A8_bswasher(arg0);
     _babounce_entrypoint_4(arg0, 2);
     _babounce_entrypoint_5(arg0, 0x358, 0.5128f);
     func_8008B10C(baanim_getAnimCtrlPtr(arg0), 0.1026f);
@@ -350,7 +381,7 @@ void func_8080137C_bswasher(s32 arg0)
 }
 void func_808013A4_bswasher(s32 arg0)
 {
-    func_808001A8_bswasher();
+    func_808001A8_bswasher(arg0);
     _bsrest_entrypoint_16(arg0);
 }
 /* extern */
@@ -434,7 +465,7 @@ void func_80801744_bswasher(s32 arg0)
     func_808000F0_bswasher(arg0);
 }
 
-void func_80801770_bswasher(s32 arg0) { func_808001A8_bswasher(); *(s32 *)((u8 *)arg0 + 0x15C) = 0; func_808015EC_bswasher(arg0, 1); }
+void func_80801770_bswasher(s32 arg0) { func_808001A8_bswasher(arg0); *(s32 *)((u8 *)arg0 + 0x15C) = 0; func_808015EC_bswasher(arg0, 1); }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_808017A0_bswasher.s")
 
