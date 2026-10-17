@@ -394,7 +394,34 @@ void *func_808033A0_chdiggerboss(Actor *arg0, s32 arg1, s32 *arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80803424_chdiggerboss.s")
+s32 func_80803424_chdiggerboss(Actor *arg0, s32 arg1) {
+    s32 func_800DC128(s32, s32);
+    int func_80803524_chdiggerboss(u8 *, s32);
+    void func_80803558_chdiggerboss(s32, s32, s32);
+    void bzero(void *, int);
+    extern u16 D_80809F28_chdiggerboss[][2];
+    s32 count;
+    s32 index;
+    s32 i;
+    u8 *array;
+
+    array = func_808033A0_chdiggerboss(arg0, arg1, &count);
+    index = func_800DC128(0, count);
+    for (i = 0; i < count; i++) {
+        if (func_80803524_chdiggerboss(array, index) == 0) {
+            func_80803558_chdiggerboss((s32)array, index, 1);
+            return D_80809F28_chdiggerboss[arg1][0] + index;
+        }
+        index++;
+        if (index == count) {
+            index = 0;
+        }
+    }
+    bzero(array, (count + 7) >> 3);
+    index = func_800DC128(0, count);
+    func_80803558_chdiggerboss((s32)array, index, 1);
+    return D_80809F28_chdiggerboss[arg1][0] + index;
+}
 
 int func_80803524_chdiggerboss(u8 *array, s32 index) {
     return ((array + (index >> 3))[0] & (1 << (index & 7))) ? 1 : 0;
