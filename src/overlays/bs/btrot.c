@@ -852,7 +852,33 @@ void bsbtrot_entrypoint_40(PlayerState *arg0) { func_80802380_bsbtrot(arg0, 0); 
 
 void bsbtrot_entrypoint_41(PlayerState *arg0) { func_80800538_bsbtrot(arg0); _bashoes_entrypoint_5(arg0, 1); *(s32 *)((s8 *)arg0 + 0x15C) = 0; func_80802380_bsbtrot(arg0, 1); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_42.s")
+void bsbtrot_entrypoint_42(PlayerState *arg0) {
+    s32 sp24;
+    s32 temp_v0;
+    f32 baanim_getTimer(PlayerState *);
+    int baanim_isAt(PlayerState *, f32);
+    int baanim_isStopped(PlayerState *);
+
+    sp24 = 0;
+    temp_v0 = *(s32 *)((s8 *)arg0 + 0x15C);
+    switch (temp_v0) {
+        case 1:
+            if (baanim_isAt(arg0, 0.4744f) != 0) {
+                func_80802380_bsbtrot(arg0, 2);
+            }
+            break;
+        case 2:
+            if (baanim_getTimer(arg0) < 0.87f) {
+                _bashoes_entrypoint_16(arg0);
+            }
+            func_80800438_bsbtrot(arg0);
+            if (baanim_isStopped(arg0) != 0) {
+                sp24 = 0x2F;
+            }
+            break;
+    }
+    bs_setState(arg0, sp24);
+}
 
 s32 bsbtrot_entrypoint_43(s32 arg0) {
     extern s32 D_80802EF0_bsbtrot[];
