@@ -221,7 +221,22 @@ s32 func_800D1C70()
     return 0x2A;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1C78.s")
+void func_800D1C78(u8 *arg0, u32 arg1) {
+    extern s32 D_8012B250;
+    s32 i;
+    s32 value;
+    s32 count;
+
+    func_800D1490();
+    count = arg1 >> 1;
+    if (count >= 0x16) {
+        count = 0x15;
+    }
+    for (i = 0; i < count; i++) {
+        value = (arg0[i * 2] << 8) | arg0[i * 2 + 1];
+        ((s16 *)D_8012B250)[i] = ((s16 *)&func_800D1A04)[i * 4] ^ value;
+    }
+}
 
 void func_800D1DFC(u8 *arg0) {
     extern s32 D_8012B250;
