@@ -35,7 +35,7 @@ void func_80800098_chjadestatue(Actor *arg0) {
     f32 func_800D8FF8(void);
     void func_800FFA88(Unk80132ED0 *);
     void func_80103110(Actor *, u32);
-    s32 func_808001C0_chjadestatue(void *);
+    void func_808001C0_chjadestatue(Actor *);
     arg0->rotation[1] -= func_800D8FF8() * 120.0f;
     func_80103110(arg0, 0);
     if (arg0->unk64_20) {
@@ -78,7 +78,29 @@ s32 func_80800140_chjadestatue(void *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadestatue/func_808001C0_chjadestatue.s")
+void func_808001C0_chjadestatue(Actor *arg0) {
+    void _fxsparkle_entrypoint_1(f32 *, u32);
+    s32 func_800D035C(s32);
+    void func_800D0BD4(s32, u32);
+    s32 func_800D24E8(s32, s32, u32);
+    void func_800FC63C(u32, u32);
+    s32 func_80101180(s32, s32, s32);
+    s32 sp1C;
+
+    _fxsparkle_entrypoint_1(arg0->position, 0xC);
+    func_800D0BD4(arg0->unk74_7 - 0x32, 5);
+    sp1C = func_800D035C(5);
+    func_800D24E8(0xEE, sp1C, 0);
+    func_800FC63C(0xE, 0x3E80);
+    switch (sp1C) {
+        case 10:
+            func_80101180(0x2B4, 7, 0);
+            return;
+        case 20:
+            func_80101180(0x2B4, 7, 1);
+            return;
+    }
+}
 
 /* extern */
 
@@ -94,7 +116,7 @@ void func_8080026C_chjadestatue(Actor *arg0) {
 
 void func_808002A4_chjadestatue(Actor *arg0) {
     s32 func_800D035C(s32);
-    s32 func_800D24E8(s32, s32, s32);
+    s32 func_800D24E8(s32, s32, u32);
     void func_800FFAB0(Actor *);
     s32 func_80101180(s32, s32, s32);
     s32 sp1C;
