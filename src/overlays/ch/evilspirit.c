@@ -88,7 +88,7 @@ int func_80800FF8_chevilspirit(s32 arg0) {
 /* extern */
 
 void func_80801344_chevilspirit(u8 *arg0) {
-    s32 func_8008FE94(s32, s32, u8 *);
+    void func_8008FE94();
     f32 func_80090010();
     void func_808013DC_chevilspirit(void *);
     func_8008FE94(5, arg0 + 0x18, arg0);
@@ -123,12 +123,25 @@ void func_808013DC_chevilspirit(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801458_chevilspirit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801534_chevilspirit.s")
+void func_80801534_chevilspirit(Actor *arg0) {
+    void func_8008FE94(s32, f32 *);
+    void func_80102424(Actor *, s32);
+    s32 func_808015E0_chevilspirit(Actor *, f32);
+    void func_80802090_chevilspirit(Actor *, s32 *);
+    extern u16 D_808022E8_chevilspirit;
+    func_8008FE94(5, (f32 *) arg0->actorData);
+    ((f32 *) arg0->actorData)[1] += 100.0f;
+    if (func_808015E0_chevilspirit(arg0, 25.0f) != 0) {
+        void *sound_data = &D_808022E8_chevilspirit;
+        func_80802090_chevilspirit(arg0, sound_data);
+        func_80102424(arg0, 1);
+    }
+}
 
 /* extern */
 
 void func_808015A4_chevilspirit(Actor *arg0) {
-    s32 func_80102424(Actor *, s32);
+    void func_80102424(Actor *, s32);
     s32 func_80801458_chevilspirit();
     s32 func_808015E0_chevilspirit(Actor *, f32);
     func_80801458_chevilspirit();
