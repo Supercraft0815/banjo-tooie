@@ -86,4 +86,28 @@ void func_808001C8_chdiggerground(Actor *arg0, u8 *arg1) {
     _sucoaster_entrypoint_20(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/ground/func_80800214_chdiggerground.s")
+void func_80800214_chdiggerground(Actor *arg0) {
+    s32 func_800B53A4(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    extern s32 D_80800450_chdiggerground;
+    s32 temp_s2;
+    f32 sp78[3];
+    f32 sp6C[3];
+    f32 sp60[3];
+    s32 var_s0;
+
+    func_800EE7F8(sp6C, arg0->position);
+    func_800EF1B8(sp6C, arg0->rotation[1], arg0->scale * 80.0f);
+    func_800EE7F8(sp60, sp6C);
+    sp60[1] -= 10.0f;
+    temp_s2 = func_800B53A4(8);
+    for (var_s0 = 0; var_s0 != 8; var_s0++) {
+        func_800EEB9C(sp78, (f32)var_s0 * 45.0f, 20.0f);
+        func_800EF04C(sp78, sp6C);
+        func_800BABB8(temp_s2, sp78, sp60, 1.0f, &D_80800450_chdiggerground);
+    }
+}
