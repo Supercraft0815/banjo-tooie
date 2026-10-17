@@ -80,7 +80,29 @@ void gcskyDll_entrypoint_0(u8 *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/skyDll/gcskyDll_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/skyDll/gcskyDll_entrypoint_2.s")
+/* extern */
+
+void gcskyDll_entrypoint_2(s32 arg0, s32 arg1) {
+    s32 _dbtex_entrypoint_0(s32);
+    s32 func_800B27FC(s32);
+    void func_800D5B24(void);
+    s32 func_800D674C(s32);
+    s32 var_s0;
+    s32 var_s1;
+    s32 temp_v0;
+
+    temp_v0 = func_80800000_gcskyDll(arg1);
+    var_s0 = 0;
+    var_s1 = temp_v0;
+    do {
+        if ((*(s16 *)((s8 *)(var_s1) + (4))) != 0) {
+            func_800D5B24();
+            (*(s32 *)((s8 *)((arg0 + (var_s0 * 4))) + (0x18))) = _dbtex_entrypoint_0(func_800B27FC(func_800D674C((*(s16 *)((s8 *)(var_s1) + (4))))));
+        }
+        var_s0 += 1;
+        var_s1 += 0x10;
+    } while (var_s0 != 2);
+}
 
 /* extern */
 
