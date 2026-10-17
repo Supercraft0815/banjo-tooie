@@ -164,7 +164,30 @@ s32 suspline_entrypoint_18(s32 arg0, s32 arg1, s32 arg2) {
     return (s32)((u32)arg0 * (u32)((arg1 * 0xC) + (arg2 * 4))) + 0x8C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_19.s")
+void suspline_entrypoint_19(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    void func_800EFD24(f32 *);
+    s32 i;
+    func_800EFD24((f32 *)(arg0 + 0x3C));
+    func_800EFD24((f32 *)(arg0 + 0x48));
+    *(f32 *)(arg0 + 0x60) = 0.0f;
+    *(f32 *)(arg0 + 0x64) = 0.0f;
+    for (i = 0; i < 9; i++) {
+        arg0[0x7E + i] = 0;
+    }
+    *(s16 *)(arg0 + 0x7A) = arg4;
+    *(s16 *)(arg0 + 0x7C) = arg5;
+    *(s16 *)(arg0 + 0x78) = arg1;
+    *(u8 *)(arg0 + 0x88) = arg2;
+    *(u8 *)(arg0 + 0x89) = arg3;
+    *(u8 *)(arg0 + 0x87) = 0;
+    *(f32 *)(arg0 + 0x54) = 1.0f;
+    func_800EFD24((f32 *)(arg0 + 0x48));
+    *(f32 *)(arg0 + 0x58) = 0.0f;
+    *(f32 *)(arg0 + 0x5C) = -0.01f;
+    *(u8 *)(arg0 + 0x8B) = 0;
+    *(u8 *)(arg0 + 0x8A) = 0;
+    func_80800C8C_suspline(arg0);
+    }
 
 /* extern */
 
@@ -172,7 +195,7 @@ void suspline_entrypoint_20(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s3
     s32 func_80100074(s32, s32, s32);
     s32 func_80100094(s32, s32);
     s32 suspline_entrypoint_18(s32, s32, s32);
-    s32 suspline_entrypoint_19(s32, s32, s32, s32, s32, s32);
+    void suspline_entrypoint_19(u8 *, s32, s32, s32, s32, s32);
     func_80100074(arg0, 1, suspline_entrypoint_18(arg1, arg2, arg3));
     suspline_entrypoint_19(func_80100094(arg0, 1), arg1, arg2, arg3, arg4, arg5);
 }
