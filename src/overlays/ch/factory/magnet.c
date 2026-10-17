@@ -213,7 +213,30 @@ OSThread *chfactorymagnet_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80801FB8_chfactorymagnet.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_808022D8_chfactorymagnet.s")
+s32 func_808022D8_chfactorymagnet(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800187B4(s32, f32, f32, f32);
+    void func_800DF830(s32);
+    s32 func_801015D0(Actor *);
+    void func_80101FDC(Actor *, u32);
+
+    switch (arg1) {
+        case 0x1F:
+            func_801015D0(arg0);
+            func_800DF830(2);
+            return 1;
+        case 0xA:
+            arg0->unk64_16 = 1;
+            func_80101FDC(arg0, 2);
+            func_800187B4(0, 1.0f, 2.0f, 0.5f);
+            return 1;
+        case 0x4F:
+            func_80101FDC(arg0, 4);
+            func_800187B4(0, 2.0f, 1.0f, 0.5f);
+            return 1;
+        default:
+            return 0;
+    }
+}
 
 OSThread *chfactorymagnet_entrypoint_3(void)
 {
