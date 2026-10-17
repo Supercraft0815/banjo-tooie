@@ -108,7 +108,34 @@ void *ncpoddialog_entrypoint_0(s16 arg0) {
     return func_8001B798(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/ncpoddialog_entrypoint_1.s")
+/* extern */
+
+s32 ncpoddialog_entrypoint_1(s16 arg0, s32 arg1) {
+    s32 func_808015CC_ncpoddialog(void *, s32);
+    void *sp1C;
+    s32 temp_v0;
+    s32 temp_v0_2;
+    s32 var_v1;
+    u8 temp_v0_4;
+    void *temp_v0_3;
+
+    temp_v0_3 = ncpoddialog_entrypoint_0(arg0);
+    sp1C = temp_v0_3;
+    temp_v0_2 = func_80801058_ncpoddialog(temp_v0_3, arg1);
+    var_v1 = temp_v0_2;
+    if (temp_v0_2 == 4) {
+        return temp_v0_2;
+    }
+    temp_v0_4 = (*(u8 *)((s8 *)(sp1C) + (0x210)));
+    if ((temp_v0_4 != 1) && (temp_v0_4 == 2)) {
+        temp_v0 = func_808015CC_ncpoddialog(sp1C, arg1);
+        var_v1 = temp_v0;
+        if (temp_v0 == 4) {
+            return temp_v0;
+        }
+    }
+    return var_v1;
+}
 
 s16 ncpoddialog_entrypoint_2(void) {
     s16 func_8001B668(s32, s32);
