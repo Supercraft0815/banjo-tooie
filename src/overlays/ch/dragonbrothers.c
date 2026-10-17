@@ -223,7 +223,31 @@ void func_80800B9C_chdragonbrothers(u8 *arg0, s32 arg1, f32 *arg2) {
     arg0[0x64] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80800C08_chdragonbrothers.s")
+void func_80800C08_chdragonbrothers(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    s32 func_8001210C(s32);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    f32 func_80101F24(Actor *);
+    extern s32 D_80805588_chdragonbrothers;
+    extern u32 D_808055C0_chdragonbrothers;
+    extern s32 D_808055DC_chdragonbrothers;
+    f32 temp_f0;
+    f32 sp28[3];
+
+    temp_f0 = func_80101F24(arg0);
+    if (!(temp_f0 < 0.1f) && !(temp_f0 > 0.9f) && arg0->unk7C_12 && (func_8001210C(7) != 0)) {
+        _subaddieskeleton_entrypoint_2(arg0->unk0, 4, sp28);
+        if (!arg0->unk7A_8) {
+            sp28[1] += 100.0f;
+            func_800BBCB8(sp28, NULL, arg0->scale, 1, &D_80805588_chdragonbrothers);
+            _subaddieaudioloop_entrypoint_4(arg0, sp28, 1, &D_808055C0_chdragonbrothers);
+            return;
+        }
+        sp28[1] += 200.0f;
+        func_800BBCB8(sp28, NULL, arg0->scale, 1, &D_808055DC_chdragonbrothers);
+    }
+}
 
 void func_80800D20_chdragonbrothers(u8 *arg0, s16 arg1, s32 arg2) {
     s32 func_800C05B8(s32, s32, f32*, Unk80132ED0*, s32, s32, s16);
