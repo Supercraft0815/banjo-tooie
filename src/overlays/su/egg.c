@@ -182,7 +182,29 @@ int suegg_entrypoint_14(Actor *arg0) {
 void suegg_entrypoint_15(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_16.s")
+void suegg_entrypoint_16(Actor *arg0) {
+    void _sueggmove_entrypoint_9(Actor *);
+    void _sumissilehome_entrypoint_5(Actor *, void *, f32, f32);
+    void _sumissilehome_entrypoint_6(Actor *, void *);
+    void suegg_entrypoint_22(Actor *);
+    f32 func_800D8FF8(void);
+    u8 *data;
+    u8 state;
+
+    data = func_80100094(arg0, 0);
+    state = data[0x38];
+    if (state != 1) {
+        if (state == 2) {
+            data[0x38] = 3;
+            _sumissilehome_entrypoint_5(arg0, data + 0x14, 4500.0f, 1400.0f);
+        }
+        _sumissilehome_entrypoint_6(arg0, data + 0x14);
+    }
+    _sueggmove_entrypoint_9(arg0);
+    func_80800064_suegg(arg0);
+    suegg_entrypoint_22(arg0);
+    *(f32 *)(data + 0x30) += func_800D8FF8();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_17.s")
 
