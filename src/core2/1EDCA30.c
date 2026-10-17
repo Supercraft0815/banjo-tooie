@@ -108,7 +108,7 @@ void func_80103938(void *arg0) {
 
 /* extern */
 
-s32 func_80103964(u8 *arg0) {
+u8 *func_80103964(u8 *arg0) {
     void *func_800D674C(s32);
     s32 temp_a1;
 
@@ -116,7 +116,7 @@ s32 func_80103964(u8 *arg0) {
     if ((temp_a1 == 0) || (temp_a1 == 0xFFFF)) {
         return 0;
     }
-    return (s32)func_800D674C(temp_a1);
+    return func_800D674C(temp_a1);
 }
 
 s32 func_801039A4(u8 *arg0) {
@@ -130,7 +130,39 @@ s32 func_801039A4(u8 *arg0) {
     return func_800D6B0C(temp_a1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_801039E4.s")
+u8 *func_801039E4(Unk80132ED0 *arg0) {
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80103D48(void **);
+    void func_80103D70(void **);
+    void func_80103508(u8 *);
+    u8 *func_800B2824(u8 *);
+    void _subaddiecustomhits_entrypoint_0(Actor *, void *);
+    extern u8 _subaddiecustomhits_entrypoint_1;
+    u8 *sp24;
+    Actor *actor;
+    typedef struct {
+        u32 pad0[2];
+        u32 pad8_2 : 30;
+        u32 unk8_1 : 1;
+        u32 pad8_0 : 1;
+    } HitData;
+
+    sp24 = func_80103964(arg0);
+    if (sp24 == NULL) {
+        return NULL;
+    }
+    actor = func_80106790(arg0);
+    func_80103D48(actor);
+    func_80103508(actor);
+    if (!actor->pad74_31 && arg0->unkC == 0) {
+        if (((HitData *)arg0->unk0)->unk8_1 && func_800B2824(sp24) != NULL) {
+            _subaddiecustomhits_entrypoint_0(actor, &_subaddiecustomhits_entrypoint_1);
+        }
+        actor->pad74_31 = 1;
+    }
+    func_80103D70(actor);
+    return sp24;
+}
 
 void func_80103AA0(u8 *arg0)
 {
@@ -338,7 +370,7 @@ s32 func_80104004(Actor *arg0, f32 *arg1, f32 *arg2) {
     void func_800D62E4(s32);
     void func_800EE84C(f32 *, s32 *);
     void func_800EF334(f32 *, f32);
-    s32 func_801039E4(Unk80132ED0 *);
+    u8 *func_801039E4(Unk80132ED0 *);
     s32 sp2C[3];
     s32 sp20[3];
     s32 vertices;
