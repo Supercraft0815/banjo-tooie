@@ -101,7 +101,7 @@ void func_80800DB8_chjollyroger(Actor* arg0)
 
 s32 func_80800DD8_chjollyroger(void *arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_0(s32, s32);
-    s32 func_80800E6C_chjollyroger(void *, s32, s32);
+    void func_80800E6C_chjollyroger(Actor *, s32, s32);
     if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
         if ((*(s32 *)((s8 *)(arg0) + (0x28))) != 2) {
             func_80800E6C_chjollyroger(arg0, 2, 1);
@@ -121,7 +121,33 @@ void func_80800E30_chjollyroger(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800E6C_chjollyroger.s")
+void func_80800E6C_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_7(s32, s32);
+    s32 _capod_entrypoint_8(s32);
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    void _gcdialogcamera_entrypoint_5(f32 *);
+    void _gcdialogcamera_entrypoint_8(void);
+    extern u32 D_808012A8_chjollyroger;
+    extern u32 D_808012B8_chjollyroger;
+
+    switch (arg0->actorData[4]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x10, 0);
+        case 1:
+        case 3:
+            _capod_entrypoint_8(1);
+            arg0->actorData[4] = 2;
+            _gcdialogcamera_entrypoint_3(arg0->unk6C_9 == 0x360 ? &D_808012A8_chjollyroger : &D_808012B8_chjollyroger, arg0->scale);
+            _gcdialogcamera_entrypoint_4(arg0->position);
+            _gcdialogcamera_entrypoint_5(arg0->rotation);
+            _gcdialogcamera_entrypoint_8();
+        case 2:
+            _capod_entrypoint_7(arg1, arg2);
+            break;
+    }
+}
 
 void func_80800F3C_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
