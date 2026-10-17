@@ -252,7 +252,7 @@ void func_800A0180(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A01F8.s")
+BanjoStateId func_800A01F8(PlayerState *arg0, BanjoStateId arg1) { int baflag_isTrue(PlayerState *, s32); int bakey_pressed(PlayerState *, int); int bakey_held(PlayerState *, s32); int bainput_should_beak_barge(PlayerState *); s32 bainput_should_enter_first_person(); s32 _badrone_entrypoint_24(PlayerState *); s32 _badrone_entrypoint_25(PlayerState *); int func_8008E148(PlayerState *); s32 func_800A055C(PlayerState *, s32); if (baflag_isTrue(arg0, 0xF) != 0) { return arg1; } if (bakey_pressed(arg0, 8) != 0) { arg1 = bs_getTypeOfJump(arg0); } if (bakey_pressed(arg0, 9) != 0) { arg1 = func_800A055C(arg0, arg1); } if (bakey_held(arg0, 1) != 0 && bainput_should_beak_barge(arg0) != 0) { arg1 = 0x13; } if (bainput_should_enter_first_person(arg0) != 0) { arg1 = _badrone_entrypoint_24(arg0); } if (func_8008E148(arg0) != 0) { arg1 = _badrone_entrypoint_25(arg0); } return arg1; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_800A02DC.s")
 
