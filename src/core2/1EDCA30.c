@@ -319,7 +319,20 @@ u8 *func_80103D98(Unk80132ED0 *arg0) {
     return func_800B2824(value);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103DFC.s")
+void func_80103DFC(Actor *arg0, f32 *arg1) {
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_80103328();
+    s16 temp_v0;
+
+    if ((u16)arg0->unk0->unk14 == 0xFFFF) {
+        func_800EE7F8(arg1, arg0->position);
+        return;
+    }
+    func_80103328(arg0);
+    func_800EE7F8(arg1, arg0->position);
+    temp_v0 = ((s16 *)&arg0->pad88)[0];
+    arg1[1] += arg0->scale * ((f32)temp_v0 + (f32)(((s16 *)&arg0->pad88)[1] - temp_v0) * 0.5f);
+}
 
 /* extern */
 
