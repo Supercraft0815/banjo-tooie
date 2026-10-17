@@ -213,8 +213,9 @@ void func_80800560_bstrexlarge(PlayerState *arg0)
     bstrexlarge_entrypoint_1(arg0);
 }
 void bstrexlarge_entrypoint_2(PlayerState *);
+void yaw_setVelocityBounded(PlayerState *, f32, f32);
 
-void func_80800580_bstrexlarge(PlayerState *arg0) { bstrexlarge_entrypoint_2(arg0); func_8009FFD8(arg0, 1, 3, 3, 2); yaw_setVelocityBounded((s32)arg0, 0x43960000, 0x40600000); func_80800000_bstrexlarge(arg0); }
+void func_80800580_bstrexlarge(PlayerState *arg0) { bstrexlarge_entrypoint_2(arg0); func_8009FFD8(arg0, 1, 3, 3, 2); yaw_setVelocityBounded(arg0, 300.0f, 3.5f); func_80800000_bstrexlarge(arg0); }
 
 void func_808005D4_bstrexlarge(PlayerState *arg0) {
     int baanim_isStopped(PlayerState *);
@@ -607,7 +608,21 @@ void func_808014A4_bstrexlarge(PlayerState *arg0)
 {
     bstrexlarge_entrypoint_1(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_808014C4_bstrexlarge.s")
+void func_808014C4_bstrexlarge(PlayerState *arg0) {
+    void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
+    void baanim_setDurationRange(PlayerState *, f32, f32);
+    void func_8008C9F0(PlayerState *, f32, f32, f32, f32);
+    void func_8008CA30(PlayerState *, f32);
+
+    bstrexlarge_entrypoint_2(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0x1CF, 0.7f);
+    func_8009FFD8(arg0, 2, 3, 1, 0xE);
+    yaw_setVelocityBounded(arg0, 300.0f, 3.5f);
+    baanim_setDurationRange(arg0, 0.1f, 10.0f);
+    func_8008C9F0(arg0, 400.0f, 1000.0f, 1.0f, 0.6f);
+    func_8008CA30(arg0, 1.0f);
+    func_80800000_bstrexlarge(arg0);
+}
 
 void func_80801574_bstrexlarge(PlayerState *arg0) {
     s32 bs_setState(s32, s32);
