@@ -346,7 +346,40 @@ void func_808013C0_gcmapsects(void *arg0, s32 arg1)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_7.s")
+s32 gcmapsects_entrypoint_7(f32 arg0[3]) {
+    void *func_800BF704(void);
+    int func_800EFED0(f32 min[3], f32 max[3], f32 vec[3]);
+    s32 func_800EFFB4(f32 point[3], f32 radius, f32 center[3]);
+    u8 *map;
+    u8 *section;
+    s32 index;
+    s32 offset;
+
+    map = func_800BF704();
+    index = *(s16 *)(map + 0x74);
+    if (index != -1) {
+        section = *(u8 **)(map + 0x68) + index * 0x58;
+        if (func_800EFED0((f32 *)(section + 0xC), (f32 *)(section + 0x18), arg0)) {
+            return index;
+        }
+    }
+    index = 0;
+    offset = 0;
+    if (map[0x77] > 0) {
+        do {
+            section = *(u8 **)(map + 0x68) + offset;
+            if (func_800EFFB4((f32 *)(section + 0x24), *(f32 *)(section + 0x30), arg0)) {
+                section = *(u8 **)(map + 0x68) + offset;
+                if (func_800EFED0((f32 *)(section + 0xC), (f32 *)(section + 0x18), arg0)) {
+                    return index;
+                }
+            }
+            index++;
+            offset += 0x58;
+        } while (index < map[0x77]);
+    }
+    return -1;
+}
 
 void gcmapsects_entrypoint_8(void *arg0) {
     *(u8 *)((u8 *)arg0 + 0x78) = 0;
