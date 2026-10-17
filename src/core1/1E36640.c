@@ -356,7 +356,36 @@ void func_80020128(SfxState *arg0) {
     func_80026500(&D_800411DC->queue, &event, 0x8235, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E36640/func_800201A4.s")
+void func_800201A4(ALEventQueue *arg0, SfxState *arg1, s32 arg2) {
+    void func_80020E40(ALLink *, ALLink *);
+    void func_80020E74(ALLink *);
+    ALLink *sp2C;
+    ALLink *sp28;
+    ALEventListItem *sp24;
+    ALEventListItem *sp20;
+    SfxEvent *sp1C;
+    u32 sp18;
+
+    sp18 = osSetIntMask(1U);
+    sp2C = arg0->allocList.next;
+    if (sp2C != NULL) {
+        do {
+            sp28 = sp2C->next;
+            sp24 = (ALEventListItem *)sp2C;
+            sp20 = (ALEventListItem *)sp28;
+            sp1C = (SfxEvent *)&sp24->evt;
+            if ((sp1C->state == arg1) && (sp1C->type & (u16)arg2)) {
+                if (sp20 != NULL) {
+                    sp20->delta = sp20->delta + sp24->delta;
+                }
+                func_80020E74(sp2C);
+                func_80020E40(sp2C, &arg0->freeList);
+            }
+            sp2C = sp28;
+        } while (sp2C != NULL);
+    }
+    osSetIntMask(sp18);
+}
 
 s32 func_80020298(u16 *arg0, u16 *arg1) {
     extern SfxState *D_800411D0;
