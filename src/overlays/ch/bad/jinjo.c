@@ -7,7 +7,27 @@ OSThread *chbadjinjo_entrypoint_0(void)
     return (OSThread *) D_80801288_chbadjinjo;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_8080000C_chbadjinjo.s")
+void func_8080000C_chbadjinjo(s32 arg0, f32 arg1[3], s32 arg2) {
+    void func_800BA3FC(s32, s32);
+    void func_800BA450(s32, s16, s16, s16, s16, s16, s16);
+    void func_800BA594(void *, f32, f32);
+    void func_800BA5A8(s16 *, s32);
+    void func_800BA75C(s32, f32[3]);
+    void func_800BA7C4(void *, f32, f32);
+    void func_800BA7FC(void *, f32, f32);
+    void func_800BA834(s32, s16, s16, s16, s16, s16, s16);
+    void func_800BA8F8(void *, f32, f32);
+
+    func_800BA3FC(arg0, 0x9EA);
+    func_800BA450(arg0, 0, -250, 0, 0, -250, 0);
+    func_800BA594(arg0, 0.4f, 0.8f);
+    func_800BA75C(arg0, arg1);
+    func_800BA7FC(arg0, 0.03f, 0.03f);
+    func_800BA834(arg0, 0, 0, 200, 0, 0, 240);
+    func_800BA8F8(arg0, 0.7f, 0.7f);
+    func_800BA5A8(arg0, 0x1000);
+    func_800BA7C4(arg0, 0.5f, 0.5f);
+}
 
 /* extern */
 
@@ -15,7 +35,7 @@ void func_8080010C_chbadjinjo(s32 arg0, f32 arg1, s32 arg2) {
     s32 func_800B53A4(s32);
     s32 func_800BA22C(s32, s32);
     s32 func_800BA994(s32, s32, s16, s32, s32, s32, s32);
-    s32 func_8080000C_chbadjinjo(s32, s32, s32);
+    void func_8080000C_chbadjinjo(s32, f32[3], s32);
     s32 sp2C;
     s32 temp_v0;
 
