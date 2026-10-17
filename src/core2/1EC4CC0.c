@@ -566,13 +566,43 @@ f32 func_800EC48C(void *arg0) {
     return temp_f2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC504.s")
+typedef struct { u8 pad0[0x14]; u16 model; u8 pad16[8]; s16 center[3]; } PropCenterView;
+f32 func_800EC504(PropCenterView *prop) {
+    void func_800B237C(void *, f32[3], f32 *);
+    s32 func_800B2840(s32);
+    void func_800D62E4(s32);
+    void *func_800D674C(s32);
+    s32 func_800D6CEC(s32);
+    s32 func_800D73CC(s32);
+    void func_800EE940(s16[3], f32[3]);
+    f32 norm;
+    f32 center[3];
+    void *asset;
+    s32 cached;
+    s32 model;
+
+    model = prop->model;
+    if (model == 0 || model == 0xFFFF) {
+        return 1.0f;
+    }
+    cached = func_800D73CC(model);
+    asset = func_800D674C(prop->model);
+    if (asset == NULL) {
+        return 1.0f;
+    }
+    func_800D62E4(prop->model);
+    func_800B237C(func_800B2840(asset), center, &norm);
+    func_800EE940(prop->center, center);
+    if (cached == 0) {
+        func_800D6CEC(prop->model);
+    }
+    return norm;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC5C0.s")
 
 f32 func_800EC708(Unk80132ED0 *marker) {
     f32 func_800EC5C0(void *, void *);
-    void func_800EC504(void);
     f32 func_800EC48C(void *);
     typedef struct { u8 pad0[8]; u32 reserved : 30; u32 isModel : 1; u32 flag : 1; } PropView;
     PropView *prop = marker->unk0;
