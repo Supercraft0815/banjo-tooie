@@ -41,7 +41,25 @@ void func_808003F4_chstonepillar(Actor *arg0, s32 arg1) {
     func_80101808(arg0, func_801015D0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800474_chstonepillar.s")
+s32 func_80800474_chstonepillar(Actor *arg0) {
+    s32 func_800DA298(s32);
+    f32 func_800EFB8C(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    f32 func_80102D78(Actor *, f32 *);
+    s32 func_8080112C_chstonepillar(Actor *);
+    f32 *data;
+    f32 distance;
+
+    data = func_80100094(arg0, 0);
+    if ((func_8080112C_chstonepillar(arg0) == 0) || (func_800DA298(0x9D5) == 0)) {
+        return 0;
+    }
+    distance = func_800EFB8C(arg0->position, &data[3]);
+    data[12] = func_80102D78(arg0, &data[3]);
+    data[13] = (0.3f * distance) / 0.5f;
+    data[14] = 822.00006f;
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800520_chstonepillar.s")
 
