@@ -202,7 +202,44 @@ void bsblongleg_entrypoint_4(PlayerState *arg0) {
     func_8080013C_bsblongleg(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_5.s")
+void bsblongleg_entrypoint_5(PlayerState *arg0) {
+    s32 _badrone_entrypoint_24(PlayerState *);
+    s32 bainput_should_enter_first_person();
+    int bakey_pressed(PlayerState *, int);
+    s32 bastatetimer_clear(void *, s32);
+    s32 bastatetimer_isDone();
+    s32 bastick_getZone(PlayerState *);
+    void bs_setState(PlayerState *, int);
+    int func_8008DF18(PlayerState *);
+    void func_8009D2F0(PlayerState *, s32, f32);
+    s32 var_s1;
+
+    var_s1 = 0;
+    func_808000C8_bsblongleg(arg0);
+    func_8009D2F0(arg0, 1, 0.5f);
+    if (bainput_should_enter_first_person(arg0) != 0) {
+        var_s1 = _badrone_entrypoint_24(arg0);
+    }
+    if (bakey_pressed(arg0, 9) != 0) {
+        bastatetimer_clear(arg0, 2);
+    }
+    if (bastick_getZone(arg0) > 0) {
+        var_s1 = 0x27;
+    }
+    if (func_8008DF18(arg0) != 0) {
+        var_s1 = 0x55;
+    }
+    if ((bakey_pressed(arg0, 8) != 0) && (player_isStable(arg0) != 0)) {
+        var_s1 = 0x28;
+    }
+    if (bastatetimer_isDone(arg0, 2) != 0) {
+        var_s1 = 0x29;
+    }
+    if (func_80800000_bsblongleg(arg0) != 0) {
+        var_s1 = 0x4C;
+    }
+    bs_setState(arg0, var_s1);
+}
 
 void bsblongleg_entrypoint_6()
 {
