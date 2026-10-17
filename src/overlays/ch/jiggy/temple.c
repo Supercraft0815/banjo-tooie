@@ -13,7 +13,22 @@ void func_8080000C_chjiggytemple(s32 arg0) {
     _subaddiedialog_entrypoint_7(arg0, arg0 + 4, &D_80800910_chjiggytemple);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_80800034_chjiggytemple.s")
+/* extern */
+
+void func_80800034_chjiggytemple(s32 arg0) {
+    s32 _sujiggy_entrypoint_0();
+    s32 _sujiggy_entrypoint_2(s32);
+    s32 func_800D035C(s32);
+    s32 func_800D2498(u32, s32, u32);
+    int func_800DB9B0(void);
+    void func_8010C908(s32, s32);
+    func_8010C908(arg0, arg0 + 4);
+    func_8080000C_chjiggytemple(arg0);
+    if (func_800DB9B0() == 0) {
+        func_800D2498(0x10E, func_800D035C(1), 0);
+        func_800D2498(0x106, _sujiggy_entrypoint_2(_sujiggy_entrypoint_0()), 0);
+    }
+}
 
 void func_808000A8_chjiggytemple(s32 arg0) 
 {
