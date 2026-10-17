@@ -21,7 +21,19 @@ int func_8001BD50(f32 arg0) {
     return (f32) sp1C < ((f32) heap_bytes_free() * arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E33860/func_8001BDAC.s")
+void *func_8001BDAC(s32 *arg0, s32 arg1) {
+    struct EmptyHeapBlock *block;
+
+    block = LAST_BLOCK();
+    for (; arg1 != 0; arg1--) {
+        block = block->prev_free;
+        if (block == FIRST_BLOCK()) {
+            return NULL;
+        }
+    }
+    *arg0 = GET_BLOCK_MEM_SIZE(&block->header);
+    return GET_BLOCK_CONTENTS(block);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E33860/func_8001BE94.s")
 
