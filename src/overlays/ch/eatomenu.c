@@ -115,7 +115,22 @@ block_8:
     } while (var_s1 != 0xD);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_8080052C_chcheatomenu.s")
+void func_8080052C_chcheatomenu(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void func_80101FDC(Actor *, u32);
+    s32 func_80800194_chcheatomenu(s32, s32, s32, s32);
+
+    switch (arg3) {
+    case 1:
+        func_80800194_chcheatomenu(arg0, arg1, arg2, 1);
+        break;
+    case 0:
+        func_80800428_chcheatomenu(arg0, arg1);
+        break;
+    case 2:
+        func_80101FDC(arg0, 5);
+        break;
+    }
+}
 
 void func_8080058C_chcheatomenu(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_2(f32 *, u32, u32, u32);
