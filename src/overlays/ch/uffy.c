@@ -7,7 +7,38 @@ OSThread *chchuffy_entrypoint_0(void)
     return (OSThread *) D_80802434_chchuffy;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_8080000C_chchuffy.s")
+s32 func_8080000C_chchuffy(s32 arg0) {
+    s32 rom_read_word(s32, u32 *);
+    extern u32 D_808024B4_chchuffy[];
+    s32 temp_v1;
+    u32 sp28;
+    u32 temp_a3;
+    u32 temp_t7;
+
+    temp_v1 = D_808024B4_chchuffy[arg0];
+    temp_a3 = (temp_v1 & 0xFFFF) + 0xB0000000;
+    temp_t7 = (temp_v1 & 0xFFFF0000) >> 16;
+    if (temp_a3 & 2) {
+        temp_a3 = (temp_a3 >> 2) << 2;
+        rom_read_word(temp_a3, &sp28);
+        temp_v1 = (sp28 & 0xFFFF0000) >> 16;
+    } else {
+        rom_read_word(temp_a3, &sp28);
+        temp_v1 = sp28 & 0xFFFF;
+    }
+    if (temp_t7 != 0) {
+        temp_t7 += 0xB0000000;
+        if (temp_t7 & 2) {
+            temp_t7 = (temp_t7 >> 2) << 2;
+            rom_read_word(temp_t7, &sp28);
+            temp_v1 += (sp28 & 0xFFFF0000) >> 16;
+        } else {
+            rom_read_word(temp_t7, &sp28);
+            temp_v1 += sp28 & 0xFFFF;
+        }
+    }
+    return temp_v1 + 0xA0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80800110_chchuffy.s")
 
