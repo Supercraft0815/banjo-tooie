@@ -1,4 +1,6 @@
 #include "common.h"
+struct anctrl_s;
+struct player_state_s;
 
 s32 bsjig_entrypoint_0(s32 arg0) {
     return arg0 == 0x44;
@@ -24,31 +26,31 @@ void bsjig_entrypoint_2(void) {
 }
 
 void bsjig_entrypoint_3(void *arg0) {
-    s32 anctrl_isAt(s32, s32);
-    s32 anctrl_isStopped(s32);
-    s32 baanim_getAnimCtrlPtr();
+    int anctrl_isAt(struct anctrl_s *, f32);
+    s32 anctrl_isStopped(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     s32 bs_setState(void *, s32);
     s32 func_8009919C(void *, s32 *, s32);
     s32 func_8009D874(void *);
-    s32 func_8009DE38(void *, s32, s32);
-    f32 func_8009F308(void *);
-    s32 yaw_setIdeal(void *, f32);
+    void func_8009DE38(struct player_state_s *, s32, f32);
+    f32 func_8009F308(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
     extern s32 _bsjig_entrypoint_2;
     s32 sp24;
-    s32 sp20;
+    struct anctrl_s *sp20;
 
     sp24 = 0;
-    sp20 = baanim_getAnimCtrlPtr();
+    sp20 = baanim_getAnimCtrlPtr(arg0);
     yaw_setIdeal(arg0, func_8009F308(arg0));
-    if (anctrl_isAt(sp20, 0x3F267382) != 0) {
+    if (anctrl_isAt(sp20, 0.6502f) != 0) {
         func_8009D874(arg0);
     }
-    if (anctrl_isAt(sp20, 0x3F55C28F) != 0) {
+    if (anctrl_isAt(sp20, 0.835f) != 0) {
         (*(s32 *)((s8 *)(arg0) + (0x15C))) = (s32) ((*(s32 *)((s8 *)(arg0) + (0x15C))) + 1);
-        func_8009DE38(arg0, 0x434, 0x3FA66666);
+        func_8009DE38(arg0, 0x434, 1.3f);
     }
-    if (anctrl_isAt(sp20, 0x3F70A3D7) != 0) {
-        func_8009DE38(arg0, 0x3EA, 0x3F800000);
+    if (anctrl_isAt(sp20, 0.94f) != 0) {
+        func_8009DE38(arg0, 0x3EA, 1.0f);
     }
     if (anctrl_isStopped(sp20) != 0) {
         if ((*(s32 *)((s8 *)(arg0) + (0x160))) != 0) {
@@ -82,8 +84,8 @@ void bsjig_entrypoint_4(s32 arg0) {
 void bsjig_entrypoint_5(s32 arg0) {
     s32 func_8008E95C(s32);
     s32 func_8009CEE8(s32);
-    s32 func_800A0CF4(s32, s32);
-    s32 func_800A4C68(s32);
+    void func_800A0CF4(struct player_state_s *, s32);
+    int func_800A4C68(void *);
     s32 func_800A4E30(s32);
     s32 func_800C53EC(s32, s32);
     bsjig_entrypoint_4(arg0);
@@ -115,8 +117,8 @@ void bsjig_entrypoint_7(s32 arg0) {
 void bsjig_entrypoint_8(s32 arg0) {
     s32 func_8008E95C(s32);
     s32 func_8009CEE8(s32);
-    s32 func_800A0CF4(s32, s32);
-    s32 func_800A4C68(s32);
+    void func_800A0CF4(struct player_state_s *, s32);
+    int func_800A4C68(void *);
     s32 func_800A4E30(s32);
     s32 func_800C53EC(s32, s32);
     func_8008E95C(arg0);
@@ -126,7 +128,46 @@ void bsjig_entrypoint_8(s32 arg0) {
     func_8009CEE8(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jig/bsjig_entrypoint_9.s")
+void bsjig_entrypoint_9(struct player_state_s *arg0) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    s32 bs_getPreviousState(struct player_state_s *);
+    s32 baflag_clear(s32, s32);
+    f32 func_8009F308(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    void func_8009FFD8();
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void func_800FC660(u32);
+    void func_800A4DFC(struct player_state_s *, s32);
+    int func_800A4C68(void *);
+    s32 func_800C52F4(s32, s32);
+    void func_800A0CF4(struct player_state_s *, s32);
+    void func_8009DE38(struct player_state_s *, s32, f32);
+    void func_8008E944(struct player_state_s *);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setIndex();
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *control;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    (*(s32 *)((u8 *)arg0 + 0x164)) = bs_getPreviousState(arg0) == 0x44;
+    baflag_clear(arg0, 0x1A);
+    anctrl_reset(control);
+    anctrl_setIndex(control, 0x282);
+    anctrl_setDuration(control, 3.6f);
+    anctrl_setPlaybackType(control, 1);
+    anctrl_start(control);
+    yaw_setIdeal(arg0, func_8009F308(arg0));
+    func_8009FFD8(arg0, 1, 1, 3, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_800FC660(0x1B);
+    func_800A4DFC(arg0, 9);
+    func_800C52F4(func_800A4C68(arg0), 2);
+    func_800A0CF4(arg0, 1);
+    func_8009DE38(arg0, 0x422, 1.0f);
+    func_8008E944(arg0);
+}
 
 typedef struct player_state_s PlayerState;
 
