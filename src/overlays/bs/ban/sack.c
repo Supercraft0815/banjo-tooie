@@ -226,7 +226,49 @@ void func_80800540_bsbansack(PlayerState *arg0) {
     bainput_enable(arg0, 2, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_808005BC_bsbansack.s")
+struct anctrl_s;
+void func_808005BC_bsbansack(PlayerState *arg0) {
+    void _babackpack_set_state(void *, s32);
+    int anctrl_isAt(struct anctrl_s *, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    int baanim_isStopped(PlayerState *);
+    void bainput_enable(PlayerState *, s32, s32);
+    void bs_setState(PlayerState *, int);
+    void func_8009DBF0(PlayerState *, s32, f32);
+    void func_8009DE38(PlayerState *, s32, f32);
+    void func_8009FE58(PlayerState *);
+    void func_800A0CD0(void *, s32);
+    struct anctrl_s *sp24;
+    s32 sp20;
+
+    sp24 = baanim_getAnimCtrlPtr(arg0);
+    sp20 = 0;
+    bainput_enable(arg0, 2, 1);
+    if (anctrl_isAt(sp24, 0.19f) != 0) {
+        func_8009DE38(arg0, 0x57C, 1.0f);
+    }
+    if (anctrl_isAt(sp24, 0.2f) != 0) {
+        func_8009DBF0(arg0, 0x3FF, 0.9f);
+    }
+    if (anctrl_isAt(sp24, 0.48f) != 0) {
+        func_8009FE58(arg0);
+    }
+    if (anctrl_isAt(sp24, 0.52f) != 0) {
+        func_8009DE38(arg0, 0x584, 1.0f);
+    }
+    if (anctrl_isAt(sp24, 0.123f) != 0) {
+        func_800A0CD0(arg0, 0);
+        _babackpack_set_state(arg0, 2);
+    }
+    if (anctrl_isAt(sp24, 0.5145f) != 0) {
+        arg0->unk15C.bytes[2] = 1;
+        func_808002D4_bsbansack(arg0);
+    }
+    if (baanim_isStopped(arg0) != 0) {
+        sp20 = 0x165;
+    }
+    bs_setState(arg0, sp20);
+}
 
 s32 bsbansack_entrypoint_1(s32 arg0) {
     extern s32 D_80801E20_bsbansack[];
@@ -237,7 +279,7 @@ s32 bsbansack_entrypoint_1(s32 arg0) {
 
 void func_80800710_bsbansack(s32 arg0) {
     f32 anctrl_getAnimTimer(s32);
-    s32 baanim_getAnimCtrlPtr(s32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     s32 func_80099B94(s32);
     s32 func_8009E6EC();
     s32 func_80800168_bsbansack(s32);
@@ -444,7 +486,7 @@ void func_80801680_bsbansack(s32 arg0, s32 arg1) {
     s32 anctrl_setPlaybackType(s32, s32);
     void anctrl_setSubrange(s32, f32, f32);
     s32 anctrl_start(s32);
-    s32 baanim_getAnimCtrlPtr(s32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     void baanim_setEndAndDuration(void *, f32, f32);
     f32 baphysics_get_target_horizontal_velocity(PlayerState *);
     void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
