@@ -75,7 +75,30 @@ loop:
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800CF9E4.s")
+void func_800CF9E4(s32 arg0, s32 arg1, s32 arg2) {
+    void func_800C8D4C(s32, f32 *);
+    void func_800C8E84(s32, u32 *);
+    void func_800C8F64(s32, s32);
+    extern s16 D_8011AE74[][2];
+    struct LightEntry {
+        s16 id[2];
+        f32 position[2];
+        u8 color[3];
+        u8 flags;
+    };
+    s32 index;
+    u32 rgb[3];
+    struct LightEntry *entry;
+
+    index = func_800CF918(arg0, arg1);
+    for (arg1 = 0; arg1 < 3; arg1++) {
+        rgb[arg1] = ((struct LightEntry *)D_8011AE74)[index].color[arg1];
+    }
+    entry = (struct LightEntry *)(index * 0x10 + (u8 *)D_8011AE74);
+    func_800C8D4C(arg2, entry->position);
+    func_800C8E84(arg2, rgb);
+    func_800C8F64(arg2, entry->flags);
+}
 
 void func_800CFA70(s32 arg0, s32 arg1)
 {
