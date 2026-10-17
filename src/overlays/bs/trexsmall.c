@@ -115,7 +115,7 @@ void func_80800364_bstrexsmall(PlayerState *arg0)
     bstrexsmall_entrypoint_1(arg0);
 }
 
-void func_80800384_bstrexsmall(PlayerState *arg0) { bstrexsmall_entrypoint_2(); func_8009FFD8(arg0, 1, 3, 3, 2); yaw_setVelocityBounded(arg0, 500.0f, 6.5f); }
+void func_80800384_bstrexsmall(PlayerState *arg0) { void bstrexsmall_entrypoint_2(PlayerState *); bstrexsmall_entrypoint_2(arg0); func_8009FFD8(arg0, 1, 3, 3, 2); yaw_setVelocityBounded(arg0, 500.0f, 6.5f); }
 
 void func_808003D0_bstrexsmall(PlayerState *arg0) {
     s32 func_8080020C_bstrexsmall(PlayerState *, s32);
@@ -157,7 +157,37 @@ void bstrexsmall_entrypoint_1(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/bstrexsmall_entrypoint_2.s")
+void bstrexsmall_entrypoint_2(PlayerState *arg0) {
+    void baphysics_set_gravity(PlayerState *, f32);
+    void bastick_pushZone(PlayerState *);
+    void bastick_setZoneMax(PlayerState *, s32, f32);
+    void func_80092864(PlayerState *, f32);
+    void func_800947EC(PlayerState *, s32, s32);
+    void func_8009590C(PlayerState *, f32);
+    void func_800959C8(PlayerState *, f32, f32);
+    void func_8009E4AC(PlayerState *);
+    void func_8009E53C(PlayerState *, s32, f32);
+    void func_8009E55C(PlayerState *, s32, f32);
+    s32 func_8009E77C(PlayerState *, s32);
+    if (func_8009E77C(arg0, 0x10) == 0) {
+        arg0->unk15C.bytes[2] = 0;
+        func_808000C8_bstrexsmall(arg0, 1);
+        bastick_pushZone(arg0);
+        bastick_setZoneMax(arg0, 0, 0.12f);
+        bastick_setZoneMax(arg0, 1, 0.6f);
+        bastick_setZoneMax(arg0, 2, 1.0f);
+        func_80092864(arg0, 1.5f);
+        func_8009E4AC(arg0);
+        func_8009E55C(arg0, 0, 70.0f);
+        func_8009E53C(arg0, 0, 0.0f);
+        func_8009E55C(arg0, 1, 80.0f);
+        func_8009E53C(arg0, 1, 0.0f);
+        func_800959C8(arg0, 100.0f, 56.0f);
+        func_8009590C(arg0, 125.0f);
+        baphysics_set_gravity(arg0, -3000.0f);
+        func_800947EC(arg0, 1, 1);
+    }
+}
 
 /* extern */
 
@@ -254,9 +284,9 @@ void func_80800998_bstrexsmall(s32 arg0)
     bstrexsmall_entrypoint_1(arg0);
     _bsdrone_entrypoint_2(arg0);
 }
-void func_808009C0_bstrexsmall(s32 arg0)
+void func_808009C0_bstrexsmall(PlayerState *arg0)
 {
-    bstrexsmall_entrypoint_2();
+    bstrexsmall_entrypoint_2(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
 void func_808009E8_bstrexsmall(s32 arg0)
@@ -295,9 +325,9 @@ void func_80800AF0_bstrexsmall(PlayerState *arg0)
     bstrexsmall_entrypoint_1(arg0);
 }
 
-void func_80800B10_bstrexsmall(s32 arg0)
+void func_80800B10_bstrexsmall(PlayerState *arg0)
 {
-    bstrexsmall_entrypoint_2();
+    bstrexsmall_entrypoint_2(arg0);
     *(u8 *)((u8 *)arg0 + 0x15C) = 0;
     func_80800A24_bstrexsmall(arg0, 1);
 }
@@ -365,9 +395,9 @@ void func_80800E94_bstrexsmall(s32 arg0)
     bstrexsmall_entrypoint_1(arg0);
 }
 
-void func_80800EC0_bstrexsmall(s32 arg0)
+void func_80800EC0_bstrexsmall(PlayerState *arg0)
 {
-    bstrexsmall_entrypoint_2();
+    bstrexsmall_entrypoint_2(arg0);
     *(u8 *)((u8 *)arg0 + 0x15C) = 0;
     func_80800CA4_bstrexsmall(arg0, 1);
 }
@@ -384,7 +414,7 @@ void func_80801004_bstrexsmall(s32 arg0)
     _babounce_entrypoint_3();
     bstrexsmall_entrypoint_1(arg0);
 }
-void func_8080102C_bstrexsmall(s32 arg0) { bstrexsmall_entrypoint_2(); _babounce_entrypoint_4(arg0, 1); _babounce_entrypoint_5(arg0, 0x147, (s32) 0x3F30A3D7); }
+void func_8080102C_bstrexsmall(PlayerState *arg0) { bstrexsmall_entrypoint_2(arg0); _babounce_entrypoint_4(arg0, 1); _babounce_entrypoint_5(arg0, 0x147, (s32) 0x3F30A3D7); }
 
 void func_8080106C_bstrexsmall(PlayerState *arg0) {
     int baanim_isAt(PlayerState *, f32);
@@ -411,7 +441,7 @@ void func_808010E8_bstrexsmall(s32 arg0)
     _babounce_entrypoint_3();
     bstrexsmall_entrypoint_1(arg0);
 }
-void func_80801110_bstrexsmall(s32 arg0) { bstrexsmall_entrypoint_2(); _babounce_entrypoint_4(arg0, 2); _babounce_entrypoint_5(arg0, 0x147, (s32) 0x3F30A3D7); }
+void func_80801110_bstrexsmall(PlayerState *arg0) { bstrexsmall_entrypoint_2(arg0); _babounce_entrypoint_4(arg0, 2); _babounce_entrypoint_5(arg0, 0x147, (s32) 0x3F30A3D7); }
 
 void func_80801150_bstrexsmall(s32 arg0) {
     s32 sp1C;
@@ -434,9 +464,9 @@ void func_808011A8_bstrexsmall(s32 arg0)
     _bsrest_entrypoint_14();
     bstrexsmall_entrypoint_1(arg0);
 }
-void func_808011D0_bstrexsmall(s32 arg0)
+void func_808011D0_bstrexsmall(PlayerState *arg0)
 {
-    bstrexsmall_entrypoint_2();
+    bstrexsmall_entrypoint_2(arg0);
     _bsrest_entrypoint_16(arg0);
 }
 /* extern */
@@ -496,7 +526,7 @@ void func_808015DC_bstrexsmall(PlayerState *arg0) {
     void func_8008C9F0(PlayerState *, f32, f32, f32, f32);
     void func_8008CA30(PlayerState *, f32);
 
-    bstrexsmall_entrypoint_2();
+    bstrexsmall_entrypoint_2(arg0);
     baanim_playForDuration_loopSmooth(arg0, 0x1CF, 0.7f);
     func_8009FFD8(arg0, 2, 3, 1, 2);
     yaw_setVelocityBounded(arg0, 500.0f, 6.5f);
