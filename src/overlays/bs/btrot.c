@@ -121,14 +121,52 @@ void func_808002A4_bsbtrot(PlayerState *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80800308_bsbtrot.s")
+void func_80800308_bsbtrot(PlayerState *arg0) {
+    s32 func_8009E6EC(PlayerState *);
+    s32 func_8008E40C(PlayerState *);
+    s32 bs_getCurrentState(PlayerState *);
+    void func_80099A7C(PlayerState *, f32 *);
+    s32 _bashoessuck_entrypoint_5(s32, f32[3]);
+    void func_8009E830(PlayerState *, s32);
+    void func_80099B94(PlayerState *);
+
+    switch (func_8009E6EC(arg0)) {
+        case 0x12:
+            ((s32 *)arg0)[0x59] = 1;
+            return;
+        case 0x8D:
+            ((s32 *)arg0)[0x59] = 1;
+            func_8009E830(arg0, 2);
+            return;
+        case 0x58:
+            if (((s32 *)arg0)[0x58] == 0 && func_8008E40C(arg0) != 0) {
+                switch (bs_getCurrentState(arg0)) {
+                case 0x16:
+                case 0x95: {
+                    f32 sp24[3];
+                    func_80099A7C(arg0, sp24);
+                    if (_bashoessuck_entrypoint_5(arg0, sp24) != 0) {
+                        ((s32 *)arg0)[0x58] = 1;
+                        bs_setState(arg0, 0x17C);
+                        return;
+                    }
+                    break;
+                }
+                }
+            }
+            return;
+        default:
+            func_80099B94(arg0);
+            break;
+    }
+}
 
 /* extern */
 
 void func_808003F0_bsbtrot(void *arg0) {
-    s32 func_80099B94(void *);
+    void func_80099B94(PlayerState *);
     s32 func_8009E6EC();
-    s32 func_80800308_bsbtrot(void *);
+    void func_80800308_bsbtrot(PlayerState *);
     if (func_8009E6EC() == 0x8D) {
         (*(s32 *)((s8 *)(arg0) + (0x164))) = 1;
         func_80800308_bsbtrot(arg0);
@@ -375,7 +413,7 @@ s32 bsbtrot_entrypoint_15(s32 arg0) {
 
 void func_8080163C_bsbtrot(s32 arg0) {
     s32 func_8009E6EC();
-    s32 func_80099B94(void *);
+    void func_80099B94(PlayerState *);
     s32 temp_v0;
 
     temp_v0 = func_8009E6EC();
