@@ -665,12 +665,45 @@ void func_8009370C(u8 *arg0) {
 
 /* extern */
 
-void func_80093738(void *arg0) {
+s32 func_80093738(void *arg0) {
     s32 func_800D674C(s32);
-    func_800D674C((*(s16 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x9C))));
+    return func_800D674C((*(s16 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x9C))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_8009375C.s")
+s32 func_8009375C(u8 *arg0, Gfx **arg1, s32 arg2) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    struct anctrl_s *func_8008D04C(PlayerState *);
+    void *func_8008AEDC(void *);
+    void func_8008C200(s16, s32, s32);
+    s32 func_800AE080(s16);
+    void func_800AE598(s32 *, s32 *);
+    struct anctrl_s *sp2C;
+    s16 sp2A;
+    s32 sp24;
+    s32 sp20;
+    u8 *temp_s0;
+
+    sp20 = *(s32 *)((u8 *)arg1 + 4) + 0x40;
+    switch (arg2) {
+    case 0:
+        sp24 = func_80092B04((PlayerState *)arg0, 0);
+        sp2A = *(s16 *)(*(u8 **)(arg0 + 0x50));
+        sp2C = baanim_getAnimCtrlPtr((PlayerState *)arg0);
+        *(s8 *)(*(u8 **)(arg0 + 0x50) + 0x10) = 1;
+        *(s32 *)(*(u8 **)(arg0 + 0x50) + 8) = sp20;
+        break;
+    case 1:
+        sp24 = func_80093738(arg0);
+        sp2A = *(s16 *)(*(u8 **)(arg0 + 0x50) + 0x90);
+        sp2C = func_8008D04C((PlayerState *)arg0);
+        *(s8 *)(*(u8 **)(arg0 + 0x50) + 0xA1) = 1;
+        *(s32 *)(*(u8 **)(arg0 + 0x50) + 0x94) = sp20;
+        break;
+    }
+    temp_s0 = func_800B27E0((u8 *)sp24);
+    func_8008C200(sp2A, (s32)temp_s0, (s32)func_8008AEDC(sp2C));
+    func_800AE598((s32 *)func_800AE080(sp2A), (s32 *)((u8 *)arg1 + 4));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093864.s")
 
