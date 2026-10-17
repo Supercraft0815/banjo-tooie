@@ -407,7 +407,47 @@ void func_800DD4AC(s32 arg0, u8 *arg1) {
 }
 
 void func_800DD504(s32 arg0, u8 *arg1) { extern s32 D_8012C844; extern f32 D_8012C948; void func_800EF04C(f32[3], f32[3]); void func_800EFA20(void *, void *, f32); void func_800DC028(s32, s32, s32); extern f32 *D_8012C94C; f32 sp18[4]; if (D_8012C844 != 0) { func_800EFA20(sp18, arg1 + 0xC, D_8012C948); func_800EF04C(sp18, D_8012C94C); func_800DC028(D_8012C844, (*(s16 *)((s8 *)(arg1) + (8))), sp18); } }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD56C.s")
+void func_800DD56C(s32 model, u8 *data) {
+    struct SelectorCommand {
+        u32 header[2];
+        s16 branch_offset_count;
+        s16 index;
+        s32 branch_offsets[1];
+    };
+    void func_800DE2A4(s32, u8 *);
+    struct SelectorCommand *cmd = (struct SelectorCommand *)data;
+    s32 sub_cmd_addr;
+    s32 selection;
+    int i;
+    s32 s1;
+    s32 *offset;
+
+    selection = D_8012C850[cmd->index];
+    if (cmd->index == 0)
+        return;
+    if (selection == 0)
+        return;
+    if (selection > 0) {
+        if (selection <= cmd->branch_offset_count) {
+            offset = cmd->branch_offsets;
+            sub_cmd_addr = (s32)cmd;
+            sub_cmd_addr += *(s32 *)(data + (((u32)selection - 1) << 2) + 0xC);
+            func_800DE2A4(model, (u8 *)sub_cmd_addr);
+        }
+    } else {
+        s1 = -selection;
+        offset = cmd->branch_offsets;
+        for (i = 0; i < cmd->branch_offset_count; i++) {
+            if (s1 & 1) {
+                sub_cmd_addr = (s32)cmd;
+                sub_cmd_addr += *offset;
+                func_800DE2A4(model, (u8 *)sub_cmd_addr);
+            }
+            s1 >>= 1;
+            offset++;
+        }
+    }
+}
 
 typedef struct { f32 m[4][4]; } MtxF;
 void func_800DD65C(Gfx **arg0, void *arg1) {
