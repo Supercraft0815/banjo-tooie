@@ -152,4 +152,29 @@ void func_80800260_basquash(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/squash/basquash_entrypoint_4.s")
+void basquash_entrypoint_4(void *arg0) {
+    struct SquashData { u8 unk0, unk1, unk2, pad3; f32 unk4, unk8; };
+    struct SquashOwner { u8 pad[0x11C]; struct SquashData *data; };
+    s32 func_800D9078(f32 *);
+    void func_80800140_basquash(void *);
+    void func_80800260_basquash(void *);
+
+    func_800D9078(&((struct SquashOwner *)arg0)->data->unk4);
+    switch (((struct SquashOwner *)arg0)->data->unk1) {
+        case 1:
+            break;
+        case 2:
+            func_80800260_basquash(arg0);
+            if (0.0f == ((struct SquashOwner *)arg0)->data->unk4) {
+                func_80800008_basquash(arg0, 3);
+            }
+            break;
+        case 3:
+            func_80800140_basquash(arg0);
+            func_80800260_basquash(arg0);
+            if (0.0f == ((struct SquashOwner *)arg0)->data->unk4) {
+                func_80800008_basquash(arg0, 1);
+            }
+            break;
+    }
+}
