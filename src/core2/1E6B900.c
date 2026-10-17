@@ -786,7 +786,21 @@ void func_80094370(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094390.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094430.s")
+void func_80094430(PlayerState *arg0, f32 arg1) {
+    void _batimer_set(PlayerState *, s32, f32);
+    if (arg1 != 0.0f) {
+        func_800946C4(arg0, 2);
+    } else {
+        func_80094370((s32) arg0);
+    }
+    if (arg1 > 0.0f) {
+        func_800947EC(arg0, 0x10, 1);
+        _batimer_set(arg0, 0xD, arg1);
+        return;
+    }
+    func_800947EC(arg0, 0x10, 0);
+    _batimer_set(arg0, 0xD, 0.0f);
+}
 
 s32 func_800944E0(PlayerState *arg0, s32 arg1) {
     extern u8 D_80117E3C[];
@@ -845,7 +859,7 @@ s32 func_80094574(void *arg0, s32 arg1) {
 /* extern */
 
 void func_80094644(void *arg0) {
-    s32 func_80094430(void *, f32);
+    void func_80094430(PlayerState *, f32);
     s32 func_80094574(void *, s32);
     s32 func_8009E964();
     f32 func_8009E970();
