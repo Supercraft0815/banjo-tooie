@@ -70,13 +70,21 @@ void func_800B5054(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B50F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B525C.s")
+void func_800B525C(s32 arg0) {
+    void func_800BC358(void *, s32, s32);
+    extern s32 D_80127F10;
+    extern s16 D_80127F18;
+    s32 i;
+    for (i = 0; i < D_80127F18; i++) {
+        func_800BC358(((void **)D_80127F10)[i], arg0, 4);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B52EC.s")
 
 void func_800B537C(s32 arg0)
 {
-    func_800B525C();
+    func_800B525C(arg0);
     func_800B52EC(arg0);
 }
 s32 func_800B53A4(s32 arg0) {
