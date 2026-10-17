@@ -7,7 +7,7 @@ s32 baflameline_entrypoint_0()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/flameline/baflameline_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/flameline/func_80800184_baflameline.s")
+void func_80800184_baflameline(void *arg0, f32 arg1[3]) { void func_800BA77C(s32, s16, s16, s16); void func_800BA930(s32, s16, s16, s16, s16, s16, s16); s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]); f32 func_800DC178(f32, f32); void func_800EFA20(void *, void *, f32); extern s32 D_80800738_baflameline[]; f32 sp34[3]; func_800EFA20(sp34, (s8 *)*(void **)((s8 *)arg0 + 0x84) + 0xC, *(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x84) + 0x18) / 0.3f); sp34[1] -= (*(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x84) + 0x18) / 0.3f) * 0.1f; func_800BA77C(*(s32 *)((s8 *)*(void **)((s8 *)arg0 + 0x84) + 0x1C), 0, 0, (s16)(s32)func_800DC178(0.0f, 359.0f)); func_800BA930(*(s32 *)((s8 *)*(void **)((s8 *)arg0 + 0x84) + 0x1C), (s16)sp34[0], (s16)sp34[1], (s16)sp34[2], (s16)sp34[0], (s16)sp34[1], (s16)sp34[2]); func_800BABB8(*(s32 *)((s8 *)*(void **)((s8 *)arg0 + 0x84) + 0x1C), arg1, NULL, 1.0f, D_80800738_baflameline); }
 
 /* extern */
 
