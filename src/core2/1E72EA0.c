@@ -157,7 +157,44 @@ void func_80099B54(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72EA0/func_80099B94.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72EA0/func_8009AB78.s")
+/* extern */
+
+void func_8009AB78(PlayerState *arg0) {
+    s32 _bahold_entrypoint_4(PlayerState *);
+    int baflag_isFalse(PlayerState *, s32);
+    s32 bastatetimer_isDone(PlayerState *, s32);
+    s32 bs_setState(PlayerState *, s32);
+    s32 func_8008E9AC(void *);
+    void func_8008F6B8(PlayerState *, s32);
+    s32 func_8009E6EC(PlayerState *);
+    void func_8009E830(PlayerState *, s32);
+    s32 func_800A3274(PlayerState *);
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+
+    sp2C = func_800A3274(arg0);
+    sp28 = 1;
+    sp24 = 0;
+    switch (func_8009E6EC(arg0)) {
+        case 0x12:
+            if ((baflag_isFalse(arg0, 0xF) != 0) && (bastatetimer_isDone(arg0, 0) != 0) && ((sp2C == 1) || (sp2C == 0xA))) {
+                sp28 = 2;
+                func_8008F6B8(arg0, func_8008E9AC(arg0));
+            }
+            break;
+        case 8:
+            sp24 = 0x3C;
+            sp28 = 2;
+            break;
+        default:
+            _bahold_entrypoint_4(arg0);
+            func_80099B94(arg0);
+            return;
+    }
+    bs_setState(arg0, sp24);
+    func_8009E830(arg0, sp28);
+}
 
 /* extern */
 
