@@ -116,13 +116,47 @@ void func_800123BC(void) {
     func_800A5D1C();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E29B60/func_800123F4.s")
+void func_800123F4(void) {
+    void do_crc_check(void);
+    s32 func_80012530(void);
+    void func_8001608C(void);
+    void func_80018444(void);
+    void func_8001E010(void);
+    void func_8008160C(s32);
+    void func_800A7D30(void);
+    s16 func_800A8184(void);
+    f32 func_800D9004(void);
+    extern f32 D_800416A0;
+    extern s32 D_80043384;
+
+    func_8001207C();
+    if ((D_80043380 != 1) || (func_800A8184() != 4)) {
+        D_800459C8 += 1;
+    }
+    if (func_80012530() == 1) {
+        func_800A7D30();
+    }
+    func_8001608C();
+    func_80018444();
+    if (D_80043380 == 1) {
+        func_800123BC();
+    }
+    func_8008160C(1);
+    func_8001E010();
+    if (func_800D9004() <= D_800416A0) {
+        do_crc_check();
+    }
+    if (D_80043384 != 0) {
+        func_8001209C(D_80043384 - 1);
+        D_80043384 = 0;
+    }
+}
 
 /* extern */
 
 void func_800124EC(void *arg0) {
     s32 func_80012214();
-    s32 func_800123F4();
+    void func_800123F4(void);
     func_80012214();
 loop_1:
     func_800123F4();
