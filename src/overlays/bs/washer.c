@@ -180,7 +180,32 @@ void func_808008BC_bswasher(s32 arg0) {
     func_808000F0_bswasher(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_808008F4_bswasher.s")
+struct anctrl_s;
+
+void func_808008F4_bswasher(struct player_state_s *arg0) {
+    enum asset_e;
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void func_8009FFD8();
+    struct anctrl_s *control;
+
+    func_808001A8_bswasher(arg0);
+    control = baanim_getAnimCtrlPtr(arg0);
+    anctrl_reset(control);
+    anctrl_setIndex(control, 0x355);
+    anctrl_setStart(control, 0.5036f);
+    anctrl_setDuration(control, 0.7f);
+    anctrl_setPlaybackType(control, 3);
+    anctrl_start(control);
+    func_8009FFD8(arg0, 1, 3, 3, 6);
+    func_808000BC_bswasher((s32)arg0);
+    *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_8080099C_bswasher.s")
 
@@ -349,7 +374,6 @@ void func_80801294_bswasher(s32 arg0)
 /* extern */
 
 void func_808012BC_bswasher(struct player_state_s *arg0) {
-    struct anctrl_s;
     void _babounce_entrypoint_4(struct player_state_s *, s32);
     void _babounce_entrypoint_5(struct player_state_s *, s32, f32);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
