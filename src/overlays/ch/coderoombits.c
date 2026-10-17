@@ -23,13 +23,43 @@ void func_8080000C_chcoderoombits(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_80800058_chcoderoombits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_8080033C_chcoderoombits.s")
+s32 func_8080033C_chcoderoombits(Actor *arg0, s32 arg1, s32 arg2) {
+    typedef struct player_state_s PlayerState;
+    void func_800946C4(PlayerState *, s32);
+    s32 *func_800BEC10(void);
+    void func_800DBEFC(s32 *, s32, f32 *);
+    PlayerState *func_800F53D0(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F7CF4(s32, s32, void *);
+    void func_80101FDC(Actor *, u32);
+    void func_8080040C_chcoderoombits(Actor *, s32, s32);
+    void func_808004B8_chcoderoombits(Actor *);
+    f32 sp24[3];
+
+    switch (arg1) {
+        case 0x2E:
+            func_8080040C_chcoderoombits(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x32:
+            func_800DBEFC(func_800BEC10(), 4, sp24);
+            func_800F7CF4(func_800F54E4(), 0x39, sp24);
+            func_800946C4(func_800F53D0(func_800F54E4()), 1);
+            break;
+        case 0x95:
+            func_808004B8_chcoderoombits(arg0);
+            func_80101FDC(arg0, 1);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
 void func_8080040C_chcoderoombits(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _susubgame_entrypoint_4(void *, s32);
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F7F98(s32, u32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);

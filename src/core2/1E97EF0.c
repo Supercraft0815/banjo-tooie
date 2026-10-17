@@ -4,7 +4,7 @@ struct Entry { s32 value; u8 padding[40]; };
 extern struct Entry D_801285B4[];
 
 extern s32 D_801285B0;
-extern s32 D_80128728;
+extern s32 *D_80128728;
 extern s32 D_8012872C;
 extern s32 D_80128760;
 
@@ -110,7 +110,7 @@ u8 *func_800BEBD4(s32 arg0) {
     return func_800B27A0(*(u8 **)((u8 *)&D_801285B0 + 0xC + arg0 * 44));
 }
 
-s32 func_800BEC10()
+s32 *func_800BEC10(void)
 {
     return D_80128728;
 }

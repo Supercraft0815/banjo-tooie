@@ -17,9 +17,9 @@ void func_800DBEB0(s32 arg0) {
     }
 }
 
-void func_800DBEFC(s32 *arg0, s32 arg1, s32 arg2) {
-    s32 func_800EE7F8(s32, s32);
-    func_800EE7F8(arg2, (s32)((u8 *)arg0 + (arg1 * 12) + 4));
+void func_800DBEFC(s32 *arg0, s32 arg1, f32 *arg2) {
+    s32 func_800EE7F8(f32 *, f32 *);
+    func_800EE7F8(arg2, (f32 *)((u8 *)arg0 + (arg1 * 12) + 4));
 }
 
 void func_800DBF38(void *arg0, s32 arg1, s32 *arg2) {
@@ -54,8 +54,8 @@ u8 *func_800DBFF8(void) {
 
 /* extern */
 
-void func_800DC028(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_800EE7F8(s32, s32);
+void func_800DC028(s32 arg0, s32 arg1, f32 *arg2) {
+    s32 func_800EE7F8(f32 *, f32 *);
     typedef struct { s32 pad; f32 position[2]; } Entry;
     func_800EE7F8(((Entry *)arg0)[arg1].position, arg2);
 }
