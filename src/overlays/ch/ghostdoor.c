@@ -16,7 +16,23 @@ OSThread *chghostdoor_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/ghostdoor/func_80800018_chghostdoor.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/ghostdoor/func_808000F4_chghostdoor.s")
+s32 func_808000F4_chghostdoor(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chdoor_entrypoint_1(s32, s32, s32);
+    void func_800FFAB0(Actor *);
+    s32 func_80103140(Actor *, u32, u16);
+    s32 id;
+
+    switch (arg1) {
+        case 0x95:
+            id = arg0->unk74_7 == 0x32 ? 0x782 : 0x783;
+            func_80103140(arg0, (u16)id, arg0->unk0->unk16);
+            break;
+        case 0x9D:
+            func_800FFAB0(arg0);
+            return 1;
+    }
+    return _chdoor_entrypoint_1((s32)arg0, arg1, arg2);
+}
 
 void func_80800190_chghostdoor(s32 arg0)
 {
