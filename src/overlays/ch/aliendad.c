@@ -72,7 +72,37 @@ s32 func_80801254_chaliendad(void *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801324_chaliendad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_8080142C_chaliendad.s")
+void func_8080142C_chaliendad(void *arg0) {
+    f32 func_800DC0C0(void);
+    struct {
+        u8 pad0[0x78];
+        u32 pad78 : 18;
+        u32 blinkState : 2;
+        u32 blinkFrame : 3;
+        u32 pad7B : 9;
+    } *actor = arg0;
+
+    switch (actor->blinkState) {
+        case 0:
+            if (func_800DC0C0() < 0.03f) {
+                actor->blinkState = 1;
+            }
+            break;
+        case 1:
+            if (actor->blinkFrame == 3) {
+                actor->blinkState = 3;
+            } else {
+                actor->blinkFrame++;
+            }
+            break;
+        case 3:
+            actor->blinkFrame--;
+            if (actor->blinkFrame == 0) {
+                actor->blinkState = 0;
+            }
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_8080152C_chaliendad.s")
 
