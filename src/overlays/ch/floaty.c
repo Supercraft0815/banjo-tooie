@@ -18,7 +18,27 @@ void func_80800020_chfloaty(volatile unsigned int arg0, void *arg1, s32 arg2, s3
   _chbaddiesetup_entrypoint_6(&_subaddietaxi_entrypoint_16, arg0, *((s32 *) (((s8 *) arg1) + 0)), *((s32 *) (((s8 *) arg1) + 4)), *((s32 *) (((s8 *) arg1) + 8)), arg2, arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/floaty/func_8080007C_chfloaty.s")
+s32 func_800DA298(s32);
+
+void func_8080007C_chfloaty(Actor *arg0, s32 arg1) {
+    u8 func_800CB3E0(s32);
+    void func_80102FDC(Actor *, f32);
+    void func_808006AC_chfloaty(Actor *, s32);
+    s32 state;
+
+    func_80102FDC(arg0, 1.0f);
+    switch (func_800CB3E0(arg1)) {
+    case 1:
+        state = func_800DA298(arg0->unk74_7 + 0x320) ? 4 : 1;
+        func_808006AC_chfloaty(arg0, state);
+        return;
+    case 3:
+    case 4:
+    case 6:
+        func_808006AC_chfloaty(arg0, 6);
+        return;
+    }
+}
 
 void func_80800118_chfloaty(Actor *arg0)
 {
