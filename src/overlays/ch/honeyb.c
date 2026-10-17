@@ -20,7 +20,31 @@ void func_80800018_chhoneyb(Actor *arg0, u32 arg1, u32 arg2) {
     func_80102424(arg0, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800058_chhoneyb.s")
+void func_80800058_chhoneyb(void *arg0) {
+    s32 _gcextra_entrypoint_1();
+    s32 _subaddieitem_entrypoint_1(s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80800B58_chhoneyb();
+    s32 func_80800B78_chhoneyb();
+    s32 func_80800B98_chhoneyb(s32);
+    s32 total;
+    s32 i;
+
+    *(s32 *)((u8 *)arg0 + 0x28) = 0;
+    *(s32 *)((u8 *)arg0 + 0x2C) = 0;
+    i = func_80800B78_chhoneyb() + 1;
+    if (_gcextra_entrypoint_1() >= i) {
+        do {
+            total = func_80800B58_chhoneyb();
+            if (total - *(s32 *)((u8 *)arg0 + 0x2C) >= func_80800B98_chhoneyb(i)) {
+                *(s32 *)((u8 *)arg0 + 0x28) += 1;
+                *(s32 *)((u8 *)arg0 + 0x2C) += func_80800B98_chhoneyb(i);
+            }
+            i++;
+        } while (_gcextra_entrypoint_1() >= i);
+    }
+    _subaddieitem_entrypoint_1((s32)func_80100094(arg0, 1) + 0x18, *(s32 *)((u8 *)arg0 + 0x2C));
+}
 
 /* extern */
 
