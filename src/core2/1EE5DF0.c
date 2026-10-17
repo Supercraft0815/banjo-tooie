@@ -49,7 +49,27 @@ int func_8010C5C0(void *arg0, f32 arg1) {
             ((u32)(temp_v1 << 22) >> 26) - 1) + 1) != 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010C668.s")
+struct RouteActor {
+    u8 pad[0x70];
+    u32 route;
+};
+
+int func_8010C668(struct RouteActor *arg0, f32 *arg1, f32 arg2, f32 arg3) {
+    s32 func_800CC338(s32 *, s32, s32);
+    extern s32 D_80136F50;
+    u32 temp_a3;
+    u32 temp_v1;
+
+    temp_v1 = arg0->route;
+    temp_a3 = temp_v1 >> 25;
+    if (temp_a3 == 0) {
+        return 1;
+    }
+    return ((f32 *)&D_80136F50)[1] < arg1[1] + arg2
+        && arg1[1] + arg3 < ((f32 *)&D_80136F50)[1]
+        && (func_800CC338(&D_80136F50, temp_a3 - 1,
+            ((u32)(temp_v1 << 22) >> 26) - 1) + 1) != 0;
+}
 
 s32 func_8010C710(s32 arg0) {
     extern s32 D_80136F50;
