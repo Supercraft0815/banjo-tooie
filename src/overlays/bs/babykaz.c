@@ -268,9 +268,10 @@ void func_808007EC_bsbabykaz(struct player_state_s *arg0)
 }
 
 void func_8080080C_bsbabykaz(void *arg0) {
+    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
     void func_8009FFD8(void *, s32, s32, s32, s32);
     bsbabykaz_entrypoint_4(arg0);
-    baanim_playForDuration_loopSmooth(arg0, 0xA9, 0x3EC28F5C);
+    baanim_playForDuration_loopSmooth(arg0, 0xA9, 0.38f);
     func_8009FFD8(arg0, 1, 1, 3, 6);
     *(s32 *)((s8 *)arg0 + 0x15C) = 0;
 }
@@ -341,7 +342,24 @@ void func_80800DD4_bsbabykaz(s32 arg0) {
     bsbabykaz_entrypoint_3(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80800E0C_bsbabykaz.s")
+void func_80800E0C_bsbabykaz(struct player_state_s *arg0) {
+    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    void baanim_setDurationRange(struct player_state_s *, f32, f32);
+    void baroll_setAngularVelocity(struct player_state_s *, f32, f32);
+    void func_8008C9F0(struct player_state_s *, f32, f32, f32, f32);
+    void func_8008CA30(struct player_state_s *, f32);
+    void func_8009BFE4(struct player_state_s *, f32, f32);
+    void func_8009FFD8(void *, s32, s32, s32, s32);
+
+    bsbabykaz_entrypoint_4(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0xA6, 0.66f);
+    func_8009FFD8(arg0, 2, 1, 1, 2);
+    baanim_setDurationRange(arg0, 0.3f, 1.5f);
+    func_8008C9F0(arg0, 80.0f, 400.0f, 0.54f, 0.35f);
+    func_8008CA30(arg0, 1.0f);
+    func_8009BFE4(arg0, 1000.0f, 12.0f);
+    baroll_setAngularVelocity(arg0, 1000.0f, 12.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80800EC8_bsbabykaz.s")
 
@@ -358,10 +376,11 @@ void func_80801014_bsbabykaz(s32 arg0)
 }
 
 void func_80801044_bsbabykaz(s32 arg0) {
+    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     void func_8009FFD8(void *, s32, s32, s32, s32);
     bsbabykaz_entrypoint_4(arg0);
-    baanim_playForDuration_loopSmooth(arg0, 0xA4, 0x40D00000);
+    baanim_playForDuration_loopSmooth(arg0, 0xA4, 6.5f);
     func_8009FFD8(arg0, 1, 1, 1, 2);
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
     func_800909CC(arg0);
