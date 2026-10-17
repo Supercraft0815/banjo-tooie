@@ -471,6 +471,7 @@ s32 bsbtrot_entrypoint_11(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_13.s")
 
+void baphysics_reset_gravity();
 void bsbtrot_entrypoint_14(s32 arg0)
 {
     baphysics_reset_gravity();
@@ -820,7 +821,32 @@ s32 bsbtrot_entrypoint_39(s32 arg0) {
     return ((s32 *)&D_80802EE0_bsbtrot)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_80802380_bsbtrot.s")
+void func_80802380_bsbtrot(PlayerState *arg0, s32 arg1) {
+    void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    void func_8009DEC0(PlayerState *, s32, f32, f32, s32, s32);
+
+    switch (arg1) {
+        case 0:
+            baphysics_reset_gravity(arg0);
+            break;
+        case 1:
+            baanim_playForDuration_onceSmooth(arg0, 0x298, 1.9f);
+            func_8009FFD8(arg0, 1, 1, 3, 6);
+            baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+            baphysics_set_gravity(arg0, -2700.0f);
+            break;
+        case 2:
+            _bashoes_entrypoint_17(arg0);
+            baphysics_set_type(arg0, 6);
+            baphysics_set_vertical_velocity(arg0, 2383.0f);
+            func_8009DEC0(arg0, 0x4598, 0.95f, 1.05f, 0x7FFF, 0x7FFF);
+            break;
+    }
+    *(s32 *)((s8 *)arg0 + 0x15C) = arg1;
+}
 
 void bsbtrot_entrypoint_40(PlayerState *arg0) { func_80802380_bsbtrot(arg0, 0); _bashoes_entrypoint_6(arg0, 2); _bashoes_entrypoint_5(arg0, 0); func_8080061C_bsbtrot(arg0); }
 
