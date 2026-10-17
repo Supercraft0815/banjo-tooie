@@ -79,7 +79,47 @@ f32 *func_80101918(f32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDAEA0/func_80101934.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDAEA0/func_80101970.s")
+int func_80101970(Actor *arg0) {
+    typedef struct {
+        u8 pad0[0x70];
+        u32 pad70_21 : 11;
+        u32 flag70_20 : 1;
+        u32 pad70_0 : 20;
+        u8 pad74[0x20];
+        u32 pad94_31 : 1;
+        u32 flag94_30 : 1;
+        u32 pad94_0 : 30;
+    } ActorRenderFlags;
+    typedef struct {
+        u8 pad0[0x1A];
+        u16 unk1A;
+    } RenderSettings;
+    s32 func_800D2F20(void);
+    f32 func_800DF428(f32);
+    void func_800DF440(s32);
+    void func_800DF470(s32);
+    s32 func_800EA068(s32);
+    void *func_80100368(void *);
+    extern f32 D_80126430;
+    f32 value;
+    f32 fallback;
+
+    func_800DF470(((ActorRenderFlags *)arg0)->flag70_20);
+    value = (u32)((RenderSettings *)func_80100368(arg0))->unk1A;
+    if (value != 0.0f) {
+        func_800DF428(value);
+    } else if (!(arg0->unk0->unk10 & 1)) {
+        if (func_800EA068(0x200)) {
+            fallback = D_80126430;
+        } else {
+            fallback = func_800D2F20();
+        }
+        func_800DF428(fallback);
+    }
+    if (((ActorRenderFlags *)arg0)->flag94_30) {
+        func_800DF440(0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDAEA0/func_80101A50.s")
 
