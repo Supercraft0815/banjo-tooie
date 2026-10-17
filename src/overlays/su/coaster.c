@@ -411,7 +411,37 @@ s32 sucoaster_entrypoint_12(Actor *arg0) {
     return _subaddierouteDll_entrypoint_7(arg0, data, rotation, rotation, (f32)data->radius, 0x102);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_808015F8_sucoaster.s")
+s32 func_808015F8_sucoaster(Actor *arg0, void *arg1) {
+    typedef struct {
+        u8 pad0[0x15];
+        u8 index;
+    } CoasterState;
+    typedef struct {
+        u8 pad0[0x70];
+        u32 route : 7;
+        u32 pad70_7 : 15;
+        u32 index : 6;
+        u32 pad70_0 : 4;
+    } CoasterActor;
+    s32 func_80802760_sucoaster(s32);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800CC338(f32 *, s32, s32);
+    f32 sp24[3];
+    s32 route;
+    u32 sp1C;
+    u8 index;
+
+    route = func_80802760_sucoaster((s32)arg1);
+    index = ((CoasterState *)arg1)->index;
+    if (index != 0) {
+        sp1C = index;
+    } else {
+        sp1C = ((CoasterActor *)arg0)->index;
+    }
+    func_800F5A00(route, sp24);
+    ((CoasterState *)arg1)->index = func_800CC338(sp24, ((CoasterActor *)arg0)->route - 1, sp1C - 1) + 1;
+    return ((CoasterState *)arg1)->index != 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_13.s")
 
