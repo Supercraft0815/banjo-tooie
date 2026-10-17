@@ -92,7 +92,42 @@ void func_808001FC_chcauldronentrydoor(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x44))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x1C)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cauldronentrydoor/func_80800274_chcauldronentrydoor.s")
+int func_80800274_chcauldronentrydoor(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    void func_800FC6B0(u32);
+    s32 temp_v1;
+    s32 var_v0;
+    s32 var_v0_2;
+
+    if (arg1 == 0x95) {
+        arg0->rotation[0] = *(f32 *)&arg0->actorData[1];
+        return 1;
+    }
+    if (func_800DA298(0x436) != 0) {
+        return 0;
+    }
+    var_v0 = 0;
+    if (arg1 >= 0x68) {
+        temp_v1 = arg1 - 0x68;
+        if (arg1 < 0x6C) {
+            if (temp_v1 & 2) {
+                var_v0_2 = 2;
+            } else {
+                var_v0_2 = 1;
+            }
+            arg0->unk6C_0 = (arg0->unk6C_0 & (3 - var_v0_2)) + ((temp_v1 & 1) * var_v0_2);
+            if (arg0->unk6C_0 == 3) {
+                func_800DA544(0x436);
+                _capod_entrypoint_13(arg0->unk0, 0, 4, 0x10);
+                func_800FC6B0(0xE);
+            }
+            return 1;
+        }
+    }
+    return var_v0;
+}
 
 void func_80800370_chcauldronentrydoor(s32 arg0) 
 {
