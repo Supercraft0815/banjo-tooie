@@ -2,7 +2,31 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800000_chtoothyfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_808000E8_chtoothyfish.s")
+void func_808000E8_chtoothyfish(Actor *arg0, s32 arg1) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_800FC660(u32);
+    void func_80102424(Actor *, s32);
+    extern u32 D_80801760_chtoothyfish;
+    extern u32 D_80801778_chtoothyfish;
+
+    if (arg1 != arg0->unk70_10) {
+        func_80102424(arg0, arg1);
+        switch (arg1) {
+        case 1:
+            break;
+        case 2:
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801760_chtoothyfish);
+            func_800FC660(0xE);
+            break;
+        case 3:
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801778_chtoothyfish);
+            func_800FC660(0x10);
+            break;
+        case 4:
+            break;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800188_chtoothyfish.s")
 
@@ -35,9 +59,9 @@ void func_80800350_chtoothyfish(Actor *arg0, u8 *arg1, s32 arg2) {
     ((f32 *)(arg1 + 0x18))[arg2] = 1.0f;
 }
 
-void func_808003D4_chtoothyfish(s32 arg0, u8 *arg1)
+void func_808003D4_chtoothyfish(Actor *arg0, u8 *arg1)
 {
-  s32 func_808000E8_chtoothyfish(s32, s32, s32, u8 *);
+  void func_808000E8_chtoothyfish();
   s32 sp18;
   s32 var_a2;
   s32 var_v0;
@@ -49,12 +73,12 @@ void func_808003D4_chtoothyfish(s32 arg0, u8 *arg1)
     if (var_a2 != 0)
     {
       sp18 = var_a2;
-      func_808000E8_chtoothyfish(arg0, 2, var_a2, arg1);
+      func_808000E8_chtoothyfish(arg0, 2, var_a2);
     }
     else
     {
       sp18 = var_a2;
-      func_808000E8_chtoothyfish(arg0, 3, var_a2, arg1);
+      func_808000E8_chtoothyfish(arg0, 3, var_a2);
     }
     *((u8 *) (((s8 *) arg1) + 0x3E)) = ((u8) var_a2) & 0xFFFF;
   }
@@ -63,14 +87,14 @@ void func_808003D4_chtoothyfish(s32 arg0, u8 *arg1)
 /* extern */
 
 void func_80800470_chtoothyfish(Actor *arg0, s32 arg1, s32 arg2, u8 *arg3) {
-    s32 func_808000E8_chtoothyfish(s32, s32, s32, u8 *);
+    void func_808000E8_chtoothyfish();
     if (arg0->unk70_10 == 6) {
         if (arg1) {
             arg1 = 5;
         } else {
             arg1 = 5;
         }
-        func_808000E8_chtoothyfish((s32) arg0, arg1, arg2, arg3);
+        func_808000E8_chtoothyfish(arg0, arg1, arg2, arg3);
     }
 }
 
