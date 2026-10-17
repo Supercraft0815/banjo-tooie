@@ -77,7 +77,7 @@ void func_808007B4_chlagoonufoint(void *arg0) {
     s32 _glcutDll_entrypoint_20();
     f32 func_800DC0C0();
     s32 func_80101EE4(void *, f32);
-    s32 func_80102424(void *, s32);
+    void func_80102424(Actor *, s32);
     (*(s32 *)((s8 *)(arg0) + (0x3C))) = func_8080078C_chlagoonufoint();
     if (_glcutDll_entrypoint_20() != 0) {
         func_80102424(arg0, 3);
@@ -145,7 +145,23 @@ void func_80800CD4_chlagoonufoint(Actor *arg0, void *arg1) {
     func_80101870(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_80800E00_chlagoonufoint.s")
+s32 func_80800E00_chlagoonufoint(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80102424(Actor *, s32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    extern s32 D_80801B58_chlagoonufoint;
+    s32 *data = &arg2;
+    switch (arg1) {
+        case 0x2E:
+            func_80102424(arg0, 1);
+            break;
+        case 0x52:
+            _gcdialogcamera_entrypoint_3(&D_80801B58_chlagoonufoint, arg0->scale);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chlagoonufoint_entrypoint_4(void)
 {
