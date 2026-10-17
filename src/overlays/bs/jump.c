@@ -223,7 +223,39 @@ void bsjump_entrypoint_12(struct player_state_s *arg0) {
     func_8008E944(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_13.s")
+void bsjump_entrypoint_13(struct player_state_s *arg0) {
+    s32 bs_setState(s32, s32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    int func_8008DF8C(struct player_state_s *, s32);
+    int player_isStable(struct player_state_s *);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void func_8009BB24(void *, f32 *);
+    s32 next_state;
+    struct anctrl_s *anim_ctrl;
+    f32 velocity[3];
+
+    next_state = 0;
+    anim_ctrl = baanim_getAnimCtrlPtr(arg0);
+    func_8009BB24(arg0, velocity);
+    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+        case 0:
+            if (func_8008DF8C(arg0, 0x5A)) {
+                anctrl_setSubrange(anim_ctrl, 0.0f, 1.0f);
+                anctrl_setDuration(anim_ctrl, 2.0f);
+                anctrl_setPlaybackType(anim_ctrl, 1);
+                *(s32 *)((s8 *)arg0 + 0x15C) = 1;
+            }
+            break;
+        case 1:
+            break;
+    }
+    if (player_isStable(arg0)) {
+        next_state = 1;
+    }
+    bs_setState(arg0, next_state);
+}
 
 void bsjump_entrypoint_14()
 {
