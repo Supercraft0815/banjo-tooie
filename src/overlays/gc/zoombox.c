@@ -1238,7 +1238,44 @@ void gczoombox_entrypoint_31(void *arg0) {
     *((u8 *) arg0 + 0x177) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_32.s")
+int gczoombox_entrypoint_32(u8 *arg0) {
+    struct {
+        u8 pad0[0x170];
+        u8 unk170;
+        u8 state;
+        u8 pad172[0x2A];
+        u32 pad19C:8;
+        u32 unk19D:8;
+        u32 pad19E:16;
+        s32 unk1A0;
+        u8 pad1A4[0x40];
+        u32 flag80:1;
+        u32 flag40:1;
+        u32 flag20:1;
+        u32 pad3:1;
+        u32 flag08:1;
+        u32 flag04:1;
+        u32 pad6:2;
+        u32 flagE580:1;
+        u32 pad9:23;
+    } *this = (void *)arg0;
+
+    if (this == NULL || this->state == 0 || this->state == 0xB || this->state == 9) {
+        return 0;
+    }
+    func_808001D4_gczoombox(arg0 + 0xC0, 0x30);
+    func_808001D4_gczoombox(arg0, 0x30);
+    func_808001D4_gczoombox(arg0 + 0x30, 0x30);
+    this->flag40 = this->flag20 = this->flag08 = this->flag04 =
+    this->flag80 = this->flagE580 = this->unk19D = 0;
+    this->unk1A0 = 0;
+    if (this->state == 10 || this->state == 1 || this->state == 2 || this->state == 3 || this->state == 4) {
+        this->state = 10;
+        this->unk170 = 3;
+    }
+    gczoombox_entrypoint_14(arg0);
+    return 1;
+}
 
 int gczoombox_entrypoint_33(u8 *box) {
     void func_808004D0_gczoombox(u8 *);
