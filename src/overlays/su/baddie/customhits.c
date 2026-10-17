@@ -64,4 +64,23 @@ s32 subaddiecustomhits_entrypoint_4(Actor *arg0, f32 *arg1, f32 *arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/customhits/subaddiecustomhits_entrypoint_5.s")
+f32 subaddiecustomhits_entrypoint_5(Actor *arg0, f32 *arg1) {
+    f32 func_800EC75C(void *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_80103328();
+    struct CustomHitFlags {
+        u32 pad[2];
+        u32 unused : 30;
+        u32 custom : 1;
+        u32 last : 1;
+    };
+    Unk80132ED0 *marker;
+
+    marker = arg0->unk0;
+    if (!((struct CustomHitFlags *)marker->unk0)->custom) {
+        return func_800EC75C(marker, arg1);
+    }
+    func_80103328(arg0);
+    func_800EE7F8(arg1, arg0->position);
+    return (f32)(u16)arg0->pad68 * arg0->scale * 1.15f;
+}
