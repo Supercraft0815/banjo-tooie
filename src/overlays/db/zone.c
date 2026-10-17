@@ -29,4 +29,26 @@ void dbzone_entrypoint_2(s16 arg0[][7], f32 *arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/zone/dbzone_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/zone/dbzone_entrypoint_4.s")
+s32 dbzone_entrypoint_4(u8 *arg0, f32 *arg1, u8 *arg2) {
+    void func_800EE940(s16 dst[3], f32 src[3]);
+    s32 count;
+    u8 *start;
+    u8 *cursor;
+    s16 sp44[3];
+    u8 *end;
+
+    count = 0;
+    end = arg0 + *arg0 * 14 + 2;
+    func_800EE940(sp44, arg1);
+    start = arg0 + 2;
+    cursor = start;
+    if ((u32)start < (u32)end) {
+        do {
+            if (func_8080010C_dbzone((s16 *)cursor, sp44) != 0) {
+                arg2[count++] = (s32)(cursor - start) / 14;
+            }
+            cursor += 14;
+        } while ((u32)cursor < (u32)end);
+    }
+    return count;
+}
