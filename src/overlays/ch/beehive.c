@@ -96,7 +96,24 @@ s32 func_80800180_chbeehive(Actor *arg0) {
     return;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beehive/func_80800268_chbeehive.s")
+s32 func_80800268_chbeehive(Actor *arg0, s32 arg1, s16 **arg2) {
+    void func_800DF744(s32, s32);
+    s32 func_801015D0(Actor *);
+    switch (arg1) {
+        case 0x40:
+            func_808000CC_chbeehive(arg0, arg2);
+            break;
+        case 0x90:
+            break;
+        case 0x1F:
+            func_801015D0(arg0);
+            func_800DF744(3, 1);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chbeehive_entrypoint_0(void)
 {
