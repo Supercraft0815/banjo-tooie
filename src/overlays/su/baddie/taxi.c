@@ -183,7 +183,36 @@ void subaddietaxi_entrypoint_9(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_10.s")
+void _subaddieDll_entrypoint_4(Actor *, u32);
+
+void subaddietaxi_entrypoint_10(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80102424(Actor *, s32);
+    void func_800EEB9C(f32[3], f32, f32);
+    typedef struct {
+        f32 time;
+        f32 scale;
+        f32 unused[2];
+        f32 velocity[3];
+        f32 depth;
+    } TaxiMotion;
+    struct {
+        u8 unused[0x20];
+        s16 state;
+    } *sp24;
+
+    sp24 = func_8010410C();
+    if (arg2 >= 0) {
+        func_80102424(arg0, arg2);
+    }
+    ((TaxiMotion *)arg0->actorData)->depth = -6800.0f;
+    func_800EEB9C(((TaxiMotion *)arg0->actorData)->velocity, arg0->rotation[1], 300.0f);
+    ((TaxiMotion *)arg0->actorData)->velocity[1] = 1800.0f;
+    ((TaxiMotion *)arg0->actorData)->time = 8.0f;
+    ((TaxiMotion *)arg0->actorData)->scale = arg0->scale;
+    arg0->scale = 0.05f;
+    _subaddieDll_entrypoint_4(arg0, 1);
+    sp24->state = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_11.s")
 
