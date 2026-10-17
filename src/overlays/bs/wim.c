@@ -256,7 +256,7 @@ void func_8080097C_bsbswim(s32 arg0) {
     void _baswim_entrypoint_13(void *);
     s32 _baswim_entrypoint_2(s32);
     s32 _baswim_entrypoint_3(s32);
-    void func_8009DF18(s32, s32, f32, s32);
+    void func_8009DF18(struct player_state_s *, s32, f32, s32);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     s32 anctrl_isAt(s32, f32);
     s32 bs_setState(s32, s32);
@@ -540,7 +540,41 @@ s32 bsbswim_entrypoint_7(s32 arg0) {
     return ((s32 *)&D_80801ED0_bsbswim)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_808010B8_bsbswim.s")
+void func_808010B8_bsbswim(void *arg0) {
+    void _basudie_entrypoint_1(struct player_state_s *);
+    void _batimer_set(struct player_state_s *, s32, f32);
+    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    void func_8009B94C(u8 *, f32 *);
+    void func_8009BA9C(struct player_state_s *, f32 *);
+    void func_8009BC5C(struct player_state_s *, f32);
+    void baroll_setIdeal(struct player_state_s *, f32);
+    void func_8009DF18(struct player_state_s *, s32, f32, s32);
+    void func_8008E944(struct player_state_s *);
+    s32 func_8009E6C4(struct player_state_s *, s32);
+    s32 func_800F8B64(void);
+    s32 var_a1;
+
+    var_a1 = func_8009E6C4(arg0, 4) != 0;
+    if (var_a1 == 0) {
+        var_a1 = func_800F8B64() != 0;
+    }
+    *(s32 *)((u8 *)arg0 + 0x15C) = var_a1;
+    _basudie_entrypoint_1(arg0);
+    baanim_playForDuration_loopSmooth(arg0, 0xB9, 0.7f);
+    func_80800000_bsbswim((s32)arg0);
+    func_80800030_bsbswim(arg0);
+    func_8009BC5C(arg0, 1.0f);
+    func_8009B94C(arg0, 0);
+    func_8009BA9C(arg0, 0);
+    func_8009BF5C(arg0, 275.0f);
+    baroll_setIdeal(arg0, 0.0f);
+    func_8008E944(arg0);
+    _batimer_set(arg0, 0, 0.0f);
+    _batimer_set(arg0, 1, 0.0f);
+    func_800910BC(arg0, 3);
+    func_8009DF18(arg0, 0x467, 1.0f, 0x5DC0);
+    _baswim_entrypoint_6(arg0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_808011C0_bsbswim.s")
 
@@ -690,7 +724,7 @@ void func_808019E0_bsbswim(struct player_state_s *arg0) {
     s32 bs_setState(s32, s32);
     void func_8009C128(struct player_state_s *, f32[3]);
     s32 func_8009FBB0(struct player_state_s *, f32 *, f32);
-    void func_8009DF18(s32, s32, f32, s32);
+    void func_8009DF18(struct player_state_s *, s32, f32, s32);
     void func_800A3410(struct player_state_s *, s32);
     s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
     extern s32 D_80801F20_bsbswim[];
