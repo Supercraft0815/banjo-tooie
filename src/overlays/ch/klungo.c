@@ -334,7 +334,7 @@ void func_80803000_chklungo(Actor *arg0) {
     u32 func_800F54E4(void);
     void* func_80100094(Actor*, u32);
     s32 func_800F4AF4(u32, s32);
-    s32 func_808030A4_chklungo(Actor *);
+    void func_808030A4_chklungo(Actor *);
     u8 *sp1C;
     u8 *temp_v0;
 
@@ -364,7 +364,33 @@ void func_8080305C_chklungo(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_808030A4_chklungo.s")
+void func_808030A4_chklungo(Actor *arg0) {
+    s32 _plcamera_entrypoint_10(s32);
+    void _plcamera_entrypoint_9(s32, f32 *, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    s32 func_800F5EF8(s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80110014(s32 *);
+    void func_80116088(u8 *, s32);
+    struct {
+        u8 padding[0x46];
+        s16 cameraActive;
+    } *data;
+    f32 position[3];
+
+    data = func_80100094(arg0, 0);
+    if (data->cameraActive != 0) {
+        if (_plcamera_entrypoint_10(func_800F54E4()) != 0x14) {
+            data->cameraActive = 0;
+            return;
+        }
+        func_800EE7F8(position, arg0->position);
+        position[1] += 400.0f;
+        _plcamera_entrypoint_9(func_800F54E4(), position, 0.0f);
+        func_80116088(func_80110014(func_800F5EF8(func_800F54E4())), position);
+    }
+}
 
 s32 func_80803158_chklungo(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
