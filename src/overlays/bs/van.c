@@ -190,7 +190,32 @@ void func_808007EC_bsvan(struct player_state_s *arg0) {
     bsvan_entrypoint_0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80800824_bsvan.s")
+struct anctrl_s;
+void func_80800824_bsvan(struct player_state_s *arg0) {
+    enum asset_e;
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void func_8009FFD8();
+    void yaw_setVelocityBounded(struct player_state_s *, f32, f32);
+    struct anctrl_s *control;
+
+    bsvan_entrypoint_1(arg0);
+    control = baanim_getAnimCtrlPtr(arg0);
+    anctrl_reset(control);
+    anctrl_setIndex(control, 0xED);
+    anctrl_setStart(control, 0.359f);
+    anctrl_setDuration(control, 0.7f);
+    anctrl_setPlaybackType(control, 3);
+    anctrl_start(control);
+    func_8009FFD8(arg0, 1, 3, 3, 6);
+    yaw_setVelocityBounded(arg0, 300.0f, 6.5f);
+    *(s32 *)((s8 *)arg0 + 0x15C) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_808008D4_bsvan.s")
 
@@ -396,6 +421,8 @@ void func_808013BC_bsvan(struct player_state_s *arg0)
     func_80090A2C(arg0);
 }
 void func_808013E4_bsvan(struct player_state_s *arg0) {
+    void func_8009FFD8();
+    void yaw_setVelocityBounded(struct player_state_s *, f32, f32);
     void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     void func_800909CC(struct player_state_s *);
@@ -403,7 +430,7 @@ void func_808013E4_bsvan(struct player_state_s *arg0) {
     bsvan_entrypoint_1(arg0);
     baanim_playForDuration_loopSmooth(arg0, 0xEE, 1.0f);
     func_8009FFD8(arg0, 1, 3, 1, 2);
-    yaw_setVelocityBounded(arg0, 0x43960000, 0x40D00000);
+    yaw_setVelocityBounded(arg0, 300.0f, 6.5f);
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
     func_800909CC(arg0);
 }
@@ -420,12 +447,14 @@ s32 bsvan_entrypoint_14(s32 arg0) {
 void func_80801770_bsvan(void *arg0) { s32 _chfaircoinbox_entrypoint_1(s32); _chfaircoinbox_entrypoint_1(*(*(s32 **)((s8 *)(arg0) + 0x188))); bsvan_entrypoint_0(arg0); }
 
 void func_808017A0_bsvan(register void *arg0) {
+    void func_8009FFD8();
+    void yaw_setVelocityBounded(struct player_state_s *, f32, f32);
     void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
     s32 func_8080164C_bsvan(void *, s32);
     bsvan_entrypoint_1(arg0);
     baanim_playForDuration_loopSmooth(arg0, 0xEE, 1.0f);
     func_8009FFD8(arg0, 1, 3, 3, 2);
-    yaw_setVelocityBounded(arg0, 0x43960000, 0x40D00000);
+    yaw_setVelocityBounded(arg0, 300.0f, 6.5f);
     *(s32 *)((s8 *)arg0 + 0x15C) = 0;
     func_8080164C_bsvan(arg0, 1);
 }
