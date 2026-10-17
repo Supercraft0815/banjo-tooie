@@ -88,7 +88,29 @@ s32 func_808008A4_chvolcanobits(Actor *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_80800914_chvolcanobits.s")
+void func_80800914_chvolcanobits(Actor *arg0) {
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8E84(s32, u32 *);
+    f32 func_800DC178(f32, f32);
+    void func_800F2F60(void *, void *, f32);
+    extern s32 D_80801100_chvolcanobits;
+    u32 sp2C[3];
+    s32 temp_v0;
+    s32 var_a2;
+
+    var_a2 = arg0->actorData[0];
+    if (var_a2 == 0) {
+        temp_v0 = func_800C8A98();
+        arg0->actorData[0] = temp_v0;
+        func_800C8E54(temp_v0, 200.0f, 800.0f);
+        var_a2 = arg0->actorData[0];
+    }
+    func_800C8CB8(var_a2, arg0->position);
+    func_800F2F60(sp2C, &D_80801100_chvolcanobits, func_800DC178(0.8f, 1.0f));
+    func_800C8E84(arg0->actorData[0], sp2C);
+}
 
 /* extern */
 
