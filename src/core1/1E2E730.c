@@ -43,10 +43,32 @@ void func_80016DA0(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80016DF8.s")
+void func_80016DF8(s32 arg0) {
+    s32 func_800D6CEC(s32);
+    s32 func_800D70F8(s32, s32);
+    s32 func_800D721C(s32, s32);
+    s32 func_800D73CC(s32);
+    extern s32 D_80079FA0;
+    extern s32 D_8007AE58;
+    MusicSlotView *slot;
+    MusicSlotView *end;
+
+    if (func_800D73CC(arg0 + 0x1DDD) != 0) {
+        slot = (MusicSlotView *)&D_80079FA0, end = (MusicSlotView *)&D_8007AE58;
+        do {
+            if (slot->track_id == arg0) {
+                return;
+            }
+            slot++;
+        } while (slot != end);
+        func_800D721C(arg0 + 0x1DDD, 0);
+        func_800D70F8(arg0 + 0x1DDD, 0);
+        func_800D6CEC(arg0 + 0x1DDD);
+    }
+}
 
 void func_80016E7C(void) {
-    s32 func_80016DF8(s32);
+    void func_80016DF8(s32);
     extern u16 D_8007AE78;
     s32 var_s0;
 

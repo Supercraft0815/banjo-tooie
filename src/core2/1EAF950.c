@@ -315,11 +315,11 @@ void func_800D73AC()
 
 /* extern */
 
-s32 func_800D73CC(void) {
-    s32 func_800D6254();
+s32 func_800D73CC(s32 arg0) {
+    s32 func_800D6254(s32);
     s32 var_v1;
 
-    if (func_800D6254() == -1) {
+    if (func_800D6254(arg0) == -1) {
         var_v1 = 0;
     } else {
         var_v1 = 1;
