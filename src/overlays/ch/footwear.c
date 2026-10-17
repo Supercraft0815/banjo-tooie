@@ -1,6 +1,39 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/footwear/func_80800000_chfootwear.s")
+void func_80800000_chfootwear(Actor *arg0) {
+    typedef struct {
+        f32 unk0[3];
+        f32 unkC;
+        s32 unk10;
+        s32 unk14;
+        s32 unk18;
+        f32 unk1C;
+    } FootwearData;
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80800424_chfootwear(Actor *, s32);
+
+    switch (arg0->unk6C_9) {
+        case 0x21A:
+            ((FootwearData *)arg0->actorData)->unk14 = 0;
+            break;
+        case 0x22E:
+            ((FootwearData *)arg0->actorData)->unk14 = 1;
+            break;
+        case 0x3DB:
+            ((FootwearData *)arg0->actorData)->unk14 = 2;
+            break;
+        case 0x16A:
+            ((FootwearData *)arg0->actorData)->unk14 = 3;
+            break;
+        case 0x471:
+            ((FootwearData *)arg0->actorData)->unk14 = 4;
+            break;
+    }
+    func_800EE7F8(((FootwearData *)arg0->actorData)->unk0, arg0->position);
+    arg0->unk50 = arg0->rotation[1];
+    ((FootwearData *)arg0->actorData)->unk1C = 0.0f;
+    func_80800424_chfootwear(arg0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/footwear/func_808000B8_chfootwear.s")
 
