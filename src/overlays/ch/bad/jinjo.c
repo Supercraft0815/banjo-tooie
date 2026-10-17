@@ -33,8 +33,8 @@ void func_8080000C_chbadjinjo(s32 arg0, f32 arg1[3], s32 arg2) {
 
 void func_8080010C_chbadjinjo(s32 arg0, f32 arg1, s32 arg2) {
     s32 func_800B53A4(s32);
-    s32 func_800BA22C(s32, s32);
-    s32 func_800BA994(s32, s32, s16, s32, s32, s32, s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
     void func_8080000C_chbadjinjo(s32, f32[3], s32);
     s32 sp2C;
     s32 temp_v0;
@@ -46,7 +46,25 @@ void func_8080010C_chbadjinjo(s32 arg0, f32 arg1, s32 arg2) {
     func_800BA22C(sp2C, 0xA);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_808001B0_chbadjinjo.s")
+void func_808001B0_chbadjinjo(Actor *arg0, f32 *arg1, f32 arg2, s32 arg3) {
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
+    int func_800DC298(f32);
+    void func_80801090_chbadjinjo(Actor *, s32 *);
+    extern s32 D_808012D0_chbadjinjo;
+    s32 sp2C;
+    s32 temp_v0;
+
+    temp_v0 = func_800B53A4(4);
+    sp2C = temp_v0;
+    func_8080000C_chbadjinjo(temp_v0, arg1, arg3);
+    func_800BA994(sp2C, -0xF, (s16) (s32) (-60.0f + arg2), 0x32, -5, (s32) (60.0f + arg2), 0x96);
+    func_800BA22C(sp2C, 4);
+    if (func_800DC298(0.1f) != 0) {
+        func_80801090_chbadjinjo(arg0, &D_808012D0_chbadjinjo);
+    }
+}
 
 f32 func_80800278_chbadjinjo(void) {
     extern u8 D_8012762C;
