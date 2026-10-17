@@ -379,7 +379,7 @@ void func_80802594_chboilerboss(s32 arg0) {
 s32 func_80802690_chboilerboss(s32 arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_0(s32, s32);
     void *func_80100094(Actor *, u32);
-    s32 func_80802730_chboilerboss(s32, s32, s32);
+    void func_80802730_chboilerboss(Actor *, s32, s32);
     if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
         if ((*(u8 *)((s8 *)(func_80100094(arg0, 0)) + (0x59))) != 2) {
             func_80802730_chboilerboss(arg0, 2, 1);
@@ -404,7 +404,34 @@ void func_808026F0_chboilerboss(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80802730_chboilerboss.s")
+void func_80802730_chboilerboss(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_7(s32, s32);
+    s32 _capod_entrypoint_8(s32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    void _gcdialogcamera_entrypoint_5(f32 *);
+    void _gcdialogcamera_entrypoint_8(void);
+    extern s32 D_80802AA0_chboilerboss;
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    switch (data[0x59]) {
+        case 0:
+            _capod_entrypoint_2(arg0->unk0, 0x14, 0);
+        case 1:
+            _capod_entrypoint_8(1);
+            data[0x59] = 2;
+            _gcdialogcamera_entrypoint_3(&D_80802AA0_chboilerboss, arg0->scale);
+            _gcdialogcamera_entrypoint_4(arg0->position);
+            _gcdialogcamera_entrypoint_5(arg0->rotation);
+            _gcdialogcamera_entrypoint_8();
+        case 2:
+            _capod_entrypoint_7(arg1, arg2);
+            break;
+    }
+}
 
 void func_808027E4_chboilerboss(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *arg3) {
     void *func_80100094(Actor *, u32);
