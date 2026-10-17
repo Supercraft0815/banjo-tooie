@@ -766,4 +766,30 @@ void func_80804238_chintrochar(s32 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/chintrochar_entrypoint_1.s")
+void chintrochar_entrypoint_1(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4) {
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s16 *data;
+    s32 offset;
+    Vtx *end;
+
+    data = func_80100094(func_80106790(arg4), 2);
+    switch (arg0) {
+    case 1:
+        offset = data[0x70];
+        end = arg1 + arg3;
+        while (arg1 < end) {
+            arg2++;
+            arg2[-1].v.tc[1] = (arg1++)->v.tc[1] + offset;
+        }
+        break;
+    case 2:
+        offset = data[0x71];
+        end = arg1 + arg3;
+        while (arg1 < end) {
+            arg2++;
+            arg2[-1].v.tc[1] = (arg1++)->v.tc[1] + offset;
+        }
+        break;
+    }
+}
