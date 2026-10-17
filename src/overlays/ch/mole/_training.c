@@ -77,7 +77,28 @@ void func_808008E4_chmole_training(s32 arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_80800988_chmole_training.s")
+void func_80800988_chmole_training(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    s32 _gcnewoption_entrypoint_4(Actor *, s32, s32 *, s32, s32);
+    s32 _gcnewoption_entrypoint_8(s32, s32);
+    s32 _gcnewoption_entrypoint_9(s32, s32);
+    s32 _gcnewoption_entrypoint_10(s32, s32);
+    s32 _gcnewoption_entrypoint_11(s32);
+    s32 _gcnewoption_entrypoint_14(s32, s32, s32, s32, f32);
+    extern s32 _chmole_training_entrypoint_0;
+    s32 option;
+
+    _gcnewoption_entrypoint_4(arg0, 0, &_chmole_training_entrypoint_0, 0, 0x184A);
+    option = func_80100094(arg0, 0);
+    _gcnewoption_entrypoint_8(option, arg1);
+    _gcnewoption_entrypoint_9(option, arg2);
+    _gcnewoption_entrypoint_10(option, 0);
+    func_808008E4_chmole_training(arg0, option, arg2);
+    _gcnewoption_entrypoint_14(option, 0, 1, 3, 4.0f);
+    _gcnewoption_entrypoint_11(option);
+    func_80101FDC(arg0, 5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_80800A48_chmole_training.s")
 
