@@ -857,7 +857,34 @@ void func_808062B8_chdiggerboss(Actor *arg0) {
     ((struct DiggerActorState *)actor->actorData)->value = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80806300_chdiggerboss.s")
+s32 func_80806300_chdiggerboss(Actor *arg0) {
+    f32 func_800136E4(f32);
+    f32 func_800D8FF8(void);
+    f32 func_800F1FF0(f32, f32, f32, f32, f32);
+    int func_800F20BC(f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    f32 func_8010CD50(Actor *, u32);
+    struct DiggerTurnState {
+        s32 prefix[2];
+        s16 state;
+        u8 padding[6];
+        f32 value;
+    };
+    struct DiggerTurnState *sp2C;
+    f32 sp28;
+    f32 sp24;
+    f32 temp_f0;
+
+    sp2C = func_80100094(arg0, 0);
+    sp24 = func_800D8FF8();
+    if (sp2C->state == 2) {
+        return -1;
+    }
+    sp28 = func_800136E4(func_8010CD50(arg0, func_80802248_chdiggerboss(arg0)) - arg0->rotation[1]);
+    temp_f0 = func_800F1FF0(sp2C->value, sp28, 0.1f, sp24 * 4.0f, sp24 * 100.0f);
+    sp2C->value = temp_f0;
+    return func_800F20BC(temp_f0, sp28, 10.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808063C8_chdiggerboss.s")
 
