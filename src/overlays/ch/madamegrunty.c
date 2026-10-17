@@ -131,7 +131,42 @@ void func_80800460_chmadamegrunty(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_80800564_chmadamegrunty.s")
+s32 func_80800564_chmadamegrunty(Actor *arg0) {
+    int func_800C6E38(s32);
+    f32 func_800DC178(f32, f32);
+    struct FortuneEntry {
+        s16 unk0;
+        s16 ability;
+        f32 unk4;
+        f32 weight;
+    };
+    extern struct FortuneEntry D_80800AF0_chmadamegrunty[];
+    extern u8 D_80800B50_chmadamegrunty[];
+    struct FortuneEntry *entry;
+    u8 *end;
+    f32 total = 0.0f;
+    f32 cumulative = 0.0f;
+    s32 i;
+
+    end = D_80800B50_chmadamegrunty; entry = D_80800AF0_chmadamegrunty;
+    do {
+        if (entry->ability == -1 || func_800C6E38(entry->ability)) {
+            total += entry->weight;
+        }
+        entry++;
+    } while ((u8 *)entry < end);
+    total = func_800DC178(0.0f, total);
+    for (i = 0; i != 8; i++) {
+        if (D_80800AF0_chmadamegrunty[i].ability == -1 || func_800C6E38(D_80800AF0_chmadamegrunty[i].ability)) {
+            cumulative += D_80800AF0_chmadamegrunty[i].weight;
+            if (total <= cumulative) {
+                *(s32 *)&arg0->unk50 = i;
+                return i + 0x10A1;
+            }
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_80800670_chmadamegrunty.s")
 
