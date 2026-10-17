@@ -43,7 +43,32 @@ void *func_80800000_chdoormake(Actor *arg0, s32 arg1, u32 arg2, s32 arg3) {
     return data;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/func_808000B8_chdoormake.s")
+s32 func_808000B8_chdoormake(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_8010A624(Actor *);
+    void func_8010A63C(Actor *);
+    s32 *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+        case 4:
+            if (*data & 0x800) {
+                func_8010A624(arg0);
+            }
+            if (*data & 0x2000) {
+                arg0->unk64_16 = 0;
+            }
+            break;
+        case 1:
+            if (*data & 0x800) {
+                func_8010A63C(arg0);
+            }
+            if (*data & 0x2000) {
+                arg0->unk64_16 = 1;
+            }
+            break;
+    }
+}
 
 /* extern */
 

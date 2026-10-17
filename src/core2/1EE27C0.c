@@ -463,14 +463,14 @@ u32 func_8010A610(void **arg0) {
     return (u32) ((*(s32 *)((s8 *)(*arg0) + (0x28))) << 0x16) >> 0x1F;
 }
 
-void func_8010A624(void ***arg0) {
+void func_8010A624(Actor *arg0) {
     void *temp_v0;
 
-    temp_v0 = **arg0;
+    temp_v0 = arg0->unk0->unk0;
     (*(u8 *)((s8 *)(temp_v0) + (0xB))) = (u8) ((*(u8 *)((s8 *)(temp_v0) + (0xB))) & 0xFFF7);
 }
 
-void func_8010A63C(void ***arg0) {
+void func_8010A63C(Actor *arg0) {
     struct Flags {
         u8 pad[8];
         u32 upper : 28;
@@ -478,7 +478,7 @@ void func_8010A63C(void ***arg0) {
         u32 lower : 3;
     } *flags;
 
-    flags = **arg0;
+    flags = (struct Flags *)arg0->unk0->unk0;
     flags->enabled = 1;
 }
 
