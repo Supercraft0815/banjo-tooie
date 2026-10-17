@@ -240,7 +240,34 @@ void func_80801DB8_ncpoddialog(u8 *arg0, s32 arg1, f32 arg2) {
     *(f32 *)(arg0 + 0xC8) = *(f32 *)(arg0 + 0x14C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80801E78_ncpoddialog.s")
+void func_80801E78_ncpoddialog(u8 *arg0, s32 arg1, s32 arg2) {
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    f32 sp34[3];
+    f32 var_f2;
+    f32 *sp24;
+
+    func_80800000_ncpoddialog(arg0, 1 - arg1, (f32 *)(arg0 + 0xC4));
+    sp24 = (f32 *)(arg0 + 0x148);
+    func_80800000_ncpoddialog(arg0, arg1, sp24);
+    *(f32 *)(arg0 + 0xC8) += *(f32 *)(arg0 + 0x14C);
+    *(f32 *)(arg0 + 0xC8) *= 0.5f;
+    *(f32 *)(arg0 + 0x14C) = *(f32 *)(arg0 + 0xC8);
+    var_f2 = func_800F1DF4(sp24, (f32 *)(arg0 + 0xC4));
+    if (arg2 != 0) {
+        var_f2 += 90.0f;
+    } else {
+        var_f2 -= 90.0f;
+    }
+    func_800EEB9C(sp34, var_f2, ((f32 *)arg0)[9 - (u32)arg1]);
+    func_800EF04C((f32 *)(arg0 + 0xC4), sp34);
+    func_800EFB24(sp34, (f32 *)(arg0 + 0xC4), sp24);
+    func_800EF334(sp34, 0.5f);
+    func_800EF04C((f32 *)(arg0 + 0xC4), sp34);
+}
 
 void func_80801F88_ncpoddialog(u8 *arg0, f32 arg1) {
     void func_800EE780(f32 *, f32 *, f32 *);
