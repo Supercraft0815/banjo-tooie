@@ -450,7 +450,36 @@ s32 bsbtrot_entrypoint_23(s32 arg0) {
     return ((s32 *)&D_80802EA0_bsbtrot)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_24.s")
+void bsbtrot_entrypoint_24(PlayerState *arg0) {
+    void anctrl_reset(AnimCtrl *);
+    void anctrl_setDuration(AnimCtrl *, f32);
+    void anctrl_setIndex(AnimCtrl *, s32);
+    void anctrl_setPlaybackType(AnimCtrl *, s32);
+    void anctrl_setStart(AnimCtrl *, f32);
+    void anctrl_start(AnimCtrl *);
+    AnimCtrl *baanim_getAnimCtrlPtr(PlayerState *);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    f32 yaw_getIdeal(PlayerState *);
+    f32 yaw[3];
+    AnimCtrl *anim_ctrl;
+
+    anim_ctrl = baanim_getAnimCtrlPtr(arg0);
+    anctrl_reset(anim_ctrl);
+    anctrl_setIndex(anim_ctrl, 0x27);
+    anctrl_setDuration(anim_ctrl, 1.4f);
+    anctrl_setStart(anim_ctrl, 0.4653f);
+    anctrl_setPlaybackType(anim_ctrl, 3);
+    anctrl_start(anim_ctrl);
+    func_80800538_bsbtrot(arg0);
+    func_8009FFD8(arg0, 1, 1, 3, 6);
+    baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+    func_80800438_bsbtrot(arg0);
+    yaw[0] = yaw_getIdeal(arg0);
+    baphysics_set_horizontal_velocity(arg0, yaw[0], baphysics_get_target_horizontal_velocity(arg0));
+    *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+}
 
 void bsbtrot_entrypoint_25(void *arg0) {
     s32 func_8008E3E8(PlayerState *);
@@ -460,7 +489,7 @@ void bsbtrot_entrypoint_25(void *arg0) {
     void anctrl_setDuration(AnimCtrl *, f32);
     void anctrl_setPlaybackType(AnimCtrl *, s32);
     s32 anctrl_isStopped(AnimCtrl *);
-    f32 baphysics_get_target_horizontal_velocity(void *);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
     void func_8009BB24(void *, f32 *);
     s32 next_state;
     AnimCtrl *anim_ctrl;
