@@ -407,4 +407,18 @@ void func_8080193C_chsabreman(Actor *arg0, void *arg1) {
     func_80101870(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_808019A4_chsabreman.s")
+s32 func_808019A4_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80102424(Actor *, s32);
+    s32 *data = &arg2;
+    switch (arg1) {
+        case 0xA:
+            func_80102424(arg0, 2);
+            break;
+        case 0x48:
+            arg0->unk64_20 = 1;
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
