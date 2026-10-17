@@ -152,7 +152,37 @@ void func_80800870_sucoasterhit(Actor *arg0, Actor *arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/hit/sucoasterhit_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/hit/func_80800AEC_sucoasterhit.s")
+s32 func_80800AEC_sucoasterhit(Actor *arg0, void *arg1) {
+    s32 _subaddievolume_entrypoint_0(Actor *, f32 *, s32, s32, s32 *);
+    s32 func_800B5BE4(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_80103F38(Actor *, f32 *);
+    extern s32 D_80800CE8_sucoasterhit;
+    extern s32 D_80800D14_sucoasterhit;
+    struct HitData {
+        u8 padding[0x14];
+        u8 volume;
+    };
+    f32 sp60[20][3];
+    f32 sp54[3];
+    s32 temp_s3;
+    s32 var_s0;
+    s32 sp48;
+    s32 sp44;
+
+    sp44 = ((struct HitData *)arg1)->volume;
+    temp_s3 = _subaddievolume_entrypoint_0(arg0, sp60[0], 1, 5, &sp44);
+    ((struct HitData *)arg1)->volume = sp44;
+    if (temp_s3 > 0) {
+        func_80103F38(arg0, sp54);
+        sp48 = func_800B5BE4(0x12);
+        func_800BABB8(sp48, NULL, NULL, 1.0f, &D_80800CE8_sucoasterhit);
+    }
+    for (var_s0 = 0; var_s0 < temp_s3; var_s0++) {
+        func_800BABB8(sp48, sp60[var_s0], sp54, 1.0f, &D_80800D14_sucoasterhit);
+    }
+    return temp_s3 >= 0;
+}
 
 /* extern */
 
