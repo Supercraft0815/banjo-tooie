@@ -123,7 +123,51 @@ s32 func_80800BEC_sudeflect(f32 *arg0, f32 *arg1) {
     return count;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/deflect/func_80800D14_sudeflect.s")
+s32 func_80800D14_sudeflect(f32 *arg0, f32 *arg1) {
+    s32 func_800E9E88(s32);
+    u32 func_800E9EB4(s16 *);
+    s32 func_8010108C(Actor *, s32, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_80800ECC_sudeflect(f32 *, f32 *, f32 *, f32);
+    struct DeflectProp {
+        Unk80132ED0 *marker;
+        s32 unk4;
+        u32 flags;
+    } *entry, *end;
+    Unk80132ED0 *marker;
+    Actor *actor;
+    s32 count;
+    s16 **list;
+    s16 *cell;
+
+    list = (s16 **)B_80801020_sudeflect.entries[0];
+    cell = *list;
+    count = 0;
+    if (cell != NULL) {
+        do {
+            entry = (struct DeflectProp *)func_800E9E88((s32)cell);
+            end = (struct DeflectProp *)func_800E9EB4(*list);
+            if (entry < end) {
+                do {
+                    if (entry->flags & 1) {
+                        marker = entry->marker;
+                        if ((marker->unk24 >> 22) == 0x27A) {
+                            actor = func_80106790(marker);
+                            if (!actor->unk64_17 && func_80800ECC_sudeflect(arg0, arg1, actor->position, 40.0f)) {
+                                count++;
+                                func_8010108C(actor, 5, -1);
+                            }
+                        }
+                    }
+                    entry++;
+                } while (entry < end);
+            }
+            cell = list[1];
+            list++;
+        } while (cell != NULL);
+    }
+    return count;
+}
 
 /* extern */
 
