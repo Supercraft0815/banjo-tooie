@@ -156,7 +156,22 @@ void *func_800E9A24(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9AC0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2FD0/func_800E9B74.s")
+void func_800E9B74(s16 *arg0, s32 arg1) {
+    void func_800B3FD0(u8 **, void *, s32);
+    u8 *func_800BE5C4(u8 *);
+    Prop *func_800E9D68(s16 *);
+    u8 func_800E9DD4(u8 *);
+    extern s32 D_80132DB0;
+    s32 sp1C;
+    u8 *temp_v0;
+
+    sp1C = (arg1 - (s32)func_800E9D68(arg0)) / 20;
+    if (sp1C < func_800E9DD4((u8 *)arg0)) {
+        temp_v0 = func_800BE5C4((u8 *)arg0);
+        *temp_v0 -= 1;
+    }
+    func_800B3FD0((u8 **)&D_80132DB0, arg0, sp1C);
+}
 
 Prop *func_800E9D68(s16 *);
 s32 func_800E9BF4(s16 *arg0, s32 arg1) { if ((arg1 < 0) || (arg1 >= arg0[1])) return 0; return (s32)func_800E9D68(arg0) + arg1 * 20; }
@@ -229,9 +244,9 @@ s32 func_800E9DCC(s16 *arg0) {
 
 /* extern */
 
-u8 func_800E9DD4(void) {
-    u8 *func_800BE5C4();
-    return *func_800BE5C4();
+u8 func_800E9DD4(u8 *arg0) {
+    u8 *func_800BE5C4(u8 *);
+    return *func_800BE5C4(arg0);
 }
 
 void func_800E9DF8(void) {
@@ -273,9 +288,9 @@ u32 func_800E9EB4(s16 *arg0) { return arg0[3] * 12 + (u32)func_800E9E88((s32)arg
 
 void func_800E9EE8(s32 arg0) {
     s32 _gccubesearch_entrypoint_17(s32, s32);
-    s32 func_800E9B74(s32, s32);
+    void func_800E9B74(s16 *, s32);
     s32 temp_v0;
-    s32 sp18;
+    s16 *sp18;
 
     temp_v0 = _gccubesearch_entrypoint_17(arg0, (s32) &sp18);
     if (temp_v0 != 0) {
