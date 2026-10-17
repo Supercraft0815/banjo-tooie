@@ -7,7 +7,42 @@ OSThread *chgobiwitchy_entrypoint_0(void)
     return (OSThread *) D_80800410_chgobiwitchy;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gobi/witchy/func_8080000C_chgobiwitchy.s")
+void func_8080000C_chgobiwitchy(Actor *arg0) {
+    void _capod_entrypoint_14(void);
+    s32 _chbadshad_entrypoint_2(Actor *, s32, f32, s32);
+    void _chgobicommon_entrypoint_0(Actor *);
+    u32 _gclevel_entrypoint_3(u32);
+    void _glcutDll_entrypoint_6(u32, u32);
+    s32 _suexpression_entrypoint_10(s32, s32, s32);
+    s32 _suexpression_entrypoint_20();
+    s32 func_8008FB10(s32, f32, f32, f32);
+    void func_800FFAB0(Actor *);
+    void func_80105834(Actor *);
+    s32 func_80105A5C(Actor *);
+    void func_808002DC_chgobiwitchy(Actor *);
+
+    _suexpression_entrypoint_10(_suexpression_entrypoint_20(), arg0->unk0, 0);
+    _chgobicommon_entrypoint_0(arg0);
+    func_8008FB10(arg0->position, 240.0f, 0.0f, 150.0f);
+    switch (arg0->unk70_10) {
+        case 2:
+            break;
+        case 1:
+            func_808002DC_chgobiwitchy(arg0);
+            break;
+        case 4:
+            func_80105834(arg0);
+            if (func_80105A5C(arg0)) {
+                func_800FFAB0(arg0);
+                _capod_entrypoint_14();
+                if (_gclevel_entrypoint_3(0x17)) {
+                    _glcutDll_entrypoint_6(0x127, 0x47);
+                }
+            }
+            break;
+    }
+    _chbadshad_entrypoint_2(arg0, 1, arg0->scale * 2.4f, 0);
+}
 
 s32 func_80800104_chgobiwitchy(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcdialogcamera_entrypoint_3(u32 *, f32);
