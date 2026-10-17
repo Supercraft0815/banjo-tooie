@@ -136,7 +136,41 @@ s32 chdoormake_entrypoint_1(Actor *arg0, f32 arg1, u32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/chdoormake_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/chdoormake_entrypoint_3.s")
+s32 chdoormake_entrypoint_3(Actor *arg0, f32 arg1, f32 arg2, f32 arg3, u32 arg4, s32 arg5) {
+    struct DoorPositions {
+        u8 pad[0x10];
+        s16 start[3];
+        s16 end[3];
+    };
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EE940(s16 *, f32 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    void func_800FFAB0(Actor *);
+    void func_80101FDC(Actor *, u32);
+    void func_80103014(u8 *);
+    s32 func_808008C4_chdoormake(Actor *);
+    struct DoorPositions *data;
+    f32 position[3];
+
+    data = func_80800000_chdoormake(arg0, 2, arg4, arg5);
+    func_800EE940(data->start, arg0->position);
+    func_800EE7F8(position, arg0->position);
+    func_800EF214(position, arg2, arg1, arg3);
+    func_800EE940(data->end, position);
+    if ((func_808008C4_chdoormake(arg0) != 0) || (arg0->unk70_10 == 4)) {
+        if (arg4 & 1) {
+            func_800FFAB0(arg0);
+            return 0;
+        }
+        func_800EE7F8(arg0->position, position);
+        func_80101FDC(arg0, 4);
+        func_80103014(arg0);
+        func_808000B8_chdoormake(arg0);
+        return 2;
+    }
+    func_808000B8_chdoormake(arg0);
+    return 1;
+}
 
 /* extern */
 
