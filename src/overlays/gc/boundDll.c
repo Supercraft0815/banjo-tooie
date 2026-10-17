@@ -289,4 +289,24 @@ void func_80801450_gcboundDll(u8 *arg0, s32 arg1, s32 arg2) {
     func_80801370_gcboundDll((*(s32 *)((s8 *)(arg0) + (0x10))), (*(s32 *)((s8 *)(arg0) + (0x14))), arg2, arg1, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_80801484_gcboundDll.s")
+s32 func_80801484_gcboundDll(u8 *arg0, s16 *arg1, s32 arg2, s16 *arg3, s32 arg4) {
+    void func_800EE88C(f32 *, s16 *);
+    int func_800F0064(f32 *, f32, f32 *);
+    f32 distance;
+    u32 end;
+    f32 position[3];
+    u32 current;
+
+    func_800EE88C(position, arg3);
+    end = func_80800654_gcboundDll(arg0, arg1);
+    current = func_80800630_gcboundDll(arg0, arg1);
+    while (current < end) {
+        distance = (f32)arg3[1] - ((f32 *)current)[1];
+        if (distance * distance < 250000.0f &&
+            func_800F0064(position, (f32)(((s16 *)current)[6] + arg4), (f32 *)current)) {
+            return 1;
+        }
+        current += 0x18;
+    }
+    return 0;
+}
