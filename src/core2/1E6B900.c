@@ -784,7 +784,26 @@ void func_80094370(s32 arg0)
     func_800946C4(arg0,0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094390.s")
+void func_80094390(PlayerState *arg0) {
+    s32 _batimer_decrement(void *, s32);
+    f32 _batimer_get(PlayerState *, s32);
+    void func_80094430(PlayerState *, f32);
+    void func_8009E9F0(f32);
+    s32 func_800C0638(void);
+    s32 func_800C954C(void);
+    s32 func_800D2498(u32, s32, u32);
+    int func_800F6774(u32);
+    s32 func_80101180(s32, s32, s32);
+
+    if ((func_800C954C() == 0) && (func_800F6774(arg0->unk184) != 0) && (_batimer_decrement(arg0, 0xD) != 0)) {
+        func_8009E9F0(0.0f);
+        func_80094430(arg0, 0.0f);
+        func_80101180(0x1CD, 0x76, 0);
+    }
+    if (func_800C0638() == 0) {
+        func_800D2498(0x105, (s32) _batimer_get(arg0, 0xD), 0);
+    }
+}
 
 void func_80094430(PlayerState *arg0, f32 arg1) {
     void _batimer_set(PlayerState *, s32, f32);
@@ -823,7 +842,7 @@ s32 func_80094510(PlayerState *arg0) {
 void func_80094538(PlayerState *arg0) {
     f32 _batimer_get(PlayerState *, s32);
     s32 func_8009E9E4(s32);
-    s32 func_8009E9F0(f32);
+    void func_8009E9F0(f32);
     func_8009E9E4(func_80094510(arg0));
     func_8009E9F0(_batimer_get(arg0, 0xD));
 }
