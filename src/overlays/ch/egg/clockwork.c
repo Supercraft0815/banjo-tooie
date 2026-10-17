@@ -70,7 +70,30 @@ void cheggclockwork_entrypoint_3(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     _chbaddiesetup_entrypoint_6(&_cheggclockwork_entrypoint_2, (*(s32 *)((s8 *)(arg0) + (0))), (*(s32 *)((s8 *)(arg0) + (4))), (*(s32 *)((s8 *)(arg0) + (8))), arg1, arg2, arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/clockwork/func_808006E8_cheggclockwork.s")
+void func_808006E8_cheggclockwork(Actor *arg0) {
+    void *func_8001B798(s16);
+    void *func_80100094(Actor *, u32);
+    s32 func_800F6DE0(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 *src;
+
+    src = func_8001B798(*(s16 *)((u8 *)func_80100094(arg0, 0U) + 0x2C));
+    if (func_800F6DE0(arg0->position) == 0) {
+        if (func_800F6DE0(src) != 0) {
+            func_800EE7F8(arg0->position, src);
+            return;
+        }
+        if (func_800F6DE0(src + 3) != 0) {
+            func_800EE7F8(arg0->position, src + 3);
+            return;
+        }
+        if (func_800F6DE0(src + 6) != 0) {
+            func_800EE7F8(arg0->position, src + 6);
+            return;
+        }
+        func_800EE7F8(arg0->position, src + 6);
+    }
+}
 
 void func_808007B4_cheggclockwork(Actor *arg0) {
     s32 func_8001B754(s16);
@@ -81,32 +104,32 @@ void func_808007B4_cheggclockwork(Actor *arg0) {
 /* extern */
 
 void func_808007DC_cheggclockwork(Actor *arg0, f32 *arg1) {
-    s32 func_8001B798(s16);
+    void *func_8001B798(s16);
     void func_800EE7F8(f32 dst[3], f32 src[3]);
     void* func_80100094(Actor*, u32);
     s16 func_8001B668(s32, s32);
     u8 *sp1C;
-    s32 sp18;
-    s32 temp_v0;
+    f32 *sp18;
+    f32 *temp_v0;
 
     sp1C = func_80100094(arg0, 0U);
     (*(s16 *)((s8 *)(sp1C) + (0x2C))) = func_8001B668(0, 0x24);
     temp_v0 = func_8001B798((*(s16 *)((s8 *)(sp1C) + (0x2C))));
     sp18 = temp_v0;
     func_800EE7F8((f32 *) temp_v0, arg1);
-    func_800EE7F8(sp18 + 0xC, arg1);
-    func_800EE7F8(sp18 + 0x18, arg1);
+    func_800EE7F8(sp18 + 3, arg1);
+    func_800EE7F8(sp18 + 6, arg1);
 }
 
 void func_80800850_cheggclockwork(Actor *arg0) {
-    s32 func_8001B798(s16);
+    void *func_8001B798(s16);
     void func_800EE7F8(f32 dst[3], f32 src[3]);
     void* func_80100094(Actor*, u32);
     s32 pad;
-    s32 sp18;
+    f32 *sp18;
     pad = 0;
     sp18 = func_8001B798((*(s16 *)((s8 *)(func_80100094(arg0, 0U)) + (0x2C))));
-    func_800EE7F8(sp18 + 0x18, sp18 + 0xC);
-    func_800EE7F8(sp18 + 0xC, (f32 *) sp18);
+    func_800EE7F8(sp18 + 6, sp18 + 3);
+    func_800EE7F8(sp18 + 3, (f32 *) sp18);
     func_800EE7F8((f32 *) sp18, arg0->position);
 }
