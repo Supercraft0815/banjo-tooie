@@ -45,7 +45,38 @@ void func_80112204(s32 *arg0, f32 *arg1) {
     arg1[2] = sp1C[2];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEBA50/func_80112250.s")
+void func_80112250(s32 *arg0, f32 *arg1) {
+    f32 func_80013728(f32);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800F51F0(s32, f32 *, f32 *);
+    f32 func_800F5AE0(s32);
+    void func_801107F0(void *, f32 *);
+    s32 func_80110840(s32 *);
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp34;
+    f32 sp30;
+    f32 temp_f0;
+    s32 sp28;
+
+    sp28 = func_80110840(arg0);
+    func_80112168(arg0, arg1);
+    func_801107F0(arg0, sp38);
+    sp34 = func_800EEAD4(sp38, arg1);
+    func_800EFA4C(sp44, 0.0f, 200.0f, 0.0f);
+    func_800F51F0(sp28, sp44, sp44);
+    sp30 = func_800F10B4(sp34, 700.0f, 1500.0f, 100.0f, 200.0f);
+    temp_f0 = func_80013728(func_800F5AE0(sp28));
+    if (temp_f0 < 0.0f) {
+        sp30 *= func_800F10B4(temp_f0, -30.0f, -60.0f, 1.0f, 0.0f);
+    }
+    func_800EF368(sp44, sp30);
+    func_800EF04C(arg1, sp44);
+}
 
 void func_80112354(PlayerState *arg0, s32 arg1) {
     func_80112168(arg0, arg1);
