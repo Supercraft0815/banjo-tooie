@@ -26,7 +26,33 @@ f32 func_80800548_cheggsplode(s32 arg0) {
     return 190.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/splode/cheggsplode_entrypoint_1.s")
+void cheggsplode_entrypoint_1(Actor **arg0, s32 arg1, s32 arg2) {
+    Actor *func_801084B0(s32, Actor **);
+    void *func_80100094(Actor *, u32);
+    Actor *actor;
+    struct EggSplodeData {
+        s32 unk0;
+        s16 unk4;
+        s16 unk6;
+        f32 unk8;
+        f32 unkC;
+    } *data;
+
+    actor = func_801084B0(0x2B2, arg0);
+    data = func_80100094(actor, 0);
+    data->unk6 = 0;
+    data->unk4 = arg2;
+    data->unk0 = arg1;
+    if (arg2 != 4) {
+        if (arg2 == 6) {
+            actor->unk70_10 = 3;
+            data->unkC = 350.0f;
+        }
+    } else {
+        actor->unk70_10 = 2;
+        data->unkC = func_80800548_cheggsplode(arg1);
+    }
+}
 
 void cheggsplode_entrypoint_2(f32 *arg0, f32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     Actor *func_80108474(u32, f32 *, s32);
