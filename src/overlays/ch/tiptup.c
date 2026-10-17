@@ -278,7 +278,35 @@ void func_80800C70_chtiptup(Actor *arg0) {
     ((u8 *)&arg0->pad94)[1] = (((u8 *)&arg0->pad94)[1] & ~1) | 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800D78_chtiptup.s")
+s32 func_80800D78_chtiptup(Actor *arg0, s32 arg1, s32 arg2) {
+    Actor *other;
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    u32 func_800F54E4(void);
+    void func_800F8300();
+    void func_800FC660(u32);
+    void func_80102424(Actor *, s32);
+    void func_8010A570(Actor *);
+
+    switch (arg1) {
+        case 0x40:
+            func_800F8300(func_800F54E4(), 2, arg0->position);
+            func_8010A570(arg0);
+            func_80102424(arg0, 4);
+            _subaddieDll_entrypoint_4(arg0, 1);
+            func_800FC660(0xE);
+            break;
+        case 0x95:
+            other = _subaddiefind_entrypoint_2(0x358, 0);
+            if (other != NULL) {
+                arg0->unk3C = other->unk0;
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800E2C_chtiptup(Actor *arg0) {
     f32 *sp1C[1];
