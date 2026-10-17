@@ -112,13 +112,34 @@ void func_80801188_chexploder(u8 *arg0, u8 *arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/chexploder_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/chexploder_entrypoint_3.s")
+void chexploder_entrypoint_3(Actor *arg0, f32 *arg1, s32 arg2) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80103DFC(Actor *, f32 *);
+    void func_8010A570(Actor *);
+    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    extern s32 _chexploder_entrypoint_1;
+    union {
+        f32 vec[3];
+        s32 words[3];
+    } sp24;
+
+    if (arg1 != NULL) {
+        func_800EE7F8(sp24.vec, arg1);
+    } else {
+        func_80103DFC(arg0, sp24.vec);
+    }
+    if (arg2 & 4) {
+        func_8010A570(arg0);
+    }
+    _chbaddiesetup_entrypoint_5(&_chexploder_entrypoint_1, (s32)arg0->unk0,
+        sp24.words[0], sp24.words[1], sp24.words[2], arg2);
+}
 
 /* extern */
 
-void chexploder_entrypoint_4(s32 arg0, s16 *arg1, s32 arg2) {
+void chexploder_entrypoint_4(Actor *arg0, s16 *arg1, s32 arg2) {
     void func_800EE88C(f32 dst[3], s16 src[3]);
-    s32 chexploder_entrypoint_3(s32, f32 *, s32);
+    void chexploder_entrypoint_3(Actor *, f32 *, s32);
     f32 sp1C[3];
 
     func_800EE88C(sp1C, arg1);
