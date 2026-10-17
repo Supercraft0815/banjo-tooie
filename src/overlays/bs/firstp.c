@@ -2534,7 +2534,20 @@ void bsfirstp_entrypoint_28(void *arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80806BA0_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80806C58_bsfirstp.s")
+void func_80806C58_bsfirstp(void *arg0) {
+    void func_8009337C(void *, s32);
+    void func_800936E8(void *, s32);
+    void func_8009B7C0();
+    void func_800A16BC(s32);
+    void func_80807BB8_bsfirstp();
+    func_80807BB8_bsfirstp(arg0);
+    func_800936E8(arg0, 0);
+    func_8009337C(arg0, 1);
+    func_8009B7C0(arg0);
+    func_80801B64_bsfirstp(arg0, 2);
+    func_808061AC_bsfirstp(arg0, 0);
+    func_800A16BC(1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80806CC0_bsfirstp.s")
 
