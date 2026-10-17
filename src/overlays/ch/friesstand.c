@@ -28,7 +28,26 @@ OSThread *chfriesstand_entrypoint_3(void)
     return (OSThread *) D_80800FA0_chfriesstand;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/func_80800030_chfriesstand.s")
+void func_80800030_chfriesstand(Actor *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80102424(Actor *, s32);
+    void func_80103110(Actor *, u32);
+    Actor *other;
+
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80102424(arg0, 5);
+    } else {
+        arg0->unk64_16 = func_800DA298(FLAG_0A0_UNK);
+    }
+    func_80103110(arg0, arg0->unk64_16);
+    other = _subaddiefind_entrypoint_2(0x331, 0);
+    if (other != NULL) {
+        func_800EE7F8((f32 *)arg0->actorData, other->position);
+        ((f32 *)arg0->actorData)[1] = arg0->position[1];
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/func_808000C4_chfriesstand.s")
 
@@ -44,8 +63,8 @@ s32 func_808003B8_chfriesstand(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_80090734(s32, f32 *);
     s32 func_800D1A04(s32);
     s32 func_80101EE4(Actor *, f32);
-    s32 func_80102424(Actor *, s32);
-    s32 func_80103110(Actor *, s32);
+    void func_80102424(Actor *, s32);
+    void func_80103110(Actor *, u32);
     void *func_80106790(Unk80132ED0 *);
     s32 func_80108B04(Actor *, s32);
     s32 func_80800904_chfriesstand(Actor *);
