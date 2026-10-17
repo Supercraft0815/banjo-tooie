@@ -373,7 +373,20 @@ void func_808017D8_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_80801864_chsabreman.s")
+void func_80801864_chsabreman(Actor *arg0) {
+    s32 func_800DA564(s32, s32);
+    void func_80102424(Actor *, s32);
+    void func_80103110(Actor *, u32);
+    void func_8010A800(Actor *, s32);
+    if (func_800DA564(0x1CA, 2) > 0) {
+        func_80102424(arg0, 3);
+        func_80103110(arg0, 0);
+    }
+    if (func_800DA564(0x1CA, 2) >= 2) {
+        arg0->unk64_20 = 1;
+    }
+    func_8010A800(arg0, 2);
+}
 
 void func_808018DC_chsabreman(Actor *arg0) {
     s32 func_80101DDC(Actor *);
