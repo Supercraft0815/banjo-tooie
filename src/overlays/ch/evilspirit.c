@@ -24,7 +24,35 @@ void func_808005B4_chevilspirit(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_808005EC_chevilspirit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80800718_chevilspirit.s")
+void func_80800718_chevilspirit(Actor *arg0, s32 arg1) {
+    s32 func_800EB854(void);
+    void func_801017D0(Actor *);
+    s32 func_80101808(Actor *, void (*)(Actor *));
+    void func_808007B4_chevilspirit(Actor *, s32);
+    s32 saved;
+    s32 state;
+    Unk80132ED0 *marker;
+    struct Flags {
+        u32 other : 31;
+        u32 enabled : 1;
+    };
+
+    state = func_800EB854();
+    switch (state) {
+        case 0:
+        case 2:
+            marker = arg0->unk0;
+            saved = ((struct Flags *)&marker->unk10)->enabled;
+            ((struct Flags *)&marker->unk10)->enabled = 0;
+            func_80101808(arg0, func_801017D0);
+            marker = arg0->unk0;
+            ((struct Flags *)&marker->unk10)->enabled = saved;
+            break;
+        case 3:
+            func_808007B4_chevilspirit(arg0, arg1);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_808007B4_chevilspirit.s")
 

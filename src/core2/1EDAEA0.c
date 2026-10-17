@@ -38,7 +38,7 @@ void func_801017D0(Actor *arg0) {
 }
 
 // the real actor_draw?
-void func_80101808(Actor* arg0, s32 (*arg1)(Actor*)) {
+s32 func_80101808(Actor* arg0, void (*arg1)(Actor*)) {
     s32 pad[2];
     f32* sp2C;
     f32* sp28;
