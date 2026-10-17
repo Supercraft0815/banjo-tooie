@@ -53,7 +53,29 @@ void func_800E8B3C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8B74.s")
+u8 func_800E8B74(u32 arg0) {
+    s32 freelist_new(s32, s32);
+    void *freelist_next(s32 *, s32 *);
+    s32 func_800D674C(s32);
+    extern void func_800E8CDC(u8);
+    extern s32 D_8012D680;
+    s16 *temp;
+    s32 index;
+    s16 *entry;
+
+    if (D_8012D680 == 0) {
+        D_8012D680 = freelist_new(0x50, 2);
+    }
+    temp = freelist_next(&D_8012D680, &index);
+    if (arg0 != 0) {
+        entry = temp;
+        *entry = *(s16 *)func_800D674C(arg0);
+    } else {
+        bzero(temp, 0x50);
+    }
+    func_800E8CDC((u8)index);
+    return index;
+}
 
 void func_800E8C08(u8 arg0) {
     s32 freelist_erase(s32, s32);
