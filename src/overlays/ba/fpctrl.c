@@ -5,7 +5,32 @@ s32 bafpctrl_entrypoint_0()
     return 0x1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_80800008_bafpctrl.s")
+struct player_state_s;
+s32 func_80800008_bafpctrl(void *arg0) {
+    typedef struct player_state_s PlayerState;
+    int bakey_pressed(PlayerState *, int);
+    u32 bafpctrl_entrypoint_4(void *);
+    u32 bafpctrl_entrypoint_6(void *);
+    int func_8008DF8C(PlayerState *, s32);
+    s32 func_8008FD48();
+    s32 func_8008FF94();
+    s32 player_inWater(PlayerState *);
+
+    if (bakey_pressed(arg0, 0xC) && bafpctrl_entrypoint_6(arg0) && !(*(*(s32 **)((s8 *)arg0 + 0x90)) & 2)) {
+        return 1;
+    }
+    if (player_inWater(arg0)) {
+        if (func_8008FD48() == 1 && func_8008FF94() == 0) {
+            return 1;
+        }
+    } else if (func_8008DF8C(arg0, 0x19) == 0) {
+        if (bafpctrl_entrypoint_4(arg0) != 1) {
+            return 0;
+        }
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
