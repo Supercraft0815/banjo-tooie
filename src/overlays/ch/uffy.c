@@ -219,7 +219,36 @@ void func_8080167C_chchuffy(s32 *arg0) {
     *arg0 = 0xD0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_808016D0_chchuffy.s")
+s32 func_808016D0_chchuffy(s32 arg0) {
+    void _glcutDll_entrypoint_24(u32, u32, u32);
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+    s32 sp1C;
+
+    sp1C = func_800EA05C();
+    switch (sp1C) {
+        case 0xEC:
+            if (func_800DA298(0x98) && !func_800DA298(0x588) && !func_800DA298(0x8A)) {
+                func_8080167C_chchuffy(&sp1C);
+                _glcutDll_entrypoint_24(0xEA, sp1C, 0x1F);
+                return 1;
+            }
+            break;
+        case 0x114:
+            if (func_800DA298(0x588)) {
+                func_8080167C_chchuffy(&sp1C);
+                _glcutDll_entrypoint_24(0x114, -1, 0x35);
+                return 1;
+            }
+            if (func_800DA298(0x189) && func_800DA298(0x15E)) {
+                func_8080167C_chchuffy(&sp1C);
+                _glcutDll_entrypoint_24(0x114, -1, 0x38);
+                return 1;
+            }
+            break;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_808017D4_chchuffy.s")
 
