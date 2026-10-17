@@ -64,7 +64,32 @@ u32 func_800AADE4(u16 *arg0) {
     return arg0[10];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AADEC.s")
+s32 func_800AADEC(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
+    void func_800EE97C(f32 *, f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    f32 func_800EEFD4(f32 *);
+    void func_800EFB24(void *, void *, void *);
+    f32 sqrtf(f32);
+    extern f32 D_80125610;
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp24[3];
+    f32 temp_f0;
+    f32 temp_f2;
+
+    func_800EFB24(sp3C, arg1, arg0);
+    temp_f0 = func_800EEFD4(sp3C);
+    if (temp_f0 < D_80125610) {
+        return func_800EEB40(arg0, arg2) < arg3;
+    }
+    temp_f2 = 1.0f / sqrtf(temp_f0);
+    sp3C[0] *= temp_f2;
+    sp3C[1] *= temp_f2;
+    sp3C[2] *= temp_f2;
+    func_800EFB24(sp30, arg2, arg0);
+    func_800EE97C(sp24, sp30, sp3C);
+    return func_800EEFD4(sp24) < arg3;
+}
 
 /* extern */
 
