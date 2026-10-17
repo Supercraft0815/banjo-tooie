@@ -267,7 +267,25 @@ f32 func_800E2DF0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E30E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E3220.s")
+void func_800E3220(Gfx **arg0, void *arg1) {
+    u8 *func_800AF5D8(s16 *);
+    void *func_800AF5E4(void *);
+    void func_800E1DF4(void);
+    void func_800E42F0();
+    extern s32 D_8012D4F4;
+    Gfx *first;
+    Gfx *second;
+
+    func_800E1DF4();
+    first = (*arg0)++;
+    first->words.w0 = 0xDB060008;
+    first->words.w1 = osVirtualToPhysical(func_800AF5D8(arg1));
+    second = (*arg0)++;
+    second->words.w0 = 0xDB060004;
+    second->words.w1 = osVirtualToPhysical(func_800AF5E4(arg1));
+    D_8012D4F4 = (s32)arg1;
+    func_800E42F0(arg0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E32CC.s")
 
