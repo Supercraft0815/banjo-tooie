@@ -117,13 +117,36 @@ void func_8080046C_chhillbilly(Actor *arg0) {
 
 /* extern */
 
-void func_808004D0_chhillbilly(Actor *arg0) { s32 _subaddieDll_entrypoint_3(Actor *); s32 _sucoaster_entrypoint_10(Actor *, s32); s32 _sucoaster_entrypoint_6(Actor *, f32, s32); s32 var_a2; if ((arg0->unk70_10 == 2) || (arg0->unk70_10 == 3) || (arg0->unk70_10 == 8)) { if (_subaddieDll_entrypoint_3(arg0) != 0) { var_a2 = 0x15; } else { var_a2 = 0xE; } _sucoaster_entrypoint_6(arg0, 200.0f, var_a2); _sucoaster_entrypoint_10(arg0, var_a2); } }
+void func_808004D0_chhillbilly(Actor *arg0) { s32 _subaddieDll_entrypoint_3(Actor *); s32 _sucoaster_entrypoint_10(Actor *, s32); s32 _sucoaster_entrypoint_6(Actor *, f32, ...); s32 var_a2; if ((arg0->unk70_10 == 2) || (arg0->unk70_10 == 3) || (arg0->unk70_10 == 8)) { if (_subaddieDll_entrypoint_3(arg0) != 0) { var_a2 = 0x15; } else { var_a2 = 0xE; } _sucoaster_entrypoint_6(arg0, 200.0f, var_a2); _sucoaster_entrypoint_10(arg0, var_a2); } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_80800540_chhillbilly.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_808006B4_chhillbilly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_80800894_chhillbilly.s")
+void func_80800894_chhillbilly(Actor *arg0, s32 arg1) {
+    s32 _sucoaster_entrypoint_10(Actor *, s32);
+    s32 _sucoaster_entrypoint_6(Actor *, f32, ...);
+    void func_8010A570(Actor *);
+    void func_808009D8_chhillbilly(Actor *, s32, s32);
+    struct Flags { u8 pad[0x2A]; u8 upper : 2; u8 enabled : 1; u8 lower : 5; };
+
+    switch (arg1) {
+    case 12:
+        func_80800348_chhillbilly(arg0);
+        func_808009D8_chhillbilly(arg0, 0x789, 0);
+        func_8010A570(arg0);
+        _sucoaster_entrypoint_10(arg0, 12);
+        ((struct Flags *)arg0->unk0)->enabled = 1;
+        return;
+    case 21:
+        _sucoaster_entrypoint_10(arg0, 21);
+        _sucoaster_entrypoint_6(arg0, 200.0f);
+        return;
+    case 22:
+        _sucoaster_entrypoint_10(arg0, 22);
+        return;
+    }
+}
 
 void func_80800944_chhillbilly(Actor *arg0) {
     u8 *_sucoaster_entrypoint_3();
