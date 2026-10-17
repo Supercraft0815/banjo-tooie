@@ -63,12 +63,45 @@ s32 gclightsDll_entrypoint_3(s32 *arg0, f32 *arg1) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/lightsDll/gclightsDll_entrypoint_4.s")
+s32 gclightsDll_entrypoint_4(void) {
+    s32 func_800C8A98(void);
+    void *func_800C911C(void);
+    void *vector_at(s32, s32);
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    s32 *lights;
+    u32 begin;
+    s32 unused;
+    s32 handle;
+    u32 end;
+    u32 current;
+    u8 *light;
+
+    lights = func_800C911C();
+    begin = vector_begin(*lights);
+    end = vector_end(*lights);
+    current = begin;
+    if (current < end) {
+        do {
+            if (*(u8 *)(current + 0x14) == 0) {
+                *(u8 *)(current + 0x15) = 0;
+            }
+            current += 0x1C;
+        } while (current < end);
+    }
+    handle = func_800C8A98();
+    light = vector_at(*lights, handle - 1);
+    light[0x14] = 1;
+    light[0x15] = 0xD;
+    return handle;
+}
 
 /* extern */
 
 void gclightsDll_entrypoint_5(f32 *arg0) {
-    s32 func_800C911C();
+    void *func_800C911C(void);
     s32 func_800EE830(s32, f32 *);
-    func_800EE830(func_800C911C() + 0x10, arg0);
+    u8 *lights;
+    lights = func_800C911C();
+    func_800EE830(lights + 0x10, arg0);
 }
