@@ -6,7 +6,7 @@ s32 func_808001F8_chchuffycont(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80101080(void);
     void func_80800000_chchuffycont(Actor *, s32);
     void func_80800494_chchuffycont(s32, s32);
-    void func_80800620_chchuffycont(s32, s32);
+    void func_80800620_chchuffycont(Actor *, s32);
     void *temp_a1;
 
     switch (arg1) {
@@ -17,7 +17,7 @@ s32 func_808001F8_chchuffycont(Actor *arg0, s32 arg1, s32 arg2) {
             temp_a1 = func_80101080();
             switch (*((s16 *)&arg2 + 1)) {
                 case 3:
-                    func_80800620_chchuffycont((s32)arg0, *(s16 *)&arg2);
+                    func_80800620_chchuffycont(arg0, *(s16 *)&arg2);
                     func_80800000_chchuffycont(arg0, 1);
                     break;
                 case 0:
@@ -72,12 +72,31 @@ void func_80800494_chchuffycont(s32 arg0, s32 arg1) {
     } while (var_s0 != 7);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_80800540_chchuffycont.s")
+void func_80800540_chchuffycont(Actor *arg0, s32 arg1) {
+    void _glcutDll_entrypoint_0(void);
+    void _glcutDll_entrypoint_7(u32);
+    void _glcutDll_entrypoint_10(u32);
+    void _glcutDll_entrypoint_22(u32);
+    void _glcutDll_entrypoint_16(void);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    void func_80800000_chchuffycont(Actor *, s32);
+    extern s16 D_80800B20_chchuffycont;
+    extern s16 D_80800B66_chchuffycont;
+    s16 *entry;
+
+    entry = (s16 *)((u8 *)&D_80800B20_chchuffycont + arg1 * 10);
+    if (entry[0] == 0x12A && func_800DA298(0x171) == 0) {
+        func_80800000_chchuffycont(arg0, 6);
+        return;
+    }
+    func_800DA544(entry[2]); entry = &D_80800B20_chchuffycont; loop: if (func_800DA298(entry[1]) == 0) { entry += 5; if (entry != &D_80800B66_chchuffycont) { goto loop; } } if (*entry == 0xEC) { func_800DA544(0x6E7); } _glcutDll_entrypoint_0(); _glcutDll_entrypoint_7(*entry); _glcutDll_entrypoint_10(0xD0); _glcutDll_entrypoint_22(0x6F); _glcutDll_entrypoint_16();
+}
 
 /* extern */
 
-void func_80800620_chchuffycont(s32 arg0, s32 arg1) {
-    s32 func_80800540_chchuffycont(s32, s32);
+void func_80800620_chchuffycont(Actor *arg0, s32 arg1) {
+    void func_80800540_chchuffycont(Actor *, s32);
     int func_808006A4_chchuffycont(s32);
     s32 var_s0;
     s32 var_s1;
