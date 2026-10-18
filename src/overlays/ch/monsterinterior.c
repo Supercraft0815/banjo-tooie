@@ -227,7 +227,47 @@ s32 func_80801180_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_808011BC_chmonsterinterior.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_808013D0_chmonsterinterior.s")
+void func_808013D0_chmonsterinterior(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_8010A3E8(void *, f32);
+    f32 func_80801ADC_chmonsterinterior(s32, f32 *);
+    f32 func_80801B7C_chmonsterinterior(s32);
+    f32 func_800DC178(f32, f32);
+    void func_80102FDC(void *, f32);
+    s32 _subaddieDll_entrypoint_1(Actor *);
+    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern s32 D_8080201C_chmonsterinterior;
+    typedef struct {
+        s32 pad[10];
+        f32 unk28;
+        s32 kind;
+        f32 unk30;
+        s32 pad34[15];
+        u32 flags;
+    } MonsterInteriorData;
+    register s32 *data;
+    register s32 kind;
+
+    data = func_80100094(arg0, 0);
+    kind = arg0->actorData[5];
+    func_8010A3E8(arg0, 0.3f);
+    data[3] = 0;
+    arg0->position[1] -= 250.0f;
+    ((MonsterInteriorData *)arg0)->unk28 = 0.6f;
+    ((MonsterInteriorData *)arg0)->unk30 = func_80801ADC_chmonsterinterior(kind, (f32 *)&data[10]);
+    arg0->unk58 = func_80801B7C_chmonsterinterior(kind);
+    func_80102FDC(arg0, func_800DC178(0.6f, 0.8f));
+    _subaddieDll_entrypoint_1(arg0);
+    _subaddierouteDll_entrypoint_3(arg0, data, arg0->position);
+    _subaddierouteDll_entrypoint_1(arg0);
+    if (arg0->unk64_19) {
+        arg0->unk64_24 = 0;
+        arg0->unk58 = 5.5f;
+    }
+    func_8010D930(4, ((MonsterInteriorData *)arg0)->flags & 1, arg0->position, &D_8080201C_chmonsterinterior);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_808014E8_chmonsterinterior.s")
 
