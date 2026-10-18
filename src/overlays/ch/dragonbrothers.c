@@ -665,7 +665,25 @@ void func_808018BC_chdragonbrothers(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80801A4C_chdragonbrothers.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80801C44_chdragonbrothers.s")
+void func_80801C44_chdragonbrothers(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    f32 func_800F1DCC(f32, f32);
+    s32 func_80801A4C_chdragonbrothers(void *, f32);
+    s32 pad;
+    f32 angle;
+    f32 delta = 0.0f;
+    f32 *data;
+
+    data = func_80100094(arg0, 0);
+    angle = data[6] + (f32)arg1;
+    if (arg1 == 0) {
+        delta = func_800F1DCC(angle, ((f32 *)arg0->actorData)[0]) * 10.0f;
+    }
+    data[7] = angle + delta;
+    delta = func_800F1DCC(data[7], arg0->rotation[1]);
+    arg0->unk54 = angle;
+    func_80801A4C_chdragonbrothers(arg0, delta);
+}
 
 /* extern */
 
