@@ -31,7 +31,36 @@ void func_80800178_chfishshootgame(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_808001F0_chfishshootgame.s")
+void func_808001F0_chfishshootgame(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800B5BE4(s32);
+    void func_800BA4D0(s16 *, s16);
+    void func_800BA544(s32 *, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    extern s32 D_80801908_chfishshootgame;
+    extern s32 D_80801910_chfishshootgame[];
+    extern s32 D_80801934_chfishshootgame[];
+    extern s32 _fxsplash_entrypoint_0;
+    u8 *sp44;
+    f32 sp38[3];
+    f32 sp2C[3];
+    s32 sp28;
+
+    sp44 = func_80100094(arg0, 0);
+    func_800EE7F8(sp38, arg0->position);
+    sp38[1] = *(f32 *)(sp44 + 0x20);
+    func_800BBCB8(sp38, NULL, 1.0f, 1, D_80801910_chfishshootgame);
+    sp28 = func_800B5BE4(1);
+    func_800BA4D0((s16 *)sp28, (s16)(s32)sp38[1]);
+    func_800BA544((s32 *)sp28, (s32)&_fxsplash_entrypoint_0);
+    func_800EE7F8(sp2C, sp38);
+    sp2C[1] -= 200.0f;
+    func_800BABB8(sp28, sp38, sp2C, 1.0f, D_80801934_chfishshootgame);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801908_chfishshootgame);
+}
 
 void func_808002E8_chfishshootgame(Actor *arg0, f32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor*, f32[3], void*);
