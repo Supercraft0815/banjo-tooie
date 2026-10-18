@@ -2258,6 +2258,46 @@ s32 func_80809234_chdiggerboss(Actor *arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80809310_chdiggerboss.s")
+void func_80809310_chdiggerboss(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_800FFA88(Unk80132ED0 *);
+    void func_800FFAB0(Actor *);
+    void *func_80101080(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 _chexploder_entrypoint_6(s32, s32, s32);
+    s32 _chexploder_entrypoint_12(s32, s32);
+    s32 _chexploder_entrypoint_11(Actor *, f32 *);
+    void func_808093F8_chdiggerboss(Actor *);
+    extern s16 D_8080A204_chdiggerboss[][4];
+    extern f32 D_8080A240_chdiggerboss[3];
+    struct {
+        u8 pad[0xDC];
+        u32 phase;
+        f32 timer;
+        Unk80132ED0 *marker;
+    } *temp, *data;
+    Actor *exploder;
+    Actor *child;
+
+    exploder = func_80106790(func_80101080());
+    temp = func_80100094(arg0, 0);
+    data = temp;
+    func_80802938_chdiggerboss(arg0, exploder->unk0,
+        D_8080A204_chdiggerboss[data->phase][0], 0x28);
+    _chexploder_entrypoint_6(exploder, 0x447A0000, 0x44960000);
+    _chexploder_entrypoint_12(exploder, 0xFA);
+    _chexploder_entrypoint_11(exploder, D_8080A240_chdiggerboss);
+    func_808093F8_chdiggerboss(arg0);
+    if (data->marker != NULL) {
+        func_800FFA88(data->marker);
+    }
+    data->marker = exploder->unk0;
+    if (arg0->unk3C != NULL) {
+        child = func_80802228_chdiggerboss(arg0);
+        child->unk3C = NULL;
+        arg0->unk3C = NULL;
+        func_800FFAB0(child);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808093F8_chdiggerboss.s")
