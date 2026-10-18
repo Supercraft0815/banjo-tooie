@@ -88,7 +88,36 @@ void func_8080162C_chklungo(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80801680_chklungo.s")
+void func_80801680_chklungo(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80801964_chklungo(Actor *, s32);
+    void func_800FC6B0(u32);
+    s32 func_80101180(s32, s32, s32);
+    void *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+        case 12:
+        case 13:
+            func_80801964_chklungo(arg0, 14);
+            return;
+        case 16:
+        case 17:
+            func_80801964_chklungo(arg0, 18);
+            return;
+        case 23:
+            if (*(s16 *)((s8 *)data + 0x1A) == 0) {
+                func_80801964_chklungo(arg0, 24);
+                func_800FC6B0(14);
+                func_80101180(0x41E, 0x2C, 1);
+                return;
+            }
+            func_800FC6B0(15);
+            func_80101180(0x41E, 0x2C, 0);
+        default:
+            return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80801744_chklungo.s")
 
