@@ -7,7 +7,48 @@ OSThread *chintrotext_entrypoint_0(void)
     return (OSThread *) D_808007D0_chintrotext;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/text/func_8080000C_chintrotext.s")
+void func_8080000C_chintrotext(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    struct IntroTextData {
+        s16 count;
+        u8 pad2[0x14];
+        s16 offsets[10];
+        s16 textIds[10];
+    } *data;
+    u8 *text;
+    s32 i;
+    s32 j;
+    s32 c;
+    s32 hash = '#';
+    s32 newline = '\n';
+
+    text = func_80100094(arg0, 0);
+    data = func_80100094(arg0, 1);
+    data->offsets[0] = 0;
+    data->count = 1;
+    data->textIds[0] = 0xC26;
+    for (i = 0; text[i] != 0; i++) {
+        c = text[i];
+        if (hash == c) {
+            for (j = i + 1; text[j] != 0; j++) {
+                text[j - 1] = text[j];
+            }
+            text[j - 1] = 0;
+            data->textIds[data->count - 1] = 0xC25;
+            c = text[i];
+        }
+        if (newline == c) {
+            data->offsets[data->count] = i + 1;
+            data->textIds[data->count] = 0xC26;
+            data->count++;
+            text[i] = 0;
+            if (data->count == 9) {
+                break;
+            }
+        }
+    }
+    func_800DA544(FLAG2_6AD_CURRENTLY_SHOWING_INTROTEXT);
+}
 
 void func_80800130_chintrotext(s32 arg0)
 {
