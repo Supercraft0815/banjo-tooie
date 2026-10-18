@@ -54,7 +54,7 @@ void func_80800160_chmolehill(u8 *arg0) {
     typedef struct { u8 high : 4; u8 enabled : 1; u8 low : 3; } ActorFlags;
     s32 _subaddieaudioquick_entrypoint_2(u8 *, u8 *, s32 *);
     s32 anctrl_getPlaybackType(s32);
-    s32 chmolehill_entrypoint_1(u8 *, s32);
+    void chmolehill_entrypoint_1(Actor *, s32);
     void chmolehill_entrypoint_2(Actor *, s32);
     s32 func_8008F8B0();
     s32 func_80101E14(u8 *, s32);
@@ -180,7 +180,29 @@ void chmolehill_entrypoint_0(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/func_8080058C_chmolehill.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/chmolehill_entrypoint_1.s")
+void chmolehill_entrypoint_1(Actor *arg0, s32 arg1) {
+    s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
+    s32 _chmoley_entrypoint_0(Actor *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_8080058C_chmolehill(Actor *);
+    extern s32 _chmolehill_entrypoint_0;
+
+    arg0->unk79_4 = arg1;
+    switch (arg0->unk79_4) {
+    case 1:
+    case 3:
+        _chbaddiesetup_entrypoint_1(&_chmolehill_entrypoint_0, arg0->unk0);
+        func_8080058C_chmolehill(arg0);
+        break;
+    case 7:
+        arg0->unk70_10 = 13;
+        _chbaddiesetup_entrypoint_1(&_chmolehill_entrypoint_0, arg0->unk0);
+        break;
+    }
+    if (arg0->unk3C != NULL) {
+        _chmoley_entrypoint_0(func_80106790(arg0->unk3C), arg1);
+    }
+}
 
 /* extern */
 
