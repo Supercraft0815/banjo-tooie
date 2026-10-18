@@ -952,9 +952,32 @@ void func_80803E98_chintrochar(Actor *arg0) {
     *(f32 *)(data + 0xF0) = *(f32 *)((u8 *)arg0 + 0x48);
 }
 
-void func_80803F24_chintrochar(Actor *arg0, u8 *arg1, s32 arg2) { void func_800DBEFC(s32 *, s32, s32); void func_80103014(u8 *); extern s32 D_80805374_chintrochar[]; if (arg0->unk7C_12) { func_800DBEFC(*(s32 **)((u8 *)arg0->unk0 + 4), D_80805374_chintrochar[arg2], (s32)(arg1 + 4)); } func_80103014(arg1); }
+void func_80803F24_chintrochar(Actor *arg0, u8 *arg1, s32 arg2) { void func_800DBEFC(s32 *, s32, f32 *); void func_80103014(u8 *); extern s32 D_80805374_chintrochar[]; if (arg0->unk7C_12) { func_800DBEFC(*(s32 **)((u8 *)arg0->unk0 + 4), D_80805374_chintrochar[arg2], (f32 *)(arg1 + 4)); } func_80103014(arg1); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80803F7C_chintrochar.s")
+void func_80803F7C_chintrochar(Actor *arg0) {
+    void func_800DBEFC(s32 *, s32, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80804054_chintrochar(Actor *, s32, f32, f32 *);
+    void func_80804238_chintrochar(s32 *);
+    extern f32 D_8080537C_chintrochar[];
+    extern f32 D_80805388_chintrochar[];
+    u8 *data;
+    f32 sp28[3];
+
+    data = func_80100094(arg0, 2);
+    if (arg0->unk7C_12) {
+        func_800DBEFC(*(s32 **)((u8 *)arg0->unk0 + 4), 7, (f32 *)(data + 0xE4));
+        func_800DBEFC(*(s32 **)((u8 *)arg0->unk0 + 4), 8, sp28);
+        *(f32 *)(data + 0xF0) = func_800F1DF4(sp28, (f32 *)(data + 0xF4));
+    }
+    func_80804054_chintrochar(arg0, 0, -1.0f, D_80805388_chintrochar);
+    func_80804054_chintrochar(arg0, 1, 1.0f, D_8080537C_chintrochar);
+    func_80804238_chintrochar((s32 *)arg0);
+    func_800EE7F8((f32 *)(data + 0xF4), (f32 *)(data + 0xE4));
+    *(f32 *)(data + 0x100) = *(f32 *)(data + 0xF0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80804054_chintrochar.s")
 
