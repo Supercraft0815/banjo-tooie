@@ -283,7 +283,41 @@ void func_808020EC_chstatueboss(Actor *arg0) {
     (*(Unk80132ED0 **)((s8 *)(sp1C) + (0x8C))) = (Unk80132ED0 *) sp18->unk0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80802144_chstatueboss.s")
+void func_80802144_chstatueboss(Actor *arg0) {
+    void _chappearfx_entrypoint_1(Actor *, u32, u32, f32);
+    void _sucoaster_entrypoint_4(Actor *);
+    void func_80100120(Actor *);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    typedef struct {
+        f32 position[3];
+        f32 unkC;
+        f32 yaw;
+        f32 unk14;
+    } StatuePart;
+    typedef struct {
+        u8 pad[0x10C];
+        StatuePart parts[4];
+    } StatueData;
+    s32 i;
+    s32 count;
+    StatueData *data;
+    Actor *actor;
+
+    data = func_80100094(arg0, 0U);
+    count = 1;
+    switch (arg0->unk70_10) {
+        case 13: count = 2; break;
+        case 17: count = 3; break;
+        case 21: count = 4; break;
+    }
+    for (i = 0; i < count; i++) {
+            actor = func_80108528(0x112, data->parts[i].position, (s32)data->parts[i].yaw, &arg0);
+            _chappearfx_entrypoint_1(actor, 0x2A, 0, 0.6f);
+            func_80100120(actor);
+            _sucoaster_entrypoint_4(actor);
+            actor->unk74_17 = 0;
+    }
+}
 
 /* extern */
 
