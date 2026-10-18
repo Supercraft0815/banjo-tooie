@@ -75,4 +75,34 @@ void ncpodfixpos_entrypoint_5(s16 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/fixpos/func_808001A8_ncpodfixpos.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/fixpos/ncpodfixpos_entrypoint_6.s")
+/* extern */
+
+s32 ncpodfixpos_entrypoint_6(s16 arg0, s32 arg1) {
+    s32 pad[2];
+    s32 _ncpod_entrypoint_11(s32, s32);
+    s32 _ncpod_entrypoint_8(s32, u8 *, u8 *);
+    s32 _ncpod_entrypoint_9(s32, f32);
+    f32 func_800136E4(f32);
+    s32 func_800F18FC(u8 *, u8 *, u8 *);
+    s32 func_80110024(s32);
+    s32 func_808001A8_ncpodfixpos(u8 *);
+    s32 sp24;
+    s32 temp_v1;
+    u8 *temp_v0;
+
+    temp_v0 = ncpodfixpos_entrypoint_2(arg0);
+    temp_v1 = (*(s32 *)((s8 *)(temp_v0) + (0x3C)));
+    if ((temp_v1 != 0) && (temp_v1 == 1)) {
+        sp24 = func_80110024(arg1);
+        if (func_808001A8_ncpodfixpos(temp_v0) != 0) {
+            func_800F18FC(temp_v0 + 0x20, temp_v0, temp_v0 + 0xC);
+            (*(f32 *)((s8 *)(temp_v0) + (0xC))) = func_800136E4(-(*(f32 *)((s8 *)(temp_v0) + (0xC))));
+        }
+        _ncpod_entrypoint_8(sp24, temp_v0, temp_v0 + 0xC);
+        _ncpod_entrypoint_9(sp24, (*(f32 *)((s8 *)(temp_v0) + (0x30))));
+        if ((*(f32 *)((s8 *)(temp_v0) + (0x30))) == 40.0f) {
+            _ncpod_entrypoint_11(sp24, (*(s32 *)((s8 *)(temp_v0) + (0x34))));
+        }
+    }
+    return 3;
+}
