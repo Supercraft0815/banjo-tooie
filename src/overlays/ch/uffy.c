@@ -199,7 +199,34 @@ void func_80800F54_chchuffy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_8080115C_chchuffy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_8080130C_chchuffy.s")
+void func_8080130C_chchuffy(Actor *arg0) {
+    typedef struct { f32 v[2]; } ChuffyPair;
+    typedef struct { f32 v[3]; } ChuffyVector;
+    s16 _chmumbopad_entrypoint_0(s32);
+    s32 _sumumbofx_entrypoint_0(Actor *, s32, s32, s16);
+    s32 _sumumbofx_entrypoint_2(void *);
+    s32 _sumumbofx_entrypoint_24(void *, f32);
+    s32 _sumumbofx_entrypoint_15(void *, f32);
+    s32 _sumumbofx_entrypoint_12(void *, ChuffyVector *, ChuffyPair *, ChuffyVector *);
+    void *func_80100094(Actor *, u32);
+    extern ChuffyPair D_80802568_chchuffy;
+    extern ChuffyVector D_80802570_chchuffy;
+    extern ChuffyVector D_8080257C_chchuffy;
+    void *sp3C;
+    ChuffyPair sp34;
+    ChuffyVector sp28;
+    ChuffyVector sp1C;
+
+    _sumumbofx_entrypoint_0(arg0, 1, 0x41, _chmumbopad_entrypoint_0(0));
+    sp3C = func_80100094(arg0, 1);
+    _sumumbofx_entrypoint_2(sp3C);
+    _sumumbofx_entrypoint_24(sp3C, 2.25f);
+    _sumumbofx_entrypoint_15(sp3C, 3.0f);
+    sp34 = D_80802568_chchuffy;
+    sp28 = D_80802570_chchuffy;
+    sp1C = D_8080257C_chchuffy;
+    _sumumbofx_entrypoint_12(sp3C, &sp28, &sp34, &sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_808013E8_chchuffy.s")
 
