@@ -185,7 +185,34 @@ void func_80800C44_chstonepillar(Actor *arg0) {
     func_800EE7F8(arg0->position, (f32 *)arg0->actorData);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800CC8_chstonepillar.s")
+void func_80800CC8_chstonepillar(Actor *arg0, s32 arg1) {
+    void func_800C3F48(u32);
+    void func_800CE88C(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    s32 func_800D0B68(u32, u32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F7F98(s32, u32);
+    void *func_80100094(Actor *, u32);
+    int func_80800DD8_chstonepillar(Actor *);
+    void func_808011CC_chstonepillar(Actor *, u32, f32, f32);
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    if (arg0->unk70_10 != 2) {
+        if (*(s16 *)(data + 0x2C) == 0 && func_800DA298(0x9D6) == 0 && func_800D0B68(8, 1) == 0) {
+            func_800CE8D8(0, 45.0f, 0x2D);
+            func_800CE88C(0, 1);
+            func_800DA544(0x9D6);
+        }
+        if (func_80800DD8_chstonepillar(arg0) != 0) {
+            func_800F7F98(func_800F54E4(), 1);
+        }
+        func_800C3F48(0x7FF57C16);
+        func_808011CC_chstonepillar(arg0, 2U, 1.0f, 1.0f);
+    }
+}
 
 /* extern */
 
