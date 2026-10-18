@@ -460,7 +460,39 @@ void func_80803208_chklungo(s32 *arg0) {
     func_80105230(arg0, &D_80803D38_chklungo);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_8080322C_chklungo.s")
+void func_8080322C_chklungo(Actor *arg0, f32 arg1) {
+    s32 func_800CC338(s32 *, s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void func_8010D09C(s32, f32 *, f32);
+    s32 func_80803304_chklungo(Actor *, f32 *);
+    s32 func_80803390_chklungo(void *, f32 *);
+    void func_80803464_chklungo(s32, void *, f32 *, f32 *);
+    struct KlungoNavigation {
+        u32 reserved[28];
+        u32 region : 7;
+        u32 reserved70 : 15;
+        u32 area : 6;
+        u32 reserved73 : 4;
+    };
+    f32 sp2C[3];
+    register f32 *sp20;
+
+    func_8010D09C(func_800F54E4(), sp2C, arg1);
+    if (func_80803304_chklungo(arg0, sp2C)) {
+        if (func_800CC338(sp2C, ((struct KlungoNavigation *)arg0)->region - 1,
+                         ((struct KlungoNavigation *)arg0)->area - 1) != -1) {
+            func_800EE7F8((f32 *)arg0->actorData, sp2C);
+            return;
+        }
+    }
+    func_80803464_chklungo((s32)arg0,
+        (void *)func_80803390_chklungo(arg0, sp2C), sp2C,
+        sp20 = (f32 *)arg0->actorData);
+    if (!func_80803304_chklungo(arg0, sp20)) {
+        func_800EE7F8(sp20, arg0->position);
+    }
+}
 
 s32 func_80803304_chklungo(Actor *arg0, f32 arg1[3]) {
     void func_800EE7F8(f32 *, f32 *);
@@ -482,10 +514,10 @@ s32 func_80803304_chklungo(Actor *arg0, f32 arg1[3]) {
 
 /* extern */
 
-s32 func_80803390_chklungo(void *arg0, s32 arg1) {
+s32 func_80803390_chklungo(void *arg0, f32 *arg1) {
     s32 func_800CC5F4(s32);
     s32 func_800CC63C(s32, s32);
-    f32 func_800EEB40(s32, s32);
+    f32 func_800EEB40(s32, f32 *);
     f32 temp_f20;
     s32 temp_v0;
     s32 temp_v0_2;
@@ -509,10 +541,10 @@ s32 func_80803390_chklungo(void *arg0, s32 arg1) {
 
 /* extern */
 
-void func_80803464_chklungo(s32 arg0, void *arg1, s32 arg2, f32 *arg3) {
+void func_80803464_chklungo(s32 arg0, void *arg1, f32 *arg2, f32 *arg3) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    f32 func_800F1DF4(void *, s32);
+    f32 func_800F1DF4(void *, f32 *);
     f32 sp1C;
 
     sp1C = func_800F1DF4(arg1, arg2);
