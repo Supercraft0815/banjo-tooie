@@ -898,7 +898,51 @@ s32 func_80802A0C_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802AD4_chgameselect.s")
+void func_80802AD4_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    Actor *func_80106790(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void _gcnewoption_entrypoint_4(Actor *, u32, u32 *, u32, s32);
+    void _gcnewoption_entrypoint_36(OptionState *);
+    void _gcnewoption_entrypoint_8(OptionState *, u32);
+    void _gcnewoption_entrypoint_9(OptionState *, u32);
+    void _gcnewoption_entrypoint_10(OptionState *, u8);
+    void _gcnewoption_entrypoint_40(OptionState *, s32, s32, u8, f32, f32);
+    void _gcnewoption_entrypoint_42(OptionState *, f32);
+    void _gcnewoption_entrypoint_11(OptionState *);
+    extern u32 _gcnewoption_entrypoint_35;
+    Actor *actor;
+    OptionState *option;
+    s32 count;
+    u32 visible;
+    u8 mode;
+
+    actor = func_80106790(arg0);
+    _gcnewoption_entrypoint_4(actor, 0, &_gcnewoption_entrypoint_35, 0, arg1);
+    option = func_80100094(actor, 0);
+    _gcnewoption_entrypoint_36(option);
+    count = arg4;
+    if (count <= 0) {
+        count = 5;
+    }
+    if (arg2 < count) {
+        visible = arg2;
+    } else {
+        visible = count;
+    }
+    _gcnewoption_entrypoint_8(option, visible);
+    _gcnewoption_entrypoint_9(option, arg2);
+    if (arg3 != 0) {
+        mode = 2;
+    } else {
+        mode = 3;
+    }
+    _gcnewoption_entrypoint_10(option, mode);
+    _gcnewoption_entrypoint_40(option, 0x41, 0x22, 0x20, 0.8f, 1.0f);
+    _gcnewoption_entrypoint_42(option, 0.1f);
+    _gcnewoption_entrypoint_11(option);
+    func_80101FDC(actor, 1);
+}
 
 void func_80802BE8_chgameselect(Unk80132ED0 *arg0)
 {
@@ -1629,7 +1673,7 @@ void func_808045E4_chgameselect(u8 *arg0, s32 arg1) {
 
 s32 func_8080462C_chgameselect(u8 *arg0) {
     s32 func_80801658_chgameselect(s32, s32);
-    s32 func_80802AD4_chgameselect(s32, s32, s32, s32, s32);
+    void func_80802AD4_chgameselect(Unk80132ED0 *, s32, s32, s32, s32);
     s32 func_80803D00_chgameselect(s32, s32);
     extern s32 D_80807DB0_chgameselect[];
     func_80801658_chgameselect((*(s32 *)((s8 *)(arg0) + (0x28))), 1);
@@ -1891,7 +1935,7 @@ void func_80804F14_chgameselect(void *arg0) {
 
 void func_80805310_chgameselect(u8 *arg0) {
     void func_808026C8_chgameselect(Unk80132ED0 *, s32);
-    s32 func_80802AD4_chgameselect(s32, s32, s32, s32, s32);
+    void func_80802AD4_chgameselect(Unk80132ED0 *, s32, s32, s32, s32);
     void func_80802D04_chgameselect(Unk80132ED0 *, s32);
     extern s32 D_80807DB0_chgameselect[];
     func_80802AD4_chgameselect((*(s32 *)((s8 *)(arg0) + (0x30))), *(s16 *)&D_80807DB0_chgameselect[(u32)((Actor *)arg0)->unk79_4], 3, 1, 0);
@@ -2134,7 +2178,7 @@ void func_80806068_chgameselect(void *arg0, s32 arg1, s32 arg2) {
 
 void func_808061A8_chgameselect(Actor *arg0) {
     s32 _gcstatusDll_entrypoint_10(void);
-    s32 func_80802AD4_chgameselect(s32, s32, s32, s32, s32);
+    void func_80802AD4_chgameselect(Unk80132ED0 *, s32, s32, s32, s32);
     u32 *func_80100074(Actor *, u32, u32);
 
     func_80802AD4_chgameselect(arg0->actorData[6], 0x18EF, _gcstatusDll_entrypoint_10(), 0, 0);
@@ -2413,7 +2457,7 @@ void func_80806800_chgameselect(void *arg0, s32 arg1) {
 void func_80806834_chgameselect(void *arg0) {
     void func_80802640_chgameselect(Unk80132ED0 *, s32, s32);
     void func_808026C8_chgameselect(Unk80132ED0 *, s32);
-    s32 func_80802AD4_chgameselect(s32, s32, s32, s32, s32);
+    void func_80802AD4_chgameselect(Unk80132ED0 *, s32, s32, s32, s32);
     void func_80802D04_chgameselect(Unk80132ED0 *, s32);
     func_80802AD4_chgameselect((*(s32 *)((s8 *)(arg0) + (0x30))), 0x18F0, 5, 1, 4);
     func_80802D04_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x30))), 1);
