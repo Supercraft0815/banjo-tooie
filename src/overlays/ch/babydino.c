@@ -57,4 +57,32 @@ s32 func_808005A0_chbabydino(s32 arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/babydino/func_808005F0_chbabydino.s")
+s32 func_808005F0_chbabydino(Actor *arg0, s32 arg1) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800EA05C();
+    void func_80102424(Actor *, s32);
+
+    switch (func_800EA05C()) {
+        case 0xEA:
+            if (_glcutDll_entrypoint_19(0x1F)) {
+                func_80102424(arg0, 3);
+                _subaddieDll_entrypoint_4(arg0, 1);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1080, 0xC, NULL, 0x39);
+                _capod_entrypoint_13(arg0->unk0, NULL, 3, 0x2821);
+                return 1;
+            }
+            break;
+        case 0xEC:
+            if (_glcutDll_entrypoint_19(0x1F)) {
+                func_80102424(arg0, 4);
+                _subaddieDll_entrypoint_4(arg0, 1);
+                _capod_entrypoint_13(arg0->unk0, NULL, 7, 0x2821);
+                return 1;
+            }
+            break;
+    }
+    return 0;
+}
