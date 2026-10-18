@@ -68,7 +68,27 @@ void gccubeDll_entrypoint_2(u8 *arg0) {
     (*(u32 *)((s8 *)(arg0) + (0x44))) = 0U;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubeDll/gccubeDll_entrypoint_3.s")
+void gccubeDll_entrypoint_3(s32 arg0, s32 arg1) {
+    s32 _gsmaker_entrypoint_12(s32, s32 *, s32);
+    s32 _gsmaker_entrypoint_16(s32, s32);
+    s32 _gsmaker_entrypoint_22(s32, s32, s32 *, s32);
+    void func_80800868_gccubeDll(s32, s32);
+    s32 pos[3];
+    s32 start[3];
+    s32 end[3];
+
+    _gsmaker_entrypoint_22(arg1, 1, start, 3);
+    _gsmaker_entrypoint_12(arg1, end, 3);
+    for (pos[0] = start[0]; pos[0] <= end[0]; pos[0]++) {
+        for (pos[1] = start[1]; pos[1] <= end[1]; pos[1]++) {
+            for (pos[2] = start[2]; pos[2] <= end[2]; pos[2]++) {
+                func_808003A0_gccubeDll(arg1, 0);
+            }
+        }
+    }
+    _gsmaker_entrypoint_16(arg1, 0);
+    func_80800868_gccubeDll(arg0, arg1);
+}
 
 void gccubeDll_entrypoint_4(s32 arg0, s32 arg1) {
     s32 func_80800230_gccubeDll(s32, s32);
