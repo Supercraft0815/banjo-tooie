@@ -136,13 +136,49 @@ void func_808013B8_chfishshootgame(void *arg0)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80801424_chfishshootgame.s")
+void func_80801424_chfishshootgame(Actor *arg0, s32 arg1) {
+    s32 _fxairbub_entrypoint_1(f32 *, f32, f32, f32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_8010A570(Actor *);
+    extern s32 D_80801A48_chfishshootgame[];
+    extern u8 D_80801A64_chfishshootgame[];
+    extern u8 D_80801A6C_chfishshootgame[];
+    s32 sp2C = 0;
+    s32 *state = &arg1;
+
+    if (arg1 != arg0->unk70_10) {
+        switch (arg1 = *state) {
+            case 1:
+                func_800BABB8(_fxairbub_entrypoint_1(arg0->position, 40.0f, arg0->unk50, 4.0f), arg0->position, NULL, 1.0f, D_80801A48_chfishshootgame);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801A64_chfishshootgame);
+                break;
+            case 3:
+                break;
+            case 4:
+                func_800BABB8(_fxairbub_entrypoint_1(arg0->position, 30.0f, arg0->unk50, 4.0f), arg0->position, NULL, 1.0f, D_80801A48_chfishshootgame);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801A6C_chfishshootgame);
+                sp2C = 1;
+                break;
+            case 5:
+                sp2C = 1;
+                _subaddiefade_entrypoint_3(arg0);
+                break;
+        }
+        func_80102424(arg0, *state);
+        if (sp2C != 0) {
+            func_8010A570(arg0);
+        }
+    }
+}
 
 /* extern */
 
 void func_80801568_chfishshootgame(Actor *arg0) {
     f32 func_800DC178(f32, f32);
-    s32 func_80801424_chfishshootgame(s32, s32);
+    void func_80801424_chfishshootgame(Actor *, s32);
     arg0->scale = 0.3f;
     if (arg0->unk58 < 100.0f) {
         arg0->unk58 = func_800DC178(100.0f, 200.0f);
@@ -157,7 +193,7 @@ void func_80801568_chfishshootgame(Actor *arg0) {
 /* extern */
 
 s32 func_80801768_chfishshootgame(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_80801424_chfishshootgame(s32, s32);
+    void func_80801424_chfishshootgame(Actor *, s32);
     if (arg1 == 0x40) {
         func_80801424_chfishshootgame(arg0, 4);
         return 1;
