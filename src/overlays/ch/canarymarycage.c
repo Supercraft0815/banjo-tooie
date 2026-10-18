@@ -2,7 +2,29 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/canarymarycage/func_80800000_chcanarymarycage.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/canarymarycage/func_8080018C_chcanarymarycage.s")
+void func_8080018C_chcanarymarycage(Actor *arg0) {
+    void func_8008FAC8(f32 *, f32, f32, f32);
+    s32 func_8008FB10(f32 *, f32, f32, f32);
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    s32 func_80800000_chcanarymarycage(Actor *, s32);
+    switch (arg0->unk70_10) {
+    case 1: {
+        func_800EEB9C((f32 *)arg0->actorData, arg0->rotation[1] + 180.0f, 60.0f);
+        func_800EF04C((f32 *)arg0->actorData, arg0->position);
+        func_8008FB10((f32 *)arg0->actorData, 440.0f, 0.0f, 280.0f);
+        func_800EEB9C((f32 *)arg0->actorData, arg0->rotation[1], 145.0f);
+        func_800EF04C((f32 *)arg0->actorData, arg0->position);
+        *(f32 *)&arg0->actorData[1] += 150.0f;
+        func_8008FAC8((f32 *)arg0->actorData, 150.0f, 300.0f, 50.0f);
+        break;
+    }
+    case 2:
+        func_80800000_chcanarymarycage(arg0, 3);
+    case 4:
+        break;
+    }
+}
 
 /* extern */
 

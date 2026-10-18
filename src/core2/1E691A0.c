@@ -58,15 +58,15 @@ void func_8008FA94(s32 arg0,s32 arg1)
 
 /* extern */
 
-void func_8008FAC8(s32 arg0, s32 arg1, s32 arg2, f32 arg3) {
-    s32 func_800F4D74(u32, s32, s32, s32, f32);
+void func_8008FAC8(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
+    s32 func_800F4D74(u32, f32 *, f32, f32, f32);
     func_800F4D74(func_800F54E4(), arg0, arg1, arg2, arg3);
 }
 
 /* extern */
 
-s32 func_8008FB10(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
-    s32 func_800F4EC8(u32, s32, f32, f32, f32);
+s32 func_8008FB10(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
+    s32 func_800F4EC8(u32, f32 *, f32, f32, f32);
     return func_800F4EC8(func_800F54E4(), arg0, arg1, arg2, arg3);
 }
 
