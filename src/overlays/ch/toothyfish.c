@@ -1,6 +1,38 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800000_chtoothyfish.s")
+void func_80800000_chtoothyfish(Actor *arg0) {
+    s32 _subaddiesect_entrypoint_1(Actor *);
+    s32 func_800DA298(s32);
+    void *func_80100094(Actor *, u32);
+    void func_808000E8_chtoothyfish(Actor *, s32);
+    struct ToothyfishData {
+        f32 unk0[6];
+        f32 timers[5];
+        s32 unk2C;
+        f32 unk30;
+        u8 flags[5];
+        u8 other[5];
+    } *data;
+    s32 i;
+    s32 count;
+
+    data = func_80100094(arg0, 0);
+    count = 0;
+    for (i = 0; i < 5; i++) {
+        data->flags[i] = func_800DA298(i + 0x4F6);
+        if (data->flags[i] == 0) {
+            count++;
+        }
+        data->other[i] = 0;
+        data->timers[i] = 0.0f;
+    }
+    if (count == 0) {
+        func_808000E8_chtoothyfish(arg0, 4);
+    }
+    data->unk2C = 0;
+    data->unk30 = 1.0f;
+    arg0->unk6C_0 = _subaddiesect_entrypoint_1(arg0);
+}
 
 void func_808000E8_chtoothyfish(Actor *arg0, s32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
