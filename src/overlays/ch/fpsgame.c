@@ -349,7 +349,22 @@ s32 func_808012CC_chfpsgame(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_8080135C_chfpsgame.s")
+void func_8080135C_chfpsgame(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _gcstatusDll_entrypoint_14();
+    s32 _gcstatusDll_entrypoint_15();
+    f32 func_800D8FF8(void);
+    s32 func_800F1574(f32 *, f32);
+    void func_800FC660(u32);
+    f32 *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    if ((_gcstatusDll_entrypoint_14() == 5) && (func_800F1574(&sp1C[3], func_800D8FF8()) != 0)) {
+        func_800FC660(0xE);
+        sp1C[3] = sp1C[4];
+        func_80800BCC_chfpsgame(arg0, _gcstatusDll_entrypoint_15(), -1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_808013DC_chfpsgame.s")
 
