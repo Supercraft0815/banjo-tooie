@@ -55,7 +55,41 @@ void func_808008C8_chaliendad(Actor *arg0) {
     func_80801E80_chaliendad(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80800918_chaliendad.s")
+void func_80800918_chaliendad(Actor *arg0, void *arg1) {
+    void _chlifeforcespell_entrypoint_2(Actor *, s32, s32 *);
+    void _subaddiefade_entrypoint_11(Actor *, s32 *);
+    void _subaddiefade_entrypoint_9(Actor *, s32 *);
+    void func_800DF744(s32, s32);
+    void func_800E39A8(f32 *, f32 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    void func_80101870(Actor *, void *);
+    s32 *sp4C;
+    f32 sp40[3];
+    s32 sp34[3];
+    s32 sp28[3];
+
+    sp4C = func_80100094(arg0, 0U);
+    if (arg0->unk70_10 == 2) {
+        func_800E39A8(arg0->position, sp40);
+        func_800EF214(arg0->position, sp40[0], sp40[1], -1000.0f);
+        arg0->rotation[1] = sp40[1];
+        arg0->rotation[0] = sp40[0] + 15.0f;
+        func_800DF744(3, 1);
+    } else {
+        func_800DF744(3, 0);
+    }
+    func_800DF744(1, arg0->unk7A_11 + 1);
+    func_800DF744(2, arg0->unk7A_11 + 1);
+    if (sp4C[13] != 0) {
+        _subaddiefade_entrypoint_9(arg0, sp28);
+        _chlifeforcespell_entrypoint_2(arg0, sp4C[13], sp34);
+        _subaddiefade_entrypoint_11(arg0, sp34);
+        func_80101870(arg0, arg1);
+        _subaddiefade_entrypoint_11(arg0, sp28);
+        return;
+    }
+    func_80101870(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80800A54_chaliendad.s")
 
