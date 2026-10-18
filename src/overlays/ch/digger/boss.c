@@ -1010,7 +1010,38 @@ void func_80804A7C_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80804D44_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80804EFC_chdiggerboss.s")
+void func_80804EFC_chdiggerboss(Actor *arg0, void *arg1) {
+    struct DiggerPart { s16 active; s16 appendage; u8 rest[0x18]; };
+    struct DiggerData { u8 prefix[0x34]; struct DiggerPart parts[4]; };
+    void *func_80100094(Actor *, u32);
+    void func_800DF744(s32, s32);
+    void func_800DF830(s32);
+    s32 func_800D674C(s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    void func_80804FE4_chdiggerboss(Actor *, s32, void *);
+    extern s16 D_8080A060_chdiggerboss;
+    struct DiggerData *data;
+    s16 *appendage;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    appendage = &D_8080A060_chdiggerboss;
+    i = 0;
+    do {
+        func_800DF744(*appendage, data->parts[i].appendage);
+        appendage++;
+        i++;
+    } while (i < 4);
+    func_800DF830(1);
+    func_800DE498(arg1, arg0->position, arg0->rotation, arg0->scale, NULL, func_800D674C(0x955));
+    i = 0;
+    do {
+        if (data->parts[i].active != 0) {
+            func_80804FE4_chdiggerboss(arg0, i, arg1);
+        }
+        i++;
+    } while (i != 4);
+}
 
 void func_80804FE4_chdiggerboss(Actor *arg0, s32 arg1, void *arg2) {
     struct DiggerPart { s16 pad; s16 appendage; u8 gap[4]; f32 position[3]; u8 camera; u8 alpha; u8 visible; u8 tail[5]; };
