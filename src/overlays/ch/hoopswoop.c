@@ -1,5 +1,7 @@
 #include "common.h"
 
+typedef struct player_state_s PlayerState;
+
 OSThread *chhoopswoop_entrypoint_0(void)
 {
     extern u8 D_80801EC0_chhoopswoop[];
@@ -25,9 +27,9 @@ OSThread *chhoopswoop_entrypoint_2(void)
 
 void func_80800024_chhoopswoop(void *arg0) {
     s32 _susubgame_entrypoint_11(s32);
-    s32 func_800946C4(s32, s32);
+    void func_800946C4(PlayerState *, s32);
     s32 func_800DA524(s32);
-    s32 func_800F53D0(s32);
+    PlayerState *func_800F53D0(s32);
     s32 func_800F54E4();
     s32 func_80800094_chhoopswoop(void *);
     func_800946C4(func_800F53D0(func_800F54E4()), 1);
@@ -325,7 +327,29 @@ void func_80800D28_chhoopswoop(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80801130_chhoopswoop.s")
+void func_80801130_chhoopswoop(Actor *arg0) {
+    s32 _gcstatusDll_entrypoint_11();
+    s32 _subaddiemulti_entrypoint_3(s32);
+    s32 _sumultiscore_entrypoint_3(u8 *);
+    s32 _sumultiscore_entrypoint_4(u8 *, s32, s32, s32);
+    void func_800946C4(PlayerState *, s32);
+    PlayerState *func_800F53D0(s32);
+    void *func_80100094(Actor *, u32);
+    u8 *data;
+    u8 *score;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    arg0->unk6C_0 = 5;
+    func_80800094_chhoopswoop(arg0);
+    _subaddiemulti_entrypoint_3(0xA);
+    score = data + 0x4DC;
+    _sumultiscore_entrypoint_3(score);
+    _sumultiscore_entrypoint_4(score, 7, 0, 1);
+    for (i = 0; i < _gcstatusDll_entrypoint_11(); i++) {
+        func_800946C4(func_800F53D0(i), 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_808011DC_chhoopswoop.s")
 
