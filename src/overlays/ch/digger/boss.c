@@ -1643,14 +1643,42 @@ void func_80809078_chdiggerboss(Actor *arg0, void *arg1, s32 arg2) {
 s32 func_808091E4_chdiggerboss(s32 arg0) {
     u8 func_800D9078(f32*);
     void *func_80100094(Actor *, u32);
-    s32 func_80809234_chdiggerboss(s32);
+    s32 func_80809234_chdiggerboss(Actor *);
     if ((func_800D9078(((u8 *)func_80100094(arg0, 0)) + 0xE0) != 0) && (func_80809234_chdiggerboss(arg0) == 0)) {
         return 0;
     }
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80809234_chdiggerboss.s")
+s32 func_80809234_chdiggerboss(Actor *arg0) {
+    void _chexploder_entrypoint_5(Actor *, s32, f32 *, s32, f32, s32);
+    void func_800FC6B0(u32);
+    void func_800FC74C(u32);
+    void *func_80100094(Actor *, u32);
+    extern s16 D_8080A1FE_chdiggerboss[][4];
+    extern s16 D_8080A206_chdiggerboss[][4];
+    extern f32 D_8080A208_chdiggerboss[][2];
+    struct {
+        u8 pad[0xDC];
+        u32 phase;
+        f32 timer;
+        s32 state;
+    } *data;
+    data = func_80100094(arg0, 0);
+    if (++data->phase >= 5U) {
+        func_800FC74C(D_8080A1FE_chdiggerboss[data->phase][0]);
+        data->state = 0;
+        return 0;
+    }
+    data->timer = D_8080A208_chdiggerboss[data->phase][0];
+    _chexploder_entrypoint_5(arg0, 0x91C, arg0->position,
+        *(s32 *)((u8 *)arg0 + 0x48), 1.0f, 7);
+    if (data->phase != 0) {
+        func_800FC74C(D_8080A1FE_chdiggerboss[data->phase][0]);
+    }
+    func_800FC6B0(D_8080A206_chdiggerboss[data->phase][0]);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80809310_chdiggerboss.s")
 
