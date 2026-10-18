@@ -269,7 +269,7 @@ s32 func_80800EB8_chwaspnestgame(void *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_80801260_chwaspnestgame(Unk80132ED0 *arg0, s32 arg1) {
-    void *func_80106790();
+    Actor *func_80106790();
     void *temp_v0;
 
     temp_v0 = func_80106790(arg0);
@@ -280,7 +280,7 @@ void func_80801260_chwaspnestgame(Unk80132ED0 *arg0, s32 arg1) {
 /* extern */
 
 void func_8080129C_chwaspnestgame(void) {
-    void *func_80106790();
+    Actor *func_80106790();
     void *temp_v0;
 
     temp_v0 = func_80106790();
@@ -419,4 +419,35 @@ void func_80801CE4_chwaspnestgame(Actor *arg0) {
     arg0->rotation[1] = sp18[1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801D28_chwaspnestgame.s")
+void func_80801D28_chwaspnestgame(Actor *arg0) {
+    void func_800E3980(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 i;
+    struct {
+        f32 positions[2][3];
+        f32 distances[2];
+    } *data;
+    s32 j;
+    f32 pos[3];
+    f32 distance;
+
+    data = func_80100094(func_80106790(arg0->unk3C), 0);
+    func_800E3980(pos);
+    distance = func_800EEAD4(arg0->position, pos);
+    for (i = 0; i < 2; i++) {
+        if (data->distances[i] < 0.0f || distance < data->distances[i]) {
+            break;
+        }
+    }
+    if (i < 2) {
+        for (j = 1; j > i; j--) {
+            func_800EE7F8(data->positions[j], data->positions[j - 1]);
+            data->distances[j] = data->distances[j - 1];
+        }
+        func_800EE7F8(data->positions[i], arg0->position);
+        data->distances[i] = distance;
+    }
+}
