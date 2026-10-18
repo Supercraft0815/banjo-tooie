@@ -65,10 +65,10 @@ s32 func_808003B8_chfriesstand(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_80101EE4(Actor *, f32);
     void func_80102424(Actor *, s32);
     void func_80103110(Actor *, u32);
-    void *func_80106790(Unk80132ED0 *);
+    Actor *func_80106790(Unk80132ED0 *);
     s32 func_80108B04(Actor *, s32);
     s32 func_80800904_chfriesstand(Actor *);
-    s32 func_808009F0_chfriesstand(Actor *, s16, s16);
+    void func_808009F0_chfriesstand(Actor *, s32, s16);
     void func_80800AEC_chfriesstand(Actor *, s32, s16);
     s32 func_80800BB0_chfriesstand(Actor *);
     extern s32 D_80800FF0_chfriesstand;
@@ -189,7 +189,37 @@ void func_808009A4_chfriesstand(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/func_808009F0_chfriesstand.s")
+void func_808009F0_chfriesstand(Actor *arg0, s32 arg1, s16 arg2) {
+    void _capod_entrypoint_14(void);
+    s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);
+    void func_8008FC9C(s32);
+    void func_80090708(s32);
+    void func_80102424(Actor *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s32 D_80800E50_chfriesstand;
+    switch (arg1) {
+        case 0x10E0:
+            _capod_entrypoint_14();
+            arg0->unk6C_0 = 0;
+            func_80102424(arg0, 1);
+            break;
+        case 0x10FD:
+        case 0x110B:
+            func_8008FC9C(0);
+            func_80102424(arg0, 1);
+            break;
+        default:
+            if (arg0->unk3C != NULL && _subaddiedialog_entrypoint_9(arg0, arg1, &D_80800E50_chfriesstand, 5) == 2) {
+                func_80102424(arg0, 4);
+                func_80102424(func_80106790(arg0->unk3C), 2);
+            } else {
+                arg0->unk6C_0 = 0;
+                func_80102424(arg0, 1);
+                func_80090708(0);
+            }
+            break;
+    }
+}
 
 void func_80800AEC_chfriesstand(Actor *arg0, s32 arg1, s16 arg2) {
     s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);
