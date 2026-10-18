@@ -18,7 +18,37 @@ void func_80800130_chintrotext(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/text/func_808003EC_chintrotext.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/text/func_8080051C_chintrotext.s")
+void func_8080051C_chintrotext(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    s32 _subaddiefade_entrypoint_1(Actor *, s32);
+    extern f32 D_808007A0_chintrotext[][4];
+    extern f32 D_808007A4_chintrotext[][4];
+    extern f32 D_808007A8_chintrotext[][4];
+    struct IntroTextData {
+        u8 unk0[0x3F];
+        u8 unk3F;
+    } *data;
+
+    data = func_80100094(arg0, 1);
+    func_80101FDC(arg0, arg1);
+    switch (arg1) {
+        case 2:
+            _subaddiefade_entrypoint_1(arg0, 0);
+            func_800DA544(FLAG2_6AD_CURRENTLY_SHOWING_INTROTEXT);
+            break;
+        case 3:
+            arg0->unk58 = D_808007A0_chintrotext[data->unk3F][0];
+            break;
+        case 4:
+            arg0->unk58 = D_808007A4_chintrotext[data->unk3F][0];
+            break;
+        case 5:
+            func_800DA524(FLAG2_6AD_CURRENTLY_SHOWING_INTROTEXT);
+            arg0->unk58 = D_808007A8_chintrotext[data->unk3F][0];
+            break;
+    }
+}
 
 void chintrotext_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _chbaddiesetup_entrypoint_4(s32 *, s32, s32, s32, s32);
