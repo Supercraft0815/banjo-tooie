@@ -87,7 +87,32 @@ void func_80800440_chtntmineshoot(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_808004BC_chtntmineshoot.s")
+s32 func_808004BC_chtntmineshoot(Actor *arg0, s32 arg1) {
+    void func_80800830_chtntmineshoot(Actor *, s32);
+    void func_800187B4(s32, f32, f32, f32);
+    switch (arg1) {
+        case 2:
+            func_80102424(arg0, arg1);
+            func_80800830_chtntmineshoot(arg0, 1);
+            break;
+        case 4:
+            func_80102424(arg0, 4);
+            func_80800830_chtntmineshoot(arg0, 2);
+            func_8010A570(arg0);
+            func_80800440_chtntmineshoot(arg0, 2);
+            break;
+        case 5:
+            func_80102424(arg0, 5);
+            func_80800830_chtntmineshoot(arg0, 2);
+            func_8010A570(arg0);
+            func_80800440_chtntmineshoot(arg0, 2);
+            func_800187B4(0, 0.5f, 2.0f, 0.75f);
+        default:
+            func_80102424(arg0, arg1);
+            break;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_808005AC_chtntmineshoot.s")
 
