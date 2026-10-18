@@ -21,7 +21,33 @@ OSThread *chcactusofstrength_entrypoint_2(void)
     return (OSThread *) D_80800D90_chcactusofstrength;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_80800024_chcactusofstrength.s")
+void func_80800024_chcactusofstrength(Actor *arg0) {
+    int _gcaudiolist_entrypoint_0();
+    s32 func_800D9058(f32);
+    s32 func_80101DDC(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_80103110(Actor *, u32);
+
+    switch (arg0->unk70_10) {
+        case 2:
+            if (func_80101DDC(arg0)) {
+                if (arg0->unk6C_0) {
+                    arg0->unk6C_0--;
+                } else {
+                    func_80102424(arg0, 3);
+                    arg0->unk6C_0 = func_800D9058(0.5f);
+                }
+            }
+            break;
+        case 3:
+            if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 1);
+                _gcaudiolist_entrypoint_0(0);
+                func_80103110(arg0, 0);
+            }
+            break;
+    }
+}
 
 void func_80800108_chcactusofstrength(s32 arg0) 
 {
