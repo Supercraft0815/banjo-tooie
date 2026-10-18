@@ -38,7 +38,7 @@ s32 func_80800634_chkingjinjo(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_801015D0(Actor *);
     void func_80102424(Actor *, s32);
     void func_801032B0(void *, u16, u16);
-    void func_808009FC_chkingjinjo(void *, s16, s16);
+    void func_808009FC_chkingjinjo(Actor *, s32, s16);
     void func_80800B28_chkingjinjo(Actor *);
     s32 func_80800BBC_chkingjinjo(void *, s32, s32);
     void func_80800C60_chkingjinjo(Actor *, s32, s32);
@@ -141,7 +141,36 @@ void func_808009D0_chkingjinjo(s32 arg0) {
     _suexpression_entrypoint_8(arg0, 0x1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_808009FC_chkingjinjo.s")
+void func_808009FC_chkingjinjo(Actor *arg0, s32 arg1, s16 arg2) {
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    void func_80102424(Actor *, s32);
+    void _glcutDll_entrypoint_6(u32, u32);
+    s32 func_80800C18_chkingjinjo(void *);
+    void func_80800CFC_chkingjinjo(Actor *, s32, s32);
+
+    switch (arg1) {
+    case 0x14FD:
+        func_800DA544(0x1A5);
+        func_80800CFC_chkingjinjo(arg0, 1, 0x30);
+        func_80102424(arg0, 5);
+        arg0->unk58 = 0.4f;
+        break;
+    case 0x1535:
+        func_80800C18_chkingjinjo(arg0);
+        func_80102424(arg0, 2);
+        _glcutDll_entrypoint_6(0x143, 0x65);
+        break;
+    default:
+        if (func_800DA298(0x360) == 0) {
+            if (arg0->unk6C_0) {
+                func_80800C18_chkingjinjo(arg0);
+            }
+            func_80102424(arg0, func_800DA298(0x3B) ? 9 : 3);
+        }
+        break;
+    }
+}
 
 void func_80800AE4_chkingjinjo(s32 arg0, s32 *arg1) {
     s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
