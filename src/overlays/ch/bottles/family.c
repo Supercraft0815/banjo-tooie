@@ -103,7 +103,25 @@ s32 func_808004B4_chbottlesfamily(s32 arg0) {
     return func_808009F0_chbottlesfamily(arg0, &D_80800F04_chbottlesfamily);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_80800520_chbottlesfamily.s")
+void func_80800520_chbottlesfamily(Actor *arg0) {
+    s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    f32 func_800DC178(f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void *data;
+    f32 rotation;
+
+    data = func_80100094(arg0, 0);
+    rotation = arg0->rotation[1];
+    arg0->unk54 = rotation;
+    if (_subaddierouteDll_entrypoint_7(arg0, data, rotation, rotation + 180.0f, 200.0f, 0x401) == 0) {
+        func_80102424(arg0, 3);
+    } else {
+        func_80102424(arg0, 4);
+    }
+    arg0->unk58 = func_800DC178(5.0f, 10.0f);
+    ((f32 *)arg0->actorData)[3] = 0.0f;
+}
 
 void func_808005D0_chbottlesfamily(Actor *arg0) {
     extern u32 D_80800F20_chbottlesfamily;
