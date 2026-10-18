@@ -867,7 +867,33 @@ s32 func_80803D54_chcollballcontrol(s32 arg0, s32 arg1) {
     return choice;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80803E18_chcollballcontrol.s")
+void func_80803E18_chcollballcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 _sukickball_entrypoint_12(u8 *, s32);
+    void _sukickball_entrypoint_4(s32, void *);
+    void func_80803EF4_chcollballcontrol(Actor *, s32);
+    struct {
+        u8 pad0[0x14];
+        u8 mode;
+    } *data;
+    s32 state;
+
+    data = func_80100094(arg0, 0);
+    state = _sukickball_entrypoint_12((u8 *)func_80106790(arg0->unk3C), arg0->unk6C_0);
+    switch (state) {
+        case 2:
+            _sukickball_entrypoint_4(arg0->unk6C_0, arg0->actorData);
+            return;
+        case 3:
+            func_80803EF4_chcollballcontrol(arg0, func_80803D54_chcollballcontrol(arg0->unk6C_0, data->mode));
+            return;
+        case 1:
+            _sukickball_entrypoint_4(func_80803D54_chcollballcontrol(arg0->unk6C_0, data->mode), arg0->actorData);
+        case 0:
+            return;
+    }
+}
 
 void func_80803EF4_chcollballcontrol(Actor *arg0, s32 arg1) {
     s32 _sukickball_entrypoint_6(u8 *, s32);
