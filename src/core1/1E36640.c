@@ -2,7 +2,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E36640/func_8001EB10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E36640/func_8001ED68.s")
 
 typedef struct {
     u8 velocityMin;
@@ -77,6 +76,28 @@ void func_80026CB0(ALVoice *, ALWaveTable *, f32, s16, u8, u8, u8, f32, u8, s32)
 void func_80026DE0(ALVoice *, u8);
 void func_80026E90(ALVoice *, f32);
 void func_80026F40(ALVoice *, u8);
+
+s32 func_8001ED68(void *arg0) {
+    s32 func_8002645C(ALEventQueue *, SfxEvent *);
+    u8 *player;
+    SfxEvent event;
+
+    player = arg0;
+    do {
+        switch (*(s16 *)((u8 *)player + 0x28)) {
+        case 0x20:
+            event.type = 0x20;
+            func_80026500((ALEventQueue *)(player + 0x14), &event, *(s32 *)((u8 *)player + 0x48), 1);
+            break;
+        default:
+            func_8001EE34((SfxEvent *)(player + 0x28));
+            break;
+        }
+        *(s32 *)((u8 *)player + 0x4C) = func_8002645C((ALEventQueue *)(player + 0x14), (SfxEvent *)(player + 0x28));
+    } while (*(s32 *)((u8 *)player + 0x4C) == 0);
+    *(s32 *)((u8 *)player + 0x50) += *(s32 *)((u8 *)player + 0x4C);
+    return *(s32 *)((u8 *)player + 0x4C);
+}
 
 void func_8001EE34(SfxEvent *arg0) {
     ALVoiceConfig config;
