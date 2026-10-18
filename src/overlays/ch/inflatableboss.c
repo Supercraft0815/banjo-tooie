@@ -478,7 +478,30 @@ void func_80802450_chinflatableboss(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_808024BC_chinflatableboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80802590_chinflatableboss.s")
+s32 func_80802590_chinflatableboss(Actor *arg0, f32 *arg1, s32 arg2) {
+    s32 func_800AE0B8(s32 *);
+    s32 func_800B0D80(u8 *, s32, f32 *, f32 *, f32, s32, void *, f32 *, f32 *);
+    u8 *func_800B2824(u8 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    u8 *func_801039E4(Unk80132ED0 *);
+    void *func_801040A8(Actor *);
+    f32 sp4C[3];
+    f32 sp48;
+    u8 *sp44;
+
+    if (func_800AE0B8(func_801040A8(arg0)) == 0) {
+        func_800EE7F8(arg1, arg0->position);
+        return 0;
+    }
+    sp44 = func_801039E4(arg0->unk0);
+    func_800EFA4C(sp4C, 0.0f, arg0->rotation[1], 0.0f);
+    if (func_800B0D80(func_800B2824(sp44), arg2, arg0->position, sp4C, arg0->scale, 0, func_801040A8(arg0), arg1, &sp48) == 0) {
+        func_800EE7F8(arg1, arg0->position);
+        return 0;
+    }
+    return (s32)sp48;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_8080267C_chinflatableboss.s")
 
