@@ -424,7 +424,38 @@ loop_1:
     goto loop_1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808011C0_chdragonbrothers.s")
+f32 func_808011C0_chdragonbrothers(u8 *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    struct DragonData { u8 pad[0x18]; f32 angle; };
+    f32 test;
+    f32 step;
+    f32 base;
+    f32 angle;
+    s32 done;
+
+    angle = ((struct DragonData *)func_80100094((Actor *)arg0, 0))->angle;
+    step = 1.0f;
+    done = 0;
+    if (arg1 != 0) {
+        base = angle;
+    } else {
+        base = ((Actor *)arg0)->rotation[1];
+    }
+    do {
+        if (arg1 == 0) {
+            test = base + step;
+            if (func_8080110C_chdragonbrothers((s32)arg0, test, angle, arg1)) {
+                return test;
+            }
+        }
+        test = base - step;
+        if (func_8080110C_chdragonbrothers((s32)arg0, test, angle, arg1)) {
+            return test;
+        }
+        step += 1.0f;
+    } while (done == 0);
+    return base;
+}
 
 void func_808012B4_chdragonbrothers(u8 *arg0, s32 arg1) {
     s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
