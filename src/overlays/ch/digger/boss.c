@@ -1771,7 +1771,53 @@ void func_80808948_chdiggerboss(Actor *arg0) {
     } while (var_s1 != 0x10);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808089BC_chdiggerboss.s")
+void func_808089BC_chdiggerboss(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80103110(void *, s32);
+    void func_80102FDC(void *, f32);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    s32 _subaddiefade_entrypoint_12(s32, s32, s32, s32);
+    void func_80808BE4_chdiggerboss(u8 *, u8 *, s32);
+    struct BossItems {
+        u8 pad[0xAC];
+        s32 active;
+        Unk80132ED0 *items[4];
+    } *data, *cursor;
+    Actor *child;
+    Actor *child2;
+    Actor **parent;
+    s32 i;
+
+    parent = &arg0;
+    data = func_80100094(arg0, 0);
+    i = 0;
+    if (arg1 == 6) {
+        for (i = 0, cursor = data; i < 2; i++) {
+            child = func_80108528(0x50A, arg0->position, 0xA, parent);
+            func_80103110(child, 1);
+            func_80102FDC(child, 1.5f);
+            child->unk74_17 = 0;
+            child->unk74_7 = 0x43;
+            func_80808BE4_chdiggerboss(arg0, child, i);
+            cursor->items[0] = child->unk0;
+            cursor = (void *)((u8 *)cursor + 4);
+        }
+        if (i < 4) {
+          do {
+            child2 = func_80108528(0x50A, arg0->position, 0xA, parent);
+            func_80103110(child2, 1);
+            func_80102FDC(child2, 0.8f);
+            _subaddiefade_entrypoint_12(child2, 0xFF, 0, 0);
+            child2->unk74_17 = 0;
+            child2->unk74_7 = 0x3E;
+            func_80808BE4_chdiggerboss(arg0, child2, i);
+            cursor->items[0] = child2->unk0;
+            i++;
+            cursor = (void *)((u8 *)cursor + 4);
+          } while (i < 4);
+        }
+    }
+}
 
 void func_80808B40_chdiggerboss(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
