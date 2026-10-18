@@ -91,12 +91,49 @@ void func_80800A90_chfishshootgame(Actor *arg0, f32 *arg1) {
 
 /* extern */
 
-void func_80800AF0_chfishshootgame(u8 *arg0) {
-    s32 *func_80108528(s32, s32, s32, u8 **);
-    (*(s32 *)((s8 *)(arg0) + (0x3C))) = (s32) *func_80108528(0x1D0, arg0 + 4, 0, &arg0);
+void func_80800AF0_chfishshootgame(Actor *arg0) {
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    arg0->unk3C = func_80108528(0x1D0, arg0->position, 0, &arg0)->unk0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80800B30_chfishshootgame.s")
+void func_80800B30_chfishshootgame(Actor *arg0) {
+    f32 func_800DC178(f32, f32);
+    void func_800EE88C(f32 *, s16 *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    f32 position[3];
+    struct FishShootData {
+        f32 unk0;
+        f32 unk4;
+        f32 unk8[2];
+        f32 unk10;
+        f32 unk14;
+        f32 unk18;
+        f32 unk1C;
+        f32 unk20;
+        u8 unk24[14];
+        s16 unk32;
+        s16 unk34;
+        s16 unk36[1][3];
+    };
+    Actor *actor;
+    struct FishShootData *data;
+
+    data = func_80100094(arg0, 0);
+    func_800EE88C(position, data->unk36[data->unk32]);
+    position[1] = arg0->position[1] + func_800DC178(-200.0f, 0.0f);
+    if (position[1] < data->unk10) {
+        position[1] = data->unk10;
+    } else {
+        if (data->unk4 < position[1]) {
+            position[1] = data->unk4;
+        }
+    }
+    actor = func_80108528(0x1BF, position, 0, &arg0);
+    actor->unk3C = arg0->unk0;
+    actor->unk58 = data->unk18 * 100.0f + 100.0f;
+    actor->unk50 = data->unk20;
+}
 
 void func_80800C24_chfishshootgame(u8 *arg0) {
     u8 func_800C4350(u8, f32[3], s32 *);
