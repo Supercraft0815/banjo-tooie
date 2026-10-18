@@ -46,7 +46,48 @@ void *func_8010E81C(f32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE8100/func_8010E924.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE8100/func_8010EACC.s")
+void func_8010EACC(void *arg0, s32 arg1, f32 arg2) {
+    struct entry { s32 data[9]; f32 value; };
+    struct list { u8 data[0x11]; s8 count; u8 pad[2]; struct entry *start; struct entry *end; };
+    extern u8 D_80137080[];
+    void func_80019224(f32 *, f32 *);
+    void func_800B237C(void *, f32[3], f32 *);
+    s32 func_800C8760(s32, s32);
+    s32 func_800C878C(s32, s32, s32);
+    s32 func_800DF8B4(s32 *);
+    f32 func_800DF8C4(f32 *);
+    void func_800DF900(u8 *);
+    void func_8010E924(s32, f32 *, f32, f32);
+    void mlMtxPop(void);
+    s32 current;
+    f32 center[3];
+    f32 norm;
+    s32 amount;
+    s32 list;
+    s32 pad;
+
+    if (arg1 < 0) {
+        amount = -arg1;
+    } else {
+        amount = arg1;
+    }
+    ((struct list *)D_80137080)->end = amount + ((struct list *)D_80137080)->start;
+    list = func_800DF8B4(arg0);
+    func_800B237C((void *)list, center, &norm);
+    arg2 = func_800DF8C4(arg0);
+    func_80019224(center, center);
+    norm *= arg2;
+    func_800DF900(arg0);
+    current = func_800C8760(0, 1);
+    if (current != 0) {
+        do {
+            func_8010E924(current, center, norm, arg2);
+            current = func_800C878C(current, 0, 1);
+        } while (current != 0);
+    }
+    ((struct list *)D_80137080)->count = (s32)((u8 *)((struct list *)D_80137080)->start - D_80137080 - 0x1C) / 40;
+    mlMtxPop();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE8100/func_8010EBE4.s")
 
