@@ -1348,7 +1348,39 @@ void func_8080666C_chdiggerboss(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808066A0_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80806A78_chdiggerboss.s")
+void func_80806A78_chdiggerboss(Actor *arg0, s32 arg1, u8 *arg2) {
+    void *func_80100094(Actor *, u32);
+    void rare_memcpy(void *, void *, int);
+    s32 func_80803BE8_chdiggerboss(s32, s32, s32);
+    s32 func_800F5410(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F7B9C(s32, s32);
+    void func_80806B38_chdiggerboss(Actor *);
+    struct DiggerBossInitData {
+        u8 pad0[0x5C];
+        u8 state;
+        u8 parameter;
+        u8 mode;
+        u8 active;
+        f32 timer;
+        s32 child;
+        u8 copy[0x10];
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    rare_memcpy(data->copy, arg2, 0x10);
+    data->mode = 3;
+    data->timer = 1.75f;
+    data->parameter = *arg2;
+    func_80803BE8_chdiggerboss((s32)arg0, arg1, 8);
+    func_808027F4_chdiggerboss((s32)arg0);
+    if (func_800F5410(func_800F54E4()) == 0x11) {
+        data->state = 1;
+        func_800F7B9C(func_800F54E4(), 0x8E);
+    } else {
+        func_80806B38_chdiggerboss(arg0);
+    }
+}
 
 void func_80806B38_chdiggerboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
