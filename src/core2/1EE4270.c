@@ -110,13 +110,42 @@ s32 func_8010AE30(void *arg0, f32 arg1[3], s32 arg2, f32 arg3) {
     return func_8010AD4C(arg0, arg1, arg2, arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010AE9C.s")
+s32 func_8010AE9C(void *arg0, f32 arg1[3], s32 arg2, f32 arg3) {
+    s32 func_800BF0E0(f32 *, f32 *, f32, f32 *, s32, s32);
+    f32 func_800EC708(Unk80132ED0 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_8010A40C(void *);
+    extern f32 D_8012651C;
+    extern f32 D_80136F20[3];
+    extern f32 D_80136F30[3];
+    f32 sp3C[1];
+    s32 sp38;
+    f32 sp34;
+    f32 temp_f2;
+
+    sp34 = func_800EC708(*(Unk80132ED0 **)arg0);
+    temp_f2 = func_8010A40C(arg0) * (sp34 * D_8012651C);
+    sp3C[0] = temp_f2;
+    arg1[1] = arg1[1] + temp_f2;
+    ((f32 *)arg0)[2] = ((f32 *)arg0)[2] + temp_f2;
+    sp38 = func_800BF0E0(arg1, (f32 *)((u8 *)arg0 + 4), temp_f2, D_80136F30, 3, *(s32 *)((u8 *)arg0 + 0x14));
+    func_800EE7F8(D_80136F20, (f32 *)((u8 *)arg0 + 4));
+    arg3 = sp3C[0];
+    arg1[1] = arg1[1] - arg3;
+    ((f32 *)arg0)[2] = ((f32 *)arg0)[2] - arg3;
+    if (sp38 != 0) {
+        arg2 = 1;
+    } else {
+        arg2 = 0;
+    }
+    return (int)arg2;
+}
 
 /* extern */
 
-s32 func_8010AF8C(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+s32 func_8010AF8C(void *arg0, f32 *arg1, s32 arg2, f32 arg3) {
     s32 func_800CC6CC(s32, s32);
-    s32 func_8010AE9C(void *, s32, s32, s32);
+    s32 func_8010AE9C(void *, f32 *, s32, f32);
     u32 temp_v0;
     u32 temp_v1;
 
