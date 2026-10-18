@@ -266,7 +266,38 @@ void chfactorytoxicpools_entrypoint_3(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3) 
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxicpools/func_8080057C_chfactorytoxicpools.s")
+void func_8080057C_chfactorytoxicpools(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    s32 func_800CBC3C();
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EFD24(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    struct PoolData {
+        s16 unk0;
+        s16 count;
+        struct {
+            s16 room;
+            s16 pad;
+            f32 position[3];
+            f32 velocity[3];
+        } entries[8];
+    } *data;
+    Prop *props[8];
+    f32 position[4];
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    data->count = _gccubesearch_entrypoint_9(0x154, props, 8);
+    for (i = 0; i < data->count; i++) {
+        func_800EE88C(position, props[i]->position);
+        data->entries[i].room = func_800CBC3C(position);
+        func_800EFD24(data->entries[i].velocity);
+        func_800EE7F8(data->entries[i].position, position);
+    }
+    data->unk0 = -1;
+    arg0->unk58 = 1.2f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxicpools/func_80800670_chfactorytoxicpools.s")
 
