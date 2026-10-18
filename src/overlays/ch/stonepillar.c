@@ -16,8 +16,9 @@ OSThread *chstonepillar_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800018_chstonepillar.s")
 
-void func_808001FC_chstonepillar(s32 arg0)
+void func_808001FC_chstonepillar(Actor *arg0)
 {
+    void func_80800EE0_chstonepillar(Actor *);
     _subaddiefade_entrypoint_14();
     func_80800EE0_chstonepillar(arg0);
 }
@@ -346,7 +347,39 @@ void func_80800E30_chstonepillar(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800EE0_chstonepillar.s")
+void func_80800EE0_chstonepillar(Actor *arg0) {
+    f32 func_800136E4(f32);
+    s32 func_800D0B68(u32, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    struct PillarData {
+        u8 unk0[0x18];
+        f32 position[3];
+        f32 unk24;
+        s32 unk28;
+        s16 index;
+        s8 unk2E;
+        s8 unk2F;
+    };
+    struct PillarData *sp1C;
+
+    sp1C = func_80100094(arg0, 0);
+    sp1C->index = (s32)arg0->rotation[1] - 1;
+    sp1C->unk2F = 0;
+    sp1C->unk24 = 0.0f;
+    sp1C->unk28 = sp1C->index;
+    sp1C->unk2E = (s32)arg0->rotation[1] - 1;
+    if ((arg0->unk0->unk24 >> 22) == 0x19F) {
+        arg0->rotation[1] = func_800136E4(arg0->rotation[1] - (f32)sp1C->index * 18.0f);
+    } else {
+        arg0->rotation[1] = 0.0f;
+    }
+    func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+    func_800EE7F8(sp1C->position, arg0->position);
+    if (func_800D0B68(8, 1) != 0) {
+        sp1C->index = -1;
+    }
+}
 
 void func_80800FE0_chstonepillar(Actor *arg0) {
     void func_800CE88C(s32, s32);
