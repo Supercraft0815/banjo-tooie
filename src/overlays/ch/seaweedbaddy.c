@@ -21,13 +21,43 @@ void func_8080043C_chseaweedbaddy(Actor *arg0) {
     _sudeflect_entrypoint_1(arg0->position, arg0->scale * 120.0f, arg0->scale * 100.0f, 0.0f, 0xA);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_80800498_chseaweedbaddy.s")
+void func_80800498_chseaweedbaddy(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_1(Actor *);
+    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    f32 func_800DC0C0(void);
+    int func_800DC298(f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80101EE4(Actor *, f32);
+    void func_80102FDC(Actor *, f32);
+    void func_80107200(void *);
+    void func_808009BC_chseaweedbaddy(Actor *);
+    struct SeaweedData {
+        f32 position[3];
+        s32 unkC;
+        s32 unk10;
+        f32 route[3];
+    } *sp2C;
+
+    if (func_800DC298(0.4f)) {
+        func_808009BC_chseaweedbaddy(arg0);
+    }
+    _subaddieDll_entrypoint_1(arg0);
+    func_80107200(arg0);
+    sp2C = func_80100094(arg0, 1);
+    _subaddierouteDll_entrypoint_3(arg0, sp2C->route, arg0->position);
+    sp2C->unk10 = 0;
+    func_800EE7F8(sp2C->position, arg0->position);
+    func_80102FDC(arg0, arg0->scale * 0.7f);
+    arg0->unk50 = 0.0f;
+    func_80101EE4(arg0, func_800DC0C0());
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_80800554_chseaweedbaddy.s")
 
 void func_8080065C_chseaweedbaddy(Actor *arg0) {
     f32 func_800DC0C0(void);
-    s32 func_80101EE4(Actor *, f32);
+    void func_80101EE4(Actor *, f32);
     void func_80102FDC(Actor*, f32);
     func_80102FDC(arg0, arg0->scale * 0.7f);
     func_80101EE4(arg0, func_800DC0C0());
