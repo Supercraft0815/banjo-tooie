@@ -137,7 +137,43 @@ void func_8080086C_chbottlesfamily(Actor* arg0)
 {
     _suexpression_entrypoint_8(arg0, 1);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_8080088C_chbottlesfamily.s")
+void func_8080088C_chbottlesfamily(Actor *arg0, s32 arg1, s32 arg2) {
+    void _glcutDll_entrypoint_6(u32, u32);
+    void func_8009032C(s32);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    void func_800FC6B0(u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80800520_chbottlesfamily(Actor *);
+    void func_80800BC0_chbottlesfamily(void *);
+
+    switch (arg1) {
+        case 0x1503:
+            func_80800BC0_chbottlesfamily(arg0);
+            func_8009032C(0x2B);
+            func_800FC6B0(0xE);
+            break;
+        case 0x1501:
+            func_80800BC0_chbottlesfamily(arg0);
+            _glcutDll_entrypoint_6(0x142, 0x66);
+            break;
+        default:
+            if (arg0->unk6C_0) {
+                func_80800BC0_chbottlesfamily(arg0);
+            }
+            break;
+    }
+    if (arg0->unk6C_9 == 0x43C) {
+        if (func_800DC298(0.5f)) {
+            func_80800520_chbottlesfamily(arg0);
+        } else {
+            func_80101FDC(arg0, 1);
+            arg0->unk58 = func_800DC178(5.0f, 10.0f) * 0.5f;
+        }
+    } else {
+        func_80101FDC(arg0, 1);
+    }
+}
 
 /* extern */
 
