@@ -259,7 +259,25 @@ void func_80800B9C_chmayafarmer(MayaFarmerActor *arg0) {
     arg0->actor.scale = 0.5f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_80800C58_chmayafarmer.s")
+s32 func_80800C58_chmayafarmer(MayaFarmerActor *arg0) {
+    s32 func_800CC338(f32 (*)[3], s32, s32);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    f32 sp24[3];
+    s32 result;
+
+    func_800EEC30(sp24, arg0->actor.rotation[0], arg0->actor.rotation[1], 200.0f);
+    func_800EF04C(sp24, arg0->actor.position);
+    if (sp24[1] < arg0->actor.unk58 + 250.0f) {
+        return 0;
+    }
+    result = func_800CC338(&sp24, arg0->path.group - 1, arg0->path.point - 1);
+    if (result != -1) {
+        arg0->path.point = result + 1;
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
