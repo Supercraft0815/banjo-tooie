@@ -50,7 +50,48 @@ s32 func_808002A8_cheggsplode(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/splode/func_8080035C_cheggsplode.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/splode/func_8080041C_cheggsplode.s")
+void func_8080041C_cheggsplode(Actor *arg0) {
+    void func_800187B4(s32, f32, f32, f32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    u32 func_800F54E4(void);
+    s32 func_800F54F0(s32);
+    s32 func_800F6BE4(s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    void func_808006F0_cheggsplode(Actor *);
+    void func_80800778_cheggsplode(Actor *, s32);
+    extern s32 D_808008B0_cheggsplode;
+    extern s32 D_80800980_cheggsplode;
+    struct EggSplodeData {
+        s32 unk0;
+        s16 unk4;
+        s16 unk6;
+        f32 unk8;
+        f32 unkC;
+        s32 unk10;
+    } *sp34;
+    s32 var_s1;
+
+    sp34 = func_80100094(arg0, 0);
+    var_s1 = sp34->unk0;
+    if (func_800F6BE4(var_s1) == 0) {
+        var_s1 = func_800F54E4();
+    }
+    sp34->unk8 = 0.0f;
+    func_800E1610(0, 20.0f, 0.6f, arg0->position);
+    func_800187B4(func_800F54F0(var_s1), 0.85f, 0.45f, 0.6f);
+    arg0->position[1] += 60.0f;
+    func_800BABB8(0, arg0->position, NULL, 1.0f, &D_808008B0_cheggsplode);
+    if (sp34->unk4 != 5) {
+        func_808006F0_cheggsplode(arg0);
+    }
+    func_8010D930(6, -1, arg0->position, &D_80800980_cheggsplode);
+    sp34->unk10 = 0;
+    if (func_800F6BE4(var_s1) != 0) {
+        func_80800778_cheggsplode(arg0, var_s1);
+    }
+}
 
 /* extern */
 
