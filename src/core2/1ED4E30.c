@@ -130,7 +130,7 @@ void func_800FB808(void) {
     void func_800FE614(void);
     void func_80017864(void);
     extern u8 D_80123E40;
-    extern s32 D_801359B0;
+    extern s8 D_801359B0;
     extern f32 D_801359B4;
     extern f32 D_801359B8;
     MusicTrack *track;
@@ -463,7 +463,40 @@ void func_800FCB54(s32 track_id, s32 arg1, s32 arg2, f32 arg3) {
     func_800FCB9C(track_id, arg1, arg2, 0.0f, (u8 *)func_800FB5F8(track_id) + 0x3C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FCB9C.s")
+void func_800FCB9C(s32 track_id, s32 arg1, s32 arg2, f32 arg3, void *arg4) {
+    void func_800172D4(u8, s32);
+    void func_80017404(u8, s16);
+    void func_800FBF9C(s32 *, s32 *, s32 *, void *);
+    extern s8 D_801359B0;
+    s32 *track;
+    u32 slot_index;
+
+    track = func_800FB5F8(track_id);
+    if (track == NULL)
+        return;
+    if (((s16 *)track)[0x28 / 2] < 0) {
+        if (arg1 == 0)
+            return;
+        func_800FB6E0(track, 0);
+        slot_index = ((s32)track - (s32)D_801357D0) / 80;
+        func_800172D4(slot_index, track_id);
+        ((s16 *)track)[0x28 / 2] = track_id;
+        track[0x20 / 4] = 0;
+        ((f32 *)track)[1] = 0.0f;
+        func_800FB6C0(track, 0);
+        if (((u8 *)track)[0x34] == 0)
+            func_80017404(slot_index, 0);
+    }
+    func_800FBF9C(track, &arg1, &arg2, arg4);
+    ((f32 *)track)[0] = arg3;
+    ((s16 *)track)[0x2A / 2] = track[0x20 / 4] < arg1 ? arg2 : -arg2;
+    track[0x24 / 4] = arg1;
+    if (arg1 != 0)
+        func_800FB540(track);
+    else
+        func_800FB5BC(track);
+    D_801359B0 = 1;
+}
 
 s32 func_800FCCD4(s32 track_id) {
     void *func_800FB5F8(s32);
