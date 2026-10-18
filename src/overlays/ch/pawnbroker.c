@@ -51,7 +51,28 @@ void func_80800694_chpawnbroker(Actor *arg0) {
     _subaddieaudioquick_entrypoint_3(arg0, temp_a1, &D_808010E4_chpawnbroker, 0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_808006FC_chpawnbroker.s")
+void func_808006FC_chpawnbroker(Actor *arg0, s32 arg1) {
+    void func_80102FDC(Actor *, f32);
+    Actor *func_801084B0(s32, Actor **);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    s32 func_80108944(void *, void *);
+    Actor *temp_v0;
+
+    switch (arg1) {
+        case 0x136:
+            func_80108528(arg1, (f32 *)arg0->actorData, 0xA, &arg0);
+            return;
+        case 0x353:
+            func_80108528(arg1, (f32 *)arg0->actorData, 0, &arg0);
+            return;
+        case 0x354:
+            temp_v0 = func_801084B0(arg1, &arg0);
+            func_80102FDC(temp_v0, arg0->scale);
+            func_80108944(temp_v0, arg0);
+            arg0->unk3C = temp_v0->unk0;
+            return;
+    }
+}
 
 /* extern */
 
