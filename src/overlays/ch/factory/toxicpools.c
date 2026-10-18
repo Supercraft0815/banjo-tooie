@@ -86,7 +86,40 @@ void func_808000D0_chfactorytoxicpools(Actor *arg0) {
     func_80800270_chfactorytoxicpools(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxicpools/func_80800190_chfactorytoxicpools.s")
+s32 func_80800190_chfactorytoxicpools(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void func_80103110(Actor *, u32);
+    void func_8010A570(Actor *);
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void func_800C4AF0(f32 *, void *);
+    s32 func_800BEA88(s32);
+    s32 _idworldmake_entrypoint_1(s32, s32, s32, s32);
+    void func_80800270_chfactorytoxicpools(Actor *);
+    s32 _chswitch_entrypoint_10(Actor *, s32, s32);
+    extern f32 D_80800A18_chfactorytoxicpools[3];
+    struct ToxicPoolData {
+        s16 unk0;
+        s16 state;
+        f32 timer;
+    } *sp24;
+
+    switch (arg1) {
+        case 7:
+            sp24 = func_80100094(arg0, 1);
+            func_80103110(arg0, 1);
+            func_8010A570(arg0);
+            sp24->state = 1;
+            _capod_entrypoint_13(arg0->unk0, NULL, 0, 0x10);
+            func_800C4AF0(arg0->position, D_80800A18_chfactorytoxicpools);
+            break;
+        case 0x95:
+            _idworldmake_entrypoint_1(func_800BEA88(1), 0x659, 1, 1);
+            func_80800270_chfactorytoxicpools(arg0);
+        default:
+            return _chswitch_entrypoint_10(arg0, arg1, arg2);
+    }
+    return 1;
+}
 
 void func_80800270_chfactorytoxicpools(Actor *arg0) {
     s32 _idwibble_entrypoint_5(s32, s16);
