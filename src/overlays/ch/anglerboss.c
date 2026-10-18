@@ -196,7 +196,33 @@ int func_80801948_changlerboss(Actor *arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80801A10_changlerboss.s")
+void func_80801A10_changlerboss(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    f32 func_800F1FF0(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80102CF4(Actor *, s32);
+    struct {
+        u8 pad0[0x90];
+        s16 index;
+        u8 pad92[0x12];
+        struct {
+            f32 position[3];
+            f32 padC[3];
+        } points[5];
+    } *data;
+    f32 angles[2];
+    f32 delta;
+
+    data = func_80100094(arg0, 0);
+    delta = func_800D8FF8();
+    func_800F18FC(arg0->position, data->points[data->index].position, angles);
+    arg0->unk50 = angles[0];
+    arg0->unk54 = angles[1];
+    arg0->rotation[1] = func_800F1FF0(arg0->rotation[1], arg0->unk54, 0.1f, 2.0f * delta, delta * 60.0f);
+    arg0->rotation[0] = func_800F1FF0(arg0->rotation[0], arg0->unk50, 0.1f, 2.0f * delta, delta * 60.0f);
+    func_80102CF4(arg0, 0x41000000);
+}
 
 void func_80801AF0_changlerboss(Actor *arg0) {
     f32 func_800D8FF8(void);
