@@ -35,7 +35,36 @@ void func_80800024_chfactoryrobot(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80800264_chfactoryrobot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80800360_chfactoryrobot.s")
+s32 func_80800360_chfactoryrobot(Actor *arg0, s32 arg1, u8 *arg2) {
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_80107070(Actor *, s32);
+    void func_80800424_chfactoryrobot(Actor *, u8 *);
+    void func_80800508_chfactoryrobot(Actor *);
+    void func_808005D4_chfactoryrobot(Actor *);
+    u8 **arg2p = &arg2;
+
+    switch (arg1) {
+    case 0x40:
+        func_80106790(arg0->unk3C)->unk3C = NULL;
+        func_808005D4_chfactoryrobot(arg0);
+        func_80107070(arg0, 3);
+        break;
+    case 0x1F:
+        func_80800424_chfactoryrobot(arg0, *arg2p);
+        break;
+    case 0x8F:
+        if (*arg2p == NULL) {
+            func_80800508_chfactoryrobot(arg0);
+        }
+        break;
+    case 0x95:
+        func_80800508_chfactoryrobot(arg0);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
