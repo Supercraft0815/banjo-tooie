@@ -68,7 +68,7 @@ s32 func_808002A4_chburgerstand(Actor *arg0, s32 arg1, s32 arg2) {
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_80108B04(Actor *, s32);
     s32 func_808006B4_chburgerstand(Actor *);
-    s32 func_808007A0_chburgerstand(Actor *, s16, s16);
+    void func_808007A0_chburgerstand(Actor *, s32, s16);
     void func_8080087C_chburgerstand(Actor *, s32, s16);
     s32 func_80800940_chburgerstand(Actor *);
     extern s32 D_80800D50_chburgerstand;
@@ -208,7 +208,34 @@ void func_80800754_chburgerstand(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/func_808007A0_chburgerstand.s")
+void func_808007A0_chburgerstand(Actor *arg0, s32 arg1, s16 arg2) {
+    void func_80102424(Actor *, s32);
+    void _capod_entrypoint_14(void);
+    s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);
+    void func_8008FC9C(s32);
+    void func_80090708(s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s32 D_80800BC0_chburgerstand;
+    switch (arg1) {
+        case 0x10DF:
+            _capod_entrypoint_14();
+            func_80102424(arg0, 1);
+            break;
+        case 0x10FE:
+            func_8008FC9C(0);
+            func_80102424(arg0, 1);
+            break;
+        default:
+            if (arg0->unk3C != NULL && _subaddiedialog_entrypoint_9(arg0, arg1, &D_80800BC0_chburgerstand, 5) == 2) {
+                func_80102424(arg0, 3);
+                func_80102424(func_80106790(arg0->unk3C), 2);
+            } else {
+                func_80102424(arg0, 1);
+                func_80090708(0);
+            }
+            break;
+    }
+}
 
 void func_8080087C_chburgerstand(Actor *arg0, s32 arg1, s16 arg2) {
     s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);
