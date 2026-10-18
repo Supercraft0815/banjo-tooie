@@ -23,7 +23,25 @@ void func_808001FC_chstonepillar(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800224_chstonepillar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_8080031C_chstonepillar.s")
+s32 func_8080031C_chstonepillar(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _glcutDll_entrypoint_19(u32);
+    void *func_80100094(Actor *, u32);
+    void func_808006AC_chstonepillar(Unk80132ED0 **);
+    void func_80800704_chstonepillar(Actor *);
+    u8 *sp1C;
+    s32 *value = &arg2;
+
+    if (arg1 == 0x95) {
+        sp1C = func_80100094(arg0, 0);
+        func_80800704_chstonepillar(arg0);
+        if (_glcutDll_entrypoint_19(0xB) != 0 && *(s16 *)(sp1C + 0x2C) == 0) {
+            func_808006AC_chstonepillar(&arg0->unk0);
+        }
+    } else {
+        return 0;
+    }
+    return 1;
+}
 
 s32 func_80800390_chstonepillar(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80800CC8_chstonepillar(Actor *, s32);
