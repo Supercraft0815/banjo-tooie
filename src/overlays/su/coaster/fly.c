@@ -195,7 +195,30 @@ s32 func_80801B90_sucoasterfly(Actor *arg0) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80801C44_sucoasterfly.s")
+void func_80801C44_sucoasterfly(Actor *arg0, s32 arg1) {
+    void *_sucoasterflydata_entrypoint_1(u32);
+    s32 func_80101E14(Actor *, f32);
+    void func_80801CD0_sucoasterfly(Actor *, s32);
+    struct CoasterFlyData {
+        u8 pad0[0x11];
+        u8 track;
+    } *data;
+    struct CoasterFlyParameters {
+        s16 pad0[2];
+        struct {
+            s16 enabled;
+            s16 pad2[2];
+            s16 fraction;
+        } entries[1];
+    } *parameters;
+
+    data = func_80100094(arg0, 0U);
+    parameters = _sucoasterflydata_entrypoint_1((u32)data->track >> 4);
+    if (parameters->entries[arg1].enabled != 0 &&
+        func_80101E14(arg0, (f32)parameters->entries[arg1].fraction * 0.00390625f) != 0) {
+        func_80801CD0_sucoasterfly(arg0, arg1);
+    }
+}
 
 void func_80801CD0_sucoasterfly(Actor *arg0, s32 arg1) {
     void *_sucoasterflydata_entrypoint_1(u32);
