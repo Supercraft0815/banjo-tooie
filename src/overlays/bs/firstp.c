@@ -3,6 +3,12 @@
 struct player_state_s;
 enum asset_e;
 
+void func_80809198_bsfirstp(void *arg0);
+s32 func_8009E674(struct player_state_s *, s32);
+f32 func_800D9004(void);
+s32 func_800F1574(f32 *, f32);
+extern f32 D_8080A660_bsfirstp[][5];
+
 struct anctrl_s;
 struct player_state_s;
 enum asset_e;
@@ -3379,7 +3385,30 @@ void func_8080911C_bsfirstp(struct player_state_s *arg0, s32 arg1) {
     sp24[0x108 / sizeof(s32)] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809198_bsfirstp.s")
+
+
+void func_80809198_bsfirstp(void *arg0) {
+    void func_8080633C_bsfirstp(Actor *actor, f32 speed);
+    struct firstp_state { u8 pad[0x104]; s32 index; s32 state; f32 timer; } *ptr;
+    f32 speed;
+
+    ptr = *(struct firstp_state **)((u8 *)arg0 + 0x188);
+    switch (ptr->state) {
+        case 0:
+            if (func_800F1574(&ptr->timer, func_800D9004())) {
+                func_8080911C_bsfirstp(arg0, 1);
+            }
+            break;
+        case 1:
+            if (func_8009E674(arg0, 4)) {
+                speed = 0.0f;
+            } else {
+                speed = D_8080A660_bsfirstp[ptr->index][0];
+            }
+            func_8080633C_bsfirstp(arg0, speed);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809250_bsfirstp.s")
 
