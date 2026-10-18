@@ -175,8 +175,8 @@ int func_800F1EA4(f32 *arg0, f32 *arg1) {
     }
 }
 
-void func_800F1F0C(f32 *arg0, f32 *arg1, f32 arg2) {
-    func_800F1DCC(func_800F1DF4(arg0, arg1), arg2);
+f32 func_800F1F0C(f32 *arg0, f32 *arg1, f32 arg2) {
+    return func_800F1DCC(func_800F1DF4(arg0, arg1), arg2);
 }
 
 /* extern */

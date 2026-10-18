@@ -12,7 +12,33 @@ void func_80800000_chlavahand(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x54))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x38)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/hand/func_80800024_chlavahand.s")
+void func_80800024_chlavahand(Actor *arg0) {
+    f32 func_800F1F0C(f32 *, f32 *, f32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    void func_80102424(Actor *, s32);
+    s32 func_80103140(Actor *, u32, u16);
+    void func_8010A590(Actor *);
+    struct HandFlags {
+        u8 pad[0x7A];
+        u8 mode : 2;
+        u8 rest : 6;
+    };
+    f32 sp2C[3];
+    f32 angle;
+
+    ((struct HandFlags *)arg0)->mode = 1;
+    func_800F5A00(func_800F54E4(), sp2C);
+    angle = func_800F1F0C(arg0->position, sp2C, arg0->rotation[1]);
+    if (angle >= -90.0f && angle <= 0.0f) {
+        func_80103140(arg0, 0x925, arg0->unk0->unk16);
+        func_80102424(arg0, 2);
+    } else if (angle <= 90.0f && angle > 0.0f) {
+        func_80103140(arg0, 0x92C, arg0->unk0->unk16);
+        func_80102424(arg0, 3);
+    }
+    func_8010A590(arg0);
+}
 
 void func_80800124_chlavahand(u8 *arg0) {
     void _subaddieaudioloop_entrypoint_0(u8 *, f32);
@@ -31,12 +57,12 @@ void func_80800124_chlavahand(u8 *arg0) {
     s32 func_80101DDC(u8 *);
     s32 func_80101E14(u8 *, f32);
     f32 func_80101F24(u8 *);
-    void func_80102424(u8 *, s32);
+    void func_80102424(Actor *, s32);
     void func_80107070(u8 *, s32);
     void func_8010A800(u8 *, s32);
     s32 func_8010C754(u8 *);
     s32 func_8010C9FC(f32 *, s32, s32, s32);
-    void func_80800024_chlavahand(u8 *);
+    void func_80800024_chlavahand(Actor *);
     void func_80800910_chlavahand(Actor *);
     void func_80800A30_chlavahand(Actor *);
     extern u32 D_80801324_chlavahand;
