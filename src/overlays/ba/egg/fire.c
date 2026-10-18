@@ -149,7 +149,39 @@ void baeggfire_entrypoint_5(void *arg0) {
     func_80800040_baeggfire(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/fire/baeggfire_entrypoint_6.s")
+void baeggfire_entrypoint_6(void *arg0) {
+    s32 func_800D9078(f32 *arg0);
+    void func_80800250_baeggfire(void *arg0);
+    f32 *data;
+
+    func_808000B8_baeggfire(arg0);
+    data = *(f32 **)((u8 *)arg0 + 0x6C);
+    switch (*(s32 *)((u8 *)data + 8)) {
+        case 1:
+            if (*(s32 *)((u8 *)data + 0xC) != 0) {
+                func_80800250_baeggfire(arg0);
+            }
+            break;
+        case 2:
+            if (func_800D9078(data) != 0) {
+                func_80800180_baeggfire(arg0, 3);
+            }
+            break;
+        case 3:
+            if (func_800D9078(data) != 0) {
+                func_80800180_baeggfire(arg0, 1);
+            }
+            if (*(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x6C) + 0xC) != 0) {
+                func_80800250_baeggfire(arg0);
+            }
+            break;
+        case 4:
+            if (func_800D9078(data) != 0) {
+                func_80800180_baeggfire(arg0, 1);
+            }
+            break;
+    }
+}
 
 void baeggfire_entrypoint_7(void *arg0) {
     (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x6C)))) + (0xC))) = 1;
