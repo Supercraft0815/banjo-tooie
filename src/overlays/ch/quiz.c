@@ -952,7 +952,40 @@ void func_80803320_chquiz(s32 arg0, Unk80132ED0 *arg1) {
     sp1C->unk3C = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80803368_chquiz.s")
+void func_80803368_chquiz(s32 arg0, s32 arg1) {
+    Actor *_subaddiefind_entrypoint_11(s32, s32);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8D4C(s32, f32 *);
+    void func_800C8E84(s32, u32 *);
+    void func_800C8F64(s32, s32);
+    void func_800C8FE0(s32, s32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_80102424(Actor *, s32);
+    f32 func_80103EF4(Actor *);
+    extern f32 D_8080746C_chquiz[];
+    extern u32 D_80807474_chquiz[];
+    f32 sp28[4];
+    Actor *actor;
+
+    actor = _subaddiefind_entrypoint_11(0x52B, arg0);
+    if (arg1 != 0) {
+        actor->unk64_20 = 1;
+    } else {
+        actor->unk64_20 = 0;
+    }
+    func_80102424(actor, 2);
+    if (_subaddieskeleton_entrypoint_2(actor->unk0, 4, sp28) == 0) {
+        func_800EFA4C(sp28, actor->position[0], actor->position[1] + func_80103EF4(actor) * 0.5f, actor->position[2]);
+    }
+    actor->actorData[3] = func_800C8A98();
+    func_800C8F64(actor->actorData[3], 0xF);
+    func_800C8E84(actor->actorData[3], D_80807474_chquiz);
+    func_800C8D4C(actor->actorData[3], D_8080746C_chquiz);
+    func_800C8CB8(actor->actorData[3], sp28);
+    func_800C8FE0(actor->actorData[3], 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80803470_chquiz.s")
 
