@@ -146,13 +146,43 @@ int chchuffy_entrypoint_1(Unk80132ED0 *marker, f32 *position, f32 *rotation) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80800398_chchuffy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80800410_chchuffy.s")
+void func_80800410_chchuffy(Actor *actor, s32 index) {
+    struct ParticleData {
+        u8 pad0[0x14];
+        f32 origin[3];
+        u8 pad20[0x44];
+        f32 position[10][3];
+        u8 padDC[0x78];
+        f32 velocity[10][3];
+        f32 rotation[10][3];
+        f32 scale[10];
+        s8 kind[10];
+        u8 pad276[6];
+        s32 timer[10];
+    };
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    struct ParticleData *data;
+
+    data = func_80100094(actor, 0);
+    data->velocity[index][0] = func_800DC178(-13.0f, 13.0f);
+    data->velocity[index][1] = func_800DC178(10.0f, 20.0f);
+    data->velocity[index][2] = func_800DC178(-13.0f, 13.0f);
+    data->rotation[index][1] = func_800DC178(250.0f, 450.0f);
+    func_800EE7F8(data->position[index], data->origin);
+    data->position[index][2] += 25.0f;
+    data->scale[index] = func_800DC178(0.2f, 0.4f);
+    data->timer[index] = func_800DC128(0xB9, 0xFA);
+    data->kind[index] = func_800DC128(0, 6);
+}
 
 /* extern */
 
 void func_80800524_chchuffy(Actor *arg0) {
     void* func_80100094(Actor*, u32);
-    s32 func_80800410_chchuffy(Actor *, s32);
+    void func_80800410_chchuffy(Actor *, s32);
     s32 var_s0;
     Actor *actor;
     u32 *temp_v0;
