@@ -38,7 +38,40 @@ void func_80800068_chfactoryworkerdirty(s32 *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_808000AC_chfactoryworkerdirty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_8080025C_chfactoryworkerdirty.s")
+void func_8080025C_chfactoryworkerdirty(Actor *arg0) {
+    s32 _glcutDll_entrypoint_20(void);
+    s32 func_800D0B68(u32, u32);
+    void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    int func_808000AC_chfactoryworkerdirty(Actor *, s32);
+    s32 func_808009E4_chfactoryworkerdirty(void);
+    s32 func_80800A14_chfactoryworkerdirty(s32);
+    int func_80800AB4_chfactoryworkerdirty(s32);
+    struct {
+        s32 unk0;
+        u8 pad4[0xC];
+        s8 unk10;
+    } *data;
+    f32 sp28[3];
+
+    data = func_80100094(arg0, 0U);
+    data->unk10 = 1;
+    data->unk0 = 0;
+    if (func_808009E4_chfactoryworkerdirty() != 0 &&
+        func_80800A14_chfactoryworkerdirty((s32)arg0) != 0 &&
+        _glcutDll_entrypoint_20() == 0 && func_800D0B68(0x36, 1) == 0) {
+        func_800EEB9C(sp28, arg0->rotation[1], 100.0f);
+        func_800EF04C(sp28, arg0->position);
+        func_800D1000(0x36, 1, sp28, 3, NULL);
+    }
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_808000AC_chfactoryworkerdirty(arg0, 8);
+    } else if (func_80800AB4_chfactoryworkerdirty((s32)arg0) != 0) {
+        func_808000AC_chfactoryworkerdirty(arg0, 7);
+    }
+    arg0->unk54 = arg0->rotation[1];
+}
 
 void func_80800340_chfactoryworkerdirty(Actor* arg0)
 {
