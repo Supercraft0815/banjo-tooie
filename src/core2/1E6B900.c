@@ -447,10 +447,40 @@ void func_80092EBC(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092EC8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093070.s")
+void func_80093070(PlayerState *arg0, s32 arg1, s32 arg2, u8 *arg3) {
+    struct VertexListView;
+    u32 func_800A25D0(void *);
+    void func_800B25D8(struct VertexListView *, struct VertexListView *, s32);
+    s32 func_800B2840(s32);
+    s32 func_800D674C(s32);
+    s32 func_80100A74(s16, s32);
+    s16 func_80100D24(s32, s32, s32, s32, s32, s32);
+    void func_80100E18(s16);
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 sp20;
+    s32 var_a3;
+    s32 temp_v0;
+    u8 temp_v1;
+
+    sp34 = func_800D674C(arg2);
+    sp30 = func_800D674C(arg1);
+    temp_v0 = func_800A25D0(arg0);
+    var_a3 = temp_v0;
+    temp_v1 = *arg3;
+    if (temp_v1 != 0) {
+        sp20 = temp_v0;
+        func_80100E18((s16)temp_v1);
+        var_a3 = sp20;
+    }
+    *arg3 = func_80100D24(sp34, arg2, 1, var_a3, 0, 0);
+    sp2C = func_800B2840(sp34);
+    func_800B25D8(func_80100A74(*arg3, 0), sp2C, sp30);
+}
 
 void func_8009312C(PlayerState *arg0, s32 arg1) {
-    s32 func_80093070(PlayerState *, s32, s16, u8 *);
+    void func_80093070(PlayerState *, s32, s32, u8 *);
     u8 *temp_v0;
     u8 *temp_v0_2;
 
@@ -465,7 +495,7 @@ void func_8009312C(PlayerState *arg0, s32 arg1) {
 }
 
 void func_8009316C(PlayerState *arg0, s32 arg1) {
-    s32 func_80093070(PlayerState *, s32, s16, u8 *);
+    void func_80093070(PlayerState *, s32, s32, u8 *);
     u8 *temp_v0;
     u8 *temp_v0_2;
 
