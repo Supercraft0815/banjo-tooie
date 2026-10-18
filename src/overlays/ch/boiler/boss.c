@@ -49,7 +49,35 @@ void func_80800E64_chboilerboss(void *arg0) {
     func_800D2498(0xC7, (*(u8 *)((s8 *)(arg0) + (0x5E))), 0, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80800E90_chboilerboss.s")
+void func_80800E90_chboilerboss(Actor *arg0, s32 *arg1) {
+    void func_800CE88C(s32, s32);
+    s32 func_800CEAA8(s32);
+    void *func_80100094(Actor *, u32);
+    void func_8010A570(Actor *);
+    s32 func_80800F34_chboilerboss(Actor *, s32);
+    void func_80801B88_chboilerboss(Actor *, s32 *);
+    void func_8080221C_chboilerboss(Actor *, s32, volatile s32);
+    void func_8080238C_chboilerboss(Unk80132ED0 **, s32, s32);
+    void func_808027E4_chboilerboss(Actor *, s32, s32, Unk80132ED0 *);
+    struct {
+        u8 pad[0x55];
+        u8 unk55;
+    } *data;
+
+    func_80801B88_chboilerboss(arg0, arg1);
+    if (func_800CEAA8(0) != 0) {
+        func_800CE88C(0, 0);
+    }
+    data = func_80100094(arg0, 0);
+    data->unk55 = 0;
+    func_8080238C_chboilerboss(&arg0->unk0, 0xF98, 2);
+    func_808027E4_chboilerboss(arg0, 0x1F, 0x430, NULL);
+    func_80800F34_chboilerboss(arg0, 0xB);
+    func_8010A570(arg0);
+    arg0->pad5E = 0;
+    func_80800E64_chboilerboss(arg0);
+    func_8080221C_chboilerboss(arg0, 0, 0x40A00000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80800F34_chboilerboss.s")
 
