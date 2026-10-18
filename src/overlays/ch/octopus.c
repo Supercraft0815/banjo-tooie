@@ -23,7 +23,34 @@ void func_80800210_choctopus()
     func_808007E4_choctopus();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/octopus/func_80800230_choctopus.s")
+void func_80800230_choctopus(Actor *arg0, s32 arg1) {
+    s32 func_801015D0(Actor *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    int func_800F3214(void *, void *, void *, f32);
+    void func_800DF5D8(u32, u32, u32, s32);
+    extern s32 D_80800950_choctopus[][3];
+    extern s32 D_80800980_choctopus[3];
+    s32 value;
+    s32 color[3];
+
+    func_801015D0(arg0);
+    switch (arg0->unk70_10) {
+        case 2:
+            value = func_800F10B4(arg0->unk58, 0.0, 1.25f, 255.0f, 0.0f);
+            break;
+        case 3:
+            value = 255;
+            break;
+        case 4:
+            value = func_800F10B4(arg0->unk58, 0.0, 3.75f, 0.0f, 255.0f);
+            break;
+        default:
+            value = 0;
+            break;
+    }
+    func_800F3214(color, D_80800950_choctopus[arg0->unk74_7 - 50], D_80800980_choctopus, (f32) value / 255.0f);
+    func_800DF5D8(color[0], color[1], color[2], 255);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/octopus/func_80800348_choctopus.s")
 
