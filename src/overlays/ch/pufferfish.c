@@ -4,7 +4,7 @@
 
 void func_80800000_chpufferfish(void *arg0) {
     s32 _subaddieDll_entrypoint_1();
-    s32 func_800FFAB0(void *);
+    void func_800FFAB0(Actor *);
     if (_subaddieDll_entrypoint_1() == 0) {
         func_800FFAB0(arg0);
         return;
@@ -14,7 +14,46 @@ void func_80800000_chpufferfish(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pufferfish/func_80800040_chpufferfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pufferfish/func_80800274_chpufferfish.s")
+void func_80800274_chpufferfish(Actor *arg0, s32 arg1) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800FFAB0(Actor *);
+    void func_80101CDC(Actor *, f32);
+    s32 func_80107070(Actor *, s32);
+    void func_8010A570(Actor *);
+    void func_8080086C_chpufferfish(Actor *, s32);
+    extern s32 D_8080119C_chpufferfish[];
+    extern s32 D_808011D0_chpufferfish[];
+    extern s32 D_80801204_chpufferfish[];
+    extern s32 D_80801238_chpufferfish[];
+    extern s32 D_80801288_chpufferfish[];
+    f32 *position;
+
+    switch (arg1) {
+        case 1:
+            break;
+        case 0:
+            arg0->unk58 = 5.0f;
+            break;
+        case 3:
+            func_8080086C_chpufferfish(arg0, 2);
+            func_80101CDC(arg0, 0.5f);
+            func_8010A570(arg0);
+            break;
+        case 4:
+            position = arg0->position;
+            _subaddieaudioquick_entrypoint_2(arg0, position, D_80801288_chpufferfish);
+            func_800BBCB8(position, position, arg0->scale, 10, D_80801238_chpufferfish);
+            func_800BBCB8(position, position, arg0->scale, 2, D_8080119C_chpufferfish);
+            func_800BBCB8(position, position, arg0->scale, 16, D_808011D0_chpufferfish);
+            func_800BBCB8(position, position, arg0->scale, 6, D_80801204_chpufferfish);
+            if (func_80107070(arg0, 3) == 0) {
+                func_800FFAB0(arg0);
+            }
+            break;
+    }
+    arg0->unk79_4 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pufferfish/func_808003C8_chpufferfish.s")
 
