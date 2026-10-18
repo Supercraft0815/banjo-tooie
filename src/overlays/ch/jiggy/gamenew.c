@@ -247,7 +247,49 @@ void func_80800AF8_chjiggygamenew(Actor *arg0) {
     } while (var_s0 != 0x14);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80800B88_chjiggygamenew.s")
+void func_80800B88_chjiggygamenew(Actor *arg0) {
+    struct Entry {
+        u8 unk0;
+        s8 unk1;
+        u8 unk2;
+        u8 unk3;
+        u16 unk4;
+        u16 unk6;
+        f32 unk8;
+        f32 position[3];
+    };
+    void func_800EE7F8(f32 *, f32 *);
+    void func_808035C4_chjiggygamenew(Unk80132ED0 *, f32 *);
+    extern f32 D_80803AE0_chjiggygamenew[][3];
+    extern f32 D_80803BD0_chjiggygamenew[][3];
+    struct Entry *data;
+    s32 i;
+
+    data = func_80100094(arg0, 0U);
+    i = 0;
+    do {
+        if (data[i].unk4 != 0x18 && data[i].unk4 != 0x2A1) {
+            struct Entry *entry = (void *)((u8 *)data + i * sizeof(struct Entry));
+            switch (data[i].unk4) {
+                case 0:
+                case 0x800:
+                case 0x1FFF:
+                    func_808035C4_chjiggygamenew(arg0->unk3C, entry->position);
+                    break;
+                case 0xA000:
+                    func_800EE7F8(entry->position, D_80803AE0_chjiggygamenew[entry->unk3]);
+                    break;
+                default:
+                    func_800EE7F8(entry->position, D_80803BD0_chjiggygamenew[entry->unk1]);
+                    break;
+            }
+            func_808007E4_chjiggygamenew((void *)data, 0x9EC, i);
+            entry->unk8 = 1.5f;
+            return;
+        }
+        i++;
+    } while (i != 20);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80800CC0_chjiggygamenew.s")
 
