@@ -72,7 +72,30 @@ void func_80800A64_chminisubgame(Actor *arg0, s32 arg1) {
     (*(s8 *)((s8 *)((temp_v0 + arg1)) + (0x2D0))) = 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/func_80800AAC_chminisubgame.s")
+s32 func_80800AAC_chminisubgame(Actor *arg0) {
+    void func_8008FE68(f32 *);
+    s32 func_800DC128(s32, s32);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    f32 (*data)[3];
+    f32 position[3];
+    s32 index;
+    s32 i;
+
+    data = func_80100094(arg0, 0U);
+    func_8008FE68(position);
+    for (i = 0; i < (s32)arg0->actorData[6]; i++) {
+        index = func_800DC128(0, arg0->actorData[6]);
+        if (func_800EEAD4(data[index], position) > 1200.0f) {
+            if (2 == ((u8 *)data)[index + 0x2D0]) {
+                ((u8 *)data)[index + 0x2D0] = 0;
+            } else if (((u8 *)data)[index + 0x2D0] == 0) {
+                return index;
+            }
+        }
+    }
+    return -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/func_80800BA8_chminisubgame.s")
 
