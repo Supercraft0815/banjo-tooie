@@ -280,7 +280,44 @@ void func_8080145C_chfactorytwinklies(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_808014B0_chfactorytwinklies.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80801608_chfactorytwinklies.s")
+s32 func_80801608_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800F5A2C(s32, s32, f32 *);
+    s32 func_800DC128(s32, s32);
+    s32 func_800EA05C();
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80102FDC(Actor *, f32);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    f32 *sp34;
+    Actor *sp30;
+    f32 sp24[3];
+    Actor *found;
+
+    switch (arg1) {
+    case 0x3D:
+        func_800F5A2C(arg2, 5, sp24);
+        sp30 = func_80108528(arg0->actorData[5] + 0x443, sp24, func_800DC128(0, 0x167), &arg0);
+        sp34 = func_80100094(sp30, 0);
+        func_800EE7F8(sp34 + 7, arg0->position);
+        func_800EE7F8(sp34 + 4, sp24);
+        func_80101FDC(sp30, 5);
+        func_80102FDC(sp30, 0.2f);
+        break;
+    case 0x95:
+        if (func_800EA05C(arg2) == 0x17D) {
+            found = _subaddiefind_entrypoint_2(0x44D, 0);
+        } else {
+            found = _subaddiefind_entrypoint_2(0x442, 0);
+        }
+        arg0->unk3C = found->unk0;
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_8080171C_chfactorytwinklies.s")
 
