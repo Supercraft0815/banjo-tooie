@@ -1,6 +1,29 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/wandglow/func_80800000_chwandglow.s")
+void func_800F5A2C(s32, s32, f32 *);
+
+void func_80800000_chwandglow(Actor *arg0, s32 arg1) {
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF410(s32);
+    void func_800DF830(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    int func_800EECE0(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800F5A00(s32, f32 *);
+    u8 *func_801039E4(Unk80132ED0 *);
+    f32 vectors[3][3];
+
+    func_800F5A00(arg0->unk6C_0, vectors[2]);
+    func_800F5A2C(arg0->unk6C_0, 6, vectors[0]);
+    if (func_800EECE0(vectors[2], vectors[0]) == 0) {
+        func_800EE7F8(arg0->position, vectors[0]);
+    }
+    func_800EFA4C(vectors[1], 0.0f, 0.0f, 0.0f);
+    func_800DF410((s32)func_800F10B4(((f32 *)arg0->actorData)[5], 0.0f, 1.0f, 0.0f, 255.0f));
+    func_800DF830(2);
+    func_800DE448(arg0->position, vectors[1], arg0->scale, NULL, func_801039E4(arg0->unk0));
+}
 
 void func_808000E8_chwandglow(void *arg0) {
     (*(s32 (**)(s32, s32, void *))((s8 *)(arg0) + (0x30)))((*(s32 *)((s8 *)(arg0) + (0))), (*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF, arg0);
