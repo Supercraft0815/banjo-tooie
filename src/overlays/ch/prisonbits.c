@@ -133,7 +133,38 @@ s32 func_808002A0_chprisonbits(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_80800344_chprisonbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_8080044C_chprisonbits.s")
+void func_8080044C_chprisonbits(Actor *arg0) {
+    Prop *_gccubesearch_entrypoint_0(u32, Actor *);
+    s32 _glcutDll_entrypoint_20();
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
+    s32 _susubgame_entrypoint_12(u32 *, s32 *);
+    s32 func_800EA05C();
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_80800DAC_chprisonbits(Actor *);
+    extern s32 D_80801098_chprisonbits;
+    struct {
+        u8 unk0[0x10];
+        f32 position[3];
+        u32 subgame;
+    } *sp24;
+
+    sp24 = func_80100094(arg0, 0);
+    _susubgame_entrypoint_0(arg0, &sp24->subgame, 1);
+    _susubgame_entrypoint_12(&sp24->subgame, &D_80801098_chprisonbits);
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80102424(arg0, 0xA);
+        return;
+    }
+    if ((func_800DA298(0x5C) != 0) && (func_800EA05C() == 0xB9)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    func_80800DAC_chprisonbits(arg0);
+    _gspropctrl_entrypoint_11(_gccubesearch_entrypoint_0(0x127, arg0), sp24->position);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_80800518_chprisonbits.s")
 
