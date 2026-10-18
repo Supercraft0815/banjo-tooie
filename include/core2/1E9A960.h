@@ -17,7 +17,7 @@ void func_800C3BDC(u8 id);
 void func_800C3CE8(u8 id);
 void func_800C3F48(u32);
 void func_800C3FC0(s32, f32, s32);
-void func_800C4140(s32, f32*, s32);
+void func_800C4140(u32, f32*, u32);
 void func_800C427C();
 void func_800C4308(f32, f32);
 u8 func_800C4350(u8, f32[3], s32 *);

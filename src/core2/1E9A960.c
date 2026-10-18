@@ -902,7 +902,12 @@ void func_800C4104(s32 arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5) {
     func_800C401C(arg0, arg1, arg2, (f32 *)arg3, arg4, arg5, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C4140.s")
+void func_800C4140(u32 arg0, f32 *arg1, u32 arg2) {
+    void func_800C401C(s32, f32, u32, f32 *, f32, f32, s32);
+    func_800C401C(arg0 & 0x7FF, (f32)((arg0 >> 21) & 0x7FF) / 1024,
+        (arg0 >> 6) & 0x7FE0, arg1, (f32)(arg2 & 0xFFFF),
+        (f32)((arg2 >> 16) & 0xFFFF), 2);
+}
 
 void func_800C4208(s32 uid, f32 volume, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance){
     void func_800C401C(s32, f32, u32, f32 *, f32, f32, s32);
