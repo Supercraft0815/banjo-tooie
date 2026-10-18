@@ -30,7 +30,47 @@ void func_801101C0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110280.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110424.s")
+void *func_80110424(s32 *arg0, s32 arg1) {
+    void *heap_alloc(s32);
+    void bzero(void *, int);
+    int func_80110280(s32 *);
+    void func_80110720(s8 *, s32);
+    void func_8010FFB0(s32 *, f32 *, f32 *);
+    s32 _ncba1p_entrypoint_1(s32);
+    void func_80112398(u8 *);
+    s32 _ncbaspline_entrypoint_1(s32);
+    void func_8011337C(PlayerState *);
+    void func_80111348(s32 *);
+    void func_80115FB0(u8 *);
+    void func_801125B8(void *);
+    void func_80110C88(s32);
+    void func_800EFD24(f32 *);
+    extern s16 D_80137372;
+    s32 size;
+    s32 *self;
+
+    size = D_80137372;
+    self = heap_alloc(size);
+    bzero(self, size);
+    func_80110280(self);
+    ((s32 **)self)[25] = arg0;
+    self[26] = arg1;
+    func_80110720((s8 *)self, 1);
+    func_8010FFB0(((s32 **)self)[25], (f32 *)((u8 *)self + 0x74), (f32 *)((u8 *)self + 0x80));
+    _ncba1p_entrypoint_1((s32)self);
+    func_80112398((u8 *)self);
+    _ncbaspline_entrypoint_1((s32)self);
+    func_8011337C((PlayerState *)self);
+    func_80111348(self);
+    func_80115FB0((u8 *)self);
+    func_801125B8(self);
+    func_80110C88((s32)self);
+    self[27] = 0;
+    ((u8 *)self)[0x72] = 0;
+    ((u8 *)self)[0x71] = 0;
+    func_800EFD24((f32 *)((u8 *)self + 0x8C));
+    return self;
+}
 
 void func_801104F4(PlayerState *arg0) {
     s32 func_801106A8(PlayerState *, s32);
@@ -84,12 +124,12 @@ void func_80110728(s8 *arg0, s32 arg1) {
 }
 
 void func_80110730(s32 arg0, s32 arg1) {
-    s32 func_8011337C(s32);
+    void func_8011337C(PlayerState *);
     s32 func_80113410();
     (*(s8 *)((s8 *)(arg0) + (0x72))) = arg1;
     func_80113410((void *) arg0);
     if (arg1 == 0) {
-        func_8011337C(arg0);
+        func_8011337C((PlayerState *)arg0);
     }
 }
 
@@ -409,13 +449,13 @@ s32 *func_80110FCC(s32 *arg0, s32 arg1) {
 
 void func_80111018(s32 arg0, s32 arg1) {
     s32 _ncba1p_entrypoint_1(s32);
-    s32 func_8011337C(s32);
+    void func_8011337C(PlayerState *);
     s32 func_80113410();
     s32 rare_memcpy(s32, s32, s32);
     extern s16 D_80137372;
     func_80113410();
     rare_memcpy(arg0 + 0x98, arg1 + 0x98, D_80137372 - 0x98);
-    func_8011337C(arg0);
+    func_8011337C((PlayerState *)arg0);
     _ncba1p_entrypoint_1(arg0);
 }
 
