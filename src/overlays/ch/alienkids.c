@@ -134,7 +134,7 @@ void func_808014B0_chalienkids(AlienKidsActor *arg0, s32 arg1) {
 void func_80801520_chalienkids(void *arg0, s32 arg1) {
     s32 _subaddieDll_entrypoint_4(void *, s32);
     s32 _subaddiefade_entrypoint_2();
-    s32 func_80102424(void *, s32);
+    void func_80102424(Actor *, s32);
     s32 func_8010A3E8(void *, s32);
     void func_808014B0_chalienkids(AlienKidsActor *, s32);
     (*(f32 *)((s8 *)(arg0) + (0x58))) = 2.0f;
@@ -172,7 +172,7 @@ void func_8080158C_chalienkids(Actor *arg0) {
 
 void func_80801628_chalienkids(Actor *arg0) {
     s32 _chbadshad_entrypoint_2(Actor *, s32, f32, s32);
-    s32 func_80106790(s32);
+    Actor *func_80106790(Unk80132ED0 *);
     u32 func_8010A654(void ***, s32);
     Unk80132ED0 **temp_v0;
     u32 sp20;
@@ -199,7 +199,35 @@ void func_8080184C_chalienkids(s32 arg0, s32 *arg1, s32 arg2) {
     extern s32 D_8080226C_chalienkids;
     _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, &D_8080226C_chalienkids, arg1, arg2);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80801884_chalienkids.s")
+void func_80801884_chalienkids(Actor *arg0) {
+    s32 func_800D9078(f32 *);
+    void func_80102424(Actor *, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddiefade_entrypoint_2();
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_8010A590(Actor *);
+    void func_8010A800(Actor *, s32);
+    extern s32 D_8080227C_chalienkids;
+    Unk80132ED0 **sp24;
+    Unk80132ED0 *temp_a0;
+    Actor *temp_v0;
+
+    if (func_800D9078(&arg0->unk58) != 0) {
+        sp24 = func_80100094(arg0, 0U);
+        func_80102424(arg0, 3);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_8080227C_chalienkids);
+        arg0->unk64_16 = 1;
+        arg0->unk58 = 2.0f;
+        _subaddiefade_entrypoint_2(arg0);
+        func_8010A800(arg0, 0);
+        temp_a0 = sp24[12];
+        if (temp_a0 != NULL) {
+            temp_v0 = func_80106790(temp_a0);
+            temp_v0->unk64_16 = 0;
+            func_8010A590(temp_v0);
+        }
+    }
+}
 
 /* extern */
 
@@ -316,12 +344,12 @@ s32 func_80801B40_chalienkids(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_80801BC4_chalienkids(u8 *arg0) {
     s32 _chexploder_entrypoint_9(s32, s32, s32);
-    s32 _subaddieaudioquick_entrypoint_2(u8 *, u8 *, s32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     s32 func_800DA544(s32);
     s32 func_800FFAB0(u8 *);
     s32 func_80101080();
     s32 func_8010114C(s32, s32, s32);
-    s32 func_80106790(s32);
+    Actor *func_80106790(Unk80132ED0 *);
     extern s32 D_80802284_chalienkids;
     s32 temp_a0;
 
