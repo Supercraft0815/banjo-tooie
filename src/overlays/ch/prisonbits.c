@@ -243,7 +243,34 @@ s32 func_80800C84_chprisonbits(Actor *arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_80800CC4_chprisonbits.s")
+void func_80800CC4_chprisonbits(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    s32 _susubgame_entrypoint_4(void *, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void _glcutDll_entrypoint_17(void);
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0xF18:
+            func_80102424(arg0, 8);
+            _susubgame_entrypoint_6(arg0, data + 0x1C, 0xE, 0x2030, 0);
+            break;
+        case 0xF42:
+            _susubgame_entrypoint_4(arg0, (s32)(data + 0x1C));
+            _glcutDll_entrypoint_17();
+            break;
+        case 0xF4F:
+            _susubgame_entrypoint_4(arg0, (s32)(data + 0x1C));
+            func_80102424(arg0, 3);
+            break;
+        default:
+            _susubgame_entrypoint_4(arg0, (s32)(data + 0x1C));
+            func_80102424(arg0, 3);
+            break;
+    }
+}
 
 /* extern */
 
