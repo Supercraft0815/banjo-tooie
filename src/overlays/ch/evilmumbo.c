@@ -9,7 +9,31 @@ void func_80800098_chevilmumbo(s32 arg0) {
     _capod_entrypoint_3(0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_808000BC_chevilmumbo.s")
+void func_808000BC_chevilmumbo(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    u32 func_800F54E4(void);
+    s32 func_800F4AF4(u32, s32);
+    void func_80800000_chevilmumbo(Actor *);
+    struct {
+        u8 pad0[0x95];
+        u8 unk95;
+    } *data;
+    s32 state;
+
+    data = func_80100094(arg0, 0);
+    state = data->unk95;
+    switch (state) {
+    case 1:
+    case 2:
+        func_80800098_chevilmumbo((s32)arg0);
+    case 0:
+    case 3:
+        data->unk95 = 3;
+        func_800F4AF4(func_800F54E4(), 0x14);
+        break;
+    }
+    func_80800000_chevilmumbo(arg0);
+}
 
 void func_80800144_chevilmumbo(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
