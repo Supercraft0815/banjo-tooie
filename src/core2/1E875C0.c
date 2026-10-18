@@ -20,7 +20,7 @@ void func_800ADCD0(u8 **list_ptr, u8 *animation) {
 }
 
 void func_800ADD80(s16 arg0, u8 *animation) {
-    s32 func_800AE080(s16);
+    void *func_800AE080(s16);
     void *func_8001B710(s16, s32);
     s32 func_80019CD4(void);
     void mlMtxGet(void *);
@@ -118,15 +118,15 @@ u8 *func_800ADF98(void) {
     return temp_v0;
 }
 
-void func_800ADFE0(s16 arg0) { s32 func_800AE080(s16); s32 func_8001B754(s16); s32 func_800E0A70(s16); s32 temp_v0; temp_v0 = func_800AE080(arg0); if ((*(s16 *)((s8 *)temp_v0 + 0xC)) != 0) { func_800E0A70(*(s16 *)((s8 *)temp_v0 + 0xC)); } func_8001B754(arg0); }
+void func_800ADFE0(s16 arg0) { void *func_800AE080(s16); s32 func_8001B754(s16); s32 func_800E0A70(s16); void *temp_v0; temp_v0 = func_800AE080(arg0); if ((*(s16 *)((s8 *)temp_v0 + 0xC)) != 0) { func_800E0A70(*(s16 *)((s8 *)temp_v0 + 0xC)); } func_8001B754(arg0); }
 
 s16 func_800AE020(void) {
     s32 func_80019CD4(void);
     s16 func_8001B668(s32, s32);
-    s32 func_800AE080(s16);
+    void *func_800AE080(s16);
     void mlMtxGet(void *);
     s16 result;
-    s32 ptr;
+    u8 *ptr;
 
     result = func_8001B668(0, 0x50);
     ptr = func_800AE080(result);
@@ -141,8 +141,8 @@ s16 func_800AE020(void) {
 
 /* extern */
 
-s32 func_800AE080(s16 arg0) {
-    s32 func_8001B798(s16);
+void *func_800AE080(s16 arg0) {
+    void *func_8001B798(s16);
     if (arg0 == 0) {
         return 0;
     }
@@ -193,13 +193,13 @@ void func_800AE1E8(s16 arg0, u8 *arg1, s32 arg2) {
     void *func_8001B710(s16, s32);
     s32 func_800AE820(s32, u8 *, u8 *, s32);
     s32 func_800E0A28(s16);
-    s32 var_t0;
+    u8 *var_t0;
     s32 var_v1;
 
     var_t0 = func_800AE080(arg0);
     var_v1 = *(s16 *)(arg1 + 4);
     if (*(s32 *)(var_t0 + 4) < var_v1) {
-        var_t0 = (s32)func_8001B710(arg0, (var_v1 << 6) + 0x50);
+        var_t0 = func_8001B710(arg0, (var_v1 << 6) + 0x50);
         *(s32 *)(var_t0 + 4) = *(s16 *)(arg1 + 4);
         var_v1 = *(s16 *)(arg1 + 4);
     }
@@ -237,8 +237,8 @@ void func_800AE5F0(u8 *arg0) {
 
 /* extern */
 
-s32 func_800AE630(u8 *arg0, u8 *arg1, s32 arg2, s32 arg3) {
-    s32 func_800F23D0(s32 *, s32, s32);
+s32 func_800AE630(u8 *arg0, u8 *arg1, s32 arg2, f32 *arg3) {
+    s32 func_800F23D0(s32 *, f32 *, s32);
     s32 temp_t0;
     u8 *var_a0;
     u8 *var_s0;

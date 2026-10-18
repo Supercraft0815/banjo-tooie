@@ -1,6 +1,34 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/skeleton/subaddieskeleton_entrypoint_0.s")
+s32 subaddieskeleton_entrypoint_0(Actor *arg0, s32 arg1, f32 *arg2) {
+    s32 _dbskeleton_entrypoint_2(u8 *, s32, f32 *);
+    s32 func_800AE0D0(s32 *);
+    s32 func_800AE630(u8 *, u8 *, s32, f32 *);
+    u8 *func_800B27E0(u8 *);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF5A0(f32 *, f32 *, f32, f32, f32);
+    u8 *func_801039E4(Unk80132ED0 *);
+    void *func_801040A8(Actor *);
+    f32 sp34[3];
+    void *sp30;
+
+    sp30 = func_801040A8(arg0);
+    if (func_800AE0D0(sp30) != 0) {
+        if (func_800AE630(sp30, func_800B27E0(func_801039E4(arg0->unk0)), arg1, sp34) != 0) {
+            func_800EF334(sp34, arg0->scale);
+            func_800EF5A0(sp34, arg0->rotation, sp34[0], sp34[1], sp34[2]);
+            func_800EE780(arg2, sp34, arg0->position);
+            return 1;
+        }
+    } else if (_dbskeleton_entrypoint_2(func_800B27E0(func_801039E4(arg0->unk0)), arg1, sp34) != 0) {
+        func_800EF334(sp34, arg0->scale);
+        func_800EF5A0(sp34, arg0->rotation, sp34[0], sp34[1], sp34[2]);
+        func_800EE780(arg2, sp34, arg0->position);
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 

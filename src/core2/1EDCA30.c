@@ -404,7 +404,7 @@ s32 func_80104004(Actor *arg0, f32 *arg1, f32 *arg2) {
 
 /* extern */
 
-void func_801040A8(void **arg0) {
-    s32 func_800AE080(s16);
-    func_800AE080((*(s16 *)((s8 *)(*arg0) + (0x10))));
+void *func_801040A8(Actor *arg0) {
+    void *func_800AE080(s16);
+    return func_800AE080(*(s16 *)&arg0->unk0->unk10);
 }
