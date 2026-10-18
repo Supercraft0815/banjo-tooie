@@ -477,7 +477,44 @@ s32 sucoaster_entrypoint_14(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_16.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_17.s")
+s32 sucoaster_entrypoint_17(Actor *arg0, s32 arg1) {
+    typedef struct {
+        u8 pad0[0x18];
+        u32 track : 4;
+        u32 pad18_0 : 28;
+    } CoasterData;
+    typedef struct {
+        u8 pad0[4];
+        s16 id;
+        s16 rate;
+        s16 volume;
+    } CoasterSound;
+    void *_sucoasterdata_entrypoint_1(u32);
+    void *func_80100094(Actor *, u32);
+    void func_8010D640(s32);
+    f32 func_800EEB40(f32 *, f32 *);
+    f32 func_800DC178(f32, f32);
+    void func_800C4104(s32, f32, s32, s32, f32, f32);
+    f32 volume;
+    CoasterSound *config;
+    f32 position[4];
+
+    config = func_80100094(arg0, 0);
+    config = _sucoasterdata_entrypoint_1(((CoasterData *)config)->track);
+    if (((CoasterSound *)((u8 *)config + arg1 * 8))->id != 0) {
+        func_8010D640((s32)position);
+        if (func_800EEB40(position, arg0->position) >= 6250000.0f) {
+            return 0;
+        }
+        {
+            volume = func_800DC178(-0.05f, 0.05f) + (f32)((CoasterSound *)((u8 *)config + arg1 * 8))->volume * 0.00390625f;
+            func_800C4104(((CoasterSound *)((u8 *)config + arg1 * 8))->id, volume,
+                          ((CoasterSound *)((u8 *)config + arg1 * 8))->rate, (s32)arg0->position, 1250.0f, 2500.0f);
+        }
+        return 1;
+    }
+    return 0;
+}
 
 void sucoaster_entrypoint_18(s32 arg0)
 {
