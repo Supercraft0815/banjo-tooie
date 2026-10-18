@@ -40,6 +40,8 @@ void func_8080003C_chprisonbits()
     _chswitch_entrypoint_7();
 }
 
+Actor *_subaddiefind_entrypoint_2(s32, s32);
+
 void func_8080005C_chprisonbits(Actor *arg0, s32 arg1, s32 arg2) {
     Actor *temp_v0;
 
@@ -202,6 +204,7 @@ void func_80800C18_chprisonbits(Actor *arg0) {
 /* extern */
 
 s32 func_80800C84_chprisonbits(Actor *arg0) {
+    void func_80102424(Actor *, s32);
     if (func_800DA298(0x514) != 0) {
         func_80102424(arg0, 7);
         return 1;
@@ -229,4 +232,20 @@ int func_80800DFC_chprisonbits(Actor *arg0) {
     return !func_800DA298(0x5B) && func_80090128() && func_8010C500(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/chprisonbits_entrypoint_5.s")
+void chprisonbits_entrypoint_5(s32 arg0, s32 arg1) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    s32 func_800DA298(s32);
+    void func_800DA544(s32);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    Actor *actor;
+
+    actor = _subaddiefind_entrypoint_2(0x117, 0);
+    if (actor != NULL && func_800DA298(0x6A4) == 0) {
+        _susubgame_entrypoint_6(actor, (u8 *)func_80100094(actor, 0) + 0x1C, 2, 0x430, 0);
+        _subaddiedialog_entrypoint_11(actor->unk0, 0xF4F, 0x44, actor->position, 0x32);
+        func_80102424(actor, 9);
+        func_800DA544(0x6A4);
+    }
+}
