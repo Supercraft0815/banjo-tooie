@@ -449,7 +449,45 @@ void func_80801C9C_chfpsgame(Actor *arg0) { void *func_80100094(Actor *, u32); s
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80801D40_chfpsgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80801DF0_chfpsgame.s")
+void func_80801DF0_chfpsgame(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
+    f32 func_800EEB40(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_8010108C(Actor *, s32, s32);
+    struct Entry { Unk80132ED0 *marker; s32 unused; };
+    struct Group { s32 count; struct Entry entries[10]; };
+    struct Data { s32 count; s8 pad[0x564]; struct Group groups[4]; };
+    struct Data *data;
+    Actor *actor;
+    struct Group *group;
+    Actor *other;
+    f32 *position;
+    s32 hit;
+    s32 i;
+    s32 j;
+
+    data = func_80100094(arg0, 0U);
+    actor = func_80106790(arg2);
+    hit = 0;
+    for (i = 0; i < data->count; i++) {
+        group = &data->groups[i];
+        j = 0;
+        if (group->count > 0) {
+            position = actor->position;
+            do {
+                other = func_80106790(group->entries[j].marker);
+                if (func_800EEB40(position, other->position) < 90000.0f) {
+                    hit = 1;
+                    func_8010108C(other, 0x40, 0);
+                }
+                j++;
+            } while (j < group->count);
+        }
+    }
+    if (hit) {
+        func_8010108C(actor, 0x40, 0);
+    }
+}
 
 void func_80801F34_chfpsgame(Actor *arg0, s32 arg1) {
     s32 func_8001211C(void);
