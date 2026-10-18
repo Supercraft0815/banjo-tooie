@@ -34,7 +34,41 @@ f32 func_808000E0_chquiz(s32 arg0) {
     return *(f32 *)((s32)&D_80807014_chquiz + (arg0 * 24));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808000FC_chquiz.s")
+s32 func_808000FC_chquiz(Actor *arg0, s32 arg1) {
+    s32 _gcnewoption_entrypoint_2(void);
+    void _gcnewoption_entrypoint_5(s32, void *, u8, s32, s32);
+    s32 _gcnewoption_entrypoint_8(s32, s32);
+    s32 _gcnewoption_entrypoint_9(s32, s32);
+    s32 _gcnewoption_entrypoint_10(s32, s32);
+    s32 _gcnewoption_entrypoint_11(s32);
+    s32 _gcnewoption_entrypoint_14(s32, s32, s32, s32, f32);
+    s32 _gcnewoption_entrypoint_25(s32, s32);
+    s32 _gcnewoption_entrypoint_26(s32, s32);
+    void _gcnewoption_entrypoint_28(s32);
+    s32 _gcnewoption_entrypoint_32(s32, s32);
+    s32 _gcnewoption_entrypoint_40(s32, s32, s32, s32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void *heap_alloc(s32);
+    void bzero(void *, int);
+    extern s32 _gcnewoption_entrypoint_35;
+    s32 temp_s0;
+
+    temp_s0 = (s32)heap_alloc(_gcnewoption_entrypoint_2());
+    bzero((void *)temp_s0, _gcnewoption_entrypoint_2());
+    _gcnewoption_entrypoint_5(temp_s0, &_gcnewoption_entrypoint_35, 0, arg1, (s32)arg0->unk0);
+    ((Actor *)func_80100094(arg0, 0))->pad94 = temp_s0;
+    _gcnewoption_entrypoint_40(temp_s0, 0x41, 0x22, 0x20, 0.8f, 1.0f);
+    _gcnewoption_entrypoint_8(temp_s0, 3);
+    _gcnewoption_entrypoint_9(temp_s0, 3);
+    _gcnewoption_entrypoint_10(temp_s0, 2);
+    _gcnewoption_entrypoint_32(temp_s0, 0x4D);
+    _gcnewoption_entrypoint_14(temp_s0, 0, 0, 0, 0.0f);
+    _gcnewoption_entrypoint_28(temp_s0);
+    _gcnewoption_entrypoint_25(temp_s0, 0);
+    _gcnewoption_entrypoint_26(temp_s0, 0);
+    _gcnewoption_entrypoint_11(temp_s0);
+    return temp_s0;
+}
 
 void func_80800218_chquiz(s32 arg0, s32 arg1) {
     s32 _gcnewoption_entrypoint_12(s32, s32, s16);
