@@ -103,7 +103,55 @@ Unk80132ED0 *func_8080048C_chmrsicecube(u8 *arg0, s32 arg1, f32 *arg2) {
     return actor;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/func_80800508_chmrsicecube.s")
+Unk80132ED0 *func_80800508_chmrsicecube(Actor *arg0) {
+    f32 func_800EEB40(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80102190(void *, s32);
+    void func_80103014(u8 *);
+    void func_80103110(Actor *, u32);
+    void func_8010A570(Actor *);
+    void func_8010A624(Actor *);
+    void func_8080066C_chmrsicecube(u8 *, u8 *);
+    extern u16 D_80800910_chmrsicecube[][2];
+    Actor *actor;
+    s32 index;
+    f32 sp2C[3];
+    struct MrsIceCubeLinkData { s32 unk0; s32 unk4; s32 unk8; } *sp28;
+    s32 id;
+    struct MrsIceCubeFlags {
+        u8 pad[0x74];
+        u32 pad74_21 : 11;
+        u32 unk74_20 : 1;
+        u32 pad74_6 : 14;
+        u32 unk74_5 : 1;
+        u32 pad74_0 : 5;
+    };
+
+    index = arg0->actorData[4];
+    sp28 = func_80100094(arg0, 0);
+    id = D_80800910_chmrsicecube[index][0];
+    if (id == 0x1F4) {
+        actor = (Actor *)func_8080043C_chmrsicecube((u8 *)arg0, id, sp2C);
+    } else {
+        actor = (Actor *)func_8080048C_chmrsicecube((u8 *)arg0, id, sp2C);
+    }
+    if (actor != NULL && func_800EEB40(sp2C, arg0->position) < 40000.0f) {
+        sp28->unk8 = ((struct MrsIceCubeFlags *)actor)->unk74_20;
+        func_8010A570(actor);
+        func_8010A624(actor);
+        func_80102190(actor, 1);
+        func_80103110(actor, 0);
+        actor->unk64_24 = 0;
+        actor->unk64_16 = 0;
+        ((struct MrsIceCubeFlags *)actor)->unk74_20 = 0;
+        func_8080066C_chmrsicecube((u8 *)arg0, (u8 *)actor->position);
+        if (((struct MrsIceCubeFlags *)actor)->unk74_5) {
+            func_80103014((u8 *)actor);
+        }
+        return actor->unk0;
+    }
+    return NULL;
+}
 
 void func_80800634_chmrsicecube(s32 arg0) {
     s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
