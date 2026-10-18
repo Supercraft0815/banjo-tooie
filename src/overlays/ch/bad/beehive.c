@@ -63,7 +63,26 @@ void func_808000EC_chbadbeehive(Actor *arg0) {
 void func_808008F0_chbadbeehive(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/beehive/func_808008F8_chbadbeehive.s")
+void func_808008F8_chbadbeehive(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    u8 *sp24;
+
+    sp24 = func_80100094(arg0, 0U);
+    func_80102424(arg0, arg1);
+    switch (arg1) {
+        case 1:
+            break;
+        case 2:
+            ((f32 *)arg0->actorData)[5] = ((f32 *)arg0->actorData)[6];
+            break;
+        case 3:
+            func_800EE7F8((f32 *)arg0->actorData, (f32 *)(sp24 + 0x10));
+            ((f32 *)arg0->actorData)[5] *= 0.5f;
+            break;
+    }
+}
 
 /* extern */
 
