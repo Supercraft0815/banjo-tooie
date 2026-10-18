@@ -130,7 +130,46 @@ Actor *func_80800738_chflamer(Actor *arg0) {
     return arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flamer/func_808007A8_chflamer.s")
+s32 func_808007A8_chflamer(Actor *arg0, Actor *arg1) {
+    struct FlamerVolumeData {
+        u8 pad0[0x16];
+        s16 count;
+        s16 capacity;
+        u8 pad1A[0x192];
+        s32 volume;
+    };
+    s32 _subaddievolume_entrypoint_0(Actor *, f32 *, s32, s32, s32 *);
+    s32 func_800F1418(s32, s32);
+    void func_808008C0_chflamer(Actor *, f32 *);
+    f32 positions[20][3];
+    s32 count;
+    s32 limit;
+    s32 i;
+    s32 result;
+    struct FlamerVolumeData *data;
+
+    data = func_80100094(arg0, 0U);
+    result = 0;
+    if (data->count >= data->capacity) {
+        return 1;
+    }
+    while (data->count < data->capacity) {
+        limit = func_800F1418(20, data->capacity - data->count);
+        count = _subaddievolume_entrypoint_0(arg1, positions[0], 2,
+            limit, &data->volume);
+        if (count >= 0) {
+            result++;
+        }
+        if (count > 0) {
+            for (i = 0; i < count; i++) {
+                func_808008C0_chflamer(arg0, positions[i]);
+            }
+        } else {
+            break;
+        }
+    }
+    return result;
+}
 
 /* extern */
 
