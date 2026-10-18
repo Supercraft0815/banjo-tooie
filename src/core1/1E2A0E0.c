@@ -5,7 +5,32 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_8001268C.s")
 
 // audio_thread_entry
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_800128C0.s")
+void func_800128C0(void *arg) {
+    s32 func_800129FC(s32, s32);
+    void func_80012B74(s32);
+    void func_800E96B0(s32);
+    extern OSMesg D_8003CC5C;
+    extern s32 D_8003CC60;
+    extern s32 D_800459E0[];
+    extern u8 D_80045BB8[];
+    extern OSMesgQueue D_80045BF0;
+    extern u32 D_8006A148;
+    s32 skip_handle_done_mesg = 1;
+
+    while (TRUE) {
+        osRecvMesg(D_80045BB8, NULL, OS_MESG_BLOCK);
+        if (func_800129FC(D_800459E0[(s32)D_8006A148 % 3 + 2], D_8003CC60)) {
+            if (skip_handle_done_mesg == 0) {
+                osRecvMesg(&D_80045BF0, &D_8003CC5C, OS_MESG_BLOCK);
+                func_80012B74(((s32 *)D_8003CC5C)[1]);
+                D_8003CC60 = ((s32 *)D_8003CC5C)[1];
+            } else {
+                skip_handle_done_mesg--;
+            }
+        }
+        func_800E96B0(1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_800129FC.s")
 
