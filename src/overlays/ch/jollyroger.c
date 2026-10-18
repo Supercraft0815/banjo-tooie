@@ -237,7 +237,36 @@ void func_8080103C_chjollyroger(Actor *arg0) {
     func_8010A63C(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_808010A0_chjollyroger.s")
+s32 func_808010A0_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chdoor_entrypoint_1(Actor *, s32, s32);
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_80102424(Actor *, s32);
+    void func_80801194_chjollyroger(s32);
+    f32 sp34[3];
+    Actor *sp30;
+
+    switch (arg1) {
+        case 0x90:
+            func_80801194_chjollyroger(arg0);
+            break;
+        case 0x40:
+            sp30 = _subaddiefind_entrypoint_2(0x360, 0);
+            func_800EE7F8(sp34, arg0->position);
+            func_800EF1B8(sp34, arg0->rotation[1] - 90.0f, 100.0f);
+            sp34[1] += 25.0f;
+            _chexploder_entrypoint_3(arg0, sp34, 0x28);
+            _subaddiedialog_entrypoint_11(sp30->unk0, 0x1044, 0x4C, sp30->position, 0x55);
+            func_80102424(sp30, 2);
+            break;
+        default:
+            return _chdoor_entrypoint_1(arg0, arg1, arg2);
+    }
+    return 1;
+}
 
 /* extern */
 
