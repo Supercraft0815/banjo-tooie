@@ -67,7 +67,28 @@ s32 func_80800424_chcablecar(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_808004EC_chcablecar.s")
+/* extern */
+
+void func_808004EC_chcablecar(Actor *arg0) {
+    void func_800DF6BC(s32, s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_801015D0(Actor *);
+    f32 temp_f0;
+    s32 var_a2;
+    void *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    temp_f0 = (*(f32 *)((s8 *)(temp_v0) + (0xC)));
+    if (temp_f0 < 0.4f) {
+        var_a2 = 0;
+    } else if (temp_f0 > 0.6f) {
+        var_a2 = 0xFF;
+    } else {
+        var_a2 = (s32) func_800F10B4((*(f32 *)((s8 *)(temp_v0) + (0xC))), 0.4f, 0.6f, 0.0f, 255.0f);
+    }
+    func_801015D0(arg0);
+    func_800DF6BC(var_a2, 0xFF);
+}
 
 void func_80800598_chcablecar(Actor *arg0) {
     f32 _mlwave_entrypoint_5(u8 *, f32, f32);
