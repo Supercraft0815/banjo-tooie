@@ -473,7 +473,33 @@ s32 sucoaster_entrypoint_14(Actor *arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_15.s")
+void sucoaster_entrypoint_15(Actor *arg0) {
+    typedef struct {
+        u8 pad0[0x12];
+        u8 unk12;
+        u8 pad13[3];
+        u8 counter;
+    } CoasterData;
+    void _subaddierouteDll_entrypoint_6(Actor *, void *, u8, s32, f32, s32, s32);
+    s32 func_800D9058(f32);
+    f32 func_800DC178(f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80802594_sucoaster(Actor *, Actor *);
+    void *data;
+
+    data = func_80100094(arg0, 0);
+    if (func_80802594_sucoaster(arg0, data) != 0) {
+        sucoaster_entrypoint_9(arg0, 10, 0);
+    } else if (arg0->unk70_10 == 8) {
+        sucoaster_entrypoint_9(arg0, 4, 0);
+        arg0->unk58 = func_800DC178(2.0f, 4.0f);
+    } else {
+        sucoaster_entrypoint_9(arg0, 3, 0);
+    }
+    ((CoasterData *)data)->unk12 = func_800D9058(func_800DC178(5.0f, 8.0f));
+    arg0->unk6C_0 = func_800D9058(2.0f);
+    _subaddierouteDll_entrypoint_6(arg0, data, ((CoasterData *)data)->counter, 0, 1.0f, 40, 60);
+}
 
 s32 sucoaster_entrypoint_16(Actor *arg0, s32 arg1) {
     typedef struct {
