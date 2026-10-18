@@ -54,7 +54,42 @@ void func_8080036C_chfactoryworkerdirty(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800394_chfactoryworkerdirty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_8080061C_chfactoryworkerdirty.s")
+void func_8080061C_chfactoryworkerdirty(Actor *arg0) {
+    s32 func_80090178(AllowedTransformation);
+    s32 func_808009C0_chfactoryworkerdirty(void);
+    s32 _subaddiedialog_entrypoint_7(Actor *, f32 *, s32 *);
+    void func_80090734(s32, f32 *);
+    extern s32 D_80800FD0_chfactoryworkerdirty;
+    extern u16 D_80800FD4_chfactoryworkerdirty;
+    extern u16 D_80800FD6_chfactoryworkerdirty;
+    extern s32 D_80800FEC_chfactoryworkerdirty;
+    s32 *dialog;
+
+    if (func_80090178(0x40) != 0) {
+        dialog = &D_80800FD0_chfactoryworkerdirty;
+        if (func_808009C0_chfactoryworkerdirty() != 0) {
+            D_80800FD4_chfactoryworkerdirty = D_80800FD6_chfactoryworkerdirty;
+        }
+        arg0->unk74_30 = 0;
+    } else {
+        dialog = &D_80800FEC_chfactoryworkerdirty;
+    }
+    switch (_subaddiedialog_entrypoint_7(arg0, arg0->position, dialog)) {
+            case 0:
+                break;
+            case 0x134C:
+                func_80090734(1, arg0->position);
+                func_808000AC_chfactoryworkerdirty(arg0, 2);
+                break;
+            case 0x134D:
+                func_80090734(1, arg0->position);
+                func_808000AC_chfactoryworkerdirty(arg0, 2);
+                break;
+            default:
+                func_80090734(1, arg0->position);
+                break;
+    }
+}
 
 void func_80800700_chfactoryworkerdirty(Actor *arg0) {
     s32 func_808009E4_chfactoryworkerdirty(void);
@@ -127,8 +162,8 @@ void func_80800994_chfactoryworkerdirty(u8 *arg0) {
     func_80102BF8(arg0, 0x3E99999A, 3.0f, 300.0f);
 }
 
-void func_808009C0_chfactoryworkerdirty(void) {
-    func_800DA564(FLAG_42D_PROGRESS_GI_SKIVVY_WASHED_OUTSIDE, 6);
+s32 func_808009C0_chfactoryworkerdirty(void) {
+    return func_800DA564(FLAG_42D_PROGRESS_GI_SKIVVY_WASHED_OUTSIDE, 6);
 }
 
 s32 func_808009E4_chfactoryworkerdirty()
