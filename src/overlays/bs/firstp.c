@@ -1421,7 +1421,7 @@ void bsfirstp_entrypoint_10(s32 arg0) {
     void func_800EF1B8(f32 *, f32, f32);
     void func_800EF368(f32 *, f32);
     struct player_state_s *func_800F53D0(s32);
-    s32 func_808035EC_bsfirstp(void *, f32 *, f32 *);
+    void func_808035EC_bsfirstp(void *, f32 *, f32 *);
     f32 yaw_get(struct player_state_s *);
     void *temp_s2;
     void *temp_v0;
@@ -1447,7 +1447,37 @@ void bsfirstp_entrypoint_10(s32 arg0) {
     func_80802CD8_bsfirstp(temp_v0, *(s16 *)((s8 *)temp_s2 + 0xE8));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808035EC_bsfirstp.s")
+void func_808035EC_bsfirstp(void *arg0, f32 *arg1, f32 *arg2) {
+    void _baeggcursor_entrypoint_3(void *, f32 *, f32 *);
+    void func_8009C15C(u8 *, f32 *);
+    int func_800A4C68(void *);
+    void func_800A4CE8(struct player_state_s *, f32 *);
+    void func_800C4E58(s32, f32 *, f32 *);
+    void func_800C5008(s32, f32 *, f32 *);
+    f32 func_800EEF94(f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    s32 *func_80802484_bsfirstp(void *);
+    f32 sp5C;
+    f32 sp58;
+    f32 sp50[2];
+    f32 sp44[3];
+    f32 sp38[3];
+    s32 *sp34;
+
+    sp34 = func_80802484_bsfirstp(arg0);
+    _baeggcursor_entrypoint_3(arg0, &sp58, &sp5C);
+    func_800C5008(func_800A4C68(arg0), &sp58, sp50);
+    func_800EFA4C(sp38, sp50[0], sp50[1], 100.0f);
+    func_800C4E58(func_800A4C68(arg0), sp38, sp44);
+    func_800A4CE8(arg0, arg1);
+    func_800EFB24(arg2, sp44, arg1);
+    func_8009C15C(arg0, arg1);
+    arg2[1] += (*(f32 *)((u8 *)sp34 + 0x48) * 2.5f) / func_800EEF94(arg2);
+    arg1[1] += *(f32 *)((u8 *)sp34 + 0x48);
+    func_800EF368(arg2, 1.0f);
+}
 
 void func_808036F0_bsfirstp(struct player_state_s *arg0) {
     s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
@@ -2218,7 +2248,7 @@ void bsfirstp_entrypoint_26(s32 arg0) {
     s32 func_80099A70(s32);
     s32 func_80099A7C(s32, f32 *);
     s32 func_80099B94(s32);
-    s32 func_8009C15C(s32, f32 *);
+    void func_8009C15C(u8 *, f32 *);
     s32 func_8009E6EC();
     void func_8009E830(struct player_state_s *, s32);
     u32 func_800A3404(void *);

@@ -51,7 +51,7 @@ f32 func_8009C150(PlayerState *arg0) {
 }
 
 /* Single line: IDO schedules this prologue by source line. */
-void func_8009C15C(u8 *arg0, s32 arg1) { s32 func_800EE7F8(); func_800EE7F8(arg1, *(s32 *)(arg0 + 0xE4) + 0xC); }
+void func_8009C15C(u8 *arg0, f32 *arg1) { s32 func_800EE7F8(); func_800EE7F8(arg1, *(s32 *)(arg0 + 0xE4) + 0xC); }
 
 void func_8009C188(u8 *arg0, s32 arg1) {
     s32 func_800EE7F8();
