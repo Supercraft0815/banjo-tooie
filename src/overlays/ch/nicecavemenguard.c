@@ -7,7 +7,34 @@ OSThread *chnicecavemenguard_entrypoint_0(void)
     return (OSThread *) D_80800920_chnicecavemenguard;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemenguard/func_8080000C_chnicecavemenguard.s")
+void func_8080000C_chnicecavemenguard(Actor *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800DA298(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800FFAB0(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_80102FDC(Actor *, f32);
+    void func_80105A9C(Actor *, f32);
+    void func_80105BAC(Actor *);
+    f32 *position[1];
+
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80102424(arg0, 6);
+        goto initialize;
+    }
+    if (func_800DA298(0x186) != 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+initialize:
+    func_80102FDC(arg0, arg0->scale * 1.25f);
+    position[0] = (f32 *)arg0->actorData;
+    func_800EE7F8(position[0], arg0->position);
+    func_800EF1B8(position[0], arg0->rotation[1] + 180.0f, 150.0f);
+    func_80105A9C(arg0, 400.0f);
+    func_80105BAC(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemenguard/func_808000D4_chnicecavemenguard.s")
 
