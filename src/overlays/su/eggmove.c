@@ -49,7 +49,44 @@ void func_80800108_sueggmove(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/func_8080012C_sueggmove.s")
+void func_8080012C_sueggmove(Actor *arg0) {
+    f32 func_800136E4(f32);
+    void func_800EA600(s32, s32);
+    void func_800EA614(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFD24(f32 *);
+    void func_800F059C(f32 *, f32 *, f32 *);
+    f32 func_800F0E00(f32, f32);
+    void func_800F1988(f32 *, f32 *, f32 *);
+    void *func_800FAB50(f32 *, f32 *, f32 *, u32, f32);
+    void *func_80100094(Actor *, u32);
+    extern s32 _sueggmove_entrypoint_0;
+    u8 *state;
+    f32 sp40[3];
+    f32 sp34[3];
+    void *sp30;
+
+    state = func_80100094(arg0, 0U);
+    state[0xC] = 0;
+    func_80800000_sueggmove(arg0, arg0->position, sp34);
+    func_800EA600((s32)&_sueggmove_entrypoint_0, (s32)arg0->unk0);
+    sp30 = func_800FAB50(arg0->position, sp34, sp40, 0x024200A0, 15.0f);
+    func_800EA614();
+    if (sp30 != NULL) {
+        if (state[0xE] == 0) {
+            func_800EFD24((f32 *)&arg0->actorData[4]);
+            func_800F1988(sp40, arg0->rotation, &arg0->rotation[1]);
+            arg0->rotation[0] = func_800136E4(arg0->rotation[0] - 90.0f);
+        } else {
+            func_800F059C((f32 *)&arg0->actorData[4], (f32 *)&arg0->actorData[4], sp40);
+            ((f32 *)arg0->actorData)[5] = func_800F0E00(((f32 *)arg0->actorData)[5], 250.0f);
+            func_80800108_sueggmove(state);
+        }
+        ((s32 *)state)[0xD] = ((s32 *)sp30)[2];
+    }
+    func_800EE7F8(arg0->position, sp34);
+    ((f32 *)state)[4] = -9000.0f;
+}
 
 u8 sueggmove_entrypoint_3(Actor *arg0) {
     void* func_80100094(Actor*, u32);
@@ -86,7 +123,7 @@ void sueggmove_entrypoint_6(void *arg0, f32 arg1, f32 arg2) {
 /* extern */
 
 void sueggmove_entrypoint_7(s32 arg0) {
-    s32 func_800EE7F8(s32);
+    void func_800EE7F8();
     func_800EE7F8(arg0 + 0x28);
 }
 
