@@ -44,7 +44,25 @@ void func_80800018_chfirefx(ChFireFxActor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/chfirefx_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/chfirefx_entrypoint_5.s")
+s32 chfirefx_entrypoint_5(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    s32 _subaddielink_entrypoint_3(u8 *);
+    void func_80800C18_chfirefx(Actor *);
+    u8 *sp1C;
+    s32 *value = &arg2;
+
+    if (arg1 == 0x95) {
+        sp1C = func_80100094(arg0, 0);
+        _subaddielink_entrypoint_3(sp1C + 0x18);
+        *(s32 *)sp1C = 0;
+        if (*(u16 *)(sp1C + 0x10) & 1) {
+            func_80800C18_chfirefx(arg0);
+        }
+    } else {
+        return 0;
+    }
+    return 1;
+}
 
 void chfirefx_entrypoint_6(Actor *arg0, s16 arg1, s16 arg2) {
     void* func_80100094(Actor*, u32);
