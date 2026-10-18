@@ -168,7 +168,7 @@ void func_800A4A4C(s32 arg0)
     func_800A4190();
     func_800A4878(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4A74.s")
+void func_800A4A74(PlayerState *arg0) { if (func_800A4338(arg0) != 0) return; if (func_800A4978(arg0) != 0) return; func_800A4190(arg0); func_800A4878(arg0); func_800A3F14(arg0, 2); }
 
 void func_800A4AD0(PlayerState *arg0) { if (_ncbaspline_entrypoint_8(func_800A4CA8(arg0))) func_800A3F14(arg0, 2); }
 
