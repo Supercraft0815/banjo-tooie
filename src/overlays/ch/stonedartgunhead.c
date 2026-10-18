@@ -213,7 +213,32 @@ void func_80800364_chstonedartgunhead(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/func_80800908_chstonedartgunhead.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/func_80800AA4_chstonedartgunhead.s")
+s32 func_80800AA4_chstonedartgunhead(Actor *arg0, s32 arg1, volatile s32 arg2) {
+    void func_808000A8_chstonedartgunhead(Actor *);
+    void func_80800224_chstonedartgunhead(Actor *, s32);
+    void func_80800908_chstonedartgunhead(Actor *, s32);
+    s32 state;
+
+    switch (arg1) {
+    case 0x3D:
+        func_808000A8_chstonedartgunhead(arg0);
+        return 1;
+    case 0x3F:
+        state = arg0->unk70_10;
+        if ((state < 6 || state >= 10) &&
+            ((arg0->unk0->unk18 << 11) >> 28) == 1 &&
+            state != 6 && state != 7) {
+            func_80800224_chstonedartgunhead(arg0, 6);
+        }
+        break;
+    case 0x40:
+        func_80800908_chstonedartgunhead(arg0, arg2);
+        return 1;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
