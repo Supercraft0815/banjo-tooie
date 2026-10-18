@@ -222,7 +222,33 @@ void func_80801E80_chaliendad(Actor* arg0)
         _suexpression_entrypoint_8(arg0, 1);
     }
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801EB4_chaliendad.s")
+void func_80801EB4_chaliendad(Actor *arg0) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    void func_80101FDC(Actor *, u32);
+    void *func_80105494(Actor *);
+    void func_80105A9C(Actor *, f32);
+    f32 *data;
+
+    data = func_80100094(arg0, 0U);
+    data[2] = arg0->rotation[1];
+    if (func_80105494(arg0) != NULL) {
+        data[0] = 100.0f;
+        data[1] = 100.0f;
+        func_80105A9C(arg0, 1200.0f);
+        if (func_80801DD0_chaliendad() == 3) {
+            func_800FFAB0(arg0);
+        }
+    } else {
+        data[1] = 100.0f;
+        data[0] = 10.0f;
+        func_800EE7F8((f32 *)&arg0->actorData[4], arg0->position);
+        func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+        ((f32 *)arg0->actorData)[1] = 1000.0f;
+        func_80101FDC(arg0, 5);
+        arg0->unk58 = 6.0f;
+    }
+}
 
 void func_80801F98_chaliendad(Actor *arg0) {
     Actor *_subaddiefind_entrypoint_2(s32, s32);
