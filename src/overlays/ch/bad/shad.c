@@ -40,6 +40,7 @@ void func_8080000C_chbadshad(ShadActor *arg0) {
 }
 
 void func_8080082C_chbadshad(Actor *arg0);
+s32 func_8001211C(void);
 
 void func_80800090_chbadshad(Actor *arg0) { if (!arg0->unk64_17 && (s32) arg0->actorData[0] < func_8001211C() - 1) func_8080082C_chbadshad(arg0); }
 
@@ -76,7 +77,42 @@ void chbadshad_entrypoint_3(Actor *arg0, void *arg1, s32 arg2, f32 arg3, s16 *ar
     chbadshad_entrypoint_1(arg0, arg1, arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/chbadshad_entrypoint_4.s")
+struct ShadowSource { Unk80132ED0 *marker; };
+void chbadshad_entrypoint_4(struct ShadowSource arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *func_801084B0(s32, Actor **);
+    f32 func_8080028C_chbadshad(Actor *, Actor *, f32 *);
+    struct ShadowData {
+        s32 frame;
+        f32 reserved[2];
+        f32 height;
+    };
+    f32 sp2C[3];
+    Unk80132ED0 *volatile sp28;
+    Actor *sp24;
+    volatile f32 sp20;
+    Actor *sp1C;
+
+    sp28 = arg0.marker;
+    sp24 = func_80106790(arg0.marker);
+    sp2C[0] = arg2;
+    sp2C[1] = arg3;
+    sp2C[2] = arg4;
+    if (!sp24->unk64_17) {
+        sp20 = arg1;
+        sp1C = func_801084B0(0x243, &sp24);
+        if (sp1C != NULL) {
+            sp1C->unk14 = sp24->unk14;
+            ((struct ShadowData *)sp1C->actorData)->height = func_8080028C_chbadshad(sp24, sp1C, sp2C);
+            if (!sp1C->unk64_17) {
+                sp24->pad40 = (s32)sp1C->unk0;
+                sp1C->scale = sp20;
+                sp1C->pad40 = (s32)sp28;
+                sp1C->actorData[0] = func_8001211C();
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/func_80800664_chbadshad.s")
 
