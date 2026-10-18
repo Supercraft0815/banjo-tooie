@@ -21,7 +21,36 @@ void func_80800180_chdiggerboss(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80800200_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_8080041C_chdiggerboss.s")
+void func_8080041C_chdiggerboss(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 func_801022E4(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_808008C0_chdiggerboss(s32, s32, s32);
+    Actor *func_808026F8_chdiggerboss(void *);
+    struct {
+        u8 pad0[0x80];
+        s16 unk80;
+    } *sp20[2];
+    s32 temp_v0;
+
+    sp20[0] = func_80100094(func_808026F8_chdiggerboss(arg0), 0);
+    func_80102424(arg0, arg1);
+    temp_v0 = func_801022E4(arg0);
+    switch (temp_v0) {
+        case 0x429:
+            func_808008C0_chdiggerboss(arg0, 3, 1);
+            func_808008C0_chdiggerboss(arg0, 1, 1);
+            break;
+        case 0x42B:
+            sp20[0]->unk80 = 1;
+            func_808008C0_chdiggerboss(arg0, 4, 1);
+            func_808008C0_chdiggerboss(arg0, 2, 1);
+            break;
+        case 0x42D:
+            sp20[0]->unk80 = 0;
+            break;
+    }
+}
 
 OSThread *chdiggerboss_entrypoint_0(void)
 {
@@ -745,7 +774,7 @@ s32 func_80803660_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_80803DC8_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
-    s32 func_8080041C_chdiggerboss(s32, s32);
+    void func_8080041C_chdiggerboss(Actor *, s32);
     (*(s8 *)((s8 *)(func_80100094(arg0, 0)) + (4))) = (s8) arg1;
     if (arg2 != -1) {
         func_8080041C_chdiggerboss(arg0, arg2);
