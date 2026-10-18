@@ -111,12 +111,12 @@ void func_80800204_bsblongleg(PlayerState *arg0) {
 /* extern */
 
 void func_808002D8_bsblongleg(void *arg0) {
-    s32 anctrl_reset(s32);
+    void anctrl_reset(struct anctrl_s *);
     s32 anctrl_setDuration(s32, s32);
-    s32 anctrl_setIndex(s32, s32);
-    s32 anctrl_setPlaybackType(s32, s32);
+    void anctrl_setIndex(struct anctrl_s *, s32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
     s32 anctrl_setSmoothTransition(s32, s32);
-    s32 anctrl_start(s32);
+    void anctrl_start(struct anctrl_s *);
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     s32 bastatetimer_set(void *, s32, f32);
     f32 func_800A3394(void *);
@@ -140,12 +140,12 @@ void func_808002D8_bsblongleg(void *arg0) {
 /* extern */
 
 void func_80800378_bsblongleg(void *arg0) {
-    s32 anctrl_reset(s32);
+    void anctrl_reset(struct anctrl_s *);
     s32 anctrl_setDuration(s32, s32);
-    s32 anctrl_setIndex(s32, s32);
-    s32 anctrl_setPlaybackType(s32, s32);
+    void anctrl_setIndex(struct anctrl_s *, s32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
     s32 anctrl_setSmoothTransition(s32, s32);
-    s32 anctrl_start(s32);
+    void anctrl_start(struct anctrl_s *);
     struct anctrl_s *baanim_getAnimCtrlPtr();
     s32 temp_v0;
 
@@ -286,10 +286,10 @@ s32 bsblongleg_entrypoint_7(s32 arg0) {
 /* extern */
 
 void bsblongleg_entrypoint_8(PlayerState *arg0) {
-    s32 anctrl_reset(s32);
-    s32 anctrl_setIndex(s32, s32);
-    s32 anctrl_setPlaybackType(s32, s32);
-    s32 anctrl_start(s32);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setIndex(struct anctrl_s *, s32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
     struct anctrl_s *baanim_getAnimCtrlPtr();
     s32 func_8008C9F0(s32, s32, s32, s32, f32);
     void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
@@ -321,12 +321,12 @@ s32 bsblongleg_entrypoint_11(s32 arg0) {
 /* extern */
 
 void func_80800994_bsblongleg(void *arg0) {
-    s32 anctrl_reset(s32);
+    void anctrl_reset(struct anctrl_s *);
     s32 anctrl_setDuration(s32, s32);
-    s32 anctrl_setIndex(s32, s32);
-    s32 anctrl_setPlaybackType(s32, s32);
+    void anctrl_setIndex(struct anctrl_s *, s32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
     s32 anctrl_setSmoothTransition(s32, s32);
-    s32 anctrl_start(s32);
+    void anctrl_start(struct anctrl_s *);
     struct anctrl_s *baanim_getAnimCtrlPtr();
     s32 func_8008B188(s32, s32);
     s32 temp_v0;
@@ -345,12 +345,12 @@ void func_80800994_bsblongleg(void *arg0) {
 /* extern */
 
 void func_80800A18_bsblongleg(void *arg0) {
-    s32 anctrl_reset(s32);
+    void anctrl_reset(struct anctrl_s *);
     s32 anctrl_setDuration(s32, s32);
-    s32 anctrl_setIndex(s32, s32);
-    s32 anctrl_setPlaybackType(s32, s32);
+    void anctrl_setIndex(struct anctrl_s *, s32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
     s32 anctrl_setSmoothTransition(s32, s32);
-    s32 anctrl_start(s32);
+    void anctrl_start(struct anctrl_s *);
     struct anctrl_s *baanim_getAnimCtrlPtr();
     s32 temp_v0;
 
@@ -440,7 +440,49 @@ s32 bsblongleg_entrypoint_19(s32 arg0) {
     return ((s32 *)&D_808014B0_bsblongleg)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_20.s")
+void bsblongleg_entrypoint_20(PlayerState *arg0) {
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setIndex(struct anctrl_s *, s32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void _batimer_set(PlayerState *, s32, f32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    f32 yaw_getIdeal(PlayerState *);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void baroll_setAngularVelocity(PlayerState *, f32, f32);
+    void func_8009BFE4(PlayerState *, f32, f32);
+    void func_8009D658(PlayerState *);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+    void func_800A0CE8(PlayerState *, s32);
+    void func_800A0CF4(PlayerState *, s32);
+    struct anctrl_s *anim_ctrl;
+    f32 velocity;
+    f32 yaw;
+
+    anim_ctrl = baanim_getAnimCtrlPtr(arg0);
+    anctrl_reset(anim_ctrl);
+    anctrl_setIndex(anim_ctrl, 0x3D);
+    anctrl_setPlaybackType(anim_ctrl, 3);
+    anctrl_setStart(anim_ctrl, 0.0865f);
+    anctrl_start(anim_ctrl);
+    func_8009FFD8(arg0, 1, 1, 3, 3);
+    baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+    yaw = yaw_getIdeal(arg0);
+    velocity = baphysics_get_target_horizontal_velocity(arg0);
+    baphysics_set_horizontal_velocity(arg0, yaw, velocity);
+    func_800A0CF4(arg0, 1);
+    func_800A0CE8(arg0, 1);
+    func_8009BFE4(arg0, 1000.0f, 12.0f);
+    baroll_setAngularVelocity(arg0, 1000.0f, 12.0f);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_8009D658(arg0);
+    _batimer_set(arg0, 0, 1.0f);
+    func_8080013C_bsblongleg(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_21.s")
 
