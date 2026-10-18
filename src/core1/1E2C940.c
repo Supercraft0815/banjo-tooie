@@ -117,7 +117,39 @@ void func_80015430(s32 arg0) {
     osViSwapBuffer(((s32 *) &D_80078F80)[D_80078F60]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_8001546C.s")
+void func_8001546C(s32 arg0) {
+    void func_80014A54(void);
+    void func_8001E5DC(s32);
+    s16 func_8001E7C0(void);
+    extern s32 D_8003F5D0;
+    extern OSMesgQueue D_80078FD0;
+    extern OSMesgQueue D_80079030;
+    extern volatile s32 D_80079138;
+    s32 i;
+    OSMesg mesg;
+    s32 ready;
+    s32 state;
+    s32 flag;
+
+    while (1) {
+        osRecvMesg(&D_80078FD0, &mesg, OS_MESG_BLOCK);
+        func_80014A54();
+        D_80079138++;
+        ready = D_80079138 == 600;
+        state = !func_8001E7C0();
+        flag = D_8003F5D0;
+        if (ready && state && flag != 0) {
+            func_8001E5DC(2);
+            D_8003F5D0 = 0;
+        }
+        osSendMesg(&D_80079030, NULL, OS_MESG_NOBLOCK);
+        for (i = 0; i < 8; i++) {
+            if (D_80078F90[i].queue != NULL) {
+                osSendMesg(D_80078F90[i].queue, D_80078F90[i].mesg, OS_MESG_NOBLOCK);
+            }
+        }
+    }
+}
 
 void func_8001559C(s32 arg0) {
     osViBlack((u8) arg0);
