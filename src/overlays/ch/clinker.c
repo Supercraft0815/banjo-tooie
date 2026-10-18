@@ -219,7 +219,40 @@ void func_808006A4_chclinker(Actor *arg0) {
     data->count = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_808007BC_chclinker.s")
+void func_808007BC_chclinker(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800CEAD0(s32);
+    s32 func_800D2498(u32, s32, u32);
+    s32 func_800D24E8(s32, s32, u32);
+    f32 func_800D8FF8(void);
+    f32 func_800F13F0(f32, f32);
+    int func_808008E0_chclinker(Actor *, s32);
+    struct {
+        s32 unk0;
+        f32 unk4;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    func_808006A4_chclinker(arg0);
+    switch (arg0->unk70_10) {
+        case 2:
+            func_800D24E8(0x103, data->unk0, 0);
+            if (func_800CEAD0(0)) {
+                func_808008E0_chclinker(arg0, 3);
+            }
+            break;
+        case 3:
+            func_800D24E8(0x103, data->unk0, 0);
+            break;
+        case 6:
+            data->unk4 = func_800F13F0(func_800D8FF8() + data->unk4, 999.0f);
+            func_800D24E8(0x103, data->unk0, 0);
+            func_800D2498(0xCC, (s32)data->unk4, 0);
+            break;
+        case 7:
+            break;
+    }
+}
 
 void func_808008C0_chclinker(s32 arg0)
 {
@@ -235,7 +268,7 @@ int func_808008E0_chclinker(Actor *arg0, s32 arg1) {
     void func_80101FDC(Actor *, u32);
     void func_80108B04(Actor *, u32);
     s32 func_800CE8D8(s32, f32, s32);
-    s32 func_800D2498(s32, s32, s32);
+    s32 func_800D2498(u32, s32, u32);
     s32 func_800D2054(s32, s32, s32);
     void func_800F49D4(s32, void *, s32);
     void func_800FC63C(u32, u32);
