@@ -108,7 +108,51 @@ void func_80800620_chhoopswoop(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_808006A0_chhoopswoop.s")
+void func_808006A0_chhoopswoop(Actor *arg0) {
+    typedef struct {
+        s16 rotation : 15;
+        u16 active : 1;
+        s16 position[3];
+        f32 time;
+    } Hoop;
+    typedef struct {
+        s32 count;
+        u8 unk4[0x10];
+        Hoop hoops[100];
+    } HoopData;
+    void *func_80100094(Actor *, u32);
+    void _subaddiemulti_entrypoint_2(void);
+    void func_80101FDC(Actor *, u32);
+    void func_800D2770(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    void func_800CE88C(s32, s32);
+    s32 func_800DA524(s32);
+    u32 func_800FDC28(u32);
+    HoopData *data;
+    f32 duration;
+    f32 value;
+    HoopData *temp;
+    HoopData *cursor;
+    s32 i;
+
+    data = func_80100094(arg0, 0); value = arg0->unk74_7; duration = value; _subaddiemulti_entrypoint_2();
+    i = 0;
+    if (data->count > 0) {
+        cursor = data;
+        do {
+            cursor->hoops[0].time = 0.0f;
+            i++;
+            cursor->hoops[0].active = 0;
+            cursor = (HoopData *)((u8 *)cursor + sizeof(Hoop));
+        } while (i < data->count);
+    }
+    func_80101FDC(arg0, 3);
+    func_800D2770(0xC2, 0);
+    func_800CE8D8(arg0->unk6C_0, duration, (s32)duration);
+    func_800CE88C(arg0->unk6C_0, 1);
+    func_800DA524(0);
+    func_800FDC28(0xC);
+}
 
 s32 func_808007A4_chhoopswoop(void *arg0, s32 *arg1) {
     s32 func_800D0A9C(s32, s32);
@@ -384,7 +428,7 @@ s32 func_808013F8_chhoopswoop(void *arg0, s32 arg1, s32 arg2) {
 
 void func_80801494_chhoopswoop(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_10(void);
-    s32 _subaddiemulti_entrypoint_2();
+    void _subaddiemulti_entrypoint_2(void);
     void func_80101FDC(Actor *, u32);
     switch (arg1) {
     case 0xCEC:
