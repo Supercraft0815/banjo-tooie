@@ -114,7 +114,47 @@ int func_80800BF8_chfactorytoxiccloud(ToxicCloudActor *arg0, f32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_80800C7C_chfactorytoxiccloud.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_80800FCC_chfactorytoxiccloud.s")
+/* extern */
+
+void func_80800FCC_chfactorytoxiccloud(Actor *arg0, s32 arg1) {
+    s32 func_8001210C(s32);
+    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void *func_800CC63C(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    struct {
+        f32 position[3];
+        s16 unkC;
+        s16 height;
+    } *node;
+
+    typedef union {
+        Actor actor;
+        struct {
+            u8 pad0[0x70];
+            u32 first : 7;
+            u32 pad70 : 15;
+            u32 second : 6;
+            u32 tail : 4;
+        } indices;
+    } Cloud;
+    f32 sp40[3];
+    f32 sp34[3];
+    f32 sp28[3];
+
+    if ((func_8001210C(3) == 0) || (arg1 != 0)) {
+        func_800EE7F8(sp40, arg0->position);
+        sp40[1] += 400.0f;
+        func_800EE7F8(sp34, arg0->position);
+        sp34[1] -= 1000.0f;
+        if (func_800BEF00(sp40, sp34, sp28, 0) != 0) {
+            ((f32 *)arg0->actorData)[7] = sp34[1];
+        } else {
+            ((f32 *)arg0->actorData)[7] = arg0->position[1];
+        }
+        node = func_800CC63C(((Cloud *)arg0)->indices.first - 1, ((Cloud *)arg0)->indices.second - 1);
+        ((f32 *)arg0->actorData)[4] = node->position[1] + (f32)node->height - 25.0f;
+    }
+}
 
 /* extern */
 
