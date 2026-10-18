@@ -132,7 +132,23 @@ void sueggmove_entrypoint_8(Actor *arg0, s32 arg1) {
     (*(s8 *)((s8 *)(func_80100094(arg0, 0U)) + (0xF))) = (s8) arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/eggmove/sueggmove_entrypoint_9.s")
+void sueggmove_entrypoint_9(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFB24(void *, void *, void *);
+    u8 *data;
+    f32 position[3];
+
+    data = func_80100094(arg0, 0);
+    if (data[0xD] != 0) {
+        data[0xD]--;
+    }
+    func_800EE7F8(position, arg0->position);
+    if (data[0xF] == 1) {
+        func_8080012C_sueggmove(arg0);
+    }
+    func_800EFB24(arg0->actorData, arg0->position, position);
+}
 
 /* extern */
 
