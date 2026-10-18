@@ -261,7 +261,41 @@ s32 func_808018DC_chevilspirit(Actor *arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801988_chevilspirit.s")
+s32 func_80801988_chevilspirit(Actor *arg0, Unk80132ED0 *arg1, s32 arg2) {
+    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010108C(Actor *, s32, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_80801A6C_chevilspirit(Actor *, s32);
+    void func_80802090_chevilspirit(Actor *, s32 *);
+    extern s32 D_808021E0_chevilspirit;
+    struct SpiritFlags {
+        u8 pad[0x64];
+        u8 pad64_30 : 2;
+        u8 unk64_29 : 1;
+        u8 unk64_27 : 2;
+        u8 pad64_24 : 3;
+    };
+    Actor *other;
+
+    other = func_80106790(arg1);
+    if (arg1 == *(Unk80132ED0 **)func_80100094(arg0, 0)) {
+        return 1;
+    }
+    if (func_80801A6C_chevilspirit(arg0, 2) == 0) {
+        return 0;
+    }
+    _subaddielink_entrypoint_1(func_80100094(arg0, 0), arg1);
+    arg0->actorData[6] = 0;
+    ((f32 *)arg0->actorData)[5] = 0.0f;
+    ((struct SpiritFlags *)other)->unk64_29 = 1;
+    ((struct SpiritFlags *)other)->unk64_27 = 1;
+    if (arg2 == 0) {
+        func_80802090_chevilspirit(arg0, &D_808021E0_chevilspirit);
+    }
+    func_8010108C(other, 1, 0);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801A6C_chevilspirit.s")
 
