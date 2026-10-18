@@ -7,7 +7,45 @@ s32 func_80115610()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEF00/func_80115618.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEF00/func_80115750.s")
+f32 func_80115750(Actor *arg0, f32 arg1) {
+    typedef struct {
+        f32 min;
+        f32 max;
+        f32 rate;
+        s32 unkC;
+        u8 enabled;
+        u8 minEnabled;
+        u8 maxEnabled;
+        u8 pad13;
+        f32 unk14;
+        f32 unk18;
+        u8 locked;
+    } Limits;
+    f32 func_800F1DCC(f32, f32);
+    void func_80115618(Actor *, f32, f32);
+    f32 savedMin;
+    Limits *limits;
+    f32 min;
+    f32 max;
+
+    limits = (Limits *)arg0->unk3C;
+    if (limits->enabled && !limits->locked) {
+        func_80115618(arg0, arg1, limits->rate);
+        limits = (Limits *)arg0->unk3C;
+    }
+    min = limits->min;
+    max = limits->max;
+    if (limits->minEnabled) {
+        savedMin = min;
+        if (func_800F1DCC(arg1, min) < 0.0f) {
+            arg1 = savedMin;
+        }
+    }
+    if (((Limits *)arg0->unk3C)->maxEnabled && func_800F1DCC(max, arg1) < 0.0f) {
+        arg1 = max;
+    }
+    return arg1;
+}
 
 void func_80115828(void *arg0, f32 arg1, f32 arg2) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0))) = arg1;
