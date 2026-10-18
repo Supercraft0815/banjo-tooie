@@ -358,7 +358,23 @@ void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D10D4.s")
+s32 func_800D10D4(u32 arg0, u32 arg1, f32 *arg2, s32 arg3, s32 arg4) {
+    f32 sp20[4];
+
+    if (func_800D0A9C(arg0, arg1) != 0) {
+        return 0;
+    }
+    if (func_800D0B68(arg0, arg1) != 0) {
+        return 0;
+    }
+    func_800D0B08(arg0, arg1);
+    func_800D053C(arg0, arg1);
+    if (arg2 != NULL) {
+        return func_800D0DAC((arg0 << 16) | (arg1 & 0xFFFF), arg2, arg3, arg4);
+    }
+    func_800D07CC(arg0, arg1, sp20);
+    return func_800D0DAC((arg0 << 16) | (arg1 & 0xFFFF), sp20, arg3, arg4);
+}
 
 /* extern */
 
