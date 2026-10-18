@@ -166,7 +166,34 @@ void func_808008C8_chdragonbrothers(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_8080098C_chdragonbrothers.s")
+void func_8080098C_chdragonbrothers(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcdialogcamera_entrypoint_6(Unk80132ED0 *);
+    void _gcdialogcamera_entrypoint_8(void);
+    s32 _ncpod_entrypoint_12(s32, s32);
+    s32 _ncpod_entrypoint_16(s32, s32, s32, s32);
+    s32 _ncpod_entrypoint_21(s32, s32, s32);
+    s32 _ncpod_entrypoint_25(s32, s32);
+    s32 func_800F5EF8(s32);
+    void *func_80100094(Actor *, u32);
+    void *func_80110024(s16 *);
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    switch (data[0x5F]) {
+        case 0:
+            func_80800438_chdragonbrothers(arg0);
+            _ncpod_entrypoint_16(func_800F5EF8(((s32 *)data)[8]), (s32)arg0->unk0, 3, 0);
+        case 1:
+            _ncpod_entrypoint_12(func_80110024(func_800F5EF8(((s32 *)data)[8])), 1);
+            data[0x5F] = 2;
+            _gcdialogcamera_entrypoint_6(arg0->unk0);
+            _gcdialogcamera_entrypoint_8();
+            _ncpod_entrypoint_25(func_80110024(func_800F5EF8(((s32 *)data)[8])), 0);
+        case 2:
+            _ncpod_entrypoint_21(func_800F5EF8(((s32 *)data)[8]), arg1, arg2);
+            break;
+    }
+}
 
 void func_80800A80_chdragonbrothers(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _ncpod_entrypoint_16(s32, s32, s32, s32);
@@ -272,7 +299,7 @@ void func_80800D98_chdragonbrothers(u8 *arg0, s32 arg1) {
     s32 func_800DA544(s32);
     s32 func_800DA9E4(s32, s32);
     void *func_80100094(Actor *, u32);
-    void func_8080098C_chdragonbrothers(u8 *, s32, s32);
+    void func_8080098C_chdragonbrothers(Actor *, s32, s32);
     void func_80800A80_chdragonbrothers(Actor *, s32, s32, s32);
     void func_80800B9C_chdragonbrothers(u8 *, s32, f32 *);
     void func_80800D20_chdragonbrothers(u8 *, s16, s32);
