@@ -138,7 +138,28 @@ s32 func_80020C74(u8 arg0) {
     return D_8007EA24[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E38100/func_80020CA0.s")
+void func_80020CA0(u8 arg0, u16 arg1) {
+    extern struct SfxState *D_800411D0;
+    extern u8 *D_800411DC;
+    extern u16 *D_8007EA24;
+    void func_80026500(void *, void *, s32, s32);
+    u32 mask;
+    void *volatile state;
+    s32 count;
+    struct { s16 type; void *state; s32 pad[2]; } event;
+
+    mask = osSetIntMask(1U);
+    state = D_800411D0;
+    D_8007EA24[arg0] = arg1;
+    for (count = 0; state != NULL; count++, state = *(void **)state) {
+            if ((*(u8 *)((u8 *)*(void **)((u8 *)state + 8) + 0x12) & 0x1F) == arg0) {
+                event.type = 0x800;
+                event.state = state;
+                func_80026500(D_800411DC + 0x14, &event, 0, 0);
+            }
+    }
+    osSetIntMask(mask);
+}
 
 void func_80020D80(s32 arg0, s32 arg1) {
     s32 func_80020F70(s32);
