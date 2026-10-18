@@ -1,6 +1,35 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_80800000_chfactorytoxiccloud.s")
+void func_80800000_chfactorytoxiccloud(Actor *arg0) {
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_8010A570(Actor *);
+    void func_80800A34_chfactorytoxiccloud(s32, void *);
+    void func_80800FCC_chfactorytoxiccloud(Actor *, s32);
+    s32 offset;
+    u8 *data;
+    u8 *entry;
+
+    data = func_80100094(arg0, 0);
+    if (arg0->unk7A_5) {
+        arg0->scale = 1.0f;
+        _subaddiefade_entrypoint_1((s32)arg0, 0xFF);
+        *(f32 *)&arg0->actorData[3] = 600.0f;
+    } else {
+        func_80102424(arg0, 1);
+        arg0->unk58 = 0.0f;
+        _subaddiefade_entrypoint_1((s32)arg0, 0);
+        arg0->unk64_16 = 0;
+        arg0->scale = 0.0f;
+        func_8010A570(arg0);
+    }
+    arg0->unk64_24 = 1;
+    func_80800FCC_chfactorytoxiccloud(arg0, 1);
+    for (offset = 0, entry = data; offset != 0x144; offset += 0x24, entry += 0x24) {
+        func_80800A34_chfactorytoxiccloud((s32)arg0, entry);
+    }
+}
 
 /* extern */
 
