@@ -12,7 +12,39 @@ s32 *func_8008E4B8(PlayerState *self) {
     return self->unkC->unkC;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E67DA0/func_8008E530.s")
+void func_8008E530(PlayerState *self, Unk80132ED0 *marker) {
+    struct MarkerFlags {
+        u8 pad0[0x18];
+        u16 flags;
+    };
+    struct ActorFlags {
+        u8 pad0[0x78];
+        u32 high : 28;
+        u32 bounce : 1;
+        u32 low : 3;
+    };
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 _chbounce_entrypoint_10(Actor *);
+    s32 _glhittableDll_entrypoint_2(s32);
+    s32 _glhittableDll_entrypoint_3(void *, Unk80132ED0 *, s32);
+    s32 _glhittableDll_entrypoint_4(void *, Unk80132ED0 *);
+    s32 _glhittableDll_entrypoint_8();
+    s32 func_800F424C();
+    void func_800EB210(void *, void *, s32);
+    Actor *actor;
+    s32 hit;
+
+    if ((!(((struct MarkerFlags *)marker)->flags & 1)
+         || ((actor = func_80106790(marker), !actor->unk64_17)
+             && (!((struct ActorFlags *)actor)->bounce
+                 || !_chbounce_entrypoint_10(actor))))
+        && ((hit = _glhittableDll_entrypoint_4(*(void **)self->unkC, marker), func_800F424C(self))
+            || !_glhittableDll_entrypoint_2(hit)
+            || !_glhittableDll_entrypoint_8(hit))
+        && !_glhittableDll_entrypoint_3(*(void **)self->unkC, marker, hit)) {
+        func_800EB210(marker, *(void **)self->unkC, 0);
+    }
+}
 
 void func_8008E618(PlayerState *self) {
     struct Entry {
