@@ -72,7 +72,43 @@ void func_8010FBD4(void *arg0) {
     heap_free(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FC38.s")
+s32 func_8010FC38(u8 *arg0) {
+    struct player_state_s;
+    void func_80110588(struct player_state_s *);
+    void _ncfixposrot_entrypoint_6(void *, void *);
+    void _ncpod_entrypoint_14(s16, void *);
+    void func_800CA8B4(f32 *, f32 *, f32 *);
+    void func_800E1A58(f32 *, f32 *);
+    void func_800CA628(f32 *, f32 *, f32 *);
+    void func_801151C4(void *);
+    f32 sp3C[3];
+    f32 sp30[3];
+    s16 var_v0;
+    void *temp_a0;
+
+    var_v0 = *(s16 *)(arg0 + 0x16);
+    if (arg0[0x18] == 0 && arg0[0x19] == 0) {
+        var_v0 = 0;
+    }
+    switch (var_v0) {
+        case 2:
+            func_80110588(*(struct player_state_s **)(arg0 + 4));
+            break;
+        case 3:
+            _ncfixposrot_entrypoint_6(*(void **)(arg0 + 8), arg0);
+            break;
+        case 8:
+            _ncpod_entrypoint_14(*(s16 *)(arg0 + 0x14), arg0);
+            break;
+    }
+    func_800CA8B4(*(f32 **)arg0, sp3C, sp30);
+    func_800E1A58(sp3C, sp30);
+    func_800CA628(*(f32 **)arg0, sp3C, sp30);
+    temp_a0 = *(void **)(arg0 + 0xC);
+    if (temp_a0 != 0) {
+        func_801151C4(temp_a0);
+    }
+}
 
 void func_8010FD08(u8 *arg0) { s32 func_8010FC38(u8 *); arg0[0x19] = 1; func_8010FC38(arg0); arg0[0x19] = 0; }
 
@@ -133,8 +169,8 @@ s32 func_8010FFA8(s16 *arg0) {
 
 /* extern */
 
-void func_8010FFB0(s32 *arg0, f32 *arg1, f32 *arg2) {
-    void func_800CA8B4(s32, f32 *, f32 *);
+void func_8010FFB0(f32 **arg0, f32 *arg1, f32 *arg2) {
+    void func_800CA8B4(f32 *, f32 *, f32 *);
     func_800CA8B4(*arg0, arg1, arg2);
 }
 
