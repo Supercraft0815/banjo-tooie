@@ -95,7 +95,24 @@ s32 func_80800474_chstonepillar(Actor *arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800520_chstonepillar.s")
+void func_80800520_chstonepillar(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_80800EE0_chstonepillar(Actor *);
+    void func_808005B4_chstonepillar(Actor *, s32, f32 *);
+    struct PillarData {
+        f32 positions[2][3];
+        u8 pad18[0x10];
+        s32 index;
+    };
+    struct PillarData *data;
+
+    func_80800EE0_chstonepillar(arg0);
+    data = func_80100094(arg0, 0);
+    func_808005B4_chstonepillar(arg0, data->index, data->positions[0]);
+    func_808005B4_chstonepillar(arg0, data->index + 1, data->positions[1]);
+    arg0->position[1] -= (f32)data->index * 200.0f;
+    *(f32 *)&arg0->actorData[1] = arg0->position[1];
+}
 
 void func_808005B4_chstonepillar(Actor *arg0, s32 arg1, f32 *arg2) {
     Actor *_subaddiefind_entrypoint_2(s32, s32 *);
