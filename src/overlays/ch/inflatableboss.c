@@ -257,7 +257,52 @@ void func_808012EC_chinflatableboss(Actor *arg0, f32 arg1[3], s32 arg2) {
     func_800BA22C(sp24, 8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80801418_chinflatableboss.s")
+void func_80801418_chinflatableboss(Actor *arg0, u8 *arg1) {
+    typedef struct {
+        u8 pad[0x478];
+        u8 visibility[15];
+    } BossRenderData;
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    void _suexpression_entrypoint_19(void *, Actor *);
+    void func_800DF660(s32, s32, s32, s32);
+    void func_800DF720(s32);
+    void func_800DF72C(s32);
+    void func_800DF738(s32);
+    void func_800DF744(s32, s32);
+    void func_800DF818(s32);
+    void func_800DF830(s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80100AC4(s16);
+    void func_80101934(Actor *);
+    s32 func_80103CDC(u8 *, u8 *);
+    void func_80103D48(void **);
+    void func_80103D70(void **);
+    void *func_801040A8(Actor *);
+    OSThread *func_80104130(void);
+    void func_8080267C_chinflatableboss(Actor *);
+    s32 i;
+    BossRenderData *data;
+
+    data = func_80100094(arg0, 0);
+    func_80103D48(arg0);
+    _suexpression_entrypoint_19(func_80100094(arg0, 1), arg0);
+    if (!arg0->unk64_20) {
+        func_8080267C_chinflatableboss(arg0);
+    }
+    func_800DF72C(func_801040A8(arg0));
+    func_800DF830(1);
+    func_800DF738(func_80104130());
+    func_800DF818(func_80103CDC(arg0, arg1));
+    func_800DF660(2, arg0->pad7A_7, 0, _subaddiefade_entrypoint_0(arg0));
+    func_800DF720(func_80100AC4(*(s16 *)&arg0->pad60));
+    func_80101934(arg0);
+    func_80103D70(arg0);
+    for (i = 0; i != 15; i++) {
+        func_800DF744(i + 3, data->visibility[i]);
+    }
+    arg0->unk7C_12 = 1;
+    arg0->unk64_20 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80801554_chinflatableboss.s")
 
