@@ -113,11 +113,11 @@ s32 func_80800218_bstnt(void *arg0, s32 arg1) {
 }
 
 void func_808002AC_bstnt(s32 arg0, s32 arg1) {
-    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern s32 D_8080223C_bstnt;
     extern s32 D_80802284_bstnt;
-    func_800BBCB8(arg1, 0, 0x3F800000, 8, &D_8080223C_bstnt);
-    func_800BBCB8(arg1, 0, 0x3F800000, 0xC, &D_80802284_bstnt);
+    func_800BBCB8((f32 *) arg1, NULL, 1.0f, 8, &D_8080223C_bstnt);
+    func_800BBCB8((f32 *) arg1, NULL, 1.0f, 0xC, &D_80802284_bstnt);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_8080030C_bstnt.s")
@@ -125,7 +125,7 @@ void func_808002AC_bstnt(s32 arg0, s32 arg1) {
 struct player_state_s;
 
 void func_808004F8_bstnt(struct player_state_s *arg0, f32 *arg1) {
-    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800EE7F8(f32 dst[3], f32 src[3]);
     f32 *func_800A4C48(struct player_state_s *);
     void func_800CA3F4(f32 *, f32 *, f32);
@@ -134,7 +134,7 @@ void func_808004F8_bstnt(struct player_state_s *arg0, f32 *arg1) {
 
     func_800EE7F8(sp24, arg1);
     func_800CA3F4(func_800A4C48(arg0), sp24, 80.0f);
-    func_800BBCB8((s32) sp24, 0, 0x3F800000, 1, &D_808022FC_bstnt);
+    func_800BBCB8(sp24, NULL, 1.0f, 1, &D_808022FC_bstnt);
 }
 
 void func_80800554_bstnt(struct player_state_s *arg0) {
@@ -389,7 +389,32 @@ void func_80801058_bstnt(s32 arg0)
     _basudie_entrypoint_8();
     bstnt_entrypoint_2(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80801080_bstnt.s")
+void func_80801080_bstnt(struct player_state_s *arg0) {
+    s32 _basudie_entrypoint_9(struct player_state_s *, f32);
+    void func_8009C128(struct player_state_s *, f32[3]);
+    void func_8009D9D4(struct player_state_s *);
+    void func_8009DB04(struct player_state_s *, s32, f32, s32);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    extern s32 D_80802418_bstnt;
+    extern s32 D_8080246C_bstnt;
+    extern s32 D_808024B8_bstnt;
+    extern s32 D_80802504_bstnt;
+    f32 sp2C[3];
+
+    bstnt_entrypoint_3(arg0);
+    _basudie_entrypoint_9(arg0, 50.0f);
+    func_80800554_bstnt(arg0);
+    func_8009C128(arg0, sp2C);
+    func_808004F8_bstnt(arg0, sp2C);
+    func_8080030C_bstnt(arg0, sp2C);
+    func_808002AC_bstnt((s32) arg0, (s32) sp2C);
+    func_8009DB04(arg0, 0x693, 1.0f, 0x7FFF);
+    func_8009D9D4(arg0);
+    func_800BBCB8(sp2C, NULL, 1.0f, 1, &D_80802418_bstnt);
+    func_800BBCB8(sp2C, NULL, 1.0f, 1, &D_8080246C_bstnt);
+    func_800BBCB8(sp2C, NULL, 1.0f, 1, &D_808024B8_bstnt);
+    func_800BBCB8(sp2C, NULL, 1.0f, 9, &D_80802504_bstnt);
+}
 
 void func_80801190_bstnt(s32 arg0)
 {
