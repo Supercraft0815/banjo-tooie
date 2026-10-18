@@ -591,7 +591,51 @@ void func_80802214_chweldarboss(Actor *arg0, s32 arg1, s32 arg2) {
     _subaddiedialog_entrypoint_11(arg0->unk0, (u32) arg1, (u32) arg2, arg0->position, 0xB5U);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_8080227C_chweldarboss.s")
+void func_8080227C_chweldarboss(Actor *arg0, s32 arg1) {
+    typedef struct {
+        u8 pad0[0x30];
+        u8 unk30[0x14];
+        f32 unk44[3];
+        u8 pad50[0x28];
+        s16 unk78;
+    } WeldarData;
+    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    s32 func_800DC128(s32, s32);
+    void func_800F5A00(s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80100120(Actor *);
+    void func_80101010(f32 *);
+    s32 func_8010108C(Actor *, s32, s32);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    void func_8010D09C(s32, f32 *, f32);
+    WeldarData *data;
+    Actor *sp38;
+    Actor *sp34;
+    f32 sp28[3];
+    Actor *sp24;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0:
+            sp38 = func_80108528(0x468, arg0->position, 0, &arg0);
+            _subaddielink_entrypoint_1(data->unk30, sp38->unk0);
+            sp38->unk3C = arg0->unk0;
+            break;
+        case 1:
+            sp34 = func_80108528(0x124, data->unk44, 0, &arg0);
+            func_8010D09C(data->unk78, (f32 *)sp34->actorData, 0.8f);
+            sp34->unk3C = arg0->unk0;
+            break;
+        case 2:
+            sp24 = func_80108528(func_800DC128(0, 3) + 0x43E, data->unk44, (s32)arg0->rotation[1], &arg0);
+            func_80100120(sp24);
+            func_800F5A00(data->unk78, sp28);
+            sp28[1] = 0.0f;
+            func_80101010(sp28);
+            func_8010108C(sp24, 0x8E, (s32)arg0->unk0);
+            break;
+    }
+}
 
 void func_808023BC_chweldarboss(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
