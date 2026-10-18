@@ -106,7 +106,31 @@ void basnowball_entrypoint_1(void *arg0) {
     func_800A4D6C(arg0, 1.0f, 1.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/basnowball_entrypoint_2.s")
+void basnowball_entrypoint_2(void *arg0) {
+    s32 _bawobble_entrypoint_3();
+    void func_80093230(struct player_state_s *, f32);
+    void func_8009E4AC(struct player_state_s *);
+    void func_8009E55C(struct player_state_s *, s32, f32);
+
+    _bawobble_entrypoint_3();
+    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x110) + 0) = 0.0f;
+    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x110) + 4) = 7.5f;
+    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 0x110) + 0x2D) = 0;
+    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 0x110) + 0x2C) = 0;
+    func_80800008_basnowball(arg0, 1);
+    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x110) + 0xC) = 0.0f;
+    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x110) + 8) = 0.0f;
+    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 0x110) + 0x14) = 0;
+    func_80800150_basnowball((s32)arg0, 2);
+    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 0x110) + 0x28) = 0;
+    func_808001B8_basnowball(arg0, 1);
+    func_80093230(arg0, *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x110) + 0x1C));
+    func_8009E4AC(arg0);
+    func_8009E55C(arg0, 0, *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x110) + 0x1C) * 50.0f);
+    func_8009E55C(arg0, 1, 0.0f);
+    func_808000C0_basnowball((s32)arg0);
+    func_80800110_basnowball((s32)arg0);
+}
 
 f32 basnowball_entrypoint_3(void *arg0) {
     return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 272) + 8);
@@ -195,7 +219,7 @@ void basnowball_entrypoint_12(void *arg0) {
     f32 func_800EEF94(f32 *);
     void func_800FC660(u32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    void func_8009E55C(void *, s32, f32);
+    void func_8009E55C(struct player_state_s *, s32, f32);
     f32 func_800136E4(f32);
     f32 func_800F13F0(f32, f32);
     f32 func_800F0E00(f32, f32);
