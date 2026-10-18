@@ -23,12 +23,12 @@ OSThread *chbottlesfamily_entrypoint_2(void)
 
 void func_80800024_chbottlesfamily(Actor *arg0) {
     s32 _glcutDll_entrypoint_20();
-    s32 func_80102424(s32, s32);
+    void func_80102424(Actor *, s32);
     void func_80102FDC(Actor*, f32);
     func_80102FDC(arg0, arg0->scale / 3.0f);
     arg0->unk64_20 = 1;
     if (_glcutDll_entrypoint_20(arg0) != 0) {
-        func_80102424((s32) arg0, 5);
+        func_80102424(arg0, 5);
     }
 }
 
@@ -49,7 +49,25 @@ void func_80800080_chbottlesfamily(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_80800124_chbottlesfamily.s")
+void func_80800124_chbottlesfamily(Actor *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    f32 func_800DC178(f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    struct {
+        f32 unk0[3];
+        f32 unkC;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    _subaddierouteDll_entrypoint_3(arg0, data, arg0->position);
+    data->unkC = func_800DC178(2.5f, 5.0f);
+    arg0->unk58 = func_800DC178(5.0f, 10.0f);
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80102424(arg0, 5);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_808001B0_chbottlesfamily.s")
 
@@ -94,8 +112,8 @@ void func_808005D0_chbottlesfamily(Actor *arg0) {
 
 /* extern */
 
-void func_80800600_chbottlesfamily(s32 arg0) {
-    s32 func_80102424(s32, s32);
+void func_80800600_chbottlesfamily(Actor *arg0) {
+    void func_80102424(Actor *, s32);
     s32 _glcutDll_entrypoint_20();
     if (_glcutDll_entrypoint_20() != 0) {
         func_80102424(arg0, 5);
