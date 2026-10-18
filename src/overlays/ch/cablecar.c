@@ -31,7 +31,41 @@ OSThread *chcablecar_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_808002E0_chcablecar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800424_chcablecar.s")
+s32 func_80800424_chcablecar(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_800EA05C(void);
+    void func_80108B04(Actor *, u32);
+    void func_808004EC_chcablecar(Actor *);
+    void func_80800B74_chcablecar(s32, s32, s32);
+    void func_80800DC8_chcablecar(Actor *);
+    typedef struct {
+        u32 upper : 19;
+        u32 flag : 1;
+        u32 lower : 12;
+    } CablecarEventFlags;
+
+    switch (arg1) {
+        case 0x3D:
+            func_80800DC8_chcablecar(arg0);
+            break;
+        case 0x2E:
+            func_80800B74_chcablecar((s32)arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x1F:
+            func_808004EC_chcablecar(arg0);
+            break;
+        case 0x95:
+            if (func_800EA05C() == 0xD6) {
+                func_80108B04(arg0, 0);
+            }
+            break;
+        case 0x91:
+            ((CablecarEventFlags *)&arg0->unk0->unk28)->flag = 1;
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_808004EC_chcablecar.s")
 
