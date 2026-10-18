@@ -43,4 +43,37 @@ void func_808000BC_indrv_audio(s32 arg0, s32 *arg1) {
     func_800C3BDC(sp1F);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/in/drv_audio/indrv_audio_entrypoint_0.s")
+void indrv_audio_entrypoint_0(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
+    struct AudioEntry {
+        u16 id;
+        s32 *data;
+    };
+    extern struct AudioEntry D_808014A4_indrv_audio[];
+    extern struct AudioEntry D_80801A4C_indrv_audio;
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_800DA298(s32);
+    struct AudioEntry *entry;
+    entry = D_808014A4_indrv_audio; do {
+        if (arg1 == entry->id) {
+            switch (arg2) {
+                case -3:
+                    if (func_80106790(arg0)->unk7C_12) {
+                        func_80800000_indrv_audio(arg0, -2, entry->data);
+                    }
+                    break;
+                case -2:
+                    func_808000BC_indrv_audio((s32)arg0, entry->data);
+                    break;
+                case -4:
+                    if (func_800DA298(0xE) != 0) {
+                        func_80800000_indrv_audio(arg0, -1, entry->data);
+                    }
+                    break;
+                default:
+                    func_80800000_indrv_audio(arg0, arg2, entry->data);
+                    break;
+            }
+        }
+        entry++;
+    } while (entry != &D_80801A4C_indrv_audio);
+}
