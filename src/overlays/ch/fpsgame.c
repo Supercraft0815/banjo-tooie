@@ -447,7 +447,29 @@ void func_80801C5C_chfpsgame(Actor *arg0) {
 
 void func_80801C9C_chfpsgame(Actor *arg0) { void *func_80100094(Actor *, u32); s32 func_8010114C(s32, s32, s32); struct Entry { s32 actor; s32 unused; }; struct Group { s32 count; struct Entry entries[10]; }; struct Data { s8 pad[0x568]; struct Group groups[4]; }; struct Data *data; struct Group *cursor; s32 *count; s32 offset; s32 index; data = func_80100094(arg0, 0U); for (offset = 0; offset < 4; offset++) { cursor = &data->groups[offset]; count = &cursor->count; if (data->groups[offset].count != 0) { do { index = cursor->count - 1; cursor->count = index; func_8010114C(cursor->entries[index].actor, 0x45, 0); } while (*count != 0); } } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80801D40_chfpsgame.s")
+void func_80801D40_chfpsgame(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
+    void *func_80100094(Actor *, u32);
+    s32 func_8001211C(void);
+    void func_80801DF0_chfpsgame(Actor *, s32, Unk80132ED0 *);
+    void func_80801F34_chfpsgame(Actor *, s32);
+    struct Entry { Unk80132ED0 *marker; s32 frame; };
+    struct Group { s32 count; struct Entry entries[10]; };
+    struct Data { s8 pad[0x568]; struct Group groups[4]; };
+    struct Data *data;
+    struct Group *group;
+    struct Entry *entry;
+
+    data = func_80100094(arg0, 0U);
+    group = &data->groups[arg1];
+    func_80801DF0_chfpsgame(arg0, arg1, arg2);
+    if (group->count >= 10) {
+        func_80801F34_chfpsgame(arg0, arg1);
+    }
+    entry = &group->entries[group->count];
+    entry->marker = arg2;
+    entry->frame = func_8001211C();
+    group->count++;
+}
 
 void func_80801DF0_chfpsgame(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
     f32 func_800EEB40(f32 *, f32 *);
