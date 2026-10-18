@@ -2,7 +2,40 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_80800000_chchuffycont.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_808001F8_chchuffycont.s")
+s32 func_808001F8_chchuffycont(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80101080(void);
+    void func_80800000_chchuffycont(Actor *, s32);
+    void func_80800494_chchuffycont(s32, s32);
+    void func_80800620_chchuffycont(s32, s32);
+    void *temp_a1;
+
+    switch (arg1) {
+        case 0x91:
+            arg0->unk64_19 = 1;
+            break;
+        case 0x20:
+            temp_a1 = func_80101080();
+            switch (*((s16 *)&arg2 + 1)) {
+                case 3:
+                    func_80800620_chchuffycont((s32)arg0, *(s16 *)&arg2);
+                    func_80800000_chchuffycont(arg0, 1);
+                    break;
+                case 0:
+                    func_80800494_chchuffycont((s32)arg0, (s32)temp_a1);
+                    break;
+                case 2:
+                    func_80800000_chchuffycont(arg0, 1);
+                    break;
+            }
+            break;
+        case 0x2E:
+            func_80800000_chchuffycont(arg0, 1);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_808002C4_chchuffycont.s")
 
