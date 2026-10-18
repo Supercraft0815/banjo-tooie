@@ -7,7 +7,51 @@ OSThread *chamazongoldhordeofficial_entrypoint_0(void)
     return (OSThread *) D_80801240_chamazongoldhordeofficial;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_8080000C_chamazongoldhordeofficial.s")
+void func_8080000C_chamazongoldhordeofficial(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_8010A3E8(void *, f32);
+    void _subaddieDll_entrypoint_10(s32, void *);
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    Prop *_gccubesearch_entrypoint_1(u32, f32 *);
+    void _gspropctrl_entrypoint_11(Prop *, f32 *);
+    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
+    s32 _susubgame_entrypoint_12(u32 *, s32 *);
+    s32 func_80800DB4_chamazongoldhordeofficial(Actor *, s32);
+    extern s32 D_808011C0_chamazongoldhordeofficial[];
+    struct HordeInitData {
+        u8 pad0[8];
+        s16 unk8;
+        s16 unkA;
+        s16 x[15];
+        s16 z[15];
+        u8 count;
+        u8 ids[15];
+        u8 flags[15];
+        u8 pad67[3];
+        s16 unk6A;
+        u32 subgame[1];
+    };
+    Prop *props[15];
+    struct HordeInitData *data;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    func_8010A3E8(arg0, 0.65f);
+    _subaddieDll_entrypoint_10(0x125, data);
+    data->unk8 = -999;
+    data->unk6A = 1;
+    data->count = _gccubesearch_entrypoint_9(0x122, props, 15);
+    for (i = 0; i < data->count; i++) {
+        data->x[i] = props[i]->position[0];
+        data->z[i] = props[i]->position[2];
+        data->ids[i] = props[i]->unk6_7;
+        data->flags[i] = props[i]->FlagOrRotation >> 1;
+    }
+    func_80800DB4_chamazongoldhordeofficial(arg0, -1);
+    _gspropctrl_entrypoint_11(_gccubesearch_entrypoint_1(0x127, arg0->position), (f32 *)arg0->actorData);
+    _susubgame_entrypoint_0(arg0, ((struct HordeInitData *)func_80100094(arg0, 0))->subgame, 0);
+    _susubgame_entrypoint_12(((struct HordeInitData *)func_80100094(arg0, 0))->subgame, D_808011C0_chamazongoldhordeofficial);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800150_chamazongoldhordeofficial.s")
 
