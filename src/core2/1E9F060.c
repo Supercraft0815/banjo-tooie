@@ -186,7 +186,35 @@ void* func_800C5BC4(void* arg0)
 {
     return defrag(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C5BE4.s")
+s32 func_800C5BE4(f32 *arg0, f32 arg1, f32 arg2, u32 arg3, void *arg4) {
+    s32 *func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void *func_800C6A7C(f32[3], f32[3], f32[3], u32);
+    void *func_800C69FC(void);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 sp34[3];
+    f32 sp28[3];
+    s32 *sp24;
+
+    func_800EE7F8(sp34, arg0);
+    sp34[1] = sp34[1] + arg1;
+    func_800EE7F8(sp28, arg0);
+    sp28[1] = sp28[1] + arg2;
+    if (arg3 == 0x1F00) {
+        sp24 = func_800BEF00(sp34, sp28, arg4, arg3);
+    } else {
+        sp24 = func_800C6A7C(sp34, sp28, arg4, arg3);
+    }
+    if (sp24 != NULL) {
+        *(s32 *)((u8 *)arg4 + 0x10) = sp24[2];
+        *(s16 *)((u8 *)arg4 + 0x14) = 0;
+    } else {
+        *(s32 *)((u8 *)arg4 + 0x10) = 0;
+        *(s16 *)((u8 *)arg4 + 0x14) = 0;
+    }
+    *(f32 *)((u8 *)arg4 + 0xC) = sp28[1];
+    *(void **)((u8 *)arg4 + 0x18) = func_800C69FC();
+    return sp24;
+}
 
 s32 func_800C5CC0(f32 *this, f32 arg1, f32 arg2, u32 arg3, void *arg4) {
     s32 func_800C5BE4(f32 *, f32, f32, u32, void *);
