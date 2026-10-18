@@ -1003,7 +1003,35 @@ s32 func_80803FF4_chstoneballcontrol(s32 arg0, s32 arg1) {
     return choice;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_808040B8_chstoneballcontrol.s")
+void func_808040B8_chstoneballcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 _sukickball_entrypoint_12(u8 *, s32);
+    void _sukickball_entrypoint_4(s32, void *);
+    void func_8080419C_chstoneballcontrol(Actor *, s32);
+    Actor *parent;
+    struct {
+        u8 pad0[0x39];
+        u8 mode;
+    } *data;
+    s32 state;
+
+    parent = func_80106790(arg0->unk3C);
+    data = func_80100094(parent, 0);
+    state = _sukickball_entrypoint_12((u8 *)parent, arg0->unk6C_0);
+    switch (state) {
+        case 1:
+            _sukickball_entrypoint_4(arg0->unk6C_0, arg0->actorData);
+            return;
+        case 3:
+            func_8080419C_chstoneballcontrol(arg0, func_80803FF4_chstoneballcontrol(arg0->unk6C_0, data->mode));
+            return;
+        case 2:
+            _sukickball_entrypoint_4(func_80803FF4_chstoneballcontrol(arg0->unk6C_0, data->mode), arg0->actorData);
+        case 0:
+            return;
+    }
+}
 
 void func_8080419C_chstoneballcontrol(Actor *arg0, s32 arg1) {
     s32 _sukickball_entrypoint_6(u8 *, s32);
