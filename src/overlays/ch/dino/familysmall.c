@@ -161,7 +161,43 @@ void func_80800090_chdinofamilysmall(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysmall/func_808008B4_chdinofamilysmall.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysmall/func_80800AF4_chdinofamilysmall.s")
+s32 func_80800AF4_chdinofamilysmall(Actor *arg0, s32 arg1, s32 arg2) {
+    extern u16 D_80800E94_chdinofamilysmall[][4];
+    extern s32 D_80800F10_chdinofamilysmall[];
+    void _capod_entrypoint_14(void);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    void func_800DF744(s32, s32);
+    s32 func_80101180(s32, s32, s32);
+    s32 func_801015D0(Actor *);
+    void func_80101FDC(Actor *, u32);
+
+    switch (arg1) {
+    case 0xB:
+        _capod_entrypoint_14();
+        func_80101180(0x290, 0x33, 1);
+        return 4;
+    case 0x4B:
+        func_80101FDC(arg0, 2);
+        return 1;
+    case 0x52:
+        _gcdialogcamera_entrypoint_4(arg0->position);
+        _gcdialogcamera_entrypoint_3(D_80800F10_chdinofamilysmall, arg0->scale);
+        return 3;
+    case 0x1F:
+        func_801015D0(arg0);
+        if (D_80800E94_chdinofamilysmall[arg0->unk70_10][0] == 0x14D) {
+            func_800DF744(3, 1);
+            return 1;
+        }
+        func_800DF744(1, 0);
+        func_800DF744(2, 1);
+        func_800DF744(3, 2);
+        return 1;
+    default:
+        return 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysmall/func_80800C10_chdinofamilysmall.s")
 
