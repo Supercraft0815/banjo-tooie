@@ -90,7 +90,24 @@ void func_808011DC_chpotogoldgame(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80801244_chpotogoldgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_808013BC_chpotogoldgame.s")
+void func_808013BC_chpotogoldgame(Actor *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 *arg5) {
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800FC660(u32);
+    void *func_80100094(Actor *, u32);
+    void func_80801870_chpotogoldgame(s32, s32, s32, s32);
+    extern s32 D_808024FC_chpotogoldgame;
+    u8 (*data)[4][5];
+
+    data = func_80100094(arg0, 0);
+    if (arg4 != 0 && data[arg1][arg2][arg3] == 0) {
+        if (arg5 != NULL) {
+            func_800BBCB8(arg5, arg5, 1.0f, 0x1E, &D_808024FC_chpotogoldgame);
+        }
+        func_800FC660(0xE);
+    }
+    data[arg1][arg2][arg3] = arg4;
+    func_80801870_chpotogoldgame(arg2, arg1, arg3, arg4);
+}
 
 /* extern */
 
