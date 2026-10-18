@@ -88,7 +88,7 @@ void func_808002D8_bsblongleg(void *arg0) {
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     s32 bastatetimer_set(void *, s32, f32);
     f32 func_800A3394(void *);
-    s32 func_800C3BDC(u8);
+    void func_800C3BDC(u8);
     s32 func_800C77DC(s32);
     s32 temp_v0;
 
@@ -353,7 +353,39 @@ void bsblongleg_entrypoint_12(PlayerState *arg0) {
     func_800C3730(*(u8 *)((s8 *)arg0 + 0x160), 1.4f, 0.4f, -1.2f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_13.s")
+void bsblongleg_entrypoint_13(PlayerState *arg0) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    int anctrl_isAt(struct anctrl_s *, f32);
+    s32 anctrl_isStopped(struct anctrl_s *);
+    void func_8009D3A8(PlayerState *, s32);
+    void func_800C3BDC(u8);
+    void bs_setState(PlayerState *, int);
+    s32 next_state;
+    struct anctrl_s *anim_ctrl;
+
+    next_state = 0;
+    anim_ctrl = baanim_getAnimCtrlPtr(arg0);
+    func_8009D3A8(arg0, 1);
+    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+        case 0:
+            if (anctrl_isAt(anim_ctrl, 0.68f)) {
+                func_800C3BDC(*(u8 *)((s8 *)arg0 + 0x160));
+            }
+            if (anctrl_isStopped(anim_ctrl)) {
+                func_80800A18_bsblongleg(arg0);
+            }
+            break;
+        case 1:
+            if (anctrl_isStopped(anim_ctrl)) {
+                next_state = 1;
+            }
+            break;
+    }
+    if (func_80800000_bsblongleg(arg0)) {
+        next_state = 0x4C;
+    }
+    bs_setState(arg0, next_state);
+}
 
 void bsblongleg_entrypoint_14(void *arg0) { func_800C2FDC((*(u8 *)((s8 *)(arg0) + 0x160))); func_80800204_bsblongleg(arg0); }
 
