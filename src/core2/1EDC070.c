@@ -189,4 +189,27 @@ s32 func_80102D98(Actor *arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4, f32 arg5)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDC070/func_80102E08.s")
+s32 func_80102E08(Actor *arg0) {
+    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800F1B78(f32 *, f32 *, f32, f32);
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+    s32 sp30 = 0;
+    f32 sp24[3];
+
+    func_800EE7F8(sp4C, arg0->position);
+    func_800EE7F8(sp40, arg0->position);
+    sp4C[1] += 50.0f;
+    sp40[1] -= 50.0f;
+    if (func_800BEF00(sp4C, sp40, sp34, arg0->unk14)) {
+        arg0->position[1] = sp40[1];
+        if (func_800F1B78(sp24, sp34, arg0->rotation[1], 1.0f)) {
+            arg0->rotation[0] = sp24[0];
+            arg0->rotation[2] = sp24[2];
+            sp30 = 1;
+        }
+    }
+    return sp30;
+}
