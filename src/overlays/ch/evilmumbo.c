@@ -1,6 +1,28 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800000_chevilmumbo.s")
+void func_80800000_chevilmumbo(Actor *arg0) {
+    s32 _plcamera_entrypoint_9(s32, f32 *, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    s32 func_800F6C88(s32);
+    void *func_80100094(Actor *, u32);
+    void func_808000BC_chevilmumbo(Actor *);
+    struct {
+        u8 pad0[0x95];
+        u8 unk95;
+    } *data;
+    f32 position[3];
+
+    data = func_80100094(arg0, 0);
+    if (data->unk95 == 3 && func_800F6C88(func_800F54E4()) == 0) {
+        func_800EE7F8(position, arg0->position);
+        position[1] += 100.0f;
+        if (_plcamera_entrypoint_9(func_800F54E4(), position, 0.25f) == 0) {
+            data->unk95 = 0;
+            func_808000BC_chevilmumbo(arg0);
+        }
+    }
+}
 
 /* extern */
 
