@@ -2762,7 +2762,36 @@ void bsfirstp_entrypoint_28(void *arg0, void *arg1) {
     ptr1[0x68 / 4] = *(s32 *)((s8 *)arg0 + 0x184);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80806BA0_bsfirstp.s")
+void func_80806BA0_bsfirstp(struct player_state_s *arg0) {
+    void func_80808D80_bsfirstp(void *);
+    s32 func_80809540_bsfirstp(s32, s32);
+    void func_80809684_bsfirstp(struct player_state_s *, s32);
+    void func_80809740_bsfirstp(struct player_state_s *);
+    u8 *ptr;
+
+    ptr = *(u8 **)((s8 *)arg0 + 0x188);
+    switch (func_80809540_bsfirstp(arg0, ptr[0x218])) {
+        default:
+        case 0:
+            if (ptr[0x218] != 0) {
+                func_80808D80_bsfirstp(arg0);
+                ptr[0x218] = 0;
+            }
+            break;
+        case 1:
+            if (ptr[0x218] != 1) {
+                func_80809684_bsfirstp(arg0, 1);
+            }
+            goto update;
+        case 2:
+            if (ptr[0x218] != 2) {
+                func_80809684_bsfirstp(arg0, 2);
+            }
+        update:
+            func_80809740_bsfirstp(arg0);
+            break;
+    }
+}
 
 void func_80806C58_bsfirstp(void *arg0) {
     void func_8009337C(void *, s32);
