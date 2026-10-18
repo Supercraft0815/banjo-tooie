@@ -26,7 +26,42 @@ void func_8080003C_chfreezy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/freezy/func_80800080_chfreezy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/freezy/func_80800190_chfreezy.s")
+s32 func_80800190_chfreezy(Actor *arg0, s32 arg1, volatile s32 arg2) {
+    s32 _subaddielink_entrypoint_3(u8 *);
+    void _sufreezy_entrypoint_4(Unk80132ED0 *, s32);
+    void _sufreezy_entrypoint_5(Unk80132ED0 *, s32);
+    void _sufreezy_entrypoint_6(Unk80132ED0 *, s32);
+    void _sufreezy_entrypoint_7(Unk80132ED0 *, s32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_808006C0_chfreezy(Actor *);
+
+    switch (arg1) {
+        case 0x3E:
+            func_8080003C_chfreezy(arg0);
+            _sufreezy_entrypoint_5(arg0->unk0, arg2);
+            _sufreezy_entrypoint_4(arg0->unk0, 0x10);
+            func_808006C0_chfreezy(arg0);
+            break;
+        case 0x3F:
+            _sufreezy_entrypoint_6(arg0->unk0, arg2);
+            break;
+        case 0x40:
+            func_8080003C_chfreezy(arg0);
+            _sufreezy_entrypoint_7(arg0->unk0, arg2);
+            _sufreezy_entrypoint_4(arg0->unk0, 0x10);
+            func_800FFAB0(arg0);
+            break;
+        case 0x95:
+            if (!_subaddielink_entrypoint_3(func_80100094(arg0, 1))) {
+                func_800FFAB0(arg0);
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void chfreezy_entrypoint_1(Actor *arg0, s16 *arg1) {
     void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
@@ -132,9 +167,9 @@ void func_808004B8_chfreezy(Actor *arg0, Actor *arg1, s32 arg2) {
 
 /* extern */
 
-void func_808006C0_chfreezy(s32 arg0) {
+void func_808006C0_chfreezy(Actor *arg0) {
     s32 _sufreezy_entrypoint_2();
-    s32 func_800FFAB0(s32);
+    void func_800FFAB0(Actor *);
     _sufreezy_entrypoint_2();
     func_800FFAB0(arg0);
 }
