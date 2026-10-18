@@ -1,9 +1,35 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/ice/func_80800000_cheggice.s")
+void func_80800000_cheggice(Actor *arg0) {
+    void _fxegg_entrypoint_1(f32 *, f32);
+    void _fxegg_entrypoint_2(f32 *, f32);
+    f32 func_800D8FF8(void);
+    f32 func_800DC0C0(void);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    f32 *temp_s1;
+    f32 temp_f22;
+    f32 sp54[3];
+
+    temp_s1 = func_80100094(arg0, 0);
+    temp_s1[10] -= func_800D8FF8();
+    temp_f22 = func_800F10B4(temp_s1[12], 0, 2.0f, 0.0333f, 0.1f);
+    if (temp_s1[10] <= 0.0f) {
+        do {
+            temp_s1[10] += temp_f22;
+            func_800EE7F8(sp54, arg0->position);
+            if (func_800DC0C0() < 0.5f) {
+                _fxegg_entrypoint_2(sp54, arg0->scale);
+            } else {
+                _fxegg_entrypoint_1(sp54, arg0->scale);
+            }
+        } while (temp_s1[10] <= 0.0f);
+    }
+}
 
 void func_80800114_cheggice(void *arg0) {
-    void *func_80100094(void *, u32);
+    void *func_80100094(Actor *, u32);
     s32 func_800EEEA8(s32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     s32 _suegg_entrypoint_8(void *);
@@ -15,7 +41,7 @@ void func_80800114_cheggice(void *arg0) {
     void _suegg_entrypoint_3(void *);
     void _sueggmisc_entrypoint_1(void *);
     s32 _sueggmove_entrypoint_3(void *);
-    void func_80800000_cheggice(void *);
+    void func_80800000_cheggice(Actor *);
     struct FireData {
         u8 pad[0x39];
         u8 flag : 1;
