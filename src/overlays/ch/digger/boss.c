@@ -234,7 +234,7 @@ Actor *func_80802228_chdiggerboss(Actor *arg0) {
 }
 
 s32 func_80802248_chdiggerboss(s32 arg0) {
-    s32 func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_8010D290(s32);
     s32 temp_v0;
     s32 var_v1;
@@ -455,7 +455,36 @@ void func_80802CDC_chdiggerboss(s32 arg0) {
 void func_80802EF8_chdiggerboss(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80802F00_chdiggerboss.s")
+void func_80802F00_chdiggerboss(s32 arg0, s32 arg1) {
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    f32 func_800EFB8C(f32 *, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F7F98(s32, u32);
+    s32 func_800F8418(s32, f32 *);
+    s32 func_80802878_chdiggerboss(s32, s32, s32);
+    s32 func_80803BE8_chdiggerboss(s32, s32, s32);
+    void func_808056B8_chdiggerboss(s32);
+    s32 sp44;
+    f32 sp38[3];
+    f32 sp2C[3];
+
+    func_80803BE8_chdiggerboss(arg0, arg1, 2);
+    func_80802878_chdiggerboss(arg0, 3, 1);
+    func_80800618_chdiggerboss(arg0, 0, 1);
+    func_808056B8_chdiggerboss(func_80802228_chdiggerboss((Actor *)arg0));
+    sp44 = func_800F54E4();
+    func_800F5A00(sp44, sp38);
+    if (func_800EFB8C(sp38, (f32 *)(arg0 + 4)) < 550.0f) {
+        func_800EEB9C(sp2C, func_800F1DF4((f32 *)(arg0 + 4), sp38), 550.0f);
+        func_800EF04C(sp2C, (f32 *)(arg0 + 4));
+        sp2C[1] = sp38[1];
+        func_800F8418(sp44, sp2C);
+    }
+    func_800F7F98(sp44, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80802FEC_chdiggerboss.s")
 
