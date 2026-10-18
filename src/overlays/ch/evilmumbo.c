@@ -335,14 +335,14 @@ s32 func_808034C8_chevilmumbo(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_808035A8_chevilmumbo(u8 *arg0, s32 arg1) {
     s32 func_800D674C(s32);
-    s32 func_800DE448(u8 *, u8 *, s32, s32, s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
     void func_800DF830(s32);
     s32 func_801018A4(u8 *, s32);
     s32 func_80101970();
     (*(f32 *)((s8 *)(arg0) + (0x44))) = (f32) -(*(f32 *)((s8 *)(arg0) + (0x44)));
     func_80101970();
     func_800DF830(2);
-    func_800DE448(arg0 + 4, arg0 + 0x44, (*(s32 *)((s8 *)(arg0) + (0x38))), 0, func_800D674C(0x69E));
+    func_800DE448((f32 *)(arg0 + 4), (f32 *)(arg0 + 0x44), (*(f32 *)((s8 *)(arg0) + (0x38))), 0, func_800D674C(0x69E));
     func_801018A4(arg0, arg1);
     (*(f32 *)((s8 *)(arg0) + (0x44))) = (f32) -(*(f32 *)((s8 *)(arg0) + (0x44)));
 }
@@ -410,7 +410,25 @@ OSThread *chevilmumbo_entrypoint_2(void)
     return (OSThread *) D_80804544_chevilmumbo;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_8080398C_chevilmumbo.s")
+void func_8080398C_chevilmumbo(Actor *arg0, s32 arg1) {
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF47C(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_801017D0(Actor *);
+    u8 *func_801039E4(Unk80132ED0 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 *sp2C;
+    f32 sp38[3];
+    void *temp_v0;
+
+    temp_v0 = func_80100094(func_80106790(arg0->unk3C), 0U);
+    sp2C = arg0->position;
+    func_800EE7F8(sp2C, (f32 *)((u8 *)temp_v0 + 0x78));
+    func_800EFA4C(sp38, 0.0f, 0.0f, 0.0f);
+    func_800DF47C(func_801017D0, arg0);
+    func_800DE448(sp2C, sp38, arg0->scale, 0, func_801039E4(arg0->unk0));
+}
 
 void func_80803A24_chevilmumbo(s32 arg0, s32 arg1) {
     struct State {
