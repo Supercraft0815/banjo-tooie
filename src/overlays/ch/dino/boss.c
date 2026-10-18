@@ -538,7 +538,51 @@ void func_808018D0_chdinoboss(Actor *arg0) {
     _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80802C98_chdinoboss, 0.1f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80801900_chdinoboss.s")
+void func_80801900_chdinoboss(Actor *arg0) {
+    typedef struct {
+        u32 unk0;
+        f32 positions[20][3];
+        s16 indices[22];
+        s32 index;
+    } DinoBossData;
+    typedef struct {
+        u8 pad18[0x10];
+        f32 velocity[3];
+    } ProjectileData;
+    void *func_80100094(Actor *, u32);
+    void func_80801A44_chdinoboss(Actor *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void _subaddieskeleton_entrypoint_1(Actor *, s32, f32 *);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    f32 func_800DC178(f32, f32);
+    void func_80102FDC(Actor *, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_800EF368(f32 *, f32);
+    Actor *projectile;
+    DinoBossData *data;
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp28[2];
+
+    data = func_80100094(arg0, 0);
+    if (arg0->unk70_10 == 8) {
+        func_80801A44_chdinoboss(arg0, sp30);
+    } else {
+        func_800EE7F8(sp30, data->positions[data->indices[data->index]]);
+    }
+    _subaddieskeleton_entrypoint_1(arg0, 5, sp3C);
+    func_800F18FC(sp3C, sp30, sp28);
+    projectile = func_80108528(0x398, sp3C, (s32)sp28[1], &arg0);
+    func_80102FDC(projectile, func_800DC178(2.0f, 4.0f));
+    func_800EFB24(((ProjectileData *)projectile->actorData)->velocity, sp30, sp3C);
+    func_800EF368(((ProjectileData *)projectile->actorData)->velocity, 3500.0f);
+    if (arg0->unk70_10 == 8) {
+        projectile->unk64_20 = 0;
+    } else {
+        projectile->unk64_20 = 1;
+    }
+}
 
 void func_80801A44_chdinoboss(Actor *arg0, f32 *arg1) {
     void *func_800C6A7C(f32[3], f32[3], f32[3], u32);
@@ -880,20 +924,20 @@ void func_80802684_chdinoboss(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_808026D0_chdinoboss.s")
 
-void func_80802864_chdinoboss(s32 arg0, s32 arg1) {
+void func_80802864_chdinoboss(Actor *arg0, s32 arg1) {
     s32 _chappearfx_entrypoint_1(s32, s32, s32, s32);
     s32 _glcutDll_entrypoint_19(s32);
     void func_800FFAB0(Actor *);
-    s32 func_80102FDC(s32, s32);
-    s32 func_80108528(s32, s32 *, s32, s32 *);
-    extern s32 D_80802CA8_chdinoboss;
-    s32 sp1C;
-    s32 temp_v0;
+    void func_80102FDC(Actor *, f32);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    extern f32 D_80802CA8_chdinoboss[3];
+    Actor *sp1C;
+    Actor *temp_v0;
 
     if (arg1 == 0) {
-        temp_v0 = func_80108528(0x234, &D_80802CA8_chdinoboss, 0x5A, &arg0);
+        temp_v0 = func_80108528(0x234, D_80802CA8_chdinoboss, 0x5A, &arg0);
         sp1C = temp_v0;
-        func_80102FDC(temp_v0, 0x3F4CCCCD);
+        func_80102FDC(temp_v0, 0.8f);
         if (_glcutDll_entrypoint_19(0x33) != 0) {
             _chappearfx_entrypoint_1(sp1C, 0x22, 2, 0x3F800000);
             return;
