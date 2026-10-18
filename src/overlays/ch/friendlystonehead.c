@@ -18,7 +18,26 @@ void func_80800160_chfriendlystonehead(void **arg0, s32 arg1) {
     func_80101870(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_808001A8_chfriendlystonehead.s")
+s32 func_808001A8_chfriendlystonehead(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void func_808006C4_chfriendlystonehead(Actor *, s32, s32);
+    extern s32 D_80800968_chfriendlystonehead;
+
+    switch (arg1) {
+    case 0x2E:
+        func_80102424(arg0, 3);
+        break;
+    case 0x2F:
+        func_808006C4_chfriendlystonehead(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_80800968_chfriendlystonehead, arg0->scale);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800238_chfriendlystonehead(Actor *arg0) {
     struct { u8 pad[0x28]; u32 : 18; u32 flag : 1; u32 : 13; } *flags;
