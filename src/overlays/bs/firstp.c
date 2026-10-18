@@ -2775,7 +2775,22 @@ void func_808072C8_bsfirstp(void *arg0) {
     func_800936E8(arg0, sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80807328_bsfirstp.s")
+void func_80807328_bsfirstp(struct player_state_s *arg0) {
+    s32 func_80804848_bsfirstp(u8 *, s32);
+    void func_80808DB0_bsfirstp(void *);
+    void func_80809D24_bsfirstp(void *);
+    void func_808099B4_bsfirstp(void *);
+
+    func_80807D48_bsfirstp((s32)arg0);
+    func_80804848_bsfirstp((u8 *)arg0, -1);
+    func_80801928_bsfirstp(arg0);
+    func_80801DC0_bsfirstp((u8 *)arg0);
+    func_80808DB0_bsfirstp(arg0);
+    func_80809D24_bsfirstp(arg0);
+    func_8080682C_bsfirstp(arg0);
+    func_808099B4_bsfirstp(arg0);
+    func_80800830_bsfirstp((s32)arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80807394_bsfirstp.s")
 
