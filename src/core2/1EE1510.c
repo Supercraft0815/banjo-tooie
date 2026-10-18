@@ -368,7 +368,59 @@ void func_801088A8(void *arg0, s32 arg1, s32 arg2, void *arg3) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108944.s")
+void func_80108944(Actor *arg0, Actor *arg1) {
+    void _subaddiefade_entrypoint_9(Actor *, s32 *);
+    void _subaddiefade_entrypoint_11(Actor *, s32 *);
+    void func_80108658(void *, s32, s32, void *);
+    struct Flags {
+        u8 pad0[0x74];
+        u32 pad74_7 : 25;
+        u32 flag74_6 : 1;
+        u32 pad74_0 : 6;
+        union {
+            struct {
+                u32 pad78_2 : 30;
+                u32 flag78_1 : 1;
+                u32 pad78_0 : 1;
+            } word;
+            struct {
+                u16 pad78;
+                u16 pad7A_8 : 8;
+                u16 flag7A_6 : 2;
+                u16 pad7A_2 : 4;
+                u16 flag7A_1 : 1;
+                u16 pad7A_0 : 1;
+            } half;
+        } flags78;
+        u8 pad7C[0x18];
+        u32 pad94_16 : 16;
+        u32 flag96_15 : 1;
+        u32 pad96_0 : 15;
+    };
+    s32 flags;
+    s32 sp30 = 0;
+    s32 sp24[3];
+
+    flags = 0;
+
+    switch (((struct Flags *)arg1)->flags78.half.flag7A_6) {
+        case 1: flags = 0x10000000; break;
+        case 2: flags = 0x20000000; break;
+        case 3: flags = 0x30000000; break;
+    }
+    if (((struct Flags *)arg1)->flag74_6) {
+        flags |= 0x2000;
+    }
+    if (((struct Flags *)arg1)->flags78.word.flag78_1) {
+        ((struct Flags *)arg0)->flags78.half.flag7A_1 = 1;
+        _subaddiefade_entrypoint_9(arg1, sp24);
+        _subaddiefade_entrypoint_11(arg0, sp24);
+    }
+    if (((struct Flags *)arg1)->flag96_15) {
+        sp30 = 0x80080000;
+    }
+    func_80108658(arg0, flags, sp30, NULL);
+}
 
 void func_80108A30(s32 arg0, void *arg1, f32 arg2, s32 arg3) {
     s32 _chbaddiesetup_entrypoint_6(void (*)(u32, s32, s32, s32, s32, s32), s32, s32, s32, s32, s32, s32);
