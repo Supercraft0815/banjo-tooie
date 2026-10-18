@@ -95,8 +95,8 @@ void func_80101D7C(Actor *arg0) {
 
 /* extern */
 
-void func_80101DAC(Actor *arg0, f32 arg1) {
-    s32 func_8008B4A8(struct anctrl_s *, f32);
+void func_80101DAC(Actor *arg0, s32 arg1) {
+    void func_8008B4A8(struct anctrl_s *, s32);
     struct anctrl_s *temp_v0;
 
     temp_v0 = func_80104248(arg0);
