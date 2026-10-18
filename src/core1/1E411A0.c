@@ -28,7 +28,50 @@ void func_80029670(u8 *arg0, ALVoice *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_8002976C.s")
+void func_8002976C(u8 *arg0, ALVoice *arg1, s32 arg2) {
+    void func_80020E40(ALLink *, ALLink *);
+    void func_80020E74(ALLink *);
+    void func_80026500(void *, void *, s32, s32);
+    void func_80026BE0(ALVoice *, s16, s32);
+    void func_8002C5A0(void *, s16);
+    ALEvent event;
+    u8 *sp2C;
+    ALLink *sp28;
+    ALLink *sp24;
+    ALLink *volatile sp20;
+    ALLink *sp1C;
+
+    sp2C = *(u8 **)((u8 *)arg1 + 0x10);
+    if (sp2C[0x38] == 0) {
+        sp28 = *(ALLink **)(arg0 + 0x50);
+        if (sp28 != NULL) {
+            do {
+                sp24 = sp28->next;
+                sp20 = sp28;
+                sp1C = sp24;
+                if ((*(s16 *)((u8 *)sp20 + 0xC) == 6) &&
+                    (*(ALVoice **)((u8 *)sp20 + 0x10) == arg1)) {
+                    if (sp1C != NULL) {
+                        *(s32 *)((u8 *)sp1C + 8) += *(s32 *)((u8 *)sp20 + 8);
+                    }
+                    func_80020E74(sp28);
+                    func_80020E40(sp28, (ALLink *)(arg0 + 0x48));
+                }
+                sp28 = sp24;
+            } while (sp28 != NULL);
+        }
+    }
+    sp2C[0x37] = 0;
+    sp2C[0x38] = 3;
+    sp2C[0x34] = 0;
+    *(s32 *)(sp2C + 0x28) = *(s32 *)(arg0 + 0x1C) + arg2;
+    func_8002C5A0(arg1, 0);
+    func_80026BE0(arg1, 0, arg2);
+    event.type = 5;
+    event.msg.note.voice = arg1;
+    arg2 += 0x7D00;
+    func_80026500(arg0 + 0x48, &event, arg2, 0);
+}
 
 /* extern */
 
