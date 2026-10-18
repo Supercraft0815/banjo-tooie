@@ -42,7 +42,7 @@ void func_80800508_chdiggerboss(Actor *arg0, u32 arg1) {
     s32 func_800EB854(void);
     void *func_80100094(Actor *, u32);
     void func_801017D0(Actor *);
-    void func_80101808();
+    s32 func_80101808(Actor *, void (*)(Actor *));
     s32 temp_v0;
 
     temp_v0 = func_800EB854();
@@ -92,7 +92,30 @@ void func_80800618_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
     (*(s8 *)((s8 *)((((u8 *)func_80100094(arg0, 0)) + arg1)) + (0xFC))) = (s8) arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80800650_chdiggerboss.s")
+void func_80800650_chdiggerboss(Actor *arg0, void *arg1) {
+    s32 func_800D674C(s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF410(s32);
+    void func_800DF830(s32);
+    s32 func_800EB854(void);
+    void func_801017D0(Actor *);
+    s32 func_80101808(Actor *, void (*)(Actor *));
+    void func_80804EFC_chdiggerboss(Actor *, void *);
+
+    switch (func_800EB854()) {
+        case 1:
+            func_800DF830(0);
+            func_800DF410(0xC0);
+            func_800DE498(arg1, arg0->position, arg0->rotation, arg0->scale, NULL, func_800D674C(0x959));
+            break;
+        case 0:
+            func_80101808(arg0, func_801017D0);
+            break;
+        case 2:
+            func_80804EFC_chdiggerboss(arg0, arg1);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808006F8_chdiggerboss.s")
 
@@ -752,7 +775,7 @@ void func_80804A7C_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80804EFC_chdiggerboss.s")
 
-void func_80804FE4_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
+void func_80804FE4_chdiggerboss(Actor *arg0, s32 arg1, void *arg2) {
     struct DiggerPart { s16 pad; s16 appendage; u8 gap[4]; f32 position[3]; u8 camera; u8 alpha; u8 visible; u8 tail[5]; };
     struct DiggerData { u8 prefix[0x34]; struct DiggerPart parts[0]; };
     void *func_80100094(Actor *, u32);
@@ -764,7 +787,7 @@ void func_80804FE4_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
     void func_800DF744(s32, s32);
     void func_800DF410(s32);
     s32 func_800D674C(s32);
-    void func_800DE498(s32, u8 *, f32 *, s32, s32, s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
     struct DiggerData *data;
     f32 screen[2];
     s32 alpha;
@@ -821,7 +844,7 @@ void func_80804FE4_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
         func_800DF830(0);
         func_800DF744(1, data->parts[arg1].appendage);
         func_800DF410(data->parts[arg1].alpha);
-        func_800DE498(arg2, (u8 *) data->parts[arg1].position, rotation, *(s32 *)(arg0 + 0x38), 0, func_800D674C(0x954));
+        func_800DE498(arg2, data->parts[arg1].position, rotation, arg0->scale, 0, func_800D674C(0x954));
         data->parts[arg1].visible = 1;
     } else {
         data->parts[arg1].visible = 0;
