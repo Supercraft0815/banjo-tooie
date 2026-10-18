@@ -67,7 +67,38 @@ void func_808002C4_chbilldrillboulder(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillboulder/func_808003F0_chbilldrillboulder.s")
+s32 func_808003F0_chbilldrillboulder(Actor *arg0, s32 arg1, volatile s32 arg2) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    s32 _subaddieDll_entrypoint_5(Actor *, s32);
+    void func_800FFAB0(Actor *);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(Actor *, u32);
+    void func_8010A570(Actor *);
+    void func_80800024_chbilldrillboulder(Actor *);
+    s32 temp;
+
+    switch (arg1) {
+    case 0x3F:
+        temp = arg2;
+        if (arg0->unk70_10 != 2 && _subaddieDll_entrypoint_5(arg0, temp) != 0) {
+            arg0->unk64_20 = 1;
+            func_80103110(arg0, 1);
+            func_80101FDC(arg0, 2);
+        }
+        break;
+    case 0x40:
+        func_8010A570(arg0);
+        _chexploder_entrypoint_3(arg0, arg0->position, 2);
+        break;
+    case 0x90:
+        func_80800024_chbilldrillboulder(arg0);
+        func_800FFAB0(arg0);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 s32 func_808004D4_chbilldrillboulder(void *arg0) {
     s32 temp_v1;
