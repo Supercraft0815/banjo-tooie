@@ -1,5 +1,7 @@
 #include "ch/boggy/fatboy.h"
 
+void *func_80100094(Actor *, u32);
+
 OSThread *chboggyfatboy_entrypoint_0(void)
 {
     extern u8 D_80801120_chboggyfatboy[];
@@ -142,7 +144,33 @@ void func_80800B38_chboggyfatboy(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_80800C5C_chboggyfatboy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_80800D84_chboggyfatboy.s")
+void func_80800D84_chboggyfatboy(Actor *arg0) {
+    s32 func_80101E14(Actor *, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    extern u32 D_80801250_chboggyfatboy[];
+    extern u32 D_8080125C_chboggyfatboy[];
+    extern s32 D_80801264_chboggyfatboy[];
+    extern u32 D_80801290_chboggyfatboy[];
+    struct { u8 pad[8]; u8 flag : 1; } *sp44;
+    f32 sp38[3];
+    f32 sp2C[3];
+
+    sp44 = func_80100094(arg0, 0);
+    if (func_80101E14(arg0, 0.8f)) {
+        sp44->flag = 1;
+    }
+    if (_subaddieaudioquick_entrypoint_4(arg0, arg0->position, D_80801250_chboggyfatboy, D_80801290_chboggyfatboy) ||
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_8080125C_chboggyfatboy, 0.64f)) {
+        func_800EE7F8(sp38, arg0->position);
+        sp38[1] += 120.0f;
+        func_800EE7F8(sp2C, sp38);
+        sp2C[1] -= 30.0f;
+        func_800BBCB8(sp38, sp2C, 1.0f, 8, D_80801264_chboggyfatboy);
+    }
+}
 
 void func_80800E80_chboggyfatboy(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
