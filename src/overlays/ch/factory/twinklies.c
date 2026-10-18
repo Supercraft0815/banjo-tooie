@@ -261,8 +261,8 @@ void func_80801D58_chfactorytwinklies(u8 *arg0) {
 
 /* extern */
 
-s32 func_80801D94_chfactorytwinklies(s32 arg0, s32 arg1, u8 *arg2) {
-    s32 func_80801DD8_chfactorytwinklies(s32, u32);
+s32 func_80801D94_chfactorytwinklies(Actor *arg0, s32 arg1, u8 *arg2) {
+    void func_80801DD8_chfactorytwinklies(Actor *, s32);
     u8 **ptr = &arg2;
     switch (arg1) {
     case 0x3E:
@@ -274,7 +274,44 @@ s32 func_80801D94_chfactorytwinklies(s32 arg0, s32 arg1, u8 *arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80801DD8_chfactorytwinklies.s")
+void func_80801DD8_chfactorytwinklies(Actor *arg0, s32 arg1) {
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80103DFC(Actor *, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern s32 D_8080243C_chfactorytwinklies[];
+    extern s32 D_80802468_chfactorytwinklies[];
+    extern s16 D_80802478_chfactorytwinklies[];
+    struct TwinklieFlags {
+        u8 pad[0x70];
+        u32 reserved : 31;
+        u32 flag : 1;
+    };
+    struct CounterData {
+        s32 pad[16];
+        s32 count[1][3];
+    };
+    Actor *parent;
+    struct CounterData *data;
+    s32 emitter;
+    f32 position[3];
+
+    parent = func_80106790(arg0->unk3C);
+    data = func_80100094(parent, 0);
+    emitter = func_800B53A4(12);
+    func_80103DFC(arg0, position);
+    func_800BABB8(emitter, position, position, 1.0f, D_8080243C_chfactorytwinklies);
+    func_800BA3FC(emitter, D_80802478_chfactorytwinklies[arg0->actorData[5]]);
+    func_800BA22C(emitter, 12);
+    data->count[arg1][arg0->actorData[5]] += 1;
+    func_8010D930(1, ((struct TwinklieFlags *)arg0)->flag, arg0->position, D_80802468_chfactorytwinklies);
+    func_800FFAB0(arg0);
+}
 
 f32 func_80801ED0_chfactorytwinklies(void *arg0) {
     f32 func_800DC178(f32, f32);
