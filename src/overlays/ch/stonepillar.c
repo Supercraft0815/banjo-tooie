@@ -78,7 +78,40 @@ s32 func_80800474_chstonepillar(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800520_chstonepillar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_808005B4_chstonepillar.s")
+void func_808005B4_chstonepillar(Actor *arg0, s32 arg1, f32 *arg2) {
+    Actor *_subaddiefind_entrypoint_2(s32, s32 *);
+    Actor *_subaddiefind_entrypoint_3(s32, s32 *);
+    void *func_80100094(Actor *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_80103EF4(Actor *);
+    struct PillarData {
+        u8 unk0[0x18];
+        f32 position[3];
+        u8 unk24[8];
+        s16 index;
+    };
+    Actor *actor;
+    struct PillarData *data;
+    s32 iterator;
+    f32 height;
+
+    height = func_80103EF4(arg0);
+    actor = _subaddiefind_entrypoint_2(0x12E, &iterator);
+    if (actor != NULL) {
+        do {
+            data = func_80100094(actor, 0);
+            if (arg1 == data->index) {
+                func_800EE7F8(arg2, data->position);
+                arg2[1] += height - (f32)arg1 * 200.0f;
+                return;
+            }
+            actor = _subaddiefind_entrypoint_3(0x12E, &iterator);
+        } while (actor != NULL);
+    }
+    data = func_80100094(arg0, 0);
+    func_800EE7F8(arg2, data->position);
+    arg2[1] += height - (f32)arg1 * 200.0f;
+}
 
 void func_808006AC_chstonepillar(Unk80132ED0 **arg0) {
     void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, s16, u32);
