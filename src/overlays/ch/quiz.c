@@ -118,7 +118,39 @@ void func_80800298_chquiz(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808005C0_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80800728_chquiz.s")
+void func_80800728_chquiz(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 func_80800E44_chquiz(u8 *);
+    s32 func_80800C00_chquiz(Actor *);
+    s32 _suquiz_entrypoint_15(s32);
+    s32 func_800DC128(s32, s32);
+    void _gcnewoption_entrypoint_41();
+    s32 _gcnewoption_entrypoint_26(s32, s32);
+    typedef struct { s32 values[3]; } QuizChoices;
+    extern QuizChoices D_808070B8_chquiz;
+    s32 option;
+    s32 correct;
+    QuizChoices choices;
+    s32 selected;
+
+    option = ((Actor *)func_80100094(arg0, 0U))->pad94;
+    correct = func_80800E44_chquiz(func_80100094(arg0, 0U));
+    choices = D_808070B8_chquiz;
+    if (_suquiz_entrypoint_15(arg1) == 0) {
+        selected = func_800DC128(0, 3);
+        choices.values[correct] = -1;
+        if (func_80800C00_chquiz(arg0) != -1) {
+            choices.values[func_80800C00_chquiz(arg0)] = -1;
+        }
+        while (choices.values[selected] != 0) {
+            selected = func_800DC128(0, 3);
+        }
+        _gcnewoption_entrypoint_41(option, selected);
+    } else {
+        _gcnewoption_entrypoint_41(option, correct);
+    }
+    _gcnewoption_entrypoint_26(option, 1);
+}
 
 /* extern */
 
