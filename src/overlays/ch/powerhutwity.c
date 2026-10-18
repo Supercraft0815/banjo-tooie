@@ -90,7 +90,35 @@ void func_80800890_chpowerhutwitchy(s32 *arg0) {
     _glid_entrypoint_0(sp24, 5, callback, *arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/chpowerhutwitchy_entrypoint_5.s")
+void chpowerhutwitchy_entrypoint_5(s32 arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4) {
+    s32 func_800F2FD0(s32, s32, f32);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 temp_f20;
+    temp_f20 = *(f32 *)&func_80106790(arg4)->actorData[4];
+    switch (arg0) {
+    case 4:
+        if (arg3 > 0) {
+            do {
+                func_800F2FD0(arg2 + 0xC, arg1 + 0xC, temp_f20);
+                arg3 -= 1;
+                arg1 += 0x10;
+                arg2 += 0x10;
+            } while (arg3 > 0);
+            return;
+        }
+        return;
+    case 5:
+        if (arg3 > 0) {
+            do {
+                func_800F2FD0(arg2 + 0xC, arg1 + 0xC, temp_f20);
+                arg3 -= 1;
+                arg1 += 0x10;
+                arg2 += 0x10;
+            } while (arg3 > 0);
+        }
+        break;
+    }
+}
 
 /* extern */
 
