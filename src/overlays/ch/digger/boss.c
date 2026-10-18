@@ -602,7 +602,47 @@ u8 func_808042D8_chdiggerboss(s32 arg0) {
     return (*(u8 *)((s8 *)(func_80100094(arg0, 0)) + (8)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808042FC_chdiggerboss.s")
+typedef struct {
+    f32 unk0;
+    f32 unk4[3];
+    u8 unk10;
+    u8 unk11;
+    u8 pad12[2];
+} Unkfunc_800E0960_2;
+
+typedef struct {
+    Unkfunc_800E0960_2 *unk0;
+    s16 unk4;
+    s16 unk6;
+    u8 unk8;
+    u8 unk9;
+    u8 unkA;
+    u8 padB;
+    f32 unkC;
+    s32 unk10[4];
+} Unkfunc_800E0960_1;
+
+void func_808042FC_chdiggerboss(Actor *arg0, Unkfunc_800E0960_1 *arg1, u8 *arg2) {
+    f32 _dbskeleton_entrypoint_1(void *);
+    u8 *func_800B27E0(u8 *);
+    void func_800E0C20(Unkfunc_800E0960_1 *, u8, f32, f32, f32, f32);
+    s32 func_800E8C58(u8);
+    void *func_80100094(Actor *, u32);
+    u8 *temp_v0;
+    f32 sp30;
+    f32 sp2C;
+    f32 rotation[3];
+
+    temp_v0 = func_80100094(arg0, 0);
+    if (temp_v0[8] != 0) {
+        sp30 = (f32)func_800E8C58(temp_v0[0xA]);
+        sp2C = 1.0f / _dbskeleton_entrypoint_1(func_800B27E0(arg2));
+        func_800E0C20(arg1, 3, sp2C, 0.0f, sp30, 0.0f);
+        rotation[1] = -sp30;
+        func_800E0C20(arg1, 0xA, sp2C, 0.0f, rotation[1], 0.0f);
+        func_800E0C20(arg1, 0x18, sp2C, 0.0f, rotation[1], 0.0f);
+    }
+}
 
 void func_808043D8_chdiggerboss(Actor *arg0, f32 arg1, f32 *arg2) {
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
