@@ -57,7 +57,37 @@ void func_808002DC_cheggclockwork(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/clockwork/func_808003B4_cheggclockwork.s")
+s32 func_808003B4_cheggclockwork(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    struct {
+        u8 pad[0x38];
+        u32 unk38_0 : 12;
+        u32 flag : 1;
+        u32 unk38_13 : 19;
+    } *data;
+
+    data = func_80100094(arg0, 0U);
+    switch (arg1) {
+        case 5:
+            func_808002DC_cheggclockwork(arg0, 2);
+            break;
+        case 0x3D:
+            if (arg2 == 1 && !data->flag) {
+                arg2 = 2;
+            }
+            func_808002DC_cheggclockwork(arg0, arg2);
+            break;
+        case 0x2C:
+            func_808002DC_cheggclockwork(arg0, 3);
+            break;
+        case 0x9F:
+            func_808002DC_cheggclockwork(arg0, 3);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *cheggclockwork_entrypoint_0(void)
 {
