@@ -42,7 +42,35 @@ void func_80800024_chphlegm(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_808000C4_chphlegm.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_8080026C_chphlegm.s")
+s32 func_8080026C_chphlegm(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
+    void func_800FFAB0(Actor *);
+    void func_80102FDC(Actor *, f32);
+    s32 func_80103140(Actor *, u32, u16);
+    Actor *func_801084B0(s32, Actor **);
+    void func_8010A570(Actor *);
+    void func_80800748_chphlegm(Actor *, f32, s32);
+    switch (arg1) {
+        case 0x3D:
+            func_80102FDC(func_801084B0(0x399, &arg0), arg0->scale);
+            break;
+        case 0x40: {
+            Unk80132ED0 **event = &arg2;
+            Unk80132ED0 *sp18 = *event;
+            func_8010A570(arg0);
+            func_80800748_chphlegm(arg0, 0.0f, 0x95D);
+            if (sp18->unk24 >> 22) {
+                func_800FFAB0(arg0);
+            }
+            break;
+        }
+        case 0x95:
+            func_80103140(arg0, (u16)(arg0->unk64_20 ? 0x6DC : 0x876), 0);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
