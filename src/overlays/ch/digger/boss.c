@@ -119,7 +119,49 @@ void func_80800650_chdiggerboss(Actor *arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808006F8_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808007E0_chdiggerboss.s")
+typedef struct {
+    f32 unk0;
+    f32 unk4[3];
+    u8 unk10;
+    u8 unk11;
+    u8 pad12[2];
+} Unkfunc_800E0960_2;
+
+typedef struct {
+    Unkfunc_800E0960_2 *unk0;
+    s16 unk4;
+    s16 unk6;
+    u8 unk8;
+    u8 unk9;
+    u8 unkA;
+    u8 padB;
+    f32 unkC;
+    s32 unk10[4];
+} Unkfunc_800E0960_1;
+
+void func_808007E0_chdiggerboss(Actor *arg0, u8 *arg1) {
+    void func_800E0AFC(void *, u8, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010262C(Unk80132ED0 *, u32);
+    void func_800E0C20(Unkfunc_800E0960_1 *, u8, f32, f32, f32, f32);
+    void func_808042FC_chdiggerboss(Actor *, Unkfunc_800E0960_1 *, u8 *);
+    void func_80804A7C_chdiggerboss(s32, s32, s32);
+    void func_80809078_chdiggerboss(Actor *, void *, s32);
+    u8 *sp2C;
+    Unkfunc_800E0960_1 *temp_v0;
+
+    sp2C = func_80100094(arg0, 0);
+    temp_v0 = func_8010262C(arg0->unk0, 0xC);
+    func_808042FC_chdiggerboss(arg0, temp_v0, arg1);
+    func_80804A7C_chdiggerboss((s32)arg0, (s32)temp_v0, (s32)arg1);
+    func_80809078_chdiggerboss(arg0, temp_v0, (s32)arg1);
+    if (sp2C[5] != 0) {
+        func_800E0AFC(temp_v0, 0x52, 1.0f, -129.0f, 0.0f, 0.0f);
+    }
+    if (sp2C[6] != 0) {
+        func_800E0C20(temp_v0, 0x50, 1.0f, 0.0f, 0.5f, 0.0f);
+    }
+}
 
 void func_808008C0_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
@@ -624,26 +666,6 @@ u8 func_808042D8_chdiggerboss(s32 arg0) {
     void *func_80100094(Actor *, u32);
     return (*(u8 *)((s8 *)(func_80100094(arg0, 0)) + (8)));
 }
-
-typedef struct {
-    f32 unk0;
-    f32 unk4[3];
-    u8 unk10;
-    u8 unk11;
-    u8 pad12[2];
-} Unkfunc_800E0960_2;
-
-typedef struct {
-    Unkfunc_800E0960_2 *unk0;
-    s16 unk4;
-    s16 unk6;
-    u8 unk8;
-    u8 unk9;
-    u8 unkA;
-    u8 padB;
-    f32 unkC;
-    s32 unk10[4];
-} Unkfunc_800E0960_1;
 
 void func_808042FC_chdiggerboss(Actor *arg0, Unkfunc_800E0960_1 *arg1, u8 *arg2) {
     f32 _dbskeleton_entrypoint_1(void *);
