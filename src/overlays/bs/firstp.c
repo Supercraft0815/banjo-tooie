@@ -3768,7 +3768,43 @@ void func_80809384_bsfirstp(void *arg0)
 {
     func_80807C8C_bsfirstp(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808093A4_bsfirstp.s")
+void func_808093A4_bsfirstp(struct player_state_s *arg0) {
+    s32 bs_setState(void *, s32);
+    void func_8080633C_bsfirstp(Actor *, f32);
+    void func_80808E78_bsfirstp(s32);
+    s32 func_808094A4_bsfirstp(s32);
+    s32 func_80809540_bsfirstp(s32, s32);
+    void func_80809740_bsfirstp(struct player_state_s *);
+    u8 *sp24;
+    s32 sp20;
+
+    sp24 = *(u8 **)((s8 *)arg0 + 0x188);
+    func_80807D48_bsfirstp((s32)arg0);
+    func_80808E78_bsfirstp((s32)arg0);
+    func_8080633C_bsfirstp((Actor *)arg0, 1.0f);
+    sp20 = func_808094A4_bsfirstp((s32)arg0);
+    if (sp20 == 0) {
+        switch (func_80809540_bsfirstp((s32)arg0, sp24[0x218])) {
+            case 0:
+                sp20 = 0xCA;
+                break;
+            case 1:
+                if (sp24[0x218] != 1) {
+                    func_80809684_bsfirstp(arg0, 1);
+                }
+                break;
+            case 2:
+                if (sp24[0x218] != 2) {
+                    func_80809684_bsfirstp(arg0, 2);
+                }
+                break;
+        }
+        func_80809740_bsfirstp(arg0);
+    }
+    if (sp20 != 0) {
+        bs_setState(arg0, sp20);
+    }
+}
 
 s32 bsfirstp_entrypoint_36(s32 arg0) {
     extern s32 D_8080B5D0_bsfirstp[];
