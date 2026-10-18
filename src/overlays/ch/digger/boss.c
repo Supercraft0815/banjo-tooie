@@ -942,7 +942,38 @@ s16 func_80805798_chdiggerboss(s32 arg0, s32 arg1) {
     return (*(s16 *)((s8 *)((((u8 *)func_80100094(arg0, 0)) + (arg1 * 0x1C))) + (0x34)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808057D0_chdiggerboss.s")
+void func_808057D0_chdiggerboss(Actor *arg0) {
+    s32 func_8001210C(s32);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E84(s32, u32 *);
+    void func_800C8FE0(s32, s32);
+    void *func_80100094(Actor *, u32);
+    extern u32 D_8080A06C_chdiggerboss[][3];
+    s32 temp_s1;
+    s32 var_s0;
+    s32 var_s3;
+    struct DiggerPart { s32 handle; s16 active; u8 pad[6]; f32 pos[3]; u8 tail[4]; };
+    struct DiggerParts { u8 prefix[0x30]; struct DiggerPart part[4]; } *var_s2;
+
+    var_s2 = func_80100094(arg0, 0);
+    for (var_s3 = 0; var_s3 < 4; var_s3++) {
+        if (var_s2->part[var_s3].active == 1) {
+            var_s0 = 1;
+        } else {
+            var_s0 = 0;
+        }
+        temp_s1 = var_s2->part[var_s3].handle;
+        if (temp_s1 == 0) {
+            continue;
+        }
+        func_800C8FE0(temp_s1, var_s0);
+        if (var_s0 == 0) {
+            continue;
+        }
+        func_800C8CB8(temp_s1, var_s2->part[var_s3].pos);
+        func_800C8E84(temp_s1, D_8080A06C_chdiggerboss[func_8001210C(1)]);
+    }
+}
 
 void func_808058B0_chdiggerboss(Actor *arg0, void *arg1) {
     struct DiggerHit { u8 prefix[0x1A]; u16 id : 11; u16 flags : 5; };
