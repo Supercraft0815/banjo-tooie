@@ -21,7 +21,29 @@ void func_800BFAD0(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, s32 arg4) {
     func_800DE448(arg1, arg2, arg3, NULL, model);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E993C0/func_800BFB58.s")
+void func_800BFB58(s32 arg0, void *arg1, f32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8) {
+    s32 func_800AF5A8(s16 *);
+    s32 func_800BFC94(s32);
+    s32 func_800D2F20(void);
+    void func_800E249C(s32);
+    void func_800E24C0(s32);
+    void func_800E24F8(s32, s32, s32);
+    void func_800E2588(u32);
+    void func_800E2AA4(s32, s32, s32, s32, void *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 scale[3];
+    s32 model;
+    u32 mode;
+
+    model = func_800BFC94(arg3);
+    func_800EFA4C(scale, arg2, arg2, arg2);
+    func_800E249C(func_800D2F20());
+    func_800E24C0(1);
+    func_800E24F8(0xFF - arg4 * 0x10, 0xFF - arg5 * 0x10, 0xFF - arg6 * 0x10);
+    mode = (func_800AF5A8(model) & 0xB00) ? 1 : 3;
+    func_800E2588(mode);
+    func_800E2AA4(arg0, model, arg8, arg7, arg1, scale);
+}
 
 s32 func_800BFC34(s32 arg0)
 {
@@ -38,9 +60,9 @@ void func_800BFC74()
     func_800D62E4();
 }
 
-void func_800BFC94()
+s32 func_800BFC94(s32 arg0)
 {
-    func_800D674C();
+    return func_800D674C(arg0);
 }
 
 void func_800BFCB4(void) {
