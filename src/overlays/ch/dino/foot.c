@@ -12,7 +12,7 @@ OSThread *chdinofoot_entrypoint_0(void)
 void func_8080000C_chdinofoot(void *arg0) {
     s32 _glcutDll_entrypoint_20();
     s32 _subaddiefade_entrypoint_12(void *, s32, s32, s32);
-    s32 func_80102424(void *, s32);
+    void func_80102424(Actor *, s32);
     s32 func_80102FDC(void *, f32);
     if (_glcutDll_entrypoint_20() != 0) {
         func_80102424(arg0, 5);
@@ -94,7 +94,37 @@ s32 func_80800408_chdinofoot(s32 arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/foot/func_80800480_chdinofoot.s")
+s32 func_80800480_chdinofoot(Actor *arg0) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6438(u32);
+    s32 func_800F6478(s32);
+    u32 func_800FDC28(u32);
+    void func_80102424(Actor *, s32);
+    u32 player;
+    f32 position[3];
+
+    player = func_800F54E4();
+    if ((func_800F6438(player) == 0) || (func_800F6478(player) == 0)) {
+        return 1;
+    }
+    if (func_800DA298(0xC5) == 0) {
+        func_800F5A00(player, position);
+        if (position[2] < 4500.0f) {
+            func_800DA544(0xC5);
+            arg0->unk64_20 = 1;
+            func_80102424(arg0, 2);
+            arg0->unk58 = 21.5f;
+            _capod_entrypoint_13(arg0->unk0, NULL, 1, 0x10);
+            func_800FDC28(1);
+        }
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
