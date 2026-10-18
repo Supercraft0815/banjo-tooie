@@ -144,7 +144,20 @@ int chchuffy_entrypoint_1(Unk80132ED0 *marker, f32 *position, f32 *rotation) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80800398_chchuffy.s")
+void func_80800398_chchuffy(Actor *actor) {
+    f32 func_800F1828(f32 *, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_808013E8_chchuffy(Actor *, f32 *, f32 *);
+    struct ChuffyData *data;
+    f32 rotation[3];
+
+    data = func_80100094(actor, 0);
+    rotation[0] = 90.0f - func_800F1828(data->position, data->rotation);
+    rotation[1] = func_800F1DF4(data->position, data->rotation);
+    rotation[2] = 0.0f;
+    func_808013E8_chchuffy(actor, data->position, rotation);
+}
 
 void func_80800410_chchuffy(Actor *actor, s32 index) {
     struct ParticleData {
