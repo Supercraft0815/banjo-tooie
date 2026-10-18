@@ -116,7 +116,44 @@ void func_80800598_chclinker(Actor *arg0) {
     (*(s32 *)((s8 *)(func_80100094(arg0, 0U)) + (0x18))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_808005BC_chclinker.s")
+void func_808005BC_chclinker(Unk80132ED0 *arg0, Actor *arg1) {
+    Actor *func_80106790(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010C710(Actor *);
+    s32 pad;
+    struct {
+        s32 unk0;
+        s32 disabled;
+        Unk80132ED0 *markers[2];
+        f32 distances[2];
+        s32 count;
+    } *data;
+    s32 distance;
+    s32 index;
+    s32 i;
+
+    data = func_80100094(func_80106790(arg0), 0);
+    distance = func_8010C710(arg1);
+    index = 0;
+    for (i = 0; i < data->count; i++) {
+        if (data->distances[i] < (f32)distance) {
+            index = i + 1;
+        }
+    }
+    switch (index) {
+        case 0:
+            data->markers[1] = data->markers[0];
+            data->distances[1] = data->distances[0];
+        case 1:
+            data->markers[index] = arg1->unk0;
+            data->distances[index] = (f32)distance;
+            data->count++;
+            if (data->count >= 3) {
+                data->count = 2;
+            }
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_808006A4_chclinker.s")
 
