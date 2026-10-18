@@ -195,7 +195,27 @@ loop_1:
     goto loop_1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80802480_chklungo.s")
+s32 func_80802480_chklungo(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    extern s16 D_808038A0_chklungo;
+    struct KlungoLookupData {
+        u8 pad0[8];
+        s16 unk8;
+    };
+    s32 i;
+    s32 value;
+    s32 *table;
+
+    table = (s32 *)((u8 *)&D_808038A0_chklungo +
+        ((struct KlungoLookupData *)func_80100094(arg0, 0))->unk8 * 0x84);
+    for (i = 0; i != 10; i++) {
+        value = arg1 == table[i * 2 + 2];
+        if (value) {
+            return i;
+        }
+    }
+    return -1;
+}
 
 void func_80802558_chklungo(Actor *arg0) {
     void *func_80100094(Actor *, u32);
