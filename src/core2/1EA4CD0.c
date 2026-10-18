@@ -1,6 +1,6 @@
 #include "common.h"
 
-u8 func_800CB3E0(s32 arg0) {
+s32 func_800CB3E0(s32 arg0) {
     extern u8 D_8012AB71[];
     return D_8012AB71[(arg0 * 3) * 16];
 }

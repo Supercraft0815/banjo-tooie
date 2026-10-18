@@ -11,18 +11,40 @@ OSThread *chdinofamilysick_entrypoint_0(void)
 
 /* extern */
 
-f32 func_808001FC_chdinofamilysick(s32 arg0, s32 arg1) {
-    s32 _gccubesearch_entrypoint_9(s32, s32 *, s32);
-    s32 _gspropctrl_entrypoint_11(s32, s32);
-    s32 _gspropctrl_entrypoint_12(s32);
-    s32 sp1C;
+f32 func_808001FC_chdinofamilysick(s32 arg0, f32 arg1[3]) {
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    s32 _gspropctrl_entrypoint_12(Prop *);
+    Prop *sp1C;
 
     _gccubesearch_entrypoint_9(0x52D, &sp1C, 1);
     _gspropctrl_entrypoint_11(sp1C, arg1);
     return (f32) _gspropctrl_entrypoint_12(sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/func_80800244_chdinofamilysick.s")
+void func_80800244_chdinofamilysick(Actor *arg0, s32 arg1) {
+    s32 func_800CB3E0(s32);
+    void _subaddietaxi_entrypoint_10(Actor *, s32, s32);
+    void _subaddietaxi_entrypoint_0(Actor *, s32, f32 *, s32);
+    f32 sp24[3];
+
+    switch (func_800CB3E0(arg1)) {
+        case 1:
+            func_80102424(arg0, 1);
+            break;
+        case 3:
+            _subaddietaxi_entrypoint_10(arg0, arg1, 4);
+            break;
+        case 4:
+            arg0->rotation[1] = func_808001FC_chdinofamilysick(arg1, sp24);
+            func_80102424(arg0, 3);
+            _subaddietaxi_entrypoint_0(arg0, arg1, sp24, -1);
+            break;
+        case 6:
+            func_80102424(arg0, 5);
+            break;
+    }
+}
 
 void func_8080030C_chdinofamilysick(volatile unsigned int arg0, void *arg1, s32 arg2, s32 arg3)
 {
@@ -33,7 +55,7 @@ void func_8080030C_chdinofamilysick(volatile unsigned int arg0, void *arg1, s32 
 
 /* extern */
 
-s32 func_80800368_chdinofamilysick(s32 arg0, s32 arg1, s32 arg2) {
+s32 func_80800368_chdinofamilysick(s32 arg0, s32 arg1, f32 arg2[3]) {
     s32 func_800EA05C();
     if (func_800EA05C() == 0x121) {
         func_808001FC_chdinofamilysick(arg0, arg2);
