@@ -11,7 +11,7 @@ OSThread *chcheato_entrypoint_0(void)
 
 void func_8080000C_chcheato(Actor *arg0) {
     void _subaddieitem_entrypoint_0(s32, u32, s32, s32);
-  s32 func_80100094(void *, s32);
+    void *func_80100094(Actor *, u32);
     u32 func_8010A828(Actor*, u32);
     s32 _subaddieitem_entrypoint_1(s32, s32);
     _subaddieitem_entrypoint_0(func_80100094(arg0, 1), 0x4E3U, -1, 3);
@@ -27,7 +27,7 @@ void func_8080035C_chcheato(void *arg0, s32 arg1)
 {
   s32 _gcnewoption_entrypoint_1(s32, s32);
   s32 func_800EB854();
-  s32 func_80100094(void *, s32);
+    void *func_80100094(Actor *, u32);
   s32 func_80101870(void *, s32);
   if (func_800EB854() == 3)
   {
@@ -213,7 +213,32 @@ void func_80800AB4_chcheato(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800B00_chcheato.s")
+void func_80800B00_chcheato(Actor *arg0) {
+    s32 _gcnewoption_entrypoint_10(s32, s32);
+    s32 _gcnewoption_entrypoint_11(s32);
+    void _gcnewoption_entrypoint_4(Actor *, u32, u32 *, u32, s32);
+    s32 _gcnewoption_entrypoint_8(s32, s32);
+    s32 _gcnewoption_entrypoint_9(s32, s32);
+    void func_80090708(s32);
+    s32 func_800F1418(s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80800C0C_chcheato(void);
+    extern u32 _gcnewoption_entrypoint_16;
+    extern s32 _gcnewoption_entrypoint_35;
+    s32 optionCounts[3];
+    void *temp_s0;
+
+    optionCounts[0] = func_80800C0C_chcheato();
+    _gcnewoption_entrypoint_4(arg0, 0, &_gcnewoption_entrypoint_16, &_gcnewoption_entrypoint_35, 0x1849);
+    temp_s0 = func_80100094(arg0, 0);
+    _gcnewoption_entrypoint_8(temp_s0, func_800F1418(5, optionCounts[0]));
+    _gcnewoption_entrypoint_9(temp_s0, optionCounts[0]);
+    _gcnewoption_entrypoint_10(temp_s0, 1);
+    func_8080098C_chcheato(arg0, temp_s0);
+    _gcnewoption_entrypoint_11(temp_s0);
+    func_80102424(arg0, 5);
+    func_80090708(2);
+}
 
 /* extern */
 
