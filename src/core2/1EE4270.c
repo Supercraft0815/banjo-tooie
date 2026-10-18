@@ -409,7 +409,25 @@ s32 func_8010BAEC(Actor *volatile arg0, volatile s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010BB5C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010BCC8.s")
+s32 func_8010BCC8(Actor *arg0, s32 arg1, Actor *arg2) {
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_8010A40C(void *);
+    s32 func_8010BB5C(Actor *, s32, f32 *, f32, f32, f32);
+    f32 position[3];
+    f32 height;
+    f32 scale;
+
+    if (((u16 *)&arg2->pad60)[1] == 0) {
+        return 0;
+    }
+    func_800EE7F8(position, arg2->position);
+    position[1] += arg2->scale * (f32)((s16 *)&arg0->pad88)[0];
+    height = (f32)(((s16 *)&arg0->pad88)[1] - ((s16 *)&arg0->pad88)[0]) * arg2->scale;
+    scale = func_8010A40C(arg0);
+    scale *= (f32)((u16 *)&arg2->pad60)[1] * arg2->scale;
+    return func_8010BB5C(arg0, arg1, position, height, -30.0f,
+                       scale);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010BDB0.s")
 
