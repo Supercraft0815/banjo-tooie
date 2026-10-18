@@ -663,7 +663,44 @@ void func_808036E4_chdragonbrothers(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808038AC_chdragonbrothers.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80803DC4_chdragonbrothers.s")
+s32 func_80803DC4_chdragonbrothers(Actor *arg0, s32 arg1, void *arg2) {
+    extern Vec3f D_80805740_chdragonbrothers;
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    Actor *func_801084B0(s32, Actor **);
+    s32 _sueggmisc_entrypoint_0();
+    s32 func_8010114C(s32, s32, s32);
+    void func_808037B0_chdragonbrothers(Actor *, u32);
+    Actor *actor;
+    f32 sp20[3];
+    Unk80132ED0 *sp1C;
+    switch (arg1) {
+        case 0x3D: {
+            *(Vec3f *)sp20 = D_80805740_chdragonbrothers;
+            func_800EF934(sp20, sp20, arg0->rotation[1]);
+            actor = func_801084B0(0x37A, &arg0);
+            actor->rotation[0] = 153.5f;
+            actor->unk50 = 63.5f;
+            actor->unk79_4 = arg0->unk79_4;
+            actor->unk74_7 = arg0->unk74_7;
+            func_800EE780(actor->position, arg0->position, sp20);
+            return 1;
+        }
+        case 0x3E: {
+            sp1C = (Unk80132ED0 *)&arg2;
+            sp1C = *(void **)sp1C;
+            if (_sueggmisc_entrypoint_0(sp1C)) {
+                func_8010114C((s32)sp1C, 0x2C, 0);
+                func_808037B0_chdragonbrothers(arg0, sp1C->unk24 >> 22);
+                return 1;
+            }
+            break;
+        }
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
