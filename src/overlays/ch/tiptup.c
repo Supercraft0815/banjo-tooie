@@ -352,7 +352,44 @@ void func_80800E9C_chtiptup(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800FE8_chtiptup.s")
+void func_80800FE8_chtiptup(Actor *arg0) {
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    s32 _chbadshad_entrypoint_1(Actor *, f32 *, f32);
+    s32 _plsu_entrypoint_3(Unk80132ED0 *);
+    void func_800F7BC8(s32, s32, Unk80132ED0 *);
+    s32 func_80101DDC(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_800DA544(GameFlag);
+    u32 func_800F54E4(void);
+    s32 func_800F4F34(u32, f32 *, f32, f32);
+    u8 pad[4];
+    s32 temp_v0;
+    f32 *sp24[1];
+    f32 *temp_a2;
+
+    if (_subaddieskeleton_entrypoint_2(arg0->unk0, 4,
+            sp24[0] = temp_a2 = (f32 *)arg0->actorData) != 0) {
+        _chbadshad_entrypoint_1(arg0, sp24[0], 1.0f);
+    }
+    switch (arg0->unk70_10) {
+        case 1:
+            temp_v0 = _plsu_entrypoint_3(arg0->unk0);
+            if (temp_v0 != -1) {
+                func_800F7BC8(temp_v0, 0x53, arg0->unk0);
+            }
+            break;
+        case 2:
+            if (func_80101DDC(arg0) != 0) {
+                func_80102424(arg0, 3);
+                func_800DA544(0xBD);
+            }
+            break;
+        case 3:
+            temp_v0 = func_800F54E4();
+            func_800F4F34(temp_v0, sp24[0], 30.0f, 80.0f);
+            break;
+    }
+}
 
 /* extern */
 
