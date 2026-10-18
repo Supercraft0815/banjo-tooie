@@ -7,7 +7,35 @@ OSThread *chfactoryworkerwear_entrypoint_0(void)
     return (OSThread *) D_80800438_chfactoryworkerwear;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerwear/func_8080000C_chfactoryworkerwear.s")
+void func_8080000C_chfactoryworkerwear(Actor *arg0, s32 arg1) {
+    f32 func_800136E4(f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    s32 func_801032B0(Actor *, u16, u16);
+    void func_8010A800(Actor *, s32);
+    f32 *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 2:
+        data[0] = arg0->scale;
+        func_800EE7F8(data + 1, arg0->position);
+        func_8010A800(arg0, 1);
+        break;
+    case 3:
+        func_800EE7F8(arg0->position, data + 4);
+        arg0->rotation[1] = func_800136E4(arg0->rotation[1] + 180.0f);
+        arg0->scale = 1.0f;
+        break;
+    case 4:
+        arg0->rotation[2] = 0.0f;
+        arg0->scale = 0.4f;
+        func_801032B0(arg0, 0x83C, arg0->unk0->unk16);
+        break;
+    }
+    func_80102424(arg0, arg1);
+}
 
 void func_80800100_chfactoryworkerwear(Actor *arg0) {
     void* func_80100094(Actor*, u32);
@@ -21,7 +49,7 @@ void func_80800124_chfactoryworkerwear(s32 arg0)
 
 void func_80800260_chfactoryworkerwear(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
-    void func_8080000C_chfactoryworkerwear(Actor *, s32, s32);
+    void func_8080000C_chfactoryworkerwear();
 
     *(s8 *)((u8 *)func_80100094(arg0, 0U) + 0x24) = arg1;
     switch (arg1) {
