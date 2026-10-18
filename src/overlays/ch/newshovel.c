@@ -59,7 +59,47 @@ void func_80800570_chnewshovel(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800930_chnewshovel.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800A50_chnewshovel.s")
+s32 func_80800A50_chnewshovel(Actor *arg0) {
+    typedef union {
+        Actor actor;
+        struct {
+            u32 header[25];
+            u32 pad64_30 : 2;
+            u32 unk64_29 : 1;
+        } flags;
+    } NewShovelActor;
+    void *func_80100094(Actor *, u32);
+    f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
+    void _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    void func_80102BF8(void *, f32, f32, f32);
+    f32 func_80102D78(Actor *, f32 *);
+    s32 func_8010B990(Actor *, s32);
+    s32 func_8010C3A8(Actor *, u32, f32);
+    s32 sp34;
+    void *sp30;
+    f32 sp2C;
+    f32 temp_f0;
+    s32 result;
+    s32 var_v0;
+
+    sp30 = func_80100094(arg0, 0);
+    if (((NewShovelActor *)arg0)->flags.unk64_29) {
+        sp2C = _subaddiejoy_entrypoint_9(arg0, &arg0->unk54, 3);
+        func_80102BF8(arg0, 0.12f, 5.0f, 180.0f);
+        sp34 = func_8010C3A8(arg0, 0x200025, sp2C);
+        var_v0 = func_8010B990(arg0, 0x4004);
+        sp34 |= var_v0;
+    } else {
+        temp_f0 = func_80102D78(arg0, (f32 *)arg0->actorData);
+        arg0->unk54 = temp_f0;
+        _subaddierouteDll_entrypoint_7(arg0, sp30, arg0->rotation[1], temp_f0, 200.0f, 0x5000);
+        func_80102BF8(arg0, 0.12f, 5.0f, 180.0f);
+        sp34 = func_8010B990(arg0, 0x325);
+        var_v0 = func_8010B990(arg0, 0x4004);
+        sp34 |= var_v0;
+    }
+    return sp34;
+}
 
 /* extern */
 

@@ -492,15 +492,17 @@ s32 func_8010C2D8(Actor *arg0, f32 *arg1, f32 arg2, Actor *arg3) {
     return 0;
 }
 
-void func_8010C3A8(Actor *arg0, u32 arg1, f32 arg2) {
+s32 func_8010C3A8(Actor *arg0, u32 arg1, f32 arg2) {
     f32 sp18[2];
     f32 temp_f0;
+    s32 result;
 
     temp_f0 = *(f32 *)((s8 *)arg0 + 0x24);
     sp18[0] = temp_f0;
     *(f32 *)((s8 *)arg0 + 0x24) = temp_f0 * arg2;
-    func_8010B990(arg0, arg1);
+    result = func_8010B990(arg0, arg1);
     *(f32 *)((s8 *)arg0 + 0x24) = sp18[0];
+    return result;
 }
 
 /* extern */
