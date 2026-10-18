@@ -67,7 +67,40 @@ void func_80800640_charmouredcaveman(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/armouredcaveman/func_8080072C_charmouredcaveman.s")
+void func_8080072C_charmouredcaveman(Actor *arg0) {
+    void func_800C301C(u8, s32);
+    void func_800C3058(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C3BDC(u8);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    f32 func_800DC178(f32, f32);
+    s32 func_80101E14(Actor *, f32);
+    typedef struct { f32 values[4]; } FloatTable;
+    typedef struct { s16 values[4]; } ShortTable;
+    extern FloatTable D_80800BCC_charmouredcaveman;
+    extern FloatTable D_80800BDC_charmouredcaveman;
+    extern ShortTable D_80800BEC_charmouredcaveman;
+    extern ShortTable D_80800BF4_charmouredcaveman;
+    extern s32 D_80800BFC_charmouredcaveman;
+    FloatTable times = D_80800BCC_charmouredcaveman;
+    FloatTable volumes = D_80800BDC_charmouredcaveman;
+    ShortTable sounds = D_80800BEC_charmouredcaveman;
+    ShortTable rates = D_80800BF4_charmouredcaveman;
+    s32 i;
+
+    if (arg0->unk5F == 0) {
+        arg0->unk5F = func_800C4350(0, arg0->position, &D_80800BFC_charmouredcaveman);
+    }
+    for (i = 0; i < 4; i++) {
+        if (func_80101E14(arg0, times.values[i])) {
+            func_800C301C(arg0->unk5F, sounds.values[i]);
+            func_800C31DC(arg0->unk5F, volumes.values[i] + func_800DC178(-0.02f, 0.02f));
+            func_800C3058(arg0->unk5F, rates.values[i]);
+            func_800C3BDC(arg0->unk5F);
+            return;
+        }
+    }
+}
 
 void func_808008B0_charmouredcaveman(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
