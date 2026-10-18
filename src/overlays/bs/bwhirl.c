@@ -235,7 +235,43 @@ void bsbwhirl_entrypoint_8(s32 arg0) {
     func_8009FFD8(arg0, 2, 1, 1, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_9.s")
+void bsbwhirl_entrypoint_9(PlayerState *arg0) {
+    s32 _badrone_entrypoint_25(PlayerState *);
+    int bakey_pressed(PlayerState *, int);
+    int bakey_released(PlayerState *, int);
+    int bastick_getZone(PlayerState *);
+    void bs_setState(PlayerState *, int);
+    int func_8008E148(PlayerState *);
+    s32 func_8009BCD4(PlayerState *, f32);
+    void func_800A2CE8(PlayerState *, f32, s32);
+    s32 player_inWater(PlayerState *);
+    int player_isStable(PlayerState *);
+    s32 sp24;
+
+    sp24 = 0;
+    func_80800200_bsbwhirl(arg0);
+    func_800A2CE8(arg0, 0.47f, 4);
+    func_800A2CE8(arg0, 0.97f, 3);
+    func_80800114_bsbwhirl(arg0);
+    if ((bastick_getZone(arg0) == 0) && (func_8009BCD4(arg0, 1.0f) != 0)) {
+        sp24 = 0x1B;
+    }
+    if (bakey_released(arg0, 1) != 0) {
+        sp24 = 0x1E;
+    }
+    if ((bakey_pressed(arg0, 8) != 0) && (player_isStable(arg0) != 0)) {
+        sp24 = 0x1D;
+    }
+    if (player_inWater(arg0) != 0) {
+        sp24 = 0x4C;
+    }
+    func_80800430_bsbwhirl(arg0, &sp24);
+    func_80800008_bsbwhirl(arg0);
+    if (func_8008E148(arg0) != 0) {
+        sp24 = _badrone_entrypoint_25(arg0);
+    }
+    bs_setState(arg0, sp24);
+}
 
 void bsbwhirl_entrypoint_10(PlayerState *arg0)
 {
