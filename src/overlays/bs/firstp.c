@@ -1589,7 +1589,35 @@ f32 func_80803B68_bsfirstp(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803CD4_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803E84_bsfirstp.s")
+void func_80803E84_bsfirstp(struct player_state_s *arg0) {
+    void _bainvisible_entrypoint_7(Actor *, s32, f32, f32, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
+    void func_8009BDAC(struct player_state_s *, f32);
+    void func_8009D89C(struct player_state_s *, f32);
+    void func_80807BB8_bsfirstp();
+    void func_80808F38_bsfirstp(struct player_state_s *);
+    void *sp34;
+    struct anctrl_s *sp30;
+    void *sp2C;
+    void *sp28;
+
+    sp34 = *(void **)((u8 *)arg0 + 0x188);
+    sp30 = baanim_getAnimCtrlPtr(arg0);
+    func_80807BB8_bsfirstp(arg0);
+    func_808026AC_bsfirstp(arg0, &sp2C, &sp28);
+    func_80800424_bsfirstp(arg0, *(s16 *)sp2C, *(f32 *)((u8 *)sp2C + 4));
+    baanim_playForDuration_onceSmooth(arg0, *(s16 *)sp28, *(f32 *)((u8 *)sp28 + 4));
+    anctrl_setSubrange(sp30, 0.0f, 0.43f);
+    if (func_80802A40_bsfirstp((u8 *)arg0, 0xA) == 0) {
+        func_8009D89C(arg0, 1.0f);
+    }
+    _bainvisible_entrypoint_7(arg0, 3, 1.0, 1.0, 0.5f);
+    func_80808F38_bsfirstp(arg0);
+    *(s32 *)((u8 *)sp34 + 4) = 0;
+    func_8009BDAC(arg0, 1.25f);
+}
 
 void func_808090D8_bsfirstp();
 
