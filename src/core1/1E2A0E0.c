@@ -1,6 +1,41 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_800125B0.s")
+void func_800125B0(void) {
+    extern ALHeap D_80046A78;
+    extern u8 D_80046A88[];
+    extern u32 osViClock;
+    void bzero(void *, int);
+    void func_8001268C(void);
+    void func_800DC380(void);
+    void func_80016C00(void);
+    void func_80012F0C(s32);
+    void func_80012F34(s32, s32);
+    void func_80012EA0(void);
+    ALHeap *heap;
+
+    bzero(D_80046A88, 0x22A00);
+    heap = &D_80046A78;
+    heap->base = D_80046A88;
+    heap->len = 0x22A00;
+    heap->cur = heap->base;
+    heap->count = 0;
+    switch ((s32)osTvType) {
+        case 0:
+        case 1:
+            osViClock = 0x02E6D354;
+            break;
+        case 2:
+            osViClock = 0x02E6025C;
+            break;
+    }
+    func_8001268C();
+    func_800DC380();
+    func_80016C00();
+    func_80012F0C(4);
+    func_80012F34(0, 4);
+    func_80012F34(1, 4);
+    func_80012EA0();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_8001268C.s")
 
@@ -113,9 +148,9 @@ void func_80012EA0(void) {
 }
 
 void *func_80012EDC(void) {
-    extern u8 D_80046A78[];
+    extern ALHeap D_80046A78;
 
-    return D_80046A78;
+    return &D_80046A78;
 }
 
 void *func_80012EE8(void) {
