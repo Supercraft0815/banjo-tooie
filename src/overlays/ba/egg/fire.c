@@ -103,7 +103,36 @@ void func_80800180_baeggfire(void *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/fire/func_80800250_baeggfire.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/fire/baeggfire_entrypoint_3.s")
+void baeggfire_entrypoint_3(struct player_state_s *arg0, f32 *arg1, f32 *arg2) {
+    typedef struct player_state_s PlayerState;
+    u32 _baeggcursor_entrypoint_2(void *);
+    void _baeggcursor_entrypoint_3(void *, f32 *, f32 *);
+    int func_800A4C68(void *);
+    void func_800A4CE8(PlayerState *, f32 *);
+    void func_800C4E58(s32, f32 *, f32 *);
+    void func_800C5008(s32, f32 *, f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 sp4C;
+    f32 sp48;
+    f32 sp40[2];
+    f32 sp34[3];
+    f32 sp28[3];
+
+    if (_baeggcursor_entrypoint_2(arg0) != 1) {
+        _baeggcursor_entrypoint_3(arg0, &sp48, &sp4C);
+    } else {
+        sp48 = 152.0f;
+        sp4C = 114.0f;
+    }
+    func_800C5008(func_800A4C68(arg0), &sp48, sp40);
+    func_800EFA4C(sp28, sp40[0], sp40[1], 100.0f);
+    func_800C4E58(func_800A4C68(arg0), sp28, sp34);
+    func_800A4CE8(arg0, arg1);
+    func_800EFB24(arg2, sp34, arg1);
+    func_800EF368(arg2, 1.0f);
+}
 
 void baeggfire_entrypoint_4(s32 arg0)
 {

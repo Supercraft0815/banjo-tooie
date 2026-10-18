@@ -213,8 +213,8 @@ PlayerState *func_800A4CA8(PlayerState *arg0) {
 
 /* extern */
 
-void func_800A4CE8(PlayerState *arg0, s32 arg1) {
-    s32 func_800CA7E4(f32 *, s32);
+void func_800A4CE8(PlayerState *arg0, f32 *arg1) {
+    void func_800CA7E4(f32 *, f32 *);
     func_800CA7E4(func_800A4C48(arg0), arg1);
 }
 
