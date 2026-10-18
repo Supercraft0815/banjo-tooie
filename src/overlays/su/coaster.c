@@ -475,7 +475,38 @@ s32 sucoaster_entrypoint_14(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_15.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_16.s")
+s32 sucoaster_entrypoint_16(Actor *arg0, s32 arg1) {
+    typedef struct {
+        u8 pad0[0x18];
+        u32 track : 4;
+        u32 pad18_0 : 28;
+    } CoasterData;
+    typedef struct {
+        u8 pad0[4];
+        s16 id;
+        s16 rate;
+        s16 volume;
+        s16 fraction;
+    } CoasterParameters;
+    void *_sucoasterdata_entrypoint_1(u32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101E14(Actor *, f32);
+    s32 sucoaster_entrypoint_17(Actor *, s32);
+    void *config;
+    f32 fraction;
+
+    config = func_80100094(arg0, 0);
+    config = _sucoasterdata_entrypoint_1(((CoasterData *)config)->track);
+    if (((CoasterParameters *)((u8 *)config + arg1 * 8))->id == 0) {
+        return 0;
+    }
+    fraction = (f32)((CoasterParameters *)((u8 *)config + arg1 * 8))->fraction * 0.00390625f;
+    if (func_80101E14(arg0, fraction) != 0) {
+        sucoaster_entrypoint_17(arg0, arg1);
+        return 1;
+    }
+    return 0;
+}
 
 s32 sucoaster_entrypoint_17(Actor *arg0, s32 arg1) {
     typedef struct {
