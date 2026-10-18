@@ -216,7 +216,20 @@ void func_8008BD74(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008BEB4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008C038.s")
+/* extern */
+
+void func_8008C038(void *arg0) {
+    s32 func_8008BD94(void *);
+    s32 func_8008BEB4();
+    if ((*(u8 *)((s8 *)(arg0) + (0x1C))) == 1) {
+        func_8008BEB4();
+    } else {
+        func_8008BD94(arg0);
+    }
+    if ((*(s32 (**)(s32, s32))((s8 *)(arg0) + (0))) != NULL) {
+        (*(s32 (**)(s32, s32))((s8 *)(arg0) + (0)))(func_8008BD1C((s32) arg0), (*(s32 *)((s8 *)(arg0) + (4))));
+    }
+}
 
 void func_8008C0AC(s8 *arg0)
 {
