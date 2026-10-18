@@ -54,7 +54,43 @@ void func_80800018_chfactorycrusher(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/crusher/func_80800150_chfactorycrusher.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/crusher/func_80800580_chfactorycrusher.s")
+s32 func_80800580_chfactorycrusher(Actor *arg0, s32 arg1, s32 arg2) {
+    Unk80132ED0 **_subaddiefind_entrypoint_1(Actor *, s32, s32, s32);
+    u32 func_800F54E4(void);
+    s32 func_800F7F98(s32, u32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    Actor *func_80800898_chfactorycrusher(Actor *);
+    struct {
+        f32 bounds[6];
+        s32 unk18;
+    } *data;
+    Actor *other;
+    Unk80132ED0 **found;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0x95:
+            found = _subaddiefind_entrypoint_1(arg0, 0x3BA, -1, 0);
+            if (found != NULL) {
+                arg0->unk3C = *found;
+            }
+            data->unk18 = 0;
+            break;
+        case 0xB:
+        if ((arg2 == 0x1E) || (arg2 == 0x22)) {
+            other = func_80800898_chfactorycrusher(arg0);
+            arg0->unk64_19 = 0;
+            other->unk64_19 = arg0->unk64_19;
+            func_800F7F98(func_800F54E4(), 0);
+            func_80101180(0x3EE, 0xBA, 0);
+        }
+        return 3;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
