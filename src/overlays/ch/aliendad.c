@@ -70,7 +70,51 @@ s32 func_80801254_chaliendad(void *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_808012AC_chaliendad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801324_chaliendad.s")
+void func_80801324_chaliendad(Actor *arg0, s32 arg1) {
+    struct {
+        u8 pad0[0x18];
+        s16 state;
+        s16 pad1A;
+        f32 duration;
+        f32 scale;
+        f32 targetScale;
+    } *data;
+    struct {
+        u8 pad0[0x78];
+        u32 pad78 : 18;
+        u32 blinkState : 2;
+        u32 blinkFrame : 3;
+        u32 pad7B : 9;
+    } *actor = (void *)arg0;
+
+    data = func_80100094(arg0, 0U);
+    data->state = arg1;
+    switch (arg1) {
+        case 0:
+            actor->blinkState = 0;
+            actor->blinkFrame = 0;
+            break;
+        case 1:
+            actor->blinkState = 0;
+            actor->blinkFrame = 0;
+            data->scale = 0.8f;
+            data->targetScale = 0.8f;
+            data->duration = 6.0f;
+            break;
+        case 2:
+            actor->blinkFrame = 3;
+            data->scale = 0.4f;
+            data->targetScale = 0.4f;
+            break;
+        case 3:
+            actor->blinkState = 2;
+            actor->blinkFrame = 3;
+            data->scale = 0.3f;
+            data->targetScale = 0.3f;
+            data->duration = 5.0f;
+            break;
+    }
+}
 
 void func_8080142C_chaliendad(void *arg0) {
     f32 func_800DC0C0(void);
