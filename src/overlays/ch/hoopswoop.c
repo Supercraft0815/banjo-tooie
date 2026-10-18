@@ -40,7 +40,47 @@ void func_80800024_chhoopswoop(void *arg0) {
     _susubgame_entrypoint_11(0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80800094_chhoopswoop.s")
+s32 func_80800094_chhoopswoop(void *arg0) {
+    typedef struct {
+        s16 rotation : 15;
+        u16 active : 1;
+        s16 position[3];
+        f32 time;
+    } Hoop;
+    typedef struct {
+        s32 count;
+        u8 unk4[0x10];
+        Hoop hoops[100];
+    } HoopData;
+    void *func_80100094(Actor *, u32);
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    void func_800EE814(s16[3], s16[3]);
+    Prop *props[100];
+    HoopData *data;
+    HoopData *cursor;
+    Prop **prop;
+    s16 *position;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    data->count = _gccubesearch_entrypoint_9(0x154, props, 100);
+    i = 0;
+    if (data->count > 0) {
+        cursor = data;
+        position = data->hoops[0].position;
+        prop = props;
+        do {
+            func_800EE814(position, (*prop)->position);
+            i++;
+            cursor->hoops[0].rotation = (*prop)->FlagOrRotation;
+            cursor->hoops[0].time = 0.0f;
+            cursor->hoops[0].active = 0;
+            cursor = (HoopData *)((u8 *)cursor + sizeof(Hoop));
+            position += 6;
+            prop++;
+        } while (i < data->count);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_8080016C_chhoopswoop.s")
 
