@@ -1,6 +1,42 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_80800000_choildrill.s")
+void func_80800000_choildrill(Actor *arg0) {
+    s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800D0B68(u32, u32);
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800FFAB0(Actor *);
+    void func_80103110(void *, s32);
+    void func_808009F8_choildrill(Actor *, s32);
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 *sp24[1];
+
+    if (func_800EA05C() == 0x111) {
+        if (func_800D0B68(0x42, 1) != 0) {
+            func_800FFAB0(arg0);
+            return;
+        }
+        if (func_800D0A9C(0x42, 1) != 0) {
+            func_808009F8_choildrill(arg0, 8);
+            return;
+        }
+        func_808009F8_choildrill(arg0, 1);
+        return;
+    }
+    func_808009F8_choildrill(arg0, 2);
+    if (func_800DA298(0x351) != 0) {
+        func_80103110(arg0, 0);
+        return;
+    }
+    _subaddieskeleton_entrypoint_0(arg0, 0x2B, sp34);
+    sp24[0] = (f32 *)arg0->actorData;
+    func_800EFA4C(sp24[0], sp34[0], sp34[1] - 5000.0f, sp34[2]);
+    func_800BEF00(sp34, sp24[0], sp28, 0);
+}
 
 void func_80800104_choildrill(Actor *arg0)
 {
