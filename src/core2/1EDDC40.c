@@ -399,7 +399,35 @@ s32 func_80104E78(Actor *arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80104F2C.s")
+void func_80104F2C(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800F1B78(f32 *, f32 *, f32, f32);
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+    s32 *triangle;
+    f32 sp24[3];
+
+    if (arg1 != 0 || arg2 != 0) {
+        func_800EE7F8(sp4C, arg0->position);
+        func_800EE7F8(sp40, arg0->position);
+        sp4C[1] -= 300.0f;
+        sp40[1] += 100.0f;
+        triangle = (s32 *)func_800BEF00(sp40, sp4C, sp34, arg0->unk14);
+        if (triangle != NULL) {
+            if (arg1 != 0) {
+                func_801045AC(arg0, sp34, sp4C, triangle[2]);
+            }
+            if (arg2 != 0) {
+                arg0->position[1] = sp4C[1];
+                if (func_800F1B78(sp24, sp34, arg0->rotation[1], 1.0f) != 0) {
+                    arg0->rotation[0] = sp24[0];
+                    arg0->rotation[2] = sp24[2];
+                }
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80105010.s")
 
