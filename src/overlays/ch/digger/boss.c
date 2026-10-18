@@ -1860,7 +1860,44 @@ void func_8080843C_chdiggerboss(s32 arg0) {
     (*(u8 *)((s8 *)(sp1C) + (0x78))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(temp_v0) + (0x78))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80808470_chdiggerboss.s")
+void func_80808470_chdiggerboss(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void func_800F5A00(s32, f32 *);
+    void func_800F8444(s32, f32 *);
+    void func_80109FE8(void **, s32);
+    s32 func_80803BE8_chdiggerboss(s32, s32, s32);
+    s32 pad;
+    s32 child;
+    f32 position[3];
+    f32 rotation[3];
+    struct {
+        u8 pad0[3];
+        u8 active;
+        u8 pad4[0xC8];
+        u8 state;
+        u8 padCD[0xB];
+        u8 flag;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    child = func_80802248_chdiggerboss(arg0);
+    data->active = 1;
+    data->flag = 0;
+    func_80803BE8_chdiggerboss(arg0, arg1, 8);
+    func_800F5A00(child, position);
+    func_800EFA4C(rotation, 0.0f, func_800F1DF4(position, arg0->position), 0.0f);
+    func_800F8444(child, rotation);
+    if (func_808021E8_chdiggerboss(arg0, 0xB) == 0) {
+        func_80802878_chdiggerboss(arg0, 3, 1);
+        func_80803660_chdiggerboss(arg0, 0x172D, 0x10E);
+        data->state = 1;
+        return;
+    }
+    func_80109FE8(arg0, 1);
+    data->state = 1;
+}
 
 void func_80808560_chdiggerboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
