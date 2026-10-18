@@ -102,7 +102,40 @@ OSThread *chclinker_entrypoint_0(void)
     return (OSThread *) D_808014D4_chclinker;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_8080045C_chclinker.s")
+s32 func_8080045C_chclinker(Actor **arg0)
+{
+  s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+  Actor *func_801085CC(s32, s16 *, u32);
+  Actor *func_80106790(Unk80132ED0 *);
+  void *func_80100094(Actor *, u32);
+  Actor *actor;
+  Unk80132ED0 *marker;
+  Prop *props[40];
+  s32 count;
+  s32 i;
+  Prop **cursor;
+  Prop **end;
+  s32 result;
+  actor = *arg0;
+  marker = actor->unk0;
+  count = _gccubesearch_entrypoint_9(0x2BA, props, 40);
+  i = 0;
+  if (count > 0)
+  {
+    do
+    {
+      actor = func_801085CC(0x2C1, props[i]->position, props[i]->FlagOrRotation);
+      actor->scale = props[i]->unkC_0 * 0.01f;
+      *((Unk80132ED0 **) func_80100094(actor, 0)) = marker;
+      i++;
+    }
+    while (i < count);
+  }
+  actor = func_80106790(marker);
+  *((s32 *) func_80100094(actor, 0)) = count;
+  *arg0 = actor;
+  return (count) ? (1) : (0);
+}
 
 /* extern */
 
