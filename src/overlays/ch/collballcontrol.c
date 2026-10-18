@@ -813,7 +813,46 @@ void func_80802CE0_chcollballcontrol(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808030D0_chcollballcontrol.s")
+void func_808030D0_chcollballcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 _sukickball_entrypoint_6(u8 *, s32);
+    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    void _sukickball_entrypoint_11(u8 *, s32);
+    f32 func_800F5F24(u32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800F4F98(s32, void *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    extern u8 D_80804C98_chcollballcontrol[];
+    s32 pad;
+    u8 *parent;
+    Actor *player;
+    struct {
+        f32 timer;
+        f32 charge;
+        u8 pad8[0x18];
+        u8 owner;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    parent = (u8 *)func_80106790(arg0->unk3C);
+    if (_sukickball_entrypoint_6(parent, data->owner)) {
+        arg0->rotation[1] = func_800F5F24(data->owner);
+        ((f32 *)arg0->actorData)[3] = func_800F10B4(data->charge, 0.0f, 1.0f, 450.0f, 900.0f);
+        func_800F4F98(data->owner, arg0->unk0);
+        _sukickball_entrypoint_11(parent, data->owner);
+    } else {
+        player = func_80106790(_sukickball_entrypoint_8(parent, data->owner));
+        arg0->rotation[1] = player->rotation[1];
+        ((f32 *)arg0->actorData)[3] = func_800F10B4(player->unk58, 8.0f, 16.0f, 450.0f, 900.0f);
+        player->unk58 = 0.0f;
+        _sukickball_entrypoint_11(parent, data->owner);
+    }
+    arg0->unk70_10 = 3;
+    data->owner = 0x7F;
+    data->timer = 0.0f;
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80804C98_chcollballcontrol);
+}
 
 void func_80803208_chcollballcontrol(s32 arg0)
 {
