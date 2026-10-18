@@ -178,7 +178,7 @@ void bafpctrl_entrypoint_8(void *arg0) {
     void bafpctrl_entrypoint_9(void *, s32);
     void bafpctrl_entrypoint_10(void *, s32);
     void bafpctrl_entrypoint_13(void *, s32);
-    s32 bafpctrl_entrypoint_14(void *, s32);
+    void bafpctrl_entrypoint_14(void *, s32);
     void func_800EFD24(f32 *);
 
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 0x90) + 0x10) = 0;
@@ -227,7 +227,42 @@ void bafpctrl_entrypoint_13(void *arg0, s32 arg1) {
     _baeggcursor_entrypoint_6();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/bafpctrl_entrypoint_14.s")
+void bafpctrl_entrypoint_14(void *arg0, s32 arg1) {
+    void func_8009ADF0(void *, s32, s32);
+    void func_80800704_bafpctrl(PlayerState *);
+    s32 *var_v1;
+
+    var_v1 = *(s32 **)((s8 *)arg0 + 0x90);
+    switch (*(u8 *)((s8 *)var_v1 + 0x10)) {
+    case 1:
+        if (arg1 == 1) {
+            return;
+        }
+        goto block_6;
+    case 3:
+        func_8080064C_bafpctrl(arg0);
+        var_v1 = *(s32 **)((s8 *)arg0 + 0x90);
+    default:
+block_6:
+        *(s8 *)((s8 *)var_v1 + 0x10) = arg1;
+        switch (arg1) {
+        case 1:
+            bafpctrl_entrypoint_9(arg0, 0);
+            bafpctrl_entrypoint_10(arg0, 0);
+            **(s32 **)((s8 *)arg0 + 0x90) = 0;
+            func_8009ADF0(arg0, 7, 0);
+            return;
+        case 2:
+            func_8009ADF0(arg0, 7, 1);
+            return;
+        case 3:
+            func_8009ADF0(arg0, 7, 1);
+            func_80800704_bafpctrl(arg0);
+            return;
+        }
+        break;
+    }
+}
 
 /* extern */
 
@@ -246,7 +281,7 @@ int func_80800E30_bafpctrl(PlayerState *arg0) {
 /* extern */
 
 void bafpctrl_entrypoint_16(void *arg0) {
-    s32 bafpctrl_entrypoint_14();
+    void bafpctrl_entrypoint_14();
     void *temp_v0;
 
     temp_v0 = (*(void **)((s8 *)(arg0) + (0x90)));
@@ -256,14 +291,14 @@ void bafpctrl_entrypoint_16(void *arg0) {
 }
 
 void bafpctrl_entrypoint_17(u8 *arg0) {
-    s32 bafpctrl_entrypoint_14(void *, s32);
+    void bafpctrl_entrypoint_14(void *, s32);
     if ((*(u8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x90)))) + (0x13))) != 0) {
         bafpctrl_entrypoint_14(arg0, 1);
     }
 }
 
 void bafpctrl_entrypoint_18(void *arg0, s32 arg1) {
-    s32 bafpctrl_entrypoint_14(void *, s32);
+    void bafpctrl_entrypoint_14(void *, s32);
     void func_800947EC(struct player_state_s *, s32, s32);
     if (arg1 != 0) {
         bafpctrl_entrypoint_14(arg0, 2);
@@ -282,7 +317,7 @@ void bafpctrl_entrypoint_18(void *arg0, s32 arg1) {
 
 void bafpctrl_entrypoint_19(void *arg0) {
     s32 _plcamera_entrypoint_0(s32);
-    s32 bafpctrl_entrypoint_14(void *, s32);
+    void bafpctrl_entrypoint_14(void *, s32);
     s32 func_8009337C(void *, s32);
     s32 func_800A3544(void *, s32);
     s32 func_800A4EC8(void *);
