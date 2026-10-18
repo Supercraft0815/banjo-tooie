@@ -173,17 +173,17 @@ s32 func_8008BC6C(u8 *arg0, s32 arg1) {
 
 /* extern */
 
-void func_8008BC94(u8 *arg0) {
+s32 func_8008BC94(u8 *arg0) {
     s32 func_8008BC6C(u8 *, s32);
-    func_8008BC6C(arg0, arg0[8]);
+    return func_8008BC6C(arg0, arg0[8]);
 }
 
-void func_8008BCB4(u8 *arg0) {
+s32 func_8008BCB4(u8 *arg0) {
     s32 func_8008BC6C(u8 *, s32);
     s32 value;
 
     value = arg0[8] ? 0 : 1;
-    func_8008BC6C(arg0, value);
+    return func_8008BC6C(arg0, value);
 }
 
 /* extern */
@@ -200,11 +200,11 @@ s32 func_8008BD1C(s32 arg0) {
     return func_8008BCEC(arg0, *(u8 *)(arg0 + 8));
 }
 
-void func_8008BD3C(s32 arg0) {
+s32 func_8008BD3C(s32 arg0) {
     s32 value;
 
     value = *(u8 *)(arg0 + 8) ? 0 : 1;
-    func_8008BCEC(arg0, value);
+    return func_8008BCEC(arg0, value);
 }
 
 void func_8008BD74(s32 arg0)
@@ -212,14 +212,33 @@ void func_8008BD74(s32 arg0)
     func_8008BCEC(arg0,0x2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008BD94.s")
+void func_8008BD94(void *arg0) {
+    s32 func_800D674C(s32);
+    void func_800E0170(s32, f32, u8, s32);
+    void func_800DFD64(s32, s32, s32, f32);
+
+    if (*(u8 *)((u8 *)arg0 + 0x1B) == 1 && func_8008BC94(arg0)) {
+        if (*(u8 *)((u8 *)arg0 + 8)) {
+            *(u8 *)((u8 *)arg0 + 8) = 0;
+        } else {
+            *(u8 *)((u8 *)arg0 + 8) = 1;
+        }
+    }
+    *(u8 *)((u8 *)arg0 + 0x1B) = 0;
+    if (*(f32 *)((u8 *)arg0 + 0x14) < 1.0f && func_8008BCB4(arg0)) {
+        func_800E0170(func_800D674C(*(s16 *)((u8 *)arg0 + 0x18)), *(f32 *)((u8 *)arg0 + 0x10), *(u8 *)((u8 *)arg0 + 0x1E), func_8008BD1C((s32)arg0));
+        func_800DFD64(func_8008BD1C((s32)arg0), func_8008BD3C((s32)arg0), func_8008BD1C((s32)arg0), *(f32 *)((u8 *)arg0 + 0x14));
+    } else {
+        func_800E0170(func_800D674C(*(s16 *)((u8 *)arg0 + 0x18)), *(f32 *)((u8 *)arg0 + 0x10), *(u8 *)((u8 *)arg0 + 0x1E), func_8008BD1C((s32)arg0));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008BEB4.s")
 
 /* extern */
 
 void func_8008C038(void *arg0) {
-    s32 func_8008BD94(void *);
+    void func_8008BD94(void *);
     s32 func_8008BEB4();
     if ((*(u8 *)((s8 *)(arg0) + (0x1C))) == 1) {
         func_8008BEB4();
