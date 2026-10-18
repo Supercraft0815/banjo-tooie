@@ -92,7 +92,37 @@ void func_80800B5C_chcollballcontrol(u8 *arg0) {
     actor->unk64_20 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80800BF0_chcollballcontrol.s")
+void func_80800BF0_chcollballcontrol(Actor *arg0, f32 *arg1) {
+    s32 _sukickball_entrypoint_6(u8 *, s32);
+    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    int func_800F0064(f32 *, f32, f32 *);
+    void func_800F5A00(s32, f32 *);
+    void func_800F7B9C(s32, u32);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    struct {
+        u8 pad[0x3A];
+        u8 count;
+    } *data;
+    f32 position[4];
+    s32 i;
+    Actor *actor;
+
+    data = func_80100094(arg0, 0);
+    for (i = 0; i < data->count; i++) {
+        if (_sukickball_entrypoint_6(arg0, i)) {
+            func_800F5A00(i, position);
+            if (func_800F0064(position, 200.0f, arg1)) {
+                func_800F7B9C(i, 0x38);
+            }
+        } else {
+            actor = func_80106790(_sukickball_entrypoint_8(arg0, i));
+            if (func_800F0064(actor->position, 200.0f, arg1)) {
+                func_80800B5C_chcollballcontrol((u8 *)actor);
+            }
+        }
+    }
+}
 
 void func_80800CF8_chcollballcontrol(s32 arg0, s32 arg1) {
     struct player_state_s;
