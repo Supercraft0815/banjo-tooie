@@ -392,7 +392,62 @@ void func_80800E24_chgameselect(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808011B4_chgameselect.s")
+s32 func_808011B4_chgameselect(void *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u8 pad0[0x74];
+        u32 pad74 : 10;
+        u32 flag21 : 1;
+        u32 pad74low : 21;
+    } SelectEventActor;
+    typedef struct {
+        f32 positions[8][3];
+        f32 entries[8][3];
+        u8 enabled[8];
+        f32 direction[3];
+        f32 distance;
+    } SelectData;
+    void *func_80100094(Actor *, u32);
+    void func_80101038(f32 *);
+    void func_8080145C_chgameselect(f32 *, f32, f32 *, f32 *);
+    SelectData *data;
+    SelectData *data2;
+    SelectData *cursor;
+    f32 *position;
+    f32 *position2;
+    s32 offset;
+    s32 i;
+
+    switch (arg1) {
+        default:
+            return 0;
+        case 35:
+            data = func_80100094(arg0, 0);
+            for (i = 0, cursor = data; i < 8; i++) {
+                if (cursor->enabled[0]) {
+                    position = data->positions[i];
+                    func_8080145C_chgameselect(data->direction, data->distance,
+                        position + 24, position);
+                }
+                cursor = (SelectData *)((u8 *)cursor + 1);
+            }
+            ((Actor *)arg0)->unk6C_0 = 1;
+            break;
+        case 49:
+            if (((SelectEventActor *)arg0)->flag21) {
+                data2 = func_80100094(arg0, 0);
+                offset = arg2 * 12;
+                func_80101038((f32 *)((u8 *)data2 + offset));
+                data2->enabled[arg2] = 1;
+                position2 = (f32 *)((u8 *)data2 + offset);
+                func_8080145C_chgameselect(data2->direction, data2->distance,
+                    position2 + 24, position2);
+                return 1;
+            } else {
+                return 0;
+            }
+    }
+    return 1;
+}
 
 void func_808012E4_chgameselect(Actor *arg0, u8 *arg1) {
     void _subaddiefade_entrypoint_8(Actor*, s32);
