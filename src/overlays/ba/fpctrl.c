@@ -276,7 +276,25 @@ int func_80800E30_bafpctrl(PlayerState *arg0) {
         && _ncba1p_entrypoint_10(func_800A4CA8(arg0)) != 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/bafpctrl_entrypoint_15.s")
+void bafpctrl_entrypoint_15(PlayerState *arg0) {
+    s32 func_80800970_bafpctrl();
+    void bafpctrl_entrypoint_14(void *, s32);
+
+    switch (*(u8 *)((s8 *)*(void **)((s8 *)arg0 + 0x90) + 0x10)) {
+    case 2:
+        if (func_80800E30_bafpctrl(arg0) != 0) {
+            bafpctrl_entrypoint_14(arg0, 3);
+            return;
+        }
+    case 1:
+        return;
+    case 3:
+        if (func_80800970_bafpctrl(arg0) != 0) {
+            bafpctrl_entrypoint_14(arg0, 2);
+        }
+        break;
+    }
+}
 
 /* extern */
 
