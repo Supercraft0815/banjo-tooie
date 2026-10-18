@@ -239,7 +239,26 @@ void func_80800C1C_bssub(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800C60_bssub.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800E34_bssub.s")
+/* extern */
+
+void func_80800E34_bssub(struct player_state_s *arg0) {
+    s32 _bafpctrl_entrypoint_19(struct player_state_s *);
+    s32 _basudie_entrypoint_9(struct player_state_s *, s32);
+    s32 func_800EA068(s32);
+    s32 func_80800C60_bssub(struct player_state_s *);
+    s32 temp_v0;
+
+    func_808009B0_bssub(arg0);
+    temp_v0 = func_800EA068(0x40);
+    (*(s32 *)((s8 *)(arg0) + (0x15C))) = temp_v0;
+    if (temp_v0 != 0) {
+        func_80800B2C_bssub((s32) arg0);
+        return;
+    }
+    _bafpctrl_entrypoint_19(arg0);
+    _basudie_entrypoint_9(arg0, 0x41F00000);
+    func_80800C60_bssub(arg0);
+}
 
 /* extern */
 
