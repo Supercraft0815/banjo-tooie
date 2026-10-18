@@ -675,7 +675,7 @@ void func_80802C30_chstoneballcontrol(s32 *arg0) {
     Entry *func_800E9E88(s32);
     Entry *func_800E9EB4(s32);
     Actor *func_80106790(Unk80132ED0 *);
-    void func_80802D9C_chstoneballcontrol(s32 *, u8 *);
+    void func_80802D9C_chstoneballcontrol(Actor *, Actor *);
     void func_80802E30_chstoneballcontrol(Actor *, u32);
     void func_80802EA0_chstoneballcontrol(Actor *, Actor *);
     s32 *list;
@@ -707,11 +707,22 @@ void func_80802C30_chstoneballcontrol(s32 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80802D9C_chstoneballcontrol.s")
+void func_80802D9C_chstoneballcontrol(Actor *arg0, Actor *arg1) {
+    s32 _sukickball_entrypoint_13(f32 *, f32 *, f32);
+    void func_800C4140(u32, f32 *, u32);
+    void *func_80100094(Actor *, u32);
+    f32 *sp1C;
+
+    sp1C = func_80100094(arg0, 0);
+    if (_sukickball_entrypoint_13(arg0->position, arg1->position, 60.0f) && sp1C[7] <= 0.0f) {
+        func_800C4140(0x7FFF4482, arg0->position, 0x138801F4);
+        sp1C[7] = 0.75f;
+    }
+}
 
 void func_80802E30_chstoneballcontrol(Actor *arg0, u32 arg1) {
     s32 _sukickball_entrypoint_12(u8 *, s32);
-    void _sukickball_entrypoint_13(f32 *, f32 *, f32);
+    s32 _sukickball_entrypoint_13(f32 *, f32 *, f32);
     void func_800F5A00(s32, f32 *);
     Actor *func_80106790(Unk80132ED0 *);
     Actor *parent;
@@ -726,7 +737,7 @@ void func_80802E30_chstoneballcontrol(Actor *arg0, u32 arg1) {
 
 void func_80802EA0_chstoneballcontrol(Actor *arg0, Actor *arg1) {
     s32 _sukickball_entrypoint_12(u8 *, s32);
-    void _sukickball_entrypoint_13(f32 *, f32 *, f32);
+    s32 _sukickball_entrypoint_13(f32 *, f32 *, f32);
     Actor *func_80106790(Unk80132ED0 *);
     Actor *parent;
 
@@ -1042,7 +1053,7 @@ void func_80804304_chstoneballcontrol(u8 *arg0) {
     typedef struct { u8 high:3; u8 active:1; u8 low:4; } BallFlags;
     extern Vec3 D_8080541C_chstoneballcontrol;
     s32 _sukickball_entrypoint_12(u8 *, s32);
-    void _sukickball_entrypoint_13(f32 *, f32 *, f32);
+    s32 _sukickball_entrypoint_13(f32 *, f32 *, f32);
     s32 _sukickball_entrypoint_6(u8 *, s32);
     s32 _sukickball_entrypoint_7(u8 *, s32);
     Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
