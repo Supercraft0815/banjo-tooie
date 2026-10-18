@@ -144,7 +144,28 @@ void bashoes_entrypoint_14(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/bashoes_entrypoint_15.s")
+void bashoes_entrypoint_15(PlayerState *arg0) {
+    int baflag_isTrue(PlayerState *, s32);
+    if (func_8009E6C4(arg0, 0x80) == 0) {
+        *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x10C) + 8) = 0;
+        *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x10C) + 12) = 0;
+        if (bashoes_entrypoint_1(arg0) == 1) {
+            if (baflag_isTrue(arg0, 0x10)) {
+                bashoes_entrypoint_6(arg0, 3);
+                return;
+            }
+            if (baflag_isTrue(arg0, 0x37)) {
+                bashoes_entrypoint_6(arg0, 4);
+                return;
+            }
+            if (baflag_isTrue(arg0, 0x38)) {
+                bashoes_entrypoint_6(arg0, 5);
+                return;
+            }
+            bashoes_entrypoint_6(arg0, 2);
+        }
+    }
+}
 
 void bashoes_entrypoint_16(s32 arg0) {
     void func_8009C128(PlayerState *, f32[3]);
