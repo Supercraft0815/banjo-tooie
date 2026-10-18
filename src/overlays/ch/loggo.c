@@ -22,8 +22,8 @@ void func_80800018_chloggo(s32 arg0) {
     s32 func_800D0A9C(s32, s32);
     s32 func_800DA298(s32);
     s32 func_800EE88C(s32, s32);
-    s32 func_80102424(s32, s32);
-    s32 func_8010A570(s32);
+    void func_80102424(Actor *, s32);
+    void func_8010A570(Actor *);
     s32 func_8010A5B0(s32, s32);
     func_800EE88C(arg0 + 0x18, _gccubesearch_entrypoint_0(0x201, arg0));
     if (_glcutDll_entrypoint_20() != 0) {
@@ -41,7 +41,34 @@ void func_80800018_chloggo(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/loggo/func_808001B8_chloggo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/loggo/func_80800398_chloggo.s")
+void func_80800398_chloggo(Actor *arg0) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    u32 func_800F54E4(void);
+    s32 func_800F64A4(s32, s32);
+    void func_800F77E8(s32, f32 *);
+    void func_80102424(Actor *, s32);
+    void func_8010A570(Actor *);
+    f32 sp34[3];
+    s32 dialog;
+    s32 sp2C;
+
+    sp2C = func_800F54E4();
+    func_800EE7F8(sp34, arg0->position);
+    func_800EF1B8(sp34, arg0->rotation[1] - 40.0f, 200.0f);
+    func_800F77E8(sp2C, sp34);
+    if (func_800F64A4(sp2C, 0x201) != 0) {
+        dialog = 0x1343;
+    } else {
+        dialog = 0x1380;
+    }
+    _subaddiedialog_entrypoint_11(arg0->unk0, dialog, 6, arg0->position, 0xAD);
+    func_80102424(arg0, 2);
+    func_8010A570(arg0);
+    _capod_entrypoint_13(arg0->unk0, NULL, 3, 0x30);
+}
 
 void func_80800460_chloggo(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
