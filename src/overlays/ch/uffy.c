@@ -351,7 +351,47 @@ void func_808018F8_chchuffy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_808019A4_chchuffy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80801B8C_chchuffy.s")
+void func_80801B8C_chchuffy(Actor *arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+    void *func_80100094(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    void func_808017D4_chchuffy(Actor *, s32);
+    struct {
+        u8 unk0;
+        u8 unk1;
+        u8 pad2[2];
+        f32 unk4;
+        u8 pad8[0x34];
+        f32 unk3C;
+        u8 pad40[8];
+        f32 unk48;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    data->unk1 = 0;
+    data->unk3C = 0.0f;
+    data->unk4 = 20000.0f;
+    data->unk0 = 0;
+    data->unk48 = 1.0f;
+    func_80800524_chchuffy(arg0);
+    if (func_800EA05C() == 0xD7) {
+        if (func_80800110_chchuffy(0) == -1) {
+            if (func_800DA298(0x95) == 0) {
+                func_808017D4_chchuffy(arg0, 1);
+            } else {
+                func_808017D4_chchuffy(arg0, 5);
+            }
+        } else {
+            func_808018F8_chchuffy(arg0);
+        }
+    } else {
+        func_808018F8_chchuffy(arg0);
+    }
+    if (!arg0->unk64_17) {
+        func_80108B04(arg0, 0);
+    }
+}
 
 void func_80801C78_chchuffy(Actor *arg0) {
     void *func_80100094(Actor *, u32);
