@@ -76,7 +76,45 @@ void func_80800568_chmrsboggy(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggy/func_808005D8_chmrsboggy.s")
+void func_808005D8_chmrsboggy(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 func_800D1000(s32, s32, f32 *, s32, s32);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    s32 func_80102424(s32, s32);
+    void func_80102FE8(void *, s32);
+    void func_80800790_chmrsboggy(void *);
+    void func_80800878_chmrsboggy(Actor *, s32, s32, Unk80132ED0 *);
+    extern s32 D_80800A58_chmrsboggy;
+    s32 temp_v0;
+
+    if (arg1 == 0x109D) {
+        func_80102424(_subaddiefind_entrypoint_2(0x142, 0), 0xE);
+        func_80102424(arg0, 5);
+        func_80800878_chmrsboggy(arg0, 0x99, 0x30, NULL);
+        return;
+    }
+    temp_v0 = _subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80800A58_chmrsboggy, 5);
+    if ((temp_v0 != 3) && (temp_v0 != 0)) {
+        func_80102FE8(arg0, 0);
+        func_80102424(arg0, 8);
+        _subaddieDll_entrypoint_4(arg0, 1);
+        func_800D1000(0x1B, 1, arg0->position, 0, 0);
+        func_800DA544(0x1CD);
+        func_800DA524(0xB8);
+        func_800DA524(0xB9);
+        func_800DA524(0xBA);
+        func_800DA524(0x8B);
+        func_80800878_chmrsboggy(arg0, 0xE, 0x31, NULL);
+        return;
+    }
+    if (arg0->actorData[4] != 0) {
+        func_80800790_chmrsboggy(arg0);
+    }
+    func_80102424(arg0, 1);
+}
 
 /* extern */
 
