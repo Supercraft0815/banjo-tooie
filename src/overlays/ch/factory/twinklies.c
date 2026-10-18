@@ -101,7 +101,24 @@ s32 func_808009EC_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) { void *fu
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80800B80_chfactorytwinklies.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80800D00_chfactorytwinklies.s")
+void func_80800D00_chfactorytwinklies(Actor *arg0) {
+    s32 _gcstatusDll_entrypoint_11(void);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800F849C(s32, f32);
+    void *func_80100094(Actor *, u32);
+    struct {
+        s32 unk0[16];
+        s32 unk40[4][3];
+    } *data;
+    s32 i;
+    s32 sum;
+
+    data = func_80100094(arg0, 0);
+    for (i = 0; i < _gcstatusDll_entrypoint_11(); i++) {
+        sum = data->unk40[i][0] + data->unk40[i][1] + data->unk40[i][2];
+        func_800F849C(i, func_800F10B4((f32)sum, 0.0f, 10.0f, 1.0f, 0.6f));
+    }
+}
 
 void func_80800DE0_chfactorytwinklies(Actor *arg0) {
     typedef struct player_state_s PlayerState;
