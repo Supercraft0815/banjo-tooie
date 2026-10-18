@@ -66,17 +66,40 @@ void ncba1p_entrypoint_1(u8 **arg0) {
 
 /* extern */
 
-void ncba1p_entrypoint_2(u8 **arg0) {
-    s32 ncba1p_entrypoint_3(u8 **, s32 *, s32 *);
-    s32 sp24[3];
-    s32 sp18[3];
+void ncba1p_entrypoint_2(f32 **arg0) {
+    void ncba1p_entrypoint_3(f32 **, f32 *, f32 *);
+    f32 sp24[3];
+    f32 sp18[3];
 
     (*(s32 *)((s8 *)(*arg0) + (0x4C))) = 2;
     (*(s8 *)((s8 *)(*arg0) + (0x50))) = 0;
     ncba1p_entrypoint_3(arg0, sp24, sp18);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/1p/ncba1p_entrypoint_3.s")
+void ncba1p_entrypoint_3(f32 **arg0, f32 *arg1, f32 *arg2) {
+    void func_8011607C(void *, s32);
+    void func_808000A0_ncba1p(f32 **, f32 *, f32 *);
+    void func_80800230_ncba1p(f32 **, f32 *, f32 *);
+    s32 state;
+
+    state = *(s32 *)((u8 *)*arg0 + 0x4C);
+    if (state != 4 && state != 0) {
+        func_8011607C(arg0, 0);
+        state = *(s32 *)((u8 *)*arg0 + 0x4C);
+    }
+    switch (state) {
+        case 1:
+            func_808000A0_ncba1p(arg0, arg1, arg2);
+            return;
+        case 2:
+            func_808003DC_ncba1p(arg0, arg1, arg2);
+            return;
+        case 3:
+            func_80800230_ncba1p(arg0, arg1, arg2);
+        case 4:
+            return;
+    }
+}
 
 void ncba1p_entrypoint_4(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 0) + 80) = arg1;
