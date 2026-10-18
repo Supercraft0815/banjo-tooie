@@ -375,7 +375,53 @@ void func_80801A3C_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801A8C_chdodgemcontrol.s")
+void func_80801A8C_chdodgemcontrol(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800D24E8(s32, s32, u32);
+    void func_800D2770(s32, s32);
+    s32 func_800D28A0(s32);
+    struct DodgemData {
+        s32 actors[4];
+        s32 values[4];
+        s32 flags[4];
+        u8 pad30[0x90];
+        u8 initialized;
+        u8 unkC1;
+        u8 count;
+    } *data;
+    s32 count;
+    s32 i;
+    s32 id;
+
+    data = func_80100094(arg0, 0U);
+    switch (arg0->unk79_4) {
+        case 0:
+        case 1:
+        case 2:
+            count = 1;
+            break;
+        case 3:
+            count = data->count;
+            break;
+    }
+    i = 0;
+    if (count > 0) {
+        do {
+            id = i + 0xC3;
+            if (data->initialized == 0) {
+                id = i + 0xC3;
+                func_800D2770(id, 0);
+            } else {
+                func_800D24E8(id, data->values[i], 0U);
+            }
+            if (arg1 && data->flags[i]) {
+                func_800D28A0(id);
+            }
+            i++;
+        } while (i != count);
+    }
+    data->initialized = 1;
+}
 
 void func_80801B94_chdodgemcontrol(s32 arg0, s32 arg1) {
     s32 _subaddieaudioquick_entrypoint_2(s32, s32 *, s32 *);
