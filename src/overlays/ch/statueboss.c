@@ -106,7 +106,34 @@ void func_8080124C_chstatueboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801320_chstatueboss.s")
+void func_80801320_chstatueboss(Actor *arg0) {
+    void func_800E0AFC(void *, u8, f32, f32, f32, f32);
+    void func_800E0B8C(void *, u8, f32, f32, f32, f32);
+    void func_800E0C20(void *, u8, f32, f32, f32, f32);
+    s32 func_8010262C(Unk80132ED0 *, u32);
+    extern u8 D_8080265C_chstatueboss[][2];
+    struct StatueData {
+        u8 pad[0x70];
+        f32 angles[5];
+        u8 pad84[0x24];
+        f32 positions[6][3];
+    };
+    union { struct StatueData *ptr; f64 align; } data;
+    s32 handle;
+    s32 i;
+
+    handle = func_8010262C(arg0->unk0, 0xC);
+    if (handle != 0) {
+        data.ptr = func_80100094(arg0, 0U);
+        for (i = 0; i < 5; i++) {
+            func_800E0AFC(handle, func_808011A0_chstatueboss(i), 1.0f, 0.0f, data.ptr->angles[i], 0.0f);
+        }
+        func_800E0B8C(handle, 0x52, 1.0f, 1.0f, 2.0f, 1.0f);
+        for (i = 0; i < 6; i++) {
+            func_800E0C20(handle, D_8080265C_chstatueboss[i][1], 1.0f, 0.0f, data.ptr->positions[i][0], 0.0f);
+        }
+    }
+}
 
 void func_80801448_chstatueboss(Actor *arg0) {
     s32 func_800D9078(f32 *);
