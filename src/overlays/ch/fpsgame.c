@@ -120,7 +120,44 @@ void func_808004E0_chfpsgame(Actor *arg0) {
     _sumultiscore_entrypoint_4(score, 3, 2, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_808005B0_chfpsgame.s")
+void func_808005B0_chfpsgame(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    PlayerState *func_800F53D0(s32);
+    void _bsfirstp_entrypoint_4(PlayerState *, s32);
+    void _bsfirstp_entrypoint_5(PlayerState *, s32, s32);
+    s32 _gcstatusDll_entrypoint_13();
+    s32 _gcstatusDll_entrypoint_19(void);
+    s32 _sumultiscore_entrypoint_3(u8 *);
+    s32 _sumultiscore_entrypoint_4(u8 *, s32, s32, s32);
+    struct {
+        s32 count;
+        u8 unk4[0x10];
+        u8 score[1];
+    } *data;
+    u8 *score;
+    PlayerState *player;
+    s32 status;
+    s32 mode;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    score = data->score;
+    mode = _gcstatusDll_entrypoint_19();
+    i = 0;
+    if (data->count > 0) {
+        do {
+            player = func_800F53D0(i);
+            status = _gcstatusDll_entrypoint_13(i);
+            _bsfirstp_entrypoint_4(player, mode);
+            _bsfirstp_entrypoint_5(player, 2, status);
+            i += 1;
+        } while (i < data->count);
+    }
+    _sumultiscore_entrypoint_3(score);
+    _sumultiscore_entrypoint_4(score, 2, 0, 1);
+    _sumultiscore_entrypoint_4(score, 3, 2, 1);
+    _sumultiscore_entrypoint_4(score, 4, 3, 0);
+}
 
 void func_808006A8_chfpsgame(Actor *arg0) {
     void *func_80100094(Actor *, u32);
