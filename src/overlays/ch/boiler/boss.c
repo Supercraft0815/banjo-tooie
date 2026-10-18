@@ -55,7 +55,44 @@ void func_80800E64_chboilerboss(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808010F4_chboilerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808012C8_chboilerboss.s")
+void func_808012C8_chboilerboss(Actor *arg0) {
+    s32 func_80800F34_chboilerboss(Actor *, s32);
+    union {
+        u32 word;
+        struct {
+            u32 pad:18;
+            u32 bit13:1;
+            u32 bit12:1;
+            u32 bit11:1;
+            u32 rest:11;
+        } bits;
+    } state;
+    u8 health;
+
+    state.word = arg0->unk70_10;
+    if ((s32)state.word < 11) {
+        if ((s32)state.word >= 5) {
+            func_80800E64_chboilerboss(arg0);
+            state.word = arg0->unk70_10;
+        }
+        if (state.word != 7 && state.word != 8 && state.word != 9 &&
+            (health = arg0->pad5E) < (s32)arg0->actorData[5]) {
+            arg0->actorData[5] = health;
+            state.word = arg0->unk0->unk28;
+            if (state.bits.bit13 && (s32)arg0->actorData[5] < 41) {
+                func_80800F34_chboilerboss(arg0, 7);
+                return;
+            }
+            if (state.bits.bit12 && (s32)arg0->actorData[5] < 31) {
+                func_80800F34_chboilerboss(arg0, 8);
+                return;
+            }
+            if (state.bits.bit11 && (s32)arg0->actorData[5] < 16) {
+                func_80800F34_chboilerboss(arg0, 9);
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808013C4_chboilerboss.s")
 
@@ -358,7 +395,7 @@ void func_8080238C_chboilerboss(Unk80132ED0 **arg0, s32 arg1, s32 arg2) {
 
 s32 func_808023C8_chboilerboss(s32 arg0) {
     void *func_80100094(Actor *, u32);
-    s32 func_80800F34_chboilerboss(s32, s32);
+    s32 func_80800F34_chboilerboss(Actor *, s32);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0);
