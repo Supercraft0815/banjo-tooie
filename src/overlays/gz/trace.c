@@ -113,4 +113,32 @@ void func_808003D0_gztrace(u8 *arg0) {
 void gztrace_entrypoint_0(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/trace/gztrace_entrypoint_1.s")
+void gztrace_entrypoint_1(OSThread *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void func_8001D37C(s32 arg0, ...);
+    s32 func_808004B0_gztrace(s32 *, u32 *, s32 *, s32 *, u32);
+    s32 func_808005C4_gztrace(u32, s32, u32, s32, s32);
+    u32 ra;
+    u32 pc;
+    s32 sp;
+    s32 unused40;
+    s32 unused3C;
+
+    pc = arg0->context.pc;
+    sp = arg0->context.sp;
+    ra = arg0->context.ra;
+    func_8001D37C("Stack trace: %s\n\nSP = %08X, PC = %08X, RA = %08X\n\n",
+                 arg2 == 0 ? "Work-Station" : "N64", sp, pc, ra);
+    if (func_80800000_gztrace(pc) == 0) {
+        pc = ra;
+        ra = 0;
+        if (func_80800000_gztrace(pc) == 0) {
+            func_8001D37C("Unable to trace, invalid PC,RA!\n");
+            return;
+        }
+    }
+    while (arg1--) {
+        func_808004B0_gztrace(&sp, &pc, &unused40, &unused3C, ra);
+        ra = 0;
+    }
+    func_808005C4_gztrace(pc, sp, ra, arg2, arg3);
+}
