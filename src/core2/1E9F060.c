@@ -345,7 +345,46 @@ void func_800C6320(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C6420.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C65E0.s")
+void func_800C65E0(u8 *arg0) {
+    void func_800C6060(u8 *);
+    void func_800C6420(u8 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 sp3C[7];
+    s32 triangle;
+    u8 state;
+    u8 initialState;
+
+    initialState = arg0[0x94];
+    state = initialState;
+    arg0[0x90] = arg0[0x8E];
+    arg0[0x91] = arg0[0x8F];
+    arg0[0x8E] = arg0[0x8F] = 0U;
+    if ((state == 1) || (arg0[0x93] != 0)) {
+        arg0[0x93]--;
+        triangle = func_800C5BE4((f32 *)(arg0 + 0x4C), -100.0f, 7000.0f, *(u32 *)(arg0 + 0x88), sp3C);
+        if (triangle != 0) {
+            func_800C5FCC(arg0, sp3C[3], triangle);
+        }
+        if (triangle != 0) {
+            func_800C5A10(arg0, 3);
+        } else {
+            func_800C5A10(arg0, 2);
+        }
+        state = arg0[0x94];
+    }
+    switch (state) {
+        case 2:
+            func_800C6060(arg0);
+            break;
+        case 3:
+            func_800C6320(arg0);
+            break;
+        case 4:
+            func_800C6420(arg0);
+            break;
+    }
+    func_800EE7F8((f32 *)(arg0 + 0x58), (f32 *)(arg0 + 0x4C));
+}
 
 u32 func_800C6704(u8 *arg0) {
     return arg0[142];
