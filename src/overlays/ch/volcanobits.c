@@ -30,7 +30,50 @@ OSThread *chvolcanobits_entrypoint_3(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_80800030_chvolcanobits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_80800170_chvolcanobits.s")
+void func_80800170_chvolcanobits(Actor *arg0) {
+    struct VolcanoBitsData {
+        s32 unk0;
+        f32 points[7][3];
+        u8 pad58[8];
+        s32 count;
+        f32 extra[3];
+    };
+    s32 i;
+    f32 *point;
+    struct { s16 index; s16 kind; } entry, extraEntry;
+    struct VolcanoBitsData *data;
+    void *func_80100094(Actor *, u32);
+    s32 func_800D9078(f32 *);
+    void func_80108B04(Actor *, u32);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 func_800EA05C(void);
+    s32 _glcutDll_entrypoint_19(s32);
+    extern u32 D_80801274_chvolcanobits;
+
+    data = func_80100094(arg0, 0);
+    i = 0;
+    point = data->points[0];
+    while (i < data->count) {
+        if (func_800D9078(point)) {
+            entry.index = i;
+            entry.kind = 0;
+            func_80108B04(arg0, *(u32 *)&entry);
+        }
+        i++;
+        point += 3;
+    }
+    _subaddieaudioloop_entrypoint_4(arg0, NULL, 1, &D_80801274_chvolcanobits);
+    switch (func_800EA05C()) {
+    case 0x129:
+        if (_glcutDll_entrypoint_19(0x70) && func_800D9078(data->extra)) {
+            extraEntry.index = -1;
+            extraEntry.kind = 1;
+            func_80108B04(arg0, *(u32 *)&extraEntry);
+        }
+    case 0x133:
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_8080027C_chvolcanobits.s")
 
