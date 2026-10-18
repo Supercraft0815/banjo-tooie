@@ -76,7 +76,36 @@ s32 func_808002F8_chlagoonfish(LagoonFishActor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/fish/func_8080038C_chlagoonfish.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/fish/func_80800908_chlagoonfish.s")
+void func_80800908_chlagoonfish(Actor *arg0, s32 arg1) {
+    s32 func_800D674C(s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF830(s32);
+    void *func_80100094(Actor *, u32);
+    struct {
+        f32 position[3];
+        f32 rotation[3];
+        u8 pad18[12];
+        f32 scale;
+        u32 unk28;
+        u8 image;
+        u8 pad2D[3];
+    } *data;
+    s32 i;
+    s32 images[3];
+
+    data = func_80100094(arg0, 0);
+    if (data != NULL) {
+        for (i = 0; i < 3; i++) {
+            images[i] = func_800D674C(arg0->unk0->unk14 + i);
+        }
+        for (i = 0; i < arg0->unk6C_0; i++, data++) {
+            if (images[data->image] != 0) {
+                func_800DF830(1);
+                func_800DE448(data->position, data->rotation, data->scale, NULL, images[data->image]);
+            }
+        }
+    }
+}
 
 /* extern */
 
