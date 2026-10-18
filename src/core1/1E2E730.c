@@ -106,7 +106,35 @@ s16 func_80017108(u8 arg0) {
     return *(s16 *)((u8 *)&D_8007A20C + arg0 * 0x274);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_8001713C.s")
+void func_8001713C(u8 index, s32 track_id) {
+    typedef struct {
+        u8 pad0[0x1F8];
+        s32 field1F8;
+        u8 pad1FC[0x10];
+        s32 state;
+        u8 pad210[0x5C];
+        s16 track_id;
+        u8 pad26E[6];
+    } MusicSlot;
+    void func_80016ED0(u8, s32);
+    extern s32 D_80079FA0;
+    s32 current_track_id;
+    volatile OSTime time;
+
+    current_track_id = ((MusicSlot *)&D_80079FA0)[index].track_id;
+    if ((track_id == current_track_id) || (current_track_id == -1)) {
+        func_80016ED0(index, track_id);
+    } else {
+        func_80016ED0(index, -1);
+        time = osGetTime();
+        while (((MusicSlot *)&D_80079FA0)[index].state != 0) {
+            osGetTime();
+        }
+        ((MusicSlot *)&D_80079FA0)[index].field1F8 = 0;
+        func_80016DF8(current_track_id);
+        func_80016ED0(index, track_id);
+    }
+}
 
 s32 func_80017210(u8 index) {
     typedef struct { s32 state; u8 pad[0x270]; } MusicSlotSeqp;
