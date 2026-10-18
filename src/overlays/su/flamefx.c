@@ -18,7 +18,58 @@ void suflamefx_entrypoint_1(Actor *arg0, u32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/flamefx/suflamefx_entrypoint_2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/flamefx/suflamefx_entrypoint_3.s")
+typedef struct {
+    u8 pad0[0x18];
+    f32 position[3];
+    f32 unk24;
+    f32 scale;
+    u8 frame;
+    u8 pad2D[3];
+} FlameFxParticle;
+
+typedef struct {
+    u8 pad0[0x18];
+    s16 asset;
+    u8 unk1A;
+    u8 count;
+    u8 pad1C[4];
+    FlameFxParticle particles[1];
+} FlameFxData;
+
+void suflamefx_entrypoint_3(FlameFxData *arg0, s32 arg1) {
+    void *func_800D674C(s32);
+    void func_800E2588(u32);
+    void func_800E2594(u32, void *);
+    s32 func_800E2720(s32, s32, s32, f32 *, f32 *, s32);
+    void func_800E2A14(s32);
+    s32 func_800E3E8C(f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 sp54[3];
+    f32 temp_f0;
+    void *temp_s1;
+    s32 var_s1;
+    FlameFxParticle *var_s0;
+
+    var_s0 = arg0->particles;
+    if (func_800E3E8C(arg0->particles[0].position, 250.0f) != 0) {
+        temp_s1 = func_800D674C(arg0->asset);
+        func_800E2588(1);
+        func_800E2594(arg1, temp_s1);
+        var_s1 = 0;
+        if (arg0->count > 0) {
+            do {
+                temp_f0 = var_s0->scale;
+                if (temp_f0 > 0.05f) {
+                    func_800EFA4C(sp54, temp_f0, temp_f0, temp_f0);
+                    func_800E2720(arg1, var_s0->frame, 0, var_s0->position, sp54, 0xFF);
+                }
+                var_s1++;
+                var_s0++;
+            } while (var_s1 < arg0->count);
+        }
+        func_800E2A14(arg1);
+    }
+}
 
 void suflamefx_entrypoint_4(void *arg0) {
     (*(s8 *)((s8 *)(arg0) + (0x1C))) = 1;
