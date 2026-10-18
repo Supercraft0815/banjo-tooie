@@ -170,7 +170,36 @@ void func_80800424_chjiggygamenew(Unk80132ED0 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_808004E0_chjiggygamenew.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_808006E0_chjiggygamenew.s")
+void func_808006E0_chjiggygamenew(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
+    Actor *func_80106790();
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _sujiggy_entrypoint_21(void);
+    void func_800C082C(s32);
+    void func_800C9C34(f32, s32, s32, s32);
+    void func_800C9DE4(f32, void *, s32);
+    void func_800CE88C(s32, s32);
+    s32 func_800CEAA8(s32);
+    void func_800FC6B0(u32);
+    void func_8080356C_chjiggygamenew(Unk80132ED0 *);
+    void func_80800B88_chjiggygamenew(Actor *);
+    Actor *actor;
+
+    actor = func_80106790(arg0);
+    if (!actor->unk64_20 && func_800CEAA8(4)) {
+        func_800CE88C(4, 0);
+    }
+    func_8080356C_chjiggygamenew(actor->unk3C);
+    func_800C9C34(0.25f, 0x83, 0, 0x7D0);
+    func_800C9DE4(0.3f, &func_800FC6B0, 0x17);
+    actor->actorData[4] = 6;
+    if (_sujiggy_entrypoint_21()) {
+        arg2 = 0x155E;
+    }
+    func_800C082C(0);
+    _subaddiedialog_entrypoint_11(actor->unk0, arg2, 0x4C6, NULL, 0x97);
+    func_800C082C(1);
+    func_80800B88_chjiggygamenew(actor);
+}
 
 /* extern */
 
@@ -447,10 +476,10 @@ void func_80803564_chjiggygamenew(s32 arg0)
 }
 /* extern */
 
-void func_8080356C_chjiggygamenew(void) {
+void func_8080356C_chjiggygamenew(Unk80132ED0 *arg0) {
     s32 func_80102424(s32, s32);
     Actor *func_80106790();
-    func_80102424(func_80106790(), 8);
+    func_80102424(func_80106790(arg0), 8);
 }
 
 /* extern */
