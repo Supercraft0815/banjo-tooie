@@ -119,7 +119,7 @@ void func_80800510_cheggproximity(s32 arg0, void *arg1) {
 /* extern */
 
 void func_80800588_cheggproximity(s32 arg0, s32 arg1) {
-    u8 func_800D9078(f32 *);
+    s32 func_800D9078(f32 *);
     void *func_80100094(Actor *, u32);
     s32 func_80800718_cheggproximity(s32, s32);
     s32 func_80800874_cheggproximity(s32);
@@ -135,7 +135,7 @@ void func_80800588_cheggproximity(s32 arg0, s32 arg1) {
 /* extern */
 
 void func_808005EC_cheggproximity(s32 arg0, s32 arg1) {
-    u8 func_800D9078(f32 *);
+    s32 func_800D9078(f32 *);
     void *func_80100094(Actor *, u32);
     s32 func_80800718_cheggproximity(s32, s32);
     s32 func_80800874_cheggproximity(s32);
@@ -153,8 +153,8 @@ void func_808005EC_cheggproximity(s32 arg0, s32 arg1) {
 void func_80800650_cheggproximity(s32 arg0, s32 arg1) {
     s32 func_80800718_cheggproximity(s32, s32);
     s32 func_80800874_cheggproximity(s32);
-    s32 func_80800AFC_cheggproximity(s32);
-    func_80800874_cheggproximity(arg0); func_80800AFC_cheggproximity(arg0); if (((Actor *)arg0)->alpha < 0x79) {
+    void func_80800AFC_cheggproximity(Actor *);
+    func_80800874_cheggproximity(arg0); func_80800AFC_cheggproximity((Actor *)arg0); if (((Actor *)arg0)->alpha < 0x79) {
         func_80800718_cheggproximity(arg0, 6);
         return;
     }
@@ -171,7 +171,7 @@ void func_808006A4_cheggproximity(Actor *arg0, u8 *arg1) {
     };
     void* func_80100094(Actor*, u32);
     s32 func_80800874_cheggproximity(s32);
-    s32 func_80800AFC_cheggproximity(s32);
+    void func_80800AFC_cheggproximity(Actor *);
     s32 *sp1C;
     s32 sp18;
     u8 *temp_v0;
@@ -180,7 +180,7 @@ void func_808006A4_cheggproximity(Actor *arg0, u8 *arg1) {
     sp1C = temp_v0;
     sp18 = (*(s32 *)((s8 *)(temp_v0) + (0xA0)));
     func_80800874_cheggproximity((s32)arg0);
-    func_80800AFC_cheggproximity((s32)arg0);
+    func_80800AFC_cheggproximity(arg0);
     if (((Actor *)((s32)sp1C + (sp18 << 2)))->pad40 == 1) {
         ((struct ProximityFlags *)arg1)->triggered = 1;
     }
@@ -190,7 +190,39 @@ void func_808006A4_cheggproximity(Actor *arg0, u8 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_80800874_cheggproximity.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_80800AFC_cheggproximity.s")
+void func_80800AFC_cheggproximity(Actor *arg0) {
+    typedef struct player_state_s PlayerState;
+    struct ProximityData {
+        u8 pad[0x40];
+        s32 states[8];
+        s32 players[8];
+        f32 timers[8];
+        s32 index;
+        s32 disabled;
+    };
+    void _bamotor_entrypoint_0(PlayerState *, f32, f32);
+    s32 func_800D9078(f32 *);
+    PlayerState *func_800F53D0(s32);
+    s32 func_800F5898(void);
+    void *func_80100094(Actor *, u32);
+    struct ProximityData *data;
+    s32 i;
+
+    data = func_80100094(arg0, 1);
+    if (data->disabled == 0) {
+        for (i = 0; i < func_800F5898(); i++) {
+            if (data->states[i] != -1) {
+                if (data->players[i] == -1) {
+                    data->timers[i] = 1.0f;
+                    _bamotor_entrypoint_0(func_800F53D0(i), 1.0f, 0.25f);
+                } else if (func_800D9078(&data->timers[i])) {
+                    data->timers[i] = 1.0f;
+                    _bamotor_entrypoint_0(func_800F53D0(i), 1.0f, 0.25f);
+                }
+            }
+        }
+    }
+}
 
 s32 func_80800BF4_cheggproximity(Actor *arg0) {
     struct ProximityData {
