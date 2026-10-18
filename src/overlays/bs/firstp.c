@@ -1256,6 +1256,7 @@ s32 func_80802C30_bsfirstp(void *arg0) {
 
 void func_80802C6C_bsfirstp(s32 arg0)
 {
+    void func_800FC660(u32);
     func_800FC660(0xF);
 }
 
@@ -1603,13 +1604,45 @@ s32 bsfirstp_entrypoint_15(s32 arg0) {
     return ((s32 *)&D_8080B4D0_bsfirstp)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80804104_bsfirstp.s")
+void func_80804104_bsfirstp(struct player_state_s *arg0, void *arg1, void *arg2) {
+    void _bainvisible_entrypoint_3(struct player_state_s *);
+    void _basudie_entrypoint_1(struct player_state_s *);
+    void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void func_8009D89C(struct player_state_s *, f32);
+    s32 func_800D3948(void);
+    s32 func_800EA068(s32);
+    void func_800F7E64(s32, s32);
+    void func_800FC660(u32);
+    void func_80808F38_bsfirstp(struct player_state_s *);
+    s16 temp_a3;
+
+    temp_a3 = *(s16 *)arg1;
+    if (temp_a3 != 0) {
+        func_80800424_bsfirstp(arg0, temp_a3, *(f32 *)((u8 *)arg1 + 4));
+    }
+    baanim_playForDuration_onceSmooth(arg0, *(s16 *)arg2, *(f32 *)((u8 *)arg2 + 4));
+    func_800FC660(0xB);
+    if (func_80802A40_bsfirstp((u8 *)arg0, 0xB) == 0) {
+        func_8009D89C(arg0, 1.0f);
+    }
+    _bainvisible_entrypoint_3(arg0);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+    func_80808F38_bsfirstp(arg0);
+    if (func_800D3948() == 0) {
+        _basudie_entrypoint_1(arg0);
+    }
+    if (func_800EA068(8) == 0) {
+        func_800F7E64(*(s32 *)((u8 *)arg0 + 0x184), 1);
+    }
+}
 
 /* extern */
 
 void func_808041D0_bsfirstp(s32 arg0) {
     void func_80802700_bsfirstp(void *, void **, void **);
-    s32 func_80804104_bsfirstp(s32, s32, s32);
+    void func_80804104_bsfirstp(struct player_state_s *, void *, void *);
     void func_80807BB8_bsfirstp();
     s32 sp1C;
     s32 sp18;
@@ -1667,7 +1700,7 @@ s32 bsfirstp_entrypoint_16(s32 arg0) {
 
 void func_8080432C_bsfirstp(s32 arg0) {
     void func_80802754_bsfirstp(void *, void **, void **);
-    s32 func_80804104_bsfirstp(s32, s32, s32);
+    void func_80804104_bsfirstp(struct player_state_s *, void *, void *);
     void func_80807BB8_bsfirstp();
     s32 sp1C;
     s32 sp18;
@@ -2163,7 +2196,7 @@ void bsfirstp_entrypoint_26(s32 arg0) {
     void func_800A3544(void *, s32);
     s32 func_800EFD24(s32);
     void func_800F5A00(s32, f32 *);
-    s32 func_800F7E64(s32, s32);
+    void func_800F7E64(s32, s32);
     void func_80801A5C_bsfirstp(void *);
     s32 func_80802BE8_bsfirstp(s32, f32);
     s32 func_80803CD4_bsfirstp(s32, s32, s32, s32, f32 *);
