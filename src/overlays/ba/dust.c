@@ -135,7 +135,26 @@ void badust_entrypoint_8(struct player_state_s *self) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/badust_entrypoint_9.s")
+void badust_entrypoint_9(void *arg0) {
+    s32 badust_entrypoint_4(void *, f32, f32);
+    f32 func_8009BB18(void *);
+
+    switch (*(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x5C) + 4)) {
+        case 0:
+            badust_entrypoint_4(arg0, func_8009BB18(arg0) - 20.0f, 40.0f);
+            break;
+        case 1:
+            badust_entrypoint_4(arg0, func_8009BB18(arg0) + 20.0f, 40.0f);
+            break;
+        case 2:
+            badust_entrypoint_4(arg0, func_8009BB18(arg0), 30.0f);
+            break;
+    }
+    (*(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x5C) + 4))++;
+    if (*(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x5C) + 4) >= 3) {
+        *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x5C) + 4) = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/badust_entrypoint_10.s")
 
