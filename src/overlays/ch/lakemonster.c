@@ -46,7 +46,26 @@ void func_80800090_chlakemonster(Actor *arg0, f32 arg1[3], f32 arg2[3], s32 arg3
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_808001C0_chlakemonster.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_808002FC_chlakemonster.s")
+void func_808002FC_chlakemonster(Actor *arg0) {
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void *func_80100094(Actor *, u32);
+    extern s32 D_8080212C_chlakemonster;
+    s32 emitter;
+    struct {
+        u8 pad[0x1C];
+        f32 unk1C;
+        f32 unk20;
+    } *data;
+
+    emitter = func_800B53A4(6);
+    data = func_80100094(arg0, 0);
+    func_800BABB8(emitter, (f32 *)&arg0->actorData[4], NULL, 1.0f, &D_8080212C_chlakemonster);
+    func_800BA994(emitter, (s16)(s32)(data->unk20 - 10.0f), (s16)(s32)(data->unk1C - 10.0f), (s16)(s32)(arg0->scale * 100.0f), (s32)(data->unk20 + 10.0f), (s32)(data->unk1C + 10.0f), (s32)(arg0->scale * 200.0f));
+    func_800BA22C(emitter, 6);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80800404_chlakemonster.s")
 
