@@ -110,7 +110,40 @@ void func_8080181C_sucoasterfly(Actor *arg0) {
     ((f32 *)arg0->actorData)[3] = func_800F15F8(((f32 *)arg0->actorData)[3], sp1C[3], func_80107C00() * sp18);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_808018BC_sucoasterfly.s")
+void func_808018BC_sucoasterfly(Actor *arg0) {
+    f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
+    f32 func_800F0E00(f32, f32);
+    f32 func_800F15F8(f32, f32, f32);
+    f32 func_80107C00(void);
+    struct CoasterFlyActorFlags {
+        u8 pad0[0x64];
+        u32 pad64 : 2;
+        u32 disabled : 1;
+        u32 remaining64 : 29;
+    };
+    f32 *sp2C;
+    volatile f32 sp28;
+    f32 scale;
+    f32 speed;
+    f32 current;
+    f32 initial;
+
+    sp2C = func_80100094(arg0, 0);
+    if (((struct CoasterFlyActorFlags *)arg0)->disabled) {
+        scale = _subaddiejoy_entrypoint_9(arg0, NULL, 0);
+    } else {
+        scale = 1.0f;
+    }
+    initial = sp2C[3];
+    current = ((f32 *)arg0->actorData)[3];
+    if (initial < current) {
+        speed = func_800F0E00(current, 10.0f);
+    } else {
+        speed = initial;
+    }
+    sp28 = speed * 0.1f;
+    ((f32 *)arg0->actorData)[3] = func_800F15F8(((f32 *)arg0->actorData)[3], sp2C[3] * scale, func_80107C00() * sp28);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_808019A0_sucoasterfly.s")
 
