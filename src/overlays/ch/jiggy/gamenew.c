@@ -511,7 +511,33 @@ s32 func_8080363C_chjiggygamenew(void) {
     return ((u32) (*(u16 *)((s8 *)(func_80106790()) + (0x72))) >> 0xA) == 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80803668_chjiggygamenew.s")
+void func_80803668_chjiggygamenew(Unk80132ED0 *arg0, void *arg1) {
+    void func_800E4140(f32 *, f32 *);
+    void func_800E7DE4(void *, s32, s32, s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_80101870(Actor *, void *);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern f32 D_80803EA4_chjiggygamenew[];
+    extern f32 D_80803EB0_chjiggygamenew[];
+    f32 *position;
+    Actor *actor;
+    f32 *data;
+
+    actor = func_80106790(arg0);
+    data = func_80100094(actor, 0U);
+    position = actor->position;
+    func_800E4140(position, data + 8);
+    func_800E7DE4(arg1, (s32)(data[8] - actor->scale * 650.0f / 2), (s32)(data[9] - actor->scale * 650.0f / 2), (s32)(actor->scale * 650.0f), (s32)(actor->scale * 650.0f));
+    func_80101870(actor, arg1);
+    if (actor->unk70_10 == 1) {
+        func_800EE7F8(data + 3, D_80803EA4_chjiggygamenew);
+    } else {
+        func_800EE7F8(data + 3, D_80803EB0_chjiggygamenew);
+    }
+    func_800EF04C(data + 3, position);
+    func_800E4140(data + 3, data + 6);
+}
 
 OSThread *chjiggygamenew_entrypoint_4(void)
 {
