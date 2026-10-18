@@ -57,7 +57,42 @@ void func_80800130_chintrotext(s32 arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/text/func_80800154_chintrotext.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/text/func_808003EC_chintrotext.s")
+void func_808003EC_chintrotext(Actor *arg0, u32 *arg1) {
+    void *func_80100094(Actor *, u32);
+    int func_800A819C(void);
+    void _fxkern_entrypoint_1(u32 *, u32, u32 *);
+    void _fxkern_entrypoint_2(void);
+    void _fxkern_entrypoint_3(f32);
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    void func_800B8C8C(s32);
+    void func_800B8CE0(s32);
+    s32 func_800E71B8(s32);
+    struct IntroTextData {
+        s16 count;
+        s16 y[10];
+        s16 offsets[10];
+        s16 textIds[10];
+    } *data;
+    s32 i;
+    f32 scale;
+
+    data = func_80100094(arg0, 1);
+    if ((s32)arg0->unk70_10 >= 3 && func_800A819C() != 0) {
+        _fxkern_entrypoint_2();
+        func_800B8C8C(_subaddiefade_entrypoint_0(arg0));
+        for (i = 0; i < data->count; i++) {
+            func_800B8CE0(data->textIds[i]);
+            if (data->textIds[i] == 0xC25) {
+                scale = 0.75f;
+            } else {
+                scale = 1.0f;
+            }
+            _fxkern_entrypoint_3(scale);
+            _fxkern_entrypoint_1(arg1, data->y[i],
+                (u32 *)func_800E71B8((s32)func_80100094(arg0, 0) + data->offsets[i]));
+        }
+    }
+}
 
 void func_8080051C_chintrotext(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
