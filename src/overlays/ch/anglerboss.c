@@ -351,7 +351,46 @@ Actor *func_80801DA0_changlerboss(Actor *arg0) {
     return arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80801E3C_changlerboss.s")
+void func_80801E3C_changlerboss(Actor *arg0) {
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800F5A00(s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    f32 sp4C[3];
+    f32 sp40[3];
+    s32 pad3C;
+    struct AnglerBossShotData {
+        u8 pad0[0x92];
+        s16 unk92;
+        s16 pad94;
+        s16 unk96;
+        u8 pad98[0x90];
+        s16 unk128;
+    } *sp38;
+    f32 speed;
+    Actor *shot;
+    s32 pad28[2];
+
+    sp38 = func_80100094(arg0, 0);
+    func_800F5A00(sp38->unk128, sp4C);
+    if (_subaddieskeleton_entrypoint_2(arg0->unk0, 0xB, sp40) != 0) {
+        sp38 = func_80100094(arg0, 0);
+        shot = func_80108528(0x45F, sp40, 0, &arg0);
+        func_800EFB24(&shot->actorData[4], sp4C, shot->position);
+        shot->unk6C_0 = sp38->unk128;
+        if (sp38->unk92 == 0) {
+            speed = 1000.0f;
+        } else {
+            speed = func_800F10B4(sp38->unk96, 1.0f, 3.0f, 2000.0f, 1500.0f);
+            shot->unk64_20 = 1;
+        }
+        func_800EF368((f32 *)&shot->actorData[4], speed);
+        shot->unk3C = arg0->unk0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80801F54_changlerboss.s")
 
