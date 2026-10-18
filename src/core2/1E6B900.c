@@ -235,7 +235,28 @@ void func_80092880(PlayerState *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092898.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092A1C.s")
+void func_80092A1C(PlayerState *arg0) {
+    s32 func_80092EC8(PlayerState *, s16);
+    void func_8009359C(void *, s32);
+    void func_800ADFE0(s16);
+    void func_800DBFD8(void *);
+    void func_800A70B0(void *);
+    void _babackpack_entrypoint_8(PlayerState *);
+    void *temp_a0;
+
+    func_80092EC8(arg0, 0);
+    func_8009359C(arg0, 0);
+    func_800ADFE0(**(s16 **)&arg0->pad48[8]);
+    **(s16 **)&arg0->pad48[8] = 0;
+    func_800DBFD8((*(void ***)&arg0->pad48[8])[1]);
+    (*(void ***)&arg0->pad48[8])[1] = NULL;
+    temp_a0 = (*(void ***)&arg0->pad48[8])[0x21];
+    if (temp_a0 != NULL) {
+        func_800A70B0(temp_a0);
+    }
+    (*(void ***)&arg0->pad48[8])[0x21] = NULL;
+    _babackpack_entrypoint_8(arg0);
+}
 
 void func_80092AA4(PlayerState* arg0)
 {
