@@ -45,7 +45,41 @@ s32 chpowerhut_entrypoint_0(Actor *arg0, PowerhutConfig *arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhut/chpowerhut_entrypoint_1.s")
+s32 chpowerhut_entrypoint_1(Actor *arg0, PowerhutConfig *arg1) {
+    s32 func_800DA298(s32);
+    s32 _glcutDll_entrypoint_20(void);
+    s32 _subaddieaudioloop_entrypoint_5(s32, s32, s32, s32, s32 *);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void func_8080047C_chpowerhut(Actor *, PowerhutConfig *);
+    void func_80800698_chpowerhut(Actor *, PowerhutConfig *);
+    s32 func_808005F4_chpowerhut(Actor *);
+    extern s32 D_80800970_chpowerhut;
+    s32 active;
+
+    active = func_800DA298(arg1->flag) != 0;
+    if (!active) {
+        active = _glcutDll_entrypoint_20() != 0;
+    }
+    _subaddieaudioloop_entrypoint_5((s32)arg0, (s32)arg0->position, active, 0x708, &D_80800970_chpowerhut);
+    active = arg0->unk70_10;
+    switch (active) {
+        case 2:
+            func_8080047C_chpowerhut(arg0, arg1);
+            break;
+        case 3:
+            func_8080047C_chpowerhut(arg0, arg1);
+            func_80800698_chpowerhut(arg0, arg1);
+            break;
+        case 4:
+            func_8080047C_chpowerhut(arg0, arg1);
+            if (func_808005F4_chpowerhut(arg0)) {
+                _subaddieDll_entrypoint_4(arg0, 0);
+                return 1;
+            }
+            break;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhut/chpowerhut_entrypoint_2.s")
 
