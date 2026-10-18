@@ -101,10 +101,12 @@ void func_80800250_bsbbilldrill(void *arg0) {
 
 /* extern */
 
-void func_80800298_bsbbilldrill(s32 arg0) {
+struct player_state_s;
+
+void func_80800298_bsbbilldrill(struct player_state_s *arg0) {
     s32 _bswalk_entrypoint_1();
-    f32 baphysics_get_target_horizontal_velocity(s32);
-    s32 baphysics_set_target_horizontal_velocity(s32, f32);
+    f32 baphysics_get_target_horizontal_velocity(struct player_state_s *);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     _bswalk_entrypoint_1();
     baphysics_set_target_horizontal_velocity(arg0, baphysics_get_target_horizontal_velocity(arg0) * 0.1f);
 }
@@ -147,7 +149,50 @@ void bsbbilldrill_entrypoint_0(void *arg0) {
     func_808000C0_bsbbilldrill(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/bsbbilldrill_entrypoint_1.s")
+void bsbbilldrill_entrypoint_1(void *arg0) {
+    struct anctrl_s;
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setSmoothTransition(struct anctrl_s *, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void baflag_clear(struct player_state_s *, int);
+    void baphysics_set_gravity(struct player_state_s *, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void func_800931AC(struct player_state_s *, s32);
+    void func_8009E4AC(struct player_state_s *);
+    void func_8009FFD8(struct player_state_s *, s32, s32, s32, s32);
+    void func_800A0CF4(struct player_state_s *, s32);
+    void func_808002DC_bsbbilldrill(void *, s32);
+    struct anctrl_s *control;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    anctrl_reset(control);
+    anctrl_setSmoothTransition(control, 0);
+    anctrl_setIndex(control, 0x61);
+    anctrl_setDuration(control, 1.02f);
+    anctrl_setStart(control, 0.3637f);
+    anctrl_setSubrange(control, 0.0f, 0.4546f);
+    anctrl_setPlaybackType(control, 1);
+    anctrl_start(control);
+    func_8009FFD8(arg0, 1, 1, 3, 6);
+    baphysics_set_gravity(arg0, 0.0f);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_800A0CF4(arg0, 1);
+    baflag_clear(arg0, 0x22);
+    baflag_clear(arg0, 0x26);
+    func_800931AC(arg0, 3);
+    func_8009E4AC(arg0);
+    ((u8 *)arg0)[0x164] = 0;
+    ((u8 *)arg0)[0x160] = 0;
+    ((u8 *)arg0)[0x15C] = 0;
+    func_808002DC_bsbbilldrill(arg0, 1);
+    func_80800000_bsbbilldrill(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/bsbbilldrill_entrypoint_2.s")
 
