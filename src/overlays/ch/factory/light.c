@@ -11,7 +11,7 @@ OSThread *chfactorylight_entrypoint_0(void)
 
 void func_8080000C_chfactorylight(s32 arg0) {
     s32 func_8010A800(s32, s32);
-    s32 func_80800830_chfactorylight();
+    void func_80800830_chfactorylight();
     func_80800830_chfactorylight();
     func_8010A800(arg0, 0x2);
 }
@@ -141,6 +141,24 @@ void func_80800778_chfactorylight(void *arg0, s32 *arg1)
  ((struct ColorChannels *) arg1)->red /= 0x1000000; ((struct ColorChannels *) arg1)->green /= 0x10000; ((struct ColorChannels *) arg1)->blue /= 0x100;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/light/func_80800830_chfactorylight.s")
+void func_80800830_chfactorylight(Actor *arg0) {
+    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_80103014(u8 *);
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp24[3];
+
+    func_800EE7F8(sp3C, arg0->position);
+    func_800EF1B8(sp3C, arg0->rotation[1], 100.0f);
+    func_800EE7F8(sp30, arg0->position);
+    func_800EF1B8(sp30, arg0->rotation[1], -200.0f);
+    if (func_800BEF00(sp3C, sp30, sp24, arg0->unk14) != 0) {
+        func_800EE7F8(arg0->position, sp30);
+        func_800EF1B8(arg0->position, arg0->rotation[1], arg0->scale * 5.0f);
+        func_80103014((u8 *)arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/light/func_808008E4_chfactorylight.s")
