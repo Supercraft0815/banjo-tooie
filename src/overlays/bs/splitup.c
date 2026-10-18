@@ -73,7 +73,38 @@ void bssplitup_entrypoint_4(PlayerState *arg0) {
     func_8080012C_bssplitup(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/bssplitup_entrypoint_5.s")
+void bssplitup_entrypoint_5(PlayerState *arg0) {
+    int baanim_isAt(PlayerState *, f32);
+    s32 baanim_isStopped();
+    s32 bs_setState(void *, s32);
+    s32 func_800F457C(void *, s32);
+    s32 func_800F54E4();
+    s32 func_8080012C_bssplitup(PlayerState *, s32);
+    s32 sp24;
+
+    sp24 = 0;
+    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+        case 1:
+            if (baanim_isAt(arg0, 0.05f)) {
+                func_8080012C_bssplitup(arg0, 2);
+            }
+            break;
+        case 2:
+            if (baanim_isAt(arg0, 0.51f)) {
+                func_8080012C_bssplitup(arg0, 3);
+            }
+            break;
+        case 3:
+            break;
+    }
+    if (baanim_isStopped(arg0)) {
+        sp24 = 0xBB;
+        if (func_800F54E4() != *(s32 *)((s8 *)arg0 + 0x184)) {
+            func_800F457C(arg0, 2);
+        }
+    }
+    bs_setState(arg0, sp24);
+}
 
 /* extern */
 
