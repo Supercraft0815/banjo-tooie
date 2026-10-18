@@ -23,7 +23,31 @@ void func_80800008_basetup(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/func_80800080_basetup.s")
+struct player_state_s;
+void func_80800080_basetup(struct player_state_s *self) {
+    s32 _bashoes_entrypoint_1(struct player_state_s *);
+    void _bashoes_entrypoint_6(struct player_state_s *, s32);
+    int func_800A3274(struct player_state_s *);
+    s32 func_800F40EC(struct player_state_s *);
+    s32 shoes;
+
+    shoes = _bashoes_entrypoint_1(self);
+    if (func_800F40EC(self) != 0) {
+        switch (func_800A3274(self)) {
+        case 1:
+            if ((shoes == 2) || (shoes == 3) || (shoes == 4) || (shoes == 5)) {
+                _bashoes_entrypoint_6(self, 1);
+                return;
+            }
+            break;
+        case 11:
+            if ((shoes == 3) || (shoes == 4) || (shoes == 5)) {
+                _bashoes_entrypoint_6(self, 2);
+            }
+            break;
+        }
+    }
+}
 
 /* extern */
 
@@ -110,7 +134,7 @@ void func_808002D4_basetup(s32 arg0) {
     f32 func_8009E988();
     s32 func_8009EA20();
     s32 func_8009EA64();
-    s32 func_80800080_basetup(s32);
+    void func_80800080_basetup(struct player_state_s *);
     bastatetimer_set(arg0, 2, func_8009E97C());
     bastatetimer_set(arg0, 3, func_8009E988());
     if (func_8009EA64() != 0) {
