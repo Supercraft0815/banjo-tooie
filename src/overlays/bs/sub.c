@@ -137,7 +137,48 @@ void func_808008D8_bssub(struct player_state_s *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_808009B0_bssub.s")
+void func_808009B0_bssub(struct player_state_s *arg0) {
+    s32 _bafpctrl_entrypoint_18(struct player_state_s *, s32);
+    s32 _basub_entrypoint_10(struct player_state_s *);
+    void baphysics_set_gravity(struct player_state_s *, f32);
+    void baphysics_set_terminal_velocity(struct player_state_s *, f32);
+    void bastick_setZoneMax(struct player_state_s *, s32, f32);
+    void func_800910BC(struct player_state_s *, s32);
+    void func_80092864(struct player_state_s *, f32);
+    void func_80093360(struct player_state_s *, f32);
+    void func_800947EC(struct player_state_s *, s32, s32);
+    void func_80095964(void *, s32);
+    void func_800959C8(struct player_state_s *, f32, f32);
+    void func_800961AC(struct player_state_s *, s32);
+    void func_8009BC5C(struct player_state_s *, f32);
+    void func_8009E4AC(struct player_state_s *);
+    void func_8009E55C(struct player_state_s *, s32, f32);
+    s32 func_8009E77C(struct player_state_s *, s32);
+    void func_808000F0_bssub(struct player_state_s *);
+
+    if (func_8009E77C(arg0, 0xF) == 0) {
+        _basub_entrypoint_10(arg0);
+        *(f32 *)((u8 *)arg0 + 0x170) = *(f32 *)((u8 *)arg0 + 0x16C) = 0.0f;
+        baphysics_set_gravity(arg0, 0);
+        baphysics_set_terminal_velocity(arg0, -399.99f);
+        func_800961AC(arg0, 9);
+        func_80095964(arg0, 1);
+        func_8009BC5C(arg0, 2.0f);
+        bastick_setZoneMax(arg0, 0, 0.12f);
+        bastick_setZoneMax(arg0, 1, 1.0f);
+        func_800959C8(arg0, 90.0f, 70.0f);
+        func_8009E4AC(arg0);
+        func_8009E55C(arg0, 0, 70.0f);
+        func_8009E55C(arg0, 1, 0.0f);
+        func_8009E55C(arg0, 2, 0.0f);
+        func_80093360(arg0, 55.0f);
+        func_800910BC(arg0, 4);
+        func_808000F0_bssub(arg0);
+        _bafpctrl_entrypoint_18(arg0, 1);
+        func_800947EC(arg0, 1, 1);
+        func_80092864(arg0, 2.0f);
+    }
+}
 
 void func_80800AEC_bssub()
 {
@@ -244,7 +285,7 @@ void func_80800F70_bssub(s32 arg0)
 }
 void func_80800F98_bssub(s32 arg0)
 {
-    func_808009B0_bssub();
+    func_808009B0_bssub(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
 void func_80800FC0_bssub(s32 arg0)
@@ -341,7 +382,7 @@ void func_8080121C_bssub(s32 arg0)
 
 void func_80801244_bssub(s32 arg0) {
     void _baspin_entrypoint_2(struct player_state_s *, s32, f32, s32, s32);
-    func_808009B0_bssub();
+    func_808009B0_bssub(arg0);
     _baspin_entrypoint_2(arg0, 0x130, 1.8f, 3, 1);
 }
 
@@ -376,7 +417,7 @@ void func_808012F0_bssub(s32 arg0)
 
 void func_80801318_bssub(s32 arg0) {
     void _baspin_entrypoint_2(struct player_state_s *, s32, f32, s32, s32);
-    func_808009B0_bssub();
+    func_808009B0_bssub(arg0);
     _baspin_entrypoint_2(arg0, 0x130, 1.8f, 3, 1);
 }
 
@@ -412,7 +453,7 @@ void func_808013C4_bssub(s32 arg0)
 void func_808013EC_bssub(s32 arg0) {
     s32 _babounce_entrypoint_4(s32, s32);
     s32 _babounce_entrypoint_5(s32, s32, s32);
-    func_808009B0_bssub();
+    func_808009B0_bssub(arg0);
     _babounce_entrypoint_4(arg0, 2);
     _babounce_entrypoint_5(arg0, 0x12E, 0x40C00000);
 }
@@ -446,7 +487,7 @@ void func_80801490_bssub(s32 arg0)
 }
 void func_808014B8_bssub(s32 arg0) {
     void func_8009BF5C(struct player_state_s *, f32);
-    func_808009B0_bssub();
+    func_808009B0_bssub(arg0);
     func_8009BF5C(arg0, 0.0f);
     _bsrest_entrypoint_16(arg0);
     func_8009B94C((u8 *)arg0, 0);
