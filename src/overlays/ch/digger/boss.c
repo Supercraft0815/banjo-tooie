@@ -672,7 +672,7 @@ void func_80804A50_chdiggerboss(s32 arg0, s32 arg1) {
 
 void func_80804A7C_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
-    s32 func_800E0AFC(s32, s32, f32, f32, f32, f32);
+    void func_800E0AFC(void *, u8, f32, f32, f32, f32);
     func_800E0AFC(arg1, 0x2A, 1.0f, 0.0f, 0.0f, (*(f32 *)((s8 *)(func_80100094(arg0, 0)) + (0x1C))));
 }
 
@@ -1577,7 +1577,24 @@ void chdiggerboss_entrypoint_3(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk8013
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80809078_chdiggerboss.s")
+void func_80809078_chdiggerboss(Actor *arg0, void *arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void func_800E0AFC(void *, u8, f32, f32, f32, f32);
+    extern u16 D_8080A1F4_chdiggerboss[];
+    extern u16 D_8080A1FA_chdiggerboss[];
+    extern u16 D_8080A1FC_chdiggerboss[];
+    extern u16 D_8080A202_chdiggerboss[];
+    s32 i;
+    f32 *data;
+
+    data = func_80100094(arg0, 0);
+    for (i = 0; i < 3; i++) {
+        func_800E0AFC(arg1, D_8080A1F4_chdiggerboss[i], 1.0f, data[0x30], 0.0f, 0.0f);
+    }
+    for (i = 0; i < 3; i++) {
+        func_800E0AFC(arg1, D_8080A1FC_chdiggerboss[i], 1.0f, data[0x31], 0.0f, 0.0f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80809150_chdiggerboss.s")
 
