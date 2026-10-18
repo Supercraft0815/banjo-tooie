@@ -301,13 +301,16 @@ Actor* func_80108528(s32 arg0, f32 arg1[3], s32 arg2, Actor **arg3) {
 
 /* extern */
 
-void func_8010856C(s32 arg0, f32 *arg1, u8 *arg2) {
+Actor *func_8010856C(s32 arg0, f32 *arg1, f32 *arg2) {
     void func_800EE904(s32 dst[3], f32 src[3]);
     Actor *func_80108DC0(s32, s32 *, u32, s32, s32, Prop *);
     s32 sp20[3];
+    Actor *actor;
 
     func_800EE904((s32 *)((u8 *)sp20 - 4), arg1);
-    (*(f32 *)((s8 *)(func_80108DC0(arg0, (s32 *)((u8 *)sp20 - 4), (s32) (*(f32 *)((s8 *)(arg2) + (4))), 0, 0, 0)) + (0x44))) = (f32) (*(f32 *)((s8 *)(arg2) + (0)));
+    actor = func_80108DC0(arg0, (s32 *)((u8 *)sp20 - 4), (s32)arg2[1], 0, 0, 0);
+    actor->rotation[0] = arg2[0];
+    return actor;
 }
 
 void func_801085CC(s32 arg0, s16 *arg1, u32 arg2) {

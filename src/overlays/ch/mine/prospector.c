@@ -113,7 +113,24 @@ void func_8080084C_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_808008A4_chmineprospector.s")
+void func_808008A4_chmineprospector(Actor *arg0) {
+    void func_80105A9C(Actor *, f32);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *func_8010856C(s32, f32 *, f32 *);
+    void func_80108944(Actor *, Actor *);
+    Actor *sp2C;
+    Unk80132ED0 *sp28;
+    f32 *data;
+    f32 sp1C[2];
+
+    sp28 = arg0->unk0;
+    data = func_80100094(arg0, 0U);
+    sp1C[0] = 0.0f;
+    sp1C[1] = data[3];
+    sp2C = func_8010856C(0x152, data, sp1C);
+    func_80108944(sp2C, func_80106790(sp28));
+    func_80105A9C(sp2C, 450.0f);
+}
 
 s32 func_80800910_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_0(s32, s32);
