@@ -240,7 +240,42 @@ s32 func_80801694_chstatueboss(Actor *arg0) {
     return -1 ^ flags;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801724_chstatueboss.s")
+/* extern */
+
+s16 func_80801724_chstatueboss(u8 *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4) {
+    s32 pad;
+    void *func_800AE080(s16);
+    s32 func_800AE0E8(s16);
+    s16 func_800B1F8C(u8 *, f32 *, f32 *, f32, s32, void *, s32, f32, s32, s32);
+    u8 *func_800B2824(u8 *);
+    u8 *func_80103AA0(u8 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    struct Resource {
+        u8 pad[0x10];
+        s16 handle;
+    };
+    struct StatueBossData {
+        u8 pad[0x86];
+        s16 handle;
+    } *sp48;
+    u8 *sp44;
+    s32 pad2;
+    u8 *sp3C;
+    Actor *temp_v0;
+    u8 *temp_v0_2;
+
+    temp_v0 = func_80106790((Unk80132ED0 *)arg0);
+    sp48 = func_80100094(temp_v0, 0U);
+    temp_v0_2 = func_80103AA0(arg0);
+    sp44 = temp_v0_2;
+    if ((temp_v0_2 == 0) || (func_800AE0E8(((struct Resource *)arg0)->handle) == 0)) {
+        return 0;
+    }
+    arg4 = func_80801694_chstatueboss(temp_v0);
+    sp3C = func_800B2824(sp44);
+    sp48->handle = func_800B1F8C(sp3C, temp_v0->position, temp_v0->rotation, temp_v0->scale, 0, func_800AE080(((struct Resource *)arg0)->handle), arg1, arg2, arg3, arg4);
+    return sp48->handle;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801804_chstatueboss.s")
 
