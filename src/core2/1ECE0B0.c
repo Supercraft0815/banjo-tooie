@@ -198,8 +198,8 @@ void func_800F4CEC(s32 arg0,u32 arg1)
 
 /* extern */
 
-void func_800F4D18(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_8009F678(PlayerState *, s32, s32, f32);
+void func_800F4D18(s32 arg0, f32 *arg1, f32 *arg2) {
+    s32 func_8009F678(PlayerState *, f32 *, f32 *, f32);
     f32 func_800A3048(PlayerState *);
     PlayerState *sp1C;
 
@@ -207,7 +207,19 @@ void func_800F4D18(s32 arg0, s32 arg1, s32 arg2) {
     func_8009F678(sp1C, arg1, arg2, func_800A3048(sp1C) * 1000.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F4D74.s")
+void func_800F4D74(s32 arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4) {
+    s32 func_8009F678(PlayerState *, f32 *, f32 *, f32);
+    f32 func_800A3048(PlayerState *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 sp34[3];
+    f32 sp28[3];
+    PlayerState *sp24;
+
+    sp24 = D_80135490[arg0];
+    func_800EFA4C(sp34, arg1[0] - arg2, arg1[1] - arg3, arg1[2] - arg4);
+    func_800EFA4C(sp28, arg1[0] + arg2, arg1[1] + arg3, arg1[2] + arg4);
+    func_8009F678(sp24, sp34, sp28, func_800A3048(sp24) * 1000.0f);
+}
 
 /* extern */
 
