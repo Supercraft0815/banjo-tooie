@@ -44,7 +44,53 @@ void func_808000A4_chfantasycannon(void) {
     func_800BABB8(sp28, sp2C, NULL, 1.0f, &D_80800CF8_chfantasycannon);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/cannon/func_8080010C_chfantasycannon.s")
+/* extern */
+
+void func_8080010C_chfantasycannon(Actor *arg0) {
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    s32 _gspropctrl_entrypoint_8(Prop *);
+    s32 _subaddieDll_entrypoint_1(Actor *);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void func_800FFA88(Unk80132ED0 *);
+    s32 func_808009B8_chfantasycannon(Actor *);
+    Prop *sp40[20];
+    s32 sp3C;
+    Prop **var_s0;
+    s32 temp_s2;
+    s32 var_s1;
+
+    sp3C = 0;
+    temp_s2 = _gccubesearch_entrypoint_9(0x47E, sp40, 0x14);
+    if (_subaddieDll_entrypoint_1(arg0) == 0) {
+        func_800FFA88(arg0->unk0);
+        return;
+    }
+    var_s1 = 0;
+    if (temp_s2 > 0) {
+        var_s0 = sp40;
+loop_4:
+        if (_gspropctrl_entrypoint_8(*var_s0) == arg0->unk74_7) {
+            _gspropctrl_entrypoint_11(*var_s0, (f32 *)arg0->actorData);
+            func_800EF1B8((f32 *)arg0->actorData, func_800F1DF4((f32 *)arg0->actorData, arg0->position), -70.0f);
+            ((f32 *)arg0->actorData)[1] += 60.0f;
+            sp3C = 1;
+        } else {
+            var_s1 += 1;
+            var_s0++;
+            if (var_s1 != temp_s2) {
+                goto loop_4;
+            }
+        }
+    }
+    if (sp3C == 0) {
+        func_800FFA88(arg0->unk0);
+        return;
+    }
+    func_808009B8_chfantasycannon(arg0);
+    arg0->unk64_19 = 0;
+}
 
 /* extern */
 
