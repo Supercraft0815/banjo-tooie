@@ -541,7 +541,56 @@ void func_80802F00_chdiggerboss(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80803078_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80803224_chdiggerboss.s")
+void func_80803224_chdiggerboss(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_8010A828(void **, s32);
+    s32 _gcnewoption_entrypoint_2(void);
+    void _gcnewoption_entrypoint_5(s32, void *, u8, u16, s32);
+    s32 _gcnewoption_entrypoint_8(s32, s32);
+    s32 _gcnewoption_entrypoint_9(s32, s32);
+    s32 _gcnewoption_entrypoint_10(s32, s32);
+    void _gcnewoption_entrypoint_11(s32);
+    s32 _gcnewoption_entrypoint_14(s32, s32, s32, s32, f32);
+    void _gcnewoption_entrypoint_28(s32);
+    void _gcnewoption_entrypoint_29(s32, s32);
+    void _gcnewoption_entrypoint_30(s32, s32 *);
+    s32 _gcnewoption_entrypoint_32(s32, s32);
+    void bzero(void *, int);
+    extern s32 _gcnewoption_entrypoint_35;
+    extern s32 D_80809F34_chdiggerboss;
+    typedef struct {
+        u8 pad0[0x40];
+        s8 unk40;
+        u8 pad41;
+        s8 unk42;
+        u8 pad43;
+        u16 unk44;
+        u8 pad46[2];
+        s8 unk48;
+        u8 pad49[0xC3];
+        u8 options[0x260];
+    } DiggerBossData;
+    s32 options;
+    DiggerBossData *data;
+
+    data = func_80100094(arg0, 0);
+    options = ((DiggerBossData *)func_80100094(arg0, 0))->options;
+    bzero(options, _gcnewoption_entrypoint_2());
+    _gcnewoption_entrypoint_5(options, &_gcnewoption_entrypoint_35, 0, data->unk44, arg0->unk0);
+    _gcnewoption_entrypoint_8(options, 3);
+    _gcnewoption_entrypoint_9(options, 3);
+    _gcnewoption_entrypoint_10(options, 2);
+    _gcnewoption_entrypoint_14(options, 0, 0, 0, 4.0f);
+    _gcnewoption_entrypoint_32(options, 0x22);
+    _gcnewoption_entrypoint_30(options, &D_80809F34_chdiggerboss);
+    _gcnewoption_entrypoint_28(options);
+    _gcnewoption_entrypoint_29(options, 1);
+    _gcnewoption_entrypoint_11(options);
+    data->unk40 = 2;
+    data->unk42 = 1;
+    data->unk48 = 1;
+    func_8010A828(arg0, 9);
+}
 
 /* extern */
 
