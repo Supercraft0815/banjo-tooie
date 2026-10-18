@@ -65,7 +65,43 @@ void func_800FE3EC(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FE4E4.s")
+s32 func_800FE4E4(void) {
+    void func_800C77DC(s32);
+    void func_800FC74C(u32);
+    extern s16 D_801359C8;
+    extern s8 D_801359D7;
+    extern s8 D_80135A01;
+    extern s32 D_80135A20[3];
+    extern f32 D_80135A30[3];
+    extern u8 D_80135A3C;
+    extern s32 D_80135A40;
+    u32 temp_a0;
+    s32 var_s1;
+
+    if ((u8) D_801359D7 != 0) {
+        return 0;
+    }
+    func_800C77DC(1);
+    func_800FDC28(0U);
+    temp_a0 = D_801359C8;
+    if (temp_a0 != -1U) {
+        func_800FC74C(temp_a0);
+    }
+    if (D_80135A40 > 0) {
+        for (var_s1 = 0; var_s1 < 3; var_s1++) {
+            temp_a0 = D_80135A20[var_s1];
+            if ((temp_a0 != 0) && ((&D_80135A3C)[var_s1] != 0)) {
+                func_800FC74C(temp_a0);
+                D_80135A20[var_s1] = 0;
+                (&D_80135A3C)[var_s1] = 0;
+                D_80135A30[var_s1] = 0.0f;
+                D_80135A40 -= 1;
+            }
+        }
+    }
+    D_80135A01 = 1;
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FE614.s")
 
