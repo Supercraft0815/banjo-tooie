@@ -91,4 +91,27 @@ void func_8010EACC(void *arg0, s32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE8100/func_8010EBE4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE8100/func_8010EECC.s")
+void func_8010EECC(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
+    struct state { s32 *actor; s32 data[3]; s8 value; u8 pad[3]; s32 *start; };
+    extern u8 D_80137080[];
+    extern s32 D_80137084;
+    extern s32 D_8013709C;
+    void func_800C87B8(s32 *);
+    s32 func_800DF8B4(s32 *);
+    s32 func_800DF8BC(s32 *);
+    s32 func_800DF8CC(s32 *);
+    int func_800DF8D4(s32 *);
+    void func_8010EBE4(s32, s32, s32);
+    s32 pad;
+    s32 sp28;
+    s32 sp24;
+
+    ((struct state *)D_80137080)->actor = arg0;
+    ((struct state *)D_80137080)->value = func_800DF8D4(arg0);
+    ((struct state *)D_80137080)->start = &D_8013709C;
+    func_8010EACC(arg0, arg1, arg3);
+    func_800C87B8(&D_80137084);
+    sp24 = func_800DF8B4(arg0);
+    sp28 = func_800DF8CC(arg0);
+    func_8010EBE4(sp24, sp28, func_800DF8BC(arg0));
+}
