@@ -367,7 +367,66 @@ void func_80802B10_chklungo(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80802B84_chklungo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80802DF4_chklungo.s")
+u8 func_80802DF4_chklungo(Actor *arg0) {
+    s32 func_800D395C(void);
+    s32 func_800DA298(s32);
+    s32 func_800DA564(s32, s32);
+    s32 func_800DA7A8(s32, s32, s32);
+    s32 func_800DA980(s32, s32);
+    s32 func_800DC128(s32, s32);
+    void *func_80100094(Actor *, u32);
+    extern u8 D_80803D01_chklungo[][3];
+    extern u8 D_80803D04_chklungo[];
+    s32 sp2C;
+    s32 sp28;
+    s32 selected;
+    s32 value;
+    s32 i;
+    s32 count;
+    u8 *entry;
+    u8 result;
+    struct {
+        u8 pad0[8];
+        s16 unk8;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    sp2C = data->unk8;
+    sp28 = func_800DA564(0x315, 3);
+    if (sp28 == 0) {
+        if (func_800D395C() != 0) {
+            selected = func_800DC128(0, func_800DA980(0xC08, 3));
+            i = 0;
+            count = 0;
+            do {
+                if (func_800DA298(i + 0xC08) != 0) {
+                    if (count == selected) {
+                        break;
+                    }
+                    count++;
+                }
+                i++;
+            } while (i < 3);
+            value = i + 1;
+            i = 0;
+            entry = D_80803D04_chklungo + sp2C;
+            do {
+                if (value == *entry) {
+                    sp28 = i + 1;
+                    break;
+                }
+                i++;
+                entry += 3;
+            } while (i != 6);
+            func_800DA7A8(0x315, sp28, 3);
+        } else {
+            sp28 = func_800DC128(0, 6) + 1;
+            func_800DA7A8(0x315, sp28, 3);
+        }
+    }
+    result = D_80803D01_chklungo[sp28][sp2C];
+    return result;
+}
 
 void func_80802F30_chklungo(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
