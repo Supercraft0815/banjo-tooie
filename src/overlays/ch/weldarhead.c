@@ -24,4 +24,25 @@ void func_80800170_chweldarhead(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarhead/func_808001E4_chweldarhead.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarhead/func_8080038C_chweldarhead.s")
+void func_8080038C_chweldarhead(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    s32 _susubgame_entrypoint_4(void *, s32);
+    void func_80108B04(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0x1360:
+            _susubgame_entrypoint_6(arg0, data + 0x18, 0x48, 0x30, 0);
+            func_80108B04(arg0, 0);
+            arg0->unk64_20 = 1;
+            break;
+        case 0x1384:
+            _susubgame_entrypoint_4(arg0, data + 0x18);
+        default:
+            func_80102424(arg0, 1);
+            break;
+    }
+}
