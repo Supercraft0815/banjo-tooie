@@ -192,7 +192,27 @@ void func_80800E80_chlagoonufoint(Actor *arg0, s32 arg1) {
     arg0->unk70_10 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_80800F48_chlagoonufoint.s")
+void func_80800F48_chlagoonufoint(Actor *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    s32 func_800DA298(s32);
+    void func_800EFD24(f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 *sp24;
+    s32 temp_v0;
+
+    sp24 = func_80100094(arg0, 0);
+    arg0->unk3C = func_8080078C_chlagoonufoint();
+    ((f32 *)arg0->actorData)[3] = 0.0f;
+    func_800EFD24((f32 *)arg0->actorData);
+    temp_v0 = func_800C8A98();
+    *sp24 = temp_v0;
+    func_800C8CB8(temp_v0, arg0->position);
+    if (func_800DA298(0x9F0) != 0 || _glcutDll_entrypoint_20() != 0) {
+        func_80800E80_chlagoonufoint(arg0, 4);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_80800FD4_chlagoonufoint.s")
 
