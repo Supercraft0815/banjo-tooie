@@ -1,5 +1,7 @@
 #include "common.h"
 
+s32 func_800D0A9C(u32, u32);
+
 OSThread *chwaspnestgame_entrypoint_0(void)
 {
     extern u8 D_80801F80_chwaspnestgame[];
@@ -237,7 +239,30 @@ void func_80800D7C_chwaspnestgame(Actor *arg0, s32 arg1) {
     func_80800AF8_chwaspnestgame(arg0, sp28, sp1C, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80800DE4_chwaspnestgame.s")
+s32 func_80800DE4_chwaspnestgame(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void func_80800018_chwaspnestgame(Actor *, s32);
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0:
+            if (func_800D0A9C(0x4B, 1) == 0 && (s32)arg0->actorData[3] >= 0x32) {
+                _susubgame_entrypoint_5(arg0, data + 0x24, 5, 1, 0);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x140B, 4, NULL, 0x99);
+                return 4;
+            }
+            func_80800018_chwaspnestgame(arg0, 5);
+            return 4;
+        case 4:
+            func_80800018_chwaspnestgame(arg0, 5);
+            return 4;
+        default:
+            return 3;
+    }
+}
 
 s32 func_80800EB8_chwaspnestgame(void *arg0, s32 arg1, s32 arg2) {
     s32 func_800D211C(s32);
