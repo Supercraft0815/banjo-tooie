@@ -111,7 +111,22 @@ int func_80800FF8_chevilspirit(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_8080104C_chevilspirit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_808012CC_chevilspirit.s")
+void func_808012CC_chevilspirit(Actor *arg0) {
+    s32 func_8001210C(s32);
+    s32 func_800C954C(void);
+    void func_80102424(Actor *, s32);
+    s32 func_8080104C_chevilspirit();
+    s32 func_80801988_chevilspirit();
+    s32 func_80801EC4_chevilspirit(s32);
+    s32 temp_v0;
+
+    if ((func_8001210C(3) == 0) && (func_800C954C() == 0) && (func_80801EC4_chevilspirit(arg0) != 0)) {
+        temp_v0 = func_8080104C_chevilspirit(arg0, 0);
+        if ((temp_v0 != 0) && (func_80801988_chevilspirit(arg0, temp_v0, 0) != 0)) {
+            func_80102424(arg0, 5);
+        }
+    }
+}
 
 /* extern */
 
