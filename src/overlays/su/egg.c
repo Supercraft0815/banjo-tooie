@@ -206,7 +206,43 @@ void suegg_entrypoint_16(Actor *arg0) {
     *(f32 *)(data + 0x30) += func_800D8FF8();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_17.s")
+s32 suegg_entrypoint_17(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_8010A570(Actor *);
+    void func_800FFAB0(Actor *);
+    s32 func_80800DC0_suegg(Actor *, s32);
+    struct SueggEventData {
+        u8 pad[0x39];
+        u8 flag80 : 1;
+        u8 flag40 : 1;
+        u8 flag20 : 1;
+        u8 rest : 5;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 5:
+            data->flag80 = 1;
+            func_8010A570(arg0);
+            return 1;
+        case 0x2C:
+            data->flag40 = 1;
+            func_8010A570(arg0);
+            func_800FFAB0(arg0);
+            return 1;
+        case 0x92:
+            data->flag20 = 1;
+            break;
+        case 0x98:
+            data->flag40 = 1;
+            break;
+        case 0x9F:
+            func_80800DC0_suegg(arg0, arg2);
+            return 1;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
