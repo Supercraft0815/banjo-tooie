@@ -56,7 +56,32 @@ void func_80800164_cheggproximity(ProximityActor *arg0) {
     arg0->proximity.flags = sp1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_808001CC_cheggproximity.s")
+void func_808001CC_cheggproximity(Actor *arg0) {
+    void _fxegg_entrypoint_5(f32 *, f32 *, f32);
+    void _suegg_entrypoint_20(Actor *, f32 *);
+    f32 func_800D8FF8(void);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    f32 *temp_s0;
+    f32 *temp_s1;
+    f32 sp64[3];
+    f32 sp58[3];
+    f32 temp_f22;
+
+    temp_s1 = func_80100094(arg0, 0);
+    temp_s1[10] -= func_800D8FF8();
+    temp_f22 = func_800F10B4(temp_s1[12], 0, 2.0f, 0.0333f, 0.1f);
+    _suegg_entrypoint_20(arg0, sp58);
+    temp_s0 = arg0->position;
+    if (temp_s1[10] <= 0.0f) {
+        do {
+            temp_s1[10] += temp_f22;
+            func_800EE7F8(sp64, temp_s0);
+            _fxegg_entrypoint_5(temp_s0, sp58, arg0->scale);
+        } while (temp_s1[10] <= 0.0f);
+    }
+}
 
 /* extern */
 
@@ -84,7 +109,7 @@ void cheggproximity_entrypoint_2(void *arg0) {
 void func_8080048C_cheggproximity(s32 arg0, void *arg1) {
     s32 _suegg_entrypoint_16(s32);
     s32 func_800EEEA8(s32);
-    s32 func_808001CC_cheggproximity(s32);
+    void func_808001CC_cheggproximity(Actor *);
     s32 func_80800718_cheggproximity(s32, s32);
     if (func_800EEEA8(arg0 + 0x28) != 0) {
         func_80800718_cheggproximity(arg0, 3);
@@ -103,7 +128,7 @@ void func_80800510_cheggproximity(s32 arg0, void *arg1) {
     s32 _suegg_entrypoint_14(s32);
     s32 _suegg_entrypoint_16(s32);
     s32 func_800EEEA8(s32);
-    s32 func_808001CC_cheggproximity(s32);
+    void func_808001CC_cheggproximity(Actor *);
     s32 func_80800718_cheggproximity(s32, s32);
     if (func_800EEEA8(arg0 + 0x28) != 0) {
         func_80800718_cheggproximity(arg0, 3);
