@@ -406,7 +406,37 @@ void func_80802938_chdiggerboss(Actor *arg0, Unk80132ED0 *arg1, u32 arg2, u32 ar
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808029C8_chdiggerboss.s")
+void func_808029C8_chdiggerboss(Actor *arg0) {
+    s32 _gcdialogcamera_entrypoint_3(f32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    void _gcdialogcamera_entrypoint_5(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void *func_80100094(Actor *, u32);
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp30[4];
+    s32 pad2C;
+    f32 *sp28;
+    f32 temp_f0;
+    f32 temp_f2;
+
+    sp28 = func_80100094(arg0, 0);
+    func_800EE7F8(sp4C, arg0->rotation);
+    sp4C[1] += sp28[4];
+    func_800EE7F8(sp40, arg0->position);
+    func_800EF1B8(sp40, arg0->rotation[1], arg0->scale * 400.0f);
+    temp_f0 = arg0->scale;
+    temp_f2 = temp_f0;
+    temp_f2 *= sp28[3];
+    sp30[0] = temp_f0 * 2700.0f;
+    sp30[1] = 800.0f * temp_f2;
+    sp30[2] = 500.0f * temp_f2;
+    sp30[3] = arg0->scale * 2100.0f;
+    _gcdialogcamera_entrypoint_3(sp30, 1.0f);
+    _gcdialogcamera_entrypoint_4(sp40);
+    _gcdialogcamera_entrypoint_5(sp4C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80802AB8_chdiggerboss.s")
 
