@@ -114,7 +114,39 @@ void func_80800198_chbouncycastle(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bouncycastle/func_80800254_chbouncycastle.s")
+typedef union {
+    Actor actor;
+    struct {
+        u8 pad[0x75];
+        u8 pad75_7 : 1;
+        u8 unk75_6 : 1;
+        u8 pad75_0 : 6;
+    } flags;
+} BouncyCastleActor;
+
+void func_80800254_chbouncycastle(BouncyCastleActor *arg0) {
+    void func_800DA544(GameFlag);
+    s32 func_80101DDC(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_8080051C_chbouncycastle(Actor *);
+    u32 state;
+
+    state = arg0->actor.unk70_10;
+    if (state == 2) {
+        func_8080051C_chbouncycastle(&arg0->actor);
+        if (func_80101DDC(&arg0->actor)) {
+            func_80102424(&arg0->actor, 3);
+            func_800DA544(0xB2);
+            arg0->actor.unk79_4 = 3;
+        }
+        state = arg0->actor.unk70_10;
+    }
+    if (state == 2 || arg0->actor.unk79_4 != 0) {
+        arg0->flags.unk75_6 = 1;
+    } else {
+        arg0->flags.unk75_6 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bouncycastle/func_80800308_chbouncycastle.s")
 
