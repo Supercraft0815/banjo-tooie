@@ -52,6 +52,8 @@ void func_800CA314(s32 arg0,s32 arg1)
     aligned4_memcpy(arg0,arg1,0x168);
 }
 
+void func_800CA440(void *);
+
 u8 *func_800CA334(void) {
     void* heap_alloc(s32 size);
     u8 *sp1C;
@@ -59,7 +61,7 @@ u8 *func_800CA334(void) {
 
     temp_v0 = heap_alloc(0x168);
     sp1C = temp_v0;
-    func_800CA440((s32) temp_v0);
+    func_800CA440(temp_v0);
     return sp1C;
 }
 
@@ -91,7 +93,28 @@ void func_800CA3F4(f32 *arg0, f32 *arg1, f32 arg2) {
     func_800EF04C(arg1, sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CA440.s")
+void func_800CA440(void *arg0) {
+    f32 func_800139F8(f32);
+    void func_800CA5F8(f32 *, f32, f32, f32);
+    void func_800CA688(s32, f32, f32, f32);
+    void func_800CA6C0(void *, f32, f32);
+    void func_800CA6F0(void *, f32);
+    s32 func_800CAF34(s32);
+    extern f32 D_80125970;
+    f32 sp20;
+
+    func_800CA5F8(arg0, 0.0f, 0.0f, 0.0f);
+    func_800CA688((s32)arg0, 0.0f, 0.0f, 0.0f);
+    func_800CA6C0(arg0, 1.0f, 10000.0f);
+    func_800CA6F0(arg0, 1.0f);
+    (*(f32 *)((s8 *)arg0 + 0xE4)) = 40.0f;
+    sp20 = (*(f32 *)((s8 *)arg0 + 0xE4)) * 0.5f;
+    (*(f32 *)((s8 *)arg0 + 0xF4)) = 1.0f / func_800139F8(sp20);
+    (*(f32 *)((s8 *)arg0 + 0xE8)) = D_80125970;
+    func_800CA218(arg0, sp20);
+    func_800CA2A8(arg0, sp20);
+    func_800CAF34((s32)arg0);
+}
 
 /* extern */
 
@@ -106,14 +129,14 @@ void func_800CA510(void *arg0, f32 arg1) {
 /* extern */
 
 void func_800CA558(void *arg0, f32 arg1) {
-    f32 func_800139F8(f32, f32);
+    f32 func_800139F8(f32);
     void func_800CA218(void *, f32);
     void func_800CA2A8(void *, f32);
     f32 sp18;
 
     sp18 = arg1 * 0.5f;
     (*(f32 *)((s8 *)(arg0) + (0xE4))) = arg1;
-    (*(f32 *)((s8 *)(arg0) + (0xF4))) = (f32) (1.0f / func_800139F8(sp18, arg1));
+    (*(f32 *)((s8 *)(arg0) + (0xF4))) = (f32) (1.0f / func_800139F8(sp18));
     func_800CA218(arg0, sp18);
     func_800CA2A8(arg0, sp18);
 }
