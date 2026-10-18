@@ -521,7 +521,30 @@ void func_80802450_chinflatableboss(Actor *arg0) {
     func_80102FDC(arg0, sp1C->rotation[0] - (func_80101F24(arg0) * sp18));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_808024BC_chinflatableboss.s")
+void func_808024BC_chinflatableboss(Actor *arg0) {
+    typedef struct {
+        u8 unk0[0x40];
+        f32 duration;
+        u8 unk44[0x453];
+        u8 unk497;
+    } BossData;
+    void *func_80100094(Actor *, u32);
+    void func_80101CDC(Actor *, f32);
+    struct anctrl_s *func_80104248(void *);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    void func_80800F84_chinflatableboss(Actor *, s32);
+    extern s16 D_80802D80_chinflatableboss[];
+    BossData *sp24;
+    f32 duration;
+
+    sp24 = func_80100094(arg0, 0);
+    sp24->duration = D_80802D80_chinflatableboss[func_80801C7C_chinflatableboss(arg0)];
+    *(f32 *)&arg0->actorData[3] = 0.0f;
+    func_80800F84_chinflatableboss(arg0, sp24->unk497 != 0 ? 6 : 8);
+    duration = ((f32)D_80802D80_chinflatableboss[0] / sp24->duration) * 5.0f;
+    func_80101CDC(arg0, duration);
+    func_8008B1C8(func_80104248(arg0), 0.8f);
+}
 
 s32 func_80802590_chinflatableboss(Actor *arg0, f32 *arg1, s32 arg2) {
     s32 func_800AE0B8(s32 *);
