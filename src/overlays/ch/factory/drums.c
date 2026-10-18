@@ -1,6 +1,47 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/drums/func_80800000_chfactorydrums.s")
+s32 func_80800000_chfactorydrums(Actor *arg0) {
+    s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
+    s32 func_800CC338(s32 *, s32, s32);
+    union DrumActor {
+        Actor actor;
+        struct {
+            u8 pad[0x70];
+            u32 group : 7;
+            u32 unused : 15;
+            u32 point : 6;
+            u32 rest : 4;
+        } path;
+        struct {
+            Unk80132ED0 *unk0;
+            s32 position[3];
+        } coordinates;
+    };
+    u8 *actors[10];
+    s32 count;
+    s32 total = 0;
+    s32 i;
+
+    count = _subaddiefind_entrypoint_4(0x3FF, actors, 10);
+    for (i = 0; i < count; i++) {
+        if (func_800CC338(((union DrumActor *)actors[i])->coordinates.position,
+                ((union DrumActor *)arg0)->path.group - 1,
+                ((union DrumActor *)arg0)->path.point - 1) != 0) {
+            total++;
+        }
+    }
+    count = _subaddiefind_entrypoint_4(0x3F0, actors, 10);
+    for (i = 0; i < count; i++) {
+        if (((union DrumActor *)actors[i])->actor.unk70_10 == 5) {
+            if (func_800CC338(((union DrumActor *)actors[i])->coordinates.position,
+                    ((union DrumActor *)arg0)->path.group - 1,
+                    ((union DrumActor *)arg0)->path.point - 1) != 0) {
+                total++;
+            }
+        }
+    }
+    return total < ((s32)arg0->unk74_7 - 50);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/drums/func_80800130_chfactorydrums.s")
 
