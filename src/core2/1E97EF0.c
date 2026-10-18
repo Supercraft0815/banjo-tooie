@@ -199,7 +199,37 @@ s32 func_800BEE40(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEF00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BF0E0.s")
+s32 func_800BF0E0(f32 *arg0, f32 *arg1, f32 arg2, f32 *arg3, s32 arg4, s32 arg5) {
+    s32 _gcmapsects_entrypoint_23(s32 *, f32 *, f32 *, f32, f32 *, s32, s32);
+    s32 func_800AC638(s32, s32, f32 *, f32 *, f32, f32 *, s32, s32);
+    s32 result;
+    s32 hit;
+
+    result = 0;
+    *(s32 *)((s8 *)&D_801285B0 + 0x1B0) = 0;
+    if (*(u8 *)((s8 *)&D_801285B0 + 0x77) != 0) {
+        result = _gcmapsects_entrypoint_23(&D_801285B0, arg0, arg1, arg2, arg3, arg4, arg5);
+    }
+    if (result == 0 && *(u8 *)((s8 *)&D_801285B0 + 0x2A) != 0) {
+        result = func_800AC638(D_801285B0,
+            (&D_801285B0)[*(u8 *)((s8 *)&D_801285B0 + 0x29) + 4],
+            arg0, arg1, arg2, arg3, arg4, arg5);
+    }
+    if (result != 0) {
+        *(s32 *)((s8 *)&D_801285B0 + 0x1B0) = *(s32 *)((s8 *)&D_801285B0 + 0xC);
+    }
+    if (*(u8 *)((s8 *)&D_801285B0 + 0x56) == 0) {
+        return result;
+    }
+    hit = func_800AC638(*(s32 *)((s8 *)&D_801285B0 + 0x2C),
+        (&D_801285B0)[*(u8 *)((s8 *)&D_801285B0 + 0x55) + 15],
+        arg0, arg1, arg2, arg3, arg4, arg5);
+    if (hit != 0) {
+        *(s32 *)((s8 *)&D_801285B0 + 0x1B0) = *(s32 *)((s8 *)&D_801285B0 + 0x38);
+        return hit;
+    }
+    return result;
+}
 
 void *func_800BF228(f32 *position, f32 radius, f32 *normal, u32 flag_filter) {
     void *_gcmapsects_entrypoint_26(s32 *, f32 *, f32, f32 *, u32);
@@ -270,9 +300,8 @@ void func_800BF420()
 
 void func_800BF444(void) {
     s32 _gcmapDll_entrypoint_3(s32 *);
-    s32 func_800C6A28(s32 *(*)(f32 *, f32 *, f32 *, s32), s32 *, void *(*)(f32 *, f32, f32 *, u32), s32 (*)());
+    s32 func_800C6A28(s32 *(*)(f32 *, f32 *, f32 *, s32), s32 (*)(f32 *, f32 *, f32, f32 *, s32, s32), void *(*)(f32 *, f32, f32 *, u32), s32 (*)());
     s32 *func_800BEF00(f32[3], f32[3], f32[3], s32);
-    extern s32 func_800BF0E0;
     _gcmapDll_entrypoint_3(&D_801285B0);
     func_800C6A28(&func_800BEF00, &func_800BF0E0, &func_800BF228, func_800BEB4C);
 }
