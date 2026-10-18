@@ -202,7 +202,28 @@ OSThread *chfactorymagnet_entrypoint_1(void)
     return (OSThread *) D_80802A04_chfactorymagnet;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80801EBC_chfactorymagnet.s")
+void func_80801EBC_chfactorymagnet(Actor *arg0) {
+    f32 func_80013970(f32);
+    s32 func_800DA298(s32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    void func_800F4D74(s32, f32 *, f32, f32, f32);
+    u32 func_800F54E4(void);
+    f32 func_80103EF4(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 sp3C[3];
+    f32 sp38;
+    f32 sine;
+    u32 sp30;
+
+    if (func_800DA298(0xA06) != 0) {
+        sp38 = func_80103EF4(arg0) * 1.2f;
+        func_800EFA4C(sp3C, arg0->position[0], arg0->position[1] + sp38 * 0.5f, arg0->position[2] - sp38);
+        sp30 = func_800F54E4();
+        sine = func_80013970(arg0->rotation[0]); func_800F4D74(sp30, sp3C, sp38, sp38 * 0.5f, sine * sp38 + sp38);
+    }
+    arg0->rotation[0] = func_800F12D4(func_80106790(arg0->unk3C)->unk58, 0.0f, 0.75f, 0.0f, 90.0f);
+}
 
 OSThread *chfactorymagnet_entrypoint_2(void)
 {
