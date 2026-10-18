@@ -320,7 +320,33 @@ OSThread *chevilmumbo_entrypoint_1(void)
     return (OSThread *) D_808044F0_chevilmumbo;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_8080362C_chevilmumbo.s")
+void func_8080362C_chevilmumbo(Actor *arg0, s32 arg1) {
+    void func_800DA524(GameFlag);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_80102424(Actor *, s32);
+
+    func_80102424(arg0, arg1);
+    switch (arg0->unk70_10) {
+        case 4:
+            arg0->unk64_19 = 1;
+            break;
+        case 2:
+            arg0->unk64_16 = 1;
+            arg0->unk64_19 = 1;
+            break;
+        case 3:
+            func_800DA524(0xA33);
+            func_800EFA4C(arg0->position, 0.0f, 0.0f, 0.0f);
+            break;
+        case 1:
+            func_800DA524(0xA32);
+            func_800EE7F8(arg0->position, (f32 *)arg0->actorData);
+            arg0->unk64_16 = 0;
+            break;
+    }
+    arg0->unk58 = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80803700_chevilmumbo.s")
 
@@ -329,10 +355,10 @@ void func_80803918_chevilmumbo(s32 arg0)
 }
 /* extern */
 
-void func_80803920_chevilmumbo(s32 arg0) {
+void func_80803920_chevilmumbo(Actor *arg0) {
     void func_800EFA4C(f32[3], f32, f32, f32);
-    s32 func_8080362C_chevilmumbo(s32, s32);
-    func_800EFA4C(arg0 + 0x18, -130.0f, 0.0f, -430.0f);
+    void func_8080362C_chevilmumbo(Actor *, s32);
+    func_800EFA4C((f32 *)arg0->actorData, -130.0f, 0.0f, -430.0f);
     func_8080362C_chevilmumbo(arg0, 1);
 }
 
