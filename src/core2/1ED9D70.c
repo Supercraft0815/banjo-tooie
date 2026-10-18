@@ -102,14 +102,14 @@ typedef struct {
 FreeList *freelist_new(s32, s32);
 void *freelist_next(FreeList **, s32 *);
 
-void func_80100690(s32 *arg0) {
+void *func_80100690(s32 *arg0) {
     FreeList *freelist_new(s32, s32);
     void *freelist_next(FreeList **, s32 *);
     extern FreeList *D_80135A60[2];
     if (D_80135A60[0] == 0) {
         D_80135A60[0] = freelist_new(0xC, 2);
     }
-    freelist_next(&D_80135A60[0], arg0);
+    return freelist_next(&D_80135A60[0], arg0);
 }
 
 extern FreeList *D_80135A64;
@@ -272,7 +272,40 @@ void func_80100C74(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_80100D24.s")
+s16 func_80100D24(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    typedef struct VertexListView {
+        u8 pad0[0x16];
+        u16 count : 15;
+        u16 flags : 1;
+        Vtx vertices[1];
+    } VertexListView;
+    void *func_800B2400(VertexListView *, s32);
+    s32 func_800B2840(s32);
+    s8 func_801007B8(s32, s32, s32, s32);
+    struct Entry { VertexListView *vertices[2]; s8 index; s8 active; s8 age; };
+    s32 index[2];
+    struct Entry *entry;
+    VertexListView *list;
+    s32 i;
+    entry = func_80100690(index);
+    list = (VertexListView *)func_800B2840(arg0);
+    for (i = 0; i < 2; i++) {
+        if (i < arg2) {
+            entry->vertices[i] = func_800B2400(list, 0);
+            entry->vertices[i]->flags = 1;
+        } else {
+            entry->vertices[i] = NULL;
+        }
+    }
+    if (arg3 != 0) {
+        entry->index = func_801007B8(arg0, arg1, arg4, arg5);
+    } else {
+        entry->index = 0;
+    }
+    entry->active = 1;
+    entry->age = 0;
+    return index[0];
+}
 
 void func_80100E18(s16 arg0) {
     void *freelist_at(FreeList *, s32);
