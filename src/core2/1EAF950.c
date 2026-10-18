@@ -312,7 +312,35 @@ s32 func_800D721C(s32 arg0, s32 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D725C.s")
+void *func_800D725C(s32 arg0) {
+    extern s16 D_8011B910;
+    extern u8 D_8012B800[];
+    s32 func_8001211C(void);
+    s32 func_800D5950(s32);
+    s32 func_800D5EB4(s32, u8 *, s32);
+    struct CacheEntry {
+        u32 frame : 27;
+        u32 flags : 5;
+        void *data;
+        u32 info;
+    };
+    s32 index;
+    s32 frame;
+    struct CacheEntry *entry;
+
+    index = func_800D6254(arg0);
+    if (index == -1) {
+        return func_800D674C(arg0);
+    }
+    D_8011B910 = index;
+    frame = func_8001211C();
+    entry = (struct CacheEntry *)D_8012B800 + index;
+    entry->frame = frame;
+    if (func_800D5EB4(arg0, entry->data, func_800D5950(arg0))) {
+        return entry->data;
+    }
+    return NULL;
+}
 
 u8 func_800D731C(s32 arg0) {
     extern u8 D_8012B800[];
