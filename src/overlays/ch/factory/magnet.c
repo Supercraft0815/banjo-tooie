@@ -48,7 +48,39 @@ void *func_80800E40_chfactorymagnet(Actor *arg0) {
     return temp_v0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80800EF0_chfactorymagnet.s")
+void func_80800EF0_chfactorymagnet(Actor *arg0, s32 arg1) {
+    s32 _sumumbofx_entrypoint_8(u8 *, s32);
+    s32 _sumumbofx_entrypoint_9(u8 *, s32);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80101870(Actor *, void *);
+    void func_808016A4_chfactorymagnet(Actor *, s32);
+    void func_80801A9C_chfactorymagnet(s32, f32 *, f32 *);
+    struct MagnetVector { f32 v[3]; };
+    extern struct MagnetVector D_8080291C_chfactorymagnet;
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp3C;
+    struct MagnetVector sp30;
+    u8 *temp_s1;
+
+    sp3C = func_800F12D4(arg0->unk58, 0.25f, 1.0f, 0.0f, 1.0f);
+    sp30 = D_8080291C_chfactorymagnet;
+    temp_s1 = func_80100094(arg0, 0);
+    func_80801A9C_chfactorymagnet((s32)arg0, sp4C, sp40);
+    func_800EFE50(arg0->position, sp4C, sp40, sp3C);
+    if (temp_s1 != NULL) {
+        _sumumbofx_entrypoint_9(temp_s1, arg1);
+    }
+    if (arg0->unk70_10 == 4) {
+        func_808016A4_chfactorymagnet(arg0, arg1);
+    }
+    func_80101870(arg0, (void *)arg1);
+    if (temp_s1 != NULL) {
+        _sumumbofx_entrypoint_8(temp_s1, arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80800FE8_chfactorymagnet.s")
 
