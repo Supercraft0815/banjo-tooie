@@ -22,7 +22,45 @@ void func_80800018_chstarspinnerctrl(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/func_8080003C_chstarspinnerctrl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/func_80800184_chstarspinnerctrl.s")
+s32 func_80800184_chstarspinnerctrl(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chpowerhut_entrypoint_3(Actor *, s32, s32, s32 *);
+    s32 _glcutDll_entrypoint_20();
+    void func_800BF744(s32, s32);
+    void func_800C8F08(s32, f32 *);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80103110(Actor *, u32);
+    void func_808002B4_chstarspinnerctrl(s32 *);
+    extern s32 D_80800900_chstarspinnerctrl;
+    extern s32 D_80800918_chstarspinnerctrl;
+    s32 active;
+    struct SpinnerData {
+        u8 pad[0x14];
+        f32 input;
+        f32 value;
+    } *input, *data;
+
+    if (arg1 == 0x95) {
+        active = func_800DA298(0xEA) != 0 || _glcutDll_entrypoint_20() != 0;
+        func_800BF744(2, !active);
+        func_800BF744(1, active);
+        data = func_80100094(arg0, 0);
+        input = func_80100094(arg0, 0);
+        data->value = func_800F10B4(input->input, 0.0f, 1.0f, 0.3f, 1.0f);
+        if (!active) {
+            func_808002B4_chstarspinnerctrl((s32 *)arg0);
+            func_800C8F08((s32)&D_80800900_chstarspinnerctrl, NULL);
+        } else {
+            func_800DA544(0);
+        }
+        _chpowerhut_entrypoint_3(arg0, arg1, arg2, &D_80800918_chstarspinnerctrl);
+        func_80103110(arg0, 1);
+        return 1;
+    }
+    return _chpowerhut_entrypoint_3(arg0, arg1, arg2, &D_80800918_chstarspinnerctrl);
+}
 
 void func_808002B4_chstarspinnerctrl(s32 *arg0) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
