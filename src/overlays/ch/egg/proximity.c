@@ -31,7 +31,36 @@ void *cheggproximity_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     return temp_v0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_808000A8_cheggproximity.s")
+s32 func_808000A8_cheggproximity(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80800718_cheggproximity(s32, s32);
+    struct ProximityData {
+        u8 pad0[0x39];
+        u8 active : 1;
+        u8 unused : 7;
+        u8 pad3A[0x6A];
+        s32 triggered;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0x4F:
+        func_800FFAB0(arg0);
+        return 1;
+    case 0x45:
+    case 0x78:
+        ((struct ProximityData *)func_80100094(arg0, 1))->triggered = 1;
+        break;
+    case 0x40:
+        func_80800718_cheggproximity(arg0, 6);
+        data->active = 1;
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
