@@ -7,7 +7,42 @@ OSThread *chjujubagfx_entrypoint_0(void)
     return (OSThread *) D_80800470_chjujubagfx;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jujubagfx/func_8080000C_chjujubagfx.s")
+void *func_80100094(Actor *, u32);
+void func_80101FDC(Actor *, u32);
+void func_800DA524(s32);
+
+void func_8080000C_chjujubagfx(Actor *arg0, s32 arg1) {
+    s32 _sumumbofx_entrypoint_0(Actor *, s32, s32, s16);
+    void _sumumbofx_entrypoint_2(void *);
+    void _sumumbofx_entrypoint_24(void *, f32);
+    void _sumumbofx_entrypoint_4(void *);
+    void _sumumbofx_entrypoint_3(void *, f32);
+    void _sumumbofx_entrypoint_15(void *, f32);
+    void _sumumbofx_entrypoint_23(void *, f32);
+    void _sumumbofx_entrypoint_19(void *, s32);
+    void _sumumbofx_entrypoint_16(void *, f32);
+    void *data;
+
+    func_80101FDC(arg0, arg1);
+    switch (arg1) {
+        case 2:
+            _sumumbofx_entrypoint_0(arg0, 1, 10, 0x9E4);
+            data = func_80100094(arg0, 1);
+            _sumumbofx_entrypoint_2(data);
+            _sumumbofx_entrypoint_24(data, 0.15f);
+            _sumumbofx_entrypoint_4(data);
+            _sumumbofx_entrypoint_3(data, 360.0f);
+            _sumumbofx_entrypoint_15(data, 0.5f);
+            _sumumbofx_entrypoint_23(data, 0.0f);
+            _sumumbofx_entrypoint_19(data, 0);
+            break;
+        case 4:
+            func_800DA524(0x9F3);
+            _sumumbofx_entrypoint_16(func_80100094(arg0, 1), 0.5f);
+            arg0->unk64_20 = 1;
+            break;
+    }
+}
 
 /* extern */
 
@@ -15,7 +50,7 @@ void func_80800100_chjujubagfx(u8 *arg0) {
     s32 *_subaddiefind_entrypoint_0(s32, s32, s32, s32);
     s32 func_8008FE94(s32, u8 *);
     s32 func_8010D278();
-    s32 func_8080000C_chjujubagfx(u8 *, s32);
+    void func_8080000C_chjujubagfx(Actor *, s32);
     if (func_8010D278() != 0xD) {
         (*(s32 *)((s8 *)(arg0) + (0x3C))) = (s32) *_subaddiefind_entrypoint_0(arg0 + 4, 0x190, -1, 0);
     } else {
