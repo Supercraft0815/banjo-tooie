@@ -123,7 +123,36 @@ void func_808005C8_chpowerhutwitchy(Actor *arg0) {
     (*(s8 *)((s8 *)(func_80100094(arg0, 0)) + (0x19))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/func_80800610_chpowerhutwitchy.s")
+void func_80800610_chpowerhutwitchy(Actor *arg0) {
+    s32 _chpowerhut_entrypoint_1(Actor *, s32 *);
+    void func_800BF744(s32, s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_80800890_chpowerhutwitchy(s32 *);
+    void func_808009FC_chpowerhutwitchy(s32);
+    extern s32 D_80800B14_chpowerhutwitchy;
+    f32 sp2C;
+    u32 state;
+
+    _chpowerhut_entrypoint_1(arg0, &D_80800B14_chpowerhutwitchy);
+    state = arg0->unk70_10;
+    if (state == 3 || state == 4) {
+        if (((s16 *)func_80100094(arg0, 0))[6] == 2) {
+            func_800BF744(5, 0);
+            func_800BF744(6, 1);
+            ((s8 *)func_80100094(arg0, 0))[0x18] = 1;
+        }
+        if (((u8 *)func_80100094(arg0, 0))[0x19] == 0) {
+            sp2C = ((f32 *)func_80100094(arg0, 0))[5];
+            if (((s16 *)func_80100094(arg0, 0))[6] == 4) {
+                func_808009FC_chpowerhutwitchy((s32)arg0);
+            }
+            if (((s16 *)func_80100094(arg0, 0))[6] == 3) {
+                *(f32 *)&arg0->actorData[4] = func_800F10B4(sp2C, 0.0f, 1.0f, 0.3f, 1.0f);
+                func_80800890_chpowerhutwitchy((s32 *)arg0);
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/func_8080073C_chpowerhutwitchy.s")
 
