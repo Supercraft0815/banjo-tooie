@@ -21,7 +21,24 @@ OSThread *chaliendad_entrypoint_2(void)
     return (OSThread *) D_80802704_chaliendad;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80800024_chaliendad.s")
+void func_80800024_chaliendad(Actor *arg0) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EE940(s16 *, f32 *);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80801324_chaliendad(Actor *, s32);
+    s32 func_80801DD0_chaliendad(void);
+    s16 *sp24;
+
+    sp24 = func_80100094(arg0, 0U);
+    func_800EE940(sp24, arg0->position);
+    func_800EE7F8((f32 *)&arg0->actorData[4], arg0->position);
+    sp24[3] = (s32)arg0->rotation[1];
+    func_80801324_chaliendad(arg0, 0);
+    if (func_80801DD0_chaliendad() == 3) {
+        func_800FFAB0(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_808000AC_chaliendad.s")
 
