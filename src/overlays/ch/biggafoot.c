@@ -14,7 +14,35 @@ OSThread *chbiggafoot_entrypoint_1(void)
     return (OSThread *) D_808010DC_chbiggafoot;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_80800018_chbiggafoot.s")
+void func_80800018_chbiggafoot(Actor *arg0) {
+    void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
+    s32 func_800A9C98(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80102424(Actor *, s32);
+    void func_80102FDC(Actor *, f32);
+    f32 sp28[6];
+
+    func_80102FDC(arg0, arg0->scale * 1.6f);
+    ((f32 *)arg0->actorData)[5] = 0.0f;
+    ((f32 *)arg0->actorData)[4] = 0.0f;
+    ((f32 *)arg0->actorData)[6] = 0.0f;
+    arg0->unk50 = arg0->rotation[1];
+    if (func_800A9C98() != 0) {
+        func_800DA544(FLAG_1C7_UNK);
+        func_800DA524(FLAG_1CC_UNK);
+    }
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80102424(arg0, 0xA);
+    } else {
+        if (func_800DA298(FLAG_1CC_UNK) != 0) {
+            func_800FFAB0(arg0);
+            return;
+        }
+        _subaddiemarker_entrypoint_1(arg0, 0x320, 0x32, sp28, 1);
+        func_800EE7F8((f32 *)arg0->actorData, sp28);
+    }
+    ((f32 *)arg0->actorData)[7] = 3.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_80800100_chbiggafoot.s")
 
