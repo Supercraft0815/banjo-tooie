@@ -232,7 +232,23 @@ int func_80800E50_chevilmumbo(Actor *arg0) {
     return var_v0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800ECC_chevilmumbo.s")
+/* extern */
+
+void func_80800ECC_chevilmumbo(Actor *arg0, s32 arg1) {
+    s32 func_808007C4_chevilmumbo(Actor *, s32);
+    if ((s32) (*(u8 *)((s8 *)(func_80100094(arg0, 0U)) + (0x93))) < 5) {
+        if (!((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF)) {
+            (*(u16 *)((s8 *)(arg0) + (0x6E))) = (u16) (((*(u16 *)((s8 *)(arg0) + (0x6E))) & 0xFE00) | 4);
+        }
+    } else {
+        (*(u16 *)((s8 *)(arg0) + (0x6E))) = (u16) (((*(u16 *)((s8 *)(arg0) + (0x6E))) & 0xFE00) | 4);
+    }
+    if (arg1 != 0) {
+        func_808007C4_chevilmumbo(arg0, 7);
+        return;
+    }
+    func_808007C4_chevilmumbo(arg0, 8);
+}
 
 void func_80800F60_chevilmumbo(Actor *arg0, f32 *arg1, f32 *arg2) {
     s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
