@@ -19,7 +19,39 @@ void func_8002ACE0(s32 arg0, s32 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E42810/func_8002AD60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E42810/func_8002B684.s")
+s32 func_8002B684(void *arg0, s32 arg1, void *arg2) {
+    void func_8002D328(void *, s32, void *);
+    void *sp24;
+
+    sp24 = arg0;
+    switch (arg1) {
+        case 3:
+            if (*(void **)((s8 *)sp24 + 0x80) != NULL) {
+                **(void ***)((s8 *)sp24 + 0x80) = arg2;
+            } else {
+                *(void **)((s8 *)sp24 + 0x7C) = arg2;
+            }
+            *(void **)((s8 *)sp24 + 0x80) = arg2;
+            break;
+        case 4:
+            *(s32 *)((s8 *)sp24 + 0x78) = 1;
+            *(s32 *)((s8 *)sp24 + 0x84) = 0;
+            *(s16 *)((s8 *)sp24 + 0x5A) = 1;
+            *(s32 *)((s8 *)sp24 + 0x74) = 0;
+            *(f32 *)((s8 *)sp24 + 0x4C) = 0.0f;
+            *(s32 *)((s8 *)sp24 + 0x50) = 1;
+            *(s32 *)((s8 *)sp24 + 0x48) = 0;
+            func_8002D328(sp24, 4, arg2);
+            break;
+        case 9:
+            *(s32 *)((s8 *)sp24 + 0x84) = 1;
+            break;
+        default:
+            func_8002D328(sp24, arg1, arg2);
+            break;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E42810/func_8002B7C8.s")
 
