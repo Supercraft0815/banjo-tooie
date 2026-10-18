@@ -78,7 +78,31 @@ void scinfobar_entrypoint_1(void *arg0) {
     heap_free(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/scinfobar_entrypoint_2.s")
+void scinfobar_entrypoint_2(u8 *arg0) {
+    f32 func_800D8FF8(void);
+    void func_80800144_scinfobar(u8 *, s32);
+    f32 delta;
+
+    delta = func_800D8FF8();
+    switch (*arg0) {
+        case 0x64:
+        case 0x66:
+            break;
+        case 0x65:
+            *(f32 *)(arg0 + 0x14) += delta * *(f32 *)(arg0 + 0x18);
+            if (*(f32 *)(arg0 + 0x14) > 1.0f) {
+                func_80800144_scinfobar(arg0, 0x66);
+            }
+            break;
+        case 0x67:
+            *(f32 *)(arg0 + 0x14) -= delta * *(f32 *)(arg0 + 0x18);
+            if (*(f32 *)(arg0 + 0x14) < 0.0f) {
+                func_80800144_scinfobar(arg0, 0x64);
+            }
+            break;
+    }
+    arg0[0xA] = 0;
+}
 
 void scinfobar_entrypoint_3(void *arg0, s32 arg1) {
     struct Entry { f32 value; f32 rest[2]; };
