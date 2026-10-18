@@ -1,5 +1,7 @@
 #include "common.h"
 
+struct SfxState;
+
 void func_800205D0(void *arg0) {
     void func_80020E74(ALLink *);
     void func_800E90A4(s32, s32);
@@ -70,22 +72,44 @@ void func_80020A60(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E38100/func_80020AD0.s")
+void func_80020AD0(u8 arg0) {
+    extern struct SfxState *D_800411D0;
+    extern u8 *D_800411DC;
+    void func_80026500(void *, void *, s32, s32);
+    u32 mask;
+    struct { s16 type; void *state; s32 pad[2]; } evt;
+    void *state;
+
+    mask = osSetIntMask(1U);
+    state = D_800411D0;
+    if (state != NULL) {
+        do {
+            evt.type = 0x400;
+            evt.state = state;
+            if ((*(u8 *)((u8 *)state + 0x44) & arg0) == arg0) {
+                *(u8 *)((u8 *)evt.state + 0x44) &= ~0x10;
+                func_80026500(D_800411DC + 0x14, &evt, 0, 0);
+            }
+            state = *(void **)state;
+        } while (state != NULL);
+    }
+    osSetIntMask(mask);
+}
 
 void func_80020B90(void) {
-    void func_80020AD0(s32);
+    void func_80020AD0(u8);
 
     func_80020AD0(1);
 }
 
 void func_80020BB8(void) {
-    void func_80020AD0(s32);
+    void func_80020AD0(u8);
 
     func_80020AD0(0x11);
 }
 
 void func_80020BE0(void) {
-    void func_80020AD0(s32);
+    void func_80020AD0(u8);
 
     func_80020AD0(3);
 }
