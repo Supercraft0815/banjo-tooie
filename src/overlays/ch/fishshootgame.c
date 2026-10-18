@@ -173,7 +173,43 @@ void func_80800C24_chfishshootgame(u8 *arg0) {
     func_800C4350(arg0[0x5F], NULL, NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80800C78_chfishshootgame.s")
+void func_80800C78_chfishshootgame(Actor *arg0, s32 arg1, f32 arg2) {
+    f32 func_800D8FF8(void);
+    void *func_80100094(Actor *, u32);
+    void func_808003B0_chfishshootgame(Actor *, s32);
+    struct FishShootData {
+        f32 unk0;
+        f32 unk4;
+        f32 unk8[2];
+        f32 unk10;
+        f32 unk14;
+        f32 unk18;
+        f32 unk1C;
+    };
+    struct FishShootData *data;
+    f32 start;
+    f32 fraction;
+    f32 progress;
+    f32 delta;
+
+    data = func_80100094(arg0, 0);
+    delta = func_800D8FF8();
+    data->unk18 += data->unk1C * delta;
+    progress = data->unk18;
+    if (arg2 < progress) {
+        data->unk18 = arg2;
+        func_808003B0_chfishshootgame(arg0, arg1);
+        progress = data->unk18;
+    }
+    if (progress > 0.5f) {
+        fraction = 1.0f - progress;
+    } else {
+        fraction = progress;
+    }
+    start = data->unk4;
+    arg0->position[1] = (data->unk10 - start) * (2.0f * fraction) + start;
+    func_80800C24_chfishshootgame((u8 *)arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80800D48_chfishshootgame.s")
 
