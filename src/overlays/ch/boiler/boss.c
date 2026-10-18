@@ -94,7 +94,30 @@ void func_808012C8_chboilerboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808013C4_chboilerboss.s")
+void func_808013C4_chboilerboss(Actor *arg0) {
+    s32 func_800C0638(void);
+    void *func_80100094(Actor *, u32);
+    s32 func_80800F34_chboilerboss(Actor *, s32);
+    void func_8080238C_chboilerboss(Unk80132ED0 **, s32, s32);
+    struct {
+        u8 pad0[0x48];
+        f32 unk48;
+        u8 pad4C[8];
+        u8 unk54;
+        u8 unk55;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    if (data->unk55 != 3 && data->unk48 == 0.0f) {
+        if (func_800C0638() == 0) {
+            func_80800F34_chboilerboss(arg0, 10);
+            if (data->unk54 == 0) {
+                func_8080238C_chboilerboss(&arg0->unk0, 0xF9C, 0);
+                data->unk54++;
+            }
+        }
+    }
+}
 
 void func_80801464_chboilerboss(Actor *arg0, f32 *arg1, f32 arg2) {
     f32 func_800136E4(f32);
