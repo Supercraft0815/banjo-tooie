@@ -48,10 +48,10 @@ s16 ncpoducam_entrypoint_0(void) {
 
 /* extern */
 
-void ncpoducam_entrypoint_2(u8 *arg0, s32 arg1, s32 arg2) {
-    s32 func_8080145C_ncpoducam(s32, s32, s32);
+void ncpoducam_entrypoint_2(u8 *arg0, s16 *arg1, s32 arg2) {
+    void func_8080145C_ncpoducam(u8 *, s16 *, s32);
     (*(s16 *)((s8 *)(arg0) + (0x58))) = arg2;
-    func_8080145C_ncpoducam((s32)arg0, arg1, 1);
+    func_8080145C_ncpoducam(arg0, arg1, 1);
 }
 
 void ncpoducam_entrypoint_3(void *arg0, void *arg1) {
@@ -368,7 +368,39 @@ s32 func_80800CB8_ncpoducam(s16 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/func_80801274_ncpoducam.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/func_8080145C_ncpoducam.s")
+void func_8080145C_ncpoducam(u8 *arg0, s16 *arg1, s32 arg2) {
+    s32 func_800A5854(s32);
+    void *func_80110024(s16 *);
+    s32 _ncpod_entrypoint_12(s32, s32);
+    void func_80800D28_ncpoducam(u8 *);
+    void func_80800F64_ncpoducam(u8 *);
+    void func_80801274_ncpoducam(u8 *);
+    u8 temp_v0;
+
+    *(s32 *)(arg0 + 0x5C) = arg2;
+    switch (arg2) {
+        case 1:
+            func_80800160_ncpoducam(arg0);
+            func_80800000_ncpoducam(arg0);
+            temp_v0 = func_800A5854(*(s16 *)(arg0 + 0x58));
+            *(u8 *)(arg0 + 0x60) = temp_v0;
+            switch (temp_v0) {
+                case 8:
+                    func_80800D28_ncpoducam(arg0);
+                    break;
+                case 5:
+                    func_80801274_ncpoducam(arg0);
+                    break;
+                case 6:
+                    func_80800F64_ncpoducam(arg0);
+                    break;
+            }
+            break;
+        case 3:
+            _ncpod_entrypoint_12(func_80110024(arg1), 0);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/ncpoducam_entrypoint_7.s")
 
