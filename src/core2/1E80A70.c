@@ -162,7 +162,53 @@ void func_800A7584(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A759C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A76F4.s")
+void func_800A76F4(s32 arg0) {
+    s32 _cosectionstor_entrypoint_3(enum map_e);
+    s32 _glintrosyncDll_entrypoint_0(s16);
+    s32 _glintrosyncDll_entrypoint_1();
+    void func_80015768(void);
+    s32 func_8001A2B0();
+    s32 func_80081724();
+    void func_800A5C94(void);
+    void func_800A5CF0(s32);
+    extern u8 D_8012762C;
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+    s32 sp20;
+    func_800FB968();
+    _glintrosyncDll_entrypoint_0(D_80127630.mapValue);
+    func_8001A2B0();
+    sp34 = *(u8 *)((s8 *)&D_80127630 + 0x16);
+    sp30 = *(u8 *)((s8 *)&D_80127630 + 0x15);
+    sp2C = *(u8 *)((s8 *)&D_80127630 + 0x14);
+    sp28 = D_80127630.mapValue;
+    sp24 = (u8)D_80127630.entranceIndex;
+    sp20 = D_80127630.unk0;
+    *(u8 *)((s8 *)&D_80127630 + 0x16) = 0;
+    *(u8 *)((s8 *)&D_80127630 + 0x15) = 0;
+    *(u8 *)((s8 *)&D_80127630 + 0x14) = 0;
+    D_80127630.mapValue = 0;
+    D_80127630.entranceIndex = 0;
+    func_800A759C(2, 0U);
+    D_80127630.unk1C = (u8) (s32) arg0;
+    func_800A5CF0(0);
+    if (((func_800DA9E4(FLAG2_647_UNK, 0) == 0) || (_gcsectionDll_entrypoint_4((s32) D_80127630.mapValue) == D_8012762C)) && (func_800DA298(FLAG2_650_UNK) == 0)) {
+        _cosectionstor_entrypoint_3(func_800EA05C());
+    }
+    func_800A7380(1);
+    func_800A72A4(sp28, sp24, sp30, sp34);
+    func_800A5CF0(1);
+    func_800A5C94();
+    func_80081724();
+    _glintrosyncDll_entrypoint_1();
+    D_80127630.unk0 = (s16) sp20;
+    D_80127630.unk1C = 2;
+    func_800A759C(arg0, sp2C);
+    func_80015768();
+}
 
 void func_800A7840(s32 arg0) {
     s16 func_80014F58(void);
