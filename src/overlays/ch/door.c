@@ -1,5 +1,7 @@
 #include "common.h"
 
+void func_8080050C_chdoor(Actor *);
+
 void chdoor_entrypoint_0(s32 arg0)
 {
     func_80800028_chdoor();
@@ -99,7 +101,36 @@ int func_80800028_chdoor(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/door/func_8080032C_chdoor.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/door/func_8080050C_chdoor.s")
+void func_8080050C_chdoor(Actor *arg0) {
+    struct DoorLoopSoundData {
+        u8 pad[0x2E];
+        s16 sound;
+        s16 volume;
+        s16 pitch;
+    };
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    void func_800C4B64(f32);
+    void func_800C4B70(s32);
+    void func_800C4B7C(s32);
+    void *func_80100094(Actor *, u32);
+    extern s32 D_808015B0_chdoor;
+    struct DoorLoopSoundData *sp20;
+    struct DoorLoopSoundData *data;
+    s32 loop;
+
+    loop = 0;
+    data = func_80100094(arg0, 0);
+    if (arg0->unk70_10 == 3 || arg0->unk70_10 == 6) {
+        loop = 1;
+    }
+    if (data->sound != 0 && (loop != 0 || (loop == 0 && arg0->unk5F != 0))) {
+        sp20 = data;
+        func_800C4B7C(data->sound);
+        func_800C4B70(sp20->volume);
+        func_800C4B64((f32)sp20->pitch * 0.00390625f);
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, loop, &D_808015B0_chdoor);
+    }
+}
 
 void func_808005E4_chdoor(Actor *arg0, s32 arg1) {
     struct DoorSoundData {
