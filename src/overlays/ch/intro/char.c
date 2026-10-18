@@ -1,6 +1,45 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80800000_chintrochar.s")
+void func_80800000_chintrochar(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void *_suexpression_entrypoint_7(Actor *, s32, s16);
+    void _suexpression_entrypoint_12(void *, f32, f32);
+    void _suexpression_entrypoint_3(s32, s32 *, s32 *, s32 *);
+    void _suexpression_entrypoint_6(void *, s32, s32, s32, s32);
+    void _suexpression_entrypoint_5(void *, s32);
+    s16 func_8001B668(s32, s32);
+    void *func_8001B798(s16);
+    extern u16 D_80804790_chintrochar[][16];
+    s16 *data;
+    u16 *config;
+    u32 flags;
+    s32 size0;
+    s32 size1;
+    s32 size2;
+    s16 handle;
+    void *buffer;
+    void *result;
+    u16 *entry;
+
+    data = func_80100094(arg0, 2);
+    config = D_80804790_chintrochar[arg0->unk74_7];
+    entry = config;
+    handle = (s16)entry[-0x31D];
+    flags = *(u32 *)&entry[-0x318];
+    _suexpression_entrypoint_7(arg0, 1, handle);
+    if (flags & 0x40000) {
+        _suexpression_entrypoint_12(func_80100094(arg0, 1), 160.0f, 120.0f);
+    }
+    if (flags & 0x2000) {
+        _suexpression_entrypoint_3(0x7B, &size0, &size1, &size2);
+        handle = func_8001B668(0, size0 + size1 + size2);
+        data[0x63] = handle;
+        result = func_8001B798(data[0x63]);
+        buffer = result;
+        _suexpression_entrypoint_6(result, 0x7B, size2, size0, size1);
+        _suexpression_entrypoint_5(buffer, 2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_808000FC_chintrochar.s")
 
@@ -52,7 +91,7 @@ void func_80800398_chintrochar(Actor *arg0) {
 void func_80800484_chintrochar(Actor *arg0) {
     s32 func_800DA544(s32);
     s32 func_80103140(Actor *, u32, u16);
-    s32 func_80800000_chintrochar(void *);
+    void func_80800000_chintrochar(Actor *);
     s32 func_808000FC_chintrochar();
     void func_80800398_chintrochar(Actor *);
     void func_80803E98_chintrochar(Actor *);
