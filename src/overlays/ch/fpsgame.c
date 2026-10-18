@@ -250,7 +250,45 @@ void func_8080090C_chfpsgame(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80800914_chfpsgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80800BCC_chfpsgame.s")
+void func_80800BCC_chfpsgame(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    s32 _gcstatusDll_entrypoint_16(s32);
+    void _sumultiscore_entrypoint_7(u8 *, s32, s32, s32);
+    void _sumultiscore_entrypoint_11(u8 *, s32, s32, f32);
+    struct {
+        s32 count;
+        u8 unk4[0x10];
+        u8 score[1];
+    } *data;
+    s32 amount;
+    u8 *score;
+    s32 team;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    team = _gcstatusDll_entrypoint_16(arg1);
+    amount = 1;
+    if ((arg2 >= 0) && (_gcstatusDll_entrypoint_16(arg2) == team)) {
+        amount = -1;
+    }
+    score = data->score;
+    if (team < 4) {
+        _sumultiscore_entrypoint_7(score, arg1, 2, amount);
+        _sumultiscore_entrypoint_11(score, arg1, 2, 0.75f);
+        return;
+    }
+    i = 0;
+    if (data->count > 0) {
+        do {
+            score = data->score;
+            if (_gcstatusDll_entrypoint_16(i) == team) {
+                _sumultiscore_entrypoint_7(score, i, 2, amount);
+                _sumultiscore_entrypoint_11(score, i, 2, 0.75f);
+            }
+            i += 1;
+        } while (i < data->count);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80800CF8_chfpsgame.s")
 
