@@ -97,7 +97,44 @@ void func_808006C0_chfactorytwinklies(Actor *arg0) {
 
 s32 func_808009EC_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) { void *func_80100094(Actor *, u32); s16 func_800D211C(s32); u32 func_800F54E4(void); s32 *data; data = func_80100094(arg0, 0); switch (arg1) { case 0x1347: return data[func_800F54E4()]; case 0x1345: return 0x28; case 0x1375: case 0x1385: return func_800D211C(0x83); default: return 0; } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80800A84_chfactorytwinklies.s")
+void func_80800A84_chfactorytwinklies(Actor *arg0, s32 arg1) { 
+    s32 _susubgame_entrypoint_2(void *, s32);
+    void func_800CD08C(s32, f32 *);
+    s32 func_800DC128(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    u8 *data;
+    Actor *child;
+    f32 position[3];
+    s32 flag;
+    typedef struct {
+        u8 pad[0x70];
+        u32 flags70;
+    } ActorFlags;
+    struct {
+        u8 pad[0x2A];
+        u8 pad2A_6 : 2;
+        u8 flag : 1;
+        u8 pad2A_0 : 5;
+    } *marker;
+
+    if (arg1 == 0 || arg1 == 1 || arg1 == 2) {
+        data = func_80100094(arg0, 0);
+        if (_susubgame_entrypoint_2(arg0, (s32)(data + 0xAC))) {
+            func_800EE7F8(position, arg0->position);
+        } else {
+            func_800CD08C((((ActorFlags *)arg0)->flags70 >> 25) - 1, position);
+        }
+        position[1] = 0.0f;
+        child = func_80108528(arg1 + 0x443, position, func_800DC128(0, 0x167), &arg0);
+        child->unk3C = arg0->unk0;
+        child->actorData[5] = arg1;
+        flag = _susubgame_entrypoint_2(arg0, (s32)(data + 0xAC));
+        marker = (void *)child->unk0;
+        marker->flag = flag;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80800B80_chfactorytwinklies.s")
 
