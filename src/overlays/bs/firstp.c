@@ -4,6 +4,7 @@ struct player_state_s;
 enum asset_e;
 
 void func_80809198_bsfirstp(void *arg0);
+void func_80809250_bsfirstp(void *arg0);
 s32 func_8009E674(struct player_state_s *, s32);
 f32 func_800D9004(void);
 s32 func_800F1574(f32 *, f32);
@@ -3482,7 +3483,38 @@ void func_80809198_bsfirstp(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809250_bsfirstp.s")
+void func_80809250_bsfirstp(void *arg0) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    f32 anctrl_getAnimTimer(struct anctrl_s *);
+    int anctrl_getIndex(struct anctrl_s *);
+    s32 func_800D674C(s32);
+    void func_800E0050(s16 *, f32, s32, f32 *);
+    void func_8009C128(struct player_state_s *, f32[3]);
+    f32 yaw_get(struct player_state_s *);
+    struct player_state_s *func_800A4CA8(struct player_state_s *);
+    void _ncba1p_entrypoint_6(struct player_state_s *, f32[3]);
+    void _ncba1p_entrypoint_7(struct player_state_s *, f32[3]);
+    struct { f32 x, y, z, unused[6]; } animation;
+    struct anctrl_s *ctrl;
+    f32 timer;
+    f32 yaw;
+    f32 rotation[4];
+    f32 position[3];
+    s32 *ptr;
+
+    ctrl = baanim_getAnimCtrlPtr(arg0);
+    timer = anctrl_getAnimTimer(ctrl);
+    func_800E0050(func_800D674C(anctrl_getIndex(ctrl)), timer, 3, &animation.x);
+    ptr = func_80802484_bsfirstp(arg0);
+    func_8009C128(arg0, position);
+    position[1] += ((f32 *)ptr)[2];
+    rotation[0] = -animation.x;
+    yaw = yaw_get(arg0);
+    rotation[1] = yaw + animation.y + 180.0f;
+    rotation[2] = animation.z;
+    _ncba1p_entrypoint_6(func_800A4CA8(arg0), position);
+    _ncba1p_entrypoint_7(func_800A4CA8(arg0), rotation);
+}
 
 /* extern */
 
