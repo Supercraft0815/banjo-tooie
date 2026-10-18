@@ -9,7 +9,32 @@ OSThread *chlagoonufoint_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_8080000C_chlagoonufoint.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_808001A0_chlagoonufoint.s")
+void func_808001A0_chlagoonufoint(Actor *arg0) {
+    typedef struct {
+        f32 unk0[3];
+        f32 unkC;
+        f32 unk10[3];
+    } UfoIntData;
+    s32 _glcutDll_entrypoint_20();
+    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
+    s32 _susubgame_entrypoint_11(s32);
+    s32 func_800DA298(s32);
+    void func_800EFD24(f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_8080000C_chlagoonufoint(Actor *, s32);
+    UfoIntData *data = (UfoIntData *)arg0->actorData;
+
+    data->unkC = 0.0f;
+    func_800EFD24(data->unk10);
+    if (func_800DA298(0x9F0) || _glcutDll_entrypoint_20()) {
+        arg0->unk79_4 = 4;
+        data->unkC = 1.0f;
+    } else {
+        func_8080000C_chlagoonufoint(arg0, 1);
+    }
+    _susubgame_entrypoint_0(arg0, func_80100094(arg0, 0), 0);
+    _susubgame_entrypoint_11(0);
+}
 
 void func_80800240_chlagoonufoint(Actor *arg0) {
     s32 _susubgame_entrypoint_11(s32);
