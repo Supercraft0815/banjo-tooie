@@ -1763,7 +1763,7 @@ void func_80804AF0_chgameselect(u8 *arg0, s32 arg1, s32 arg2) {
 s32 func_80804B4C_chgameselect(void *arg0) {
     s32 func_80801658_chgameselect(s32, s32);
     s32 func_80803D00_chgameselect(s32, s32);
-    s32 func_80804C30_chgameselect(void *, s32);
+    void func_80804C30_chgameselect(void *, s32);
     func_80801658_chgameselect((*(s32 *)((s8 *)(arg0) + (0x28))), 1);
     func_80803D00_chgameselect(6, 1);
     func_80804C30_chgameselect(arg0, 0);
@@ -1791,7 +1791,7 @@ void func_80804BB4_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_80804BF4_chgameselect(u8 *arg0, s32 arg1, s32 arg2) {
-    s32 func_80804C30_chgameselect(void *, s32);
+    void func_80804C30_chgameselect(void *, s32);
     s32 func_80800478_chgameselect(s32, s32);
     if (arg2 < 3) {
         func_80800478_chgameselect((s32)arg0, 1);
@@ -1800,7 +1800,30 @@ void func_80804BF4_chgameselect(u8 *arg0, s32 arg1, s32 arg2) {
     func_80804C30_chgameselect(arg0, ((Actor *)arg0)->actorData[0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80804C30_chgameselect.s")
+void func_80804C30_chgameselect(void *arg0, s32 arg1) {
+    s32 _gcfrontend_entrypoint_1(s32);
+    void func_80802E38_chgameselect(Unk80132ED0 *, s32, s32, s32);
+    extern s32 D_80807DB0_chgameselect[];
+    typedef struct { s16 unk0; s16 id; s16 value; } SelectEntry;
+    extern SelectEntry D_808083E8_chgameselect[];
+    s32 i;
+    s32 count;
+    s32 selected;
+
+    count = 0;
+    selected = 0;
+    func_80802D40_chgameselect((Unk80132ED0 *)((Actor *)arg0)->actorData[6], 3, 0);
+    for (i = 0; i != 3; i++) {
+        if (_gcfrontend_entrypoint_1(D_808083E8_chgameselect[i].id)) { func_80802DB4_chgameselect((Unk80132ED0 *)((Actor *)arg0)->actorData[6], i, i + 10, -1, -1, D_808083E8_chgameselect[i].value);
+            if (arg1 == D_808083E8_chgameselect[i].id) {
+                selected = count;
+            }
+            count++;
+        }
+    }
+    func_80802E38_chgameselect((Unk80132ED0 *)((Actor *)arg0)->actorData[6], *(s16 *)&D_80807DB0_chgameselect[(u32)((Actor *)arg0)->unk79_4], selected, 0);
+    func_808026C8_chgameselect((Unk80132ED0 *)((Actor *)arg0)->actorData[5], 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80804D30_chgameselect.s")
 
