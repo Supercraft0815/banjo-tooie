@@ -74,7 +74,40 @@ void func_808002B0_chgate1doors(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gate1doors/func_80800334_chgate1doors.s")
+void func_80800334_chgate1doors(Actor *arg0) {
+    s32 func_800DA298(s32);
+    void func_800EEB9C(f32 dst[3], f32 angle, f32 distance);
+    void func_800EF04C(f32 *, f32 *);
+    void func_80101FDC(Actor *, u32);
+    void func_80102B2C(Actor *, f32);
+    s32 func_80102CF4(Actor *, s32);
+    void func_80103110(Actor *, u32);
+    void func_80109748(f32 *, s32, s32, s32, f32, s32, s32, s32);
+    f32 sp34[3];
+
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_800DA298(0xB1) != 0) {
+                func_800EEB9C(sp34, arg0->rotation[1], 400.0f);
+                func_800EF04C(sp34, arg0->position);
+                func_80109748(sp34, 8, -40, 100, 2.15f, 180, 60, 80);
+                func_80101FDC(arg0, 2);
+                func_80103110(arg0, 1);
+            }
+            break;
+        case 2:
+            arg0->unk54 = -90.0f;
+            if (func_80102CF4(arg0, 0x40000000) != 0) {
+                func_80101FDC(arg0, 3);
+                func_80103110(arg0, 0);
+            } else {
+                func_80102B2C(arg0, 1.0f);
+            }
+            break;
+        case 3:
+            break;
+    }
+}
 
 OSThread *chgate1doors_entrypoint_0(void)
 {
