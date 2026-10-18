@@ -132,7 +132,33 @@ void func_80800270_chfactorytoxicpools(Actor *arg0) {
     _idwibble_entrypoint_5(_idworld_entrypoint_4(func_800BEA88(1), 1), *sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxicpools/func_808002B8_chfactorytoxicpools.s")
+void func_808002B8_chfactorytoxicpools(Actor *arg0) {
+    s32 _chswitch_entrypoint_14(Actor *, s32);
+    s32 func_800DA298(s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80105010(Actor *);
+    void func_8010A570(Actor *);
+    struct ToxicPoolData {
+        s16 unk0;
+        s16 state;
+        f32 timer;
+    } *sp1C;
+    s32 sp18;
+
+    sp1C = func_80100094(arg0, 1);
+    sp18 = func_800DA298(0x166);
+    _chswitch_entrypoint_14(arg0, 0x166);
+    sp1C->timer = 1.0f;
+    if (sp18 != 0) {
+        sp1C->state = 2;
+    } else {
+        sp1C->state = 0;
+    }
+    if (sp18 != 0) {
+        func_8010A570(arg0);
+    }
+    func_80105010(arg0);
+}
 
 void func_80800338_chfactorytoxicpools(Actor *arg0) {
     void *func_80100094(Actor *, u32);
