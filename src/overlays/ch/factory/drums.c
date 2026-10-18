@@ -95,7 +95,31 @@ void chfactorydrums_entrypoint_1(s32 arg0, s32 arg1) {
     func_800BBCB8(arg1, 0, 0x3F800000, 1, &D_80801208_chfactorydrums);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/drums/func_80800CD0_chfactorydrums.s")
+void func_80800CD0_chfactorydrums(Actor *arg0, s32 arg1) {
+    f32 func_800DC178(f32, f32);
+    void func_80101CDC(Actor *, f32);
+    void func_80102424(Actor *, s32);
+    s32 func_80107070(Actor *, s32);
+    void func_8010A590(Actor *);
+
+    switch (arg1) {
+        case 1:
+            func_8010A590(arg0);
+            arg0->unk64_16 = 1;
+            arg0->unk58 = func_800DC178(0.5f, 2.0f);
+            ((f32 *)arg0->actorData)[3] = 0.0f;
+            break;
+        case 3:
+            func_80101CDC(arg0, 0.467f);
+            ((f32 *)arg0->actorData)[3] = 0.0f;
+            arg0->unk50 = 500.0f;
+            break;
+        case 7:
+            func_80107070(arg0, 3);
+            break;
+    }
+    func_80102424(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/drums/func_80800D90_chfactorydrums.s")
 
