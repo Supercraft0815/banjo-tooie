@@ -250,7 +250,7 @@ void func_80092AB0(PlayerState* arg0)
 /* extern */
 
 Unkfunc_800E0960_1 *func_80092AD8(PlayerState *arg0) {
-    s32 func_800AE080(s16);
+    void *func_800AE080(s16);
     Unkfunc_800E0960_1 *func_800AE6BC(s32);
     return func_800AE6BC(func_800AE080(*(*(s16 **)((s8 *)(arg0) + (0x50)))));
 }
@@ -406,7 +406,7 @@ void func_80092E5C(s32 arg0,s32 arg1)
 /* extern */
 
 void func_80092E80(void *arg0) {
-    s32 func_800AE080(s16);
+    void *func_800AE080(s16);
     func_800AE080(*(*(s16 **)((s8 *)(arg0) + (0x50))));
 }
 
@@ -635,7 +635,63 @@ void func_80093584(void *arg0) {
     (*(s32 *)((s8 *)(temp_v0) + (8))) = (s32) (*(s32 *)((s8 *)(temp_v0) + (0x94)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_8009359C.s")
+void func_8009359C(void *arg0, s32 arg1) {
+    s32 func_80093738(void *);
+    u32 func_800A25D0(void *);
+    void func_800ADFE0(s16);
+    s16 func_800AE020(void);
+    void *func_800AE080(s16);
+    void func_800AE6FC(s16 *, s16);
+    u8 *func_800B26F0(u8 *);
+    s32 func_800D6CEC(s32);
+    s32 func_800D70F8(s32, s32);
+    s16 func_800E09B8(s32);
+    s16 func_80100D24(s32, s32, s32, s32, s32, s32);
+    void func_80100E18(s16);
+    s32 sp34;
+    s32 sp2C;
+    s32 var_a2;
+    s32 old;
+    u8 handle;
+    u8 *state;
+    s16 *list;
+
+    state = *(u8 **)((u8 *)arg0 + 0x50);
+    old = *(s16 *)(state + 0x9C);
+    state += 0x90;
+    if (arg1 != old) {
+        if (old != 0) {
+            handle = state[0x10];
+            if (handle != 0) {
+                func_80100E18(handle);
+                state[0x10] = 0;
+            }
+            func_800ADFE0(*(s16 *)state);
+            *(s16 *)state = 0;
+            func_800D70F8(*(s16 *)(state + 0xC), 0);
+            func_800D6CEC(*(s16 *)(state + 0xC));
+            *(s16 *)(state + 0xC) = 0;
+            *(s16 *)(state + 0xE) = 0;
+        }
+        if (arg1 == 0) {
+            state[0x12] = 0;
+            return;
+        }
+        *(s16 *)(state + 0xC) = arg1;
+        sp34 = func_80093738(arg0);
+        func_800D70F8(*(s16 *)(state + 0xC), 1);
+        if (func_800B26F0(sp34) != 0) {
+            var_a2 = 1;
+        } else {
+            var_a2 = 0;
+        }
+        sp2C = func_800A25D0(arg0);
+        state[0x10] = func_80100D24(sp34, *(s16 *)(state + 0xC), var_a2, sp2C, 0, 0);
+        *(s16 *)state = func_800AE020();
+        list = func_800AE080(*(s16 *)state);
+        func_800AE6FC(list, func_800E09B8(0xC));
+    }
+}
 
 void func_800936CC(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 80) + 162) = arg1;
@@ -658,7 +714,7 @@ void func_80093700(void *arg0, s32 arg1) {
 }
 
 void func_8009370C(u8 *arg0) {
-    s32 func_800AE080(s16);
+    void *func_800AE080(s16);
     Unkfunc_800E0960_1 *func_800AE6BC(s32);
     func_800AE6BC(func_800AE080((*(s16 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x50)))) + (0x90)))));
 }
@@ -675,7 +731,7 @@ s32 func_8009375C(u8 *arg0, Gfx **arg1, s32 arg2) {
     struct anctrl_s *func_8008D04C(PlayerState *);
     void *func_8008AEDC(void *);
     void func_8008C200(s16, s32, s32);
-    s32 func_800AE080(s16);
+    void *func_800AE080(s16);
     void func_800AE598(s32 *, s32 *);
     struct anctrl_s *sp2C;
     s16 sp2A;
