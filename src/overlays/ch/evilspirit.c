@@ -149,7 +149,36 @@ void func_808013DC_chevilspirit(void *arg0) {
     func_80102BF8(arg0, 0.2f, 15.0f, 1200.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801458_chevilspirit.s")
+s32 func_80801458_chevilspirit(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_80101038(f32 *);
+    void func_8010105C(f32);
+    f32 func_80101068(void);
+    s32 func_8010108C(Actor *, s32, s32);
+    f32 func_8010CD28(Actor *);
+    Actor *actor;
+    u8 *link;
+
+    link = func_80100094(arg0, 0);
+    actor = _subaddielink_entrypoint_4(link);
+    func_8010105C(func_8010CD28(arg0));
+    if (func_8010108C(actor, 0x97, 0) <= 0) {
+        f32 *data;
+        func_800EE7F8((f32 *)arg0->actorData, actor->position);
+        data = (f32 *)arg0->actorData;
+        data[1] += actor->scale * (u16)actor->pad68 + data[5];
+    } else {
+        f32 *volatile position;
+        func_80101038(position = (f32 *)arg0->actorData);
+        func_800EF334(position, actor->scale);
+        func_800EF04C(position, actor->position);
+    }
+    arg0->unk54 = func_80101068();
+}
 
 void func_80801534_chevilspirit(Actor *arg0) {
     void func_8008FE94(s32, f32 *);
