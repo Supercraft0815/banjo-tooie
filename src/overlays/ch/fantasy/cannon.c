@@ -2,9 +2,9 @@
 
 /* extern */
 
-void func_80800000_chfantasycannon(u8 *arg0) {
+s32 func_80800000_chfantasycannon(Actor *arg0) {
     s32 func_800DA298(s32);
-    func_800DA298(((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7) + 0x55D);
+    return func_800DA298(((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7) + 0x55D);
 }
 
 /* extern */
@@ -17,7 +17,7 @@ void func_80800028_chfantasycannon(u8 *arg0) {
 /* extern */
 
 s32 func_80800050_chfantasycannon(void) {
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F64DC(s32);
     s32 func_8010C500();
     if (func_8010C500() == 0) {
@@ -32,7 +32,7 @@ s32 func_80800050_chfantasycannon(void) {
 void func_808000A4_chfantasycannon(void) {
     s32 func_800B5BE4(s32);
     s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     void func_800F5A00(s32, f32[3]);
     extern s32 D_80800CF8_chfantasycannon;
     f32 sp2C[3];
@@ -103,7 +103,7 @@ void func_80800228_chfantasycannon(Actor *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800F4CC0(s32);
     void func_800F4CEC(s32, u32);
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F6C5C(s32);
     s32 func_800F7B9C(s32, s32);
     s32 func_800F8294(s32, f32 *);
@@ -113,7 +113,7 @@ void func_80800228_chfantasycannon(Actor *arg0) {
     s32 func_80800050_chfantasycannon();
     void func_808000A4_chfantasycannon(void);
     s32 func_80800544_chfantasycannon(Actor *, s32);
-    s32 func_808008B0_chfantasycannon(Actor *);
+    void func_808008B0_chfantasycannon(Actor *);
     f32 temp_f0;
     f32 sp38[3];
     f32 sp34;
@@ -188,7 +188,34 @@ void func_80800228_chfantasycannon(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/cannon/func_80800544_chfantasycannon.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/cannon/func_808008B0_chfantasycannon.s")
+void func_808008B0_chfantasycannon(Actor *arg0) {
+    void _capod_entrypoint_1(f32 *, f32 *);
+    void func_800A516C(f32 *, f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+    f32 (*data)[3];
+
+    data = func_80100094(arg0, 0);
+    if (func_80800000_chfantasycannon(arg0) != 0) {
+        if ((s32)arg0->unk70_10 < 4) {
+            _capod_entrypoint_1(data[0], data[1]);
+            return;
+        }
+        func_800A516C(sp4C, (f32 *)arg0->actorData, data[2]);
+        _capod_entrypoint_1(data[2], sp4C);
+        return;
+    }
+    func_800F5A00(func_800F54E4(), sp34);
+    func_800EFE50(sp40, data[2], data[0], func_800EEB40(sp34, (f32 *)arg0->actorData) / func_800EEB40(arg0->position, (f32 *)arg0->actorData));
+    func_800A516C(sp4C, sp34, sp40);
+    _capod_entrypoint_1(sp40, sp4C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/cannon/func_808009B8_chfantasycannon.s")
 
