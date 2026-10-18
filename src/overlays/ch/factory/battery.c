@@ -19,7 +19,40 @@ s32 func_8080000C_chfactorybattery(Actor *arg0) {
     return sp20;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80800050_chfactorybattery.s")
+void func_80800050_chfactorybattery(Actor *arg0, s32 arg1) {
+    s32 func_800CB3E0(s32);
+    void func_80102FDC(Actor *, f32);
+    void func_8080130C_chfactorybattery(Actor *, s32);
+    f32 func_80800580_chfactorybattery(f32 *);
+    void _subaddietaxi_entrypoint_0(Actor *, s32, f32 *, s32);
+    void _subaddietaxi_entrypoint_10(Actor *, s32, s32);
+    f32 sp24[3];
+
+    switch (func_800CB3E0(arg1)) {
+        case 6:
+            break;
+        case 1:
+            arg0->unk6C_0 = arg1;
+            func_80102FDC(arg0, 0.45f);
+            func_8080130C_chfactorybattery(arg0, 6);
+            arg0->unk64_24 = 1;
+            break;
+        case 3:
+            arg0->unk6C_0 = arg1;
+            func_80102FDC(arg0, 0.45f);
+            _subaddietaxi_entrypoint_10(arg0, arg1, 4);
+            break;
+        case 4:
+            arg0->rotation[1] = func_80800580_chfactorybattery(sp24);
+            arg0->unk6C_0 = arg1;
+            func_80102FDC(arg0, 0.45f);
+            _subaddietaxi_entrypoint_0(arg0, arg1, sp24, 3);
+            break;
+    }
+    if (arg0 != NULL && arg0->pad6C_21 == 0) {
+        arg0->unk6C_0 = arg1;
+    }
+}
 
 void func_8080019C_chfactorybattery(volatile unsigned int arg0, void *arg1, s32 arg2, s32 arg3)
 {
