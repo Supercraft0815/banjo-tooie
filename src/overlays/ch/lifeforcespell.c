@@ -57,4 +57,34 @@ Unk80132ED0 *chlifeforcespell_entrypoint_1(Actor **arg0, f32 arg1[3], s32 arg2, 
     return actor->unk0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lifeforcespell/chlifeforcespell_entrypoint_2.s")
+s32 chlifeforcespell_entrypoint_2(Actor *arg0, Unk80132ED0 *arg1, s32 *arg2) {
+    void _subaddiefade_entrypoint_9(Actor *, s32 *);
+    f32 _sumumbofx_entrypoint_22(u8 *);
+    s32 func_800DA298(s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    int func_800F3214(void *, void *, void *, f32);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern f32 D_808004C0_chlifeforcespell[3];
+    Actor *sp3C;
+    u8 *sp38;
+    s32 sp2C[3];
+    Actor *temp_v0;
+
+    temp_v0 = func_80106790(arg1);
+    sp3C = temp_v0;
+    sp38 = func_80100094(temp_v0, 1);
+    if (func_800DA298(0x9DE) && sp38) {
+        _subaddiefade_entrypoint_9(arg0, sp2C);
+        if (sp3C->unk70_10 == 1) {
+            func_800F3214(arg2, sp2C, D_808004C0_chlifeforcespell,
+                func_800F10B4(sp3C->unk58, 0.0f, 1.85f, 1.0f, 0.0f));
+            return 1;
+        }
+        func_800F3214(arg2, sp2C, D_808004C0_chlifeforcespell,
+            _sumumbofx_entrypoint_22(sp38));
+        return 1;
+    }
+    _subaddiefade_entrypoint_9(arg0, arg2);
+    return 0;
+}
