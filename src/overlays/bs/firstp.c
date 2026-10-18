@@ -2490,7 +2490,31 @@ void func_80805F68_bsfirstp()
     func_8009B4FC();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_27.s")
+void bsfirstp_entrypoint_27(void *arg0) {
+    void func_80806000_bsfirstp(void *);
+    void func_8080649C_bsfirstp(void *);
+    void func_80806588_bsfirstp(void *);
+    void func_80806774_bsfirstp(void *);
+    void *ptr;
+    s32 state;
+
+    ptr = *(void **)((u8 *)arg0 + 0x188);
+    state = *(s32 *)((u8 *)ptr + 0x19C);
+    switch (state) {
+    case 1:
+        break;
+    default:
+        func_80806774_bsfirstp(arg0);
+        break;
+    case 2:
+        func_8080649C_bsfirstp(arg0);
+        break;
+    case 3:
+        func_80806588_bsfirstp(arg0);
+        break;
+    }
+    func_80806000_bsfirstp(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80806000_bsfirstp.s")
 
