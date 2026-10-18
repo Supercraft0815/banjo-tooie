@@ -376,7 +376,28 @@ s32 func_80801758_chfpsgame(s32 arg0) {
     return _sumultiscore_entrypoint_6((u8 *)func_80100094((Actor *)arg0, 0U) + 0x14);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80801780_chfpsgame.s")
+void func_80801780_chfpsgame(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800EB854(void);
+    s32 _sumultiscore_entrypoint_12(s32, s32, s32);
+    void _scradar_entrypoint_0(void);
+    void _scradar_entrypoint_1(s32);
+    void func_80801B30_chfpsgame(Actor *, s32);
+    u8 *sp1C;
+
+    sp1C = func_80100094(arg0, 0U);
+    switch (func_800EB854()) {
+        case 3:
+            _sumultiscore_entrypoint_12((s32)(sp1C + 0x14), arg1, 1);
+            _scradar_entrypoint_0();
+            _scradar_entrypoint_1(arg1);
+            break;
+        case 4:
+            func_80801B30_chfpsgame(arg0, arg1);
+            _sumultiscore_entrypoint_12((s32)(sp1C + 0x14), arg1, 2);
+            break;
+    }
+}
 
 void func_80801814_chfpsgame(Actor *arg0) {
     void *func_80100094(Actor *, u32);
