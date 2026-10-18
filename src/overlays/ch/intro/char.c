@@ -23,14 +23,38 @@ void func_808002FC_chintrochar(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80800398_chintrochar.s")
+void func_80800398_chintrochar(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    u32 *_gldbstring_entrypoint_0(u32 *, u32);
+    u32 *_gldbstring_entrypoint_1(u32 *, s16);
+    void _gldbstring_entrypoint_2(s32);
+    void func_800E715C(u8 *, u8 *);
+    u8 *data;
+    u32 *text;
+    s32 index;
+
+    data = func_80100094(arg0, 2);
+    text = _gldbstring_entrypoint_0(NULL, 0x186C);
+    index = arg0->unk74_7 - 0x32;
+    if (index != 3) {
+        if (index == 0xC) {
+            func_800E715C(data, _gldbstring_entrypoint_1(text, 0));
+            func_800E715C(data + 0x40, _gldbstring_entrypoint_1(text, 1));
+        }
+    } else {
+        func_800E715C(data, _gldbstring_entrypoint_1(text, 2));
+        func_800E715C(data + 0x40, _gldbstring_entrypoint_1(text, 4));
+        func_800E715C(data + 0x80, _gldbstring_entrypoint_1(text, 5));
+    }
+    _gldbstring_entrypoint_2(0x186C);
+}
 
 void func_80800484_chintrochar(Actor *arg0) {
     s32 func_800DA544(s32);
     s32 func_80103140(Actor *, u32, u16);
     s32 func_80800000_chintrochar(void *);
     s32 func_808000FC_chintrochar();
-    s32 func_80800398_chintrochar(void *);
+    void func_80800398_chintrochar(Actor *);
     void func_80803E98_chintrochar(Actor *);
     extern u16 D_80804790_chintrochar[][16];
     extern u32 func_80804160_chintrochar[][8];
