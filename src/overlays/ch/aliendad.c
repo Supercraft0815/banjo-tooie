@@ -224,7 +224,36 @@ void func_80801E80_chaliendad(Actor* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801EB4_chaliendad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801F98_chaliendad.s")
+void func_80801F98_chaliendad(Actor *arg0) {
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    void func_800FFAB0(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_80105834(Actor *);
+    s32 func_80105998(Actor *, f32);
+    s32 func_80105A5C(Actor *);
+    void func_80802218_chaliendad(Actor *);
+    void func_80802284_chaliendad(Actor *);
+
+    func_80802218_chaliendad(arg0);
+    switch (arg0->unk70_10) {
+        case 3:
+            break;
+        case 2:
+            func_80105834(arg0);
+            if (func_80105998(arg0, 0.8f)) {
+                func_80102424(arg0, 3);
+                func_80801BD4_chaliendad(_subaddiefind_entrypoint_2(0x45A, 0));
+            }
+            break;
+        case 4:
+            func_80105834(arg0);
+            if (func_80105A5C(arg0)) {
+                func_800FFAB0(arg0);
+            }
+            break;
+    }
+    func_80802284_chaliendad(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80802058_chaliendad.s")
 
