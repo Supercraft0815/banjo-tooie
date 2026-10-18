@@ -706,7 +706,26 @@ void func_80802AF8_chcollballcontrol(Actor *arg0, s32 arg1) {
     _subaddiefade_entrypoint_3(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/chcollballcontrol_entrypoint_1.s")
+void chcollballcontrol_entrypoint_1(Unk80132ED0 *arg0, s32 arg1, u32 arg2, s32 arg3) {
+    typedef struct { f32 unknown; f32 timer; } ControlData;
+    f32 func_800D8FF8(void);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_808030D0_chcollballcontrol(Actor *);
+    void *actor;
+    ControlData *data;
+
+    actor = func_80106790(arg0);
+    data = func_80100094(actor, 0);
+    if (arg1 != 1) {
+        if (arg1 == 3) {
+            func_80801764_chcollballcontrol(actor, 1);
+        }
+    } else {
+        data->timer = func_800D8FF8() * arg2;
+        func_808030D0_chcollballcontrol(actor);
+    }
+}
 
 void func_80802CE0_chcollballcontrol(u8 *arg0) {
     typedef struct { f32 v[4]; } Distances;
