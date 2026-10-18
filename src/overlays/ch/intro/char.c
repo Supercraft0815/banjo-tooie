@@ -757,7 +757,39 @@ void func_80803388_chintrochar(Actor *volatile arg0, s32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80803888_chintrochar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80803990_chintrochar.s")
+void func_80803990_chintrochar(Actor *arg0, Gfx **arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    void func_800B7F14(Gfx **);
+    void func_800B811C(Gfx **);
+    void func_800B8C50(void);
+    void func_800B8C8C(s32);
+    void func_800B8C98(s32);
+    void func_800B8CB0(s32);
+    void func_800B8F88(s32, s32, u8 *);
+    u8 *data[1];
+    u8 *text;
+
+    data[0] = func_80100094(arg0, 2);
+    func_800B8C50();
+    func_800B8C8C(_subaddiefade_entrypoint_0(arg0));
+    func_800B8C98(0);
+    func_800B8CB0(1);
+    func_800B7F14(arg1);
+    switch (arg0->unk74_7 - 0x32) {
+        case 0xC:
+            func_800B8F88(arg1, 0xB6, text = data[0]);
+            func_800B8F88(arg1, 0xC2, text + 0x40);
+            break;
+        case 3:
+            text = data[0];
+            func_800B8F88(arg1, 0xB6, text);
+            func_800B8F88(arg1, 0xC2, text + 0x40);
+            func_800B8F88(arg1, 0xCE, text + 0x80);
+            break;
+    }
+    func_800B811C(arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80803A78_chintrochar.s")
 
