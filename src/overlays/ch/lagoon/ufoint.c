@@ -170,7 +170,27 @@ OSThread *chlagoonufoint_entrypoint_4(void)
     return (OSThread *) D_80801B68_chlagoonufoint;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_80800E80_chlagoonufoint.s")
+void func_80800E80_chlagoonufoint(Actor *arg0, s32 arg1) {
+    void func_808004D8_chlagoonufoint(Unk80132ED0 *, Unk80132ED0 *);
+
+    switch (arg1) {
+        case 2:
+            arg0->unk6C_0 = 3;
+            break;
+        case 3:
+            func_808004D8_chlagoonufoint(arg0->unk3C, arg0->unk0);
+            ((f32 *)arg0->actorData)[5] = 0.33333334f;
+            break;
+        case 4:
+            ((f32 *)arg0->actorData)[3] = 1.0f;
+            break;
+        case 5:
+            ((f32 *)arg0->actorData)[5] = -0.33333334f;
+            arg0->unk79_4 = 0;
+            break;
+    }
+    arg0->unk70_10 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_80800F48_chlagoonufoint.s")
 
