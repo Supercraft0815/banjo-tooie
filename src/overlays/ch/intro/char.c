@@ -854,7 +854,40 @@ void func_80803388_chintrochar(Actor *volatile arg0, s32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_808034C4_chintrochar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_8080374C_chintrochar.s")
+void func_8080374C_chintrochar(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void *func_8001B798(s16);
+    void _suexpression_entrypoint_19(void *, Actor *);
+    s32 func_8010262C(Unk80132ED0 *, u32);
+    void func_800E0AFC(void *, u8, f32, f32, f32, f32);
+    extern u32 func_80804160_chintrochar[][8];
+    extern s16 D_80805308_chintrochar[];
+    extern s16 D_8080530E_chintrochar[];
+    extern s16 D_80805310_chintrochar[];
+    extern s16 D_80805316_chintrochar[];
+    s16 *data;
+    f32 *values;
+    s32 model;
+    s16 *entry;
+    s32 i;
+
+    data = func_80100094(arg0, 2);
+    if (data[0x63] != 0) {
+        _suexpression_entrypoint_19(func_8001B798(data[0x63]), arg0);
+    }
+    if (func_80804160_chintrochar[arg0->unk74_7][0] & 0x10000) {
+        model = func_8010262C(arg0->unk0, 6);
+        if (model != 0) {
+            values = func_80100094(arg0, 2);
+            for (i = 0; i < 3; i++) {
+                func_800E0AFC(model, D_80805308_chintrochar[i], -1.0f, values[0x34], 0.0f, 0.0f);
+            }
+            for (i = 0; i < 3; i++) {
+                func_800E0AFC(model, D_80805310_chintrochar[i], -1.0f, values[0x35], 0.0f, 0.0f);
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80803888_chintrochar.s")
 
