@@ -151,7 +151,31 @@ s32 func_80800C60_chamazongoldhordeofficial(s32 arg0) {
     return _subaddiedialog_entrypoint_7(arg0, arg0 + 4, &D_80801324_chamazongoldhordeofficial);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800CD8_chamazongoldhordeofficial.s")
+void func_80800CD8_chamazongoldhordeofficial(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 func_800DA544(s32);
+    void _glcutDll_entrypoint_6(u32, u32);
+    void func_80800E18_chamazongoldhordeofficial(Actor *);
+    switch (arg1) {
+        case 0xF2D:
+            _susubgame_entrypoint_4(arg0, (s32)((u8 *)func_80100094(arg0, 0) + 0x6C));
+            func_800D1000(5, 1, NULL, 1, 0);
+            _capod_entrypoint_13(arg0->unk0, NULL, 4, 0x2830);
+            return;
+        case 0xF0D:
+        case 0xF59:
+            _susubgame_entrypoint_4(arg0, (s32)((u8 *)func_80100094(arg0, 0) + 0x6C));
+            func_800DA544(0x59C);
+            _glcutDll_entrypoint_6(0xB8, 0xD);
+            return;
+        default:
+            func_80800E18_chamazongoldhordeofficial(arg0);
+        case 0xF2E:
+            return;
+    }
+}
 
  s32 func_80800DB4_chamazongoldhordeofficial(Actor *arg0, s32 arg1) {
     u8 *temp_s0;
