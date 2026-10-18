@@ -7,7 +7,41 @@ OSThread *chevilspirit_entrypoint_0(void)
     return (OSThread *) D_80802270_chevilspirit;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_8080000C_chevilspirit.s")
+void func_8080000C_chevilspirit(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_0(Actor *);
+    s32 _subaddielink_entrypoint_0(u8 *);
+    s32 func_800DA298(s32);
+    f32 func_800DC178(f32, f32);
+    s32 func_800EA05C(void);
+    s32 func_800EA068(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    u32 func_8010A828(Actor *, u32);
+    s32 func_80800F8C_chevilspirit(Actor *);
+    void func_80801344_chevilspirit(u8 *);
+    u8 *link;
+
+    link = func_80100094(arg0, 0);
+    if (func_80800F8C_chevilspirit(arg0) != 0) {
+        _subaddieDll_entrypoint_0(arg0);
+        func_8010A828(arg0, 9);
+    }
+    func_80801344_chevilspirit((u8 *)arg0);
+    func_800EE7F8(arg0->position, (f32 *)arg0->actorData);
+    arg0->unk58 = func_800DC178(5.0f, 8.0f);
+    _subaddielink_entrypoint_0(link);
+    arg0->actorData[3] = 0;
+    if (func_800EA068(0x10) != 0) {
+        if ((func_800EA05C() == 0x141) && (func_800DA298(0x38) == 0)) {
+            func_80102424(arg0, 2);
+            arg0->unk58 = 3.0f;
+            return;
+        }
+        func_80102424(arg0, 3);
+        arg0->unk58 = 2.0f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80800104_chevilspirit.s")
 
