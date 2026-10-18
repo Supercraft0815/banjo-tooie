@@ -333,7 +333,7 @@ Actor *func_808026F8_chdiggerboss(void *arg0) {
 s32 func_80802718_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_0(s32, s32);
     void *func_80100094(Actor *, u32);
-    s32 func_80802878_chdiggerboss(s32, s32, s32);
+    void func_80802878_chdiggerboss(Actor *, s32, s32);
     if (_gcdialogcamera_entrypoint_0(arg1, arg2) != 0) {
         if ((*(s16 *)((s8 *)(func_80100094(arg0, 0)) + (8))) != 2) {
             func_80802878_chdiggerboss(arg0, 2, 1);
@@ -381,7 +381,28 @@ s32 func_808027F4_chdiggerboss(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80802878_chdiggerboss.s")
+void func_80802878_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void func_808029C8_chdiggerboss(Actor *);
+    void _capod_entrypoint_7(s32, s32);
+    s32 _capod_entrypoint_8(s32);
+    void _gcdialogcamera_entrypoint_8(void);
+    s16 *data;
+
+    data = func_80100094(arg0, 0U);
+    switch (data[4]) {
+        case 0:
+            func_80802778_chdiggerboss(arg0, 0);
+        case 1:
+            _capod_entrypoint_8(1);
+            data[4] = 2;
+        case 2:
+            func_808029C8_chdiggerboss(arg0);
+            _gcdialogcamera_entrypoint_8();
+            _capod_entrypoint_7(arg1, arg2);
+            break;
+    }
+}
 
 void func_8080290C_chdiggerboss(Actor *arg0, u32 arg1, u32 arg2) {
     void func_80802938_chdiggerboss(Actor *, Unk80132ED0 *, u32, u32);
@@ -494,7 +515,7 @@ void func_80802F00_chdiggerboss(s32 arg0, s32 arg1) {
     void func_800F5A00(s32, f32 *);
     s32 func_800F7F98(s32, u32);
     s32 func_800F8418(s32, f32 *);
-    s32 func_80802878_chdiggerboss(s32, s32, s32);
+    void func_80802878_chdiggerboss(Actor *, s32, s32);
     s32 func_80803BE8_chdiggerboss(s32, s32, s32);
     void func_808056B8_chdiggerboss(s32);
     s32 sp44;
