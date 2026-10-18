@@ -96,7 +96,36 @@ OSThread *cheggclockwork_entrypoint_0(void)
     return (OSThread *) D_808008C0_cheggclockwork;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/clockwork/cheggclockwork_entrypoint_1.s")
+Actor *cheggclockwork_entrypoint_1(f32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 _suegg_entrypoint_1(void *, f32);
+    void *_suegg_entrypoint_11(s32, s32, s32);
+    s32 _sueggmove_entrypoint_10(s32);
+    s32 _sueggmove_entrypoint_5(void *, s32);
+    s32 _sueggmove_entrypoint_6(void *, f32, f32);
+    s32 _sueggmove_entrypoint_7(void *, s32);
+    void *func_80100094(Actor *, u32);
+    void func_808007DC_cheggclockwork(Actor *, f32 *);
+    Actor *actor;
+    struct {
+        u8 pad[0x38];
+        u32 unk38_0 : 12;
+        u32 flag : 1;
+        u32 unk38_13 : 19;
+    } *data;
+
+    _sueggmove_entrypoint_10(arg0);
+    actor = _suegg_entrypoint_11(0x15E, arg1, arg3);
+    data = func_80100094(actor, 0);
+    func_808007DC_cheggclockwork(actor, arg0);
+    data->flag = arg4;
+    actor->scale = 0.134f;
+    _suegg_entrypoint_1(actor, 30.0f);
+    _sueggmove_entrypoint_5(actor, 1);
+    _sueggmove_entrypoint_6(actor, -2200.0f, -100000.0f);
+    _sueggmove_entrypoint_7(actor, arg2);
+    actor->unk70_10 = 2;
+    return actor;
+}
 
 /* extern */
 
