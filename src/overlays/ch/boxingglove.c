@@ -83,7 +83,31 @@ s32 func_808004F8_chboxingglove(void *arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/func_80800544_chboxingglove.s")
+s32 func_80800544_chboxingglove(Actor *arg0, f32 *arg1) {
+    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void func_800EE7F8(f32 *, f32 *);
+    int func_800F0064(f32 *, f32, f32 *);
+    void *func_80100094(Actor *, u32);
+    f32 start[3];
+    f32 end[3];
+    f32 hit[3];
+    s32 i;
+    f32 (*data)[4];
+    f32 (*dst)[4];
+
+    data = func_80100094(arg0, 0);
+    dst = data;
+    for (i = 0; i < 4; i++) {
+        if (func_800F0064(arg1, dst[i][3], dst[i])) {
+            return 0;
+        }
+    }
+    func_800EE7F8(start, arg1);
+    func_800EE7F8(end, arg1);
+    start[1] = ((f32 *)arg0->actorData)[4] + 200.0f;
+    end[1] = ((f32 *)arg0->actorData)[4] - 50.0f;
+    return func_800BEF00(start, end, hit, arg0->unk14) ? 1 : 0;
+}
 
 void func_80800630_chboxingglove(Actor *arg0) {
     void *func_80100094(Actor *, u32);
