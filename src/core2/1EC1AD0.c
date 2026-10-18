@@ -223,7 +223,42 @@ void func_800E88E4(u8 arg0) {
     func_800E8918(arg0, func_800A89F8(), 0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC1AD0/func_800E8918.s")
+s32 func_800E8918(u8 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    extern FreeList *D_8012D600;
+    void *freelist_at(FreeList *, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800C4C34(s32, s32, s32, s32 *);
+    f32 func_800E3928(s32, s32);
+    void func_800E3980(f32 *);
+    extern s32 D_8012D67C;
+    f32 sp34[3];
+    u8 *entry;
+    u8 *base;
+    s32 result;
+    s32 sp24;
+
+    base = freelist_at(D_8012D600, arg0);
+    entry = (u8 *)((s32)base + D_8012D67C * 0x118) + arg1 * 0x38;
+    entry += 0x10;
+    if (*(s16 *)(entry + 0x36) != 0) {
+        *(s16 *)(entry + 0x36) = 0;
+    }
+    result = func_800C4C34(arg1, (s32)base, (s32)entry, &sp24);
+    if (sp24 != 0 && result != 0) {
+        *(f32 *)(entry + 8) = func_800E3928((s32)base, (s32)sp34);
+        func_800E3980((f32 *)(entry + 0x10));
+        func_800EE7F8((f32 *)(entry + 0x1C), (f32 *)base);
+        *(s16 *)(entry + 0x36) = 1;
+    }
+    if (arg3 != 0) {
+        ((f32 *)arg3)[0] = ((f32 *)entry)[0];
+        ((f32 *)arg3)[1] = ((f32 *)entry)[1];
+    }
+    if (arg2 != 0) {
+        func_800EE7F8((f32 *)arg2, (f32 *)(entry + 0x28));
+    }
+    return *(s16 *)(entry + 0x34);
+}
 
 void func_800E8A20(void) {
     FreeList *freelist_defrag(FreeList *);
