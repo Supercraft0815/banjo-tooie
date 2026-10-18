@@ -19,7 +19,7 @@ OSThread *chloggo_entrypoint_1(void)
 void func_80800018_chloggo(s32 arg0) {
     s32 _gccubesearch_entrypoint_0(s32, s32);
     s32 _glcutDll_entrypoint_20();
-    s32 func_800D0A9C(s32, s32);
+    s32 func_800D0A9C(u32, u32);
     s32 func_800DA298(s32);
     s32 func_800EE88C(s32, s32);
     void func_80102424(Actor *, s32);
@@ -37,7 +37,38 @@ void func_80800018_chloggo(s32 arg0) {
     func_8010A5B0(arg0, func_800DA298(0x169));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/loggo/func_808000AC_chloggo.s")
+void func_808000AC_chloggo(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800F52B8(s32, Unk80132ED0 *);
+    u32 func_800F54E4(void);
+    void func_80800398_chloggo(Actor *);
+    void func_80800460_chloggo(Actor *);
+    extern s32 D_808005E0_chloggo[];
+    extern s32 D_80800610_chloggo[];
+    extern s32 D_808006D8_chloggo[];
+
+    switch (arg0->unk70_10) {
+        case 1:
+            func_80800460_chloggo(arg0);
+            if (func_800D0A9C(0x10, 4) != 0) {
+                _subaddiedialog_entrypoint_8(arg0, arg0->position, D_808006D8_chloggo, D_80800610_chloggo, 2);
+            } else {
+                _subaddiedialog_entrypoint_8(arg0, arg0->position, D_808006D8_chloggo, D_808005E0_chloggo, 6);
+            }
+            break;
+        case 2:
+        case 4:
+            func_80800460_chloggo(arg0);
+            break;
+        case 3:
+            if (func_800F52B8(func_800F54E4(), arg0->unk0) != 0xB) {
+                func_80800398_chloggo(arg0);
+            }
+            break;
+    }
+    *(u8 *)&arg0->pad94 &= ~0x40;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/loggo/func_808001B8_chloggo.s")
 
