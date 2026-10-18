@@ -467,13 +467,37 @@ void func_800EC030(void **arg0, void *arg1) {
     (*(s16 *)((s8 *)(*arg0) + (8))) = (s16) (*(s32 *)((s8 *)(arg1) + (8)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC058.s")
+void func_800EC058(s32 *arg0, void **arg1) {
+    struct Flags {
+        u8 pad[0x28];
+        u32 upper : 21;
+        u32 update : 1;
+        u32 lower : 10;
+    };
+    s32 func_800BD97C(s32 *);
+    void func_800CDFD0(void **);
+    s32 result;
+
+    if (*(s32 *)((u8 *)arg1 + 0x10) & 1) {
+        result = -1;
+    } else {
+        result = func_800BD97C(arg0);
+    }
+    if (result == *(s16 *)((u8 *)arg1 + 0x1C)) {
+        func_800EC030(arg1, arg0);
+    } else {
+        func_800EBD2C((u8 *)arg1, (s32)arg0, result);
+    }
+    if (((struct Flags *)arg1)->update) {
+        func_800CDFD0(arg1);
+    }
+}
 
 /* extern */
 
-void func_800EC0EC(f32 *arg0, s32 arg1) {
+void func_800EC0EC(f32 *arg0, void **arg1) {
     void func_800EE904(s32 dst[3], f32 src[3]);
-    s32 func_800EC058(s32 *, s32);
+    void func_800EC058(s32 *, void **);
     s32 sp1C[3];
 
     func_800EE904(sp1C, arg0);
