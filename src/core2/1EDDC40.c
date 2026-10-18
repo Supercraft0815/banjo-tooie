@@ -1,5 +1,7 @@
 #include "common.h"
 
+s32 *func_800BEF00(f32[3], f32[3], f32[3], s32);
+
 void func_80104350(void) {
     s32 freelist_new(s32, s32);
     extern s32 D_80136E80;
@@ -429,7 +431,43 @@ void func_80104F2C(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80105010.s")
+s32 func_80105010(Actor *arg0) {
+    void _subaddiefade_entrypoint_11(Actor *, s32 *);
+    s32 _subaddiefade_entrypoint_12(s32, s32, s32, s32);
+    s32 func_800AAAE0(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    u8 *data;
+    f32 sp58[3];
+    f32 sp4C[3];
+    f32 sp40[3];
+    s32 *sp3C;
+    s32 sp30[3];
+    s32 sp24[3];
+
+    data = (u8 *)func_80104410(arg0);
+    func_800EE7F8(sp58, arg0->position);
+    func_800EE7F8(sp4C, arg0->position);
+    func_800EF1B8(sp58, arg0->rotation[1], 80.0f);
+    func_800EF1B8(sp4C, arg0->rotation[1], -80.0f);
+    sp3C = func_800BEF00(sp58, sp4C, sp40, arg0->unk14);
+    if (sp3C != NULL) {
+        func_80104958(data);
+        func_800AAAE0((s32)(data + 0x18));
+        func_8010486C((s8 *)data, sp40);
+        *(s16 *)(data + 0x16) = (s32)sp4C[1];
+        data[3] = 1;
+        *(s32 *)(data + 0x24) = sp3C[2];
+        func_801049B4(data, sp4C, sp30);
+        func_80104D80(sp30, 0x28);
+        func_80104E24(sp30, sp24);
+        _subaddiefade_entrypoint_11(arg0, sp24);
+        data[0x28] = 1;
+        return 1;
+    }
+    _subaddiefade_entrypoint_12((s32)arg0, 0xFF, 0xFF, 0xFF);
+    return 0;
+}
 
 /* extern */
 
