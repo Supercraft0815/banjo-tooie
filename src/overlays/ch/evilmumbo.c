@@ -166,7 +166,23 @@ int func_80800E50_chevilmumbo(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800ECC_chevilmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800F60_chevilmumbo.s")
+void func_80800F60_chevilmumbo(Actor *arg0, f32 *arg1, f32 *arg2) {
+    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800F1B78(f32 *, f32 *, f32, f32);
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp1C[3];
+
+    func_800EE7F8(sp34, arg1);
+    func_800EE7F8(sp28, arg1);
+    sp34[1] += 50.0f;
+    sp28[1] -= 50.0f;
+    if (func_800BEF00(sp34, sp28, sp1C, arg0->unk14) != 0) {
+        arg1[1] = sp28[1];
+        func_800F1B78(arg2, sp1C, arg0->rotation[1], 1.0f);
+    }
+}
 
 void func_80800FF8_chevilmumbo(Actor *arg0) {
     void _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
