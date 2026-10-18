@@ -1,6 +1,43 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80800000_chcrusherboulder.s")
+void func_80800000_chcrusherboulder(Actor *arg0, void *arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 _sumumbofx_entrypoint_10(u8 *);
+    s32 _sumumbofx_entrypoint_8(u8 *, s32);
+    s32 _sumumbofx_entrypoint_9(u8 *, s32);
+    void func_800DF5D8(u32, u32, u32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF5A0(f32 *, f32 *, f32, f32, f32);
+    void func_80101870(Actor *, void *);
+    f32 savedPosition[3];
+    f32 rotation[3];
+    f32 *position;
+    u8 *data;
+    s32 color;
+
+    data = func_80100094(arg0, 1);
+    rotation[0] = -arg0->rotation[0];
+    rotation[1] = arg0->rotation[1];
+    rotation[2] = arg0->rotation[2];
+    if (data != NULL) {
+        color = _sumumbofx_entrypoint_10(data);
+        func_800DF5D8(color, 255, color, 255);
+    }
+    position = arg0->position;
+    func_800EE7F8(savedPosition, position);
+    func_800EF5A0(position, rotation, 0.0f, 150.0f, 0.0f);
+    func_800EF04C(position, savedPosition);
+    arg0->position[1] -= 150.0f;
+    if (data != NULL) {
+        _sumumbofx_entrypoint_9(data, arg1);
+    }
+    func_80101870(arg0, arg1);
+    func_800EE7F8(position, savedPosition);
+    if (data != NULL) {
+        _sumumbofx_entrypoint_8(data, arg1);
+    }
+}
 
 s32 func_80800100_chcrusherboulder(u8 *arg0, f32 *arg1) {
     struct Vector { s32 v[3]; };
