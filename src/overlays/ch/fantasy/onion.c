@@ -1,6 +1,27 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/onion/func_80800000_chfantasyonion.s")
+f32 func_80800000_chfantasyonion(Actor *arg0) {
+    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    u8 func_800E8714(s32);
+    void func_800E8830(u8, f32[3]);
+    void func_800E8870(u8, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp1C[3];
+
+    func_800EE7F8(sp28, arg0->position);
+    func_800EE7F8(sp34, arg0->position);
+    sp34[1] += 250.0f;
+    sp28[1] -= 1400.0f;
+    func_800BEF00(sp34, sp28, sp1C, 0);
+    if (arg0->actorData[0] == 0) {
+        arg0->actorData[0] = func_800E8714(1);
+        func_800E8870(arg0->actorData[0], 300.0f);
+    }
+    func_800E8830(arg0->actorData[0], sp28);
+    return sp28[1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/onion/func_808000BC_chfantasyonion.s")
 
@@ -14,7 +35,7 @@ void func_80800254_chfantasyonion(u8 *arg0) {
     s32 func_800C7A68(s32, f32, f32 *);
     s32 func_800D7520(s32);
     s32 func_800D90A4(u8 *);
-    s32 func_800EE7F8(f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
     s32 func_800EF04C(f32 *, f32 *);
     s32 func_800EF3DC(f32 *, u8 *);
     s32 func_800EF934(f32 *, f32 *, f32);
@@ -28,7 +49,7 @@ void func_80800254_chfantasyonion(u8 *arg0) {
     s32 func_800F832C(s32, f32 *);
     s32 func_800F8418(s32, f32 *);
     s32 func_80102BAC(u8 *, s32, s32, s32);
-    f32 func_80800000_chfantasyonion(u8 *);
+    f32 func_80800000_chfantasyonion(Actor *);
     typedef struct {
         u8 pad[0x64];
         u32 : 11;
