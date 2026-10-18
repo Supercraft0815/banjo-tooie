@@ -81,7 +81,39 @@ s32 chpowerhut_entrypoint_1(Actor *arg0, PowerhutConfig *arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhut/chpowerhut_entrypoint_2.s")
+void chpowerhut_entrypoint_2(Actor *arg0, s32 arg1) {
+    s32 _sumumbofx_entrypoint_8(u8 *, s32);
+    s32 func_800D674C(s32);
+    s32 func_800DC128(s32, s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF744(s32, s32);
+    void func_800DF830(s32);
+    void *func_80100094(Actor *, u32);
+    extern f32 D_80800988_chpowerhut[];
+    PowerhutData *data;
+    s32 visible;
+    s32 next;
+    s32 chosen;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    if (func_80100094(arg0, 1) != NULL) {
+        _sumumbofx_entrypoint_8(func_80100094(arg0, 1), arg1);
+    }
+    if (data->state == 3) {
+        chosen = func_800DC128(0, 4);
+        for (i = 0; i < 4; i++) {
+            if (chosen == i) {
+                visible = 1;
+            } else {
+                visible = 0;
+            }
+            func_800DF744(i + 1, visible);
+        }
+        func_800DF830(2);
+        func_800DE448((f32 *)arg0->actorData, D_80800988_chpowerhut, 2.5f, NULL, func_800D674C(0x742));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhut/chpowerhut_entrypoint_3.s")
 
