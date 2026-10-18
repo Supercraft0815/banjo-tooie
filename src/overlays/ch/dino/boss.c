@@ -407,7 +407,29 @@ s32 func_80800E2C_chdinoboss(void) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80800E88_chdinoboss.s")
+void func_80800E88_chdinoboss(void *arg0, s32 arg1) {
+    typedef struct {
+        u8 pad0[0x11E];
+        s16 hitCount;
+    } DinoBossData;
+    void *func_80100094(Actor *, u32);
+    s32 func_800DA298(s32);
+    void func_80109FE8(void **, s32);
+    void func_80800F70_chdinoboss(Actor *, s32);
+    DinoBossData *sp24;
+    Actor *actor = arg0;
+
+    sp24 = func_80100094(actor, 0);
+    if (func_800DA298(0xE5) == 0 && actor->unk70_10 == 0xA) {
+        sp24->hitCount++;
+        if (sp24->hitCount == 3) {
+            func_80109FE8(arg0, 0);
+        }
+        if (actor->unk70_10 != 0x16) {
+            func_80800F70_chdinoboss(actor, 0x16);
+        }
+    }
+}
 
 void func_80800F28_chdinoboss(Actor *arg0, s32 arg1) {
     s32 func_800DA298(s32);
