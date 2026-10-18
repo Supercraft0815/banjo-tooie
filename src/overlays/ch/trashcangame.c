@@ -407,7 +407,41 @@ void func_80801CF0_chtrashcangame(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80801EE8_chtrashcangame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_808020D8_chtrashcangame.s")
+s32 func_808020D8_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcfrontend_entrypoint_10(void);
+    s32 _subaddiemulti_entrypoint_0(s32);
+    s32 _subaddiemulti_entrypoint_4(s32);
+    void func_808019EC_chtrashcangame(Actor *, s32);
+    void func_80801EE8_chtrashcangame(Actor *, s32);
+
+    switch (arg1) {
+        case 0x2E:
+            switch (((s16 *)&arg2)[0]) {
+                case 0x13ED:
+                    func_80801EE8_chtrashcangame(arg0, 3);
+                    return 1;
+                case 0x13DE:
+                case 0x13DF:
+                    _gcfrontend_entrypoint_10();
+                    return 1;
+            }
+            return 1;
+        case 0x30:
+            if (((s16 *)&arg2)[1] != 0) {
+                return arg0->actorData[1];
+            }
+            return arg0->actorData[2] + 1;
+        case 0x95:
+            _subaddiemulti_entrypoint_0(0);
+            _subaddiemulti_entrypoint_4(0);
+            return 1;
+        case 0x3D:
+            func_808019EC_chtrashcangame(arg0, arg2);
+            return 1;
+        default:
+            return 0;
+    }
+}
 
 OSThread *chtrashcangame_entrypoint_1(void)
 {
