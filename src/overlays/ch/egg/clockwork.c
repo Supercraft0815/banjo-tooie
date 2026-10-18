@@ -28,7 +28,34 @@ s32 func_80800270_cheggclockwork(Actor *arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/clockwork/func_808002DC_cheggclockwork.s")
+void func_808002DC_cheggclockwork(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void *func_8001B798(s16);
+    s32 func_800F7CF4(s32, s32, void *);
+    void func_800FFAB0(Actor *);
+    void _suegg_entrypoint_3(void *);
+    void func_808006E8_cheggclockwork(Actor *);
+    void cheggclockwork_entrypoint_3(void *, s32, s32, s32);
+    void *sp24;
+
+    sp24 = func_80100094(arg0, 0U);
+    switch (arg1) {
+        case 1:
+            if (func_80800270_cheggclockwork(arg0) != 0) {
+                func_808006E8_cheggclockwork(arg0);
+                func_800F7CF4(*(s16 *)((u8 *)sp24 + 0x3A), 0x4C, arg0->position);
+            }
+            _suegg_entrypoint_3(arg0);
+            break;
+        case 2:
+            cheggclockwork_entrypoint_3(func_8001B798(*(s16 *)((u8 *)sp24 + 0x2C)), *(s32 *)&arg0->rotation[1], *(s16 *)((u8 *)sp24 + 0x3A), 1);
+            func_800FFAB0(arg0);
+            break;
+        case 3:
+            _suegg_entrypoint_3(arg0);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/clockwork/func_808003B4_cheggclockwork.s")
 
