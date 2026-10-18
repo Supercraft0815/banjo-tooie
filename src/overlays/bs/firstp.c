@@ -2838,7 +2838,27 @@ s32 bsfirstp_entrypoint_29(s32 arg0) {
     return ((s32 *)&D_8080B560_bsfirstp)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80806E0C_bsfirstp.s")
+void func_80806E0C_bsfirstp(void *arg0) {
+    s32 _bsbabykaz_entrypoint_4(s32);
+    void func_800936CC(void *, s32);
+    void func_800A34A0(void *, s32);
+    void func_800A34E4(void *, s32);
+    void func_80807BB8_bsfirstp();
+    u8 *sp24;
+
+    func_80807BB8_bsfirstp(arg0);
+    sp24 = *(u8 **)((s8 *)arg0 + 0x188);
+    func_800A34E4(arg0, 0);
+    func_800A34A0(arg0, 0);
+    *(s32 *)(sp24 + 0) = 0;
+    *(s32 *)(sp24 + 4) = 0;
+    func_800936CC(arg0, 3);
+    func_808061AC_bsfirstp(arg0, 1);
+    sp24[0x218] = 0xFF;
+    func_80806BA0_bsfirstp(arg0);
+    _bsbabykaz_entrypoint_4((s32)arg0);
+    func_80801A34_bsfirstp((s32)arg0);
+}
 
 void func_80806E9C_bsfirstp(s32 arg0)
 {
