@@ -74,7 +74,39 @@ void func_8080013C_bsblongleg(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/func_80800204_bsblongleg.s")
+void baflag_clear(PlayerState *, int);
+
+void func_80800204_bsblongleg(PlayerState *arg0) {
+    void _baalarm_free(PlayerState *);
+    void _batimer_incrementBy(PlayerState *, s32, f32);
+    void baroll_setIdeal(PlayerState *, f32);
+    s32 bastatetimer_clear(void *, s32);
+    void bastick_resetZones(PlayerState *);
+    void func_8009BF5C(PlayerState *, f32);
+    void func_8009E53C(PlayerState *, s32, f32);
+    s32 func_8009E74C(PlayerState *, s32);
+    void func_800A0CE8(PlayerState *, s32);
+    void func_800A0CF4(PlayerState *, s32);
+    void func_800A0DD0(PlayerState *, s32);
+    s32 func_800C77DC(s32);
+
+    if (func_8009E74C(arg0, 8) == 0) {
+        _baalarm_free(arg0);
+        func_8009E53C(arg0, 1, 0.0f);
+        bastick_resetZones(arg0);
+        func_800A0CF4(arg0, 0);
+        func_800A0CE8(arg0, 0);
+        func_800A0DD0(arg0, 0);
+        func_800931AC(arg0, 1);
+        func_8009BF5C(arg0, 0.0f);
+        baroll_setIdeal(arg0, 0.0f);
+        bastatetimer_clear(arg0, 2);
+        func_800C77DC(1);
+        baflag_clear(arg0, 3);
+        _batimer_incrementBy(arg0, 4, 0.5f);
+        func_808000C8_bsblongleg(arg0);
+    }
+}
 
 /* extern */
 
@@ -241,9 +273,9 @@ void bsblongleg_entrypoint_5(PlayerState *arg0) {
     bs_setState(arg0, var_s1);
 }
 
-void bsblongleg_entrypoint_6()
+void bsblongleg_entrypoint_6(PlayerState *arg0)
 {
-    func_80800204_bsblongleg();
+    func_80800204_bsblongleg(arg0);
 }
 
 s32 bsblongleg_entrypoint_7(s32 arg0) {
@@ -276,9 +308,9 @@ void bsblongleg_entrypoint_8(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_9.s")
 
-void bsblongleg_entrypoint_10()
+void bsblongleg_entrypoint_10(PlayerState *arg0)
 {
-    func_80800204_bsblongleg();
+    func_80800204_bsblongleg(arg0);
 }
 
 s32 bsblongleg_entrypoint_11(s32 arg0) {
@@ -412,9 +444,9 @@ s32 bsblongleg_entrypoint_19(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_21.s")
 
-void bsblongleg_entrypoint_22()
+void bsblongleg_entrypoint_22(PlayerState *arg0)
 {
-    func_80800204_bsblongleg();
+    func_80800204_bsblongleg(arg0);
 }
 
 s32 bsblongleg_entrypoint_23(s32 arg0) {
