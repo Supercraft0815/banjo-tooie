@@ -18,7 +18,7 @@ void func_8080000C_chconga(s32 arg0) {
     s32 func_800F54E4();
     s32 func_800F64A4(s32, s32);
     s32 func_800FFAB0(s32);
-    s32 func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_80102424(s32, s32);
     s32 func_80105A9C(s32, s32);
     s32 sp24;
@@ -56,11 +56,37 @@ void func_80800280_chconga(Actor* arg0)
 {
     _suexpression_entrypoint_8(arg0, 1);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/conga/func_808002A0_chconga.s")
+s32 func_808002A0_chconga(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80800374_chconga(Actor *, s32, s32);
+    s32 func_80800478_chconga(Actor *, s32, s32);
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void *_suexpression_entrypoint_7(Actor *, u32, u32);
+    void _suexpression_entrypoint_12(void *, f32, f32);
+    void *func_80100094(Actor *, u32);
+    extern u32 D_808006E8_chconga;
+
+    switch (arg1) {
+    case 0x2E:
+        func_80800374_chconga(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x30:
+        return func_80800478_chconga(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_808006E8_chconga, arg0->scale);
+        break;
+    case 0x95:
+        _suexpression_entrypoint_7(arg0, 1, 0x52);
+        _suexpression_entrypoint_12(func_80100094(arg0, 1), 45.0f, 15.0f);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/conga/func_80800374_chconga.s")
 
-s32 func_80800478_chconga(s32 arg0, s32 arg1, s32 arg2) {
+s32 func_80800478_chconga(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800D1A04(s32 a0);
     if ((arg1 == 0x10B0) || (arg1 == 0x10B1)) {
         return func_800D1A04(0x4D);
