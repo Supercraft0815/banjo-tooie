@@ -803,7 +803,51 @@ void func_800C3B8C(u8 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C3BDC.s")
+void func_800C3BDC(u8 id) {
+    void func_800C16F8(void *, s32);
+    s32 func_800C1D80(u8);
+    s32 func_800C42E0(s32);
+    void func_800FEC60(u32);
+    struct Source {
+        u8 pad[0x58];
+        s16 uid;
+        u8 pad5A[0x1E];
+        u32 first : 16;
+        u32 mode : 3;
+        u32 state : 3;
+        u32 middle : 7;
+        u32 flag : 1;
+        u32 last : 2;
+    } *source;
+    s32 priority;
+
+    if (!id)
+        return;
+    source = func_800C1414(id);
+    if (source->flag) {
+        func_800FEC60(4);
+    }
+    if (func_800C39D0((void *)source) || func_800C42E0(source->uid)) {
+        switch (source->mode) {
+            case 2:
+                func_800C13A0(source, 1);
+                if (source->state == 1) {
+                    return;
+                }
+                break;
+            default:
+                if (source->state == 1) {
+                    func_800C3CE8(id);
+                }
+                break;
+        }
+        priority = func_800C15BC();
+        osSetThreadPri(NULL, 0x33);
+        func_800C16F8(source, priority);
+        func_800C1D80(id);
+        osSetThreadPri(NULL, 0x14);
+    }
+}
 
 /* extern */
 
@@ -977,9 +1021,9 @@ u8 func_800C429C(s32 uid, s32 arg1){
 
 /* extern */
 
-void func_800C42E0(s32 arg0) {
+s32 func_800C42E0(s32 arg0) {
     s32 func_800DC548(s32, s32, s32);
-    func_800DC548(0, arg0 - 0x3E9, arg0);
+    return func_800DC548(0, arg0 - 0x3E9, arg0);
 }
 
 void func_800C4308(f32 arg0, f32 arg1) {
