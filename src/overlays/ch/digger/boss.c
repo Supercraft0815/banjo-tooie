@@ -1213,7 +1213,33 @@ void func_80805B8C_chdiggerboss(Actor *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80805C1C_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80805D64_chdiggerboss.s")
+void func_80805D64_chdiggerboss(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 func_80803BE8_chdiggerboss(s32, s32, s32);
+    struct DiggerState {
+        f32 prefix[5];
+        f32 value;
+        f32 speed;
+        u8 padding[12];
+        s16 state;
+    };
+    struct DiggerActorState { f32 prefix[3]; f32 value; };
+    struct DiggerState *sp24;
+    Actor *sp20;
+    Actor *temp_v0;
+
+    sp24 = func_80100094(arg0, 0);
+    temp_v0 = func_80802228_chdiggerboss(arg0);
+    sp20 = temp_v0;
+    sp24->value = 0.0f;
+    sp24->speed = 1.5f;
+    ((struct DiggerActorState *)temp_v0->actorData)->value = 0.0f;
+    sp24->state = 1;
+    func_808027F4_chdiggerboss((s32)arg0);
+    func_80802C0C_chdiggerboss((s32)arg0);
+    func_80803BE8_chdiggerboss((s32)arg0, arg1, 1);
+    func_80804A50_chdiggerboss((s32)sp20, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80805DF4_chdiggerboss.s")
 
