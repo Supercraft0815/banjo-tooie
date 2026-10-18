@@ -85,7 +85,34 @@ void func_80800868_chjigsawbitcont(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x24))) = 840.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_80800890_chjigsawbitcont.s")
+void func_80800890_chjigsawbitcont(Actor *arg0, s32 arg1, s32 arg2) {
+    Actor *actor;
+    f32 (*positions)[3];
+    f32 *range;
+    Actor *func_801084B0(s32, Actor **);
+    void *func_80100094(Actor *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800DC178(f32, f32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void func_80800570_chjigsawbitcont(Actor *, u32);
+    extern f32 D_808009A8_chjigsawbitcont[][4];
+
+    actor = func_801084B0(0x17F, &arg0);
+    positions = func_80100094(arg0, 0);
+    actor->unk6C_0 = arg1;
+    func_800EE7F8((f32 *)actor->actorData, positions[actor->unk6C_0]);
+    actor->unk3C = arg0->unk0;
+    range = D_808009A8_chjigsawbitcont[arg0->unk74_7];
+    actor->unk58 = func_800DC178(range[1], range[2]);
+    switch (arg2) {
+        case 0:
+            _subaddieDll_entrypoint_4(actor, 1);
+            break;
+        case 1:
+            func_80800570_chjigsawbitcont(actor, 4);
+            break;
+    }
+}
 
 OSThread *chjigsawbitcont_entrypoint_1(void)
 {
