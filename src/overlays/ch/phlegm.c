@@ -60,7 +60,43 @@ void func_80800354_chphlegm(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_808003B4_chphlegm.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_808005E4_chphlegm.s")
+s32 func_808005E4_chphlegm(Actor *arg0, s32 arg1, s32 *arg2) {
+    extern void _chbaddiesetup_entrypoint_10(void);
+    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    void _chexploder_entrypoint_10(Actor *, s32 *);
+    s32 _chexploder_entrypoint_4(void *, s32, s32);
+    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
+    void _subaddiefade_entrypoint_3(Actor *);
+    s32 _subaddiefind_entrypoint_9(s32);
+    void *func_80101080(void);
+    void func_80103DFC(Actor *, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80800748_chphlegm(Actor *, f32, s32);
+    extern s32 D_80800C50_chphlegm;
+    union { f32 f[3]; s32 w[3]; } sp2C;
+    Actor *sp28;
+
+    switch (arg1) {
+        case 0x40:
+            if (_subaddiefind_entrypoint_9(arg0->unk6C_9) == 1) {
+                func_80103DFC(arg0, sp2C.f);
+                _chbaddiesetup_entrypoint_5(_chbaddiesetup_entrypoint_10, 3, sp2C.w[0], sp2C.w[1], sp2C.w[2], *(s32 *)&arg0->rotation[1]);
+            }
+            func_80800748_chphlegm(arg0, -10.0f, 0x95C);
+            _chexploder_entrypoint_4(arg0, *arg2 + 4, 0x1C);
+            break;
+        case 0x90:
+            sp28 = func_80106790(func_80101080());
+            _chexploder_entrypoint_9(sp28, 3, 0);
+            _chexploder_entrypoint_9(sp28, 4, 1);
+            _chexploder_entrypoint_10(sp28, &D_80800C50_chphlegm);
+            _subaddiefade_entrypoint_3(sp28);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
