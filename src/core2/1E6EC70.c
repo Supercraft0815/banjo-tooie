@@ -83,7 +83,26 @@ void func_800955CC(PlayerState *arg0) {
     (*(s32 *)((s8 *)(temp_v0) + (0x14))) = (s32) (*(s32 *)((s8 *)(temp_v0) + (0x10)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6EC70/func_8009561C.s")
+/* extern */
+
+void func_8009561C(PlayerState *arg0) {
+    s32 bs_getCurrentState(PlayerState *);
+    s32 func_800F3ED0(void *);
+    s32 func_800F40EC(PlayerState *);
+    int player_isStable(PlayerState *);
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+
+    sp2C = func_800F3ED0(arg0);
+    sp28 = player_isStable(arg0);
+    sp24 = bs_getCurrentState(arg0);
+    if ((sp28 != 0) || (func_800F40EC(arg0) != 0) || (sp24 == 0xBE) || (sp24 == 0x15C) || (sp2C == 0xA)) {
+        func_800956B8(arg0);
+        func_80095588(arg0, 1);
+    }
+    func_80095490(arg0);
+}
 
 void func_800956B8(PlayerState *arg0) {
     void func_8009C128(PlayerState *, f32[3]);
