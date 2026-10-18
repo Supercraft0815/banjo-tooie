@@ -102,7 +102,26 @@ void func_80800224_chblackeye(Actor *arg0) {
     } while (var_v1 != 0xC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_80800314_chblackeye.s")
+void func_80800314_chblackeye(Actor *arg0, s32 arg1) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_80102424(Actor *, s32);
+    f32 *saved[2];
+    f32 *data;
+
+    func_80102424(arg0, arg1);
+    data = (f32 *)arg0->actorData;
+    switch (arg1) {
+        case 1:
+            func_800EE7F8(saved[0] = data, arg0->position);
+            func_800EF1B8(saved[0], arg0->rotation[1] + 180.0f, arg0->scale * 350.0f);
+            return;
+        case 2:
+        case 3:
+            func_80800224_chblackeye(arg0);
+            return;
+    }
+}
 
 /* extern */
 
