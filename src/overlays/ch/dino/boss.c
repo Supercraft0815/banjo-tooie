@@ -605,7 +605,47 @@ void func_80801A44_chdinoboss(Actor *arg0, f32 *arg1) {
     func_8010D254(arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80801AE4_chdinoboss.s")
+void func_80801AE4_chdinoboss(Actor *arg0) {
+    typedef struct {
+        s16 count;
+        s16 selectedCount;
+        f32 positions[20][3];
+        s16 selected[14];
+    } DinoBossPoints;
+    void *func_80100094(Actor *, u32);
+    void func_8010D254(f32 *);
+    s32 func_800DC128(s32, s32);
+    f32 func_800EEB40(f32 *, f32 *);
+    DinoBossPoints *data;
+    s32 i;
+    s32 j;
+    s32 valid;
+    s32 index;
+    f32 position[3];
+
+    data = func_80100094(arg0, 0);
+    func_8010D254(position);
+    for (i = 0; i < data->selectedCount; i++) {
+        data->selected[i] = -1;
+        do {
+            index = func_800DC128(0, data->count);
+            valid = 1;
+            for (j = i - 1; j >= 0; j--) {
+                if (index == data->selected[j]) {
+                    valid = 0;
+                    break;
+                }
+            }
+            if (valid) {
+                if (func_800EEB40(position, data->positions[index]) > 160000.0f) {
+                    data->selected[i] = index;
+                } else {
+                    valid = 0;
+                }
+            }
+        } while (!valid);
+    }
+}
 
 s32 func_80801C28_chdinoboss(Actor *arg0) {
     if (arg0->pad5E < 7) {
