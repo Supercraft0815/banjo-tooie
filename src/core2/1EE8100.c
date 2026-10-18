@@ -1,10 +1,10 @@
 #include "common.h"
 
-OSThread *func_8010E810(void)
+void *func_8010E810(void)
 {
     extern u8 D_80137080[];
 
-    return (OSThread *) D_80137080;
+    return D_80137080;
 }
 
 void *func_8010E81C(f32 arg0) {
