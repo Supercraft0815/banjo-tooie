@@ -323,7 +323,35 @@ void func_80801C9C_chfpsgame(Actor *arg0) { void *func_80100094(Actor *, u32); s
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80801DF0_chfpsgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80801F34_chfpsgame.s")
+void func_80801F34_chfpsgame(Actor *arg0, s32 arg1) {
+    s32 func_8001211C(void);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010114C(s32, s32, s32);
+    struct Entry { s32 actor; u32 time; };
+    struct Group { s32 count; struct Entry entries[10]; };
+    struct Data { s8 pad[0x568]; struct Group groups[4]; };
+    struct Data *data;
+    struct Group *group;
+    s32 i;
+    u32 minimum;
+    s32 oldest;
+    struct Group *entry;
+
+    data = func_80100094(arg0, 0U);
+    group = &data->groups[arg1];
+    minimum = func_8001211C();
+    for (i = 0; i < group->count; i++) {
+        if (group->entries[i].time < minimum) {
+            minimum = group->entries[i].time;
+            oldest = i;
+        }
+    }
+    entry = (struct Group *)((struct Entry *)group + oldest);
+    func_8010114C(entry->entries[0].actor, 0x4F, 0);
+    group->count--;
+    entry->entries[0].actor = group->entries[group->count].actor;
+    entry->entries[0].time = group->entries[group->count].time;
+}
 
 void func_80802020_chfpsgame(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
