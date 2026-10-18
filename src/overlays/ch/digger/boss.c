@@ -1452,7 +1452,33 @@ u8 func_80806F10_chdiggerboss(Actor *arg0, u8 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808070B0_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80807280_chdiggerboss.s")
+void *func_80807280_chdiggerboss(s32 arg0, s32 arg1, s16 *arg2) {
+    void *func_80100094(Actor *, u32);
+    s32 func_80803BE8_chdiggerboss(s32, s32, s32);
+    void rare_memcpy(void *, void *, int);
+    typedef struct {
+        u8 pad0[0x7C];
+        s16 unk7C;
+        s16 unk7E;
+        u8 pad80[4];
+        f32 unk84;
+        s16 unk88[8];
+    } BossData;
+    void *volatile data;
+    void *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0);
+    data = temp_v0;
+    rare_memcpy(((BossData *)temp_v0)->unk88, arg2, 0x10);
+    func_808027F4_chdiggerboss(arg0);
+    func_80802C0C_chdiggerboss(arg0);
+    func_80803BE8_chdiggerboss(arg0, arg1, 1);
+    temp_v0 = data;
+    ((BossData *)temp_v0)->unk7C = 1;
+    ((BossData *)temp_v0)->unk84 = 1.5f;
+    ((BossData *)temp_v0)->unk7E = *arg2;
+    return temp_v0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80807304_chdiggerboss.s")
 
