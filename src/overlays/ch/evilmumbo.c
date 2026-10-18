@@ -136,7 +136,29 @@ void func_80800354_chevilmumbo(Actor *arg0, s16 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_808003DC_chevilmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800670_chevilmumbo.s")
+void func_80800670_chevilmumbo(Actor *arg0) {
+    s32 func_800DC128(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    int func_800EECE0(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    struct {
+        f32 position[3];
+    } local;
+    struct {
+        f32 points[12][3];
+        u8 unk90;
+        u8 count;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    func_800EE7F8(local.position, arg0->position);
+    while (func_800EECE0(local.position, arg0->position) ||
+        func_800EEB40(local.position, (f32 *)arg0->actorData) < 62500.0f) {
+        func_800EE7F8(local.position, data->points[func_800DC128(0, data->count)]);
+    }
+    func_800EE7F8(arg0->position, local.position);
+}
 
 void func_80800774_chevilmumbo(Actor *arg0) {
     func_801032B0(arg0, 0x816, arg0->unk0->unk16);
