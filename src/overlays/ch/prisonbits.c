@@ -49,7 +49,33 @@ void func_8080005C_chprisonbits(Actor *arg0, s32 arg1, s32 arg2) {
     func_8080003C_chprisonbits(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_808000C0_chprisonbits.s")
+void func_808000C0_chprisonbits(Actor *arg0) {
+    struct PrisonBitsChoices { u8 values[15]; };
+    extern struct PrisonBitsChoices D_808010F0_chprisonbits;
+    s32 func_800DA298();
+    s32 func_800DA564(s32, s32);
+    s32 func_800DA7A8(s32, s32, s32);
+    s32 func_800DC128(s32, s32);
+    void *func_80100094(Actor *, u32);
+    struct PrisonBitsChoices choices = D_808010F0_chprisonbits;
+    u8 *data;
+    u8 *choice;
+    s32 i;
+
+    data = func_80100094(arg0, 1);
+    data[6] = 0;
+    data[0] = 0;
+    if (func_800DA564(0x32B, 2) == 0) {
+        func_800DA7A8(0x32B, func_800DC128(0, 3) + 1, 2);
+    }
+    choice = &choices.values[func_800DA564(0x32B, 2) * 5 - 5];
+    for (i = 0; i < 5; i++) {
+        data[i] = choice[i];
+    }
+    data[5] = 0;
+    func_8080005C_chprisonbits(arg0, 0, -175);
+    arg0->unk64_19 = func_800DA298(0xD5);
+}
 
 void func_808001E0_chprisonbits(s32 arg0)
 {
