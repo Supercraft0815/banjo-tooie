@@ -716,7 +716,42 @@ void func_80801D08_chdinoboss(Actor *arg0, s32 arg1) {
     func_80102BF8(arg0, 0.1f, 0.05f, 120.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80801DC8_chdinoboss.s")
+void func_80801DC8_chdinoboss(Actor *arg0) {
+    typedef struct {
+        u8 pad0[0x138];
+        s16 state;
+        u8 pad13A[0x26];
+        f32 unk160;
+        u8 pad164[8];
+        f32 position[3];
+    } DinoBossData;
+    void *func_80100094(Actor *, u32);
+    void func_8008FE68(f32 *);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_8080232C_chdinoboss(Actor *, f32 *, f32 *);
+    DinoBossData *data;
+    f32 sp30[3];
+    f32 sp24[3];
+
+    data = func_80100094(arg0, 0);
+    switch (data->state) {
+        case 0:
+            break;
+        case 1:
+            func_8008FE68(sp30);
+            func_800EEC30(sp24, 60.0f, data->unk160, 2800.0f);
+            func_800EF934(sp24, sp24, arg0->rotation[1]);
+            func_800EF04C(sp24, arg0->position);
+            func_8080232C_chdinoboss(arg0, sp24, sp30);
+            break;
+        case 2:
+        case 3:
+            func_8080232C_chdinoboss(arg0, data->position, arg0->position);
+            break;
+    }
+}
 
 void func_80801E90_chdinoboss(s32 arg0, s32 arg1) {
     u32 func_800F54E4(void);
