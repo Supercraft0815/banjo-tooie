@@ -29,7 +29,36 @@ void func_808000B4_baeggaim(struct player_state_s *arg0, f32 *arg1) { s32 _baegg
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/aim/func_80800170_baeggaim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/aim/func_80800264_baeggaim.s")
+void func_80800264_baeggaim(struct player_state_s *arg0, s32 arg1) {
+    f32 _bafpctrl_entrypoint_3(struct player_state_s *);
+    f32 _bsdronelook_entrypoint_2(f32);
+    void _ncba1p_entrypoint_7(struct player_state_s *, f32[3]);
+    void _ncba1p_entrypoint_8(struct player_state_s *, f32[3]);
+    int baflag_isTrue(struct player_state_s *, s32);
+    struct player_state_s *func_800A4CA8(struct player_state_s *);
+    f32 func_800D8FF8(void);
+    void func_80800170_baeggaim(s32, f32 *, f32);
+    f32 speed;
+    f32 dt;
+    struct {
+        f32 delta[2];
+        f32 rotation[3];
+    } vectors;
+    struct player_state_s *player;
+
+    player = func_800A4CA8(arg0);
+    _ncba1p_entrypoint_8(player, vectors.rotation);
+    speed = _bafpctrl_entrypoint_3(arg0) * 70.0f;
+    func_80800170_baeggaim(arg1, vectors.delta, speed);
+    dt = func_800D8FF8();
+    vectors.rotation[1] += vectors.delta[0] * dt;
+    if (!baflag_isTrue(arg0, 0x3A)) {
+        vectors.rotation[0] += vectors.delta[1] * dt;
+        vectors.rotation[0] = _bsdronelook_entrypoint_2(vectors.rotation[0]);
+    }
+    vectors.rotation[2] = 0.0f;
+    _ncba1p_entrypoint_7(player, vectors.rotation);
+}
 
 void baeggaim_entrypoint_1(s32 arg0)
 {
