@@ -4,7 +4,36 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familymissing/func_80800104_chdinofamilymissing.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familymissing/func_80800324_chdinofamilymissing.s")
+s32 func_80800324_chdinofamilymissing(Actor *arg0, s32 arg1) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 func_800EA05C();
+    void func_800FFAB0(Actor *);
+    void func_80102424(Actor *, s32);
+    void *func_80105494(Actor *);
+
+    switch (func_800EA05C()) {
+        case 0x114:
+            if (_glcutDll_entrypoint_19(0x35)) {
+                func_80102424(arg0, 1);
+                _capod_entrypoint_13(arg0->unk0, NULL, 5, 0x2831);
+                return 1;
+            }
+            break;
+        case 0x118:
+            if (_glcutDll_entrypoint_19(0x35) && func_80105494(arg0)) {
+                func_80102424(arg0, 2);
+                _capod_entrypoint_13(arg0->unk0, NULL, 0xC, 0x2831);
+                return 1;
+            }
+            if (_glcutDll_entrypoint_19(0x38) && func_80105494(arg0)) {
+                func_800FFAB0(arg0);
+                return 1;
+            }
+            break;
+    }
+    return 0;
+}
 
 void func_80800418_chdinofamilymissing(Actor *arg0) {
     f32 func_800F3780(f32, u8 *, s16);
