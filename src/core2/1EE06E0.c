@@ -272,7 +272,39 @@ void func_80107750(s32 arg0, s32 arg1) {
     func_8010A624(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107784.s")
+s32 _subaddiefade_entrypoint_0(Actor *);
+
+s32 func_80107784(void *arg0, void *arg1) {
+    struct Entry {
+        f32 timer;
+        u8 pad4[6];
+        s16 unkA;
+        u8 padC[8];
+        u8 unk14[1];
+    };
+    s32 func_800D90A4(f32 *);
+    s32 func_80102F74(Unk80132ED0 *, s32);
+    s32 func_801078DC(Actor *, u8 *);
+    void func_8010A590(Actor *);
+    void func_8010A63C(Actor *);
+    struct Entry *entry = arg1;
+    Actor *actor = arg0;
+
+    if (func_801073F8((s32)arg0, entry->unkA, 2) == 0) {
+        func_801078DC(arg0, entry->unk14);
+    }
+    if (_subaddiefade_entrypoint_0(arg0) == 0xFF && func_800D90A4(&entry->timer) != 0) {
+        actor->unk64_24 = func_80102F74(arg0, 0x80000001);
+        if (func_80102F74(arg0, 0x80000002) == 0) {
+            func_8010A590(arg0);
+        }
+        if (func_80102F74(arg0, 0x800) != 0) {
+            func_8010A63C(arg0);
+        }
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
@@ -290,8 +322,8 @@ s32 func_80107858(Actor *arg0, u8 *arg1) {
 
 /* extern */
 
-s32 func_801078AC(s32 arg0, s32 arg1) {
-    s32 func_800D90A4(s32);
+s32 func_801078AC(s32 arg0, f32 *arg1) {
+    s32 func_800D90A4(f32 *);
     if (func_800D90A4(arg1) != 0) {
         return 1;
     }
