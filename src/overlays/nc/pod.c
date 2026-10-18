@@ -34,7 +34,7 @@ void func_8080006C_ncpod(void *arg0) {
 /* extern */
 
 void func_808000AC_ncpod(void *arg0) {
-    s32 _glcutDll_entrypoint_17();
+    void _glcutDll_entrypoint_17(void);
     if ((*(u8 *)((s8 *)(arg0) + (0x43))) != 0) {
         _glcutDll_entrypoint_17();
         (*(u8 *)((s8 *)(arg0) + (0x43))) = 0U;
@@ -145,7 +145,36 @@ s32 func_808002E8_ncpod(void *arg0, s32 arg1) {
     return arg1 == -1 ? 0 : ((u32)arg1 == ((u32)*(u16 *)((u8 *)arg0 + 0x12) >> 1));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/func_80800314_ncpod.s")
+s32 func_80800314_ncpod(s32 arg0, void *arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 _ncpoducam_entrypoint_1(s16);
+    s32 _ncpoducam_entrypoint_5(s32);
+    void _glcutDll_entrypoint_17(void);
+    s32 _gcdialogcamera_entrypoint_1(s32, s32, s32);
+    s32 ncpod_entrypoint_17(s32, s32);
+    s32 flags;
+
+    switch (*(s16 *)((u8 *)arg1 + 0x3C)) {
+    case 1:
+        flags = _ncpoducam_entrypoint_5(_ncpoducam_entrypoint_1(*(s16 *)((u8 *)arg1 + 2)));
+        if (arg2 == 11) {
+            if (flags & 0x100) {
+                _glcutDll_entrypoint_17();
+            }
+            if (!(flags & 0x20)) {
+                return ncpod_entrypoint_17(arg0, 0);
+            }
+            return 3;
+        }
+        break;
+    case 6:
+        return _gcdialogcamera_entrypoint_1(arg2, arg3, arg4);
+    case 0:
+    case 11:
+    default:
+        break;
+    }
+    return -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_5.s")
 
