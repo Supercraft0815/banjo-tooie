@@ -15,7 +15,32 @@ void func_8080000C_chchompaslunch(Actor *arg0) {
     arg0->unk6C_0 = func_800DC128(0, 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/ompaslun/func_80800070_chchompaslunch.s")
+void func_80800070_chchompaslunch(Actor *arg0) {
+    s32 func_800D9078(f32 *);
+    s32 func_80101DDC(Actor *);
+    void func_80102424(Actor *, s32);
+    s32 func_80105230();
+    void func_80800250_chchompaslunch(Actor *);
+    void func_8080037C_chchompaslunch(Actor *);
+
+    switch (arg0->unk70_10) {
+        case 1:
+            func_80800250_chchompaslunch(arg0);
+            if (func_800D9078(&arg0->unk58) != 0) {
+                func_80102424(arg0, 2);
+            }
+            break;
+        case 2:
+            func_8080037C_chchompaslunch(arg0);
+            if (func_80101DDC(arg0) != 0) {
+                func_80102424(arg0, 3);
+            }
+            break;
+        case 3:
+            func_80105230(arg0, 0);
+            break;
+    }
+}
 
 s32 func_80800118_chchompaslunch(Actor *arg0, s32 arg1, s32 arg2) {
     void func_8080017C_chchompaslunch(Actor *);
