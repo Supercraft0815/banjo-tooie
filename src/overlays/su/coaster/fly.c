@@ -197,7 +197,45 @@ s32 func_80801B90_sucoasterfly(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80801C44_sucoasterfly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80801CD0_sucoasterfly.s")
+void func_80801CD0_sucoasterfly(Actor *arg0, s32 arg1) {
+    void *_sucoasterflydata_entrypoint_1(u32);
+    void func_8010D640(f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    f32 func_800DC178(f32, f32);
+    void func_800C4B64(f32);
+    void func_800C4B70(s32);
+    void func_800C4B7C(s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    extern u8 D_808022BC_sucoasterfly[];
+    struct CoasterFlyData {
+        u8 pad0[0x11];
+        u8 track;
+    };
+    struct SoundParameters {
+        s16 id;
+        s16 volume;
+        s16 pitch;
+        s16 pad;
+    };
+    f32 pitch;
+    u8 *sp38;
+    struct CoasterFlyData *data;
+    f32 sp28[3];
+
+    data = func_80100094(arg0, 0U);
+    sp38 = _sucoasterflydata_entrypoint_1((u32)data->track >> 4);
+    if (((struct SoundParameters *)(sp38 + 4))[arg1].id != 0) {
+        func_8010D640(sp28);
+        if (!(func_800EEB40(sp28, arg0->position) >= 9000000.0f)) {
+            pitch = func_800DC178(-0.05f, 0.05f);
+            pitch += (f32)((struct SoundParameters *)(sp38 + 4))[arg1].pitch * 0.00390625f;
+            func_800C4B64(pitch);
+            func_800C4B7C(((struct SoundParameters *)(sp38 + 4))[arg1].id);
+            func_800C4B70(((struct SoundParameters *)(sp38 + 4))[arg1].volume);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808022BC_sucoasterfly);
+        }
+    }
+}
 
 s32 func_80801DD0_sucoasterfly(Actor *arg0) {
     s32 _subaddiejoy_entrypoint_6(u8 *, s32);
