@@ -101,14 +101,39 @@ void func_80801420_chpiranha(Actor *arg0) {
 
 void func_80801508_chpiranha(s32 arg0) {
     s32 func_8010C500();
-    s32 func_8010C9B0(s32, s32);
+    s32 func_8010C9B0(f32 *, s32);
     void func_80800218_chpiranha(Actor *, u32);
     if ((func_8010C500() != 0) && (func_8010C9B0(arg0 + 4, 0x384) != 0)) {
         func_80800218_chpiranha(arg0, 3);
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_8080154C_chpiranha.s")
+void func_8080154C_chpiranha(Actor *arg0) {
+    s32 func_800DC128(s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010C500(void *);
+    s32 func_8010C9B0(f32 *, s32);
+    void func_80800EFC_chpiranha(Actor *, void *, f32);
+    s32 var_s1;
+
+    var_s1 = 0;
+    if (func_8010C500(arg0) == 0) {
+        var_s1 = 1;
+    }
+    if ((arg0->unk0->unk24 >> 22) != 0x2C2) {
+        if (func_8010C9B0(arg0->position, 0x384) == 0) {
+            var_s1 = 1;
+        }
+    } else if ((func_80800CAC_chpiranha() < 2500.0f) &&
+               ((f32)func_800DC128(0x19, 0x4B) < arg0->unk58)) {
+        var_s1 = 1;
+        arg0->unk58 = 0.0f;
+    }
+    if (var_s1 != 0) {
+        func_80800218_chpiranha(arg0, 5U);
+        func_80800EFC_chpiranha(arg0, (u8 *)func_80100094(arg0, 0) + 4, 100.0f);
+    }
+}
 
 s32 func_80801638_chpiranha(Actor *arg0) {
     void* func_80100094(Actor*, u32);
