@@ -874,7 +874,29 @@ void func_808029D8_chgameselect(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802A0C_chgameselect.s")
+s32 func_80802A0C_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80101080(void);
+    void func_808030EC_chgameselect(Actor *, void *, s16, s16);
+    void func_808034BC_chgameselect(Actor *, void *, s16, s16);
+    void func_80800AEC_chgameselect(Unk80132ED0 *, void *, s16, s16);
+
+    if (arg1 == 0x20) {
+        switch (arg0->unk70_10) {
+            case 2:
+                func_808030EC_chgameselect(arg0, func_80101080(), *(s16 *)&arg2, *((s16 *)&arg2 + 1));
+                break;
+            case 3:
+                func_808034BC_chgameselect(arg0, func_80101080(), *(s16 *)&arg2, *((s16 *)&arg2 + 1));
+                break;
+            default:
+                func_80800AEC_chgameselect(arg0->unk3C, func_80101080(), *(s16 *)&arg2, *((s16 *)&arg2 + 1));
+                break;
+        }
+    } else {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802AD4_chgameselect.s")
 
