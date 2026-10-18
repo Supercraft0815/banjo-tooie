@@ -303,7 +303,7 @@ Actor* func_80108528(s32 arg0, f32 arg1[3], s32 arg2, Actor **arg3) {
 
 void func_8010856C(s32 arg0, f32 *arg1, u8 *arg2) {
     void func_800EE904(s32 dst[3], f32 src[3]);
-    u8 *func_80108DC0(s32, s32 *, s32, s32, s32, s32);
+    Actor *func_80108DC0(s32, s32 *, u32, s32, s32, Prop *);
     s32 sp20[3];
 
     func_800EE904((s32 *)((u8 *)sp20 - 4), arg1);
@@ -536,4 +536,53 @@ void *func_80108CF4(s32 arg0)
   return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108DC0.s")
+Actor *func_80108DC0(s32 arg0, s32 *arg1, u32 arg2, s32 arg3, s32 arg4, Prop *arg5) {
+    typedef struct {
+        s16 unk0;
+        s16 pad2_11 : 5;
+        s16 unk2_1 : 10;
+        s16 pad2_0 : 1;
+        u8 pad4[8];
+        f32 unkC;
+    } Entry;
+    typedef struct {
+        u8 pad0[0x77];
+        u8 pad77_5 : 3;
+        u8 hasSpline : 1;
+        u8 pad77_0 : 4;
+    } ActorSplineFlags;
+    Actor *func_80108C90(s32, s32 *, u32, Prop *);
+    void *func_8010556C(Actor *);
+    void *func_800D7520(s32);
+    f32 func_800C82CC(void *, f32 *);
+    void _gspropctrl_entrypoint_9(void *, s32 *);
+    s32 _glsplinefind_entrypoint_4(s32 *, s32 *);
+    s32 _glsplinefind_entrypoint_2(s32 *);
+    Actor *actor;
+    s32 found;
+    void *node;
+    s32 position[3];
+    f32 point[3];
+    Entry *entry;
+
+    actor = func_80108C90(arg0, arg1, arg2, arg5);
+    if (actor != NULL) {
+        node = func_80108CF4(arg3);
+        if (node != NULL) {
+            _gspropctrl_entrypoint_9(node, position);
+            found = _glsplinefind_entrypoint_4(arg1, position);
+        } else {
+            found = _glsplinefind_entrypoint_2(arg1);
+        }
+        if (found >= 0) {
+            entry = func_8010556C(actor);
+            entry->unk2_1 = found;
+            point[0] = arg1[0];
+            point[1] = arg1[1];
+            point[2] = arg1[2];
+            entry->unkC = func_800C82CC(func_800D7520(found), point);
+            ((ActorSplineFlags *)actor)->hasSpline = 1;
+        }
+    }
+    return actor;
+}
