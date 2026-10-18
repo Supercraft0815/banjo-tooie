@@ -21,7 +21,7 @@ void func_80800000_bswasher(struct player_state_s *arg0) {
 s32 func_80800064_bswasher(s32 arg0, s32 arg1) {
     s32 _badrone_entrypoint_24(s32);
     s32 bainput_should_enter_first_person();
-    s32 bakey_pressed(s32, s32);
+    int bakey_pressed(struct player_state_s *, int);
     if (bainput_should_enter_first_person() != 0) {
         arg1 = _badrone_entrypoint_24(arg0);
     }
@@ -163,7 +163,27 @@ void func_80800770_bswasher(struct player_state_s *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_808007DC_bswasher.s")
+void func_808007DC_bswasher(struct player_state_s *arg0) {
+    int bakey_pressed(struct player_state_s *, int);
+    s32 func_80800300_bswasher(s32);
+    void _bsdrone_entrypoint_1(struct player_state_s *);
+    int _batimer_decrement(struct player_state_s *, s32);
+    int _batimer_isZero(struct player_state_s *, s32);
+    void _batimer_set(struct player_state_s *, s32, f32);
+    void func_8009DBB0(struct player_state_s *, s32, f32, f32, s32);
+
+    _bsdrone_entrypoint_1(arg0);
+    func_80800300_bswasher(arg0);
+    if (_badrone_entrypoint_3(arg0) == 2) {
+        _batimer_decrement(arg0, 2);
+        if (bakey_pressed(arg0, 1) && _batimer_isZero(arg0, 2)) {
+            func_8009DBB0(arg0, 0x573, 1.05f, 1.15f, 20000);
+            func_8009DBB0(arg0, 0x406, 0.85f, 0.95f, 20000);
+            _bawasher_entrypoint_7(arg0);
+            _batimer_set(arg0, 2, 0.5f);
+        }
+    }
+}
 
 s32 bswasher_entrypoint_2(s32 arg0) {
     extern s32 D_80801E20_bswasher[];
@@ -308,7 +328,7 @@ void func_80801034_bswasher(struct player_state_s *arg0) {
 
 void func_808010DC_bswasher(struct player_state_s *arg0) {
     s32 _badrone_entrypoint_25(struct player_state_s *);
-    s32 bakey_pressed(s32, s32);
+    int bakey_pressed(struct player_state_s *, int);
     s32 bastick_getZone(struct player_state_s *);
     void bs_setState(struct player_state_s *, int);
     int func_8008DD04(struct player_state_s *);
@@ -478,7 +498,7 @@ void func_80801454_bswasher(s32 arg0) {
 void func_808014C8_bswasher(struct player_state_s *arg0) {
     s32 _badrone_entrypoint_25(struct player_state_s *);
     int baanim_isAt(struct player_state_s *, f32);
-    s32 bakey_pressed(s32, s32);
+    int bakey_pressed(struct player_state_s *, int);
     s32 bastick_getZone(struct player_state_s *);
     void bs_setState(struct player_state_s *, int);
     int func_8008DD04(struct player_state_s *);
