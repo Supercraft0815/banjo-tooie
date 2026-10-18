@@ -424,7 +424,51 @@ void func_80801268_gcdialogexec(void *arg0, s32 arg1, s32 arg2, void *arg3, s32 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/gcdialogexec_entrypoint_1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/gcdialogexec_entrypoint_2.s")
+void gcdialogexec_entrypoint_2(u8 *arg0) {
+    typedef struct {
+        u8 state : 2;
+        u8 rest : 6;
+    } BoxFlags;
+    typedef struct {
+        u8 pad[0x11C];
+        BoxFlags boxflags[2];
+        u8 pad11E[2];
+        s32 boxes[2];
+        u8 pad128[0x34];
+        u32 unused : 30;
+        u32 pending : 2;
+        u8 speed;
+        u8 middle : 4;
+        u8 low : 4;
+    } Dialog;
+    s32 _gczoombox_entrypoint_33(s32);
+    s32 func_800C0638(void);
+    int func_80800A50_gcdialogexec();
+    s32 i;
+    s32 result;
+
+    ((Dialog *)arg0)->boxflags[0].state = 0;
+    ((Dialog *)arg0)->boxflags[1].state = 0;
+    if (func_800C0638() != 0) {
+        func_80800A50_gcdialogexec(arg0, 6);
+    } else {
+        if (arg0[0x15C] != 6) {
+            ((Dialog *)arg0)->pending = 0;
+            for (i = 0; i < 2; i++) {
+                ((Dialog *)arg0)->boxflags[i].state = 0;
+                if (((Dialog *)arg0)->boxes[i] != 0) {
+                    result = _gczoombox_entrypoint_33(((Dialog *)arg0)->boxes[i]);
+                    ((Dialog *)arg0)->pending = ((Dialog *)arg0)->pending + result;
+                }
+            }
+            if (((Dialog *)arg0)->pending) {
+                arg0[0x15C] = 6;
+            }
+        }
+    }
+    ((Dialog *)arg0)->middle = 0;
+    ((Dialog *)arg0)->low = 0;
+}
 
 /* extern */
 
