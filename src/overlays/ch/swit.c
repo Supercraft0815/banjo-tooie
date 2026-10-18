@@ -134,7 +134,43 @@ void func_808002B4_chswitch(Unk80132ED0 *arg0, u16 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swit/chswitch_entrypoint_5.s")
+s32 chswitch_entrypoint_5(Actor *arg0, s32 arg1, u32 arg2) {
+    int _gcaudiolist_entrypoint_0();
+    s32 func_800DA298(s32);
+    s32 func_800F7F98(s32, u32);
+    void func_80102424(Actor *, s32);
+    void func_80103110(void *, s32);
+    void func_8010A570(Actor *);
+    s32 func_8080093C_chswitch(Actor *);
+
+    switch (arg1) {
+    case 0x29:
+        return func_8080093C_chswitch(arg0);
+    case 0x91:
+        if (arg0->unk70_10 == 1) {
+            _gcaudiolist_entrypoint_0(0);
+            func_80102424(arg0, 2);
+            func_8010A570(arg0);
+            func_80103110(arg0, 1);
+            arg0->actorData[4] = arg2;
+            func_800F7F98(arg2, 1);
+            break;
+        }
+        return 0;
+    case 0x95:
+        if (func_800DA298(arg0->actorData[7])) {
+            func_80102424(arg0, 3);
+            arg0->unk64_20 = 1;
+            func_8010A570(arg0);
+        } else {
+            func_80102424(arg0, 1);
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swit/chswitch_entrypoint_6.s")
 
