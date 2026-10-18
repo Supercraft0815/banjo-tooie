@@ -23,7 +23,7 @@ struct player_state_s;
 s32 func_80800064_bsvan(struct player_state_s *arg0, s32 arg1) {
     s32 _badrone_entrypoint_24(struct player_state_s *);
     int bainput_should_enter_first_person(struct player_state_s *);
-    int bakey_pressed();
+    int bakey_pressed(struct player_state_s *, int);
     if (bainput_should_enter_first_person(arg0) != 0) {
         arg1 = _badrone_entrypoint_24(arg0);
     }
@@ -34,7 +34,7 @@ s32 func_80800064_bsvan(struct player_state_s *arg0, s32 arg1) {
 }
 
 void func_808000BC_bsvan(u8 *arg0) {
-    int bakey_pressed(void *, s32);
+    int bakey_pressed(struct player_state_s *, int);
     if (bakey_pressed(arg0, 9) != 0) {
         _bavan_entrypoint_1(arg0);
     }
@@ -339,7 +339,40 @@ void func_80800F70_bsvan(struct player_state_s *arg0) {
     baroll_setAngularVelocity(arg0, 1000.0f, 12.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80801034_bsvan.s")
+void func_80801034_bsvan(struct player_state_s *arg0) {
+    s32 _badrone_entrypoint_25(struct player_state_s *);
+    int bakey_pressed(struct player_state_s *, int);
+    s32 bastick_getZone(struct player_state_s *);
+    int func_8008DD04(struct player_state_s *);
+    int func_8008E148(struct player_state_s *);
+    void func_8009D3A8(struct player_state_s *, s32);
+    s32 player_inWater(struct player_state_s *);
+    void bs_setState(struct player_state_s *, int);
+    s32 var_s1;
+
+    var_s1 = 0;
+    func_8009D3A8(arg0, 0);
+    func_80800000_bsvan(arg0);
+    func_8080032C_bsvan(arg0);
+    if (bastick_getZone(arg0) == 0) {
+        var_s1 = 0x11A;
+    }
+    if (func_8008E148(arg0) != 0) {
+        var_s1 = _badrone_entrypoint_25(arg0);
+    }
+    if (func_8008DD04(arg0) != 0) {
+        var_s1 = 0x114;
+    }
+    func_808000BC_bsvan((u8 *) arg0);
+    if (bakey_pressed(arg0, 8) != 0) {
+        var_s1 = 0x115;
+    }
+    if (player_inWater(arg0) != 0) {
+        var_s1 = 0x11B;
+    }
+    bsvan_entrypoint_3(arg0);
+    bs_setState(arg0, var_s1);
+}
 
 s32 bsvan_entrypoint_10(s32 arg0) {
     extern s32 D_80801CCC_bsvan[];
