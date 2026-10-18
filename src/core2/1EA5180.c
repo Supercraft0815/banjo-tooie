@@ -215,7 +215,41 @@ s32 func_800CC6CC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CCAB0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CCDF4.s")
+s32 func_800CCDF4(s32 arg0, s32 *arg1, s32 *arg2, s32 arg3, s32 arg4) {
+    s32 func_800CBDD4(s32, s32, s32);
+    s32 func_800CCAB0(s32, s32, s32, s32, s32);
+    s32 temp_v0;
+    s32 temp_v0_3;
+    s32 temp_v0_4;
+    s32 temp_v0_5;
+
+    if (*arg1 == -1) {
+        temp_v0 = func_800CBDD4(arg0, arg3, arg4);
+        *arg1 = temp_v0;
+        if (temp_v0 == -1) {
+            *arg2 = -1;
+            return 0;
+        }
+    }
+    temp_v0_3 = func_800CCAB0(arg0, *arg1, *arg2 == -1 ? 0 : *arg2, arg3, arg4);
+    *arg2 = temp_v0_3;
+    if (temp_v0_3 >= 0) {
+        return 1;
+    }
+    temp_v0_4 = func_800CBDD4(arg0, arg3, arg4);
+    *arg1 = temp_v0_4;
+    if (temp_v0_4 == -1) {
+        *arg2 = -1;
+        return 0;
+    }
+    temp_v0_5 = func_800CCAB0(arg0, *arg1, 0, arg3, arg4);
+    *arg2 = temp_v0_5;
+    if (temp_v0_5 >= 0) {
+        return 1;
+    }
+    *arg1 = -1;
+    return 0;
+}
 
 /* extern */
 
