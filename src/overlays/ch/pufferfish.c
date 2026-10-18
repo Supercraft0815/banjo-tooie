@@ -105,7 +105,34 @@ void func_80800518_chpufferfish(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pufferfish/func_8080086C_chpufferfish.s")
+void func_8080086C_chpufferfish(Actor *arg0, s32 arg1) {
+    void func_80102424(Actor *, s32);
+    void func_80101EE4(Actor *, f32);
+    s32 previousState;
+
+    previousState = arg0->unk70_10;
+    func_80102424(arg0, arg1);
+    switch (arg1) {
+    case 1:
+        arg0->scale = *(f32 *)&arg0->actorData[7];
+        break;
+    case 2:
+        if (previousState == 1) {
+            func_80101EE4(arg0, 0.0f);
+        }
+        break;
+    case 3:
+        arg0->scale = 2.0f * *(f32 *)&arg0->actorData[7];
+        break;
+    case 4:
+        if (previousState == 3) {
+            func_80101EE4(arg0, 0.999f);
+        }
+        arg0->unk58 = 5.0f;
+        *(f32 *)&arg0->actorData[5] = 2.0f;
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pufferfish/func_8080093C_chpufferfish.s")
 
