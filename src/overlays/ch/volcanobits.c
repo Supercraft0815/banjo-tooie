@@ -126,7 +126,34 @@ void func_808009A8_chvolcanobits(Actor *arg0) {
     _chswitch_entrypoint_9((s32) arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_80800A04_chvolcanobits.s")
+s32 func_80800A04_chvolcanobits(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void func_800DF744(s32, s32);
+    s32 func_8010114C(s32, s32, s32);
+    s32 func_801015D0(Actor *);
+    s32 i;
+    s32 selected;
+
+    switch (arg1) {
+        case 7:
+            if (arg0->unk74_7 == 0x37) {
+                func_800D1000(0x3E, 1, NULL, 1, 0);
+            }
+            func_8010114C((s32) arg0->unk3C, 0xA, 0);
+            break;
+        case 31:
+            selected = arg0->unk74_7 - 0x32;
+            func_801015D0(arg0);
+            for (i = 0; i < 6; i++) {
+                func_800DF744(i + 1, selected == i);
+            }
+            break;
+        default:
+            return _chswitch_entrypoint_10((s32) arg0, arg1, arg2);
+    }
+    return 1;
+}
 
 void func_80800AEC_chvolcanobits(Actor *arg0) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
