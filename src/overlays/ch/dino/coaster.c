@@ -58,4 +58,30 @@ s32 func_808001C8_chdinocoaster(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/coaster/func_808002CC_chdinocoaster.s")
+void func_808002CC_chdinocoaster(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    s32 func_800F1B78(f32 *, f32 *, f32, f32);
+    f32 func_800F1F38(f32, f32, f32);
+    s32 func_801051C8(Actor *, f32 *);
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp24;
+
+    func_801051C8(arg0, sp28);
+    if (func_800F1B78(sp34, sp28, arg0->rotation[1], 1.0f)) {
+        arg0->unk50 = sp34[0];
+        ((f32 *)arg0->actorData)[4] = sp34[2];
+    } else {
+        arg0->unk50 = 0.0f;
+        ((f32 *)arg0->actorData)[4] = 0.0f;
+    }
+    if (!arg0->unk64_20) {
+        arg0->unk64_20 = 1;
+        arg0->rotation[0] = arg0->unk50;
+        arg0->rotation[2] = ((f32 *)arg0->actorData)[4];
+    } else {
+        sp24 = func_800D8FF8();
+        arg0->rotation[0] = func_800F1F38(arg0->rotation[0], arg0->unk50, sp24 * 30.0f);
+        arg0->rotation[2] = func_800F1F38(arg0->rotation[2], ((f32 *)arg0->actorData)[4], sp24 * 30.0f);
+    }
+}
