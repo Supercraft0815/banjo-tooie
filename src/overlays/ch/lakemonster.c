@@ -160,7 +160,34 @@ void func_80801448_chlakemonster(u8 *arg0, u32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80801494_chlakemonster.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_808016B0_chlakemonster.s")
+s32 func_808016B0_chlakemonster(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80090708(s32);
+    s32 func_800DA9E4(s32, s32);
+    s32 func_80801494_chlakemonster(s32, s32);
+
+    switch (arg1) {
+        case 0x32:
+            func_80090708(2);
+            return 1;
+        case 0x2E:
+            arg0->unk74_30 = 0;
+            if (*(s16 *)&arg2 == 0x180E) {
+                func_80801494_chlakemonster(arg0, 5);
+            }
+            break;
+        case 0x49:
+            if (func_800DA9E4(0x6E8, 0)) {
+                func_80801494_chlakemonster(arg0, 3);
+            }
+            break;
+        case 0x1F:
+            func_80800838_chlakemonster(arg0);
+            return 1;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chlakemonster_entrypoint_0(void)
 {
