@@ -159,7 +159,34 @@ void func_800A4168(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4878.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4978.s")
+s32 func_800A4978(PlayerState *arg0) {
+    s32 func_800F40EC(PlayerState *);
+    s32 state;
+    u8 *data;
+
+    if (func_800F40EC(arg0) != 2) {
+        return 0;
+    }
+    switch (func_800A3274(arg0)) {
+        case 0xB:
+            data = (*(u8 **)((u8 *)arg0 + 0x38));
+            state = 7;
+            if (data[3] != 0) {
+                data[3] = 4;
+            }
+            break;
+        case 0xC:
+            state = 8;
+            break;
+        default:
+            state = 6;
+            break;
+    }
+    func_800A3F14(arg0, state);
+    func_800A4878(arg0);
+    func_800A4190(arg0);
+    return 1;
+}
 
 void func_800A4A14(s32 arg0) { if (func_800A4338() != 0) return; func_800A4190(arg0); func_800A4878(arg0); }
 
