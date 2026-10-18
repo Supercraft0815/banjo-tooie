@@ -295,7 +295,56 @@ s32 func_80801320_chstoneballcontrol(void *arg0) {
     return (*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80801330_chstoneballcontrol.s")
+void func_80801330_chstoneballcontrol(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 _sukickball_entrypoint_15(s32);
+    void _sukickball_entrypoint_16(s32, f32 *);
+    s32 func_800EA05C(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800F82D4(s32, s32);
+    s32 func_800F832C(s32, f32 *);
+    void func_800F8294(s32, f32 *);
+    struct Fields {
+        u8 pad0[0xA];
+        u8 states[6];
+        Unk80132ED0 *markers[9];
+        u8 bytes[6];
+    } *data;
+    Actor *actor;
+    struct ChildFields {
+        u8 pad0[8];
+        f32 position[3];
+    } *child;
+
+    data = func_80100094(arg0, 0);
+    switch (data->states[arg1]) {
+        case 1: {
+            actor = func_80106790(data->markers[arg1]);
+            child = func_80100094(actor, 0);
+            _sukickball_entrypoint_16(arg1, actor->position);
+            func_800EE7F8(child->position, actor->position);
+            actor->rotation[1] = _sukickball_entrypoint_15(arg1);
+            actor->unk54 = actor->rotation[1];
+            func_808012E0_chstoneballcontrol(actor, arg1);
+            break;
+        }
+        case 2: {
+            f32 vec[3];
+            if (func_800EA05C() != 0xBB) {
+                func_800F82D4(arg1, 2);
+                vec[0] = 0.0f;
+                vec[1] = _sukickball_entrypoint_15(arg1);
+                vec[2] = 0.0f;
+                func_800F832C(arg1, vec);
+                _sukickball_entrypoint_16(arg1, vec);
+                func_800F8294(arg1, vec);
+            }
+            break;
+        }
+    }
+    data->bytes[arg1] = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_8080145C_chstoneballcontrol.s")
 
@@ -1095,7 +1144,7 @@ void func_80804304_chstoneballcontrol(u8 *arg0) {
     void func_800F5A00(s32, f32 *);
     void func_800F5D70(s32, f32 *);
     void func_800F7700(s32, s32, f32 *);
-    s32 func_800F8294(s32, f32 *);
+    void func_800F8294(s32, f32 *);
     void *func_80100094(Actor *, u32);
     f32 func_80102D78();
     Actor *func_80106790(Unk80132ED0 *);
