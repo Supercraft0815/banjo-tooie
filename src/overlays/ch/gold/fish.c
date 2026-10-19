@@ -139,7 +139,45 @@ void func_8080009C_chgoldfish(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/fish/func_808004AC_chgoldfish.s")
+s32 func_808004AC_chgoldfish(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    s32 func_800C7074(s32, s32);
+    void func_800CF700(void);
+    s32 func_800DA298(s32);
+    s32 func_800F54E4(void);
+    s32 func_800F64A4(s32, s32);
+    s32 func_808005F0_chgoldfish(u8 *, s32);
+    extern s32 D_80800D3C_chgoldfish;
+
+    switch (arg1) {
+        case 0x2E:
+            switch (((s16 *)&arg2)[0]) {
+                case 0x15BF:
+                    func_808005F0_chgoldfish(arg0, 3);
+                    break;
+                case 0x15C0:
+                    func_800C7074(0x30, func_800DA298(0x648) == 0);
+                    func_808005F0_chgoldfish(arg0, 0xA);
+                    break;
+            }
+            return 1;
+        case 0x2F:
+            if (((s16 *)&arg2)[0] == 0x15C0 && ((s16 *)&arg2)[1] == 1 && func_800DA298(0x649)) {
+                func_800CF700();
+            }
+            return 1;
+        case 0x52:
+            _gcdialogcamera_entrypoint_3(&D_80800D3C_chgoldfish, ((Actor *)arg0)->scale);
+            return 1;
+        case 0x3E:
+            if ((((Actor *)arg0)->unk70_10 == 3 || ((Actor *)arg0)->unk70_10 == 4) && func_800F64A4(func_800F54E4(), 1)) {
+                func_808005F0_chgoldfish(arg0, 5);
+            }
+            return 1;
+        default:
+            return 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/fish/func_808005F0_chgoldfish.s")
 
