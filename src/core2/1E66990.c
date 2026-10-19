@@ -80,7 +80,39 @@ int func_8008D3B0(PlayerState *player) {
     return baflag_isTrue(player, 1) && func_800C6E38(9) && func_800F64A4(player->unk184, 0x401);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008D40C.s")
+s32 func_8008D40C(PlayerState *arg0) {
+    s32 _baduo_entrypoint_2(PlayerState *);
+    s32 _plsu_entrypoint_2(void);
+    s32 bs_getCurrentState(PlayerState *);
+    s32 func_8008E0C8(PlayerState *);
+    void func_8009C128(PlayerState *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    int func_800F6774(u32);
+    s32 func_800F6C5C(s32);
+    s32 func_800F8B88(void);
+    s32 func_800F99E8(void);
+    extern f32 D_80124AD0;
+    f32 sp34[3];
+    s32 sp30;
+    f32 sp24[3];
+    s32 state;
+
+    if (func_800F8B88() == 2 && _plsu_entrypoint_2() != 0) {
+        if (func_8008E0C8(arg0)) return 0;
+        if (func_800F99E8()) return 0;
+        state = bs_getCurrentState(arg0);
+        if (state == 0xB9 || state == 0xBA) return 0;
+        sp30 = _baduo_entrypoint_2(arg0);
+        if (!player_isStable(arg0) || !func_800F6C5C(sp30)) return 0;
+        if (!func_800F6774(func_800F54E4())) return 0;
+        func_8009C128(arg0, sp24);
+        func_800F5A00(_baduo_entrypoint_2(arg0), sp34);
+        return func_800EEB40(sp24, sp34) < D_80124AD0;
+    }
+    return 0;
+}
 
 s32 func_8008D544(PlayerState* arg0)
 {
