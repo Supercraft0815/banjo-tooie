@@ -261,7 +261,35 @@ void func_80800948_chfactorybattery(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_808009C8_chfactorybattery.s")
+void func_808009C8_chfactorybattery(Actor *arg0) {
+    s32 func_800F4EC8(u32, s32, f32, f32, f32);
+    s32 func_800F54E4();
+    f32 func_80103EAC(Actor *);
+    f32 func_80103EF4(Actor *);
+    s32 pad[1];
+    f32 sp30;
+    u32 sp2C;
+
+    switch (arg0->unk70_10) {
+    case 1:
+    case 4:
+    case 5:
+    case 9:
+    case 13:
+        sp2C = func_800F54E4();
+        sp30 = func_80103EF4(arg0);
+        func_800F4EC8(sp2C, (s32)arg0->position, sp30, 0.0f, func_80103EAC(arg0) * 0.25f);
+        return;
+    case 8:
+    case 10:
+        if (arg0->unk79_4 == 0) {
+            sp2C = func_800F54E4();
+            sp30 = func_80103EF4(arg0);
+            func_800F4EC8(sp2C, (s32)arg0->position, sp30, 0.0f, func_80103EAC(arg0) * 0.25f);
+        }
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80800AB8_chfactorybattery.s")
 
