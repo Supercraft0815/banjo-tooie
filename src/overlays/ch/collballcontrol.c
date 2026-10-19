@@ -334,7 +334,45 @@ void func_808015D4_chcollballcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80801650_chcollballcontrol.s")
+void func_80801650_chcollballcontrol(Actor *arg0) {
+    f32 func_800DC0C0(void);
+    int func_800DC298(f32);
+    s32 func_800EA05C(void);
+    void *func_80100094(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    extern f32 D_80804CC8_chcollballcontrol[][2];
+    struct {
+        u8 pad[0x39];
+        u8 kind;
+    } *data;
+    f32 random;
+    s32 state;
+    u8 kind;
+    f32 *thresholds;
+
+    data = func_80100094(arg0, 0);
+    random = func_800DC0C0();
+    if (func_800EA05C() != 0x12D || arg0->unk70_10 != 1) {
+        kind = data->kind;
+        thresholds = D_80804CC8_chcollballcontrol[kind];
+        if (random < thresholds[0] && kind != 1) {
+            if (func_800DC298(0.5f) || data->kind == 0) {
+                state = 1;
+            } else {
+                state = 5;
+            }
+        } else if (random < thresholds[1]) {
+            if (func_800DC298(0.5f)) {
+                state = 2;
+            } else {
+                state = 4;
+            }
+        } else {
+            state = 3;
+        }
+        func_80108B04(arg0, state);
+    }
+}
 
 OSThread *chcollballcontrol_entrypoint_0(void)
 {
