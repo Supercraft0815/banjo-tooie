@@ -2783,7 +2783,37 @@ s32 func_808070C0_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808073AC_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808074C8_chgameselect.s")
+void func_808074C8_chgameselect(Actor *arg0) {
+    typedef struct {
+        s32 entries[8];
+        char *buffer;
+    } GameSelectTextData;
+    s32 func_800AA0C4(void);
+    s32 func_800AA0D0(void);
+    s32 func_800AA16C(s32);
+    s32 func_800AA240(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    void func_8080714C_chgameselect(Actor *, s32 (*)(s32), s32, s32, s32, s32, s32);
+    extern s32 B_80808588_chgameselect[2];
+    GameSelectTextData *sp30[2];
+    Unk80132ED0 *temp_s0;
+
+    temp_s0 = (Unk80132ED0 *)func_80106790(arg0->unk3C)->actorData[5];
+    func_8080714C_chgameselect(arg0, func_800AA16C, 1, 0x1E, 0x1F, 0, 1);
+    if (func_800AA240() != 0) {
+        func_80802640_chgameselect(temp_s0, 0x18F3, 0);
+        func_808026C8_chgameselect(temp_s0, 0x16);
+    } else {
+        sp30[0] = func_80100094(arg0, 0);
+        B_80808588_chgameselect[0] = func_800AA0C4() + 1;
+        B_80808588_chgameselect[1] = func_800AA0D0();
+        func_80803E94_chgameselect(sp30[0]->buffer, 0x18F3, 0x15, 2, B_80808588_chgameselect);
+        func_80802640_chgameselect(temp_s0, 0, 0);
+        func_80802730_chgameselect(temp_s0, (s32)sp30[0]->buffer);
+    }
+    arg0->unk64_20 = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808075D0_chgameselect.s")
 
