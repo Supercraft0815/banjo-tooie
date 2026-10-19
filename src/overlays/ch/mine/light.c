@@ -123,7 +123,46 @@ void func_8080011C_chminelight(Actor *arg0) {
 void func_808004CC_chminelight(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/light/func_808004D4_chminelight.s")
+void func_808004D4_chminelight(Actor *arg0) {
+    s32 _glcutDll_entrypoint_19(s32);
+    void func_800C8900(s32, s32 *);
+    s32 func_800DA298(s32);
+    void *func_80100094(Actor *, u32);
+    extern s32 D_80800688_chminelight[];
+    extern u8 D_808006AC_chminelight[];
+    s32 rgb[5];
+    s32 *id;
+    u8 *color;
+
+    color = func_80100094(arg0, 0); id = D_80800688_chminelight; do {
+        func_800C8900(*id, rgb);
+        id++;
+        color += 3;
+        color[-3] = rgb[0];
+        color[-2] = rgb[1];
+        color[-1] = rgb[2];
+    } while ((void *)id != D_808006AC_chminelight);
+    if (func_800DA298(0x9E0)) {
+        if (arg0->unk70_10 != 3) {
+            arg0->unk70_10 = 2;
+            arg0->unk54 = -1.0f;
+            if (_glcutDll_entrypoint_19(0x15) == 0) {
+                ((f32 *)arg0->actorData)[6] = 1.0f;
+            } else {
+                ((f32 *)arg0->actorData)[6] = 0.0f;
+            }
+        }
+    } else if (arg0->unk70_10 != 1) {
+        arg0->unk70_10 = 4;
+        arg0->unk54 = -1.0f;
+        if (_glcutDll_entrypoint_19(0x15) == 0) {
+            ((f32 *)arg0->actorData)[6] = 0.0f;
+        } else {
+            ((f32 *)arg0->actorData)[6] = 1.0f;
+        }
+    }
+    func_8080011C_chminelight(arg0);
+}
 
 OSThread *chminelight_entrypoint_0(void)
 {

@@ -122,7 +122,7 @@ void func_800C8898(s32 arg0, f32 *arg1) {
     (*(f32 *)((s8 *)(arg1) + (8))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (0x10)));
 }
 
-void func_800C8900(s32 arg0, u8 *arg1) {
+void func_800C8900(s32 arg0, s32 *arg1) {
     void func_800EFA88(void *arg0, s32 arg1, s32 arg2, s32 arg3);
     void func_800F2EE0(void *arg0, void *arg1);
     void *vector_at(s32, s32);
