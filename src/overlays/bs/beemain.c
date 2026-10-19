@@ -155,7 +155,53 @@ s32 bsbeemain_entrypoint_1(s32 arg0) {
     return ((s32 *)&D_80801270_bsbeemain)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_808003F0_bsbeemain.s")
+struct anctrl_s;
+void anctrl_reset(struct anctrl_s *);
+void anctrl_setIndex(struct anctrl_s *, s32);
+void anctrl_setSmoothTransition(struct anctrl_s *, s32);
+void anctrl_setStart(struct anctrl_s *, f32);
+void anctrl_setDuration(struct anctrl_s *, f32);
+void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+void anctrl_setPlaybackType(struct anctrl_s *, s32);
+void anctrl_start(struct anctrl_s *);
+struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+void func_808003F0_bsbeemain(struct player_state_s *arg0) {
+    f32 bastick_distance(struct player_state_s *);
+    f32 bastick_getAngleRelativeToBanjo(struct player_state_s *);
+    f32 yaw_getIdeal(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    void baphysics_set_target_yaw(struct player_state_s *, f32);
+    f32 baphysics_get_target_horizontal_velocity(struct player_state_s *);
+    void baphysics_set_horizontal_velocity(struct player_state_s *, f32, f32);
+    void baphysics_set_vertical_velocity(struct player_state_s *, f32);
+    void baphysics_set_gravity(struct player_state_s *, f32);
+    s32 pad[2];
+    f32 sp2C;
+    struct anctrl_s *control;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    _bsbee_entrypoint_1(arg0);
+    anctrl_reset(control);
+    anctrl_setSmoothTransition(control, 0);
+    anctrl_setIndex(control, 0x1E2);
+    anctrl_setSubrange(control, 0.0f, 0.34f);
+    anctrl_setStart(control, 0.1f);
+    anctrl_setDuration(control, 1.2f);
+    anctrl_setPlaybackType(control, 1);
+    anctrl_start(control);
+    func_8009FFD8(arg0, 1, 1, 3, 6);
+    if (bastick_distance(arg0) != 0.0f) {
+        yaw_setIdeal(arg0, bastick_getAngleRelativeToBanjo(arg0));
+    }
+    baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+    func_80800058_bsbeemain(arg0);
+    sp2C = yaw_getIdeal(arg0);
+    baphysics_set_horizontal_velocity(arg0, sp2C, baphysics_get_target_horizontal_velocity(arg0));
+    baphysics_set_vertical_velocity(arg0, 693.5f);
+    baphysics_set_gravity(arg0, -1200.0f);
+    func_8080002C_bsbeemain((s32)arg0);
+    ((s32 *)arg0)[0x57] = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80800548_bsbeemain.s")
 
@@ -170,7 +216,6 @@ s32 bsbeemain_entrypoint_2(s32 arg0) {
 }
 
 void func_808007C4_bsbeemain(struct player_state_s *arg0) {
-    struct anctrl_s;
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setIndex(struct anctrl_s *, s32);
