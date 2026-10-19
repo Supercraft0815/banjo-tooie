@@ -1,5 +1,7 @@
 #include "common.h"
 struct player_state_s;
+struct anctrl_s;
+enum asset_e;
 
 /* extern */
 
@@ -131,7 +133,49 @@ s32 bsswim_entrypoint_0(s32 arg0) {
     return ((s32 *)&D_80800BA4_bsswim)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_808006C4_bsswim.s")
+void func_808006C4_bsswim(struct player_state_s *arg0) {
+    int anctrl_getIndex(struct anctrl_s *);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void baanim_setDurationRange(struct player_state_s *, f32, f32);
+    s32 baphysics_set_type(void *, s32);
+    s32 bs_getPreviousState(struct player_state_s *);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    void func_8008C9F0(struct player_state_s *, f32, f32, f32, f32);
+    s32 func_8008CA4C(void *, s32);
+    void func_8009D2D8(struct player_state_s *, s32);
+    s32 yaw_setUpdateType(void *, s32);
+    void yaw_setVelocityBounded(struct player_state_s *, f32, f32);
+    struct anctrl_s *control;
+    f32 transition;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    func_808001DC_bsswim(arg0);
+    if (bs_getPreviousState(arg0) == 0x4C) {
+        transition = 0.8f;
+    } else {
+        transition = 0.4f;
+    }
+    if (anctrl_getIndex(control) != 0x39) {
+        anctrl_reset(control);
+        anctrl_setIndex(control, 0x39);
+        func_8008B1C8(control, transition);
+        anctrl_setStart(control, 0.8f);
+        anctrl_setPlaybackType(control, 2);
+        anctrl_start(control);
+    }
+    func_8008CA4C(arg0, 2);
+    baanim_setDurationRange(arg0, 0.3f, 1.5f);
+    func_8008C9F0(arg0, 30.0f, 300.0f, 1.2f, 0.7f);
+    yaw_setUpdateType(arg0, 3);
+    yaw_setVelocityBounded(arg0, 500.0f, 5.0f);
+    func_8009D2D8(arg0, 1);
+    baphysics_set_type(arg0, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_808007F8_bsswim.s")
 
