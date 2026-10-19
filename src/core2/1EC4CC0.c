@@ -623,7 +623,30 @@ f32 func_800EC504(PropCenterView *prop) {
     return norm;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC5C0.s")
+f32 func_800EC5C0(void *arg0, void *arg1) {
+    Actor *func_80106790(Unk80132ED0 *);
+    typedef struct { Unk80132ED0 *marker; } PropView;
+    typedef struct {
+        u8 pad0[0x18];
+        u32 cached : 11;
+        u32 flags : 4;
+        u32 scaled : 1;
+        u32 rest : 16;
+    } MarkerView;
+    Unk80132ED0 *marker;
+    f32 value;
+    f32 (*callback)(Unk80132ED0 *) = arg1;
+
+    marker = ((PropView *)arg0)->marker;
+    value = (f32)((MarkerView *)marker)->cached;
+    if (value == 0.0f) {
+        value = ((MarkerView *)marker)->cached = callback(marker);
+    }
+    if (((MarkerView *)marker)->scaled) {
+        value *= func_80106790(marker)->scale;
+    }
+    return value;
+}
 
 f32 func_800EC708(Unk80132ED0 *marker) {
     f32 func_800EC5C0(void *, void *);
