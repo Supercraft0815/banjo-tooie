@@ -60,7 +60,44 @@ void func_808000BC_chscorepoints(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/scorepoints/func_8080019C_chscorepoints.s")
+void func_8080019C_chscorepoints(Actor *arg0, Gfx **arg1) {
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    s32 func_800A89F8(void);
+    s32 func_800A940C(s32);
+    void func_800B7F14(Gfx **);
+    void func_800B811C(Gfx **);
+    void func_800B8C50(void);
+    void func_800B8C8C(s32);
+    void func_800B8C98(s32);
+    void func_800B8CE0(s32);
+    s32 func_800B8E28(Gfx **, s32, s32, void *);
+    s32 func_800C4C34(s32, f32 *, f32 *, s32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 sp4C;
+    s32 sp48;
+    f32 sp40[2];
+    f32 sp34[3];
+    s32 sp2C[2];
+    s32 temp_v0;
+
+    sp4C = *(s32 *)&arg0->unk54;
+    sp48 = func_800A89F8();
+    func_800B8C50();
+    func_800B8C8C(_subaddiefade_entrypoint_0(arg0));
+    func_800B8C98(1);
+    func_800B8CE0(*(s32 *)&arg0->unk50);
+    func_800B7F14(arg1);
+    if (sp4C == -1 || func_800A940C(sp4C) == sp48) {
+        func_800EE7F8(sp34, arg0->position);
+        sp34[1] += *(f32 *)&arg0->actorData[6];
+        temp_v0 = func_800C4C34(sp48, sp34, sp40, sp2C);
+        if (sp2C[0] != 0 && temp_v0 != 0) {
+            func_800B8E28(arg1, (s32)sp40[0], (s32)sp40[1], func_80100094(arg0, 0));
+        }
+    }
+    func_800B811C(arg1);
+}
 
 /* extern */
 
