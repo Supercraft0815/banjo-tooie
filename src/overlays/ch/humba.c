@@ -535,7 +535,32 @@ void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80801260_chhumba.s")
+void func_80801260_chhumba(Actor *arg0) {
+    void func_8008FE68(f32 *);
+    void func_8008FF40(f32 *);
+    void func_800906DC(f32 *);
+    void func_800907C0(f32 *);
+    void func_800EF334(f32 *, f32);
+    f32 func_800F1DCC(f32, f32);
+    struct HumbaVector { f32 v[3]; };
+    extern struct HumbaVector D_808026F0_chhumba;
+    struct HumbaVector target;
+    s32 i;
+    f32 position[3];
+
+    target = D_808026F0_chhumba;
+    func_800EF334(target.v, arg0->scale);
+    func_8008FE68(position);
+    for (i = 0; i < 3; i++) {
+        position[i] += (target.v[i] - position[i]) * 0.05f;
+    }
+    func_800907C0(position);
+    func_8008FF40(position);
+    position[1] += func_800F1DCC(180.0f, position[1]) * 0.05f;
+    position[0] += func_800F1DCC(0.0f, position[0]) * 0.05f;
+    position[2] += func_800F1DCC(0.0f, position[2]) * 0.05f;
+    func_800906DC(position);
+}
 
 /* extern */
 
