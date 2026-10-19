@@ -209,4 +209,49 @@ void func_808004C4_bsdronebitten(void *arg0, s32 arg1, s32 arg2) {
     (*(s8 *)((s8 *)(arg0) + (0x190))) = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/bitten/bsdronebitten_entrypoint_9.s")
+void bsdronebitten_entrypoint_9(PlayerState *arg0) {
+    s32 _badata_entrypoint_20(PlayerState *);
+    s32 _badust_entrypoint_8(PlayerState *);
+    s32 _bamovegoto_entrypoint_4();
+    s32 _bashake_entrypoint_0(PlayerState *, s32, s32);
+    int baanim_isStopped(PlayerState *);
+    s32 bs_setState(PlayerState *, s32);
+    void func_8009D9D4(PlayerState *);
+    void func_8009DB04(PlayerState *, s32, f32, s32);
+    s32 func_800A1718(PlayerState *);
+    s32 func_800A3274(PlayerState *);
+    s32 next_state = 0;
+
+    switch (*(u8 *)((u8 *)arg0 + 0x190)) {
+        case 0:
+            if (_bamovegoto_entrypoint_4(arg0)) {
+                func_8009D9D4(arg0);
+                func_8009DB04(arg0, 0x417, 0.8f, 0x4650);
+                _bashake_entrypoint_0(arg0, 3, 1);
+                _badust_entrypoint_8(arg0);
+                if (!func_800A1718(arg0)) {
+                    next_state = _badata_entrypoint_20(arg0);
+                } else {
+                    switch (func_800A3274(arg0)) {
+                        case 1:
+                        case 10:
+                            func_808004C4_bsdronebitten(arg0, 0xD2, 0x40100000);
+                            break;
+                        case 11:
+                            func_808004C4_bsdronebitten(arg0, 0x11E, 0x3FCCCCCD);
+                            break;
+                        default:
+                            next_state = func_80800478_bsdronebitten(arg0, 0);
+                            break;
+                    }
+                }
+            }
+            break;
+        case 1:
+            if (baanim_isStopped(arg0)) {
+                next_state = func_80800478_bsdronebitten(arg0, 0);
+            }
+            break;
+    }
+    bs_setState(arg0, next_state);
+}
