@@ -100,7 +100,50 @@ s32 func_808007F8_chnewshovel(Actor *arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800930_chnewshovel.s")
+s32 func_80800930_chnewshovel(Actor *arg0) {
+    typedef struct {
+        f32 unk18[3];
+        f32 unk24;
+        f32 velocity[3];
+        f32 acceleration;
+    } ShovelMotion;
+    typedef struct {
+        s16 unk0[6];
+        s16 state;
+    } ShovelState;
+    void *func_80100094(Actor *, u32);
+    f32 func_800F3780(f32, u8 *, s16);
+    f32 func_80101F24(Actor *);
+    s32 func_80101DDC(Actor *);
+    s32 func_80800A50_chnewshovel(Actor *);
+    extern u8 D_80801034_chnewshovel[];
+    extern u8 D_8080104C_chnewshovel[];
+    ShovelState *state;
+    s32 sp20;
+
+    state = func_80100094(arg0, 0);
+    sp20 = 0;
+    switch (state->state) {
+        case 0:
+        case 2:
+            break;
+        case 1:
+            ((ShovelMotion *)arg0->actorData)->unk24 = func_800F3780(func_80101F24(arg0), D_80801034_chnewshovel, 3) * 550.0f;
+            sp20 = func_80800A50_chnewshovel(arg0);
+            if (func_80101DDC(arg0) && (sp20 & 8)) {
+                func_808007F8_chnewshovel(arg0, 2);
+            }
+            break;
+        case 3:
+            ((ShovelMotion *)arg0->actorData)->unk24 = func_800F3780(func_80101F24(arg0), D_8080104C_chnewshovel, 3) * 600.0f;
+            sp20 = func_80800A50_chnewshovel(arg0);
+            if (func_80101DDC(arg0) && (sp20 & 8)) {
+                func_808007F8_chnewshovel(arg0, 2);
+            }
+            break;
+    }
+    return sp20;
+}
 
 s32 func_80800A50_chnewshovel(Actor *arg0) {
     typedef union {
