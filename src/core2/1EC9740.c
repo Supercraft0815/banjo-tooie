@@ -81,7 +81,42 @@ void func_800F018C(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
     func_800EF04C(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F0274.s")
+void func_800F0274(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    f32 func_800EEFD4(f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFA20(f32 *, f32 *, f32);
+    void func_800EFB24(f32 *, f32 *, f32 *);
+    extern f32 D_80125EB4;
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp24;
+    f32 temp_f0;
+    f32 temp_f2;
+
+    func_800EFB24(sp34, arg2, arg1);
+    temp_f0 = func_800EEFD4(sp34);
+    if (temp_f0 < D_80125EB4) {
+        func_800EE7F8(arg0, arg1);
+        return;
+    }
+    sp24 = sqrtf(temp_f0);
+    temp_f2 = 1.0f / sp24;
+    sp34[0] *= temp_f2;
+    sp34[1] *= temp_f2;
+    sp34[2] *= temp_f2;
+    func_800EFB24(sp28, arg3, arg1);
+    temp_f2 = func_800EEAA4(sp28, sp34);
+    if (temp_f2 <= 0.0f) {
+        func_800EE7F8(arg0, arg1);
+    } else if (sp24 <= temp_f2) {
+        func_800EE7F8(arg0, arg2);
+    } else {
+        func_800EFA20(arg0, sp34, temp_f2);
+        func_800EF04C(arg0, arg1);
+    }
+}
 
 void func_800F03AC(f32 dst[3], f32 point[3], f32 normal[3], f32 position[3]) {
     void func_800EFB24(f32 *, f32 *, f32 *);
