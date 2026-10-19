@@ -71,7 +71,26 @@ void func_808001CC_chcrusherboulder(Actor *arg0) {
     func_80800100_chcrusherboulder(sp1C, arg0->position);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80800210_chcrusherboulder.s")
+void func_80800210_chcrusherboulder(Actor *arg0) {
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80105834(Actor *);
+    void func_80105A9C(Actor *, f32);
+    f32 savedRotation[3];
+    s32 i;
+
+    if (arg0->unk58 < 20.0f) {
+        func_800EE7F8(savedRotation, arg0->rotation);
+        func_80105A9C(arg0, 80.0f);
+        func_80105834(arg0);
+        func_800EE7F8(arg0->rotation, savedRotation);
+    }
+    for (i = 0; i < 3; i++) {
+        arg0->rotation[i] += func_800DC178(-0.25f, 0.25f);
+        arg0->rotation[i] = arg0->rotation[i] < -10.0f ? -10.0f :
+            (arg0->rotation[i] > 10.0f ? 10.0f : arg0->rotation[i]);
+    }
+}
 
 void func_80800338_chcrusherboulder(Actor *arg0) {
     void *func_80100094(Actor *, u32);
