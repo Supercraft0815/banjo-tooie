@@ -1,5 +1,7 @@
 #include "common.h"
 
+s32 func_800D9078(f32 *);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800000_chnests.s")
 
 /* extern */
@@ -285,7 +287,45 @@ void func_80800BA0_chnests(void *arg0, s32 arg1) {
 
 void func_80800BD8_chnests(Actor *arg0, s32 arg1, f32 arg2, f32 arg3) { struct Flags { u16 value : 10; u16 rest : 6; }; ((struct Flags *)((s8 *)arg0->unk0 + 0x24))->value = arg1; func_80800000_chnests(); arg0->unk64_20 = 1; ((f32 *)arg0->actorData)[4] = arg2; ((f32 *)arg0->actorData)[5] = arg3; func_80800B4C_chnests(arg0); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800C3C_chnests.s")
+void func_80800C3C_chnests(Actor *arg0) {
+    struct Flags { u16 rest : 14; u16 mode : 2; };
+    s32 _subaddiefade_entrypoint_2();
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 func_8010A590(void *);
+    void func_80101FDC(Actor *, u32);
+    u32 func_8010A828(Actor *, u32);
+
+    switch (arg0->actorData[6]) {
+        case 0:
+            if (!((struct Flags *)&arg0->unk78)->mode && func_800D9078(&arg0->unk58)) {
+                arg0->unk6C_0 = func_80800A74_chnests(arg0->actorData[1]);
+                if (arg0->unk6C_0 == arg0->actorData[1]) {
+                    func_80800B4C_chnests(arg0);
+                } else {
+                    arg0->unk58 = 0.25f;
+                    arg0->actorData[6] = 1;
+                }
+            }
+            break;
+        case 1:
+            if (func_800D9078(&arg0->unk58)) {
+                func_80800BA0_chnests(arg0, arg0->unk6C_0);
+                func_80800B4C_chnests(arg0);
+                func_8010A828(arg0, 1);
+            }
+            break;
+        case 2:
+            if (func_800D9078(&arg0->unk58)) {
+                _subaddiefade_entrypoint_2(arg0);
+                func_8010A590(arg0);
+                _subaddieDll_entrypoint_4(arg0, 0);
+                arg0->unk64_16 = 1;
+                func_80101FDC(arg0, arg0->actorData[0]);
+                func_80800B4C_chnests(arg0);
+            }
+            break;
+    }
+}
 
 void func_80800D8C_chnests(Actor *arg0, s32 arg1) {
     struct Flags { u8 pad[0x7A]; u16 mode : 2; u16 rest : 14; };
