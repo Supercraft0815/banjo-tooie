@@ -91,7 +91,33 @@ s16 func_800DFD10(void) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB93C0/func_800DFD64.s")
+void func_800DFD64(BoneTransformList *arg0, BoneTransformList *arg1, BoneTransformList *arg2, f32 arg3) {
+    void func_800D9600(void *, void *);
+    int func_800D97E8(f32[4], f32[4]);
+    void func_800D9AD4(f32[4], f32[4], f32[4], f32);
+    BoneTransform *end_ptr;
+    BoneTransform *dst;
+    BoneTransform *start;
+    BoneTransform *end;
+
+    dst = arg0->ptr;
+    end_ptr = dst + arg0->count;
+    start = arg1->ptr;
+    end = arg2->ptr;
+    for (; dst < end_ptr; dst++, start++, end++) {
+        if (func_800D97E8(start->unk0, end->unk0)) {
+            func_800D9600(dst->unk0, start->unk0);
+        } else {
+            func_800D9AD4(dst->unk0, start->unk0, end->unk0, arg3);
+        }
+        dst->scale[0] = start->scale[0] + (end->scale[0] - start->scale[0]) * arg3;
+        dst->scale[1] = start->scale[1] + (end->scale[1] - start->scale[1]) * arg3;
+        dst->scale[2] = start->scale[2] + (end->scale[2] - start->scale[2]) * arg3;
+        dst->unk1C[0] = start->unk1C[0] + (end->unk1C[0] - start->unk1C[0]) * arg3;
+        dst->unk1C[1] = start->unk1C[1] + (end->unk1C[1] - start->unk1C[1]) * arg3;
+        dst->unk1C[2] = start->unk1C[2] + (end->unk1C[2] - start->unk1C[2]) * arg3;
+    }
+}
 
 void func_800DFEA8(BoneTransformList *arg0, BoneTransformList *arg1) {
     void func_800D9600(void *, void *);
