@@ -284,7 +284,7 @@ s32 func_801138A0(void *arg0) {
     return (*(s16 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x28)))) + (0xE))) >= 5;
 }
 
-void func_801138F4(PlayerState *arg0) {
+s32 func_801138F4(PlayerState *arg0) {
     f32 func_800EEF94(f32 *);
     void func_800EF410(f32 *, f32 *);
     void func_800EFB24(void *, void *, void *);
