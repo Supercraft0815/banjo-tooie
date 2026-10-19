@@ -1006,7 +1006,43 @@ void func_80804A7C_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80804AC8_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80804C28_chdiggerboss.s")
+void func_80804C28_chdiggerboss(s32 arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800C8A98(void);
+    void func_800C8D4C(s32, f32 *);
+    void func_800C8F64(s32, s32);
+    u8 func_800E8714(s32);
+    void func_800E8830(u8, f32 *);
+    void func_800E8870(u8, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80805448_chdiggerboss(Actor *, s32, s32);
+    void func_808057D0_chdiggerboss(Actor *);
+    void func_808056B8_chdiggerboss(s32);
+    extern f32 D_8080A038_chdiggerboss;
+    struct DiggerPart { s32 handle; u8 pad[8]; f32 position[3]; u8 effect; u8 tail[3]; };
+    struct DiggerData { u8 prefix[0x24]; u8 active; u8 pad[0xB]; struct DiggerPart parts[4]; };
+    s32 handle;
+    s32 i;
+    u8 effect;
+    struct DiggerData *data;
+
+    data = func_80100094((Actor *)arg0, 0);
+    data->active = 0;
+    for (i = 0; i < 4; i++) {
+        func_80805448_chdiggerboss((Actor *)arg0, i, 0);
+        handle = func_800C8A98();
+        data->parts[i].handle = handle;
+        func_800C8F64(handle, 9);
+        func_800C8D4C(handle, &D_8080A038_chdiggerboss);
+        func_800EE7F8(data->parts[i].position, (f32 *)(arg0 + 4));
+        effect = func_800E8714(1);
+        data->parts[i].effect = effect;
+        func_800E8830(effect, (f32 *)(arg0 + 4));
+        func_800E8870(effect, 20.0f);
+    }
+    func_808057D0_chdiggerboss((Actor *)arg0);
+    func_808056B8_chdiggerboss(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80804D44_chdiggerboss.s")
 
