@@ -161,7 +161,51 @@ s32 func_808007F4_sudeflect(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
     return count;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/deflect/func_80800940_sudeflect.s")
+s32 func_80800940_sudeflect(f32 *arg0, f32 arg1, f32 arg2) {
+    s32 func_800E9E88(s32);
+    u32 func_800E9EB4(s16 *);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800F0008(f32 *, f32, f32 *, f32);
+    s32 func_8010108C(Actor *, s32, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    struct DeflectProp {
+        Unk80132ED0 *marker;
+        s32 unk4;
+        u32 flags;
+    } *entry, *end;
+    f32 radius;
+    f32 position[3];
+    Unk80132ED0 *marker;
+    Actor *actor;
+    s32 count;
+    s16 **list;
+    s16 *cell;
+
+    radius = 40.0f;
+    list = (s16 **)B_80801020_sudeflect.entries[0];
+    count = 0;
+    func_800EE7F8(position, arg0);
+    position[1] += arg1;
+    for (; (cell = *list) != NULL; list++) {
+        entry = (struct DeflectProp *)func_800E9E88((s32)cell);
+        end = (struct DeflectProp *)func_800E9EB4(*list);
+        for (; entry < end; entry++) {
+            if (!(entry->flags & 1)) {
+                continue;
+            }
+            marker = entry->marker;
+            if ((marker->unk24 >> 22) != 0x27A) {
+                continue;
+            }
+            actor = func_80106790(marker);
+            if (!actor->unk64_17 && func_800F0008(position, arg2, actor->position, radius)) {
+                count++;
+                func_8010108C(actor, 5, -1);
+            }
+        }
+    }
+    return count;
+}
 
 s32 func_80800A98_sudeflect(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
     s32 func_800E9E88(s32);
