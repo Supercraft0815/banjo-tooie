@@ -68,7 +68,34 @@ s32 func_800BD948(s32 arg0) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BD97C.s")
+s32 func_800BD97C(s32 *arg0) {
+    void func_800EFB58(void *, void *, void *);
+    extern s32 D_80128414;
+    extern f32 D_80128450;
+    s32 position[3];
+    s32 relative[3];
+    s32 i;
+    f32 scale = D_80128450;
+
+    for (i = 0; i < 3; i++) {
+        if (arg0[i] >= 0) {
+            position[i] = (s32)((f32)arg0[i] * scale);
+        } else {
+            position[i] = (s32)((f32)arg0[i] * scale + -1.0f);
+        }
+    }
+    if ((position[0] < (&D_80128410)[1]) ||
+        (position[1] < (&D_80128410)[2]) ||
+        (position[2] < (&D_80128410)[3]) ||
+        ((&D_80128410)[4] < position[0]) ||
+        ((&D_80128410)[5] < position[1]) ||
+        ((&D_80128410)[6] < position[2])) {
+        return -1;
+    }
+    func_800EFB58(relative, position, &D_80128414);
+    return relative[0] + relative[1] * (&D_80128410)[7] +
+        relative[2] * (&D_80128410)[8];
+}
 
 s32 func_800BDAD4(s32 position[3]) {
     extern u8 D_80128444;
