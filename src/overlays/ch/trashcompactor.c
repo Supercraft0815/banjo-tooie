@@ -258,7 +258,53 @@ void func_808000BC_chtrashcompactor(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcompactor/func_80800684_chtrashcompactor.s")
+s32 func_80800684_chtrashcompactor(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_14(void);
+    s32 func_800DA298(s32);
+    s32 func_80101180(s32, s32, s32);
+    Actor *func_801084B0(s32, Actor **);
+    void func_80108944(Actor *, Actor *);
+    void func_80108B04(Actor *, u32);
+    typedef struct {
+        f32 start[3];
+        f32 pad24;
+        f32 end[3];
+        f32 height;
+    } CompactorData;
+    Actor *child;
+
+    switch (arg1) {
+        case 0x3D:
+            child = func_801084B0(0x3B5, &arg0);
+            if (child != NULL) {
+                func_80108944(child, arg0);
+                child->position[1] += ((CompactorData *)arg0->actorData)->height;
+                arg0->unk3C = child->unk0;
+            }
+            break;
+        case 0x95:
+            arg0->unk3C = NULL;
+            func_80108B04(arg0, 0);
+            if (!func_800DA298(0x1A0)) {
+                func_80101180(0x3A7, 0xA, 0);
+            }
+            break;
+        case 0xB:
+            if (arg2 == 8) {
+                arg0->unk64_19 = 0;
+            }
+            return 3;
+        case 0x9F:
+            if (arg0->unk64_19) {
+                _capod_entrypoint_14();
+                arg0->unk64_19 = 0;
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
