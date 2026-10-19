@@ -80,7 +80,39 @@ void baeggsetup_entrypoint_7(u8 *arg0, s32 *arg1) {
     _chbaddiesetup_entrypoint_1(arg1, (*(s32 *)((s8 *)(arg0) + (0x184))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/setup/baeggsetup_entrypoint_8.s")
+void baeggsetup_entrypoint_8(PlayerState *arg0, s32 arg1) {
+    s32 func_8010D930();
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_8009DAAC(s32 *, f32 *);
+    void func_800C4B64(f32);
+    void func_800C4B70(s32);
+    void func_800C4B7C(s32);
+    extern s32 D_80800860_baeggsetup;
+    s32 sound;
+    f32 volume;
+    s32 pad;
+    f32 position[3];
+
+    sound = 0;
+    volume = 1.0f;
+    switch (arg1) {
+    case 1: sound = 0x443E; break;
+    case 2: sound = 0x4590; break;
+    case 3: sound = 0x4597; break;
+    case 4: sound = 0x4591; break;
+    case 5: sound = 0x458F; break;
+    case 6: sound = 0x458F; break;
+    case 7: sound = 0x443E; break;
+    }
+    if (sound != 0) {
+        func_8009C128(arg0, position);
+        func_8009DAAC(&sound, &volume);
+        func_800C4B64(volume);
+        func_800C4B70(0x7FFF);
+        func_800C4B7C(sound);
+        func_8010D930(0xB, -1, position, &D_80800860_baeggsetup);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/setup/baeggsetup_entrypoint_9.s")
 
