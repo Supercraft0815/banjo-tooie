@@ -72,4 +72,43 @@ void func_80800134_chtemplelobbydoor(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/temple/lobbydoor/func_80800248_chtemplelobbydoor.s")
+s32 func_80800248_chtemplelobbydoor(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_14(void);
+    s32 _chdoor_entrypoint_1(Actor *, s32, s32);
+    u32 func_800F54E4(void);
+    s32 func_800F7B9C(s32, s32);
+    s32 func_800F7F98(s32, u32);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010108C(Actor *, s32, s32);
+    u8 *data;
+    s32 value;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0x49:
+            func_80800134_chtemplelobbydoor(arg0, arg2);
+            return 1;
+        case 0x2E:
+            switch (*(s16 *)&arg2) {
+                case 0xF39:
+                    func_8010108C(arg0, 7, 0);
+                    return 1;
+                case 0xF50:
+                    func_800F7B9C(func_800F54E4(), 0x73);
+                    func_800F7F98(func_800F54E4(), 0);
+                    _capod_entrypoint_14();
+                    func_800F7B9C(func_800F54E4(), 0x99);
+                    return 1;
+            }
+        case 0x77:
+            if (*data == 1) {
+                value = arg2;
+                *data = 0;
+                func_800F7B9C(value, 0x73);
+                _capod_entrypoint_14();
+                func_800F7B9C(func_800F54E4(), 0x99);
+                return 1;
+            }
+    }
+    return _chdoor_entrypoint_1(arg0, arg1, arg2);
+}
