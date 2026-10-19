@@ -95,7 +95,39 @@ void func_80800918_chaliendad(Actor *arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80800F28_chaliendad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801110_chaliendad.s")
+void func_80801110_chaliendad(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);
+    void func_80102424(Actor *, s32);
+    void func_80801D40_chaliendad(Actor *, s32, s32, Unk80132ED0 *);
+    extern s32 D_808025C0_chaliendad;
+    extern f32 D_808025D8_chaliendad[3];
+    extern u32 D_808025E4_chaliendad;
+    f32 *sp2C;
+    s32 i;
+
+    sp2C = func_80100094(arg0, 0U);
+    switch (arg1) {
+    case 0x1287:
+        func_80102424(arg0, 0xB);
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x12B4, 0x144, arg0->position, 0x62);
+        func_80801D40_chaliendad(arg0, 0x37, 0x30, NULL);
+        arg0->unk58 = 1.5f;
+        break;
+    case 0x12AA:
+        func_80801D40_chaliendad(arg0, 0x49, 0x30, NULL);
+        func_80102424(arg0, 0xC);
+        for (i = 0; i < 3; i++) {
+            sp2C[i + 3] = D_808025D8_chaliendad[i];
+        }
+        break;
+    default:
+        if (_subaddiedialog_entrypoint_9(arg0, arg1, &D_808025C0_chaliendad, 3) != 0) {
+            func_80102424(arg0, 9);
+        }
+        break;
+    }
+}
 
 void func_80801220_chaliendad(void *arg0, s32 arg1, s32 arg2) {
     s32 _subaddieaudioquick_entrypoint_2(void *, void *, s32 *);
