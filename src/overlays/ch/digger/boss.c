@@ -875,7 +875,47 @@ void func_80804140_chdiggerboss(Actor *arg0) {
     func_800E8D28(sp2C[0xA], sp24);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808041E4_chdiggerboss.s")
+void func_808041E4_chdiggerboss(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    struct {
+        u8 unk0[8];
+        u8 state;
+        u8 unk9[2];
+        u8 loopB;
+        u8 loopC;
+        u8 loopD;
+        u8 unkE[2];
+        f32 timer;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    data->state = arg1;
+    switch (arg1) {
+    case 0:
+        data->loopB = _subaddieaudioloop_entrypoint_3(data->loopB);
+        data->loopC = _subaddieaudioloop_entrypoint_3(data->loopC);
+        data->loopD = _subaddieaudioloop_entrypoint_3(data->loopD);
+        break;
+    case 1:
+        data->timer = 1.4f;
+        break;
+    case 2:
+        data->loopC = _subaddieaudioloop_entrypoint_3(data->loopC);
+        data->loopD = _subaddieaudioloop_entrypoint_3(data->loopD);
+        break;
+    case 3:
+        data->loopB = _subaddieaudioloop_entrypoint_3(data->loopB);
+        data->loopD = _subaddieaudioloop_entrypoint_3(data->loopD);
+        break;
+    case 4:
+        data->loopB = _subaddieaudioloop_entrypoint_3(data->loopB);
+        data->loopC = _subaddieaudioloop_entrypoint_3(data->loopC);
+        data->loopD = _subaddieaudioloop_entrypoint_3(data->loopD);
+        data->timer = 0.0f;
+        break;
+    }
+}
 
 u8 func_808042D8_chdiggerboss(s32 arg0) {
     void *func_80100094(Actor *, u32);
