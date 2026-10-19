@@ -522,7 +522,33 @@ void func_8080200C_chinflatableboss(u8 *arg0, f32 *arg1, f32 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80802058_chinflatableboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80802264_chinflatableboss.s")
+void func_80802264_chinflatableboss(Actor *arg0, f32 arg1, f32 arg2, f32 *arg3, s16 arg4) {
+    u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);
+    void func_800C3868(u8, f32, f32, f32, f32);
+    u8 func_800C4350(u8, f32[3], s32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_80101E14(Actor *, f32);
+    extern s32 D_80803008_chinflatableboss;
+    f32 temp_f20;
+    f32 *var_s1;
+    f32 *temp_s0;
+    u8 temp_v0;
+    int var_s2;
+    var_s2 = 0;
+    if (arg4 > 0) {
+    var_s1 = arg3; do { if (func_80101E14(arg0, *var_s1) != 0) {
+    temp_s0 = arg0->position;
+    temp_f20 = func_800F10B4((f32) var_s2, 0.0f, (f32) arg4, arg1, arg2);
+    temp_v0 = _subaddieaudioquick_entrypoint_1(arg0, temp_s0);
+    func_800C3868(temp_v0, 0.15f, 0.25f, temp_f20, temp_f20 + 0.12f);
+    func_800C4350(temp_v0, temp_s0, &D_80803008_chinflatableboss);
+    }
+    var_s2++;
+    var_s1++;
+    }
+    while (var_s2 < arg4);
+    }
+    }
 
 f32 func_808023B0_chinflatableboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
