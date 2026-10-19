@@ -76,7 +76,37 @@ void func_80800144_chstoneballcontrol(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800210_chstoneballcontrol.s")
+void func_80800210_chstoneballcontrol(Actor *arg0, s32 arg1) {
+    f32 func_800DC178(f32, f32);
+    s32 func_800EA05C(void);
+    Actor *func_801084B0(s32, Actor **);
+    Actor *actor;
+
+    switch (arg1) {
+        case 1:
+        case 6:
+            actor = func_801084B0(0x155, &arg0);
+            goto position_actor;
+        case 3:
+            actor = func_801084B0(0x1B8, &arg0);
+            goto position_actor;
+        case 2:
+            actor = func_801084B0(0x29E, &arg0);
+            goto position_actor;
+    }
+position_actor:
+    if (func_800EA05C() != 0xBB) {
+        actor->position[0] = func_800DC178(-470.0f, 470.0f);
+        actor->position[2] = func_800DC178(-470.0f, 470.0f);
+    } else if (arg1 != 6) {
+        actor->position[0] = func_800DC178(-2850.0f, -1350.0f);
+        actor->position[2] = func_800DC178(-1350.0f, -650.0f);
+    } else {
+        actor->position[0] = -2100.0f;
+        actor->position[2] = -1000.0f;
+    }
+    actor->unk3C = arg0->unk0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800360_chstoneballcontrol.s")
 
