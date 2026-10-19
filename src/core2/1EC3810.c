@@ -336,7 +336,36 @@ s32 func_800EB15C(void *arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EB210.s")
+void func_800EB210(void *arg0, void *arg1, s32 arg2) {
+    struct Callbacks {
+        void (*first)(void *, void *);
+        void (*second)(void *, void *);
+        void (*third)(void *, void *);
+    };
+    void *func_800EC3C4(void *);
+    struct Callbacks *callbacks;
+
+    if (func_800EB15C(arg0) != 0) {
+        callbacks = func_800EC3C4(arg0);
+        switch (arg2) {
+            case 0:
+                if (callbacks->first != NULL) {
+                    callbacks->first(arg0, arg1);
+                }
+                break;
+            case 1:
+                if (callbacks->second != NULL) {
+                    callbacks->second(arg0, arg1);
+                }
+                break;
+            case 2:
+                if (callbacks->third != NULL) {
+                    callbacks->third(arg0, arg1);
+                }
+                break;
+        }
+    }
+}
 
 /* extern */
 
