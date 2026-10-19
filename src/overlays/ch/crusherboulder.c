@@ -288,7 +288,51 @@ void func_80801128_chcrusherboulder(f32 arg0[3], s32 arg1) {
     func_800BA22C(sp24, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80801184_chcrusherboulder.s")
+/* extern */
+
+s32 func_80801184_chcrusherboulder(s32 arg0, s32 arg1, u32 arg2) {
+    s32 _capod_entrypoint_14();
+    s32 _capod_entrypoint_15();
+    s32 _glcutDll_entrypoint_17();
+    s32 _glcutDll_entrypoint_23();
+    s32 _glcutDll_entrypoint_6(s32, s32);
+    s32 func_800DA544(s32);
+    s32 func_800DB9B0();
+    s32 func_800FFAB0(s32);
+    if (arg1 == 0xB) {
+        switch (arg2) {
+        case 6:
+            func_800DA544(0x4FC);
+            _glcutDll_entrypoint_6(0xCB, 0x19);
+            /* fallthrough */
+        default:
+            return 3;
+        case 0:
+            _glcutDll_entrypoint_17();
+            return 3;
+        case 4:
+            _capod_entrypoint_15();
+            _glcutDll_entrypoint_6(0xC7, 0x19);
+            return 4;
+        case 2:
+            _glcutDll_entrypoint_17();
+            return 3;
+        case 8:
+            if (_glcutDll_entrypoint_23() != 0) {
+                _glcutDll_entrypoint_17();
+                return 3;
+            }
+            if (func_800DB9B0() != 0) {
+                _glcutDll_entrypoint_17();
+            }
+            _capod_entrypoint_14();
+            func_800FFAB0(arg0);
+            return 4;
+        }
+    } else {
+        return 0;
+    }
+}
 
 OSThread *chcrusherboulder_entrypoint_0(void)
 {
