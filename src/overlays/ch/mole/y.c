@@ -26,7 +26,30 @@ s32 func_80800000_chmoley(Actor *arg0, s32 arg1, s32 arg2) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/y/func_808000AC_chmoley.s")
+/* extern */
+
+void func_808000AC_chmoley(Actor *arg0, void *arg1) {
+    void func_800DF744(s32, s32);
+    void func_80101870(Actor *, void *);
+    if (arg0->unk64_20) {
+        func_800DF744(3, 1);
+        func_800DF744(5, 0);
+    } else {
+        func_800DF744(3, 0);
+        func_800DF744(5, 1);
+    }
+    if (arg0->unk64_19) {
+        func_800DF744(4, 1);
+        func_800DF744(6, 0);
+        func_800DF744(7, 1);
+    } else {
+        func_800DF744(4, 0);
+        func_800DF744(6, 1);
+        func_800DF744(7, 0);
+    }
+    func_800DF744(8, 0);
+    func_80101870(arg0, arg1);
+}
 
 /* extern */
 

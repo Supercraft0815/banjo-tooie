@@ -111,7 +111,31 @@ void func_80800348_chtransparentfish(Actor *actor)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparentfish/func_80800690_chtransparentfish.s")
+void func_80800690_chtransparentfish(Actor *arg0, void *arg1) {
+    void func_800DBEFC(void *, s32, f32 *);
+    void func_80101870(Actor *, void *);
+    OSThread *func_80104130(void);
+    void func_80800AC4_chtransparentfish(Actor *, f32 *, s32);
+    extern s32 D_80800FB4_chtransparentfish[][3];
+    extern s32 D_80800FB8_chtransparentfish[][3];
+    f32 position[3];
+    s32 value;
+    u32 index;
+
+    func_80101870(arg0, arg1);
+    if (arg0->unk7C_12) {
+        func_800DBEFC(func_80104130(), 5, (f32 *)arg0->actorData);
+        index = arg0->unk6C_0;
+        value = (index != 0 && index < 13U) ? D_80800FB4_chtransparentfish[index][0] : 0;
+        if (value != 0) {
+            func_800DBEFC(func_80104130(), 4, position);
+            index = arg0->unk6C_0;
+            value = (index != 0 && index < 13U) ? D_80800FB8_chtransparentfish[index][0] : 0;
+            position[1] += (f32)value;
+            func_80800AC4_chtransparentfish(arg0, position, 1);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparentfish/func_8080078C_chtransparentfish.s")
 

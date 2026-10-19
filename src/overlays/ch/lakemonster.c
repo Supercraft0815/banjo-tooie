@@ -69,7 +69,36 @@ void func_808002FC_chlakemonster(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80800404_chlakemonster.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_8080064C_chlakemonster.s")
+void func_8080064C_chlakemonster(Actor *arg0) {
+    typedef struct {
+        u8 unk0[0xC];
+        f32 unkC[3];
+        u8 unk18[0x26];
+        u8 unk3E;
+        u8 unk3F;
+    } LakeData;
+    void func_800DBEFC(void *, s32, f32 *);
+    s32 func_800DC128(s32, s32);
+    void func_800EF04C(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80800090_chlakemonster(Actor *, f32 *, f32 *, s32);
+    extern s32 D_80802174_chlakemonster[][2];
+    extern s32 D_80802178_chlakemonster[][2];
+    LakeData *sp3C;
+    f32 sp30[3];
+    f32 sp24[3];
+    s32 sp20;
+
+    sp3C = func_80100094(arg0, 0);
+    sp20 = func_800DC128(4, 7);
+    func_800DBEFC(arg0->unk0->unk4, D_80802174_chlakemonster[sp20][0], sp30);
+    func_800DBEFC(arg0->unk0->unk4, D_80802178_chlakemonster[sp20][0], sp24);
+    if (sp3C->unk3F != 0) {
+        func_800EF04C(sp30, sp3C->unkC);
+        func_800EF04C(sp24, sp3C->unkC);
+    }
+    func_80800090_chlakemonster(arg0, sp30, sp24, func_800DC128(1, 3) + sp3C->unk3E);
+}
 
 s32 func_80800724_chlakemonster(Actor *arg0) {
     s32 _dbmorph_entrypoint_3(u8 *, u8 *, s32, u8, u8 *);

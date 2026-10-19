@@ -14,7 +14,38 @@ OSThread *chghostdoor_entrypoint_1(void)
     return (OSThread *) D_80800268_chghostdoor;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/ghostdoor/func_80800018_chghostdoor.s")
+/* extern */
+
+void func_80800018_chghostdoor(Actor *arg0) {
+    s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    void _chdoormake_entrypoint_6(Actor *, f32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    void func_800EFD24(f32 *);
+    void func_800FFAB0(Actor *);
+    void func_80103014(Actor *);
+    f32 var_f0;
+    s32 var_v0;
+
+    var_f0 = arg0->rotation[1];
+    var_v0 = 0;
+    if (arg0->unk74_7 == 0x32) {
+        var_v0 = 1;
+        var_f0 += 180.0f;
+    }
+    func_800EFD24(arg0->position);
+    func_80103014(arg0);
+    if (_chdoormake_entrypoint_3(arg0, var_f0, 0.0f, 650.0f, 0x20, 0x96) != 0) {
+        _chdoormake_entrypoint_5(arg0, 3.5f);
+        _chdoormake_entrypoint_6(arg0, 2.0f);
+        if (var_v0 != 0) {
+            _chdoormake_entrypoint_8(arg0, 0xF);
+        }
+    }
+    if (func_800DA298(FLAG_096_STATION_UNLOCKED_WW) != 0) {
+        func_800FFAB0(arg0);
+    }
+}
 
 s32 func_808000F4_chghostdoor(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _chdoor_entrypoint_1(s32, s32, s32);

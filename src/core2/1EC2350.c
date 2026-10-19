@@ -154,7 +154,28 @@ void func_800E8E3C(u8 *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0xC))) = func_800F3780((*(f32 *)((s8 *)(arg0) + (4))), arg0 + 0x10, (*(s16 *)((s8 *)(arg0) + (2))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E8E70.s")
+void func_800E8E70(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
+    void *func_80012EE8(void);
+    void *func_80012EF4(void);
+    void *func_80012F60(void);
+    void *func_80012F6C(void);
+    s32 pad;
+    OSIoMesg *sp30;
+
+    if (arg3 == 0) {
+        osWritebackDCache((void *)arg0, arg2);
+        sp30 = func_80012F6C();
+        osPiStartDma(sp30, 1, 0, (u32)arg1, (void *)arg0, (u32) arg2, func_80012F60());
+        osRecvMesg(func_80012F60(), NULL, 1);
+        osInvalDCache((void *)arg0, arg2);
+        return;
+    }
+    osWritebackDCache((void *)arg0, arg2);
+    sp30 = func_80012EF4();
+    osPiStartDma(sp30, 1, 0, (u32)arg1, (void *)arg0, (u32) arg2, func_80012EE8());
+    osRecvMesg(func_80012EE8(), NULL, 1);
+    osInvalDCache((void *)arg0, arg2);
+}
 
 u8 *func_800E8F68(u8 *arg0) {
     if ((*(s32 *)((s8 *)(arg0) + (0x24))) != (*(s32 *)((s8 *)(arg0) + (0x20)))) {

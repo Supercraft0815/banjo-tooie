@@ -102,7 +102,35 @@ void func_808001C8_sucoasterhit(Unk80132ED0 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/hit/func_80800208_sucoasterhit.s")
+/* extern */
+
+s32 func_80800208_sucoasterhit(s32 arg0, void *arg1, s32 arg2, s32 *arg3, s32 *arg4) {
+    s32 func_800F0E28(s32, s32, ...);
+    struct HitData {
+        u8 padding[0x24];
+        u32 id : 10;
+        u32 lower : 22;
+    };
+    s32 temp_a1;
+    s32 temp_v1;
+    int temp_a2;
+
+    temp_v1 = ((struct HitData *)arg1)->id ^ 0x27D;
+    temp_a2 = ((struct HitData *)arg1)->id == 0;
+    if (temp_v1 == 0) {
+        *arg3 *= 2;
+        return 7;
+    }
+    if (*arg4 == 0) {
+        temp_a1 = *arg3;
+        if ((temp_a1 != 0) || (temp_a2 != 0)) {
+            *arg3 = func_800F0E28(1, temp_a1, temp_a2);
+        } else {
+            *arg3 = 0;
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/hit/func_80800294_sucoasterhit.s")
 

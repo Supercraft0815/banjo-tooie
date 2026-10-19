@@ -163,7 +163,28 @@ void func_80800A78_chfiregen(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_80800B4C_chfiregen.s")
+void func_80800B4C_chfiregen(Actor *arg0, s32 arg1) {
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800DBEFC(void *, s32, f32[3]);
+    int func_800DC298(f32);
+    extern s32 D_80801784_chfiregen[];
+    s32 sp34;
+    f32 sp28[3];
+    s32 var_a1;
+
+    if (arg0->unk7C_12) {
+        func_800DBEFC(arg0->unk0->unk4, 4, sp28);
+        sp28[1] -= 100.0f;
+        sp34 = func_800B53A4(arg1);
+        var_a1 = func_800DC298(0.7f) ? 0x9DC : 0x9CA;
+        func_800BA3FC(sp34, var_a1);
+        func_800BABB8(sp34, sp28, 0, 1.0f, D_80801784_chfiregen);
+        func_800BA22C(sp34, arg1);
+    }
+}
 
 OSThread *chfiregen_entrypoint_6(void)
 {

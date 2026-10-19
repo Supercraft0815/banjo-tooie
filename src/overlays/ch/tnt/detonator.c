@@ -55,7 +55,34 @@ void func_80800054_chtntdetonator(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/detonator/func_80800148_chtntdetonator.s")
+/* extern */
+
+void func_80800148_chtntdetonator(Actor *arg0, void *arg1) {
+    s32 func_800D674C(s32);
+    void func_800DBEFC(void *, s32, void *);
+    void func_800E24D8(s32);
+    void func_800E2588(u32);
+    void func_800E2AA4(void *, s32, s32, s32, void *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_80101870(Actor *, void *);
+    OSThread *func_80104130(void);
+    struct {
+        s32 asset;
+        f32 scale[3];
+    } effect;
+
+    func_80101870(arg0, arg1);
+    if (arg0->unk7C_12) {
+        func_800DBEFC(func_80104130(), 4, arg0->actorData);
+        if (arg0->unk70_10 == 2) {
+            effect.asset = func_800D674C(0x9C6);
+            func_800EFA4C(effect.scale, 0.4f, 0.4f, 0.4f);
+            func_800E2588(1);
+            func_800E24D8(1);
+            func_800E2AA4(arg1, effect.asset, (s32)arg0->unk50, 0, arg0->actorData, effect.scale);
+        }
+    }
+}
 
 void func_8080021C_chtntdetonator(Actor *arg0) {
     void func_800904F4(s32, Unk80132ED0 *);

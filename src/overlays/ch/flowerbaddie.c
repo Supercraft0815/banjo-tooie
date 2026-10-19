@@ -60,7 +60,44 @@ void func_808006A0_chflowerbaddie(Actor *arg0) {
     arg0->unk64_20 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flowerbaddie/func_808007F0_chflowerbaddie.s")
+/* extern */
+
+s32 func_808007F0_chflowerbaddie(Actor *arg0) {
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    Unk80132ED0 *_suchase_entrypoint_0(void);
+    s32 func_801072A8(Actor *);
+    s32 func_8010C668(Actor *, f32 *, f32, f32);
+    s32 func_8010C9FC(f32 *, s32, s32, s32);
+    union FlowerBaddieActor {
+        Actor actor;
+        struct {
+            u32 reserved[25];
+            u32 : 2;
+            u32 blocked : 1;
+            u32 : 29;
+        } flags;
+    };
+
+    if (arg0->unk58 > 0.0f) {
+        return 0;
+    }
+    if (((union FlowerBaddieActor *)arg0)->flags.blocked) {
+        return 1;
+    }
+    if (func_801072A8(arg0) != 0) {
+        return 0;
+    }
+    if (_subaddierouteDll_entrypoint_4(arg0) == 0) {
+        return 0;
+    }
+    if (func_8010C9FC(arg0->position, 0x3E8, 0x1F4, -0x32) == 0) {
+        return 0;
+    }
+    if (func_8010C668(arg0, arg0->position, 1000.0f, -200.0f) == 0) {
+        return 0;
+    }
+    return _suchase_entrypoint_0() == arg0->unk0;
+}
 
 /* extern */
 
