@@ -157,7 +157,49 @@ s32 func_80800364_chtimetable(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_80800404_chtimetable.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_808005B8_chtimetable.s")
+s32 func_808005B8_chtimetable(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void func_800C0850(void);
+    s32 func_800EA05C();
+    extern s32 D_808007BC_chtimetable;
+    s32 pad;
+    s32 sp18;
+
+    switch (arg1) {                                 /* switch 1; irregular */
+    case 0x2E:                                      /* switch 1 */
+        arg0->unk74_30 = 0;
+        switch (((s16 *)&arg2)[0]) {                 /* switch 2 */
+        case 0xD06:                                 /* switch 2 */
+            if (((s16 *)&arg2)[1] == 1) {
+                sp18 = func_80800308_chtimetable();
+                func_8080025C_chtimetable((s32) arg0, sp18, func_800EA05C());
+            }
+            break;
+        case 0xCF5:                                 /* switch 2 */
+        case 0xCF6:                                 /* switch 2 */
+        case 0xCF7:                                 /* switch 2 */
+        case 0xCF8:                                 /* switch 2 */
+        case 0xCF9:                                 /* switch 2 */
+        case 0xCFA:                                 /* switch 2 */
+        case 0xCFB:                                 /* switch 2 */
+            sp18 = func_80800308_chtimetable();
+            if (func_8080016C_chtimetable((s32) arg0, sp18, func_800EA05C()) != 0) {
+                func_80800364_chtimetable(arg0, 0xD06, 0x48);
+            } else {
+            case 0xCF4:                             /* switch 2 */
+                func_800C0850();
+            }
+            break;
+        }
+        break;
+    case 0x52:                                      /* switch 1 */
+        _gcdialogcamera_entrypoint_3(&D_808007BC_chtimetable, arg0->scale);
+        return 1;
+    default:                                        /* switch 1 */
+        return 0;
+    }
+    return 1;
+}
 
 OSThread *chtimetable_entrypoint_0(void)
 {
