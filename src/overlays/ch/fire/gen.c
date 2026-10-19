@@ -243,7 +243,38 @@ void func_80800E54_chfiregen(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_80800EB8_chfiregen.s")
+void func_80800EB8_chfiregen(Actor *arg0) {
+    s32 func_800C8E84();
+    void func_800C8800(s32, f32 *);
+    void func_800C8900(s32, s32 *);
+    s32 func_800C9128(f32 *);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EE84C(f32 *, s32 *);
+    void func_800EFA88(void *, s32, s32, s32);
+    s32 light;
+    f32 position[3];
+    s32 color[3];
+
+    ((f32 *)arg0->actorData)[3] = func_800DC178(0.0f, 0.15f);
+    arg0->unk50 = -1.0f;
+    switch (arg0->unk6C_9) {
+        case 0x1AB: arg0->unk6C_0 = 0; break;
+        case 0x1AD: arg0->unk6C_0 = 1; break;
+        case 0x1AF: arg0->unk6C_0 = 2; break;
+        case 0x1B1: arg0->unk6C_0 = 3; break;
+        case 0x1B3: arg0->unk6C_0 = 4; break;
+        case 0x1B5: arg0->unk6C_0 = 5; break;
+    }
+    light = func_800C9128(arg0->position);
+    arg0->unk50 = light;
+    func_800C8800(light, position);
+    func_800EE7F8((f32 *)arg0->actorData, position);
+    func_800C8900(light, color);
+    func_800EE84C((f32 *)arg0->actorData, color);
+    func_800EFA88(color, 0, 0, 0);
+    func_800C8E84((s32)arg0->unk50, color);
+}
 
 OSThread *chfiregen_entrypoint_12(void)
 {
