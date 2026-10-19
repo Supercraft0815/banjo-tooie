@@ -156,7 +156,19 @@ void badust_entrypoint_9(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/badust_entrypoint_10.s")
+/* extern */
+
+void badust_entrypoint_10(PlayerState *arg0, f32 arg1) {
+    f32 func_800136E4(f32);
+    f32 var_f20;
+
+    for (var_f20 = 0.0f; var_f20 < 359.0f; var_f20 += 60.0f) {
+        badust_entrypoint_6(arg0, arg1, var_f20, 730.0f, 100.0f);
+    }
+    for (var_f20 = 0.0f; var_f20 < 359.0f; var_f20 += 60.0f) {
+        badust_entrypoint_6(arg0, arg1, func_800136E4(var_f20 + 30.0f), 430.0f, 40.0f);
+    }
+}
 
 /* extern */
 
