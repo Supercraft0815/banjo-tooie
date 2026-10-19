@@ -1,6 +1,50 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/sect/subaddiesect_entrypoint_0.s")
+/* extern */
+
+s32 subaddiesect_entrypoint_0(Actor *arg0, s32 arg1, s32 arg2) {
+    struct SectFlags {
+        u8 pad0[0x70];
+        u32 pad70_4 : 28;
+        u32 unk70_3 : 1;
+        u32 pad70_0 : 3;
+    };
+    s32 _gcmapsects_entrypoint_5(s32);
+    s32 _subaddiefade_entrypoint_2();
+    void func_8010381C(Actor *);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    void func_8010A624(Actor *);
+    void func_8010A63C(Actor *);
+    if (_gcmapsects_entrypoint_5(arg1) == 0) {
+        if ((arg2 & 1) && ((struct SectFlags *)arg0)->unk70_3) {
+            func_8010381C(arg0);
+        }
+        if (arg2 & 2) {
+            func_8010A570(arg0);
+        }
+        if (arg2 & 4) {
+            func_8010A624(arg0);
+        }
+        if (arg2 & 8) {
+            arg0->unk64_16 = 0;
+        }
+        return 0;
+    }
+    if (arg2 & 2) {
+        func_8010A590(arg0);
+    }
+    if (arg2 & 4) {
+        func_8010A63C(arg0);
+    }
+    if (arg2 & 8) {
+        if ((arg2 & 0x10) && !arg0->unk64_16) {
+            _subaddiefade_entrypoint_2(arg0);
+        }
+        arg0->unk64_16 = 1;
+    }
+    return 1;
+}
 
 /* extern */
 
