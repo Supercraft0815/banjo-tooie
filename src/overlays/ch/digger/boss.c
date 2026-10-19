@@ -1793,7 +1793,37 @@ u8 func_80806F10_chdiggerboss(Actor *arg0, u8 arg1) {
     return *handle;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80806F8C_chdiggerboss.s")
+void func_80806F8C_chdiggerboss(Actor *arg0) {
+    void _chbaddiesetup_entrypoint_10(void);
+    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    void _chbounce_entrypoint_3(f32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    f32 func_800DC178(f32, f32);
+    s32 func_800F1E6C(f32 *, f32 *, f32 *);
+    f32 func_800F2094(f32, f32);
+    extern f32 D_8080A134_chdiggerboss[];
+    extern s32 D_8080A120_chdiggerboss;
+    f32 position[3];
+    f32 zero = 0.0f;
+    f32 yaw;
+    f32 target_yaw;
+    Actor *child;
+
+    child = func_80802228_chdiggerboss(arg0);
+    func_80802298_chdiggerboss((u8 *)arg0, (u8 *)position);
+    if (!func_800F1E6C(position, D_8080A134_chdiggerboss, &target_yaw)) {
+        target_yaw = 0.0f;
+    }
+    if (func_800F2094(child->rotation[1] + 90.0f, target_yaw) < func_800F2094(child->rotation[1] - 90.0f, target_yaw)) {
+        yaw = child->rotation[1] + 90.0f;
+    } else {
+        yaw = child->rotation[1] - 90.0f;
+    }
+    _chbounce_entrypoint_3(func_800DC178(-30.0f, 30.0f) + yaw);
+    _chbaddiesetup_entrypoint_5(_chbaddiesetup_entrypoint_10, 0x21,
+        *(s32 *)&position[0], *(s32 *)&position[1], *(s32 *)&position[2], *(s32 *)&zero);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_8080A120_chdiggerboss);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808070B0_chdiggerboss.s")
 
