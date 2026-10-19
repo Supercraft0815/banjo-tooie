@@ -38,7 +38,33 @@ void func_80800078_chexploder(void **arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_808000C0_chexploder.s")
+s32 func_808000C0_chexploder(Actor *arg0, s32 arg1, volatile s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void *func_80101080(void);
+    void func_801018A4(Actor *, s32);
+    s32 func_80103140(Actor *, u32, u16);
+    void func_80800154_chexploder(Actor *, s32);
+    struct {
+        u8 pad0[0x14];
+        u16 unk14, unk16;
+    } *data;
+
+    switch (arg1) {
+        case 0xAB:
+            func_801018A4(arg0, func_80101080());
+            break;
+        case 0x1F:
+            func_80800154_chexploder(arg0, arg2);
+            break;
+        case 0x95:
+            data = func_80100094(arg0, 0);
+            func_80103140(arg0, data->unk14, data->unk16);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_80800154_chexploder.s")
 
@@ -302,7 +328,7 @@ void chexploder_entrypoint_15(Actor *arg0, s32 arg1, f32 arg2) {
 
 void chexploder_entrypoint_16(Actor *arg0, s32 arg1) {
     void* func_80100094(Actor*, u32);
-    void func_80103140(Actor*, u32, u16);
+    s32 func_80103140(Actor*, u32, u16);
     struct { u8 pad[0x14]; u16 id; u16 next; } *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
