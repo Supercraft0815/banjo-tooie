@@ -360,7 +360,48 @@ s32 bsbansack_entrypoint_3(s32 arg0) {
     return ((s32 *)&D_80801E40_bsbansack)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_8080101C_bsbansack.s")
+void func_8080101C_bsbansack(PlayerState *arg0, s32 arg1) {
+    void _batimer_set(PlayerState *, s32, f32);
+    f32 func_80092BE8(PlayerState *);
+    void func_800931AC(PlayerState *, s32);
+    void func_8009328C(PlayerState *, f32);
+    f32 func_800F1DCC(f32, f32);
+    void yaw_applyIdeal(PlayerState *);
+    f32 yaw_get(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+    f32 angle;
+    f32 difference;
+
+    switch (arg1) {
+    case 0:
+        yaw_setIdeal(arg0, *(f32 *)((u8 *)arg0 + 0x174));
+        yaw_applyIdeal(arg0);
+        func_800931AC(arg0, 1);
+        break;
+    case 1:
+        angle = yaw_get(arg0);
+        *(f32 *)((u8 *)arg0 + 0x174) = angle;
+        func_8009328C(arg0, angle);
+        func_800931AC(arg0, 3);
+        _batimer_set(arg0, 0, 1.2f);
+        break;
+    case 2:
+        angle = func_80092BE8(arg0);
+        *(f32 *)((u8 *)arg0 + 0x170) = angle;
+        angle = func_800F1DCC(*(f32 *)((u8 *)arg0 + 0x174), angle);
+        difference = angle;
+        if (angle < 0.0f) {
+            difference = 360.0f + angle;
+        }
+        if (difference < 180.0f) {
+            difference += 360.0f;
+        }
+        *(f32 *)((u8 *)arg0 + 0x174) = *(f32 *)((u8 *)arg0 + 0x170) + difference;
+        _batimer_set(arg0, 0, 0.5f);
+        break;
+    }
+    *(s8 *)((u8 *)arg0 + 0x15C) = arg1;
+}
 
 void func_80801158_bsbansack(s32 arg0)
 {
