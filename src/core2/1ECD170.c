@@ -83,7 +83,40 @@ void func_800F3E84(s32 arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F3ED0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F40EC.s")
+s32 func_800F40EC(PlayerState *arg0) {
+    s32 _bsjump_entrypoint_16(PlayerState *);
+    s32 bs_getCurrentState(PlayerState *);
+    f32 func_80096364(PlayerState *);
+    f32 func_800964DC(PlayerState *);
+    s32 func_80096544(PlayerState *);
+    s32 func_8009CA70(PlayerState *, s32, s32);
+    int func_800A3274(PlayerState *);
+    s32 sp24;
+    f32 sp20;
+
+    sp24 = bs_getCurrentState(arg0);
+    if (func_800A3274(arg0) == 0xC) {
+        if (func_80096544(arg0) == 0) {
+            return 0;
+        }
+        sp20 = func_800964DC(arg0);
+        if (sp20 - func_80096364(arg0) < 50.0f) {
+            return 0;
+        }
+    }
+    if (func_8009CA70(arg0, sp24, 1) || func_8009CA70(arg0, sp24, 0x40000)) {
+        return 1;
+    }
+    if (sp24 == 5) {
+        if (_bsjump_entrypoint_16(arg0)) {
+            return 1;
+        }
+        return 0;
+    } else if (func_8009CA70(arg0, sp24, 2)) {
+        return 2;
+    }
+    return 0;
+}
 
 void func_800F4200(u8 *arg0, f32 *arg1) {
     int func_8009C128(void *, f32[3]);
