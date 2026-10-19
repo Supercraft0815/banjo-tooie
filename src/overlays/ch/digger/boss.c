@@ -1740,7 +1740,31 @@ void func_80807698_chdiggerboss(Actor *arg0, s32 arg1) {
     } while (i != 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80807754_chdiggerboss.s")
+void func_80807754_chdiggerboss(Actor *arg0, s32 arg1, f32 arg2) {
+    void *func_80100094(Actor *, u32);
+    s32 func_80803BE8_chdiggerboss(s32, s32, s32);
+    void func_808041E4_chdiggerboss(Actor *, s32);
+    Actor *child;
+    s32 i;
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    child = func_80802228_chdiggerboss(arg0);
+    *(f32 *)(data + 0x98) = arg2;
+    *(f32 *)(data + 0x9C) = 2.0f;
+    data[0xA3] = 1;
+    data[0xA2] = 0;
+    i = 0;
+    do {
+        if (func_80805798_chdiggerboss((s32)child, i) != 0) {
+            data[0xA2] |= 1 << i;
+        }
+        i++;
+    } while (i != 4);
+    func_808027F4_chdiggerboss((s32)arg0);
+    func_80803BE8_chdiggerboss((s32)arg0, arg1, 1);
+    func_808041E4_chdiggerboss(func_80802228_chdiggerboss(arg0), 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_8080783C_chdiggerboss.s")
 
