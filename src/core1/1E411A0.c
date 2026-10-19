@@ -273,7 +273,39 @@ void func_8002A150(register void *arg0, register s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_8002A318.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_8002A6A4.s")
+s32 func_8002A6A4(void *arg0, void *arg1) {
+    void func_80020E40(ALLink *, ALLink *);
+    void func_80020E74(ALLink *);
+    ALLink *sp24;
+    ALLink *sp20;
+    s16 sp1E;
+
+    sp24 = *(ALLink **)((u8 *)arg0 + 0x50);
+    if (sp24 != NULL) {
+        do {
+            sp20 = sp24->next;
+            sp1E = *(s16 *)((u8 *)sp24 + 0xC);
+            if ((sp1E == 0x16 || sp1E == 0x17) &&
+                *(void **)((u8 *)sp24 + 0x10) == arg1) {
+                (*(void (**)(s32))((u8 *)arg0 + 0x78))(*(s32 *)((u8 *)sp24 + 0x14));
+                func_80020E74(sp24);
+                if (sp20 != NULL) {
+                    *(s32 *)((u8 *)sp20 + 8) += *(s32 *)((u8 *)sp24 + 8);
+                }
+                func_80020E40(sp24, (ALLink *)((u8 *)arg0 + 0x48));
+                if (sp1E == 0x16) {
+                    ((u8 *)arg1)[0x3B] &= 0xFE;
+                } else {
+                    ((u8 *)arg1)[0x3B] &= 0xFD;
+                }
+                if (((u8 *)arg1)[0x3B] == 0) {
+                    return;
+                }
+            }
+            sp24 = sp20;
+        } while (sp24 != NULL);
+    }
+}
 
 typedef struct { ALPlayer *players; ALLink list; u8 padC[8]; ALLink *head; u8 pad18[8]; s32 curSamples; u8 pad24[8]; ALLink *free; u8 pad30[0x10]; s32 unk40; } PoolFreeList;
 void func_8002A7E0(void *arg0, f32 arg1) {
