@@ -22,7 +22,55 @@ void func_80800034_chskeletonexplode(void **arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_8080007C_chskeletonexplode.s")
+void func_8080007C_chskeletonexplode(Actor *arg0, f32 arg1[3]) {
+    void *func_80100094(Actor *, u32);
+    f32 func_800D8FF8(void);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    extern u8 D_80801090_chskeletonexplode[];
+    extern u8 D_808010A8_chskeletonexplode[];
+    extern u8 D_808010C0_chskeletonexplode[];
+    extern u8 D_808010D8_chskeletonexplode[];
+    extern u8 D_808010F0_chskeletonexplode[];
+    extern u8 D_80801108_chskeletonexplode[];
+    extern u8 D_80801120_chskeletonexplode[];
+    struct SkeletonExplodeData {
+        f32 timer;
+        u8 pad4[0xF0];
+        u8 sound;
+    } *data;
+
+    data = func_80100094(arg0, 1U);
+    if (data->timer > 0.0f) {
+        data->timer -= func_800D8FF8();
+        return;
+    }
+    switch (data->sound) {
+        case 0:
+            break;
+        case 1:
+            _subaddieaudioquick_entrypoint_2(arg0, arg1, D_80801090_chskeletonexplode);
+            break;
+        case 2:
+            _subaddieaudioquick_entrypoint_2(arg0, arg1, D_808010A8_chskeletonexplode);
+            break;
+        case 3:
+            _subaddieaudioquick_entrypoint_2(arg0, arg1, D_808010C0_chskeletonexplode);
+            break;
+        case 4:
+            _subaddieaudioquick_entrypoint_2(arg0, arg1, D_808010D8_chskeletonexplode);
+            break;
+        case 5:
+            _subaddieaudioquick_entrypoint_2(arg0, arg1, D_808010F0_chskeletonexplode);
+            break;
+        case 6:
+            _subaddieaudioquick_entrypoint_2(arg0, arg1, D_80801108_chskeletonexplode);
+            break;
+        case 7:
+            _subaddieaudioquick_entrypoint_2(arg0, arg1, D_80801120_chskeletonexplode);
+            break;
+    }
+    data->timer = 0.25f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_808001BC_chskeletonexplode.s")
 
