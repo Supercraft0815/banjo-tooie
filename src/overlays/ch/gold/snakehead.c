@@ -63,7 +63,38 @@ void func_80800024_chgoldsnakehead(Actor *arg0) {
     func_800DA7A8(6, 0, 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/snakehead/func_8080015C_chgoldsnakehead.s")
+void func_8080015C_chgoldsnakehead(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    f32 func_800D8FF8(void);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    void func_800FC63C(u32, u32);
+    s32 func_80101FDC();
+    void func_80102B2C(Actor *, f32);
+    void func_80102B6C(u8 *, f32);
+    extern u8 D_808004F0_chgoldsnakehead[];
+
+    switch (arg0->unk70_10) {
+    case 2:
+        func_800FC63C(0xE, 0x7FBC);
+        func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808004F0_chgoldsnakehead);
+        func_80101FDC(arg0, 3);
+    case 3:
+        arg0->unk50 = func_800DC178(-10.0f, 10.0f);
+        arg0->unk54 = func_800DC178(-15.0f, 15.0f);
+        func_80102B2C(arg0, 5.0f);
+        func_80102B6C((u8 *)arg0, 5.0f);
+        func_800EF214(arg0->position, arg0->rotation[0], arg0->rotation[1] + 90.0f, func_800DC178(50.0f, 250.0f) * func_800D8FF8());
+        if (((f32 *)arg0->actorData)[0] + 125.0f < arg0->position[0]) {
+            _subaddiefade_entrypoint_3(arg0);
+        }
+    case 1:
+        return;
+    }
+}
 
 void func_808002B4_chgoldsnakehead(Actor *arg0, u8 *arg1) { void func_800DF744(s32, s32); void func_80101870(Actor*, void*); func_800DF744(1, ((u32) (arg0->unk0->unk28 << 0x12) >> 0x1F) ? 0 : 1); func_800DF744(2, (s32) ((u32) (arg0->unk0->unk28 << 0x12) >> 0x1F)); func_80101870(arg0, arg1); }
 
