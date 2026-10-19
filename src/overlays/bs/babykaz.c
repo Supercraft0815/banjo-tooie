@@ -361,7 +361,46 @@ void func_80800E0C_bsbabykaz(struct player_state_s *arg0) {
     baroll_setAngularVelocity(arg0, 1000.0f, 12.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80800EC8_bsbabykaz.s")
+void func_80800EC8_bsbabykaz(struct player_state_s *arg0) {
+    s32 _badrone_entrypoint_25(s32);
+    int baanim_isAt(struct player_state_s *, f32);
+    int bakey_pressed(struct player_state_s *, int);
+    int bastick_getZone(struct player_state_s *);
+    s32 bs_setState(s32, s32);
+    int func_8008DD04(struct player_state_s *);
+    int func_8008E148(s32);
+    s32 func_8009BCD4(struct player_state_s *, f32);
+    void func_8009D2F0(struct player_state_s *, s32, f32);
+    void func_8009DBB0(struct player_state_s *, s32, f32, f32, s32);
+    s32 sp2C;
+
+    sp2C = 0;
+    bsbabykaz_entrypoint_5(arg0);
+    func_8009D2F0(arg0, 0, 0.5f);
+    if (baanim_isAt(arg0, 0.47f) != 0) {
+        func_8009DBB0(arg0, 0x555, 1.25f, 1.35f, 0x2710);
+    }
+    if (baanim_isAt(arg0, 0.97f) != 0) {
+        func_8009DBB0(arg0, 0x556, 1.25f, 1.35f, 0x2710);
+    }
+    func_80800134_bsbabykaz(arg0);
+    if ((bastick_getZone(arg0) == 0) && (func_8009BCD4(arg0, 3.0f) != 0)) {
+        sp2C = 0x136;
+    }
+    if (func_8008E148(arg0) != 0) {
+        sp2C = _badrone_entrypoint_25(arg0);
+    }
+    if (func_8008DD04(arg0) != 0) {
+        sp2C = 0x133;
+    }
+    if (bakey_pressed(arg0, 8) != 0) {
+        sp2C = 0x134;
+    }
+    if (func_808000F8_bsbabykaz(arg0) != 0) {
+        sp2C = 0x94;
+    }
+    bs_setState(arg0, sp2C);
+}
 
 s32 bsbabykaz_entrypoint_10(s32 arg0) {
     extern s32 D_80801780_bsbabykaz[];
