@@ -449,7 +449,41 @@ void func_80801A8C_chfpsgame(Actor *arg0, f32 arg1) {
 
 s32 func_80801ADC_chfpsgame(Actor *arg0) { void *func_80100094(Actor *, u32); s32 var_v1; void *temp_v0; temp_v0 = func_80100094(arg0, 0U); var_v1 = ((*(f32 *)((s8 *)temp_v0 + 0x55C)) != 0.0f) && ((*(f32 *)((s8 *)temp_v0 + 0x560)) == 0.0f) ? 1 : 0; return var_v1; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80801B30_chfpsgame.s")
+void func_80801B30_chfpsgame(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void _fxdialog_entrypoint_1(s32, s32);
+    void _fxdialog_entrypoint_2(f32);
+    void _fxdialog_entrypoint_4(s32, s32, s32, f32, f32, s32, s32);
+    void func_800B7F14(Gfx **);
+    void func_800B811C(Gfx **);
+    void func_800B8C50(void);
+    void func_800B8C8C(s32);
+    void func_800B8C98(s32);
+    void func_800B8CBC(u8, u8, u8);
+    s32 func_800B8E28(Gfx **, s32, s32, char *);
+    char text[8];
+    f32 scaled;
+    f32 fraction;
+    f32 phase;
+    u8 *data;
+
+    data = func_80100094(arg0, 0U);
+    if (data[0x558] != 0) {
+        phase = *(f32 *)(data + 0x560) * 0.5f;
+        phase -= (s32)phase;
+        _fxdialog_entrypoint_1(0x8F, 0x72);
+        _fxdialog_entrypoint_2(0.75f);
+        _fxdialog_entrypoint_4(arg1, 0xB4F, (s32)(phase * 20.0f), 0.0f, 0.0f, data[0x559], 0);
+        func_800B8C50();
+        func_800B8C8C(data[0x559]);
+        func_800B8C98(3);
+        func_800B8CBC(255, 255, 255);
+        func_800B7F14((Gfx **)arg1);
+        sprintf(text, "%d:%02d", data[0x55A], data[0x55B]);
+        func_800B8E28((Gfx **)arg1, 0x99, 0x72, text);
+        func_800B811C((Gfx **)arg1);
+    }
+}
 
 void func_80801C5C_chfpsgame(Actor *arg0) {
     void* func_80100094(Actor*, u32);
