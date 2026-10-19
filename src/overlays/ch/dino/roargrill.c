@@ -37,7 +37,40 @@ void func_80800028_chdinoroargrill(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/roargrill/func_80800124_chdinoroargrill.s")
+s32 func_80800124_chdinoroargrill(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800DA544(GameFlag);
+    void func_800FC63C(u32, u32);
+    void func_800FFAB0(Actor *);
+    extern u8 D_80800250_chdinoroargrill[];
+
+    switch (arg1) {
+        case 0xB:
+            if (arg2 == 0x4C) {
+                func_800DA544(0xA22);
+                func_800FFAB0(arg0);
+            }
+            return 3;
+        case 0x1D:
+        case 0x1E:
+            if (D_80800250_chdinoroargrill[(s32)*(f32 *)&arg0->actorData[4]] != 0) {
+                if (arg1 == D_80800250_chdinoroargrill[(s32)*(f32 *)&arg0->actorData[4]]) {
+                    *(f32 *)&arg0->actorData[4] += 1.0f;
+                    if (D_80800250_chdinoroargrill[(s32)*(f32 *)&arg0->actorData[4]] == 0) {
+                        func_800FC63C(0x10, -1);
+                        return 1;
+                    }
+                } else {
+                    *(f32 *)&arg0->actorData[4] = 0.0f;
+                }
+            }
+            return 1;
+        case 0x95:
+            arg0->unk79_2 = 0;
+            return 1;
+        default:
+            return 0;
+    }
+}
 
 OSThread *chdinoroargrill_entrypoint_0(void)
 {
