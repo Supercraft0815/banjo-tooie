@@ -4259,7 +4259,7 @@ void func_80809DD0_bsfirstp(void *arg0) {
 
 /* extern */
 
-void func_80809EF8_bsfirstp(f32 *arg0, f32 *arg1, f32 *arg2) {
+s32 *func_80809EF8_bsfirstp(f32 *arg0, f32 *arg1, f32 *arg2) {
     s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
     void func_800EE7F8(f32 *, f32 *);
     f32 sp1C[3];
@@ -4309,7 +4309,65 @@ void func_80809F74_bsfirstp(struct player_state_s *arg0) {
     (*(s32 *)((s8 *)(temp_v0_2) + (0x18))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080A03C_bsfirstp.s")
+int func_8080A03C_bsfirstp(void *arg0) {
+    f32 func_80013728(f32);
+    f32 func_80013788(void);
+    f32 func_800137F4(f32);
+    f32 func_80013B7C(f32, f32);
+    void func_800EE7B4(f32[3], f32[3], f32[3], f32);
+    f32 func_800EEFFC(void *);
+    f32 func_800EF030(void *);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800F0DC0(f32, f32);
+    void func_800F3BB0(struct player_state_s *, f32[3]);
+    f32 yaw_get(struct player_state_s *);
+    void *sp6C[1];
+    f32 sp5C[4];
+    f32 sp50[3];
+    f32 sp4C;
+    s32 *hit;
+    s32 sp44;
+    f32 sp38[3];
+    register f32 *start;
+    register void *state;
+
+    sp6C[0] = *(void **)((u8 *)arg0 + 0x188);
+    func_800F3BB0(arg0, sp5C);
+    state = sp6C[0];
+    sp4C = *(f32 *)((u8 *)state + 0x29C);
+    state = (u8 *)state + 0x254;
+    sp50[0] = func_800137F4(yaw_get(arg0));
+    sp50[1] = 0.0f;
+    sp50[2] = func_80013788();
+    hit = (s32 *)((u8 *)state + 0x2C);
+    sp44 = (s32)((u8 *)state + 0x38);
+    start = (f32 *)((u8 *)state + 0x20);
+    func_800EE7B4(start, sp5C, sp50, sp4C);
+    hit = func_80809EF8_bsfirstp(start, (f32 *)hit, (f32 *)sp44);
+    if (hit != 0) {
+        sp44 = hit[2] & 0x10000000;
+        *(s32 *)((u8 *)state + 0x14) = 1;
+        if (func_800EF030((f32 *)((u8 *)state + 0x38)) > 0.01f) {
+            if (sp44 != 0) {
+                *(s32 *)((u8 *)state + 0x50) = 3;
+            } else {
+                *(s32 *)((u8 *)state + 0x50) = 1;
+            }
+        } else if (sp44 != 0) {
+            *(s32 *)((u8 *)state + 0x50) = 2;
+        } else {
+            *(s32 *)((u8 *)state + 0x50) = 0;
+        }
+    } else {
+        *(s32 *)((u8 *)state + 0x14) = 0;
+        *(s32 *)((u8 *)state + 0x50) = 0;
+    }
+    func_800EFB24(sp38, (f32 *)((u8 *)state + 0x2C), sp5C);
+    sp4C = func_800EEFFC(sp38);
+    sp4C = func_80013B7C(sp38[1], sp4C);
+    sp4C = func_80013728(sp4C);
+    *(f32 *)((u8 *)state + 0x44) = func_800F0DC0(sp4C, 30.0f);
+}
 
 void func_8080A194_bsfirstp(void *arg0) {
     int temp_a0;
