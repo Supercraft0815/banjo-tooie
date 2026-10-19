@@ -1419,7 +1419,34 @@ void func_80805B8C_chdiggerboss(Actor *arg0, f32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80805C1C_chdiggerboss.s")
+void func_80805C1C_chdiggerboss(Actor *arg0, s32 arg1, f32 *arg2, f32 arg3) {
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF934(f32[3], f32[3], f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    extern s32 D_8080A0B4_chdiggerboss[];
+    f32 sp44[3];
+    f32 sp38[3];
+    s32 sp34;
+    Actor *sp30;
+
+    if (func_800DC298(0.2f) != 0) {
+        sp30 = func_80802228_chdiggerboss(arg0);
+        func_800EFA4C(sp44, func_800DC178(10.0f, 15.0f), sp30->rotation[1] + arg3, 0.0f);
+        sp44[1] += func_800DC178(-25.0f, 25.0f);
+        func_800EF934(sp38, arg2, sp30->rotation[1]);
+        func_800EF04C(sp38, sp30->position);
+        sp34 = func_800B53A4(1);
+        func_800BABB8(sp34, sp38, 0, 1.0f, D_8080A0B4_chdiggerboss);
+        func_800BA994(sp34, (s16)sp44[0], (s16)sp44[1], 250, (s16)sp44[0], (s16)sp44[1], 400);
+        func_800BA22C(sp34, 1);
+    }
+}
 
 void func_80805D64_chdiggerboss(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
