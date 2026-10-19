@@ -501,7 +501,42 @@ void func_8080112C_chclinker(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_808011A8_chclinker.s")
+s32 func_808011A8_chclinker(Actor *arg0, s32 arg1, u32 arg2) {
+    void _capod_entrypoint_14(void);
+    s32 func_800D0A9C(u32, u32);
+    u32 func_800F54E4(void);
+    s32 func_800F7F98(s32, u32);
+    void func_80101FDC(Actor *, u32);
+
+    switch (arg1) {
+    case 0x49:
+        func_8080100C_chclinker(arg0, arg2);
+        return 1;
+    case 0xB:
+        if (arg0->unk70_10 == 4) {
+            func_800F7F98(func_800F54E4(), 0);
+            func_800F7B9C(func_800F54E4(), 0x73);
+            func_80101FDC(arg0, 1);
+            if (func_800D0A9C(0x35, 1) == 0) {
+                func_80800BDC_chclinker(arg0, 0x1373);
+            }
+        }
+        return 3;
+    case 0x2E:
+        func_800F7F98(func_800F54E4(), 0);
+        return 1;
+    case 0x77:
+        if (arg0->unk70_10 == 2) {
+            func_800F7B9C(arg2, 0x73);
+            func_80101FDC(arg0, 1);
+            _capod_entrypoint_14();
+            func_800F7B9C(func_800F54E4(), 0x99);
+            return 1;
+        }
+        break;
+    }
+    return 0;
+}
 
 OSThread *chclinker_entrypoint_2(void)
 {
