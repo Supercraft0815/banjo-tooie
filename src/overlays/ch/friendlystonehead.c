@@ -145,7 +145,50 @@ void func_80800444_chfriendlystonehead(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_80800540_chfriendlystonehead.s")
+s32 func_80800540_chfriendlystonehead(Actor *arg0) {
+    s32 func_800EA05C(void);
+    u32 func_800F54E4(void);
+    s32 func_800F64A4(s32, s32);
+    s32 func_800DA564(s32, s32);
+    s32 func_800DA7A8(s32, s32, s32);
+    s32 func_800DC128(s32, s32);
+    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    extern u16 D_80800908_chfriendlystonehead[][2];
+    extern s32 D_80800998_chfriendlystonehead;
+    extern u16 D_8080099C_chfriendlystonehead;
+    extern u16 D_8080099E_chfriendlystonehead;
+    extern u16 D_808009A4_chfriendlystonehead;
+    u16 text;
+    u16 secondary;
+    s32 index;
+
+    switch (func_800EA05C()) {
+        case 0xBB:
+            func_80800328_chfriendlystonehead(arg0);
+            return 1;
+        case 0x12D:
+            func_80800444_chfriendlystonehead(arg0);
+            return 1;
+    }
+    index = arg0->unk74_7;
+    index--;
+    text = D_80800908_chfriendlystonehead[index][1];
+    if (func_800F64A4(func_800F54E4(), 0x1000)) {
+        secondary = 0xF5A;
+    } else {
+        secondary = D_80800908_chfriendlystonehead[index][0];
+    }
+    if (text == 0xF30) {
+        if (!func_800DA564(0x32B, 2)) {
+            func_800DA7A8(0x32B, func_800DC128(0, 3) + 1, 2);
+        }
+        text += func_800DA564(0x32B, 2) - 1;
+    }
+    D_8080099C_chfriendlystonehead = text;
+    D_808009A4_chfriendlystonehead = secondary;
+    D_8080099E_chfriendlystonehead = text;
+    return _subaddiedialog_entrypoint_7((s32)arg0, (s32)arg0->position, &D_80800998_chfriendlystonehead);
+}
 
 /* extern */
 
