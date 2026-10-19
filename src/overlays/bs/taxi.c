@@ -303,7 +303,49 @@ void bstaxi_entrypoint_8(void *arg0) {
     bainput_enable(arg0, 0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_9.s")
+void bstaxi_entrypoint_9(struct player_state_s *arg0) {
+    void _babackpack_set_state(void *, s32);
+    f32 baanim_getTimer(struct player_state_s *);
+    s32 baanim_isAt(void *, f32);
+    s32 baanim_isStopped(void *);
+    s32 bainput_enable(void *, s32, s32);
+    int bakey_pressed(struct player_state_s *, int);
+    int bakey_released(struct player_state_s *, int);
+    s32 bastick_getZone(struct player_state_s *);
+    s32 bs_setState(void *, s32);
+    void func_8009D3A8(void *, s32);
+    void func_8009DEC0(struct player_state_s *, s32, f32, f32, s32, s32);
+    void func_800A0CD0(void *, s32);
+    s32 sp2C;
+    f32 sp28;
+
+    sp2C = 0;
+    bainput_enable(arg0, 0, 1);
+    if (baanim_isAt(arg0, 0.3f) != 0) {
+        func_8009DEC0(arg0, 0x588, 0.95f, 1.05f, 0x4E20, 0x55F0);
+    }
+    func_8009D3A8(arg0, 0);
+    if (baanim_isAt(arg0, 0.084f) != 0) {
+        _babackpack_set_state(arg0, 3);
+        func_800A0CD0(arg0, 0);
+    }
+    if (baanim_isStopped(arg0) != 0) {
+        sp2C = 0x125;
+    }
+    sp28 = baanim_getTimer(arg0);
+    if (sp28 > 0.6723f) {
+        if (bastick_getZone(arg0) > 0) {
+            sp2C = 0x123;
+        }
+        if (bakey_released(arg0, 1) != 0) {
+            sp2C = 0x127;
+        }
+    }
+    if ((sp28 > 0.2f) && (bakey_pressed(arg0, 9) != 0)) {
+        sp2C = 0x124;
+    }
+    bs_setState(arg0, sp2C);
+}
 
 s32 bstaxi_entrypoint_10(s32 arg0) {
     extern s32 D_80802198_bstaxi[];
