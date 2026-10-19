@@ -141,7 +141,41 @@ s32 func_80800A1C_chtntmineshoot(Actor *arg0) {
     return sp2C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800AD0_chtntmineshoot.s")
+s32 func_80800AD0_chtntmineshoot(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    void func_80800830_chtntmineshoot(Actor *, s32);
+    struct { u8 pad0[0x14]; u8 state; } *data;
+    s32 result;
+
+    data = func_80100094(arg0, 0U);
+    result = 0;
+    switch (data->state) {
+        case 4:
+            break;
+        case 1:
+            result = func_80800A1C_chtntmineshoot(arg0);
+            if (result & 8) {
+                func_80800830_chtntmineshoot(arg0, 3);
+            }
+            break;
+        case 2:
+            *(f32 *)&arg0->actorData[3] *= 0.5f;
+            result = func_80800A1C_chtntmineshoot(arg0);
+            if (result & 8) {
+                func_80800830_chtntmineshoot(arg0, 4);
+            }
+            break;
+        case 3:
+            *(f32 *)&arg0->actorData[3] *= 0.5f;
+            result = func_80800A1C_chtntmineshoot(arg0);
+            if (func_80101DDC(arg0)) {
+                func_80800830_chtntmineshoot(arg0, 4);
+            }
+            break;
+    }
+    return result;
+}
 
 void func_80800BCC_chtntmineshoot(Actor *arg0) {
     void* func_80100094(Actor*, u32);
