@@ -270,7 +270,42 @@ void func_808009E8_chsilo(Actor *volatile arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_80800A40_chsilo.s")
+/* extern */
+
+void func_80800A40_chsilo(Actor *arg0) {
+    s32 func_80090178(AllowedTransformation);
+    f32 func_800D8FF8(void);
+    s32 func_800DA9E4(s32, s32);
+    s32 func_8010CAC0(f32 *, u32);
+    s32 sp1C;
+
+    sp1C = func_80090178(1);
+    if ((func_8010CAC0(arg0->position, 0x1F4) != 0) && (sp1C != 0) && (*(f32 *)&arg0->actorData[3] <= 0.0f)) {
+        switch (arg0->unk70_10) {
+        case 2:
+        case 3:
+        case 7:
+            break;
+        default:
+            if (func_800DA9E4(0x334, 1) == 0) {
+                func_80800104_chsilo(arg0, 0xDA6, 8);
+            }
+            if (arg0->unk6C_0) {
+                func_808004C0_chsilo((u8 *) arg0, 2);
+            }
+        }
+    } else if ((*(f32 *)&arg0->actorData[3] <= 0.0f) || (sp1C == 0)) {
+        switch (arg0->unk70_10) {
+        case 1:
+        case 6:
+            break;
+        default:
+            func_808004C0_chsilo((u8 *) arg0, 6);
+        }
+    } else {
+        *(f32 *)&arg0->actorData[3] -= func_800D8FF8();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_80800B80_chsilo.s")
 
