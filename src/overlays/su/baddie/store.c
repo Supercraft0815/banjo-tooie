@@ -109,7 +109,63 @@ block_6:
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/store/func_808003AC_subaddiestore.s")
+s32 func_808003AC_subaddiestore(s32 *arg0, s32 *arg1) {
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    s32 func_8001B7B8(s16);
+    Actor *actor;
+    s32 i;
+    s32 size;
+    s32 hasParts;
+    s32 count;
+    s32 sp58;
+    s32 otherCount;
+    s32 kind;
+    s16 handle;
+
+    count = 0;
+    otherCount = 0;
+    size = 4;
+    actor = (Actor *)func_801067C4(&sp58);
+    if (actor != NULL) {
+        do {
+            hasParts = 0;
+            kind = func_80800260_subaddiestore((Unk80132ED0 *)actor);
+                switch (kind) {
+                    case 0:
+                        break;
+                    case 1:
+                        size += 0xB0;
+                        if (actor->unk7C_0) {
+                            size += 0x48;
+                        }
+                        if ((actor->pad94 << 2) >> 22) {
+                            size += 0x18;
+                        }
+                        for (i = 0; i != 6; i += 2) {
+                            handle = *(s16 *)((u8 *)&actor->pad80 + i + 2);
+                            if (handle != 0) {
+                                hasParts = 1;
+                                size += func_8001B7B8(handle);
+                            }
+                        }
+                        if (hasParts != 0) {
+                            size += 0xC;
+                        }
+                        count++;
+                        break;
+                    case 2:
+                        size += 4;
+                        otherCount++;
+                        break;
+                }
+            actor = (Actor *)func_8010682C(&sp58);
+        } while (actor != NULL);
+    }
+    *arg0 = count;
+    *arg1 = otherCount;
+    return size;
+}
 
 u8 *func_808004FC_subaddiestore(u8 *arg0, u8 *arg1) {
     typedef struct {

@@ -111,7 +111,7 @@ void *func_8001B798(s16 arg0) {
 
 /* extern */
 
-void func_8001B7B8(s16 arg0) {
+s32 func_8001B7B8(s16 arg0) {
     s32 heap_get_allocation_size(void *);
     heap_get_allocation_size(D_8007BF10[arg0].ptr);
 }
