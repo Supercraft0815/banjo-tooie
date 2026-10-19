@@ -43,7 +43,7 @@ void func_808000C8_chcredits()
     _glcutDll_entrypoint_17();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_808000E8_chcredits.s")
+s32 func_808000E8_chcredits(void) { s32 _gcfrontend_entrypoint_9(s32); extern volatile u8 D_80127610[]; volatile u8 *ptr = D_80127610; switch (ptr[2]) { case 0: switch (ptr[1]) { case 0: func_808000B4_chcredits(1); break; case 1: func_808000C8_chcredits(); break; } break; case 1: _gcfrontend_entrypoint_9(0x85); ptr = D_80127610; switch (ptr[1]) { case 0: func_808000B4_chcredits(2); break; case 2: func_808000C8_chcredits(); break; } break; case 2: switch (ptr[1]) { case 0: func_808000B4_chcredits(1); break; case 1: func_808000B4_chcredits(2); break; case 2: func_808000C8_chcredits(); break; } break; } }
 
 void chcredits_entrypoint_0(s32 arg0) { s32 func_800DA544(s32); s32 func_808000E8_chcredits(); extern s32 D_8012760D; volatile s8 *ptr; ptr = (s8 *)(u32)((s8 *)&D_8012760D + 3); ptr[1] = 0; ptr[2] = arg0; func_808000E8_chcredits(); func_800DA544(0x650); _glcutDll_entrypoint_0(); _glcutDll_entrypoint_7(func_80800000_chcredits(-1)); _glcutDll_entrypoint_22(0x8C); _glcutDll_entrypoint_16(); }
 
