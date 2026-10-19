@@ -2658,7 +2658,57 @@ void func_80806170_bsfirstp(void *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808061AC_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080633C_bsfirstp.s")
+void func_8080633C_bsfirstp(Actor *arg0, f32 arg1) {
+    f32 func_80809938_bsfirstp(void *);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void baphysics_set_target_yaw(struct player_state_s *, f32);
+    f32 func_800F122C(f32, f32, f32);
+    f32 mlAbsF(f32);
+    f32 yaw_get(struct player_state_s *);
+    s32 pad[4];
+    f32 sp34;
+    f32 sp30;
+    f32 sp2C;
+    f32 sp28;
+    f32 temp_f2;
+    f32 var_f0;
+    struct FirstpMotion {
+        f32 value;
+        f32 unused;
+        f32 scale;
+        s32 active;
+    };
+    struct {
+        u8 pad0[0x12C];
+        struct FirstpMotion motion;
+        u8 pad13C[0xC];
+        f32 input;
+        u8 pad14C[0x80];
+        volatile f32 speed;
+        f32 limit;
+    } *temp_s1;
+    u8 *temp_s2;
+    volatile struct FirstpMotion *temp_v0;
+    void *player = arg0;
+
+    temp_s1 = *(void **)((u8 *)arg0 + 0x188);
+    temp_v0 = &temp_s1->motion;
+    temp_s2 = func_80802458_bsfirstp(arg0);
+    sp34 = 1.0f - *(f32 *)(temp_s2 + 0x30) * mlAbsF(func_80809938_bsfirstp(arg0));
+    sp30 = 1.0f - *(f32 *)(temp_s2 + 0x40) * mlAbsF(func_80809938_bsfirstp(arg0));
+    sp28 = func_800F122C(temp_s1->input, *(f32 *)(temp_s2 + 0x28), *(f32 *)(temp_s2 + 0x2C)) * (sp34 * arg1);
+    sp2C = yaw_get(player);
+    baphysics_set_target_horizontal_velocity(player, sp28);
+    baphysics_set_target_yaw(player, sp2C);
+    temp_s1->speed = *(f32 *)(temp_s2 + 0x34) * temp_v0->value;
+    temp_s1->speed = temp_s1->speed * (sp30 * arg1);
+    if (temp_v0->active != 0) {
+        temp_f2 = temp_v0->scale;
+        temp_s1->limit = *(f32 *)(temp_s2 + 0x38) * (temp_f2 > 1.0f ? temp_f2 : 1.0f);
+    } else {
+        temp_s1->limit = *(f32 *)(temp_s2 + 0x3C);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080649C_bsfirstp.s")
 
