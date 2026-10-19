@@ -202,7 +202,41 @@ void func_80800408_chinflatableboss(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80800A98_chinflatableboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80800F84_chinflatableboss.s")
+struct anctrl_s;
+void func_80800F84_chinflatableboss(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    struct anctrl_s *func_80104248(void *);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    s32 func_80801C7C_chinflatableboss(Actor *);
+    void func_80802A00_chinflatableboss(Actor *, u32, u32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void func_8010A570(Actor *);
+    extern s16 D_80802D8C_chinflatableboss;
+    u8 *sp2C;
+
+    sp2C = func_80100094(arg0, 0);
+    func_80102424(arg0, arg1);
+    switch (arg1) {
+        case 11:
+            func_8008B1C8(func_80104248(arg0), 0.8f);
+            sp2C[0x495] = (&D_80802D8C_chinflatableboss)[func_80801C7C_chinflatableboss(arg0)];
+            break;
+        case 13:
+            func_8008B1C8(func_80104248(arg0), 0.8f);
+            *(f32 *)(sp2C + 0x44) = arg0->scale;
+            break;
+        case 14:
+            func_80802A00_chinflatableboss(arg0, 0x2B, 0x30);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x1084, 0x10C, arg0->position, 0x3A);
+            func_8010A570(arg0);
+            func_8008B1C8(func_80104248(arg0), 0.8f);
+            break;
+        case 16:
+            arg0->unk64_16 = 0;
+            break;
+    }
+}
 
 void func_808010BC_chinflatableboss(Actor *arg0, s32 arg1) {
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
