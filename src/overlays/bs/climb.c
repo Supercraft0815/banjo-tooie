@@ -151,7 +151,50 @@ void bsclimb_entrypoint_0(s32 arg0) {
     *(s32 *)(arg0 + 0x15C) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/bsclimb_entrypoint_1.s")
+void bsclimb_entrypoint_1(struct player_state_s *arg0) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    s32 anctrl_isStopped(struct anctrl_s *);
+    void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
+    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    void func_800956B8(struct player_state_s *);
+    f32 func_800D8FF8(void);
+    int bakey_pressed(struct player_state_s *, int);
+    void bs_setState();
+    s32 nextState;
+    struct anctrl_s *anim;
+
+    nextState = 0;
+    anim = baanim_getAnimCtrlPtr(arg0);
+    func_800956B8(arg0);
+    switch (*(s32 *)((u8 *)arg0 + 0x15C)) {
+        case 0:
+            *(f32 *)((u8 *)arg0 + 0x16C) -= func_800D8FF8();
+            if (*(f32 *)((u8 *)arg0 + 0x16C) <= 0.0f) {
+                baanim_playForDuration_onceSmooth(arg0, 0xB1, 2.96f);
+                *(s32 *)((u8 *)arg0 + 0x15C) = 1;
+            }
+            break;
+        case 1:
+            if (anctrl_isStopped(anim)) {
+                baanim_playForDuration_loopSmooth(arg0, 0xB2, 0x4028F5C3);
+                func_80800258_bsclimb(arg0, 3.0f, 4.0f);
+                *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+            }
+            break;
+    }
+    func_8080005C_bsclimb(arg0);
+    if (func_80800298_bsclimb(arg0)) {
+        nextState = 0x50;
+    }
+    if (bakey_pressed(arg0, 8)) {
+        nextState = 5;
+    }
+    if (*(s32 *)((u8 *)arg0 + 0x160) == 0) {
+        nextState = 1;
+    }
+    *(s32 *)((u8 *)arg0 + 0x160) = 0;
+    bs_setState(arg0, nextState);
+}
 
 void bsclimb_entrypoint_2(struct player_state_s *arg0)
 {
