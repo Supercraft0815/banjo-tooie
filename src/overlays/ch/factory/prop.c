@@ -41,7 +41,41 @@ void func_808001D8_chfactoryprop(void *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x1C))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(arg0) + (0x1C))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/prop/func_80800214_chfactoryprop.s")
+s32 func_80800214_chfactoryprop(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800DA298(s32);
+    void func_80101FDC(Actor *, u32);
+
+    switch (arg1) {
+        case 0x49:
+            if (!_glcutDll_entrypoint_19(0x45)) {
+                return 0;
+            } else {
+                func_80101FDC(arg0, 2);
+                if (arg0->unk6C_9 == 0x3B2) {
+                    _capod_entrypoint_13(arg0->unk0, NULL, 3, 0x2910);
+                }
+            }
+            break;
+        case 0x4F:
+            func_80101FDC(arg0, 2);
+            break;
+        case 0x95:
+            *(u8 *)&arg0->actorData[1] = 0;
+            *(u8 *)&arg0->actorData[0] = 0;
+            if (func_800DA298(0x18C) && !_glcutDll_entrypoint_19(0x45) && !_glcutDll_entrypoint_20()) {
+                func_80101FDC(arg0, 3);
+                *(f32 *)&arg0->actorData[4] = 0.0f;
+            } else {
+                *(f32 *)&arg0->actorData[4] = 400.0f;
+                *(f32 *)&arg0->actorData[5] = 0.0f;
+            }
+            break;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/prop/func_80800324_chfactoryprop.s")
 
