@@ -20,7 +20,53 @@ void func_80800018_chstarspinnerctrl(s32 *arg0) {
     _chpowerhut_entrypoint_0(arg0, &D_80800918_chstarspinnerctrl);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/func_8080003C_chstarspinnerctrl.s")
+void func_8080003C_chstarspinnerctrl(Actor *arg0) {
+    s32 _chpowerhut_entrypoint_1(Actor *, s32 *);
+    s32 _chpowerhut_entrypoint_4(Actor *, f32, s32 *);
+    void func_800BF744(s32, s32);
+    void func_800C8F08(s32, f32 *);
+    s32 func_800DA544(s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    int func_800F3214(void *, void *, void *, f32);
+    void *func_80100094(Actor *, u32);
+    void func_808002B4_chstarspinnerctrl(s32 *);
+    void func_8080069C_chstarspinnerctrl(Actor *);
+    extern s32 D_80800900_chstarspinnerctrl;
+    extern s32 D_8080090C_chstarspinnerctrl;
+    extern s32 D_80800918_chstarspinnerctrl;
+    f32 sp34[3];
+    struct SpinnerData {
+        u8 pad0[0xC];
+        s16 state;
+        u8 padE[6];
+        f32 input;
+        f32 value;
+    } *input, *data;
+
+    _chpowerhut_entrypoint_1(arg0, &D_80800918_chstarspinnerctrl);
+    switch (arg0->unk70_10) {
+    case 1:
+        break;
+    case 3:
+        if (((struct SpinnerData *)func_80100094(arg0, 0))->state == 2) {
+            func_800BF744(2, 0);
+            func_800BF744(1, 1);
+        }
+        if (((struct SpinnerData *)func_80100094(arg0, 0))->state == 3) {
+            data = func_80100094(arg0, 0);
+            input = func_80100094(arg0, 0);
+            data->value = func_800F10B4(input->input, 0.0f, 1.0f, 0.3f, 1.0f);
+            func_800F3214(sp34, &D_80800900_chstarspinnerctrl, &D_8080090C_chstarspinnerctrl, ((struct SpinnerData *)func_80100094(arg0, 0))->value);
+            func_800C8F08((s32)sp34, NULL);
+            func_808002B4_chstarspinnerctrl((s32 *)arg0);
+        }
+        if (_chpowerhut_entrypoint_4(arg0, 10.75f, &D_80800918_chstarspinnerctrl)) {
+            func_800DA544(0);
+        }
+        break;
+    }
+    func_8080069C_chstarspinnerctrl(arg0);
+}
 
 s32 func_80800184_chstarspinnerctrl(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _chpowerhut_entrypoint_3(Actor *, s32, s32, s32 *);
