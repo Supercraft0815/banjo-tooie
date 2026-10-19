@@ -178,7 +178,42 @@ void func_80800870_sucoasterhit(Actor *arg0, Actor *arg1, s32 arg2, s32 arg3) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/hit/sucoasterhit_entrypoint_1.s")
+s32 sucoasterhit_entrypoint_1(Actor *arg0) {
+    s32 _sucoaster_entrypoint_22(Actor *);
+    s32 _sucoaster_entrypoint_9(void *, s32, s32);
+    s32 func_8001210C(s32);
+    void *func_80100094(Actor *, u32);
+    void func_80102190(void *, s32);
+    s32 func_80800AEC_sucoasterhit(Actor *, void *);
+    struct HitFlags {
+        u8 padding[0x18];
+        u32 upper : 4;
+        u32 hit : 1;
+        u32 lower : 27;
+    };
+    Actor *data;
+    s32 active;
+    s32 hit;
+
+    data = func_80100094(arg0, 0);
+    hit = (data->actorData[0] << 4) >> 31;
+    active = hit || arg0->unk58 > 0.0f;
+    if (hit != 0) {
+        arg0->unk58 = 0.7f;
+    }
+    ((struct HitFlags *)data)->hit = 0;
+    func_80800870_sucoasterhit(arg0, data, 4, active);
+    if (active == 0) {
+        func_80102190(arg0, 0);
+        _sucoaster_entrypoint_9(arg0, 3, 9);
+        return 1;
+    }
+    arg0->position[0] += func_8001210C(1) != 0 ? -10.0f : 10.0f;
+    arg0->position[2] += func_8001210C(1) != 0 ? 10.0f : -10.0f;
+    _sucoaster_entrypoint_22(arg0);
+    func_80800AEC_sucoasterhit(arg0, data);
+    return 0;
+}
 
 s32 func_80800AEC_sucoasterhit(Actor *arg0, void *arg1) {
     s32 _subaddievolume_entrypoint_0(Actor *, f32 *, s32, s32, s32 *);
