@@ -285,4 +285,51 @@ void func_8080069C_chstarspinnerctrl(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/chstarspinnerctrl_entrypoint_4.s")
+s32 chstarspinnerctrl_entrypoint_4(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _glcutDll_entrypoint_20();
+    void func_800C8B84(s32);
+    s32 func_800C8CB8(s32, s32);
+    s32 func_800C8E84(s32, s32 *);
+    s32 func_800DA298(s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s32 D_808008E8_chstarspinnerctrl;
+    extern s32 D_808008F4_chstarspinnerctrl;
+    Actor *actor;
+    s32 pad;
+    s32 active;
+    s32 scratch[2];
+
+    active = func_800DA298(0xEA) != 0;
+    if (!active) {
+        active = _glcutDll_entrypoint_20() != 0;
+    }
+    if (arg0->unk3C == NULL) {
+        return 0;
+    }
+    actor = func_80106790(arg0->unk3C);
+    if (active && !arg2) {
+        arg2 = chstarspinnerctrl_entrypoint_3((s32)arg0, arg1);
+        if (arg2) {
+            func_800C8E84(arg2, &D_808008E8_chstarspinnerctrl);
+        }
+    }
+    if (!arg2) {
+        return 0;
+    }
+    func_800C8CB8(arg2, arg1);
+    switch (actor->unk70_10) {
+    case 1:
+    case 2:
+        func_800C8B84(arg2);
+        arg2 = 0;
+        break;
+    case 3:
+        func_800C8E84(arg2, &D_808008F4_chstarspinnerctrl);
+        break;
+    case 4:
+    case 5:
+        func_800C8E84(arg2, &D_808008F4_chstarspinnerctrl);
+        break;
+    }
+    return arg2;
+}
