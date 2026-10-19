@@ -102,7 +102,7 @@ void func_808011B4_chstatueboss(Actor *arg0) {
     f32 func_800136E4(f32);
     f32 func_800D8FF8(void);
     extern f32 D_80802630_chstatueboss[];
-    extern f32 D_80802644_chstatueboss[];
+    extern s16 D_80802644_chstatueboss[];
     typedef struct {
         u8 pad[0x70];
         f32 angles[5];
@@ -197,7 +197,52 @@ void func_80801448_chstatueboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801518_chstatueboss.s")
+void func_80801518_chstatueboss(Actor *arg0, Unk80132ED0 *arg1) {
+    s32 func_800DA298(s32);
+    void func_800EC398(Unk80132ED0 *, f32 *);
+    void func_800FC660(u32);
+    void func_80800DA8_chstatueboss(Actor *, s32, s32);
+    extern s16 D_808025C0_chstatueboss[][6];
+    extern s16 D_80802644_chstatueboss[];
+    extern s16 D_808027E0_chstatueboss[];
+    struct StatueData {
+        u8 flags[0x18];
+        f32 timers[27];
+        s16 index;
+        s16 selected;
+        s16 hits;
+        s16 total;
+        u8 pad8C[0x5C];
+        f32 position[3];
+    } *data;
+    s32 i;
+    s32 selected;
+    s32 index;
+    s16 limit;
+
+    data = func_80100094(arg0, 0U);
+    index = data->index;
+    selected = data->selected;
+    for (i = 0; D_808025C0_chstatueboss[index][i] != -1; i++) {
+            if (selected == D_808025C0_chstatueboss[index][i]) {
+                data->flags[selected] = 2;
+                data->timers[selected] = 2.5f;
+                func_800FC660(0xE);
+                data->total++;
+                func_800EC398(arg1, data->position);
+                data->hits++;
+                if (func_800DA298(0x681) == 0) {
+                    limit = D_80802644_chstatueboss[index];
+                } else {
+                    limit = 100;
+                }
+                if (limit == data->hits) {
+                    func_80800DA8_chstatueboss(arg0, D_808027E0_chstatueboss[index], index);
+                }
+                break;
+            }
+    }
+}
 
 void func_80801640_chstatueboss(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
