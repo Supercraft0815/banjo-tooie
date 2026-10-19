@@ -4,7 +4,40 @@ s32 func_800995B0(void) {
     return sizeof(BaUnknownC0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72EA0/func_800995B8.s")
+void func_800995B8(PlayerState *arg0, s32 arg1) {
+    void func_8008FE68(f32 *);
+    f32 func_80090010(void);
+    void func_800A34AC(PlayerState *, f32[3]);
+    void func_800A34CC(void *, s32);
+    void func_800EC398(Unk80132ED0 *, f32 *);
+    void func_800EFCD8(f32 *, f32, f32);
+    f32 position[3];
+    f32 offset[3];
+
+    func_800A34CC(arg0, 1);
+    switch (arg1) {
+        case 0:
+            func_800EC398(arg0->unkC0->unk14, position);
+            func_800A34AC(arg0, position);
+            break;
+        case 1:
+            func_800A34AC(arg0, arg0->unkC0->pad8);
+            break;
+        case 2:
+            func_8008FE68(position);
+            func_800EFCD8(offset, func_80090010(), 100.0f);
+            offset[1] = 0.0f;
+            position[0] += offset[0];
+            position[1] += offset[1];
+            position[2] += offset[2];
+            func_800A34AC(arg0, position);
+            func_800A34CC(arg0, arg0->unkC0->unk1C);
+            break;
+        case 3:
+            func_800A34AC(arg0, arg0->unkC0->pad8);
+            break;
+    }
+}
 
 /* extern */
 

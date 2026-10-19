@@ -10,8 +10,8 @@
 typedef struct ba_unknown_C0_s {
     f32 unk0;
     f32 unk4;
-    u8 pad8[0xC];
-    s32 unk14;
+    f32 pad8[3];
+    Unk80132ED0 *unk14;
     s32 unk18;
     s32 unk1C;
     s32 unk20;
