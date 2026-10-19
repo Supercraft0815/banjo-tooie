@@ -329,7 +329,47 @@ void func_8080145C_chfactorytwinklies(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_808014B0_chfactorytwinklies.s")
+void func_808014B0_chfactorytwinklies(Actor *arg0) {
+    void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
+    s32 _gcstatusDll_entrypoint_11(void);
+    s32 func_800CEAA8(s32);
+    s32 func_800CEAD0(s32);
+    s32 func_800F55FC(s32);
+    void func_800F5A2C(s32, s32, f32 *);
+    s32 func_800F6C5C(s32);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80108B04(Actor *, u32);
+    struct {
+        s32 counts[16];
+        s32 values[9][3];
+        u32 game;
+    } *data;
+    s32 i;
+    s32 points;
+    s32 count;
+    f32 position[3];
+    u32 kind;
+    s32 *total;
+
+    data = func_80100094(func_80106790(arg0->unk3C), 0);
+    if (func_800CEAA8(0) && !func_800CEAD0(0)) {
+        for (i = 0; i < _gcstatusDll_entrypoint_11(); i++) {
+            if (func_800F6C5C(i) && (func_800F55FC(i) & arg0->actorData[4])) {
+                count = data->values[i][arg0->actorData[5]];
+                if (count > 0) {
+                    points = (3 - arg0->actorData[5]) * count;
+                    total = &data->counts[i];
+                    *total += points;
+                    data->values[i][arg0->actorData[5]] = 0;
+                    func_800F5A2C(i, 5, position);
+                    _chscorepoints_entrypoint_2(points, i, position, 1);
+                    func_80108B04(arg0, i);
+                }
+            }
+        }
+    }
+}
 
 s32 func_80801608_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800F5A2C(s32, s32, f32 *);
