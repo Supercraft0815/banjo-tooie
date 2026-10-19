@@ -64,7 +64,42 @@ void func_8080093C_chboggygirl(Actor *arg0) {
     func_800EE940(sp24, sp18);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/girl/func_8080097C_chboggygirl.s")
+void func_8080097C_chboggygirl(Actor *arg0) {
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    void func_800FFAB0(Actor *);
+    void func_80102424(Actor *, s32);
+    s32 func_80105230();
+    void func_80105834(Actor *);
+    s32 func_80105A5C(Actor *);
+    struct Flags {
+        u8 pad[0x14];
+        u32 high : 17;
+        u32 flag : 1;
+        u32 low : 14;
+    };
+    struct Flags *sp24;
+    struct Flags *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    sp24 = temp_v0;
+    if (arg0->unk70_10 == 0x10) {
+        if (!temp_v0->flag) {
+            func_800FFAB0(arg0);
+        }
+    } else {
+        func_80105834(arg0);
+        _sudeflect_entrypoint_0(arg0->position, 100.0f, 50.0f, 0xA);
+        func_80105230(arg0, 0);
+        if (func_80105A5C(arg0) != 0) {
+            if (sp24->flag) {
+                func_80102424(arg0, 0x10);
+                arg0->unk64_16 = 0;
+                return;
+            }
+            func_800FFAB0(arg0);
+        }
+    }
+}
 
 void func_80800A4C_chboggygirl(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
