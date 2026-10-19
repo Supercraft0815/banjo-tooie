@@ -265,4 +265,37 @@ void func_808006EC_scinfobar(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
     _fxdialog_entrypoint_3(arg0, (f32) (*(s16 *)((s8 *)(arg1) + (8))) * (*(f32 *)((s8 *)(arg1) + (0x14))), (*(u8 *)((s8 *)(arg1) + (1))), 0xFF);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/scinfobar_entrypoint_24.s")
+void scinfobar_entrypoint_24(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
+    extern s32 D_80800D54_scinfobar;
+    s32 var_v0;
+    s32 temp_v0_2;
+
+    func_808006EC_scinfobar(arg0, arg1, arg2, arg3);
+    if ((*(u8 *)((s8 *)(arg1) + (0))) != 0x64) {
+        if (*(s32 (**)(s32, void *, s32, s32))((s8 *)&D_80800D54_scinfobar + (*(s32 *)((s8 *)arg1 + 0x1C) * 0xC)) != NULL) {
+            (*(s32 (**)(s32, void *, s32, s32))((s8 *)&D_80800D54_scinfobar + (*(s32 *)((s8 *)arg1 + 0x1C) * 0xC)))(arg0, arg1, arg2, arg3);
+        }
+    }
+    var_v0 = *(u8 *)((s8 *)arg1 + 2);
+    if (var_v0 == 0) {
+        goto normal;
+    }
+    temp_v0_2 = var_v0;
+    var_v0 = *(u8 *)((s8 *)arg1 + 0) - var_v0;
+    if (var_v0 != 0) {
+        goto normal;
+    }
+    {
+        var_v0 = (s32) ((*(f32 *)((s8 *)(arg1) + (0x14))) * 255.0f);
+        if (temp_v0_2 == 0x65) {
+            var_v0 = 0xFF - var_v0;
+        }
+        func_80800608_scinfobar(arg0, (s32) (*(s16 *)((s8 *)(arg1) + (4))), arg2, arg3, var_v0, (s32) (*(u8 *)((s8 *)(arg1) + (0x32))));
+        func_80800608_scinfobar(arg0, (s32) (*(s16 *)((s8 *)(arg1) + (6))), arg2, arg3, 0xFF - var_v0, 0);
+        return;
+    }
+normal:
+    {
+        func_80800608_scinfobar(arg0, (s32) (*(s16 *)((s8 *)(arg1) + (4))), arg2, arg3, 0xFF, (s32) (*(u8 *)((s8 *)(arg1) + (0x32))));
+    }
+}
