@@ -219,7 +219,55 @@ s32 func_8080070C_chcablecar(Actor *arg0, f32 arg1) {
     return clamped;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_808007C8_chcablecar.s")
+void func_808007C8_chcablecar(Actor *arg0, u32 arg1, u32 arg2) {
+    void _subaddieDll_entrypoint_4(Actor *, u32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_8(Actor *, void *, s32, s32, s32);
+    void func_80015178(s32);
+    s32 func_800DA9E4(s32, s32);
+    void func_80101FDC(Actor *, u32);
+    u8 *func_801039E4(Unk80132ED0 *);
+    void func_80103D48(void **);
+    typedef struct {
+        u32 upper : 18;
+        u32 active : 1;
+        u32 lower : 13;
+    } CablecarFlags;
+    u8 *data;
+    s32 game;
+
+    data = func_80100094(arg0, 0);
+    _subaddieDll_entrypoint_4(arg0, 1);
+    func_801039E4(arg0->unk0);
+    func_80103D48((void **)arg0);
+    if (arg1 == 2 && func_800DA9E4(0xBF, 1)) {
+        arg1 = 3;
+    }
+    switch (arg1) {
+        case 3: goto game3;
+        case 4: goto game4;
+        default: goto other;
+    }
+game3:
+            _susubgame_entrypoint_8(arg0, data + 0x2C, 0x2F, 0x10010, 0);
+            goto done;
+game4:
+            _susubgame_entrypoint_8(arg0, data + 0x2C, 0x2E, 0x10010, 0);
+            goto done;
+other:
+            if (arg1 != 1) goto notOne;
+            game = 0x1D;
+            goto selected;
+notOne:
+            game = 0x21;
+selected:
+            func_80015178(3);
+            ((CablecarFlags *)&arg0->unk0->unk28)->active = 1;
+            _susubgame_entrypoint_6(arg0, data + 0x2C, game, 0x10070, 0);
+done:
+    arg0->actorData[4] = arg1;
+    func_80101FDC(arg0, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800914_chcablecar.s")
 
