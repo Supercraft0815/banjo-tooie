@@ -62,7 +62,41 @@ void func_808000A8_chhellterskelter(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/func_80800158_chhellterskelter.s")
+s32 func_80800158_chhellterskelter(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_17(f32);
+    s32 _subaddiefind_entrypoint_10(Actor *, s32, u32);
+    s32 func_80108B04();
+    void func_80800680_chhellterskelter(Actor *, s32);
+
+    switch (arg1) {
+        case 0x3D:
+            func_80800680_chhellterskelter(arg0, arg2);
+            break;
+        case 0xE:
+            if (arg2 == 1 && _capod_entrypoint_17(0.9f)) {
+                arg0->unk64_20 = 1;
+                func_80108B04(arg0, 0x210);
+            }
+            return 3;
+        case 0xA:
+            if (func_800DA9E4(FLAG2_6A1_UNK, 1) == 0) {
+                _capod_entrypoint_13(arg0->unk0, 0, 1, 0x10);
+            } else {
+                arg0->unk64_20 = 0;
+                func_80108B04(arg0, 0x210);
+            }
+            break;
+        case 0x95:
+            if (arg0->unk3C == NULL) {
+                _subaddiefind_entrypoint_10(arg0, 0x210, 0);
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800274_chhellterskelter(s32 arg0)
 {
