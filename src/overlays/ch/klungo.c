@@ -231,7 +231,50 @@ void func_808020F0_chklungo(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_8080220C_chklungo.s")
+void func_8080220C_chklungo(Actor *arg0) {
+    s32 func_800D9078(f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_8080231C_chklungo(Actor *, f32, f32);
+    s32 func_808023A4_chklungo(Actor *, f32, f32);
+    void func_80802F58_chklungo(Actor *);
+    struct {
+        u8 unk0[0x14];
+        f32 unk14;
+        u16 unk18;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    switch (data->unk18) {
+        case 0:
+            break;
+        case 1:
+            if (func_8080231C_chklungo(arg0, 0.0f, 150.0f)) {
+                func_808020F0_chklungo(arg0, 2);
+            }
+            break;
+        case 2:
+            if (func_800D9078(&data->unk14)) {
+                func_80802F58_chklungo(arg0);
+                func_808020F0_chklungo(arg0, 3);
+            }
+            break;
+        case 3:
+            if (func_808023A4_chklungo(arg0, 48.0f, 150.0f)) {
+                func_808020F0_chklungo(arg0, 4);
+            }
+            break;
+        case 4:
+            if (func_800D9078(&data->unk14)) {
+                func_808020F0_chklungo(arg0, 1);
+            }
+            break;
+        case 5:
+            if (func_808023A4_chklungo(arg0, 255.0f, 150.0f)) {
+                func_808020F0_chklungo(arg0, 0);
+            }
+            break;
+    }
+}
 
 s32 func_8080231C_chklungo(Actor *arg0, f32 arg1, f32 arg2) {
     s32 _subaddiefade_entrypoint_0(Actor *);
