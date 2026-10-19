@@ -13,7 +13,44 @@ void func_8080000C_chsignpost(Actor *arg0) {
     arg0->actorData[4] = ((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7) - 0x32;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/signpost/func_80800058_chsignpost.s")
+void func_80800058_chsignpost(Actor *arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F4B8C(u32, u32, s32);
+    s32 func_8010CAC0(f32 *, u32);
+    int func_8010CD88(Actor *, f32, f32);
+    void func_80101FDC(Actor *, u32);
+    s32 _subaddiedialog_entrypoint_11();
+    s32 _subaddiedialog_entrypoint_6(f32 *, s32, s32, s32, s32);
+    s32 func_80800274_chsignpost(u8 *);
+    s32 flags;
+    s32 radius;
+
+    switch (arg0->unk70_10) {
+    case 1:
+        if (!func_800DA298(0x3A)) {
+            if (func_8010CAC0(arg0->position, 350) &&
+                func_8010CD88(arg0, 360.0f, 70.0f) &&
+                func_800F4B8C(func_800F54E4(), -1, 0)) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x16C2, 0xE, arg0->position, 0x28);
+                func_80101FDC(arg0, 2);
+                func_800DA544(0x3A);
+            }
+        } else {
+            flags = arg0->unk70_0 ? 4 : 0;
+            radius = arg0->unk70_0 ? 350 : 250;
+            if (_subaddiedialog_entrypoint_6(arg0->position, (s32)arg0->rotation[1],
+                    radius, 70, flags)) {
+                arg0->unk70_10 = 2;
+                func_80800274_chsignpost((u8 *)arg0);
+            }
+        }
+        break;
+    case 2:
+        break;
+    }
+}
 
 s32 func_8080019C_chsignpost(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcdialogcamera_entrypoint_3(u32 *, f32);
