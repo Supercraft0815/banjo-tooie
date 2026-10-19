@@ -494,7 +494,50 @@ s32 func_801051C8(Actor *arg0, f32 *arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDDC40/func_80105230.s")
+s32 func_80105230(Actor *arg0, f32 *arg1) {
+    s32 _fxstep_entrypoint_15(s32, s32, s32 *, s32 *, f32 *);
+    void func_800C4B64(f32);
+    void func_800C4B70(s32);
+    void func_800C4B7C(s32);
+    s32 func_800D3948(void);
+    f32 func_800EEB40(f32 *, f32 *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_801053D4();
+    void func_8010D640(s32);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern f32 D_80124420;
+    extern s32 D_8012442C;
+    extern f32 D_80126450;
+    f32 *values;
+    f32 position[3];
+    s32 i = 0;
+    s32 sp50;
+    s32 sp4C;
+    f32 sp48;
+    s32 pad;
+    f32 *volatile actorPosition;
+
+    if (func_800D3948() != 0) {
+        return 0;
+    }
+    func_8010D640((s32)position);
+    if (D_80126450 <= func_800EEB40(position, actorPosition = arg0->position)) {
+        return 0;
+    }
+    values = arg1 != NULL ? arg1 : &D_80124420;
+    for (; *values != -1.0f; values++, i++) {
+        if (func_80101E14(arg0, *values) != 0) {
+            if (_fxstep_entrypoint_15(func_801053D4(arg0), i & 1, &sp50, &sp4C, &sp48) != 0) {
+                func_800C4B64(sp48);
+                func_800C4B70(sp4C);
+                func_800C4B7C(sp50);
+                func_8010D930(2, arg0->unk70_0, actorPosition, &D_8012442C);
+            }
+            return 1;
+        }
+    }
+    return 0;
+}
 
 void func_80105390(u8 *arg0, u8 *arg1) {
     s32 temp_f16;
