@@ -640,7 +640,43 @@ s32 bsbswim_entrypoint_9(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80801538_bsbswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_808016B8_bsbswim.s")
+void func_808016B8_bsbswim(void *arg0) {
+    f32 baphysics_get_vertical_velocity(struct player_state_s *);
+    void baphysics_set_vertical_velocity(struct player_state_s *, f32);
+    s32 player_inWater();
+    int player_isStable(struct player_state_s *);
+    void func_8009C128(struct player_state_s *, f32 *);
+    s32 func_8009FBB0(struct player_state_s *, f32 *, f32);
+    void func_800BA22C(s32, s32);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    f32 func_800F0E00(f32, f32);
+    f32 mlAbsF(f32);
+    s32 bs_setState(s32, s32);
+    s32 next_state;
+    f32 position[3];
+    s32 effect;
+
+    next_state = 0;
+    func_8009C128(arg0, position);
+    position[1] += 60.0f;
+    effect = func_8009FBB0(arg0, position, 20.0f);
+    func_800BA930(effect, -30, -30, -30, 30, 30, 30);
+    func_800BA22C(effect, 1);
+    if (*(f32 *)((u8 *)arg0 + 0x178) < 0.0f) {
+        *(f32 *)((u8 *)arg0 + 0x178) += func_800F0E00(mlAbsF(*(f32 *)((u8 *)arg0 + 0x178)) * 0.1f, 50.0f);
+        baphysics_set_vertical_velocity(arg0, *(f32 *)((u8 *)arg0 + 0x178));
+    }
+    if (player_isStable(arg0) != 0) {
+        next_state = 0x2D;
+    }
+    if (player_inWater(arg0) == 0) {
+        next_state = 1;
+    }
+    if (baphysics_get_vertical_velocity(arg0) >= 0.0f) {
+        next_state = 0x2D;
+    }
+    bs_setState(arg0, next_state);
+}
 
 void func_808017F8_bsbswim(struct player_state_s *arg0)
 {
