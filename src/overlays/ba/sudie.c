@@ -33,7 +33,56 @@ void basudie_entrypoint_3(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     basudie_entrypoint_4(arg0, arg1, arg2, arg3, arg4, 3.5f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sudie/basudie_entrypoint_4.s")
+struct player_state_s;
+
+void basudie_entrypoint_4(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
+    void _batimer_set(struct player_state_s *, s32, f32);
+    void _ncbadie_entrypoint_3(struct player_state_s *, f32);
+    f32 baphysics_get_target_horizontal_velocity(struct player_state_s *);
+    void baphysics_set_gravity(struct player_state_s *, f32);
+    void baphysics_set_horizontal_velocity(struct player_state_s *, f32, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void baphysics_set_target_yaw(struct player_state_s *, f32);
+    void baphysics_set_vertical_velocity(struct player_state_s *, f32);
+    void func_8008E944(struct player_state_s *);
+    void func_8009514C(struct player_state_s *);
+    void func_8009C128(struct player_state_s *, f32 *);
+    void func_8009FFD8(struct player_state_s *, s32, s32, s32, s32);
+    void func_800A0180(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    void yaw_applyIdeal(struct player_state_s *);
+    f32 func_800136E4(f32);
+    void func_800A32C4(struct player_state_s *, f32[3]);
+    int func_800A4C68(void *);
+    struct player_state_s *func_800A4CA8(struct player_state_s *);
+    void func_800A4DFC(struct player_state_s *, s32);
+    s32 func_800C52F4(s32, s32);
+    void func_800F1E6C(f32[3], f32[3], f32 *);
+    f32 sp4C;
+    f32 sp40[3];
+    f32 sp34[3];
+    struct player_state_s *self = (struct player_state_s *)arg0;
+
+    basudie_entrypoint_1(self);
+    func_8009FFD8(self, 1, 1, 2, 3);
+    func_8009C128(self, sp40);
+    func_800A32C4(self, sp34);
+    func_800F1E6C(sp34, sp40, &sp4C);
+    yaw_setIdeal(self, func_800136E4(sp4C + 180.0f));
+    yaw_applyIdeal(self);
+    baphysics_set_target_horizontal_velocity(self, arg1);
+    baphysics_set_target_yaw(self, sp4C);
+    baphysics_set_horizontal_velocity(self, sp4C, baphysics_get_target_horizontal_velocity(self));
+    baphysics_set_vertical_velocity(self, arg2);
+    baphysics_set_gravity(self, arg3);
+    func_8008E944(self);
+    func_8009514C(self);
+    func_800A4DFC(self, 0xA);
+    func_800C52F4(func_800A4C68(self), 2);
+    _ncbadie_entrypoint_3(func_800A4CA8(self), arg4);
+    func_800A0180(self);
+    _batimer_set(self, 9, arg5);
+}
 
 /* extern */
 
