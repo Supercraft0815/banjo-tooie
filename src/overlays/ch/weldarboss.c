@@ -579,7 +579,54 @@ void func_8080030C_chweldarboss(Actor *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80801F30_chweldarboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80802100_chweldarboss.s")
+s32 func_80802100_chweldarboss(Actor *arg0, s32 arg1) {
+    typedef struct {
+        u8 pad0[0x30];
+        u8 unk30[0x42];
+        s16 unk72;
+    } WeldarData;
+    void *func_80100094(Actor *, u32);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    void func_800FFAB0(Actor *);
+    void func_800DA544(GameFlag);
+    void _glcutDll_entrypoint_6(u32, u32);
+    void func_80801AA0_chweldarboss(Actor *, s32);
+    void func_80803CF0_chweldarboss(Actor *, s32, s32);
+    void func_80803D64_chweldarboss(Actor *);
+    s32 func_80101180(s32, s32, s32);
+    WeldarData *data;
+    s32 result;
+
+    data = func_80100094(arg0, 0);
+    result = 3;
+    switch (arg1) {
+    case 0x1D:
+        if (arg0->unk70_10 == 2) {
+            func_80801AA0_chweldarboss(arg0, 3);
+        } else {
+            func_800FFAB0(_subaddielink_entrypoint_4(data->unk30));
+            func_800FFAB0(arg0);
+            func_80803D64_chweldarboss(arg0);
+            func_800DA544(0x9C9);
+            _glcutDll_entrypoint_6(0x10F, 0x45);
+        }
+        result = 4;
+        break;
+    case 0x12:
+        func_80801AA0_chweldarboss(arg0, 0x2F);
+        result = 4;
+        break;
+    case 0x39:
+        data->unk72 = 0;
+        break;
+    case 0x29:
+        func_80803CF0_chweldarboss(arg0, 0x32, 0x30);
+        func_80101180(0x46A, 0xA, 0);
+        result = 4;
+        break;
+    }
+    return result;
+}
 
 void func_80802214_chweldarboss(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
