@@ -24,7 +24,55 @@ void func_80800048_cheggclockwork(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/clockwork/func_80800124_cheggclockwork.s")
+void func_80800124_cheggclockwork(Actor *arg0) {
+    void _suegg_entrypoint_16(void *);
+    void _suegg_entrypoint_23(void *);
+    void _suegg_entrypoint_3(void *);
+    s32 _suegg_entrypoint_9(Actor *, s32);
+    s32 _sueggmove_entrypoint_3(void *);
+    int func_800EEEA8(f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_800F693C(s32);
+    void *func_80100094(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    s32 func_80800270_cheggclockwork(Actor *);
+    void func_80800850_cheggclockwork(Actor *);
+    f32 *sp2C;
+    s32 var_s0;
+
+    sp2C = func_80100094(arg0, 0);
+    var_s0 = 0;
+    if (_suegg_entrypoint_9(arg0, 0) != 0) {
+        if (func_800F693C(*(s16 *)((u8 *)sp2C + 0x3A)) != 0) {
+            var_s0 = 2;
+        } else {
+            var_s0 = 1;
+        }
+    } else {
+        arg0->scale = func_800F10B4(sp2C[12], 0.0f, 0.134f, 0.1f, 0.25f);
+        if (_sueggmove_entrypoint_3(arg0) != 0) {
+            _suegg_entrypoint_23(arg0);
+            var_s0 = 1;
+        }
+        if (func_800EEEA8((f32 *)&arg0->actorData[4]) != 0) {
+            var_s0 = 1;
+        }
+        if (sp2C[12] > 1.0f) {
+            _suegg_entrypoint_3(arg0);
+            var_s0 = 2;
+        }
+        func_80800048_cheggclockwork(arg0);
+        _suegg_entrypoint_16(arg0);
+    }
+    if (((var_s0 == 1) || (var_s0 == 2)) && (func_80800270_cheggclockwork(arg0) == 0)) {
+        var_s0 = 3;
+    }
+    if (var_s0 != 0) {
+        func_80108B04(arg0, var_s0);
+        return;
+    }
+    func_80800850_cheggclockwork(arg0);
+}
 
 /* extern */
 
