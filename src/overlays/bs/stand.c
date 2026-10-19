@@ -14,7 +14,54 @@ s32 func_80800018_bsstand(s32 *arg0, s32 arg1) {
     return arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stand/func_80800038_bsstand.s")
+s32 func_80800038_bsstand(self, next_state) {
+    s32 _badrone_entrypoint_24(PlayerState *);
+    s32 _badrone_entrypoint_25(PlayerState *);
+    void _baduo_entrypoint_12(PlayerState *);
+    s32 bainput_should_enter_first_person();
+    int bakey_held(PlayerState *, s32);
+    int bakey_pressed(PlayerState *, int);
+    s32 bastick_getZone(PlayerState *);
+    int bs_getTypeOfJump(PlayerState *);
+    int func_8008D714(PlayerState *);
+    int func_8008D790(PlayerState *);
+    int func_8008E148(PlayerState *);
+    int func_800A02DC(PlayerState *, int);
+    s32 func_800A055C(PlayerState *, s32);
+    s32 player_inWater(PlayerState *);
+
+    switch (bastick_getZone(self)) {
+        case 1: next_state = 0x1F; break;
+        case 2: next_state = 2; break;
+        case 3: next_state = 3; break;
+        case 4: next_state = 4; break;
+    }
+    if (bakey_held(self, 1)) {
+        next_state = 7;
+    }
+    if (bakey_pressed(self, 9)) {
+        next_state = func_800A055C(self, next_state);
+    }
+    if (bakey_pressed(self, 8)) {
+        next_state = bs_getTypeOfJump(self);
+        if (func_8008D714(self)) {
+            next_state = 0xB8;
+        } else if (func_8008D790(self)) {
+            _baduo_entrypoint_12(self);
+            return 0;
+        }
+    }
+    if (bainput_should_enter_first_person(self)) {
+        next_state = _badrone_entrypoint_24(self);
+    }
+    if (func_8008E148(self)) {
+        next_state = _badrone_entrypoint_25(self);
+    }
+    if (player_inWater(self)) {
+        next_state = 0x2D;
+    }
+    return func_800A02DC(self, next_state);
+}
 
 /* extern */
 
@@ -265,6 +312,8 @@ void bsstand_entrypoint_8()
 {
     func_80800038_bsstand();
 }
+
+
 
 void bsstand_entrypoint_9()
 {
