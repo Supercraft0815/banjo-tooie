@@ -532,4 +532,54 @@ void func_80801330_chdoor(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/door/func_808013C0_chdoor.s")
+s32 func_808013C0_chdoor(Actor *arg0, s32 arg1) {
+    f32 func_800137AC(f32);
+    f32 func_800137C4(void);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    s32 func_800F0AA4(f32 *, f32 *, f32 *, f32 *);
+    void func_800F5A00(s32, f32 *);
+    f32 func_800F5F24(u32);
+    void *func_80100094(Actor *, u32);
+    f32 mlAbsF(f32);
+    struct DoorData {
+        s32 flags;
+        s16 index;
+        s16 pad6;
+        u32 mode;
+        s32 padC;
+        s16 pad10;
+        s16 height;
+    } *data;
+    f32 position[3];
+    f32 height;
+    f32 start[3];
+    f32 end[3];
+    f32 direction[3];
+    f32 x;
+    f32 z;
+
+    data = func_80100094(arg0, 0);
+    func_800F5A00(arg1, position);
+    if ((data->mode >> 26) == 2) {
+        height = data->height;
+    } else {
+        height = arg0->position[1];
+    }
+    if (mlAbsF(position[1] - height) > 100.0f) {
+        return 0;
+    }
+    x = func_800137AC(arg0->rotation[1]) * 100.0f;
+    z = func_800137C4() * 100.0f;
+    start[0] = arg0->position[0] - x;
+    start[2] = arg0->position[2] - z;
+    end[0] = arg0->position[0] + x;
+    end[2] = arg0->position[2] + z;
+    func_800EEB9C(direction, func_800F5F24(arg1), 200.0f);
+    func_800EF04C(direction, position);
+    if (func_800F0AA4(start, end, position, direction) == 0) {
+        return 0;
+    }
+    func_808009F4_chdoor((u8 *)arg0);
+    return 1;
+}
