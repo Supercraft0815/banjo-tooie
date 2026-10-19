@@ -284,7 +284,32 @@ void func_800B8DEC(Gfx **arg0, s32 arg1, s32 arg2, u8 arg3) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B8E28.s")
+s32 func_800B8E28(s32 arg0, s32 arg1, s32 arg2, u8 *arg3) {
+    int func_800D3574(s32);
+    u8 func_800D35BC(s32);
+    s32 spacing;
+    s32 width;
+    s32 advance;
+
+    if (D_801282C0.data[0xC] != 0) {
+        if (D_801282C0.data[7] != 0) {
+            width = (s32)((f32)func_800D3574(D_801282C0.data[6]) * D_801282C0.value);
+        } else {
+            spacing = (s32)((f32)(s32)func_800D35BC(D_801282C0.data[6]) * D_801282C0.value);
+        }
+        D_801282C0.data[8] = 0;
+        while (*arg3 != 0) {
+            advance = func_800B81CC((Gfx **)arg0, arg1, arg2, *arg3);
+            arg3++;
+            if (D_801282C0.data[7] != 0 && D_801282C0.data[8] == 0) {
+                arg1 += advance / 2;
+                D_801282C0.data[8] = 1;
+            } else {
+                arg1 += D_801282C0.data[7] != 0 ? (advance != 0 ? advance : width) : spacing;
+            }
+        }
+    }
+}
 
 /* extern */
 
