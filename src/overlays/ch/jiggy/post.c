@@ -29,7 +29,48 @@ void func_80800014_chjiggypost(Actor* arg0, s32 arg1)
     func_80101FDC(arg0, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/post/func_80800068_chjiggypost.s")
+/* extern */
+
+void func_80800068_chjiggypost(Actor *arg0) {
+    s32 func_800D2498(u32, s32, u32);
+    s32 func_800D3E40(s32);
+    s32 pad[2];
+    s32 sp1C;
+    s32 temp_a0;
+    s32 temp_a1;
+    s32 var_a1;
+
+    if (func_800C0638() == 0) {
+        func_800D2498(0x10E, func_800D035C(1), 0);
+        if (_sujiggy_entrypoint_0() <= (temp_a0 = arg0->unk74_7 - 0x33)) {
+            sp1C = _sujiggy_entrypoint_2(temp_a0);
+            temp_a1 = sp1C - func_800D035C(1);
+            if (temp_a1 > 0) {
+                func_800D2498(0x106, temp_a1, 0);
+            }
+        }
+    }
+    if (arg0->unk70_10 == 1) {
+        if (func_800DA298(FLAG_4E8_FTT_ALTAR_OF_KNOWLEDGE) == 0) {
+            func_80800014_chjiggypost(arg0, 0x1512);
+            return;
+        }
+        if (_subaddiedialog_entrypoint_5(arg0->position, 0xFAU, 0x3CU, 0U) != 0) {
+            if ((s32)arg0->unk74_7 - 0x33 < _sujiggy_entrypoint_0()) {
+                var_a1 = 0x1517;
+            } else if (func_800D3E40(0xB) != 0) {
+                var_a1 = 0x155A;
+            } else {
+                if (_sujiggy_entrypoint_2(arg0->unk74_7 - 0x33) == 1) {
+                    var_a1 = 0x1513;
+                } else {
+                    var_a1 = 0x1514;
+                }
+            }
+            func_80800014_chjiggypost(arg0, var_a1);
+        }
+    }
+}
 
 void func_808001C4_chjiggypost(Actor* arg0, s32 arg1, s32 arg2)
 {
