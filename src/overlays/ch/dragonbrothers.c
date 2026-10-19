@@ -853,7 +853,47 @@ void func_80804318_chdragonbrothers(s32 arg0, s32 arg1) {
     func_80101870(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80804350_chdragonbrothers.s")
+s32 func_80804350_chdragonbrothers(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
+    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
+    void _chexploder_entrypoint_13(s32, u32);
+    void _chexploder_entrypoint_15(s32, u32, f32);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    u32 func_800F54E4(void);
+    void func_800F7B9C(s32, u32);
+    void *func_80101080(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s32 D_80805840_chdragonbrothers;
+    extern s32 D_80805870_chdragonbrothers;
+    Actor *sp24;
+    Unk80132ED0 **marker = &arg2;
+
+    switch (arg1) {
+        case 0xF:
+        case 0x90:
+            sp24 = func_80106790(func_80101080());
+            _chexploder_entrypoint_9(sp24, 1, 2);
+            _chexploder_entrypoint_13(sp24, 6);
+            if (arg0->unk7A_8) {
+                _chexploder_entrypoint_15(sp24, 2, 1.0f);
+            } else {
+                _chexploder_entrypoint_15(sp24, 4, 1.0f);
+            }
+            if (arg0->unk7A_8) {
+                func_800BBCB8(arg0->position, arg0->position, arg0->scale, 6, &D_80805840_chdragonbrothers);
+            } else {
+                func_800BBCB8(arg0->position, arg0->position, arg0->scale, 6, &D_80805870_chdragonbrothers);
+            }
+            break;
+        case 0x3E:
+            if (((*marker)->unk24 >> 22) == 0) {
+                func_800F7B9C(func_800F54E4(), 0x51);
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chdragonbrothers_entrypoint_2(void)
 {
