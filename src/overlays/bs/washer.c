@@ -607,7 +607,45 @@ void func_80801B30_bswasher(struct player_state_s *arg0) {
     yaw_setIdeal(arg0, yaw_get(arg0));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80801BA4_bswasher.s")
+void func_80801BA4_bswasher(struct player_state_s *arg0) {
+    f32 baanim_getTimer(struct player_state_s *);
+    int baanim_isAt(struct player_state_s *, f32);
+    int baanim_isStopped(struct player_state_s *);
+    int bakey_pressed(struct player_state_s *, int);
+    f32 baphysics_get_target_horizontal_velocity(struct player_state_s *);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    s32 bastick_getZone(struct player_state_s *);
+    void bs_setState(struct player_state_s *, int);
+    void func_8009D2D8(struct player_state_s *, s32);
+    void func_8009DBB0(struct player_state_s *, s32, f32, f32, s32);
+    f32 func_800D8FF8(void);
+    s32 sp34;
+    f32 sp30;
+    f32 sp2C;
+    f32 sp28;
+
+    sp34 = 0;
+    sp2C = baphysics_get_target_horizontal_velocity(arg0);
+    baphysics_set_target_horizontal_velocity(arg0, (0.028f / func_800D8FF8()) * sp2C);
+    if (baanim_isAt(arg0, 0.1309f)) {
+        func_8009DBB0(arg0, 0x573, 1.05f, 1.15f, 20000);
+        func_8009DBB0(arg0, 0x406, 0.85f, 0.95f, 20000);
+        _bawasher_entrypoint_7(arg0);
+        func_8009D2D8(arg0, 1);
+    }
+    if (baanim_isStopped(arg0)) {
+        sp34 = 0x32;
+    }
+    if (baanim_getTimer(arg0) > 0.8f) {
+        if (bastick_getZone(arg0)) {
+            sp34 = 0x33;
+        }
+        if (bakey_pressed(arg0, 1)) {
+            sp34 = 0x38;
+        }
+    }
+    bs_setState(arg0, sp34);
+}
 
 s32 bswasher_entrypoint_11(s32 arg0) {
     extern s32 D_80801ED4_bswasher[];
