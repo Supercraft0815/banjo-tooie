@@ -45,7 +45,54 @@ void ncbatarget_entrypoint_1(void *arg0) {
 void ncbatarget_entrypoint_2(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/target/ncbatarget_entrypoint_3.s")
+void ncbatarget_entrypoint_3(PlayerState *arg0) {
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EEBF0(f32 *, f32 *, f32);
+    f32 func_800EEF94(f32 *);
+    s32 func_800EFB24(s32 *, void *, f32 *);
+    void func_800F1A88(f32 *, f32 *);
+    s32 func_800F1E6C(f32 *, f32 *, f32 *);
+    void func_80110790(s32, f32 *);
+    void func_801107F0(void *, f32 *);
+    void func_80110A68(s32, s32, s32);
+    void func_80110F44(void *);
+    s32 func_80111FD4(void *, f32 *);
+    f32 func_80112C3C(void *, f32);
+    void func_80112D08(void *, s32, f32, f32);
+    s32 func_801138A0(void *);
+    s32 func_801138F4(PlayerState *);
+    f32 func_80115358(void *, f32);
+    f32 func_80115750(Actor *, f32);
+    void func_8011607C(void *, s32);
+    f32 sp64[3];
+    f32 sp58[3];
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+    f32 sp30;
+    f32 sp28[2];
+    f32 sp24;
+
+    func_8011607C(arg0, 1);
+    func_80800058_ncbatarget(arg0, sp58);
+    func_80800008_ncbatarget(arg0, sp64);
+    func_801107F0(arg0, sp40);
+    func_800EFB24(sp4C, sp40, sp58);
+    sp30 = func_800EEF94(sp4C);
+    func_800F1A88(sp4C, sp28);
+    sp30 = func_80115358(arg0, sp30);
+    sp28[0] = func_80115750(arg0, sp28[0]);
+    func_800F1E6C(*(f32 **)((u8 *)arg0 + 0x58), sp58, &sp24);
+    func_80112D08(arg0, 5, sp24, sp24);
+    sp28[1] = func_80112C3C(arg0, sp28[1]);
+    func_800EEBF0(sp4C, sp28, sp30);
+    func_800EE780(sp40, sp58, sp4C);
+    if (func_80111FD4(arg0, sp40) && func_801138A0(arg0) && func_801138F4(arg0)) {
+        func_80110F44(arg0);
+    }
+    func_80110A68(arg0, sp34, sp64);
+    func_80110790(arg0, sp34);
+}
 
 void ncbatarget_entrypoint_4(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 88) + 12) = arg1;
