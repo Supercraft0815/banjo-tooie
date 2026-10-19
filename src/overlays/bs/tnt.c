@@ -215,7 +215,52 @@ void func_80800720_bstnt(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_808007EC_bstnt.s")
+s32 func_808007EC_bstnt(s32 arg0, s32 arg1) {
+    void func_8009FFD8();
+    void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void baroll_setIdeal(s32, f32);
+    f32 func_80092BE8(struct player_state_s *);
+    void func_800931AC(struct player_state_s *, s32);
+    void func_8009328C(struct player_state_s *, f32);
+    void func_8009BC34(struct player_state_s *);
+    void func_8009BF5C(s32, f32);
+    void func_800A17A8(struct player_state_s *, s32);
+    void yaw_applyIdeal(struct player_state_s *);
+    f32 yaw_get(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    struct player_state_s *self = (struct player_state_s *)arg0;
+    f32 yaw;
+
+    *(s32 *)((s8 *)self + 0x15C) = arg1;
+    switch (arg1) {
+    case 1:
+        baanim_playForDuration_onceSmooth(self, 0xE6, 1.5f);
+        func_8009FFD8(self, 1, 1, 3, 2);
+        baphysics_set_target_horizontal_velocity(self, 0.0f);
+        func_808000D4_bstnt(self, 10.0f);
+        break;
+    case 2:
+        func_808006B4_bstnt((void *)self, 10);
+        func_808005F4_bstnt(self);
+        func_800A17A8(self, -1);
+        func_800931AC(self, 3);
+        *(f32 *)((s8 *)self + 0x16C) = 800.0f;
+        yaw = yaw_get(self);
+        *(f32 *)((s8 *)self + 0x170) = yaw;
+        func_8009328C(self, yaw);
+        break;
+    case 0:
+        yaw_setIdeal(self, func_80092BE8(self));
+        yaw_applyIdeal(self);
+        func_800931AC(self, 1);
+        func_808000D4_bstnt(self, 0.1f);
+        func_8009BC34(self);
+        func_8009BF5C(arg0, 0.0f);
+        baroll_setIdeal(arg0, 0.0f);
+        break;
+    }
+}
 
 /* extern */
 
