@@ -1082,7 +1082,41 @@ void func_80804A7C_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
     func_800E0AFC(arg1, 0x2A, 1.0f, 0.0f, 0.0f, (*(f32 *)((s8 *)(func_80100094(arg0, 0)) + (0x1C))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80804AC8_chdiggerboss.s")
+void func_80804AC8_chdiggerboss(Actor *arg0, s32 arg1) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800F018C(f32 *, f32 *, f32 *, f32 *);
+    s32 func_800F581C(s32);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6438(u32);
+    s32 func_800F6478(s32);
+    int func_800F7A2C(s32, s32, f32 *);
+    void func_808062B8_chdiggerboss(Actor *);
+    f32 sp84[3];
+    f32 sp78[3];
+    f32 sp6C[3];
+    int i;
+    f32 sp5C[3];
+    f32 *position;
+
+    if (arg1 != 0) {
+        for (i = 0; i < 8; i++) {
+            if (!func_800F6438(i)) continue;
+            if (!func_800F6478(i)) continue;
+            if (func_800F581C(i) & 0x10000000) {
+                func_800EE7F8(sp5C, arg0->position);
+                func_800EF1B8(sp5C, arg0->rotation[1], 1300.0f);
+                sp5C[1] += 275.0f;
+                func_800F5A00(i, sp6C);
+                func_800EE7F8(sp84, arg0->position);
+                sp84[1] += 275.0f;
+                func_800F018C(sp78, sp84, sp5C, sp6C);
+                func_800F7A2C(i, 6, sp78);
+                func_808062B8_chdiggerboss(func_808026F8_chdiggerboss(arg0));
+            }
+        }
+    }
+}
 
 void func_80804C28_chdiggerboss(s32 arg0) {
     void *func_80100094(Actor *, u32);
