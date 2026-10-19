@@ -6,7 +6,60 @@ s32 bsjig_entrypoint_0(s32 arg0) {
     return arg0 == 0x44;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jig/bsjig_entrypoint_1.s")
+void bsjig_entrypoint_1(void *arg0) {
+    s32 _chjigsawdance_entrypoint_1(s32, s32);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setSmoothTransition(struct anctrl_s *, s32);
+    void anctrl_setIndex();
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    s32 baflag_clear(s32, s32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void func_8008E944(struct player_state_s *);
+    void func_8009DE38(struct player_state_s *, s32, f32);
+    f32 func_8009F308(struct player_state_s *);
+    void func_8009FFD8();
+    void func_800A0CF4(struct player_state_s *, s32);
+    s32 func_800A32F8(s32);
+    int func_800A4C68(void *);
+    void func_800A4DFC(struct player_state_s *, s32);
+    s32 func_800C52F4(s32, s32);
+    s32 func_800D0018(s16, s32);
+    void func_800FC660(u32);
+    s32 func_80106790(s32);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    extern u8 D_8012762C;
+    struct anctrl_s *control;
+    s32 flag;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    anctrl_reset(control);
+    anctrl_setSmoothTransition(control, 0);
+    anctrl_setIndex(control, 0x2E);
+    anctrl_setDuration(control, 4.3f);
+    anctrl_setPlaybackType(control, 1);
+    anctrl_start(control);
+    yaw_setIdeal(arg0, func_8009F308(arg0));
+    func_8009FFD8(arg0, 1, 1, 3, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    flag = func_800D0018(1, D_8012762C) != 0;
+    if (flag == 0) {
+        flag = 0;
+    }
+    *(s32 *)((u8 *)arg0 + 0x160) = flag;
+    func_800FC660(5);
+    func_800A4DFC(arg0, 9);
+    func_800C52F4(func_800A4C68(arg0), 2);
+    func_800A0CF4(arg0, 1);
+    func_8009DE38(arg0, 0x422, 1.0f);
+    baflag_clear(arg0, 7);
+    baflag_clear(arg0, 0xF);
+    func_8008E944(arg0);
+    _chjigsawdance_entrypoint_1(func_80106790(func_800A32F8(arg0)), 1);
+    *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+}
 
 /* extern */
 
