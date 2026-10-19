@@ -131,7 +131,64 @@ void cheggproximity_entrypoint_2(void *arg0) {
     _suegg_entrypoint_4(sp24, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_80800330_cheggproximity.s")
+void func_80800330_cheggproximity(Actor *arg0) {
+    s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
+    s32 _suegg_entrypoint_8(void *);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    void func_8080048C_cheggproximity(s32, void *);
+    void func_80800510_cheggproximity(s32, void *);
+    void func_80800588_cheggproximity(s32, s32);
+    void func_808005EC_cheggproximity(s32, s32);
+    void func_80800650_cheggproximity(s32, s32);
+    void func_808006A4_cheggproximity(Actor *, u8 *);
+    extern s32 _cheggproximity_entrypoint_2;
+    struct ProximityFlags {
+        u8 pad[0x38];
+        u32 unused31_24:8;
+        u32 flag23:1;
+        u32 flag22:1;
+        u32 unused21_0:22;
+    };
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+    case 1:
+        if (_suegg_entrypoint_8(arg0) == 0) {
+            func_8080048C_cheggproximity((s32)arg0, data);
+        }
+        break;
+    case 2:
+        if (_suegg_entrypoint_8(arg0) == 0) {
+            func_80800510_cheggproximity((s32)arg0, data);
+        }
+        break;
+    case 3:
+        func_80800588_cheggproximity((s32)arg0, (s32)data);
+        break;
+    case 4:
+        func_808005EC_cheggproximity((s32)arg0, (s32)data);
+        break;
+    case 5:
+        func_80800650_cheggproximity((s32)arg0, (s32)data);
+        break;
+    case 6:
+        func_808006A4_cheggproximity(arg0, data);
+        break;
+    }
+    if (((struct ProximityFlags *)data)->flag23 && !((struct ProximityFlags *)data)->flag22) {
+        if (*(s32 *)((u8 *)func_80100094(arg0, 1) + 0xA8) != 0) {
+            func_80101180(0x2C4, 0x74, (s32)arg0->unk0);
+        }
+        if (arg0->unk70_10 == 6) {
+            _chbaddiesetup_entrypoint_1(&_cheggproximity_entrypoint_2, (s32)arg0->unk0);
+            return;
+        }
+        func_800FFAB0(arg0);
+    }
+}
 
 /* extern */
 
