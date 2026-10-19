@@ -464,7 +464,48 @@ s32 func_8010BCC8(Actor *arg0, s32 arg1, Actor *arg2) {
 
 void func_8010BF4C(Actor *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4) { s32 func_80102844(Actor *, f32, s32, s32); *(f32 *)((s8 *)arg0 + 0x24) = arg2; func_80102844(arg0, (f32) arg3, -1, arg1); func_8010B990(arg0, arg4); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010BFA4.s")
+s32 func_8010BFA4(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
+    f32 func_800136E4(f32);
+    f32 func_800138D0(f32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEF94(f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800F1DCC(f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    int func_800F1EA4(f32 *, f32 *);
+    f32 temp_f20;
+    f32 var_f0;
+    f32 sp44;
+    f32 sp40;
+    f32 sp34[3];
+    f32 sp30;
+    f32 pad;
+    f32 sp28;
+
+    func_800EFB24(sp34, arg0, arg1);
+    if (func_800F1EA4(sp34, &sp40) == 0) {
+        func_800EE7F8(arg0, arg1);
+        return 0;
+    }
+    sp30 = arg1[1];
+    temp_f20 = func_800F1DF4(arg1, arg2);
+    sp44 = func_800F1DCC(sp40, temp_f20);
+    func_800EE7F8(arg0, arg2);
+    func_800EF1B8(arg0, temp_f20 + 180.0f, arg3 + 2.0f);
+    if (sp44 > 0.0f) {
+        var_f0 = 90.0f;
+    } else {
+        var_f0 = -90.0f;
+    }
+    temp_f20 = func_800136E4(temp_f20 + var_f0);
+    sp28 = func_800EEF94(sp34);
+    var_f0 = func_800F1DCC(sp40, temp_f20);
+    var_f0 = func_800138D0(var_f0);
+    func_800EF1B8(arg0, temp_f20, var_f0 * sp28);
+    arg0[1] = sp30;
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010C100.s")
 
