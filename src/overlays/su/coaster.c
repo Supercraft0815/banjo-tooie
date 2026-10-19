@@ -1,4 +1,6 @@
 #include "common.h"
+f32 func_80107C00(void);
+
 
 /* extern */
 
@@ -925,7 +927,46 @@ s32 func_80802384_sucoaster(Actor *arg0, void *arg1, f32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/func_80802400_sucoaster.s")
+s32 func_80802400_sucoaster(Actor *arg0, void *arg1) {
+    typedef struct {
+        u8 pad0[0x4A];
+        u16 distance;
+    } CoasterRange;
+    CoasterRange *data;
+    typedef struct {
+        u8 pad0[0xC];
+        s16 distance;
+        u8 padE[0xA];
+        u32 flags;
+    } CoasterObject;
+    typedef struct {
+        u8 pad0[0xC];
+        f32 speed;
+    } CoasterSpeed;
+    void *_sucoasterdata_entrypoint_1(u32);
+    s32 func_80802760_sucoaster(s32);
+    f32 func_800F57F0(s32, f32 *);
+    f32 func_800D8FF8(void);
+    f32 func_800F15F8(f32, f32, f32);
+    f32 func_800EFC7C(void *, void *);
+    f32 distance;
+    f32 position[3];
+    f32 radius;
+    f32 speed;
+    f32 delta;
+
+    data = _sucoasterdata_entrypoint_1(((CoasterObject *)arg1)->flags >> 28);
+    radius = func_800F57F0(func_80802760_sucoaster((s32)arg1), position);
+    distance = (f32)((CoasterObject *)arg1)->distance * 0.00390625f * (f32)(u32)data->distance;
+    speed = ((CoasterSpeed *)arg0->actorData)->speed;
+    delta = func_800D8FF8();
+    while (speed > 0.0f) {
+        distance += delta * speed;
+        speed = func_800F15F8(speed, 0.0f, func_80107C00() * 30.0f);
+    }
+    distance += radius;
+    return func_800EFC7C(arg0->position, position) < distance * distance;
+}
 
 /* extern */
 
