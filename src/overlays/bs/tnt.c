@@ -1,5 +1,8 @@
 #include "common.h"
 
+struct anctrl_s;
+enum asset_e;
+
 void func_80800000_bstnt(void *arg0) {
     void func_8009DF94(void *, s32, f32, s32);
     func_8009DF94(arg0, 0x504, 1.0f, 0x7FFF);
@@ -539,8 +542,6 @@ enum ba_physics_type_e;
 void func_8009FFD8(struct player_state_s *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
 
 void func_80801258_bstnt(void *arg0) {
-    struct anctrl_s;
-    enum asset_e;
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setIndex(struct anctrl_s *, enum asset_e);
@@ -595,7 +596,54 @@ s32 bstnt_entrypoint_8(struct player_state_s *arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_8080150C_bstnt.s")
+void func_8080150C_bstnt(struct player_state_s *arg0) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    void anctrl_setSmoothTransition(struct anctrl_s *, s32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void func_8009FFD8();
+    void yaw_setVelocityBounded(struct player_state_s *, f32, f32);
+    f32 bastick_distance(struct player_state_s *);
+    f32 bastick_getAngleRelativeToBanjo(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    f32 yaw_getIdeal(struct player_state_s *);
+    void baphysics_set_target_yaw(struct player_state_s *, f32);
+    f32 baphysics_get_target_horizontal_velocity(struct player_state_s *);
+    void baphysics_set_horizontal_velocity(struct player_state_s *, f32, f32);
+    void baphysics_set_vertical_velocity(struct player_state_s *, f32);
+    void baphysics_set_gravity(struct player_state_s *, f32);
+    void func_8009D7A4(struct player_state_s *, f32, f32);
+    struct anctrl_s *control;
+    s32 pad;
+    f32 yaw;
+
+    bstnt_entrypoint_3(arg0);
+    control = baanim_getAnimCtrlPtr(arg0);
+    anctrl_reset(control);
+    anctrl_setSmoothTransition(control, 0);
+    anctrl_setIndex(control, 0xE2);
+    anctrl_setSubrange(control, 0.0f, 0.4008f);
+    anctrl_setDuration(control, 1.0f);
+    anctrl_setPlaybackType(control, 1);
+    anctrl_start(control);
+    func_8009FFD8(arg0, 1, 3, 1, 6);
+    yaw_setVelocityBounded(arg0, 1200.0f, 10.0f);
+    if (bastick_distance(arg0) != 0.0f) {
+        yaw_setIdeal(arg0, bastick_getAngleRelativeToBanjo(arg0));
+    }
+    baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+    func_80800164_bstnt(arg0);
+    yaw = yaw_getIdeal(arg0);
+    baphysics_set_horizontal_velocity(arg0, yaw, baphysics_get_target_horizontal_velocity(arg0));
+    baphysics_set_vertical_velocity(arg0, 693.5f);
+    baphysics_set_gravity(arg0, -1200.0f);
+    func_8009D7A4(arg0, 1.35f, 1.45f);
+    *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_8080166C_bstnt.s")
 
