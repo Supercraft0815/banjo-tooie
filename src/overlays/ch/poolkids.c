@@ -35,7 +35,49 @@ void func_80800024_chpoolkids(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_80800058_chpoolkids.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_80800290_chpoolkids.s")
+void func_80800290_chpoolkids(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    void func_8008FB58(f32 *, f32, f32);
+    void func_80800884_chpoolkids(void *);
+    void func_808008DC_chpoolkids(u8 *);
+    void func_80800944_chpoolkids(Actor *, f32);
+    void func_80800B38_chpoolkids(Actor *);
+    extern s32 D_80801318_chpoolkids;
+    extern s32 D_80801340_chpoolkids;
+    extern s32 D_80801360_chpoolkids;
+    extern s32 D_808014D8_chpoolkids;
+    f32 *position;
+    u32 state;
+
+    position = arg0->position;
+    func_8008FB58(position, 60.0f, 60.0f);
+    state = arg0->unk70_10;
+    switch (state) {
+    case 1:
+        arg0->actorData[4] = state;
+        _subaddiedialog_entrypoint_8((s32)arg0, position, &D_808014D8_chpoolkids, &D_80801318_chpoolkids, 5);
+        func_80800B38_chpoolkids(arg0);
+        return;
+    case 2:
+        func_80800B38_chpoolkids(arg0);
+        return;
+    case 4:
+        arg0->actorData[4] = state;
+        _subaddiedialog_entrypoint_8((s32)arg0, position, &D_808014D8_chpoolkids, &D_80801340_chpoolkids, 4);
+        func_80800B38_chpoolkids(arg0);
+        return;
+    case 5:
+        arg0->actorData[4] = state;
+        _subaddiedialog_entrypoint_8((s32)arg0, position, &D_808014D8_chpoolkids, &D_80801360_chpoolkids, 4);
+        func_80800B38_chpoolkids(arg0);
+        return;
+    case 6:
+        func_80800884_chpoolkids(arg0);
+        func_808008DC_chpoolkids((u8 *)arg0);
+        func_80800944_chpoolkids(arg0, 0.9f);
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_808003DC_chpoolkids.s")
 
