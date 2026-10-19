@@ -188,7 +188,57 @@ void func_8080069C_chdoor(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/door/func_80800754_chdoor.s")
+void func_80800754_chdoor(u8 *arg0) {
+    struct DoorInitialData {
+        u32 flags;
+        u32 unused4;
+        u32 mode : 6;
+        u32 unused8 : 26;
+        s16 state;
+        s16 unusedE;
+        s16 position[3];
+        u8 unused16[0xC];
+        u16 flag;
+    };
+    void *func_80100094(Actor *, u32);
+    s32 func_800DA298(s32);
+    void func_80800B14_chdoor(u8 *, s32);
+    void func_800EE88C(f32 *, s16 *);
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void func_80103014(u8 *);
+    struct DoorInitialData *data;
+    s32 state;
+    Actor *actor = (Actor *)arg0;
+
+    data = func_80100094(actor, 0);
+    state = data->state != 0 ? 2 : 3;
+    if (func_800DA298(0x9CC)) {
+        if ((data->flags & 0x4000) &&
+            (!(data->flags & 0x80) || !func_800DA298(data->flag & 0x7FFF))) {
+            state = 7;
+        }
+        func_80800B14_chdoor(arg0, state);
+        switch (data->mode) {
+        case 1:
+            actor->rotation[1] = data->position[1];
+            break;
+        case 2:
+            func_800EE88C(actor->position, data->position);
+            break;
+        case 3:
+            actor->rotation[0] = data->position[1];
+            break;
+        case 4:
+            func_800EE88C(actor->position, data->position);
+            actor->rotation[2] = 0.0f;
+            break;
+        case 5:
+            _subaddiefade_entrypoint_1(arg0, 0xFF);
+            break;
+        }
+        func_80103014(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/door/func_808008A0_chdoor.s")
 
