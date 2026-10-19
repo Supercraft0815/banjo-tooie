@@ -60,7 +60,46 @@ s32 func_80800064_chcrate(Actor *arg0, s32 arg1, Unk80132ED0 *volatile arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crate/func_80800104_chcrate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crate/chcrate_entrypoint_3.s")
+void chcrate_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 func_800D0B68(u32, u32);
+    void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
+    Actor *func_80108474(u32, f32 *, s32);
+    s16 func_808003AC_chcrate();
+    f32 position[3];
+    Actor *actor = NULL;
+
+    position[0] = arg0;
+    position[1] = arg1;
+    position[2] = arg2;
+    switch (arg4) {
+    case 0x33:
+    case 0x34:
+    case 0x35:
+    case 0x36:
+    case 0x37:
+    case 0x38:
+    case 0x3A:
+    case 0x3B:
+        actor = func_80108474(func_808003AC_chcrate(arg4), position, arg3);
+        actor->unk74_7 = 0x32;
+        break;
+    case 0x39:
+        if (func_800D0B68(6, 2) == 0) {
+            func_800D1000(6, 2, position, 3, NULL);
+        }
+        break;
+    }
+    if (actor != NULL) {
+        struct CrateFlags {
+            u8 pad[0x70];
+            u32 pad70_18 : 14;
+            u32 unk70_17 : 1;
+            u32 pad70_0 : 17;
+        };
+        struct CrateFlags *flags = (void *)actor;
+        flags->unk70_17 = 1;
+    }
+}
 
 s32 func_80800380_chcrate(u8 *arg0) {
     struct CrateData { u8 pad[0x76]; unsigned short index : 9; unsigned short rest : 7; };
