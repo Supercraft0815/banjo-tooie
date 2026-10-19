@@ -170,7 +170,7 @@ s32 func_800CE83C(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void func_800CE864(void) {
+void func_800CE864() {
     void *func_800CE3E0();
     (*(s8 *)((s8 *)(func_800CE3E0()) + (0x14))) = 1;
 }
@@ -325,7 +325,52 @@ void func_800CEF6C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CEF7C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CF01C.s")
+s32 func_800CF01C(void) {
+    void func_800C3FF0(s32, f32, s32);
+    f32 func_800D8FF8(void);
+    void func_800FC63C(u32, u32);
+    s32 func_800CF580(void);
+    s16 func_800CF640(void);
+    extern f32 D_8011AA80;
+    extern s16 D_8012B168;
+    extern s16 D_8012B16A;
+    s32 sp24;
+    s32 sp20;
+    f32 sp1C;
+    f32 sp18;
+    f32 temp_f0;
+    s32 temp_a0;
+    s32 temp_a2;
+    u8 *temp_v1;
+
+    sp24 = func_800CEAA8(1) + D_8012B168;
+    sp1C = func_800CEA60(1);
+    sp18 = func_800CEF00(0);
+    if (func_800CF580() == 0) {
+        func_800CE864(1);
+        return;
+    }
+    if ((sp24 == 0) && (sp1C < sp18)) {
+        sp1C += func_800D8FF8();
+        if (sp18 < sp1C) {
+            sp1C = sp18;
+        }
+        func_800CE980(1, sp1C, 0);
+    }
+    sp20 = func_800CEA84(1);
+    if (sp20 != D_8012B16A) {
+        temp_v1 = (u8 *)&D_8011AA80 + func_800CF640() * 20;
+        temp_f0 = *(f32 *)(temp_v1 + 8);
+        temp_a0 = *(s16 *)(temp_v1 + 4);
+        temp_a2 = *(s16 *)(temp_v1 + 6);
+        if (temp_f0 >= 0.0f) {
+            func_800C3FF0(temp_a0, temp_f0, temp_a2);
+        } else {
+            func_800FC63C(temp_a0, temp_a2);
+        }
+        D_8012B16A = sp20;
+    }
+}
 
 void func_800CF160(f32 arg0, s32 arg1) {
     extern s32 D_8012B160;
