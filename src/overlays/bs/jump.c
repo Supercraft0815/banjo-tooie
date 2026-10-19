@@ -346,7 +346,63 @@ void bsjump_entrypoint_17(struct player_state_s *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_18.s")
+void bsjump_entrypoint_18(struct player_state_s *arg0) {
+    int _batimer_decrement(void *, s32);
+    int _batimer_isZero(struct player_state_s *, s32);
+    int _batimer_isNonzero(struct player_state_s *, s32);
+    s32 _bswalk_entrypoint_1();
+    int bainput_func_80097DF4(struct player_state_s *);
+    int bainput_func_80097F08(struct player_state_s *);
+    int bainput_func_80097EC8(struct player_state_s *);
+    int bainput_should_beak_bust(void *);
+    s32 bs_setState(s32, s32);
+    void func_8009DF18(struct player_state_s *, s32, f32, s32);
+    void func_8009BF5C(struct player_state_s *, f32);
+    f32 func_8009BFD8(struct player_state_s *);
+    int func_800A3274(struct player_state_s *);
+    int player_inWater(struct player_state_s *);
+    int player_isStable(struct player_state_s *);
+    s32 nextState;
+    s32 transformation;
+
+    nextState = 0;
+    if (_batimer_decrement(arg0, 1)) {
+        func_8009DF18(arg0, 0x446, 1.0f, 0x7D00);
+    }
+    _batimer_decrement(arg0, 0);
+    _bswalk_entrypoint_1(arg0);
+    if (_batimer_isZero(arg0, 1)) {
+        func_8009BF5C(arg0, func_8009BFD8(arg0) + 20.0f);
+    }
+    if (_batimer_isNonzero(arg0, 0)) {
+        transformation = func_800A3274(arg0);
+        switch (transformation) {
+        case 1:
+            if (bainput_func_80097DF4(arg0)) {
+                nextState = 0x10;
+            }
+            if (bainput_func_80097F08(arg0)) {
+                nextState = 0x11;
+            }
+            if (bainput_should_beak_bust(arg0)) {
+                nextState = 0xF;
+            }
+            break;
+        case 10:
+            if (bainput_func_80097EC8(arg0)) {
+                nextState = 0xE4;
+            }
+            break;
+        }
+    }
+    if (player_inWater(arg0)) {
+        nextState = 0x4C;
+    }
+    if (player_isStable(arg0)) {
+        nextState = 0x72;
+    }
+    bs_setState((s32)arg0, nextState);
+}
 
 /* extern */
 
