@@ -151,7 +151,31 @@ s32 func_80801254_chaliendad(void *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_808012AC_chaliendad.s")
+void func_808012AC_chaliendad(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_8080142C_chaliendad(void *);
+    void func_8080152C_chaliendad(Actor *);
+    void func_80801868_chaliendad(Actor *);
+    struct {
+        u8 pad0[0x18];
+        s16 state;
+    } *data;
+    s16 state;
+
+    data = func_80100094(arg0, 0U);
+    state = data->state;
+    switch (state) {
+        case 0:
+            func_8080142C_chaliendad(arg0);
+            return;
+        case 1:
+            func_8080152C_chaliendad(arg0);
+            return;
+        case 3:
+            func_80801868_chaliendad(arg0);
+            return;
+    }
+}
 
 void func_80801324_chaliendad(Actor *arg0, s32 arg1) {
     struct {
