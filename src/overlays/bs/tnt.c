@@ -305,7 +305,48 @@ void func_80800CD8_bstnt(s32 arg0) {
     func_80800B60_bstnt(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80800D08_bstnt.s")
+void func_80800D08_bstnt(struct player_state_s *arg0) {
+    int baanim_isAt(struct player_state_s *, f32);
+    int baanim_isStopped(struct player_state_s *);
+    s32 _bamovegoto_entrypoint_4();
+    s32 bs_setState(s32, s32);
+    void func_8009514C(struct player_state_s *);
+    s32 func_8010114C(s32, s32, s32);
+    void bstnt_entrypoint_4(void *);
+    s32 next_state = 0;
+
+    switch (*(s32 *)((u8 *)arg0 + 0x15C)) {
+        case 1:
+            if (_bamovegoto_entrypoint_4(arg0)) {
+                func_80800B60_bstnt(arg0, 2);
+            }
+            break;
+        case 2:
+            if (baanim_isAt(arg0, 0.1183f)) {
+                func_80800068_bstnt(arg0);
+            }
+            if (baanim_isAt(arg0, 0.592f)) {
+                func_80800000_bstnt(arg0);
+            }
+            if (baanim_isAt(arg0, 0.65f)) {
+                func_8009514C(arg0);
+            }
+            if (baanim_isAt(arg0, 0.665f)) {
+                func_8010114C(*(s32 *)((u8 *)arg0 + 0x164), 5,
+                    *(s32 *)((u8 *)arg0 + 0x184));
+                func_8080009C_bstnt(arg0);
+            }
+            if (baanim_isAt(arg0, 0.85f)) {
+                func_800951B4(arg0);
+            }
+            if (baanim_isStopped(arg0)) {
+                next_state = 0x10C;
+            }
+            break;
+    }
+    bstnt_entrypoint_4(arg0);
+    bs_setState(arg0, next_state);
+}
 
 s32 bstnt_entrypoint_1(s32 arg0) {
     extern s32 D_80802408_bstnt[];
