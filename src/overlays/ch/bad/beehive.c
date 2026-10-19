@@ -54,7 +54,51 @@ void func_808000EC_chbadbeehive(Actor *arg0) {
     ((f32 *)arg0->actorData)[6] = func_8080000C_chbadbeehive();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/beehive/func_80800158_chbadbeehive.s")
+void func_80800158_chbadbeehive(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_800C301C(u8, s32);
+    void func_800C3058(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C330C(u8, s32);
+    void func_800C3584(u8, f32, f32);
+    void func_800C35E8(u8, f32[3]);
+    void func_800C3BDC(u8);
+    void func_800C3CE8(u8);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80101E4C(Actor *, f32 *);
+    f32 func_80101F24(Actor *);
+    s32 func_801022E4(Actor *);
+    extern s32 D_80800AEC_chbadbeehive;
+    extern f32 D_80800B64_chbadbeehive;
+    extern f32 D_80800B74_chbadbeehive;
+    s32 sp2C;
+    s32 temp_v0;
+
+    sp2C = 0;
+    temp_v0 = func_801022E4(arg0);
+    if (temp_v0 != 0x54) {
+        if (temp_v0 == 0x1C7) {
+            if ((func_80101E14(arg0, 0.48f) != 0) || (func_80101E14(arg0, 0.98f) != 0)) {
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800AEC_chbadbeehive);
+            }
+            if (func_80101E4C(arg0, &D_80800B74_chbadbeehive) != 0) {
+                sp2C = 1;
+            }
+        }
+    } else if (func_80101E4C(arg0, &D_80800B64_chbadbeehive) != 0) {
+        sp2C = 1;
+    }
+    if (sp2C != 0) {
+        func_800C3CE8(arg0->unk5F);
+        func_800C301C(arg0->unk5F, 0x447);
+        func_800C3058(arg0->unk5F, 0x2EE0);
+        func_800C31DC(arg0->unk5F, func_80101F24(arg0) + 0.5f);
+        func_800C35E8(arg0->unk5F, arg0->position);
+        func_800C3584(arg0->unk5F, 300.0f, 1500.0f);
+        func_800C330C(arg0->unk5F, 3);
+        func_800C3BDC(arg0->unk5F);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/beehive/func_80800298_chbadbeehive.s")
 
