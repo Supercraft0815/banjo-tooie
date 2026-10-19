@@ -1,6 +1,47 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/light/func_80800000_chminelight.s")
+s32 func_80800000_chminelight(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 _idworld_entrypoint_3(s32);
+    s32 _idworldmake_entrypoint_1(s32, s32, s32, s32);
+    s32 func_800BEA88(s32);
+    s32 func_800DA298(s32);
+    void func_800EDDDC(s32, f32 *, f32 *, f32);
+    s32 world;
+    f32 rgba[4];
+    s32 player;
+
+    if (arg1 == 0x95) {
+        world = _idworld_entrypoint_3(0x1AA);
+        if (world != 0) {
+            rgba[0] = ((f32 *)arg0->actorData)[6];
+            rgba[1] = ((f32 *)arg0->actorData)[6];
+            rgba[2] = ((f32 *)arg0->actorData)[6];
+            rgba[3] = ((f32 *)arg0->actorData)[6];
+            player = func_800BEA88(0);
+            if (player != 0) {
+                _idworldmake_entrypoint_1(player, 0x69, 0x1AA, 1);
+            }
+            player = func_800BEA88(1);
+            if (player != 0) {
+                _idworldmake_entrypoint_1(player, 0x69, 0x1AA, 1);
+            }
+            func_800EDDDC(world, rgba, rgba, 0.0f);
+        }
+        if (_glcutDll_entrypoint_19(0x15) != 0) {
+            if (func_800DA298(0x9E0) != 0) {
+                _capod_entrypoint_13(arg0->unk0, NULL, 0, 0x6910);
+            } else {
+                _capod_entrypoint_13(arg0->unk0, NULL, 2, 0x6910);
+            }
+            arg0->unk64_20 = 1;
+        }
+    } else {
+        return 0;
+    }
+    return 1;
+}
 
 void func_8080011C_chminelight(Actor *arg0) {
     s32 _idworld_entrypoint_3(s32);
