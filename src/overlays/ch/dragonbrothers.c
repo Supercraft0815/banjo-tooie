@@ -661,7 +661,50 @@ void func_808018BC_chdragonbrothers(Actor *arg0) {
     func_808012B4_chdragonbrothers((u8 *)arg0, 0xE);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80801924_chdragonbrothers.s")
+void func_80801924_chdragonbrothers(Actor *arg0, Actor *arg1) {
+    void *func_80100094(Actor *, u32);
+    struct {
+        u8 state[4];
+        u8 hits[4];
+        s32 pad8;
+        s32 remaining;
+        s32 pad10;
+        s32 count;
+    } *data;
+    u32 limit;
+
+    data = func_80100094(arg0, 0);
+    if (arg0->unk64_19) {
+        limit = 3;
+    } else {
+        limit = 2;
+    }
+    if (arg0->unk6C_0 < limit) {
+        data->remaining--;
+        data->count++;
+        if (data->remaining <= 0) {
+            func_808012B4_chdragonbrothers((u8 *)arg0, 0x13);
+            return;
+        }
+        data->hits[arg1->unk74_7]++;
+        if (data->hits[arg1->unk74_7] >= 3) {
+            data->state[arg1->unk74_7] = 2;
+        }
+        switch (arg0->unk70_10) {
+        case 8:
+        case 9:
+        case 10:
+            func_808012B4_chdragonbrothers((u8 *)arg0, 0xB);
+            break;
+        case 11:
+        case 12:
+        case 13:
+            arg0->unk6C_0++;
+            func_808012B4_chdragonbrothers((u8 *)arg0, 0xC);
+            break;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80801A4C_chdragonbrothers.s")
 
