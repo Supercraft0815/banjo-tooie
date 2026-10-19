@@ -166,7 +166,38 @@ void func_8080039C_bsbeefly(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beefly/func_80800480_bsbeefly.s")
+void func_80800480_bsbeefly(PlayerState *arg0) {
+    f32 _bafpctrl_entrypoint_3(PlayerState *);
+    void _ncbafly_entrypoint_4(PlayerState *, f32, f32, f32);
+    int bakey_held(PlayerState *, s32);
+    void baroll_setIdeal(PlayerState *, f32);
+    f32 bastick_getX(PlayerState *);
+    PlayerState *func_800A4CA8(PlayerState *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 yaw_getIdeal(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+    void yaw_setVelocityBounded(PlayerState *, f32, f32);
+    f32 sp34;
+    f32 var_f2;
+    f32 var_f0;
+    f32 sp28;
+
+    sp28 = bastick_getX(arg0);
+    _ncbafly_entrypoint_4(func_800A4CA8(arg0), 2.0f, 2000.0f, 350.0f);
+    if (bakey_held(arg0, 3) != 0) {
+        yaw_setVelocityBounded(arg0, 500.0f, 30.0f);
+        var_f2 = 6.0f;
+        var_f0 = 85.0f;
+    } else {
+        yaw_setVelocityBounded(arg0, 500.0f, 2.0f);
+        var_f2 = 3.0f;
+        var_f0 = 65.0f;
+    }
+    baroll_setIdeal(arg0, func_800F10B4(sp28, -1.0f, 1.0f, -var_f0, var_f0));
+    sp34 = func_800F10B4(sp28, -1.0f, 1.0f, var_f2, -var_f2);
+    sp34 *= _bafpctrl_entrypoint_3(arg0);
+    yaw_setIdeal(arg0, yaw_getIdeal(arg0) + sp34);
+}
 
 /* extern */
 
