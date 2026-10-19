@@ -404,7 +404,31 @@ void func_80802014_chflysaucer(s32 arg0) {
     func_8008FB10(arg0 + 4, 65.0f, 0.0f, 90.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80802044_chflysaucer.s")
+void func_80802044_chflysaucer(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _suspline_entrypoint_2(void *, f32);
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void func_808012A4_chflysaucer(Actor *, s32);
+    void func_808009DC_chflysaucer(Actor *, s32);
+    extern f32 D_80804274_chflysaucer[];
+    extern s16 D_80804624_chflysaucer[];
+    u8 *sp34;
+    void *spline;
+    u8 index;
+    s16 *entry;
+
+    sp34 = func_80100094(arg0, 0);
+    spline = func_80100094(arg0, 1);
+    index = sp34[0x26];
+    entry = &D_80804624_chflysaucer[index];
+    if (D_80804274_chflysaucer[index] != -1.0f && *entry != -1) {
+        if (_suspline_entrypoint_2(spline, D_80804274_chflysaucer[index])) {
+            _capod_entrypoint_13(arg0->unk0, NULL, *entry, 0x4C21);
+            func_808012A4_chflysaucer(arg0, 1);
+            func_808009DC_chflysaucer(arg0, 1);
+        }
+    }
+}
 
 void func_80802114_chflysaucer(Actor *arg0, f32 arg1) {
     void func_800C31DC(u8, f32);
