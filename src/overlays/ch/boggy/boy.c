@@ -66,17 +66,60 @@ void func_8080082C_chboggyboy(Actor *arg0) {
     func_800EE940(sp24, sp18);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/boy/func_8080086C_chboggyboy.s")
+void func_8080086C_chboggyboy(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    int func_800D9154(f32 *, f32);
+    void func_800FFAB0(Actor *);
+    void func_80102424(Actor *, s32);
+    s32 func_80105230();
+    void func_80105834(Actor *);
+    s32 func_80105A5C(Actor *);
+    extern u8 D_80800C18_chboggyboy[];
+    struct Data {
+        u8 pad[0x14];
+        u32 high : 16;
+        u32 active : 1;
+        u32 middle : 1;
+        u32 flag : 1;
+        u32 low : 13;
+        u8 pad18[8];
+        f32 timer[1];
+    };
+    struct Data *sp24;
+
+    sp24 = func_80100094(arg0, 0U);
+    if (sp24->active && (func_800D9154(sp24->timer, 1.6f) != 0)) {
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800C18_chboggyboy);
+    }
+    if (arg0->unk70_10 == 0x10) {
+        if (!sp24->flag) {
+            func_800FFAB0(arg0);
+        }
+    } else {
+        func_80105834(arg0);
+        _sudeflect_entrypoint_0(arg0->position, 100.0f, 50.0f, 10);
+        func_80105230(arg0, 0);
+        if (func_80105A5C(arg0) != 0) {
+            if (sp24->flag) {
+                func_80102424(arg0, 0x10);
+                arg0->unk64_16 = 0;
+            } else {
+                func_800FFAB0(arg0);
+            }
+        }
+    }
+}
 
 void func_80800978_chboggyboy(Actor *arg0, s32 arg1) {
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    s32 func_80102424(s32, s32);
+    void func_80102424(Actor *, s32);
     void *sp2C;
     struct Flags { u8 pad[0x16]; u8 high : 1; u8 flag : 1; u8 low : 6; };
 
     sp2C = func_80100094(arg0, 0);
     _subaddiedialog_entrypoint_11(arg0->unk0, 0x108A, 0xE, (f32 *)((s8 *)arg0 + 4), 0x3B);
-    func_80102424((s32)arg0, 0xE);
+    func_80102424(arg0, 0xE);
     func_8010A570(arg0);
     ((struct Flags *)sp2C)->high = 1;
     ((struct Flags *)sp2C)->flag = 0;
