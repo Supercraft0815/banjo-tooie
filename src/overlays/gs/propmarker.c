@@ -17,7 +17,33 @@ void *gspropmarker_entrypoint_0(s16 *arg0, s32 arg1) { Prop *func_800E9D68(s16 *
     return NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propmarker/gspropmarker_entrypoint_1.s")
+s32 gspropmarker_entrypoint_1(s16 *arg0, s32 *arg1, Prop **arg2, s32 arg3) { Prop *func_800E9D68(s16 *); u32 func_800E9D90(s16 *); s32 func_800E9DC4(s16 *);
+    s32 count = 0;
+    s32 pad;
+    Prop *start;
+    Prop *prop;
+    u32 end;
+    s32 *id;
+
+    if (arg3 == 0) {
+        return 0;
+    }
+    if ((arg0 != NULL) && (func_800E9DC4(arg0) != 0)) {
+        start = func_800E9D68(arg0);
+        end = func_800E9D90(arg0);
+        for (prop = start; ((u32)prop < end) && (count < arg3); prop++) {
+            if (((prop->unk6_0 == 1) || ((prop->unk6_0 == 0) && ((*(u8 *)((s8 *)prop + 0x12) & 1) == 1U))) && (prop->unk6_1 == 6)) {
+                for (id = arg1; *id != -1; id++) {
+                    if (prop->ItemID == *id) {
+                        arg2[count++] = prop;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return count;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propmarker/gspropmarker_entrypoint_2.s")
 
