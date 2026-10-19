@@ -91,7 +91,51 @@ void chbounce_entrypoint_6(Actor *arg0, u32 arg1) {
     func_80800190_chbounce(arg0, arg1, 0U);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bounce/chbounce_entrypoint_7.s")
+s32 chbounce_entrypoint_7(s32 arg0, f32 *arg1, s32 arg2) {
+    extern s16 D_80800FE2_chbounce;
+    u32 *func_80800190_chbounce(Actor *, u32, u32);
+    Actor *actor;
+    struct {
+        u8 pad[0x28];
+        s16 sound;
+        s16 volume;
+        f32 pitch;
+    } *data;
+
+    *(s16 *)((u8 *)&D_80800FE2_chbounce + arg0 * 0x24) = arg2;
+    actor = (Actor *)func_80800190_chbounce((Actor *)arg0, (u32)arg1, 0U);
+    data = func_80100094(actor, 2U);
+    switch (arg2) {
+        case 0x1C9:
+        case 0x1CA:
+        case 0x1CB:
+        case 0x1CC:
+        case 0x1F4:
+            data->sound = 0x404;
+            data->pitch = 1.8f;
+            data->volume = 0x4E20;
+            break;
+        case 0x136:
+        case 0x3C6:
+            data->sound = 0x404;
+            data->pitch = 1.8f;
+            data->volume = 0x4E20;
+            break;
+        case 0x21F:
+            break;
+        case 0x513:
+            data->sound = 0x3E9;
+            data->pitch = 1.0f;
+            data->volume = 0x3E80;
+            break;
+        case 0x517:
+            data->sound = 0x53D;
+            data->pitch = 1.6f;
+            data->volume = 0x3E80;
+            break;
+    }
+    return (s32)actor;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bounce/func_808007B8_chbounce.s")
 
