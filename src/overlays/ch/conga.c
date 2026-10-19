@@ -19,8 +19,8 @@ void func_8080000C_chconga(s32 arg0) {
     s32 func_800F64A4(s32, s32);
     s32 func_800FFAB0(s32);
     void *func_80100094(Actor *, u32);
-    s32 func_80102424(s32, s32);
-    s32 func_80105A9C(s32, s32);
+    void func_80102424(Actor *, s32);
+    void func_80105A9C(Actor *, f32);
     s32 sp24;
     s32 sp20;
     s32 sp1C;
@@ -38,7 +38,7 @@ void func_8080000C_chconga(s32 arg0) {
     }
     if ((sp1C != 0) && (sp24 == 0)) {
         func_80102424(arg0, 4);
-        func_80105A9C(arg0, 0x43C80000);
+        func_80105A9C(arg0, 400.0f);
         goto block_10;
     }
     if ((sp24 != 0) && (sp20 != 0)) {
@@ -84,7 +84,37 @@ s32 func_808002A0_chconga(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/conga/func_80800374_chconga.s")
+void func_80800374_chconga(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_808004BC_chconga(s32, s32);
+    void *func_80100094(Actor *, u32);
+    void _subaddieitem_entrypoint_2(s32);
+    void func_80102424(Actor *, s32);
+    void func_80105A9C(Actor *, f32);
+    s32 func_80101180(s32, s32, s32);
+
+    switch (arg1) {
+    case 0x10B1:
+        arg0->actorData[4] = func_808004BC_chconga(arg0, 0x10F2);
+        _subaddieitem_entrypoint_2(func_80100094(arg0, 0));
+        func_80102424(arg0, 3);
+        break;
+    case 0x10B3:
+        arg0->actorData[4] = func_808004BC_chconga(arg0, 0x10F3);
+        _subaddieitem_entrypoint_2(func_80100094(arg0, 0));
+        func_80102424(arg0, 3);
+        break;
+    case 0x10F2:
+    case 0x10F3:
+    case 0x1101:
+        func_80102424(arg0, 4);
+        func_80105A9C(arg0, 400.0f);
+        func_80101180(0x13C, 0xA, 0);
+        break;
+    default:
+        func_80102424(arg0, 1);
+        break;
+    }
+}
 
 s32 func_80800478_chconga(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800D1A04(s32 a0);
