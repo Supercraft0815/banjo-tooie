@@ -102,7 +102,44 @@ void func_80800424_chfootwear(Actor *arg0, s32 arg1) {
     ((FootwearData *)arg0->actorData)->unk18 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/footwear/func_8080050C_chfootwear.s")
+s32 func_8080050C_chfootwear(Actor *arg0, s32 arg1, s32 arg2) {
+    void _sudialog_entrypoint_0(s32, s32);
+    s32 func_800C6E38(s32);
+    s32 func_800F64A4(s32, s32);
+    s32 func_800F65D0(s32);
+    s32 func_800F6D24(s32);
+    s32 func_800F7C0C(s32, s32, f32);
+    extern s16 D_808006E0_chfootwear[][5];
+    extern s16 D_808006E2_chfootwear[][5];
+    extern s16 D_808006E8_chfootwear[][5];
+    s16 temp_a0;
+
+    if (!arg0->unk64_16) {
+        return 0;
+    }
+    if (func_800F6D24(arg1) != 0) {
+        return 0;
+    }
+    if (func_800F65D0(arg1) == 0) {
+        return 0;
+    }
+    if (func_800C6E38(D_808006E0_chfootwear[arg0->actorData[5]][0]) == 0) {
+        if (arg2 != 0) {
+            temp_a0 = D_808006E8_chfootwear[arg0->actorData[5]][0];
+            if (temp_a0 != 0) {
+                _sudialog_entrypoint_0(temp_a0, 0xE);
+            }
+        }
+        return 0;
+    }
+    if (func_800F64A4(arg1, 0x501) == 0) {
+        return 0;
+    }
+    if ((arg2 != 0) && (func_800F7C0C(arg1, D_808006E2_chfootwear[arg0->actorData[5]][0], arg0->unk50) != 2)) {
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800644_chfootwear(s32 arg0, s32 arg1) { func_8080050C_chfootwear(arg0, arg1, 0); }
 
