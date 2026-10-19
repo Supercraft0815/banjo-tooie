@@ -108,7 +108,55 @@ void func_80800204_chhotwaterpoolbits(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/waterpoolbits/func_8080024C_chhotwaterpoolbits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/waterpoolbits/func_808003E0_chhotwaterpoolbits.s")
+s32 func_808003E0_chhotwaterpoolbits(Actor *arg0, s32 arg1, s32 arg2) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800DA298(s32);
+    s32 func_800F2E60();
+    void func_800FFAB0(Actor *);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(Actor *, u32);
+    void func_80800528_chhotwaterpoolbits(s32 *);
+    extern s32 D_80800A5C_chhotwaterpoolbits[3];
+    extern s32 D_80800A68_chhotwaterpoolbits;
+    struct WaterData {
+        f32 alpha;
+        f32 height;
+        s32 unused[2];
+        s32 color[3];
+    };
+
+    switch (arg1) {
+        case 0xA:
+            if (arg2 == 0x3E7) {
+                func_80101FDC(arg0, 2);
+                func_80103110(arg0, 1);
+                arg0->unk58 = 4.0f;
+            } else {
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800A68_chhotwaterpoolbits);
+                func_80101FDC(arg0, 4);
+                func_80103110(arg0, 1);
+                arg0->unk58 = 10.0f;
+            }
+            break;
+        case 0x95:
+            if (func_800DA298(0x167)) {
+                func_800F2E60(((struct WaterData *)arg0->actorData)->color, D_80800A5C_chhotwaterpoolbits);
+                ((struct WaterData *)arg0->actorData)->alpha = 100.0f;
+                ((struct WaterData *)arg0->actorData)->height = -800.0f;
+                func_800FFAB0(arg0);
+            } else if (func_800DA298(0x31B)) {
+                func_800F2E60(((struct WaterData *)arg0->actorData)->color, D_80800A5C_chhotwaterpoolbits);
+                ((struct WaterData *)arg0->actorData)->height = 0.0f;
+                ((struct WaterData *)arg0->actorData)->alpha = 100.0f;
+                func_80101FDC(arg0, 3);
+            }
+            func_80800528_chhotwaterpoolbits((s32 *)arg0);
+            return 1;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800528_chhotwaterpoolbits(s32 *arg0) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
