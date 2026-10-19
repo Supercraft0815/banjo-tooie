@@ -803,7 +803,47 @@ s32 bsbtrot_entrypoint_31(s32 arg0) {
     return ((s32 *)&D_80802EC0_bsbtrot)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_32.s")
+void bsbtrot_entrypoint_32(PlayerState *arg0) {
+    s32 _bareact_entrypoint_1(PlayerState *, s32);
+    s32 _bareact_entrypoint_2();
+    f32 _bareact_entrypoint_3(PlayerState *);
+    f32 _bareact_entrypoint_4(PlayerState *);
+    f32 _bareact_entrypoint_5(PlayerState *);
+    void func_8009D89C(PlayerState *, f32);
+    void yaw_setIdeal(PlayerState *, f32);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    void baanim_playForDuration_once(void *, s32, f32);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    f32 func_800136E4(f32);
+    f32 sp4C;
+    f32 sp40[3];
+    f32 sp34[3];
+
+    func_80800538_bsbtrot(arg0);
+    _bareact_entrypoint_1(arg0, func_80099A58(arg0));
+    baanim_playForDuration_once(arg0, 0x66, 1.1f);
+    func_8009D89C(arg0, 1.0f);
+    func_8009C128(arg0, sp40);
+    func_800A32C4(arg0, sp34);
+    func_800F1E6C(sp34, sp40, &sp4C);
+    yaw_setIdeal(arg0, func_800136E4(sp4C + 180.0f));
+    yaw_applyIdeal(arg0);
+    baphysics_set_target_horizontal_velocity(arg0, _bareact_entrypoint_4(arg0));
+    baphysics_set_target_yaw(arg0, sp4C);
+    baphysics_set_horizontal_velocity(arg0, sp4C, baphysics_get_target_horizontal_velocity(arg0));
+    func_8009FFD8(arg0, 1, 1, 2, 3);
+    if (_bareact_entrypoint_2(arg0) == 2) {
+        baphysics_set_type(arg0, 6);
+    }
+    baphysics_set_vertical_velocity(arg0, _bareact_entrypoint_3(arg0));
+    baphysics_set_gravity(arg0, _bareact_entrypoint_5(arg0));
+    func_8008E944(arg0);
+    func_8009514C(arg0);
+}
 
 /* extern */
 
