@@ -442,7 +442,46 @@ void func_8080145C_ncpoducam(u8 *arg0, s16 *arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/ncpoducam_entrypoint_7.s")
+s32 ncpoducam_entrypoint_7(s16 arg0, s16 *arg1) {
+    u8 *data;
+    s32 result;
+
+    data = ncpoducam_entrypoint_1(arg0);
+    result = 3;
+    switch (*(s32 *)(data + 0x5C)) {
+        case 0:
+            break;
+        case 1:
+            func_808007D0_ncpoducam(data);
+            result = func_80800854_ncpoducam(data, arg1);
+            if (result == 4) {
+                return result;
+            }
+            if (*(s16 *)(data + 0x48) & 2) {
+                if (*(u8 *)(data + 0x64) != 0) {
+                    func_80800944_ncpoducam(data);
+                } else {
+                    *(u8 *)(data + 0x64) = 1;
+                }
+            }
+            func_80800A94_ncpoducam(data, arg1);
+            if (!(*(s16 *)(data + 0x48) & 2)) {
+                func_80800944_ncpoducam(data);
+            }
+            result = func_80800B74_ncpoducam(data, arg1);
+            break;
+        case 2:
+            result = func_80800854_ncpoducam(data, arg1);
+            if (result == 4) {
+                return result;
+            }
+            func_80800A94_ncpoducam(data, arg1);
+            break;
+        case 3:
+            break;
+    }
+    return result;
+}
 
 /* extern */
 
