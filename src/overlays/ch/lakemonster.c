@@ -71,7 +71,36 @@ void func_808002FC_chlakemonster(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_8080064C_chlakemonster.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80800724_chlakemonster.s")
+s32 func_80800724_chlakemonster(Actor *arg0) {
+    s32 _dbmorph_entrypoint_3(u8 *, u8 *, s32, u8, u8 *);
+    u8 *func_800B2768(u8 *);
+    s32 func_800B2840(s32);
+    s32 func_800D674C(s32);
+    void func_800E02F8(s16 *, f32, s32, s32, s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    f32 func_80101F24(Actor *);
+    u8 *func_801039E4(Unk80132ED0 *);
+    s32 func_80103CB8(Actor *, u32);
+    u8 *sp44;
+    s16 sp42;
+    struct {
+        u8 pad[0x2C];
+        f32 morph[1];
+    } *sp3C;
+
+    sp44 = func_801039E4(arg0->unk0);
+    sp42 = 0;
+    sp3C = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+        case 2: sp42 = 0x1F2; break;
+        case 3: sp42 = 0x1F3; break;
+        case 4: sp42 = 0x1F4; break;
+    }
+    if (sp42 != 0) {
+        func_800E02F8(func_800D674C(sp42), func_80101F24(arg0), 0, 0x2A, 0x2D, sp3C->morph);
+    }
+    _dbmorph_entrypoint_3(func_800B2768(sp44), func_80103CB8(arg0, sp44), func_800B2840(sp44), 1, sp3C->morph);
+}
 
 /* extern */
 
@@ -82,7 +111,7 @@ void func_80800838_chlakemonster(Actor *arg0) {
     u8 *func_800B2768(u8 *);
     s32 func_800B2840(s32);
     s32 func_801015D0(Actor *);
-    s32 func_801039E4(Unk80132ED0 *);
+    u8 *func_801039E4(Unk80132ED0 *);
     s32 func_80103CB8(Actor *, u32);
     s32 func_80800724_chlakemonster(Actor *);
     s32 sp34;
