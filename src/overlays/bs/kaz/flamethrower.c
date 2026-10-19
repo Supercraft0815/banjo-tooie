@@ -17,7 +17,46 @@ void bskazflamethrower_entrypoint_0(PlayerState *self, f32 arg1[3], f32 arg2[3])
     arg1[1] += 57.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/kaz/flamethrower/func_80800094_bskazflamethrower.s")
+/* extern */
+
+void func_80800094_bskazflamethrower(PlayerState *arg0, u32 arg1) {
+    s32 _baflamethrower_entrypoint_1(PlayerState *);
+    s32 _baflamethrower_entrypoint_2(PlayerState *, void (*)(PlayerState *, f32 [3], s32));
+    s32 _baflamethrower_entrypoint_3(PlayerState *);
+    s32 _baflamethrower_entrypoint_4(PlayerState *);
+    AnimCtrl *temp_a0;
+
+    temp_a0 = baanim_getAnimCtrlPtr(arg0);
+    arg0->unk15C.word = (s32) arg1;
+    switch (arg1) {
+    case 1:
+        baanim_playForDuration_onceSmooth(arg0, 0xE1, 1.0f);
+        func_8009FFD8(arg0, BAANIM_UPDATE_1_NORMAL, YAW_TYPE_3_BOUNDED, 8, BA_PHYSICS_2_NORMAL);
+        yaw_setVelocityBounded(arg0, 300.0f, 1.6f);
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+        _baflamethrower_entrypoint_2(arg0, _bskazflamethrower_entrypoint_0);
+        return;
+    case 2:
+        anctrl_setSubrange(temp_a0, 0.375f, 0.5625f);
+        anctrl_setPlaybackType(temp_a0, 4);
+        _batimer_set(arg0, 2, 0.14f);
+        _baflamethrower_entrypoint_3(arg0);
+        return;
+    case 3:
+        _baflamethrower_entrypoint_4(arg0);
+        _batimer_set(arg0, 1, 0.05f);
+        return;
+    case 4:
+        anctrl_setPlaybackType(temp_a0, 1);
+        baanim_setEnd(arg0, 1.0f);
+        return;
+    case 0:
+        _baflamethrower_entrypoint_1(arg0);
+        /* fallthrough */
+    default:
+        return;
+    }
+}
 
 void bskazflamethrower_entrypoint_1(PlayerState *self) {
     func_80800094_bskazflamethrower(self, 0);
