@@ -80,7 +80,49 @@ void func_80800164_gcdialogexec(u8 *arg0) {
     *(s32 *)(arg0 + 0x178) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_808001DC_gcdialogexec.s")
+/* extern */
+
+void func_808001DC_gcdialogexec(u8 *arg0) {
+    s32 _subaddiedialog_entrypoint_12(void *, s16, s8);
+    s32 func_800A9C98(void);
+    s32 func_800F6438(u32);
+    void func_800F82D4(s32, s32);
+    void func_800FECB8(u32);
+    struct DialogFlags {
+        u32 : 20;
+        u32 suppress : 1;
+        u32 : 11;
+    };
+    s32 (*temp_v0)(void *, s16, s8);
+    s16 temp_a1;
+    void *temp_a0;
+    void *temp_a0_2;
+    void *temp_a0_3;
+
+    temp_v0 = (*(s32 (**)(void *, s16, s8))((s8 *)(arg0) + (0x170)));
+    temp_a1 = (*(s16 *)((s8 *)(arg0) + (0x162)));
+    (*(s16 *)((s8 *)(arg0) + (0x164))) = temp_a1;
+    if (temp_v0 != NULL) {
+        temp_a0 = (*(void **)((s8 *)(arg0) + (0x168)));
+        if (temp_a0 == NULL) {
+            temp_v0(temp_a0, temp_a1, (*(s8 *)((s8 *)(arg0) + (0x160))));
+        } else if (func_80800000_gcdialogexec(temp_a0, (*(s32 *)((s8 *)(arg0) + (0x16C)))) != 0) {
+            (*(s32 (**)(void *, s16, s8))((s8 *)(arg0) + (0x170)))((*(void **)((s8 *)(arg0) + (0x168))), (*(s16 *)((s8 *)(arg0) + (0x162))), (*(s8 *)((s8 *)(arg0) + (0x160))));
+        }
+    }
+    temp_a0_2 = (*(void **)((s8 *)(arg0) + (0x168)));
+    if ((temp_a0_2 != NULL) && (func_80800000_gcdialogexec(temp_a0_2, (*(s32 *)((s8 *)(arg0) + (0x16C)))) != 0)) {
+        temp_a0_3 = (*(void **)((s8 *)(arg0) + (0x168)));
+        if ((*(u16 *)((s8 *)(temp_a0_3) + (0x18))) & 1) {
+            _subaddiedialog_entrypoint_12(temp_a0_3, (*(s16 *)((s8 *)(arg0) + (0x162))), (*(s8 *)((s8 *)(arg0) + (0x160))));
+        }
+    }
+    if (((*(u16 *)((s8 *)(arg0) + (0x15A))) & 8) && ((func_800A9C98() == 0) || !((struct DialogFlags *)(arg0 + 0x15C))->suppress) && (func_800F6438((*(s32 *)((s8 *)(arg0) + (0x17C)))) != 0)) {
+        func_800F82D4((*(s32 *)((s8 *)(arg0) + (0x17C))), 0);
+    }
+    func_800FECB8(0);
+    func_80800164_gcdialogexec(arg0);
+}
 
 /* extern */
 
