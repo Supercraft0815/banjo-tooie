@@ -1793,7 +1793,51 @@ void func_808046D0_chgameselect(s32 arg0, s32 arg1) {
     } while (var_s0 != 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80804750_chgameselect.s")
+s32 _gcnewoption_entrypoint_20(s32, s32, s32, u8 *);
+s32 func_80804750_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80803C80_chgameselect(void);
+    void func_8080499C_chgameselect(s32, s32);
+    void func_80804A38_chgameselect(void *);
+    void func_80108B04(Actor *, u32);
+    s32 temp_v0;
+    s32 sp20;
+    s32 var_s0;
+
+    temp_v0 = arg0->actorData[0];
+    var_s0 = -1;
+    if (temp_v0 == -2) {
+        func_80804A38_chgameselect(arg0);
+    } else if (temp_v0 != 0) {
+        s32 _gcnewoption_entrypoint_20();
+        sp20 = _gcnewoption_entrypoint_20(arg1, arg2);
+        func_80803C80_chgameselect();
+        func_8080499C_chgameselect(arg2, sp20);
+        if (arg2 == 1) {
+            var_s0 = sp20 != 0 ? 6 : 7;
+            arg0->actorData[0] = -2;
+        } else {
+            func_80804A38_chgameselect(arg0);
+        }
+    } else if (temp_v0 == 0) {
+        func_80802C10_chgameselect((Unk80132ED0 *)arg0->actorData[6]);
+        switch (arg2) {
+        case 0:
+            var_s0 = 2;
+            arg0->actorData[0] = -1;
+            func_80108B04(arg0, 0x1E8);
+            break;
+        case 1:
+            var_s0 = 3;
+            arg0->actorData[0] = 2;
+            break;
+        case 2:
+            var_s0 = 4;
+            arg0->actorData[0] = 4;
+            break;
+        }
+    }
+    return var_s0;
+}
 
 void func_80804878_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     void _glglobalsettings_entrypoint_6(s32, s32);
