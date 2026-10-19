@@ -1,6 +1,41 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EADCF0/func_800D4400.s")
+void func_800D4400(void *arg0, void *arg1, f32 *arg2) {
+    void func_800D4D5C(s32, void *);
+    f32 func_800C6784(void *);
+    void func_800C675C(void *, f32 *);
+    extern f32 D_80125B20;
+    extern f32 D_80125B24;
+    f32 normal[3];
+    f32 height;
+    f32 y;
+    u8 grounded;
+
+    func_800D4D5C(arg1, arg0);
+    height = func_800C6784(*(void **)arg0);
+    func_800C675C(*(void **)arg0, normal);
+    grounded = *((u8 *)arg0 + 0x56);
+    *((u8 *)arg0 + 0x56) = 0;
+    if (!(normal[1] < D_80125B20)) {
+        y = ((f32 *)arg1)[1];
+        if (y <= height) {
+            ((f32 *)arg1)[1] = height;
+            *((u8 *)arg0 + 0x56) = 1;
+            return;
+        }
+        if (grounded && arg2[1] < 0.0f) {
+            if (normal[1] < D_80125B24) {
+                if (y < height + 30.0f) {
+                    ((f32 *)arg1)[1] = height;
+                    *((u8 *)arg0 + 0x56) = 1;
+                }
+            } else if (y < height + 5.0f) {
+                ((f32 *)arg1)[1] = height;
+                *((u8 *)arg0 + 0x56) = 1;
+            }
+        }
+    }
+}
 
  s32 func_800D4534(f32 arg0[3][3], void *arg1) { if (arg1 == 0) return 0; func_800AAD28(arg0); return 1; }
 
