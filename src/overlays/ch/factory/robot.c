@@ -289,7 +289,34 @@ void func_8080183C_chfactoryrobot(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80801954_chfactoryrobot.s")
+void func_80801954_chfactoryrobot(Actor *arg0) {
+    typedef struct {
+        u8 pad0[0xC];
+        f32 unkC;
+        f32 unk10;
+    } RobotData;
+    f32 func_800136E4(f32);
+    f32 func_800D8FF8(void);
+    void func_800E0AFC(void *, u8, f32, f32, f32, f32);
+    f32 func_800F1FF0(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010262C(Unk80132ED0 *, u32);
+    RobotData *data;
+    f32 dt;
+    s32 model;
+
+    data = func_80100094(arg0, 0);
+    dt = func_800D8FF8();
+    if (arg0->unk70_10 != 5) {
+        data->unk10 = func_800F1FF0(data->unk10, arg0->unk54, 0.1f, dt * 0.5f, dt * 150.0f);
+        data->unkC = func_800F1FF0(data->unkC, arg0->unk54, 0.2f, dt * 4.0f, dt * 400.0f);
+    }
+    model = func_8010262C(arg0->unk0, 2);
+    if (model != 0) {
+        func_800E0AFC((void *)model, 3, 1.0f, 0.0f, data->unk10, 0.0f);
+        func_800E0AFC((void *)model, 0x12, 1.0f, 0.0f, func_800136E4(data->unkC - data->unk10), 0.0f);
+    }
+}
 
 /* extern */
 
