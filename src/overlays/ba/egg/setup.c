@@ -56,7 +56,45 @@ void baeggsetup_entrypoint_1(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/setup/baeggsetup_entrypoint_2.s")
+void baeggsetup_entrypoint_2(PlayerState *arg0, s32 arg1, f32 arg2, f32 arg3) {
+    s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
+    f32 func_800136E4(f32);
+    void func_80094C0C(PlayerState *, s32);
+    void func_8009C128(PlayerState *, f32[3]);
+    f32 func_800DC0C0(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800F3E84();
+    extern s32 _baeggsetup_entrypoint_1;
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 temp_f0;
+    f32 temp_f2;
+
+    func_80094C0C(arg0, arg1);
+    func_8009C128(arg0, sp28);
+    sp28[1] += arg2;
+    func_800EE7F8(sp4C, sp28);
+    func_800F3E84(arg0, sp40);
+    temp_f2 = sp40[1];
+    sp40[1] = func_800136E4(temp_f2 + 180.0f);
+    func_800EEB9C(sp34, sp40[1], arg3);
+    func_800EF04C(sp28, sp34);
+    temp_f0 = func_800DC0C0();
+    temp_f2 = sp40[1];
+    temp_f2 += (temp_f0 * 6.0f) - 3.0f;
+    sp40[1] = temp_f2;
+    func_800EEB9C(sp34, temp_f2, 200.0f);
+    sp34[1] = (func_800DC0C0() * 20.0f) + 700.0f;
+    func_800EE7F8(*(f32 **)((u8 *)arg0 + 0x70), sp4C);
+    func_800EE7F8(*(f32 **)((u8 *)arg0 + 0x70) + 3, sp28);
+    func_800EE7F8(*(f32 **)((u8 *)arg0 + 0x70) + 6, sp34);
+    (*(u8 **)((u8 *)arg0 + 0x70))[0x24] = arg1;
+    _chbaddiesetup_entrypoint_1(&_baeggsetup_entrypoint_1, *(s32 *)((u8 *)arg0 + 0x184));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/setup/baeggsetup_entrypoint_3.s")
 
