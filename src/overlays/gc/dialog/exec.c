@@ -142,7 +142,29 @@ void func_80800350_gcdialogexec(u8 *arg0, u8 *arg1, u8 *arg2, s32 arg3, s32 arg4
     arg0[out] = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80800478_gcdialogexec.s")
+int func_80800478_gcdialogexec(u8 *arg0, s32 arg1) {
+    s32 _subaddiedialog_entrypoint_13(void *, s16, s32);
+    s32 (*callback)(void *, s16, s32);
+    void *caller;
+
+    callback = *(s32 (**)(void *, s16, s32))(arg0 + 0x174);
+    if (callback != NULL) {
+        caller = *(void **)(arg0 + 0x168);
+        if (caller == NULL) {
+            callback(caller, *(s16 *)(arg0 + 0x162), arg1);
+        } else if (func_80800000_gcdialogexec(caller, *(s32 *)(arg0 + 0x16C))) {
+            (*(s32 (**)(void *, s16, s32))(arg0 + 0x174))(
+                *(void **)(arg0 + 0x168), *(s16 *)(arg0 + 0x162), arg1);
+        }
+    }
+    caller = *(void **)(arg0 + 0x168);
+    if (caller != NULL && func_80800000_gcdialogexec(caller, *(s32 *)(arg0 + 0x16C))) {
+        caller = *(void **)(arg0 + 0x168);
+        if (*(u16 *)((u8 *)caller + 0x18) & 1) {
+            _subaddiedialog_entrypoint_13(caller, *(s16 *)(arg0 + 0x162), arg1);
+        }
+    }
+}
 
 void func_8080052C_gcdialogexec(u8 *arg0) {
     int _gczoombox_entrypoint_11();
