@@ -39,7 +39,57 @@ s32 func_8080038C_chklungophial(s32 arg0, s32 arg1, volatile s32 arg2) {
 void func_80800820_chklungophial(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/phial/func_80800828_chklungophial.s")
+void func_80800828_chklungophial(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    s32 func_800D90A4(f32 *);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void rare_memcpy(void *, void *, int);
+    struct PhialEntry {
+        f32 position[3];
+        f32 scale;
+        f32 elapsed;
+        f32 duration;
+        f32 speed;
+        f32 height;
+        f32 angle;
+    };
+    struct PhialData {
+        s32 count;
+        struct PhialEntry entries[50];
+    } *data;
+    f32 delta;
+    struct PhialEntry *entry;
+    s32 i;
+    s32 count;
+
+    delta = func_800D8FF8();
+    data = func_80100094(arg0, 0);
+    entry = data->entries;
+    i = 0;
+    while (i < data->count) {
+        if (func_800D90A4(&entry->duration)) {
+            if (func_800D90A4(&entry->scale)) {
+                entry->elapsed += delta * 15.0f;
+            }
+            if (entry->elapsed > 11.0f) {
+                rare_memcpy(entry, &data->entries[data->count] - 1, sizeof(*entry));
+                data->count--;
+                continue;
+            } else {
+                entry->position[1] += delta * entry->height;
+            }
+        }
+        entry++;
+        i++;
+    }
+    if (arg0->unk70_10 == 2) {
+        count = data->count;
+        if (count == 0) {
+            func_800FFAB0(arg0);
+        }
+    }
+}
 
 s32 func_80800980_chklungophial(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80101FDC(Actor*, u32);
