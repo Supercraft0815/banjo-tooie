@@ -26,7 +26,36 @@ OSThread *chpotogoldbits_entrypoint_0(void)
     return (OSThread *) D_80800920_chpotogoldbits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldbits/func_8080007C_chpotogoldbits.s")
+void func_8080007C_chpotogoldbits(Actor *arg0) {
+    void func_800CE88C(s32, s32);
+    s32 func_800EA05C(void);
+    s32 func_800EA090(void);
+    void func_800EE7F8(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800FFA88();
+    void func_80101FDC(Actor *, u32);
+    f32 position[3];
+
+    func_800EE7F8(((f32 *)arg0->actorData + 4), arg0->position);
+    func_800EE7F8(((f32 *)arg0->actorData), arg0->position);
+    if (func_800EA05C() == 0x136) {
+        ((f32 *)arg0->actorData)[1] -= 500.0f;
+        ((f32 *)arg0->actorData)[3] = 0.0f;
+        arg0->unk54 = 3.0f;
+        return;
+    }
+    func_800F5A00(func_800F54E4(), position);
+        if (func_800EA090() == 1 && arg0->position[1] <= position[1]) {
+            ((f32 *)arg0->actorData)[1] -= 2000.0f;
+            ((f32 *)arg0->actorData)[3] = 0.0f;
+            arg0->unk54 = 3.0f;
+            func_80101FDC(arg0, 9);
+            func_800CE88C(0, 0);
+            return;
+        }
+    func_800FFA88(arg0->unk0);
+}
 
 void func_80800188_chpotogoldbits(u8 *arg0) {
     s32 _subaddieaudioloop_entrypoint_2(u8 *);
