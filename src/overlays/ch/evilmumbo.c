@@ -572,7 +572,39 @@ void func_80803B28_chevilmumbo(s32 arg0)
 void func_80803B48_chevilmumbo(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80803B50_chevilmumbo.s")
+void func_80803B50_chevilmumbo(Actor *arg0) {
+    s32 func_800D9078(f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800FFAB0(Actor *);
+
+    switch (arg0->unk70_10) {
+    case 2:
+        *(f32 *)&arg0->actorData[5] = func_800F10B4(*(f32 *)&arg0->actorData[4], 0.0f, 0.3f, 1, 0.0f);
+        if (func_800D9078((f32 *)&arg0->actorData[4])) {
+            func_80803A24_chevilmumbo((s32)arg0, 3);
+        }
+        return;
+    case 3:
+        if (arg0->scale == 1.0f) {
+            arg0->scale = 0.75f;
+        } else {
+            arg0->scale = 1.0f;
+        }
+        if (func_800D9078((f32 *)&arg0->actorData[4])) {
+            func_80803A24_chevilmumbo((s32)arg0, 4);
+        }
+        break;
+    case 4:
+        *(f32 *)&arg0->actorData[5] = func_800F10B4(*(f32 *)&arg0->actorData[4], 0.0f, 0.2f, 0.0f, 1);
+        if (func_800D9078((f32 *)&arg0->actorData[4])) {
+            func_80803A24_chevilmumbo((s32)arg0, 5);
+        }
+        break;
+    case 5:
+        func_800FFAB0(arg0);
+        break;
+    }
+}
 
 s32 func_80803C88_chevilmumbo(void *arg0, s32 arg1, s32 arg2) {
     s32 result;
