@@ -15,7 +15,46 @@ s32 func_80800008_baeggsetup(void *arg0) {
     return result == 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/setup/baeggsetup_entrypoint_1.s")
+void baeggsetup_entrypoint_1(s32 arg0) {
+    void func_800EE7F8(f32 *, f32 *);
+    u8 *func_800F53D0(s32);
+    void _bababykaz_entrypoint_13(u8 *);
+    void _cheggnormal_entrypoint_1(f32 *, f32 *, f32 *, s32);
+    void _cheggfire_entrypoint_1(f32 *, f32 *, f32 *, s32);
+    void _cheggice_entrypoint_1(f32 *, f32 *, f32 *, s32);
+    void _chegggrenade_entrypoint_2(f32 *, f32 *, f32 *, s32);
+    void _cheggclockwork_entrypoint_1(f32 *, f32 *, f32 *, s32, s32);
+    void _chegggolden_entrypoint_1(f32 *, f32 *, f32 *, s32);
+    f32 sp54[3];
+    f32 sp48[3];
+    f32 sp3C[3];
+    u8 *self;
+
+    self = func_800F53D0(arg0);
+    func_800EE7F8(sp54, *(f32 **)((u8 *)self + 0x70));
+    func_800EE7F8(sp3C, *(f32 **)((u8 *)self + 0x70) + 3);
+    func_800EE7F8(sp48, *(f32 **)((u8 *)self + 0x70) + 6);
+    switch ((*(u8 **)((u8 *)self + 0x70))[0x24]) {
+    case 1:
+        _cheggnormal_entrypoint_1(sp54, sp3C, sp48, arg0);
+        return;
+    case 2:
+        _cheggfire_entrypoint_1(sp54, sp3C, sp48, arg0);
+        return;
+    case 3:
+        _cheggice_entrypoint_1(sp54, sp3C, sp48, arg0);
+        return;
+    case 4:
+        _chegggrenade_entrypoint_2(sp54, sp3C, sp48, arg0);
+        return;
+    case 5:
+        _bababykaz_entrypoint_13(self);
+        _cheggclockwork_entrypoint_1(sp54, sp3C, sp48, arg0, func_80800008_baeggsetup(self));
+        return;
+    case 7:
+        _chegggolden_entrypoint_1(sp54, sp3C, sp48, arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/setup/baeggsetup_entrypoint_2.s")
 
