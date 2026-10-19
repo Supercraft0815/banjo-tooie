@@ -194,7 +194,42 @@ void func_80801910_chklungo(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80801964_chklungo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_808020F0_chklungo.s")
+void func_808020F0_chklungo(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 _subaddiefade_entrypoint_1(Actor *, s32);
+    f32 func_800DC178(f32, f32);
+    struct {
+        u8 pad0[8];
+        s16 unk8;
+        u8 padA[10];
+        f32 unk14;
+        s16 unk18;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    data->unk18 = arg1;
+    switch (arg1) {
+        case 0:
+            _subaddiefade_entrypoint_1(arg0, 255);
+            break;
+        case 2:
+            switch (data->unk8) {
+                case 0:
+                    data->unk14 = func_800DC178(1.0f, 2.0f);
+                    break;
+                case 1:
+                    data->unk14 = func_800DC178(2.0f, 3.0f);
+                    break;
+                case 2:
+                    data->unk14 = func_800DC178(3.0f, 4.0f);
+                    break;
+            }
+            break;
+        case 4:
+            data->unk14 = func_800DC178(1.5f, 2.0f);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_8080220C_chklungo.s")
 
