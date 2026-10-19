@@ -41,7 +41,43 @@ void func_808000CC_basub(u8 *arg0) {
     func_80800008_basub(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/func_80800110_basub.s")
+void func_80800110_basub(u8 *arg0) {
+    f32 func_800D8FF8(void);
+    f32 delta;
+
+    delta = func_800D8FF8();
+    if (*(f32 *)(*(u8 **)(arg0 + 0x130) + 0x58) > 0.0f) {
+        *(f32 *)(*(u8 **)(arg0 + 0x130) + 0x58) -= delta;
+        if (*(f32 *)(*(u8 **)(arg0 + 0x130) + 0x58) <= 0.0f) {
+            (*(u8 **)(arg0 + 0x130))[0x5E] = 0;
+        }
+    }
+    switch ((*(u8 **)(arg0 + 0x130))[0x5D]) {
+        case 1:
+            if (*(f32 *)(*(u8 **)(arg0 + 0x130) + 0x54) > 0.0f) {
+                *(f32 *)(*(u8 **)(arg0 + 0x130) + 0x54) -= delta;
+            }
+            if (*(f32 *)(*(u8 **)(arg0 + 0x130) + 0x54) <= 0 &&
+                (*(u8 **)(arg0 + 0x130))[0x5E] != 0) {
+                func_80800008_basub(arg0, 2);
+            }
+            break;
+        case 2:
+            *(f32 *)(*(u8 **)(arg0 + 0x130) + 0x54) -= delta;
+            if (*(f32 *)(*(u8 **)(arg0 + 0x130) + 0x54) <= 0) {
+                if ((*(u8 **)(arg0 + 0x130))[0x5C] != 0) {
+                    if ((*(u8 **)(arg0 + 0x130))[0x5E] != 0) {
+                        func_80800008_basub(arg0, 2);
+                    } else {
+                        func_80800008_basub(arg0, 1);
+                    }
+                } else {
+                    func_80800008_basub(arg0, 1);
+                }
+            }
+            break;
+    }
+}
 
 void func_80800254_basub(u8 *arg0, s32 arg1) {
     s32 i;
