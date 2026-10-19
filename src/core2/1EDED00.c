@@ -14,7 +14,7 @@ extern s32 D_80136ED8;
 
 typedef struct {
     void (*create)(void *, s32, s32, s32, s32);
-    s32 unk4;
+    void (*unk4)(void *, s32, s32);
     void (*destroy)(void *);
     s32 unkC;
 } ItemType;
@@ -469,7 +469,63 @@ void func_80106138(void *arg0) {
     ((Owner *)arg0)->index = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_801061D8.s")
+void func_801061D8(Actor *arg0) {
+    typedef struct {
+        u8 pad[0x70];
+        u32 pad70_25 : 7;
+        u32 flag70_24 : 1;
+        u32 pad70_4 : 20;
+        u32 flag70_3 : 1;
+        u32 pad70_0 : 3;
+        u32 pad74_23 : 9;
+        u32 flag74_22 : 1;
+        u32 pad74_0 : 22;
+    } ActorFlags;
+    void *func_801063C0(void *);
+    u8 *func_80103AA0(u8 *);
+    void func_800D62E4(s32);
+    s32 func_80103CDC(u8 *, u8 *);
+    s32 func_80103D00(void *, u8 *);
+    s32 _glid_entrypoint_5(s32, s32);
+    s32 _glid_entrypoint_6(s32, s32);
+    void func_8010381C(Actor *);
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    extern s32 D_80136ED4;
+    typedef struct {
+        s32 unk0;
+        s16 type;
+        s16 unk6;
+        u8 data[0xA0];
+    } Item;
+    s32 *entry;
+    u8 *model;
+    Item *end;
+    Item *item;
+
+    entry = func_801063C0(arg0);
+    model = func_80103AA0((u8 *)arg0->unk0);
+    if (model != NULL) {
+        func_800D62E4(arg0->unk0->unk14);
+        _glid_entrypoint_5(entry[0], func_80103CDC((u8 *)arg0, model));
+        if (((ActorFlags *)arg0)->flag70_24) {
+            _glid_entrypoint_6(entry[0], func_80103D00(arg0, model));
+        }
+        if (arg0->unk7C_12 && !((ActorFlags *)arg0)->flag74_22) {
+            end = (Item *)vector_end(entry[1]);
+            D_80136ED4 = entry[1];
+            item = (Item *)vector_begin(entry[1]);
+            if (item < end) {
+                do {
+                    D_80124440[item->type].unk4(item->data, item->unk0, item->unk6);
+                    item++;
+                } while (item < end);
+            }
+        }
+    } else if (((ActorFlags *)arg0)->flag70_3) {
+        func_8010381C(arg0);
+    }
+}
 
 s32 func_80106314()
 {
