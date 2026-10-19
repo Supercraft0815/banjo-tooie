@@ -1,6 +1,7 @@
 #include "common.h"
 
 void func_808017D8_chsabreman(Actor *, s32, s32);
+void func_80801010_chsabreman(Actor *, s32);
 
 OSThread *chsabreman_entrypoint_0(void)
 {
@@ -195,18 +196,18 @@ void func_80800F04_chsabreman(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
 /* extern */
 
 s32 func_80800F74_chsabreman(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _gccubesearch_entrypoint_15(s32, s32, s32);
+    Prop *_gccubesearch_entrypoint_15(u32, u32, f32 *);
     s32 func_800C05B8(s32, s32, s32, s32, s32, s32, s32);
     s32 func_800CBC3C(s32);
     s32 func_800EA05C();
-    s32 func_800EE88C(s32, s32);
-    s32 temp_v0;
+    void func_800EE88C(f32 *, s16 *);
+    Prop *temp_v0;
     s32 sp28;
 
     if (func_800EA05C() == 0x127) {
         temp_v0 = _gccubesearch_entrypoint_15(0x154, 0, arg1);
         if (temp_v0 != 0) {
-            func_800EE88C(arg2, temp_v0);
+            func_800EE88C(arg2, temp_v0->position);
             sp28 = func_800CBC3C(arg2);
             if (func_800CBC3C(arg1) == sp28) {
                 return 2;
@@ -217,7 +218,43 @@ s32 func_80800F74_chsabreman(s32 arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_80801010_chsabreman.s")
+void func_80801010_chsabreman(Actor *arg0, s32 arg1) {
+    Prop *_gccubesearch_entrypoint_15(u32, u32, f32 *);
+    void _subaddietaxi_entrypoint_0(Actor *, s32, f32 *, s32);
+    void _subaddietaxi_entrypoint_10(Actor *, s32, s32);
+    s32 func_800CB3E0(s32);
+    void func_800EE814(s16 *, s16 *);
+    void func_800EE88C(f32 *, s16 *);
+    void *func_80100094(Actor *, u32);
+    void func_8010A570(Actor *);
+    void func_808011F8_chsabreman();
+    s16 *sp3C;
+    f32 sp30[3];
+    Prop *sp2C;
+
+    sp3C = func_80100094(arg0, 0);
+    if (func_80800030_chsabreman(arg0) != 0) {
+            switch (func_800CB3E0(arg1)) {
+                case 1:
+                    break;
+                case 3:
+                    _subaddietaxi_entrypoint_10(arg0, arg1, 0xF);
+                    break;
+                case 4:
+                    func_800EE88C(sp30, _gccubesearch_entrypoint_15(0x154, 0, arg0->position)->position);
+                    sp2C = _gccubesearch_entrypoint_15(0x347, 0, arg0->position);
+                    func_800EE814(sp3C + 0x40D, sp2C->position);
+                    sp3C[0x40C] = sp2C->FlagOrRotation;
+                    func_8010A570(arg0);
+                    _subaddietaxi_entrypoint_0(arg0, arg1, sp30, 0xE);
+                    break;
+                case 6:
+                    func_808011F8_chsabreman(arg0, 0x10);
+                    func_8010A570(arg0);
+                    break;
+            }
+    }
+}
 
 /* extern */
 
