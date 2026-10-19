@@ -17,7 +17,50 @@ void bsdronewaitbabykaz_entrypoint_1(s32 arg0) {
     func_8009FFD8(arg0, 1, 1, 3, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/waitbabykaz/bsdronewaitbabykaz_entrypoint_2.s")
+void bsdronewaitbabykaz_entrypoint_2(struct player_state_s *arg0) {
+    s32 _plsu_entrypoint_1(s32);
+    void func_80099B94(struct player_state_s *);
+    s32 func_8009E6EC(struct player_state_s *);
+    void func_8009E830(struct player_state_s *, s32);
+    void func_800F7B9C(s32, u32);
+    s32 temp_v0;
+    s32 temp_v0_2;
+
+    temp_v0 = func_8009E6EC(arg0);
+    switch (temp_v0) {
+    case 0x20:
+    case 0x21:
+    case 0x24:
+    case 0x2D:
+    case 0x2E:
+    case 0x2F:
+    case 0x4E:
+    case 0x51:
+    case 0x52:
+    case 0x59:
+    case 0x5A:
+    case 0x5B:
+    case 0x5C:
+        func_80099B94(arg0);
+        temp_v0_2 = _plsu_entrypoint_1(0x11);
+        if (temp_v0_2 != -1) {
+            func_800F7B9C(temp_v0_2, 0x87);
+        }
+        func_8009E830(arg0, 2);
+        return;
+    case 0x6B:
+        func_80099B94(arg0);
+        return;
+    default:
+        func_80099B94(arg0);
+        break;
+    case 0x15:
+    case 0x1C:
+    case 0x1D:
+    case 0x1E:
+        break;
+    }
+}
 
 void bsdronewaitbabykaz_entrypoint_3(s32 arg0) {
     s32 _badata_entrypoint_34(s32);
