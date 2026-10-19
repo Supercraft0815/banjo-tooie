@@ -24,7 +24,33 @@ void func_80114EEC(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEE770/func_80114FA4.s")
+void func_80114FA4(Gfx **arg0, u8 *arg1) {
+    void func_800B99CC(Gfx **, s32, s32 *);
+    extern u8 D_80124A50;
+    extern f32 D_80126600, D_80126604, D_80126608;
+    s32 i;
+    f32 fraction;
+    u8 component;
+    s32 color[3];
+    u8 (*table)[5] = (u8 (*)[5])&D_80124A50;
+    f32 alpha;
+
+    if (arg1[0xC] != 0) {
+        if (arg1[0xE] != 0) {
+            if (D_80126600 < *(f32 *)(arg1 + 8)) {
+                fraction = 1.0f;
+            } else {
+                fraction = *(f32 *)(arg1 + 8) * D_80126604;
+            }
+            for (i = 0; i != 3; i++) {
+                component = table[*(s32 *)(arg1 + 4)][i + 1];
+                color[i] = -(s32)component * (fraction * D_80126608) + (f32)component;
+            }
+            alpha = (f32)table[*(s32 *)(arg1 + 4)][4];
+            func_800B99CC(arg0, (s32)(alpha * fraction + alpha), color);
+        }
+    }
+}
 
 u32 func_801150F0(u8 *arg0) {
     return arg0[12];
