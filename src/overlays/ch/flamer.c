@@ -216,4 +216,46 @@ void func_8080098C_chflamer(s32 arg0) {
     _subaddieaudioloop_entrypoint_5(arg0, arg0 + 4, 1, -1, &D_80800B68_chflamer);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flamer/func_808009C0_chflamer.s")
+struct FlamerLight {
+    s32 light;
+    s16 radius;
+    f32 position[3];
+    u8 initialized;
+};
+
+void func_808009C0_chflamer(Actor *arg0, Actor *arg1) {
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8E84(s32, u32 *);
+    f32 func_800DC178(f32, f32);
+    s32 func_800E3E8C(f32 *, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800F2F60(void *, void *, f32);
+    f32 func_80103F38(Actor *, f32 *);
+    extern u32 D_80800B7C_chflamer;
+    f32 temp_f2;
+    f32 sp40[3];
+    f32 sp3C;
+    struct FlamerLight *data;
+
+    data = func_80100094(arg0, 0U);
+    if (arg1 != 0) {
+        temp_f2 = func_80103F38(arg1, sp40) * 0.75f;
+        sp3C = temp_f2;
+        data->radius = (s32) temp_f2;
+    } else {
+        sp3C = data->radius;
+        func_800EE7F8(sp40, data->position);
+    }
+    if (data->initialized == 0 ||
+        func_800E3E8C(arg0->position, 3.0f * sp3C) ||
+        func_800E3E8C(data->position, 3.0f * sp3C)) {
+        u32 sp2C[3];
+        func_800F2F60(sp2C, &D_80800B7C_chflamer, func_800DC178(0.8f, 1.0f));
+        func_800EE7F8(data->position, sp40);
+        func_800C8CB8(data->light, sp40);
+        func_800C8E84(data->light, sp2C);
+        func_800C8E54(data->light, sp3C, 3.0f * sp3C);
+    }
+    data->initialized = 1;
+}
