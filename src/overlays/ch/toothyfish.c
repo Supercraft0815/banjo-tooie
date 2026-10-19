@@ -60,7 +60,30 @@ void func_808000E8_chtoothyfish(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800188_chtoothyfish.s")
+void func_80800188_chtoothyfish(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA568(s16 *, s16);
+    void func_800BA7C4(void *, f32, f32);
+    void func_800BA7FC(void *, f32, f32);
+    void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800DC128(s32, s32);
+    extern s32 D_80801814_chtoothyfish;
+    s32 sp34;
+    s32 temp_v0;
+    s32 temp_v0_2;
+
+    temp_v0 = func_800DC128(0, 5);
+    sp34 = temp_v0;
+    temp_v0_2 = func_800B53A4(temp_v0);
+    func_800BABB8(temp_v0_2, arg0, 0, 1.0f, &D_80801814_chtoothyfish);
+    func_800BA568(temp_v0_2, (s16) (s32) (arg0[1] + arg1));
+    func_800BA7C4(temp_v0_2, 0.16f * arg2, 0.3f * arg2);
+    func_800BA7FC(temp_v0_2, 0.45f * arg2, 0.6f * arg2);
+    func_800BA994(temp_v0_2, -75, (s16) (s32) (arg3 - 75.0f), 1200, -15, (s32) (arg3 + 75.0f), 1500);
+    func_800BA22C(temp_v0_2, sp34);
+}
 
 void func_808002DC_chtoothyfish(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_4(Actor*, f32*, u32*, u32*);
