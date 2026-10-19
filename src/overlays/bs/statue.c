@@ -93,7 +93,32 @@ void bsstatue_entrypoint_1(s32 arg0) {
     func_808000C0_bsstatue(arg0, 75.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_808003B4_bsstatue.s")
+s32 func_808003B4_bsstatue(void *arg0) {
+    s32 func_8001211C(void);
+    s32 func_8009E6EC();
+    s32 func_8009E830(void *, s32);
+    void func_80099B94();
+
+    switch (func_8009E6EC(arg0)) {
+        case 0x20:
+        case 0x21:
+        case 0x23:
+        case 0x24:
+        case 0x2D:
+        case 0x2E:
+        case 0x51:
+        case 0x52:
+            func_8009E830(arg0, 1);
+            break;
+        case 0x82:
+            *(s32 *)((u8 *)arg0 + 0x168) = func_8001211C();
+            func_8009E830(arg0, 2);
+            break;
+        default:
+            func_80099B94(arg0);
+            break;
+    }
+}
 
 void func_80800474_bsstatue(s32 arg0) {
     s32 _badrone_entrypoint_31(s32);
