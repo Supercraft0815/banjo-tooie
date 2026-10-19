@@ -24,7 +24,33 @@ u8 suexpression_entrypoint_1(u8 arg0) {
     return *((u8 *) temp_v0 + 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_2.s")
+s32 suexpression_entrypoint_2(u8 arg0, void *arg1, f32 *arg2) {
+    void *func_80800CF4_suexpression(s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80103DFC(Actor *, f32 *);
+    void func_800DBEFC(s32 *, s32, f32 *);
+    s32 pad;
+    s16 *sp18;
+    Actor *actor;
+
+    sp18 = func_80800CF4_suexpression(arg0);
+    actor = func_80106790(arg1);
+    if (sp18 == NULL) {
+        func_80103DFC(actor, arg2);
+    } else if (sp18[1] != 0) {
+        if (actor->unk7C_12) {
+            func_800DBEFC(((Unk80132ED0 *)arg1)->unk4, sp18[1], arg2);
+        } else {
+            arg2[0] = actor->position[0];
+            arg2[1] = sp18[0] * actor->scale + actor->position[1];
+            arg2[2] = actor->position[2];
+        }
+    } else {
+        arg2[0] = actor->position[0];
+        arg2[1] = sp18[0] * actor->scale + actor->position[1];
+        arg2[2] = actor->position[2];
+    }
+}
 
 /* extern */
 
