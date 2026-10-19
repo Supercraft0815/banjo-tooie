@@ -100,7 +100,25 @@ void func_80800590_chcablespark(Actor *arg0, f32 *arg1) {
     arg1[2] = func_800136E4(sp24 - 90.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablespark/func_80800668_chcablespark.s")
+void func_80800668_chcablespark(Actor *arg0) {
+    f32 func_800136E4(f32);
+    void func_800E3980(f32 *);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    f32 func_800F1DCC(f32, f32);
+    f32 mlAbsF(f32);
+    f32 sp2C[3];
+    f32 sp24[2];
+    f32 sp20;
+    f32 sp1C;
+    func_800E3980(sp2C);
+    func_800F18FC(arg0->position, sp2C, &sp24[0]);
+    sp24[1] = func_800F1DCC(arg0->rotation[1], sp24[1]);
+    sp24[0] = -sp24[0];
+    sp1C = mlAbsF(sp24[1]) > 45.0f ? 0 : (sp24[1] > 0.0f ? 15.0f : -15.0f);
+    sp20 = mlAbsF(sp24[0]) > 45.0f ? 0 : (sp24[0] < 0.0f ? 15.0f : -15.0f);
+    ((f32 *)arg0->actorData)[4] = func_800136E4(arg0->rotation[1] + sp1C);
+    ((f32 *)arg0->actorData)[5] = func_800136E4(sp20);
+}
 
 /* extern */
 
