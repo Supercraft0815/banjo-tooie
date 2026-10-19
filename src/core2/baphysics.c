@@ -115,7 +115,43 @@ void func_8009B1FC(void *arg0) {
     (*(f32 *)((s8 *)(temp_v0) + (8))) += (*(f32 *)((s8 *)(temp_v0) + (0x2C)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009B27C.s")
+void func_8009B27C(void *arg0) {
+    f32 func_800136E4(f32);
+    void func_80098590(f32 **, f32 *);
+    f32 func_80098610(void **);
+    u32 func_8009861C(void *);
+    f32 func_80098628(void *);
+    void func_800EEB9C(f32[3], f32, f32);
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 unused;
+    f32 temp_f2;
+    u8 *temp_v0;
+
+    func_80098590(arg0, sp30);
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 4) = sp30[0];
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0xC) = sp30[2];
+    if (func_8009861C(arg0) == 2) {
+        temp_f2 = func_800136E4(func_80098610(arg0) + 180.0f);
+        func_800EEB9C(sp3C, temp_f2, -func_80098628(arg0));
+    } else {
+        temp_f2 = yaw_get(arg0);
+        func_800EEB9C(sp3C, temp_f2, -func_80098628(arg0));
+    }
+    temp_v0 = *(u8 **)((u8 *)arg0 + 0xC8);
+    *(f32 *)(temp_v0 + 4) += sp3C[0];
+    temp_v0 = *(u8 **)((u8 *)arg0 + 0xC8);
+    *(f32 *)(temp_v0 + 8) += sp3C[1];
+    temp_v0 = *(u8 **)((u8 *)arg0 + 0xC8);
+    *(f32 *)(temp_v0 + 0xC) += sp3C[2];
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x18) = 0.0f;
+    temp_v0 = *(u8 **)((u8 *)arg0 + 0xC8);
+    temp_f2 = *(f32 *)(temp_v0 + 0x18);
+    *(f32 *)(temp_v0 + 0x10) = temp_f2;
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x24) = temp_f2;
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x1C) = temp_f2;
+    func_8009B08C(arg0);
+}
 
 void func_8009B3B8(u8 *arg0) {
     f32 func_800D8FF8(void);
