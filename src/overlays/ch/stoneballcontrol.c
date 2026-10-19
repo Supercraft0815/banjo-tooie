@@ -1224,7 +1224,56 @@ void func_80804304_chstoneballcontrol(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_808046C4_chstoneballcontrol.s")
+void func_808046C4_chstoneballcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_8010A590(Actor *);
+    s32 func_800EA05C();
+    s32 _gcstatusDll_entrypoint_11();
+    void *func_800BD0DC(s32);
+    void func_800BD268();
+    void func_800BD28C();
+    typedef struct {
+        u8 pad[0x64];
+        u32 enabled : 1;
+        u32 : 1;
+        u32 active : 1;
+        u32 controller_index : 2;
+    } BallFlags;
+    struct {
+        void *handle;
+        u8 pad[0x10];
+        u8 map;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    ((BallFlags *)arg0)->enabled = 1;
+    arg0->scale = 0.5f;
+    func_8010A590(arg0);
+    switch (func_800EA05C()) {
+    case 0xC6:
+        data->map = 0;
+        break;
+    case 0xC8:
+        data->map = 1;
+        break;
+    case 0xC9:
+        data->map = 2;
+        break;
+    case 0xBB:
+        data->map = 3;
+        break;
+    case 0x17F:
+        data->map = 4;
+        if (arg0->unk6C_0 < (u32)_gcstatusDll_entrypoint_11()) {
+            ((BallFlags *)arg0)->active = 1;
+            ((BallFlags *)arg0)->controller_index = arg0->unk6C_0;
+        }
+        break;
+    }
+    data->handle = func_800BD0DC(2);
+    func_800BD268(data->handle, arg0->unk6C_0);
+    func_800BD28C(data->handle, 2);
+}
 
 void func_808047E8_chstoneballcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
