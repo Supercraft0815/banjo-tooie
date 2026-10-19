@@ -19,7 +19,56 @@ void func_8080000C_changlerbossbubble(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x34))) = 0.75f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/bubble/func_80800054_changlerbossbubble.s")
+void func_80800054_changlerbossbubble(Actor *arg0) {
+    void func_80015E80(s32, void *);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    s32 func_800EFD4C(s32);
+    s32 func_800F54F0(s32);
+    void func_800F7B9C(s32, u32);
+    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010B990(Actor *, s32);
+    void func_80800334_changlerbossbubble(Actor *);
+    void func_80800450_changlerbossbubble(u8 *);
+    s32 buttons[6];
+    s32 controller;
+    typedef struct {
+        f32 timer;
+        s32 count;
+    } BubbleData;
+    s32 marker;
+
+    arg0->unk58 += func_800D8FF8();
+    func_800EFD4C((s32)((s16 *)&arg0->unk0->unk1C + 1));
+    goto dispatch;
+dispatch:
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_8010B990(arg0, 0x400007) & 0x20) {
+                func_80800334_changlerbossbubble(arg0);
+            }
+            break;
+        case 2:
+            controller = func_800F54F0(arg0->unk6C_0);
+            func_80800450_changlerbossbubble((u8 *)arg0);
+            func_80015E80(controller, buttons);
+            if (buttons[0] == 1 || buttons[1] == 1) {
+                ((BubbleData *)arg0->actorData)->count++;
+                if (((BubbleData *)arg0->actorData)->count >= 10) {
+                    func_800F7B9C(arg0->unk6C_0, 0x70);
+                    return;
+                }
+                func_800F7B9C(arg0->unk6C_0, 0x7B);
+            }
+            if (func_800D9078(&((BubbleData *)arg0->actorData)->timer)) {
+                marker = (s32)arg0->unk3C;
+                if (marker != 0) {
+                    func_8010114C(marker, 10, 0);
+                }
+            }
+            break;
+    }
+}
 
 /* extern */
 
