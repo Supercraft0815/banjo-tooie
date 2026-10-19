@@ -498,7 +498,40 @@ void func_800A392C(PlayerState *arg0, s32 arg1) {
     func_800C05B8(arg1, 2, sp2C, NULL, 0, 0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3970.s")
+s32 func_800A3970(PlayerState *arg0, s32 arg1) {
+    s32 func_8009E7C8(PlayerState *, s32);
+    u8 *temp_v0;
+
+    temp_v0 = *(u8 **)((u8 *)arg0 + 0xA0);
+    if (*(f32 *)(temp_v0 + 0x40) != 0.0f) {
+        return 0;
+    }
+    *(f32 *)(temp_v0 + 0x40) = 10.0f;
+    if (func_800A3274(arg0) == TRANSFORM_11_CLOCKWORK) {
+        func_8009E7C8(arg0, 0x1F);
+    }
+    if (arg1 != 0) {
+        func_800A392C(arg0, arg1);
+    } else {
+        switch (func_800A3274(arg0)) {
+        case TRANSFORM_A_BANJO:
+            func_800A392C(arg0, 0x1212);
+            break;
+        case TRANSFORM_B_KAZOOIE:
+            func_800A392C(arg0, 0x1213);
+            break;
+        case TRANSFORM_D_MUMBO:
+            func_800A392C(arg0, 0x1214);
+            break;
+        case TRANSFORM_11_CLOCKWORK:
+            func_800A392C(arg0, 0x1216);
+            break;
+        default:
+            func_800A392C(arg0, 0x1217);
+            break;
+        }
+    }
+}
 
 /* extern */
 
