@@ -341,7 +341,43 @@ s32 func_800C269C(u8 arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2718.s")
+void func_800C2718(void) {
+    s32 func_800C0638();
+    s32 func_800C2000(s32);
+    f32 func_800D8FF8();
+    extern f32 D_8011A878;
+    extern s32 D_80128C10;
+    u8 *var_s2;
+    s32 temp_s0;
+    s32 var_s1;
+
+    if (func_800C0638() != 0) {
+        D_8011A878 -= func_800D8FF8();
+        if (D_8011A878 < 0.5f) {
+            D_8011A878 = 0.5f;
+        }
+    } else {
+        D_8011A878 += func_800D8FF8();
+        if (D_8011A878 > 1.0f) {
+            D_8011A878 = 1.0f;
+        }
+    }
+    var_s2 = (u8 *)&D_80128C10;
+    var_s1 = 1;
+    do {
+        if ((*(u8 *)((s8 *)(var_s2) + (0x78))) != 0) {
+            if ((*(u32 *)(var_s2 + 0x78) << 19 >> 29) != 3) {
+                func_800C2000(var_s1 & 0xFF);
+            }
+            temp_s0 = var_s1 & 0xFF;
+            if (func_800C269C(temp_s0 & 0xFF) != 0) {
+                func_800C16A4(temp_s0 & 0xFF);
+            }
+        }
+        var_s1 += 1;
+        var_s2 += 0x80;
+    } while (var_s1 != 0x3C);
+}
 
 void func_800C2840(s32 uid, f32 volume, s32 sampleRate, s32 arg3, s32 arg4){
     u8 func_800C2E04(void);
