@@ -88,7 +88,45 @@ void bscrashout_entrypoint_1(void *arg0) {
     func_808000B0_bscrashout(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/crashout/bscrashout_entrypoint_2.s")
+void bscrashout_entrypoint_2(struct player_state_s *arg0) {
+    void _basudie_entrypoint_0(struct player_state_s *);
+    s32 _batimer_decrement(void *, s32);
+    int baanim_isAt(struct player_state_s *, f32);
+    int baanim_isStopped(struct player_state_s *);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    s32 bs_setState(void *, s32);
+    s32 func_800A1718(struct player_state_s *);
+    f32 func_800D8FF8(void);
+    s32 func_800F1574(f32 *, f32);
+    s32 next_state;
+
+    next_state = 0;
+    func_800F1574((f32 *)((s8 *)arg0 + 0x16C), func_800D8FF8() * 300.0f);
+    baphysics_set_target_horizontal_velocity(arg0, *(f32 *)((s8 *)arg0 + 0x16C));
+    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+        case 1:
+            func_80800000_bscrashout(arg0);
+            if (baanim_isAt(arg0, 0.2f) && !func_800A1718(arg0)) {
+                func_808000B0_bscrashout(arg0, 3);
+            }
+            if (baanim_isStopped(arg0)) {
+                func_808000B0_bscrashout(arg0, 2);
+            }
+            break;
+        case 2:
+            if (baanim_isStopped(arg0)) {
+                next_state = 1;
+            }
+            break;
+        case 3:
+            func_80800000_bscrashout(arg0);
+            if (_batimer_decrement(arg0, 0)) {
+                _basudie_entrypoint_0(arg0);
+            }
+            break;
+    }
+    bs_setState(arg0, next_state);
+}
 
 s32 bscrashout_entrypoint_3(s32 arg0) {
     extern s32 D_808003D0_bscrashout[];
