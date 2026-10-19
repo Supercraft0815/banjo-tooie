@@ -120,7 +120,43 @@ void bswasher_entrypoint_0(s32 arg0) {
     func_800BABB8(sp20, sp24, NULL, 1.0f, &D_80801D60_bswasher);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80800300_bswasher.s")
+s32 func_80800300_bswasher(s32 arg0) {
+    void _bawasher_entrypoint_4(struct player_state_s *, f32);
+    void _bawasher_entrypoint_5(struct player_state_s *, f32);
+    void _bawasher_entrypoint_9(struct player_state_s *);
+    f32 func_8009BB5C(struct player_state_s *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F13F0(f32, f32);
+    f32 func_800F1DCC(f32, f32);
+    int player_isStable(struct player_state_s *);
+    f32 yaw_get(struct player_state_s *);
+    f32 yaw_getIdeal(struct player_state_s *);
+    f32 rate2;
+    f32 speed;
+    f32 speed2;
+    f32 rate;
+    f32 angle;
+
+    angle = yaw_getIdeal(arg0);
+    _bawasher_entrypoint_4(arg0, func_800F1DCC(angle, yaw_get(arg0)));
+    speed = func_8009BB5C(arg0);
+    if (speed > 1.0f) {
+        speed = func_800F10B4(speed, 30.0f, 900.0f, 45.0f, 1350.0f);
+    } else {
+        speed = 0.0f;
+    }
+    _bawasher_entrypoint_5(arg0, speed);
+    speed2 = func_8009BB5C(arg0);
+    if (speed2 > 0.0f) {
+        rate2 = func_800F10B4(speed2, 30.0f, 900.0f, 0.8f, 1.25f);
+    } else {
+        rate2 = 0.8f;
+    }
+    if (!player_isStable(arg0)) {
+        func_800F13F0(1.9f, rate2 + 0.3f);
+    }
+    _bawasher_entrypoint_9(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_8080042C_bswasher.s")
 
