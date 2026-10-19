@@ -34,7 +34,28 @@ void func_808002D8_chflysaucercrate(Actor *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucercrate/func_80800348_chflysaucercrate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucercrate/func_80800904_chflysaucercrate.s")
+void func_80800904_chflysaucercrate(void *arg0) {
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    void func_80102B2C(Actor *, f32);
+    void func_80102B6C(u8 *, f32);
+    Actor *actor = arg0;
+
+    if (func_800DC0C0() < 0.2f) {
+        actor->unk50 = func_800DC178(-10.0f, 10.0f);
+    }
+    func_80102B6C(arg0, 1.0f);
+    if (func_800DC0C0() < 0.2f) {
+        actor->unk54 = func_800DC178(-10.0f, 10.0f);
+    }
+    func_80102B2C(arg0, 1.0f);
+    if (actor->rotation[2] < 10.0f) {
+        actor->rotation[2] += func_800DC178(0.0f, 2.0f);
+    }
+    if (actor->rotation[2] > -10.0f) {
+        actor->rotation[2] += func_800DC178(-2.0f, 0.0f);
+    }
+}
 
 /* extern */
 
