@@ -7,7 +7,61 @@ void func_80800000_chfog(s32 arg0) {
     func_800CF494();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fog/func_80800020_chfog.s")
+void func_80800020_chfog(Actor *arg0) {
+    void func_800CF2D4(s32);
+    s32 func_800DA298(s32);
+    void func_800E3980(f32 *);
+    s32 func_800EA05C(void);
+    void func_800EFD24(f32 *);
+    s32 func_800F54E4(void);
+    s32 func_800F6438(u32);
+    void func_800FFAB0(Actor *);
+    void func_80101FDC(Actor *, u32);
+    s32 _subaddiefade_entrypoint_2();
+    struct FogData {
+        f32 unk18;
+        f32 unk1C;
+        f32 unk20;
+        f32 unk24;
+        f32 unk28[3];
+        f32 unk34;
+    };
+
+    func_800E3980(arg0->rotation);
+    func_800EFD24(arg0->position);
+    func_800EFD24(((struct FogData *)arg0->actorData)->unk28);
+    ((struct FogData *)arg0->actorData)->unk18 = 1.0f;
+    ((struct FogData *)arg0->actorData)->unk1C = 1.0f;
+    switch (func_800EA05C()) {
+        case 0x10D:
+            if (!func_800DA298(0x1BD)) {
+                func_800FFAB0(arg0);
+            } else if (arg0->unk7A_5 && func_800F6438(func_800F54E4())) {
+                ((struct FogData *)arg0->actorData)->unk34 = 0.0f;
+                func_800CF2D4(4);
+            }
+            arg0->unk64_19 = 1;
+            ((struct FogData *)arg0->actorData)->unk24 = 0.0f;
+            break;
+        case 0x138:
+            func_800CF2D4(6);
+            break;
+        case 0x162:
+            func_80101FDC(arg0, 2);
+            _subaddiefade_entrypoint_2(arg0);
+            func_800CF2D4(7);
+            break;
+        case 0x19A:
+            func_80101FDC(arg0, 2);
+            _subaddiefade_entrypoint_2(arg0);
+            func_800CF2D4(8);
+            arg0->unk74_17 = 0;
+            break;
+        default:
+            func_800CF2D4(2);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fog/func_80800174_chfog.s")
 
