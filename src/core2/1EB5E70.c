@@ -660,7 +660,52 @@ void func_800DDD14(volatile s32 arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DDDC4.s")
+void func_800DDDC4(volatile s32 arg0, u8 *arg1) {
+    void func_80019224(f32 *, f32 *);
+    void func_80019AA0(void *, s32);
+    s32 func_800ADE2C(s32, s32);
+    void func_800DE2A4(s32, u8 *);
+    s32 func_800E3E8C(f32 *, f32);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EF334(f32 *, f32);
+    void mlMtxPop(void);
+    extern f32 D_8012C948;
+    extern s32 D_8012CE58;
+    f32 pos[3];
+    f32 radius;
+    s32 offset;
+    s32 model;
+
+    if (*(s16 *)(arg1 + 0x12) == -1) {
+        func_800EE88C(pos, (s16 *)(arg1 + 8));
+        func_800EF334(pos, D_8012C948);
+        radius = (f32)*(s16 *)(arg1 + 0xE) * D_8012C948;
+        if (func_800E3E8C(pos, radius)) {
+            offset = *(s16 *)(arg1 + 0x10);
+            model = arg0;
+            if (offset) {
+                arg1 += offset; func_800DE2A4(model, arg1);
+            }
+        }
+    } else {
+        func_800EE88C(pos, (s16 *)(arg1 + 8));
+        radius = (f32)*(s16 *)(arg1 + 0xE) * D_8012C948;
+        if (*(s32 *)((u8 *)&D_8012C948 + 0x20)) {
+            func_80019AA0(&D_8012CE58, func_800ADE2C(*(s32 *)((u8 *)&D_8012C948 + 0x20), *(s16 *)(arg1 + 0x12)));
+            func_80019224(pos, pos);
+            mlMtxPop();
+        } else {
+            func_80019224(pos, pos);
+        }
+        if (func_800E3E8C(pos, radius)) {
+            offset = *(s16 *)(arg1 + 0x10);
+            model = arg0;
+            if (offset) {
+                arg1 += offset; func_800DE2A4(model, arg1);
+            }
+        }
+    }
+}
 
 void func_800DDF14(volatile s32 arg0, u8 *arg1) {
     void func_800DE2A4(s32, u8 *);
