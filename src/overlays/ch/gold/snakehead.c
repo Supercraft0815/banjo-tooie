@@ -21,7 +21,47 @@ OSThread *chgoldsnakehead_entrypoint_2(void)
     return (OSThread *) D_80800598_chgoldsnakehead;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/snakehead/func_80800024_chgoldsnakehead.s")
+void func_80800024_chgoldsnakehead(Actor *arg0) {
+    Prop *_gccubesearch_entrypoint_1(u32, f32[3]);
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    Actor *_subaddiefind_entrypoint_2(s32, s32 *);
+    Actor *_subaddiefind_entrypoint_3(s32, s32 *);
+    s32 func_800DA298(s32);
+    s32 func_800DA7A8(s32, s32, s32);
+    void func_800FFAB0(Actor *);
+    void func_80103014(u8 *);
+    struct SnakeFlags { u32 : 18; u32 enabled : 1; u32 : 13; };
+    Prop *prop;
+    f32 position[3];
+    Actor *other;
+    s32 iterator;
+
+    prop = _gccubesearch_entrypoint_1(0x1EA, arg0->position);
+    if (func_800DA298(0x18B)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    _gspropctrl_entrypoint_11(prop, position);
+    if (position[2] <= arg0->position[2]) {
+        other = _subaddiefind_entrypoint_2(0x10D, &iterator);
+        while (other != NULL) {
+            if (other->unk74_7 == arg0->unk74_7 && other != arg0) {
+                break;
+            }
+            other = _subaddiefind_entrypoint_3(0x10D, &iterator);
+        }
+        arg0->position[0] = other->position[0];
+        arg0->position[1] = other->position[1];
+        arg0->position[2] = 2.0f * position[2] - other->position[2];
+    }
+    if ((s32)arg0->unk74_7 >= 0x33) {
+        ((struct SnakeFlags *)&arg0->unk0->unk28)->enabled = 1;
+    } else {
+        ((struct SnakeFlags *)&arg0->unk0->unk28)->enabled = 0;
+    }
+    func_80103014((u8 *)arg0);
+    func_800DA7A8(6, 0, 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/snakehead/func_8080015C_chgoldsnakehead.s")
 
