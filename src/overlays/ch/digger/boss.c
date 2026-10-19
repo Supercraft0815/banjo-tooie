@@ -1672,7 +1672,63 @@ s32 func_80806D84_chdiggerboss(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80806DC4_chdiggerboss.s")
+void func_80806DC4_chdiggerboss(Actor *arg0, Unk80132ED0 *arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800F0E28(s32, s32);
+    void func_8010963C(void *, f32 *, void *);
+    void func_80109FE8(void **, s32);
+    u8 func_80806F10_chdiggerboss(Actor *, u8);
+    s32 damage;
+    struct {
+        u8 pad0[2];
+        u8 health;
+        u8 pad3[0x59];
+        u8 state;
+        u8 pad5D[7];
+        Unk80132ED0 *child;
+        u8 pad68;
+        u8 minimum;
+        u8 pad6A[0xE];
+        u8 sound;
+    } *data;
+    f32 position[3];
+
+    data = func_80100094(arg0, 0);
+    switch (arg1->unk24 >> 22) {
+    case 0x26C:
+        damage = 1;
+        break;
+    case 0x26D:
+    case 0x26E:
+        damage = 2;
+        break;
+    case 0x26F:
+        damage = 3;
+        break;
+    default:
+        return;
+    }
+    data->health = func_800F0E28(data->health - damage, data->minimum);
+    data->sound = func_80806F10_chdiggerboss(arg0, data->sound);
+    if (data->health == data->minimum) {
+        func_80109FE8((void *)arg0, 0);
+    }
+    func_80802298_chdiggerboss((u8 *)arg0, (u8 *)position);
+    func_8010963C(arg0, position, arg1);
+    switch (data->state) {
+    case 4:
+    case 7:
+        break;
+    case 5:
+        if (data->child != NULL) {
+            break;
+        }
+    default:
+        func_80800180_chdiggerboss(arg0, 9);
+        data->state = 7;
+        break;
+    }
+}
 
 void func_80806EE4_chdiggerboss(s32 arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
