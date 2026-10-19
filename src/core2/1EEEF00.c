@@ -5,7 +5,68 @@ s32 func_80115610()
     return 0x38;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEF00/func_80115618.s")
+void func_80115618(Actor *arg0, f32 arg1, f32 arg2) {
+    typedef struct {
+        f32 min;
+        f32 max;
+        f32 rate;
+        s32 unkC;
+        u8 enabled;
+        u8 minEnabled;
+        u8 maxEnabled;
+        u8 pad13;
+        f32 unk14;
+        f32 unk18;
+        u8 locked;
+    } Limits;
+    f32 func_80013728(f32);
+    f32 func_80013A7C(f32);
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EF2A0(f32 *);
+    void func_800EF3DC(f32 *, f32 *);
+    f32 func_800F1DCC(f32, f32);
+    void func_800F5680(s32, f32 *);
+    s32 func_800F6C5C(s32);
+    void func_801107B0(void *, f32 *);
+    void func_801107F0(void *, f32 *);
+    s32 func_80110840(s32 *);
+    extern f32 D_80126610;
+    f32 sp54[3];
+    f32 sp48[3];
+    f32 angle;
+    f32 dot;
+    s32 sp3C;
+    f32 min;
+    f32 sp2C[3];
+
+    sp3C = func_80110840((s32 *)arg0);
+    if (func_800F6C5C(sp3C)) {
+        func_800F5680(sp3C, sp54);
+        if (D_80126610 < sp54[1]) {
+            func_801107B0(arg0, sp48);
+            func_801107F0(arg0, sp2C);
+            func_800EF3DC(sp48, sp2C);
+            func_800EF2A0(sp48);
+            dot = func_800EEAA4(sp48, sp54);
+            angle = func_800F1DCC(90.0f, func_80013A7C(dot));
+            angle = func_80013728(arg1 + angle + arg2);
+            if (((Limits *)arg0->unk3C)->minEnabled) {
+                if (((Limits *)arg0->unk3C)->min < angle) {
+                    ((Limits *)arg0->unk3C)->min = angle;
+                }
+            } else {
+                ((Limits *)arg0->unk3C)->min = angle;
+                ((Limits *)arg0->unk3C)->minEnabled = 1;
+            }
+            if (((Limits *)arg0->unk3C)->maxEnabled) {
+                min = ((Limits *)arg0->unk3C)->min;
+                if (((Limits *)arg0->unk3C)->max < min) {
+                    ((Limits *)arg0->unk3C)->max = min;
+                }
+            }
+        }
+    }
+}
 
 f32 func_80115750(Actor *arg0, f32 arg1) {
     typedef struct {
