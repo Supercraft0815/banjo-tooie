@@ -1,6 +1,41 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quicksandbaddy/func_80800000_chquicksandbaddy.s")
+void func_80800000_chquicksandbaddy(Actor *arg0) {
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    s32 _subaddieDll_entrypoint_1(Actor *);
+    f32 func_800DC178(f32, f32);
+    void func_800EFD24(f32 *);
+    void func_800FFA88(Unk80132ED0 *);
+    u32 *func_80100074(Actor *, u32, u32);
+    f32 func_80800CC0_chquicksandbaddy(u8 *);
+    Prop *props[3];
+    s32 count;
+    s32 i;
+    f32 (*positions)[3];
+
+    count = _gccubesearch_entrypoint_9(0x510, props, 3);
+    if (count != 0) {
+        positions = (f32 (*)[3])func_80100074(arg0, 1, 0x24);
+        for (i = 0; i < count; i++) {
+            _gspropctrl_entrypoint_11(props[i], positions[i]);
+        }
+        for (; i < 3; i++) {
+            func_800EFD24(positions[i]);
+        }
+    }
+    if (_subaddieDll_entrypoint_1(arg0) == 0) {
+        func_800FFA88(arg0->unk0);
+    } else {
+    ((f32 *)arg0->actorData)[7] = arg0->position[1];
+    arg0->unk58 = 0.2f;
+    ((f32 *)arg0->actorData)[3] = 0.0f;
+    arg0->unk54 = 0.0f;
+    arg0->unk54 = arg0->position[1] - func_80800CC0_chquicksandbaddy((u8 *)arg0);
+    ((f32 *)arg0->actorData)[4] = func_800DC178(20.0f, 30.0f);
+    arg0->unk64_16 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quicksandbaddy/func_80800140_chquicksandbaddy.s")
 
