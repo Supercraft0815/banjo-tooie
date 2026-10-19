@@ -512,7 +512,55 @@ void func_80801F00_chdodgemcontrol(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801F2C_chdodgemcontrol.s")
+void func_80801F2C_chdodgemcontrol(Actor *arg0)
+{
+  s32 _subaddiefade_entrypoint_2();
+  s32 func_800C8A98(void);
+  void func_800C8CB8(s32, f32 *);
+  void func_800C8E54(s32, f32, f32);
+  void func_800C8FB0(s32, u32, u32, u32);
+  void *func_80100094(Actor *, u32);
+  s32 func_801032B0(Actor *, u16, u16);
+  Actor *func_80106790(Unk80132ED0 *);
+  extern u16 D_80804ED4_chdodgemcontrol[];
+  struct DodgemData
+  {
+    u8 pad0[0xB6];
+    u8 types[0xE];
+    u8 unkC4;
+    u8 unkC5;
+    u8 unkC6;
+  };
+  s32 pad;
+  struct DodgemData *data;
+  s32 handle;
+  data = func_80100094(func_80106790(arg0->unk3C), 0);
+  arg0->scale = 0.8f;
+  func_801032B0(arg0, D_80804ED4_chdodgemcontrol[data->types[arg0->unk6C_0]], arg0->unk0->unk16);
+  handle = func_800C8A98();
+  *((s32 *) (&arg0->unk50)) = handle;
+  func_800C8E54(handle, arg0->scale * 500.0f, arg0->scale * 800.0f);
+  func_800C8FB0(*((s32 *) (&arg0->unk50)), 0, 0, 0);
+ do { func_800C8CB8(*((s32 *) (&arg0->unk50)), arg0->position); _subaddiefade_entrypoint_2(arg0); } while (0);
+  switch ((s32) arg0->unk6C_0)
+  {
+    case 0:
+      arg0->unk58 = 6.0f;
+      break;
+
+    case 1:
+      arg0->unk58 = 5.0f;
+      break;
+
+    case 2:
+      arg0->unk58 = 4.0f;
+      break;
+
+  }
+
+  data->unkC4 = 0;
+  data->unkC6 = 0;
+}
 
 OSThread *chdodgemcontrol_entrypoint_1(void)
 {
