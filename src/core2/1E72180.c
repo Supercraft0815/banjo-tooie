@@ -5,7 +5,31 @@ s32 func_80098890()
     return 0x1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72180/func_80098898.s")
+void func_80098898(void *arg0) {
+    void func_800BED18(s32 *, s32 *);
+    s32 func_800EA05C();
+    void func_800EE84C(f32 *, s32 *);
+    extern s16 D_80117EC0;
+    s32 sp3C[3];
+    s32 sp30[3];
+    s32 sp2C;
+    s16 *var_v1;
+
+    sp2C = func_800EA05C();
+    func_800BED18(sp30, sp3C);
+    func_800EE84C(*(f32 **)((s8 *)arg0 + 0xBC) + 3, sp30);
+    func_800EE84C(*(f32 **)((s8 *)arg0 + 0xBC), sp3C);
+    for (var_v1 = &D_80117EC0; var_v1[0] != 0 && sp2C != var_v1[0]; var_v1 += 7) {
+    }
+    (*(f32 **)((s8 *)arg0 + 0xBC))[3] -= var_v1[1];
+    (*(f32 **)((s8 *)arg0 + 0xBC))[4] -= var_v1[2];
+    (*(f32 **)((s8 *)arg0 + 0xBC))[5] -= var_v1[3];
+    (*(f32 **)((s8 *)arg0 + 0xBC))[0] += var_v1[4];
+    (*(f32 **)((s8 *)arg0 + 0xBC))[1] += var_v1[5];
+    (*(f32 **)((s8 *)arg0 + 0xBC))[2] += var_v1[6];
+    (*(s8 **)((s8 *)arg0 + 0xBC))[0x18] = 0;
+    (*(s8 **)((s8 *)arg0 + 0xBC))[0x19] = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72180/func_800989E4.s")
 
