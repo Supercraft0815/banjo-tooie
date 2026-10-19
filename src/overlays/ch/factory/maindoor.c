@@ -16,7 +16,39 @@ void func_80800000_chfactorymaindoor(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/maindoor/func_80800078_chfactorymaindoor.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/maindoor/func_808001F0_chfactorymaindoor.s")
+s32 func_808001F0_chfactorymaindoor(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80101FDC(Actor *, u32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_800EA05C();
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _glcutDll_entrypoint_6(u32, u32);
+
+    switch (arg1) {
+    case 0x49:
+        if (arg2 == 0x43) {
+            func_80101FDC(arg0, 2);
+            arg0->unk58 = func_800F10B4(0.4f, 0.0f, 1.0f, 8.0f, 0.0f);
+            _capod_entrypoint_13(arg0->unk0, arg0->unk0, 3, 0x2910);
+            return 1;
+        }
+        return 0;
+    case 0x95:
+        if (func_800EA05C() == 0x101 && arg0->unk70_10 == 2) {
+            func_80101FDC(arg0, 2);
+            arg0->unk58 = func_800F10B4(0.66f, 0.0f, 1.0f, 8.0f, 0.0f);
+            _capod_entrypoint_13(arg0->unk0, arg0->unk0, 0x1D, 0x2810);
+        }
+        return 1;
+    case 0xB:
+        if (arg2 == 4 && func_800EA05C() == 0x101) {
+            _glcutDll_entrypoint_6(0x100, 0x43);
+            return 3;
+        }
+        return 3;
+    default:
+        return 0;
+    }
+}
 
 OSThread *chfactorymaindoor_entrypoint_0(void)
 {
