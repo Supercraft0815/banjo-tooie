@@ -153,7 +153,56 @@ void func_80800B60_chfactorysparkroom(Actor *arg0, s32 arg1) {
     arg0->actorData[7]--;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800BE0_chfactorysparkroom.s")
+void func_80800BE0_chfactorysparkroom(Actor *arg0, s32 arg1) {
+    void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8D4C(s32, f32 *);
+    s32 func_800C8E84(s32, s32 *);
+    void func_800C8F64(s32, s32);
+    void func_800C8FE0(s32, s32);
+    void *func_800D7520(s32);
+    s32 func_800DC090(void);
+    f32 func_800DC178(f32, f32);
+    void *func_80100094(Actor *, u32);
+    struct SparkColor { s32 values[3]; };
+    struct Spark {
+        f32 timer;
+        f32 duration;
+        f32 start;
+        f32 end;
+        f32 values[2];
+        s32 spline;
+        s32 handle;
+    };
+    extern struct SparkColor D_808010FC_chfactorysparkroom;
+    struct SparkColor color;
+    f32 position[3];
+    struct Spark *data;
+
+    color = D_808010FC_chfactorysparkroom;
+    data = func_80100094(arg0, 0);
+    data[arg1].duration = func_800DC178(4.0f, 5.0f);
+    data[arg1].timer = data[arg1].duration;
+    if (func_800DC090() & 1) {
+        data[arg1].start = 0.0f;
+        data[arg1].end = 1.0f;
+    } else {
+        data[arg1].start = 1.0f;
+        data[arg1].end = 0.0f;
+    }
+    func_800C7A68(func_800D7520(data[arg1].spline), data[arg1].start, position);
+    position[1] += 50.0f;
+    if (data[arg1].handle == 0) {
+        data[arg1].handle = func_800C8A98();
+        func_800C8F64(data[arg1].handle, 3);
+    }
+    func_800C8FE0(data[arg1].handle, 1);
+    func_800C8E84(data[arg1].handle, color.values);
+    func_800C8CB8(data[arg1].handle, position);
+    func_800C8D4C(data[arg1].handle, data[arg1].values);
+    arg0->actorData[7]++;
+}
 
 /* extern */
 
