@@ -2704,7 +2704,46 @@ OSThread *chgameselect_entrypoint_6(void)
     return (OSThread *) D_808084B4_chgameselect;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80806C54_chgameselect.s")
+void func_80806C54_chgameselect(Actor *arg0) {
+    s32 _gczoombox_entrypoint_5(s32, s32, s32, s32, s32);
+    s32 _gczoombox_entrypoint_26(s32, s32, f32, f32, s32);
+    void func_800C9F48(f32, u8 *, s32);
+    void *func_80100094(Actor *, u32);
+    void *heap_alloc(s32);
+    void func_808073AC_chgameselect(Actor *);
+    struct {
+        s32 boxes[4];
+        void *buffers[4];
+        void *buffer;
+        s16 unk24;
+        s16 unk26;
+    } *data, *entry;
+    s32 i;
+    s32 y;
+    s32 box;
+
+    data = func_80100094(arg0, 0);
+    arg0->unk6C_0 = _gcstatusDll_entrypoint_10();
+    i = 0;
+    y = 0x42;
+    entry = data;
+    if (arg0->unk6C_0) {
+      do {
+        box = _gczoombox_entrypoint_5(y, 0xC, 2, 0, 0);
+        entry->boxes[0] = box;
+        _gczoombox_entrypoint_26(box, 0x41, 0.8f, 1.0f, 0);
+        func_800C9F48((f32)i * 0.1f, arg0->unk0, i);
+        entry->buffers[0] = heap_alloc(0x100);
+        i++;
+        y += 0x26;
+        entry = (void *)((u8 *)entry + sizeof(s32));
+      } while ((u32)i < arg0->unk6C_0);
+    }
+    data->buffer = heap_alloc(0x100);
+    data->unk26 = 0;
+    data->unk24 = data->unk26;
+    func_808073AC_chgameselect(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80806D98_chgameselect.s")
 
