@@ -267,7 +267,56 @@ void func_80800BA8_chtrashcangame(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_8080134C_chtrashcangame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80801558_chtrashcangame.s")
+s32 func_80801558_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
+    s16 func_800D211C(s32);
+    switch (arg1) {
+        case 0x13EF:
+        case 0x13F1:
+        case 0x13F2:
+            return 0x32;
+        case 0x13F0:
+            return func_800D211C(0x86);
+        case 0x13F4:
+            if (arg2 != 0) {
+                return 0x32;
+            }
+            return 0x3C;
+        case 0x13F5:
+            if (arg2 != 0) {
+                return func_800D211C(0x86);
+            }
+            return 0x3C;
+        case 0x13F8:
+            if (arg2 != 0) {
+                return func_800D211C(0x86);
+            }
+            return func_80800014_chtrashcangame(arg0, 0);
+        case 0x13FA:
+            return func_80800014_chtrashcangame(arg0, 0);
+        case 0x13F6:
+        case 0x13F7:
+        case 0x13F9:
+            return func_80800014_chtrashcangame(arg0, 0);
+        case 0x1443:
+            return 0x3C;
+        case 0x1444:
+            if (arg2 != 0) {
+                return func_800D211C(0x86);
+            }
+            return 0x3C;
+        case 0x1445:
+        case 0x1446:
+        case 0x1447:
+            if (arg2 != 0) {
+                return func_800D211C(0x86);
+            }
+            return func_80800014_chtrashcangame(arg0, 0);
+        case 0x1451:
+            return 0x3C;
+        default:
+            return 0;
+    }
+}
 
 void func_808016B4_chtrashcangame(Actor *arg0, Unk80132ED0 *arg1, s32 arg2, s32 arg3) {
     void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
