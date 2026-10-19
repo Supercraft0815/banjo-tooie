@@ -7,7 +7,31 @@ OSThread *chballoonbomb_entrypoint_0(void)
     return (OSThread *) D_808004B0_chballoonbomb;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonbomb/func_8080000C_chballoonbomb.s")
+void func_8080000C_chballoonbomb(Actor *arg0) {
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    u32 func_800F54E4(void);
+    void *func_80100094(Actor *, u32);
+    void func_8010D09C(s32, f32 *, f32);
+    s32 pad;
+    f32 target[3];
+    f32 *data;
+    s32 i;
+    f32 sign;
+
+    data = func_80100094(arg0, 0);
+    func_8010D09C(func_800F54E4(), target, arg0->unk58);
+    for (i = 0; i < 3; i++) {
+        ((f32 *)&arg0->actorData[4])[i] = (target[i] - arg0->position[i]) / arg0->unk58;
+    }
+    ((f32 *)&arg0->actorData[4])[1] += 250.0f * arg0->unk58;
+    if (func_800DC298(0.5f)) {
+        sign = 1.0f;
+    } else {
+        sign = -1.0f;
+    }
+    *data = func_800DC178(300.0f, 400.0f) * sign;
+}
 
 /* extern */
 
