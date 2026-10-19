@@ -931,9 +931,9 @@ void func_808029D8_chgameselect(Actor *arg0) {
 
 s32 func_80802A0C_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80101080(void);
-    void func_808030EC_chgameselect(Actor *, void *, s16, s16);
+    void func_808030EC_chgameselect(Actor *, void *, s32, s32);
     void func_808034BC_chgameselect(Actor *, void *, s16, s16);
-    void func_80800AEC_chgameselect(Unk80132ED0 *, void *, s16, s16);
+    void func_80800AEC_chgameselect(Unk80132ED0 *, void *, s32, s32);
 
     if (arg1 == 0x20) {
         switch (arg0->unk70_10) {
@@ -1128,7 +1128,35 @@ void func_80803048_chgameselect(Actor *arg0, s32 arg1) {
     _gcnewoption_entrypoint_41(arg1, arg0->actorData[6]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808030EC_chgameselect.s")
+void func_808030EC_chgameselect(Actor *arg0, void *arg1, s32 arg2, s32 arg3) {
+    s32 _gcnewoption_entrypoint_19(OptionState *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    void func_80803C60_chgameselect(void);
+    void func_80800AEC_chgameselect(Unk80132ED0 *, void *, s32, s32);
+    s32 sp2C;
+    s32 sp28;
+    Actor *sp24;
+    s32 sp20;
+
+    switch (arg3) {
+    case 0:
+        func_80803048_chgameselect(arg0, arg1);
+        return;
+    case 3:
+        if (_gcnewoption_entrypoint_19(arg1, arg2) != 0) {
+            func_80803C60_chgameselect();
+            sp24 = func_80106790(arg0->unk3C);
+            func_808026C8_chgameselect(sp24->actorData[5], ((s8 *)func_80100094(arg0, 1U))[arg2 * 6 + 2]);
+            return;
+        }
+    case 2:
+        sp2C = ((u8 *)func_80100094(arg0, 1U))[arg2 * 6];
+        func_80802FE4_chgameselect(arg0);
+        func_80800AEC_chgameselect(arg0->unk3C, NULL, sp2C, arg3);
+        return;
+    }
+}
 
 void func_808031F4_chgameselect(Unk80132ED0 *arg0, s32 arg1) {
     Actor *func_80106790(Unk80132ED0 *);
@@ -1570,7 +1598,7 @@ void func_80803F90_chgameselect(char *arg0, s32 arg1, s16 *arg2) {
 
 void func_8080401C_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
     s32 _gcnewoption_entrypoint_13(s32, s32, s32 *);
-    s32 _gcnewoption_entrypoint_19(s32, s32);
+    s32 _gcnewoption_entrypoint_19(OptionState *, s32);
     s32 _gcnewoption_entrypoint_23(s32, s32);
     extern struct Entry D_808083C8_chgameselect[];
     if (_gcnewoption_entrypoint_19(arg0, arg1) == 0) {
