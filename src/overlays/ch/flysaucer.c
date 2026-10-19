@@ -242,7 +242,7 @@ s32 func_80800DAC_chflysaucer(Actor *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
 
 /* extern */
 
-void func_80800F98_chflysaucer(void) {
+void func_80800F98_chflysaucer() {
     s32 func_800FC6B0(s32);
     u32 func_80800E48_chflysaucer();
     u32 temp_v0;
@@ -323,7 +323,42 @@ void func_8080105C_chflysaucer(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80801130_chflysaucer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808012A4_chflysaucer.s")
+void func_808012A4_chflysaucer(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80090658(s32);
+    u32 func_800FDC28(u32);
+    u8 *data;
+    u8 state;
+
+    data = func_80100094(arg0, 0);
+    state = data[0x25];
+    if (state != 2 && (state == 5 || state == 6)) {
+        func_80090658(0);
+    }
+    data[0x25] = arg1;
+    switch (data[0x25]) {
+    case 2:
+        break;
+    case 5:
+    case 6:
+        func_80090658(1);
+        break;
+    case 3:
+        arg0->unk58 = 2.0f;
+        func_800FDC28(0);
+        func_80800F98_chflysaucer(arg0);
+        break;
+    case 7:
+        func_8080105C_chflysaucer(arg0, 0x10C8, 1);
+        break;
+    case 8:
+        func_8080105C_chflysaucer(arg0, 0x10C9, 1);
+        break;
+    case 9:
+        func_8080105C_chflysaucer(arg0, 0x10E5, 1);
+        break;
+    }
+}
 
 struct anctrl_s;
 enum asset_e;
