@@ -39,7 +39,7 @@ s32 subaddieaudioloop_entrypoint_4(Actor *arg0, f32 *arg1, u32 arg2, u32 *arg3) 
     u8 subaddieaudioloop_entrypoint_7(u8, f32 *, u32, u32 *, s32);
     u32 temp_v0;
     u8 id = arg0->unk5F;
-    u32 flag = arg0->pad70_0;
+    u32 flag = arg0->unk70_0;
 
     temp_v0 = subaddieaudioloop_entrypoint_7(id, arg1, arg2, arg3, flag & 1);
     arg0->unk5F = temp_v0;

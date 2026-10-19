@@ -52,7 +52,8 @@ typedef struct Actor {
     /* 0x5E */ u8 pad5E;
     /* 0x5F */ u8 unk5F;
     /* 0x60 */ s32 pad60;
-    /* 0x64 */ u32 pad64_29 : 3;
+    /* 0x64 */ u32 pad64_30 : 2;
+    /* 0x64 */ u32 unk64_29 : 1; // byte 0x64 & 0x20
     /* 0x64 */ u32 unk64_28 : 1;
     /* 0x64 */ u32 unk64_27 : 1;
     /* 0x64 */ u32 unk64_26 : 1;
@@ -71,9 +72,11 @@ typedef struct Actor {
     /* 0x6C */ u32 pad6C_21 : 11;
     /* 0x6C */ u32 unk6C_9 : 12;
     /* 0x6C */ u32 unk6C_0 : 9; // if accessed directly: unk6C & 0x1FF, if assigned: ((u16)valueToAssign & 0x1FF) | (unk6E & 0xFE00);
-    /* 0x70 */ u32 pad70_16: 16;
+    /* 0x70 */ u32 unk70_25: 7; // unk70 >> 25
+    /* 0x70 */ u32 pad70_16: 9;
     /* 0x70 */ u32 unk70_10: 6; // unk72 >> 10
-    /* 0x70 */ u32 pad70_0: 10;
+    /* 0x70 */ u32 pad70_1: 9;
+    /* 0x70 */ u32 unk70_0: 1; // unk70 & 1
     /* 0x74 */ u32 pad74_31 : 1;
     /* 0x74 */ u32 unk74_30 : 1; // unk74 & 0x40000000
     /* 0x74 */ u32 unk74_29 : 1; // unk74 & 0x20000000

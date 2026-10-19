@@ -1850,7 +1850,7 @@ void func_80808034_chdiggerboss(Actor *arg0) {
         }
     }
     sound = sp24[0xA6];
-    flags = arg0->pad70_0;
+    flags = arg0->unk70_0;
     flags &= 1;
     sp24[0xA6] = _subaddieaudioloop_entrypoint_7(sound, arg0->position, sp20, &D_8080A160_chdiggerboss, flags);
 }
