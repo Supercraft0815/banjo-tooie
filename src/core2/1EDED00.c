@@ -376,7 +376,51 @@ void func_80105C48(void) {
     D_80136ED0 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105CD0.s")
+void func_80105CD0(void) {
+    s32 defrag(s32);
+    void *freelist_at(FreeList *, s32);
+    s16 freelist_capacity(FreeList *);
+    FreeList *freelist_defrag(FreeList *);
+    s32 freelist_is_element_alive(FreeList *, s32);
+    void func_801063EC(s16, s32);
+    u32 vector_begin(s32);
+    s32 vector_defrag(s32);
+    u32 vector_end(s32);
+    extern FreeList *D_80136ED0;
+    typedef struct {
+        s32 unk0;
+        s16 type;
+        s16 unk6;
+        u8 data[0xA0];
+    } Item;
+    s32 index;
+    s32 capacity;
+    s32 *entry;
+    Item *item;
+    Item *end;
+    s32 callback;
+
+    if (D_80136ED0 != 0) {
+        capacity = freelist_capacity(D_80136ED0);
+        for (index = 1; index < capacity; index++) {
+            if (freelist_is_element_alive(D_80136ED0, index)) {
+                entry = freelist_at(D_80136ED0, index);
+                func_801063EC(index, defrag(entry[0]));
+                entry[1] = vector_defrag(entry[1]);
+                end = (Item *)vector_end(entry[1]);
+                item = (Item *)vector_begin(entry[1]);
+                for (; item < end; item++) {
+                    callback = D_80124440[item->type].unkC;
+                    if (callback) {
+                        ((void (*)(void *))callback)(item->data);
+                    }
+                }
+            }
+        }
+        D_80136ED0 = freelist_defrag(D_80136ED0);
+        (&D_80136ED0)[1] = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105DFC.s")
 
