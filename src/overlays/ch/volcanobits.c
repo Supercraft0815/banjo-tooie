@@ -352,7 +352,49 @@ void chvolcanobits_entrypoint_4(s32 arg0, s16 *arg1, s16 *arg2, s32 arg3, Unk801
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_80800EF0_chvolcanobits.s")
+s32 func_80800EF0_chvolcanobits(void *arg0) {
+    s32 _subaddiefind_entrypoint_10(Actor *, s32, u32);
+    s32 func_800DA298(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFD24(f32 *);
+    void func_800FFAB0(Actor *);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(void *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80801040_chvolcanobits(u8 *);
+    void *func_8080108C_chvolcanobits(void *);
+    struct { f32 duration; s16 height; s16 flag; } *sp34;
+    Actor *sp30;
+
+    sp34 = func_8080108C_chvolcanobits(arg0);
+    sp30 = NULL;
+    _subaddiefind_entrypoint_10(arg0, 0x429, ((Actor *)arg0)->unk74_7 + 1);
+    func_800EFD24(((Actor *)arg0)->position);
+    func_800EFD24((f32 *)((Actor *)arg0)->actorData);
+    func_800EFD24((f32 *)&((Actor *)arg0)->actorData[4]);
+    ((f32 *)((Actor *)arg0)->actorData)[5] -= sp34->height;
+    if (((Actor *)arg0)->unk3C != NULL) {
+        sp30 = func_80106790(((Actor *)arg0)->unk3C);
+    }
+    if (sp30 != NULL) {
+        ((Actor *)arg0)->unk54 = sp30->position[1] - ((Actor *)arg0)->position[1];
+    }
+    if (func_800DA298(sp34->flag)) {
+        func_800EE7F8(((Actor *)arg0)->position, (f32 *)((Actor *)arg0)->actorData);
+        func_80101FDC(arg0, 3);
+        func_800FFAB0(arg0);
+    } else {
+        func_800EE7F8(((Actor *)arg0)->position, (f32 *)&((Actor *)arg0)->actorData[4]);
+        func_80101FDC(arg0, 1);
+        func_80103110(arg0, 1);
+        ((Actor *)arg0)->unk79_4 = 2;
+    }
+    if (sp30 != NULL) {
+        sp30->position[1] = ((Actor *)arg0)->position[1] + ((Actor *)arg0)->unk54;
+    }
+    ((Actor *)arg0)->unk5F = 0;
+    func_80801040_chvolcanobits((u8 *)arg0);
+}
 
 void func_80801040_chvolcanobits(u8 *arg0) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
