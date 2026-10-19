@@ -46,7 +46,45 @@ void func_80800030_chgruntyfireball(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/grunty/fireball/func_80800130_chgruntyfireball.s")
+s32 func_80800130_chgruntyfireball(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddieaudioquick_entrypoint_2(u8 *, f32 *, s32 *);
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8D4C(s32, f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_80101FDC(Actor *, u32);
+    void func_8010A590(Actor *);
+    void func_8010D09C(s32, f32 *, f32);
+    void func_80800260_chgruntyfireball(u8 *);
+    extern s32 D_808004F8_chgruntyfireball[];
+    extern f32 D_8080050C_chgruntyfireball[];
+    f32 sp34[3];
+    s32 pad[2];
+
+    switch (arg1) {
+        case 0xA:
+            func_8010A590(arg0);
+            func_80101FDC(arg0, 2);
+            func_8010D09C((arg2 >> 16) & 0xFFFF, sp34, 0.0f);
+            sp34[1] += 50.0f;
+            func_800EFB24((f32 *)((u8 *)arg0 + 0x28), sp34, arg0->position);
+            func_800EF368((f32 *)((u8 *)arg0 + 0x28), (f32)(arg2 & 0xFFFF));
+            _subaddieaudioquick_entrypoint_2((u8 *)arg0, arg0->position, D_808004F8_chgruntyfireball);
+            break;
+        case 0x40:
+            func_80800260_chgruntyfireball((u8 *)arg0);
+            break;
+        case 0x95:
+            arg0->actorData[3] = func_800C8A98();
+            func_800C8CB8(arg0->actorData[3], arg0->position);
+            func_800C8D4C(arg0->actorData[3], D_8080050C_chgruntyfireball);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800260_chgruntyfireball(u8 *arg0) {
     s32 _chlightfader_entrypoint_1(s32, f32, s32);
