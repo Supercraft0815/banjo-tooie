@@ -160,7 +160,53 @@ void func_800A7584(s32 arg0, s32 arg1) {
     D_80127630.unk1B = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A759C.s")
+void func_800A759C(s32 arg0, s32 arg1) {
+    void func_8001608C(void);
+    void func_800A9998(void);
+    void func_800C08F8(void);
+    void func_800C0920(void);
+    void func_800C9598(void);
+    void func_800C9B84(void);
+    void func_800EA148(s32);
+    void func_800EA334(s32);
+    extern s16 D_80127632;
+    extern f32 D_8012763C;
+    extern u8 D_80127647;
+    s32 previous = D_80127632;
+
+    if ((D_80127632 == 3 && arg0 != 4) ||
+        (D_80127632 == 4 && arg0 != 3)) {
+        func_800C9B84();
+    }
+    if (D_80127632 == 4 && arg0 != 4) {
+        func_800C0920();
+    }
+    if (D_80127632 == 5) {
+        func_800A9AF8();
+    }
+    D_80127632 = arg0;
+    switch (D_80127632) {
+        case 2:
+            func_800EA148(3);
+            break;
+        case 5:
+            func_800A9998();
+        case 3:
+            if (previous != 4) {
+                func_800EA148(2);
+            }
+            if (arg1 != 0 && D_80127647 == 0) {
+                func_800C9598();
+            }
+            D_8012763C = 0.0f;
+            break;
+        case 4:
+            func_800EA334(0);
+            func_8001608C();
+            func_800C08F8();
+            break;
+    }
+}
 
 void func_800A76F4(s32 arg0) {
     s32 _cosectionstor_entrypoint_3(enum map_e);
