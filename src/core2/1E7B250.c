@@ -163,4 +163,39 @@ void func_800A2018(PlayerState *arg0, s32 arg1) {
 void func_800A2058(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7B250/func_800A2060.s")
+void func_800A2060(PlayerState *arg0) {
+    u8 func_800965C8(void *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    s32 i;
+    f32 target[3];
+
+    switch (**(u8 **)((s8 *)arg0 + 0x108)) {
+        case 0:
+            func_800EFA4C(target, 255.0f, 255.0f, 255.0f);
+            break;
+        case 3:
+            func_800EE7F8(target, (f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + 4));
+            break;
+        default:
+            if (func_800965C8(arg0)) {
+                func_800A1968(arg0, target);
+            } else {
+                func_800EE7F8(target, (f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + 4));
+            }
+            break;
+    }
+    for (i = 0; i < 3; i++) {
+        if (((f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + i * 4))[1] < target[i]) {
+            ((f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + i * 4))[1] += 40.0f;
+                if (target[i] < ((f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + i * 4))[1]) {
+                ((f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + i * 4))[1] = target[i];
+            }
+        } else if (target[i] < ((f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + i * 4))[1]) {
+            ((f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + i * 4))[1] -= 40.0f;
+                if (((f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + i * 4))[1] < target[i]) {
+                ((f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + i * 4))[1] = target[i];
+            }
+        }
+    }
+}
