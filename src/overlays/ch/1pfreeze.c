@@ -49,7 +49,60 @@ void func_80800054_ch1pfreeze(Actor *arg0) {
     data->unk10 = func_800F1214(data->unk1C, 0.0f, 128.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/1pfreeze/func_8080014C_ch1pfreeze.s")
+void func_8080014C_ch1pfreeze(Actor *arg0, Gfx **arg1)
+{
+  s32 func_800A89F8();
+  void func_800B99CC(Gfx **, s32, s32 *);
+  f32 func_800F5794(s32, f32 *, s32);
+  s32 func_800F5ECC(s32);
+  void func_80101870(Actor *, void *);
+  f32 temp_f0;
+  f32 var_f20;
+  f32 var_f2;
+  s32 temp_s0;
+  s32 var_s0;
+  struct {
+    s32 unk0;
+    s32 color[3];
+    s32 unk10;
+    f32 unk14;
+    f32 unk18;
+    f32 unk1C;
+  } *temp_s2;
+  temp_s2 = func_80100094(arg0, 0U);
+  temp_s0 = func_800A89F8();
+  if (func_800F5ECC(temp_s2->unk0) != temp_s0)
+  {
+    var_f20 = 0.0f;
+    var_s0 = 0;
+    if (arg0->unk70_10 != 4)
+    {
+      do
+      {
+        temp_f0 = func_800F5794(temp_s2->unk0, arg0->position, var_s0);
+        var_f2 = temp_f0;
+        if (var_s0 != 2)
+        {
+          arg0->rotation[0] = 0.0;
+          var_f20 += temp_f0;
+        }
+        else
+        {
+          var_f2 = var_f20 * 0.25f;
+          arg0->rotation[0] = 90.0f;
+        }
+        arg0->scale = temp_s2->unk1C * (var_f2 / 75.0f);
+        func_80101870(arg0, arg1);
+        var_s0 += 1;
+      }
+      while (var_s0 != 3);
+    }
+  }
+  else
+  {
+    func_800B99CC(arg1, temp_s2->unk10, temp_s2->color);
+  }
+}
 
 s32 func_80800294_ch1pfreeze(Actor *arg0, s32 arg1, s32 arg2) {
     void func_808002D0_ch1pfreeze(Actor *, s32);
