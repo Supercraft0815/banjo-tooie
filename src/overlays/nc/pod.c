@@ -297,7 +297,46 @@ u32 ncpod_entrypoint_13(u8 *arg0) {
     return arg0[65];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_14.s")
+void ncpod_entrypoint_14(s16 arg0, void *arg1) {
+    s32 _ncpoddialog_entrypoint_1(s16, void *);
+    s32 _ncpoducam_entrypoint_7(s16, void *);
+    s32 _ncpodfixpos_entrypoint_6(s16, void *);
+    s32 func_800A940C(s32);
+    void func_8010FE14(s32 *, f32 *, f32 *);
+    void func_800C5148(s32, f32);
+    void func_800C51A4(s32, f32);
+    s32 pad[2];
+    s32 camera;
+    f32 scale;
+    s32 result;
+    u8 *pod;
+
+    pod = ncpod_entrypoint_2(arg0);
+    result = 2;
+    switch (pod[0x41]) {
+        case 0:
+            break;
+        case 1:
+            result = _ncpoddialog_entrypoint_1(*(s16 *)(pod + 0), arg1);
+            break;
+        case 2:
+            result = _ncpoducam_entrypoint_7(*(s16 *)(pod + 2), arg1);
+            break;
+        case 3:
+            result = _ncpodfixpos_entrypoint_6(*(s16 *)(pod + 4), arg1);
+            break;
+    }
+    if (result != 4 && pod[0x40] != 0) {
+        camera = func_800A940C(*(s32 *)(pod + 0x38));
+        func_8010FE14(arg1, (f32 *)(pod + 0x18), (f32 *)(pod + 0x24));
+        func_800C5148(camera, *(f32 *)(pod + 0x30));
+        if (*(f32 *)(pod + 0x30) == 40.0f && *(f32 *)(pod + 0x34) != 1.0f) {
+            func_800C51A4(camera, *(f32 *)(pod + 0x34));
+        } else {
+            func_800C51A4(camera, 1.0f);
+        }
+    }
+}
 
 void func_808007D8_ncpod(void *arg0, s32 arg1) {
     void func_80015178(s32);
