@@ -400,7 +400,40 @@ s32 func_80800BDC_chclinker(Actor *arg0, s32 arg1) {
 
 s32 func_80800C9C_chclinker(Actor *arg0, s32 arg1, s32 arg2) { void *func_80100094(Actor *, u32); s16 func_800D211C(s32); struct { s32 unk0; f32 value; } *data; data = func_80100094(arg0, 0); switch (arg1) { case 0x137C: return func_800D211C(0x94); case 0x137D: case 0x137E: case 0x137F: return (s32)data->value; default: return 0; } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_80800D24_chclinker.s")
+void func_80800D24_chclinker(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    void _glcutDll_entrypoint_6(u32, u32);
+    u32 func_800F54E4(void);
+    s32 func_800F7F98(s32, u32);
+
+    switch (func_800C064C()) {
+        case 0x1371:
+            break;
+        case 0x1372:
+            _glcutDll_entrypoint_6(0x187, 0x87);
+            break;
+        case 0x137C:
+            func_80800BDC_chclinker(arg0, 0xCEC);
+            break;
+        case 0xCEC:
+            func_800F7F98(func_800F54E4(), 0);
+            func_808008E0_chclinker(arg0, 6);
+            break;
+        case 0x137D:
+        case 0x137E:
+        case 0x137F:
+            func_808008E0_chclinker(arg0, 8);
+            break;
+        case 0xCEB:
+            if (arg2 > 0) {
+                _gcfrontend_entrypoint_11();
+            } else {
+                _gcfrontend_entrypoint_10();
+            }
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_80800E1C_chclinker.s")
 
