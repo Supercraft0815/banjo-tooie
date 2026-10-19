@@ -528,7 +528,43 @@ void func_80801258_bstrexsmall(PlayerState *arg0, s32 arg1) {
     func_801013A8(sp1C, arg1, arg0->unk184);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80801294_bstrexsmall.s")
+s32 func_80801294_bstrexsmall(void *arg0, s32 arg1) {
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    PlayerState *self = arg0;
+    u8 state = self->unk15C.bytes[0];
+
+    switch (state) {
+    case 2:
+        func_80801258_bstrexsmall(self, 0x1D);
+        break;
+    case 3:
+        func_80801258_bstrexsmall(self, 0x1E);
+        break;
+    }
+    self->unk15C.bytes[0] = arg1;
+    switch (arg1) {
+    case 0:
+        func_808000C8_bstrexsmall(self, 3);
+        break;
+    case 1:
+        bstrexsmall_entrypoint_2(self);
+        baanim_playForDuration_onceSmooth(self, 0x1D0, 3.1f);
+        func_8009FFD8(self, 1, 3, 8, 2);
+        yaw_setVelocityBounded(self, 55.0f, 0.8f);
+        baphysics_set_target_horizontal_velocity(self, 0.0f);
+        self->unk15C.bytes[1] = 1;
+        break;
+    case 2:
+        anctrl_setSubrange(baanim_getAnimCtrlPtr(self), 0.0f, 0.29f);
+        break;
+    case 3:
+        anctrl_setSubrange(baanim_getAnimCtrlPtr(self), 0.0f, 0.49f);
+        break;
+    }
+}
 
 void func_808013E8_bstrexsmall(void *arg0) { s32 func_80801294_bstrexsmall(void *, s32); bstrexsmall_entrypoint_1(arg0); func_80801294_bstrexsmall(arg0, 0); }
 
