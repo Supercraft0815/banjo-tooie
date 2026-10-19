@@ -230,7 +230,42 @@ void func_80800A64_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800AF0_chmineprospector.s")
+void func_80800AF0_chmineprospector(Actor *arg0) {
+    s32 _suexpression_entrypoint_10(void *, Unk80132ED0 *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_8008FB10(f32 *, f32, f32, f32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80102424(Actor *, s32);
+    void func_80105834(Actor *);
+    s32 func_80105998(Actor *, f32);
+    s32 func_80105A5C(Actor *);
+    void func_80800D34_chmineprospector(Actor *);
+    void func_80800D8C_chmineprospector(Actor *);
+    register u32 state;
+    f32 *volatile position;
+
+    _suexpression_entrypoint_10(func_80100094(arg0, 1U), arg0->unk0, 0);
+    func_8008FB10(position = arg0->position, 60.0f, 0.0f, 40.0f);
+    state = arg0->unk70_10;
+    switch (state) {
+        case 1:
+            func_80105834(arg0);
+            if (func_80105998(arg0, 0.2f)) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0xF91, 6, position, 0x32);
+            }
+            if (func_80105998(arg0, 0.6f)) {
+                func_80101180(0x143, 0x31, 0);
+            }
+            if (func_80105A5C(arg0)) {
+                func_80102424(arg0, 2);
+            }
+            func_80800D34_chmineprospector(arg0);
+            break;
+        case 2:
+            func_80800D8C_chmineprospector(arg0);
+            break;
+    }
+}
 
 /* extern */
 
