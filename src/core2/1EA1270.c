@@ -151,7 +151,42 @@ void func_800C810C(u8 *arg0, f32 arg1, f32 *arg2, f32 *arg3) {
     func_800EF2A0(arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C8198.s")
+f32 func_800C8198(Unk800C7A68 *arg0, f32 arg1[3], f32 min, f32 max, f32 step) {
+    extern f32 D_80125920;
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800F0E00(f32, f32);
+    f32 func_800F13F0(f32, f32);
+    f32 sp74[3];
+    f32 sp68[3];
+    f32 f22;
+    f32 f28;
+    f32 f20;
+    f32 f24;
+    f32 f2;
+
+    min = func_800F0E00(0.0f, min);
+    max = func_800F13F0(1.0f, max);
+    f24 = D_80125920;
+    f28 = min;
+    f20 = min;
+    do {
+        func_800C7A68(arg0, f20, sp68);
+        func_800EFB24(sp74, arg1, sp68);
+        f2 = sp74[0]*sp74[0] + sp74[1]*sp74[1] + sp74[2]*sp74[2];
+        if (f2 < f24) {
+            f24 = f2;
+            f28 = f20;
+        }
+        if (f20 == max)
+            break;
+        else {
+            f20 += step;
+            if (f20 > max)
+                f20 = max;
+        }
+    } while (1);
+    return f28;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C82CC.s")
 
