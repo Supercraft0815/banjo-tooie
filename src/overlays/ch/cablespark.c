@@ -36,7 +36,39 @@ void func_808002BC_chcablespark(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablespark/func_808002E8_chcablespark.s")
+s32 func_808002E8_chcablespark(Actor *arg0, s32 arg1, s32 arg2) {
+    void _subaddieDll_entrypoint_4(Actor *, u32);
+    s32 func_80800828_chcablespark(void *);
+    void func_80800A48_chcablespark(Actor *);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_80101010(f32 *);
+    f32 offset[3];
+    f32 inverseScale;
+
+    switch (arg1) {
+        case 0xA:
+            arg0->unk64_24 = func_80800828_chcablespark(arg0);
+            if (arg0->unk74_7 == 0x35) {
+                arg0->unk64_24 = 0;
+                if (func_80800828_chcablespark(arg0)) {
+                    _subaddieDll_entrypoint_4(arg0, 1);
+                }
+            }
+            break;
+        case 0x95:
+            func_80800A48_chcablespark(arg0);
+            break;
+        case 0x97:
+            inverseScale = 1.0f / arg0->scale;
+            func_800EEB9C(offset, arg0->rotation[1], 150.0f * inverseScale);
+            offset[1] += 175.0f * inverseScale;
+            func_80101010(offset);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablespark/func_8080040C_chcablespark.s")
 
