@@ -2540,7 +2540,50 @@ void bsfirstp_entrypoint_27(void *arg0) {
     func_80806000_bsfirstp(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80806000_bsfirstp.s")
+void func_80806000_bsfirstp(void *arg0) {
+    f32 baphysics_get_target_horizontal_velocity(struct player_state_s *);
+    f32 func_80013728(f32);
+    f32 func_80013B7C(f32, f32);
+    f32 func_8009BB18(void *);
+    f32 func_800EEFFC(void *);
+    void func_800EF934(f32 *, f32 *, f32);
+    f32 func_800F0E00(f32, f32);
+    f32 mlAbsF(f32);
+    f32 yaw_get(struct player_state_s *);
+    u8 *ptr;
+    void *sp48;
+    f32 pad[2];
+    f32 sp3C;
+    f32 magnitude;
+    f32 angle;
+    f32 sp30;
+    f32 scale;
+    f32 *vec;
+    f32 sp24;
+    f32 spare;
+
+    ptr = *(u8 **)((u8 *)arg0 + 0x188);
+    sp48 = func_80802458_bsfirstp(arg0);
+    *(f32 *)(ptr + 0x1B8) = *(f32 *)(ptr + 0x1D4);
+    *(f32 *)(ptr + 0x1BC) = 0.0f;
+    vec = (f32 *)(ptr + 0x1B8);
+    vec[2] = baphysics_get_target_horizontal_velocity(arg0);
+    sp24 = func_8009BB18(arg0);
+    func_800EF934(vec, vec, -func_80013728(sp24 - yaw_get(arg0)));
+    magnitude = func_800EEFFC(vec);
+    sp3C = magnitude;
+    scale = 1.0f / func_800F0E00(*(f32 *)((u8 *)sp48 + 0x2C), magnitude);
+    vec[0] *= scale;
+    vec[2] *= scale;
+    vec[3] = sp3C * scale;
+    sp30 = mlAbsF(vec[0]);
+    angle = func_80013B7C(sp30, mlAbsF(vec[2]));
+    if (vec[0] < 0.0f) {
+        vec[4] = angle;
+    } else {
+        vec[4] = -angle;
+    }
+}
 
 f32 func_80806130_bsfirstp(void *arg0) {
     register void *ptr;
