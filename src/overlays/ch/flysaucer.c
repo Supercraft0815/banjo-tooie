@@ -153,7 +153,37 @@ void func_808004F0_chflysaucer(void) {
     func_808017D0_chflysaucer();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800514_chflysaucer.s")
+void func_80800514_chflysaucer(Actor *arg0) {
+    u32 _gcgoto_entrypoint_1(u32, u32);
+    void func_800FE850(void);
+    void *func_80100094(Actor *, u32);
+    u8 *sp24;
+
+    sp24 = func_80100094(arg0, 0);
+    arg0->unk64_19 = 1;
+    func_800FE850();
+    switch (sp24[0x26]) {
+        case 1:
+            _gcgoto_entrypoint_1(0x124, 8);
+            return;
+        case 2:
+            _gcgoto_entrypoint_1(0x13C, 1);
+            return;
+        case 3:
+            _gcgoto_entrypoint_1(0x124, 8);
+            return;
+        case 4:
+            _gcgoto_entrypoint_1(0x13B, 1);
+            return;
+        case 5:
+            _gcgoto_entrypoint_1(0x124, 1);
+            return;
+        case 6:
+            _gcgoto_entrypoint_1(0xD6, 8);
+            arg0->unk64_19 = 0;
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808005FC_chflysaucer.s")
 
