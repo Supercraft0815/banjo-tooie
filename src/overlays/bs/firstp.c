@@ -3024,7 +3024,55 @@ void func_80807328_bsfirstp(struct player_state_s *arg0) {
     func_80800830_bsfirstp((s32)arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80807394_bsfirstp.s")
+void func_80807394_bsfirstp(struct player_state_s *arg0) {
+    s32 func_8009E6EC(struct player_state_s *);
+    void func_8009E830(struct player_state_s *, s32);
+    u32 func_800A3404(void *);
+    s32 func_800D3948(void);
+    s32 func_80099A58(s32);
+    s32 _ncpoddialog_entrypoint_10(s32);
+    s32 bs_setState(void *, s32);
+    void func_80807EEC_bsfirstp(s32);
+    void func_80807F24_bsfirstp(s32);
+    void baanim_playForDuration_loop(struct player_state_s *, s32, f32);
+    s32 pad;
+    s32 sp20;
+    s32 state;
+
+    sp20 = 1;
+    state = func_8009E6EC(arg0);
+    switch (state) {
+    case 0x62:
+        if (func_800A3404(arg0) == 0) {
+            func_80807EEC_bsfirstp((s32)arg0);
+            sp20 = 2;
+        }
+        break;
+    case 0x64:
+        if (func_800A3404(arg0) != 0 && func_800D3948() == 0) {
+            func_80807F24_bsfirstp((s32)arg0);
+            baanim_playForDuration_loop(arg0, 0x30D, 2.0f);
+            func_80800488_bsfirstp(arg0, 0x311, 2.0f);
+            sp20 = 2;
+        }
+        if (_ncpoddialog_entrypoint_10(func_80099A58((s32)arg0)) != 0) {
+            *(s32 *)((u8 *)arg0 + 0x15C) = 1;
+            sp20 = 2;
+        }
+        break;
+    case 0x63:
+        if (func_800A3404(arg0) != 0) {
+            func_80807F24_bsfirstp((s32)arg0);
+            sp20 = 2;
+        }
+        break;
+    default:
+        bsfirstp_entrypoint_26((s32)arg0);
+        return;
+    }
+    func_8009E830(arg0, sp20);
+    bs_setState(arg0, 0);
+}
 
 void func_808074D0_bsfirstp(void *arg0) {
     void func_800936E8(void *, s32);
