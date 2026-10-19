@@ -1173,7 +1173,54 @@ void func_80094824(PlayerState *arg0) {
     func_80094D04(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094864.s")
+s32 func_80094864(PlayerState *arg0) {
+    s32 _gcegg_entrypoint_5(s32);
+    s32 bainput_func_80097C7C();
+    void func_800D1824(s32);
+    int func_800F6774(u32);
+    void func_80094C88(void *);
+    s32 func_80094DA8(void *);
+    void func_80094E40(s32);
+    s32 sp24;
+    u8 state;
+
+    if (func_800F6774(*(u32 *)((s8 *)arg0 + 0x184)) != 0) {
+        if (func_80094348(arg0, 0x10) != 0) {
+            func_80094390(arg0);
+        }
+        if (func_80094348(arg0, 8) != 0) {
+            sp24 = _gcegg_entrypoint_5(func_80094510(arg0));
+            if (func_80094348(arg0, 4) == 0) {
+                func_800D1824(sp24);
+            }
+        }
+        if (func_80094348(arg0, 1) == 0) {
+            state = (*(u8 **)((s8 *)arg0 + 0x64))[3];
+            switch (state) {
+                case 0:
+                    if (bainput_func_80097C7C(arg0) != 0) {
+                        (*(u8 **)((s8 *)arg0 + 0x64))[3] = 1;
+                        func_80094E40(func_80094510(arg0));
+                        func_80094C88(arg0);
+                    }
+                    break;
+                case 1:
+                    func_80094824(arg0);
+                    if (func_80094DA8(arg0) != 0) {
+                        (*(u8 **)((s8 *)arg0 + 0x64))[3] = 2;
+                        func_80094C88(arg0);
+                    }
+                    break;
+                case 2:
+                    func_80094824(arg0);
+                    if (func_80094DA8(arg0) == 0) {
+                        (*(u8 **)((s8 *)arg0 + 0x64))[3] = 0;
+                    }
+                    break;
+            }
+        }
+    }
+}
 
 /* extern */
 
