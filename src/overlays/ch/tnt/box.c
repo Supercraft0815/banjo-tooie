@@ -87,7 +87,46 @@ void func_808003F0_chtntbox(s32 arg0, f32 arg1[3]) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/func_808004F8_chtntbox.s")
+void func_808004F8_chtntbox(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void _subaddiefade_entrypoint_11(Actor *, s32 *);
+    void _subaddiefade_entrypoint_9(Actor *, s32 *);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    f32 func_800EFB8C(f32 *, f32 *);
+    f32 func_800F0E00(f32, f32);
+    f32 func_80102D78(Actor *, f32 *);
+    f32 func_80103EAC(Actor *);
+    Actor *func_801084B0(s32, Actor **);
+    void func_8010D254(f32 *);
+    f32 sqrtf(f32);
+    extern s32 D_80800A78_chtntbox;
+    s32 pad0;
+    f32 distance;
+    f32 height;
+    f32 horizontal;
+    f32 speed;
+    f32 range;
+    s32 pad1;
+    s32 fade[3];
+    Actor *actor;
+
+    actor = func_801084B0(0x200, &arg0);
+    func_8010D254((f32 *)actor->actorData);
+    actor->position[1] += 180.0f;
+    range = func_80103EAC(arg0);
+    horizontal = func_800EFB8C(actor->position, (f32 *)actor->actorData);
+    distance = func_800F0E00(range, horizontal);
+    height = actor->position[1] - ((f32 *)actor->actorData)[1];
+    if (height <= -distance) {
+        height = distance - 10.0f;
+    }
+    actor->rotation[1] = func_80102D78(actor, (f32 *)actor->actorData);
+    speed = sqrtf((distance * distance * 3800.0f) / (distance + height));
+    func_800EEC30((f32 *)&actor->actorData[4], 45.0f, actor->rotation[1], speed);
+    _subaddiefade_entrypoint_9(arg0, fade);
+    _subaddiefade_entrypoint_11(actor, fade);
+    _subaddieaudioquick_entrypoint_2(arg0, actor->position, &D_80800A78_chtntbox);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/func_80800624_chtntbox.s")
 
