@@ -1931,7 +1931,49 @@ void func_80804B84_bsfirstp(void)
 {
     func_80807C8C_bsfirstp();
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80804BA4_bsfirstp.s")
+void func_80804BA4_bsfirstp(struct player_state_s *arg0) {
+    int baanim_isAt(struct player_state_s *, f32);
+    int baanim_isStopped(struct player_state_s *);
+    s32 bs_setState(void *, s32);
+    void func_800936E8(void *, s32);
+    void func_8009DB04(struct player_state_s *, s32, f32, s32);
+    void func_8009DE38(struct player_state_s *, s32, f32);
+    u32 func_800A3404(void *);
+    void func_80809D24_bsfirstp(void *);
+
+    func_80807D48_bsfirstp((s32)arg0);
+    func_80809D24_bsfirstp(arg0);
+    if (func_800A3404(arg0) == 0) {
+        if (baanim_isAt(arg0, 0.1081f)) {
+            func_800936E8(arg0, 1);
+        }
+        if (baanim_isAt(arg0, 0.25f)) {
+            func_8009DE38(arg0, 0x442E, 1.117f);
+        }
+        if ((*(s32 *)((s8 *)arg0 + 0x15C) == 0) && baanim_isAt(arg0, 0.4f)) {
+            func_80801A34_bsfirstp((s32)arg0);
+        }
+        if (baanim_isAt(arg0, 0.5f)) {
+            func_8009DB04(arg0, 0x4639, 1.0f, 0x4E20);
+        }
+        if (baanim_isAt(arg0, 0.61f)) {
+            func_8009DB04(arg0, 0x463A, 1.0f, 0x4E20);
+        }
+        if (*(s32 *)((s8 *)arg0 + 0x15C) == 1) {
+            if (baanim_isStopped(arg0)) {
+                func_80804A3C_bsfirstp(arg0);
+                *(s32 *)((s8 *)arg0 + 0x15C) = 2;
+            }
+            func_80801928_bsfirstp(arg0);
+        }
+    } else {
+        func_80801928_bsfirstp(arg0);
+        if (func_808008B0_bsfirstp((u8 *)arg0) == 0) {
+            bs_setState(arg0, 0xCA);
+            func_80804A3C_bsfirstp(arg0);
+        }
+    }
+}
 
 s32 bsfirstp_entrypoint_19(s32 arg0) {
     extern s32 D_8080B500_bsfirstp[];
