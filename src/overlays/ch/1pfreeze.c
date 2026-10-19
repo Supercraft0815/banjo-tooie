@@ -15,7 +15,39 @@ void func_8080000C_ch1pfreeze(s32 arg0)
 void *func_80100094(Actor *, u32);
 void func_80800014_ch1pfreeze(Actor *arg0) { if ((s32) arg0->unk70_10 < 4) { func_800F7B9C(*(s32 *)func_80100094(arg0, 0), 0xF); } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/1pfreeze/func_80800054_ch1pfreeze.s")
+void func_80800054_ch1pfreeze(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    f32 func_800F1214(f32, f32, f32);
+    s32 func_800F1574(f32 *, f32);
+    void func_800FFAB0(Actor *);
+    void func_808002D0_ch1pfreeze(Actor *, s32);
+    struct {
+        s32 unk0;
+        s32 color[3];
+        s32 unk10;
+        f32 unk14;
+        f32 unk18;
+        f32 unk1C;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+        case 2:
+            if (func_800F1574(&data->unk14, func_800D8FF8())) {
+                func_808002D0_ch1pfreeze(arg0, 3);
+            }
+            data->unk1C = 1.0f - data->unk14 / data->unk18;
+            break;
+        case 4:
+            if (func_800F1574(&data->unk14, func_800D8FF8())) {
+                func_800FFAB0(arg0);
+                return;
+            }
+            data->unk1C = data->unk14 / data->unk18;
+            break;
+    }
+    data->unk10 = func_800F1214(data->unk1C, 0.0f, 128.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/1pfreeze/func_8080014C_ch1pfreeze.s")
 
