@@ -67,7 +67,49 @@ void func_808002A4_chlagoonufoext(Actor *arg0) {
     _subaddiedialog_entrypoint_11(arg0->unk0, 0x1047, 0x40, arg0->position, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoext/func_8080032C_chlagoonufoext.s")
+void func_8080032C_chlagoonufoext(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
+    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    s32 _subaddiesect_entrypoint_0(Actor *, s32, s32);
+    void func_800CBB80(s32, s32);
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80102320(Actor *, f32, f32);
+    extern s32 D_80800500_chlagoonufoext[];
+    extern u32 D_80800510_chlagoonufoext[];
+    extern u32 D_80800524_chlagoonufoext[];
+    extern u32 D_808005A0_chlagoonufoext[];
+    s32 sp34[1];
+
+    switch (arg0->unk70_10) {
+    case 1:
+        if (_subaddiesect_entrypoint_0(arg0, arg0->unk6C_0, 4) == 0) {
+            return;
+        }
+        break;
+    case 3:
+        sp34[0] = 0;
+        if (func_80101E14(arg0, 0.49f) != 0) {
+            arg0->unk70_0 = 0;
+        }
+        if (func_80102320(arg0, 0.53f, 0.7f) != 0) {
+            sp34[0] = 1;
+        } else {
+            _subaddieaudioloop_entrypoint_4(arg0, (f32 *)arg0->actorData, 1, D_80800510_chlagoonufoext);
+        }
+        ((u8 *)&arg0->actorData[7])[0] = _subaddieaudioloop_entrypoint_7(((u8 *)&arg0->actorData[7])[0], (f32 *)arg0->actorData, sp34[0], D_80800500_chlagoonufoext, arg0->unk70_0);
+        _subaddieaudioquick_entrypoint_4(arg0, (f32 *)arg0->actorData, D_80800524_chlagoonufoext, D_808005A0_chlagoonufoext);
+        if (func_800DA298(0xB6) != 0) {
+            if ((s32)arg0->actorData[3] != -1) {
+                func_800CBB80(arg0->actorData[3], 0);
+            }
+            func_800FFAB0(arg0);
+        }
+        break;
+    }
+}
 
 void func_8080047C_chlagoonufoext(u8 *arg0, s32 arg1)
 {
