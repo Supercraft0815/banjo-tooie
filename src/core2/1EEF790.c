@@ -129,13 +129,3 @@ void func_80116120(void *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg
 void func_801163A0(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 4) + 88) = arg1;
 }
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEF790/func_801163B0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEF790/func_8011649C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEF790/func_801164E0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEF790/func_80116568.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEF790/func_80116684.s")
