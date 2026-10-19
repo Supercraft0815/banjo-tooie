@@ -297,7 +297,63 @@ void func_808006A4_cheggproximity(Actor *arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_80800718_cheggproximity.s")
+s32 func_80800718_cheggproximity(s32 arg0, s32 arg1) {
+    struct EggData {
+        u8 pad[0x30];
+        f32 timer;
+    };
+    struct ProximityData {
+        u8 pad[0x40];
+        s32 states[8];
+        s32 players[8];
+        f32 timers[8];
+        s32 index;
+        s32 disabled;
+        s32 active;
+    };
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_8010A590(Actor *);
+    void _suegg_entrypoint_23(void *);
+    s32 _sueggmove_entrypoint_6(void *, f32, f32);
+    s32 func_80101180(s32, s32, s32);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern s32 D_80800D28_cheggproximity;
+    struct EggData *egg;
+    struct ProximityData *data;
+    s32 i;
+    Actor *actor = (Actor *)arg0;
+
+    egg = func_80100094(actor, 0);
+    data = func_80100094(actor, 1);
+    func_80101FDC(actor, arg1);
+    switch (arg1) {
+    case 1:
+        data->active = 0;
+        break;
+    case 2:
+        _sueggmove_entrypoint_6(actor, -3000.0f, -22000.0f);
+        break;
+    case 3:
+        func_8010A590(actor);
+        data->active = 1;
+        _suegg_entrypoint_23(actor);
+        egg->timer = 1.0f;
+        func_80101180(0x2C4, 0x73, (s32)actor->unk0);
+        break;
+    case 4:
+        egg->timer = 3.5f;
+        break;
+    case 5:
+        for (i = 0; i < 8; i++) {
+            data->states[i] = data->players[i] = -1;
+        }
+        func_8010D930(4, actor->unk70_0, actor->position, &D_80800D28_cheggproximity);
+        break;
+    case 6:
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_80800874_cheggproximity.s")
 
