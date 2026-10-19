@@ -161,6 +161,7 @@ void func_80800898_chnewmumbo(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_808014FC_chnewmumbo.s")
 
+void func_800EE7F8(f32 *, f32 *);
 void chnewmumbo_entrypoint_0(Actor *arg0, f32 *arg1) { func_800EE7F8(arg1, (f32 *)((u8 *)func_80100094(arg0, 0U) + 4)); }
 
 void func_8080172C_chnewmumbo(Actor* arg0) 
@@ -170,7 +171,35 @@ void func_8080172C_chnewmumbo(Actor* arg0)
         _suexpression_entrypoint_8(arg0, 1);
     }
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_80801760_chnewmumbo.s")
+void func_80801760_chnewmumbo(Actor *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_8010D278();
+    extern f32 D_808019F4_chnewmumbo[3];
+    extern f32 D_80801A00_chnewmumbo[3];
+    s8 *data;
+
+    data = func_80100094(arg0, 0U);
+    func_800EE7F8(arg0->position, D_80801A00_chnewmumbo);
+    arg0->scale = 0.5f;
+    _suexpression_entrypoint_7(arg0, 1, 0x10);
+    if (func_8010D278() == 0xD) {
+        *data = 1;
+        func_80800264_chnewmumbo(arg0, 0xF);
+    } else {
+        *data = 0;
+        if (func_800DA298(func_8080011C_chnewmumbo()) || _glcutDll_entrypoint_20()) {
+            func_800EE7F8(arg0->position, D_808019F4_chnewmumbo);
+            func_80800264_chnewmumbo(arg0, 0x13);
+        } else if (func_800DA298(0x7D)) {
+            func_80800264_chnewmumbo(arg0, 0xA);
+        } else {
+            func_80800264_chnewmumbo(arg0, 1);
+        }
+    }
+    arg0->rotation[0] = 0.0f;
+}
 
 OSThread *chnewmumbo_entrypoint_1(void)
 {
