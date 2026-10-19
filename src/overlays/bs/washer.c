@@ -625,7 +625,50 @@ s32 bswasher_entrypoint_9(s32 arg0) {
     return ((s32 *)&D_80801EA0_bswasher)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_808015EC_bswasher.s")
+void func_808015EC_bswasher(s32 arg0, u32 arg1) {
+    void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
+    void func_8009DBB0(struct player_state_s *, s32, f32, f32, s32);
+    void func_8009FFD8();
+    s32 func_800C2FDC(u8);
+    f32 yaw_get(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    struct player_state_s *self = (struct player_state_s *)arg0;
+    u8 index;
+
+    if (*(u32 *)((u8 *)self + 0x15C) == 3) {
+        index = *((u8 *)self + 0x164);
+        if (index != 0) {
+            func_800C2FDC(index);
+            *((u8 *)self + 0x164) = 0;
+        }
+    }
+    *(u32 *)((u8 *)self + 0x15C) = arg1;
+    switch (arg1) {
+    case 0:
+        break;
+    case 1:
+        baanim_playForDuration_onceSmooth(self, 0x354, 6.7f);
+        func_8009FFD8(self, 1, 3, 2, 2);
+        func_808000BC_bswasher(arg0);
+        yaw_setIdeal(self, yaw_get(self));
+        *((u8 *)self + 0x164) = 0;
+        break;
+    case 2:
+        _chfactoryworkerdirty_entrypoint_1(*(s32 *)((u8 *)self + 0x160), 1);
+        break;
+    case 3:
+        _chfactoryworkerdirty_entrypoint_1(*(s32 *)((u8 *)self + 0x160), 2);
+        break;
+    case 4:
+        func_8009DBB0(self, 0x573, 1.05f, 1.15f, 0x4E20);
+        func_8009DBB0(self, 0x406, 0.85f, 0.95f, 0x4E20);
+        _chfactoryworkerdirty_entrypoint_1(*(s32 *)((u8 *)self + 0x160), 3);
+        break;
+    case 5:
+        _chfactoryworkerdirty_entrypoint_1(*(s32 *)((u8 *)self + 0x160), 4);
+        break;
+    }
+}
 
 void func_80801744_bswasher(s32 arg0)
 {
