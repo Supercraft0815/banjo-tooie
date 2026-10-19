@@ -203,7 +203,35 @@ void ncpoddialog_entrypoint_3(s16 arg0) {
     func_8001B754(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_808013C0_ncpoddialog.s")
+s32 func_808013C0_ncpoddialog(u8 *arg0) {
+    s32 func_800BF340(f32 *, f32 *, f32 *, s32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+    s32 var_s1;
+
+    var_s1 = 1;
+    if (func_808006D4_ncpoddialog(arg0) != 0) {
+        func_80800000_ncpoddialog(arg0, 0, sp40);
+        func_800EE7F8(sp34, (f32 *)(arg0 + 0xC4));
+        if (func_800BF340(sp34, sp40, sp4C, 0x860020, 30.0f) != 0) {
+            var_s1 = 0;
+        } else if (func_800BF340(sp40, sp34, sp4C, 0x860020, 30.0f) != 0) {
+            var_s1 = 0;
+        }
+    }
+    if (func_80800698_ncpoddialog(arg0) != 0) {
+        func_80800000_ncpoddialog(arg0, 1, sp40);
+        func_800EE7F8(sp34, (f32 *)(arg0 + 0xC4));
+        if (func_800BF340(sp34, sp40, sp4C, 0x860020, 30.0f) != 0) {
+            var_s1 = 0;
+        } else if (func_800BF340(sp40, sp34, sp4C, 0x860020, 30.0f) != 0) {
+            var_s1 = 0;
+        }
+    }
+    return var_s1;
+}
 
 /* extern */
 
