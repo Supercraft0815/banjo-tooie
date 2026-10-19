@@ -238,7 +238,49 @@ s32 func_80800DAC_chflysaucer(Actor *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800E48_chflysaucer.s")
+u32 func_80800E48_chflysaucer(s32 arg0) {
+    s32 func_800D0A9C(u32, u32);
+    s16 func_800D211C(s32);
+    s32 func_800D395C(void);
+    extern s32 D_80127194;
+
+    if (func_800D395C() != 0) {
+        if (func_800D211C(0x8D) < *(s16 *)((s8 *)&D_80127194 + 0x434)) {
+            return 4;
+        }
+        return 5;
+    }
+    if (func_800D0A9C(0x18, 1) == 0 && func_800D0A9C(9, 4) == 0) {
+        if (*(s16 *)((s8 *)&D_80127194 + 0x434) >= 0x1F4 &&
+            *(s16 *)((s8 *)&D_80127194 + 0x434) >= 0x190) {
+            return 3;
+        }
+        if (*(s16 *)((s8 *)&D_80127194 + 0x434) >= 0x1F4) {
+            return 1;
+        }
+        if (*(s16 *)((s8 *)&D_80127194 + 0x434) >= 0x190) {
+            return 2;
+        }
+        return 0;
+    }
+    if (func_800D0A9C(0x18, 1) == 0) {
+        if (*(s16 *)((s8 *)&D_80127194 + 0x434) >= 0x1F4) {
+            return 1;
+        }
+        return 0;
+    }
+    if (func_800D0A9C(9, 4) == 0) {
+        if (*(s16 *)((s8 *)&D_80127194 + 0x434) >= 0x190) {
+            return 2;
+        }
+        return 0;
+    }
+    if (func_800D211C(0x8D) < *(s16 *)((s8 *)&D_80127194 + 0x434)) {
+        return 4;
+    } else {
+        return 5;
+    }
+}
 
 /* extern */
 
