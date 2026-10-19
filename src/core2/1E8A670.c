@@ -7,7 +7,48 @@ typedef struct VertexListView {
     Vtx vertices[1];
 } VertexListView;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B0D80.s")
+s32 func_800B0D80(u8 *arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, s32 arg6, f32 *arg7, f32 *arg8) {
+    void func_80019224(f32 *, f32 *);
+    void func_80019750(f32 *, f32 *, f32, f32 *);
+    void func_80019AA0(void *, s32);
+    s32 func_80019CD4(void);
+    s32 func_800ADE2C(s32, s32);
+    void func_800EE88C(f32 *, s16 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void mlMtxGet(void *);
+    extern s32 D_80127EA0;
+    u8 *first;
+    u8 *end;
+    u8 *entry;
+    f32 y;
+    f32 sp24[3];
+
+    first = *(s16 *)arg0 * 0x18 + arg0 + 8;
+    entry = *(s16 *)(arg0 + 2) * 0x10 + first;
+    end = *(s16 *)(arg0 + 4) * 0xC + entry;
+    while (entry < end) {
+        if (arg1 == entry[8]) {
+            break;
+        }
+        entry += 0xC;
+    }
+    if (entry == end) {
+        return 0;
+    }
+    func_800EE88C(arg7, (s16 *)(entry + 2));
+    func_800EFA4C(sp24, arg7[0], (f32)*(s16 *)entry + arg7[1], arg7[2]);
+    func_80019CD4();
+    func_80019750(arg2, arg3, arg4, arg5);
+    mlMtxGet(&D_80127EA0);
+    func_80019AA0(&D_80127EA0, func_800ADE2C(arg6, *(s8 *)(entry + 9)));
+    func_80019224(arg7, arg7);
+    func_80019224(sp24, sp24);
+    if (arg8 != NULL) {
+        *arg8 = func_800EEAD4(arg7, sp24);
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B0ECC.s")
 
