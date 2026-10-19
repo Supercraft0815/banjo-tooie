@@ -44,7 +44,7 @@ void func_80800974_chnewfreezy(Actor *arg0, u8 *arg1) {
     typedef struct { f32 m[4][4]; } MtxF;
     s32 _dbskeleton_entrypoint_4(u8 *, u32);
     u32 func_800ADE50(u8 *, u8 *, s32);
-    s32 func_800AE080(s16);
+    void *func_800AE080(s16);
     s32 func_800AE290(s16, s32, s32);
     s32 func_800DF324(void);
     void func_800F2C1C(MtxF *, f32 *);
@@ -81,13 +81,51 @@ void func_80800974_chnewfreezy(Actor *arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_80800AA4_chnewfreezy.s")
+void func_80800AA4_chnewfreezy(Actor *arg0, u8 *arg1) {
+    typedef struct { f32 m[4][4]; } MtxF;
+    typedef struct { f32 v[3]; } FreezyVector;
+    s32 _dbskeleton_entrypoint_4(u8 *, u32);
+    u32 func_800ADE50(u8 *, u8 *, s32);
+    void *func_800AE080(s16);
+    void func_800AE40C(s16, u8 *, s32);
+    s32 func_800DF324(void);
+    void func_800F23D0(MtxF *, f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void mlMtxGet(void *);
+    void mlMtxSet(void *);
+    f32 sqrtf(f32);
+    extern FreezyVector D_80801950_chnewfreezy;
+    u8 *temp_s5;
+    s32 temp_v0;
+    u32 var_s0;
+    struct FreezyPartScale {
+        u8 pad00[0x48];
+        f32 scale;
+        u8 pad4C[0x14];
+    } *var_s1;
+    MtxF sp60;
+    FreezyVector sp54;
+    f32 sp48[3];
+
+    var_s1 = func_80100094(arg0, 0);
+    func_800AE40C(*(s16 *)&arg0->unk0->unk10, arg1, func_800DF324());
+    temp_s5 = func_800AE080(*(s16 *)&arg0->unk0->unk10);
+    for (var_s0 = 0; var_s0 < arg0->unk6C_0; var_s0++) {
+            temp_v0 = _dbskeleton_entrypoint_4(arg1, var_s0);
+            sp54 = D_80801950_chnewfreezy;
+            mlMtxSet(func_800ADE50(temp_s5, arg1, temp_v0));
+            mlMtxGet(&sp60);
+            func_800F23D0(&sp60, sp48, sp54.v);
+            var_s1->scale = sqrtf((sp48[0] * sp48[0] + sp48[1] * sp48[1]) + sp48[2] * sp48[2]);
+            var_s1++;
+    }
+}
 
 /* extern */
 
 void func_80800BFC_chnewfreezy(Actor *arg0, u8 *arg1) {
     s32 _dbskeleton_entrypoint_4(u8 *, u32);
-    s32 func_800AE080(s16);
+    void *func_800AE080(s16);
     s32 func_800AE1E8(s16, s32, s32);
     s32 func_800AE630(u8 *, u8 *, s32, s32);
     s32 func_800DF324(void);
