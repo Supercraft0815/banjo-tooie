@@ -103,7 +103,36 @@ s32 func_8009224C(u8 **arg0) {
     return arg0[20][26];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092258.s")
+s32 func_80092258(void *arg0) {
+    f32 _bainvisible_entrypoint_2(void *, u8);
+    s32 func_80093DF4(void *, s32);
+    s32 func_8009AD78(void *, s32);
+    int func_800A4C68(void *);
+    s32 func_800A89F8();
+    s32 pad;
+    u8 sp33;
+    s32 sp2C;
+    f32 var_f20;
+    u8 *temp_v0;
+
+    temp_v0 = *(u8 **)((u8 *)arg0 + 0x50);
+    if (temp_v0[0x88] != 0) {
+        var_f20 = (f32)(s32)temp_v0[0x8C];
+    } else {
+        var_f20 = (f32)(s32)temp_v0[0x14];
+    }
+    if (func_8009AD78(arg0, 0xC) != 0) {
+        sp33 = 0;
+        if (func_80093DF4(arg0, 2) != 0) {
+            sp2C = func_800A89F8();
+            if (func_800A4C68(arg0) == sp2C) {
+                sp33 = 1;
+            }
+        }
+        var_f20 *= _bainvisible_entrypoint_2(arg0, sp33);
+    }
+    return (u32)var_f20 & 0xFF;
+}
 
 s32 func_8009239C(u8 **arg0) {
     return arg0[20][25];
