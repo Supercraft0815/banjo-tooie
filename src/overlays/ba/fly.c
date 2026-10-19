@@ -181,7 +181,51 @@ void bafly_entrypoint_14(PlayerState *arg0, s32 arg1, s32 arg2) {
 
 void bafly_entrypoint_15(s32 arg0) { func_8009BC34(); func_8008E95C(arg0); func_8009BD88(arg0); func_800A4E30(arg0); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_16.s")
+/* extern */
+
+void bafly_entrypoint_16(PlayerState *arg0, s32 arg1, f32 arg2) {
+    void _ncbafly_entrypoint_4(PlayerState *, f32, f32, f32);
+    s32 baanim_playForDuration_once(void *, s32, f32);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    f32 func_800136E4(f32);
+    void func_8008E944(PlayerState *);
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_8009DA40(PlayerState *);
+    void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+    void func_800A32C4(PlayerState *, f32[3]);
+    PlayerState *func_800A4CA8(PlayerState *);
+    void func_800A4DA4(PlayerState *, s32);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    s32 func_800F1E6C(f32 *, f32 *, f32 *);
+    void yaw_applyIdeal(PlayerState *);
+    s32 yaw_setIdeal(s32, f32);
+    f32 sp4C;
+    f32 sp40[3];
+    f32 sp34[3];
+
+    func_8009C128(arg0, sp40);
+    func_800E1610(2, 100.0f, 0.85f, sp40);
+    baanim_playForDuration_once(arg0, arg1, arg2);
+    func_8009DA40(arg0);
+    func_800A32C4(arg0, sp34);
+    func_800F1E6C(sp34, sp40, &sp4C);
+    yaw_setIdeal(arg0, func_800136E4(sp4C + 180.0f));
+    yaw_applyIdeal(arg0);
+    baphysics_set_target_horizontal_velocity(arg0, 1300.0f);
+    baphysics_set_target_yaw(arg0, sp4C);
+    baphysics_set_horizontal_velocity(arg0, sp4C, baphysics_get_target_horizontal_velocity(arg0));
+    func_8009FFD8(arg0, 1, 1, 2, 3);
+    baphysics_set_vertical_velocity(arg0, 400.0f);
+    baphysics_set_gravity(arg0, -1800.0f);
+    func_8008E944(arg0);
+    func_800A4DA4(arg0, 3);
+    _ncbafly_entrypoint_4(func_800A4CA8(arg0), 12.0f, 10000.0f, 800.0f);
+}
 
 /* extern */
 
