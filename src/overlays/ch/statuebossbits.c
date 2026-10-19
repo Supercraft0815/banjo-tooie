@@ -120,7 +120,48 @@ void func_8080040C_chstatuebossbits(Actor *arg0, void *arg1) {
     func_80101870(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statuebossbits/func_808004D8_chstatuebossbits.s")
+s32 func_808004D8_chstatuebossbits(Actor *arg0, s32 arg1, volatile s32 arg2) {
+    void func_80800604_chstatuebossbits(s32, s32);
+    s32 func_800EC398(s32, f32 *);
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(void *, s32);
+    void *func_80101080(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
+    extern s32 D_8080085C_chstatuebossbits;
+    s32 sp2C;
+    f32 *position;
+
+    switch (arg1) {
+    case 0x40:
+        sp2C = arg2;
+        (*(s32 *)&arg0->unk54)++;
+        func_80800604_chstatuebossbits((s32)arg0, sp2C);
+        position = (f32 *)arg0->actorData;
+        if (*(s32 *)&arg0->unk54 >= 3) {
+            func_800EC398(sp2C, position);
+            ((f32 *)arg0->actorData)[1] = arg0->position[1];
+            _chexploder_entrypoint_3(arg0, position, 0xC);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_8080085C_chstatuebossbits);
+        }
+        break;
+    case 7:
+        func_80101FDC(arg0, 3);
+        func_80103110(arg0, 1);
+        arg0->unk58 = 3.0f;
+        break;
+    case 0x90:
+        arg0 = func_80106790(func_80101080());
+        _chexploder_entrypoint_9(arg0, 2, 0);
+        _chexploder_entrypoint_9(arg0, 5, 1);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800604_chstatuebossbits(s32 arg0, s32 arg1) {
     s32 func_800EC398(s32, f32 *);
