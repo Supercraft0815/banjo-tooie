@@ -80,7 +80,32 @@ void func_800FAD68(f32 arg0[3], f32 arg1, f32 arg2, s32 arg3, u32 arg4) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FAE44.s")
+void func_800FAE44(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3, s32 arg4, u32 arg5) {
+    void *func_800C6C94(f32[3], f32, f32[3], u32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp2C[3];
+    f32 pad;
+    f32 scale;
+
+    func_800EFA4C(sp2C, arg0[0], arg0[1] + arg3, arg0[2]);
+    func_800EE7F8(arg1, arg0);
+    scale = 2.0f;
+    if (func_800C6C94(sp2C, arg2, sp38, arg5)) {
+        arg1[0] = arg0[0] + sp38[0] * scale;
+        arg1[1] = arg0[1] + sp38[1] * scale;
+        arg1[2] = arg0[2] + sp38[2] * scale;
+        sp44[0] = arg0[0] + sp38[0] * scale;
+        sp44[1] = arg0[1] + sp38[1] * scale;
+        sp44[2] = arg0[2] + sp38[2] * scale;
+        func_800EE7F8(arg0, sp44);
+        if (arg4) {
+            func_800FACA0(arg0, arg3 + arg2, arg5);
+        }
+    }
+}
 
 void func_800FAF78(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3], f32 arg4[3]) {
     void func_800EFB24(void *, void *, void *);
