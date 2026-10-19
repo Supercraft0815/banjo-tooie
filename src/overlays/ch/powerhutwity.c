@@ -154,7 +154,45 @@ void func_80800610_chpowerhutwitchy(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/func_8080073C_chpowerhutwitchy.s")
+s32 func_8080073C_chpowerhutwitchy(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _capod_entrypoint_14(void);
+    s32 _chpowerhut_entrypoint_3(Actor *, s32, s32, s32 *);
+    s32 _glcutDll_entrypoint_20();
+    void func_800BF744(s32, s32);
+    s32 func_800DA298(s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80800890_chpowerhutwitchy(s32 *);
+    void func_808009FC_chpowerhutwitchy(s32);
+    extern s32 D_80800B14_chpowerhutwitchy;
+    s32 sp24;
+
+    switch (arg1) {
+    case 0xB:
+        if (arg2 == 0x31) {
+            _capod_entrypoint_14();
+            _capod_entrypoint_13(arg0->unk0, 0, 0x35, 0x2010);
+            func_80101180(0x39E, 7, 0);
+            func_80101180(0x39F, 7, 0);
+            return 4;
+        }
+        return 3;
+    case 0x95:
+        sp24 = func_800DA298(0xEC) != 0 || _glcutDll_entrypoint_20() != 0;
+        func_800BF744(5, !sp24);
+        func_800BF744(6, sp24);
+        *(f32 *)&arg0->actorData[4] = func_800F10B4(((f32 *)func_80100094(arg0, 0))[5], 0.0f, 1.0f, 0.3f, 1.0f);
+        if (sp24 == 0) {
+            func_80800890_chpowerhutwitchy((s32 *)arg0);
+        } else {
+            func_808009FC_chpowerhutwitchy((s32)arg0);
+        }
+        break;
+    }
+    return _chpowerhut_entrypoint_3(arg0, arg1, arg2, &D_80800B14_chpowerhutwitchy);
+}
 
 void func_80800890_chpowerhutwitchy(s32 *arg0) {
     s32 _glid_entrypoint_0(s32, s32, void (*)(void), s32);
