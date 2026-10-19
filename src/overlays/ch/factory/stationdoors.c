@@ -16,7 +16,37 @@ void func_80800000_chfactorystationdoors(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/stationdoors/func_80800054_chfactorystationdoors.s")
+void func_80800054_chfactorystationdoors(Actor *arg0) {
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800D90A4(f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(void *, s32);
+    f32 func_80103EF4(Actor *);
+    extern u32 D_80800250_chfactorystationdoors[];
+    extern u32 D_8080025C_chfactorystationdoors[];
+
+    switch (arg0->unk70_10) {
+        case 1:
+            func_80103110(arg0, 0);
+            break;
+        case 2:
+            if (func_800D90A4(&arg0->unk58)) {
+                _subaddieaudioloop_entrypoint_2(arg0);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_8080025C_chfactorystationdoors);
+                func_80101FDC(arg0, 3);
+            } else {
+                _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_80800250_chfactorystationdoors);
+            }
+            arg0->position[1] = ((f32 *)arg0->actorData)[7] + func_800F10B4(arg0->unk58, 9.0f, 0.0f, 0.0f, func_80103EF4(arg0) * 1.65f);
+            break;
+        case 3:
+            func_80103110(arg0, 0);
+            break;
+    }
+}
 
 /* extern */
 
