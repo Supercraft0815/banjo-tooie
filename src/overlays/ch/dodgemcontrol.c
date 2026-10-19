@@ -226,7 +226,56 @@ void func_808015E8_chdodgemcontrol(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080160C_chdodgemcontrol.s")
+void func_8080160C_chdodgemcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800DA298(s32);
+    void _capod_entrypoint_14(void);
+    void func_800A54F8(s32);
+    void func_800BF744(s32, s32);
+    typedef struct {
+        u8 pad0[0x30];
+        u8 ready[0x92];
+        u8 count;
+        u8 unkC3;
+        u8 unkC4;
+        u8 unkC5;
+        u8 unkC6;
+    } DodgemData;
+    DodgemData *data;
+    s32 i;
+    s32 text;
+
+    data = func_80100094(arg0, 0);
+    if (func_800DA298(0x6AD) == 0) {
+        for (i = 0; i < data->count; i++) {
+            if (!data->ready[i]) {
+                return;
+            }
+        }
+        if (data->unkC3 && data->unkC4) {
+            if (data->unkC6) {
+                _capod_entrypoint_14();
+            }
+            switch (arg0->unk79_4) {
+            case 0:
+            case 1:
+            case 2:
+                func_800A54F8(0);
+                break;
+            case 3:
+                break;
+            }
+            func_800BF744(1, 0);
+            if (arg0->unk79_4 == 3) {
+                text = 0x10EB;
+            } else {
+                text = !arg0->unk64_19 ? 0x10FC : 0x10D3;
+            }
+            func_8080061C_chdodgemcontrol(arg0, text, 0);
+            arg0->unk70_10 = 2;
+        }
+    }
+}
 
 typedef struct {
     u8 pad0[0x64];
