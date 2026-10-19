@@ -263,7 +263,59 @@ void func_808008F4_bswasher(struct player_state_s *arg0) {
     *(s32 *)((u8 *)arg0 + 0x15C) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_8080099C_bswasher.s")
+void func_8080099C_bswasher(struct player_state_s *arg0) {
+    s32 _badrone_entrypoint_28(struct player_state_s *);
+    s32 anctrl_isStopped(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void baanim_setEnd(struct player_state_s *, f32);
+    void baanim_setEndAndDuration(struct player_state_s *, f32, f32);
+    int baflag_isTrue(struct player_state_s *, s32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    s32 bastick_getZone(struct player_state_s *);
+    void bs_setState(struct player_state_s *, int);
+    int func_8008DF8C(struct player_state_s *, s32);
+    void func_8009BB24(void *, f32 *);
+    void func_8009D3A8(struct player_state_s *, s32);
+    void func_800A2EAC(void *);
+    int player_isStable(struct player_state_s *);
+    s32 next_state;
+    struct anctrl_s *control;
+    f32 velocity[3];
+
+    next_state = 0;
+    control = baanim_getAnimCtrlPtr(arg0);
+    func_8009D3A8(arg0, 0);
+    func_80800000_bswasher(arg0);
+    func_8009BB24(arg0, velocity);
+    switch (*(s32 *)((u8 *)arg0 + 0x15C)) {
+        case 0:
+            if (func_8008DF8C(arg0, 0x82)) {
+                baanim_setEnd(arg0, 0.706f);
+                *(s32 *)((u8 *)arg0 + 0x15C) = 1;
+            }
+            break;
+        case 1:
+            if (player_isStable(arg0)) {
+                func_800A2EAC(arg0);
+                baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+                baanim_setEndAndDuration(arg0, 1.0f, 1);
+                *(s32 *)((u8 *)arg0 + 0x15C) = 2;
+            }
+            break;
+        case 2:
+            break;
+    }
+    if (player_isStable(arg0) && (bastick_getZone(arg0) > 0 ||
+        (*(s32 *)((u8 *)arg0 + 0x15C) == 2 && anctrl_isStopped(control)))) {
+        if (baflag_isTrue(arg0, 0x19)) {
+            next_state = _badrone_entrypoint_28(arg0);
+        } else {
+            next_state = 0x32;
+        }
+    }
+    func_80800300_bswasher((s32)arg0);
+    bs_setState(arg0, next_state);
+}
 
 s32 bswasher_entrypoint_3(s32 arg0) {
     extern s32 D_80801E30_bswasher[];
