@@ -178,7 +178,45 @@ void chmolehill_entrypoint_0(s32 arg0)
   _chmoley_entrypoint_1(sp20, ((unsigned long) ((u16) (*((u16 *) (((s8 *) sp24) + 0x72))))) >> 0xA);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/func_8080058C_chmolehill.s")
+s32 func_8080058C_chmolehill(Actor *arg0) {
+    f32 func_80013728(f32);
+    s32 func_8008F8B0();
+    void func_8008F8D8(s32);
+    void func_8008F904(void *, Unk80132ED0 *);
+    void func_8008F938(s32);
+    void func_8008F990(f32 *, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800F1DCC(f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void func_8010D254(f32 *);
+    extern s32 func_8010D5DC;
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp2C;
+    f32 var_f2;
+
+    if (func_80800000_chmolehill((u8 *)arg0) == 0) {
+        func_8010D254(sp30);
+        sp2C = func_800F1DF4(arg0->position, sp30);
+        var_f2 = func_80013728(func_800F1DCC(sp2C, arg0->rotation[1] + 15.0f));
+        if (var_f2 < -15.0f) {
+            var_f2 = -15.0f;
+        }
+        if (var_f2 > 15.0f) {
+            var_f2 = 15.0f;
+        }
+        sp2C -= var_f2;
+        func_800EE7F8(sp3C, arg0->position);
+        func_800EF1B8(sp3C, sp2C, 150.0f);
+        func_8008F8B0();
+        func_8008F8D8(1);
+        func_8008F938(1);
+        func_8008F904(&func_8010D5DC, arg0->unk0);
+        func_8008F990(sp3C, 300.0f);
+        arg0->unk64_20 = 1;
+    }
+}
 
 void chmolehill_entrypoint_1(Actor *arg0, s32 arg1) {
     s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
