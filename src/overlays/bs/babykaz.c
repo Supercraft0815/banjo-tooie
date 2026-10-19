@@ -276,7 +276,63 @@ void func_8080080C_bsbabykaz(void *arg0) {
     *(s32 *)((s8 *)arg0 + 0x15C) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80800864_bsbabykaz.s")
+void func_80800864_bsbabykaz(struct player_state_s *arg0) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    int baflag_isTrue(struct player_state_s *, s32);
+    void func_8009BB24(void *, f32 *);
+    void func_8009B7C0(struct player_state_s *);
+    void func_8009FE58(struct player_state_s *);
+    u32 anctrl_getPlaybackType(u8 *);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setIndex(struct anctrl_s *, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    int func_8008DF8C(struct player_state_s *, s32);
+    int player_isStable(struct player_state_s *);
+    s32 bs_setState(s32, s32);
+    s32 next_state;
+    struct anctrl_s *anim_ctrl;
+    f32 velocity[3];
+
+    next_state = 0;
+    anim_ctrl = baanim_getAnimCtrlPtr(arg0);
+    bsbabykaz_entrypoint_5(arg0);
+    if (baflag_isTrue(arg0, 0xF)) {
+        func_8009B7C0(arg0);
+    } else {
+        func_80800134_bsbabykaz(arg0);
+    }
+    func_8009BB24(arg0, velocity);
+    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+        case 0:
+            if (func_8008DF8C(arg0, 0x5A)) {
+                anctrl_reset(anim_ctrl);
+                anctrl_setIndex(anim_ctrl, 0xA9);
+                anctrl_setStart(anim_ctrl, 0.6667f);
+                anctrl_setDuration(anim_ctrl, 2.0f);
+                anctrl_setPlaybackType(anim_ctrl, 1);
+                anctrl_start(anim_ctrl);
+                *(s32 *)((s8 *)arg0 + 0x15C) = 1;
+            }
+            break;
+        case 1:
+            break;
+    }
+    if (player_isStable(arg0)) {
+        func_8009FE58(arg0);
+        if (anctrl_getPlaybackType(anim_ctrl) == 1) {
+            next_state = 0x132;
+        } else {
+            next_state = 0x136;
+        }
+    }
+    if (func_808000F8_bsbabykaz(arg0)) {
+        next_state = 0x94;
+    }
+    bs_setState(arg0, next_state);
+}
 
 s32 bsbabykaz_entrypoint_7(s32 arg0) {
     extern s32 D_80801750_bsbabykaz[];
