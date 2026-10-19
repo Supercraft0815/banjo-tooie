@@ -97,7 +97,41 @@ void func_80800AEC_chjollyroger(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800BA0_chjollyroger.s")
+s32 func_80800BA0_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
+    extern u32 D_808012B8_chjollyroger;
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    s32 _suexpression_entrypoint_12(void *, s32, s32);
+    s32 _suexpression_entrypoint_17(void *, s32);
+    s32 func_800F54E4();
+    void func_800F8300();
+    void func_80800D28_chjollyroger(s32, s32, s32);
+    s32 func_80800DD8_chjollyroger(void *, s32, s32);
+    s32 expression;
+
+    switch (arg1) {
+        case 0x2E:
+            func_80800D28_chjollyroger(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x32:
+            arg0->unk64_20 = 1;
+            func_800F8300(func_800F54E4(), 1, arg0->position, arg0);
+            break;
+        case 0x57:
+            return func_80800DD8_chjollyroger(arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+        case 0x52:
+            _gcdialogcamera_entrypoint_3(&D_808012B8_chjollyroger, arg0->scale);
+            break;
+        case 0x95:
+            expression = _suexpression_entrypoint_7(arg0, 1, 0x56);
+            _suexpression_entrypoint_12(expression, 0x42700000, 0x41A00000);
+            _suexpression_entrypoint_17(expression, 1000);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
