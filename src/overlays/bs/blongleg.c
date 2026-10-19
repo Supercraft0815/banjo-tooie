@@ -484,7 +484,47 @@ void bsblongleg_entrypoint_20(PlayerState *arg0) {
     func_8080013C_bsblongleg(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_21.s")
+void bsblongleg_entrypoint_21(PlayerState *arg0) {
+    void _badust_entrypoint_1(PlayerState *);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 _batimer_decrement(void *, s32);
+    int _batimer_isZero(PlayerState *, s32);
+    int bakey_pressed(PlayerState *, int);
+    void bs_setState(PlayerState *, int);
+    int func_8008E148(PlayerState *);
+    void func_800963C0(PlayerState *, f32 *);
+    f32 func_8009BFD8(PlayerState *);
+    void func_8009D2F0(PlayerState *, s32, f32);
+    void func_8009D658(PlayerState *);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    int func_800F1EA4(f32 *, f32 *);
+    s32 sp44;
+    f32 sp38[3];
+    f32 sp34;
+
+    sp44 = 0;
+    func_808000C8_bsblongleg(arg0);
+    func_8009D658(arg0);
+    _batimer_decrement(arg0, 0);
+    if (func_8008E148(arg0) != 0) {
+        func_800963C0(arg0, sp38);
+        func_800F1EA4(sp38, &sp34);
+        func_8009D2F0(arg0, 1, 0.5f);
+        baphysics_set_target_horizontal_velocity(arg0, func_800F10B4(func_8009BFD8(arg0), 20.0f, 60.0f, 550.0f, 700.0f));
+        baphysics_set_target_yaw(arg0, sp34);
+        _badust_entrypoint_1(arg0);
+    } else {
+        sp44 = 0x26;
+    }
+    if ((_batimer_isZero(arg0, 0) != 0) && (bakey_pressed(arg0, 8) != 0)) {
+        sp44 = 0x28;
+    }
+    if (func_80800000_bsblongleg(arg0) != 0) {
+        sp44 = 0x4C;
+    }
+    bs_setState(arg0, sp44);
+}
 
 void bsblongleg_entrypoint_22(PlayerState *arg0)
 {
