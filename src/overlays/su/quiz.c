@@ -29,7 +29,41 @@ f32 func_8080009C_suquiz(s32 arg0, s32 arg1, s32 arg2) {
 
 int func_808000C4_suquiz(s32 arg0) { s32 sp18[6]; void func_80015E80(s32, void *); func_80015E80(arg0, sp18); return sp18[1] == 1; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_0.s")
+void suquiz_entrypoint_0(void) {
+    extern void *D_80127614;
+    s32 _gcstatusDll_entrypoint_11(void);
+    s32 func_800D3948(void);
+    int func_800DC298(f32);
+    void *heap_alloc(s32);
+    void rare_memset(void *, u8, int);
+    void suquiz_entrypoint_21(s32, s32);
+
+    func_800DA544(FLAG2_6B6_UNK);
+    if (D_80127614 == NULL) {
+        D_80127614 = heap_alloc(0x38);
+    }
+    rare_memset(D_80127614, 0, 0x38);
+    if (func_800D3948() != 0) {
+        suquiz_entrypoint_21(3, 0);
+        suquiz_entrypoint_21(4, 1);
+        suquiz_entrypoint_21(5, _gcstatusDll_entrypoint_11() < 3 ? -1 : 2);
+        suquiz_entrypoint_21(6, _gcstatusDll_entrypoint_11() < 4 ? -1 : 3);
+    } else {
+        suquiz_entrypoint_21(0, -1);
+        suquiz_entrypoint_21(1, -1);
+        suquiz_entrypoint_21(2, 0);
+        if (func_800DC298(0.5f) != 0) {
+            ((u8 *)D_80127614)[0x31] = 0;
+        } else {
+            ((u8 *)D_80127614)[0x31] = 1;
+        }
+        if (((u8 *)D_80127614)[0x31] == 0) {
+            ((u8 *)D_80127614)[0x32] = 1;
+        } else {
+            ((u8 *)D_80127614)[0x32] = 0;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_1.s")
 
