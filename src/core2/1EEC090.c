@@ -244,7 +244,41 @@ void func_80113640(s32 unused, f32 *start, f32 *end) {
     func_800FAB50(start, end, normal, 0x820020, 45.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80113688.s")
+void func_80113688(PlayerState *arg0, struct ba_bounce_s *arg1, f32 *arg2) {
+    void func_800AAD28(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void *func_800FAB50(f32 *, f32 *, f32 *, u32, f32);
+    void *func_800FB3C0(f32 *, f32 *, f32, f32 *, s32, u32);
+    s32 func_80110060(s32 *);
+    s32 func_80110898(PlayerState *);
+    void func_801134F0(struct ba_bounce_s *, f32);
+    void func_80114CF4(u8 *, f32 *, s32, f32 *);
+    extern f32 D_801265CC;
+    f32 sp74[3];
+    f32 sp68[3];
+    f32 sp5C[3];
+    s32 *sp58;
+    s32 *sp54;
+    f32 sp30[9];
+
+    func_801134F0(arg1, 45.0f);
+    if (!(func_800EEB40(arg1, arg2) < D_801265CC)) {
+        func_800EE7F8(sp68, arg1);
+        func_800EE7F8(sp5C, arg2);
+        sp58 = func_800FAB50(sp68, sp5C, sp74, 0x820020, 45.0f);
+        if (sp58 == NULL) {
+            sp54 = func_800FB3C0(sp68, sp5C, 45.0f, sp74, 3, 0x820020);
+        }
+        if (sp58 != NULL || sp54 != NULL) {
+            func_800AAD28(sp30);
+            func_80114CF4(func_80110060(func_80110898(arg0)), sp30,
+                sp58 != NULL ? sp58[2] : sp54[2], sp74);
+            func_801135D0(sp68, sp5C, arg1, arg2, sp74);
+            func_800FAB50(arg1, arg2, sp74, 0x820020, 45.0f);
+        }
+    }
+}
 
 s32 func_801137E4(PlayerState *arg0, f32 *arg1, f32 *arg2, void *arg3, f32 *arg4) {
     f32 func_80013A7C(f32);
