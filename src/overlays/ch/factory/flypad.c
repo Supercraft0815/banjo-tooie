@@ -52,4 +52,38 @@ void func_80800088_chfactoryflypad(Actor *arg0) {
     }
     }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/flypad/func_80800130_chfactoryflypad.s")
+s32 func_80800130_chfactoryflypad(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _chappearfx_entrypoint_1(Actor *, u32, u32, f32);
+    s32 _glcutDll_entrypoint_19(u32);
+    Unk80132ED0 **_subaddiefind_entrypoint_1(Actor *, s32, s32, s32);
+    void func_800FFAB0(Actor *);
+    Actor *func_801084B0(s32, Actor **);
+    void func_80108B04(Actor *, u32);
+    Actor *sp1C;
+
+    switch (arg1) {
+    case 0x3D:
+        sp1C = func_801084B0(0x234, &arg0);
+        if (_glcutDll_entrypoint_19(0x42) != 0) {
+            _chappearfx_entrypoint_1(sp1C, 0x22, 2, 1.0f);
+        }
+        func_800FFAB0(arg0);
+        break;
+    case 0x49:
+        if ((arg0->unk74_7 == 0x32) && (_glcutDll_entrypoint_19(0x42) != 0)) {
+            _capod_entrypoint_13(arg0->unk0, *_subaddiefind_entrypoint_1(arg0, 0x42F, -1, 0), 5, 0x900);
+            break;
+        }
+        return 0;
+    case 0xC:
+        func_80108B04(arg0, 0);
+        return 3;
+    case 0x95:
+        func_80800088_chfactoryflypad(arg0);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
