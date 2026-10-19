@@ -54,7 +54,43 @@ void func_80800230_choctopus(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/octopus/func_80800348_choctopus.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/octopus/func_80800428_choctopus.s")
+void *func_80100094(Actor *, u32);
+
+void func_80800428_choctopus(Actor *arg0, s32 arg1) {
+    s16 func_800CB854(s32 *);
+    void func_80102424(Actor *, s32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _suexpression_entrypoint_18(void *, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    extern u8 D_808008C0_choctopus[];
+    extern u8 D_8080098C_choctopus[];
+    s32 sp34;
+    s32 sp30;
+    void *sp2C;
+
+    sp34 = arg0->unk6C_0 == 1;
+    sp30 = func_800CB854(NULL) == 5;
+    if (sp34 || sp30) {
+        sp2C = func_80100094(arg0, 1);
+        switch (arg0->unk70_10) {
+            case 1:
+                func_80102424(arg0, 2);
+                _subaddieDll_entrypoint_4(arg0, 1);
+                arg0->unk58 = 1.25f;
+                if (sp2C != NULL) {
+                    _suexpression_entrypoint_18(sp2C, 2);
+                }
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808008C0_choctopus);
+                if (!sp30) {
+                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_8080098C_choctopus);
+                }
+                break;
+            case 3:
+                arg0->unk58 = 8.0f;
+                break;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/octopus/func_80800540_choctopus.s")
 
