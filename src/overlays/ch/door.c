@@ -293,7 +293,52 @@ void func_808008A0_chdoor(u8 *arg0) {
     func_80103014(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/door/func_808009F4_chdoor.s")
+void func_808009F4_chdoor(u8 *arg0) {
+    struct DoorTransitionData {
+        u32 flags;
+        u32 unused4;
+        s16 unused8;
+        s16 duration;
+        s16 openState;
+        s16 closedState;
+    };
+    void *func_80100094(Actor *, u32);
+    void func_80800B14_chdoor(u8 *, s32);
+    struct DoorTransitionData *data;
+    f32 time;
+    s16 state;
+    Actor *actor = (Actor *)arg0;
+
+    data = func_80100094(actor, 0);
+    switch (actor->unk70_10) {
+    case 1:
+    case 2:
+    case 7:
+        state = data->openState;
+        data->openState = 0;
+        func_80800754_chdoor(arg0);
+        data->openState = state;
+        return;
+    case 6:
+        time = data->duration * 0.00390625f - actor->unk58;
+        func_80800B14_chdoor(arg0, 3);
+        actor->unk58 = time;
+        return;
+    case 3:
+        time = data->duration * 0.00390625f - actor->unk58;
+        func_80800B14_chdoor(arg0, 6);
+        actor->unk58 = time;
+        return;
+    case 4:
+    case 5:
+    case 8:
+        state = data->closedState;
+        data->closedState = 0;
+        func_808008A0_chdoor(arg0);
+        data->closedState = state;
+        break;
+    }
+}
 
 void func_80800B14_chdoor(u8 *arg0, s32 arg1) {
     struct DoorFlags {
