@@ -67,7 +67,59 @@ int subaddietaxi_entrypoint_2(Actor *arg0, s32 arg1) {
 void subaddietaxi_entrypoint_3(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_4.s")
+s32 subaddietaxi_entrypoint_4(void) {
+    u8 func_800CB3E0(s32);
+    f32 func_800CB3FC(volatile s32, f32 *, s32 *);
+    s32 func_800CB534(s32, f32 *, f32);
+    s32 func_800CB698(s32, s32);
+    void func_800CB70C(s32);
+    s32 func_800EA05C();
+    f32 position[3];
+    f32 yaw1;
+    s32 currentMap;
+    s32 i;
+    s32 map;
+    u32 state;
+
+    currentMap = func_800EA05C();
+    i = 1;
+    while (1) {
+        state = func_800CB3E0(i);
+        switch (state) {
+        case 0:
+        case 2:
+        case 3:
+        case 4:
+            break;
+        case 1:
+            yaw1 = func_800CB3FC(i, position, &map);
+            if (map != currentMap) {
+                break;
+            }
+            func_800CB534(i, position, yaw1);
+            break;
+        case 5:
+            func_800CB70C(i);
+            func_800CB698(i, 1);
+            yaw1 = func_800CB3FC(i, position, &map);
+            if (map != currentMap) {
+                break;
+            }
+            func_800CB534(i, position, yaw1);
+            break;
+        case 6:
+            yaw1 = func_800CB3FC(i, position, &map);
+            if (map != currentMap) {
+                break;
+            }
+            func_800CB534(i, position, yaw1);
+            break;
+        }
+        if (++i == 0x10) {
+            break;
+        }
+    }
+}
 
 s32 subaddietaxi_entrypoint_5(Actor *arg0, s32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
