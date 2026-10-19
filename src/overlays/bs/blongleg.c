@@ -426,7 +426,54 @@ s32 bsblongleg_entrypoint_15(s32 arg0) {
     return ((s32 *)&D_808014A0_bsblongleg)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_16.s")
+void bsblongleg_entrypoint_16(PlayerState *arg0) {
+    void anctrl_reset(struct anctrl_s *);
+    s32 anctrl_setDuration(s32, s32);
+    void anctrl_setIndex(struct anctrl_s *, s32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    f32 bastick_distance(PlayerState *);
+    f32 bastick_getAngleRelativeToBanjo(PlayerState *);
+    f32 yaw_getIdeal(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+    void func_8009DE38(PlayerState *, s32, f32);
+    s32 pad[2];
+    f32 yaw;
+    struct anctrl_s *control;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    arg0->unk16C = 0.14f;
+    anctrl_reset(control);
+    anctrl_setIndex(control, 0x3D);
+    func_8008B1C8(control, 0.134f);
+    anctrl_setDuration(control, 0x3F800000);
+    anctrl_setStart(control, arg0->unk16C);
+    anctrl_setSubrange(control, 0.0f, 0.42f);
+    anctrl_setPlaybackType(control, 1);
+    anctrl_start(control);
+    func_8009FFD8(arg0, 1, 1, 3, 6);
+    if (bastick_distance(arg0) != 0.0f) {
+        yaw_setIdeal(arg0, bastick_getAngleRelativeToBanjo(arg0));
+    }
+    baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+    func_80800064_bsblongleg(arg0);
+    yaw = yaw_getIdeal(arg0);
+    baphysics_set_horizontal_velocity(arg0, yaw, baphysics_get_target_horizontal_velocity(arg0));
+    baphysics_set_vertical_velocity(arg0, 400.0f);
+    baphysics_set_gravity(arg0, -800.0f);
+    func_8009DE38(arg0, 0x4432, 0.9f);
+    arg0->unk15C.word = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_17.s")
 
