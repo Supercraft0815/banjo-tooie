@@ -287,7 +287,7 @@ OSThread *chfiregen_entrypoint_17(void)
     return (OSThread *) D_80801AD4_chfiregen;
 }
 
-void func_8080105C_chfiregen(Actor *arg0) {
+void *func_8080105C_chfiregen(Actor *arg0) {
     s32 sp1C;
     s32 _idworld_entrypoint_3(s32);
 
@@ -302,7 +302,7 @@ void func_8080105C_chfiregen(Actor *arg0) {
     _idworld_entrypoint_3(sp1C);
 }
 
-void func_808010B4_chfiregen(Actor *arg0) {
+void *func_808010B4_chfiregen(Actor *arg0) {
     s32 sp1C;
     s32 _idworld_entrypoint_3(s32);
 
@@ -322,4 +322,43 @@ void func_808010B4_chfiregen(Actor *arg0) {
 void func_808012F8_chfiregen(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_80801300_chfiregen.s")
+void func_80801300_chfiregen(Actor *arg0) {
+    void *effect;
+    f32 sp24[4];
+    f32 func_800DC178(f32, f32);
+    void func_800EDDDC(void *, f32[4], f32[4], f32);
+
+    sp24[0] = ((f32 *)arg0->actorData)[6];
+    sp24[1] = ((f32 *)arg0->actorData)[6];
+    sp24[2] = ((f32 *)arg0->actorData)[6];
+    sp24[3] = ((f32 *)arg0->actorData)[6];
+    ((f32 *)arg0->actorData)[3] = func_800DC178(0.0f, 0.15f);
+    switch (arg0->unk6C_9) {
+    case 0x2A7:
+        arg0->unk6C_0 = 0;
+        break;
+    case 0x2A8:
+        arg0->unk6C_0 = 1;
+        break;
+    case 0x2A9:
+        arg0->unk6C_0 = 2;
+        break;
+    case 0x2AA:
+        arg0->unk6C_0 = 3;
+        break;
+    case 0x2AB:
+        arg0->unk6C_0 = 4;
+        break;
+    case 0x2AC:
+        arg0->unk6C_0 = 5;
+        break;
+    }
+    effect = func_8080105C_chfiregen(arg0);
+    if (effect != NULL) {
+        func_800EDDDC(effect, sp24, sp24, 5.0f);
+    }
+    effect = func_808010B4_chfiregen(arg0);
+    if (effect != NULL) {
+        func_800EDDDC(effect, sp24, sp24, 5.0f);
+    }
+}
