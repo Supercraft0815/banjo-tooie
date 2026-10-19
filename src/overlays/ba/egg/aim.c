@@ -27,7 +27,36 @@ void func_808000B4_baeggaim(struct player_state_s *arg0, f32 *arg1) { s32 _baegg
     _baeggcursor_entrypoint_10(arg0, arg1[0], temp_f0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/aim/func_80800170_baeggaim.s")
+void func_80800170_baeggaim(s32 arg0, f32 *arg1, f32 arg2) {
+    f32 func_800F1344(f32, f32, f32, f32, f32);
+    f32 unused;
+    f32 temp;
+    f32 y;
+    f32 x;
+    f32 zero;
+
+    zero = 0.0;
+    y = 0.0f;
+    x = 0.0f;
+    temp = 78.0f - ((f32 *)arg0)[0];
+    if (temp > zero) {
+        x = temp;
+    }
+    temp = 226.0f - ((f32 *)arg0)[0];
+    if (temp < zero) {
+        x = temp;
+    }
+    temp = 61.0f - ((f32 *)arg0)[1];
+    if (temp > zero) {
+        y = temp;
+    }
+    temp = 167.0f - ((f32 *)arg0)[1];
+    if (temp < zero) {
+        y = temp;
+    }
+    arg1[0] = func_800F1344(x, 0.0f, 40.0f, zero, arg2);
+    arg1[1] = func_800F1344(y, 0.0f, 32.5f, zero, arg2);
+}
 
 void func_80800264_baeggaim(struct player_state_s *arg0, s32 arg1) {
     f32 _bafpctrl_entrypoint_3(struct player_state_s *);
