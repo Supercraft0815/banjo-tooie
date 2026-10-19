@@ -29,7 +29,36 @@ void func_808000D4_bskazhatch(PlayerState *self) {
     func_80800000_bskazhatch(self, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/kaz/hatch/func_80800108_bskazhatch.s")
+void func_80800108_bskazhatch(PlayerState *self) {
+    s32 func_80099A4C(PlayerState *);
+    void func_800FC660(u32);
+    s32 func_8010114C(s32, s32, s32);
+    s32 value;
+
+    switch (func_8009E6EC(self)) {
+        case 0x15:
+        case 0x1C:
+        case 0x1D:
+        case 0x1E:
+        case 0x25:
+            func_8009E830(self, 1);
+            break;
+        case 0x53:
+            if (self->unk160.word == 0) {
+                value = func_80099A4C(self);
+                self->unk160.word = value;
+                if (func_8010114C(value, 0xA0, 0) <= 0) {
+                    func_800FC660(0xE);
+                }
+                baphysics_set_type(self, BA_PHYSICS_7_FREEZE);
+            }
+            func_8009E830(self, 2);
+            break;
+        default:
+            func_80099B94(self);
+            break;
+    }
+}
 
 BanjoStateId func_808001E4_bskazhatch(PlayerState *self) {
     if (func_8008E124(self) != 0) {
