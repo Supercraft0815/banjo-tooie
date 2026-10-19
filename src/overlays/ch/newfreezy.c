@@ -163,7 +163,51 @@ void func_80800BFC_chnewfreezy(Actor *arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_80800D28_chnewfreezy.s")
+void func_80800D28_chnewfreezy(Actor *arg0, s32 arg1) {
+    f32 func_800EEAD4(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80800824_chnewfreezy(Actor *, s32, u32, u32);
+    struct FreezyPart {
+        f32 position[3];
+        u8 pad0C[0x48];
+        f32 unk54;
+        f32 unk58;
+        u8 pad5C[4];
+    } *part, *nearest;
+    f32 distance;
+    f32 maximum;
+    f32 minimum;
+    u32 i;
+    u32 nearestIndex;
+
+    part = func_80100094(arg0, 0);
+    maximum = 0.0f;
+    minimum = 0.0f;
+    nearestIndex = -1U;
+    i = 0;
+    if (arg0->unk6C_0) {
+        do {
+            distance = func_800EEAD4((f32 *)arg0->actorData, part->position);
+            if (i == 0 || maximum < distance) {
+                maximum = distance;
+            }
+            if (i == 0 || distance < minimum) {
+                minimum = distance;
+                nearestIndex = i;
+            }
+            part->unk58 = -1.0f;
+            i++;
+            part++;
+        } while (i < arg0->unk6C_0);
+    }
+    if (nearestIndex != -1U) {
+        nearest = func_80100094(arg0, 0);
+        nearest += nearestIndex;
+        nearest->unk58 = 100.0f;
+        nearest->unk54 = 0.0f;
+        func_80800824_chnewfreezy(arg0, arg1, arg0->unk6C_0, nearestIndex);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_80800E74_chnewfreezy.s")
 
