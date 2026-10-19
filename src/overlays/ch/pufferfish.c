@@ -239,7 +239,22 @@ void func_80800AB0_chpufferfish(void *arg0, s32 arg1, f32 arg2, f32 arg3) {
     *(f32 *)((u8 *)arg0 + 0x4C) = func_800F1FF0(*(f32 *)((u8 *)arg0 + 0x4C), *(f32 *)((u8 *)arg0 + 0x1C), 0.01f, 0.005f, 0.1f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pufferfish/func_80800E20_chpufferfish.s")
+void func_80800E20_chpufferfish(Actor *arg0) {
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F15F8(f32, f32, f32);
+    f32 progress;
+    f32 value;
+
+    progress = func_800F10B4(((f32 *)arg0->actorData)[2], ((f32 *)arg0->actorData)[4], 0.0f, 0.0f, 1.0f);
+    if (progress < 0.2f) {
+        value = func_800F10B4(progress, 0.0f, 0.2f, 0.0f, ((f32 *)arg0->actorData)[0]);
+    } else if (progress < 0.5f) {
+        value = func_800F10B4(progress, 0.2f, 0.5f, ((f32 *)arg0->actorData)[0], ((f32 *)arg0->actorData)[0] * 0.75f);
+    } else {
+        value = func_800F10B4(progress, 0.5f, 1.0f, ((f32 *)arg0->actorData)[0] * 0.75f, 0.0f);
+    }
+    ((f32 *)arg0->actorData)[3] = func_800F15F8(((f32 *)arg0->actorData)[3], value, 4.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pufferfish/func_80800F30_chpufferfish.s")
 
