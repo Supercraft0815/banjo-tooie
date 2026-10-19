@@ -895,7 +895,53 @@ void func_80804610_chdragonbrothers(Actor *arg0) {
 void func_808048A4_chdragonbrothers(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808048AC_chdragonbrothers.s")
+s32 func_808048AC_chdragonbrothers(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddiecustomhits_entrypoint_2(Unk80132ED0 *, f32 *, f32, f32 *, s32);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010114C(s32, s32, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_808049D4_chdragonbrothers(Actor *);
+    extern s32 D_80805900_chdragonbrothers;
+    f32 sp44[3];
+    f32 sp38[3];
+    Actor *sp34;
+    struct {
+        u8 pad0[8];
+        s8 counts[88];
+        s8 count;
+    } *sp30;
+    if (_subaddiecustomhits_entrypoint_2(arg0->unk3C, arg0->position, 90.0f, sp44, 0)) {
+        sp34 = func_80106790(arg0->unk3C);
+        sp30 = func_80100094(sp34, 0);
+        func_800EE780(sp38, arg0->position, (f32 *)&arg0->actorData[4]);
+        func_808049D4_chdragonbrothers(arg0);
+        arg0->unk64_20 = 0;
+        sp30->count = sp30->count - 1;
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80805900_chdragonbrothers);
+        func_800FFAB0(arg0);
+        switch (sp34->unk70_10) {
+        case 7:
+        case 8:
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+        case 13:
+            func_8010114C(arg0->unk3C, 0x54, arg0->unk0);
+            break;
+        default:
+            if (sp30->counts[arg0->unk74_7] > 0) {
+                sp30->counts[arg0->unk74_7] = sp30->counts[arg0->unk74_7] - 1;
+            }
+            break;
+        }
+        return 1;
+    }
+    return 0;
+}
 
 void func_808049D4_chdragonbrothers(Actor *arg0) {
     s32 _fxegg_entrypoint_0(u32, f32 *, f32);
