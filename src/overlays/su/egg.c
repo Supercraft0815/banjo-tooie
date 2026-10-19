@@ -145,7 +145,27 @@ void suegg_entrypoint_10(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_11.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_12.s")
+int suegg_entrypoint_12(Actor *arg0) {
+    s32 func_800D3948(void);
+    void func_800EFB24(void *, void *, void *);
+    void func_8010D254(f32 *);
+    void *data;
+    f32 position[3];
+    f32 delta[3];
+
+    data = func_80100094(arg0, 0U);
+    if (func_800D3948() != 0) {
+        return 0;
+    }
+    if (*(f32 *)((u8 *)data + 0x30) < 0.6f) {
+        return 0;
+    }
+    func_8010D254(position);
+    func_800EFB24(delta, position, arg0->position);
+    return position[1] < arg0->position[1] &&
+        arg0->position[1] < position[1] + 100.0f &&
+        delta[0] * delta[0] + delta[2] * delta[2] < 4900.0f;
+}
 
 /* extern */
 int suegg_entrypoint_13(Actor *arg0) {
