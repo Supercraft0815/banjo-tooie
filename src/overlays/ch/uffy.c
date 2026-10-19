@@ -570,7 +570,41 @@ void func_80802060_chchuffy(Actor *arg0, void *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80802164_chchuffy.s")
+void func_80802164_chchuffy(Actor *arg0) {
+    void func_8008FA94(f32 *, f32 *);
+    s32 func_80090178(AllowedTransformation);
+    s32 func_800DA298(s32);
+    int func_800DB9B0(void);
+    int func_800F0064(f32 *, f32, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F7F00(s32, s32, s32, f32, s32, s32, f32);
+    u32 func_8010A654(void ***, s32);
+    void func_8010D254(f32 *);
+    extern f32 D_808026AC_chchuffy[];
+    extern f32 D_808026B0_chchuffy;
+    extern f32 D_808026B8_chchuffy[];
+    extern f32 D_808026BC_chchuffy;
+    extern f32 D_808026C4_chchuffy[];
+    extern f32 D_808026D0_chchuffy[];
+    extern f32 D_808026DC_chchuffy[];
+    extern f32 D_808026E8_chchuffy[];
+    f32 sp2C[3];
+
+    func_8010A654(arg0, func_800DB9B0() == 0);
+    if (func_800DA298(0x95)) {
+        func_8010D254(sp2C);
+        if (func_800F0064(sp2C, 130.0f, D_808026AC_chchuffy) &&
+            D_808026B0_chchuffy < sp2C[1] && sp2C[1] <= D_808026BC_chchuffy) {
+            func_800F7F00(func_800F54E4(), D_808026AC_chchuffy, D_808026B8_chchuffy, 80.0f, 2, 2, 0.0f);
+        }
+        if (arg0->unk64_20 && !func_80090178(1)) {
+            func_8008FA94(D_808026C4_chchuffy, D_808026D0_chchuffy);
+        }
+        if (arg0->unk64_19 && !func_80090178(-1)) {
+            func_8008FA94(D_808026DC_chchuffy, D_808026E8_chchuffy);
+        }
+    }
+}
 
 OSThread *chchuffy_entrypoint_2(void)
 {
