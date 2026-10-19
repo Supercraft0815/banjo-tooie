@@ -202,7 +202,7 @@ void func_800CE928(s32 arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-s32 func_800CE95C(void) {
+s32 func_800CE95C() {
     void *func_800CE3E0();
     return (*(s32 *)((s8 *)(func_800CE3E0()) + (0x18)));
 }

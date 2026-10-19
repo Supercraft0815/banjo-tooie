@@ -20,7 +20,42 @@ void func_80800000_chwaterfallgrill(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waterfall/grill/func_8080008C_chwaterfallgrill.s")
+void func_8080008C_chwaterfallgrill(Actor *arg0) {
+    s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
+    s32 _chdoormake_entrypoint_10(void *, s32, s32);
+    void _chdoormake_entrypoint_11(Actor *, s32, f32);
+    void _chwaterfallgrill_entrypoint_0(s32, s32);
+    s32 func_800CE95C();
+    s32 func_800CEAA8(s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    void func_800DA544(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80103110(Actor *, u32);
+
+    if (func_800DA298(0x503) != 0) {
+        func_800DA544(0x9F2);
+    } else if (func_800CEAA8(0) == 0 || func_800CE95C(0) != (s32)_chwaterfallgrill_entrypoint_0) {
+        func_800DA524(0x9F2);
+    }
+    func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+    if (_chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, 440.0f, 0x408A, 0x9F2)) {
+        _chdoormake_entrypoint_8(arg0, 2);
+        _chdoormake_entrypoint_5(arg0, 2.5f);
+        _chdoormake_entrypoint_9(arg0, 0, 0, 0x10);
+        _chdoormake_entrypoint_10(arg0, 0, 0x501);
+        _chdoormake_entrypoint_11(arg0, 0, 0.9499969482421875f);
+        _chdoormake_entrypoint_9(arg0, 1, 2, 0x10);
+        _chdoormake_entrypoint_10(arg0, 1, 0x502);
+        _chdoormake_entrypoint_11(arg0, 1, 0.25f);
+    }
+    if (func_800DA298(0x503) != 0 || func_800DA298(0x9F2) == 0) {
+        func_80103110(arg0, 0);
+    }
+}
 
 s32 func_808001E0_chwaterfallgrill(s32 arg0, s32 arg1, s32 arg2) {
     s32 _chdoor_entrypoint_1(s32, s32, s32);
