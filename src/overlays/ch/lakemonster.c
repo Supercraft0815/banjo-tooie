@@ -44,7 +44,31 @@ void func_80800090_chlakemonster(Actor *arg0, f32 arg1[3], f32 arg2[3], s32 arg3
     func_800BA1D0(emitter, arg1, arg2, arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_808001C0_chlakemonster.s")
+void func_808001C0_chlakemonster(Actor *arg0) {
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    extern s32 D_80802108_chlakemonster;
+    struct {
+        u8 pad[0x1C];
+        f32 unk1C;
+        f32 unk20;
+    } *data;
+    s32 emitter;
+    f32 position[3];
+
+    data = func_80100094(arg0, 0);
+    emitter = func_800B53A4(2);
+    func_800EE7F8(position, (f32 *)&arg0->actorData[4]);
+    func_800EF214(position, data->unk20, data->unk1C - 30.0f, 150.0f);
+    func_800BABB8(emitter, position, NULL, 1.0f, &D_80802108_chlakemonster);
+    func_800BA994(emitter, (s16)(s32)(data->unk20 - 10.0f), (s16)(s32)(data->unk1C - 10.0f), (s16)(s32)(arg0->scale * 150.0f), (s32)(data->unk20 + 10.0f), (s32)(data->unk1C + 10.0f), (s32)(arg0->scale * 300.0f));
+    func_800BA22C(emitter, 2);
+}
 
 void func_808002FC_chlakemonster(Actor *arg0) {
     s32 func_800B53A4(s32);
