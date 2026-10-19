@@ -475,7 +475,44 @@ u8 *func_800D7570(s32 arg0) {
     return entry->data;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D75DC.s")
+s32 func_800D75DC(s32 arg0, f32 arg1) {
+    void *func_8001B798(s16);
+    extern s16 D_8012BFF6;
+    typedef struct {
+        f32 time;
+        f32 data[4];
+    } Point;
+    typedef struct {
+        s32 count;
+        Point points[1];
+    } Entry;
+    s16 *table;
+    Entry *entry;
+    f32 *start;
+    Point *point;
+    f32 *end;
+    s32 count;
+    s32 result;
+
+    table = func_8001B798(D_8012BFF6);
+    if (arg0 == -1) {
+        return 0;
+    }
+    entry = func_8001B798(table[arg0]);
+    count = entry->count;
+    start = &entry->points[0].time;
+    if (count == 0) {
+        return 0;
+    }
+    point = (Point *)start;
+    end = (f32 *)(count * 0x14 + (u8 *)entry + 4);
+    result = 0;
+    while ((f32 *)point < end && (point->time < arg1 || (arg1 == 1.0f && 1.0f == point->time))) {
+        point++;
+        result++;
+    }
+    return result;
+}
 
 f32 func_800D7708(s32 arg0, f32 arg1, s32 arg2) {
     void *func_800D7520(s32);
