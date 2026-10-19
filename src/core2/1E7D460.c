@@ -157,7 +157,36 @@ void func_800A4168(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4338.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4878.s")
+s32 func_800A4878(PlayerState *arg0) {
+    int bainput_func_80097B4C(PlayerState *);
+    int bainput_should_rotate_camera_left(PlayerState *);
+    int bainput_should_rotate_camera_right(PlayerState *);
+    s32 func_8009CC68(PlayerState *);
+    s32 func_800A4D40(void *);
+    s32 func_800F65D0(s32);
+    s32 func_80110EFC();
+    u8 *camera;
+
+    camera = (u8 *)func_800A4CA8(arg0);
+    if ((*(u8 **)((u8 *)arg0 + 0x38))[5] != 0) {
+        return func_80110EFC(camera, 2);
+    }
+    if (func_800A4D40(arg0) == 0 || func_8009CC68(arg0) != 0 ||
+        func_800F65D0(arg0->unk184) == 0 ||
+        (*(u8 **)((u8 *)arg0 + 0x38))[0x3B] != 0) {
+        return 0;
+    }
+    if (bainput_func_80097B4C(arg0) != 0) {
+        return func_80110EFC(camera, 2);
+    }
+    if (bainput_should_rotate_camera_left(arg0) != 0) {
+        return func_80110EFC(camera, 0);
+    }
+    if (bainput_should_rotate_camera_right(arg0) != 0) {
+        return func_80110EFC(camera, 1);
+    }
+    return 0;
+}
 
 s32 func_800A4978(PlayerState *arg0) {
     s32 func_800F40EC(PlayerState *);
