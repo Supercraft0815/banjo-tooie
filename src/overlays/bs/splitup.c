@@ -55,7 +55,50 @@ s32 bssplitup_entrypoint_3(s32 arg0) {
     return ((s32 *)&D_80800700_bssplitup)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/splitup/func_8080012C_bssplitup.s")
+s32 func_8080012C_bssplitup(PlayerState *arg0, s32 arg1) {
+    void _bamovegoto_entrypoint_0(void *);
+    void _bamovegoto_entrypoint_12(void *, f32 *);
+    void _bamovegoto_entrypoint_13(void *);
+    void _bamovegoto_entrypoint_7(void *, f32);
+    void _subaddiefind_entrypoint_5(s32, f32 **, s32, f32 *, f32, f32 (*)(f32 *, f32 *));
+    f32 baanim_getTimer(PlayerState *);
+    void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
+    s32 baphysics_set_type(void *, s32);
+    void func_8009B94C(u8 *, f32 *);
+    void func_8009BA9C(PlayerState *, f32 *);
+    void func_8009C128(PlayerState *, f32 *);
+    void func_8009DF18(PlayerState *, s32, f32, s32);
+    void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800F9098(s32, f32 *);
+    f32 sp3C[3];
+    f32 *sp34[2];
+
+    (*(s32 *)((s8 *)arg0 + 0x15C)) = arg1;
+    switch (arg1) {
+    case 1:
+        baanim_playForDuration_onceSmooth(arg0, 0xA3, 2.2f);
+        func_8009FFD8(arg0, 1, 1, 3, 2);
+        func_8009B94C((u8 *)arg0, NULL);
+        func_8009BA9C(arg0, NULL);
+        func_8009DF18(arg0, 0x4592, 1.0f, 0x6D60);
+        break;
+    case 2:
+        func_8009C128(arg0, sp3C);
+        _subaddiefind_entrypoint_5(0x156, sp34, 2, sp3C, 800.0f, func_800EEB40);
+        func_800EE7F8(sp3C, sp34[0] + 1);
+        _bamovegoto_entrypoint_0(arg0);
+        _bamovegoto_entrypoint_12(arg0, sp3C);
+        _bamovegoto_entrypoint_7(arg0, (0.51f - baanim_getTimer(arg0)) * 2.2f);
+        _bamovegoto_entrypoint_13(arg0);
+        func_800F9098(0xB, sp3C);
+        break;
+    case 3:
+        baphysics_set_type(arg0, 2);
+        break;
+    }
+}
 
 /* extern */
 
