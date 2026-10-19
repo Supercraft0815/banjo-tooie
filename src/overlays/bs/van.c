@@ -144,7 +144,47 @@ void func_8080032C_bsvan(void *arg0) {
     func_800BA22C(sp28, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/bsvan_entrypoint_3.s")
+/* extern */
+
+void bsvan_entrypoint_3(struct player_state_s *arg0) {
+    void _bavan_entrypoint_4(struct player_state_s *, f32);
+    void _bavan_entrypoint_5(struct player_state_s *, f32);
+    void _bavan_entrypoint_6(struct player_state_s *, f32);
+    void _bavan_entrypoint_8(struct player_state_s *);
+    f32 func_8009BB5C(struct player_state_s *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F13F0(f32, f32);
+    f32 func_800F1DCC(f32, f32);
+    int player_isStable(struct player_state_s *);
+    f32 yaw_get(struct player_state_s *);
+    f32 yaw_getIdeal(struct player_state_s *);
+    f32 var_f2;
+    f32 temp_f0;
+    f32 temp_f0_2;
+    f32 var_f12;
+    f32 sp2C;
+
+    sp2C = yaw_getIdeal(arg0);
+    _bavan_entrypoint_5(arg0, func_800F1DCC(sp2C, yaw_get(arg0)));
+    temp_f0 = func_8009BB5C(arg0);
+    if (temp_f0 > 1.0f) {
+        temp_f0 = func_800F10B4(temp_f0, 30.0f, 900.0f, 45.0f, 1350.0f);
+    } else {
+        temp_f0 = 0.0f;
+    }
+    _bavan_entrypoint_6(arg0, temp_f0);
+    temp_f0_2 = func_8009BB5C(arg0);
+    if (temp_f0_2 > 0.0f) {
+        var_f2 = func_800F10B4(temp_f0_2, 30.0f, 900.0f, 0.8f, 1.25f);
+    } else {
+        var_f2 = 0.8f;
+    }
+    if (player_isStable(arg0) == 0) {
+        var_f2 = func_800F13F0(1.9f, var_f2 + 0.3f);
+    }
+    _bavan_entrypoint_4(arg0, var_f2);
+    _bavan_entrypoint_8(arg0);
+}
 
 void func_808004F8_bsvan(s32 arg0)
 {
