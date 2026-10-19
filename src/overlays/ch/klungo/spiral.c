@@ -22,7 +22,45 @@ void func_8080000C_chklungospiral(Actor *arg0) {
     func_80105BAC(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/spiral/func_80800060_chklungospiral.s")
+void func_80800060_chklungospiral(Actor *arg0) {
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    void func_800DA544(GameFlag);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    s32 func_80105230();
+    void func_80105834(Actor *);
+    s32 func_80105A5C(Actor *);
+    s32 func_8010C500(Actor *);
+    void func_808003AC_chklungospiral(Actor *, s32, s32);
+    int func_80800430_chklungospiral(void *);
+    void func_80800480_chklungospiral(Actor *);
+    extern u8 D_80800668_chklungospiral[];
+
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_8010C500(arg0) != 0) {
+                func_80102424(arg0, 2);
+                func_808003AC_chklungospiral(arg0, 0xF, 0x30);
+            }
+            break;
+        case 2:
+            func_80800480_chklungospiral(arg0);
+            break;
+        case 3:
+            func_80105834(arg0);
+            func_80105230(arg0, D_80800668_chklungospiral);
+            if (func_80105A5C(arg0) != 0) {
+                func_80800430_chklungospiral(arg0);
+                func_800FFAB0(arg0);
+                func_800DA544(0x3C);
+            }
+            break;
+    }
+    if (func_80100094(arg0, 1) != NULL) {
+        _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/spiral/func_8080015C_chklungospiral.s")
 
