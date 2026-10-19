@@ -70,7 +70,43 @@ void func_80800218_chstinger(Actor *arg0) {
 void func_8080025C_chstinger(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stinger/func_80800264_chstinger.s")
+s32 func_80800264_chstinger(s32 arg0, s32 *arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    s32 func_800F0734(f32 *, f32 *, f32 *, f32, f32, f32 *, f32 *);
+    s32 func_800F5898(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6438(u32);
+    f32 distance;
+    f32 bestDistance;
+    f32 *origin;
+    s32 i;
+    f32 result[3];
+    s32 best;
+    s8 *data;
+    s32 excluded;
+    f32 position[4];
+
+    data = func_80100094((Actor *)arg0, 0);
+    bestDistance = 0.0f;
+    origin = (f32 *)(data + 0x18);
+    best = -1;
+    excluded = *data;
+    for (i = 0; i < func_800F5898(); i++) {
+        if (func_800F6438(i) && i != excluded) {
+            func_800F5A00(i, position);
+            distance = func_800EEB40(position, origin);
+            if ((best < 0 || distance < bestDistance) &&
+                func_800F0734(origin, ((Actor *)arg0)->position, position, 55.0f, 120.0f, result, result)) {
+                best = i;
+                bestDistance = distance;
+                func_800EE7F8((f32 *)arg1, result);
+            }
+        }
+    }
+    return best;
+}
 
 /* extern */
 
