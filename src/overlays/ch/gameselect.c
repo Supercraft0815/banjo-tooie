@@ -1076,7 +1076,44 @@ void func_80802DB4_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3,
     actor->actorData[5]++;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802E38_chgameselect.s")
+void func_80802E38_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    Actor *func_80106790(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    void _gcnewoption_entrypoint_4(Actor *, u32, u32 *, u32, s32);
+    void _gcnewoption_entrypoint_36(OptionState *);
+    void _gcnewoption_entrypoint_8(OptionState *, u32);
+    void _gcnewoption_entrypoint_9(OptionState *, u32);
+    void _gcnewoption_entrypoint_10(OptionState *, u8);
+    void _gcnewoption_entrypoint_31(s32, s32, s16);
+    void _gcnewoption_entrypoint_40(OptionState *, s32, s32, u8, f32, f32);
+    void _gcnewoption_entrypoint_42(OptionState *, f32);
+    void _gcnewoption_entrypoint_11(OptionState *);
+    extern u32 _gcnewoption_entrypoint_35;
+    Actor *actor;
+    OptionState *option;
+    s16 *entry;
+    s32 i;
+
+    actor = func_80106790(arg0);
+    _gcnewoption_entrypoint_4(actor, 0, &_gcnewoption_entrypoint_35, 0, arg1);
+    option = func_80100094(actor, 0);
+    _gcnewoption_entrypoint_36(option);
+    if (arg3 <= 0) {
+        arg3 = 5;
+    }
+    _gcnewoption_entrypoint_8(option, (s32)actor->actorData[5] < arg3 ? (s32)actor->actorData[5] : arg3);
+    _gcnewoption_entrypoint_9(option, actor->actorData[5]);
+    _gcnewoption_entrypoint_10(option, 0);
+    i = 0;
+    actor->actorData[6] = arg2;
+    entry = func_80100094(actor, 1);
+    for (; i < (s32)actor->actorData[5]; i++, entry += 3) {
+        _gcnewoption_entrypoint_31(option, i, entry[2]);
+    }
+    _gcnewoption_entrypoint_40(option, 0x41, 0x22, 0x20, 0.8f, 1.0f);
+    _gcnewoption_entrypoint_42(option, 0.1f);
+    _gcnewoption_entrypoint_11(option);
+}
 
 s32 func_80802F8C_chgameselect(Unk80132ED0 *arg0) {
     Actor *func_80106790(Unk80132ED0 *);
