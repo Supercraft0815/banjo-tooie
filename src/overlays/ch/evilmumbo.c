@@ -393,7 +393,45 @@ void func_80803358_chevilmumbo(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80803388_chevilmumbo.s")
+void func_80803388_chevilmumbo(Actor *arg0) {
+    s32 func_800C8A98(void);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F1828(f32 *, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *sp34;
+    struct {
+        u8 pad0[0x93];
+        u8 unk93;
+    } *sp30;
+    f32 sp24[3];
+
+    sp34 = func_80106790(arg0->unk3C);
+    sp30 = func_80100094(sp34, 0);
+    arg0->scale = 0.4f;
+    arg0->unk6C_0 = func_800C8A98();
+    if (sp30->unk93 < 5) {
+        ((f32 *)arg0->actorData)[3] = 1000.0f;
+    } else {
+        ((f32 *)arg0->actorData)[3] = 1000.0f;
+    }
+    arg0->unk58 = 2.5f;
+    if (sp30->unk93 < 5) {
+        ((f32 *)arg0->actorData)[2] = 0.5f;
+    } else {
+        ((f32 *)arg0->actorData)[2] = 0.25f;
+    }
+    if (sp30->unk93 < 5) {
+        ((f32 *)arg0->actorData)[7] = 0.799987793f;
+    } else {
+        ((f32 *)arg0->actorData)[7] = 0.3999938965f;
+    }
+    func_800EE7F8(sp24, (f32 *)sp34->actorData);
+    sp24[1] += 100.0f;
+    arg0->rotation[1] = func_800F1DF4(arg0->position, sp24);
+    arg0->rotation[0] = func_800F1828(arg0->position, sp24);
+}
 
 s32 func_808034C8_chevilmumbo(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800D93A0(f32[4], f32[3]);
