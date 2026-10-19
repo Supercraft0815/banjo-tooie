@@ -973,7 +973,46 @@ void func_80803148_chstoneballcontrol(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80803538_chstoneballcontrol.s")
+void func_80803538_chstoneballcontrol(u8 *actorPtr) {
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 _sukickball_entrypoint_6(u8 *, s32);
+    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    void _sukickball_entrypoint_11(u8 *, s32);
+    f32 func_800F5F24(u32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800F4F98(s32, void *);
+    void func_800C4140(u32, f32 *, u32);
+    Actor *arg0 = (Actor *)actorPtr;
+    s32 pad;
+    Actor *player;
+    void *parent;
+    struct {
+        f32 timer;
+        f32 charge;
+        u8 pad8[0x18];
+        u8 owner;
+    } *data;
+
+    parent = func_80106790(arg0->unk3C);
+    data = func_80100094(arg0, 0);
+    if (_sukickball_entrypoint_6(parent, data->owner)) {
+        arg0->rotation[1] = func_800F5F24(data->owner);
+        ((f32 *)arg0->actorData)[3] = func_800F10B4(data->charge, 0.0f, 1.0f, 450.0f, 900.0f);
+        func_800F4F98(data->owner, arg0->unk0);
+        _sukickball_entrypoint_11(parent, data->owner);
+    } else {
+        player = func_80106790(_sukickball_entrypoint_8(parent, data->owner));
+        arg0->rotation[1] = player->rotation[1];
+        ((f32 *)arg0->actorData)[3] = func_800F10B4(player->unk58, 8.0f, 16.0f, 450.0f, 900.0f);
+        player->unk58 = 0.0f;
+        _sukickball_entrypoint_11(parent, data->owner);
+    }
+    arg0->unk70_10 = 3;
+    data->owner = 0x7F;
+    data->timer = 0.0f;
+    func_800C4140(0x7FFF453C, arg0->position, 0x3E800640);
+}
 
 void func_8080367C_chstoneballcontrol(s32 arg0)
 {
