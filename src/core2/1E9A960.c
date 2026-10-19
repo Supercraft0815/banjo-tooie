@@ -44,7 +44,45 @@ void func_800C1070(f32 *arg0, f32 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C1104.s")
+s32 func_800C1104(u16 *arg0) {
+    s32 func_800A5490(void);
+    s32 func_800EA068(s32);
+    s32 func_800F5310();
+    s32 func_800F5D18(s32);
+    s32 func_800F5EF8(s32);
+    s32 func_8010FFA8(s32);
+    s32 func_8010FFD8(s32);
+    s32 _plsu_entrypoint_0(f32 *, f32 *);
+    f32 sp24[3];
+    s32 pad;
+    s32 sp1C;
+    s32 sp18;
+
+    if (func_800F5310() != 0) {
+        if (func_800EA068(0x20) != 0) {
+            sp1C = _plsu_entrypoint_0(sp24, arg0);
+            if (func_800F5D18(sp1C) == 2) {
+                return 1;
+            }
+            return 0;
+        }
+        sp1C = _plsu_entrypoint_0(sp24, arg0);
+        sp18 = func_800F5EF8(sp1C);
+        if (func_8010FFA8(sp18) == 2) {
+            if (func_800F5D18(sp1C) == 2) {
+                return 1;
+            }
+            return 0;
+        }
+        if (func_8010FFD8(sp18) != 0) {
+            return 1;
+        }
+        return 0;
+    } else if (func_800A5490() != 0) {
+        return 1;
+    }
+    return 0;
+}
 
 void func_800C11F8(void *arg0, s32 arg1) {
     struct Flags {
