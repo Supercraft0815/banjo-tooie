@@ -38,7 +38,40 @@ void func_80800000_chstonedartgunhead(Actor *arg0)
   ((struct StoneDartGunHeadMarker *) arg0->unk0)->unk28_13 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/func_808000A8_chstonedartgunhead.s")
+void func_808000A8_chstonedartgunhead(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    f32 func_80013728(f32);
+    f32 func_800F1828(f32 *, f32 *);
+    Actor *func_801084B0(s32, Actor **);
+    void func_8010D254(f32 *);
+    extern s32 D_80800E78_chstonedartgunhead;
+    struct StoneDartGunHeadData {
+        f32 distance;
+        f32 count;
+        f32 unk8;
+        f32 unkC;
+        f32 speed;
+    };
+    f32 sp2C[3];
+    f32 angle;
+    Actor *actor;
+
+    actor = func_801084B0(0x123, &arg0);
+    actor->rotation[1] = arg0->rotation[1];
+    ((struct StoneDartGunHeadData *)actor->actorData)->unkC =
+        ((struct StoneDartGunHeadData *)arg0->actorData)->speed * 0.125f * 30.0f;
+    actor->position[1] += 104.0f * arg0->scale;
+    func_8010D254(sp2C);
+    sp2C[1] += 60.0f;
+    angle = func_80013728(func_800F1828(actor->position, sp2C));
+    actor->rotation[0] = angle;
+    if (angle > 10.0f) {
+        actor->rotation[0] = 10.0f;
+    } else if (actor->rotation[0] < -10.0f) {
+        actor->rotation[0] = -10.0f;
+    }
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800E78_chstonedartgunhead);
+}
 
 /* extern */
 
