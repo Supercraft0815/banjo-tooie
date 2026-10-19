@@ -147,7 +147,7 @@ void func_808004B0_chflysaucer(Actor *arg0) {
 }
 
 void func_808004F0_chflysaucer(void) {
-    s32 func_808017D0_chflysaucer();
+    void func_808017D0_chflysaucer();
     extern s32 D_80127194;
     (*(s16 *)((s8 *)(&D_80127194) + (0x434))) = 0;
     func_808017D0_chflysaucer();
@@ -391,7 +391,26 @@ void func_80801534_chflysaucer(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80801568_chflysaucer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808017D0_chflysaucer.s")
+void func_808017D0_chflysaucer(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_80801568_chflysaucer(Actor *, s32);
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void func_808012A4_chflysaucer(Actor *, s32);
+    void func_808009DC_chflysaucer(Actor *, s32);
+    extern s16 D_808045E8_chflysaucer[];
+    s32 entry;
+    s32 index;
+
+    index = ((u8 *)func_80100094(arg0, 0))[0x26];
+    func_80801568_chflysaucer(arg0, 5);
+    entry = D_808045E8_chflysaucer[index];
+    if (entry != -1) {
+        _capod_entrypoint_13(arg0->unk0, NULL, entry, 0x2C21);
+    } else {
+        func_808012A4_chflysaucer(arg0, 2);
+        func_808009DC_chflysaucer(arg0, 2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_8080185C_chflysaucer.s")
 
