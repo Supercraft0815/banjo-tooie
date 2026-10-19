@@ -259,7 +259,53 @@ void func_80800B74_chcablecar(s32 arg0, s32 arg1, s32 arg2) {
     _subaddieDll_entrypoint_4(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800BD0_chcablecar.s")
+s32 func_80800BD0_chcablecar(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_80016B30(s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    s32 func_800F4BB8(u32, u32, s32);
+    s32 func_800F5410(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F6438(u32);
+    int func_800F6B40(s32);
+    s32 func_800F6C5C(s32);
+    void func_80101FDC(Actor *, u32);
+    typedef struct {
+        u32 upper : 19;
+        u32 active : 1;
+        u32 lower : 12;
+    } CablecarFlags;
+    u32 sp24;
+
+    sp24 = func_800F54E4();
+    if (func_800F6438(sp24) == 0 ||
+        !((CablecarFlags *)&arg0->unk0->unk28)->active ||
+        func_800F6C5C(sp24) == 0) {
+        return 0;
+    }
+    if (func_800DA298(0x67F) == 0) {
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x10BA, 0xE, NULL, 0x22);
+        func_80101FDC(arg0, 7);
+        func_800DA544(0x67F);
+        return 0;
+    }
+    if (func_80016B30(0, 1) != 1) {
+        return 0;
+    }
+    if (func_800F6B40(sp24) != 0) {
+        return 0;
+    }
+    if (func_800F4BB8(sp24, -1, 0) == 0) {
+        return 0;
+    }
+    if (func_800F5410(sp24) != 1) {
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x10B9, 0xF, NULL, 0x22);
+        func_80101FDC(arg0, 7);
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800D14_chcablecar(Actor *arg0, s32 arg1) {
     void _subaddieDll_entrypoint_4(Actor *, u32);
