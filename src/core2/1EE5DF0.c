@@ -514,7 +514,50 @@ s32 func_8010D350(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE5DF0/func_8010D490.s")
+s32 func_8010D490(f32 *arg0, f32 *arg1, f32 arg2, f32 arg3, s32 arg4) {
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEFD4(f32 *);
+    void func_800EFB24(void *, void *, void *);
+    int func_800F0BD0(f32 *, f32 *, f32, f32);
+    f32 func_800F0C68(f32 *, f32 *, f32, f32);
+    s32 func_800F5898();
+    f32 func_800F5BF0(s32, f32 *);
+    s32 func_800F6438(u32);
+    extern f32 D_80126530;
+    s32 var_s0;
+    s32 var_s6;
+    f32 sp74[3];
+    f32 sp68[3];
+    volatile f32 sp64;
+    f32 temp_f0;
+    f32 temp_f24;
+    f32 sp50[3];
+
+    func_800EE7F8(sp50, arg1);
+    temp_f24 = func_800F0C68(arg0, sp50, arg2, arg3);
+    var_s6 = -1;
+    arg3 = D_80126530;
+    var_s0 = 0;
+    if (func_800F5898() > 0) {
+        do {
+            if (func_800F6438(var_s0) && var_s0 != arg4) {
+                func_800F5BF0(var_s0, sp74);
+                func_800EFB24(sp68, sp74, arg0);
+                temp_f0 = func_800EEFD4(sp68);
+                sp64 = temp_f0;
+                if (temp_f0 < arg3 && func_800F0BD0(sp68, sp50, arg2, temp_f24)) {
+                    var_s6 = var_s0;
+                    arg3 = sp64;
+                }
+            }
+            var_s0++;
+        } while (var_s0 < func_800F5898());
+    }
+    if (var_s6 == -1) {
+        return -1;
+    }
+    return var_s6;
+}
 
 void func_8010D5DC(s32 arg0,s32 arg1)
 {
