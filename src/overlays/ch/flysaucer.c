@@ -671,7 +671,19 @@ void func_808038C4_chflysaucer(Unk80132ED0 *arg0, f32 *arg1, f32 *arg2, s32 arg3
     sp20->unk58 = arg5;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808039B8_chflysaucer.s")
+s32 func_808039B8_chflysaucer(s32 arg0, s32 *arg1, f32 *arg2, s32 *arg3, s32 arg4, f32 arg5)
+{
+  extern s32 D_808046B0_chflysaucer;
+  s32 *p;
+  s32 color;
+  s32 i;
+  s32 angle;
+  s32 mode;
+  s32 *modep = &arg4;
+  Unk80132ED0 *owner = (Unk80132ED0 *) arg0;
+  f32 *position = (f32 *) arg1;
+ do { if ((*arg3) != (-1)) { mode = *modep; i = 0; p = arg3; do { switch (mode) { case 1: color = func_80803844_chflysaucer(); angle = *p; break; case 2: color = 0; angle = *p; break; case 3: color = 1; angle = *p; break; case 4: color = 2; angle = *p; break; case 5: color = *((s32 *) (((u8 *) (&D_808046B0_chflysaucer)) + i)); angle = *p; break; default: angle = *p; break; } func_808038C4_chflysaucer(owner, position, arg2, angle, color, arg5); i += 4; p++; } while ((*p) != (-1)); } } while (0);
+}
 
 void func_80803AF0_chflysaucer(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
     s32 func_80800DAC_chflysaucer(Actor *, f32 *, f32 *, f32);
