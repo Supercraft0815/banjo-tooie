@@ -33,7 +33,24 @@ void func_80800024_chfactoryrobot(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80800058_chfactoryrobot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80800264_chfactoryrobot.s")
+void func_80800264_chfactoryrobot(Actor *arg0) {
+    u8 func_800D9078(f32 *);
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    s32 func_8010D248(void);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    f32 _subaddieaudioloop_entrypoint_8(void *, f32 *, s32, f32);
+    void func_80101FDC(Actor *, u32);
+
+    func_800D9078(&arg0->unk58);
+    if (_subaddierouteDll_entrypoint_4(arg0) && func_8010D248() && func_8010C500(arg0)) {
+        arg0->unk58 = 4.0f;
+    }
+    _subaddieDll_entrypoint_4(arg0, arg0->unk58 > 0.0f ? 1 : 0);
+    ((f32 *)arg0->actorData)[4] = _subaddieaudioloop_entrypoint_8(arg0, arg0->position, arg0->unk58 > 0.0f, ((f32 *)arg0->actorData)[4]);
+    if (arg0->unk70_10 != 5 && arg0->unk58 > 0.0f) {
+        func_80101FDC(arg0, 5);
+    }
+}
 
 s32 func_80800360_chfactoryrobot(Actor *arg0, s32 arg1, u8 *arg2) {
     Actor *func_80106790(Unk80132ED0 *);
