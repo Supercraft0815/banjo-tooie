@@ -197,7 +197,45 @@ void func_8080061C_bsvanswim(struct player_state_s *arg0) {
     baphysics_set_type(arg0, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/vanswim/func_808006D0_bsvanswim.s")
+void func_808006D0_bsvanswim(struct player_state_s *arg0) {
+    struct anctrl_s;
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    int anctrl_isAt(struct anctrl_s *, f32);
+    int bakey_pressed(struct player_state_s *, int);
+    s32 bastick_getZone(struct player_state_s *);
+    s32 func_80096500(struct player_state_s *);
+    void func_8009DE74(struct player_state_s *, s32, f32, f32);
+    void func_8009FD24(struct player_state_s *, s32);
+    s32 next_state;
+    struct anctrl_s *anim_ctrl;
+
+    next_state = 0;
+    anim_ctrl = baanim_getAnimCtrlPtr(arg0);
+    if (anctrl_isAt(anim_ctrl, 0.38f)) {
+        func_8009FD24(arg0, 1);
+    }
+    if (anctrl_isAt(anim_ctrl, 0.88f)) {
+        func_8009FD24(arg0, 0);
+    }
+    if (anctrl_isAt(anim_ctrl, 0.2f)) {
+        func_8009DE74(arg0, 0x40C, 0.9f, 1.1f);
+    }
+    if (anctrl_isAt(anim_ctrl, 0.7f)) {
+        func_8009DE74(arg0, 0x40C, 0.9f, 1.1f);
+    }
+    func_808000B0_bsvanswim(arg0);
+    if (bastick_getZone(arg0) == 0) {
+        next_state = 0x11B;
+    }
+    if (!player_inWater(arg0)) {
+        next_state = 0x11A;
+    }
+    if (func_80096500(arg0) && bakey_pressed(arg0, 8)) {
+        next_state = 0x115;
+    }
+    _bsvan_entrypoint_3(arg0);
+    bs_setState(arg0, next_state);
+}
 
 void func_80800808_bsvanswim(struct player_state_s *arg0)
 {
