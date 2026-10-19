@@ -19,7 +19,44 @@ void bsdronelook_entrypoint_0(struct player_state_s *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/look/bsdronelook_entrypoint_1.s")
+void bsdronelook_entrypoint_1(struct player_state_s *arg0) {
+    void _badata_entrypoint_3();
+    void _bafpctrl_entrypoint_11(struct player_state_s *, s32, s32);
+    void _bafpctrl_entrypoint_16(struct player_state_s *, s32);
+    s32 _bafpctrl_entrypoint_4(struct player_state_s *);
+    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void func_8009BA9C(struct player_state_s *, f32 *);
+    void func_8009FFD8();
+    int func_800A3274(struct player_state_s *);
+    s32 func_800A4E94(void *);
+    f32 sp2C;
+    s32 sp28;
+
+    _badata_entrypoint_3(arg0, &sp28, &sp2C);
+    baanim_playForDuration_loopSmooth(arg0, sp28, sp2C);
+    func_8009FFD8(arg0, 1, 1, 3, 2);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    func_8009BA9C(arg0, 0);
+    if (_bafpctrl_entrypoint_4(arg0) != 3) {
+        func_800A4E94(arg0);
+        switch (func_800A3274(arg0)) {
+        case 2:
+        case 8:
+        case 10:
+        case 13:
+        case 14:
+        case 15:
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+            _bafpctrl_entrypoint_11(arg0, 4, 1);
+            break;
+        }
+        _bafpctrl_entrypoint_16(arg0, 3);
+    }
+}
 
 /* extern */
 
