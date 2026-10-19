@@ -287,7 +287,47 @@ void func_80800E94_chfactorysparkroom(s32 arg0) {
     _chswitch_entrypoint_7(arg0, 0xA2F);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800EC8_chfactorysparkroom.s")
+s32 func_80800EC8_chfactorysparkroom(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chmrtannoy_entrypoint_0(void);
+    s32 _chswitch_entrypoint_10(Actor *, s32, s32);
+    void _glcutDll_entrypoint_6(u32, u32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    void func_80108B04(Actor *, u32);
+    struct SparkRoomPosition { f32 position[3]; } sp24;
+    extern struct SparkRoomPosition D_80801150_chfactorysparkroom;
+
+    switch (arg1) {
+        case 7:
+            if (func_800DA298(0x1BD)) {
+                if (!func_800DA298(0x1BC)) {
+                    func_800DA544(0xA04);
+                    _glcutDll_entrypoint_6(0x10D, 0x41);
+                    return 1;
+                }
+                _chmrtannoy_entrypoint_0();
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1365, 7, arg0->position, 0xA3);
+                func_800DA524(0x1BD);
+                func_80108B04(arg0, 0);
+                return 1;
+            }
+            if (!func_800DA298(0x1BD) && !arg0->unk74_30) {
+                arg0->unk74_30 = 1;
+                _chmrtannoy_entrypoint_0();
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x133C, 7, arg0->position, 0xA3);
+            }
+            return 1;
+        case 0x3D:
+            sp24 = D_80801150_chfactorysparkroom;
+            func_80108528(0x47C, sp24.position, 0, &arg0);
+            return 1;
+        default:
+            return _chswitch_entrypoint_10(arg0, arg1, arg2);
+    }
+}
 
 OSThread *chfactorysparkroom_entrypoint_1(void)
 {
