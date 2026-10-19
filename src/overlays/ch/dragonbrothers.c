@@ -837,7 +837,42 @@ OSThread *chdragonbrothers_entrypoint_1(void)
     return (OSThread *) D_8080574C_chdragonbrothers;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80803F4C_chdragonbrothers.s")
+void func_80803F4C_chdragonbrothers(Actor *arg0) {
+    f32 func_800DC178(f32, f32);
+    s32 func_800EA05C();
+    void func_800EEBF0(f32 *, f32 *, f32);
+    f32 func_800F1828(f32 *, f32 *);
+    void func_800F5A00(s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_801032B0(Actor *, u16, u16);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 *parentData;
+    typedef struct {
+        f32 values[3];
+        f32 padC;
+        f32 rotation[3];
+    } DragonData;
+    f32 speed;
+    f32 position[3];
+
+    parentData = func_80100094(func_80106790(arg0->unk3C), 0);
+    arg0->unk74_7 = arg0->unk74_7 - 50;
+    func_800F5A00(parentData[8], position);
+    position[1] += 30.0f;
+    arg0->rotation[0] = func_800F1828(arg0->position, position);
+    func_800EEBF0(((DragonData *)arg0->actorData)->rotation, arg0->rotation, arg0->unk64_19 ? 6000.0f : 4000.0f);
+    if (func_800EA05C() == 0x12B) {
+        arg0->unk7A_8 = 0;
+    } else {
+        arg0->unk7A_8 = 1;
+    }
+    if (arg0->unk7A_8) {
+        func_801032B0(arg0, 0x814, arg0->unk0->unk16);
+    }
+    ((DragonData *)arg0->actorData)->values[0] = func_800DC178(50.0f, 100.0f);
+    ((DragonData *)arg0->actorData)->values[1] = func_800DC178(5.0f, 10.0f);
+    ((DragonData *)arg0->actorData)->values[2] = func_800DC178(5.0f, 10.0f);
+}
 
 void func_808040A0_chdragonbrothers(s32 arg0) 
 {
