@@ -521,7 +521,38 @@ s32 bsvan_entrypoint_14(s32 arg0) {
     return ((s32 *)&D_80801D70_bsvan)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_8080164C_bsvan.s")
+s32 func_8080164C_bsvan(void *arg0, s32 arg1) {
+    void _batimer_set(struct player_state_s *, s32, f32);
+    void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
+    void func_8009C128(struct player_state_s *, f32[3]);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    f32 sp24[3];
+
+    func_8009C128(arg0, sp24);
+    switch (arg1) {
+    case 1:
+        yaw_setIdeal(arg0, func_800F1DF4(sp24, *(f32 **)((s8 *)arg0 + 0x188) + 1) + 180.0f);
+        break;
+    case 2:
+        baanim_playForDuration_onceSmooth(arg0, 0xF1, 1.2f);
+        break;
+    case 3:
+        if (*(s32 *)((s8 *)arg0 + 0x15C) == 2) {
+            _batimer_set(arg0, 3, 0.001f);
+        } else {
+            _batimer_set(arg0, 3, 0.5f);
+        }
+        break;
+    case 4:
+        baanim_playForDuration_onceSmooth(arg0, 0xF2, 1.3f);
+        break;
+    case 5:
+        yaw_setIdeal(arg0, func_800F1DF4(sp24, *(f32 **)((s8 *)arg0 + 0x188) + 1));
+        break;
+    }
+    *(s32 *)((s8 *)arg0 + 0x15C) = arg1;
+}
 
 void func_80801770_bsvan(void *arg0) { s32 _chfaircoinbox_entrypoint_1(s32); _chfaircoinbox_entrypoint_1(*(*(s32 **)((s8 *)(arg0) + 0x188))); bsvan_entrypoint_0(arg0); }
 
