@@ -146,7 +146,30 @@ void func_80800444_chblackeye(Actor* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_80800478_chblackeye.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_8080061C_chblackeye.s")
+void func_8080061C_chblackeye(void *arg0) {
+    s32 func_800B53A4(s32);
+    void func_800BA4D0(s16 *, s16);
+    void func_800BA6B0(u8 *, s16, s16, s16, s16, s16, s16);
+    void func_800BA7C4(void *, f32, f32);
+    void func_800BA7FC(void *, f32, f32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800DBEFC(s32 *, s32, f32 *);
+    extern s32 D_80800E10_chblackeye;
+    extern s32 D_80800EE0_chblackeye;
+    f32 sp3C[3];
+    s16 temp_f8;
+    s32 temp_v0;
+
+    temp_v0 = func_800B53A4(0xA);
+    temp_f8 = (s32) (((Actor *)arg0)->scale * -30.0f);
+    func_800BA6B0((u8 *)temp_v0, temp_f8, 0, temp_f8, (s16) (((Actor *)arg0)->scale * 30.0f), 0, (s16) (((Actor *)arg0)->scale * 30.0f));
+    func_800BA4D0((s16 *)temp_v0, (s16) (s32) (((Actor *)arg0)->scale * 350.0f));
+    func_800BA7C4((void *)temp_v0, ((Actor *)arg0)->scale * 0.06f, ((Actor *)arg0)->scale * 0.1f);
+    func_800BA7FC((void *)temp_v0, ((Actor *)arg0)->scale * 0.03f, ((Actor *)arg0)->scale * 0.03f);
+    func_800DBEFC(((Actor *)arg0)->unk0->unk4, 4, sp3C);
+    func_800BABB8(temp_v0, sp3C, NULL, 1.0f, &D_80800EE0_chblackeye);
+    func_80800000_chblackeye((s32) arg0, (s32) &D_80800E10_chblackeye);
+}
 
 void func_80800774_chblackeye(Actor *arg0) {
     s32 pad[2];
