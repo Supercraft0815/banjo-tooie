@@ -126,7 +126,30 @@ s32 func_800CBC00(s32 arg0) {
     return (*(u16 *)((s8 *)(func_800CB8F0((arg0 * 0x1C) + D_8012AE94)) + (0x14))) & 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CBC3C.s")
+s32 func_800CBC3C(void *arg0) {
+    f32 func_800EFC7C(void *, void *);
+    struct Entry { s32 words[7]; };
+    struct Table { s32 count; struct Entry *entries; };
+    f32 y, radius, positionY;
+    u32 end, item;
+    struct Entry *entry;
+
+    for (entry = ((struct Table *)&D_8012AE80)->entries;
+         entry < ((struct Table *)&D_8012AE80)->count + ((struct Table *)&D_8012AE80)->entries;
+         entry++) {
+        end = func_800CB910((s16 *)entry);
+        for (item = func_800CB8F0((s16 *)entry); item < end; item += 0x18) {
+            y = *(f32 *)(item + 4);
+            radius = *(s16 *)(item + 0xE);
+            positionY = ((f32 *)arg0)[1];
+            if (y - radius < positionY && positionY < y + radius &&
+                func_800EFC7C((void *)item, arg0) < *(f32 *)(item + 0x10)) {
+                return entry - ((struct Table *)&D_8012AE80)->entries;
+            }
+        }
+    }
+    return -1;
+}
 
 /* extern */
 
