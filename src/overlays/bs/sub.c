@@ -45,7 +45,37 @@ void func_80800064_bssub(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800254_bssub.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800634_bssub.s")
+struct player_state_s;
+void func_80800634_bssub(struct player_state_s *arg0) {
+    f32 _bafpctrl_entrypoint_3(struct player_state_s *);
+    void baroll_setIdeal(struct player_state_s *, f32);
+    f32 bastick_getX(struct player_state_s *);
+    f32 func_8009BB94(struct player_state_s *);
+    f32 func_800D8FF8(void);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 player_inWater(struct player_state_s *);
+    f32 yaw_getIdeal(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    f32 sp3C;
+    f32 pad[2];
+    f32 sp30;
+    f32 sp2C;
+    f32 temp_f0;
+    f32 var_f2;
+
+    sp2C = bastick_getX(arg0);
+    sp30 = func_800D8FF8();
+    temp_f0 = func_800F10B4(func_8009BB94(arg0), 0.0f, 225.0f, 11.25f, 45.0f);
+    baroll_setIdeal(arg0, func_800F10B4(sp2C, -1.0f, 1.0f, -temp_f0, temp_f0));
+    if (player_inWater(arg0) != 0) {
+        var_f2 = func_800F10B4(func_8009BB94(arg0), 0.0f, 225.0f, 42.666668f, 128.0f);
+    } else {
+        var_f2 = 300.0f;
+    }
+    sp3C = func_800F10B4(sp2C, -1.0f, 1.0f, var_f2, -var_f2) * sp30;
+    sp3C *= _bafpctrl_entrypoint_3(arg0);
+    yaw_setIdeal(arg0, yaw_getIdeal(arg0) + sp3C);
+}
 
 /* extern */
 
