@@ -752,7 +752,42 @@ s32 bsbswim_entrypoint_12(s32 arg0) {
     return ((s32 *)&D_80801F78_bsbswim)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80801ACC_bsbswim.s")
+void func_80801ACC_bsbswim(struct player_state_s *arg0) {
+    s32 func_80099B94();
+    s32 func_8009E6EC(struct player_state_s *);
+    void func_8009E830(struct player_state_s *, s32);
+    s32 state;
+
+    state = func_8009E6EC(arg0);
+    switch (state) {
+    case 0x71:
+        ((u8 *)arg0)[0x167] = 1;
+        func_8009E830(arg0, 2);
+        return;
+    case 0x1F:
+    case 0x20:
+    case 0x21:
+    case 0x24:
+    case 0x2D:
+    case 0x2E:
+    case 0x31:
+    case 0x33:
+    case 0x4E:
+    case 0x51:
+    case 0x52:
+    case 0x68:
+    case 0x6F:
+        if (((u8 *)arg0)[0x167] == 0) {
+            func_800F9BC4();
+            func_80099B94(arg0);
+            return;
+        }
+        return;
+    default:
+        func_80099B94(arg0);
+        break;
+    }
+}
 
 void func_80091104(s32 *, s32);
 
