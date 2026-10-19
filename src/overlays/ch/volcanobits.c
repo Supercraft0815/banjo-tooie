@@ -28,7 +28,39 @@ OSThread *chvolcanobits_entrypoint_3(void)
     return (OSThread *) D_8080122C_chvolcanobits;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_80800030_chvolcanobits.s")
+void func_80800030_chvolcanobits(Actor *arg0) {
+    struct VolcanoBitsData {
+        struct { s32 index; f32 speed; f32 height; } entries[8];
+        s32 count;
+        f32 timer;
+    };
+    Prop *props[8];
+    s32 i;
+    s32 count;
+    s32 index;
+    struct VolcanoBitsData *data;
+    f32 position[3];
+    void *func_80100094(Actor *, u32);
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    void func_800EE88C(f32 *, s16 *);
+    s32 func_800CBC3C(f32 *);
+    f32 func_800DC178(f32, f32);
+
+    data = func_80100094(arg0, 0);
+    count = _gccubesearch_entrypoint_9(0x154, &props[0], 8);
+    data->count = 0;
+    for (i = 0; i < count; i++) {
+        func_800EE88C(position, props[i]->position);
+        index = func_800CBC3C(position);
+        if (index != -1) {
+            data->entries[data->count].height = position[1];
+            data->entries[data->count].speed = func_800DC178(3.0f, 5.0f);
+            data->entries[data->count].index = index;
+            data->count++;
+        }
+    }
+    data->timer = 6.4f;
+}
 
 void func_80800170_chvolcanobits(Actor *arg0) {
     struct VolcanoBitsData {
