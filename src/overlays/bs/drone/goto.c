@@ -195,4 +195,33 @@ void bsdronegoto_entrypoint_2(void *arg0) {
     _gcgoto_entrypoint_14(0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/goto/bsdronegoto_entrypoint_3.s")
+void bsdronegoto_entrypoint_3(struct player_state_s *arg0) {
+    void _bamovegoto_entrypoint_1(struct player_state_s *);
+    void func_80099B94(struct player_state_s *);
+    s32 func_8009E6EC(struct player_state_s *);
+    void func_8009E830(struct player_state_s *, s32);
+    s32 func_80099AA8();
+
+    if (*(s32 *)((u8 *)arg0 + 0x194) != 0) {
+        func_80099B94(arg0);
+        return;
+    }
+    switch (func_8009E6EC(arg0)) {
+        case 0x56:
+        case 0x5D:
+        case 0x61:
+        case 0x62:
+        case 0x63:
+        case 0x95:
+        case 0x96:
+            func_80099B94(arg0);
+            return;
+        case 0x8F:
+            _bamovegoto_entrypoint_1(arg0);
+            func_8009E830(arg0, 2);
+            return;
+        default:
+            func_80099AA8(arg0);
+            return;
+    }
+}
