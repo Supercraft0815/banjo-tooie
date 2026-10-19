@@ -57,7 +57,17 @@ loop_1:
     *arg3 = func_800DC178(arg4, arg5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_80800DD0_chpiranha.s")
+s32 func_80800DD0_chpiranha(Actor *arg0, u8 *arg1) {
+    if (arg0->unk70_10 != 7) {
+        func_80800CEC_chpiranha((s32)arg1, (s32)(arg1 + 0x18),
+            arg0->unk70_10 == 4 ? (arg0->unk0->unk24 >> 22 == 0x2C2 ? 150.0f : 50.0f) : (arg0->unk70_10 == 3 ? 100.0f : 150.0f),
+            (f32 *)(arg1 + 0x2C), arg0->unk70_10 == 1 ? 20.0f : 40.0f,
+            arg0->unk70_10 == 1 ? 40.0f : 80.0f);
+    } else {
+        func_80800CEC_chpiranha((s32)arg1, (s32)(arg1 + 0x18), 5.0f,
+            (f32 *)(arg1 + 0x2C), 5.0f, 5.0f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_80800EFC_chpiranha.s")
 
