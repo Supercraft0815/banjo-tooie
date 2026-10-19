@@ -1,5 +1,8 @@
 #include "common.h"
 
+struct player_state_s;
+s32 baflag_clear(s32, s32);
+
 void func_800CE88C(s32, s32);
 s32 func_800CEAA8(s32);
 
@@ -24,7 +27,7 @@ s32 func_80800078_bsstatue(s32 arg0)
     return func_800CEAD0(0x2);
 }
 
-void func_8080009C_bsstatue(s32 arg0)
+s32 func_8080009C_bsstatue(s32 arg0)
 {
     func_800CEAA8(0x2);
 }
@@ -76,7 +79,50 @@ void func_80800130_bsstatue(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_808001FC_bsstatue.s")
+s32 func_808001FC_bsstatue(s32 arg0) {
+    typedef struct player_state_s PlayerState;
+    s32 baflag_clear(s32, s32);
+    void bastick_pushZone(PlayerState *);
+    void bastick_setZoneMax(PlayerState *, s32, f32);
+    s32 func_8001211C(void);
+    void func_80092864(PlayerState *, f32);
+    void func_800947EC(PlayerState *, s32, s32);
+    void func_8009590C(PlayerState *, f32);
+    void func_80095964(void *, s32);
+    void func_800959C8(PlayerState *, f32, f32);
+    void func_8009E4AC(PlayerState *);
+    void func_8009E53C(PlayerState *, s32, f32);
+    void func_8009E55C(PlayerState *, s32, f32);
+    s32 func_8009E77C(PlayerState *, s32);
+    f32 func_8009EA7C(void);
+    void func_800A2018(PlayerState *, s32);
+    int func_800A25DC(s32, s32);
+    void func_800A4D6C(u8 *, f32, f32);
+
+    if (func_8009E77C(arg0, 7) == 0) {
+        baflag_clear(arg0, 0x40);
+        func_8009E4AC(arg0);
+        func_8009E55C(arg0, 0, 150.0f);
+        func_8009E53C(arg0, 0, 80.0f);
+        func_8009E55C(arg0, 1, 160.0f);
+        func_8009E53C(arg0, 1, -90.0f);
+        func_800A4D6C(arg0, 1.5f, 1.0f);
+        bastick_pushZone(arg0);
+        bastick_setZoneMax(arg0, 0, 0.12f);
+        bastick_setZoneMax(arg0, 1, 1.0f);
+        func_800959C8(arg0, 200.0f, 110.0f);
+        func_8009590C(arg0, 200.0f);
+        func_80092864(arg0, 3.5999908447265625f);
+        if (func_8080009C_bsstatue(arg0) == 0) {
+            func_808000C0_bsstatue(arg0, func_8009EA7C());
+        }
+        func_80095964(arg0, 1);
+        func_800A25DC(arg0, 0);
+        func_800A2018(arg0, 0);
+        func_800947EC(arg0, 1, 1);
+        *(s32 *)((s8 *)arg0 + 0x168) = func_8001211C() - 1;
+    }
+}
 
 /* extern */
 
