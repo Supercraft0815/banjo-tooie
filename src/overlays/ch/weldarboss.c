@@ -573,7 +573,63 @@ void func_8080030C_chweldarboss(Actor *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_808014CC_chweldarboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80801944_chweldarboss.s")
+void func_80801944_chweldarboss(Actor *arg0, void *arg1) {
+    typedef struct {
+        u8 pad0[0x30];
+        u8 link[0x14];
+        f32 unk44[3];
+        f32 unk50[3];
+        u8 pad5C[0xC];
+        u8 unk68[6];
+        u8 unk6E;
+        u8 pad6F[0x15];
+        s32 unk84;
+    } WeldarData;
+    void *func_80100094(Actor *, u32);
+    u8 func_800D731C(s32);
+    s32 func_800DBE60(u8, s32, s32);
+    void func_800DF744(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void _subaddieDll_entrypoint_7(Actor *, s32);
+    void func_80101870(Actor *, void *);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    WeldarData *data;
+    Actor *linked;
+    f32 savedPosition[3];
+    s32 sound;
+    f32 rotation[3];
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    sound = func_800D731C(arg0->unk0->unk14);
+    if (sound != 0) {
+        func_800DBE60(sound, 0, data->unk84);
+    }
+    for (i = 0; i != 6; i++) {
+        func_800DF744(i + 3, data->unk68[i]);
+    }
+    if (data->unk6E != 0) {
+        func_800EE7F8(savedPosition, arg0->position);
+        _subaddieDll_entrypoint_7(arg0, 15);
+    }
+    func_80101870(arg0, arg1);
+    if (data->unk6E != 0) {
+        func_800EE7F8(arg0->position, savedPosition);
+    }
+    if (arg0->unk7C_12) {
+        linked = _subaddielink_entrypoint_4(data->link);
+        _subaddieskeleton_entrypoint_2(arg0->unk0, 5, data->unk44);
+        _subaddieskeleton_entrypoint_2(arg0->unk0, 6, data->unk50);
+        if (linked != NULL) {
+            func_800EE7F8(linked->position, data->unk44);
+            func_800F18FC(data->unk44, data->unk50, rotation);
+            linked->rotation[0] = 90.0f - rotation[0];
+            linked->rotation[1] = rotation[1];
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80801AA0_chweldarboss.s")
 
