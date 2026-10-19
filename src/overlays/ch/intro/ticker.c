@@ -289,7 +289,51 @@ loop_4:
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/ticker/func_808005AC_chintroticker.s")
+void func_808005AC_chintroticker(s32 arg0) {
+    s32 func_800EA05C(void);
+    s32 func_800DA9E4(s32, s32);
+    s32 func_800DA298(s32);
+    int func_800A8264(void);
+    s32 func_80015FA0(s32);
+    s32 func_80016B30(s32, s32);
+    void _gcfrontend_entrypoint_10(void);
+    void _glintrosyncDll_entrypoint_4(f32);
+    f32 func_800D9004(void);
+    f32 func_800D8FF8(void);
+    extern s16 D_808008C4_chintroticker;
+    extern u8 D_80800934_chintroticker[];
+    s16 *entry;
+    void *end;
+    s32 map;
+    Actor *actor = (Actor *)arg0;
+
+    map = func_800EA05C();
+    if (func_800DA9E4(0, 0)) {
+        entry = &D_808008C4_chintroticker; end = D_80800934_chintroticker;
+        do {
+            if (map == entry[0]) {
+                func_808004A8_chintroticker(arg0, entry[1]);
+            }
+            entry += 2;
+        } while (entry != end);
+    }
+    switch (actor->unk79_4) {
+    case 1:
+        if (func_800DA298(0xD56) && !func_800A8264() && func_80015FA0(0) == 1) {
+            _gcfrontend_entrypoint_10();
+        }
+        break;
+    case 2:
+    default:
+        if (func_80016B30(0, 1) == 1) {
+            func_80800530_chintroticker(arg0, map);
+        }
+        break;
+    }
+    _glintrosyncDll_entrypoint_4(func_800D9004());
+    ((f32 *)actor->actorData)[4] += func_800D9004();
+    ((f32 *)actor->actorData)[5] += func_800D8FF8();
+}
 
 OSThread *chintroticker_entrypoint_0(void)
 {
