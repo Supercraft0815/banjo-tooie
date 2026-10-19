@@ -72,7 +72,22 @@ void mlwave_entrypoint_7(void *arg0, f32 arg1) {
     (*(f32 *)((s8 *)(arg0) + (0))) = (f32) ((*(f32 *)((s8 *)(arg0) + (8))) * arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/wave/mlwave_entrypoint_8.s")
+s32 mlwave_entrypoint_8(s32 arg0, f32 arg1) {
+    f32 current;
+    f32 previous;
+
+    previous = *(f32 *)(arg0 + 0x18);
+    current = mlwave_entrypoint_6((void *)arg0);
+    if (*(f32 *)(arg0 + 0xC) > 0.0f) {
+        return previous < current ?
+            (previous <= arg1 && arg1 < current) :
+            (previous <= arg1 || arg1 < current);
+    } else {
+        return current < previous ?
+            (arg1 <= previous && current < arg1) :
+            (arg1 <= previous || current < arg1);
+    }
+}
 
 /* extern */
 
