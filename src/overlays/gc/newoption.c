@@ -830,7 +830,53 @@ void gcnewoption_entrypoint_34(void *arg0, s16 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_808020C4_gcnewoption.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_808022E0_gcnewoption.s")
+s32 func_808022E0_gcnewoption(void *arg0) {
+    int _gczoombox_entrypoint_10();
+    void _gczoombox_entrypoint_12();
+    s32 _gczoombox_entrypoint_3();
+    s32 index;
+    s32 state;
+    s32 i;
+    s32 result;
+    u8 *ptr;
+    s8 *stateptr;
+
+    result = 1;
+    i = 0;
+    if (*(s16 *)((u8 *)arg0 + 2) > 0) {
+        do {
+            if (func_80800070_gcnewoption(arg0, i) != *(s16 *)((u8 *)arg0 + 6)) {
+                index = func_80800000_gcnewoption((u8 *)arg0, i);
+                state = _gczoombox_entrypoint_3(((s32 *)arg0 + index)[15]);
+                stateptr = (s8 *)arg0 + index;
+                switch (state) {
+                    case 0:
+                    case 2:
+                    case 3:
+                        result = 0;
+                        ptr = (u8 *)((s32 *)arg0 + index);
+                        if (state != stateptr[0x94]) {
+                            _gczoombox_entrypoint_12(*(s32 *)(ptr + 0x3C));
+                            _gczoombox_entrypoint_10(*(s32 *)(ptr + 0x3C));
+                        }
+                        break;
+                    case 4:
+                        if (state != stateptr[0x94]) {
+                            _gczoombox_entrypoint_10(((s32 *)arg0 + index)[15]);
+                        }
+                        break;
+                    case 5:
+                        break;
+                    default:
+                        break;
+                }
+                stateptr[0x94] = state;
+            }
+            i++;
+        } while (i < *(s16 *)((u8 *)arg0 + 2));
+    }
+    return result;
+}
 
 s32 func_8080241C_gcnewoption(void *arg0) {
     s32 _gczoombox_entrypoint_3();
