@@ -242,6 +242,47 @@ s32 chstarspinnerctrl_entrypoint_3(s32 arg0, s32 arg1) {
     return temp_v0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/func_8080069C_chstarspinnerctrl.s")
+void func_8080069C_chstarspinnerctrl(Actor *arg0) {
+    void _subaddiefade_entrypoint_11(Actor *, s32 *);
+    Actor *_subaddiefind_entrypoint_2(s32, s32 *);
+    Actor *_subaddiefind_entrypoint_3(s32, s32 *);
+    void func_800F2E60(s32 *, s32 *);
+    int func_800F3214(void *, void *, void *, f32);
+    void *func_80100094(Actor *, u32);
+    extern s32 D_808008E8_chstarspinnerctrl;
+    extern s32 D_808008F4_chstarspinnerctrl;
+    f32 value;
+    s32 iterator;
+    s32 color[3];
+    Actor *actor;
+    struct SpinnerData {
+        u8 pad0[0xC];
+        s16 state;
+        u8 padE[6];
+        f32 input;
+        f32 value;
+    };
+
+    switch (arg0->unk70_10) {
+    case 1:
+    case 2:
+        func_800F2E60(color, &D_808008E8_chstarspinnerctrl);
+        break;
+    case 3:
+        value = ((struct SpinnerData *)func_80100094(arg0, 0))->input;
+        func_800F3214(color, &D_808008E8_chstarspinnerctrl,
+                     &D_808008F4_chstarspinnerctrl, value);
+        break;
+    case 4:
+    case 5:
+        func_800F2E60(color, &D_808008F4_chstarspinnerctrl);
+        break;
+    }
+    actor = _subaddiefind_entrypoint_2(0x336, &iterator);
+    while (actor != NULL) {
+        _subaddiefade_entrypoint_11(actor, color);
+        actor = _subaddiefind_entrypoint_3(0x336, &iterator);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/ctrl/chstarspinnerctrl_entrypoint_4.s")
