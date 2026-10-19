@@ -69,6 +69,26 @@ def shape_key(body):
     return hashlib.sha256('\n'.join(rows).encode()).hexdigest()[:24] if rows else None
 
 
+SAVED = re.compile(r'(\$(?:ra|s[0-8]|fp|f2[0-9]|f3[01])),\s*(-?0x[0-9A-Fa-f]+|-?\d+)\(\$sp\)')
+
+
+def handwritten_saves(body):
+    """Callee-saved registers stored into the outgoing-argument area (below 0x10) of a
+    non-leaf frame. IDO always reserves that area for the callees' arguments; handwritten
+    code (inflate, f0/f2-pair math helpers) does not. Struct copies of a0-a3 there are IDO."""
+    if not any(op in ('jal', 'jalr') for *_, op, _ in body):
+        return []
+    framed, hits = False, []
+    for *_, op, rest in body:
+        if op == 'addiu' and re.match(r'\s*\$sp,\s*\$sp,\s*-', rest):
+            framed = True
+        elif framed and op in ('sw', 'sd', 'swc1', 'sdc1'):
+            save = SAVED.fullmatch(rest.strip())
+            if save and int(save[2], 0) < 0x10:
+                hits.append(f'{op} {save[1]}, {save[2]}($sp)')
+    return hits
+
+
 def asm_features(text: str, symbol: str):
     lines = text.splitlines()
     start = next((i for i, l in enumerate(lines) if re.match(rf'\s*(?:glabel|[.]globl)\s+{re.escape(symbol)}\s*$', l)), None)
@@ -92,6 +112,7 @@ def asm_features(text: str, symbol: str):
         "memory_ops": sum(op in ('lw', 'sw', 'lb', 'lbu', 'lh', 'lhu', 'sh', 'sb', 'ld', 'sd') for op in ops),
         "isa64_ops": sorted(set(ops) & {'ld', 'sd', 'dadd', 'daddu', 'daddi', 'daddiu', 'dsub', 'dsubu',
                                         'dsll', 'dsll32', 'dsrl', 'dsrl32', 'dsra', 'dsra32', 'dmult', 'ddiv'}),
+        "handwritten": handwritten_saves(body),
         "rom_start": int(body[0][0], 16) if body else None,
         "vram": int(body[0][1], 16) if body else None,
         "shape": shape_key(body),

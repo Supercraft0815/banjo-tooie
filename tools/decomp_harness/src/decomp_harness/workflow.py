@@ -15,7 +15,7 @@ import time
 import threading
 import uuid
 
-from .build import Builder, clone, explain_rom_failure, verify_rom
+from .build import Builder, clone, explain_rom_failure, verify_rom, verify_split
 from . import cache
 from .codex import CodexRunner, Redactor
 from .common import HarnessError, atomic_write, command, git, save_json, validate_stage
@@ -227,6 +227,7 @@ class Loop:
             return self.result()
         verify_rom(self.root)
         verify_rom(self.root, True)
+        verify_split(self.root)
         if not self.args.local_only:
             self.get_runner('codex').authenticate()
         if git(self.root, 'symbolic-ref', '--short', 'HEAD') in ('main', 'master'):
@@ -391,6 +392,12 @@ class Loop:
             if isa64:
                 self.state.transition(identity, 'blocked', last_error='Toolchain/ABI prerequisite: target uses '
                                       + ', '.join(isa64) + '; current C flags are -mips2. Resolve per-file compiler/ABI before retrying.')
+                return None
+            handwritten = json.loads(function['features']).get('handwritten', [])
+            if handwritten:
+                self.state.transition(identity, 'blocked', last_error='Handwritten assembly, not IDO output ('
+                                      + '; '.join(handwritten[:3]) + ' inside the outgoing-argument area). '
+                                      'Declare its range as hasm in baserom.us.yaml instead of matching C.')
                 return None
             self.state.transition(identity, 'analyzing')
             if function['base_sha'] != source_sha:

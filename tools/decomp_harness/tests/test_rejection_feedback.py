@@ -11,7 +11,9 @@ from unittest.mock import patch
 
 import test_harness as fixtures
 from test_acceleration import LoopFixture
-from decomp_harness.build import differing_offsets, explain_rom_failure, locate
+from decomp_harness.build import differing_offsets, explain_rom_failure, locate, verify_split
+from decomp_harness.common import HarnessError
+from decomp_harness.scanner import asm_features
 from decomp_harness.codex import Result
 from decomp_harness.matching import CHANGED, changed_functions
 from decomp_harness.repairs import save_support
@@ -168,6 +170,62 @@ class RegressionLoopTests(LoopFixture):
         self.assertEqual(outcome, 'improve')
         self.assertEqual(self.state.db.execute("SELECT outcome FROM runs WHERE id='attempt-stale'").fetchone()[0], 'stale_dependency')
         self.assertIn('redo the dependency edit', self.state.get('target')['last_error'])
+
+
+HANDWRITTEN = """glabel helper
+    /* 1000 80000400 27BDFFD8 */  addiu      $sp, $sp, -0x28
+    /* 1004 80000404 F7B40008 */  sdc1       $f20, 0x8($sp)
+    /* 1008 80000408 AFBF0004 */  sw         $ra, 0x4($sp)
+    /* 100C 8000040C 0C004DEB */  jal        func_800137AC
+    /* 1010 80000410 AFA40000 */   sw        $a0, 0x0($sp)
+endlabel helper
+"""
+STRUCT_COPY = """glabel ido
+    /* 1000 80000400 27BDFFB8 */  addiu      $sp, $sp, -0x48
+    /* 1004 80000404 AFBF002C */  sw         $ra, 0x2C($sp)
+    /* 1008 80000408 AFA60008 */  sw         $a2, 0x8($sp)
+    /* 100C 8000040C 0C0409B3 */  jal        func_801026CC
+    /* 1010 80000410 AFA7000C */   sw        $a3, 0xC($sp)
+endlabel ido
+"""
+
+
+class RobustnessTests(fixtures.Fixture):
+    def test_handwritten_frames_are_recognized_but_ido_struct_copies_are_not(self):
+        self.assertEqual(asm_features(HANDWRITTEN, 'helper')['handwritten'], ['sdc1 $f20, 0x8($sp)', 'sw $ra, 0x4($sp)'])
+        self.assertEqual(asm_features(STRUCT_COPY, 'ido')['handwritten'], [])
+        leaf = HANDWRITTEN.replace('jal        func_800137AC', 'nop')
+        self.assertEqual(asm_features(leaf, 'helper')['handwritten'], [])
+
+    def test_handwritten_target_is_blocked_before_any_model_run(self):
+        from decomp_harness.cli import parser
+        from decomp_harness.common import Control
+        from decomp_harness.workflow import Loop
+        features = json.loads(self.function['features'])
+        features['handwritten'] = ['sw $ra, 0x4($sp)']
+        self.state.update(self.function['id'], features=json.dumps(features))
+        loop = Loop(self.root, self.state, self.cfg, Control(), parser().parse_args(['run']))
+        with patch('decomp_harness.workflow.git', return_value=''), \
+             patch('decomp_harness.workflow.repository_stamp', return_value={}):
+            self.assertIsNone(loop.prepare(self.state.get(self.function['id'])))
+        f = self.state.get(self.function['id'])
+        self.assertEqual(f['status'], 'blocked')
+        self.assertIn('hasm', f['last_error'])
+
+    def test_stale_split_is_refused(self):
+        import os
+        yaml, script = self.root/'baserom.us.yaml', self.root/'banjotooie.ld'
+        verify_split(self.root)  # no yaml: nothing to compare
+        yaml.write_text('segments: []\n')
+        with self.assertRaises(HarnessError):
+            verify_split(self.root)
+        script.write_text('SECTIONS {}\n')
+        os.utime(yaml, (1, 1))
+        verify_split(self.root)
+        os.utime(yaml, None)
+        os.utime(script, (1, 1))
+        with self.assertRaises(HarnessError):
+            verify_split(self.root)
 
 
 if __name__ == '__main__':

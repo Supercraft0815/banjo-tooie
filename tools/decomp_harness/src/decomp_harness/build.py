@@ -43,6 +43,16 @@ def verify_rom(root: Path, decompressed=False):
     return actual
 
 
+def verify_split(root: Path):
+    """asm/ and banjotooie.ld are generated from baserom.us.yaml and copied into every build
+    snapshot; a yaml edited after the last split would build stale assembly (e.g. new hasm)."""
+    # ponytail: mtime comparison; a touched-but-unchanged yaml only costs one extra split.
+    yaml, script = root/'baserom.us.yaml', root/'banjotooie.ld'
+    if yaml.is_file() and (not script.is_file() or yaml.stat().st_mtime > script.stat().st_mtime):
+        raise HarnessError('baserom.us.yaml changed after the last split; run '
+                           '`python3 tools/splat/split.py baserom.us.yaml` before the harness')
+
+
 def import_rom(source: Path, root: Path):
     data = source.read_bytes()
     header = data[:4].hex()
