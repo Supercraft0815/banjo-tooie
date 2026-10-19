@@ -3933,7 +3933,55 @@ s32 func_808094F4_bsfirstp(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809540_bsfirstp.s")
+s32 func_80809540_bsfirstp(s32 arg0, s32 arg1)
+{
+  f32 baphysics_get_target_horizontal_velocity(struct player_state_s *);
+  f32 mlAbsF(f32);
+  void *sp34;
+  f32 *sp30;
+  f32 sp2C;
+  f32 velocity;
+  f32 sp24;
+  f32 absolute;
+  f32 sp1C;
+  sp34 = *((void **) (arg0 + 0x188));
+  sp30 = func_808024B0_bsfirstp((void *) arg0);
+  sp2C = func_8080613C_bsfirstp((void *) arg0);
+  velocity = baphysics_get_target_horizontal_velocity((struct player_state_s *) arg0);
+  sp24 = *((f32 *) (((s8 *) sp34) + 0x1CC));
+  sp1C = mlAbsF(velocity);
+  absolute = mlAbsF(sp24);
+  switch (arg1)
+  {
+    case 0:
+      if ((absolute + sp1C) > 0.0f)
+    {
+      return 1;
+    }
+      break;
+
+    case 1:
+      if (((absolute + sp1C) == ((0, 0.0f))) && (sp2C < sp30[0]))
+    {
+      return 0;
+    }
+      if ((sp30[1] * 1.05f) < sp2C)
+    {
+      return 2;
+    }
+      break;
+
+    case 2:
+      if (sp2C < (sp30[1] * 0.95f))
+    {
+      return 1;
+    }
+      break;
+
+  }
+
+  return arg1;
+}
 
 void func_80809684_bsfirstp(struct player_state_s *arg0, s32 arg1) {
     f32 *sp28[2];
