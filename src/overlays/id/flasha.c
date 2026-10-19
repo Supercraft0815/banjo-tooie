@@ -61,4 +61,45 @@ void idflasha_entrypoint_3(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_80800038_idflasha((s32)arg0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/flasha/idflasha_entrypoint_4.s")
+void idflasha_entrypoint_4(void *arg0, s32 arg1, s32 arg2) {
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    f32 func_800D8FF8(void);
+    s32 func_800F1574(f32 *, f32);
+    extern s32 _idflasha_entrypoint_0;
+    struct Flash {
+        s16 value;
+        s16 peak;
+        s32 unk4;
+        s32 unk8;
+        s32 state;
+        f32 timer;
+        f32 duration;
+    };
+    f32 delta;
+    f32 timer;
+    f32 duration;
+    struct Flash *flash = arg0;
+
+    delta = func_800D8FF8();
+    if ((flash->state == 0) &&
+        func_800F1574(&flash->timer, delta)) {
+        func_80800038_idflasha((s32)arg0, 1);
+    }
+    if (flash->state == 1) {
+        timer = *&flash->timer;
+        if (timer <= 0.04f) {
+            flash->value = (timer / 0.04f) * flash->peak;
+        } else {
+            duration = flash->duration;
+            if (timer < duration - 0.04f) {
+                flash->value = flash->peak;
+            } else {
+                flash->value = ((duration - timer) / 0.04f) * flash->peak;
+            }
+        }
+        if (func_800F1574(&flash->timer, delta)) {
+            func_80800038_idflasha((s32)arg0, 0);
+        }
+    }
+    _glid_entrypoint_0(arg1, arg2, &_idflasha_entrypoint_0, (s32)arg0);
+}
