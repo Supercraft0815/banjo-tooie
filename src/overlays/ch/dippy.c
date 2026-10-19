@@ -211,7 +211,44 @@ s32 func_80801110_chdippy(Actor *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80801200_chdippy.s")
+s32 func_80801200_chdippy(Actor *arg0) {
+    s32 _glcutDll_entrypoint_19(u32);
+    s32 _glcutDll_entrypoint_20();
+    s32 _idworldmake_entrypoint_1(s32, s32, s32, s32);
+    s32 func_800BEA88(s32);
+    void func_800C4AF0(f32 *, void *);
+    s32 func_800DA298(s32);
+    f32 func_800DC178(f32, f32);
+    void func_80101FDC(Actor *, u32);
+    extern f32 D_8080174C_chdippy[];
+    s32 sp24;
+
+    sp24 = func_800BEA88(1);
+    if (_glcutDll_entrypoint_20() != 0) {
+        arg0->unk79_4 = 2;
+        *(f32 *)&arg0->actorData[0] = 0.0f;
+        func_80101FDC(arg0, 3);
+    } else if (_glcutDll_entrypoint_19(0x36) != 0) {
+        arg0->unk58 = 6.0f;
+        func_80101FDC(arg0, 2);
+        arg0->unk64_16 = 1;
+        *(f32 *)&arg0->actorData[2] = 30.0f;
+        *(f32 *)&arg0->actorData[3] = func_800DC178(0.2f, 0.5f);
+    } else if (func_800DA298(0x327) == 0) {
+        arg0->unk79_4 = 2;
+        *(f32 *)&arg0->actorData[0] = -2000.0f;
+        func_80101FDC(arg0, 1);
+        return;
+    } else {
+        arg0->unk79_4 = 2;
+        *(f32 *)&arg0->actorData[0] = 0.0f;
+        func_80101FDC(arg0, 3);
+    }
+    _idworldmake_entrypoint_1(sp24, 0x659, 1, 1);
+    if (arg0->unk70_10 == 2) {
+        func_800C4AF0((f32 *)arg0->actorData, D_8080174C_chdippy);
+    }
+}
 
 /* extern */
 
