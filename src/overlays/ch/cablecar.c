@@ -29,7 +29,60 @@ OSThread *chcablecar_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800018_chcablecar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_808002E0_chcablecar.s")
+void func_808002E0_chcablecar(Actor *arg0) {
+    void _mlwave_entrypoint_0(void *, f32, f32);
+    void _subaddieDll_entrypoint_4(Actor *, u32);
+    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
+    s32 func_800DA298(s32);
+    s32 func_800EA05C(void);
+    void func_800EE940(s16 *, f32 *);
+    void func_800EFA6C(void *, s16, s16, s16);
+    void func_80101FDC(Actor *, u32);
+    void func_8010A624(Actor *);
+    s32 func_8080070C_chcablecar(Actor *, f32);
+    typedef struct {
+        s16 position[3];
+        s16 rotation[3];
+        f32 progress;
+        u8 wave[0x1C];
+        u32 subgame;
+    } CablecarInitMemory;
+    typedef struct {
+        u8 pad[0x7C];
+        u32 upper : 17;
+        u32 flag : 1;
+        u32 lower : 14;
+    } CablecarInitFlags;
+    s32 temp;
+    s32 sp20;
+    CablecarInitMemory *mem;
+
+    mem = func_80100094(arg0, 0);
+    _susubgame_entrypoint_0(arg0, &mem->subgame, 0);
+    if (func_800EA05C() == 0x124) {
+        func_8010A624(arg0);
+        ((CablecarInitFlags *)arg0)->flag = 0;
+    }
+    func_800EE940(mem->position, arg0->position);
+    func_800EFA6C(mem->rotation, -0x206C, 0xA73, 0);
+    arg0->actorData[4] = 0;
+    sp20 = func_800DA298(0x67E);
+    temp = func_800DA298(0xD4);
+    if (sp20 == 0 && temp != 0) {
+        mem->progress = 0.0f;
+        func_8080070C_chcablecar(arg0, 0.0f);
+        func_80101FDC(arg0, 2);
+    } else if (sp20 != 0) {
+        mem->progress = 1.0f;
+        func_8080070C_chcablecar(arg0, 1.0f);
+        func_80101FDC(arg0, 3);
+        _subaddieDll_entrypoint_4(arg0, 1);
+    } else {
+        mem->progress = 0.1f;
+        func_8080070C_chcablecar(arg0, 0.1f);
+    }
+    _mlwave_entrypoint_0(mem->wave, 100.0f, 15.0f);
+}
 
 s32 func_80800424_chcablecar(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800EA05C(void);
