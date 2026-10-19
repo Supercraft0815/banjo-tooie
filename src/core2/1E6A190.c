@@ -8,7 +8,8 @@ typedef struct {
 
 typedef struct {
     f32 unk0;
-    Unk_1E6A190_1 unk4[4];
+    u8 unk4;
+    f32 unk8;
 } Unk_1E6A190_0;
 
 extern Unk_1E6A190_0 D_80117CC0;
@@ -76,4 +77,32 @@ void func_80090A2C(PlayerState *self) {
     func_800908F0(self, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6A190/func_80090A4C.s")
+void func_80090A4C(PlayerState *arg0) {
+    void func_800950FC(PlayerState *, s32, f32);
+    f32 mlAbsF(f32);
+    f32 remaining;
+    Unk_1E6A190_0 *entry;
+
+    remaining = func_800D8FF8();
+    while (remaining > 0.0f) {
+        arg0->unk20->unk4 -= remaining;
+        if (arg0->unk20->unk4 > 0.0f) {
+            return;
+        }
+        remaining = mlAbsF(arg0->unk20->unk4);
+        entry = func_800908A8(arg0->unk20->unk0) + arg0->unk20->unk8;
+        func_800950FC(arg0, entry->unk4, entry->unk8);
+        entry++;
+        if (entry->unk4 == 4) {
+            if (entry->unk0 == 0.0f) {
+                func_800908F0(arg0, 1);
+                return;
+            }
+            entry = func_800908A8(arg0->unk20->unk0);
+            arg0->unk20->unk8 = 0;
+        } else {
+            arg0->unk20->unk8++;
+        }
+        arg0->unk20->unk4 = entry->unk0;
+    }
+}
