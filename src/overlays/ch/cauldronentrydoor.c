@@ -137,7 +137,42 @@ void chcauldronentrydoor_entrypoint_0()
     func_800E1720();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cauldronentrydoor/func_80800398_chcauldronentrydoor.s")
+void func_80800398_chcauldronentrydoor(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_800C9DE4(f32, void *, s32);
+    s32 func_800E15CC(s32, f32, f32);
+    void func_80101FDC(Actor *, u32);
+    void _chcauldronentrydoor_entrypoint_0(void);
+    extern u32 D_80800534_chcauldronentrydoor[];
+    extern u32 D_80800540_chcauldronentrydoor[];
+
+    if (arg0->unk6C_0 == 3) {
+        switch (arg0->unk70_10) {
+            case 1:
+                *(f32 *)&arg0->actorData[0] += 1.0f;
+                if (*(f32 *)&arg0->actorData[0] > 25.0f) {
+                    func_80101FDC(arg0, 2);
+                }
+                break;
+            case 2:
+                if (*(f32 *)&arg0->actorData[1] < 360.0f) {
+                    *(f32 *)&arg0->actorData[1] += *(f32 *)&arg0->actorData[2];
+                    *(f32 *)&arg0->actorData[2] *= 1.16f;
+                    if (*(f32 *)&arg0->actorData[1] > 360.0f) {
+                        *(f32 *)&arg0->actorData[1] = 360.0f;
+                    }
+                    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_80800540_chcauldronentrydoor);
+                } else {
+                    func_80101FDC(arg0, 3);
+                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800534_chcauldronentrydoor);
+                    func_800C9DE4(0.7f, _chcauldronentrydoor_entrypoint_0, func_800E15CC(0, 20.0f, 1.0f));
+                }
+                break;
+        }
+    }
+    arg0->rotation[0] = *(f32 *)&arg0->actorData[1];
+}
 
 OSThread *chcauldronentrydoor_entrypoint_1(void)
 {
