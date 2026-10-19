@@ -25,7 +25,53 @@ void func_80800018_chmadamegrunty(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_8080005C_chmadamegrunty.s")
+void func_8080005C_chmadamegrunty(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiedialog_entrypoint_16(void);
+    s32 func_800D9078(f32 *);
+    s32 func_800D90A4(f32 *);
+    void func_800F4924(s32, s32);
+    u32 func_800F54E4(void);
+    s32 func_80101180(s32, s32, s32);
+    void func_80800200_chmadamegrunty(Actor *);
+    void func_808003B0_chmadamegrunty(Actor *);
+    void func_8080082C_chmadamegrunty(void *, s32);
+    s32 func_808008D4_chmadamegrunty(Actor *);
+    s32 state;
+
+    switch (arg0->unk70_10) {
+        case 1:
+            func_80800200_chmadamegrunty(arg0);
+            break;
+        case 5:
+            if (func_808008D4_chmadamegrunty(arg0) == 0) {
+                func_800F4924(func_800F54E4(), -1);
+                func_808003B0_chmadamegrunty(arg0);
+            }
+            break;
+        case 2:
+        case 3:
+        case 4:
+            break;
+        case 6:
+            if (func_800D9078(&arg0->unk58) != 0) {
+                state = arg0->unk64_20 ? 7 : 1;
+                func_8080082C_chmadamegrunty(arg0, state);
+                arg0->unk64_20 = 0;
+            }
+            break;
+        case 7:
+            if (func_800D90A4(&arg0->unk58) != 0 &&
+                _subaddiedialog_entrypoint_16() != 0 &&
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x10CB, 0, 0, 0x43) != 0) {
+                func_8080082C_chmadamegrunty(arg0, 1);
+                func_80101180(0x3D4, 7, 0);
+                _subaddieDll_entrypoint_4(arg0, 0);
+            }
+            break;
+    }
+}
 
 s32 func_80800198_chmadamegrunty(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80800784_chmadamegrunty(Actor *, s32, s16);
