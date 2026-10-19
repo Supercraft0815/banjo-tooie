@@ -113,7 +113,42 @@ void bsdronevanish_entrypoint_0(void *arg0) {
     func_80800000_bsdronevanish(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/vanish/bsdronevanish_entrypoint_1.s")
+void bsdronevanish_entrypoint_1(void *arg0) {
+    s32 _badata_entrypoint_34(s32);
+    s32 _batimer_decrement(void *, s32);
+    f32 _batimer_get(void *, s32);
+    s32 bs_setState(s32, s32);
+    void func_80092EBC(void *, s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 sp2C;
+    s32 sp28;
+    u8 state;
+
+    sp2C = 0;
+    state = *(u8 *)((s8 *)(*(void **)((s8 *)arg0 + 0x188)) + 0x18);
+    switch (state) {
+    case 1:
+        func_808002A4_bsdronevanish(arg0);
+        if (_batimer_decrement(arg0, 0)) {
+            func_80800000_bsdronevanish(arg0, 2);
+        }
+        break;
+    case 2:
+        func_808002A4_bsdronevanish(arg0);
+        sp28 = _batimer_decrement(arg0, 0);
+        func_80092EBC(arg0, (s32)func_800F10B4(_batimer_get(arg0, 0), 0.0f, 0.4f, 0.0f, 255.0f));
+        if (sp28) {
+            func_80800000_bsdronevanish(arg0, 3);
+        }
+        break;
+    case 3:
+        if (_batimer_decrement(arg0, 0)) {
+            sp2C = _badata_entrypoint_34((s32)arg0);
+        }
+        break;
+    }
+    bs_setState((s32)arg0, sp2C);
+}
 
 /* extern */
 
