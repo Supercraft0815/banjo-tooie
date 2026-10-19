@@ -889,7 +889,49 @@ void func_8080374C_chintrochar(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80803888_chintrochar.s")
+void func_80803888_chintrochar(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_80103D48(void **);
+    void func_80103D70(void **);
+    void _chanim_entrypoint_8(Actor *);
+    void _chblink_entrypoint_4(s16);
+    void _suexpression_entrypoint_11(void *, Actor *);
+    void *func_8001B798(s16);
+    s32 func_801015D0(Actor *);
+    void func_800DF830(s32);
+    extern u32 func_80804160_chintrochar[][8];
+    s16 *data;
+    u32 flags;
+    s16 blink0;
+    s16 blink1;
+    s16 expression;
+
+    data = func_80100094(arg0, 2);
+    flags = func_80804160_chintrochar[arg0->unk74_7][0];
+    func_80103D48(&arg0->unk0);
+    _chanim_entrypoint_8(arg0);
+    blink0 = data[0x61];
+    if (blink0 != 0) {
+        _chblink_entrypoint_4(blink0);
+    }
+    blink1 = data[0x62];
+    if (blink1 != 0) {
+        _chblink_entrypoint_4(blink1);
+    }
+    func_801015D0(arg0);
+    expression = data[0x63];
+    if (expression != 0) {
+        _suexpression_entrypoint_11(func_8001B798(expression), arg0);
+    }
+    if (flags & 0x10) {
+        func_800DF830(2);
+    } else if (flags & 8) {
+        func_800DF830(0);
+    } else if (flags & 0x20) {
+        func_800DF830(3);
+    }
+    func_80103D70(&arg0->unk0);
+}
 
 void func_80803990_chintrochar(Actor *arg0, Gfx **arg1) {
     void *func_80100094(Actor *, u32);
