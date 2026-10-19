@@ -188,7 +188,39 @@ void func_80800864_chfactoryworkerdirty(Actor *arg0) {
     _subaddielink_entrypoint_1(sp1C, func_801084B0(0x239, &arg0)->unk0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_808008A4_chfactoryworkerdirty.s")
+s32 func_808008A4_chfactoryworkerdirty(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    s32 func_801022E4(Actor *);
+    void func_80800D48_chfactoryworkerdirty(Actor *);
+    extern u32 D_80801024_chfactoryworkerdirty;
+    extern u32 D_80801034_chfactoryworkerdirty;
+
+    switch (arg1) {
+    case 0x3D:
+        func_80800864_chfactoryworkerdirty(arg0);
+        return 0;
+    case 0x52:
+        if (func_801022E4(arg0) == 0x35E) {
+            _gcdialogcamera_entrypoint_3(&D_80801024_chfactoryworkerdirty, arg0->scale);
+            return 1;
+        }
+        _gcdialogcamera_entrypoint_3(&D_80801034_chfactoryworkerdirty, arg0->scale);
+        return 1;
+    case 0x2E:
+        func_80800788_chfactoryworkerdirty(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        return 1;
+    case 0x30:
+        return func_80800828_chfactoryworkerdirty((s32)arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+    case 0x29:
+        func_80800D48_chfactoryworkerdirty(arg0);
+        return 1;
+    case 0x2A:
+        func_80800DB4_chfactoryworkerdirty(arg0);
+        return 1;
+    default:
+        return 0;
+    }
+}
 
 void func_80800994_chfactoryworkerdirty(u8 *arg0) {
     void func_80102BF8(void *arg0, s32 arg1, f32 arg2, f32 arg3);
