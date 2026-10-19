@@ -298,7 +298,31 @@ s32 chmolehill_entrypoint_5(Actor *arg0) {
     return *(s32 *) func_80100094(arg0, 0U);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/hill/func_80800884_chmolehill.s")
+s32 func_80800884_chmolehill(Actor *arg0) {
+    u8 func_800D731C(s32);
+    f32 func_800D8FF8(void);
+    s32 func_800DBE60(u8, s32, s32);
+    u8 sp27;
+
+    sp27 = func_800D731C(arg0->unk0->unk14);
+    if (arg0->unk74_30) {
+        ((f32 *)arg0->actorData)[4] += 15.0f * func_800D8FF8();
+        if (((f32 *)arg0->actorData)[4] >= 8.49f) {
+            ((f32 *)arg0->actorData)[4] = 8.49f;
+            arg0->unk74_30 = 0;
+        }
+    } else {
+        ((f32 *)arg0->actorData)[4] -= 15.0f * func_800D8FF8();
+        if (((f32 *)arg0->actorData)[4] <= 0.0f) {
+            ((f32 *)arg0->actorData)[4] = 0.0f;
+            arg0->unk74_30 = 1;
+        }
+    }
+    if (sp27 != 0) {
+        func_800DBE60(sp27, 0, (s32)((f32 *)arg0->actorData)[4]);
+        func_800DBE60(sp27, 1, (s32)((f32 *)arg0->actorData)[4]);
+    }
+}
 
 /* extern */
 
