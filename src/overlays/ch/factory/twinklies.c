@@ -42,7 +42,58 @@ OSThread *chfactorytwinklies_entrypoint_5(void)
     return (OSThread *) D_80802380_chfactorytwinklies;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80800048_chfactorytwinklies.s")
+struct player_state_s;
+
+void func_80800048_chfactorytwinklies(Actor *arg0) {
+    typedef struct player_state_s PlayerState;
+    s32 _gcstatusDll_entrypoint_11(void);
+    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
+    s32 _susubgame_entrypoint_11(s32);
+    void func_800946C4(PlayerState *, s32);
+    void func_800A16BC(s32);
+    void func_800D2748(s32, s32);
+    PlayerState *func_800F53D0(s32);
+    s32 func_800F5410(s32);
+    u32 func_800F54E4(void);
+    void *func_80100094(Actor *, u32);
+    struct {
+        s32 counts[16];
+        s32 values[9][3];
+        u32 game;
+    } *data;
+    s32 i;
+    s32 player;
+
+    data = func_80100094(arg0, 0);
+    player = func_800F54E4();
+    for (i = 0; i < _gcstatusDll_entrypoint_11(); i++) {
+        data->counts[i] = 0;
+        data->values[i][0] = 0;
+        data->values[i][1] = 0;
+        data->values[i][2] = 0;
+    }
+    func_800946C4(func_800F53D0(player), 1);
+    _susubgame_entrypoint_0(arg0, &data->game, 0);
+    _susubgame_entrypoint_11(0);
+    func_800A16BC(1);
+    switch (func_800F5410(player)) {
+        case 10:
+            func_800D2748(0xEF, 0x57);
+            break;
+        case 11:
+            func_800D2748(0xEF, 0x58);
+            break;
+        case 13:
+            func_800D2748(0xEF, 0x59);
+            break;
+        case 7:
+            func_800D2748(0xEF, 0x5A);
+            break;
+        default:
+            func_800D2748(0xEF, 0x5B);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_808001A0_chfactorytwinklies.s")
 
