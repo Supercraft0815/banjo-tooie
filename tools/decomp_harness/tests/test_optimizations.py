@@ -143,10 +143,11 @@ class PatternTests(fixtures.Fixture):
         self.assertIn('Compiler comparison unavailable', pack)
         self.assertIn('+return first_variant;', pack)
 
-    def test_busy_file_and_dependencies_are_excluded(self):
+    def test_busy_file_is_excluded_but_shared_callees_are_not(self):
         self.assertIsNone(next_function(self.state, busy=resources(self.function)))
         self.state.update(self.function['id'], dependencies='["shared_helper"]')
-        self.assertIsNone(next_function(self.state, busy={'shared_helper'}))
+        # A callee every overlay shares must not serialize the queue.
+        self.assertIsNotNone(next_function(self.state, busy={'shared_helper'}))
 
     def test_luna_one_attempt_then_existing_escalation(self):
         f = dict(self.function)
@@ -333,6 +334,9 @@ class ParallelTests(fixtures.Fixture):
 
             def disassemble(self, source, symbol):
                 return DUMP.replace('target', symbol)
+
+            def disassemble_all(self, source):
+                return ''
 
             def object_build(self, source, log):
                 owner.build_roots.add(self.root)

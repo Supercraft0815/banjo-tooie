@@ -80,7 +80,7 @@ def load_config(root: Path):
     for k in ("worker_timeout", "build_timeout", "context_chars", "max_attempts_per_function", "stagnation_window"):
         if not isinstance(cfg[k], int) or cfg[k] <= 0:
             raise HarnessError(f"{k} must be a positive integer")
-    for k in ('technical_retries', 'extra_attempts', 'worker_compiles', 'permuter_seconds', 'batch_max_bytes'):
+    for k in ('technical_retries', 'extra_attempts', 'worker_compiles', 'permuter_seconds', 'batch_max_bytes', 'rom_reject_limit'):
         if not isinstance(cfg[k], int) or cfg[k] < 0:
             raise HarnessError(f'{k} must be a nonnegative integer')
     for k in ('probe_cache_hours', 'minimum_gain'):

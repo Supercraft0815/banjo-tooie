@@ -176,6 +176,15 @@ class Builder:
             raise
         return result.stdout.decode()
 
+    def disassemble_all(self, source):
+        """Every function of the object, for regression checks of the whole translation unit."""
+        try:
+            result = command(self.argv(['mips-linux-gnu-objdump', '-m', 'mips:4300', '-drzt', self.object_path(source)]), self.root, timeout=90)
+        except BaseException:
+            self.close()
+            raise
+        return result.stdout.decode()
+
     def invalidate(self, sources, log):
         """Headers have no complete make dependencies; rebuild all objects for repairs."""
         if any(p.endswith('.h') for p in sources):
@@ -188,6 +197,91 @@ class Builder:
     def dependencies(self, log):
         code = 'import sqlite3, yaml, spimdisasm, rabbitizer, mapfile_parser, n64img, pygfxd; print("Python build dependencies OK")'
         return self.invoke(['python3', '-c', code], log) == 0
+
+
+BUILD_ERROR = re.compile(r'cfe: Error|: error:|undefined reference|multiple definition|ld: cannot')
+OUTPUT_SECTION = re.compile(r'^(\.\S+)\s+0x([0-9a-f]+)\s+0x([0-9a-f]+)\s+load address 0x([0-9a-f]+)', re.M)
+INPUT_SECTION = re.compile(r'^ (\.\w+)\s+0x([0-9a-f]+)\s+0x([0-9a-f]+)\s+(\S+)$')
+MAP_SYMBOL = re.compile(r'^\s+0x([0-9a-f]+)\s+([A-Za-z_]\w*)$')
+
+
+def differing_offsets(expected: bytes, actual: bytes, limit=4096):
+    """Byte offsets where two ROM images differ, block-compared so a 32 MiB image stays cheap."""
+    result, block = [], 1 << 16
+    for start in range(0, min(len(expected), len(actual)), block):
+        a, b = expected[start:start+block], actual[start:start+block]
+        if a != b:
+            result += [start+i for i in range(len(a)) if i < len(b) and a[i] != b[i]][:limit-len(result)]
+            if len(result) >= limit:
+                break
+    return result
+
+
+def locate(map_text: str, offset: int):
+    """(output section, object, function, offset in function) for a decompressed-ROM offset.
+
+    Overlays share virtual addresses, so the output section is chosen by its load address
+    (the ROM offset) and only that section's symbols are considered."""
+    text = re.sub(r'^( ?\.\S+)\n\s+(?=0x)', r'\1 ', map_text, flags=re.M)  # ld wraps long section names
+    for match in OUTPUT_SECTION.finditer(text):
+        vma, size, lma = (int(match[i], 16) for i in (2, 3, 4))
+        if not lma <= offset < lma + size:
+            continue
+        address = vma + offset - lma
+        end = OUTPUT_SECTION.search(text, match.end())
+        unit = function = None
+        for line in text[match.end():end.start() if end else len(text)].splitlines():
+            section = INPUT_SECTION.match(line)
+            if section:
+                start, length = int(section[2], 16), int(section[3], 16)
+                inside = length and start <= address < start + length
+                if inside:
+                    unit = f'{section[1]} of {section[4]}'
+                continue
+            symbol = MAP_SYMBOL.match(line)
+            if unit and inside and symbol and int(symbol[1], 16) <= address:
+                function = (symbol[2], address - int(symbol[1], 16))
+        return match[1], unit, function
+    return None, None, None
+
+
+def explain_rom_failure(root: Path, log: Path, target_symbol: str):
+    """What a failed `make check` means for the worker: the build error, or where the ROM differs."""
+    text = log.read_text(errors='replace') if log.is_file() else ''
+    lines = text.splitlines()
+    errors = [i for i, line in enumerate(lines) if BUILD_ERROR.search(line)]
+    if errors:
+        shown = '\n'.join('\n'.join(lines[i:i+2]) for i in errors[:6])
+        return 'Trusted full build failed before the ROM comparison (fix this, it is not a byte difference):\n' + shown[:2500]
+    expected, actual = root/'decompressed.us.z64', root/'build/us/banjotooie_decompressed.z64'
+    if not actual.is_file():
+        return 'Trusted full build produced no ROM; see the regression log:\n' + '\n'.join(lines[-12:])[-2000:]
+    a, b = expected.read_bytes(), actual.read_bytes()
+    offsets = differing_offsets(a, b)
+    if len(a) != len(b) and not offsets:
+        offsets = [min(len(a), len(b))]
+    if not offsets:
+        return 'Trusted full build failed without a ROM difference; see the regression log:\n' + '\n'.join(lines[-12:])[-2000:]
+    mapping = root/'build/us/banjotooie_decompressed.map'
+    map_text = mapping.read_text(errors='replace') if mapping.is_file() else ''
+    places, seen, outside = [], set(), False
+    for offset in offsets:
+        section, unit, function = locate(map_text, offset)
+        key = (section, unit, function[0] if function else None)
+        if key in seen:
+            continue
+        seen.add(key)
+        outside |= not function or function[0] != target_symbol
+        where = f"{function[0]}+0x{function[1]:x}" if function else 'no function symbol'
+        places.append(f"ROM 0x{offset:X}: {section or '?'} {where} ({unit or 'unknown object'})")
+        if len(places) == 5:
+            break
+    size = f' (ROM sizes {len(a)} vs {len(b)})' if len(a) != len(b) else ''
+    note = ''
+    if outside:
+        note = ('\nThe difference is outside the target function: another function changed (an edited caller, '
+                'prototype or declaration), or data/rodata moved. Keep every other function byte-identical.')
+    return f'Full ROM differs in {len(offsets)}{"+" if len(offsets) >= 4096 else ""} bytes{size}. First differences:\n' + '\n'.join(places) + note
 
 
 def scratch(root: Path, prefix='decomp-build-') -> Path:

@@ -15,7 +15,7 @@ import time
 import threading
 import uuid
 
-from .build import Builder, clone, verify_rom
+from .build import Builder, clone, explain_rom_failure, verify_rom
 from . import cache
 from .codex import CodexRunner, Redactor
 from .common import HarnessError, atomic_write, command, git, save_json, validate_stage
@@ -23,13 +23,16 @@ from .context import context_pack, worker_prompt
 from .guard import (candidate_guard, manifest, mark_targets, publish, recover_publications, repository_stamp,
                     source_diff, split_targets, verify_worker_changes, worker_copy, dispose_worker)
 from .local_tools import m2c_candidates, m2c_draft, run_permuter
-from .matching import instructions, score, worth_rom_check
+from .matching import CHANGED, changed_functions, instructions, score, worth_rom_check
 from . import service
 from .repairs import repair_scope, guard_candidate, save_support, load_support, recheck_key, worker_candidate, seed_worker, rebase_source
 from .scanner import scan
-from .scheduler import advance, next_function, route, resources
+from .scheduler import advance, next_function, rom_rejected, route, resources
 from .state import State
 from .patterns import untried_candidates, candidate_source, local_plan, m2c_key, quirk_candidates, trial_key, remember, seed_matches, refresh_solutions
+
+
+UNIT_BASELINES = 32   # cached whole-object baseline dumps (bounded: each can be hundreds of KiB)
 
 
 def new_run(root, prefix):
@@ -178,6 +181,7 @@ class Loop:
         self.abort = threading.Event()
         self.local_queue = None
         self.local_scan = None
+        self.unit_baselines = {}
 
     def budget_reached(self):
         c = self.coordinator
@@ -497,9 +501,17 @@ class Loop:
     def escalate(self, identity, stage):
         """Record one finished model attempt; True when the function is now blocked."""
         function = self.state.get(identity)
-        new_stage, used, total, exhausted = advance(function, self.state.history(identity, 12), self.config, stage)
+        history = self.state.history(identity, 12)
+        new_stage, used, total, exhausted = advance(function, history, self.config, stage)
         self.state.update(identity, stage=new_stage, stage_attempts=used, cycle_attempts=total,
                           initial_done=int(stage == -2 and new_stage != -2 or function.get('initial_done', 0)))
+        limit = self.config['rom_reject_limit']
+        if rom_rejected(history, limit):
+            # Escalating to a stronger model only reproduces the same object; the cause sits outside
+            # the target (see the recorded rejection), so a person or a dependency fix is needed.
+            self.state.transition(identity, 'needs_human', last_error=f'{limit} OBJECT MATCHES in a row were rejected by the '
+                                  'full ROM check; stopped early. Last rejection:\n' + (function['last_error'] or '')[:2800])
+            return True
         if exhausted:
             self.state.transition(identity, 'blocked', last_error='Escalation/stagnation budget exhausted; inspect best attempt and retry')
         return exhausted
@@ -893,9 +905,13 @@ class Loop:
             if comparison['rom_checked']:
                 with self.gate:
                     self.check_repository()
-                    for path in support:
-                        if (self.root/path).read_bytes() != target.support[path]:
-                            raise HarnessError('Dependency changed during search; candidate retained for revalidation')
+                    stale = [path for path in support if (self.root/path).read_bytes() != target.support[path]]
+                if stale:
+                    # Dependencies are not locked against other workers: a publication may have touched them.
+                    self.state.finish_run(run_id, outcome='stale_dependency', error='Changed meanwhile: ' + ', '.join(stale))
+                    self.state.update(function['id'], last_error='Another match changed ' + ', '.join(stale) +
+                                      ' while this candidate was searched; redo the dependency edit on the current file.')
+                    return 'improve'
                 saved = self.builder.save_baseline(function['source'], directory/'baseline-object.log')
             try:
                 # Only plausible matches pay for the full link + ROM hash; it stays mandatory for those.
@@ -926,6 +942,9 @@ class Loop:
         self.check_repository()
         previous = self.state.get(function['id'])['best_score']
         comparison['delta'] = comparison['score'] - (previous if previous is not None else 0)
+        feedback = '' if comparison['exact'] else rejection_feedback(directory, comparison)
+        if feedback:
+            comparison['rejection'] = feedback
         save_json(directory/'comparison.json', comparison)
         key = recheck_key({**function, 'best_source': candidate}, original, target.support)
         with self.state.db:
@@ -937,6 +956,9 @@ class Loop:
                               last_diffs=json.dumps(comparison['last_diffs']))
         if previous is None or comparison['score'] > previous or comparison['exact']:
             self.state.update(function['id'], best_source=candidate, best_score=comparison['score'], best_run=run_id)
+        if feedback:
+            # The next worker must see why an OBJECT MATCH was still rejected, not only the score.
+            self.state.update(function['id'], last_error=feedback[:3000])
         print(f"  {function['symbol']}: score {comparison['score']:.2f}, diff instructions {comparison['different_instructions']}, "
               f"ROM {'exact' if comparison['exact'] else 'not exact' if comparison['rom_checked'] else 'check skipped'}", flush=True)
         if not comparison['exact']:
@@ -962,25 +984,55 @@ class Loop:
     def object_dumps(self, target, candidate, symbols, log, restore_log, support=None):
         """Compile a candidate; None on a compile error, else {symbol: objdump}.
 
+        Changed C dependencies compile too, so their errors reach the worker instead of
+        only the trusted `make check`. dumps[CHANGED] names already matching functions of
+        those translation units whose machine code the candidate changed.
         Parallel runs use a private lane (never linked, so no restore); otherwise the
         trusted workspace under the gate, returned to its baseline afterwards."""
         source, lanes = target.function['source'], self.coordinator.lanes
         support = {**target.support, **(support or {})}
+        units = [source, *(p for p, value in support.items() if p.endswith('.c') and value != target.support.get(p))]
+
+        def compile_both(workspace, builder):
+            baseline = self.unit_baseline(workspace, builder, target, units, log.with_name(log.stem + '-baseline.log'))
+            dumps = self.compile_in(workspace, builder, source, candidate, symbols, log, support, units)
+            if dumps is not None and baseline is not None:
+                dumps[CHANGED] = {unit: names for unit in units
+                                  if (names := changed_functions(baseline[unit], dumps[unit], symbols if unit == source else ()))}
+            return dumps
+
         if lanes is None:
             with self.gate:
                 try:
-                    return self.compile_in(self.workspace, self.builder, source, candidate, symbols, log, support)
+                    return compile_both(self.workspace, self.builder)
                 finally:
                     self.builder.restore(source, target.original, target.baseline_saved, restore_log)
         lane, builder = lanes.get()
         try:
             self.coordinator.catch_up(lane)
-            return self.compile_in(lane, builder, source, candidate, symbols, log, support)
+            return compile_both(lane, builder)
         finally:
             lanes.put((lane, builder))
 
+    def unit_baseline(self, workspace, builder, target, units, log):
+        """Whole-object dumps of the unchanged translation units, compiled in the same tree
+        as the candidate (same headers and publications); cached per baseline."""
+        c = self.coordinator
+        key = (target.function['id'], hashlib.sha256(target.original).hexdigest(), tuple(units), len(c.published))
+        with c.count_lock:
+            dumps = c.unit_baselines.get(key)
+        if dumps is None:
+            dumps = self.compile_in(workspace, builder, target.function['source'], target.original, [], log, target.support, units)
+            if dumps is None:
+                return None  # The baseline itself does not compile here; the candidate's own result decides.
+            with c.count_lock:
+                c.unit_baselines[key] = dumps
+                while len(c.unit_baselines) > UNIT_BASELINES:
+                    c.unit_baselines.pop(next(iter(c.unit_baselines)))
+        return dumps
+
     @staticmethod
-    def compile_in(workspace, builder, source, candidate, symbols, log, support=None):
+    def compile_in(workspace, builder, source, candidate, symbols, log, support=None, units=()):
         atomic_write(workspace/source, candidate)
         before = {p: (workspace/p).read_bytes() for p, value in (support or {}).items()
                   if (workspace/p).read_bytes() != value}
@@ -989,7 +1041,14 @@ class Loop:
                 atomic_write(workspace/path, support[path])
             if builder.object_build(source, log):
                 return None
-            return {symbol: builder.disassemble(source, symbol) for symbol in symbols}
+            for unit in units[1:]:
+                unit_log = log.with_name(f'{log.stem}-{Path(unit).stem}.log')
+                if builder.object_build(unit, unit_log):
+                    atomic_write(log, f'Dependency {unit} no longer compiles:\n'.encode() + unit_log.read_bytes())
+                    return None
+            dumps = {symbol: builder.disassemble(source, symbol) for symbol in symbols}
+            dumps.update({unit: builder.disassemble_all(unit) for unit in units})
+            return dumps
         finally:
             for path, value in before.items():
                 atomic_write(workspace/path, value)
@@ -1003,6 +1062,7 @@ class Loop:
             return None
         atomic_write(directory/'actual.asm', dumps[symbol])
         comparison = score(target.reference, instructions(dumps[symbol], symbol, target.length))
+        comparison['regressions'] = dumps.get(CHANGED, {})
         comparison['rom_checked'] = worth_rom_check(comparison)
         return comparison
 
@@ -1018,7 +1078,27 @@ class Loop:
         atomic_write(self.workspace/source, candidate)
         if self.builder.object_build(source, directory/'rom-object.log'):
             return None
-        return self.builder.regression(directory/'regression.log')
+        exact = self.builder.regression(directory/'regression.log')
+        if not exact:
+            try:
+                explanation = explain_rom_failure(self.workspace, directory/'regression.log', target.function['symbol'])
+            except (OSError, ValueError) as error:
+                explanation = f'ROM difference could not be located: {error}'
+            atomic_write(directory/'rom-diff.txt', explanation)
+        return exact
+
+
+def rejection_feedback(directory, comparison):
+    """Why a candidate whose target scores well was still rejected, for the next worker."""
+    parts = []
+    if comparison.get('regressions'):
+        changed = '; '.join(f"{unit}: {', '.join(names[:8])}" for unit, names in comparison['regressions'].items())
+        parts.append(f'The candidate changed the machine code of already matching functions ({changed}). '
+                     'Restore their bodies, call expressions and block-scope prototypes exactly; change only the target.')
+    report = directory/'rom-diff.txt'
+    if comparison['rom_checked'] and report.is_file():
+        parts.append(report.read_text(errors='replace'))
+    return '\n'.join(parts)
 
 
 def stage_of(function):

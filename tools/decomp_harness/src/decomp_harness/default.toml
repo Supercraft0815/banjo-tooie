@@ -10,6 +10,8 @@ max_attempts_per_function = 8
 stagnation_window = 2
 minimum_gain = 0.5
 extra_attempts = 0
+# Stop after this many consecutive worker OBJECT MATCHES the full ROM rejects (0 = never).
+rom_reject_limit = 2
 probe_cache_hours = 24
 local_patterns = true
 # Inference-free stages before models: m2c draft/candidate and decomp-permuter search.

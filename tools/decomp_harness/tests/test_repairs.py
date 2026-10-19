@@ -155,7 +155,7 @@ class RepairLoopTests(LoopFixture):
         observed = []
         self.loop.builder.object_build = lambda source, log: observed.append((self.work/header).read_bytes()) or 0
         self.loop.object_dumps(target, fixtures.CANDIDATE.encode(), ['target'], self.root/'probe.log', self.root/'restore.log')
-        self.assertEqual(observed, [after])
+        self.assertEqual(observed, [after, after])  # unchanged baseline object, then the candidate
         self.assertEqual((self.work/header).read_bytes(), before)
 
     def test_lanes_and_worker_seed_receive_later_publications(self):
@@ -170,13 +170,13 @@ class RepairLoopTests(LoopFixture):
         target = self.loop.prepare(self.state.get('target'))
         observed = []
         builder = SimpleNamespace(object_build=lambda source, log: observed.append((lane/header).read_bytes()) or 0,
-                                  disassemble=lambda source, symbol: '')
+                                  disassemble=lambda source, symbol: '', disassemble_all=lambda source: '')
         self.loop.lanes, self.loop.baseline_builder = queue.Queue(), SimpleNamespace(root=seed)
         self.loop.lanes.put((lane, builder))
         self.loop.share({header: b'int other(void);\n'})
         for _ in range(2):
             self.loop.object_dumps(target, fixtures.CANDIDATE.encode(), ['target'], self.root/'probe.log', self.root/'restore.log')
-        self.assertEqual(observed, [b'int other(void);\n'] * 2)
+        self.assertEqual(observed, [b'int other(void);\n'] * 3)  # one cached baseline compile, two candidates
         self.assertEqual((seed/header).read_bytes(), b'int other(void);\n')
 
     def test_locally_published_companions_refresh_the_primary_snapshot(self):

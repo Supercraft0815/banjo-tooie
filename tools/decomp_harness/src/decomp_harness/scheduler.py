@@ -40,9 +40,13 @@ def next_function(state, difficulty=None, excluded=(), busy=()):
 
 
 def resources(function):
+    """What two concurrent workers must not share: the edited file, the symbol and its shape group.
+
+    Callees are deliberately absent: nearly every overlay calls the same core helpers, so
+    locking them serialized the whole queue. A dependency file that another publication
+    changes meanwhile is caught at validation (stale_dependency) and simply retried."""
     shape = function.get('shape')
-    return {function['source'], function['symbol'], *json.loads(function['dependencies']),
-            *(('shape:'+shape,) if shape else ())}
+    return {function['source'], function['symbol'], *(('shape:'+shape,) if shape else ())}
 
 
 def route(function, config, model=None):
@@ -56,6 +60,12 @@ def route(function, config, model=None):
     if stage >= len(stages):
         raise HarnessError('Routing exhausted; retry function to reset escalation')
     return stage, {**stages[stage], 'model': model or stages[stage]['model']}
+
+
+def rom_rejected(history, limit):
+    """The last `limit` worker runs all reached an OBJECT MATCH that the full ROM check rejected."""
+    runs = [h for h in history if h['id'].startswith('attempt-')][-limit:] if limit else []
+    return len(runs) == limit > 0 and all(h['outcome'] == 'nonmatching' and (h['score'] or 0) >= 100 for h in runs)
 
 
 def advance(function, history, config, stage):

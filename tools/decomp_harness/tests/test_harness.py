@@ -381,6 +381,9 @@ class LoopTests(Fixture):
             def disassemble(self, *_):
                 return DUMP
 
+            def disassemble_all(self, *_):
+                return ''  # No neighbour functions: whole-unit regression checks stay neutral here.
+
             def object_build(self, *_):
                 return 0
 
@@ -419,11 +422,22 @@ class LoopTests(Fixture):
         self.assertEqual(len(self.invocations), 1)
         self.assertEqual(self.git('show', '--format=', '--name-only', 'HEAD'), 'src/core1/a.c')
 
-    def test_score_100_without_rom_match_escalates_and_blocks(self):
+    def test_score_100_without_rom_match_stops_early_with_reason(self):
         self.allow_match = False
         self.process()
+        f = self.state.get('target')
+        self.assertEqual(f['status'], 'needs_human')
+        self.assertEqual(f['best_score'], 100)
+        # Two identical OBJECT MATCHES the ROM rejects are enough; escalation would repeat them.
+        self.assertEqual(len(self.invocations), 2)
+        self.assertIn('rejected by the full ROM check', f['last_error'])
+        self.assertIn('Trusted full build produced no ROM', f['last_error'])
+
+    def test_rom_reject_limit_zero_keeps_old_escalation(self):
+        self.allow_match = False
+        self.cfg['rom_reject_limit'] = 0
+        self.process()
         self.assertEqual(self.state.get('target')['status'], 'blocked')
-        self.assertEqual(self.state.get('target')['best_score'], 100)
         self.assertEqual(len(self.invocations), 8)
         self.assertEqual(self.invocations[-1], ('gpt-6-astra', 'xhigh'))
         self.assertEqual((self.root/'src/core1/a.c').read_text(), SOURCE)

@@ -7,6 +7,7 @@ from .common import HarnessError
 
 SYMBOL = re.compile(r'^([0-9a-fA-F]{8}) .{7} (\S+)\t[0-9a-fA-F]{8} ?(.*)$')
 NOT_DATA = {'*UND*', '*ABS*', '*COM*', '.text'}
+CHANGED = '#changed'  # object dump key: {translation unit: regressed functions}; never a C symbol
 IMMEDIATE = re.compile(r'(-?(?:0x[0-9a-fA-F]+|\d+))(?=\(\w+\)$|$)')
 
 
@@ -123,6 +124,26 @@ def relocation_only(reference, candidate):
             return False
         changed = True
     return changed
+
+
+def function_rows(dump: str):
+    """{symbol: normalized rows} for every labelled function of a whole-object dump."""
+    result = {}
+    for name in dict.fromkeys(re.findall(r'^[0-9a-fA-F]+ <([^>]+)>:', dump, re.M)):
+        try:
+            result[name] = [(r['asm'], tuple(r['relocs'])) for r in instructions(dump, name)]
+        except HarnessError:
+            continue
+    return result
+
+
+def changed_functions(before: str, after: str, skip=()):
+    """Functions present in both objects whose machine code differs (the targets excepted).
+
+    The baseline object of a translation unit is ROM-exact, so any such change in an
+    already matching function is a regression the full ROM check would reject."""
+    old, new = function_rows(before), function_rows(after)
+    return sorted(name for name in old.keys() & new.keys() if name not in skip and old[name] != new[name])
 
 
 def worth_rom_check(comparison):

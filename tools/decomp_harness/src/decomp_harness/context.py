@@ -302,7 +302,10 @@ request explains which guard rule the file violated. Never run make, Docker or I
         loop = '''The compiler is Linux-only on this host. The parent builds after you finish;
 do not invoke Docker or install tools.'''
     return f'''{task}
-Reuse canonical declarations; fix inconsistent prototypes rather than invent casts.
+Reuse canonical declarations; fix inconsistent prototypes rather than invent casts,
+but never change the body, call expressions or block-scope prototypes of other
+functions that already are C: their machine code must stay identical (the parent
+rejects any change to them). Adapt the target's signature to its existing callers.
 The pack supplies the exact edit
 target, ASM, primitive typedefs and local context. Use them directly: do not reread
 these files to confirm the same information. Read a narrow file range only to resolve

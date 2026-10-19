@@ -17,7 +17,7 @@ import uuid
 
 from .common import HarnessError, atomic_write, save_json
 from .guard import IPC, split_targets, verify_worker_changes
-from .matching import instructions, render, score
+from .matching import CHANGED, instructions, render, score
 from .scanner import global_asms
 from .repairs import guard_candidate, guard_support, save_support
 
@@ -149,7 +149,7 @@ class CompileService(threading.Thread):
                                   self.function['id'], self.original.decode(), candidate,
                                   {p: v.decode() for p, v in scope.items()},
                                   {p: v.decode() for p, v in support.items()}], sort_keys=True)
-        key = hashlib.sha256(('probe-v1'+fingerprint).encode()).hexdigest()
+        key = hashlib.sha256(('probe-v2'+fingerprint).encode()).hexdigest()  # v2: replies include regressions
         cache = self.loop.root/'.decomp-agent/probes'/f'{key}.json'
         if cache.is_file():
             feedback = json.loads(cache.read_text())
@@ -180,8 +180,14 @@ class CompileService(threading.Thread):
                              'the parent linker and full ROM hash decide whether these are aliases.\n' + render(comparison))
             else:
                 parts.append(head + render(comparison))
+        regressed = dumps.get(CHANGED)
+        if regressed:
+            changed = '; '.join(f"{unit}: {', '.join(names[:8])}" for unit, names in regressed.items())
+            parts.append(f'REGRESSION, not finished: this edit also changed the machine code of already matching '
+                         f'functions ({changed}). The full ROM check rejects that. Restore their bodies, call '
+                         'expressions and block-scope prototypes exactly; adapt the target to them instead.')
         feedback = {'reply': '\n'.join(parts), 'score': sum(c['score'] for c in comparisons)/len(comparisons),
-                    'plausible': all(c['different_instructions'] == 0 or c['relocation_only'] for c in comparisons)}
+                    'plausible': not regressed and all(c['different_instructions'] == 0 or c['relocation_only'] for c in comparisons)}
         save_json(cache, feedback)
         self.record(number, candidate, support, feedback)
         left = self.limit - self.count
