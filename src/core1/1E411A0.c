@@ -141,7 +141,34 @@ s32 *func_80029A04(void *arg0, u8 arg1, u8 arg2, u8 arg3, s32 arg4) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_80029B18.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_80029BA0.s")
+void *func_80029BA0(void *arg0, u8 arg1, u8 arg2, u8 arg3) {
+    s16 func_800E9054(s32);
+    void *func_800E9300(s32, s32);
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+    s32 sp20;
+    u8 *sp1C;
+    void *sp18;
+
+    sp2C = (*(u8 **)((u8 *)arg0 + 0x60))[arg3 * 0x38 + 0x33];
+    sp28 = 1;
+    sp24 = func_800E9054(sp2C);
+    while (sp24 >= sp28) {
+        sp20 = (sp28 + sp24) / 2;
+        sp18 = func_800E9300(sp2C, sp20 - 1);
+        sp1C = (u8 *)sp18 + 0x10;
+        if ((s32)arg1 >= (s32)sp1C[2] && (s32)arg1 <= (s32)sp1C[3] && (s32)arg2 >= (s32)sp1C[0] && (s32)arg2 <= (s32)sp1C[1]) {
+            *((s8 *)(*(s32 *)((u8 *)arg0 + 0x60) + arg3 * 0x38) + 0x34) = (s8)(sp20 - 1);
+            return sp18;
+        } else if ((s32)arg1 < (s32)sp1C[2] || ((s32)arg2 < (s32)sp1C[0] && (s32)arg1 <= (s32)sp1C[3])) {
+            sp24 = sp20 - 1;
+        } else {
+            sp28 = sp20 + 1;
+        }
+    }
+    return NULL;
+}
 
 s16 func_80029D54(void *arg0, void *arg1) {
     union {
