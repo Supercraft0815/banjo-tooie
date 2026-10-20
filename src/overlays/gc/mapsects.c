@@ -518,7 +518,71 @@ void gcmapsects_entrypoint_14(s32 arg0) {
     (*(s8 *)((s8 *)(func_800BF704()) + (0x81))) = (s8) arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_15.s")
+void gcmapsects_entrypoint_15(void *arg0) {
+    s32 func_800EA05C();
+    s32 i;
+    s32 offset;
+    struct EntryFlags {
+        u8 pad[0x4C];
+        u32 active : 1;
+        u32 enabled : 1;
+        u32 visible : 1;
+        u32 unused : 2;
+        u32 saved : 1;
+    } *entry;
+
+    *(s32 *)((u8 *)arg0 + 0x68) = 0;
+    *((u8 *)arg0 + 0x77) = 0;
+    *((u8 *)arg0 + 0x76) = 0;
+    *((u8 *)arg0 + 0x78) = 0;
+    *((u8 *)arg0 + 0x7C) = 0;
+    *((u8 *)arg0 + 0x7B) = 1;
+    *((u8 *)arg0 + 0x7E) = 1;
+    *((u8 *)arg0 + 0x7A) = 1;
+    *((u8 *)arg0 + 0x7F) = 3;
+    *(s16 *)((u8 *)arg0 + 0x74) = -1;
+    *((u8 *)arg0 + 0x82) = 0;
+    *(s32 *)((u8 *)arg0 + 0x6C) = 0;
+    *((u8 *)arg0 + 0x79) = 0;
+    *((u8 *)arg0 + 0x7D) = 0;
+    *((u8 *)arg0 + 0x80) = 0;
+    *((u8 *)arg0 + 0x81) = 0;
+    *(f32 *)((u8 *)arg0 + 0x70) = 0.0f;
+    switch (func_800EA05C()) {
+        case 0x1A7:
+            _gcmapsects_lagoontop_entrypoint_0();
+            *((u8 *)arg0 + 0x83) = 1;
+            break;
+        case 0x1A8:
+            _gcmapsects_lagoonmid_entrypoint_0();
+            *((u8 *)arg0 + 0x83) = 1;
+            break;
+        case 0x1A9:
+            _gcmapsects_lagoonbot_entrypoint_0();
+            *((u8 *)arg0 + 0x83) = 1;
+            break;
+    }
+    if (*((u8 *)arg0 + 0x77) != 0) {
+        func_80801724_gcmapsects(arg0, 1);
+    }
+    i = 0;
+    if (*((u8 *)arg0 + 0x77) > 0) {
+        offset = 0;
+        do {
+            i++;
+            entry = (struct EntryFlags *)(*(u8 **)((u8 *)arg0 + 0x68) + offset);
+            entry->active = 0;
+            entry = (struct EntryFlags *)(*(u8 **)((u8 *)arg0 + 0x68) + offset);
+            entry->enabled = 1;
+            entry = (struct EntryFlags *)(*(u8 **)((u8 *)arg0 + 0x68) + offset);
+            entry->saved = entry->visible;
+            entry = (struct EntryFlags *)(*(u8 **)((u8 *)arg0 + 0x68) + offset);
+            entry->visible = *((u8 *)arg0 + 0x83);
+            offset += 0x58;
+        } while (i < *((u8 *)arg0 + 0x77));
+    }
+    func_80800A08_gcmapsects(arg0, *((u8 *)arg0 + 0x83));
+}
 
 /* extern */
 
