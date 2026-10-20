@@ -16,10 +16,9 @@ void suflamefx_entrypoint_1(Actor *arg0, u32 arg1) {
     func_80100074(arg0, arg1, 0U);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/flamefx/suflamefx_entrypoint_2.s")
-
 typedef struct {
-    u8 pad0[0x18];
+    f32 origin[3];
+    f32 velocity[3];
     f32 position[3];
     f32 unk24;
     f32 scale;
@@ -28,13 +27,56 @@ typedef struct {
 } FlameFxParticle;
 
 typedef struct {
-    u8 pad0[0x18];
+    u8 pad0[0x10];
+    f32 damping;
+    f32 scaleDelta;
     s16 asset;
     u8 unk1A;
     u8 count;
-    u8 pad1C[4];
+    u8 inactive;
+    u8 lastFrame;
+    u8 pad1E[2];
     FlameFxParticle particles[1];
 } FlameFxData;
+
+void suflamefx_entrypoint_2(FlameFxData *arg0, f32 *arg1) {
+    f32 func_800D8FF8(void);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_80800428_suflamefx(u8 *, u8 *, f32 *);
+    f32 dt;
+    s32 i;
+    FlameFxParticle *particle;
+    s32 frame;
+
+    dt = func_800D8FF8();
+    particle = arg0->particles;
+    i = 0;
+    if ((s32)arg0->count > 0) {
+        do {
+            if (particle->scale > 0.05f) {
+                particle->velocity[1] = particle->velocity[1] + particle->unk24 * dt;
+                particle->velocity[0] = particle->velocity[0] * arg0->damping;
+                particle->velocity[2] = particle->velocity[2] * arg0->damping;
+                particle->scale += arg0->scaleDelta;
+            } else if (arg0->inactive == 1) {
+                particle->scale = 0.0f;
+            } else {
+                func_80800428_suflamefx((u8 *)arg0, (u8 *)particle, arg1);
+            }
+            if (arg0->unk1A == 0xFF) {
+                frame = particle->frame;
+                if ((s32)frame >= (s32)arg0->lastFrame) {
+                    particle->frame = 0;
+                } else {
+                    particle->frame = frame + 1;
+                }
+            }
+            func_800EE780(particle->position, particle->origin, particle->velocity);
+            i++;
+            particle++;
+        } while (i < (s32)arg0->count);
+    }
+}
 
 void suflamefx_entrypoint_3(FlameFxData *arg0, s32 arg1) {
     void *func_800D674C(s32);
