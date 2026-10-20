@@ -79,12 +79,74 @@ void func_80012B74(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_80012BB4.s")
+s32 func_80012BB4(s32 addr, s32 len, void *state) {
+    void func_80020E40(ALLink *, ALLink *);
+    void func_80020E74(ALLink *);
+    extern u8 D_80069488[];
+    extern OSIoMesg D_80069580[];
+    extern s32 D_80069A30;
+    extern u32 D_8006A148;
+    extern u32 D_8006A14C;
+    struct dma_node {
+        ALLink link;
+        u32 addr;
+        u32 time;
+        void *heap;
+    };
+    void *dest_vaddr;
+    s32 low_bit;
+    s32 addr_end;
+    struct dma_node *node, *head, *prev;
+
+    head = *(struct dma_node **)((u8 *)&D_80069A30 + 4);
+    prev = NULL;
+    for (node = head; node != NULL; node = (struct dma_node *)node->link.next) {
+        addr_end = node->addr + 0x200;
+        if (node->addr > addr) {
+            break;
+        }
+        prev = node;
+        if (addr + len <= addr_end) {
+            node->time = D_8006A148;
+            low_bit = (s32)node->heap + (addr - node->addr);
+            return osVirtualToPhysical((void *)low_bit);
+        }
+    }
+    node = *(struct dma_node **)((u8 *)&D_80069A30 + 8);
+    if (node == NULL) {
+        return osVirtualToPhysical(head);
+    }
+    *(struct dma_node **)((u8 *)&D_80069A30 + 8) = (struct dma_node *)node->link.next;
+    func_80020E74(&node->link);
+    if (prev != NULL) {
+        func_80020E40(&node->link, &prev->link);
+    } else {
+        head = *(struct dma_node **)((u8 *)&D_80069A30 + 4);
+        if (head != NULL) {
+            *(struct dma_node **)((u8 *)&D_80069A30 + 4) = node;
+            node->link.next = (ALLink *)head;
+            node->link.prev = NULL;
+            head->link.prev = (ALLink *)node;
+        } else {
+            *(struct dma_node **)((u8 *)&D_80069A30 + 4) = node;
+            node->link.next = NULL;
+            node->link.prev = NULL;
+        }
+    }
+    dest_vaddr = node->heap;
+    low_bit = addr & 1;
+    addr -= low_bit;
+    node->addr = addr;
+    node->time = D_8006A148;
+    osPiStartDma(&D_80069580[D_8006A14C++], OS_MESG_PRI_HIGH, OS_READ, addr,
+                 dest_vaddr, 0x200, (OSMesgQueue *)D_80069488);
+    return osVirtualToPhysical(dest_vaddr) + low_bit;
+}
 
 s32 *func_80012D4C(s32 **arg0) {
     extern s32 D_80069A30;
     extern s32 D_80069A40;
-    extern s32 func_80012BB4;
+    extern s32 func_80012BB4(s32, s32, void *);
     if ((*(u8 *)((s8 *)(&D_80069A30) + (0))) == 0) {
         (*(s32 *)((s8 *)(&D_80069A30) + (4))) = 0;
         (*(s32 **)((s8 *)(&D_80069A30) + (8))) = &D_80069A40;
