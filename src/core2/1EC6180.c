@@ -162,7 +162,26 @@ void func_800ED79C(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, f32 *arg4) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800ED7F8.s")
+void func_800ED7F8(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, f32 *arg4) {
+    void func_800EF9A8(f32 dst[3], f32 src[3], f32 roll);
+    void func_800EFA4C(f32 *arg0, f32 arg1, f32 arg2, f32 arg3);
+    f32 center[3];
+    f32 position[3];
+    f32 roll;
+    Vtx *end;
+
+    roll = (arg4[0x44 / 4] / arg4[0x48 / 4]) * (arg4[2] - arg4[1]) + arg4[1];
+    center[0] = (((s16 *)arg4)[0x14 / 2] + ((s16 *)arg4)[0x1A / 2]) * 0.5f;
+    center[1] = (((s16 *)arg4)[0x16 / 2] + ((s16 *)arg4)[0x1C / 2]) * 0.5f;
+    center[2] = 0.0f;
+    end = arg1 + arg3;
+    for (; arg1 < end; arg1++, arg2++) {
+        func_800EFA4C(position, arg1->v.ob[0] - center[0], arg1->v.ob[1] - center[1], 0.0f);
+        func_800EF9A8(position, position, roll);
+        arg2->v.ob[0] = center[0] + position[0];
+        arg2->v.ob[1] = center[1] + position[1];
+    }
+}
 
 void func_800ED964(void *self){
     MeshEffect *arg0 = (MeshEffect *)self;
