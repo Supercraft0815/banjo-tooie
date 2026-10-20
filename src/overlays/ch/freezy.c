@@ -24,7 +24,42 @@ void func_8080003C_chfreezy(Actor *arg0) {
     func_8010A828(_subaddielink_entrypoint_4(func_80100094(arg0, 1U)), (u32) (*(u8 *)((s8 *)(arg0) + (0x79))) >> 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/freezy/func_80800080_chfreezy.s")
+void func_80800080_chfreezy(Actor *arg0) {
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    void _sufreezy_entrypoint_4(Unk80132ED0 *, s32);
+    s32 func_800D9078(f32 *);
+    f32 func_800F15F8(f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80800538_chfreezy(Actor *);
+    void func_808006C0_chfreezy(Actor *);
+    Actor *other;
+    f32 scale;
+    f32 target;
+    s32 flag;
+
+    other = _subaddielink_entrypoint_4(func_80100094(arg0, 1U));
+    if (!arg0->unk64_17) {
+        if (other == NULL || other->unk64_17) {
+            func_808006C0_chfreezy(arg0);
+            return;
+        }
+        scale = arg0->scale;
+        target = arg0->unk50;
+        arg0->scale = func_800F15F8(scale, target, (target - scale) * 0.1f);
+        flag = (s32)(other->pad7A_0 << 29) >> 31;
+        if (flag == 0) {
+            func_808006C0_chfreezy(arg0);
+            return;
+        }
+        _sudeflect_entrypoint_0(arg0->position, 0.0f, arg0->scale * 100.0f, 2);
+        func_80800538_chfreezy(arg0);
+        if (func_800D9078(&arg0->unk58)) {
+            _sufreezy_entrypoint_4(arg0->unk0, 0x10);
+            func_808006C0_chfreezy(arg0);
+        }
+    }
+}
 
 s32 func_80800190_chfreezy(Actor *arg0, s32 arg1, volatile s32 arg2) {
     s32 _subaddielink_entrypoint_3(u8 *);
