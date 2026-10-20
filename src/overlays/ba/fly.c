@@ -208,7 +208,64 @@ s32 bafly_entrypoint_12(void *arg0) {
     return sp24;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_13.s")
+void bafly_entrypoint_13(PlayerState *arg0, s32 arg1, s32 arg2, f32 arg3) {
+    void _bamotor_entrypoint_1(PlayerState *, f32, f32, f32);
+    void _ncbafly_entrypoint_4(PlayerState *, f32, f32, f32);
+    s32 baanim_playForDuration_once(void *, s32, f32);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    void baphysics_set_terminal_velocity(PlayerState *, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    f32 func_800136E4(f32);
+    void func_8008E944(PlayerState *);
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_8009D9D4(PlayerState *);
+    void func_8009FFD8();
+    void func_800A32C4(PlayerState *, f32[3]);
+    PlayerState *func_800A4CA8(PlayerState *);
+    void func_800A4DA4(PlayerState *, s32);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    s32 func_800F1E6C(f32 *, f32 *, f32 *);
+    void yaw_applyIdeal(PlayerState *);
+    s32 yaw_setIdeal(s32, f32);
+    f32 sp54[3];
+    f32 sp48[3];
+    f32 sp44;
+    f32 sp40;
+    f32 sp3C;
+    f32 sp38;
+    f32 sp30[2];
+
+    if (arg1 == 0) {
+        sp44 = -2200.0f;
+        sp38 = 800.0f;
+    } else {
+        sp44 = -1200.0f;
+        sp38 = 400.0f;
+    }
+    func_8009C128(arg0, sp54);
+    func_800E1610(2, 100.0f, 0.85f, sp54);
+    baanim_playForDuration_once(arg0, arg2, arg3);
+    func_8009D9D4(arg0);
+    _bamotor_entrypoint_1(arg0, 1.0f, 0.5f, 0.5f);
+    func_800A32C4(arg0, sp48);
+    func_800F1E6C(sp48, sp54, &sp40);
+    yaw_setIdeal(arg0, func_800136E4(sp40 + 180.0f));
+    yaw_applyIdeal(arg0);
+    baphysics_set_target_horizontal_velocity(arg0, sp38);
+    baphysics_set_target_yaw(arg0, sp40);
+    baphysics_set_horizontal_velocity(arg0, sp40, baphysics_get_target_horizontal_velocity(arg0));
+    func_8009FFD8(arg0, 1, 1, 2, 3);
+    baphysics_set_vertical_velocity(arg0, 800.0f);
+    baphysics_set_gravity(arg0, sp44);
+    baphysics_set_terminal_velocity(arg0, -4000.0f);
+    func_800A4DA4(arg0, 3);
+    _ncbafly_entrypoint_4(func_800A4CA8(arg0), 12.0f, 10000.0f, 800.0f);
+    func_8008E944(arg0);
+}
 
 /* extern */
 
