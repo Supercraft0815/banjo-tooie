@@ -128,7 +128,51 @@ void func_808004F8_chtntbox(Actor *arg0) {
     _subaddieaudioquick_entrypoint_2(arg0, actor->position, &D_80800A78_chtntbox);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/func_80800624_chtntbox.s")
+void func_80800624_chtntbox(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_80018820(s32, f32, f32);
+    void func_80090494(s32, f32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 func_800BFA1C();
+    f32 func_800D8FF8(void);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    s32 func_8010B990(Actor *, s32);
+    s32 func_8010CEF8(f32 *, s32);
+    void func_808007B0_chtntbox(f32 *);
+    void func_80800824_chtntbox(s32, f32);
+    extern s32 D_808008D0_chtntbox;
+    extern s32 D_808008F4_chtntbox;
+    extern s32 D_80800938_chtntbox;
+    f32 dt;
+    f32 position[3];
+
+    dt = func_800D8FF8();
+    arg0->rotation[0] += 750.0f * dt;
+    arg0->rotation[2] += 40.0f * dt;
+    func_808007B0_chtntbox((f32 *)arg0);
+    if (func_8010B990(arg0, 0x400007) & 0x20) {
+        func_800EE7F8(position, arg0->position);
+        position[1] += 80.0f;
+        func_800BBCB8(position, NULL, arg0->scale, 4, &D_808008D0_chtntbox);
+        func_800BBCB8(position, position, arg0->scale, 0x10, &D_808008F4_chtntbox);
+        func_80800824_chtntbox((s32)position, 1.0f);
+        _subaddieaudioquick_entrypoint_2(arg0, position, &D_80800938_chtntbox);
+        func_800E1610(0, 20.0f, 0.9f, arg0->position);
+        func_80018820(0, 2.0f, 0.25f);
+        if (func_8010CEF8((f32 *)arg0, 0xA0)) {
+            func_80090494(5, arg0->position);
+        }
+        func_800FFAB0(arg0);
+        return;
+    }
+    if (!func_800BFA1C(arg0->position)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    ((f32 *)arg0->actorData)[5] += -3800.0f * dt;
+}
 
 void func_808007B0_chtntbox(f32 *arg0) {
     s32 func_8001211C();
