@@ -2813,7 +2813,88 @@ f32 func_80806170_bsfirstp(void *arg0, f32 arg1) {
     func_800F0DC0(arg1, 1.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808061AC_bsfirstp.s")
+int func_808061AC_bsfirstp(void *arg0, s32 arg1) {
+    void baphysics_set_gravity(struct player_state_s *, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    s32 baphysics_set_type(void *, s32);
+    f32 func_80013728(f32);
+    f32 func_800138D0(f32);
+    f32 func_8009BB5C(struct player_state_s *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800F3BB0(struct player_state_s *, f32 *);
+    void func_80806774_bsfirstp(void *);
+    f32 yaw_get(struct player_state_s *);
+    s32 pad;
+    struct FirstpConfig {
+        u8 pad0[0x20];
+        f32 gravity;
+        f32 airGravity;
+        u8 pad28[0x1C];
+        f32 scale;
+    } *config;
+    f32 speed;
+    f32 angle;
+    struct FirstpData {
+        u8 pad0[0x12C];
+        f32 motion;
+        u8 pad130[0x6C];
+        s32 mode;
+        f32 position[3];
+        f32 previous[3];
+        u8 pad1B8[0x1C];
+        f32 velocity;
+        f32 acceleration;
+        f32 timer;
+        f32 forward;
+        f32 sideways;
+    } *data;
+    struct FirstpRotation {
+        u8 pad0[0x40];
+        f32 angle;
+    };
+    struct FirstpPlayer {
+        u8 pad0[0xC8];
+        struct FirstpRotation *rotation;
+        u8 padCC[0xBC];
+        struct FirstpData *data;
+    };
+
+    data = ((struct FirstpPlayer *)arg0)->data;
+    config = func_80802458_bsfirstp(arg0);
+    switch (arg1) {
+        case 0:
+            baphysics_set_gravity(arg0, config->gravity);
+            func_80806774_bsfirstp(arg0);
+            baphysics_set_type(arg0, 0);
+            break;
+        case 1:
+            baphysics_set_gravity(arg0, config->gravity);
+            baphysics_set_type(arg0, 16);
+            baphysics_set_target_horizontal_velocity(arg0, 0.0);
+            break;
+        case 2:
+            baphysics_set_gravity(arg0, config->airGravity);
+            data->acceleration = 0.0f;
+            data->velocity = 0.0f;
+            baphysics_set_type(arg0, 16);
+            break;
+        case 3:
+            baphysics_set_gravity(arg0, config->airGravity);
+            if (data->mode != 3) {
+                func_800F3BB0(arg0, data->position);
+                func_800EE7F8(data->previous, data->position);
+                data->timer = 0.0f;
+                speed = func_8009BB5C(arg0);
+                angle = yaw_get(arg0);
+                angle = func_80013728(((struct FirstpPlayer *)arg0)->rotation->angle - angle - 90.0f);
+                data->sideways = -func_800138D0(angle) * speed;
+                data->forward = data->motion * config->scale;
+            }
+            baphysics_set_type(arg0, 17);
+            break;
+    }
+    data->mode = arg1;
+}
 
 void func_8080633C_bsfirstp(Actor *arg0, f32 arg1) {
     f32 func_80809938_bsfirstp(void *);
