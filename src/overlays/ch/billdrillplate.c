@@ -214,7 +214,35 @@ void func_80800D5C_chbilldrillplate(s32 arg0) {
     _subaddiefade_entrypoint_14(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_80800DA4_chbilldrillplate.s")
+void func_80800DA4_chbilldrillplate(Actor *arg0) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800B53A4(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800D9078(f32 *);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    extern s32 D_80801234_chbilldrillplate;
+    extern s32 D_80801244_chbilldrillplate;
+    f32 sp7C[3];
+    f32 sp70[3];
+    s32 temp_s5;
+    s32 var_s1;
+
+    if (arg0->unk70_10 == 2 && func_800D9078(&arg0->unk58)) {
+        func_800EE7F8(sp7C, arg0->position);
+        sp7C[1] -= 150.0f;
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801234_chbilldrillplate);
+        temp_s5 = func_800B53A4(5);
+        for (var_s1 = 0; var_s1 != 5; var_s1++) {
+            func_800EE7F8(sp70, arg0->position);
+            func_800EF1B8(sp70, (f32)var_s1 * 72.0f, func_800DC178(100.0f, 120.0f));
+            func_800BABB8(temp_s5, sp70, sp7C, 1.4f, &D_80801244_chbilldrillplate);
+        }
+        _chexploder_entrypoint_3(arg0, sp7C, 8);
+    }
+}
 
 /* extern */
 
