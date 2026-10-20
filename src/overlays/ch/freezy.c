@@ -163,7 +163,35 @@ void func_808004B8_chfreezy(Actor *arg0, Actor *arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/freezy/func_80800538_chfreezy.s")
+void func_80800538_chfreezy(Actor *arg0) {
+    void _fxtwinkle_entrypoint_1(f32 *, s32);
+    s32 func_800D9058(f32);
+    f32 func_800DC178(f32, f32);
+    void func_800E3980(f32 *);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EEBF0(f32 *, f32 *, f32);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    f32 sp74[3];
+    f32 sp68[3];
+    f32 sp5C[3];
+    f32 sp54[2];
+    s32 i;
+
+    if (arg0->unk6C_0 != 0) {
+        arg0->unk6C_0--;
+    }
+    if (arg0->unk7C_12 && !(arg0->unk58 < 1.0f) && !arg0->unk6C_0) {
+        func_800E3980(sp68);
+        func_800F18FC(arg0->position, sp68, sp54);
+        for (i = 0; i < 2; i++) {
+            sp54[i] += func_800DC178(0.0f, 160.0f) - 80.0f;
+        }
+        func_800EEBF0(sp5C, sp54, arg0->scale * 100.0f);
+        func_800EE780(sp74, arg0->position, sp5C);
+        _fxtwinkle_entrypoint_1(sp74, 0x9E5);
+        arg0->unk6C_0 = func_800D9058(func_800DC178(0.5f, 0.8f));
+    }
+}
 
 /* extern */
 
