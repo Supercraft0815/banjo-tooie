@@ -784,7 +784,32 @@ void func_80802ABC_chweldarboss(Actor *arg0, f32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80802B1C_chweldarboss.s")
+void func_80802B1C_chweldarboss(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_80018820(s32, f32, f32);
+    s32 func_800B53A4(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_800DC178(f32, f32);
+    s32 func_800E15CC(s32, f32, f32);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    extern s32 D_808049FC_chweldarboss;
+    extern s32 D_80804A10_chweldarboss;
+    s32 particles;
+    f32 position[3];
+    s32 i;
+
+    particles = func_800B53A4(8);
+    for (i = 0; i != 8; i++) {
+        func_800EEB9C(position, (f32)i * 45.0f, func_800DC178(120.0f, 160.0f));
+        func_800EF04C(position, arg0->position);
+        position[1] += func_800DC178(10.0f, 50.0f);
+        func_800BABB8(particles, position, arg0->position, 1.0f, &D_80804A10_chweldarboss);
+    }
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808049FC_chweldarboss);
+    func_800E15CC(0, 30.0f, 0.9f);
+    func_80018820(0, 1.8f, 0.75f);
+}
 
 f32 func_80802C9C_chweldarboss(Actor *arg0, s32 arg1) {
     f32 func_800F3780(f32, u8 *, s16);
