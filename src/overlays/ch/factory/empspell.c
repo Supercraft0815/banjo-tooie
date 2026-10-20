@@ -312,7 +312,55 @@ void func_808012C0_chfactoryempspell(f32 arg0, f32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_808016AC_chfactoryempspell.s")
+void func_808016AC_chfactoryempspell(Actor *arg0) {
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8F64(s32, s32);
+    void func_800C8FB0(s32, u32, u32, u32);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    void *func_80100094(Actor *, u32);
+    struct {
+        f32 x;
+        f32 y;
+        u8 audio;
+        u8 pad9[3];
+        s32 handle;
+        u16 first : 7;
+        u16 second : 7;
+        u16 flag : 1;
+        u16 last : 1;
+        u8 pad12[2];
+    } *entry;
+    s32 pad;
+    f32 position[3];
+    s32 i;
+    s32 random;
+    void *data;
+
+    data = func_80100094(arg0, 1);
+    i = 0;
+    entry = data;
+    do {
+        random = func_800DC128(0, 9);
+        entry->second = random;
+        entry->first = random;
+        entry->audio = _subaddieaudioloop_entrypoint_3(entry->audio);
+        entry->x = position[0] = func_800DC178(-2400.0f, 3600.0f);
+        entry->y = position[1] = func_800DC178(200.0f, 1400.0f);
+        entry->flag = func_800DC128(0, 2);
+        entry->handle = func_800C8A98();
+        func_800C8E54(entry->handle, 400.0f, 500.0f);
+        func_800C8FB0(entry->handle, 200, 200, 255);
+        func_800C8F64(entry->handle, 1);
+        position[2] = 4000.0f;
+        func_800C8CB8(entry->handle, position);
+        i += 0x14;
+        entry++;
+    } while (i != 0x3C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801844_chfactoryempspell.s")
 
