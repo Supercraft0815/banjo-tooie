@@ -41,7 +41,37 @@ void func_80800064_bssub(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_808000F0_bssub.s")
+struct player_state_s;
+void func_808000F0_bssub(struct player_state_s *arg0) {
+    f32 _bafpctrl_entrypoint_3(struct player_state_s *);
+    void baroll_setAngularVelocity(struct player_state_s *, f32, f32);
+    f32 func_8009BB94(struct player_state_s *);
+    void func_8009BFE4(struct player_state_s *, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F1214(f32, f32, f32);
+    s32 player_inWater(struct player_state_s *);
+    void yaw_setVelocityBounded(struct player_state_s *, f32, f32);
+    f32 temp_f0;
+    f32 sp48;
+    f32 temp_f20;
+    f32 var_f22;
+
+    temp_f20 = func_800F10B4(func_8009BB94(arg0), 0.0f, 225.0f, 0.0f, 1.0f);
+    if (player_inWater(arg0) != 0) {
+        var_f22 = func_800F1214(temp_f20, 50.0f, 150.0f);
+        sp48 = func_800F1214(temp_f20, 0.5f, 2.0f);
+        baroll_setAngularVelocity(arg0, func_800F1214(temp_f20, 40.0f, 150.0f), func_800F1214(temp_f20, 0.6f, 3.0f));
+        yaw_setVelocityBounded(arg0, 250.0f, 20.0f);
+    } else {
+        var_f22 = 250.0;
+        sp48 = 2.8f;
+        baroll_setAngularVelocity(arg0, 250.0f, 2.8f);
+        yaw_setVelocityBounded(arg0, 300.0f, 3.0f);
+    }
+    temp_f0 = _bafpctrl_entrypoint_3(arg0);
+    var_f22 *= func_800F10B4(temp_f0, 0.1f, 1.0f, temp_f0 * temp_f0, 1.0f);
+    func_8009BFE4(arg0, var_f22, sp48);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800254_bssub.s")
 
