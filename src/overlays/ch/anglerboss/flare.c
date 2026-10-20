@@ -94,7 +94,40 @@ void func_80800190_changlerbossflare(Actor *arg0) {
     func_800FFAB0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/flare/func_8080021C_changlerbossflare.s")
+void func_8080021C_changlerbossflare(Actor *arg0) {
+    s32 func_8001210C(s32);
+    s32 func_800B53A4(s32);
+    void func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF5A0(f32 *, f32 *, f32, f32, f32);
+    void func_800F1A88(f32 *, f32 *);
+    f32 func_80103EAC(Actor *);
+    extern s32 D_80800550_changlerbossflare[];
+    f32 rotation[3];
+    f32 position[3];
+    f32 offset[3];
+    f32 distance;
+    f32 angle;
+    s32 emitter;
+    s32 i;
+
+    func_800F1A88((f32 *)&arg0->actorData[4], rotation);
+    rotation[2] = 0.0f;
+    rotation[0] += 90;
+    if (func_8001210C(1) == 0) {
+        distance = func_80103EAC(arg0) * 0.35f;
+        emitter = func_800B53A4(4);
+        func_800BA3FC(emitter, 0x9E2);
+        for (angle = 0.0f, i = 0; i < 4; i++, angle += 90.0f) {
+            func_800EEB9C(offset, ((f32 *)arg0->actorData)[0] + angle, distance);
+            func_800EF5A0(offset, rotation, offset[0], offset[1], offset[2]);
+            func_800EE780(position, arg0->position, offset);
+            func_800BABB8(emitter, position, NULL, 1.0f, D_80800550_changlerbossflare);
+        }
+    }
+}
 
 void func_808003A4_changlerbossflare(Actor *arg0) {
     f32 func_800EEB40(f32 *, f32 *);
