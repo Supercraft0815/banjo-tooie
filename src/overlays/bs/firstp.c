@@ -1918,7 +1918,43 @@ s32 bsfirstp_entrypoint_17(s32 arg0) {
     return ((s32 *)&D_8080B4F0_bsfirstp)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80804488_bsfirstp.s")
+void func_80804488_bsfirstp(struct player_state_s *arg0, s32 arg1, s32 arg2, f32 *arg3) {
+    int bakey_held(struct player_state_s *, s32);
+    f32 mlAbsF(f32);
+    s32 buttons;
+    f32 target;
+    f32 step;
+
+    buttons = bakey_held(arg0, arg1) ? 1 : 0;
+    buttons += bakey_held(arg0, arg2) ? 2 : 0;
+    switch (buttons) {
+    case 0:
+    case 3:
+        target = 0.0f;
+        break;
+    case 1:
+        target = -1.0f;
+        break;
+    case 2:
+        target = 1.0f;
+        break;
+    }
+    if (target == -arg3[1]) {
+        step = 0.667f;
+    } else if (target == 0.0f) {
+        step = 0.5f;
+    } else {
+        step = 0.333f;
+    }
+    if (mlAbsF(target - arg3[0]) < step) {
+        arg3[0] = target;
+        arg3[1] = target;
+    } else if (arg3[0] < target) {
+        arg3[0] += step;
+    } else {
+        arg3[0] -= step;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808045FC_bsfirstp.s")
 
