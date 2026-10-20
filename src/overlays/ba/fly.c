@@ -143,7 +143,57 @@ void bafly_entrypoint_10(PlayerState *arg0, f32 arg1, f32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_11.s")
+void bafly_entrypoint_11(PlayerState *arg0) {
+    PlayerState *func_800A4CA8(PlayerState *);
+    void func_800C301C(u8, s32);
+    void func_800C3058(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C330C(u8, s32);
+    void func_800C3BDC(u8);
+    int func_800C3D78(u8);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F1DCC(f32, f32);
+    void func_80110818(void *, f32 *);
+    f32 mlAbsF(f32);
+    f32 yaw_get(PlayerState *);
+    u8 id;
+    f32 delta;
+    f32 volume;
+    f32 rotation[3];
+    PlayerState *entity;
+
+    volume = 1.2f;
+    if ((*(u8 **)((u8 *)arg0 + 0x8C))[8] != 0) {
+        volume += 0.4f;
+    }
+    entity = func_800A4CA8(arg0);
+    func_80110818(entity, rotation);
+    delta = yaw_get(arg0);
+    delta = func_800F1DCC(rotation[1] + 180.0f, delta);
+    delta = func_800F10B4(mlAbsF(delta), 0.0f, 50.0f, 0.0f, 0.4f);
+    volume -= delta;
+    volume += *(f32 *)(*(u8 **)((u8 *)arg0 + 0x8C));
+    delta = volume - *(f32 *)(*(u8 **)((u8 *)arg0 + 0x8C) + 4);
+    if (mlAbsF(delta) > 0.01f) {
+        if (delta > 0.0f) {
+            delta = 0.01f;
+        } else {
+            delta = -0.01f;
+        }
+    }
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0x8C) + 4) += delta;
+    id = (*(u8 **)((u8 *)arg0 + 0x8C))[9];
+    if (id != 0) {
+        func_800C31DC(id, *(f32 *)(*(u8 **)((u8 *)arg0 + 0x8C) + 4));
+        func_800C31DC(id, *(f32 *)(*(u8 **)((u8 *)arg0 + 0x8C) + 4));
+        func_800C3058(id, 6000);
+        if (func_800C3D78(id) == 0) {
+            func_800C301C(id, 0x4A3);
+            func_800C330C(id, 3);
+            func_800C3BDC(id);
+        }
+    }
+}
 
 /* extern */
 
