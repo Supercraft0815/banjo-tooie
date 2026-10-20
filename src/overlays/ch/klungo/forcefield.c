@@ -110,4 +110,37 @@ s32 func_80800228_chklungoforcefield(void *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/forcefield/func_80800288_chklungoforcefield.s")
+void func_80800288_chklungoforcefield(Actor *arg0, s32 arg1) {
+    typedef struct {
+        s32 sound;
+        f32 timer;
+        f32 speed;
+        u8 handle;
+    } ForcefieldData;
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF47C(s32 (*)(Actor *), Actor *);
+    void func_800E3A58(f32 *);
+    s32 func_800E8C58(u8);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 *func_801018D8(Actor *);
+    int func_80101970(Actor *);
+    s32 func_8010347C(Unk80132ED0 *);
+    s32 func_801015D0(Actor *);
+    f32 sp3C[3];
+    f32 sp38;
+    s32 sp34;
+    ForcefieldData *data;
+    f32 *sp2C;
+
+    data = (ForcefieldData *)arg0->actorData;
+    sp34 = arg0->alpha;
+    sp38 = func_800F10B4((f32)func_800E8C58(data->handle), 0.0f, 255.0f, 0.6f, 1.0f);
+    func_800E3A58(sp3C);
+    func_80101970(arg0);
+    sp3C[2] += data->timer;
+    arg0->alpha = (u32)((f32)sp34 * sp38);
+    func_800DF47C(func_801015D0, arg0);
+    sp2C = func_801018D8(arg0);
+    func_800DE448(arg0->position, sp3C, arg0->scale, sp2C, func_8010347C(arg0->unk0));
+    arg0->alpha = sp34;
+}
