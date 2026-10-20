@@ -242,7 +242,32 @@ void chboilerid_entrypoint_5(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/chboilerid_entrypoint_6.s")
+void chboilerid_entrypoint_6(Actor *arg0, f32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    s32 func_80800CB0_chboilerid(Actor *);
+    void _mlwave_entrypoint_3(void *, f32, f32);
+    void func_800DA3B8(s32, s32);
+    void func_800CF2D4(s32);
+    extern s16 D_80800D00_chboilerid[][15];
+    Actor *data;
+    s32 index;
+
+    data = func_80100094(arg0, 0);
+    arg0->unk58 = arg1;
+    if (arg0->unk70_10 != 3 && arg0->unk70_10 != 2) {
+        index = func_80800CB0_chboilerid(data);
+        _mlwave_entrypoint_3(data, (f32)D_80800D00_chboilerid[index][2], (f32)D_80800D00_chboilerid[index][3]);
+        _mlwave_entrypoint_3(&data->unk3C, (f32)D_80800D00_chboilerid[index][6], (f32)D_80800D00_chboilerid[index][7]);
+        _mlwave_entrypoint_3(&data->actorData[2], (f32)D_80800D00_chboilerid[index][10], (f32)D_80800D00_chboilerid[index][11]);
+        ((s16 *)&data->unk58)[0] = D_80800D00_chboilerid[index][13];
+        ((s16 *)&data->unk58)[1] = D_80800D00_chboilerid[index][12];
+        *(s16 *)&data->pad5C = D_80800D00_chboilerid[index][14];
+        func_80101FDC(arg0, 2);
+        func_800DA3B8(0x66F, 1);
+        func_800CF2D4(3);
+    }
+}
 
 /* extern */
 
