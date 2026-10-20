@@ -577,7 +577,64 @@ s32 bstaxi_entrypoint_26(s32 arg0) {
     return ((s32 *)&D_808021D8_bstaxi)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/func_80801600_bstaxi.s")
+void func_80801600_bstaxi(void *arg0, u32 arg1) {
+    void _babackpack_entrypoint_6(void *, f32 *, s32);
+    void _bapackctrl_entrypoint_4(void *, s32);
+    s32 _bapackctrl_entrypoint_5(void *, s32);
+    void _batimer_set(struct player_state_s *, s32, f32);
+    void _subaddietaxi_entrypoint_7(s32);
+    s32 baanim_playForDuration_onceSmooth(void *, s32, s32);
+    s32 baflag_clear(void *, s32);
+    s32 func_8008E0C8(struct player_state_s *);
+    void func_8009C128(struct player_state_s *, f32[3]);
+    void func_8009DBB0(struct player_state_s *, s32, f32, f32, s32);
+    void func_8009E4E0(void *, s32, s32);
+    void func_8009E55C(void *, s32, f32);
+    s32 func_800CB698(s32, s32);
+    void func_800FFA88(Unk80132ED0 *);
+    f32 position[3];
+    Unk80132ED0 *marker;
+
+    switch (arg1) {
+    case 0:
+        if (func_8008E0C8(arg0) != 0) {
+            _bapackctrl_entrypoint_5(arg0, 1);
+        }
+        baflag_clear(arg0, 0x33);
+        func_8009E55C(arg0, 2, 0.0f);
+        marker = *(Unk80132ED0 **)((u8 *)arg0 + 0x160);
+        if (marker != NULL) {
+            func_800FFA88(marker);
+            *(Unk80132ED0 **)((u8 *)arg0 + 0x160) = NULL;
+        }
+        break;
+    case 1:
+        *(Unk80132ED0 **)((u8 *)arg0 + 0x160) = NULL;
+        *(f32 *)((u8 *)arg0 + 0x16C) = 0.0f;
+        func_8009E55C(arg0, 2, 50.0f);
+        func_8009E4E0(arg0, 2, _babackpack_entrypoint_6);
+        break;
+    case 2:
+        _bapackctrl_entrypoint_4(arg0, *((u8 *)arg0 + 0x164));
+        baflag_clear(arg0, 0x33);
+        _batimer_set(arg0, 0, 0.5f);
+        func_8009C128(arg0, position);
+        _subaddietaxi_entrypoint_7(*(s32 *)((u8 *)arg0 + 0x160));
+        break;
+    case 3:
+        func_8009DBB0(arg0, 0x5AD, 0.9f, 1.1f, 0x3E80);
+        break;
+    case 4:
+        func_800CB698(*((u8 *)arg0 + 0x164), 2);
+        func_800FFA88(*(Unk80132ED0 **)((u8 *)arg0 + 0x160));
+        *(Unk80132ED0 **)((u8 *)arg0 + 0x160) = NULL;
+        break;
+    case 5:
+        baanim_playForDuration_onceSmooth(arg0, 0x126, 0x40200000);
+        break;
+    }
+    *(s8 *)((u8 *)arg0 + 0x15C) = arg1;
+}
 
 void bstaxi_entrypoint_27(s32 arg0)
 {
