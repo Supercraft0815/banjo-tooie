@@ -168,7 +168,53 @@ void suexpression_entrypoint_9(void *arg0) {
     *(u8 *)((u8 *)arg0 + 0x12) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_10.s")
+void suexpression_entrypoint_10(void *arg0, Unk80132ED0 *arg1, f32 *arg2) {
+    void _suexpressjoint_entrypoint_3(Unk80132ED0 *, void *, u8);
+    void _suexpressmorph_entrypoint_1(void *);
+    void func_8008FE94(s32, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_8010D23C(void);
+    void suexpression_entrypoint_15(void *, void *, f32 *);
+    void suexpression_entrypoint_16(void *, s32);
+    struct ExpressionHeader {
+        s16 joint;
+        s16 morph;
+    };
+    f32 position[3];
+    Actor *actor;
+
+    if (((struct ExpressionHeader *)arg0)->joint != 0) {
+        _suexpressjoint_entrypoint_3(arg1, (u8 *)arg0 + ((struct ExpressionHeader *)arg0)->joint, *((u8 *)arg0 + 0x12));
+    }
+    if (((struct ExpressionHeader *)arg0)->morph != 0) {
+        _suexpressmorph_entrypoint_1((u8 *)arg0 + ((struct ExpressionHeader *)arg0)->morph);
+    }
+    if (*(s16 *)((u8 *)arg0 + 4) != 0 ||
+        *(s16 *)((u8 *)arg0 + 6) != 0 ||
+        *(s16 *)((u8 *)arg0 + 8) != 0 ||
+        *(s16 *)((u8 *)arg0 + 0xA) != 0) {
+        if (arg2 != NULL) {
+            suexpression_entrypoint_15(arg0, arg1, arg2);
+        } else if (func_8010D23C() != 0 && *((u8 *)arg0 + 0x13) == 0) {
+            actor = func_80106790(arg1);
+            func_8008FE94(5, position);
+            if (*(s16 *)((u8 *)arg0 + 0xE) == 0 ||
+                func_800EEB40(actor->position, position) <
+                    (f32)(*(s16 *)((u8 *)arg0 + 0xE) * *(s16 *)((u8 *)arg0 + 0xE))) {
+                suexpression_entrypoint_15(arg0, arg1, position);
+            } else {
+                suexpression_entrypoint_16(arg0, (s32)arg1);
+            }
+        } else {
+            suexpression_entrypoint_16(arg0, (s32)arg1);
+        }
+        if (*((u8 *)arg0 + 0x13) == 1) {
+            *((u8 *)arg0 + 0x13) = 0;
+        }
+    }
+    *((u8 *)arg0 + 0x12) = 1;
+}
 
 /* extern */
 
