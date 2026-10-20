@@ -94,7 +94,21 @@ f32 func_800C7B7C(Unk800C7A68 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C7BCC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C7E28.s")
+f32 func_800C7E28(void *arg0) {
+    s32 count = ((Unk800C7A68 *) arg0)->unk2;
+    f32 *point;
+    f32 *end;
+    s32 i;
+
+    point = (f32 *) ((u8 *) arg0 + 0x14);
+    end = (f32 *) (count * 12 + (u8 *) arg0 + 8);
+    for (i = 0; point != end; point += 3, i++) {
+        if (point[0] == end[0] && point[1] == end[1] && point[2] == end[2]) {
+            return *(f32 *) ((u8 *) arg0 + 0xC) = (f32) i / (count - 1);
+        }
+    }
+    return *(f32 *) ((u8 *) arg0 + 0xC) = 1.0f;
+}
 
 /* extern */
 
