@@ -669,7 +669,46 @@ void func_80802648_chstoneballcontrol(f32 *arg0) {
     func_800BBCB8(arg0, 0, 1.0f, 5, &D_80805210_chstoneballcontrol);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_808026A0_chstoneballcontrol.s")
+s32 func_808026A0_chstoneballcontrol(Actor *arg0) {
+    s32 func_800EA05C();
+    int func_800F0064(f32 *, f32, f32 *);
+    extern f32 D_80805258_chstoneballcontrol[6][3];
+    s32 i;
+
+    if (func_800EA05C() == 0xBB) {
+        if (arg0->position[0] < -3055.0f) {
+            return 2;
+        }
+        if (arg0->position[0] > -1145.0f) {
+            return 0;
+        }
+        if (arg0->position[2] < -1555.0f) {
+            return 3;
+        }
+        if (arg0->position[2] > -445.0f) {
+            return 1;
+        }
+        for (i = 0; i < 6; i++) {
+            if (func_800F0064(arg0->position, 100.0f, D_80805258_chstoneballcontrol[i])) {
+                return 1;
+            }
+        }
+        return -1;
+    }
+        if (arg0->position[0] < -675.0f) {
+            return 2;
+        }
+        if (arg0->position[0] > 675.0f) {
+            return 0;
+        }
+        if (arg0->position[2] < -675.0f) {
+            return 3;
+        }
+        if (arg0->position[2] > 675.0f) {
+            return 1;
+        }
+    return -1;
+}
 
 void func_8080282C_chstoneballcontrol(u8 *arg0, s32 arg1) {
     s32 func_800EA05C();
