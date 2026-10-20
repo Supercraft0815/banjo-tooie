@@ -158,7 +158,52 @@ s32 func_80800300_bswasher(s32 arg0) {
     _bawasher_entrypoint_9(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_8080042C_bswasher.s")
+struct anctrl_s;
+enum asset_e;
+s32 func_8080042C_bswasher(struct player_state_s *arg0, s32 arg1) {
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setSmoothTransition(struct anctrl_s *, s32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void baanim_setEnd(struct player_state_s *, f32);
+    void baphysics_set_vertical_velocity(struct player_state_s *, f32);
+    void func_8009D820(struct player_state_s *, f32);
+    void func_8009DF18(struct player_state_s *, s32, f32, s32);
+    void func_8009DF94(struct player_state_s *, s32, f32, s32);
+    struct anctrl_s *control;
+
+    switch (arg1) {
+        case 1:
+            control = baanim_getAnimCtrlPtr(arg0);
+            anctrl_reset(control);
+            anctrl_setSmoothTransition(control, 0);
+            anctrl_setIndex(control, 0x32);
+            anctrl_setSubrange(control, 0.0f, 0.2541f);
+            anctrl_setDuration(control, 2.5f);
+            anctrl_setPlaybackType(control, 1);
+            anctrl_start(control);
+            func_8009D820(arg0, 1.8f);
+            break;
+        case 2:
+            baanim_setEnd(arg0, 0.5741f);
+            func_8009DF94(arg0, 0x417, 0.8f, 0x4650);
+            func_8009DF18(arg0, 0x428, 1.8f, 0x4650);
+            baphysics_set_vertical_velocity(arg0, 400.0f);
+            break;
+        case 3:
+            baanim_setEnd(arg0, 1.0f);
+            func_8009DF94(arg0, 0x417, 0.8f, 0x4650);
+            func_8009DF18(arg0, 0x428, 1.8f, 0x4650);
+            break;
+        case 4:
+            break;
+    }
+    *(s32 *)((s8 *)arg0 + 0x15C) = arg1;
+}
 
 void func_80800590_bswasher(s32 arg0)
 {
