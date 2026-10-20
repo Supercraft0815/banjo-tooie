@@ -741,6 +741,50 @@ s32 func_80802398_chfactoryrobot(Actor *arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80802470_chfactoryrobot.s")
+s32 func_80802470_chfactoryrobot(Actor *arg0, s32 arg1) {
+    s32 _capod_entrypoint_13();
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void func_800FC660(u32);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80101FDC(Actor *, u32);
+    struct RobotData {
+        Unk80132ED0 *markers[4];
+        u8 count;
+        u8 pad11;
+        u8 active;
+        u8 remaining;
+    };
+    Actor *robot;
+    struct RobotData *data;
+    s32 i;
+
+    if (arg0->unk7A_5) {
+        return 0;
+    }
+    if (arg0->unk3C == NULL) {
+        return 0;
+    }
+    robot = func_80106790(arg0->unk3C);
+    data = func_80100094(robot, 0);
+    if (arg1 && data->active) {
+        if (--data->remaining == 0) {
+            _capod_entrypoint_13(robot->unk0, NULL, 0xF, 0x30);
+            func_80101FDC(robot, 7);
+            robot->unk64_20 = 0;
+            robot->unk58 = 1.0f;
+            func_800FC660(0x10);
+            _subaddiedialog_entrypoint_11(robot->unk0, 0x137B, 0x44, robot->position, 0xA3);
+        }
+    }
+    arg0->unk3C = NULL;
+    for (i = 0; i < data->count; i++) {
+        if (arg0->unk0 == data->markers[i]) {
+            data->markers[i] = data->markers[--data->count];
+            return 1;
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_808025D4_chfactoryrobot.s")
