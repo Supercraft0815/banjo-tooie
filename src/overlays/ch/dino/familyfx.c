@@ -153,4 +153,28 @@ void chdinofamilyfx_entrypoint_0(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familyfx/func_80800A28_chdinofamilyfx.s")
+void func_80800A28_chdinofamilyfx(f32 *arg0, f32 arg1, s32 arg2, void *arg3) {
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA450(s32, s16, s16, s16, s16, s16, s16);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF334(f32 *, f32);
+    s32 pad;
+    f32 sp40[3];
+    f32 sp34[3];
+    s32 temp_s0;
+
+    temp_s0 = func_800B53A4(arg2);
+    func_800EEC30(sp40, 10.0f, arg1, 200.0f);
+    func_800EEC30(sp34, 25.0f, arg1, 300.0f);
+    func_800BA930(temp_s0, (s32)sp40[0], (s32)sp40[1], (s32)sp40[2],
+                 (s32)sp34[0], (s32)sp34[1], (s32)sp34[2]);
+    func_800EF334(sp40, -0.5f);
+    func_800EF334(sp34, -0.5f);
+    func_800BA450(temp_s0, (s32)sp40[0], -200, (s32)sp40[2],
+                 (s32)sp34[0], -400, (s32)sp34[2]);
+    func_800BABB8(temp_s0, arg0, NULL, 1.0f, arg3);
+    func_800BA22C(temp_s0, arg2);
+}
