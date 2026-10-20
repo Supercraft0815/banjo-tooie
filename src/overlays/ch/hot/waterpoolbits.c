@@ -212,7 +212,59 @@ void func_808006BC_chhotwaterpoolbits(Actor *arg0) {
     func_800EE7F8((f32 *)arg0->actorData, arg0->position);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/waterpoolbits/func_80800718_chhotwaterpoolbits.s")
+void func_80800718_chhotwaterpoolbits(Actor *arg0) {
+    void chhotwaterpoolbits_entrypoint_5(Actor *, f32);
+    s32 func_800D9078(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    s32 func_800F5578(s32);
+    s32 func_800F55FC(s32);
+    f32 func_800F5628(s32);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F5C94(s32);
+    s32 func_800F5D18(s32);
+    s32 func_800F64A4(s32, s32);
+    s32 func_800F6A38(s32);
+    void func_800F7D90(s32, s32, void *, s32);
+    void func_80101FDC(Actor *, u32);
+    s32 sp3C;
+    s32 sp38;
+    s32 sp34;
+    s32 temp;
+    f32 sp24[3];
+
+    switch (arg0->unk70_10) {
+    case 1:
+        sp3C = func_800F54E4();
+        if (func_800F6A38(sp3C)) {
+            sp38 = func_800F5C94(sp3C);
+            sp34 = func_800F5D18(sp3C);
+            temp = func_800F64A4(sp3C, 2);
+            if (sp38 != 0xC && sp38 != 0xE &&
+                (sp34 != 0 || temp != 0) && func_800D9078(&arg0->unk58)) {
+                func_800F7D90(sp3C, 0x52, arg0->actorData, 1);
+                func_80101FDC(arg0, 2);
+                chhotwaterpoolbits_entrypoint_5(arg0, 1.0f);
+                arg0->unk58 = 1.0f;
+            }
+        } else {
+            func_800F5A00(sp3C, sp24);
+            sp24[1] = func_800F5628(sp3C);
+            if (func_800F55FC(sp3C) & 0x08000000) {
+                func_800EE7F8((f32 *)arg0->actorData, sp24);
+            }
+            arg0->unk58 = 0.04f;
+        }
+        break;
+    case 2:
+        if (func_800D9078(&arg0->unk58) &&
+            func_800F5578(func_800F54E4()) > 0) {
+            func_80101FDC(arg0, 1);
+            arg0->unk58 = 0.04f;
+        }
+        break;
+    }
+}
 
 void chhotwaterpoolbits_entrypoint_5(Actor *arg0, f32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
