@@ -526,7 +526,35 @@ void func_80802340_changlerboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80802430_changlerboss.s")
+s32 func_80802430_changlerboss(Actor *arg0) {
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA568(s16 *, s16);
+    void func_800BA7C4(void *, f32, f32);
+    void func_800BA7FC(void *, f32, f32);
+    void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800DC128(s32, s32);
+    extern s32 D_80803008_changlerboss;
+    f32 sp44[3];
+    s32 sp40;
+    f32 temp_f20;
+    s32 temp_v0_2;
+
+    if (arg0->unk7C_12) {
+        _subaddieskeleton_entrypoint_2(arg0->unk0, 0xA, sp44);
+        sp40 = func_800DC128(1, 3);
+        temp_v0_2 = func_800B53A4(sp40);
+        temp_f20 = arg0->scale * 1.3f;
+        func_800BABB8(temp_v0_2, sp44, 0, 1.0f, &D_80803008_changlerboss);
+        func_800BA568(temp_v0_2, (s16) (s32) (sp44[1] + 1000.0f));
+        func_800BA7C4(temp_v0_2, 0.16f * temp_f20, 0.3f * temp_f20);
+        func_800BA7FC(temp_v0_2, 0.45f * temp_f20, 0.6f * temp_f20);
+        func_800BA994(temp_v0_2, -75, (s16) (s32) (arg0->rotation[1] - 75.0f), 800, -35, (s32) (arg0->rotation[1] + 75.0f), 1000);
+        func_800BA22C(temp_v0_2, sp40);
+    }
+}
 
 /* extern */
 
