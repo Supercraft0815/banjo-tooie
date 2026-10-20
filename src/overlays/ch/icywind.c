@@ -17,7 +17,52 @@ void func_8080000C_chicywind(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/icywind/func_80800044_chicywind.s")
+void func_80800044_chicywind(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 func_800D0B68(s32, s32);
+    s32 func_800FFAB0(s32);
+    s32 func_800D9078(f32 *);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_80101FDC(Actor *, u32);
+    s32 func_8010C9B0(f32 *, s32);
+    void func_808001AC_chicywind(f32 *);
+    extern u32 D_80800348_chicywind[];
+    extern s32 D_80800358_chicywind[];
+    s32 active;
+    f32 sp30[3];
+
+    active = arg0->unk70_10 == 2;
+    if (active || (!active && arg0->unk5F)) {
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, active, D_80800348_chicywind);
+    }
+    if (func_800D0B68(0x21, 0)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_8010C9B0(arg0->position, 1000)) {
+                func_80101FDC(arg0, 2);
+                arg0->unk58 = func_800DC178(0.15f, 0.2f);
+            }
+            break;
+        case 2:
+            if (func_800D9078(&arg0->unk58)) {
+                func_800EE7F8(sp30, arg0->position);
+                func_800EF1B8(sp30, arg0->rotation[1], -200.0f);
+                func_800BBCB8(arg0->position, sp30, 1.0f, 1, D_80800358_chicywind);
+                arg0->unk58 = func_800DC178(0.15f, 0.2f);
+            }
+            func_808001AC_chicywind((f32 *)arg0);
+            if (!func_8010C9B0(arg0->position, 1800)) {
+                func_80101FDC(arg0, 1);
+            }
+            break;
+    }
+}
 
 void func_808001AC_chicywind(f32 *arg0) {
     f32 func_800EEAD4(f32 *, f32 *);
