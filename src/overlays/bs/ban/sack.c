@@ -410,7 +410,48 @@ void func_80801158_bsbansack(s32 arg0)
 
 void func_80801178_bsbansack(PlayerState *arg0) { *(u8 *)((u8 *)arg0 + 0x15C) = 0; func_8080101C_bsbansack(arg0, 1); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_8080119C_bsbansack.s")
+s32 func_8080119C_bsbansack(PlayerState *arg0) {
+    int _batimer_decrement(PlayerState *, s32);
+    f32 _batimer_get(PlayerState *, s32);
+    f32 func_80013970(f32);
+    s32 func_8008DF8C(PlayerState *, s32);
+    f32 func_80092BE8(PlayerState *);
+    void func_8009328C(PlayerState *, f32);
+    f32 func_800D8FF8(void);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 difference;
+    f32 phase;
+    f32 speed;
+    f32 delta;
+    f32 angle;
+
+    angle = func_80092BE8(arg0);
+    delta = func_800D8FF8();
+    _batimer_decrement(arg0, 0);
+    switch (*(u8 *)((u8 *)arg0 + 0x15C)) {
+    case 1:
+        speed = func_800F10B4(_batimer_get(arg0, 0), 0.0f, 1.2f, 700.0f, 1400.0f);
+        angle += speed * delta;
+        func_8009328C(arg0, angle);
+        if (func_8008DF8C(arg0, 1) != 0) {
+            *(f32 *)((u8 *)arg0 + 0x16C) = speed;
+            func_8080101C_bsbansack(arg0, 2);
+        }
+        return 0;
+    case 2:
+        phase = func_800F10B4(_batimer_get(arg0, 0), 0.0f, 0.5f, 1.0f, 0.0f) * 90.0f;
+        difference = *(f32 *)((u8 *)arg0 + 0x174) - *(f32 *)((u8 *)arg0 + 0x170);
+        angle = func_80013970(phase) * difference;
+        angle += *(f32 *)((u8 *)arg0 + 0x170);
+        func_8009328C(arg0, angle);
+        if (_batimer_get(arg0, 0) != 0.0f) {
+            return 0;
+        }
+        return 1;
+    default:
+        return 0;
+    }
+}
 
 void func_80801318_bsbansack(s32 arg0)
 {
