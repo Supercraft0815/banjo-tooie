@@ -85,7 +85,47 @@ s32 sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     return var_s2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/deflect/sudeflect_entrypoint_2.s")
+s32 sudeflect_entrypoint_2(f32 *arg0, f32 *arg1, s32 arg2) {
+    s32 *func_800BE3F8(u8 *);
+    s32 func_800F4D18(s32, f32 *, f32 *);
+    s32 func_800F6438(u32);
+    s32 func_80800BEC_sudeflect(f32 *, f32 *);
+    s32 func_80800D14_sudeflect(f32 *, f32 *);
+    f32 midpoint[3];
+    s32 j;
+    s32 i;
+    s32 result = 0;
+
+    for (j = 0; j != 3; j++) {
+        midpoint[j] = arg0[j] + (arg1[j] - arg0[j]) * 0.5f;
+    }
+    B_80801020_sudeflect.count = 0;
+    if (arg2 & 0x18) {
+        B_80801020_sudeflect.entries[0] = (s32)func_800BE3F8((u8 *)midpoint);
+    }
+    i = 0;
+    if (arg2 & 2) {
+        for (; i != 8; i++) {
+            if (func_800F6438(i) == 0) {
+                continue;
+            }
+            if (func_800F4D18(i, arg0, arg1) == 0) {
+                continue;
+            }
+            B_80801020_sudeflect.entries[B_80801020_sudeflect.count + 1] = i;
+            B_80801020_sudeflect.count++;
+            result |= 2;
+        }
+    }
+    if ((arg2 & 8) && func_80800BEC_sudeflect(arg0, arg1) != 0) {
+        result |= 8;
+    }
+    if ((arg2 & 0x10) && func_80800D14_sudeflect(arg0, arg1) != 0) {
+        result |= 0x10;
+    }
+    B_80801020_sudeflect.entries[0] = 0;
+    return result;
+}
 
 s32 sudeflect_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     s32 func_800F4E5C(s32, s32, s32, s32, s32);

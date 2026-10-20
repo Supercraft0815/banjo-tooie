@@ -198,7 +198,7 @@ void func_800F4CEC(s32 arg0,u32 arg1)
 
 /* extern */
 
-void func_800F4D18(s32 arg0, f32 *arg1, f32 *arg2) {
+s32 func_800F4D18(s32 arg0, f32 *arg1, f32 *arg2) {
     s32 func_8009F678(PlayerState *, f32 *, f32 *, f32);
     f32 func_800A3048(PlayerState *);
     PlayerState *sp1C;
