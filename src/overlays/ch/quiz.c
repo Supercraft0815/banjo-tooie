@@ -116,7 +116,59 @@ void func_80800298_chquiz(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_8080034C_chquiz.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808005C0_chquiz.s")
+s32 func_808005C0_chquiz(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _gcnewoption_entrypoint_25(s32, s32);
+    s32 _suquiz_entrypoint_19(s32);
+    s32 _suquiz_entrypoint_4();
+    void func_800C3FC0(s32, f32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_808008D4_chquiz(Actor *);
+    void func_80800BD4_chquiz(Actor *, s32);
+    s32 func_80800C00_chquiz(Actor *);
+    s32 func_80800E44_chquiz(u8 *);
+    void func_80801710_chquiz(void *);
+    void func_808040D4_chquiz(Actor *);
+    void func_80804110_chquiz(Actor *);
+    int func_8080414C_chquiz(void *);
+    s32 sp24;
+
+    sp24 = ((Actor *)func_80100094(arg0, 0))->pad94;
+    switch (arg2) {
+    case 4:
+        if (func_8080414C_chquiz(arg0) != 0) {
+            if (func_80800C00_chquiz(arg0) == arg1) {
+                func_800C3FC0(0x42B, 1.0f, 0x7D00);
+                return;
+            }
+            if (func_80800E44_chquiz(func_80100094(arg0, 0)) == arg1) {
+                func_808040D4_chquiz(arg0);
+                return;
+            }
+            func_80804110_chquiz(arg0);
+            func_80800BD4_chquiz(arg0, arg1);
+            return;
+        }
+    default:
+        return;
+    case 0:
+        func_80800218_chquiz(sp24, (s32)func_80100094(arg0, 0));
+        return;
+    case 9:
+        func_80801710_chquiz(func_80100094(arg0, 0));
+        if (_suquiz_entrypoint_4() != 2) {
+            _gcnewoption_entrypoint_25(sp24, 1);
+            if (((Actor *)func_80100094(arg0, 0))->pad98 == 1) {
+                _suquiz_entrypoint_19(3);
+                return;
+            }
+        }
+        break;
+    case 2:
+    case 3:
+        func_808008D4_chquiz(arg0);
+        break;
+    }
+}
 
 void func_80800728_chquiz(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
