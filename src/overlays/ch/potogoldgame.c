@@ -88,7 +88,61 @@ void func_808011DC_chpotogoldgame(Actor *arg0) {
     } while (var_s1 != 0xF0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80801244_chpotogoldgame.s")
+void func_80801244_chpotogoldgame(Actor *arg0)
+{
+  s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
+  s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+  Actor *_subaddielink_entrypoint_4(u8 *);
+  void func_800EE7F8(f32 *, f32 *);
+  void *func_80100094(Actor *, u32);
+  void func_808013BC_chpotogoldgame(Actor *, s32, s32, s32, s32, f32 *);
+  s32 func_808016E8_chpotogoldgame(f32 *, s32 *, s32 *, s32 *);
+  s32 i;
+  s32 count;
+  struct Entry
+  {
+    f32 position[3];
+    u8 link[8];
+    u8 active;
+    u8 pad[3];
+  };
+  u8 *actors[10];
+  struct Entry *data;
+  s32 x;
+  s32 y;
+  s32 z;
+  s32 j;
+  data = func_80100094(arg0, 1);
+  i = 0;
+  if (data->active != 0)
+  {
+    do
+    {
+      if ((_subaddielink_entrypoint_4(data[i].link) == NULL) && func_808016E8_chpotogoldgame(data[i].position, &x, &y, &z))
+      {
+        func_808013BC_chpotogoldgame(arg0, y, x, z, 1, data[i].position);
+      }
+      i++;
+    }
+    while ((i < 10) && (data[i].active != 0));
+  }
+  count = _subaddiefind_entrypoint_4(0x15F, actors, 10);
+  for (j = 0; j < count; j++)
+  {
+    func_800EE7F8(data[j].position, ((Actor *) actors[j])->position);
+    if (j)
+    {
+    }
+    _subaddielink_entrypoint_1(data[j].link, ((Actor *) actors[j])->unk0);
+    data[j].active = 1;
+  }
+
+  for (; j < 10; j++)
+  {
+    data[j].active = 0;
+  }
+
+}
 
 void func_808013BC_chpotogoldgame(Actor *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 *arg5) {
     s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
