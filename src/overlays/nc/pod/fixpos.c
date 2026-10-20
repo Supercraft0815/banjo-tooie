@@ -73,7 +73,63 @@ void ncpodfixpos_entrypoint_5(s16 *arg0, s32 arg1) {
     arg0[22] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/fixpos/func_808001A8_ncpodfixpos.s")
+/* extern */
+
+s32 func_808001A8_ncpodfixpos(u8 *arg0) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    f32 func_800F5BC4(s32, f32 *);
+    void func_80103DFC(Actor *, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 sp54[3];
+    f32 sp44[4];
+    f32 sp38[3];
+    f32 sp2C[3];
+
+    if ((*(s16 *)(arg0 + 0x2C)) & 1) {
+        if (func_80800000_ncpodfixpos((*(u8 **)((s8 *)(arg0) + (0x18))), (*(s32 *)((s8 *)(arg0) + (0x1C)))) != 0) {
+            func_80103DFC(func_80106790((*(Unk80132ED0 **)((s8 *)(arg0) + (0x18)))), sp54);
+            if ((*(s16 *)((s8 *)(arg0) + (0x2C))) & 0x400) {
+                if ((*(u8 *)((s8 *)(arg0) + (0x42))) != 0) {
+                    func_800EFB24(sp44, sp54, (f32 *)(arg0 + 0x20));
+                    func_800EF334(sp44, 0.3f);
+                    func_800EF04C((f32 *)(arg0 + 0x20), sp44);
+                    return 1;
+                }
+            }
+            func_800EE7F8((f32 *)(arg0 + 0x20), sp54);
+            (*(u8 *)((s8 *)(arg0) + (0x42))) = 1U;
+            goto block_6;
+        }
+block_6:
+        return 1;
+    }
+    if ((*(s16 *)(arg0 + 0x2C)) & 0x40) {
+        func_800F5BC4(func_800F54E4(), sp38);
+        func_800F5A00(func_800F54E4(), sp54);
+        func_800EF04C(sp54, sp38);
+        if ((*(s16 *)((s8 *)(arg0) + (0x2C))) & 0x400) {
+            if ((*(u8 *)((s8 *)(arg0) + (0x42))) != 0) {
+                func_800EFB24(sp2C, sp54, (f32 *)(arg0 + 0x20));
+                func_800EF334(sp2C, 0.3f);
+                func_800EF04C((f32 *)(arg0 + 0x20), sp2C);
+                return 1;
+            }
+        }
+        (*(u8 *)((s8 *)(arg0) + (0x42))) = 1U;
+        func_800EE7F8((f32 *)(arg0 + 0x20), sp54);
+        return 1;
+    }
+    if ((*(s16 *)(arg0 + 0x2C)) & 0x80) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
 
 /* extern */
 
