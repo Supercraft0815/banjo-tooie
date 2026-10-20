@@ -380,7 +380,39 @@ f32 func_800CAF00(f32 *arg0, f32 arg1) {
     return func_800136E4(arg0[7] + arg1 + 90.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CAF34.s")
+s32 func_800CAF34(s32 arg0) {
+    void func_80019224(f32 *, f32 *);
+    void func_80019480(f32 *, f32, f32, f32);
+    void func_800D93A0(f32[4], f32[3]);
+    void func_800D9624(f32 *, f32 *);
+    void func_800D965C(f32[4], f32[16]);
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void mlMtxSet(void *);
+    f32 sp40[4];
+    f32 sp30[4];
+
+    func_800D93A0(sp40, (f32 *)(arg0 + 0x18));
+    func_800D965C(sp40, (f32 *)(arg0 + 0x64));
+    func_800D9624(sp30, sp40);
+    func_800D965C(sp30, (f32 *)(arg0 + 0xA4));
+    mlMtxSet((f32 *)(arg0 + 0x64));
+    func_800EFA4C((f32 *)(arg0 + 0xC), 0.0f, 0.0f, -1.0f);
+    func_80019224((f32 *)(arg0 + 0xC), (f32 *)(arg0 + 0xC));
+    func_80019224((f32 *)(arg0 + 0x24), (f32 *)(arg0 + 0xF8));
+    func_80019480((f32 *)(arg0 + 0x34), -*(f32 *)(arg0 + 0xF8), *(f32 *)(arg0 + 0xFC), *(f32 *)(arg0 + 0x100));
+    func_80019224((f32 *)(arg0 + 0x44), (f32 *)(arg0 + 0x104));
+    func_80019480((f32 *)(arg0 + 0x54), *(f32 *)(arg0 + 0x104), -*(f32 *)(arg0 + 0x108), *(f32 *)(arg0 + 0x10C));
+    *(f32 *)(arg0 + 0x30) = -func_800EEAA4((f32 *)arg0, (f32 *)(arg0 + 0x24));
+    *(f32 *)(arg0 + 0x40) = -func_800EEAA4((f32 *)arg0, (f32 *)(arg0 + 0x34));
+    *(f32 *)(arg0 + 0x50) = -func_800EEAA4((f32 *)arg0, (f32 *)(arg0 + 0x44));
+    *(f32 *)(arg0 + 0x60) = -func_800EEAA4((f32 *)arg0, (f32 *)(arg0 + 0x54));
+    func_80019480((f32 *)(arg0 + 0x128), -*(f32 *)(arg0 + 0x11C), -*(f32 *)(arg0 + 0x120), *(f32 *)(arg0 + 0x124));
+    func_80019224((f32 *)(arg0 + 0x134), (f32 *)(arg0 + 0x11C));
+    func_80019224((f32 *)(arg0 + 0x140), (f32 *)(arg0 + 0x110));
+    func_80019480((f32 *)(arg0 + 0x14C), -*(f32 *)(arg0 + 0x11C), *(f32 *)(arg0 + 0x120), *(f32 *)(arg0 + 0x124));
+    func_80019480((f32 *)(arg0 + 0x158), *(f32 *)(arg0 + 0x11C), -*(f32 *)(arg0 + 0x120), *(f32 *)(arg0 + 0x124));
+}
 
 void func_800CB0E8(u8 *arg0, f32 *arg1, s32 arg2) { void func_800EE7F8(f32 *, f32 *); func_800EE7F8(arg1, (f32 *)(arg0 + 0x128 + (arg2 * 12))); }
 
