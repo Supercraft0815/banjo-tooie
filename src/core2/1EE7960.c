@@ -2,7 +2,46 @@
 
 extern s32 D_80137074;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE7960/func_8010E070.s")
+s32 func_8010E070(void) {
+    void func_800192FC(f32 *, f32 *);
+    s32 func_800B3784(u8 *);
+    void func_800B37A4(u8 *, s32 *, s32 *);
+    void func_800B37B8(s32, s32 *);
+    void func_800EF368(f32 *, f32);
+    extern s32 D_80137060;
+    extern s32 D_80137064;
+    extern s32 D_80137078;
+    extern s32 D_8013707C;
+    f32 *p;
+    f32 sum;
+    f32 scale;
+
+    *((u8 *)&D_80137060 + 0x11) = func_800B3784(*(u8 **)((u8 *)&D_80137060 + 0x14));
+    func_800B37A4(*(u8 **)((u8 *)&D_80137060 + 0x14), &D_80137078, &D_8013707C);
+    if (*((u8 *)&D_80137060 + 0x10) == 0) {
+        for (p = *(f32 **)((u8 *)&D_80137060 + 0x18);
+             p < *(f32 **)((u8 *)&D_80137060 + 0x1C); p += 7) {
+            func_800192FC(p, p);
+            func_800EF368(p, 256.0f);
+        }
+    }
+    if (*((u8 *)&D_80137060 + 0x11) >= 2) {
+        sum = 0.0f;
+        for (p = *(f32 **)((u8 *)&D_80137060 + 0x18);
+             p < *(f32 **)((u8 *)&D_80137060 + 0x1C); p += 7) {
+            sum += p[6];
+        }
+        sum = 1.0f / sum;
+        for (p = *(f32 **)((u8 *)&D_80137060 + 0x18);
+             p < *(f32 **)((u8 *)&D_80137060 + 0x1C); p += 7) {
+            scale = 1.0f - p[6] * sum;
+            ((s32 *)p)[3] *= scale;
+            ((s32 *)p)[4] *= scale;
+            ((s32 *)p)[5] *= scale;
+        }
+    }
+    func_800B37B8(*(s32 *)((u8 *)&D_80137060 + 0x14), &D_80137064);
+}
 
 void func_8010E204(void *arg0, s32 arg1, f32 arg2) {
     void func_80019224(f32 *, f32 *);
