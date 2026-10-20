@@ -11,7 +11,7 @@ OSThread *chjiggygamenew_entrypoint_0(void)
 
 /* extern */
 
-s32 func_8080000C_chjiggygamenew(void) {
+s32 func_8080000C_chjiggygamenew() {
     Actor *func_80106790();
     return (*(s32 *)((s8 *)(func_80106790()) + (0x20)));
 }
@@ -678,7 +678,48 @@ OSThread *chjiggygamenew_entrypoint_4(void)
     return (OSThread *) D_80803EBC_chjiggygamenew;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_8080377C_chjiggygamenew.s")
+void func_8080377C_chjiggygamenew(Actor *arg0) {
+    void func_800EDE54(void *, s32[4], s32[4], f32);
+    void *func_8010649C(void *, s32);
+    extern s32 D_80803F04_chjiggygamenew[4];
+    extern s32 D_80803F14_chjiggygamenew[4];
+    s32 i;
+    s32 selected;
+    u8 *data;
+    u8 *entry;
+    u8 previous;
+    void *part;
+
+    data = func_80100094(arg0, 0U);
+    if (arg0->unk7C_12 && ((s16 *)&arg0->pad90)[0] != 0) {
+        if (!arg0->unk64_20) {
+            for (i = 0; i != 20; i++) {
+                func_800EDE54(func_8010649C(arg0, i + 0x190), D_80803F14_chjiggygamenew, D_80803F04_chjiggygamenew, 0.0f);
+            }
+            arg0->unk64_20 = 1;
+        }
+        selected = func_8080000C_chjiggygamenew(arg0->unk3C) - 0x15;
+        for (i = 0, entry = data; i != 20; i++, entry++) {
+            previous = *entry;
+            if (i == selected) {
+                *entry = 1;
+            } else {
+                *entry = 0;
+            }
+            if (previous != *entry) {
+                part = func_8010649C(arg0, i + 0x190);
+                switch (*entry) {
+                    case 1:
+                        func_800EDE54(part, D_80803F04_chjiggygamenew, D_80803F14_chjiggygamenew, 0.05f);
+                        break;
+                    case 0:
+                        func_800EDE54(part, D_80803F14_chjiggygamenew, D_80803F04_chjiggygamenew, 0.2f);
+                        break;
+                }
+            }
+        }
+    }
+}
 
 void func_80803928_chjiggygamenew(Unk80132ED0 *arg0, Gfx **arg1) {
     s32 func_800E81D0(void);
