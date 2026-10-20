@@ -6,6 +6,7 @@ enum asset_e;
 void func_80809198_bsfirstp(void *arg0);
 void func_80809250_bsfirstp(void *arg0);
 s32 func_8009E674(struct player_state_s *, s32);
+s32 func_8009E6EC(struct player_state_s *);
 f32 func_800D9004(void);
 s32 func_800F1574(f32 *, f32);
 extern f32 D_8080A660_bsfirstp[][5];
@@ -2382,7 +2383,45 @@ void func_80805380_bsfirstp(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080549C_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80805644_bsfirstp.s")
+f32 func_80805644_bsfirstp(f32 *arg0, f32 arg1, f32 arg2, f32 *arg3, f32 arg4) {
+    f32 func_80013A5C(f32);
+    f32 func_800137D4(f32);
+    f32 func_8001395C(f32);
+    f32 func_80013788();
+    f32 start;
+    f32 remaining;
+    f32 scale;
+    f32 limit;
+    f32 pad[3];
+    f32 end;
+    f32 area;
+    f32 sine;
+    scale = arg4 * 0.6366198063f;
+    remaining = *arg3 / scale;
+    end = *arg0 / arg2;
+    start = func_80013A5C(1.0f - end);
+    limit = arg1 / arg2;
+    end = func_80013A5C(1.0f - limit);
+    if (remaining < end - start) {
+        end = start + remaining;
+    }
+    remaining -= end - start;
+    if (remaining < 0.000001f) {
+        remaining = 0.0f;
+    }
+    sine = func_800137D4(end);
+    area = (end - sine) - (start - func_8001395C(start));
+    if (area < 0.000001f) {
+        area = 0.0f;
+    }
+    end = 1.0f - func_80013788();
+    if (limit - 0.000001f < end) {
+        end = limit;
+    }
+    *arg3 = scale * remaining;
+    *arg0 = arg2 * end;
+    return scale * arg2 * area;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808057C8_bsfirstp.s")
 
