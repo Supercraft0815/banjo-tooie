@@ -310,7 +310,61 @@ s32 bsbeemain_entrypoint_8(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80800C28_bsbeemain.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80800E0C_bsbeemain.s")
+void func_80800E0C_bsbeemain(struct player_state_s *arg0) {
+    s32 _bsbee_entrypoint_2();
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void baphysics_set_vertical_velocity(struct player_state_s *, f32);
+    void func_8009D3A8(struct player_state_s *, s32);
+    void baanim_setEnd(struct player_state_s *, f32);
+    s32 func_8009DF18(s32, s32, f32, s32);
+    int player_isStable(struct player_state_s *);
+    f32 func_800F0E00(f32, f32);
+    s32 _batimer_decrement(void *, s32);
+    s32 func_80101180(s32, s32, s32);
+    void _basudie_entrypoint_0(struct player_state_s *);
+    s32 bs_setState(s32, s32);
+    f32 velocity;
+
+    _bsbee_entrypoint_2();
+    baphysics_set_target_horizontal_velocity(arg0, *(f32 *)((s8 *)arg0 + 0x16C));
+    func_8009D3A8(arg0, 0);
+    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+        case 0:
+            if (player_isStable(arg0)) {
+                baanim_setEnd(arg0, 0.7453f);
+                func_8009DF18(arg0, 0x417, 0.8f, 0x4650);
+                func_8009DF18(arg0, 0x428, 1.8f, 0x4650);
+                baphysics_set_vertical_velocity(arg0, 400.0f);
+                *(s32 *)((s8 *)arg0 + 0x15C) = 1;
+            }
+            break;
+        case 1:
+            if (player_isStable(arg0)) {
+                baanim_setEnd(arg0, 1.0f);
+                func_8009DF18(arg0, 0x417, 0.8f, 0x4650);
+                func_8009DF18(arg0, 0x428, 1.8f, 0x4650);
+                *(s32 *)((s8 *)arg0 + 0x15C) = 2;
+            }
+            break;
+        case 2:
+            *(s32 *)((s8 *)arg0 + 0x15C) = 3;
+            break;
+        case 3:
+            velocity = *(f32 *)((s8 *)arg0 + 0x16C);
+            if (velocity > 0.0f) {
+                *(f32 *)((s8 *)arg0 + 0x16C) = func_800F0E00(0.0f, velocity - 10.0f);
+            }
+            break;
+    }
+    if (_batimer_decrement(arg0, 0)) {
+        if (*(s32 *)((s8 *)arg0 + 0x160)) {
+            func_80101180(0x2C4, 0x71, *(s32 *)((s8 *)arg0 + 0x184));
+        } else {
+            _basudie_entrypoint_0(arg0);
+        }
+    }
+    bs_setState(arg0, 0);
+}
 
 void func_80800FB8_bsbeemain(s32 arg0) { baphysics_reset_gravity(); func_800A4E30(arg0); func_800951B4(arg0); _bsbee_entrypoint_0(arg0); }
 
