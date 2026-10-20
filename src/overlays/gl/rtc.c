@@ -1,6 +1,41 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/rtc/glrtc_entrypoint_0.s")
+void glrtc_entrypoint_0(void *arg0, void *arg1) {
+    void func_80800170_glrtc(u8 **arg0, u16 *arg1, s32 arg2);
+    void func_8080031C_glrtc(u8 **arg0, u8 *arg1, s32 arg2);
+    void func_80800474_glrtc(u8 **arg0, u8 *arg1, s32 arg2);
+    s32 pad0;
+    u8 *src;
+    s32 pad[3];
+    s32 stride;
+    s32 x;
+    s32 y;
+    struct {
+        u8 format;
+        u8 width;
+        u8 height;
+    } *header;
+
+    header = arg0;
+    src = (u8 *)arg0 + 3;
+    stride = header->width;
+    stride *= 4;
+    for (y = 0; y < header->height; y++) {
+        for (x = 0; x < header->width; x++) {
+            switch (((u8 *)arg0)[0]) {
+                case 0:
+                    func_80800170_glrtc(&src, (u16 *)arg1 + y * 4 * stride + x * 4, stride);
+                    break;
+                case 1:
+                    func_8080031C_glrtc(&src, (u8 *)((u32 *)arg1 + y * 4 * stride + x * 4), stride);
+                    break;
+                case 2:
+                    func_80800474_glrtc(&src, (u8 *)((u32 *)arg1 + y * 4 * stride + x * 4), stride);
+                    break;
+            }
+        }
+    }
+}
 
 void func_80800170_glrtc(u8 **arg0, u16 *arg1, s32 arg2) {
     void func_808002C8_glrtc(u16 *arg0, u16 arg1);
