@@ -393,7 +393,64 @@ void func_80800C38_bsbfly(PlayerState *arg0) {
 
 void func_80800D50_bsbfly(PlayerState *arg0) { func_80800128_bsbfly(arg0); (*(s32 *)((s8 *)(arg0) + 0x160)) = 0; func_80800A24_bsbfly(arg0, 1); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800D80_bsbfly.s")
+s32 func_80800D80_bsbfly(PlayerState *arg0, s32 arg1) {
+    int baflag_isTrue(PlayerState *, s32);
+    void func_800963C0(PlayerState *, f32 *);
+    s32 func_80096434(PlayerState *);
+    void func_80096440(PlayerState *, f32 *);
+    s32 func_8009650C(PlayerState *);
+    s32 func_80096628(PlayerState *);
+    s32 func_800A1718(PlayerState *);
+    void func_800A17A8(PlayerState *, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EF2A0(f32 *);
+    f32 mlAbsF(f32);
+    s32 player_inWater(PlayerState *);
+    int player_isStable(PlayerState *);
+    f32 sp44;
+    f32 sp38[3];
+    f32 sp2C[3];
+    s32 sp28;
+    s32 sp24;
+
+    if (player_inWater(arg0)) {
+        arg1 = 0x4C;
+    }
+    sp24 = player_isStable(arg0);
+    if (!func_8009650C(arg0) && !sp24) {
+        return arg1;
+    }
+    if (sp24) {
+        func_800963C0(arg0, sp38);
+        sp28 = func_80096628(arg0);
+    } else {
+        func_80096440(arg0, sp38);
+        sp28 = func_80096434(arg0);
+    }
+    func_800EE7F8(sp2C, (f32 *)arg0->kazfly + 4);
+    func_800EF2A0(sp2C);
+    sp44 = mlAbsF(func_800EEAA4(sp38, sp2C));
+    if (baflag_isTrue(arg0, 8) || (sp28 & 0x80)) {
+        func_808009D0_bsbfly(arg0);
+        arg1 = 0x18;
+    } else if (sp44 > 0.4f) {
+        if (sp38[1] < 0.65f) {
+            func_808009D0_bsbfly(arg0);
+            func_800A17A8(arg0, -1);
+            if (func_800A1718(arg0)) {
+                arg1 = 0x59;
+            } else {
+                arg1 = 0x41;
+            }
+        } else {
+            arg1 = 0x58;
+        }
+    } else if (sp24) {
+        arg1 = 0x58;
+    }
+    return arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800F10_bsbfly.s")
 
