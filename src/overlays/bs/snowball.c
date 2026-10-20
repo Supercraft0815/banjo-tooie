@@ -351,7 +351,48 @@ void func_80800930_bssnowball(PlayerState *arg0) {
     *(f32 *)((u8 *)arg0 + 0x174) = 1.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/snowball/func_808009B0_bssnowball.s")
+void func_808009B0_bssnowball(PlayerState *arg0) {
+    f32 _basnowball_entrypoint_3();
+    s32 bakey_pressed(s32, s32);
+    s32 bastick_getZone(PlayerState *);
+    s32 bs_setState(s32, s32);
+    int func_8008DD04(PlayerState *);
+    f32 func_8009BB5C(void *);
+    void func_8009D3A8(PlayerState *, s32);
+    void func_8009DBB0(PlayerState *, s32, f32, f32, s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 sp2C;
+    f32 sp28;
+    f32 temp;
+    f32 pitch;
+
+    sp2C = 0;
+    func_8009D3A8(arg0, 0);
+    func_80800064_bssnowball(arg0, 1);
+    sp28 = func_80800000_bssnowball((s32)arg0);
+    if (sp28 > 0.67f && *(f32 *)((u8 *)arg0 + 0x174) < 0.67f) {
+        temp = func_800F10B4(func_8009BB5C(arg0), 0.0f, 700.0f, 0.9f, 1.1f);
+        if (*(u8 *)((u8 *)arg0 + 0x164)) {
+            pitch = temp - 0.1f;
+        } else {
+            pitch = temp + 0.1f;
+        }
+        func_8009DBB0(arg0, 0x5F2, pitch - 0.03f, pitch + 0.03f, 0x6D60);
+        *(u8 *)((u8 *)arg0 + 0x164) ^= 1;
+    }
+    *(f32 *)((u8 *)arg0 + 0x174) = sp28;
+    if (bastick_getZone(arg0) == 0 && _basnowball_entrypoint_3(arg0) == 0.0f) {
+        sp2C = 0x17D;
+    }
+    if (func_8008DD04(arg0)) {
+        sp2C = 0x180;
+    }
+    if (bakey_pressed(arg0, 8)) {
+        sp2C = 0x17F;
+    }
+    bssnowball_entrypoint_2(arg0);
+    bs_setState((s32)arg0, sp2C);
+}
 
 s32 bssnowball_entrypoint_7(s32 arg0) {
     extern s32 D_80801094_bssnowball[];
