@@ -2,6 +2,7 @@
 
 /* extern */
 void func_80101FDC(Actor *, u32);
+void *func_80100094(Actor *, u32);
 
 void func_80800000_chswampplatform(Actor *arg0) {
     typedef struct {
@@ -163,7 +164,54 @@ void func_808000BC_chswampplatform(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swampplatform/func_8080061C_chswampplatform.s")
+void func_8080061C_chswampplatform(Actor *arg0, void *arg1) {
+    typedef struct {
+        f32 position[3];
+        u32 unk24;
+        f32 scale[3];
+        f32 unk34;
+    } PlatformData;
+    s32 _subaddiefind_entrypoint_4(s32, Actor **, s32);
+    s32 _sumumbofx_entrypoint_8(u8 *, s32);
+    s32 _sumumbofx_entrypoint_9(u8 *, s32);
+    s32 func_800DA298(s32);
+    void func_800DF500(f32, f32, f32);
+    void func_80101870(Actor *, void *);
+    f32 func_80103EF4(Actor *);
+    Actor *actors[5];
+    s32 count;
+    s32 i;
+    Actor **actor;
+
+    if (func_800DA298(0x9DE)) {
+        if (func_80100094(arg0, 1)) {
+            count = _subaddiefind_entrypoint_4(0x28E, actors, 5);
+            _sumumbofx_entrypoint_9(func_80100094(arg0, 1), (s32)arg1);
+            i = 0;
+            if (count > 0) {
+                actor = actors;
+                do {
+                    (*actor)->position[1] = ((PlatformData *)(*actor)->actorData)->position[1] - func_80103EF4(*actor) * 0.5f;
+                    if (((PlatformData *)arg0->actorData)->scale[0] != 0.0f &&
+                        ((PlatformData *)arg0->actorData)->scale[1] != 0.0f &&
+                        ((PlatformData *)arg0->actorData)->scale[2] != 0.0f) {
+                        func_800DF500(((PlatformData *)arg0->actorData)->scale[0],
+                                     ((PlatformData *)arg0->actorData)->scale[1],
+                                     ((PlatformData *)arg0->actorData)->scale[2]);
+                    }
+                    (*actor)->scale = arg0->scale;
+                    func_80101870(*actor, arg1);
+                    i++;
+                    actor++;
+                } while (i != count);
+            }
+            _sumumbofx_entrypoint_8(func_80100094(arg0, 1), (s32)arg1);
+        }
+    } else {
+        arg0->position[1] = ((PlatformData *)arg0->actorData)->position[1] - func_80103EF4(arg0) * 0.5f;
+        func_80101870(arg0, arg1);
+    }
+}
 
 /* extern */
 
