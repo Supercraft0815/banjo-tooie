@@ -130,6 +130,8 @@ OSThread *chlavagargoyle_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/gargoyle/func_808006EC_chlavagargoyle.s")
 
+void func_800C8CB8(s32, f32 *);
+
 void func_8080099C_chlavagargoyle(Actor *arg0, s32 arg1) {
     struct Color { s32 values[3]; };
     extern struct Color D_80800E44_chlavagargoyle;
@@ -144,7 +146,48 @@ void func_8080099C_chlavagargoyle(Actor *arg0, s32 arg1) {
     func_800C8E84(arg0->unk14, sp18.values);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/gargoyle/func_80800A2C_chlavagargoyle.s")
+s32 func_80800A2C_chlavagargoyle(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8D4C(s32, f32 *);
+    void func_800C8F64(s32, s32);
+    void func_800C8FE0(s32, s32);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    f32 func_80103EAC(Actor *);
+    void func_80800B8C_chlavagargoyle(Actor *, f32 *, s32);
+    f32 bounds[2];
+
+    switch (arg1) {
+        case 0x3E: {
+            func_800F5A00(func_800F54E4(), (f32 *)arg0->actorData);
+            func_80800B8C_chlavagargoyle(arg0, arg0->position, (s32)arg0->actorData);
+            return 1;
+        }
+        case 0x40:
+            func_80800B8C_chlavagargoyle(arg0, arg0->position, (s32)arg0->actorData);
+            return 1;
+        case 0x95: {
+            arg0->scale = 0.5f;
+            arg0->unk54 = func_800DC178(180.0f, 360.0f);
+            arg0->unk50 = func_800DC178(180.0f, 360.0f);
+            func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+            ((f32 *)arg0->actorData)[3] = 0.0f;
+            bounds[0] = func_80103EAC(arg0) * 10.0f;
+            bounds[1] = func_80103EAC(arg0) * 15.0f;
+            arg0->unk14 = func_800C8A98();
+            func_800C8F64(arg0->unk14, 3);
+            func_800C8D4C(arg0->unk14, bounds);
+            func_800C8FE0(arg0->unk14, 1);
+            func_800C8CB8(arg0->unk14, arg0->position);
+            return 1;
+        }
+        default:
+            return 0;
+    }
+}
 
 void func_80800B8C_chlavagargoyle(Actor *arg0, f32 *arg1, s32 arg2) {
     s32 _chlightfader_entrypoint_1(s32, f32, s32);
