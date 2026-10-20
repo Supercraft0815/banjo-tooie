@@ -219,7 +219,47 @@ void func_80800818_chchuffy(u8 *arg0, u32 arg1, s32 arg2) {
     ((struct Flags *)arg0)->flag = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80800864_chchuffy.s")
+s32 func_80800864_chchuffy(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
+    void _gcsectionskip_entrypoint_1(void *, s32, s32, u8, s32);
+    s32 func_80090178(AllowedTransformation);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *func_801084B0(s32, Actor **);
+    Actor *other;
+
+    switch (arg1) {
+    case 0x3D:
+        other = func_801084B0(0x316, &arg0);
+        arg0->unk3C = other->unk0;
+        other->unk3C = arg0->unk0;
+        break;
+    case 0x3E:
+        if (arg0->unk3C != NULL) {
+            other = func_80106790(arg0->unk3C);
+            if ((arg2->unk24 >> 22) == 0) {
+                switch ((arg0->unk0->unk18 << 11) >> 28) {
+                case 1:
+                    other->unk64_20 = 1;
+                    if (func_80090178(1)) {
+                        _gcsectionskip_entrypoint_1(NULL, 0, 0, 1, 0);
+                    } else if (!arg0->unk74_30) {
+                        func_80800818_chchuffy((u8 *)arg0, 0x121E, 0);
+                    }
+                    break;
+                case 2:
+                    other->unk64_19 = 1;
+                    if (func_80090178(-1)) {
+                        _gcsectionskip_entrypoint_1(NULL, 0, 0, 2, 0);
+                    }
+                    break;
+                }
+            }
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_808009CC_chchuffy.s")
 
