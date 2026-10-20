@@ -199,7 +199,47 @@ void func_80800680_chfriendlystonehead(s32 *arg0, s32 arg1) {
     _capod_entrypoint_13(*arg0, 0, arg1, 0x2010);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_808006C4_chfriendlystonehead.s")
+void func_808006C4_chfriendlystonehead(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    s32 func_800C01A8(s32, s32);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    s32 func_800DA544(s32);
+
+    switch (arg1) {
+        case 0xF1E:
+            func_800DA544(0x5E);
+            func_80800680_chfriendlystonehead((s32 *)arg0, 8);
+            break;
+        case 0xF1F:
+            func_800DA544(0x5F);
+            func_80800680_chfriendlystonehead((s32 *)arg0, 0xA);
+            break;
+        case 0xF19:
+            func_800DA544(0x576);
+            func_80800680_chfriendlystonehead((s32 *)arg0, 6);
+            break;
+        case 0xF20:
+            func_800D1000(3, 1, NULL, 1, 0);
+            break;
+        case 0x127C:
+            func_800DA544(0x368);
+            func_80800680_chfriendlystonehead((s32 *)arg0, 2);
+            break;
+        case 0x127D:
+            func_800DA544(0x369);
+            func_80800680_chfriendlystonehead((s32 *)arg0, 4);
+            break;
+        case 0x1277:
+            func_800DA544(0x577);
+            func_80800680_chfriendlystonehead((s32 *)arg0, 0);
+            break;
+        case 0x127E:
+            func_800D1000(0x44, 1, NULL, 1, 0);
+            func_800C01A8(0x64, 0);
+            _capod_entrypoint_13(arg0->unk0, NULL, 6, 0x2010);
+            break;
+    }
+}
 
 /* extern */
 
