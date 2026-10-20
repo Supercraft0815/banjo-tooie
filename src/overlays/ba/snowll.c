@@ -172,7 +172,60 @@ void basnowball_entrypoint_9(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 272) + 12) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/basnowball_entrypoint_10.s")
+void basnowball_entrypoint_10(void *arg0)
+{
+  void func_8009C128(struct player_state_s *, f32 [3]);
+  s32 func_800B5BE4(s32);
+  void func_800BA22C(s32, s32);
+  void func_800BA75C(s32, f32 [3]);
+  void func_800BA77C(s32, s16, s16, s16);
+  void func_800BA7C4(void *, f32, f32);
+  void func_800BA7FC(void *, f32, f32);
+  void func_800BA8F8(void *, f32, f32);
+  s32 func_800BABB8(s32, f32 [3], f32 [3], f32, s32 []);
+  void func_800EE7F8(f32 *, f32 *);
+  extern s32 D_80801098_basnowball[];
+  typedef struct 
+  {
+    f32 x;
+    f32 z;
+    f32 rotation;
+  } SnowballParticle;
+  extern SnowballParticle D_808010C0_basnowball[];
+  extern SnowballParticle D_808010F0_basnowball[];
+  f32 startScale;
+  f32 endScale;
+  f32 lifetime;
+  f32 scale;
+  f32 position[3];
+  f32 offset[3];
+  s32 i;
+  s32 emitter;
+  s32 particle;
+  emitter = func_800B5BE4(7);
+  scale = *((f32 *) (((u8 *) (*((void **) (((u8 *) arg0) + 0x110)))) + 0x1C));
+  func_8009C128(arg0, position);
+  position[1] += 50.0f * scale;
+  particle = func_800BABB8(emitter, position, 0, 1.0f, D_80801098_basnowball);
+  startScale = 0.5f * scale;
+  func_800BA7C4((void *) particle, startScale, startScale);
+  endScale = 1.1f * scale;
+  func_800BA7FC((void *) particle, endScale, endScale);
+  lifetime = (0.175f * scale) + 0.6f;
+  func_800BA8F8((void *) particle, lifetime, lifetime);
+  i = 0;
+  do
+  {
+    func_800EE7F8(offset, position);
+    offset[0] += D_808010C0_basnowball[i].x * scale;
+    offset[2] += D_808010C0_basnowball[i].z * scale;
+    func_800BA75C(particle, offset);
+    func_800BA77C(particle, 0, 0, (s16) ((s32) D_808010C0_basnowball[i].rotation));
+    func_800BA22C(particle, 1);
+    i++;
+  }
+  while (D_808010F0_basnowball != &D_808010C0_basnowball[i]);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/func_808007CC_basnowball.s")
 
