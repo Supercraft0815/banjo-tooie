@@ -259,7 +259,55 @@ void func_800AE290(s16 arg0, u8 *arg1, void *arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E875C0/func_800AE40C.s")
+void func_800AE40C(s16 arg0, u8 *arg1, void *arg2) {
+    void func_800DFB7C();
+    void *func_8001B710(s16, s32);
+    void func_80019BB8(f32 *);
+    s32 func_80019CD4(void);
+    int func_800D9C4C(f32[4]);
+    void func_800D9CE8(f32[4], f32[9]);
+    void mlMtxGet(void *);
+    void mlMtxSet(void *);
+    void mlMtxScale_xyz(f32, f32, f32);
+    u8 *data;
+    u8 *bone;
+    f32 sp84[9];
+    f32 sp74[4];
+    f32 sp68[3];
+    f32 sp5C[3];
+    f32 (*matrix)[4][4];
+    u8 *allocation;
+    f32 (*end)[4][4];
+
+    data = func_800AE080(arg0);
+    allocation = data;
+    if (*(s32 *)(data + 4) < (*(s16 *)(arg1 + 4))) {
+        data = func_8001B710(arg0, ((*(s16 *)(arg1 + 4)) << 6) + 0x50);
+        allocation = data;
+        *(s32 *)(data + 4) = *(s16 *)(arg1 + 4);
+    }
+    *(s32 *)data = (*(s16 *)(arg1 + 4));
+    end = (f32 (*)[4][4])(data + 0x50) + *(s32 *)data;
+    matrix = (f32 (*)[4][4])(data + 0x50);
+    bone = arg1 + 8;
+    while (matrix < end) {
+        func_800DFB7C(arg2, *(s16 *)(bone + 0xC), sp74, sp68, sp5C);
+        data = allocation + 0x50;
+        if (*(s16 *)(bone + 0xE) == -1) {
+            func_80019CD4();
+        } else if ((s32)(matrix - (f32 (*)[4][4])data) != *(s16 *)(bone + 0xE) + 1) {
+            mlMtxSet((f32 (*)[4][4])data + *(s16 *)(bone + 0xE));
+        }
+        if (!func_800D9C4C(sp74)) {
+            func_800D9CE8(sp74, sp84);
+            func_80019BB8(sp84);
+        }
+        mlMtxScale_xyz(sp68[0], sp68[1], sp68[2]);
+        mlMtxGet(matrix);
+        matrix++;
+        bone += 0x10;
+    }
+}
 
 /* extern */
 
