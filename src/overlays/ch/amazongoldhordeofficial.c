@@ -172,7 +172,40 @@ s32 func_808006F8_chamazongoldhordeofficial(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800A84_chamazongoldhordeofficial.s")
+void func_80800A84_chamazongoldhordeofficial(Actor *arg0) {
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    f32 func_800136E4(f32);
+    void func_800BA22C(s32, s32);
+    void func_800BA670(s32, s32);
+    void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_80101E14(Actor *, f32);
+    extern s16 D_808012D0_chamazongoldhordeofficial[];
+    extern f32 D_808012DC_chamazongoldhordeofficial[];
+    extern s16 D_808012F4_chamazongoldhordeofficial[];
+    extern s32 D_808012FC_chamazongoldhordeofficial[];
+    f32 angles[2];
+    f32 position[3];
+    u32 i;
+    s32 emitter;
+
+    if (arg0->unk7C_12) {
+        for (i = 0; i < 6; i++) {
+            if (func_80101E14(arg0, D_808012DC_chamazongoldhordeofficial[i])) {
+                _subaddieskeleton_entrypoint_2(arg0->unk0, D_808012D0_chamazongoldhordeofficial[i], position);
+                angles[0] = func_800136E4(arg0->rotation[1] + 180.0f - 45.0f);
+                angles[1] = func_800136E4(angles[0] + 90.0f);
+                for (i = 0; D_808012F4_chamazongoldhordeofficial[i] != -1; i++) {
+                    emitter = func_800BABB8(0, position, NULL, 1.0f, D_808012FC_chamazongoldhordeofficial);
+                    func_800BA994((u8 *)emitter, 0x118, (s16)(s32)angles[0], 0x258, 0x140, (s32)angles[1], 0x320);
+                    func_800BA670(emitter, D_808012F4_chamazongoldhordeofficial[i]);
+                    func_800BA22C(emitter, 2);
+                }
+                break;
+            }
+        }
+    }
+}
 
 int func_80800C18_chamazongoldhordeofficial(void) {
     s32 func_800F54E4(); s32 func_800F640C(s32,s32); s32 func_8008FE14();
