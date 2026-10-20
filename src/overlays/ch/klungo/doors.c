@@ -41,4 +41,46 @@ void func_80800234_chklungodoors(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/doors/func_80800300_chklungodoors.s")
+s32 func_80800300_chklungodoors(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chdoor_entrypoint_1(s32, s32, s32);
+    void _chelectricfence_entrypoint_1(Actor *, f32 *);
+    f32 func_800EC75C(void *, f32 *);
+    s32 func_80103140(Actor *, u32, u16);
+    void func_8010A570(Actor *);
+    extern u16 D_80800498_chklungodoors[][8];
+    extern u16 D_8080049A_chklungodoors[][8];
+    extern u8 D_8080049E_chklungodoors[];
+    f32 sp2C[3];
+    void *volatile sp28;
+
+    switch (arg1) {
+        case 0x95:
+            switch (arg0->unk6C_9) {
+                case 0x41F:
+                    func_80103140(arg0, D_80800498_chklungodoors[arg0->actorData[4]][0], arg0->unk0->unk16);
+                    break;
+                case 0x420:
+                    func_80103140(arg0, D_8080049A_chklungodoors[arg0->actorData[4]][0], arg0->unk0->unk16);
+                    break;
+            }
+            break;
+        case 7:
+            if (D_8080049E_chklungodoors[arg0->actorData[4] * 0x10] != 0) {
+                func_8010A570(arg0);
+            }
+            break;
+        case 8:
+            if (D_8080049E_chklungodoors[arg0->actorData[4] * 0x10] != 0) {
+                func_8010A570(arg0);
+            }
+            break;
+        case 0x3F:
+            sp28 = (void *)arg2;
+            func_800EC75C((void *)arg2, sp2C);
+            _chelectricfence_entrypoint_1(arg0, sp2C);
+            *(f32 *)&arg0->actorData[5] = 0.2f;
+            func_8010A570(arg0);
+            return 1;
+    }
+    return _chdoor_entrypoint_1((s32)arg0, arg1, arg2);
+}
