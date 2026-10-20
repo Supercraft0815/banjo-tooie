@@ -19,7 +19,48 @@ void func_80800034_chbanjocurrent(s32 *arg0) {
     arg0[0] = temp;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjocurrent/func_80800050_chbanjocurrent.s")
+/* extern */
+
+void func_80800050_chbanjocurrent(u16 *arg0, f32 *arg1, f32 arg2[][2], s32 *arg3) {
+    s32 func_800B2840(s32);
+    s32 func_800BEB28(s32);
+    void func_800EE88C(f32 *, s16 *);
+    f32 var_f0;
+    f32 var_f2;
+    s32 *var_s5;
+    s32 temp_s6;
+    s32 temp_v0;
+    s32 var_a0;
+    s32 var_s0;
+    f32 *var_s4;
+    u16 *var_s3;
+    s16 *temp_s2;
+    f32 (*var_s1)[2];
+
+    temp_v0 = func_800BEB28(1);
+    var_a0 = temp_v0;
+    if (temp_v0 == 0) {
+        var_a0 = func_800BEB28(0);
+    }
+    temp_s6 = func_800B2840(var_a0) + 0x18;
+    for (var_s0 = 0, var_s3 = arg0, var_s4 = arg1, var_s1 = arg2, var_s5 = arg3; var_s0 != 3; var_s0++) {
+        temp_s2 = (s16 *)(*var_s3 * 0x10 + temp_s6);
+        func_800EE88C(var_s4, temp_s2);
+        var_s1[0][0] = temp_s2[4];
+        var_s1[0][1] = temp_s2[5];
+        *var_s5 = var_s0;
+        var_s3++;
+        var_s4 += 3;
+        var_s1++;
+        var_s5++;
+    }
+    if (arg2[arg3[2]][0] <= arg2[arg3[1]][0]) {
+        func_80800034_chbanjocurrent(arg3);
+    }
+    if (arg2[arg3[2]][0] <= arg2[arg3[1]][0]) {
+        func_80800034_chbanjocurrent(arg3);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjocurrent/func_808001D0_chbanjocurrent.s")
 
