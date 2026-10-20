@@ -1596,7 +1596,55 @@ void bsfirstp_entrypoint_12(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/bsfirstp_entrypoint_13.s")
+void bsfirstp_entrypoint_13(struct player_state_s *arg0, f32 *arg1, s16 arg2) {
+    int baflag_isTrue(struct player_state_s *, s32);
+    f32 func_8009BFCC(struct player_state_s *);
+    void func_8009C128(struct player_state_s *, f32 *);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF8BC(f32 *, f32 *, f32);
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_80803B68_bsfirstp(void *);
+    f32 yaw_get(struct player_state_s *);
+    extern f32 D_8080B4AC_bsfirstp[];
+    extern f32 D_8080B4B8_bsfirstp[];
+    extern f32 D_8080B4C4_bsfirstp[];
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp24[3];
+
+    if (baflag_isTrue(arg0, 0x3B)) {
+        switch (arg2) {
+            case 1: arg2 = 3; break;
+            case 3: arg2 = 1; break;
+        }
+    }
+    if (func_8009E674(arg0, 0x20)) {
+        arg2 = 2;
+    }
+    switch (arg2) {
+        case 1:
+            func_800EE7F8(arg1, D_8080B4AC_bsfirstp);
+            break;
+        case 2:
+            func_800EE7F8(arg1, D_8080B4B8_bsfirstp);
+            break;
+        case 3:
+            func_800EE780(sp30, D_8080B4AC_bsfirstp, D_8080B4B8_bsfirstp);
+            func_800EF334(sp30, 0.5f);
+            func_800EFB24(sp24, D_8080B4C4_bsfirstp, sp30);
+            func_800EF334(sp24, func_80803B68_bsfirstp(arg0));
+            func_800EE780(arg1, sp30, sp24);
+            break;
+    }
+    func_8009C128(arg0, sp3C);
+    func_800EF8BC(arg1, arg1, func_8009BFCC(arg0));
+    func_800EF934(arg1, arg1, yaw_get(arg0));
+    func_800EF04C(arg1, sp3C);
+}
 
 void func_80803A84_bsfirstp(void *arg0) {
     void func_80803B58_bsfirstp(void *, f32);
