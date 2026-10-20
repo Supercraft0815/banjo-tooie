@@ -3273,7 +3273,73 @@ void func_80806E9C_bsfirstp(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80806EC4_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80807024_bsfirstp.s")
+void func_80807024_bsfirstp(struct player_state_s *arg0) {
+    s32 func_8009E6EC(struct player_state_s *);
+    void func_8009E830(struct player_state_s *, s32);
+    s32 func_80099B94(s32);
+    s32 func_80099A58(s32);
+    s32 func_80099A64(struct player_state_s *);
+    f32 func_80099A34(s32);
+    struct player_state_s *func_800F53D0(s32);
+    s32 _badeathmatch_entrypoint_4(s32);
+    s32 _badeathmatch_entrypoint_5(s32, s32, s32);
+    void _bsbabykaz_entrypoint_13(struct player_state_s *);
+    void _batimer_set(struct player_state_s *, s32, f32);
+    s32 bs_setState(void *, s32);
+    s32 state;
+    u8 *data;
+    struct player_state_s *player;
+    s32 death;
+    s32 value;
+    u8 *sp28;
+    struct player_state_s *sp24;
+    f32 sp20;
+
+    state = func_8009E6EC(arg0);
+    switch (state) {
+        case 0x1F:
+        case 0x21:
+        case 0x24:
+        case 0x47:
+        case 0x4E:
+            _bsbabykaz_entrypoint_13(arg0);
+            func_8009E830(arg0, 2);
+            break;
+        case 0x4F:
+            _bsbabykaz_entrypoint_13(arg0);
+            func_8009E830(arg0, 2);
+            _batimer_set(arg0, 0, 0.0f);
+            break;
+        case 0x8E:
+            *(s32 *)((u8 *)arg0 + 0x160) = 0;
+            bs_setState(arg0, 0xA1);
+            func_8009E830(arg0, 2);
+            _batimer_set(arg0, 0, 0.0f);
+            break;
+        case 0x7D:
+            if (*(s32 *)((u8 *)arg0 + 0x158)) {
+                data = *(u8 **)((u8 *)arg0 + 0x188);
+                player = func_800F53D0(*(s32 *)(data + 0x68));
+                death = _badeathmatch_entrypoint_4(func_80099A58((s32)arg0));
+                value = func_80099A64(arg0);
+                _badeathmatch_entrypoint_5((s32)player, death, value);
+            } else {
+                func_80099B94((s32)arg0);
+            }
+            break;
+        case 0x5F:
+            if (*(s32 *)((u8 *)arg0 + 0x158)) {
+                sp28 = *(u8 **)((u8 *)arg0 + 0x188);
+                sp24 = func_800F53D0(*(s32 *)(sp28 + 0x68));
+                sp20 = func_80099A34((s32)arg0);
+                func_80802BE8_bsfirstp((s32)sp24, sp20);
+            }
+            break;
+        default:
+            func_80099B94((s32)arg0);
+            break;
+    }
+}
 
 s32 bsfirstp_entrypoint_30(s32 arg0) {
     extern s32 D_8080B570_bsfirstp[];
