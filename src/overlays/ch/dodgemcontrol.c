@@ -1112,7 +1112,45 @@ void func_8080422C_chdodgemcontrol(s32 arg0, s32 arg1) {
     anctrl_setPlaybackType(func_80104248(arg0, arg1), 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808042A4_chdodgemcontrol.s")
+s32 func_808042A4_chdodgemcontrol(s32 arg0, s32 arg1) {
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    Actor *actor = func_80106790((Unk80132ED0 *)arg0);
+
+    switch (arg1) {
+        case 2:
+            switch (actor->unk6C_0) {
+                case 1:
+                    _subaddiedialog_entrypoint_11(actor->unk3C, 0x10BB, 4, actor->position, 0x78);
+                    break;
+                case 2:
+                    _subaddiedialog_entrypoint_11(actor->unk3C, 0x10BD, 4, actor->position, 0x78);
+                    break;
+                case 3:
+                    _subaddiedialog_entrypoint_11(actor->unk3C, 0x10BC, 4, actor->position, 0x78);
+                    break;
+            }
+        case 3:
+            switch (actor->unk6C_0) {
+                case 1:
+                    func_8080422C_chdodgemcontrol((s32)actor, 5);
+                    break;
+                case 2:
+                    func_8080422C_chdodgemcontrol((s32)actor, 7);
+                    break;
+                case 3:
+                    func_8080422C_chdodgemcontrol((s32)actor, 6);
+                    break;
+            }
+            break;
+        case 0:
+            func_8080422C_chdodgemcontrol((s32)actor, 2);
+            break;
+        case 1:
+            func_8080422C_chdodgemcontrol((s32)actor, 4);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080440C_chdodgemcontrol.s")
 
