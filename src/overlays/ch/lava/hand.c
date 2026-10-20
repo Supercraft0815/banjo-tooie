@@ -246,7 +246,53 @@ OSThread *chlavahand_entrypoint_0(void)
     return (OSThread *) D_808013D0_chlavahand;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/hand/func_80800E0C_chlavahand.s")
+void func_80800E0C_chlavahand(Actor *arg0) {
+    f32 func_80013970(f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800FFA88(Unk80132ED0 *);
+    f32 func_80101F24(u8 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    struct MarkerId { u32 pad : 16; u32 id : 15; u32 flag : 1; };
+    struct ActorFlags { u32 pad : 29; u32 hidden : 1; u32 rest : 2; };
+    Unk80132ED0 *marker;
+    Actor *parent;
+    f32 value;
+    f32 scale;
+
+    marker = arg0->unk3C;
+    if (((struct MarkerId *)&marker->unk10)->id == *(s32 *)&arg0->unk50) {
+        parent = func_80106790(marker);
+        if (!((struct ActorFlags *)&parent->unk78)->hidden && parent->scale > 0.2f) {
+            switch (parent->unk70_10) {
+                case 2:
+                case 3:
+                    value = func_80013970(func_80101F24(arg0) * 180.0f);
+                    scale = parent->scale;
+                    arg0->alpha = 255;
+                    arg0->scale = value * scale + scale;
+                    break;
+                case 4:
+                case 5:
+                    value = func_80101F24(parent);
+                    if (value < 0.99f) {
+                        arg0->scale = func_800F10B4(value, 0.0f, 1.0f, 1.0f, 2.0f) * parent->scale;
+                    }
+                    arg0->alpha = 255;
+                    break;
+                case 6:
+                case 7:
+                    arg0->scale = func_800F10B4((f32)(u32)parent->alpha, 255.0f, 0.0f, 2.0f, 0.0f) * parent->scale;
+                    arg0->alpha = parent->alpha;
+                    break;
+                default:
+                    return;
+            }
+            arg0->unk64_16 = 1;
+        }
+    } else {
+        func_800FFA88(arg0->unk0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/hand/func_80800FB4_chlavahand.s")
 
