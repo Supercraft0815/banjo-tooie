@@ -221,7 +221,52 @@ void func_80800A9C_chgameselect(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80800AEC_chgameselect.s")
+void func_80800AEC_chgameselect(Unk80132ED0 *arg0, void *arg1, s32 arg2, s32 arg3) {
+    typedef struct {
+        void (*callback)(Actor *, void *, s32, s32);
+        u8 pad4[0x30];
+    } GameSelectCallback;
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80800944_chgameselect(Actor *, void *, s32, s32);
+    void func_80800998_chgameselect(Actor *, void *, s32, s32);
+    extern GameSelectCallback D_80807DDC_chgameselect[];
+    extern GameSelectCallback D_80807DF0_chgameselect[];
+    extern GameSelectCallback D_80807DF4_chgameselect[];
+    Actor *actor;
+
+    actor = func_80106790(arg0);
+    switch (arg3) {
+    case 0:
+        D_80807DDC_chgameselect[actor->unk70_10].callback(actor, arg1, arg2, arg3);
+        break;
+    case 3:
+        func_80800998_chgameselect(actor, arg1, arg2, arg3);
+        break;
+    case 2:
+        func_808009EC_chgameselect(actor);
+        break;
+    case 4:
+        func_808008D0_chgameselect(actor, arg1, arg2);
+        break;
+    case 5:
+        func_80800944_chgameselect(actor, arg1, arg2, arg3);
+        break;
+    case 6:
+        func_80800A9C_chgameselect(actor);
+        break;
+    case 7:
+        func_80800A4C_chgameselect(actor);
+        break;
+    case 0xFF:
+        D_80807DF0_chgameselect[actor->unk70_10].callback(actor, arg1, arg2, arg3);
+        break;
+    case 0xFC:
+    case 0xFD:
+    case 0xFE:
+        D_80807DF4_chgameselect[actor->unk70_10].callback(actor, arg1, arg2, arg3);
+        break;
+    }
+}
 
 void func_80800CA0_chgameselect(Unk80132ED0 *arg0) {
     typedef struct {
