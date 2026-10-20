@@ -176,7 +176,33 @@ void basnowball_entrypoint_9(void *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/func_808007CC_basnowball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/func_8080099C_basnowball.s")
+void func_8080099C_basnowball(void *arg0) {
+    void func_8009C128(struct player_state_s *, f32[3]);
+    s32 func_800B5BE4(s32);
+    void func_800BA730(void *, s16, s16, s16, s16);
+    void func_800BA77C(s32, s16, s16, s16);
+    void func_800BA7FC(void *, f32, f32);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_800DC178(f32, f32);
+    extern s32 D_8080110C_basnowball;
+    f32 temp_f2;
+    s32 temp_s0;
+    f32 sp4C;
+    f32 sp48;
+    f32 sp3C[3];
+
+    temp_s0 = func_800B5BE4(7);
+    func_8009C128(arg0, sp3C);
+    temp_f2 = (*(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x110) + 0x1C) * 30.0f) + 5.0f;
+    sp48 = (*(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x110) + 0x1C) * 100.0f) + 200.0f;
+    sp4C = (*(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x110) + 0x1C) * 0.5f) + 0.6f;
+    func_800BA730((void *)temp_s0, (s16) (s32) temp_f2, (s16) (s32) (temp_f2 + 10.0f), 0x41, 0x3C);
+    func_800BA930(temp_s0, -0xA, (s16) (s32) sp48, -0xA, 0xA, (s32) (sp48 + 50.0f), 0xA);
+    func_800BA7FC((void *)temp_s0, sp4C, sp4C);
+    func_800BA77C(temp_s0, 0, 0, (s16) (s32) func_800DC178(0.0f, 359.0f));
+    func_800BABB8(temp_s0, sp3C, 0, 1.0f, &D_8080110C_basnowball);
+}
 
 void basnowball_entrypoint_11(s32 arg0)
 {
