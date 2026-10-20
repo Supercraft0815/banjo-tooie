@@ -183,7 +183,50 @@ s32 func_80800B40_chcoderoombits(s32 arg0, void *arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_80800BF4_chcoderoombits.s")
+void func_80800BF4_chcoderoombits(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800BEA88(s32);
+    int func_800D91EC(f32 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    extern s32 _chcoderoombits_entrypoint_2[];
+    struct {
+        u8 pad[0x1C];
+        struct { f32 value; f32 fraction; s32 state; } bits[26];
+    } *data;
+    Unk80132ED0 *marker;
+    s32 id;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    marker = arg0->unk0;
+    id = func_800BEA88(0);
+    for (i = 0; i != 26; i++) {
+        switch (data->bits[i].state) {
+            case 0:
+                data->bits[i].value = 0.0f;
+                break;
+            case 1:
+                if (func_800D91EC(&data->bits[i].fraction, 0.2f)) {
+                    data->bits[i].state = 2;
+                }
+                data->bits[i].value = func_800F10B4(data->bits[i].fraction, 0.0f, 0.2f, 0.0f, 1.0f);
+                break;
+            case 2:
+                data->bits[i].value = 1.0f;
+                break;
+            case 3:
+                if (func_800D91EC(&data->bits[i].fraction, 0.6f)) {
+                    data->bits[i].state = 0;
+                }
+                data->bits[i].value = func_800F10B4(data->bits[i].fraction, 0.0f, 0.6f, 1.0f, 0.0f);
+                break;
+        }
+        if (id != 0) {
+            _glid_entrypoint_0(id, i + 1, _chcoderoombits_entrypoint_2, (s32)marker);
+        }
+    }
+}
 
 /* extern */
 
