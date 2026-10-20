@@ -283,7 +283,53 @@ s32 bsbwhirl_entrypoint_11(s32 arg0) {
     return ((s32 *)&D_80800FB8_bsbwhirl)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_12.s")
+void bsbwhirl_entrypoint_12(PlayerState *arg0) {
+    s32 anctrl_reset(s32);
+    s32 anctrl_setDuration(s32, f32);
+    s32 anctrl_setIndex(s32, s32);
+    s32 anctrl_setPlaybackType(s32, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    s32 anctrl_start(s32);
+    s32 baanim_getAnimCtrlPtr(s32);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    f32 bastick_distance(PlayerState *);
+    f32 bastick_getAngleRelativeToBanjo(PlayerState *);
+    f32 yaw_getIdeal(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+    void func_8009D7A4(PlayerState *, f32, f32);
+    void func_8009FFD8(PlayerState *, int, int, s32, int);
+    s32 pad[2];
+    f32 sp2C;
+    s32 control;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    anctrl_reset(control);
+    anctrl_setIndex(control, 0x1B);
+    anctrl_setDuration(control, 0.8f);
+    func_8008B1C8(control, 0.134f);
+    anctrl_setStart(control, 0.14f);
+    anctrl_setSubrange(control, 0.0f, 0.4495f);
+    anctrl_setPlaybackType(control, 1);
+    anctrl_start(control);
+    func_8009FFD8(arg0, 1, 1, 3, 6);
+    if (bastick_distance(arg0) != 0.0f) {
+        yaw_setIdeal(arg0, bastick_getAngleRelativeToBanjo(arg0));
+    }
+    baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+    func_80800114_bsbwhirl(arg0);
+    sp2C = yaw_getIdeal(arg0);
+    baphysics_set_horizontal_velocity(arg0, sp2C, baphysics_get_target_horizontal_velocity(arg0));
+    baphysics_set_vertical_velocity(arg0, 693.5f);
+    baphysics_set_gravity(arg0, -1200.0f);
+    func_8009D7A4(arg0, 0.91f, 1.09f);
+    *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_13.s")
 
