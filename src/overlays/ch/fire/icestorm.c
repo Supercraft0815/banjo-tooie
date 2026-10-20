@@ -16,7 +16,54 @@ OSThread *chfireicestorm_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_80800018_chfireicestorm.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_808001CC_chfireicestorm.s")
+void func_808001CC_chfireicestorm(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_16(void);
+    s32 func_800A9C98(void);
+    s32 func_800D9078(f32 *);
+    s32 func_800D90A4(f32 *);
+    f32 func_800DC178(f32, f32);
+    u32 func_800F54E4(void);
+    s32 func_800F55FC(s32);
+    s32 func_800F6478(s32);
+    void func_80108B04(Actor *, u32);
+    void func_80800558_chfireicestorm(Actor *, u32);
+    void func_80800940_chfireicestorm(s32);
+    s32 func_80800980_chfireicestorm(Actor *, u32, u32);
+    s32 func_808009C8_chfireicestorm(Actor *);
+    s32 sp24;
+    u32 state;
+
+    sp24 = func_800F54E4();
+    if (func_800F6478(sp24) && !(func_800F55FC(sp24) & 0x20000000)) {
+        state = arg0->unk70_10;
+        switch (state) {
+        case 1:
+            if (func_800D90A4(&arg0->unk58) && _subaddiedialog_entrypoint_16()) {
+                if (func_80800980_chfireicestorm(arg0, arg0->unk64_20 ? 0x12D0 : 0x12CF, 4)) {
+                    func_80800940_chfireicestorm((s32)arg0);
+                    func_80800558_chfireicestorm(arg0, 2);
+                }
+            }
+            break;
+        case 3:
+            if (func_800D9078(&arg0->unk58)) {
+                func_80800940_chfireicestorm((s32)arg0);
+                func_80800558_chfireicestorm(arg0, 4);
+            }
+            break;
+        case 4:
+            if (!func_800DA298(FLAG2_6CD_UNK) && !func_800A9C98()) {
+                if (func_800D9078(&arg0->unk58)) {
+                    func_80800558_chfireicestorm(arg0, 3);
+                } else if (func_800D9078((f32 *)&arg0->actorData[3]) && !func_808009C8_chfireicestorm(arg0)) {
+                    func_80108B04(arg0, 0);
+                    *(f32 *)&arg0->actorData[3] = func_800DC178(3.0f, 4.0f);
+                }
+            }
+            break;
+        }
+    }
+}
 
 void func_80800360_chfireicestorm(s32 arg0)
 {
@@ -105,7 +152,7 @@ void func_80800940_chfireicestorm(s32 arg0) {
     func_800C3FF0(0x604, 0x3F800000, 0x7FFF);
 }
 
-void func_80800980_chfireicestorm(Actor *arg0, u32 arg1, u32 arg2) {
+s32 func_80800980_chfireicestorm(Actor *arg0, u32 arg1, u32 arg2) {
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
     u32 var_v0;
 
