@@ -80,7 +80,46 @@ void func_80800F44_sucoasterfly(Unk80132ED0 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80800FA8_sucoasterfly.s")
+void func_80800FA8_sucoasterfly(Unk80132ED0 *arg0, Unk80132ED0 *arg1) {
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_808014AC_sucoasterfly(Actor *, s32);
+    s32 _sueggmisc_entrypoint_0();
+    void _suegg_entrypoint_19(Actor *, f32 *);
+    f32 func_800D8FF8(void);
+    f32 func_800EEF94(f32 *);
+    f32 func_800EEFD4(f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF368(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_800EFD24(f32 *);
+    void func_800F5A00(s32, f32 *);
+    void func_800F5D70(s32, f32 *);
+    Actor *actor;
+    f32 velocity[3];
+    f32 position[4];
+
+    actor = func_80106790(arg0);
+    if (_sueggmisc_entrypoint_0(arg1) != 0) {
+        _suegg_entrypoint_19(func_80106790(arg1), velocity);
+        func_800EF334(velocity, 1.0f / func_800D8FF8());
+        if (func_800EEF94(velocity) > 400.0f) {
+            func_800EF368(velocity, 400.0f);
+        }
+    } else if ((arg1->unk24 >> 22) == 0) {
+        func_800F5D70((u32)((u16 *)&arg1->unk18)[1] >> 5, velocity);
+        if (func_800EEFD4(velocity) < 100.0f) {
+            func_800F5A00((u32)((u16 *)&arg1->unk18)[1] >> 5, position);
+            func_800EFB24(velocity, actor->position, position);
+            func_800EF368(velocity, 200.0f);
+            velocity[1] += 150.0f;
+        }
+    } else {
+        func_800EFD24(velocity);
+    }
+    func_808014AC_sucoasterfly(actor, 0xB);
+    func_800EF04C(&((f32 *)actor->actorData)[4], velocity);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80801108_sucoasterfly.s")
 
