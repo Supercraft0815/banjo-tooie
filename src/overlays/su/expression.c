@@ -305,7 +305,29 @@ void suexpression_entrypoint_18(s8 *arg0, s32 arg1) {
     arg0[19] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expression/suexpression_entrypoint_19.s")
+/* extern */
+
+void suexpression_entrypoint_19(u8 *arg0, Actor *arg1) {
+    s32 _suexpressjoint_entrypoint_4(u8 *, Actor *);
+    void func_800E0AFC(void *, u8, f32, f32, f32, f32);
+    s32 func_8010262C(Unk80132ED0 *, u32);
+    s32 sp2C;
+    s32 temp_v0_2;
+    s32 temp_v0;
+
+    temp_v0 = func_8010262C(arg1->unk0, suexpression_entrypoint_1((*(u8 *)((s8 *)(arg0) + (0xD)))));
+    sp2C = temp_v0;
+    if (temp_v0 != 0) {
+        temp_v0_2 = (*(s16 *)((s8 *)(arg0) + (0)));
+        if (temp_v0_2 != 0) {
+            _suexpressjoint_entrypoint_4((u8 *)((s32)arg0 + temp_v0_2), arg1);
+        }
+        if ((*(s16 *)(arg0 + 4) != 0) || ((*(s16 *)((s8 *)(arg0) + (6))) != 0) || ((*(s16 *)((s8 *)(arg0) + (8))) != 0) || ((*(s16 *)((s8 *)(arg0) + (0xA))) != 0)) {
+            func_800E0AFC((void *)sp2C, 0x12, 1.0f, (f32) ((*(u8 *)((s8 *)(arg0) + (0x11))) * -(*(s16 *)((s8 *)(arg0) + (8)))) * 0.01f, (f32) ((*(u8 *)((s8 *)(arg0) + (0x10))) * (*(s16 *)(arg0 + 4))) * 0.01f, 0.0f);
+            func_800E0AFC((void *)sp2C, 1, 1.0f, (f32) ((0x64 - (*(u8 *)((s8 *)(arg0) + (0x11)))) * -(*(s16 *)((s8 *)(arg0) + (8)))) * 0.01f, (f32) ((0x64 - (*(u8 *)((s8 *)(arg0) + (0x10)))) * (*(s16 *)((s8 *)(arg0) + (4)))) * 0.01f, 0.0f);
+        }
+    }
+}
 
 void *suexpression_entrypoint_20(Actor *arg0) {
     void *func_80100094(Actor *, u32);
