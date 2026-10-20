@@ -458,7 +458,65 @@ s32 func_80801608_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_8080171C_chfactorytwinklies.s")
+void func_8080171C_chfactorytwinklies(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_1(Actor *);
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    s32 func_800C8A98(void);
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8E84(s32, u32 *);
+    void *func_80100094(Actor *, u32);
+    void func_8010A3E8(void *, f32);
+    void func_8010A570(Actor *);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    f32 func_80801ED0_chfactorytwinklies(void *);
+    f32 func_80801FAC_chfactorytwinklies(void *);
+    extern u32 D_808023C8_chfactorytwinklies[][3];
+    extern s32 D_808023EC_chfactorytwinklies[];
+    extern s32 D_80802400_chfactorytwinklies[];
+    typedef struct {
+        Unk80132ED0 *marker;
+        f32 position[3];
+        u32 pad10[6];
+        f32 speed;
+        s32 color;
+        f32 value;
+        u32 pad34[7];
+        s32 light;
+    } Twinklie;
+    typedef struct {
+        u32 unused : 18;
+        u32 active : 1;
+        u32 rest : 13;
+    } MarkerFlags;
+    s32 *sp24;
+
+    sp24 = func_80100094(arg0, 0);
+    func_8010A3E8(arg0, 0.3f);
+    if (arg0->unk70_10 == 1) {
+        arg0->position[1] -= 250.0f;
+        ((Twinklie *)arg0)->speed = 0.6f;
+        ((Twinklie *)arg0)->value = func_80801ED0_chfactorytwinklies(arg0);
+        arg0->unk58 = func_80801FAC_chfactorytwinklies(arg0);
+        _subaddieDll_entrypoint_1(arg0);
+        _subaddierouteDll_entrypoint_3(arg0, sp24, arg0->position);
+        _subaddierouteDll_entrypoint_1(arg0);
+        sp24[3] = 0;
+        ((Twinklie *)arg0)->light = func_800C8A98();
+        func_800C8E54(((Twinklie *)arg0)->light, 500.0f, 800.0f);
+        func_800C8E84(((Twinklie *)arg0)->light, D_808023C8_chfactorytwinklies[arg0->actorData[5]]);
+        if (((MarkerFlags *)&arg0->unk0->unk28)->active) {
+            arg0->unk64_24 = 0;
+            arg0->unk58 = 5.5f;
+        }
+        func_8010D930(4, arg0->unk70_0, arg0->position, D_808023EC_chfactorytwinklies);
+    } else {
+        func_8010D930(4, arg0->unk70_0, arg0->position, D_80802400_chfactorytwinklies);
+        func_8010A570(arg0);
+        arg0->unk58 = 1.2f;
+        arg0->unk64_24 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_808018A0_chfactorytwinklies.s")
 
