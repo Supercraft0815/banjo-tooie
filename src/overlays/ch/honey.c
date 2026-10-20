@@ -105,7 +105,54 @@ void func_80800244_chhoney(Actor *arg0) {
     func_8010A5B0(arg0, func_800DA298(0x64C));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_80800328_chhoney.s")
+void func_80800328_chhoney(Actor *arg0, Unk80132ED0 *arg1) {
+    struct HoneyPickupFlags {
+        u8 pad74[0x74];
+        u32 :11;
+        u32 enabled:1;
+        u32 :20;
+    };
+    void _fxsparkle_entrypoint_1(f32 *, u32);
+    void _sudialog_entrypoint_0(s32, s32);
+    void func_800C9E20(f32, u32 *, u32, u32);
+    void func_8008FC50(void);
+    s32 func_800DA9E4(s32, s32);
+    s32 func_800F4B4C(s32);
+    void func_800FC660(u32);
+    s32 func_800FFAB0(u8 *);
+    s32 func_8010A570(u8 *);
+
+    if (func_800F4B4C((u32)(u16)arg1->unk18 >> 5)) {
+        switch (arg0->unk79_4) {
+        case 0:
+            func_800C9E20(0.75f, (u32 *)_sudialog_entrypoint_0, 0x2F, 0);
+            func_8008FC50();
+            func_800FC660(8);
+            func_800FFAB0((u8 *)arg0);
+            break;
+        case 2:
+            func_800FC660(0x81);
+            if (!func_800DA9E4(0x40E, 1)) {
+                func_808000C4_chhoney((u8 *)arg0, 8);
+            } else {
+                func_808000C4_chhoney((u8 *)arg0, 3);
+            }
+            break;
+        case 1:
+            func_800FC660(0x80);
+            if (!func_800DA9E4(0x40D, 1)) {
+                func_808000C4_chhoney((u8 *)arg0, 7);
+            } else {
+                func_808000C4_chhoney((u8 *)arg0, 2);
+            }
+            break;
+        }
+        _fxsparkle_entrypoint_1(arg0->position, 1);
+        func_8010A570((u8 *)arg0);
+        arg0->unk64_16 = 0;
+        ((struct HoneyPickupFlags *)arg0)->enabled = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_8080046C_chhoney.s")
 
