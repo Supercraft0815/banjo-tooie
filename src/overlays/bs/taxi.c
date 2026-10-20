@@ -651,7 +651,72 @@ void bstaxi_entrypoint_28(void *arg0) {
     func_80801600_bstaxi(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_29.s")
+/* extern */
+
+void bstaxi_entrypoint_29(struct player_state_s *arg0) {
+    f32 func_80099A34(struct player_state_s *);
+    s32 func_80099A4C(struct player_state_s *);
+    s8 func_80099A58(struct player_state_s *);
+    s32 func_80099B94(struct player_state_s *);
+    s32 func_8009E6EC();
+    s32 func_8009E830(struct player_state_s *, s32);
+    s32 temp_v0;
+
+    temp_v0 = func_8009E6EC();
+    switch (temp_v0) {
+    case 0x1F:
+    case 0x20:
+    case 0x21:
+    case 0x24:
+    case 0x2D:
+    case 0x2E:
+    case 0x45:
+    case 0x4E:
+    case 0x51:
+    case 0x52:
+    case 0x59:
+    case 0x5A:
+    case 0x5B:
+    case 0x5C:
+        if ((*(f32 *)((s8 *)(arg0) + (0x16C))) > 0.0f) {
+            func_808004A8_bstaxi(arg0);
+            return;
+        }
+        if ((*(s32 *)((s8 *)(arg0) + (0x160))) == 0) {
+            func_80099B94(arg0);
+            return;
+        }
+        return;
+    case 0x15:
+    case 0x1C:
+    case 0x1D:
+    case 0x1E:
+    case 0x25:
+    case 0x43:
+        if ((*(f32 *)((s8 *)(arg0) + (0x16C))) > 0.0f) {
+            func_808004A8_bstaxi(arg0);
+            return;
+        }
+        break;
+    case 0x48:
+        if ((*(s32 *)((s8 *)(arg0) + (0x160))) != 0) {
+            func_8009E830(arg0, 1);
+            return;
+        }
+        (*(s32 *)((s8 *)(arg0) + (0x160))) = func_80099A4C(arg0);
+        (*(s8 *)((s8 *)(arg0) + (0x164))) = func_80099A58(arg0);
+        func_80801600_bstaxi(arg0, 2U);
+        func_8009E830(arg0, 2);
+        return;
+    case 0x6E:
+        (*(f32 *)((s8 *)(arg0) + (0x16C))) = func_80099A34(arg0);
+        func_8009E830(arg0, 2);
+        return;
+    default:
+        func_80099B94(arg0);
+        break;
+    }
+}
 
 void bstaxi_entrypoint_30(void *arg0) {
     void _babackpack_entrypoint_6(void *, f32 *, s32);
