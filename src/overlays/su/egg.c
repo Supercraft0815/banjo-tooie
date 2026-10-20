@@ -115,7 +115,63 @@ s16 suegg_entrypoint_7(void) {
     return (*(s16 *)((s8 *)(func_80100094(func_80106790(), 0)) + (0x3A)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/func_80800390_suegg.s")
+s32 func_80800390_suegg(Actor *arg0) {
+    struct player_state_s;
+    void _bsfirstp_entrypoint_7(struct player_state_s *, f32 *, f32 *);
+    s32 func_800EA068(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    s32 func_800F0734(f32 *, f32 *, f32 *, f32, f32, f32 *, f32 *);
+    struct player_state_s *func_800F53D0(s32);
+    void func_800F551C(s32, f32 *, f32 *, f32 *);
+    s32 func_800F5898(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6438(u32);
+    void suegg_entrypoint_18(s32, s32);
+    struct EggData {
+        u8 pad[0x3A];
+        s16 player;
+    } *data;
+    s32 firstPerson;
+    s32 i;
+    s32 best;
+    f32 origin[3];
+    f32 position[3];
+    f32 hit[3];
+    f32 distance;
+    f32 height;
+    f32 bestDistance;
+    f32 target[3];
+    f32 radius;
+    f32 range;
+
+    data = func_80100094(arg0, 0);
+    best = -1;
+    if (func_800EA068(0x4000)) {
+        suegg_entrypoint_18((s32)arg0, (s32)origin);
+        func_800EE7F8(position, arg0->position);
+        bestDistance = 0.0f;
+        firstPerson = func_800EA068(8);
+        for (i = 0; i < func_800F5898(); i++) {
+            if (func_800F6438(i) && i != data->player) {
+                func_800F5A00(i, target);
+                distance = func_800EEB40(target, origin);
+                if (best < 0 || distance < bestDistance) {
+                    if (firstPerson) {
+                        _bsfirstp_entrypoint_7(func_800F53D0(i), &radius, &range);
+                    } else {
+                        func_800F551C(i, &radius, &height, &range);
+                    }
+                    if (func_800F0734(origin, position, target, radius, range, hit, hit)) {
+                        best = i;
+                        bestDistance = distance;
+                    }
+                }
+            }
+        }
+    }
+    return best;
+}
 
 void suegg_entrypoint_8(s32 arg0)
 {
