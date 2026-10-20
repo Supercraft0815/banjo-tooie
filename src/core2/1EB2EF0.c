@@ -68,4 +68,35 @@ int func_800D9C4C(f32 arg0[4]){
         && (arg0[3] == 1.0f));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2EF0/func_800D9CE8.s")
+void func_800D9CE8(f32 arg0[4], f32 arg1[9]) {
+    f32 s;
+    f32 wx, wy, wz;
+    f32 xs, ys, zs;
+    f32 xx, xy, xz;
+    f32 yy, yz, zz;
+
+    if (arg0[0] == 0.0f && arg0[1] == 0.0f && arg0[2] == 0.0f && arg0[3] == 0.0f) {
+    }
+    s = 2.0f / (arg0[0] * arg0[0] + arg0[1] * arg0[1] + arg0[2] * arg0[2] + arg0[3] * arg0[3]);
+    xs = arg0[0] * s;
+    ys = arg0[1] * s;
+    zs = arg0[2] * s;
+    wx = arg0[3] * xs;
+    wy = arg0[3] * ys;
+    wz = arg0[3] * zs;
+    xx = arg0[0] * xs;
+    xy = arg0[0] * ys;
+    xz = arg0[0] * zs;
+    yy = arg0[1] * ys;
+    yz = arg0[1] * zs;
+    zz = arg0[2] * zs;
+    arg1[0] = 1.0f - (yy + zz);
+    arg1[1] = xy + wz;
+    arg1[2] = xz - wy;
+    arg1[3] = xy - wz;
+    arg1[4] = 1.0f - (xx + zz);
+    arg1[5] = yz + wx;
+    arg1[6] = xz + wy;
+    arg1[7] = yz - wx;
+    arg1[8] = 1.0f - (xx + yy);
+}
