@@ -313,7 +313,7 @@ Actor *func_8010856C(s32 arg0, f32 *arg1, f32 *arg2) {
     return actor;
 }
 
-void func_801085CC(s32 arg0, s16 *arg1, u32 arg2) {
+Actor *func_801085CC(s32 arg0, s16 *arg1, u32 arg2) {
     Actor* func_80108C90(s32, s32*, u32, Prop*);
     s32 sp24[3];
     s16 *var_v1;

@@ -77,7 +77,53 @@ void func_80800138_chfpsgame(u32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_8080019C_chfpsgame.s")
+void func_8080019C_chfpsgame(Actor **arg0) {
+    u32 _bsfirstp_entrypoint_3(s32, s32, s32);
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    s32 _gcstatusDll_entrypoint_19(void);
+    s32 func_800EA05C(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *func_801085CC(s32, s16 *, u32);
+    Actor *spawned;
+    Prop *prop;
+    Prop *props[28];
+    Actor *actor;
+    Unk80132ED0 *marker;
+    s32 count;
+    s32 map;
+    s32 mode;
+    s32 id;
+    s32 i;
+
+    actor = *arg0;
+    marker = actor->unk0;
+    count = _gccubesearch_entrypoint_9(0x2BA, props, 28);
+    map = func_800EA05C();
+    mode = _gcstatusDll_entrypoint_19();
+    i = 0;
+    if (count > 0) {
+        do {
+            switch (_bsfirstp_entrypoint_3(map, mode, props[i]->unk6_7 - 0x32)) {
+                case 0: id = 0; break;
+                case 1: id = 0x1C8; break;
+                case 2: id = 0x1C9; break;
+                case 3: id = 0x1CA; break;
+                case 4: id = 0x1CB; break;
+                case 5: id = 0x1CC; break;
+                case 6: id = 0x2B8; break;
+                case 7: id = 0x1CD; break;
+            }
+            if (id != 0) {
+                prop = props[i];
+                spawned = func_801085CC(id, prop->position, prop->FlagOrRotation);
+                spawned->unk74_7 = 0x33;
+                actor = func_80106790(marker);
+            }
+            i++;
+        } while (i < count);
+    }
+    *arg0 = actor;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_808002FC_chfpsgame.s")
 
