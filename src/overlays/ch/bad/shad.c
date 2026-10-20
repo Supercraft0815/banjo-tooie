@@ -44,7 +44,70 @@ s32 func_8001211C(void);
 
 void func_80800090_chbadshad(Actor *arg0) { if (!arg0->unk64_17 && (s32) arg0->actorData[0] < func_8001211C() - 1) func_8080082C_chbadshad(arg0); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/func_808000E0_chbadshad.s")
+void func_808000E0_chbadshad(Actor *arg0, s32 arg1) {
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF410(s32);
+    f32 func_800DF428(f32);
+    void func_800DF470(s32);
+    void func_800DF830(s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 *func_80101918(f32);
+    u8 *func_801039E4(Unk80132ED0 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    typedef union {
+        Actor actor;
+        struct {
+            u8 reserved74[0x74];
+            u32 flags74 : 5;
+            u32 halfScale : 1;
+            u32 other74 : 26;
+            u16 reserved78;
+            u16 state : 2;
+            u16 other7A : 14;
+        } shadow;
+    } ShadowRenderActor;
+    f32 scale[1];
+    Actor *parent;
+    Unk80132ED0 *marker;
+    s32 pad30;
+    f32 *transform;
+    s32 pad28;
+
+    parent = NULL;
+    if (!arg0->unk64_17) {
+        scale[0] = arg0->scale;
+        marker = arg0->pad40;
+        if (marker != NULL) {
+            parent = func_80106790(marker);
+        }
+        if (parent != NULL) {
+            func_800DF410(_subaddiefade_entrypoint_0(parent));
+        }
+        if (parent == NULL || !((ShadowRenderActor *)parent)->shadow.halfScale) {
+            scale[0] *= func_800F10B4(*(f32 *)&arg0->actorData[3], 0.0f, 800.0f, 0.53f, 0.18f);
+        } else {
+            scale[0] *= 0.5f;
+        }
+        func_800DF470(1);
+        func_800DF428(4000.0f);
+        func_800DF830(((ShadowRenderActor *)arg0)->shadow.state);
+        if (((ShadowRenderActor *)arg0)->shadow.state == 3) {
+            if (func_800DE448(arg0->position, arg0->rotation, scale[0], NULL, func_801039E4(arg0->unk0))) {
+                arg0->unk7C_12 = 1;
+            } else {
+                arg0->unk7C_12 = 0;
+            }
+        } else {
+            transform = func_80101918(scale[0]);
+            if (func_800DE448(arg0->position, arg0->rotation, scale[0], transform, func_801039E4(arg0->unk0))) {
+                arg0->unk7C_12 = 1;
+            } else {
+                arg0->unk7C_12 = 0;
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/func_8080028C_chbadshad.s")
 
