@@ -150,7 +150,55 @@ void func_8010FE14(s32 *arg0, f32 *arg1, f32 *arg2) {
     func_800CA628(*(f32 **)arg0, arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010FE34.s")
+s32 func_8010FE34(s32 arg0, s32 arg1) {
+    struct player_state_s;
+    s32 _ncstart_entrypoint_0(s32, f32 *, f32 *);
+    s32 func_800CA5B8(s32, f32 *);
+    void func_800CA668();
+    s32 func_800CAF34(s32);
+    void func_801108A0(void *);
+    void func_80110928(void *);
+    void func_80110970(void *, f32);
+    void func_80110A24(struct player_state_s *, f32 *, f32 *);
+    extern f32 D_80137320[3];
+    extern f32 D_80137330[3];
+    u8 command;
+
+    command = *(u8 *)(arg0 + 0x20);
+    if (command != 0) {
+        *(u8 *)(arg0 + 0x20) = 0;
+        if (*(s16 *)(arg0 + 0x16) == 2) {
+            switch (command) {
+                case 40:
+                    func_8010FE14((s32 *)arg0, (f32 *)(arg0 + 0x24), (f32 *)(arg0 + 0x30));
+                    func_801108A0(*(void **)(arg0 + 4));
+                    break;
+                case 41:
+                    func_80110970(*(void **)(arg0 + 4), *(f32 *)(arg0 + 0x3C));
+                    break;
+            }
+            func_8010FD08((u8 *)arg0);
+            return;
+        }
+    }
+    if (_ncstart_entrypoint_0(arg1, D_80137320, D_80137330) == 0) {
+        if (*(s16 *)(arg0 + 0x16) == 2) {
+            func_80110928(*(void **)(arg0 + 4));
+        }
+        func_8010FD08((u8 *)arg0);
+        return;
+    }
+    if (*(s16 *)(arg0 + 0x16) == 2) {
+        func_80110A24(*(struct player_state_s **)(arg0 + 4), D_80137330, D_80137320);
+    }
+    func_800CA5B8(*(s32 *)arg0, D_80137320);
+    func_800CA668(*(s32 *)arg0, D_80137330);
+    func_800CAF34(*(s32 *)arg0);
+    if (*(s16 *)(arg0 + 0x16) == 2) {
+        func_801108A0(*(void **)(arg0 + 4));
+        func_8010FD08((u8 *)arg0);
+    }
+}
 
 s32 func_8010FF80(s32 *arg0) {
     return arg0[0];
