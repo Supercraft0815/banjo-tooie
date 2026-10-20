@@ -198,7 +198,53 @@ void func_800FBEC8(u8 *track, s32 *minimum_first, s32 *minimum_second) {
     *minimum_second = second;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FBF9C.s")
+void func_800FBF9C(s32 *arg0, s32 *arg1, s32 *arg2, void *arg3) {
+    void *freelist_at(s32, s32);
+    void freelist_erase(s32, s32);
+    s32 freelist_is_element_alive(s32, s32);
+    void *freelist_next(void **, s32 *);
+    u32 func_80017764(s32);
+    s32 *entry;
+    f32 pad;
+    s32 sp34;
+    s32 volume;
+
+    volume = *arg1;
+    sp34 = *arg2;
+    if ((*(s32 *)arg3 != 0) && !freelist_is_element_alive(arg0[14], *(s32 *)arg3)) {
+        *(s32 *)arg3 = 0;
+    }
+    if (volume < 0) {
+        entry = freelist_at(arg0[14], 1);
+        if (entry[0] < (s32)func_80017764(*(s16 *)((u8 *)arg0 + 0x28))) {
+            volume = func_80017764(*(s16 *)((u8 *)arg0 + 0x28));
+        } else {
+            volume = entry[0];
+        }
+        if (*(s32 *)arg3 != 0) {
+            entry = freelist_at(arg0[14], *(s32 *)arg3);
+            *arg2 = entry[1];
+            freelist_erase(arg0[14], *(s32 *)arg3);
+            *(s32 *)arg3 = 0;
+            func_800FBEC8((u8 *)arg0, arg1, &sp34);
+            return;
+        }
+    }
+    if (*(s32 *)arg3 == 0) {
+        entry = freelist_at(arg0[14], 1);
+        if ((entry[0] < volume) || ((volume == entry[0]) && (sp34 >= entry[1]))) {
+            func_800FB650(arg0, volume, sp34);
+        } else {
+            freelist_next((void **)(arg0 + 14), arg3);
+        }
+    }
+    if (*(s32 *)arg3 != 0) {
+        entry = freelist_at(arg0[14], *(s32 *)arg3);
+        entry[0] = volume;
+        entry[1] = sp34;
+    }
+    func_800FBEC8((u8 *)arg0, arg1, arg2);
+}
 
 void func_800FC124(u32 arg0)
 {
