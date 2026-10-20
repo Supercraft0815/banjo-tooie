@@ -4,7 +4,53 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3DEF0/func_8002645C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3DEF0/func_80026500.s")
+void func_80026500(ALEventQueue *arg0, void *arg1, s32 arg2, s32 arg3) {
+    void func_80020E40(ALLink *, ALLink *);
+    void func_80020E74(ALLink *);
+    ALEventListItem *sp2C;
+    ALEventListItem *sp28;
+    ALLink *sp24;
+    s32 sp20;
+    u32 sp1C;
+
+    sp20 = 0;
+    sp1C = osSetIntMask(1U);
+    sp2C = (ALEventListItem *)arg0->freeList.next;
+    if (sp2C == NULL) {
+        osSetIntMask(sp1C);
+        return;
+    }
+    if (sp2C->node.next == NULL && arg3 == 0) {
+        osSetIntMask(sp1C);
+        return;
+    }
+    func_80020E74(&sp2C->node);
+    bcopy(arg1, &sp2C->evt, 0x10);
+    if (arg2 == 0x7FFFFFFF) {
+        sp20 = -1;
+    }
+    for (sp24 = &arg0->allocList; sp24 != NULL; sp24 = sp24->next) {
+        if (sp24->next == NULL) {
+            if (sp20 != 0) {
+                sp2C->delta = 0;
+            } else {
+                sp2C->delta = arg2;
+            }
+            func_80020E40(&sp2C->node, sp24);
+            break;
+        } else {
+            sp28 = (ALEventListItem *)sp24->next;
+            if (arg2 < sp28->delta) {
+                sp2C->delta = arg2;
+                sp28->delta -= arg2;
+                func_80020E40(&sp2C->node, sp24);
+                break;
+            }
+            arg2 -= sp28->delta;
+        }
+    }
+    osSetIntMask(sp1C);
+}
 
 /* extern */
 
