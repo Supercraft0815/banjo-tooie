@@ -1,6 +1,53 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/normal/func_80800000_cheggnormal.s")
+void func_80800000_cheggnormal(void *arg0) {
+    void *func_80100094(Actor *, u32);
+    f32 func_800D8FF8(void);
+    f32 func_800DC0C0(void);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA20(void *, void *, f32);
+    void _fxegg_entrypoint_1(f32 *, f32);
+    void _fxegg_entrypoint_2(f32 *, f32);
+    void _fxegg_entrypoint_7(f32 *, f32 *, f32);
+    void _fxegg_entrypoint_8(f32 *, f32 *, f32);
+    f32 interval;
+    struct EggData {
+        u8 pad0[0x28];
+        f32 timer;
+        f32 unk2C;
+        f32 duration;
+        u32 unk34;
+        u32 pad38 : 11;
+        u32 flag : 1;
+        u32 rest : 20;
+    } *data;
+    f32 position[3];
+    f32 velocity[3];
+    Actor *actor = arg0;
+
+    data = func_80100094(arg0, 0);
+    data->timer -= func_800D8FF8();
+    interval = func_800F10B4(data->duration, 0, 2.0f, 0.0333f, 0.1f);
+    if (data->timer <= 0.0f) {
+      do {
+        data->timer += interval;
+        func_800EE7F8(position, actor->position);
+        if (data->flag) {
+            func_800EFA20(velocity, &actor->actorData[4], 0.125f);
+            if (func_800DC0C0() < 0.5f) {
+                _fxegg_entrypoint_7(position, velocity, actor->scale);
+            } else {
+                _fxegg_entrypoint_8(position, velocity, actor->scale);
+            }
+        } else if (func_800DC0C0() < 0.5f) {
+            _fxegg_entrypoint_2(position, actor->scale);
+        } else {
+            _fxegg_entrypoint_1(position, actor->scale);
+        }
+      } while (data->timer <= 0.0f);
+    }
+}
 
 void func_80800194_cheggnormal(void *arg0) {
     void *func_80100094(Actor *, u32);
