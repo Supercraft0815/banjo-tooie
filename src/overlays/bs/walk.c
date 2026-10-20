@@ -1,7 +1,50 @@
 #include "common.h"
 #include "overlays/bs/walk.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/func_80800000_bswalk.s")
+s32 bastick_getZone(PlayerState *);
+s32 func_8008DE24(PlayerState *);
+
+void func_80800000_bswalk();
+
+void func_80800000_bswalk(self) {
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    f32 bastick_distance(PlayerState *);
+    f32 bastick_getZonePosition(PlayerState *);
+    f32 func_800F1214(f32, f32, f32);
+    int player_isStable(PlayerState *);
+    f32 position;
+    s32 zone;
+
+    position = bastick_getZonePosition(self);
+    zone = bastick_getZone(self);
+    if (func_8008DE24(self) && player_isStable(self)) {
+        if (zone == 0) {
+            baphysics_set_target_horizontal_velocity(self, 0.0f);
+            return;
+        }
+        baphysics_set_target_horizontal_velocity(self,
+            func_800F1214(bastick_distance(self), 30.0f, 150.0f));
+        return;
+    }
+    switch (zone) {
+    case 0:
+        baphysics_set_target_horizontal_velocity(self, 0.0f);
+        return;
+    case 1:
+        baphysics_set_target_horizontal_velocity(self, func_800F1214(position, 30.0f, 80.0f));
+        return;
+    case 2:
+        baphysics_set_target_horizontal_velocity(self, func_800F1214(position, 80.0f, 150.0f));
+        return;
+    case 3:
+        baphysics_set_target_horizontal_velocity(self, func_800F1214(position, 150.0f, 225.0f));
+        return;
+    case 4:
+        baphysics_set_target_horizontal_velocity(self, func_800F1214(position, 225.0f, 500.0f));
+        return;
+    }
+}
+
 
 void func_8080016C_bswalk(PlayerState *self) {
     void func_8008CA30(PlayerState *, f32);
