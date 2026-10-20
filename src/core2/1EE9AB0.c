@@ -611,7 +611,37 @@ void func_801113B8(void *arg0) {
     func_800EFD24((*(s32 *)((s8 *)(arg0) + (0x34))) + 0x44);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111410.s")
+/* extern */
+
+void func_80111410(void *arg0, void *arg1, void *arg2, f32 arg3) {
+    f32 func_80013728(f32);
+    f32 func_800D8FF8(void);
+    f32 func_800F212C(f32, f32);
+    f32 sqrtf(f32);
+    f32 delta[3];
+    f32 dt;
+    f32 length;
+    f32 step[3];
+    f32 inverse;
+
+    delta[0] = func_80013728(((f32 *)arg1)[0] - ((f32 *)arg2)[0]);
+    delta[1] = func_80013728(((f32 *)arg1)[1] - ((f32 *)arg2)[1]);
+    delta[2] = func_80013728(((f32 *)arg1)[2] - ((f32 *)arg2)[2]);
+    length = sqrtf(delta[0] * delta[0] + delta[1] * delta[1] + delta[2] * delta[2]);
+    if (length != 0.0f) {
+        dt = func_800D8FF8();
+        inverse = 1.0f / length;
+        step[0] = (*(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x34) + 8) * dt) * (delta[0] * inverse);
+        step[1] = (*(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x34) + 0xC) * dt) * (delta[1] * inverse);
+        step[2] = (arg3 * dt) * (delta[2] * inverse);
+        step[0] = func_800F212C(step[0], delta[0]);
+        step[1] = func_800F212C(step[1], delta[1]);
+        step[2] = func_800F212C(step[2], delta[2]);
+        ((f32 *)arg2)[0] += step[0];
+        ((f32 *)arg2)[1] += step[1];
+        ((f32 *)arg2)[2] += step[2];
+    }
+}
 
 void func_80111590(void *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x34)))) + (0))) = arg1;
