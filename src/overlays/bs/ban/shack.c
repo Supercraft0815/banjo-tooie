@@ -279,7 +279,61 @@ void func_80800770_bsbanshack(PlayerState *arg0)
     func_808005DC_bsbanshack(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_808007A0_bsbanshack.s")
+void func_808007A0_bsbanshack(PlayerState *arg0)
+{
+    int bakey_released(PlayerState *, ButtonId);
+    int baanim_isStopped(PlayerState *);
+    f32 baphysics_get_vertical_velocity(PlayerState *);
+    void baphysics_reset_gravity(PlayerState *);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    int func_8008DF8C(PlayerState *, s32);
+    s32 func_8008E260(PlayerState *);
+    void func_8009FE58(PlayerState *);
+    int player_isStable(PlayerState *);
+    s32 bs_setState(PlayerState *, s32);
+    s32 sp24;
+
+    sp24 = 0;
+    if (bakey_released(arg0, 8) && baphysics_get_vertical_velocity(arg0) > 0.0f) {
+        baphysics_reset_gravity(arg0);
+    }
+    switch (arg0->unk15C.bytes[0]) {
+    case 1:
+        func_80800100_bsbanshack(arg0);
+        if (baanim_isStopped(arg0)) {
+            func_808005DC_bsbanshack(arg0, 2);
+        }
+        if (func_8008DF8C(arg0, 0x5A)) {
+            func_808005DC_bsbanshack(arg0, 3);
+        }
+        break;
+    case 2:
+        func_80800100_bsbanshack(arg0);
+        if (func_8008DF8C(arg0, 0x5A)) {
+            func_808005DC_bsbanshack(arg0, 3);
+        }
+        break;
+    case 3:
+        if (player_isStable(arg0)) {
+            if (arg0->unk160.word == 0) {
+                arg0->unk160.word++;
+                func_8009FE58(arg0);
+            }
+            if (baanim_isStopped(arg0)) {
+                sp24 = 0x16C;
+            }
+            sp24 = func_80800074_bsbanshack(arg0, sp24);
+            if (sp24 == 0) {
+                baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+            }
+        }
+        break;
+    }
+    if (func_8008E260(arg0)) {
+        sp24 = 0x3D;
+    }
+    bs_setState(arg0, sp24);
+}
 
 s32 bsbanshack_entrypoint_2(s32 arg0) {
     extern s32 D_80800CD0_bsbanshack[];
