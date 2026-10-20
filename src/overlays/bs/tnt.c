@@ -284,7 +284,65 @@ void func_80800960_bstnt(s32 arg0) {
     func_808007EC_bstnt(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80800998_bstnt.s")
+void func_80800998_bstnt(struct player_state_s *arg0) {
+    f32 baanim_getTimer(struct player_state_s *);
+    int baanim_isAt(struct player_state_s *, f32);
+    void baphysics_set_gravity(struct player_state_s *, f32);
+    void baphysics_set_terminal_velocity(struct player_state_s *, f32);
+    s32 bs_setState(s32, s32);
+    void bstnt_entrypoint_4(void *);
+    f32 func_800136E4(f32);
+    void func_8009328C(struct player_state_s *, f32);
+    void func_8009D3A8(struct player_state_s *, s32);
+    f32 func_800D8FF8(void);
+    f32 func_800F0E00(f32, f32);
+    s32 player_inWater(struct player_state_s *);
+    s32 func_808007EC_bstnt(s32, s32);
+    s32 next_state;
+    f32 delta;
+    f32 angle;
+
+    next_state = 0;
+    delta = func_800D8FF8();
+    func_8009D3A8(arg0, 0);
+    if (player_inWater(arg0)) {
+        baphysics_set_gravity(arg0, -10.0f);
+        baphysics_set_terminal_velocity(arg0, -20.0f);
+    }
+    switch (*(s32 *)((u8 *)arg0 + 0x15C)) {
+    case 1:
+        if (baanim_isAt(arg0, 0.15870000422000885f)) {
+            func_80800068_bstnt(arg0);
+        }
+        if (baanim_isAt(arg0, 0.2770000100135803f)) {
+            func_80800000_bstnt(arg0);
+        }
+        if (baanim_isAt(arg0, 0.4339999854564667f)) {
+            func_808007EC_bstnt((s32)arg0, 2);
+        }
+        break;
+    case 2:
+        func_8080009C_bstnt(arg0);
+        angle = func_800136E4(*(f32 *)((u8 *)arg0 + 0x16C) * delta +
+                            *(f32 *)((u8 *)arg0 + 0x170));
+        *(f32 *)((u8 *)arg0 + 0x170) = angle;
+        func_8009328C(arg0, angle);
+        if (baanim_getTimer(arg0) > 0.78f) {
+            *(f32 *)((u8 *)arg0 + 0x16C) = func_800F0E00(0.0f,
+                *(f32 *)((u8 *)arg0 + 0x16C) - 750.0f * delta);
+        }
+        if (baanim_isAt(arg0, 0.5f)) {
+            func_80800554_bstnt(arg0);
+        }
+        if (*(f32 *)((u8 *)arg0 + 0x16C) == 0.0f) {
+            next_state = 0x10C;
+        }
+        break;
+    }
+    func_80800720_bstnt((s32)arg0);
+    bstnt_entrypoint_4(arg0);
+    bs_setState((s32)arg0, next_state);
+}
 
 s32 bstnt_entrypoint_0(s32 arg0) {
     extern s32 D_808023F8_bstnt[];
