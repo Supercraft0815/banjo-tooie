@@ -18,7 +18,54 @@ void func_8080000C_chdinocoaster(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x28))) = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/coaster/func_80800064_chdinocoaster.s")
+void func_80800064_chdinocoaster(Actor *arg0) {
+    extern s32 D_80800528_chdinocoaster[];
+    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    s32 _sucoaster_entrypoint_10(Actor *, s32);
+    s32 _sucoaster_entrypoint_2();
+    s32 _sucoaster_entrypoint_22(Actor *);
+    f32 func_800D8FF8(void);
+    f32 func_800F1FF0(f32, f32, f32, f32, f32);
+    int func_800F20BC(f32, f32, f32);
+    s32 func_80101E14(Actor *, f32);
+    void func_80102BF8(void *, f32, f32, f32);
+    void func_8010A570(Actor *);
+    f32 func_8010CD28(Actor *);
+    void func_808002CC_chdinocoaster(Actor *);
+    f32 dt;
+
+    switch (arg0->unk70_10) {
+        case 19:
+            arg0->unk54 = func_8010CD28(arg0);
+            func_80102BF8(arg0, 0.1f, 1.5f, 400.0f);
+            _sucoaster_entrypoint_22(arg0);
+            break;
+        case 20:
+            dt = func_800D8FF8();
+            arg0->rotation[1] = func_800F1FF0(arg0->rotation[1],
+                ((f32 *)arg0->actorData)[5], 0.12f, dt * 8.0f, dt * 200.0f);
+            if (func_800F20BC(arg0->rotation[1], ((f32 *)arg0->actorData)[5], 4.0f)) {
+                _sucoaster_entrypoint_10(arg0, 3);
+            }
+            _sucoaster_entrypoint_22(arg0);
+            break;
+        case 9:
+            if (func_80101E14(arg0, 0.4f)) {
+                ((f32 *)arg0->actorData)[3] = 800.0f;
+            }
+            _sucoaster_entrypoint_2(arg0);
+            break;
+        default:
+            if (!_subaddiedialog_entrypoint_7((s32)arg0, (s32)arg0->position, D_80800528_chdinocoaster)) {
+                _sucoaster_entrypoint_2(arg0);
+            } else {
+                ((f32 *)arg0->actorData)[5] = arg0->rotation[1];
+                func_8010A570(arg0);
+            }
+            break;
+    }
+    func_808002CC_chdinocoaster(arg0);
+}
 
 s32 func_808001C8_chdinocoaster(Actor *arg0, s32 arg1, s32 arg2) {
     extern s32 D_80800468_chdinocoaster[];
