@@ -349,7 +349,56 @@ void func_80801C78_chstatueboss(Actor *arg0) {
     _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80802850_chstatueboss);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801CA0_chstatueboss.s")
+void func_80801CA0_chstatueboss(Actor *arg0) {
+    void _chexploder_entrypoint_12(Actor *, s32);
+    void _chexploder_entrypoint_6(Actor *, f32, f32);
+    void _chexploder_entrypoint_15(Actor *, u32, f32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void *func_80101080(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s32 D_8080285C_chstatueboss;
+    extern s32 D_80802894_chstatueboss;
+    s32 offset;
+    struct StatueBossData {
+        u8 pad[0x8C];
+        Unk80132ED0 *marker;
+    } *sp38;
+    Actor *sp34;
+
+    offset = 0;
+    sp38 = func_80100094(arg0, 0);
+    sp34 = func_80106790(func_80101080());
+    _chexploder_entrypoint_12(sp34, 40);
+    _chexploder_entrypoint_6(sp34, 1200.0f, 1600.0f);
+    _chexploder_entrypoint_15(sp34, 1, 1.25f);
+    switch (arg0->unk70_10) {
+        case 8:
+            offset = 80;
+            func_80801640_chstatueboss(arg0, 0, 0);
+            break;
+        case 12:
+            offset = 80;
+            func_80801640_chstatueboss(arg0, 1, 0);
+            break;
+        case 16:
+            offset = 80;
+            func_80801640_chstatueboss(arg0, 2, 0);
+            break;
+        case 20:
+            offset = 80;
+            func_80801640_chstatueboss(arg0, 3, 0);
+            break;
+        case 24:
+            offset = 80;
+            func_80801640_chstatueboss(arg0, 4, 0);
+            break;
+    }
+    _subaddieaudioquick_entrypoint_2(sp34, sp34->position, &D_80802894_chstatueboss);
+    func_800BBCB8(sp34->position, sp34->position, 1.0f, 6, &D_8080285C_chstatueboss);
+    sp34 = func_80106790(sp38->marker);
+    sp34->position[1] -= arg0->scale * (f32)offset;
+}
 
 void func_80801E24_chstatueboss(Actor *arg0, u32 arg1, u32 arg2) {
     void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, u32, u32);
