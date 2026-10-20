@@ -771,7 +771,33 @@ OSThread *chdragonbrothers_entrypoint_0(void)
     return (OSThread *) D_808056A8_chdragonbrothers;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80803574_chdragonbrothers.s")
+void func_80803574_chdragonbrothers(Actor *arg0) {
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFCD8(f32 *, f32, f32);
+    void func_800FFAB0(Actor *);
+    f32 *sp20;
+
+    arg0->unk74_7 = (s32)arg0->unk74_7 - 50;
+    sp20 = arg0->position;
+    func_800EE7F8((f32 *)arg0->actorData, sp20);
+    arg0->position[1] = ((f32 *)arg0->actorData)[1] - 310.0f;
+    if (func_800EA05C() == 0x12B) {
+        arg0->unk7A_8 = 0;
+    } else {
+        arg0->unk7A_8 = 1;
+    }
+    if ((arg0->unk7A_8 && func_800DA298(0x1D5)) ||
+        (!arg0->unk7A_8 && func_800DA298(0x1D6))) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    arg0->unk3C = _subaddiefind_entrypoint_2(0x377, 0)->unk0;
+    func_800EFCD8(sp20, (s32)arg0->unk74_7 * 90, 2700.0f);
+    arg0->rotation[1] = (s32)arg0->unk74_7 * 90;
+}
 
 void func_808036E4_chdragonbrothers(s32 arg0) 
 {
