@@ -373,7 +373,45 @@ void bswalk_entrypoint_19(PlayerState *arg0) {
     func_8008C9F0(arg0, 30.0f, 150.0f, 1.2f, 0.9f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_20.s")
+void bswalk_entrypoint_20(PlayerState *self) {
+    void func_800A2CE8(PlayerState *, f32, s32);
+    s32 _badrone_entrypoint_24(PlayerState *);
+    s32 _badrone_entrypoint_25(PlayerState *);
+    s32 func_8008E148(PlayerState *);
+    s32 next_state = 0;
+
+    func_8080016C_bswalk(self);
+    func_800A2CE8(self, 0.4f, 4);
+    func_800A2CE8(self, 0.9f, 3);
+    func_80800000_bswalk(self);
+    if (!func_8008DE24(self)) {
+        next_state = 2;
+    }
+    if (!bastick_getZone(self)) {
+        next_state = 1;
+    }
+    if (bainput_should_enter_first_person(self)) {
+        next_state = _badrone_entrypoint_24(self);
+    }
+    if (func_8008DD04(self)) {
+        next_state = 0x2F;
+    }
+    if (bakey_held(self, 1)) {
+        next_state = 7;
+    }
+    next_state = func_80800248_bswalk(self, next_state);
+    if (bakey_pressed(self, 8)) {
+        next_state = bs_getTypeOfJump(self);
+    }
+    if (func_8008E148(self)) {
+        next_state = _badrone_entrypoint_25(self);
+    }
+    if (player_inWater(self)) {
+        next_state = 0x2D;
+    }
+    next_state = func_800A02DC(self, next_state);
+    bs_setState(self, next_state);
+}
 
 s32 bswalk_entrypoint_21(s32 arg0) {
     extern s32 D_80801560_bswalk[];
