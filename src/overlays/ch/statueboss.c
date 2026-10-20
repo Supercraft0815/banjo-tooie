@@ -341,7 +341,35 @@ void func_80801AC4_chstatueboss(s32 arg0, s32 arg1) {
     _subaddieaudioloop_entrypoint_4((Actor *) arg0, (f32 *) ((u8 *) arg0 + 4), arg1, &D_808027F8_chstatueboss);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801AF0_chstatueboss.s")
+void func_80801AF0_chstatueboss(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_800C4B64(f32);
+    void func_800C4B70(s32);
+    f32 func_800DC178(f32, f32);
+    s32 func_80101E14(Actor *, f32);
+    struct Times { f32 values[6]; };
+    struct Levels { f32 values[5]; };
+    extern struct Times D_80802804_chstatueboss;
+    extern struct Levels D_8080281C_chstatueboss;
+    extern struct Levels D_80802830_chstatueboss;
+    extern s32 D_80802844_chstatueboss;
+    struct Times times;
+    struct Levels pitches;
+    struct Levels volumes;
+    s32 i;
+
+    times = D_80802804_chstatueboss;
+    pitches = D_8080281C_chstatueboss;
+    volumes = D_80802830_chstatueboss;
+    for (i = 0; times.values[i] != -1.0f; i++) {
+        if (func_80101E14(arg0, times.values[i])) {
+            func_800C4B64(pitches.values[i] + func_800DC178(-0.05f, 0.05f));
+            func_800C4B70((s32) volumes.values[i]);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80802844_chstatueboss);
+            return;
+        }
+    }
+}
 
 void func_80801C78_chstatueboss(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
