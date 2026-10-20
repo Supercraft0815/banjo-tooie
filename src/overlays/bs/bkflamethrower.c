@@ -85,7 +85,58 @@ void bsbkflamethrower_entrypoint_1(s32 arg0)
 
 void bsbkflamethrower_entrypoint_2(s32 *arg0) { arg0[87] = 0; func_80800094_bsbkflamethrower(arg0, 1); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bkflamethrower/bsbkflamethrower_entrypoint_3.s")
+void bsbkflamethrower_entrypoint_3(struct player_state_s *arg0) {
+    s32 _batimer_decrement(void *, s32);
+    f32 _batimer_get(void *, s32);
+    int _batimer_isZero(struct player_state_s *, s32);
+    int bakey_pressed(struct player_state_s *, int);
+    int bakey_released(struct player_state_s *, int);
+    int baanim_isAt(struct player_state_s *, f32);
+    int baanim_isStopped(struct player_state_s *);
+    f32 baanim_getTimer(struct player_state_s *);
+    void func_8009DF18(struct player_state_s *, s32, f32, s32);
+    s32 _bsstand_entrypoint_8(struct player_state_s *, s32);
+    void _baflamethrower_entrypoint_5(struct player_state_s *);
+    s32 bs_setState(struct player_state_s *, s32);
+    s32 sp24;
+
+    sp24 = 0;
+    if (_batimer_get(arg0, 0) != 0.0f && bakey_pressed(arg0, 9)) {
+        sp24 = 0x189;
+    }
+    _batimer_decrement(arg0, 0);
+    switch (((s32 *)arg0)[87]) {
+    case 1:
+        if (baanim_isAt(arg0, 0.22f)) {
+            func_8009DF18(arg0, 0x459F, 1.0f, 0x6590);
+        }
+        if (baanim_isAt(arg0, 0.4f)) {
+            func_80800094_bsbkflamethrower(arg0, 2);
+        }
+        break;
+    case 2:
+        _batimer_decrement(arg0, 2);
+        if (_batimer_isZero(arg0, 2) && bakey_released(arg0, 9)) {
+            func_80800094_bsbkflamethrower(arg0, 3);
+        }
+        break;
+    case 3:
+        if (_batimer_decrement(arg0, 1)) {
+            func_80800094_bsbkflamethrower(arg0, 4);
+        }
+        break;
+    case 4:
+        if (baanim_isStopped(arg0)) {
+            sp24 = 1;
+        }
+        if (baanim_getTimer(arg0) > 0.7f) {
+            sp24 = _bsstand_entrypoint_8(arg0, sp24);
+        }
+        break;
+    }
+    _baflamethrower_entrypoint_5(arg0);
+    bs_setState(arg0, sp24);
+}
 
 s32 bsbkflamethrower_entrypoint_4(s32 arg0) {
     extern s32 D_80800450_bsbkflamethrower[];
