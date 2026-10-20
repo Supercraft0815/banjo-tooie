@@ -481,7 +481,60 @@ s32 bsbtrot_entrypoint_11(s32 arg0) {
     return ((s32 *)&D_80802E70_bsbtrot)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_12.s")
+void func_8009D2D8(PlayerState *, s32);
+s32 baphysics_set_type(void *, s32);
+
+void bsbtrot_entrypoint_12(PlayerState *arg0) {
+    void anctrl_reset(AnimCtrl *);
+    void anctrl_setDuration(AnimCtrl *, f32);
+    void anctrl_setIndex(AnimCtrl *, s32);
+    void anctrl_setPlaybackType(AnimCtrl *, s32);
+    void anctrl_setStart(AnimCtrl *, f32);
+    void anctrl_setSubrange(AnimCtrl *, f32, f32);
+    void anctrl_start(AnimCtrl *);
+    AnimCtrl *baanim_getAnimCtrlPtr(PlayerState *);
+    void func_8008B1C8(AnimCtrl *, f32);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    f32 bastick_distance(PlayerState *);
+    f32 bastick_getAngleRelativeToBanjo(PlayerState *);
+    void func_8009DE38(PlayerState *, s32, f32);
+    f32 yaw_getIdeal(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+    void yaw_setUpdateType(PlayerState *, s32);
+    s32 pad[2];
+    f32 sp24;
+    AnimCtrl *temp_v0;
+
+    temp_v0 = baanim_getAnimCtrlPtr(arg0);
+    anctrl_reset(temp_v0);
+    anctrl_setIndex(temp_v0, 0x27);
+    anctrl_setDuration(temp_v0, 1.4f);
+    func_8008B1C8(temp_v0, 0.1f);
+    anctrl_setStart(temp_v0, 0.2f);
+    anctrl_setSubrange(temp_v0, 0.0f, 0.4002f);
+    anctrl_setPlaybackType(temp_v0, 1);
+    anctrl_start(temp_v0);
+    func_80800538_bsbtrot(arg0);
+    func_8008CA4C(arg0, 1);
+    yaw_setUpdateType(arg0, 1);
+    func_8009D2D8(arg0, 3);
+    baphysics_set_type(arg0, 6);
+    if (bastick_distance(arg0) != 0.0f) {
+        yaw_setIdeal(arg0, bastick_getAngleRelativeToBanjo(arg0));
+    }
+    baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+    func_80800438_bsbtrot(arg0);
+    sp24 = yaw_getIdeal(arg0);
+    baphysics_set_horizontal_velocity(arg0, sp24, baphysics_get_target_horizontal_velocity(arg0));
+    baphysics_set_vertical_velocity(arg0, 693.5f);
+    baphysics_set_gravity(arg0, -1200.0f);
+    func_8009DE38(arg0, 0x4432, 1.0f);
+    *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_13.s")
 
