@@ -44,7 +44,74 @@ void sucoaster_entrypoint_1(Actor *arg0) {
     func_80802728_sucoaster(arg0, func_80100094(arg0, 0U));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_2.s")
+void sucoaster_entrypoint_2(Actor *arg0) {
+    typedef struct {
+        u8 pad0[0x12];
+        u8 counter;
+        u8 timer;
+        u8 pad14[3];
+        s8 sector;
+    } CoasterData;
+    typedef struct {
+        u8 pad0[0x74];
+        u8 flags;
+        u8 pad75[3];
+        u32 pad78_3 : 29;
+        u32 busy : 1;
+        u32 pad78_0 : 2;
+    } ActorFlags;
+    void *func_80100094(Actor *, u32);
+    s32 _subaddiesect_entrypoint_0(Actor *, s32, s32);
+    void _sucoasterplayer_entrypoint_0(Actor *);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 func_800D9058(f32);
+    s32 func_800D9078(f32 *);
+    void func_800F5A00(s32, f32 *);
+    void func_8080027C_sucoaster(Actor *, void *);
+    s32 func_80802760_sucoaster(s32);
+    s32 sucoaster_entrypoint_17(Actor *, s32);
+    void sucoaster_entrypoint_22(void *);
+    CoasterData *data;
+    s32 index;
+
+    data = func_80100094(arg0, 0);
+    if (data->sector == -1 || _subaddiesect_entrypoint_0(arg0, data->sector, 1)) {
+        sucoaster_entrypoint_22(arg0);
+        if (!((ActorFlags *)arg0)->busy) {
+            func_800D9078(&arg0->unk58);
+            if (data->counter > 0) {
+                data->counter--;
+            }
+            if (((ActorFlags *)arg0)->flags & 1) {
+                switch (arg0->unk70_10) {
+                case 11:
+                case 12:
+                case 13:
+                    break;
+                default:
+                    if (data->timer > 0) {
+                        if (--data->timer == 0) {
+                            sucoaster_entrypoint_17(arg0, 2);
+                            data->timer = func_800D9058(1.8f);
+                        }
+                    }
+                }
+            }
+            index = func_80802760_sucoaster((s32)data);
+            if (index != -1) {
+                func_800F5A00(index, (f32 *)arg0->actorData);
+            }
+            if (arg0->unk64_29) {
+                _sucoasterplayer_entrypoint_0(arg0);
+            } else {
+                func_8080027C_sucoaster(arg0, data);
+            }
+            if (func_80100094(arg0, 1) != NULL) {
+                _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, 0);
+            }
+        }
+    }
+}
 
 void func_8080027C_sucoaster(Actor *arg0, void *arg1) {
     typedef struct {
