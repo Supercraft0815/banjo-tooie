@@ -219,7 +219,60 @@ void func_80800394_basetup(struct player_state_s *self) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/func_80800534_basetup.s")
+s32 func_80800534_basetup(struct player_state_s *arg0) {
+    s32 _glcutDll_entrypoint_1();
+    void _plcamera_entrypoint_13(s32, f32);
+    s32 func_8008DAA8(void *);
+    s32 func_8008E23C(struct player_state_s *);
+    s32 func_8009EA64(void);
+    int func_800A3274(struct player_state_s *);
+    s32 func_800DB9B0();
+    void func_800F452C();
+    s32 func_800F89E4(s32, f32 *);
+    f32 func_800F8A50(void);
+    s32 func_800F8B7C(void);
+    s32 func_800F99E8(void);
+    s32 func_800F99FC(void);
+    void yaw_applyIdeal(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    f32 sp2C[3];
+
+    if ((func_800DB9B0() != 0) || (_glcutDll_entrypoint_1() != 0)) {
+        func_80800394_basetup(arg0);
+        return 1;
+    }
+    if (func_8008DAA8(arg0) == 0) {
+        func_80800394_basetup(arg0);
+        if ((func_800F99FC() == 0) && (func_800F99E8() == 0) && (func_800F8B7C() != 0) && (func_8008E23C(arg0) != 0)) {
+            _plcamera_entrypoint_13(*(s32 *)((u8 *)arg0 + 0x184), func_800F8A50());
+        }
+        return 1;
+    }
+    if (func_800F99FC() != 0) {
+        if (func_800A3274(arg0) == 0xA) {
+            func_808002D4_basetup((s32)arg0);
+        }
+        return 1;
+    }
+    if (func_800F99E8() != 0) {
+        func_80800394_basetup(arg0);
+        return 1;
+    }
+    if ((func_800F8B7C() != 0) && (func_8008E23C(arg0) != 0)) {
+        func_800F89E4(func_800A3274(arg0), sp2C);
+        func_800F452C(arg0, sp2C);
+        yaw_setIdeal(arg0, func_800F8A50());
+        yaw_applyIdeal(arg0);
+        _plcamera_entrypoint_13(*(s32 *)((u8 *)arg0 + 0x184), func_800F8A50());
+        func_80800394_basetup(arg0);
+        return 1;
+    }
+    if (func_8009EA64() != 0) {
+        func_80800394_basetup(arg0);
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
