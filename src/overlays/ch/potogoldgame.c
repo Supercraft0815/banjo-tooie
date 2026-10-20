@@ -203,7 +203,31 @@ loop_3:
     } while (var_s4 != 5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80801558_chpotogoldgame.s")
+void func_80801558_chpotogoldgame(Actor *arg0) {
+    void func_800BF48C(s32, s32, s32);
+    void func_800C8C90(s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    int func_800F3214(void *, void *, void *, f32);
+    s32 func_8080206C_chpotogoldgame();
+    struct Color { s32 values[3]; };
+    struct GameData { f32 values[8]; };
+    extern struct Color D_80802540_chpotogoldgame;
+    extern struct Color D_8080254C_chpotogoldgame;
+    struct Color color;
+    struct Color start = D_80802540_chpotogoldgame;
+    struct Color end = D_8080254C_chpotogoldgame;
+    f32 ratio;
+
+    ratio = func_800F10B4((f32)func_8080206C_chpotogoldgame(), 100.0f, 0.0f, 0.0f, 0.5f);
+    ratio += func_800F10B4(((struct GameData *)arg0->actorData)->values[5], 0.0f, 2.0f, 0.0f, 0.1f);
+    ratio += func_800F10B4(((struct GameData *)arg0->actorData)->values[6], 0.0f, 2.0f, 0.0f, 0.1f);
+    ratio += func_800F10B4(((struct GameData *)arg0->actorData)->values[0], 0.0f, 2.0f, 0.0f, 0.1f);
+    ratio += func_800F10B4(((struct GameData *)arg0->actorData)->values[4], 0.0f, 2.0f, 0.0f, 0.1f);
+    ratio += func_800F10B4(((struct GameData *)arg0->actorData)->values[1], 0.0f, 2.0f, 0.0f, 0.1f);
+    func_800F3214(&color, &start, &end, ratio);
+    func_800BF48C(color.values[0], color.values[1], color.values[2]);
+    func_800C8C90((s32)&color);
+}
 
 s32 func_808016E8_chpotogoldgame(f32 *arg0, s32 *arg1, s32 *arg2, s32 *arg3) {
     f32 func_800136E4(f32);
