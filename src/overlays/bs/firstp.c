@@ -2384,7 +2384,50 @@ void func_80805380_bsfirstp(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
     *arg0 = func_80013728(*arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080549C_bsfirstp.s")
+f32 func_8080549C_bsfirstp(f32 *arg0, f32 arg1, f32 arg2, f32 *arg3, f32 arg4) {
+    f32 func_80013AA0(f32);
+    f32 func_80013798(f32);
+    f32 func_800138BC(f32);
+    f32 func_800137C4(void);
+    f32 start;
+    f32 remaining;
+    f32 scale;
+    f32 magnitude;
+    f32 limit;
+    f32 pad[2];
+    f32 end;
+    f32 area;
+    f32 sine;
+    scale = arg4 * 0.6366198063f;
+    remaining = *arg3 / scale;
+    magnitude = *arg0 > 0.0f ? arg2 : -arg2;
+    limit = arg1 / magnitude;
+    end = *arg0 / magnitude;
+    if (limit < 0) {
+        limit = 0;
+    }
+    start = func_80013AA0(1.0f - end);
+    end = func_80013AA0(1.0f - limit);
+    if (remaining < end - start) {
+        end = start + remaining;
+    }
+    remaining -= end - start;
+    if (remaining < 0.000001f) {
+        remaining = 0.0f;
+    }
+    sine = func_80013798(end);
+    area = (end + sine) - (func_800138BC(start) + start);
+    if (area < 0.000001f) {
+        area = 0.0f;
+    }
+    end = 1.0f - func_800137C4();
+    if (end < limit + 0.000001f) {
+        end = limit;
+    }
+    *arg3 = scale * remaining;
+    *arg0 = magnitude * end;
+    return scale * magnitude * area;
+}
 
 f32 func_80805644_bsfirstp(f32 *arg0, f32 arg1, f32 arg2, f32 *arg3, f32 arg4) {
     f32 func_80013A5C(f32);
