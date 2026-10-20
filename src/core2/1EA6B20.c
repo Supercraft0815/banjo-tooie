@@ -39,7 +39,38 @@ s32 func_800CD23C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA6B20/func_800CD3A8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA6B20/func_800CD544.s")
+s32 func_800CD544(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
+    void func_800BD708(s32 *, s32 *, s32, s32, f32);
+    s32 func_800BDAD4(s32 position[3]);
+    void *func_800BDC44(void);
+    s32 func_800EADFC(s32, s32, f32, s32, s32);
+    extern f32 D_8012B010;
+    s32 cube_indx[3];
+    s32 min[3];
+    s32 max[3];
+    s32 pad[2];
+    s32 temp_v0;
+    s32 result;
+
+    result = 0;
+    func_800BD708(min, max, arg0, arg0, arg1 + D_8012B010);
+    min[1]--;
+    for (cube_indx[0] = min[0]; cube_indx[0] <= max[0]; cube_indx[0]++) {
+        for (cube_indx[1] = min[1]; cube_indx[1] <= max[1]; cube_indx[1]++) {
+            for (cube_indx[2] = min[2]; cube_indx[2] <= max[2]; cube_indx[2]++) {
+                temp_v0 = func_800EADFC(func_800BDAD4(cube_indx), arg0, arg1, arg2, arg3);
+                if (temp_v0 != 0) {
+                    result = temp_v0;
+                }
+            }
+        }
+    }
+    temp_v0 = func_800EADFC(func_800BDC44(), arg0, arg1, arg2, arg3);
+    if (temp_v0 != 0) {
+        result = temp_v0;
+    }
+    return result;
+}
 
 s32 func_800CD6B4(u8 *arg0, f32 *arg1, f32 arg2, f32 *arg3, s32 arg4) {
     typedef struct {
