@@ -623,7 +623,54 @@ void func_80801414_bstrexsmall(void *arg0) {
     func_80801294_bstrexsmall(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80801438_bstrexsmall.s")
+void func_80801438_bstrexsmall(PlayerState *self) {
+    int baanim_isAt(PlayerState *, f32);
+    int baanim_isStopped(PlayerState *);
+    int func_800DB9B0(void);
+    s32 func_8009D2E4(void *);
+    s32 func_80801294_bstrexsmall(void *, s32);
+    s32 next_state;
+
+    next_state = 0;
+    bstrexsmall_entrypoint_3((s32)self);
+    if (func_800DB9B0() && func_8009D2E4(self) == 8) {
+        func_8009D2D8(self, 2);
+    }
+    switch (self->unk15C.bytes[0]) {
+    case 1:
+        if (baanim_isAt(self, 0.13f)) {
+            func_808000C8_bstrexsmall(self, 2);
+        }
+        if (bakey_newlyReleased(self, BUTTON_B)) {
+            self->unk15C.bytes[1] = 0;
+        }
+        if (baanim_isAt(self, 0.2f)) {
+            if (self->unk15C.bytes[1]) {
+                func_80801294_bstrexsmall(self, 3);
+            } else {
+                func_80801294_bstrexsmall(self, 2);
+            }
+        }
+        break;
+    case 2:
+        if (baanim_isAt(self, 0.25f)) {
+            func_808000C8_bstrexsmall(self, 3);
+        }
+        if (baanim_isStopped(self)) {
+            next_state = 0x145;
+        }
+        break;
+    case 3:
+        if (baanim_isAt(self, 0.45f)) {
+            func_808000C8_bstrexsmall(self, 3);
+        }
+        if (baanim_isStopped(self)) {
+            next_state = 0x145;
+        }
+        break;
+    }
+    bs_setState((s32)self, next_state);
+}
 
 s32 bstrexsmall_entrypoint_12(s32 arg0) {
     extern s32 D_80801B88_bstrexsmall[];
