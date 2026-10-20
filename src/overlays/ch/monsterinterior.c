@@ -133,7 +133,49 @@ s32 func_808009C0_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_80800A44_chmonsterinterior.s")
+void func_80800A44_chmonsterinterior(Actor *arg0, s32 arg1) {
+    s32 _susubgame_entrypoint_2(void *, s32);
+    void func_800CD08C(s32, f32 *);
+    s32 func_800D3948(void);
+    s32 func_800DC128(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80105138(u8 *, s32, f32, f32, s32);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    void func_80800BC8_chmonsterinterior(u8 **, s32);
+    struct SpawnFlags {
+        u8 pad[0x70];
+        u8 pad70 : 7;
+        u8 flag : 1;
+    };
+    Actor *spawned;
+    f32 position[3];
+    f32 height;
+    s32 pad;
+    s32 mode;
+    void *data;
+
+    if (arg1 == 0 || arg1 == 1 || arg1 == 2) {
+        mode = func_800D3948();
+        data = func_80100094(arg0, 0);
+        if (_susubgame_entrypoint_2(arg0, (s32)data + 0x10)) {
+            func_800EE7F8(position, arg0->position);
+        } else {
+            func_800CD08C(arg0->unk70_25 - 1, position);
+        }
+        position[1] = arg0->position[1];
+        func_80105138((u8 *)arg0, (s32)position, 200.0f, -200.0f, (s32)&height);
+        position[1] = height;
+        spawned = func_80108528(arg1 + 0x452, position, func_800DC128(0, 0x167), &arg0);
+        spawned->unk3C = arg0->unk0;
+        spawned->unk64_20 = mode;
+        spawned->actorData[5] = arg1;
+        spawned->unk6C_0 = arg0->unk6C_0;
+        spawned->unk64_19 = _susubgame_entrypoint_2(arg0, (s32)data + 0x10);
+        ((struct SpawnFlags *)spawned)->flag = mode == 0;
+        func_80800BC8_chmonsterinterior((u8 **)spawned, arg1);
+    }
+}
 
 void func_80800BC8_chmonsterinterior(u8 **arg0, s32 arg1) {
     s32 func_800D3948(void);
