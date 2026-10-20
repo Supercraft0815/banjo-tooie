@@ -1152,7 +1152,48 @@ s32 func_808042A4_chdodgemcontrol(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080440C_chdodgemcontrol.s")
+void func_8080440C_chdodgemcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_800EFD24(f32 *);
+    s32 func_80103140(Actor *, u32, u16);
+    void func_800904F4(s32, Unk80132ED0 *);
+    void func_800904C8(s32);
+    s32 _gcstatusDll_entrypoint_11(void);
+    f32 *sp24;
+
+    sp24 = func_80100094(arg0, 0);
+    arg0->scale = 0.65f;
+    func_800EFD24(sp24);
+    sp24[3] = 0.0f;
+    switch (arg0->unk79_4) {
+        case 0:
+        case 1:
+        case 2:
+            switch (arg0->unk6C_0) {
+                case 0:
+                    func_80103140(arg0, 0x828, arg0->unk0->unk16);
+                    func_800904F4(0x27, arg0->unk0);
+                    func_800904C8(0x74);
+                    arg0->unk64_20 = 1;
+                    break;
+                case 1:
+                    func_8080422C_chdodgemcontrol((s32)arg0, 5);
+                    break;
+                case 2:
+                    func_8080422C_chdodgemcontrol((s32)arg0, 7);
+                    break;
+                case 3:
+                    func_8080422C_chdodgemcontrol((s32)arg0, 6);
+                    break;
+            }
+            break;
+        case 3:
+            if (arg0->unk6C_0 < (u32)_gcstatusDll_entrypoint_11()) {
+                arg0->unk64_29 = 1;
+            }
+            break;
+    }
+}
 
 void func_8080455C_chdodgemcontrol(void *arg0) {
     struct Flags {
