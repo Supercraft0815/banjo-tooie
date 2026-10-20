@@ -327,7 +327,65 @@ void func_80800824_bsvan(struct player_state_s *arg0) {
     *(s32 *)((s8 *)arg0 + 0x15C) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_808008D4_bsvan.s")
+void func_808008D4_bsvan(struct player_state_s *arg0) {
+    s32 _badrone_entrypoint_28(struct player_state_s *);
+    s32 anctrl_isStopped(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void baanim_setEnd(struct player_state_s *, f32);
+    void baanim_setEndAndDuration(struct player_state_s *, f32, f32);
+    int baflag_isTrue(struct player_state_s *, s32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    s32 bastick_getZone(struct player_state_s *);
+    void bs_setState(struct player_state_s *, int);
+    int func_8008DF8C(struct player_state_s *, s32);
+    void func_8009BB24(void *, f32 *);
+    void func_8009D3A8(struct player_state_s *, s32);
+    void func_800A2EAC(void *);
+    s32 player_inWater(struct player_state_s *);
+    int player_isStable(struct player_state_s *);
+    s32 sp34;
+    struct anctrl_s *sp30;
+    f32 sp24[3];
+
+    sp34 = 0;
+    sp30 = baanim_getAnimCtrlPtr(arg0);
+    func_8009D3A8(arg0, 0);
+    func_80800000_bsvan(arg0);
+    func_8009BB24(arg0, sp24);
+    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+        case 0:
+            if (func_8008DF8C(arg0, 0x82)) {
+                baanim_setEnd(arg0, 0.6939f);
+                *(s32 *)((s8 *)arg0 + 0x15C) = 1;
+            }
+            break;
+        case 1:
+            if (player_isStable(arg0)) {
+                func_800A2EAC(arg0);
+                baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+                baanim_setEndAndDuration(arg0, 1, 1.0f);
+                *(s32 *)((s8 *)arg0 + 0x15C) = 2;
+            }
+            break;
+        case 2:
+            break;
+    }
+    if (player_isStable(arg0) &&
+        (bastick_getZone(arg0) > 0 ||
+         (*(s32 *)((s8 *)arg0 + 0x15C) == 2 && anctrl_isStopped(sp30)))) {
+        if (baflag_isTrue(arg0, 0x19)) {
+            sp34 = _badrone_entrypoint_28(arg0);
+        } else {
+            sp34 = 0x11A;
+        }
+    }
+    if (player_inWater(arg0)) {
+        sp34 = 0x11D;
+    }
+    func_808000BC_bsvan((u8 *)arg0);
+    bsvan_entrypoint_3(arg0);
+    bs_setState(arg0, sp34);
+}
 
 s32 bsvan_entrypoint_6(s32 arg0) {
     extern s32 D_80801CAC_bsvan[];
