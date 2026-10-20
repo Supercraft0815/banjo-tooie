@@ -122,7 +122,49 @@ s32 func_808003F8_chstarspinnerstar(Actor *arg0, s32 arg1, volatile s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/starspinner/star/func_80800454_chstarspinnerstar.s")
+s32 func_80800454_chstarspinnerstar(Actor *arg0, f32 arg1) {
+    s32 func_800DA298(s32);
+    f32 mlAbsF(f32);
+    s32 pad;
+    f32 step;
+    f32 magnitude;
+    f32 speed;
+    f32 destination;
+    s32 rate;
+
+    if (((f32 *)arg0->actorData)[5] < 0.0f) {
+        destination = ((f32 *)arg0->actorData)[1];
+    } else {
+        destination = ((f32 *)arg0->actorData)[1] + 1900.0f;
+    }
+    step = (destination - arg0->position[1]) * 0.05f;
+    magnitude = mlAbsF(step);
+    speed = ((f32 *)arg0->actorData)[5] * (f32)(func_800DA298(0x679) ? 400 : 1000) * arg1;
+    if (magnitude < 4.0f) {
+        if (step < 0.0f) {
+            step = -4.0f;
+        } else {
+            step = 4.0f;
+        }
+    } else {
+        if (mlAbsF(speed) < magnitude) {
+            step = speed;
+        }
+    }
+    arg0->position[1] += step;
+    if (((f32 *)arg0->actorData)[5] < 0.0f) {
+        if (arg0->position[1] < ((f32 *)arg0->actorData)[1]) {
+            ((f32 *)arg0->actorData)[5] = -((f32 *)arg0->actorData)[5];
+            return 1;
+        }
+    } else {
+        if (((f32 *)arg0->actorData)[1] + 1900.0f < arg0->position[1]) {
+            ((f32 *)arg0->actorData)[5] = -((f32 *)arg0->actorData)[5];
+            return 1;
+        }
+    }
+    return 0;
+}
 
 /* extern */
 
