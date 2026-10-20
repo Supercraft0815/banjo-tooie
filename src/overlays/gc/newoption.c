@@ -761,7 +761,49 @@ void gcnewoption_entrypoint_29(void *arg0, s32 arg1) {
     ((struct Flags *)arg0)->flag = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_30.s")
+void gcnewoption_entrypoint_30(s32 arg0, s16 *arg1) {
+    s32 func_800DC128(s32, s32);
+    u16 _gczoomboxdata_entrypoint_5(s32);
+    s32 _gczoomboxdata_entrypoint_6(s32);
+    void gcnewoption_entrypoint_31(s32, s32, s16);
+    s16 chosen[30];
+    s32 value;
+    u16 key;
+    s32 valid;
+    s32 i;
+    s32 previous;
+
+    for (i = 0; i < *(s16 *)(arg0 + 4); i++) {
+            valid = 0;
+            do {
+                value = func_800DC128(12, 210);
+                if (_gczoomboxdata_entrypoint_6(value)) {
+                    key = (u16)_gczoomboxdata_entrypoint_5(value);
+                    if (key != _gczoomboxdata_entrypoint_5(*(s16 *)(arg0 + 0x236))) {
+                        valid = 1;
+                        if (arg1 != NULL) {
+                            for (previous = 0; arg1[previous] != -1; previous++) {
+                                if (key == _gczoomboxdata_entrypoint_5(arg1[previous])) {
+                                    valid = 0;
+                                    break;
+                                }
+                            }
+                        }
+                        if (valid) {
+                            for (previous = i - 1; previous >= 0; previous--) {
+                                if (key == _gczoomboxdata_entrypoint_5(chosen[previous])) {
+                                    valid = 0;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            } while (!valid);
+            gcnewoption_entrypoint_31(arg0, i, value);
+            chosen[i] = value;
+    }
+}
 
 void gcnewoption_entrypoint_31(s32 arg0, s32 arg1, s16 arg2) {
     (*(s16 *)((s8 *)((arg0 + (arg1 * 2))) + (0x1DC))) = arg2;
