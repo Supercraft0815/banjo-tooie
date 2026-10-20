@@ -31,7 +31,62 @@ void subaddieitem_entrypoint_2(u8 *arg0) {
     _subaddielink_entrypoint_0(arg0 + 8, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/item/subaddieitem_entrypoint_3.s")
+s32 subaddieitem_entrypoint_3(Actor *arg0, void *arg1, u8 *arg2) {
+    s32 _subaddielink_entrypoint_0();
+    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    s32 _subaddielink_entrypoint_2(u8 *);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    Unk80132ED0 *func_8008FDEC(void);
+    s32 func_8008FE14(void);
+    s32 func_800902E4(f32 *, f32, s32, Actor **);
+    s32 func_80090768(f32 *);
+    s32 func_80090658();
+    s32 func_80090818(void);
+    f32 func_800D8FF8(void);
+    void func_80103DFC(Actor *, f32 *);
+    void func_80800224_subaddieitem(Actor *, u8 *, Actor *);
+    s32 result;
+    f32 position[3];
+
+    result = 0;
+    *(f32 *)(arg2 + 0x10) += func_800D8FF8();
+    switch (arg2[0]) {
+        case 1:
+            if (func_800902E4(arg0->position, (f32)*(s16 *)(arg2 + 6),
+                             *(s16 *)(arg2 + 4), &arg0) &&
+                func_8008FE14() == *(s16 *)(arg2 + 4) &&
+                func_80090818()) {
+                if (arg1 == NULL) {
+                    arg1 = position;
+                    func_80103DFC(arg0, position);
+                }
+                _subaddielink_entrypoint_1(arg2 + 8, func_8008FDEC());
+                func_80090768(arg1);
+                arg2[0] = 2;
+            }
+            break;
+        case 2:
+            if (!_subaddielink_entrypoint_2(arg2 + 8)) {
+                func_80800224_subaddieitem(arg0, arg2, NULL);
+            } else {
+                arg1 = _subaddielink_entrypoint_4(arg2 + 8);
+                if (!((Actor *)arg1)->unk64_22 && !((Actor *)arg1)->unk64_23) {
+                    func_80800224_subaddieitem(arg0, arg2, arg1);
+                }
+            }
+            break;
+        case 3:
+            if (arg2[3]) {
+                func_80090658(0);
+                arg2[3] = 0;
+            }
+            _subaddielink_entrypoint_0(arg2 + 8);
+            arg2[0] = 0;
+            result = 1;
+            break;
+    }
+    return result;
+}
 
 void func_80800224_subaddieitem(Actor *arg0, u8 *arg1, Actor *arg2) {
     s32 _subaddielink_entrypoint_0();
