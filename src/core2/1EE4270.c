@@ -491,7 +491,67 @@ s32 func_8010BCC8(Actor *arg0, s32 arg1, Actor *arg2) {
                        scale);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010BDB0.s")
+/* extern */
+
+s32 func_8010BDB0(Actor *actor, s32 arg1, s32 arg2, s32 arg3) {
+    typedef struct {
+        u8 pad[0x70];
+        u32 : 15;
+        u32 collidable : 1;
+        u32 : 16;
+        u32 : 7;
+        u32 burning : 1;
+        u32 : 24;
+    } CollisionFlags;
+    typedef struct {
+        Unk80132ED0 *marker;
+        s32 unused;
+        u32 flags;
+    } Entry;
+    void _chflamer_entrypoint_1(void *, void *);
+    s32 *func_800BE3F8(u8 *);
+    s32 func_800E9E88(s32);
+    u32 func_800E9EB4(s16 *);
+    s32 func_80102F74(void *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *arg0;
+    Actor *other;
+    Unk80132ED0 *marker;
+    Entry *entry;
+    Entry *end;
+    s32 *list;
+    f32 *position;
+
+    arg0 = actor;
+    position = arg0->position;
+    list = func_800BE3F8((u8 *)position);
+    while (*list != 0) {
+        entry = (Entry *)func_800E9E88(*list);
+        end = (Entry *)func_800E9EB4((s16 *)*list);
+        for (; entry < end; entry++) {
+            if (!(entry->flags & 1)) {
+                continue;
+            }
+            marker = entry->marker;
+            if (!(((u16 *)&marker->unk18)[0] & 1) || marker == arg0->unk0) {
+                continue;
+            }
+            other = func_80106790(marker);
+            if (!((CollisionFlags *)other)->collidable || !func_8010BCC8(arg0, (s32)position, other)) {
+                continue;
+            }
+            if (((CollisionFlags *)other)->burning && !((CollisionFlags *)arg0)->burning && func_80102F74(arg0, 0x80020000)) {
+                _chflamer_entrypoint_1(arg0, marker);
+            }
+            if (!((CollisionFlags *)other)->burning && ((CollisionFlags *)arg0)->burning && func_80102F74(other, 0x80020000)) {
+                _chflamer_entrypoint_1(other, arg0->unk0);
+            }
+            return 1;
+        }
+        list++;
+    }
+    return 0;
+}
 
 /* extern */
 
