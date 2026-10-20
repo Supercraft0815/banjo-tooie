@@ -306,7 +306,56 @@ void bsblongleg_entrypoint_8(PlayerState *arg0) {
     func_8008C9F0(arg0, 0x42A00000, 0x43FA0000, 0x3F800000, 0.8f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_9.s")
+void bsblongleg_entrypoint_9(PlayerState *arg0) {
+    int anctrl_isAt(struct anctrl_s *, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    int bakey_pressed(PlayerState *, int);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    s32 bastatetimer_clear(void *, s32);
+    s32 bastatetimer_isDone();
+    s32 bastick_getZone(PlayerState *);
+    void bs_setState(PlayerState *, int);
+    int func_8008DF18(PlayerState *);
+    s32 func_8009BCD4(PlayerState *, f32);
+    void func_8009D2F0(PlayerState *, s32, f32);
+    void func_800A2CE8(PlayerState *, f32, s32);
+    int player_isStable(PlayerState *);
+    s32 sp24;
+    struct anctrl_s *sp20;
+
+    sp24 = 0;
+    sp20 = baanim_getAnimCtrlPtr(arg0);
+    func_808000C8_bsblongleg(arg0);
+    func_8009D2F0(arg0, 1, 0.5f);
+    func_800A2CE8(arg0, 0.47f, 4);
+    func_800A2CE8(arg0, 0.97f, 3);
+    if (anctrl_isAt(sp20, 0.7781f)) {
+        func_80800020_bsblongleg(arg0, 0);
+    }
+    if (anctrl_isAt(sp20, 0.2781f)) {
+        func_80800020_bsblongleg(arg0, 1);
+    }
+    func_80800064_bsblongleg(arg0);
+    if (bakey_pressed(arg0, 9) && baphysics_get_target_horizontal_velocity(arg0) == 0.0f) {
+        bastatetimer_clear(arg0, 2);
+    }
+    if (bastick_getZone(arg0) == 0 && func_8009BCD4(arg0, 1.0f)) {
+        sp24 = 0x26;
+    }
+    if (func_8008DF18(arg0)) {
+        sp24 = 0x55;
+    }
+    if (bakey_pressed(arg0, 8) && player_isStable(arg0)) {
+        sp24 = 0x28;
+    }
+    if (bastatetimer_isDone(arg0, 2)) {
+        sp24 = 0x29;
+    }
+    if (func_80800000_bsblongleg(arg0)) {
+        sp24 = 0x4C;
+    }
+    bs_setState(arg0, sp24);
+}
 
 void bsblongleg_entrypoint_10(PlayerState *arg0)
 {
