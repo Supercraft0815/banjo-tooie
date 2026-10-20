@@ -638,7 +638,53 @@ s32 bsbswim_entrypoint_9(s32 arg0) {
     return ((s32 *)&D_80801EF0_bsbswim)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80801538_bsbswim.s")
+void func_80801538_bsbswim(struct player_state_s *arg0) {
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, int);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    s32 baphysics_set_type(void *, s32);
+    void baphysics_set_vertical_velocity(struct player_state_s *, f32);
+    s32 bs_getPreviousState(struct player_state_s *);
+    void func_800A046C(struct player_state_s *);
+    f32 func_800A3298(struct player_state_s *);
+    f32 func_800F0E00(f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 velocity;
+    f32 speed;
+    struct anctrl_s *control;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    func_80800030_bsbswim(arg0);
+    func_800A046C(arg0);
+    speed = func_800A3298(arg0);
+    if (bs_getPreviousState(arg0) == 0xF) {
+        speed = func_800F0E00(speed, 600.0f);
+    }
+    if (speed > 80.0f) {
+        anctrl_reset(control);
+        anctrl_setIndex(control, 0xEA);
+        anctrl_setPlaybackType(control, 3);
+        anctrl_setDuration(control, 1.2f);
+        anctrl_setStart(control, 0.8204f);
+        anctrl_start(control);
+    } else {
+        anctrl_reset(control);
+        anctrl_setIndex(control, 0x57);
+        anctrl_setPlaybackType(control, 2);
+        anctrl_setDuration(control, 1.2f);
+        anctrl_setStart(control, 0.6412f);
+        anctrl_start(control);
+    }
+    velocity = func_800F10B4(speed, 40.0f, 1000.0f, -300.0f, -1200.0f);
+    *(f32 *)((u8 *)arg0 + 0x178) = velocity;
+    baphysics_set_vertical_velocity(arg0, velocity);
+    func_8009FFD8(arg0, 1, 3, 3, 9);
+    baphysics_set_type(arg0, 6);
+}
 
 void func_808016B8_bsbswim(void *arg0) {
     f32 baphysics_get_vertical_velocity(struct player_state_s *);
