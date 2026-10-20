@@ -1,6 +1,53 @@
 #include "gc/sectionskip.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionskip/func_80800000_gcsectionskip.s")
+s32 func_80800000_gcsectionskip(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3) {
+    void func_800EE7F8(f32 *, f32 *);
+    int func_800EECE0(f32 *, f32 *);
+    f32 mlAbsF(f32);
+    f32 sqrtf(f32);
+    f32 original[3];
+    f32 dx;
+    f32 dz;
+    f32 root;
+    f32 scale;
+    f32 sum;
+    f32 x;
+    f32 z;
+    f32 absolute;
+
+    func_800EE7F8(original, arg0);
+    if (arg3 == 0) {
+        dx = (arg1[0] + arg2) - arg0[0];
+        if (arg2 < dx) {
+            dx -= 2.0f * arg2;
+        }
+        dz = (arg1[2] + arg2) - arg0[2];
+        if (arg2 < dz) {
+            dz -= 2.0f * arg2;
+        }
+        absolute = mlAbsF(dx);
+        if (absolute < mlAbsF(dz)) {
+            arg0[0] += dx;
+        } else {
+            arg0[2] += dz;
+        }
+    } else {
+        root = sqrtf(2.0f);
+        scale = (2.0f * arg2) / root;
+        x = arg0[0] - arg1[0];
+        z = arg0[2] - arg1[2];
+        absolute = mlAbsF(x);
+        sum = mlAbsF(z) + absolute;
+        x = (x * scale) / sum;
+        z = (z * scale) / sum;
+        arg0[0] = arg1[0] + x;
+        arg0[2] = arg1[2] + z;
+    }
+    if (func_800EECE0(original, arg0) != 0) {
+        return 0;
+    }
+    return 1;
+}
 
 void func_8080019C_gcsectionskip(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4) {
     void func_800EE7F8(f32 *, f32 *);
