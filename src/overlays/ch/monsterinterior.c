@@ -365,7 +365,59 @@ void func_808017E8_chmonsterinterior(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_808017F0_chmonsterinterior.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_80801930_chmonsterinterior.s")
+void func_80801930_chmonsterinterior(Actor *arg0, Unk80132ED0 *arg1) {
+    void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
+    s32 _subaddiemulti_entrypoint_5(Unk80132ED0 *);
+    void _sumultiscore_entrypoint_7(u8 *, s32, s32, s32);
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA670(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800D3948(void);
+    s32 func_800DC128(s32, s32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010114C(s32, s32, s32);
+    void func_80103DFC(Actor *, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern s16 D_80801E50_chmonsterinterior[];
+    extern s32 D_80802044_chmonsterinterior[];
+    extern s32 D_8080207C_chmonsterinterior[];
+    extern s16 D_8080208C_chmonsterinterior[];
+    s32 pad;
+    s32 *data;
+    s32 count;
+    s32 emitter;
+    s32 player;
+    f32 position[3];
+    f32 scorePosition[3];
+
+    data = func_80100094(func_80106790(arg0->unk3C), 0);
+    if (func_800D3948() != 0) {
+        count = 2;
+    } else {
+        count = func_800DC128(6, 8);
+    }
+    emitter = func_800B53A4(count);
+    player = _subaddiemulti_entrypoint_5(arg1);
+    func_80103DFC(arg0, position);
+    func_800BABB8(emitter, position, position, 1.0f, D_80802044_chmonsterinterior);
+    func_800BA670(emitter, D_8080208C_chmonsterinterior[arg0->actorData[5]]);
+    func_800BA22C(emitter, count);
+    if (func_800D3948() != 0) {
+        _sumultiscore_entrypoint_7((u8 *)&data[10], player, 8, D_80801E50_chmonsterinterior[arg0->actorData[5]]);
+    } else {
+        *data += D_80801E50_chmonsterinterior[arg0->actorData[5]];
+    }
+    func_8010D930(1, arg0->unk70_0, position, D_8080207C_chmonsterinterior);
+    func_80103DFC(arg0, scorePosition);
+    _chscorepoints_entrypoint_2(D_80801E50_chmonsterinterior[arg0->actorData[5]], player, scorePosition, 1);
+    func_800FFAB0(arg0);
+    if (*(u16 *)&arg1->unk18 & 1) {
+        func_8010114C((s32)arg1, 0x98, 0);
+    }
+}
 
 f32 func_80801ADC_chmonsterinterior(s32 arg0, f32 *arg1) {
     f32 func_800DC178(f32, f32);
