@@ -30,7 +30,54 @@ f32 func_80800000_chhoney(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_808000C4_chhoney.s")
+s32 func_808000C4_chhoney(u8 *arg0, s32 arg1) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_8008FC00();
+    s32 func_8008FC70(s32);
+    s32 func_80090708(s32);
+    s32 func_800CE88C(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    s32 func_800FA9F4(s32, s32);
+    void func_80101FDC(Actor *, u32);
+    Actor *actor = (Actor *)arg0;
+
+    if (actor->unk70_10 == 2 || actor->unk70_10 == 3) {
+        ((f32 *)actor->actorData)[3] = 0.0f;
+    }
+    func_80101FDC(actor, arg1);
+    switch (actor->unk70_10) {
+    case 7:
+        _subaddiedialog_entrypoint_11(actor->unk0, 0xCE6, 0xC, actor->position, 0);
+        break;
+    case 8:
+        _subaddiedialog_entrypoint_11(actor->unk0, 0xCE7, 0xC, actor->position, 0);
+        break;
+    case 3:
+        func_80090708(2);
+        func_800CE8D8(6, 10.0f, 10);
+        func_800CE88C(6, 1);
+        func_800FA9F4(0, 1);
+        actor->unk58 = ((f32 *)actor->actorData)[5];
+        break;
+    case 2:
+        func_80090708(2);
+        func_800CE8D8(6, 10.0f, 10);
+        func_800CE88C(6, 1);
+        func_800FA9F4(0, 1);
+        actor->unk58 = ((f32 *)actor->actorData)[5];
+        break;
+    case 5:
+    case 6:
+        actor->unk58 = 0.0f;
+        break;
+    case 4:
+        func_800FA9F4(0, 0);
+        actor->unk6C_0 = func_8008FC00();
+        func_8008FC70(0);
+        actor->unk58 = 0.2f;
+        break;
+    }
+}
 
 void func_80800244_chhoney(Actor *arg0) {
     s32 func_8001211C(void);
