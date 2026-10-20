@@ -16,7 +16,22 @@ void chdrips_entrypoint_1(s32 arg0, s32 arg1)
   _fxripple_entrypoint_0(0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/drips/chdrips_entrypoint_2.s")
+void chdrips_entrypoint_2(s32 arg0, f32 arg1[3]) {
+    s32 func_800B53A4(s32);
+    s32 func_800BA4D0(s32, s16);
+    void func_800BA6B0(u8 *, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800C4140(s32, s32, s32);
+    f32 func_800DC178(f32, f32);
+    extern s32 D_80800658_chdrips[];
+    s32 emitter;
+
+    emitter = func_800B53A4(5);
+    func_800BA6B0(emitter, -50, 0, -50, 50, 0, 50);
+    func_800BA4D0(emitter, (s16)(s32)arg1[1]);
+    func_800BABB8(emitter, arg1, 0, 1.0f, D_80800658_chdrips);
+    func_800C4140((((u32)(func_800DC178(1.0f, 1.4f) * 1023.0f) << 13) << 8) + 0xBBD52, arg1, 0x05DC012C);
+}
 
 void func_80800260_chdrips(Actor *arg0) {
     s32 func_800B53A4(s32);
