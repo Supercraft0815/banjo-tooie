@@ -214,7 +214,60 @@ s32 chchuffycont_entrypoint_0(s32 *arg0, s32 *arg1)
   return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/chchuffycont_entrypoint_1.s")
+s32 chchuffycont_entrypoint_1(s32 *arg0, s32 *arg1) {
+    s32 _gcsectionDll_entrypoint_4(s32);
+    void func_800A8230(void);
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+    extern u8 D_8012762C;
+    extern s16 D_80800B20_chchuffycont;
+    extern s16 D_80800B66_chchuffycont;
+    s16 *ptr;
+    s16 *end;
+    s16 *scan;
+    s16 *scan_end;
+    s32 section;
+    s32 map;
+    s32 result;
+
+    map = func_800EA05C();
+    result = 0;
+    if (map == 0x121) {
+        if (func_800DA298(0x95) == 0) {
+            *arg0 = 0xD7;
+            *arg1 = 3;
+        } else {
+            ptr = &D_80800B20_chchuffycont; end = &D_80800B66_chchuffycont; do { if (func_800DA298(ptr[1]) != 0) {
+                    break;
+                }
+                ptr += 5;
+            } while (ptr != end);
+            *arg0 = *ptr;
+            *arg1 = 3;
+        }
+        section = _gcsectionDll_entrypoint_4(*arg0);
+        if (_gcsectionDll_entrypoint_4(0x121) != section) {
+            func_800A8230();
+        }
+        result = 1;
+    } else {
+        scan = &D_80800B20_chchuffycont; scan_end = &D_80800B66_chchuffycont; do { if (map == *scan) {
+                break;
+            }
+            scan += 5;
+        } while (scan != scan_end);
+        if (func_800DA298(scan[1]) != 0 ||
+            (map == 0xD7 && func_800DA298(0x95) == 0)) {
+            *arg0 = 0x121;
+            result = 1;
+            *arg1 = 1;
+            if (_gcsectionDll_entrypoint_4(0x121) != D_8012762C) {
+                func_800A8230();
+            }
+        }
+    }
+    return result;
+}
 
 void func_80800A7C_chchuffycont(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
