@@ -19,7 +19,60 @@ void bsdronefalldie_entrypoint_0(s32 arg0) {
     func_80092880(arg0, 0x1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/falldie/bsdronefalldie_entrypoint_1.s")
+struct player_state_s;
+struct anctrl_s;
+
+void bsdronefalldie_entrypoint_1(struct player_state_s *arg0) {
+    void _basudie_entrypoint_1(struct player_state_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void _badata_entrypoint_6(struct player_state_s *, s32 *, f32 *, f32 *, f32 *);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setIndex();
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    void func_8009FFD8();
+    void func_800A0180(struct player_state_s *);
+    void func_800A4DFC(struct player_state_s *, s32);
+    void func_80098B4C(void *, s32);
+    s32 func_800961AC();
+    s32 func_80092880();
+    struct anctrl_s *control;
+    f32 end;
+    f32 start;
+    f32 duration;
+    s32 index;
+
+    _basudie_entrypoint_1(arg0);
+    control = baanim_getAnimCtrlPtr(arg0);
+    _badata_entrypoint_6(arg0, &index, &duration, &start, &end);
+    if (start == end) {
+        anctrl_reset(control);
+        anctrl_setIndex(control, index);
+        anctrl_setDuration(control, duration);
+        anctrl_setStart(control, start);
+        anctrl_setSubrange(control, start, end);
+        anctrl_setPlaybackType(control, 1);
+        anctrl_start(control);
+    } else {
+        anctrl_reset(control);
+        anctrl_setIndex(control, index);
+        anctrl_setDuration(control, duration);
+        anctrl_setSubrange(control, start, end);
+        anctrl_setPlaybackType(control, 4);
+        anctrl_start(control);
+    }
+    func_8009FFD8(arg0, 1, 1, 3, 2);
+    func_800961AC(arg0, 6);
+    func_800A0180(arg0);
+    func_800A4DFC(arg0, 5);
+    func_80098B4C(arg0, 0);
+    func_80092880(arg0, 0);
+    *(s32 *)((s8 *)arg0 + 0x190) = 0;
+    func_80800000_bsdronefalldie(arg0, 1);
+}
 
 /* extern */
 
