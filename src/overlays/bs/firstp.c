@@ -4326,7 +4326,68 @@ void func_80808EF0_bsfirstp(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80808F38_bsfirstp.s")
+void func_80808F38_bsfirstp(struct player_state_s *arg0) {
+    typedef struct player_state_s PlayerState;
+    void func_8008E944(PlayerState *);
+    void func_8009C128(PlayerState *, f32 *);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void yaw_applyIdeal(PlayerState *);
+    s32 _gcstatusDll_entrypoint_14();
+    s32 _gcstatusDll_entrypoint_15();
+    void _bababykaz_entrypoint_14(PlayerState *);
+    s32 func_800D3948(void);
+    s32 func_800F7F98(s32, u32);
+    s32 func_800F1E6C(f32 *, f32 *, f32 *);
+    void func_8080911C_bsfirstp(PlayerState *, s32);
+    extern f32 D_8080A650_bsfirstp[][5];
+    s32 *state = *(s32 **)((u8 *)arg0 + 0x188);
+    volatile s32 index = 0;
+    f32 yaw[2];
+    f32 pos[3];
+    f32 unused;
+    f32 *params;
+
+    if (func_800D3948() && _gcstatusDll_entrypoint_14() == 5 &&
+        _gcstatusDll_entrypoint_15() != *(s32 *)((u8 *)arg0 + 0x184)) {
+        index = 1;
+    }
+    func_8008E944(arg0);
+    func_800F7F98(*(s32 *)((u8 *)arg0 + 0x184), 1);
+    _bababykaz_entrypoint_14(arg0);
+    if (index == 0) {
+        if (state[0xEC / 4] == 0x45) {
+            index = 2;
+        } else {
+            switch (state[0xF4 / 4]) {
+                default:
+                case 1:
+                    index = 3;
+                    break;
+                case 2:
+                    index = 4;
+                    break;
+                case 4:
+                    index = 5;
+                    break;
+            }
+        }
+    }
+    func_8009C128(arg0, pos);
+    func_800F1E6C((f32 *)state + 0xF8 / 4, pos, yaw);
+    params = D_8080A650_bsfirstp[index];
+    baphysics_set_target_horizontal_velocity(arg0, params[0]);
+    baphysics_set_target_yaw(arg0, yaw[0]);
+    baphysics_set_horizontal_velocity(arg0, yaw[0], params[0]);
+    baphysics_set_vertical_velocity(arg0, params[1]);
+    baphysics_set_gravity(arg0, params[2]);
+    *(f32 *)((u8 *)state + 0x10C) = params[3];
+    func_8080911C_bsfirstp(arg0, 0);
+    yaw_applyIdeal(arg0);
+}
 
 /* extern */
 
