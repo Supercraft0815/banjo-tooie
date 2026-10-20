@@ -438,7 +438,44 @@ int func_80800E24_gczoombox(u8 arg0) {
     return arg0 >= 0x7F && arg0 < 0x88;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80800E44_gczoombox.s")
+void func_80800E44_gczoombox(u8 *arg0, u8 *arg1, u8 *arg2) {
+    s32 _fxfontstring_entrypoint_3(u8 *, s16, s32);
+    extern s16 D_80803E80_gczoombox[];
+    s32 color[5];
+    f32 temp_f0;
+    f32 var_f10;
+    f32 var_f16;
+    f32 var_f8;
+    u8 *var_s0;
+    u8 *var_s1;
+    u8 temp_t0;
+    u8 temp_t3;
+    u8 temp_t3_2;
+    u8 temp_t7;
+    u8 var_a0;
+
+    var_s0 = arg1;
+    var_s1 = arg2;
+    temp_f0 = (f32) *(s16 *)(arg0 + 0x1AC) / 255.0f;
+    color[0] = (s32) ((f32) (u32) arg0[0x1B4] * temp_f0);
+    color[1] = (s32) ((f32) (u32) arg0[0x1B5] * temp_f0);
+    color[2] = (s32) ((f32) (u32) arg0[0x1B6] * temp_f0);
+    *arg1 = 0;
+    while (*var_s1 != 0) {
+        if (func_80800E24_gczoombox(*var_s1) != 0) {
+            *var_s0 = 0;
+            _fxfontstring_entrypoint_3(arg1, D_80803E80_gczoombox[0x5F - *var_s1], (s32) *(f32 *)(arg0 + 0x1E8));
+            var_s0 = arg1;
+            while (*var_s0 != 0) {
+                var_s0++;
+            }
+        } else {
+            *var_s0++ = *var_s1;
+        }
+        var_s1++;
+    }
+    *var_s0 = 0;
+}
 
 void func_80800FE0_gczoombox(u8 *arg0)
 {
