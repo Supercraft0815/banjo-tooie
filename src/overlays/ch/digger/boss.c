@@ -2080,7 +2080,55 @@ void func_80807DF4_chdiggerboss(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80807E3C_chdiggerboss.s")
+void func_80807E3C_chdiggerboss(Actor *arg0, s32 arg1) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800EFD24(f32 *);
+    s32 func_800F1E6C(f32 *, f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80102FDC(void *, f32);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    f32 func_8010CD50(Actor *, u32);
+    extern s32 D_8080A154_chdiggerboss;
+    struct DiggerBossData {
+        u8 pad0[0xA4];
+        s8 state;
+        u8 padA5[3];
+        f32 destination[3];
+        f32 position[3];
+        f32 yaw;
+        f32 timer;
+        Unk80132ED0 *marker;
+    };
+    struct DiggerBossData *data;
+    f32 sp38[3];
+    Actor *sp34;
+    s32 sp30;
+
+    data = func_80100094(arg0, 0);
+    if (arg1 == 4) {
+        sp30 = func_80802248_chdiggerboss(arg0);
+        func_800EFD24(sp38);
+        if (func_800F1E6C(arg0->position, sp38, &data->yaw) == 0) {
+            data->yaw = func_8010CD50(arg0, sp30) + (func_800DC298(0.5f) ? 1.0f : -1.0f) * 45.0f;
+        }
+        func_800EE7F8(data->position, arg0->position);
+        data->position[1] += 500.0f;
+        func_800EE7F8(data->destination, arg0->position);
+        func_800EF1B8(data->destination, data->yaw, 600.0f);
+        sp34 = func_80108528(0x131, data->position, (s32)data->yaw, &arg0);
+        sp34->unk74_17 = 0;
+        sp34->rotation[1] = data->yaw;
+        func_80102FDC(sp34, func_800DC178(1.2f, 1.6f));
+        data->marker = sp34->unk0;
+        data->state = 2;
+        data->timer = 1.0f;
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_8080A154_chdiggerboss);
+    }
+}
 
 void func_80807FD8_chdiggerboss(s32 arg0) {
     void *func_80100094(Actor *, u32);
