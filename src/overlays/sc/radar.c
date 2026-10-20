@@ -89,7 +89,47 @@ s32 func_80800768_scradar(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/radar/func_808007D4_scradar.s")
+void func_808007D4_scradar(void *arg0, f32 *arg1, f32 arg2) {
+    f32 func_800136E4(f32);
+    f32 func_80013788();
+    f32 func_800137F4(f32);
+    f32 func_80013B70(f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800F0DC0(f32, f32);
+    void func_800F5A00(s32, f32 *);
+    f32 sqrtf(f32);
+    s32 player;
+    f32 pos[3];
+    f32 distance;
+    f32 angle;
+
+    player = *((u8 *)arg0 + 0xD);
+    func_800F5A00(player, pos);
+    func_800EFB24(pos, arg1, pos);
+    distance = sqrtf(pos[0] * pos[0] + pos[2] * pos[2]);
+    angle = func_800136E4(func_80013B70(pos[0], pos[2], distance) - arg2);
+    if (distance > 5000.0f) {
+        distance = 5000.0f;
+    }
+    distance *= 0.01f;
+    *(s16 *)((u8 *)arg0 + 4) = (s32)(-func_800137F4(angle) * distance);
+    *(s16 *)((u8 *)arg0 + 6) = (s32)(-func_80013788() * distance);
+    *((u8 *)arg0 + 0xC) = func_80800768_scradar(player);
+    switch (*((u8 *)arg0 + 0xC)) {
+    default:
+        angle = 0.0f;
+        break;
+    case 1:
+    case 2:
+        angle = 0.0f;
+        break;
+    case 3:
+    case 4:
+        angle = func_800F0DC0(pos[1] * 0.001f, 1.0f);
+        break;
+    }
+    *(f32 *)arg0 = angle;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/radar/scradar_entrypoint_0.s")
 
