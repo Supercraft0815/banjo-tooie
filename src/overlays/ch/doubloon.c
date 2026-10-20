@@ -23,7 +23,37 @@ void chdoubloon_entrypoint_0(Actor *arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doubloon/chdoubloon_entrypoint_1.s")
+s32 chdoubloon_entrypoint_1(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    void func_800E3980(f32 *);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    void _fxtwinkle_entrypoint_1(f32 *, s32);
+    f32 sparkle[3];
+    int i;
+    f32 angles[2];
+    f32 camera[3];
+
+    arg0->rotation[1] += func_800D8FF8() * 300.0f;
+    if (arg0->unk7C_12) {
+        func_800E3980(camera);
+        func_800F18FC(arg0->position, camera, angles);
+        i = 0;
+        do {
+            if (func_800DC0C0() < 0.015f) {
+                func_800EEC30(sparkle, angles[0] + func_800DC178(-90.0f, 90.0f),
+                    angles[1] + func_800DC178(-90.0f, 90.0f), 30.0f);
+                func_800EF04C(sparkle, arg0->position);
+                sparkle[1] += 30.0f;
+                _fxtwinkle_entrypoint_1(sparkle, 0x9E2);
+            }
+            i++;
+        } while (i != 4);
+    }
+}
 
 s32 func_808001D4_chdoubloon(Actor *arg0, s32 arg1, s32 arg2) {
     void _fxsparkle_entrypoint_1(f32 *, u32);
