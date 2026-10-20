@@ -272,7 +272,54 @@ void func_80800744_bstrexsmall(PlayerState *arg0) {
     arg0->unk15C.bytes[0] = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80800818_bstrexsmall.s")
+void func_80800818_bstrexsmall(PlayerState *arg0) {
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void _basudie_entrypoint_5(PlayerState *);
+    void _bamotor_entrypoint_1(PlayerState *, f32, f32, f32);
+    void _badust_entrypoint_9(PlayerState *);
+    void func_8009DF18(PlayerState *, s32, f32, s32);
+    void func_8009E058(PlayerState *);
+    void baanim_setEnd(PlayerState *, f32);
+    f32 func_800F0E00(f32, f32);
+    struct anctrl_s *control;
+    f32 speed;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    _basudie_entrypoint_5(arg0);
+    baphysics_set_target_horizontal_velocity(arg0, arg0->unk16C);
+    switch (arg0->unk15C.bytes[0]) {
+        case 0:
+            if (func_8008DF8C(arg0, 0x5A)) {
+                arg0->unk15C.bytes[0] = 1;
+            }
+            break;
+        case 1:
+            if (player_isStable(arg0)) {
+                func_8009DF18(arg0, 0x428, 1.0f, 0x4650);
+                _bamotor_entrypoint_1(arg0, 1.0f, 1.0f, 0.4f);
+                func_80800680_bstrexsmall(arg0);
+                func_8009E058(arg0);
+                baanim_setEndAndDuration(arg0, 0.6f, 2.5f);
+                arg0->unk15C.bytes[0] = 2;
+            }
+            break;
+        case 2:
+            speed = func_800F0E00(arg0->unk16C - 7.0f, 0.0f);
+            arg0->unk16C = speed;
+            if (speed > 140.0f) {
+                _badust_entrypoint_9(arg0);
+            }
+            if (anctrl_isStopped(control)) {
+                baanim_setEnd(arg0, 1.0f);
+                arg0->unk15C.bytes[0] = 3;
+                arg0->unk16C = 0.0f;
+            }
+            break;
+        case 3:
+            break;
+    }
+    bs_setState((s32)arg0, 0);
+}
 
 s32 bstrexsmall_entrypoint_4(s32 arg0) {
     extern s32 D_80801B18_bstrexsmall[];
