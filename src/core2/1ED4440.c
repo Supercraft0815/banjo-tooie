@@ -125,7 +125,39 @@ void func_800FAF78(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3], f32 arg4[
     arg1[2] += phi_f12 * arg4[2];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FB040.s")
+void func_800FB040(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3], f32 arg4[3], s32 arg5) {
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EF410(f32 *, f32 *);
+    void func_800EF934(f32 *, f32 *, f32);
+    extern f32 D_801357C0;
+    f32 sp6C[3];
+    f32 sp60[3];
+    f32 sp54[3];
+    f32 sp48[3];
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sign;
+    f32 sp28;
+    f32 phi_f12;
+
+    func_800EFB24(sp6C, arg1, arg0);
+    func_800EFB24(sp60, arg3, arg2);
+    func_800EFB24(sp54, sp6C, sp60);
+    func_800EF410(sp3C, sp54);
+    func_800EF934(sp30, sp3C, 90.0f);
+    sp28 = func_800EEAA4(arg4, sp3C);
+    if (arg5 != 0) {
+        D_801357C0 = func_800EEAA4(arg4, sp30);
+    }
+    sign = (D_801357C0 < 0.0f) ? -1.0f : 1.0f;
+    func_800EF934(sp48, arg4, (sign * sp28) * 45.0f);
+    phi_f12 = -func_800EEAA4(sp48, sp54);
+    if (phi_f12 < 5.0f) phi_f12 = 5.0f;
+    arg1[0] += phi_f12 * sp48[0];
+    arg1[1] += phi_f12 * sp48[1];
+    arg1[2] += phi_f12 * sp48[2];
+}
 
 /* extern */
 
