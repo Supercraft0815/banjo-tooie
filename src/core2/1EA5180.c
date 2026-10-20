@@ -173,7 +173,44 @@ s32 func_800CBD84(f32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CC078.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CC338.s")
+s32 func_800CC338(f32 *arg0, s32 arg1, s32 arg2) {
+    s32 func_800CC4D4(f32 *, s32);
+    f32 func_800EFC7C(void *, void *);
+    extern s32 D_8012AE84;
+    s32 pad[2];
+    s8 *start;
+    f32 y;
+    f32 center;
+    f32 extent;
+    s16 *region;
+    s8 *cur;
+    u32 end;
+
+    region = (s16 *)(arg1 * 0x1C + D_8012AE84);
+    if (func_800CC4D4(arg0, arg1) != -1) {
+        return -1;
+    }
+    start = (s8 *)func_800CB8F0(region);
+    y = arg0[1];
+    cur = start + arg2 * 0x18;
+    center = *(f32 *)(cur + 4);
+    extent = *(s16 *)(cur + 0xE);
+    if (center - extent < y && y < center + extent &&
+        func_800EFC7C(cur, arg0) < *(f32 *)(cur + 0x10)) {
+        return arg2;
+    }
+    end = func_800CB910(region);
+    for (cur = start; (u32)cur < end; cur += 0x18) {
+        center = *(f32 *)(cur + 4);
+        y = arg0[1];
+        extent = *(s16 *)(cur + 0xE);
+        if (center - extent < y && y < center + extent &&
+            func_800EFC7C(cur, arg0) < *(f32 *)(cur + 0x10)) {
+            return (cur - start) / 24;
+        }
+    }
+    return -1;
+}
 
 s32 func_800CC4D4(f32 *arg0, s32 arg1) {
     extern s32 D_8012AE84;
