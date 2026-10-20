@@ -576,7 +576,78 @@ u8 func_800C2E04(void) {
     return index;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2E40.s")
+void func_800C2E40(u8 index) {
+    s32 func_800EA05C(void);
+    void func_800EFD24(f32 *);
+    void func_800C3418(u8, s32);
+    void func_800C3798(u8, f32, f32);
+    extern f32 D_801257F8;
+    extern f32 D_801257FC;
+    struct Source {
+        f32 position[3];
+        f32 inner, outer, distance;
+        s16 count;
+        u8 byte1A, byte1B;
+        u8 padding[0x24];
+        f32 value40, value44, value48;
+        s16 value4C, value4E;
+        f32 value50, value54;
+        s16 sound, rate, value5C, map;
+        u8 byte60, byte61, byte62, byte63;
+        void *callback;
+        f32 value68, value6C;
+        u32 unused[2];
+        u32 high : 22;
+        u32 mode : 4;
+        u32 flag5 : 1;
+        u32 flag4 : 1;
+        u32 flag3 : 1;
+        u32 flag2 : 1;
+        u32 flag1 : 1;
+        u32 low : 1;
+    };
+    struct Source *source;
+
+    func_800C3CE8(index);
+    source = func_800C1414(index);
+    source->callback = 0;
+    source->sound = -1;
+    source->value5C = 0;
+    source->rate = 22000;
+    source->byte60 = 0;
+    source->byte61 = 0x3F;
+    source->byte62 = 0xFF;
+    source->value6C = 1.0f;
+    source->map = func_800EA05C();
+    source->byte63 = 1;
+    source->mode = 0;
+    source->flag4 = 0;
+    source->value48 = 3.0f;
+    source->flag1 = 1;
+    source->flag3 = 0;
+    source->flag5 = 0;
+    source->flag2 = 0;
+    source->value40 = 1.0f;
+    source->value44 = 1.0f;
+    source->value54 = 0.0f;
+    func_800C1210(source, 0);
+    func_800C11F8(source, 0);
+    func_800C13A0(source, 1);
+    func_800C13A0(source, 4);
+    func_800C13A0(source, 8);
+    func_800C13A0(source, 0x10);
+    source->inner = D_801257F8;
+    source->outer = D_801257FC;
+    source->count = 10;
+    source->byte1A = 0;
+    source->byte1B = 0;
+    source->distance = 64.0f;
+    func_800EFD24(source->position);
+    func_800C13B0(source, 2);
+    func_800C13B0(source, 0x20);
+    func_800C3418(index, 2);
+    func_800C3798(index, 0.2f, 0.1f);
+}
 
 s32 func_800C2FDC(u8 index) {
     void *ptr = func_800C1414(index);
