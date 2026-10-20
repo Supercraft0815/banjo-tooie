@@ -84,7 +84,37 @@ s32 sukickball_entrypoint_3(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_4.s")
+void sukickball_entrypoint_4(s32 arg0, f32 *arg1) {
+    f32 func_800DC178(f32, f32);
+
+    arg1[1] = 0.0f;
+    switch (arg0) {
+        case 0:
+            arg1[0] = 846.0f;
+            if (arg1[2] < -108.0f || arg1[2] > 108.0f) {
+                arg1[2] = func_800DC178(-108.0f, 108.0f);
+            }
+            break;
+        case 2:
+            if (arg1[0] < -108.0f || arg1[0] > 108.0f) {
+                arg1[0] = func_800DC178(-108.0f, 108.0f);
+            }
+            arg1[2] = 846.0f;
+            break;
+        case 1:
+            arg1[0] = -846.0f;
+            if (arg1[2] < -108.0f || arg1[2] > 108.0f) {
+                arg1[2] = func_800DC178(-108.0f, 108.0f);
+            }
+            break;
+        case 3:
+            if (arg1[0] < -108.0f || arg1[0] > 108.0f) {
+                arg1[0] = func_800DC178(-108.0f, 108.0f);
+            }
+            arg1[2] = -846.0f;
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_5.s")
 
