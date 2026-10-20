@@ -1,6 +1,41 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/fish/func_80800000_chlagoonfish.s")
+u32 *func_80100074(Actor *, u32, u32);
+
+s32 func_80800000_chlagoonfish(Actor *arg0) {
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    s32 func_800EE7F8();
+    void func_800EF214(f32 *, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    struct {
+        f32 position[3];
+        f32 rotation[3];
+        f32 velocity[3];
+        f32 scale;
+        f32 unk28;
+        s8 image;
+        u8 pad2D[3];
+    } *data;
+    f32 pitch;
+    f32 yaw;
+    u32 i;
+
+    func_80100074(arg0, 0, arg0->unk6C_0 * 0x30);
+    data = func_80100094(arg0, 0);
+    for (i = 0; i < arg0->unk6C_0; i++, data++) {
+        func_800EE7F8(data->position, arg0->position);
+        pitch = func_800DC178(-45.0f, 45.0f);
+        yaw = func_800DC178(180.0f, 360.0f);
+        func_800EF214(data->position, pitch, yaw, func_800DC178(50.0f, 250.0f));
+        data->scale = func_800DC178(arg0->scale * 0.4f, arg0->scale);
+        data->image = func_800DC128(0, 3);
+        data->velocity[0] = func_800DC178(-400.0f, 400.0f);
+        data->velocity[1] = func_800DC178(-400.0f, 400.0f);
+        data->velocity[2] = func_800DC178(-400.0f, 400.0f);
+        data->unk28 = 400.0f;
+    }
+}
 
 /* extern */
 
