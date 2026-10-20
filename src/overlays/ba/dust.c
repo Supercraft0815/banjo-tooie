@@ -88,7 +88,39 @@ void badust_entrypoint_3(PlayerState *arg0, f32 arg1, f32 arg2) {
     badust_entrypoint_2(arg0, sp20, sp2C, 0.1f, 0.8f, 1.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/badust_entrypoint_4.s")
+s32 badust_entrypoint_4(void *arg0, f32 arg1, f32 arg2) {
+    s32 _fxdlsmoke_entrypoint_0(f32 *);
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_800BA22C(s32, s32);
+    void func_800BA450(s32, s16, s16, s16, s16, s16, s16);
+    void func_800BA5BC(void *, f32, f32);
+    void func_800BA7C4(void *, f32, f32);
+    void func_800BA7FC(void *, f32, f32);
+    void func_800BA8F8(void *, f32, f32);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFCD8(f32 *, f32, f32);
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+    s32 emitter;
+
+    func_800EFA4C(sp34, 0.0f, 40.0f, 0.0f);
+    func_8009C128(arg0, sp40);
+    func_800EFCD8(sp4C, arg1, arg2);
+    sp4C[1] = 15.0f;
+    func_800EF04C(sp40, sp4C);
+    emitter = _fxdlsmoke_entrypoint_0(sp40);
+    func_800BA930(emitter, (s16)sp34[0], (s16)sp34[1], (s16)sp34[2],
+                 (s16)sp34[0], (s16)sp34[1], (s16)sp34[2]);
+    func_800BA450(emitter, 0, 0, 0, 0, 0, 0);
+    func_800BA7C4(emitter, 0.2f, 0.2f);
+    func_800BA7FC(emitter, 0.7f, 0.75f);
+    func_800BA8F8(emitter, 0.6f, 0.7f);
+    func_800BA5BC(emitter, 19.0f, 19.0f);
+    func_800BA22C(emitter, 1);
+}
 
 /* extern */
 
