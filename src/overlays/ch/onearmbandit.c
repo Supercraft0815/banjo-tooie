@@ -204,7 +204,48 @@ void func_808006F8_chonearmbandit(u8 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80800740_chonearmbandit.s")
+void func_80800740_chonearmbandit(u8 *arg0, f32 arg1) {
+    f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    f32 func_800136E4(f32);
+    f32 func_800D8FF8(void);
+    f32 func_800F1DCC(f32, f32);
+    f32 func_800F1FF0(f32, f32, f32, f32, f32);
+    f32 func_800F3780(f32, u8 *, s16);
+    u32 func_800F54E4(void);
+    void *func_80100094(Actor *, u32);
+    f32 func_80101F24(Actor *);
+    void func_80102BF8(void *, f32, f32, f32);
+    f32 func_80102D78(Actor *, f32 *);
+    void func_8010D09C(s32, f32 *, f32);
+    extern u8 D_808011FC_chonearmbandit[];
+    f32 position[3];
+    f32 pad;
+    f32 difference;
+    f32 delta;
+
+    if (((Actor *)arg0)->unk64_29) {
+        _subaddiejoy_entrypoint_9(((Actor *)arg0), &((Actor *)arg0)->unk54, 3);
+        func_80102BF8(((Actor *)arg0), 0.2f, 6.0f, 220.0f);
+        return;
+    }
+    delta = func_800D8FF8();
+    func_8010D09C(func_800F54E4(), position, 0.8f);
+    if (((Actor *)arg0)->unk70_10 == 2 || ((Actor *)arg0)->unk70_10 == 3 || ((Actor *)arg0)->unk70_10 == 6) {
+        if (_subaddierouteDll_entrypoint_4(((Actor *)arg0))) {
+            ((Actor *)arg0)->unk54 = func_800136E4(func_80102D78(((Actor *)arg0), position) + arg1);
+            _subaddierouteDll_entrypoint_7(((Actor *)arg0), func_80100094(((Actor *)arg0), 1),
+                ((Actor *)arg0)->rotation[1], ((Actor *)arg0)->unk54, 200.0f, 0x4000);
+        }
+    } else {
+        ((Actor *)arg0)->unk54 = func_800136E4(func_80102D78(((Actor *)arg0), position) + arg1);
+    }
+    difference = func_800F1DCC(func_800F1FF0(((Actor *)arg0)->rotation[1], ((Actor *)arg0)->unk54,
+        0.15f, delta * 4.0f, delta * 120.0f), ((Actor *)arg0)->rotation[1]);
+    difference *= func_800F3780(func_80101F24(((Actor *)arg0)), D_808011FC_chonearmbandit, 3);
+    ((Actor *)arg0)->rotation[1] = func_800136E4(((Actor *)arg0)->rotation[1] + difference);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_808008E0_chonearmbandit.s")
 
