@@ -135,7 +135,72 @@ void func_8080024C_subaddierouteDll(s8 *arg0, s32 arg1, s32 arg2) {
     *arg0 = (var_s2 - arg0) - 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/subaddierouteDll_entrypoint_1.s")
+void subaddierouteDll_entrypoint_1(Actor *arg0) {
+    s16 func_8001B668(s32, s32);
+    void *func_8001B798(s16);
+    u32 func_800CC5F4(s32);
+    OSThread *func_801015B0(void);
+    void *func_80106F30(void *);
+    s16 offsets[128];
+    s16 *handle;
+    s16 *table;
+    s16 *data;
+    s8 *base;
+    s16 *dest;
+    s16 *src;
+    s32 tableOffset;
+    s32 count;
+    s32 offset;
+    s32 i;
+    s32 route;
+    struct {
+        u8 pad[12];
+        u32 route : 12;
+        u32 rest : 20;
+    } *entry;
+    s16 *slot;
+
+    route = arg0->unk70_25 - 1;
+    handle = (s16 *)func_801015B0();
+    if (*handle == 0) {
+        func_80800000_subaddierouteDll();
+    }
+    if (route < 0) {
+        entry = func_80106F30(arg0);
+        if (entry != NULL) {
+            if (entry->route != 0) {
+                route = entry->route - 1;
+            }
+        }
+    }
+    count = func_800CC5F4(route);
+    table = func_8001B798(*handle);
+    tableOffset = route * 4;
+    slot = (s16 *)((s8 *)table + tableOffset);
+    if (slot[0] != 0) {
+        slot[1]++;
+        return;
+    }
+    slot = (s16 *)((s8 *)table + tableOffset);
+    slot[0] = func_8001B668(0, func_8080011C_subaddierouteDll(route, offsets));
+    slot[1] = 1;
+    data = func_8001B798(slot[0]);
+    i = 0;
+    if (count > 0) {
+        offset = 0;
+        dest = data;
+        src = offsets;
+        do {
+            *dest = *src;
+            base = func_8001B798(*(s16 *)((s8 *)func_8001B798(*handle) + tableOffset));
+            func_8080024C_subaddierouteDll(base + *(s16 *)(base + offset), route, i);
+            i++;
+            offset += 2;
+            dest++;
+            src++;
+        } while (i != count);
+    }
+}
 
 /* extern */
 
