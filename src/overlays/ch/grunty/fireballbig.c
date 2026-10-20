@@ -60,7 +60,58 @@ void func_80800030_chgruntyfireballbig(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/grunty/fireballbig/func_808001B4_chgruntyfireballbig.s")
+s32 func_808001B4_chgruntyfireballbig(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chlightfader_entrypoint_1(s32, f32, s32);
+    s32 _subaddieaudioquick_entrypoint_2(u8 *, f32 *, s32 *);
+    void func_8080034C_chgruntyfireballbig(u8 *);
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8D4C(s32, f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_800F5A00(s32, f32 *);
+    f32 func_80101068(void);
+    void func_80101FDC(Actor *, u32);
+    void func_8010A590(Actor *);
+    extern s32 D_808006F8_chgruntyfireballbig;
+    extern f32 D_8080070C_chgruntyfireballbig[];
+    f32 position[3];
+    f32 *direction;
+
+    switch (arg1) {
+        case 0xA:
+            arg0->unk6C_0 = (arg2 >> 16) & 0x1FF;
+            ((f32 *)arg0->actorData)[0] = func_80101068();
+            func_8010A590(arg0);
+            func_80101FDC(arg0, 2);
+            func_800F5A00(arg0->unk6C_0, position);
+            direction = (f32 *)&arg0->actorData[4];
+            position[1] += 50.0f;
+            func_800EFB24(direction, position, arg0->position);
+            func_800EF368(direction, (f32)(arg2 & 0xFFFF));
+            _subaddieaudioquick_entrypoint_2((u8 *)arg0, arg0->position, &D_808006F8_chgruntyfireballbig);
+            break;
+        case 0x40:
+            func_8080034C_chgruntyfireballbig((u8 *)arg0);
+            break;
+        case 0x95:
+            arg0->actorData[3] = func_800C8A98();
+            func_800C8CB8(arg0->actorData[3], arg0->position);
+            func_800C8D4C(arg0->actorData[3], D_8080070C_chgruntyfireballbig);
+            break;
+        case 0x9B:
+            func_80101FDC(arg0, 3);
+            ((f32 *)arg0->actorData)[1] = (f32)arg2;
+            ((f32 *)arg0->actorData)[2] = -150.0f;
+            if ((s32)arg0->actorData[3] != 0) {
+                arg0->actorData[3] = _chlightfader_entrypoint_1(arg0->actorData[3], 1.5f, 2);
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_8080034C_chgruntyfireballbig(u8 *arg0) {
     s32 _chlightfader_entrypoint_1(s32, f32, s32);
