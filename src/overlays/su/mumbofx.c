@@ -190,7 +190,36 @@ s32 sumumbofx_entrypoint_5(u8 *arg0, f32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/func_8080060C_sumumbofx.s")
+void func_8080060C_sumumbofx(u8 *arg0, u8 *arg1, f32 arg2) {
+    f32 func_80013970(f32);
+    f32 func_800D8FF8(void);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 scale;
+    f32 blend;
+
+    blend = *(f32 *)(arg1 + 0x28);
+    scale = (1.0f - blend) * 0.25f;
+    scale += blend * *(f32 *)(arg0 + 0xC);
+    *(f32 *)(arg1 + 0x20) += func_800D8FF8();
+    if (*(f32 *)(arg1 + 0x20) >= *(f32 *)(arg1 + 0x24)) {
+        *(f32 *)(arg1 + 0x20) -= *(f32 *)(arg1 + 0x24);
+    }
+    switch (*(u32 *)(arg0 + 0x60) >> 25) {
+        case 2:
+            arg2 = 1.0f - arg2;
+        case 1:
+            *(f32 *)(arg1 + 0x1C) = (func_80013970(func_800F10B4(*(f32 *)(arg1 + 0x20), 0.0f, *(f32 *)(arg1 + 0x24), 0.0f, 180.0f)) * 0.7f + 0.3f) * (arg2 * scale);
+            break;
+        case 0:
+            *(f32 *)(arg1 + 0x28) += 0.02f;
+            if (*(f32 *)(arg1 + 0x28) > 1.0f) {
+                *(f32 *)(arg1 + 0x28) = 1.0f;
+            }
+        case 3:
+            *(f32 *)(arg1 + 0x1C) = (func_80013970(func_800F10B4(*(f32 *)(arg1 + 0x20), 0.0f, *(f32 *)(arg1 + 0x24), 0.0f, 180.0f)) * 0.7f + 0.3f) * scale;
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_6.s")
 
