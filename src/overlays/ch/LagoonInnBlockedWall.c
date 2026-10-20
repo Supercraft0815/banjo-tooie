@@ -38,7 +38,56 @@ void func_808000C0_chLagoonInnBlockedWall()
     func_8010A63C();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/LagoonInnBlockedWall/func_808000E0_chLagoonInnBlockedWall.s")
+s32 func_808000E0_chLagoonInnBlockedWall(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800C4AF0(f32 *, void *);
+    s32 func_800EA05C();
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F8300();
+    void func_800FFAB0(Actor *);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(Actor *, u32);
+    void func_8010A570(Actor *);
+    extern s32 D_80800400_chLagoonInnBlockedWall[];
+    extern s32 D_8080046C_chLagoonInnBlockedWall[];
+    f32 sp34[3];
+
+    switch (arg1) {
+    case 0x49:
+        if (_glcutDll_entrypoint_19(0x32)) {
+            arg0->unk58 = 0.4f;
+            func_80103110(arg0, 1);
+            func_80101FDC(arg0, 3);
+            _capod_entrypoint_13(arg0->unk0, NULL, 0x1C, 0x910);
+            return 1;
+        }
+        break;
+    case 5:
+        func_8010A570(arg0);
+        func_800EE7F8(sp34, arg0->position);
+        func_800EF1B8(sp34, arg0->rotation[1], 100.0f);
+        _chexploder_entrypoint_3(arg0, sp34, 3);
+        func_800F8300(func_800F54E4(), 2, arg0->position);
+        return 1;
+    case 0x90:
+        if (func_800EA05C() == 0xED) {
+            func_80101FDC(arg0, 2);
+            func_80103110(arg0, 1);
+            arg0->unk58 = 0.8f;
+        } else {
+            func_800FFAB0(arg0);
+        }
+        func_800BABB8(0, arg0->position, arg0->position, arg0->scale, D_80800400_chLagoonInnBlockedWall);
+        func_800C4AF0(arg0->position, D_8080046C_chLagoonInnBlockedWall);
+        return 1;
+    }
+    return 0;
+}
 
 OSThread *chLagoonInnBlockedWall_entrypoint_0(void)
 {
