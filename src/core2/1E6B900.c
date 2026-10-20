@@ -262,7 +262,61 @@ void func_80092880(PlayerState *arg0, s32 arg1) {
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x81))) = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092898.s")
+void func_80092898(PlayerState *arg0) {
+    void _babackpack_entrypoint_9(PlayerState *);
+    s16 func_800AE020(void);
+    void *func_800AE080(s16);
+    void func_800AE6FC(s16 *, s16);
+    u8 *func_800DBFF8(void);
+    s16 func_800E09B8(s32);
+    void func_800EFD24(f32 *);
+    void func_800936E8(void *, s32);
+    void func_80093700(void *, s32);
+    void func_80093370(void *, s32);
+    void func_8009337C(void *, s32);
+    void func_80093230(PlayerState *, f32);
+    void func_800931AC(PlayerState *, s32);
+    s32 pad;
+    s16 *sp20;
+    f32 temp_f0;
+    u8 *temp_v0;
+
+    _babackpack_entrypoint_9(arg0);
+    (*(u8 **)&arg0->pad48[8])[0x11] = 0;
+    (*(u8 **)&arg0->pad48[8])[0x14] = 0xFF;
+    (*(u8 **)&arg0->pad48[8])[0x10] = 0;
+    (*(u8 **)&arg0->pad48[8])[0x16] = 0;
+    (*(u8 **)&arg0->pad48[8])[0x12] = 0;
+    (*(u8 **)&arg0->pad48[8])[0x13] = 0;
+    *(s16 *)(*(u8 **)&arg0->pad48[8] + 0xC) = 0;
+    (*(u8 **)&arg0->pad48[8])[0xA2] = 0;
+    *(s16 *)(*(u8 **)&arg0->pad48[8] + 0x9C) = 0;
+    func_800936E8(arg0, 0);
+    func_80093700(arg0, 1);
+    **(s16 **)&arg0->pad48[8] = func_800AE020();
+    sp20 = func_800AE080(**(s16 **)&arg0->pad48[8]);
+    func_800AE6FC(sp20, func_800E09B8(0xA));
+    (*(u8 **)&arg0->pad48[8])[0x88] = 0;
+    *(u8 **)(*(u8 **)&arg0->pad48[8] + 4) = func_800DBFF8();
+    *(void **)(*(u8 **)&arg0->pad48[8] + 0x84) = NULL;
+    (*(u8 **)&arg0->pad48[8])[0x7C] = 0;
+    (*(u8 **)&arg0->pad48[8])[0x81] = 0;
+    func_800EFD24((f32 *)(*(u8 **)&arg0->pad48[8] + 0x2C));
+    func_800EFD24((f32 *)(*(u8 **)&arg0->pad48[8] + 0x38));
+    func_800EFD24((f32 *)(*(u8 **)&arg0->pad48[8] + 0x44));
+    *(f32 *)(*(u8 **)&arg0->pad48[8] + 0x20) = 0.0f;
+    temp_v0 = *(u8 **)&arg0->pad48[8];
+    temp_f0 = *(f32 *)(temp_v0 + 0x20);
+    *(f32 *)(temp_v0 + 0x24) = temp_f0;
+    *(f32 *)(*(u8 **)&arg0->pad48[8] + 0x28) = temp_f0;
+    func_80093370(arg0, 1);
+    func_8009337C(arg0, 1);
+    func_80093230(arg0, 1.0f);
+    (*(u8 **)&arg0->pad48[8])[0x15] = 0;
+    func_800931AC(arg0, 1);
+    func_80092778(arg0);
+    func_80092864(arg0, 1.0f);
+}
 
 void func_80092A1C(PlayerState *arg0) {
     s32 func_80092EC8(PlayerState *, s16);
