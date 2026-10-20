@@ -11,7 +11,10 @@ typedef struct {
     s16 mapValue;
     u8 unk12;
     s8 entranceIndex;
-    s32 unk14;
+    u8 unk14;
+    u8 unk15;
+    u8 unk16;
+    u8 unk17;
     s8 unk18;
     s8 unk19;
     u8 unk1A;
@@ -416,7 +419,67 @@ void func_800A7B24(void) {
     _glcutDll_entrypoint_2();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A7BB8.s")
+void func_800A7BB8(s32 arg0) {
+    s32 _gcgame_entrypoint_0(s32);
+    s32 _gclevel_entrypoint_0(s32, s32);
+    s32 _gcsectionDll_entrypoint_0(s32, s32);
+    void func_800A5CF0(s32);
+    void func_800A861C(void);
+    void func_8008B610(void);
+    void func_800133A0(void);
+    void func_8001A290(void);
+    void func_800B5DD4(void);
+    void func_800D34A0(void);
+    void func_800D3970(void);
+    void func_800D8F84(void);
+    s32 func_800D8FA0(s32);
+    void func_800DC310(void);
+    void func_800DF38C(void);
+    void func_800EBB5C(void);
+    void func_800FB808(void);
+
+    func_800A5CF0(1);
+    D_80127630.unk12 = 0;
+    D_80127630.mapValue = (u8)(D_80127630.entranceIndex =
+        D_80127630.unk14 = D_80127630.unk17 =
+        D_80127630.unk15 = D_80127630.unk16 = 0);
+    D_80127630.unk1A = 0;
+    D_80127630.unk1B = 0;
+    D_80127630.unk4 = 0;
+    func_800A8240();
+    func_800DA238();
+    func_800DA268();
+    _glglobaldata_entrypoint_0();
+    _glglobalsettings_entrypoint_1();
+    _glgamedata_entrypoint_0();
+    func_800D3970();
+    func_800E4278();
+    func_800A861C();
+    func_800C2A08();
+    func_800FB808();
+    _glcutDll_entrypoint_3();
+    func_800CA098();
+    func_800D34A0();
+    func_800B5DD4();
+    func_800133A0();
+    func_800DF38C();
+    func_8008B610();
+    func_800DC310();
+    func_8001A290();
+    func_800D8F84();
+    _gsattract_entrypoint_4();
+    func_800EBB5C();
+    _gcgame_entrypoint_0(0);
+    D_80127630.unk2 = 2;
+    D_80127630.unk8 = 0.0f;
+    func_800D8FA0(0);
+    _gclevel_entrypoint_0(arg0, 0);
+    _gcsectionDll_entrypoint_0(arg0, 0);
+    func_800A71E0();
+    func_800A72A4(arg0, 0, 0, 0);
+    D_80127630.unk0 = 0;
+    func_800A759C(3, 1);
+}
 
 void func_800A7D30(void) {
     s32 func_80014F4C();
