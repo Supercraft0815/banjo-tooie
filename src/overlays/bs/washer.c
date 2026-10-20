@@ -223,7 +223,40 @@ void func_808005B8_bswasher(struct player_state_s *arg0) {
     func_8080042C_bswasher(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80800608_bswasher.s")
+void func_80800608_bswasher(struct player_state_s *arg0) {
+    void _basudie_entrypoint_5(struct player_state_s *);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    int player_isStable(struct player_state_s *);
+    f32 func_800F0E00(f32, f32);
+    void bs_setState(struct player_state_s *, int);
+    f32 velocity;
+
+    _basudie_entrypoint_5(arg0);
+    baphysics_set_target_horizontal_velocity(arg0, *(f32 *)((s8 *)arg0 + 0x16C));
+    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+        case 1:
+            if (player_isStable(arg0)) {
+                func_8080042C_bswasher(arg0, 2);
+            }
+            break;
+        case 2:
+            if (player_isStable(arg0)) {
+                func_8080042C_bswasher(arg0, 3);
+            }
+            break;
+        case 3:
+            func_8080042C_bswasher(arg0, 4);
+            break;
+        case 4:
+            velocity = *(f32 *)((s8 *)arg0 + 0x16C);
+            if (velocity > 0.0f) {
+                *(f32 *)((s8 *)arg0 + 0x16C) = func_800F0E00(0.0f, velocity - 10.0f);
+            }
+            break;
+    }
+    func_80800300_bswasher((s32)arg0);
+    bs_setState(arg0, 0);
+}
 
 s32 bswasher_entrypoint_1(s32 arg0) {
     extern s32 D_80801E10_bswasher[];
