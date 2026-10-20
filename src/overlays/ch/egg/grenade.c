@@ -46,7 +46,80 @@ void chegggrenade_entrypoint_0(void *arg0) {
     _suegg_entrypoint_4(sp24, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/grenade/func_80800164_chegggrenade.s")
+void func_80800164_chegggrenade(void *arg0) {
+    void *func_80100094(Actor *, u32);
+    int func_800EEEA8(f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 _suegg_entrypoint_8(void *);
+    s32 _suegg_entrypoint_12(void *);
+    s32 _suegg_entrypoint_13(void *);
+    s32 _suegg_entrypoint_14(void *);
+    void _suegg_entrypoint_16(void *);
+    void _suegg_entrypoint_23(void *);
+    void _sueggmisc_entrypoint_1(void *);
+    s32 _sueggmove_entrypoint_3(void *);
+    s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
+    extern s32 _chegggrenade_entrypoint_0;
+    struct GrenadeData {
+        u8 pad[0x30];
+        f32 time;
+        u32 pad34;
+        union {
+            u32 value;
+            struct {
+                u8 pad38;
+                u8 flag : 1;
+                u8 rest : 7;
+            } byte;
+            struct {
+                u32 pad : 9;
+                u32 blocked : 1;
+                u32 rest : 22;
+            } word;
+        } flags;
+    };
+    struct FlagData {
+        u8 pad[0x39];
+        u8 flag : 1;
+        u8 rest : 7;
+    } *data[1];
+
+    data[0] = func_80100094(arg0, 0);
+    switch ((u32)((Actor *)arg0)->unk70_10) {
+    case 1:
+        if (_suegg_entrypoint_8(arg0) == 0) {
+            if (func_800EEEA8((f32 *)&((Actor *)arg0)->actorData[4]) != 0) {
+                data[0]->flag = 1;
+            } else {
+                func_80800000_chegggrenade(arg0);
+                _suegg_entrypoint_16(arg0);
+                if (_suegg_entrypoint_14(arg0) != 0) {
+                    data[0]->flag = 1;
+                }
+            }
+        }
+        break;
+    case 2:
+        if (_suegg_entrypoint_8(arg0) == 0) {
+            ((Actor *)arg0)->scale = func_800F10B4(((struct GrenadeData *)data[0])->time, 0.0f, 0.134f, 0.1f, 0.25f);
+            if (_sueggmove_entrypoint_3(arg0) != 0) {
+                _suegg_entrypoint_23(arg0);
+            }
+            if (_suegg_entrypoint_13(arg0) != 0) {
+                data[0]->flag = 1;
+            } else if (_suegg_entrypoint_12(arg0) != 0) {
+                _sueggmisc_entrypoint_1(arg0);
+            } else {
+                func_80800000_chegggrenade(arg0);
+                _suegg_entrypoint_16(arg0);
+            }
+        }
+        break;
+    }
+    if (data[0]->flag && !((struct GrenadeData *)data[0])->flags.word.blocked) {
+        _chbaddiesetup_entrypoint_1(&_chegggrenade_entrypoint_0, (s32)((Actor *)arg0)->unk0);
+    }
+}
 
 OSThread *chegggrenade_entrypoint_1(void)
 {
