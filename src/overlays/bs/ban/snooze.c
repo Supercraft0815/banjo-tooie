@@ -320,7 +320,58 @@ void func_80800794_bsbansnooze(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/snooze/func_808008A4_bsbansnooze.s")
+void func_808008A4_bsbansnooze(PlayerState *arg0) {
+    s32 _batimer_decrement(void *, s32);
+    void _batimer_set(PlayerState *, s32, f32);
+    int baanim_isAt(PlayerState *, f32);
+    s32 bakey_released(s32, s32);
+    s32 bs_setState(s32, s32);
+    void func_8009DEC0(PlayerState *, s32, f32, f32, s32, s32);
+    void func_8009DFD4(PlayerState *, s32, f32, f32, s32, s32);
+    s32 func_800A1718(PlayerState *);
+    s32 func_800A1760(PlayerState *);
+    void func_800A17A8(PlayerState *, s32);
+    void func_800FC660(u32);
+    s32 player_inWater(s32);
+    s32 state;
+    s32 health;
+    f32 time;
+    u8 phase;
+
+    state = 0;
+    if (_batimer_decrement(arg0, 0)) {
+        _batimer_set(arg0, 0, 1.0f);
+        health = func_800A1718(arg0);
+        if (health < func_800A1760(arg0)) {
+            func_800FC660(8);
+            func_800A17A8(arg0, 1);
+        }
+    }
+    phase = arg0->unk15C.bytes[0];
+    if (phase != 0) {
+        if (phase == 1) {
+            time = 0.1f;
+        } else {
+            time = 0.01f;
+        }
+        if (baanim_isAt(arg0, time)) {
+            func_8009DEC0(arg0, 0x441, 0.93f, 1.08f, 0x4E20, 0x55F0);
+        }
+        if (baanim_isAt(arg0, 0.5f)) {
+            func_8009DFD4(arg0, 0x442, 0.93f, 1.08f, 0x4E20, 0x55F0);
+        }
+    }
+    if (baanim_isAt(arg0, 0.99f)) {
+        arg0->unk15C.bytes[0] = 2;
+    }
+    if (bakey_released(arg0, 1)) {
+        state = 0x172;
+    }
+    if (player_inWater(arg0)) {
+        state = 0x4C;
+    }
+    bs_setState(arg0, state);
+}
 
 s32 bsbansnooze_entrypoint_5(s32 arg0) {
     extern s32 D_80800AA8_bsbansnooze[];
