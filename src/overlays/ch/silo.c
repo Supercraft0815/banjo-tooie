@@ -252,7 +252,45 @@ s32 func_808004C0_chsilo(u8 *arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_8080087C_chsilo.s")
+void func_8080087C_chsilo(Actor *arg0) {
+    Prop *_gccubesearch_entrypoint_1(u32, f32 *);
+    void _gspropctrl_entrypoint_11(Prop *, f32 *);
+    s32 func_800DA298(s32);
+    s32 func_800DA9E4(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_8010A828(void **, s32);
+    s32 func_8010CB0C(f32 *, s32, s32, s32);
+    s32 pad;
+    f32 *volatile position;
+    f32 *volatile data;
+    Prop *prop;
+
+    prop = _gccubesearch_entrypoint_1(0x309, position = arg0->position);
+    arg0->unk6C_0 = arg0->unk74_7 - 50;
+    arg0->scale = 1.0f;
+    if (prop == NULL) {
+        func_800EE7F8(data = (f32 *)arg0->actorData, position);
+        func_800EF1B8(data, arg0->rotation[1] - 90.0f, 200.0f);
+    } else {
+        _gspropctrl_entrypoint_11(prop, (f32 *)arg0->actorData);
+    }
+    func_8010A828((void **)arg0, 2);
+    if (func_800DA298(arg0->unk6C_0 + 0x32C)) {
+        arg0->unk64_20 = 1;
+        if (func_800DA9E4(0x6BF, 0)) {
+            if (func_8010CB0C(position, (s32)(arg0->scale * 55.0f),
+                             (s32)(arg0->scale * 500.0f),
+                             (s32)(arg0->scale * -50.0f))) {
+                func_808004C0_chsilo((u8 *)arg0, 8);
+                return;
+            }
+        }
+        func_808004C0_chsilo((u8 *)arg0, 1);
+        return;
+    }
+    func_808004C0_chsilo((u8 *)arg0, 1);
+}
 
 /* extern */
 
