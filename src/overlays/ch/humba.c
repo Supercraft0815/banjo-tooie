@@ -585,7 +585,44 @@ void func_8080138C_chhumba(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_8080144C_chhumba.s")
+void func_8080144C_chhumba(f32 arg0) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA20(void *, void *, f32);
+    void func_800EFB24(void *, void *, void *);
+    u32 func_800F54E4(void);
+    void func_800F7F50(s32, void *, void *, f32, s32, s32);
+    void func_8010D254(f32 *);
+    extern f32 D_808026FC_chhumba[];
+    extern f32 D_8080272C_chhumba[];
+    s32 pad;
+    f32 sp98[3];
+    f32 sp8C[3];
+    f32 sp80[3];
+    f32 temp_f0;
+    f32 sp70[3];
+    f32 *var_s0;
+    f32 var_f20;
+
+    func_8010D254(sp8C);
+    if (arg0 <= 1.0f) {
+        var_f20 = 60.0f;
+    } else {
+        var_f20 = 100.0f;
+    }
+    var_s0 = D_808026FC_chhumba;
+    do {
+        func_800EFA20(sp98, var_s0, arg0);
+        func_800EE7F8(sp80, sp98);
+        sp80[1] = 610.0f * arg0;
+        func_800EFB24(sp70, sp98, sp8C);
+        temp_f0 = var_f20 + 25.0f;
+        if ((sp70[0] * sp70[0] + sp70[2] * sp70[2] < temp_f0 * temp_f0)
+            && (sp98[1] < sp8C[1]) && (sp8C[1] <= sp80[1])) {
+            func_800F7F50(func_800F54E4(), sp98, sp80, var_f20, 2, 1);
+        }
+        var_s0 += 3;
+    } while (var_s0 != D_8080272C_chhumba);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_808015DC_chhumba.s")
 

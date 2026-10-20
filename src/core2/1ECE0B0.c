@@ -1668,7 +1668,7 @@ void func_800F7F00(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5, f
 
 /* extern */
 
-void func_800F7F50(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5) {
+void func_800F7F50(s32 arg0, void *arg1, void *arg2, f32 arg3, s32 arg4, s32 arg5) {
     void func_80098730(u8 *, s32, s32, f32, s32, s32);
     func_80098730(D_80135490[arg0], arg1, arg2, arg3, arg4, arg5);
 }
