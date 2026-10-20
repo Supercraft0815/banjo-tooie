@@ -221,6 +221,45 @@ s32 gccubesearch_entrypoint_16(s32 *arg0, s32 *arg1, s32 *arg2, s32 arg3, s32 ar
     return func_800EBB30(arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_17.s")
+Prop *gccubesearch_entrypoint_17(s32 arg0, s32 *arg1) {
+    s32 func_800BDAD4(s32 position[3]);
+    void func_800BE554(s32 *, s32 *);
+    s32 func_800D2E90(s32);
+    Prop *func_800E9D68(s16 *);
+    u32 func_800E9D90(s16 *);
+    s32 position[3];
+    s32 cube;
+    s32 min[3];
+    s32 max[3];
+    Prop *prop;
+    u32 end;
+
+    func_800BE554(min, max);
+    for (position[1] = min[1]; position[1] <= max[1]; position[1]++) {
+        if (func_800D2E90(position[1] - min[1])) {
+            for (position[0] = min[0]; position[0] <= max[0]; position[0]++) {
+                for (position[2] = min[2]; position[2] <= max[2]; position[2]++) {
+                    cube = func_800BDAD4(position);
+                    if (cube) {
+                        prop = func_800E9D68((s16 *)cube);
+                        end = func_800E9D90((s16 *)cube);
+                        for (; (u32)prop < end; prop++) {
+                            if (arg0 == (((u32 *)prop)[4] >> 21)) {
+                                if (arg1 != NULL) {
+                                    *arg1 = cube;
+                                }
+                                return prop;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (arg1 != NULL) {
+        *arg1 = 0;
+    }
+    return NULL;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_18.s")
