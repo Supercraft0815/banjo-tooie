@@ -539,7 +539,50 @@ void func_808018B0_chfpsgame(Actor *arg0) {
     (*(f32 *)((s8 *)(temp_v0) + (0x55C))) = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_808018E0_chfpsgame.s")
+s32 func_808018E0_chfpsgame(s32 arg0) {
+    f32 func_800D8FF8(void);
+    s32 func_800F0E28(s32, s32);
+    s32 func_800F1418(s32, s32);
+    s32 func_800F1574(f32 *, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80801A8C_chfpsgame(Actor *, f32);
+    f32 temp_f0;
+    f32 temp_f12;
+    f32 temp_f2;
+    s32 sp20;
+    s32 pad;
+    u8 *temp_v0;
+
+    temp_v0 = func_80100094((Actor *)arg0, 0U);
+    if (*(f32 *)(temp_v0 + 0x55C) != 0.0f) {
+        func_800F1574((f32 *)(temp_v0 + 0x560), func_800D8FF8());
+        temp_f0 = *(f32 *)(temp_v0 + 0x560) * (1.0f / 60.0f);
+        temp_f2 = (f32)(s32)temp_f0;
+        *(s8 *)(temp_v0 + 0x55A) = (s8)(s32)temp_f2;
+        temp_v0[0x55B] = (u8)(s32)((temp_f0 - temp_f2) * 60.0f);
+        if (temp_v0[0x558] != 0) {
+            sp20 = (s32)(func_800D8FF8() * 256.0f);
+            if (func_800F1574((f32 *)(temp_v0 + 0x564), func_800D8FF8()) != 0) {
+                func_80801A8C_chfpsgame((Actor *)arg0, 0.0f);
+            }
+            if (*(f32 *)(temp_v0 + 0x564) > 1.0f) {
+                temp_v0[0x559] = func_800F1418(temp_v0[0x559] + sp20 * 4, 255);
+                return;
+            }
+            if (*(f32 *)(temp_v0 + 0x564) < 0.5f) {
+                temp_v0[0x559] = func_800F0E28(temp_v0[0x559] - sp20 * 2, 0);
+            }
+        } else {
+            if (*(f32 *)(temp_v0 + 0x560) < 10.99f) {
+                func_80801A8C_chfpsgame((Actor *)arg0, 60.0f);
+                return;
+            }
+            if (temp_v0[0x55B] == 0) {
+                func_80801A8C_chfpsgame((Actor *)arg0, 2.5f);
+            }
+        }
+    }
+}
 
 void func_80801A8C_chfpsgame(Actor *arg0, f32 arg1) {
     void* func_80100094(Actor*, u32);
