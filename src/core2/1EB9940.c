@@ -50,7 +50,47 @@ block_7:
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB9940/func_800E0170.s")
+void func_800E0170(s16 *arg0, f32 arg1, s32 arg2, s32 arg3) {
+    f32 func_800E0414(s16 *, f32);
+    f32 func_800E04C0(u8 *, f32, s32);
+    void func_800E084C(s32, f32 *, u32);
+    s32 channel;
+    u8 *element;
+    u32 group;
+    s32 i;
+    s32 duration;
+    f32 progress;
+    s32 pad_before[1];
+    f32 transform[3][3];
+    s32 pad[2];
+
+    progress = func_800E0414(arg0, arg1);
+    if (arg2 != 0) {
+        duration = arg0[1] - arg0[0];
+    } else {
+        duration = 0;
+    }
+    element = (u8 *)(arg0 + 4);
+    group = 0;
+    for (i = 0; i < arg0[2]; i++) {
+        if (group != (u32)*(u16 *)element >> 4) {
+            if (group != 0) {
+                func_800E084C(arg3, transform[0], group);
+            }
+            group = (u32)*(u16 *)element >> 4;
+            transform[0][0] = transform[0][1] = transform[0][2] = 0.0f;
+            transform[1][0] = transform[1][1] = transform[1][2] = 1.0f;
+            transform[2][0] = transform[2][1] = transform[2][2] = 0.0f;
+        }
+        channel = *(u16 *)element & 0xF;
+        if (channel >= 9) {
+            channel -= 9;
+        }
+        transform[0][channel] = func_800E04C0(element, progress, duration);
+        element += *(s16 *)(element + 2) * 4 + 4;
+    }
+    func_800E084C(arg3, transform[0], group);
+}
 
 void func_800E02F8(s16 *arg0, f32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 *arg5) {
     f32 func_800E0414(s16 *, f32);
