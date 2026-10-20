@@ -33,7 +33,7 @@ f32 func_80800CAC_chpiranha(void) {
 
 /* extern */
 
-void func_80800CEC_chpiranha(s32 arg0, s32 arg1, f32 arg2, f32 *arg3, f32 arg4, f32 arg5) {
+void func_80800CEC_chpiranha(void *arg0, void *arg1, f32 arg2, f32 *arg3, f32 arg4, f32 arg5) {
     f32 func_800DC178(f32, f32);
     s32 func_800EFA4C(s32, f32, f32, f32);
     f32 func_800EFC7C(void *, void *);
@@ -69,7 +69,32 @@ s32 func_80800DD0_chpiranha(Actor *arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_80800EFC_chpiranha.s")
+void func_80800EFC_chpiranha(Actor *arg0, void *arg1, f32 arg2) {
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFB24(void *, void *, void *);
+    f32 sp3C[3];
+    f32 min, max;
+    u32 state;
+    const u32 five = 5;
+    void *sp28;
+
+    func_800EFB24(sp3C, arg0->position, arg1);
+    state = arg0->unk70_10;
+    if (state != 7) {
+        if (arg0->unk0->unk24 >> 22 != 0x2C2) {
+            min = five == state ? 20.0f : 25.0f;
+            max = five == state ? 20.0f : 30.0f;
+            func_80800CEC_chpiranha(sp3C, sp28 = arg0->actorData, arg2, (f32 *)&arg0->actorData[3], min, max);
+        } else {
+            min = five == state ? 20.0f : 25.0f;
+            max = five == state ? 20.0f : 30.0f;
+            func_80800CEC_chpiranha(sp3C, sp28 = arg0->actorData, arg2, (f32 *)&arg0->actorData[3], min, max);
+        }
+    } else {
+        func_80800CEC_chpiranha(sp3C, sp28 = arg0->actorData, 5.0f, (f32 *)&arg0->actorData[3], 5.0f, 5.0f);
+    }
+    func_800EF04C(*(void **)&sp28, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_8080106C_chpiranha.s")
 
