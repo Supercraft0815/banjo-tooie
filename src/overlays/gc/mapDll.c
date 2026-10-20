@@ -220,7 +220,67 @@ void func_80800668_gcmapDll(s32 arg0, u8 *arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapDll/gcmapDll_entrypoint_2.s")
+void gcmapDll_entrypoint_2(s32 arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+    extern u8 D_80801B98_gcmapDll;
+    extern u8 D_80801BA0_gcmapDll;
+    extern u8 D_80801BA8_gcmapDll;
+    extern u8 D_80801BB0_gcmapDll;
+    extern u8 D_80801BB8_gcmapDll;
+    extern u8 D_80801BC8_gcmapDll;
+    extern u8 D_80801BD8_gcmapDll;
+    s32 map;
+
+    map = func_800EA05C();
+    switch (map) {
+    case 0xA1:
+    case 0xA2:
+    case 0xA3:
+    case 0xA4:
+    case 0xA5:
+    case 0xA6:
+    case 0x18B:
+        func_80800668_gcmapDll(arg0, &D_80801B98_gcmapDll, 2);
+        break;
+    case 0xA7:
+    case 0xAF:
+    case 0x193:
+        func_80800668_gcmapDll(arg0, &D_80801BA0_gcmapDll, 2);
+        break;
+    case 0xB7:
+    case 0xD9:
+    case 0xEF:
+    case 0x13E:
+    case 0x13F:
+    case 0x156:
+    case 0x171:
+    case 0x172:
+    case 0x176:
+        func_80800668_gcmapDll(arg0, &D_80801BB0_gcmapDll, 2);
+        break;
+    case 0x134:
+        func_80800668_gcmapDll(arg0, &D_80801BA8_gcmapDll, 2);
+        break;
+    case 0x160:
+        if (func_800DA298(0x360)) {
+            func_80800668_gcmapDll(arg0, &D_80801BC8_gcmapDll, 4);
+        } else {
+            func_80800668_gcmapDll(arg0, &D_80801BB8_gcmapDll, 4);
+        }
+        break;
+    case 0x18C:
+        func_80800668_gcmapDll(arg0, &D_80801BB8_gcmapDll, 4);
+        break;
+    case 0x18D:
+        func_80800668_gcmapDll(arg0, &D_80801BD8_gcmapDll, 4);
+        break;
+    case 0x194:
+    case 0x195:
+        func_80800668_gcmapDll(arg0, &D_80801BC8_gcmapDll, 4);
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapDll/gcmapDll_entrypoint_3.s")
 
