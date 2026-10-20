@@ -37,4 +37,60 @@ void chbaddieDll_entrypoint_2(void *arg0) {
     (*(s8 *)((s8 *)(arg0) + (4))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/dieDll/chbaddieDll_entrypoint_3.s")
+void chbaddieDll_entrypoint_3(void *arg0) {
+    typedef struct {
+        void (*callback)();
+        s32 args[6];
+        u32 count;
+    } Callback;
+    typedef struct {
+        Callback *callbacks;
+        u8 count;
+    } Queue;
+    Queue *queue = arg0;
+    s32 offset;
+    s32 limit;
+    Callback *callback;
+
+    offset = 0;
+    if ((s32)queue->count > 0) {
+        do {
+            callback = (Callback *)((u8 *)queue->callbacks + offset);
+            switch (callback->count) {
+                case 0:
+                    callback->callback();
+                                    limit = queue->count << 5;
+                    break;
+                case 1:
+                    callback->callback(callback->args[0]);
+                                    limit = queue->count << 5;
+                    break;
+                case 2:
+                    callback->callback(callback->args[0], callback->args[1]);
+                                    limit = queue->count << 5;
+                    break;
+                case 3:
+                    callback->callback(callback->args[0], callback->args[1], callback->args[2]);
+                                    limit = queue->count << 5;
+                    break;
+                case 4:
+                    callback->callback(callback->args[0], callback->args[1], callback->args[2], callback->args[3]);
+                                    limit = queue->count << 5;
+                    break;
+                case 5:
+                    callback->callback(callback->args[0], callback->args[1], callback->args[2], callback->args[3], callback->args[4]);
+                                    limit = queue->count << 5;
+                    break;
+                case 6:
+                    callback->callback(callback->args[0], callback->args[1], callback->args[2], callback->args[3], callback->args[4], callback->args[5]);
+                                    limit = queue->count << 5;
+                    break;
+                default:
+                    limit = queue->count << 5;
+                    break;
+            }
+            offset += 0x20;
+        } while (offset < limit);
+    }
+    queue->count = 0;
+}
