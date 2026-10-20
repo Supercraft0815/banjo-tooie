@@ -563,7 +563,49 @@ void func_80801238_bsstatue(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x160))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_808012E8_bsstatue.s")
+void func_808012E8_bsstatue(PlayerState *arg0) {
+    int baanim_isAt(PlayerState *, f32);
+    s32 bakey_pressed(s32, s32);
+    s32 bastick_getZone(PlayerState *);
+    s32 bs_setState(s32, s32);
+    s32 func_8009BCD4(PlayerState *, f32);
+    void func_8009DB04(PlayerState *, s32, f32, s32);
+    void func_800A2D2C(PlayerState *, f32, s32);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    s32 sp24;
+
+    sp24 = 0;
+    bsstatue_entrypoint_0(arg0);
+    func_800A2D2C(arg0, 0.4917f, 3);
+    func_800A2D2C(arg0, 0.9917f, 4);
+    if (baanim_isAt(arg0, 0.4917f) || baanim_isAt(arg0, 0.9917f)) {
+        if ((*(s32 *)((s8 *)arg0 + 0x160) == 0) && (func_800DC0C0() < 0.55f)) {
+            *(s32 *)((s8 *)arg0 + 0x160) = 1;
+            func_8009DB04(arg0, 0x4A1, func_800DC178(0.88f, 0.96f), 0x1388);
+        } else {
+            *(s32 *)((s8 *)arg0 + 0x160) = 0;
+        }
+    }
+    func_80800BEC_bsstatue(arg0);
+    if ((bastick_getZone(arg0) == 0) && func_8009BCD4(arg0, 3.0f)) {
+        sp24 = 0xF9;
+    }
+    if (bakey_pressed(arg0, 9)) {
+        if (func_80800104_bsstatue(arg0)) {
+            sp24 = 0xF8;
+        } else {
+            sp24 = 0xFC;
+        }
+    }
+    if (bakey_pressed(arg0, 8)) {
+        sp24 = 0xFB;
+    }
+    if (func_80800078_bsstatue(arg0)) {
+        sp24 = 0xFD;
+    }
+    bs_setState(arg0, sp24);
+}
 
 s32 bsstatue_entrypoint_9(s32 arg0) {
     extern s32 D_80801610_bsstatue[];
