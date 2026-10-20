@@ -287,7 +287,65 @@ s32 subaddierouteDll_entrypoint_6(Actor *arg0, void *arg1, s32 arg2, s32 arg3, f
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/subaddierouteDll_entrypoint_7.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/func_80800D88_subaddierouteDll.s")
+typedef struct {
+        Unk80132ED0 *actor;
+        s32 unknown;
+        u32 unused : 31;
+        u32 is_actor : 1;
+    } RouteEntry;
+    typedef struct {
+        s16 position[3];
+        u16 flags;
+        Unk80132ED0 *actor;
+    } RouteResult;
+
+s32 func_80800D88_subaddierouteDll(Actor *arg0, RouteResult *arg1, f32 arg2, s32 arg3, s32 *arg4) {
+    s32 *func_800BE444(f32 *);
+    s32 func_800E9E88(s32);
+    u32 func_800E9EB4(s16 *);
+    f32 func_800EC708(Unk80132ED0 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EE940(s16 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800EF11C(f32 *, s16 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    s32 func_80801784_subaddierouteDll(Actor *, Unk80132ED0 *, s32, f32 *);
+    f32 position[3];
+    RouteEntry *entry;
+    RouteEntry *end;
+    struct {
+        f32 position[3];
+        f32 radius;
+    } sphere;
+    Unk80132ED0 *actor;
+    f32 radius;
+
+    radius = func_800EC708(arg0->unk0) * 0.7f;
+    func_800EE7F8(position, arg0->position);
+    func_800EF11C(position, (s16 *)&arg0->unk0->unk1C + 1);
+    func_800EF1B8(position, arg2, 0.6f * radius);
+    if (arg4 == NULL) {
+        arg4 = func_800BE444(arg0->position);
+    }
+    for (; *arg4 != 0; arg4++) {
+        entry = (RouteEntry *)func_800E9E88(*arg4);
+        end = (RouteEntry *)func_800E9EB4((s16 *)*arg4);
+        for (; entry < end; entry++) {
+            if (entry->is_actor) {
+                actor = entry->actor;
+                if (func_80801784_subaddierouteDll(arg0, actor, arg3, sphere.position)) {
+                    if (func_800EEB40(position, sphere.position) < (radius + sphere.radius) * (radius + sphere.radius)) {
+                        func_800EE940(arg1->position, sphere.position);
+                        arg1->actor = actor;
+                        arg1->flags |= 4;
+                        return 1;
+                    }
+                }
+            }
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/func_80800F34_subaddierouteDll.s")
 
