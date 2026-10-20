@@ -25,7 +25,42 @@ void func_80800034_chmole_training(Actor *arg0, s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_80800088_chmole_training.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_80800270_chmole_training.s")
+void func_80800270_chmole_training(Actor *arg0) {
+    s32 _sumole_entrypoint_1(Actor *, s32, s32, s32);
+    s32 _sumole_entrypoint_6(Actor *, s32, f32);
+    s32 func_8008FD70(void);
+    s32 func_800DA298(s32);
+    void func_80101FDC(Actor *, u32);
+
+    switch ((u32)arg0->unk54) {
+    case 6:
+        if (func_800DA298(0x53) == 0) {
+            if (_sumole_entrypoint_6(arg0, -1, 350.0f) != 0) {
+                func_80101FDC(arg0, 2);
+                return;
+            }
+        } else {
+            if ((func_8008FD70() & 0x701) &&
+                (_sumole_entrypoint_1(arg0, -1, 0, 0) != 0)) {
+                func_80101FDC(arg0, 2);
+                return;
+            }
+        }
+        break;
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 7:
+        if ((func_8008FD70() & 0x701) &&
+            (_sumole_entrypoint_1(arg0, -1, 0, 0) != 0)) {
+            func_80101FDC(arg0, 2);
+        }
+        break;
+    }
+}
 
 /* extern */
 
