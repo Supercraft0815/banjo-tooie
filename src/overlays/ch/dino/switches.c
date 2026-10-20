@@ -76,7 +76,52 @@ void func_80800270_chdinoswitches(void *arg0) {
                   *(u16 *)((u8 *)*(void **)arg0 + 0x16));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/func_808002B0_chdinoswitches.s")
+s32 func_808002B0_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u32 pad0[29];
+        u32 pad74_31 : 10;
+        u32 unk74_21 : 1;
+        u32 pad74_0 : 21;
+    } ActorFlags;
+    s32 func_8010114C(s32, s32, s32);
+    void func_80101074(void *);
+    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    s32 _subaddiefind_entrypoint_10(Actor *, s32, u32);
+    s32 func_80800108_chdinoswitches(void);
+    extern u8 D_80800B28_chdinoswitches[];
+    extern u8 D_8011A270[];
+    extern u8 D_8011A248[];
+    s32 unused[2];
+    Unk80132ED0 *sp1C;
+    s32 index;
+    s32 value;
+
+    switch (arg1) {
+    case 7:
+        sp1C = arg0->unk3C;
+        if (sp1C != NULL) {
+            func_8010114C((s32)sp1C, arg1, 0);
+        }
+        break;
+    case 0x95:
+        _subaddiefind_entrypoint_10(arg0, 0x364, arg0->unk74_7);
+        func_80800270_chdinoswitches(arg0);
+        return _chswitch_entrypoint_10((s32)arg0, arg1, arg2);
+    case 0x99:
+        index = ((ActorFlags *)arg0)->unk74_21
+                    ? arg0->actorData[0] : func_80800108_chdinoswitches();
+        value = *(u16 *)(D_80800B28_chdinoswitches + index * 0x14);
+        if (value == 0x7B8 || value == 0x7B9 || value == 0x942) {
+            func_80101074(D_8011A270);
+        } else {
+            func_80101074(D_8011A248);
+        }
+        break;
+    default:
+        return _chswitch_entrypoint_10((s32)arg0, arg1, arg2);
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/func_808003E8_chdinoswitches.s")
 
