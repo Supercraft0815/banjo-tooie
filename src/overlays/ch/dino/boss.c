@@ -1,6 +1,8 @@
 #include "common.h"
 
 void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+void _glcutDll_entrypoint_17(void);
+s32 func_800EA05C();
 
 OSThread *chdinoboss_entrypoint_0(void)
 {
@@ -1069,7 +1071,58 @@ void func_80802684_chdinoboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_808026D0_chdinoboss.s")
+s32 func_808026D0_chdinoboss(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _capod_entrypoint_14(void);
+    void _glcutDll_entrypoint_24(u32, u32, u32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    void func_80802864_chdinoboss(Actor *, s32);
+    s32 map;
+
+    switch (arg1) {
+    case 0xB:
+        switch (arg2) {
+        case 29:
+            _capod_entrypoint_14();
+            _capod_entrypoint_13(arg0->unk0, NULL, 0x25, 0x2820);
+            arg0->actorData[4] = 0x25;
+            return 4;
+        case 37:
+            _glcutDll_entrypoint_24(0x115, 0x113, 0x33);
+            arg0->actorData[4] = -1;
+            break;
+        case 4:
+            _glcutDll_entrypoint_17();
+            arg0->actorData[4] = -1;
+            break;
+        }
+        return 2;
+    case 0x3D:
+        func_80802864_chdinoboss(arg0, arg2);
+        break;
+    case 0x49:
+        map = func_800EA05C();
+        if (arg2 != 0x33) {
+            return 0;
+        }
+        switch (map) {
+        case 0x112:
+            arg0->unk58 = 0.8f;
+            arg0->actorData[4] = 0x1D;
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x17FB, 0x44, NULL, 0x57);
+            _capod_entrypoint_13(arg0->unk0, NULL, 0x1D, 0x2820);
+            break;
+        case 0x115:
+            arg0->actorData[4] = 4;
+            _capod_entrypoint_13(arg0->unk0, NULL, 4, 0x2820);
+            break;
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80802864_chdinoboss(Actor *arg0, s32 arg1) {
     s32 _chappearfx_entrypoint_1(s32, s32, s32, s32);
