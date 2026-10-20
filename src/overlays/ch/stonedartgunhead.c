@@ -244,7 +244,38 @@ void func_80800364_chstonedartgunhead(Actor *arg0) {
     func_800D9078(&arg0->unk58);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/func_80800908_chstonedartgunhead.s")
+void func_80800908_chstonedartgunhead(Actor *arg0, s32 arg1) {
+    void func_800BA22C(s32, s32);
+    void func_800BA4D0(s16 *, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800C4104(s32, f32, s32, s32, f32, f32);
+    void func_800EC398(Unk80132ED0 *, f32 *);
+    s32 func_800EE7F8();
+    void func_800FFAB0(Actor *);
+    extern s32 D_80800EBC_chstonedartgunhead[];
+    extern s32 D_80800EE0_chstonedartgunhead[];
+    f32 position[3];
+    f32 rotation[3];
+    f32 scale;
+    s32 emitter;
+    s32 i;
+
+    scale = arg0->scale;
+    func_800EC398(arg1, rotation);
+    func_800EE7F8(position, arg0->position);
+    position[1] += 70.0f * scale;
+    for (i = 0; i < 4; i++) {
+        emitter = func_800BABB8(0, position, rotation, scale, D_80800EBC_chstonedartgunhead);
+        func_800BA4D0(emitter, (s16)(s32)(arg0->position[1] - 5.0f));
+        func_800BA22C(emitter, 8);
+        func_800BBCB8(position, rotation, scale, 1, D_80800EE0_chstonedartgunhead);
+        position[1] += 115.0f;
+        scale -= 0.19f;
+    }
+    func_800C4104(0x413, 0.7f, 0x7D00, arg0->position, 1250.0f, 2500.0f);
+    func_800FFAB0(arg0);
+}
 
 s32 func_80800AA4_chstonedartgunhead(Actor *arg0, s32 arg1, volatile s32 arg2) {
     void func_808000A8_chstonedartgunhead(Actor *);
