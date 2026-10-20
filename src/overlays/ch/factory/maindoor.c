@@ -14,7 +14,50 @@ void func_80800000_chfactorymaindoor(Actor *arg0) {
     ((f32 *)arg0->actorData)[7] = arg0->position[1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/maindoor/func_80800078_chfactorymaindoor.s")
+void func_80800078_chfactorymaindoor(Actor *arg0) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_8009EC88(s32, s32, s32, s32);
+    s32 func_800D90A4(f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(Actor *, u32);
+    f32 func_80103EF4(Actor *);
+    extern u32 D_808004C0_chfactorymaindoor[];
+    extern u32 D_808004CC_chfactorymaindoor[];
+    f32 temp;
+    f32 sp28;
+
+    switch (arg0->unk70_10) {
+    case 1:
+        if (func_800DA298(FLAG3_A00_UNK) != 0 && func_800DA298(FLAG3_A01_UNK) != 0) {
+            func_8009EC88(0x102, 2, 0x100, 9);
+            func_80101FDC(arg0, 2);
+            _capod_entrypoint_13(arg0->unk0, arg0->unk0, 4, 0x830);
+        }
+        break;
+    case 2:
+        if (func_800D90A4(&arg0->unk58) != 0) {
+            func_80101FDC(arg0, 3);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808004CC_chfactorymaindoor);
+            _subaddieaudioloop_entrypoint_2(arg0);
+            arg0->position[1] = func_80103EF4(arg0) * 0.8f;
+            arg0->position[1] += ((f32 *)arg0->actorData)[7];
+        } else {
+            _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_808004C0_chfactorymaindoor);
+            sp28 = func_80103EF4(arg0);
+            arg0->position[1] = func_800F10B4(arg0->unk58, 8.0f, 0.0f, 0.0f, 0.8f) * sp28;
+            arg0->position[1] += ((f32 *)arg0->actorData)[7];
+        }
+        break;
+    case 3:
+        func_800DA544(FLAG_1AB_PHYSICAL_GI_MainEntranceOpen);
+        func_80103110(arg0, 0);
+        break;
+    }
+}
 
 s32 func_808001F0_chfactorymaindoor(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80101FDC(Actor *, u32);
