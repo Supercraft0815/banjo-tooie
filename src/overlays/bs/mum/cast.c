@@ -2,7 +2,46 @@
 
 #ifndef NONMATCHINGS
 s32 func_80800000_bsmumcast(PlayerState *self, s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/mum/cast/func_80800000_bsmumcast.s")
+s32 func_80800000_bsmumcast(PlayerState *self, s32 arg1) {
+    void func_8009EAA0(s32);
+    void func_800FC6B0(u32);
+    void func_800FCA90(u32);
+    void func_800FCAE0(u32, u32, u32);
+
+    self->unk15C.word = arg1;
+    switch (arg1) {
+    case 0:
+        break;
+    case 1:
+        baanim_playForDuration_onceSmooth(self, 0xFC, 3.0f);
+        func_8009FFD8(self, BAANIM_UPDATE_1_NORMAL, YAW_TYPE_1_DEFAULT, 3, BA_PHYSICS_3_LOCKED_ROTATION);
+        func_8009BA9C(self, NULL);
+        baphysics_set_target_horizontal_velocity(self, 0.0f);
+        break;
+    case 2:
+        baanim_playForDuration_loopSmooth(self, 0x4A1, 1.71f);
+        func_8009EAA0(1);
+        func_800FC6B0(0x60);
+        func_800DA544(FLAG3_9DE_UNK);
+        break;
+    case 3:
+        func_800DA3B8(FLAG3_9DF_UNK, 0);
+        baanim_playForDuration_onceSmooth(self, 0xFB, 3.0f);
+        func_8009DB04(self, 0x3FE, 1.0f, 0x7FFF);
+        func_800FCAE0(0x60, 0, 0x708);
+        func_800FCA90(0x60);
+        func_8009EAA0(0);
+        break;
+    case 4:
+        baanim_playForDuration_onceStartingAt(self, 0xFC, 3.0f, 0.9999f);
+        func_8009FFD8(self, BAANIM_UPDATE_1_NORMAL, YAW_TYPE_1_DEFAULT, 2, BA_PHYSICS_3_LOCKED_ROTATION);
+        func_8009BA9C(self, NULL);
+        baphysics_set_target_horizontal_velocity(self, 0.0f);
+        func_800A0DAC(self, 0);
+        func_800A0DA0(self, 1);
+        break;
+    }
+}
 #else
 // Decomp failure
 #endif
