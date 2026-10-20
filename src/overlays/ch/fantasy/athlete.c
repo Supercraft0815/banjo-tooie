@@ -101,7 +101,32 @@ void func_80801654_chfantasyathlete(s32 arg0, struct AthletePaths *data) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80801718_chfantasyathlete.s")
+void func_80801718_chfantasyathlete(Actor *arg0) {
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F15F8(f32, f32, f32);
+    f32 func_800F3780(f32, u8 *, s16);
+    void func_80105A9C(Actor *, f32);
+    struct AthleteCurve6 { f32 points[6][2]; };
+    struct AthleteCurve5 { f32 points[5][2]; };
+    extern struct AthleteCurve6 D_8080315C_chfantasyathlete;
+    extern struct AthleteCurve5 D_8080318C_chfantasyathlete;
+    struct AthleteCurve6 sp60;
+    struct AthleteCurve5 sp38;
+
+    ((f32 *)arg0->actorData)[3] = func_800F15F8(((f32 *)arg0->actorData)[3], ((f32 *)arg0->actorData)[6], 50.0f);
+    switch (D_80803034_chfantasyathlete[arg0->unk70_10][0]) {
+    case 0x3FA:
+        sp60 = D_8080315C_chfantasyathlete;
+        func_80101CDC(arg0, func_800F10B4(((f32 *)arg0->actorData)[3], 250.0f, 1000.0f, 1.25f, 0.5f));
+        func_80105A9C(arg0, ((f32 *)arg0->actorData)[3] * func_800F3780(func_80101F24(arg0), (u8 *)&sp60, 6));
+        break;
+    case 0x3FC:
+        sp38 = D_8080318C_chfantasyathlete;
+        func_80101CDC(arg0, func_800F10B4(((f32 *)arg0->actorData)[3], 250.0f, 800.0f, 1.5f, 0.75f));
+        func_80105A9C(arg0, ((f32 *)arg0->actorData)[3] * func_800F3780(func_80101F24(arg0), (u8 *)&sp38, 5));
+        break;
+    }
+}
 
 void func_808018B8_chfantasyathlete(Actor *arg0, struct AthletePaths *arg1, s32 arg2, u8 arg3) {
     void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
