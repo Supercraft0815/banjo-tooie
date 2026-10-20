@@ -952,7 +952,60 @@ OSThread *chgameselect_entrypoint_5(void)
 void func_808027D4_chgameselect(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808027DC_chgameselect.s")
+void func_808027DC_chgameselect(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 _gcnewoption_entrypoint_0(s32);
+    s32 _gcnewoption_entrypoint_17();
+    s32 _gcnewoption_entrypoint_45(s32);
+    s32 _gcnewoption_entrypoint_48(s32);
+    s32 func_80015FA0(s32);
+    s32 func_80016B54(s32, s32);
+    void func_80803604_chgameselect(s32, s32, s32, s32);
+    void func_80803C60_chgameselect(void);
+    void func_80803CE0_chgameselect(void);
+    s32 pad[4];
+    OptionState *option;
+    s8 *entries;
+    s32 i;
+    s8 selected;
+
+    option = func_80100094(arg0, 0);
+    if (option != NULL) {
+        if (arg0->unk64_20 && _gcnewoption_entrypoint_48((s32)option)) {
+            func_80800AEC_chgameselect(arg0->unk3C, option, -1, 0xFF);
+        }
+        switch (arg0->unk70_10) {
+            case 2:
+                entries = func_80100094(arg0, 1);
+                selected = (_gcnewoption_entrypoint_45((s32)option) * 6 + entries)[3];
+                if (selected >= 0) {
+                    func_808026C8_chgameselect((Unk80132ED0 *)func_80106790(arg0->unk3C)->actorData[3], selected);
+                }
+                break;
+            case 3:
+                if (func_80015FA0(0) == 1) {
+                    for (i = 0; i < (s32)arg0->actorData[5]; i++) {
+                        if (_gcnewoption_entrypoint_17(option, i)) {
+                            break;
+                        }
+                    }
+                    if (i < (s32)arg0->actorData[5]) {
+                        _gcnewoption_entrypoint_37(option, 0);
+                    } else {
+                        func_80803C60_chgameselect();
+                    }
+                } else if (func_80016B54(0, 0) == 1) {
+                    for (i = 0; i < (s32)arg0->actorData[5]; i++) {
+                        func_80803604_chgameselect((s32)option, i, 0, 0);
+                    }
+                    func_80803CE0_chgameselect();
+                }
+                break;
+        }
+        _gcnewoption_entrypoint_0((s32)option);
+    }
+}
 
 /* extern */
 
