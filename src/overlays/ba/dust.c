@@ -8,7 +8,35 @@ s32 badust_entrypoint_0()
 void func_80800008_badust(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/func_80800010_badust.s")
+struct player_state_s;
+void func_80800010_badust(void *arg0) {
+    s32 _batimer_decrement(void *, s32);
+    void _batimer_set(struct player_state_s *, s32, f32);
+    void func_800A2EEC(struct player_state_s *, s32);
+    f32 func_8009BB18(void *);
+    s32 badust_entrypoint_4(void *, f32, f32);
+    void *temp_v0;
+    u8 temp_v1;
+
+    if (_batimer_decrement(arg0, 8) != 0) {
+        func_800A2EEC(arg0, 0);
+        _batimer_set(arg0, 8, 0.12f);
+    }
+    temp_v0 = *(void **)((s8 *)arg0 + 0x5C);
+    *(u8 *)((s8 *)temp_v0 + 9) = (*(u8 *)((s8 *)temp_v0 + 9) + 1) % 2;
+    temp_v1 = *(u8 *)((s8 *)*(void **)((s8 *)arg0 + 0x5C) + 9);
+    switch (temp_v1) {
+        case 0:
+            badust_entrypoint_4(arg0, (func_8009BB18(arg0) + 180.0f) - 70.0f, 20.0f);
+            return;
+        case 1:
+            badust_entrypoint_4(arg0, (func_8009BB18(arg0) + 180.0f) - 10.0f, 20.0f);
+            return;
+        case 2:
+            badust_entrypoint_4(arg0, func_8009BB18(arg0) + 180.0f + 50.0f, 20.0f);
+            return;
+    }
+}
 
 /* extern */
 
