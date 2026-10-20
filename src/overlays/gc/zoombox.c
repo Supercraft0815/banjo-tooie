@@ -1386,7 +1386,39 @@ void gczoombox_entrypoint_36(u8 *arg0, s16 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_37.s")
+int gczoombox_entrypoint_37(u8 *arg0, s16 arg1) {
+    s32 _gczoomboxdata_entrypoint_2(s32, u8 *, u8 *);
+    struct Flags { u8 bit7:1; u8 bit6:1; u8 bit5:1; u8 rest:5; };
+
+    if (arg0 == NULL || arg1 == *(s16 *)(arg0 + 0x172) ||
+        (*(u8 *)(arg0 + 0x171) != 6 &&
+         *(u8 *)(arg0 + 0x171) != 0xA &&
+         *(u8 *)(arg0 + 0x171) != 0xB &&
+         *(u8 *)(arg0 + 0x171) != 9)) {
+        return 0;
+    }
+    if (*(u8 *)(arg0 + 0x171) == 0xB || *(u8 *)(arg0 + 0x171) == 9) {
+        gczoombox_entrypoint_36(arg0, arg1);
+    } else {
+        if (*(u16 *)(arg0 + 0x142)) {
+            *(u16 *)(arg0 + 0x142) = 0;
+        }
+        if (*(u16 *)(arg0 + 0x140)) {
+            *(u16 *)(arg0 + 0x142) = *(u16 *)(arg0 + 0x140);
+        }
+        *(s8 *)(arg0 + 0x1B9) = *(s8 *)(arg0 + 0x1B7);
+        *(s8 *)(arg0 + 0x1BA) = *(s8 *)(arg0 + 0x1B8);
+        func_80802B94_gczoombox(arg0, arg1);
+        _gczoomboxdata_entrypoint_2(arg1, arg0 + 0x1B7, arg0 + 0x1B8);
+        func_80800000_gczoombox(arg0);
+        func_80802C80_gczoombox(arg0, arg1);
+        *(s16 *)(arg0 + 0x172) = arg1;
+        ((struct Flags *)(arg0 + 0x1E6))->bit6 = 1;
+        ((struct Flags *)(arg0 + 0x1E6))->bit5 = 1;
+        *(f32 *)(arg0 + 0x1C0) = 1.0f;
+    }
+    return 1;
+}
 
 /* extern */
 
