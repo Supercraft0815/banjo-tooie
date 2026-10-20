@@ -144,7 +144,30 @@ void func_80800444_chblackeye(Actor* arg0)
         _suexpression_entrypoint_8(arg0, 1);
     }
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_80800478_chblackeye.s")
+void func_80800478_chblackeye(void *arg0) {
+    s32 func_800B53A4(s32);
+    void func_800BA4D0(s16 *, s16);
+    void func_800BA6B0(u8 *, s16, s16, s16, s16, s16, s16);
+    void func_800BA7C4(void *, f32, f32);
+    void func_800BA7FC(void *, f32, f32);
+    void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800DBEFC(s32 *, s32, f32 *);
+    extern s32 D_80800EB8_chblackeye;
+    f32 sp3C[3];
+    s16 temp_f8;
+    s32 temp_v0;
+
+    temp_v0 = func_800B53A4(4);
+    temp_f8 = (s32) (((Actor *)arg0)->scale * -5.0f);
+    func_800BA6B0((u8 *)temp_v0, temp_f8, -10, temp_f8, (s16) (((Actor *)arg0)->scale * 5.0f), -15, (s16) (((Actor *)arg0)->scale * 5.0f));
+    func_800BA4D0((s16 *)temp_v0, (s16) (s32) (((Actor *)arg0)->scale * 350.0f));
+    func_800BA7C4((void *)temp_v0, ((Actor *)arg0)->scale * 0.06f, ((Actor *)arg0)->scale * 0.1f);
+    func_800BA7FC((void *)temp_v0, ((Actor *)arg0)->scale * 0.03f, ((Actor *)arg0)->scale * 0.03f);
+    func_800BA994((u8 *)temp_v0, 25, (s16) (((Actor *)arg0)->rotation[1] + 155.0f), 25, 45, (s16) (((Actor *)arg0)->rotation[1] + 205.0f), 75);
+    func_800DBEFC(((Actor *)arg0)->unk0->unk4, 4, sp3C);
+    func_800BABB8(temp_v0, sp3C, NULL, 1.0f, &D_80800EB8_chblackeye);
+}
 
 void func_8080061C_chblackeye(void *arg0) {
     s32 func_800B53A4(s32);
