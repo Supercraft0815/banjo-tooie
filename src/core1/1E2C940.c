@@ -86,7 +86,51 @@ void func_80014F64(OSMesgQueue* queue, OSMesg mesg) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80014FE8.s")
+void func_80014FE8(void) {
+    extern OSViMode D_8003F4E0, D_8003F530;
+    extern u8 *D_80078F68;
+    extern s16 D_80078F60, D_80078F64;
+    extern OSMesgQueue D_80078FD0, D_80079030;
+    extern OSMesg D_80078FE8[10], D_80079028[1], D_80079048[60];
+    extern volatile s32 D_80079138;
+    extern OSThread D_80079140;
+    extern __OSThreadOddFpStorage D_800792F0;
+    extern s32 D_80079700;
+    void func_80015178(s32);
+    void func_8001546C(s32);
+    void func_8001DCB0(OSThread *, __OSThreadOddFpStorage *, s32, void (*)(void *), void *, void *, OSPri);
+    s32 i;
+
+    osCreateViManager(0xFE);
+    switch (osTvType) {
+        case 0:
+        case 1:
+            D_80078F68 = &D_8003F4E0;
+            break;
+        case 2:
+            D_80078F68 = &D_8003F530;
+            break;
+    }
+    osViSetMode(D_80078F68);
+    osViBlack(1);
+    D_80079700 = 1;
+    osViSetSpecialFeatures(0x40);
+    osViSetSpecialFeatures(2);
+    osViSetSpecialFeatures(0x20);
+    osCreateMesgQueue(&D_80078FD0, D_80078FE8, 10);
+    osCreateMesgQueue(&D_80079010, D_80079028, 1);
+    osCreateMesgQueue(&D_80079030, D_80079048, 60);
+    osViSetEvent(&D_80078FD0, NULL, 1);
+    D_80078F60 = 0;
+    D_80078F64 = 1;
+    for (i = 0; i < 8; i++) {
+        D_80078F90[i].queue = NULL;
+    }
+    D_80079138 = 0;
+    func_80015178(2);
+    func_8001DCB0(&D_80079140, &D_800792F0, 0, func_8001546C, NULL, &D_80079700, 0x50);
+    osStartThread(&D_80079140);
+}
 
 void func_80015178(s32 arg0)
 {
