@@ -362,7 +362,62 @@ void func_80800868_bsbanswim(s32 arg0) {
     anctrl_setDuration(sp1C, 0x3F333333);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/swim/func_808008A4_bsbanswim.s")
+void func_808008A4_bsbanswim(struct player_state_s *arg0) {
+    void _baswim_entrypoint_10(void *, f32);
+    void _baswim_entrypoint_11(void *);
+    void _baswim_entrypoint_12(void *);
+    void _baswim_entrypoint_13(void *);
+    s32 _baswim_entrypoint_2(s32);
+    s32 _baswim_entrypoint_3(s32);
+    void func_8009DF18(struct player_state_s *, s32, f32, s32);
+    s32 baanim_getAnimCtrlPtr();
+    s32 anctrl_isAt(s32, f32);
+    s32 bs_setState(void *, s32);
+    s32 player_inWater(void *);
+    s32 sp24;
+    s32 sp20;
+    s32 temp_v0;
+
+    sp24 = 0;
+    sp20 = baanim_getAnimCtrlPtr(arg0);
+    _baswim_entrypoint_11(arg0);
+    _baswim_entrypoint_12(arg0);
+    _baswim_entrypoint_13(arg0);
+    if (anctrl_isAt(sp20, 0.512f) != 0) {
+        _baswim_entrypoint_10(arg0, 600.0f);
+    } else {
+        _baswim_entrypoint_10(arg0, 400.0f);
+    }
+    if (anctrl_isAt(sp20, 0.17f) != 0) {
+        func_8009DF18(arg0, 0x3FD, 1.9f, 10000);
+    }
+    if (anctrl_isAt(sp20, 0.67f) != 0) {
+        func_8009DF18(arg0, 0x3FD, 1.7f, 10000);
+    }
+    temp_v0 = _baswim_entrypoint_3(arg0);
+    switch (temp_v0) {
+    case 3:
+        break;
+    case 0:
+        if (anctrl_isAt(sp20, 0.99f) != 0) {
+            sp24 = 0x2B;
+        }
+        break;
+    case 1:
+        sp24 = 0x81;
+        break;
+    case 2:
+        sp24 = 0x82;
+        break;
+    }
+    if (_baswim_entrypoint_2(arg0) != 0) {
+        sp24 = 0x2D;
+    }
+    if (player_inWater(arg0) == 0) {
+        sp24 = 1;
+    }
+    bs_setState(arg0, sp24);
+}
 
 s32 bsbanswim_entrypoint_3(s32 arg0) {
     extern s32 D_80800A60_bsbanswim[];
