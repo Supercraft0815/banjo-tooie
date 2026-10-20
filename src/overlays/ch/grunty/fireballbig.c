@@ -13,7 +13,52 @@ void func_8080000C_chgruntyfireballbig(s16 *arg0) {
     func_80109EEC(arg0, 0x40);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/grunty/fireballbig/func_80800030_chgruntyfireballbig.s")
+void func_80800030_chgruntyfireballbig(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 func_8001210C(s32);
+    void func_80018820(s32, f32, f32);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E84(s32, u32 *);
+    f32 func_800D8FF8(void);
+    s32 func_800E15CC(s32, f32, f32);
+    s32 func_800FFAB0(u8 *);
+    s32 func_8010B990(Actor *, s32);
+    void func_8080034C_chgruntyfireballbig(u8 *);
+    void func_808004C4_chgruntyfireballbig(Actor *);
+    void func_80800590_chgruntyfireballbig(Actor *);
+    extern u32 D_808006C8_chgruntyfireballbig[];
+    extern u32 D_808006E0_chgruntyfireballbig[][3];
+    f32 delta;
+    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_808006C8_chgruntyfireballbig);
+    switch (arg0->unk70_10) {
+        case 1:
+            func_808004C4_chgruntyfireballbig(arg0);
+            break;
+        case 2:
+            func_80800590_chgruntyfireballbig(arg0);
+            if (func_8010B990(arg0, 0x400007) & 0x20) {
+                func_80018820(0, 1.2f, 0.22f);
+                func_800E15CC(0, 24.0f, 0.84f);
+                func_8080034C_chgruntyfireballbig((u8 *)arg0);
+            } else {
+                func_808004C4_chgruntyfireballbig(arg0);
+            }
+            break;
+        case 3:
+            delta = func_800D8FF8();
+            func_808004C4_chgruntyfireballbig(arg0);
+            arg0->position[1] -= ((f32 *)arg0->actorData)[2] * delta;
+            ((f32 *)arg0->actorData)[2] += 800.0f * delta;
+            if (arg0->position[1] <= ((f32 *)arg0->actorData)[1]) {
+                func_800FFAB0((u8 *)arg0);
+            }
+            break;
+    }
+    if ((s32)arg0->actorData[3] != 0) {
+        func_800C8CB8(arg0->actorData[3], arg0->position);
+        func_800C8E84(arg0->actorData[3], D_808006E0_chgruntyfireballbig[func_8001210C(1)]);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/grunty/fireballbig/func_808001B4_chgruntyfireballbig.s")
 
