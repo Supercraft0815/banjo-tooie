@@ -42,7 +42,37 @@ s32 func_808004E0_gspropsDll(Prop *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propsDll/func_80800524_gspropsDll.s")
+s32 func_80800524_gspropsDll(s32 arg0) {
+    void aligned4_memcpy(void *, void *, int);
+    u8 *func_800BE5C4(u8 *);
+    s32 func_800E9BF4(s16 *, s32);
+    s32 count;
+    s32 i;
+    s32 j;
+    s32 movable;
+    Prop temp;
+
+    count = ((s16 *)arg0)[1];
+    movable = 0;
+    i = 0;
+    if (count > 0) {
+        do {
+            if (func_808004E0_gspropsDll((Prop *)func_800E9BF4((s16 *)arg0, i))) {
+                movable++;
+                for (j = i; j > 0 &&
+                     func_808004E0_gspropsDll((Prop *)func_800E9BF4((s16 *)arg0, j)) &&
+                     !func_808004E0_gspropsDll((Prop *)func_800E9BF4((s16 *)arg0, j - 1)); j--) {
+                    aligned4_memcpy(&temp, (void *)func_800E9BF4((s16 *)arg0, j), 0x14);
+                    aligned4_memcpy((void *)func_800E9BF4((s16 *)arg0, j),
+                                    (void *)func_800E9BF4((s16 *)arg0, j - 1), 0x14);
+                    aligned4_memcpy((void *)func_800E9BF4((s16 *)arg0, j - 1), &temp, 0x14);
+                }
+            }
+            i++;
+        } while (i != count);
+    }
+    *func_800BE5C4((u8 *)arg0) = movable;
+}
 
 /* extern */
 
