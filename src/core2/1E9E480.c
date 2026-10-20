@@ -24,7 +24,46 @@ void func_800C4B90(s32 arg0, f32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C4C34.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C4E58.s")
+void func_800C4E58(s32 arg0, f32 *arg1, f32 *arg2) {
+    typedef struct { f32 m[4][4]; } MtxF;
+    s32 func_800A8984(s32);
+    void func_800A8A04(s32, s32 *, s32 *, s32 *, s32 *);
+    f32 func_800CA6FC(f32 *);
+    f32 func_800CA79C(f32 *);
+    void *func_800CA7A4(void *);
+    f32 func_800CA7B4(f32 *);
+    void func_800CA7E4(s32, s32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFD24(f32 *);
+    f32 func_800F214C(f32, f32);
+    void func_800F23D0(MtxF *, f32 *, f32 *);
+    extern f32 D_80125898;
+    f32 sp54[3];
+    f32 sp50;
+    f32 sp4C;
+    f32 sp48;
+    s32 sp44;
+    s32 sp40;
+    s32 sp3C;
+    s32 sp38;
+    s32 camera;
+
+    camera = func_800A8984(arg0);
+    func_800A8A04(arg0, &sp44, &sp40, &sp3C, &sp38);
+    sp4C = func_800CA79C(camera) * (f32) sp38 * 0.5f;
+    if (func_800F214C(sp4C, D_80125898) == 0.0f) {
+        func_800EFD24(arg2);
+        return;
+    }
+    sp50 = 1.0f / sp4C;
+    sp48 = ((f32) sp3C / (f32) sp38) / func_800CA6FC(camera);
+    arg2[2] = -func_800CA7B4(camera) - arg1[2];
+    arg2[1] = (arg1[1] - (f32) sp38 * 0.5f) * arg2[2] * sp50;
+    arg2[0] = (-(arg1[0] - (f32) sp3C * 0.5f) * arg2[2] * sp50) / sp48;
+    func_800F23D0(func_800CA7A4(camera), arg2, arg2);
+    func_800CA7E4(camera, sp54);
+    func_800EF04C(arg2, sp54);
+}
 
 /* extern */
 
