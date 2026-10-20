@@ -400,7 +400,57 @@ void func_80801AD8_chinflatableboss(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80801B04_chinflatableboss.s")
+void func_80801B04_chinflatableboss(Actor *arg0) {
+    typedef struct {
+        u8 unk0[0x10];
+        f32 position[3];
+        u8 unk1C[0x24];
+        f32 unk40;
+        u8 unk44[0x44F];
+        u8 unk493;
+        u8 unk494[3];
+        u8 unk497;
+    } BossData;
+    typedef struct {
+        f32 position[3];
+        f32 unkC;
+    } BossActorData;
+    void *func_80100094(Actor *, u32);
+    f32 func_80102D78(Actor *, f32 *);
+    f32 func_800D8FF8(void);
+    f32 func_800F15F8(f32, f32, f32);
+    void func_80102BF8(void *, f32, f32, f32);
+    f32 func_80101F24(Actor *);
+    f32 func_800F3780(f32, u8 *, s16);
+    s32 func_8010C3A8(Actor *, u32, f32);
+    int func_800F0064(f32 *, f32, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800DC178(f32, f32);
+    struct anctrl_s *func_80104248(void *);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    extern u8 D_80802F68_chinflatableboss[];
+    BossData *data;
+
+    data = func_80100094(arg0, 0);
+    arg0->unk54 = func_80102D78(arg0, ((BossActorData *)arg0->actorData)->position);
+    ((BossActorData *)arg0->actorData)->unkC = func_800F15F8(((BossActorData *)arg0->actorData)->unkC, data->unk40, func_800D8FF8() * 200.0f);
+    func_80102BF8(arg0, 0.1f, 3.0f, 60.0f);
+    func_8010C3A8(arg0, 5, func_800F3780(func_80101F24(arg0), D_80802F68_chinflatableboss, 5));
+    if (func_800F0064(((BossActorData *)arg0->actorData)->position, 400.0f, arg0->position)) {
+        if (data->unk497) {
+            func_80800F84_chinflatableboss(arg0, 7);
+            func_800EE7F8(((BossActorData *)arg0->actorData)->position, data->position);
+            data->unk497 = 0;
+            arg0->unk58 = func_800DC178(4.0f, 6.0f);
+        } else if (data->unk493 == 0) {
+            func_80800F84_chinflatableboss(arg0, 9);
+            arg0->unk58 = func_800DC178(6.0f, 8.0f);
+        } else {
+            func_80800F84_chinflatableboss(arg0, 10);
+        }
+        func_8008B1C8(func_80104248(arg0), 0.8f);
+    }
+}
 
 /* extern */
 
