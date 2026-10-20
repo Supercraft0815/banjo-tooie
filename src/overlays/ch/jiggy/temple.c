@@ -108,7 +108,67 @@ void func_8080047C_chjiggytemple(Actor *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x24))) = _subaddieaudioloop_entrypoint_7((*(u8 *)((s8 *)(arg0) + (0x24))), position, 1, &D_808009D0_chjiggytemple, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_808004D8_chjiggytemple.s")
+void func_808004D8_chjiggytemple(Actor *arg0) {
+    void _capod_entrypoint_14(void);
+    s32 _glcutDll_entrypoint_19(u32);
+    s32 _sujiggy_entrypoint_0(void);
+    void _sujiggy_entrypoint_15(s32, s32);
+    void func_80018820(s32, f32, f32);
+    s32 func_800B53A4(s32);
+    void func_800B5534(s8 *);
+    void func_800BA22C(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_800D8FF8(void);
+    void func_800E13F0(s32, f32);
+    s32 func_800E15CC(s32, f32, f32);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    f32 func_800F3780(f32, u8 *, s16);
+    extern s32 D_808009E0_chjiggytemple[];
+    extern f32 D_80800A24_chjiggytemple[];
+    extern u8 D_80800A30_chjiggytemple[];
+    f32 delta;
+    s32 finished;
+    f32 position[3];
+
+    delta = func_800D8FF8();
+    finished = 0;
+    if (*(f32 *)&arg0->actorData[2] < 1.0f) {
+        *(f32 *)&arg0->actorData[2] += delta * *(f32 *)&arg0->actorData[4];
+        if (*(f32 *)&arg0->actorData[2] >= 1.0f) {
+            *(f32 *)&arg0->actorData[2] = 1.0f;
+            finished = 1;
+        }
+    }
+    if (((s32 *)arg0->actorData)[5] == 0) {
+        func_800EE780(position, arg0->position, D_80800A24_chjiggytemple);
+        ((s32 *)arg0->actorData)[5] = func_800B53A4(0x32);
+        func_800B5534((s8 *)arg0->actorData[5]);
+        ((s32 *)arg0->actorData)[5] = func_800BABB8(((s32 *)arg0->actorData)[5], arg0->position, position, 1.0f, D_808009E0_chjiggytemple);
+    }
+    func_800BA22C(((s32 *)arg0->actorData)[5], 4);
+    if (_glcutDll_entrypoint_19(0x67)) {
+        if (arg0->actorData[6] == 0) {
+            arg0->actorData[6] = func_800E15CC(0, 0.0f, 1.0f) + 1;
+        }
+        func_800E13F0(arg0->actorData[6] - 1, 10.0f);
+    }
+    switch (arg0->unk70_10) {
+        case 1:
+            if (_glcutDll_entrypoint_19(0x67)) {
+                func_80018820(0, 0.75f, 0.5f);
+                func_8080047C_chjiggytemple(arg0);
+            }
+            break;
+        case 2:
+            *(f32 *)&arg0->actorData[1] = func_800F3780(*(f32 *)&arg0->actorData[2], D_80800A30_chjiggytemple, 4);
+            if (finished) {
+                _capod_entrypoint_14();
+                _sujiggy_entrypoint_15(_sujiggy_entrypoint_0() - 1, 0);
+            }
+            func_8080047C_chjiggytemple(arg0);
+            break;
+    }
+}
 
 void func_80800688_chjiggytemple(Actor *arg0, void *arg1) {
     void _sufade_entrypoint_0(s32, void *);
