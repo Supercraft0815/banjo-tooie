@@ -93,7 +93,49 @@ void func_80800080_chlinkpipefan(u8 *arg0) {
     func_8010A654(arg0, ((u32)*(u16 *)(arg0 + 0x72) >> 10) == 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/linkpipefan/func_808003B4_chlinkpipefan.s")
+void func_808003B4_chlinkpipefan(u8 *arg0, s32 arg1) {
+    void _chskeletonexplode_entrypoint_7(Actor *, f32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800DA544(GameFlag);
+    f32 func_800F13C4(f32, f32);
+    void func_80101FDC(Actor *, u32);
+    extern s32 D_8080091C_chlinkpipefan;
+    extern s32 D_80800960_chlinkpipefan;
+    extern s32 D_80800994_chlinkpipefan;
+    extern s32 D_808009A0_chlinkpipefan;
+    Actor *actor = (Actor *)arg0;
+    f32 *position;
+
+    switch ((u32)arg1) {
+        case 1:
+            actor->rotation[2] = func_800F13C4(actor->rotation[2], 90.0f);
+            if (actor->rotation[2] > 45.0f) {
+                actor->rotation[2] = 90.0f - actor->rotation[2];
+            }
+            func_800DA544(actor->unk74_7 + 0x15C);
+            position = actor->position;
+            func_800BBCB8(position, position, 1.0f, 4, &D_8080091C_chlinkpipefan);
+            func_800BBCB8(position, position, 1.0f, 10, &D_80800960_chlinkpipefan);
+            _subaddieaudioquick_entrypoint_2(actor, position, &D_80800994_chlinkpipefan);
+            _chskeletonexplode_entrypoint_7(actor, position);
+            break;
+        case 2:
+            func_80101FDC(actor, arg1);
+            break;
+        case 3:
+            func_80101FDC(actor, arg1);
+            actor->unk58 = 5.0f;
+            break;
+        case 4:
+            actor->unk58 = 5.0f;
+            if (actor->unk70_10 != 4) {
+                _subaddieaudioquick_entrypoint_2(actor, actor->position, &D_808009A0_chlinkpipefan);
+                func_80101FDC(actor, arg1);
+            }
+            break;
+    }
+}
 
 /* extern */
 
