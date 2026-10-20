@@ -175,7 +175,50 @@ s16 func_80800384_susplinet(u8 *arg0, s16 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_16.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/func_80800620_susplinet.s")
+f32 func_80800620_susplinet(u8 *arg0, s16 *arg1, f32 arg2) {
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s16 *times;
+    u8 *bytes;
+    s32 index;
+
+    bytes = arg0;
+    bytes += *(s16 *)(arg0 + 0x30);
+    times = (s16 *)bytes;
+    arg1[1] = func_80800384_susplinet(arg0, (s16)(s32)arg2);
+    arg1[0] = arg1[1] - 1;
+    arg1[2] = arg1[1] + 1;
+    if (!(*(s32 *)(arg0 + 0x54) & 2)) {
+        if (arg1[2] >= *(s16 *)(arg0 + 0x4E)) {
+            arg1[2] = *(s16 *)(arg0 + 0x4E) - 1;
+        }
+        arg1[3] = arg1[2] + 1;
+        if (arg1[3] >= *(s16 *)(arg0 + 0x4E)) {
+            arg1[3] = *(s16 *)(arg0 + 0x4E) - 1;
+        }
+        if (arg1[0] < 0) {
+            arg1[0] = 0;
+        }
+    } else {
+        if (arg1[2] >= *(s16 *)(arg0 + 0x4E)) {
+            arg1[2] = arg1[2] - *(s16 *)(arg0 + 0x4E) + 1;
+        }
+        arg1[3] = arg1[2] + 1;
+        if (arg1[3] >= *(s16 *)(arg0 + 0x4E)) {
+            arg1[3] = arg1[3] - *(s16 *)(arg0 + 0x4E) + 1;
+        }
+        index = arg1[0];
+        if (index < 0) {
+            arg1[0] = index - (1 - *(s16 *)(arg0 + 0x4E));
+        }
+    }
+    if (func_80800048_susplinet((s16 *)arg0, arg1[1])) {
+        arg1[0] = arg1[1];
+    }
+    if (func_80800068_susplinet((s16 *)arg0, arg1[2])) {
+        arg1[3] = arg1[2];
+    }
+    return func_800F10B4(arg2, (f32)times[arg1[1]], (f32)times[arg1[2]], 0.333f, 0.666f);
+}
 
 f32 func_808007D0_susplinet(u8 *arg0, f32 arg1, s16 *arg2, u8 *arg3) {
     void _mlspline_entrypoint_4(f32, s32, u8 *, f32 *);
