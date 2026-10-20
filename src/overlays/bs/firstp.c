@@ -262,7 +262,41 @@ void func_8080053C_bsfirstp(void *arg0) {
     func_800EFD24(sp1C + 0x38);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080056C_bsfirstp.s")
+void func_8080056C_bsfirstp(arg0) {
+    void func_8009B4D0(void *, s32);
+    f32 func_800EEFFC(void *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF3DC(f32 *, f32 *);
+    f32 func_800F0DC0(f32, f32);
+    f32 func_800F1CF0(f32 *, f32 *);
+    f32 func_80806170_bsfirstp(void *, f32);
+    f32 func_80809938_bsfirstp(void *);
+    f32 sqrtf(f32);
+    u8 *state;
+    f32 sp40[3];
+    f32 sp3C;
+    f32 sp38;
+    f32 sp34;
+    f32 sp30;
+
+    state = *(u8 **)(arg0 + 0x188);
+    sp3C = func_800D9004();
+    func_8009B4D0(arg0, (s32)sp40);
+    func_800EF3DC(sp40, (f32 *)(state + 0x2C));
+    func_808004F8_bsfirstp(arg0);
+    func_800EF04C(sp40, (f32 *)(state + 0x2C));
+    func_800EF334(sp40, 1.0f / sp3C);
+    *(f32 *)(state + 0x38) += (sp40[0] - *(f32 *)(state + 0x38)) * 0.2f;
+    *(f32 *)(state + 0x40) += (sp40[2] - *(f32 *)(state + 0x40)) * 0.2f;
+    sp38 = func_80806170_bsfirstp(arg0, func_800EEFFC((f32 *)(state + 0x38)));
+    sp34 = func_800F1CF0((f32 *)(state + 0x38), (f32 *)(state + 0x2C));
+    sp30 = sqrtf(1.0f - sp34 * sp34);
+    *(f32 *)(state + 0x44) = func_800F0DC0(sp38 * sp34, 1.0f);
+    *(f32 *)(state + 0x48) = func_800F0DC0(sp38 * sp30, 1.0f);
+    sp3C = func_800F0DC0(func_80809938_bsfirstp(arg0), 1.0f);
+    *(f32 *)(state + 0x4C) += (sp3C - *(f32 *)(state + 0x4C)) * 0.2f;
+}
 
 /* extern */
 
@@ -2697,7 +2731,7 @@ void func_80806148_bsfirstp(void *arg0, f32 *arg1) {
 
 /* extern */
 
-void func_80806170_bsfirstp(void *arg0, f32 arg1) {
+f32 func_80806170_bsfirstp(void *arg0, f32 arg1) {
     f32 func_800F0DC0(f32, f32);
     void *func_80802458_bsfirstp(void *);
     arg1 /= *(f32 *)((s8 *)func_80802458_bsfirstp(arg0) + 0x2C);
