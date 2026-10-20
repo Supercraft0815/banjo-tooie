@@ -23,7 +23,44 @@ void sukickball_entrypoint_1(Actor *arg0, void *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_2.s")
+void sukickball_entrypoint_2(Actor *arg0, f32 arg1, f32 arg2) {
+    struct anctrl_s;
+    enum asset_e;
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_start(struct anctrl_s *);
+    void func_800C4140(u32, f32 *, u32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80101CDC(Actor *, f32);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_801022E4(Actor *);
+    struct anctrl_s *func_80104248(void *);
+    struct kickball_motion {
+        f32 unused[3];
+        f32 speed;
+    };
+    struct kickball_sound {
+        f32 unused;
+        f32 timer;
+    } *sp2C;
+
+    sp2C = func_80100094(arg0, 0);
+    if (((struct kickball_motion *)arg0->actorData)->speed > 0.5f) {
+        if (func_801022E4(arg0) == 0x63) {
+            anctrl_setIndex(func_80104248(arg0), 0x1D7);
+            anctrl_start(func_80104248(arg0));
+        }
+        func_80101CDC(arg0, func_800F10B4(((struct kickball_motion *)arg0->actorData)->speed, arg1, arg2, 1.0f, 0.5f));
+    } else if (func_801022E4(arg0) != 0x63) {
+        anctrl_setIndex(func_80104248(arg0), 0x63);
+        func_80101CDC(arg0, 8.0f);
+        anctrl_start(func_80104248(arg0));
+    }
+    if (sp2C->timer <= 0.0f && (func_80101E14(arg0, 0.5f) || func_80101E14(arg0, 0.0f))) {
+        func_800C4140(0xE627D4AE, arg0->position, 0x3E800640);
+        sp2C->timer = 1.0f;
+    }
+}
 
 s32 sukickball_entrypoint_3(void) {
     s32 func_800EA05C();
