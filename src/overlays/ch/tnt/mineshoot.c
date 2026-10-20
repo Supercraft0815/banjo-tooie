@@ -493,7 +493,55 @@ void func_80801D6C_chtntmineshoot(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80801DEC_chtntmineshoot.s")
+s32 func_80801DEC_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _capod_entrypoint_14(void);
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800EA090(void);
+    u32 func_800F54E4(void);
+    s32 func_800F7B9C(s32, s32);
+    s32 func_800F7F98(s32, u32);
+    void func_80101FDC(Actor *, u32);
+
+    switch (arg1) {
+    case 0xB:
+        if (arg0->unk70_10 == 4) {
+            func_800F7F98(func_800F54E4(), 0);
+            func_800F7B9C(func_800F54E4(), 0x73);
+            func_80101FDC(arg0, 1);
+            if (func_800D0A9C(0xF, 1) == 0) {
+                if (func_800EA090() == 2) {
+                    func_80801974_chtntmineshoot(arg0, 0xFAB);
+                } else {
+                    func_80801974_chtntmineshoot(arg0, 0xFA4);
+                }
+            }
+        }
+        return 3;
+    case 0x49:
+        if (_glcutDll_entrypoint_19(0x18) != 0) {
+            _capod_entrypoint_13(arg0->unk0, NULL, 0, 0x900);
+            func_80101FDC(arg0, 3);
+            arg0->unk58 = 0.15f;
+            return 1;
+        }
+        break;
+    case 0x2E:
+        func_800F7F98(func_800F54E4(), 0);
+        return 1;
+    case 0x77:
+        if (arg0->unk70_10 == 2) {
+            func_800F7B9C(arg2, 0x73);
+            func_80101FDC(arg0, 1);
+            _capod_entrypoint_14();
+            func_800F7B9C(func_800F54E4(), 0x99);
+            return 1;
+        }
+        break;
+    }
+    return 0;
+}
 
 OSThread *chtntmineshoot_entrypoint_2(void)
 {
