@@ -934,7 +934,57 @@ void func_80801FAC_chdinoboss(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_8080232C_chdinoboss.s")
+void func_8080232C_chdinoboss(Actor *arg0, f32 *arg1, f32 *arg2) {
+    typedef struct {
+        u8 pad[0x13E];
+        s16 blend;
+        f32 blendTime;
+        f32 blendDuration;
+        f32 position[3];
+    } DinoData;
+    void *func_80100094(Actor *, u32);
+    u8 func_800D9078(f32 *);
+    void func_800A516C(f32 *, f32 *, f32 *);
+    void func_800EEBF0(f32 *, f32 *, f32);
+    f32 func_800EEF94(f32 *);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    void func_800F1A88(f32 *, f32 *);
+    f32 func_800F1DCC(f32, f32);
+    s32 pad;
+    f32 sp78[3];
+    f32 sp6C[3];
+    f32 sp64[2];
+    f32 sp5C[2];
+    f32 sp58;
+    f32 sp54;
+    DinoData *data;
+    f32 blend;
+    s32 i;
+    s32 done;
+
+    data = func_80100094(arg0, 0);
+    if (data->blend != 0) {
+        done = func_800D9078(&data->blendTime);
+        blend = func_800F12D4(data->blendTime, 0.0f, data->blendDuration, 1.0f, 0.0f);
+        func_800F1A88(data->position, sp64);
+        func_800F1A88(arg1, sp5C);
+        sp58 = func_800EEF94(data->position);
+        sp54 = (func_800EEF94(arg1) - sp58) * blend + sp58;
+        for (i = 0; i < 2; i++) {
+            sp5C[i] = func_800F1DCC(sp5C[i], sp64[i]) * blend;
+            sp5C[i] += sp64[i];
+        }
+        func_800EEBF0(sp6C, sp5C, sp54);
+        func_800A516C(sp78, arg2, sp6C);
+        func_80801ECC_chdinoboss((s32)sp6C, (s32)sp78);
+        if (done != 0) {
+            data->blend = 0;
+        }
+    } else {
+        func_800A516C(sp78, arg2, arg1);
+        func_80801ECC_chdinoboss((s32)arg1, (s32)sp78);
+    }
+}
 
 void func_8080248C_chdinoboss(Actor *arg0, s32 arg1, s32 arg2)
 {
