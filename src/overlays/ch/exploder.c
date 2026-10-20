@@ -104,7 +104,48 @@ void func_80800A18_chexploder(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_80800D7C_chexploder.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_80800F74_chexploder.s")
+void func_80800F74_chexploder(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    f32 func_800DC178(f32, f32);
+    void func_800EF368(f32 *, f32);
+    struct {
+        s16 unk0, unk2, unk4, unk6, unk8, unkA, unkC, unkE;
+    } *data;
+    struct {
+        f32 unk0[6];
+        f32 unk18[6];
+        s16 unk30, unk32;
+        union {
+            s16 unk34;
+            struct {
+                u32 pad : 17;
+                u32 active : 1;
+                u32 rest : 14;
+            } bits;
+        } flags;
+        s32 unk38;
+    } *part;
+    f32 *vector;
+    s32 i;
+    f32 speed, vertical, x, z;
+
+    data = func_80100094(arg0, 0);
+    part = func_80100094(arg0, 1);
+    for (i = 0; i < data->unkE; i++, part++) {
+        if (part->flags.bits.active) {
+            speed = func_800DC178(data->unk0, data->unk2);
+            vertical = func_800DC178(data->unk8, data->unkA);
+            x = func_800DC178(data->unk4, data->unk6);
+            z = func_800DC178(data->unk4, data->unk6);
+            vector = part->unk18;
+            func_800EF368(vector, speed);
+            func_800EF368(vector, speed);
+            part->flags.unk34 = (s16)vertical;
+            part->unk30 = (s16)x;
+            part->unk32 = (s16)z;
+        }
+    }
+}
 
 /* extern */
 
