@@ -1,6 +1,8 @@
 #include "common.h"
 #include "overlays/ba/playerstate.h"
 
+struct anctrl_s;
+
 /* extern */
 
 s32 func_80800000_bsbanshack(PlayerState *arg0, s32 arg1) { int bakey_pressed(PlayerState *, ButtonId); int bakey_released(PlayerState *, ButtonId); int func_8008E148(PlayerState *); s32 func_8008E260(PlayerState *); s32 var_s0; var_s0 = arg1;
@@ -176,7 +178,6 @@ void func_80800450_bsbanshack(PlayerState *arg0) { s32 baanim_playForDuration_on
 /* extern */
 
 void func_808004AC_bsbanshack(PlayerState *arg0) {
-    struct anctrl_s;
     void _babackpack_set_state(void *, s32);
     int anctrl_isAt(struct anctrl_s *, f32);
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
@@ -217,7 +218,53 @@ s32 bsbanshack_entrypoint_1(s32 arg0) {
     return ((s32 *)&D_80800CC0_bsbanshack)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/shack/func_808005DC_bsbanshack.s")
+void func_808005DC_bsbanshack(PlayerState *arg0, s32 arg1) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    struct anctrl_s *control;
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setIndex(struct anctrl_s *, s32);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    void baanim_setEndAndDuration(PlayerState *, f32, f32);
+    void baphysics_reset_gravity(PlayerState *);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void func_8009DF18(PlayerState *, s32, f32, s32);
+    s32 func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+
+    switch (arg1) {
+    case 0:
+        baphysics_reset_gravity(arg0);
+        break;
+    case 1:
+        control = baanim_getAnimCtrlPtr(arg0);
+        *(s32 *)((u8 *)arg0 + 0x160) = 0;
+        anctrl_reset(control);
+        anctrl_setIndex(control, 0x294);
+        anctrl_setDuration(control, 1.0f);
+        func_8008B1C8(control, 0.134f);
+        anctrl_setStart(control, 0.14f);
+        anctrl_setSubrange(control, 0.0f, 0.7f);
+        anctrl_setPlaybackType(control, 1);
+        anctrl_start(control);
+        func_8009FFD8(arg0, 1, 1, 1, 2);
+        baphysics_set_vertical_velocity(arg0, 610.0f);
+        baphysics_set_gravity(arg0, -1000.0f);
+        func_8009DF18(arg0, 0x589, 1.0f, 15000);
+        break;
+    case 2:
+        baanim_setEndAndDuration(arg0, 0.81f, 3.2f);
+        break;
+    case 3:
+        baanim_setEndAndDuration(arg0, 1.0f, 0.8f);
+        break;
+    }
+    *(u8 *)((u8 *)arg0 + 0x15C) = arg1;
+}
 
 void func_80800744_bsbanshack(s32 arg0)
 {
