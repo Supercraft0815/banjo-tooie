@@ -11,7 +11,74 @@ extern s32 D_80128760;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BE600.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BE7F8.s")
+s32 func_800BE7F8(s32 arg0, s32 arg1) {
+    s32 _glid_entrypoint_5(s32, s32);
+    s32 _glid_entrypoint_6(s32, s32);
+    s32 _vpmodule_entrypoint_3(s32, s32, s32);
+    void func_800BF774(void);
+    void *func_800BF704(void);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    f32 func_800DF428(f32);
+    void func_800DF440(s32);
+    void func_800DF4B0(s32);
+    void func_800DF5D8(u32, u32, u32, s32);
+    void func_800DF738(s32);
+    void func_800DF7DC(s32);
+    void func_800DF7E8(u8);
+    void func_800DF818(s32);
+    void func_800DF830(s32);
+    void func_800DF83C(s32);
+    s32 func_800EA340(void);
+    extern f32 D_801257B0;
+    struct RenderEntry {
+        s32 unk0, handle, unk8, model;
+        s32 vertices[2];
+        s32 unk18, unk1C, unk20, texture;
+        u8 cache, index, unk2A, enabled;
+    };
+    struct RenderState { u8 pad[0x85]; u8 red, green, blue; };
+    struct RenderEntry *entry;
+    union { u32 address; struct RenderState *state; } base;
+    s32 mode;
+
+    entry = (struct RenderEntry *)&D_801285B0 + arg1;
+    if (entry->model != 0 && entry->enabled != 0) {
+        func_800BF774();
+        func_800DF738((s32)D_80128728);
+        if (entry == (struct RenderEntry *)&D_801285B0) {
+            func_800DF83C(D_8012872C);
+        }
+        if (entry != (struct RenderEntry *)&D_801285B0) {
+            mode = 2;
+        } else {
+            mode = 1;
+        }
+        func_800DF830(mode);
+        if (entry->cache != 0) {
+            func_800DF7E8(entry->cache);
+        }
+        base.address = (u32)&D_801285B0;
+        func_800DF5D8(base.state->red, base.state->green, base.state->blue, 255);
+        func_800DF7DC(entry->texture);
+        func_800DF818(entry->vertices[entry->index]);
+        func_800DF428(D_801257B0);
+        func_800DF440(0);
+        func_800DF4B0(1);
+        func_800DE448(0, 0, 1.0f, 0, entry->model);
+        if (entry->unk1C != 0) {
+            _vpmodule_entrypoint_3(entry->unk1C, entry->unk18, entry->vertices[entry->index]);
+        }
+        if (entry->vertices[1] != 0 && func_800EA340() != 0) {
+            if (entry->handle != 0) {
+                _glid_entrypoint_6(entry->handle, entry->vertices[entry->index]);
+            }
+            entry->index ^= 1;
+            if (entry->handle != 0) {
+                _glid_entrypoint_5(entry->handle, entry->vertices[entry->index]);
+            }
+        }
+    }
+}
 
 /* extern */
 
