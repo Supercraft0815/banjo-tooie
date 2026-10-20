@@ -219,7 +219,55 @@ void bsclimb_entrypoint_4(s32 arg0) {
     func_808000E8_bsclimb(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/climb/bsclimb_entrypoint_5.s")
+void bsclimb_entrypoint_5(struct player_state_s *arg0) {
+    s32 _badrone_entrypoint_23(struct player_state_s *, f32 *);
+    int baanim_isAt(struct player_state_s *, f32);
+    int bakey_pressed(struct player_state_s *, int);
+    f32 baphysics_get_vertical_velocity(struct player_state_s *);
+    void func_800956B8(struct player_state_s *);
+    f32 func_800985B8(f32 **);
+    s32 func_800985C4(void *, f32 *);
+    u32 func_80098640(void *);
+    f32 func_8009864C(void *);
+    f32 func_8009BB0C(void *);
+    void func_8009C128(struct player_state_s *, f32[3]);
+    void bs_setState();
+    s32 nextState;
+    f32 position[3];
+    f32 destination[3];
+
+    nextState = 0;
+    func_800956B8(arg0);
+    func_8080005C_bsclimb(arg0);
+    if (baanim_isAt(arg0, 0.25f)) {
+        func_80800000_bsclimb(arg0, 0);
+    }
+    if (baanim_isAt(arg0, 0.75f)) {
+        func_80800000_bsclimb(arg0, 1);
+    }
+    if (!func_80800298_bsclimb(arg0) && baphysics_get_vertical_velocity(arg0) < 30.0f) {
+        nextState = 0x4F;
+    }
+    func_8009C128(arg0, position);
+    if (func_8009BB0C(arg0) < 0.0f && func_800985B8(arg0) == position[1]) {
+        nextState = 1;
+    }
+    if (func_80098640(arg0) == 2 && func_8009BB0C(arg0) > 0.0f && func_8009864C(arg0) == position[1]) {
+        if (func_800985C4(arg0, destination)) {
+            nextState = _badrone_entrypoint_23(arg0, destination);
+        } else {
+            nextState = 0x51;
+        }
+    }
+    if (bakey_pressed(arg0, 8)) {
+        nextState = 5;
+    }
+    if (*(s32 *)((u8 *)arg0 + 0x160) == 0) {
+        nextState = 1;
+    }
+    *(s32 *)((u8 *)arg0 + 0x160) = 0;
+    bs_setState(arg0, nextState);
+}
 
 void bsclimb_entrypoint_6(struct player_state_s *arg0)
 {
