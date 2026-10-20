@@ -30,7 +30,70 @@ void func_800BFD00(void)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E995C0/func_800BFD6C.s")
+/* extern */
+
+void func_800BFD6C(s32 arg0, s32 arg1) {
+    s32 _glid_entrypoint_5(s32, s32);
+    s32 _glid_entrypoint_6(s32, s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF4B0(s32);
+    void func_800DF738(s32);
+    void func_800DF7DC(s32);
+    void func_800DF818(s32);
+    void func_800E3980(f32 *);
+    void func_800E3C8C(f32, f32);
+    void func_800E3CB8(f32 *, f32 *);
+    void func_800E44FC(Gfx **);
+    s32 func_800EA340(void);
+    struct RenderData {
+        s32 flags[2];
+        s32 handles[2];
+        s32 models[2];
+        s32 textures[2];
+        s32 vertices[2][2];
+        u8 pad30[0xF0];
+        f32 rates[2];
+        f32 scales[2];
+        f32 distance;
+        f32 time;
+        s32 index[2];
+    };
+    s32 i;
+    f32 position[3];
+    f32 rotation[3];
+    f32 near;
+    f32 far;
+
+    if (((struct RenderData *)&D_80128770)->models[0]) {
+        func_800E3CB8(&near, &far);
+        func_800E3C8C(5.0f, ((struct RenderData *)&D_80128770)->distance);
+        func_800E3980(position);
+        func_800E44FC(arg0);
+        for (i = 0; i != 2; i++) {
+            if (((struct RenderData *)&D_80128770)->models[i]) {
+                rotation[0] = 0.0f;
+                rotation[2] = 0.0f;
+                rotation[1] = ((struct RenderData *)&D_80128770)->rates[i] * ((struct RenderData *)&D_80128770)->time;
+                func_800BFD00();
+                func_800DF738(((struct RenderData *)&D_80128770)->flags[i]);
+                func_800DF7DC(((struct RenderData *)&D_80128770)->textures[i]);
+                func_800DF818(((struct RenderData *)&D_80128770)->vertices[i][((struct RenderData *)&D_80128770)->index[i]]);
+                func_800DF4B0(2);
+                func_800DE448(position, rotation, ((struct RenderData *)&D_80128770)->scales[i], NULL, ((struct RenderData *)&D_80128770)->models[i]);
+                if (((struct RenderData *)&D_80128770)->vertices[i][1] && func_800EA340()) {
+                    if (((struct RenderData *)&D_80128770)->handles[i]) {
+                        _glid_entrypoint_6(((struct RenderData *)&D_80128770)->handles[i], ((struct RenderData *)&D_80128770)->vertices[i][((struct RenderData *)&D_80128770)->index[i]]);
+                    }
+                    ((struct RenderData *)&D_80128770)->index[i] ^= 1;
+                    if (((struct RenderData *)&D_80128770)->handles[i]) {
+                        _glid_entrypoint_5(((struct RenderData *)&D_80128770)->handles[i], ((struct RenderData *)&D_80128770)->vertices[i][((struct RenderData *)&D_80128770)->index[i]]);
+                    }
+                }
+            }
+        }
+        func_800E3C8C(near, far);
+    }
+}
 
 void func_800BFF28()
 {
