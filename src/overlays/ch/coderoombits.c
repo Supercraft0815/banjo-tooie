@@ -81,7 +81,7 @@ void func_8080040C_chcoderoombits(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-struct CodeRoomBit { s32 unk0; s32 unk4; u8 unk8[2]; u8 flag; };
+struct CodeRoomBit { s32 unk0; u16 unk4; u16 unk6; u16 unk8; u8 flag; };
 extern struct CodeRoomBit D_808011F4_chcoderoombits[];
 void *func_80100094(Actor *, u32);
 s32 func_80800E28_chcoderoombits(Actor *);
@@ -107,7 +107,57 @@ void func_808004B8_chcoderoombits(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_8080052C_chcoderoombits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_8080077C_chcoderoombits.s")
+s32 func_8080077C_chcoderoombits(Actor *arg0, struct CodeRoomBit *arg1) {
+    s32 _gcfrontend_entrypoint_9(s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800D3F2C(s32);
+    s32 func_800DA544(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F7F98(s32, u32);
+    void func_800FC660(u32);
+    s32 func_80800FDC_chcoderoombits(void);
+    struct { u8 pad[0x19]; u8 flag; } *data;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    if (arg1 == D_808011F4_chcoderoombits) {
+        func_800FC660(0xE);
+        data->flag = 1;
+        return 0;
+    }
+    func_800FC660(0x10);
+    switch (arg1->unk4) {
+        case 1:
+            func_800D3F2C(arg1->unk6);
+            break;
+        case 2:
+            _gcfrontend_entrypoint_9(arg1->unk6);
+            break;
+        case 3:
+            for (i = 0x20; i < 0x2D; i++) {
+                _gcfrontend_entrypoint_9(i);
+            }
+            for (i = 0x60; i < 0x77; i++) {
+                _gcfrontend_entrypoint_9(i);
+            }
+            for (i = 0x80; i != 0x86; i++) {
+                _gcfrontend_entrypoint_9(i);
+            }
+            func_800DA544(0xC08);
+            func_800DA544(0xC09);
+            func_800DA544(0xC0A);
+            func_800DA544(0xC0C);
+            break;
+    }
+    if (arg1->unk8 != 0) {
+        if (func_80800FDC_chcoderoombits() == 1 && arg1->flag == 0) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x115B, 6, NULL, 0);
+        }
+        _subaddiedialog_entrypoint_11(arg0->unk0, arg1->unk8, 6, NULL, 0);
+        func_800F7F98(func_800F54E4(), 1);
+    }
+    return 1;
+}
 
 void func_8080091C_chcoderoombits(Actor *arg0) {
     void *data;
