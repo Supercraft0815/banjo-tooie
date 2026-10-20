@@ -4267,6 +4267,7 @@ void func_80809CF8_bsfirstp(void *arg0) {
 }
 
 void func_8080A194_bsfirstp(void *arg0);
+void func_8080A250_bsfirstp(void *arg0);
 void func_80809F74_bsfirstp(struct player_state_s *arg0);
 
 void func_80809D24_bsfirstp(void *arg0) {
@@ -4493,4 +4494,48 @@ void func_8080A194_bsfirstp(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080A250_bsfirstp.s")
+void func_8080A250_bsfirstp(void *arg0) {
+    u8 *base;
+    s32 *state;
+    s32 current;
+
+    base = *(u8 **)((u8 *)arg0 + 0x188);
+    state = (s32 *)(base + 0x254);
+    switch (state[3]) {
+        case 0:
+            ((f32 *)state)[19] *= 0.5f;
+            if (((f32 *)state)[19] < 1.0f) {
+                ((f32 *)state)[19] = 1.0f;
+            }
+            break;
+        case 1:
+            break;
+        default:
+            ((f32 *)state)[19] *= 2.0f;
+            if (((f32 *)state)[19] > 32.0f) {
+                ((f32 *)state)[19] = 32.0f;
+            }
+            break;
+    }
+    if (state[5] != 0) {
+        ((f32 *)state)[18] += ((f32 *)state)[19];
+        if (((f32 *)state)[18] > 300.0f) {
+            ((f32 *)state)[18] = 300.0f;
+        }
+    } else {
+        ((f32 *)state)[18] -= 8.0f;
+        if (((f32 *)state)[18] < 25.0f) {
+            ((f32 *)state)[18] = 25.0f;
+        }
+    }
+    current = state[5];
+    if (current == state[4]) {
+        state[3]++;
+    } else {
+        state[3] = 0;
+        state[4] = current;
+    }
+    if (state[3] >= 5 && state[5] == 0) {
+        ((f32 *)state)[18] = 25.0f;
+    }
+}
