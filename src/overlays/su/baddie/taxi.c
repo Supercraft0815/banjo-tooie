@@ -22,7 +22,58 @@ void subaddietaxi_entrypoint_0(Actor *arg0, s32 arg1, f32 *arg2, s32 arg3) {
     data->time = 0.5f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_1.s")
+int subaddietaxi_entrypoint_1(Actor *arg0, s32 arg1) {
+    void _fxsparkle_entrypoint_1(f32 *, u32);
+    f32 func_8001395C(f32);
+    s16 func_800CB518(s32);
+    s32 func_800CB698(s32, s32);
+    s32 func_800D9078(f32 *);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    void func_800EFD24(f32 *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F1214(f32, f32, f32);
+    void *func_8010410C(void);
+    void func_80104580(Actor *);
+    void func_80800C00_subaddietaxi(Actor *);
+    struct TaxiData {
+        f32 position[3];
+        f32 destination[3];
+        f32 scale;
+        f32 time;
+    } *data;
+    s32 flags;
+    f32 t;
+
+    data = func_8010410C();
+    flags = func_800CB518(arg1);
+    func_800CB698(arg1, 6);
+    if (data->time == 0.0f) {
+        return 1;
+    }
+    if (flags & 1) {
+        _fxsparkle_entrypoint_1(arg0->position, 0xB);
+    }
+    func_800D9078(&data->time);
+    t = func_800F10B4(data->time, 0.0f, 0.5f, 0, 1.0f);
+    arg0->scale = func_800F1214(t, data->scale, 0.05f);
+    func_800EFE50(arg0->position, data->destination, data->position, t);
+    arg0->position[1] += func_8001395C(t * 3.1415927f) * 200.0f;
+    func_80104580(arg0);
+    if (data->time == 0.0f) {
+        data->scale = data->time;
+        func_800EFD24(data->position);
+        func_800EFD24(data->destination);
+        if (flags & 4) {
+            func_800E1610(0, 20.0f, 0.9f, arg0->position);
+        }
+        if (flags & 2) {
+            func_80800C00_subaddietaxi(arg0);
+        }
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
