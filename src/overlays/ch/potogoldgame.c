@@ -151,7 +151,38 @@ loop_3:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80801558_chpotogoldgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_808016E8_chpotogoldgame.s")
+s32 func_808016E8_chpotogoldgame(f32 *arg0, s32 *arg1, s32 *arg2, s32 *arg3) {
+    f32 func_800136E4(f32);
+    f32 func_800F13C4(f32, f32);
+    s32 func_800F1EA4(f32 *, f32 *);
+    struct Bounds { f32 values[8]; };
+    extern struct Bounds D_80802558_chpotogoldgame;
+    f32 angle;
+    struct Bounds bounds = D_80802558_chpotogoldgame;
+    for (*arg1 = 0; *arg1 < 4; (*arg1)++) {
+        if (bounds.values[*arg1 * 2] < arg0[1]) {
+            return 0;
+        }
+        if (bounds.values[*arg1 * 2 + 1] < arg0[1]) {
+            break;
+        }
+    }
+    if (*arg1 >= 4) {
+        return 0;
+    }
+    func_800F1EA4(arg0, &angle);
+    angle = func_800136E4(angle - 7.0f);
+    *arg2 = (s32)(angle / 72.0f);
+    angle = func_800F13C4(angle, 72.0f);
+    if (angle > 58.0f) {
+        return 0;
+    }
+    *arg3 = (s32)(angle / 12.0f);
+    if (func_800F13C4(angle, 12.0f) > 10.0f) {
+        return 0;
+    }
+    return 1;
+}
 
 void func_80801870_chpotogoldgame(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
