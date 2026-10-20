@@ -562,7 +562,40 @@ void func_808025EC_changlerboss(Actor *arg0) {
     _subaddieskeleton_entrypoint_2(arg0->unk0, 0xC, sp30->unk84);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80802680_changlerboss.s")
+void func_80802680_changlerboss(Actor *arg0) {
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_800D8FF8(void);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80103DFC(Actor *, f32 *);
+    extern s32 D_80803060_changlerboss[];
+    f32 position[3];
+    f32 delta;
+    f32 scale;
+    s32 emitter;
+    s32 i;
+    struct {
+        f32 pad0[9];
+        f32 timers[6];
+        f32 points[6][3];
+    } *data;
+
+    delta = func_800D8FF8();
+    data = func_80100094(arg0, 0);
+    func_80103DFC(arg0, position);
+    position[1] -= 600.0f;
+    for (i = 0; i != 6; i++) {
+        if (data->timers[i] > 0.0f) {
+            scale = func_800F10B4(data->timers[i], 0.0f, 2.0f, 0.75f, 1.0f);
+            data->timers[i] -= delta;
+            emitter = func_800B53A4(1);
+            func_800BABB8(emitter, data->points[i], position, scale, D_80803060_changlerboss);
+            func_800BA22C(emitter, 1);
+        }
+    }
+}
 
 /* extern */
 
