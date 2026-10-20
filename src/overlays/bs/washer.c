@@ -400,7 +400,55 @@ s32 bswasher_entrypoint_3(s32 arg0) {
     return ((s32 *)&D_80801E30_bswasher)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80800B08_bswasher.s")
+void func_80800B08_bswasher(struct player_state_s *arg0) {
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setSmoothTransition(struct anctrl_s *, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    f32 baphysics_get_target_horizontal_velocity(struct player_state_s *);
+    void baphysics_set_gravity(struct player_state_s *, f32);
+    void baphysics_set_horizontal_velocity(struct player_state_s *, f32, f32);
+    void baphysics_set_target_yaw(struct player_state_s *, f32);
+    void baphysics_set_vertical_velocity(struct player_state_s *, f32);
+    f32 bastick_distance(struct player_state_s *);
+    f32 bastick_getAngleRelativeToBanjo(struct player_state_s *);
+    f32 yaw_getIdeal(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    void func_8009D7A4(struct player_state_s *, f32, f32);
+    void func_8009FFD8();
+    s32 pad[2];
+    f32 sp2C;
+    struct anctrl_s *control;
+
+    func_808001A8_bswasher(arg0);
+    control = baanim_getAnimCtrlPtr(arg0);
+    anctrl_reset(control);
+    anctrl_setSmoothTransition(control, 0);
+    anctrl_setIndex(control, 0x355);
+    anctrl_setSubrange(control, 0.0f, 0.5f);
+    anctrl_setDuration(control, 1.0f);
+    anctrl_setStart(control, 0.15f);
+    anctrl_setPlaybackType(control, 1);
+    anctrl_start(control);
+    func_8009FFD8(arg0, 1, 3, 1, 6);
+    func_808000BC_bswasher((s32)arg0);
+    if (bastick_distance(arg0) != 0.0f) {
+        yaw_setIdeal(arg0, bastick_getAngleRelativeToBanjo(arg0));
+    }
+    baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+    func_80800000_bswasher(arg0);
+    sp2C = yaw_getIdeal(arg0);
+    baphysics_set_horizontal_velocity(arg0, sp2C, baphysics_get_target_horizontal_velocity(arg0));
+    baphysics_set_vertical_velocity(arg0, 693.5f);
+    baphysics_set_gravity(arg0, -2400.0f);
+    func_8009D7A4(arg0, 1.35f, 1.45f);
+    *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_80800C70_bswasher.s")
 
