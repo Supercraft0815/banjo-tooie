@@ -101,7 +101,66 @@ void bsdie_entrypoint_4(struct player_state_s *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/die/bsdie_entrypoint_5.s")
+void bsdie_entrypoint_5(struct player_state_s *arg0) {
+    void _basudie_entrypoint_5(struct player_state_s *);
+    s32 _basudie_entrypoint_7(struct player_state_s *);
+    void _bamotor_entrypoint_1(struct player_state_s *, f32, f32, f32);
+    void _badust_entrypoint_9(struct player_state_s *);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void baanim_setEnd(struct player_state_s *, f32);
+    void func_8009DF18(struct player_state_s *, s32, f32, s32);
+    void func_8009E058(struct player_state_s *);
+    f32 func_800F0E00(f32, f32);
+    s32 bs_setState(s32, s32);
+    int func_8008DF8C(struct player_state_s *, s32);
+    int player_isStable(struct player_state_s *);
+    s32 anctrl_isStopped(struct anctrl_s *);
+    struct anctrl_s *control;
+    s32 next_state;
+    f32 speed;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    next_state = 0;
+    _basudie_entrypoint_5(arg0);
+    baphysics_set_target_horizontal_velocity(arg0, (*(f32 *)((s8 *)arg0 + 0x16C)));
+    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+        case 0:
+            if (func_8008DF8C(arg0, 0x96)) {
+                baanim_setEnd(arg0, 0.1863f);
+                *(s32 *)((s8 *)arg0 + 0x15C) = 1;
+            }
+            break;
+        case 1:
+            if (player_isStable(arg0)) {
+                func_8009DF18(arg0, 0x428, 1.0f, 0x4650);
+                _bamotor_entrypoint_1(arg0, 1.0f, 1.0f, 0.4f);
+                func_80800000_bsdie(arg0);
+                func_8009E058(arg0);
+                baanim_setEnd(arg0, 0.3333f);
+                *(s32 *)((s8 *)arg0 + 0x15C) = 2;
+            }
+            break;
+        case 2:
+            speed = func_800F0E00((*(f32 *)((s8 *)arg0 + 0x16C)) - 12.0f, 0.0f);
+            (*(f32 *)((s8 *)arg0 + 0x16C)) = speed;
+            if (speed > 140.0f) {
+                _badust_entrypoint_9(arg0);
+            }
+            if (anctrl_isStopped(control)) {
+                baanim_setEnd(arg0, 1.0f);
+                *(s32 *)((s8 *)arg0 + 0x15C) = 3;
+                (*(f32 *)((s8 *)arg0 + 0x16C)) = 0.0f;
+            }
+            break;
+        case 3:
+            break;
+    }
+    if (_basudie_entrypoint_7(arg0)) {
+        next_state = 0x54;
+    }
+    bs_setState(arg0, next_state);
+}
 
 /* extern */
 
