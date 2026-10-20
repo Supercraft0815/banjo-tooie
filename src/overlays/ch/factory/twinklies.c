@@ -187,7 +187,55 @@ void func_80800A84_chfactorytwinklies(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80800B80_chfactorytwinklies.s")
+s32 func_80800B80_chfactorytwinklies(Actor *arg0, s32 *arg1) {
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800D2054(s32, s32, s32);
+    s32 func_800D395C(void);
+    u32 func_800F54E4(void);
+    void func_800FC6B0(u32);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    void *data;
+    s32 count;
+    s32 result;
+    s32 available;
+    s32 choice;
+    s32 completed;
+    s32 flag;
+    s32 mode;
+    s32 state;
+
+    data = func_80100094(arg0, 0);
+    count = ((s32 *)data)[func_800F54E4()];
+    flag = func_800D0A9C(0x3B, 1);
+    mode = func_800D395C();
+    state = func_800D2054(0, 0x83, count);
+    available = (state == 1) && (flag || mode);
+    choice = ((count >= 0x28) != 0) && !flag && !mode;
+    completed = choice;
+    func_800FDC28(0);
+    func_800FC6B0((choice || available) ? 0x16 : 0x17);
+    *arg1 = 6;
+    if (completed) {
+        result = 0x1346;
+    } else if (available) {
+        result = 0x1347;
+    } else if (!func_800D395C()) {
+        if (flag) {
+            if (state == 0) {
+                result = 0x1376;
+            } else {
+                result = 0x1375;
+            }
+        } else {
+            result = 0x1374;
+        }
+    } else {
+        result = 0xCEB;
+        *arg1 = 0x46;
+    }
+    return result;
+}
 
 void func_80800D00_chfactorytwinklies(Actor *arg0) {
     s32 _gcstatusDll_entrypoint_11(void);
