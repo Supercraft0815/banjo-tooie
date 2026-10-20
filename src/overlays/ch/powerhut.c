@@ -3,7 +3,8 @@
 typedef struct {
     u16 flag;
     s16 pad2;
-    f32 pad4;
+    u16 pad4;
+    u16 radius;
     f32 height;
 } PowerhutConfig;
 
@@ -11,7 +12,7 @@ typedef struct {
     s16 timer;
     s16 pad2;
     f32 height;
-    s32 pad8;
+    f32 pad8;
     s16 state;
     s8 active;
     s8 padF;
@@ -186,7 +187,48 @@ void func_80800400_chpowerhut(s32 arg0) {
     _sumumbofx_entrypoint_20(sp1C, 0x40400000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhut/func_8080047C_chpowerhut.s")
+void func_8080047C_chpowerhut(Actor *arg0, PowerhutConfig *arg1) {
+    void _chglowbo_entrypoint_6(void);
+    s32 _sumumbofx_entrypoint_14(s32);
+    void _sumumbofx_entrypoint_16(void *, f32);
+    void _sumumbofx_entrypoint_17(void *, f32);
+    f32 _sumumbofx_entrypoint_21(s32);
+    s32 _sumumbofx_entrypoint_5(s32, s32);
+    void _sumumbofx_entrypoint_6(s32, f32, f32, s32, s32, u8 *, s32, s32);
+    s32 func_800D9078(f32 *);
+    s32 func_800DA298(s32);
+    void func_800EFD24(f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    extern u8 D_80800994_chpowerhut[];
+    f32 sp34[3];
+    void *sp30;
+    PowerhutData *sp2C;
+
+    sp30 = func_80100094(arg0, 1);
+    sp2C = func_80100094(arg0, 0);
+    func_800EFD24(sp34);
+    if (func_800DA298(0x9DE)) {
+        _sumumbofx_entrypoint_6(sp30, 500.0f, (f32)(u32)arg1->radius, 0, 0x14, sp34, arg0->position, D_80800994_chpowerhut);
+        switch (arg0->unk70_10) {
+        case 2:
+            if (_sumumbofx_entrypoint_21(sp30) == 0.0f && _sumumbofx_entrypoint_5(sp30, 0x3FECCCCD)) {
+                _sumumbofx_entrypoint_17(sp30, arg1->height);
+                func_80101FDC(arg0, 3);
+            }
+            break;
+        case 3:
+            sp2C->pad8 = arg1->height - sp2C->height;
+            if (func_800D9078(&sp2C->height)) {
+                _chglowbo_entrypoint_6();
+                _sumumbofx_entrypoint_16(sp30, 1.5f);
+                func_80101FDC(arg0, 4);
+            }
+            break;
+        }
+        _sumumbofx_entrypoint_14(sp30);
+    }
+}
 
 s32 func_808005F4_chpowerhut(Actor *arg0) {
     s32 _sumumbofx_entrypoint_1(void *, s32);
