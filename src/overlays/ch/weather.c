@@ -93,14 +93,59 @@ OSThread *chweather_entrypoint_7(void)
     return (OSThread *) D_80800638_chweather;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weather/func_80800138_chweather.s")
+struct WeatherEntry {
+    s16 state;
+    s16 rain;
+    s32 (*check)();
+};
+
+s32 func_80800138_chweather(s32 arg0, s32 arg1) {
+    s32 _fxleaves_entrypoint_5(s32);
+    s32 _fxleaves_entrypoint_6(s32);
+    s32 _fxrain_entrypoint_6(s32, f32, f32, f32, f32);
+    s32 _fxrain_entrypoint_7(s32);
+    s32 _fxrain_entrypoint_8(s32);
+    s32 func_800B7C10(void);
+    s32 func_800B7C54(void);
+    s32 func_800B7CA4(void);
+    void func_800B90C8(void);
+    void func_800B90E8(void);
+    extern struct WeatherEntry D_80800410_chweather[];
+    s32 rain;
+    struct WeatherEntry *entry;
+    Actor *actor = (Actor *)arg0;
+
+    if (arg1 == 3) {
+        _fxleaves_entrypoint_5(func_800B7C10());
+    }
+    if (actor->unk70_10 == 3) {
+        _fxleaves_entrypoint_6(func_800B7C10());
+    }
+    if (arg1 == 4) {
+        rain = func_800B7C54();
+        entry = (struct WeatherEntry *)((u8 *)D_80800410_chweather +
+                                      ((actor->unk6C_9 - 0x204) << 3));
+        _fxrain_entrypoint_7(rain);
+        if (entry->rain != 0) {
+            _fxrain_entrypoint_6(rain, 5.0f, 30.0f, 5.0f, 30.0f);
+        }
+    }
+    if (actor->unk70_10 == 4) {
+        _fxrain_entrypoint_8(func_800B7C54());
+    }
+    if (arg1 == 5) {
+        func_800B7CA4();
+        func_800B90C8();
+    }
+    if (actor->unk70_10 == 5) {
+        func_800B7CA4();
+        func_800B90E8();
+    }
+    actor->unk70_10 = arg1;
+}
 
 void func_808002A8_chweather(s32 arg0) {
     s32 func_80800138_chweather(s32, s32);
-    struct WeatherEntry {
-        s16 state;
-        s32 (*check)();
-    };
     extern struct WeatherEntry D_80800410_chweather[];
     struct WeatherEntry *entry;
     Actor *actor = (Actor *)arg0;
