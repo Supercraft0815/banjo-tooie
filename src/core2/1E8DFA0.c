@@ -68,7 +68,48 @@ void func_800B5054(void) {
     D_80127F1D = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8DFA0/func_800B50F0.s")
+void func_800B50F0(void) {
+    s32 func_800B4790(s32);
+    void func_800B5450(void *);
+    f32 func_800D8FF8(void);
+    extern s32 D_80127F10;
+    extern f32 D_80127F14;
+    extern s16 D_80127F18;
+    s32 emitter;
+    s32 i;
+    s32 offset;
+    u8 *entry;
+
+    if (D_80127F14 < func_800D8FF8()) {
+        D_80127F14 = 0.0f;
+    } else {
+        D_80127F14 -= func_800D8FF8();
+    }
+    if (D_80127F10 != 0) {
+        for (i = 0, offset = 0; i < D_80127F18; i++, offset += 4) {
+            emitter = *(s32 *)(D_80127F10 + offset);
+            func_800B4790(emitter);
+            if (*(u8 *)(emitter + 9) != 0 &&
+                *(u8 *)(emitter + 7) == 2 &&
+                *(s32 *)(emitter + 0x8C) == *(s32 *)(emitter + 0x90)) {
+                *(u8 *)(emitter + 8) = 1;
+            } else {
+                *(u8 *)(emitter + 8) = 0;
+            }
+        }
+        if (D_80127F18 > 0) {
+            offset = 0;
+            do {
+                entry = *(u8 **)(D_80127F10 + offset);
+                if (entry[8] != 0) {
+                    func_800B5450(entry);
+                } else {
+                    offset += 4;
+                }
+            } while (offset < D_80127F18 * 4);
+        }
+    }
+}
 
 void func_800B525C(s32 arg0) {
     void func_800BC358(void *, s32, s32);
