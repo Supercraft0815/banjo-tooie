@@ -223,7 +223,59 @@ s32 func_80800848_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/func_808008F0_chdinoswitches.s")
+void func_808008F0_chdinoswitches(Actor *arg0) {
+    s32 func_80800108_chdinoswitches(void);
+    s32 func_800D0B68(u32, u32);
+    void func_800DA544(s32);
+    s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
+    s32 _chdoormake_entrypoint_12(Actor *, s32, s32);
+    s32 _chdoormake_entrypoint_10(void *, s32, s32);
+    void func_8010A800(Actor *, s32);
+    struct DoorEntry {
+        u16 unk0;
+        u16 flag;
+        s32 unk4;
+        u16 unk8;
+        s16 event;
+        u16 unkC;
+        u16 door;
+        u16 unk10;
+        u16 doorFlag;
+    };
+    struct DoorEntry *entry;
+    extern u8 D_80800B28_chdinoswitches[];
+    s32 index;
+
+    entry = (struct DoorEntry *)(D_80800B28_chdinoswitches - 8);
+    index = func_80800108_chdinoswitches();
+    arg0->actorData[0] = index;
+    entry += index;
+    if (index == 4 && func_800D0B68(0x18, 0)) {
+        func_800DA544(entry->doorFlag);
+    }
+    if (_chdoormake_entrypoint_3(arg0, 0.0f, 90.0f,
+                               arg0->scale * 350.0f, entry->door, entry->doorFlag)) {
+        _chdoormake_entrypoint_5(arg0, 2.75f);
+        _chdoormake_entrypoint_8(arg0, 0xE);
+        if (entry->event != -1) {
+            _chdoormake_entrypoint_9(arg0, 0, entry->event, 0x10);
+        }
+    }
+    switch (arg0->actorData[0]) {
+        case 3:
+            func_8010A800(arg0, 0);
+            break;
+        case 4:
+            _chdoormake_entrypoint_9(arg0, 1, 0x23, 0x810);
+            _chdoormake_entrypoint_12(arg0, 1, 0x37);
+            _chdoormake_entrypoint_10(arg0, 1, 0xA3A);
+            _chdoormake_entrypoint_10(arg0, 0, 0xA23);
+            break;
+    }
+}
 
 void func_80800A48_chdinoswitches(void *arg0) {
     void func_80103140(void *, u16, u16);
