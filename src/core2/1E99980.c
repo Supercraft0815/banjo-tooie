@@ -374,7 +374,75 @@ void func_800C0984(s32 arg0) {
 void func_800C0A2C(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0A34.s")
+s32 func_800C0A34(void) {
+    s32 _gcstatusDll_entrypoint_11();
+    s32 func_80015FA0(s32);
+    s32 func_800C9510();
+    s32 func_800C95D4();
+    s32 func_800D3948();
+    s32 func_800DA298(s32);
+    int func_800DB9B0(void);
+    u32 func_800F54E4(void);
+    s32 func_800F6438(u32);
+    int func_800F6774(u32);
+    extern u8 D_8012762C;
+    s32 temp_s2;
+    s32 temp_t6;
+    u32 temp_v0;
+    s32 var_s0;
+    s32 var_s1;
+    s32 var_s1_2;
+    s32 var_s1_3;
+
+    var_s1 = D_8012762C;
+    var_s1 = var_s1 != 0;
+    if (var_s1 != 0) {
+        var_s1 = func_800C95D4() != 0;
+        if (var_s1 != 0) {
+            var_s1 = func_800C9510() == 0;
+            if (var_s1 != 0) {
+                var_s1 = func_800C0638() == 0;
+            }
+        }
+    }
+    var_s0 = var_s1;
+    if (func_800D3948() == 0) {
+        temp_v0 = func_800F54E4();
+        var_s1 = func_800F6438(temp_v0) != 0;
+        if (var_s1 != 0) {
+            var_s1 = func_800DB9B0() == 0;
+        }
+        var_s0 &= var_s1;
+        if (var_s0 && (func_800F6774(temp_v0) != 0) && (func_80015FA0(0) == 1)) {
+            D_80128AF4 = 0;
+            return 1;
+        }
+        goto block_21;
+    }
+    if (var_s1 != 0) {
+        temp_s2 = _gcstatusDll_entrypoint_11();
+        var_s1 = func_800DA298(0x6B6) != 0;
+        if (var_s1 != 0) {
+            var_s1 = func_800DA298(0x6E3) == 0;
+        }
+        var_s0 = 0;
+        if (temp_s2 > 0) {
+loop_15:
+            if ((func_80015FA0(var_s0) == 1) && ((var_s1 != 0) || ((func_800F6438(var_s0) != 0) && (func_800F6774(var_s0) != 0)))) {
+                D_80128AF4 = var_s0;
+                return 1;
+            }
+            var_s0 += 1;
+            if (var_s0 == temp_s2) {
+                goto block_21;
+            }
+            goto loop_15;
+        }
+        goto block_21;
+    }
+block_21:
+    return 0;
+}
 
 s32 func_800C0BB4()
 {
