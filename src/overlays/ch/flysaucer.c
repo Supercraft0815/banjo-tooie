@@ -560,7 +560,48 @@ void func_808017D0_chflysaucer(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_8080185C_chflysaucer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80801E98_chflysaucer.s")
+void func_80801E98_chflysaucer(Actor *arg0) {
+    s32 func_80016B30(s32, s32);
+    s32 func_8008FA2C(s32, s32);
+    s32 func_8008FA60(s32, s32);
+    s32 func_80090178(AllowedTransformation);
+    s32 func_800DA298(s32);
+    void func_800DA544(GameFlag);
+    s32 func_800DA9E4(s32, s32);
+    int func_800DB9B0(void);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_8010CAC0(f32 *, u32);
+    f32 sp1C[3];
+
+    if (!arg0->unk74_30 && func_8010CAC0(arg0->position, 250) && !func_800DB9B0()) {
+        if (arg0->unk64_20) {
+            if (!func_800DA298(0x414)) {
+                if (func_8008FA2C(1, 0)) {
+                    func_800DA544(0x414);
+                    func_8080105C_chflysaucer(arg0, 0x10DB, 1);
+                }
+            } else if (func_80090178(1)) {
+                func_800EE7F8(sp1C, arg0->position);
+                sp1C[1] += 150.0f;
+                if (func_8010CAC0(sp1C, 120)) {
+                    func_808012A4_chflysaucer(arg0, 5);
+                    return;
+                }
+                if (func_8008FA60(1, 0) && func_80016B30(0, 1) == 1) {
+                    func_8080105C_chflysaucer(arg0, 0x10DC, 1);
+                }
+            }
+        } else {
+            if (!func_800DA9E4(0x413, 1)) {
+                func_8080105C_chflysaucer(arg0, 0x10DD, 1);
+                return;
+            }
+            if (func_80016B30(0, 1) == 1) {
+                func_8080105C_chflysaucer(arg0, 0x10DE, 1);
+            }
+        }
+    }
+}
 
 /* extern */
 
