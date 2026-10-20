@@ -84,7 +84,75 @@ s32 func_80800094_chhoopswoop(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_8080016C_chhoopswoop.s")
+void func_8080016C_chhoopswoop(Actor *arg0) {
+    typedef struct {
+        s16 rotation : 15;
+        u16 active : 1;
+        s16 position[3];
+        f32 time;
+    } UpdateHoop;
+    typedef struct {
+        s32 count;
+        s32 score;
+        s32 unk8;
+        s32 dialog;
+        s32 dialogArg;
+        UpdateHoop hoops[100];
+        u8 game[0x534];
+        f32 timer;
+    } UpdateHoopData;
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    s32 _susubgame_entrypoint_9(void);
+    s32 func_800CEAD0(s32);
+    s32 func_800D24E8(s32, s32, u32);
+    s32 func_800D9078(f32 *);
+    s32 func_800D90A4(f32 *);
+    int func_800D9154(f32 *, f32);
+    f32 func_800DC178(f32, f32);
+    s32 func_800F54E4(void);
+    void func_800F7ECC(s32, s32, f32);
+    void func_800F8300();
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    s32 func_808007A4_chhoopswoop(void *, s32 *);
+    s32 i;
+    s32 score;
+    UpdateHoopData *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+        case 1:
+        case 2:
+        case 6:
+            break;
+        case 3:
+            score = data->score;
+            func_800D24E8(0xC2, score, 0);
+            for (i = 0; i < data->count; i++) {
+                func_800D90A4(&data->hoops[i].time);
+            }
+            if (func_800D9154(&arg0->unk58, func_800DC178(0.5f, 1.0f))) {
+                func_80108B04(arg0, -1);
+            }
+            if (func_800CEAD0(arg0->unk6C_0)) {
+                data->dialog = func_808007A4_chhoopswoop(arg0, &data->dialogArg);
+                func_800F7ECC(func_800F54E4(), 3, 0.0f);
+                func_800F8300(func_800F54E4(), 2, 0);
+                data->timer = 3.0f;
+                func_80101FDC(arg0, 4);
+            }
+            break;
+        case 4:
+            if (_susubgame_entrypoint_9() || func_800D9078(&data->timer)) {
+                _susubgame_entrypoint_5(arg0, data->game, 5, 1, 0);
+                func_80101FDC(arg0, 5);
+                _subaddiedialog_entrypoint_11(arg0->unk0, data->dialog, data->dialogArg, NULL, 0x22);
+            }
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80800320_chhoopswoop.s")
 
