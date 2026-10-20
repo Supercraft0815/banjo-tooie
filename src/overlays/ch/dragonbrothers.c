@@ -1,5 +1,7 @@
 #include "common.h"
 
+void func_8010A590(Actor *);
+
 /* extern */
 
 void func_80800000_chdragonbrothers(Actor *arg0, s32 arg1) {
@@ -963,7 +965,60 @@ OSThread *chdragonbrothers_entrypoint_2(void)
     return (OSThread *) D_808058A8_chdragonbrothers;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_8080449C_chdragonbrothers.s")
+void func_8080449C_chdragonbrothers(Actor *arg0) {
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 func_800AF5A0(s16 *);
+    f32 func_800DC178(f32, f32);
+    s32 func_800EA05C();
+    void *func_800EC3E8(u8 *);
+    void func_800EEBF0(f32 *, f32 *, f32);
+    void *func_80100094(Actor *, u32);
+    extern s16 D_808058F0_chdragonbrothers[];
+    typedef struct {
+        f32 values[3];
+        f32 padC;
+        f32 rotation[3];
+    } DragonData;
+    typedef struct {
+        u32 pad : 21;
+        u32 flag : 1;
+        u32 rest : 10;
+    } MarkerFlags;
+    Actor *sp2C;
+    struct {
+        s32 unk0;
+        f32 frame;
+        s32 unk8;
+        s32 frameCount;
+    } *sp28;
+    struct {
+        u8 pad[0x60];
+        s8 count;
+    } *sp24;
+
+    sp28 = func_80100094(arg0, 0);
+    func_800EEBF0(((DragonData *)arg0->actorData)->rotation, arg0->rotation, 2500.0f);
+    arg0->unk58 = 0.5f;
+    func_8010A590(arg0);
+    ((MarkerFlags *)&arg0->unk0->unk28)->flag = 1;
+    sp2C = _subaddiefind_entrypoint_2(0x377, 0);
+    sp24 = func_80100094(sp2C, 0);
+    arg0->unk3C = sp2C->unk0;
+    if (func_800EA05C() == 0x12B) {
+        arg0->unk7A_8 = 0;
+    } else {
+        arg0->unk7A_8 = 1;
+    }
+    arg0->unk0->unk14 = D_808058F0_chdragonbrothers[arg0->unk79_4];
+    ((DragonData *)arg0->actorData)->values[0] = func_800DC178(50.0f, 100.0f);
+    ((DragonData *)arg0->actorData)->values[1] = func_800DC178(5.0f, 10.0f);
+    ((DragonData *)arg0->actorData)->values[2] = func_800DC178(5.0f, 10.0f);
+    sp28->frame = 0.0f;
+    sp28->frameCount = func_800AF5A0(func_800EC3E8((u8 *)arg0->unk0));
+    arg0->unk64_20 = 1;
+    arg0->scale = 1.5f;
+    sp24->count++;
+}
 
 /* extern */
 
