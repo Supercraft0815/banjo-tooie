@@ -813,7 +813,7 @@ void func_800F61E4(void) {
     func_800F6140(-1);
 }
 
-void func_800F6204(s32 arg0)
+s32 func_800F6204(s32 arg0)
 {
     func_800F6140(arg0);
 }
@@ -2028,7 +2028,51 @@ u8 func_800F8B88(void) {
 	return D_801354F8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8B94.s")
+void func_800F8B94(void) {
+    extern s32 D_801354F0;
+    extern s32 D_80135500;
+    extern s32 D_80135510;
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    s32 func_800EA05C(void);
+    s32 func_800F8D80(s32, u8 *);
+    u8 *entry;
+    u8 *begin;
+    u8 *end;
+    s32 player;
+
+    begin = (u8 *)vector_begin(D_801354F0);
+    end = (u8 *)vector_end(D_801354F0);
+    for (entry = begin; entry < end; entry += 0x3C) {
+        if (func_800EA05C() == *(s16 *)(entry + 0x22)) {
+            player = func_800F6204(0);
+            func_800F7E64(player, entry[0]);
+            func_800F8268(player, entry[0x1D], entry[0x1C]);
+            if ((&D_801354F8)[1] && (entry[0] == 10 || entry[0] == 11)) {
+                func_800F8294(player, entry[0] == 10 ? (f32 *)&D_80135500 : (f32 *)&D_80135510);
+            } else {
+                func_800F8294(player, (f32 *)(entry + 0x24));
+            }
+            func_800F832C(player, (f32 *)(entry + 0x30));
+            if (entry[1]) {
+                func_800F80D8(player);
+            }
+            if (D_801354F8 != 1 && (entry[0] == 10 || entry[0] == 11)) {
+                func_800F8358(player, 1);
+            }
+            switch (entry[2]) {
+                case 1:
+                    break;
+                case 2:
+                    func_800F608C(player, 2);
+                    break;
+            }
+            if (entry[1]) {
+                func_800F8D80(player, entry);
+            }
+        }
+    }
+}
 
 /* extern */
 
