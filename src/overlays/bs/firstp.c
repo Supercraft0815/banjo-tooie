@@ -4006,7 +4006,44 @@ void func_808088A4_bsfirstp(s32 arg0)
     func_80807C8C_bsfirstp(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808088D0_bsfirstp.s")
+void func_808088D0_bsfirstp(struct player_state_s *self) {
+    f32 func_80013970(f32);
+    f32 func_800F0D50(f32, f32, f32);
+    f32 yaw_get(struct player_state_s *);
+    void baphysics_set_target_yaw(struct player_state_s *, f32);
+    struct anctrl_s *func_8008D04C(struct player_state_s *);
+    f32 anctrl_getAnimTimer(struct anctrl_s *);
+    int anctrl_isAt(struct anctrl_s *, f32);
+    s32 anctrl_isStopped(struct anctrl_s *);
+    s32 bs_setState(void *, s32);
+    void func_80808E78_bsfirstp(s32);
+    s32 next_state = 0;
+    struct anctrl_s *anctrl = func_8008D04C(self);
+
+    func_80808E78_bsfirstp(self);
+    switch (*(s32 *)((u8 *)self + 0x15C)) {
+        case 1:
+            if (anctrl_isAt(anctrl, 0.285f)) {
+                func_808086B0_bsfirstp(self, 2);
+            }
+            break;
+        case 2:
+            baphysics_set_target_yaw(self, yaw_get(self));
+            if (anctrl_isAt(anctrl, 0.8f)) {
+                func_808086B0_bsfirstp(self, 3);
+            }
+            break;
+        case 3:
+            if (anctrl_isStopped(anctrl)) {
+                next_state = 0xCA;
+            }
+            break;
+    }
+    func_80803B58_bsfirstp(self, func_80013970(
+        (func_800F0D50(anctrl_getAnimTimer(anctrl), 0.285f, 0.8f) - 0.285f)
+        * (1.0f / (0.8f - 0.285f)) * 180.0f));
+    bs_setState(self, next_state);
+}
 
 s32 bsfirstp_entrypoint_34(s32 arg0) {
     extern s32 D_8080B5B0_bsfirstp[];
