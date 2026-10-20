@@ -96,7 +96,44 @@ void func_80800EFC_chpiranha(Actor *arg0, void *arg1, f32 arg2) {
     func_800EF04C(*(void **)&sp28, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_8080106C_chpiranha.s")
+void func_8080106C_chpiranha(Actor *arg0) {
+    f32 func_800DC178(f32, f32);
+    s32 func_800EFA4C(s32, f32, f32, f32);
+    void func_800EFD24(f32 *);
+    u32 *func_80100074(Actor *, u32, u32);
+    void *func_80100094(Actor *, u32);
+    s32 pad;
+    u8 *sp58;
+    f32 temp_f20;
+    f32 temp_f22;
+    u8 *temp_v0;
+    u32 var_s1;
+    u8 *var_s0;
+
+    func_80100074(arg0, 0, arg0->unk6C_0 * 0x30 + 0x1C);
+    temp_v0 = func_80100094(arg0, 0);
+    sp58 = temp_v0;
+    var_s1 = 0;
+    var_s0 = temp_v0 + 0x1C;
+    if (arg0->unk6C_0) {
+        do {
+            if (arg0->unk0->unk24 >> 22 == 0x2C1) {
+                temp_f20 = func_800DC178(-150.0f, 150.0f);
+                temp_f22 = func_800DC178(-150.0f, 150.0f);
+                func_800EFA4C((f32 *)var_s0, temp_f20, temp_f22, func_800DC178(-150.0f, 150.0f));
+            } else {
+                func_800EFA4C((f32 *)var_s0, 0.0f, -50.0f, 0.0f);
+            }
+            func_800EFD24((f32 *)(var_s0 + 0xC));
+            func_800EFD24((f32 *)(var_s0 + 0x24));
+            func_80800DD0_chpiranha(arg0, var_s0);
+            var_s1++;
+            var_s0 += 0x30;
+        } while (var_s1 < arg0->unk6C_0);
+    }
+    func_800EFA4C((f32 *)&arg0->actorData[4], 0.0f, 1.0f, 0.0f);
+    func_80800EFC_chpiranha(arg0, sp58 + 4, 100.0f);
+}
 
 void func_80801210_chpiranha(f32 *arg0, f32 arg1, f32 arg2) {
     void func_800EF334(f32 vec[3], f32 scale);
