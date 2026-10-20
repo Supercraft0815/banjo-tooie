@@ -255,7 +255,52 @@ void func_80801B74_chfactorymagnet(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80801CD8_chfactorymagnet.s")
+void func_80801CD8_chfactorymagnet(Actor *arg0) {
+    s32 func_800B53A4(s32);
+    void func_800BA5B0(s16 *, s32, s32);
+    void func_800BAA9C(void *, f32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    typedef struct {
+        f32 position[3];
+        f32 start;
+        f32 end;
+        f32 scale;
+        u8 active;
+        u8 alpha;
+        u8 pad[2];
+    } MagnetParticle;
+    extern s32 D_808029BC_chfactorymagnet[];
+    f32 sp9C[3];
+    f32 sp90[3];
+    f32 t;
+    s32 particle;
+    s32 offset;
+    f32 sp78[3];
+    MagnetParticle *data;
+
+    data = func_80100094(arg0, 1);
+    func_808019F4_chfactorymagnet(arg0, sp9C, sp90);
+    for (offset = 0; offset < 20; offset++) {
+        if (data[offset].active != 0) {
+            t = func_800F12D4(data[offset].start, data[offset].end, 0.0f, 0.0f, 1.0f);
+            particle = func_800B53A4(1);
+            if (t > 0.5f) {
+                t -= 0.5f;
+                t *= 2.0f;
+                func_800EFE50(sp78, data[offset].position, data[offset].active == 1 ? sp9C : sp90, t);
+            } else {
+                func_800EE7F8(sp78, data[offset].active == 1 ? sp9C : sp90);
+            }
+            func_800BAA9C((void *)particle, data[offset].scale);
+            func_800BA5B0((s16 *)particle, data[offset].alpha, data[offset].alpha);
+            func_800BABB8(particle, sp78, NULL, 1.0f, D_808029BC_chfactorymagnet);
+        }
+    }
+}
 
 void func_80801E84_chfactorymagnet(u8 *arg0) {
     s32 _sumumbofx_entrypoint_1(void *, s32);
