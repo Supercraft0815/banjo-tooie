@@ -1,6 +1,55 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80800000_chdiggerboss.s")
+void func_80800000_chdiggerboss(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_801022E4(Actor *);
+    void func_80800180_chdiggerboss(Actor *, s32);
+    Actor *func_80802228_chdiggerboss(Actor *);
+    extern u32 D_80809DB8_chdiggerboss;
+    extern u32 D_80809DCC_chdiggerboss;
+    extern u32 D_80809DE4_chdiggerboss;
+    extern u32 D_80809DFC_chdiggerboss;
+    extern u32 D_80809E10_chdiggerboss;
+    struct DiggerBossData {
+        u8 unk0[7];
+        s8 unk7;
+    };
+    s32 pad[2];
+    f32 *volatile position;
+    f32 *nextPosition;
+
+    switch (func_801022E4(arg0)) {
+    case 0x435:
+        _subaddieaudioquick_entrypoint_3(arg0, position = arg0->position, &D_80809DB8_chdiggerboss, 0.3f);
+        nextPosition = position;
+        _subaddieaudioquick_entrypoint_3(arg0, nextPosition, &D_80809DCC_chdiggerboss, 0.8f);
+        break;
+    case 0x43B:
+        _subaddieaudioquick_entrypoint_3(arg0, position = arg0->position, &D_80809DB8_chdiggerboss, 0.5f);
+        nextPosition = position;
+        _subaddieaudioquick_entrypoint_3(arg0, nextPosition, &D_80809DCC_chdiggerboss, 0.85f);
+        break;
+    case 0x436:
+        if (func_80101DDC(arg0)) {
+            func_80800180_chdiggerboss(arg0, 5);
+        }
+        break;
+    case 0x437:
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80809DE4_chdiggerboss, 0.6f);
+        break;
+    case 0x440:
+        _subaddieaudioquick_entrypoint_3(arg0, position = arg0->position, &D_80809DFC_chdiggerboss, 0.6f);
+        nextPosition = position;
+        _subaddieaudioquick_entrypoint_3(arg0, nextPosition, &D_80809E10_chdiggerboss, 0.85f);
+        if (func_80101E14(arg0, 0.5f)) {
+            ((struct DiggerBossData *)func_80100094(func_80802228_chdiggerboss(arg0), 0))->unk7 = 1;
+        }
+        break;
+    }
+}
 
 void func_80800180_chdiggerboss(Actor *arg0, s32 arg1) {
     s32 func_801022E4(Actor *);
