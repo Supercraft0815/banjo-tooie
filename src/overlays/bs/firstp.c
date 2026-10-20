@@ -2469,7 +2469,28 @@ f32 func_80805644_bsfirstp(f32 *arg0, f32 arg1, f32 arg2, f32 *arg3, f32 arg4) {
     return scale * arg2 * area;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808057C8_bsfirstp.s")
+f32 func_808057C8_bsfirstp(f32 *arg0, f32 arg1, s32 arg2, f32 arg3, f32 arg4) {
+    f32 area = 0.0f;
+    f32 sign;
+    f32 value;
+    f32 limit;
+    f32 *target = &arg1;
+
+    if (*arg0 * (*target - *arg0) < 0.0f) {
+        area = func_8080549C_bsfirstp(arg0, *target, *(f32 *)&arg2, &arg3, arg4);
+    }
+    if (arg3 != 0.0f) {
+        sign = *target >= 0.0f ? 1.0f : -1.0f;
+        value = *arg0 * sign;
+        limit = *target * sign;
+        if (value < limit) {
+            area += sign * func_80805644_bsfirstp(&value, limit, *(f32 *)&arg2, &arg3, arg4);
+            *arg0 = sign * value;
+        }
+    }
+    area += *arg0 * arg3;
+    return area;
+}
 
 void func_808058F0_bsfirstp(void *arg0) {
     typedef struct player_state_s PlayerState;
