@@ -1,5 +1,7 @@
 #include "common.h"
 
+struct Unk800C7A68;
+
 /* extern */
 
 void func_80800000_bamovespline(u8 *arg0) {
@@ -123,7 +125,38 @@ void bamovespline_entrypoint_9(void *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/spline/func_80800374_bamovespline.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/spline/func_8080057C_bamovespline.s")
+struct player_state_s;
+void func_8080057C_bamovespline(void *arg0) {
+    void baphysics_set_target_yaw(struct player_state_s *, f32);
+    f32 bastick_distance(struct player_state_s *);
+    f32 bastick_getAngle(struct player_state_s *);
+    f32 func_8009BB18(void *);
+    void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
+    f32 func_800C7FD4(u8 *, f32, f32);
+    void *func_800D7520(s32);
+    f32 func_800EEFFC(void *);
+    void func_800EFB24(void *, void *, void *);
+    f32 speed;
+    f32 previous[3];
+    void *spline;
+
+    if (bastick_distance(arg0) != 0.0f) {
+        baphysics_set_target_yaw(arg0, bastick_getAngle(arg0));
+    }
+    func_80800000_bamovespline(arg0);
+    spline = func_800D7520(*(s16 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x94));
+    func_800C7A68(spline, *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x98), previous);
+    speed = func_800EEFFC(*(u8 **)((u8 *)arg0 + 0xC8) + 0x10);
+    if (func_8009BB18(arg0) > 180.0f) {
+        speed = -speed;
+    }
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x98) = func_800C7FD4(spline, *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x98), speed);
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0xA8) = speed;
+    (*(u8 **)((u8 *)arg0 + 0xC8))[0x91] = speed > 0.0f && 1.0f == *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x98);
+    (*(u8 **)((u8 *)arg0 + 0xC8))[0x92] = speed < 0.f && 0.00f == *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x98);
+    func_800C7A68(spline, *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x98), (f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 4));
+    func_800EFB24(*(u8 **)((u8 *)arg0 + 0xC8) + 0x28, *(u8 **)((u8 *)arg0 + 0xC8) + 4, previous);
+}
 
 void bamovespline_entrypoint_10(void *arg0) {
     void *func_800D7520(s32);
