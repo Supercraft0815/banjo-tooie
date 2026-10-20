@@ -7,7 +7,56 @@ OSThread *chproplighter_entrypoint_0(void)
     return (OSThread *) D_808001A0_chproplighter;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/proplighter/func_8080000C_chproplighter.s")
+void func_8080000C_chproplighter(Actor *arg0) {
+    s32 _gccubesearch_entrypoint_16(s32 *, s32 *, s16 **, s32, s32);
+    s32 _gsproplookup_entrypoint_0();
+    f32 func_800136E4(f32);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EE904(s32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    void func_80102FDC(Actor *, f32);
+    void func_80103014(u8 *);
+    s32 func_80103140(Actor *, u32, u16);
+    s32 func_80104E78(Actor *);
+    s32 func_80105010(Actor *);
+    void func_80108944(Actor *, Actor *);
+    void func_8010A63C(Actor *);
+    struct LightProp {
+        u16 id;
+        u8 yaw;
+        u8 pitch;
+        s16 position[3];
+        u8 scale;
+        u8 pad : 2;
+        u8 enabled : 1;
+        u8 hidden : 1;
+        u8 rest : 4;
+    };
+    s32 sp44;
+    s16 *sp40;
+    s32 sp34[3];
+    struct LightProp *prop;
+
+    func_800EE904(sp34, arg0->position);
+    if (_gccubesearch_entrypoint_16(sp34, &sp44, &sp40, 2, 0x1F4) != 0) {
+        prop = (struct LightProp *)sp40;
+        prop->enabled = 1;
+        prop->hidden = 0;
+        func_800EE88C(arg0->position, prop->position);
+        arg0->rotation[1] = func_800136E4(2.0f * (u32)prop->yaw);
+        arg0->rotation[0] = func_800136E4(2.0f * (u32)prop->pitch);
+        func_80103140(arg0, _gsproplookup_entrypoint_0(prop) & 0xFFFF, 0);
+        func_80102FDC(arg0, (u32)prop->scale * 0.01f);
+        func_80103014((u8 *)arg0);
+        func_80108944(arg0, arg0);
+        if (func_80105010(arg0) == 0) {
+            func_80104E78(arg0);
+        }
+        func_8010A63C(arg0);
+    } else {
+        func_800FFAB0(arg0);
+    }
+}
 
 void func_8080017C_chproplighter(void *arg0)
 {
