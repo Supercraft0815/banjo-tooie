@@ -13,7 +13,44 @@ void bamovehover_entrypoint_1(void *arg0) {
     func_800EFA4C((*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x10, 0x41855556, 0x42055556, 0x42480000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/hover/bamovehover_entrypoint_2.s")
+/* extern */
+
+void bamovehover_entrypoint_2(void *arg0) {
+    f32 func_800D8FF8(void);
+    void func_800EF174(f32[3], f32[3], f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F15F8(f32, f32, f32);
+    f32 mlAbsF(f32);
+    f32 delta;
+    f32 velocity[3];
+    f32 difference;
+    f32 magnitude;
+    f32 speed;
+    f32 step;
+    s32 i;
+
+    delta = func_800D8FF8();
+    func_800EF174((f32 *)(*(s8 **)((s8 *)arg0 + 0xC8) + 0xAC),
+                 (f32 *)(*(s8 **)((s8 *)arg0 + 0xC8) + 0xB8), delta);
+    for (i = 0; i < 3; i++) {
+        difference = ((f32 *)(*(s8 **)((s8 *)arg0 + 0xC8) + 0xAC))[i]
+                   - ((f32 *)(*(s8 **)((s8 *)arg0 + 0xC8) + 4))[i];
+        magnitude = mlAbsF(difference);
+        if (magnitude > 5.0f) {
+            step = 220.0f * delta;
+            speed = func_800F10B4(magnitude, 5.0f, 40.0f, 50.0f, 150.0f);
+            if (difference > 0.0f) {
+                velocity[i] = speed;
+            } else {
+                velocity[i] = -speed;
+            }
+            ((f32 *)(*(s8 **)((s8 *)arg0 + 0xC8) + 0x10))[i] =
+                func_800F15F8(((f32 *)(*(s8 **)((s8 *)arg0 + 0xC8) + 0x10))[i], velocity[i], step);
+        }
+    }
+    func_800EF174((f32 *)(*(s8 **)((s8 *)arg0 + 0xC8) + 4),
+                 (f32 *)(*(s8 **)((s8 *)arg0 + 0xC8) + 0x10), delta);
+}
 
 /* extern */
 
