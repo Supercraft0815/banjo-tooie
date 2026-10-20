@@ -155,7 +155,49 @@ s32 func_80800364_chtimetable(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/timetable/func_80800404_chtimetable.s")
+/* extern */
+
+void func_80800404_chtimetable(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_5(f32 *, u32, u32, u32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    int func_800EFED0(f32 *, f32 *, f32 *);
+    void func_8010D254(f32 *);
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp24[3];
+
+    if (!arg0->unk74_30) {
+        func_8010D254(sp3C);
+        func_800EFA4C(sp30, -500.0f, 0.0f, -700.0f);
+        func_800EFA4C(sp24, 0.0f, 1500.0f, 700.0f);
+        func_800EF04C(sp30, (f32 *)&arg0->actorData[4]);
+        func_800EF04C(sp24, (f32 *)&arg0->actorData[4]);
+        if (func_800EFED0(sp30, sp24, sp3C) != 0) {
+            if (!arg0->unk64_20) {
+                func_80800364_chtimetable(arg0, 0xD07, 1);
+                arg0->unk64_20 = 1;
+            }
+        } else {
+            arg0->unk64_20 = 0;
+        }
+        func_800EFA4C(sp30, 0.0f, 0.0f, -700.0f);
+        func_800EFA4C(sp24, 500.0f, 1500.0f, 700.0f);
+        func_800EF04C(sp30, (f32 *)arg0->actorData);
+        func_800EF04C(sp24, (f32 *)arg0->actorData);
+        if (func_800EFED0(sp30, sp24, sp3C) != 0) {
+            if (!arg0->unk64_19) {
+                func_80800364_chtimetable(arg0, 0xD07, 1);
+                arg0->unk64_19 = 1;
+            }
+        } else {
+            arg0->unk64_19 = 0;
+        }
+    }
+    if ((arg0->unk70_10 == 1) && (_subaddiedialog_entrypoint_5(arg0->position, 0xFA, 0x3C, 0) != 0)) {
+        func_80800364_chtimetable(arg0, 0, 9);
+    }
+}
 
 s32 func_808005B8_chtimetable(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
