@@ -1007,7 +1007,54 @@ void func_80802BF4_gczoombox(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80802C80_gczoombox.s")
+void func_80802C80_gczoombox(u8 *arg0, s32 arg1) {
+    s32 _gczoomboxdata_entrypoint_3(s32);
+    void _gczoomboxdata_entrypoint_4(s32, s32, s16 *, s16 *, f32 *);
+    s32 func_800DC214(s32, s32);
+    struct SoundBox {
+        u8 pad0[0x144];
+        s8 ids[5];
+        u8 pad149[3];
+        f32 pitch[5];
+        s16 rates[5];
+        u8 pad16A[12];
+        u8 mode;
+        u8 pad177;
+        u8 count;
+        u8 pad179[0x5A];
+        s8 prev;
+    };
+    s32 i;
+    s16 first;
+    s32 count;
+    s16 sound;
+
+    ((struct SoundBox *)arg0)->count = 0;
+    for (i = 0; i < 5; i++) {
+        ((struct SoundBox *)arg0)->ids[i] = 0;
+        ((struct SoundBox *)arg0)->rates[i] = 0;
+        ((struct SoundBox *)arg0)->pitch[i] = 0.0f;
+    }
+    if (((struct SoundBox *)arg0)->mode != 2) {
+        _gczoomboxdata_entrypoint_4(arg1, 0, &first,
+            &((struct SoundBox *)arg0)->rates[0], &((struct SoundBox *)arg0)->pitch[0]);
+        if (((struct SoundBox *)arg0)->pitch[0] == -1.0f) {
+            ((struct SoundBox *)arg0)->ids[0] = first;
+        } else {
+            count = _gczoomboxdata_entrypoint_3(arg1);
+            for (i = 0; i < count; i++) {
+                _gczoomboxdata_entrypoint_4(arg1, i, &sound,
+                    &((struct SoundBox *)arg0)->rates[i], &((struct SoundBox *)arg0)->pitch[i]);
+                if (((struct SoundBox *)arg0)->rates[i] != 0) {
+                    ((struct SoundBox *)arg0)->ids[i] = func_808008F4_gczoombox(arg0, sound, 3);
+                    ((struct SoundBox *)arg0)->count++;
+                }
+            }
+            ((struct SoundBox *)arg0)->prev = func_800DC214(0, ((struct SoundBox *)arg0)->count);
+        }
+    }
+    func_80802BF4_gczoombox(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_5.s")
 
