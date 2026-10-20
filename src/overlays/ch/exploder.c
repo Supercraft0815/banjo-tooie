@@ -70,7 +70,56 @@ s32 func_808000C0_chexploder(Actor *arg0, s32 arg1, volatile s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_808002FC_chexploder.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_8080067C_chexploder.s")
+void func_8080067C_chexploder(Actor *arg0, void *arg1, f32 *arg2) {
+    void func_800C4B64(f32);
+    void func_800C4B70(s32);
+    void func_800C4B7C(s32);
+    f32 func_800DC178(f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    struct SoundEntry {
+        s16 unk0, unk2, unk4, unk6, unk8;
+    };
+    extern struct SoundEntry D_80801B28_chexploder[];
+    extern s32 D_80801BA0_chexploder;
+    struct {
+        u8 pad0[0x12];
+        u8 unk12;
+        u8 pad13[0x41];
+        s16 unk54;
+        u8 unk56;
+        u8 pad57[5];
+        f32 unk5C;
+    } *data;
+    struct HitData {
+        u8 pad0[0x38];
+        u8 unk38;
+    };
+    s32 index;
+    s32 sp34;
+    s32 sp30;
+    f32 sp2C;
+    f32 sp28;
+
+    data = func_80100094(arg0, 0);
+    if (!(data->unk5C < 0.1f)) {
+        if (data->unk12 != 0 && data->unk56 == 0) {
+            index = data->unk12 - 1;
+            sp34 = D_80801B28_chexploder[index].unk0;
+            sp30 = D_80801B28_chexploder[index].unk2;
+            sp2C = func_800DC178(D_80801B28_chexploder[index].unk4 * 0.00390625f, D_80801B28_chexploder[index].unk6 * 0.00390625f);
+            sp28 = D_80801B28_chexploder[index].unk8 * 0.00390625f;
+            func_800C4B7C(sp34);
+            func_800C4B64(sp2C - ((f32)((struct HitData *)arg1)->unk38 - 1.0f) * sp28);
+            func_800C4B70(sp30 - ((struct HitData *)arg1)->unk38 * 4000 + 4000);
+            func_8010D930(7, arg0->unk70_0, arg2, &D_80801BA0_chexploder);
+            if (data->unk54 & 0x100) {
+                data->unk56 = 1;
+            }
+        }
+        data->unk5C = 0.0f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_80800834_chexploder.s")
 
