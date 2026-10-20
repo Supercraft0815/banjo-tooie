@@ -1,5 +1,7 @@
 #include "common.h"
 
+struct anctrl_s;
+
 /* extern */
 
 void bsbabykaz_entrypoint_0(u8 *arg0) {
@@ -344,7 +346,54 @@ void func_808009C4_bsbabykaz(s32 arg0)
     baphysics_reset_gravity();
     bsbabykaz_entrypoint_3(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_808009EC_bsbabykaz.s")
+void func_808009EC_bsbabykaz(struct player_state_s *arg0) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setIndex(struct anctrl_s *, s32);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    void func_8009FFD8(void *, s32, s32, s32, s32);
+    f32 bastick_distance(struct player_state_s *);
+    f32 bastick_getAngleRelativeToBanjo(struct player_state_s *);
+    f32 yaw_getIdeal(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    void baphysics_set_target_yaw(struct player_state_s *, f32);
+    f32 baphysics_get_target_horizontal_velocity(struct player_state_s *);
+    void baphysics_set_horizontal_velocity(struct player_state_s *, f32, f32);
+    void baphysics_set_vertical_velocity(struct player_state_s *, f32);
+    void baphysics_set_gravity(struct player_state_s *, f32);
+    void func_8009DE38(struct player_state_s *, s32, f32);
+    s32 pad[2];
+    f32 sp2C;
+    struct anctrl_s *control;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    bsbabykaz_entrypoint_4(arg0);
+    anctrl_reset(control);
+    anctrl_setIndex(control, 0xA9);
+    anctrl_setDuration(control, 1.9f);
+    func_8008B1C8(control, 0.134f);
+    anctrl_setStart(control, 0.3f);
+    anctrl_setSubrange(control, 0.0f, 0.5042f);
+    anctrl_setPlaybackType(control, 1);
+    anctrl_start(control);
+    func_8009FFD8(arg0, 1, 1, 3, 6);
+    if (bastick_distance(arg0) != 0.0f) {
+        yaw_setIdeal(arg0, bastick_getAngleRelativeToBanjo(arg0));
+    }
+    baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+    func_80800134_bsbabykaz(arg0);
+    sp2C = yaw_getIdeal(arg0);
+    baphysics_set_horizontal_velocity(arg0, sp2C, baphysics_get_target_horizontal_velocity(arg0));
+    baphysics_set_vertical_velocity(arg0, 475.0f);
+    baphysics_set_gravity(arg0, -1200.0f);
+    *(s32 *)((s8 *)arg0 + 0x15C) = 0;
+    func_8009DE38(arg0, 0x432, 1.4f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80800B54_bsbabykaz.s")
 
