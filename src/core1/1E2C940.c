@@ -286,7 +286,57 @@ void func_80015A70(s32 *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     osWritebackDCache(temp_a0, 0x200);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_80015B34.s")
+void func_80015B34(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    extern u8 D_800797B8[];
+    s32 width;
+    s32 height;
+    s32 index;
+    s32 right;
+    s32 bottom;
+    s16 *viewport;
+
+    func_80015860(*(s32 *)arg0);
+    index = func_80015828();
+    *(s32 *)arg0 = index;
+    viewport = ((s16 (*)[8])D_800797B8)[*(s32 *)arg0];
+    right = arg1 + arg3;
+    bottom = arg2 + arg4;
+    if (arg1 < 0) {
+        arg1 = 0;
+    } else if (arg1 >= 0x131) {
+        arg1 = 0x130;
+    }
+    if (arg2 < 0) {
+        arg2 = 0;
+    } else if (arg2 >= 0xE5) {
+        arg2 = 0xE4;
+    }
+    if (right < 0) {
+        right = 0;
+    } else if (right >= 0x131) {
+        right = 0x130;
+    }
+    width = right - arg1;
+    if (bottom < 0) {
+        bottom = 0;
+    } else if (bottom >= 0xE5) {
+        bottom = 0xE4;
+    }
+    height = bottom - arg2;
+    ((s16 *)arg0)[4] = width;
+    ((s16 *)arg0)[5] = height;
+    ((s16 *)arg0)[2] = arg1;
+    ((s16 *)arg0)[3] = arg2;
+    viewport[0] = width * 2;
+    viewport[1] = height * 2;
+    viewport[2] = 0x1FF;
+    viewport[3] = 0;
+    viewport[6] = 0x1FF;
+    viewport[7] = 0;
+    viewport[4] = (s32)(((f32)arg1 + (f32)width * 0.5f) * 4.0f);
+    viewport[5] = (s32)(((f32)arg2 + (f32)height * 0.5f) * 4.0f);
+    osWritebackDCache(D_800797B8 + index * 0x10, 0x200);
+}
 
 void func_80015CC0(void *arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4) {
     *arg1 = (s32) (*(s16 *)((s8 *)(arg0) + (4)));
