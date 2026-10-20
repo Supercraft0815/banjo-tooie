@@ -3637,7 +3637,57 @@ s32 bsfirstp_entrypoint_33(s32 arg0) {
     return ((s32 *)&D_8080B5A0_bsfirstp)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808078F4_bsfirstp.s")
+void func_808078F4_bsfirstp(s32 self) {
+    void func_8008CF7C(struct player_state_s *);
+    s32 func_80092EC8(struct player_state_s *, s16);
+    void func_8009312C(struct player_state_s *, s32);
+    void func_8009316C(struct player_state_s *, s32);
+    void func_80093230(struct player_state_s *, f32);
+    void func_8009359C(void *, s32);
+    void func_800936CC(void *, s32);
+    void func_800936D8(void *, f32);
+    void func_8009E55C(struct player_state_s *, s32, f32);
+    s32 func_8009EA2C(void);
+    s32 func_800A940C(s32);
+    s32 func_800D3948(void);
+    f32 *data;
+    s32 *state;
+    s16 anim[2];
+    s16 mode[2];
+    s16 index;
+    f32 speed;
+
+    state = func_80802484_bsfirstp(self);
+    data = func_80802458_bsfirstp(self);
+    if (func_800D3948() == 0) {
+        if (func_8009EA2C() != 0) {
+            anim[0] = 0x726;
+            anim[1] = 0x725;
+            mode[0] = 0;
+            mode[1] = 0;
+        } else {
+            func_80802AA8_bsfirstp((u8 *)self, 0, (u8 *)anim, (u8 *)mode);
+        }
+    } else {
+        index = func_800A940C(*(s32 *)((u8 *)self + 0x184));
+        func_80802AA8_bsfirstp((u8 *)self, index, (u8 *)anim, (u8 *)mode);
+    }
+    speed = func_800D3948() ? *(f32 *)((u8 *)state + 0x44) : 1.0f;
+    func_80092EC8(self, anim[0]);
+    if (mode[0] != 0) {
+        func_8009312C(self, mode[0]);
+    }
+    func_80093230(self, speed);
+    func_8008CF7C(self);
+    func_800936CC(self, 2);
+    func_8009359C(self, anim[1]);
+    if (mode[1] != 0) {
+        func_8009316C(self, mode[1]);
+    }
+    func_800936D8(self, *(f32 *)((u8 *)state + 0xC));
+    func_8009E55C(self, 0, data[0]);
+    func_8009E55C(self, 1, data[1]);
+}
 
 /* extern */
 
