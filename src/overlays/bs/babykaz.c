@@ -395,7 +395,68 @@ void func_808009EC_bsbabykaz(struct player_state_s *arg0) {
     func_8009DE38(arg0, 0x432, 1.4f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80800B54_bsbabykaz.s")
+void func_80800B54_bsbabykaz(struct player_state_s *arg0) {
+    s32 anctrl_isStopped(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    int baanim_isStopped(struct player_state_s *);
+    void baanim_setEndAndDuration(struct player_state_s *, f32, f32);
+    int baflag_isTrue(struct player_state_s *, s32);
+    int bakey_released(struct player_state_s *, int);
+    s32 bs_setState(s32, s32);
+    s32 func_8008D544(struct player_state_s *);
+    int func_8008DF8C(struct player_state_s *, s32);
+    void func_8009B7C0(struct player_state_s *);
+    void func_8009BB24(void *, f32 *);
+    void func_8009FE58(struct player_state_s *);
+    int player_isStable(struct player_state_s *);
+    s32 sp34;
+    struct anctrl_s *sp30;
+    f32 sp24[3];
+
+    sp34 = 0;
+    sp30 = baanim_getAnimCtrlPtr(arg0);
+    bsbabykaz_entrypoint_5(arg0);
+    if (baflag_isTrue(arg0, 0xF) != 0) {
+        func_8009B7C0(arg0);
+    } else {
+        func_80800134_bsbabykaz(arg0);
+    }
+    func_8009BB24(arg0, sp24);
+    if (((bakey_released(arg0, 8) != 0) && (sp24[1] > 0.0f)) || (func_8008D544(arg0) == 0)) {
+        baphysics_reset_gravity(arg0);
+    }
+    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+    case 0:
+        if (anctrl_isStopped(sp30) != 0) {
+            baanim_setEndAndDuration(arg0, 0.6667f, 4.0f);
+            *(s32 *)((s8 *)arg0 + 0x15C) = 1;
+        }
+        if (func_8008DF8C(arg0, 0x82) != 0) {
+            baanim_setEndAndDuration(arg0, 1.0f, 1.4f);
+            *(s32 *)((s8 *)arg0 + 0x15C) = 2;
+        }
+        break;
+    case 1:
+        if (baanim_isStopped(arg0) != 0) {
+            sp34 = 0x133;
+        }
+        if (func_8008DF8C(arg0, 0x5A) != 0) {
+            baanim_setEndAndDuration(arg0, 1.0f, 2.0f);
+            *(s32 *)((s8 *)arg0 + 0x15C) = 2;
+        }
+        break;
+    case 2:
+        break;
+    }
+    if (player_isStable(arg0) != 0) {
+        func_8009FE58(arg0);
+        sp34 = 0x132;
+    }
+    if (func_808000F8_bsbabykaz(arg0) != 0) {
+        sp34 = 0x94;
+    }
+    bs_setState(arg0, sp34);
+}
 
 s32 bsbabykaz_entrypoint_8(s32 arg0) {
     extern s32 D_80801760_bsbabykaz[];
