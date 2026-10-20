@@ -712,7 +712,80 @@ void func_80802FEC_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
     func_80803BE8_chdiggerboss(arg0, arg1, 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80803078_chdiggerboss.s")
+void func_80803078_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2, u32 arg3) {
+    void *func_80100094(Actor *, u32);
+    void func_80803338_chdiggerboss(s32);
+    void func_80803610_chdiggerboss(s32);
+    s32 _gcnewoption_entrypoint_3(s32);
+    s32 _gcnewoption_entrypoint_37(s32, s32);
+    s32 _gcnewoption_entrypoint_38(s32, s32);
+    s32 func_800CE88C(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    s32 func_800CE928(s32, s32, s32);
+    void func_800CEA38(s32, s32);
+    void func_800FC660(u32);
+    extern s32 _chdiggerboss_entrypoint_2;
+    typedef struct {
+        u8 pad0[0x40];
+        s8 unk40;
+        s8 unk41;
+        u8 pad42[6];
+        u8 unk48;
+        u8 pad49[3];
+        f32 unk4C;
+    } DiggerBossData;
+    DiggerBossData *data;
+    s32 pad20;
+    s32 success;
+    s32 pad18;
+
+    data = func_80100094(arg0, 0);
+    switch (arg3) {
+    case 0:
+        func_80803338_chdiggerboss(arg1);
+        break;
+    case 2:
+        func_80803610_chdiggerboss(arg0);
+        data->unk40 = 4;
+        break;
+    case 4:
+        success = _gcnewoption_entrypoint_3(arg1) == arg2;
+        data->unk48 = 0;
+        data->unk41 = success;
+        func_80803610_chdiggerboss(arg0);
+        if (success) {
+            _gcnewoption_entrypoint_38(arg1, 1);
+            func_800FC660(0xE);
+        } else {
+            _gcnewoption_entrypoint_37(arg1, 1);
+            func_800FC660(0xF);
+        }
+        break;
+    case 5:
+        data->unk41 = 0;
+        data->unk48 = 0;
+        func_80803610_chdiggerboss(arg0);
+        _gcnewoption_entrypoint_37(arg1, 1);
+        func_800FC660(0xF);
+        break;
+    case 3:
+        func_80803610_chdiggerboss(arg0);
+        data->unk40 = 4;
+        break;
+    case 9:
+        func_800CE8D8(8, 5.0f, 5);
+        func_800CE928(8, &_chdiggerboss_entrypoint_2, arg0->unk0);
+        func_800CEA38(8, 1);
+        func_800CE88C(8, 1);
+        break;
+    case 10:
+        if (!data->unk48) {
+            data->unk40 = 3;
+            data->unk4C = 0.4f;
+        }
+        break;
+    }
+}
 
 void func_80803224_chdiggerboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
