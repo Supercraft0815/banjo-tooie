@@ -132,7 +132,35 @@ void func_808003FC_chnastycavemen(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_808004C4_chnastycavemen.s")
+void func_808004C4_chnastycavemen(Actor *arg0) {
+    void func_800E0AFC(void *, u8, f32, f32, f32, f32);
+    void func_800E0C20(void *, u8, f32, f32, f32, f32);
+    void func_800EF334(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800F1DCC(f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010262C(Unk80132ED0 *, u32);
+    s32 pad;
+    f32 vec[3];
+    void *anim;
+    f32 *data;
+
+    if ((s32)arg0->unk70_10 >= 5 && *(s16 *)&arg0->unk0->unk10 != 0) {
+        data = func_80100094(arg0, 0);
+        anim = (void *)func_8010262C(arg0->unk0, 6);
+        func_800EFB24(vec, data + 6, arg0->position);
+        func_800EF334(vec, 0.1f);
+        func_800E0C20(anim, 3, 1.0f, vec[0], vec[1], vec[2]);
+        vec[0] = func_800F1DCC(data[9], arg0->rotation[0]);
+        vec[1] = func_800F1DCC(data[10], arg0->rotation[1]);
+        vec[2] = func_800F1DCC(data[11], arg0->rotation[2]);
+        func_800E0AFC(anim, 3, 1.0f, vec[0], vec[1], vec[2]);
+        func_800E0C20(anim, 0x56, -1.0f, -1.65625f, 20.34375f, -7.125f);
+        func_800E0AFC(anim, 0x56, -1.0f, 10.59375f, 91.59375f, 0.0f);
+        func_800E0C20(anim, 0x5A, -1.0f, -3.90625f, -13.9375f, 27.56325f);
+        func_800E0AFC(anim, 0x5A, -1.0f, -91.203125f, -15.09375f, 13.09375f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_8080067C_chnastycavemen.s")
 
