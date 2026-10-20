@@ -13,7 +13,37 @@ void func_80800000_chrainbow(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_80800270_chrainbow.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_80800440_chrainbow.s")
+void func_80800440_chrainbow(Actor *arg0) {
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EEC70(void *, f32, f32, f32);
+    void func_800EFD24(f32 *);
+    u32 *func_80100074(Actor *, u32, u32);
+    f32 func_80103EAC(Actor *);
+    f32 func_80103EF4(Actor *);
+    struct RainbowPart {
+        s8 active;
+        f32 value;
+        f32 velocity[3];
+        f32 position[3];
+    };
+    struct RainbowPart *part;
+    s32 i;
+    f32 offset[3];
+    f32 position[3];
+
+    part = (struct RainbowPart *)func_80100074(arg0, 0, 0xC0);
+    for (i = 0; i < 6; i++) {
+        part[i].active = 1;
+        func_800EFD24(part[i].velocity);
+        part[i].value = 0.0f;
+        func_800EEC70(offset, arg0->rotation[0], arg0->rotation[1] - 90.0f, func_80103EAC(arg0));
+        position[0] = arg0->position[0] + offset[0];
+        position[1] = arg0->position[1] - func_80103EF4(arg0);
+        position[2] = arg0->position[2] + offset[2];
+        func_800EEC70(offset, arg0->rotation[0], arg0->rotation[1] - 180.0f, arg0->scale * 800.0f * ((f32)i / 5.0f));
+        func_800EE780(part[i].position, position, offset);
+    }
+}
 
 void func_808005E0_chrainbow(s32 arg0, s32 arg1) {
     s32 func_800B53A4(s32);
