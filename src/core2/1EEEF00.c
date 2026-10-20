@@ -187,7 +187,47 @@ void func_801158EC(f32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5)
     *arg1 = func_800136E4(*arg1 + sp2C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEEF00/func_80115A9C.s")
+void func_80115A9C(void *arg0) {
+    f32 func_800D8FF8(void);
+    void func_800EFB24(void *, void *, void *);
+    void func_800F1A88(f32 *, f32 *);
+    void func_801107F0(void *, f32 *);
+    void func_801160DC(PlayerState *, f32);
+    f32 mlAbsF(f32);
+    f32 position[3];
+    f32 difference[3];
+    f32 origin[3];
+    f32 angles[2];
+    s32 done;
+
+    *((u8 *)(*(void **)((u8 *)arg0 + 0x3C)) + 0x12) = 0;
+    ((u8 *)(*(void **)((u8 *)arg0 + 0x3C)))[0x11] = ((u8 *)(*(void **)((u8 *)arg0 + 0x3C)))[0x12];
+    switch (*(s32 *)(((u8 *)(*(void **)((u8 *)arg0 + 0x3C))) + 0xC)) {
+        case 1:
+            func_80115828(arg0, *(f32 *)(((u8 *)(*(void **)((u8 *)arg0 + 0x3C))) + 0x14), *(f32 *)(((u8 *)(*(void **)((u8 *)arg0 + 0x3C))) + 0x18));
+            break;
+        case 2:
+            func_80115828(arg0, -80.0f, 80.0f);
+            break;
+    }
+    if (((u8 *)(*(void **)((u8 *)arg0 + 0x3C)))[0x1D]) {
+        *(f32 *)((u8 *)(*(void **)((u8 *)arg0 + 0x3C)) + 0x2C) += func_800D8FF8();
+        func_801158CC(arg0, position);
+        func_801107F0(arg0, origin);
+        func_800EFB24(difference, origin, position);
+        func_800F1A88(difference, angles);
+            if (*(f32 *)(((u8 *)(*(void **)((u8 *)arg0 + 0x3C))) + 0x30) < *(f32 *)(((u8 *)(*(void **)((u8 *)arg0 + 0x3C))) + 0x2C)) {
+            angles[0] = *(f32 *)(((u8 *)(*(void **)((u8 *)arg0 + 0x3C))) + 0x20);
+        }
+        done = mlAbsF(*(f32 *)((u8 *)(*(void **)((u8 *)arg0 + 0x3C)) + 0x20) - angles[0]) < 1.0f;
+            func_80115828(arg0, *(f32 *)(((u8 *)(*(void **)((u8 *)arg0 + 0x3C))) + 0x24), *(f32 *)(((u8 *)(*(void **)((u8 *)arg0 + 0x3C))) + 0x20));
+            func_801158EC(*(f32 *)(((u8 *)(*(void **)((u8 *)arg0 + 0x3C))) + 0x20), (f32 *)(((u8 *)(*(void **)((u8 *)arg0 + 0x3C))) + 0x24), (f32 *)(((u8 *)(*(void **)((u8 *)arg0 + 0x3C))) + 0x28), 800.0f, 160.0f, 100.0f);
+        func_801160DC(arg0, 0.0f);
+        if (done) {
+            *((u8 *)(*(void **)((u8 *)arg0 + 0x3C)) + 0x1D) = 0;
+        }
+    }
+}
 
 void func_80115C40(void *arg0, f32 arg1) {
     f32 temp_f0;
