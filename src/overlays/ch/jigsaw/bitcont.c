@@ -13,7 +13,65 @@ void func_80800000_chjigsawbitcont(Actor *arg0, u32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_80800084_chjigsawbitcont.s")
+s32 func_80800084_chjigsawbitcont(Actor *arg0, s32 arg1, s32 arg2) {
+    void _chjigsawcollect_entrypoint_1(Actor **, s32, s32);
+    s32 func_800DA298(s32);
+    void *func_80100094(Actor *, u32);
+    void func_80100120(Actor *);
+    void func_80800890_chjigsawbitcont(Actor *, s32, s32);
+    extern f32 D_808009A8_chjigsawbitcont[][4];
+    typedef struct {
+        s16 jiggy;
+        s16 count;
+        f32 range[2];
+        s16 flag;
+        s16 firstFlag;
+    } BitConfig;
+    typedef struct {
+        u8 pad0[0x74];
+        u32 pad74_22 : 10;
+        u32 initialized : 1;
+        u32 pad74_0 : 21;
+    } BitController;
+    s32 i;
+    struct {
+        f32 positions[3][3];
+        s16 count;
+    } *data;
+    BitConfig *config;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0x3D:
+            if (arg2 == -1) {
+                _chjigsawcollect_entrypoint_1(&arg0,
+                    ((BitConfig *)D_808009A8_chjigsawbitcont)[arg0->unk74_7].jiggy, 0);
+            } else {
+                config = &((BitConfig *)D_808009A8_chjigsawbitcont)[arg0->unk74_7];
+                for (i = 0; i < config->count; i++) {
+                    if (!func_800DA298(config->firstFlag + i)) {
+                        func_80800890_chjigsawbitcont(arg0, i, arg2);
+                    } else {
+                        data->count++;
+                    }
+                    config = &((BitConfig *)D_808009A8_chjigsawbitcont)[arg0->unk74_7];
+                }
+            }
+            break;
+        case 0xA:
+            if (!((BitController *)arg0)->initialized) {
+                func_80100120(arg0);
+            }
+            if (arg2 == arg0->unk74_7 &&
+                !func_800DA298(((BitConfig *)D_808009A8_chjigsawbitcont)[arg0->unk74_7].flag)) {
+                func_80800000_chjigsawbitcont(arg0, 2);
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_80800214_chjigsawbitcont.s")
 
