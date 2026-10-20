@@ -48,7 +48,52 @@ s32 func_8009F354(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009F860.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009FA20.s")
+s32 func_8009FA20(PlayerState *arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4) {
+    void func_800A3200(PlayerState *, f32 *, f32 *);
+    f32 func_800D8FF8(void);
+    f32 func_800DC0C0(void);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 func_800F13F0(f32, f32);
+    void func_800F4200(u8 *, f32 *);
+    void func_800F4648(void *, f32 *);
+    f32 sqrtf(f32);
+    f32 radius;
+    f32 pad[2];
+    f32 amount;
+    f32 playerRadius;
+    f32 height;
+    f32 position[3];
+    f32 direction[3];
+    f32 origin[3];
+    f32 distance;
+    f32 randomY;
+    f32 randomX;
+
+    func_800EFA4C(origin, arg1[0], arg1[1] + arg2, arg1[2]);
+    func_800A3200(arg0, &playerRadius, &height);
+    func_800F4200((u8 *)arg0, position);
+    func_800EFA4C(direction, position[0] - origin[0],
+        position[1] + height - origin[1], position[2] - origin[2]);
+    distance = direction[0] * direction[0] +
+        direction[1] * direction[1] + direction[2] * direction[2];
+    radius = arg3 + playerRadius;
+    if (radius * radius < distance) {
+        return 0;
+    }
+    distance = sqrtf(distance);
+    amount = func_800F13F0(func_800D8FF8() * arg4, radius - distance);
+    if (distance == 0.0f) {
+        randomX = func_800DC0C0();
+        randomY = func_800DC0C0();
+        func_800EFA4C(direction, randomX, randomY, func_800DC0C0());
+    }
+    func_800EF368(direction, amount);
+    func_800EF04C(position, direction);
+    func_800F4648(arg0, position);
+    return 1;
+}
 
 /* extern */
 
