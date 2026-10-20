@@ -1,5 +1,6 @@
 #include "common.h"
 typedef struct player_state_s PlayerState;
+struct anctrl_s;
 
 void func_80800000_bsbwhirl(void *arg0) {
     *(s32 *)((u8 *)arg0 + 0x160) = 0;
@@ -331,7 +332,66 @@ void bsbwhirl_entrypoint_12(PlayerState *arg0) {
     *(s32 *)((u8 *)arg0 + 0x15C) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/bsbwhirl_entrypoint_13.s")
+void baphysics_reset_gravity();
+
+void bsbwhirl_entrypoint_13(PlayerState *arg0) {
+    s32 anctrl_isStopped(s32);
+    s32 anctrl_setDuration(s32, f32);
+    s32 anctrl_setPlaybackType(s32, s32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    s32 baanim_getAnimCtrlPtr(s32);
+    int bakey_released(PlayerState *, int);
+    s32 player_inWater(PlayerState *);
+    void bs_setState(PlayerState *, int);
+    void func_8009BB24(void *, f32 *);
+    void func_8009FE58(PlayerState *);
+    s32 sp34;
+    s32 sp30;
+    f32 sp24[3];
+
+    sp34 = 0;
+    sp30 = baanim_getAnimCtrlPtr(arg0);
+    func_80800200_bsbwhirl(arg0);
+    func_80800114_bsbwhirl(arg0);
+    func_8009BB24(arg0, sp24);
+    if (bakey_released(arg0, 8) && sp24[1] > 0.0f) {
+        baphysics_reset_gravity(arg0);
+    }
+    switch (*(s32 *)((u8 *)arg0 + 0x15C)) {
+    case 0:
+        if (func_8008DF8C(arg0, 0x82)) {
+            anctrl_setSubrange(sp30, 0.0f, 1.0f);
+            anctrl_setDuration(sp30, 0.8f);
+            anctrl_setPlaybackType(sp30, 1);
+            *(s32 *)((u8 *)arg0 + 0x15C) = 1;
+        }
+        break;
+    case 1:
+        if (player_inWater(arg0)) {
+            sp34 = 0x2D;
+        }
+        if (player_isStable(arg0)) {
+            *(s32 *)((u8 *)arg0 + 0x15C) = 2;
+            func_8009FE58(arg0);
+        }
+        break;
+    case 2:
+        if (anctrl_isStopped(sp30)) {
+            sp34 = 0x1B;
+        }
+        sp34 = func_808003A8_bsbwhirl(arg0, sp34);
+        break;
+    }
+    func_80800430_bsbwhirl(arg0, &sp34);
+    func_80800008_bsbwhirl(arg0);
+    if (func_8008DA24(arg0)) {
+        sp34 = 0xA8;
+    }
+    if (player_inWater(arg0)) {
+        sp34 = 0x4C;
+    }
+    bs_setState(arg0, sp34);
+}
 
 void bsbwhirl_entrypoint_14(s32 arg0)
 {
