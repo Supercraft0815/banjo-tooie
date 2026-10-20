@@ -19,7 +19,61 @@ void func_80800000_chdinofamilymother(Actor *arg0) {
     ((f32 *)arg0->actorData)[1] = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familymother/func_808000A0_chdinofamilymother.s")
+void func_808000A0_chdinofamilymother(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    s32 _subaddiedialog_entrypoint_4(f32 *, s32, s32);
+    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    s32 func_800DA298(s32);
+    s32 func_800F5410(s32);
+    u32 func_800F54E4(void);
+    void func_808008E4_chdinofamilymother(s32);
+    void func_8080096C_chdinofamilymother(Actor *);
+    void func_8080119C_chdinofamilymother(Actor *, s32, s32, s32);
+    extern s32 D_80801398_chdinofamilymother;
+    extern s16 D_8080139C_chdinofamilymother;
+    extern s32 D_808013B4_chdinofamilymother;
+    extern s16 D_808013B8_chdinofamilymother;
+
+    switch (arg0->unk70_10) {
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+        break;
+    case 1:
+        if (func_800DA298(0x8A) != 0) {
+            if (func_800F5410(func_800F54E4()) == 0xB) {
+                D_808013B8_chdinofamilymother = 0x1814;
+            }
+            if (_subaddiedialog_entrypoint_7((s32)arg0, (s32)arg0->actorData, &D_808013B4_chdinofamilymother) != 0) {
+                func_8080119C_chdinofamilymother(arg0, 2, 0, 0);
+            }
+        } else {
+            switch (func_800F5410(func_800F54E4())) {
+            case 10:
+                D_8080139C_chdinofamilymother = 0x1812;
+                break;
+            case 11:
+                D_8080139C_chdinofamilymother = 0x1813;
+                break;
+            }
+            if (_subaddiedialog_entrypoint_7((s32)arg0, (s32)arg0->actorData, &D_80801398_chdinofamilymother) != 0) {
+                func_8080119C_chdinofamilymother(arg0, 2, 0, 0);
+            }
+        }
+        break;
+    case 9:
+        if (_subaddiedialog_entrypoint_4((f32 *)arg0->actorData, 0x4B0, 0) != 0) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x17C6, 0xC, (f32 *)arg0->actorData, 0x65);
+        }
+        break;
+    }
+    func_808008E4_chdinofamilymother((s32)arg0);
+    func_8080096C_chdinofamilymother(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familymother/func_80800218_chdinofamilymother.s")
 
