@@ -26,7 +26,35 @@ void gccubeDll_entrypoint_0(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubeDll/func_808000B8_gccubeDll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubeDll/func_80800230_gccubeDll.s")
+s32 func_80800230_gccubeDll(s32 arg0, s32 arg1) {
+    s32 _gsmaker_entrypoint_21(s32, s32, s32 *);
+    s32 _gsmaker_entrypoint_8(s32, void *, s32);
+    s32 _gspropsDll_entrypoint_3(void *);
+    s32 _gspropsDll_entrypoint_4(void *);
+    void *heap_alloc(s32);
+    s32 heap_free(u32);
+    s32 count;
+    s32 i;
+    struct { s32 data[5]; } *first;
+    struct { s32 data[3]; } *second;
+
+    if (_gsmaker_entrypoint_21(arg0, 10, &count)) {
+        first = heap_alloc(count * sizeof(*first));
+        _gsmaker_entrypoint_8(arg0, first, count * sizeof(*first));
+        for (i = 0; i < count && arg1 == 0; i++) {
+            _gspropsDll_entrypoint_3(&first[i]);
+        }
+        heap_free(first);
+    }
+    if (_gsmaker_entrypoint_21(arg0, 8, &count)) {
+        second = heap_alloc(count * sizeof(*second));
+        _gsmaker_entrypoint_8(arg0, second, count * sizeof(*second));
+        for (i = 0; i < count && arg1 == 0; i++) {
+            _gspropsDll_entrypoint_4(&second[i]);
+        }
+        heap_free(second);
+    }
+}
 
 void func_808003A0_gccubeDll(s32 arg0, s32 arg1) {
     s32 _gsmaker_entrypoint_12(s32, s32 *, s32);
