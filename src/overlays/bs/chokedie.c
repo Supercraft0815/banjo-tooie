@@ -29,7 +29,47 @@ void bschokedie_entrypoint_0(struct player_state_s *arg0) {
     _basudie_entrypoint_1(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/chokedie/bschokedie_entrypoint_1.s")
+void bschokedie_entrypoint_1(struct player_state_s *arg0) {
+    typedef struct player_state_s PlayerState;
+    void _basudie_entrypoint_0(PlayerState *);
+    s32 _batimer_decrement(void *, s32);
+    int baanim_isAt(PlayerState *, f32);
+    void func_80090A2C(PlayerState *);
+    void func_8009514C(PlayerState *);
+    void func_8009DF18(PlayerState *, s32, f32, s32);
+    void func_8009DF94(PlayerState *, s32, f32, s32);
+
+    if (baanim_isAt(arg0, 0.4f) != 0) {
+        func_80090A2C(arg0);
+    }
+    if (baanim_isAt(arg0, 0.58f) != 0) {
+        func_8009514C(arg0);
+    }
+    if (baanim_isAt(arg0, 0.05f) != 0) {
+        func_8009DF18(arg0, 0x574, 1.0f, 0x7FFF);
+    }
+    if (baanim_isAt(arg0, 0.2f) != 0) {
+        func_8009DF18(arg0, 0x575, 1.0f, 0x7FFF);
+    }
+    if (baanim_isAt(arg0, 0.4f) != 0) {
+        func_8009DF18(arg0, 0x576, 1.0f, 0x7FFF);
+    }
+    if (baanim_isAt(arg0, 0.66f) != 0) {
+        func_8009DF18(arg0, 0x577, 1.0f, 0x7FFF);
+    }
+    if (baanim_isAt(arg0, 0.5999f) != 0) {
+        func_8009DF94(arg0, 0x417, 1.2f, 0x3E80);
+    }
+    if (baanim_isAt(arg0, 0.7891f) != 0) {
+        func_8009DF94(arg0, 0x417, 0.9f, 0x4E20);
+    }
+    if (baanim_isAt(arg0, 0.9291f) != 0) {
+        func_8009DF94(arg0, 0x417, 1.4f, 0x2328);
+    }
+    if (_batimer_decrement(arg0, 0) != 0) {
+        _basudie_entrypoint_0(arg0);
+    }
+}
 
 /* extern */
 
