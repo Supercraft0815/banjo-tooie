@@ -178,7 +178,65 @@ void suegg_entrypoint_8(s32 arg0)
     suegg_entrypoint_9(arg0,1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_9.s")
+int suegg_entrypoint_9(Actor *arg0, s32 arg1) {
+    struct Flags {
+        u8 pad[0x39];
+        u8 active : 1;
+        u8 rest : 7;
+    };
+    void _glhittableDll_entrypoint_1(Unk80132ED0 *, void *);
+    void func_800CB840(s32, s32);
+    void func_800CB870(void);
+    u8 *func_800CD820(u8 *, f32 *, f32 *, f32);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800F5A00(s32, f32 *);
+    void func_800F7BC8(s32, s32, Unk80132ED0 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    void suegg_entrypoint_18(s32, s32);
+    struct Flags *sp4C;
+    void *sp48;
+    Unk80132ED0 *sp44;
+    f32 sp38[3];
+    s32 sp34;
+    Actor *hitActor;
+    f32 sp2C;
+    f32 sp20[3];
+
+    sp4C = func_80100094(arg0, 0);
+    sp44 = arg0->unk0;
+    sp34 = func_80800390_suegg(arg0);
+    func_800CB840(3, (s32)arg0);
+    *(s16 *)&sp44->unk20 = 0;
+    suegg_entrypoint_18((s32)arg0, (s32)sp38);
+    func_8010A590(arg0);
+    sp48 = func_800CD820((u8 *)sp44, sp38, arg0->position, 38.0f);
+    if (sp48 != NULL && sp34 >= 0) {
+        hitActor = func_80106790(sp48);
+        sp2C = func_800EEB40(sp38, hitActor->position);
+        func_800F5A00(sp34, sp20);
+        if (func_800EEB40(sp38, sp20) < sp2C) {
+            sp48 = NULL;
+        } else {
+            sp34 = -1;
+        }
+    }
+    if (sp48 != NULL) {
+        if (arg1 != 0) {
+            _glhittableDll_entrypoint_1(sp44, sp48);
+        } else {
+            sp4C->active = 1;
+        }
+    }
+    if (sp34 >= 0) {
+        func_800F7BC8(sp34, 0x47, sp44);
+        sp4C->active = 1;
+    }
+    func_800CB870();
+    func_8010A570(arg0);
+    return sp4C->active;
+}
 
 /* extern */
 
