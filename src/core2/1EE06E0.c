@@ -330,7 +330,46 @@ s32 func_801078AC(s32 arg0, f32 *arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_801078DC.s")
+s32 func_801078DC(Actor *arg0, u8 *arg1) {
+    s32 _subaddievolume_entrypoint_0(Actor *, f32 *, s32, s32, s32 *);
+    s32 func_800B5BE4(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF368(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_80103F38(Actor *, f32 *);
+    extern s32 D_80124508[];
+    extern s32 D_80124538[];
+    f32 points[20][3];
+    f32 position[3];
+    s32 count;
+    s32 i;
+    s32 effect;
+    s32 index;
+    f32 delta[3];
+    f32 end[3];
+
+    index = *(s16 *)arg1;
+    count = _subaddievolume_entrypoint_0(arg0, points[0], 3, 20, &index);
+    *(s16 *)arg1 = index;
+    if (count > 0) {
+        func_80103F38(arg0, position);
+        effect = func_800B5BE4(0x11);
+        func_800BABB8(effect, NULL, NULL, 1.0f, D_80124508);
+    }
+    for (i = 0; i < count; i++) {
+        func_800EFB24(delta, points[i], position);
+        func_800EF368(delta, 40.0f);
+        func_800EF04C(points[i], delta);
+        func_800EFB24(delta, position, points[i]);
+        func_800EF334(delta, -1.0f);
+        func_800EE780(end, points[i], delta);
+        func_800BABB8(effect, points[i], end, 1.0f, D_80124538);
+    }
+    return count >= 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107A80.s")
 
