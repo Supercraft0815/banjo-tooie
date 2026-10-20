@@ -66,7 +66,39 @@ void func_800D2CC4(void) {
     D_8012B321 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D2CD0.s")
+void func_800D2CD0(void) {
+    void func_800BE58C(s32 *, s32 *);
+    void func_800BE52C(s32 *, s32 *);
+    Prop *func_800E9D68(s16 *);
+    s32 func_800E9DC4(s16 *);
+    void *heap_alloc(s32);
+    extern s32 D_8012B360;
+    s32 pos[3];
+    s32 dimensions[3];
+    s32 strides[3];
+    s32 base;
+    s32 end;
+    s16 *cell;
+    register s32 i;
+
+    func_800BE58C(dimensions, strides);
+    (*(s32 *)((u8 *)&D_8012B360 + 4)) = dimensions[1];
+    D_8012B360 = (s32)heap_alloc((*(s32 *)((u8 *)&D_8012B360 + 4)) * 2);
+    for (i = 0; i < (*(s32 *)((u8 *)&D_8012B360 + 4)); i++) {
+        *(s16 *)(D_8012B360 + (i << 1)) = 0;
+    }
+    func_800BE52C(&base, &end);
+    for (pos[1] = 0; pos[1] < dimensions[1]; pos[1]++) {
+        for (pos[0] = 0; pos[0] < dimensions[0]; pos[0]++) {
+            for (pos[2] = 0; pos[2] < dimensions[2]; pos[2]++) {
+                cell = ((s16 (*)[4])((u32)(strides[1] * pos[2] * 8 + base) + pos[0] * 8))[strides[0] * pos[1]];
+                if (func_800E9D68(cell)) {
+                    *(s16 *)((pos[1] << 1) + D_8012B360) += func_800E9DC4(cell);
+                }
+            }
+        }
+    }
+}
 
 void func_800D2E4C(void) {
     s32 heap_free(s32);
