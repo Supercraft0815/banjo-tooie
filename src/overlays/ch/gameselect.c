@@ -1747,7 +1747,54 @@ void func_80804220_chgameselect(void *arg0) {
     func_808016E8_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x28))), 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808042A8_chgameselect.s")
+int func_808042A8_chgameselect(Actor *arg0, s32 arg1, s32 *arg2) {
+    typedef struct {
+    s32 state;
+    s32 first;
+    s32 second;
+    s32 unused;
+    Unk80132ED0 *marker;
+    } GameSelectData;
+    s32 result;
+    s32 state;
+    result = 0;
+    state = ((GameSelectData *)arg0->actorData)->state;
+    switch (state) {
+    case 0:
+    if (func_808036F8_chgameselect(arg1) != 0) {
+    *arg2 = 2;
+    ((GameSelectData *)arg0->actorData)->state = 1;
+    ((GameSelectData *)arg0->actorData)->first = arg1;
+    func_80801758_chgameselect(((GameSelectData *)arg0->actorData)->marker, arg1);
+    func_8080218C_chgameselect(arg1, 0);
+    } else {
+    *arg2 = 6;
+    result = 1;
+    } break;
+    case 1:
+    if (func_808036F8_chgameselect(arg1) != 0) {
+    *arg2 = 8;
+    result = 1;
+    } else {
+    *arg2 = 3;
+    ((GameSelectData *)arg0->actorData)->state = 2;
+    ((GameSelectData *)arg0->actorData)->second = arg1;
+    func_80801658_chgameselect((s32)((GameSelectData *)arg0->actorData)->marker, 1);
+    arg0->unk64_20 = 1;
+    } break;
+    case 2:
+    if (!arg0->unk64_20) {
+    *arg2 = 4;
+    ((GameSelectData *)arg0->actorData)->state = 3;
+    func_80803698_chgameselect(((GameSelectData *)arg0->actorData)->second, ((GameSelectData *)arg0->actorData)->first);
+    func_80801714_chgameselect(((GameSelectData *)arg0->actorData)->marker, 1);
+    }
+    break;
+    default:
+    break;
+    }
+    return result;
+    }
 
 void func_80804404_chgameselect(u8 *arg0, s32 arg1) {
     s32 func_80800478_chgameselect();
