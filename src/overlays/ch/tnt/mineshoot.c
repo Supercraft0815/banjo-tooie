@@ -114,7 +114,43 @@ s32 func_808004BC_chtntmineshoot(Actor *arg0, s32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_808005AC_chtntmineshoot.s")
+s32 func_808005AC_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    void func_800FFAB0(Actor *);
+    s32 func_80101180(s32, s32, s32);
+    void func_80800BF4_chtntmineshoot(Actor *, s32);
+    void func_80801F90_chtntmineshoot(Actor **, s32);
+
+    switch (arg1) {
+        case 0x95:
+            _subaddierouteDll_entrypoint_1(arg0);
+            break;
+        case 0xA:
+            func_80800BF4_chtntmineshoot(arg0, 1);
+            break;
+        case 5:
+            func_808004BC_chtntmineshoot(arg0, 5);
+            break;
+        case 0x40:
+            func_80101180(0x2BC, 5, 0);
+            func_808004BC_chtntmineshoot(arg0, 5);
+            func_80800078_chtntmineshoot(arg0->position, 0.95f);
+            break;
+        case 0x3F:
+            func_80101180(0x2BC, 0x4F, 0);
+            func_808004BC_chtntmineshoot(arg0, 4);
+            func_80800BF4_chtntmineshoot(arg0, 2);
+            break;
+        case 0x3D:
+            if (arg0->unk7C_12) {
+                func_80801F90_chtntmineshoot(&arg0, arg2);
+            }
+            func_800FFAB0(arg0);
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_808006D0_chtntmineshoot.s")
 
