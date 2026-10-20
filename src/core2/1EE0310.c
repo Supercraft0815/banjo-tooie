@@ -20,7 +20,72 @@ void func_80106A60(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE0310/func_80106A98.s")
+typedef struct {
+    u8 pad0[0x60];
+    s16 reference;
+    u8 pad62[0x12];
+    u32 pad74_26 : 6;
+    u32 renderMode : 1;
+    u32 pad74_7 : 18;
+    u32 reverse : 1;
+    u32 pad74_0 : 6;
+    u32 pad78_8 : 24;
+    u32 level : 2;
+    u32 pad78_2 : 4;
+    u32 color : 1;
+    u32 pad78_0 : 1;
+    u8 pad7C[0x18];
+    u32 pad94 : 16;
+    u32 special : 1;
+    u32 pad94_0 : 15;
+    u8 red, green, blue, alpha;
+} ActorRenderState;
+
+void func_80106A98(Actor *actor, s32 arg1) {
+    u8 *func_800B27A0(u8 *);
+    void func_800DF5D8(u32, u32, u32, s32);
+    void func_800DF660(s32, s32, s32, s32);
+    void func_800DF720(s32);
+    s32 func_80100AC4(s16);
+    s32 func_80106C4C(Actor *);
+    s32 sp24;
+    s32 var_a1;
+    ActorRenderState *arg0 = (ActorRenderState *)actor;
+
+    if (arg0->level != 0) {
+        if (arg0->special) {
+            func_800DF660(3, arg0->level, 0, arg0->alpha);
+            func_800DF720(func_80100AC4(arg0->reference));
+            return;
+        }
+        if (arg0->renderMode) {
+            func_800DF660(2, arg0->level, 0, arg0->alpha);
+            func_800DF720(func_80100AC4(arg0->reference));
+            return;
+        }
+        sp24 = func_80106C4C(actor);
+        if (func_800B27A0((u8 *)arg1) == NULL) {
+            arg0->level = 0;
+            arg0->reverse = 0;
+            return;
+        }
+        if (sp24 != 0) {
+            func_800DF660(1, 0, sp24, arg0->alpha);
+        } else {
+            if (arg0->reverse) {
+                var_a1 = -(s32)arg0->level;
+            } else {
+                var_a1 = arg0->level;
+            }
+            func_800DF660(1, var_a1, 0, arg0->alpha);
+        }
+        func_800DF720(func_80100AC4(arg0->reference));
+        return;
+    }
+    if (arg0->color) {
+        func_800DF5D8(arg0->red, arg0->green, arg0->blue, arg0->alpha);
+    }
+}
 
 s32 func_80106C08(void) {
     extern s32 D_80136EF0;
