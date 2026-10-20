@@ -172,7 +172,55 @@ void func_808007EC_chphlegm(u8 *arg0, s32 arg1) {
 void func_80800848_chphlegm(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_80800850_chphlegm.s")
+void func_80800850_chphlegm(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_80090150(void);
+    s32 func_800C954C(void);
+    s32 func_800D9078(f32 *);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    f32 func_800DC178(f32, f32);
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    u32 func_800F54E4(void);
+    s32 func_800F55FC(s32);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    void func_8010D254(f32 *);
+    s32 sp34;
+
+    func_8010D254((f32 *)arg0->actorData);
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_800C954C() == 0) {
+                func_80101FDC(arg0, 2);
+            }
+            break;
+        case 2:
+            sp34 = func_800F55FC(func_800F54E4());
+            if (func_800DA298(0x1A6) == 0 &&
+                func_800EFFB4(arg0->position, 1000.0f, (f32 *)arg0->actorData)) {
+                func_800DA544(0x1A6);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1800, 4, NULL, 0x57);
+            }
+            if ((sp34 & 0x08000000) && func_80090150()) {
+                if (func_800DA298(0x170) == 0) {
+                    func_800DA544(0x170);
+                    _subaddiedialog_entrypoint_11(arg0->unk0, 0x17FF, 4, NULL, 0x57);
+                    func_80101FDC(arg0, 4);
+                } else {
+                    func_80108B04(arg0, 0);
+                    func_80101FDC(arg0, 3);
+                    arg0->unk58 = func_800DC178(3.0f, 4.0f);
+                }
+            }
+            break;
+        case 3:
+            if (func_800D9078(&arg0->unk58)) {
+                func_80101FDC(arg0, 2);
+            }
+            break;
+    }
+}
 
 s32 func_808009DC_chphlegm(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80101FDC(Actor *, u32);
