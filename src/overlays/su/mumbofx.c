@@ -235,7 +235,52 @@ void sumumbofx_entrypoint_8(u8 *arg0, s32 arg1) {
     func_800E2A14(arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_9.s")
+void sumumbofx_entrypoint_9(u8 *arg0, Gfx **arg1) {
+    void func_800B99CC(Gfx **, s32, s32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    f32 sp4C;
+    f32 sp40[3];
+    f32 distance;
+    f32 min;
+    f32 max;
+    s32 value;
+
+    if (*(s32 *)(arg0 + 0x54) != -1) {
+        switch (*(u32 *)(arg0 + 0x60) >> 25) {
+            case 1:
+                sp4C = func_800F10B4(*(f32 *)(arg0 + 0x10), *(f32 *)(arg0 + 0x14), 0.0f, 0.0f, 1.0f);
+                break;
+            case 0:
+            case 3:
+                sp4C = 1.0f;
+                break;
+            case 2:
+                sp4C = func_800F10B4(*(f32 *)(arg0 + 0x10), *(f32 *)(arg0 + 0x14), 0.0f, 1.0f, 0.0f);
+                break;
+        }
+        if (arg0[0x63] != 0) {
+            func_800F5A00(func_800F54E4(), sp40);
+            distance = func_800EEB40((f32 *)(arg0 + 0x28), sp40);
+            min = *(f32 *)(arg0 + 0x34);
+            if (distance < min) {
+            } else {
+                max = *(f32 *)(arg0 + 0x38);
+                if (max < distance) {
+                    sp4C = 0.0f;
+                } else {
+                    sp4C *= func_800F10B4(distance, min, max, 1.0f, 0.0f);
+                }
+            }
+            value = *(s32 *)(arg0 + 0x54);
+        } else {
+            value = *(s32 *)(arg0 + 0x54);
+        }
+        func_800B99CC(arg1, (s32)((f32)value * sp4C), (s32 *)(arg0 + 0x48));
+    }
+}
 
 s32 sumumbofx_entrypoint_10(u8 *arg0) {
     return (s32) (255.0f - (((*(f32 *)((s8 *)(arg0) + (8))) / (f32) (*(s16 *)((s8 *)(arg0) + (0x58)))) * (*(f32 *)((s8 *)(arg0) + (4))) * 255.0f));
