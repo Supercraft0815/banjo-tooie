@@ -88,7 +88,72 @@ void bsmumcast_entrypoint_2(PlayerState *self) {
 #endif
 
 #ifndef NONMATCHINGS
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/mum/cast/bsmumcast_entrypoint_3.s")
+void bsmumcast_entrypoint_3(PlayerState *arg0)
+{
+  s32 _chjujubagfx_entrypoint_2();
+  enum bs_state_e sp24;
+  u32 temp_t6;
+  sp24 = BS_STATE_0_INVALID;
+  ;
+  switch (arg0->unk15C.word)
+  {
+    case 0:
+      break;
+
+    case 1:
+      if (baanim_isStopped(arg0) != 0)
+    {
+      func_80800000_bsmumcast(arg0, 2);
+    }
+      if (baanim_isAt(arg0, 0.3608f) != 0)
+    {
+      func_800A0DAC(arg0, 0);
+      func_800A0DA0(arg0, 1);
+    }
+      if (baanim_isAt(arg0, 0.5f) != 0)
+    {
+      _chjujubagfx_entrypoint_2();
+    }
+      break;
+
+    case 2:
+      if (func_800DA298(FLAG3_9DF_UNK) != 0)
+    {
+      func_80800000_bsmumcast(arg0, 3);
+    }
+      break;
+
+    case 3:
+      if (baanim_isAt(arg0, 0.3608f) != 0)
+    {
+      func_800A0DAC(arg0, 1);
+      func_800A0DA0(arg0, 0);
+    }
+      if (baanim_isAt(arg0, 0.2f) != 0)
+    {
+      func_800DA544(FLAG3_9F3_UNK);
+    }
+      if (baanim_isStopped(arg0) != 0)
+    {
+      if (func_8008E124(arg0) != 0)
+      {
+        sp24 = _badata_entrypoint_32(arg0);
+      }
+      else
+      {
+        sp24 = BS_STATE_E5;
+      }
+    }
+      break;
+
+    case 4:
+      func_80800000_bsmumcast(arg0, 3);
+      break;
+
+  }
+
+  bs_setState(arg0, sp24);
+}
 #else
 // Decomp failure
 #endif
