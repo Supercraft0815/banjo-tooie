@@ -3175,7 +3175,57 @@ void func_808074D0_bsfirstp(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80807504_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080762C_bsfirstp.s")
+void func_8080762C_bsfirstp(struct player_state_s *arg0) {
+    s32 _bsrest_entrypoint_16(void *);
+    s32 _bsrest_entrypoint_20();
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    int baanim_isAt(struct player_state_s *, f32);
+    int baanim_isStopped(struct player_state_s *);
+    void baanim_playForDuration_loopStartingAt(struct player_state_s *, enum asset_e, f32, f32);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    struct anctrl_s *func_8008D04C(struct player_state_s *);
+    void func_800936E8(void *, s32);
+    void func_80807EEC_bsfirstp(s32);
+    void func_80807F5C_bsfirstp(s32);
+
+    switch (*(u32 *)((u8 *)arg0 + 0x15C)) {
+    case 0:
+    case 2:
+        func_808072C8_bsfirstp(arg0);
+        func_80807328_bsfirstp(arg0);
+        if (_bsrest_entrypoint_20(arg0) != 0) {
+            func_80807F5C_bsfirstp((s32)arg0);
+        }
+        break;
+    case 1:
+        func_80807328_bsfirstp(arg0);
+        if (_bsrest_entrypoint_20(arg0) != 0) {
+            func_80807F5C_bsfirstp((s32)arg0);
+        }
+        break;
+    case 3:
+        if (baanim_isAt(arg0, 0.1081f) != 0) {
+            func_800936E8(arg0, 1);
+        }
+        if (baanim_isStopped(arg0) != 0) {
+            baanim_playForDuration_loopStartingAt(arg0, 0x30D, 2.0f, 0.5036f);
+            func_808002CC_bsfirstp(arg0, 0x311, 2.0f, 0.5036f);
+            func_8008B1C8(baanim_getAnimCtrlPtr(arg0), 0.75f);
+            func_8008B1C8(func_8008D04C(arg0), 0.75f);
+            _bsrest_entrypoint_16(arg0);
+            *(u32 *)((u8 *)arg0 + 0x15C) = 4;
+        }
+        func_80807328_bsfirstp(arg0);
+        break;
+    case 4:
+        func_80807328_bsfirstp(arg0);
+        if (_bsrest_entrypoint_20(arg0) != 0) {
+            func_80807EEC_bsfirstp((s32)arg0);
+            func_80807F5C_bsfirstp((s32)arg0);
+        }
+        break;
+    }
+}
 
 s32 bsfirstp_entrypoint_32(s32 arg0) {
     extern s32 D_8080B590_bsfirstp[];
