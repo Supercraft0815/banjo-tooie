@@ -276,7 +276,70 @@ void func_808006A8_chfpsgame(Actor *arg0) {
     _sumultiscore_entrypoint_4(score, 2, 0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_8080075C_chfpsgame.s")
+void func_8080075C_chfpsgame(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    PlayerState *func_800F53D0(s32);
+    s32 _gcstatusDll_entrypoint_15(void);
+    s32 _sumultiscore_entrypoint_3(u8 *);
+    s32 _sumultiscore_entrypoint_4(u8 *, s32, s32, s32);
+    void _badeathmatch_entrypoint_10(PlayerState *, s32, s32, s32);
+    void _badeathmatch_entrypoint_7(PlayerState *, s32);
+    struct ScoreEntry {
+        u8 unk0[0x86];
+        u8 active;
+        u8 unk87[0xB5];
+    };
+    union Score {
+        u8 bytes[1];
+        struct ScoreEntry entries[1];
+    };
+    struct {
+        s32 count;
+        u8 unk4[8];
+        f32 timer;
+        f32 duration;
+        union Score score;
+    } *data;
+    union Score *score;
+    struct ScoreEntry *entry;
+    PlayerState *player;
+    s32 i;
+    s32 selected;
+
+    data = func_80100094(arg0, 0);
+    score = &data->score;
+    selected = _gcstatusDll_entrypoint_15();
+    switch (data->count) {
+        case 2:
+            data->duration = 6.0f;
+            break;
+        case 3:
+            data->duration = 4.0f;
+            break;
+        case 4:
+            data->duration = 2.0f;
+            break;
+    }
+    data->timer = data->duration;
+    _sumultiscore_entrypoint_3(score->bytes);
+    _sumultiscore_entrypoint_4(score->bytes, 2, 0, 1);
+    _sumultiscore_entrypoint_4(score->bytes, 3, 2, 1);
+    i = 0;
+    if (data->count > 0) {
+        do {
+            player = func_800F53D0(i);
+            if (i == selected) {
+                _badeathmatch_entrypoint_10(player, 3, 25, 25);
+                _badeathmatch_entrypoint_7(player, 3);
+            } else {
+                entry = &score->entries[i];
+                _badeathmatch_entrypoint_10(player, 1, 1, -1);
+                entry->active = 0;
+            }
+            i += 1;
+        } while (i < data->count);
+    }
+}
 
 /* extern */
 
