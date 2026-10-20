@@ -41,7 +41,60 @@ s32 func_800CD23C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA6B20/func_800CD544.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA6B20/func_800CD6B4.s")
+s32 func_800CD6B4(u8 *arg0, f32 *arg1, f32 arg2, f32 *arg3, s32 arg4) {
+    typedef struct {
+        u32 unused:27;
+        u32 value:4;
+        u32 rest:1;
+    } QueryFlags;
+    typedef struct {
+        u32 unused:11;
+        u32 value:4;
+        u32 rest:17;
+    } ResultFlags;
+    typedef struct {
+        u32 unused[3];
+        u8 *(*getCustom)(void);
+    } Marker;
+    typedef struct {
+        u32 unused[3];
+        s32 (*test)(u8 *, f32 *, f32, f32 *, u32);
+    } Custom;
+    f32 func_800EC75C(void *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    f32 radius;
+    f32 sp78[3];
+    s32 result;
+    f32 sp68[3];
+    s32 i;
+    u8 *custom;
+    f32 sp54[3];
+
+    if (((Marker *)arg0)->getCustom != NULL) {
+        custom = ((Marker *)arg0)->getCustom();
+    } else {
+        custom = NULL;
+    }
+    func_800EE7F8(sp78, arg1);
+    for (i = 0; i < arg4; i++) {
+        if (custom != NULL && ((Custom *)custom)->test != NULL) {
+            result = ((Custom *)custom)->test(arg0, sp78, arg2, sp68, ((QueryFlags *)(arg0 + 0x18))->value);
+            if (result != 0) {
+                ((ResultFlags *)(arg0 + 0x18))->value = result;
+                return 1;
+            }
+        } else {
+            radius = func_800EC75C(arg0, sp54);
+            if (func_800EEB40(sp78, sp54) < (radius + arg2) * (radius + arg2)) {
+                return 1;
+            }
+        }
+        func_800EF04C(sp78, arg3);
+    }
+    return 0;
+}
 
 u8 *func_800CD820(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     typedef struct {
