@@ -101,7 +101,48 @@ void func_80091104(s32 *arg0, s32 arg1)
     *(u8 *) (arg0[12] + 0xF) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6A730/func_80091110.s")
+void func_80091110(void *arg0) {
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    s32 func_800F40EC(PlayerState *);
+    extern f32 D_80124D20;
+    extern f32 D_80124D24;
+    f32 sp24;
+    f32 temp_f0;
+
+    func_800D9078((*(void **)((s8 *)(arg0) + (0x30))));
+    if ((func_800F40EC(arg0) == 2) && ((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (0xE))) != 4)) {
+        temp_f0 = func_800D8FF8();
+        sp24 = temp_f0;
+        if ((*(u8 *)((s8 *)((*(void **)((s8 *)arg0 + 0x30))) + (0xC))) != 0) {
+            (*(f32 *)((s8 *)((*(void **)((s8 *)arg0 + 0x30))) + (8))) = (f32) ((*(f32 *)((s8 *)((*(void **)((s8 *)arg0 + 0x30))) + (8))) - temp_f0);
+            if ((*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (8))) < 0.0f) {
+                (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (8))) = func_800DC178(D_80124D20, D_80124D24);
+                (*(u8 *)((s8 *)((*(void **)((s8 *)arg0 + 0x30))) + (0xC))) = (u8) ((*(u8 *)((s8 *)((*(void **)((s8 *)arg0 + 0x30))) + (0xC))) - 1);
+                func_80090E48(arg0);
+            }
+        }
+        (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (4))) = (f32) ((*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (4))) - sp24);
+        if (!((*(f32 *)((s8 *)((*(void **)((s8 *)arg0 + 0x30))) + (4))) > 0.0f)) {
+            if ((*(u8 *)((s8 *)((*(void **)((s8 *)arg0 + 0x30))) + (0xE))) == 3) {
+                func_80091030(arg0);
+            } else {
+                func_80090F38(arg0);
+            }
+            if ((*(u8 *)((s8 *)((*(void **)((s8 *)arg0 + 0x30))) + (0xE))) == 2) {
+                (*(s8 *)((s8 *)((*(void **)((s8 *)arg0 + 0x30))) + (0xD))) = 1;
+                return;
+            }
+            if (func_800DC0C0() >= 0.5f) {
+                (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (0xD))) = 0;
+                return;
+            }
+            (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x30)))) + (0xD))) = 1;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6A730/func_80091290.s")
 
