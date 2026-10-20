@@ -63,7 +63,76 @@ void func_80800020_chfog(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fog/func_80800174_chfog.s")
+void func_80800174_chfog(Actor *arg0, Gfx **arg1) {
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF410(s32);
+    void func_800DF744(s32, s32);
+    void func_800DF830(s32);
+    void func_800E3BAC(f32 *);
+    void func_800E3C30(f32 *);
+    void func_800E3CE8(void);
+    void func_800E41CC(void);
+    void func_800E4208(void);
+    void func_800E44FC(Gfx **);
+    s32 func_800EA05C(void);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFD24(f32 *);
+    void func_80101074(void *);
+    s32 func_8010114C(s32, s32, s32);
+    void func_80101870(Actor *, void *);
+    s32 func_8010347C(Unk80132ED0 *);
+    f32 position[3];
+    f32 rotation[3];
+    s32 map;
+    Actor *actor;
+    Actor *other;
+
+    map = func_800EA05C();
+    switch (map) {
+        case 0x10D:
+            other = _subaddiefind_entrypoint_2(0x416, 0);
+            if (other != NULL) {
+                func_80101870(other, arg1);
+            }
+            func_800DF744(3, 1);
+            break;
+        case 0xDB:
+            actor = _subaddiefind_entrypoint_2(0x176, 0);
+            if (actor != NULL) {
+                func_80101074(arg1);
+                func_8010114C((s32)actor->unk0, 0xAB, 0);
+            }
+            func_800DF744(3, 1);
+            break;
+        case 0x138:
+            func_800DF744(3, 2);
+            break;
+        case 0x162:
+            func_800DF744(3, 2);
+            break;
+        case 0x19A:
+            func_800DF744(3, 3);
+            break;
+        default:
+            func_800DF744(3, 1);
+            break;
+    }
+    func_800E41CC();
+    func_800EFA4C(position, 0.0f, 0.0f, 300.0f);
+    func_800EFD24(rotation);
+    func_800E3BAC(position);
+    func_800E3C30(rotation);
+    func_800E3CE8();
+    func_800E44FC(arg1);
+    rotation[0] = -90.0f;
+    func_800DF410(_subaddiefade_entrypoint_0(arg0));
+    func_800DF830(0);
+    func_800DE448(arg0->position, rotation, 0.2f, NULL, func_8010347C(arg0->unk0));
+    func_800E4208();
+    func_800E44FC(arg1);
+}
 
 void func_8080032C_chfog(f32 *arg0) {
     f32 func_800DC0C0(void);
