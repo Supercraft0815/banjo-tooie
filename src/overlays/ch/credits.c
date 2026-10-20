@@ -198,7 +198,48 @@ void func_80800E4C_chcredits(s32 arg0, s32 arg1, Gfx **arg2, s32 arg3) {
     func_800B8E28(arg2, sp28, sp24, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80800F50_chcredits.s")
+s32 func_80800F50_chcredits(Actor *arg0, Gfx **arg1) {
+    void func_800B7F14(Gfx **);
+    void func_800B811C(Gfx **);
+    void func_800B8C50(void);
+    void func_800B8CB0(s32);
+    s32 func_800E7188(u8 *);
+    void *func_80100094(Actor *, u32);
+    extern s32 D_8012760D;
+    s32 text;
+    s32 i;
+    s32 titleY;
+    s32 bodyY;
+
+    text = (s32)func_80100094(arg0, 0);
+    func_800B8C50();
+    func_800B7F14(arg1);
+    func_800B8CB0(1);
+    if (((u8 *)&D_8012760D)[4] == 2) {
+        titleY = 0xA0;
+        bodyY = 0xAF;
+        if (func_800E7188((u8 *)(text + 0x80))) {
+            titleY = 0x91;
+        }
+    } else {
+        titleY = 0x55;
+        bodyY = 0x78;
+    }
+    if (func_800E7188((u8 *)text)) {
+        if (func_800E7188((u8 *)(text + 0x80))) {
+            func_80800E4C_chcredits((s32)text, (s32)((f32)titleY - 7.5f), arg1, arg0->unk6C_0);
+            func_80800E4C_chcredits(text + 0x80, (s32)((f32)titleY + 7.5f), arg1, arg0->unk6C_0);
+        } else {
+            func_80800E4C_chcredits((s32)text, titleY, arg1, arg0->unk6C_0);
+        }
+    }
+    for (i = 0; i < 3; i++) {
+        if (func_800E7188((u8 *)(text + (i + 2) * 0x80))) {
+            func_80800E4C_chcredits(text + (i + 2) * 0x80, i * 15 + bodyY, arg1, arg0->unk6C_0);
+        }
+    }
+    func_800B811C(arg1);
+}
 
 void func_80801108_chcredits(Actor *arg0, Gfx **arg1) {
     void func_800B99CC(Gfx **, s32, s32 *);
