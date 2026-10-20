@@ -280,7 +280,20 @@ void func_808017F4_ncpoddialog(u8 *arg0, s16 *arg1) {
     *(f32 *)(arg0 + 0x13C) = func_800136E4(-func_800F1828((f32 *)(arg0 + 0x148), (f32 *)(arg0 + 0xC4)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_8080189C_ncpoddialog.s")
+void func_8080189C_ncpoddialog(u8 *arg0) {
+    s32 i;
+
+    if (*(f32 *)(arg0 + 0x24) + 178.0f <= *(f32 *)arg0) {
+        *(f32 *)arg0 -= 360.0f;
+    }
+    if (*(f32 *)arg0 + 178.0f <= *(f32 *)(arg0 + 0x24)) {
+        *(f32 *)(arg0 + 0x24) -= 360.0f;
+    }
+    for (i = 1; i < 9; i++) {
+        ((f32 *)arg0)[i] = *(f32 *)arg0 * ((f32)(9 - i) * 0.11111111f)
+            + *(f32 *)(arg0 + 0x24) * ((f32)i * 0.11111111f);
+    }
+}
 
 void func_80801A30_ncpoddialog(f32 *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
