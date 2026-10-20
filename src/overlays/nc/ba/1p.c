@@ -24,7 +24,40 @@ void func_8080004C_ncba1p(void **arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/1p/func_808000A0_ncba1p.s")
+void func_808000A0_ncba1p(f32 **arg0, f32 *arg1, f32 *arg2) {
+    f32 func_800136E4(f32);
+    s32 func_800D9078(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F130C(f32, f32, f32, f32, f32);
+    f32 func_800F1DCC(f32, f32);
+    void func_801163A0(void *, f32);
+    void ncba1p_entrypoint_5(void **, s32);
+    s32 i;
+    f32 one;
+    f32 angle;
+    f32 blend;
+
+    func_800D9078(*arg0 + 18);
+    one = (f32)1.0;
+    blend = (*arg0)[18] * one;
+    func_801163A0(arg0, blend);
+    for (i = 0; i != 3; i++) {
+        (*arg0)[i] = func_800F130C((*arg0)[18], one, 0.0, (*arg0)[i + 12], (*arg0)[i + 6]);
+        blend = func_800F130C((*arg0)[18], 0.5f, 0.0f, 0.0f,
+            func_800F1DCC((*arg0)[i + 9], (*arg0)[i + 15]));
+        angle = blend;
+        angle += (*arg0)[i + 15];
+        (*arg0)[i + 3] = func_800136E4(angle);
+    }
+    if ((*arg0)[18] == (f32)0.0) {
+        ncba1p_entrypoint_5((void **)arg0, 2);
+    }
+    if (func_80800008_ncba1p((s32)arg0, *arg0, *arg0 + 6)) {
+        func_8080004C_ncba1p((void **)arg0, 0x62);
+    }
+    func_800EE7F8(arg1, *arg0);
+    func_800EE7F8(arg2, *arg0 + 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/1p/func_80800230_ncba1p.s")
 
