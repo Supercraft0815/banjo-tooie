@@ -7,7 +7,71 @@ OSThread *chfishshootgame_entrypoint_0(void)
     return (OSThread *) D_808018C0_chfishshootgame;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_8080000C_chfishshootgame.s")
+void func_8080000C_chfishshootgame(Actor *arg0) {
+    f32 _dbskeleton_entrypoint_1(void *);
+    Prop *_gccubesearch_entrypoint_0(u32, Actor *);
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    s32 _glcutDll_entrypoint_20();
+    void _gspropctrl_entrypoint_10(Prop *, s16 *);
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
+    s32 _susubgame_entrypoint_11(s32);
+    s32 _susubgame_entrypoint_12(u32 *, s32 *);
+    u8 *func_800B27E0(u8 *);
+    f32 func_800BED50(f32 *);
+    s32 func_800D0A9C(u32, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    u8 *func_801039E4(Unk80132ED0 *);
+    void func_80108B04(Actor *, u32);
+    extern s32 D_808018B0_chfishshootgame;
+    struct FishShootData {
+        f32 position[3];
+        f32 target[3];
+        f32 unk18[2];
+        f32 height;
+        f32 unk24;
+        f32 skeleton;
+        f32 distance;
+        s16 unk30;
+        s16 current;
+        s16 count;
+        s16 positions[20][3];
+        s16 unkAE;
+        u32 subgame[1];
+    };
+    s32 i;
+    struct FishShootData *data;
+    Prop *props[20];
+    u32 *subgame;
+    u8 *skeleton;
+    f32 *position[1];
+
+    data = func_80100094(arg0, 0);
+    _susubgame_entrypoint_11(0);
+    if (func_800D0A9C(0x21, 1) && !_glcutDll_entrypoint_20()) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    position[0] = arg0->position;
+    func_800EE7F8(data->position, position[0]);
+    data->count = _gccubesearch_entrypoint_9(0x1C0, props, 20);
+    data->current = -1;
+    for (i = 0; i < data->count; i++) {
+        _gspropctrl_entrypoint_10(props[i], data->positions[i]);
+    }
+    props[0] = _gccubesearch_entrypoint_0(0x1C1, arg0);
+    _gspropctrl_entrypoint_11(props[0], data->target);
+    data->height = func_800BED50(position[0]);
+    skeleton = func_800B27E0(func_801039E4(arg0->unk0));
+    data->skeleton = _dbskeleton_entrypoint_1(skeleton);
+    data->distance = 32000.0f;
+    func_80108B04(arg0, 1);
+    subgame = data->subgame;
+    _susubgame_entrypoint_0(arg0, subgame, 0);
+    _susubgame_entrypoint_12(subgame, &D_808018B0_chfishshootgame);
+}
 
 void func_80800178_chfishshootgame(Actor *arg0) {
     s32 _susubgame_entrypoint_11(s32);
