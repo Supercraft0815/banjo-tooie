@@ -363,7 +363,46 @@ void func_8080105C_chflysaucer(Actor *arg0, s32 arg1, s32 arg2) {
     arg0->unk74_30 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80801130_chflysaucer.s")
+void func_80801130_chflysaucer(s32 arg0) {
+    s32 func_800D2054(s32, s32, s32);
+    s32 func_800DA9E4(s32, s32);
+    void func_808012A4_chflysaucer(Actor *, s32);
+    extern s32 D_80127194;
+    u32 state;
+
+    state = func_80800E48_chflysaucer(arg0);
+    switch (state) {
+    case 0:
+        if (func_800DA9E4(0x415, 1) == 0) {
+            func_8080105C_chflysaucer((Actor *)arg0, 0x10C6, 1);
+            return;
+        }
+        func_8080105C_chflysaucer((Actor *)arg0, 0x10C7, 1);
+        return;
+    case 1:
+        func_808012A4_chflysaucer((Actor *)arg0, 7);
+        func_800D2054(0, 0x8D, *(s16 *)((s8 *)&D_80127194 + 0x434));
+        return;
+    case 2:
+        func_808012A4_chflysaucer((Actor *)arg0, 8);
+        func_800D2054(0, 0x8D, *(s16 *)((s8 *)&D_80127194 + 0x434));
+        return;
+    case 3:
+        func_808012A4_chflysaucer((Actor *)arg0, 9);
+        func_800D2054(0, 0x8D, *(s16 *)((s8 *)&D_80127194 + 0x434));
+        return;
+    case 4:
+        func_800D2054(0, 0x8D, *(s16 *)((s8 *)&D_80127194 + 0x434));
+        func_8080105C_chflysaucer((Actor *)arg0, 0x10E4, 1);
+        return;
+    case 5:
+        if (func_800DA9E4(0x416, 1) == 0) {
+            func_8080105C_chflysaucer((Actor *)arg0, 0x10E2, 1);
+            return;
+        }
+        func_8080105C_chflysaucer((Actor *)arg0, 0x10E3, 1);
+    }
+}
 
 void func_808012A4_chflysaucer(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
