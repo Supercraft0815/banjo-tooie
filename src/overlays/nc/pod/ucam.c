@@ -94,7 +94,57 @@ s32 func_808001F0_ncpoducam(void *arg0, s32 arg1) {
     return arg1 == -1 ? 0 : ((u32)arg1 == ((u32)*(u16 *)((u8 *)arg0 + 0x12) >> 1));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/func_8080021C_ncpoducam.s")
+s32 func_8080021C_ncpoducam(void *arg0) {
+    s32 func_800EE7F8();
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    f32 func_800F5BC4(s32, f32 *);
+    void func_80103DFC(Actor *, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 sp54[3];
+    f32 *sp24;
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp2C[3];
+
+    if (*(s16 *)((u8 *)arg0 + 0x48) & 1) {
+        if (func_808001F0_ncpoducam(*(void **)((u8 *)arg0 + 0x1C), *(s32 *)((u8 *)arg0 + 0x20))) {
+            func_80103DFC(func_80106790(*(Unk80132ED0 **)((u8 *)arg0 + 0x1C)), sp54);
+            if ((*(s16 *)((u8 *)arg0 + 0x48) & 0x400) && *((u8 *)arg0 + 0x63)) {
+                sp24 = (f32 *)((u8 *)arg0 + 0x3C);
+                func_800EFB24(sp44, sp54, sp24);
+                func_800EF334(sp44, 0.3f);
+                func_800EF04C(sp24, sp44);
+                return 1;
+            }
+            func_800EE7F8((f32 *)((u8 *)arg0 + 0x3C), sp54);
+            *((u8 *)arg0 + 0x63) = 1;
+        }
+        return 1;
+    }
+    if (*(s16 *)((u8 *)arg0 + 0x48) & 0x40) {
+        func_800F5BC4(func_800F54E4(), sp38);
+        func_800F5A00(func_800F54E4(), sp54);
+        func_800EF04C(sp54, sp38);
+        if ((*(s16 *)((u8 *)arg0 + 0x48) & 0x400) && *((u8 *)arg0 + 0x63)) {
+            sp24 = (f32 *)((u8 *)arg0 + 0x3C);
+            func_800EFB24(sp2C, sp54, sp24);
+            func_800EF334(sp2C, 0.3f);
+            func_800EF04C(sp24, sp2C);
+            return 1;
+        }
+        *((u8 *)arg0 + 0x63) = 1;
+        func_800EE7F8((f32 *)((u8 *)arg0 + 0x3C), sp54);
+        return 1;
+    }
+    if (*(s16 *)((u8 *)arg0 + 0x48) & 0x80) {
+        return 1;
+    }
+    return 0;
+}
 
 void func_808003A8_ncpoducam(u8 *arg0, s32 arg1) {
     void _cadbfunc_entrypoint_24(s32 *);
