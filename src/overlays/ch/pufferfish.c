@@ -173,7 +173,27 @@ void func_8080086C_chpufferfish(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pufferfish/func_8080093C_chpufferfish.s")
+void func_8080093C_chpufferfish(Actor *arg0, s32 arg1) {
+    s32 _fxairbub_entrypoint_1(f32 *, f32, f32, f32);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    void func_800BA22C(s32, s32);
+    void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
+    f32 func_800DC178(f32, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 position[3];
+    s32 emitter;
+
+    if (_subaddieskeleton_entrypoint_2(arg0->unk0, 4, position)) {
+        func_800EFA4C(position, position[0] + func_800DC178(-20.0f, 20.0f),
+                     position[1] + func_800DC178(-20.0f, 20.0f),
+                     position[2] + func_800DC178(-20.0f, 20.0f));
+        emitter = _fxairbub_entrypoint_1(position, 1.0f, position[1] + 1000.0f, arg0->scale);
+        func_800BA994((u8 *)emitter, arg0->rotation[0], arg0->rotation[1] - 35.0f,
+                     *(f32 *)&arg0->actorData[3] * 1.5f, arg0->rotation[0],
+                     arg0->rotation[1] + 35.0f, 2.0f * *(f32 *)&arg0->actorData[3]);
+        func_800BA22C(emitter, arg1);
+    }
+}
 
 void func_80800AB0_chpufferfish(void *arg0, s32 arg1, f32 arg2, f32 arg3) {
     s32 _subaddieDll_entrypoint_11(void *, s32, s32);
