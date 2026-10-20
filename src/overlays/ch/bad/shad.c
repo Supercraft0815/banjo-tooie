@@ -162,4 +162,51 @@ void func_8080082C_chbadshad(Actor *arg0) {
     func_800FFAB0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/func_8080086C_chbadshad.s")
+s32 func_8080086C_chbadshad(Actor *arg0, Actor *arg1, f32 *arg2, f32 *arg3) {
+    void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F0E00(f32, f32);
+    void func_800F1988(f32 *, f32 *, f32 *);
+    void func_8010279C(void *, void *);
+    void func_801045AC(Actor *, f32 *, f32 *, s32);
+    u32 func_8010A654(void ***, s32);
+    typedef struct {
+        s16 vertices[3];
+        s16 unk6;
+        s32 flags;
+    } ShadowTriangle;
+    f32 sp54[3];
+    f32 sp48[3];
+    f32 sp3C[3];
+    f32 sp30[3];
+    u32 sp2C;
+    ShadowTriangle *sp28;
+
+    sp2C = func_8010A654((void *)arg1, 0);
+    func_800EE7F8(sp54, arg3);
+    func_800EE7F8(sp48, arg3);
+    sp54[1] += 80.0f;
+    sp48[1] -= 100.0f;
+    sp28 = func_800C6A7C(sp54, sp48, sp3C, arg0->unk14);
+    if (sp28 == NULL) {
+        sp48[1] = arg3[1] - 2000.0f;
+        sp28 = func_800C6A7C(sp54, sp48, sp3C, arg0->unk14);
+        if (sp28 == NULL) {
+            *arg2 = 0.0f;
+            func_8010A654((void *)arg1, sp2C);
+            arg0->actorData[1] = 0;
+            return 0;
+        }
+    }
+    arg0->actorData[1] = sp28->flags;
+    func_8010A654((void *)arg1, sp2C);
+    func_800EE7F8(arg0->position, sp48);
+    *arg2 = func_800F0E00(0.0f, arg3[1] - arg0->position[1]);
+    func_800F1988(sp3C, &sp30[0], &sp30[1]);
+    sp30[2] = 0.0f;
+    func_8010279C(arg0, sp30);
+    if (((s16 *)&arg1->pad8C)[1] != 0) {
+        func_801045AC(arg1, sp3C, arg0->position, sp28->flags);
+    }
+    return 1;
+}
