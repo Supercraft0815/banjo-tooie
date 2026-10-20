@@ -124,7 +124,49 @@ void func_80116120(void *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEF790/func_80116218.s")
+s32 func_80116218(s32 *arg0, f32 *arg1) {
+    f32 func_800136E4(f32);
+    f32 func_800137AC(f32);
+    f32 func_800137C4(void);
+    f32 func_800F5F50(s32);
+    s32 func_80110840(s32 *);
+    f32 angle;
+    f32 speed;
+    f32 sine;
+    u8 *state;
+    f32 delta[2];
+
+    state = *(u8 **)((u8 *)arg0 + 4);
+    if (state[0x2C] != 0) {
+        angle = *(f32 *)(state + 0x28);
+    } else {
+        angle = func_800F5F50(func_80110840(arg0));
+    }
+    angle = func_800136E4((arg1[1] - angle) + 180.0f);
+    state = *(u8 **)((u8 *)arg0 + 4);
+    if (*(s16 *)(state + 0x2E) != 0) {
+        if (state[0x48] != 0) {
+            speed = *(f32 *)(state + 0x44);
+        } else {
+            speed = *(f32 *)(state + 0x40);
+        }
+    } else {
+        speed = 0.0f;
+    }
+    func_80115EA8(speed, (f32 *)(state + 0x34), (f32 *)(state + 0x3C),
+                 20.0f, 40.0f, -10.0f);
+    sine = func_800137AC(angle);
+    delta[0] = *(f32 *)(*(u8 **)((u8 *)arg0 + 4) + 0x34) * -func_800137C4();
+    delta[1] = *(f32 *)(*(u8 **)((u8 *)arg0 + 4) + 0x34) * sine;
+    state = *(u8 **)((u8 *)arg0 + 4);
+    func_80116120(delta, (f32 *)(state + 0x50), (f32 *)(state + 0x4C),
+                 20.0f, 40.0f, -10.0f);
+    state = *(u8 **)((u8 *)arg0 + 4);
+    arg1[0] += *(f32 *)(state + 0x58) * (*(f32 *)(state + 0x54) * 0.5f);
+    state = *(u8 **)((u8 *)arg0 + 4);
+    arg1[1] += *(f32 *)(state + 0x58) * *(f32 *)(state + 0x50);
+    (*(u8 **)((u8 *)arg0 + 4))[0x48] = 0;
+}
 
 void func_801163A0(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 4) + 88) = arg1;
