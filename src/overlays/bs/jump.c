@@ -4,6 +4,11 @@ struct player_state_s;
 struct anctrl_s;
 enum asset_e;
 
+void func_8009FE58(struct player_state_s *);
+int player_isStable(struct player_state_s *);
+int func_8008DA24(struct player_state_s *);
+int func_8008DF8C(struct player_state_s *, s32);
+
 /* extern */
 
 void func_80800000_bsjump(s32 arg0) {
@@ -43,6 +48,8 @@ void bsjump_entrypoint_1(void *arg0) {
         baphysics_reset_gravity(arg0);
     }
     switch (*(s32 *)((u8 *)arg0 + 0x15C)) {
+    case 2:
+        break;
     case 0:
         if (baanim_isStopped(arg0) != 0) {
             baanim_setEndAndDuration(arg0, 0.6667f, 4.0f);
@@ -65,8 +72,6 @@ void bsjump_entrypoint_1(void *arg0) {
             baanim_setEndAndDuration(arg0, 1.0f, 2.0f);
             *(s32 *)((u8 *)arg0 + 0x15C) = 2;
         }
-        break;
-    case 2:
         break;
     }
     if (func_8008E260(arg0) != 0) {
@@ -213,7 +218,64 @@ void bsjump_entrypoint_8(struct player_state_s *arg0) {
     func_80800000_bsjump((s32)arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_9.s")
+void bsjump_entrypoint_9(struct player_state_s *arg0) {
+    s32 anctrl_isStopped(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    s32 bs_setState(s32, s32);
+    int func_8008DA24(struct player_state_s *);
+    int func_8008DF8C(struct player_state_s *, s32);
+    void func_800961AC(struct player_state_s *, s32);
+    void func_8009BB24(void *, f32 *);
+    void func_8009FE58(struct player_state_s *);
+    int player_isStable(struct player_state_s *);
+    s32 next_state;
+    struct anctrl_s *control;
+    f32 velocity[3];
+
+    next_state = 0;
+    control = baanim_getAnimCtrlPtr(arg0);
+    func_8009BB24(arg0, velocity);
+    if (velocity[1] < 0.0f) {
+        func_800961AC(arg0, 1);
+    }
+    switch (*(s32 *)((u8 *)arg0 + 0x15C)) {
+    case 0:
+        if (anctrl_isStopped(control)) {
+            anctrl_setSubrange(control, 0.0f, 0.6667f);
+            anctrl_setDuration(control, 4.0f);
+            anctrl_setPlaybackType(control, 1);
+            *(s32 *)((u8 *)arg0 + 0x15C) = 1;
+        }
+        if (func_8008DF8C(arg0, 0x82)) {
+            anctrl_setSubrange(control, 0.0f, 1.0f);
+            anctrl_setDuration(control, 1.4f);
+            anctrl_setPlaybackType(control, 1);
+            *(s32 *)((u8 *)arg0 + 0x15C) = 2;
+        }
+        break;
+    case 1:
+        if (func_8008DF8C(arg0, 0x5A)) {
+            anctrl_setSubrange(control, 0.0f, 1.0f);
+            anctrl_setDuration(control, 2.0f);
+            anctrl_setPlaybackType(control, 1);
+            *(s32 *)((u8 *)arg0 + 0x15C) = 2;
+        }
+        break;
+    case 2:
+        break;
+    }
+    if (func_8008DA24(arg0)) {
+        next_state = 0xA8;
+    }
+    if (player_isStable(arg0)) {
+        func_8009FE58(arg0);
+        next_state = 0x20;
+    }
+    bs_setState((s32)arg0, next_state);
+}
 
 void bsjump_entrypoint_10(s32 arg0)
 {
