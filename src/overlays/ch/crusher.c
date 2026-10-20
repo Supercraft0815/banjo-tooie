@@ -220,7 +220,55 @@ OSThread *chcrusher_entrypoint_2(void)
     return (OSThread *) D_80800CC8_chcrusher;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_808008FC_chcrusher.s")
+void func_808008FC_chcrusher(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 func_80090248(void);
+    void func_800907C0(f32 *);
+    f32 func_800D8FF8(void);
+    void func_80101CDC(Actor *, f32);
+    void func_80101FDC(Actor *, u32);
+    void func_8010D254(f32 *);
+    extern u32 D_80800D10_chcrusher[];
+    struct CrusherFlags {
+        u8 pad0[0x74];
+        u32 pad74_28 : 4;
+        u32 enabled : 1;
+    };
+    s32 active;
+    f32 position[3];
+
+    active = func_800DA298(FLAG_4FB_UNK);
+    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, active, D_80800D10_chcrusher);
+    switch (arg0->unk70_10) {
+        case 1:
+            if (active) {
+                func_80101FDC(arg0, 2);
+                ((struct CrusherFlags *)arg0)->enabled = 1;
+            }
+            break;
+        case 2:
+            if (!active) {
+                func_80101FDC(arg0, 1);
+                ((struct CrusherFlags *)arg0)->enabled = 0;
+            }
+            func_8010D254(position);
+            if (func_80090248() && position[0] < 2000.0f &&
+                position[0] > -2300.0f && position[2] < 0.0f) {
+                if (func_800DA298(FLAG0_000_STATE_CANARY_MARY_CAGE_TRIGGER_DIALOG)) {
+                    position[0] -= 144.0f * func_800D8FF8();
+                } else {
+                    position[0] -= 504.0f * func_800D8FF8();
+                }
+                func_800907C0(position);
+            }
+            if (func_800DA298(FLAG0_000_STATE_CANARY_MARY_CAGE_TRIGGER_DIALOG)) {
+                func_80101CDC(arg0, 33.0f);
+            } else {
+                func_80101CDC(arg0, 9.428572f);
+            }
+            break;
+    }
+}
 
 void func_80800A98_chcrusher(s32 arg0) {
     void func_800EFA4C(f32[3], f32, f32, f32);
