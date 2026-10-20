@@ -723,7 +723,45 @@ s32 func_80801760_chquiz(void *arg0, s32 arg1, s32 arg2) { s32 *p = (s32 *)arg0 
 
 s32 func_80801784_chquiz(void *arg0, s32 arg1) { return ((s32 *)arg0)[arg1 + 0x19]; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801794_chquiz.s")
+void func_80801794_chquiz(void *arg0) {
+    s32 _suquiz_entrypoint_4();
+    s32 func_800D2498(u32, s32, u32);
+    s32 func_800D28A0(s32);
+    s32 func_800D3948(void);
+    s32 func_800DA298(s32);
+
+    if (func_800D3948() != 0) {
+        switch ((s32)((Actor *)arg0)->pad80 >= 0) {
+            case 3:
+                func_800D28A0(0x112);
+                break;
+            case 4:
+                func_800D28A0(0x114);
+                break;
+            case 5:
+                func_800D28A0(0x115);
+                break;
+            case 6:
+                func_800D28A0(0x113);
+                break;
+        }
+        func_800D2498(0x112, func_80801784_chquiz(arg0, 3), 0);
+        func_800D2498(0x114, func_80801784_chquiz(arg0, 4), 0);
+        func_800D2498(0x115, func_80801784_chquiz(arg0, 5), 0);
+        func_800D2498(0x113, func_80801784_chquiz(arg0, 6), 0);
+    } else {
+        if (func_800DA298(0x582) == 0) {
+            func_800D2498(0x10F, func_80801784_chquiz(arg0, 1), 0);
+        }
+        if (func_800DA298(0x583) == 0) {
+            func_800D2498(0x110, func_80801784_chquiz(arg0, 0), 0);
+        }
+        func_800D2498(0x111, func_80801784_chquiz(arg0, 2), 0);
+        if (_suquiz_entrypoint_4() == 2) {
+            func_800D2498(0x118, 0xF, 0);
+        }
+    }
+}
 
 s32 func_80801930_chquiz(void *arg0, s32 *arg1) {
     s32 _suquiz_entrypoint_9(s32);
