@@ -16,7 +16,52 @@ void func_800D9624(f32 *arg0, f32 *arg1) {
     arg0[3] = arg1[3];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2EF0/func_800D965C.s")
+void func_800D965C(f32 arg0[4], f32 arg1[16]) {
+    f32 s;
+    f32 wx;
+    f32 wy;
+    f32 wz;
+    f32 xs;
+    f32 ys;
+    f32 zs;
+    f32 xx;
+    f32 xy;
+    f32 xz;
+    f32 yy;
+    f32 yz;
+    f32 zz;
+    if (arg0[0] == 0.0f && arg0[1] == 0.0f && arg0[2] == 0.0f && arg0[3] == 0.0f) {
+    }
+    s = 2.0f / (arg0[0] * arg0[0] + arg0[1] * arg0[1] + arg0[2] * arg0[2] + arg0[3] * arg0[3]);
+    xs = arg0[0] * s;
+    ys = arg0[1] * s;
+    zs = arg0[2] * s;
+    wx = arg0[3] * xs;
+    wy = arg0[3] * ys;
+    wz = arg0[3] * zs;
+    xx = arg0[0] * xs;
+    xy = arg0[0] * ys;
+    xz = arg0[0] * zs;
+    yy = arg0[1] * ys;
+    yz = arg0[1] * zs;
+    zz = arg0[2] * zs;
+    arg1[0] = 1.0f - (yy + zz);
+    arg1[1] = xy + wz;
+    arg1[2] = xz - wy;
+    arg1[4] = xy - wz;
+    arg1[5] = 1.0f - (xx + zz);
+    arg1[6] = yz + wx;
+    arg1[8] = xz + wy;
+    arg1[9] = yz - wx;
+    arg1[10] = 1.0f - (xx + yy);
+    arg1[15] = 1.0f;
+    arg1[3] = 0;
+    arg1[7] = 0;
+    arg1[11] = 0;
+    arg1[12] = 0;
+    arg1[13] = 0;
+    arg1[14] = 0;
+}
 
 int func_800D97E8(f32 a[4], f32 b[4]) {
     return a[0] == b[0] && a[1] == b[1] && a[2] == b[2] && a[3] == b[3];
