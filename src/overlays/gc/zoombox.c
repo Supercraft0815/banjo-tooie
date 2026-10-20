@@ -1434,7 +1434,57 @@ int gczoombox_entrypoint_39(void *arg0) {
     return arg0 != NULL && *(u8 *)((s8 *)arg0 + 0x171) == 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_40.s")
+void gczoombox_entrypoint_40(u8 *arg0, s32 arg1) {
+    struct ZoomFlags {
+        u32 high : 1;
+        u32 first : 1;
+        u32 second : 1;
+        u32 middle : 25;
+        u32 active : 1;
+        u32 low : 3;
+    };
+    u8 sp58[0x30];
+    u8 sp28[0x30];
+
+    if (arg0 != NULL) {
+        if (((struct ZoomFlags *)(arg0 + 0x1E4))->first) {
+            if (arg1 != 0 && !((struct ZoomFlags *)(arg0 + 0x1E4))->active) {
+                if (arg0[0] == 0xFD) {
+                    arg0[1] = 0x68;
+                } else {
+                    func_8080014C_gczoombox(arg0, sp58, 0, 0x30);
+                    arg0[0] = 0xFD;
+                    arg0[1] = 0x68;
+                    func_8080014C_gczoombox(sp58, arg0 + 2, 0, 0x2E);
+                }
+                ((struct ZoomFlags *)(arg0 + 0x1E4))->active = 1;
+            } else if (arg1 == 0 && ((struct ZoomFlags *)(arg0 + 0x1E4))->active) {
+                if (arg0[0] == 0xFD) {
+                    arg0[1] = 0x6C;
+                }
+                ((struct ZoomFlags *)(arg0 + 0x1E4))->active = 0;
+            }
+        }
+        if (((struct ZoomFlags *)(arg0 + 0x1E4))->second) {
+            if (arg1 != 0) {
+                if (arg0[0x30] == 0xFD) {
+                    arg0[0x31] = 0x68;
+                } else {
+                    func_8080014C_gczoombox(arg0 + 0x30, sp28, 0, 0x30);
+                    arg0[0x30] = 0xFD;
+                    arg0[0x31] = 0x68;
+                    func_8080014C_gczoombox(sp28, arg0 + 0x32, 0, 0x2E);
+                }
+                ((struct ZoomFlags *)(arg0 + 0x1E4))->active = 1;
+                return;
+            }
+            if (arg0[0x30] == 0xFD) {
+                arg0[0x31] = 0x6C;
+            }
+            ((struct ZoomFlags *)(arg0 + 0x1E4))->active = 0;
+        }
+    }
+}
 
 void gczoombox_entrypoint_41(void *arg0, f32 arg1) {
     (*(f32 *)((s8 *)(arg0) + (0x1D8))) = (f32) (1.0f / arg1);
