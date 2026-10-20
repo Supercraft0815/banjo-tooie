@@ -198,7 +198,43 @@ s32 gccubesearch_entrypoint_13(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_15.s")
+Prop *gccubesearch_entrypoint_15(u32 arg0, u32 arg1, f32 *arg2) {
+    Prop *_gspropmarker_entrypoint_0(s32, u32);
+    void func_800BD64C(s32 *, f32 *);
+    s32 func_800BDAD4(s32 position[3]);
+    void func_800BE554(s32 *, s32 *);
+    s32 position[3];
+    s32 i;
+    s32 low[3];
+    s32 high[3];
+    s32 min[3];
+    s32 max[3];
+    Prop *prop;
+
+    func_800BE554(min, max);
+    func_800BD64C(position, arg2);
+    for (i = 0; i < 3; i++) {
+        low[i] = position[i] - 1;
+        high[i] = position[i] + 1;
+        if (low[i] < min[i]) {
+            low[i] = min[i];
+        }
+        if (high[i] > max[i]) {
+            high[i] = max[i];
+        }
+    }
+    for (position[0] = low[0]; position[0] <= high[0]; position[0]++) {
+        for (position[1] = low[1]; position[1] <= high[1]; position[1]++) {
+            for (position[2] = low[2]; position[2] <= high[2]; position[2]++) {
+                prop = _gspropmarker_entrypoint_0(func_800BDAD4(position), arg0);
+                if (prop != NULL && (arg1 == 0 || arg1 == (*(u32 *)&prop->unk10 >> 21))) {
+                    return prop;
+                }
+            }
+        }
+    }
+    return NULL;
+}
 
 /* extern */
 
