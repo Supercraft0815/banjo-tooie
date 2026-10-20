@@ -14,7 +14,60 @@ void func_80800000_chworlddoors(u8 *arg0) {
     func_800BBCB8(sp20, sp24, 1.0f, 6, &D_80800990_chworlddoors);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/worlddoors/func_80800068_chworlddoors.s")
+s32 func_80800068_chworlddoors(Actor *arg0) {
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    s32 _gspropctrl_entrypoint_12(Prop *);
+    s32 _gspropctrl_entrypoint_13(Prop *);
+    s32 _gspropctrl_entrypoint_8(Prop *);
+    s32 _sujiggy_entrypoint_22(u32);
+    void func_800EEBF0(f32 *, f32 *, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    Prop *props[2];
+    f32 angles[2];
+    s32 result;
+    s32 count;
+    s32 i;
+    s32 world;
+    Prop **prop;
+
+    world = _sujiggy_entrypoint_22(arg0->unk79_4);
+    count = _gccubesearch_entrypoint_9(0x4DC, props, 2);
+    i = 0;
+    if (count > 0) {
+        prop = props;
+        do {
+        if (_gspropctrl_entrypoint_8(*prop) == world + 0x32) {
+            _gspropctrl_entrypoint_11(*prop, (f32 *)&arg0->actorData[0]);
+            result = _gspropctrl_entrypoint_13(*prop) - 1;
+            arg0->rotation[2] = _gspropctrl_entrypoint_12(*prop);
+        }
+        i++;
+        prop++;
+        } while (i != count);
+    }
+    count = _gccubesearch_entrypoint_9(0x4DD, props, 2);
+    i = 0;
+    if (count > 0) {
+        prop = props;
+        do {
+        if (_gspropctrl_entrypoint_8(*prop) == world + 0x32) {
+            _gspropctrl_entrypoint_11(*prop, (f32 *)&arg0->actorData[4]);
+            arg0->unk54 = _gspropctrl_entrypoint_13(*prop) / 10.0f;
+            arg0->unk50 = _gspropctrl_entrypoint_12(*prop) / 10.0f;
+        }
+        i++;
+        prop++;
+        } while (i != count);
+    }
+    func_800F18FC((f32 *)&arg0->actorData[4], (f32 *)&arg0->actorData[0], angles);
+    arg0->rotation[0] = angles[0];
+    arg0->rotation[1] = angles[1];
+    func_800EEBF0((f32 *)&arg0->actorData[0], angles, 4000.0f);
+    func_800EF04C((f32 *)&arg0->actorData[0], (f32 *)&arg0->actorData[4]);
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/worlddoors/func_80800214_chworlddoors.s")
 
