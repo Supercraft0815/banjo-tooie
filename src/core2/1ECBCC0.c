@@ -42,7 +42,39 @@ void func_800F24D0(MtxF *arg0, f32 *arg1, f32 *arg2) {
     } while (i != 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F254C.s")
+/* extern */
+
+void func_800F254C(MtxF *arg0, f32 *arg1, f32 arg2) {
+    f32 func_80013788();
+    f32 func_800137F4(f32);
+    void func_800EF2A0(f32[3]);
+    f32 sp34;
+    f32 sp30;
+    f32 sp2C;
+    f32 sp28;
+    f32 sp24;
+    f32 square;
+
+    func_800EF2A0(arg1);
+    sp34 = func_800137F4(arg2);
+    sp30 = func_80013788();
+    sp2C = arg1[0] * arg1[1] * (1.0f - sp30);
+    sp28 = arg1[1] * arg1[2] * (1.0f - sp30);
+    sp24 = arg1[2] * arg1[0] * (1.0f - sp30);
+    func_800F274C(arg0);
+    square = arg1[0] * arg1[0];
+    arg0->m[0][0] = ((1.0f - square) * sp30) + square;
+    arg0->m[2][1] = sp28 - (arg1[0] * sp34);
+    arg0->m[1][2] = (arg1[0] * sp34) + sp28;
+    square = arg1[1] * arg1[1];
+    arg0->m[1][1] = ((1.0f - square) * sp30) + square;
+    arg0->m[2][0] = (arg1[1] * sp34) + sp24;
+    arg0->m[0][2] = sp24 - (arg1[1] * sp34);
+    square = arg1[2] * arg1[2];
+    arg0->m[2][2] = ((1.0f - square) * sp30) + square;
+    arg0->m[1][0] = sp2C - (arg1[2] * sp34);
+    arg0->m[0][1] = (arg1[2] * sp34) + sp2C;
+}
 
 void func_800F26B0(MtxF* arg0, f32 arg1, f32 arg2, f32 arg3) {
     func_800F274C(arg0);
