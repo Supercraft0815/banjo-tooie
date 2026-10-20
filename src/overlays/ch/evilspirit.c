@@ -90,7 +90,36 @@ void func_80800718_chevilspirit(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_808007B4_chevilspirit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80800A4C_chevilspirit.s")
+void func_80800A4C_chevilspirit(Actor *arg0, Gfx **arg1, s32 *arg2, f32 *arg3, Actor *arg4, f32 arg5, u8 *arg6) {
+    f32 func_800136E4(f32);
+    f32 func_80013788(void);
+    f32 func_800137F4(f32);
+    f32 func_80013B70(f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 sqrtf(f32);
+    void func_80800BFC_chevilspirit(Actor *, Gfx **, s32 *, s16 *, u8 *);
+    f32 delta[3];
+    f32 distance;
+    f32 angle;
+    s16 offset[2];
+
+    func_800EFB24(delta, arg3, arg4->position);
+    delta[1] = 0.0f;
+    distance = delta[0] * delta[0] + delta[2] * delta[2];
+    if (!(distance >= 4000000.0f)) {
+        distance = sqrtf(distance);
+        angle = func_80013B70(delta[0], delta[2], distance);
+        angle = func_800136E4(angle - arg5);
+        arg6[3] = (u32)func_800F10B4(distance, 1600.0f, 2000.0f, 255.0f, 0.0f);
+        if (arg6[3]) {
+            distance *= 0.025f;
+            offset[0] = (s32)(-func_800137F4(angle) * distance);
+            offset[1] = (s32)(-func_80013788() * distance);
+            func_80800BFC_chevilspirit(arg0, arg1, arg2, offset, arg6);
+        }
+    }
+}
 
 void func_80800BFC_chevilspirit(Actor *arg0, Gfx **arg1, s32 *arg2, s16 *arg3, u8 *arg4) {
     s32 x;
