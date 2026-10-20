@@ -1,6 +1,73 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103140.s")
+s32 func_80103140(Actor *arg0, u32 arg1, u16 arg2) {
+    s32 func_800D58FC(s32);
+    void func_800D62E4(s32);
+    s32 func_80103328();
+    void func_8010381C(Actor *);
+    void func_80103938(void *);
+    void func_80104328();
+    void func_80103930(void *);
+    u8 *func_801039E4(Unk80132ED0 *);
+    struct ActorFlags {
+        u8 pad0[0x70];
+        u32 pad70_4 : 28;
+        u32 active : 1;
+        u32 pad70_0 : 3;
+    };
+    struct ModelFlags {
+        u32 pad0[2];
+        u32 pad8_2 : 30;
+        u32 hidden : 1;
+        u32 pad8_0 : 1;
+    };
+    u16 newId;
+    u32 sp38;
+    s32 sp34;
+    Unk80132ED0 *temp_v0;
+    u16 old;
+    s32 sp28[1];
+    s32 savedId[1];
+
+    temp_v0 = arg0->unk0;
+    old = temp_v0->unk14;
+    newId = ((u16 *)&arg1)[1];
+    if ((newId == old) && (arg2 == temp_v0->unk16)) {
+        return old;
+    }
+    sp38 = ((struct ActorFlags *)arg0)->active;
+    savedId[0] = newId;
+    sp28[0] = old;
+    func_8010381C(arg0);
+    func_80103938(arg0);
+    arg0->pad74_31 = 0;
+    arg0->unk0->unkC = 0;
+    temp_v0 = arg0->unk0;
+    ((s16 *)&arg0->pad68)[0] = 0;
+    ((s16 *)&arg0->pad68)[1] = 0;
+    ((s16 *)&arg0->pad60)[1] = 0;
+    ((u16 *)&temp_v0->unk18)[0] &= 0x1F;
+    if (((s16 *)&arg0->pad8C)[0] != 0) {
+        func_80104328(arg0);
+    }
+    sp34 = func_800D58FC(savedId[0]);
+    arg0->unk0->unk14 = ((u16 *)&arg1)[1];
+    arg0->unk0->unk16 = arg2;
+    if (sp34 == 0) {
+        ((struct ModelFlags *)arg0->unk0->unk0)->hidden = 1;
+    } else {
+        ((struct ModelFlags *)arg0->unk0->unk0)->hidden = 0;
+    }
+    if (sp34 == 0) {
+        func_80103328(arg0);
+    }
+    func_80103930(arg0);
+    if (sp38 && !((struct ActorFlags *)arg0)->active && sp34 == 0) {
+        func_801039E4(arg0->unk0);
+        func_800D62E4(arg0->unk0->unk14);
+    }
+    return sp28[0];
+}
 
 /* extern */
 
@@ -94,7 +161,7 @@ void func_8010381C(Actor *arg0) {
     }
 }
 
-void func_80103930(s32 arg0) 
+void func_80103930(void *arg0) 
 {
 }
 /* extern */
