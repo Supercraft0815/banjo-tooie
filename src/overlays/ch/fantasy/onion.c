@@ -23,7 +23,53 @@ f32 func_80800000_chfantasyonion(Actor *arg0) {
     return sp28[1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/onion/func_808000BC_chfantasyonion.s")
+void func_808000BC_chfantasyonion(Actor *arg0) {
+    s32 _glsplinefind_entrypoint_3(f32 *);
+    s32 func_800C7A68(s32, f32, f32 *);
+    s32 func_800D7520(s32);
+    void func_800D8648(s32, f32 *);
+    f32 func_800DC0C0(void);
+    int func_800EEDE8(f32 *, f32 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F13C4(f32, f32);
+    void func_80101EE4(Actor *, f32);
+    void func_80101FDC(Actor *, u32);
+    void func_80105634(Actor *);
+    int func_8010568C(Actor *, s32);
+    typedef struct {
+        u8 actorPrefix[0x74];
+        u32 upperFlags : 27;
+        u32 unk74_4 : 1;
+        u32 lowerFlags : 4;
+    } OnionFlags;
+    f32 sp44[3];
+    f32 sp38[3];
+
+    if (func_8010568C(arg0, 0)) {
+        func_80105634(arg0);
+        ((OnionFlags *)arg0)->unk74_4 = 0;
+        if (arg0->rotation[1] > 99.0f) {
+            arg0->unk64_20 = 1;
+        } else {
+            arg0->unk64_20 = 0;
+        }
+        ((f32 *)arg0->actorData)[3] = func_800F10B4(
+            func_800F13C4(arg0->rotation[1], 100.0f), 0.0f, 99.0f,
+            0.0f, (f32)((s32)arg0->unk74_7 / 10));
+        ((f32 *)arg0->actorData)[7] = (f32)_glsplinefind_entrypoint_3(arg0->position);
+        func_800C7A68(func_800D7520((s32)((f32 *)arg0->actorData)[7]), 0.0f, sp44);
+        func_800C7A68(func_800D7520((s32)((f32 *)arg0->actorData)[7]), 1.0f, sp38);
+        if (func_800EEDE8(sp44, sp38, 200.0f)) {
+            arg0->unk64_19 = 1;
+            func_800D8648((s32)((f32 *)arg0->actorData)[7], sp38);
+        } else {
+            arg0->unk64_19 = 0;
+        }
+        func_80101FDC(arg0, 2);
+    }
+    ((f32 *)arg0->actorData)[4] = func_80800000_chfantasyonion(arg0);
+    func_80101EE4(arg0, func_800DC0C0());
+}
 
 /* extern */
 
