@@ -234,7 +234,61 @@ void func_80800DC4_chfactoryrobot(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80800E40_chfactoryrobot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80800FFC_chfactoryrobot.s")
+void func_80800FFC_chfactoryrobot(Actor *arg0, void *arg1) {
+    typedef struct {
+        u8 pad0[0xA];
+        s16 unkA;
+        u8 padC[8];
+        s32 unk14;
+        u8 pad18[8];
+        f32 unk20;
+    } RobotData;
+    typedef struct {
+        u8 pad0[0x74];
+        u8 flags74;
+        u8 pad75[3];
+        u32 pad78_3 : 29;
+        u32 flag78_2 : 1;
+        u32 pad78_0 : 2;
+    } RobotFlags;
+    void *func_80100094(Actor *, u32);
+    s32 func_800DC128(s32, s32);
+    void func_800DF744(s32, s32);
+    void _subaddiefade_entrypoint_9(Actor *, s32 *);
+    void _subaddiefade_entrypoint_11(Actor *, s32 *);
+    s32 _subaddiefade_entrypoint_12(s32, s32, s32, s32);
+    u8 func_800C9044(s32);
+    void func_800C8900(s32, s32 *);
+    void func_80101870(Actor *, void *);
+    RobotData *sp44;
+    register RobotData *data;
+    s32 sp34[3];
+    s32 sp28[3];
+    register s32 active;
+
+    sp44 = func_80100094(arg0, 0);
+    if (sp44->unk20 > 0.0f && !((RobotFlags *)arg0)->flag78_2) {
+        data = func_80100094(arg0, 0);
+        data->unkA = func_800DC128(0, 4);
+    }
+    active = sp44->unk20 > 0.0f ? ((RobotData *)func_80100094(arg0, 0))->unkA : 0;
+    func_800DF744(3, active);
+    _subaddiefade_entrypoint_9(arg0, sp34);
+    active = sp44->unk14 != 0;
+    if (active) {
+        active = func_800C9044(sp44->unk14) != 0;
+    }
+    if (((RobotFlags *)arg0)->flags74 & 1) {
+        _subaddiefade_entrypoint_12((s32)arg0, 255, 255, 255);
+    } else if (active) {
+        func_800C8900(sp44->unk14, sp28);
+        _subaddiefade_entrypoint_11(arg0, sp28);
+    }
+    func_80101870(arg0, arg1);
+    if (active || (((RobotFlags *)arg0)->flags74 & 1)) {
+        _subaddiefade_entrypoint_11(arg0, sp34);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80801160_chfactoryrobot.s")
 
