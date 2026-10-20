@@ -372,7 +372,55 @@ s32 func_80800D24_bsledge(PlayerState *self) {
 }
 
 #ifndef NONMATCHINGS
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ledge/func_80800D78_bsledge.s")
+void func_80800D78_bsledge(PlayerState *arg0, volatile s32 arg1) {
+    void _bapackctrl_entrypoint_5(PlayerState *, s32);
+    int func_8008E0E8(PlayerState *);
+    void func_800A0CF4(PlayerState *, s32);
+    void func_800A0D14(PlayerState *, s32, f32);
+    s32 temp_v0;
+
+    temp_v0 = arg0->unk160.word;
+    switch (temp_v0) {                              /* switch 1; irregular */
+    case 2:                                         /* switch 1 */
+        break;
+    case 1:                                         /* switch 1 */
+        if (func_8008E0E8(arg0) == 0) {
+            _bapackctrl_entrypoint_5(arg0, 1);
+        }
+        break;
+    case 3:                                         /* switch 1 */
+        func_800A0D14(arg0, 0, 0.2f);
+        break;
+    case 4:                                         /* switch 1 */
+        func_800A0D14(arg0, 0, 0.2f);
+        break;
+    }
+    arg0->unk160.word = arg1;
+    switch (arg1) {                                 /* switch 2 */
+    case 0:
+        break;
+    case 1:                                         /* switch 2 */
+        func_800A0CF4(arg0, 0);
+        baanim_playForDuration_onceSmooth(arg0, 0x52, 1.8f);
+        if (func_8008E0E8(arg0) == 0) {
+            _bapackctrl_entrypoint_5(arg0, 5);
+            return;
+        }
+    default:                                        /* switch 2 */
+        return;
+    case 2:                                         /* switch 2 */
+        baanim_playForDuration_onceSmooth(arg0, 0x55, 4.5f);
+        return;
+    case 3:                                         /* switch 2 */
+        func_800A0CF4(arg0, 1);
+        baanim_playForDuration_onceSmooth(arg0, 0x56, 5.0f);
+        return;
+    case 4:                                         /* switch 2 */
+        func_800A0CF4(arg0, 1);
+        baanim_playForDuration_onceSmooth(arg0, 0x52, 2.0f);
+        break;
+    }
+}
 #else
 // decomp failure
 #endif
