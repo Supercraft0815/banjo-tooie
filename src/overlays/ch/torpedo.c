@@ -47,7 +47,54 @@ void func_808000B8_chtorpedo(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/torpedo/func_808001E0_chtorpedo.s")
+void func_808001E0_chtorpedo(Actor *arg0, s32 arg1) {
+    s32 _chlightfader_entrypoint_1(s32, f32, s32);
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8E84(s32, u32 *);
+    void func_800CB840(s32, s32);
+    void func_800CB870(void);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFA98(f32[3], f32[3], f32);
+    int func_800F7A7C(s32, s32, s32, s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80109BEC(s32, f32, s32, s32, s32, s32);
+    s32 func_8010CC10(f32 *, f32);
+    void func_8010CCE0(void);
+    s32 func_8010CCEC(void);
+    extern u32 D_80800950_chtorpedo;
+    s32 sp4C;
+    s32 pad;
+    f32 sp3C[3];
+    s32 current;
+
+    if (arg1 != arg0->unk70_10) {
+        func_80101FDC(arg0, arg1);
+        if (arg0->unk70_10 == 3) {
+            sp4C = func_800C8A98();
+            func_800C8E84(sp4C, &D_80800950_chtorpedo);
+            func_800C8CB8(sp4C, arg0->position);
+            func_800C8E54(sp4C, 300.0f, 750.0f);
+            func_800CB840(6, arg0);
+            func_80109BEC(arg0->position, 150.0f, 2, 0, 0, arg0->unk0);
+            if (func_8010CC10(arg0->position, 150.0f)) {
+                func_800EFA98(sp3C, (f32 *)&arg0->actorData[4], -200.0f);
+                func_800EF04C(sp3C, arg0->position);
+                func_8010CCE0();
+                current = func_8010CCEC();
+                while (current != -1) {
+                    func_800F7A7C(current, *(s8 *)func_80100094(arg0, 0), 1, 7, sp3C);
+                    current = func_8010CCEC();
+                }
+            }
+            _chlightfader_entrypoint_1(sp4C, 1.0f, 1);
+            func_800CB870();
+            func_808000B8_chtorpedo(arg0);
+        }
+    }
+}
 
 void func_80800350_chtorpedo(Actor *arg0) {
     void func_800F1A88(f32 *, f32 *);
