@@ -22,7 +22,50 @@ void func_80800170_chweldarhead(u8 *arg0) {
     _sudeflect_entrypoint_0((f32 *) (arg0 + 4), 20.0f, 120.0f, 0xA);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarhead/func_808001E4_chweldarhead.s")
+s32 func_808001E4_chweldarhead(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void func_8080038C_chweldarhead(Actor *, s32, s32);
+    s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    void func_80102FDC(void *, f32);
+    void _chappearfx_entrypoint_1(Actor *, u32, u32, f32);
+    extern s32 D_808004E0_chweldarhead[];
+    f32 *data;
+    Actor *spawned;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        default:
+            return 0;
+        case 0x2E:
+            func_8080038C_chweldarhead(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x57:
+            return _susubgame_entrypoint_3(arg0, data + 6, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+        case 0x52:
+            _gcdialogcamera_entrypoint_3(D_808004E0_chweldarhead, arg0->scale);
+            break;
+        case 0x32:
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x1360, 0xE, arg0->position, 0xB5);
+            break;
+        case 0xB:
+            if (arg2 == 0x48) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1384, 0xE, arg0->position, 0xB5);
+                return 4;
+            }
+            return 3;
+        case 0x3D:
+            spawned = func_80108528(0x210, data, (s32)data[4], &arg0);
+            func_80102FDC(spawned, data[5]);
+            if (arg0->unk64_20) {
+                _chappearfx_entrypoint_1(spawned, 0x22, 1, 1.0f);
+            }
+            break;
+    }
+    return 1;
+}
 
 void func_8080038C_chweldarhead(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
