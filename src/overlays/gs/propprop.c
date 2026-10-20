@@ -154,4 +154,37 @@ void gspropprop_entrypoint_2(void *prop) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propprop/gspropprop_entrypoint_3.s")
+/* extern */
+
+void gspropprop_entrypoint_3(void *arg0, s32 arg1) {
+    typedef struct {
+        u32 pad0[2];
+        u32 pad8 : 30;
+        u32 isModel : 1;
+        u32 padB : 1;
+    } Prop;
+    s32 _gsproplookup_entrypoint_0();
+    s32 _gsproplookup_entrypoint_1();
+    void func_800BFAD0(s32, f32 *, f32 *, f32, s32);
+    void func_800BFB58(s32, void *, f32, s32, s32, s32, s32, s32, s32);
+    void func_800EE88C(f32 *, s16 *);
+    f32 sp54[3];
+    f32 sp48[3];
+    s32 model;
+    s32 sprite;
+
+    func_800EE88C(sp54, (s16 *)arg0 + 2);
+    if (((Prop *)arg0)->isModel) {
+        model = _gsproplookup_entrypoint_0(arg0);
+        sp48[0] = 0.0f;
+        sp48[1] = 2.0f * (u32)((u8 *)arg0)[2];
+        sp48[2] = 2.0f * (u32)((u8 *)arg0)[3];
+        func_800BFAD0(arg1, sp54, sp48, (u32)((u8 *)arg0)[10] * 0.01f, model);
+    } else {
+        sprite = _gsproplookup_entrypoint_1(arg0);
+        func_800BFB58(arg1, sp54, (f32)(*(u32 *)arg0 << 22 >> 24) * 0.01f, sprite,
+            ((u16 *)arg0)[0] & 7, (u32)((u16 *)arg0)[1] >> 13,
+            *(u32 *)arg0 << 19 >> 29, *(u32 *)arg0 << 30 >> 31,
+            (u32)((u16 *)arg0)[5] >> 11);
+    }
+}
