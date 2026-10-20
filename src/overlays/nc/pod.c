@@ -421,7 +421,74 @@ s32 ncpod_entrypoint_16(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ncpod_entrypoint_17.s")
+s32 ncpod_entrypoint_17(s32 arg0, s32 arg1) {
+    void func_80015178(s32);
+    s32 func_800A940C(s32);
+    void func_800C5148(s32, f32);
+    void func_800C51A4(s32, f32);
+    s32 func_8010F9C0(s32, s32);
+    void func_8010FD88(u8 *);
+    s32 func_80110014(s32 *);
+    void *func_80110024(s16 *);
+    void func_801108A0(void *);
+    void func_80110928(void *);
+    s32 pad;
+    s32 index;
+    f32 value;
+    f32 value2;
+    s32 flags;
+    s32 flags2;
+    s32 enabled;
+    s32 mode;
+    u8 *pod;
+
+    pod = func_80110024(arg0);
+    index = func_800A940C(*(s32 *)(pod + 0x38));
+    ncpod_entrypoint_12(pod, 0);
+    if (arg1 == 0) {
+        flags = *(s32 *)(pod + 0x10);
+        if (!(flags & 0x8000)) {
+            enabled = (flags & 0x4000) ? 0 : 1;
+            ncpod_entrypoint_15(pod, 0, enabled);
+            if (*(s32 *)(pod + 0x10) & 0x80000) {
+                value = 40.0f;
+            } else {
+                value = *(f32 *)(pod + 0x44);
+            }
+            func_800C5148(index, value);
+            if (*(s32 *)(pod + 0x10) & 0x80000) {
+                value2 = 1.0f;
+            } else {
+                value2 = *(f32 *)(pod + 0x48);
+            }
+            func_800C51A4(index, value2);
+        }
+    }
+    if (*(s32 *)(pod + 0x10) & 0x10) {
+        func_80800038_ncpod(pod);
+    }
+    func_808000AC_ncpod(pod);
+    if (arg1 != 0) {
+        *(s32 *)(pod + 0x10) |= 0x8000;
+    }
+    func_80015178(*(s32 *)(pod + 0x14));
+    flags2 = *(s32 *)(pod + 0x10);
+    if (flags2 & 0x200) {
+        mode = 0x200;
+    } else {
+        mode = (flags2 & 0x10000) ? 0x10000 : 0;
+    }
+    func_8010F9C0(arg0, 2);
+    if (mode == 0x200) {
+        func_801108A0(func_80110014(arg0));
+    } else if (mode == 0x10000) {
+        func_80110928(func_80110014(arg0));
+    }
+    if (arg1 == 0) {
+        func_8010FD88(arg0);
+    }
+    return 4;
+}
 
 /* extern */
 
