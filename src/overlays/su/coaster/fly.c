@@ -318,7 +318,57 @@ s32 func_80801DD0_sucoasterfly(Actor *arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80801E5C_sucoasterfly.s")
+f32 func_80801E5C_sucoasterfly(Actor *arg0) {
+    void func_8008FE94(s32, f32 *);
+    s32 func_800CC338(f32 *, s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    int func_80104544();
+    f32 func_8010473C(Actor *, f32 *);
+    s32 func_80801FE4_sucoasterfly(Actor *, f32 *, f32, f32);
+    struct CoasterFlyActorFlags {
+        u8 pad0[0x70];
+        u32 section : 7;
+        u32 pad70 : 15;
+        u32 track : 6;
+        u32 pad74 : 4;
+    };
+    struct CoasterFlyData {
+        f32 position[3];
+        f32 unkC;
+        u8 unk10;
+        u8 variant : 4;
+        u8 flags : 4;
+        s16 unk12;
+        s32 unk14;
+        s16 height;
+        s16 unk1A;
+    } *data;
+    f32 position[3];
+    f32 height;
+    f32 ground;
+
+    data = func_80100094(arg0, 0);
+    if (arg0->unk64_29) {
+        func_8008FE94(5, position);
+        return position[1] + 100.0f;
+    }
+    if (func_80104544(arg0)) {
+        height = func_8010473C(arg0, NULL) + (f32)data->height;
+        func_800EE7F8(position, arg0->position);
+        position[1] = height;
+        if (func_800CC338(position, arg0->unk70_25 - 1, ((struct CoasterFlyActorFlags *)arg0)->track - 1) != -1) {
+            return height;
+        }
+    } else if (func_80801FE4_sucoasterfly(arg0, &ground, 50.0f, -((f32)data->height + 400.0f))) {
+        func_800EE7F8(position, arg0->position);
+        position[1] = (f32)data->height + ground;
+        if (func_800CC338(position, arg0->unk70_25 - 1, ((struct CoasterFlyActorFlags *)arg0)->track - 1) != -1) {
+            return (f32)data->height + ground;
+        }
+    }
+    return arg0->position[1];
+}
 
 s32 func_80801FE4_sucoasterfly(Actor *arg0, f32 *arg1, f32 arg2, f32 arg3) {
     s32 func_800BEF00(f32[3], f32[3], f32[3], s32);

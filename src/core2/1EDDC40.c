@@ -98,7 +98,7 @@ void func_80104504(void *arg0) {
     }
 }
 
-int func_80104544(void) {
+int func_80104544() {
     void *func_801043D8();
     void *temp_v0;
     temp_v0 = func_801043D8();
@@ -171,7 +171,7 @@ s32 func_80104668(s32 arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *arg4) {
 
 /* extern */
 
-f32 func_8010473C(s32 arg0, f32 *arg1) {
+f32 func_8010473C(Actor *arg0, f32 *arg1) {
     void *func_801043D8();
     void func_801048E4(s8 *, f32 *);
     void *var_a0;
