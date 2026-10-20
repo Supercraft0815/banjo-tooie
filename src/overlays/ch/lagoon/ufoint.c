@@ -121,7 +121,47 @@ void func_808004D8_chlagoonufoint(Unk80132ED0 *arg0, Unk80132ED0 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_808005D0_chlagoonufoint.s")
+s32 func_808005D0_chlagoonufoint(Actor *volatile arg0, s32 arg1, s32 arg2) {
+    s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
+    s32 _susubgame_entrypoint_4(void *, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    void func_800DA3B8(s32, s32);
+    void *func_80100094(Actor *, u32);
+
+    Actor **actor = (Actor **)&arg0;
+    s16 *data = (s16 *)&arg2;
+
+    switch (arg1) {
+        case 0xB:
+            if (arg2 != 0) {
+                if (arg2 == 4) {
+                    func_800DA3B8(0x9EF, 1);
+                }
+                _susubgame_entrypoint_5(*actor, func_80100094(*actor, 0), 5, 1, 0);
+                return 4;
+            }
+            return 3;
+        case 0x2E:
+            switch (data[0]) {
+                case 0xFF4:
+                case 0xFF5:
+                    _susubgame_entrypoint_4(*actor, func_80100094(*actor, 0));
+                    break;
+                case 0xFF3:
+                    func_800DA3B8(0x9EE, 1);
+                    func_8080000C_chlagoonufoint(*actor, 2);
+                    _susubgame_entrypoint_4(*actor, func_80100094(*actor, 0));
+                    break;
+            }
+            break;
+        case 0x57:
+            return _susubgame_entrypoint_3(*actor, func_80100094(*actor, 0),
+                                         arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chlagoonufoint_entrypoint_1(void)
 {
