@@ -226,7 +226,39 @@ s32 func_808007A4_chswampplatform(Actor *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swampplatform/func_80800804_chswampplatform.s")
+void func_80800804_chswampplatform(void *self) {
+    typedef struct {
+        f32 position[3];
+        u32 unk24;
+        f32 scale[3];
+        f32 unk34;
+    } PlatformData;
+    s32 _subaddiefind_entrypoint_4(s32, Actor **, s32);
+    s32 _sumumbofx_entrypoint_7(void *, f32, s32, s32, f32 *, s32, s32);
+    void func_80103DFC(Actor *, f32 *);
+    f32 func_80103EAC(Actor *);
+    Actor *actors[5];
+    s32 count;
+    s32 step;
+    int i;
+    f32 size;
+    f32 position[3];
+    f32 radius;
+
+    radius = func_80103EAC(self);
+    size = MAX(MAX(((PlatformData *)((Actor *)self)->actorData)->scale[0], ((PlatformData *)((Actor *)self)->actorData)->scale[1]), ((PlatformData *)((Actor *)self)->actorData)->scale[2]) * radius;
+    count = _subaddiefind_entrypoint_4(0x28E, actors, 5);
+    step = 50 / count;
+    if (((PlatformData *)((Actor *)self)->actorData)->unk34 < size) {
+        ((PlatformData *)((Actor *)self)->actorData)->unk34 = size;
+    } else {
+        size = ((PlatformData *)((Actor *)self)->actorData)->unk34;
+    }
+    for (i = 0; i < count; i++) {
+        func_80103DFC(actors[i], position);
+        _sumumbofx_entrypoint_7(func_80100094(self, 1), size, i * step, (i + 1) * step, position, 0, 0);
+    }
+}
 
 OSThread *chswampplatform_entrypoint_0(void)
 {
