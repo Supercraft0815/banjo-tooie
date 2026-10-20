@@ -105,7 +105,67 @@ void ncba1p_entrypoint_4(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 0) + 80) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/1p/ncba1p_entrypoint_5.s")
+void ncba1p_entrypoint_5(void **arg0, s32 arg1) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80110728(s8 *, s32);
+    void func_801107F0(void *, f32 *);
+    void func_80110818(void *, f32 *);
+    void func_801163A0(void *, f32);
+    s32 state;
+    f32 *data;
+
+    state = *(s32 *)((u8 *)*arg0 + 0x4C);
+    switch (state) {
+        case 1:
+            if (arg1 == 1) {
+                break;
+            }
+            func_8080004C_ncba1p(arg0, 0x62);
+            break;
+        case 3:
+            if (arg1 == 3) {
+                break;
+            }
+            func_8080004C_ncba1p(arg0, 0x63);
+            break;
+    }
+    switch (arg1) {
+        case 1:
+            func_80110728((void *)arg0, 1);
+            data = *arg0;
+            if (*(s32 *)((u8 *)data + 0x4C) == 3) {
+                func_800EE7F8(data + 12, data);
+                data = *arg0;
+                func_800EE7F8(data + 15, data + 3);
+            } else {
+                func_801107F0(arg0, data);
+                func_80110818(arg0, (f32 *)*arg0 + 3);
+                func_801107F0(arg0, (f32 *)*arg0 + 12);
+                func_80110818(arg0, (f32 *)*arg0 + 15);
+            }
+            *(f32 *)((u8 *)*arg0 + 0x48) = 1.0f;
+            *(s8 *)((u8 *)*arg0 + 0x51) = 0;
+            data = *arg0;
+            break;
+        case 3:
+            *(f32 *)((u8 *)*arg0 + 0x48) = 1.0f;
+            *(s8 *)((u8 *)*arg0 + 0x51) = 0;
+            data = *arg0;
+            break;
+        case 4:
+            func_801163A0(arg0, 1.0f);
+            func_80110728((void *)arg0, 0);
+            data = *arg0;
+            break;
+        case 2:
+            data = *arg0;
+            break;
+        default:
+            data = *arg0;
+            break;
+    }
+    *(s32 *)((u8 *)data + 0x4C) = arg1;
+}
 
 /* extern */
 
