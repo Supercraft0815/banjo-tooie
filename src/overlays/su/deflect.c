@@ -1,15 +1,53 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/deflect/sudeflect_entrypoint_0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/deflect/sudeflect_entrypoint_1.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/deflect/sudeflect_entrypoint_2.s")
-
 extern struct {
     s32 entries[9];
     s32 count;
 } B_80801020_sudeflect;
+
+s32 sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3) {
+    void func_800A52E0(f32 *, f32, f32);
+    s32 *func_800BE3F8(u8 *);
+    s32 func_800F4F34(u32, f32 *, f32, f32);
+    s32 func_800F6438(u32);
+    s32 func_808006A4_sudeflect(f32 *, f32, f32);
+    s32 func_80800940_sudeflect(f32 *, f32, f32);
+    s32 var_s0;
+    s32 var_s2;
+
+    var_s2 = 0;
+    B_80801020_sudeflect.count = 0;
+    if (arg3 & 0x18) {
+        B_80801020_sudeflect.entries[0] = (s32)func_800BE3F8((u8 *)arg0);
+    }
+    if (arg3 & 2) {
+        var_s0 = 0;
+        do {
+            if (func_800F6438(var_s0) != 0 &&
+                func_800F4F34(var_s0, arg0, arg1, arg2) != 0) {
+                B_80801020_sudeflect.entries[B_80801020_sudeflect.count + 1] = var_s0;
+                B_80801020_sudeflect.count++;
+                var_s2 |= 2;
+            }
+            var_s0++;
+        } while (var_s0 != 8);
+    }
+    if (arg3 & 4) {
+        func_800A52E0(arg0, arg1, arg2);
+    }
+    if ((arg3 & 8) && func_808006A4_sudeflect(arg0, arg1, arg2) != 0) {
+        var_s2 |= 8;
+    }
+    if ((arg3 & 0x10) && func_80800940_sudeflect(arg0, arg1, arg2) != 0) {
+        var_s2 |= 0x10;
+    }
+    B_80801020_sudeflect.entries[0] = 0;
+    return var_s2;
+}
+
+#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/deflect/sudeflect_entrypoint_1.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/deflect/sudeflect_entrypoint_2.s")
 
 s32 sudeflect_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     s32 func_800F4E5C(s32, s32, s32, s32, s32);
