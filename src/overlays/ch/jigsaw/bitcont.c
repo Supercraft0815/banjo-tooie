@@ -135,7 +135,49 @@ void func_80800634_chjigsawbitcont(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_808006D8_chjigsawbitcont.s")
+void func_808006D8_chjigsawbitcont(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    s32 _subaddiebounce_entrypoint_1(Actor *);
+    s32 _subaddiebounce_entrypoint_2(Actor *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    extern u8 D_808009A0_chjigsawbitcont[];
+    f32 sp24;
+    f32 temp;
+
+    switch (arg0->unk70_10) {
+        case 1:
+            arg0->unk64_16 = 0;
+            if (arg0->unk58 > 0.0f) {
+                arg0->unk58 -= func_800D8FF8();
+            } else {
+                func_80800570_chjigsawbitcont(arg0, 2);
+            }
+            break;
+        case 2:
+            sp24 = func_800D8FF8();
+            func_80800634_chjigsawbitcont((s32)arg0);
+            if (arg0->unk79_4 >= 3) {
+                if (_subaddiebounce_entrypoint_1(arg0)) {
+                    arg0->unk79_4 = 2;
+                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808009A0_chjigsawbitcont);
+                }
+                temp = 360.0f * sp24;
+                arg0->rotation[1] += temp;
+                arg0->rotation[0] += temp;
+            } else if (_subaddiebounce_entrypoint_2(arg0)) {
+                arg0->unk79_4--;
+                if (arg0->unk79_4 <= 0) {
+                    func_80800570_chjigsawbitcont(arg0, 3);
+                }
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808009A0_chjigsawbitcont);
+            }
+            break;
+        case 3:
+        case 4:
+            func_80800634_chjigsawbitcont((s32)arg0);
+            break;
+    }
+}
 
 void func_80800868_chjigsawbitcont(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x38))) = 0.2f;
