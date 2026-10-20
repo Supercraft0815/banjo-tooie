@@ -140,7 +140,44 @@ void func_80801460_chfactorymagnet(Actor *arg0, s32 arg1) {
     _sumumbofx_entrypoint_7(arg1, func_80103EAC(arg0) * 0.6f, 0, 0x28, sp4C, 0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80801508_chfactorymagnet.s")
+void func_80801508_chfactorymagnet(Actor *arg0, s32 arg1) {
+    f32 func_800DC0C0(void);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    struct MagnetParticle {
+        f32 position[3];
+        f32 unkC;
+        f32 unk10;
+        f32 unk14;
+        s8 unk18;
+        s8 unk19;
+    } *sp24, *particle;
+    f32 value;
+
+    sp24 = func_80100094(arg0, 1);
+    if (func_800DC0C0() < 0.2f) {
+        particle = sp24;
+        particle += arg1;
+        particle->unk19 = func_800DC128(0, 3);
+        particle->unk14 = func_800DC0C0() * 0.15f + 0.35f;
+        value = func_800DC178(1.0f, 3.0f);
+        particle->unk10 = value;
+        particle->unkC = value;
+        if (func_800DC0C0() < 0.5f) { particle->unk18 = 1; } else { particle->unk18 = 2; }
+        if (func_800DC0C0() < 0.2f) {
+            func_800F5A00(func_800F54E4(), particle->position);
+            particle->position[0] += func_800DC178(-100.0f, 100.0f);
+            particle->position[1] += func_800DC178(0.0f, 200.0f);
+        } else {
+            particle->position[0] = func_800DC178(-2000.0f, 1500.0f);
+            particle->position[1] = func_800DC178(0.0f, 1600.0f);
+            particle->position[2] = func_800DC178(1200.0f, 1800.0f);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_808016A4_chfactorymagnet.s")
 
