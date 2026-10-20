@@ -34,7 +34,40 @@ s32 func_8080038C_chklungophial(s32 arg0, s32 arg1, volatile s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/phial/func_808003C8_chklungophial.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/phial/func_808006B4_chklungophial.s")
+s32 func_808006B4_chklungophial(Actor *arg0, f32 *arg1, f32 *arg2) {
+    void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
+    f32 func_800D8FF8(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF174(f32 *, f32 *, f32);
+    void func_800EFD24(f32 *);
+    s32 func_800F1988(f32 *, f32 *, f32 *);
+    f32 mlAbsF(f32);
+    f32 start[3];
+    f32 end[3];
+    f32 normal[3];
+    f32 scale;
+
+    func_800EE7F8(start, arg0->position);
+    scale = func_800D8FF8() * -6.0f;
+    func_800EF174(start, (f32 *)&arg0->actorData[4], scale);
+    func_800EE7F8(end, arg0->position);
+    func_800EF174(end, (f32 *)&arg0->actorData[4], func_800D8FF8() * 3.0f);
+    if (func_800C6A7C(start, end, normal, arg0->unk14)) {
+        if (func_800F1988(normal, arg2, arg2 + 1)) {
+            arg2[2] = 0.0f;
+            func_800EE7F8(arg1, end);
+            return 1;
+        }
+        if (mlAbsF(normal[0]) < 0.0001f &&
+            mlAbsF(normal[2]) < 0.0001f &&
+            mlAbsF(normal[1]) > 0.9999f) {
+            func_800EFD24(arg2);
+            func_800EE7F8(arg1, end);
+            return 1;
+        }
+    }
+    return 0;
+}
 
 void func_80800820_chklungophial(s32 arg0) 
 {
