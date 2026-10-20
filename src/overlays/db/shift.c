@@ -18,4 +18,30 @@ s32 dbshift_entrypoint_0(s32 *arg0) {
     return arg0[0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/shift/dbshift_entrypoint_1.s")
+void dbshift_entrypoint_1(s32 *arg0, void *arg1, s32 arg2, s32 arg3) {
+    void *func_800B2190(void *);
+    u8 *record;
+    u8 *vertices;
+    s32 i;
+    u8 *point;
+    f32 coords[2];
+
+    if (arg2 >= 0) {
+        record = (u8 *)(arg0 + 1);
+        if (arg2 < *arg0) {
+            for (i = 0; i < arg2; i++) {
+                record += *(s16 *)(record + 0x1A) * 8 + 0x1C;
+            }
+            vertices = func_800B2190(arg1);
+            point = record + 0x1C;
+            vertices += *(s16 *)(record + 0x18) * 0x10;
+            for (i = 0; i < *(s16 *)(record + 0x1A); i++) {
+                func_80800000_dbshift((s32)point, (s32 *)record, arg3, (s32 *)(record + 8), coords);
+                *(s16 *)(vertices + 8) = (s32)((-coords[0] * *(f32 *)(record + 0x10) - 0.5f) * 64.0f);
+                *(s16 *)(vertices + 0xA) = (s32)((coords[1] * *(f32 *)(record + 0x14) - 0.5f) * 64.0f);
+                point += 8;
+                vertices += 0x10;
+            }
+        }
+    }
+}
