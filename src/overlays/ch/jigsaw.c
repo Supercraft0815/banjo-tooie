@@ -80,7 +80,48 @@ void func_808004A0_chjigsaw(Actor *arg0, s32 arg1) {
     func_800DE448(arg0->position, sp2C, arg0->scale, NULL, func_8010347C(arg0->unk0));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/func_80800518_chjigsaw.s")
+s32 func_80800518_chjigsaw(Actor *arg0, s32 arg1, void *arg2) {
+    void _chjigsawcollect_entrypoint_1(Actor **, s32, s32);
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800CF9E4(s32, s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    f32 sp1C[3];
+
+    switch (arg1) {
+        case 0x3E:
+            func_80800000_chjigsaw(arg0, arg2);
+            break;
+        case 0x12:
+            arg0->unk64_19 = (s32)arg2;
+            break;
+        case 0x13:
+            arg0->unk50 = *(s32 *)&arg2;
+            break;
+        case 0x14:
+            if (arg2 != 0) {
+                arg0->unk58 = 3.0f;
+            } else {
+                arg0->unk58 = 0.0f;
+            }
+            break;
+        case 0x3D:
+            _chjigsawcollect_entrypoint_1(&arg0, (s32)arg0->unk50, arg0->unk70_0);
+            func_800FFAB0(arg0);
+            break;
+        case 0x55:
+            arg0->unk6C_0 = func_800C8A98();
+            func_800CF9E4((s32)arg0->unk50, 1, arg0->unk6C_0);
+            func_800EE7F8(sp1C, arg0->position);
+            sp1C[1] += 100.0f;
+            func_800C8CB8(arg0->unk6C_0, sp1C);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chjigsaw_entrypoint_0(void)
 {
