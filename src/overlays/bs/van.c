@@ -392,7 +392,58 @@ s32 bsvan_entrypoint_6(s32 arg0) {
     return ((s32 *)&D_80801CAC_bsvan)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80800A5C_bsvan.s")
+void func_80800A5C_bsvan(struct player_state_s *arg0) {
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setSmoothTransition(struct anctrl_s *, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    f32 baphysics_get_target_horizontal_velocity(struct player_state_s *);
+    void baphysics_set_gravity(struct player_state_s *, f32);
+    void baphysics_set_horizontal_velocity(struct player_state_s *, f32, f32);
+    void baphysics_set_target_yaw(struct player_state_s *, f32);
+    void baphysics_set_vertical_velocity(struct player_state_s *, f32);
+    f32 bastick_distance(struct player_state_s *);
+    f32 bastick_getAngleRelativeToBanjo(struct player_state_s *);
+    f32 yaw_getIdeal(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    void yaw_setVelocityBounded(struct player_state_s *, f32, f32);
+    void func_8009FFD8();
+    void func_8009D7A4(struct player_state_s *, f32, f32);
+    void _bavan_entrypoint_7(struct player_state_s *, f32);
+    s32 pad[2];
+    f32 sp2C;
+    struct anctrl_s *control;
+
+    bsvan_entrypoint_1(arg0);
+    control = baanim_getAnimCtrlPtr(arg0);
+    anctrl_reset(control);
+    anctrl_setSmoothTransition(control, 0);
+    anctrl_setIndex(control, 0xED);
+    anctrl_setSubrange(control, 0.0f, 0.359f);
+    anctrl_setDuration(control, 1.0f);
+    anctrl_setStart(control, 0.15f);
+    anctrl_setPlaybackType(control, 1);
+    anctrl_start(control);
+    func_8009FFD8(arg0, 1, 3, 1, 6);
+    yaw_setVelocityBounded(arg0, 300.0f, 6.5f);
+    if (bastick_distance(arg0) != 0.0f) {
+        yaw_setIdeal(arg0, bastick_getAngleRelativeToBanjo(arg0));
+    }
+    baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+    func_80800000_bsvan(arg0);
+    sp2C = yaw_getIdeal(arg0);
+    baphysics_set_horizontal_velocity(arg0, sp2C, baphysics_get_target_horizontal_velocity(arg0));
+    baphysics_set_vertical_velocity(arg0, 693.5f);
+    baphysics_set_gravity(arg0, -1200.0f);
+    func_8009D7A4(arg0, 1.35f, 1.45f);
+    _bavan_entrypoint_7(arg0, 0.0f);
+    *(s32 *)((s8 *)arg0 + 0x15C) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80800BDC_bsvan.s")
 
