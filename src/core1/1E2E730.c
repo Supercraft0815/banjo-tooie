@@ -251,7 +251,53 @@ s32 func_800175A0(u8 index) {
     return func_80025668(slots[index].cseq);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_800175F0.s")
+void func_800175F0(void) {
+    void func_80024E90(s32);
+    void func_80025F20(u8 *);
+    void func_800E96B0(s32);
+    extern s32 D_80079FA0;
+    MusicSlotView *slots = (MusicSlotView *)&D_80079FA0;
+    s32 i;
+
+    func_800E96B0(0);
+    for (i = 0; i < 6; i++) {
+        switch (slots[i].state) {
+            case 1:
+                if (slots[i].unk2 && !slots[i].pending && !slots[i].pad4) {
+                    func_80024E90((s32)slots[i].cseqp);
+                    if (slots[i].unk3) {
+                        slots[i].unk2 = 0;
+                    }
+                } else {
+                    slots[i].pending = 0;
+                }
+                if (slots[i].pad4 > 0) {
+                    slots[i].pad4--;
+                }
+                break;
+            case 0:
+                if (slots[i].unk2 && !slots[i].pad4 &&
+                    !*(s32 *)(slots[i].pad210 + 0x28)) {
+                    if (slots[i].unk3) {
+                        func_80025F20(slots[i].cseqp);
+                        slots[i].pad4 = 2;
+                    } else {
+                        func_8001713C((u8)i, slots[i].index_cpy);
+                    }
+                    slots[i].unk3 = 0;
+                    slots[i].unk2 = slots[i].unk3;
+                    slots[i].pending = 0;
+                    func_80017404((u8)i, slots[i].volume);
+                }
+                if (slots[i].pad4 > 0) {
+                    slots[i].pad4--;
+                }
+                break;
+            case 2:
+                break;
+        }
+    }
+}
 
 u32 func_80017764(s32 arg0) {
     extern u16 D_8003F600[];
