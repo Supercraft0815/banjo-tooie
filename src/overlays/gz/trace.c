@@ -37,7 +37,30 @@ s32 func_808000B8_gztrace(u8 *arg0) {
     return len;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/trace/func_808000E8_gztrace.s")
+void func_808000E8_gztrace(u8 *arg0, u8 *arg1, s32 arg2, u8 arg3, s32 arg4) {
+    s32 i;
+    s32 j;
+    s32 len;
+    s32 size;
+
+    len = func_808000B8_gztrace(arg1);
+    size = arg2 + arg4 + 1;
+    if (size >= len) {
+        func_80800038_gztrace(arg0, arg1);
+        for (i = len; i < size; i++) {
+            arg0[i] = ' ';
+        }
+    } else {
+        for (i = 0; i < arg2; i++) {
+            arg0[i] = arg1[i];
+        }
+        arg0[i++] = arg3;
+        for (j = len - arg4; i < size; i++, j++) {
+            arg0[i] = *(j + arg1);
+        }
+    }
+    arg0[size] = 0;
+}
 
 u8 *func_80800290_gztrace(s32 arg0, s32 arg1, u8 *arg2) {
     s32 i;
