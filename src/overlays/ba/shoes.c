@@ -104,7 +104,54 @@ void bashoes_entrypoint_5(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 268) + 5) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/bashoes_entrypoint_6.s")
+int bashoes_entrypoint_6(void *arg0, s32 arg1) {
+    void func_8009ADF0(void *, s32, s32);
+    void (*callback)(void *, s32, s32);
+    s32 old_state;
+    void *shoes;
+
+    shoes = *(void **)((u8 *)arg0 + 0x10C);
+    old_state = *(u8 *)((u8 *)shoes + 4);
+    switch (old_state) {
+        case 3:
+            func_808000D4_bashoes(arg0, arg1);
+            shoes = *(void **)((u8 *)arg0 + 0x10C);
+            break;
+        case 4:
+            func_808000D4_bashoes(arg0, arg1);
+            shoes = *(void **)((u8 *)arg0 + 0x10C);
+            break;
+        case 5:
+            func_808000D4_bashoes(arg0, arg1);
+            shoes = *(void **)((u8 *)arg0 + 0x10C);
+            break;
+    }
+    *(u8 *)((u8 *)shoes + 4) = arg1;
+    switch (arg1) {
+        case 1:
+            func_8009ADF0(arg0, 0xD, 0);
+            break;
+        case 2:
+            func_8009ADF0(arg0, 0xD, 1);
+            break;
+        case 3:
+            func_8009ADF0(arg0, 0xD, 1);
+            func_80800128_bashoes((s32)arg0, 0x10, 2, old_state);
+            break;
+        case 4:
+            func_8009ADF0(arg0, 0xD, 1);
+            func_80800128_bashoes((s32)arg0, 0x37, 3, old_state);
+            break;
+        case 5:
+            func_8009ADF0(arg0, 0xD, 1);
+            func_80800128_bashoes((s32)arg0, 0x38, 4, old_state);
+            break;
+    }
+    callback = *(void (**)(void *, s32, s32))((u8 *)*(void **)((u8 *)arg0 + 0x10C) + 8);
+    if (callback != NULL) {
+        callback(arg0, old_state, arg1);
+    }
+}
 
 void bashoes_entrypoint_7(void *arg0, s32 arg1) {
     *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 268) + 8) = arg1;
