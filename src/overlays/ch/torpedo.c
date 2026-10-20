@@ -121,7 +121,44 @@ void func_80800394_chtorpedo(s32 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/torpedo/chtorpedo_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/torpedo/func_80800720_chtorpedo.s")
+s32 func_80800720_chtorpedo(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void func_800FFAB0(Actor *);
+    void func_80109EEC(s16 *, s32);
+    struct TorpedoData {
+        u8 pad0[0x28];
+        s32 unk28;
+        s32 (*unk2C)(Unk80132ED0 *, s32, s32);
+        s32 unk30;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0x2C:
+            data->unk2C = NULL;
+            func_800FFAB0(arg0);
+            break;
+        case 5:
+            func_808001E0_chtorpedo(arg0, 3);
+            break;
+        case 0x95:
+            func_80109EEC(arg0, 0x10);
+            break;
+        case 0x78:
+            if (data->unk2C != NULL) {
+                data->unk2C(arg0->unk0, 0x78, data->unk30);
+                data->unk2C = NULL;
+            }
+            func_800FFAB0(arg0);
+            break;
+        case 0x98:
+            data->unk28 = 1;
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chtorpedo_entrypoint_1(void)
 {
