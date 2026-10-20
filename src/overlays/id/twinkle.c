@@ -107,7 +107,54 @@ void idtwinkle_entrypoint_4(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     *(s16 *)(arg0 + 0x28) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/twinkle/idtwinkle_entrypoint_5.s")
+void idtwinkle_entrypoint_5(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    f32 func_800D8FF8(void);
+    f32 func_800DC264(f32, f32);
+    extern s32 _idtwinkle_entrypoint_2;
+    s32 pad[2];
+    s32 done;
+    f32 dt;
+    s32 offset;
+    u8 *item;
+
+    dt = func_800D8FF8();
+    done = 0;
+    if (*(f32 *)(arg0 + 0x1C) > 0.0f) {
+        *(f32 *)(arg0 + 0x1C) -= dt;
+        if (*(f32 *)(arg0 + 0x1C) <= 0.0f) {
+            func_80800478_idtwinkle(arg0, arg1, arg2);
+        }
+    } else {
+        offset = 0;
+        if (*(s16 *)(arg0 + 0x28) > 0) {
+        do {
+            item = *(u8 **)(arg0 + 0x2C) + offset;
+            if (*(f32 *)(item + 4) > 0.0f) {
+                *(f32 *)(item + 4) -= dt;
+            } else if (item[0xE] == 0) {
+                *(f32 *)item += (f32)*(s8 *)(item + 0xF) * dt;
+                item = *(u8 **)(arg0 + 0x2C) + offset;
+                if (*(f32 *)item >= 1.0f) {
+                    *(f32 *)item = 1.0f;
+                    item = *(u8 **)(arg0 + 0x2C) + offset;
+                    *(s8 *)(item + 0xF) = -*(s8 *)(item + 0xF);
+                } else if (*(f32 *)item < 0.0f) {
+                    *(f32 *)item = 0.0f;
+                    (*(u8 **)(arg0 + 0x2C) + offset)[0xE] = 1;
+                }
+            } else {
+                done++;
+            }
+            offset += 0x10;
+        } while (offset < *(s16 *)(arg0 + 0x28) * 0x10);
+        }
+        _glid_entrypoint_0(arg1, arg2, &_idtwinkle_entrypoint_2, (s32)arg0);
+        if (done == *(s16 *)(arg0 + 0x28)) {
+            *(f32 *)(arg0 + 0x1C) = func_800DC264(0.0f, *(f32 *)(arg0 + 0x20));
+        }
+    }
+}
 
 void idtwinkle_entrypoint_6(u8 *arg0, s32 *arg1, s32 *arg2) {
     *arg1 = *(s32 *)(arg0 + 0x2C);
