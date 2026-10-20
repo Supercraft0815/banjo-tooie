@@ -550,7 +550,81 @@ OSThread *chtntmineshoot_entrypoint_2(void)
     return (OSThread *) D_80802774_chtntmineshoot;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80801F90_chtntmineshoot.s")
+void func_80801F90_chtntmineshoot(Actor **arg0, s32 arg1)
+{
+  typedef struct 
+  {
+    u32 state;
+    u16 pad4;
+    u16 anim;
+    f32 size;
+    f32 unkC;
+    f32 distance;
+    f32 height;
+    f32 speedMin;
+    f32 speedMax;
+    f32 yMin;
+    f32 yMax;
+    f32 lifeMin;
+    f32 lifeMax;
+  } DebrisSettings;
+  typedef struct 
+  {
+    f32 pad18[4];
+    f32 velocity[3];
+    f32 size;
+  } DebrisData;
+  typedef struct 
+  {
+    u32 rgba;
+  } DebrisColor;
+  f32 func_800DC178(f32, f32);
+  void func_800EEB9C(f32 *, f32, f32);
+  void func_800EF04C(f32 *, f32 *);
+  void func_800EFA98(f32 *, f32 *, f32);
+  void func_80101FDC(Actor *, u32);
+  s32 func_80103140(Actor *, u32, u16);
+  Actor *func_801084B0(s32, Actor **);
+  extern DebrisSettings D_808027BC_chtntmineshoot[][2];
+  Actor *actor;
+  u32 *color;
+  f32 min;
+  f32 vec[3];
+  f32 angle;
+  s32 i;
+  DebrisSettings *settings;
+  DebrisSettings *next;
+  DebrisSettings *base;
+  base = D_808027BC_chtntmineshoot[0];
+  base += ((arg1 == 4) ? (0) : (1)) * 2;
+  settings = base;
+  next = settings + 1;
+  i = 0;
+  angle = (*arg0)->rotation[1];
+  do
+  {
+    actor = func_801084B0(0x2C3, arg0);
+    color = (u32 *) (&(*arg0)->pad98);
+    base = settings;
+    *((u32 *) (&actor->pad98)) = *color;
+    func_80101FDC(actor, base->state);
+    func_80103140(actor, settings->anim, actor->unk0->unk16);
+    ((DebrisData *) actor->actorData)->size = settings->size;
+    actor->unk54 = settings->unkC;
+    actor->rotation[1] = func_800DC178(-30.0f, 30.0f) + angle;
+    angle += 72.0f;
+    func_800EEB9C(vec, actor->rotation[1], settings->distance);
+    vec[1] = settings->height;
+    func_800EF04C(actor->position, vec);
+    vec[1] = 0.0f;
+    func_800EFA98(((DebrisData *) actor->actorData)->velocity, vec, func_800DC178(settings->speedMin, settings->speedMax));
+    ((DebrisData *) actor->actorData)->velocity[1] = func_800DC178(settings->yMin, settings->yMax);
+    actor->unk50 = func_800DC178(settings->lifeMin, settings->lifeMax);
+    settings = next;
+    i++;
+  }
+  while (i != 5);
+}
 
 void func_80802140_chtntmineshoot(s32 arg0) 
 {
