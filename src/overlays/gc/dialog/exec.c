@@ -283,7 +283,69 @@ s32 func_80801020_gcdialogexec(s32 arg0) {
     return arg0 ? 1 : result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80801038_gcdialogexec.s")
+int func_80801038_gcdialogexec(void *arg0, s32 arg1) {
+    typedef struct {
+        s16 id;
+        s16 pad;
+        u8 *data;
+    } Text;
+    typedef struct {
+        u8 pad[0x100];
+        u8 *source;
+        Text *text[2];
+        u8 pad10C[8];
+        u8 count[2];
+        u8 pad116[0x51];
+        u8 character;
+    } Dialog;
+    u8 *_gldialog_entrypoint_4(s32);
+    void *heap_alloc(s32);
+    s32 code;
+    s32 group;
+    s32 i;
+    u8 *cursor;
+    u8 token;
+    s32 length;
+    Dialog *counts;
+    Dialog *arrays;
+
+    ((Dialog *)arg0)->source = _gldialog_entrypoint_4(arg1);
+    cursor = ((Dialog *)arg0)->source;
+    counts = arg0;
+    group = 0;
+    arrays = arg0;
+    do {
+        counts->count[0] = *cursor++;
+        arrays->text[0] = heap_alloc(counts->count[0] * 8);
+        group += 4;
+        for (i = 0; i < counts->count[0]; i++) {
+                token = *cursor++;
+                code = token;
+                if (code > 0 && code < 0x20) {
+                    code = -code;
+                    if (3 == token) {
+                        code = *cursor++ + 0x75;
+                    }
+                } else {
+                    if (token >= 0x80) {
+                        code = token - 0x80;
+                    } else {
+                        code = token;
+                    }
+                }
+                if (code == 0x51 || code == 0x79) {
+                    code = ((Dialog *)arg0)->character - 0xC;
+                }
+                cursor++;
+                arrays->text[0][i].id = code;
+                length = cursor[-1];
+                arrays->text[0][i].data = cursor;
+                cursor += length;
+        }
+        counts = (Dialog *)((u8 *)counts + 1);
+        arrays = (Dialog *)((u8 *)arrays + 4);
+    } while (group != 8);
+}
 
 /* extern */
 
