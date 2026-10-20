@@ -148,7 +148,76 @@ void func_808002D4_basetup(s32 arg0) {
     func_80800080_basetup(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/func_80800394_basetup.s")
+void func_80800394_basetup(struct player_state_s *self) {
+    int func_800A3274(struct player_state_s *);
+    s32 func_8008DAA8(void *);
+    s32 func_8008E23C(struct player_state_s *);
+    void func_800F457C(void *, s32);
+    u32 func_800F54E4(void);
+    s32 _badrone_entrypoint_29(struct player_state_s *);
+    s32 bs_getCurrentState(struct player_state_s *);
+    s32 bs_setState(s32, s32);
+    s32 func_800F64A4(s32, s32);
+    void func_800F8128(s32);
+    s32 func_800F8B88();
+    void func_800F8D50(s32, s32);
+    s32 func_800F8DA8();
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+    s32 sp20;
+    s32 state;
+    s32 flag;
+
+    sp34 = func_800F8B88() == 3;
+    sp30 = func_8008DAA8(self);
+    sp2C = func_800A3274(self);
+    state = bs_getCurrentState(self);
+    sp28 = state == 0;
+    sp20 = state == 0;
+    if (sp30 != 0) {
+        if (sp28) {
+            func_808002D4_basetup(self);
+        }
+    } else if (sp20) {
+        func_808002D4_basetup(self);
+    }
+    if (sp30 == 0) {
+        sp24 = func_800A3274(self);
+        if (func_800F64A4(func_800F54E4(), 0x10000)) {
+            if (func_8008E23C(self) && sp24 == 0xA) {
+                func_800F457C(self, 2);
+            } else {
+                bs_setState(self, _badrone_entrypoint_29(self));
+            }
+        } else if (sp34) {
+            bs_setState(self, 0xED);
+        } else {
+            func_800F457C(self, 2);
+        }
+        if (func_800F8DA8(sp24)) {
+            func_800F8D50(*(s32 *)((u8 *)self + 0x184), sp24);
+        }
+    } else {
+        flag = 0;
+        switch (sp2C) {
+            case 11:
+                if (sp34) {
+                    flag = 1;
+                }
+                break;
+            case 14:
+            case 17:
+                flag = 1;
+                break;
+        }
+        if (flag) {
+            func_800F8128(*(s32 *)((u8 *)self + 0x184));
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/func_80800534_basetup.s")
 
