@@ -1,6 +1,34 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/screenadjust/func_80800000_chscreenadjust.s")
+void func_80800000_chscreenadjust(Actor *arg0) {
+    void _glglobalsettings_entrypoint_6(s32, s32);
+    void func_80016068(u32, f32 *);
+    f32 func_800D8FF8(void);
+    f32 mlAbsF(f32);
+    f32 stick[2];
+    f32 dt;
+
+    dt = func_800D8FF8();
+    func_80016068(0, stick);
+    if (mlAbsF(stick[0]) > 0.05f) {
+        ((f32 *)arg0->actorData)[0] += stick[0] * dt * 64.0f;
+    }
+    if (((f32 *)arg0->actorData)[0] < -32.0f) {
+        ((f32 *)arg0->actorData)[0] = -32.0f;
+    } else if (((f32 *)arg0->actorData)[0] > 32.0f) {
+        ((f32 *)arg0->actorData)[0] = 32.0f;
+    }
+    if (mlAbsF(stick[1]) > 0.05f) {
+        ((f32 *)arg0->actorData)[1] += stick[1] * dt * -64.0f;
+    }
+    if (((f32 *)arg0->actorData)[1] < -40.0f) {
+        ((f32 *)arg0->actorData)[1] = -40.0f;
+    } else if (((f32 *)arg0->actorData)[1] > 24.0f) {
+        ((f32 *)arg0->actorData)[1] = 24.0f;
+    }
+    _glglobalsettings_entrypoint_6((s32)((f32 *)arg0->actorData)[0],
+                                  (s32)((f32 *)arg0->actorData)[1]);
+}
 
 /* extern */
 
