@@ -341,7 +341,59 @@ void func_80800CBC_chmusicmenu(Actor *arg0) {
     func_800DA3B8(var_s0 + 0x53E, func_800DA298(0x43));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_80800DA4_chmusicmenu.s")
+void func_80800DA4_chmusicmenu(Actor *arg0) {
+    s32 _gcnewoption_entrypoint_0(s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_80016B30(s32, s32);
+    s32 func_800D90A4(f32 *);
+    s32 func_800DA298(s32);
+    void func_800DA544();
+    s32 func_800FCCD4(s32);
+    s32 func_80100094(u8 *, s32);
+    s32 func_8010C500(void *);
+
+    switch (arg0->unk70_10) {
+        case 4:
+            if (func_8010C500(arg0)) {
+                if (!func_800DA298(0x3E1)) {
+                    func_80800930_chmusicmenu(arg0, 5);
+                    func_800DA544(0x3E1);
+                    return;
+                }
+                if (func_80016B30(0, 1)) {
+                    func_80800930_chmusicmenu(arg0, 5);
+                    return;
+                }
+            }
+            break;
+        case 2:
+            if (arg0->unk64_19 && func_800D90A4((f32 *)&arg0->actorData[5])) {
+                func_80800560_chmusicmenu(arg0, arg0->unk74_7, 0.0f);
+                arg0->unk64_19 = 0;
+            }
+        case 1:
+            if (arg0->unk74_7) {
+                if (func_800FCCD4(arg0->unk74_7) && !arg0->unk64_19) {
+                    func_80800400_chmusicmenu(arg0);
+                }
+                if (func_800D90A4(&arg0->unk58)) {
+                    func_80800000_chmusicmenu(arg0);
+                }
+            }
+            _gcnewoption_entrypoint_0(func_80100094(arg0, 1));
+            return;
+        case 3:
+            func_80800930_chmusicmenu(arg0, 4);
+            return;
+        case 7:
+            if (func_8010C500(arg0)) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1048, 0xF, arg0->position, 0x6F);
+                func_800DA544(0x344);
+                func_80800930_chmusicmenu(arg0, 6);
+            }
+            break;
+    }
+}
 
 /* extern */
 
