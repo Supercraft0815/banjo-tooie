@@ -565,7 +565,54 @@ s32 func_800970A4(f32 *arg0, f32 *arg1, f32 arg2) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80097104.s")
+s32 func_80097104(PlayerState *arg0, f32 *arg1, f32 arg2) {
+    void func_8009BB24(void *, f32 *);
+    void func_800EE97C(f32 *, f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EF2A0(f32 *);
+    void func_800EFA20(void *, void *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 sp6C[3];
+    f32 sp60[3];
+    f32 sp54[3];
+    f32 sp48[3];
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp18;
+    f32 sp28;
+    f32 sp1C[3];
+
+    func_800EFA20(sp6C, *(f32 **)((u8 *)arg0 + 0x98), arg2);
+    func_800EFB24(sp60, arg1, sp6C);
+    func_800EFA4C(sp48, 0.0f, 1.0f, 0.0f);
+    func_800EE97C(sp3C, *(f32 **)((u8 *)arg0 + 0x98), sp48);
+    func_800EFA20(sp30, sp3C, -1.0f);
+    func_8009BB24(arg0, sp1C);
+    sp1C[1] = 0.0f;
+    func_800EF2A0(sp1C);
+    sp28 = func_800EEAA4(sp3C, sp1C);
+    func_800EFA4C(sp54, sp60[0], sp60[1] - 50.0f, sp60[2]);
+    if (sp28 > 0.0f) {
+        sp18 = arg2 + 4.0f;
+        if (func_800970A4(sp60, sp3C, sp18)) {
+            return 0;
+        }
+        if (func_800970A4(sp54, sp3C, sp18)) {
+            return 0;
+        }
+    }
+    if (sp28 < 0.0f) {
+        sp18 = -(arg2 + 4.0f);
+        if (func_800970A4(sp60, sp3C, sp18)) {
+            return 0;
+        }
+        if (func_800970A4(sp54, sp3C, sp18)) {
+            return 0;
+        }
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_800972BC.s")
 
