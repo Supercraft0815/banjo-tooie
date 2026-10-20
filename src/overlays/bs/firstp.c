@@ -1,5 +1,7 @@
 #include "bs/firstp.h"
 
+void func_808061AC_bsfirstp(void *, s32);
+
 struct player_state_s;
 enum asset_e;
 
@@ -2719,7 +2721,7 @@ void bsfirstp_entrypoint_27(void *arg0) {
     void func_80806588_bsfirstp(void *);
     void func_80806774_bsfirstp(void *);
     void *ptr;
-    s32 state;
+    int state;
 
     ptr = *(void **)((u8 *)arg0 + 0x188);
     state = *(s32 *)((u8 *)ptr + 0x19C);
@@ -2813,7 +2815,7 @@ f32 func_80806170_bsfirstp(void *arg0, f32 arg1) {
     func_800F0DC0(arg1, 1.0f);
 }
 
-int func_808061AC_bsfirstp(void *arg0, s32 arg1) {
+void func_808061AC_bsfirstp(void *arg0, s32 arg1) {
     void baphysics_set_gravity(struct player_state_s *, f32);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     s32 baphysics_set_type(void *, s32);
@@ -3411,7 +3413,51 @@ void func_808074D0_bsfirstp(void *arg0) {
     func_80807C8C_bsfirstp(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80807504_bsfirstp.s")
+void func_80807504_bsfirstp(struct player_state_s *arg0) {
+    void func_80807BB8_bsfirstp(void *);
+    u32 func_800A3404(void *);
+    int func_800DB9B0(void);
+    s32 bs_getPreviousState(struct player_state_s *);
+    s32 _bsrest_entrypoint_16(void *);
+    void baanim_playForDuration_loop(struct player_state_s *, s32, f32);
+    void func_800936E8(void *, s32);
+    void func_8009337C(void *, s32);
+    s32 state;
+
+    if (func_800A3404(arg0) != 0) {
+        if (func_800DB9B0() != 0) {
+            *(s32 *)((u8 *)arg0 + 0x15C) = 2;
+        } else {
+            *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+        }
+    } else if (bs_getPreviousState(arg0) == 0xC8) {
+        *(s32 *)((u8 *)arg0 + 0x15C) = 3;
+    } else {
+        *(s32 *)((u8 *)arg0 + 0x15C) = 1;
+    }
+    func_808061AC_bsfirstp(arg0, 0);
+    state = *(int *)((u8 *)arg0 + 0x15C);
+    switch (state) {
+    case 2:
+        _bsrest_entrypoint_16(arg0);
+        func_80807BB8_bsfirstp(arg0);
+        baanim_playForDuration_loop(arg0, 0x272, 2.0f);
+        func_800936E8(arg0, 0);
+        func_8009337C(arg0, 1);
+        break;
+    case 0:
+        _bsrest_entrypoint_16(arg0);
+        func_80807BB8_bsfirstp(arg0);
+        baanim_playForDuration_loop(arg0, 0x272, 2.0f);
+        break;
+    case 1:
+        _bsrest_entrypoint_16(arg0);
+        func_80807BB8_bsfirstp(arg0);
+        break;
+    case 3:
+        break;
+    }
+}
 
 void func_8080762C_bsfirstp(struct player_state_s *arg0) {
     s32 _bsrest_entrypoint_16(void *);
