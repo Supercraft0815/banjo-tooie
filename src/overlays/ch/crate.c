@@ -58,7 +58,60 @@ s32 func_80800064_chcrate(Actor *arg0, s32 arg1, Unk80132ED0 *volatile arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crate/func_80800104_chcrate.s")
+void func_80800104_chcrate(Actor *arg0) {
+    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    s32 _chexploder_entrypoint_12(Actor *, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 func_800DA544(s32);
+    s32 func_800FFAB0();
+    void *func_80101080(void);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_801096C8(Actor *, s32);
+    void func_8010A570(Actor *);
+    void func_8010A624(Actor *);
+    s32 func_80800380_chcrate();
+    extern s32 D_808004E8_chcrate;
+    extern s32 D_808004F8_chcrate;
+    extern s32 D_80800508_chcrate;
+    extern void _chcrate_entrypoint_3(s32, s32, s32, s32, s32);
+    Actor *sp4C;
+    s32 sp48;
+    s32 sp44[1];
+    s32 sp40[1];
+    s32 sp3C[1];
+    s32 sp38[1];
+    s32 sp34[1];
+
+    sp4C = func_80106790(func_80101080());
+    sp48 = func_80800380_chcrate(arg0);
+    _chexploder_entrypoint_12(sp4C, 0x32);
+    func_800BBCB8(arg0->position, (f32 *)arg0->actorData, arg0->scale, 10, &D_80800508_chcrate);
+    func_801096C8(arg0, 0);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808004E8_chcrate);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808004F8_chcrate);
+    if ((s32)arg0->unk74_7 >= 0x33) {
+        sp44[0] = arg0->position[0];
+        sp40[0] = arg0->position[1];
+        sp3C[0] = arg0->position[2];
+        sp38[0] = arg0->rotation[1];
+        sp34[0] = arg0->unk74_7;
+        _chbaddiesetup_entrypoint_5(_chcrate_entrypoint_3, sp44[0], sp40[0], sp3C[0], sp38[0], sp34[0]);
+    } else if (sp48 != 0) {
+        func_800DA544(sp48);
+    }
+    if (sp48 != 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    func_80101FDC(arg0, 2);
+    func_80103110(arg0, 0);
+    func_8010A570(arg0);
+    func_8010A624(arg0);
+    arg0->unk64_16 = 0;
+}
 
 void chcrate_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     s32 func_800D0B68(u32, u32);
