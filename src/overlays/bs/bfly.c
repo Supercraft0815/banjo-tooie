@@ -589,7 +589,66 @@ void func_808015C4_bsbfly(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_808016B4_bsbfly.s")
+void func_808016B4_bsbfly(PlayerState *arg0) {
+    void _basudie_entrypoint_0(PlayerState *);
+    void _basudie_entrypoint_1(PlayerState *);
+    s32 _batimer_decrement(void *, s32);
+    void _batimer_set(PlayerState *, s32, f32);
+    void _ncbadie_entrypoint_3(PlayerState *, f32);
+    int anctrl_isAt(struct anctrl_s *, f32);
+    s32 anctrl_isStopped(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
+    void bs_setState(PlayerState *, s32);
+    int func_8008DD04(PlayerState *);
+    void func_8009D3A8(PlayerState *, s32);
+    void func_800A0180(PlayerState *);
+    PlayerState *func_800A4CA8(PlayerState *);
+    void func_800A4DFC(PlayerState *, s32);
+    s32 func_800F8B64(void);
+    s32 sp24;
+    struct anctrl_s *sp20;
+
+    sp24 = 0;
+    sp20 = baanim_getAnimCtrlPtr(arg0);
+    func_8009D3A8(arg0, 0);
+    switch (arg0->unk160.word) {
+    case 0:
+        func_808015C4_bsbfly(arg0);
+        if (anctrl_isAt(sp20, 0.2f) != 0) {
+            if (func_800F8B64() != 0) {
+                func_800A0180(arg0);
+                func_800A4DFC(arg0, 0xA);
+                _ncbadie_entrypoint_3(func_800A4CA8(arg0), 30.0f);
+                _basudie_entrypoint_1(arg0);
+                _batimer_set(arg0, 0, 3.2f);
+                arg0->unk160.word = 2;
+            }
+        } else if (anctrl_isAt(sp20, 0.92f) != 0) {
+            baanim_playForDuration_onceSmooth(arg0, 0xD2, 2.25f);
+            arg0->unk160.word = 1;
+        }
+        break;
+    case 1:
+        if (anctrl_isAt(sp20, 0.63f) != 0) {
+            sp24 = 0x20;
+        }
+        if (anctrl_isStopped(sp20) != 0) {
+            sp24 = 1;
+        }
+        if (func_8008DD04(arg0) != 0) {
+            sp24 = 0x2F;
+        }
+        break;
+    case 2:
+        func_808015C4_bsbfly(arg0);
+        if (_batimer_decrement(arg0, 0) != 0) {
+            _basudie_entrypoint_0(arg0);
+        }
+        break;
+    }
+    bs_setState(arg0, sp24);
+}
 
 /* extern */
 
