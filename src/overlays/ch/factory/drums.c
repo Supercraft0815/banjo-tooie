@@ -43,7 +43,42 @@ s32 func_80800000_chfactorydrums(Actor *arg0) {
     return total < ((s32)arg0->unk74_7 - 50);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/drums/func_80800130_chfactorydrums.s")
+s32 func_80800130_chfactorydrums(Actor *arg0) {
+    s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF2A0(f32 *);
+    void func_800EF3DC(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    u8 *actors[10];
+    s32 count;
+    s32 i;
+    s32 result = 1;
+    f32 origin[3];
+    f32 self[3];
+    f32 other[3];
+
+    count = _subaddiefind_entrypoint_4(0x3F0, actors, 10);
+    for (i = 0; i < count; i++) {
+        if ((((Actor *)actors[i])->unk70_10 == 3 ||
+             ((Actor *)actors[i])->unk70_10 == 5) &&
+            arg0 != (Actor *)actors[i]) {
+            func_800F5A00(func_800F54E4(), origin);
+            func_800EE7F8(other, ((Actor *)actors[i])->position);
+            func_800EE7F8(self, arg0->position);
+            func_800EF3DC(other, origin);
+            func_800EF3DC(self, origin);
+            func_800EF2A0(other);
+            func_800EF2A0(self);
+            result &= (other[0] * self[0] + other[1] * self[1] +
+                       other[2] * self[2]) <= 0.0f;
+            if (result == 0) {
+                return 0;
+            }
+        }
+    }
+    return result;
+}
 
 /* extern */
 
