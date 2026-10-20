@@ -65,7 +65,34 @@ void func_80800128_chclimbbase(Actor *arg0) {
     ((struct ClimbFields *)arg0)->distance = (s32)func_800EEAD4(arg0->position, (f32 *)arg0->actorData) + 500;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/climbbase/func_80800200_chclimbbase.s")
+void func_80800200_chclimbbase(Actor *arg0) {
+    void func_800EFB24(void *, void *, void *);
+    u32 func_800F54E4(void);
+    void func_800F7F00(s32, s32, s32, f32, s32, s32, f32);
+    void func_800F7F50(s32, s32, s32, f32, s32, s32);
+    void func_8010D254(f32 *);
+    f32 difference[3];
+    register f32 radius;
+    f32 position[3];
+
+    radius = (s32)arg0->unk74_7 + 25;
+    func_8010D254(position);
+    func_800EFB24(difference, arg0->position, position);
+    if (difference[0] * difference[0] + difference[2] * difference[2] < radius * radius
+        && arg0->position[1] < position[1]
+        && position[1] <= ((f32 *)arg0->actorData)[1]) {
+        switch (arg0->unk6C_9) {
+            case 0x1F9:
+                func_800F7F50(func_800F54E4(), (s32)arg0->position, (s32)arg0->actorData,
+                    arg0->unk74_7, arg0->unk6C_0, arg0->actorData[3]);
+                break;
+            case 0x16E:
+                func_800F7F00(func_800F54E4(), (s32)arg0->position, (s32)arg0->actorData,
+                    arg0->unk74_7, arg0->unk6C_0, arg0->actorData[3], arg0->rotation[1]);
+                break;
+        }
+    }
+}
 
 OSThread *chclimbbase_entrypoint_0(void)
 {
