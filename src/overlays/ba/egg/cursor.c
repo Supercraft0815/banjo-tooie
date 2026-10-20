@@ -66,7 +66,63 @@ void baeggcursor_entrypoint_6(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 104) + 10) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/cursor/baeggcursor_entrypoint_7.s")
+s32 baeggcursor_entrypoint_7(void *arg0, s32 arg1) {
+    void func_8009ADF0(void *, s32, s32);
+    void baeggcursor_entrypoint_10(void *, f32, f32);
+    u8 state;
+    void *cursor;
+
+    cursor = *(void **)((u8 *)arg0 + 0x68);
+    state = *(u8 *)((u8 *)cursor + 9);
+    switch (state) {
+    case 0:
+        *(u8 *)((u8 *)cursor + 8) = 0;
+        *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x68) + 0xA) = 1;
+        cursor = *(void **)((u8 *)arg0 + 0x68);
+        break;
+    case 1:
+        *(u8 *)((u8 *)cursor + 8) = 1;
+        *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x68) + 0x14) = 0x78;
+        cursor = *(void **)((u8 *)arg0 + 0x68);
+        break;
+    case 3:
+        *(s32 *)((u8 *)cursor + 0x14) = 0x78;
+        cursor = *(void **)((u8 *)arg0 + 0x68);
+        break;
+    }
+    *(u8 *)((u8 *)cursor + 9) = arg1;
+    switch (arg1) {
+    case 0:
+    case 1:
+        func_8009ADF0(arg0, 8, 0);
+        cursor = *(void **)((u8 *)arg0 + 0x68);
+        if (*(u8 *)((u8 *)cursor + 8) != 0) {
+            *(u8 *)((u8 *)cursor + 8) = 0;
+        }
+        break;
+    case 2:
+        func_8009ADF0(arg0, 8, 1);
+        *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x68) + 0x18) = 1.0f;
+        *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x68) + 0x14) = 0x78;
+        break;
+    case 3:
+        func_8009ADF0(arg0, 8, 1);
+        *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x68) + 0xC) = 0.3f;
+        baeggcursor_entrypoint_10(arg0, 152.0f, 114.0f);
+        *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x68) + 0x18) = 16.0f;
+        *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x68) + 0x14) = 0;
+        break;
+    case 4:
+        func_8009ADF0(arg0, 8, 1);
+        *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x68) + 0xC) = 0.2f;
+        break;
+    case 5:
+        func_8009ADF0(arg0, 8, 1);
+        *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x68) + 0xC) = 0.0f;
+        *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x68) + 0x10) = 0;
+        break;
+    }
+}
 
 void baeggcursor_entrypoint_8(void *arg0) {
     u8 temp_v0;
