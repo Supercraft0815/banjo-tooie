@@ -38,4 +38,35 @@ void idtwinklecolour_entrypoint_3(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/twinklecolour/idtwinklecolour_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/twinklecolour/idtwinklecolour_entrypoint_5.s")
+void idtwinklecolour_entrypoint_5(s16 *arg0, s32 arg1, s32 arg2)
+{
+  s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+  f32 func_800D8FF8(void);
+  s32 func_800E3DC0(s16 *, s16 *);
+  extern s32 _idtwinklecolour_entrypoint_2;
+  f32 sp34;
+  f32 temp_f0;
+  s32 var_s0;
+  s32 var_s1;
+  u8 *temp_v0;
+  sp34 = func_800D8FF8();
+  if (func_800E3DC0(arg0, arg0 + 3) != 0)
+  {
+    var_s1 = 0;
+ do { if ((*((s16 *) (((s8 *) arg0) + 0x22))) > 0) { var_s0 = 0; do { temp_v0 = (*((s32 *) (((s8 *) arg0) + 0x24))) + var_s0; *((f32 *) (((s8 *) temp_v0) + 0)) += ((f32) (*((s8 *) (((s8 *) temp_v0) + 0xB)))) * sp34; temp_v0 = (*((s32 *) (((s8 *) arg0) + 0x24))) + var_s0; temp_f0 = *((f32 *) temp_v0); if (temp_f0 >= 1.0f) { *((f32 *) temp_v0) = 1.0f; temp_v0 = (*((s32 *) (((s8 *) arg0) + 0x24))) + var_s0; *((s8 *) (((s8 *) temp_v0) + 0xB)) = (s8) (-(*((s8 *) (((s8 *) temp_v0) + 0xB)))); } else if (temp_f0 < 0.0f) { *((f32 *) temp_v0) = 0.0f; *((s8 *) (((s8 *) ((*((s32 *) (((s8 *) arg0) + 0x24))) + var_s0)) + 0xD)) = 1; } var_s1 += 1; var_s0 += 0x14; } while (var_s1 < (*((s16 *) (((s8 *) arg0) + 0x22)))); var_s1 = 0; } _glid_entrypoint_0(arg1, arg2, &_idtwinklecolour_entrypoint_2, (s32) arg0); } while (0);
+    var_s0 = 0;
+    if ((*((s16 *) (((s8 *) arg0) + 0x22))) > 0)
+    {
+      do
+      {
+        if ((*((u8 *) (((s8 *) ((*((s32 *) (((s8 *) arg0) + 0x24))) + var_s0)) + 0xD))) != 0)
+        {
+          func_80800574_idtwinklecolour(arg0, arg1, arg2, var_s1);
+        }
+        var_s1 += 1;
+        var_s0 += 0x14;
+      }
+      while (var_s1 < (*((s16 *) (((s8 *) arg0) + 0x22))));
+    }
+  }
+}
