@@ -35,7 +35,62 @@ u8 *subaddiestore_entrypoint_0(u8 *arg0, u8 *arg1) {
     return arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/store/subaddiestore_entrypoint_1.s")
+void subaddiestore_entrypoint_1(s32 arg0, u8 *arg1) {
+    typedef struct {
+        u8 pad0[0x70];
+        u32 pad70:14;
+        u32 flag70:1;
+        u32 rest70:17;
+    } StoreFlags;
+    s32 _glcutDll_entrypoint_1(void);
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    void func_800FFAB0(Actor *);
+    s32 func_80102F74(Unk80132ED0 *, s32);
+    Actor *func_80108474(u32, f32 *, s32);
+    s32 func_80800330_subaddiestore();
+    void func_80800B24_subaddiestore();
+    u8 *func_80800FD0_subaddiestore();
+    s32 func_80801054_subaddiestore();
+    s32 *iterator;
+    u8 *sp50;
+    s32 i;
+    s32 sp48;
+    s32 actor;
+    s16 *header = (s16 *)arg1;
+
+    iterator = &sp48;
+    actor = func_801067C4(iterator);
+    while (actor != 0) {
+            if (((Actor *)actor)->pad6C_21 != 0) {
+                i = func_80801054_subaddiestore(arg1, (u8 *)actor, &sp50);
+                switch (i) {
+                case 1:
+                    if (!((StoreFlags *)sp50)->flag70 || _glcutDll_entrypoint_1() != 0) {
+                        func_80800B24_subaddiestore(sp50, (u8 *)actor);
+                    }
+                    break;
+                case 0:
+                    if (!((StoreFlags *)actor)->flag70 && func_80102F74((Unk80132ED0 *)actor, 0x80000) == 0) {
+                        func_800FFAB0((Actor *)actor);
+                    }
+                    break;
+                }
+            }
+            actor = func_8010682C(iterator);
+    }
+    sp50 = arg1 + 4;
+    i = 0;
+    if (*header > 0) {
+        do {
+            if (func_80800330_subaddiestore((Actor *)sp50) != 0) {
+                func_80800B24_subaddiestore(sp50, (u8 *)func_80108474(((Actor *)sp50)->unk6C_9, ((Actor *)sp50)->position, (s32)((Actor *)sp50)->rotation[1]));
+            }
+            sp50 = func_80800FD0_subaddiestore(sp50);
+            i++;
+        } while (i < *header);
+    }
+}
 
 s32 func_80800260_subaddiestore(Unk80132ED0 *arg0) {
     typedef struct {
