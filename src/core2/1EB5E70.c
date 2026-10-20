@@ -1244,4 +1244,37 @@ void func_800DF900(u8 *arg0) {
     func_8001980C((*(s32 *)((s8 *)(arg0) + (4))), (*(s32 *)((s8 *)(arg0) + (8))), (*(s32 *)((s8 *)(arg0) + (0))), (*(s32 *)((s8 *)(arg0) + (0xC))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DF944.s")
+ImageStruct *func_800DF944(void *a0, f32 *coords, f32 a2, f32 a3, f32 *a4, s32 a5, ImageStruct *a6) {
+    s32 func_800A89F8();
+    f32 func_800A8AF0(s32);
+    void func_800E42F0();
+    void func_800E4640(Gfx **);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFD24(f32 *);
+    extern f32 D_80125D68;
+    extern s16 widescreen_enabled;
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp2C[3];
+
+    func_800E42F0(a0, a5);
+    if (coords != NULL) {
+        func_800EFA4C(sp44, coords[0] * 4.0f - 608.0f, 456.0f - coords[1] * 4.0f, -10.0f);
+    } else {
+        func_800EFA4C(sp44, 0.0f, 0.0f, -10.0f);
+    }
+    if (a5 != 0 && widescreen_enabled != 0) {
+        sp44[0] *= func_800A8AF0(func_800A89F8()) / D_80125D68;
+    }
+    func_800EFA4C(sp38, 0.0f, 0.0f, a2);
+    if (a4 != NULL) {
+        func_800EFA4C(sp2C, a4[0], a4[1], 0.0f);
+    } else {
+        func_800EFD24(sp2C);
+    }
+    func_800DF830(0);
+    func_800DF440(0);
+    a6 = func_800DE498(a0, sp44, sp38, 4.0f * a3, sp2C, (s32)a6);
+    func_800E4640(a0);
+    return a6;
+}
