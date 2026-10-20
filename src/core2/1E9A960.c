@@ -103,7 +103,60 @@ void func_800C1210(void *arg0, s32 arg1) {
     ((struct Flags *)arg0)->value = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C122C.s")
+s32 func_800C122C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    extern f32 D_8011A870;
+    extern f32 D_8011A874;
+    f32 temp_f0;
+    f32 temp_f0_2;
+    f32 var_f0;
+    f32 var_f2;
+    f32 var_f2_2;
+    f32 var_f2_3;
+    f32 var_f2_4;
+
+    if (arg3 != 0) {
+        if ((arg1 == 0) || (arg2 == 0)) {
+            return arg0;
+        }
+        return arg0 + 0x80;
+    }
+    if ((arg1 == 0) || (arg2 == 0)) {
+        temp_f0 = ((f32) arg0 + (D_8011A870 * 127.0f)) * D_8011A874;
+        if (temp_f0 > 127.0f) {
+            var_f2_2 = 127.0f;
+        } else {
+            var_f2_2 = temp_f0;
+        }
+        if (var_f2_2 < 0.0f) {
+            temp_f0 = 0.0f;
+        } else {
+            if (temp_f0 > 127.0f) {
+                var_f2 = 127.0f;
+            } else {
+                var_f2 = temp_f0;
+            }
+            temp_f0 = var_f2;
+        }
+        return (s32) temp_f0;
+    }
+    temp_f0_2 = ((f32) arg0 + (D_8011A870 * 127.0f)) * D_8011A874;
+    if (temp_f0_2 > 127.0f) {
+        var_f2_3 = 127.0f;
+    } else {
+        var_f2_3 = temp_f0_2;
+    }
+    if (var_f2_3 < 0.0f) {
+        var_f0 = 0.0f;
+    } else {
+        if (temp_f0_2 > 127.0f) {
+            var_f2_4 = 127.0f;
+        } else {
+            var_f2_4 = temp_f0_2;
+        }
+        var_f0 = var_f2_4;
+    }
+    return (s32) (var_f0 + 128.0f);
+}
 
 void func_800C13A0(void *arg0, s32 arg1) {
     (*(u16 *)((s8 *)(arg0) + (0x7C))) = (u16) ((*(u16 *)((s8 *)(arg0) + (0x7C))) | arg1);
