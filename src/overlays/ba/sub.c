@@ -253,6 +253,8 @@ void basub_entrypoint_8(void *arg0, s32 arg1) {
     }
 }
 
+void func_8009C128(u8 *, f32 *);
+
 void func_80800834_basub(u8 *arg0) {
     s32 func_8010D930(s32, s32, f32 *, s32 *);
     extern s32 D_80800C24_basub;
@@ -310,7 +312,58 @@ void basub_entrypoint_13(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 304) + 36) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/sub/basub_entrypoint_14.s")
+void basub_entrypoint_14(u8 *arg0) {
+    void *func_80092AD8(u8 *);
+    void func_8009C128(u8 *, f32 *);
+    void func_800C31DC(u8, f32);
+    void func_800C33DC(u8, s32);
+    void func_800C35E8(u8, f32 *);
+    void func_800C368C(u8, s32);
+    void func_800C3BDC(u8);
+    f32 func_800D8FF8(void);
+    void func_800E0AF0(void *, f32);
+    void func_800E0AFC(void *, u8, f32, f32, f32, f32);
+    s32 func_800F1574(f32 *, f32);
+    f32 func_800F15F8(f32, f32, f32);
+    f32 dt;
+    u8 *data;
+    f32 position[3];
+    void *model;
+    f32 timer;
+    f32 step;
+
+    dt = func_800D8FF8();
+    model = func_80092AD8(arg0);
+    func_800E0AF0(model, 1.0f);
+    func_800F1574((f32 *)(*(u8 **)((u8 *)arg0 + 0x130) + 4), dt);
+    data = *(u8 **)((u8 *)arg0 + 0x130);
+    timer = *(f32 *)(data + 0x1C);
+    if (dt < timer) {
+        step = dt;
+    } else {
+        step = timer;
+    }
+    *(f32 *)(data + 0x1C) = timer - step;
+    data = *(u8 **)((u8 *)arg0 + 0x130);
+    *(f32 *)(data + 0x20) += *(f32 *)(data + 0x24) * dt;
+    func_800E0AFC(model, 0x2A, 1.0f, 0.0f, 0.0f,
+                  *(f32 *)(*(u8 **)((u8 *)arg0 + 0x130) + 0x20));
+    data = *(u8 **)((u8 *)arg0 + 0x130);
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0x130) + 0x14) =
+        func_800F15F8(*(f32 *)(data + 0x14), *(f32 *)(data + 0x18), 450.0f * dt);
+    func_800E0AFC(model, 0x41, 1.0f,
+                  *(f32 *)(*(u8 **)((u8 *)arg0 + 0x130) + 0x14), 0.0f, 0.0f);
+    func_800E0AFC(model, 0x43, 1.0f,
+                  *(f32 *)(*(u8 **)((u8 *)arg0 + 0x130) + 0x14), 0.0f, 0.0f);
+    func_8009C128(arg0, position);
+    func_800C35E8(*(u8 *)(*(u8 **)((u8 *)arg0 + 0x130) + 0xC), position);
+    func_800C33DC(*(u8 *)(*(u8 **)((u8 *)arg0 + 0x130) + 0xC), 0);
+    func_800C368C(*(u8 *)(*(u8 **)((u8 *)arg0 + 0x130) + 0xC), 0);
+    data = *(u8 **)((u8 *)arg0 + 0x130);
+    func_800C31DC(*(u8 *)(data + 0xC), *(f32 *)(data + 0x10));
+    func_800C3BDC(*(u8 *)(*(u8 **)((u8 *)arg0 + 0x130) + 0xC));
+    func_80800110_basub((u8 *)arg0);
+}
 
 void basub_entrypoint_15(void *arg0, s32 arg1) {
     if (arg1 != 0) {
