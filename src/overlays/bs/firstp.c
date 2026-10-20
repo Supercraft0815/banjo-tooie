@@ -1,6 +1,7 @@
 #include "bs/firstp.h"
 
 void func_808061AC_bsfirstp(void *, s32);
+void func_8009E4E0(void *, s32, s32);
 
 struct player_state_s;
 enum asset_e;
@@ -3943,7 +3944,51 @@ void func_80808678_bsfirstp(Actor *arg0, volatile s32 arg1) {
     func_8080633C_bsfirstp(arg0, 0.15f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_808086B0_bsfirstp.s")
+void func_808086B0_bsfirstp(Actor *arg0, s32 arg1) {
+    f32 baphysics_get_target_horizontal_velocity(struct player_state_s *);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
+    void func_8009E55C(struct player_state_s *, s32, f32);
+    void func_8009E5A4(struct player_state_s *, s32, s32);
+    void func_8009E4E0(void *, s32, s32);
+    void baflag_set(struct player_state_s *, s32);
+    s32 baflag_clear(s32, s32);
+    extern s32 _bsfirstp_entrypoint_13;
+    void *config;
+    void *anim1;
+    void *anim2;
+    void *self = arg0;
+
+    config = func_80802458_bsfirstp(self);
+    switch (arg1) {
+        case 1:
+            baphysics_set_target_horizontal_velocity(self,
+                baphysics_get_target_horizontal_velocity(self) * 0.3f);
+            func_80802A40_bsfirstp(self, 8);
+            func_808025C8_bsfirstp(self, &anim1, &anim2);
+            func_80800424_bsfirstp(self, *(s16 *)anim1, *(f32 *)((u8 *)anim1 + 4));
+            baanim_playForDuration_onceSmooth(self, *(s16 *)anim2, *(f32 *)((u8 *)anim2 + 4));
+            break;
+        case 2:
+            baphysics_set_target_horizontal_velocity(self, 1000.0f);
+            func_8009E55C(self, 2, *(f32 *)((u8 *)config + 8));
+            func_8009E5A4(self, 2, 3);
+            func_8009E4E0(self, 2, &_bsfirstp_entrypoint_13);
+            baflag_set(self, 0x3B);
+            func_80802A40_bsfirstp(self, 9);
+            break;
+        case 3:
+            func_8080633C_bsfirstp(self, 0.3f);
+            if (baphysics_get_target_horizontal_velocity(self) < 0.0f) {
+                baphysics_set_target_horizontal_velocity(self, 0.0f);
+            }
+            func_8009E5A4(self, 2, 2);
+            func_8009E55C(self, 2, 0.0f);
+            baflag_clear(self, 0x3B);
+            break;
+    }
+    *(s32 *)((u8 *)self + 0x15C) = arg1;
+}
 
 void func_80808848_bsfirstp(Actor *arg0) {
     void _bainvisible_entrypoint_7(Actor *, s32, f32, f32, f32);
