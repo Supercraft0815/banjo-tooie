@@ -131,7 +131,43 @@ u8 sukickball_entrypoint_12(Actor *arg0, s32 arg1) {
     return ((u8 *)func_80100094(arg0, 0))[arg1 + 0x34];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_13.s")
+s32 sukickball_entrypoint_13(f32 *arg0, f32 *arg1, f32 arg2) {
+    f32 func_800DC178(f32, f32);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    int func_800F0064(f32 *, f32, f32 *);
+    struct kickball_vector { f32 v[3]; };
+    extern struct kickball_vector D_80801228_sukickball;
+    struct kickball_vector sp4C;
+    f32 sp40[3];
+    f32 sp34[3];
+    f32 sp30;
+    f32 sp2C;
+
+    if (func_800F0064(arg0, arg2, arg1) != 0) {
+        sp4C = D_80801228_sukickball;
+        sp30 = arg1[1];
+        sp2C = arg0[1];
+        func_800EE7F8(sp40, arg0);
+        func_800EE7F8(sp34, arg1);
+        if (arg1[0] == arg0[0] && arg1[2] == arg0[2]) {
+            arg1[0] = func_800DC178(-5.0f, 5.0f) + arg1[0];
+            arg1[2] = func_800DC178(-5.0f, 5.0f) + arg1[2];
+        }
+        sp4C.v[0] = arg0[0] - arg1[0];
+        sp4C.v[1] = arg0[1] - arg1[1];
+        sp4C.v[2] = arg0[2] - arg1[2];
+        func_800EF368(sp4C.v, arg2 * 1.1f);
+        func_800EFB24(arg1, sp40, sp4C.v);
+        func_800EE780(arg0, sp34, sp4C.v);
+        arg1[1] = sp30;
+        arg0[1] = sp2C;
+        return 1;
+    }
+    return 0;
+}
 
 void sukickball_entrypoint_14(Actor *arg0) {
     void func_80102B2C(Actor *, f32);
