@@ -70,7 +70,44 @@ void func_80800128_bashoes(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/func_80800180_bashoes.s")
+void func_80800180_bashoes(PlayerState *arg0, s32 arg1) {
+    void _baalarm_entrypoint_3(PlayerState *, f32, f32);
+    s32 baflag_clear(s32, s32);
+    int baflag_isFalse(PlayerState *, s32);
+    int baflag_isTrue(PlayerState *, s32);
+    f32 bastatetimer_get(PlayerState *, int);
+    f32 bastatetimer_getPrevious(PlayerState *, int);
+    s32 bastatetimer_isDone(s32, s32);
+    void bastatetimer_set(void *, s32, f32);
+    void func_8009DE38(PlayerState *, s32, f32);
+    int func_800A3274(PlayerState *);
+    f32 previous;
+    f32 current;
+    s32 sound;
+
+    previous = bastatetimer_getPrevious(arg0, 3);
+    current = bastatetimer_get(arg0, 3);
+    if (*((u8 *)*(void **)((u8 *)arg0 + 0x10C) + 5) == 0) {
+        _baalarm_entrypoint_3(arg0, previous, current);
+        if (current == 0.0f && previous != current && baflag_isFalse(arg0, 0x14)) {
+            if (func_800A3274(arg0) == 0xB) {
+                sound = 0x459D;
+            } else {
+                sound = 0x3EB;
+            }
+            func_8009DE38(arg0, sound, 1.0f);
+        }
+    }
+    if (baflag_isTrue(arg0, arg1)) {
+        baflag_clear(arg0, arg1);
+        func_80800020_bashoes(arg0);
+        bastatetimer_set(arg0, 3, **(f32 **)((u8 *)arg0 + 0x10C));
+    }
+    if (bastatetimer_isDone(arg0, 3) &&
+        *((u8 *)*(void **)((u8 *)arg0 + 0x10C) + 5) == 0) {
+        bashoes_entrypoint_6(arg0, 2);
+    }
+}
 
 void bashoes_entrypoint_3(s32 arg0)
 {
