@@ -75,7 +75,44 @@ void chfirefx_entrypoint_6(Actor *arg0, s16 arg1, s16 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/func_80800884_chfirefx.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/func_80800AA8_chfirefx.s")
+void func_80800AA8_chfirefx(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800DA298(s32);
+    void func_8010D640(s32);
+    f32 func_800EEB40(f32 *, f32 *);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    void func_800C3584(u8, f32, f32);
+    void func_800C3BDC(u8);
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    extern s32 D_80801290_chfirefx;
+    u16 *data;
+    f32 position[3];
+    s32 active;
+
+    data = func_80100094(arg0, 0);
+    active = arg0->unk70_10 == 2;
+    if (arg0->unk64_20) {
+        active &= func_800DA298(0) == 0;
+    }
+    func_8010D640(position);
+    if (active) {
+        if (func_800EEB40(position, arg0->position) > (f32)(data[11] * data[11])) {
+            active = 0;
+        }
+    }
+    if (active) {
+        if (arg0->unk5F == 0) {
+            arg0->unk5F = func_800C4350(arg0->unk5F, arg0->position, &D_80801290_chfirefx);
+        }
+        if (arg0->unk5F != 0) {
+            func_800C4350(arg0->unk5F, arg0->position, NULL);
+            func_800C3584(arg0->unk5F, (f32)(u32)data[10], (f32)(u32)data[11]);
+            func_800C3BDC(arg0->unk5F);
+        }
+    } else {
+        _subaddieaudioloop_entrypoint_2(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/func_80800C18_chfirefx.s")
 
