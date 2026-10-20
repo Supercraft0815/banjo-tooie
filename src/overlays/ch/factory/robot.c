@@ -787,4 +787,50 @@ s32 func_80802470_chfactoryrobot(Actor *arg0, s32 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_808025D4_chfactoryrobot.s")
+s32 func_808025D4_chfactoryrobot(Actor *arg0) {
+    s32 _capod_entrypoint_13();
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiefind_entrypoint_10(Actor *, s32, u32);
+    void func_800D1254(s32, s32, f32 *);
+    s32 func_800DA298(s32);
+    s32 func_800EA090(void);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800F0D90(s32, s32, s32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(Actor *, u32);
+    struct RobotData {
+        Unk80132ED0 *markers[4];
+        u8 count;
+        u8 limit;
+        u8 active;
+        u8 remaining;
+        u8 initialized;
+    };
+    struct RobotData *data;
+    s32 i;
+    f32 pos[3];
+
+    data = func_80100094(arg0, 0);
+    if (data->active) {
+        _subaddieDll_entrypoint_4(arg0, 1);
+        data->remaining = 6;
+        func_80101FDC(arg0, func_800DA298(0x1BB) ? 10 : 4);
+        func_800EE7F8(pos, arg0->position);
+        pos[1] += 300.0f;
+        func_800D1254(0x39, 1, pos);
+    } else if (!_subaddiefind_entrypoint_10(arg0, 0x3BD, arg0->unk74_7)) {
+        func_80101FDC(arg0, 3);
+        func_80103110(arg0, 0);
+    }
+    data->limit = func_800F0D90((s32)arg0->rotation[1], 1, 4);
+    data->count = 0;
+    data->initialized = 1;
+    for (i = 0; i < data->limit; i++) {
+        data->markers[i] = NULL;
+    }
+    if (data->active && !func_800DA298(0x6A3) && func_800EA090() == 3) {
+        _capod_entrypoint_13(arg0->unk0, NULL, 8, 0x10);
+        func_800DA544(0x6A3);
+    }
+}
