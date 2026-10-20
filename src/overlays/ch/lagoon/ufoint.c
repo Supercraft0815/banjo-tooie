@@ -7,7 +7,51 @@ OSThread *chlagoonufoint_entrypoint_0(void)
     return (OSThread *) D_80801948_chlagoonufoint;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_8080000C_chlagoonufoint.s")
+void func_8080000C_chlagoonufoint(Actor *arg0, s32 arg1) {
+    typedef struct {
+        f32 unk0[3];
+        f32 unkC;
+        f32 unk10[3];
+    } UfoIntData;
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, Unk80132ED0 *);
+    void func_800CE88C(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    void func_800FC63C(u32, u32);
+    void *func_80100094(Actor *, u32);
+    switch (arg1) {
+        case 1:
+            func_800DA524(0);
+            break;
+        case 2:
+            func_800CE8D8(0, 20.0f, 0x14);
+            func_800CE88C(0, 1);
+            break;
+        case 4:
+            func_800CE88C(0, 0);
+            func_800FC63C(0x10, 0x6D60);
+            _susubgame_entrypoint_6(arg0, func_80100094(arg0, 0), 8, 0x30, 0);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xFF5, 8, arg0->position, 0x62);
+            func_800DA544(0x9F0);
+            break;
+        case 3:
+            arg0->unk79_4 = 0;
+            func_800FC63C(0x17, 0x6D60);
+            func_800DA544(0);
+            ((UfoIntData *)arg0->actorData)->unk10[0] = 0.0f;
+            ((UfoIntData *)arg0->actorData)->unk10[1] = -0.33333334f;
+            if (func_800DA298(0x9EF) == 0) {
+                _susubgame_entrypoint_6(arg0, func_80100094(arg0, 0), 4, 0x30, 0);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0xFF4, 8, arg0->position, 0x62);
+            }
+            arg0->unk58 = 3.0f;
+            break;
+    }
+    arg0->unk70_10 = arg1;
+}
 
 void func_808001A0_chlagoonufoint(Actor *arg0) {
     typedef struct {
