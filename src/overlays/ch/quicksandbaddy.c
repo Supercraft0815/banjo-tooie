@@ -73,7 +73,55 @@ s32 func_80800CFC_chquicksandbaddy(Actor *arg0, f32 arg1[3], f32 arg2[3]) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quicksandbaddy/func_80800DBC_chquicksandbaddy.s")
+s32 func_80800DBC_chquicksandbaddy(Actor *arg0) {
+    s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
+    s32 func_800D90A4(f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    Unk80132ED0 *func_800F55D0(s32);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6C5C(s32);
+    s32 func_800F6E00(s32);
+    s32 func_8010C500(void *);
+    f32 position[3];
+    u8 *actors[20];
+    f32 distance;
+    s32 count;
+    s32 i;
+    u8 **actor;
+    Actor *other;
+
+    if (!func_8010C500(arg0)) {
+        return 0;
+    }
+    if (func_800F55D0(func_800F54E4())) {
+        return 0;
+    }
+    if (!func_800F6E00(func_800F54E4())) {
+        return 0;
+    }
+    if (!func_800F6C5C(func_800F54E4())) {
+        return 0;
+    }
+    count = _subaddiefind_entrypoint_4(0x1EF, actors, 20);
+    func_800F5A00(func_800F54E4(), position);
+    i = 0;
+    if (count > 0) {
+        actor = actors;
+        do {
+            other = (Actor *)*actor;
+            if (arg0 != other && other->unk70_25 == arg0->unk70_25) {
+                distance = func_800EEB40(position, arg0->position);
+                if (func_800EEB40(position, ((Actor *)*actor)->position) < distance) {
+                    return 0;
+                }
+            }
+            i++;
+            actor++;
+        } while (i != count);
+    }
+    return func_800D90A4(&arg0->unk58) == 0;
+}
 
 void chquicksandbaddy_entrypoint_0(s32 arg0, s32 arg1) {
     s32 func_8001210C(s32);

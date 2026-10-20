@@ -1227,7 +1227,7 @@ void func_800F6DE0()
 
 /* extern */
 
-void func_800F6E00(s32 arg0) {
+s32 func_800F6E00(s32 arg0) {
     s32 bs_getCurrentState(PlayerState *);
     s32 func_8009CA70(PlayerState *, s32, s32);
     volatile PlayerState *sp1C;
