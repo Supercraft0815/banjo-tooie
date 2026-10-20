@@ -56,7 +56,47 @@ s32 func_800D8988(s16 arg0, s32 arg1) {
     return freelist_at(D_8012C020, arg0) + (arg1 * 0x1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB2130/func_800D89C8.s")
+s32 func_800D89C8(s16 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, u8 *arg6, f32 *arg7, f32 *arg8) {
+    void func_80019224(f32 *, f32 *);
+    void func_80019750(f32 *, f32 *, f32, f32 *);
+    s32 func_80019CD4(void);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    extern const f32 D_80125CF0;
+    f32 edge1[3];
+    f32 edge2[3];
+    s32 i;
+    s32 j;
+    f32 points[3][3];
+    s16 *vertex;
+    u8 *entry;
+
+    entry = (u8 *)func_800D8988(arg0, arg1);
+    if (!entry[0x1A]) {
+        return 0;
+    }
+    entry[0x1A] = 0;
+    if (func_800EEAD4(arg7, (f32 *)(entry + 8)) > D_80125CF0) {
+        return 0;
+    }
+    for (i = 0; i != 3; i++) {
+        vertex = (s16 *)(arg6 + *(s16 *)(entry + 0x14 + i * 2) * 0x10 + 0x18);
+        for (j = 0; j != 3; j++) {
+            points[i][j] = vertex[j];
+        }
+    }
+    func_800EFB24(edge1, points[1], points[0]);
+    func_800EFB24(edge2, points[2], points[0]);
+    func_800EFA4C(arg8,
+        points[0][0] + *(f32 *)entry * edge1[0] + *(f32 *)(entry + 4) * edge2[0],
+        points[0][1] + *(f32 *)entry * edge1[1] + *(f32 *)(entry + 4) * edge2[1],
+        points[0][2] + *(f32 *)entry * edge1[2] + *(f32 *)(entry + 4) * edge2[2]);
+    func_80019CD4();
+    func_80019750(arg2, arg3, arg4, arg5);
+    func_80019224(arg8, arg8);
+    return 1;
+}
 
 void func_800D8B80(s16 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, u16 *arg6, u8 *arg7, f32 *arg8)
 {
