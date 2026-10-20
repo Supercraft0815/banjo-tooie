@@ -100,7 +100,56 @@ void func_80800988_chmole_training(Actor *arg0, s32 arg1, s32 arg2) {
     func_80101FDC(arg0, 5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_80800A48_chmole_training.s")
+void func_80800A48_chmole_training(Actor *arg0) {
+    void func_80101FDC(Actor *, u32);
+
+    switch ((u32) arg0->unk54) {
+    case 1:
+        func_80800988_chmole_training(arg0, 3, 3);
+        return;
+    case 2:
+        func_80800988_chmole_training(arg0, 3, 3);
+        return;
+    case 4:
+        func_80800988_chmole_training(arg0, 3, 3);
+        return;
+    case 0:
+        func_80800988_chmole_training(arg0, 2, 2);
+        return;
+    case 3:
+        func_80800988_chmole_training(arg0, 2, 2);
+        return;
+    case 7:
+        func_80800988_chmole_training(arg0, 2, 2);
+        return;
+    case 5:
+        func_80800988_chmole_training(arg0, 2, 2);
+        return;
+    case 6:
+        func_80101FDC(arg0, 4);
+        return;
+    case 10:
+    case 11:
+    case 12:
+    case 13:
+    case 14:
+    case 15:
+    case 16:
+    case 17:
+    case 18:
+    case 19:
+    case 20:
+    case 21:
+    case 22:
+    case 23:
+    case 24:
+    case 25:
+    case 26:
+        func_80101FDC(arg0, 4);
+    default:
+        return;
+    }
+}
 
 void func_80800BA8_chmole_training(Actor *arg0) {
     switch ((s32) arg0->unk54) {
