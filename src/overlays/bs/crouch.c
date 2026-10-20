@@ -37,7 +37,68 @@ void func_808000FC_bscrouch(void *arg0, s32 arg1) {
     func_800A2CE8(arg0, 0.91f, 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/crouch/bscrouch_entrypoint_0.s")
+struct player_state_s;
+void func_8009D658(struct player_state_s *);
+
+void bscrouch_entrypoint_0(void *arg0) {
+    void _batimer_set(void *, s32, f32);
+    void anctrl_reset(s32);
+    s32 anctrl_setDuration(s32, f32);
+    void anctrl_setIndex(s32, s32);
+    s32 anctrl_setPlaybackType(s32, s32);
+    void anctrl_setStart(s32, f32);
+    void anctrl_start(s32);
+    s32 baanim_getAnimCtrlPtr();
+    void baphysics_set_target_yaw(void *, f32);
+    s32 baphysics_set_type(void *, s32);
+    s32 bs_getPreviousState(void *);
+    s32 func_8008CA4C(void *, s32);
+    void func_8009BB24(void *, f32 *);
+    void func_8009CFD8(void *, f32);
+    void func_8009D2D8(void *, s32);
+    int func_800F1EA4(f32 *, f32 *);
+    s32 yaw_setUpdateType(void *, s32);
+    void yaw_setVelocityBounded(void *, f32, f32);
+    f32 sqrtf(f32);
+    s32 anim;
+    f32 velocity[3];
+    f32 start;
+    f32 yaw;
+    s32 previous;
+    f32 speed;
+
+    anim = baanim_getAnimCtrlPtr(arg0);
+    previous = bs_getPreviousState(arg0);
+    if (previous != 9 && previous != 0xA && previous != 0x1A) {
+        start = 0.0f;
+    } else {
+        start = 0.5357f;
+    }
+    anctrl_reset(anim);
+    anctrl_setIndex(anim, 1);
+    anctrl_setDuration(anim, 0.5f);
+    anctrl_setPlaybackType(anim, 1);
+    anctrl_setStart(anim, start);
+    anctrl_start(anim);
+    func_8008CA4C(arg0, 1);
+    yaw_setUpdateType(arg0, 3);
+    yaw_setVelocityBounded(arg0, 350.0f, 14.0f);
+    func_8009D2D8(arg0, 7);
+    func_8009CFD8(arg0, 8.0f);
+    baphysics_set_type(arg0, 3);
+    _batimer_set(arg0, 0, 0.7f);
+    _batimer_set(arg0, 1, 0.2f);
+    func_8009BB24(arg0, velocity);
+    speed = sqrtf(velocity[0] * velocity[0] + velocity[2] * velocity[2]);
+    *(f32 *)((u8 *)arg0 + 0x16C) = speed;
+    if (speed > 140.0f) {
+        func_8009D658(arg0);
+    }
+    if (func_800F1EA4(velocity, &yaw)) {
+        baphysics_set_target_yaw(arg0, yaw);
+    }
+    *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+}
 
 void bscrouch_entrypoint_1(void *arg0) {
     s32 _badrone_entrypoint_25(void *);
