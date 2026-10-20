@@ -181,7 +181,71 @@ void func_8080039C_bsbswim(struct player_state_s *arg0) {
     func_800910BC(arg0, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_80800440_bsbswim.s")
+void func_80800440_bsbswim(struct player_state_s *arg0) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void _baswim_entrypoint_10(void *, f32);
+    void _baswim_entrypoint_11(void *);
+    void _baswim_entrypoint_12(void *);
+    void _baswim_entrypoint_13(void *);
+    s32 _baswim_entrypoint_2(s32);
+    s32 _baswim_entrypoint_3(s32);
+    s32 anctrl_isAt(s32, f32);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    int bakey_held(struct player_state_s *, s32);
+    s32 bs_setState(s32, s32);
+    void func_8009DE74(struct player_state_s *, s32, f32, f32);
+    s32 player_inWater();
+    s32 next_state;
+    struct anctrl_s *anim;
+
+    next_state = 0;
+    anim = baanim_getAnimCtrlPtr(arg0);
+    _baswim_entrypoint_11(arg0);
+    _baswim_entrypoint_12(arg0);
+    _baswim_entrypoint_13(arg0);
+    if (anctrl_isAt(anim, 0.1f)) {
+        func_8009DE74(arg0, 0x3FD, 1.2f, 1.4f);
+        _baswim_entrypoint_10(arg0, 600.0f);
+    }
+    if (anctrl_isAt(anim, 0.4626f)) {
+        anctrl_setDuration(anim, 1.0f);
+    }
+    if (anctrl_isAt(anim, 0.2766f)) {
+        anctrl_setDuration(anim, 3.0f);
+    }
+    switch (_baswim_entrypoint_3((s32)arg0)) {
+        case 0:
+            if (anctrl_isAt(anim, 0.4625f)) {
+                next_state = 0x2B;
+            }
+            break;
+        case 1:
+            next_state = 0x39;
+            break;
+        case 2:
+            break;
+        case 3:
+            next_state = 0x19;
+            break;
+    }
+    if (anctrl_isAt(anim, 0.4625f) && !bakey_held(arg0, 9)) {
+        if (bakey_held(arg0, 8)) {
+            next_state = 0x39;
+        } else {
+            next_state = 0x2B;
+        }
+    }
+    if (bainput_func_8009803C(arg0)) {
+        next_state = 0x157;
+    }
+    if (_baswim_entrypoint_2((s32)arg0)) {
+        next_state = 0x2D;
+    }
+    if (!player_inWater(arg0)) {
+        next_state = 1;
+    }
+    bs_setState((s32)arg0, next_state);
+}
 
 void func_800910BC(struct player_state_s *, s32);
 
