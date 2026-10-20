@@ -88,7 +88,44 @@ s32 func_80800094_chhoopswoop(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80800320_chhoopswoop.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_808004BC_chhoopswoop.s")
+void func_808004BC_chhoopswoop(Actor *arg0) {
+    s32 _chintrotext_entrypoint_2(s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _susubgame_entrypoint_10(Actor *, s32, s32, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void func_800A16BC(s32);
+    s32 func_800BF744(s32, s32);
+    s32 func_800D395C(void);
+    s32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    void func_800F8300();
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    u8 *sp2C;
+
+    sp2C = func_80100094(arg0, 0);
+    func_800BF744(1, 0);
+    func_800BF744(2, 1);
+    if (func_800D395C() != 0) {
+        func_800A16BC(1);
+    }
+    if (arg0->unk70_10 == 1) {
+        if (_susubgame_entrypoint_10(arg0, 1, 0x320, 0x1AD) != 0) {
+            _chintrotext_entrypoint_2(1);
+            _susubgame_entrypoint_6(arg0, sp2C + 0x4C4, 0, 0x20, 0);
+        } else {
+            _susubgame_entrypoint_5(arg0, sp2C + 0x4C4, 5, 1, 0);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEC, 7, arg0->position, 0x22);
+            func_800F82D4(func_800F54E4(), 2);
+        }
+        func_80101FDC(arg0, 2);
+        return;
+    }
+    func_800F8300(func_800F54E4(), 2, 0);
+    _susubgame_entrypoint_5(arg0, sp2C + 0x4C4, 5, 1, 0);
+    _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEB, 0x46, NULL, 0x22);
+}
 
 void func_80800620_chhoopswoop(Actor *arg0) {
     void *func_80100094(Actor *, u32);
