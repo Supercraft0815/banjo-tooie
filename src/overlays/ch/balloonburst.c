@@ -38,7 +38,62 @@ void func_80800024_chballoonburst(Actor *arg0) {
     _susubgame_entrypoint_11(0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80800098_chballoonburst.s")
+void func_80800098_chballoonburst(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    s32 _susubgame_entrypoint_9(void);
+    s32 func_800CEAD0(s32);
+    s32 func_800D24E8(s32, s32, u32);
+    int func_800D9154(f32 *, f32);
+    f32 func_800DC178(f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F7C0C(s32, s32, f32);
+    void func_800F8300();
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    s32 func_80800A7C_chballoonburst(void *, s32 *);
+    u8 *volatile sp2C;
+    u8 *dialog;
+    u8 *resultData;
+    s32 dialogId;
+    s32 dialogType;
+    s32 active;
+
+    sp2C = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+        case 3:
+            func_800D24E8(0xC1, *(s32 *)(sp2C + 4), 0);
+            if (func_800D9154(&arg0->unk58, func_800DC178(0.5f, 1.0f))) {
+                func_80108B04(arg0, -1);
+            }
+            active = func_800CEAD0(arg0->unk6C_0);
+            resultData = sp2C;
+            if (active) {
+                *(s32 *)(sp2C + 0x10) = func_80800A7C_chballoonburst(arg0, (s32 *)(resultData += 0x14));
+                func_800F8300(func_800F54E4(), 2, 0);
+                func_800F7C0C(func_800F54E4(), 0x5F, 0.0f);
+                func_80101FDC(arg0, 4);
+            }
+            return;
+        default:
+        case 1:
+        case 2:
+        case 5:
+        case 6:
+            return;
+        case 4:
+            if (_susubgame_entrypoint_9()) {
+                _susubgame_entrypoint_5(arg0, sp2C + 0x18, 5, 1, 0);
+                func_80101FDC(arg0, 5);
+                dialog = sp2C;
+                dialogId = *(s32 *)(dialog + 0x10);
+                dialogType = *(s32 *)(dialog + 0x14);
+                _subaddiedialog_entrypoint_11(arg0->unk0, dialogId, dialogType, NULL, 0x22);
+            }
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_808001FC_chballoonburst.s")
 
