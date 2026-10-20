@@ -40,7 +40,48 @@ void func_80800024_chphlegm(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_808000C4_chphlegm.s")
+void func_808000C4_chphlegm(Actor *arg0) {
+    void _subaddiefade_entrypoint_3(Actor *);
+    f32 func_800136E4(f32);
+    f32 func_800D8FF8(void);
+    f32 func_800EEF94(f32 *);
+    void func_800FFAB0(Actor *);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    void func_8010A570(Actor *);
+    s32 func_8010B990(Actor *, s32);
+    void func_80800748_chphlegm(Actor *, f32, s32);
+    void func_808007EC_chphlegm(u8 *, s32);
+    s32 sp2C;
+    f32 sp28;
+    s32 sp24;
+
+    switch (arg0->unk70_10) {
+        case 1:
+            sp2C = func_8010B990(arg0, 0x404007);
+            sp28 = func_800D8FF8();
+            if (arg0->unk64_20) { sp24 = 0x95C; } else { sp24 = 0x95D; }
+            func_808007EC_chphlegm((u8 *)arg0, sp24);
+            arg0->rotation[0] = func_800136E4(arg0->rotation[0] + sp28 * arg0->unk50);
+            arg0->rotation[1] = func_800136E4(arg0->rotation[1] + sp28 * arg0->unk54);
+            if (sp2C & 0x28) {
+                func_80800748_chphlegm(arg0, -20.0f, sp24);
+                func_8010A570(arg0);
+                func_80101FDC(arg0, 2);
+                _subaddiefade_entrypoint_3(arg0);
+                if (arg0->unk64_20) {
+                    func_80108B04(arg0, 0);
+                }
+            }
+            if (!arg0->unk64_19 && (arg0->position[1] < -2000.0f || func_800EEF94(arg0->position) > 20000.0f)) {
+                func_800FFAB0(arg0);
+            }
+            break;
+        case 2:
+            arg0->position[1] -= arg0->scale * func_800D8FF8() * 25.0f;
+            break;
+    }
+}
 
 s32 func_8080026C_chphlegm(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
     void func_800FFAB0(Actor *);
