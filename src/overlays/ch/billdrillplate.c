@@ -42,7 +42,61 @@ void func_80800024_chbilldrillplate(Actor *arg0) {
     *(f32 *)&arg0->actorData[4] = direction * 200.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_808000B0_chbilldrillplate.s")
+void func_808000B0_chbilldrillplate(Actor *arg0) {
+    void _chbounce_entrypoint_3(f32);
+    void _chbounce_entrypoint_5(s32, void *);
+    s32 _subaddieDll_entrypoint_6(Actor *, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    f32 func_800136E4(f32);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    s32 func_800D90A4(f32 *);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(void *, s32);
+    void func_8010A570(Actor *);
+    void func_8010A624(Actor *);
+    void func_808002A0_chbilldrillplate(s32);
+    extern u8 D_808011B4_chbilldrillplate[];
+    struct PlateFlags {
+        u32 unused:28;
+        u32 active:1;
+        u32 unused2:3;
+    };
+
+    switch (arg0->unk70_10) {
+    case 1:
+        break;
+    case 2:
+        if (func_800D90A4((f32 *)&arg0->actorData[5])) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808011B4_chbilldrillplate);
+            *(f32 *)&arg0->actorData[5] = 0.4f;
+        }
+        arg0->rotation[1] = func_800136E4(arg0->rotation[1] + func_800D8FF8() * 600.0f);
+        arg0->position[1] += func_800D8FF8() * 50.0f;
+        if (_subaddieDll_entrypoint_6(arg0, 0xB)) {
+            _chbounce_entrypoint_3(arg0->rotation[1]);
+            _chbounce_entrypoint_5(0x1B, arg0);
+            func_80101FDC(arg0, 3);
+            func_8010A624(arg0);
+            func_8010A570(arg0);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808011B4_chbilldrillplate);
+            *(f32 *)&arg0->actorData[6] = 1.2f;
+        }
+        break;
+    case 3:
+        arg0->rotation[0] = func_800136E4(arg0->rotation[0] + func_800D8FF8() * *(f32 *)&arg0->actorData[4]);
+        if (func_800D9078((f32 *)&arg0->actorData[6])) {
+            func_808002A0_chbilldrillplate((s32)arg0);
+        }
+        if (!((struct PlateFlags *)&arg0->unk78)->active) {
+            _subaddiefade_entrypoint_3(arg0);
+            func_80101FDC(arg0, 4);
+            func_80103110(arg0, 0);
+        }
+        break;
+    }
+}
 
 /* extern */
 
