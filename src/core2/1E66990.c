@@ -256,7 +256,26 @@ void func_8008DAC8(s32 arg0) {
     func_800DB9B0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E66990/func_8008DAE8.s")
+int func_8008DAE8(PlayerState *player, f32 *target, f32 tolerance) {
+    extern const f32 D_80124AD8;
+    extern const f32 D_80124ADC;
+    extern const f32 D_80124AE0;
+    f32 func_80090010(void);
+    void func_8009C128(PlayerState *, f32[3]);
+    s32 func_800F1E6C(f32 *, f32 *, f32 *);
+    f32 mlAbsF(f32);
+    f32 position[3];
+    f32 yaw;
+    u16 target_angle;
+    f32 player_yaw;
+
+    func_8009C128(player, position);
+    func_800F1E6C(target, position, &yaw);
+    target_angle = (u16)(yaw * D_80124AD8);
+    player_yaw = func_80090010();
+    target_angle = (u16)(target_angle - (u16)(player_yaw * D_80124ADC));
+    return mlAbsF((f32)(0x8000 - target_angle)) < tolerance * D_80124AE0;
+}
 
 int func_8008DC90(PlayerState *player, f32 *target, f32 tolerance) {
     void func_8009C128(PlayerState *, f32[3]);
