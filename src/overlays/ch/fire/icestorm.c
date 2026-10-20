@@ -14,7 +14,49 @@ OSThread *chfireicestorm_entrypoint_1(void)
     return (OSThread *) D_80800EF0_chfireicestorm;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_80800018_chfireicestorm.s")
+void func_80800018_chfireicestorm(Actor *arg0) {
+    void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
+    s32 func_800A9C98(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    void func_80800558_chfireicestorm(Actor *, u32);
+    f32 sp44[3];
+    f32 sp38[3];
+    enum flag_e sp34;
+    enum flag_e sp30;
+
+    func_800DA524(FLAG3_9FB_UNK);
+    if (arg0->unk74_7 != 0x32) {
+        arg0->unk64_20 = 1;
+    } else {
+        arg0->unk64_20 = 0;
+    }
+    sp34 = arg0->unk64_20 ? FLAG_1D5_PROGRESS_CHILLY_WILLY_DEFEATED : FLAG_1D6_PROGRESS_CHILLI_BILLI_DEFEATED;
+    sp30 = arg0->unk64_20 ? FLAG_43E_FTT_HFP_INTRO_TEXT_CHILLY_WILLY : FLAG_43F_FTT_HFP_INTRO_TEXT_CHILLI_BILLI;
+    if (func_800A9C98()) {
+        func_800DA524(sp34);
+        func_800DA544(sp30);
+    }
+    if (func_800DA298(sp34)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    if (func_800A9C98()) {
+        arg0->unk58 = 5.0f;
+    } else {
+        arg0->unk58 = 30.0f;
+    }
+    if (func_800DA298(sp30)) {
+        func_80800558_chfireicestorm(arg0, 3);
+    }
+    arg0->unk64_19 = func_800DA298(FLAG_049_PHYSICAL_HFP_StoneBuildingBroken) || arg0->unk64_20;
+    if (!arg0->unk64_19) {
+        _subaddiemarker_entrypoint_1(arg0, 0x320, 0x32, sp38, 1);
+        func_800EE7F8((f32 *)arg0->actorData, sp38);
+        _subaddiemarker_entrypoint_1(arg0, 0x320, 0x33, sp38, 1);
+        func_800EE7F8((f32 *)&arg0->actorData[4], sp38);
+    }
+}
 
 void func_808001CC_chfireicestorm(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_16(void);
