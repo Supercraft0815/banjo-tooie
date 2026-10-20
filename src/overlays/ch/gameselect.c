@@ -2226,7 +2226,49 @@ void func_80805474_chgameselect(s32 arg0,s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080569C_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080595C_chgameselect.s")
+s32 func_8080595C_chgameselect(Actor *arg0, OptionState *arg1, s32 arg2) {
+    s32 _gcnewoption_entrypoint_19(OptionState *, s32);
+    s32 _gcnewoption_entrypoint_20();
+    void func_80803C60_chgameselect(void);
+    void func_80803C80_chgameselect(void);
+    void func_808069C8_chgameselect(s32);
+    void func_80806A88_chgameselect();
+    s32 temp;
+
+    switch (arg0->actorData[0]) {
+    case 0:
+        if (_gcnewoption_entrypoint_19(arg1, arg2) != 0) {
+            func_80803C60_chgameselect();
+            return arg2 + 0x23;
+        }
+        func_80802CC0_chgameselect((Unk80132ED0 *)arg0->actorData[6]);
+        break;
+    case 6:
+        if (arg2 == 3 || arg2 == 4) {
+            if (arg0->actorData[1] != -1) {
+                temp = _gcnewoption_entrypoint_20(arg1, arg2);
+                if (arg2 == 3) {
+                    func_808069C8_chgameselect(temp);
+                } else {
+                    func_80806A88_chgameselect(temp);
+                }
+                arg0->actorData[1] = -1;
+            } else {
+                if (_gcnewoption_entrypoint_19(arg1, arg2) != 0) {
+                    func_80803C60_chgameselect();
+                    return 0x1E;
+                }
+                func_80802C10_chgameselect((Unk80132ED0 *)arg0->actorData[6]);
+                arg0->actorData[1] = arg2;
+                return arg2 == 3 ? 0x1F : 0x20;
+            }
+        }
+        func_80802CC0_chgameselect((Unk80132ED0 *)arg0->actorData[6]);
+        func_80803C80_chgameselect();
+        break;
+    }
+    return -1;
+}
 
 void func_80805AC0_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     void func_808026C8_chgameselect(Unk80132ED0 *, s32);
