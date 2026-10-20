@@ -162,7 +162,49 @@ void idbounce_entrypoint_3(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/bounce/idbounce_entrypoint_4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/bounce/idbounce_entrypoint_5.s")
+void idbounce_entrypoint_5(void *arg0, s32 arg1, s32 arg2) {
+    f32 func_800D8FF8(void);
+    s32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    void func_800F5D70(s32, f32 *);
+    void func_800EF3DC(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    s32 _glid_entrypoint_1(s32, s32, s32 *, s32);
+    extern s32 _idbounce_entrypoint_0;
+    extern s32 _idbounce_entrypoint_1;
+    extern s32 _idbounce_entrypoint_2;
+    extern s32 D_8013546C;
+    f32 sp34[3];
+
+    *(f32 *)((u8 *)arg0 + 0x1C) = func_800D8FF8();
+    func_800F5A00(func_800F54E4(), (f32 *)((u8 *)arg0 + 4));
+    func_800EF3DC((f32 *)((u8 *)arg0 + 4), (f32 *)((u8 *)arg0 + 0x54));
+    if (*(f32 *)((u8 *)arg0 + 0x50) != 0.0f) {
+        func_800EF334((f32 *)((u8 *)arg0 + 4), *(f32 *)((u8 *)arg0 + 0x50));
+    }
+    *(f32 *)((u8 *)arg0 + 0x20) =
+        -*(f32 *)((u8 *)arg0 + 0x30) * func_80800000_idbounce() * -2700.0f;
+    if (*((u8 *)&D_8013546C + 0x14) != 0) {
+        func_800F5D70(func_800F54E4(), sp34);
+        *(f32 *)((u8 *)arg0 + 0x20) -=
+            (*(f32 *)((u8 *)arg0 + 0x30) * func_80800000_idbounce() * sp34[1]) /
+            *(f32 *)((u8 *)arg0 + 0x1C);
+    }
+    *(s32 *)((u8 *)arg0 + 0x28) = *(s32 *)((u8 *)arg0 + 0x24);
+    switch (*(u8 *)arg0) {
+        case 0:
+            _glid_entrypoint_0(arg1, arg2, &_idbounce_entrypoint_0, (s32)arg0);
+            break;
+        case 1:
+            _glid_entrypoint_0(arg1, arg2, &_idbounce_entrypoint_1, (s32)arg0);
+            break;
+        case 2:
+        case 3:
+            _glid_entrypoint_1(arg1, arg2, &_idbounce_entrypoint_2, (s32)arg0);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/bounce/idbounce_entrypoint_6.s")
 
