@@ -362,14 +362,53 @@ int func_80801C20_chjiggygamenew(Actor *arg0) {
     return 1;
 }
 
-int func_80801CB0_chjiggygamenew(u8 arg0, s32 arg1, void *arg2) {
+int func_80801CB0_chjiggygamenew(Actor *volatile arg0, s32 arg1, void *arg2) {
     struct Entry { u8 pad0[4]; u16 unk4; u8 pad6[0x12]; };
     u16 temp_v1 = ((struct Entry *)arg2)[arg1].unk4;
 
     return (temp_v1 == 0x6B54) || (temp_v1 == 0xC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80801CE8_chjiggygamenew.s")
+void func_80801CE8_chjiggygamenew(Actor *arg0) {
+    struct Entry { u8 unk0; s8 unk1; u8 pad2[0x16]; };
+    struct Data { struct Entry entries[20]; u8 active[20]; };
+    void func_800EDE54(void *, s32[4], s32[4], f32);
+    void *func_8010649C(void *, s32);
+    s32 func_8080363C_chjiggygamenew();
+    extern s32 D_80803DAC_chjiggygamenew[4];
+    extern s32 D_80803DBC_chjiggygamenew[4];
+    void *part;
+    s32 selected;
+    s32 enabled;
+    s32 i;
+    u8 old;
+    u8 state;
+    struct Data *data;
+
+    data = func_80100094(arg0, 0U);
+    selected = arg0->actorData[2] - 1;
+    enabled = func_8080363C_chjiggygamenew(arg0->unk3C);
+    for (i = 0; i < 20; i++) {
+        old = data->active[i];
+        if (selected == data->entries[i].unk1 && enabled &&
+            func_80801CB0_chjiggygamenew(arg0, i, data)) {
+            data->active[i] = 1;
+        } else {
+            data->active[i] = 0;
+        }
+        if (old != data->active[i]) {
+            part = func_8010649C(arg0, i + 0x190);
+            state = data->active[i];
+            if (state != 0) {
+                if (state == 1) {
+                    func_800EDE54(part, D_80803DAC_chjiggygamenew, D_80803DBC_chjiggygamenew, 0.1f);
+                }
+            } else {
+                func_800EDE54(part, D_80803DBC_chjiggygamenew, D_80803DAC_chjiggygamenew, 0.3f);
+            }
+        }
+    }
+}
 
 /* extern */
 
