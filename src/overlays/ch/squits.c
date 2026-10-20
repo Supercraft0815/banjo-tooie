@@ -63,7 +63,37 @@ s32 func_80800108_chsquits(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/squits/func_808001A4_chsquits.s")
+s32 func_808001A4_chsquits(Actor *arg0) {
+    s32 func_800DC128(s32, s32);
+    extern s16 D_808006C4_chsquits[];
+    s32 count;
+    s32 available;
+    u32 i;
+    s32 selected;
+
+    available = 0;
+    for (i = 0; i < 10; i++) {
+        if (!(arg0->actorData[6] & (1 << i))) {
+            available++;
+        }
+    }
+    if (available == 0) {
+        arg0->actorData[6] = 0;
+        available = 10;
+    }
+    selected = func_800DC128(0, available);
+    count = 0;
+    for (i = 0; i < 10; i++) {
+        if (!(arg0->actorData[6] & (1 << i))) {
+            if (count == selected) {
+                arg0->actorData[6] |= 1 << i;
+                return D_808006C4_chsquits[i];
+            }
+            count++;
+        }
+    }
+    return D_808006C4_chsquits[0];
+}
 
 void func_80800358_chsquits(Actor *arg0) {
     s32 func_800D90A4(f32 *);
