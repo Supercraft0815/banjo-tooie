@@ -28,7 +28,19 @@ void func_801101C0(void) {
     } while ((u32)var_s0 != end);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110280.s")
+int func_80110280(s32 *arg0) {
+    extern s16 D_80137340[25];
+    s32 offset;
+    s32 i;
+    s32 size;
+
+    offset = 0x98;
+    for (i = 0; i < 25; i++) {
+        *(s32 *)((s8 *)arg0 + (i << 2)) = (s32)((s8 *)arg0 + offset);
+        size = D_80137340[i];
+        offset += size + (size % 4 ? 4 - (size % 4) : 0);
+    }
+}
 
 void *func_80110424(s32 *arg0, s32 arg1) {
     void *heap_alloc(s32);
