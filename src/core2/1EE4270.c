@@ -215,7 +215,43 @@ s32 func_8010B190(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010B1F4.s")
+s32 func_8010B1F4(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void func_800EE7F8(f32 *, f32 *);
+    s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
+    f32 func_800D8FF8(void);
+    f32 func_800F13F0(f32, f32);
+    s32 func_801045AC(Actor *, f32 *, f32 *, s32);
+    s32 func_8010C3E8(Actor *);
+    f32 func_8010C460(void);
+    extern s32 D_80136F40;
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp34;
+    f32 sp30;
+    s32 *sp2C;
+
+    sp34 = func_8010C460();
+    sp30 = func_800D8FF8();
+    func_800EE7F8(sp44, arg0->position);
+    sp44[1] += sp34;
+    func_800EE7F8(sp38, arg0->position);
+    sp38[1] += func_800F13F0(*(f32 *)&arg0->actorData[7] * sp30, -200.0f);
+    sp2C = func_800BEF00(sp44, sp38, (f32 *)&D_80136F40, arg0->unk14);
+    if (sp2C != NULL) {
+        *(f32 *)&arg0->actorData[7] = 0.0f;
+        func_800EE7F8(arg0->position, sp38);
+        if (((s16 *)&arg0->pad8C)[1] != 0) {
+            func_801045AC(arg0, (f32 *)&D_80136F40, sp38, sp2C[2]);
+        }
+        return 1;
+    }
+    *(f32 *)&arg0->actorData[7] -= 1200.0f * sp30;
+    arg0->position[1] += *(f32 *)&arg0->actorData[7];
+    if (func_8010C3E8(arg0) != 0) {
+        return -1;
+    }
+    return 0;
+}
 
 s32 func_8010B330(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
