@@ -30,7 +30,70 @@ void func_8080000C_chlifeforcespell(Actor *arg0) {
     _sumumbofx_entrypoint_20(data, 3.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lifeforcespell/func_808000C8_chlifeforcespell.s")
+void func_808000C8_chlifeforcespell(Actor *arg0) {
+    void _chglowbo_entrypoint_6(void);
+    s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    s32 _sumumbofx_entrypoint_1(void *, s32);
+    s32 _sumumbofx_entrypoint_14(s32);
+    void _sumumbofx_entrypoint_16(void *, f32);
+    void _sumumbofx_entrypoint_17(void *, f32);
+    f32 _sumumbofx_entrypoint_21(s32);
+    f32 _sumumbofx_entrypoint_22(u8 *);
+    s32 _sumumbofx_entrypoint_5(void *, f32);
+    void _sumumbofx_entrypoint_7(void *, f32, s32, s32, f32 *, f32 *, s32 *);
+    s32 func_800D9078(f32 *);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    void func_800EFD24(f32 *);
+    void func_800FFA88(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010114C(s32, s32, s32);
+    void func_80101FDC(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s32 D_808004B4_chlifeforcespell[];
+    f32 sp44[3];
+    void *sp40;
+    Actor *sp3C;
+
+    sp40 = func_80100094(arg0, 1U);
+    sp3C = func_80106790(arg0->unk3C);
+    func_800EFD24(sp44);
+    if (func_800DA298(0x9DE)) {
+        _subaddieskeleton_entrypoint_0(sp3C, arg0->unk6C_0, arg0->position);
+        _sumumbofx_entrypoint_7(sp40, ((f32 *)arg0->actorData)[3], 0, 0x14, sp44, arg0->position, D_808004B4_chlifeforcespell);
+        switch (arg0->unk70_10) {
+            case 1:
+                if (_sumumbofx_entrypoint_21(sp40) == 0.0f) {
+                    func_800D9078(&arg0->unk58);
+                    if (_sumumbofx_entrypoint_5(sp40, 1.85f)) {
+                        _sumumbofx_entrypoint_17(sp40, ((f32 *)arg0->actorData)[4]);
+                        func_80101FDC(arg0, 2);
+                        arg0->unk58 = ((f32 *)arg0->actorData)[4];
+                    }
+                }
+                break;
+            case 2:
+                if (func_800D9078(&arg0->unk58)) {
+                    _chglowbo_entrypoint_6();
+                    _sumumbofx_entrypoint_16(sp40, 1.5f);
+                    func_80101FDC(arg0, 3);
+                }
+                break;
+            case 3:
+                if (_sumumbofx_entrypoint_22(sp40) < 0.05f) {
+                    _sumumbofx_entrypoint_1(arg0, 1);
+                    func_8010114C(arg0->unk3C, 0x4C, 0);
+                    func_800FFA88(arg0->unk0);
+                    func_800DA544(0x9DF);
+                    func_800DA524(0x9DE);
+                    return;
+                }
+                break;
+        }
+        _sumumbofx_entrypoint_14(sp40);
+    }
+}
 
 /* extern */
 
