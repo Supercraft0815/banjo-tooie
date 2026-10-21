@@ -491,4 +491,55 @@ void func_800B9170(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B956C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B97A4.s")
+s32 func_800B97A4(Gfx **gfx, Mtx **mtx, f32 position[3]) {
+    extern const f32 D_801256AC;
+    extern const f32 D_801256B0;
+    register f32 delta;
+    Gfx *packet;
+    typedef struct { u8 pad[0xC]; f32 center[3]; } Model;
+    typedef struct {
+        u8 pad[0x2C];
+        f32 rotation[3];
+        f32 delta[3];
+        f32 transformed[3];
+        f32 radius;
+        Gfx *displayList;
+        Model *model;
+    } State;
+    extern s32 D_80127128;
+    extern f32 D_80127148[3];
+    extern f32 D_80127160[3];
+    extern f32 D_8012716C;
+    void func_800EFB24(void *, void *, void *);
+    s32 func_800E3E8C(f32 *, f32);
+    void func_800193C4(f32 *, f32 *);
+    void mlMtx_set_translation(f32, f32, f32);
+    void mlMtxApply(Mtx *);
+    void mlMtxRotYaw(f32);
+    void mlMtxRotPitch(f32);
+    void mlMtxTranslate(f32, f32, f32);
+
+    func_800EFB24(D_80127160, position, D_80127148);
+    if (D_801256AC < (delta = ((State *)&D_80127128)->delta[0])
+        && delta < D_801256B0
+        && position[1] > -200.0f
+        && D_801256AC < (delta = ((State *)&D_80127128)->delta[2])
+        && delta < D_801256B0
+        && func_800E3E8C(position, ((State *)&D_80127128)->radius)) {
+        mlMtx_set_translation(position[0], position[1], position[2]);
+        mlMtxApply(*mtx);
+        func_800193C4(&D_8012716C, ((State *)&D_80127128)->model->center);
+        mlMtx_set_translation(((State *)&D_80127128)->transformed[0], ((State *)&D_80127128)->transformed[1], ((State *)&D_80127128)->transformed[2]);
+        mlMtxRotYaw(((State *)&D_80127128)->rotation[1]);
+        mlMtxRotPitch(((State *)&D_80127128)->rotation[0]);
+        mlMtxTranslate(-((State *)&D_80127128)->model->center[0], -((State *)&D_80127128)->model->center[1], -((State *)&D_80127128)->model->center[2]);
+        mlMtxApply(*mtx);
+        gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+        packet = (*gfx)++;
+        packet->words.w0 = G_DL << 24;
+        packet->words.w1 = osVirtualToPhysical(((State *)&D_80127128)->displayList);
+        gSPPopMatrix((*gfx)++, G_MTX_MODELVIEW);
+        return 1;
+    }
+    return 0;
+}
