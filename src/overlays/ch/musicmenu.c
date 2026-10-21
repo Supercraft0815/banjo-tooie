@@ -82,7 +82,50 @@ void func_808000D0_chmusicmenu(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_8080021C_chmusicmenu.s")
+void func_8080021C_chmusicmenu(Actor *arg0, s32 arg1) {
+    struct MusicMenuColor { s16 components[3]; };
+    s32 _gcnewoption_entrypoint_12(s32, s32, s16);
+    s32 _gcnewoption_entrypoint_13(s32, s32, void *);
+    void _gcnewoption_entrypoint_27(s32, s32, s32);
+    void _gcnewoption_entrypoint_41(s32, s32);
+    s32 func_800FCF50(s32);
+    extern struct MusicMenuEntry D_808014F4_chmusicmenu[];
+    extern struct MusicMenuColor D_80801554_chmusicmenu;
+    extern struct MusicMenuColor D_8080155C_chmusicmenu;
+    s32 i;
+    struct MusicMenuColor color1;
+    struct MusicMenuColor color2;
+
+    switch (arg0->unk70_10) {
+        case 1:
+            for (i = 0; i < 12; i++) {
+                _gcnewoption_entrypoint_12(arg1, i, i + 10);
+            }
+            if ((s32)arg0->actorData[1] != -1) {
+                _gcnewoption_entrypoint_27(arg1, (s32)arg0->actorData[1], 1);
+                _gcnewoption_entrypoint_41(arg1, arg0->actorData[1]);
+            }
+            return;
+        case 2:
+            color1 = D_80801554_chmusicmenu;
+            color2 = D_8080155C_chmusicmenu;
+            for (i = 0; i < D_808014F4_chmusicmenu[arg0->actorData[6]].count; i++) {
+                _gcnewoption_entrypoint_12(arg1, i, i + 10);
+                if (func_800FCF50(D_808014F4_chmusicmenu[arg0->actorData[6]].unk0[i][0])) {
+                    _gcnewoption_entrypoint_13(arg1, i, &color1);
+                } else {
+                    _gcnewoption_entrypoint_13(arg1, i, &color2);
+                }
+            }
+            if (arg0->actorData[1] == arg0->actorData[6]) {
+                if ((s32)arg0->actorData[0] != -1) {
+                    _gcnewoption_entrypoint_27(arg1, (s32)arg0->actorData[0], 1);
+                    _gcnewoption_entrypoint_41(arg1, arg0->actorData[0]);
+                }
+            }
+            break;
+    }
+}
 
 void func_80800400_chmusicmenu(Actor *arg0) {
     s32 func_800FCDE0(s32, s32, f32);
