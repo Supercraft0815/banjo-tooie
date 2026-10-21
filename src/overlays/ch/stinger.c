@@ -132,7 +132,75 @@ s32 func_808003B0_chstinger(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stinger/func_80800420_chstinger.s")
+void func_80800420_chstinger(Actor *arg0) {
+    void _sumissilehome_entrypoint_6(Actor *, void *);
+    f32 func_800136E4(f32);
+    void func_800CB840(s32, s32);
+    void func_800CB870(void);
+    u8 *func_800CD820(u8 *, f32 *, f32 *, f32);
+    f32 func_800D8FF8(void);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80103014(u8 *);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    void func_8010AA78(s32 *);
+    s32 func_8010B990(Actor *, s32);
+    struct StingerData {
+        u8 pad[0x14];
+        f32 unk14;
+        f32 position[3];
+        f32 unk24;
+        u8 unk28;
+    };
+    f32 sp44;
+    f32 sp40;
+    u8 *sp3C;
+    s32 sp38;
+    s32 sp34;
+    struct StingerData *data;
+
+    data = func_80100094(arg0, 0);
+    sp44 = data->unk14;
+    sp40 = func_800D8FF8();
+    switch (arg0->unk70_10) {
+        case 2:
+            if (data->unk28 != 0) {
+                data->unk28 = 0;
+                sp38 = 0;
+            } else {
+                _sumissilehome_entrypoint_6(arg0, data);
+                sp38 = func_8010B990(arg0, 0x100004);
+            }
+            if (sp38 == 0x20) {
+                func_8010AA78(arg0->position);
+            }
+            func_80800218_chstinger(arg0);
+            arg0->rotation[2] = func_800136E4(arg0->rotation[2] + sp40 * 1200.0f);
+            func_80103014(arg0);
+            func_8010A590(arg0);
+            func_800CB840(4, arg0);
+            sp3C = func_800CD820(arg0->unk0, data->position, arg0->position, 80.0f);
+            func_800CB870();
+            func_8010A570(arg0);
+            sp34 = sp3C != 0;
+            if (sp38 == 0x20 || sp34 || data->unk24 > 5000.0f) {
+                func_8080015C_chstinger(arg0, 3);
+            }
+            if (func_808003B0_chstinger(arg0) != 0) {
+                func_8080015C_chstinger(arg0, 3);
+            }
+            break;
+        case 3:
+            func_800FFAB0(arg0);
+            break;
+    }
+    data->unk14 = sp44 + sp40;
+    data->unk24 += func_800EEAD4(arg0->position, data->position);
+    func_800EE7F8(data->position, arg0->position);
+}
 
 Unk80132ED0 *chstinger_entrypoint_0(f32 *arg0, f32 *arg1, f32 *arg2, s32 arg3, s32 arg4) {
     void _sumissilehome_entrypoint_0(Actor *, void *);
