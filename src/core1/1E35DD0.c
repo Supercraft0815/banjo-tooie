@@ -86,7 +86,64 @@ void func_8001E490(void) {
 
 void func_8001E578(s32 arg0) { extern s32 D_8007E94C, D_8007E958; OSThread *func_8001DDA4(s32); void func_8001E7B4(s32); void func_8001E4B0(void); void _gzpublic_entrypoint_0(s32); func_8001E7B4(1); osSetThreadPri(func_8001DDA4(D_8007E958), 0); osSetThreadPri(func_8001DDA4(7), 0x5B); func_8001E4B0(); _gzpublic_entrypoint_0(D_8007E94C); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E35DD0/func_8001E5DC.s")
+void func_8001E5DC(s32 arg0) {
+    extern s32 D_8007E948;
+    extern s32 D_8011A3F0;
+    extern u8 D_80041180[];
+    extern OSThread D_8007E788;
+    extern __OSThreadOddFpStorage D_8007E938;
+    extern OSThread *__osFaultedThread, *__osRunningThread;
+    OSThread *func_80012598(void);
+    OSThread *func_8001DDA4(s32);
+    void func_8001559C(s32);
+    void func_8001DCB0(OSThread *, __OSThreadOddFpStorage *, s32, void (*)(void *), void *, void *, OSPri);
+    s32 i;
+    OSThread *thread;
+
+    if (D_8011A3F0 != 0) {
+        func_8001559C(0);
+        (&D_8007E948)[4] = osGetThreadId(NULL);
+        for (i = 0; i != 10; i++) {
+            thread = func_8001DDA4(i);
+            if (thread != NULL) {
+                (&D_8007E948)[5 + i] = osGetThreadPri(thread);
+            } else {
+                (&D_8007E948)[5 + i] = 0;
+            }
+        }
+        for (i = 0; i != 10; i++) {
+            if (i != (&D_8007E948)[4]) {
+                thread = func_8001DDA4(i);
+                if (thread != NULL) {
+                    osSetThreadPri(thread, D_80041180[i]);
+                }
+            }
+        }
+        osSetThreadPri(NULL, 10);
+        switch (arg0) {
+            default:
+                ((OSThread **)(&D_8007E948))[1] = __osRunningThread;
+                break;
+            case 1:
+                ((OSThread **)(&D_8007E948))[1] = func_8001DDA4(6);
+                break;
+            case 2:
+                ((OSThread **)(&D_8007E948))[1] = func_80012598();
+                break;
+            case 0:
+                ((OSThread **)(&D_8007E948))[1] = __osFaultedThread;
+                break;
+            case 7:
+                ((OSThread **)(&D_8007E948))[1] = __osFaultedThread;
+                break;
+        }
+        (&D_8007E948)[2] = osGetThreadId(((OSThread **)(&D_8007E948))[1]);
+        (&D_8007E948)[3] = (&D_8007E948)[5 + (&D_8007E948)[2]];
+        D_8007E948 = arg0;
+        func_8001DCB0(&D_8007E788, &D_8007E938, 9, func_8001E578, NULL, (u8 *)&D_8007E938 - sizeof(OSThread), 0x5A);
+        osStartThread(&D_8007E788);
+    }
+}
 
 s32 func_8001E7A0(s32 arg0) {
     extern s32 D_8007E95C[];
