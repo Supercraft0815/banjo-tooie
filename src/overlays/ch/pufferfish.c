@@ -276,7 +276,43 @@ void func_80800E20_chpufferfish(Actor *arg0) {
     ((f32 *)arg0->actorData)[3] = func_800F15F8(((f32 *)arg0->actorData)[3], value, 4.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pufferfish/func_80800F30_chpufferfish.s")
+void func_80800F30_chpufferfish(Actor *arg0) {
+    f32 _subaddiejoy_entrypoint_3();
+    f32 func_800136E4(f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F1828(f32 *, f32 *);
+    f32 func_800F1DCC(f32, f32);
+    f32 func_800F1FF0(f32, f32, f32, f32, f32);
+    void func_80102BAC(void *, f32, f32, f32);
+    void func_80102C58(void *, f32, f32, f32);
+    s32 func_8010BA80(Actor *volatile, volatile s32, s32);
+    void func_8010D254(f32 *);
+    f32 position[3];
+    f32 speed;
+
+    speed = _subaddiejoy_entrypoint_3() * 300.0f;
+    func_8010D254(position);
+    arg0->unk50 = func_800F1828(arg0->position, position);
+    if (arg0->unk50 > 30.0f && arg0->unk50 <= 180.0f) {
+        arg0->unk50 = 30.0f;
+    } else if (arg0->unk50 > 180.0f && arg0->unk50 <= 330.0f) {
+        arg0->unk50 = 330.0f;
+    }
+    if (((f32 *)arg0->actorData)[3] <= speed) {
+        ((f32 *)arg0->actorData)[3] = speed;
+    } else {
+        ((f32 *)arg0->actorData)[3] -= ((f32 *)arg0->actorData)[3] * 0.02f;
+        if (((f32 *)arg0->actorData)[3] < 30.0f) {
+            ((f32 *)arg0->actorData)[3] = 0.0f;
+        }
+    }
+    ((f32 *)arg0->actorData)[0] = ((f32 *)arg0->actorData)[3];
+    ((f32 *)arg0->actorData)[1] = func_800136E4(func_800F10B4(func_800F1DCC(arg0->rotation[1], arg0->unk54), -180.0f, 180.0f, -15.0f, 15.0f));
+    func_80102BAC(arg0, 0.5, 0.5f, 5.0f);
+    func_80102C58(arg0, 0.5, 0.5f, 5.0f);
+    arg0->rotation[2] = func_800F1FF0(arg0->rotation[2], ((f32 *)arg0->actorData)[1], 0.01f, 0.005f, 0.1f);
+    func_8010BA80(arg0, 0x200006, 0x20);
+}
 
 OSThread *chpufferfish_entrypoint_0(void)
 {
