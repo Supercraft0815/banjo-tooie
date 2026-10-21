@@ -1060,7 +1060,41 @@ s32 func_80802674_gcnewoption(void *arg0) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_808027DC_gcnewoption.s")
+void func_808027DC_gcnewoption(void *arg0, s32 arg1) {
+    void _gczoombox_entrypoint_27(s32, s16 *);
+    int _gczoombox_entrypoint_32();
+    int _gczoombox_entrypoint_36();
+    s32 _gczoombox_entrypoint_40(s32, s32);
+    int _gczoombox_entrypoint_8();
+    u32 *_gldbstring_entrypoint_1(u32 *, s16);
+    s16 _gldialog_entrypoint_0();
+    s32 source;
+    s32 dest;
+    s32 text;
+    s32 language;
+
+    source = func_80800070_gcnewoption(arg0, arg1);
+    dest = func_80800000_gcnewoption(arg0, arg1);
+    text = *(s16 *)(((u8 *)arg0 + source * 2) + 0xEC);
+    language = _gldialog_entrypoint_0();
+    if (text != ((s16 *)arg0)[func_80800000_gcnewoption(arg0, arg1) + 0x28] ||
+        (*(s16 *)(((u8 *)arg0 + dest * 6) + 0x5A) != *(s16 *)(((u8 *)arg0 + source * 6) + 0x128)) ||
+        *(s16 *)(((u8 *)arg0 + dest * 6) + 0x5C) != *(s16 *)(((u8 *)arg0 + source * 6) + 0x12A) ||
+        *(s16 *)(((u8 *)arg0 + dest * 6) + 0x5E) != *(s16 *)(((u8 *)arg0 + source * 6) + 0x12C) ||
+        ((u8 *)arg0)[dest + 0x78] != *(s16 *)(((u8 *)arg0 + source * 2) + 0x1DC) ||
+        language != *(s16 *)((u8 *)arg0 + 0xC)) {
+        _gczoombox_entrypoint_32(*(s32 *)(((u8 *)arg0 + dest * 4) + 0x3C));
+        _gczoombox_entrypoint_27(*(s32 *)(((u8 *)arg0 + dest * 4) + 0x3C), (s16 *)(((u8 *)arg0 + source * 6) + 0x128));
+        _gczoombox_entrypoint_8(*(s32 *)(((u8 *)arg0 + dest * 4) + 0x3C), _gldbstring_entrypoint_1(*(u32 **)((u8 *)arg0 + 0x23C), text));
+        _gczoombox_entrypoint_40(*(s32 *)(((u8 *)arg0 + dest * 4) + 0x3C), ((u8 *)arg0)[source + 0x218]);
+        _gczoombox_entrypoint_36(*(s32 *)(((u8 *)arg0 + dest * 4) + 0x3C), *(s16 *)(((u8 *)arg0 + source * 2) + 0x1DC));
+        *(s16 *)((u8 *)arg0 + dest * 2 + 0x50) = text;
+        *(s16 *)(((u8 *)arg0 + dest * 6) + 0x5A) = *(s16 *)(((u8 *)arg0 + source * 6) + 0x128);
+        *(s16 *)(((u8 *)arg0 + dest * 6) + 0x5C) = *(s16 *)(((u8 *)arg0 + source * 6) + 0x12A);
+        *(s16 *)(((u8 *)arg0 + dest * 6) + 0x5E) = *(s16 *)(((u8 *)arg0 + source * 6) + 0x12C);
+        ((u8 *)arg0 + dest)[0x78] = *(s16 *)(((u8 *)arg0 + source * 2) + 0x1DC);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80802998_gcnewoption.s")
 
