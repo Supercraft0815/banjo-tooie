@@ -113,7 +113,60 @@ void func_80026860(s32 *arg0) {
     osSetIntMask(mask);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3DEF0/func_800268D0.s")
+s32 func_800268D0(ALVoice *arg0, ALVoiceConfig *arg1) {
+    s32 *func_80021794(void);
+    s32 func_80026AA4(ALLink **, s16);
+    s32 func_8002B684(void *, s32, void *);
+    extern s32 *D_800411F4;
+    struct PhysicalVoice {
+        ALLink node;
+        ALVoice *voice;
+        u8 padC[0x7C];
+        s32 offset;
+    };
+    ALLink *sp24;
+    s32 *sp20;
+    s32 sp1C;
+
+    sp24 = NULL;
+    arg0->priority = arg1->priority;
+    arg0->unityPitch = arg1->unityPitch;
+    arg0->table = NULL;
+    arg0->fxBus = arg1->fxBus;
+    arg0->state = 0;
+    arg0->pvoice = NULL;
+    sp1C = func_80026AA4(&sp24, arg1->priority);
+    if (sp24 != NULL) {
+        if (sp1C != 0) {
+            ((struct PhysicalVoice *)sp24)->offset = 0x228;
+            ((struct PhysicalVoice *)sp24)->voice->pvoice = NULL;
+            ((struct PhysicalVoice *)sp24)->voice = arg0;
+            arg0->pvoice = (struct PVoice_s *)sp24;
+            sp20 = func_80021794();
+            if (sp20 != NULL) {
+                sp20[1] = D_800411F4[7];
+                ((s16 *)sp20)[4] = 0xB;
+                sp20[3] = 0;
+                sp20[4] = 0x170;
+                func_8002B684(arg0->pvoice, 3, sp20);
+            } else {
+            }
+            sp20 = func_80021794();
+            if (sp20 != NULL) {
+                sp20[1] = D_800411F4[7] + ((struct PhysicalVoice *)sp24)->offset;
+                ((s16 *)sp20)[4] = 0xF;
+                sp20[0] = 0;
+                func_8002B684(arg0->pvoice, 3, sp20);
+            } else {
+            }
+        } else {
+            ((struct PhysicalVoice *)sp24)->offset = 0;
+            ((struct PhysicalVoice *)sp24)->voice = arg0;
+            arg0->pvoice = (struct PVoice_s *)sp24;
+        }
+    }
+    return sp24 != NULL;
+}
 
 s32 func_80026AA4(ALLink **arg0, s16 arg1) {
     void func_80020E40(ALLink *, ALLink *);
