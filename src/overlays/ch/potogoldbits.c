@@ -169,7 +169,53 @@ void func_80800188_chpotogoldbits(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldbits/func_80800618_chpotogoldbits.s")
+s32 func_80800618_chpotogoldbits(Actor *arg0, u32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void func_800CE88C(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    void func_800CE928(s32, s32, s32);
+    s32 func_80103110(u8 *, s32);
+    void func_80101FDC(Actor *, u32);
+    void _chpotogoldbits_entrypoint_1(s32, s32);
+
+    switch (arg1) {
+    case 7:
+        if (arg0->unk70_10 != 4) {
+            arg0->unk74_30 = 0;
+            _capod_entrypoint_13(arg0->unk0, NULL, 3, 0x810);
+            func_80103110(arg0, 1);
+            ((f32 *)arg0->actorData)[7] = 0.3f;
+            func_80101FDC(arg0, 2);
+        }
+        return 1;
+    case 8:
+        if (arg0->unk70_10 == 4) {
+            arg0->unk74_30 = 0;
+            _capod_entrypoint_13(arg0->unk0, NULL, 5, 0x810);
+            func_80103110(arg0, 1);
+            ((f32 *)arg0->actorData)[7] = 0.3f;
+            func_80101FDC(arg0, 5);
+        }
+        return 1;
+    case 0x91:
+        if (7 == arg0->unk70_10) {
+            func_80103110(arg0, 1);
+            arg0->unk74_30 = 0;
+            ((f32 *)arg0->actorData)[7] = 0.3f;
+            func_80101FDC(arg0, 8);
+        }
+        return 1;
+    case 11:
+        if (arg2 == 3) {
+            func_800CE8D8(0, arg0->unk74_7, arg0->unk74_7);
+            func_800CE928(0, (s32)_chpotogoldbits_entrypoint_1, 0);
+            func_800CE88C(0, 1);
+        }
+        return 3;
+    default:
+        return 0;
+    }
+}
 
 /* extern */
 
