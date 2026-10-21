@@ -1,6 +1,220 @@
 #include "common.h"
 #include "overlays/ba/playerstate.h"
 
+enum asset_e {
+    ASSET_6_ANIM_BSLEDGE_UNKNOWN = 0x6,
+    
+    ASSET_D_ANIM_BSLEDGE_UNKNOWN = 0xD,
+
+    ASSET_12_ANIM_BSLEDGE_UNKNOWN = 0x12,
+    ASSET_13_ANIM_BSLEDGE_UNKNOWN,
+
+    ASSET_17_ANIM_BSBFLAP = 0x17,
+    ASSET_18_ANIM_BSBFLAP_ENTER = 0x18,
+
+    ASSET_1C_ANIM_BSBBARGE = 0x1C,
+    ASSET_1D_ANIM_BSBBUSTER,
+    ASSET_1E_ANIM_BSLEDGE_UNKNOWN,
+
+    ASSET_2A_ANIM_BSEGGHEAD = 0x2A,
+    ASSET_2B_ANIM_BSEGGASS = 0x2B,
+
+    ASSET_4B_ANIM_BSBFLIP_ENTER = 0x4B,
+    ASSET_4C_ANIM_BSBFLIP_HOLD,
+    ASSET_4D_ANIM_BSOW_UNKNOWN, // might not be an anim
+
+    ASSET_4F_ANIM_BSTWIRL = 0x4F,
+    ASSET_50_ANIM_BSREST_UNKNOWN,
+    ASSET_51_ANIM_BSLEDGE_UNKNOWN,
+
+    ASSET_5B_ANIM_BSREST_UNKNOWN = 0x5B,
+
+    ASSET_9C_ANIM_BSMUMSWIM_UNKNOWN = 0x9C,
+    ASSET_9D_ANIM_BSMUMSWIM_UNKNOWN,
+
+    ASSET_A4_ANIM_BSKAZSHOESSUCKSPLINE = 0xA4,
+    
+    ASSET_A6_ANIM_BSKAZMOVE_UNKNOWN = 0xA6,
+    ASSET_A7_ANIM_BSKAZMOVE_UNKNOWN,
+    ASSET_A8_ANIM_BSKAZCROUCH_UNKNOWN,
+    ASSET_A9_ANIM_BSKAZJUMP_UNKNOWN,
+    ASSET_AA_ANIM_BZKAZFLY_UNKNOWN,
+    ASSET_AB_ANIM_BZKAZFLY_UNKNOWN,
+
+    ASSET_B3_ANIM_BSMUMMOVE_UNKNOWN = 0xB3,
+    ASSET_B4_ANIM_BSMUMMOVE_UNKNOWN,
+
+    ASSET_B8_ANIM_BSMUM_UNKNOWN = 0xB8,
+    
+    ASSET_BB_ANIM_BSMUM_UNKNOWN = 0xBB,
+
+    ASSET_BD_BSMUM_ANIM_UNKNOWN = 0xBD,
+
+    ASSET_CA_ANIM_BZKAZDIE_UNKNOWN = 0xCA,
+    ASSET_CB_ANIM_BSMUMSPLAT_UNKNOWN,
+
+    ASSET_11E_ANIM_BSKAZFLY_UNKNOWN = 0x11E,
+    
+    ASSET_137_ANIM_BSKAZWINGWHACK_UNKNOWN = 0x137,
+
+    ASSET_139_ANIM_BSKAZPADDLE_UNKNOWN = 0x139,
+    ASSET_13A_ANIM_BSKAZPADDLE_UNKNOWN,
+
+    ASSET_13D_ANIM_KAZGLIDE_UNKNOWN = 0x13D,
+
+    ASSET_13F_ANIM_KAZHATCH_UNKNOWN = 0x13F,
+    ASSET_140_ANIM_KAZHATCH_UNKNOWN,
+    ASSET_141_ANIM_BSKAZCROUCH_UNKNOWN,
+    ASSET_142_ANIM_BSKAZSPRING_UNKNOWN,
+
+    ASSET_149_ABIM_BSKAZSTILT_UNKNOWN = 0x149,
+    ASSET_14A_ANIM_BSKAZSTILT_UNKNOWN,
+
+    ASSET_24C_ANIM_BSKAZSHOESSPRINGJUMP_UNKNOWN = 0x24C,
+    ASSET_24D_ANIM_BSKAZMOVE_UNKNOWN,
+
+    ASSET_24F_ANIM_BSKAZMOVE_UNKNOWN = 0x24F,
+
+    ASSET_27A_ANIM_BSKAZSHOCK_UNKNOWN = 0x27A,
+    ASSET_27B_ANIM_BANBFLIP,
+    ASSET_27C_ANIM_BSKAZSHOCK_UNKNOWN,
+
+    ASSET_27F_ANIM_BSKAZSTILT_UNKNOWN = 0x27F,
+
+    ASSET_288_ANIM_BSKAZFLY_UNKNOWN = 0x288,
+
+    ASSET_28E_ANIM_BZKAZEGGASS_UNKNOWN = 0x28E,
+    ASSET_28F_ANIM_BSKAZCROUCH_UNKNOWN,
+
+    ASSET_29D_ANIM_BSKAZFLY_UNKNOWN = 0x29D,
+    ASSET_29E_ANIM_BSKAZFLY_UNKNOWN,
+    BLUE_SPARKLE = 0x9E0,
+    GREEN_SPARKLE = 0x9E1,
+    GOLD_SPARKLE = 0x9E2,
+    ORANGE_SPARKLE = 0x9E3,
+    RED_SPARKLE = 0x9E4,
+    LIGHT_BLUE_SPARKLE = 0x9E5
+};
+
+enum baanim_update_type_e {
+    BAANIM_UPDATE_0_NONE,
+    BAANIM_UPDATE_1_NORMAL,
+    BAANIM_UPDATE_2_SCALE_HORZ,
+    BAANIM_UPDATE_3_SCALE_VERT,
+    BAANIM_UPDATE_4_UNKOWN
+};
+
+enum yaw_type_e {
+    YAW_TYPE_0_NONE,
+    YAW_TYPE_1_DEFAULT,
+    YAW_TYPE_2_UNBOUNDED,
+    YAW_TYPE_3_BOUNDED
+};
+
+enum ba_physics_type_e {
+    BA_PHYSICS_0_NONE,
+    BA_PHYSICS_1_UNKNOWN,
+    BA_PHYSICS_2_NORMAL,
+    BA_PHYSICS_3_LOCKED_ROTATION,
+    BA_PHYSICS_4_UNKNOWN,
+    BA_PHYSICS_5_INVERTED_YAW,
+    BA_PHYSICS_6_AIRBORN,
+    BA_PHYSICS_7_FREEZE,
+    BA_PHYSICS_8_UNKNOWN,
+    BA_PHYSICS_9_NO_GRAVITY,
+    BA_PHYSICS_A_CLIMB,
+    BA_PHYSICS_B_TRANSFORM,
+    BA_PHYSICS_C_GOTO,
+    BA_PHYSICS_D_END,
+    BA_PHYSICS_E_UNKNOWN
+};
+
+struct anctrl_s;
+void func_80092864(PlayerState *, f32);
+void func_800947EC(PlayerState *, s32, s32);
+void func_80095A40(PlayerState *);
+void func_80095A74(void *, s32);
+s32 func_8009E74C(PlayerState *, s32);
+void func_800959C8(PlayerState *, f32, f32);
+s32 func_8009E77C(PlayerState *, s32);
+s32 _baattach_entrypoint_1(PlayerState *);
+void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+s32 bastick_getZone(PlayerState *);
+f32 bastick_getZonePosition(PlayerState *);
+s32 func_8008DE24(PlayerState *);
+f32 func_800F1214(f32, f32, f32);
+s32 func_800DA298(s32);
+s32 _badrone_entrypoint_24(PlayerState *);
+int bainput_should_enter_first_person(PlayerState *);
+void _basudie_entrypoint_2(PlayerState *, f32, f32, f32);
+struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+void baanim_setEnd(PlayerState *, f32);
+void anctrl_reset(struct anctrl_s *);
+void anctrl_setSmoothTransition(struct anctrl_s *, s32);
+void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+void anctrl_setDuration(struct anctrl_s *, f32);
+void anctrl_setPlaybackType(struct anctrl_s *, s32);
+void anctrl_start(struct anctrl_s *);
+void func_8009D820(PlayerState *, f32);
+void func_8009DF94(PlayerState *, s32, f32, s32);
+void func_8009DF18(PlayerState *, s32, f32, s32);
+void _basudie_entrypoint_5(PlayerState *);
+f32 func_800F0E00(f32, f32);
+void anctrl_setStart(struct anctrl_s *, f32);
+void baanim_setEndAndDuration(PlayerState *, f32, f32);
+void func_800A2E18(PlayerState *);
+void _baattach_entrypoint_6(PlayerState *, s32, s32, s32);
+f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+void baphysics_set_gravity(PlayerState *, f32);
+void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+void baphysics_set_target_yaw(PlayerState *, f32);
+void baphysics_set_vertical_velocity(PlayerState *, f32);
+f32 bastick_distance(PlayerState *);
+f32 bastick_getAngleRelativeToBanjo(PlayerState *);
+void func_8009D7A4(PlayerState *, f32, f32);
+f32 yaw_getIdeal(PlayerState *);
+void yaw_setIdeal(PlayerState *, f32);
+void baanim_playForDuration_loopStartingAt(struct player_state_s *, enum asset_e, f32, f32);
+void func_8008C9F0(PlayerState *, f32, f32, f32, f32);
+s32 _badrone_entrypoint_25(PlayerState *);
+s32 bakey_func_80091940(PlayerState *, s32, s32);
+int bakey_newlyReleased(PlayerState *, s32);
+int bakey_pressed(PlayerState *, s32);
+int func_8008DD04(PlayerState *);
+int func_8008E148(PlayerState *);
+s32 func_8009BCD4(PlayerState *, f32);
+void func_800A2CE8(PlayerState *, f32, s32);
+s32 _baspin_entrypoint_3(s32);
+void _babounce_entrypoint_4(PlayerState *, s32);
+void _babounce_entrypoint_5(PlayerState *, s32, f32);
+s32 _babounce_entrypoint_9(s32);
+s32 _bsrest_entrypoint_13(s32);
+void _batimer_set(PlayerState *, s32, f32);
+s32 _batimer_decrement(void *, s32);
+f32 _batimer_get(void *, s32);
+f32 func_800D8FF8(void);
+f32 func_800F10B4(f32, f32, f32, f32, f32);
+s32 yaw_applyIdeal(void *);
+s32 func_800A02DC(PlayerState *, s32);
+
+int baanim_isStopped(PlayerState *);
+int bakey_released(PlayerState *, int);
+f32 baphysics_get_vertical_velocity(PlayerState *);
+void baphysics_reset_gravity(PlayerState *);
+int func_8008DF8C(PlayerState *, s32);
+void func_8009D3A8(PlayerState *, s32);
+int player_isStable(PlayerState *);
+s32 bs_setState(s32, s32);
+void func_80800000_bsstonehead(PlayerState *);
+void func_80800060_bsstonehead(PlayerState *);
+void func_808000CC_bsstonehead(PlayerState *);
+int func_808003B8_bsstonehead(PlayerState *);
+s32 func_808003F4_bsstonehead(PlayerState *, s32);
+void func_808005F0_bsstonehead(PlayerState *, s32);
+void func_808008CC_bsstonehead(PlayerState *, s32);
+void func_80800B38_bsstonehead(PlayerState *, u32);
+
 void func_80800000_bsstonehead(PlayerState *arg0) {
     void func_80092864(PlayerState *, f32);
     void func_800947EC(PlayerState *, s32, s32);
@@ -377,7 +591,45 @@ void bsstonehead_entrypoint_16(PlayerState *arg0)
 
 void bsstonehead_entrypoint_17(PlayerState *arg0) { func_80800060_bsstonehead(arg0); (*(s32 *)((s8 *)(arg0) + 0x15C)) = 0; func_80800B38_bsstonehead(arg0, 1); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_18.s")
+void bsstonehead_entrypoint_18(PlayerState *arg0) {
+    s32 next_state;
+
+    next_state = 0;
+    func_808000CC_bsstonehead(arg0);
+    if (bakey_released(arg0, 8) && baphysics_get_vertical_velocity(arg0) > 0.0f) {
+        baphysics_reset_gravity(arg0);
+    }
+    switch (arg0->unk15C.word) {
+    case 1:
+        if (func_8008DF8C(arg0, 0x82)) {
+            func_80800B38_bsstonehead(arg0, 3);
+        } else if (baanim_isStopped(arg0)) {
+            func_80800B38_bsstonehead(arg0, 2);
+        }
+        break;
+    case 2:
+        if (func_8008DF8C(arg0, 0x82)) {
+            func_80800B38_bsstonehead(arg0, 3);
+        }
+        break;
+    case 3:
+        func_8009D3A8(arg0, 0);
+        if (player_isStable(arg0)) {
+            func_80800B38_bsstonehead(arg0, 4);
+        }
+        break;
+    case 4:
+        func_8009D3A8(arg0, 0);
+        if (baanim_isStopped(arg0)) {
+            next_state = 0xB3;
+        }
+        break;
+    }
+    if (player_isStable(arg0)) {
+        next_state = func_808003F4_bsstonehead(arg0, next_state);
+    }
+    bs_setState(arg0, next_state);
+}
 
 s32 bsstonehead_entrypoint_19(s32 arg0) {
     extern s32 D_80801670_bsstonehead[];
