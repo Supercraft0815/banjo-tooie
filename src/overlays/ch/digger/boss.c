@@ -2366,7 +2366,86 @@ void func_808081AC_chdiggerboss(u8 *volatile arg0) {
     func_800BBCB8(sp34, sp24, 1.0f, 1, &D_8080A16C_chdiggerboss);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80808258_chdiggerboss.s")
+void func_80808258_chdiggerboss(Actor *arg0) {
+    void func_80808560_chdiggerboss(Actor *);
+    s32 func_808086A8_chdiggerboss(s32);
+    void func_808087F0_chdiggerboss(Actor *);
+    s32 func_800D2498(u32, s32, u32);
+    u8 func_800D9078(f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_8010105C(f32);
+    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    f32 func_80101F24(Actor *);
+    void func_80102FDC(void *, f32);
+    void func_80108B04(Actor *, u32);
+    struct {
+        u8 pad0[2];
+        u8 value;
+        u8 pad3[0xC9];
+        u8 state;
+        u8 active;
+        u8 padCE[2];
+        f32 timer;
+        s32 unkD4;
+    } *sp3C;
+    s32 sp38;
+    f32 sp34;
+    s32 sp30;
+    s16 sp2C[2];
+
+    sp3C = func_80100094(arg0, 0);
+    func_800D2498(0x10A, sp3C->value, 0);
+    func_808087F0_chdiggerboss(arg0);
+    switch (sp3C->state) {
+        case 0:
+            break;
+        case 1:
+            func_80108B04(arg0, 5);
+            break;
+        case 2:
+            sp38 = func_808086A8_chdiggerboss((s32)arg0);
+            if (sp38 != 0) {
+                func_80102FDC((Actor *)sp38, func_800F10B4(func_80101F24(arg0), 0.0f, 1.0f, 0.1f, 0.8f));
+            }
+            if (func_80101DDC(arg0)) {
+                if (sp3C->active) {
+                    func_80808560_chdiggerboss(arg0);
+                } else {
+                    func_80800180_chdiggerboss(arg0, 0xB);
+                    sp3C->state = 3;
+                }
+            }
+            break;
+        case 3:
+            if (sp3C->active) {
+                func_80808560_chdiggerboss(arg0);
+            }
+            break;
+        case 4:
+            if (func_800D9078(&sp3C->timer)) {
+                func_80800180_chdiggerboss(arg0, 0xC);
+                sp3C->state = 5;
+            }
+            break;
+        case 5:
+            sp30 = func_808086A8_chdiggerboss((s32)arg0);
+            if (func_80101E14(arg0, 0.33f)) {
+                sp2C[0] = func_80802248_chdiggerboss((s32)arg0);
+                func_8010105C(800.0f);
+                func_8010108C((Actor *)sp30, 0xA, (sp2C[0] << 16) | 0xDAC);
+                sp3C->unkD4 = 0;
+            }
+            if (func_80101DDC(arg0)) {
+                func_80800180_chdiggerboss(arg0, 8);
+                sp3C->state = 1;
+                sp3C->timer = 0.5f;
+            }
+            break;
+    }
+}
 
 void func_8080843C_chdiggerboss(s32 arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
