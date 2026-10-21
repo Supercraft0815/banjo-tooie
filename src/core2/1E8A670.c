@@ -54,7 +54,60 @@ s32 func_800B0D80(u8 *arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5,
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B1110.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B1328.s")
+u8 func_800B1328(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5, f32 arg6, s32 arg7)
+{
+  void func_800193C4(f32 *, f32 *);
+  void func_8001980C(f32 *, f32 *, f32, f32 *);
+  s32 func_80019CD4(void);
+  f32 sqrtf(f32);
+  extern s16 D_80127EE0;
+  f32 distance;
+  u8 *base;
+  f32 position[3];
+  f32 scaledRadius;
+  f32 center[3];
+  f32 radius;
+  s32 id;
+  register u8 *end;
+  f32 delta[3];
+  int new_var;
+  u8 *entry;
+  func_80019CD4();
+  func_8001980C(arg1, arg2, arg3, arg4);
+  func_800193C4(position, arg5);
+  base = (((*((s16 *) arg0)) * 0x18) + arg0) + 8;
+  entry = ((*((s16 *) (arg0 + 2))) * 0x10) + base;
+  end = ((*((s16 *) (arg0 + 4))) * 0xC) + entry;
+  while (entry < end)
+  {
+    id = entry[8];
+    id--;
+    if (1)
+    {
+      if (!((1 << id) & arg7))
+      {
+        scaledRadius = arg6 / arg3;
+        center[0] = *((s16 *) (entry + 2));
+        center[1] = *((s16 *) (entry + 4));
+        new_var = 1;
+        center[2] = *((s16 *) (entry + 6));
+        radius = *((s16 *) entry);
+        delta[0] = center[0] - position[0];
+        delta[new_var] = center[new_var] - position[new_var];
+        delta[2] = center[2] - position[2];
+        distance = sqrtf(((delta[0] * delta[0]) + (delta[new_var] * delta[new_var])) + (delta[2] * delta[2]));
+        if (!((scaledRadius + radius) <= distance))
+        {
+          D_80127EE0 = ((s32) ((entry - ((*((s16 *) (arg0 + 2))) * 0x10)) - base)) / 12;
+          return entry[8];
+        }
+      }
+      entry += 0xC;
+    }
+  }
+
+  return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B1508.s")
 
