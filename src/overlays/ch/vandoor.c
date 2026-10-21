@@ -39,7 +39,58 @@ void func_8080000C_chvandoor(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/vandoor/func_80800104_chvandoor.s")
+void func_80800104_chvandoor(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 func_800D9078(f32 *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80800388_chvandoor(Actor *, s32);
+    s32 func_8080044C_chvandoor(Actor *);
+    extern u32 D_80800688_chvandoor;
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+    f32 *position;
+
+    sp34 = 0;
+    switch (arg0->unk70_10) {
+    case 1:
+        position = arg0->position;
+        break;
+    case 2:
+        sp30 = func_800D9078(&arg0->unk58);
+        position = arg0->position;
+        func_800EFE50(position, (f32 *)&arg0->actorData[0], (f32 *)&arg0->actorData[4],
+            func_800F10B4(arg0->unk58, 0.0f, 2.0f, 1.0f, 0.0f));
+        if (sp30 != 0) {
+            func_80800388_chvandoor(arg0, 3);
+        }
+        sp34 = sp30 == 0;
+        break;
+    case 3:
+        if (func_8080044C_chvandoor(arg0) != 0) {
+            func_80101180(0x3CC, 8, arg0->unk74_7);
+        }
+        position = arg0->position;
+        break;
+    case 4:
+        sp28 = func_800D9078(&arg0->unk58);
+        position = arg0->position;
+        func_800EFE50(position, (f32 *)&arg0->actorData[0], (f32 *)&arg0->actorData[4],
+            func_800F10B4(arg0->unk58, 0.0f, 2.0f, 0.0f, 1.0f));
+        if (sp28 != 0) {
+            func_80800388_chvandoor(arg0, 1);
+        }
+        sp34 = sp28 == 0;
+        break;
+    default:
+        position = arg0->position;
+        break;
+    }
+    _subaddieaudioloop_entrypoint_4(arg0, position, sp34, &D_80800688_chvandoor);
+}
 
 /* extern */
 
