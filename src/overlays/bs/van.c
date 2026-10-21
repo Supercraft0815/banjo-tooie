@@ -706,7 +706,59 @@ void func_808013E4_bsvan(struct player_state_s *arg0) {
     func_800909CC(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_8080145C_bsvan.s")
+void func_8080145C_bsvan(struct player_state_s *arg0) {
+    s32 _badrone_entrypoint_25(struct player_state_s *);
+    int baanim_isAt(struct player_state_s *, f32);
+    s32 bastick_getZone(struct player_state_s *);
+    void bs_setState(struct player_state_s *, int);
+    int func_8008E148(struct player_state_s *);
+    void func_80092C90(void *, f32[3], s32);
+    void func_8009C128(struct player_state_s *, f32[3]);
+    void func_8009D3A8(struct player_state_s *, s32);
+    s32 func_800B5BE4(s32);
+    void func_800BA77C(s32, s16, s16, s16);
+    void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_800DC178(f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_800F1A88(f32 *, f32 *);
+    s32 player_inWater(struct player_state_s *);
+    extern s32 D_80801D0C_bsvan[];
+    s32 sp6C;
+    f32 sp64[2];
+    f32 sp58[3];
+    f32 sp4C[3];
+    f32 sp40[3];
+    s32 sp3C;
+
+    sp6C = 0;
+    func_8009D3A8(arg0, 0);
+    if (baanim_isAt(arg0, 0.0122f) || baanim_isAt(arg0, 0.5122f)) {
+        sp3C = func_800B5BE4(8);
+        func_8009C128(arg0, sp58);
+        func_80092C90(arg0, sp40, 4);
+        func_800EFB24(sp4C, sp40, sp58);
+        func_800F1A88(sp4C, sp64);
+        sp64[0] = -sp64[0] - 10;
+        func_800BA994(sp3C, (s16)sp64[0], (s16)(sp64[1] - 10.0f), 150,
+                     (s16)sp64[0], (s32)(sp64[1] + 10.0f), 200);
+        func_800BA77C(sp3C, 0, 0, (s16)func_800DC178(0.0f, 359.0f));
+        func_800BABB8(sp3C, sp40, NULL, 1.0f, D_80801D0C_bsvan);
+    }
+    func_808000BC_bsvan(arg0);
+    if (bastick_getZone(arg0) > 0) {
+        sp6C = 0x116;
+    }
+    if (func_8008E148(arg0)) {
+        sp6C = _badrone_entrypoint_25(arg0);
+    }
+    if (player_inWater(arg0)) {
+        sp6C = 0x11D;
+    }
+    sp6C = func_800A02DC(arg0, func_80800064_bsvan(arg0, sp6C));
+    bsvan_entrypoint_3(arg0);
+    bs_setState(arg0, sp6C);
+}
 
 s32 bsvan_entrypoint_14(s32 arg0) {
     extern s32 D_80801D70_bsvan[];
