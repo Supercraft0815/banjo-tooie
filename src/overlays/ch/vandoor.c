@@ -103,4 +103,52 @@ void func_80800388_chvandoor(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/vandoor/func_8080044C_chvandoor.s")
+s32 func_8080044C_chvandoor(Actor *arg0) {
+    Actor *_subaddiefind_entrypoint_2(s32, s32 *);
+    Actor *_subaddiefind_entrypoint_3(s32, s32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800F5A00(s32, f32 *);
+    s32 func_8010D290(s32);
+    extern Actor *B_80800690_chvandoor[];
+    extern Actor *B_80800694_chvandoor;
+    f32 position[3];
+    Actor *actor;
+    s32 cursor;
+    s32 player;
+    s32 i;
+    s32 j;
+    s32 count;
+    Actor *temp;
+
+    player = func_8010D290(0x10000);
+    count = 0;
+    if (player == -1) {
+        return 0;
+    }
+    func_800F5A00(player, position);
+    for (actor = _subaddiefind_entrypoint_2(0x3CC, &cursor); actor != NULL;
+         actor = _subaddiefind_entrypoint_3(0x3CC, &cursor)) {
+        if (arg0->unk74_7 == actor->unk74_7) {
+            B_80800690_chvandoor[count++] = actor;
+        }
+    }
+    for (i = 1; i < count; i++) {
+        j = i;
+        if (j > 0 &&
+            func_800EEB40(B_80800690_chvandoor[j]->position, position) <
+            func_800EEB40(B_80800690_chvandoor[j - 1]->position, position)) {
+            do {
+                temp = B_80800690_chvandoor[j];
+                B_80800690_chvandoor[j] = B_80800690_chvandoor[j - 1];
+                B_80800690_chvandoor[j - 1] = temp;
+                j--;
+            } while (&B_80800690_chvandoor[j] >= &B_80800694_chvandoor &&
+                     func_800EEB40(B_80800690_chvandoor[j]->position, position) <
+                     func_800EEB40(B_80800690_chvandoor[j - 1]->position, position));
+        }
+    }
+    if (arg0 != B_80800690_chvandoor[0]) {
+        return 0;
+    }
+    return func_800EEB40(B_80800690_chvandoor[0]->position, position) > 2250000.0f;
+}
