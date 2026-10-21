@@ -156,4 +156,31 @@ f32 func_808003F0_vpwibble(void *arg0, void *arg1, void *arg2) {
     return temp_f12;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/wibble/vpwibble_entrypoint_3.s")
+void vpwibble_entrypoint_3(void *arg0, s32 arg1, u32 arg2, s32 arg3) {
+    f32 height;
+    s32 shade;
+    f32 offsets[2];
+
+    arg3 = arg3 * 0x10 + arg2;
+    if (arg2 < (u32)arg3) {
+        do {
+            height = func_808003F0_vpwibble(arg0, (void *)arg2, offsets);
+            if (*(u8 *)((s8 *)arg0 + 0x31) == 1) {
+                *(s16 *)((s8 *)arg2 + 2) = (s32)((f32)*(s16 *)((s8 *)arg0 + 0x18) + height);
+            } else if (*(u8 *)((s8 *)arg0 + 0x31) == 2) {
+                *(s16 *)((s8 *)arg2 + 2) = (s32)((f32)*(s16 *)((s8 *)arg2 + 2) + height);
+            }
+            if (*(u8 *)((s8 *)arg0 + 0x32)) {
+                shade = (s32)((height * *(f32 *)((s8 *)arg0 + 0x20)) + (f32)*(u8 *)((s8 *)arg0 + 0x30));
+                *(u8 *)((s8 *)arg2 + 0xC) = (*(u8 *)((s8 *)arg2 + 0xC) * shade) >> 8;
+                *(u8 *)((s8 *)arg2 + 0xD) = (*(u8 *)((s8 *)arg2 + 0xD) * shade) >> 8;
+                *(u8 *)((s8 *)arg2 + 0xE) = (*(u8 *)((s8 *)arg2 + 0xE) * shade) >> 8;
+            }
+            if (*(u8 *)((s8 *)arg0 + 0x33)) {
+                *(s16 *)((s8 *)arg2 + 8) = (s32)((f32)*(s16 *)((s8 *)arg2 + 8) + *(f32 *)((s8 *)arg0 + 0x1C) * offsets[0]);
+                *(s16 *)((s8 *)arg2 + 0xA) = (s32)((f32)*(s16 *)((s8 *)arg2 + 0xA) + *(f32 *)((s8 *)arg0 + 0x1C) * offsets[1]);
+            }
+            arg2 += 0x10;
+        } while (arg2 < (u32)arg3);
+    }
+}
