@@ -170,7 +170,54 @@ void func_80800674_chfactoryprop(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/prop/func_80800988_chfactoryprop.s")
+void func_80800988_chfactoryprop(Actor *arg0) {
+    void func_8008FE68(f32 *);
+    void func_800C3058(u8, s32);
+    u8 func_800C4350(s32, u8 *, s32 *);
+    s32 func_800DB9B0(void);
+    void func_800E3980(f32 *);
+    s32 func_800EA05C(void);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    extern s32 D_80800D24_chfactoryprop;
+    f32 soundPosition[3];
+    f32 playerPosition[3];
+    f32 distance;
+    s32 rate;
+
+    if (func_800DB9B0() == 0) {
+        func_8008FE68(playerPosition);
+    } else {
+        func_800E3980(playerPosition);
+    }
+    func_800EE7F8(soundPosition, arg0->position);
+    soundPosition[0] = playerPosition[0];
+    if (arg0->unk5F == 0) {
+        arg0->unk5F = func_800C4350(0, soundPosition, &D_80800D24_chfactoryprop);
+    }
+    switch (func_800EA05C()) {
+        case 0x10F:
+            distance = -1200.0f - playerPosition[0];
+            if (distance < 0.0f) {
+                rate = (s32)func_800F10B4(distance, 0.0f, -800.0f, 20000.0f, 0);
+            } else {
+                rate = 20000;
+            }
+            break;
+        case 0x110:
+            distance = arg0->position[1] - playerPosition[1];
+            if (distance > 0.0f) {
+                rate = (s32)func_800F10B4(distance, 0.0f, 4000.0f, 20000.0f, 0);
+            } else {
+                rate = 20000;
+            }
+            break;
+    }
+    rate *= func_800F12D4(*(f32 *)&arg0->actorData[4], 0.0f, 400.0f, 0.4f, 1.0f);
+    func_800C3058(arg0->unk5F, rate);
+    func_800C4350(arg0->unk5F, soundPosition, NULL);
+}
 
 /* extern */
 
