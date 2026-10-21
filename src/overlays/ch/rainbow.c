@@ -152,7 +152,50 @@ void func_80800CD4_chrainbow(s32 arg0) {
     func_80800270_chrainbow(arg0, 0xC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_80800D88_chrainbow.s")
+s32 func_80800D88_chrainbow(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_14(void);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 func_800DA298(s32);
+    void func_80103110(void *, s32);
+    Actor *actor;
+
+    switch (arg1) {
+    case 0xB:
+        _capod_entrypoint_14();
+        if (arg2 == 9) {
+            if (func_800DA298(0x1E1) != 0) {
+                func_80800CD4_chrainbow((s32)arg0);
+                return 4;
+            }
+            func_80800270_chrainbow((s32)arg0, 8);
+            return 4;
+        }
+        if (arg2 == 0xC) {
+            func_80800CD4_chrainbow((s32)arg0);
+        }
+        return 4;
+    case 0x4B:
+        if (arg2 == 0xC) {
+            func_80800270_chrainbow((s32)arg0, 2);
+            _subaddieDll_entrypoint_4(arg0, 1);
+            func_80103110(arg0, 1);
+            return 1;
+        }
+        return 0;
+    case 0x4C:
+        func_80800CD4_chrainbow((s32)arg0);
+        return 1;
+    case 0x95:
+        actor = _subaddiefind_entrypoint_2(0x2B0, 0);
+        if (actor != NULL) {
+            arg0->unk3C = actor->unk0;
+        }
+        return 1;
+    default:
+        return 0;
+    }
+}
 
 void func_80800EB4_chrainbow(Actor *arg0, void *arg1) {
     void func_800B99CC(s32, s32, s32);
