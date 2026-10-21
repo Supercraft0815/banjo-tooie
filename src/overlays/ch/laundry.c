@@ -24,7 +24,69 @@ f32 func_8080000C_chlaundry(Actor *arg0) {
     return var_f2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/laundry/func_80800058_chlaundry.s")
+void func_80800058_chlaundry(Actor *arg0, f32 arg1) {
+    void _glhittableDll_entrypoint_1(Unk80132ED0 *, void *);
+    s32 func_800AF5A0(s16 *);
+    s32 func_800B5BE4(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    u8 *func_800CD820(u8 *, f32 *, f32 *, f32);
+    f32 func_800D8FF8(void);
+    void *func_800EC3E8(u8 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F13C4(f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    void func_8010AA78(s32 *);
+    s32 func_8010B990(Actor *, s32);
+    extern s32 D_80800488_chlaundry[];
+    struct LaundryData {
+        s8 unk0;
+        s8 unk1;
+        f32 unk4;
+        f32 unk8;
+        f32 unkC[3];
+        f32 unk18;
+    };
+    struct LaundryProp {
+        u8 pad[10];
+        u8 frame : 5;
+        u8 flags : 3;
+    };
+    struct LaundryMarker {
+        u32 pad[8];
+        s16 unk20;
+    };
+    f32 sp4C;
+    u8 *collision;
+    s32 hit;
+    s32 flags;
+    struct LaundryData *data;
+
+    data = func_80100094(arg0, 0);
+    if (data->unk4 < 2.5f) {
+        func_800BABB8(func_800B5BE4(0x19), arg0->position, NULL, 1.0f, D_80800488_chlaundry);
+    }
+    sp4C = func_800D8FF8() * 24.0f + data->unk18;
+    data->unk18 = func_800F13C4(sp4C, (f32)func_800AF5A0(func_800EC3E8((u8 *)arg0->unk0)));
+    ((struct LaundryProp *)arg0->unk0->unk0)->frame = (s32)data->unk18;
+    ((struct LaundryMarker *)arg0->unk0)->unk20 = 0;
+    func_8010A590(arg0);
+    collision = func_800CD820((u8 *)arg0->unk0, data->unkC, arg0->position, 40.0f);
+    hit = (s32)collision != 0;
+    if (collision != NULL) {
+        _glhittableDll_entrypoint_1(arg0->unk0, collision);
+    }
+    func_8010A570(arg0);
+    func_800EE7F8(data->unkC, arg0->position);
+    flags = func_8010B990(arg0, 0x100004);
+    if (flags == 0x20) {
+        func_8010AA78((s32 *)arg0->position);
+    }
+    if (hit || flags == 0x20 || func_8080000C_chlaundry(arg0) * 4.0f < data->unk4) {
+        data->unk1 = 1;
+    }
+}
 
 /* extern */
 
