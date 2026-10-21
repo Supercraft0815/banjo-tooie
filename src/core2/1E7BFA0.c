@@ -437,7 +437,58 @@ void func_800A355C(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A3644.s")
+s32 func_800A3644(void *arg0) {
+    s32 bastatetimer_set(void *, s32, f32);
+    f32 func_800963E4(PlayerState *);
+    s32 func_80096434(PlayerState *);
+    s32 func_8009650C(PlayerState *);
+    u32 func_80096518(PlayerState *);
+    s32 func_80096628(PlayerState *);
+    f32 func_800D8FF8(void);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F13F0(f32, f32);
+    s32 player_inWater(PlayerState *);
+    extern f32 D_80125564;
+    f32 sp3C;
+    f32 sp38;
+    f32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    void *temp_v1;
+
+    sp34 = func_800D8FF8();
+    sp38 = func_800963E4(arg0);
+    sp30 = func_80096628(arg0);
+    temp_v1 = *(void **)((s8 *)arg0 + 0xA0);
+    if (*(u8 *)((s8 *)temp_v1 + 0x3D) != 0) {
+        if (sp38 > 35.0f) {
+            *(f32 *)((s8 *)temp_v1 + 0x38) = 1.0f;
+        } else {
+            *(f32 *)((s8 *)temp_v1 + 0x38) = 0.0f;
+        }
+    } else {
+        sp3C = func_800F10B4(sp38, 20.0f, 60.0f, 0.6f, D_80125564);
+        if ((func_80096518(arg0) == 0) && !(sp30 & 0x50)) {
+            sp2C = func_80096434(arg0);
+            if ((func_8009650C(arg0) != 0) && (sp2C & 0x50)) {
+                sp30 = sp2C;
+            }
+        }
+        if ((sp30 & 0x50) && (player_inWater(arg0) == 0)) {
+            *(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0xA0) + 0x38) = func_800F13F0(*(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0xA0) + 0x38) + sp34 * sp3C, 1.0f);
+        } else {
+            *(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0xA0) + 0x38) = 0.0f;
+        }
+        if (*(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0xA0) + 0x38) == 1.0f) {
+            if (sp30 & 0x10) {
+                bastatetimer_set(arg0, 5, 0.18f);
+            } else if (sp30 & 0x40) {
+                bastatetimer_set(arg0, 6, 0.18f);
+            }
+        }
+    }
+    *(s8 *)((s8 *)*(void **)((s8 *)arg0 + 0xA0) + 0x3D) = 0;
+}
 
 void func_800A380C(void *arg0) {
     extern f32 D_80125568;
