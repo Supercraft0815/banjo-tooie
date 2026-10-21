@@ -182,7 +182,39 @@ void func_80800558_chfireicestorm(Actor *arg0, u32 arg1) {
     func_800DA3B8(FLAG3_9FB_UNK, sp24);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_80800608_chfireicestorm.s")
+Actor *func_80800608_chfireicestorm(Actor *arg0) {
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    u32 func_800F54E4(void);
+    f32 func_800F5BF0(s32, f32 *);
+    void func_80102FDC(Actor *, f32);
+    s32 func_80103140(Actor *, u32, u16);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern s32 D_80800E80_chfireicestorm;
+    extern s32 D_80800E94_chfireicestorm;
+    Actor *child;
+    f32 sp40[3];
+    f32 sp34[3];
+
+    func_800F5BF0(func_800F54E4(), sp40);
+    func_800EE7F8(sp34, sp40);
+    sp34[0] += func_800DC178(-100.0f, 100.0f);
+    sp34[1] += 2500.0f;
+    sp34[2] += func_800DC178(-100.0f, 100.0f);
+    child = func_80108528(0x4FD, sp34, 0, &arg0);
+    child->unk64_20 = arg0->unk64_20;
+    func_80102FDC(child, func_800DC178(0.95f, 1.25f));
+    func_800EFB24(&child->actorData[4], sp40, sp34);
+    func_800EF368((f32 *)&child->actorData[4], func_800DC178(2750.0f, 3250.0f));
+    func_800EFA4C((f32 *)child->actorData, func_800DC178(50.0f, 100.0f), 0.0f, func_800DC178(5.0f, 10.0f));
+    func_80103140(child, (u16)(arg0->unk64_20 ? 0x814 : 0x815), child->unk0->unk16);
+    func_8010D930(4, child->unk70_0, sp34, child->unk64_20 ? &D_80800E94_chfireicestorm : &D_80800E80_chfireicestorm);
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_808007EC_chfireicestorm.s")
 
