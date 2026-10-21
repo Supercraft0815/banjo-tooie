@@ -119,7 +119,64 @@ void func_80800270_bsswim(struct player_state_s *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_808002E0_bsswim.s")
+void func_808002E0_bsswim(struct player_state_s *arg0) {
+    int anctrl_getIndex(struct anctrl_s *);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void bainput_setDiveCooldown(struct player_state_s *, s32, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    s32 bs_getPreviousState(struct player_state_s *);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    s32 func_8009CA70(struct player_state_s *, s32, s32);
+    void func_8009DF18(struct player_state_s *, s32, f32, s32);
+    void func_8009FFD8(struct player_state_s *, s32, s32, s32, s32);
+    void func_800A4DA4(struct player_state_s *, s32);
+    f32 func_800CF67C(void);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void yaw_setVelocityBounded(struct player_state_s *, f32, f32);
+    s32 pad;
+    s32 previous;
+    f32 transition;
+    struct anctrl_s *control;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    func_808001DC_bsswim(arg0);
+    previous = bs_getPreviousState(arg0);
+    if (previous == 0x4C) {
+        transition = 0.8f;
+    } else {
+        transition = 0.5f;
+    }
+    if (func_8009CA70(arg0, previous, 2) != 0) {
+        if (previous == 0x54) {
+            func_8009DF18(arg0, 0x461, 1.0f, 30000);
+        } else if (previous != 0x4C) {
+            func_8009DF18(arg0, 0x461, 1.0f, (s32)func_800F10B4(func_800CF67C(), 1.0f, 0.0f, 8000.0f, 30000.0f));
+        }
+        bainput_setDiveCooldown(arg0, 4, 0.7f);
+    }
+    if ((anctrl_getIndex(control) == 0x57) && (previous != 0x4C)) {
+        anctrl_setDuration(control, 1.2f);
+    } else {
+        anctrl_reset(control);
+        func_8008B1C8(control, transition);
+        anctrl_setIndex(control, 0x57);
+        anctrl_setPlaybackType(control, 2);
+        anctrl_setStart(control, 0.3f);
+        anctrl_setDuration(control, 1.2f);
+        anctrl_start(control);
+    }
+    func_8009FFD8(arg0, 1, 3, 3, 2);
+    yaw_setVelocityBounded(arg0, 500.0f, 5.0f);
+    baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+    func_800A4DA4(arg0, 8);
+}
 
 void func_808004C4_bsswim(struct player_state_s *arg0) {
     s32 bs_setState(s32, s32);
