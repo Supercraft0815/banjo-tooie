@@ -156,7 +156,67 @@ void func_80800CD0_chfactorydrums(Actor *arg0, s32 arg1) {
     func_80102424(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/drums/func_80800D90_chfactorydrums.s")
+s32 func_80800D90_chfactorydrums(Actor *arg0, s32 arg1, s32 arg2) {
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    void func_800C4140(u32, f32 *, u32);
+    void func_80101010(f32 *);
+    void func_80101074(void *);
+    s32 func_80103140(Actor *, u32, u16);
+    f32 func_80103EF4(Actor *);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    extern u8 D_80801044_chfactorydrums[];
+    extern f32 D_80801250_chfactorydrums[];
+    union DrumFlags {
+        Actor actor;
+        struct {
+            u8 pad[0x78];
+            u32 unused : 29;
+            u32 flag : 1;
+            u32 rest : 2;
+        } flags;
+    };
+    Actor *sp1C;
+
+    switch (arg1) {
+        case 0x3E:
+        case 0x3F:
+            if (!arg0->unk64_29 && !((union DrumFlags *)arg0)->flags.flag) {
+                func_80800CD0_chfactorydrums(arg0, 4);
+            }
+            if (arg0->unk70_10 != 4) {
+                func_800C4140(0x7FEFA417, arg0->position, 0x04B000FA);
+            }
+            return 1;
+        case 0x40:
+            func_80800CD0_chfactorydrums(arg0, 6);
+            return 1;
+        case 1:
+            func_80800CD0_chfactorydrums(arg0, 2);
+            return 1;
+        case 2:
+            func_80800CD0_chfactorydrums(arg0, 8);
+            return 1;
+        case 0x3D:
+            sp1C = func_80108528(0x3FF, arg0->position, 0, &arg0);
+            sp1C->position[1] += func_80103EF4(arg0);
+            return 1;
+        case 0x38:
+            func_80101074(D_80801044_chfactorydrums);
+            return 5;
+        case 0x95:
+            _subaddierouteDll_entrypoint_1(arg0);
+            if (arg0->unk74_7 == 0x32) {
+                func_80103140(arg0, 0x7D0, arg0->unk0->unk16);
+            }
+            func_80800CD0_chfactorydrums(arg0, 1);
+            return 1;
+        case 0x97:
+            func_80101010(D_80801250_chfactorydrums);
+            return 1;
+        default:
+            return 0;
+    }
+}
 
 OSThread *chfactorydrums_entrypoint_2(void)
 {
