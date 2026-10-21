@@ -269,7 +269,54 @@ done:
     func_80101FDC(arg0, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800914_chcablecar.s")
+void func_80800914_chcablecar(Actor *arg0) {
+    void _susubgame_entrypoint_8(Actor *, void *, s32, s32, s32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F8294(s32, f32 *);
+    void func_800F8444(s32, f32 *);
+    typedef struct {
+        s16 start[3];
+        s16 end[3];
+        f32 fraction;
+    } CablecarPath;
+    CablecarPath *data;
+    s32 player;
+    f32 position3[3];
+    f32 rotation3[3];
+    f32 position4[3];
+    f32 rotation4[3];
+
+    data = func_80100094(arg0, 0);
+    player = func_800F54E4();
+    switch (arg0->actorData[4]) {
+        case 3:
+            if (data->fraction > 0.15f && !arg0->unk64_19) {
+                func_8080070C_chcablecar(arg0, 0.85f);
+                arg0->unk64_19 = 1;
+                _susubgame_entrypoint_8(arg0, (u8 *)data + 0x2C, 0x2E, 0x12010, 0);
+                func_800EFA4C(position3, -80.0f, -425.0f, 0.0f);
+                func_800EF04C(position3, arg0->position);
+                func_800F8294(player, position3);
+                func_800EFA4C(rotation3, 0.0f, 270.0f, 0.0f);
+                func_800F8444(player, rotation3);
+            }
+            break;
+        case 4:
+            if (data->fraction < 0.85f && !arg0->unk64_19) {
+                func_8080070C_chcablecar(arg0, 0.15f);
+                arg0->unk64_19 = 1;
+                _susubgame_entrypoint_8(arg0, (u8 *)data + 0x2C, 0x2F, 0x12010, 0);
+                func_800EFA4C(position4, 60.0f, -425.0f, 0.0f);
+                func_800EF04C(position4, arg0->position);
+                func_800F8294(player, position4);
+                func_800EFA4C(rotation4, 0.0f, 90.0f, 0.0f);
+                func_800F8444(player, rotation4);
+            }
+            break;
+    }
+}
 
 void func_80800AF4_chcablecar(Actor *arg0, u32 arg1) {
     void _subaddieDll_entrypoint_4(Actor *, u32);
