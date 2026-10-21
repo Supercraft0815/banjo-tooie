@@ -4761,7 +4761,67 @@ void func_80809684_bsfirstp(struct player_state_s *arg0, s32 arg1) {
     *(f32 *)((s8 *)temp_s0 + 0x228) = sp28[0][1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809740_bsfirstp.s")
+void func_80809740_bsfirstp(struct player_state_s *arg0) {
+    s32 func_800EA068(s32);
+    f32 func_800F0D50(f32, f32, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void func_8008B188(struct anctrl_s *, s32);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void func_800A2CE8(struct player_state_s *, f32, s32);
+    s32 pad4C;
+    struct anctrl_s *sp48;
+    f32 sp3C[3];
+    f32 progress;
+    f32 pad;
+    f32 start;
+    f32 end;
+    void *temp_s0;
+
+    temp_s0 = *(void **)((s8 *)arg0 + 0x188);
+    sp48 = baanim_getAnimCtrlPtr(arg0);
+    func_80806148_bsfirstp(arg0, sp3C);
+    if (sp3C[2] >= 0.0f) {
+        *(u8 *)((s8 *)temp_s0 + 0x219) = 1;
+    } else {
+        *(u8 *)((s8 *)temp_s0 + 0x219) = 0;
+    }
+    func_8008B188(sp48, *(u8 *)((s8 *)temp_s0 + 0x219));
+    progress = func_8080613C_bsfirstp(arg0);
+    switch (*(u8 *)((s8 *)temp_s0 + 0x218)) {
+        case 0:
+            start = 0.0f;
+            end = *(f32 *)((s8 *)temp_s0 + 0x224);
+            break;
+        case 1:
+            start = *(f32 *)((s8 *)temp_s0 + 0x224);
+            end = *(f32 *)((s8 *)temp_s0 + 0x228);
+            break;
+        case 2:
+            start = *(f32 *)((s8 *)temp_s0 + 0x228);
+            end = 1.0f;
+            break;
+    }
+    if (start != end) {
+        progress = func_800F0D50((progress - start) / (end - start), 0.0f, 1.0f);
+    } else {
+        progress = 1.0f;
+    }
+    start = *(f32 *)((s8 *)temp_s0 + 0x21C);
+    end = *(f32 *)((s8 *)temp_s0 + 0x220);
+    anctrl_setDuration(sp48, (end - start) * progress + start);
+    if (!func_800EA068(0x20)) {
+        switch (*(u8 *)((s8 *)temp_s0 + 0x218)) {
+            case 1:
+                func_800A2CE8(arg0, 0.45f, 4);
+                func_800A2CE8(arg0, 0.9f, 3);
+                break;
+            case 2:
+                func_800A2CE8(arg0, 0.45f, 4);
+                func_800A2CE8(arg0, 0.95f, 3);
+                break;
+        }
+    }
+}
 
 /* extern */
 
