@@ -255,7 +255,50 @@ s32 func_800FED90(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FEDC4.s")
+void func_800FEDC4(s32 arg0, s32 arg1, f32 arg2, f32 arg3) {
+    u8 func_800C2E04(void);
+    s32 func_800C2FDC(u8);
+    void func_800C301C(u8, s32);
+    void func_800C3058(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C330C(u8, s32);
+    void func_800C33DC(u8, s32);
+    void func_800C3648(u8, s32);
+    void func_800C368C(u8, s32);
+    void func_800C36F4(u8, s32);
+    void func_800C3A40(u8, f32, f32, f32);
+    void func_800C3BDC(u8);
+    s32 func_800EA05C();
+    extern s32 D_801359C0;
+    extern s16 D_80123E5E;
+    extern s32 D_80123E64;
+
+    if (arg1 == *(s16 *)((u8 *)&D_801359C0 + arg0 * 2 + 0x36) && arg1 != 0) {
+        func_800C3648(*((u8 *)&D_801359C0 + arg0 + 0x34), func_800EA05C());
+        func_800C3058(*((u8 *)&D_801359C0 + arg0 + 0x34), (s32)(*(s16 *)((u8 *)&D_80123E5E + arg1 * 8) * arg2));
+        return;
+    }
+    if (*((u8 *)&D_801359C0 + arg0 + 0x34) != 0) {
+        if (arg3 != 0.0f) {
+            func_800C3A40(*((u8 *)&D_801359C0 + arg0 + 0x34), 0.0f, 0.0f, arg3);
+        } else {
+            func_800C2FDC(*((u8 *)&D_801359C0 + arg0 + 0x34));
+        }
+        *((u8 *)&D_801359C0 + arg0 + 0x34) = 0;
+    }
+    if (arg1 != 0) {
+        *((u8 *)&D_801359C0 + arg0 + 0x34) = func_800C2E04();
+        func_800C330C(*((u8 *)&D_801359C0 + arg0 + 0x34), 3);
+        func_800C301C(*((u8 *)&D_801359C0 + arg0 + 0x34), *(s16 *)((u8 *)&D_80123E64 + arg1 * 8 - 8));
+        func_800C3058(*((u8 *)&D_801359C0 + arg0 + 0x34), (s32)(*(s16 *)((u8 *)&D_80123E64 + arg1 * 8 - 6) * arg2));
+        func_800C31DC(*((u8 *)&D_801359C0 + arg0 + 0x34), *(f32 *)((u8 *)&D_80123E64 + arg1 * 8 - 4));
+        func_800C36F4(*((u8 *)&D_801359C0 + arg0 + 0x34), 0xFF);
+        func_800C368C(*((u8 *)&D_801359C0 + arg0 + 0x34), 0);
+        func_800C33DC(*((u8 *)&D_801359C0 + arg0 + 0x34), 0);
+        func_800C3BDC(*((u8 *)&D_801359C0 + arg0 + 0x34));
+    }
+    *(s16 *)((u8 *)&D_801359C0 + arg0 * 2 + 0x36) = arg1;
+}
 
 void func_800FEF94(s32 arg0, s32 arg1, s32 arg2, s32 *arg3, s16 *arg4) {
     extern s32 D_80123E84;
