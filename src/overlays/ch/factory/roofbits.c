@@ -68,7 +68,47 @@ void func_808003C4_chfactoryroofbits(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_80800414_chfactoryroofbits.s")
+s32 func_80800414_chfactoryroofbits(Actor *arg0, s32 arg1, Unk80132ED0 *volatile arg2) {
+    s32 _subaddieaudioquick_entrypoint_2();
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800FFAB0(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s32 D_808009BC_chfactoryroofbits;
+    extern s32 D_808009FC_chfactoryroofbits;
+    s32 emitter;
+    f32 *position;
+    Unk80132ED0 *marker;
+
+    if (arg1 == 0x40) {
+        marker = *(Unk80132ED0 **)&arg2;
+        if (((u16 *)&marker->unk18)[0] & 1) { if (func_80106790(marker)->unk6C_9 == 0x15D) {
+                emitter = func_800B53A4(0x20);
+                position = arg0->position;
+                func_800BABB8(emitter, position, 0, ((f32 *)arg0->actorData)[6] * 0.5f, &D_808009BC_chfactoryroofbits);
+                func_800BA930(emitter, -200, 400, -200, 200, 800, 200);
+                func_800BA22C(emitter, 0x20);
+            } else {
+                emitter = func_800B53A4(0x10);
+                position = arg0->position;
+                func_800BABB8(emitter, position, 0, ((f32 *)arg0->actorData)[6], &D_808009BC_chfactoryroofbits);
+                func_800BA22C(emitter, 0x10);
+            }
+        } else {
+            emitter = func_800B53A4(8);
+            position = arg0->position;
+            func_800BABB8(emitter, position, 0, ((f32 *)arg0->actorData)[6] * 1.25f, &D_808009BC_chfactoryroofbits);
+            func_800BA22C(emitter, 8);
+        }
+        _subaddieaudioquick_entrypoint_2(arg0, position, &D_808009FC_chfactoryroofbits);
+        func_800DA544(func_8080015C_chfactoryroofbits(arg0->pad6C_21));
+        func_800FFAB0(arg0);
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
