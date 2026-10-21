@@ -308,7 +308,62 @@ s32 bsbeemain_entrypoint_8(s32 arg0) {
     return ((s32 *)&D_808012B0_bsbeemain)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80800C28_bsbeemain.s")
+void func_80800C28_bsbeemain(struct player_state_s *arg0) {
+    void func_8009BFE4(struct player_state_s *, f32, f32);
+    void func_8009D820(struct player_state_s *, f32);
+    void _basudie_entrypoint_1(struct player_state_s *);
+    void _batimer_set(struct player_state_s *, s32, f32);
+    void _ncbadie_entrypoint_3(struct player_state_s *, f32);
+    f32 baphysics_get_target_horizontal_velocity(struct player_state_s *);
+    void baphysics_set_gravity(struct player_state_s *, f32);
+    void baphysics_set_horizontal_velocity(struct player_state_s *, f32, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void baphysics_set_target_yaw(struct player_state_s *, f32);
+    void baphysics_set_vertical_velocity(struct player_state_s *, f32);
+    f32 func_800136E4(f32);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    void yaw_applyIdeal(struct player_state_s *);
+    struct anctrl_s *sp4C;
+    f32 sp48;
+    f32 sp3C[3];
+    f32 sp30[3];
+
+    sp4C = baanim_getAnimCtrlPtr(arg0);
+    if ((*(s32 *)((s8 *)arg0 + 0x160) = func_800EA068(0x40)) != 0) {
+        func_800FC660(0x19);
+    } else {
+        _basudie_entrypoint_1(arg0);
+        func_8008E944(arg0);
+        func_8009514C(arg0);
+        func_800A4DA4(arg0, 0xA);
+        _ncbadie_entrypoint_3(func_800A4CA8(arg0), 30.0f);
+        func_800A0180(arg0);
+    }
+    _bsbee_entrypoint_1(arg0);
+    anctrl_reset(sp4C);
+    anctrl_setSmoothTransition(sp4C, 0);
+    anctrl_setIndex(sp4C, 0x1E1);
+    anctrl_setSubrange(sp4C, 0.0f, 0.3966f);
+    anctrl_setDuration(sp4C, 1.7f);
+    anctrl_setPlaybackType(sp4C, 1);
+    anctrl_start(sp4C);
+    func_8009FFD8(arg0, 1, 1, 2, 3);
+    func_8009C128(arg0, sp3C);
+    func_800A32C4(arg0, sp30);
+    func_800F1E6C(sp30, sp3C, &sp48);
+    yaw_setIdeal(arg0, func_800136E4(sp48 + 180.0f));
+    yaw_applyIdeal(arg0);
+    *(f32 *)((s8 *)arg0 + 0x16C) = 250.0f;
+    baphysics_set_target_horizontal_velocity(arg0, 250.0f);
+    baphysics_set_target_yaw(arg0, sp48);
+    baphysics_set_horizontal_velocity(arg0, sp48, baphysics_get_target_horizontal_velocity(arg0));
+    baphysics_set_vertical_velocity(arg0, 420.0f);
+    baphysics_set_gravity(arg0, -1200.0f);
+    func_8009BFE4(arg0, 1000.0f, 12.0f);
+    func_8009D820(arg0, 1.8f);
+    _batimer_set(arg0, 0, 2.9f);
+    *(s32 *)((s8 *)arg0 + 0x15C) = 0;
+}
 
 void func_80800E0C_bsbeemain(struct player_state_s *arg0) {
     s32 _bsbee_entrypoint_2();
