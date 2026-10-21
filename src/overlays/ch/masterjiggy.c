@@ -148,7 +148,79 @@ void func_8080096C_chmasterjiggy(Actor *arg0) {
         ((MasterJiggyData *)arg0->actorData)->amount > 0.0f, &D_80801750_chmasterjiggy, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_80800A40_chmasterjiggy.s")
+void func_80800A40_chmasterjiggy(Actor *arg0) {
+    typedef struct {
+        f32 amount;
+        f32 fade;
+        f32 progress;
+        u32 sound;
+        f32 speed;
+        s32 pad14[2];
+        f32 timer;
+    } MasterJiggyData;
+    void _capod_entrypoint_14(void);
+    s32 _sujiggy_entrypoint_0();
+    void _sujiggy_entrypoint_15(s32, s32);
+    void func_80018820(s32, f32, f32);
+    f32 func_800D8FF8(void);
+    s32 func_800D90A4(f32 *);
+    f32 func_800F3780(f32, u8 *, s16);
+    void func_80800E58_chmasterjiggy(Actor *, s32);
+    void func_808010E4_chmasterjiggy(Actor *);
+    void func_80801448_chmasterjiggy(s32 *);
+    void func_80801488_chmasterjiggy(Actor *);
+    extern f32 D_808016B0_chmasterjiggy[][2];
+    extern f32 D_808016E8_chmasterjiggy[][2];
+    extern f32 D_80801760_chmasterjiggy[][2];
+    extern f32 D_80801770_chmasterjiggy[][2];
+    f32 delta;
+    s32 finished;
+
+    delta = func_800D8FF8();
+    finished = 0;
+    if (((MasterJiggyData *)arg0->actorData)->progress < 1.0f) {
+        ((MasterJiggyData *)arg0->actorData)->progress += delta * ((MasterJiggyData *)arg0->actorData)->speed;
+        if (((MasterJiggyData *)arg0->actorData)->progress >= 1.0f) {
+            ((MasterJiggyData *)arg0->actorData)->progress = 1.0f;
+            finished = 1;
+        }
+    }
+    func_808010E4_chmasterjiggy(arg0);
+    func_80801448_chmasterjiggy((s32 *)arg0);
+    func_80801488_chmasterjiggy(arg0);
+    func_8080096C_chmasterjiggy(arg0);
+    switch (arg0->unk70_10) {
+    case 2:
+        if (func_800D90A4(&((MasterJiggyData *)arg0->actorData)->timer)) {
+            func_80800E58_chmasterjiggy(arg0, 3);
+        }
+        break;
+    case 3:
+        ((MasterJiggyData *)arg0->actorData)->amount = func_800F3780(((MasterJiggyData *)arg0->actorData)->progress, (u8 *)D_808016B0_chmasterjiggy, 7);
+        if (finished) {
+            func_80800E58_chmasterjiggy(arg0, 4);
+        }
+        break;
+    case 4:
+        ((MasterJiggyData *)arg0->actorData)->amount = func_800F3780(((MasterJiggyData *)arg0->actorData)->progress, (u8 *)D_80801760_chmasterjiggy, 2);
+        func_80018820(0, 0.75f, 0.5f);
+        if (finished) {
+            func_808001D0_chmasterjiggy(&arg0->unk0, 6);
+        }
+        break;
+    case 5:
+        ((MasterJiggyData *)arg0->actorData)->fade = func_800F3780(((MasterJiggyData *)arg0->actorData)->progress, (u8 *)D_80801770_chmasterjiggy, 4);
+        if (finished) {
+            _capod_entrypoint_14();
+            _sujiggy_entrypoint_15(_sujiggy_entrypoint_0() - 1, 1);
+        }
+        break;
+    case 6:
+        ((MasterJiggyData *)arg0->actorData)->fade = func_800F3780(((MasterJiggyData *)arg0->actorData)->progress, (u8 *)D_808016E8_chmasterjiggy, 2);
+        ((MasterJiggyData *)arg0->actorData)->amount = ((MasterJiggyData *)arg0->actorData)->fade;
+        break;
+    }
+}
 
 void func_80800C08_chmasterjiggy(Actor *arg0, void *arg1) {
     typedef struct {
