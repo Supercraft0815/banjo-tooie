@@ -81,7 +81,74 @@ void func_80800E90_chboilerboss(Actor *arg0, s32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80800F34_chboilerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808010F4_chboilerboss.s")
+void func_808010F4_chboilerboss(Actor *arg0) {
+    s32 _dbmorph_entrypoint_3(u8 *, u8 *, s32, u8, u8 *);
+    u8 *func_800B2768(u8 *);
+    s32 func_800B2840(s32);
+    f32 func_800F0E00(f32, f32);
+    void *func_80100094(Actor *, u32);
+    f32 func_80101F24(Actor *);
+    u8 *func_801039E4(Unk80132ED0 *);
+    s32 func_80103CB8(Actor *, u32);
+    union BoilerFlags {
+        u32 word;
+        struct {
+            u32 pad:20;
+            u32 bit11:1;
+            u32 rest:11;
+        } bits;
+    } flags;
+    u8 *mesh;
+    f32 progress;
+    struct {
+        u8 pad[0x4C];
+        f32 unk4C;
+        f32 unk50;
+    } *data;
+    u8 *vertices;
+    u8 *model;
+
+    if (((union BoilerFlags *)&arg0->unk0->unk28)->bits.bit11 && arg0->unk64_16) {
+        data = func_80100094(arg0, 0);
+        mesh = func_801039E4(arg0->unk0);
+        progress = func_80101F24(arg0);
+        switch (arg0->unk70_10) {
+        case 2:
+            if (progress < 0.15f) {
+                data->unk4C = 6.6666665f * progress;
+            } else {
+                data->unk4C = 1.0f;
+            }
+            data->unk50 = data->unk4C;
+            break;
+        case 6:
+            if (progress < 0.5f) {
+                data->unk4C = 2.0f * progress;
+            } else {
+                data->unk4C = 2.0f * (1.0f - progress);
+            }
+            data->unk50 = data->unk4C;
+            break;
+        case 7:
+        case 8:
+        case 9:
+            if (progress < 0.15f) {
+                data->unk4C = 6.6666665f * progress;
+            } else {
+                data->unk4C = 1.0f;
+            }
+            data->unk50 = data->unk4C;
+            break;
+        default:
+            data->unk4C = func_800F0E00(data->unk4C - 0.2f, 0.0f);
+            data->unk50 = data->unk4C;
+            break;
+        }
+        model = func_800B2768(mesh);
+        vertices = (u8 *)func_80103CB8(arg0, (u32)mesh);
+        _dbmorph_entrypoint_3(model, vertices, func_800B2840((s32)mesh), 1, (u8 *)&data->unk4C);
+    }
+}
 
 void func_808012C8_chboilerboss(Actor *arg0) {
     s32 func_80800F34_chboilerboss(Actor *, s32);
