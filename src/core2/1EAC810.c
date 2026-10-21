@@ -21,7 +21,32 @@ s32 func_800D2F20(void) {
     return func_800BDC5C() * 4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC810/func_800D2F44.s")
+s32 func_800D2F44(s32 arg0, s32 *arg1, s32 arg2, f32 *arg3) {
+    s32 func_800E3D0C(f32 *, f32 *);
+    f32 func_800E42C0(void);
+    extern f32 D_80125B00;
+    f32 min[3];
+    f32 max[3];
+    f32 delta[3];
+    f32 radius;
+    f32 scale;
+    s32 i;
+
+    scale = func_800E42C0();
+    delta[0] = (f32)(arg1[0] * arg2 + arg2 / 2) - arg3[0];
+    delta[1] = (f32)(arg1[1] * arg2 + arg2 / 2) - arg3[1];
+    delta[2] = (f32)(arg1[2] * arg2 + arg2 / 2) - arg3[2];
+    radius = scale * 4.0f * (D_80125B00 * (f32)arg2);
+    if (radius * radius < delta[0] * delta[0] + delta[1] * delta[1] + delta[2] * delta[2]) {
+        return 0;
+    }
+    scale = arg2 + 300;
+    for (i = 0; i < 3; i++) {
+        min[i] = arg1[i] * arg2 - 150;
+        max[i] = min[i] + scale;
+    }
+    return func_800E3D0C(min, max);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC810/func_800D3104.s")
 
