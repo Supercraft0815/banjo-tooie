@@ -184,7 +184,46 @@ void badust_entrypoint_6(PlayerState *arg0, f32 arg1, f32 arg2, f32 arg3, f32 ar
     badust_entrypoint_2(arg0, sp20, sp2C, 0.1f, 0.8f, 0.7f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/dust/badust_entrypoint_7.s")
+void badust_entrypoint_7(PlayerState *arg0) {
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_800EFCD8(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    f32 func_800136E4(f32);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    f32 yaw_get(PlayerState *);
+    f32 sp5C[3];
+    f32 sp50[3];
+    f32 sp44[3];
+    f32 sp40;
+
+    func_8009C128(arg0, sp50);
+    sp50[1] += 20.0f;
+    (*(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x5C) + 8))++;
+    if (*(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x5C) + 8) >= 3) {
+        *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x5C) + 8) = 0;
+    }
+    if (*(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x5C) + 8) != 0) {
+        sp40 = func_800136E4(yaw_get(arg0) + func_800DC178(70.0f, 90.0f));
+        func_800EFCD8(sp44, sp40, func_800DC0C0() * 15.0f + 20.0f);
+        sp44[1] = 0.0f;
+    }
+    switch (*(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x5C) + 8)) {
+        case 0:
+            break;
+        case 1:
+            func_800EF334(sp44, -1.0f);
+            func_800EF04C(sp50, sp44);
+            break;
+        case 2:
+            func_800EF04C(sp50, sp44);
+            break;
+    }
+    func_800EFCD8(sp5C, yaw_get(arg0), 40.0f);
+    sp5C[1] = func_800DC178(50.0f, 90.0f);
+    badust_entrypoint_2(arg0, sp50, sp5C, func_800DC178(0.4f, 0.5f), func_800DC178(0.7f, 0.9f), func_800DC178(0.8f, 1.3f));
+}
 
 void badust_entrypoint_8(struct player_state_s *self) {
     void badust_entrypoint_5(struct player_state_s *, f32, f32);
