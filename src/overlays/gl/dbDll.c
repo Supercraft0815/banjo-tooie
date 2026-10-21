@@ -31,7 +31,15 @@ void func_80800000_gldbDll(u8 *arg0, s32 arg1) {
     func_80016934(0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/dbDll/func_808000E8_gldbDll.s")
+s32 func_808000E8_gldbDll(s32 *arg0, s32 arg1, s32 arg2) {
+    u8 response[16];
+    s32 i;
+
+    func_80800000_gldbDll(response, arg1);
+    for (i = 0; i < arg2; i++) {
+        ((u8 *)arg0)[i] = ((u8 *)arg0)[i] ^ response[i % 14];
+    }
+}
 
 /* extern */
 
