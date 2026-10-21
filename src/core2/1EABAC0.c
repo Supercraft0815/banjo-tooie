@@ -137,7 +137,52 @@ s32 func_800D24E8(s32 arg0, s32 arg1, u32 arg2) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EABAC0/func_800D2574.s")
+void func_800D2574(void)
+{
+  f32 func_800D8FF8(void);
+  s32 func_800FA874(s32, u8);
+  s32 func_800FA8E8(s32, u8);
+  extern s32 D_8011AFB0;
+  extern s32 D_8012B2C0;
+  f32 delta;
+  f32 current;
+  f32 difference;
+  f32 direction;
+  f32 speed;
+  f32 step;
+  s32 item;
+  s32 handle;
+  s16 target;
+  u8 *entry;
+  s32 index;
+  delta = func_800D8FF8();
+ entry = (u8 *) (&D_8011AFB0); for (index = 0; index != 0x5B; index++, entry += 0xC) {
+    item = index + 0xC0;
+    handle = func_800D21F0(item, entry[0]);
+    if (handle < 0) {
+      continue;
+    }
+      if (func_800FA8E8(handle, entry[1]) != 1)
+      {
+        ((s16 *) (&D_8012B2C0))[handle] = -1;
+        continue;
+      }
+      if (func_800FA874(handle, entry[1]) != 0)
+      {
+        current = *((f32 *) (entry + 8));
+        target = *((s16 *) (entry - -4));
+        difference = ((f32) target) - current;
+        if (target != ((s32) current))
+        {
+          direction = (difference >= 0.0f) ? (1.0f) : (-1.0f);
+          step = ((((difference < 8.0f) ? (8.0f) : (difference)) * delta) > 1.0f) ? (1.0f) : (((difference < 8.0f) ? (8.0f) : (difference)) * delta);
+          speed = direction * step;
+          *((f32 *) (entry + 8)) = current + speed;
+          func_800D22E0(entry, item);
+        }
+      }
+  }
+}
 
 void func_800D2748(s32 arg0, s32 arg1) {
     (*(s8 *)((s8 *)(func_800D21D0(arg0)) + (1))) = (s8) arg1;
