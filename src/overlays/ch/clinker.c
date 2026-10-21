@@ -46,7 +46,48 @@ void func_80800088_chclinker(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_808000F4_chclinker.s")
+void func_808000F4_chclinker(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_80103110(Actor *, u32);
+    void func_800BA22C(s32, s32);
+    void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800C4AF0(f32 *, void *);
+    s32 func_800D9078(f32 *);
+    extern s32 D_80801408_chclinker[];
+    extern s32 D_80801418_chclinker[];
+    extern s32 D_80801444_chclinker[];
+    extern s32 D_8080148C_chclinker[];
+    struct {
+        s32 unk0;
+        s32 disabled;
+        s32 state;
+    } *sp3C;
+    s32 sp38;
+
+    sp3C = func_80100094(arg0, 0);
+    switch (sp3C->state) {
+        case 0:
+            func_800C4AF0(arg0->position, D_80801408_chclinker);
+            func_800BBCB8(arg0->position, NULL, 1.0f, 1, D_80801418_chclinker);
+            sp38 = func_800BABB8(0, arg0->position, NULL, 1.0f, D_80801444_chclinker);
+            func_800BA994((u8 *)sp38, -30, arg0->rotation[1] - 45.0f, 450, 30, arg0->rotation[1] + 45.0f, 600);
+            func_800BA22C(sp38, 8);
+            sp38 = func_800BABB8(0, arg0->position, NULL, 1.0f, D_8080148C_chclinker);
+            func_800BA994((u8 *)sp38, -30, arg0->rotation[1] - 45.0f, 100, 30, arg0->rotation[1] + 45.0f, 200);
+            func_800BA22C(sp38, 4);
+            arg0->unk58 = 0.1f;
+            sp3C->state = 1;
+            break;
+        case 1:
+            if (func_800D9078(&arg0->unk58)) {
+                sp3C->disabled = 0;
+                func_80103110(arg0, 0);
+            }
+            break;
+    }
+}
 
 /* extern */
 
