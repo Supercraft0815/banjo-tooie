@@ -121,7 +121,58 @@ void func_8080067C_chexploder(Actor *arg0, void *arg1, f32 *arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_80800834_chexploder.s")
+void func_80800834_chexploder(Actor *arg0, void *arg1, f32 arg2[3]) {
+    void *func_80100094(Actor *, u32);
+    f32 func_800EEFD4(f32 *);
+    s32 func_800B5BE4(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    extern s32 D_80801BB0_chexploder[], D_80801BD8_chexploder[];
+    extern s32 D_80801BE4_chexploder[], D_80801BF0_chexploder[];
+    extern s32 D_80801C00_chexploder[];
+    struct {
+        u8 pad0[0x13];
+        u8 unk13;
+        u8 pad14[0x44];
+        f32 unk58;
+    } *data;
+    struct HitData {
+        u8 pad0[0x18];
+        f32 unk18[3];
+        u8 pad24[0x14];
+        u8 unk38;
+    };
+    s32 sp38;
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+
+    data = func_80100094(arg0, 0);
+    if (((struct HitData *)arg1)->unk38 < 3 &&
+        !(func_800EEFD4(((struct HitData *)arg1)->unk18) < 90000.0f)) {
+        switch (data->unk13) {
+        case 1:
+            sp38 = func_800B5BE4(0x18);
+            func_800BABB8(sp38, arg2, 0, data->unk58, D_80801BB0_chexploder);
+            func_800BABB8(sp38, arg2, 0, data->unk58, D_80801BD8_chexploder);
+            break;
+        case 2:
+            sp34 = func_800B5BE4(0x18);
+            func_800BABB8(sp34, arg2, 0, data->unk58, D_80801BB0_chexploder);
+            func_800BABB8(sp34, arg2, 0, data->unk58, D_80801BE4_chexploder);
+            break;
+        case 3:
+            sp30 = func_800B5BE4(0x18);
+            func_800BABB8(sp30, arg2, 0, data->unk58, D_80801BB0_chexploder);
+            func_800BABB8(sp30, arg2, 0, data->unk58, D_80801BF0_chexploder);
+            break;
+        case 4:
+            sp2C = func_800B5BE4(0x18);
+            func_800BABB8(sp2C, arg2, 0, data->unk58, D_80801BB0_chexploder);
+            func_800BABB8(sp2C, arg2, 0, data->unk58, D_80801C00_chexploder);
+            break;
+        }
+    }
+}
 
 void func_80800A18_chexploder(Actor *arg0) {
     void *func_80100094(Actor *, u32);
