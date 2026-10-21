@@ -125,7 +125,71 @@ void func_808005D4_chgameselect(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808006A0_chgameselect.s")
+void func_808006A0_chgameselect(Actor *arg0, s32 arg1) {
+    typedef struct {
+        s32 (*callback)(Actor *, s32, s32 *);
+        s32 pad[12];
+    } StateCallback;
+    extern StateCallback D_80807DD8_chgameselect[];
+    extern s16 D_80807DB2_chgameselect[][2];
+    s32 func_80800478_chgameselect(s32, s32);
+    void func_808026C8_chgameselect(Unk80132ED0 *, s32);
+    s32 func_80803718_chgameselect(void);
+    s32 func_808036F8_chgameselect();
+    s32 func_80803D60_chgameselect(s32);
+    s32 func_80803E40_chgameselect(void);
+    void func_80803C60_chgameselect(void);
+    s32 next = -1;
+    s32 changed = 0;
+    s32 (*callback)(Actor *, s32, s32 *);
+
+    callback = D_80807DD8_chgameselect[arg0->unk70_10].callback;
+    if (callback != NULL) {
+        changed = callback(arg0, arg1, &next);
+    }
+    if (arg0->unk70_10 == 1) {
+        switch (arg1) {
+        case 3:
+            if (func_80803718_chgameselect() == 0) {
+                next = 5;
+            } else if (func_808036F8_chgameselect(0) != 0 &&
+                       func_808036F8_chgameselect(1) != 0 &&
+                       func_808036F8_chgameselect(2) != 0) {
+                next = 7;
+            }
+            break;
+        case 4:
+            if (func_80803718_chgameselect() == 0) {
+                next = 4;
+            }
+            break;
+        case 5:
+            if (func_80803D60_chgameselect(arg1) == 0) {
+                next = 0;
+            } else if (func_80803E40_chgameselect() < 2) {
+                next = 0x23;
+            }
+            break;
+        case 7:
+            if (func_80803D60_chgameselect(arg1) == 0) {
+                next = 0;
+            }
+            break;
+        }
+        if (next != -1) {
+            changed = 1;
+        } else {
+            func_80800478_chgameselect(arg0,
+                D_80807DB2_chgameselect[arg0->unk79_4][0]);
+        }
+    }
+    if (changed != 0) {
+        func_80803C60_chgameselect();
+    }
+    if (next != -1) {
+        func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[5], next);
+    }
+}
 
 /* extern */
 
