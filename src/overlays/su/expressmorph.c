@@ -24,7 +24,10 @@ s32 func_80800000_suexpressmorph(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressmorph/suexpressmorph_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressmorph/func_808000EC_suexpressmorph.s")
+struct MorphEntry;
+
+s32 func_808000EC_suexpressmorph(f32 *arg0, void *arg1) {
+    f32 func_800D8FF8(void); extern struct MorphEntry D_80801320_suexpressmorph[]; f32 *var_s0; f32 *var_s2; u8 *var_v0; s32 var_s3; s32 var_s4; s32 temp_v1;  var_s0 = (f32 *)((u8 *)arg1 + 8); var_s3 = 0; var_s4 = 0; var_v0 = ((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]; temp_v1 = var_v0[7]; var_s2 = (f32 *)(temp_v1 * 4 + (u8 *)arg1 + 8); if ((s32)temp_v1 > 0) { do { if (*var_s2 <= 0) { *(f32 *)((u8 *)arg0 + var_s3) = *(f32 *)((s32)(*(f32 (**)[9])var_v0)[((u8 *)arg1)[5]] + var_s3 + 4); } else { *var_s2 -= func_800D8FF8(); } if (*(f32 *)((u8 *)arg0 + var_s3) < *var_s0) { *var_s0 += (*(f32 *)((u8 *)arg0 + var_s3) - *var_s0) * 0.2f; if (*var_s0 < 0.0f) { *var_s0 = 0.0f; } } else if (*var_s0 < *(f32 *)((u8 *)arg0 + var_s3)) { *var_s0 += (*(f32 *)((u8 *)arg0 + var_s3) - *var_s0) * 0.2f; if (*var_s0 > 1.0f) { *var_s0 = 1.0f; } } var_s4++; var_s3 += 4; var_s0++; var_s2++; var_v0 = ((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]; } while (var_s4 < (s32)var_v0[7]); } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressmorph/func_808002BC_suexpressmorph.s")
 
