@@ -26,7 +26,73 @@ void cadbmgrDll_entrypoint_1(s32 *arg0) {
     *arg0 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ca/dbmgrDll/func_808000F4_cadbmgrDll.s")
+s32 func_808000F4_cadbmgrDll(s32 arg0) {
+    s32 _cadbfunc_entrypoint_1(f32 *);
+    s32 _cadbfunc_entrypoint_3(f32 *);
+    s32 _cadbfunc_entrypoint_5(f32 *);
+    s32 _cadbfunc_entrypoint_7(f32, f32);
+    s32 _cadbfunc_entrypoint_9(f32, f32);
+    s32 _cadbfunc_entrypoint_11(f32);
+    s32 _cadbfunc_entrypoint_13(f32);
+    s32 _cadbfunc_entrypoint_15(f32);
+    s32 _cadbfunc_entrypoint_17(s16);
+    s32 _cadbfunc_entrypoint_19(f32);
+    s32 _cadbfunc_entrypoint_21(f32);
+    s32 _cadbfunc_entrypoint_23(s32);
+    s32 _cadbfunc_entrypoint_25(s32);
+    s32 _cadbfunc_entrypoint_27(s32);
+    s32 _cadbfunc_entrypoint_28(s32, s32);
+    s32 _cadbfunc_entrypoint_31(s32);
+    s32 _cadbfunc_entrypoint_33(f32);
+    s32 _cadbfunc_entrypoint_35(s32);
+    s32 func_800A5800(s32);
+    s32 func_800A5854(s32);
+    void func_800E3980(f32 *);
+    void func_800E3A58(f32 *);
+    struct CadbmgrVector { f32 v[3]; } sp24;
+    extern struct CadbmgrVector D_80800630_cadbmgrDll;
+    s32 sp20;
+
+    sp24 = D_80800630_cadbmgrDll;
+    sp20 = func_800A5854(arg0);
+    func_800A5800(arg0);
+    if (sp20 == 1 || sp20 == 2 || sp20 == 3 || sp20 == 5) {
+        func_800E3980(sp24.v);
+        _cadbfunc_entrypoint_1(sp24.v);
+        func_800E3A58(sp24.v);
+        _cadbfunc_entrypoint_3(sp24.v);
+    } else {
+        _cadbfunc_entrypoint_1(sp24.v);
+        _cadbfunc_entrypoint_3(sp24.v);
+    }
+    _cadbfunc_entrypoint_5(sp24.v);
+    _cadbfunc_entrypoint_7(1.75f, 3.75f);
+    _cadbfunc_entrypoint_9(2.75f, 12.0f);
+    _cadbfunc_entrypoint_11(150.0f);
+    _cadbfunc_entrypoint_13(40.0f);
+    _cadbfunc_entrypoint_15(1.0f);
+    _cadbfunc_entrypoint_17(-1);
+    _cadbfunc_entrypoint_19(1000.0f);
+    _cadbfunc_entrypoint_21(1000.0f);
+    _cadbfunc_entrypoint_25(0);
+    _cadbfunc_entrypoint_27(0);
+    _cadbfunc_entrypoint_23(0);
+    _cadbfunc_entrypoint_31(0);
+    _cadbfunc_entrypoint_33(0.0f);
+    _cadbfunc_entrypoint_35(0);
+    switch (sp20) {
+    case 4:
+        _cadbfunc_entrypoint_27(0);
+        _cadbfunc_entrypoint_23(10);
+        break;
+    case 1:
+        _cadbfunc_entrypoint_28(2, 1);
+        break;
+    case 7:
+        _cadbfunc_entrypoint_25(1);
+        break;
+    }
+}
 
 /* extern */
 
