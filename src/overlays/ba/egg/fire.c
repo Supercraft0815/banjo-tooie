@@ -1,5 +1,7 @@
 #include "common.h"
 
+struct player_state_s;
+
 s32 baeggfire_entrypoint_0() 
 {
     return 0x14;
@@ -101,7 +103,62 @@ void func_80800180_baeggfire(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/fire/func_80800250_baeggfire.s")
+void func_80800250_baeggfire(void *arg0) {
+    typedef struct player_state_s PlayerState;
+    s32 func_800944F8(PlayerState *, s32);
+    s32 func_800944E0(PlayerState *, s32);
+    s32 func_80094510(PlayerState *);
+    void baeggfire_entrypoint_3(struct player_state_s *, f32 *, f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    s32 _baeggsetup_entrypoint_6(void *, s32, f32 *, f32 *, f32 *);
+    s32 _baeggcursor_entrypoint_8(void *);
+    void func_800C6DA0(s32);
+    f32 speed;
+    f32 sp50[3];
+    f32 sp44[3];
+    f32 sp38[3];
+    s32 count;
+    s32 repeat;
+
+    repeat = func_800944F8(arg0, *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x6C) + 0x10));
+    if (*(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x6C) + 4) == 0) {
+        *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x6C) + 0x10) = func_80094510(arg0);
+    }
+    count = func_800944E0(arg0, *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x6C) + 0x10));
+    if (*(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x6C) + 4) == 0) {
+        func_80800008_baeggfire(arg0, 1);
+        if (count == 1) {
+            func_80800180_baeggfire(arg0, 4);
+        } else {
+            func_80800180_baeggfire(arg0, 2);
+        }
+    } else if (repeat || *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x6C) + 4) < count - 1) {
+        func_80800008_baeggfire(arg0, 0);
+        func_80800180_baeggfire(arg0, 2);
+    } else {
+        func_80800008_baeggfire(arg0, 0);
+        func_80800180_baeggfire(arg0, 4);
+    }
+    if (repeat) {
+        *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x6C) + 4) = 1;
+    } else {
+        (*(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x6C) + 4))++;
+    }
+    *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x6C) + 0xC) = 0;
+    baeggfire_entrypoint_3(arg0, sp50, sp44);
+    func_800EF368(sp44, 100.0f);
+    func_800EE780(sp38, sp50, sp44);
+    if (*(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x6C) + 0x10) == 7) {
+        speed = 5000.0f;
+    } else {
+        speed = 3000.0f;
+    }
+    func_800EF368(sp44, speed);
+    _baeggsetup_entrypoint_6(arg0, *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x6C) + 0x10), sp50, sp38, sp44);
+    _baeggcursor_entrypoint_8(arg0);
+    func_800C6DA0(0x43);
+}
 
 void baeggfire_entrypoint_3(struct player_state_s *arg0, f32 *arg1, f32 *arg2) {
     typedef struct player_state_s PlayerState;
