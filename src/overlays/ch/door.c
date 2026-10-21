@@ -99,7 +99,68 @@ int func_80800028_chdoor(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/door/func_8080032C_chdoor.s")
+void func_8080032C_chdoor(u8 *arg0, f32 arg1) {
+    struct DoorMotionData {
+        u32 flags;
+        u32 unk4;
+        u32 motion : 6;
+        u32 other : 26;
+        u32 unkC;
+        s16 first;
+        s16 second;
+        s16 third;
+        s16 destination[3];
+        s16 roll;
+    };
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void _sudeflect_entrypoint_3(f32 *, f32 *, f32 *, f32 *, s32);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EFE50(f32 *, void *, void *, f32);
+    f32 func_800F1DCC(f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80103014(u8 *);
+    s32 func_80104004(Actor *, f32 *, f32 *);
+    Actor *actor = (Actor *)arg0;
+    f32 sp78[3];
+    f32 sp6C[3];
+    f32 sp60[3];
+    f32 sp54[3];
+    struct DoorMotionData *data;
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 angle;
+
+    data = func_80100094(actor, 0);
+    switch (data->motion) {
+    case 1:
+        angle = func_800F1DCC((f32)data->first, (f32)data->second);
+        actor->rotation[1] = angle * arg1 + (f32)data->second;
+        break;
+    case 2:
+        func_800EE88C(sp78, &data->first);
+        func_800EE88C(sp6C, data->destination);
+        func_800EFE50(actor->position, sp78, sp6C, arg1);
+        break;
+    case 3:
+        angle = func_800F1DCC((f32)data->first, (f32)data->second);
+        actor->rotation[0] = angle * arg1 + (f32)data->second;
+        break;
+    case 4:
+        func_800EE88C(sp60, &data->first);
+        func_800EE88C(sp54, data->destination);
+        func_800EFE50(actor->position, sp60, sp54, arg1);
+        actor->rotation[2] = data->roll * 0.00390625f * arg1;
+        break;
+    case 5:
+        _subaddiefade_entrypoint_1(arg0, (s32)((1.0f - arg1) * 255.0f));
+        break;
+    }
+    func_80103014(arg0);
+    if (data->flags & 0x10000) {
+        func_80104004(actor, sp44, sp38);
+        _sudeflect_entrypoint_3(actor->position, actor->rotation, sp44, sp38, 2);
+    }
+}
 
 void func_8080050C_chdoor(Actor *arg0) {
     struct DoorLoopSoundData {
