@@ -172,6 +172,13 @@ void basnowball_entrypoint_9(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 272) + 12) = arg1;
 }
 
+typedef struct
+{
+  f32 x;
+  f32 z;
+  f32 rotation;
+} SnowballParticle;
+
 void basnowball_entrypoint_10(void *arg0)
 {
   void func_8009C128(struct player_state_s *, f32 [3]);
@@ -185,12 +192,6 @@ void basnowball_entrypoint_10(void *arg0)
   s32 func_800BABB8(s32, f32 [3], f32 [3], f32, s32 []);
   void func_800EE7F8(f32 *, f32 *);
   extern s32 D_80801098_basnowball[];
-  typedef struct 
-  {
-    f32 x;
-    f32 z;
-    f32 rotation;
-  } SnowballParticle;
   extern SnowballParticle D_808010C0_basnowball[];
   extern SnowballParticle D_808010F0_basnowball[];
   f32 startScale;
@@ -227,7 +228,45 @@ void basnowball_entrypoint_10(void *arg0)
   while (D_808010F0_basnowball != &D_808010C0_basnowball[i]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/func_808007CC_basnowball.s")
+void func_808007CC_basnowball(struct player_state_s *arg0) {
+    f32 func_800136E4(f32);
+    void func_8009C128(struct player_state_s *, f32[3]);
+    s32 func_800A1718(void *);
+    s32 func_800B5BE4(s32);
+    void func_800BA7C4(void *, f32, f32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    f32 yaw_get(struct player_state_s *);
+    extern SnowballParticle D_808010F0_basnowball[];
+    f32 temp_f24;
+    f32 spA0;
+    f32 temp_f20;
+    f32 sp98;
+    f32 temp_f0;
+    f32 sp88[3];
+    f32 sp7C[3];
+    s32 temp_s3;
+    s32 var_s0;
+
+    temp_s3 = func_800B5BE4(9);
+    func_8009C128(arg0, sp7C);
+    sp98 = *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x110) + 0x1C) * 58.0f;
+    sp7C[1] += sp98;
+    temp_f0 = *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x110) + 0x1C) * 0.15f + 0.3f;
+    func_800BA7C4((void *)temp_s3, temp_f0, temp_f0);
+    spA0 = yaw_get(arg0) + 90;
+    temp_f24 = func_800A1718(arg0) + 1;
+    for (var_s0 = 0; var_s0 < temp_f24; var_s0++) {
+        func_800EE7F8(sp88, sp7C);
+        temp_f20 = func_800DC178(0, 90.0f);
+        func_800EF214(sp88, temp_f20, func_800136E4(func_800DC178(0, 180.0f) + spA0), sp98);
+        func_800BABB8(temp_s3, sp88, 0, 1.0f, (s32 *)D_808010F0_basnowball);
+    }
+}
+
+void func_808007CC_basnowball();
 
 void func_8080099C_basnowball(void *arg0) {
     void func_8009C128(struct player_state_s *, f32[3]);
