@@ -115,7 +115,67 @@ void func_80800294_chhellterskelter(s32 arg0, s32 arg1, s32 arg2) {
 void func_808002E8_chhellterskelter(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hellterskelter/func_808002F0_chhellterskelter.s")
+void func_808002F0_chhellterskelter(Actor *arg0) {
+    u32 func_800F54E4(void);
+    s32 func_800F64A4(s32, s32);
+    s32 func_800F6478(s32);
+    s32 func_800F4F34(u32, f32 *, f32, f32);
+    void func_80105834(Actor *);
+    void func_808004D0_chhellterskelter(Actor *);
+    s32 func_8010CAC0(f32 *, u32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddieaudioloop_entrypoint_5(Actor *, f32 *, s32, s32, s32 *);
+    void *func_80105494(Actor *);
+    void func_80101FDC(Actor *, u32);
+    void func_80800540_chhellterskelter(Actor *volatile);
+    void func_808005E0_chhellterskelter(Actor *);
+    s32 func_80105998(Actor *, f32);
+    s32 func_80105A5C(Actor *);
+    void func_800FFAB0(Actor *);
+    extern s32 D_808008A0_chhellterskelter;
+    extern s32 D_808008AC_chhellterskelter;
+    f32 sp3C;
+    u32 sp38;
+    s32 sp34;
+    f32 *sp30;
+
+    sp3C = arg0->position[1];
+    sp38 = func_800F54E4();
+    if (func_800F64A4(sp38, 0x8000) || !func_800F6478(sp38)) {
+        func_800F4F34(sp38, arg0->position, 50.0f, 80.0f);
+    }
+    func_80105834(arg0);
+    func_808004D0_chhellterskelter(arg0);
+    if (!arg0->unk64_20) {
+        if (func_8010CAC0(arg0->position, 400)) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808008A0_chhellterskelter);
+            arg0->unk64_20 = 1;
+        }
+    }
+    switch (arg0->unk70_10) {
+        case 1:
+            sp34 = func_8010CAC0(arg0->position, 1500);
+            sp30 = func_80105494(arg0);
+            if (sp34 || (!sp34 && arg0->unk5F)) {
+                _subaddieaudioloop_entrypoint_5(arg0, arg0->position, sp34, 1200, &D_808008AC_chhellterskelter);
+            }
+            if (sp30[3] > 0.94f) {
+                func_80101FDC(arg0, 2);
+            }
+            break;
+        case 2:
+            if (sp3C > -110.0f && arg0->position[1] <= -110.0f) {
+                func_80800540_chhellterskelter(arg0);
+            }
+            if (func_80105998(arg0, 0.985f)) {
+                func_808005E0_chhellterskelter(arg0);
+            }
+            if (func_80105A5C(arg0)) {
+                func_800FFAB0(arg0);
+            }
+            break;
+    }
+}
 
 void func_808004D0_chhellterskelter(Actor *arg0) {
     s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
