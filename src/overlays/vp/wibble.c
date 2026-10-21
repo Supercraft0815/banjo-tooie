@@ -20,7 +20,48 @@ s32 *func_80800000_vpwibble(s32 arg0) {
     return D_80800700_vpwibble[0].words;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/wibble/func_808000B0_vpwibble.s")
+s32 func_808000B0_vpwibble(u8 *arg0, s32 arg1) {
+    s32 *entry;
+    f32 low, high, value;
+
+    entry = func_80800000_vpwibble(arg1);
+    arg1 %= 100;
+    *(f32 *)(arg0 + 0x1C) = ((u8 *)entry)[0xD] << 6;
+    if (((u8 *)entry)[0xD]) {
+        arg0[0x33] = 1;
+    } else {
+        arg0[0x33] = 0;
+    }
+    high = *(f32 *)(arg0 + 0x10);
+    low = *(f32 *)(arg0 + 4);
+    *(s16 *)(arg0 + 0x18) = (s32)((high + low) / 2);
+    value = ((f32 *)entry)[1];
+    if (value < 0.0f) {
+        *(s16 *)(arg0 + 0x1A) = (s32)-value;
+        arg0[0x31] = 2;
+    } else if (value > 0.0f) {
+        *(s16 *)(arg0 + 0x1A) = (s32)value;
+        arg0[0x31] = 0;
+    } else {
+        *(s16 *)(arg0 + 0x1A) = (s32)((high - low) * 0.5f);
+        arg0[0x31] = 1;
+    }
+    *(f32 *)(arg0 + 0x20) = (f32)(u32)((u8 *)entry)[0xC] / *(s16 *)(arg0 + 0x1A);
+    arg0[0x30] = 255 - ((u8 *)entry)[0xC];
+    if (((u8 *)entry)[0xC]) {
+        arg0[0x32] = 1;
+    } else {
+        arg0[0x32] = 0;
+    }
+    *(f32 *)(arg0 + 0x24) = 0.0f;
+    *(f32 *)(arg0 + 0x28) = 6.2831855f / ((f32 *)entry)[0];
+    value = ((f32 *)entry)[2];
+    if (value < 0.0f) {
+        *(f32 *)(arg0 + 0x2C) = -value;
+    } else {
+        *(f32 *)(arg0 + 0x2C) = (f32)arg1 * value;
+    }
+}
 
 /* extern */
 
