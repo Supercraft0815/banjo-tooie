@@ -414,7 +414,68 @@ void func_8080154C_chballoonburst(BalloonBurstActor *arg0) {
     func_80801AFC_chballoonburst(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_808015D4_chballoonburst.s")
+void func_808015D4_chballoonburst(Actor *arg0) {
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    f32 func_800136E4(f32);
+    s32 func_800CEAD0(s32);
+    f32 func_800D8FF8(void);
+    s32 func_800D90A4(f32 *);
+    s32 func_800DA298(s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800FFAB0(Actor *);
+    void func_80102FDC(Actor *, f32);
+    void func_8010A570(Actor *);
+    void func_8010A800(Actor *, s32);
+    void func_80801B6C_chballoonburst(Actor *);
+    f32 sp3C;
+    s32 sp38;
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    f32 scale;
+
+    sp3C = func_800D8FF8();
+    sp38 = 0;
+    sp34 = func_800DA298(0);
+    sp30 = 0;
+    sp2C = 1;
+    if (func_800CEAD0(arg0->unk6C_0)) {
+        func_8010A570(arg0);
+    }
+    arg0->rotation[1] = func_800136E4(arg0->rotation[1] + arg0->unk50 * sp3C);
+    if (arg0->position[1] < 2800.0f) {
+        arg0->position[1] += sp3C * arg0->unk54;
+    } else {
+        sp38 = 1;
+    }
+    if (_subaddiefade_entrypoint_0(arg0) == 0xFF) {
+        func_8010A800(arg0, 0);
+    }
+    switch (arg0->unk70_10) {
+        case 4:
+            sp30 = func_800DA298(3);
+            break;
+        case 3:
+            sp30 = func_800DA298(2);
+            break;
+        case 2:
+            sp30 = func_800DA298(1);
+            break;
+        case 5:
+            scale = func_800F10B4(arg0->unk58, 0.0f, 1.4f, 0.2f, 1.0f);
+            sp2C = 0;
+            func_80102FDC(arg0, scale);
+            if (func_800D90A4(&arg0->unk58)) {
+                func_8010A570(arg0);
+                func_800FFAB0(arg0);
+                return;
+            }
+            break;
+    }
+    if (sp2C && ((!sp34 && sp38) || (sp34 && sp30))) {
+        func_80801B6C_chballoonburst(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_808017A4_chballoonburst.s")
 
