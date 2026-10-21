@@ -531,7 +531,67 @@ s32 func_80096DD4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_80096E30.s")
+s32 func_80096E30(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) {
+    void func_800EE780(f32 *, f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    int func_800EECE0(f32 *, f32 *);
+    void func_800EF2A0(f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF368(f32 *, f32);
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EFA20(void *, void *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    extern f32 D_80124DFC;
+    s32 result;
+    f32 spB8[3];
+    f32 spAC[3];
+    f32 spA0[3];
+    f32 sp94[3];
+    f32 sp88[3];
+    f32 sp7C[3];
+    f32 sp70[3];
+    f32 sp64[3];
+    f32 sp58[3];
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp1C[3];
+
+    func_800EFA20(sp28, arg0, arg4);
+    func_800EE780(sp1C, arg2, sp28);
+    func_800EFA20(sp28, arg0, arg3);
+    func_800EF934(sp7C, sp28, -arg5);
+    func_800EF934(sp34, sp28, arg5);
+    func_800EFA4C(sp88, sp28[2], sp28[1], -sp28[0]);
+    func_800EFA4C(sp40, -sp28[2], sp28[1], sp28[0]);
+    func_800EF368(sp88, 30.0f);
+    func_800EF368(sp40, 30.0f);
+    func_800EE780(sp94, sp1C, sp88);
+    func_800EE780(sp4C, sp1C, sp40);
+    func_800EE780(spB8, sp94, sp7C);
+    func_800EE780(sp70, sp4C, sp34);
+    if (func_80096DD4((s32)spA0, (s32)spAC, (s32)sp94, (s32)spB8) == 0) {
+        return 0;
+    }
+    if (func_80096DD4((s32)sp58, (s32)sp64, (s32)sp4C, (s32)sp70) == 0) {
+        return 1;
+    }
+    if (func_800EEAA4(spAC, sp64) <= D_80124DFC) {
+        return 4;
+    }
+    func_800EFE50(arg1, spA0, sp58, 0.5f);
+    func_800EE780(arg0, spAC, sp64);
+    func_800EF334(arg0, -0.5f);
+    func_800EF2A0(arg0);
+    if (func_800EECE0(spAC, sp64) != 0) {
+        result = 2;
+    } else {
+        result = 3;
+    }
+    return result;
+}
 
 int func_8009700C(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4) {
     void func_800EFA4C(f32 *, f32, f32, f32);
