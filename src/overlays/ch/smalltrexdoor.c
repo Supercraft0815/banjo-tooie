@@ -1,6 +1,38 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/smalltrexdoor/func_80800000_chsmalltrexdoor.s")
+void func_80800000_chsmalltrexdoor(Actor *arg0) {
+    void _chdoormake_entrypoint_2(Actor *, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    void _chdoormake_entrypoint_6(Actor *, s32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    s32 func_800F5410(s32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    void func_80101FDC(Actor *, u32);
+    f32 func_80103EAC(Actor *);
+    f32 sp44[3];
+    f32 sp38[3];
+
+    if (func_800F5410(func_800F54E4()) == 0x12) {
+        func_800F5A00(func_800F54E4(), sp44);
+        if (func_800EEAD4(sp44, arg0->position) < 500.0f) {
+            arg0->unk64_20 = 1;
+            func_80101FDC(arg0, 4);
+        }
+    }
+    func_800EE7F8(sp44, arg0->position);
+    sp44[1] += 100.0f;
+    arg0->position[1] -= 100.0f;
+    func_800BEF00(sp44, arg0->position, sp38, 0);
+    arg0->position[1] += func_80103EAC(arg0);
+    _chdoormake_entrypoint_2(arg0, arg0->rotation[1] + 90.0f, 0.0f, arg0->scale * 200.0f, 10, -1);
+    _chdoormake_entrypoint_5(arg0, 1.0f);
+    _chdoormake_entrypoint_6(arg0, 0x3F000000);
+    _chdoormake_entrypoint_8(arg0, 5);
+}
 
 /* extern */
 
