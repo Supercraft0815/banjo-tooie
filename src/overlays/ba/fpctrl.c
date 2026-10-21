@@ -196,7 +196,51 @@ void func_8080064C_bafpctrl(PlayerState *arg0) {
     func_808000DC_bafpctrl(arg0, 0x3F800000, 40.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_80800704_bafpctrl.s")
+void func_80800704_bafpctrl(PlayerState *arg0) {
+    s32 _ncba1p_entrypoint_6(void *, f32 *);
+    void _badrone_entrypoint_33(PlayerState *, f32 *);
+    void _ncba1p_entrypoint_12(PlayerState *, f32);
+    int baflag_isTrue(PlayerState *, s32);
+    void baflag_set(PlayerState *, s32);
+    void func_80099A7C(PlayerState *, f32 *);
+    s32 func_8009E674(PlayerState *, s32);
+    void func_800A516C(f32 *, f32 *, f32 *);
+    void func_800F3E84(s32, void *);
+    s32 func_8010D930(s32, s32, s32, s32 *);
+    void func_80110BF0(PlayerState *);
+    void yaw_applyIdeal(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+    extern s32 D_808010A0_bafpctrl;
+    f32 position[3];
+    f32 rotation[3];
+    f32 drone[3];
+
+    if (!(*(*(s32 **)((s8 *)arg0 + 0x90)) & 8)) {
+        func_8010D930(0xC, func_8009E674(arg0, 2), 0, &D_808010A0_bafpctrl);
+    }
+    func_80110BF0(func_800A4CA8(arg0));
+    func_808005FC_bafpctrl((s32)arg0, position);
+    _ncba1p_entrypoint_6(func_800A4CA8(arg0), position);
+    if (baflag_isTrue(arg0, 0x25)) {
+        func_80099A7C(arg0, drone);
+        _badrone_entrypoint_33(arg0, drone);
+        func_800A516C(rotation, drone, position);
+    } else {
+        func_800F3E84((s32)arg0, rotation);
+        rotation[0] = 0.0f;
+        rotation[2] = 0.0f;
+        rotation[1] += 180.0f;
+    }
+    _ncba1p_entrypoint_7(func_800A4CA8(arg0), rotation);
+    yaw_setIdeal(arg0, rotation[1] + 180.0f);
+    if (*(*(s32 **)((s8 *)arg0 + 0x90)) & 8) {
+        yaw_applyIdeal(arg0);
+        _ncba1p_entrypoint_12(func_800A4CA8(arg0), 0.01f);
+    }
+    baflag_set(arg0, 0x17);
+    *((s8 *)*(s32 **)((s8 *)arg0 + 0x90) + 0x14) = 0;
+    func_80800424_bafpctrl(arg0, 1);
+}
 
 /* extern */
 
