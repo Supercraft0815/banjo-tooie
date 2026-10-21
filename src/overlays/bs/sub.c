@@ -297,7 +297,51 @@ void func_80800C1C_bssub(void *arg0) {
     func_808008D8_bssub(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800C60_bssub.s")
+s32 func_80800C60_bssub(struct player_state_s *arg0) {
+    s32 _fxairbub_entrypoint_1(f32 *, f32, f32, f32);
+    f32 func_800964DC(struct player_state_s *);
+    void func_8009C128(struct player_state_s *, f32[3]);
+    void func_8009D9D4(struct player_state_s *);
+    void func_8009DB04(struct player_state_s *, s32, f32, s32);
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA670(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 player_inWater(struct player_state_s *);
+    extern s32 D_8080172C_bssub[];
+    extern s32 D_80801748_bssub[];
+    extern s32 D_80801774_bssub[];
+    extern s32 D_808017A0_bssub[];
+    extern s32 D_808017CC_bssub[];
+    extern s32 D_80801840_bssub[][2];
+    s32 emitters[10];
+    f32 position[3];
+    s32 i;
+
+    func_8009DB04(arg0, 0x413, 1, 0x7FFF);
+    func_8009D9D4(arg0);
+    func_8009C128(arg0, position);
+    func_800BBCB8(position, 0, 1.0f, 1, D_808017A0_bssub);
+    for (i = 0; i < 10; i++) {
+        emitters[i] = func_800B53A4(D_80801840_bssub[i][0]);
+        func_800BA670(emitters[i], D_80801840_bssub[i][1]);
+        emitters[i] = func_800BABB8(emitters[i], position, position, 1.0f, D_8080172C_bssub);
+    }
+    if (player_inWater(arg0)) {
+        func_800BABB8(_fxairbub_entrypoint_1(position, 100.0f, func_800964DC(arg0), 1.0f), position, position, 1.0f, D_808017CC_bssub);
+        for (i = 0; i < 10; i++) {
+            emitters[i] = func_800BABB8(emitters[i], position, position, 1.0f, D_80801748_bssub);
+        }
+    } else {
+        for (i = 0; i < 10; i++) {
+            emitters[i] = func_800BABB8(emitters[i], position, position, 1.0f, D_80801774_bssub);
+        }
+    }
+    for (i = 0; i < 10; i++) {
+        func_800BA22C(emitters[i], D_80801840_bssub[i][0]);
+    }
+}
 
 /* extern */
 
