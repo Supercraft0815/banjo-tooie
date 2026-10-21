@@ -301,7 +301,73 @@ s32 bsstonehead_entrypoint_15(s32 arg0) {
     return ((s32 *)&D_80801660_bsstonehead)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/func_80800B38_bsstonehead.s")
+void func_80800B38_bsstonehead(PlayerState *arg0, u32 arg1) {
+    void _baattach_entrypoint_6(PlayerState *, s32, s32, s32);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void baanim_setEndAndDuration(PlayerState *, f32, f32);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    void baphysics_reset_gravity(PlayerState *);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    f32 bastick_distance(PlayerState *);
+    f32 bastick_getAngleRelativeToBanjo(PlayerState *);
+    void func_8009D7A4(PlayerState *, f32, f32);
+    void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+    void func_800A2E18(PlayerState *);
+    f32 yaw_getIdeal(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+    struct anctrl_s *sp34;
+    s32 pad30;
+    f32 sp2C;
+    s32 pad28;
+
+    switch (arg1) {
+    case 0:
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+        baphysics_reset_gravity(arg0);
+        break;
+    case 1:
+        sp34 = baanim_getAnimCtrlPtr(arg0);
+        _baattach_entrypoint_6(arg0, 3, 0, 0);
+        anctrl_reset(sp34);
+        anctrl_setIndex(sp34, 0x122);
+        anctrl_setDuration(sp34, 0.8f);
+        anctrl_setSubrange(sp34, 0.0f, 0.6364f);
+        anctrl_setPlaybackType(sp34, 1);
+        anctrl_start(sp34);
+        func_8009FFD8(arg0, 1, 1, 3, 6);
+        if (bastick_distance(arg0) != 0.0f) {
+            yaw_setIdeal(arg0, bastick_getAngleRelativeToBanjo(arg0));
+        }
+        baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+        func_808000CC_bsstonehead(arg0);
+        sp2C = yaw_getIdeal(arg0);
+        baphysics_set_horizontal_velocity(arg0, sp2C, baphysics_get_target_horizontal_velocity(arg0));
+        baphysics_set_vertical_velocity(arg0, 576.0f);
+        baphysics_set_gravity(arg0, -1200.0f);
+        func_8009D7A4(arg0, 1.35f, 1.45f);
+        break;
+    case 2:
+        baanim_setEndAndDuration(arg0, 0.7576f, 4.0f);
+        break;
+    case 3:
+        baanim_setEndAndDuration(arg0, 1.0f, 0.8f);
+        break;
+    case 4:
+        func_800A2E18(arg0);
+        break;
+    }
+    arg0->unk15C.word = arg1;
+}
 
 void bsstonehead_entrypoint_16(PlayerState *arg0)
 {
