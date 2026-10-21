@@ -626,7 +626,81 @@ void func_8080144C_chhumba(f32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_808015DC_chhumba.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80801DB0_chhumba.s")
+void func_80801DB0_chhumba(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80090708(s32);
+    void func_800C0850(void);
+    void func_800EE7F8(f32 *, f32 *);
+
+    arg0->unk74_30 = 0;
+    arg1 = arg1;
+    switch (arg1) {
+    case 0x11AF:
+        func_808001E4_chhumba(arg0);
+        return;
+    case 0x11A4:
+    case 0x11BD:
+        func_80800E44_chhumba((u8 *)arg0, 3);
+        return;
+    case 0x11A5:
+    case 0x11A6:
+    case 0x11A7:
+    case 0x11A8:
+    case 0x11A9:
+    case 0x11AA:
+    case 0x11AB:
+    case 0x11AC:
+    case 0x11AD:
+    case 0x11AE:
+    case 0x11B7:
+        if (func_80800D2C_chhumba((s32)arg0) == 0) {
+            func_800C0850();
+            func_808001E4_chhumba(arg0);
+            func_80800E44_chhumba((u8 *)arg0, 0xC);
+        }
+        if (arg1 == 0x11B7) {
+            func_80090708(0);
+            return;
+        }
+    default:
+        return;
+    case 0x11B0:
+    case 0x11BE:
+        if (arg2 != 0) {
+            func_80800338_chhumba((u8 *)arg0, 0x11B1, 0xF);
+            return;
+        }
+        func_80800338_chhumba((u8 *)arg0, 0x11B2, 0xF);
+        return;
+    case 0x11B2:
+        func_808001E4_chhumba(arg0);
+        func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+        func_80800E44_chhumba((u8 *)arg0, 1);
+        return;
+    case 0x11B1:
+        if (func_80800C20_chhumba((u8 *)arg0) != 0) {
+            func_808001E4_chhumba(arg0);
+        }
+        func_808000D4_chhumba(arg0, 0xE, 0x40, NULL);
+        func_80800E44_chhumba((u8 *)arg0, 0x12);
+        return;
+    case 0x11B3:
+    case 0x11BF:
+        func_808001E4_chhumba(arg0);
+        func_80800E44_chhumba((u8 *)arg0, 1);
+        return;
+    case 0x11B5:
+        func_808001E4_chhumba(arg0);
+        func_80800E44_chhumba((u8 *)arg0, 0xC);
+        return;
+    case 0x11B4:
+        func_808001E4_chhumba(arg0);
+        return;
+    case 0x11B6:
+        func_808001E4_chhumba(arg0);
+        func_80800E44_chhumba((u8 *)arg0, 7);
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80801F74_chhumba.s")
 
