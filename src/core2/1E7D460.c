@@ -17,7 +17,47 @@ void func_800A3B78(PlayerState *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A3BA8.s")
+s32 func_800A3BA8(s32 arg0, s32 arg1) {
+    void func_80110CC0(s32, f32, f32, f32, f32);
+    void func_80115564(u8 *);
+    PlayerState *player;
+    u8 *data;
+
+    player = func_800A4CA8((PlayerState *)arg0);
+    if (player != NULL) {
+        data = *(u8 **)(arg0 + 0x38);
+        switch (data[2]) {
+        case 1:
+            func_80110CC0((s32)player,
+                *(f32 *)(data + 0x2C) * (f32)*(s32 *)(data + 8),
+                *(f32 *)(data + 0x2C) * (f32)*(s32 *)(data + 0xC),
+                *(f32 *)(data + 0x30) * (f32)*(s32 *)(data + 0x10),
+                (f32)*(s16 *)(data + 0x34));
+            break;
+        case 2:
+            func_80110CC0((s32)player,
+                *(f32 *)(data + 0x2C) * (f32)*(s32 *)(data + 0x14),
+                *(f32 *)(data + 0x2C) * (f32)*(s32 *)(data + 0x18),
+                *(f32 *)(data + 0x30) * (f32)*(s32 *)(data + 0x1C),
+                (f32)*(s16 *)(data + 0x34));
+            break;
+        case 3:
+            func_80110CC0((s32)player,
+                *(f32 *)(data + 0x2C) * (f32)*(s32 *)(data + 0x20),
+                *(f32 *)(data + 0x2C) * (f32)*(s32 *)(data + 0x24),
+                *(f32 *)(data + 0x30) * (f32)*(s32 *)(data + 0x28),
+                (f32)*(s16 *)(data + 0x34));
+            break;
+        case 4:
+            func_80110CC0((s32)player,
+                250.0f, 300.0f, 50.0f, (f32)*(s16 *)(data + 0x34));
+            break;
+        }
+        if (arg1 != 0) {
+            func_80115564((u8 *)player);
+        }
+    }
+}
 
 /* extern */
 
