@@ -173,7 +173,47 @@ s16 func_80800384_susplinet(u8 *arg0, s16 arg1) {
     return index;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/susplinet_entrypoint_16.s")
+/* extern */
+
+void susplinet_entrypoint_16(u8 *arg0, f32 arg1, f32 arg2) {
+    s32 func_800DA9E4(s32, s32);
+    u8 *times;
+    u8 *flags;
+    s16 pad;
+    s16 saved;
+    s16 next;
+    s16 index;
+
+    times = arg0;
+    times += *(s16 *)(arg0 + 0x30);
+    flags = arg0;
+    flags += *(s16 *)(arg0 + 0x32);
+    index = func_80800384_susplinet(arg0, (s16)(s32)arg1)
+        + 1;
+    saved = index;
+    next = index + 1;
+    if (next >= *(s16 *)(arg0 + 0x4E)) {
+        susplinet_entrypoint_10(arg0, arg2);
+        return;
+    }
+    if (((s16 *)times)[index] != ((s16 *)times)[next]) {
+        susplinet_entrypoint_10(arg0, arg2);
+        return;
+    }
+    if (arg2 < (f32)((s16 *)times)[index]) {
+        susplinet_entrypoint_10(arg0, arg2);
+        return;
+    }
+    if (((s16 *)flags)[index] & 1) {
+        if (func_800DA9E4(0x644, 0) == 0) {
+            susplinet_entrypoint_10(arg0, (f32)((s16 *)times)[saved]);
+            return;
+        }
+        susplinet_entrypoint_10(arg0, (f32)(((s16 *)times)[next] + 1));
+        return;
+    }
+    susplinet_entrypoint_10(arg0, arg2);
+}
 
 f32 func_80800620_susplinet(u8 *arg0, s16 *arg1, f32 arg2) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
