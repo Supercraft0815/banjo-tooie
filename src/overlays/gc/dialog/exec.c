@@ -548,7 +548,61 @@ void func_80801268_gcdialogexec(void *arg0, s32 arg1, s32 arg2, void *arg3, s32 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/gcdialogexec_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/gcdialogexec_entrypoint_1.s")
+void gcdialogexec_entrypoint_1(u8 *arg0) {
+    typedef struct {
+        s16 text;
+        u16 flags;
+        f32 position[3];
+        void *actor;
+        s16 id;
+        s16 pad;
+        s32 callback;
+        s32 arg4;
+        s32 arg5;
+        s32 arg6;
+        s32 camera;
+    } Request;
+    typedef struct {
+        u8 pad[0x15C];
+        u32 unused : 20;
+        u32 suppress : 1;
+        u32 rest : 11;
+        u16 speed : 8;
+        u16 count : 4;
+        u16 index : 4;
+    } Dialog;
+    s32 func_800A9C98(void);
+    int func_800EEEA8(f32 vec[3]);
+    s32 func_800F6438(u32);
+    void func_800F82D4(s32, s32);
+    void func_800F8300();
+    void func_800FEC60(u32);
+    Request *request;
+
+    request = &((Request *)(arg0 + 0x184))[((Dialog *)arg0)->index];
+    func_80801268_gcdialogexec(arg0, request->text, request->flags,
+        request->actor, request->arg4, request->arg5, request->arg6, request->id);
+    *(s32 *)(arg0 + 0x16C) = request->callback;
+    *(s32 *)(arg0 + 0x17C) = request->camera;
+    func_800FEC60(0);
+    if ((request->flags & 8) && (!func_800A9C98() || !((Dialog *)arg0)->suppress)) {
+        if (func_800F6438(*(s32 *)(arg0 + 0x17C))) {
+            func_800F82D4(*(s32 *)(arg0 + 0x17C), 0);
+        }
+        if (func_800EEEA8(request->position)) {
+            if (func_800F6438(*(s32 *)(arg0 + 0x17C))) {
+                func_800F82D4(*(s32 *)(arg0 + 0x17C), *(s16 *)(arg0 + 0x11A) < 0 ? 1 : 3);
+            }
+        } else if (func_800F6438(*(s32 *)(arg0 + 0x17C))) {
+            func_800F8300(*(s32 *)(arg0 + 0x17C), *(s16 *)(arg0 + 0x11A) < 0 ? 1 : 3, request->position);
+        }
+    }
+    ((Dialog *)arg0)->index++;
+    if (((Dialog *)arg0)->index >= 4) {
+        ((Dialog *)arg0)->index -= 4;
+    }
+    ((Dialog *)arg0)->count--;
+}
 
 void gcdialogexec_entrypoint_2(u8 *arg0) {
     typedef struct {
