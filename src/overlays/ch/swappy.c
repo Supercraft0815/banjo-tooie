@@ -38,7 +38,50 @@ s32 func_808000B0_chswappy(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swappy/func_80800108_chswappy.s")
+void func_80800108_chswappy(Actor *arg0) {
+    struct SwappyFlags {
+        u8 pad0[0x7E];
+        u8 pad7E_7 : 1;
+        u8 active : 1;
+        u8 pad7E_0 : 6;
+    };
+    s32 _plsu_entrypoint_1(s32);
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6BE4(s32);
+    s32 func_800F7B9C(s32, s32);
+    s32 func_800F8B88(void);
+    void chswappy_entrypoint_0(Actor *, s32);
+    s32 sp44;
+    f32 sp38[3];
+    s32 player;
+
+    sp44 = (s32)arg0->unk70_10 == 2;
+    switch (arg0->unk70_10) {
+    case 1:
+        player = _plsu_entrypoint_1(10);
+        if (player != -1) {
+            func_800F5A00(player, sp38);
+            if (func_800EFFB4(arg0->position, 100.0f, sp38)) {
+                _sudeflect_entrypoint_1(sp38, 125.0f, 0.0f, 40.0f, 28);
+            }
+        }
+        break;
+    case 2:
+        func_808000B0_chswappy(arg0, 3);
+        break;
+    case 3:
+        if (!func_800F6BE4(arg0->unk79_4) || func_800F7B9C(arg0->unk79_4, 0x41) == 2) {
+            func_808000B0_chswappy(arg0, 1);
+        }
+        break;
+    }
+    if (func_800F8B88() == 2) {
+        chswappy_entrypoint_0(arg0, sp44);
+    }
+    ((struct SwappyFlags *)arg0)->active = 0;
+}
 
 /* extern */
 
