@@ -119,7 +119,57 @@ void func_8080046C_chhillbilly(Actor *arg0) {
 
 void func_808004D0_chhillbilly(Actor *arg0) { s32 _subaddieDll_entrypoint_3(Actor *); s32 _sucoaster_entrypoint_10(Actor *, s32); s32 _sucoaster_entrypoint_6(Actor *, f32, ...); s32 var_a2; if ((arg0->unk70_10 == 2) || (arg0->unk70_10 == 3) || (arg0->unk70_10 == 8)) { if (_subaddieDll_entrypoint_3(arg0) != 0) { var_a2 = 0x15; } else { var_a2 = 0xE; } _sucoaster_entrypoint_6(arg0, 200.0f, var_a2); _sucoaster_entrypoint_10(arg0, var_a2); } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_80800540_chhillbilly.s")
+s32 func_80800540_chhillbilly(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _sucoaster_entrypoint_21(Actor *, s32, s32);
+    void func_80101074(void *);
+    s32 func_808006B4_chhillbilly(Actor *, s32, u32);
+    void func_808009D8_chhillbilly(Actor *, s32, s32);
+    extern u8 D_80800B54_chhillbilly[];
+    struct ActorFlags { u8 pad[0x78]; u32 upper : 29; u32 flag : 1; u32 lower : 2; };
+    struct Flags { u8 pad[0x2A]; u8 upper : 2; u8 enabled : 1; u8 lower : 5; };
+    struct Event { s16 value; u8 type; u8 pad; };
+    s32 result;
+    s32 animation;
+    s32 event;
+
+    switch (arg1) {
+    case 1:
+    case 2:
+        result = _sucoaster_entrypoint_21(arg0, arg1, arg2);
+        if (!((struct ActorFlags *)arg0)->flag) {
+            if (arg0->unk64_29) {
+                func_8080046C_chhillbilly(arg0);
+                return 1;
+            }
+            func_808004D0_chhillbilly(arg0);
+            return 1;
+        }
+        break;
+    case 0x42:
+        result = func_808006B4_chhillbilly(arg0, ((struct Event *)&arg2)->value, ((struct Event *)&arg2)->type);
+        break;
+    case 0x8F:
+        event = arg2;
+        if (event == 0 || event == 4) {
+            func_808009D8_chhillbilly(arg0, 0x78A, 0);
+            ((struct Flags *)arg0->unk0)->enabled = 0;
+        }
+        result = 1;
+        break;
+    case 0x95:
+        animation = (arg0->unk70_10 == 22 || arg0->unk70_10 == 16) ? 0x78A : 0x789;
+        func_808009D8_chhillbilly(arg0, animation, 1);
+        result = _sucoaster_entrypoint_21(arg0, arg1, arg2);
+        break;
+    case 0x38:
+        func_80101074(D_80800B54_chhillbilly);
+        return 7;
+    default:
+        result = _sucoaster_entrypoint_21(arg0, arg1, arg2);
+        break;
+    }
+    return result;
+}
 
 s32 func_808006B4_chhillbilly(Actor *arg0, s32 arg1, u32 arg2) {
     s32 _sucoaster_entrypoint_10(Actor *, s32);
