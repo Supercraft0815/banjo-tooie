@@ -53,7 +53,53 @@ s32 func_808000AC_chdiggergroundgen(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/groundgen/func_80800118_chdiggergroundgen.s")
+void func_80800118_chdiggergroundgen(Actor *arg0) {
+    s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
+    s32 func_800CC338(f32 *, s32, s32);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800F2094(f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    f32 func_8010CD28(Actor *);
+    f32 position[3];
+    f32 angle;
+    f32 start[3];
+    f32 end[3];
+    f32 normal[3];
+    f32 distance;
+    f32 heading;
+    f32 *data;
+
+    data = func_80100094(arg0, 0);
+    heading = func_8010CD28(arg0);
+    while (1) {
+        angle = func_800DC0C0() * 360.0f;
+        if (func_800F2094(angle, heading) < 30.0f) {
+            continue;
+        }
+        distance = func_800DC178(300.0f, 500.0f);
+        func_800EE7F8(position, arg0->position);
+        func_800EF1B8(position, angle, distance);
+        if (func_800CC338(position, arg0->unk70_25 - 1, 0) == -1) {
+            continue;
+        }
+        break;
+    }
+    func_800EE7F8(start, position);
+    func_800EE7F8(end, position);
+    start[1] += 200.0f;
+    end[1] -= 200.0f;
+    func_800BEF00(start, end, normal, arg0->unk14);
+    position[1] = end[1];
+    func_800EE7F8(&data[2], position);
+    func_80108B04(arg0, 0);
+    func_80101FDC(arg0, 2);
+    arg0->unk58 = 0.85f;
+}
 
 void func_808002C4_chdiggergroundgen(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
