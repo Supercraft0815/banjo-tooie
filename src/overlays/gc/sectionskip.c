@@ -453,6 +453,63 @@ final_checks:
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/sectionskip/func_80800D3C_gcsectionskip.s")
+s32 func_80800D3C_gcsectionskip(s32 *arg0, s32 *arg1) {
+    s32 func_800F5410(s32);
+    enum map_e map;
+
+    if (func_800F5410(func_800F54E4()) != 1) {
+        return 0;
+    }
+    map = func_800EA05C();
+    switch (map) {
+    case MAP_AF_SM_SPIRAL_MOUNTAIN:
+        if (func_800DA298(FLAG_318_PROGRESS_DEFEATED_KLUNGO_1)) {
+            *arg0 = 0x142;
+            *arg1 = 3;
+        }
+        break;
+    case MAP_142_JV_JINJO_VILLAGE:
+        if (func_800DA298(FLAG_318_PROGRESS_DEFEATED_KLUNGO_1)) {
+            *arg0 = 0xAF;
+            *arg1 = 3;
+        } else {
+            *arg1 = 1;
+        }
+        break;
+    case MAP_15A_IOH_WASTELAND:
+        if (func_800DA298(FLAG_319_PROGRESS_DEFEATED_KLUNGO_2)) {
+            *arg0 = 0x154;
+            *arg1 = 3;
+        } else {
+            *arg1 = 1;
+        }
+        break;
+    case MAP_154_IOH_PINE_GROVE:
+        if (func_800DA298(FLAG_319_PROGRESS_DEFEATED_KLUNGO_2)) {
+            *arg0 = 0x15A;
+            *arg1 = 1;
+        }
+        break;
+    case MAP_15D_CK_CAULDRON_KEEP:
+        if (func_800DA298(FLAG_31A_PROGRESS_DEFEATED_KLUNGO_3)) {
+            *arg0 = 0x15F;
+            if (func_800DA298(FLAG_441_UNK)) {
+                *arg1 = 3;
+            } else {
+                *arg1 = 1;
+            }
+        }
+        break;
+    case MAP_15F_CK_QUIZ:
+        if (func_800DA298(FLAG_31A_PROGRESS_DEFEATED_KLUNGO_3)) {
+            *arg0 = 0x15D;
+            *arg1 = 2;
+        } else {
+            *arg1 = 1;
+        }
+        break;
+    }
+    return 1;
+}
 
 void func_80800EF8_gcsectionskip(s32 arg0, s32 arg1) { func_800C05B8(arg0, 0, NULL, NULL, 0, 0, arg1); }
