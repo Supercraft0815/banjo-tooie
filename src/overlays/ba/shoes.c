@@ -214,7 +214,70 @@ void bashoes_entrypoint_12(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 268) + 0) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoes/bashoes_entrypoint_13.s")
+void bashoes_entrypoint_13(PlayerState *arg0) {
+    int baflag_isTrue(PlayerState *, s32);
+    s32 func_800D9078(f32 *);
+    void (*callback)(PlayerState *, s32);
+    u8 *data;
+
+    data = *(u8 **)((u8 *)arg0 + 0x10C);
+    callback = *(void (**)(PlayerState *, s32))(data + 0xC);
+    if (callback != NULL) {
+        callback(arg0, data[4]);
+        data = *(u8 **)((u8 *)arg0 + 0x10C);
+    }
+    switch (data[4]) {
+    case 1:
+        break;
+    case 2:
+        if (baflag_isTrue(arg0, 0x10)) {
+            bashoes_entrypoint_6(arg0, 3);
+            return;
+        }
+        if (baflag_isTrue(arg0, 0x37)) {
+            bashoes_entrypoint_6(arg0, 4);
+            return;
+        }
+        if (baflag_isTrue(arg0, 0x38)) {
+            bashoes_entrypoint_6(arg0, 5);
+            return;
+        }
+        break;
+    case 3:
+        func_80800180_bashoes(arg0, 0x10);
+        if (baflag_isTrue(arg0, 0x37)) {
+            bashoes_entrypoint_6(arg0, 4);
+            return;
+        }
+        if (baflag_isTrue(arg0, 0x38)) {
+            bashoes_entrypoint_6(arg0, 5);
+            return;
+        }
+        break;
+    case 4:
+        func_800D9078((f32 *)(data + 0x14));
+        func_80800180_bashoes(arg0, 0x37);
+        if (baflag_isTrue(arg0, 0x10)) {
+            bashoes_entrypoint_6(arg0, 3);
+            return;
+        }
+        if (baflag_isTrue(arg0, 0x38)) {
+            bashoes_entrypoint_6(arg0, 5);
+            return;
+        }
+        break;
+    case 5:
+        func_80800180_bashoes(arg0, 0x38);
+        if (baflag_isTrue(arg0, 0x10)) {
+            bashoes_entrypoint_6(arg0, 3);
+            return;
+        }
+        if (baflag_isTrue(arg0, 0x37)) {
+            bashoes_entrypoint_6(arg0, 4);
+        }
+        break;
+    }
+}
 
 void bashoes_entrypoint_14(void *arg0) {
     s32 func_800F6B34(void);
