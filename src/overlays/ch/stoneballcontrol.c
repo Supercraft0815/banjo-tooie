@@ -376,7 +376,54 @@ void func_80801330_chstoneballcontrol(Actor *arg0, s32 arg1) {
     data->bytes[arg1] = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_8080145C_chstoneballcontrol.s")
+void func_8080145C_chstoneballcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800DA298(s32);
+    void func_80108B04(Actor *, u32);
+    void func_80801638_chstoneballcontrol(s32, s32 *);
+    void func_80801884_chstoneballcontrol(Actor *);
+    struct StoneballData {
+        u8 pad0[0x39];
+        u8 state;
+    } *data;
+    struct Counts { s32 values[4]; } counts;
+    extern struct Counts D_808050BC_chstoneballcontrol;
+    s32 state;
+
+    data = func_80100094(arg0, 0);
+    counts = D_808050BC_chstoneballcontrol;
+    state = -1;
+    func_80801638_chstoneballcontrol((s32)arg0, counts.values);
+    if (data->state == 3) {
+        if (func_800DA298(0x5F) || func_800DA298(0x9EA)) {
+            if (counts.values[0] <= 0) {
+                state = 3;
+            }
+        } else if (func_800DA298(0x5E) || func_800DA298(0x9E9)) {
+            if (counts.values[0] <= 0) {
+                state = 2;
+            }
+        } else if (counts.values[0] <= 0) {
+            state = 1;
+        }
+        if (state != -1) {
+            func_80108B04(arg0, state);
+        }
+    } else {
+        if (counts.values[1] < func_80800114_chstoneballcontrol(data->state, 1)) {
+            state = 1;
+        } else if (counts.values[2] < func_80800114_chstoneballcontrol(data->state, 2)) {
+            state = 2;
+        } else if (counts.values[3] < func_80800114_chstoneballcontrol(data->state, 3)) {
+            state = 3;
+        }
+        if (state >= 0) {
+            func_80108B04(arg0, state);
+        } else if (counts.values[0] < func_80800114_chstoneballcontrol(data->state, 0)) {
+            func_80801884_chstoneballcontrol(arg0);
+        }
+    }
+}
 
 void func_80801638_chstoneballcontrol(s32 arg0, s32 *arg1) {
     s32 _subaddiefind_entrypoint_6(u8 *, Actor **, s32);
