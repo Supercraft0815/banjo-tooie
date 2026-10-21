@@ -343,7 +343,52 @@ void func_800C6320(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C6420.s")
+void func_800C6420(u8 *arg0) {
+    s32 func_8001210C(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 sp4C[7];
+    s32 sp48;
+    s32 triangle;
+    s32 sp40;
+    s32 state;
+    f32 sp30[3];
+    f32 distance;
+
+    func_800EE7F8(sp30, (f32 *)(arg0 + 0x4C));
+    sp48 = (*(f32 *)(arg0 + 0x50) - *(f32 *)(arg0 + 0x70) > 120.0f) ? 1 : 0;
+    sp40 = func_8001210C(1);
+    if ((sp48 == 0) || (sp40 != 0)) {
+        if (sp48 != 0) {
+            arg0[0x8F] = arg0[0x91];
+        }
+        triangle = func_800C5CC0(sp30, *(f32 *)(arg0 + 0x78), -390.0f, *(u32 *)(arg0 + 0x84) | 0x20020, sp4C);
+        if (triangle != 0) {
+            if (sp4C[1] >= 0.0f) {
+                func_800C5F40(arg0, sp4C, (void *)triangle);
+            }
+        } else {
+            func_800C5F8C(arg0);
+        }
+    }
+    if ((sp48 == 0) || (sp40 == 0)) {
+        if (sp48 != 0) {
+            arg0[0x8E] = arg0[0x90];
+        }
+        distance = *(f32 *)(arg0 + 0x74) - sp30[1];
+        triangle = func_800C5CC0(sp30, distance + 140.0f, distance - 140.0f, *(u32 *)(arg0 + 0x88), sp4C);
+        if ((triangle != 0) || (arg0[0x9C] != 0)) {
+            func_800C5FCC(arg0, sp4C[3], triangle);
+            arg0[0x92] = 1U;
+        } else if (arg0[0x92] != 0) {
+            arg0[0x92] = 0U;
+            arg0[0x8F] = 1U;
+        }
+    }
+    state = func_800C5E14(arg0);
+    if (state != 4) {
+        func_800C5A10(arg0, state);
+    }
+}
 
 void func_800C65E0(u8 *arg0) {
     void func_800C6060(u8 *);
