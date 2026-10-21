@@ -44,7 +44,62 @@ s32 func_8009F354(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009F440.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009F678.s")
+s32 func_8009F678(PlayerState *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
+    void func_800A30B4(PlayerState *, f32 *, f32 *);
+    f32 func_800D8FF8(void);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 func_800F0DC0(f32, f32);
+    s32 func_800F1660(f32, f32);
+    void func_800F4200(u8 *, f32 *);
+    void func_800F4648(void *, f32 *);
+    f32 position[3];
+    f32 maximum[3];
+    f32 minimum[3];
+    f32 displacement[3];
+    f32 high;
+    f32 low;
+    f32 amount;
+    f32 x;
+    f32 z;
+
+    func_800A30B4(arg0, minimum, maximum);
+    func_800F4200((u8 *)arg0, position);
+    func_800EF04C(minimum, position);
+    func_800EF04C(maximum, position);
+    if (maximum[1] <= arg1[1] || arg2[1] <= minimum[1]) {
+        return 0;
+    }
+    high = arg2[0] - minimum[0];
+    low = arg1[0] - maximum[0];
+    if (low >= 0.0f || high <= 0.0f) {
+        return 0;
+    }
+    if (high < -low) {
+        x = high;
+    } else {
+        x = low;
+    }
+    high = arg2[2] - minimum[2];
+    low = arg1[2] - maximum[2];
+    if (low >= 0.0f || high <= 0.0f) {
+        return 0;
+    }
+    if (high < -low) {
+        z = high;
+    } else {
+        z = low;
+    }
+    amount = func_800D8FF8() * arg3;
+    if (func_800F1660(x, z)) {
+        func_800EFA4C(displacement, 0.0f, 0.0f, func_800F0DC0(z, amount));
+    } else {
+        func_800EFA4C(displacement, func_800F0DC0(x, amount), 0.0f, 0.0f);
+    }
+    func_800EF04C(position, displacement);
+    func_800F4648(arg0, position);
+    return 1;
+}
 
 s32 func_8009F860(PlayerState *arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
     void func_800A3148(PlayerState *, f32 *, f32 *, f32 *);
