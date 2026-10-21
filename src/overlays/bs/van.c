@@ -780,7 +780,71 @@ void bsvan_entrypoint_15(s32 arg0) {
     _chfaircoin_entrypoint_0(sp28, sp1C, 0.5f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/van/func_80801890_bsvan.s")
+void func_80801890_bsvan(struct player_state_s *arg0) {
+    s32 _batimer_decrement(void *, s32);
+    void _chbaddiesetup_entrypoint_1(s32 *, s32);
+    int baanim_isAt(struct player_state_s *, f32);
+    int baanim_isStopped(struct player_state_s *);
+    void bs_setState(struct player_state_s *, int);
+    s32 func_8008E124(struct player_state_s *);
+    void func_8009D3A8(struct player_state_s *, s32);
+    void func_8009DF18(struct player_state_s *, s32, f32, s32);
+    s32 func_8080164C_bsvan(void *, s32);
+    f32 yaw_get(struct player_state_s *);
+    f32 yaw_getIdeal(struct player_state_s *);
+    extern s32 _bsvan_entrypoint_15;
+    s32 sp24;
+    f32 sp20;
+    s32 *temp_v0;
+
+    sp24 = 0;
+    func_8009D3A8(arg0, 0);
+    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+    case 1:
+        sp20 = yaw_get(arg0);
+        if (yaw_getIdeal(arg0) == sp20) {
+            func_8080164C_bsvan(arg0, 2);
+        }
+        break;
+    case 2:
+        if (baanim_isAt(arg0, 0.08f)) {
+            func_8009DF18(arg0, 0x56D, 1.0f, 0x55F0);
+        }
+        if (baanim_isAt(arg0, 0.5049f)) {
+            func_8080164C_bsvan(arg0, 3);
+        }
+        break;
+    case 3:
+        if (_batimer_decrement(arg0, 3)) {
+            _chbaddiesetup_entrypoint_1(&_bsvan_entrypoint_15, *(s32 *)((s8 *)arg0 + 0x184));
+            temp_v0 = *(s32 **)((s8 *)arg0 + 0x188);
+            temp_v0[4]--;
+            if ((*(s32 **)((s8 *)arg0 + 0x188))[4]) {
+                func_8080164C_bsvan(arg0, 3);
+            } else {
+                func_8080164C_bsvan(arg0, 4);
+            }
+        }
+        break;
+    case 4:
+        if (baanim_isStopped(arg0)) {
+            func_8080164C_bsvan(arg0, 5);
+        }
+        break;
+    case 5:
+        sp20 = yaw_get(arg0);
+        if (yaw_getIdeal(arg0) == sp20) {
+            if (func_8008E124(arg0)) {
+                sp24 = 0x119;
+            } else {
+                sp24 = 0x11A;
+            }
+        }
+        break;
+    }
+    bsvan_entrypoint_3(arg0);
+    bs_setState(arg0, sp24);
+}
 
 s32 bsvan_entrypoint_16(s32 arg0) {
     extern s32 D_80801D80_bsvan[];
