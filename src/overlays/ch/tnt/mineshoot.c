@@ -65,7 +65,66 @@ void func_80800188_chtntmineshoot(f32 *arg0) {
 
 void func_80800228_chtntmineshoot(Actor *arg0) { void *func_80100094(Actor *, u32); void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *); void func_80800440_chtntmineshoot(Actor *, s32); void func_80800BCC_chtntmineshoot(Actor *); u8 *sp24; sp24 = func_80100094(arg0, 0U); func_80800BCC_chtntmineshoot(arg0); func_80800440_chtntmineshoot(arg0, 0); _subaddierouteDll_entrypoint_3(arg0, sp24 + 0x18, (f32 *)((u8 *)arg0 + 4)); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800280_chtntmineshoot.s")
+void func_80800280_chtntmineshoot(Actor *arg0) {
+    f32 func_800136E4(f32);
+    s32 func_8008FB10(f32 *, f32, f32, f32);
+    f32 func_800DC178(f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80102BF8(void *, f32, f32, f32);
+    f32 func_80103EAC(Actor *);
+    f32 func_80103EF4(Actor *);
+    void func_80108B04(Actor *, u32);
+    f32 func_8010CD28(Actor *);
+    s32 func_8010D248(void);
+    s32 func_808004BC_chtntmineshoot(Actor *, s32);
+    s32 func_80800AD0_chtntmineshoot(Actor *);
+    u8 *sp2C;
+    s32 flags;
+    s32 hit;
+    f32 sp20;
+
+    sp2C = func_80100094(arg0, 0U);
+    flags = func_80800AD0_chtntmineshoot(arg0);
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_8010D248() != 0) {
+                func_808004BC_chtntmineshoot(arg0, 2);
+            }
+            arg0->unk54 = func_8010CD28(arg0);
+            func_80102BF8(arg0, 0.1f, 4.0f, 360.0f);
+            break;
+        case 2:
+            hit = flags & 4;
+            if (hit != 0) {
+                ((f32 *)arg0->actorData)[3] = 0.0f;
+            }
+            if (sp2C[0x14] == 4) {
+                if (hit != 0) {
+                    arg0->unk54 = func_800136E4(arg0->rotation[1] + func_800DC178(140.0f, 220.0f));
+                    func_808004BC_chtntmineshoot(arg0, 3);
+                } else {
+                    func_808004BC_chtntmineshoot(arg0, 1);
+                }
+            }
+            break;
+        case 3:
+            func_80102BF8(arg0, 0.75f, 4.0f, 360.0f);
+            if (arg0->unk54 == arg0->rotation[1]) {
+                func_808004BC_chtntmineshoot(arg0, 1);
+            }
+            break;
+        case 4:
+            func_80800000_chtntmineshoot(arg0);
+            func_80108B04(arg0, 4);
+            break;
+        case 5:
+            func_8080003C_chtntmineshoot((s32)arg0);
+            func_80108B04(arg0, 5);
+            break;
+    }
+    sp20 = func_80103EF4(arg0);
+    func_8008FB10(arg0->position, sp20, 0.0f, func_80103EAC(arg0));
+}
 
 void func_80800440_chtntmineshoot(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
