@@ -11,7 +11,71 @@ void func_80800000_chrainbow(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_8080003C_chrainbow.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_80800270_chrainbow.s")
+s32 func_80800270_chrainbow(s32 actor, s32 arg1) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _chglowbo_entrypoint_6(void);
+    s32 _fxrain_entrypoint_7(s32);
+    s32 _fxrain_entrypoint_8(s32);
+    s32 _subaddieDll_entrypoint_0(Actor *);
+    s32 func_800B7C54(void);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    u32 *func_80100074(Actor *, u32, u32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(void *, s32);
+    void func_8010A63C(Actor *);
+    void func_80800440_chrainbow(Actor *);
+    Actor *arg0 = (Actor *)actor;
+
+    switch (arg1) {
+    case 1:
+        func_80103110(arg0, 0);
+        arg0->unk64_20 = 0;
+        arg0->unk64_16 = 0;
+        arg0->unk58 = 0.0f;
+        ((f32 *)arg0->actorData)[7] = 0.0f;
+        break;
+    case 2:
+        func_80800440_chrainbow(arg0);
+        func_800DA524(0x9DF);
+        break;
+    case 3:
+        func_80101180(0x2B0, 0xBB, 0xC);
+        _capod_entrypoint_13(arg0->unk0, arg0->unk0, 9, 0x810);
+        arg0->unk58 = 0.0f;
+        break;
+    case 4:
+        _fxrain_entrypoint_7(func_800B7C54());
+        _chglowbo_entrypoint_6();
+        func_800DA544(0x580);
+        break;
+    case 8:
+        arg0->unk64_16 = 1;
+        ((f32 *)arg0->actorData)[7] = 1.0f;
+        _capod_entrypoint_13(arg0->unk0, arg0->unk0, 0xC, 0x4810);
+        _subaddieDll_entrypoint_0(arg0);
+        break;
+    case 12:
+        arg0->unk58 = 18.5f;
+        _capod_entrypoint_13(arg0->unk0, arg0->unk0, 0x5A, 0x2810);
+        break;
+    case 13:
+        _fxrain_entrypoint_8(func_800B7C54());
+        func_800DA524(0x9DE);
+        func_800DA544(0x9DF);
+        func_800DA544(0x1E1);
+        func_80100074(arg0, 0, 0);
+        _subaddieDll_entrypoint_0(arg0);
+        func_8010A63C(arg0);
+        arg0->unk64_20 = 0;
+        ((f32 *)arg0->actorData)[7] = 0.0f;
+        arg0->unk58 = 20.5f;
+        func_80103110(arg0, 0);
+        break;
+    }
+    func_80101FDC(arg0, arg1);
+}
 
 void func_80800440_chrainbow(Actor *arg0) {
     void func_800EE780(f32 *, f32 *, f32 *);
