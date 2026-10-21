@@ -87,7 +87,52 @@ void *func_80115118(s32 arg0) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEE770/func_801151C4.s")
+void func_801151C4(void *arg0) {
+    s32 func_800BEAAC(s32, s32);
+    s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
+    void func_800CA7E4(s32, s32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    s32 func_8010FF80(s32 *);
+    extern f32 D_8012660C;
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+    f32 sp30;
+    s32 pad;
+    s32 camera;
+    s32 *triangle;
+    u8 flag;
+
+    camera = func_8010FF80(*(s32 **)arg0);
+    func_800CA7E4(camera, (s32 *)sp40);
+    if (func_800BEAAC((s32)sp40, (s32)&sp30) == 0) {
+        func_800EFA4C(sp34, sp40[0], sp40[1] + D_8012660C, sp40[2]);
+        triangle = func_800BEF00(sp40, sp34, sp4C, 0x1F00);
+        if (triangle != NULL) {
+            flag = (triangle[2] & 0x20000) ? 1 : 0;
+            *((u8 *)arg0 + 0xC) = flag;
+        } else {
+            *((u8 *)arg0 + 0xC) = 0;
+        }
+    } else {
+        sp34[0] = sp40[0];
+        sp34[2] = sp40[2];
+        sp34[1] = sp40[1] + 1000.0f;
+        triangle = func_800BEF00(sp40, sp34, sp4C, 0x1F00);
+        if (triangle == NULL || !(triangle[2] & 0x20000)) {
+            sp34[1] = sp30;
+        }
+        if (sp40[1] <= sp34[1]) {
+            *((u8 *)arg0 + 0xC) = 1;
+        } else {
+            *((u8 *)arg0 + 0xC) = 0;
+        }
+    }
+    if (*((u8 *)arg0 + 0xC) != 0) {
+        *(f32 *)((u8 *)arg0 + 8) = sp34[1] - sp40[1];
+        func_80114EEC(arg0, camera);
+    }
+}
 
 /* extern */
 
