@@ -150,7 +150,45 @@ void func_8080096C_chmasterjiggy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_80800A40_chmasterjiggy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_80800C08_chmasterjiggy.s")
+void func_80800C08_chmasterjiggy(Actor *arg0, void *arg1) {
+    typedef struct {
+        f32 amount;
+        f32 fade;
+    } MasterJiggyData;
+    void _sufade_entrypoint_0(s32, void *);
+    void func_800E3980(f32 *);
+    void func_800E3A58(f32 *);
+    f32 func_800F1DCC(f32, f32);
+    s32 func_800F1E6C(f32 *, f32 *, f32 *);
+    void func_80101870(Actor *, void *);
+    f32 mlAbsF(f32);
+    extern s32 D_80801790_chmasterjiggy;
+    f32 rotation[3];
+    f32 yaw;
+    f32 position[3];
+    f32 fade;
+    f32 difference;
+
+    func_800E3A58(rotation);
+    arg0->rotation[1] = rotation[1];
+    arg0->alpha = (u32)(((MasterJiggyData *)arg0->actorData)->amount * 255.0f);
+    if (arg0->unk64_20) {
+        func_80101870(arg0, arg1);
+    }
+    fade = ((MasterJiggyData *)arg0->actorData)->fade;
+    if (fade > 0.0f) {
+        _sufade_entrypoint_0((s32)(fade * 255.0f), &D_80801790_chmasterjiggy);
+    }
+    if (((MasterJiggyData *)arg0->actorData)->amount > 0.0f && arg0->unk64_20) {
+        func_800E3980(position);
+        if (func_800F1E6C(arg0->position, position, &yaw)) {
+            difference = mlAbsF(func_800F1DCC(yaw, rotation[1])) / 25.0f;
+            if (difference < 1.0f) {
+                _sufade_entrypoint_0((s32)(((MasterJiggyData *)arg0->actorData)->amount * ((1.0f - difference) * 100.0f)), &D_80801790_chmasterjiggy);
+            }
+        }
+    }
+}
 
 /* extern */
 
