@@ -217,7 +217,37 @@ void func_808008B0_chfantasycannon(Actor *arg0) {
     _capod_entrypoint_1(sp40, sp4C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/cannon/func_808009B8_chfantasycannon.s")
+s32 func_808009B8_chfantasycannon(Actor *arg0) {
+    s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
+    f32 func_800DC0C0(void);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF334(f32 *, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    f32 angle;
+    f32 sp88[3];
+    f32 sp7C[3];
+    s32 i;
+    f32 (*data)[3];
+
+    data = func_80100094(arg0, 0);
+    angle = func_800F1DF4(arg0->position, (f32 *)arg0->actorData) - 180.0f;
+    for (i = 5; i >= 0; i++) {
+        func_800EEC30(sp88, func_800DC0C0() * 10.0f + 25.0f, i * 12 + angle, 2000.0f);
+        func_800EE780(data[2], (f32 *)arg0->actorData, sp88);
+        if (func_800BEF00(arg0->position, data[2], sp7C, 0) == 0) {
+            break;
+        }
+        func_800EEC30(sp88, func_800DC0C0() * 10.0f + 25.0f, i * -12 + angle, 2000.0f);
+        func_800EE780(data[2], (f32 *)arg0->actorData, sp88);
+        if (func_800BEF00(arg0->position, data[2], sp7C, 0) == 0) {
+            break;
+        }
+    }
+    func_800EE780(data[0], data[2], arg0->position);
+    func_800EF334(data[0], 0.5f);
+}
 
 OSThread *chfantasycannon_entrypoint_0(void)
 {
