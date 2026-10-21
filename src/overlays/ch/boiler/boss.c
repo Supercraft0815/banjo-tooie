@@ -263,7 +263,50 @@ void func_80801584_chboilerboss(Actor *arg0, s32 arg1)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80801628_chboilerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808017F0_chboilerboss.s")
+void func_808017F0_chboilerboss(Actor *arg0) {
+    int func_800DC298(f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101E14(Actor *, f32);
+    f32 func_80101F24(Actor *);
+    void func_80801A74_chboilerboss(Actor *, f32 *, f32 *, s32);
+    void func_80801B00_chboilerboss(Actor *, f32 *);
+    void func_80801B44_chboilerboss(Actor *, f32 *);
+    f32 *data;
+    f32 end[3];
+    f32 start[3];
+
+    data = func_80100094(arg0, 0);
+    if (func_80101F24(arg0) < 0.7f && func_800DC298(0.4f)) {
+        func_800EE7F8(end, arg0->position);
+        end[1] += 30.0f;
+        func_80801B00_chboilerboss(arg0, end);
+    }
+    if (func_80101E14(arg0, 0.0f)) {
+        func_800EE7F8(end, arg0->position);
+        end[1] -= 250.0f;
+        func_80801A74_chboilerboss(arg0, arg0->position, end, 0);
+    }
+    if (func_80101E14(arg0, 0.45f)) {
+        func_800EE7F8(start, data + 9);
+        start[1] = arg0->position[1];
+        func_800EE7F8(end, start);
+        end[1] -= 100.0f;
+        func_80801A74_chboilerboss(arg0, start, end, 1);
+    }
+    if (func_80101E14(arg0, 0.65f)) {
+        func_800EE7F8(start, data + 12);
+        start[1] = arg0->position[1];
+        func_800EE7F8(end, start);
+        end[1] -= 100.0f;
+        func_80801A74_chboilerboss(arg0, start, end, 1);
+    }
+    if (func_80101E14(arg0, 0.85f)) {
+        func_800EE7F8(start, data + 12);
+        start[1] = arg0->position[1] + 25.0f;
+        func_80801B44_chboilerboss(arg0, start);
+    }
+}
 
 void func_808019C8_chboilerboss(s32 arg0, f32 *arg1) {
     s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
