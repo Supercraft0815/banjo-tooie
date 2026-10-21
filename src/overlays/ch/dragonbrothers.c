@@ -1178,7 +1178,57 @@ void func_808049D4_chdragonbrothers(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80804AA4_chdragonbrothers.s")
+void func_80804AA4_chdragonbrothers(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
+    f32 func_800D8FF8(void);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFA20(void *, void *, f32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern u32 D_808059EC_chdragonbrothers;
+    struct { f32 unk0; f32 unk4; f32 timer; } *data;
+    f32 dt;
+    s32 pad;
+    f32 step[3];
+    f32 position[3];
+    f32 normal[3];
+    struct { u8 pad[0x60]; s8 count; } *parent;
+
+    data = func_80100094(arg0, 0);
+    dt = func_800D8FF8();
+    data->timer += dt;
+    if (arg0->unk70_10 == 1 && (arg0->unk58 > 0.0f || !func_808048AC_chdragonbrothers(arg0))) {
+        func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+        func_800EFA20(step, &arg0->actorData[4], dt);
+        func_800EE780(position, arg0->position, step);
+        ((f32 *)arg0->actorData)[5] -= 25.0f;
+        if (arg0->unk58 > 0.0f) {
+            arg0->unk58 -= dt;
+        } else if (func_800C6A7C(arg0->position, position, normal, 0x20020)) {
+            func_808049D4_chdragonbrothers(arg0);
+            func_800FFAB0(arg0);
+        }
+        func_800EE7F8(arg0->position, position);
+        func_800EFA20(position, (f32 *)arg0->actorData, dt);
+        func_800EF04C(arg0->rotation, (f32 *)arg0->actorData);
+        func_80804610_chdragonbrothers(arg0);
+        func_808046CC_chdragonbrothers(arg0);
+        if (arg0->unk79_4 == 2) {
+            _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808059EC_chdragonbrothers);
+        }
+        if (arg0->position[1] < -1000.0f) {
+            parent = func_80100094(func_80106790(arg0->unk3C), 0);
+            arg0->unk64_20 = 0;
+            parent->count--;
+            _subaddiefade_entrypoint_3(arg0);
+        }
+    }
+}
 
 s32 func_80804C6C_chdragonbrothers(s32 arg0, s32 arg1, s32 arg2) {
     if (arg1 != 0xF) {
