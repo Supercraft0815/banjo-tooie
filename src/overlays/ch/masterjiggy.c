@@ -217,7 +217,74 @@ void func_80800DDC_chmasterjiggy(Actor *arg0) {
     arg0->unk54 = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_80800E58_chmasterjiggy.s")
+void func_80800E58_chmasterjiggy(Actor *arg0, s32 arg1) {
+    typedef struct {
+        f32 amount;
+        f32 fade;
+        f32 progress;
+        u32 sound;
+        f32 rate;
+        u32 emitter;
+        u32 handle;
+        f32 timer;
+    } MasterJiggyData;
+    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    void func_800189A8(s32, f32[][2], s16, f32, f32);
+    void func_800FC660(u32);
+    void func_800FC74C(u32);
+    void func_800FCAE0(u32, u32, u32);
+    void func_800FFAB0(Actor *);
+    s32 func_80101180(s32, s32, s32);
+    void func_80101FDC(Actor *, u32);
+    extern f32 D_80801690_chmasterjiggy[];
+    extern f32 D_808016B0_chmasterjiggy[][2];
+    extern f32 D_808016E8_chmasterjiggy[][2];
+    f32 duration;
+
+    func_80101FDC(arg0, arg1);
+    ((MasterJiggyData *)arg0->actorData)->progress = 0.0f;
+    if (arg1 > 0) {
+        duration = D_80801690_chmasterjiggy[arg1];
+        if (duration > 0.0f) {
+            ((MasterJiggyData *)arg0->actorData)->rate = 1.0f / duration;
+        } else {
+            ((MasterJiggyData *)arg0->actorData)->rate = 0.0f;
+        }
+    }
+    switch (arg1) {
+        case 2:
+            _capod_entrypoint_13(arg0->unk0, NULL, 9, 0x6030);
+            arg0->unk64_20 = 0;
+            ((MasterJiggyData *)arg0->actorData)->timer = 7.5f;
+            break;
+        case 3:
+            arg0->unk64_20 = 0;
+            func_800189A8(0, D_808016B0_chmasterjiggy, 7, duration, 2.0f);
+            arg0->unk54 = 0.0f;
+            break;
+        case 4:
+            arg0->unk64_20 = 1;
+            func_800FC660(0x1C);
+            break;
+        case 5:
+            arg0->unk64_20 = 1;
+            break;
+        case 6:
+            _capod_entrypoint_13(arg0->unk0, NULL, 0x17, 0x2030);
+            arg0->unk64_20 = 1;
+            func_800189A8(0, D_808016E8_chmasterjiggy, 2, duration, 2.0f);
+            func_800FCAE0(0x1C, 0, 0x1BC);
+            break;
+        case 7:
+            arg0->unk64_20 = 0;
+            func_80101180(0x1E1, 0x31, 0);
+            func_800FFAB0(arg0);
+            _subaddieaudioloop_entrypoint_2(arg0);
+            func_800FC74C(0x1C);
+            break;
+    }
+}
 
 s32 func_80801030_chmasterjiggy(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_14(void);
