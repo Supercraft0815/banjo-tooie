@@ -2008,7 +2008,71 @@ void func_80806F8C_chdiggerboss(Actor *arg0) {
     _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_8080A120_chdiggerboss);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808070B0_chdiggerboss.s")
+s32 func_808070B0_chdiggerboss(Actor *arg0) {
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    u8 func_800D9078(f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101E14(Actor *, f32);
+    void func_80108B04(Actor *, u32);
+    s16 func_8080761C_chdiggerboss(s32);
+    typedef struct {
+        u8 pad0[0x7C];
+        s16 unk7C;
+        s16 unk7E;
+        u8 pad80[4];
+        f32 unk84;
+    } BossData;
+    BossData *data;
+    Actor *child2;
+    Actor *child3;
+
+    data = func_80100094(arg0, 0);
+    func_80802C40_chdiggerboss((s32)arg0);
+    switch (data->unk7C) {
+    case 1:
+        if (func_800D9078(&data->unk84)) {
+            data->unk7C = 2;
+        }
+        break;
+    case 2:
+        if (func_808063C8_chdiggerboss(arg0, 1, 80.0f)) {
+            child2 = func_80802228_chdiggerboss(arg0);
+            if (func_8080761C_chdiggerboss((s32)arg0)) {
+                func_808008C0_chdiggerboss((s32)child2, 3, 1);
+                func_808008C0_chdiggerboss((s32)child2, 4, 1);
+                func_8080041C_chdiggerboss(child2, 0x11);
+            } else {
+                func_808008C0_chdiggerboss((s32)child2, 3, 1);
+                func_8080041C_chdiggerboss(child2, 0xF);
+            }
+            data->unk7C = 3;
+        }
+        break;
+    case 3:
+        child3 = func_80802228_chdiggerboss(arg0);
+        func_808063C8_chdiggerboss(arg0, 1, 80.0f);
+        if (func_80101E14(child3, 0.14f)) {
+            func_80108B04(arg0, 1);
+        }
+        if (func_8080761C_chdiggerboss((s32)arg0) && func_80101E14(child3, 0.28f)) {
+            func_80108B04(arg0, 2);
+        }
+        break;
+    case 4:
+        if (func_800D9078(&data->unk84)) {
+            data->unk7C = 2;
+        }
+        break;
+    case 5:
+        if (!_subaddiefind_entrypoint_2(0x4F3, 0) && !_subaddiefind_entrypoint_2(0x4F4, 0)) {
+            data->unk7C = 0;
+            func_80802CB4_chdiggerboss((s32)arg0);
+            return 1;
+        }
+        break;
+    }
+    return 0;
+}
 
 void *func_80807280_chdiggerboss(s32 arg0, s32 arg1, s16 *arg2) {
     void *func_80100094(Actor *, u32);
