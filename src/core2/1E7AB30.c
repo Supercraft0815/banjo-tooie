@@ -60,7 +60,76 @@ void func_800A13B0(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A1450.s")
+void func_800A1450(void) {
+    s32 func_8008FD48();
+    s32 func_80090128();
+    s32 func_800A1294(s32);
+    void func_800A1624(s32);
+    s32 func_800C95D4(void);
+    void func_800CE864();
+    void func_800CF7F4(u32);
+    s32 func_800D2820(s32);
+    s32 func_800D284C(s32);
+    s32 func_800D4E7C(s32);
+    int func_800D5034(s32, s32);
+    extern s8 D_80127090;
+    s32 pending;
+    s32 state;
+    s32 busy;
+    u8 request;
+
+    pending = 0;
+    if (((u8 *)&D_80127090)[3] != 0) {
+        func_800D5034(0, func_8008FD48());
+        ((u8 *)&D_80127090)[3] = 0;
+    }
+    if (((u8 *)&D_80127090)[0] != 0) {
+        if (func_80090128() != 0 && ((u8 *)&D_80127090)[2] == 0) {
+            ((u8 *)&D_80127090)[1] = 1;
+        }
+        ((u8 *)&D_80127090)[0] = 0;
+    }
+    if (((u8 *)&D_80127090)[4] != 0) {
+        func_800A1240(func_8008FD48());
+        ((u8 *)&D_80127090)[4] = 0;
+    }
+    if (((u8 *)&D_80127090)[1] != 0) {
+        if (func_800C95D4() != 0) {
+            pending = 1;
+            ((u8 *)&D_80127090)[1] = 0;
+        }
+    } else {
+        state = func_800D4E7C(func_8008FD48());
+        if (state != 0 && state < 3) {
+            pending = 1;
+        }
+    }
+    if (((u8 *)&D_80127090)[7] != 0) {
+        pending = 0;
+        func_800A1624(0);
+        func_800CE864(1);
+        func_800CF7F4(0);
+        busy = func_800D2820(0xCF) != 0 || func_800D2820(0xCD) != 0;
+        if (((u8 *)&D_80127090)[8] != 0x11) {
+            func_800D284C(0xC9);
+            busy |= func_800D2820(0xC9);
+        }
+        if (busy == 0) {
+            request = ((u8 *)&D_80127090)[7];
+            ((u8 *)&D_80127090)[7] = 0;
+            if (request == 1) {
+                func_800A1240(((u8 *)&D_80127090)[8]);
+                func_800A1294(1);
+                ((u8 *)&D_80127090)[8] = 0;
+            } else {
+                ((u8 *)&D_80127090)[6] = 0;
+            }
+        }
+    }
+    if (func_80090128() != 0 && pending != 0 && ((u8 *)&D_80127090)[5] == 0) {
+        func_800A1294(0);
+    }
+}
 
 void func_800A1618(s32 arg0) {
     extern s8 D_80127092;
