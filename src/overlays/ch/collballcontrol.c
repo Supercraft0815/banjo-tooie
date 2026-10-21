@@ -273,7 +273,41 @@ void func_80801108_chcollballcontrol(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808011E8_chcollballcontrol.s")
+void func_808011E8_chcollballcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    void func_80801350_chcollballcontrol(Actor *, s32 *);
+    void func_80801650_chcollballcontrol(Actor *);
+    s32 state;
+    struct Counts {
+        s32 values[6];
+    } counts;
+    extern struct Counts D_80804D90_chcollballcontrol;
+    struct {
+        u8 pad[0x39];
+        u8 mode;
+    } *data;
+    data = func_80100094(arg0, 0);
+    counts = D_80804D90_chcollballcontrol;
+    state = -1;
+    func_80801350_chcollballcontrol(arg0, counts.values);
+    if (counts.values[1] < func_80800114_chcollballcontrol(data->mode, 1)) {
+        state = 1;
+    } else if (counts.values[2] < func_80800114_chcollballcontrol(data->mode, 2)) {
+        state = 2;
+    } else if (counts.values[3] < func_80800114_chcollballcontrol(data->mode, 3)) {
+        state = 3;
+    } else if (counts.values[4] < func_80800114_chcollballcontrol(data->mode, 4)) {
+        state = 4;
+    } else if (counts.values[5] < func_80800114_chcollballcontrol(data->mode, 5)) {
+        state = 5;
+    }
+    if (state >= 0) {
+        func_80108B04(arg0, state);
+    } else if (counts.values[0] < func_80800114_chcollballcontrol(data->mode, 0)) {
+        func_80801650_chcollballcontrol(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80801350_chcollballcontrol.s")
 
