@@ -133,7 +133,47 @@ void func_808003DC_chswappy(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swappy/chswappy_entrypoint_0.s")
+void chswappy_entrypoint_0(Actor *arg0, s32 arg1) {
+    s32 func_800B5BE4(s32);
+    void func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    void func_800E3980(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    extern s32 D_80800690_chswappy[];
+    extern u16 D_808006CC_chswappy[];
+    f32 spA4[3];
+    f32 sp98[3];
+    f32 sp8C[3];
+    s32 particles;
+    f32 sp7C[3];
+    s32 i;
+
+    if (arg0->unk7C_12) {
+        if (arg1 != 0) {
+            particles = func_800B5BE4(0x1D);
+            func_800BA3FC(particles, 0x9DE);
+        } else {
+            i = func_800DC128(0, 3);
+            particles = func_800B5BE4(i + 0x1E);
+            func_800BA3FC(particles, D_808006CC_chswappy[i]);
+        }
+        func_800E3980(spA4);
+        func_800F18FC(arg0->position, spA4, sp7C);
+        func_800EE7F8(sp98, arg0->position);
+        sp98[1] -= 200.0f;
+        for (i = 0; i != 2; i++) {
+            func_800EEB9C(sp8C, sp7C[1] + func_800DC178(-90.0f, 90.0f), 50.0f);
+            func_800EF04C(sp8C, arg0->position);
+            sp8C[1] += -30.0f + func_800DC178(0.0f, 100.0f);
+            func_800BABB8(particles, sp8C, sp98, 1.0f, D_80800690_chswappy);
+        }
+    }
+}
 
 OSThread *chswappy_entrypoint_1(void)
 {
