@@ -291,7 +291,60 @@ void func_808008D8_chbanjoctrl(f32 *arg0, f32 arg1, f32 arg2) {
     func_800EFA4C(arg0, (*(f32 *)((s8 *)(arg0) + (0))) + arg1, arg0[1], arg0[2] + arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_8080091C_chbanjoctrl.s")
+s32 func_8080091C_chbanjoctrl(s32 arg0, s32 arg1) {
+    int func_800EEF24(f32[3]);
+    void func_800EF368(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_800EFD24(f32 *);
+    u32 func_800F54E4(void);
+    void func_800F586C(s32, f32 *, f32 *);
+    int func_800F6720(s32);
+    int func_800F7700(s32, s32, f32 *);
+    s32 func_800F8418();
+    f32 direction[3];
+    f32 minimum[3];
+    f32 maximum[3];
+    s32 changed = 0;
+    f32 destination[3];
+    Actor *actor = (Actor *)arg0;
+
+    func_800EFD24(direction);
+    func_800F586C(func_800F54E4(), minimum, maximum);
+    minimum[0] += 1200.0f;
+    maximum[0] -= 1200.0f;
+    maximum[1] -= 1200.0f;
+    minimum[2] += 1200.0f;
+    maximum[2] -= 1200.0f;
+    if (maximum[1] < ((f32 *)actor->actorData)[1]) {
+        ((f32 *)actor->actorData)[1] = maximum[1];
+        changed = 1;
+    }
+    if (((f32 *)actor->actorData)[0] < minimum[0]) {
+        ((f32 *)actor->actorData)[0] = minimum[0];
+        func_808008D8_chbanjoctrl(direction, 1.0f, 0.0f);
+    } else if (maximum[0] < ((f32 *)actor->actorData)[0]) {
+        ((f32 *)actor->actorData)[0] = maximum[0];
+        func_808008D8_chbanjoctrl(direction, -1.0f, 0.0f);
+    }
+    if (((f32 *)actor->actorData)[2] < minimum[2]) {
+        ((f32 *)actor->actorData)[2] = minimum[2];
+        func_808008D8_chbanjoctrl(direction, 0.0f, 1.0f);
+    } else if (maximum[2] < ((f32 *)actor->actorData)[2]) {
+        ((f32 *)actor->actorData)[2] = maximum[2];
+        func_808008D8_chbanjoctrl(direction, 0.0f, -1.0f);
+    }
+    if (func_800EEF24(direction)) {
+        changed = 1;
+        if (func_800F6720(arg1)) {
+            func_800EF368(direction, 100.0f);
+            func_800EFB24(destination, actor->actorData, direction);
+            func_800F7700(arg1, 10, destination);
+        }
+    }
+    if (changed) {
+        func_800F8418(arg1, actor->actorData);
+    }
+}
 
 /* extern */
 
