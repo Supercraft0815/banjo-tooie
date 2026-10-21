@@ -117,7 +117,67 @@ void func_80800394_chtorpedo(s32 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/torpedo/func_808003DC_chtorpedo.s")
+void func_808003DC_chtorpedo(Actor *arg0) {
+    void _sumissilehome_entrypoint_6(Actor *, void *);
+    void func_800CB840(s32, s32);
+    void func_800CB870(void);
+    u8 *func_800CD820(u8 *, f32 *, f32 *, f32);
+    f32 func_800D8FF8(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    void func_8010AA78(s32 *);
+    s32 func_8010B990(Actor *, s32);
+    s32 func_8010D350(f32 *, f32 *, f32, s32);
+    struct TorpedoData {
+        s8 unk0;
+        u8 pad1[0x13];
+        f32 position[3];
+        f32 unk20;
+    };
+    f32 sp44;
+    f32 sp40;
+    s32 sp3C;
+    s32 sp38;
+    s32 sp34;
+    struct TorpedoData *data;
+    s32 pad;
+
+    data = func_80100094(arg0, 0);
+    sp44 = data->unk20;
+    sp40 = func_800D8FF8();
+    switch (arg0->unk70_10) {
+        case 2:
+            _sumissilehome_entrypoint_6(arg0, data);
+            sp38 = func_8010B990(arg0, 0x100004);
+            if (sp38 == 0x20) {
+                func_8010AA78(arg0->position);
+            }
+            func_80800350_chtorpedo(arg0);
+            arg0->rotation[2] += sp40 * 1200.0f;
+            func_80800000_chtorpedo(arg0, data);
+            func_8010A590(arg0);
+            func_800CB840(6, arg0);
+            sp3C = func_800CD820(arg0->unk0, data->position, arg0->position, 40.0f);
+            func_800CB870();
+            func_8010A570(arg0);
+            sp34 = sp3C != 0;
+            if (func_8010D350(data->position, arg0->position, 40.0f, data->unk0) != -1) {
+                sp34 = 1;
+            }
+            if (sp38 == 0x20 || sp34 != 0 || sp44 > 3.0f) {
+                func_808001E0_chtorpedo(arg0, 3);
+            }
+            break;
+        case 3:
+            func_800FFAB0(arg0);
+            break;
+    }
+    data->unk20 = sp44 + sp40;
+    func_800EE7F8(data->position, arg0->position);
+}
 
 Unk80132ED0 *chtorpedo_entrypoint_0(f32 *arg0, f32 *arg1, f32 *arg2, s32 (*arg3)(Unk80132ED0 *, s32, s32), s32 arg4, f32 arg5) {
     void _sumissilehome_entrypoint_0(Actor *, void *);
