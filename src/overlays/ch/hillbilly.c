@@ -121,7 +121,78 @@ void func_808004D0_chhillbilly(Actor *arg0) { s32 _subaddieDll_entrypoint_3(Acto
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_80800540_chhillbilly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_808006B4_chhillbilly.s")
+s32 func_808006B4_chhillbilly(Actor *arg0, s32 arg1, u32 arg2) {
+    s32 _sucoaster_entrypoint_10(Actor *, s32);
+    s32 func_800D9058(f32);
+    void func_801020DC(void *, s32);
+    void func_8010297C(void *, f32, f32, f32);
+    void func_80800894_chhillbilly(Actor *, s32);
+    void func_808009D8_chhillbilly(Actor *, s32, s32);
+    struct Flags { u8 pad[0x2A]; u8 upper : 2; u8 enabled : 1; u8 lower : 5; };
+    s32 state;
+
+    switch (arg2) {
+    case 0:
+        if (arg0->unk70_10 == 22) {
+            return 0;
+        }
+        switch (arg1) {
+        case 2:
+        case 3:
+            state = arg0->unk0->unk14 == 0x78A ? 22 : 21;
+            func_80800894_chhillbilly(arg0, state);
+            break;
+        case 4:
+            func_80800894_chhillbilly(arg0, 21);
+            break;
+        case 5:
+        case 8:
+        case 9:
+        case 18:
+            return 1;
+        case 7:
+            _sucoaster_entrypoint_10(arg0, 8);
+            break;
+        }
+        break;
+    case 2:
+    case 7:
+        func_80800894_chhillbilly(arg0, 21);
+        break;
+    case 3:
+        arg0->unk6C_0 = func_800D9058(2.0f);
+        func_8010297C(arg0, arg0->unk54, 70.0f, 120.0f);
+        if (arg0->unk70_10 == 8) {
+            func_80800894_chhillbilly(arg0, 21);
+        }
+        return 0;
+    case 4:
+        if (arg0->unk0->unk14 == 0x789) {
+            return 1;
+        }
+        break;
+    case 1:
+    case 6:
+        return 1;
+    case 5:
+        func_80800894_chhillbilly(arg0, 12);
+        break;
+    case 8:
+        if (arg1 == 17) {
+            func_808009D8_chhillbilly(arg0, 0x78A, 0);
+            func_801020DC(arg0, 0);
+        }
+        ((struct Flags *)arg0->unk0)->enabled = 0;
+        return 1;
+    case 9:
+        if (arg0->unk64_29) {
+            _sucoaster_entrypoint_10(arg0, 2);
+            break;
+        }
+        return 1;
+    }
+    return 0;
+}
 
 void func_80800894_chhillbilly(Actor *arg0, s32 arg1) {
     s32 _sucoaster_entrypoint_10(Actor *, s32);
