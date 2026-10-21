@@ -6,6 +6,8 @@ typedef struct {
     u16 pad4;
     u16 radius;
     f32 height;
+    f32 threshold;
+    f32 duration;
 } PowerhutConfig;
 
 typedef struct {
@@ -16,7 +18,7 @@ typedef struct {
     s16 state;
     s8 active;
     s8 padF;
-    s32 pad10;
+    f32 pad10;
     f32 progress;
 } PowerhutData;
 
@@ -256,7 +258,57 @@ s32 func_808005F4_chpowerhut(Actor *arg0) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhut/func_80800698_chpowerhut.s")
+void func_80800698_chpowerhut(Actor *arg0, PowerhutConfig *arg1) {
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    void func_80018820(s32, f32, f32);
+    void func_800C8E84(s32, u32 *);
+    s32 func_800D9078(f32 *);
+    void func_800DA544(s32);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    s32 func_800E15CC(s32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80800870_chpowerhut(s32);
+    extern u32 D_80800964_chpowerhut[];
+    extern s32 D_808009A0_chpowerhut[];
+    extern s32 D_808009B4_chpowerhut[];
+    PowerhutData *data;
+    s32 done;
+
+    data = func_80100094(arg0, 0);
+    data->active = _subaddieaudioloop_entrypoint_7(data->active, (f32 *)arg0->actorData, data->state == 3, D_808009A0_chpowerhut, arg0->unk70_0);
+    switch (data->state) {
+    case 1:
+        if (arg1->threshold < arg1->height - data->height) {
+            data->state = 2;
+        }
+        break;
+    case 2:
+        _subaddieaudioquick_entrypoint_2(arg0, (f32 *)arg0->actorData, D_808009B4_chpowerhut);
+        data->state = 3;
+        data->pad10 = arg1->duration;
+        func_800C8E84(arg0->actorData[4], D_80800964_chpowerhut);
+        func_80018820(0, 2.0f, 1.0f);
+        func_800E15CC(0, 20.0f, 0.9f);
+        func_800DA544(arg1->flag);
+        func_80101180(0x33D, 10, 0);
+        break;
+    case 3:
+        done = func_800D9078(&data->pad10);
+        data->progress = 1.0f;
+        if (func_800DC298(0.8f) && data->pad10 > 0.15f) {
+            data->progress *= func_800DC178(0.25f, 0.5f);
+        }
+        if (done) {
+            data->state = 4;
+            data->progress = 1.0f;
+        }
+        func_80800870_chpowerhut((s32)arg0);
+        break;
+    }
+}
 
 void func_80800870_chpowerhut(s32 arg0) {
     s32 func_8001210C(s32);
