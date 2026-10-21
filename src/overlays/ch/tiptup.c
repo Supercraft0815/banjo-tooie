@@ -59,7 +59,58 @@ void func_808002C8_chtiptup(void *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x28))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(arg0) + (0x28))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_808002F4_chtiptup.s")
+s32 func_808002F4_chtiptup(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    s32 func_800DA298(s32);
+    void func_800FFA88(Unk80132ED0 *);
+    void func_800FFAB0(Actor *);
+    void func_80800534_chtiptup(Actor *, s32, s32);
+    void func_80800578_chtiptup(Actor *, s32, s32);
+    s32 func_80800774_chtiptup(void *, s32, s32);
+    void func_808007CC_chtiptup(void *);
+    extern u32 D_80801398_chtiptup;
+    s32 sp1C;
+    s32 temp_v0;
+
+    switch (arg1) {
+        case 46:
+            func_80800578_chtiptup(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 47:
+            func_80800534_chtiptup(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x52:
+            _gcdialogcamera_entrypoint_3(&D_80801398_chtiptup, arg0->scale);
+            break;
+        case 0x57:
+            return func_80800774_chtiptup(arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+        case 11:
+            if (arg2 == 4) {
+                func_808007CC_chtiptup(arg0);
+                func_800FFA88(arg0->unk3C);
+                func_800FFAB0(arg0);
+                return 4;
+            }
+            return 3;
+        case 0x95:
+            ((u8 *)arg0->actorData)[16] = 0;
+            break;
+        case 0xB8:
+            sp1C = arg2 & 0xFFFF;
+            temp_v0 = func_800DA298(0xBD);
+            switch (sp1C) {
+                case 1: return temp_v0 ? 0xFF8 : 0xFF7;
+                case 2: return temp_v0 ? 0xFF8 : 0x104F;
+                case 3: return temp_v0 ? 0xFF8 : 0xFF7;
+            }
+        default:
+            return 0;
+        case 41:
+        case 42:
+            ;
+    }
+    return 1;
+}
 
 void func_808004C4_chtiptup(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
