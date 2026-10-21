@@ -1046,7 +1046,65 @@ void func_80804610_chdragonbrothers(Actor *arg0) {
     temp_v0->frame = (s32) temp_f0 % sp1C->frameCount;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808046CC_chdragonbrothers.s")
+void func_808046CC_chdragonbrothers(Actor *arg0) {
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s16 *_fxegg_entrypoint_1(f32 *, f32);
+    s16 *_fxegg_entrypoint_2(f32 *, f32);
+    s32 _fxegg_entrypoint_3(f32 *, f32);
+    s16 *_fxegg_entrypoint_5(f32 *, f32 *, f32);
+    s16 *_fxegg_entrypoint_6(f32 *, f32, f32 *);
+    s32 func_8001210C(s32);
+    void func_800BA5A8(s16 *, s32);
+    f32 func_800D8FF8(void);
+    f32 func_800DC0C0(void);
+    void func_800EFA20(void *, void *, f32);
+    void *func_80100094(Actor *, u32);
+    s16 *emitter;
+    f32 sp70[3];
+    f32 interval;
+    struct {
+        f32 unk0;
+        f32 unk4;
+        f32 unk8;
+        f32 unkC;
+        f32 timer;
+    } *data;
+    f32 sp5C[3];
+
+    data = func_80100094(arg0, 0);
+    data->timer -= func_800D8FF8();
+    interval = func_800F10B4(data->unk8, 0, 2.0f, 0.0333f, 0.1f);
+    while (data->timer <= 0.0f) {
+        emitter = NULL;
+        data->timer += interval;
+        func_800EE7F8(sp70, arg0->position);
+        switch (arg0->unk79_4) {
+            case 1:
+            case 3:
+            case 5:
+                if (func_800DC0C0() < 0.5f) {
+                    emitter = _fxegg_entrypoint_2(sp70, arg0->scale);
+                } else {
+                    emitter = _fxegg_entrypoint_1(sp70, arg0->scale);
+                }
+                break;
+            case 7:
+                func_800EFA20(sp5C, &arg0->actorData[4], 0.5f);
+                emitter = _fxegg_entrypoint_6(arg0->position, arg0->scale, sp5C);
+                break;
+            case 4:
+                emitter = _fxegg_entrypoint_5(arg0->position, (f32 *)&arg0->actorData[4], arg0->scale);
+                break;
+        }
+        if (emitter != NULL) {
+            func_800BA5A8(emitter, 0x200);
+        }
+    }
+    if (arg0->unk79_4 == 2 && func_8001210C(1) == 0) {
+        _fxegg_entrypoint_3(arg0->position, arg0->scale);
+    }
+}
 
 void func_808048A4_chdragonbrothers(s32 arg0) 
 {
