@@ -218,7 +218,52 @@ s32 bsmum_entrypoint_5(s32 idx) {
 
 #ifndef NONMATCHINGS
 void func_808007A0_bsmum(PlayerState *self, s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/mum/func_808007A0_bsmum.s")
+void func_808007A0_bsmum(PlayerState *self, s32 arg1) {
+    AnimCtrl *temp_a0;
+    AnimCtrl *sp34;
+    f32 sp2C;
+
+    temp_a0 = baanim_getAnimCtrlPtr(self);
+    self->unk15C.word = arg1;
+    switch (arg1) {
+    case 1:
+        sp34 = temp_a0;
+        anctrl_reset(temp_a0);
+        anctrl_setIndex(temp_a0, ASSET_BD_BSMUM_ANIM_UNKNOWN);
+        anctrl_setDuration(temp_a0, 1.2f);
+        func_8008B1C8(temp_a0, 0.134f);
+        anctrl_setStart(temp_a0, 0.144f);
+        anctrl_setSubrange(temp_a0, 0.0f, 0.57f);
+        anctrl_setPlaybackType(temp_a0, 1);
+        anctrl_start(temp_a0);
+        func_8009FFD8(self, BAANIM_UPDATE_1_NORMAL, YAW_TYPE_1_DEFAULT, 3, BA_PHYSICS_6_AIRBORN);
+        if (bastick_distance(self) != 0.0f) {
+            yaw_setIdeal(self, bastick_getAngleRelativeToBanjo(self));
+        }
+        baphysics_set_target_yaw(self, yaw_getIdeal(self));
+        bsmum_entrypoint_13(self);
+        sp2C = yaw_getIdeal(self);
+        baphysics_set_horizontal_velocity(self, sp2C, baphysics_get_target_horizontal_velocity(self));
+        baphysics_set_vertical_velocity(self, 710.0f);
+        baphysics_set_gravity(self, -1350.0f);
+        func_80800000_bsmum(self);
+        return;
+    case 2:
+        baanim_setEndAndDuration(self, 0.6064f, 8.0f);
+        return;
+    case 3:
+        baanim_setEndAndDuration(self, 1.0f, 1.3f);
+        return;
+    case 4:
+        baanim_setEndAndDuration(self, 1.0f, 0.9f);
+        return;
+    case 0:
+        baphysics_reset_gravity(self);
+        /* fallthrough */
+    default:
+        return;
+    }
+}
 #else
 // Decomp failure
 #endif
