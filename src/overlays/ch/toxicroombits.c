@@ -1,6 +1,64 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_80800000_chtoxicroombits.s")
+s32 func_80800000_chtoxicroombits(Actor *arg0, s32 arg1, s32 arg2) {
+    void _chskeletonexplode_entrypoint_7(Actor *, f32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 func_800D0A9C(s32, s32);
+    void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
+    s32 func_800DA298(s32);
+    void func_800DA544(s32);
+    void func_800FC6B0(u32);
+    void func_800FFA88(Unk80132ED0 *);
+    s32 func_80101180(s32, s32, s32);
+    Actor *func_80108474(u32, f32 *, s32);
+    void func_80108B04(Actor *, u32);
+    void func_808004C8_chtoxicroombits(s32);
+    s32 func_808004F0_chtoxicroombits(void);
+    extern Vec3f D_80800F00_chtoxicroombits;
+    extern s32 D_80800F0C_chtoxicroombits[];
+    extern s32 D_80800F54_chtoxicroombits[];
+    extern s32 D_80800FA0_chtoxicroombits[];
+    Vec3f sp2C;
+    f32 *sp20;
+
+    switch (arg1) {
+        case 0x40:
+            sp20 = arg0->position;
+            _subaddieaudioquick_entrypoint_2(arg0, sp20, D_80800FA0_chtoxicroombits);
+            if (arg0->unk0->unk14 == 0x884) {
+                func_800BBCB8(sp20, NULL, 1.0f, 5, D_80800F54_chtoxicroombits);
+                if (!func_800DA298(0x1BD)) {
+                    func_800DA544(0x1BD);
+                    func_80108B04(arg0, 0);
+                    func_80101180(0x3A7, 0xA, 1);
+                    func_80101180(0x3EB, 0x34, 0);
+                }
+            } else {
+                func_800BBCB8(sp20, NULL, 1.0f, 5, D_80800F0C_chtoxicroombits);
+                if (!func_800D0A9C(0x38, 1)) {
+                    func_808004C8_chtoxicroombits(func_808004F0_chtoxicroombits() - 1);
+                    if (!func_808004F0_chtoxicroombits()) {
+                        func_800FC6B0(0x10);
+                        func_800D1000(0x38, 1, sp20, 5, NULL);
+                        func_80101180(0x3EB, 0x34, 1);
+                    } else {
+                        func_800FC6B0(0xE);
+                    }
+                }
+            }
+            _chskeletonexplode_entrypoint_7(arg0, sp20);
+            return 1;
+        case 0xF:
+            func_800FFA88(arg0->unk0);
+            return 1;
+        case 0x3D:
+            sp2C = D_80800F00_chtoxicroombits;
+            ((f32 *)func_80108474(0x178, sp2C.f, 0)->actorData)[7] = 8.0f;
+            return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_808001D4_chtoxicroombits.s")
 
