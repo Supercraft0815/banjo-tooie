@@ -109,7 +109,72 @@ void func_808000E0_chbadshad(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/func_8080028C_chbadshad.s")
+f32 func_8080028C_chbadshad(Actor *arg0, Actor *arg1, f32 *arg2) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_8010279C(void *, void *);
+    s32 func_80104668(s32, f32 *, f32 *, f32 *, f32 *);
+    s32 func_8010518C(s32);
+    void *func_80105494(Actor *);
+    s32 func_8080086C_chbadshad();
+    struct MovementFlags {
+    u8 reserved[0x70];
+    u32 upper : 12;
+    u32 direct : 1;
+    u32 lower : 19;
+    u32 reserved74;
+    u32 upper78 : 28;
+    u32 changed : 1;
+    u32 lower78 : 3;
+    };
+    struct PositionFlags {
+    u32 upper : 28;
+    u32 changed : 1;
+    u32 lower : 3;
+    s16 reserved7C;
+    s16 floor : 1;
+    u16 rest : 15;
+    };
+    struct SurfaceFlags {
+    u32 hidden : 1;
+    u32 other : 31;
+    };
+    f32 sp34[3];
+    f32 sp30;
+    f32 temp_f0;
+    sp30 = 0.0f;
+    if (!((struct PositionFlags *)&arg0->unk78)->changed && !(arg1->actorData[1] & 0x80008000) && ((struct PositionFlags *)&arg1->unk78)->floor != 0 && (s32)arg1->position[0] == (s32)arg2[0] && (s32)arg1->position[2] == (s32)arg2[2]) {
+    arg1->position[0] = arg2[0];
+    arg1->position[2] = arg2[2];
+    goto done;
+    }
+    if (((struct MovementFlags *)arg0)->direct) {
+    func_800EE7F8(arg1->position, arg2);
+    return 0.0f;
+    }
+    if (((s16 *)&arg0->pad8C)[1] != 0 && func_80105494(arg0) == NULL && func_80104668(arg0, arg2, arg1->position, sp34, &sp30) != 0) {
+    arg1->actorData[1] = func_8010518C(arg0);
+    func_8010279C(arg1, sp34);
+    if ((arg1->actorData[1] & 0x80000000)) {
+    arg1->unk64_16 = 0;
+    }
+    else {
+    arg1->unk64_16 = 1;
+    }
+    return sp30;
+    }
+    else if (func_8080086C_chbadshad(arg1, arg0, &sp30, arg2) == 0) {
+    arg1->unk64_16 = 0;
+    }
+    else if ((arg1->actorData[1] & 0x80000000)) {
+    arg1->unk64_16 = 0;
+    }
+    else {
+    arg1->unk64_16 = 1;
+    }
+    done: return sp30;
+    }
+
+
 
 /* extern */
 
