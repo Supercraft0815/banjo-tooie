@@ -14,7 +14,52 @@ void func_8080000C_chrainripples(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x2C))) = (f32) (func_808001FC_chrainripples() + 4.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainripples/func_80800040_chrainripples.s")
+void func_80800040_chrainripples(Actor *arg0) {
+    s32 _fxrain_entrypoint_3(s32);
+    s32 func_800B7C98(void);
+    s32 func_800B5BE4(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    u32 func_800CC5F4(s32);
+    void *func_800CC63C(s32, s32);
+    f32 func_800D8FF8(void);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    extern s32 D_808002D8_chrainripples[];
+    struct RippleData { s32 pad[4]; s32 index; f32 height; };
+    struct RainPoint { f32 position[3]; s16 radius; };
+    f32 angle;
+    s32 count;
+    s32 total;
+    s32 i;
+    s32 effect;
+    s32 rain;
+    f32 position[3];
+    struct RainPoint *point;
+    f32 delta;
+
+    rain = func_800B7C98();
+    if (rain != 0 && _fxrain_entrypoint_3(rain) != 0) {
+        delta = func_800D8FF8();
+        count = arg0->unk74_7 * delta;
+        total = func_800CC5F4(arg0->unk70_25 - 1);
+        effect = 0;
+        if (count != 0) {
+            effect = func_800B5BE4(3);
+        }
+        for (i = 0; i < count; i++) {
+            point = func_800CC63C(arg0->unk70_25 - 1, ((struct RippleData *)arg0->actorData)->index);
+            func_800EE7F8(position, point->position);
+            angle = func_800DC178(0.0f, 359.0f);
+            func_800EF1B8(position, angle, func_800DC178(0.0f, point->radius));
+            position[1] = ((struct RippleData *)arg0->actorData)->height;
+            func_800BABB8(effect, position, NULL, 1.0f, D_808002D8_chrainripples);
+            if (++((struct RippleData *)arg0->actorData)->index >= total) {
+                ((struct RippleData *)arg0->actorData)->index = 0;
+            }
+        }
+    }
+}
 
 /* extern */
 
