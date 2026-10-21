@@ -87,7 +87,44 @@ void func_8080013C_chflysaucer(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808001B4_chflysaucer.s")
+void func_808001B4_chflysaucer(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_800C4140(u32, f32 *, u32);
+    void func_80803AF0_chflysaucer(s32 *, s32, s32, f32);
+    struct FlysaucerEvent {
+        u16 time;
+        u8 id;
+        u8 flags;
+        f32 value;
+    };
+    struct FlysaucerSound {
+        s16 id;
+        s16 pitch;
+        f32 volume;
+    };
+    extern struct FlysaucerSound D_80804294_chflysaucer[];
+    struct { u8 pad[0x2A]; s16 index; } *data;
+    s32 *entries;
+    s32 count;
+    struct FlysaucerEvent *event;
+    register u8 id;
+
+    data = func_80100094(arg0, 0U);
+    entries = NULL;
+    count = func_80800080_chflysaucer(arg0, &entries);
+    while (data->index < count && (event = &((struct FlysaucerEvent *)entries)[data->index])->time < arg1) {
+        if (event->flags & 1) {
+            id = event->id;
+            func_800C4140((D_80804294_chflysaucer[id].id & 0x7FF) +
+                (((D_80804294_chflysaucer[id].pitch >> 5) & 0x3FF) << 11) +
+                (((u32)(D_80804294_chflysaucer[id].volume * 1023.0f) & 0x7FF) << 21),
+                arg0->position, 0x09C404E2);
+        } else {
+            func_80803AF0_chflysaucer((s32 *)arg0, event->id, event->flags, event->value);
+        }
+        data->index++;
+    }
+}
 
 void func_80800388_chflysaucer(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
