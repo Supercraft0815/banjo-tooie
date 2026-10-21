@@ -245,7 +245,80 @@ void func_80800B38_chpoolkids(Actor *arg0) {
     _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_8080156C_chpoolkids, &D_8080157C_chpoolkids);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_80800B68_chpoolkids.s")
+void func_80800B68_chpoolkids(Actor *arg0) {
+    s32 _gcmapsects_entrypoint_5(s32);
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    s32 _subaddieaudioloop_entrypoint_5(s32, s32, s32, s32, s32 *);
+    s32 func_800BEA88(s32);
+    void func_800BF744(s32, s32);
+    s32 func_800D9078();
+    s32 func_800E3DC0(s16 *, s16 *);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_808011A8_chpoolkids(Actor *);
+    extern s32 D_80801594_chpoolkids;
+    extern s32 _chpoolkids_entrypoint_3;
+    struct PoolKidsData {
+        s16 section;
+        s16 state;
+        f32 timer;
+        f32 unk8;
+        f32 valueC;
+        s16 done10;
+        s16 unk12;
+        s16 min14[3];
+        s16 max1A[3];
+        f32 value20;
+        s16 done24;
+        s16 unk26;
+        s16 min28[3];
+        s16 max2E[3];
+    } *data;
+    s32 pad;
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 active;
+
+    data = func_80100094(arg0, 0);
+    if (_gcmapsects_entrypoint_5(data->section)) {
+        active = data->done10 == 0;
+        if (active || (!active && arg0->unk5F)) {
+            _subaddieaudioloop_entrypoint_5((s32)arg0, (s32)arg0->position, active, -1, &D_80801594_chpoolkids);
+        }
+        switch (data->state) {
+        case 1:
+            sp34 = func_800D9078(&data->timer);
+            data->valueC = func_800F12D4(data->timer, 0.0f, 4.0f, 1.0f, 0.0f);
+            if (sp34) {
+                data->done10 = 1;
+                data->state = 0;
+            }
+            break;
+        case 2:
+            sp30 = func_800D9078(&data->timer);
+            func_808011A8_chpoolkids(arg0);
+            func_800BF744(3, 1);
+            data->value20 = func_800F12D4(data->timer, 0.0f, 2.1f, 1.0f, 0.0f);
+            if (sp30) {
+                data->done24 = 1;
+                data->state = 0;
+            }
+            break;
+        }
+        if (!data->done10 || !data->done24) {
+            sp2C = func_800BEA88(1);
+            if (sp2C) {
+                if (!data->done24 && func_800E3DC0(data->min28, data->max2E)) {
+                    _glid_entrypoint_0(sp2C, 1, &_chpoolkids_entrypoint_3, (s32)arg0->unk0);
+                }
+                if (!data->done10 && func_800E3DC0(data->min14, data->max1A)) {
+                    _glid_entrypoint_0(sp2C, 2, &_chpoolkids_entrypoint_3, (s32)arg0->unk0);
+                }
+            }
+        }
+    }
+}
 
 u32 func_80800D3C_chpoolkids(s32 unused, s32 arg1, s32 arg2) {
     void func_80800D74_chpoolkids(Actor *);
