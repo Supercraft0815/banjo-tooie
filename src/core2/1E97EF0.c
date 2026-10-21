@@ -264,7 +264,58 @@ s32 func_800BEE40(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BEF00.s")
+s32 *func_800BEF00(f32 *arg0, f32 *arg1, f32 *arg2, s32 arg3) {
+    s32 _gcmapsects_entrypoint_22(s32 *, f32 *, f32 *, f32 *, s32);
+    s32 func_800AB0BC(s32, s32, f32 *, f32 *, f32 *, s32);
+    s32 result;
+    s32 hit;
+
+    result = 0;
+    *(s32 *)((s8 *)&D_801285B0 + 0x1B0) = 0;
+    if (*(u8 *)((s8 *)&D_801285B0 + 0x56) != 0) {
+        if ((arg3 & 0x1F00) != 0x1F00) {
+            if (*(u8 *)((s8 *)&D_801285B0 + 0x77) != 0) {
+                result = _gcmapsects_entrypoint_22(&D_801285B0, arg0, arg1, arg2, arg3);
+            }
+            if (result == 0 && *(u8 *)((s8 *)&D_801285B0 + 0x2A) != 0) {
+                result = func_800AB0BC(D_801285B0,
+                    (&D_801285B0)[*(u8 *)((s8 *)&D_801285B0 + 0x29) + 4],
+                    arg0, arg1, arg2, arg3);
+            }
+        }
+        hit = func_800AB0BC(*(s32 *)((s8 *)&D_801285B0 + 0x2C),
+            (&D_801285B0)[*(u8 *)((s8 *)&D_801285B0 + 0x55) + 15],
+            arg0, arg1, arg2, arg3);
+        if (hit != 0) {
+            *(s32 *)((s8 *)&D_801285B0 + 0x1B0) = *(s32 *)((s8 *)&D_801285B0 + 0x38);
+            return (s32 *)hit;
+        }
+        if (*(u8 *)((s8 *)&D_801285B0 + 0x77) != 0) {
+            hit = _gcmapsects_entrypoint_22(&D_801285B0, arg0, arg1, arg2, arg3);
+            if (hit != 0) {
+                return (s32 *)hit;
+            }
+        }
+        if (result != 0) {
+            *(s32 *)((s8 *)&D_801285B0 + 0x1B0) = *(s32 *)((s8 *)&D_801285B0 + 0xC);
+        }
+        return (s32 *)result;
+    } else {
+        if (*(u8 *)((s8 *)&D_801285B0 + 0x77) != 0) {
+            result = _gcmapsects_entrypoint_22(&D_801285B0, arg0, arg1, arg2, arg3);
+        }
+        if (result == 0 && *(u8 *)((s8 *)&D_801285B0 + 0x2A) != 0) {
+            result = func_800AB0BC(D_801285B0,
+                (&D_801285B0)[*(u8 *)((s8 *)&D_801285B0 + 0x29) + 4],
+                arg0, arg1, arg2, arg3);
+        }
+        if (result != 0) {
+            *(s32 *)((s8 *)&D_801285B0 + 0x1B0) = *(s32 *)((s8 *)&D_801285B0 + 0xC);
+            return (s32 *)result;
+        }
+    }
+    return NULL;
+}
 
 s32 func_800BF0E0(f32 *arg0, f32 *arg1, f32 arg2, f32 *arg3, s32 arg4, s32 arg5) {
     s32 _gcmapsects_entrypoint_23(s32 *, f32 *, f32 *, f32, f32 *, s32, s32);
