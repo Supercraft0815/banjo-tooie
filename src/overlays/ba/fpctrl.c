@@ -104,7 +104,62 @@ void func_808003BC_bafpctrl(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_80800424_bafpctrl.s")
+s32 func_80800424_bafpctrl(PlayerState *arg0, s32 arg1) {
+    s32 func_8009E674(PlayerState *, s32);
+    s32 func_8009E71C(void *, s32);
+    int func_800C6E38(s32);
+    s32 func_8010D930();
+    void _baeggaim_entrypoint_1(PlayerState *);
+    void _baeggaim_entrypoint_2(PlayerState *);
+    extern s32 D_808010C0_bafpctrl;
+    extern s32 D_808010D0_bafpctrl;
+    s32 old;
+    s32 first;
+    s32 second;
+    s32 neither;
+    s32 ability1;
+    s32 ability2;
+    s32 ability3;
+    s32 enabled;
+
+    old = (*(u8 **)((u8 *)arg0 + 0x90))[0x14];
+    switch (old) {
+        case 0:
+            (*(u8 **)((u8 *)arg0 + 0x90))[0x16] = 0;
+            break;
+        case 2:
+            if (arg1 == 1) {
+                func_8010D930(0xC, func_8009E674(arg0, 2), 0, &D_808010D0_bafpctrl);
+            }
+            _baeggaim_entrypoint_1(arg0);
+            break;
+    }
+    (*(u8 **)((u8 *)arg0 + 0x90))[0x14] = arg1;
+    switch (arg1) {
+        case 2:
+            if ((*(u8 **)((u8 *)arg0 + 0x90))[0x16]) {
+                func_8010D930(0xC, func_8009E674(arg0, 2), 0, &D_808010C0_bafpctrl);
+            } else {
+                (*(u8 **)((u8 *)arg0 + 0x90))[0x16]++;
+            }
+            _baeggaim_entrypoint_2(arg0);
+            break;
+        case 1:
+            first = func_8009E71C(arg0, 9);
+            second = func_8009E71C(arg0, 0xB);
+            neither = !first && !second;
+            ability1 = func_800C6E38(0x1B);
+            ability2 = func_800C6E38(0x1F);
+            ability3 = func_800C6E38(0x16);
+            enabled = (first && ability1) || (second && ability2) || (neither && ability3);
+            if (old == 0 && enabled && !(*(*(s32 **)((u8 *)arg0 + 0x90)) & 4)) {
+                (*(u8 **)((u8 *)arg0 + 0x90))[0x15] = 1;
+            } else {
+                (*(u8 **)((u8 *)arg0 + 0x90))[0x15] = 0;
+            }
+            break;
+    }
+}
 
 /* extern */
 
