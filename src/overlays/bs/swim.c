@@ -5,7 +5,7 @@ enum asset_e;
 
 /* extern */
 
-s32 func_80800000_bsswim(void) {
+s32 func_80800000_bsswim() {
     s32 func_8008E23C();
     s32 var_v1;
 
@@ -121,7 +121,54 @@ void func_80800270_bsswim(struct player_state_s *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_808002E0_bsswim.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_808004C4_bsswim.s")
+void func_808004C4_bsswim(struct player_state_s *arg0) {
+    s32 bs_setState(s32, s32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    int anctrl_isAt(struct anctrl_s *, f32);
+    int bakey_pressed(struct player_state_s *, int);
+    s32 bastick_getZone(struct player_state_s *);
+    s32 func_8001210C(s32);
+    s32 func_80096500(struct player_state_s *);
+    void func_8009DEC0(struct player_state_s *, s32, f32, f32, s32, s32);
+    void func_8009FC34(struct player_state_s *, s32);
+    f32 func_800DC0C0(void);
+    s32 next_state;
+    struct anctrl_s *anim_ctrl;
+
+    next_state = 0;
+    anim_ctrl = baanim_getAnimCtrlPtr(arg0);
+    if ((func_8001210C(7) == 0) && (func_800DC0C0() < 0.5f)) {
+        func_8009FC34(arg0, 1);
+    }
+    if ((func_8001210C(7) == 0) && (func_800DC0C0() < 0.5f)) {
+        func_80800030_bsswim(arg0);
+    }
+    if (anctrl_isAt(anim_ctrl, 0.01f) != 0) {
+        func_8009DEC0(arg0, 0x46F, 0.85f, 1.15f, 16000, 16000);
+    }
+    if (anctrl_isAt(anim_ctrl, 0.4348f) != 0) {
+        func_808000E0_bsswim(arg0, anim_ctrl);
+    }
+    if (bastick_getZone(arg0) == 1) {
+        next_state = 0x2E;
+    }
+    if (player_inWater(arg0) == 0) {
+        next_state = 1;
+    }
+    if (bainput_should_enter_first_person(arg0) != 0) {
+        next_state = _badrone_entrypoint_24(arg0);
+    }
+    if (bainput_should_dive(arg0) != 0) {
+        next_state = func_80800000_bsswim(arg0);
+    }
+    if ((func_80096500(arg0) != 0) && (bakey_pressed(arg0, 8) != 0)) {
+        next_state = 5;
+    }
+    if ((baflag_isTrue(arg0, 6) != 0) || (baflag_isTrue(arg0, 0x14) != 0)) {
+        next_state = 0xD;
+    }
+    bs_setState(arg0, next_state);
+}
 
 void func_80800688_bsswim(struct player_state_s *arg0)
 {
