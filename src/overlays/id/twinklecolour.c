@@ -36,7 +36,39 @@ void idtwinklecolour_entrypoint_3(void *arg0) {
     heap_free((*(s32 *)((s8 *)(arg0) + (0x24))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/twinklecolour/idtwinklecolour_entrypoint_4.s")
+/* extern */
+
+void idtwinklecolour_entrypoint_4(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void _glidmake_entrypoint_2(s32, s32, u8 *, u8 *);
+    s16 _glidmake_entrypoint_3(s32, s32);
+    void *heap_alloc(s32);
+    f32 sqrtf(f32);
+    void bzero(void *, int);
+    s16 delta[3];
+    s32 i;
+    s32 sum;
+
+    sum = 0;
+    _glidmake_entrypoint_2(arg2, arg3, arg0, arg0 + 6);
+    *(s16 *)(arg0 + 0xC) = _glidmake_entrypoint_3(arg2, arg3);
+    for (i = 0; i < 3; i++) {
+        delta[i] = ((s16 *)arg0)[i + 3] - ((s16 *)arg0)[i];
+        sum += delta[i] * delta[i];
+    }
+    sum = (s32)sqrtf((f32)sum);
+    *(s16 *)(arg0 + 0x22) = arg1;
+    *(s16 *)(arg0 + 0x1A) = (s32)((f32)sum * 0.25f);
+    *(s16 *)(arg0 + 0x18) = (s32)((f32)*(s16 *)(arg0 + 0x1A) * 0.5f);
+    if (*(s16 *)(arg0 + 0x22) <= 0 || *(s16 *)(arg0 + 0x22) >= 21) {
+        *(s16 *)(arg0 + 0x22) = 5;
+    }
+    *(u8 **)(arg0 + 0x24) = heap_alloc(*(s16 *)(arg0 + 0x22) * 0x14);
+    bzero(*(u8 **)(arg0 + 0x24), *(s16 *)(arg0 + 0x22) * 0x14);
+    for (i = 0; i < *(s16 *)(arg0 + 0x22); i++) {
+        (*(u8 **)(arg0 + 0x24))[i * 0x14 + 0xD] = 1;
+        func_80800574_idtwinklecolour(arg0, arg2, arg3, i);
+    }
+}
 
 void idtwinklecolour_entrypoint_5(s16 *arg0, s32 arg1, s32 arg2)
 {
