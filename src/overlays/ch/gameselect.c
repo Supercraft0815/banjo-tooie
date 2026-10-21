@@ -3191,7 +3191,70 @@ void func_808074C8_chgameselect(Actor *arg0) {
     arg0->unk64_20 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808075D0_chgameselect.s")
+void func_808075D0_chgameselect(Actor *arg0, s32 arg1) {
+    typedef struct {
+        s32 entries[9];
+        s16 count;
+        s16 initialized;
+    } GameSelectZoomData;
+    s32 _gczoombox_entrypoint_11(s32);
+    void _gczoombox_entrypoint_12();
+    void _gczoombox_entrypoint_17();
+    void _gczoombox_entrypoint_18();
+    void _gczoombox_entrypoint_34();
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    s32 func_800AA240(void);
+    u32 i;
+    GameSelectZoomData *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 5:
+        if (func_800AA240() && data->initialized == 0) {
+            func_80803CA0_chgameselect();
+            data->initialized = 1;
+        }
+    case 2:
+        arg0->unk58 = 7.5f;
+        break;
+    case 3:
+        i = 0;
+        if (arg0->unk6C_0) {
+            do {
+            _gczoombox_entrypoint_17(data->entries[i]);
+            _gczoombox_entrypoint_12(data->entries[i]);
+                i++;
+            } while (i < arg0->unk6C_0);
+        }
+        if (arg0->unk70_10 == 2) {
+            func_808074C8_chgameselect(arg0);
+        } else if (arg0->unk70_10 == 5) {
+            func_808073AC_chgameselect(arg0);
+        }
+        break;
+    case 4:
+        i = 0;
+        if (arg0->unk6C_0) {
+            do {
+            _gczoombox_entrypoint_18(data->entries[i]);
+            _gczoombox_entrypoint_11(data->entries[i]);
+                i++;
+            } while (i < arg0->unk6C_0);
+        }
+        break;
+    case 6:
+        i = 0;
+        if (arg0->unk6C_0) {
+            do {
+            _gczoombox_entrypoint_34(data->entries[i]);
+                i++;
+            } while (i < arg0->unk6C_0);
+        }
+        break;
+    }
+    func_80101FDC(arg0, arg1);
+}
 
 s32 func_80807790_chgameselect(Actor *arg0, s32 arg1) {
     s32 _gczoombox_entrypoint_3();
