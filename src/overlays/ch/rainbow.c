@@ -127,7 +127,36 @@ void func_808005E0_chrainbow(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_80800838_chrainbow.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/chrainbow_entrypoint_0.s")
+/* extern */
+
+void chrainbow_entrypoint_0(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4) {
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 x;
+    f32 lower;
+    f32 upper;
+    Vtx *end;
+    Actor *actor;
+
+    actor = func_80106790(arg4);
+    upper = func_800F10B4(actor->unk58, 13.5f, 18.0f, -3200.0f, 3200.0f);
+    lower = func_800F10B4(actor->unk58, 14.0f, 18.5f, -3200.0f, 3200.0f);
+    end = arg2 + arg3;
+    if (arg2 < end) {
+        do {
+        x = arg1->v.ob[0];
+        if (x < lower) {
+            arg2->v.cn[3] = arg1->v.cn[3];
+        } else if (x < upper) {
+            arg2->v.cn[3] = (u32)func_800F10B4(x, lower, upper, arg1->v.cn[3], 0.0f);
+        } else {
+            arg2->v.cn[3] = 0;
+        }
+        arg2++;
+        arg1++;
+        } while (arg2 < end);
+    }
+}
 
 void func_80800CD4_chrainbow(s32 arg0) {
     s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
