@@ -38,7 +38,59 @@ void bsturn_entrypoint_0(struct player_state_s *self) {
     *(s32 *)((u8 *)self + 0x15C) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/turn/bsturn_entrypoint_1.s")
+void bsturn_entrypoint_1(struct player_state_s *self) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    f32 anctrl_getAnimTimer(struct anctrl_s *);
+    s32 anctrl_isStopped(struct anctrl_s *);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_8009BB18(void *);
+    f32 func_8009BB5C(struct player_state_s *);
+    void _badust_entrypoint_3(struct player_state_s *, f32, f32);
+    int bakey_held(struct player_state_s *, s32);
+    int bakey_pressed(struct player_state_s *, int);
+    s32 func_800A055C(struct player_state_s *, s32);
+    s32 bs_getTypeOfJump(struct player_state_s *);
+    s32 bs_setState(struct player_state_s *, s32);
+    s32 next_state;
+    f32 timer;
+    f32 angle;
+
+    next_state = 0;
+    timer = anctrl_getAnimTimer(baanim_getAnimCtrlPtr(self));
+    baphysics_set_target_horizontal_velocity(self, func_800F10B4(timer, 0.18f, 1.0f, *(f32 *)((u8 *)self + 0x16C), 0.0f));
+    (*(s32 *)((u8 *)self + 0x15C))++;
+    if (*(s32 *)((u8 *)self + 0x15C) >= 6) {
+        *(s32 *)((u8 *)self + 0x15C) = -1;
+    }
+    switch (*(s32 *)((u8 *)self + 0x15C)) {
+        case -1:
+            angle = func_8009BB18(self);
+            _badust_entrypoint_3(self, angle - 10.0f, func_8009BB5C(self) * 0.88f);
+            break;
+        case 0:
+            angle = func_8009BB18(self);
+            _badust_entrypoint_3(self, angle, func_8009BB5C(self));
+            break;
+        case 1:
+            angle = func_8009BB18(self);
+            _badust_entrypoint_3(self, angle + 10.0f, func_8009BB5C(self) * 0.88f);
+            break;
+    }
+    if (anctrl_isStopped(baanim_getAnimCtrlPtr(self))) {
+        next_state = 4;
+    }
+    if (bakey_held(self, 1)) {
+        next_state = 7;
+    }
+    if (bakey_pressed(self, 9)) {
+        next_state = func_800A055C(self, next_state);
+    }
+    if (bakey_pressed(self, 8)) {
+        next_state = bs_getTypeOfJump(self);
+    }
+    bs_setState(self, next_state);
+}
 
 /* extern */
 
