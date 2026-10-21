@@ -95,7 +95,65 @@ void bstaxi_entrypoint_3(void *arg0) {
     bainput_enable(arg0, 0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_4.s")
+void bstaxi_entrypoint_4(struct player_state_s *arg0) {
+    void _babackpack_entrypoint_6(void *, f32 *, s32);
+    void _babackpack_set_state(void *, s32);
+    s32 _bapackctrl_entrypoint_1(void *);
+    void _bapackctrl_entrypoint_4(void *, s32);
+    f32 baanim_getTimer(struct player_state_s *);
+    s32 baanim_isAt(void *, f32);
+    s32 baanim_isStopped(void *);
+    s32 bainput_enable(void *, s32, s32);
+    s32 bastick_getZone(struct player_state_s *);
+    s32 bs_setState(void *, s32);
+    void func_8009D3A8(void *, s32);
+    s32 func_8009D454(struct player_state_s *, volatile u8, s32 *);
+    void func_8009DB04(struct player_state_s *, s32, f32, s32);
+    void func_800A0CD0(void *, s32);
+    void func_800CB598(s32, f32 *, f32);
+    f32 yaw_get(struct player_state_s *);
+    extern s32 D_808020D0_bstaxi[];
+    extern s32 D_808020F0_bstaxi[];
+    extern s32 D_80802110_bstaxi[];
+    s32 next_state;
+    f32 position[3];
+    s32 pack;
+
+    next_state = 0;
+    bainput_enable(arg0, 0, 1);
+    func_8009D3A8(arg0, 0);
+    if (baanim_isAt(arg0, 0.0161f)) {
+        _babackpack_set_state(arg0, 3);
+        func_800A0CD0(arg0, 0);
+    }
+    if (baanim_isAt(arg0, 0.33f)) {
+        func_8009D454(arg0, 0, D_808020D0_bstaxi);
+    }
+    if (baanim_isAt(arg0, 0.435f)) {
+        func_8009D454(arg0, 0, D_808020F0_bstaxi);
+    }
+    if (baanim_isAt(arg0, 0.545f)) {
+        func_8009D454(arg0, 0, D_80802110_bstaxi);
+    }
+    if (baanim_isAt(arg0, 0.5662f)) {
+        _babackpack_entrypoint_6(arg0, position, 0);
+        pack = _bapackctrl_entrypoint_1(arg0);
+        _bapackctrl_entrypoint_4(arg0, 0);
+        func_8009DB04(arg0, 0x5C2, 1.8f, 0x7FFF);
+        func_800CB598(pack, position, yaw_get(arg0));
+    }
+    if (baanim_isAt(arg0, 0.8153f)) {
+        _babackpack_set_state(arg0, 1);
+        func_800A0CD0(arg0, 1);
+    }
+    if (baanim_isStopped(arg0)) {
+        next_state = 1;
+    }
+    if (baanim_getTimer(arg0) > 0.8153f && bastick_getZone(arg0) > 0) {
+        next_state = 2;
+    }
+    bs_setState(arg0, next_state);
+}
 
 s32 bstaxi_entrypoint_5(s32 arg0) {
     extern s32 D_80802130_bstaxi[];
