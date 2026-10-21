@@ -145,7 +145,62 @@ s32 func_80800440_chcactusofstrength(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_808004F8_chcactusofstrength.s")
+void func_808004F8_chcactusofstrength(Actor *arg0, s32 arg1) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _subaddieDll_entrypoint_4(Actor *, u32);
+    void func_800CE88C(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    s32 func_800CEAA8(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F7F98(s32, u32);
+    void func_800FC618(s32, s32);
+    void func_80101FDC(Actor *, u32);
+    f32 sqrtf(f32);
+    f32 height = 0.0f;
+    f32 delta;
+    s32 oldFlags;
+    s32 flags;
+
+    oldFlags = *(s32 *)&arg0->unk50;
+    delta = ((f32 *)arg0->actorData)[5] - ((f32 *)arg0->actorData)[4];
+    if (oldFlags == 0 || func_800CEAA8(0) != 0) {
+        flags = *(volatile s32 *)&arg0->unk50;
+        if ((flags & arg1) != 0) {
+            return;
+        }
+        switch (arg1) {
+            case 1:
+                *(s32 *)&arg0->unk50 = flags | 1;
+                height = delta * 0.25f;
+                break;
+            case 2:
+                *(s32 *)&arg0->unk50 = flags | 2;
+                height = delta * 0.25f;
+                break;
+            case 4:
+                *(s32 *)&arg0->unk50 = flags | 4;
+                height = delta * 0.50001f;
+                break;
+        }
+        if (oldFlags == 0) {
+            func_800CE8D8(0, 20.0f, 20);
+            func_800CE88C(0, 1);
+            _subaddieDll_entrypoint_4(arg0, 1);
+        }
+        func_80101FDC(arg0, 2);
+        ((f32 *)arg0->actorData)[3] = sqrtf(10.0f * height);
+        if ((*(s32 *)&arg0->unk50 & 7) != 7) {
+            func_800FC618(0xE, -1);
+            arg0->unk58 = 0.2f;
+            _capod_entrypoint_13(arg0->unk0, NULL, 0xAA, 0x800);
+            func_800F7F98(func_800F54E4(), 1);
+            return;
+        }
+        func_800FC618(0x10, -1);
+        _capod_entrypoint_13(arg0->unk0, NULL, 2, 0x800);
+        func_800F7F98(func_800F54E4(), 1);
+    }
+}
 
 /* extern */
 
