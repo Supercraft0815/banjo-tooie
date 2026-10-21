@@ -338,7 +338,60 @@ s32 func_808007E0_bsbtrot(PlayerState *arg0, s32 arg1) {
     return var_s1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_808008D0_bsbtrot.s")
+void func_808008D0_bsbtrot(PlayerState *arg0) {
+    int anctrl_isAt(AnimCtrl *, f32);
+    void func_800A2CE8(PlayerState *, f32, s32);
+    void func_800A2D2C(PlayerState *, f32, s32);
+    AnimCtrl *baanim_getAnimCtrlPtr();
+    f32 func_800F13C4(f32, f32);
+    void _bashoes_entrypoint_18(PlayerState *);
+    void _bashoes_entrypoint_19(PlayerState *);
+    AnimCtrl *sp24;
+    f32 sp20;
+    f32 sp1C;
+    s32 sp18;
+
+    sp24 = baanim_getAnimCtrlPtr();
+    sp18 = 1;
+    sp20 = 0.7781f;
+    sp1C = 0.2781f;
+    switch (_bashoes_entrypoint_1(arg0)) {
+    case 3:
+        _bashoes_entrypoint_20(arg0);
+        break;
+    case 4:
+        sp18 = 0;
+        break;
+    case 5:
+        sp1C = 0.6583f;
+        sp20 = 0.1783f;
+        if (anctrl_isAt(sp24, 0.6583f)) {
+            _bashoes_entrypoint_19(arg0);
+        }
+        if (anctrl_isAt(sp24, 0.1783f)) {
+            _bashoes_entrypoint_18(arg0);
+        }
+        break;
+    default:
+        if (anctrl_isAt(sp24, 0.2115f) || anctrl_isAt(sp24, 0.7115f)) {
+            _badust_entrypoint_1(arg0);
+        }
+        break;
+    }
+    if (anctrl_isAt(sp24, func_800F13C4(sp1C + 0.2f, 1.0f))) {
+        func_808000DC_bsbtrot(arg0, 1);
+    }
+    if (anctrl_isAt(sp24, func_800F13C4(sp20 + 0.2f, 1.0f))) {
+        func_808000DC_bsbtrot(arg0, 0);
+    }
+    if (sp18) {
+        func_800A2CE8(arg0, sp1C, 4);
+        func_800A2CE8(arg0, sp20, 3);
+        return;
+    }
+    func_800A2D2C(arg0, sp1C, 4);
+    func_800A2D2C(arg0, sp20, 3);
+}
 
 void bsbtrot_entrypoint_0(PlayerState *arg0) {
     void baanim_playForDuration_once(void *, s32, f32);
