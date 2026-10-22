@@ -118,7 +118,16 @@ void func_80800228_glsplinecs(SplineCSController *arg0, Actor *arg1, s32 arg2, s
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/spline/cs/func_80800310_glsplinecs.s")
+void func_80800310_glsplinecs(SplineCSController *arg0, Actor *arg1, s32 arg2, s32 arg3) {
+    void *func_80105494(Actor *);
+    s32 func_800D7520(s32);
+    f32 func_800C7AE4(u8 *, f32, f32);
+    SplineCSState *state;
+
+    state = func_80105494(arg1);
+    state->unk30 = state->unk14;
+    state->unk34 = func_800C7AE4(func_800D7520(state->signedId), (f32)arg2 / 4000000.0f, 1.0f) / ((f32)arg3 * 0.25f);
+}
 
 /* extern */
 
