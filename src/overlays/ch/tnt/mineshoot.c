@@ -420,7 +420,99 @@ void func_80800E10_chtntmineshoot(Actor *arg0) {
     _susubgame_entrypoint_11(0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800E64_chtntmineshoot.s")
+int func_80800E64_chtntmineshoot(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    s32 func_800CE8D8(s32, f32, s32);
+    s32 func_800D2498(u32, s32, u32);
+    s32 func_800D2054(s32, s32, s32);
+    void func_800F49D4(s32, void *, s32);
+    void func_800FE820(f32);
+    s32 func_80801974_chtntmineshoot(Actor *, s32);
+    s32 func_80101180(s32, s32, s32);
+    s32 _susubgame_entrypoint_11(s32);
+    u32 func_800F54E4(void);
+    void func_800D284C(u32);
+    s32 func_800F7F98(s32, u32);
+    s32 func_800D211C(s32);
+    s32 func_800F7B9C(s32, s32);
+    void _gcfrontend_entrypoint_9(s32);
+    void *data;
+    s32 player;
+    s32 pad0;
+    s32 pad1;
+    s32 message;
+
+    data = func_80100094(arg0, 0);
+    if (arg1 != ((u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10)) {
+        switch (arg1) {
+        case 2:
+            *(s32 *)((u8 *)data + 4) = 0;
+            func_800D2498(0x102, *(s32 *)data, 0);
+            break;
+        case 3:
+            _gcfrontend_entrypoint_9(0x63);
+            func_800CE8D8(0, (f32)((u32)*(u16 *)((u8 *)arg0 + 0x76) >> 7),
+                         (u32)*(u16 *)((u8 *)arg0 + 0x76) >> 7);
+            func_800CE88C(0, 1);
+            func_80101180(0x2BE, 0xA, 0);
+            break;
+        case 4:
+            func_800FE820(1.0f);
+            *(s32 *)((u8 *)data + 4) = 1;
+            _susubgame_entrypoint_11(0);
+            func_80801974_chtntmineshoot(arg0, 0xFA2);
+            break;
+        case 5:
+            *(s32 *)((u8 *)data + 4) = 2;
+            *(s32 *)((u8 *)data + 0x10) = 0;
+            _susubgame_entrypoint_11(0);
+            break;
+        case 7:
+            _susubgame_entrypoint_11(0);
+            func_800D284C(0xCC);
+            func_800D284C(0x102);
+            break;
+        case 8:
+            player = func_800F54E4();
+            func_800F49D4(player, 0, 0);
+            func_800F7B9C(player, 0x8F);
+            func_800F7B9C(player, 0x62);
+            func_800F7C58(player, 0x61, 0);
+            func_80801974_chtntmineshoot(arg0, func_800D211C(0x95) ? 0xFB3 : 0xCEC);
+            func_800F7F98(func_800F54E4(), 1);
+            break;
+        case 9:
+            *(s32 *)((u8 *)data + 4) = 0;
+            *(f32 *)((u8 *)data + 8) = 0.0f;
+            func_800D2498(0xCC, (s32)*(f32 *)((u8 *)data + 8), 0);
+            func_800D2498(0x102, *(s32 *)data, 0);
+            func_80101180(0x2BE, 0xA, 0);
+            break;
+        case 11:
+            switch (func_800D2054(1, 0x95, (s32)*(f32 *)((u8 *)data + 8))) {
+            case -1:
+                message = 0xFB6;
+                break;
+            case 0:
+                message = 0xFB5;
+                break;
+            case 1:
+                message = 0xFB4;
+                break;
+            }
+            func_80801974_chtntmineshoot(arg0, message);
+            break;
+        case 10:
+            *(s32 *)((u8 *)data + 0x10) = 0;
+            break;
+        case 12:
+            func_80801974_chtntmineshoot(arg0, 0xCEB);
+            break;
+        }
+        func_80101FDC(arg0, arg1);
+    }
+}
 
 /* extern */
 
