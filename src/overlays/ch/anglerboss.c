@@ -658,7 +658,60 @@ void func_80802844_changlerboss(void *arg0) {
     self->unk54 = func_800C8A98();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80802888_changlerboss.s")
+void func_80802888_changlerboss(Actor *arg0) {
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8E84(s32, u32 *);
+    s32 func_800D9078(f32 *);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    void func_800F2F60(void *, void *, f32);
+    void func_80101FDC(Actor *, u32);
+    extern u32 D_80803098_changlerboss[3];
+    u32 sp54[3];
+    f32 sp50;
+    u32 sp44[3];
+    s32 sp40;
+    f32 sp3C;
+    f32 sp38;
+    f32 scale;
+    struct {
+        u8 pad0[0x54];
+        s32 unk54;
+    } *self = (void *)arg0;
+
+    switch (arg0->unk70_10) {
+    case 1:
+        arg0->unk64_16 = 0;
+        sp50 = arg0->scale * 0.3f;
+        func_800F2F60(sp54, D_80803098_changlerboss, 0.3f);
+        func_800C8E54(self->unk54, sp50 * 400.0f, sp50 * 1000.0f);
+        func_800C8E84(self->unk54, sp54);
+        break;
+    case 2:
+        sp40 = func_800D9078(&arg0->unk58);
+        sp3C = func_800F12D4(arg0->unk58, 0.0f, 0.4f, 1.0f, 0.3f);
+        arg0->unk64_16 = 1;
+        sp38 = arg0->scale * sp3C;
+        func_800F2F60(sp44, D_80803098_changlerboss, sp3C);
+        func_800C8E54(self->unk54, sp38 * 400.0f, sp38 * 1000.0f);
+        func_800C8E84(self->unk54, sp44);
+        _subaddiefade_entrypoint_1((s32)arg0, (s32)(sp3C * 255.0f));
+        if (sp40 != 0) {
+            func_80101FDC(arg0, 3);
+        }
+        break;
+    case 3:
+        scale = arg0->scale;
+        arg0->unk64_16 = 1;
+        func_800C8E54(self->unk54, scale * 400.0f, scale * 1000.0f);
+        func_800C8E84(self->unk54, D_80803098_changlerboss);
+        break;
+    }
+    if (self->unk54 != 0) {
+        func_800C8CB8(self->unk54, arg0->position);
+    }
+}
 
 /* extern */
 
