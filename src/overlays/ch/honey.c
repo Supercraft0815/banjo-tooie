@@ -154,7 +154,65 @@ void func_80800328_chhoney(Actor *arg0, Unk80132ED0 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honey/func_8080046C_chhoney.s")
+s32 func_8080046C_chhoney(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
+    struct HoneyFlags {
+        u8 pad[0x78];
+        u32 :14;
+        u32 state:2;
+        u32 :10;
+        u32 flag5:1;
+        u32 :1;
+        u32 flag3:1;
+        u32 :3;
+    };
+    void func_800DF744(s32, s32);
+    void func_80109EEC(s16 *, s32);
+    int func_8010DD20(u8 *, s32, u8 *);
+    void func_80800688_chhoney(Actor *);
+    extern s32 D_80127194;
+
+    switch (arg1) {
+    case 0x3E:
+        ((struct HoneyFlags *)arg0)->state = 0;
+        func_80800328_chhoney(arg0, arg2);
+        break;
+    case 0x2E:
+        switch (*(s16 *)&arg2) {
+        case 0xCE6:
+            func_808000C4_chhoney((u8 *)arg0, 2);
+            break;
+        case 0xCE7:
+            func_808000C4_chhoney((u8 *)arg0, 3);
+            break;
+        }
+        break;
+    case 0x1F:
+        func_8010DD20((u8 *)arg0, ((struct HoneyFlags *)arg0)->flag3 ? 2 : 3, (u8 *)arg2);
+        if ((arg0->unk0->unk24 >> 22) != 0x55) {
+            func_800DF744(3, arg0->unk79_4);
+        }
+        break;
+    case 0x95:
+        arg0->unk64_19 = 0;
+        arg0->unk64_20 = 1 - ((struct HoneyFlags *)arg0)->flag3;
+        func_80109EEC((s16 *)arg0, 0x44);
+        switch (arg0->unk0->unk24 >> 22) {
+        case 0x55:
+        case 0x22B:
+        case 0x22C:
+            if (!((struct HoneyFlags *)arg0)->flag5) {
+                if (++D_80127194 >= 11) {
+                    func_80800688_chhoney(arg0);
+                }
+            }
+            break;
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800634_chhoney(Actor *arg0) {
     s32 func_8010DCB4(s32);
