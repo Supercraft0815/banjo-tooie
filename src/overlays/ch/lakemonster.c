@@ -259,7 +259,88 @@ void func_80801448_chlakemonster(u8 *arg0, u32 arg1, s32 arg2) {
     ((struct Flags *)arg0)->flag = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80801494_chlakemonster.s")
+s32 func_80801494_chlakemonster(s32 arg0, s32 arg1) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void func_80090658(s32);
+    void func_80090708(s32);
+    void func_8009086C(s32);
+    int func_800C6E38(s32);
+    s32 func_800F54E4(void);
+    s32 func_800F7B9C(s32, s32);
+    u32 func_800FDC28(u32);
+    u32 *func_80100074(Actor *, u32, u32);
+    void *func_80100094(Actor *, u32);
+    void func_80101EE4(Actor *, f32);
+    void func_80102424(Actor *, s32);
+    struct {
+        u8 pad0[0x18];
+        f32 unk18;
+        u8 pad1C[0x20];
+        u8 unk3C;
+        u8 unk3D;
+        u8 unk3E;
+    } *data;
+    Actor *actor = (Actor *)arg0;
+
+    data = func_80100094(actor, 0);
+    switch (actor->unk70_10) {
+        case 1:
+            func_80100074(actor, 0, 0x40);
+            data = func_80100094(actor, 0);
+            data->unk3C = 0;
+            data->unk3D = 0;
+            data->unk3E = 0;
+            data->unk18 = 0.0f;
+            func_80090658(1);
+            actor->unk64_16 = 1;
+            break;
+        case 2:
+            func_800FDC28(0);
+            break;
+    }
+    func_80102424(actor, arg1);
+    switch (arg1) {
+        case 0:
+            break;
+        case 7:
+            func_80101EE4(actor, 0.35f);
+            break;
+        case 1:
+            actor->unk64_16 = 0;
+            func_80090658(0);
+            func_80100074(actor, 0, 0);
+            break;
+        case 2:
+            func_808013E8_chlakemonster((s32 *)actor);
+            func_800FDC28(1);
+            _capod_entrypoint_13(actor->unk0, NULL, 6, 0x20);
+            break;
+        case 3:
+            _capod_entrypoint_13(actor->unk0, NULL, 8, 0x10);
+            func_800F7B9C(func_800F54E4(), 0x96);
+            data->unk3D = 1;
+            func_8009086C(0);
+            func_80090658(0);
+            func_80090708(2);
+            break;
+        case 4:
+            func_808013E8_chlakemonster((s32 *)actor);
+            _capod_entrypoint_13(actor->unk0, NULL, 0xA, 0x20);
+            break;
+        case 5:
+            actor->unk64_16 = 0;
+            break;
+        case 6:
+            func_80090658(0);
+            actor->unk64_16 = 0;
+            if (!func_800C6E38(0x15)) {
+                func_80801448_chlakemonster((u8 *)actor, 0x1819, 0);
+            } else {
+                func_80801448_chlakemonster((u8 *)actor, 0x180E, 0);
+            }
+            break;
+    }
+}
 
 s32 func_808016B0_chlakemonster(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80090708(s32);
