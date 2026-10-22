@@ -24412,10 +24412,10 @@ rom:0x020A1EF4 symbol:D_80800150_chfaircoin reloc:MIPS_LO16
 rom:0x020A1F1C symbol:D_8080015C_chfaircoin reloc:MIPS_HI16
 rom:0x020A1F24 symbol:D_8080015C_chfaircoin reloc:MIPS_LO16
 rom:0x020A1F58 symbol:func_80800000_chfaircoin reloc:MIPS_32
-rom:0x020A2054 symbol:func_80800424_chfaircoinbox reloc:MIPS_HI16
-rom:0x020A2068 symbol:func_80800424_chfaircoinbox reloc:MIPS_LO16
-rom:0x020A2078 symbol:func_808002E4_chfaircoinbox reloc:MIPS_HI16
-rom:0x020A208C symbol:func_808002E4_chfaircoinbox reloc:MIPS_LO16
+rom:0x020A2054 symbol:D_80800488_chfaircoinbox reloc:MIPS_HI16 addend:-0x64
+rom:0x020A2068 symbol:D_80800488_chfaircoinbox reloc:MIPS_LO16 addend:-0x64
+rom:0x020A2078 symbol:D_80800470_chfaircoinbox reloc:MIPS_HI16 addend:-0x18C
+rom:0x020A208C symbol:D_80800470_chfaircoinbox reloc:MIPS_LO16 addend:-0x18C
 rom:0x020A20AC symbol:D_80800470_chfaircoinbox reloc:MIPS_HI16
 rom:0x020A20B0 symbol:D_80800470_chfaircoinbox reloc:MIPS_LO16
 rom:0x020A2148 symbol:func_8080001C_chfaircoinbox reloc:MIPS_26
@@ -24429,8 +24429,8 @@ rom:0x020A22D0 symbol:jtbl_80800450_chfaircoinbox reloc:MIPS_HI16
 rom:0x020A22D8 symbol:jtbl_80800450_chfaircoinbox reloc:MIPS_LO16
 rom:0x020A22F4 symbol:func_808000A4_chfaircoinbox reloc:MIPS_26
 rom:0x020A2304 symbol:func_808000A4_chfaircoinbox reloc:MIPS_26
-rom:0x020A2328 symbol:func_808003E4_chfaircoinbox reloc:MIPS_HI16
-rom:0x020A233C symbol:func_808003E4_chfaircoinbox reloc:MIPS_LO16
+rom:0x020A2328 symbol:D_808004AC_chfaircoinbox reloc:MIPS_HI16 addend:-0xC8
+rom:0x020A233C symbol:D_808004AC_chfaircoinbox reloc:MIPS_LO16 addend:-0xC8
 rom:0x020A232C symbol:D_80800494_chfaircoinbox reloc:MIPS_HI16
 rom:0x020A2348 symbol:D_80800494_chfaircoinbox reloc:MIPS_LO16
 rom:0x020A2344 symbol:func_80800000_chfaircoinbox reloc:MIPS_26

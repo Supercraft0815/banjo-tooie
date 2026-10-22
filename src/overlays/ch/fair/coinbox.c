@@ -2,15 +2,15 @@
 
 s32 func_80800000_chfaircoinbox(u8 *arg0) {
     struct CoinboxData { u8 pad[0x76]; unsigned short index : 9; unsigned short rest : 7; };
-    extern s16 func_80800424_chfaircoinbox[];
-    return func_80800424_chfaircoinbox[((struct CoinboxData *)arg0)->index];
+    extern s16 D_80800488_chfaircoinbox[3];
+    return D_80800488_chfaircoinbox[((struct CoinboxData *)arg0)->index - 0x32];
 }
 
 void func_8080001C_chfaircoinbox(u8 *arg0) {
     struct CoinboxData { u8 pad[0x76]; unsigned short index : 9; unsigned short rest : 7; };
     s32 func_800DA544(s32);
-    extern s32 func_808002E4_chfaircoinbox[][2];
-    func_800DA544(func_808002E4_chfaircoinbox[((struct CoinboxData *)arg0)->index][0]);
+    extern s32 D_80800470_chfaircoinbox[3][2];
+    func_800DA544(D_80800470_chfaircoinbox[((struct CoinboxData *)arg0)->index - 0x32][1]);
 }
 
 s32 func_80800050_chfaircoinbox(s32 arg0) {
@@ -135,7 +135,22 @@ void chfaircoinbox_entrypoint_1(Unk80132ED0 *arg0) {
     _subaddiedialog_entrypoint_11((Unk80132ED0 *) actor->unk0, 0x10B8, 4, (f32 *) ((u8 *) actor + 4), 0x8C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/func_808003C4_chfaircoinbox.s")
+s32 func_808003C4_chfaircoinbox(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    extern u32 D_808004B8_chfaircoinbox;
+    s16 *data = (s16 *)&arg2;
+    switch (arg1) {
+        case 0x2E:
+            func_80800264_chfaircoinbox(arg0, data[0], data[1]);
+            break;
+        case 0x52:
+            _gcdialogcamera_entrypoint_3(&D_808004B8_chfaircoinbox, arg0->scale);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chfaircoinbox_entrypoint_2(void)
 {
