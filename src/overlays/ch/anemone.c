@@ -7,7 +7,65 @@ OSThread *chanemone_entrypoint_0(void)
     return (OSThread *) D_808008D8_chanemone;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anemone/func_8080000C_chanemone.s")
+void func_8080000C_chanemone(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieaudioloop_entrypoint_5(s32, s32, s32, s32, s32 *);
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    s32 func_800D9078(f32 *);
+    u32 func_800F54E4(void);
+    s32 func_800F64A4(s32, s32);
+    s32 func_80101DDC(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_8010A590(Actor *);
+    s32 func_8010D23C(void);
+    void func_808003A8_chanemone(Actor *);
+    extern s32 D_80800920_chanemone[];
+    extern u32 D_80800934_chanemone[];
+    extern u32 D_80800944_chanemone[];
+    s32 flags = 4;
+    s32 active = arg0->unk70_10 != 3;
+
+    func_808003A8_chanemone(arg0);
+    if (func_8010D23C()) {
+        if (arg0->unk70_10 != 1) {
+            flags = 0x1E;
+        }
+        if (func_800F64A4(func_800F54E4(), 0x400)) {
+            flags |= 2;
+        }
+    }
+    if (active) {
+        _sudeflect_entrypoint_1(arg0->position, arg0->scale * 850.0f, 0.0f, arg0->scale * 600.0f, flags);
+        _sudeflect_entrypoint_0(arg0->position, arg0->scale * 800.0f, arg0->scale * 600.0f, flags);
+    } else {
+        _sudeflect_entrypoint_0(arg0->position, arg0->scale * 250.0f, arg0->scale * 700.0f, flags);
+    }
+    _subaddieaudioloop_entrypoint_5((s32)arg0, (s32)arg0->position, arg0->unk70_10 == 1, 2000, D_80800920_chanemone);
+    switch (arg0->unk70_10) {
+        case 2:
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800934_chanemone, 0.2f);
+            if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 3);
+                arg0->unk58 = 6.0f;
+            }
+            break;
+        case 3:
+            if (func_800D9078(&arg0->unk58)) {
+                func_80102424(arg0, 4);
+            }
+            break;
+        case 4:
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800944_chanemone, 0.6f);
+            if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 1);
+                _subaddieDll_entrypoint_4(arg0, 0);
+                func_8010A590(arg0);
+            }
+            break;
+    }
+}
 
 /* extern */
 
