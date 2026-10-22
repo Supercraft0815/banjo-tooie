@@ -84,7 +84,74 @@ void func_8080015C_chgameselect(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80800228_chgameselect.s")
+s32 func_80800228_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    void func_808005D4_chgameselect(Actor *, s32);
+    void func_808006A0_chgameselect(Actor *, s32);
+    void func_8080086C_chgameselect(Actor *, s32);
+    void func_808020CC_chgameselect(Actor *, s32);
+    s32 func_80803D00_chgameselect(s32, s32);
+    s32 func_80803D60_chgameselect(s32);
+    void func_808065F4_chgameselect(Actor *);
+    extern f32 B_80808578_chgameselect[3];
+    Actor *child;
+
+    switch (arg1) {
+        case 0x95:
+            func_80803D00_chgameselect(0, 0);
+            break;
+        case 0x3D:
+            if (arg2 >= 9) {
+                child = func_80108528(arg2, B_80808578_chgameselect, 0, &arg0);
+                child->unk79_4 = arg0->unk79_4;
+                switch (arg2) {
+                    default:
+                        arg0->unk3C = child->unk0;
+                        break;
+                    case 0x4AB:
+                        arg0->actorData[4] = (u32)child->unk0;
+                        child->scale = arg0->scale;
+                        break;
+                    case 0x4AA:
+                        arg0->actorData[5] = (u32)child->unk0;
+                        break;
+                    case 0x4A9:
+                        arg0->actorData[3] = (u32)child->unk0;
+                        child->unk64_20 = 1;
+                        break;
+                    case 0x4AC:
+                        arg0->actorData[6] = (u32)child->unk0;
+                        break;
+                    case 0x1E8:
+                        arg0->actorData[7] = (u32)child->unk0;
+                        break;
+                }
+            } else {
+                child = func_80108528(0x4A8, B_80808578_chgameselect, 0, &arg0);
+                child->unk79_4 = arg2;
+                func_808020CC_chgameselect(child, func_80803D60_chgameselect(arg2));
+            }
+            child->unk3C = arg0->unk0;
+            break;
+        case 0xA:
+            func_808005D4_chgameselect(arg0, arg2);
+            break;
+        case 7:
+            func_808006A0_chgameselect(arg0, arg2);
+            break;
+        case 8:
+            func_8080086C_chgameselect(arg0, arg2);
+            break;
+        case 0x23:
+            if (arg0->unk70_10 == 5) {
+                func_808065F4_chgameselect(arg0);
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800440_chgameselect(void *arg0) {
     void func_808036D8_chgameselect(void);
