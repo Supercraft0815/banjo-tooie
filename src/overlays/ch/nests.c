@@ -16,7 +16,8 @@ void func_80800098_chnests(void *arg0) {
     }
 }
 
-struct Entry { s16 value; s16 rest[6]; };
+struct Entry { s16 value; s16 rest[4]; u8 reward; u8 amount; s16 tail; };
+struct NestsContact { u8 pad[0x1A]; u16 playerFlags; };
 extern struct Entry D_80801118_chnests[];
 
 void func_808000E8_chnests(void *arg0) {
@@ -30,16 +31,34 @@ void func_808000E8_chnests(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800144_chnests.s")
+void func_80800144_chnests(Actor *arg0, struct NestsContact *arg1) {
+    void _fxsparkle_entrypoint_1(f32 *, s32);
+    s32 _gleeprom_entrypoint_0(void);
+    void func_800FC660(s32);
+    void func_800F7664(s32, s32, s32);
+    struct Entry *entry;
 
-void func_808001F0_chnests(Actor *arg0) {
+    entry = &D_80801118_chnests[arg0->actorData[1]];
+    if (entry->rest[1] != 0) {
+        _fxsparkle_entrypoint_1(arg0->position, entry->rest[1]);
+    }
+    if (entry->rest[2] != 0) {
+        func_800FC660(entry->rest[2]);
+    }
+    if (entry->reward != 0) {
+        if ((_gleeprom_entrypoint_0() >> 24) == 0x10) {
+            func_800F7664((u32)arg1->playerFlags >> 5, entry->reward, entry->amount);
+        }
+    }
+}
+
+void func_808001F0_chnests(Actor *arg0, struct NestsContact *arg1) {
     s32 _subaddieDll_entrypoint_4(void *, s32);
     f32 func_800DC178(f32, f32);
     void func_800FFA88(Unk80132ED0 *);
     void func_80101FDC(Actor *, u32);
     void func_80103110(void *, s32);
     void func_8010A570(Actor *);
-    void func_80800144_chnests(void);
     void func_80800B80_chnests(void *);
     extern s16 D_808011DC_chnests[][2];
     Unk80132ED0 *sp24;
@@ -48,7 +67,7 @@ void func_808001F0_chnests(Actor *arg0) {
 
     sp24 = arg0->unk0;
     type = arg0->unk74_7 - 0x32;
-    func_80800144_chnests();
+    func_80800144_chnests(arg0, arg1);
     func_808000E8_chnests(arg0);
     if (type == 1 || type == 2 || type == 3) {
         range = D_808011DC_chnests[type];
@@ -76,11 +95,10 @@ void func_808002E0_chnests(void *arg0) {
     func_80101FDC(arg0, 4);
 }
 
-void func_80800144_chnests(void);
 
-void func_80800324_chnests(s32 arg0)
+void func_80800324_chnests(Actor *arg0, struct NestsContact *arg1)
 {
-    func_80800144_chnests();
+    func_80800144_chnests(arg0, arg1);
     func_808002E0_chnests(arg0);
 }
 /* extern */
@@ -109,9 +127,9 @@ void func_808003AC_chnests(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_808003F4_chnests.s")
 
-void func_80800670_chnests(void *arg0) {
+void func_80800670_chnests(Actor *arg0, struct NestsContact *arg1) {
     s32 _gleeprom_entrypoint_0(void);
-    func_80800144_chnests();
+    func_80800144_chnests(arg0, arg1);
     func_808000E8_chnests(arg0);
     if ((_gleeprom_entrypoint_0() >> 0x18) == 0x10) {
         func_800D0BD4(*(s32 *)((s8 *)arg0 + 0x20), 6);

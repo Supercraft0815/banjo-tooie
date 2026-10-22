@@ -1,16 +1,48 @@
 #include "common.h"
 
 void func_80800000_chlavacolumns(u8 *arg0) {
-    s32 func_80800200_chlavacolumns(s32, s32);
+    s32 func_80800200_chlavacolumns(s32, f32);
     void func_800EFD24(f32 *);
     void func_80103014(u8 *);
-    func_80800200_chlavacolumns((s32)arg0, (s32)0xC3C80000);
+    func_80800200_chlavacolumns((s32)arg0, -400.0f);
     func_800EFD24(arg0 + 4);
     (*(f32 *)(arg0 + 8)) = -400.0f;
     func_80103014(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/columns/func_80800044_chlavacolumns.s")
+s32 func_80800044_chlavacolumns(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 _subaddieDll_entrypoint_0(Actor *);
+    s32 func_800DA298(s32);
+    void func_80101FDC(Actor *, u32);
+    void func_80102FE8(void *, s32);
+    void func_80103014(u8 *);
+    void func_80103110(void *, s32);
+    s32 func_80800200_chlavacolumns(s32, f32);
+    if (arg1 == 0x95) {
+        if (_glcutDll_entrypoint_19(0x4E)) {
+            arg0->unk64_16 = 1;
+            arg0->position[1] = -400.0f;
+            func_80103110(arg0, 1);
+            func_80102FE8(arg0, 0);
+            _subaddieDll_entrypoint_0(arg0);
+            func_80101FDC(arg0, 2);
+            func_80800200_chlavacolumns((s32)arg0, -400.0f);
+            _capod_entrypoint_13(arg0->unk0, NULL, 0x1A, 0x910);
+        } else if (func_800DA298(0x390)) {
+            arg0->position[1] = 0.0f;
+            func_80101FDC(arg0, 3);
+            func_80800200_chlavacolumns((s32)arg0, 0.0f);
+        } else {
+            arg0->position[1] = -400.0f;
+            func_80800200_chlavacolumns((s32)arg0, -400.0f);
+        }
+        func_80103014((u8 *)arg0);
+        return 1;
+    }
+    return 0;
+}
 
 void func_8080014C_chlavacolumns(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
@@ -37,9 +69,9 @@ void func_8080014C_chlavacolumns(Actor *arg0) {
 
 /* extern */
 
-s32 func_80800200_chlavacolumns(s32 arg0, s32 arg1) {
+s32 func_80800200_chlavacolumns(s32 arg0, f32 arg1) {
     s32 _idworld_entrypoint_3(s32);
-    s32 func_800EDCB8(s32, s32);
+    s32 func_800EDCB8(s32, f32);
     s32 temp_v0;
 
     temp_v0 = _idworld_entrypoint_3(0x190);

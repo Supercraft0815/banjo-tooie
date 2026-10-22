@@ -5,7 +5,33 @@ s32 func_80800000_glsavegame()
     return (s32)heap_alloc(0x1C0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/func_80800020_glsavegame.s")
+s32 func_80800020_glsavegame(s32 arg0, s32 arg1) {
+    s32 _glgamedata_entrypoint_4(s32);
+    s32 _glgamedata_entrypoint_5(s32);
+    s32 _glgamedata_entrypoint_6(s32);
+    s32 _glgamestore_entrypoint_0(s32, s32);
+    s32 attempts;
+    s32 result;
+
+    attempts = 3;
+    do {
+        result = _glgamestore_entrypoint_0(arg0, arg1);
+    } while (result != 0 && --attempts != 0);
+    if (result == 0) {
+        if (_glgamedata_entrypoint_5(arg1) == 2) {
+            result = 3;
+        }
+    }
+    if (result == 0) {
+        if (_glgamedata_entrypoint_4(arg1) == 0) {
+            result = 3;
+        }
+    }
+    if (result != 0) {
+        _glgamedata_entrypoint_6(arg1);
+    }
+    return result;
+}
 
  s32 func_808000CC_glsavegame(u8 *arg0) {
     extern s32 _glgamedata_entrypoint_3(u8 *, s32, s32 *, u32 *);

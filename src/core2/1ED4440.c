@@ -1,5 +1,7 @@
 #include "common.h"
 
+struct Unk800C7A68;
+
 void *func_800FAB50(f32 arg0[3], f32 arg1[3], f32 arg2[3], u32 arg3, f32 arg4) {
     void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
     void func_800EE7F8(f32 *, f32 *);
@@ -161,17 +163,34 @@ void func_800FB040(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3], f32 arg4[
 
 /* extern */
 
-void func_800FB1B0(f32 *arg0, f32 *arg1, s32 arg2) {
+void *func_800FB1B0(f32 *arg0, f32 *arg1, s32 arg2) {
     void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
     void func_800EE7F8(f32 *, f32 *);
     f32 sp24[3];
     f32 sp18[3];
 
     func_800EE7F8(sp18, arg1);
-    func_800C6A7C(arg0, sp18, sp24, arg2);
+    return func_800C6A7C(arg0, sp18, sp24, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4440/func_800FB1EC.s")
+f32 func_800FB1EC(struct Unk800C7A68 *arg0, f32 arg1, f32 arg2[3], s32 arg3) {
+    void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
+    f32 sp24[3];
+
+    func_800C7A68(arg0, arg1, sp24);
+    if (!func_800FB1B0(arg2, sp24, arg3)) {
+        return arg1;
+    }
+    func_800C7A68(arg0, 1.0f, sp24);
+    if (!func_800FB1B0(arg2, sp24, arg3)) {
+        return 1.0f;
+    }
+    func_800C7A68(arg0, 0.0f, sp24);
+    if (!func_800FB1B0(arg2, sp24, arg3)) {
+        return 0.0f;
+    }
+    return arg1;
+}
 
 /* extern */
 

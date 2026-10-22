@@ -1,8 +1,40 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3DEF0/func_800263C0.s")
+void func_800263C0(ALEventQueue *arg0, ALEventListItem *arg1, s32 arg2) {
+    void func_80020E40(ALLink *, ALLink *);
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3DEF0/func_8002645C.s")
+    arg0->eventCount = 0;
+    arg0->allocList.next = NULL;
+    arg0->allocList.prev = NULL;
+    arg0->freeList.next = NULL;
+    arg0->freeList.prev = NULL;
+    for (i = 0; i < arg2; i++) {
+        func_80020E40((ALLink *)&arg1[i], &arg0->freeList);
+    }
+}
+
+s32 func_8002645C(ALEventQueue *arg0, ALEvent *arg1) {
+    void func_80020E40(ALLink *, ALLink *);
+    void func_80020E74(ALLink *);
+    ALEventListItem *item;
+    s32 delta;
+    u32 mask;
+
+    mask = osSetIntMask(1U);
+    item = (ALEventListItem *)arg0->allocList.next;
+    if (item != NULL) {
+        func_80020E74(&item->node);
+        bcopy(&item->evt, arg1, 0x10);
+        func_80020E40(&item->node, &arg0->freeList);
+        delta = item->delta;
+    } else {
+        arg1->type = -1;
+        delta = 0;
+    }
+    osSetIntMask(mask);
+    return delta;
+}
 
 void func_80026500(ALEventQueue *arg0, void *arg1, s32 arg2, s32 arg3) {
     void func_80020E40(ALLink *, ALLink *);

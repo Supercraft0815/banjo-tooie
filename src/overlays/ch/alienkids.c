@@ -1,5 +1,8 @@
 #include "ch/alienkids.h"
 
+void *func_80100094(Actor *, u32);
+Actor *func_80106790(Unk80132ED0 *);
+
 OSThread *chalienkids_entrypoint_0(void)
 {
     extern u8 D_808020DC_chalienkids[];
@@ -88,7 +91,22 @@ void func_80800408_chalienkids(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80800648_chalienkids.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80800D58_chalienkids.s")
+void func_80800D58_chalienkids(Actor *arg0, s32 arg1) {
+    s32 func_80101870(s32, s32);
+    void func_8010A764(s32, s32);
+    struct {
+        u8 pad0[0x30];
+        Unk80132ED0 *unk30;
+    } *data;
+
+    func_80101870(arg0, arg1);
+    if (arg0->unk7C_12) {
+        data = func_80100094(arg0, 0);
+        if (data->unk30 != NULL) {
+            func_8010A764(func_80106790(data->unk30), arg1);
+        }
+    }
+}
 
 void func_80800DB8_chalienkids(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
@@ -316,7 +334,6 @@ void func_808016D4_chalienkids(Actor *arg0) {
     s32 func_80101DDC(Actor *);
     void func_80102424(Actor *, s32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    extern f32 func_80800D68_chalienkids[];
     extern s32 D_80802260_chalienkids;
     f32 delta;
     s32 sp20;
@@ -330,7 +347,7 @@ void func_808016D4_chalienkids(Actor *arg0) {
         case 19:
             if (func_80101DDC(arg0)) {
                 func_80102424(arg0, 20);
-                arg0->unk58 = func_80800D68_chalienkids[arg0->unk6C_9];
+                arg0->unk58 = ((f32 *)((u8 *)func_80800D58_chalienkids + 0x10))[arg0->unk6C_9];
             }
             break;
         case 20:

@@ -199,6 +199,8 @@ def extract_function(text: str, symbol: str):
             depth = depth+1 if match[0] == '{' else max(0, depth-1)
             continue
         if depth:
+            # The definition-shaped match consumed an opening brace, even inside a body.
+            depth += 1
             continue
         before = clean[:match.start()]
         directives = [m.end() for m in re.finditer(r'(?m)^[ \t]*#.*$', before)]

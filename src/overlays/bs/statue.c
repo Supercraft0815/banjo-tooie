@@ -275,7 +275,38 @@ void func_80800A24_bsstatue(PlayerState *arg0) {
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_80800AA8_bsstatue.s")
+/* extern */
+
+void func_80800AA8_bsstatue(PlayerState *arg0) {
+    int baanim_isAt(PlayerState *, f32);
+    s32 baanim_isStopped();
+    s32 baflag_set(s32, s32);
+    s32 bs_setState(s32, s32);
+    void func_8009DBB0(PlayerState *, s32, f32, f32, s32);
+    s32 sp2C;
+
+    sp2C = 0;
+    bsstatue_entrypoint_0(arg0);
+    if (baanim_isAt(arg0, 0.05f) != 0) {
+        func_8009DBB0(arg0, 0x4A1, 0.88f, 0.92f, 0x1B58);
+    }
+    if (baanim_isAt(arg0, 0.4f) != 0) {
+        func_8009DBB0(arg0, 0x632, 0.6f, 0.65f, 0x2EE0);
+    }
+    if (baanim_isAt(arg0, 0.85f) != 0) {
+        func_8009DBB0(arg0, 0x4A1, 0.94f, 0.98f, 0x1770);
+    }
+    if (baanim_isAt(arg0, 0.5f) != 0) {
+        baflag_clear(arg0, 0x2B);
+    }
+    if (baanim_isAt(arg0, 0.3597f) != 0) {
+        baflag_set(arg0, 0x2B);
+    }
+    if (baanim_isStopped(arg0) != 0) {
+        sp2C = 0xF9;
+    }
+    bs_setState(arg0, sp2C);
+}
 
 s32 bsstatue_entrypoint_4(s32 arg0) {
     extern s32 D_808015C0_bsstatue[];
@@ -421,7 +452,7 @@ void func_80800ED4_bsstatue(PlayerState *arg0) {
 
 void func_80800F3C_bsstatue(PlayerState *arg0) {
     int baanim_isAt(PlayerState *, f32);
-    void func_8080147C_bsstatue();
+    void func_8080147C_bsstatue(PlayerState *);
 
 
     func_8080147C_bsstatue(arg0);
@@ -468,10 +499,10 @@ void func_80800FEC_bsstatue(register void *arg0) {
 
 /* extern */
 
-void func_80801060_bsstatue(s32 arg0) {
+void func_80801060_bsstatue(PlayerState *arg0) {
     int baanim_isAt(PlayerState *, f32);
-    void func_8080147C_bsstatue();
-    func_8080147C_bsstatue();
+    void func_8080147C_bsstatue(PlayerState *);
+    func_8080147C_bsstatue(arg0);
     if (baanim_isAt(arg0, 0.9f) != 0) {
         func_80800D84_bsstatue(arg0);
     }
@@ -612,4 +643,17 @@ s32 bsstatue_entrypoint_9(s32 arg0) {
     return ((s32 *)&D_80801610_bsstatue)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_8080147C_bsstatue.s")
+void func_8080147C_bsstatue(PlayerState *arg0) {
+    int baanim_isAt(PlayerState *, f32);
+    void func_8009DB04(PlayerState *, s32, f32, s32);
+
+    if (baanim_isAt(arg0, 0.16f) != 0) {
+        func_8009DB04(arg0, 0x632, 0.8f, 0x2EE0);
+    }
+    if (baanim_isAt(arg0, 0.39f) != 0) {
+        func_8009DB04(arg0, 0x632, 0.7f, 0x3E80);
+    }
+    if (baanim_isAt(arg0, 0.74f) != 0) {
+        func_8009DB04(arg0, 0x632, 0.6f, 0x4E20);
+    }
+}
