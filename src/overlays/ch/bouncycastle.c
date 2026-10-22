@@ -148,7 +148,60 @@ void func_80800254_chbouncycastle(BouncyCastleActor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bouncycastle/func_80800308_chbouncycastle.s")
+int func_80800308_chbouncycastle(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _capod_entrypoint_14(void);
+    void _chappearfx_entrypoint_1(Actor *, u32, u32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80101EE4(Actor *, f32);
+    void func_80102424(Actor *, s32);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    void func_80108B04(Actor *, u32);
+    struct {
+        s32 unk0;
+        f32 position[3];
+        s32 unk10;
+        f32 unk14;
+    } *data;
+    Actor *actor;
+    int result;
+
+    switch (arg1) {
+    case 0xB:
+        switch (arg2) {
+        case 1:
+            _capod_entrypoint_14();
+            _capod_entrypoint_13(arg0->unk0, NULL, 0xA, 0x2910);
+            func_80108B04(arg0, 0x210);
+            return 4;
+        default:
+            return 3;
+        }
+        break;
+    case 0x49:
+        switch (arg2) {
+        case 0x20:
+            func_80102424(arg0, 2);
+            func_80101EE4(arg0, 0.21590909f);
+            arg0->unk79_4 = 0;
+            _capod_entrypoint_13(arg0->unk0, NULL, 1, 0x2830);
+            return 1;
+        default:
+            return 0;
+        }
+        break;
+    case 0x3D:
+        data = func_80100094(arg0, 0);
+        actor = func_80108528(0x210, data->position, (s32)data->unk14, &arg0);
+        actor->unk74_7 = data->unk10;
+        _chappearfx_entrypoint_1(actor, 0x22, 1, 1.0f);
+        result = 1;
+        break;
+    default:
+        return 0;
+    }
+    return result;
+}
 
 /* extern */
 
