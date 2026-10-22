@@ -679,7 +679,45 @@ s32 func_80801A18_chtntmineshoot(s32 arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80801A54_chtntmineshoot.s")
+void func_80801A54_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
+    u32 func_800F54E4(void);
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    void func_800A7AD4(s32, s32);
+    s32 func_800F7F98(s32, u32);
+
+    switch (arg1) {
+        case 0xFA3:
+            func_80800078_chtntmineshoot(NULL, 0.95f);
+            func_80800150_chtntmineshoot(arg0);
+            func_800A7AD4(1, 5);
+            _gcgoto_entrypoint_1(0x163, 3);
+            break;
+        case 0xFA2:
+            _glcutDll_entrypoint_6(0x163, 0x18);
+            break;
+        case 0xFB3:
+            func_80801974_chtntmineshoot(arg0, 0xCEC);
+            break;
+        case 0xCEC:
+            func_800F7F98(func_800F54E4(), 0);
+            func_80800E64_chtntmineshoot(arg0, 9);
+            break;
+        case 0xFB4:
+        case 0xFB5:
+        case 0xFB6:
+            func_80800E64_chtntmineshoot(arg0, 0xC);
+            break;
+        case 0xCEB:
+            func_800F7F98(func_800F54E4(), 0);
+            if (arg2 > 0) {
+                _gcfrontend_entrypoint_11();
+            } else {
+                _gcfrontend_entrypoint_10();
+            }
+            break;
+    }
+}
 
 OSThread *chtntmineshoot_entrypoint_1(void)
 {
