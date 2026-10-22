@@ -552,14 +552,14 @@ void func_800F58CC(s32 arg0)
     func_80096394(D_80135490[arg0]);
 }
 
-void func_800F58F8(s32 arg0)
+s32 func_800F58F8(s32 arg0)
 {
-    func_800A3354(D_80135490[arg0]);
+    return func_800A3354(D_80135490[arg0]);
 }
 
-void func_800F5924(s32 arg0)
+s32 func_800F5924(s32 arg0)
 {
-    func_800A3360(D_80135490[arg0]);
+    return func_800A3360(D_80135490[arg0]);
 }
 
 /* extern */
@@ -1962,7 +1962,26 @@ void *func_800F88A0(s32 arg0) {
     return (void *)result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F8914.s")
+s32 func_800F8914(u8 *arg0, s32 arg1) {
+    s32 _plcamera_entrypoint_14(s32, s32, s32);
+    s32 func_800EA05C();
+    s32 func_800EA090(void);
+    s32 func_800F9214();
+    s32 result;
+    func_800F5A00(arg1, (f32 *)(arg0 + 0x24));
+    func_800F5B38(arg1, (f32 *)(arg0 + 0x30));
+    _plcamera_entrypoint_14(arg1, (s32)(arg0 + 4), (s32)(arg0 + 0x10));
+    *(s8 *)(arg0 + 2) = func_800F9214(arg1);
+    *(s8 *)arg0 = func_800F5410(arg1);
+    *(s8 *)(arg0 + 1) = func_800F65D0(arg1);
+    *(s16 *)(arg0 + 0x22) = func_800EA05C();
+    *(s8 *)(arg0 + 0x21) = func_800EA090();
+    *(s8 *)(arg0 + 0x20) = 2;
+    *(s8 *)(arg0 + 0x1D) = func_800F58F8(arg1);
+    result = func_800F5924(arg1);
+    *(s8 *)(arg0 + 0x1C) = result;
+    return result;
+}
 
 s32 func_800F89BC(void) {
     if (D_801354F8 == 2) {
