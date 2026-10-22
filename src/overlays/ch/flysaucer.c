@@ -783,7 +783,86 @@ void func_808021C0_chflysaucer(Actor *arg0, u8 *arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80802290_chflysaucer.s")
+void func_80802290_chflysaucer(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    struct anctrl_s *func_80104200(s16);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    void func_8008ADE4(struct anctrl_s *);
+    void func_80016068(u32, f32 *);
+    struct {
+        s16 control0;
+        s16 control1;
+        f32 stick[2];
+        u8 padC[0x18];
+        u8 mode;
+        u8 pad25[2];
+        u8 direction;
+    } *data;
+    struct anctrl_s *control1;
+    struct anctrl_s *control0;
+    f32 stick[2];
+    f32 x;
+    f32 y;
+    f32 absX;
+    f32 absY;
+    s32 direction;
+
+    data = func_80100094(arg0, 0);
+    if (data->mode == 2) {
+        control1 = func_80104200(data->control1);
+        control0 = func_80104200(data->control0);
+        direction = 0;
+        func_80016068(0, stick);
+        x = stick[0] - data->stick[0];
+        y = stick[1] - data->stick[1];
+        absX = x > 0.0f ? x : -x;
+        absY = y > 0.0f ? y : -y;
+        if (absX > absY) {
+            if (x > 0.25f) {
+                direction = 4;
+            } else if (x < -0.25f) {
+                direction = 3;
+            }
+        } else if (y > 0.25f) {
+            direction = 2;
+        } else if (y < -0.25f) {
+            direction = 1;
+        }
+        if (direction != data->direction) {
+            switch (direction) {
+                case 0:
+                    break;
+                case 3:
+                    anctrl_setIndex(control1, 0x484);
+                    anctrl_setIndex(control0, 0x489);
+                    break;
+                case 4:
+                    anctrl_setIndex(control1, 0x485);
+                    anctrl_setIndex(control0, 0x48A);
+                    break;
+                case 1:
+                    anctrl_setIndex(control1, 0x482);
+                    anctrl_setIndex(control0, 0x487);
+                    break;
+                case 2:
+                    anctrl_setIndex(control1, 0x483);
+                    anctrl_setIndex(control0, 0x488);
+                    break;
+            }
+            if (direction != 0) {
+                anctrl_setPlaybackType(control1, 1);
+                anctrl_start(control1);
+                anctrl_setPlaybackType(control0, 1);
+                anctrl_start(control0);
+            }
+            data->direction = direction;
+        }
+        func_8008ADE4(control1);
+        func_8008ADE4(control0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808024E0_chflysaucer.s")
 
