@@ -36,7 +36,66 @@ void func_80800068_chfactoryworkerdirty(s32 *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_808000AC_chfactoryworkerdirty.s")
+int func_808000AC_chfactoryworkerdirty(Actor *arg0, s32 arg1) {
+    s32 _glcutDll_entrypoint_20();
+    s32 _subaddieaudioquick_entrypoint_2();
+    void func_80102424(Actor *, s32);
+    s32 func_801032B0(Actor *, u16, u16);
+    void func_80800AF8_chfactoryworkerdirty();
+    extern s32 D_80800F80_chfactoryworkerdirty;
+    struct {
+        s32 unk0;
+        s32 unk4;
+        f32 unk8;
+        f32 unkC;
+        u8 unk10;
+    } *data;
+    u8 state;
+
+    data = func_80100094(arg0, 0U);
+    switch (arg1) {
+    case 3:
+        func_8080000C_chfactoryworkerdirty(arg0);
+        func_801032B0(arg0, 0x83B, arg0->unk0->unk16);
+        func_80102424(arg0, 2);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800F80_chfactoryworkerdirty);
+        break;
+    case 4:
+        func_80800068_chfactoryworkerdirty(&data->unk0, 1, 1);
+        break;
+    case 5:
+        func_80800068_chfactoryworkerdirty(&data->unk0, 1, 2);
+        break;
+    case 6:
+        func_80800068_chfactoryworkerdirty(&data->unk0, 1, 3);
+        break;
+    case 7:
+    case 8:
+        func_80102424(arg0, 4);
+        func_801032B0(arg0, 0x803, arg0->unk0->unk16);
+        state = data->unk10;
+        if (state != 1) {
+            if (state == 6) {
+                func_8080002C_chfactoryworkerdirty(arg0);
+                data->unk8 = 8.0f;
+                data->unkC = 0.0f;
+                func_80800AF8_chfactoryworkerdirty(arg0);
+                arg0->unk74_30 = 0;
+            }
+        } else {
+            if (_glcutDll_entrypoint_20() != 0) {
+                data->unk8 = 8.0f;
+                data->unkC = 0.0f;
+            } else {
+                data->unk8 = 0.0f;
+            }
+            arg0->unk74_30 = 1;
+            func_801032B0(arg0, 0x803, arg0->unk0->unk16);
+        }
+        break;
+    }
+    data->unk10 = arg1;
+}
 
 void func_8080025C_chfactoryworkerdirty(Actor *arg0) {
     s32 _glcutDll_entrypoint_20(void);
