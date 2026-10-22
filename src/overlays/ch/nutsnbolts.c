@@ -52,7 +52,34 @@ void func_808008FC_chnutsnbolts(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nutsnbolts/func_8080092C_chnutsnbolts.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nutsnbolts/func_80800A88_chnutsnbolts.s")
+s32 func_80800A88_chnutsnbolts(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_8080092C_chnutsnbolts(Actor *, s32);
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    int func_800DC298(f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010C500(void *);
+    s32 func_8010C9B0(f32 *, s32);
+    u8 *data;
+
+    data = func_80100094(arg0, 0U);
+    if (arg0->unk64_29) {
+        func_8080092C_chnutsnbolts(arg0, arg2);
+        return 1;
+    }
+    if (arg0->unk58 > 0.0f) {
+        return 0;
+    }
+    if (data[0x16] != 0) {
+        func_8080092C_chnutsnbolts(arg0, arg2);
+        return 1;
+    }
+    if (((arg1 != 0) || ((_subaddierouteDll_entrypoint_4(arg0) != 0) && (func_800DC298(0.2f) != 0))) &&
+        (func_8010C9B0(arg0->position, 1500) != 0) && (func_8010C500(arg0) != 0)) {
+        func_8080092C_chnutsnbolts(arg0, arg2);
+        return 1;
+    }
+    return 0;
+}
 
 void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
 void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
