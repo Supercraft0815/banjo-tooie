@@ -417,6 +417,9 @@ def known_declarations(state, symbols, limit=1500):
 def seed_matches(root, state):
     for row in state.db.execute("SELECT * FROM functions WHERE status='matched' AND best_run IS NOT NULL AND best_source IS NOT NULL").fetchall():
         f = dict(row)
+        # Splat omits already matched functions when a source unit is split.
+        if not (root/f['asm']).is_file():
+            continue
         current = state.db.execute('SELECT replacement FROM solutions WHERE function_id=?', (f['id'],)).fetchone()
         if current:
             remember(root, state, f, current[0], f['commit_sha'] or f['best_run'])

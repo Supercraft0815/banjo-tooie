@@ -95,6 +95,18 @@ class RelocationTests(fixtures.Fixture):
             self.state.update(self.function['id'], status='blocked')
             self.assertEqual(refresh_repairs(self.root, self.state), [])
 
+    def test_missing_reference_after_split_keeps_verified_knowledge(self):
+        code = 'void target(void) { int dependency(void); dependency(); }'
+        remember(self.root, self.state, self.function, code, 'verified')
+        self.state.update(self.function['id'], status='matched', best_run='verified',
+                          best_source=fixtures.CANDIDATE.encode(), attempts=3)
+        tables = ('functions', 'solutions', 'prototypes', 'patterns')
+        before = {t: list(self.state.db.execute('SELECT * FROM '+t)) for t in tables}
+        (self.root/self.function['asm']).unlink()
+        seed_matches(self.root, self.state)
+        self.assertEqual(before, {t: list(self.state.db.execute('SELECT * FROM '+t)) for t in tables})
+        self.assertIn('int dependency', known_declarations(self.state, ['dependency']))
+
     def test_repaired_prototypes_replace_old_knowledge_after_restart(self):
         old = 'void target(void) { int dependency(void); dependency(); }'
         new = old.replace('int dependency', 'float dependency')
