@@ -452,7 +452,79 @@ s32 func_80800CB8_ncpoducam(s16 arg0, s32 arg1) {
     return var_s0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/func_80800D28_ncpoducam.s")
+void func_80800D28_ncpoducam(u8 *arg0) {
+    s32 _cadbfunc_entrypoint_0(u8 *);
+    s32 _cadbfunc_entrypoint_2(s32);
+    s32 _cadbfunc_entrypoint_12(f32 *);
+    s32 _cadbfunc_entrypoint_14(f32 *);
+    s32 _cadbfunc_entrypoint_16(s16 *);
+    void _cadbfunc_entrypoint_24(s32 *);
+    s32 _cadbfunc_entrypoint_29(s32, s32 *);
+    void _susplinet_entrypoint_0(void *, s32, u32, u32);
+    void _susplinet_entrypoint_1(void *, s32, s32);
+    s16 *_susplinet_entrypoint_12(void *);
+    s16 *_susplinet_entrypoint_13(void *);
+    void *_susplinet_entrypoint_14(void *, s32);
+    f32 *_susplinet_entrypoint_15(void *, s32);
+    u32 _susplinet_entrypoint_18(s32, u32, u32);
+    void _susplinet_entrypoint_19(void *, s32, u32, u32);
+    s16 func_8001B668(s32, s32);
+    void *func_8001B798(s16);
+    s32 func_800A5800(s16);
+    u8 *vectors[2];
+    f32 *values[2];
+    s32 count;
+    void *spline;
+    s16 *indices;
+    s16 handle;
+    s16 i;
+    s16 *links;
+    s32 data;
+    s32 j;
+    s32 size;
+    s32 flag;
+
+    count = func_80800CB8_ncpoducam(*(s16 *)(arg0 + 0x58), arg0[0x60]);
+    size = _susplinet_entrypoint_18(count, 2, 2);
+    *(s16 *)(arg0 + 2) = func_8001B668(0, size);
+    spline = func_8001B798(*(s16 *)(arg0 + 2));
+    _susplinet_entrypoint_19(spline, count, 2, 2);
+    _susplinet_entrypoint_1(spline, 1, 1);
+    for (j = 0; j < 2; j++) {
+        vectors[j] = _susplinet_entrypoint_14(spline, j);
+    }
+    for (j = 0; j != 2; j++) {
+        values[j] = _susplinet_entrypoint_15(spline, j);
+    }
+    indices = _susplinet_entrypoint_12(spline);
+    links = _susplinet_entrypoint_13(spline);
+    handle = *(s16 *)(arg0 + 0x58);
+    i = 0;
+    while (handle != -1) {
+        func_800A5800(handle);
+        _cadbfunc_entrypoint_0(vectors[0]);
+        _cadbfunc_entrypoint_2((s32)vectors[1]);
+        *links = -1;
+        _cadbfunc_entrypoint_12(values[0]);
+        _cadbfunc_entrypoint_24(&data);
+        *indices = data;
+        _cadbfunc_entrypoint_14(values[1]);
+        _cadbfunc_entrypoint_29(0x100, &flag);
+        _susplinet_entrypoint_0(spline, i, 2, flag);
+        _cadbfunc_entrypoint_29(0x200, &flag);
+        _susplinet_entrypoint_0(spline, i, 4, flag);
+        _cadbfunc_entrypoint_29(0x400, &flag);
+        _susplinet_entrypoint_0(spline, i, 1, flag);
+        indices++;
+        links++;
+        vectors[0] += 12;
+        vectors[1] += 12;
+        values[0]++;
+        values[1]++;
+        i++;
+        _cadbfunc_entrypoint_16(&handle);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/func_80800F64_ncpoducam.s")
 
