@@ -44,7 +44,56 @@ void func_8080000C_chboggyboy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/boy/func_808000B8_chboggyboy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/boy/func_80800570_chboggyboy.s")
+typedef union {
+    s32 word;
+    struct { s16 high; s16 low; } halves;
+} BoggyBoyMessage;
+
+s32 func_80800570_chboggyboy(Actor *arg0, s32 arg1, BoggyBoyMessage arg2) {
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    void func_800C9C70(f32, u32, f32, u32, f32 *, f32, f32);
+    s32 func_800DA980(s32, s32);
+    void func_808006C4_chboggyboy(Actor *, s32, s32);
+    void func_80800978_chboggyboy(Actor *, s32);
+    void func_80800A64_chboggyboy(Actor *);
+    void func_80800AD0_chboggyboy(Actor *);
+    extern u32 D_80800D10_chboggyboy;
+    extern s32 D_80800D20_chboggyboy;
+    f32 *position;
+
+    switch (arg1) {
+    case 0x2E:
+        func_808006C4_chboggyboy(arg0, arg2.halves.high, arg2.halves.low);
+        break;
+    case 0x40:
+        func_80800978_chboggyboy(arg0, arg2.word);
+        break;
+    case 0x95:
+        _subaddierouteDll_entrypoint_1(arg0);
+        break;
+    case 0x29:
+        func_80800A64_chboggyboy(arg0);
+        break;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_80800D10_chboggyboy, arg0->scale);
+        break;
+    case 0x2D:
+        position = arg0->position;
+        _subaddieaudioquick_entrypoint_2(arg0, position, &D_80800D20_chboggyboy);
+        func_800C9C70(1.0f, 0x525, 1.05f, 0x55F0, position, 200.0f, 3000.0f);
+        break;
+    case 0x30:
+        return 3 - func_800DA980(0x8C, 3);
+    case 0x2A:
+        func_80800AD0_chboggyboy(arg0);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_808006C4_chboggyboy(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _subaddieDll_entrypoint_4(void *, s32);
