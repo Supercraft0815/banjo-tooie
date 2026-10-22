@@ -337,7 +337,40 @@ void func_80800BE8_chstonedartgunhead(u8 *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x58))) = 4.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/func_80800C28_chstonedartgunhead.s")
+void func_80800C28_chstonedartgunhead(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    f32 func_800D8FF8(void);
+    u8 func_800D9078(f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    void func_800FFAB0(Actor *);
+    void func_80101FDC(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    s32 func_8010B990(Actor *, s32);
+    extern s32 D_80800F58_chstonedartgunhead[];
+    extern u8 D_80800FA0_chstonedartgunhead[];
+
+    switch (arg0->unk70_10) {
+        case 1:
+            func_800EF214(arg0->position, arg0->rotation[0], arg0->rotation[1],
+                         ((f32 *)arg0->actorData)[3] * func_800D8FF8());
+            if (func_800EEB40((f32 *)arg0->actorData, arg0->position) > 22500.0f) {
+                func_80101FDC(arg0, 10);
+            }
+            break;
+        case 10:
+            if (func_800D9078(&arg0->unk58) || func_8010B990(arg0, 0x100006)) {
+                func_80102424(arg0, 9);
+            }
+            break;
+        case 9:
+            func_800BBCB8(arg0->position, NULL, arg0->scale, 2, D_80800F58_chstonedartgunhead);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800FA0_chstonedartgunhead);
+            func_800FFAB0(arg0);
+            break;
+    }
+}
 
 int func_80800D50_chstonedartgunhead(Actor *arg0, s32 arg1, u8 *arg2) {
     void func_80102424(Actor*, s32);
