@@ -3492,7 +3492,60 @@ s32 func_808070C0_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     return arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080714C_chgameselect.s")
+void func_8080714C_chgameselect(Actor *arg0, s32 (*arg1)(s32), s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) {
+    typedef struct {
+        s32 entries[4];
+        char *texts[4];
+        char *buffer;
+        s16 winner;
+    } GameSelectScoreData;
+    void *func_80100094(Actor *, u32);
+    u32 func_800AA194(void);
+    void func_800AA220(s32, s32);
+    void _sumultiscore_entrypoint_0(s32 *, s32 *, s32);
+    void _sumultiscore_entrypoint_1(s32 *, s32 *, s32);
+    int _gczoombox_entrypoint_8();
+    void _gczoombox_entrypoint_27(s32, s16 *);
+    extern s32 B_80808560_chgameselect[];
+    extern s16 D_808084FC_chgameselect[];
+    s32 i;
+    GameSelectScoreData *data;
+    s32 scores[4];
+    s32 players[4];
+
+    data = func_80100094(arg0, 0);
+    for (i = 0; i < arg0->unk6C_0; i++) {
+        scores[i] = arg1(i);
+        players[i] = i + 1;
+    }
+    if (arg6 || !func_800AA194()) {
+        _sumultiscore_entrypoint_0(scores, players, arg0->unk6C_0);
+    } else {
+        _sumultiscore_entrypoint_1(scores, players, arg0->unk6C_0);
+    }
+    for (i = 0; i < arg0->unk6C_0; i++) {
+        B_80808560_chgameselect[0] = players[i];
+        B_80808560_chgameselect[1] = scores[i];
+        if (i > 0 && scores[i] == scores[i - 1]) {
+            B_80808560_chgameselect[2] = B_80808560_chgameselect[2];
+        } else {
+            B_80808560_chgameselect[2] = 4 - i;
+        }
+        if (scores[i] == scores[0]) {
+            data->winner = i + 1;
+        }
+        if (arg5 && !arg0->unk64_19) {
+            func_800AA220(players[i] - 1, B_80808560_chgameselect[2]);
+        }
+        func_80803E94_chgameselect(data->texts[i], 0x18F3,
+            B_80808560_chgameselect[arg2] == 1 ? arg4 : arg3, 3, B_80808560_chgameselect);
+        _gczoombox_entrypoint_8(data->entries[i], data->texts[i]);
+        _gczoombox_entrypoint_27(data->entries[i], D_808084FC_chgameselect);
+    }
+    if (arg5) {
+        arg0->unk64_19 = 1;
+    }
+}
 
 void func_808073AC_chgameselect(Actor *arg0) {
     typedef struct {
