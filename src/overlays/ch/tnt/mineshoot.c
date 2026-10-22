@@ -532,7 +532,45 @@ void func_80801128_chtntmineshoot(Actor *arg0) {
     func_800FE820(var_f0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_808011D4_chtntmineshoot.s")
+void func_808011D4_chtntmineshoot(Actor *arg0) {
+    s32 func_800CEAD0(s32);
+    s32 func_800D2498(u32, s32, u32);
+    s32 func_800D24E8(s32, s32, u32);
+    f32 func_800D8FF8(void);
+    f32 func_800F13F0(f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80801318_chtntmineshoot(Actor *);
+    void func_8080146C_chtntmineshoot(Actor *);
+    struct { s32 value; s32 unk4; f32 time; } *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+    case 2:
+        func_800D24E8(0x102, data->value, 0);
+        break;
+    case 3:
+        func_800D24E8(0x102, data->value, 0);
+        func_80801128_chtntmineshoot(arg0);
+        if (func_800CEAD0(0)) {
+            func_80800E64_chtntmineshoot(arg0, 5);
+        }
+        break;
+    case 5:
+        func_80801318_chtntmineshoot(arg0);
+        break;
+    case 9:
+        data->time = func_800F13F0(func_800D8FF8() + data->time, 999.0f);
+        func_800D2498(0x102, data->value, 0);
+        func_800D2498(0xCC, (s32)data->time, 0);
+        break;
+    case 11:
+        func_800D2498(0xCC, (s32)data->time, 0);
+        break;
+    case 10:
+        func_8080146C_chtntmineshoot(arg0);
+        break;
+    }
+}
 
 void func_80801318_chtntmineshoot(Actor *arg0) {
     void func_800C301C(u8, s32);
