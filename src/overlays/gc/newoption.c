@@ -302,7 +302,73 @@ update_timer:
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_1.s")
+/* extern */
+
+void gcnewoption_entrypoint_1(u8 *arg0, s32 arg1) {
+    struct RenderOption {
+        s16 state;
+        s16 count;
+        u8 pad4[0x10];
+        f32 spacing;
+        u8 pad18[8];
+        s32 box;
+        u8 pad24[0x10];
+        s16 height;
+        u8 pad36[6];
+        s32 boxes[17];
+        f32 positions[17];
+        u8 padC4[0x192];
+        s16 offset;
+    };
+    s32 _gczoombox_entrypoint_2(s32, s32);
+    void _gczoombox_entrypoint_28(s32, s16);
+    s32 _gczoombox_entrypoint_29(s32);
+    s32 _gczoombox_entrypoint_38(s32, s32);
+    f32 savedPosition;
+    s32 savedHeight;
+    s32 index;
+    s32 i;
+    int count;
+    struct RenderOption *box;
+    struct RenderOption *entry;
+
+    if (((struct RenderOption *)arg0)->state >= 2 && ((struct RenderOption *)arg0)->state < 12) {
+        i = 0;
+        box = ((struct RenderOption *)arg0);
+        if (((struct RenderOption *)arg0)->count > 0) {
+            do {
+                index = func_80800000_gcnewoption((u8 *)((struct RenderOption *)arg0), i);
+                _gczoombox_entrypoint_2(box->boxes[0], arg1);
+                entry = (struct RenderOption *)((u8 *)((struct RenderOption *)arg0) + index * 4);
+                if (entry->positions[0] < ((struct RenderOption *)arg0)->spacing) {
+                    savedPosition = entry->positions[0];
+                    savedHeight = _gczoombox_entrypoint_29(entry->boxes[0]);
+                    _gczoombox_entrypoint_28(entry->boxes[0], ((struct RenderOption *)arg0)->height);
+                    _gczoombox_entrypoint_38(entry->boxes[0], entry->positions[0] + ((struct RenderOption *)arg0)->spacing * ((struct RenderOption *)arg0)->count + ((struct RenderOption *)arg0)->offset);
+                    _gczoombox_entrypoint_2(entry->boxes[0], arg1);
+                    _gczoombox_entrypoint_38(entry->boxes[0], ((struct RenderOption *)arg0)->offset + savedPosition);
+                    _gczoombox_entrypoint_28(entry->boxes[0], (s16)savedHeight);
+                }
+                count = ((struct RenderOption *)arg0)->count;
+                if (((struct RenderOption *)arg0)->spacing * count < entry->positions[0]) {
+                    savedPosition = entry->positions[0];
+                    savedHeight = _gczoombox_entrypoint_29(entry->boxes[0]);
+                    _gczoombox_entrypoint_28(entry->boxes[0], ((struct RenderOption *)arg0)->height);
+                    _gczoombox_entrypoint_38(entry->boxes[0], entry->positions[0] - ((struct RenderOption *)arg0)->spacing * ((struct RenderOption *)arg0)->count + ((struct RenderOption *)arg0)->offset);
+                    _gczoombox_entrypoint_2(entry->boxes[0], arg1);
+                    _gczoombox_entrypoint_38(entry->boxes[0], ((struct RenderOption *)arg0)->offset + savedPosition);
+                    _gczoombox_entrypoint_28(entry->boxes[0], (s16)savedHeight);
+                }
+                count = ((struct RenderOption *)arg0)->count;
+                i++;
+                box = (struct RenderOption *)((u8 *)box + 4);
+            } while (i < count);
+        }
+        if (((struct RenderOption *)arg0)->box != 0) {
+            _gczoombox_entrypoint_2(((struct RenderOption *)arg0)->box, arg1);
+        }
+    }
+}
 
 int gcnewoption_entrypoint_2(void)
 {
