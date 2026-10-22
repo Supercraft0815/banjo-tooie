@@ -360,7 +360,45 @@ s32 func_808016D0_chchuffy(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_808017D4_chchuffy.s")
+void func_808017D4_chchuffy(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    s32 func_800DA298(s32);
+    void func_800DA3B8(s32, s32);
+    s32 func_800DA9E4(s32, s32);
+    s32 func_800EA05C();
+    void _glcutDll_entrypoint_6(u32, u32);
+    Actor *sp24;
+
+    sp24 = func_80100094(arg0, 0);
+    if (arg0->unk70_10 == 5) {
+        func_8010A570(arg0);
+    }
+    func_80102424(arg0, arg1);
+    switch (arg0->unk70_10) {
+        case 6:
+            func_80800EF4_chchuffy((Unk80132ED0 *)arg0);
+            sp24->scale = 1.2f;
+            break;
+        case 8:
+            func_800DA3B8(0x6E4, func_800DA298(0x6B7));
+            if (func_800DA9E4(0x6B7, 0)) {
+                _glcutDll_entrypoint_6(func_800EA05C(), 0x72);
+            }
+            arg0->unk74_30 = 0;
+            func_80800F54_chchuffy(arg0);
+            func_808001DC_chchuffy();
+            break;
+        case 5:
+            func_8010A590(arg0);
+            break;
+        case 1:
+            func_8010A590(arg0);
+            break;
+    }
+}
 
 void func_808018F8_chchuffy(Actor *arg0) {
     s32 func_800DA298(s32);
