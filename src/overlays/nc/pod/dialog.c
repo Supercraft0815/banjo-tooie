@@ -70,7 +70,38 @@ s32 func_80800128_ncpoddialog(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 *a
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80800338_ncpoddialog.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80800584_ncpoddialog.s")
+s32 func_80800584_ncpoddialog(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *arg4, s32 arg5, s32 *arg6, s32 *arg7) {
+    f32 point[2];
+    s32 result = 0;
+
+    func_80800128_ncpoddialog(arg0, point, arg3, arg4, arg7);
+    if (*arg6 == 0) {
+        arg1[0] = point[0];
+        result = 2;
+        arg1[1] = point[1];
+        arg2[0] = point[0];
+        arg2[1] = point[1];
+        *arg6 = 1;
+    } else {
+        if (point[0] < arg1[0]) {
+            arg1[0] = point[0];
+            result = 1;
+        }
+        if (arg2[0] < point[0]) {
+            arg2[0] = point[0];
+            result = 1;
+        }
+        if (point[1] < arg1[1]) {
+            arg1[1] = point[1];
+            result = 1;
+        }
+        if (arg2[1] < point[1]) {
+            arg2[1] = point[1];
+            result = 1;
+        }
+    }
+    return result;
+}
 
 s32 func_80800698_ncpoddialog(void *arg0) {
     switch (*(s8 *)((s8 *)arg0 + 0x211)) {
