@@ -711,7 +711,67 @@ void func_808010B8_bsbswim(void *arg0) {
     _baswim_entrypoint_6(arg0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_808011C0_bsbswim.s")
+void func_808011C0_bsbswim(void *arg0) {
+    void _basudie_entrypoint_0(struct player_state_s *);
+    s32 _batimer_decrement(void *, s32);
+    void _batimer_increment(struct player_state_s *, s32);
+    s32 _batimer_isAt_rising(struct player_state_s *, s32, f32);
+    s32 _batimer_isGreaterThan(struct player_state_s *, s32, f32);
+    void _batimer_set(struct player_state_s *, s32, f32);
+    void _ncbadie_entrypoint_3(struct player_state_s *, f32);
+    void baphysics_set_vertical_velocity(struct player_state_s *, f32);
+    void func_800A0180(struct player_state_s *);
+    struct player_state_s *func_800A4CA8(struct player_state_s *);
+    void func_800A4DA4(struct player_state_s *, s32);
+    void func_8009B94C(u8 *, f32 *);
+    void func_8009BA9C(struct player_state_s *, f32 *);
+    void func_8009C128(struct player_state_s *, f32 *);
+    void func_8009DF18(struct player_state_s *, s32, f32, s32);
+    s32 func_8009FBB0(struct player_state_s *, f32 *, f32);
+    void func_800BA22C(s32, s32);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    void func_800EF4E4(f32 *, f32, f32, f32, f32, f32);
+    s32 bs_setState(s32, s32);
+    s32 next_state;
+    f32 sp48[3];
+    s32 sp44;
+    f32 sp38[3];
+
+    next_state = 0;
+    func_800EF4E4(sp48, -90.0f, 0.0f, 0.0f, 0.0f, 100.0f);
+    func_8009B94C(arg0, sp48);
+    func_8009BA9C(arg0, sp48);
+    _batimer_increment(arg0, 1);
+    if (_batimer_isAt_rising(arg0, 1, 0.2f) ||
+        _batimer_isAt_rising(arg0, 1, 0.8f) ||
+        _batimer_isAt_rising(arg0, 1, 1.4f)) {
+        func_8009DF18(arg0, 0x468, 1.0f, 0x5DC0);
+    }
+    if (!func_8001210C(1)) {
+        func_8009C128(arg0, sp38);
+        sp38[1] += 60.0f;
+        sp44 = func_8009FBB0(arg0, sp38, 25.0f);
+        func_800BA930(sp44, -60, -50, -60, 60, 100, 60);
+        func_800BA22C(sp44, 1);
+    }
+    if (_batimer_isGreaterThan(arg0, 1, 1.55f)) {
+        baphysics_set_vertical_velocity(arg0, -50.0f);
+    }
+    if (_batimer_isAt_rising(arg0, 1, 1.9f)) {
+        func_800A4DA4(arg0, 10);
+        _ncbadie_entrypoint_3(func_800A4CA8(arg0), 80.0f);
+        if (*(s32 *)((u8 *)arg0 + 0x15C)) {
+            _batimer_set(arg0, 0, 0.5f);
+        } else {
+            func_800A0180(arg0);
+            _batimer_set(arg0, 0, 3.5f);
+        }
+    }
+    if (_batimer_decrement(arg0, 0)) {
+        _basudie_entrypoint_0(arg0);
+    }
+    bs_setState((s32)arg0, next_state);
+}
 
 void func_808013C4_bsbswim(s32 arg0) {
     _baswim_entrypoint_6(arg0, 1);
