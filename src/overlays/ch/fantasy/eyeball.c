@@ -295,7 +295,67 @@ OSThread *chfantasyeyeball_entrypoint_0(void)
     return (OSThread *) D_80801F28_chfantasyeyeball;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_8080182C_chfantasyeyeball.s")
+void func_8080182C_chfantasyeyeball(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    f32 func_80013970(f32);
+    s32 func_800B53A4(s32);
+    void func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 *func_800BF340(f32[3], f32[3], f32[3], s32, f32);
+    f32 func_800D8FF8(void);
+    int func_800D91EC(f32 *, f32);
+    s32 func_800DC128(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF174(f32[3], f32[3], f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_800EFDE8(f32 *, u8 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_80801BC4_chfantasyeyeball(Actor *, f32 *);
+    extern s32 D_80801F70_chfantasyeyeball[];
+    extern u32 D_80801FB0_chfantasyeyeball[];
+    typedef struct {
+    f32 position[3];
+    f32 timer;
+    f32 velocity[3];
+    f32 amplitude;
+   
+    }
+    EyeballData;
+    f32 sp4C[3];
+    f32 sp40[3];
+    s32 sp3C;
+    if (func_800D91EC(&((EyeballData *)arg0->actorData)->timer, 5.0f)) {
+    func_80801BC4_chfantasyeyeball(arg0, NULL);
+    return;
+   
+    }
+    func_800EE7F8(sp4C, arg0->position);
+    if (((EyeballData *)arg0->actorData)->timer <= arg0->unk58) {
+    func_800EF174(((EyeballData *)arg0->actorData)->position, ((EyeballData *)arg0->actorData)->velocity, func_800D8FF8());
+    func_800EFA4C(arg0->position, ((EyeballData *)arg0->actorData)->position[0], ((EyeballData *)arg0->actorData)->position[1] + (func_80013970(func_800F10B4(((EyeballData *)arg0->actorData)->timer, 0.0f, arg0->unk58, 0.0f, 180.0f)) * ((EyeballData *)arg0->actorData)->amplitude), ((EyeballData *)arg0->actorData)->position[2]);
+   
+    }
+    else {
+    ((EyeballData *)arg0->actorData)->velocity[1] += -2000.0f * func_800D8FF8();
+    func_800EF174(arg0->position, ((EyeballData *)arg0->actorData)->velocity, func_800D8FF8());
+   
+    }
+    if (func_800BF340(sp4C, arg0->position, sp40, 0x20020, arg0->scale * 33.0f)) {
+    func_800EFB24(((EyeballData *)arg0->actorData)->position, arg0->position, sp4C);
+    func_800EFDE8(((EyeballData *)arg0->actorData)->position, (u8 *)((EyeballData *)arg0->actorData)->position, sp40);
+    func_800EFB24(((EyeballData *)arg0->actorData)->position, arg0->position, ((EyeballData *)arg0->actorData)->position);
+    func_80801BC4_chfantasyeyeball(arg0, ((EyeballData *)arg0->actorData)->position);
+    return;
+   
+    }
+    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_80801FB0_chfantasyeyeball);
+    sp3C = func_800B53A4(1);
+    func_800BA3FC(sp3C, func_800DC128(0, 9) + 0x9DF);
+    func_800BABB8(sp3C, arg0->position, NULL, 1.0f, D_80801F70_chfantasyeyeball);
+    arg0->rotation[0] += arg0->unk50 * func_800D8FF8();
+    arg0->rotation[1] += arg0->unk54 * func_800D8FF8();
+    }
 
 s32 func_80801A50_chfantasyeyeball(Actor *arg0, s32 arg1, Unk80132ED0 *volatile arg2) {
     void _chskeletonexplode_entrypoint_3(Actor *, s32, s32);
