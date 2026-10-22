@@ -702,7 +702,99 @@ s32 func_800E659C(void *arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E6728.s")
+s32 func_800E6728(void *arg0) {
+    struct decoder {
+        u8 *input;
+        s32 input_pos;
+        u8 *output;
+        u32 bits;
+        u32 count;
+        s32 output_pos;
+        s32 unused18[6];
+        s32 offset;
+    };
+    void func_8001311C(u8 *, s32);
+    struct decoder *d = arg0;
+    s32 unused;
+    struct { u8 *ptr; s32 padding[2]; } output;
+    u8 *input;
+    u32 count;
+    u32 bits;
+    u32 length;
+    s32 output_pos;
+    s32 pos;
+    u32 align;
+
+    output.ptr = d->output;
+    count = d->count;
+    bits = d->bits;
+    output_pos = d->output_pos;
+    align = count & 7;
+    count -= align;
+    bits >>= align;
+    if (count < 16) {
+        input = d->input;
+        do {
+            pos = d->input_pos;
+            if (pos >= 0x1800) {
+                d->input_pos = 0;
+                func_8001311C(input, d->offset);
+                pos = d->input_pos;
+                d->offset += 0x1800;
+                input = d->input;
+            }
+            bits |= input[pos] << count;
+            d->input_pos = pos + 1;
+            count += 8;
+        } while (count < 16);
+    }
+    length = bits & 0xFFFF;
+    bits >>= 16;
+    count -= 16;
+    if (count < 16) {
+        input = d->input;
+        do {
+            pos = d->input_pos;
+            if (pos >= 0x1800) {
+                d->input_pos = 0;
+                func_8001311C(input, d->offset);
+                pos = d->input_pos;
+                d->offset += 0x1800;
+                input = d->input;
+            }
+            bits |= input[pos] << count;
+            d->input_pos = pos + 1;
+            count += 8;
+        } while (count < 16);
+    }
+    bits >>= 16;
+    count -= 16;
+    while (length--) {
+        if (count < 8) {
+            input = d->input;
+            do {
+                pos = d->input_pos;
+                if (pos >= 0x1800) {
+                    d->input_pos = 0;
+                    func_8001311C(input, d->offset);
+                    pos = d->input_pos;
+                    d->offset += 0x1800;
+                    input = d->input;
+                }
+                bits |= input[pos] << count;
+                d->input_pos = pos + 1;
+                count += 8;
+            } while (count < 8);
+        }
+        output.ptr[output_pos++] = bits;
+        bits >>= 8;
+        count -= 8;
+    }
+    d->output_pos = output_pos;
+    d->bits = bits;
+    d->count = count;
+    return 0;
+}
 
 void func_800E692C(void) {
     s32 heap_alloc(s32);
