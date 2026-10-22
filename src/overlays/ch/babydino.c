@@ -15,7 +15,46 @@ void func_8080028C_chbabydino(Actor* arg0)
 {
     _suexpression_entrypoint_8(arg0, 1);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/babydino/func_808002AC_chbabydino.s")
+s32 func_808002AC_chbabydino(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _suexpression_entrypoint_12(void *, s32, s32);
+    s32 _suexpression_entrypoint_17(void *, s32);
+    s32 _suexpression_entrypoint_20();
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    s32 func_800DA298(s32);
+    void func_800DF744(s32, s32);
+    s32 func_801015D0(Actor *);
+    void func_808003BC_chbabydino(Actor *, s32, s32);
+    s32 func_808005F0_chbabydino(Actor *, s32);
+    void *expression;
+    s32 value;
+
+    switch (arg1) {
+        case 0x2E:
+            func_808003BC_chbabydino(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x49:
+            return func_808005F0_chbabydino(arg0, arg2);
+        case 0x95:
+            _suexpression_entrypoint_7(arg0, 1, 0x39);
+            expression = (void *)_suexpression_entrypoint_20(arg0);
+            _suexpression_entrypoint_12(expression, 0x42480000, 0x41A00000);
+            _suexpression_entrypoint_17(expression, 1000);
+            break;
+        case 0x1F:
+            func_801015D0(arg0);
+            func_800DF744(3, 1);
+            break;
+        case 0xB8:
+            value = arg2;
+            if ((value & 0xFFFF) == 1) {
+                return func_800DA298(0x98) ? 0x107F : 0x107D;
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
