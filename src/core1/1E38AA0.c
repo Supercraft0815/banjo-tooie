@@ -2,9 +2,45 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E38AA0/func_80020F70.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E38AA0/func_80021574.s")
+typedef struct { ALPlayer *players; ALLink list; u8 padC[8]; ALLink *head; u8 pad18[4]; s32 paramSamples; s32 curSamples; u8 pad24[8]; ALLink *free; u8 pad30[0x10]; s32 unk40; s32 maxSamples; s16 *outBuf; } PoolFreeList;
 
-typedef struct { ALPlayer *players; ALLink list; u8 padC[8]; ALLink *head; u8 pad18[8]; s32 curSamples; u8 pad24[8]; ALLink *free; u8 pad30[0x10]; s32 unk40; } PoolFreeList;
+Acmd *func_80021574(Acmd *arg0, s32 *arg1, s16 *arg2, s32 arg3) {
+    void func_80021820(void);
+    s32 func_800218C4(s32);
+    s32 func_80021960(ALPlayer **);
+    Acmd *func_800295D0(s32, Acmd *);
+    extern PoolFreeList *D_800411F4;
+    ALPlayer *sp3C;
+    Acmd *sp38;
+    Acmd *sp34;
+    s32 sp30;
+    s16 *sp2C;
+
+    sp38 = arg0;
+    sp2C = arg2;
+    if (D_800411F4->players == NULL) {
+        *arg1 = 0;
+        return arg0;
+    }
+    while ((D_800411F4->paramSamples = func_80021960(&sp3C),
+        D_800411F4->paramSamples - D_800411F4->curSamples < arg3)) {
+            D_800411F4->paramSamples &= ~0xF;
+            sp3C->samplesLeft += func_800218C4(sp3C->handler(sp3C));
+    }
+        D_800411F4->paramSamples &= ~0xF;
+        while (arg3 > 0) {
+            sp30 = D_800411F4->maxSamples < arg3 ? D_800411F4->maxSamples : arg3;
+            sp34 = sp38;
+            D_800411F4->outBuf = sp2C;
+            sp38 = func_800295D0(D_800411F4->curSamples, sp34);
+            arg3 -= sp30;
+            sp2C += sp30 * 2;
+            D_800411F4->curSamples += sp30;
+        }
+        *arg1 = sp38 - arg0;
+        func_80021820();
+        return sp38;
+}
 
 s32 *func_80021794(void) {
     extern PoolFreeList *D_800411F4;
