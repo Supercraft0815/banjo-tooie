@@ -547,7 +547,61 @@ void func_808013DC_chfpsgame(Actor *arg0, s32 arg1, u32 arg2) {
     sp44->players[arg1].state = arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_808015EC_chfpsgame.s")
+s32 func_808015EC_chfpsgame(Actor *arg0) {
+    s32 _gcstatusDll_entrypoint_11(void);
+    s32 func_80016BBC(s32, u16);
+    int func_800A4C68(void *);
+    s32 func_800C96CC();
+    s32 func_800C9714();
+    f32 func_800D8FF8(void);
+    s32 func_800F1574(f32 *, f32);
+    PlayerState *func_800F53D0(s32);
+    s32 func_800F54F0(s32);
+    void *func_80100094(Actor *, u32);
+    struct {
+        u8 pad[0x530];
+        struct {
+            u32 state;
+            f32 timer;
+        } players[4];
+    } *data, *current;
+    PlayerState *player;
+    u32 state;
+    s32 i;
+
+    data = func_80100094(arg0, 0U);
+    i = 0;
+    if (_gcstatusDll_entrypoint_11() <= 0) {
+        return;
+    }
+loop:
+        player = func_800F53D0(i);
+        current = (void *)((u8 *)data + (i << 3));
+        state = current->players[0].state;
+        switch (state) {
+        case 1:
+            if (func_800C96CC(func_800A4C68(player))) {
+                func_808013DC_chfpsgame(arg0, i, 2U);
+            }
+            break;
+        case 2:
+            if (!func_80800074_chfpsgame(arg0, 0) &&
+                (func_800F1574(&current->players[0].timer, func_800D8FF8()) ||
+                 func_80016BBC(func_800F54F0(i), 0xD000))) {
+                func_808013DC_chfpsgame(arg0, i, 3U);
+            }
+            break;
+        case 3:
+            if (func_800C9714(func_800A4C68(player))) {
+                func_808013DC_chfpsgame(arg0, i, 0U);
+            }
+            break;
+        }
+        i++;
+    if (i < _gcstatusDll_entrypoint_11()) {
+        goto loop;
+    }
+}
 
 s32 func_80801758_chfpsgame(s32 arg0) {
     void *func_80100094(Actor *, u32);
