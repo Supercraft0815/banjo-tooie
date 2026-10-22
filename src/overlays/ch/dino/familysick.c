@@ -73,7 +73,56 @@ OSThread *chdinofamilysick_entrypoint_1(void)
     return (OSThread *) D_80800EA8_chdinofamilysick;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/func_808005F8_chdinofamilysick.s")
+void func_808005F8_chdinofamilysick(Actor *arg0) {
+    s32 _glcutDll_entrypoint_19(u32);
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+    void func_800FFA88(Unk80132ED0 *);
+    void func_800FFAB0(Actor *);
+    void *func_80105494(Actor *);
+
+    switch (func_800EA05C()) {
+    case 0x114:
+        if (_glcutDll_entrypoint_19(0x38) == 0) {
+            func_800FFA88(arg0->unk0);
+        }
+        break;
+    case 0x118:
+        if (_glcutDll_entrypoint_20() != 0) {
+            if (func_80105494(arg0) != 0) {
+                func_800FFAB0(arg0);
+            } else {
+                func_80102424(arg0, 7);
+            }
+        } else if (_glcutDll_entrypoint_19(0x38) == 0) {
+            if (func_80105494(arg0) == 0) {
+                if (func_800DA298(0x189) == 0 && func_800DA298(0x15E) != 0) {
+                    func_80102424(arg0, 6);
+                } else {
+                    func_800FFAB0(arg0);
+                }
+            } else {
+                func_800FFAB0(arg0);
+            }
+        }
+        break;
+    case 0x121:
+        if (func_800DA298(0x189) != 0) {
+            if (func_800DA298(0x15E) != 0) {
+                func_80102424(arg0, 3);
+            } else {
+                func_80102424(arg0, 1);
+            }
+        } else {
+            func_800FFA88(arg0->unk0);
+        }
+        break;
+    default:
+        func_800FFA88(arg0->unk0);
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/func_80800768_chdinofamilysick.s")
 
