@@ -50,7 +50,7 @@ s32 func_800B0D80(u8 *arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5,
     return 1;
 }
 
-u8 func_800B0ECC(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5, f32 arg6, s32 arg7) {
+s32 func_800B0ECC(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5, f32 arg6, s32 arg7) {
     void func_800193C4(f32 *, f32 *);
     void func_8001980C(f32 *, f32 *, f32, f32 *);
     void func_80019A10(f32 *, f32 *);
@@ -99,7 +99,7 @@ u8 func_800B0ECC(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5,
     return 0;
 }
 
-u8 func_800B1110(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5, f32 arg6, s32 arg7)
+s32 func_800B1110(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5, f32 arg6, s32 arg7)
 {
     void func_800193C4(f32 *, f32 *);
     void func_8001980C(f32 *, f32 *, f32, f32 *);
@@ -149,7 +149,7 @@ u8 func_800B1110(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5,
     return 0;
 }
 
-u8 func_800B1328(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5, f32 arg6, s32 arg7)
+s32 func_800B1328(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5, f32 arg6, s32 arg7)
 {
   void func_800193C4(f32 *, f32 *);
   void func_8001980C(f32 *, f32 *, f32, f32 *);
@@ -206,7 +206,7 @@ u8 func_800B1328(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5,
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B1508.s")
 
-u8 func_800B196C(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, f32 *arg6, f32 arg7, s32 arg8) {
+s32 func_800B196C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5, f32 *arg6, f32 arg7, s32 arg8) {
     void func_80019480(f32 *, f32, f32, f32);
     void func_800198D4(f32 *, f32 *);
     void func_80019AA0(void *, s32);
@@ -272,7 +272,7 @@ rejected:
     return 0;
 }
 
-u8 func_800B1D3C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5, f32 *arg6, f32 arg7, s32 arg8) {
+s32 func_800B1D3C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5, f32 *arg6, f32 arg7, s32 arg8) {
     void func_80019224(f32 *, f32 *);
     void func_800193C4(f32 *, f32 *);
     void func_8001980C(f32 *, f32 *, f32, f32 *);
@@ -329,7 +329,7 @@ u8 func_800B1D3C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5, 
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B1F8C.s")
+s32 func_800B1F8C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5, f32 *arg6, f32 arg7, f32 *arg8, s32 arg9) { void func_80019750(f32 *, f32 *, f32, f32 *); s32 func_80019CD4(void); s32 func_800B1508(u8 *, f32 *, f32 *, f32, f32 *, s32, f32 *, f32, s32); void func_800EFA4C(f32 *, f32, f32, f32); void mlMtxGet(void *); extern s32 D_80127EA0; s32 result; f32 **translation = &arg1; f32 **rotation = &arg2; if (arg5 != 0) { func_80019CD4(); func_80019750(*translation, *rotation, arg3, arg4); mlMtxGet(&D_80127EA0); result = func_800B1D3C(arg0, *translation, *rotation, arg3, arg4, arg5, arg6, arg7, arg9); if (result == 0) { result = func_800B1508(arg0, *translation, *rotation, arg3, arg4, arg5, arg6, arg7, arg9); } if (result == 0) { result = func_800B196C(arg0, *translation, *rotation, arg3, arg4, arg5, arg6, arg7, arg9); } } else { result = func_800B1328(arg0, *translation, *rotation, arg3, arg4, arg6, arg7, arg9); if (result == 0) { result = func_800B0ECC(arg0, *translation, *rotation, arg3, arg4, arg6, arg7, arg9); } if (result == 0) { result = func_800B1110(arg0, *translation, *rotation, arg3, arg4, arg6, arg7, arg9); } } if (result != 0) { func_800EFA4C(arg8, 0.0f, 1.0f, 0.0f); } return result; }
 
 void *func_800B2190(void *arg0) {
     return (u8 *)arg0 + 0x18;
