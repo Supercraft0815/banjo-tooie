@@ -75,7 +75,44 @@ s32 func_80800084_chjigsawbitcont(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_80800214_chjigsawbitcont.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_808002E4_chjigsawbitcont.s")
+void func_808002E4_chjigsawbitcont(Actor *arg0) {
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    s32 func_800D0B68(u32, u32);
+    s32 func_800DA298(s32);
+    void func_800EE88C(f32 *, s16 *);
+    s32 func_800FFAB0(s32);
+    void *func_80100094(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    extern f32 D_808009A8_chjigsawbitcont[][4];
+    typedef struct { s16 flag; s16 pad; f32 range[2]; s16 collected; s16 padE; } JigsawBitContEntry;
+    extern s16 D_808009B4_chjigsawbitcont[][8];
+    Prop *props[3];
+    struct {
+        f32 positions[3][3];
+        s16 count;
+    } *data;
+    s32 count;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    arg0->unk74_7 = arg0->unk74_7 - 50;
+    if (arg0->unk74_7 != 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    if (func_800D0B68(((JigsawBitContEntry *)D_808009A8_chjigsawbitcont)[arg0->unk74_7].flag, 1)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    data->count = 0;
+    count = _gccubesearch_entrypoint_9(0x312, props, 3);
+    for (i = 0; i < count; i++) {
+        func_800EE88C(data->positions[i], props[i]->position);
+    }
+    if (func_800DA298(D_808009B4_chjigsawbitcont[arg0->unk74_7][0])) {
+        func_80108B04(arg0, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_8080040C_chjigsawbitcont.s")
 
