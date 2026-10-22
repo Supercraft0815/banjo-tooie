@@ -1047,7 +1047,71 @@ void func_80802250_chquiz(Actor *arg0) {
     func_80102424(arg0, arg0->unk70_10);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80802434_chquiz.s")
+void func_80802434_chquiz(Actor *arg0, s32 arg1) {
+    void func_80803320_chquiz(s32, Unk80132ED0 *);
+    void func_80803368_chquiz(s32, s32);
+    Actor *_subaddiefind_entrypoint_11(s32, s32);
+    s32 func_800D395C(void);
+    void func_800F4CC0(s32);
+    void func_800F4CEC(s32, u32);
+    s32 func_800F54E4(void);
+    s32 func_800F7B9C(s32, s32);
+    void func_800FFAB0(Actor *);
+    void func_80102424(Actor *, s32);
+    Unk80132ED0 *temp_v0;
+
+    switch (arg1) {
+    case 1:
+        func_80802108_chquiz((u8 *)arg0, 1);
+        break;
+    case 3:
+        func_80802108_chquiz((u8 *)arg0, 1);
+        break;
+    case 4:
+        func_80802108_chquiz((u8 *)arg0, 1);
+        break;
+    case 5:
+        func_80803368_chquiz(arg0->unk74_7, 1);
+        break;
+    case 7:
+        func_80802108_chquiz((u8 *)arg0, 0);
+        break;
+    case 8:
+        func_80802108_chquiz((u8 *)arg0, 1);
+        break;
+    case 11:
+        func_80802108_chquiz((u8 *)arg0, 1);
+        break;
+    case 10:
+        func_80802108_chquiz((u8 *)arg0, 0);
+        break;
+    case 12:
+        func_8080216C_chquiz((u8 *)arg0);
+        break;
+    case 13:
+        temp_v0 = func_80801C7C_chquiz(arg0->unk74_7);
+        arg0->unk3C = temp_v0;
+        func_80803320_chquiz(arg0->unk74_7, temp_v0);
+        break;
+    case 14:
+        func_80802108_chquiz((u8 *)arg0, 1);
+        break;
+    case 15:
+        func_800FFAB0(_subaddiefind_entrypoint_11(0x52B, arg0->unk74_7));
+        func_800FFAB0(arg0);
+        if (arg0->unk74_7 == 2 && func_800D395C() == 0) {
+            func_800F4CC0(func_800F54E4());
+            func_800F4CEC(func_800F54E4(), 0x20);
+            func_800F7B9C(func_800F54E4(), 0x91);
+        }
+        break;
+    case 16:
+        func_800F4CC0(func_800F54E4());
+        func_800FFAB0(arg0);
+        break;
+    }
+    func_80102424(arg0, arg1);
+}
 
 void func_80802628_chquiz(Actor *arg0) {
     void func_80108B04(Actor *, u32);
