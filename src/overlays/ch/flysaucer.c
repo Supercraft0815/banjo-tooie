@@ -248,7 +248,71 @@ s32 func_80800758_chflysaucer(s16 arg0) {
     return var_s0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808007C4_chflysaucer.s")
+void func_808007C4_chflysaucer(Actor *arg0, s16 arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800A5800(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800F0EF0(s32, f32 *);
+    s32 _cadbfunc_entrypoint_0(u8 *);
+    s32 _cadbfunc_entrypoint_2(s32);
+    s32 _cadbfunc_entrypoint_10(f32 *);
+    s32 _cadbfunc_entrypoint_12(f32 *);
+    s32 _cadbfunc_entrypoint_14(f32 *);
+    s32 _cadbfunc_entrypoint_16(s16 *);
+    s32 _cadbfunc_entrypoint_29(s32, s32 *);
+    void _suspline_entrypoint_0(void *, s32, s32);
+    void *_suspline_entrypoint_10(void *, s32);
+    f32 *_suspline_entrypoint_11(void *, s32);
+    void _suspline_entrypoint_20(Actor *, s32, s32, s32, s32, s32);
+    s16 i;
+    f32 *vectors[2];
+    f32 *values[3];
+    s32 count;
+    u8 *data;
+    void *spline;
+    s32 first;
+    s32 flags;
+
+    data = func_80100094(arg0, 0);
+    count = func_80800758_chflysaucer(arg1);
+    if (data[0x26] == 1) {
+        first = 1;
+    } else {
+        first = 0;
+    }
+    _suspline_entrypoint_20(arg0, count, 2, 3, 0, 0);
+    spline = func_80100094(arg0, 1);
+    for (i = 0; i < 2; i++) {
+        vectors[i] = _suspline_entrypoint_10(spline, i);
+    }
+    for (i = 0; i < 3; i++) {
+        values[i] = _suspline_entrypoint_11(spline, i);
+    }
+    i = 0;
+    while (arg1 != -1) {
+        func_800A5800(arg1);
+        if (i == 0 && first != 0) {
+            func_800EE7F8(vectors[0], arg0->position);
+            vectors[0][1] += 175.0f;
+        } else {
+            _cadbfunc_entrypoint_0((u8 *)vectors[0]);
+        }
+        _cadbfunc_entrypoint_2((s32)vectors[1]);
+        _cadbfunc_entrypoint_10(values[0]);
+        _cadbfunc_entrypoint_12(values[1]);
+        _cadbfunc_entrypoint_14(values[2]);
+        _cadbfunc_entrypoint_29(8, &flags);
+        _suspline_entrypoint_0(spline, i, flags);
+        vectors[0] += 3;
+        vectors[1] += 3;
+        values[0]++;
+        values[1]++;
+        values[2]++;
+        i++;
+        _cadbfunc_entrypoint_16(&arg1);
+    }
+    func_800F0EF0(count, _suspline_entrypoint_10(spline, 1));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808009DC_chflysaucer.s")
 
