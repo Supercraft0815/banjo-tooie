@@ -23,7 +23,77 @@ void func_80800034_chmole_training(Actor *arg0, s32 arg1)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_80800088_chmole_training.s")
+void func_80800088_chmole_training(Actor *arg0) {
+    s32 _gcnewoption_entrypoint_0(s32);
+    s32 _gcnewoption_entrypoint_6(Actor *, s32);
+    s32 _sumole_entrypoint_17(Actor *, s32, s32, s32);
+    void _sumole_entrypoint_19(void *, s32);
+    int func_800C6E38(s32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80800270_chmole_training(Actor *);
+    void func_808003D4_chmole_training(void *);
+    void func_80800A48_chmole_training(Actor *);
+    void func_80800BA8_chmole_training(Actor *);
+    void func_80800C28_chmole_training(void *);
+    void func_80800C3C_chmole_training(void *);
+    extern s8 D_80800E34_chmole_training[][8];
+    extern s16 D_80800E32_chmole_training[][4];
+    s32 ability;
+
+    if (arg0->unk3C != NULL) {
+        switch (arg0->unk70_10) {
+        case 1:
+            func_80800270_chmole_training(arg0);
+            return;
+        case 2:
+            func_808003D4_chmole_training(arg0);
+            return;
+        case 3:
+            arg0->unk70_10 = 4;
+            return;
+        case 4:
+            func_80800A48_chmole_training(arg0);
+            return;
+        case 5:
+            _gcnewoption_entrypoint_0(func_80100094(arg0, 0));
+            return;
+        case 7:
+            _gcnewoption_entrypoint_6(arg0, 0);
+            ability = D_80800E34_chmole_training[(s32)arg0->unk54][0];
+            if (ability != -1 && !func_800C6E38(ability)) {
+                func_80101FDC(arg0, 8);
+                return;
+            }
+            func_80101FDC(arg0, 10);
+            return;
+        case 6:
+            _gcnewoption_entrypoint_6(arg0, 0);
+            func_80101FDC(arg0, 11);
+            return;
+        case 10:
+            if (_sumole_entrypoint_17(arg0, D_80800E32_chmole_training[(s32)arg0->unk54][0], -1, 0)) {
+                _sumole_entrypoint_19(arg0, 0);
+                func_80101FDC(arg0, 12);
+                return;
+            }
+            break;
+        case 9:
+            func_80800BA8_chmole_training(arg0);
+            return;
+        case 11:
+            func_80800C28_chmole_training(arg0);
+            return;
+        case 12:
+            func_80800C3C_chmole_training(arg0);
+            return;
+        case 13:
+            _sumole_entrypoint_19(arg0, 0);
+            arg0->unk70_10 = 12;
+            break;
+        }
+    }
+}
 
 void func_80800270_chmole_training(Actor *arg0) {
     s32 _sumole_entrypoint_1(Actor *, s32, s32, s32);
