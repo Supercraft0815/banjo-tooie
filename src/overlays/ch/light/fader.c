@@ -10,7 +10,87 @@ OSThread *chlightfader_entrypoint_0(void)
 void func_8080000C_chlightfader(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/light/fader/func_80800014_chlightfader.s")
+void func_80800014_chlightfader(Actor *arg0) {
+    s32 func_8001210C(s32);
+    f32 *func_800A93F8(s32);
+    s32 func_800A9420(s32);
+    s32 func_800A946C(void);
+    void func_800C8B84(s32);
+    void func_800C8D4C(s32, f32 *);
+    void func_800C8E84(s32, u32 *);
+    s32 func_800CACEC(f32 *, f32 *, f32);
+    s32 func_800D9078(f32 *);
+    s32 func_800E3E8C(f32 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_800F2E60();
+    void func_800F2F60(void *, void *, f32);
+    s32 func_800F6438(u32);
+    void func_800FFA88(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    s32 finished;
+    f32 fade;
+    f32 inverse;
+    s32 i;
+    f32 *position;
+    u32 color[3];
+    s32 changed;
+    s32 visible;
+    struct {
+        s32 source;
+        f32 duration;
+        s32 mode;
+        s32 flag;
+        f32 value;
+        f32 original[2];
+        u32 originalColor[3];
+        f32 current[2];
+        u32 currentColor[3];
+    } *data;
+    s32 player;
+
+    data = func_80100094(arg0, 0);
+    changed = 0;
+    finished = func_800D9078(&arg0->unk58);
+    fade = func_800F10B4(arg0->unk58, 0.0f, data->duration, 1.0f, 0.1f);
+    inverse = 1.0f - fade;
+    if (data->mode & 1) {
+        for (i = 0; i < 2; i++) {
+            data->current[i] = data->original[i] * inverse;
+        }
+        changed = 1;
+    }
+    if (data->mode & 2) {
+        func_800F2F60(data->currentColor, data->originalColor, 1.0f - fade);
+    }
+    func_800F2E60(color, data->currentColor);
+    if (data->mode & 4) {
+        func_800F2F60(color, color, func_8001210C(1) ? 1.0f : 0.6f);
+    }
+    if (func_800A946C() >= 2) {
+        visible = 0;
+        for (player = 0; player < 8; player++) {
+            if (func_800F6438(player) && func_800A9420(player) &&
+                (position = func_800A93F8(player)) != NULL &&
+                func_800CACEC(position, arg0->position, data->value)) {
+                visible = 1;
+                break;
+            }
+        }
+    } else {
+        visible = func_800E3E8C(arg0->position, data->value);
+    }
+    if (visible) {
+        data->value = data->current[1];
+        func_800C8E84(data->source, color);
+        if (changed) {
+            func_800C8D4C(data->source, data->current);
+        }
+    }
+    if (finished) {
+        func_800C8B84(data->source);
+        func_800FFA88(arg0->unk0);
+    }
+}
 
 s32 chlightfader_entrypoint_1(s32 arg0, s32 arg1, s32 arg2) {
     void _chbaddiesetup_entrypoint_3(s32 *, s32, s32, s32);
