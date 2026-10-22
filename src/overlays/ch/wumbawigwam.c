@@ -1,6 +1,46 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/wumbawigwam/func_80800000_chwumbawigwam.s")
+void func_80800000_chwumbawigwam(Actor *arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800EA05C(void);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    s32 func_800F54E4(void);
+    s32 func_800F64A4(s32, s32);
+    f32 func_80103EAC(u8 *);
+    s32 func_8010C9FC(f32 *, s32, s32, s32);
+    void func_80800B9C_chwumbawigwam(u8 *, s32);
+    f32 pad[2];
+    f32 var_f2;
+    f32 sp2C;
+    f32 sp24;
+    f32 var_f0;
+
+    if (func_800EA05C() == 0x112) {
+        if (func_800DA298(0x18A) != 0 && func_800EA05C() == 0x112) {
+            arg0->scale = 2.8f;
+        } else {
+            arg0->scale = 1.0f;
+        }
+        sp24 = func_80103EAC((u8 *)arg0);
+        if (func_800F64A4(func_800F54E4(), 0x40000) != 0) {
+            var_f2 = 1.0f;
+        } else {
+            var_f2 = 0.6f;
+        }
+        sp2C = var_f2;
+        if (func_800F64A4(func_800F54E4(), 0x40000) != 0) {
+            var_f0 = 40.0f;
+        } else {
+            var_f0 = arg0->scale * 280.0f;
+        }
+        if (func_8010C9FC(arg0->position, (s32)(var_f2 * sp24), (s32)var_f0, 0) != 0) {
+            func_80800B9C_chwumbawigwam((u8 *)arg0, 2);
+        } else {
+            func_80800B9C_chwumbawigwam((u8 *)arg0, 3);
+        }
+        func_800EFA4C((f32 *)&arg0->actorData[4], 1.0f, 1.0f, 1.0f);
+    }
+}
 
 void func_80800158_chwumbawigwam(u8 *arg0) {
     typedef struct { f32 v[3]; } WigwamVec;
