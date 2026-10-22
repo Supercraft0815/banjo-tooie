@@ -1,6 +1,51 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/twinklecolour/idtwinklecolour_entrypoint_0.s")
+void idtwinklecolour_entrypoint_0(s32 arg0, s16 *arg1, s32 arg2, u8 *arg3) {
+    s16 func_800DC214(s16, s16);
+    struct Entry {
+        f32 value;
+        s16 pos[3];
+        u8 active;
+        s8 step;
+        u8 colour;
+        u8 available;
+        u8 pad[6];
+    };
+    struct State {
+        u8 pad[0xE];
+        s16 pos[3];
+        s32 radius;
+        s16 unknown[4];
+        s16 index;
+        s16 count;
+        struct Entry *entries;
+    };
+    s32 distance;
+    s32 i;
+    s32 delta[3];
+
+    if (((struct State *)arg3)->entries[((struct State *)arg3)->index].available) {
+        for (i = 0; i < 3; i++) {
+            delta[i] = arg1[i] - ((s16 *)(arg3 + 0xE))[i];
+        }
+        distance = delta[0] * delta[0] + delta[1] * delta[1] + delta[2] * delta[2];
+        if (distance <= ((struct State *)arg3)->radius) {
+            for (i = 0; i < ((struct State *)arg3)->count; i++) {
+                if (((struct State *)arg3)->entries[i].pos[0] == arg1[0] && ((struct State *)arg3)->entries[i].pos[1] == arg1[1] && ((struct State *)arg3)->entries[i].pos[2] == arg1[2]) {
+                    return;
+                }
+            }
+            ((struct State *)arg3)->entries[((struct State *)arg3)->index].pos[0] = arg1[0];
+            ((struct State *)arg3)->entries[((struct State *)arg3)->index].pos[1] = arg1[1];
+            ((struct State *)arg3)->entries[((struct State *)arg3)->index].pos[2] = arg1[2];
+            ((struct State *)arg3)->entries[((struct State *)arg3)->index].value = 0.0f;
+            ((struct State *)arg3)->entries[((struct State *)arg3)->index].step = 10;
+            ((struct State *)arg3)->entries[((struct State *)arg3)->index].active = 1;
+            ((struct State *)arg3)->entries[((struct State *)arg3)->index].available = 0;
+            ((struct State *)arg3)->entries[((struct State *)arg3)->index].colour = func_800DC214(0, 1);
+        }
+    }
+}
 
 void idtwinklecolour_entrypoint_1(s32 arg0, void *arg1, s32 arg2, void *arg3) {
     if ((*(s16 *)((s8 *)(arg3) + (0x1E))) == (*(s16 *)((s8 *)(arg3) + (0x1C)))) {
