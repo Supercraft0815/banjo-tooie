@@ -273,7 +273,30 @@ void func_800F4FC4(void) {
     func_80101180(0x15E, 0x2C, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F5008.s")
+void func_800F5008(s32 arg0) {
+    s32 func_80092258(void *);
+    void func_80098BA8(void *, s32);
+    extern u8 D_801354B0[];
+    s32 index;
+    PlayerState *temp_s0;
+    s32 var_s2;
+    s32 result;
+    s32 sentinel;
+
+    for (index = 0, var_s2 = 0, sentinel = 0xFF; index < 8; index++) {
+        temp_s0 = D_80135490[index];
+        if ((temp_s0 != NULL) && (*(s32 *)((u8 *)temp_s0 + 0x17C) != 0)) {
+            result = func_80092258(temp_s0);
+            if (sentinel == result) {
+                func_80098BA8(temp_s0, arg0);
+            } else {
+                D_80135490[var_s2 + 10] = temp_s0;
+                var_s2++;
+            }
+        }
+    }
+    *(u8 *)((u8 *)D_80135490 + 0x48) = var_s2;
+}
 
 void func_800F50D0(s32 arg0) {
     s32 _bainvisible_entrypoint_9(s32 *, u8, s32 *);
