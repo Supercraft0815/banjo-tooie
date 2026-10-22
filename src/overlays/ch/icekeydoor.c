@@ -104,7 +104,77 @@ void func_80800000_chicekeydoor(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/icekeydoor/func_80800318_chicekeydoor.s")
+/* extern */
+
+s32 func_80800318_chicekeydoor(Actor *arg0, s32 arg1, s32 arg2) {
+    Prop *_gccubesearch_entrypoint_0(u32, Actor *);
+    s32 _glsplinefind_entrypoint_3(f32 *);
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    s32 _gspropctrl_entrypoint_12(Prop *);
+    s32 _subaddieDll_entrypoint_4(u8 *, s32);
+    void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
+    s32 func_800D1A04(s32);
+    void *func_800D7520(s32);
+    s32 func_800DA298(s32);
+    void func_800EF1B8(f32 *, f32, f32);
+    s32 func_800F54E4();
+    void func_800F5A00(s32, f32 *);
+    void func_800F8300();
+    s32 func_80101FDC(u8 *, s32);
+    void func_80103110(void *, s32);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    s32 func_80108B04(u8 *, s32);
+    void func_8010A570(Actor *);
+    f32 sp34[3];
+    Prop *sp30;
+    f32 sp24[3];
+    Actor *temp_v0_2;
+
+    switch (arg1) {
+    case 0x32:
+        func_800F5A00(func_800F54E4(), sp34);
+        func_800EF1B8(sp34, ((f32 *)arg0->actorData)[3], 200.0f);
+        func_800F8300(func_800F54E4(), 2, sp34);
+        func_80101FDC(arg0, 4);
+        arg0->unk58 = 1.0f;
+        _subaddieDll_entrypoint_4(arg0, 1);
+        break;
+    case 0x95:
+        if (func_800DA298(0x3E2) != 0) {
+            arg0->rotation[1] = -90.0f;
+            func_80108B04(arg0, 1);
+            func_80101FDC(arg0, 8);
+        } else if (func_800D1A04(0x53) != 0) {
+            sp30 = _gccubesearch_entrypoint_0(0x299, arg0);
+            _gspropctrl_entrypoint_11(sp30, (f32 *)arg0->actorData);
+            ((f32 *)arg0->actorData)[3] = (f32) _gspropctrl_entrypoint_12(sp30);
+            _gspropctrl_entrypoint_11(_gccubesearch_entrypoint_0(0x511, arg0), sp24);
+            ((f32 *)arg0->actorData)[7] = (f32) _glsplinefind_entrypoint_3(sp24);
+            func_80101FDC(arg0, 2);
+        } else {
+            func_80103110(arg0, 0);
+            func_80101FDC(arg0, 1);
+        }
+        break;
+    case 0x3D:
+        temp_v0_2 = func_80108528(0x513, arg0->position, 0, &arg0);
+        temp_v0_2->unk3C = arg0->unk0;
+        arg0->unk3C = temp_v0_2->unk0;
+        switch (arg2) {
+        case 0:
+            func_800C7A68(func_800D7520((s32) ((f32 *)arg0->actorData)[7]), 0.0f, temp_v0_2->position);
+            temp_v0_2->scale = 0.1f;
+            break;
+        case 1:
+            temp_v0_2->scale = 1.0f;
+            break;
+        }
+        func_8010A570(temp_v0_2);
+        temp_v0_2->unk64_16 = 0;
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/icekeydoor/func_8080057C_chicekeydoor.s")
 
