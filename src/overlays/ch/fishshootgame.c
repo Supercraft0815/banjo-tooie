@@ -149,7 +149,144 @@ void func_80800320_chfishshootgame(Actor *arg0) {
     _susubgame_entrypoint_6(arg0, sp34 + 0xB0, 0, 0x2090, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_808003B0_chfishshootgame.s")
+Actor *func_80106790(Unk80132ED0 *);
+
+void func_808003B0_chfishshootgame(Actor *arg0, s32 arg1) {
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _susubgame_entrypoint_4(void *, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    s32 func_80090270(void);
+    void func_800CE88C(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    void func_800DA3B8(s32, s32);
+    s32 func_800DA544(s32);
+    void func_800FC6B0(u32);
+    void func_800FCA90(u32);
+    void func_800FCAE0(u32, u32, u32);
+    void func_800FFA88(Unk80132ED0 *);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_80800A90_chfishshootgame(Actor *, f32 *);
+    extern s32 D_80801984_chfishshootgame;
+    struct FishShootData {
+        f32 position[3];
+        f32 target[3];
+        f32 unk18[2];
+        f32 height;
+        f32 unk24;
+        f32 skeleton;
+        f32 distance;
+        s8 unk30;
+        s8 unk31;
+        s16 current;
+        s16 count;
+        s16 positions[20][3];
+        s16 unkAE;
+        u32 subgame[1];
+    };
+    struct FishShootData *data;
+    s32 dialog;
+    s32 flag;
+    u32 oldState;
+    f32 position[3];
+
+    data = func_80100094(arg0, 0);
+    dialog = 0;
+    flag = 0;
+    oldState = arg0->unk70_10;
+    if (arg1 != oldState) {
+        switch (arg1) {
+        case 13:
+            _susubgame_entrypoint_4(arg0, (s32)data->subgame);
+            func_808002E8_chfishshootgame(arg0, 0.8f);
+            func_800FFAB0(arg0);
+            func_800FFA88(arg0->unk3C);
+            return;
+        case 2:
+            if (oldState != 1) {
+                _susubgame_entrypoint_5(arg0, data->subgame, 3, 1, 0);
+                dialog = 0xFEF;
+            }
+            break;
+        case 10:
+            data->unk18[0] = 0.0f;
+            data->unk18[1] = 0.05f;
+            data->unk30 = 0;
+            func_800DA3B8(0, 0);
+            break;
+        case 12:
+            if (oldState == 4) {
+                func_800FC6B0(0x16);
+                func_800FCAE0(0x53, 0, 0xFA0);
+                func_800FCA90(0x53);
+                func_800DA3B8(0, 1);
+                dialog = 0x1024;
+                _susubgame_entrypoint_5(arg0, data->subgame, 3, 1, 0);
+                func_80800A90_chfishshootgame(arg0, position);
+                position[1] -= 60.0f;
+                _gcdialogcamera_entrypoint_4(position);
+            } else {
+                dialog = 0x1023;
+                func_808002E8_chfishshootgame(arg0, 1.2f);
+                _susubgame_entrypoint_5(arg0, data->subgame, 5, 1, 0);
+            }
+            break;
+        case 11:
+            _susubgame_entrypoint_6(arg0, data->subgame, 11, 0x2090, 0);
+            func_800DA3B8(0, 1);
+            break;
+        case 4:
+            _susubgame_entrypoint_4(arg0, (s32)data->subgame);
+            arg0->unk58 = 0.0f;
+            func_800CE8D8(0, 60.0f, 60);
+            func_800CE88C(0, 1);
+            func_800FC6B0(0x53);
+            break;
+        case 5:
+            func_800CE88C(0, 0);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801984_chfishshootgame);
+            data->unk30 = 1;
+            flag = 1;
+            break;
+        case 7:
+            flag = 1;
+            func_808001F0_chfishshootgame(arg0);
+            break;
+        case 3:
+            func_808002E8_chfishshootgame(arg0, 1.0f);
+            break;
+        case 6:
+            data->unk18[1] = 0.1f;
+            if (data->unk18[0] < 0.5f) {
+                data->unk18[0] = 1.0f - data->unk18[0];
+            }
+            break;
+        case 8:
+            dialog = 0xFEE;
+            _susubgame_entrypoint_5(arg0, data->subgame, 3, 1, 0);
+            break;
+        case 9:
+            data->unk18[0] = 0.5f;
+            data->target[1] = data->position[1];
+            data->position[1] += 900.0f;
+            data->unk18[1] = 0.1f;
+            _susubgame_entrypoint_6(arg0, data->subgame, 4, 0x2090, 0);
+            break;
+        }
+        func_80102424(arg0, arg1);
+        func_80102424(func_80106790(arg0->unk3C), arg1);
+        if (dialog != 0 && func_80090270() == 0) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, dialog, 0xA, arg0->position, 0x63);
+        }
+        if (flag != 0) {
+            func_800DA544(0);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_8080076C_chfishshootgame.s")
 
