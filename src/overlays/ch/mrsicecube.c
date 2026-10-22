@@ -45,7 +45,68 @@ void func_80800018_chmrsicecube(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/func_808000BC_chmrsicecube.s")
+void func_808000BC_chmrsicecube(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_6(Actor *, s32);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_80800634_chmrsicecube(s32);
+    void func_8080066C_chmrsicecube(u8 *, u8 *);
+    void func_808006C4_chmrsicecube(Actor *);
+    void func_80800898_chmrsicecube(Actor *);
+    u8 *sp44;
+    Actor *sp40;
+    s32 sp3C;
+    f32 sp30[3];
+    f32 sp24[3];
+
+    sp44 = func_80100094(arg0, 0);
+    sp3C = 0;
+    switch (arg0->unk70_10) {
+    case 2:
+        func_80800634_chmrsicecube((s32)arg0);
+        break;
+    case 3:
+        arg0->unk64_19 = 1;
+        func_80800898_chmrsicecube(arg0);
+        sp3C = 1;
+        if (func_80101DDC(arg0)) {
+            func_80102424(arg0, 4);
+        }
+        break;
+    case 5:
+        sp3C = 1;
+        if (func_80101DDC(arg0)) {
+            arg0->unk64_19 = 0;
+            func_80102424(arg0, 2);
+        }
+        break;
+    case 6:
+        if (_subaddieDll_entrypoint_6(arg0, 10)) {
+            func_808006C4_chmrsicecube(arg0);
+        }
+        break;
+    case 7:
+        func_80800898_chmrsicecube(arg0);
+        sp3C = 1;
+        arg0->unk64_19 = 1;
+        if (func_80101DDC(arg0)) {
+            func_80102424(arg0, 8);
+        }
+        break;
+    }
+    sp40 = _subaddielink_entrypoint_4(sp44);
+    if (sp40 != NULL) {
+        func_8080066C_chmrsicecube((u8 *)arg0, (u8 *)sp30);
+        func_800EE7F8(sp40->position, sp30);
+        if (sp3C && _subaddieskeleton_entrypoint_0(arg0, 3, sp24)) {
+            sp40->position[1] += sp24[1] - arg0->position[1];
+        }
+    }
+}
 
 s32 func_80800260_chmrsicecube(Actor *arg0, s32 arg1, s32 arg2) {
     extern s32 D_808008F0_chmrsicecube;
