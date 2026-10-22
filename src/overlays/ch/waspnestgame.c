@@ -181,7 +181,25 @@ Actor *func_80800AF8_chwaspnestgame(Actor *arg0, f32 *arg1, f32 *arg2, s32 arg3)
     return sp1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80800B80_chwaspnestgame.s")
+/* extern */
+
+void func_80800B80_chwaspnestgame(Actor *arg0) {
+    void func_8008FE68(f32 *);
+    f32 func_80090010();
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    f32 sp2C[3];
+    f32 sp20[3];
+    Actor *temp_v0;
+
+    func_8008FE68(sp2C);
+    func_800EEB9C(sp20, func_80090010(), 300.0f);
+    sp20[1] = 100.0f;
+    func_800EF04C(sp2C, sp20);
+    temp_v0 = func_80800AF8_chwaspnestgame(arg0, arg0->position, arg0->position, 0);
+    arg0->unk3C = temp_v0->unk0;
+    *((u8 *)temp_v0 + 0x75) &= ~0x10;
+}
 
 /* extern */
 
