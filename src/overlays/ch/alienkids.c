@@ -192,7 +192,54 @@ void func_80801628_chalienkids(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_808016D4_chalienkids.s")
+void func_808016D4_chalienkids(Actor *arg0) {
+    s32 func_800FFAB0();
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    s32 func_8010114C(s32, s32, s32);
+    s32 func_80101DDC(Actor *);
+    void func_80102424(Actor *, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    extern f32 func_80800D68_chalienkids[];
+    extern s32 D_80802260_chalienkids;
+    f32 delta;
+    s32 sp20;
+
+    switch (arg0->unk70_10) {
+        case 18:
+            if (func_800D9078(&arg0->unk58)) {
+                func_80102424(arg0, 19);
+            }
+            break;
+        case 19:
+            if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 20);
+                arg0->unk58 = func_80800D68_chalienkids[arg0->unk6C_9];
+            }
+            break;
+        case 20:
+            if (func_800D9078(&arg0->unk58)) {
+                func_80102424(arg0, 21);
+                ((f32 *)arg0->actorData)[7] = 50.0f;
+                arg0->unk58 = 4.0f;
+                ((f32 *)arg0->actorData)[4] = 0.5f;
+            }
+            break;
+        case 21:
+            sp20 = func_800D9078(&arg0->unk58);
+            ((f32 *)arg0->actorData)[7] += func_800D8FF8() * 100.0f;
+            delta = ((f32 *)arg0->actorData)[7] * func_800D8FF8();
+            arg0->position[1] += delta;
+            if (func_800D9078(&((f32 *)arg0->actorData)[4])) {
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80802260_chalienkids);
+            }
+            if (sp20) {
+                func_8010114C((s32)arg0->unk3C, 0x4F, 0);
+                func_800FFAB0(arg0);
+            }
+            break;
+    }
+}
 
 void func_8080184C_chalienkids(s32 arg0, s32 *arg1, s32 arg2) {
     s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
