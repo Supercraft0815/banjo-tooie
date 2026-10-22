@@ -149,9 +149,12 @@ def relocation_only(reference, candidate):
         if (expected['asm'], expected['relocs']) == (actual['asm'], actual['relocs']):
             continue
         kinds = [r.split()[0] for r in expected['relocs']]
-        if len(kinds) != 1 or kinds[0] not in ('R_MIPS_HI16', 'R_MIPS_LO16'):
+        actual_kinds = [r.split()[0] for r in actual['relocs']]
+        # Absolute linker symbols can compile directly as numeric immediates.
+        address_kind = kinds or actual_kinds
+        if len(address_kind) != 1 or address_kind[0] not in ('R_MIPS_HI16', 'R_MIPS_LO16'):
             return False
-        if kinds != [r.split()[0] for r in actual['relocs']]:
+        if kinds and actual_kinds and kinds != actual_kinds:
             return False
         # The upper half contains the opcode and every register operand.
         if int(expected['word'], 16) >> 16 != int(actual['word'], 16) >> 16:

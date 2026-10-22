@@ -28,10 +28,32 @@ class RelocationTests(fixtures.Fixture):
         for wrong in (alias.replace('c428000c', 'c448000c').replace('12(at)', '12(v0)'),
                       alias.replace('lwc1', 'swc1').replace('c428000c', 'e428000c'),
                       alias.replace('R_MIPS_LO16', 'R_MIPS_26'),
-                      alias.replace('\t4: R_MIPS_LO16 base\n', ''),
                       alias + '  10: 00000000 nop\n',
                       alias.replace('00000000  nop', '24020001  li v0,1')):
             self.assertFalse(score(expected, instructions(wrong, 'target'))['relocation_only'], wrong)
+
+    def test_absolute_linker_constant_can_reach_rom_gate_without_claiming_exactness(self):
+        reference = instructions('''00000000 <target>:
+ 0: 3c010000 lui at,0x0
+ 0: R_MIPS_HI16 D_1FFFF
+ 4: 24210000 addiu at,at,0
+ 4: R_MIPS_LO16 D_1FFFF
+ 8: 03e00008 jr ra
+ c: 00000000 nop
+''', 'target')
+        literal = instructions('''00000000 <target>:
+ 0: 3c010002 lui at,0x2
+ 4: 2421ffff addiu at,at,-1
+ 8: 03e00008 jr ra
+ c: 00000000 nop
+''', 'target')
+        for expected, actual in ((reference, literal), (literal, reference)):
+            result = score(expected, actual)
+            self.assertEqual(result['different_instructions'], 2)
+            self.assertTrue(result['relocation_only'])
+            self.assertTrue(worth_rom_check(result))
+            self.assertFalse(result['object_identical'])
+            self.assertFalse(result['exact'])
 
     def test_c_surface_repairs_preserve_imports_directives_and_function_names(self):
         source = fixtures.SOURCE.replace('void other', 'int other')
