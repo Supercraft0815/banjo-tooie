@@ -38,7 +38,48 @@ void func_80800304_chboilerboss(Actor* arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808008B0_chboilerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80800B94_chboilerboss.s")
+void func_80800B94_chboilerboss(Actor *arg0, u8 *arg1) {
+    s32 _dbmorph_entrypoint_4(u8 *, u8 *, s32, u8, s32);
+    void *func_800AE080(s16);
+    s32 func_800AE0E8(s16);
+    u8 *func_800B2768(u8 *);
+    s32 func_800B2840(s32);
+    void func_800DF5D8(u32, u32, u32, s32);
+    void func_800DF744(s32, s32);
+    s32 func_801015D0(Actor *);
+    s32 func_80103CDC(u8 *, u8 *);
+    void func_808010F4_chboilerboss(Actor *);
+    u32 sp3C;
+    u32 sp38;
+    u32 sp34;
+    u8 *sp30;
+    s32 sp2C;
+    s32 sp28;
+    sp3C = (arg0->unk0->unk28 << 18) >> 31;
+    sp38 = (arg0->unk0->unk28 << 19) >> 31;
+    sp34 = (arg0->unk0->unk28 << 20) >> 31;
+    func_801015D0(arg0);
+    func_808010F4_chboilerboss(arg0);
+    func_800DF744(3, sp34 ? (sp3C ? 0 : 1) : 0);
+    func_800DF744(4, sp3C);
+    func_800DF744(5, sp3C);
+    func_800DF744(6, sp34 ? (sp38 ? 0 : 1) : 0);
+    func_800DF744(7, sp38);
+    func_800DF744(8, sp38);
+    func_800DF744(9, sp34 ? 0 : 1);
+    func_800DF744(10, sp34);
+    func_800DF744(11, sp34);
+    if ((arg0->unk0->unk28 << 20) >> 31) {
+        sp30 = func_800B2768(arg1);
+        sp2C = func_80103CDC((u8 *)arg0, arg1);
+        sp28 = func_800B2840((s32)arg1);
+        if (func_800AE0E8(*(s16 *)&arg0->unk0->unk10)) {
+            _dbmorph_entrypoint_4(sp30, (u8 *)sp2C, sp28, 1,
+                (s32)func_800AE080(*(s16 *)&arg0->unk0->unk10));
+        }
+        func_800DF5D8(arg0->pad98, arg0->pad99, arg0->pad9A, 255);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80800D50_chboilerboss.s")
 
