@@ -174,7 +174,73 @@ void func_8080068C_chmonsterinterior(Actor *arg0) {
     func_800FDC28(0xC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_8080078C_chmonsterinterior.s")
+void func_8080078C_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    s32 _gcfrontend_entrypoint_9(s32);
+    u32 _gcgoto_entrypoint_1(u32, u32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    s32 func_800D395C(void);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    void func_80108BD4(Actor *, s32);
+    s32 *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0x17F2:
+        case 0x181A:
+            if (arg2 > 0) {
+                _susubgame_entrypoint_6(arg0, &data[4], 3, 0x20, 0);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x17F3, 0x44, NULL, 0xB3);
+                func_80108B04(arg0, 0);
+            } else {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEC, 7, NULL, 0xB3);
+            }
+            _gcfrontend_entrypoint_9(0x6B);
+            return;
+        case 0x17F3:
+            _susubgame_entrypoint_5(arg0, &data[4], 5, 1, 0);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEC, 7, NULL, 0xB3);
+            return;
+        case 0xCEB:
+            func_800F82D4(func_800F54E4(), 0);
+            func_80101FDC(arg0, 6);
+            if (func_800D395C() != 0) {
+                if (arg2 > 0) {
+                    _gcfrontend_entrypoint_11();
+                    return;
+                }
+                _gcfrontend_entrypoint_10();
+                return;
+            }
+            if (arg2 > 0) {
+                _gcgoto_entrypoint_1(0x123, 1);
+                return;
+            }
+            func_80108BD4(arg0, 0xCEB);
+            return;
+        case 0xCEC:
+            func_80108BD4(arg0, 0xCEC);
+            return;
+        case 0x17FA:
+            _susubgame_entrypoint_6(arg0, &data[4], 6, 0x20, 0);
+            func_800D1000(0x2E, 1, NULL, 1, 0);
+            return;
+        case 0x17F7:
+        case 0x1807:
+        case 0x1808:
+        case 0x1809:
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEB, 0x46, NULL, 0xB3);
+            return;
+    }
+}
 
 s32 func_808009C0_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
