@@ -221,7 +221,60 @@ void func_8080060C_sumumbofx(u8 *arg0, u8 *arg1, f32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_6.s")
+void sumumbofx_entrypoint_6(u8 *arg0, f32 arg1, f32 arg2, s32 arg3, s32 arg4, f32 *arg5, f32 *arg6, f32 *arg7) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF5A0(f32 *, f32 *, f32, f32, f32);
+    f32 sumumbofx_entrypoint_26(void *);
+    f32 scale;
+    s32 i;
+    u32 mode;
+    f32 *vec;
+    u8 *p;
+    s32 one = 1;
+
+    scale = sumumbofx_entrypoint_26(arg0);
+    p = arg0;
+    p += arg3 * 0x2C;
+    p += 0x64;
+    i = arg3;
+    if (arg3 < arg4) {
+        do {
+            func_8080060C_sumumbofx(arg0, p, scale);
+            vec = (f32 *)(p + 0x10);
+            *(f32 *)(p + 4) += *(f32 *)(p + 8);
+            if (arg1 < *(f32 *)(p + 4)) {
+                *(f32 *)(p + 4) = 0.0f;
+                mode = *(u32 *)(arg0 + 0x60) >> 25;
+                if (one != mode && mode != 2) {
+                    *(f32 *)(p + 0x1C) = 0.25f;
+                }
+            }
+            *(f32 *)p += *(f32 *)(p + 0xC);
+            if (*(f32 *)p > 359.0f) {
+                *(f32 *)p = 0.0f;
+            }
+            func_800EEB9C(vec, *(f32 *)p, arg2);
+            *(f32 *)(p + 0x14) = *(f32 *)(p + 4);
+            func_800EF04C(vec, arg5);
+            if (arg7 != NULL) {
+                func_800EF5A0(vec, arg7, *(f32 *)(p + 0x10), *(f32 *)(p + 0x14), *(f32 *)(p + 0x18));
+            }
+            if (arg6 != NULL) {
+                func_800EF04C(vec, arg6);
+            }
+            if (*(f32 *)(p + 0x28) < 1.0f) {
+                func_808003E4_sumumbofx(p, 125.0f, 40.0f);
+            }
+            i++;
+            p += 0x2C;
+        } while (i != arg4);
+    }
+    if (arg6 != NULL) {
+        func_800EE7F8((f32 *)(arg0 + 0x1C), arg6);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_7.s")
 
