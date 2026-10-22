@@ -47,7 +47,60 @@ void func_80800018_chmrsicecube(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/func_808000BC_chmrsicecube.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsicecube/func_80800260_chmrsicecube.s")
+s32 func_80800260_chmrsicecube(Actor *arg0, s32 arg1, s32 arg2) {
+    extern s32 D_808008F0_chmrsicecube;
+    extern s32 D_80800A2C_chmrsicecube;
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    s32 _glcutDll_entrypoint_20(void);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddieDll_entrypoint_5(Actor *, s32);
+    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
+    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_80103110(Actor *, u32);
+    void func_8010A590(Actor *);
+    Unk80132ED0 *func_80800508_chmrsicecube(Actor *);
+    void func_808006C4_chmrsicecube(Actor *);
+    Unk80132ED0 *temp_v0;
+    void *sp20;
+    s16 dialog;
+
+    switch (arg1) {
+    case 0x2E:
+        dialog = *(s16 *)&arg2;
+        if (_subaddiedialog_entrypoint_9(arg0, dialog, &D_808008F0_chmrsicecube, 4) == 1) {
+            func_8010A590(arg0);
+        }
+        func_80102424(arg0, 5);
+        break;
+    case 0x40:
+        if (_subaddieDll_entrypoint_5(arg0, arg2) != 0) {
+            func_80103110(arg0, 1);
+            _subaddieDll_entrypoint_4(arg0, 1);
+            func_80102424(arg0, 6);
+        } else {
+            func_808006C4_chmrsicecube(arg0);
+        }
+        break;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_80800A2C_chmrsicecube, arg0->scale);
+        break;
+    case 0x95:
+        sp20 = func_80100094(arg0, 0);
+        temp_v0 = func_80800508_chmrsicecube(arg0);
+        if (temp_v0 != NULL) {
+            _subaddielink_entrypoint_1(sp20, temp_v0);
+        } else if (arg0->actorData[4] != 0 || _glcutDll_entrypoint_20() == 0) {
+            func_800FFAB0(arg0);
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
