@@ -92,7 +92,7 @@ void func_800B5E3C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B5E74.s")
 
-s32 func_800B5FE4(u8 arg0, f32 *arg1, u8 arg2, f32 arg3) {
+s32 func_800B5FE4(u8 arg0, f32 *arg1, f32 *volatile arg2, f32 arg3) {
     s32 func_800B5E74(u8);
     int func_800D3574(s32);
     u8 func_800D35BC(s32);
@@ -124,7 +124,235 @@ s32 func_800B5FE4(u8 arg0, f32 *arg1, u8 arg2, f32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B60C0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B62CC.s")
+void func_800B62CC(Gfx **arg0, u8 arg1, f32 *arg2, f32 *arg3, f32 arg4)
+{
+  struct TextState
+  {
+    s32 vector;
+    s32 next;
+    s32 height;
+    u8 padC[0x12];
+    u8 jitter;
+    u8 centered;
+    u8 font;
+    u8 fixed;
+    s16 fadeY;
+    u8 color[4];
+    s16 width;
+    s16 height2;
+  };
+  extern s32 D_80128180;
+  extern s32 D_801281A4;
+  extern u8 D_801281B0[];
+  void func_800B60C0(Gfx **, f32 *, f32 *, f32);
+  u8 func_800D35BC(s32);
+  s32 func_800D3724();
+  f32 func_800DC178(f32, f32);
+  void func_800E7694(void);
+  s32 func_800E7828(Gfx **, s32 *);
+  u8 *glyph;
+  s32 index;
+  s32 format;
+  s32 pixels;
+  f32 x;
+  f32 y;
+  f32 originalY;
+  f32 advance;
+  Gfx *gfx;
+  index = func_800B5FE4(arg1, arg2, arg3, arg4);
+  if ((((struct TextState *) (&D_80128180))->width != 0) && (((struct TextState *) (&D_80128180))->height2 != 0))
+  {
+    func_800B60C0(arg0, arg2, arg3, arg4);
+    ((struct TextState *) (&D_80128180))->next = func_800D3724(((struct TextState *) (&D_80128180))->font);
+    return;
+  }
+  if (index >= 0)
+  {
+    func_800E7828(arg0, &D_801281A4);
+    gfx = *arg0;
+    glyph = func_800B5C10(((struct TextState *) (&D_80128180))->font, index, &format, &pixels);
+    if (((struct TextState *) (&D_80128180))->fixed)
+    {
+      advance = (s32) func_800D35BC(((struct TextState *) (&D_80128180))->font);
+    }
+    else
+    {
+      advance = glyph[2];
+    }
+    if (!((struct TextState *) (&D_80128180))->centered)
+    {
+      *arg2 -= (advance * 0.5f) * arg4;
+      ((struct TextState *) (&D_80128180))->centered = 1;
+    }
+    x = *arg2;
+    y = *arg3;
+    if (((struct TextState *) (&D_80128180))->jitter)
+    {
+      x += func_800DC178(-1.0f, 1.0f) * arg4;
+      y += func_800DC178(-1.0f, 1.0f) * arg4;
+    }
+    originalY = y;
+    x += ((advance - glyph[2]) * 0.5f) * arg4;
+    y -= (glyph[1] * 0.5f) * arg4;
+    if (format == 0x800)
+    {
+      {
+        gDPSetTextureImage(gfx++, 0, G_IM_SIZ_32b, glyph[0], pixels + 0x80000000);
+        gDPSetTile(gfx++, 0, G_IM_SIZ_32b, ((glyph[2] * G_IM_SIZ_32b_TILE_BYTES) + 7) >> 3, 0, 7, 0, 0x2, 0, 0, 0x2, 0, 0);
+        {
+          Gfx *sync = gfx++;
+          Gfx *tile;
+          sync->words.w0 = (unsigned int) ((((unsigned int) 0xe6) & ((0x01 << 8) - 1)) << 24);
+          tile = gfx++;
+          sync->words.w1 = 0;
+          tile->words.w0 = (unsigned int) ((((unsigned int) 0xf4) & ((0x01 << 8) - 1)) << 24);
+          tile->words.w1 = (((unsigned int) ((((unsigned int) 7) & ((0x01 << 3) - 1)) << 24)) | ((unsigned int) ((((unsigned int) ((glyph[2] - 1) << 2)) & ((0x01 << 12) - 1)) << 12))) | ((unsigned int) ((((unsigned int) ((glyph[3] - 1) << 2)) & ((0x01 << 12) - 1)) << 0));
+        }
+        gDPPipeSync(gfx++);
+        gDPSetTile(gfx++, 0, G_IM_SIZ_32b, ((glyph[2] * G_IM_SIZ_32b_LINE_BYTES) + 7) >> 3, 0, 0, 0, 0x2, 0, 0, 0x2, 0, 0);
+        gDPSetTileSize(gfx++, 0, 0, 0, (glyph[2] - 1) << 2, (glyph[3] - 1) << 2);
+      }
+    }
+    else
+      if (format == 0x200)
+    {
+      {
+        gDPSetTextureImage(gfx++, 3, G_IM_SIZ_16b, glyph[0], pixels + 0x80000000);
+        gDPSetTile(gfx++, 3, G_IM_SIZ_16b, ((glyph[2] * G_IM_SIZ_16b_TILE_BYTES) + 7) >> 3, 0, 7, 0, 0x2, 0, 0, 0x2, 0, 0);
+        {
+          Gfx *sync = gfx++;
+          Gfx *tile;
+          sync->words.w0 = (unsigned int) ((((unsigned int) 0xe6) & ((0x01 << 8) - 1)) << 24);
+          tile = gfx++;
+          sync->words.w1 = 0;
+          tile->words.w0 = (unsigned int) ((((unsigned int) 0xf4) & ((0x01 << 8) - 1)) << 24);
+          tile->words.w1 = (((unsigned int) ((((unsigned int) 7) & ((0x01 << 3) - 1)) << 24)) | ((unsigned int) ((((unsigned int) ((glyph[2] - 1) << 2)) & ((0x01 << 12) - 1)) << 12))) | ((unsigned int) ((((unsigned int) ((glyph[3] - 1) << 2)) & ((0x01 << 12) - 1)) << 0));
+        }
+        gDPPipeSync(gfx++);
+        gDPSetTile(gfx++, 3, G_IM_SIZ_16b, ((glyph[2] * G_IM_SIZ_16b_LINE_BYTES) + 7) >> 3, 0, 0, 0, 0x2, 0, 0, 0x2, 0, 0);
+        gDPSetTileSize(gfx++, 0, 0, 0, (glyph[2] - 1) << 2, (glyph[3] - 1) << 2);
+      }
+    }
+    else
+      if (format == 0x100)
+    {
+      {
+        gDPSetTextureImage(gfx++, 3, G_IM_SIZ_8b, glyph[0], pixels + 0x80000000);
+        gDPSetTile(gfx++, 3, G_IM_SIZ_8b, ((glyph[2] * G_IM_SIZ_8b_TILE_BYTES) + 7) >> 3, 0, 7, 0, 0x2, 0, 0, 0x2, 0, 0);
+        {
+          Gfx *sync = gfx++;
+          Gfx *tile;
+          sync->words.w0 = (unsigned int) ((((unsigned int) 0xe6) & ((0x01 << 8) - 1)) << 24);
+          tile = gfx++;
+          sync->words.w1 = 0;
+          tile->words.w0 = (unsigned int) ((((unsigned int) 0xf4) & ((0x01 << 8) - 1)) << 24);
+          tile->words.w1 = (((unsigned int) ((((unsigned int) 7) & ((0x01 << 3) - 1)) << 24)) | ((unsigned int) ((((unsigned int) ((glyph[2] - 1) << 2)) & ((0x01 << 12) - 1)) << 12))) | ((unsigned int) ((((unsigned int) ((glyph[3] - 1) << 2)) & ((0x01 << 12) - 1)) << 0));
+        }
+        gDPPipeSync(gfx++);
+        gDPSetTile(gfx++, 3, G_IM_SIZ_8b, ((glyph[2] * G_IM_SIZ_8b_LINE_BYTES) + 7) >> 3, 0, 0, 0, 0x2, 0, 0, 0x2, 0, 0);
+        gDPSetTileSize(gfx++, 0, 0, 0, (glyph[2] - 1) << 2, (glyph[3] - 1) << 2);
+      }
+    }
+    else
+      if (format == 0x40)
+    {
+      {
+        gDPSetTextureImage(gfx++, 4, G_IM_SIZ_8b, glyph[0], pixels + 0x80000000);
+        gDPSetTile(gfx++, 4, G_IM_SIZ_8b, ((glyph[2] * G_IM_SIZ_8b_TILE_BYTES) + 7) >> 3, 0, 7, 0, 0x2, 0, 0, 0x2, 0, 0);
+        {
+          Gfx *sync = gfx++;
+          Gfx *tile;
+          sync->words.w0 = (unsigned int) ((((unsigned int) 0xe6) & ((0x01 << 8) - 1)) << 24);
+          tile = gfx++;
+          sync->words.w1 = 0;
+          tile->words.w0 = (unsigned int) ((((unsigned int) 0xf4) & ((0x01 << 8) - 1)) << 24);
+          tile->words.w1 = (((unsigned int) ((((unsigned int) 7) & ((0x01 << 3) - 1)) << 24)) | ((unsigned int) ((((unsigned int) ((glyph[2] - 1) << 2)) & ((0x01 << 12) - 1)) << 12))) | ((unsigned int) ((((unsigned int) ((glyph[3] - 1) << 2)) & ((0x01 << 12) - 1)) << 0));
+        }
+        gDPPipeSync(gfx++);
+        gDPSetTile(gfx++, 4, G_IM_SIZ_8b, ((glyph[2] * G_IM_SIZ_8b_LINE_BYTES) + 7) >> 3, 0, 0, 0, 0x2, 0, 0, 0x2, 0, 0);
+        gDPSetTileSize(gfx++, 0, 0, 0, (glyph[2] - 1) << 2, (glyph[3] - 1) << 2);
+      }
+    }
+    else
+      if (format == 0x20)
+    {
+      {
+        gDPSetTextureImage(gfx++, 4, G_IM_SIZ_8b, glyph[0] >> 1, pixels + 0x80000000);
+        gDPSetTile(gfx++, 4, G_IM_SIZ_8b, ((glyph[2] >> 1) + 7) >> 3, 0, 7, 0, 0x2, 0, 0, 0x2, 0, 0);
+        {
+          Gfx *sync = gfx++;
+          Gfx *tile;
+          sync->words.w0 = (unsigned int) ((((unsigned int) 0xe6) & ((0x01 << 8) - 1)) << 24);
+          tile = gfx++;
+          sync->words.w1 = 0;
+          tile->words.w0 = (unsigned int) ((((unsigned int) 0xf4) & ((0x01 << 8) - 1)) << 24);
+          tile->words.w1 = (((unsigned int) ((((unsigned int) 7) & ((0x01 << 3) - 1)) << 24)) | ((unsigned int) ((((unsigned int) ((glyph[2] - 1) << 1)) & ((0x01 << 12) - 1)) << 12))) | ((unsigned int) ((((unsigned int) ((glyph[3] - 1) << 2)) & ((0x01 << 12) - 1)) << 0));
+        }
+        gDPPipeSync(gfx++);
+        gDPSetTile(gfx++, 4, G_IM_SIZ_4b, ((glyph[2] >> 1) + 7) >> 3, 0, 0, 0, 0x2, 0, 0, 0x2, 0, 0);
+        gDPSetTileSize(gfx++, 0, 0, 0, (glyph[2] - 1) << 2, (glyph[3] - 1) << 2);
+      }
+    }
+    else
+      if (format == 4)
+    {
+      {
+        gDPSetTextureImage(gfx++, 2, G_IM_SIZ_8b, glyph[0], pixels + 0x80000000);
+        gDPSetTile(gfx++, 2, G_IM_SIZ_8b, ((glyph[2] * G_IM_SIZ_8b_TILE_BYTES) + 7) >> 3, 0, 7, 0, 0x2, 0, 0, 0x2, 0, 0);
+        {
+          Gfx *sync = gfx++;
+          Gfx *tile;
+          sync->words.w0 = (unsigned int) ((((unsigned int) 0xe6) & ((0x01 << 8) - 1)) << 24);
+          tile = gfx++;
+          sync->words.w1 = 0;
+          tile->words.w0 = (unsigned int) ((((unsigned int) 0xf4) & ((0x01 << 8) - 1)) << 24);
+          tile->words.w1 = (((unsigned int) ((((unsigned int) 7) & ((0x01 << 3) - 1)) << 24)) | ((unsigned int) ((((unsigned int) ((glyph[2] - 1) << 2)) & ((0x01 << 12) - 1)) << 12))) | ((unsigned int) ((((unsigned int) ((glyph[3] - 1) << 2)) & ((0x01 << 12) - 1)) << 0));
+        }
+        gDPPipeSync(gfx++);
+        gDPSetTile(gfx++, 2, G_IM_SIZ_8b, ((glyph[2] * G_IM_SIZ_8b_LINE_BYTES) + 7) >> 3, 0, 0, 0, 0x2, 0, 0, 0x2, 0, 0);
+        gDPSetTileSize(gfx++, 0, 0, 0, (glyph[2] - 1) << 2, (glyph[3] - 1) << 2);
+      }
+    }
+    if (((struct TextState *) (&D_80128180))->fadeY != (-0x7FFF))
+    {
+      s32 offset;
+      s32 top;
+      offset = (((struct TextState *) (&D_80128180))->fadeY - originalY) - ((struct TextState *) (&D_80128180))->height;
+      top = -offset;
+      if (top < 0)
+      {
+        top = 0;
+      }
+      if (top > ((struct TextState *) (&D_80128180))->height)
+      {
+ top = ((struct TextState *) (&D_80128180))->height; } if (offset < 0) { offset = 0; } gDPSetTextureImage(gfx++, 4, G_IM_SIZ_8b, 32, D_801281B0 - 0x80000000); gDPSetTile(gfx++, 4, G_IM_SIZ_8b, ((glyph[2] + 1) + 7) >> 3, 0x100, 7, 0, 0x2, 0, 0, 0x2, 0, 0); gDPLoadSync(gfx++); gDPLoadTile(gfx++, 7, 0, top * 4, glyph[2] * 4, ((struct TextState *) (&D_80128180))->height * 4); gDPPipeSync(gfx++); gDPSetTile(gfx++, 4, G_IM_SIZ_8b, ((glyph[2] + 1) + 7) >> 3, 0x100, 1, 0, 0x2, 0, 0, 0x2, 0, 0); gDPSetTileSize(gfx++, 1, 0, (top + offset) * 4, glyph[2] * 4, (((struct TextState *) (&D_80128180))->height + offset) * 4); } {
+      Gfx *rect = gfx++;
+      rect->words.w0 = _SHIFTL(G_TEXRECT, 24, 8) |
+          _SHIFTL(MAX((s16)((s32)(((glyph[2] * arg4) + x) * 4.0f)), 0), 12, 12) |
+          _SHIFTL(MAX((s16)((s32)(((glyph[3] * arg4) + y) * 4.0f)), 0), 0, 12);
+      rect->words.w1 = _SHIFTL(0, 24, 3) |
+          _SHIFTL(MAX((s16)((int)(x * 4.0f)), 0), 12, 12) |
+          _SHIFTL(MAX((s16)((int)(y * 4.0f)), 0), 0, 12);
+      {
+        Gfx *half = gfx;
+        gfx++;
+        half->words.w0 = _SHIFTL(G_RDPHALF_1, 24, 8);
+        half->words.w1 = (unsigned int)(
+            _SHIFTL(0 - (((s16)((int)(x * 4.0f)) < 0) ?
+                (((s16)((s32)(1024.0f / arg4)) < 0) ?
+                    MAX(((s16)((int)(x * 4.0f)) * (s16)((s32)(1024.0f / arg4))) >> 7, 0) :
+                    MIN(((s16)((int)(x * 4.0f)) * (s16)((s32)(1024.0f / arg4))) >> 7, 0)) : 0), 16, 16) |
+            _SHIFTL(0 - ((((int)(y * 4.0f)) < 0) ?
+                (((s16)((s32)(1024.0f / arg4)) < 0) ?
+                    MAX(((s16)((int)(y * 4.0f)) * (s16)((s32)(1024.0f / arg4))) >> 7, 0) :
+                    MIN(((s16)((int)(y * 4.0f)) * (s16)((s32)(1024.0f / arg4))) >> 7, 0)) : 0), 0, 16));
+      }
+      {
+        Gfx *last = gfx++;
+        index = (u16)(s32)(1024.0f / arg4); last->words.w0 = _SHIFTL(G_RDPHALF_2, 24, 8); last->words.w1 = ((u32)index << 16) | index;
+      }
+    } *arg2 += advance * arg4; *arg0 = gfx; func_800E7694(); }
+}
 
 void func_800B7174(u8 *arg0) {
     struct Input { union { struct { s16 value; u16 rest; } halves; struct { unsigned int pad : 16; unsigned int nibble : 4; unsigned int rest : 12; } nib; struct { unsigned int pad : 20; unsigned int flag11 : 1; unsigned int pad2 : 1; unsigned int flag9 : 1; unsigned int rest : 9; } bits; } data; };
