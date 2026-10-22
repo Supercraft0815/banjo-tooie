@@ -118,7 +118,17 @@ void func_800A1968(PlayerState *arg0, f32 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7B250/func_800A1F0C.s")
+/* extern */
+
+void func_800A1F0C(void *volatile arg0, s32 *arg1) {
+    void func_800EFA88(void *, s32, s32, s32);
+    f32 *temp_v0;
+    s32 *color;
+
+    color = arg1++;
+    temp_v0 = *(f32 **)((s8 *)arg0 + 0x108);
+    func_800EFA88(color, (s32)(temp_v0[1] + 0.5f), (s32)(temp_v0[2] + 0.5f), (s32)(temp_v0[3] + 0.5f));
+}
 
 void func_800A1F78(void *arg0) {
     s32 func_800EA05C();
