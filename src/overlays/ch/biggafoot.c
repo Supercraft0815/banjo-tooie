@@ -1,5 +1,7 @@
 #include "ch/biggafoot.h"
 
+void func_800FFAB0(Actor *);
+
 OSThread *chbiggafoot_entrypoint_0(void)
 {
     extern u8 D_80801094_chbiggafoot[];
@@ -51,7 +53,108 @@ void func_808004B0_chbiggafoot(s32 arg0)
     func_800DA524(FLAG2_6CD_UNK);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_808004D4_chbiggafoot.s")
+s32 func_808004D4_chbiggafoot(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _capod_entrypoint_17(f32);
+    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    void _capod_entrypoint_3(u32);
+    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+    s32 _dbmorph_entrypoint_3(u8 *, u8 *, s32, u8, u8 *);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u8 *func_800B2768(u8 *);
+    s32 func_800B2840(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800F0D50(f32, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    s32 func_800F7F98(s32, u32);
+    void func_800FFAB0(Actor *);
+    s32 func_801015D0(Actor *);
+    void func_80102424(Actor *, s32);
+    s32 func_80103CB8(Actor *, u32);
+    s32 func_80106790(s32);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    void func_8010A570(Actor *);
+    void func_8010D930(s32, s32, f32 *, s32 *);
+    void func_80800840_chbiggafoot(Actor *, s32, s32);
+    extern f32 D_80801154_chbiggafoot[2];
+    extern s32 D_8080115C_chbiggafoot[];
+    extern s32 D_80801170_chbiggafoot[];
+    extern s32 D_80801188_chbiggafoot[];
+    f32 *threshold;
+    Actor *sp58;
+    f32 sp50[2];
+    u8 *model;
+    f32 sp40[3];
+    Actor *spawned;
+
+    switch (arg1) {
+    case 0x2E:
+        func_80800840_chbiggafoot(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0xB:
+        if (arg2 == 0x50) {
+            func_800DA544(FLAG_1CC_UNK);
+            func_800FFAB0(arg0);
+            _capod_entrypoint_3(0);
+            return 4;
+        }
+        return 3;
+    case 0xE:
+        if (arg2 == 0x5A) {
+            sp58 = func_80106790(arg0->unk3C);
+            threshold = D_80801154_chbiggafoot;
+            do {
+                if (_capod_entrypoint_17(*threshold)) {
+                    func_8010D930(4, sp58->unk70_0, sp58->position, D_8080115C_chbiggafoot);
+                    return 3;
+                }
+                threshold++;
+            } while (threshold != (f32 *)D_8080115C_chbiggafoot);
+        }
+        return 3;
+    case 0x3F:
+        func_8010A570(arg0);
+        arg0->unk64_20 = 1;
+        func_8010D930(1, arg0->unk70_0, arg0->position, D_80801170_chbiggafoot);
+        if (!arg0->unk64_19) {
+            arg0->unk64_19 = 1;
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x12B1, 0xE, arg0->position, 0xA8);
+        }
+        break;
+    case 0x1F:
+        model = *(u8 **)&arg2;
+        sp50[0] = sp50[1] = func_800F0D50(((f32 *)arg0->actorData)[4] + ((f32 *)arg0->actorData)[5], 0.0f, 1.0f);
+        _dbmorph_entrypoint_3(func_800B2768(model), (u8 *)func_80103CB8(arg0, (u32)model), func_800B2840((s32)model), 1, (u8 *)sp50);
+        func_801015D0(arg0);
+        break;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(D_80801188_chbiggafoot, arg0->scale);
+        break;
+    case 0x3D:
+        func_800F7F98(func_800F54E4(), 0);
+        func_800EE7F8(sp40, arg0->position);
+        func_800EF1B8(sp40, arg0->unk50 - 40.0f, 100.0f);
+        sp40[1] += 60.0f;
+        spawned = func_80108528(0x44E, (f32 *)arg0->actorData, (s32)func_800F1DF4((f32 *)arg0->actorData, sp40), &arg0);
+        spawned->unk3C = arg0->unk0;
+        arg0->unk3C = spawned->unk0;
+        func_800EE7F8((f32 *)spawned->actorData, sp40);
+        func_800EE7F8((f32 *)spawned->actorData + 4, (f32 *)arg0->actorData);
+        spawned->unk58 = ((f32 *)spawned->actorData)[3] = func_800EEAD4((f32 *)arg0->actorData, sp40) / 1600.0f;
+        _capod_entrypoint_2(arg0->unk0, 0x23, 0);
+        _capod_entrypoint_6(spawned->unk0, 0x5A, 0x30);
+        break;
+    case 0xA:
+        func_80102424(arg0, 5);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
