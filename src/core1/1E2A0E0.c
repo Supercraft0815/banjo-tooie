@@ -256,7 +256,31 @@ void *func_80012F6C(void) {
     return D_80076940;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/rom_dma_read.s")
+void rom_dma_read(u8 *arg0, s32 arg1, s32 arg2) {
+    extern s32 D_8003CC70;
+    extern u8 D_80076940[];
+    extern u8 D_8007695C[];
+    s32 i;
+    s32 chunks;
+
+    osWritebackDCache(arg0, arg2);
+    i = 0;
+    chunks = arg2 / 0x20000;
+    for (; i < chunks;) {
+        D_8003CC70++;
+        osPiStartDma((OSIoMesg *) D_80076940, 0, 0, arg1, arg0, 0x20000, (OSMesgQueue *) D_8007695C);
+        osRecvMesg((OSMesgQueue *) D_8007695C, NULL, 1);
+        arg1 += 0x20000;
+        arg0 += 0x20000;
+        i++;
+        D_8003CC70--;
+    }
+    D_8003CC70++;
+    osPiStartDma((OSIoMesg *) D_80076940, 0, 0, arg1, arg0, arg2 % 0x20000, (OSMesgQueue *) D_8007695C);
+    osRecvMesg((OSMesgQueue *) D_8007695C, NULL, 1);
+    D_8003CC70--;
+    osInvalDCache(arg0, arg2);
+}
 
 void func_8001311C(u8 *arg0, s32 arg1) {
     extern s32 D_8003CC70;
