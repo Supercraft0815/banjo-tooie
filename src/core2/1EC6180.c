@@ -252,8 +252,8 @@ int func_800EDA2C(void *self, f32 arg1[3]) {
 /* extern */
 
 void func_800EDAF4(u8 *arg0) {
-    s32 func_800C2FDC(s32, u8);
-    u8 temp_a1;
+    s32 func_800C2FDC();
+    s32 temp_a1;
 
     temp_a1 = *arg0;
     if (temp_a1 != 0) {
@@ -454,4 +454,120 @@ void func_800EE100(s16 *arg0, s32 arg1) {
     arg0[38] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800EE108.s")
+void func_800EE108(MeshEffect *arg0, s32 model, s32 mesh_id) {
+    f32 func_800D8FF8(void);
+    void _glid_entrypoint_0(s32, s32, s32 *, s32);
+    f32 func_800C395C(u8);
+    s16 func_800C3920(u8);
+    f32 func_800DC264(f32, f32);
+    s32 func_800DC214(s32, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C3058(u8, s32);
+    s32 func_800C2FDC();
+    void func_800ECD60();
+    void func_800ECEEC();
+    void func_800ED064();
+    void func_800ED0D4();
+    void func_800ED144();
+    void func_800ED79C();
+    void func_800ED7F8();
+    f32 sp2C;
+    f32 sp28;
+    f32 sp24;
+    s32 sp20;
+
+    sp2C = func_800D8FF8();
+    if (arg0->unk74 > 0.0f) {
+        arg0->unk70 += sp2C;
+        if (arg0->unk74 <= arg0->unk70) {
+            arg0->unk70 = arg0->unk74;
+            if (arg0->unk28 == 0) {
+                arg0->unk28 = 2;
+            }
+        }
+        _glid_entrypoint_0(model, mesh_id, (s32 *)func_800EC9F0, (s32)arg0);
+        if (arg0->unk28 != 0) {
+            arg0->unk28--;
+            if (arg0->unk28 == 0) {
+                arg0->unk74 = 0.0f;
+            }
+        }
+    }
+    if (arg0->unk9C > 0.0f) {
+        arg0->unk98 += sp2C;
+        if (arg0->unk9C <= arg0->unk98) {
+            arg0->unk98 = arg0->unk9C;
+            if (arg0->unk28 == 0) {
+                arg0->unk28 = 2;
+            }
+        }
+        switch (arg0->unk29) {
+            case 5:
+                _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ED79C, (s32)arg0);
+                break;
+            case 6:
+                _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ED424, (s32)arg0);
+                break;
+            default:
+                _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ED144, (s32)arg0);
+                break;
+        }
+        if (arg0->unk28 != 0) {
+            arg0->unk28--;
+            if (arg0->unk28 == 0) {
+                arg0->unk9C = 0.0f;
+            }
+        }
+    }
+    if ((arg0->unk29 == 0) || (arg0->unk29 == 5)) {
+        return;
+    }
+    arg0->unk44 += sp2C;
+    if (arg0->unk48 < arg0->unk44) {
+        arg0->unk44 = arg0->unk48;
+    }
+    if (arg0->unk0 != 0) {
+        sp28 = arg0->unk44 / arg0->unk48;
+        sp24 = func_800C395C(arg0->unk0);
+        sp20 = func_800C3920(arg0->unk0);
+        sp24 += func_800DC264(-1.0f, 1.0f) * sp2C;
+        sp24 = (arg0->unk20 > sp24) ? arg0->unk20 : sp24;
+        sp24 = (arg0->unk24 < sp24) ? arg0->unk24 : sp24;
+        sp20 += func_800DC214(-0xF, 0xF);
+        sp20 = (0x7FFF < sp20) ? 0x7FFF : sp20;
+        sp20 = (31000 > sp20) ? 31000 : sp20;
+        if (0.8500000238418579f <= sp28) {
+            sp20 = (1.0f - ((sp28 - 0.8500000238418579f) / 0.1499999761581421f)) * sp20;
+        }
+        func_800C31DC(arg0->unk0, sp24);
+        func_800C3058(arg0->unk0, sp20);
+    }
+    switch (arg0->unk29) {
+        case 1:
+            _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ECD60, (s32)arg0);
+            break;
+        case 2:
+            _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ECEEC, (s32)arg0);
+            break;
+        case 3:
+            _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ED064, (s32)arg0);
+            break;
+        case 4:
+            _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ED7F8, (s32)arg0);
+            break;
+        case 7:
+            _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ED0D4, (s32)arg0);
+            break;
+    }
+    if (arg0->unk48 <= arg0->unk44) {
+        arg0->unk29 = 0;
+        arg0->unk4C = arg0->unk4E;
+        if (arg0->unk10 != NULL) {
+            arg0->unk10(arg0);
+        }
+        if (arg0->unk0 != 0) {
+            func_800C2FDC(arg0->unk0);
+            arg0->unk0 = 0;
+        }
+    }
+}
