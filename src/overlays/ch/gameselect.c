@@ -2436,7 +2436,68 @@ void func_80805474_chgameselect(s32 arg0,s32 arg1)
     func_8080537C_chgameselect(arg0,0x1,arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80805498_chgameselect.s")
+void func_80805498_chgameselect(Actor *arg0, s32 arg1) {
+    s32 _gcnewoption_entrypoint_12(s32, s32, s16);
+    void _gcnewoption_entrypoint_31(s32, s32, s16);
+    void _gcnewoption_entrypoint_41(OptionState *, s32);
+    s32 _gcstatusDll_entrypoint_10(void);
+    void func_80805BA0_chgameselect(s32, s32, s32);
+    s32 func_80805ECC_chgameselect(s32 *, s32);
+    void func_80806218_chgameselect(s32, s32, s32, s32);
+    s32 func_808062A8_chgameselect();
+    s32 func_808068E8_chgameselect(void);
+    s32 func_80806A30_chgameselect(void);
+    void func_80806AF4_chgameselect(s32, s32, s32);
+    extern u8 D_808083FC_chgameselect[];
+    extern u8 D_8080840C_chgameselect[];
+    s32 i;
+    s32 count;
+    s32 selected;
+    u8 *icons;
+
+    selected = arg0->actorData[0];
+    switch (selected) {
+    case 0:
+        i = 0;
+        icons = D_808083FC_chgameselect;
+        do {
+            _gcnewoption_entrypoint_12(arg1, i, i + 12);
+            _gcnewoption_entrypoint_31(arg1, i, *icons);
+            func_80805BA0_chgameselect(arg1, i, 0);
+            i++;
+            icons++;
+        } while (i != 3);
+        selected = _gcstatusDll_entrypoint_10() >= 2 ? _gcstatusDll_entrypoint_10() - 2 : 0;
+        _gcnewoption_entrypoint_41((OptionState *)arg1, selected);
+        break;
+    case 4:
+        count = _gcstatusDll_entrypoint_10();
+        for (i = 0; i < count; i++) {
+            func_80806218_chgameselect(arg1, i, func_808062A8_chgameselect(i), 0);
+        }
+        break;
+    case 6:
+        _gcnewoption_entrypoint_12(arg1, 0, 0);
+        _gcnewoption_entrypoint_12(arg1, 1, 1);
+        _gcnewoption_entrypoint_12(arg1, 2, 2);
+        func_80806AF4_chgameselect(arg1, 4, func_80806A30_chgameselect());
+        if (_gcstatusDll_entrypoint_10() < 3) {
+            _gcnewoption_entrypoint_12(arg1, 3, 12);
+            func_8080401C_chgameselect(arg1, 3, 0);
+        } else {
+            func_80806AF4_chgameselect(arg1, 3, func_808068E8_chgameselect());
+        }
+        icons = D_8080840C_chgameselect;
+        i = 0;
+        do {
+            _gcnewoption_entrypoint_31(arg1, i, *icons);
+            i++;
+            icons++;
+        } while (i != 5);
+        _gcnewoption_entrypoint_41((OptionState *)arg1, func_80805ECC_chgameselect((s32 *)arg0, 2));
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080569C_chgameselect.s")
 
