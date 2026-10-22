@@ -330,7 +330,89 @@ u32 func_80800D3C_chpoolkids(s32 unused, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_80800D74_chpoolkids.s")
+void func_80800D74_chpoolkids(Actor *arg0) {
+    s32 _gcmapsects_entrypoint_4(f32 *);
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 _glcutDll_entrypoint_20(void);
+    void _glidmake_entrypoint_2(s32, s32, s16 *, s16 *);
+    s32 _idworldmake_entrypoint_1(s32, s32, s32, s32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 func_800BEA88(s32);
+    void func_800BF744(s32, s32);
+    s32 func_800DA298(s32);
+    void *func_80100094(Actor *, u32);
+    struct PoolKidsData {
+        s16 section;
+        s16 state;
+        f32 timer;
+        f32 unk8;
+        f32 valueC;
+        s16 done10;
+        s16 unk12;
+        s16 min14[3];
+        s16 max1A[3];
+        f32 value20;
+        s16 done24;
+        s16 unk26;
+        s16 min28[3];
+        s16 max2E[3];
+    } *data;
+    s32 sp28;
+    s32 sp24;
+    s32 sp20;
+    s32 active;
+
+    data = func_80100094(arg0, 0);
+    sp28 = func_800DA298(0x166);
+    sp24 = func_800DA298(0x167);
+    data->section = _gcmapsects_entrypoint_4(arg0->position);
+    data->state = 0;
+    data->timer = 0.0f;
+    data->unk8 = 0.0f;
+    data->value20 = 0.0f;
+    data->valueC = 0.0f;
+    if (_glcutDll_entrypoint_20()) {
+        sp28 = 1;
+        sp24 = 1;
+    }
+    if (sp28) {
+        data->valueC = 1.0f;
+    }
+    if (sp24) {
+        data->value20 = 1.0f;
+    }
+    if (_glcutDll_entrypoint_19(0x2A)) {
+        data->state = 1;
+        data->valueC = 0.0f;
+        data->timer = 4.0f;
+        data->unk8 = 4.0f;
+        _subaddieDll_entrypoint_4(arg0, 1);
+    } else if (_glcutDll_entrypoint_19(0x29)) {
+        data->state = 2;
+        data->value20 = 0.0f;
+        data->timer = 6.0f;
+        data->unk8 = 6.0f;
+        _subaddieDll_entrypoint_4(arg0, 1);
+    }
+    if (data->valueC == 1.0f) {
+        data->done10 = 1;
+    } else {
+        data->done10 = 0;
+    }
+    if (data->value20 == 1.0f) {
+        data->done24 = 1;
+    } else {
+        data->done24 = 0;
+    }
+    func_800BF744(3, 0);
+    active = data->done10 ? 0 : 1;
+    func_800BF744(2, active);
+    sp20 = func_800BEA88(1);
+    _glidmake_entrypoint_2(sp20, 1, data->min28, data->max2E);
+    _glidmake_entrypoint_2(sp20, 2, data->min14, data->max1A);
+    _idworldmake_entrypoint_1(sp20, 0x8D, 1, 1);
+    _idworldmake_entrypoint_1(sp20, 0x8D, 2, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/chpoolkids_entrypoint_3.s")
 
