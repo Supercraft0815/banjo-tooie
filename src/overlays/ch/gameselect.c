@@ -2513,7 +2513,55 @@ void func_80805BFC_chgameselect(Actor *arg0, s32 arg1) {
     arg0->actorData[0] = 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80805CD8_chgameselect.s")
+void func_80805CD8_chgameselect(Actor *arg0, s32 arg1) {
+    s32 _gcstatusDll_entrypoint_14();
+    s32 _gcstatusDll_entrypoint_4(s32);
+    s32 func_80805ECC_chgameselect(s32 *, s32);
+    void func_80806068_chgameselect(void *, s32, s32);
+    s32 func_808068E8_chgameselect(void);
+    s32 func_80806A30_chgameselect(void);
+    void func_80802E38_chgameselect(Unk80132ED0 *, s32, s32, s32);
+    extern u8 D_80808404_chgameselect;
+    extern u8 D_80808405_chgameselect;
+    extern u8 D_80808406_chgameselect;
+    extern u8 D_80808407_chgameselect;
+    s32 flag;
+    s32 value;
+    s32 selection;
+
+    flag = 0;
+    func_80806068_chgameselect(arg0, 1, arg0->actorData[2]);
+    if (_gcstatusDll_entrypoint_14() == 6) {
+        _gcstatusDll_entrypoint_4(1);
+    }
+    func_80806068_chgameselect(arg0, 2, _gcstatusDll_entrypoint_14() - 1);
+    value = func_80805ECC_chgameselect((s32 *)arg0, 2);
+    if (value == 2 || value == 4) {
+        flag = 1;
+    }
+    switch (value) {
+    default:
+        selection = value + 5;
+        break;
+    case 3:
+        selection = func_808068E8_chgameselect() + 10;
+        break;
+    case 4:
+        selection = func_80806A30_chgameselect() + 20;
+        break;
+    }
+    func_80802D40_chgameselect((Unk80132ED0 *)arg0->actorData[6], 4, 0);
+    func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], 0, 0, -1, -1, D_80808404_chgameselect);
+    value = func_80805ECC_chgameselect((s32 *)arg0, 1);
+    func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], 1, value + 0x23, flag ? 0x26 : -1, -1, D_80808405_chgameselect);
+    func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], 2, selection, -1, -1, D_80808406_chgameselect);
+    value = func_80805ECC_chgameselect((s32 *)arg0, 3);
+    func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], 3, value + 0x1B, flag ? 0x27 : -1, -1, D_80808407_chgameselect);
+    func_80802E38_chgameselect((Unk80132ED0 *)arg0->actorData[6], 0x18F4, arg1, 4);
+    func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[5], 6);
+    arg0->actorData[0] = 3;
+    func_80802D04_chgameselect((Unk80132ED0 *)arg0->actorData[6], 1);
+}
 
 s32 func_80805ECC_chgameselect(s32 *arg0, s32 arg1) {
     s32 _gcstatusDll_entrypoint_14();
