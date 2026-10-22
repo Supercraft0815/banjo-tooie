@@ -120,7 +120,70 @@ void func_80800E90_chboilerboss(Actor *arg0, s32 *arg1) {
     func_8080221C_chboilerboss(arg0, 0, 0x40A00000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80800F34_chboilerboss.s")
+s32 func_80800F34_chboilerboss(Actor *arg0, s32 arg1) {
+    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void func_800187B4(s32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_80109FE8(void **, s32);
+    void func_80801EB4_chboilerboss(Actor *);
+    void func_8080238C_chboilerboss(Unk80132ED0 **, s32, s32);
+    void func_808024B8_chboilerboss(s32);
+    void func_808024DC_chboilerboss(Actor *);
+    void func_80802594_chboilerboss(s32);
+    void func_808027E4_chboilerboss(Actor *, s32, s32, Unk80132ED0 *);
+    struct {
+        u8 pad[0x58];
+        s8 unk58;
+        u8 pad59[7];
+        s32 unk60;
+    } *data;
+    s32 active;
+
+    data = func_80100094(arg0, 0);
+    active = 0;
+    func_80102424(arg0, arg1);
+    func_80802594_chboilerboss((s32)arg0);
+    switch (arg1) {
+    case 7:
+        func_808027E4_chboilerboss(arg0, 2, 0x30, NULL);
+        func_8080238C_chboilerboss(&arg0->unk0, 0xF99, 0x40);
+        func_80109FE8(&arg0->unk0, 0);
+        break;
+    case 8:
+        func_808027E4_chboilerboss(arg0, 4, 0x30, NULL);
+        func_8080238C_chboilerboss(&arg0->unk0, 0xF9A, 0x40);
+        func_80109FE8(&arg0->unk0, 0);
+        break;
+    case 9:
+        func_808027E4_chboilerboss(arg0, 6, 0x30, NULL);
+        func_8080238C_chboilerboss(&arg0->unk0, 0xF9B, 0x40);
+        func_80109FE8(&arg0->unk0, 0);
+        break;
+    case 5:
+        func_80801EB4_chboilerboss(arg0);
+        active = 1;
+        break;
+    case 10:
+        active = 1;
+        break;
+    case 2:
+        func_800187B4(0, 1.6f, 0.25f, 2.0f);
+        func_808024B8_chboilerboss((s32)arg0);
+        func_808027E4_chboilerboss(arg0, 0, 0x20, NULL);
+        _chintrotext_entrypoint_1(0x18B9, 0, 1, 0);
+        data->unk60 = 1;
+        break;
+    case 6:
+        active = 1;
+        break;
+    case 12:
+        arg0->unk64_16 = 0;
+        break;
+    }
+    data->unk58 = active;
+    func_808024DC_chboilerboss(arg0);
+}
 
 void func_808010F4_chboilerboss(Actor *arg0) {
     s32 _dbmorph_entrypoint_3(u8 *, u8 *, s32, u8, u8 *);
