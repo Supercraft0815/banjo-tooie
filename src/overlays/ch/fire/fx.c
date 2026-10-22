@@ -38,7 +38,37 @@ void func_80800018_chfirefx(ChFireFxActor *arg0) {
     chfirefx_entrypoint_2(&arg0->actor, arg0->actor.scale, (f32)arg0->actor.unk74_7, (s32)arg0->actor.rotation[1], var_v0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/chfirefx_entrypoint_2.s")
+void chfirefx_entrypoint_2(Actor *arg0, f32 arg1, f32 arg2, s32 arg3, s32 arg4) {
+    struct FireData {
+        s32 unk0;
+        f32 scale;
+        s16 unk8, unkA, count, active;
+        u16 flags;
+        s16 value;
+        u16 radius, range;
+        u8 link[8];
+    } *data;
+    u32 *func_80100074(Actor *, u32, u32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32 *);
+    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    s32 func_800EA05C(void);
+    Actor *other;
+    data = (struct FireData *)func_80100074(arg0, 0, arg3 * 20 + 32);
+    data->count = arg3;
+    data->unk8 = 0;
+    data->unkA = data->unk8;
+    data->active = 0;
+    data->scale = arg1;
+    data->flags = arg4;
+    data->value = (s32)arg2;
+    data->radius = (u32)(arg1 * 150.0f);
+    data->range = (u32)(arg1 * 850.0f);
+    if ((arg4 & 8) && arg2 <= 70.0f) { data->active = 1; }
+    if (arg4 & 16) { data->active = 1; }
+    other = _subaddiefind_entrypoint_2(0x289, NULL);
+    _subaddielink_entrypoint_1(data->link, other ? other->unk0 : NULL);
+    arg0->unk64_20 = func_800EA05C() == 0xED;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/chfirefx_entrypoint_3.s")
 
