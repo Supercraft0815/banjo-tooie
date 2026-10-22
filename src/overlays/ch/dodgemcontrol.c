@@ -585,7 +585,19 @@ s32 func_8080207C_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80802104_chdodgemcontrol.s")
+void func_80802104_chdodgemcontrol(Actor *arg0) {
+    void func_80018820(s32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    f32 *data;
+
+    data = func_80100094(arg0, 0);
+    if (!(data[7] > 0.0f)) {
+        data[7] = 1.5f;
+        if (arg0->unk6C_0 == 0 || arg0->unk64_29) {
+            func_80018820(arg0->unk6C_0, 0.5f, 1.0f);
+        }
+    }
+}
 
 void func_80802180_chdodgemcontrol(Actor *arg0) {
     f32 func_800138D0(f32);
