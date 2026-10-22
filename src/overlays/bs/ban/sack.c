@@ -309,7 +309,64 @@ void func_808007A4_bsbansack(PlayerState *arg0) {
     baphysics_set_vertical_velocity(arg0, 300.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800810_bsbansack.s")
+void func_80800810_bsbansack(PlayerState *arg0) {
+    void _babackpack_set_state(void *, s32);
+    f32 anctrl_getAnimTimer(s32);
+    int anctrl_isAt(struct anctrl_s *, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    int baanim_isStopped(PlayerState *);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 bastick_getZone(PlayerState *);
+    void bs_setState(PlayerState *, int);
+    f32 func_80096364(PlayerState *);
+    f32 func_800964DC(PlayerState *);
+    void func_8009DBF0(PlayerState *, s32, f32);
+    void func_8009DE38(PlayerState *, s32, f32);
+    void func_8009FE58(PlayerState *);
+    void func_800A0CD0(void *, s32);
+    s32 player_inWater(PlayerState *);
+    struct anctrl_s *sp2C;
+    s32 sp28;
+    s32 sp24;
+    f32 sp20;
+
+    sp2C = baanim_getAnimCtrlPtr(arg0);
+    sp28 = 0;
+    if (anctrl_isAt(sp2C, 0.2f)) {
+        func_8009DE38(arg0, 0x583, 1.1f);
+    }
+    if (anctrl_isAt(sp2C, 0.2f)) {
+        func_8009DBF0(arg0, 0x3FF, 0.9f);
+    }
+    if (anctrl_isAt(sp2C, 0.73f)) {
+        func_8009FE58(arg0);
+    }
+    if (anctrl_isAt(sp2C, 0.77f)) {
+        func_8009DE38(arg0, 0x584, 1.1f);
+    }
+    if (anctrl_getAnimTimer(sp2C) < 0.515f) {
+        func_808001D4_bsbansack(arg0);
+    } else {
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+    }
+    if (anctrl_isAt(sp2C, 0.7307f)) {
+        _babackpack_set_state(arg0, 1);
+        func_800A0CD0(arg0, 1);
+    }
+    if (baanim_isStopped(arg0)) {
+        sp28 = 1;
+    }
+    if (anctrl_getAnimTimer(sp2C) > 0.8f && bastick_getZone(arg0) > 0) {
+        sp28 = 4;
+    }
+    if (anctrl_getAnimTimer(sp2C) > 0.95f && player_inWater(arg0)) {
+        sp20 = func_800964DC(arg0);
+        if (sp20 - func_80096364(arg0) > 80.0f) {
+            sp28 = 0x4C;
+        }
+    }
+    bs_setState(arg0, sp28);
+}
 
 s32 bsbansack_entrypoint_2(s32 arg0) {
     extern s32 D_80801E30_bsbansack[];
