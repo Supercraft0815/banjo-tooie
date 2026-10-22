@@ -570,7 +570,60 @@ void func_8080153C_chhoopswoop(void *arg0)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_808015A4_chhoopswoop.s")
+void func_808015A4_chhoopswoop(Actor *arg0) {
+    s32 _gcstatusDll_entrypoint_11();
+    s32 _subaddiemulti_entrypoint_1(s32, s32);
+    void _sumultiscore_entrypoint_11(u8 *, s32, s32, f32);
+    s32 _sumultiscore_entrypoint_8(void *, s32, s32);
+    void func_800AA20C(s32, s32);
+    void func_800FC6B0(u32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    s32 temp;
+    s32 scores[8];
+    s32 *data;
+    s32 max;
+    s32 i;
+    s32 j;
+    s32 k;
+    s32 dialog;
+
+    data = func_80100094(arg0, 0);
+    max = -1;
+    for (j = 0; j < _gcstatusDll_entrypoint_11(); j++) {
+        scores[j] = _sumultiscore_entrypoint_8(data + 311, j, 7);
+        if (max < scores[j]) {
+            max = scores[j];
+        }
+        func_800AA20C(j, scores[j]);
+    }
+    for (j = 0; j < _gcstatusDll_entrypoint_11(); j++) {
+        if (max == scores[j]) {
+            _sumultiscore_entrypoint_11((u8 *)(data + 311), j, 7, 3.0f);
+        }
+    }
+    for (i = 1; i < _gcstatusDll_entrypoint_11(); i++) {
+        for (k = i; k > 0 && scores[k - 1] < scores[k]; k--) {
+            temp = scores[k];
+            scores[k] = scores[k - 1];
+            scores[k - 1] = temp;
+        }
+    }
+    func_800FC6B0(0x16);
+    if (scores[0] != scores[1]) {
+        for (k = 0; _sumultiscore_entrypoint_8(data + 311, k, 7) != scores[0]; k++) {
+        }
+        data[2] = k;
+        dialog = 0x10CD;
+    } else {
+        dialog = 0x10CE;
+    }
+    _subaddiemulti_entrypoint_1(0, 0);
+    data[3] = dialog;
+    data[4] = 6;
+    ((f32 *)data)[638] = 3.0f;
+    func_80101FDC(arg0, 4);
+}
 
 void func_808017C4_chhoopswoop(Actor *arg0) {
     f32 func_800DC178(f32, f32);
