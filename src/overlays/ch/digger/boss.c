@@ -1294,7 +1294,91 @@ void func_80803E10_chdiggerboss(Actor *arg0) {
     func_800E8D5C(data->unkA, D_80809F98_chdiggerboss, 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80803E84_chdiggerboss.s")
+void func_80803E84_chdiggerboss(Actor *arg0) {
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_8001210C(s32);
+    void func_800C3058(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C4B64(f32);
+    void func_800C4B70(s32);
+    u8 func_800D9078(f32 *);
+    s32 func_800D90A4(f32 *);
+    f32 func_800DC178(f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80804140_chdiggerboss(Actor *);
+    void func_808041E4_chdiggerboss(Actor *, s32);
+    void func_808043D8_chdiggerboss(Actor *, f32, f32 *);
+    void func_80804450_chdiggerboss(Actor *);
+    void func_80804680_chdiggerboss(Actor *);
+    extern f32 D_80809F3C_chdiggerboss;
+    extern f32 D_80809F40_chdiggerboss;
+    extern u32 D_80809F44_chdiggerboss;
+    extern s32 D_80809FB0_chdiggerboss;
+    extern s32 D_80809FC0_chdiggerboss;
+    extern s32 D_80809FD0_chdiggerboss;
+    struct {
+        u8 pad0[8];
+        u8 state;
+        u8 count;
+        u8 loopA;
+        u8 loopB;
+        u8 loopC;
+        u8 loopD;
+        u8 padE[2];
+        f32 timer;
+        f32 timer14;
+    } *data;
+    f32 volume;
+    s32 rate;
+
+    data = func_80100094(arg0, 0);
+    switch (data->state) {
+        case 0:
+            break;
+        case 1:
+            data->loopD = _subaddieaudioloop_entrypoint_7(data->loopD, arg0->position, 1, &D_80809FB0_chdiggerboss, arg0->unk70_0);
+            if (func_800D9078(&data->timer)) {
+                func_808041E4_chdiggerboss(arg0, 2);
+            }
+            break;
+        case 2:
+            volume = func_800F10B4(*(f32 *)&arg0->actorData[3], 0.0f, 350.0f, 0.85f, 1.1f);
+            rate = (s32)func_800F10B4(*(f32 *)&arg0->actorData[3], 0.0f, 350.0f, 25000.0f, 32000.0f);
+            if (data->loopB == 0) {
+                func_800C4B64(volume);
+                func_800C4B70(rate);
+            }
+            data->loopB = _subaddieaudioloop_entrypoint_7(data->loopB, arg0->position, 1, &D_80809FC0_chdiggerboss, arg0->unk70_0);
+            if (data->loopB != 0) {
+                func_800C31DC(data->loopB, volume);
+                func_800C3058(data->loopB, rate);
+            }
+            if (func_80802314_chdiggerboss() < 2 && func_800D90A4(&data->timer14)) {
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80809F44_chdiggerboss);
+                data->timer14 = func_800DC178(0.85f, 2.5f);
+                data->count = 4;
+            }
+            func_80804680_chdiggerboss(arg0);
+            if (func_8001210C(1)) {
+                if (data->count != 0) {
+                    func_808043D8_chdiggerboss(arg0, 1.25f, &D_80809F3C_chdiggerboss);
+                    data->count--;
+                } else {
+                    func_808043D8_chdiggerboss(arg0, 1.0f, &D_80809F40_chdiggerboss);
+                }
+            }
+            break;
+        case 3:
+            data->loopC = _subaddieaudioloop_entrypoint_7(data->loopC, arg0->position, 1, &D_80809FD0_chdiggerboss, arg0->unk70_0);
+            break;
+        case 4:
+            func_80804450_chdiggerboss(arg0);
+            break;
+    }
+    func_80804140_chdiggerboss(arg0);
+}
 
 void func_808040D8_chdiggerboss(s32 arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
