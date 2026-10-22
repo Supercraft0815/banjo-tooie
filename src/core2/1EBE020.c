@@ -661,7 +661,198 @@ int func_800E589C(unsigned int *b, unsigned int n, unsigned int s, u16 *d, u8 *e
     return y != 0 && g != 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E5EC0.s")
+int func_800E5EC0(struct workspace *arg0) {
+    struct code {
+        u8 e;
+        u8 b;
+        union {
+            u16 n;
+            struct code *t;
+        } v;
+    };
+    struct decoder {
+        u8 *input;
+        s32 input_pos;
+        u8 *output;
+        u32 bits;
+        unsigned int count;
+        unsigned int output_pos;
+        struct code *tl;
+        struct code *td;
+        int bl;
+        int bd;
+        struct code *tables;
+        s32 used;
+        s32 offset;
+    };
+    void func_8001311C(u8 *, s32);
+    extern u8 D_801231F0[];
+    extern u8 D_80123203;
+    extern u16 D_80123204[];
+    extern u8 D_80123244[];
+    extern u16 D_80123264[];
+    extern u8 D_801232A0[];
+    extern u16 D_801232C0[];
+    unsigned int i;
+    unsigned int j;
+    unsigned int l;
+    unsigned int m;
+    unsigned int n;
+    struct code *tl;
+    struct code *td;
+    int bl;
+    int bd;
+    unsigned int nb;
+    unsigned int nl;
+    unsigned int nd;
+    unsigned int ll[316];
+    register u32 b;
+    register unsigned int k;
+
+    bl = ((struct decoder *)arg0)->bl;
+    bd = ((struct decoder *)arg0)->bd;
+    tl = ((struct decoder *)arg0)->tl;
+    td = ((struct decoder *)arg0)->td;
+    b = ((struct decoder *)arg0)->bits;
+    k = ((struct decoder *)arg0)->count;
+    while (k < 5) {
+        if (((struct decoder *)arg0)->input_pos >= 0x1800) {
+            ((struct decoder *)arg0)->input_pos = 0;
+            func_8001311C(((struct decoder *)arg0)->input, ((struct decoder *)arg0)->offset);
+            ((struct decoder *)arg0)->offset += 0x1800;
+        }
+        b |= (u32)((struct decoder *)arg0)->input[((struct decoder *)arg0)->input_pos++] << k;
+        k += 8;
+    }
+    nl = 257 + (b & 31);
+    b >>= 5;
+    k -= 5;
+    while (k < 5) {
+        if (((struct decoder *)arg0)->input_pos >= 0x1800) {
+            ((struct decoder *)arg0)->input_pos = 0;
+            func_8001311C(((struct decoder *)arg0)->input, ((struct decoder *)arg0)->offset);
+            ((struct decoder *)arg0)->offset += 0x1800;
+        }
+        b |= (u32)((struct decoder *)arg0)->input[((struct decoder *)arg0)->input_pos++] << k;
+        k += 8;
+    }
+    nd = 1 + (b & 31);
+    b >>= 5;
+    k -= 5;
+    while (k < 4) {
+        if (((struct decoder *)arg0)->input_pos >= 0x1800) {
+            ((struct decoder *)arg0)->input_pos = 0;
+            func_8001311C(((struct decoder *)arg0)->input, ((struct decoder *)arg0)->offset);
+            ((struct decoder *)arg0)->offset += 0x1800;
+        }
+        b |= (u32)((struct decoder *)arg0)->input[((struct decoder *)arg0)->input_pos++] << k;
+        k += 8;
+    }
+    nb = 4 + (b & 15);
+    b >>= 4;
+    k -= 4;
+    for (j = 0; j < nb; j++) {
+        while (k < 3) {
+            if (((struct decoder *)arg0)->input_pos >= 0x1800) {
+                ((struct decoder *)arg0)->input_pos = 0;
+                func_8001311C(((struct decoder *)arg0)->input, ((struct decoder *)arg0)->offset);
+                ((struct decoder *)arg0)->offset += 0x1800;
+            }
+            b |= (u32)((struct decoder *)arg0)->input[((struct decoder *)arg0)->input_pos++] << k;
+            k += 8;
+        }
+        ll[D_801231F0[j]] = b & 7;
+        b >>= 3;
+        k -= 3;
+    }
+    for (; j < 19; j++) {
+        ll[D_801231F0[j]] = 0;
+    }
+    bl = 7;
+    func_800E589C(ll, 19, 19, 0, 0, (void *)&tl, &bl, arg0);
+    n = nl + nd;
+    m = D_801232C0[bl];
+    i = l = 0;
+    while (i < n) {
+        while (k < bl) {
+            if (((struct decoder *)arg0)->input_pos >= 0x1800) {
+                ((struct decoder *)arg0)->input_pos = 0;
+                func_8001311C(((struct decoder *)arg0)->input, ((struct decoder *)arg0)->offset);
+                ((struct decoder *)arg0)->offset += 0x1800;
+            }
+            b |= (u32)((struct decoder *)arg0)->input[((struct decoder *)arg0)->input_pos++] << k;
+            k += 8;
+        }
+        j = (td = tl + ((unsigned int)b & m))->b;
+        b >>= j;
+        k -= j;
+        j = td->v.n;
+        if (j < 16) {
+            ll[i++] = l = j;
+        } else if (j == 16) {
+            while (k < 2) {
+                if (((struct decoder *)arg0)->input_pos >= 0x1800) {
+                    ((struct decoder *)arg0)->input_pos = 0;
+                    func_8001311C(((struct decoder *)arg0)->input, ((struct decoder *)arg0)->offset);
+                    ((struct decoder *)arg0)->offset += 0x1800;
+                }
+                b |= (u32)((struct decoder *)arg0)->input[((struct decoder *)arg0)->input_pos++] << k;
+                k += 8;
+            }
+            j = 3 + (b & 3);
+            b >>= 2;
+            k -= 2;
+            while (j--) {
+                ll[i++] = l;
+            }
+        } else if (j == 17) {
+            while (k < 3) {
+                if (((struct decoder *)arg0)->input_pos >= 0x1800) {
+                    ((struct decoder *)arg0)->input_pos = 0;
+                    func_8001311C(((struct decoder *)arg0)->input, ((struct decoder *)arg0)->offset);
+                    ((struct decoder *)arg0)->offset += 0x1800;
+                }
+                b |= (u32)((struct decoder *)arg0)->input[((struct decoder *)arg0)->input_pos++] << k;
+                k += 8;
+            }
+            j = 3 + (b & 7);
+            b >>= 3;
+            k -= 3;
+            while (j--) {
+                ll[i++] = 0;
+            }
+            l = 0;
+        } else {
+            while (k < 7) {
+                if (((struct decoder *)arg0)->input_pos >= 0x1800) {
+                    ((struct decoder *)arg0)->input_pos = 0;
+                    func_8001311C(((struct decoder *)arg0)->input, ((struct decoder *)arg0)->offset);
+                    ((struct decoder *)arg0)->offset += 0x1800;
+                }
+                b |= (u32)((struct decoder *)arg0)->input[((struct decoder *)arg0)->input_pos++] << k;
+                k += 8;
+            }
+            j = 11 + (b & 127);
+            b >>= 7;
+            k -= 7;
+            while (j--) {
+                ll[i++] = 0;
+            }
+            l = 0;
+        }
+    }
+    ((struct decoder *)arg0)->bits = b;
+    ((struct decoder *)arg0)->count = k;
+    bl = 9;
+    func_800E589C(ll, nl, 257, D_80123204, D_80123244, (void *)&tl, &bl, arg0);
+    bd = 6;
+    func_800E589C(ll + nl, nd, 0, D_80123264, D_801232A0, (void *)&td, &bd, arg0);
+    ((struct decoder *)arg0)->bl = bl;
+    ((struct decoder *)arg0)->bd = bd;
+    ((struct decoder *)arg0)->tl = tl;
+    ((struct decoder *)arg0)->td = td;
+    return 0;
+}
 
 s32 func_800E659C(void *arg0) {
     extern u16 D_80123204[];
