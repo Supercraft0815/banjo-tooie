@@ -77,7 +77,50 @@ void func_808003B8_chnicecavemen(Actor* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_808003D8_chnicecavemen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_80800624_chnicecavemen.s")
+void func_80800624_chnicecavemen(Actor *arg0, s32 arg1) {
+    void func_800DF6BC(s32, s32);
+    void func_800DF744(s32, s32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_801015D0(Actor *);
+    s32 func_801022E4(Actor *);
+    void _subaddiepalette_entrypoint_3(Actor *, void *, s32);
+    s32 first;
+    s32 second;
+    struct {
+        u8 pad0[0x14];
+        u16 palette;
+        u16 pad16;
+        s16 state;
+        s16 pad1A;
+        f32 time;
+        f32 duration;
+    } *data;
+    s32 state;
+    s32 alpha;
+
+    data = func_80100094(arg0, 0);
+    state = func_801022E4(arg0);
+    func_801015D0(arg0);
+    first = arg0->unk6C_9 == 0x42C ? 1 : 0;
+    if (state != 0x2D5 && state != 0x2D6) {
+        second = 0;
+    } else {
+        second = 1;
+    }
+    func_800DF744(3, first);
+    func_800DF744(4, first);
+    func_800DF744(5, second);
+    func_800DF744(7, arg0->unk74_7 - 0x31);
+    func_800DF744(8, arg0->unk74_7 - 0x31);
+    if (data->state == 1) {
+        alpha = func_800F12D4(data->time, 0.0f, data->duration, 0.0f, 255.0f);
+    } else {
+        alpha = data->palette == 0x7E7 ? 0 : 255;
+    }
+    func_800DF6BC(alpha, 255);
+    _subaddiepalette_entrypoint_3(arg0, &data->palette, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_8080077C_chnicecavemen.s")
 
