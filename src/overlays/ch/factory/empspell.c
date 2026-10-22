@@ -427,7 +427,73 @@ void func_80801B2C_chfactoryempspell(Actor *arg0) {
     } while (var_s1 != 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801C00_chfactoryempspell.s")
+void func_80801C00_chfactoryempspell(Actor *arg0, f32 arg1) {
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8D4C(s32, f32 *);
+    void func_800C8E84(s32, u32 *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F1214(f32, f32, f32);
+    int func_800F3214(void *, void *, void *, f32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    extern f32 D_808023C0_chfactoryempspell[3];
+    extern f32 D_808023CC_chfactoryempspell[3];
+    extern f32 D_808023D8_chfactoryempspell[3];
+    extern f32 D_808023E4_chfactoryempspell[3];
+    extern u32 D_808023F0_chfactoryempspell[3];
+    extern u32 D_808023FC_chfactoryempspell[3];
+    struct {
+        u8 pad[0x3C];
+        s32 handles[4];
+    } *data;
+    f32 sp68[3];
+    s32 i;
+    f32 sp58[3];
+    f32 sp4C[3];
+    u32 sp40[3];
+    s32 j;
+    f32 sp34[2];
+
+    data = func_80100094(arg0, 1);
+    switch (arg0->unk70_10) {
+    case 3:
+        func_800F5A00(func_800F54E4(), sp68);
+        sp68[1] += 200.0f;
+        for (i = 0; i < 4; i++) {
+            func_800C8CB8(data->handles[i], sp68);
+        }
+        break;
+    case 4:
+        func_800F5A00(func_800F54E4(), sp58);
+        func_800EFE50(sp4C, sp58, D_808023C0_chfactoryempspell, arg1);
+        func_800C8CB8(data->handles[0], sp4C);
+        func_800EFE50(sp4C, sp58, D_808023CC_chfactoryempspell, arg1);
+        func_800C8CB8(data->handles[1], sp4C);
+        func_800EFE50(sp4C, sp58, D_808023D8_chfactoryempspell, arg1);
+        func_800C8CB8(data->handles[2], sp4C);
+        func_800EFE50(sp4C, sp58, D_808023E4_chfactoryempspell, arg1);
+        func_800C8CB8(data->handles[3], sp4C);
+        break;
+    case 5:
+        func_800C8CB8(data->handles[0], D_808023C0_chfactoryempspell);
+        func_800C8CB8(data->handles[1], D_808023CC_chfactoryempspell);
+        func_800C8CB8(data->handles[2], D_808023D8_chfactoryempspell);
+        func_800C8CB8(data->handles[3], D_808023E4_chfactoryempspell);
+        break;
+    case 10:
+        func_800F3214(sp40, D_808023F0_chfactoryempspell, D_808023FC_chfactoryempspell, arg1);
+        sp34[0] = func_800F1214(arg1, 300.0f, 0.0f);
+        sp34[1] = func_800F1214(arg1, 400.0f, 0.0f);
+        for (j = 0; j < 4; j++) {
+            func_800C8D4C(data->handles[j], sp34);
+            func_800C8E84(data->handles[j], sp40);
+        }
+        break;
+    case 11:
+        break;
+    }
+}
 
 void func_80801E48_chfactoryempspell(Actor *arg0) {
     void func_800C8B84(volatile s32);
