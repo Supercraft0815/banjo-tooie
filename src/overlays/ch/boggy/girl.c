@@ -44,7 +44,62 @@ void func_8080000C_chboggygirl(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/girl/func_808000A8_chboggygirl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/girl/func_80800508_chboggygirl.s")
+s32 func_80800508_chboggygirl(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    void func_800C9C70(f32, u32, f32, u32, f32[3], f32, f32);
+    s32 func_800DA298(s32);
+    s32 func_800DA980(s32, s32);
+    void func_80800708_chboggygirl(Actor *, s32, s32);
+    void func_80800ABC_chboggygirl(Actor *);
+    s32 func_80800B5C_chboggygirl(s32);
+    extern s32 D_80800D48_chboggygirl;
+    extern s32 D_80800D58_chboggygirl;
+    s32 value;
+    f32 *position;
+
+    switch (arg1) {
+        case 0x2E:
+            func_80800708_chboggygirl(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x95:
+            _subaddierouteDll_entrypoint_1(arg0);
+            arg0->unk74_30 = func_800DA298(0xB9);
+            break;
+        case 0x29:
+            func_80800ABC_chboggygirl(arg0);
+            break;
+        case 0x52:
+            _gcdialogcamera_entrypoint_3(&D_80800D48_chboggygirl, arg0->scale);
+            break;
+        case 0xB8:
+            value = arg2 & 0xFFFF;
+            switch (value) {
+                case 1:
+                    if (func_800DA298(0xB9)) {
+                        return func_80800B5C_chboggygirl(0x3CB) ? 0x108E : 0x108C;
+                    }
+                    return 0x108C;
+                case 2:
+                    return func_80800B5C_chboggygirl(0x3CB) ? 0x108E : 0x108C;
+            }
+            break;
+        case 0x2D:
+            position = arg0->position;
+            _subaddieaudioquick_entrypoint_2(arg0, position, &D_80800D58_chboggygirl);
+            func_800C9C70(1.0f, 0x525, 1.05f, 0x55F0, position, 200.0f, 3000.0f);
+            break;
+        case 0x30:
+            return 3 - func_800DA980(0x8C, 3);
+        case 0x2A:
+            func_80800B28_chboggygirl(arg0);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800708_chboggygirl(Actor *arg0, s32 arg1, s32 arg2) {
     typedef struct {
