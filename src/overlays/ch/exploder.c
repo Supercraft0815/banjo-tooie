@@ -66,7 +66,62 @@ s32 func_808000C0_chexploder(Actor *arg0, s32 arg1, volatile s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_80800154_chexploder.s")
+void func_80800154_chexploder(Actor *arg0, s32 arg1) {
+    s32 func_80019CD4(void);
+    void func_800ADD80(s16, u8 *);
+    void func_800ADEC4(u8 *, u8 *, s32, f32 [4][4]);
+    void *func_800AE080(s16);
+    u8 *func_800B27E0(u8 *);
+    void func_800DF72C(s32);
+    void func_800DF744(s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_801015D0(Actor *);
+    void mlMtxGet(void *);
+    void mlMtxRotatePYR(f32, f32, f32);
+    void mlMtxTranslate(f32, f32, f32);
+    f32 inverseScale;
+    f32 matrix[4][4];
+    u8 *model;
+    u8 *animation;
+    s32 i;
+    struct Part {
+        f32 position[3];
+        f32 pivot[3];
+        f32 unk18[3];
+        f32 rotation[3];
+        u8 pad30[9];
+        u8 index;
+        u8 pad3A[2];
+    } *part;
+    struct Data {
+        u8 pad0[0xE];
+        s16 count;
+        u8 pad10[8];
+        u8 visibility[256];
+    } *data;
+    u8 *visibility;
+
+    animation = func_800B27E0((u8 *)arg1);
+    part = func_80100094(arg0, 1);
+    data = func_80100094(arg0, 0);
+    func_801015D0(arg0);
+    func_800ADD80(*(s16 *)&arg0->unk0->unk10, animation);
+    model = func_800AE080(*(s16 *)&arg0->unk0->unk10);
+    inverseScale = 1.0f / arg0->scale;
+    for (i = 0; i < data->count; i++, part++) {
+        func_80019CD4();
+        mlMtxTranslate(part->pivot[0], part->pivot[1], part->pivot[2]);
+        mlMtxTranslate(part->position[0] * inverseScale, part->position[1] * inverseScale, part->position[2] * inverseScale);
+        mlMtxRotatePYR(part->rotation[0], part->rotation[1], part->rotation[2]);
+        mlMtxTranslate(-part->pivot[0], -part->pivot[1], -part->pivot[2]);
+        mlMtxGet(matrix);
+        func_800ADEC4(model, animation, part->index, matrix);
+    }
+    func_800DF72C((s32)model);
+    for (i = 1, visibility = (u8 *)data + 1; i <= data->visibility[0]; i++, visibility++) {
+        func_800DF744(i, visibility[0x18]);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_808002FC_chexploder.s")
 
