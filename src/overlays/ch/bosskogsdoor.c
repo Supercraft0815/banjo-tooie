@@ -143,7 +143,48 @@ void func_808004F4_chbosskogsdoor(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bosskogsdoor/func_80800544_chbosskogsdoor.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bosskogsdoor/func_80800714_chbosskogsdoor.s")
+s32 func_80800714_chbosskogsdoor(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _capod_entrypoint_14(void);
+    void _glcutDll_entrypoint_6(u32, u32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800DA298(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F64A4(s32, s32);
+    void func_80102204(Actor *);
+    s32 func_80102424(void *, s32);
+    s32 func_80103110(u8 *, s32);
+
+    switch (arg1) {
+        case 0x91:
+            if (func_800F64A4(func_800F54E4(), 0x40)) {
+                if (func_800DA298(0xA06) && arg0->unk70_10 == 1) {
+                    arg0->unk64_20 = 1;
+                    func_80103110(arg0, 1);
+                    _capod_entrypoint_13(arg0->unk0, 0, 0x18, 0x810);
+                    return 1;
+                }
+            } else if (!arg0->unk74_30) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1354, 6, arg0->position, 0);
+                arg0->unk74_30 = 1;
+            }
+            return 1;
+        case 0x95:
+            func_80102424(arg0, arg0->unk70_10);
+            func_80102204(arg0);
+            return 1;
+        case 0xB:
+            if (arg2 == 0x18) {
+                _capod_entrypoint_14();
+                func_80102424(arg0, 4);
+                _glcutDll_entrypoint_6(0x10F, 0x40);
+                return 4;
+            }
+            return 3;
+        default:
+            return 0;
+    }
+}
 
 OSThread *chbosskogsdoor_entrypoint_1(void)
 {
