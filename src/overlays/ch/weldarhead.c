@@ -7,7 +7,52 @@ OSThread *chweldarhead_entrypoint_0(void)
     return (OSThread *) D_808004F0_chweldarhead;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarhead/func_8080000C_chweldarhead.s")
+void func_8080000C_chweldarhead(Actor *arg0) {
+    void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
+    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
+    s32 _susubgame_entrypoint_12(u32 *, s32 *);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA9E4(s32, s32);
+    void func_800F497C(s32);
+    void func_800F49D4(s32, void *, s32);
+    void func_800F4A58(s32, s32, f32);
+    u32 func_800F54E4(void);
+    void func_800F8294(s32, f32 *);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_80108B04(Actor *, u32);
+    extern s32 D_808004E0_chweldarhead[];
+    extern s32 func_8010D5DC;
+    f32 *data;
+    f32 position[6];
+    f32 target[6];
+    s32 player;
+
+    data = func_80100094(arg0, 0);
+    _susubgame_entrypoint_0(arg0, (u32 *)(data + 6), 0);
+    _susubgame_entrypoint_12((u32 *)(data + 6), D_808004E0_chweldarhead);
+    if (func_800DA298(0x18C) == 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    _subaddiemarker_entrypoint_1(arg0, 0x320, 0x32, data, 1);
+    if (func_800DA9E4(0x9C9, 0) != 0) {
+        player = func_800F54E4();
+        _subaddiemarker_entrypoint_1(arg0, 0x320, 0x33, position, 1);
+        _subaddiemarker_entrypoint_1(arg0, 0x320, 0x34, target, 1);
+        func_800F8294(player, position);
+        func_800F497C(player);
+        func_800F49D4(player, &func_8010D5DC, arg0->unk0);
+        func_800F4A58(player, target, 250.0f);
+        _susubgame_entrypoint_6(arg0, data + 6, 0x44, 0x2030, 0);
+        func_80102424(arg0, 2);
+        return;
+    }
+    arg0->unk64_20 = 0;
+    func_80108B04(arg0, 0);
+}
 
 void func_80800170_chweldarhead(u8 *arg0) {
     s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
