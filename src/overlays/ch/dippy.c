@@ -113,7 +113,42 @@ void func_8080047C_chdippy(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800530_chdippy.s")
+void func_80800530_chdippy(Actor *arg0) {
+    s32 func_800DA298(s32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    int func_800F20BC(f32, f32, f32);
+    s32 func_800F4BB8(u32, u32, s32);
+    u32 func_800F54E4(void);
+    f32 func_800F5F24(u32);
+    s32 func_800F5FE0(s32);
+    s32 func_800F64A4(s32, s32);
+    s32 func_800F6C5C(s32);
+    s32 func_8010D23C(void);
+    void func_8010D254(f32 *);
+    void func_80800654_chdippy(Actor *, s32);
+    u32 sp2C;
+    f32 sp20[3];
+
+    sp2C = func_800F54E4();
+    if (func_8010D23C() && func_800F6C5C(sp2C) && func_800F64A4(sp2C, 0x601) && func_8010C500(arg0)) {
+        if (!func_800DA298(0x328)) {
+            func_80800654_chdippy(arg0, 3);
+            return;
+        }
+        if (func_80016B30(0, 1) == 1 && func_800F4BB8(sp2C, -1, 0)) {
+            func_8010D254(sp20);
+            if (!func_800F20BC(func_800F5F24(sp2C), func_800F1DF4(sp20, arg0->position), 60.0f)) {
+                func_800F5FE0(sp2C);
+                return;
+            }
+            if (func_800DA298(0x327)) {
+                func_80800654_chdippy(arg0, 0xB);
+                return;
+            }
+            func_80800654_chdippy(arg0, 4);
+        }
+    }
+}
 
 void func_80800654_chdippy(Actor *arg0, s32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
