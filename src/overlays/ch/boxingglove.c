@@ -14,7 +14,44 @@ OSThread *chboxingglove_entrypoint_1(void)
     return (OSThread *) D_80800750_chboxingglove;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/func_80800018_chboxingglove.s")
+void func_80800018_chboxingglove(Actor *arg0) {
+    s32 func_8008FF18(void);
+    s32 func_800D90A4(f32 *);
+    s32 func_80101DDC(Actor *);
+    s32 func_8010D248(void);
+    void func_8010D254(f32 *);
+    void func_808002E0_chboxingglove(Actor *, s32);
+    s32 func_808004F8_chboxingglove(void *);
+    f32 position[3];
+
+    switch (arg0->unk70_10) {
+        case 1:
+            if (!func_808004F8_chboxingglove(arg0) &&
+                ((!func_8008FF18() && func_8010D248()) || !arg0->unk64_20) &&
+                func_800D90A4(&arg0->unk58)) {
+                func_8010D254(position);
+                if (position[1] < ((f32 *)arg0->actorData)[4] + 500.0f || !arg0->unk64_20) {
+                    func_808002E0_chboxingglove(arg0, 2);
+                }
+            }
+            break;
+        case 2:
+            if (func_800D90A4(&arg0->unk58)) {
+                func_808002E0_chboxingglove(arg0, 3);
+            }
+            break;
+        case 3:
+            if (func_80101DDC(arg0)) {
+                func_808002E0_chboxingglove(arg0, 4);
+            }
+            break;
+        case 4:
+            if (func_800D90A4(&arg0->unk58)) {
+                func_808002E0_chboxingglove(arg0, 1);
+            }
+            break;
+    }
+}
 
 /* extern */
 
