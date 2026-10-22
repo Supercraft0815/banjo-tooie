@@ -49,7 +49,48 @@ s32 func_808002E8_chanemone(Actor *arg0, s32 arg1, volatile s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anemone/func_808003A8_chanemone.s")
+void func_808003A8_chanemone(Actor *arg0) {
+    f32 func_80013728(f32);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800F0D50(f32, f32, f32);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    f32 func_800F1FF0(f32, f32, f32, f32, f32);
+    s32 func_8010D23C(void);
+    void func_8010D254(f32 *);
+    f32 dt;
+    f32 player[3];
+    f32 position[3];
+    f32 angles[2];
+
+    dt = func_800D8FF8();
+    if (func_8010D23C() != 0) {
+        func_8010D254(player);
+        func_800EE7F8(position, arg0->position);
+        position[1] += arg0->scale + 200.0f;
+        func_800EF1B8(position, arg0->rotation[1], arg0->scale * 300.0f);
+        if (func_800EEB40(player, position) < 2250000.0f) {
+            func_800F18FC(position, player, angles);
+            arg0->unk54 = angles[1] - arg0->rotation[1];
+            arg0->unk50 = -angles[0];
+        } else if (func_800D9078(&((f32 *)arg0->actorData)[7]) != 0) {
+            arg0->unk54 = func_800DC178(-60.0f, 60.0f);
+            arg0->unk50 = func_800DC178(-50.0f, 50.0f);
+            ((f32 *)arg0->actorData)[7] = func_800DC178(0.5f, 2.0f);
+        }
+    } else {
+        arg0->unk54 = 0.0f;
+        arg0->unk50 = 0.0f;
+    }
+    arg0->unk54 = func_800F0D50(func_80013728(arg0->unk54), -60.0f, 60.0f);
+    arg0->unk50 = func_800F0D50(func_80013728(arg0->unk50), -50.0f, 50.0f);
+    ((f32 *)arg0->actorData)[4] = func_800F1FF0(((f32 *)arg0->actorData)[4], arg0->unk54, 0.1f, 4.0f * dt, 60.0f * dt);
+    ((f32 *)arg0->actorData)[5] = func_800F1FF0(((f32 *)arg0->actorData)[5], arg0->unk50, 0.1f, 4.0f * dt, 60.0f * dt);
+}
 
 void func_808005A0_chanemone(Actor *arg0, s32 arg1) {
     s32 _subaddieDll_entrypoint_4(void *, s32);
