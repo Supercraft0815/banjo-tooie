@@ -174,7 +174,42 @@ void func_808003D8_chbeanstalkseed(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beanstalkseed/func_80800804_chbeanstalkseed.s")
+void func_80800804_chbeanstalkseed(Actor *arg0, s32 arg1) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void func_800C3F48(u32);
+    s32 func_800DA544(s32);
+    void func_80102424(Actor *, s32);
+    s32 func_80103140(Actor *, u32, u16);
+    void func_8010A63C(Actor *);
+
+    switch (arg1) {
+    case 1:
+        arg0->unk64_16 = 0;
+        break;
+    case 3:
+        arg0->unk64_16 = 1;
+        func_80103140(arg0, 0x8CF, arg0->unk0->unk16);
+        func_800DA544(arg0->unk74_7 + 0x323);
+        break;
+    case 4:
+        _subaddieDll_entrypoint_4(arg0, 1);
+        func_80103140(arg0, 0x8DD, arg0->unk0->unk16);
+        arg0->unk58 = 0.0f;
+        arg0->scale = 0.01f;
+        _capod_entrypoint_13(arg0->unk0, NULL, arg0->unk74_7 * 2 - 0x58, 0x6810);
+        arg0->unk54 = 1.0f;
+        func_800C3F48(0x3FFB5C1D);
+        break;
+    case 5:
+        func_800DA544(arg0->unk74_7 + 0x325);
+        _subaddieDll_entrypoint_4(arg0, 0);
+        arg0->scale = 1.0f;
+        func_8010A63C(arg0);
+        break;
+    }
+    func_80102424(arg0, arg1);
+}
 
 void func_80800950_chbeanstalkseed(Actor *arg0, void *arg1) {
     s32 func_800D674C(s32);
