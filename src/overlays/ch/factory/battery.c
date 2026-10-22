@@ -387,7 +387,62 @@ s32 func_80801040_chfactorybattery(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_8080130C_chfactorybattery.s")
+void func_8080130C_chfactorybattery(Actor *arg0, s32 arg1) {
+    s32 _subaddiefx_entrypoint_1(Actor *, u8 *);
+    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    s32 func_800DA544(s32);
+    s32 func_800F54E4();
+    void func_800F7A2C(s32, s32, f32 *);
+    u32 *func_80100074(Actor *, u32, u32);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_8010A570(Actor *);
+    s32 temp_v0;
+
+    switch (arg1) {
+    case 1:
+    case 9:
+        arg0->unk79_4 = 0;
+        arg0->unk58 = 6.0f;
+        break;
+    case 6:
+        ((f32 *)arg0->actorData)[3] = 800.0f;
+        if (func_80100094(arg0, 0) == NULL) {
+            func_80100074(arg0, 0, 8);
+        }
+        if (func_80100094(arg0, 1) == NULL) {
+            func_80100074(arg0, 1, 12);
+            _subaddierouteDll_entrypoint_3(arg0, func_80100094(arg0, 1), arg0->position);
+        }
+        if (func_80100094(arg0, 0) != NULL) {
+            _subaddiefx_entrypoint_1(arg0, func_80100094(arg0, 0));
+        }
+        break;
+    case 7:
+    case 10:
+        func_800F7A2C(func_800F54E4(), 5, arg0->position);
+        arg0->unk58 = 1.0f;
+        break;
+    case 8:
+        arg0->unk64_20 = 0;
+        arg0->unk79_4 = 0;
+        arg0->unk58 = 0.0f;
+        if (func_80100094(arg0, 0) != NULL) {
+            _subaddiefx_entrypoint_1(arg0, func_80100094(arg0, 0));
+        }
+        break;
+    case 5:
+        temp_v0 = func_80800480_chfactorybattery();
+        if (temp_v0 != 0) {
+            func_800DA544(temp_v0);
+            func_800DA544(func_80800678_chfactorybattery(arg0) + 0x1B1);
+        }
+    case 13:
+        func_8010A570(arg0);
+        break;
+    }
+    func_80102424(arg0, arg1);
+}
 
 /* extern */
 
