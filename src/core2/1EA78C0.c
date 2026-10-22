@@ -263,7 +263,7 @@ s32 func_800CEB08(void *arg0, f32 arg1) {
     return 0;
 }
 
-void func_800CEB54(s32 arg0, f32 arg1) {
+s32 func_800CEB54(s32 arg0, f32 arg1) {
     func_800CEB08(func_800CE3E0(arg0), arg1);
 }
 

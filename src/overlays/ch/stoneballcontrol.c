@@ -110,7 +110,61 @@ position_actor:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800360_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_8080079C_chstoneballcontrol.s")
+void func_8080079C_chstoneballcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    f32 func_800D8FF8(void);
+    void _sukickball_entrypoint_17(Actor *);
+    void _sukickball_entrypoint_19(Actor *, s32, u8);
+    s32 func_800CEB54(s32, f32);
+    s32 func_800CEAD0(s32);
+    u32 func_800FDC28(u32);
+    u32 _gcgoto_entrypoint_1(u32, u32);
+    void func_80800908_chstoneballcontrol(Actor *);
+    void func_8080145C_chstoneballcontrol(Actor *);
+    struct StoneballUpdateData {
+        f32 timer0;
+        f32 timer1;
+        u8 pad8[0x32];
+        u8 mode;
+    } *data;
+    f32 delta;
+
+    data = func_80100094(arg0, 0);
+    delta = func_800D8FF8();
+    data->timer0 -= delta;
+    data->timer1 -= delta;
+    switch (arg0->unk70_10) {
+        case 1:
+            func_80800144_chstoneballcontrol(arg0);
+            break;
+        case 3:
+            _sukickball_entrypoint_17(arg0);
+            break;
+        case 6:
+            _sukickball_entrypoint_19(arg0, 1, data->mode);
+            break;
+        case 4:
+            _sukickball_entrypoint_19(arg0, 0, data->mode);
+            func_8080145C_chstoneballcontrol(arg0);
+            if (func_800CEB54(0, 6.0f)) {
+                func_800FDC28(0xE);
+            } else if (func_800CEAD0(0)) {
+                func_80800908_chstoneballcontrol(arg0);
+            }
+            break;
+        case 7:
+            func_8080145C_chstoneballcontrol(arg0);
+            break;
+        case 8:
+            _sukickball_entrypoint_19(arg0, 1, data->mode);
+            if (arg0->unk58 > 0.0f) {
+                arg0->unk58 -= func_800D8FF8();
+            } else {
+                _gcgoto_entrypoint_1(0xBB, 4);
+            }
+            break;
+    }
+}
 
 void func_80800908_chstoneballcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
