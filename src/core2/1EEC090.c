@@ -637,7 +637,88 @@ void func_8011413C(s32 camera, f32 rotation[3], f32 scale, s32 index) {
     func_800EF334(rotation, scale);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80114184.s")
+    typedef struct {
+        s32 flags;
+        f32 value;
+        u8 active;
+        u8 pad[3];
+    } CameraCollisionEntry;
+    typedef struct {
+        s16 index;
+        u8 hit;
+        u8 active;
+        u8 pad4[0x10];
+        f32 position[3];
+        u8 pad20[0x18];
+        s32 flags;
+        f32 normal[3];
+        CameraCollisionEntry entries[7];
+    } CameraCollisionData;
+void func_80114184(CameraCollisionData *data, s32 camera, f32 scale, s32 enabled, u32 flags) {
+    extern f32 D_801265E0;
+    void func_800CA8F4(f32 *, f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF3DC(f32 *, f32 *);
+    void func_800EFB24(void *, void *, void *);
+    void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
+    f32 rotation[3];
+    f32 position[3];
+    f32 normal[3];
+    f32 distance;
+    f32 collisionNormal[3];
+    s32 *triangle;
+    s32 i;
+    f32 delta[3];
+
+    if (!enabled) {
+        func_80113FF0(data);
+        return;
+    }
+    func_800CA8F4((f32 *)camera, position, normal);
+    if (data->active && func_800EEAA4(normal, data->normal) < D_801265E0) {
+        func_800EFB24(delta, position, data->position);
+        distance = func_800EEAA4(delta, data->normal);
+        data->entries[6].active = 1;
+        data->entries[6].value = distance;
+        data->entries[6].flags = data->flags;
+    } else {
+        data->entries[6].flags = 0;
+        data->entries[6].active = 0;
+        data->entries[6].value = -1.0f;
+    }
+    func_8011413C(camera, rotation, scale, data->index);
+    func_800EF04C(rotation, position);
+    triangle = func_800C6A7C(position, rotation, collisionNormal, flags);
+    if (triangle != NULL) {
+        distance = func_800EEAD4(position, rotation);
+        func_800EF3DC(rotation, position);
+        data->entries[data->index].flags = triangle[2];
+        data->entries[data->index].active = 1;
+    } else {
+        distance = -1.0f;
+        data->entries[data->index].flags = 0;
+        data->entries[data->index].active = 0;
+    }
+    data->entries[data->index].value = distance;
+    data->index++;
+    if (data->index >= 6) {
+        data->index = 0;
+    }
+    data->hit = 0;
+    for (i = 0; i < 7; i++) {
+        if (data->entries[i].flags != 0) {
+            if (data->entries[i].flags & 0x20020) {
+                data->hit = 1;
+            } else {
+                data->hit = 0;
+                break;
+            }
+        }
+    }
+    func_80113FF0(data);
+}
 
 /* extern */
 
