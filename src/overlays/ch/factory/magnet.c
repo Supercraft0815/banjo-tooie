@@ -1,6 +1,53 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80800000_chfactorymagnet.s")
+void func_80800000_chfactorymagnet(Actor *arg0) {
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    f32 func_800EFC7C(void *, void *);
+    void func_800FFA88(Unk80132ED0 *);
+    void func_80801508_chfactorymagnet(Actor *, s32);
+    Prop *props[3];
+    Prop *center[2];
+    f32 position[3];
+    f32 first[3];
+    f32 second[3];
+    f32 third[3];
+    f32 distances[3];
+    s32 i;
+    s32 j;
+    f32 temp;
+
+    if (_gccubesearch_entrypoint_9(0x299, props, 3) != 3) {
+        func_800FFA88(arg0->unk0);
+        return;
+    }
+    if (_gccubesearch_entrypoint_9(0x3FC, center, 1) == 0) {
+        func_800FFA88(arg0->unk0);
+        return;
+    }
+    _gspropctrl_entrypoint_11(props[0], first);
+    _gspropctrl_entrypoint_11(props[1], second);
+    _gspropctrl_entrypoint_11(props[2], third);
+    _gspropctrl_entrypoint_11(center[0], position);
+    distances[0] = func_800EFC7C(position, first);
+    distances[1] = func_800EFC7C(position, second);
+    distances[2] = func_800EFC7C(position, third);
+    for (i = 0; i < 2; i++) {
+        for (j = i; j < 3; j++) {
+            if (distances[j] < distances[i]) {
+                temp = distances[j];
+                distances[j] = distances[i];
+                distances[i] = temp;
+            }
+        }
+    }
+    ((f32 *)arg0->actorData)[4] = distances[0];
+    ((f32 *)arg0->actorData)[5] = distances[1];
+    ((f32 *)arg0->actorData)[6] = distances[2];
+    for (i = 0; i != 30; i++) {
+        func_80801508_chfactorymagnet(arg0, i);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80800224_chfactorymagnet.s")
 
