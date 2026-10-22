@@ -14,7 +14,61 @@ void func_8080000C_choctopus(Actor *arg0) {
     arg0->actorData[6] = _subaddiesect_entrypoint_1(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/octopus/func_80800054_choctopus.s")
+void func_80800054_choctopus(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _subaddiesect_entrypoint_0(Actor *, s32, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 _suexpression_entrypoint_18(void *, s32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieaudioloop_entrypoint_5(Actor *, f32 *, s32, s32, s32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800D9078(f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_80101CDC(Actor *, f32);
+    void func_80102424(Actor *, s32);
+    extern u8 D_808008C0_choctopus[];
+    extern f32 D_808008D4_choctopus;
+    extern s32 D_8080093C_choctopus[];
+    void *expression;
+    f32 *position;
+
+    expression = func_80100094(arg0, 1);
+    _subaddiesect_entrypoint_0(arg0, arg0->actorData[6], 2);
+    if (expression != NULL) {
+        _suexpression_entrypoint_10(expression, arg0->unk0, 0);
+    }
+    position = arg0->position;
+    _subaddieaudioloop_entrypoint_5(arg0, position, arg0->unk70_10 == 1, 0x1194, D_8080093C_choctopus);
+    switch (arg0->unk70_10) {
+        case 1:
+            break;
+        case 2:
+            func_80101CDC(arg0, func_800F10B4(arg0->unk58, 0.0f, 1.25f, 30.0f, D_808008D4_choctopus));
+            if (func_800D9078(&arg0->unk58)) {
+                func_80102424(arg0, 3);
+                arg0->unk58 = 8.0f;
+            }
+            break;
+        case 3:
+            if (func_800D9078(&arg0->unk58)) {
+                _subaddieaudioquick_entrypoint_2(arg0, position, D_808008C0_choctopus);
+                func_80102424(arg0, 4);
+                func_80101CDC(arg0, 30.0f);
+                arg0->unk58 = 3.75f;
+            }
+            break;
+        case 4:
+            func_80101CDC(arg0, func_800F10B4(arg0->unk58, 0.0f, 3.75f, D_808008D4_choctopus, 30.0f));
+            if (func_800D9078(&arg0->unk58)) {
+                func_80102424(arg0, 1);
+                if (expression != NULL) {
+                    _suexpression_entrypoint_18(expression, 0);
+                }
+                _subaddieDll_entrypoint_4(arg0, 0);
+            }
+            break;
+    }
+}
 
 void func_808007E4_choctopus();
 
