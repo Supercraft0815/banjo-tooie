@@ -59,7 +59,47 @@ void func_80800130_ncbaspline(s32 arg0, s32 arg1) {
     func_801124D0(arg0, sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/spline/func_8080017C_ncbaspline.s")
+/* extern */
+
+void func_8080017C_ncbaspline(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 func_800C7A68(s32, f32, s32 *);
+    s32 func_800C7B28(s32, f32, f32, s32);
+    f32 func_800C82CC(s32, s32);
+    s32 func_800EE780(s32 *, s32 *, s32 *);
+    s32 func_800EEAD4(s32 *, s32);
+    s32 func_800EF368(s32 *, s32);
+    s32 func_800EFB24(s32 *, s32 *, s32 *);
+    s32 func_800F018C(s32 *, s32 *, s32 *, s32);
+    s32 sp4C[3];
+    s32 sp40[3];
+    s32 sp34[3];
+    s32 sp28[3];
+    f32 temp_f0;
+    f32 temp_f0_2;
+
+    temp_f0 = func_800C82CC(arg1, arg2);
+    if ((temp_f0 == 0.0f) || (temp_f0 == 1.0f)) {
+        func_800C7A68(arg1, temp_f0, sp40);
+        if (temp_f0 == 0.0f) {
+            func_800C7A68(arg1, temp_f0 + 0.001f, sp34);
+        } else {
+            func_800C7A68(arg1, temp_f0 - 0.001f, sp34);
+        }
+        func_800EFB24(sp28, sp34, sp40);
+        func_800EF368(sp28, 0x43C80000);
+        func_800EE780(sp34, sp28, sp40);
+        func_800F018C(sp4C, sp40, sp34, arg2);
+        func_800EEAD4(sp4C, arg3);
+        return;
+    }
+    func_800C7A68(arg1, temp_f0, sp4C);
+    temp_f0_2 = (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x44)))) + (8)));
+    if (temp_f0 < temp_f0_2) {
+        func_800C7B28(arg1, temp_f0, temp_f0_2, 0xF);
+        return;
+    }
+    func_800C7B28(arg1, temp_f0_2, temp_f0, 0xF);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/spline/func_80800318_ncbaspline.s")
 
