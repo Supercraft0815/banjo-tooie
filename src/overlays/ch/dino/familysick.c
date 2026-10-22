@@ -7,7 +7,46 @@ OSThread *chdinofamilysick_entrypoint_0(void)
     return (OSThread *) D_80800E60_chdinofamilysick;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/func_8080000C_chdinofamilysick.s")
+void func_8080000C_chdinofamilysick(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_4(f32 *, s32, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddietaxi_entrypoint_1(Actor *, s32);
+    s32 _subaddietaxi_entrypoint_11(Actor *, s32);
+    s32 _subaddietaxi_entrypoint_5(Actor *, s32);
+    void _subaddietaxi_entrypoint_9(Actor *, s32);
+    s32 _chdinofamilyfx_entrypoint_0(u8 *);
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    void func_800DA544(GameFlag);
+
+    switch (arg0->unk70_10) {
+        case 1:
+            if (_subaddiedialog_entrypoint_4(arg0->position, 0x258, 0)) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x17C7, 0xF, arg0->position, 0x39);
+            }
+            _sudeflect_entrypoint_1(arg0->position, arg0->scale * 235.0f, 0.0f, arg0->scale * 179.0f, 0x1E);
+            break;
+        case 3:
+            if (_subaddietaxi_entrypoint_1(arg0, 2)) {
+                func_800DA544(0x189);
+                func_80102424(arg0, 5);
+            }
+            break;
+        case 4:
+            if (_subaddietaxi_entrypoint_11(arg0, 2) && _subaddietaxi_entrypoint_5(arg0, 2)) {
+                func_80102424(arg0, 1);
+            }
+            _sudeflect_entrypoint_1(arg0->position, arg0->scale * 235.0f, 0.0f, arg0->scale * 179.0f, 0x1E);
+            break;
+        case 5:
+            if (_subaddiedialog_entrypoint_4(arg0->position, 0x258, 0)) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x17C8, 0xF, arg0->position, 0x39);
+            }
+            _sudeflect_entrypoint_1(arg0->position, arg0->scale * 235.0f, 0.0f, arg0->scale * 179.0f, 0x1E);
+            break;
+    }
+    _subaddietaxi_entrypoint_9(arg0, 2);
+    _chdinofamilyfx_entrypoint_0((u8 *)arg0);
+}
 
 /* extern */
 
