@@ -116,7 +116,47 @@ void func_808003BC_chbabydino(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/babydino/func_80800448_chbabydino.s")
+void func_80800448_chbabydino(Actor *arg0) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_21(Unk80132ED0 *, s32, s32, s32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiedialog_entrypoint_8(Actor *, void *, s32 *, s32 *, s32);
+    s32 func_800DA298(s32);
+    void func_800DA544(GameFlag);
+    int func_800DB9B0(void);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    void func_80102424(Actor *, s32);
+    extern s32 D_80800700_chbabydino;
+    extern s32 D_808007D4_chbabydino;
+    s32 sp2C;
+
+    sp2C = 0;
+    if (func_800DA298(0x98) && !arg0->unk64_20) {
+        if (!func_800DB9B0()) {
+            func_800DA544(0x89);
+            arg0->unk64_20 = 1;
+            func_800F82D4(func_800F54E4(), 0);
+            if (func_800DA298(0x4EE)) {
+                func_80102424(arg0, 3);
+                _subaddieDll_entrypoint_4(arg0, 1);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x107E, 0xC, NULL, 0x39);
+                _capod_entrypoint_13(arg0->unk0, NULL, 3, 0x31);
+            } else {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x107F, 0xE, NULL, 0x39);
+                func_80102424(arg0, 1);
+                sp2C = 1;
+            }
+        }
+    } else {
+        sp2C = _subaddiedialog_entrypoint_8(arg0, arg0->position, &D_808007D4_chbabydino, &D_80800700_chbabydino, 5);
+    }
+    if (sp2C) {
+        _capod_entrypoint_21(arg0->unk0, 0, 0xB, 0);
+        arg0->unk64_19 = 1;
+    }
+}
 
 /* extern */
 
