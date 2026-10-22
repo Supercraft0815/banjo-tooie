@@ -504,7 +504,23 @@ void func_800EC0EC(f32 *arg0, void **arg1) {
     func_800EC058(sp1C, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC124.s")
+void func_800EC124(f32 *arg0, void *arg1, f32 *arg2) {
+    struct Angles {
+        u8 pad[0x24];
+        u32 unused24 : 16;
+        u32 x : 9;
+        u32 unused27 : 7;
+        u32 y : 9;
+        u32 z : 9;
+        u32 unused2A : 14;
+    };
+    f32 func_800136E4(f32);
+    struct Angles *data = arg1;
+    data->x = (u32)func_800136E4(arg2[0]);
+    data->y = (u32)func_800136E4(arg2[1]);
+    data->z = (u32)func_800136E4(arg2[2]);
+    func_800EC0EC(arg0, arg1);
+}
 
 void func_800EC340(void *arg0, s32 arg1) {
     struct Fields {
