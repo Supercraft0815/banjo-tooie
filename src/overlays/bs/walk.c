@@ -1,6 +1,12 @@
 #include "common.h"
 #include "overlays/bs/walk.h"
 
+struct anctrl_s;
+enum asset_e;
+enum baanim_update_type_e;
+enum yaw_type_e;
+enum ba_physics_type_e;
+
 s32 bastick_getZone(PlayerState *);
 s32 func_8008DE24(PlayerState *);
 
@@ -107,7 +113,48 @@ void bswalk_entrypoint_2(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_3.s")
+void bswalk_entrypoint_3(PlayerState *self) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_start(struct anctrl_s *);
+    void baanim_setDurationRange(PlayerState *, f32, f32);
+    void bastick_resetZones(PlayerState *);
+    s32 bs_getPreviousState(PlayerState *);
+    void *func_8008AEDC(void *);
+    f32 func_8008C0C8(f32 *);
+    void func_8008C9F0(PlayerState *, f32, f32, f32, f32);
+    int func_8008E0E8(PlayerState *);
+    void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+    void func_800A2EDC(void *, f32);
+    void _bapackctrl_entrypoint_5(PlayerState *, s32);
+    struct anctrl_s *control;
+    f32 start;
+
+    control = baanim_getAnimCtrlPtr(self);
+    if (bs_getPreviousState(self) == 2) {
+        start = func_8008C0C8(func_8008AEDC(control));
+    } else {
+        start = 0.0f;
+    }
+    anctrl_reset(control);
+    anctrl_setIndex(control, 2);
+    anctrl_setDuration(control, 0.43f);
+    anctrl_setStart(control, start);
+    anctrl_setPlaybackType(control, 2);
+    anctrl_start(control);
+    func_8009FFD8(self, 2, 1, 1, 2);
+    baanim_setDurationRange(self, 0.3f, 1.5f);
+    func_8008C9F0(self, 30.0f, 80.0f, 1.8f, 1.2f);
+    bastick_resetZones(self);
+    func_800A2EDC(self, 0.2f);
+    if (func_8008E0E8(self) != 0) {
+        _bapackctrl_entrypoint_5(self, 2);
+    }
+}
 
 void bswalk_entrypoint_4(PlayerState *self) {
     f32 bastick_distance(PlayerState *);
@@ -185,13 +232,8 @@ s32 bswalk_entrypoint_5(s32 arg0) {
     return ((s32 *)&D_80801520_bswalk)[arg0];
 }
 
-enum asset_e;
-enum baanim_update_type_e;
-enum yaw_type_e;
-enum ba_physics_type_e;
 
 void bswalk_entrypoint_6(PlayerState *self) {
-    struct anctrl_s;
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setDuration(struct anctrl_s *, f32);
     void anctrl_setIndex(struct anctrl_s *, enum asset_e);
