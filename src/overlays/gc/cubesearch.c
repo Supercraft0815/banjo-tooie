@@ -181,18 +181,44 @@ s32 gccubesearch_entrypoint_11(s32 arg0, s32 arg1, s32 arg2) {
     return var_s0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/func_80800590_gccubesearch.s")
+/* extern */
+
+s32 func_80800590_gccubesearch(f32 arg0[3], s32 arg1, f32 arg2[3], f32 (*arg3)(f32[3], f32[3])) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFD24(f32 *);
+    f32 sp50[40][3];
+    f32 var_f20;
+    s32 var_s1;
+    s32 temp_v0;
+    f32 temp_f0;
+
+    func_800EFD24(arg0);
+    var_f20 = 3.40282347e+38f;
+    temp_v0 = gccubesearch_entrypoint_11(arg1, sp50[0], 0x28);
+    if (temp_v0 == 0) {
+        return 0;
+    }
+    for (var_s1 = 0; var_s1 < temp_v0; var_s1++) {
+        temp_f0 = arg3(arg2, sp50[var_s1]);
+        if (temp_f0 < var_f20) {
+            var_f20 = temp_f0;
+            func_800EE7F8(arg0, sp50[var_s1]);
+        }
+    }
+    if (var_f20 == 3.40282347e+38f) return 0;
+    return 1;
+}
 
 void gccubesearch_entrypoint_12(s32 arg0, s32 arg1, s32 arg2) {
     f32 func_800EEB40(f32 *, f32 *);
-    s32 func_80800590_gccubesearch(s32, s32, s32, f32 (*)(f32 *, f32 *));
+    s32 func_80800590_gccubesearch();
 
     func_80800590_gccubesearch(arg0, arg1, arg2, func_800EEB40);
 }
 
 s32 gccubesearch_entrypoint_13(s32 arg0, s32 arg1, s32 arg2) {
     f32 func_800EFC7C(f32 *, f32 *);
-    s32 func_80800590_gccubesearch(s32, s32, s32, f32 (*)(f32 *, f32 *));
+    s32 func_80800590_gccubesearch();
     return func_80800590_gccubesearch(arg0, arg1, arg2, func_800EFC7C);
 }
 
