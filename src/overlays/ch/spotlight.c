@@ -7,7 +7,66 @@ OSThread *chspotlight_entrypoint_0(void)
     return (OSThread *) D_808009B0_chspotlight;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_8080000C_chspotlight.s")
+void func_8080000C_chspotlight(Actor *arg0) {
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8D4C(s32, f32 *);
+    void func_800C8E84(s32, u32 *);
+    void func_800C8FE0(s32, s32);
+    s32 func_800DA298(s32);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    f32 func_80102D78(Actor *, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_808008A4_chspotlight(void *);
+    s32 *func_808008EC_chspotlight(u8 *);
+    extern f32 D_80800990_chspotlight[];
+    extern u32 D_80800998_chspotlight[3];
+    struct SpotlightData {
+        s32 light;
+        s32 unk4[3];
+        f32 position[3];
+        f32 yaw;
+        f32 unk20;
+        s32 unk24;
+        f32 unk28;
+        f32 unk2C;
+        f32 unk30;
+        f32 unk34;
+        f32 unk38;
+    } *data;
+    Actor *other;
+
+    data = func_80100094(arg0, 0);
+    func_800EE7F8(data->position, arg0->position);
+    if (func_800DA298(0x9C) || !func_808008EC_chspotlight((u8 *)arg0)) {
+        func_80101FDC(arg0, 5);
+    } else if (func_808008A4_chspotlight(arg0)) {
+        other = func_80106790(arg0->unk3C);
+        func_800EE7F8(data->position, other->position);
+        arg0->rotation[1] = arg0->unk54 = func_80102D78(arg0, other->position);
+    }
+    if ((s32)arg0->unk74_7 < 0x34) {
+        data->light = func_800C8A98();
+        data->yaw = arg0->rotation[1];
+        data->unk20 = 0.0f;
+        data->unk24 = 0;
+        func_800C8D4C(data->light, D_80800990_chspotlight);
+        func_800C8E84(data->light, D_80800998_chspotlight);
+        func_800C8CB8(data->light, data->position);
+        func_800C8FE0(data->light, 0);
+    } else {
+        data->light = 0;
+    }
+    data->unk28 = func_800DC178(0.0f, 360.0f);
+    data->unk2C = func_800DC178(20.0f, 60.0f) * (func_800DC298(0.5f) ? 1.0f : -1.0f);
+    data->unk30 = func_800DC178(0.0f, 360.0f);
+    data->unk34 = func_800DC178(20.0f, 60.0f) * (func_800DC298(0.5f) ? 1.0f : -1.0f);
+    data->unk38 = 525.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_80800210_chspotlight.s")
 
