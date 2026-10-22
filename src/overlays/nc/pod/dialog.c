@@ -32,7 +32,41 @@ void func_8080008C_ncpoddialog(u8 *arg0) {
     (*(s8 *)((s8 *)(arg0) + (0x214))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80800128_ncpoddialog.s")
+s32 func_80800128_ncpoddialog(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 *arg4) {
+    typedef struct { f32 m[4][4]; } MtxF;
+    f32 func_800139F8(f32);
+    void func_800D93A0(f32[4], f32[3]);
+    void func_800D9624(f32 *, f32 *);
+    void func_800D965C(f32[4], f32[16]);
+    void func_800EFB24(void *, void *, void *);
+    void func_800F23D0(MtxF *, f32 *, f32 *);
+    f32 spD4[3];
+    f32 scale;
+    f32 reciprocal;
+    f32 spBC[4];
+    f32 spAC[4];
+    f32 sp6C[16];
+    f32 sp68;
+    MtxF sp28;
+
+    sp68 = 1.0f / func_800139F8(20.0f);
+    func_800D93A0(spBC, arg3);
+    func_800D965C(spBC, sp6C);
+    func_800D9624(spAC, spBC);
+    func_800D965C(spAC, sp28.m[0]);
+    func_800EFB24(spD4, arg0, arg2);
+    func_800F23D0(&sp28, spD4, spD4);
+    scale = (f32)(arg4[3] - arg4[1]) * sp68 * 0.5f;
+    reciprocal = 1.0f / spD4[2];
+    arg1[0] = (f32)(arg4[2] - arg4[0]) * 0.5f - spD4[0] * scale * reciprocal;
+    arg1[1] = (f32)(arg4[3] - arg4[1]) * 0.5f + spD4[1] * scale * reciprocal;
+    arg1[0] += (f32)arg4[0];
+    arg1[1] += (f32)arg4[1];
+    if (spD4[2] > 0.0f || arg1[0] < (f32)arg4[0] || (f32)arg4[0] < arg1[0] || arg1[1] < (f32)arg4[1] || (f32)arg4[3] < arg1[1]) {
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80800338_ncpoddialog.s")
 
