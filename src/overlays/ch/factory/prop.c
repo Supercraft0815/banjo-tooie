@@ -77,7 +77,56 @@ s32 func_80800214_chfactoryprop(Actor *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/prop/func_80800324_chfactoryprop.s")
+void func_80800324_chfactoryprop(Actor *arg0) {
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
+    void func_8008FE68(f32 *);
+    void func_80090794(f32 *);
+    void func_800907C0(f32 *);
+    void func_800C3058(u8, s32);
+    f32 func_800D8FF8(void);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F15F8(f32, f32, f32);
+    extern s32 D_80800CF8_chfactoryprop;
+    f32 velocity[3];
+    f32 position[3];
+    f32 distance;
+    f32 speed;
+    f32 delta;
+    s32 active;
+    s32 rate;
+
+    if (arg0->unk6C_9 == 0x3B2) {
+        func_8008FE68(position);
+        if (!(position[2] > 1700.0f) && !(position[2] < -1700.0f)) {
+            distance = position[0] - arg0->position[0];
+            if (distance <= -100.0f) {
+                speed = func_800F10B4(distance, -500.0f, -100.0f, 0.0f, 800.0f);
+            } else {
+                speed = func_800F10B4(distance, -100.0f, 4000.0f, 800.0f, 0.0f);
+            }
+            delta = func_800D8FF8();
+            *(f32 *)&arg0->actorData[5] = func_800F15F8(*(f32 *)&arg0->actorData[5], 0.0f, delta * 400.0f);
+            if (position[0] < 1300.0f && position[0] > 0.0f && position[1] < arg0->position[1]) {
+                *(f32 *)&arg0->actorData[5] = 600.0f;
+            }
+            func_80090794(velocity);
+            func_800EF1B8(velocity, 90.0f, (*(f32 *)&arg0->actorData[5] + speed) * delta);
+            func_800907C0(velocity);
+            active = 0;
+            if (*(f32 *)&arg0->actorData[5] + speed > 240.00002f) {
+                active = 1;
+            }
+            if (active != 0 || (active == 0 && *(u8 *)&arg0->actorData[1] != 0)) {
+                rate = func_800F10B4(*(f32 *)&arg0->actorData[5] + speed, 0.0f, 800.0f, 8000.0f, 22000.0f);
+                *(u8 *)&arg0->actorData[1] = _subaddieaudioloop_entrypoint_7(*(u8 *)&arg0->actorData[1], position, active, &D_80800CF8_chfactoryprop, arg0->unk70_0);
+                if (*(u8 *)&arg0->actorData[1] != 0) {
+                    func_800C3058(*(u8 *)&arg0->actorData[1], rate);
+                }
+            }
+        }
+    }
+}
 
 /* extern */
 
