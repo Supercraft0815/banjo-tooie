@@ -771,7 +771,35 @@ void func_808023F8_chweldarboss(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_808026BC_chweldarboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_808029D8_chweldarboss.s")
+void func_808029D8_chweldarboss(Actor *arg0) {
+    typedef struct {
+        u8 pad0[0x44];
+        f32 unk44[3];
+        u8 pad50[0x62];
+        u8 unkB2;
+    } WeldarData;
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u8, s32 *, s32);
+    void func_800BBCB8(f32 *, f32 *, s32, s32, s32 *);
+    f32 func_800DC178(f32, f32);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    extern s32 D_808049B4_chweldarboss;
+    extern s32 D_808049DC_chweldarboss;
+    WeldarData *sp3C;
+    f32 sp30[3];
+    f32 sp2C;
+    f32 sp28;
+
+    sp3C = func_80100094(arg0, 0);
+    sp2C = func_800DC178(300.0f, 1000.0f);
+    sp28 = func_800F10B4(sp2C, 300.0f, 1000.0f, 1.0f, 1.5f);
+    func_800EEB9C(sp30, arg0->rotation[1], sp2C);
+    func_800EF04C(sp30, sp3C->unk44);
+    func_800BBCB8(sp30, sp3C->unk44, *(s32 *)&sp28, 1, &D_808049B4_chweldarboss);
+    sp3C->unkB2 = _subaddieaudioloop_entrypoint_7(sp3C->unkB2, sp3C->unk44, 1, &D_808049DC_chweldarboss, arg0->unk70_0);
+}
 
 void func_80802ABC_chweldarboss(Actor *arg0, f32 arg1) {
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
