@@ -70,7 +70,68 @@ void func_808000AC_chloggo(Actor *arg0) {
     *(u8 *)&arg0->pad94 &= ~0x40;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/loggo/func_808001B8_chloggo.s")
+s32 func_808001B8_chloggo(Actor *arg0, s32 arg1, void *arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _capod_entrypoint_14(void);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    s32 func_800F52B8(s32, Unk80132ED0 *);
+    void func_80102424(Actor *, s32);
+    void func_8010A590(Actor *);
+    void func_80800398_chloggo(Actor *);
+    extern s32 D_808005E0_chloggo[];
+    extern s32 D_808006E8_chloggo[];
+    Unk80132ED0 *temp;
+
+    switch (arg1) {
+        case 0x2E:
+            switch (*(s16 *)&arg2) {
+                case 0x1343:
+                case 0x1380:
+                    func_800D1000(0x10, 4, (s32 *)arg0->actorData, 1, 0);
+                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808006E8_chloggo);
+                    _capod_entrypoint_14();
+                    _capod_entrypoint_13(arg0->unk0, NULL, 6, 0x2030);
+                    break;
+                case 0x1367:
+                    _capod_entrypoint_14();
+                    func_80102424(arg0, 1);
+                    break;
+                default:
+                    if (_subaddiedialog_entrypoint_9((s32)arg0, *(s16 *)&arg2, D_808005E0_chloggo, 6) == 1) {
+                        func_8010A590(arg0);
+                    }
+                    func_80102424(arg0, 1);
+                    break;
+            }
+            break;
+        case 0x3E:
+            temp = arg2;
+            if (((u16 *)&temp->unk18)[0] & 1) {
+                return 0;
+            }
+            if (func_800F52B8((u32)((u16 *)&temp->unk18)[1] >> 5, arg0->unk0) == 0xB && arg0->unk70_10 != 3) {
+                func_80102424(arg0, 3);
+            }
+            break;
+        case 0x40:
+            func_80800398_chloggo(arg0);
+            break;
+        case 0xB:
+            if (arg2 == (void *)6) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1367, 6, arg0->position, 0xAD);
+            }
+            return 3;
+        case 0x91:
+            *(u8 *)&arg0->pad94 = (u8)((*(u8 *)&arg0->pad94 & ~0x40) | 0x40);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800398_chloggo(Actor *arg0) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
