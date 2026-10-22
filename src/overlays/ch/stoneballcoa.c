@@ -45,7 +45,62 @@ void func_80800100_chstoneballcoach(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcoa/func_80800140_chstoneballcoach.s")
+void func_80800140_chstoneballcoach(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_6(f32 *, s32, s32, s32, s32);
+    s32 func_80016B30(s32, s32);
+    s32 func_8008FA60(s32, s32);
+    s32 func_80090080();
+    s32 func_80090128();
+    s32 func_80090178(s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA9E4(s32, s32);
+    s32 func_8010C820(Actor *, s32, s32);
+    s32 func_8010CAC0(f32 *, s32);
+    extern f32 D_808003C8_chstoneballcoach;
+    s32 var_a3;
+    s32 sp28;
+
+    if (func_80090128() != 0) {
+        func_8010C820(arg0, 0x8C, 0x1E);
+        func_80800100_chstoneballcoach(arg0);
+    }
+    if (arg0->unk70_10 == 1) {
+        if (func_80090178(0x80) != 0) {
+            if (func_8010CAC0(&D_808003C8_chstoneballcoach, 0x96) != 0) {
+                if (func_800DA9E4(0x428, 1) == 0) {
+                    func_80800090_chstoneballcoach(arg0, 0xF23, 6);
+                }
+            } else if ((func_8010CAC0(arg0->position, 0xC8) != 0) && (func_8008FA60(0x80, 0) != 0)) {
+                sp28 = 6;
+                var_a3 = 0;
+                if (func_800DA9E4(arg0->unk74_7 + 0x3F3, 1) == 0) {
+                    if (func_800DA298(0x5F) != 0) {
+                        var_a3 = arg0->unk74_7 + 0xEF8;
+                    } else if (func_800DA298(0x5E) != 0) {
+                        var_a3 = arg0->unk74_7 + 0xEF5;
+                    } else {
+                        var_a3 = arg0->unk74_7 + 0xEF2;
+                    }
+                    sp28 = 0xE;
+                } else {
+                    if ((func_80090080() != 0) && (func_80016B30(0, 1) != 0)) {
+                        if (func_800DA298(0x5F) != 0) {
+                            var_a3 = arg0->unk74_7 + 0xF18;
+                        } else if (func_800DA298(0x5E) != 0) {
+                            var_a3 = arg0->unk74_7 + 0xF15;
+                        } else {
+                            var_a3 = arg0->unk74_7 + 0xF12;
+                        }
+                        sp28 = 0xE;
+                    }
+                }
+                func_80800090_chstoneballcoach(arg0, var_a3, sp28);
+            }
+        } else if (_subaddiedialog_entrypoint_6(arg0->position, (s32) arg0->rotation[1], 0x96, 0x46, 6) != 0) {
+            func_80800090_chstoneballcoach(arg0, arg0->unk74_7 + 0xF21, 0xE);
+        }
+    }
+}
 
 /* extern */
 
