@@ -129,7 +129,90 @@ void func_8080061C_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, arg0->position, 0x22);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808006CC_chdodgemcontrol.s")
+void func_808006CC_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    s32 _gcgoto_entrypoint_1(s32, s32);
+    void func_800CE88C(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    s32 func_800D395C(void);
+    void func_800DA3B8(s32, s32);
+    s32 func_800EA05C(void);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    void func_808019C4_chdodgemcontrol(Actor *, s32);
+    typedef struct {
+        u8 pad0[0xC2];
+        u8 count;
+        u8 unkC3;
+        u8 unkC4;
+        u8 unkC5;
+    } DodgemData;
+    s32 pad[2];
+    s32 sp1C;
+    DodgemData *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0x10D9:
+    case 0x10DA:
+        _gcfrontend_entrypoint_10();
+        break;
+    case 0x10FC:
+        func_8080061C_chdodgemcontrol(arg0, 0x10D3, 0);
+        break;
+    case 0x10D3:
+    case 0x10EB:
+        sp1C = func_808005CC_chdodgemcontrol(arg0->unk79_4);
+        func_800CE8D8(0, (f32)sp1C, func_808005CC_chdodgemcontrol(arg0->unk79_4));
+        func_800CE88C(0, 1);
+        func_808019C4_chdodgemcontrol(arg0, 0);
+        arg0->unk70_10 = 3;
+        func_800FDC28(0xC);
+        break;
+    case 0x10D4:
+        func_800DA3B8(0xA9, 1);
+        _gcgoto_entrypoint_1(0xDD, 5);
+        break;
+    case 0x10D5:
+        func_800DA3B8(0xAA, 1);
+        _gcgoto_entrypoint_1(0xDD, 5);
+        break;
+    case 0x10D6:
+        func_800DA3B8(0xB0, 1);
+        _gcgoto_entrypoint_1(0xDD, 5);
+        break;
+    case 0xCEB:
+        if (func_800D395C()) {
+            if (arg2 == 1) {
+                _gcfrontend_entrypoint_11();
+            } else {
+                _gcfrontend_entrypoint_10();
+            }
+        } else {
+            if (arg2 == 1) {
+                _gcgoto_entrypoint_1(func_800EA05C(), 1);
+            } else {
+                _gcgoto_entrypoint_1(0xDD, 5);
+            }
+        }
+        break;
+    case 0x10D7:
+    case 0x10EC:
+    case 0x10ED:
+    case 0x10EE:
+    case 0x10EF:
+    case 0x10F0:
+    case 0x10F1:
+        func_8080061C_chdodgemcontrol(arg0, 0xCEB, 0x40);
+        break;
+    case 0x10BB:
+    case 0x10BC:
+    case 0x10BD:
+        data->unkC4 = 1;
+        break;
+    }
+}
 
 s32 func_808008EC_chdodgemcontrol(Actor *arg0) { switch (arg0->unk79_4) { case 0: return 0x3C; case 1: return 0x32; case 2: return 0x28; default: return 0; } }
 
