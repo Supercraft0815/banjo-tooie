@@ -298,7 +298,27 @@ s32 func_80800710_bsbtrot(void *arg0) {
     return bakey_released(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_8080075C_bsbtrot.s")
+/* extern */
+
+int func_8080075C_bsbtrot(PlayerState *arg0, s32 arg1) {
+    int baflag_isTrue();
+    int func_8008D3B0(PlayerState *);
+    s32 func_8008E40C(PlayerState *);
+    s32 func_8008E430(PlayerState *);
+    if (baflag_isTrue(arg0, 0xF) != 0) {
+        return arg1;
+    }
+    if (func_8008D3B0(arg0) != 0) {
+        return 0x23;
+    }
+    if (func_8008E430(arg0) != 0) {
+        return 0x9C;
+    }
+    if (func_8008E40C(arg0) != 0) {
+        return 0x95;
+    }
+    return 8;
+}
 
 s32 func_808007E0_bsbtrot(PlayerState *arg0, s32 arg1) {
     s32 _badrone_entrypoint_24(PlayerState *);
