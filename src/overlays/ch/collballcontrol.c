@@ -339,7 +339,93 @@ void func_80800D60_chcollballcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     _chintrotext_entrypoint_2(1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80800DD8_chcollballcontrol.s")
+void func_80800DD8_chcollballcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    Actor *func_801084B0(s32, Actor **);
+    s32 func_80090178(AllowedTransformation);
+    void func_800FFAB0(Actor *);
+    void func_800DA3B8(s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800F6438(u32);
+    void func_800F4CEC(s32, u32);
+    u8 _sukickball_entrypoint_3(void);
+    s32 _gcstatusDll_entrypoint_11(void);
+    void _sukickball_entrypoint_18(Actor *);
+    void func_80801108_chcollballcontrol(Actor *, s32);
+    extern s32 D_80804D7C_chcollballcontrol[];
+    struct Fields {
+        u8 pad0[0xA];
+        u8 types[4];
+        u8 padE[2];
+        Unk80132ED0 *actors[4];
+        u8 pad20[0x14];
+        u8 flags[4];
+        u8 pad38;
+        u8 mode;
+        u8 count;
+        u8 pad3B;
+        u8 active;
+    } *data, *other;
+    s32 i;
+    s32 j;
+    Actor *actor;
+
+    data = func_80100094(arg0, 0);
+    data->active = 0;
+    if (!func_80090178(0x80)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    func_800DA3B8(0x65A, 1);
+    data->mode = _sukickball_entrypoint_3();
+    data->count = D_80804D7C_chcollballcontrol[data->mode];
+    switch (data->mode) {
+        case 0:
+            func_80800D60_chcollballcontrol(arg0, func_800DA298(0x368), data->mode);
+            break;
+        case 1:
+            func_80800D60_chcollballcontrol(arg0, func_800DA298(0x369), data->mode);
+            break;
+        case 2:
+            func_80800D60_chcollballcontrol(arg0, func_800D0A9C(0x44, 1), data->mode);
+            break;
+        case 4:
+            for (j = 0; j != 8; j++) {
+                if (func_800F6438(j)) {
+                    func_800F4CEC(j, 0);
+                }
+            }
+            data->count = _gcstatusDll_entrypoint_11();
+            break;
+    }
+    for (i = 0; i < data->count; i++) {
+        other = func_80100094(arg0, 0);
+        other->flags[i] = 0;
+        other->actors[i] = NULL;
+    }
+    if (data->mode == 4) {
+        data->types[0] = 1;
+    } else {
+        data->types[0] = 2;
+    }
+    data->types[1] = 1;
+    data->types[2] = 1;
+    data->types[3] = 1;
+    for (i = 0; i < data->count; i++) {
+        switch (data->types[i]) {
+            case 2:
+                break;
+            case 1:
+                data->actors[i] = (actor = func_801084B0(0x19F, &arg0))->unk0;
+                actor->unk3C = arg0->unk0;
+                break;
+        }
+        func_80801108_chcollballcontrol(arg0, i);
+    }
+    _sukickball_entrypoint_18(arg0);
+    data->active = 1;
+}
 
 void func_80801038_chcollballcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
