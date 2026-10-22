@@ -452,7 +452,56 @@ void func_808009DC_chflysaucer(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800C3C_chflysaucer.s")
+s32 func_80800C3C_chflysaucer(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _suspline_entrypoint_1(void *);
+    void _suspline_entrypoint_14(void *);
+    void _suspline_entrypoint_16(void *);
+    void _suspline_entrypoint_17(void *);
+    void _suspline_entrypoint_3(void *, s32, f32 *);
+    void _suspline_entrypoint_5(void *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_808012A4_chflysaucer(Actor *, s32);
+    u8 *sp3C;
+    void *sp38;
+    s32 sp34;
+    f32 sp28[3];
+
+    sp3C = func_80100094(arg0, 0);
+    sp38 = func_80100094(arg0, 1);
+    sp34 = 0;
+    _suspline_entrypoint_14(sp38);
+    _suspline_entrypoint_17(sp38);
+    _suspline_entrypoint_3(sp38, 0, (f32 *)&arg0->actorData[4]);
+    _suspline_entrypoint_3(sp38, 1, arg0->rotation);
+    arg0->rotation[1] += 180.0f;
+    arg0->rotation[0] = -arg0->rotation[0];
+    _suspline_entrypoint_5(sp38, (f32 *)&arg0->actorData[4]);
+    if (_suspline_entrypoint_1(sp38)) {
+        if (sp3C[0x26] == 5) {
+            func_808012A4_chflysaucer(arg0, 3);
+            func_808009DC_chflysaucer(arg0, 1);
+        } else {
+            func_808009DC_chflysaucer(arg0, 1);
+            func_808012A4_chflysaucer(arg0, 4);
+            func_808005FC_chflysaucer(arg0);
+        }
+        sp34 = 1;
+    }
+    _suspline_entrypoint_16(sp38);
+    if (arg0->unk74_29) {
+        func_800EFB24(sp28, (f32 *)&arg0->actorData[4], arg0->position);
+        func_800EF334(sp28, 0.3f);
+        func_800EF04C(arg0->position, sp28);
+    } else {
+        func_800EE7F8(arg0->position, (f32 *)&arg0->actorData[4]);
+        arg0->unk74_29 = 1;
+    }
+    return sp34;
+}
 
 s32 func_80800DAC_chflysaucer(Actor *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     void *func_80100094(Actor *, u32);
