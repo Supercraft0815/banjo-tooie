@@ -1,5 +1,7 @@
 #include "common.h"
 
+void func_80102424(Actor *, s32);
+
 OSThread *chhoneyb_entrypoint_0(void)
 {
     extern u8 D_80801020_chhoneyb[];
@@ -228,7 +230,57 @@ s32 func_80800920_chhoneyb(u8 *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800968_chhoneyb.s")
+s32 func_80800968_chhoneyb(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    s32 _glcutDll_entrypoint_20(void);
+    void *_suexpression_entrypoint_7(Actor *, u32, u32);
+    void _suexpression_entrypoint_12(void *, f32, f32);
+    s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void func_8008F8B0(void);
+    void func_8008F8D8(s32);
+    void func_8008F904(void *, Unk80132ED0 *);
+    void func_8008F990(f32 *, f32);
+    void func_800904C8(s32);
+    s32 func_800DA298(s32);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    extern u32 D_808010C0_chhoneyb;
+    extern s32 func_8010D5DC;
+
+    switch (arg1) {
+    case 0x2E:
+        func_80800744_chhoneyb(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x30:
+        return func_80800920_chhoneyb((u8 *)arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+    case 0x32:
+        func_800904C8(0x8D);
+        arg0->unk74_29 = 1;
+        break;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_808010C0_chhoneyb, arg0->scale);
+        break;
+    case 0xB:
+        return 3;
+    case 0x95:
+        _suexpression_entrypoint_12(_suexpression_entrypoint_7(arg0, 0, 0x9B), 60.0f, 20.0f);
+        if (!func_800DA298(0x4E9) && !_glcutDll_entrypoint_20()) {
+            func_8008F8B0();
+            func_8008F904(&func_8010D5DC, arg0->unk0);
+            func_8008F8D8(1);
+            func_8008F990((f32 *)arg0->actorData, 300.0f);
+            _susubgame_entrypoint_6(arg0, func_80100094(arg0, 1), 1, 0x60, 0);
+            func_80102424(arg0, 4);
+        }
+        break;
+    case 0x57:
+        return _susubgame_entrypoint_3(arg0, func_80100094(arg0, 1), arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800B2C_chhoneyb(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
