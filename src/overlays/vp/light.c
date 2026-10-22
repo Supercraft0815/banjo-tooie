@@ -120,4 +120,62 @@ void func_80800518_vplight(s32 arg0, s32 *range) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/light/vplight_entrypoint_3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/light/vplight_entrypoint_4.s")
+void vplight_entrypoint_4(Vtx *vertices, s32 count) {
+    s32 func_800C8760(s32, s32);
+    s32 func_800C878C(s32, s32, s32);
+    void func_800C8900(s32, s32 *);
+    f32 sqrtf(f32);
+    Vtx *end;
+    s32 x, y, z;
+    s32 squared, distance, strength;
+    s32 r, g, b;
+    s32 position[3];
+    s32 range[3];
+    s32 color[3];
+    s32 light;
+    s32 attenuation;
+
+    end = vertices + count;
+    if (vertices < end) {
+      do {
+        r = vertices->v.cn[0];
+        g = vertices->v.cn[1];
+        b = vertices->v.cn[2];
+        light = func_800C8760(0, 4);
+        if (light != 0) {
+          do {
+            func_808004B0_vplight((void *)light, position);
+            func_80800518_vplight(light, range);
+            func_800C8900(light, color);
+            x = position[0] - vertices->v.ob[0];
+            y = position[1] - vertices->v.ob[1];
+            z = position[2] - vertices->v.ob[2];
+            squared = x * x + y * y + z * z;
+            distance = squared;
+            if (squared < range[1]) {
+                if (squared != 0) {
+                    distance = (s32)(sqrtf((f32)squared) * 256.0f);
+                }
+                if (range[0] < distance) {
+                    attenuation = 0x4000 - (((distance - range[0]) * range[2]) >> 8);
+                    strength = attenuation * 4;
+                } else {
+                    strength = 0x10000;
+                }
+                r += (color[0] * strength) >> 16;
+                g += (color[1] * strength) >> 16;
+                b += (color[2] * strength) >> 16;
+            }
+            light = func_800C878C(light, 0, 4);
+          } while (light != 0);
+        }
+        if (r >= 256) r = 255;
+        if (g >= 256) g = 255;
+        if (b >= 256) b = 255;
+        vertices->v.cn[0] = r;
+        vertices->v.cn[1] = g;
+        vertices->v.cn[2] = b;
+        vertices++;
+      } while (vertices < end);
+    }
+}
