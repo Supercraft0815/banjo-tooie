@@ -429,7 +429,126 @@ s32 sucoaster_entrypoint_9(Actor *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/sucoaster_entrypoint_10.s")
+s32 sucoaster_entrypoint_10(Actor *arg0, s32 arg1) {
+    typedef struct {
+        u8 pad0[0x14];
+        u8 unk14;
+        u8 pad15;
+        u8 counter;
+        u8 pad17;
+        u32 track : 4;
+        u32 pad18_27 : 1;
+        u32 alternate : 1;
+        u32 slow : 1;
+        u32 direction : 1;
+        u32 route : 1;
+        u32 active : 1;
+        u32 hit : 1;
+        u32 pad18_0 : 21;
+    } CoasterData;
+    s32 _subaddiefade_entrypoint_5();
+    s32 _sucoasterdata_entrypoint_2(u32);
+    s32 _sucoasterdata_entrypoint_3(u32);
+    s32 _sucoasterdata_entrypoint_4(u32);
+    s32 func_800D9058(f32);
+    f32 func_800DC178(f32, f32);
+    s32 func_800DC298(f32);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_8010A570(Actor *);
+    void func_80802260_sucoaster(Actor *, s32);
+    f32 func_8080230C_sucoaster(Actor *, void *);
+    f32 func_8080264C_sucoaster(void *, s32);
+    void sucoaster_entrypoint_11(Actor *, f32);
+    CoasterData *data;
+    s32 maximum;
+    s32 nextMaximum;
+    s32 sp20;
+
+    data = func_80100094(arg0, 0);
+    func_80102424(arg0, arg1);
+    data->route = 1;
+    switch (arg1) {
+    case 2:
+        arg0->unk58 = 2.0f;
+        if (data->slow) {
+            arg0->unk58 *= 0.7f;
+        }
+        sucoaster_entrypoint_6(arg0, 0.0f);
+        break;
+    case 3:
+        sp20 = _sucoasterdata_entrypoint_2(data->track);
+        maximum = _sucoasterdata_entrypoint_3(data->track);
+        sucoaster_entrypoint_6(arg0, func_800DC178((f32)sp20, (f32)maximum));
+        arg0->unk58 = 4.0f;
+        sucoaster_entrypoint_11(arg0, (f32)_sucoasterdata_entrypoint_2(data->track));
+        break;
+    case 4:
+        sp20 = _sucoasterdata_entrypoint_3(data->track);
+        nextMaximum = _sucoasterdata_entrypoint_4(data->track);
+        sucoaster_entrypoint_6(arg0, func_800DC178((f32)sp20, (f32)nextMaximum));
+        arg0->unk58 = 4.0f;
+        sucoaster_entrypoint_11(arg0, (f32)_sucoasterdata_entrypoint_3(data->track));
+        break;
+    case 5:
+        sucoaster_entrypoint_6(arg0, 0.0f);
+        arg0->unk54 = func_8080264C_sucoaster(arg0, (s32)data);
+        break;
+    case 6:
+        arg0->unk6C_0 = func_800D9058(2.0f);
+        ((f32 *)arg0->actorData)[3] = 0.0f;
+        data->slow = 1;
+        sucoaster_entrypoint_6(arg0, 0.0f);
+        data->counter = 0;
+        break;
+    case 7:
+        sucoaster_entrypoint_6(arg0, 0.0f);
+        break;
+    case 8:
+        sucoaster_entrypoint_6(arg0, (f32)_sucoasterdata_entrypoint_4(data->track));
+        sucoaster_entrypoint_11(arg0, (f32)_sucoasterdata_entrypoint_3(data->track));
+        if (!arg0->unk64_29) {
+            arg0->unk54 = func_8080264C_sucoaster(arg0, (s32)data);
+        }
+        break;
+    case 9:
+        data->hit = 0;
+        sucoaster_entrypoint_6(arg0, 0.0f);
+        break;
+    case 10:
+        sucoaster_entrypoint_6(arg0, (f32)_sucoasterdata_entrypoint_4(data->track));
+        sucoaster_entrypoint_11(arg0, (f32)_sucoasterdata_entrypoint_3(data->track));
+        arg0->unk54 = func_8080230C_sucoaster(arg0, data);
+        break;
+    case 11:
+        ((f32 *)arg0->actorData)[3] = 0.0f;
+        break;
+    case 12:
+        func_80802260_sucoaster(arg0, (s32)data);
+        break;
+    case 14:
+        func_8010A570(arg0);
+        sucoaster_entrypoint_6(arg0, 0.0f);
+        data->alternate = 1;
+        arg0->unk64_24 = 0;
+        ((f32 *)arg0->actorData)[3] = 0.0f;
+        arg0->unk58 = 3.0f;
+        _subaddiefade_entrypoint_5(arg0);
+        break;
+    case 15:
+        ((f32 *)arg0->actorData)[3] = 0.0f;
+        arg0->unk58 = 0.7f;
+        data->unk14 = 0;
+        break;
+    case 18:
+        data->direction = func_800DC298(0.5f);
+        ((f32 *)arg0->actorData)[3] = 0.0f;
+        sucoaster_entrypoint_6(arg0, (f32)_sucoasterdata_entrypoint_4(data->track) * 1.2f);
+        sucoaster_entrypoint_11(arg0, (f32)_sucoasterdata_entrypoint_3(data->track));
+        break;
+    }
+    return 1;
+}
 
 void sucoaster_entrypoint_11(Actor *arg0, f32 arg1) {
     typedef struct {
