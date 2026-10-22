@@ -26,7 +26,135 @@ void func_8080000C_chflamer(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flamer/func_80800050_chflamer.s")
+void func_80800050_chflamer(Actor *arg0) {
+    struct FlamerActorFlags {
+        u8 pad0[0x74];
+        u32 pad74_25 : 7;
+        u32 active : 1;
+        u32 pad74_0 : 24;
+    };
+    struct FlamerParticle {
+        f32 age;
+        s16 velocity;
+        s16 pad6;
+        s16 position[3];
+        u8 padE[6];
+    };
+    struct FlamerData {
+        s32 light;
+        u8 pad4[0x12];
+        s16 count;
+        s16 intensity;
+        s16 pad1A;
+        struct FlamerParticle particles[20];
+        s32 unk1AC;
+        f32 unk1B0;
+        u8 link[1];
+    };
+    s32 _chlightfader_entrypoint_1(s32, f32, s32);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800EFC7C(void *, void *);
+    void func_800FFA88(Unk80132ED0 *);
+    f32 func_80103F38(Actor *, f32 *);
+    s32 func_801072A8(void *);
+    Actor *func_80800738_chflamer(Actor *);
+    s32 func_808007A8_chflamer(Actor *, Actor *);
+    void func_8080098C_chflamer(s32);
+    void func_808009C0_chflamer(Actor *, Actor *);
+    void rare_memcpy(void *, void *, int);
+    struct FlamerData *data;
+    Actor *linked;
+    struct FlamerParticle *particle;
+    f32 dt;
+    f32 speed;
+    f32 acceleration;
+    s32 i;
+    f32 world[3];
+    f32 delta[3];
+
+    data = func_80100094(arg0, 0U);
+    linked = _subaddielink_entrypoint_4(data->link);
+    if (linked != NULL && func_801072A8(linked) == 0) {
+        data->unk1B0 = func_80103F38(linked, NULL);
+        func_800EE7F8(arg0->position, linked->position);
+        func_800EE7F8(arg0->rotation, linked->rotation);
+        arg0->scale = linked->scale;
+    }
+    func_8080098C_chflamer((s32)arg0);
+    switch (arg0->unk70_10) {
+        case 1:
+            if (linked == NULL || !((struct FlamerActorFlags *)linked)->active) {
+                func_80800738_chflamer(arg0);
+                linked = NULL;
+            }
+            data->intensity += 2;
+            if (data->intensity >= 20) {
+                data->intensity = 20;
+                arg0->unk70_10 = 2;
+            }
+            break;
+        case 2:
+            if (func_800D9078(&arg0->unk58) != 0 || linked == NULL || !((struct FlamerActorFlags *)linked)->active) {
+                func_80800738_chflamer(arg0);
+                linked = NULL;
+            }
+            break;
+        case 3:
+            data->intensity--;
+            if (data->intensity <= 0) {
+                data->intensity = 0;
+                if (data->count == 0) {
+                    if (func_800BF8E4() > 0) {
+                        data->light = _chlightfader_entrypoint_1(data->light, 1.0f, 2);
+                    }
+                    func_800FFA88(arg0->unk0);
+                    return;
+                }
+            }
+            break;
+    }
+    if (func_808007A8_chflamer(arg0, linked) != 0) {
+        dt = func_800D8FF8();
+        speed = dt * 50.0f;
+        acceleration = dt * 300.0f;
+        particle = data->particles;
+        for (i = 0; i < data->count; ) {
+            particle->age += dt * 15.0f;
+            if ((s32)particle->age >= 9) {
+                data->count--;
+                if (data->count > 0) {
+                    rare_memcpy(particle, &data->particles[data->count], sizeof(struct FlamerParticle));
+                }
+                continue;
+            }
+            {
+                particle->velocity = (s32)(particle->velocity + acceleration);
+                particle->position[1] = (s32)(particle->position[1] + dt * particle->velocity);
+                func_800EE88C(world, particle->position);
+                func_800EF04C(world, arg0->position);
+                if (func_800EFC7C(world, arg0->position) > 1600.0f) {
+                    func_800EFB24(delta, arg0->position, world);
+                    delta[1] = 0.0f;
+                    func_800EF368(delta, speed);
+                    particle->position[0] += delta[0];
+                    particle->position[2] += delta[2];
+                }
+                particle++;
+                i++;
+            }
+        }
+    }
+    if (func_800BF8E4() > 0) {
+        func_808009C0_chflamer(arg0, linked);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flamer/func_80800434_chflamer.s")
 
