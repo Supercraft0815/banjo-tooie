@@ -347,7 +347,52 @@ void func_80800A40_chsilo(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_80800B80_chsilo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_80801080_chsilo.s")
+s32 func_80801080_chsilo(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800DF744(s32, s32);
+    void *func_80101080(void);
+    s32 func_801015D0(Actor *);
+    s32 temp;
+
+    switch (arg1) {
+    case 0x40:
+        if (arg0->unk6C_0) {
+            func_808004C0_chsilo((u8 *)arg0, 2);
+        }
+        break;
+    case 0x1F:
+        func_801015D0(arg0);
+        if (arg0->unk64_20) {
+            func_800DF744(3, 2);
+        } else {
+            func_800DF744(3, 1);
+        }
+        break;
+    case 0x95:
+        func_8080087C_chsilo(arg0);
+        break;
+    case 0x20:
+        temp = func_80101080();
+        switch (((s16 *)&arg2)[1]) {
+        case 3:
+            func_808002E8_chsilo(arg0, ((s16 *)&arg2)[0]);
+            func_808004C0_chsilo((u8 *)arg0, 0xA);
+            break;
+        case 0:
+            func_80800238_chsilo(arg0, temp);
+            break;
+        case 2:
+            func_808004C0_chsilo((u8 *)arg0, 0xB);
+            break;
+        }
+        break;
+    case 0x2E:
+        arg0->unk74_30 = 0;
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
