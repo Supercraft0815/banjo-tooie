@@ -359,7 +359,51 @@ s32 bswalk_entrypoint_9(s32 arg0) {
     return ((s32 *)&D_80801530_bswalk)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_10.s")
+void bswalk_entrypoint_10(PlayerState *self) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void anctrl_reset();
+    void anctrl_setIndex();
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_setPlaybackType();
+    void anctrl_start();
+    void func_8008B1C8(struct anctrl_s *, f32);
+    void baanim_setDurationRange(PlayerState *, f32, f32);
+    void func_8008C9F0(PlayerState *, f32, f32, f32, f32);
+    void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+    void _bapackctrl_entrypoint_5(PlayerState *, s32);
+    void bastick_resetZones(PlayerState *);
+    s32 bs_getPreviousState(PlayerState *);
+    void *func_8008AEDC(void *);
+    f32 func_8008C0C8(f32 *);
+    int func_8008E0E8(PlayerState *);
+    struct anctrl_s *control;
+    f32 start;
+    s32 previous;
+
+    control = baanim_getAnimCtrlPtr(self);
+    previous = bs_getPreviousState(self);
+    if (previous != 2 && previous != 4) {
+        start = 0.0f;
+    } else {
+        start = func_8008C0C8(func_8008AEDC(control));
+    }
+    anctrl_reset(control);
+    anctrl_setIndex(control, 0xC);
+    anctrl_setDuration(control, 0.66f);
+    func_8008B1C8(control, 0.14f);
+    anctrl_setStart(control, start);
+    anctrl_setPlaybackType(control, 2);
+    anctrl_start(control);
+    func_8009FFD8(self, 2, 1, 1, 2);
+    baanim_setDurationRange(self, 0.3f, 1.5f);
+    func_8008C9F0(self, 150.0f, 225.0f, 0.92f, 0.58f);
+    func_808001D8_bswalk(self, 0.3f);
+    bastick_resetZones(self);
+    if (func_8008E0E8(self) != 0) {
+        _bapackctrl_entrypoint_5(self, 2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_11.s")
 
