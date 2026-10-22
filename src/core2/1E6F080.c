@@ -300,8 +300,8 @@ s32 func_80096388(PlayerState *arg0)
 /* extern */
 
 void func_80096394(PlayerState *arg0, f32 *arg1) {
-    s32 func_800EE7F8(f32 *, s32);
-    func_800EE7F8(arg1, (*(s32 *)((s8 *)(arg0) + (0x94))) + 0x90);
+    void func_800EE7F8(f32 *, f32 *);
+    func_800EE7F8(arg1, (f32 *)(*(u8 **)((u8 *)arg0 + 0x94) + 0x90));
 }
 
 void func_800963C0(PlayerState *arg0, f32 *arg1) {
@@ -332,19 +332,19 @@ s32 func_80096434(PlayerState *arg0)
 /* extern */
 
 void func_80096440(PlayerState *arg0, f32 *arg1) {
-    s32 func_800EE7F8(f32 *, s32);
-    func_800EE7F8(arg1, (*(s32 *)((s8 *)(arg0) + (0x94))) + 0x44);
+    void func_800EE7F8(f32 *, f32 *);
+    func_800EE7F8(arg1, (f32 *)(*(u8 **)((u8 *)arg0 + 0x94) + 0x44));
 }
 
 void func_8009646C(u8 *arg0, f32 *arg1) {
-    s32 func_800EE7F8(f32 *, s32);
+    void func_800EE7F8(f32 *, f32 *);
     f32 *var_s1;
     s32 var_s0;
 
     var_s0 = 0;
     var_s1 = arg1;
     do {
-        func_800EE7F8(var_s1, (*(s32 *)((s8 *)(arg0) + (0x94))) + var_s0 + 0x20);
+        func_800EE7F8(var_s1, (f32 *)(*(u8 **)(arg0 + 0x94) + var_s0 + 0x20));
         var_s0 += 0xC;
         var_s1 += 3;
     } while (var_s0 != 0x24);
@@ -517,8 +517,8 @@ s32 func_800967C0()
 
 /* extern */
 
-s32 func_80096DD4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 func_800EE7F8(f32 *, s32);
+s32 func_80096DD4(s32 arg0, s32 arg1, f32 *arg2, f32 *arg3) {
+    void func_800EE7F8(f32 *, f32 *);
     s32 func_80096ACC(f32 *, f32 *, s32, s32);
     f32 sp24[5];
     f32 sp18;
@@ -737,4 +737,33 @@ void func_8009788C(void *arg0) {
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x98)))) + (0x26))) = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_800978A4.s")
+void func_800978A4(PlayerState *arg0) {
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    s32 func_800972BC(PlayerState *, f32 *);
+    void func_8009C0F8(void *, f32 *);
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_8009C15C(PlayerState *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp24[3];
+    u8 *temp_v0;
+
+    func_8009C15C(arg0, sp3C);
+    temp_v0 = *(u8 **)((u8 *)arg0 + 0x98);
+    if (temp_v0[0x26] != 0) {
+        temp_v0[0x26] = 0;
+        func_800EE7F8(sp30, (f32 *)(*(u8 **)((u8 *)arg0 + 0x98) + 0x18));
+    } else {
+        func_8009C128(arg0, sp30);
+    }
+    func_800EE7F8(sp24, *(f32 **)((u8 *)arg0 + 0x98));
+    if (func_800972BC(arg0, sp30) != 0) {
+        func_800EE7F8(sp30, (f32 *)(*(u8 **)((u8 *)arg0 + 0x98) + 0x18));
+        baphysics_set_vertical_velocity(arg0, 1.0f);
+    } else {
+        func_800EE7F8(sp30, sp3C);
+        func_800EE7F8(*(f32 **)((u8 *)arg0 + 0x98), sp24);
+    }
+    func_8009C0F8(arg0, sp30);
+}
