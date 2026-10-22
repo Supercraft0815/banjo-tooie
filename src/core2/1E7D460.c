@@ -310,7 +310,51 @@ void func_800A4A74(PlayerState *arg0) { if (func_800A4338(arg0) != 0) return; if
 
 void func_800A4AD0(PlayerState *arg0) { if (_ncbaspline_entrypoint_8(func_800A4CA8(arg0))) func_800A3F14(arg0, 2); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4B08.s")
+void func_800A4B08(PlayerState *arg0) {
+    s32 _batimer_decrement(void *, s32);
+    s32 func_800F65D0(s32);
+    s32 func_80090C34(PlayerState *);
+    void func_80090C28(PlayerState *, s32);
+    _batimer_decrement(arg0, 7);
+    if (func_800F65D0(arg0->unk184)) {
+        func_80090C34(arg0);
+    }
+    func_80090C28(arg0, 0);
+    switch ((*(u8 **)((s8 *)arg0 + 0x38))[6]) {
+        case 4:
+            if (func_800A4338(arg0)) {
+                return;
+            }
+            if ((*(u8 **)((s8 *)arg0 + 0x38))[0]) {
+                func_800A3F14(arg0, 1);
+                func_800A3B78(arg0, (*(u8 **)((s8 *)arg0 + 0x38))[0]);
+            } else {
+                func_800A3F14(arg0, 2);
+            }
+            break;
+        case 1:
+            func_800A4A14(arg0);
+            break;
+        case 3:
+            func_800A4A4C(arg0);
+            break;
+        case 5:
+            func_800A4AD0(arg0);
+            break;
+        case 0:
+        case 9:
+            break;
+        default:
+            if ((*(u8 **)((s8 *)arg0 + 0x38))[0]) {
+                func_800A3F14(arg0, 1);
+                func_800A3B78(arg0, (*(u8 **)((s8 *)arg0 + 0x38))[0]);
+            } else {
+                func_800A4A74(arg0);
+            }
+            break;
+    }
+    (*(u8 **)((s8 *)arg0 + 0x38))[0x3B] = 0;
+}
 
 /* extern */
 
