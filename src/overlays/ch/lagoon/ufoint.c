@@ -91,7 +91,60 @@ void func_80800240_chlagoonufoint(Actor *arg0) {
     _susubgame_entrypoint_11(0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_80800294_chlagoonufoint.s")
+void func_80800294_chlagoonufoint(Actor *arg0) {
+    typedef struct {
+        f32 unk0[3];
+        f32 unkC;
+        f32 unk10[3];
+    } UfoIntData;
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 func_800BEA88(s32);
+    void func_800C3FC0(s32, f32, s32);
+    void func_800C4B70(s32);
+    s32 func_800CEAD0(s32);
+    f32 func_800D8FF8(void);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    extern u32 D_80801990_chlagoonufoint;
+    extern s32 _chlagoonufoint_entrypoint_5;
+    f32 delta;
+
+    delta = func_800D8FF8();
+    if (((UfoIntData *)arg0->actorData)->unk10[1] != 0.0f) {
+        ((UfoIntData *)arg0->actorData)->unkC += ((UfoIntData *)arg0->actorData)->unk10[1] * delta;
+        if ((((UfoIntData *)arg0->actorData)->unk10[1] > 0.0f && ((UfoIntData *)arg0->actorData)->unk10[0] < ((UfoIntData *)arg0->actorData)->unkC) ||
+            (((UfoIntData *)arg0->actorData)->unk10[1] < 0.0f && ((UfoIntData *)arg0->actorData)->unkC < ((UfoIntData *)arg0->actorData)->unk10[0])) {
+            ((UfoIntData *)arg0->actorData)->unkC = ((UfoIntData *)arg0->actorData)->unk10[0];
+            ((UfoIntData *)arg0->actorData)->unk10[1] = 0.0f;
+        }
+    }
+    if (((UfoIntData *)arg0->actorData)->unkC != 0) {
+        func_800C4B70((s32)func_800F10B4(((UfoIntData *)arg0->actorData)->unk10[0], 0.0f, 1.0f, 12000.0f, 20000.0f));
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_80801990_chlagoonufoint);
+        if (((UfoIntData *)arg0->actorData)->unk10[2] <= 0) {
+            func_800C3FC0(0x67A, func_800F10B4(((UfoIntData *)arg0->actorData)->unk10[0], 0.0f, 1.0f, 0.4f, 1.0f), 0x4650);
+            ((UfoIntData *)arg0->actorData)->unk10[2] = func_800F10B4(((UfoIntData *)arg0->actorData)->unk10[0], 0.0f, 1.0f, 0.95f, 0.25f);
+        } else {
+            ((UfoIntData *)arg0->actorData)->unk10[2] -= delta;
+        }
+    }
+    switch (arg0->unk70_10) {
+        case 2:
+            if (arg0->unk79_4 == 4) {
+                func_8080000C_chlagoonufoint(arg0, 4);
+            } else if (func_800CEAD0(0)) {
+                func_8080000C_chlagoonufoint(arg0, 3);
+            }
+            break;
+        case 3:
+            arg0->unk58 -= func_800D8FF8();
+            if (arg0->unk58 < 0) {
+                func_8080000C_chlagoonufoint(arg0, 1);
+            }
+            break;
+    }
+    _glid_entrypoint_0(func_800BEA88(0), 0x11, &_chlagoonufoint_entrypoint_5, (s32)arg0->unk0);
+}
 
 void func_808004D8_chlagoonufoint(Unk80132ED0 *arg0, Unk80132ED0 *arg1) {
     typedef struct {
