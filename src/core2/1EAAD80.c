@@ -1,5 +1,7 @@
 #include "core2/1EAAD80.h"
 
+extern struct { s16 value; s16 padding; } D_8011AF52[];
+
 void func_800D1490(void) {
     extern s32 D_8012B250;
     s32 i;
@@ -77,10 +79,28 @@ s32 func_800D16C4(s32 arg0)
     return arg0 - 0x40;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D16CC.s")
+void func_800D16CC(s32 arg0, s32 arg1) {
+    extern s32 D_8012B250;
+    s32 index;
+    s16 limit;
+
+    index = arg0 * 4;
+    limit = *(s16 *)((u8 *)D_8011AF52 + index);
+    if (limit == -2) {
+        ((s16 *)D_8012B250)[arg0] = *(s16 *)((u8 *)&func_800D1A04 + index * 2) ^ 0x3E7;
+        return;
+    }
+    if (arg1 < 0) {
+        arg1 = 0;
+    }
+    if ((limit >= 0) && (limit < arg1)) {
+        arg1 = limit;
+    }
+    ((s16 *)D_8012B250)[arg0] = *(s16 *)((u8 *)&func_800D1A04 + index * 2) ^ arg1;
+}
 
 void func_800D175C(s32 arg0, s32 arg1) {
-    void func_800D16CC(s32, u32);
+    void func_800D16CC(s32, s32);
     s32 func_800D24E8(s32, s32, u32);
     extern s32 D_8012B250;
     register s32 index;
@@ -105,7 +125,7 @@ void func_800D1844(s32 arg0)
 }
 
 void func_800D1864(u32 arg0, u32 arg1, u32 arg2) {
-    void func_800D16CC(s32, u32);
+    void func_800D16CC(s32, s32);
     s32 func_800D2498(u32, s32, u32);
     void func_800D2770(s32, s32);
     extern s32 D_8012B250;
@@ -125,7 +145,7 @@ void func_800D192C(s32 arg0, u32 arg1) {
 }
 
 void func_800D1960(s32 arg0, s32 arg1, s32 arg2) {
-    void func_800D16CC(s32, u32);
+    void func_800D16CC(s32, s32);
     extern s32 D_8012B250;
     s32 index;
     u32 value;
@@ -144,7 +164,6 @@ void func_800D1960(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 s32 func_800D1A04(s32 a0) {
-    extern struct { s16 value; s16 padding; } D_8011AF52[];
     extern s32 D_8012B250;
     s32 index;
 

@@ -139,7 +139,17 @@ s32 *func_80029A04(void *arg0, u8 arg1, u8 arg2, u8 arg3, s32 arg4) {
     return sp1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_80029B18.s")
+void *func_80029B18(u8 *arg0, u8 arg1, u8 arg2) {
+    u8 *cursor;
+
+    for (cursor = *(u8 **)(arg0 + 0x64); cursor != NULL; cursor = *(u8 **)cursor) {
+        if (cursor[0x36] == arg1 && cursor[0x35] == arg2 &&
+            cursor[0x39] != 3 && cursor[0x39] != 4) {
+            return cursor;
+        }
+    }
+    return NULL;
+}
 
 void *func_80029BA0(void *arg0, u8 arg1, u8 arg2, u8 arg3) {
     s16 func_800E9054(s32);

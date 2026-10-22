@@ -343,7 +343,29 @@ void func_80800878_bsride(PlayerState *arg0) {
     func_808006D0_bsride(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_80800904_bsride.s")
+void func_80800904_bsride(PlayerState *arg0) {
+    s32 _chflysaucer_entrypoint_0(s32, f32);
+    f32 anctrl_getAnimTimer(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void baflag_set(PlayerState *, s32);
+    void bs_setState(void *, s32);
+    struct anctrl_s *animCtrl;
+    s32 nextState;
+    s32 state;
+
+    animCtrl = baanim_getAnimCtrlPtr(arg0);
+    nextState = 0;
+    state = arg0->unk160.word;
+    if (state != 1 && state == 2) {
+        baflag_set(arg0, 0x2E);
+    }
+    if (arg0->unk15C.word != 0) {
+        _chflysaucer_entrypoint_0(arg0->unk15C.word, anctrl_getAnimTimer(animCtrl));
+    } else {
+        nextState = 0x2F;
+    }
+    bs_setState(arg0, nextState);
+}
 
 s32 bsride_entrypoint_3(s32 arg0) {
     extern s32 D_80800A90_bsride[];

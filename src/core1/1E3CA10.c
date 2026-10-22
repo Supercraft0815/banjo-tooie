@@ -1,8 +1,65 @@
 #include "common.h"
 
+typedef struct {
+    u32 unk0;
+    u32 trackCount;
+} AudioSeqHeader;
+
+typedef struct {
+    AudioSeqHeader *base;
+    u32 validTracks;
+    f32 qnpt;
+    u32 lastTicks;
+    u32 lastDeltaTicks;
+    u32 deltaFlag;
+    u8 *curLoc[32];
+    u8 *curBUPtr[32];
+    u8 curBULen[32];
+    u8 lastStatus[32];
+    u32 evtDeltaTicks[32];
+} AudioSeq;
+
+typedef struct {
+    u32 validTracks;
+    u32 lastTicks;
+    u32 lastDeltaTicks;
+    u8 *curLoc[32];
+    u8 *curBUPtr[32];
+    u8 curBULen[32];
+    u8 lastStatus[32];
+    u32 evtDeltaTicks[32];
+} AudioSeqMarker;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3CA10/func_80024EE0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3CA10/func_80025084.s")
+void func_80025084(AudioSeq *seq, ALEvent *evt, s32 arg2) {
+    void func_80025224(AudioSeq *, u32, ALEvent *, s32);
+    u32 func_80025DE4(AudioSeq *, u32);
+    u32 i;
+    u32 firstTime = -1U;
+    u32 firstTrack;
+    u32 lastTicks = seq->lastDeltaTicks;
+
+    for (i = 0; i < seq->base->trackCount; i++) {
+        if ((seq->validTracks >> i) & 1) {
+            if (seq->deltaFlag) {
+                seq->evtDeltaTicks[i] -= lastTicks;
+            }
+            if (seq->evtDeltaTicks[i] < firstTime) {
+                firstTime = seq->evtDeltaTicks[i];
+                firstTrack = i;
+            }
+        }
+    }
+    func_80025224(seq, firstTrack, evt, arg2);
+    evt->msg.midi.ticks = firstTime;
+    seq->lastTicks += firstTime;
+    seq->lastDeltaTicks = firstTime;
+    if (evt->type != 0x12) {
+        seq->evtDeltaTicks[firstTrack] += func_80025DE4(seq, firstTrack);
+    }
+    seq->deltaFlag = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3CA10/func_80025224.s")
 
@@ -10,20 +67,83 @@ s32 func_80025668(s32 *arg0) {
     return arg0[3];
 }
 
-void func_80025670(void) {
+void func_80025680(AudioSeq *seq, AudioSeqMarker *m) {
+    u32 i;
+
+    seq->validTracks = m->validTracks;
+    seq->lastTicks = m->lastTicks;
+    seq->lastDeltaTicks = m->lastDeltaTicks;
+
+    for (i = 0; i < seq->base->trackCount; i++) {
+        seq->curLoc[i] = m->curLoc[i];
+        seq->curBUPtr[i] = m->curBUPtr[i];
+        seq->curBULen[i] = m->curBULen[i];
+        seq->lastStatus[i] = m->lastStatus[i];
+        seq->evtDeltaTicks[i] = m->evtDeltaTicks[i];
+    }
 }
 
-void func_80025678(void) {
+void func_80025750(AudioSeq *seq, AudioSeqMarker *m) {
+    u32 i;
+
+    m->validTracks = seq->validTracks;
+    m->lastTicks = seq->lastTicks;
+    m->lastDeltaTicks = seq->lastDeltaTicks;
+
+    for (i = 0; i < seq->base->trackCount; i++) {
+        m->curLoc[i] = seq->curLoc[i];
+        m->curBUPtr[i] = seq->curBUPtr[i];
+        m->curBULen[i] = seq->curBULen[i];
+        m->lastStatus[i] = seq->lastStatus[i];
+        m->evtDeltaTicks[i] = seq->evtDeltaTicks[i];
+    }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3CA10/func_80025680.s")
+void func_80025820(AudioSeq *seq, AudioSeqMarker *m, u32 ticks) {
+    void func_80024EE0(AudioSeq *, AudioSeqHeader *);
+    ALEvent evt;
+    AudioSeq tempSeq;
+    u32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3CA10/func_80025750.s")
+    func_80024EE0(&tempSeq, seq->base);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3CA10/func_80025820.s")
+    do {
+        m->validTracks = tempSeq.validTracks;
+        m->lastTicks = tempSeq.lastTicks;
+        m->lastDeltaTicks = tempSeq.lastDeltaTicks;
+
+        for (i = 0; i < seq->base->trackCount; i++) {
+            m->curLoc[i] = tempSeq.curLoc[i];
+            m->curBUPtr[i] = tempSeq.curBUPtr[i];
+            m->curBULen[i] = tempSeq.curBULen[i];
+            m->lastStatus[i] = tempSeq.lastStatus[i];
+            m->evtDeltaTicks[i] = tempSeq.evtDeltaTicks[i];
+        }
+
+        func_80025084(&tempSeq, &evt, 0);
+
+        if (evt.type == AL_SEQ_END_EVT)
+            break;
+
+    } while (tempSeq.lastTicks < ticks);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3CA10/func_8002597C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3CA10/func_80025BF0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3CA10/func_80025DE4.s")
+u32 func_80025DE4(AudioSeq *seq, u32 track) {
+    u32 func_80025BF0(AudioSeq *, u32);
+    u32 value;
+    u32 c;
+
+    value = func_80025BF0(seq, track);
+    if (value & 0x80) {
+        value &= 0x7F;
+        do {
+            c = func_80025BF0(seq, track);
+            value = (value << 7) + (c & 0x7F);
+        } while (c & 0x80);
+    }
+    return value;
+}

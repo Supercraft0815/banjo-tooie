@@ -104,9 +104,9 @@ void func_80800224_chprisonbits(Actor *arg0) {
 
 s32 func_800DA298();
 
-void func_80800280_chprisonbits()
+s32 func_80800280_chprisonbits(s32 arg0)
 {
-    func_800DA298();
+    return func_800DA298(arg0);
 }
 
 s32 func_808002A0_chprisonbits(s32 arg0, s32 arg1, s32 arg2) {
@@ -131,7 +131,47 @@ s32 func_808002A0_chprisonbits(s32 arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_80800344_chprisonbits.s")
+void func_80800344_chprisonbits(s32 arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_800DA544(s32);
+    s32 func_80101180(s32, s32, s32);
+    struct {
+        u8 flags[6];
+        u8 index;
+    } *data;
+    u32 result;
+
+    data = func_80100094(arg0, 1);
+    if (data->flags[(u32)data->index] != 0) {
+        result = func_80800280_chprisonbits(data->flags[(u32)data->index] - 1);
+        if (result == 0) {
+            result = func_80800280_chprisonbits(data->flags[0] - 1);
+            if (result != 0) {
+                data->index = 0;
+            }
+        }
+        if (result != 0) {
+            if (func_800DA298(0xD5) != 0) {
+                data->index = 0;
+            } else {
+                result = data->index;
+                result++;
+                result &= 0xFF;
+                data->index = result;
+                if (data->flags[result] == 0) {
+                    func_800DA544(0xD5);
+                    func_80101180(0x11E, 7, 0);
+                }
+            }
+        } else {
+            if (func_80800280_chprisonbits(0) ||
+                func_80800280_chprisonbits(1) ||
+                func_80800280_chprisonbits(2)) {
+                data->index = 0;
+            }
+        }
+    }
+}
 
 void func_8080044C_chprisonbits(Actor *arg0) {
     Prop *_gccubesearch_entrypoint_0(u32, Actor *);

@@ -57,6 +57,18 @@ s32 func_8002B684(void *arg0, s32 arg1, void *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E42810/func_8002BAAC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E42810/func_8002BCBC.s")
+s16 func_8002BCBC(s16 arg0, s32 arg1, s16 arg2, u16 arg3) {
+    s32 delta;
+
+    arg1 >>= 3;
+    if (arg1 == 0) {
+        return arg0;
+    }
+    delta = arg3 * arg1;
+    delta >>= 16;
+    delta += arg2 * arg1;
+    arg0 += delta;
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E42810/func_8002BD40.s")

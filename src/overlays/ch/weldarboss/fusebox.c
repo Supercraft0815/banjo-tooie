@@ -27,11 +27,11 @@ void func_80800024_chweldarbossfusebox(s32 arg0) {
     s32 _subaddiefade_entrypoint_14(s32);
     s32 func_800BF744(s32, s32);
     s32 func_800DA298(s32);
-    s32 func_800EFA4C(s32, s32, s32, s32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800FFAB0(Actor *);
     s32 func_80103014(s32);
     func_800BF744(2, func_800DA298(0x18C));
-    func_800EFA4C(arg0 + 4, 0xC4E10000, 0x44960000, 0xC5098000);
+    func_800EFA4C((f32 *)(arg0 + 4), -1800.0f, 1200.0f, -2200.0f);
     func_80103014(arg0);
     _subaddiefade_entrypoint_14(arg0);
     if (func_800DA298(0x18C) != 0) {
@@ -84,7 +84,31 @@ void func_80800140_chweldarbossfusebox(s32 arg0) {
     func_800BF744(2, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/fusebox/func_808001BC_chweldarbossfusebox.s")
+/* extern */
+
+void func_808001BC_chweldarbossfusebox(f32 *arg0) {
+    void func_800EFA4C(f32 position[3], f32 x, f32 y, f32 z);
+    s32 _subaddiefade_entrypoint_14(s32);
+    s32 _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
+    s32 func_800BF744(s32, s32);
+    s32 func_800DA298(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    s32 func_80103014(s32);
+    f32 sp30[6];
+
+    func_800BF744(4, func_800DA298(0x18C));
+    func_800EFA4C(arg0 + 1, 0.0f, 4900.0f, -2300.0f);
+    func_80103014(arg0);
+    _subaddiefade_entrypoint_14(arg0);
+    if (func_800DA298(0x18C) != 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    if (_subaddiemarker_entrypoint_1(arg0, 0x320, 0x35, sp30, 1) != 0) {
+        func_800EE7F8(arg0 + 6, sp30);
+    }
+}
 
 s32 func_80800268_chweldarbossfusebox(Actor *arg0, s32 arg1, s32 arg2) {
     void _chexploder_entrypoint_3(void *, void *, u32);
