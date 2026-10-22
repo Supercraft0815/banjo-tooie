@@ -30,7 +30,64 @@ void func_8080000C_chdiggerbossdoor(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossdoor/func_808000B0_chdiggerbossdoor.s")
+void func_808000B0_chdiggerbossdoor(Actor *actor) {
+    s32 _capod_entrypoint_21(s32, s32, s32, s32);
+    s32 _capod_entrypoint_22();
+    u32 _gcgoto_entrypoint_1(u32, u32);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 func_80016B30(s32, s32);
+    s32 func_800D9078(f32 *);
+    s32 func_800DA298(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    s32 func_800F4BB8(u32, u32, s32);
+    u32 func_800F54E4(void);
+    s32 func_800F55FC(s32);
+    void func_800F8294(s32, f32 *);
+    void func_80101FDC(Actor *, u32);
+    void func_80800370_chdiggerbossdoor(s32 *);
+    extern u32 D_80800478_chdiggerbossdoor;
+    u32 moving = 0;
+    u32 player = func_800F54E4();
+    f32 position[3];
+
+    switch (actor->unk70_10) {
+        case 2:
+            if (func_800D9078(&actor->unk58)) {
+                if (func_800DA298(0x43)) {
+                    _capod_entrypoint_22();
+                    actor->unk6C_0 = 0;
+                }
+                func_80101FDC(actor, 3);
+            } else {
+                moving = 1;
+            }
+            *(f32 *)&actor->actorData[4] = func_800F12D4(actor->unk58, 0.0f, 6.0f, 0.0f, -500.0f);
+            func_800EE7F8(position, actor->position);
+            position[1] += *(f32 *)&actor->actorData[4];
+            func_800F8294(player, position);
+            break;
+        case 4:
+            if (func_800D9078(&actor->unk58)) {
+                _gcgoto_entrypoint_1(0x15D, 5);
+                func_80101FDC(actor, 1);
+            } else {
+                moving = 1;
+            }
+            *(f32 *)&actor->actorData[4] = func_800F12D4(actor->unk58, 0.0f, 6.0f, -500.0f, 0.0f);
+            break;
+        case 3:
+            if ((func_800F55FC(player) & 0x10000000) && func_80016B30(0, 1) == 1 && func_800F4BB8(player, -1, 0)) {
+                _capod_entrypoint_21((s32)actor->unk0, 0, 0x54, 0x10);
+                func_80101FDC(actor, 4);
+                actor->unk6C_0 = 1;
+                actor->unk58 = 6.0f;
+            }
+            break;
+    }
+    _subaddieaudioloop_entrypoint_4(actor, actor->position, moving, &D_80800478_chdiggerbossdoor);
+    func_80800370_chdiggerbossdoor((void *)actor);
+}
 
 /* extern */
 
