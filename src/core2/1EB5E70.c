@@ -882,7 +882,47 @@ void func_800DE0D8(s32 arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DE1C4.s")
+void func_800DE1C4(s32 arg0, u8 *arg1) {
+    MtxF *func_80018BB4(void);
+    s32 func_8010F070(MtxF *, s32 *, s16);
+    MtxF *mlMtx_get_stack_pointer(void);
+    extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
+    s32 sp38[2];
+    MtxF *sp34;
+    MtxF *sp30;
+    s32 sp2C;
+    s16 temp_a2;
+    s16 temp_a2_2;
+    s16 temp_a2_3;
+    s16 temp_a2_4;
+
+    sp38[0] = *(s16 *)(arg1 + 8);
+    sp34 = mlMtx_get_stack_pointer();
+    sp30 = func_80018BB4();
+    if (*(s16 *)(arg1 + 0xE) != 0) {
+        sp2C = sp38[0];
+        if (*(s16 *)(arg1 + 0xE) & 1) {
+            temp_a2 = *(s16 *)(arg1 + 0xA);
+            if (temp_a2 != 0) {
+                func_8010F070(sp34, &sp2C, temp_a2);
+            }
+            temp_a2_2 = *(s16 *)(arg1 + 0xC);
+            if (temp_a2_2 != 0) {
+                func_8010F070(sp30, &sp2C, temp_a2_2);
+            }
+        }
+    }
+    if (D_8012CEC4 != NULL) {
+        temp_a2_3 = *(s16 *)(arg1 + 0xA);
+        if (temp_a2_3 != 0) {
+            D_8012CEC4(sp34, sp38, temp_a2_3);
+        }
+        temp_a2_4 = *(s16 *)(arg1 + 0xC);
+        if (temp_a2_4 != 0) {
+            D_8012CEC4(sp30, sp38, temp_a2_4);
+        }
+    }
+}
 
 void func_800DE2A4(s32 model, u8 *commands) {
     s32 next;
