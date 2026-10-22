@@ -373,7 +373,64 @@ void chswitch_entrypoint_12(Actor *arg0, s32 arg1, s32 arg2) {
     func_80102E08(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swit/chswitch_entrypoint_13.s")
+void chswitch_entrypoint_13(Actor *arg0) {
+    int _gcaudiolist_entrypoint_0();
+    f32 func_800D8FF8(void);
+    void func_800DA524(s32);
+    s32 func_800DA544(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F6CC8(s32);
+    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    void func_80101EE4(Actor *, f32);
+    void func_80102424(Actor *, s32);
+    void func_80103110(void *, s32);
+    f32 dt;
+
+    dt = func_800D8FF8();
+    switch (arg0->unk70_10) {
+        case 1:
+            if (arg0->unk64_20) {
+                _gcaudiolist_entrypoint_0(0);
+                func_80102424(arg0, 2);
+            }
+            if (arg0->unk58 <= 0.0f) {
+                func_80103110(arg0, 0);
+            } else {
+                arg0->unk58 -= dt;
+            }
+            break;
+        case 2:
+            if (func_80101E14(arg0, 0.5f)) {
+                func_80102424(arg0, 3);
+                func_80101EE4(arg0, 0.5f);
+                if (!func_800F6CC8(func_800F54E4())) {
+                    func_800DA544(arg0->actorData[7]);
+                    func_8010108C(arg0, 7, 0);
+                }
+            }
+            break;
+        case 3:
+            if (!arg0->unk64_20) {
+                _gcaudiolist_entrypoint_0(0);
+                func_80102424(arg0, 4);
+            }
+            if (arg0->unk58 <= 0.0f) {
+                func_80103110(arg0, 0);
+            } else {
+                arg0->unk58 -= dt;
+            }
+            break;
+        case 4:
+            if (func_80101DDC(arg0)) {
+                func_800DA524(arg0->actorData[7]);
+                func_80102424(arg0, 1);
+                func_8010108C(arg0, 8, 0);
+            }
+            break;
+    }
+}
 
 /* extern */
 
