@@ -5,7 +5,54 @@ s32 func_80098210()
     return 0x30;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E71B00/func_80098218.s")
+struct player_state_s;
+s32 func_800EFD24();
+void func_80098218(struct player_state_s *arg0, s32 *arg1) {
+    s32 func_80092B80(struct player_state_s *);
+    void func_800DFC20(s32 *, s32, f32 *);
+    void func_800DFF64(s32 *, s32, f32 *);
+    void func_800DFFA0(s32 *, s32, f32 *);
+    void func_800DFFDC(s32 *, s32, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 vec[3];
+    f32 scale;
+
+    switch (func_80092B80(arg0)) {
+    case 0x607:
+    case 0x608:
+        if ((*(u8 **)((u8 *)arg0 + 0xAC))[0x28]) {
+            func_800EFD24(vec);
+            vec[0] = (*(f32 **)((u8 *)arg0 + 0xAC))[0];
+            func_800DFFDC(arg1, 0x2C, vec);
+            vec[0] = (*(f32 **)((u8 *)arg0 + 0xAC))[1];
+            func_800DFFDC(arg1, 0x2D, vec);
+            vec[0] = (*(f32 **)((u8 *)arg0 + 0xAC))[2];
+            func_800DFFDC(arg1, 0x2E, vec);
+            vec[0] = (*(f32 **)((u8 *)arg0 + 0xAC))[3];
+            func_800DFFDC(arg1, 0x3D, vec);
+        }
+        if ((*(u8 **)((u8 *)arg0 + 0xAC))[0x2A]) {
+            func_800DFFA0(arg1, 0x3C, *(f32 **)((u8 *)arg0 + 0xAC) + 7);
+        }
+        if ((*(u8 **)((u8 *)arg0 + 0xAC))[0x29]) {
+            func_800DFF64(arg1, 0x3C, *(f32 **)((u8 *)arg0 + 0xAC) + 4);
+            if ((*(f32 **)((u8 *)arg0 + 0xAC))[4] == (*(f32 **)((u8 *)arg0 + 0xAC))[5]
+                && (*(f32 **)((u8 *)arg0 + 0xAC))[5] == (*(f32 **)((u8 *)arg0 + 0xAC))[6]
+                && (*(f32 **)((u8 *)arg0 + 0xAC))[6] == 1.0f) {
+                (*(u8 **)((u8 *)arg0 + 0xAC))[0x29] = 0;
+            }
+        }
+        if ((*(f32 **)((u8 *)arg0 + 0xAC))[11] != 1.0f) {
+            func_800DFC20(arg1, 0x6C, vec);
+            scale = (*(f32 **)((u8 *)arg0 + 0xAC))[11];
+            func_800EFA4C(vec, vec[0] * scale, vec[1] * scale, vec[2] * scale);
+            func_800DFFA0(arg1, 0x6C, vec);
+        }
+    case 0x61C:
+    case 0x623:
+        return;
+    }
+}
 
 void func_80098408(u8 *arg0) {
     void func_80098480(u8 *, s32, s32);

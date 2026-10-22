@@ -41,7 +41,7 @@ void func_800DFBE0(s32 *arg0, s32 arg1, s32 arg2) {
     func_800EE7F8(arg2, *arg0 + (arg1 * 0x28) + 0x10);
 }
 
-void func_800DFC20(s32 *arg0, s32 arg1, s32 arg2) {
+void func_800DFC20(s32 *arg0, s32 arg1, f32 *arg2) {
     void func_800EE7F8(f32 *, f32 *);
     func_800EE7F8(arg2, *arg0 + (arg1 * 0x28) + 0x1C);
 }
@@ -160,7 +160,7 @@ void func_800DFFA0(s32 *arg0, s32 arg1, f32 *arg2) {
     func_800EE7F8(**base + (arg1 * 0x28) + 0x1C, arg2);
 }
 
-void func_800DFFDC(s32 arg0, s32 arg1, f32 *arg2) {
+void func_800DFFDC(s32 *arg0, s32 arg1, f32 *arg2) {
     void func_800D93A0(f32[4], f32[3]);
     f32 sp18[4];
 
