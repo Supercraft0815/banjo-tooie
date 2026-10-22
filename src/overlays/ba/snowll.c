@@ -84,7 +84,61 @@ void func_80800150_basnowball(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/snowll/func_808001B8_basnowball.s")
+void func_808001B8_basnowball(void *arg0, s32 arg1) {
+    void _bawobble_entrypoint_1(void *);
+    void _bawobble_entrypoint_4(void *, f32, f32);
+    void _bawobble_entrypoint_5(void *, f32, f32);
+    void _bawobble_entrypoint_6(void *);
+    void _bawobble_entrypoint_7(void *);
+    void func_8009DB04(struct player_state_s *, s32, f32, s32);
+    void func_8009E55C(struct player_state_s *, s32, f32);
+    s32 func_800A1718();
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 pitch;
+    u8 *data;
+
+    data = *(u8 **)((u8 *)arg0 + 0x110);
+    switch (data[0x28]) {
+        case 0:
+            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x110) + 0x24) = func_80800084_basnowball(func_800A1718(arg0));
+            data = *(u8 **)((u8 *)arg0 + 0x110);
+            break;
+        case 2:
+            _bawobble_entrypoint_7(arg0);
+            func_8009E55C(arg0, 0, *(f32 *)(*(u8 **)((u8 *)arg0 + 0x110) + 0x1C) * 50.0f);
+            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x110)) = 0.0f;
+            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x110) + 4) = 7.5f;
+            data = *(u8 **)((u8 *)arg0 + 0x110);
+            break;
+    }
+    data[0x28] = arg1;
+    switch (arg1) {
+        case 1:
+            data = *(u8 **)((u8 *)arg0 + 0x110);
+            *(f32 *)(data + 0x1C) = *(f32 *)(data + 0x24);
+            break;
+        case 2:
+            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x110) + 0x18) = 1.0f;
+            data = *(u8 **)((u8 *)arg0 + 0x110);
+            *(f32 *)(data + 0x20) = *(f32 *)(data + 0x1C);
+            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x110) + 0x24) = func_80800084_basnowball(func_800A1718(arg0));
+            _bawobble_entrypoint_1(arg0);
+            _bawobble_entrypoint_4(arg0, 0.2f, 0.2f);
+            pitch = func_800F10B4(*(f32 *)(*(u8 **)((u8 *)arg0 + 0x110) + 0x24), 1.0, 3.0, 0.0, -0.5) + 1.2f;
+            data = *(u8 **)((u8 *)arg0 + 0x110);
+            if (*(f32 *)(data + 0x20) < *(f32 *)(data + 0x24)) {
+                _bawobble_entrypoint_5(arg0, 1.0f + 0.0f, 1.2);
+                func_8009DB04(arg0, 0x65A, pitch, 0x36B0);
+            } else {
+                _bawobble_entrypoint_5(arg0, 1.0f + 0.0f, 0.8f);
+                func_8009DB04(arg0, 0x65B, pitch, 0x36B0);
+            }
+            _bawobble_entrypoint_6(arg0);
+            func_808000C0_basnowball((s32)arg0);
+            func_80800110_basnowball((s32)arg0);
+            break;
+    }
+}
 
 /* extern */
 
