@@ -141,7 +141,55 @@ void func_808004F4_chbosskogsdoor(Actor *arg0) {
     func_80102424(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bosskogsdoor/func_80800544_chbosskogsdoor.s")
+void func_80800544_chbosskogsdoor(Actor *arg0) {
+    s32 _subaddieaudioquick_entrypoint_2(u8 *, u8 *, s32 *);
+    s32 func_800BBCB8(u8 *, u8 *, s32, s32, s32 *);
+    f32 func_800D8FF8(void);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    f32 func_80101F24(Actor *);
+    s32 func_80102424(void *, s32);
+    s32 func_80103110(u8 *, s32);
+    extern s32 D_808008B0_chbosskogsdoor;
+    extern s32 D_80800988_chbosskogsdoor;
+    extern s32 D_80800994_chbosskogsdoor;
+    extern s32 D_808009A0_chbosskogsdoor;
+    extern s32 D_808009B0_chbosskogsdoor;
+    f32 sp34[3];
+
+    switch (arg0->unk70_10) {
+        case 1:
+            if (arg0->unk64_20) {
+                func_80102424(arg0, 2);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800994_chbosskogsdoor);
+                ((f32 *)arg0->actorData)[4] = 0.0f;
+            } else {
+                func_80103110(arg0, 0);
+            }
+            break;
+        case 2:
+            if (func_80101E14(arg0, 0.35f)) {
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800988_chbosskogsdoor);
+            } else if (func_80101E14(arg0, 0.4f)) {
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808009A0_chbosskogsdoor);
+                func_800BBCB8(arg0->position, NULL, *(s32 *)&arg0->scale, 4, &D_808009B0_chbosskogsdoor);
+            }
+            if (func_80101F24(arg0) > 0.4f) {
+                func_800EFA4C(sp34, -247.0f, ((f32 *)arg0->actorData)[4] + 150.0f, 1720.0f);
+                ((f32 *)arg0->actorData)[4] += 1200.0f * func_800D8FF8();
+                func_800BBCB8(sp34, sp34, 0x3F800000, 2, &D_808008B0_chbosskogsdoor);
+            }
+            if (func_80101DDC(arg0)) {
+                arg0->unk58 = 2.0f;
+                func_80102424(arg0, 3);
+            }
+            break;
+        case 3:
+        case 4:
+            break;
+    }
+}
 
 s32 func_80800714_chbosskogsdoor(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
