@@ -1,7 +1,58 @@
 #include "common.h"
 #include "core2/1EBB4F0.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E1C00.s")
+s32 func_800E1C00(void *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4)
+{
+  f32 sp24;
+  s32 pad[2];
+  f32 func_800E3928(s32, s32);
+  f32 func_800E42C0();
+  s32 func_800EE7F8(s32, s32);
+  extern f32 D_80125D90;
+  extern f32 D_80125D94;
+  extern s32 D_8012D470;
+  extern s16 D_8012D48C;
+  f32 sp18;
+  f32 temp_f0;
+  f32 temp_f2;
+  f32 var_f0;
+  sp18 = ((f32) (*((s32 *) (((s8 *) (&D_8012D470)) + 0x24)))) * func_800E42C0();
+  sp24 = func_800E3928(arg1, arg4);
+  func_800EE7F8(arg4, arg1);
+  if ((sp24 < 0.0f) || (sp18 < sp24))
+  {
+    return 0;
+  }
+  if (((*((u8 *) (((s8 *) (&D_8012D470)) + 0x21))) == 0) && ((*((s32 *) (((s8 *) (&D_8012D470)) + 0x24))) == 0x4E20))
+  {
+    var_f0 = ((f32) (*((s16 *) (((s8 *) arg0) + 4)))) * arg2;
+    temp_f2 = ((f32) (*((s16 *) (((s8 *) arg0) + 6)))) * arg3;
+    if (var_f0 < temp_f2)
+    {
+      var_f0 = temp_f2;
+    }
+    if (((sp18 * D_80125D90) < sp24) && ((var_f0 / sp24) < D_80125D94))
+    {
+      return 0;
+    }
+    goto block_10;
+  }
+  block_10:
+  if (((*((s32 *) (((s8 *) (&D_8012D470)) + 0x80))) == 0) && ((*((s32 (**)(s32)) (((s8 *) (&D_8012D470)) + 0x78))) != NULL))
+  {
+    (*((s32 (**)(s32)) (((s8 *) (&D_8012D470)) + 0x78)))(*((s32 *) (((s8 *) (&D_8012D470)) + 0x7C)));
+  }
+
+  if ((*((u8 *) (((s8 *) (&D_8012D470)) + 0x22))) != 0)
+  {
+    temp_f0 = sp18 - 500.0f;
+    if (temp_f0 < sp24)
+    {
+      D_8012D48C = (s16) (((s32) ((*((s16 *) (((s8 *) (&D_8012D470)) + 0x1C))) * ((s32) ((1.0f - ((sp24 - temp_f0) / 500.0f)) * 256.0f)))) / 256);
+    }
+  }
+  return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E1DF4.s")
 
