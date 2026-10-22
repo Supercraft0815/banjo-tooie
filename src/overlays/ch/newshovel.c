@@ -337,7 +337,38 @@ s32 func_80800CC4_chnewshovel(s32 arg0) {
     _subaddieaudioquick_entrypoint_2((Actor *) arg0, (f32 *) (arg0 + 4), &D_80801064_chnewshovel);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800D18_chnewshovel.s")
+s32 func_80800D18_chnewshovel(s32 arg0)
+{
+  s32 func_800B53A4(s32);
+  void func_800BA22C(s32, s32);
+  void func_800BAB60(s32, void *);
+  s32 func_800BABB8(s32, f32 [3], f32 [3], f32, s32 []);
+  void func_800EE7F8(f32 *, f32 *);
+  void func_800F2EA0(void *, void *);
+  extern s32 D_80801074_chnewshovel[];
+  struct 
+  {
+    f32 *source;
+    s32 emitter;
+    u8 color[4];
+    f32 position[3];
+  } particle;
+  if (((Actor *) arg0)->unk7C_12)
+  {
+    func_800F2EA0(particle.color, &((Actor *) arg0)->pad98);
+    particle.color[3] = 0xFF;
+    particle.source = ((Actor *) arg0)->position;
+    func_800EE7F8(particle.position, particle.source);
+    particle.position[1] -= 20.0f;
+    particle.emitter = func_800B53A4(3);
+    func_800BABB8(particle.emitter, particle.source, particle.position, 0.8f, D_80801074_chnewshovel);
+    if (particle.source)
+    {
+    }
+    func_800BAB60(particle.emitter, particle.color);
+    func_800BA22C(particle.emitter, 3);
+  }
+}
 
 s32 func_80800DC8_chnewshovel(s32 arg0) {
     s32 func_80101074(s32 *);
