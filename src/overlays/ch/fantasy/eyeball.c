@@ -26,7 +26,74 @@ void func_80800000_chfantasyeyeball(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_808000D8_chfantasyeyeball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80800950_chfantasyeyeball.s")
+s32 func_80800950_chfantasyeyeball(Actor *arg0, s32 arg1, Actor *arg2, Actor *arg3) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void func_800C3F48(u32);
+    void func_800C4140(s32, f32 *, s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    void func_80102424(Actor *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80800F78_chfantasyeyeball(Actor *, Actor *);
+    s32 func_80800FEC_chfantasyeyeball(Actor *);
+    void func_80801290_chfantasyeyeball(Actor *, s32, s32);
+    f32 func_808016B4_chfantasyeyeball(s32);
+    Unk80132ED0 *marker;
+
+    if (arg2) {}
+    if (arg3) {}
+    switch (arg1) {
+    case 2:
+        if (func_800DA298(0x6EC) == 0) {
+            func_80801290_chfantasyeyeball(arg0, 0x40800000, 0);
+        }
+        if (func_800DA298(0x6D4) == 0) {
+            func_800DA544(0x6D4);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x141A, 0xF, arg0->position, 0x22);
+        }
+        break;
+    case 3:
+        ((f32 *)arg0->actorData)[3] = func_808016B4_chfantasyeyeball((s32)arg0);
+        break;
+    case 7:
+    case 10:
+        if (arg0->unk64_20 && func_800DA298(0x6D5) == 0) {
+            func_800DA544(0x6D5);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x141B, 0xF, arg0->position, 0x22);
+        }
+        func_800C4140(0xB31B5DB8, arg0->position, 0x1B5801F4);
+        if (arg0->unk64_20) {
+            func_80800FEC_chfantasyeyeball(arg0);
+            func_80801290_chfantasyeyeball(arg0, 0x402D4FDF, 0);
+        }
+        break;
+    case 8:
+    case 11:
+        func_800C3F48(0x4CBB5CEE);
+        break;
+    case 6:
+        func_800C3F48(0x4CBB5CED);
+        _subaddieDll_entrypoint_4(arg0, 1);
+        func_80801290_chfantasyeyeball(arg0, 0x3FC00000, 1);
+        break;
+    case 9:
+    case 12:
+        if (arg0->unk64_20) {
+            marker = ((Unk80132ED0 **)arg0->actorData)[7];
+            if (marker != NULL) {
+                func_80800F78_chfantasyeyeball(arg0, func_80106790(marker));
+            } else if (func_800DA298(0x6BD) == 0) {
+                func_800DA544(0x6BD);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x141C, 0xF, arg0->position, 0x22);
+            }
+        }
+        arg0->unk64_19 = 0;
+        ((f32 *)arg0->actorData)[5] = 1.5f;
+        break;
+    }
+    func_80102424(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80800B68_chfantasyeyeball.s")
 
