@@ -322,4 +322,14 @@ void func_80800870_chpowerhut(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhut/chpowerhut_entrypoint_4.s")
+/* extern */
+
+int chpowerhut_entrypoint_4(Actor *arg0, f32 arg1, Actor *arg2) {
+    void *func_80100094(Actor *, u32);
+    PowerhutData *temp_v0;
+    f32 upper;
+
+    temp_v0 = func_80100094(arg0, 0);
+    upper = arg2->position[1] - temp_v0->height;
+    return (arg1 < upper) && (temp_v0->pad8 <= arg1);
+}
