@@ -49,7 +49,82 @@ block_6:
     flags->enabled = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gobi/hailfire/func_808000C8_chgobihailfire.s")
+void func_808000C8_chgobihailfire(Actor *arg0) {
+    s32 _chbadshad_entrypoint_2(Actor *, s32, f32, s32);
+    void _chgobicommon_entrypoint_0(Actor *);
+    void _glcutDll_entrypoint_24(u32, u32, u32);
+    void _glcutDll_entrypoint_6(u32, u32);
+    s32 _plsu_entrypoint_3(Unk80132ED0 *);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800D9078(f32 *);
+    s32 func_800DA544(s32);
+    void func_800FFA88(Unk80132ED0 *);
+    void func_800FFAB0(Actor *);
+    s32 func_80101DDC(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_80105834(Actor *);
+    s32 func_80105A5C(Actor *);
+
+    _chgobicommon_entrypoint_0(arg0);
+    switch (arg0->unk70_10) {
+    case 1:
+        if (func_800D9078(&arg0->unk58) != 0) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x126E, 4, NULL, 0x38);
+        }
+        if (arg0->unk58 == 0.0f) {
+            func_80105834(arg0);
+            if (func_80105A5C(arg0) != 0) {
+                func_800FFAB0(arg0);
+                if (arg0->unk64_20) {
+                    _glcutDll_entrypoint_24(0x129, 0xEA, 0x47);
+                } else {
+                    _glcutDll_entrypoint_6(0x129, 0x47);
+                }
+            }
+        }
+        break;
+    case 2:
+        func_80105834(arg0);
+        if (func_80105A5C(arg0) != 0) {
+            func_800DA544(0x1C6);
+            func_80102424(arg0, 3);
+        }
+        break;
+    case 5:
+        if ((_plsu_entrypoint_3(arg0->unk0) != -1) && arg0->unk64_19) {
+            if (!arg0->unk74_30) {
+                arg0->unk74_30 = 1;
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x12C3, 4, arg0->position, 0x38);
+            }
+            func_80102424(arg0, 6);
+            arg0->unk58 = 0.6f;
+        }
+        break;
+    case 6:
+        if ((_plsu_entrypoint_3(arg0->unk0) == -1) || !arg0->unk64_19) {
+            if (func_800D9078(&arg0->unk58) != 0) {
+                func_80102424(arg0, 5);
+            }
+        } else {
+            arg0->unk58 = 0.6f;
+        }
+        break;
+    case 7:
+        if (func_80101DDC(arg0) != 0) {
+            func_800FFA88(arg0->unk3C);
+            arg0->unk3C = NULL;
+            func_80102424(arg0, 5);
+        }
+        break;
+    case 8:
+        if (func_80101DDC(arg0) != 0) {
+            func_80102424(arg0, 5);
+        }
+        break;
+    }
+    _chbadshad_entrypoint_2(arg0, 1, arg0->scale * 2.4f, 0);
+    arg0->unk64_19 = 0;
+}
 
 s32 func_8080032C_chgobihailfire(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
