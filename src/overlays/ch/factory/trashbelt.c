@@ -1,6 +1,36 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/trashbelt/func_80800000_chfactorytrashbelt.s")
+void func_80800000_chfactorytrashbelt(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    f32 func_800138D0(f32);
+    f32 func_800D91B8(f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800F48BC(s32, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6C5C(s32);
+    extern u32 D_808005C0_chfactorytrashbelt;
+    f32 pos[3];
+    f32 wave;
+    f32 time;
+    f32 period;
+
+    func_800F5A00(func_800F54E4(), pos);
+    if (pos[0] < 500.0f && pos[0] > -500.0f &&
+        pos[2] < 600.0f && pos[2] > -600.0f &&
+        func_800F6C5C(func_800F54E4())) {
+        wave = func_800138D0(func_800F10B4(pos[0], -700.0f, 700.0f, 0.0f, 1.5f) * 360.0f * 7.0f);
+        func_800EFA4C(pos, 200.0f / (arg0->unk74_7 / 70.0f), wave * 1.5f * 5.0f, 0.0f);
+        func_800F48BC(func_800F54E4(), pos);
+    }
+    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808005C0_chfactorytrashbelt);
+    time = func_800D91B8(&arg0->unk58);
+    period = arg0->unk74_7 / 70.0f;
+    if (period <= time) {
+        arg0->unk58 -= period;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/trashbelt/func_808001EC_chfactorytrashbelt.s")
 
