@@ -1,5 +1,7 @@
 #include "common.h"
 
+void func_80800D30_chsabreman(Actor *, s32);
+
 void func_808017D8_chsabreman(Actor *, s32, s32);
 void func_80801010_chsabreman(Actor *, s32);
 
@@ -182,7 +184,63 @@ void func_80800CDC_chsabreman(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_80800D30_chsabreman.s")
+void func_80800D30_chsabreman(Actor *arg0, s32 arg1) {
+    void _chlifeforcespell_entrypoint_2(Actor *, s32, s32 *);
+    void _subaddiefade_entrypoint_11(Actor *, s32 *);
+    void _subaddiefade_entrypoint_9(Actor *, s32 *);
+    void _subaddiepalette_entrypoint_3(Actor *, void *, s32);
+    void func_800DF744(s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_801015D0(Actor *);
+    f32 func_80101F24(Actor *);
+    s32 func_801022E4(Actor *);
+    s32 func_80102320(Actor *, f32, f32);
+    s32 sp4C;
+    s32 sp40[3];
+    s32 sp34[3];
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+
+    sp4C = func_801022E4(arg0);
+    if (arg0->unk3C != NULL) {
+        _subaddiefade_entrypoint_9(arg0, sp34);
+        _chlifeforcespell_entrypoint_2(arg0, arg0->unk3C, sp40);
+        _subaddiefade_entrypoint_11(arg0, sp40);
+        func_801015D0(arg0);
+        _subaddiefade_entrypoint_11(arg0, sp34);
+    } else {
+        func_801015D0(arg0);
+    }
+    switch (sp4C) {
+        case 0x2FB:
+            if (func_80101F24(arg0) < 0.602f) {
+                sp30 = 1;
+            } else {
+                sp30 = 0;
+            }
+            sp2C = func_80102320(arg0, 0.602f, 0.819f);
+            func_800DF744(5, 1);
+            func_800DF744(3, 0);
+            func_800DF744(6, sp30 && arg0->unk64_20);
+            func_800DF744(4, sp2C);
+            break;
+        case 0x2FA:
+            sp28 = func_80102320(arg0, 0.33f, 0.93f);
+            func_800DF744(5, sp28 == 0);
+            func_800DF744(3, sp28);
+            func_800DF744(6, 0);
+            func_800DF744(4, 0);
+            break;
+        default:
+            func_800DF744(5, 1);
+            func_800DF744(3, 0);
+            func_800DF744(6, 0);
+            func_800DF744(4, 0);
+            break;
+    }
+    _subaddiepalette_entrypoint_3(arg0, func_80100094(arg0, 0), arg1);
+}
 
 void func_80800F04_chsabreman(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
     s32 _chbaddiesetup_entrypoint_6(s32 *, s32, s32, s32, s32, s32, s32);
