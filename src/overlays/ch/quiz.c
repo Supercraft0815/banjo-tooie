@@ -987,7 +987,65 @@ void func_808021C8_chquiz(void *arg0, s32 arg1, f32 *arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80802250_chquiz.s")
+void func_80802250_chquiz(Actor *arg0) {
+    s16 _chblink_entrypoint_1(s32);
+    s32 _suquiz_entrypoint_9(s32);
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_80102FDC(void *, f32);
+    s32 func_80103140(Actor *, u32, u16);
+    extern f32 D_80807328_chquiz;
+    s16 *data;
+
+    data = func_80100094(arg0, 0);
+    if (_suquiz_entrypoint_9(arg0->unk74_7) != 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    switch (arg0->unk74_7) {
+    case 2:
+        if (func_800DA298(0x441) != 0) {
+            func_800FFAB0(arg0);
+            return;
+        }
+        data[0] = _chblink_entrypoint_1(0);
+        data[1] = _chblink_entrypoint_1(1);
+        func_808021C8_chquiz(arg0, 0, &D_80807328_chquiz);
+        break;
+    case 1:
+        data[0] = _chblink_entrypoint_1(2);
+        data[1] = 0;
+        arg0->unk64_24 = 1;
+        break;
+    case 0:
+        arg0->unk64_24 = 1;
+        break;
+    case 3:
+        func_808021C8_chquiz(arg0, 0, arg0->position);
+        break;
+    case 4:
+        func_808021C8_chquiz(arg0, 1, arg0->position);
+        break;
+    case 5:
+        data[0] = _chblink_entrypoint_1(3);
+        data[1] = _chblink_entrypoint_1(1);
+        func_808021C8_chquiz(arg0, 2, arg0->position);
+        break;
+    case 6:
+        func_808021C8_chquiz(arg0, 3, arg0->position);
+        break;
+    default:
+        data[0] = 0;
+        data[1] = 0;
+        break;
+    }
+    func_80103140(arg0, func_80800000_chquiz(arg0->unk74_7) & 0xFFFF, arg0->unk0->unk16);
+    func_80102FDC(arg0, func_80800070_chquiz(arg0->unk74_7));
+    func_80802004_chquiz(arg0);
+    func_80102424(arg0, arg0->unk70_10);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80802434_chquiz.s")
 
