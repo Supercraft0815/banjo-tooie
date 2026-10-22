@@ -503,7 +503,49 @@ void func_808019D4_chwaspnestgame(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801A10_chwaspnestgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801B9C_chwaspnestgame.s")
+s32 func_80801B9C_chwaspnestgame(Actor *arg0, s32 arg1, Unk80132ED0 *volatile arg2) {
+    void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
+    s32 _subaddiemulti_entrypoint_5(Unk80132ED0 *);
+    void func_800C4AF0(f32 *, void *);
+    s32 func_801015D0(Actor *);
+    void func_8010DD20(Actor *, s32, Unk80132ED0 *);
+    extern u8 D_8080207C_chwaspnestgame[];
+    s32 player;
+    s32 score;
+    u32 state;
+
+    switch (arg1) {
+        case 0x3E:
+            func_800C4AF0(arg0->position, D_8080207C_chwaspnestgame);
+            break;
+        case 0x40:
+            player = _subaddiemulti_entrypoint_5(arg2);
+            score = arg0->unk6C_0;
+            _chscorepoints_entrypoint_2(score, player, arg0->position, 1);
+            func_80801260_chwaspnestgame(arg0->unk3C, score);
+            func_80801364_chwaspnestgame((s32)arg0, 3);
+            break;
+        case 0x45:
+            state = arg0->unk70_10;
+            if (state == 2) {
+                func_80801364_chwaspnestgame((s32)arg0, 5);
+            } else if (state == 1) {
+                func_80801364_chwaspnestgame((s32)arg0, 6);
+            }
+            break;
+        case 0x1F:
+            state = arg0->unk70_10;
+            if (state == 2 || state == 5) {
+                func_8010DD20(arg0, 0xA, arg2);
+            } else {
+                func_801015D0(arg0);
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80801CE4_chwaspnestgame(Actor *arg0) {
     void func_800F1A88(f32 *, f32 *);
