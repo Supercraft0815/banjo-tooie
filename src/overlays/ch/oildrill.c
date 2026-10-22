@@ -329,7 +329,45 @@ void func_80800B90_choildrill(void **arg0) {
     func_80103140(arg0, 0x610, (*(u16 *)((s8 *)(*arg0) + (0x16))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_80800BCC_choildrill.s")
+s32 func_80800BCC_choildrill(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _chjigsawcollect_entrypoint_1(Actor **, s32, s32);
+    void _glcutDll_entrypoint_6(u32, u32);
+    void func_800D0BD4(s32, u32);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void func_800FFAB0(Actor *);
+    void func_80108B04(Actor *, u32);
+
+    switch (arg1) {
+    case 0xB:
+        if (arg2 == 0x54) {
+            func_808009F8_choildrill(arg0, 9);
+            func_800D1000(0x42, 1, arg0->position, 3, 0);
+            _glcutDll_entrypoint_6(0x111, 0x85);
+        }
+        return 3;
+    case 0x49:
+        if (arg2 == 0x85) {
+            func_808009F8_choildrill(arg0, 6);
+            _capod_entrypoint_13(arg0->unk0, 0, 8, 0x900);
+            return 1;
+        }
+        return 0;
+    case 0x3D:
+        _chjigsawcollect_entrypoint_1(&arg0, 0x42, 0);
+        func_800FFAB0(arg0);
+        return 1;
+    case 0x3E:
+        func_80108B04(arg0, 0);
+        func_800D0BD4(0x42, 1);
+        return 1;
+    case 0xA:
+        func_808009F8_choildrill(arg0, 4);
+        return 1;
+    default:
+        return 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_80800CF0_choildrill.s")
 
