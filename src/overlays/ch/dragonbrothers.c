@@ -138,7 +138,62 @@ f32 func_8080063C_chdragonbrothers(Actor *arg0) {
     return sp3C + sp38;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808006C8_chdragonbrothers.s")
+s32 func_808006C8_chdragonbrothers(Actor *arg0) {
+    s32 _ncpod_entrypoint_8(s32, s32, s32);
+    s32 func_80016B30(s32, s32);
+    s32 func_80016B54(s32, s32);
+    void func_800C3FC0(s32, f32, s32);
+    f32 func_800D8FF8(void);
+    void func_800EFCD8(f32 *, f32, f32);
+    f32 func_800F1DCC(f32, f32);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F5EF8(s32);
+    void *func_80100094(Actor *, u32);
+    void *func_80110024(s16 *);
+    f32 dt;
+    f32 sp60[3];
+    f32 sp5C;
+    f32 sp50[3];
+    f32 sp44[3];
+    u8 *data;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    dt = func_800D8FF8();
+    if (arg0->unk74_29) {
+        func_800F5A00(((s32 *)data)[8], sp60);
+        sp5C = func_8080063C_chdragonbrothers(arg0);
+        ((f32 *)data)[17] += (func_800F1DCC(sp5C, ((f32 *)data)[15]) - ((f32 *)data)[17]) * 0.085f;
+        ((f32 *)data)[16] += ((f32 *)data)[17];
+        if (func_80016B54(0, 0) == 0 && func_80016B30(0, 3) == 1) {
+            switch (data[0x55]) {
+                case 2:
+                    data[0x55] = 1;
+                    func_800C3FC0(0x488, 1.0f, 12000);
+                    break;
+                case 1:
+                    data[0x55] = 0;
+                    func_800C3FC0(0x488, 1.0f, 12000);
+                    break;
+                case 0:
+                    data[0x55] = 2;
+                    func_800C3FC0(0x487, 1.0f, 12000);
+                    break;
+            }
+            func_808005A4_chdragonbrothers(data + 0x30, data[0x55]);
+        }
+        for (i = 0; i < 3; i++) {
+            ((f32 *)data)[i + 9] += (((f32 *)data)[i + 12] - ((f32 *)data)[i + 9]) * dt * 5.0f;
+        }
+        func_800EFCD8(sp50, ((f32 *)data)[16], ((f32 *)data)[9]);
+        sp50[1] = ((f32 *)data)[11];
+        sp44[0] = ((f32 *)data)[10];
+        sp44[1] = ((f32 *)data)[16];
+        sp44[2] = 0.0f;
+        _ncpod_entrypoint_8((s32)func_80110024((s16 *)func_800F5EF8(((s32 *)data)[8])), (s32)sp50, (s32)sp44);
+        ((f32 *)data)[15] = sp5C;
+    }
+}
 
 void func_808008C8_chdragonbrothers(Actor *arg0) {
     s32 _ncpod_entrypoint_16(s32, s32, s32, s32);
