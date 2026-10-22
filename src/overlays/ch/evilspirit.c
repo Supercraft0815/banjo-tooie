@@ -447,7 +447,43 @@ s32 func_80801EC4_chevilspirit(s32 arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801F1C_chevilspirit.s")
+void func_80801F1C_chevilspirit(Actor *arg0, s32 arg1, s32 arg2) {
+    void _plcamera_entrypoint_8(s32);
+    s32 _subaddiefade_entrypoint_5();
+    s32 _susubgame_entrypoint_4(void *, void *);
+    s32 func_800DA544(s32);
+    f32 func_800DC178(f32, f32);
+    s32 func_800F54E4();
+    void func_800F82D4(s32, s32);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_80802090_chevilspirit(Actor *, s32 *);
+    extern s32 D_80802350_chevilspirit;
+    u8 *sp24;
+
+    sp24 = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0x15C5:
+        func_80802090_chevilspirit(arg0, &D_80802350_chevilspirit);
+        func_80102424(arg0, 0xA);
+        _subaddiefade_entrypoint_5(arg0);
+        return;
+    case 0x15CB:
+        func_80102424(arg0, 8);
+        _susubgame_entrypoint_4(arg0, sp24 + 0x40);
+        func_800F82D4(func_800F54E4(), 0);
+        _plcamera_entrypoint_8(func_800F54E4());
+        func_800DA544(0xCA);
+        return;
+    case 0x15C6:
+    case 0x15C7:
+    case 0x15C8:
+    case 0x15C9:
+        func_80102424(arg0, 0xD);
+        arg0->unk58 = func_800DC178(5.0f, 8.0f);
+        break;
+    }
+}
 
 /* extern */
 
