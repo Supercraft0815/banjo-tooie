@@ -7,7 +7,45 @@ OSThread *chbabydino_entrypoint_0(void)
     return (OSThread *) D_80800770_chbabydino;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/babydino/func_8080000C_chbabydino.s")
+void func_8080000C_chbabydino(Actor *arg0) {
+    s32 func_800EA05C();
+    s32 func_800DA298(s32);
+    s32 _glcutDll_entrypoint_19(s32);
+    void *func_80105494(Actor *);
+    void func_80105A9C(Actor *, f32);
+    s32 func_800FFAB0();
+    void func_80102424(Actor *, s32);
+    s32 map;
+
+    map = func_800EA05C();
+    if (func_80105494(arg0) != NULL) {
+        func_80105A9C(arg0, 500.0f);
+    }
+    switch (map) {
+        case 0xEA:
+            if (func_800DA298(0x98)) {
+                arg0->unk64_20 = 1;
+            }
+            if (func_800DA298(0x8A) || func_800DA298(0x588)) {
+                func_800FFAB0(arg0);
+                return;
+            }
+            func_80102424(arg0, 2);
+            return;
+        case 0xEC:
+            if (!_glcutDll_entrypoint_19(0x1F)) {
+                func_800FFAB0(arg0);
+            }
+            return;
+        case 0x121:
+            if (func_800DA298(0x588)) {
+                func_80102424(arg0, 5);
+                return;
+            }
+            func_800FFAB0(arg0);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/babydino/func_8080011C_chbabydino.s")
 
