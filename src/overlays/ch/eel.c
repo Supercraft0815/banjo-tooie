@@ -232,7 +232,66 @@ void func_80801200_cheel(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_80801330_cheel.s")
+s32 func_80801330_cheel(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_8008FD48();
+    void func_80090460(s32, s32);
+    void func_800904C8(s32);
+    void func_800DF5D8(u32, u32, u32, s32);
+    void func_800DF744(s32, s32);
+    void func_80101010(f32 *);
+    s32 func_801015D0(Actor *);
+    extern s32 D_808015F4_cheel;
+    extern f32 D_80801638_cheel[];
+
+    if (arg1 == 0x1F) goto event_1f;
+    if (arg1 == 0x3E) goto event_3e;
+    if (arg1 == 0x3F) goto event_3f;
+    if (arg1 == 0x40) goto event_40;
+    if (arg1 == 0x8F) goto event_8f;
+    if (arg1 != 0x97) goto event_default;
+    func_80101010(D_80801638_cheel);
+    goto done;
+event_1f:
+        func_800DF744(3, arg0->unk64_19);
+        if (arg0->unk64_19) {
+            func_800DF5D8(0xFF, 0xFF, 0xFF, 0xFF);
+        } else {
+            func_800DF5D8(0x60, 0x60, 0x60, 0xFF);
+        }
+        func_801015D0(arg0);
+        goto done;
+event_3f:
+        if ((arg2->unk24 >> 22) == 0x26E) {
+            func_80801200_cheel(arg0, 6);
+            arg0->unk58 = 10.0f;
+        } else {
+            func_80801200_cheel(arg0, 8);
+        }
+        goto done;
+event_3e:
+        if ((arg2->unk24 >> 22) == 0) {
+            if (func_8008FD48() == 0xC) {
+                func_800904C8(0x54);
+            } else {
+                func_80090460(0xF, (s32)arg0->unk0);
+            }
+        }
+        goto done;
+event_40:
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808015F4_cheel);
+        func_80801200_cheel(arg0, 9);
+        goto done;
+event_8f:
+        if (arg2 == (Unk80132ED0 *)4) {
+            func_80800000_cheel(arg0);
+        }
+        goto done;
+event_default:
+        return 0;
+done:
+    return 1;
+}
 
 OSThread *cheel_entrypoint_0(void)
 {
