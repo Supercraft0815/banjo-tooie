@@ -59,7 +59,86 @@ int susubgame_entrypoint_4(s32 arg0, u8 *arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/bgame/susubgame_entrypoint_5.s")
+s32 susubgame_entrypoint_5(s32 arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4) {
+    typedef struct {
+    u8 state;
+    u8 unk1;
+    s16 flags;
+    s16 unk4;
+    s16 unk6;
+    f32 scale[4];
+   
+    }
+    SubgameData;
+    s32 _ncpod_entrypoint_12(s32, s32);
+    s32 _ncpod_entrypoint_21(s32, s32, s32);
+    s32 _ncpod_entrypoint_22();
+    s32 _ncpod_entrypoint_23();
+    s32 _ncpod_entrypoint_24();
+    s32 func_800A93E4(s32);
+    s32 func_800D3948(void);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 func_8010CD50(Actor *, u32);
+    void *func_80110024(s16 *);
+    void func_8080078C_susubgame(s32, s32);
+    void func_80800814_susubgame(s32 *, void *, s32);
+    int func_808008DC_susubgame(s32);
+    s32 pod;
+    s32 i;
+    s32 handle;
+    f32 scale[4];
+    f32 rotation[3];
+    if (func_800D3948() != 0) {
+    arg4 |= 4;
+   
+    }
+    switch (((SubgameData *)arg1)->state) {
+    case 0: func_80800814_susubgame((s32 *)arg0, arg1, arg4);
+    case 1: case 3: for (i = 0;
+    i < 4;
+    i++) {
+    scale[i] = ((SubgameData *)arg1)->scale[i] * ((Actor *)arg0)->scale;
+   
+    }
+    i = 0;
+    do {
+    if (func_808008DC_susubgame(i) != 0) {
+    handle = func_800A93E4(i);
+    pod = (s32)func_80110024((s16 *)func_800A93E4(i));
+    _ncpod_entrypoint_12(pod, 1);
+    _ncpod_entrypoint_22(pod, 0, scale);
+    _ncpod_entrypoint_23(pod, 0, ((Actor *)arg0)->position);
+    if (((SubgameData *)arg1)->flags & 1) {
+    func_800EFA4C(rotation, 0.0f, func_8010CD50((Actor *)arg0, i), 0.0f);
+    _ncpod_entrypoint_24(pod, 0, rotation);
+   
+    }
+    else {
+    _ncpod_entrypoint_24(pod, 0, ((Actor *)arg0)->rotation);
+   
+    }
+    func_8080078C_susubgame(handle, i);
+   
+    }
+    i++;
+   
+    }
+    while (i < 8);
+    ((SubgameData *)arg1)->state = 2;
+    case 2: i = 0;
+    do {
+    if (func_808008DC_susubgame(i) != 0) {
+    _ncpod_entrypoint_21(func_800A93E4(i), arg2, arg3);
+   
+    }
+    i++;
+   
+    }
+    while (i < 8);
+    return;
+   
+    }
+    }
 
 void susubgame_entrypoint_6(s32 *arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4) {
     s32 _ncpod_entrypoint_20(s32, s32, s32, s32);
