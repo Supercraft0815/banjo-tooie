@@ -23,7 +23,61 @@ OSThread *chpawnbroker_entrypoint_2(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800024_chpawnbroker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800320_chpawnbroker.s")
+void func_80800320_chpawnbroker(Actor *arg0) {
+    Prop *_gccubesearch_entrypoint_0(u32, Actor *);
+    s32 _plsu_entrypoint_0(f32 *, f32 *);
+    void _subaddieitem_entrypoint_0(void *, u32, s32, s32);
+    s32 _subaddieitem_entrypoint_1(void *, s32);
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800D0B68(u32, u32);
+    void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
+    s32 func_800DA298(s32);
+    void func_800EE88C(f32 *, s16 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    void func_8010A3E8(void *, f32);
+    s32 state;
+    s32 pad40;
+    f32 position[3];
+    s32 distant;
+
+    func_800EE88C((f32 *)arg0->actorData, _gccubesearch_entrypoint_0(0x154, arg0)->position);
+    if (func_800D0B68(0x27, 1) && func_800D0B68(0xA, 4)) {
+        state = 8;
+    } else if (func_800D0B68(0x27, 1)) {
+        distant = 1;
+        if (_plsu_entrypoint_0(position, (f32 *)arg0->actorData) != -1 &&
+            func_800EEAD4(position, (f32 *)arg0->actorData) < 250.0f) {
+            distant = 0;
+        }
+        if (func_800DA298(0xB5)) {
+            if (!func_800D0A9C(0xA, 4)) {
+                func_800D1000(0xA, 4, (f32 *)arg0->actorData, 3, 0);
+            }
+            state = 8;
+        } else if (distant) {
+            if (!func_800D0A9C(0xA, 4)) {
+                func_800D1000(0xA, 4, (f32 *)arg0->actorData, 3, 0);
+            }
+            state = 6;
+        } else {
+            state = 5;
+        }
+    } else if (func_800DA298(0xB4)) {
+        state = 5;
+    } else {
+        state = 2;
+    }
+    if (state != 5 && state != 8) {
+        func_80108B04(arg0, 0x353);
+    }
+    _subaddieitem_entrypoint_0(func_80100094(arg0, 0), 0x4E4, -1, 3);
+    _subaddieitem_entrypoint_1(func_80100094(arg0, 0), func_800DA298(0xB4) ? 5 : 20);
+    func_80101FDC(arg0, state);
+    func_8010A3E8(arg0, 0.8f);
+}
 
 void func_80800514_chpawnbroker(Actor* arg0) 
 {
