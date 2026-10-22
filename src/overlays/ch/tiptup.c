@@ -467,4 +467,60 @@ void func_808010CC_chtiptup(Actor *arg0) {
     func_80102424(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80801180_chtiptup.s")
+s32 func_80801180_chtiptup(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    void func_800DA544(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F77E8(s32, f32 *);
+    void func_800F8300();
+    void func_80102424(Actor *, s32);
+    void func_80103110(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_8010A570(Actor *);
+    void func_8010A624(Actor *);
+    Actor *sp44;
+    Actor *sp40;
+    f32 sp34[3];
+    Actor *found;
+    Actor *temp;
+
+    switch (arg1) {
+    case 0x18:
+        func_800EE7F8(sp34, arg0->position);
+        func_800EF1B8(sp34, arg0->rotation[1] + 40.0f, 150.0f);
+        func_800F77E8(func_800F54E4(), sp34);
+        func_800F8300(func_800F54E4(), 2, arg0->position);
+        func_80102424(arg0, 2);
+        func_8010A570(arg0);
+        sp44 = func_80106790(arg0->unk3C);
+        sp40 = func_80106790(sp44->unk3C);
+        func_8010A624(arg0);
+        func_80102424(sp44, 2);
+        func_80103110(sp44, 1);
+        sp44->unk64_16 = 1;
+        func_800DA544(0xBC);
+        func_808008B4_chtiptup(sp40, 0xB, 0x820);
+        break;
+    case 0x95:
+        found = _subaddiefind_entrypoint_2(0x359, 0);
+        if (found != NULL) {
+            arg0->unk3C = found->unk0;
+        } else {
+            arg0->unk3C = NULL;
+        }
+        break;
+    case 0x40:
+        temp = _subaddiefind_entrypoint_2(0x358, 0);
+        if (temp != NULL && temp->unk70_10 == 1) {
+            _subaddiedialog_entrypoint_11(temp->unk0, 0x1045, 0xE, temp->position, 0x54);
+            func_80102424(temp, 2);
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
