@@ -1,6 +1,67 @@
 #include "ch/transparentfish.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparentfish/func_80800000_chtransparentfish.s")
+void func_80800000_chtransparentfish(Actor *arg0) {
+    struct FishNodeIndices {
+        u8 prefix[0x70];
+        u32 sector : 7;
+        u32 unused : 15;
+        u32 node : 6;
+        u32 flags : 4;
+    };
+    struct FishData {
+        f32 unused[3];
+        f32 speed;
+        f32 unused2[3];
+        f32 turnSpeed;
+    };
+    s32 _subaddieDll_entrypoint_11(void *, s32, s32);
+    void *func_800CC63C(s32, s32);
+    f32 func_800D8FF8(void);
+    f32 func_800DC178(f32, f32);
+    void func_80102924(void *, f32);
+    void func_80102950(void *, f32);
+    s32 func_80102CCC(Actor *);
+    f32 func_80102D78(Actor *, f32 *);
+    f32 sp2C;
+    s32 sp28;
+    f32 *sp24;
+    f32 y;
+    f32 height;
+    f32 radius;
+
+    sp24 = func_800CC63C(((struct FishNodeIndices *)arg0)->sector - 1,
+                        ((struct FishNodeIndices *)arg0)->node - 1);
+    y = arg0->position[1];
+    height = sp24[1];
+    radius = ((s16 *)sp24)[7];
+    if (height + radius <= y) {
+        sp28 = 1;
+        func_80102950(arg0, 355.0f);
+    } else if (y <= height - radius) {
+        sp28 = 1;
+        func_80102950(arg0, 5.0f);
+    } else {
+        sp28 = 0;
+    }
+    if (_subaddieDll_entrypoint_11(arg0, (s32)arg0->unk54,
+            (s32)(arg0->scale * 3.0f * ((struct FishData *)arg0->actorData)->speed)) == 0) {
+        func_80102924(arg0, func_80102D78(arg0, sp24));
+        arg0->unk58 = func_800DC178(1.0f, 3.0f);
+        return;
+    }
+    arg0->unk58 -= func_800D8FF8();
+    if (0.0f >= arg0->unk58) {
+        arg0->unk58 = func_800DC178(1.0f, 3.0f);
+        ((struct FishData *)arg0->actorData)->turnSpeed = func_800DC178(105.0f, 150.0f);
+        if (sp28 == 0) {
+            func_80102950(arg0, func_800DC178(-8.333333f, 8.333333f));
+        }
+        sp2C = func_800DC178(-35.0f, 35.0f);
+        if (func_80102CCC(arg0) != 0) {
+            func_80102924(arg0, arg0->rotation[1] + sp2C);
+        }
+    }
+}
 
 void func_80800204_chtransparentfish(Actor *arg0) {
     f32 _subaddiejoy_entrypoint_3();
