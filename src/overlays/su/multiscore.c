@@ -180,7 +180,8 @@ struct Entry {
     s16 unk8;
     u8 padA[6];
     f32 unk10, unk14;
-    s32 unk18, unk1C;
+    f32 unk18;
+    s32 unk1C;
 };
 struct Row {
     u8 pad0[0x18];
@@ -224,7 +225,44 @@ void sumultiscore_entrypoint_5(struct Multi *arg0, s32 arg1, s32 arg2, s32 arg3)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_6.s")
+void sumultiscore_entrypoint_6(struct Multi *arg0) {
+    f32 func_800138D0(f32);
+    f32 func_800D8FF8(void);
+    s32 func_800F1574(f32 *, f32);
+    f32 mlAbsF(f32);
+    void func_80800BFC_sumultiscore(struct Multi *, s32, struct Entry *);
+    void func_80800D24_sumultiscore(s32, s32, void *);
+    void func_80800D54_sumultiscore(s32, s32, s32);
+    void func_80800D64_sumultiscore(s32, s32, void *);
+    void func_80800DD0_sumultiscore(s32, s32, u8 *);
+    void func_80800E84_sumultiscore(s32, s32, s32);
+    s32 i;
+    s32 j;
+    struct Row *slot;
+    s32 entry;
+    f32 timer;
+
+    for (i = 0; i < *(s32 *)((u8 *)arg0 + 0x518); i++) {
+        for (j = 0; j < arg0->unk0; j++) {
+            slot = (struct Row *)((s32)&arg0->rows[i] + (j << 5));
+            entry = (s32)&slot->entries[0];
+            if (slot->entries[0].unk18 != 0.0f) {
+                func_800F1574(&((struct Entry *)entry)->unk18, func_800D8FF8());
+                timer = ((struct Entry *)entry)->unk18;
+                timer -= (s32)timer;
+                ((struct Entry *)entry)->unk5 = (s32)(mlAbsF(func_800138D0(timer * 720.0f)) * 255.99f);
+            }
+            switch (((struct Entry *)entry)->unk0) {
+                case 0: func_80800BFC_sumultiscore(arg0, i, (struct Entry *)entry); break;
+                case 1: func_80800D24_sumultiscore((s32)arg0, i, (struct Entry *)entry); break;
+                case 2: func_80800D54_sumultiscore((s32)arg0, i, (s32)entry); break;
+                case 3: func_80800D64_sumultiscore((s32)arg0, i, (struct Entry *)entry); break;
+                case 4: func_80800DD0_sumultiscore((s32)arg0, i, &((struct Entry *)entry)->unk0); break;
+                case 5: func_80800E84_sumultiscore((s32)arg0, i, (s32)entry); break;
+            }
+        }
+    }
+}
 
 /* extern */
 
