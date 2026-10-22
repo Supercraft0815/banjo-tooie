@@ -723,7 +723,68 @@ void func_808021C0_chflysaucer(Actor *arg0, u8 *arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808024E0_chflysaucer.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80802CF0_chflysaucer.s")
+void func_80802CF0_chflysaucer(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_800906B0(f32 *);
+    void func_800906DC(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF4E4(f32 *, f32, f32, f32, f32, f32);
+    void func_800EF6A8(f32 *, f32 *, f32, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F81D4(u32, f32 *);
+    f32 distance;
+    f32 position[3];
+    f32 rotation[3];
+    f32 temp[3];
+    struct {
+        u8 pad0[0x10];
+        f32 distance;
+        u8 pad14[8];
+        f32 roll;
+        u8 pad20[4];
+        u8 mode;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    rotation[0] = arg0->rotation[0];
+    rotation[1] = arg0->rotation[1];
+    rotation[2] = arg0->rotation[2] - data->roll;
+    switch (data->mode) {
+        case 2:
+            position[0] = arg0->position[0];
+            position[1] = arg0->position[1] - 100.0f;
+            position[2] = arg0->position[2];
+            rotation[1] += 180.0f;
+            rotation[0] = -rotation[0];
+            rotation[2] = arg0->rotation[2];
+            func_800F81D4(func_800F54E4(), rotation);
+            rotation[1] -= 180.0f;
+            rotation[0] = -rotation[0];
+            break;
+        case 1:
+            func_800EE7F8(temp, arg0->rotation);
+            temp[2] = -temp[2];
+            func_800EF6A8(position, temp, 0.0f, -70.0f, 0.0f);
+            func_800EF04C(position, arg0->position);
+            rotation[2] = -rotation[2];
+            break;
+        case 0:
+            func_800EF4E4(position, arg0->rotation[0], arg0->rotation[1], 0.0f, 90.0f, 0.0f);
+            func_800EF04C(position, arg0->position);
+            rotation[2] = -rotation[2];
+            break;
+        case 3:
+            distance = data->distance;
+            distance += 40.0f;
+            func_800EF4E4(position, arg0->rotation[0], arg0->rotation[1], 0.0f, distance, 0.0f);
+            func_800EF04C(position, arg0->position);
+            rotation[2] = -rotation[2];
+            break;
+    }
+    func_800906B0(position);
+    func_800906DC(rotation);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80802ED8_chflysaucer.s")
 
