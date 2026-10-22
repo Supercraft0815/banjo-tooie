@@ -65,7 +65,29 @@ void func_8008B768(void) {
     *(s32 *)((s32)&D_80126CC0 + 4) = size + D_80126CC0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008B850.s")
+void func_8008B850(void) {
+    void func_800DFCC0(s16);
+    extern s32 D_80126CC0;
+    struct Entry { s16 value, age, active; };
+    struct Entry *entry;
+
+    for (entry = (struct Entry *)D_80126CC0;
+         entry < *(struct Entry **)((s8 *)&D_80126CC0 + 4); entry++) {
+        switch (entry->active) {
+        case 0:
+            break;
+        default:
+            if (entry->value != 0) {
+                entry->age--;
+                if (entry->age <= 0) {
+                    func_800DFCC0(entry->value);
+                    entry->value = 0;
+                }
+            }
+            break;
+        }
+    }
+}
 
 s16 func_8008B8E0(void) {
     s16 func_8008BAC0(s32 *);
