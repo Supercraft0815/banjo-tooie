@@ -14,7 +14,74 @@ OSThread *chklungodoors_entrypoint_1(void)
     return (OSThread *) D_80800508_chklungodoors;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/doors/func_80800018_chklungodoors.s")
+void func_80800018_chklungodoors(Actor *arg0) {
+    s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
+    s32 _chdoormake_entrypoint_4(Actor *, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    void _chdoormake_entrypoint_6(Actor *, f32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    s32 func_800EA05C();
+    void func_80102FDC(void *, f32);
+    void func_80103110(void *, s32);
+    u32 func_8010A5B0(Actor *, s32);
+    void func_8010A800(Actor *, s32);
+    typedef struct {
+        s16 map;
+        s16 angle;
+        f32 scale;
+        s32 unk8;
+        u16 flag;
+        u8 animated;
+        u8 sound;
+    } DoorConfig;
+    extern DoorConfig D_80800490_chklungodoors[];
+    s32 result;
+    s32 i;
+    DoorConfig *entry;
+    DoorConfig *config;
+
+    config = NULL;
+    for (i = 0; i != 3; i++) {
+        entry = &D_80800490_chklungodoors[i];
+        if (func_800EA05C() == entry->map) {
+            config = entry;
+            arg0->actorData[4] = i;
+            break;
+        }
+    }
+    func_80102FDC(arg0, config->scale);
+    func_8010A800(arg0, 0);
+    if (arg0->unk6C_9 == 0x420) {
+        if (config->animated) {
+            func_80103110(arg0, 1);
+            result = _chdoormake_entrypoint_4(arg0, 0xA82A, config->flag);
+        } else {
+            result = _chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, config->angle, 0x122, config->flag);
+        }
+        if (result != 0) {
+            _chdoormake_entrypoint_5(arg0, 0.7f);
+            _chdoormake_entrypoint_6(arg0, 2.0f);
+            _chdoormake_entrypoint_8(arg0, config->sound);
+        }
+    } else {
+        if (config->animated) {
+            func_80103110(arg0, 1);
+            result = _chdoormake_entrypoint_4(arg0, 0xA82A, -1);
+        } else {
+            result = _chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, config->angle, 0x122, -1);
+        }
+        if (result != 0) {
+            _chdoormake_entrypoint_5(arg0, 0.7f);
+            _chdoormake_entrypoint_6(arg0, 0.25f);
+            _chdoormake_entrypoint_8(arg0, config->sound);
+        }
+    }
+    if (config->animated) {
+        *(u16 *)&arg0->unk0->unk24 = (*(u16 *)&arg0->unk0->unk24 & 0x3F) | 0xCC40;
+        func_80103110(arg0, 1);
+        func_8010A5B0(arg0, result == 1);
+    }
+}
 
 void func_80800234_chklungodoors(Actor *arg0) {
     s32 _chdoor_entrypoint_0();
