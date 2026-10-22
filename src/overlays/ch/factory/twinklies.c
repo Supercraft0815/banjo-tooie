@@ -337,7 +337,56 @@ s32 func_80801174_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_808011B0_chfactorytwinklies.s")
+void func_808011B0_chfactorytwinklies(Actor *arg0) {
+    s32 _gcstatusDll_entrypoint_11();
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiemulti_entrypoint_1(s32, s32);
+    void func_800AA20C(s32, s32);
+    void func_800FC6B0(u32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    s32 temp;
+    s32 scores[8];
+    s32 *data;
+    s32 max;
+    s32 i;
+    s32 j;
+    s32 k;
+    s32 dialog;
+
+    data = func_80100094(arg0, 0);
+    max = -1;
+    for (j = 0; j < _gcstatusDll_entrypoint_11(); j++) {
+        scores[j] = data[j];
+        if (max < scores[j]) {
+            max = scores[j];
+        }
+        func_800AA20C(j, scores[j]);
+    }
+    for (j = 0; j < _gcstatusDll_entrypoint_11(); j++) {
+        if (max == scores[j]) {
+            data[j + 8] = 1;
+        }
+    }
+    for (i = 1; i < _gcstatusDll_entrypoint_11(); i++) {
+        for (k = i; k > 0 && scores[k - 1] < scores[k]; k--) {
+            temp = scores[k];
+            scores[k] = scores[k - 1];
+            scores[k - 1] = temp;
+        }
+    }
+    func_800FC6B0(0x16);
+    if (scores[0] != scores[1]) {
+        for (k = 0; data[k] != scores[0]; k++) {}
+        data[40] = k;
+        dialog = 0x1348;
+    } else {
+        dialog = 0x1349;
+    }
+    _subaddiemulti_entrypoint_1(0, 0);
+    func_80101FDC(arg0, 5);
+    _subaddiedialog_entrypoint_11(arg0->unk0, dialog, 6, NULL, 0xA3);
+}
 
 void func_808013BC_chfactorytwinklies(Actor *arg0, s32 arg1) {
     s32 _gcstatusDll_entrypoint_11();
