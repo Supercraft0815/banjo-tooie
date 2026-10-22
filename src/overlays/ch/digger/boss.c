@@ -2071,7 +2071,153 @@ void func_8080666C_chdiggerboss(s32 arg0) {
     (*(u8 *)((s8 *)(sp1C) + (0x78))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(temp_v0) + (0x78))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808066A0_chdiggerboss.s")
+s32 func_808066A0_chdiggerboss(Actor *arg0) {
+    void func_80806B38_chdiggerboss(Actor *);
+    void func_80806C08_chdiggerboss(Actor *);
+    void func_80806F8C_chdiggerboss(Actor *);
+    s32 func_80806D84_chdiggerboss(s32);
+    void func_80806EE4_chdiggerboss(s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 _plsu_entrypoint_1(s32);
+    s32 func_800D2498(u32, s32, u32);
+    u8 func_800D9078(f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80101DDC(Actor *);
+    s32 func_8010108C(Actor *, s32, s32);
+    void func_80108B04(Actor *, u32);
+    void func_80109FE8(void **, s32);
+    s32 func_800F7B9C(s32, s32);
+    struct BossData {
+        u8 pad0[2];
+        u8 field2;
+        u8 pad3[0xD];
+        f32 field10;
+        u8 pad14[0x2D];
+        u8 field41;
+        u8 pad42[0x1A];
+        u8 field5C, field5D, field5E, field5F;
+        f32 field60;
+        s32 field64;
+        u8 field68, field69;
+        s16 field6A, field6C;
+        u8 pad6E[2];
+        f32 field70, field74;
+    } *data;
+    s32 other;
+    s16 value;
+    f32 *pos;
+
+    data = func_80100094(arg0, 0);
+    other = func_80806D84_chdiggerboss((s32)arg0);
+    func_800D2498(0x10A, data->field2, 0);
+    switch (data->field5C) {
+        case 2:
+            func_80806B38_chdiggerboss(arg0);
+            func_808056B8_chdiggerboss((s32)func_80802228_chdiggerboss(arg0));
+            break;
+        case 3:
+            func_808056B8_chdiggerboss((s32)func_80802228_chdiggerboss(arg0));
+            if (func_800D9078(&data->field60)) {
+                func_80109FE8((void **)arg0, 1);
+                data->field5C = 4;
+            }
+            break;
+        case 4:
+            func_80108B04(arg0, 0);
+            break;
+        case 5:
+            if (other != 0) {
+                pos = ((Actor *)other)->position;
+                if (_subaddieskeleton_entrypoint_0(arg0, 0x1E, pos)) {
+                    func_800EF1B8(pos, arg0->rotation[1] + data->field10, 80.0f);
+                }
+            }
+            if (func_80101E14(arg0, 0.33f)) {
+                value = data->field41 ? data->field6A : data->field6C;
+                func_8010108C((Actor *)other, 0xA, ((s16)func_80802248_chdiggerboss((s32)arg0) << 16) | (value & 0xFFFF));
+                data->field64 = 0;
+            }
+            if (func_80101DDC(arg0)) {
+                if (data->field5E == 0) {
+                    if (--data->field5D == 0) {
+                        data->field5C = 8;
+                        data->field60 = 1.0f;
+                    } else {
+                        func_80800180_chdiggerboss(arg0, 8);
+                        data->field5C = 6;
+                        data->field5E = 3;
+                        data->field60 = data->field74;
+                    }
+                } else {
+                    func_80800180_chdiggerboss(arg0, 8);
+                    data->field5C = 6;
+                    data->field60 = data->field70;
+                }
+            }
+            break;
+        case 6:
+            if (data->field2 == data->field69) {
+                data->field5C = 8;
+                data->field60 = 1.0f;
+            } else if (func_800D9078(&data->field60)) {
+                data->field5C = 4;
+            }
+            break;
+        case 7:
+            if (func_80101DDC(arg0)) {
+                if (data->field2 == data->field69) {
+                    data->field5C = 8;
+                    data->field60 = 1.0f;
+                } else if (data->field5E == 0) {
+                    if (data->field5D == 0) {
+                        data->field5C = 8;
+                        data->field60 = 1.0f;
+                    } else {
+                        data->field5C = 4;
+                    }
+                } else {
+                    data->field5C = 4;
+                }
+            }
+            break;
+        case 8:
+            if (!_subaddiefind_entrypoint_2(0x4F2, 0) && func_800D9078(&data->field60)) {
+                func_80109FE8((void **)arg0, 0);
+                if (data->field5F && data->field2 != data->field69) {
+                    data->field5C = 0;
+                    return 1;
+                }
+                other = _plsu_entrypoint_1(0x11);
+                if (other != -1) {
+                    data->field5C = 9;
+                    func_800F7B9C(other, 0x8E);
+                } else {
+                    func_80806C08_chdiggerboss(arg0);
+                }
+            }
+            break;
+        case 10:
+            func_808056B8_chdiggerboss((s32)func_80802228_chdiggerboss(arg0));
+            func_80806C08_chdiggerboss(arg0);
+            break;
+        case 11:
+            func_808056B8_chdiggerboss((s32)func_80802228_chdiggerboss(arg0));
+            if (func_800D9078(&data->field60)) {
+                data->field5C = 0;
+                if (data->field2 == data->field69) {
+                    func_80806F8C_chdiggerboss(arg0);
+                    func_80806EE4_chdiggerboss((s32)arg0, 0);
+                    return 2;
+                }
+                return 1;
+            }
+            break;
+    }
+    return 0;
+}
 
 void func_80806A78_chdiggerboss(Actor *arg0, s32 arg1, u8 *arg2) {
     void *func_80100094(Actor *, u32);
