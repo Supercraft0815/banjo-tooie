@@ -846,7 +846,61 @@ void func_80023008(MusicPlayer *seqp, MusicEvent *event) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39CE0/func_80024A5C.s")
+s32 func_80024A5C(MusicPlayer *arg0, MusicEvent *arg1) {
+    void func_80020E40(ALLink *, ALLink *);
+    void func_80020E74(ALLink *);
+    void func_80024C9C(ALEventQueue *, ALEventListItem *);
+    u8 *sp3C;
+    s32 sp38;
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+    ALEventListItem *sp24;
+    ALEventListItem *sp20;
+    ALEventListItem *sp1C;
+
+    sp3C = (u8 *)&arg1->msg.midi;
+    sp28 = 0;
+    sp1C = NULL;
+    if (arg1->msg.midi.status == 0xFF) {
+      if (arg1->msg.midi.channel == 0x51) {
+        sp34 = arg0->uspt;
+        sp38 = sp3C[9] | ((sp3C[8] << 8) | (sp3C[7] << 16));
+        func_80024D90(arg0, (f32)sp38);
+        sp24 = (ALEventListItem *)arg0->evtq.allocList.next;
+        while (sp24 != NULL) {
+            sp28 += sp24->delta;
+            sp20 = (ALEventListItem *)sp24->node.next;
+            if (sp24->evt.type == 0x15) {
+                func_80020E74(&sp24->node);
+                if (sp1C != NULL) {
+                    func_80020E40(&sp24->node, &sp1C->node);
+                } else {
+                    sp24->node.next = NULL;
+                    sp24->node.prev = NULL;
+                    sp1C = sp24;
+                }
+                sp2C = sp28;
+                if (sp20 != NULL) {
+                    sp28 -= sp24->delta;
+                    sp20->delta += sp24->delta;
+                }
+                sp24->delta = sp2C;
+            }
+            sp24 = sp20;
+        }
+        sp24 = sp1C;
+        while (sp24 != NULL) {
+            sp20 = (ALEventListItem *)sp24->node.next;
+            sp30 = (s32)sp24->delta / sp34;
+            sp24->delta = arg0->uspt * sp30;
+            func_80024C9C(&arg0->evtq, sp24);
+            sp24 = sp20;
+        }
+    }
+    }
+}
 
 void func_80024C9C(ALEventQueue *evtq, ALEventListItem *item) {
     void func_80020E40(ALLink *, ALLink *);
