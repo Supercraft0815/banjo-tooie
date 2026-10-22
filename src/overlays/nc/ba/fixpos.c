@@ -14,7 +14,26 @@ void ncbafixpos_entrypoint_1(u8 *arg0) {
 void ncbafixpos_entrypoint_2(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/fixpos/func_8080003C_ncbafixpos.s")
+/* extern */
+
+f32 func_8080003C_ncbafixpos(s32 *arg0) {
+    f32 func_800F5628(s32);
+    f32 func_800F5E7C(s32);
+    s32 func_800F71D4(s32);
+    s32 func_80110840(s32 *);
+    f32 func_80115460(void *);
+    s32 sp1C;
+    f32 var_f0;
+
+    sp1C = func_80110840(arg0);
+    func_800F5628(sp1C);
+    if (func_800F71D4(sp1C) != 0) {
+        var_f0 = func_800F5E7C(sp1C);
+    } else {
+        var_f0 = func_800F5628(sp1C);
+    }
+    return func_80115460(arg0) + var_f0;
+}
 
 /* extern */
 
@@ -27,7 +46,7 @@ void ncbafixpos_entrypoint_3(struct player_state_s *arg0) {
     void func_80111AE0(struct player_state_s *, f32 *);
     void func_80112524(struct player_state_s *, f32 *);
     void func_8011329C(struct player_state_s *);
-    f32 func_8080003C_ncbafixpos(struct player_state_s *);
+    f32 func_8080003C_ncbafixpos();
     f32 sp4C[3];
     f32 sp40[3];
     f32 sp34[3];
