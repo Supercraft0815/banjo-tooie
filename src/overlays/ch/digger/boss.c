@@ -2672,7 +2672,86 @@ void func_80807B18_chdiggerboss(s32 arg0) {
 void func_80807B4C_chdiggerboss(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80807B54_chdiggerboss.s")
+void func_80807B54_chdiggerboss(Actor *arg0) {
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    Actor *_subaddiefind_entrypoint_3(s32, s32 *);
+    s32 _subaddiefind_entrypoint_9(s32);
+    void _sucoaster_entrypoint_4(Actor *);
+    f32 func_8001395C(f32);
+    void func_800B4470(f32 *, f32 *, f32 *, s32, f32, f32, s32, s32, s32);
+    void func_800C4104(s32, f32, s32, s32, f32, f32);
+    u8 func_800D9078(f32 *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_800F4F34(u32, f32 *, f32, f32);
+    u32 func_800F54E4(void);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010108C(Actor *, s32, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80108B04(Actor *, u32);
+    extern f32 D_8080A150_chdiggerboss[];
+    struct BossData {
+        u8 pad[0xA4];
+        u8 state, active, count, delay;
+        f32 end[3];
+        f32 start[3];
+        f32 unkC0;
+        f32 progress;
+        Unk80132ED0 *marker;
+    } *data;
+    s32 finished;
+    Actor *child;
+    f32 t;
+    s32 iterator[2];
+    Actor *actor;
+
+    data = func_80100094(arg0, 0);
+    switch (data->state) {
+    case 1:
+        break;
+    case 0:
+        if (data->active && _subaddiefind_entrypoint_9(0x131) < data->count) {
+            data->state = 1;
+            func_80108B04(arg0, 4);
+        }
+        break;
+    case 2:
+        finished = func_800D9078(&data->progress);
+        child = func_80106790(data->marker);
+        t = func_800F10B4(data->progress, 0.0f, 1.0f, 1.0f, 0.0f);
+        func_800EFE50(child->position, data->start, data->end, t);
+        child->position[1] += func_8001395C(t * 3.1415927f) * 500.0f;
+        func_800F4F34(func_800F54E4(), child->position, child->scale * 90.0f, child->scale * 100.0f);
+        if (finished) {
+            func_800B4470(child->position, NULL, D_8080A150_chdiggerboss, 1, 0.8f, 0.0f, 100, 150, 0);
+            func_800C4104(0x419, 1.0f, 0x6D60, child->position, 1200.0f, 8000.0f);
+            child->unk64_20 = 1;
+            data->state = 3;
+        }
+        break;
+    case 3:
+        _sucoaster_entrypoint_4(func_80106790(data->marker));
+        if (data->active) {
+            data->state = 0;
+        } else {
+            data->state = 4;
+        }
+        data->marker = NULL;
+        break;
+    case 4:
+        if (data->delay) {
+            data->delay--;
+        } else {
+            actor = _subaddiefind_entrypoint_2(0x131, iterator);
+            while (actor) {
+                func_8010108C(actor, 0x9A, 0);
+                actor = _subaddiefind_entrypoint_3(0x131, iterator);
+            }
+            data->state = 0;
+        }
+        break;
+    }
+}
 
 void func_80807DC0_chdiggerboss(s32 arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
