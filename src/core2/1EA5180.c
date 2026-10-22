@@ -273,7 +273,76 @@ s32 func_800CC6CC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CC6F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CCAB0.s")
+s32 func_800CCAB0(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    typedef struct {
+        f32 position[3];
+        s16 unkC;
+        s16 height;
+        f32 radius_squared;
+        u32 unk14 : 12;
+        u32 flags : 3;
+        u32 unk16 : 17;
+    } Entry;
+    typedef struct {
+        s32 pad0[3];
+        u8 *regions;
+        s32 pad10[2];
+        u8 active[1];
+    } State;
+    f32 func_800EFC7C(void *, void *);
+    f32 upper;
+    f32 lower;
+    Entry *start;
+    Entry *end;
+    Entry *entry;
+    u8 *region;
+
+    region = (u8 *)(arg1 * 0x1C + (s32)((State *)&D_8012AE80)->regions);
+    if (!(region[2] & 1)) {
+        return -1;
+    }
+    if (!((State *)&D_8012AE80)->active[*(s32 *)(region + 0x14)]) {
+        return -1;
+    }
+    start = (Entry *)func_800CB8F0((s16 *)region);
+    entry = arg2 + start;
+    upper = ((f32 *)arg0)[1] + arg3 * 0.5f;
+    lower = ((f32 *)arg0)[1] - arg3 * 0.5f;
+    if (arg4 & 1) {
+        if ((entry->flags & arg4) && entry->position[1] <= upper &&
+            lower < entry->position[1] &&
+            func_800EFC7C(entry->position, (void *)arg0) < entry->radius_squared) {
+            return arg2;
+        }
+    } else {
+        if ((entry->flags & arg4) && ((entry->flags & 2) ||
+            (entry->position[1] - entry->height <= ((f32 *)arg0)[1] &&
+             ((f32 *)arg0)[1] < entry->position[1] + entry->height)) &&
+            func_800EFC7C(entry->position, (void *)arg0) < entry->radius_squared) {
+            return arg2;
+        }
+    }
+    end = (Entry *)func_800CB910((s16 *)region);
+    if (arg4 & 1) {
+        for (entry = start; entry < end; entry++) {
+            if ((entry->flags & arg4) && entry->position[1] <= upper &&
+                lower < entry->position[1] &&
+                func_800EFC7C(entry->position, (void *)arg0) < entry->radius_squared) {
+                return entry - start;
+            }
+        }
+    } else {
+        for (entry = start; entry < end; entry++) {
+            if ((entry->flags & arg4) && ((entry->flags & 2) ||
+                (entry->position[1] - entry->height <= ((f32 *)arg0)[1] &&
+                 ((f32 *)arg0)[1] < entry->position[1] + entry->height)) &&
+                func_800EFC7C(entry->position, (void *)arg0) < entry->radius_squared) {
+                return entry - start;
+            }
+        }
+    }
+    return -1;
+}
 
 s32 func_800CCDF4(s32 arg0, s32 *arg1, s32 *arg2, s32 arg3, s32 arg4) {
     s32 func_800CBDD4(s32, s32, s32);
