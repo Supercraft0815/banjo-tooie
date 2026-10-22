@@ -68,7 +68,99 @@ void func_800F3BB0()
     func_8009C128();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F3BD0.s")
+void func_800F3BD0(void *self, s32 arg1, f32 dst[3]) {
+    void func_80092D44(void *, f32 *);
+    void func_80092E5C(void *, f32 *);
+    void func_80092C00(void *, f32 *);
+    void func_80092C24(void *, f32 *);
+    void func_80092C48(void *, f32 *);
+    int func_800A3274(PlayerState *);
+    s32 func_800F40EC(struct player_state_s *);
+    s32 func_800F6720();
+    void func_80092DC0(void *, f32 *);
+    void func_8009C188(u8 *, s32);
+    void func_80092D9C(void *, f32 *);
+
+
+    switch (arg1) {
+        case 1:
+            func_80092D44(self, dst);
+            break;
+        case 2:
+            func_80092E5C(self, dst);
+            break;
+        case 3:
+            func_80092C00(self, dst);
+            break;
+        case 4:
+            func_80092C24(self, dst);
+            break;
+        case 6:
+            func_80092C48(self, dst);
+            break;
+        case 5:
+            func_8009C128(self, dst);
+            switch (func_800A3274(self)) {
+                case 0x2:
+                    dst[1] += 85.0f;
+                    break;
+                case 0xF:
+                    dst[1] += 90.0f;
+                    break;
+                case 0x6:
+                    dst[1] += 85.0f;
+                    break;
+                case 0x7:
+                    dst[1] += 130.0f;
+                    break;
+                case 0xE:
+                    dst[1] += 575.0f;
+                    break;
+                case 0x10:
+                    dst[1] += 130.0f;
+                    break;
+                case 0xC:
+                    dst[1] += 45.0f;
+                    break;
+                case 0x11:
+                    dst[1] += 40.0f;
+                    break;
+                case 0x12:
+                    dst[1] += 130.0f;
+                    break;
+                case 0x13:
+                    dst[1] += 400.0f;
+                    break;
+                case 0xB:
+                    dst[1] += 55.0f;
+                    break;
+                case 0x1:
+                    if (func_800F40EC(self) == 2 || func_800F6720(*(s32 *)((u8 *)self + 0x184))) {
+                        dst[1] += 70.0f;
+                    } else {
+                        dst[1] += 100.0f;
+                    }
+                    break;
+                default:
+                    dst[1] += 100.0f;
+                    break;
+            }
+            break;
+        case 7:
+            func_80092DC0(self, dst);
+            break;
+        case 8:
+            func_8009C188((u8 *)self, (s32)dst);
+            break;
+        case 9:
+            func_80092D9C(self, dst);
+            break;
+        case 0:
+        default:
+            func_800F3BB0(self, dst);
+            break;
+    }
+}
 
 /* extern */
 
