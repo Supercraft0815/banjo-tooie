@@ -42,7 +42,73 @@ s32 func_8009F354(PlayerState *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009F3BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009F440.s")
+s32 func_8009F440(PlayerState *arg0, f32 *origin, f32 *rotation, f32 *arg1, f32 *arg2, f32 speed) {
+    void func_800A30B4(PlayerState *, f32 *, f32 *);
+    f32 func_800D8FF8(void);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 func_800F0DC0(f32, f32);
+    s32 func_800F1660(f32, f32);
+    void func_800F4200(u8 *, f32 *);
+    void func_800F4648(void *, f32 *);
+    s32 func_80019CD4(void);
+    void func_8001980C(f32 *, f32 *, f32, f32 *);
+    void func_80019750(f32 *, f32 *, f32, f32 *);
+    void func_800193C4(f32 *, f32 *);
+    f32 localPosition[3];
+    f32 position[3];
+    f32 maximum[3];
+    f32 minimum[3];
+    f32 displacement[3];
+    f32 high;
+    f32 low;
+    f32 amount;
+    f32 x;
+    f32 z;
+
+    func_800A30B4(arg0, minimum, maximum);
+    func_800F4200((u8 *)arg0, position);
+    func_80019CD4();
+    func_8001980C(origin, rotation, 1.0f, NULL);
+    func_800193C4(localPosition, position);
+    func_800EF04C(minimum, localPosition);
+    func_800EF04C(maximum, localPosition);
+    if (maximum[1] <= arg1[1] || arg2[1] <= minimum[1]) {
+        return 0;
+    }
+    high = arg2[0] - minimum[0];
+    low = arg1[0] - maximum[0];
+    if (low >= 0.0f || high <= 0.0f) {
+        return 0;
+    }
+    if (high < -low) {
+        x = high;
+    } else {
+        x = low;
+    }
+    high = arg2[2] - minimum[2];
+    low = arg1[2] - maximum[2];
+    if (low >= 0.0f || high <= 0.0f) {
+        return 0;
+    }
+    if (high < -low) {
+        z = high;
+    } else {
+        z = low;
+    }
+    amount = func_800D8FF8() * speed;
+    if (func_800F1660(x, z)) {
+        func_800EFA4C(displacement, 0.0f, 0.0f, func_800F0DC0(z, amount));
+    } else {
+        func_800EFA4C(displacement, func_800F0DC0(x, amount), 0.0f, 0.0f);
+    }
+    func_800EF04C(localPosition, displacement);
+    func_80019CD4();
+    func_80019750(origin, rotation, 1.0f, NULL);
+    func_800193C4(position, localPosition);
+    func_800F4648(arg0, position);
+    return 1;
+}
 
 s32 func_8009F678(PlayerState *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     void func_800A30B4(PlayerState *, f32 *, f32 *);
