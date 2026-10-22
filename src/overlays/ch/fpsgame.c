@@ -475,7 +475,77 @@ void func_8080135C_chfpsgame(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_808013DC_chfpsgame.s")
+void func_808013DC_chfpsgame(Actor *arg0, s32 arg1, u32 arg2) {
+    void _bainvisible_entrypoint_3(PlayerState *);
+    void _bainvisible_entrypoint_8(PlayerState *, s32, f32, f32);
+    s32 _sudeathmatch_entrypoint_0(s32, f32 *, f32 *);
+    void func_80093370(void *, s32);
+    void func_8009337C(void *, s32);
+    s32 func_800A1760(PlayerState *);
+    void func_800A1870(PlayerState *, s32);
+    void func_800A38F0(PlayerState *, s32, s32);
+    int func_800A4C68(void *);
+    void func_800C968C(s32, s32);
+    void func_800F44DC(void *, s32);
+    PlayerState *func_800F53D0(s32);
+    s32 func_800F7C0C(s32, s32, f32);
+    s32 func_800F7F98(s32, u32);
+    void func_800F8294(s32, f32 *);
+    s32 func_800F832C(s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    struct {
+        u8 pad[0x530];
+        struct {
+            u32 state;
+            f32 timer;
+        } players[4];
+    } *sp44;
+    PlayerState *temp_s0;
+    f32 sp34[3];
+    f32 sp28[3];
+    s32 temp_v0;
+
+    sp44 = func_80100094(arg0, 0U);
+    temp_s0 = func_800F53D0(arg1);
+    switch (arg2) {
+    case 1:
+        func_800C968C(func_800A4C68(temp_s0), 0x13);
+        _bainvisible_entrypoint_8(temp_s0, 1, 0.0f, 1.0f);
+        _bainvisible_entrypoint_8(temp_s0, 2, 1.0f, 0.01f);
+        break;
+    case 2:
+        func_800A38F0(temp_s0, 0, 0);
+        func_800F44DC(temp_s0, 0);
+        func_80093370(temp_s0, 0);
+        sp44->players[arg1].timer = 5.0f;
+        break;
+    case 3:
+        func_800C968C(func_800A4C68(temp_s0), 0x12);
+        if (_sudeathmatch_entrypoint_0(arg1, sp34, sp28) != 0) {
+            func_800F832C(arg1, sp28);
+            func_800F8294(arg1, sp34);
+        }
+        func_800A1870(temp_s0, func_800A1760(temp_s0));
+        func_800A38F0(temp_s0, 1, 1);
+        _bainvisible_entrypoint_3(temp_s0);
+        func_80093370(temp_s0, 1);
+        func_8009337C(temp_s0, 1);
+        func_800F44DC(temp_s0, 1);
+        func_800F7C0C(arg1, 0x83, 0.0f);
+        func_800F7F98(arg1, 1U);
+        break;
+    case 0:
+        func_800F7F98(arg1, 0U);
+        break;
+    case 4:
+        temp_v0 = sp44->players[arg1].state;
+        if ((temp_v0 == 0) || (temp_v0 == 3)) {
+            func_800C968C(func_800A4C68(temp_s0), 0x13);
+        }
+        break;
+    }
+    sp44->players[arg1].state = arg2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_808015EC_chfpsgame.s")
 
