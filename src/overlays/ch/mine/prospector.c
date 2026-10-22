@@ -121,7 +121,48 @@ void func_8080068C_chmineprospector(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_808006EC_chmineprospector.s")
+void func_808006EC_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80102424(Actor *, s32);
+    void _glcutDll_entrypoint_6(u32, u32);
+    s32 _subaddiedialog_entrypoint_10(s32);
+    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void func_80800970_chmineprospector(Actor *);
+    void func_80800A64_chmineprospector(Actor *, s32, s32);
+    extern s32 D_80800F20_chmineprospector;
+    extern s32 D_80800F58_chmineprospector;
+    extern s32 D_80800F90_chmineprospector;
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+
+    if (arg1 == 0xF90) {
+        func_800D1000(0x10, 1, NULL, 1, 0);
+        func_80800A64_chmineprospector(arg0, 8, 0x30);
+        func_80102424(arg0, 6);
+        return;
+    }
+    sp34 = _subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80800F20_chmineprospector, 7);
+    sp30 = _subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80800F58_chmineprospector, 7);
+    sp2C = _subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80800F90_chmineprospector, 4);
+    if (_subaddiedialog_entrypoint_10(sp2C) != 0) {
+        func_80800970_chmineprospector(arg0);
+        func_80102424(arg0, 6);
+        return;
+    }
+    if (sp34 == 1) {
+        func_80800970_chmineprospector(arg0);
+        func_80102424(arg0, 4);
+        _glcutDll_entrypoint_6(0xB9, 0xC);
+        return;
+    }
+    if (_subaddiedialog_entrypoint_10(sp30) == 0) {
+        sp28 = arg0->unk70_10 == 7 ? 6 : 4;
+        func_80800970_chmineprospector(arg0);
+        func_80102424(arg0, sp28);
+    }
+}
 
 void func_8080084C_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _subaddiedialog_entrypoint_10(s32);
