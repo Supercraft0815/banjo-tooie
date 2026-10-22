@@ -1,6 +1,73 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/invisible/func_80800000_bainvisible.s")
+struct player_state_s;
+
+void func_80800000_bainvisible(s32 arg0, void *arg1, s32 arg2) {
+    s32 func_8009AD78(void *, s32);
+    void func_8009ADF0(void *, s32, s32);
+    void func_8009BC08(void *, f32 *);
+    void func_8009DBF0(struct player_state_s *, s32, f32);
+    f32 yaw_get(struct player_state_s *);
+    void bainvisible_entrypoint_1(void *, f32, f32);
+    void func_808001BC_bainvisible(void *);
+    struct invisible_part {
+        u8 state;
+        u8 pad1[3];
+        f32 unk4;
+        f32 unk8;
+        f32 unkC;
+        u8 pad10[12];
+        u8 unk1C;
+        u8 pad1D[19];
+    };
+    struct invisible_part *temp_s1;
+    struct invisible_part *sp20;
+
+    *(u8 *)arg1 = arg2;
+    sp20 = (struct invisible_part *)(*(u8 **)(arg0 + 0xA8) + 0x4C);
+    temp_s1 = (struct invisible_part *)(*(u8 **)(arg0 + 0xA8) + 0x1C);
+    switch (arg2) {
+    case 0:
+        if (temp_s1->state == 0 && sp20->state == 0) {
+            func_8009ADF0((void *)arg0, 0xC, 0);
+        }
+        break;
+    case 2:
+        if (func_8009AD78((void *)arg0, 0xC) == 0) {
+            func_8009ADF0((void *)arg0, 0xC, 1);
+            bainvisible_entrypoint_1((void *)arg0, 750.0f, 135.0f);
+            func_8009BC08((void *)arg0, *(f32 **)(arg0 + 0xA8));
+            (*(f32 **)(arg0 + 0xA8))[3] = yaw_get((struct player_state_s *)arg0);
+            sp20->unk1C = 0;
+            sp20->unkC = 1.0f;
+            sp20->unk4 = 0.67f;
+            temp_s1->unk1C = 0;
+            temp_s1->unkC = 1.0f;
+            temp_s1->unk4 = 0.67f;
+            (*(f32 **)(arg0 + 0xA8))[4] = 0.0f;
+            func_808001BC_bainvisible((void *)arg0);
+        }
+        break;
+    case 3:
+        if (arg1 == temp_s1) {
+            func_8009DBF0((struct player_state_s *)arg0, 0x65E, 1.0f);
+        }
+        break;
+    case 4:
+        if (func_8009AD78((void *)arg0, 0xC) == 0) {
+            func_8009ADF0((void *)arg0, 0xC, 1);
+            sp20->unkC = 1.0f;
+            temp_s1->unkC = 1.0f;
+        }
+        ((f32 *)arg1)[9] = ((f32 *)arg1)[3];
+        ((f32 *)arg1)[10] = 0.0f;
+        break;
+    case 1:
+        ((u8 *)arg1)[0x1C] = 0;
+        ((f32 *)arg1)[2] = 1.0f;
+        break;
+    }
+}
 
 void func_808001BC_bainvisible(void *arg0) {
     f32 func_80013728(f32);
