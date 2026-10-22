@@ -202,7 +202,70 @@ void func_80800A18_chexploder(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_80800AC8_chexploder.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_80800D7C_chexploder.s")
+void func_80800D7C_chexploder(Actor *arg0, s32 arg1, f32 *arg2, s32 arg3) {
+    void *func_80100094(Actor *, u32);
+    u32 *func_80100074(Actor *, u32, u32);
+    u8 *func_801039E4(Unk80132ED0 *);
+    u8 *func_800B27E0(u8 *);
+    s32 _dbskeleton_entrypoint_0(u8 *);
+    s32 _dbskeleton_entrypoint_2(u8 *, s32, f32 *);
+    s32 _dbskeleton_entrypoint_4(u8 *, u32);
+    void func_800EFD24(f32 *);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    void func_800EEBF0(f32 *, f32 *, f32);
+    struct {
+        s16 unk0[7], count;
+        u8 pad10[0x4C];
+        f32 unk5C;
+    } *data;
+    struct {
+        f32 unk0[3], unkC[3], unk18[3], unk24[3];
+        s16 unk30, unk32;
+        u32 pad34 : 16;
+        u32 flag80 : 1;
+        u32 flag40 : 1;
+        u32 rest : 14;
+        u8 unk38, bone, unk3A, unk3B;
+    } *part;
+    u8 *skeleton;
+    s32 i;
+    f32 sp6C[3];
+    f32 sp60[3];
+
+    data = func_80100094(arg0, 0);
+    skeleton = func_800B27E0(func_801039E4(arg0->unk0));
+    data->count = _dbskeleton_entrypoint_0(skeleton);
+    part = (void *)func_80100074(arg0, 1, data->count * 0x3C);
+    for (i = 0; i < data->count; i++, part++) {
+        part->bone = _dbskeleton_entrypoint_4(skeleton, i);
+        _dbskeleton_entrypoint_2(skeleton, part->bone, part->unkC);
+        func_800EFD24(part->unk0);
+        func_800EE780(sp60, part->unkC, arg0->position);
+        func_800F18FC(arg2, sp60, sp6C);
+        func_800EEBF0(part->unk18, sp6C, 1000.0f);
+        part->unk24[0] = 0.0f;
+        part->unk24[1] = arg0->rotation[1];
+        part->unk24[2] = 0.0f;
+        if (arg3 & 0x10) {
+            part->flag80 = 1;
+        }
+        switch (part->bone) {
+        case 3:
+            if (arg3 & 0x20) {
+                part->flag40 = 1;
+            } else {
+                part->flag40 = 0;
+            }
+            break;
+        default:
+            part->flag40 = 1;
+            break;
+        }
+    }
+    data->unk5C = 1e10f;
+    func_800EFD24(arg0->rotation);
+}
 
 void func_80800F74_chexploder(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
