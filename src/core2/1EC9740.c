@@ -223,7 +223,80 @@ s32 func_800F05F8(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC9740/func_800F0734.s")
+s32 func_800F0734(f32 arg0[3], f32 arg1[3], void *arg2, f32 arg3, f32 arg4, f32 arg5[3], f32 arg6[3]) {
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFB24(f32 *, f32 *, f32 *);
+    void func_800EFA20(f32 *, f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    int func_800F0064(f32 *arg0, f32 arg1, f32 *arg2);
+    f32 start[3], end[3], delta[3], closest[3];
+    f32 projection;
+    f32 dot, lengthSquared;
+    f32 distanceSquared, radiusSquared, length, bottom, lower, upper;
+    f32 top;
+
+    func_800EFB24(start, arg0, arg2);
+    func_800EFB24(end, arg1, arg2);
+    func_800EFB24(delta, end, start);
+    dot = start[0] * delta[0] + start[2] * delta[2];
+    lengthSquared = delta[0] * delta[0] + delta[2] * delta[2];
+    if (lengthSquared != 0.0f) {
+        if (-dot / lengthSquared < 0.0f) {
+            func_800EE7F8(closest, start);
+        } else if (-dot / lengthSquared < 1.0f) {
+            func_800EFA20(closest, delta, -dot / lengthSquared);
+            func_800EF04C(closest, start);
+        } else {
+            func_800EE7F8(closest, end);
+        }
+        radiusSquared = arg3 * arg3;
+        distanceSquared = closest[0] * closest[0] + closest[2] * closest[2];
+        if (radiusSquared < distanceSquared) {
+            return 0;
+        }
+        length = sqrtf(lengthSquared);
+        radiusSquared = sqrtf(radiusSquared - distanceSquared) / length;
+        lower = -dot / lengthSquared > radiusSquared ? -dot / lengthSquared - radiusSquared : 0.0f;
+        projection = -dot / lengthSquared + radiusSquared;
+        if (projection < 1.0f) {
+            upper = projection;
+        } else {
+            upper = 1.0;
+        }
+        func_800EFE50(arg5, arg0, arg1, lower);
+        func_800EFE50(arg6, arg0, arg1, upper);
+        top = ((f32 *)arg2)[1] + arg4;
+        if (((f32 *)arg2)[1] <= arg5[1]) {
+            if (arg5[1] < top) {
+                return 1;
+            }
+        }
+        if (!(((f32 *)arg2)[1] <= arg6[1])) {
+            goto no_hit;
+        }
+        if (arg6[1] < top) {
+            return 1;
+        }
+no_hit:
+        return 0;
+    }
+    if (func_800F0064(arg0, arg3, arg2)) {
+        if (arg0[1] < ((f32 *)arg2)[1] && ((f32 *)arg2)[1] < arg1[1]) {
+            func_800EE7F8(arg5, arg2);
+            func_800EFA4C(arg6, ((f32 *)arg2)[0], ((f32 *)arg2)[1] + arg4, ((f32 *)arg2)[2]);
+            return 1;
+        }
+        top = ((f32 *)arg2)[1] + arg4;
+        if (top < arg0[1] && arg1[1] < top) {
+            func_800EFA4C(arg5, ((f32 *)arg2)[0], top, ((f32 *)arg2)[2]);
+            func_800EE7F8(arg6, arg2);
+            return 1;
+        }
+    }
+    return 0;
+}
 
 s32 func_800F0AA4(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
     f32 a, b, c;
