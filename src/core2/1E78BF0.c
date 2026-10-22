@@ -40,7 +40,17 @@ s32 func_8009F354(PlayerState *arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009F3BC.s")
+f32 func_8009F3BC(PlayerState *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+    f32 time = 0.0f;
+    f32 velocity = arg3;
+
+    while (velocity > 0.0f || arg2 < arg1) {
+        time += 0.01666666753590107f;
+        arg1 += velocity * 0.01666666753590107f;
+        velocity += arg4 * 0.01666666753590107f;
+    }
+    return time;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009F440.s")
 
