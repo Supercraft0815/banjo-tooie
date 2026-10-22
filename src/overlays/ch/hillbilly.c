@@ -25,7 +25,92 @@ void func_8080000C_chhillbilly(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hillbilly/func_80800064_chhillbilly.s")
+void func_80800064_chhillbilly(Actor *arg0) {
+    struct HillbillyFlags {
+        u8 pad0[0x74];
+        u8 flags74;
+        u8 pad75[3];
+        u32 pad78_3 : 29;
+        u32 unk78_2 : 1;
+        u32 pad78_0 : 2;
+    };
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
+    s32 _sucoaster_entrypoint_10(Actor *, s32);
+    s32 _sucoaster_entrypoint_13();
+    s32 _sucoaster_entrypoint_19(void *);
+    s32 _sucoaster_entrypoint_2();
+    u8 *_sucoaster_entrypoint_3();
+    void _sucoaster_entrypoint_7(Actor *, s32, f32);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EE940(s16 *, f32 *);
+    s32 func_80101DDC(Actor *);
+    void func_80102BF8(void *, f32, f32, f32);
+    f32 func_80102D78(Actor *, f32 *);
+    f32 func_8010CD28(Actor *);
+    s32 func_808002F0_chhillbilly(f32 *);
+    s32 func_808003C8_chhillbilly(u8 *);
+    s32 func_8080042C_chhillbilly(u8 *);
+    void func_80800944_chhillbilly(Actor *);
+    void func_808009D8_chhillbilly(Actor *, s32, s32);
+    extern u32 D_80800CA8_chhillbilly;
+    f32 sp34[3];
+    f32 sp28[3];
+
+    _sucoaster_entrypoint_2(arg0);
+    if (!((struct HillbillyFlags *)arg0)->unk78_2) {
+        _subaddieskeleton_entrypoint_3(arg0->unk0, 4, sp34);
+        func_800EE940((s16 *)_sucoaster_entrypoint_3(arg0), sp34);
+        switch (arg0->unk70_10) {
+        case 2:
+        case 3:
+        case 8:
+            if (func_8080042C_chhillbilly((u8 *)arg0)) {
+                _sucoaster_entrypoint_10(arg0, 20);
+                ((f32 *)arg0->actorData)[3] = 0.0f;
+            }
+            break;
+        case 19:
+            func_80800944_chhillbilly(arg0);
+            arg0->unk54 = func_8010CD28(arg0);
+            func_80102BF8(arg0, 0.2f, 60.0f, 300.0f);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800CA8_chhillbilly, 0.2f);
+            if (func_80101DDC(arg0)) {
+                _sucoaster_entrypoint_10(arg0, (((struct HillbillyFlags *)arg0)->flags74 & 1) ? 18 : (arg0->unk64_29 ? 2 : 8));
+            }
+            break;
+        case 20:
+            _sucoaster_entrypoint_19(arg0);
+            if (func_80101DDC(arg0)) {
+                func_808009D8_chhillbilly(arg0, 0x78A, 0);
+                _sucoaster_entrypoint_10(arg0, 22);
+            }
+            break;
+        case 21:
+            _sucoaster_entrypoint_19(arg0);
+            if (!_sucoaster_entrypoint_13(arg0)) {
+                if (func_808002F0_chhillbilly((f32 *)arg0)) {
+                    _sucoaster_entrypoint_10(arg0, 20);
+                    ((f32 *)arg0->actorData)[3] = 0.0f;
+                    return;
+                }
+                if (_subaddierouteDll_entrypoint_4(arg0)) {
+                    func_800EE88C(sp28, (s16 *)(_sucoaster_entrypoint_3(arg0) + 6));
+                    arg0->unk54 = func_80102D78(arg0, sp28);
+                }
+            }
+            _sucoaster_entrypoint_7(arg0, 0x5802, 30.0f);
+            break;
+        case 22:
+            if (func_808003C8_chhillbilly((u8 *)arg0)) {
+                func_808009D8_chhillbilly(arg0, 0x789, 0);
+                _sucoaster_entrypoint_10(arg0, 19);
+            }
+            break;
+        }
+    }
+}
 
 /* extern */
 
