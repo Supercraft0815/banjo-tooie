@@ -7,7 +7,35 @@ void glsplinecs_entrypoint_0(s32 arg0, s32 arg1, s32 arg2) {
     func_800D035C(1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/spline/cs/func_8080002C_glsplinecs.s")
+typedef struct SplineCSController SplineCSController;
+
+void func_8080002C_glsplinecs(SplineCSController *arg0, Actor *arg1, s32 arg2) {
+    void *func_80105494(Actor *);
+    struct {
+        u32 pad[16];
+        union {
+            u32 word;
+            struct {
+                u32 yawEnd:9;
+                u32 yaw:9;
+                u32 pitch:9;
+                u32 pad40:5;
+            } fields;
+        } angles;
+        unsigned int pad44:3;
+        unsigned int pitchEnd:9;
+        unsigned int pad45:20;
+    } *state;
+
+    state = func_80105494(arg1);
+    state->angles.word = (((((u32)arg1->rotation[1] & 0x1FF) ^ (state->angles.word >> 14)) << 23) >> 9) ^ state->angles.word;
+    state->angles.fields.yawEnd = (arg2 >> 16) & 0xFFFF;
+    state->angles.fields.pitch = arg1->rotation[0];
+    state->pitchEnd = arg2 & 0xFFFF;
+    arg1->unk54 = state->angles.fields.yaw;
+    arg1->unk50 = state->angles.fields.pitch;
+}
+
 
 typedef struct {
     u32 id:8;
@@ -57,7 +85,7 @@ typedef struct {
     s16 position[3];
     void *object;
 } SplineCSTarget;
-typedef struct {
+struct SplineCSController {
     u8 counters[0x80];
     u8 initialCounters[0x80];
     Unk80132ED0 *actors[36];
@@ -67,7 +95,7 @@ typedef struct {
     s32 *offsets;
     s32 pad1A0;
     SplineCSTarget *entries;
-} SplineCSController;
+};
 
 void func_80800228_glsplinecs(SplineCSController *arg0, Actor *arg1, s32 arg2, s32 arg3, s32 *arg4) {
     void *func_80105494(Actor *);
