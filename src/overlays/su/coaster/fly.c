@@ -216,7 +216,60 @@ void func_80801A80_sucoasterfly(s32 arg0) {
     func_800F5BF0(func_800F54E4(), arg0 + 0x18);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80801AB0_sucoasterfly.s")
+/* extern */
+
+s32 func_80801AB0_sucoasterfly(Actor *arg0) {
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    s32 _suchase_entrypoint_1(Actor *);
+    s32 func_801072A8(Actor *);
+    s32 func_8010C500(Actor *);
+    s32 func_8010C9B0(f32 *, s32);
+    s32 func_808014AC_sucoasterfly(Actor *, s32);
+    union {
+        u32 word;
+        struct {
+            u32 pad : 28;
+            u32 blocked : 1;
+            u32 rest : 3;
+        } bits;
+    } state;
+    union {
+        u32 word;
+        struct {
+            u32 unused : 1;
+            u32 enabled : 1;
+            u32 active : 1;
+            u32 rest : 29;
+        } bits;
+    } flags;
+
+    flags.word = *(u32 *)((u8 *)arg0 + 0x64);
+
+    if (!flags.bits.enabled) {
+        return 0;
+    }
+    if (flags.bits.active) {
+        return 1;
+    }
+    if ((func_801072A8(arg0) != 0) ||
+        (state.word = arg0->pad7A_0, state.bits.blocked)) {
+        return 0;
+    }
+    if (_subaddierouteDll_entrypoint_4(arg0) == 0) {
+        return 0;
+    }
+    if (func_8010C9B0(arg0->position, 0x578) == 0) {
+        return 0;
+    }
+    if (func_8010C500(arg0) == 0) {
+        return 0;
+    }
+    if (_suchase_entrypoint_1(arg0) == 0) {
+        return 0;
+    }
+    func_808014AC_sucoasterfly(arg0, 4);
+    return 1;
+}
 
 /* extern */
 
