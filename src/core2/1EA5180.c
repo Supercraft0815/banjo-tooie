@@ -271,7 +271,84 @@ s32 func_800CC6CC(void) {
     return (*(u16 *)((s8 *)(func_800CC63C()) + (0x14))) & 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CC6F4.s")
+s32 func_800CC6F4(s32 arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        f32 position[3];
+        s16 unkC;
+        s16 height;
+        f32 radius;
+        u32 unk14 : 12;
+        u32 type : 3;
+        u32 unk14_15 : 17;
+    } Region;
+    extern s32 D_8012AE94;
+    f32 func_800EFC7C(void *, void *);
+    s16 *group;
+    Region *cur;
+    Region *base;
+    Region *end;
+
+    group = (s16 *)(arg1 * 0x1C + D_8012AE94);
+    base = (Region *)func_800CB8F0(group);
+    cur = base + arg2;
+    switch (cur->type) {
+        case 0:
+            if (func_800EFC7C(cur->position, (void *)arg0) < cur->radius) {
+                return arg2;
+            }
+            break;
+        case 1:
+            if (cur->position[1] - cur->height < ((f32 *)arg0)[1] &&
+                ((f32 *)arg0)[1] < cur->position[1] + cur->height &&
+                func_800EFC7C(cur->position, (void *)arg0) < cur->radius) {
+                return arg2;
+            }
+            break;
+        case 2:
+            if (cur->position[1] - cur->height < ((f32 *)arg0)[1] &&
+                func_800EFC7C(cur->position, (void *)arg0) < cur->radius) {
+                return arg2;
+            }
+            break;
+        case 3:
+            if (((f32 *)arg0)[1] < cur->position[1] + cur->height &&
+                func_800EFC7C(cur->position, (void *)arg0) < cur->radius) {
+                return arg2;
+            }
+            break;
+    }
+
+    end = (Region *)func_800CB910(group);
+    for (cur = base; cur < end; cur++) {
+        switch (cur->type) {
+            case 0:
+                if (func_800EFC7C(cur->position, (void *)arg0) < cur->radius) {
+                    return cur - base;
+                }
+                break;
+            case 1:
+                if (cur->position[1] - cur->height < ((f32 *)arg0)[1] &&
+                    ((f32 *)arg0)[1] < cur->position[1] + cur->height &&
+                    func_800EFC7C(cur->position, (void *)arg0) < cur->radius) {
+                    return cur - base;
+                }
+                break;
+            case 2:
+                if (cur->position[1] - cur->height < ((f32 *)arg0)[1] &&
+                    func_800EFC7C(cur->position, (void *)arg0) < cur->radius) {
+                    return cur - base;
+                }
+                break;
+            case 3:
+                if (((f32 *)arg0)[1] < cur->position[1] + cur->height &&
+                    func_800EFC7C(cur->position, (void *)arg0) < cur->radius) {
+                    return cur - base;
+                }
+                break;
+        }
+    }
+    return -1;
+}
 
 s32 func_800CCAB0(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     typedef struct {
