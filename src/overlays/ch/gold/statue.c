@@ -50,7 +50,58 @@ void func_808000B4_chgoldstatue(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/statue/func_80800150_chgoldstatue.s")
+s32 func_80800150_chgoldstatue(s32 arg0, s32 arg1) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _capod_entrypoint_14(void);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void func_80090734(s32, f32 *);
+    s32 func_800DA298(s32);
+    void func_800DA3B8(s32, s32);
+    s32 func_800DA524(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F7D38(s32, s32, void *, f32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80102424(Actor *, s32);
+    s32 func_801032B0(Actor *, u16, u16);
+    void func_8010381C(Actor *);
+    Actor *actor = (Actor *)arg0;
+
+    func_80102424(actor, arg1);
+    switch (actor->unk70_10) {
+        case 2:
+            _subaddieDll_entrypoint_4(actor, 1);
+            func_801032B0(actor, 0x673, actor->unk0->unk16);
+            if (func_800DA298(0x57C) == 0) {
+                _capod_entrypoint_13(actor->unk0, 0, 2, 0x20);
+            } else {
+                _capod_entrypoint_13(actor->unk0, 0, 8, 0x20);
+            }
+            func_80101180(0x2B0, 0xBB, 2);
+            func_80800000_chgoldstatue(arg0);
+            func_80090734(2, actor->position);
+            break;
+        case 3:
+            func_800DA3B8(0x57C, 1);
+            break;
+        case 5:
+            _capod_entrypoint_14();
+            func_80800094_chgoldstatue(arg0);
+            func_800F7D38(func_800F54E4(), 0x3F, actor->position, actor->rotation[1]);
+            func_800DA524(0x9DE);
+            func_8010381C(actor);
+            actor->unk64_16 = 0;
+            break;
+        case 6:
+            if (actor->unk64_16) {
+                func_8010381C(actor);
+                actor->unk64_16 = 0;
+            }
+            break;
+        case 7:
+            func_801032B0(actor, 0x673, actor->unk0->unk16);
+            break;
+    }
+}
 
 /* extern */
 
