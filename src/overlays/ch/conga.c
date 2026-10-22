@@ -50,7 +50,55 @@ block_10:
     _subaddieitem_entrypoint_1(func_80100094(arg0, 0), 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/conga/func_80800118_chconga.s")
+void func_80800118_chconga(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddieitem_entrypoint_3(Actor *, f32 *, void *);
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    int func_800C6E38(s32);
+    void func_800D1824(s32);
+    s32 func_800DA544(s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80102424(Actor *, s32);
+    void func_80103DFC(Actor *, f32 *);
+    void func_80105854(Actor *);
+    void func_80800538_chconga(s32);
+    void func_80800618_chconga(Actor *);
+    f32 sp2C[3];
+
+    _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, 0);
+    switch (arg0->unk70_10) {
+    case 1:
+        func_800D1824(0x4D);
+        func_80800538_chconga((s32)arg0);
+        func_80800618_chconga(arg0);
+        break;
+    case 2:
+        func_800D1824(0x4D);
+        func_80800618_chconga(arg0);
+        break;
+    case 3:
+        func_800D1824(0x4D);
+        func_80103DFC(arg0, sp2C);
+        if (_subaddieitem_entrypoint_3(arg0, sp2C, func_80100094(arg0, 0)) != 0) {
+            func_800DA544(0x4A);
+            func_80102424(arg0, 2);
+            _subaddiedialog_entrypoint_11(arg0->unk0, arg0->actorData[4], 0xE, arg0->position, 0x52);
+            if (func_800C6E38(0x1B) && func_800C6E38(0x2D)) {
+                func_80101180(0x46E, 7, 0);
+            }
+        }
+        break;
+    case 4:
+        func_80105854(arg0);
+        break;
+    case 5:
+        func_80800618_chconga(arg0);
+        break;
+    }
+    _sudeflect_entrypoint_0(arg0->position, 150.0f, 175.0f, 0xA);
+}
 
 void func_80800280_chconga(Actor* arg0) 
 {
