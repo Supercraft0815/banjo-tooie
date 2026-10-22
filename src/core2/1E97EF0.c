@@ -9,7 +9,50 @@ extern s32 D_8012872C;
 extern s32 D_80128760;
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E97EF0/func_800BE600.s")
+f32 func_800BE600(f32 arg0[3], s32 arg1) {
+    s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
+    f32 func_800DC178(f32, f32);
+    s32 phi_s2;
+    f32 sp70[3];
+    f32 sp64[3];
+    f32 sp58[3];
+    s32 temp_s1;
+    s32 phi_s1;
+
+    sp64[0] = arg0[0];
+    sp64[1] = arg0[1];
+    sp64[2] = arg0[2];
+    sp64[1] += 200.0f;
+    sp58[0] = arg0[0];
+    sp58[1] = arg0[1];
+    sp58[2] = arg0[2];
+    sp58[1] -= 2000.0f;
+    if (func_800BEF00(sp64, sp58, sp70, arg1)) {
+        return sp58[1];
+    }
+    phi_s2 = 150;
+    phi_s1 = 1000;
+    do {
+        sp64[0] = arg0[0];
+        sp64[1] = arg0[1];
+        sp64[2] = arg0[2];
+        sp64[0] += func_800DC178(-1.0f, 1.0f);
+        sp64[1] += (f32) phi_s2;
+        sp64[2] += func_800DC178(-1.0f, 1.0f);
+        sp58[0] = arg0[0];
+        sp58[1] = arg0[1];
+        sp58[2] = arg0[2];
+        sp58[0] += func_800DC178(-1.0f, 1.0f);
+        sp58[1] -= (f32) phi_s1;
+        sp58[2] += func_800DC178(-1.0f, 1.0f);
+        if (func_800BEF00(sp64, sp58, sp70, arg1)) {
+            return sp58[1];
+        }
+        phi_s1 += 2000;
+        phi_s2 += 300;
+    } while (phi_s1 != 51000);
+    return 0.0f;
+}
 
 s32 func_800BE7F8(s32 arg0, s32 arg1) {
     s32 _glid_entrypoint_5(s32, s32);
