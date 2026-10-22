@@ -708,7 +708,43 @@ void func_80801924_chdragonbrothers(Actor *arg0, Actor *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80801A4C_chdragonbrothers.s")
+s32 func_80801A4C_chdragonbrothers(void *arg0, f32 arg1) {
+    f32 func_800D8FF8(void);
+    Actor *actor = arg0;
+    f32 dt;
+    f32 limit;
+
+    dt = func_800D8FF8();
+    if (arg1 > 2.0f) {
+        limit = arg1 * 15.5f;
+        if (limit < actor->unk50) {
+            actor->unk50 -= (actor->unk50 - arg1) * 0.006f * 60.0f;
+        } else {
+            actor->unk50 += arg1 * 0.015f * 60.0f;
+            if (limit < actor->unk50) {
+                actor->unk50 = limit;
+            }
+        }
+    } else if (arg1 < -2.0f) {
+        limit = arg1 * 15.5f;
+        if (actor->unk50 < limit) {
+            actor->unk50 -= (actor->unk50 - arg1) * 0.006f * 60.0f;
+        } else {
+            actor->unk50 += arg1 * 0.015f * 60.0f;
+            if (actor->unk50 < limit) {
+                actor->unk50 = limit;
+            }
+        }
+    } else {
+        actor->unk50 *= 0.9f;
+    }
+    if (actor->unk50 > 75.0f) {
+        actor->unk50 = 75.0f;
+    } else if (actor->unk50 < -75.0f) {
+        actor->unk50 = -75.0f;
+    }
+    actor->rotation[1] += actor->unk50 * dt;
+}
 
 void func_80801C44_chdragonbrothers(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
