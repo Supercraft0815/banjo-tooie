@@ -9,7 +9,38 @@ void func_80800000_chwaspstatue(s32 arg0) {
     func_80800134_chwaspstatue(arg0, func_800DA298(0x35A) ? 0x6 : 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspstatue/func_8080003C_chwaspstatue.s")
+void func_8080003C_chwaspstatue(Actor *actor) {
+    s32 func_800D2498(u32, s32, u32);
+    s32 func_800D90A4(f32 *);
+    int func_800D91EC(f32 *, f32);
+    s32 func_800DA298(s32);
+    void func_8010C93C(s32, s32, f32);
+    s32 func_80800134_chwaspstatue(s32, s32);
+
+    switch (actor->unk70_10) {
+    case 1:
+    case 6:
+        break;
+    case 2:
+        if (func_800D91EC(&actor->unk58, 2.0f) && func_800DA298(0x6D8)) {
+            func_80800134_chwaspstatue((s32)actor, 3);
+        }
+        func_800D2498(0xFF, actor->unk6C_0, 0);
+        break;
+    case 3:
+        func_800D2498(0xFF, actor->unk6C_0, 0);
+        break;
+    case 4:
+        if (func_800D90A4(&actor->unk58)) {
+            func_80800134_chwaspstatue((s32)actor, 1);
+        }
+        break;
+    case 5:
+        func_80800134_chwaspstatue((s32)actor, 6);
+        break;
+    }
+    func_8010C93C((s32)actor, (s32)actor->position, 0.75f);
+}
 
 s32 func_80800134_chwaspstatue(s32 arg0, s32 arg1) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
