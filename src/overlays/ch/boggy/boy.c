@@ -46,7 +46,55 @@ void func_8080000C_chboggyboy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/boy/func_80800570_chboggyboy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/boy/func_808006C4_chboggyboy.s")
+void func_808006C4_chboggyboy(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);
+    void func_800DA544(GameFlag);
+    s32 func_80101180(s32, s32, s32);
+    void func_80102424(Actor *, s32);
+    void func_80102924(void *, f32);
+    void func_8010A590(Actor *);
+    void func_808009F4_chboggyboy(Actor *);
+    extern s32 D_80800C00_chboggyboy;
+    struct {
+        u8 pad0[8];
+        u8 route[12];
+        s16 timer;
+        u8 pad16 : 1;
+        u8 active : 1;
+        u8 dialog : 1;
+        u8 pad16_0 : 5;
+    } *sp24;
+
+    sp24 = func_80100094(arg0, 0U);
+    switch (arg1) {
+    case 0x108A:
+        func_800DA544(0x8C);
+        func_80101180(0x13F, 0x23, 0);
+        func_80102424(arg0, 5);
+        _subaddieDll_entrypoint_4(arg0, 1);
+        func_808009F4_chboggyboy(arg0);
+        return;
+    case 0x1098:
+    case 0x1099:
+        sp24->dialog = 0;
+        return;
+    default:
+        switch (_subaddiedialog_entrypoint_9(arg0, arg1, &D_80800C00_chboggyboy, 3)) {
+        case 1:
+            func_8010A590(arg0);
+            sp24->active = 1;
+        case 2:
+            func_80102924(arg0, arg0->rotation[1] + 180.0f);
+            func_80102424(arg0, 3);
+            sp24->timer = 0;
+            return;
+        default:
+            func_80102424(arg0, 1);
+            return;
+        }
+    }
+}
 
 void func_808007F4_chboggyboy(Actor *arg0) {
     s32 _subaddiefx_entrypoint_1(Actor *, u8 *);
