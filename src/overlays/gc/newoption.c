@@ -870,7 +870,110 @@ void gcnewoption_entrypoint_34(void *arg0, s16 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80801E68_gcnewoption.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_808020C4_gcnewoption.s")
+s32 func_808020C4_gcnewoption(void *arg0) {
+    int _gczoombox_entrypoint_10();
+    s32 _gczoombox_entrypoint_3();
+    s32 _gczoombox_entrypoint_33(s32);
+    s32 i;
+    s32 busy;
+    s32 result;
+    s32 state;
+    s32 firstState;
+    s32 headerState;
+    s32 finalState;
+    s32 box;
+    u8 *ptr;
+    s8 *stateptr;
+
+    result = 1;
+    busy = 0;
+    i = 0;
+    if (*(s16 *)((u8 *)arg0 + 2) > 0) {
+        ptr = arg0;
+        do {
+            firstState = _gczoombox_entrypoint_3(*(s32 *)(ptr + 0x3C));
+            if (firstState == 0 || firstState == 2 || firstState == 3) {
+                busy = 1;
+            }
+            i++;
+            ptr += 4;
+        } while (i < *(s16 *)((u8 *)arg0 + 2));
+        i = 0;
+    }
+    box = *(s32 *)((u8 *)arg0 + 0x20);
+    if (box != 0) {
+        headerState = _gczoombox_entrypoint_3(box);
+        switch (headerState) {
+            case 0:
+            case 2:
+            case 3:
+                busy = 1;
+                break;
+        }
+    }
+    if (*(s16 *)((u8 *)arg0 + 2) > 0) {
+        ptr = arg0;
+        do {
+            state = _gczoombox_entrypoint_3(*(s32 *)(ptr + 0x3C));
+            switch (state) {
+                case 0:
+                case 2:
+                case 3:
+                    stateptr = (s8 *)arg0 + i;
+                    result = 0;
+                    if (state != stateptr[0x94]) {
+                        _gczoombox_entrypoint_33(*(s32 *)(ptr + 0x3C));
+                    }
+                    stateptr[0x94] = state;
+                    break;
+                case 4:
+                    result = 0;
+                    if (busy == 0) {
+                        stateptr = (s8 *)arg0 + i;
+                        if (state != stateptr[0x94]) {
+                            _gczoombox_entrypoint_10(*(s32 *)(ptr + 0x3C));
+                        }
+                        stateptr[0x94] = state;
+                    }
+                    break;
+                case 5:
+                    ((u8 *)arg0 + i)[0x94] = state;
+                    break;
+                default:
+                    ((u8 *)arg0 + i)[0x94] = state;
+                    break;
+            }
+            i++;
+            ptr += 4;
+        } while (i < *(s16 *)((u8 *)arg0 + 2));
+    }
+    box = *(s32 *)((u8 *)arg0 + 0x20);
+    if (box != 0) {
+        finalState = _gczoombox_entrypoint_3(box);
+        switch (finalState) {
+            case 1:
+            case 5:
+            case 6:
+                break;
+            case 0:
+            case 2:
+            case 3:
+                result = 0;
+                if (finalState != ((u8 *)arg0)[0x24]) {
+                    _gczoombox_entrypoint_33(*(s32 *)((u8 *)arg0 + 0x20));
+                }
+                break;
+            case 4:
+                result = 0;
+                if (finalState != ((u8 *)arg0)[0x24]) {
+                    _gczoombox_entrypoint_10(*(s32 *)((u8 *)arg0 + 0x20));
+                }
+                break;
+        }
+        ((u8 *)arg0)[0x24] = finalState;
+    }
+    return result;
+}
 
 s32 func_808022E0_gcnewoption(void *arg0) {
     int _gczoombox_entrypoint_10();
