@@ -60,7 +60,58 @@ void func_80800340_chmineprospector(Actor *arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800398_chmineprospector.s")
+s32 func_80800398_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    s32 _suexpression_entrypoint_12(void *, s32, s32);
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    void func_800DA544(GameFlag);
+    void func_80102424(Actor *, s32);
+    void func_808006EC_chmineprospector(Actor *, s32, s32);
+    void func_8080084C_chmineprospector(Actor *, s32, s32);
+    void func_808008A4_chmineprospector(Actor *);
+    s32 func_80800910_chmineprospector(Actor *, s32, s32);
+    void func_80800970_chmineprospector(Actor *);
+    extern s32 D_80800FBC_chmineprospector;
+    s32 *data;
+
+    switch (arg1) {
+    case 0xB:
+        if (arg2 == 8) {
+            func_80800970_chmineprospector(arg0);
+            return 4;
+        }
+        return 3;
+    case 0x2E:
+        func_808006EC_chmineprospector(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x2F:
+        func_8080084C_chmineprospector(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x31:
+        func_800DA544(0x83);
+        func_80102424(arg0, 5);
+        break;
+    case 0x3D:
+        func_808008A4_chmineprospector(arg0);
+        break;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_80800FBC_chmineprospector, arg0->scale);
+        _gcdialogcamera_entrypoint_4((f32 *)&arg0->actorData[4]);
+        break;
+    case 0x57:
+        return func_80800910_chmineprospector(arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+    case 0x95:
+        data = func_80100094(arg0, 0U);
+        _suexpression_entrypoint_7(arg0, 1, 0x3F);
+        _suexpression_entrypoint_12(func_80100094(arg0, 1U), 0x42700000, 0x41A00000);
+        data[4] = 0;
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 s32 func_80800540_chmineprospector(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3) {
     s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
