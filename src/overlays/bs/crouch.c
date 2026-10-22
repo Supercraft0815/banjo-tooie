@@ -246,4 +246,81 @@ s32 func_808006A4_bscrouch(void *arg0) {
     return sp20;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/crouch/bscrouch_entrypoint_4.s")
+s32 bscrouch_entrypoint_4(void *arg0, s32 arg1) {
+    struct player_state_s;
+    int bs_getTypeOfJump(struct player_state_s *);
+    s32 _suinv_entrypoint_0(s32 *, s32, s32, s32, s32);
+    int bakey_pressed(struct player_state_s *, int);
+    int bakey_released(struct player_state_s *, int);
+    int bainput_should_wonderwing(struct player_state_s *);
+    int bainput_should_trot(struct player_state_s *);
+    int bainput_should_poop_egg(struct player_state_s *);
+    int bainput_should_shoot_egg(struct player_state_s *);
+    int bainput_should_flap_flip(struct player_state_s *);
+    int bainput_should_beak_barge(struct player_state_s *);
+    s32 func_8008E0C8(struct player_state_s *);
+    s32 func_8008E23C(struct player_state_s *);
+    s32 func_80094B14(struct player_state_s *);
+    s32 func_800A055C(struct player_state_s *, s32);
+    int func_800C6E38(s32);
+    s32 temp_v0;
+
+    if (bakey_released(arg0, 1) != 0) {
+        arg1 = 1;
+        if (bakey_pressed(arg0, 9) != 0) {
+            arg1 = func_800A055C(arg0, arg1);
+        }
+        if (bakey_pressed(arg0, 8) != 0) {
+            arg1 = bs_getTypeOfJump(arg0);
+        }
+        return arg1;
+    } else if (func_8008E23C(arg0) != 0) {
+        if ((bakey_pressed(arg0, 0xB) != 0) && (func_800C6E38(0x21) != 0)) {
+            arg1 = 0x16A;
+        } else if ((bakey_pressed(arg0, 0xC) != 0) && (func_800C6E38(0x2A) != 0)) {
+            arg1 = 0x163;
+        } else if ((bakey_pressed(arg0, 0xD) != 0) && (func_800C6E38(0x23) != 0)) {
+            arg1 = 0x171;
+        } else if ((bakey_pressed(arg0, 0xA) != 0) && (func_800C6E38(0x27) != 0)) {
+            if (func_8008E0C8(arg0) == 0) {
+                arg1 = 0x122;
+            } else {
+                temp_v0 = func_808006A4_bscrouch(arg0);
+                switch (temp_v0) {
+                case 0:
+                    break;
+                case 1:
+                    arg1 = 0x129;
+                    break;
+                case 2:
+                    arg1 = 0x128;
+                    break;
+                }
+            }
+        }
+        if (bakey_pressed(arg0, 8) != 0) {
+            arg1 = 0x6C;
+        }
+        return arg1;
+    } else {
+        if (bainput_should_wonderwing(arg0) != 0) {
+            _suinv_entrypoint_0(&arg1, -1, 0x1A, 0x47, 1);
+        }
+        if (bainput_should_trot(arg0) != 0) {
+            arg1 = 0x14;
+        }
+        if ((bainput_should_poop_egg(arg0) != 0) && (func_80094B14(arg0) != 0)) {
+            arg1 = 0xA;
+        }
+        if ((bainput_should_shoot_egg(arg0) != 0) && (func_80094B14(arg0) != 0)) {
+            arg1 = 9;
+        }
+        if (bainput_should_flap_flip(arg0) != 0) {
+            arg1 = 0x12;
+        }
+        if (bainput_should_beak_barge(arg0) != 0) {
+            arg1 = 0x13;
+        }
+    }
+    return arg1;
+}
