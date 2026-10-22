@@ -745,7 +745,85 @@ void func_80801A94_chhoopswoop()
     func_80101870();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80801AB4_chhoopswoop.s")
+s32 func_80801AB4_chhoopswoop(Actor *arg0) {
+    typedef struct {
+        s32 side[8];
+        s32 initialized[8];
+        s32 points;
+    } HoopData;
+    typedef struct {
+        s32 count;
+        s32 score;
+        u8 pad8[0x4D4];
+        u8 multiplayer[1];
+    } ParentData;
+    void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
+    s32 _gcstatusDll_entrypoint_11();
+    void _sumultiscore_entrypoint_7(u8 *, s32, s32, s32);
+    s32 func_800D3948(void);
+    f32 func_800EEAA4(f32 *, f32 *);
+    f32 func_800EEFD4(f32 *);
+    void func_800EF3DC(f32 *, f32 *);
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6438(u32);
+    void *func_80100094(Actor *, u32);
+    f32 func_80103F38(Actor *, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80801D20_chhoopswoop(s32, s32, s32);
+    f32 position[3];
+    s32 side;
+    s32 i;
+    f32 radius;
+    ParentData *parent;
+    HoopData *data;
+    f32 forward[3];
+    s32 points;
+
+    parent = func_80100094(func_80106790(arg0->unk3C), 0);
+    radius = func_80103F38(arg0, NULL);
+    if (arg0->unk64_20) {
+        return 0;
+    }
+    data = func_80100094(arg0, 0);
+    i = 0;
+    if (i < _gcstatusDll_entrypoint_11()) {
+      do {
+        points = i;
+        if (func_800F6438(points)) {
+            func_800F5A00(points, position);
+            position[1] += 50.0f;
+            func_800EF3DC(position, arg0->position);
+            if (data->initialized[points] && func_800EEFD4(position) < radius * radius) {
+                func_800EFA4C(forward, 0, 0, 1);
+                func_800EF934(forward, forward, arg0->rotation[1]);
+                if (func_800EEAA4(position, forward) >= 0.0f) {
+                    side = 1;
+                } else {
+                    side = -1;
+                }
+                if (side == -data->side[points]) {
+                    points = data->points + 1;
+                    if (func_800D3948()) {
+                        _sumultiscore_entrypoint_7(parent->multiplayer, i, 7, points);
+                    } else {
+                        parent->score += points;
+                        func_80801D20_chhoopswoop((s32)arg0, 0x9E2, 10);
+                    }
+                    arg0->unk64_20 = 1;
+                    _chscorepoints_entrypoint_2(points, i, arg0->position, 1);
+                    return 1;
+                }
+            }
+            data->initialized[points] = 1;
+            data->side[points] = side;
+        }
+        i++;
+      } while (i < _gcstatusDll_entrypoint_11());
+    }
+    return 0;
+}
 
 void func_80801D20_chhoopswoop(s32 arg0, s32 arg1, s32 arg2) {
     s32 func_800B53A4(s32);
