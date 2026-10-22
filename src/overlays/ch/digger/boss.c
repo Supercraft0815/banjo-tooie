@@ -1291,7 +1291,61 @@ void func_80804784_chdiggerboss(s32 arg0) {
     (*(s8 *)((s8 *)(func_80100094(arg0, 0)) + (0x1A))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808047A8_chdiggerboss.s")
+void func_808047A8_chdiggerboss(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    f32 func_800D8FF8(void);
+    f32 func_800F15F8(f32, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_80804AC8_chdiggerboss(Actor *, s32);
+    void func_808049DC_chdiggerboss(Actor *);
+    void func_800C4B64(f32);
+    void func_800C4B70(s32);
+    void func_800C31DC(u8, f32);
+    void func_800C3058(u8, s32);
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
+    extern s32 D_8080A028_chdiggerboss[];
+    typedef struct {
+        u8 pad0[0x18];
+        s16 state;
+        u8 sound;
+        u8 pad1B;
+        f32 angle;
+        f32 speed;
+    } DiggerBossData;
+    DiggerBossData *data;
+    s32 active;
+    f32 volume;
+    s32 rate;
+
+    data = func_80100094(arg0, 0);
+    switch (data->state) {
+        case 0:
+            data->speed = func_800F15F8(data->speed, 0.0f, func_800D8FF8() * 0.4f);
+            func_80804AC8_chdiggerboss(arg0, 0);
+            break;
+        case 1:
+            data->speed = func_800F15F8(data->speed, 0.2f, func_800D8FF8() * 0.4f);
+            func_80804AC8_chdiggerboss(arg0, 1);
+            break;
+        case 2:
+            data->speed = func_800F15F8(data->speed, 1.0f, func_800D8FF8() * 0.4f);
+            func_80804AC8_chdiggerboss(arg0, 1);
+            break;
+    }
+    active = data->speed > 0.0f;
+    func_808049DC_chdiggerboss(arg0);
+    volume = func_800F10B4(data->speed, 0.0f, 1.0f, 0.7f, 1.1f);
+    rate = func_800F10B4(data->speed, 0.0f, 1.0f, 22000.0f, 32000.0f);
+    if (data->sound == 0) {
+        func_800C4B64(volume);
+        func_800C4B70(rate);
+    }
+    data->sound = _subaddieaudioloop_entrypoint_7(data->sound, arg0->position, active, D_8080A028_chdiggerboss, arg0->unk70_0);
+    if (data->sound != 0) {
+        func_800C31DC(data->sound, volume);
+        func_800C3058(data->sound, rate);
+    }
+}
 
 void func_808049A8_chdiggerboss(s32 arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
