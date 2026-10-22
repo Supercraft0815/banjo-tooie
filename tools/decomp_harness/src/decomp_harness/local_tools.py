@@ -259,7 +259,7 @@ def run_permuter(builder, workspace: Path, function, candidate: bytes, original:
         if code or not imported.is_dir():
             return None
         builder.invoke(['timeout', str(int(seconds)), 'python3', 'tools/decomp-permuter/permuter.py',
-                        f'.permuter/{name}/nonmatchings/{function["symbol"]}', '--stop-on-zero', '--quiet',
+                        f'.permuter/{name}/nonmatchings/{function["symbol"]}', '--stack-diffs', '--stop-on-zero', '--quiet',
                         '-j', str(builder.config['build']['jobs'])], log_dir/'permuter.log')
         results = []
         for output in imported.glob('output-*'):
