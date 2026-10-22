@@ -23,7 +23,7 @@ void baeggsetup_entrypoint_1(s32 arg0) {
     void _cheggfire_entrypoint_1(f32 *, f32 *, f32 *, s32);
     void _cheggice_entrypoint_1(f32 *, f32 *, f32 *, s32);
     void _chegggrenade_entrypoint_2(f32 *, f32 *, f32 *, s32);
-    void _cheggclockwork_entrypoint_1(f32 *, f32 *, f32 *, s32, s32);
+    Actor *_cheggclockwork_entrypoint_1(f32 *, f32 *, f32 *, s32, s32);
     void _chegggolden_entrypoint_1(f32 *, f32 *, f32 *, s32);
     f32 sp54[3];
     f32 sp48[3];
@@ -96,12 +96,50 @@ void baeggsetup_entrypoint_2(PlayerState *arg0, s32 arg1, f32 arg2, f32 arg3) {
     _chbaddiesetup_entrypoint_1(&_baeggsetup_entrypoint_1, *(s32 *)((u8 *)arg0 + 0x184));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/egg/setup/baeggsetup_entrypoint_3.s")
+s32 baeggsetup_entrypoint_3(s32 arg0, s32 arg1, u8 *arg2, u8 *arg3, u8 *arg4) {
+    u8 *func_800F53D0(s32);
+    void _bababykaz_entrypoint_13(u8 *);
+    Actor *_cheggclockwork_entrypoint_1(f32 *, f32 *, f32 *, s32, s32);
+    s32 _cheggfire_entrypoint_2(u8 *, u8 *, u8 *, s32);
+    s32 _chegggolden_entrypoint_2(u8 *, u8 *, u8 *, s32);
+    s32 _chegggrenade_entrypoint_3(u8 *, u8 *, u8 *, s32);
+    s32 _cheggice_entrypoint_2(u8 *, u8 *, u8 *, s32);
+    s32 _cheggnormal_entrypoint_2(u8 *, u8 *, u8 *, s32);
+    s32 _cheggproximity_entrypoint_1(u8 *, u8 *, u8 *, s32);
+    u8 *player;
+
+    player = func_800F53D0(arg0);
+    switch (arg1) {
+    case 1:
+        _cheggnormal_entrypoint_2(arg2, arg3, arg4, arg0);
+        return;
+    case 2:
+        _cheggfire_entrypoint_2(arg2, arg3, arg4, arg0);
+        return;
+    case 3:
+        _cheggice_entrypoint_2(arg2, arg3, arg4, arg0);
+        return;
+    case 4:
+        _chegggrenade_entrypoint_3(arg2, arg3, arg4, arg0);
+        return;
+    case 5:
+        _bababykaz_entrypoint_13(player);
+        _cheggclockwork_entrypoint_1(arg2, arg3, arg4, arg0, func_80800008_baeggsetup(player));
+        return;
+    case 7:
+        _chegggolden_entrypoint_2(arg2, arg3, arg4, arg0);
+        return;
+    case 6:
+        _cheggproximity_entrypoint_1(arg2, arg3, arg4, arg0);
+    default:
+        return;
+    }
+}
 
 /* extern */
 
 void baeggsetup_entrypoint_4(s32 arg0) {
-    s32 baeggsetup_entrypoint_3(s32, u8, u8 *, u8 *, u8 *);
+    s32 baeggsetup_entrypoint_3(s32, s32, u8 *, u8 *, u8 *);
     u8 *func_800F53D0();
     u8 *temp_a2;
 
