@@ -222,7 +222,49 @@ void func_80800968_chnastycavemen(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_808009BC_chnastycavemen.s")
+s32 func_808009BC_chnastycavemen(Actor *arg0, s32 arg1, s32 arg2) {
+    Prop *_gccubesearch_entrypoint_1(u32, f32[3]);
+    s32 _glcutDll_entrypoint_19(s32);
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    s32 func_800DA298(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F640C(s32, s32);
+    void func_800FFA88(Unk80132ED0 *);
+    void func_80105A9C(Actor *, f32);
+    void func_80108A30(s32, void *, f32, s32);
+    struct NastyFlags { u32 pad : 15; u32 active : 1; u32 rest : 16; };
+    s32 sp2C;
+    Prop *sp28;
+
+    switch (arg1) {
+    case 0x95:
+        sp2C = _glcutDll_entrypoint_19(0x34);
+        func_80800968_chnastycavemen();
+        func_80105A9C(arg0, 440.0f);
+        ((struct NastyFlags *)&arg0->pad94)->active = 1;
+        if (sp2C == 0) {
+            if (func_800DA298(0x5A)) {
+                func_800FFA88(arg0->unk0);
+            } else if (func_800F640C(func_800F54E4(), 0x1D9) == 0) {
+                sp28 = _gccubesearch_entrypoint_1(0x1C0, arg0->position);
+                _gspropctrl_entrypoint_11(sp28, (f32 *)arg0->actorData);
+                func_80108A30(0x1D9, arg0->actorData, sp28->FlagOrRotation, 0);
+            }
+        } else {
+            func_80800268_chnastycavemen(arg0, 2, sp2C);
+        }
+        break;
+    case 0xB:
+        arg0->unk74_29 = 1;
+        return 3;
+    case 0x2E:
+        arg0->unk74_30 = 1;
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
