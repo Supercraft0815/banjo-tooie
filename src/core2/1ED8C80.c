@@ -100,7 +100,131 @@ void func_800FF4A4(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FF564.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FF62C.s")
+void func_800FF62C(void) {
+    typedef struct {
+        u8 prefix[0x74];
+        u32 pad0 : 4;
+        u32 animate : 1;
+        u32 pad1 : 21;
+        u32 directRotation : 1;
+        u32 alternateUpdate : 1;
+        u32 pad2 : 4;
+    } UpdateFlags;
+    typedef struct {
+        u8 prefix[0x78];
+        u32 pad : 28;
+        u32 bounce : 1;
+        u32 tail : 3;
+    } BounceFlags;
+    typedef struct {
+        u8 pad[0x24];
+        u32 pad24 : 16;
+        u32 pitch : 9;
+        u32 pad26 : 7;
+        u32 yaw : 9;
+        u32 roll : 9;
+        u32 pad28 : 14;
+    } MarkerRotation;
+    typedef struct {
+        u8 pad[0xC];
+        void (*update)(Actor *);
+        void (*alternateUpdate)(Actor *);
+    } ActorCallbacks;
+    s32 func_800BEC1C(void);
+    int func_800DB9B0(void);
+    s32 func_8010D1E8(void);
+    void func_800E3980(f32 *);
+    void func_8010D254(f32 *);
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    s32 func_8010038C(Actor *, f32 *);
+    void *func_80100368(void *);
+    struct anctrl_s *func_80104248(void *);
+    s32 func_8008ADE4(s32);
+    void func_801061D8(Actor *);
+    void _subaddiefade_entrypoint_7(Actor *);
+    void func_80106F70(Actor *);
+    void func_80104780(s32);
+    void _chbounce_entrypoint_8(Actor *);
+    void func_80103014(u8 *);
+    void _subaddiezone_entrypoint_0(void *);
+    f32 func_800136E4(f32);
+    void func_80103040(Actor *);
+    void func_8010DF3C(void);
+    s32 pad[2];
+    s32 iterator;
+    f32 position[3];
+    Actor *actor;
+    MarkerRotation *marker;
+    ActorCallbacks *callbacks;
+    int updateZone;
+
+    if (func_800BEC1C()) {
+        updateZone = 1;
+    } else {
+        updateZone = 0;
+    }
+    func_8010D1E8();
+    if (func_800DB9B0() != 0) {
+        func_800E3980(position);
+    } else {
+        func_8010D254(position);
+    }
+    for (actor = func_801067C4(&iterator); actor != NULL; actor = func_8010682C(&iterator)) {
+        marker = (MarkerRotation *)actor->unk0;
+        if (actor->unk64_17) {
+            continue;
+        }
+            if (((UpdateFlags *)actor)->alternateUpdate) {
+                if (func_8010038C(actor, position)) {
+                    callbacks = func_80100368(actor);
+                    callbacks->alternateUpdate(actor);
+                }
+            } else {
+                func_80100120(actor);
+                if (func_8010038C(actor, position)) {
+                    callbacks = func_80100368(actor);
+                    if (callbacks->update != NULL) {
+                        callbacks->update(actor);
+                    }
+                }
+            }
+            if (((s16 *)&actor->pad8C)[0] != 0 &&
+                ((UpdateFlags *)actor)->animate) {
+                func_8008ADE4(func_80104248(actor));
+            }
+            if (((s16 *)&actor->pad90)[0] != 0) {
+                func_801061D8(actor);
+            }
+            if (*(u16 *)&actor->unk78 & 3) {
+                _subaddiefade_entrypoint_7(actor);
+            }
+            if ((actor->pad94 << 2) >> 22) {
+                func_80106F70(actor);
+            }
+            if (((s16 *)&actor->pad8C)[1] != 0) {
+                func_80104780(actor);
+            }
+            if (((BounceFlags *)actor)->bounce) {
+                _chbounce_entrypoint_8(actor);
+                func_80103014(actor);
+                if (updateZone) {
+                    _subaddiezone_entrypoint_0(actor);
+                }
+            } else if (!((UpdateFlags *)actor)->directRotation) {
+                func_80103014(actor);
+                if (updateZone) {
+                    _subaddiezone_entrypoint_0(actor);
+                }
+            } else {
+                marker->yaw = func_800136E4(actor->rotation[1]);
+                marker->pitch = func_800136E4(actor->rotation[0]);
+                marker->roll = func_800136E4(actor->rotation[2]);
+            }
+            func_80103040(actor);
+    }
+    func_8010DF3C();
+}
 
 /* extern */
 
