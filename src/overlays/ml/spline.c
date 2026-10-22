@@ -202,7 +202,20 @@ void mlspline_entrypoint_6(f32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_800EFB24(arg3, arg2 + 0xC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/mlspline_entrypoint_7.s")
+void mlspline_entrypoint_7(f32 arg0, u8 arg1, f32 *arg2, f32 *arg3) { u32 end; f32 a; f32 b; f32 c; u32 i; f32 *point; volatile f32 *out;
+    goto initialize_output;
+initialize_bound:
+    end = 12;
+    goto calculate;
+initialize_points:
+    i = 0; point = arg2;
+    goto initialize_bound;
+initialize_output:
+    out = arg3;
+    goto initialize_points;
+calculate:
+    for (; (i ^ end) != 0; i += 4) { a = point[0]; b = point[3]; c = point[6]; *out = ((a - 2.0f * b) + c) * (4 * arg0) + ((4.0f * b - 3.0f * a) - c); point++; out++; }
+}
 
 void mlspline_entrypoint_8(f32 arg0, s32 arg1, f32 *arg2, volatile f32 *arg3)
 {
