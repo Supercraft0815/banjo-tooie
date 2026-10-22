@@ -112,7 +112,91 @@ position_actor:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_8080079C_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800908_chstoneballcontrol.s")
+void func_80800908_chstoneballcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    u32 func_800FDC28(u32);
+    void func_80801734_chstoneballcontrol(Actor *, s32);
+    s32 _sumultiscore_entrypoint_2(s32 *, s32 *, s32 *, s32, s32);
+    void func_800FC6B0(u32);
+    s32 func_800D2054(s32, s32, s32);
+    s32 func_800DA544(s32);
+    s32 func_80101FDC();
+    struct StoneballScore {
+        u8 pad0[0x20];
+        s32 scores[4];
+        u8 winners[4];
+        u8 pad34[5];
+        u8 mode;
+        u8 count;
+        s8 result;
+    } *data;
+    s32 places[4];
+    s32 ties[4];
+    s32 result;
+    u32 dialog;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    arg0->unk70_10 = 6;
+    func_800FDC28(0);
+    func_80801734_chstoneballcontrol(arg0, 1);
+    result = _sumultiscore_entrypoint_2(data->scores, places, ties, 0, data->count);
+    if (data->mode < 3) {
+        if (arg0->unk64_19) {
+            switch (places[0]) {
+                case 1:
+                    if (ties[0] == 0) {
+                        func_800FC6B0(0x16);
+                        func_80800000_chstoneballcontrol(&arg0->unk0, 0xF4D, 0x200);
+                        return;
+                    }
+                case 2:
+                case 3:
+                case 4:
+                    func_80800000_chstoneballcontrol(&arg0->unk0, 0xF4E, 0x200);
+                    func_800FC6B0(0x17);
+                    return;
+            }
+        } else {
+            switch (places[0]) {
+                case 1:
+                    if (ties[0] == 0) {
+                        func_800D2054(0, data->mode + 0x8E, data->scores[0]);
+                        func_800DA544(0x9CB);
+                        func_800FC6B0(0x16);
+                        func_80101FDC(arg0, 8);
+                        arg0->unk58 = 2.5f;
+                        return;
+                    }
+                case 2:
+                case 3:
+                    func_800FC6B0(0x17);
+                    func_80800000_chstoneballcontrol(&arg0->unk0, 0xF21, 0x200);
+                    return;
+                case 4:
+                    func_80800000_chstoneballcontrol(&arg0->unk0, 0xF22, 0x200);
+                    func_800FC6B0(0x17);
+                    return;
+            }
+        }
+    } else {
+        for (i = 0; i < data->count; i++) {
+            if (places[i] == 1) {
+                data->winners[i] = 1;
+            } else {
+                data->winners[i] = 0;
+            }
+        }
+        if (result != 0) {
+            dialog = 0xF51;
+            data->result = result;
+        } else {
+            dialog = 0xF52;
+        }
+        func_800FC6B0(0x10);
+        func_80800000_chstoneballcontrol(&arg0->unk0, dialog, 0);
+    }
+}
 
 void func_80800B4C_chstoneballcontrol(void *arg0, s32 arg1) {
     void func_80102424(Actor *, s32);
