@@ -76,7 +76,38 @@ void func_808006A8_chseaweedbaddy(s32 arg0, s32 arg1) {
     func_80101870(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_80800710_chseaweedbaddy.s")
+void func_80800710_chseaweedbaddy(u8 *arg0, s32 arg1) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    f32 func_8010CD28(Actor *);
+    void func_8010D254(f32 *);
+    f32 *data;
+    Actor *actor = (Actor *)arg0;
+
+    data = func_80100094(actor, 1);
+    switch (arg1) {
+    case 1:
+        _subaddieDll_entrypoint_4(actor, 0);
+        break;
+    case 2:
+        _subaddieDll_entrypoint_4(actor, 1);
+        break;
+    case 3:
+        func_8010D254((f32 *)actor->actorData);
+        data[3] = func_8010CD28(actor);
+        break;
+    case 6:
+        func_800EE7F8((f32 *)actor->actorData, data);
+        actor->unk58 = 1.4f;
+        break;
+    case 7:
+        actor->unk58 = 1.4f;
+        break;
+    }
+    func_80102424(actor, arg1);
+}
 
 /* extern */
 
