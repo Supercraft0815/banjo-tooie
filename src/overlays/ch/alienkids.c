@@ -90,7 +90,64 @@ void func_80800408_chalienkids(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80800D58_chalienkids.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80800DB8_chalienkids.s")
+void func_80800DB8_chalienkids(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _capod_entrypoint_14(void);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
+    s32 _subaddiefade_entrypoint_5();
+    void func_80102424(Actor *, s32);
+    extern s32 D_80801E60_chalienkids[];
+    extern s32 D_80801E80_chalienkids[];
+    extern s32 D_80801E98_chalienkids[];
+    extern s32 D_80801EA8_chalienkids[];
+    extern u8 D_80802234_chalienkids[];
+    s32 first;
+    s32 second;
+
+    switch (arg1) {
+    case 0x1284:
+        ((f32 *)arg0->actorData)[3] = 200.0f;
+        func_80102424(arg0, 0xF);
+        _subaddieDll_entrypoint_4(arg0, 1);
+        _capod_entrypoint_14();
+        _capod_entrypoint_13(arg0->unk0, 0, 0x13, 0x2010);
+        return;
+    case 0x1285:
+        arg0->unk6C_0 = 5;
+        ((f32 *)arg0->actorData)[3] = 200.0f;
+        func_80102424(arg0, 0xF);
+        _subaddieDll_entrypoint_4(arg0, 1);
+        _capod_entrypoint_14();
+        _capod_entrypoint_13(arg0->unk0, 0, 0x16, 0x2010);
+        return;
+    case 0x1286:
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80802234_chalienkids);
+        func_80102424(arg0, 0xC);
+        _subaddiefade_entrypoint_5(arg0);
+        arg0->unk58 = 2.0f;
+        return;
+    case 0x12CE:
+        _capod_entrypoint_14();
+        return;
+    default:
+        first = _subaddiedialog_entrypoint_9((s32)arg0, arg1, D_80801E60_chalienkids, 4) != 0;
+        second = _subaddiedialog_entrypoint_9((s32)arg0, arg1, D_80801E80_chalienkids, 3) != 0;
+        if (first || second) {
+            func_80102424(arg0, 0x10);
+            return;
+        }
+        if (_subaddiedialog_entrypoint_9((s32)arg0, arg1, D_80801EA8_chalienkids, 3)) {
+            func_80102424(arg0, 0x10);
+            return;
+        }
+        if (_subaddiedialog_entrypoint_9((s32)arg0, arg1, D_80801E98_chalienkids, 2)) {
+            func_80102424(arg0, 9);
+        }
+        return;
+    }
+}
 
 void func_80800FA4_chalienkids(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _glcutDll_entrypoint_20();
