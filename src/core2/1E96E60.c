@@ -37,7 +37,25 @@ void func_800BD600(void) {
     func_800D2EE4();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BD64C.s")
+void func_800BD64C(s32 *arg0, f32 *arg1) {
+    extern s32 D_8012841C;
+    struct { s32 words[16]; volatile f32 scale; } *base = (void *)&D_80128410;
+    s32 *bounds = &D_8012841C - 3;
+    s32 i;
+    for (i = 0; i < 3; i++) {
+        if (arg1[i] >= 0.0f) {
+            arg0[i] = (s32)(arg1[i] * base->scale);
+        } else {
+            arg0[i] = (s32)(arg1[i] * base->scale + -1.0f);
+        }
+        if (arg0[i] < bounds[i + 1]) {
+            arg0[i] = bounds[i + 1];
+        }
+        if (bounds[i + 4] < arg0[i]) {
+            arg0[i] = bounds[i + 4];
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BD708.s")
 
