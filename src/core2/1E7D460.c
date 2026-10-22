@@ -195,7 +195,188 @@ void func_800A4168(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4190.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4338.s")
+s32 func_800A4338(arg0) {
+    typedef struct {
+        u8 pad0[2];
+        u8 mode;
+        u8 saved;
+        u8 desired;
+        u8 flags;
+        u8 pad6[0x30];
+        s16 id;
+        u8 active;
+    } Camera;
+    s32 func_80090E24(PlayerState *);
+    s32 func_80090E30(PlayerState *);
+    s32 func_800A5854(s32);
+    s32 func_800A5904();
+    s32 func_800A5800(s32);
+    s32 bs_getCurrentState(PlayerState *);
+    s32 func_8009CA70(PlayerState *, s32, s32);
+    void func_800A3EC8(PlayerState *, s32);
+    int func_800A4190();
+    s8 func_800A5B6C(void);
+    s8 func_800A5B7C(void);
+    f32 func_800A5B8C(void);
+    u8 func_800A5B9C(void);
+    u8 func_800A5BAC(void);
+    u8 func_800A5BBC(void);
+    u8 func_800A5BCC(void);
+    void func_80110F44(PlayerState *);
+    void func_80110D80(PlayerState *, s32);
+    void func_80110D28(u8 *, s32);
+    void func_80110D58(u8 *, f32);
+    void func_801108A0(PlayerState *);
+    void func_800CA628(f32 *, f32 *, f32 *);
+    void _cadbfunc_entrypoint_0(f32 *);
+    void _cadbfunc_entrypoint_2(f32 *);
+    void _cadbfunc_entrypoint_22(s32 *);
+    void _cadbfunc_entrypoint_24(s32 *);
+    void _cadbfunc_entrypoint_26(s32 *);
+    void _cadbfunc_entrypoint_29(s32, s32 *);
+    void _cadbfunc_entrypoint_32(f32 *);
+    void _cadbfunc_entrypoint_34(s32 *);
+    void _ncbadolly_entrypoint_4(PlayerState *, s32);
+    void _ncbafixpos_entrypoint_4(PlayerState *, s32);
+    void _ncbaspiral_entrypoint_5(PlayerState *, s32);
+    s32 id;
+    PlayerState *self = (PlayerState *)arg0;
+    s32 mode;
+    s32 flag;
+    s32 value1;
+    s32 value2;
+    s32 forced;
+    s32 transition;
+    f32 speed;
+    s32 type;
+    s32 dollyEnabled;
+    s32 fixedEnabled;
+    f32 position[3];
+    f32 rotation[3];
+    u8 *floatCamera;
+
+    id = func_80090E24(self);
+    forced = 0;
+    transition = func_80090E30(self);
+    type = func_800A5854(id);
+
+    if (id == -1 || !func_800A5904(id) ||
+        ((*(Camera **)self->pad38)->active && type != 4)) {
+        (*(Camera **)self->pad38)->desired = func_800A5B9C();
+        if ((*(Camera **)self->pad38)->desired == 5) {
+            forced = 1;
+            (*(Camera **)self->pad38)->desired = 0;
+        }
+        type = func_800A5B7C();
+        func_800A3DB8(self, 0, type, forced, transition);
+        type = func_800A5BBC();
+        func_800A3EC8(self, type);
+        if ((*(Camera **)self->pad38)->desired) {
+            func_800A3D78(self, (*(Camera **)self->pad38)->desired, transition);
+        } else if ((*(Camera **)self->pad38)->active) {
+            if ((*(Camera **)self->pad38)->saved) {
+                func_800A3D78(self, (*(Camera **)self->pad38)->saved, transition);
+            } else {
+                func_80110F44(func_800A4CA8(self));
+            }
+        }
+        (*(Camera **)self->pad38)->flags = func_800A5BAC();
+        func_80110D80(func_800A4CA8(self), func_800A5BCC());
+        func_80110D28((u8 *)func_800A4CA8(self), func_800A5B6C());
+        floatCamera = (u8 *)func_800A4CA8(self);
+        func_80110D58(floatCamera, func_800A5B8C());
+        (*(Camera **)self->pad38)->active = 0;
+        return 0;
+    }
+    transition = bs_getCurrentState(self);
+    switch (type) {
+    case 4:
+        func_800A5800(id);
+        _cadbfunc_entrypoint_26(&mode);
+        if (!mode && (*(Camera **)self->pad38)->active &&
+            id + 1 != (*(Camera **)self->pad38)->active &&
+            (*(Camera **)self->pad38)->saved) {
+            mode = (*(Camera **)self->pad38)->saved;
+        }
+        if (mode == 5) {
+            forced = 1;
+            mode = 0;
+        }
+        if (!mode && (*(Camera **)self->pad38)->mode == 4) {
+            mode = 1;
+        }
+        if (!(*(Camera **)self->pad38)->active) {
+            _cadbfunc_entrypoint_29(0x10, &flag);
+            if (flag) {
+                (*(Camera **)self->pad38)->saved = func_800A3DAC(self);
+            } else {
+                (*(Camera **)self->pad38)->saved = 0;
+            }
+        }
+        if (mode) {
+            func_800A3D78(self, mode, 0);
+        }
+        (*(Camera **)self->pad38)->desired = mode;
+        _cadbfunc_entrypoint_22(&value1);
+        _cadbfunc_entrypoint_24(&value2);
+        func_800A3DB8(self, value2, value1, forced, 0);
+        _cadbfunc_entrypoint_29(0x40, &flag);
+        func_800A3EC8(self, flag);
+        _cadbfunc_entrypoint_29(0x20, &flag);
+        (*(Camera **)self->pad38)->flags = flag;
+        _cadbfunc_entrypoint_29(0x80, &flag);
+        func_80110D80(func_800A4CA8(self), flag);
+        _cadbfunc_entrypoint_34(&value1);
+        func_80110D28((u8 *)func_800A4CA8(self), value1);
+        _cadbfunc_entrypoint_32(&speed);
+        func_80110D58((u8 *)func_800A4CA8(self), speed);
+        (*(Camera **)self->pad38)->active = id + 1;
+        return 0;
+    case 3:
+        if (func_8009CA70(self, transition, 0x4000)) {
+            dollyEnabled = 0;
+            func_800A5800(id);
+            _cadbfunc_entrypoint_29(4, &dollyEnabled);
+            if (!dollyEnabled) {
+                return 0;
+            }
+        }
+        func_800A3B78(self, 0xD);
+        _ncbadolly_entrypoint_4(func_800A4CA8(self), id);
+        func_800A3F14(self, 4);
+        return 1;
+    case 1:
+        if (func_8009CA70(self, transition, 0x4000)) {
+            fixedEnabled = 0;
+            func_800A5800(id);
+            _cadbfunc_entrypoint_29(4, &fixedEnabled);
+            if (!fixedEnabled) {
+                return 0;
+            }
+        }
+        func_800A3B78(self, 6);
+        _ncbafixpos_entrypoint_4(func_800A4CA8(self), id);
+        func_800A3F14(self, 4);
+        return 1;
+    case 2:
+        if (id != (*(Camera **)self->pad38)->id) {
+            func_800A5800(id);
+            _cadbfunc_entrypoint_0(position);
+            _cadbfunc_entrypoint_2(rotation);
+            func_800CA628(func_800A4C48(self), position, rotation);
+            func_801108A0(func_800A4CA8(self));
+            (*(Camera **)self->pad38)->id = id;
+        }
+        return 0;
+    case 7:
+        func_800A3B78(self, 0x12);
+        _ncbaspiral_entrypoint_5(func_800A4CA8(self), id);
+        func_800A3F14(self, 4);
+        func_800A4190(self);
+        return 1;
+    }
+    return 0;
+}
 
 s32 func_800A4878(PlayerState *arg0) {
     int bainput_func_80097B4C(PlayerState *);
