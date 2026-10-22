@@ -88,7 +88,7 @@ class PermuterCacheTests(acceleration.LoopFixture):
                               best_source=CANDIDATE.encode(), best_score=50)
         function = self.state.get('target')
         suffix = trial_key(function['best_source'], function)
-        old_key, new_key = 'permuter:' + suffix, 'permuter-stack-diffs:' + suffix
+        old_key, new_key = 'permuter:' + suffix, 'permuter:stack-diffs:' + suffix
         with self.state.db:
             self.state.db.execute('INSERT INTO local_trials VALUES (?,?,?)',
                                   (function['id'], old_key, 'no_improvement'))
