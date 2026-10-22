@@ -690,7 +690,75 @@ void gcdialogexec_entrypoint_9(u8 *arg0, s32 arg1, s32 arg2)
     func_80800F60_gcdialogexec(arg0, arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80801DB4_gcdialogexec.s")
+int func_80801DB4_gcdialogexec(u8 *arg0) {
+    typedef struct {
+        s16 code;
+        s16 pad;
+        u8 *text;
+    } DialogEntry;
+    typedef struct {
+        u8 pad0[0x104];
+        u8 *entries[2];
+        u8 pad10C[0xA];
+        u8 index[2];
+        u8 pad118[0x46];
+        u16 current : 1;
+        u16 unused : 15;
+        u8 pad160[2];
+        s16 dialogId;
+        u8 pad164[4];
+        void *caller;
+        s32 callerArg;
+        u8 pad170[8];
+        s32 (*callback)(void *, s16, u8);
+    } Dialog;
+    s32 _gldialog_entrypoint_1();
+    s32 _subaddiedialog_entrypoint_14(void *, s16, u8);
+    s32 result = -1;
+    s32 flag1;
+    s32 flag2;
+    Dialog *dialog = (Dialog *)arg0;
+
+    if (dialog->callback != NULL) {
+        flag1 = 1;
+        if (dialog->caller == NULL) {
+            result = dialog->callback(dialog->caller, dialog->dialogId, dialog->index[dialog->current]);
+        } else if (func_80800000_gcdialogexec(dialog->caller, dialog->callerArg)) {
+            result = dialog->callback(dialog->caller, dialog->dialogId, dialog->index[dialog->current]);
+        }
+        if (result < 0) {
+            result = -1 - result;
+            flag1 = 0;
+        }
+        if (result >= 0 && ((DialogEntry *)(dialog->entries[dialog->current] + dialog->index[dialog->current] * 8 + result * 8))[1].code == -10) {
+            func_80800350_gcdialogexec(arg0,
+                ((DialogEntry *)(dialog->entries[dialog->current] + dialog->index[dialog->current] * 8))->text,
+                ((DialogEntry *)(dialog->entries[dialog->current] + dialog->index[dialog->current] * 8 + result * 8))[1].text,
+                _gldialog_entrypoint_1(((DialogEntry *)(dialog->entries[dialog->current] + dialog->index[dialog->current] * 8))->text), flag1);
+        } else {
+            result = -1;
+        }
+    }
+    if (dialog->caller != NULL && func_80800000_gcdialogexec(dialog->caller, dialog->callerArg)) {
+        if (*(u16 *)((u8 *)dialog->caller + 0x18) & 1) {
+            flag2 = 1;
+            result = _subaddiedialog_entrypoint_14(dialog->caller, dialog->dialogId, dialog->index[dialog->current]);
+            if (result < 0) {
+                result = -1 - result;
+                flag2 = 0;
+            }
+            if (result >= 0 && ((DialogEntry *)(dialog->entries[dialog->current] + dialog->index[dialog->current] * 8 + result * 8))[1].code == -10) {
+                func_80800350_gcdialogexec(arg0,
+                    ((DialogEntry *)(dialog->entries[dialog->current] + dialog->index[dialog->current] * 8))->text,
+                    ((DialogEntry *)(dialog->entries[dialog->current] + dialog->index[dialog->current] * 8 + result * 8))[1].text,
+                    _gldialog_entrypoint_1(((DialogEntry *)(dialog->entries[dialog->current] + dialog->index[dialog->current] * 8))->text), flag2);
+            } else {
+                result = -1;
+            }
+        }
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80802020_gcdialogexec.s")
 
