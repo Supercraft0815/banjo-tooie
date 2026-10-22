@@ -202,7 +202,54 @@ void func_808004D0_chmole_training(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/chmole_training_entrypoint_0.s")
+void chmole_training_entrypoint_0(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void func_80101FDC(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s16 D_80800F08_chmole_training[];
+    extern s16 D_80800F10_chmole_training[];
+    extern s16 D_80800F18_chmole_training[];
+    extern s16 D_80800F20_chmole_training[];
+    extern s16 D_80800F24_chmole_training[];
+    extern s16 D_80800F28_chmole_training[];
+    extern s16 D_80800F2C_chmole_training[];
+    Actor *actor;
+
+    actor = func_80106790(arg0);
+    switch (arg3) {
+    case 3:
+        switch ((u32) actor->unk54) {
+        case 1:
+            actor->unk54 = D_80800F08_chmole_training[arg2];
+            break;
+        case 2:
+            actor->unk54 = D_80800F10_chmole_training[arg2];
+            break;
+        case 4:
+            actor->unk54 = D_80800F18_chmole_training[arg2];
+            break;
+        case 0:
+            actor->unk54 = D_80800F20_chmole_training[arg2];
+            break;
+        case 3:
+            actor->unk54 = D_80800F24_chmole_training[arg2];
+            break;
+        case 7:
+            actor->unk54 = D_80800F28_chmole_training[arg2];
+            break;
+        case 5:
+            actor->unk54 = D_80800F2C_chmole_training[arg2];
+            break;
+        }
+        func_80101FDC(actor, 7);
+        break;
+    case 0:
+        func_808004D0_chmole_training(actor, arg1);
+        break;
+    case 2:
+        func_80101FDC(actor, 6);
+        break;
+    }
+}
 
 /* extern */
 
