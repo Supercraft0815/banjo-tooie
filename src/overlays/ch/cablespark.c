@@ -7,7 +7,73 @@ OSThread *chcablespark_entrypoint_0(void)
     return (OSThread *) D_80800B88_chcablespark;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablespark/func_8080000C_chcablespark.s")
+void func_8080000C_chcablespark(Actor *arg0) {
+    extern s32 D_80800B70_chcablespark;
+    extern u32 D_80800BD0_chcablespark;
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 _subaddiejoy_entrypoint_6(u8 *, s32);
+    s32 func_800C8E84(s32, s32 *);
+    void func_800C8FE0(s32, s32);
+    s32 func_800D90A4(f32 *);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    void func_80101FDC(Actor *, u32);
+    void func_80800668_chcablespark(Actor *);
+    int func_808007B8_chcablespark(Actor *);
+    s32 func_80800828_chcablespark(void *);
+    s32 func_80800970_chcablespark(Actor *);
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+
+    arg0->unk64_24 = 0;
+    if (func_80800828_chcablespark(arg0)) {
+        arg0->unk64_24 = 1;
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, arg0->unk70_10 == 3, &D_80800BD0_chcablespark);
+        sp2C = func_800D90A4(&arg0->unk58);
+        switch (arg0->unk70_10) {
+        case 1:
+            if (arg0->unk64_29) {
+                if (sp2C && _subaddiejoy_entrypoint_6((u8 *)arg0, 1) == 1) {
+                    func_80101FDC(arg0, 2);
+                    arg0->unk58 = 0.25f;
+                }
+            } else if (sp2C && !func_808007B8_chcablespark(arg0)) {
+                func_80101FDC(arg0, 3);
+                arg0->unk58 = func_800DC178(0.8f, 1.2f);
+                func_80800668_chcablespark(arg0);
+                func_800C8FE0(arg0->actorData[6], 1);
+            }
+            break;
+        case 2:
+            if (sp2C) {
+                func_80101FDC(arg0, 3);
+                arg0->unk58 = 1.0f;
+                func_80800668_chcablespark(arg0);
+                func_800C8FE0(arg0->actorData[6], 1);
+            }
+            break;
+        case 3:
+            if (arg0->unk64_29) {
+                sp28 = 0;
+            } else {
+                sp28 = func_808007B8_chcablespark(arg0);
+            }
+            sp24 = func_80800970_chcablespark(arg0);
+            func_800C8E84(arg0->actorData[6], (s32 *)((u8 *)&D_80800B70_chcablespark + func_800DC298(0.35f) * 12));
+            if (sp2C || sp28 || sp24) {
+                func_80101FDC(arg0, 1);
+                if (arg0->unk64_29) {
+                    arg0->unk58 = func_800DC178(1.2f, 1.4f);
+                } else {
+                    arg0->unk58 = 2.0f;
+                }
+                func_800C8FE0(arg0->actorData[6], 0);
+            }
+            break;
+        }
+    }
+}
 
 /* extern */
 
