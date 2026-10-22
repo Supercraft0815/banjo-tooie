@@ -123,7 +123,60 @@ void bamovespline_entrypoint_9(void *arg0, f32 arg1) {
     func_808000F4_bamovespline(arg0, 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/move/spline/func_80800374_bamovespline.s")
+struct player_state_s;
+void func_80800374_bamovespline(void *arg0) {
+    void baphysics_set_target_yaw(struct player_state_s *, f32);
+    f32 bastick_distance(struct player_state_s *);
+    f32 bastick_getAngleRelativeToBanjo(struct player_state_s *);
+    f32 func_800136E4(f32);
+    void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
+    void *func_800D7520(s32);
+    f32 func_800D8FF8(void);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    f32 func_800EEFFC(void *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF368(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800F1DCC(f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    f32 mlAbsF(f32);
+    f32 speed;
+    f32 pad;
+    f32 yaw;
+    f32 diff;
+    f32 next[3];
+    f32 previous[3];
+    void *spline;
+    spline = func_800D7520(*(s16 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x94));
+    func_800EE7F8(previous, (f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x9C));
+    func_800C7A68(spline, *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x98), next);
+    yaw = func_800F1DF4(previous, next);
+    if (bastick_distance(arg0) != 0.0f) {
+        f32 stick_yaw;
+        stick_yaw = bastick_getAngleRelativeToBanjo(arg0);
+        if (mlAbsF(func_800F1DCC(yaw, stick_yaw)) < 90.0f) {
+            baphysics_set_target_yaw(arg0, yaw);
+        } else {
+            baphysics_set_target_yaw(arg0, func_800136E4(yaw + 180.0f));
+        }
+    }
+    func_80800000_bamovespline(arg0);
+    diff = func_800F1DCC(yaw, *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x40));
+    *(s8 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x92) = mlAbsF(diff) > 40.0f;
+    speed = func_800EEFFC(*(u8 **)((u8 *)arg0 + 0xC8) + 0x10) * func_800D8FF8();
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0xA8) = speed;
+    func_800EFB24(*(u8 **)((u8 *)arg0 + 0xC8) + 0x28, next, previous);
+    func_800EF368((f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x28), speed);
+    if (mlAbsF(diff) > 90.0f) {
+        func_800EF334((f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x28), -1.0f);
+    }
+    func_800EF04C((f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 4), (f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x28));
+    if (func_800EEAD4(next, previous) < func_800EEAD4((f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 4), previous)) {
+        func_808000F4_bamovespline(arg0, 4);
+    }
+}
 
 struct player_state_s;
 void func_8080057C_bamovespline(void *arg0) {
