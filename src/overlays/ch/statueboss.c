@@ -131,7 +131,7 @@ void func_8080124C_chstatueboss(Actor *arg0) {
         s16 index;
     } StatueData;
     StatueData *data;
-    int i;
+    s32 i;
     f32 delta;
 
     data = func_80100094(arg0, 0U);
@@ -322,7 +322,82 @@ s16 func_80801724_chstatueboss(u8 *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4)
     return sp48->handle;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801804_chstatueboss.s")
+void func_80801804_chstatueboss(Actor *arg0, s32 arg1) {
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    void func_8008FE68(f32 *);
+    s32 func_800D9078(f32 *);
+    s32 func_800D90A4(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    int func_800F20BC(f32, f32, f32);
+    u32 func_800F54E4(void);
+    s32 func_800F6438(u32);
+    void func_80108B04(Actor *, u32);
+    f32 func_8010CD28(Actor *);
+    s32 func_8010D248(void);
+    struct Part { s32 state; f32 timer; f32 offset; };
+    struct StatueBossData {
+        u8 pad[0x84];
+        s16 index;
+        u8 pad86[0xA];
+        f32 position[3];
+        f32 distance;
+        struct Part parts[6];
+    } *data;
+    extern s16 D_808025FC_chstatueboss[][4];
+    s32 boneIndex;
+    s32 index;
+    f32 position[3];
+    f32 angle;
+    f32 player[3];
+    int i;
+    s32 done;
+    struct StatueBossData *part;
+
+    data = func_80100094(arg0, 0U);
+    index = data->index;
+    if (func_800F6438(func_800F54E4()) != 0) {
+        angle = func_8010CD28(arg0);
+        i = 0;
+        do {
+            switch (data->parts[i].state) {
+                case 1:
+                    done = func_800D90A4(&data->parts[i].timer);
+                    data->parts[i].offset = func_800F10B4(data->parts[i].timer, 0.0f, 0.6f, -2.0f, 0.0f);
+                    if (done) {
+                        data->parts[i].state = 2;
+                        data->parts[i].timer = 1.2f;
+                    }
+                    break;
+                case 2:
+                    done = func_800D90A4(&data->parts[i].timer);
+                    data->parts[i].offset = func_800F10B4(data->parts[i].timer, 0.0f, 1.2f, 0.0f, -2.0f);
+                    if (done) {
+                        data->parts[i].state = 0;
+                    }
+                    break;
+            }
+        } while (++i < 6);
+        if (arg1 && func_8010D248()) {
+            func_8008FE68(player);
+            for (i = 0; D_808025FC_chstatueboss[index][i] != -1; i++) {
+                boneIndex = D_808025FC_chstatueboss[index][i] - 4;
+                part = (struct StatueBossData *)((u8 *)data + boneIndex * 12);
+                func_800D9078(&part->parts[0].timer);
+                if (part->parts[0].state != 0) continue;
+                if (_subaddieskeleton_entrypoint_2(arg0->unk0, D_808025FC_chstatueboss[index][i], position) &&
+                    func_800F20BC(func_800F1DF4(arg0->position, position), angle, 25.0f)) {
+                    func_80108B04(arg0, 0);
+                    func_800EE7F8(data->position, position);
+                    data->distance = func_800F1DF4(position, player);
+                    part->parts[0].timer = 0.6f;
+                    part->parts[0].state = 1;
+                }
+            }
+        }
+    }
+}
 
 void func_80801A6C_chstatueboss(Actor *arg0, f32 arg1) {
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
