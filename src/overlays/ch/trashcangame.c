@@ -47,7 +47,83 @@ void func_80800144_chtrashcangame(s32 arg0, s32 arg1, s32 arg2) {
     func_80800098_chtrashcangame(arg0, arg1, func_80800014_chtrashcangame() + arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80800180_chtrashcangame.s")
+void func_80800180_chtrashcangame(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    s32 _subaddiedialog_entrypoint_4(f32 *, s32, s32);
+    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    s32 func_800CEAD0(s32);
+    s32 func_800D0A9C(s32, s32);
+    s32 func_800D2498(u32, s32, u32);
+    s32 func_800D90A4(f32 *);
+    s32 func_800DC128(s32, s32);
+    f32 func_80103EAC(Actor *);
+    f32 func_80103EF4(Actor *);
+    void func_80108B04(Actor *, u32);
+    void func_8010CEAC(void *);
+    void func_808003D0_chtrashcangame(void *, s32);
+    void func_80800728_chtrashcangame(Actor *);
+    void func_80800BA8_chtrashcangame(Actor *);
+    void func_80801740_chtrashcangame(Actor *, s32, s32);
+    void func_808018E4_chtrashcangame();
+    extern s32 D_80803090_chtrashcangame;
+    extern s16 D_80803096_chtrashcangame;
+
+    _sudeflect_entrypoint_1(arg0->position, func_80103EF4(arg0), 0.0f, func_80103EAC(arg0), 0x1E);
+    switch (arg0->unk70_10) {
+    case 1:
+        if (func_800D90A4(&arg0->unk58) != 0) {
+            func_808003D0_chtrashcangame(arg0, 2);
+        }
+        break;
+    case 3:
+        if (func_800D0A9C(0x4E, 1) != 0) {
+            D_80803096_chtrashcangame = 0x13F0;
+        }
+        if (_subaddiedialog_entrypoint_7(arg0, arg0->position, &D_80803090_chtrashcangame) != 0) {
+            func_80801740_chtrashcangame(arg0, 2, 0);
+        }
+        break;
+    case 8:
+        if (func_800D90A4(&arg0->unk58) != 0) {
+            arg0->unk58 = 0.299987793f;
+            func_80108B04(arg0, 0);
+        }
+        if (_subaddiedialog_entrypoint_4(arg0->position, 0x190, 0) != 0) {
+            if (func_800D0A9C(0x4E, 1) != 0) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, func_800DC128(0x1403, 0x1405), 7, arg0->position, 0x6A);
+            } else {
+                _subaddiedialog_entrypoint_11(arg0->unk0, func_800DC128(0x1401, 0x1405), 7, arg0->position, 0x6A);
+            }
+        }
+        if (func_800CEAD0(0) != 0) {
+            func_80800728_chtrashcangame(arg0);
+        }
+        func_800D2498(0xF8, func_80800014_chtrashcangame(arg0, 0), 0);
+        break;
+    case 9:
+    case 11:
+        func_8010CEAC(arg0);
+        func_800D2498(0xF8, func_80800014_chtrashcangame(arg0, 0), 0);
+        break;
+    case 13:
+        if (_subaddiefind_entrypoint_2(0x21F, 0) == NULL) {
+            func_808003D0_chtrashcangame(arg0, 0xE);
+        }
+        break;
+    case 14:
+        if (func_800D90A4(&arg0->unk58) != 0) {
+            func_808003D0_chtrashcangame(arg0, 0xF);
+        }
+        break;
+    case 15:
+        func_8010CEAC(arg0);
+        break;
+    }
+    func_80800BA8_chtrashcangame(arg0);
+    func_808018E4_chtrashcangame(arg0);
+}
 
 void func_808003D0_chtrashcangame(void *arg0, s32 arg1) {
     typedef struct { u8 padding[0x79]; u8 variant : 4; u8 other : 4; } TrashFlags;
