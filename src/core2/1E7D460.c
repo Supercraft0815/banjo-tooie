@@ -193,7 +193,49 @@ void func_800A4168(u8 *arg0) {
     func_800A4074(arg0, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4190.s")
+void func_800A4190(arg) {
+    PlayerState *arg0 = (PlayerState *)arg;
+    s32 func_800A4D40(void *);
+    s32 func_800F65D0(s32);
+    s32 func_8009CC68(PlayerState *);
+    s32 func_800F3ED0(void *);
+    f32 _batimer_get(void *, s32);
+    int bainput_should_exit_first_person(PlayerState *);
+    void func_8009DB04(PlayerState *, s32, f32, s32);
+    void _batimer_set(PlayerState *, s32, f32);
+    u8 *temp_v0;
+
+    if (func_800A4D40(arg0) != 0 &&
+        func_800F65D0(arg0->unk184) != 0 &&
+        func_8009CC68(arg0) == 0 &&
+        func_800F3ED0(arg0) != 4 &&
+        _batimer_get(arg0, 7) == 0.0f &&
+        bainput_should_exit_first_person(arg0) != 0) {
+        temp_v0 = *(u8 **)((u8 *)arg0 + 0x38);
+        if (temp_v0[4] == 0 && temp_v0[0x3B] == 0) {
+            switch (temp_v0[2]) {
+                case 1:
+                    func_8009DB04(arg0, 0x488, 1.0f, 0x2EE0);
+                    func_800A3D78((u8 *)arg0, 2, 1);
+                    break;
+                case 2:
+                    if (*(s32 *)(temp_v0 + 0x20) != 0 && temp_v0[0x39] == 0) {
+                        func_8009DB04(arg0, 0x488, 1.2f, 0x2EE0);
+                        func_800A3D78((u8 *)arg0, 3, 1);
+                    } else {
+                        func_8009DB04(arg0, 0x487, 1.0f, 0x2EE0);
+                        func_800A3D78((u8 *)arg0, 1, 1);
+                    }
+                    break;
+                case 3:
+                    func_8009DB04(arg0, 0x487, 1.0f, 0x2EE0);
+                    func_800A3D78((u8 *)arg0, 1, 1);
+                    break;
+            }
+            _batimer_set(arg0, 7, 0.4f);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7D460/func_800A4338.s")
 
