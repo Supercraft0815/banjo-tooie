@@ -68,7 +68,58 @@ void gcgoto_entrypoint_2(s32 arg0, s32 arg1, s32 arg2) {
     func_8080011C_gcgoto(arg0, arg1, 0, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/goto/func_808001E0_gcgoto.s")
+void func_808001E0_gcgoto(f32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    Prop *_gccubesearch_entrypoint_5(s32 *, f32 *);
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    void _plcamera_entrypoint_11(u32, f32 *);
+    void func_8008FE68(f32 *);
+    void func_80090358(f32 *, f32, void *, s32);
+    void func_800A1618(s32);
+    f32 func_800EEAD4(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void gcgoto_entrypoint_4(s32, s32, f32, f32, s32);
+    extern s32 D_80800740_gcgoto;
+    f32 playerPos[3];
+    f32 propPos[3];
+    Prop *prop;
+    f32 distance;
+
+    if (D_80127194.unk42C == 0) {
+        if (arg0 != NULL) {
+            prop = _gccubesearch_entrypoint_5(&D_80800740_gcgoto, arg0);
+        } else {
+            prop = NULL;
+        }
+        func_8008FE68(playerPos);
+        if (prop != NULL) {
+            _gspropctrl_entrypoint_11(prop, propPos);
+            if (arg3 != 0) {
+                distance = 500.0f;
+                if (prop->ItemID == 0x24F) {
+                    distance = 1000.0f;
+                }
+            } else {
+                distance = 1000.0f;
+            }
+            if (func_800EEAD4(arg0, propPos) < distance) {
+                if (prop->ItemID == 0x24D) {
+                    _plcamera_entrypoint_11(func_800F54E4(), propPos);
+                    func_8080011C_gcgoto(arg1, arg2, 1, 1);
+                    func_800A1618(1);
+                    func_80090358(propPos, 1.0f, NULL, 0);
+                    return;
+                }
+                if (prop->ItemID == 0x24E) {
+                    gcgoto_entrypoint_4(arg1, arg2, propPos[1], (f32)prop->FlagOrRotation, prop->unkC_0);
+                    return;
+                }
+                gcgoto_entrypoint_4(arg1, arg2, playerPos[1], (f32)prop->FlagOrRotation, prop->unkC_0);
+                return;
+            }
+        }
+        func_8080011C_gcgoto(arg1, arg2, 0, 1);
+    }
+}
 
 /* extern */
 
