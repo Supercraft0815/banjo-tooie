@@ -113,7 +113,56 @@ void func_80800344_chfantasylakebits(Actor *arg0, s32 arg1) {
     func_80101FDC(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/lakebits/func_80800570_chfantasylakebits.s")
+s32 func_80800570_chfantasylakebits(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_14(void);
+    void _glcutDll_entrypoint_6(u32, u32);
+    s32 func_800DA298(s32);
+    void func_800DF500(f32, f32, f32);
+    void func_800E3980(f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    s32 func_801015D0(Actor *);
+    f32 sp24[3];
+
+    switch (arg1) {
+    case 0xB:
+        if (arg2 == 0x23) {
+            _capod_entrypoint_14();
+            func_80800344_chfantasylakebits(arg0, 5);
+            _glcutDll_entrypoint_6(0x112, 0x36);
+            return 4;
+        }
+        return 3;
+    case 0xC:
+        if (arg0->unk70_10 == 2) {
+            func_80800344_chfantasylakebits(arg0, 3);
+            return 3;
+        }
+        if (arg0->unk70_10 == 3) {
+            func_80800344_chfantasylakebits(arg0, 4);
+        }
+        return 3;
+    case 0x36:
+        func_80800344_chfantasylakebits(arg0, 2);
+        return 1;
+    case 0x1F:
+        if (arg0->unk64_16) {
+            func_801015D0(arg0);
+            func_800E3980(sp24);
+            arg0->rotation[1] = func_800F1DF4(arg0->position, sp24);
+            func_800DF500(arg0->unk54, 4.0f, arg0->unk54);
+        }
+        return 1;
+    case 0x95:
+        if (func_800DA298(0x327)) {
+            func_80800344_chfantasylakebits(arg0, 5);
+            return 1;
+        }
+        func_80800344_chfantasylakebits(arg0, 1);
+        return 1;
+    default:
+        return 0;
+    }
+}
 
 OSThread *chfantasylakebits_entrypoint_1(void)
 {
