@@ -10,7 +10,22 @@ void func_80800000_chbeanstalkseed(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beanstalkseed/func_8080003C_chbeanstalkseed.s")
+void func_8080003C_chbeanstalkseed(Actor *arg0) {
+    struct Times5 { f32 value[5]; };
+    struct Times3 { f32 value[3]; };
+    extern struct Times5 D_80800BE0_chbeanstalkseed;
+    extern struct Times3 D_80800BF4_chbeanstalkseed;
+    s32 func_80101E4C(Actor *, f32 *);
+    f32 func_800DC178(f32, f32);
+    void func_800C4140(u32, f32 *, u32);
+    struct Times5 first = D_80800BE0_chbeanstalkseed;
+    struct Times3 second = D_80800BF4_chbeanstalkseed;
+    if (func_80101E4C(arg0, first.value)) {
+        func_800C4140(((u16)(func_800DC178(0.95f, 1.05f) * 1023.0f) << 21) + 0xDABF0, arg0->position, 0x3E800FA);
+    } else if (func_80101E4C(arg0, second.value)) {
+        func_800C4140(((u16)(func_800DC178(0.95f, 1.05f) * 1023.0f) << 21) + 0xDACD5, arg0->position, 0x3E800FA);
+    }
+}
 
 s32 func_8080026C_chbeanstalkseed(u8 *arg0, s32 arg1, s32 arg2)
 {
