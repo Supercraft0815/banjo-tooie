@@ -1070,7 +1070,53 @@ void func_80093FD4(s32 arg0, s32 arg1) {
     func_800941C8(arg0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80094070.s")
+void func_80094070(u8 *arg0, f32 *arg1) {
+    s32 func_800D90A4(f32 *);
+    void func_800E3980(f32 *);
+    s32 func_800E488C(s32);
+    s32 func_800E4BB8();
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800941C8(u8 *, s32);
+    s32 func_800942D0(u8 *, s32);
+    extern f32 D_80117DD0[][4];
+    f32 distance;
+    f32 sp30[3];
+    s32 i;
+    s32 sp28;
+
+    if (*(s32 *)(*(u8 **)(arg0 + 0x50) + 0x10C) != 0 && func_800D90A4((f32 *)(*(u8 **)(arg0 + 0x50) + 0x114)) != 0) {
+        func_800E3980(sp30);
+        distance = func_800EEAD4(arg1, sp30);
+        for (i = 0; i < 2; i++) {
+            if (distance < D_80117DD0[i][0]) {
+                break;
+            }
+        }
+        i--;
+        sp28 = func_80093F30(i);
+            if (sp28 != *(s32 *)(*(u8 **)(arg0 + 0x50) + 0x10C)) {
+            if (func_800942D0(arg0, i) != 0) {
+                if (*(s32 *)(*(u8 **)(arg0 + 0x50) + 0x110) != 0 && sp28 != *(s32 *)(*(u8 **)(arg0 + 0x50) + 0x110)) {
+                    func_800E4BB8(*(s32 *)(*(u8 **)(arg0 + 0x50) + 0x110));
+                }
+                *(s32 *)(*(u8 **)(arg0 + 0x50) + 0x110) = sp28;
+                if (func_800E488C(*(s32 *)(*(u8 **)(arg0 + 0x50) + 0x110)) != 0) {
+                    func_800941C8(arg0, *(s32 *)(*(u8 **)(arg0 + 0x50) + 0x110));
+                }
+            } else {
+                if (*(s32 *)(*(u8 **)(arg0 + 0x50) + 0x110) != 0) {
+                    func_800E4BB8(*(s32 *)(*(u8 **)(arg0 + 0x50) + 0x110));
+                    *(s32 *)(*(u8 **)(arg0 + 0x50) + 0x110) = 0;
+                }
+            }
+        } else {
+            if (*(s32 *)(*(u8 **)(arg0 + 0x50) + 0x110) != 0) {
+                func_800E4BB8(*(s32 *)(*(u8 **)(arg0 + 0x50) + 0x110));
+                *(s32 *)(*(u8 **)(arg0 + 0x50) + 0x110) = 0;
+            }
+        }
+    }
+}
 
 void func_800941C8(u8 *arg0, s32 arg1) {
     u32 func_800A25D0(void *);
