@@ -9,9 +9,9 @@ import test_harness as fixtures
 from test_acceleration import LoopFixture, NAMED
 from decomp_harness.common import HarnessError, atomic_write
 from decomp_harness.codex import Result
-from decomp_harness.guard import publish, recover_publications
+from decomp_harness.guard import extract_function, publish, recover_publications
 from decomp_harness.matching import instructions, score, worth_rom_check
-from decomp_harness.repairs import guard_candidate, guard_repair, refresh_repairs
+from decomp_harness.repairs import c_surface, guard_candidate, guard_repair, refresh_repairs
 from decomp_harness.scanner import scan
 from decomp_harness.patterns import remember, known_declarations, refresh_solutions, seed_matches
 
@@ -45,6 +45,24 @@ class RelocationTests(fixtures.Fixture):
                       candidate + '\n#pragma GLOBAL_ASM("extra.s")'):
             with self.assertRaises(HarnessError):
                 guard_candidate(source, wrong, 'target')
+
+    def test_nested_control_blocks_are_not_function_definitions(self):
+        body = '''void target(int x) {
+    if (x) { x++; }
+    else if (x + 1) { while (x) { x--; } }
+    while (x) { x--; }
+    switch (x) { case 1: switch (x) { default: break; } }
+}'''
+        candidate = fixtures.CANDIDATE.replace('void target(void) { }', body)
+        self.assertEqual(c_surface(candidate)[1], {'target', 'other'})
+        self.assertEqual(extract_function(candidate, 'target'), body)
+        for keyword in ('if', 'while', 'switch'):
+            self.assertIsNone(extract_function(candidate, keyword))
+        # Force the interface-repair guard, where function identities are compared.
+        candidate = candidate.replace('void other', 'int other')
+        self.assertEqual(guard_candidate(fixtures.SOURCE, candidate, 'target'), body)
+        with self.assertRaisesRegex(HarnessError, 'unrelated function'):
+            guard_candidate(fixtures.SOURCE, candidate.replace('other', 'renamed'), 'target')
 
     def test_refresh_only_evidenced_failures_once(self):
         self.state.update(self.function['id'], status='blocked', last_error='Escalation/stagnation budget exhausted')

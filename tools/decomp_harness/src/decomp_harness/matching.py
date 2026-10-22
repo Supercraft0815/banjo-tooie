@@ -74,6 +74,7 @@ def instructions(dump: str, symbol: str, length: int | None = None):
     rows = []
     start = None
     labels = {}
+    aliases = {m[4] for m in FUNCTION.finditer(dump) if not int(m[3], 16)}
     end = next((int(m[1], 16) + int(m[3], 16) for m in FUNCTION.finditer(dump)
                 if m[4] == symbol and int(m[3], 16)), None)
     for line in dump.splitlines():
@@ -81,7 +82,8 @@ def instructions(dump: str, symbol: str, length: int | None = None):
         if label:
             if label[2] == symbol:
                 start = int(label[1], 16)
-            elif start is not None and not label[2].startswith(('.L', symbol + '+')):
+            elif start is not None and not (label[2].startswith(('.L', symbol + '+'))
+                    or label[2] in aliases and end is not None and start <= int(label[1], 16) < end):
                 break
             elif start is not None and label[2].startswith('.L'):
                 labels[label[2]] = None if label[2] in labels else int(label[1], 16) - start
