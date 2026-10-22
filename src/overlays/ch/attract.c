@@ -10,7 +10,69 @@ OSThread *chattract_entrypoint_0(void)
 void func_8080000C_chattract(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/attract/func_80800014_chattract.s")
+void func_80800014_chattract(Actor *arg0) {
+    s32 _subaddiefade_entrypoint_1(Actor *, s32);
+    s32 _subaddiefade_entrypoint_2();
+    void _subaddiefade_entrypoint_3(Actor *);
+    s32 _subaddiefade_entrypoint_5();
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    void func_800FFAB0(Actor *);
+    void func_80102424(Actor *, s32);
+    struct AttractState {
+        u8 pad[0x78];
+        u16 rest : 14;
+        u16 state : 2;
+    };
+    struct AttractEntry {
+        u16 animation;
+        u8 fade;
+        u8 pad3;
+        f32 unk4;
+        f32 unk8;
+        f32 scale;
+        s16 x;
+        s16 y;
+        f32 unk14;
+        u8 flags;
+        u8 pad19[3];
+    };
+    extern f32 D_8080046C_chattract[][7];
+    extern u8 D_8080046A_chattract[][28];
+    extern f32 D_80800470_chattract[][7];
+    struct AttractEntry *entry;
+
+    if (arg0->unk54 != 0.0f) {
+        arg0->rotation[1] += arg0->unk54 * func_800D8FF8();
+    }
+    if (arg0->unk79_4 != 0) {
+        if (!((struct AttractState *)arg0)->state && func_800D9078(&arg0->unk58)) {
+            if (D_8080046A_chattract[arg0->unk74_7][0] != 0) {
+                _subaddiefade_entrypoint_2(arg0);
+            } else {
+                _subaddiefade_entrypoint_1(arg0, 255);
+            }
+            arg0->unk58 = D_8080046C_chattract[arg0->unk74_7][0];
+            arg0->unk79_4 = 0;
+            func_80102424(arg0, arg0->unk70_10);
+        }
+    } else if (!((struct AttractState *)arg0)->state && func_800D9078(&arg0->unk58)) {
+        entry = (struct AttractEntry *)((s32)arg0->unk74_7 * (s32)sizeof(struct AttractEntry) + (s32)(&D_8080046C_chattract[0][0] - 1));
+        if (entry->unk8 != 0.0f) {
+            if (entry->pad3 != 0) {
+                _subaddiefade_entrypoint_5(arg0);
+            } else {
+                _subaddiefade_entrypoint_1(arg0, 0);
+            }
+            arg0->unk58 = D_80800470_chattract[arg0->unk74_7][0];
+            arg0->unk79_4 = 1;
+        } else if (entry->pad3 != 0) {
+            _subaddiefade_entrypoint_3(arg0);
+        } else {
+            func_800FFAB0(arg0);
+        }
+    }
+}
 
 void func_80800204_chattract(Actor *arg0, s32 arg1) {
     void func_800DF410(s32);
