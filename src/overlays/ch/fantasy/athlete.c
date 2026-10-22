@@ -217,9 +217,72 @@ void func_80801974_chfantasyathlete(Actor *arg0) {
 }
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80802730_chfantasyathlete.s")
+s32 func_80802730_chfantasyathlete(Actor *arg0, s32 arg1, s32 arg2, s16 arg3, s16 arg4, s32 arg5) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_80016B30(s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F6C5C(s32);
+    s32 func_8010C9B0(f32 *, s32);
+    f32 func_8010CD28(Actor *);
+    s32 func_80802950_chfantasyathlete(Actor *);
+    void func_80802D74_chfantasyathlete(u8 *);
+    s32 flags;
+    s32 ready;
+    s32 pad[2];
+    f32 *volatile position;
 
-void func_80802950_chfantasyathlete(Actor *arg0) {
+    flags = (arg5 ? 0x40 : 1) | 0xE;
+    switch (arg0->unk79_4) {
+    case 0:
+        ready = arg2 ? func_8010C9B0(arg0->position, arg2) : 1;
+        if (ready && func_800F6C5C(func_800F54E4())) {
+            arg0->unk54 = func_8010CD28(arg0);
+            arg0->unk50 = arg0->rotation[1];
+            if (arg1) {
+                if (func_800DA298(arg1)) {
+                    if (func_80016B30(0, 1)) {
+                        arg0->unk79_4 = 1;
+                        _subaddiedialog_entrypoint_11(arg0->unk0, arg4, flags, arg0->position, 0x6B);
+                        func_80802D74_chfantasyathlete((u8 *)arg0);
+                        return 1;
+                    }
+                } else {
+                    arg0->unk79_4 = 1;
+                    position = arg0->position;
+                    func_800DA544(arg1);
+                    _subaddiedialog_entrypoint_11(arg0->unk0, arg3, flags, position, 0x6B);
+                    func_80802D74_chfantasyathlete((u8 *)arg0);
+                    return 1;
+                }
+            } else {
+                arg0->unk79_4 = 1;
+                _subaddiedialog_entrypoint_11(arg0->unk0, arg3, flags, arg0->position, 0x6B);
+                func_80802D74_chfantasyathlete((u8 *)arg0);
+                return 1;
+            }
+        }
+        return 0;
+    case 1:
+        if (func_80802950_chfantasyathlete(arg0)) {
+            arg0->unk79_4 = 2;
+        }
+        return 1;
+    case 2:
+        return 1;
+    case 3:
+        arg0->unk54 = arg0->unk50;
+        if (func_80802950_chfantasyathlete(arg0)) {
+            arg0->unk79_4 = 0;
+            return 0;
+        }
+        return 1;
+    }
+    return 0;
+}
+
+s32 func_80802950_chfantasyathlete(Actor *arg0) {
     void func_80102BAC(Actor*, f32, f32, f32);
     void func_80102CCC(void *arg0);
     func_80102BAC(arg0, 0.2f, 0.1f, 10.0f);
