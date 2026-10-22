@@ -79,7 +79,155 @@ void func_80098BE0(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72180/func_80098C48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72180/func_80098E64.s")
+void func_80098E64(void *self) {
+    s32 func_800A3274(void *);
+    s32 baflag_isTrue(void *, s32);
+    void func_800A3410(void *, s32);
+    void func_800F8EBC(s32);
+    s32 bs_getCurrentState(void *);
+    s16 func_8009CBDC(s32, s32);
+    s32 func_8008DAA8(void *);
+    void func_8009E880(void);
+    s32 func_800A81C4(void);
+    s32 func_800EA068(s32);
+    s32 _bashoes_entrypoint_6();
+    s32 func_8008E39C();
+    f32 bastatetimer_get(void *, s32);
+    s32 func_8009E674(void *, s32);
+    void func_8009EAD0(s32);
+    void func_8009EB0C(f32);
+    s32 _bashoes_entrypoint_1();
+    void func_8009EAF4(s32);
+    void func_8009E9D8(s32);
+    void func_8009E9FC(f32);
+    s32 func_8009E71C(void *, s32);
+    void func_8009EB18(s32);
+    s32 bs_setState(s32, s32);
+    void _baattach_entrypoint_3(void *);
+    void func_8008E6BC(void *);
+    void func_80091054(void *);
+    void _bababykaz_entrypoint_1(void *);
+    void bastatetimerlist_free(void *);
+    void _baeggcursor_entrypoint_4(void *);
+    void func_80094538(void *);
+    void func_80092A1C(void *);
+    void func_800A22A8(void *);
+    void baanim_free(void *);
+    void func_80095C10(void *);
+    void _bahold_entrypoint_2(void *);
+    void _bamum_entrypoint_1(void *);
+    void _basetup_entrypoint_3(void *);
+    void func_8009D5E0(void *);
+    void func_800A2058(void *);
+    void _bashoes_entrypoint_3(void *);
+    void _basquash_entrypoint_1(void *);
+    void func_800A2D70(void *);
+    void _batranslate_entrypoint_1(void *);
+    void _bastatemem_entrypoint_2(void *);
+    void _badronemem_entrypoint_2(void *);
+    void _bapackctrl_entrypoint_2(void *);
+    void _baduo_entrypoint_5(void *);
+    void func_8009E388(void *);
+    void _bafpctrl_entrypoint_7(void *);
+    void func_80091E18(void *);
+    void bakey_free(void *);
+    void _bacough_entrypoint_2(void *);
+    void _badeathmatch_entrypoint_2(void *);
+    void func_80091EA8(void *);
+    void _bainvisible_entrypoint_4(void *);
+    void func_8009AD88(void *);
+    void func_800A4160(void *);
+    s32 unused;
+    s32 state;
+    f32 timer;
+    s32 flag;
+    int active;
+
+    if (func_800A3274(self) == 0xE && baflag_isTrue(self, 0x40)) {
+        func_800A3410(self, 0xD);
+        func_800F8EBC(*(s32 *)((u8 *)self + 0x184));
+    }
+    state = func_8009CBDC((s32)self, bs_getCurrentState(self));
+    if (func_8008DAA8(self)) {
+        func_8009E880();
+        if (func_800A81C4() || func_800EA068(0x800)) {
+            _bashoes_entrypoint_6(self, 1);
+        }
+        timer = 0.0f;
+        flag = 0;
+        if (func_8008E39C(self)) {
+            timer = bastatetimer_get(self, 3);
+            flag = 1;
+        } else if (func_8009E674(self, 0x40)) {
+            flag = 1;
+        }
+        if (flag) {
+            func_8009EAD0(2);
+        }
+        func_8009EB0C(timer);
+        func_8009EAF4(_bashoes_entrypoint_1(self));
+        func_8009E9D8(func_800A3274(self));
+        func_8009E9FC(0.0f);
+        switch (state) {
+            case 8:
+                func_8009E9FC(bastatetimer_get(self, 2));
+                break;
+            case 9:
+                if (func_800A3274(self) == 6) {
+                    func_8009EAD0(4);
+                }
+                break;
+            case 18:
+                func_8009EAD0(3);
+                break;
+            case 19:
+                func_8009EAD0(6);
+                break;
+            case 20:
+                func_8009EAD0(7);
+                break;
+        }
+    }
+    active = func_8009E71C(self, 5) ? 1 : 0;
+    active &= func_800EA068(8) ? 1 : 0;
+    func_8009EB18(active);
+    bs_setState((s32)self, 0x5A);
+    _baattach_entrypoint_3(self);
+    func_8008E6BC(self);
+    func_80091054(self);
+    _bababykaz_entrypoint_1(self);
+    bastatetimerlist_free(self);
+    _baeggcursor_entrypoint_4(self);
+    func_80094538(self);
+    func_80092A1C(self);
+    func_800A22A8(self);
+    baanim_free(self);
+    func_80095C10(self);
+    _bahold_entrypoint_2(self);
+    _bamum_entrypoint_1(self);
+    _basetup_entrypoint_3(self);
+    func_8009D5E0(self);
+    func_800A2058(self);
+    _bashoes_entrypoint_3(self);
+    _basquash_entrypoint_1(self);
+    func_800A2D70(self);
+    _batranslate_entrypoint_1(self);
+    _bastatemem_entrypoint_2(self);
+    _badronemem_entrypoint_2(self);
+    _bapackctrl_entrypoint_2(self);
+    _baduo_entrypoint_5(self);
+    func_8009E388(self);
+    _bafpctrl_entrypoint_7(self);
+    func_80091E18(self);
+    bakey_free(self);
+    _bacough_entrypoint_2(self);
+    _badeathmatch_entrypoint_2(self);
+    func_80091EA8(self);
+    _bainvisible_entrypoint_4(self);
+    func_8009AD88(self);
+    func_800A4160(self);
+    (*(u8 **)((u8 *)self + 0xB8))[8] = 0;
+}
 
 void func_8009919C(void *arg0, s32 arg1, s32 arg2) {
     (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xB8)))) + (0))) = arg1;
