@@ -201,7 +201,58 @@ void func_80800970_chprisonbits(Actor *arg0) {
     _susubgame_entrypoint_4(arg0, (s32) (sp1C + 0x1C));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/prisonbits/func_808009C4_chprisonbits.s")
+s32 func_808009C4_chprisonbits(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void func_80800CC4_chprisonbits(Actor *, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void func_80102424(Actor *, s32);
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    s32 _suexpression_entrypoint_12(void *, s32, s32);
+    void _suexpression_entrypoint_14(void *, f32, f32);
+    void _suexpression_entrypoint_8(Actor *, u32);
+    s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
+    f32 func_8010CD28(Actor *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_5(f32 *);
+    extern s32 D_80801098_chprisonbits;
+    f32 sp34[5];
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0x2E:
+            func_80800CC4_chprisonbits(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x49:
+            if (arg2 == 0xC) {
+                _susubgame_entrypoint_6(arg0, (u8 *)func_80100094(arg0, 0) + 0x1C, 0x11, 0x2820, 0);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0xF42, 0x44, arg0->position, 0x32);
+                func_80102424(arg0, 9);
+                break;
+            }
+            return 0;
+        case 0x29:
+            _suexpression_entrypoint_7(arg0, 1, 0x32);
+            _suexpression_entrypoint_12(func_80100094(arg0, 1), 0x42340000, 0x41700000);
+            _suexpression_entrypoint_14(func_80100094(arg0, 1), 1.0f, 1.0f);
+            break;
+        case 0x2A:
+            _suexpression_entrypoint_8(arg0, 1);
+            break;
+        case 0x57:
+            return _susubgame_entrypoint_3(arg0, data + 0x1C, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+        case 0x52:
+            func_800EFA4C(sp34, 0.0f, func_8010CD28(arg0), 0.0f);
+            _gcdialogcamera_entrypoint_3(&D_80801098_chprisonbits, arg0->scale);
+            _gcdialogcamera_entrypoint_5(sp34);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 int func_80800BB4_chprisonbits(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
