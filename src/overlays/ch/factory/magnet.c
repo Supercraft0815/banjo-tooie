@@ -427,7 +427,65 @@ OSThread *chfactorymagnet_entrypoint_3(void)
     return (OSThread *) D_80802AB4_chfactorymagnet;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80802390_chfactorymagnet.s")
+void func_80802390_chfactorymagnet(Actor *arg0) {
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 func_8001210C(s32);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 func_800C8A98(void);
+    void func_800C8B84(s32);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8D4C(s32, f32 *);
+    void func_800C8F64(s32, s32);
+    void func_800C8FB0(s32, u32, u32, u32);
+    void func_800C8FE0(s32, s32);
+    s32 func_800D90A4(f32 *);
+    f32 func_800DC178(f32, f32);
+    void func_80101FDC(Actor *, u32);
+    extern s32 D_80802AFC_chfactorymagnet[];
+    extern f32 D_80802B50_chfactorymagnet[];
+    extern u32 D_80802B58_chfactorymagnet[];
+    s32 active;
+    f32 *first;
+
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_800D90A4(&arg0->unk58)) {
+                if (_subaddiefind_entrypoint_2(0x3F5, 0)->unk70_10 == 0x11) {
+                    first = (f32 *)&arg0->actorData[4];
+                    func_800BBCB8(first, (f32 *)&arg0->actorData[0], 1.0f, 10, D_80802AFC_chfactorymagnet);
+                    func_800BBCB8((f32 *)&arg0->actorData[0], first, 1.0f, 10, D_80802AFC_chfactorymagnet);
+                    arg0->actorData[3] = func_800C8A98();
+                    func_800C8D4C(arg0->actorData[3], D_80802B50_chfactorymagnet);
+                    func_800C8FE0(arg0->actorData[3], 1);
+                    func_800C8F64(arg0->actorData[3], 15);
+                    func_800C8CB8(arg0->actorData[3], arg0->position);
+                    func_800C8FB0(arg0->actorData[3], 200, 200, 255);
+                    arg0->unk58 = ((f32 *)arg0->actorData)[7] = func_800DC178(0.5f, 1.25f);
+                    func_80101FDC(arg0, 2);
+                    arg0->unk64_16 = 1;
+                } else {
+                    arg0->unk58 = ((f32 *)arg0->actorData)[7] = func_800DC178(2.0f, 20.0f);
+                }
+            }
+            break;
+        case 2:
+            if (func_800D90A4(&arg0->unk58)) {
+                _subaddieaudioloop_entrypoint_2(arg0);
+                func_800C8B84(arg0->actorData[3]);
+                arg0->actorData[3] = 0;
+                func_80101FDC(arg0, 1);
+                arg0->unk58 = ((f32 *)arg0->actorData)[7] = func_800DC178(2.0f, 20.0f);
+                arg0->unk64_16 = 0;
+            } else {
+                active = func_8001210C(1);
+                func_800C8FB0(arg0->actorData[3], active ? 200 : 160, active ? 200 : 160, active ? 255 : 200);
+                _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_80802B58_chfactorymagnet);
+            }
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_808025B4_chfactorymagnet.s")
 
