@@ -1,6 +1,8 @@
 #include "common.h"
 
 void func_8010A590(Actor *);
+void func_80102424(Actor *, s32);
+void func_8010A570(Actor *);
 
 /* extern */
 
@@ -895,7 +897,29 @@ void func_80803574_chdragonbrothers(Actor *arg0) {
 void func_808036E4_chdragonbrothers(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808036EC_chdragonbrothers.s")
+void func_808036EC_chdragonbrothers(Actor *arg0, s32 arg1) {
+    if (arg0->unk70_10 == 4) {
+        func_8010A570(arg0);
+    }
+    func_80102424(arg0, arg1);
+    switch (arg0->unk70_10) {
+        case 2:
+            ((f32 *)arg0->actorData)[3] = 200.0f;
+            break;
+        case 4:
+            func_8010A590(arg0);
+            break;
+        case 5:
+            arg0->unk58 = 0.0f;
+            break;
+        case 8:
+            ((f32 *)arg0->actorData)[3] = 400.0f;
+            break;
+        case 9:
+            ((f32 *)arg0->actorData)[3] = 400.0f;
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808037B0_chdragonbrothers.s")
 
