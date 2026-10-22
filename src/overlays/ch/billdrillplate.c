@@ -167,7 +167,96 @@ void func_80800358_chbilldrillplate(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_80800408_chbilldrillplate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_80800738_chbilldrillplate.s")
+s32 func_80800738_chbilldrillplate(Actor *arg0, s32 arg1, s32 arg2)
+{
+  void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+  s32 _glcutDll_entrypoint_19(s32);
+  s32 _subaddieDll_entrypoint_0(Actor *);
+  Actor *_subaddiefind_entrypoint_0(f32 *, s32, s32, s32);
+  s32 _subaddielink_entrypoint_0(u8 *);
+  s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+  Actor *_subaddielink_entrypoint_4(u8 *);
+  s32 func_800DA298(s32);
+  void func_800FC660(u32);
+  void *func_80100094(Actor *, u32);
+  void func_80101FDC(Actor *, u32);
+  void func_80103014(u8 *);
+  void func_80103110(void *, s32);
+  s32 func_80103140(Actor *, u32, u16);
+  Actor *func_80800978_chbilldrillplate(Actor *);
+  void *func_80801020_chbilldrillplate(void);
+  u16 *sp2C;
+  f32 *sp28;
+  u16 *sp24;
+  Actor *other;
+  u16 id;
+  if (arg1 == 0x49)
+  {
+    sp2C = func_80801020_chbilldrillplate();
+    if (arg2 == sp2C[7])
+    {
+      func_80103110(arg0, 1);
+      if (func_800DA298(sp2C[6]) != 0)
+      {
+        func_80101FDC(arg0, 2);
+        arg0->unk58 = 1.0f;
+        func_800FC660(0x10);
+        other = func_80800978_chbilldrillplate(arg0);
+        other->actorData[5] = 0;
+        _capod_entrypoint_13(other->unk0, NULL, sp2C[4], 0x900);
+ do { } while (0);
+        return 1;
+      }
+      arg0->actorData[5] = 1;
+      *((f32 *) (&arg0->actorData[6])) = 0.5f;
+      func_80101FDC(arg0, 3);
+      arg0->unk58 = 1.0f;
+      _capod_entrypoint_13(arg0->unk0, NULL, sp2C[5], 0x900);
+      return 1;
+    }
+  }
+  if (arg1 == 0x95)
+  {
+    sp28 = func_80100094(arg0, 0);
+    sp24 = func_80801020_chbilldrillplate();
+    if (((u8 *) sp24)[0x12] != 0)
+    {
+      _subaddieDll_entrypoint_0(arg0);
+    }
+    func_80103140(arg0, sp24[3], arg0->unk0->unk16);
+    _subaddielink_entrypoint_0(sp28);
+    if (arg0)
+    {
+    }
+    if (id = sp24[8])
+    {
+      other = _subaddiefind_entrypoint_0(arg0->position, id, -1, 0);
+      if (other != NULL)
+      {
+        _subaddielink_entrypoint_1(sp28, other->unk0);
+      }
+    }
+    if (_glcutDll_entrypoint_19(sp24[7]) == 0)
+    {
+      if (func_800DA298(sp24[6]) != 0)
+      {
+        arg0->actorData[5] = 0;
+        arg0->position[1] = *((f32 *) (&arg0->actorData[4]));
+      }
+      else
+      {
+        arg0->actorData[5] = 1;
+      }
+    }
+    other = _subaddielink_entrypoint_4(sp28);
+    if (other != NULL)
+    {
+      other->position[1] = sp28[2] + arg0->position[1];
+      func_80103014(other);
+    }
+  }
+  return 0;
+}
 
 /* extern */
 
