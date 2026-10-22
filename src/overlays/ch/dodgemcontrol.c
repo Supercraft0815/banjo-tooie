@@ -1450,7 +1450,65 @@ f32 func_808046EC_chdodgemcontrol(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080476C_chdodgemcontrol.s")
+void func_8080476C_chdodgemcontrol(Actor *arg0) {
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    f32 func_800EEB40(f32 *, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    struct DodgemData {
+        u8 pad0[0x34];
+        f32 positions[10][3];
+        u8 flags[0x16];
+        u8 count;
+        u8 padC3[2];
+        u8 positionCount;
+    };
+    Actor *player;
+    Actor *controller;
+    struct DodgemData *data;
+    s32 index;
+    s32 i;
+    s32 count;
+    Actor *other;
+    f32 position[3];
+
+    controller = func_80106790(arg0->unk3C);
+    data = func_80100094(controller, 0);
+    if (controller->unk79_4 == 3) {
+        if (arg0->unk50 <= 0.0f) {
+            index = func_800DC128(0, data->positionCount);
+            if (data->flags[index] == 1) {
+                ((f32 *)arg0->actorData)[7] = index;
+            }
+            arg0->unk50 = func_800DC178(3.0f, 5.0f);
+        }
+        arg0->unk54 = func_800F1DF4(arg0->position, data->positions[(s32)((f32 *)arg0->actorData)[7]]);
+    } else {
+        player = func_8080000C_chdodgemcontrol(controller, 0);
+        count = 0;
+        for (i = 1; i < data->count; i++) {
+            if (i != arg0->unk6C_0) {
+                other = func_8080000C_chdodgemcontrol(controller, i);
+                if (func_800EEB40(other->position, player->position) < 90000.0f) {
+                    count++;
+                }
+            }
+        }
+        if (count >= 2) {
+            if (arg0->unk50 <= 0.0f) {
+                position[1] = 0.0f;
+                position[0] = func_800DC178(-600.0f, 600.0f);
+                position[2] = func_800DC178(-600.0f, 600.0f);
+                arg0->unk54 = func_800F1DF4(arg0->position, position);
+                arg0->unk50 = func_800DC178(0.5f, 1.5f);
+            }
+        } else {
+            arg0->unk54 = func_800F1DF4(arg0->position, player->position);
+        }
+    }
+}
 
 OSThread *chdodgemcontrol_entrypoint_2(void)
 {
