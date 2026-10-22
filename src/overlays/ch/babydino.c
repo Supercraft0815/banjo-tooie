@@ -47,7 +47,7 @@ void func_8080000C_chbabydino(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/babydino/func_8080011C_chbabydino.s")
+void func_8080011C_chbabydino(Actor *arg0) { void _capod_entrypoint_14(void); s32 _chdinofamilyfx_entrypoint_0(u8 *); void _glcutDll_entrypoint_15(s32); void _glcutDll_entrypoint_17(void); s32 _glcutDll_entrypoint_19(s32); void _glcutDll_entrypoint_24(u32, u32, u32); void _glcutDll_entrypoint_6(u32, u32); s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *); void _sudeflect_entrypoint_0(f32 *, f32, f32, s32); void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32); s32 _suexpression_entrypoint_20(); void func_800DA544(); s32 func_800FFAB0(); void func_80102424(Actor *, s32); void func_80800448_chbabydino(Actor *); s32 func_808005A0_chbabydino(s32, s32); extern s32 D_808007B8_chbabydino;  _sudeflect_entrypoint_0(arg0->position, arg0->scale * 100.0f, arg0->scale * 150.0f, 10); _suexpression_entrypoint_10((u32 *)_suexpression_entrypoint_20(arg0), arg0->unk0, 0); switch (arg0->unk70_10) { case 1: break; case 2: func_80800448_chbabydino(arg0); break; case 3: if (!func_808005A0_chbabydino((s32)arg0, 1)) { _capod_entrypoint_14(); if (_glcutDll_entrypoint_19(0x1F)) { _glcutDll_entrypoint_24(0xEC, -1, 0x1F); } else { _glcutDll_entrypoint_6(0xEC, 0x1F); } } break; case 4: if (!func_808005A0_chbabydino((s32)arg0, 0)) { func_800DA544(0x588); func_80102424(arg0, 5); func_800FFAB0(arg0); _glcutDll_entrypoint_15(1); _glcutDll_entrypoint_17(); _capod_entrypoint_14(); } break; case 5: _subaddiedialog_entrypoint_7((s32)arg0, (s32)arg0->position, &D_808007B8_chbabydino); break; } _chdinofamilyfx_entrypoint_0((u8 *)arg0); }
 
 void func_8080028C_chbabydino(Actor* arg0) 
 {
