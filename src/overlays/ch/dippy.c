@@ -77,7 +77,60 @@ void func_8080047C_chdippy(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800530_chdippy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800654_chdippy.s")
+void func_80800654_chdippy(Actor *arg0, s32 arg1) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
+    void func_800DA544(s32);
+    void func_80102424(Actor *, s32);
+    void func_80800CBC_chdippy(Actor *, s32, s32);
+    extern s32 D_80801610_chdippy;
+    f32 sp1C[3];
+
+    _subaddieskeleton_entrypoint_3(arg0->unk0, 5, sp1C);
+    func_80102424(arg0, arg1);
+    arg0->unk64_16 = 1;
+    switch (arg1) {
+    case 1:
+    case 2:
+        arg0->unk64_16 = 0;
+        break;
+    case 3:
+        func_800DA544(0x328);
+        func_80800CBC_chdippy(arg0, 0x29, 0x30);
+        break;
+    case 4:
+        func_80800CBC_chdippy(arg0, 0x2E, 0x30);
+        break;
+    case 5:
+        func_80800CBC_chdippy(arg0, 0x31, 0x30);
+        break;
+    case 6:
+        func_80800CBC_chdippy(arg0, 0x37, 0x30);
+        _subaddieaudioquick_entrypoint_2(arg0, sp1C, &D_80801610_chdippy);
+        break;
+    case 7:
+        func_80800CBC_chdippy(arg0, 0x2E, 0x30);
+        break;
+    case 8:
+        func_80800CBC_chdippy(arg0, 0x31, 0x30);
+        break;
+    case 9:
+        func_80800CBC_chdippy(arg0, 0x37, 0x30);
+        break;
+    case 10:
+        func_80800CBC_chdippy(arg0, 0x34, 0x30);
+        break;
+    case 11:
+        func_80800CBC_chdippy(arg0, 0x2E, 0x30);
+        break;
+    case 12:
+        func_80800CBC_chdippy(arg0, 0x31, 0x30);
+        break;
+    case 13:
+        func_80800CBC_chdippy(arg0, 0x37, 0x30);
+        break;
+    }
+}
 
 void func_80800800_chdippy(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
