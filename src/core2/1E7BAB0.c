@@ -60,7 +60,67 @@ void func_800A2314(void *arg0, s32 *arg1) {
     func_800B38A8(*(s32 *)((u8 *)(*(u32 *)((u8 *)arg0 + 0xB4)) + 4), sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BAB0/func_800A235C.s")
+struct player_state_s;
+void func_800A235C(void *arg0) {
+    f32 func_80092B8C(struct player_state_s *, f32 *);
+    void func_8009C128(struct player_state_s *, f32 *);
+    void func_800A1F0C(void *, s32 *);
+    s32 func_800B3494(s32, f32 *, f32);
+    int func_800B36C0(s32, f32 *, s32 *, f32);
+    void func_800B37A4(u8 *, s32 *, s32 *);
+    void func_800C8960(s32 *, f32 *);
+    void func_800EE830(s32 *, s32 *);
+    void func_800EF04C(f32 *, f32 *);
+    f32 sp8C[3];
+    f32 sp80[3];
+    f32 sp7C;
+    s32 sp78;
+    s32 sp6C[3];
+    s32 sp68;
+    s32 sp64;
+    f32 sp58[3];
+    s32 sp4C[3];
+    s32 offset;
+    s32 sp3C[3];
+    s32 *p;
+    s32 *end;
+
+    func_800A1F0C(arg0, sp6C);
+    func_800A2314(arg0, sp6C);
+    sp7C = func_80092B8C(arg0, sp80);
+    func_8009C128(arg0, sp8C);
+    func_800EF04C(sp80, sp8C);
+    sp78 = func_800B3494(*(s32 *)(*(u8 **)((u8 *)arg0 + 0xB4) + 4), sp80, sp7C);
+    func_800B37A4(*(u8 **)(*(u8 **)((u8 *)arg0 + 0xB4) + 4), &sp68, &sp64);
+    if (sp78 < **(s8 **)((u8 *)arg0 + 0xB4) && (*(u8 **)((u8 *)arg0 + 0xB4))[1]) {
+        func_800C8960(sp4C, sp58);
+        func_800A22C8(sp4C, sp6C);
+        sp78 += func_800B36C0(*(s32 *)(*(u8 **)((u8 *)arg0 + 0xB4) + 4), sp58, sp4C, sp78 ? *(f32 *)(sp68 + 0x18) : 500.0f);
+    }
+    if (sp78) {
+        func_800EE830(sp3C, (s32 *)(sp68 + 0xC));
+        func_800EE830((s32 *)(sp68 + 0xC), (s32 *)(*(u8 **)((u8 *)arg0 + 0xB4) + 8));
+        offset = 0;
+        p = sp3C;
+        end = sp3C + 3;
+        do {
+            if (((s32 *)(sp68 + offset))[3] < *p) {
+                ((s32 *)(sp68 + offset))[3] += 40;
+                if (*p < ((s32 *)(sp68 + offset))[3]) {
+                    ((s32 *)(sp68 + offset))[3] = *p;
+                }
+            } else if (*p < ((s32 *)(sp68 + offset))[3]) {
+                ((s32 *)(sp68 + offset))[3] -= 40;
+                if (((s32 *)(sp68 + offset))[3] < *p) {
+                    ((s32 *)(sp68 + offset))[3] = *p;
+                }
+            }
+            p++;
+            offset += 4;
+        } while (p != end);
+        func_800EE830((s32 *)(*(u8 **)((u8 *)arg0 + 0xB4) + 8), (s32 *)(sp68 + 0xC));
+    }
+}
 
 void func_800A2534(s32 *arg0)
 {
