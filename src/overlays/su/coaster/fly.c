@@ -121,7 +121,115 @@ void func_80800FA8_sucoasterfly(Unk80132ED0 *arg0, Unk80132ED0 *arg1) {
     func_800EF04C(&((f32 *)actor->actorData)[4], velocity);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80801108_sucoasterfly.s")
+void func_80801108_sucoasterfly(Unk80132ED0 *arg0, Unk80132ED0 *arg1, s32 arg2) {
+    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    void _chflamer_entrypoint_1(void *, void *);
+    void _chfreezy_entrypoint_1(void *, s16 *);
+    s32 _glhittableDll_entrypoint_10(s32);
+    s32 _glhittableDll_entrypoint_6(s32);
+    s32 _glhittableDll_entrypoint_8(s32);
+    s32 _glhittableDll_entrypoint_9(s32);
+    void _subaddiejoy_entrypoint_10(void *, f32, f32);
+    void func_800EB860(s32, s32);
+    void func_800EB874(void);
+    void func_800EC370(void **, void *);
+    f32 func_800EC708(Unk80132ED0 *);
+    s32 func_800F0E28(s32, s32);
+    s32 func_800F54E4(void);
+    f32 func_800F5F24(u32);
+    s32 func_800F6C1C(s32);
+    s32 func_800F70EC(s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80109600(void *, void *);
+    s32 func_8010A430(void *);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    void func_80800EF0_sucoasterfly(Unk80132ED0 *arg0, u8 *arg1);
+    void func_80800F44_sucoasterfly(Unk80132ED0 *arg0, s32 arg1);
+    void func_80800FA8_sucoasterfly(Unk80132ED0 *arg0, Unk80132ED0 *arg1);
+    extern s32 D_80802294_sucoasterfly;
+    extern void _chbaddiesetup_entrypoint_10(void);
+    s32 func_80108EF4(void *, s32);
+    Actor *sp5C;
+    s32 sp58;
+    s32 sp54;
+    s32 sp50;
+    s32 sp4C;
+    s32 var_v1;
+    f32 height;
+    u32 temp_t8;
+    s16 sp38[3];
+    f32 sp34;
+    f32 sp30;
+
+    sp5C = func_80106790(arg0);
+    sp58 = _glhittableDll_entrypoint_10(arg2);
+    sp54 = _glhittableDll_entrypoint_9(arg2);
+    sp50 = _glhittableDll_entrypoint_6(arg2);
+    var_v1 = (arg1->unk24 >> 22) == 0;
+    if (!var_v1 || ((temp_t8 = (u32)((u16 *)&arg1->unk18)[1] >> 5, func_800F70EC(temp_t8)) && func_800F6C1C(temp_t8)) || !_glhittableDll_entrypoint_8(arg2)) {
+        if (sp50 == 0) {
+            if (!sp54 && (arg1->unk24 >> 22)) {
+                return;
+            }
+            if (sp54 <= 0) {
+                sp54 = 1;
+            }
+        }
+        (&sp5C->pad5C)[sp50] = func_800F0E28(0, (&sp5C->pad5C)[sp50] - 100 / sp54);
+        sp4C = sp50 == 2 && (&sp5C->pad5C)[sp50] == 0;
+        if (sp54) {
+            switch (sp50) {
+                case 2:
+                    func_80109600(sp5C, arg1);
+                    switch (arg1->unk24 >> 22) {
+                        case 0x26D:
+                            _chflamer_entrypoint_1(sp5C, arg1);
+                            break;
+                    }
+                    break;
+                case 1:
+                    func_80109600(sp5C, arg1);
+                    switch (arg1->unk24 >> 22) {
+                        case 0x26E:
+                            func_800EC370(arg1, sp38);
+                            _chfreezy_entrypoint_1(sp5C, sp38);
+                            break;
+                    }
+                    break;
+            }
+        }
+        if ((&sp5C->pad5C)[sp50] == 0 || sp50 != 0) {
+            if ((&sp5C->pad5C)[sp50] != 0) {
+                sp50--;
+            }
+            if (sp50 != 2) {
+                (&sp5C->pad5C)[sp50] = 99;
+            }
+            if (sp50 == 2 && sp58 && func_8010A430(sp5C)) {
+                sp34 = func_800F5F24(func_800F54E4());
+                func_800EB860(&func_80108EF4, sp5C);
+                sp30 = sp5C->position[1] + (height = func_800EC708(arg0));
+                _chbaddiesetup_entrypoint_5(&_chbaddiesetup_entrypoint_10, sp58 + 2, *(s32 *)&sp5C->position[0], *(s32 *)&sp30, *(s32 *)&sp5C->position[2], *(s32 *)&sp34);
+                func_800EB874();
+            }
+            switch (sp50) {
+                case 0:
+                    func_80800EF0_sucoasterfly(sp5C->unk0, arg1);
+                    break;
+                case 1:
+                    func_80800F44_sucoasterfly(sp5C->unk0, arg1);
+                    break;
+                case 2:
+                    func_80800FA8_sucoasterfly(sp5C->unk0, arg1);
+                    break;
+            }
+        }
+        if (sp4C) {
+            func_8010D930(1, sp5C->unk70_0, sp5C->position, &D_80802294_sucoasterfly);
+            _subaddiejoy_entrypoint_10(sp5C, 1.0f, 0.25f);
+        }
+    }
+}
 
 s32 func_808014AC_sucoasterfly(Actor *arg0, s32 arg1) {
     s32 _subaddieDll_entrypoint_4(void *, s32);
