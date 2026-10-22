@@ -157,7 +157,24 @@ void func_800ED0D4(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, f32 *arg4) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC6180/func_800ED144.s")
+void func_800ED144(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, f32 *arg4) {
+    f32 ratio;
+    f32 delta[4];
+    Vtx *end;
+
+    end = arg1 + arg3;
+    ratio = arg4[0x98 / 4] / arg4[0x9C / 4];
+    delta[0] = (arg4[0x88 / 4] - arg4[0x78 / 4]) * ratio;
+    delta[1] = (arg4[0x8C / 4] - arg4[0x7C / 4]) * ratio;
+    delta[2] = (arg4[0x90 / 4] - arg4[0x80 / 4]) * ratio;
+    delta[3] = (arg4[0x94 / 4] - arg4[0x84 / 4]) * ratio;
+    for (; arg1 < end; arg1++, arg2++) {
+        arg2->v.cn[0] = (u32)(arg4[0x78 / 4] + delta[0]);
+        arg2->v.cn[1] = (u32)(arg4[0x7C / 4] + delta[1]);
+        arg2->v.cn[2] = (u32)(arg4[0x80 / 4] + delta[2]);
+        arg2->v.cn[3] = (u32)(arg4[0x84 / 4] + delta[3]);
+    }
+}
 
 void func_800ED424(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, f32 *arg4) {
     f32 ratio;
