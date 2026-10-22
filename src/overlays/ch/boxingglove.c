@@ -67,7 +67,72 @@ void func_808002AC_chboxingglove(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x58))) = 1.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boxingglove/func_808002E0_chboxingglove.s")
+void func_808002E0_chboxingglove(Actor *arg0, s32 arg1) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    f32 func_800DC178(f32, f32);
+    s32 func_800F1E6C(f32 *, f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void func_80101FDC(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    void func_8010D09C(s32, f32 *, f32);
+    void func_8010D254(f32 *);
+    s32 func_808004F8_chboxingglove(void *);
+    s32 func_80800544_chboxingglove(Actor *, f32 *);
+    extern u8 D_808007A0_chboxingglove[];
+    Actor *other;
+    f32 sp40[3];
+    f32 sp34[3];
+
+    other = func_80106790(arg0->unk3C);
+    switch (arg1) {
+        case 1:
+            arg0->unk58 = func_800DC178(2.0f, 3.0f);
+            func_80102424(arg0, 1);
+            func_80101FDC(other, arg1);
+            other->unk64_16 = 0;
+            break;
+        case 2:
+            if (arg0->unk64_20) {
+                func_8010D09C(func_800F54E4(), sp40, 1.5f);
+                if (func_80800544_chboxingglove(arg0, sp40) ||
+                    (func_8010D254(sp40), func_80800544_chboxingglove(arg0, sp40))) {
+                    arg0->position[0] = other->position[0] = sp40[0];
+                    arg0->position[2] = other->position[2] = sp40[2];
+                } else {
+                    return;
+                }
+            } else {
+                arg0->unk64_20 = 1;
+            }
+            arg0->unk58 = 1.5f;
+            other->unk58 = 1.5f;
+            func_80102424(arg0, arg1);
+            func_80101FDC(other, arg1);
+            other->unk64_16 = 1;
+            break;
+        case 3:
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808007A0_chboxingglove);
+            func_80102424(arg0, arg1);
+            func_80101FDC(other, arg1);
+            func_8010A590(arg0);
+            arg0->unk64_16 = 1;
+            func_8010D254(sp34);
+            func_800F1E6C(sp34, arg0->position, &arg0->rotation[1]);
+            break;
+        case 4:
+            arg0->unk58 = 1.5f;
+            other->unk58 = 1.5f;
+            func_80102424(arg0, arg1);
+            func_80101FDC(other, arg1);
+            func_8010A570(arg0);
+            arg0->unk64_16 = 0;
+            func_808004F8_chboxingglove(arg0);
+            break;
+    }
+}
 
 /* extern */
 
