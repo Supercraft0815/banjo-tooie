@@ -70,7 +70,55 @@ void func_80800150_chcheatomenu(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eatomenu/func_80800194_chcheatomenu.s")
+s32 func_80800194_chcheatomenu(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 _gcnewoption_entrypoint_12(s32, s32, s16);
+    s32 _gcnewoption_entrypoint_13(s32, s32, void *);
+    s32 _gcnewoption_entrypoint_17();
+    s32 _gcnewoption_entrypoint_18();
+    s32 _gcnewoption_entrypoint_19();
+    s32 func_800D3DD0(s32);
+    s32 func_800D3E14(s32);
+    void func_800D3F58(s32, s32);
+    void func_800D3FD4(u32);
+    struct OptionColor { s16 values[3]; };
+    extern struct OptionColor D_808008E4_chcheatomenu;
+    extern struct OptionColor D_808008EC_chcheatomenu;
+    extern struct OptionColor D_808008F4_chcheatomenu;
+    s32 count;
+    s32 index;
+    s32 cheat;
+
+    (void)&arg1;
+    count = 0;
+    for (index = 1; index != 13; index++) {
+        if (func_800D3E14(index) || func_800D3DD0(index)) {
+            if (count == arg2) {
+                break;
+            }
+            count++;
+        }
+    }
+    if (_gcnewoption_entrypoint_17(arg1, arg2)) {
+        struct OptionColor sp3C = D_808008E4_chcheatomenu;
+        count = index - 1;
+        _gcnewoption_entrypoint_13(arg1, arg2, &sp3C);
+        _gcnewoption_entrypoint_12(arg1, arg2, count * 3 + 4);
+        func_800D3F58(count + 1, 1);
+    } else if (_gcnewoption_entrypoint_18(arg1, arg2)) {
+        struct OptionColor sp34 = D_808008EC_chcheatomenu;
+        count = index - 1;
+        _gcnewoption_entrypoint_13(arg1, arg2, &sp34);
+        _gcnewoption_entrypoint_12(arg1, arg2, count * 3 + 5);
+        func_800D3F58(count + 1, 0);
+    } else if (_gcnewoption_entrypoint_19(arg1, arg2)) {
+        struct OptionColor sp2C = D_808008F4_chcheatomenu;
+        _gcnewoption_entrypoint_13(arg1, arg2, &sp2C);
+        _gcnewoption_entrypoint_12(arg1, arg2, index * 3 + 3);
+    }
+    if (arg3) {
+        func_800D3FD4(1);
+    }
+}
 
 s32 func_80800364_chcheatomenu(Actor *arg0, void *arg1) {
     s32 _gcnewoption_entrypoint_14(s32, s32, s32, s32, f32);
