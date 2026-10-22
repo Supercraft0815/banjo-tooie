@@ -394,7 +394,8 @@ typedef struct {
     u32 particleIndex : 7;
     u32 pad70_16 : 9;
     u32 state : 6;
-    u32 pad70_0 : 10;
+    u32 particleSubIndex : 6;
+    u32 pad70_0 : 4;
 } ChTrashcanParticleActor;
 
 void func_808018E4_chtrashcangame(ChTrashcanParticleActor *arg0) {
@@ -452,7 +453,53 @@ void func_80801CF0_chtrashcangame(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80801D54_chtrashcangame.s")
+void func_80801D54_chtrashcangame(Actor *arg0) {
+    s32 _gcstatusDll_entrypoint_11();
+    void _subaddiemulti_entrypoint_6(f32 *, f32);
+    s32 func_800C954C(void);
+    void *func_800CC63C(s32, s32);
+    s32 func_800CEAD0(s32);
+    s32 func_800D2498(u32, s32, u32);
+    s32 func_800D28A0(s32);
+    s32 func_800D90A4(f32 *);
+    s32 func_800DA298(s32);
+    void func_80108B04(Actor *, u32);
+    void func_80801EE8_chtrashcangame(Actor *, s32);
+    s32 i;
+    f32 *position;
+
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_800C954C() == 0 && func_800DA298(0x6AD) == 0) {
+                func_80801EE8_chtrashcangame(arg0, 2);
+            }
+            break;
+        case 2:
+            break;
+        case 3:
+            position = func_800CC63C(arg0->unk70_25 - 1, ((ChTrashcanParticleActor *)arg0)->particleSubIndex - 1);
+            _subaddiemulti_entrypoint_6(position, position[4]);
+            for (i = 0; i < _gcstatusDll_entrypoint_11(); i++) {
+                func_800D2498(i + 0xC3, func_80800014_chtrashcangame(arg0, i), 0);
+            }
+            if (func_800D90A4(&arg0->unk58)) {
+                arg0->unk58 = 0.299987793f;
+                func_80108B04(arg0, 0);
+            }
+            if (func_800CEAD0(0)) {
+                func_80801EE8_chtrashcangame(arg0, 4);
+            }
+            break;
+        case 4:
+            for (i = 0; i < _gcstatusDll_entrypoint_11(); i++) {
+                if (i == arg0->actorData[2]) {
+                    func_800D28A0(i + 0xC3);
+                }
+                func_800D2498(i + 0xC3, func_80800014_chtrashcangame(arg0, i), 0);
+            }
+            break;
+    }
+}
 
 void func_80801EE8_chtrashcangame(Actor *arg0, s32 arg1) {
     s32 _gcstatusDll_entrypoint_11();
