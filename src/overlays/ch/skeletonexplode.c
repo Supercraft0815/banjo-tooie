@@ -110,7 +110,57 @@ void func_80800594_chskeletonexplode(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_808005CC_chskeletonexplode.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_80800894_chskeletonexplode.s")
+void func_80800894_chskeletonexplode(Actor *arg0, s32 arg1, f32 *arg2) {
+    s32 _dbskeleton_entrypoint_0(u8 *);
+    s32 _dbskeleton_entrypoint_2(u8 *, s32, f32 *);
+    s32 _dbskeleton_entrypoint_4(u8 *, u32);
+    u8 *func_800B27E0(u8 *);
+    f32 func_800DC178(f32, f32);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EFD24(f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    u32 *func_80100074(Actor *, u32, u32);
+    void *func_80100094(Actor *, u32);
+    u8 *func_801039E4(Unk80132ED0 *);
+    struct SkeletonExplodePart {
+        f32 offset[3];
+        f32 position[3];
+        f32 rotation[3];
+        f32 velocity[3];
+        f32 unk30[3];
+        s8 active;
+        u8 pad3D[3];
+    };
+    f32 angle;
+    f32 pitch;
+    u8 *skeleton;
+    u32 i;
+    f32 *position;
+    struct SkeletonExplodePart *part;
+    f32 sp84[3];
+
+    skeleton = func_800B27E0(func_801039E4(arg0->unk0));
+    arg0->unk6C_0 = _dbskeleton_entrypoint_0(skeleton);
+    func_80100074(arg0, 0, arg0->unk6C_0 * sizeof(struct SkeletonExplodePart));
+    part = func_80100094(arg0, 0);
+    for (i = 0; i < arg0->unk6C_0; i++, part++) {
+        position = part->position;
+        _dbskeleton_entrypoint_2(skeleton, _dbskeleton_entrypoint_4(skeleton, i), position);
+        func_800EFD24(part->offset);
+        func_800EE780(sp84, position, arg0->position);
+        angle = func_800F1DF4(sp84, arg2);
+        part->rotation[0] = 0.0f;
+        part->rotation[1] = arg0->rotation[1];
+        part->rotation[2] = 0.0f;
+        pitch = func_800DC178(-20.0f, 20.0f);
+        func_800EEC30(part->velocity, pitch + 130.0f, func_800DC178(-65.0f, 65.0f) + angle, 1000.0f);
+        part->active = 1;
+    }
+    arg0->rotation[1] = 0.0f;
+    arg0->rotation[0] = 0.0f;
+    arg0->rotation[2] = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/chskeletonexplode_entrypoint_0.s")
 
