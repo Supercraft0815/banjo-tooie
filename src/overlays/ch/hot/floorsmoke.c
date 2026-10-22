@@ -44,7 +44,35 @@ void func_80800090_chhotfloorsmoke(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/floorsmoke/func_808000FC_chhotfloorsmoke.s")
+void func_808000FC_chhotfloorsmoke(Actor *arg0) {
+    void func_800CD08C(s32, f32 *);
+    s32 func_800DA298(s32);
+    f32 func_800DC178(f32, f32);
+    void func_80101FDC(Actor *, u32);
+    void func_808001E8_chhotfloorsmoke(Actor *, f32[3]);
+    f32 sp34;
+    f32 sp28[3];
+
+    switch (arg0->unk6C_0) {
+    case 1:
+        if (func_800DA298(0x66F) == 0) {
+            return;
+        }
+        sp34 = func_800DC178(1.0f, 1.5f);
+        break;
+    case 2:
+        sp34 = func_800DC178(1.0f, 1.5f);
+        break;
+    default:
+        sp34 = func_800DC178(2.0f, 3.0f);
+        break;
+    }
+    func_800CD08C(arg0->unk70_25 - 1, sp28);
+    sp28[1] = arg0->position[1];
+    func_808001E8_chhotfloorsmoke(arg0, sp28);
+    func_80101FDC(arg0, 2);
+    arg0->unk58 = sp34;
+}
 
 void func_808001E8_chhotfloorsmoke(Actor *arg0, f32 arg1[3]) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
