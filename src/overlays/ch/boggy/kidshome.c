@@ -60,7 +60,47 @@ void func_808000DC_chboggykidshome(Actor* arg0)
 {
     _suexpression_entrypoint_8(arg0, 1);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/kidshome/func_808000FC_chboggykidshome.s")
+s32 func_808000FC_chboggykidshome(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    s32 _suexpression_entrypoint_12(void *, s32, s32);
+    s32 _suexpression_entrypoint_17(void *, s32);
+    s32 func_808002C0_chboggykidshome(void *);
+    void func_80102424(Actor *, s32);
+    extern s32 D_80800540_chboggykidshome;
+    extern s32 D_80800550_chboggykidshome;
+    extern s32 D_80800560_chboggykidshome;
+    void *expression;
+    u32 id;
+
+    switch (arg1) {
+    case 0x2E:
+        func_80102424(arg0, 1);
+        break;
+    case 0x95:
+        expression = _suexpression_entrypoint_7(arg0, 1, (s16)func_808002C0_chboggykidshome(arg0));
+        _suexpression_entrypoint_12(expression, 0x42700000, 0x41A00000);
+        _suexpression_entrypoint_17(expression, 1000);
+        break;
+    case 0x52:
+        id = arg0->unk6C_9;
+        if (id != 0x34E) {
+            if (id != 0x3E4) {
+                if (id == 0x41D) {
+                    _gcdialogcamera_entrypoint_3(&D_80800540_chboggykidshome, arg0->scale);
+                }
+            } else {
+                _gcdialogcamera_entrypoint_3(&D_80800550_chboggykidshome, arg0->scale);
+            }
+        } else {
+            _gcdialogcamera_entrypoint_3(&D_80800560_chboggykidshome, arg0->scale);
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800214_chboggykidshome(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
