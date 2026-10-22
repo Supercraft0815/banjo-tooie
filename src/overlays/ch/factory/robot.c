@@ -198,7 +198,57 @@ void func_808006DC_chfactoryrobot(Actor *arg0, f32 arg1, f32 arg2) {
     func_800F20BC(((f32 *)arg0->actorData)[5], arg0->unk54, 4.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_808007C4_chfactoryrobot.s")
+void func_808007C4_chfactoryrobot(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_1(Actor *);
+    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EE940(s16 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80105138(Actor *, f32 *, f32, f32, f32 *);
+    void func_80107200(Actor *);
+    void func_8010A3E8(void *, f32);
+    void func_8010A590(Actor *);
+    s32 func_80801160_chfactoryrobot(u8 *, s32);
+    struct RobotInitData {
+        s16 position[3];
+        s16 timer;
+        u8 pad8[4];
+        f32 yaw;
+        f32 targetYaw;
+        u8 pad14[0x10];
+        f32 unk24;
+        f32 unk28;
+        u8 pad2C[8];
+        u8 route[4];
+    };
+    struct RobotInitData *data;
+    f32 height;
+
+    data = func_80100094(arg0, 0);
+    func_8010A3E8(arg0, 0.4f);
+    func_8010A590(arg0);
+    func_800EE940(data->position, arg0->position);
+    data->targetYaw = data->yaw = arg0->rotation[1];
+    data->unk28 = 1.0f;
+    data->unk24 = 0.0f;
+    func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+    if (arg0->unk7A_5) {
+        if (func_80105138(arg0, arg0->position, 0.0f, -500.0f, &height)) {
+            data->position[1] = (s32)height;
+        }
+        _subaddieDll_entrypoint_1(arg0);
+        _subaddierouteDll_entrypoint_3(arg0, data->route, arg0->position);
+        func_80107200(arg0);
+        func_80801160_chfactoryrobot((u8 *)arg0, 3);
+        data->timer = (s32)func_800DC178(100.0f, 200.0f);
+    } else {
+        func_80801160_chfactoryrobot((u8 *)arg0, 1);
+        arg0->unk64_24 = 0;
+        ((f32 *)arg0->actorData)[1] += 300.0f;
+        arg0->unk58 = 1.0f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80800920_chfactoryrobot.s")
 
