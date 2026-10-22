@@ -3656,4 +3656,62 @@ s32 func_808079D0_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80807A10_chgameselect.s")
+s32 func_80807A10_chgameselect(arg0, arg1, arg2) {
+    s32 _cadbfunc_entrypoint_0(s32 *);
+    s32 _cadbfunc_entrypoint_2(s32 *);
+    s32 func_800A5800(s32);
+    void func_800E39A8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EFE50(f32 *, void *, void *, f32);
+    void func_80101FDC(Actor *, u32);
+    void func_800F16AC(u8 *, f32 *, f32 *, f32);
+    f32 distance;
+    f32 position[3];
+    f32 rotation[3];
+
+    func_800E39A8(((Actor *)arg0)->position, ((Actor *)arg0)->rotation);
+    func_800A5800(arg1);
+    _cadbfunc_entrypoint_0((s32 *)((Actor *)arg0)->actorData);
+    _cadbfunc_entrypoint_2((s32 *)&((Actor *)arg0)->actorData[4]);
+    distance = func_800EEAD4(((Actor *)arg0)->position, (f32 *)((Actor *)arg0)->actorData);
+    switch (arg2) {
+    case 0:
+        ((f32 *)((Actor *)arg0)->actorData)[7] = 1;
+        ((Actor *)arg0)->unk6C_0 = arg1;
+        ((Actor *)arg0)->unk64_20 = 0;
+        ((f32 *)((Actor *)arg0)->actorData)[3] = 1.0f;
+        break;
+    case 1:
+        ((f32 *)((Actor *)arg0)->actorData)[7] = 0.0f;
+        ((Actor *)arg0)->unk6C_0 = arg1;
+        ((Actor *)arg0)->unk64_20 = 0;
+        ((f32 *)((Actor *)arg0)->actorData)[3] = 1.0f;
+        break;
+    case 2:
+        func_800A5800(((Actor *)arg0)->unk6C_0);
+        _cadbfunc_entrypoint_0((s32 *)position);
+        _cadbfunc_entrypoint_2((s32 *)rotation);
+        func_800EFE50((f32 *)((Actor *)arg0)->actorData, position, (f32 *)((Actor *)arg0)->actorData, 0.3f);
+        func_800F16AC((u8 *)&((Actor *)arg0)->actorData[4], rotation, (f32 *)&((Actor *)arg0)->actorData[4], 0.3f);
+        ((f32 *)((Actor *)arg0)->actorData)[7] = 0.0f;
+        if (((Actor *)arg0)->unk64_20) {
+            distance = func_800EEAD4(((Actor *)arg0)->position, (f32 *)((Actor *)arg0)->actorData);
+            ((f32 *)((Actor *)arg0)->actorData)[3] = 320.0f / distance;
+        } else {
+            ((f32 *)((Actor *)arg0)->actorData)[3] = 1.6666666f;
+        }
+        ((Actor *)arg0)->unk64_20 = 1;
+        break;
+    case 3:
+        ((f32 *)((Actor *)arg0)->actorData)[7] = 0.0f;
+        ((Actor *)arg0)->unk6C_0 = arg1;
+        ((f32 *)((Actor *)arg0)->actorData)[3] = 1.6666666f;
+        ((Actor *)arg0)->unk64_20 = 0;
+        break;
+    }
+    if (distance < 0.01f) {
+        func_80101FDC((Actor *)arg0, 1);
+    } else {
+        func_80101FDC((Actor *)arg0, 2);
+    }
+}
