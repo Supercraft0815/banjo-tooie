@@ -95,7 +95,46 @@ void bafly_entrypoint_7(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 140) + 8) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fly/bafly_entrypoint_8.s")
+void bafly_entrypoint_8(PlayerState *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7) {
+    int baflag_isTrue(PlayerState *, s32);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    void baphysics_set_terminal_velocity(PlayerState *, f32);
+    void func_80096394(PlayerState *, f32 *);
+    s32 func_8009650C(PlayerState *);
+    void func_8009BA9C(PlayerState *, f32 *);
+    f32 func_8009BFCC(PlayerState *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 yaw_get(PlayerState *);
+    f32 sp44[3];
+    f32 temp_f20;
+    f32 sp3C;
+
+    temp_f20 = func_8009BFCC(arg0);
+    baphysics_set_gravity(arg0, arg4);
+    bafly_entrypoint_6(arg0, 0.0f);
+    if (baflag_isTrue(arg0, 9) != 0) {
+        baphysics_set_terminal_velocity(arg0, 0.0f);
+        func_8009BA9C(arg0, 0);
+        sp3C = 0.0f;
+    } else if (temp_f20 <= arg2) {
+        baphysics_set_terminal_velocity(arg0, func_800F10B4(temp_f20, arg2 - 20.0f, arg2, arg5, arg7));
+        baphysics_set_gravity(arg0, func_800F10B4(temp_f20, arg2 - 20.0f, arg2, arg4, arg6));
+        sp3C = func_800F10B4(temp_f20, arg2 - 20.0f, arg2, arg3, arg3 / 10.0f);
+        bafly_entrypoint_6(arg0, func_800F10B4(temp_f20, arg2 - 20.0f, arg2, 0.0f, 0.35f));
+    } else {
+        baphysics_set_terminal_velocity(arg0, func_800F10B4(temp_f20, arg1, arg1 + 10.0f, -399.99f, arg5));
+        sp3C = func_800F10B4(temp_f20, arg1, arg1 + 40.0f, 0.0f, arg3);
+        bafly_entrypoint_6(arg0, func_800F10B4(temp_f20, arg1, arg1 + 40.0f, -0.25f, 0.0f));
+    }
+    func_80096394(arg0, sp44);
+    if ((func_8009650C(arg0) != 0) && (sp44[1] > -1.0f)) {
+        sp3C = 0.0f;
+    }
+    baphysics_set_target_yaw(arg0, yaw_get(arg0));
+    baphysics_set_target_horizontal_velocity(arg0, sp3C);
+}
 
 /* extern */
 
