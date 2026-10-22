@@ -1225,7 +1225,63 @@ void func_80803954_chquiz(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_808039D4_chquiz.s")
+s32 func_808039D4_chquiz(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800C3F48(u32);
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8D4C(s32, f32 *);
+    void func_800C8E84(s32, u32 *);
+    void func_800C8F64(s32, s32);
+    void func_800C8FE0(s32, s32);
+    void func_800DF744(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    s32 func_801015D0(Actor *);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(Actor *, u32);
+    extern f32 D_808074C8_chquiz[];
+    extern u32 D_808074D0_chquiz[];
+    f32 sp24[3];
+
+    switch (arg1) {
+    case 0x8C:
+        if (arg2 != 2) {
+            func_800EE7F8(sp24, arg0->position);
+            func_800EF1B8(sp24, arg0->rotation[1], 10.0f);
+            arg0->actorData[7] = func_800C8A98();
+            func_800C8F64(arg0->actorData[7], 0xF);
+            func_800C8E84(arg0->actorData[7], D_808074D0_chquiz);
+            func_800C8D4C(arg0->actorData[7], D_808074C8_chquiz);
+            func_800C8CB8(arg0->actorData[7], sp24);
+            func_800C8FE0(arg0->actorData[7], 1);
+            if (arg0->unk74_7 == 0x33) {
+                func_800C3F48(0x7FFFFD3B);
+            }
+            arg0->unk58 = 1.5f;
+            func_80103110(arg0, 1);
+            func_80101FDC(arg0, 2);
+        } else {
+            func_800C3F48(0x7FFFFD3A);
+        }
+        return 1;
+    case 0x1F:
+        func_801015D0(arg0);
+        goto update_visibility;
+    update_visibility:
+        switch (arg0->unk70_10) {
+        case 1:
+            func_800DF744(1, 1);
+            func_800DF744(2, 0);
+            break;
+        case 2:
+            func_800DF744(1, 0);
+            func_800DF744(2, 1);
+            break;
+        }
+        return 1;
+    }
+    return 0;
+}
 
 OSThread *chquiz_entrypoint_3(void)
 {
