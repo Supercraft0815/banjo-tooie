@@ -100,11 +100,49 @@ void func_808004A8_ch2dbaddy(Actor *arg0) {
 
 /* extern */
 
-void func_808004F4_ch2dbaddy(Actor *arg0) { s32 _subaddieDll_entrypoint_3(Actor *); s32 _sucoaster_entrypoint_10(Actor *, s32); s32 _sucoaster_entrypoint_6(Actor *, f32, s32); s32 var_a2; if ((arg0->unk70_10 == 2) || (arg0->unk70_10 == 3) || (arg0->unk70_10 == 8)) { if (_subaddieDll_entrypoint_3(arg0) != 0) { var_a2 = 0x15; } else { var_a2 = 0xE; } _sucoaster_entrypoint_6(arg0, 200.0f, var_a2); _sucoaster_entrypoint_10(arg0, var_a2); } }
+void func_808004F4_ch2dbaddy(Actor *arg0) { s32 _subaddieDll_entrypoint_3(Actor *); s32 _sucoaster_entrypoint_10(Actor *, s32); s32 _sucoaster_entrypoint_6(Actor *, f32, ...); s32 var_a2; if ((arg0->unk70_10 == 2) || (arg0->unk70_10 == 3) || (arg0->unk70_10 == 8)) { if (_subaddieDll_entrypoint_3(arg0) != 0) { var_a2 = 0x15; } else { var_a2 = 0xE; } _sucoaster_entrypoint_6(arg0, 200.0f, var_a2); _sucoaster_entrypoint_10(arg0, var_a2); } }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_80800564_ch2dbaddy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_80800700_ch2dbaddy.s")
+s32 func_80800700_ch2dbaddy(Actor *arg0, s32 arg1) {
+    u8 *_sucoaster_entrypoint_3();
+    s32 _sucoaster_entrypoint_10(Actor *, s32);
+    s32 _sucoaster_entrypoint_6(Actor *, f32, ...);
+    void func_8010A570(Actor *);
+    void func_80800850_ch2dbaddy();
+    s32 func_801032B0(Actor *, u16, u16);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    extern u32 D_80800AE4_ch2dbaddy;
+    u8 *sp24;
+
+    sp24 = _sucoaster_entrypoint_3();
+    switch (arg1) {
+        case 12:
+            func_8010A570(arg0);
+            _sucoaster_entrypoint_10(arg0, arg1);
+            break;
+        case 21:
+            _sucoaster_entrypoint_10(arg0, arg1);
+            _sucoaster_entrypoint_6(arg0, 200.0f);
+            break;
+        case 19:
+            _sucoaster_entrypoint_10(arg0, arg1);
+            func_8010A570(arg0);
+            if (!arg0->unk64_29) {
+                func_80800850_ch2dbaddy(arg0);
+                func_801032B0(arg0, *(u16 *)(sp24 + 6), 0);
+            }
+            arg0->unk64_16 = 0;
+            break;
+        case 20:
+            _sucoaster_entrypoint_10(arg0, arg1);
+            arg0->unk64_16 = 1;
+            arg0->unk64_20 = 0;
+            func_8010A570(arg0);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800AE4_ch2dbaddy);
+            break;
+    }
+}
 
 void func_80800820_ch2dbaddy(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
