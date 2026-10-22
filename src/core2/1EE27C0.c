@@ -302,7 +302,51 @@ void func_80109704(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109748.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_801098D0.s")
+s32 func_801098D0(f32 *arg0, f32 arg1, void *arg2) {
+    f32 func_800EC75C(void *, f32 *);
+    f32 func_800EEFD4(f32 *);
+    void func_800EF3DC(f32 *, f32 *);
+    struct HitTable {
+        u32 pad[3];
+        s32 (*hit)(void *, f32 *, f32, f32 *, u32);
+    };
+    struct HitMarker {
+        u32 pad[3];
+        struct HitTable *(*get)(void);
+        u32 pad10[2];
+        u32 unused0 : 11;
+        u32 hit : 4;
+        u32 unused1 : 12;
+        u32 mode : 4;
+        u32 unused2 : 1;
+    };
+    f32 sp4C[3];
+    f32 sp48;
+    s32 result;
+    f32 sp38[3];
+    struct HitTable *table;
+    struct HitMarker *marker = arg2;
+
+    if (marker->get != NULL) {
+        table = marker->get();
+        if (table->hit != NULL) {
+            result = table->hit(marker, arg0, arg1, sp38, marker->mode);
+            if (result != 0) {
+                marker->hit = result;
+                return 1;
+            }
+            return 0;
+        }
+    }
+    sp48 = func_800EC75C(marker, sp4C) + arg1;
+    func_800EF3DC(sp4C, arg0);
+    if (func_800EEFD4(sp4C) < sp48 * sp48) {
+        result = 1;
+    } else {
+        result = 0;
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_801099D0.s")
 
@@ -393,7 +437,7 @@ void func_80109FE8(void **arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A01C.s")
 
 void func_8010A2FC(Actor *arg0, f32 *arg1, f32 *arg2) {
-    void func_800EC75C(Unk80132ED0 *, f32 *);
+    f32 func_800EC75C(void *, f32 *);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     void *func_80101080(void);
