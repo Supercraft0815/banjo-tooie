@@ -174,7 +174,80 @@ s32 func_80800908_chtoothyfish(s32 arg0) {
     return arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_8080096C_chtoothyfish.s")
+void func_8080096C_chtoothyfish(Actor *arg0, Unk80132ED0 *arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    Unk80132ED0 *_sueggmove_entrypoint_1(Unk80132ED0 *);
+    s32 _sueggmove_entrypoint_2(Unk80132ED0 *);
+    struct ToothyfishData {
+        f32 unk0[6];
+        f32 timers[5];
+        s32 unk2C;
+        f32 unk30;
+        u8 flags[5];
+        u8 other[5];
+    } *data;
+    s32 valid;
+    s32 damage;
+    s32 index;
+    u32 adjacent;
+
+    data = func_80100094(arg0, 0);
+    valid = 1;
+    damage = 0;
+    if (arg0->unk7C_12 && arg1 != NULL) {
+        switch (arg1->unk24 >> 22) {
+        case 0x26C:
+            damage = 10;
+            break;
+        case 0x26D:
+            damage = 20;
+            break;
+        case 0x26F:
+            damage = 30;
+            break;
+        case 0x26E:
+            damage = 20;
+            break;
+        default:
+            valid = 0;
+            break;
+        }
+        if (damage && valid) {
+            if (_sueggmove_entrypoint_1(arg1) == arg0->unk0) {
+                index = func_80800908_chtoothyfish(_sueggmove_entrypoint_2(arg1));
+                if (index >= 0) {
+                    data->other[index] += damage;
+                    if (damage == 30) {
+                        if (index > 0) {
+                            adjacent = index - 1;
+                            if (data->flags[index - 1] == 0) {
+                            data->other[adjacent] += 10;
+                            data->timers[adjacent] = 0.5f;
+                            if (data->other[adjacent] >= 30) {
+                                func_80108B04(arg0, adjacent);
+                            }
+                        }
+                        }
+                        if (index < 4) {
+                            adjacent = index + 1;
+                            if (data->flags[adjacent] == 0) {
+                            data->other[adjacent] += 10;
+                            data->timers[adjacent] = 0.5f;
+                            if (data->other[adjacent] >= 30) {
+                                func_80108B04(arg0, adjacent);
+                            }
+                        }
+                    }
+                    }
+                    if (data->flags[index] == 0) {
+                        func_80800350_chtoothyfish(arg0, (u8 *)data, index);
+                    }
+                }
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800B68_chtoothyfish.s")
 
