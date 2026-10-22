@@ -24,14 +24,77 @@ void func_808000AC_chjigsawdance(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/dance/func_808000F0_chjigsawdance.s")
+typedef struct anctrl_s AnimCtrl;
+f32 anctrl_getAnimTimer(AnimCtrl *);
+int anctrl_getIndex(AnimCtrl *);
+void anctrl_setDuration(AnimCtrl *, f32);
+void anctrl_setIndex();
+void anctrl_setSmoothTransition(AnimCtrl *, s32);
+void anctrl_setStart(AnimCtrl *, f32);
+void anctrl_start(AnimCtrl *);
+AnimCtrl *func_8008FD20(void);
+AnimCtrl *func_80104248(void *);
+
+void func_808000F0_chjigsawdance(Actor *arg0) {
+    void func_8008FE94(s32, f32 *);
+    f32 func_80090010(void);
+    void func_800C8B84(s32);
+    void func_800C8CB8(s32, f32 *);
+    f32 func_80101F24(Actor *);
+    void func_8010D254(f32 *);
+    AnimCtrl *playerControl;
+    AnimCtrl *control;
+    f32 position[3];
+
+    if (arg0->unk6C_0 != 0) {
+        if (func_80101F24(arg0) > 0.85f) {
+            func_800C8B84(arg0->unk6C_0);
+            arg0->unk6C_0 = 0;
+        } else {
+            func_8008FE94(7, position);
+            func_800C8CB8(arg0->unk6C_0, position);
+        }
+    }
+    switch (arg0->unk70_10) {
+    case 1:
+        break;
+    case 2:
+        func_8010D254(arg0->position);
+        arg0->rotation[1] = func_80090010();
+        playerControl = func_8008FD20();
+        control = func_80104248(arg0);
+        anctrl_setSmoothTransition(control, 0);
+        anctrl_setIndex(control, anctrl_getIndex(playerControl));
+        anctrl_setStart(control, anctrl_getAnimTimer(playerControl));
+        anctrl_setDuration(control, 1000.0f);
+        anctrl_start(control);
+        break;
+    case 3:
+        playerControl = func_8008FD20();
+        control = func_80104248(arg0);
+        anctrl_setSmoothTransition(control, 0);
+        anctrl_setStart(control, anctrl_getAnimTimer(playerControl));
+        anctrl_setDuration(control, 1000.0f);
+        anctrl_start(control);
+        break;
+    case 4:
+        func_8010D254(arg0->position);
+        arg0->rotation[1] = func_80090010();
+        playerControl = func_8008FD20();
+        control = func_80104248(arg0);
+        anctrl_setSmoothTransition(control, 0);
+        anctrl_setStart(control, anctrl_getAnimTimer(playerControl));
+        anctrl_setDuration(control, 1000.0f);
+        anctrl_start(control);
+        break;
+    }
+}
 
 void chjigsawdance_entrypoint_0(void *arg0, s32 arg1) {
     (*(f32 *)((s8 *)(arg0) + (0x50))) = (f32) arg1;
 }
 
 void chjigsawdance_entrypoint_1(Actor *arg0, s32 arg1) {
-    struct anctrl_s;
     f32 anctrl_getAnimTimer(struct anctrl_s *);
     void anctrl_setDuration(struct anctrl_s *, f32);
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
