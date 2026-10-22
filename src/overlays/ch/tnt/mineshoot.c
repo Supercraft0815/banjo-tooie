@@ -734,7 +734,74 @@ s32 func_80801658_chtntmineshoot(Actor **arg0) {
     return var_s2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80801714_chtntmineshoot.s")
+s32 func_80801714_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800D395C(void);
+    u32 func_800F54E4(void);
+    s32 func_800F7F98(s32, u32);
+    void func_800FC660(u32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80801A18_chtntmineshoot(s32, s32, s32);
+    void func_80801A54_chtntmineshoot(Actor *, s32, s32);
+    s32 *sp2C;
+    s32 sp28;
+    s32 sp24;
+    s32 sp20;
+    s32 sp1C;
+
+    sp2C = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0x49:
+            if (func_800D395C()) {
+                sp28 = func_80801658_chtntmineshoot(&arg0);
+                *(s32 *)func_80100094(arg0, 0) = sp28;
+                func_80800E64_chtntmineshoot(arg0, 8);
+            } else if (!func_800D0A9C(0xF, 1)) {
+                sp24 = func_80801658_chtntmineshoot(&arg0);
+                *(s32 *)func_80100094(arg0, 0) = sp24;
+                func_80800E64_chtntmineshoot(arg0, 2);
+            } else {
+                *sp2C = 0;
+            }
+            break;
+        case 5:
+            sp20 = func_800D395C() ? 10 : 5;
+            func_80800E64_chtntmineshoot(arg0, sp20);
+            func_800F7F98(func_800F54E4(), 1);
+            break;
+        case 0x4F:
+            if (--*sp2C) {
+                if (!func_800D395C() && arg0->unk70_10 == 2) {
+                    func_80800E64_chtntmineshoot(arg0, 3);
+                }
+                if (arg0->unk70_10 == 3) {
+                    func_800FC660(0xE);
+                }
+            } else {
+                sp1C = func_800D395C() ? 11 : 4;
+                func_800FC660(0x10);
+                func_80800E64_chtntmineshoot(arg0, sp1C);
+            }
+            break;
+        case 0x30:
+            return func_80801A18_chtntmineshoot((s32)arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        case 0x2E:
+            func_80801A54_chtntmineshoot(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x9F:
+            func_80800E64_chtntmineshoot(arg0, 7);
+            break;
+        case 0x96:
+            if (!func_800D395C()) {
+                return 0;
+            }
+            func_80800E64_chtntmineshoot(arg0, 12);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 s32 func_80801974_chtntmineshoot(Actor *arg0, s32 arg1) {
     u32 func_800F54E4(void);
