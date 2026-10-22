@@ -1,12 +1,40 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/worldmake/func_80800000_idworldmake.s")
+struct Vector;
+
+extern struct {
+    s32 (*unk0)(void *, s32, s32, s16, s32);
+    void (*destroy)(u32);
+} D_80800AB0_idworldmake[];
+
+s32 func_80800000_idworldmake(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    struct Vector *vector_new(u32, u32);
+    void *vector_push_back(struct Vector **);
+    extern s32 D_80127EF8;
+    struct {
+        s32 owner;
+        s16 id;
+        u8 type;
+        s8 active;
+        u8 data[0xA0];
+    } *entry;
+
+    if (D_80127EF8 == 0) {
+        D_80127EF8 = vector_new(0xA8, 2);
+    }
+    entry = vector_push_back(&D_80127EF8);
+    entry->type = arg2;
+    entry->owner = arg0;
+    entry->id = arg1;
+    entry->active = 1;
+    return D_80800AB0_idworldmake[entry->type].unk0(entry->data, arg3, arg0, entry->id, arg4);
+}
 
 /* extern */
 
 void idworldmake_entrypoint_0(s32 arg0, s32 arg1) {
     s16 *_glidmake_entrypoint_1();
-    s32 func_80800000_idworldmake(s32, s16, s32, s32, s32);
+    s32 func_80800000_idworldmake(s32, s32, s32, s32, s32);
     s16 *sp34;
     s16 *temp_v0;
     s16 *var_s2;
@@ -67,7 +95,7 @@ void idworldmake_entrypoint_0(s32 arg0, s32 arg1) {
 void idworldmake_entrypoint_1(s32 arg0, s32 arg1, volatile unsigned int arg2, s32 arg3)
 {
   s16 *_glidmake_entrypoint_1();
-  s32 func_80800000_idworldmake(s32, s16, s32, s32, s32);
+  s32 func_80800000_idworldmake(s32, s32, s32, s32, s32);
   s16 *sp3C;
   s16 *temp_v0;
   s16 *var_s3;
@@ -172,11 +200,6 @@ void idworldmake_entrypoint_1(s32 arg0, s32 arg1, volatile unsigned int arg2, s3
     while (var_s4 < (*sp3C));
   }
 }
-
-extern struct {
-    s32 unk0;
-    void (*destroy)(u32);
-} D_80800AB0_idworldmake[];
 
 void idworldmake_entrypoint_2(s32 arg0) {
     u32 vector_begin(s32);
