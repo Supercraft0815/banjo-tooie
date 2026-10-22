@@ -1188,7 +1188,53 @@ void func_8080373C_chweldarboss(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80803770_chweldarboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_808038F8_chweldarboss.s")
+s32 func_808038F8_chweldarboss(Actor *arg0) {
+    void func_800F5A00(s32, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_800F6438(u32);
+    int func_800F6AA4(s32);
+    int func_80803B48_chweldarboss(s32);
+    s32 func_800F796C(s32, s32);
+    void _chelectricfence_entrypoint_1(Actor *, f32 *);
+    s32 pad;
+    f32 pos[3];
+    f32 x;
+    s32 i;
+    s32 cell[2];
+    int count;
+    u8 *data;
+    f32 hit[3];
+
+    data = func_80100094(arg0, 0U);
+    count = 0;
+    for (i = 0; i < 8; i++) {
+        if (func_800F6438(i) && func_80803B48_chweldarboss(i) && !func_800F6AA4(i)) {
+            func_800F5A00(i, pos);
+            if (pos[0] > 0.0f) {
+                cell[0] = (s32)(pos[0] / 800.0f);
+            } else {
+                cell[0] = (s32)(pos[0] / 800.0f + -1.0f);
+            }
+            if (pos[2] > 0.0f) {
+                cell[1] = (s32)(pos[2] / 800.0f);
+            } else {
+                cell[1] = (s32)(pos[2] / 800.0f + -1.0f);
+            }
+            x = pos[0] - (f32)(cell[0] * 800);
+            if (x < 50.0f || x > 750.0f ||
+                pos[2] - (f32)(cell[1] * 800) < 50.0f || pos[2] - (f32)(cell[1] * 800) > 750.0f) {
+                func_800F796C(i, 0xD);
+                func_800EE7F8(hit, pos);
+                hit[1] += 20.0f;
+                _chelectricfence_entrypoint_1(arg0, hit);
+                count += 1;
+                *(f32 *)(data + 0xA4) = 2.0f;
+            }
+        }
+    }
+    return count;
+}
 
 /* extern */
 
