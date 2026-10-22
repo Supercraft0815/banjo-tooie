@@ -19,7 +19,67 @@ void func_8080000C_chcheato(Actor *arg0) {
     func_8010A828(arg0, 9U);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800068_chcheato.s")
+void func_80102424(Actor *, s32);
+
+void func_80800068_chcheato(Actor *arg0) {
+    s32 _gcnewoption_entrypoint_0(s32);
+    s32 _gcnewoption_entrypoint_6(u8 *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddieitem_entrypoint_3(Actor *, f32 *, void *);
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    void func_80090708(s32);
+    s32 func_800C0638(void);
+    void func_800D1824(s32);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_80102B2C(Actor *, f32);
+    void func_80103DFC(Actor *, f32 *);
+    f32 func_8010CD28(Actor *);
+    s32 func_8010D23C(void);
+    void func_808003C4_chcheato(Actor *);
+    void func_808006B8_chcheato(Actor *);
+    void func_8080078C_chcheato(Actor *);
+    void func_80800B00_chcheato(Actor *);
+    void func_80800CC0_chcheato(void *);
+    void func_80800D08_chcheato(Actor *, s32, s32);
+    f32 sp34[3];
+
+    _sudeflect_entrypoint_0(arg0->position, 150.0f, 150.0f, 10);
+    func_808006B8_chcheato(arg0);
+    func_8080078C_chcheato(arg0);
+    func_800D1824(0x4A);
+    switch (arg0->unk70_10) {
+    case 1:
+        if (!arg0->unk64_19 && func_8010D23C()) {
+            arg0->unk54 = func_8010CD28(arg0);
+            func_80102B2C(arg0, 4.0f);
+            func_808003C4_chcheato(arg0);
+        }
+        break;
+    case 3:
+        func_80103DFC(arg0, sp34);
+        if (_subaddieitem_entrypoint_3(arg0, sp34, func_80100094(arg0, 1))) {
+            func_80102424(arg0, 2);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x115D, 0xE, arg0->position, 0x37);
+        }
+        break;
+    case 4:
+        if (!func_800C0638()) {
+            func_80800D08_chcheato(arg0, 2, 1);
+            func_80800B00_chcheato(arg0);
+        }
+        break;
+    case 5:
+        _gcnewoption_entrypoint_0(func_80100094(arg0, 0));
+        break;
+    case 6:
+        _gcnewoption_entrypoint_6(arg0, 0);
+        func_80090708(0);
+        func_80102424(arg0, 1);
+        func_80800CC0_chcheato(arg0);
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800204_chcheato.s")
 
