@@ -142,7 +142,44 @@ void func_80800B38_chboggyfatboy(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_80800BA0_chboggyfatboy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_80800C5C_chboggyfatboy.s")
+void func_80800C5C_chboggyfatboy(Actor *arg0, s32 arg1) {
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    void _subaddietaxi_entrypoint_0(Actor *, s32, f32 *, s32);
+    void _subaddietaxi_entrypoint_10(Actor *, s32, s32);
+    s32 func_800CB3E0(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    s32 func_80102424();
+    void func_80102FDC(void *, f32);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    f32 sp2C[3];
+    Actor *sp28;
+
+    func_80102FDC(arg0, 1.0f);
+    switch (func_800CB3E0(arg1)) {
+        case 1:
+            func_80102424(arg0, 1);
+            func_8010A590(arg0);
+            break;
+        case 3:
+            _subaddietaxi_entrypoint_10(arg0, arg1, 0xB);
+            break;
+        case 4:
+            sp28 = _subaddiefind_entrypoint_2(0x13F, 0);
+            func_800EE7F8(sp2C, sp28->position);
+            func_800EF1B8(sp2C, sp28->rotation[1] - 45.0f, 180.0f);
+            func_8010A570(arg0);
+            _subaddietaxi_entrypoint_0(arg0, arg1, sp2C, 0xA);
+            break;
+        case 6:
+            _subaddiefind_entrypoint_2(0x13F, 0);
+            func_80102424(arg0, 0xC);
+            func_8010A570(arg0);
+            arg0->unk64_20 = 1;
+            break;
+    }
+}
 
 void func_80800D84_chboggyfatboy(Actor *arg0) {
     s32 func_80101E14(Actor *, f32);
