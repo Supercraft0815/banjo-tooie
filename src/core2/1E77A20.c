@@ -10,7 +10,59 @@ f32 func_8009E138(PlayerState *arg0, s32 arg1) {
     return (*(Entry **)((u8 *)arg0 + 0x114))[arg1].value;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E77A20/func_8009E154.s")
+/* extern */
+
+void func_8009E154(PlayerState *arg0, s32 arg1, f32 *arg2) {
+    f32 func_800136E4(f32);
+    int func_80092CDC(void *, f32 *, s32);
+    void func_80092D18(void *, s32);
+    void func_80096394(PlayerState *, f32 *);
+    f32 func_8009BFCC(PlayerState *);
+    void func_8009C128(PlayerState *, f32 *);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    int func_800EEEA8(f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF4E4(f32 *, f32, f32, f32, f32, f32);
+    void func_800EF8BC(f32 *, f32 *, f32);
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 yaw_get(PlayerState *);
+    f32 sp7C[3];
+    f32 sp70[3];
+    f32 sp64[3];
+    f32 sp58[3];
+    f32 sp4C[3];
+    f32 sp40[3];
+
+    if ((*(void (**)(PlayerState *, f32 *, s32))((s8 *)(((*(s32 *)((s8 *)arg0 + 0x114)) + arg1 * 0x28)) + (8))) != NULL) {
+        (*(void (**)(PlayerState *, f32 *, s32))((s8 *)(((*(s32 *)((s8 *)arg0 + 0x114)) + arg1 * 0x28)) + (8)))(arg0, sp7C, (*(s16 *)((s8 *)(((*(s32 *)((s8 *)arg0 + 0x114)) + arg1 * 0x28)) + (4))));
+    } else {
+        func_80092CDC(arg0, sp7C, (*(s16 *)((s8 *)(((*(s32 *)((s8 *)arg0 + 0x114)) + arg1 * 0x28)) + (4))));
+        func_8009C128(arg0, sp64);
+        func_80092D18(arg0, sp4C);
+        func_800EF04C(sp64, sp4C);
+        if (func_800EEEA8(sp7C) != 0) {
+            func_800EE7F8(sp58, (*(s32 *)((s8 *)(arg0) + (0x114))) + (arg1 * 0x28) + 0xC);
+            func_800EF8BC(sp58, sp58, func_8009BFCC(arg0));
+            func_800EF934(sp58, sp58, yaw_get(arg0));
+            func_800EE780(sp7C, sp64, sp58);
+        } else {
+            func_800EFB24(sp58, sp7C, sp64);
+            func_800EF934(sp58, sp58, -yaw_get(arg0));
+            func_800EF8BC(sp58, sp58, -func_8009BFCC(arg0));
+            func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x114))) + (arg1 * 0x28) + 0xC, sp58);
+        }
+    }
+    sp7C[1] += (*(f32 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x114))) + (arg1 * 0x28))) + (0x18)));
+    if ((*(f32 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x114))) + (arg1 * 0x28))) + (0x1C))) != 0.0f) {
+        func_800EF4E4(sp70, *(f32 *)(((*(s32 *)((s8 *)arg0 + 0x114)) + (arg1 * 0x28)) + 0x20), func_800136E4(yaw_get(arg0) + *(f32 *)(((*(s32 *)((s8 *)arg0 + 0x114)) + (arg1 * 0x28)) + 0x24)), 0.0f, 0.0f, *(f32 *)(((*(s32 *)((s8 *)arg0 + 0x114)) + (arg1 * 0x28)) + 0x1C));
+        func_800EF04C(sp7C, sp70);
+    }
+    func_80096394(arg0, sp40);
+    func_800EF04C(sp7C, sp40);
+    func_800EE7F8(arg2, sp7C);
+}
 
 void func_8009E388(s32 arg0) 
 {
