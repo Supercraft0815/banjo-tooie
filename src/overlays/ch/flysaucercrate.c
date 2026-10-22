@@ -7,7 +7,39 @@ OSThread *chflysaucercrate_entrypoint_0(void)
     return (OSThread *) D_80800D78_chflysaucercrate;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucercrate/func_8080000C_chflysaucercrate.s")
+void func_8080000C_chflysaucercrate(Actor *arg0, s32 arg1) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800DA544(s32);
+    void func_80102424(Actor *, s32);
+    void func_80108B04(Actor *, u32);
+    extern s32 D_80800CF0_chflysaucercrate;
+    func_80102424(arg0, arg1);
+    switch (arg0->unk70_10) {
+    case 4:
+        _subaddieDll_entrypoint_4(arg0, 0);
+        return;
+    case 3:
+        func_800DA544(0x91);
+        return;
+    case 5:
+        func_800DA544(0x93);
+        _capod_entrypoint_13(arg0->unk0, NULL, 4, 0x2810);
+        return;
+    case 7:
+        arg0->unk54 = 0.0f;
+        arg0->unk50 = 0.0f;
+        return;
+    case 8:
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800CF0_chflysaucercrate);
+        func_800DA544(0x94);
+        func_80108B04(arg0, 0);
+        /* fallthrough */
+    default:
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucercrate/func_808000E4_chflysaucercrate.s")
 
