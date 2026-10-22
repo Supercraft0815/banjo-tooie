@@ -122,7 +122,46 @@ void func_808002C8_chgoldstatue(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/statue/func_8080032C_chgoldstatue.s")
+void func_8080032C_chgoldstatue(Actor *arg0) {
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    s32 _sumumbofx_entrypoint_14(s32);
+    void _sumumbofx_entrypoint_17(void *, f32);
+    f32 _sumumbofx_entrypoint_21(s32);
+    s32 _sumumbofx_entrypoint_5(s32, s32);
+    s32 _sumumbofx_entrypoint_6(s32, f32, f32, s32, s32, f32 *, f32 *, f32 *);
+    s32 _sumumbofx_entrypoint_7(s32, f32, s32, s32, f32 *, f32 *, f32 *);
+    s32 func_800DA298(s32);
+    void *func_80100094(Actor *, u32);
+    typedef struct { f32 v[3]; } Vector;
+    extern Vector D_80800910_chgoldstatue;
+    extern Vector D_8080091C_chgoldstatue;
+    extern Vector D_80800928_chgoldstatue;
+    extern Vector D_80800934_chgoldstatue;
+    Vector sp64 = D_80800910_chgoldstatue;
+    f32 sp58[3];
+    Vector sp4C = D_8080091C_chgoldstatue;
+    Vector sp40 = D_80800928_chgoldstatue;
+    Vector sp34 = D_80800934_chgoldstatue;
+    s32 temp_s0;
+
+    temp_s0 = func_80100094(arg0, 1);
+    if (arg0->unk7C_12) {
+        _subaddieskeleton_entrypoint_2(arg0->unk0, 2, sp58);
+        _sumumbofx_entrypoint_7(temp_s0, 175.0f, 0, 20, sp40.v, sp58, sp64.v);
+        _sumumbofx_entrypoint_6(temp_s0, 150.0f, 150.0f, 21, 35, sp34.v, sp58, sp64.v);
+        _sumumbofx_entrypoint_6(temp_s0, 150.0f, 100.0f, 36, 45, sp4C.v, sp58, sp64.v);
+        _sumumbofx_entrypoint_14(temp_s0);
+        if (arg0->unk70_10 == 2 && _sumumbofx_entrypoint_21(temp_s0) == 0.0f &&
+            _sumumbofx_entrypoint_5(temp_s0, 0x40000000)) {
+            _sumumbofx_entrypoint_17(temp_s0, 1.0f);
+            if (func_800DA298(0x57C) == 0) {
+                func_80800150_chgoldstatue(arg0, 3);
+                return;
+            }
+            func_80800150_chgoldstatue(arg0, 4);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/statue/func_80800528_chgoldstatue.s")
 
