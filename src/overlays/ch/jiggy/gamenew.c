@@ -394,7 +394,63 @@ void func_80800B88_chjiggygamenew(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80800CC0_chjiggygamenew.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_808019E0_chjiggygamenew.s")
+s32 func_808019E0_chjiggygamenew(Actor *arg0) {
+    s32 _glglobalsettings_entrypoint_3();
+    void func_808035FC_chjiggygamenew(Actor *, f32 *);
+    void func_800E4140(f32 *, f32 *);
+    extern f32 D_80803AE0_chjiggygamenew[][3];
+    extern f32 D_80803BD0_chjiggygamenew[][3];
+    extern f32 D_80803D8C_chjiggygamenew[][4];
+    f32 screen[2];
+    f32 position[2];
+    register f32 x, y;
+    f32 dx, dy;
+    f32 distance = -1.0f;
+    s32 nearest = 0;
+    s32 i;
+    s32 mode;
+    f32 *pos = position;
+
+    func_808035FC_chjiggygamenew(arg0->unk3C, position);
+    if (_glglobalsettings_entrypoint_3()) {
+        mode = 1;
+    } else {
+        mode = 0;
+    }
+    x = pos[0];
+    if (D_80803D8C_chjiggygamenew[mode][0] <= x && (y = pos[1], x <= D_80803D8C_chjiggygamenew[mode][1]) &&
+        D_80803D8C_chjiggygamenew[mode][2] <= y && y <= D_80803D8C_chjiggygamenew[mode][3]) {
+        for (i = 0; i != 20; i++) {
+            func_800E4140(D_80803AE0_chjiggygamenew[i], screen);
+            if (distance == -1.0f ||
+                (x = pos[0], y = pos[1], dy = y - screen[1], dx = x - screen[0], dy * dy + dx * dx < distance)) {
+                nearest = i;
+            x = pos[0];
+            y = pos[1];
+                dy = y - screen[1];
+                dx = x - screen[0];
+                distance = dy * dy + dx * dx;
+            }
+        }
+        return nearest + 21;
+    }
+    for (i = 0; i != 20; i++) {
+        func_800E4140(D_80803BD0_chjiggygamenew[i], screen);
+        if (distance == -1.0f ||
+            (x = pos[0], y = pos[1], dy = y - screen[1], dx = x - screen[0], dy * dy + dx * dx < distance)) {
+            nearest = i;
+            x = pos[0];
+            y = pos[1];
+            dy = y - screen[1];
+            dx = x - screen[0];
+            distance = dy * dy + dx * dx;
+        }
+    }
+    if (distance < 625.0f) {
+        return nearest + 1;
+    }
+    return 0;
+}
 
 /* extern */
 
