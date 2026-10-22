@@ -100,7 +100,63 @@ s32 func_808001C4_chcactusofstrength(Actor *arg0, s32 arg1, volatile s32 arg2) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cactusofstrength/func_80800200_chcactusofstrength.s")
+void func_80800200_chcactusofstrength(Actor *arg0) {
+    u8 func_800D9078(f32 *);
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_80101FDC(Actor *, u32);
+    void func_808006BC_chcactusofstrength(void *);
+    void func_80800718_chcactusofstrength(void *);
+    void func_80800780_chcactusofstrength(Actor *);
+    void func_80800824_chcactusofstrength(Actor *, f32);
+    void func_8080094C_chcactusofstrength(Actor *);
+    f32 position[3];
+
+    func_800EE7F8(position, arg0->position);
+    func_800EF1B8(position, 135.0f, -55.0f);
+    _sudeflect_entrypoint_0(position, 60.0f, 75.0f, 2);
+    func_8080094C_chcactusofstrength(arg0);
+    switch (arg0->unk70_10) {
+        case 1:
+            func_808006BC_chcactusofstrength(arg0);
+            break;
+        case 2:
+            func_80800824_chcactusofstrength(arg0, 20.0f);
+            if (arg0->unk58 > 0.0f) {
+                if (func_800D9078(&arg0->unk58)) {
+                    return;
+                }
+            } else {
+                arg0->position[1] += *(f32 *)&arg0->actorData[3];
+                if (arg0->position[1] >= *(f32 *)&arg0->actorData[5]) {
+                    arg0->position[1] = *(f32 *)&arg0->actorData[5];
+                    func_80800718_chcactusofstrength(arg0);
+                    arg0->unk64_16 = 0;
+                    func_80101FDC(arg0, 4);
+                    return;
+                }
+                *(f32 *)&arg0->actorData[3] -= 5.0f;
+                if (*(f32 *)&arg0->actorData[3] <= 0.0f) {
+                    func_80101FDC(arg0, 1);
+                    return;
+                }
+            }
+            break;
+        case 3:
+            func_80800824_chcactusofstrength(arg0, -20.0f);
+            arg0->position[1] += *(f32 *)&arg0->actorData[3];
+            *(f32 *)&arg0->actorData[3] -= (*(f32 *)&arg0->actorData[3] > 0) ? 10.0f : 5.0f;
+            if (*(f32 *)&arg0->actorData[3] < -50.0f) {
+                *(f32 *)&arg0->actorData[3] = -50.0f;
+            }
+            if (arg0->position[1] <= *(f32 *)&arg0->actorData[4]) {
+                arg0->position[1] = *(f32 *)&arg0->actorData[4];
+                func_80800780_chcactusofstrength(arg0);
+            }
+            break;
+    }
+}
 
 /* extern */
 
