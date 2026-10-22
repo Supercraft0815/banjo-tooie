@@ -49,7 +49,63 @@ void func_80800030_chburgerstand(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/burgerstand/func_808000C4_chburgerstand.s")
+void *func_80100094(Actor *, u32);
+
+void func_808000C4_chburgerstand(Actor *arg0) {
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 _suexpression_entrypoint_18(void *, s32);
+    void func_800D175C(s32, s32);
+    s32 func_800D1A04(s32);
+    s32 func_800F4EC8(u32, s32, f32, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800FC660(u32);
+    void func_800FFA88(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    s32 func_801022E4(Actor *);
+    s32 func_80102320(Actor *, f32, f32);
+    void func_80102424(Actor *, s32);
+    void func_808004DC_chburgerstand(Actor *);
+    void func_808005AC_chburgerstand(Actor *);
+    void func_80800754_chburgerstand(Actor *);
+    extern u32 D_80800D48_chburgerstand;
+
+    if (func_80100094(arg0, 1) != NULL) {
+        _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, 0);
+        if (func_801022E4(arg0) != 0xDC || !func_80102320(arg0, 0.32f, 0.95f)) {
+            _suexpression_entrypoint_18(func_80100094(arg0, 1), 1);
+        }
+    }
+    func_800F4EC8(func_800F54E4(), (s32)arg0->actorData, 300.0f, -10.0f, 260.0f);
+    switch (arg0->unk70_10) {
+        case 1:
+            func_808004DC_chburgerstand(arg0);
+            func_808005AC_chburgerstand(arg0);
+            func_80800754_chburgerstand(arg0);
+            break;
+        case 2:
+            func_808004DC_chburgerstand(arg0);
+            func_808005AC_chburgerstand(arg0);
+            break;
+        case 3:
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800D48_chburgerstand, 0.7f);
+            if (func_80101DDC(arg0)) {
+                func_800D175C(0x4B, 5 - func_800D1A04(0x4B));
+                func_800FC660(0xE);
+                func_80102424(arg0, 1);
+                func_800FFA88(arg0->unk3C);
+                arg0->unk3C = NULL;
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x10FE, 6, arg0->position, 0x51);
+            }
+            break;
+        case 4:
+            func_808004DC_chburgerstand(arg0);
+            func_808005AC_chburgerstand(arg0);
+            break;
+    }
+}
 
 void func_80800284_chburgerstand(Actor* arg0)
 {
