@@ -412,7 +412,126 @@ void func_80800C78_chfishshootgame(Actor *arg0, s32 arg1, f32 arg2) {
     func_80800C24_chfishshootgame((u8 *)arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80800D48_chfishshootgame.s")
+void func_80800D48_chfishshootgame(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    s32 func_8008FB10(f32 *, f32, f32, f32);
+    f32 func_800CEA60(s32);
+    s32 func_800CEAD0(s32);
+    f32 func_800D8FF8(void);
+    s32 func_800DC128(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800FC6B0(u32);
+    void func_800FCA90(u32);
+    void func_800FCAE0(u32, u32, u32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101E14(Actor *, f32);
+    f32 func_80101F24(Actor *);
+    void func_80108B04(Actor *, u32);
+    void func_8010C788(s32, f32, f32, f32);
+    extern u32 D_808019B8_chfishshootgame[];
+    extern u32 D_808019C8_chfishshootgame[];
+    struct FishShootData {
+        f32 position[3];
+        f32 target[3];
+        f32 unk18[2];
+        f32 height;
+        f32 unk24;
+        f32 skeleton;
+        f32 distance;
+        u8 active;
+        u8 pad31;
+        s16 current;
+        s16 count;
+    };
+    struct FishShootData *data;
+    f32 delta;
+    f32 position[3];
+    f32 offset[3];
+    s32 current;
+    s32 state;
+    Unk80132ED0 *marker;
+
+    data = func_80100094(arg0, 0);
+    delta = func_800D8FF8();
+    func_80800A28_chfishshootgame(arg0);
+    func_80800A90_chfishshootgame(arg0, position);
+    position[1] -= 60.0f;
+    func_800EFA4C(offset, position[0] - 1.0f, position[1], position[2] - 17.0f);
+    func_8010C788(offset, 340.0f, 0.0f, 160.0f);
+    position[1] += 340.0f;
+    func_8008FB10(position, 2500.0f, 0.0f, 10.0f);
+    switch (arg0->unk70_10) {
+        case 1:
+            func_808009C0_chfishshootgame(arg0);
+            break;
+        case 4:
+            if (func_800CEAD0(0)) {
+                func_808003B0_chfishshootgame(arg0, 12);
+            } else {
+                arg0->unk58 -= delta;
+                if (arg0->unk58 < 0.0f) {
+                    do {
+                        current = func_800DC128(0, data->count);
+                    } while (current == data->current);
+                    data->current = current;
+                    func_80108B04(arg0, 0);
+                    arg0->unk58 = (1.0f - func_800CEA60(0) / 60.0f) * -1.5f + 4.0f;
+                }
+            }
+            break;
+        case 5:
+            if (func_80101E14(arg0, 0.999f)) {
+                func_800FC6B0(0x17);
+                func_800FCAE0(0x53, 0, 4000);
+                func_800FCA90(0x53);
+                func_808003B0_chfishshootgame(arg0, 6);
+            }
+            break;
+        case 6:
+        case 11:
+            func_80800C78_chfishshootgame(arg0, 7, 1.0f);
+            break;
+        case 9:
+            func_80800C78_chfishshootgame(arg0, 13, 1.0f);
+        case 8:
+            _subaddieaudioquick_entrypoint_4(arg0, arg0->position, D_808019C8_chfishshootgame, D_808019B8_chfishshootgame);
+            break;
+        case 3:
+            if (func_80101E14(arg0, 0.02f)) {
+                func_808001F0_chfishshootgame(arg0);
+            }
+            if (func_80101E14(arg0, 0.8f)) {
+                func_808002E8_chfishshootgame(arg0, 1.1f);
+            }
+            if (func_80101F24(arg0) > 0.2f && func_80101F24(arg0) < 0.8f) {
+                func_80800C24_chfishshootgame((u8 *)arg0);
+            }
+            if (func_80101E14(arg0, 0.999f)) {
+                func_808003B0_chfishshootgame(arg0, 10);
+            }
+            break;
+        case 10:
+            func_80800C78_chfishshootgame(arg0, 12, 0.5f);
+            break;
+        case 7:
+            if (func_80101F24(arg0) < 0.8f) {
+                func_80800C24_chfishshootgame((u8 *)arg0);
+            }
+            if (func_80101E14(arg0, 0.9f)) {
+                func_808002E8_chfishshootgame(arg0, 1.0f);
+            }
+            if (func_80101E14(arg0, 0.999f)) {
+                state = data->active ? 2 : 8;
+                func_808003B0_chfishshootgame(arg0, state);
+            }
+            break;
+    }
+    marker = arg0->unk3C;
+    if (marker != NULL) {
+        func_800EE7F8(func_80106790(marker)->position, arg0->position);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80801110_chfishshootgame.s")
 
