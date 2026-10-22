@@ -96,7 +96,84 @@ void func_800FA240(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED3900/func_800FA2C0.s")
+void func_800FA2C0(void) {
+    extern s32 D_80123880[][7];
+    extern s32 D_80123DC0;
+    f32 func_800D8FF8(void);
+    int func_800FA874(s32, s32);
+    void _scinfobar_entrypoint_2(s32);
+    s32 _scinfobar_entrypoint_21(s32);
+    void _scinfobar_entrypoint_6(s32, s32);
+    f32 dt[2];
+    struct InfoEntry {
+        s16 unk0[3];
+        s16 x, y;
+        s8 dx, dy;
+        u8 state;
+        s8 frame, type, unkF;
+        u8 flag, flag11;
+        s16 unk12;
+        f32 timer;
+        s32 handle;
+    } *entry;
+    s32 i;
+    s8 step;
+    s8 (*table)[10];
+
+    dt[0] = func_800D8FF8();
+    for (i = 0; i < 0x30; i++) {
+        entry = (struct InfoEntry *)D_80123880[i];
+        if (entry->flag == 1 && func_800FA874(i, entry->type)) {
+            if (entry->timer >= 0.0f) {
+                entry->timer -= dt[0];
+                if (entry->timer < 0.0f) {
+                    entry->timer = 0.0f;
+                    func_800FA240(i, 0);
+                }
+            }
+        }
+    }
+    table = (s8 (*)[10])&D_80123DC0;
+    for (i = 0; i < 0x30; i++) {
+        entry = (struct InfoEntry *)D_80123880[i];
+        if (entry->handle != 0) {
+            _scinfobar_entrypoint_2(entry->handle);
+        }
+        switch (entry->state) {
+        case 1:
+            if ((u32)entry->frame < 10U) {
+                step = (*table)[entry->frame];
+                entry->x = (s32)entry->x + entry->dx * step;
+                entry->y = (s32)entry->y + entry->dy * step;
+                entry->frame++;
+            }
+            if ((u32)entry->frame >= 10U) {
+                entry->frame = 10;
+                func_800FA130(i, 2);
+            }
+            break;
+        case 2:
+            if (_scinfobar_entrypoint_21(entry->handle) && entry->flag11 == 0) {
+                _scinfobar_entrypoint_6(entry->handle, 1);
+            }
+            break;
+        case 3:
+            if (_scinfobar_entrypoint_21(entry->handle)) {
+                if (entry->frame > 0) {
+                    entry->frame = entry->frame - 1;
+                    step = (*table)[entry->frame];
+                    entry->x = (s32)entry->x - entry->dx * step;
+                    entry->y = (s32)entry->y - entry->dy * step;
+                }
+                if (entry->frame <= 0) {
+                    entry->frame = 0;
+                    func_800FA130(i, 0);
+                }
+            }
+            break;
+        }
+    }
+}
 
 void func_800FA508(s32 arg0) {
     s32 _scinfobar_entrypoint_24(s32, s32, s16, s16);
