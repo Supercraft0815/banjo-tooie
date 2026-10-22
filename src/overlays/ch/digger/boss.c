@@ -349,7 +349,7 @@ s32 func_80802248_chdiggerboss(s32 arg0) {
     u32 func_800F54E4(void);
     s32 func_8010D290(s32);
     s32 temp_v0;
-    s32 var_v1;
+    int var_v1;
     temp_v0 = func_8010D290(0x10000);
     var_v1 = temp_v0;
     if (temp_v0 == -1) {
@@ -2779,7 +2779,47 @@ void func_80808CD0_chdiggerboss(Actor *arg0) {
     *(f32 *)(data + 0xE0) = *(f32 *)((u8 *)arg0 + 0x48);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80808D54_chdiggerboss.s")
+void func_80808D54_chdiggerboss(Actor *arg0, s32 arg1, f32 arg2, f32 *arg3) {
+    f32 func_800D8FF8(void);
+    f32 func_800EEAD4(f32 *, f32 *);
+    int func_800EECE0(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF934(f32 *, f32 *, f32);
+    f32 func_800F1DCC(f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 pad;
+    f32 sp60;
+    f32 sp54[3];
+    f32 sp48[3];
+    f32 sp44;
+    f32 var_f2;
+    s32 var_v1;
+    u8 *data;
+    u8 *element;
+
+    data = func_80100094(arg0, 0);
+    sp60 = func_800D8FF8();
+    func_800EF934(sp54, arg3, *(f32 *)((u8 *)arg0 + 0x48));
+    func_800EF04C(sp54, (f32 *)((u8 *)arg0 + 4));
+    func_800EF934(sp48, arg3, *(f32 *)(data + 0xE0));
+    func_800EF04C(sp48, (f32 *)(data + 0xD4));
+    sp44 = func_800EEAD4(sp54, sp48);
+    if (func_800EECE0((f32 *)((u8 *)arg0 + 4), (f32 *)(data + 0xD4))) {
+        var_f2 = (func_800F1DCC(*(f32 *)(data + 0xE0), *(f32 *)((u8 *)arg0 + 0x48)) <= 0.0f ? 1.0f : -1.0f) * arg2;
+    } else {
+        var_f2 = 1.0f;
+    }
+    element = (u8 *)((u32)data + arg1 * 4);
+    *(f32 *)(element + 0xC8) += sp44 * 12.0f * var_f2 * 64.0f * sp60;
+    var_v1 = (s32)*(f32 *)(element + 0xC8);
+    if ((s32)*(f32 *)(element + 0xC8) >= 0x2000) {
+        *(f32 *)(element + 0xC8) -= 8192.0f;
+    } else if (var_v1 < 0) {
+        *(f32 *)(element + 0xC8) += 8192.0f;
+    }
+    *(s16 *)(data + arg1 * 2 + 0xD0) = (s32)*(f32 *)(element + 0xC8);
+    *(f32 *)(element + 0xC0) += sp44 * 0.013333334f * var_f2 * 57.29578f;
+}
 
 void func_80808F44_chdiggerboss(s32 *arg0) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
