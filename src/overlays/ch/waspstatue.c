@@ -107,7 +107,62 @@ s32 func_80800134_chwaspstatue(s32 arg0, s32 arg1) {
     func_80101FDC(actor, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspstatue/func_80800350_chwaspstatue.s")
+s32 func_80800350_chwaspstatue(Actor *actor, s32 arg1, s32 arg2) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    void func_800DF6BC(s32, s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800FC660(u32);
+    s32 func_801015D0(Actor *);
+    u32 state;
+    s16 *dialog;
+
+    switch (arg1) {
+    case 0x3F:
+        if (func_800DA298(0x6DA) == 0) {
+            func_800DA544(0x6DA);
+            _subaddiedialog_entrypoint_11(actor->unk0, 0x1417, 0xF, actor->position, 0x6D);
+        }
+        return 1;
+    case 0x40:
+        state = actor->unk70_10;
+        if (state == 1) {
+            func_80800134_chwaspstatue((s32)actor, 2);
+            func_800FC660(0xE);
+            return 1;
+        }
+        if (state == 3) {
+            actor->unk6C_0--;
+            if (actor->unk6C_0 == 0) {
+                func_80800134_chwaspstatue((s32)actor, 5);
+            }
+            func_800FC660(0xE);
+        }
+        return 1;
+    case 0xB:
+        if (arg2 == 0x15) {
+            func_80800134_chwaspstatue((s32)actor, 3);
+            func_800DA544(0x6D8);
+        }
+        return 3;
+    case 0x1F:
+        func_801015D0(actor);
+        func_800DF6BC((s32)func_800F10B4(actor->unk58, 0.0f, 2.0f, 0.0, 255.0f), 0xFF);
+        return 1;
+    case 0x30:
+        dialog = (s16 *)&arg2;
+        if (dialog[0] == 0x1416) {
+            if (dialog[1] != 0) {
+                return 0x14;
+            }
+            return 0xA;
+        }
+        return 0;
+    default:
+        return 0;
+    }
+}
 
 /* extern */
 
