@@ -239,7 +239,82 @@ void func_808007C4_bsbeemain(struct player_state_s *arg0) {
     ((s32 *)arg0)[0x57] = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/beemain/func_80800874_bsbeemain.s")
+void func_80800874_bsbeemain(struct player_state_s *arg0) {
+    s32 func_800A02DC(struct player_state_s *, s32);
+    s32 player_inWater(struct player_state_s *);
+    int player_isStable(struct player_state_s *);
+    int func_8008DF8C(struct player_state_s *, s32);
+    void func_8009D3A8(struct player_state_s *, s32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    s32 _badrone_entrypoint_28(struct player_state_s *);
+    s32 _bsbee_entrypoint_2();
+    s32 anctrl_isStopped(struct anctrl_s *);
+    void baanim_setEndAndDuration(struct player_state_s *, f32, f32);
+    int baflag_isFalse(struct player_state_s *, s32);
+    int baflag_isTrue(struct player_state_s *, s32);
+    int bakey_held(struct player_state_s *, s32);
+    int bakey_pressed(struct player_state_s *, s32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    s32 bastick_getZone(struct player_state_s *);
+    s32 bs_setState(s32, s32);
+    void func_8009BB24(void *, f32 *);
+    s32 sp34;
+    struct anctrl_s *sp30;
+    f32 sp24[3];
+
+    sp34 = 0;
+    sp30 = baanim_getAnimCtrlPtr(arg0);
+    _bsbee_entrypoint_2(arg0);
+    func_8009D3A8(arg0, 0);
+    func_80800058_bsbeemain(arg0);
+    func_8009BB24(arg0, sp24);
+    switch (((s32 *)arg0)[0x57]) {
+    case 0:
+        if (func_8008DF8C(arg0, 0x82)) {
+            baanim_setEndAndDuration(arg0, 0.715f, 0.7f);
+            ((s32 *)arg0)[0x57] = 1;
+        }
+        break;
+    case 1:
+        func_8009D3A8(arg0, 0);
+        if (player_isStable(arg0)) {
+            func_80800000_bsbeemain((s32)arg0);
+            baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+            baanim_setEndAndDuration(arg0, 1.0f, 0.7f);
+            ((s32 *)arg0)[0x57] = 2;
+        }
+        break;
+    case 2:
+        func_8009D3A8(arg0, 0);
+        if (anctrl_isStopped(sp30)) {
+            baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+            sp34 = 0x85;
+        }
+        break;
+    }
+    if (bakey_held(arg0, 1)) {
+        _babee_entrypoint_2(arg0);
+    }
+    if (player_isStable(arg0)) {
+        if (baflag_isTrue(arg0, 0x19)) {
+            sp34 = _badrone_entrypoint_28(arg0);
+        } else {
+            if (bastick_getZone(arg0) > 0) {
+                sp34 = 0x86;
+            }
+            if (bakey_pressed(arg0, 8)) {
+                sp34 = 0x87;
+            }
+            sp34 = func_800A02DC(arg0, sp34);
+        }
+    } else if (baflag_isFalse(arg0, 0xF) && bakey_pressed(arg0, 8)) {
+        sp34 = 0x8C;
+    }
+    if (player_inWater(arg0)) {
+        sp34 = 0x8C;
+    }
+    bs_setState((s32)arg0, sp34);
+}
 
 void func_80800A74_bsbeemain()
 {
