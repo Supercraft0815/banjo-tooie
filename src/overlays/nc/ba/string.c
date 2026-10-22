@@ -31,7 +31,73 @@ void func_8080007C_ncbastring(PlayerState* arg0, f32* arg1)
     func_80112550(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/string/ncbastring_entrypoint_3.s")
+void ncbastring_entrypoint_3(PlayerState *arg0) {
+    f32 _ncbawaypoint_entrypoint_3(void *, f32 *, f32 *);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EEBF0(f32 *, f32 *, f32);
+    f32 func_800EEF94(f32 *);
+    void func_800EFB24(void *, void *, void *);
+    void func_800F1A88(f32 *, f32 *);
+    void func_80110790(s32, f32 *);
+    void func_801107F0(void *, f32 *);
+    void func_80110A68(s32, s32, s32);
+    void func_80110F44(void *);
+    s32 func_80111CC8(void *, f32 *);
+    f32 func_80112C3C(void *, f32);
+    s32 func_801138A0(void *);
+    s32 func_801138F4(PlayerState *);
+    f32 func_80113978(PlayerState *, s32, s32);
+    f32 func_80115358(void *, f32);
+    void func_80115444(void *, f32 *, f32 *);
+    f32 func_80115750(Actor *, f32);
+    f32 sp64[3];
+    f32 sp58[3];
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp3C;
+    f32 sp38;
+    f32 sp34;
+    f32 sp2C[2];
+    f32 sp28;
+    f32 sp24;
+
+    func_8080007C_ncbastring(arg0, sp64);
+    func_801107F0(arg0, sp4C);
+    if (**(s32 **)((u8 *)arg0 + 0x5C) != 0) {
+        sp38 = _ncbawaypoint_entrypoint_3(arg0, sp64, sp4C);
+    } else {
+        sp38 = 0.0f;
+    }
+    func_800EFB24(sp58, sp4C, sp64);
+    sp34 = func_800EEF94(sp58) + sp38;
+    func_800F1A88(sp58, sp2C);
+    if (sp38 == 0.0f) {
+        func_80113978(arg0, 1, 0);
+    }
+    sp3C = func_80115358(arg0, sp34);
+    sp2C[0] = func_80115750(arg0, sp2C[0]);
+    sp2C[1] = func_80112C3C(arg0, sp2C[1]);
+    sp3C -= sp38;
+    func_800EEBF0(sp58, sp2C, sp3C);
+    func_800EE780(sp4C, sp64, sp58);
+    if (func_80111CC8(arg0, sp4C) != 0) {
+        if (func_801138A0(arg0) == 0) {
+            func_80115444(arg0, &sp28, &sp24);
+            func_801107F0(arg0, sp4C);
+            sp3C = func_800EEAD4(sp4C, sp64);
+            sp38 = sp24 * 1.5f;
+            if ((sp38 < sp34) && (sp38 < sp3C) && (func_801138F4(arg0) != 0)) {
+                func_80110F44(arg0);
+            }
+        } else if (func_801138F4(arg0) != 0) {
+            func_80110F44(arg0);
+        }
+    }
+    func_80800008_ncbastring(arg0, sp64);
+    func_80110A68(arg0, sp40, sp64);
+    func_80110790(arg0, sp40);
+}
 
 /* extern */
 
