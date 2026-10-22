@@ -51,7 +51,45 @@ void func_80800018_chdippy(Actor *actor) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_808000D8_chdippy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800374_chdippy.s")
+s32 func_80800374_chdippy(Actor *arg0, s32 arg1, s32 arg2) {
+    void _glcutDll_entrypoint_17(void);
+    s32 _glcutDll_entrypoint_19(u32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void func_8080047C_chdippy(Actor *, s32, s32);
+    void func_80800654_chdippy(Actor *, s32);
+    void func_80800CBC_chdippy(Actor *, s32, s32);
+    void func_80800D44_chdippy(u8 *);
+
+    switch (arg1) {
+    case 0x2E:
+        func_8080047C_chdippy(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        return 1;
+    case 0xB:
+        switch (arg2) {
+        case 0x47:
+            func_80800654_chdippy(arg0, 7);
+            return 4;
+        case 0x37:
+            func_80800D44_chdippy((u8 *)arg0);
+            if (_glcutDll_entrypoint_19(0x36)) {
+                _glcutDll_entrypoint_17();
+            }
+            return 4;
+        }
+        return 3;
+    case 0x95:
+        if (_glcutDll_entrypoint_19(0x36)) {
+            _subaddieDll_entrypoint_4(arg0, 1);
+            func_80800654_chdippy(arg0, 2);
+            func_80800CBC_chdippy(arg0, 0x47, 0x2030);
+            return 1;
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_8080047C_chdippy(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80800654_chdippy(Actor *, s32);
