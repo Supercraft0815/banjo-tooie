@@ -43,7 +43,47 @@ void func_80800388_chnicecavemenguard(Actor* arg0)
     func_8080080C_chnicecavemenguard(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemenguard/func_808003A8_chnicecavemenguard.s")
+s32 func_808003A8_chnicecavemenguard(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 func_800F52B8(s32, Unk80132ED0 *);
+    u32 func_800F54E4(void);
+    s32 func_800F7F98(s32, u32);
+    void func_80102424(Actor *, s32);
+    void func_808004FC_chnicecavemenguard(void *);
+    void func_808005D4_chnicecavemenguard(Actor *, s32, s32);
+    void func_808007A8_chnicecavemenguard(Actor *);
+
+    switch (arg1) {
+    case 46:
+        func_808005D4_chnicecavemenguard(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 29:
+    case 30:
+        if (func_800F52B8(func_800F54E4(), arg0->unk0) == 0x18 && arg0->unk70_10 == 1) {
+            func_80102424(arg0, 3);
+        }
+        break;
+    case 27:
+        if (func_800F52B8(func_800F54E4(), arg0->unk0) == 0x17 && arg0->unk70_10 == 1) {
+            _capod_entrypoint_13(arg0->unk0, NULL, 6, 0x20);
+            func_800F7F98(func_800F54E4(), 1);
+            func_80102424(arg0, 4);
+        }
+        break;
+    case 41:
+        func_808007A8_chnicecavemenguard(arg0);
+        break;
+    case 42:
+        func_8080080C_chnicecavemenguard(arg0);
+        break;
+    case 31:
+        func_808004FC_chnicecavemenguard(arg0);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_808004FC_chnicecavemenguard(void *arg0)
 {
