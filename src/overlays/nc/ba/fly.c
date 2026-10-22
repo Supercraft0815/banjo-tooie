@@ -5,7 +5,22 @@ s32 ncbafly_entrypoint_0()
     return 0x4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/fly/ncbafly_entrypoint_1.s")
+void ncbafly_entrypoint_1(s32 *arg0) {
+    void func_80111590(void *, f32, f32, f32, f32);
+    void func_80111B8C(s32 *, f32, f32);
+    void func_801124D0(s32, s32);
+    void func_80115858(void *, s32);
+    void func_80115870(void *, f32);
+    void ncbafly_entrypoint_4(s32, s32, s32, s32);
+    void ncbafly_entrypoint_5();
+    func_80111590(arg0, 10.0f, 20.0f, 120.0f, 200.0f);
+    ncbafly_entrypoint_4((s32) arg0, 0x40000000, 0x44480000, 0x43AF0000);
+    ncbafly_entrypoint_5((s32) arg0, 0);
+    func_80111B8C(arg0, 4.0f, 8.0f);
+    func_80115858(arg0, 0);
+    func_80115870(arg0, 0.0f);
+    func_801124D0((s32) arg0, 1);
+}
 
 void ncbafly_entrypoint_2(s32 arg0) 
 {
