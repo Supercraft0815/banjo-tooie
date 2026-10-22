@@ -1441,7 +1441,69 @@ void func_80803E50_chweldarboss(Actor *arg0) {
     arg0->unk3C = NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80803EA4_chweldarboss.s")
+void func_80803EA4_chweldarboss(Actor *arg0) {
+    typedef struct {
+        u8 pad0[8];
+        f32 amount;
+        s32 light;
+    } WeldarLightData;
+    void *func_80100094(Actor *, u32);
+    f32 func_800D8FF8(void);
+    f32 func_800F15F8(f32, f32, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    s32 func_800C8FE0(s32, s32);
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E84(s32, u32 *);
+    s32 func_8001210C(s32);
+    void func_808041C4_chweldarboss(Actor *, s32);
+    extern u32 D_80804ABC_chweldarboss[];
+    extern u32 D_80804AC8_chweldarboss[];
+    WeldarLightData *data;
+    s32 light;
+    f32 position[3];
+    f32 inner;
+    f32 outer;
+    f32 delta;
+    f32 distance;
+
+    data = func_80100094(arg0, 0U);
+    light = data->light;
+    delta = func_800D8FF8();
+    switch (arg0->unk70_10) {
+        case 1:
+            arg0->unk64_16 = 0;
+            break;
+        case 2:
+            arg0->unk64_16 = 1;
+            data->amount = func_800F15F8(data->amount, 1.0f, delta * 1.4f);
+            if (data->amount == 1.0f) {
+                func_808041C4_chweldarboss(arg0, 3);
+            }
+            break;
+        case 3:
+            arg0->unk64_16 = 1;
+            break;
+        case 4:
+            arg0->unk64_16 = 1;
+            data->amount = func_800F15F8(data->amount, 0.0f, delta * 1.6f);
+            if (data->amount == 0.0f) {
+                func_808041C4_chweldarboss(arg0, 1);
+            }
+            break;
+    }
+    distance = func_800F12D4(data->amount, 0.0f, 1.0f, 400.0f, 700.0f);
+    func_800EE7F8(position, arg0->position);
+    func_800EF214(position, 90.0f - arg0->rotation[0], arg0->rotation[1], distance);
+    inner = func_800F12D4(data->amount, 0.0f, 1.0f, 200.0f, 600.0f);
+    outer = func_800F12D4(data->amount, 0.0f, 1.0f, 400.0f, 1000.0f);
+    func_800C8FE0(light, arg0->unk64_16);
+    func_800C8E54(light, inner, outer);
+    func_800C8CB8(light, position);
+    func_800C8E84(light, func_8001210C(1) ? D_80804AC8_chweldarboss : D_80804ABC_chweldarboss);
+}
 
 u32 func_808040F4_chweldarboss(s32 unused, s32 arg1, s32 arg2) {
     void func_80804230_chweldarboss(Actor *);
