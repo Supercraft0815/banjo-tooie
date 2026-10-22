@@ -144,7 +144,58 @@ void func_80091110(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6A730/func_80091290.s")
+void func_80091290(PlayerState *arg0, f32 arg1, s32 arg2, s32 arg3) {
+    extern f32 D_80124D28;
+    extern f32 D_80124D2C;
+    extern f32 D_80124D30;
+    extern f32 D_80124D34;
+    void func_80092C90(void *, f32[3], s32);
+    s32 func_8009FBB0(PlayerState *, f32 *, f32);
+    void func_800BA22C(s32, s32);
+    void func_800BA6B0(u8 *, s16, s16, s16, s16, s16, s16);
+    void func_800BA7C4(void *, f32, f32);
+    void func_800BA7FC(void *, f32, f32);
+    void func_800BA8F8(void *, f32, f32);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    f32 func_800D8FF8(void);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 scale;
+    f32 position[3];
+    s32 count;
+    s32 emitter;
+    f32 lifetime;
+
+    scale = func_800F10B4(arg1, 5.0f, 20.0f, 4.0f, D_80124D28);
+    func_80092C90(arg0, position, arg3);
+    (*(f32 *)(*(u8 **)((u8 *)arg0 + 0x30) + 0x10)) += arg1 * func_800D8FF8();
+    count = (s32)(*(f32 *)(*(u8 **)((u8 *)arg0 + 0x30) + 0x10));
+    (*(f32 *)(*(u8 **)((u8 *)arg0 + 0x30) + 0x10)) -= count;
+    emitter = func_8009FBB0(arg0, position, 40.0f);
+    func_800BA930(emitter, -60, -50, -60, 60, 100, 60);
+    if (arg2) {
+        func_800BA6B0((u8 *)emitter, -50, -70, -50, 50, 70, 50);
+        lifetime = D_80124D2C;
+        func_800BA7C4((void *)emitter, lifetime, 0.1f);
+        func_800BA7FC((void *)emitter, 0.2f, 0.22f);
+    } else {
+        func_800BA7C4((void *)emitter, D_80124D30, D_80124D30);
+        func_800BA7FC((void *)emitter, D_80124D34, D_80124D34);
+    }
+    func_800BA8F8((void *)emitter, scale, scale);
+    arg3 = 0;
+    if (count > 0) {
+        do {
+            func_800BA22C(emitter, 1);
+            arg3++;
+        } while (arg3 != count);
+    }
+    if (arg1 > 3.0f) {
+        arg1 = func_800F10B4(arg1, 3.0f, 60.0f, 3.0f, 8.0f);
+    }
+    (*(f32 *)(*(u8 **)((u8 *)arg0 + 0x30) + 0x14)) += arg1 * func_800D8FF8();
+    count = (s32)(*(f32 *)(*(u8 **)((u8 *)arg0 + 0x30) + 0x14));
+    (*(f32 *)(*(u8 **)((u8 *)arg0 + 0x30) + 0x14)) -= count;
+}
 
 void func_800914FC(PlayerState *arg0, f32 arg1, s32 arg2) {
     func_80091290(arg0, arg1, arg2, 4);
