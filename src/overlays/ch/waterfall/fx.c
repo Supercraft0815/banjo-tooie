@@ -104,4 +104,46 @@ s32 func_808001E4_chwaterfallfx(s32 arg0, s32 arg1, s32 arg2)
 {
     return 0;
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waterfall/fx/func_808001F8_chwaterfallfx.s")
+s32 func_808001F8_chwaterfallfx(Actor *arg0) {
+    s32 func_800B5BE4(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_800D8FF8(void);
+    f32 func_800DC178(f32, f32);
+    void func_800E3980(f32 *);
+    s32 func_800E3E8C(f32 *, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800EFE50(f32[3], f32[3], f32[3], f32);
+    extern s32 D_80800478_chwaterfallfx[];
+    f32 camera[3];
+    s32 effect;
+    s32 i;
+    s32 count;
+    f32 velocity[3];
+    f32 position[3];
+
+    func_800E3980(camera);
+    if (func_800EEB40(arg0->position, camera) < 25000000.0f &&
+        func_800E3E8C(arg0->position, *(f32 *)&arg0->actorData[7])) {
+        effect = func_800B5BE4(0x23);
+        count = 0;
+        arg0->unk58 += arg0->unk50 * func_800D8FF8();
+        while (arg0->unk58 >= 1.0f) {
+            count++;
+            arg0->unk58 -= 1.0f;
+        }
+        for (i = 0; i < count; i++) {
+            func_800EFE50(position, (f32 *)&arg0->actorData[4],
+                         (f32 *)arg0->actorData, func_800DC178(0.0f, 1.0f));
+            func_800EE7F8(velocity, position);
+            func_800EF1B8(velocity, arg0->rotation[1], -100.0f);
+            velocity[1] += 100.0f;
+            func_800BABB8(effect, position, velocity, arg0->scale * 1.15f,
+                         D_80800478_chwaterfallfx);
+            if (++*(s32 *)&arg0->unk54 >= (s32)arg0->actorData[3]) {
+                *(s32 *)&arg0->unk54 = 0;
+            }
+        }
+    }
+}
