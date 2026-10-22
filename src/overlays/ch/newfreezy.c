@@ -32,7 +32,61 @@ void func_808000AC_chnewfreezy(s32 arg0)
     _sufreezy_entrypoint_2();
     func_8010A570(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_808000D4_chnewfreezy.s")
+void func_808000D4_chnewfreezy(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_8010D254(f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    f32 func_800DC178(f32, f32);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void _sufreezy_entrypoint_4(Unk80132ED0 *, s32);
+    struct FreezyPart {
+        f32 position[3];
+        f32 rotation[3];
+        f32 velocity[3];
+        f32 pad24[3];
+        f32 spin[3];
+        f32 pad3C[4];
+        f32 size;
+        f32 pad50[3];
+        s8 state;
+        u8 pad5D[3];
+    } *part;
+    volatile s32 pad;
+    f32 position[3];
+    volatile s32 pad2;
+    f32 angle;
+    f32 pitch;
+    f32 yaw;
+    f32 speed;
+    f32 pitchRange = 20.0f;
+    f32 yawRange = 65.0f;
+    u32 i;
+
+    part = func_80100094(arg0, 0);
+    if (!arg0->unk64_20) {
+        arg0->unk64_20 = 1;
+        arg0->unk54 = 0.0f;
+        func_8010D254(position);
+        for (i = 0; i < arg0->unk6C_0; i++) {
+            if (part->state == 3) {
+                part++;
+            } else {
+                angle = func_800F1DF4(part->position, position);
+                pitch = func_800DC178(-pitchRange, pitchRange);
+                yaw = func_800DC178(-yawRange, yawRange);
+                speed = func_800DC178(800.0f, 1000.0f);
+                func_800EEC30(part->velocity, pitch + 130.0f, yaw + angle, speed);
+                part->spin[0] = func_800DC178(-25.0f, 25.0f);
+                part->spin[1] = func_800DC178(-25.0f, 25.0f);
+                part->spin[2] = func_800DC178(-25.0f, 25.0f);
+                part->state = 4;
+                part->size *= 0.6f;
+                part++;
+            }
+        }
+        _sufreezy_entrypoint_4(arg0->unk0, 8);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_808002C0_chnewfreezy.s")
 
