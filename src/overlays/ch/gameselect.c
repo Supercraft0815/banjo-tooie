@@ -2341,7 +2341,59 @@ void func_80804F14_chgameselect(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80804F38_chgameselect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808051B4_chgameselect.s")
+void func_808051B4_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_80800478_chgameselect(s32, s32);
+    void func_80805310_chgameselect(u8 *);
+    void func_80805474_chgameselect(s32, s32);
+    void func_80805BFC_chgameselect(Actor *, s32);
+    void func_80805CD8_chgameselect(Actor *, s32);
+    void func_80806370_chgameselect(Actor *, s32);
+    void func_808068AC_chgameselect(void *, s32);
+
+    switch (arg0->actorData[0]) {
+    case 0:
+        func_80802BE8_chgameselect((Unk80132ED0 *)arg0->actorData[6]);
+        func_80800478_chgameselect((s32)arg0, 1);
+        return;
+    case 1:
+        func_80805310_chgameselect((u8 *)arg0);
+        return;
+    case 2:
+        func_80805474_chgameselect((s32)arg0, 0);
+        return;
+    case 8:
+        func_80805474_chgameselect((s32)arg0, 1);
+        return;
+    case 3:
+        if (arg0->unk64_20) {
+            func_80803BE8_chgameselect(arg0);
+            return;
+        }
+        func_80805BFC_chgameselect(arg0, 0);
+        return;
+    case 10:
+    case 11:
+        func_80805BFC_chgameselect(arg0, 0);
+        return;
+    case 5:
+        func_80805CD8_chgameselect(arg0, 1);
+        return;
+    case 6:
+        func_808068AC_chgameselect(arg0, arg1);
+        func_80805CD8_chgameselect(arg0, 2);
+        return;
+    case 7:
+        func_80805CD8_chgameselect(arg0, 3);
+        return;
+    case 4:
+        func_80806370_chgameselect(arg0, arg1);
+        func_80805CD8_chgameselect(arg0, 0);
+        return;
+    default:
+        func_80800478_chgameselect((s32)arg0, 1);
+        return;
+    }
+}
 
 void func_80805310_chgameselect(u8 *arg0) {
     void func_808026C8_chgameselect(Unk80132ED0 *, s32);
