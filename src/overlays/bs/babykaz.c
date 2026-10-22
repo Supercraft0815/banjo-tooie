@@ -704,7 +704,59 @@ void func_808012EC_bsbabykaz(struct player_state_s *arg0) {
     func_80801134_bsbabykaz(arg0, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/func_80801384_bsbabykaz.s")
+void func_80801384_bsbabykaz(struct player_state_s *arg0) {
+    extern u8 D_8012762C;
+    s32 _batimer_decrement(void *, s32);
+    int _batimer_isZero(struct player_state_s *, s32);
+    s32 func_8009CC68(struct player_state_s *);
+    int func_800DB9B0(void);
+    void func_800F3BB0(struct player_state_s *, f32[3]);
+    u32 func_800F54E4(void);
+    s32 func_800F6D24(s32);
+    void func_800F9ADC(void);
+    s32 func_80101180(s32, s32, s32);
+    s32 func_801013A8(f32 *, s32, s32);
+    s32 expired;
+    f32 pos1[3];
+    s32 result;
+    f32 pos2[3];
+
+    if (*(s32 *)((u8 *)arg0 + 0x15C) == 3) {
+        return;
+    }
+    _batimer_decrement(arg0, 0);
+    expired = _batimer_isZero(arg0, 0);
+    if (func_8009CC68(arg0) != 0 || func_800DB9B0() != 0 ||
+        func_800F6D24(func_800F54E4()) != 0) {
+        return;
+    }
+    switch (*(s32 *)((u8 *)arg0 + 0x15C)) {
+        case 1:
+            if (expired != 0) {
+                func_800F3BB0(arg0, pos1);
+                if (D_8012762C == 0x18) {
+                    result = func_80101180(0x418, 0x39, 0);
+                } else {
+                    result = 0;
+                }
+                if (result != 1) {
+                    func_800F9ADC();
+                }
+                func_80801134_bsbabykaz(arg0, 3);
+            }
+            break;
+        case 2:
+            if (expired != 0) {
+                func_800F3BB0(arg0, pos2);
+                func_801013A8(pos2, 0x39, 0);
+                func_800F9ADC();
+                func_80801134_bsbabykaz(arg0, 3);
+            }
+            break;
+        case 3:
+            break;
+    }
+}
 
 s32 bsbabykaz_entrypoint_12(s32 arg0) {
     extern s32 D_808017A0_bsbabykaz[];
