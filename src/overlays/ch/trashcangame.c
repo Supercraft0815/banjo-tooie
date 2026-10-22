@@ -161,7 +161,61 @@ void func_808003D0_chtrashcangame(void *arg0, s32 arg1) {
     func_80102424(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80800728_chtrashcangame.s")
+void func_80800728_chtrashcangame(Actor *arg0) {
+    s32 func_800D0A9C();
+    s16 func_800D211C(s32);
+    s32 func_800D395C(void);
+    void func_800FC660(u32);
+    u32 func_800FDC28(u32);
+    s32 func_80101180(s32, s32, s32);
+    void func_808017F0_chtrashcangame(Actor *, s32, s32);
+    s32 sp24;
+
+    func_800FDC28(0);
+    func_80101180(0x533, 7, 0);
+    if (func_800D395C() != 0) {
+        sp24 = func_80800014_chtrashcangame(arg0, 0);
+        if (func_800D211C(0x86) == sp24) {
+            func_800FC660(0x17);
+            func_808017F0_chtrashcangame(arg0, 0x1446, 0xF);
+        } else {
+            sp24 = func_80800014_chtrashcangame(arg0, 0);
+            if (sp24 < func_800D211C(0x86)) {
+                func_800FC660(0x17);
+                func_808017F0_chtrashcangame(arg0, 0x1445, 0xF);
+            } else {
+                func_800FC660(0x16);
+                func_808017F0_chtrashcangame(arg0, 0x1447, 0xF);
+            }
+        }
+        func_808003D0_chtrashcangame(arg0, 0x12);
+        return;
+    }
+    if (func_800D0A9C(0x4E, 1) != 0) {
+        sp24 = func_80800014_chtrashcangame(arg0, 0);
+        if (func_800D211C(0x86) == sp24) {
+            func_808017F0_chtrashcangame(arg0, 0x13F9, 0xF);
+            func_808003D0_chtrashcangame(arg0, 9);
+            return;
+        }
+        sp24 = func_80800014_chtrashcangame(arg0, 0);
+        if (sp24 < func_800D211C(0x86)) {
+            func_808017F0_chtrashcangame(arg0, 0x13F8, 0xF);
+            func_808003D0_chtrashcangame(arg0, 9);
+            return;
+        }
+        func_808017F0_chtrashcangame(arg0, 0x13FA, 0xF);
+        func_808003D0_chtrashcangame(arg0, 0xB);
+        return;
+    }
+    if (func_80800014_chtrashcangame(arg0, 0) < 0x32) {
+        func_808017F0_chtrashcangame(arg0, 0x13F6, 0xF);
+        func_808003D0_chtrashcangame(arg0, 9);
+        return;
+    }
+    func_808017F0_chtrashcangame(arg0, 0x13F7, 0xF);
+    func_808003D0_chtrashcangame(arg0, 0xB);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_8080093C_chtrashcangame.s")
 
