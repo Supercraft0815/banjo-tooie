@@ -194,7 +194,17 @@ void func_808012A0_ncpoddialog(s32 arg0, s32 arg1, s32 arg2) {
     func_8010FFB0(func_800F5EF8(arg0), arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80801310_ncpoddialog.s")
+s32 func_80801310_ncpoddialog(f32 *arg0, s16 *arg1) {
+    void *func_80110024(s16 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    f32 sp2C[3];
+    func_808012A0_ncpoddialog(_ncpod_entrypoint_4(func_80110024(arg1)),
+        arg0 + 0x56, arg0 + 0x59);
+    func_800EE7F8(arg0 + 0x80, arg0 + 0x56);
+    func_800EE7F8(sp2C, arg0 + 0x59);
+    func_800EF214(arg0 + 0x80, -sp2C[0], sp2C[1], -500.0f);
+}
 
 /* extern */
 
