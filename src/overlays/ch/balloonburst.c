@@ -477,7 +477,75 @@ void func_808015D4_chballoonburst(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_808017A4_chballoonburst.s")
+s32 func_808017A4_chballoonburst(BalloonBurstActor *arg0, s32 arg1, Unk80132ED0 *arg2) {
+    void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
+    s32 _subaddiemulti_entrypoint_5(Unk80132ED0 *);
+    void _sumultiscore_entrypoint_7(u8 *, s32, s32, s32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010114C(s32, s32, s32);
+    s32 func_801015D0(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_8010A570(Actor *);
+    void func_8010DC50(s32);
+    void func_8010DCB4(s32);
+    int func_8010DD20(u8 *, s32, u8 *);
+    void func_80801948_chballoonburst(BalloonBurstActor *);
+    Unk80132ED0 **argp;
+    Unk80132ED0 *sp28;
+    s32 sp24;
+    s32 sp20;
+    s32 state;
+    s32 *data;
+
+    switch (arg1) {
+        case 0x40:
+            state = arg0->actor.unk70_10;
+            if (state >= 2) {
+                sp28 = arg2;
+                if (state < 6) {
+                sp24 = _subaddiemulti_entrypoint_5(sp28);
+                sp20 = arg0->actor.actorData[4] + 1;
+                data = func_80100094(func_80106790(arg0->actor.unk3C), 0);
+                if (data[3]) {
+                    _sumultiscore_entrypoint_7((u8 *)(data + 12), sp24, 6, sp20);
+                } else {
+                    data[1] += sp20;
+                }
+                _chscorepoints_entrypoint_2(sp20, sp24, arg0->actor.position, 1);
+                func_80801948_chballoonburst(arg0);
+                func_8010A570(&arg0->actor);
+                func_800FFAB0(&arg0->actor);
+                if (*(u16 *)&sp28->unk18 & 1) {
+                    func_8010114C((s32)sp28, 0x98, 0);
+                }
+                }
+            }
+            break;
+        case 0x29:
+            if (arg0->actor.unk64_20) {
+                func_8010DC50(4);
+            }
+            break;
+        case 0x2A:
+            if (arg0->actor.unk64_20) {
+                func_8010DCB4(4);
+            }
+            break;
+        case 0x1F:
+            argp = &arg2;
+            sp28 = arg2;
+            if (arg0->actor.unk64_20) {
+                func_8010DD20((u8 *)arg0, 4, (u8 *)sp28);
+            } else {
+                func_801015D0(&arg0->actor);
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80801948_chballoonburst(BalloonBurstActor *arg0) {
     s32 func_8010D930(s32, s32, f32 *, s32 *);
