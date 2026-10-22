@@ -138,7 +138,60 @@ void func_808003C0_chtntdetonator(u8 *arg0) {
     func_800BBCB8((f32 *)(arg0 + 4), NULL, (*(f32 *)((s8 *)(arg0) + (0x38))), 15, &D_80800754_chtntdetonator);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/detonator/func_80800400_chtntdetonator.s")
+s32 func_80800400_chtntdetonator(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    int func_800EEEA8(f32 *);
+    void func_80101010(f32 *);
+    void func_80102424(Actor *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s16 D_80800790_chtntdetonator[];
+    Actor *owner;
+    s16 saved;
+    s32 index;
+    Unk80132ED0 *marker;
+    s32 id;
+
+    switch (arg1) {
+    case 5:
+        owner = arg0->unk3C ? func_80106790(arg0->unk3C) : NULL;
+        id = -1;
+        switch (owner->unk6C_9) {
+        case 0x145:
+            index = owner->unk74_7 - 50;
+            id = D_80800790_chtntdetonator[index];
+            break;
+        case 0x14B:
+            id = 0;
+            break;
+        case 0x14A:
+            id = 0x41;
+            break;
+        }
+        if (id != -1) {
+            marker = NULL;
+            if (owner->unk6C_9 == 0x145 && (index = owner->unk74_7 - 50) == 2) {
+                saved = id;
+                owner = _subaddiefind_entrypoint_2(0x2A3, 0);
+                id = saved;
+                if (owner != NULL) {
+                    marker = owner->unk0;
+                }
+            }
+            _capod_entrypoint_13(arg0->unk0, marker, id, 0x10);
+        }
+        func_80102424(arg0, 2);
+        _subaddieDll_entrypoint_4(arg0, 1);
+        break;
+    case 6:
+        func_80101010(func_800EEEA8((f32 *)arg0->actorData) ? arg0->position : (f32 *)arg0->actorData);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800588_chtntdetonator(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
