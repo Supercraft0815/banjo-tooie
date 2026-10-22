@@ -123,7 +123,40 @@ void func_808002AC_bstnt(s32 arg0, s32 arg1) {
     func_800BBCB8((f32 *) arg1, NULL, 1.0f, 0xC, &D_80802284_bstnt);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_8080030C_bstnt.s")
+void func_8080030C_bstnt(struct player_state_s *arg0, f32 *arg1) {
+    s32 func_800B5BE4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA5BC(void *, f32, f32);
+    void func_800BA8F8(void *, f32, f32);
+    void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    extern s32 D_808022CC_bstnt;
+    f32 scale;
+    f32 position[3];
+    f32 rate;
+    f32 angle;
+    s32 emitter;
+    s32 i;
+
+    emitter = func_800B5BE4(8);
+    func_800BABB8(emitter, arg1, NULL, 1.0f, &D_808022CC_bstnt);
+    scale = 0.43f;
+    func_800BA8F8((void *)emitter, scale, scale);
+    rate = 19.0f / scale;
+    func_800BA5BC((void *)emitter, rate, rate);
+    for (i = 0; i != 360; i += 45) {
+        angle = (f32)i;
+        func_800EFA4C(position, 0.0f, angle, 480.0f);
+        func_800BA994((u8 *)emitter, (s16)position[0], (s16)position[1], (s16)position[2],
+                     (s16)position[0], (s16)position[1], (s16)position[2]);
+        func_800BA22C(emitter, 1);
+        func_800EFA4C(position, -45.0f, angle, 430.0f);
+        func_800BA994((u8 *)emitter, (s16)position[0], (s16)position[1], (s16)position[2],
+                     (s16)position[0], (s16)position[1], (s16)position[2]);
+        func_800BA22C(emitter, 1);
+    }
+}
 
 struct player_state_s;
 
