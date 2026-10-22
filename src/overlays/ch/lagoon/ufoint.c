@@ -394,4 +394,16 @@ void chlagoonufoint_entrypoint_5(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3, Unk8013
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/chlagoonufoint_entrypoint_6.s")
+void chlagoonufoint_entrypoint_6(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3, Unk80132ED0 *arg4) {
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *actor = func_80106790(arg4);
+    f32 scale = *(f32 *)((u8 *)actor + 0x24) * 0.8f + 0.2f;
+    s16 offset = (s16)*(f32 *)((u8 *)actor + 0x14 + ((arg0 - 1) % 4) * 4);
+    u8 *end = arg1 + arg3 * 0x10;
+    for (; arg1 < end; arg1 += 0x10, arg2 += 0x10) {
+        arg2[12] = (u32)((f32)(u32)arg1[12] * scale);
+        arg2[13] = (u32)((f32)(u32)arg1[13] * scale);
+        arg2[14] = (u32)((f32)(u32)arg1[14] * scale);
+        *(s16 *)(arg2 + 10) = *(s16 *)(arg1 + 10) + offset;
+    }
+}
