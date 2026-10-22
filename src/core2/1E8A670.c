@@ -272,7 +272,62 @@ rejected:
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B1D3C.s")
+u8 func_800B1D3C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5, f32 *arg6, f32 arg7, s32 arg8) {
+    void func_80019224(f32 *, f32 *);
+    void func_800193C4(f32 *, f32 *);
+    void func_8001980C(f32 *, f32 *, f32, f32 *);
+    s32 func_80019CD4(void);
+    s32 func_800ADE2C(s32, s32);
+    void func_800EE88C(f32 *, s16 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    f32 func_800EEFD4(f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void mlMtxSet(void *);
+    f32 sqrtf(f32);
+    extern s16 D_80127EE0;
+    f32 scaledRadiusSquared;
+    u8 *base;
+    f32 position[3];
+    f32 center[3];
+    f32 edge[3];
+    f32 radiusSquared;
+    f32 radius;
+    s32 id;
+    f32 delta[3];
+    u8 *entry;
+    u8 *end;
+
+    func_80019CD4();
+    func_8001980C(arg1, arg2, arg3, arg4);
+    func_800193C4(position, arg6);
+    base = *(s16 *)arg0 * 0x18 + arg0 + 8;
+    entry = *(s16 *)(arg0 + 2) * 0x10 + base;
+    end = *(s16 *)(arg0 + 4) * 0xC + entry;
+    arg7 /= arg3;
+    for (; entry < end; entry += 0xC) {
+        id = entry[8];
+        id--;
+        if ((1 << id) & arg8) {
+            continue;
+        }
+        scaledRadiusSquared = arg7 * arg7;
+        func_800EE88C(center, (s16 *)(entry + 2));
+        func_800EFA4C(edge, (f32)*(s16 *)entry + center[0], center[1], center[2]);
+        mlMtxSet(func_800ADE2C(arg5, *(s8 *)(entry + 9)));
+        func_80019224(center, center);
+        func_80019224(edge, edge);
+        delta[0] = edge[0] - center[0];
+        delta[1] = edge[1] - center[1];
+        delta[2] = edge[2] - center[2];
+        radiusSquared = func_800EEFD4(delta);
+        radius = sqrtf(radiusSquared);
+        if (func_800EEB40(center, position) <= scaledRadiusSquared + radiusSquared + 2.0f * radius * arg7) {
+            D_80127EE0 = (s32)((entry - *(s16 *)(arg0 + 2) * 0x10) - base) / 12;
+            return entry[8];
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B1F8C.s")
 
