@@ -184,7 +184,31 @@ void func_80800B38_chboggyfatboy(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_80800BA0_chboggyfatboy.s")
+/* extern */
+
+s32 func_80800BA0_chboggyfatboy(s32 arg0, s32 arg1, f32 *arg2) {
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 func_800C05B8(s32, s32, f32 *, Unk80132ED0 *, s32, s32, s16);
+    s32 func_800CBC3C(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    Actor *temp_v0;
+    Actor *sp2C;
+    s32 index;
+
+    temp_v0 = _subaddiefind_entrypoint_2(0x13F, 0);
+    if (temp_v0 != NULL) {
+        sp2C = temp_v0;
+        index = func_800CBC3C(arg1) + 1;
+        if (index == (s32)sp2C->unk70_25) {
+            func_800EE7F8(arg2, sp2C->position);
+            func_800EF1B8(arg2, sp2C->rotation[1] - 45.0f, 180.0f);
+            return 2;
+        }
+    }
+    func_800C05B8(0x1097, 1, 0, 0, 0, 0, 0);
+    return 1;
+}
 
 void func_80800C5C_chboggyfatboy(Actor *arg0, s32 arg1) {
     Actor *_subaddiefind_entrypoint_2(s32, s32);
