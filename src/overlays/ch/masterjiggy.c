@@ -7,7 +7,56 @@ OSThread *chmasterjiggy_entrypoint_0(void)
     return (OSThread *) D_8080164C_chmasterjiggy;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_8080000C_chmasterjiggy.s")
+void func_8080000C_chmasterjiggy(Actor *arg0) {
+    Prop *_gccubesearch_entrypoint_0(u32, Actor *);
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    s32 _glcutDll_entrypoint_20();
+    s32 _sujiggy_entrypoint_13();
+    s32 _sujiggy_entrypoint_14();
+    s32 _sujiggy_entrypoint_17();
+    s32 func_800A9C98(void);
+    s32 func_800DA298(s32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    s32 func_808001D0_chmasterjiggy(Unk80132ED0 **, s32);
+    s32 func_80800220_chmasterjiggy(s32, s32);
+    Prop *prop;
+
+    prop = _gccubesearch_entrypoint_0(3, arg0);
+    if (prop != NULL) {
+        _gspropctrl_entrypoint_11(prop, (f32 *)((u8 *)arg0 + 0x18));
+    } else {
+        func_800EFA4C((f32 *)((u8 *)arg0 + 0x18), 1650.0f, 200.0f, 0.0f);
+    }
+    prop = _gccubesearch_entrypoint_0(4, arg0);
+    if (prop != NULL) {
+        _gspropctrl_entrypoint_11(prop, (f32 *)((u8 *)arg0 + 0x28));
+    } else {
+        func_800EFA4C((f32 *)((u8 *)arg0 + 0x28), 0.0f, 150.0f, 0.0f);
+    }
+    if (_glcutDll_entrypoint_20() || func_800A9C98()) {
+        func_80800220_chmasterjiggy((s32)arg0, 9);
+    } else if (_sujiggy_entrypoint_13()) {
+        switch (_sujiggy_entrypoint_14()) {
+        case 0:
+            func_808001D0_chmasterjiggy((Unk80132ED0 **)arg0, 3);
+            break;
+        case 1:
+            func_80800220_chmasterjiggy((s32)arg0, 5);
+            break;
+        case 2:
+            func_808001D0_chmasterjiggy((Unk80132ED0 **)arg0, 9);
+            break;
+        case 3:
+            func_80800220_chmasterjiggy((s32)arg0, 1);
+            break;
+        }
+    } else if (!func_800DA298(0x35B)) {
+        func_80800220_chmasterjiggy((s32)arg0, 2);
+    } else if (!_sujiggy_entrypoint_17()) {
+        func_80800220_chmasterjiggy((s32)arg0, 8);
+    }
+    func_800FE734(0);
+}
 
 void func_808001A8_chmasterjiggy(s32 arg0) 
 {
