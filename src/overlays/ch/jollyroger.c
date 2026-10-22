@@ -70,7 +70,69 @@ s32 func_8080059C_chjollyroger(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800624_chjollyroger.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800930_chjollyroger.s")
+void func_80800930_chjollyroger(Actor *arg0) {
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 _suexpression_entrypoint_20();
+    void func_8008F8B0();
+    void func_8008F8D8(s32);
+    void func_8008F904(void *, Unk80132ED0 *);
+    void func_8008F990(f32 *, f32);
+    void func_800DA524(GameFlag);
+    s32 func_800DA544(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    s32 func_800F54E4();
+    s32 func_800F64A4(s32, s32);
+    void func_80102424(Actor *, s32);
+    s32 func_80105230(Actor *, f32 *);
+    void func_80105854(Actor *);
+    s32 func_80105A5C(Actor *);
+    s32 func_8010CA74(f32 *, s32);
+    void func_80800CC4_chjollyroger(Actor *);
+    void func_80800E30_chjollyroger(void *);
+    void func_80800F3C_chjollyroger(Actor *, s32, s32);
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    extern s32 func_8010D5DC;
+    extern s32 D_80801458_chjollyroger;
+    extern s32 D_80801270_chjollyroger;
+
+    _sudeflect_entrypoint_1(arg0->position, 230.0f, 0.0f, 100.0f, 10);
+    _suexpression_entrypoint_10(_suexpression_entrypoint_20(arg0), arg0->unk0, 0);
+    switch (arg0->unk70_10) {
+        case 1: {
+            f32 sp34[3];
+            if (func_800F64A4(func_800F54E4(), 0x201) && func_8010CA74(arg0->position, 0x4B0)) {
+                func_80102424(arg0, 2);
+                func_80800F3C_chjollyroger(arg0, 1, 0x220);
+                func_800EE7F8(sp34, arg0->position);
+                func_800EF1B8(sp34, arg0->rotation[1] + 20.0f, 250.0f);
+                func_8008F8B0();
+                func_8008F8D8(1);
+                func_8008F904(&func_8010D5DC, arg0->unk0);
+                func_8008F990(sp34, 250.0f);
+            }
+            break;
+        }
+        case 2:
+            if (arg0->unk64_20) {
+                func_80800CC4_chjollyroger(arg0);
+            }
+            break;
+        case 4:
+            func_80105230(arg0, 0);
+            func_80105854(arg0);
+            if (func_80105A5C(arg0)) {
+                func_800DA544(0xC0);
+                func_800DA524(0xC3);
+                func_80800E30_chjollyroger(arg0);
+            }
+            break;
+        case 5:
+            _subaddiedialog_entrypoint_8((s32)arg0, arg0->position, &D_80801458_chjollyroger, &D_80801270_chjollyroger, 7);
+            break;
+    }
+}
 
 void func_80800AEC_chjollyroger(Actor *arg0) {
     s32 func_800DA298(s32);
