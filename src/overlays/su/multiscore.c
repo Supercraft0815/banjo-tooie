@@ -94,7 +94,81 @@ void sumultiscore_entrypoint_3(u8 *arg0) {
     sumultiscore_entrypoint_4(arg0, 0, 5, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_4.s")
+s32 sumultiscore_entrypoint_4(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void func_80801340_sumultiscore(void *, s32);
+    struct ScoreEntry {
+        u8 kind, mode;
+        s16 image;
+        u8 frame, alpha, flag, pad7;
+        s16 value;
+        s8 x, y;
+        volatile s8 dx;
+        s8 dy;
+        u8 padE[2];
+        f32 scale;
+        u8 pad14[12];
+    };
+    s32 i;
+    struct ScoreEntry *entry;
+    u8 *row;
+
+    i = 0;
+    row = arg0;
+    if (*(s32 *)(arg0 + 0x518) > 0) {
+        do {
+            entry = (struct ScoreEntry *)((u32)row - (0U - (*(u32 *)arg0 << 5)) + 0x40);
+            ((volatile struct ScoreEntry *)entry)->kind = arg1;
+            ((volatile struct ScoreEntry *)entry)->mode = arg2;
+            entry->flag = arg3;
+            ((volatile struct ScoreEntry *)entry)->frame = 0;
+            ((volatile struct ScoreEntry *)entry)->alpha = 0xFF;
+            ((volatile struct ScoreEntry *)entry)->value = 0;
+            ((volatile struct ScoreEntry *)entry)->x = 5;
+            ((volatile struct ScoreEntry *)entry)->y = 0;
+            ((volatile struct ScoreEntry *)entry)->dx = -5;
+            ((volatile struct ScoreEntry *)entry)->dy = 0;
+            switch (arg1) {
+                case 0:
+                    entry->alpha = 0;
+                    break;
+                case 1:
+                    entry->image = 0xB4D;
+                    entry->scale = 0.4f;
+                    break;
+                case 2:
+                case 5:
+                    func_80801340_sumultiscore(entry, i);
+                    break;
+                case 3:
+                    entry->image = 0xB81;
+                    entry->scale = 0.5f;
+                    break;
+                case 4:
+                    entry->image = 0xC14;
+                    entry->scale = 0.5f;
+                    break;
+                case 6:
+                    entry->image = 0xB89;
+                    entry->scale = 0.75f;
+                    entry->x = 10;
+                    entry->dx -= 5;
+                    break;
+                case 7:
+                    entry->image = 0xB8B;
+                    entry->scale = 0.75f;
+                    entry->dx -= 5;
+                    break;
+                case 8:
+                    func_80801340_sumultiscore(entry, i);
+                    break;
+            }
+            i++;
+            row += 0x13C;
+        } while (i < *(s32 *)(arg0 + 0x518));
+    }
+    *(s32 *)(arg0 + arg1 * 4 + 4) = *(s32 *)arg0;
+    *(s32 *)arg0 += 1;
+}
 
 struct player_state_s;
 struct player_state_s *func_800F53D0(s32);
