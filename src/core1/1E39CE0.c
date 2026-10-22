@@ -356,7 +356,40 @@ s32 func_8002241C(MusicPlayer *arg0) {
     return p->nextDelta;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39CE0/func_80022D1C.s")
+s32 func_80022D1C(MusicPlayer *arg0) {
+    void func_80025084(ALCSeq *, MusicEvent *, s32);
+    void func_80023008(MusicPlayer *, MusicEvent *);
+    s32 func_80024A5C(MusicPlayer *, MusicEvent *);
+    void func_80024DD8(MusicPlayer *);
+    MusicEvent event;
+
+    if (arg0->target == NULL) {
+        return;
+    }
+    func_80025084(arg0->target, &event, 1);
+    switch (event.type) {
+    case 1:
+        func_80023008(arg0, &event);
+        func_80024DD8(arg0);
+        break;
+    case 3:
+        func_80024A5C(arg0, &event);
+        func_80024DD8(arg0);
+        break;
+    case 4:
+        arg0->state = 2;
+        event.type = 0x10;
+        func_80026500(&arg0->evtq, &event, 0x7FFFFFFF, 0);
+        break;
+    case 18:
+    case 19:
+    case 20:
+        func_80024DD8(arg0);
+        break;
+    default:
+        break;
+    }
+}
 
 void func_80022E20(MusicPlayer *arg0, u8 arg1) {
     MusicVoiceState *sp2C;
