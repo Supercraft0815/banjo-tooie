@@ -211,7 +211,87 @@ s32 bsstatue_entrypoint_2(s32 arg0) {
     return ((s32 *)&D_808015A0_bsstatue)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_8080054C_bsstatue.s")
+struct anctrl_s;
+struct player_state_s;
+s32 func_8080054C_bsstatue(void *arg0, s32 arg1) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setIndex(struct anctrl_s *, s32);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    void baanim_setEndAndDuration(struct player_state_s *, f32, f32);
+    s32 baflag_set(s32, s32);
+    f32 baphysics_get_target_horizontal_velocity(struct player_state_s *);
+    void baphysics_reset_gravity(struct player_state_s *);
+    void baphysics_set_gravity(struct player_state_s *, f32);
+    void baphysics_set_horizontal_velocity(struct player_state_s *, f32, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void baphysics_set_target_yaw(struct player_state_s *, f32);
+    void baphysics_set_vertical_velocity(struct player_state_s *, f32);
+    f32 bastick_distance(struct player_state_s *);
+    f32 bastick_getAngleRelativeToBanjo(struct player_state_s *);
+    void func_8009E53C(struct player_state_s *, s32, f32);
+    void func_8009E55C(struct player_state_s *, s32, f32);
+    void func_8009E5A4(struct player_state_s *, s32, s32);
+    void func_8009FFD8(struct player_state_s *, s32, s32, s32, s32);
+    void func_800A2EAC(struct player_state_s *);
+    f32 yaw_getIdeal(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    void func_80800BEC_bsstatue(struct player_state_s *);
+    struct anctrl_s *temp_a0;
+    struct anctrl_s *sp34;
+    f32 sp2C;
+
+    temp_a0 = baanim_getAnimCtrlPtr(arg0);
+    ((s8 *)arg0)[0x15C] = arg1;
+    switch (arg1) {
+    case 1:
+        sp34 = temp_a0;
+        anctrl_reset(temp_a0);
+        anctrl_setIndex(temp_a0, 0x1EF);
+        anctrl_setDuration(temp_a0, 1.2f);
+        anctrl_setSubrange(temp_a0, 0.0f, 0.2833f);
+        anctrl_setPlaybackType(temp_a0, 1);
+        anctrl_start(temp_a0);
+        func_8009FFD8(arg0, 1, 1, 3, 6);
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+        if (bastick_distance(arg0) != 0.0f) {
+            yaw_setIdeal(arg0, bastick_getAngleRelativeToBanjo(arg0));
+        }
+        break;
+    case 2:
+        baanim_setEndAndDuration(arg0, 0.4656f, 0.8f);
+        baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+        func_80800BEC_bsstatue(arg0);
+        sp2C = yaw_getIdeal(arg0);
+        baphysics_set_horizontal_velocity(arg0, sp2C, baphysics_get_target_horizontal_velocity(arg0));
+        baphysics_set_vertical_velocity(arg0, 710.0f);
+        baphysics_set_gravity(arg0, -2400.0f);
+        break;
+    case 3:
+        baanim_setEndAndDuration(arg0, 0.5456f, 8.0f);
+        break;
+    case 4:
+        func_8009E55C(arg0, 2, 250.0f);
+        func_8009E53C(arg0, 2, -180.0f);
+        func_8009E5A4(arg0, 2, 2);
+        baflag_set(arg0, 0x2D);
+        baanim_setEndAndDuration(arg0, 1.0f, 1.2f);
+        break;
+    case 5:
+        func_800A2EAC(arg0);
+        baflag_clear(arg0, 0x2D);
+        func_8009E55C(arg0, 2, 0.0f);
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+        break;
+    case 0:
+        baphysics_reset_gravity(arg0);
+        baflag_clear(arg0, 0x2D);
+        break;
+    }
+}
 
 /* extern */
 
