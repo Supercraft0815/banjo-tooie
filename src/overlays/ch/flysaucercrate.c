@@ -102,4 +102,52 @@ void func_80800A2C_chflysaucercrate(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucercrate/func_80800A88_chflysaucercrate.s")
+void func_80800A88_chflysaucercrate(Actor *arg0) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+    void func_800FFAB0(Actor *);
+
+    arg0->scale = 1.25f;
+    switch (func_800EA05C()) {
+    case 0xCA:
+        if (func_800DA298(0x93)) {
+            func_800FFAB0(arg0);
+            return;
+        }
+        if (func_800DA298(0x91)) {
+            arg0->position[0] = 4750.0f;
+            arg0->position[1] = 525.0f;
+            if (func_800DA298(0xB3)) {
+                func_8080000C_chflysaucercrate(arg0, 5);
+                return;
+            }
+            func_8080000C_chflysaucercrate(arg0, 4);
+            return;
+        }
+        return;
+    case 0xD6:
+        if (func_800DA298(0x94)) {
+            func_800FFAB0(arg0);
+            arg0->unk64_16 = 0;
+            return;
+        }
+        if (_glcutDll_entrypoint_19(0x23) || func_800DA298(0x93)) {
+            arg0->position[0] = -7800.0f;
+            arg0->position[1] = 1600.0f;
+            arg0->position[2] = -4500.0f;
+            _subaddieDll_entrypoint_4(arg0, 1);
+            func_8080000C_chflysaucercrate(arg0, 6);
+            if (_glcutDll_entrypoint_19(0x23)) {
+                _capod_entrypoint_13(arg0->unk0, 0, 0xC, 0x2810);
+                return;
+            }
+            _capod_entrypoint_13(arg0->unk0, 0, 0xC, 0x2010);
+            return;
+        }
+        func_800FFAB0(arg0);
+        break;
+    }
+}
