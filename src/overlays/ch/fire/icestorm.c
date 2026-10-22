@@ -295,7 +295,32 @@ void func_80800A40_chfireicestorm(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_80800BA4_chfireicestorm.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_80800D0C_chfireicestorm.s")
+void func_80800D0C_chfireicestorm(Actor *arg0) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    void func_80018820(s32, f32, f32);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    void func_80101FDC(Actor *, u32);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern s32 D_80800F68_chfireicestorm;
+    extern s32 D_80800F7C_chfireicestorm;
+    s32 *var_a3;
+    u32 var_a2;
+
+    var_a2 = 0x14;
+    if (!arg0->unk64_19) {
+        var_a2 = 0x1C;
+    }
+    _chexploder_entrypoint_3(arg0, arg0->position, var_a2);
+    func_800E1610(2, 150.0f, 0.85f, arg0->position);
+    func_80018820(0, 2.0f, 0.3f);
+    if (arg0->unk64_20) {
+        var_a3 = &D_80800F68_chfireicestorm;
+    } else {
+        var_a3 = &D_80800F7C_chfireicestorm;
+    }
+    func_8010D930(4, arg0->unk70_0, arg0->position, var_a3);
+    func_80101FDC(arg0, 2);
+}
 
 void func_80800DC8_chfireicestorm(Actor *arg0) {
     s32 func_800BBCB8(f32 *, s32, f32, s32, s32 *);
