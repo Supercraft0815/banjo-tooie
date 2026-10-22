@@ -404,7 +404,49 @@ void func_80801AC0_ncpoddialog(u8 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
     } while (var_s1 != 9);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80801B98_ncpoddialog.s")
+void func_80801B98_ncpoddialog(u8 *arg0) {
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    f32 func_800136E4(f32);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    f32 func_800EFB8C(f32 *, f32 *);
+    void func_800F0EF0(s32, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F1828(f32 *, f32 *);
+    f32 angles[10];
+    f32 distances[10];
+    f32 points[10][3];
+    f32 distance;
+    s32 i;
+    s32 j;
+
+    angles[0] = func_800136E4(func_800F1DF4((f32 *)(arg0 + 0x148), (f32 *)(arg0 + 0x58)));
+    angles[9] = func_800136E4(func_800F1DF4((f32 *)(arg0 + 0x148), (f32 *)(arg0 + 0xC4)));
+    func_8080189C_ncpoddialog((u8 *)angles);
+    distances[0] = func_800EFB8C((f32 *)(arg0 + 0x58), (f32 *)(arg0 + 0x148));
+    distances[9] = func_800EFB8C((f32 *)(arg0 + 0xC4), (f32 *)(arg0 + 0x148));
+    func_80801A30_ncpoddialog(distances);
+    func_80801AC0_ncpoddialog((u8 *)(f32 *)(arg0 + 0x58), angles, distances, (f32 *)(arg0 + 0x148));
+    distance = func_800EEAD4((f32 *)(arg0 + 0xC4), (f32 *)(arg0 + 0x148));
+    func_800EE7F8(points[0], (f32 *)(arg0 + 0x200));
+    func_800EE7F8(points[9], (f32 *)(arg0 + 0xC4));
+    func_800EF214(points[9], -*(f32 *)(arg0 + 0x13C), *(f32 *)(arg0 + 0x140), -distance);
+    for (i = 1; i < 9; i++) {
+        for (j = 0; j < 3; j++) {
+            points[i][j] = func_800F10B4((f32)i, 0.0f, 9.0f, points[0][j], points[9][j]);
+        }
+    }
+    for (i = 0; i < 10; i++) {
+        func_800EE7F8((f32 *)(arg0 + 0x188 + i * 12), points[i]);
+    }
+    for (i = 1; i < 9; i++) {
+        *(f32 *)(arg0 + i * 12 + 0xD4) = func_800136E4(func_800F1DF4(points[i], (f32 *)(arg0 + i * 12 + 0x58)));
+        *(f32 *)(arg0 + i * 12 + 0xD0) = func_800136E4(-func_800F1828(points[i], (f32 *)(arg0 + i * 12 + 0x58)));
+        *(f32 *)(arg0 + i * 12 + 0xD8) = 0.0f;
+    }
+    func_800F0EF0(10, (f32 *)(arg0 + 0xD0));
+}
 
 /* extern */
 
