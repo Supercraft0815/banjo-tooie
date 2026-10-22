@@ -643,7 +643,129 @@ void func_808014A8_gczoombox(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4,
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_8080156C_gczoombox.s")
+void func_8080156C_gczoombox(void *this, s32 arg1) {
+    typedef struct {
+        u8 pad0[0xF0];
+        u8 frames[0x50];
+        u16 unk140;
+        u8 pad142[0xA];
+        f32 unk14C;
+        u8 pad150[0x28];
+        u8 sfx_count;
+        u8 pad179[0x56];
+        s8 frame;
+        u8 frame_index;
+        u8 frame_count;
+        u8 sequence_count;
+        u8 pad1D3[0x11];
+        u32 : 8;
+        u32 flag23 : 1;
+        u32 flag22 : 1;
+        u32 flag21 : 1;
+        u32 : 8;
+        u32 flag12 : 1;
+        u32 : 1;
+        u32 flag10 : 1;
+        u32 : 10;
+    } Box;
+    void func_80015E80(s32, void *);
+    void func_80015ECC(s32, void *);
+    void func_80015F28(s32, void *);
+    void func_80015F5C(s32, void *);
+    s32 func_8001211C(void);
+    f32 func_800DC1AC(void);
+    s32 sp38[6];
+    s32 sp2C[3];
+    if (!((Box *)this)->flag10) {
+        func_80015E80(0, sp38);
+        func_80015F28(0, sp2C);
+    }
+    else {
+        func_80015ECC(0, sp38);
+        func_80015F5C(0, sp2C);
+    }
+    if (((Box *)this)->unk140 == 0) {
+        return;
+    }
+    if (arg1 && ((Box *)this)->flag12 && sp38[0]) {
+        if (((Box *)this)->unk14C == -1.0f) {
+            func_808009E4_gczoombox(this, 1);
+        }
+        else {
+            ((Box *)this)->frame++;
+            ((Box *)this)->frame = ((Box *)this)->frame % 4;
+            if (((Box *)this)->frame == 0) {
+                func_808009E4_gczoombox(this, 1);
+            }
+        }
+    }
+    else if (((Box *)this)->flag22 != 0) {
+        if (((Box *)this)->flag21) {
+            ((Box *)this)->frame--;
+            if ((((Box *)this)->frame_count - 4) >= ((Box *)this)->frame) {
+                ((Box *)this)->flag21 = 0;
+                ((Box *)this)->flag22 = 0;
+                ((Box *)this)->frame = 0;
+            }
+        }
+        else {
+            ((Box *)this)->frame++;
+            if (((Box *)this)->frame >= ((Box *)this)->frame_count) {
+                ((Box *)this)->flag21 = 1;
+                ((Box *)this)->frame--;
+            }
+        }
+    }
+    else if (arg1) {
+        if (((Box *)this)->flag12 && sp2C[0] != 0 && (func_8001211C() & 1)) {
+            return;
+        }
+        {
+            if (((Box *)this)->unk14C == -1.0f) {
+                func_808009E4_gczoombox(this, 1);
+            }
+            else if (((Box *)this)->sfx_count != 0) {
+                if (((Box *)this)->frame == 0 && ((Box *)this)->frame < ((Box *)this)->frames[((Box *)this)->frame_index]) {
+                    func_808009E4_gczoombox(this, 0);
+                }
+            }
+            ((Box *)this)->flag22 = 0;
+            ((Box *)this)->flag21 = 0;
+            if (((Box *)this)->frame == ((Box *)this)->frames[((Box *)this)->frame_index]) {
+                ((Box *)this)->frame_index++;
+                if (((Box *)this)->frame_index >= ((Box *)this)->sequence_count) {
+                    ((Box *)this)->frame_index = 0;
+                    ((Box *)this)->flag23 = 0;
+                    if (func_800DC1AC() < 0.4f) {
+                        ((Box *)this)->flag22 = 1;
+                        ((Box *)this)->frame = ((Box *)this)->frame_count - 4;
+                    }
+                }
+            }
+            else if (((Box *)this)->frame < ((Box *)this)->frames[((Box *)this)->frame_index]) {
+                ((Box *)this)->frame++;
+            }
+            else {
+                ((Box *)this)->frame--;
+            }
+        }
+    }
+    else if (((Box *)this)->flag22 == 0) {
+        if (((Box *)this)->frame > 0) {
+            ((Box *)this)->frame--;
+        }
+        else if (func_800DC1AC() < 0.01f) {
+            ((Box *)this)->flag22 = 1;
+            ((Box *)this)->frame = ((Box *)this)->frame_count - 4;
+        }
+    }
+    if (((Box *)this)->frame < 0) {
+        ((Box *)this)->frame = 0;
+    }
+    else if (((Box *)this)->frame >= ((Box *)this)->frame_count) {
+        ((Box *)this)->frame = ((Box *)this)->frame_count - 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_2.s")
 
