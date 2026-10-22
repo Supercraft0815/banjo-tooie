@@ -21,7 +21,7 @@ void func_80800000_chicekeydoor(u8 *arg0) {
     s32 func_800F82D4(s32, s32);
     s32 func_800FC660(s32);
     s32 func_80101FDC(u8 *, s32);
-    u8 *func_80106790(s32);
+    u8 *func_80106790();
     s32 func_80108B04(u8 *, s32);
     s32 func_8010C500(u8 *);
     s32 func_80800640_chicekeydoor(u8 *, u8 *);
@@ -106,7 +106,25 @@ void func_80800000_chicekeydoor(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/icekeydoor/func_80800318_chicekeydoor.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/icekeydoor/func_8080057C_chicekeydoor.s")
+void func_8080057C_chicekeydoor(Actor *arg0, void *arg1) {
+    void _subaddieskeleton_entrypoint_1(Actor *, s32, f32 *);
+    f32 func_800136E4(f32);
+    void func_80101870(Actor *, void *);
+    u8 *func_80106790();
+    Actor *other;
+
+    func_80101870(arg0, arg1);
+    if (arg0->unk3C != NULL && arg0->unk7C_12) {
+        other = func_80106790(arg0->unk3C);
+        other->unk64_16 = 1;
+        if ((s32)arg0->unk70_10 >= 6) {
+            _subaddieskeleton_entrypoint_1(arg0, 4, other->position);
+            other->rotation[1] = func_800136E4(arg0->rotation[1] - 180.0f);
+        }
+        func_80101870(other, arg1);
+        other->unk64_16 = 0;
+    }
+}
 
 OSThread *chicekeydoor_entrypoint_0(void)
 {
