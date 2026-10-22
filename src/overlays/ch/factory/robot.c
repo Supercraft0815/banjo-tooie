@@ -290,7 +290,43 @@ void func_80800FFC_chfactoryrobot(Actor *arg0, void *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80801160_chfactoryrobot.s")
+s32 func_80801160_chfactoryrobot(u8 *arg0, s32 arg1) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    s32 *_fxgenlist_entrypoint_2(void);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_80102424(Actor *, s32);
+    void func_80103DFC(Actor *, f32 *);
+    void func_80109FE8(void **, s32);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    s32 func_80802470_chfactoryrobot(Actor *, s32);
+    extern s32 D_80802AB8_chfactoryrobot;
+    f32 sp2C[3];
+
+    func_80102424((Actor *)arg0, arg1);
+    switch (arg1) {
+    case 2:
+    case 4:
+        func_80109FE8(arg0, 1);
+        return;
+    case 5:
+        func_80109FE8(arg0, 0);
+        return;
+    case 1:
+        func_80109FE8(arg0, 0);
+        return;
+    case 7:
+        func_80103DFC((Actor *)arg0, sp2C);
+        func_80802470_chfactoryrobot((Actor *)arg0, 1);
+        ((Actor *)arg0)->unk64_24 = 0;
+        func_800BBCB8(sp2C, sp2C, 0.8f, 1, _fxgenlist_entrypoint_2());
+        func_8010D930(6, ((Actor *)arg0)->unk70_0, sp2C, &D_80802AB8_chfactoryrobot);
+        _chexploder_entrypoint_3(arg0, ((Actor *)arg0)->position, 0x124);
+        return;
+    default:
+        func_80109FE8(arg0, 1);
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80801278_chfactoryrobot.s")
 
