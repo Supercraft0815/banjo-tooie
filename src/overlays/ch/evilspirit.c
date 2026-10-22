@@ -56,7 +56,41 @@ void func_808005B4_chevilspirit(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_808005EC_chevilspirit.s")
+s32 func_808005EC_chevilspirit(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    s32 func_801015D0(Actor *);
+    void func_80801C04_chevilspirit(Actor *);
+    void func_80801F1C_chevilspirit(Actor *, s32, s32);
+    void func_80802024_chevilspirit(Actor *, s32, s32);
+    s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    extern s32 D_808021D0_chevilspirit[];
+    void *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0x2E:
+            func_80801F1C_chevilspirit(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x2F:
+            func_80802024_chevilspirit(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x95:
+            func_80801C04_chevilspirit(arg0);
+            break;
+        case 0x1F:
+            func_801015D0(arg0);
+            break;
+        case 0x57:
+            return _susubgame_entrypoint_3(arg0, (u8 *)data + 0x40, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+        case 0x52:
+            _gcdialogcamera_entrypoint_3(D_808021D0_chevilspirit, arg0->scale);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800718_chevilspirit(Actor *arg0, s32 arg1) {
     s32 func_800EB854(void);
