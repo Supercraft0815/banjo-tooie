@@ -1166,7 +1166,61 @@ void bsbtrot_entrypoint_45(s32 arg0) {
     func_808025D8_bsbtrot(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_46.s")
+void bsbtrot_entrypoint_46(PlayerState *arg0) {
+    AnimCtrl *baanim_getAnimCtrlPtr(PlayerState *);
+    s32 bakey_released(void *, s32);
+    s32 anctrl_isStopped(AnimCtrl *);
+    void func_8009BB24(void *, f32 *);
+    s32 next_state;
+    AnimCtrl *anim;
+    f32 velocity[3];
+
+    next_state = 0;
+    anim = baanim_getAnimCtrlPtr(arg0);
+    func_808004B4_bsbtrot(arg0);
+    if (baflag_isTrue(arg0, 0xF)) {
+        func_8009B7C0(arg0);
+    } else {
+        func_80800438_bsbtrot(arg0);
+    }
+    func_8009BB24(arg0, velocity);
+    if (bakey_released(arg0, 8) && velocity[1] > 0.0f) {
+        baphysics_reset_gravity(arg0);
+    }
+    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+    case 1:
+        if (anctrl_isStopped(anim)) {
+            func_808025D8_bsbtrot((s32)arg0, 2);
+        }
+        break;
+    case 2:
+        if (func_8008DF8C(arg0, 0x82)) {
+            func_808025D8_bsbtrot((s32)arg0, 3);
+        }
+        break;
+    case 3:
+        func_8009D3A8(arg0, 1);
+        if (player_isStable(arg0)) {
+            func_808025D8_bsbtrot((s32)arg0, 4);
+        }
+        break;
+    case 4:
+        if (anctrl_isStopped(anim)) {
+            next_state = 0x15;
+        }
+        next_state = func_808007E0_bsbtrot(arg0, next_state);
+        break;
+    }
+    if (!player_isStable(arg0)) {
+        if (func_8008E260(arg0)) {
+            next_state = 0x3D;
+        }
+        if (player_inWater(arg0)) {
+            next_state = 0x4C;
+        }
+    }
+    bs_setState(arg0, next_state);
+}
 
 s32 bsbtrot_entrypoint_47(s32 arg0) {
     extern s32 D_80802F00_bsbtrot[];
