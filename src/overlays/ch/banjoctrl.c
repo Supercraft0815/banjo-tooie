@@ -59,7 +59,38 @@ void func_80800098_chbanjoctrl(Actor *arg0) {
 void func_808011F4_chbanjoctrl(void);
 void func_8080012C_chbanjoctrl(Actor *arg0) { if ((u32) arg0->unk70_10 == 0xB) { func_808011F4_chbanjoctrl(); } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800160_chbanjoctrl.s")
+void func_80800160_chbanjoctrl(Actor *arg0) {
+    void func_8008FE68(f32 *);
+    s32 func_80090128();
+    void func_8080025C_chbanjoctrl(u8 *);
+    void func_808003F8_chbanjoctrl(Actor *);
+    void func_80800728_chbanjoctrl(void *);
+    void func_80800ADC_chbanjoctrl(s32);
+    void func_80800B18_chbanjoctrl(Actor *);
+    void func_80800D04_chbanjoctrl(u8 *);
+    void func_80800D50_chbanjoctrl(u8 *);
+    void func_80800DF8_chbanjoctrl(u8 *);
+    void func_80801088_chbanjoctrl(Actor *);
+    void func_808010FC_chbanjoctrl(Actor *);
+
+    if (func_80090128() != 0) {
+        func_8008FE68((f32 *) arg0->actorData);
+        switch ((u32) arg0->unk70_10) {
+            case 1: break;
+            case 2: func_8080025C_chbanjoctrl((u8 *) arg0); break;
+            case 3: func_808003F8_chbanjoctrl(arg0); break;
+            case 4:
+            case 5: func_80800728_chbanjoctrl(arg0); break;
+            case 6: func_80800ADC_chbanjoctrl((s32) arg0); break;
+            case 7: func_80800B18_chbanjoctrl(arg0); break;
+            case 8: func_80800D04_chbanjoctrl((u8 *) arg0); break;
+            case 9: func_80800D50_chbanjoctrl((u8 *) arg0); break;
+            case 10: func_80800DF8_chbanjoctrl((u8 *) arg0); break;
+            case 11: func_808010FC_chbanjoctrl(arg0); break;
+            case 12: func_80801088_chbanjoctrl(arg0); break;
+        }
+    }
+}
 
 s32 func_808007D8_chbanjoctrl(u8 *);
 void func_8080025C_chbanjoctrl(u8 *arg0) { if (func_808007D8_chbanjoctrl(arg0) && (*(f32 *)(arg0 + 0x1C) < *(f32 *)(arg0 + 8))) func_800904C8(0x91); }
