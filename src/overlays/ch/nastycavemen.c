@@ -101,7 +101,53 @@ int func_80800194_chnastycavemen(s32 arg0, s32 arg1) {
     return func_800F6478(arg1) && sp34 && sp24 && (sp28 || (sp2C && !sp30));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_80800268_chnastycavemen.s")
+void func_80800268_chnastycavemen(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_8008FD48();
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    extern s32 D_80801130_chnastycavemen;
+    s32 dialog;
+    f32 *sp30;
+
+    if (arg1 != arg0->unk70_10) {
+        switch (arg1) {
+        case 2:
+            if (arg2 != 0) {
+                _capod_entrypoint_13(arg0->unk0, NULL, 5, 0x2830);
+            } else {
+                _capod_entrypoint_13(arg0->unk0, NULL, 1, 0x30);
+            }
+            break;
+        case 4:
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801130_chnastycavemen);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x17EE, 8, arg0->position, 0x96);
+            break;
+        case 3:
+            if (func_8008FD48() == 0xB) {
+                dialog = 0x1805;
+            } else {
+                dialog = func_80800060_chnastycavemen() ? 0x17DB : 0x17DA;
+            }
+            _subaddiedialog_entrypoint_11(arg0->unk0, dialog, 0x6C, arg0->position, 0x96);
+            break;
+        case 5:
+            sp30 = func_80100094(arg0, 0);
+            func_800EE7F8(sp30, arg0->position);
+            func_800EE7F8(sp30 + 3, arg0->rotation);
+            func_800EE7F8(sp30 + 6, sp30);
+            func_800EE7F8(sp30 + 9, sp30 + 3);
+            break;
+        case 6:
+            arg0->unk64_20 = 1;
+            break;
+        }
+        func_80102424(arg0, arg1);
+    }
+}
 
 /* extern */
 
