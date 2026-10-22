@@ -1,6 +1,40 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familymissing/func_80800000_chdinofamilymissing.s")
+void func_80800000_chdinofamilymissing(Actor *arg0) {
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800DA298(s32);
+    s32 func_800EA05C();
+    void func_800FFAB0(Actor *);
+    void func_80102424(Actor *, s32);
+    void *func_80105494(Actor *);
+
+    switch (func_800EA05C()) {
+        case 0x114:
+            if (!_glcutDll_entrypoint_19(0x35)) {
+                func_800FFAB0(arg0);
+            }
+            break;
+        case 0x118:
+            if (_glcutDll_entrypoint_20()) {
+                if (func_80105494(arg0)) {
+                    func_800FFAB0(arg0);
+                } else {
+                    func_80102424(arg0, 7);
+                }
+            } else if (!_glcutDll_entrypoint_19(0x35) || !func_80105494(arg0)) {
+                if (func_800DA298(0x8A) && !func_80105494(arg0)) {
+                    func_80102424(arg0, 5);
+                } else {
+                    func_800FFAB0(arg0);
+                }
+            }
+            break;
+        default:
+            func_800FFAB0(arg0);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familymissing/func_80800104_chdinofamilymissing.s")
 
