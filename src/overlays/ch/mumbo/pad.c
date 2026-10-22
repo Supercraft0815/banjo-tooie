@@ -64,7 +64,43 @@ void func_8080044C_chmumbopad(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/pad/func_80800514_chmumbopad.s")
+s32 func_80800514_chmumbopad(Actor *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u8 pad[0x28];
+        u32 : 18;
+        u32 enabled : 1;
+        u32 : 13;
+    } PadMarker;
+    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void func_80103110(void *, s32);
+    void func_80800674_chmumbopad(Actor *, s32);
+    void func_808008CC_chmumbopad(void *, s32);
+
+    switch (arg1) {
+        case 0x91:
+            if (!arg0->unk64_19 && !arg0->unk74_29 && !((PadMarker *)arg0->unk0)->enabled) {
+                func_808008CC_chmumbopad(arg0, arg2);
+            }
+            func_80103110(arg0, 1);
+            break;
+        case 0x32:
+            func_80800674_chmumbopad(arg0, arg2);
+            break;
+        case 0xBB:
+            if (arg2 == arg0->unk6C_0) {
+                ((PadMarker *)arg0->unk0)->enabled = 0;
+            }
+            break;
+        case 0x2E:
+            if (*(s16 *)&arg2 == 0x11DE) {
+                _chintrotext_entrypoint_1(0x18BD, arg0->unk6C_0, 0, 1);
+                arg0->unk64_19 = 0;
+            }
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
