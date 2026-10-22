@@ -383,7 +383,42 @@ void func_808016B4_chnewfreezy(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_808017FC_chnewfreezy.s")
+s32 func_808017FC_chnewfreezy(Actor *arg0, s32 arg1, volatile s32 arg2) {
+    s32 _subaddielink_entrypoint_3(u8 *);
+    void _sufreezy_entrypoint_5(Unk80132ED0 *, s32);
+    void _sufreezy_entrypoint_6(Unk80132ED0 *, s32);
+    void _sufreezy_entrypoint_7(Unk80132ED0 *, s32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+
+    switch (arg1) {
+        case 0x3E:
+            if (arg0->unk50 > 0.75f) {
+                func_80800068_chnewfreezy(arg0);
+                _sufreezy_entrypoint_5(arg0->unk0, arg2);
+                func_808000D4_chnewfreezy(arg0);
+                func_808000AC_chnewfreezy((s32)arg0);
+            }
+            break;
+        case 0x3F:
+            _sufreezy_entrypoint_6(arg0->unk0, arg2);
+            break;
+        case 0x40:
+            func_80800068_chnewfreezy(arg0);
+            _sufreezy_entrypoint_7(arg0->unk0, arg2);
+            func_808000D4_chnewfreezy(arg0);
+            func_808000AC_chnewfreezy((s32)arg0);
+            break;
+        case 0x95:
+            if (_subaddielink_entrypoint_3(func_80100094(arg0, 1)) == 0) {
+                func_800FFAB0(arg0);
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chnewfreezy_entrypoint_1(void)
 {
