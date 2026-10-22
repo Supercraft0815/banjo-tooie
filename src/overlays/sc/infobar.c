@@ -35,7 +35,26 @@ void func_808000B0_scinfobar(void *arg0) {
     (*(s16 *)((s8 *)(arg0) + (0x2C))) = temp_v0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/func_808000C4_scinfobar.s")
+void func_808000C4_scinfobar(u32 *arg0, s32 temp_a1) {
+    void func_800E8C08();
+    void scinfobar_entrypoint_3(void *, s32);
+    void scinfobar_entrypoint_8(u32 *, s32);
+    void scinfobar_entrypoint_9(u32 *, s32);
+
+    temp_a1 = *(u8 *)((s8 *)arg0 + 0x32);
+    *(s16 *)((s8 *)arg0 + 4) = *(s16 *)((s8 *)arg0 + 6);
+    *(s16 *)((s8 *)arg0 + 6) = -1;
+    *(s8 *)((s8 *)arg0 + 2) = 0;
+    if (temp_a1 != 0) {
+        func_800E8C08((u8)temp_a1);
+    }
+    func_80800000_scinfobar(arg0, *(s16 *)((s8 *)arg0 + 4));
+    scinfobar_entrypoint_8(arg0, *(s16 *)((s8 *)arg0 + 0x2C));
+    scinfobar_entrypoint_9(arg0, *(s16 *)((s8 *)arg0 + 0x2E));
+    scinfobar_entrypoint_3(arg0, *(s16 *)((s8 *)arg0 + 0x30));
+    func_808000B0_scinfobar(arg0);
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/func_80800144_scinfobar.s")
 
@@ -66,10 +85,9 @@ void *scinfobar_entrypoint_0(s32 arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-void scinfobar_entrypoint_1(void *arg0) {
-    s32 func_800E8C08(s32, u8, void *);
+void scinfobar_entrypoint_1(void *arg0, s32 temp_a1) {
+    void func_800E8C08();
     s32 heap_free(void *);
-    u8 temp_a1;
 
     temp_a1 = (*(u8 *)((s8 *)(arg0) + (0x32)));
     if (temp_a1 != 0) {
