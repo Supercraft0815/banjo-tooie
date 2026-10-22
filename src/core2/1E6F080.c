@@ -779,7 +779,49 @@ s32 func_80097530(PlayerState *arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_800976DC.s")
+s32 func_800976DC(PlayerState *arg0) {
+    s32 bastatetimer_isActive(PlayerState *, s32);
+    void func_8009C128(PlayerState *, f32 [3]);
+    void func_800EFB24(void *, void *, void *);
+    void func_800EF2A0(f32 [3]);
+    void func_800F0410(f32 [3], f32 [3][3], f32 [3]);
+    f32 sp74;
+    f32 sp70;
+    f32 sp64[3];
+    f32 sp58[3];
+    f32 sp4C[3];
+    f32 sp28[3][3];
+    f32 *temp_v0;
+
+    if (bastatetimer_isActive(arg0, 7) != 0) {
+        return 0;
+    }
+    if (func_8009650C(arg0) == 0) {
+        return 0;
+    }
+    func_80096440(arg0, sp58);
+    if (sp58[1] > 0.028f && sp58[1] < 0.98f) {
+        return 0;
+    }
+    func_8009C128(arg0, sp64);
+    func_80095870(arg0, &sp70, &sp74);
+    sp64[1] += sp70;
+    func_8009646C((u8 *)arg0, sp28[0]);
+    func_800F0410(sp4C, sp28, sp64);
+    func_800EFB24(*(f32 **)((u8 *)arg0 + 0x98), sp4C, sp64);
+    (*(f32 **)((u8 *)arg0 + 0x98))[1] = 0.0f;
+    func_800EF2A0(*(f32 **)((u8 *)arg0 + 0x98));
+    temp_v0 = *(f32 **)((u8 *)arg0 + 0x98);
+    if (temp_v0[0] == 0.0f && temp_v0[2] == 0.0f) {
+        return 0;
+    }
+    *((s8 *)temp_v0 + 0x24) = 1;
+    func_8009C128(arg0, sp64);
+    if (func_800972BC(arg0, sp64) == 0) {
+        return 0;
+    }
+    return func_800972BC(arg0, *(f32 **)((u8 *)arg0 + 0x98) + 6);
+}
 
 /* extern */
 
