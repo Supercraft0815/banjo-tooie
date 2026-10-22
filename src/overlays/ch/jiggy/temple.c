@@ -33,7 +33,87 @@ void func_80800034_chjiggytemple(s32 arg0) {
 void func_808000A8_chjiggytemple(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/temple/func_808000B0_chjiggytemple.s")
+s32 func_808000B0_chjiggytemple(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _capod_entrypoint_14(void);
+    void _gcdialogcamera_entrypoint_3(f32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _sujiggy_entrypoint_16();
+    s32 _sujiggy_entrypoint_17();
+    void func_800C01A8(s16, s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80102424(Actor *, s32);
+    f32 func_80103EAC(Actor *);
+    s32 dialog;
+    f32 camera[4];
+
+    switch (arg1) {
+    case 0x2E:
+        dialog = 0;
+        switch (*(s16 *)&arg2) {
+        case 0x1505:
+        case 0x1506:
+            switch (_sujiggy_entrypoint_17()) {
+            case -1:
+                dialog = 0x1509;
+                break;
+            case 0:
+                if (_sujiggy_entrypoint_16() == 1) {
+                    dialog = 0x154A;
+                } else {
+                    dialog = 0x1508;
+                }
+                break;
+            case 1:
+                dialog = 0x1507;
+                break;
+            }
+            break;
+        case 0x1507:
+            if (func_800DA298(0x532) == 0) {
+                func_800DA544(0x532);
+                _capod_entrypoint_14();
+            } else {
+                func_800C01A8(0x6B, 0);
+            }
+            break;
+        }
+        if (dialog != 0) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, dialog, 0xF, arg0->position, 0x98);
+        }
+        break;
+    case 0x30:
+        return _sujiggy_entrypoint_16();
+    case 0x2F:
+        if (func_800DA298(0x532) == 0) {
+            func_80101180(0x1E7, 7, 0);
+            func_800C01A8(0x6B, 0);
+            _capod_entrypoint_13(arg0->unk0, NULL, 5, 0x2020);
+        }
+        break;
+    case 0x95:
+        if (_sujiggy_entrypoint_17() != 0) {
+            func_80102424(arg0, 2);
+        } else {
+            func_80102424(arg0, 1);
+        }
+        break;
+    case 0x52:
+        camera[0] = (1.0f / arg0->scale) * 180.0f;
+        camera[1] = func_80103EAC(arg0) * 2.5f;
+        camera[2] = camera[1] * 2.5f;
+        camera[3] = (1.0f / arg0->scale) * 120.0f;
+        _gcdialogcamera_entrypoint_4(arg0->position);
+        _gcdialogcamera_entrypoint_3(camera, arg0->scale);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 OSThread *chjiggytemple_entrypoint_1(void)
 {
