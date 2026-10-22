@@ -434,7 +434,58 @@ s32 bstrexsmall_entrypoint_7(PlayerState *arg0, f32 *arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexsmall/func_80800CA4_bstrexsmall.s")
+void func_80800CA4_bstrexsmall(PlayerState *arg0, s32 arg1) {
+    struct anctrl_s *temp_a0;
+    struct anctrl_s *sp34;
+    f32 sp28[2];
+    f32 func_800DC0C0(void);
+    void baanim_setEndAndDuration(PlayerState *, f32, f32);
+    void func_8009DBB0(PlayerState *, s32, f32, f32, s32);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    f32 bastick_distance(PlayerState *);
+    f32 bastick_getAngleRelativeToBanjo(PlayerState *);
+    f32 yaw_getIdeal(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+
+    temp_a0 = baanim_getAnimCtrlPtr(arg0);
+    arg0->unk15C.bytes[0] = arg1;
+    switch (arg1) {
+    case 1:
+        sp34 = temp_a0;
+        anctrl_reset(temp_a0);
+        anctrl_setIndex(temp_a0, 0x1D1);
+        anctrl_setDuration(temp_a0, 2.2f);
+        anctrl_setSubrange(temp_a0, 0.0f, 0.715f);
+        anctrl_setPlaybackType(temp_a0, 1);
+        anctrl_setStart(temp_a0, 0.194f);
+        anctrl_start(temp_a0);
+        func_8009FFD8(arg0, 1, 1, 3, 6);
+        if (bastick_distance(arg0) != 0.0f) {
+            yaw_setIdeal(arg0, bastick_getAngleRelativeToBanjo(arg0));
+        }
+        baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+        sp28[0] = yaw_getIdeal(arg0);
+        baphysics_set_horizontal_velocity(arg0, sp28[0], baphysics_get_target_horizontal_velocity(arg0));
+        baphysics_set_vertical_velocity(arg0, 1100.0f);
+        baphysics_set_gravity(arg0, -1800.0f);
+        if (func_800DC0C0() > 0.5f) {
+            func_8009DBB0(arg0, 0x4D8, 1.3f, 1.35f, 0x55F0);
+        } else {
+            func_8009DBB0(arg0, 0x4D9, 1.3f, 1.35f, 0x55F0);
+        }
+        break;
+    case 2:
+        baanim_setEndAndDuration(arg0, 1.0f, 0.8f);
+        break;
+    case 0:
+        baphysics_set_gravity(arg0, -3000.0f);
+        break;
+    }
+}
 
 void func_80800E94_bstrexsmall(s32 arg0)
 {
