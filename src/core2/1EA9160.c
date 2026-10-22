@@ -139,7 +139,70 @@ s32 func_800CFFBC(u32 arg0, s32 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D0018.s")
+s32 func_800D0018(s32 arg0, s32 arg1) {
+    extern u8 D_8011AB3D[][3];
+    extern u8 D_8011ABC6[][2];
+    extern u8 D_8011AC7A[][2];
+    extern u8 D_8011ACAE[][2];
+    extern u8 D_8011ACD2[][2];
+    extern u8 D_8011AD08[];
+    s32 _chnests_entrypoint_13(s32);
+    s32 i;
+    s32 count = 0;
+
+    switch (arg0) {
+        case 0:
+            for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
+                if (func_800D0B68(i, arg0) && arg1 == D_8011AB3D[i][0]) {
+                    count++;
+                }
+            }
+            return count;
+        case 1:
+            for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
+                if (func_800D0B68(i, arg0) && arg1 == D_8011ABC6[i][0]) {
+                    count++;
+                }
+            }
+            return count;
+        case 2:
+            for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
+                if (func_800D0B68(i, arg0) && arg1 == D_8011AC7A[i][0]) {
+                    count++;
+                }
+            }
+            return count;
+        case 3:
+            for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
+                if (func_800D0B68(i, arg0) && arg1 == D_8011ACAE[i][0]) {
+                    count++;
+                }
+            }
+            return count;
+        case 4:
+            for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
+                if (func_800D0B68(i, arg0) && arg1 == D_8011ACD2[i][0]) {
+                    count++;
+                }
+            }
+            return count;
+        case 6:
+            for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
+                if (func_800D0B68(i, arg0) && arg1 == D_8011AD08[i * 2 - 2]) {
+                    count += _chnests_entrypoint_13(D_8011AD08[i * 2 - 1] ? 0x1DA : 0x1D9);
+                }
+            }
+            return count;
+        default:
+            for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
+                if (func_800D0B68(i, arg0)) {
+                    count++;
+                }
+            }
+            return count;
+    }
+    return count;
+}
 
 s32 func_800D035C(s32 a0) {
     s32 _chnests_entrypoint_13(s32);
