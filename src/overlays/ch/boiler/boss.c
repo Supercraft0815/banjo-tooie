@@ -565,7 +565,51 @@ void func_80801CE8_chboilerboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80801D80_chboilerboss.s")
+void func_80801D80_chboilerboss(Actor *arg0, s32 arg1, s32 arg2) {
+    extern void _chbaddiesetup_entrypoint_10(void);
+    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    s32 _chexploder_entrypoint_5(u8 *, s32, u8 *, s32, f32, s32);
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    void func_80109FE8(void **, s32);
+    u32 func_800FDC28(u32);
+    s32 func_80800F34_chboilerboss(Actor *, s32);
+    void func_80802414_chboilerboss(Actor *);
+    void func_808024DC_chboilerboss(Actor *);
+    void func_808026F0_chboilerboss(s32);
+    f32 sp2C;
+
+    switch (arg1) {
+        case 0xF97:
+        case 0xF9E:
+            func_80802414_chboilerboss(arg0);
+            break;
+        case 0xF99:
+        case 0xF9A:
+        case 0xF9B:
+            func_80109FE8((void *)arg0, 1);
+            func_808026F0_chboilerboss((s32)arg0);
+            func_808024DC_chboilerboss(arg0);
+            break;
+        case 0xF98:
+            sp2C = arg0->position[1] + 200.0f;
+            _chbaddiesetup_entrypoint_5(&_chbaddiesetup_entrypoint_10, 5,
+                *(s32 *)&arg0->position[0], *(s32 *)&sp2C,
+                *(s32 *)&arg0->position[2], *(s32 *)&arg0->rotation[1]);
+            _chexploder_entrypoint_5((u8 *)arg0, 0x795, (u8 *)arg0->position,
+                *(s32 *)&arg0->rotation[1], arg0->scale, 3);
+            func_800FDC28(0U);
+            func_80800F34_chboilerboss(arg0, 0xC);
+            break;
+        case 0xCEB:
+            if (arg2 > 0) {
+                _gcfrontend_entrypoint_11();
+            } else {
+                _gcfrontend_entrypoint_10();
+            }
+            break;
+    }
+}
 
 void func_80801EB4_chboilerboss(Actor *arg0) { void func_80101CDC(Actor *, f32); f32 func_8010203C(Actor *, u32); f32 func_80105AC4(Actor *); f32 sp1C; f32 sp18; extern f32 D_80802B58_chboilerboss; sp18 = func_8010203C(arg0, (u32)arg0->unk70_10); sp1C = D_80802B58_chboilerboss / func_80105AC4(arg0); func_80101CDC(arg0, sp18 * sp1C); }
 
