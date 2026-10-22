@@ -151,7 +151,68 @@ void func_80800118_chfloaty(Actor *arg0)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/floaty/func_808006AC_chfloaty.s")
+void func_808006AC_chfloaty(Actor *arg0, s32 arg1) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    f32 func_800C6920(f32 *, f32, f32, s32);
+    s32 func_800CB698(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800F77E8(s32, f32 *);
+    s32 func_800F7C0C(s32, s32, f32);
+    void func_80102FDC(Actor *, f32);
+    void func_80104580(Actor *);
+    void func_8010A63C(Actor *);
+    f32 func_8010CD28(Actor *);
+    f32 func_80800B68_chfloaty(Actor *);
+    void func_80800BD8_chfloaty(s32, s32);
+    extern f32 D_80800E84_chfloaty[][3];
+
+    switch (arg1) {
+    case 1:
+        func_8010A63C(arg0);
+        func_80103140(arg0, 0x923, arg0->unk0->unk16);
+        func_80102FDC(arg0, 1.0f);
+        func_8010A63C(arg0);
+        break;
+    case 2:
+        func_800DA544(arg0->unk74_7 + 0x320);
+        func_8010A624(arg0);
+        func_8010A570(arg0);
+        func_800F77E8(func_800F54E4(), D_80800E84_chfloaty[arg0->unk74_7 - 0x32]);
+        break;
+    case 3:
+        func_80104580(arg0);
+        arg0->unk50 = 1.5f;
+        func_80103140(arg0, 0x924, arg0->unk0->unk16);
+        arg0->rotation[1] = func_8010CD28(arg0);
+        func_80800BD8_chfloaty((s32)arg0, 0xA);
+        arg0->position[1] = func_800C6920(arg0->position, 1000.0f, -1000.0f, 0) + 100.0f;
+        break;
+    case 4:
+        func_80104580(arg0);
+        func_8010A624(arg0);
+        func_80103140(arg0, 0x924, arg0->unk0->unk16);
+        func_80102FDC(arg0, 1.0f);
+        arg0->position[1] = func_800C6920(arg0->position, 1000.0f, -1000.0f, 0) + 100.0f;
+        break;
+    case 5: {
+        func_800F7C0C(func_800F54E4(), 0x6E, func_80800B68_chfloaty(arg0));
+        break;
+    }
+    case 6: {
+        func_800CB698(arg0->unk74_7 - 0x25, 5);
+        func_800EEB9C((f32 *)arg0->actorData, arg0->rotation[1], 300.0f);
+        func_800EF04C((f32 *)arg0->actorData, arg0->position);
+        *(f32 *)&arg0->actorData[1] = func_800C6920((f32 *)arg0->actorData, 1000.0f, -1000.0f, 0) + 100.0f;
+        func_800EE7F8((f32 *)&arg0->actorData[4], arg0->position);
+        *(f32 *)&arg0->actorData[3] = 8.0f;
+        _subaddieDll_entrypoint_4(arg0, 1);
+        break;
+    }
+    }
+    func_80102424(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/floaty/func_8080090C_chfloaty.s")
 
