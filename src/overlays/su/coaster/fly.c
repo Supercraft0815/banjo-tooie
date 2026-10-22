@@ -123,7 +123,138 @@ void func_80800FA8_sucoasterfly(Unk80132ED0 *arg0, Unk80132ED0 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_80801108_sucoasterfly.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_808014AC_sucoasterfly.s")
+s32 func_808014AC_sucoasterfly(Actor *arg0, s32 arg1) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void *_sucoasterflydata_entrypoint_1(u32);
+    s32 _sucoasterflydata_entrypoint_3(u32);
+    s32 _sucoasterflydata_entrypoint_4(u32);
+    s32 _sucoasterflydata_entrypoint_5(u32);
+    s32 func_800DC128(s32, s32);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EE940(s16 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    f32 func_80102D78(Actor *, f32 *);
+    f32 func_80107C00(void);
+    void func_8010A570(Actor *);
+    f32 func_8010CD28(Actor *);
+    void func_80801A80_sucoasterfly(s32);
+    void func_80801CD0_sucoasterfly(Actor *, s32);
+    extern s32 D_808022AC_sucoasterfly;
+    struct CoasterFlyData {
+        f32 position[3];
+        f32 speed;
+        u8 unk10;
+        u8 type : 4;
+        u8 active : 1;
+        u8 rest : 3;
+        s16 destination[3];
+    };
+    struct CoasterFlyParameters {
+        u8 pad0[0x24];
+        s16 speed1;
+        s16 speed3;
+    };
+    struct CoasterFlyFlags {
+        u8 pad0[0x64];
+        u32 b7 : 1;
+        u32 b6 : 1;
+        u32 pad64 : 30;
+        u32 pad68[2];
+        u32 top : 1;
+        u32 flags : 6;
+        u32 pad70 : 9;
+        u32 state : 6;
+        u32 mode : 6;
+        u32 low : 4;
+        u32 pad74 : 28;
+        u32 type : 4;
+    };
+    struct CoasterFlyData *temp_v0;
+    struct CoasterFlyParameters *sp48;
+    u32 sp44;
+    f32 sp38[3];
+    s32 temp_s0;
+    f32 temp_f0;
+    f32 sp2C;
+    f32 sp28;
+
+
+    temp_v0 = func_80100094(arg0, 0);
+    sp48 = _sucoasterflydata_entrypoint_1(temp_v0->type);
+    sp44 = arg0->unk70_10;
+    func_80102424(arg0, arg1);
+    switch (arg1) {
+    case 1:
+        arg0->unk58 = sp48->speed1;
+        temp_v0->speed = 0.0f;
+        break;
+    case 2:
+        temp_v0->speed = 0.0f;
+        ((f32 *)arg0->actorData)[3] = 0.0f;
+        break;
+    case 3:
+        arg0->unk58 = sp48->speed3;
+        sp2C = func_80107C00();
+        temp_s0 = _sucoasterflydata_entrypoint_3(temp_v0->type);
+        temp_v0->speed = func_800DC128(temp_s0, _sucoasterflydata_entrypoint_4(temp_v0->type)) * sp2C;
+        break;
+    case 4:
+        arg0->unk54 = func_8010CD28(arg0);
+        sp2C = func_80107C00();
+        temp_v0->speed = _sucoasterflydata_entrypoint_3(temp_v0->type) * sp2C;
+        ((f32 *)arg0->actorData)[3] = 0.0f;
+        break;
+    case 5:
+        func_800EE940(temp_v0->destination, arg0->position);
+        break;
+    case 6:
+        if (sp44 != 5) {
+            func_800EE940(temp_v0->destination, arg0->position);
+        }
+        func_80801A80_sucoasterfly((s32)arg0);
+        arg0->unk54 = func_80102D78(arg0, (f32 *)arg0->actorData);
+        temp_v0->active = 1;
+        sp28 = func_80107C00();
+        temp_f0 = _sucoasterflydata_entrypoint_5(temp_v0->type) * sp28;
+        temp_v0->speed = temp_f0;
+        ((f32 *)arg0->actorData)[3] = temp_f0;
+        break;
+    case 7:
+        temp_v0->speed = 0.0f;
+        break;
+    case 8:
+        func_800EE88C(sp38, temp_v0->destination);
+        arg0->unk54 = func_80102D78(arg0, sp38);
+        temp_v0->active = 0;
+        sp2C = func_80107C00();
+        temp_v0->speed = _sucoasterflydata_entrypoint_3(temp_v0->type) * sp2C;
+        ((f32 *)arg0->actorData)[3] = 0.0f;
+        break;
+    case 9:
+        sp2C = func_80107C00();
+        temp_v0->speed = _sucoasterflydata_entrypoint_4(temp_v0->type) * (sp2C * 1.2f);
+        break;
+    case 11:
+        ((f32 *)arg0->actorData)[7] = 0.0f;
+        _subaddieDll_entrypoint_4(arg0, 1);
+        arg0->unk64_25 = 0;
+        arg0->unk64_24 = 0;
+        ((struct CoasterFlyFlags *)arg0)->mode = 0;
+        arg0->unk70_25 = ((struct CoasterFlyFlags *)arg0)->mode;
+        ((struct CoasterFlyFlags *)arg0)->b6 = 0;
+        ((struct CoasterFlyFlags *)arg0)->b7 = ((struct CoasterFlyFlags *)arg0)->b6;
+        arg0->unk14 &= ~0x80000;
+        ((struct CoasterFlyFlags *)arg0)->type = 2;
+        func_8010A570(arg0);
+        func_80801CD0_sucoasterfly(arg0, 2);
+        break;
+    case 12:
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808022AC_sucoasterfly);
+        break;
+    }
+}
 
 void *func_80100094(Actor *, u32);
 
