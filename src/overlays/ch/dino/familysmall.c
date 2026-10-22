@@ -159,7 +159,83 @@ void func_80800090_chdinofamilysmall(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysmall/func_808008B4_chdinofamilysmall.s")
+s32 func_808008B4_chdinofamilysmall(u8 *arg0, s32 arg1) {
+    struct FamilySmallFlags {
+        u8 actorFields[0x74];
+        u32 otherFlags : 28;
+        u32 state : 4;
+    };
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _chglowbo_entrypoint_6(void);
+    s16 _chmumbopad_entrypoint_0(s32);
+    s32 _sumumbofx_entrypoint_0(Actor *, s32, s32, s16);
+    s32 _sumumbofx_entrypoint_1(void *, s32);
+    void _sumumbofx_entrypoint_2(s32);
+    void _sumumbofx_entrypoint_15(s32, f32);
+    void _sumumbofx_entrypoint_16(s32, f32);
+    void _sumumbofx_entrypoint_17(s32, f32);
+    void _sumumbofx_entrypoint_18(s32, f32);
+    void _sumumbofx_entrypoint_20(s32, f32);
+    void _sumumbofx_entrypoint_24(s32, f32);
+    void _sumumbofx_entrypoint_25(s32, s32, s32 *);
+    void func_800DA524(s32);
+    void func_800DA544(s32);
+    s32 func_80100094(u8 *, s32);
+    void func_80102424(Actor *, s32);
+    void func_8010A800(Actor *, s32);
+    s32 color[3];
+    Actor *actor = (Actor *)arg0;
+
+    switch (arg1) {
+    case 1:
+        actor->scale = 0.5f;
+        break;
+    case 3:
+        color[0] = 0;
+        color[1] = 0;
+        color[2] = 0;
+        _sumumbofx_entrypoint_0(actor, 1, 0x28, _chmumbopad_entrypoint_0(7));
+        _sumumbofx_entrypoint_2(func_80100094(arg0, 1));
+        _sumumbofx_entrypoint_25(func_80100094(arg0, 1), 0x7D, color);
+        _sumumbofx_entrypoint_24(func_80100094(arg0, 1), 0.2f);
+        _sumumbofx_entrypoint_15(func_80100094(arg0, 1), 3.0f);
+        _capod_entrypoint_13(actor->unk0, NULL, 0x15, 0x210);
+        func_8010A800(actor, 2);
+        break;
+    case 4:
+        _sumumbofx_entrypoint_18(func_80100094(arg0, 1), 2.0f);
+        _chglowbo_entrypoint_6();
+        break;
+    case 5:
+        _sumumbofx_entrypoint_17(func_80100094(arg0, 1), 3.0f);
+        break;
+    case 6:
+        actor->unk64_19 = 0;
+        actor->unk64_20 = 0;
+        _sumumbofx_entrypoint_20(func_80100094(arg0, 1), 4.0f);
+        actor->position[1] = ((f32 *)actor->actorData)[7] + 800.0f;
+        break;
+    case 7:
+        actor->unk74_30 = 0;
+        _sumumbofx_entrypoint_16(func_80100094(arg0, 1), 3.0f);
+        ((struct FamilySmallFlags *)arg0)->state = 0;
+        actor->scale = 1.0f;
+        break;
+    case 8:
+        _sumumbofx_entrypoint_1(actor, 1);
+        func_8010A800(actor, 0);
+        actor->position[1] = ((f32 *)actor->actorData)[7];
+        func_800DA524(0x9DE);
+        func_800DA544(0x9DF);
+        func_800DA544(0x15F);
+        break;
+    case 9:
+    case 10:
+        actor->scale = 1.0f;
+        break;
+    }
+    func_80102424(actor, arg1);
+}
 
 s32 func_80800AF4_chdinofamilysmall(Actor *arg0, s32 arg1, s32 arg2) {
     extern u16 D_80800E94_chdinofamilysmall[][4];
