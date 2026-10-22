@@ -31,7 +31,47 @@ void func_80800024_chfactoryprop(u8 *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x44))) = 30.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/prop/func_80800070_chfactoryprop.s")
+void func_80800070_chfactoryprop(Actor *arg0) {
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    f32 func_800136E4(f32);
+    f32 func_800D8FF8(void);
+    f32 func_800F15F8(f32, f32, f32);
+    void func_80101FDC(Actor *, u32);
+    s32 func_801065A4(void *);
+    void func_80800324_chfactoryprop(Actor *);
+    void func_80800674_chfactoryprop(u8 *);
+    void func_80800988_chfactoryprop(Actor *);
+    extern s32 _chfactoryprop_entrypoint_3;
+    f32 delta;
+
+    delta = func_800D8FF8();
+    if (((f32 *)arg0->actorData)[4] > 0.0f) {
+        if (arg0->unk6C_9 == 0x3B2) {
+            func_80800674_chfactoryprop((u8 *)arg0);
+        } else {
+            func_80800988_chfactoryprop(arg0);
+        }
+    } else {
+        _subaddieaudioloop_entrypoint_2(arg0);
+    }
+    switch (arg0->unk70_10) {
+        case 1:
+            arg0->rotation[0] = func_800136E4(arg0->rotation[0] + ((f32 *)arg0->actorData)[4] * delta);
+            func_80800324_chfactoryprop(arg0);
+            break;
+        case 2:
+            ((f32 *)arg0->actorData)[4] = func_800F15F8(((f32 *)arg0->actorData)[4], 0.0f, 40.0f * delta);
+            arg0->rotation[0] = func_800136E4(arg0->rotation[0] + ((f32 *)arg0->actorData)[4] * delta);
+            if (((f32 *)arg0->actorData)[4] == 0.0f) {
+                func_80101FDC(arg0, 3);
+            }
+            break;
+    }
+    if (func_801065A4(arg0)) {
+        _glid_entrypoint_0(func_801065A4(arg0), 1, &_chfactoryprop_entrypoint_3, (s32)arg0->unk0);
+    }
+}
 
 /* extern */
 
