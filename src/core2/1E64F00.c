@@ -358,7 +358,7 @@ void func_8008C270(s8 *arg0) {
 
 /* extern */
 
-void func_8008C27C(void) {
+s32 func_8008C27C() {
     s32 func_8008BD1C();
     func_8008BD1C();
 }

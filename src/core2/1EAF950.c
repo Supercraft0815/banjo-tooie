@@ -372,7 +372,7 @@ void *func_800D725C(s32 arg0) {
     return NULL;
 }
 
-u8 func_800D731C(s32 arg0) {
+s32 func_800D731C(s32 arg0) {
     extern u8 D_8012B800[];
     s32 func_800D6254(s32);
     s32 index;
