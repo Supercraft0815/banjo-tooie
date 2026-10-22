@@ -92,7 +92,21 @@ f32 func_800C7B7C(Unk800C7A68 *arg0, f32 arg1, f32 arg2, f32 arg3) {
     return _mlspline_entrypoint_13((s16) arg0->unk2, (u8 *) &arg0->unk14, arg1, arg2, 0.0f, func_800C7980());
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1270/func_800C7BCC.s")
+f32 func_800C7BCC(u8 *arg0, u8 *arg1) {
+    s32 count = arg0[2];
+    f32 *point;
+    f32 *end;
+    s32 i;
+
+    point = (f32 *) (arg0 + 0x14);
+    end = (f32 *) (count * 12 + arg0 + 0x14);
+    for (i = 0; point != end; point += 3, i++) {
+        if (point[0] == ((f32 *) arg1)[0] && point[1] == ((f32 *) arg1)[1] && point[2] == ((f32 *) arg1)[2]) {
+            return (f32) i / (count - 1);
+        }
+    }
+    return -1.0f;
+}
 
 f32 func_800C7E28(void *arg0) {
     s32 count = ((Unk800C7A68 *) arg0)->unk2;
