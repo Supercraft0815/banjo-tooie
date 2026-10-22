@@ -301,7 +301,8 @@ void func_80800E68_chnastycavemen(u8 *arg0, s32 arg1) {
     func_80101808(arg0, &func_801017D0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_80800E90_chnastycavemen.s")
+s32 func_80800E90_chnastycavemen(Actor *arg0, s32 arg1, s32 arg2) { s32 _suexpression_entrypoint_12(void *, s32, s32); s32 _suexpression_entrypoint_17(void *, s32); s32 _suexpression_entrypoint_7(Actor *, s32, s32); void func_80090708(s32); s32 func_800DA298(s32); void func_800DF3E0(void); void func_800DF744(s32, s32); s32 func_800EA090(void); f32 func_800F1DCC(f32, f32); void *func_80100094(Actor *, u32); s32 func_801015D0(Actor *); void func_80102424(Actor *, s32); void func_8010573C(Actor *, f32); void *sp1C; f32 yaw; Actor *rotationActor; switch (arg1) { case 0x95: func_80100094(arg0, 1); func_80800968_chnastycavemen(); if (func_8080000C_chnastycavemen()) { func_80102424(arg0, 1); } else if (func_800DA298(0x184)) { func_8010573C(arg0, 1.0f); yaw = func_800F1DCC(arg0->rotation[1], 180.0f); rotationActor = arg0; rotationActor->rotation[1] = yaw; func_80102424(rotationActor, 4); } else if (func_800EA090() == 5) { func_80102424(arg0, 1); } _suexpression_entrypoint_7(arg0, 1, 0x96); sp1C = func_80100094(arg0, 1);
+    _suexpression_entrypoint_12(sp1C, 0x42700000, 0x41700000); _suexpression_entrypoint_17(sp1C, 0x320); break; case 0x2E: switch (*(s16 *)&arg2) { case 0x17EF: case 0x17F0: func_8080010C_chnastycavemen((s32)arg0); break; default: func_80090708(2); func_80102424(arg0, 3); break; } break; case 0x1F: func_801015D0(arg0); func_800DF3E0(); func_800DF744(5, 2); func_800DF744(6, 2); func_800DF744(8, 2); func_800DF744(4, 3); break; default: return 0; } return 1; }
 
 void func_8080103C_chnastycavemen(s32 arg0) {
     _suexpression_entrypoint_8(arg0, 1);
