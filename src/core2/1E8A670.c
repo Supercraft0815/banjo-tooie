@@ -52,7 +52,55 @@ s32 func_800B0D80(u8 *arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5,
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B0ECC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B1110.s")
+u8 func_800B1110(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5, f32 arg6, s32 arg7)
+{
+    void func_800193C4(f32 *, f32 *);
+    void func_8001980C(f32 *, f32 *, f32, f32 *);
+    void func_80019924(f32 *, f32 *);
+    s32 func_80019CD4(void);
+    void func_800EE88C(f32 *, s16 *);
+    f32 totalRadius;
+    f32 center[3];
+    f32 rotation[3];
+    f32 radius;
+    f32 height;
+    f32 scaledRadius;
+    f32 halfHeight;
+    f32 position[3];
+    s32 id;
+    u8 *end;
+    u8 *entry;
+
+    entry = *(s16 *)arg0 * 0x18 + arg0 + 8;
+    end = *(s16 *)(arg0 + 2) * 0x10 + entry;
+    while (entry < end) {
+        id = entry[0xD];
+        id--;
+        if (!((1 << id) & arg7)) {
+            scaledRadius = arg6 / arg3;
+            func_800EE88C(center, (s16 *)(entry + 4));
+            rotation[0] = entry[0xA] * 2;
+            rotation[1] = entry[0xB] * 2;
+            rotation[2] = entry[0xC] * 2;
+            radius = *(s16 *)entry;
+            height = *(s16 *)(entry + 2);
+            func_80019CD4();
+            func_80019924(center, rotation);
+            func_8001980C(arg1, arg2, arg3, arg4);
+            func_800193C4(position, arg5);
+            halfHeight = height * 0.5f;
+            if (!(halfHeight <= position[2] - scaledRadius) &&
+                !(position[2] + scaledRadius <= -halfHeight)) {
+                totalRadius = scaledRadius + radius;
+                if (!(totalRadius * totalRadius <= position[0] * position[0] + position[1] * position[1])) {
+                    return entry[0xD];
+                }
+            }
+        }
+        entry += 0x10;
+    }
+    return 0;
+}
 
 u8 func_800B1328(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5, f32 arg6, s32 arg7)
 {
