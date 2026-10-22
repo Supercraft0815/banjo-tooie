@@ -211,7 +211,73 @@ void func_80801344_chdodgemcontrol(Actor *arg0) {
     func_800D2748(0xC6, 0x26);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808013D0_chdodgemcontrol.s")
+void func_808013D0_chdodgemcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s16 func_800D211C(s32);
+    s32 func_800D2054(s32, s32, s32);
+    s32 func_800EA05C(void);
+    s32 func_800DA298(s32);
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800F6438(u32);
+    void func_800F4CEC(s32, u32);
+    s32 _gcstatusDll_entrypoint_11(void);
+    void func_808017F0_chdodgemcontrol(Actor *);
+    void func_800BF744(s32, s32);
+    extern s32 D_80804D00_chdodgemcontrol[];
+    typedef struct {
+        u8 pad0[0xC2];
+        u8 count;
+        u8 unkC3;
+        u8 unkC4;
+        u8 unkC5;
+    } DodgemData;
+    DodgemData *data;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    if (func_800D211C(0x8A) == 0) {
+        func_800D2054(0, 0x8A, 3);
+        func_800D2054(0, 0x8B, 3);
+        func_800D2054(0, 0x8C, 3);
+    }
+    switch (func_800EA05C()) {
+    case 0xDE:
+        arg0->unk79_4 = 0;
+        data->unkC5 = 3;
+        func_808012C8_chdodgemcontrol(arg0, func_800DA298(0xAC));
+        data->count = D_80804D00_chdodgemcontrol[arg0->unk79_4];
+        break;
+    case 0xDF:
+        arg0->unk79_4 = 1;
+        data->unkC5 = 3;
+        func_808012C8_chdodgemcontrol(arg0, func_800DA298(0xAD));
+        data->count = D_80804D00_chdodgemcontrol[arg0->unk79_4];
+        break;
+    case 0xE0:
+        arg0->unk79_4 = 2;
+        data->unkC5 = 3;
+        func_808012C8_chdodgemcontrol(arg0, func_800D0A9C(0x16, 1));
+        data->count = D_80804D00_chdodgemcontrol[arg0->unk79_4];
+        break;
+    case 0x186:
+        for (i = 0; i != 8; i++) {
+            if (func_800F6438(i)) {
+                func_800F4CEC(i, 0);
+            }
+        }
+        arg0->unk79_4 = 3;
+        data->count = _gcstatusDll_entrypoint_11();
+        data->unkC5 = 3;
+        break;
+    }
+    if (data->unkC5 >= 11) {
+        data->unkC5 = 10;
+    }
+    data->unkC3 = 0;
+    func_808017F0_chdodgemcontrol(arg0);
+    func_800BF744(1, 1);
+    func_80801344_chdodgemcontrol(arg0);
+}
 
 void func_808015E8_chdodgemcontrol(Actor *arg0) {
     switch (arg0->unk79_4) {
