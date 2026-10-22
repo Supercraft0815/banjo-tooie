@@ -8,6 +8,7 @@ import re
 
 from .bkmap import bk_context
 from .common import command
+from .guard import referenced_data
 from .patterns import known_declarations
 from .scanner import global_asms, INSN
 
@@ -212,6 +213,10 @@ def context_pack(root, function, state, config, budget=None, shared=True, draft=
     types = re.findall(r'\b(?:struct\s+)?((?:[A-Z][A-Za-z0-9_]*)?(?:State|Info|Actor|Data|Struct))\b', neighbors+related)
     type_info = excerpts(root, types, ('include',), 2500 if shared else 1000)
     asm = (root/function['asm']).read_text()
+    data = referenced_data(root, asm)
+    data_context = ('Referenced read-only ASM data (read locally for jump tables/constants; do not edit):\n'
+                    + '\n'.join(f"{path}: {', '.join(symbols)}" for path, symbols in data.items()) + '\n'
+                    if data else '')
     # Character overlays take the Actor first, also when no neighbour names the type yet.
     members = struct_members(root, [*types, *(['Actor'] if '/overlays/ch/' in function['source'] else [])], asm) if shared else ''
     bk = analogue = ''
@@ -244,14 +249,14 @@ def context_pack(root, function, state, config, budget=None, shared=True, draft=
             current = '[Saved candidate does not fit the current source; use the target directive.]'
     directive = source[macro['start']:macro['end']] if macro else ''
     line = source[:position].count('\n') + 1
-    common = (f"Compiler: IDO 5.3, -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul\n"
+    common = (f"Compiler: ./decomp-compile uses the trusted parent's Makefile-selected IDO version and flags for this source; per-file profiles may differ.\n"
               f"Existing primitive typedefs from PR/ultratypes.h (do not redeclare or reread):\n{primitive_types(root)}\n"
               if shared else '')
     m2c = (f"Unverified m2c draft (types/order may be wrong; a starting point, not a result):\n{draft[:6000]}\n"
            if draft and not current else '')
     pack = (f"Target: {function['id']}\nSource: {function['source']}\nTarget line: {line}\nASM: {function['asm']}\n"
             f"Exact target directive (or current C below):\n{directive}\nCurrent candidate:\n{current[:4000]}\n"
-            f"{common}{m2c}{analogue}"
+            f"{common}{data_context}{m2c}{analogue}"
             f"Features: {json.dumps(features)}\nBest score: {function['best_score']}\n"
             f"Last compiler/agent error: {function['last_error']}\n"
             f"Recent attempts: {json.dumps(history)}\nPrevious diff: {previous}\n"

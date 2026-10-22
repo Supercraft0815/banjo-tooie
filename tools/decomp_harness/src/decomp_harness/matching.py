@@ -6,6 +6,7 @@ import re
 from .common import HarnessError
 
 SYMBOL = re.compile(r'^([0-9a-fA-F]{8}) .{7} (\S+)\t[0-9a-fA-F]{8} ?(.*)$')
+FUNCTION = re.compile(r'^([0-9a-fA-F]{8}) .{6}F (\S+)\t([0-9a-fA-F]{8}) ?(.*)$', re.M)
 NOT_DATA = {'*UND*', '*ABS*', '*COM*', '.text'}
 CHANGED = '#changed'  # object dump key: {translation unit: regressed functions}; never a C symbol
 IMMEDIATE = re.compile(r'(-?(?:0x[0-9a-fA-F]+|\d+))(?=\(\w+\)$|$)')
@@ -40,27 +41,59 @@ def rebase(row, data):
                                        row['asm'], count=1)
 
 
+def resolve_local_branches(rows, labels):
+    """Resolve internal PC16 targets for guidance, preserving the original word."""
+    offsets = {row['offset'] for row in rows}
+    for row in rows:
+        if len(row['relocs']) != 1:
+            continue
+        kind, _, name = row['relocs'][0].partition(' ')
+        target = labels.get(name)
+        if kind != 'R_MIPS_PC16' or target not in offsets or not re.search(r'@[+-][0-9a-f]+$', row['asm']):
+            continue
+        immediate = int(row['word'], 16) & 0xffff
+        if immediate & 0x8000:
+            immediate -= 0x10000
+        # REL stores the signed word addend; the branch executes relative to PC+4.
+        target += (immediate + 1) * 4
+        displacement = (target - row['offset'] - 4) // 4
+        if target not in offsets or not -0x8000 <= displacement < 0x8000:
+            continue
+        row['asm'] = re.sub(r'@[+-][0-9a-f]+$', f'@{target:+x}', row['asm'])
+        row['relocs'] = []
+
+
 def instructions(dump: str, symbol: str, length: int | None = None):
     """Normalize objdump addresses, retain opcodes/registers/immediates/relocations.
 
-    `length` is the instruction count between glabel and endlabel; trailing alignment
-    NOPs beyond it are section padding. This is a guidance metric only. A score of 100
-    never proves a match: the trusted full linked decompressed ROM must compare too.
+    Use this object's function size when present, including a longer candidate body.
+    `length` only removes trailing alignment NOPs (asm-processor may include them in
+    the symbol size). This guidance metric never proves a match: the trusted full
+    linked decompressed ROM must compare too.
     """
     rows = []
     start = None
+    labels = {}
+    end = next((int(m[1], 16) + int(m[3], 16) for m in FUNCTION.finditer(dump)
+                if m[4] == symbol and int(m[3], 16)), None)
     for line in dump.splitlines():
         label = re.match(r'^([0-9a-fA-F]+) <([^>]+)>:', line.strip())
         if label:
             if label[2] == symbol:
                 start = int(label[1], 16)
-            elif start is not None:
+            elif start is not None and not label[2].startswith(('.L', symbol + '+')):
                 break
+            elif start is not None and label[2].startswith('.L'):
+                labels[label[2]] = None if label[2] in labels else int(label[1], 16) - start
             continue
         if start is None:
             continue
+        if line.startswith('Disassembly of section '):
+            break
         match = re.match(r'^\s*([0-9a-fA-F]+):\s+([0-9a-fA-F]{8})\s+(.+)', line)
         if match:
+            if end is not None and int(match[1], 16) >= end:
+                break
             asm = re.sub(r'\s+', ' ', match[3].strip())
             asm = re.sub(r'\s*<[^>]+>', '', asm)
             mnemonic = asm.split()[0]
@@ -81,6 +114,7 @@ def instructions(dump: str, symbol: str, length: int | None = None):
         rebase(row, data)
     if length and len(rows) > length and all(r['asm'] == 'nop' and not r['relocs'] for r in rows[length:]):
         rows = rows[:length]
+    resolve_local_branches(rows, labels)
     return rows
 
 
@@ -130,6 +164,8 @@ def function_rows(dump: str):
     """{symbol: normalized rows} for every labelled function of a whole-object dump."""
     result = {}
     for name in dict.fromkeys(re.findall(r'^[0-9a-fA-F]+ <([^>]+)>:', dump, re.M)):
+        if name.startswith('.L') or '+' in name:
+            continue
         try:
             result[name] = [(r['asm'], tuple(r['relocs'])) for r in instructions(dump, name)]
         except HarnessError:

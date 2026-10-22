@@ -45,8 +45,24 @@ def repository_stamp(root):
             'rom': digest(root/'baserom.us.z64'), 'decompressed': digest(root/'decompressed.us.z64')}
 
 
+def referenced_data(root: Path, asm: str):
+    """Find existing ASM data files defining the target's relocation symbols."""
+    symbols = set(re.findall(r'%(?:hi|lo)\(([A-Za-z_][\w.]*)', asm))
+    result = {}
+    if not symbols:
+        return result
+    for path in sorted((root/'asm/data').rglob('*.s')):
+        if path.is_symlink() or not path.resolve().is_relative_to(root.resolve()):
+            continue
+        labels = set(re.findall(r'^\s*(?:dlabel|glabel)\s+(\S+)', path.read_text(), re.M))
+        found = symbols & labels
+        if found:
+            result[path.relative_to(root).as_posix()] = sorted(found)
+    return result
+
+
 def worker_copy(root: Path, function, worktree=False):
-    """Sources and headers only: workers compile through the parent's ./decomp-compile."""
+    """Sources, headers and referenced data; only the parent can compile."""
     owner = Path(tempfile.mkdtemp(prefix='decomp-worker-')).resolve()
     target = owner/'seed' if worktree else owner
     target.mkdir(exist_ok=True)
@@ -56,6 +72,11 @@ def worker_copy(root: Path, function, worktree=False):
         path = target/function['asm']
         path.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(root/function['asm'], path)
+        data = referenced_data(root, path.read_text())
+        for relative in data:
+            path = target/relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(root/relative, path)
         (target/'build/us').mkdir(parents=True)
         (target/'.harness-worker').write_text(function['id'])
         if worktree:
@@ -69,6 +90,9 @@ def worker_copy(root: Path, function, worktree=False):
             (owner/'.harness-private-worktree').write_text(function['id'])
             (checkout/'build/us').mkdir(parents=True)
             target = checkout
+        # Git worktrees restore writable modes, so protect data after checkout too.
+        for relative in data:
+            (target/relative).chmod(0o444)
         return target
     except BaseException:
         shutil.rmtree(owner)
