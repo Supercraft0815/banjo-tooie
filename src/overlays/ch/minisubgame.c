@@ -99,7 +99,55 @@ s32 func_80800AAC_chminisubgame(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/func_80800BA8_chminisubgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/func_80800EC8_chminisubgame.s")
+/* extern */
+
+void func_80800EC8_chminisubgame(Actor *arg0) {
+    f32 func_80013970(f32);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    s32 func_800DA298(s32);
+    void func_800E3980(f32 *);
+    void func_80102424(Actor *, s32);
+    void func_80102BF8(void *, f32, f32, f32);
+    f32 func_80102D78(Actor *, f32 *);
+    s32 func_8010C9B0(f32 *, s32);
+    void func_8010D600(s32);
+    s32 func_80801058_chminisubgame(Actor *, s32, s32);
+    f32 sp34[3];
+    f32 sp28[3];
+    u32 state;
+
+    state = arg0->unk70_10;
+    if (state != 1) {
+        if (state != 2) {
+            if (state == 3) {
+                if ((s32)arg0->actorData[7] >= 0) {
+                    func_800E3980(sp34);
+                    arg0->unk54 = func_80102D78(arg0, sp34);
+                    func_80102BF8(arg0, 0.1f, 4.0f, 180.0f);
+                }
+                if (func_800DA298(0) == 0) {
+                    func_80102424(arg0, 1);
+                }
+            }
+        } else {
+            goto block_9;
+        }
+    } else {
+        if (arg0->unk58 < 5.0f) {
+            func_80102424(arg0, 2);
+        }
+block_9:
+        func_8010D600((s32)sp28);
+        arg0->unk54 = func_80102D78(arg0, sp28);
+        func_80102BF8(arg0, 0.1f, 4.0f, 180.0f);
+        ((f32 *)arg0->actorData)[4] += (240.0f + (arg0->unk58 / ((f32 *)arg0->actorData)[5]) * -120.0f) * func_800D8FF8();
+        arg0->position[1] = ((f32 *)arg0->actorData)[6] + func_80013970(((f32 *)arg0->actorData)[4]) * arg0->unk50;
+        if (func_800D9078(&arg0->unk58) || func_8010C9B0(arg0->position, (s32)((f32 *)arg0->actorData)[3])) {
+            func_80801058_chminisubgame(arg0, 0x3E, 0);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/func_80801058_chminisubgame.s")
 
