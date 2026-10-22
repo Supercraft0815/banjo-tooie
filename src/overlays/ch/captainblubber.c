@@ -314,7 +314,107 @@ s32 func_80800580_chcaptainblubber(Actor *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/captainblubber/func_80800A1C_chcaptainblubber.s")
+int func_80800A1C_chcaptainblubber(Actor *arg0) {
+    typedef struct { f32 values[3]; } Times3;
+    typedef struct { f32 values[4]; } Times4;
+    typedef struct { f32 values[7]; } Times7;
+    extern u16 D_80801654_chcaptainblubber[][4];
+    extern Times4 D_808016E8_chcaptainblubber;
+    extern Times3 D_808016F8_chcaptainblubber;
+    extern Times3 D_80801704_chcaptainblubber;
+    extern Times3 D_80801710_chcaptainblubber;
+    extern Times7 D_8080171C_chcaptainblubber;
+    extern Times3 D_80801738_chcaptainblubber;
+    extern s32 D_80801744_chcaptainblubber[];
+    void _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800C3F48(u32);
+    void func_800C4140(u32, f32 *, u32);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80101E4C(Actor *, f32 *);
+    s32 spAC = 0;
+    Times4 sp9C;
+    Times3 sp90;
+    Times3 sp84;
+    Times3 sp78;
+    Times7 sp5C;
+    Times3 sp50;
+    f32 sp44[3];
+    f32 sp38[3];
+
+    switch (D_80801654_chcaptainblubber[arg0->unk70_10][0]) {
+    case 0x159:
+        sp9C = D_808016E8_chcaptainblubber;
+        if (func_80101E4C(arg0, sp9C.values)) {
+            func_800C4140(0x119564 + (((u32)(func_800DC178(0.9f, 1.1f) * 1023.0f) & 0x7FF) << 21), arg0->position, 0x04B000FA);
+            func_800C4140(0x119614 + (((u32)(func_800DC178(0.9f, 1.1f) * 1023.0f) & 0x7FF) << 21), arg0->position, 0x04B000FA);
+        }
+        if (func_80101E14(arg0, 0.22f)) {
+            func_800C4140(0x4CB194E3, arg0->position, 0x04B000FA);
+        } else if (func_80101E14(arg0, 0.4f)) {
+            func_800C4140(0x4CB194E4, arg0->position, 0x04B000FA);
+        }
+        break;
+    case 0x1C0:
+        if (func_80101E14(arg0, 0.14f)) {
+            func_800C4140(0x7FF19612, arg0->position, 0x04B000FA);
+        } else if (func_80101E14(arg0, 0.55f)) {
+            spAC = 1;
+            func_800C4140(0x1B5C50 + (((u32)(func_800DC178(0.95f, 1.05f) * 1023.0f) & 0x7FF) << 21), arg0->position, 0x04B000FA);
+        }
+        break;
+    case 0x15A:
+        sp90 = D_808016F8_chcaptainblubber;
+        sp84 = D_80801704_chcaptainblubber;
+        if (arg0->unk70_10 == 11) {
+            if (func_80101E14(arg0, 0.24f)) {
+                func_800C3F48(0x9C612 + (((u32)(func_800DC178(0.95f, 1.05f) * 1023.0f) & 0x7FF) << 21));
+            }
+        } else if (func_80101E4C(arg0, sp90.values)) {
+            if (arg0->unk70_10 == 9) {
+                func_800C3F48(0x7FE7D612);
+            } else {
+                func_800C4140(0x7FE7D612, arg0->position, 0x04B000FA);
+            }
+        }
+        if (func_80101E4C(arg0, sp84.values)) {
+            spAC = 1;
+            func_800C4140(0x177450 + (((u32)(func_800DC178(0.95f, 1.05f) * 1023.0f) & 0x7FF) << 21), arg0->position, 0x04B000FA);
+        }
+        break;
+    case 0x1BF:
+        sp78 = D_80801710_chcaptainblubber;
+        if (func_80101E4C(arg0, sp78.values)) {
+            spAC = 1;
+            func_800C4140(0x119451 + (((u32)(func_800DC178(0.95f, 1.05f) * 1023.0f) & 0x7FF) << 21), arg0->position, 0x04B000FA);
+        }
+        break;
+    case 0x17B:
+        sp5C = D_8080171C_chcaptainblubber;
+        sp50 = D_80801738_chcaptainblubber;
+        if (func_80101E4C(arg0, sp5C.values)) {
+            spAC = 1;
+            func_800C4140(0x451 + (((func_800DC128(0x36B0, 0x3E81) >> 5) & 0x3FF) << 11) + (((u32)(func_800DC178(0.95f, 1.05f) * 1023.0f) & 0x7FF) << 21), arg0->position, 0x04B000FA);
+        }
+        break;
+    case 0x16D:
+        if (func_80101E14(arg0, 0.07f)) {
+            func_800C4140(0x7FF19612, arg0->position, 0x04B000FA);
+        } else if (func_80101E14(arg0, 0.9f)) {
+            spAC = 1;
+            func_800C4140(0x9C451 + (((u32)(func_800DC178(0.95f, 1.05f) * 1023.0f) & 0x7FF) << 21), arg0->position, 0x04B000FA);
+        }
+        break;
+    }
+    if (spAC) {
+        _subaddieskeleton_entrypoint_0(arg0, 0x14, sp38);
+        _subaddieskeleton_entrypoint_0(arg0, 6, sp44);
+        func_800BBCB8(sp38, 0, 1.0f, 1, D_80801744_chcaptainblubber);
+        func_800BBCB8(sp44, 0, 1.0f, 1, D_80801744_chcaptainblubber);
+    }
+}
 
 void func_8080143C_chcaptainblubber(Actor *arg0) {
     s32 _chbadshad_entrypoint_1(Actor *, f32 *, f32);
