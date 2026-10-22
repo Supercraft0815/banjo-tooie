@@ -369,7 +369,21 @@ s32 func_80800BCC_choildrill(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_80800CF0_choildrill.s")
+void func_80800CF0_choildrill(Actor *arg0, u8 arg1, f32 arg2) {
+    void func_800C4140(u32, f32 *, u32);
+    s32 func_8001210C(s32);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    extern s32 D_80801450_choildrill[];
+    if (arg1 & 4) {
+        func_800C4140(((u16)(arg2 * 1023.0f) << 21) + 0x9C608, arg0->position, 0x12C000FA);
+    }
+    if (arg1 & 8) {
+        func_800C4140(((u16)(arg2 * 1023.0f) << 21) + 0x9C609, arg0->position, 0x12C000FA);
+    }
+    if ((arg1 & 2) && *(f32 *)((u8 *)arg0 + 0x34) > 135.0f && func_8001210C(1)) {
+        func_800BBCB8((f32 *)((u8 *)arg0 + 0x18), (f32 *)((u8 *)arg0 + 0x18), 1.0f, 1, D_80801450_choildrill);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_80800F08_choildrill.s")
 
