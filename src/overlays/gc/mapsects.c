@@ -1,6 +1,76 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_0.s")
+void gcmapsects_entrypoint_0(s16 arg0, s16 arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 arg5) {
+    void *func_800BF704(void);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF3DC(f32 *, f32 *);
+    extern f32 D_808029B0_gcmapsects[3];
+    struct Section {
+        f32 position[3];
+        f32 minimum[3];
+        f32 maximum[3];
+        f32 center[3];
+        f32 radius;
+        f32 value;
+        u8 color[8];
+        s16 id0, id1;
+        s32 unk44, unk48;
+        u8 flag7 : 1;
+        u8 flag6 : 1;
+        u8 flag5 : 1;
+        u8 flag4 : 1;
+        u8 flag3 : 1;
+        u8 flag2 : 1;
+        u8 flag1 : 1;
+        u8 flag0 : 1;
+        u8 pad4D[3];
+        s32 unk50, unk54;
+    };
+    struct MapSections {
+        u8 pad0[0x68];
+        struct Section *sections;
+        u8 pad6C[0xB];
+        u8 count;
+    } *map;
+    s32 index;
+
+    map = func_800BF704();
+    index = map->count;
+    func_800EE7F8(map->sections[index].position, arg2);
+    func_800EE7F8(map->sections[index].minimum, arg3);
+    func_800EE7F8(map->sections[index].maximum, arg4);
+    func_800EF3DC(map->sections[index].minimum, D_808029B0_gcmapsects);
+    func_800EF04C(map->sections[index].maximum, D_808029B0_gcmapsects);
+    func_800EE780(map->sections[index].center, map->sections[index].minimum, map->sections[index].maximum);
+    func_800EF334(map->sections[index].center, 0.5f);
+    map->sections[index].radius = func_800EEAD4(map->sections[index].center, map->sections[index].minimum);
+    map->sections[index].id0 = arg0;
+    map->sections[index].id1 = arg1;
+    map->sections[index].color[0] = 255;
+    map->sections[index].color[1] = 255;
+    map->sections[index].color[2] = 255;
+    map->sections[index].color[3] = 255;
+    map->sections[index].color[4] = 255;
+    map->sections[index].color[5] = 255;
+    map->sections[index].color[6] = 255;
+    map->sections[index].color[7] = 255;
+    map->sections[index].flag7 = 0;
+    map->sections[index].flag6 = 0;
+    map->sections[index].flag5 = 0;
+    map->sections[index].flag4 = 0;
+    map->sections[index].flag3 = 1;
+    map->sections[index].flag0 = 1;
+    map->sections[index].unk44 = 0;
+    map->sections[index].unk48 = 0;
+    map->sections[index].value = arg5;
+    map->sections[index].unk50 = 0;
+    map->sections[index].unk54 = 0;
+    map->count++;
+}
 
 /* extern */
 
