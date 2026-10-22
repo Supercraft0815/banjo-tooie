@@ -379,7 +379,25 @@ s32 func_80801988_chevilspirit(Actor *arg0, Unk80132ED0 *arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801A6C_chevilspirit.s")
+s32 func_80801A6C_chevilspirit(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    s32 _subaddielink_entrypoint_0(u8 *);
+    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_80801840_chevilspirit();
+    Actor *sp1C;
+
+    if (func_80801840_chevilspirit() != 0) {
+        sp1C = _subaddielink_entrypoint_4(func_80100094(arg0, 0));
+        if (func_8010108C(sp1C, 0x46, arg1) > 0) {
+            return 0;
+        }
+        sp1C->unk64_29 = 0;
+        func_8010108C(sp1C, 2, 0);
+        _subaddielink_entrypoint_0(func_80100094(arg0, 0));
+    }
+    return 1;
+}
 
 void func_80801B00_chevilspirit(s32 arg0, Actor *arg1, s32 arg2) {
     s32 _subaddievolume_entrypoint_0(Actor *, f32 *, s32, s32, s32);
