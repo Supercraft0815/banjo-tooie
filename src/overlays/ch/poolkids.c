@@ -79,7 +79,71 @@ void func_80800290_chpoolkids(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_808003DC_chpoolkids.s")
+typedef union { s32 word; struct { s16 first, second; } halves; } PoolKidsMessage;
+
+s32 func_808003DC_chpoolkids(Actor *arg0, s32 arg1, PoolKidsMessage arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _dbmorph_entrypoint_3(u8 *, u8 *, s32, u8, u8 *);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u8 *func_800B2768(u8 *);
+    s32 func_800B2840(s32);
+    s32 func_800DA298(s32);
+    s32 func_801015D0(Actor *);
+    s32 func_80103CB8(Actor *, u32);
+    void func_808006F8_chpoolkids(s32);
+    void func_808007F0_chpoolkids(Actor *, s32, s32);
+    extern s32 D_808014E8_chpoolkids[], D_808014F8_chpoolkids[];
+    s32 flag1, flag2;
+    f32 values[2];
+    s32 object;
+
+    switch (arg1) {
+    case 0x2E:
+        func_808007F0_chpoolkids(arg0, arg2.halves.first, arg2.halves.second);
+        break;
+    case 0xC:
+        flag1 = func_800DA298(0x166);
+        flag2 = func_800DA298(0x167);
+        if (flag1 && flag2) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x1022, 6, arg0->position, 0xA0);
+            return 3;
+        }
+        if (flag1) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x1021, 6, arg0->position, 0xA0);
+            return 3;
+        }
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x1020, 6, arg0->position, 0xA0);
+        return 3;
+    case 0x1F:
+        object = arg2.word;
+        values[0] = values[1] = ((f32 *)arg0->actorData)[5];
+        _dbmorph_entrypoint_3(func_800B2768((u8 *)object), (u8 *)func_80103CB8(arg0, object), func_800B2840(object), 1, (u8 *)values);
+        func_801015D0(arg0);
+        break;
+    case 0x49:
+        if (arg0->unk6C_9 != 0x3A3) return 0;
+        if (_glcutDll_entrypoint_19(0x2A)) {
+            _capod_entrypoint_13(arg0->unk0, 0, 0x1F, 0x2830);
+            break;
+        }
+        if (_glcutDll_entrypoint_19(0x29)) {
+            _capod_entrypoint_13(arg0->unk0, 0, 0x2A, 0x2830);
+            break;
+        }
+        return 0;
+    case 0x95:
+        func_808006F8_chpoolkids((s32)arg0);
+        break;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(arg0->unk6C_9 == 0x3A3 ? D_808014E8_chpoolkids : D_808014F8_chpoolkids, arg0->scale);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800618_chpoolkids(Actor *arg0) {
     s32 _glcutDll_entrypoint_20();
