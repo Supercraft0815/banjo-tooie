@@ -2,7 +2,71 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/invisible/func_80800000_bainvisible.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/invisible/func_808001BC_bainvisible.s")
+void func_808001BC_bainvisible(void *arg0) {
+    f32 func_80013728(f32);
+    void func_8009BC08(void *, f32 *);
+    f32 func_800D8FF8(void);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EFB8C(f32 *, f32 *);
+    f32 mlAbsF(f32);
+    f32 yaw_get(struct player_state_s *);
+    u8 *sp5C;
+    f32 sp58;
+    f32 sp54;
+    f32 sp50;
+    f32 sp44[3];
+    f32 sp40;
+    f32 turn;
+    s32 i;
+    u8 *p;
+
+    sp5C = *(u8 **)((u8 *)arg0 + 0xA8) + 0x1C;
+    sp50 = 1.0f / func_800D8FF8();
+    func_8009BC08(arg0, sp44);
+    sp58 = func_800EFB8C(sp44, *(f32 **)((u8 *)arg0 + 0xA8)) * sp50;
+    func_800EE7F8(*(f32 **)((u8 *)arg0 + 0xA8), sp44);
+    if ((*(f32 **)((u8 *)arg0 + 0xA8))[5] < sp58) {
+        sp58 = 1.0f;
+    } else {
+        sp58 = sp58 / (*(f32 **)((u8 *)arg0 + 0xA8))[5];
+    }
+    sp40 = yaw_get(arg0);
+    sp54 = mlAbsF(func_80013728(sp40 - (*(f32 **)((u8 *)arg0 + 0xA8))[3]));
+    (*(f32 **)((u8 *)arg0 + 0xA8))[3] = sp40;
+    turn = sp54 * sp50;
+    if (*(f32 *)(*(u8 **)((u8 *)arg0 + 0xA8) + 0x18) < turn) {
+        sp54 = 1.0f;
+    } else {
+        sp54 = turn / *(f32 *)(*(u8 **)((u8 *)arg0 + 0xA8) + 0x18);
+    }
+    if (sp54 < sp58) {
+        *(f32 *)(*(u8 **)((u8 *)arg0 + 0xA8) + 0x10) = sp58;
+    } else {
+        *(f32 *)(*(u8 **)((u8 *)arg0 + 0xA8) + 0x10) = sp54;
+    }
+    if (sp54 < sp58) {
+        turn = sp58;
+    } else {
+        turn = sp54;
+    }
+    if (sp5C[0] == 3) {
+        *(f32 *)(sp5C + 8) = 0.255f * turn + 0.074999996f;
+    }
+    if (sp5C[0x30] == 3) {
+        *(f32 *)(sp5C + 0x38) = 0.19999999f * turn + 0.39999998f;
+    }
+    for (i = 0; i < 2; i++) {
+        p = sp5C + i * 0x30;
+        if (p[0x1C] != 0) {
+            if (*(f32 *)(p + 8) < *(f32 *)(p + 0x10)) {
+                *(f32 *)(p + 8) = *(f32 *)(p + 0x10);
+            }
+            if (*(f32 *)(p + 0x14) < *(f32 *)(p + 8)) {
+                *(f32 *)(p + 8) = *(f32 *)(p + 0x14);
+            }
+        }
+    }
+}
 
 /* extern */
 
