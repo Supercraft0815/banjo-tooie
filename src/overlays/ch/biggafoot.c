@@ -46,7 +46,117 @@ void func_80800018_chbiggafoot(Actor *arg0) {
     ((f32 *)arg0->actorData)[7] = 3.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/biggafoot/func_80800100_chbiggafoot.s")
+void func_80800100_chbiggafoot(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    void _sudeflect_entrypoint_3(f32 *, f32 *, f32 *, f32 *, s32);
+    void _sudeflect_entrypoint_4(s32, f32 *);
+    f32 func_80013970(f32);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F15F8(f32, f32, f32);
+    f32 func_800F3780(f32, u8 *, s16);
+    u32 func_800F54E4(void);
+    s32 func_800F7F98(s32, u32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    f32 func_80101F24(Actor *);
+    void func_80101FDC(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_80102B2C(Actor *, f32);
+    s32 func_80102BF8(void *, s32, s32, s32);
+    f32 func_80102D78(void *, s32 *);
+    void func_80108B04(Actor *, u32);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    s32 func_8010B990(Actor *, s32);
+    void func_808008D4_chbiggafoot(s32);
+    s32 func_808008FC_chbiggafoot(Actor *);
+    void func_80800980_chbiggafoot(void *);
+    s32 func_808009EC_chbiggafoot(Actor *);
+    void func_80800A9C_chbiggafoot(Actor *);
+    void func_80800BA4_chbiggafoot(Actor *);
+    void func_80800C04_chbiggafoot(Actor *);
+    extern u8 D_80801124_chbiggafoot[];
+    extern f32 D_8080113C_chbiggafoot[3];
+    extern f32 D_80801148_chbiggafoot[3];
+    f32 sp44[3];
+    f32 sp38[3];
+    s32 state;
+
+    func_800D9078(&arg0->unk58);
+    switch (arg0->unk70_10) {
+    case 1:
+        func_80800980_chbiggafoot(arg0);
+        if (func_808009EC_chbiggafoot(arg0)) {
+            func_800F7F98(func_800F54E4(), 1);
+            func_80102424(arg0, 4);
+            func_80108B04(arg0, 0);
+            _subaddieDll_entrypoint_4(arg0, 1);
+        } else if (func_808008FC_chbiggafoot(arg0)) {
+            arg0->unk64_20 = 0;
+            func_80102424(arg0, 3);
+        } else {
+            func_808008D4_chbiggafoot((s32)arg0);
+        }
+        break;
+    case 2:
+        func_80800980_chbiggafoot(arg0);
+        break;
+    case 3:
+        if (!arg0->unk64_20 && func_80101F24(arg0) > 0.35f) {
+            func_8010A590(arg0);
+        }
+        func_80800980_chbiggafoot(arg0);
+        if (func_80101DDC(arg0)) {
+            func_8010A570(arg0);
+            func_80101FDC(arg0, 1);
+        }
+        break;
+    case 4:
+        arg0->unk54 = arg0->unk50;
+        func_80102BF8(arg0, 0x3E19999A, 0x40A00000, 0x42F00000);
+        break;
+    case 5:
+        if (func_80101E14(arg0, 0.9f)) {
+            func_80800BA4_chbiggafoot(arg0);
+        }
+        break;
+    case 6:
+        if (func_80101DDC(arg0)) {
+            func_80102424(arg0, 7);
+        }
+        func_80800C04_chbiggafoot(arg0);
+        break;
+    case 7:
+        func_80800C04_chbiggafoot(arg0);
+        break;
+    case 9:
+        arg0->unk54 = func_80102D78(arg0, (s32 *)arg0->actorData);
+        ((f32 *)arg0->actorData)[3] = func_800F3780(func_80101F24(arg0), D_80801124_chbiggafoot, 3) * 400.0f;
+        func_80102B2C(arg0, func_800D8FF8() * 100.0f);
+        func_8010B990(arg0, 0x1005);
+        break;
+    }
+    state = arg0->unk70_10;
+    if (state >= 5 && state < 10) {
+        ((f32 *)arg0->actorData)[6] += func_800D8FF8() * 400.0f;
+        ((f32 *)arg0->actorData)[5] = func_800F10B4(func_80013970(((f32 *)arg0->actorData)[6]), -1.0f, 1.0f, -0.2f, 0.0f);
+        ((f32 *)arg0->actorData)[4] = func_800F15F8(((f32 *)arg0->actorData)[4], 1.0f, func_800D8FF8());
+    }
+    func_800EE7F8(sp44, arg0->position);
+    if (_sudeflect_entrypoint_0(arg0->position, 140.0f, 160.0f, 10) & 2) {
+        _sudeflect_entrypoint_4(9, arg0->position);
+    }
+    func_800EF1B8(sp44, arg0->unk50, -250.0f);
+    func_800EFA4C(sp38, 0.0f, arg0->unk50, 0.0f);
+    _sudeflect_entrypoint_3(sp44, sp38, D_8080113C_chbiggafoot, D_80801148_chbiggafoot, 2);
+    func_80800A9C_chbiggafoot(arg0);
+}
 
 void func_808004B0_chbiggafoot(s32 arg0)
 {
