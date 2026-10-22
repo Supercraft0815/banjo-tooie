@@ -1,5 +1,7 @@
 #include "common.h"
 
+void *func_80100094(Actor *, u32);
+
 void chbounce_entrypoint_0(void) {
     extern f32 D_8012716C;
     f32 *temp_v0 = (f32 *)(u32)((u8 *)&D_8012716C + 28);
@@ -137,7 +139,73 @@ s32 chbounce_entrypoint_7(s32 arg0, f32 *arg1, s32 arg2) {
     return (s32)actor;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bounce/func_808007B8_chbounce.s")
+s32 func_808007B8_chbounce(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg4) {
+    s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
+    s32 func_800BF0E0(f32 *, f32 *, f32, f32 *, s32, s32);
+    void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
+    void *func_800C6B78(f32 *, f32 *, f32, f32 *, s32, u32);
+    s32 func_800CC338(f32 *, s32, s32);
+    f32 func_800EC708(Unk80132ED0 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF2A0(f32 *);
+    void func_800EFB24(void *, void *, void *);
+    u32 func_8010A654(void ***, s32);
+    u32 func_8010A698(void ***);
+    s32 result;
+    f32 radius;
+    s32 pad[2];
+    s32 saved;
+    s32 index;
+    struct { u8 pad[0x32]; u16 flags; } *data;
+    struct {
+        u8 pad[0x70];
+        u32 sector : 7;
+        u32 reserved : 15;
+        u32 triangle : 6;
+        u32 flags : 4;
+    } *collision = (void *)arg0;
+
+    data = func_80100094(arg0, 2);
+    if (data->flags & 0x80) {
+        if (arg0->unk70_25 != 0) {
+            index = func_800CC338(arg2, arg0->unk70_25 - 1, collision->triangle - 1);
+            if (index == -1) {
+                func_800EFB24(arg3, arg2, arg1);
+                func_800EF2A0(arg3);
+                func_800EE7F8(arg2, arg1);
+                return 1;
+            }
+            collision->triangle = index + 1;
+        }
+    }
+    radius = func_800EC708(arg0->unk0) * 0.6666667f;
+    arg1[1] += radius;
+    arg2[1] += radius;
+    if (arg4) {
+        result = func_800BF0E0(arg1, arg2, radius, arg3, 3, arg0->unk14);
+        if (result == 0) {
+            result = (s32)func_800BEF00(arg1, arg2, arg3, arg0->unk14);
+            if (result != 0) {
+                func_800EF04C(arg2, arg3);
+            }
+        }
+    } else {
+        saved = func_8010A698(arg0);
+        func_8010A654(arg0, 0);
+        result = (s32)func_800C6B78(arg1, arg2, radius, arg3, 3, arg0->unk14);
+        func_8010A654(arg0, saved);
+        if (result == 0) {
+            result = (s32)func_800C6A7C(arg1, arg2, arg3, arg0->unk14);
+            if (result != 0) {
+                func_800EF04C(arg2, arg3);
+            }
+        }
+    }
+    arg1[1] -= radius;
+    arg2[1] -= radius;
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bounce/chbounce_entrypoint_8.s")
 
