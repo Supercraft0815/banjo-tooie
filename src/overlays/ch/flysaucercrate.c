@@ -41,7 +41,71 @@ void func_8080000C_chflysaucercrate(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucercrate/func_808000E4_chflysaucercrate.s")
+s32 func_808000E4_chflysaucercrate(Actor *arg0, s32 arg1, u32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _capod_entrypoint_14(void);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _glcutDll_entrypoint_17(void);
+    s32 _glcutDll_entrypoint_19(s32);
+    void _glcutDll_entrypoint_6(u32, u32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
+    Actor *func_801084B0(s32, Actor **);
+    extern s32 D_80800DC0_chflysaucercrate;
+
+    switch (arg1) {
+    case 0xB:
+        switch (arg2) {
+        case 6:
+            if (func_800DA298(0x80) != 0) {
+                _capod_entrypoint_14();
+                func_8080000C_chflysaucercrate(arg0, 2);
+                _subaddieDll_entrypoint_4(arg0, 1);
+                if (func_800DA298(0xB3) != 0) {
+                    _glcutDll_entrypoint_6(0xCA, 0x17);
+                    _capod_entrypoint_13(arg0->unk0, NULL, 2, 0x2810);
+                    return 4;
+                }
+                _capod_entrypoint_13(arg0->unk0, NULL, 0, 0x2010);
+                return 4;
+            }
+            return 3;
+        case 12:
+            if (_glcutDll_entrypoint_19(0x23) != 0) {
+                _glcutDll_entrypoint_17();
+            }
+            func_8080000C_chflysaucercrate(arg0, 9);
+            return 3;
+        case 4:
+            _glcutDll_entrypoint_17();
+            return 3;
+        case 2:
+            _glcutDll_entrypoint_6(0xD6, 0x23);
+        case 0:
+        default:
+            return 3;
+        }
+        break;
+    case 0x2E:
+        arg0->unk74_30 = 0;
+        goto handled;
+    case 0x3D:
+        if (arg2 == 1) {
+            func_800FFAB0(arg0);
+        }
+        func_801084B0(0x2A2, &arg0);
+        goto handled;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_80800DC0_chflysaucercrate, arg0->scale);
+        goto handled;
+    default:
+        return 0;
+    }
+    return 0;
+handled:
+    return 1;
+}
 
 void func_8080028C_chflysaucercrate(u8 *arg0, u32 arg1, s32 arg2) {
     struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
