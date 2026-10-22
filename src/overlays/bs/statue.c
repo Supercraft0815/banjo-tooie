@@ -328,7 +328,56 @@ void func_8080081C_bsstatue(void *arg0) {
     func_8080054C_bsstatue(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/statue/func_8080084C_bsstatue.s")
+void func_8080084C_bsstatue(struct player_state_s *arg0) {
+    s32 baanim_isStopped();
+    int bakey_released(struct player_state_s *, int);
+    void baphysics_reset_gravity(struct player_state_s *);
+    s32 bs_setState(s32, s32);
+    s32 func_8008D544(struct player_state_s *);
+    int func_8008DF8C(struct player_state_s *, s32);
+    void func_8009BB24(void *, f32 *);
+    int player_isStable(struct player_state_s *);
+    s32 nextState;
+    f32 velocity[3];
+
+    nextState = 0;
+    bsstatue_entrypoint_0((s32)arg0);
+    func_8009BB24(arg0, velocity);
+    if ((bakey_released(arg0, 8) && velocity[1] > 0.0f) || !func_8008D544(arg0)) {
+        baphysics_reset_gravity(arg0);
+    }
+    switch (*(u8 *)((u8 *)arg0 + 0x15C)) {
+    case 1:
+        if (baanim_isStopped(arg0)) {
+            func_8080054C_bsstatue(arg0, 2);
+        }
+        break;
+    case 2:
+        func_80800790_bsstatue(arg0);
+        if (baanim_isStopped(arg0)) {
+            func_8080054C_bsstatue(arg0, 3);
+        }
+        break;
+    case 3:
+        func_80800790_bsstatue(arg0);
+        if (func_8008DF8C(arg0, 0x5A)) {
+            func_8080054C_bsstatue(arg0, 4);
+        }
+        break;
+    case 4:
+        func_80800790_bsstatue(arg0);
+        if (player_isStable(arg0)) {
+            func_8080054C_bsstatue(arg0, 5);
+        }
+        break;
+    case 5:
+        if (baanim_isStopped(arg0)) {
+            nextState = 0xF9;
+        }
+        break;
+    }
+    bs_setState((s32)arg0, nextState);
+}
 
 s32 bsstatue_entrypoint_3(s32 arg0) {
     extern s32 D_808015B0_bsstatue[];
