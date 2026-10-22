@@ -216,7 +216,43 @@ Actor *func_80800608_chfireicestorm(Actor *arg0) {
     return arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_808007EC_chfireicestorm.s")
+Actor *func_808007EC_chfireicestorm(Actor *arg0) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _subaddieDll_entrypoint_0(Actor *);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_80102FDC(Actor *, f32);
+    s32 func_80103140(Actor *, u32, u16);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    void func_8010A570(Actor *);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern s32 D_80800E80_chfireicestorm;
+    Actor *temp_v0;
+    f32 sp38[3];
+    f32 sp2C[3];
+
+    func_800EE7F8(sp2C, (f32 *)arg0->actorData);
+    func_800EE7F8(sp38, (f32 *)&arg0->actorData[4]);
+    temp_v0 = func_80108528(0x4FD, sp2C, 0, &arg0);
+    temp_v0->unk3C = arg0->unk0;
+    temp_v0->unk64_20 = 0;
+    temp_v0->unk64_19 = 1;
+    func_80102FDC(temp_v0, 2.0f);
+    func_8010A570(temp_v0);
+    _subaddieDll_entrypoint_0(temp_v0);
+    func_800EFB24(&temp_v0->actorData[4], sp38, sp2C);
+    func_800EF368((f32 *)&temp_v0->actorData[4], 2000.0f);
+    func_800EFA4C((f32 *)temp_v0->actorData, func_800DC178(50.0f, 100.0f), 0.0f, func_800DC178(5.0f, 10.0f));
+    func_80103140(temp_v0, 0x815, temp_v0->unk0->unk16);
+    if (!temp_v0->unk64_19) {
+        func_8010D930(4, temp_v0->unk70_0, sp2C, &D_80800E80_chfireicestorm);
+    }
+    _capod_entrypoint_13(temp_v0->unk0, 0, 0x27, 0x10);
+    return arg0;
+}
 
 /* extern */
 
