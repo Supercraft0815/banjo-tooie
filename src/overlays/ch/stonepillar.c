@@ -251,7 +251,71 @@ void func_808007C8_chstonepillar(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800870_chstonepillar.s")
+s32 func_80800870_chstonepillar(Actor *arg0) {
+    void _fxsparkle_entrypoint_1(f32 *, u32);
+    void func_800D1218(u32, u32, f32 *);
+    void func_800D1254(u32, u32, f32 *);
+    f32 func_800D8FF8(void);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern s32 D_8080148C_chstonepillar;
+    struct PillarData {
+        f32 position[3];
+        f32 destination[3];
+        u8 unknown[0x17];
+        u8 bounced;
+        f32 angle;
+        f32 speed;
+        f32 velocity;
+    } *data;
+    f32 dt;
+    f32 position[3];
+    f32 acceleration;
+
+    dt = func_800D8FF8();
+    data = func_80100094(arg0, 0);
+    func_800D1218(8, 1, position);
+    _fxsparkle_entrypoint_1(position, 0x12);
+    if (data->bounced == 0) {
+        if (position[1] < data->destination[1]) {
+            position[1] = data->destination[1];
+            data->velocity *= -0.54f;
+            data->speed *= 0.08f;
+            func_800D1254(8, 1, position);
+            data->bounced = 1;
+            func_8010D930(3, 0, position, &D_8080148C_chstonepillar);
+            return 1;
+        } else {
+            acceleration = data->velocity;
+            data->velocity -= 1200.0f * dt;
+            position[1] += data->velocity * dt;
+            if (acceleration >= 0.0f && data->velocity < 0.0f) {
+                data->angle = func_800F1DF4(position, data->destination);
+            }
+            func_800EF1B8(position, data->angle, data->speed * dt);
+        }
+    } else {
+        acceleration = 1200.0f * dt;
+        data->velocity -= acceleration;
+        position[1] += data->velocity * dt;
+        func_800EF1B8(position, data->angle, data->speed * dt);
+        if (data->velocity < 0.0f) {
+            if (position[1] < data->destination[1]) {
+                position[1] = data->destination[1];
+                data->velocity *= -0.6f;
+                func_8010D930(3, 0, position, &D_8080148C_chstonepillar);
+                if (data->velocity < 2.0f * acceleration) {
+                    func_800D1254(8, 1, position);
+                    return 0;
+                }
+            }
+        }
+    }
+    func_800D1254(8, 1, position);
+    return 1;
+}
 
 void func_80800ADC_chstonepillar(Actor *arg0, s32 arg1) {
     void _glcutDll_entrypoint_17(void);
