@@ -281,7 +281,52 @@ void func_800E2630(u8 *arg0, s32 arg1, s32 arg2) {
     func_800E2260(arg0, *(u8 **)((u8 *)&D_8012D470 + 0x80));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E2720.s")
+s32 func_800E2720(u8 *arg0, s32 arg1, s32 arg2, f32 *arg3, f32 *arg4, s32 arg5) {
+    void func_800191F8(f32, f32, f32);
+    void *func_800E401C(void);
+    void mlMtxSet(void *);
+    void mlMtxRotRoll(f32);
+    void mlMtxApply(Mtx *);
+    void mlMtxScale_xyz(f32, f32, f32);
+    extern f32 D_8012D498;
+    extern s32 D_8012D4F0;
+    f32 sx;
+    f32 sy;
+    f32 sz;
+    f32 position[3];
+    f32 scaleX;
+    Gfx *list;
+    Gfx *pop;
+
+    if (arg4 != NULL) {
+        sx = arg4[0];
+        sy = arg4[1];
+        sz = arg4[2];
+    } else {
+        sx = sy = sz = 1.0f;
+    }
+    if (func_800E1C00((void *)D_8012D4F0, (s32)arg3, sx, sy, (s32)position) == 0) {
+        return 0;
+    }
+    mlMtxSet(func_800E401C());
+    if (D_8012D498 != 0.0f) {
+        mlMtxRotRoll(D_8012D498);
+    }
+    func_800191F8(position[0], position[1], position[2]);
+    if (arg4 != NULL || arg2 != 0) {
+        scaleX = arg2 != 0 ? -sx : sx;
+        mlMtxScale_xyz(scaleX, sy, sz);
+    }
+    mlMtxApply(*(Mtx **)(arg0 + 4));
+    list = (*(Gfx **)arg0)++;
+    list->words.w0 = 0xDA380002;
+    list->words.w1 = (u32)*(Mtx **)(arg0 + 4);
+    (*(Mtx **)(arg0 + 4))++;
+    func_800E2630(arg0, arg1, arg5);
+    pop = (*(Gfx **)arg0)++;
+    pop->words.w0 = 0xD8380002; pop->words.w1 = 0x40;
+    return 1;
+}
 
 s32 func_800E28A4(u8 *arg0, s32 arg1, s32 arg2, f32 *arg3, f32 *arg4, f32 *arg5, s32 arg6) {
     void func_800191F8(f32, f32, f32);
