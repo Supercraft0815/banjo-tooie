@@ -121,7 +121,71 @@ void func_80800358_chbadjinjo(Actor *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x30))) = func_80800278_chbadjinjo();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_808003EC_chbadjinjo.s")
+void func_808003EC_chbadjinjo(Actor *arg0)
+{
+  typedef struct 
+  {
+    u8 pad0[0x1C];
+    f32 timer;
+    f32 timer2;
+    u8 index;
+  } JinjoData;
+  typedef struct 
+  {
+    f32 v[3];
+  } JinjoVector;
+  s32 func_8001210C(s32);
+  f32 func_800D8FF8(void);
+  void func_800EF04C(f32 *, f32 *);
+  f32 func_800F2094(f32, f32);
+  void *func_80100094(Actor *, u32);
+  s32 func_8010C9B0(f32 *, s32);
+  f32 func_8010CD28(Actor *);
+  void func_80800E28_chbadjinjo(Actor *, s32);
+  extern s32 D_808012D0_chbadjinjo;
+  extern s32 D_808012DC_chbadjinjo;
+  extern JinjoVector D_80801330_chbadjinjo;
+  void func_80801090_chbadjinjo(Actor *, s32 *);
+  extern JinjoVector D_8080133C_chbadjinjo;
+  volatile JinjoData *data;
+  JinjoData *nearData;
+  JinjoVector nearPos;
+  JinjoData *farData;
+  JinjoVector farPos;
+  data = func_80100094(arg0, 0);
+  if (data->timer > 0.0f)
+  {
+    data->timer -= func_800D8FF8();
+    return;
+  }
+  data->timer = 0.5f;
+  if (!arg0)
+  {
+  }
+  if (!(func_800F2094(arg0->rotation[1], func_8010CD28(arg0)) > 120.0f))
+  {
+    if (func_8010C9B0(arg0->position, 250))
+    {
+      nearData = func_80100094(arg0, 0);
+      nearPos = D_80801330_chbadjinjo;
+      func_800EF04C(nearPos.v, arg0->position);
+      func_8080010C_chbadjinjo((s32) nearPos.v, func_8010CD28(arg0), nearData->index);
+      func_80801090_chbadjinjo(arg0, &D_808012D0_chbadjinjo);
+      arg0->unk58 = 0.5f;
+      nearData->timer2 = 0.5f;
+      func_80800E28_chbadjinjo(arg0, 6);
+      return;
+    }
+    farData = func_80100094(arg0, 0);
+    farPos = D_8080133C_chbadjinjo;
+    func_800EF04C(farPos.v, arg0->position);
+    func_808001B0_chbadjinjo(arg0, farPos.v, arg0->rotation[1], farData->index);
+    if (func_8001210C(7))
+    {
+      func_80801090_chbadjinjo(arg0, &D_808012DC_chbadjinjo);
+    }
+  }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_8080059C_chbadjinjo.s")
 
