@@ -650,7 +650,7 @@ class Loop:
         if (not seconds or best is None or self.control.stopped()
                 or (function['best_score'] or 0) < self.config['permuter_min_score'] or function['best_score'] >= 100):
             return False
-        key = 'permuter:' + trial_key(best, function)
+        key = 'permuter-stack-diffs:' + trial_key(best, function)
         if self.tried(function, key):
             return False
         directory = new_run(self.root, 'local')

@@ -44,7 +44,27 @@ u8 func_800D4EB8(s32 arg0) {
     return D_8011B642[index * 3];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAE6C0/func_800D4EF4.s")
+s32 func_800D4EF4(s32 arg0) {
+    switch (arg0) {
+        case 1: return 5;
+        case 2: return 5;
+        case 6: return 3;
+        case 7: return 6;
+        case 8: return 5;
+        case 10: return 3;
+        case 11: return 2;
+        case 12: return 5;
+        case 13: return 4;
+        case 14: return 0;
+        case 15: return 4;
+        case 16: return 0;
+        case 17: return 0;
+        case 18: return 4;
+        case 19: return 0;
+        default: break;
+    }
+    return 0;
+}
 
 s32 func_800D4F9C(s32 arg0) {
     if (arg0 == 2) {

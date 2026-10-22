@@ -788,7 +788,17 @@ void func_800C9A38(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C9AB0.s")
+void func_800C9AB0(s32 arg0) {
+    void func_80090708(s32);
+    void func_800A51C0();
+    switch (arg0) {
+        case 1: func_80090708(1); break;
+        case 2: func_80090708(3); break;
+        case 3: func_80090708(2); break;
+        case 0: func_80090708(0); break;
+        case 5: func_800A51C0(); break;
+    }
+}
 
 /* extern */
 
@@ -858,7 +868,7 @@ void func_800C9CD0(f32 time, s32 arg1, s32 arg2, s32 arg3, f32 *position, s16 ar
 
 void func_800C9D38(f32 arg0, s32 arg1) {
     void func_800C9DE4(f32, void *, s32);
-    extern s32 func_800C9AB0;
+    void func_800C9AB0(s32);
     func_800C9DE4(arg0, &func_800C9AB0, arg1);
 }
 

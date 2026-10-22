@@ -542,7 +542,6 @@ s32 func_80096E30(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5)
     void func_800EFA20(void *, void *, f32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
-    extern f32 D_80124DFC;
     s32 result;
     f32 spB8[3];
     f32 spAC[3];
@@ -578,7 +577,7 @@ s32 func_80096E30(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5)
     if (func_80096DD4((s32)sp58, (s32)sp64, (s32)sp4C, (s32)sp70) == 0) {
         return 1;
     }
-    if (func_800EEAA4(spAC, sp64) <= D_80124DFC) {
+    if (func_800EEAA4(spAC, sp64) <= 0.1f) {
         return 4;
     }
     func_800EFE50(arg1, spA0, sp58, 0.5f);

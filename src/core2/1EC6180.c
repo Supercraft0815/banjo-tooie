@@ -214,9 +214,8 @@ void func_800ED7F8(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, f32 *arg4) {
 
 void func_800ED964(void *self){
     MeshEffect *arg0 = (MeshEffect *)self;
-    extern f32 D_80125E60;
     if(arg0->unk48 == 0.0f){
-        arg0->unk48 = D_80125E60;
+        arg0->unk48 = 0.00001f;
     }
 
     if(arg0->unkC != NULL){
@@ -341,7 +340,6 @@ void func_800EDD20(void *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
 }
 
 void func_800EDD68(void *self, f32 arg1[4], f32 arg2[4], f32 arg3) {
-    extern f32 D_80125E64;
     MeshEffect *arg0 = self;
     arg0->unk50[0] = arg1[0];
     arg0->unk50[1] = arg1[1];
@@ -353,11 +351,10 @@ void func_800EDD68(void *self, f32 arg1[4], f32 arg2[4], f32 arg3) {
     arg0->unk60[3] = arg2[3];
     arg0->unk70 = 0.0f;
     arg0->unk28 = 0;
-    arg0->unk74 = (arg3 > 0.0f) ? arg3 : D_80125E64;
+    arg0->unk74 = (arg3 > 0.0f) ? arg3 : 0.001f;
 }
 
 void func_800EDDDC(void *self, f32 arg1[4], f32 arg2[4], f32 arg3) {
-    extern f32 D_80125E68;
     MeshEffect *arg0 = self;
     arg0->unk50[0] = arg1[0];
     arg0->unk50[1] = arg1[1];
@@ -369,12 +366,11 @@ void func_800EDDDC(void *self, f32 arg1[4], f32 arg2[4], f32 arg3) {
     arg0->unk60[3] = arg2[3];
     arg0->unk70 = 0.0f;
     arg0->unk28 = 0;
-    arg0->unk74 = (arg3 > 0.0f) ? arg3 : D_80125E68;
+    arg0->unk74 = (arg3 > 0.0f) ? arg3 : 0.001f;
     arg0->unk29 = 6;
 }
 
 void func_800EDE54(void *self, s32 arg1[4], s32 arg2[4], f32 arg3) {
-    extern f32 D_80125E6C;
     MeshEffect *arg0 = self;
     arg0->unk78[0] = (f32) arg1[0];
     arg0->unk78[1] = (f32) arg1[1];
@@ -385,12 +381,11 @@ void func_800EDE54(void *self, s32 arg1[4], s32 arg2[4], f32 arg3) {
     arg0->unk88[2] = (f32) arg2[2];
     arg0->unk94 = (f32) arg2[3];
     arg0->unk28 = 0;
-    arg0->unk9C = (arg3 > 0.0f) ? arg3 : D_80125E6C;
+    arg0->unk9C = (arg3 > 0.0f) ? arg3 : 0.001f;
     arg0->unk98 = 0.0;
 }
 
 void func_800EDF2C(void *self, s32 from, s32 to, f32 time) {
-    extern f32 D_80125E70;
     MeshEffect *arg0 = self;
     arg0->unk29 = 5;
     arg0->unk28 = 0;
@@ -398,7 +393,7 @@ void func_800EDF2C(void *self, s32 from, s32 to, f32 time) {
     arg0->unk78[0] = arg0->unk78[1] = arg0->unk78[2] = 0.0f;
     arg0->unk94 = (f32) to;
     arg0->unk88[0] = arg0->unk88[1] = arg0->unk88[2] = 0.0f;
-    arg0->unk9C = (time > 0) ? time : D_80125E70;
+    arg0->unk9C = (time > 0) ? time : 0.001f;
     arg0->unk98 = 0.0f;
 }
 

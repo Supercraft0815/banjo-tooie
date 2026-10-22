@@ -238,7 +238,47 @@ void func_800FECB8(u32 arg0) {
     D_80123E60 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FED0C.s")
+void func_800FED0C(s32 arg0, s32 arg1) {
+    extern s32 D_80123E60;
+    extern u8 D_80135A10[];
+    s32 index;
+    u8 *p;
+    switch (arg0) {
+        case 2:
+            index = 12;
+            break;
+        case 5:
+        case 10:
+        case 11:
+        case 12:
+        case 13:
+        case 18:
+        case 22:
+        case 23:
+        case 24:
+        case 27:
+        case 46:
+        case 49:
+        case 58:
+        case 68:
+        case 83:
+        case 96:
+        case 119:
+        case 131:
+            index = 13;
+            break;
+        case 43:
+        case 104:
+            index = 13;
+            break;
+        case 1:
+        default:
+            return;
+    }
+    p = D_80135A10 + index;
+    *p = *p + arg1;
+    D_80123E60 = 1;
+}
 
 void func_800FED70(s32 arg0)
 {
@@ -318,9 +358,8 @@ void func_800FEF94(s32 arg0, s32 arg1, s32 arg2, s32 *arg3, s16 *arg4) {
 
 void func_800FF000(s32 arg0) {
     extern s32 D_801359C0;
-    extern f32 D_80126420;
     (*(s8 *)((s8 *)(&D_801359C0) + (0x13))) = (s8) arg0;
-    (*(f32 *)((s8 *)(&D_801359C0) + (0))) = D_80126420;
+    (*(f32 *)((s8 *)(&D_801359C0) + (0))) = 0.2f;
 }
 
 void func_800FF01C(f32 arg0) {

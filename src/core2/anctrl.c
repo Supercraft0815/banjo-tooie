@@ -4,13 +4,12 @@ f32 func_8008A990(AnimCtrl *this) {
     struct Flags { u8 padding[0x18]; u32 high : 27; u32 mode : 2; u32 low : 3; };
     f32 func_800D8FF8(void);
     f32 _glintrosyncDll_entrypoint_5(void);
-    extern f32 D_80124A90;
 
     switch (((struct Flags *)this)->mode) {
         case 0:
             return func_800D8FF8();
         case 1:
-            return D_80124A90;
+            return 0.0333329998f;
         case 2:
             return _glintrosyncDll_entrypoint_5();
         default:
@@ -121,7 +120,31 @@ void func_8008ADBC(AnimCtrl *arg0)
     func_8008B5E8(arg0);
     heap_free(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008ADE4.s")
+void func_8008ADE4(AnimCtrl *this) {
+    struct Flags { u8 padding[0x18]; u32 prefix : 16; u32 type : 8; u32 high : 5; u32 flag : 1; u32 low : 2; };
+    void func_8008C1CC(s8 *, s32);
+
+    switch (((struct Flags *)this)->type) {
+        case 0:
+            break;
+        case 1:
+            func_8008AC4C(this);
+            func_8008C1CC((s8 *)this + 0x1C, ((struct Flags *)this)->flag);
+            return;
+        case 2:
+            func_8008AAC0(this);
+            func_8008C1CC((s8 *)this + 0x1C, ((struct Flags *)this)->flag);
+            return;
+        case 4:
+            func_8008AB84(this);
+            func_8008C1CC((s8 *)this + 0x1C, ((struct Flags *)this)->flag);
+            return;
+        case 3:
+            func_8008AA0C(this);
+            func_8008C1CC((s8 *)this + 0x1C, ((struct Flags *)this)->flag);
+            return;
+    }
+}
 
 AnimCtrl* func_8008AEB4(AnimCtrl* arg0)
 {

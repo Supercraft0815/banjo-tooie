@@ -1,8 +1,38 @@
 #include "common.h"
 
+void func_800FFAB0(Actor *);
+struct Entry { s16 value; s16 rest[4]; u8 reward; u8 amount; s16 tail; };
+struct NestsContact { u8 pad[0x1A]; u16 playerFlags; };
+extern struct Entry D_80801118_chnests[];
+
 s32 func_800D9078(f32 *);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800000_chnests.s")
+void func_80800000_chnests(Actor *arg0) {
+    s32 _subaddiesect_entrypoint_1(Actor *);
+    s32 _subaddiesect_entrypoint_2(void *, s32, s32);
+    struct Entry *entry;
+    s32 i;
+    u32 id;
+    s32 count;
+
+    count = 14;
+    entry = D_80801118_chnests;
+    id = arg0->unk0->unk24 >> 22;
+    for (i = 0; i < count; i++, entry++) {
+        if (id == entry->value) {
+            break;
+        }
+    }
+    if (i == 14) {
+        func_800FFAB0(arg0);
+    } else {
+        arg0->actorData[1] = i;
+        arg0->actorData[3] = _subaddiesect_entrypoint_1(arg0);
+        if (arg0->actorData[3] != -1) {
+            _subaddiesect_entrypoint_2(arg0, arg0->actorData[3], 0);
+        }
+    }
+}
 
 /* extern */
 void func_808002E0_chnests(void *);
@@ -10,15 +40,12 @@ void func_80800098_chnests(void *arg0) {
     s32 func_800D3948(void);
     u32 func_800F54E4(void);
     s32 func_800F7150(s32);
-    func_80800000_chnests();
+    func_80800000_chnests(arg0);
     if ((func_800D3948() == 0) && (func_800F7150(func_800F54E4()) != 0)) {
         func_808002E0_chnests(arg0);
     }
 }
 
-struct Entry { s16 value; s16 rest[4]; u8 reward; u8 amount; s16 tail; };
-struct NestsContact { u8 pad[0x1A]; u16 playerFlags; };
-extern struct Entry D_80801118_chnests[];
 
 void func_808000E8_chnests(void *arg0) {
     s8 *entry;
@@ -303,7 +330,7 @@ void func_80800BA0_chnests(void *arg0, s32 arg1) {
 
 /* extern */
 
-void func_80800BD8_chnests(Actor *arg0, s32 arg1, f32 arg2, f32 arg3) { struct Flags { u16 value : 10; u16 rest : 6; }; ((struct Flags *)((s8 *)arg0->unk0 + 0x24))->value = arg1; func_80800000_chnests(); arg0->unk64_20 = 1; ((f32 *)arg0->actorData)[4] = arg2; ((f32 *)arg0->actorData)[5] = arg3; func_80800B4C_chnests(arg0); }
+void func_80800BD8_chnests(Actor *arg0, s32 arg1, f32 arg2, f32 arg3) { struct Flags { u16 value : 10; u16 rest : 6; }; ((struct Flags *)((s8 *)arg0->unk0 + 0x24))->value = arg1; func_80800000_chnests(arg0); arg0->unk64_20 = 1; ((f32 *)arg0->actorData)[4] = arg2; ((f32 *)arg0->actorData)[5] = arg3; func_80800B4C_chnests(arg0); }
 
 void func_80800C3C_chnests(Actor *arg0) {
     struct Flags { u16 rest : 14; u16 mode : 2; };

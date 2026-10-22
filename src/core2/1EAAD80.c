@@ -190,7 +190,27 @@ u32 func_800D1A6C(u32 arg0) {
     return D_8011AF50[temp_v0].value;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAAD80/func_800D1ACC.s")
+s32 func_800D1ACC(s32 arg0) {
+    switch (arg0) {
+    case 0x40:
+        return 100;
+    case 0x41:
+        return 50;
+    case 0x42:
+        return 50;
+    case 0x43:
+        return 25;
+    case 0x44:
+        return 10;
+    case 0x46:
+        return 100;
+    case 0x47:
+        return 10;
+    default:
+        break;
+    }
+    return 0;
+}
 
 s32 func_800D1B34(s32 arg0) {
     switch (arg0) {

@@ -125,7 +125,42 @@ void func_800D62E4(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6378.s")
+s32 func_800D6378(u8 *arg0) {
+    s32 func_800D56C4(void *arg0);
+    void func_800DBB9C(u8 arg0);
+    s32 result[1];
+    int handle;
+    struct Entry {
+        u32 unused : 27;
+        u32 flags : 4;
+        u32 low : 1;
+        void *value;
+        u8 unused2[3];
+        u8 handle;
+    } *ptr = (struct Entry *)arg0;
+    switch (ptr->flags) {
+        case 2:
+            result[0] = func_800D56C4(ptr->value);
+            if ((handle = ptr->handle) != 0) {
+                func_800DBB9C(handle);
+                ptr->handle = 0;
+            }
+            break;
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+            result[0] = func_800D56C4(ptr->value);
+            break;
+        case 1:
+            break;
+    }
+    func_800D61B4(arg0);
+    return result[0];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6408.s")
 
