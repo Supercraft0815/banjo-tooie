@@ -168,7 +168,61 @@ void func_801073AC(s32 arg0, s32 arg1) { s32 func_8010108C(); s32 func_80102424(
 
 s32 func_801073F8(s32 arg0, s32 arg1, s32 arg2) { s32 func_80107388(); s32 var_v1; if ((*(s16 *)((s8 *)(func_80107388(arg0) + (arg1 * 4)) + 2)) & arg2) { var_v1 = 1; } else { var_v1 = 0; } return var_v1; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107448.s")
+void func_80107448(void *arg0, f32 *arg1) {
+    void func_80104580(Actor *);
+    void func_8010754C(void *, void *);
+    void func_8010A570(Actor *);
+    void func_8010A624(void ***);
+    f32 func_80107A80(void);
+    struct ActorFields {
+        u8 pad0[0x5C];
+        u8 colors[3];
+        u8 pad5F[5];
+        u32 flag31 : 1;
+        u32 flag30 : 1;
+        u32 pad64_25 : 5;
+        u32 flag24 : 1;
+        u32 pad64_17 : 7;
+        u32 flag16 : 1;
+        u32 pad64_0 : 16;
+        u8 pad68[8];
+        u32 pad70_17 : 15;
+        u32 flag70_16 : 1;
+        u32 pad70_0 : 16;
+        u32 pad74_25 : 7;
+        u32 flag74_24 : 1;
+        u32 pad74_21 : 3;
+        u32 flag74_20 : 1;
+        u32 pad74_0 : 20;
+        u8 pad78;
+        u8 flags79;
+        u8 pad7A[2];
+        u32 pad7C_13 : 19;
+        u32 flag7C_12 : 1;
+        u32 pad7C_0 : 12;
+    } *actor = arg0;
+    s32 i;
+
+    if (func_801073F8(arg0, 3, 4) == 0) {
+        actor->flag74_20 = 0;
+        actor->flag16 = actor->flag74_20;
+        actor->flag7C_12 = 0;
+    }
+    actor->flag74_24 = 0;
+    actor->flag24 = 0;
+    actor->flags79 = (u8)(actor->flags79 & 0xFFFC);
+    actor->flag31 = 0;
+    actor->flag30 = 0;
+    actor->flag70_16 = 0;
+    func_8010A570(arg0);
+    func_8010A624(arg0);
+    func_80104580(arg0);
+    func_8010754C(arg0, arg1);
+    for (i = 0; i != 3; i++) {
+        actor->colors[i] = 0x63;
+    }
+    *arg1 = func_80107A80();
+}
 
 void func_8010754C(void *arg0, void *arg1) {
     struct ActorFields {
@@ -264,8 +318,8 @@ void func_801075E4(Actor *arg0, void *arg1) {
 
 void func_80107750(s32 arg0, s32 arg1) {
     s32 _subaddiefade_entrypoint_5();
-    s32 func_8010A570(s32);
-    s32 func_8010A624(s32);
+    void func_8010A570(Actor *);
+    void func_8010A624(void ***);
     _subaddiefade_entrypoint_5();
     func_8010A570(arg0);
     func_8010A624(arg0);
