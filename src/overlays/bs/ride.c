@@ -169,7 +169,71 @@ s32 bsride_entrypoint_0(s32 arg0) {
     return ((s32 *)&D_808009C0_bsride)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ride/func_808002A0_bsride.s")
+void func_808002A0_bsride(PlayerState *arg0) {
+    struct RideAnim {
+        s16 state;
+        s16 index;
+        f32 duration;
+        u8 loop;
+        u8 timed;
+        u8 mode;
+        f32 end;
+        f32 threshold;
+    };
+    extern struct RideAnim D_808009D0_bsride[];
+    f32 anctrl_getAnimTimer(struct anctrl_s *);
+    int anctrl_getIndex(struct anctrl_s *);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void func_8009D89C(PlayerState *, f32);
+    s32 func_8009E6EC(PlayerState *);
+    void func_8009E830(PlayerState *, s32);
+    s32 pad;
+    s32 state;
+    struct anctrl_s *anim;
+    s32 same;
+    s32 enter;
+    s32 active;
+    s32 normal;
+    s32 elapsed;
+    struct RideAnim *entry;
+
+    state = func_8009E6EC(arg0);
+    anim = baanim_getAnimCtrlPtr(arg0);
+    for (entry = D_808009D0_bsride; entry->state != 0; entry++) {
+        if (state == entry->state) {
+            same = anctrl_getIndex(anim) == entry->index;
+            enter = entry->mode == 1 && *(s32 *)((u8 *)arg0 + 0x160) == 0;
+            active = entry->mode == 1 && *(s32 *)((u8 *)arg0 + 0x160) == 1;
+            normal = entry->mode == 0 && *(s32 *)((u8 *)arg0 + 0x160) == 0;
+            elapsed = entry->timed == 1 && anctrl_getAnimTimer(anim) > entry->threshold;
+            if (enter || (normal && !same) || (active && elapsed)) {
+                anctrl_reset(anim);
+                anctrl_setIndex(anim, entry->index);
+                anctrl_setDuration(anim, entry->duration);
+                if (entry->loop == 1) {
+                    anctrl_setPlaybackType(anim, 2);
+                } else {
+                    anctrl_setPlaybackType(anim, 1);
+                    anctrl_setSubrange(anim, 0.0f, entry->end);
+                }
+                anctrl_start(anim);
+                if (entry->mode == 1) {
+                    func_8009D89C(arg0, 1.0f);
+                }
+                *(s32 *)((u8 *)arg0 + 0x160) = entry->mode;
+            }
+            func_8009E830(arg0, 2);
+            return;
+        }
+    }
+    func_8080011C_bsride((s32)arg0);
+}
 
 void func_808004AC_bsride(struct player_state_s *arg0) {
     func_80093230(arg0, 1.0f);
