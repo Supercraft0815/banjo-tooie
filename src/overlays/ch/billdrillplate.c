@@ -186,7 +186,46 @@ void func_80800924_chbilldrillplate(void *arg0, s32 arg1) {
     func_80101870(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_80800978_chbilldrillplate.s")
+Actor *func_80800978_chbilldrillplate(Actor *arg0) {
+    s32 func_800EA05C(void);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    f32 sp34[3];
+    f32 sp28[3];
+
+    switch (func_800EA05C()) {
+        case 0x101:
+            func_800EFA4C(sp34, 180.0f, 480.0f, 180.0f);
+            func_800EF04C(sp34, arg0->position);
+            func_80108528(0x473, sp34, 0, &arg0);
+            func_800EFA4C(sp34, -180.0f, 480.0f, 180.0f);
+            func_800EF04C(sp34, arg0->position);
+            func_80108528(0x473, sp34, 0, &arg0);
+            func_800EFA4C(sp34, 180.0f, 480.0f, -180.0f);
+            func_800EF04C(sp34, arg0->position);
+            func_80108528(0x473, sp34, 0, &arg0);
+            func_800EFA4C(sp34, -180.0f, 480.0f, -180.0f);
+            func_800EF04C(sp34, arg0->position);
+            func_80108528(0x473, sp34, 0, &arg0);
+            break;
+        case 0x107:
+            func_800EFA4C(sp28, 130.0f, 20.0f, 130.0f);
+            func_800EF04C(sp28, arg0->position);
+            func_80108528(0x473, sp28, 0, &arg0);
+            func_800EFA4C(sp28, -130.0f, 20.0f, 130.0f);
+            func_800EF04C(sp28, arg0->position);
+            func_80108528(0x473, sp28, 0, &arg0);
+            func_800EFA4C(sp28, 130.0f, 20.0f, -130.0f);
+            func_800EF04C(sp28, arg0->position);
+            func_80108528(0x473, sp28, 0, &arg0);
+            func_800EFA4C(sp28, -130.0f, 20.0f, -130.0f);
+            func_800EF04C(sp28, arg0->position);
+            func_80108528(0x473, sp28, 0, &arg0);
+            break;
+    }
+    return arg0;
+}
 
 void func_80800B9C_chbilldrillplate(Actor *arg0) {
     s32 func_800EA05C(void);
