@@ -1,6 +1,8 @@
 #include "common.h"
 
 /* extern */
+void *func_80100094(Actor *, u32);
+s32 _suexpression_entrypoint_8(Actor *, s32);
 
 void func_80800000_chblackeye(s32 arg0, s32 arg1) {
     s32 _subaddieaudioquick_entrypoint_2(s32, s32, s32);
@@ -218,7 +220,70 @@ void func_80800774_chblackeye(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_80800838_chblackeye.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_80800BC4_chblackeye.s")
+s32 func_80800BC4_chblackeye(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    s32 _suexpression_entrypoint_12(void *, s32, s32);
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    void func_800D0BD4(s32, u32);
+    void func_800D175C(s32, s32);
+    void func_800DF744(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800FC660(u32);
+    s32 func_801015D0(Actor *);
+    extern u32 D_8080102C_chblackeye;
+    extern u32 D_8080103C_chblackeye;
+    f32 sp34[3];
+    f32 sp28[3];
+
+    switch (arg1) {
+        case 0x29:
+            _suexpression_entrypoint_7(arg0, 1, 0x6E);
+            _suexpression_entrypoint_12(func_80100094(arg0, 1), 0x42700000, 0x41700000);
+            break;
+        case 0x2A:
+            _suexpression_entrypoint_8(arg0, 1);
+            break;
+        case 0x2E:
+            arg0->unk74_30 = 0;
+            if (*(s16 *)&arg2 == 0x1012) {
+                func_800D175C(0x4E, 2);
+                func_800D0BD4(0x19, 7);
+                func_800D0BD4(0x1A, 7);
+                func_800FC660(0xE);
+                arg0->unk64_19 = 1;
+                func_80800314_chblackeye(arg0, 2);
+            }
+            arg0->unk58 = 25.0f;
+            break;
+        case 0x52:
+            switch (arg0->unk70_10) {
+                case 1:
+                case 2:
+                    func_800EE7F8(sp34, arg0->position);
+                    func_800EF1B8(sp34, arg0->rotation[1], -150.0f);
+                    _gcdialogcamera_entrypoint_3(&D_8080102C_chblackeye, arg0->scale);
+                    _gcdialogcamera_entrypoint_4(sp34);
+                    break;
+                case 3:
+                    func_800EE7F8(sp28, arg0->position);
+                    func_800EF1B8(sp28, arg0->rotation[1], -450.0f);
+                    _gcdialogcamera_entrypoint_3(&D_8080103C_chblackeye, arg0->scale);
+                    _gcdialogcamera_entrypoint_4(sp28);
+                    break;
+            }
+            break;
+        case 0x1F:
+            func_801015D0(arg0);
+            func_800DF744(3, arg0->unk64_20);
+            func_800DF744(4, 1);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chblackeye_entrypoint_0(void)
 {
