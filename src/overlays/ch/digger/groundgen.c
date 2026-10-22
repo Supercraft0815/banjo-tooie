@@ -121,4 +121,34 @@ void func_808002C4_chdiggergroundgen(Actor *arg0) {
     _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800548_chdiggergroundgen);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/groundgen/func_8080035C_chdiggergroundgen.s")
+void func_8080035C_chdiggergroundgen(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    s32 func_800D9078(f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_8001395C(f32);
+    s32 func_8008FB10(f32 *, f32, f32, f32);
+    void func_800B4470(f32 *, f32 *, f32 *, s32, f32, f32, s32, s32, s32);
+    void func_800C4104(s32, f32, s32, s32, f32, f32);
+    void func_80101FDC(Actor *, u32);
+    extern f32 D_80800554_chdiggergroundgen[];
+    f32 *data;
+    Actor *actor;
+    s32 finished;
+    f32 t;
+
+    data = func_80100094(arg0, 0);
+    actor = _subaddielink_entrypoint_4(data);
+    finished = func_800D9078(&arg0->unk58);
+    t = func_800F10B4(arg0->unk58, 0.0f, 0.85f, 1.0f, 0.0f);
+    func_800EFE50(actor->position, arg0->position, &data[2], t);
+    actor->position[1] += func_8001395C(t * 3.1415927f) * 250.0f;
+    func_8008FB10(actor->position, 90.0f, arg0->position[1] - actor->position[1], actor->scale * 100.0f);
+    if (finished) {
+        func_800B4470(actor->position, NULL, D_80800554_chdiggergroundgen, 1, 0.8f, 0.0f, 100, 150, 0);
+        func_800C4104(0x419, 1.0f, 0x6D60, actor->position, 1250.0f, 2500.0f);
+        actor->unk64_20 = 1;
+        func_80101FDC(arg0, 1);
+    }
+}
