@@ -112,6 +112,126 @@ f32 func_80028B74(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3EDE0/func_80028C04.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3EDE0/func_80028DF0.s")
+void func_80028DF0(void *arg0, s32 arg1, s16 arg2, s32 arg3) {
+    typedef struct Input {
+        u8 pad00[0x18];
+        s32 rate;
+        u8 types[4];
+        s32 *data[4];
+    } Input;
+    typedef struct Effect {
+        s16 type;
+        u8 pad02[0x12];
+        s16 *unk14;
+        s16 *unk18;
+        u8 pad1C[8];
+        f32 unk24;
+        s32 unk28;
+        s16 *unk2C;
+        s16 *unk30;
+        s32 unk34;
+    } Effect;
+    typedef struct Entry {
+        u32 start;
+        u32 end;
+        s16 unk08;
+        s16 unk0A;
+        s16 unk0C;
+        s16 pad0E;
+        f32 unk10;
+        f32 unk14;
+        s32 unk18;
+        f32 unk1C;
+        Effect *unk20;
+        Effect *unk24;
+    } Entry;
+    typedef struct Header {
+        u32 count;
+        Entry *entries;
+        u8 entryCount;
+        u8 pad09[0x17];
+        s16 *unk20;
+        s16 *unk24;
+        s16 *unk28;
+        s16 *unk2C;
+    } Header;
+    s32 func_80020EE4(s32, s32, void *, s32, s32);
+    s32 func_80028A24(s16 *);
+    extern s32 D_80041268;
+    
+    u16 i;
+    u16 cursor;
+    u16 j;
+    s32 *data;
+    Entry *entry;
+    Header *header;
+
+    data = NULL;
+    header = (Header *)func_80020EE4(0, 0, (void *)arg3, 1, 0x30);
+    *(Header **)arg0 = header;
+    switch (((Input *)arg1)->types[arg2]) {
+        case 6:
+            data = ((Input *)arg1)->data[arg2];
+            break;
+        default:
+            data = &D_80041268;
+            break;
+    }
+    cursor = 0;
+    header->entryCount = data[cursor];
+    ++cursor;
+    header->count = data[cursor];
+    ++cursor;
+    header->entries = (Entry *)func_80020EE4(0, 0, (void *)arg3, header->entryCount, 0x28);
+    header->unk20 = (s16 *)func_80020EE4(0, 0, (void *)arg3, header->count, 2);
+    header->unk28 = header->unk20;
+    header->unk24 = (s16 *)func_80020EE4(0, 0, (void *)arg3, header->count, 2);
+    header->unk2C = header->unk24;
+    for (j = 0; j < header->count; j++) {
+            header->unk24[j] = 0;
+            header->unk20[j] = header->unk24[j];
+    }
+    for (i = 0; i < header->entryCount; i++) {
+        entry = &header->entries[i];
+        entry->start = data[cursor];
+        ++cursor;
+        entry->end = data[cursor];
+        ++cursor;
+        entry->unk0A = data[cursor];
+        ++cursor;
+        entry->unk08 = data[cursor];
+        ++cursor;
+        entry->unk0C = data[cursor];
+        ++cursor;
+        if (data[cursor] != 0) {
+            entry->unk10 = ((f32)data[cursor] / 1000.0f) * 2.0f / ((Input *)arg1)->rate;
+            ++cursor;
+            entry->unk1C = ((f32)data[cursor] / 173123.40625f) * (entry->end - entry->start);
+            ++cursor;
+            entry->unk14 = 1.0f;
+            entry->unk18 = 0;
+            entry->unk24 = (Effect *)func_80020EE4(0, 0, (void *)arg3, 1, 0x38);
+            entry->unk24->unk14 = (s16 *)func_80020EE4(0, 0, (void *)arg3, 1, 0x20);
+            entry->unk24->unk18 = (s16 *)func_80020EE4(0, 0, (void *)arg3, 1, 0x20);
+            entry->unk24->unk24 = 0.0f;
+            entry->unk24->unk28 = 1;
+        } else {
+            entry->unk24 = NULL;
+            ++cursor;
+            ++cursor;
+        }
+        if (data[cursor] != 0) {
+            entry->unk20 = (Effect *)func_80020EE4(0, 0, (void *)arg3, 1, 0x38);
+            entry->unk20->unk2C = (s16 *)func_80020EE4(0, 0, (void *)arg3, 1, 8);
+            entry->unk20->unk30 = (s16 *)func_80020EE4(0, 0, (void *)arg3, 1, 8);
+            entry->unk20->type = data[cursor];
+            ++cursor;
+            func_80028A24((s16 *)entry->unk20);
+        } else {
+            entry->unk20 = NULL;
+            ++cursor;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3EDE0/func_800293B4.s")
