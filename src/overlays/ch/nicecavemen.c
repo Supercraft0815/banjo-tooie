@@ -124,7 +124,57 @@ void func_80800624_chnicecavemen(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_8080077C_chnicecavemen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_80800AB8_chnicecavemen.s")
+void func_80800AB8_chnicecavemen(Actor *arg0, s32 arg1) {
+    s32 _subaddiepalette_entrypoint_2(Actor *, void *, s32, f32);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    u32 func_800F54E4(void);
+    s32 func_800F7F98(s32, u32);
+    void *func_80100094(Actor *, u32);
+    int func_801021BC(Actor *, s32);
+    void func_80102424(Actor *, s32);
+    s32 func_80800C6C_chnicecavemen(Actor *);
+    void func_80801508_chnicecavemen(Actor *, s32, s32);
+    extern s32 D_808018E8_chnicecavemen;
+    struct {
+        u8 pad0[0x14];
+        u16 palette;
+    } *data;
+    s32 value;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 7:
+        break;
+    case 11:
+        if (func_801021BC(arg0, 11)) {
+            break;
+        }
+        arg1 = 12;
+    case 12:
+        func_80800C6C_chnicecavemen(arg0);
+        break;
+    case 8:
+        value = 0;
+        switch (arg0->unk74_7) {
+        case 0x32:
+            value = 16;
+            break;
+        case 0x33:
+            value = 12;
+            break;
+        case 0x34:
+            value = 9;
+            break;
+        }
+        func_80801508_chnicecavemen(arg0, value, 40);
+        func_800F7F98(func_800F54E4(), 1);
+        if (_subaddiepalette_entrypoint_2(arg0, &data->palette, 0x7E7, 3.0f)) {
+            func_800BBCB8(arg0->position, NULL, 1.0f, 1, &D_808018E8_chnicecavemen);
+        }
+        break;
+    }
+    func_80102424(arg0, arg1);
+}
 
 /* extern */
 
