@@ -147,4 +147,43 @@ void func_80800980_chflowerbaddie(Actor *arg0, f32 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flowerbaddie/func_808009F0_chflowerbaddie.s")
+s32 func_808009F0_chflowerbaddie(Actor *arg0, void *arg1, f32 arg2) {
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    void _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    f32 func_800D8FF8(void);
+    void func_80102424(Actor *, s32);
+    void func_80102B2C(Actor *, f32);
+    f32 func_80102D78(Actor *, f32 *);
+    s32 func_8010C3A8(Actor *, u32, f32);
+    struct FlowerRoute {
+        u16 unk0[3];
+        u16 unk6;
+        s32 unk8;
+        s32 unkC;
+    };
+    f32 sp2C;
+    f32 sp28;
+
+    sp2C = func_800D8FF8();
+    if (arg0->unk64_29) {
+        sp28 = _subaddiejoy_entrypoint_9(arg0, &arg0->unk54, 3);
+        func_80102B2C(arg0, sp2C * 120.0f);
+        func_8010C3A8(arg0, 0x205025, sp28 * arg2);
+    } else {
+        if (_subaddierouteDll_entrypoint_4(arg0) != 0) {
+            arg0->unk54 = func_80102D78(arg0, (f32 *)arg0->actorData);
+            _subaddierouteDll_entrypoint_7(arg0, arg1, arg0->rotation[1], arg0->unk54, 350.0f, 0x5000);
+            ((struct FlowerRoute *)arg1)->unkC = ((struct FlowerRoute *)arg1)->unk6;
+        }
+        func_80102B2C(arg0, sp2C * 120.0f);
+        func_8010C3A8(arg0, 0x5325, arg2);
+    }
+    if (func_808008D4_chflowerbaddie(arg0) != 0) {
+        _subaddieaudioloop_entrypoint_2(arg0);
+        func_80102424(arg0, 4);
+        return 0;
+    }
+    return 1;
+}
