@@ -361,7 +361,41 @@ void func_80800ADC_chbanjoctrl(s32 arg0) {
     func_8080091C_chbanjoctrl(arg0, sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800B18_chbanjoctrl.s")
+void func_80800B18_chbanjoctrl(Actor *arg0) {
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    s32 func_800F5410(s32);
+    u32 func_800F54E4(void);
+    void func_800F7814(s32, f32 *);
+    s32 func_800F7E3C(s32, s32);
+    f32 mlAbsF(f32);
+    f32 radius;
+    s32 player;
+    f32 position[3];
+    s32 pad;
+    f32 dx;
+    f32 dz;
+    f32 absX;
+
+    radius = arg0->unk74_7;
+    player = func_800F54E4();
+    if (func_800F5410(player) == 1) return;
+    if (((f32 *)arg0->actorData)[0] < arg0->position[0] - radius || arg0->position[0] + radius <= ((f32 *)arg0->actorData)[0]) return;
+    if (((f32 *)arg0->actorData)[1] < arg0->position[1] - radius || (arg0->position[1] + radius) - 100.0f <= ((f32 *)arg0->actorData)[1]) return;
+    if (((f32 *)arg0->actorData)[2] < arg0->position[2] - radius || arg0->position[2] + radius <= ((f32 *)arg0->actorData)[2]) return;
+    func_800F7E3C(player, 0);
+    func_800EFA4C(position, ((f32 *)arg0->actorData)[0], arg0->position[1] + radius, ((f32 *)arg0->actorData)[2]);
+    dx = arg0->position[0] + radius - position[0];
+    if (radius < dx) dx -= 2.0f * radius;
+    dz = arg0->position[2] + radius - position[2];
+    if (radius < dz) dz -= 2.0f * radius;
+    absX = mlAbsF(dx);
+    if (absX < mlAbsF(dz)) {
+        position[0] += dx;
+    } else {
+        position[2] += dz;
+    }
+    func_800F7814(player, position);
+}
 
 /* extern */ void func_80800D04_chbanjoctrl(u8 *arg0) { u32 func_800F54E4(void); s32 func_800F8418(s32, u8 *, u8 *); f32 temp_f0; temp_f0 = (*(f32 *)((s8 *)(arg0) + (8))); if (temp_f0 < (*(f32 *)((s8 *)(arg0) + (0x1C)))) { (*(f32 *)((s8 *)(arg0) + (0x1C))) = temp_f0; func_800F8418(func_800F54E4(), arg0 + 0x18, arg0); } }
 
