@@ -380,7 +380,173 @@ s32 func_800C1CCC(u16 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C1D80.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C2000.s")
+void func_800C2000(u8 index) {
+    typedef struct {
+        u8 pad0[0x28];
+        f32 unk28, unk2C, unk30, unk34, unk38, unk3C;
+        f32 attack, decay, sustain;
+        s16 minimum, maximum;
+        f32 variation, elapsed;
+        s16 sound, volume, limit, map;
+        u8 pad60[0xC];
+        f32 pitch;
+        u8 pad70[8];
+        u32 unk78:8;
+        u32 handle:8;
+        u32 mode:3;
+        u32 state:3;
+        u32 pitchMode:4;
+        u32 fading:1;
+        u32 expiring:1;
+        u32 envelope:1;
+        u32 unk7B2:1;
+        u32 freeOnEnd:1;
+        u32 unk7B0:1;
+        u16 flags;
+    } Source;
+    f32 func_800D8FF8(void);
+    s32 func_800EA05C(void);
+    s32 func_800F0E28(s32, s32);
+    s32 func_800F1418(s32, s32);
+    f32 func_800DC264(f32, f32);
+    f32 func_800F13F0(f32, f32);
+    f32 func_800F0E00(f32, f32);
+    f32 func_800F0D50(f32, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_800C1D80(u8);
+    s32 func_800C42E0(s32);
+    s32 func_800C15BC(void);
+    void func_800C16F8(void *, s32);
+    void func_800C1860(void *);
+    s32 unused;
+    s32 playing;
+    f32 dt;
+    s32 slot;
+    Source *source;
+    f32 end;
+    f32 time[2];
+
+    dt = func_800D8FF8();
+    source = func_800C1414(index);
+    source->elapsed += dt;
+    if (source->fading) {
+        if (source->decay == 0.0f) {
+            source->volume = 0;
+        } else {
+            source->volume -= source->maximum / source->decay * dt;
+            source->volume = func_800F0E28(0, source->volume);
+            if (func_800EA05C() != source->map) {
+                source->limit = func_800F1418(source->limit, source->volume);
+            }
+        }
+        if (source->volume <= 0) {
+            func_800C2FDC(index);
+            return;
+        }
+        func_800C13A0(source, 8);
+    } else if (source->envelope) {
+        if (source->elapsed < source->attack) {
+            source->volume = source->elapsed / source->attack * (source->minimum + source->maximum) / 2;
+        } else if (source->elapsed <= source->attack + source->sustain) {
+            if (source->volume < source->minimum || source->maximum < source->volume) {
+                source->volume = (source->minimum + source->maximum) / 2;
+            }
+            source->volume += func_800DC264(-1.0f, 1.0f) * source->variation;
+            source->volume = source->volume > source->maximum ? source->maximum : source->volume;
+            source->volume = source->volume < source->minimum ? source->minimum : source->volume;
+        } else {
+            source->volume = (1.0f - (source->elapsed - source->attack - source->sustain) / source->decay) * (source->minimum + source->maximum) / 2;
+        }
+        if (func_800EA05C() != source->map) {
+            source->limit = func_800F1418(source->limit, source->volume);
+        }
+        func_800C13A0(source, 8);
+    }
+    if (source->expiring && source->elapsed >= source->attack + source->sustain + source->decay) {
+        if (source->freeOnEnd) {
+            func_800C2FDC(index);
+            return;
+        }
+        func_800C1860(source);
+    }
+    if (source->handle && source->state == 1 && func_800C1448(source->handle)) {
+        switch (source->pitchMode) {
+            case 0:
+                break;
+            case 1:
+                source->pitch += source->unk28 * dt;
+                if (source->unk28 > 0.0f) {
+                    source->pitch = func_800F13F0(source->pitch, source->unk2C);
+                } else {
+                    source->pitch = func_800F0E00(source->pitch, source->unk2C);
+                }
+                func_800C13A0(source, 4);
+                break;
+            case 2:
+                source->pitch += func_800DC264(-source->unk30, source->unk30) * dt;
+                source->pitch = func_800F0D50(source->pitch, source->unk2C, source->unk28);
+                func_800C13A0(source, 4);
+                break;
+            case 3:
+                source->pitch = func_800F10B4(source->elapsed, source->unk28, source->unk2C, source->unk30, source->unk34);
+                func_800C13A0(source, 4);
+                break;
+            case 4: {
+                time[1] = source->elapsed;
+                if (time[1] < source->unk28) {
+                    source->pitch = func_800F10B4(time[1], 0.0f, source->unk28, source->unk34, source->unk38);
+                } else {
+                    end = source->unk28 + source->unk2C;
+                    if (time[1] < end) {
+                        source->pitch = source->unk38;
+                    } else {
+                        source->pitch = func_800F10B4(time[1] - end, 0.0f, source->unk30, source->unk38, source->unk3C);
+                    }
+                }
+                func_800C13A0(source, 4);
+                break;
+            }
+        }
+    }
+    switch (source->mode) {
+        case 1:
+            if (source->state == 0 || (source->state == 1 && !source->handle)) {
+                func_800C2FDC(index);
+                return;
+            }
+            break;
+        case 2:
+            if (source->state == 1 && func_800C13D0(source, 1)) {
+                func_800C3CE8(index);
+            } else {
+                func_800C13B0(source, 1);
+            }
+            break;
+        case 3:
+            break;
+    }
+    playing = func_800C1D80(index);
+    if (source->state == 1 && func_800C42E0(source->sound)) {
+        if (func_800C13C4((u16 *)source, 0x20)) {
+            if (!playing) {
+                slot = func_800C15BC();
+                osSetThreadPri(NULL, 0x33);
+                func_800C16F8(source, slot);
+                func_800C13B0(source, 0x20);
+                func_800C1D80(index);
+                osSetThreadPri(NULL, 0x14);
+            }
+        } else if (playing) {
+            func_800C1860(source);
+            func_800C1210(source, 1);
+            func_800C13A0(source, 0x20);
+        }
+    }
+    if (source->handle && !func_800C1448(source->handle)) {
+        func_800C1568(source->handle);
+        source->handle = 0;
+    }
+}
 
 s32 func_800C269C(u8 arg0) {
     u8 *source = func_800C1414(arg0);
@@ -396,7 +562,7 @@ s32 func_800C269C(u8 arg0) {
 
 void func_800C2718(void) {
     s32 func_800C0638();
-    s32 func_800C2000(s32);
+    void func_800C2000(u8);
     f32 func_800D8FF8();
     extern f32 D_8011A878;
     extern s32 D_80128C10;
@@ -420,7 +586,7 @@ void func_800C2718(void) {
     do {
         if ((*(u8 *)((s8 *)(var_s2) + (0x78))) != 0) {
             if ((*(u32 *)(var_s2 + 0x78) << 19 >> 29) != 3) {
-                func_800C2000(var_s1 & 0xFF);
+                func_800C2000(var_s1);
             }
             temp_s0 = var_s1 & 0xFF;
             if (func_800C269C(temp_s0 & 0xFF) != 0) {
