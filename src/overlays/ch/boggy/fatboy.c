@@ -62,7 +62,51 @@ void func_8080052C_chboggyfatboy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_808005AC_chboggyfatboy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_80800808_chboggyfatboy.s")
+void func_80800808_chboggyfatboy(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
+    void _subaddieitem_entrypoint_2(s32);
+    void func_800C01A8(s16, s32);
+    void func_800C0850(void);
+    s32 func_800DA544(s32);
+    s32 func_80102424(s32, s32);
+    s32 func_80800FE0_chboggyfatboy(s32);
+    extern s32 D_80801128_chboggyfatboy;
+    void *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0x1093:
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x108B, 0x4E, arg0->position, 0x3D);
+        break;
+    case 0x1095:
+    case 0x1111:
+        func_80102424(arg0, 1);
+        break;
+    case 0x108B:
+        if (arg2 > 0) {
+            func_80102424(arg0, 0xF);
+            _subaddieitem_entrypoint_2((s32)data + 0xC);
+        } else {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x1094, 0xE, arg0->position, 0x3D);
+        }
+        break;
+    default:
+        if (_subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80801128_chboggyfatboy, 4) == 1) {
+            func_800DA544(0xBA);
+            if (func_80800FE0_chboggyfatboy(0x3CA)) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1093, 0xE, arg0->position, 0x3D);
+            } else {
+                func_800C01A8(0x64, 0);
+                func_800C0850();
+                func_80102424(arg0, 1);
+            }
+        } else {
+            func_80102424(arg0, 1);
+        }
+        break;
+    }
+}
 
 void func_80800978_chboggyfatboy(Actor* arg0)
 {
