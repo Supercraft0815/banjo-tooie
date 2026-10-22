@@ -460,7 +460,40 @@ void func_80800DD8_bstrexlarge(s32 arg0)
     func_80800BC4_bstrexlarge(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80800E08_bstrexlarge.s")
+void func_80800E08_bstrexlarge(PlayerState *arg0) {
+    s32 sp34;
+    f32 sp28[3];
+    s32 bs_setState(s32, s32);
+    void func_8009BB24(void *, f32 *);
+    void baphysics_reset_gravity(PlayerState *);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void func_800A2EAC(void *);
+
+    sp34 = 0;
+    bstrexlarge_entrypoint_3((s32)arg0);
+    func_8009BB24(arg0, sp28);
+    if (bakey_released(arg0, 8) != 0 && sp28[1] > 0.0f) {
+        baphysics_reset_gravity(arg0);
+    }
+    switch (arg0->unk15C.bytes[0]) {
+        case 1:
+            func_808004B4_bstrexlarge(arg0);
+            if (func_8008DF8C(arg0, 0x82) != 0) {
+                func_80800BC4_bstrexlarge((s32)arg0, 2);
+            }
+            break;
+        case 2:
+            func_808004B4_bstrexlarge(arg0);
+            func_80800044_bstrexlarge(arg0);
+            if (player_isStable(arg0) != 0 || func_80800034_bstrexlarge(arg0) != 0) {
+                func_800A2EAC(arg0);
+                baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+                sp34 = 0x147;
+            }
+            break;
+    }
+    bs_setState((s32)arg0, sp34);
+}
 
 s32 bstrexlarge_entrypoint_8(s32 arg0) {
     extern s32 D_808019D0_bstrexlarge[];
