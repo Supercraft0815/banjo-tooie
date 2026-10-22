@@ -159,7 +159,59 @@ extern struct {
 extern s32 D_8007EA50[];
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39CE0/func_800221B0.s")
+void func_800221B0(MusicPlayer *arg0, ALSeqpConfig *arg1) {
+    s32 func_80020EE4(s32, s32, void *, s32, s32);
+    s32 func_8002241C(MusicPlayer *);
+    void func_80026100(void *);
+    void func_800263C0(ALEventQueue *, ALEventListItem *, s32);
+    void func_80026860(s32 *);
+    void func_8002A0CC(void *);
+    s32 i;
+    ALEventListItem *events;
+    MusicVoiceState *voice;
+    MusicVoiceState *voices;
+    ALHeap *heap;
+
+    heap = arg1->heap;
+    arg0->bank = NULL;
+    arg0->target = NULL;
+    arg0->drvr = D_800411F4;
+    func_80026100(arg0);
+    arg0->uspt = 0x1E8;
+    arg0->nextDelta = 0;
+    arg0->state = 0;
+    arg0->vol = 0x7FFF;
+    arg0->debugFlags = arg1->debugFlags;
+    arg0->frameTime = 0x3E80;
+    arg0->curTime = 0;
+    arg0->initOsc = arg1->initOsc;
+    arg0->updateOsc = arg1->updateOsc;
+    arg0->stopOsc = arg1->stopOsc;
+    *(f32 *)((u8 *)arg0 + 0x7C) = 0.0f;
+    *(f32 *)((u8 *)arg0 + 0x80) = 1.0f;
+    arg0->msgQueue = NULL;
+    *((u8 *)arg0 + 0x89) = 0;
+    *((u8 *)arg0 + 0x88) = arg1->maxVoices;
+    arg0->nextEvent.type = 9;
+    arg0->maxChannels = arg1->maxChannels;
+    arg0->chanState = (MusicChannel *)func_80020EE4(0, 0, heap, arg1->maxChannels, 0x38);
+    func_8002A0CC(arg0);
+    voices = (MusicVoiceState *)func_80020EE4(0, 0, heap, arg1->maxVoices, 0x44);
+    arg0->vFreeList = NULL;
+    for (i = 0; i < arg1->maxVoices; i++) {
+        voice = &voices[i];
+        voice->next = arg0->vFreeList;
+        arg0->vFreeList = voice;
+    }
+    arg0->vAllocHead = NULL;
+    arg0->vAllocTail = NULL;
+    events = (ALEventListItem *)func_80020EE4(0, 0, heap, arg1->maxEvents, 0x1C);
+    func_800263C0(&arg0->evtq, events, arg1->maxEvents);
+    arg0->node.next = NULL;
+    *(s32 (**)(MusicPlayer *))((u8 *)arg0 + 8) = func_8002241C;
+    arg0->node.clientData = arg0;
+    func_80026860((s32 *)arg0);
+}
 
 s32 func_8002241C(MusicPlayer *arg0) {
     s32 func_80022D1C(MusicPlayer *);
