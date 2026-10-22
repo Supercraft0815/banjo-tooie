@@ -1120,7 +1120,55 @@ void func_808043D8_chdiggerboss(Actor *arg0, f32 arg1, f32 *arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80804450_chdiggerboss.s")
+void func_80804450_chdiggerboss(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    int func_800D91EC(f32 *, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80804644_chdiggerboss(f32, f32, f32);
+    extern f32 D_80809F3C_chdiggerboss;
+    extern f32 D_80809F40_chdiggerboss;
+    extern u32 D_80809F44_chdiggerboss;
+    extern u32 D_80809F5C_chdiggerboss;
+    extern u32 D_80809F74_chdiggerboss;
+    extern u32 D_80809F88_chdiggerboss;
+    struct DiggerBossTimerData {
+        u8 unk0[0x10];
+        f32 timer;
+    } *sp2C;
+    f32 sp28;
+    s32 sp24;
+
+    sp2C = func_80100094(arg0, 0);
+    sp28 = sp2C->timer;
+    sp24 = func_800D91EC(&sp2C->timer, 4.0f);
+    if (func_80804644_chdiggerboss(sp2C->timer, sp28, 0.1f) != 0) {
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80809F44_chdiggerboss);
+        func_808043D8_chdiggerboss(arg0, 1.0f, &D_80809F3C_chdiggerboss);
+    }
+    if (func_80804644_chdiggerboss(sp2C->timer, sp28, 0.4f) != 0) {
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80809F44_chdiggerboss);
+        func_808043D8_chdiggerboss(arg0, 1.0f, &D_80809F3C_chdiggerboss);
+    }
+    if (func_80804644_chdiggerboss(sp2C->timer, sp28, 1.2f) != 0) {
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80809F74_chdiggerboss);
+        func_808043D8_chdiggerboss(arg0, 1.25f, &D_80809F3C_chdiggerboss);
+    }
+    if (func_80804644_chdiggerboss(sp2C->timer, sp28, 2.0f) != 0) {
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80809F44_chdiggerboss);
+        func_808043D8_chdiggerboss(arg0, 1.0f, &D_80809F3C_chdiggerboss);
+    }
+    if (func_80804644_chdiggerboss(sp2C->timer, sp28, 2.4f) != 0) {
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80809F5C_chdiggerboss);
+        func_808043D8_chdiggerboss(arg0, 1.0f, &D_80809F40_chdiggerboss);
+    }
+    if (func_80804644_chdiggerboss(sp2C->timer, sp28, 3.4f) != 0) {
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80809F88_chdiggerboss);
+        func_808043D8_chdiggerboss(arg0, 1.5f, &D_80809F3C_chdiggerboss);
+    }
+    if (sp24 != 0) {
+        func_808041E4_chdiggerboss(arg0, 0);
+    }
+}
 
 s32 func_80804644_chdiggerboss(f32 arg0, f32 arg1, f32 arg2) {
     if ((arg2 < arg0) && (arg1 <= arg2)) {
