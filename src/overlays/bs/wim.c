@@ -286,7 +286,78 @@ void func_80800634_bsbswim(struct player_state_s *arg0) {
     ((s8 *)arg0)[0x166] = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/wim/func_808006DC_bsbswim.s")
+void func_808006DC_bsbswim(struct player_state_s *arg0) {
+    void _baswim_entrypoint_10(void *, f32);
+    void _baswim_entrypoint_11(void *);
+    void _baswim_entrypoint_12(void *);
+    void _baswim_entrypoint_13(void *);
+    s32 _baswim_entrypoint_2(s32);
+    s32 _baswim_entrypoint_3(s32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    s32 anctrl_isAt(s32, f32);
+    s32 bs_setState(s32, s32);
+    s32 player_inWater();
+    void func_8009C128(struct player_state_s *, f32 *);
+    void func_8009DE74(struct player_state_s *, s32, f32, f32);
+    s32 func_8009FBB0(struct player_state_s *, f32 *, f32);
+    void func_800BA22C(s32, s32);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    s32 sp4C;
+    struct anctrl_s *sp48;
+    s32 sp44;
+    f32 sp38[3];
+
+    sp4C = 0;
+    sp48 = baanim_getAnimCtrlPtr(arg0);
+    _baswim_entrypoint_11(arg0);
+    _baswim_entrypoint_12(arg0);
+    _baswim_entrypoint_13(arg0);
+    if (anctrl_isAt(sp48, 0.3f)) {
+        ((u8 *)arg0)[0x166] = 1;
+    }
+    if (!func_8001210C(1)) {
+        func_8009C128(arg0, sp38);
+        sp38[1] += 60.0f;
+        sp44 = func_8009FBB0(arg0, sp38, 40.0f);
+        func_800BA930(sp44, -60, -50, -60, 60, 100, 60);
+        func_800BA22C(sp44, 1);
+    }
+    if (anctrl_isAt(sp48, 0.08f)) {
+        func_8009DE74(arg0, 0x3FD, 1.2f, 1.4f);
+        _baswim_entrypoint_10(arg0, 900.0f);
+    } else {
+        _baswim_entrypoint_10(arg0, 500.0f);
+    }
+    switch (_baswim_entrypoint_3((s32)arg0)) {
+        case 3:
+            break;
+        case 0:
+            if (anctrl_isAt(sp48, 0.4791f)) {
+                sp4C = 0x2B;
+            }
+            break;
+        case 1:
+            if (((u8 *)arg0)[0x166]) {
+                sp4C = 0x39;
+            }
+            break;
+        case 2:
+            if (((u8 *)arg0)[0x166]) {
+                sp4C = 0x2C;
+            }
+            break;
+    }
+    if (bainput_func_8009803C(arg0)) {
+        sp4C = 0x157;
+    }
+    if (_baswim_entrypoint_2((s32)arg0)) {
+        sp4C = 0x2D;
+    }
+    if (!player_inWater(arg0)) {
+        sp4C = 1;
+    }
+    bs_setState((s32)arg0, sp4C);
+}
 
 void func_808008CC_bsbswim(s32 arg0)
 {
