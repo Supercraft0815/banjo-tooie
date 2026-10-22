@@ -100,7 +100,77 @@ void func_808001B8_chcollballcontrol(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808002B8_chcollballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808006FC_chcollballcontrol.s")
+void func_808006FC_chcollballcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    f32 func_800D8FF8(void);
+    void _sukickball_entrypoint_17(Actor *);
+    void _sukickball_entrypoint_19(Actor *, s32, u8);
+    s32 func_800DA298(s32);
+    void _capod_entrypoint_14(void);
+    void func_800A54F8(s32);
+    s32 func_800CEB54(s32, f32);
+    s32 func_800CEAD0(s32);
+    u32 func_800FDC28(u32);
+    u32 _gcgoto_entrypoint_1(u32, u32);
+    void func_808008FC_chcollballcontrol(Actor *);
+    void func_808011E8_chcollballcontrol(Actor *);
+    struct CollballUpdate {
+        f32 timer0;
+        f32 timer1;
+        u8 pad8[0x31];
+        u8 mode;
+        u8 count;
+    } *data;
+    f32 dt;
+
+    data = func_80100094(arg0, 0);
+    dt = func_800D8FF8();
+    data->timer0 -= dt;
+    data->timer1 -= dt;
+    switch (arg0->unk70_10) {
+    case 1:
+        _sukickball_entrypoint_17(arg0);
+        if (!func_800DA298(0x6AD)) {
+            if (arg0->unk79_4 != 1 && !arg0->unk64_20) {
+                if (arg0->unk79_4 == 2) {
+                    _capod_entrypoint_14();
+                }
+                if (data->mode == 0 || data->mode == 1 || data->mode == 2) {
+                    func_800A54F8(0);
+                }
+                func_80800000_chcollballcontrol(&arg0->unk0, 0x127A, 0);
+                arg0->unk70_10 = 3;
+            }
+        }
+        break;
+    case 3:
+        _sukickball_entrypoint_17(arg0);
+        break;
+    case 6:
+        _sukickball_entrypoint_19(arg0, 1, data->count);
+        break;
+    case 4:
+        _sukickball_entrypoint_19(arg0, 0, data->count);
+        func_808011E8_chcollballcontrol(arg0);
+        if (func_800CEB54(0, 6.0f)) {
+            func_800FDC28(0x10);
+        } else if (func_800CEAD0(0)) {
+            func_808008FC_chcollballcontrol(arg0);
+        }
+        break;
+    case 7:
+        func_808011E8_chcollballcontrol(arg0);
+        break;
+    case 8:
+        _sukickball_entrypoint_19(arg0, 1, data->count);
+        if (arg0->unk58 > 0.0f) {
+            arg0->unk58 -= func_800D8FF8();
+        } else {
+            _gcgoto_entrypoint_1(0x12D, 5);
+        }
+        break;
+    }
+}
 
 void func_808008FC_chcollballcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
