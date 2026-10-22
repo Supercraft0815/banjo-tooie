@@ -196,7 +196,59 @@ s32 func_80112E90()
     return 0x80;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80112E98.s")
+s32 func_80112E98(PlayerState *arg0, f32 *arg1, f32 *arg2, f32 arg3, s32 arg4, s32 arg5) {
+    void func_800EE780(f32 *, f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EFA20(void *, void *, f32);
+    f32 func_800F0E00(f32, f32);
+    void *func_800FAB50(f32 *, f32 *, f32 *, u32, f32);
+    void *func_800FB3C0(f32 *, f32 *, f32, f32 *, s32, u32);
+    void func_80110770(void *, f32 *);
+    void func_801113B8(void *);
+    struct AngleTable { f32 *unk0; s32 unk4; };
+    extern struct AngleTable D_80124A38, D_80124A40, D_80124A48;
+    f32 sp9C[3];
+    struct AngleTable *phi_s4;
+    f32 *phi_s0;
+    f32 sp88[3];
+    f32 phi_f20;
+    f32 sp78[3];
+    f32 phi_f26;
+
+    phi_f26 = func_800F0E00(150.0f, arg3 - 100.0f);
+    switch (arg4) {
+    case 1:
+        phi_s4 = &D_80124A40;
+        break;
+    case 2:
+    case 3:
+        phi_s4 = &D_80124A48;
+        break;
+    case 0:
+    default:
+        phi_s4 = &D_80124A38;
+        phi_f26 = 150.0f;
+        break;
+    }
+    for (phi_s0 = phi_s4->unk0; phi_s0 < phi_s4->unk0 + phi_s4->unk4; phi_s0++) {
+        phi_f20 = *phi_s0;
+        if (arg4 == 3) {
+            phi_f20 = -phi_f20;
+        }
+        func_800EFA20(sp9C, arg2, -arg3);
+        func_800EF934(sp9C, sp9C, phi_f20);
+        func_800EE780(sp78, arg1, sp9C);
+        func_800FAB50(arg1, sp78, sp88, arg5, 50.0f);
+        func_800FB3C0(arg1, sp78, 50.0f, sp88, 4, arg5);
+        if (phi_f26 < func_800EEAD4(arg1, sp78)) {
+            func_80110770(arg0, sp78);
+            func_801113B8(arg0);
+            return 1;
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_8011309C.s")
 
