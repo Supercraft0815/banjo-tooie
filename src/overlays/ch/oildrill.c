@@ -261,7 +261,62 @@ void func_8080097C_choildrill(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_808009F8_choildrill.s")
+void func_808009F8_choildrill(Actor *arg0, s32 arg1) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void func_800C3F48(u32);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800FC6B0(u32);
+    void func_80102424(Actor *, s32);
+    void func_80800B90_choildrill(void **);
+    f32 temp;
+
+    switch (arg1) {
+    case 1:
+        func_80800B90_choildrill((void *)arg0);
+        arg0->unk64_16 = 0;
+        break;
+    case 2:
+        arg0->unk50 = 0.0f;
+        arg0->unk54 = 0.0f;
+        ((f32 *)arg0->actorData)[7] = 0.0f;
+        break;
+    case 4:
+        arg0->unk58 = 0.0f;
+        _capod_entrypoint_13(arg0->unk0, NULL, 0x54, 0x810);
+        func_800C3F48(0x7FFFFD1C);
+        arg0->unk74_7 = 1;
+        break;
+    case 5:
+        func_800FC6B0(0x18);
+        ((f32 *)arg0->actorData)[7] = 180.0f;
+        temp = func_800DC178(0.4f, 0.5f);
+        ((f32 *)arg0->actorData)[5] = temp;
+        ((f32 *)arg0->actorData)[3] = temp;
+        arg0->unk58 = 5.0f;
+        break;
+    case 6:
+        func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+        func_80800B90_choildrill((void *)arg0);
+        arg0->unk79_4 = 4;
+        arg0->unk58 = 0.75f;
+        break;
+    case 7:
+        arg0->unk58 = 2.0f * func_800DC0C0();
+        break;
+    case 8:
+        func_80800B90_choildrill((void *)arg0);
+        arg0->unk58 = 2.0f * func_800DC0C0();
+        break;
+    case 9:
+        ((f32 *)arg0->actorData)[7] = 180.0f;
+        arg0->unk58 = 4.0f;
+        func_808007DC_choildrill(arg0, 0.0f, 0);
+        break;
+    }
+    func_80102424(arg0, arg1);
+}
 
 /* extern */
 
