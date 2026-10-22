@@ -8,7 +8,154 @@ s32 func_8002C5C0(s32 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E440F0/func_8002C5F8.s")
+void *func_8002C5F8(void *arg0, s16 *arg1, s32 arg2, void *arg3) {
+    typedef struct {
+        u32 address;
+        u32 length;
+    } Sample;
+    typedef struct {
+        u32 pad0[5];
+        u32 loopStart;
+        u32 loopEnd;
+        s32 loopCount;
+        Sample *sample;
+        u32 bookSize;
+        u32 pad28[2];
+        u32 position;
+        u32 offset;
+        s32 flags;
+        u32 address;
+    } State;
+    typedef struct {
+        u32 w0;
+        u32 w1;
+    } Command;
+    Acmd *func_8002CE70(Acmd *arg0, void *arg1, s32 arg2, s32 arg3, s16 arg4, s16 arg5, s32 arg6);
+    Command *sp7C;
+    s16 sp7A;
+    s32 sp74;
+    s32 sp70;
+    s32 sp6C;
+    s32 sp68;
+    s32 sp64;
+    s32 sp60;
+    s32 sp5C;
+    s32 sp58;
+    s32 sp54;
+    s32 sp50;
+    s32 sp4C;
+    s32 sp48;
+    State *sp44;
+
+    sp7C = arg3;
+    sp4C = 0;
+    sp48 = 0;
+    sp44 = arg0;
+    if (arg2 == 0) {
+        return sp7C;
+    }
+    sp7A = 0;
+    {
+        Command *sp40 = sp7C++;
+        sp40->w0 = (sp44->bookSize & 0xFFFFFF) | 0x0B000000;
+        sp40->w1 = ((u32)sp44->sample + 0x38) & 0x1FFFFFFF;
+    }
+    sp48 = (sp44->position + arg2 > sp44->loopEnd) && sp44->loopCount;
+    if (sp48) {
+        sp5C = sp44->loopEnd - sp44->position;
+    } else {
+        sp5C = arg2;
+    }
+    if (sp44->offset) {
+        sp54 = 0x10 - sp44->offset;
+    } else {
+        sp54 = 0;
+    }
+    sp74 = sp5C - sp54;
+    if (sp74 < 0) {
+        sp74 = 0;
+    }
+    sp70 = (sp74 + 0xF) >> 4;
+    sp6C = sp70 * 9;
+    if (sp48) {
+        sp7C = func_8002CE70(sp7C, sp44, sp74, sp6C, *arg1, sp7A, sp44->flags);
+        if (sp44->offset) {
+            *arg1 += sp44->offset * 2;
+        } else {
+            *arg1 += 0x20;
+        }
+        sp44->offset = sp44->loopStart & 0xF;
+        sp44->address = sp44->sample->address + (sp44->loopStart >> 4) * 9 + 9;
+        sp44->position = sp44->loopStart;
+        sp50 = *arg1;
+        while (arg2 > sp5C) {
+            arg2 -= sp5C;
+            sp58 = (((sp70 + 1) << 5) + sp50 + 0x10) & ~0x1F;
+            sp50 += sp5C * 2;
+            if (sp44->loopCount != -1 && sp44->loopCount != 0) {
+                sp44->loopCount--;
+            }
+            sp5C = arg2 < sp44->loopEnd - sp44->loopStart ? arg2 : sp44->loopEnd - sp44->loopStart;
+            sp74 = sp5C + sp44->offset - 0x10;
+            if (sp74 < 0) {
+                sp74 = 0;
+            }
+            sp70 = (sp74 + 0xF) >> 4;
+            sp6C = sp70 * 9;
+            sp7C = func_8002CE70(sp7C, sp44, sp74, sp6C, sp58, sp7A, sp44->flags | 2);
+            {
+                Command *sp3C = sp7C++;
+                sp3C->w0 = ((sp44->offset * 2 + sp58) & 0xFFFFFF) | 0x0A000000;
+                sp3C->w1 = ((sp50 & 0xFFFF) << 16) | ((sp5C * 2) & 0xFFFF);
+            }
+        }
+        sp44->offset = (sp44->offset + arg2) & 0xF;
+        sp44->position += arg2;
+        sp44->address += sp70 * 9;
+        return sp7C;
+    }
+    {
+        sp5C = sp70 * 0x10;
+        sp68 = sp44->address + sp6C - (sp44->sample->address + sp44->sample->length);
+        if (sp68 < 0) {
+            sp68 = 0;
+        }
+        sp60 = (sp68 / 9) * 0x10;
+        if (sp60 > sp5C + sp54) {
+            sp60 = sp5C + sp54;
+        }
+        sp6C -= sp68;
+        if (sp60 - (sp60 & 0xF) < arg2) {
+            sp4C = 1;
+            sp7C = func_8002CE70(sp7C, sp44, sp5C - sp60, sp6C, *arg1, sp7A, sp44->flags);
+            if (sp44->offset) {
+                *arg1 += sp44->offset * 2;
+            } else {
+                *arg1 += 0x20;
+            }
+            sp44->offset = (sp44->offset + arg2) & 0xF;
+            sp44->position += arg2;
+            sp44->address += sp70 * 9;
+        } else {
+            sp44->offset = 0;
+            sp44->address += sp70 * 9;
+        }
+        if (sp60) {
+            sp44->offset = 0;
+            if (sp4C) {
+                sp64 = (sp54 + sp5C - sp60) * 2;
+            } else {
+                sp64 = 0;
+            }
+            {
+                Command *sp38 = sp7C++;
+                sp38->w0 = ((*arg1 + sp64) & 0xFFFFFF) | 0x02000000;
+                sp38->w1 = sp60 * 2;
+            }
+        }
+        return sp7C;
+    }
+}
 
 s32 func_8002CC9C(s32 arg0, s32 arg1, s32 arg2) {
     typedef struct {
