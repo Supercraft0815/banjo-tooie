@@ -101,7 +101,52 @@ void func_808003A0_gccubeDll(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubeDll/gccubeDll_entrypoint_1.s")
+void gccubeDll_entrypoint_1(u8 *arg0) {
+    s16 _gcmapDll_entrypoint_5(void);
+    void func_800BEC4C(s32 *, s32 *, s32);
+    void func_800C6A08(s32, s32, s32);
+    void func_800CD230(f32);
+    s32 func_800CD23C(s32, s32, s32, s32);
+    s32 func_800CD3A8(s32, s32, f32, s32, s32, s32);
+    s32 func_800CD544(s32, f32, s32, s32);
+    void func_800CE2DC(void);
+    void func_800E9708(void);
+    void func_800E9E4C(u8 *, s32 *);
+    s32 func_800EA05C(void);
+    void func_800EFB58(void *, void *, void *);
+    void *heap_alloc(s32);
+    s32 pos[3];
+    s32 relative[3];
+    s32 i;
+    s32 *p;
+    f32 distance;
+
+    *(s16 *)(arg0 + 0x3C) = _gcmapDll_entrypoint_5();
+    *(f32 *)(arg0 + 0x40) = 1.0f / *(s16 *)(arg0 + 0x3C);
+    func_800BEC4C((s32 *)(arg0 + 4), (s32 *)(arg0 + 0x10), *(s16 *)(arg0 + 0x3C));
+    for (i = 0, p = (s32 *)arg0; i != 3; i++, p++) {
+        p[10] = p[4] - p[1] + 1;
+    }
+    *(s32 *)(arg0 + 0x1C) = *(s32 *)(arg0 + 0x28);
+    *(s32 *)(arg0 + 0x20) = *(s32 *)(arg0 + 0x1C) * *(s32 *)(arg0 + 0x2C);
+    *(s32 *)(arg0 + 0x24) = *(s32 *)(arg0 + 0x20) * *(s32 *)(arg0 + 0x30);
+    *(void **)arg0 = heap_alloc(*(s32 *)(arg0 + 0x24) * 8);
+    *(void **)(arg0 + 0x44) = heap_alloc(*(s32 *)(arg0 + 0x24));
+    for (pos[0] = *(s32 *)(arg0 + 4); pos[0] <= *(s32 *)(arg0 + 0x10); pos[0]++) {
+        for (pos[1] = *(s32 *)(arg0 + 8); pos[1] <= *(s32 *)(arg0 + 0x14); pos[1]++) {
+            for (pos[2] = *(s32 *)(arg0 + 0xC); pos[2] <= *(s32 *)(arg0 + 0x18); pos[2]++) {
+                func_800EFB58(relative, pos, arg0 + 4);
+                func_800E9E4C((u8 *)(*(u8 (**)[8])arg0 + relative[0] + relative[1] * *(s32 *)(arg0 + 0x1C) + relative[2] * *(s32 *)(arg0 + 0x20)), pos);
+            }
+        }
+    }
+    func_800E9E4C(arg0 + 0x34, 0);
+    distance = func_800EA05C() == 0xD7 ? 1000.0f : 200.0f;
+    func_800CD230(distance);
+    func_800C6A08(func_800CD23C, func_800CD3A8, func_800CD544);
+    func_800CE2DC();
+    func_800E9708();
+}
 
 /* extern */
 
