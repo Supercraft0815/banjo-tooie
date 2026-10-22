@@ -21,7 +21,63 @@ OSThread *chtiptup_entrypoint_2(void)
     return (OSThread *) D_808014D8_chtiptup;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tiptup/func_80800024_chtiptup.s")
+void func_80800024_chtiptup(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    s32 func_8001210C(s32);
+    int func_800D9154(f32 *, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    s32 func_80101DDC(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_80105834(Actor *);
+    s32 func_80105A5C(Actor *);
+    f32 func_80105AE8(Actor *);
+    void func_808004C4_chtiptup(Actor *);
+    void func_80800614_chtiptup(f32 *, f32 *, s32, f32, s32 *);
+    void func_80800694_chtiptup(Actor *);
+    extern u32 D_80801520_chtiptup[];
+    extern s32 D_8080152C_chtiptup[];
+    extern u32 D_8080154C_chtiptup[];
+    extern u32 D_80801558_chtiptup[];
+    extern s32 D_80801568_chtiptup[];
+    s32 *sp3C;
+    f32 sp30[3];
+
+    _sudeflect_entrypoint_1(arg0->position, 250.0f, 0.0f, 70.0f, 14);
+    func_80800694_chtiptup(arg0);
+    switch (arg0->unk70_10) {
+    case 1:
+        func_808004C4_chtiptup(arg0);
+        break;
+    case 4:
+        if (_subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801520_chtiptup, 0.7f)) {
+            func_80800614_chtiptup(arg0->position, arg0->position, 8, 1.5f, D_8080152C_chtiptup);
+        }
+        if (func_80101DDC(arg0)) {
+            func_80102424(arg0, 5);
+            _subaddieDll_entrypoint_4(arg0, 1);
+        }
+        break;
+    case 5:
+        if (!func_80105A5C(arg0) && func_800D9154(&arg0->unk58, 2.4f)) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801558_chtiptup);
+        }
+        if (!func_8001210C(3)) {
+            sp3C = func_80105AE8(arg0) < 0.45f ? NULL : D_80801568_chtiptup;
+            func_800EE7F8(sp30, arg0->position);
+            func_800EF1B8(sp30, arg0->rotation[1], 50.0f);
+            sp30[1] -= 40.0f;
+            func_80800614_chtiptup(arg0->position, sp30, 3, 1.0f, sp3C);
+        }
+        func_80105834(arg0);
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, func_80105A5C(arg0) == 0, D_8080154C_chtiptup);
+        break;
+    }
+}
 
 /* extern */
 
