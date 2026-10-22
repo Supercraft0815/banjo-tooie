@@ -230,7 +230,54 @@ OSThread *chfantasyeyeball_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_8080182C_chfantasyeyeball.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80801A50_chfantasyeyeball.s")
+s32 func_80801A50_chfantasyeyeball(Actor *arg0, s32 arg1, Unk80132ED0 *volatile arg2) {
+    void _chskeletonexplode_entrypoint_3(Actor *, s32, s32);
+    void _chskeletonexplode_entrypoint_4(Actor *, s32);
+    f32 func_800DC178(f32, f32);
+    void func_800DF744(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    void func_800FFA88(Unk80132ED0 *);
+    void *func_80101080(void);
+    s32 func_801015D0(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80801BC4_chfantasyeyeball(Actor *, f32 *);
+    f32 sp2C[3];
+    Actor *sp28;
+
+    switch (arg1) {
+    case 0x3E:
+        func_800F5A00(func_800F54E4(), sp2C);
+        func_80801BC4_chfantasyeyeball(arg0, sp2C);
+        return 1;
+    case 0x3F:
+        if (((u16 *)&(*(Unk80132ED0 **)&arg2)->unk18)[0] & 1) {
+            func_80801BC4_chfantasyeyeball(arg0, func_80106790(*(Unk80132ED0 **)&arg2)->position);
+            return 1;
+        }
+        func_80801BC4_chfantasyeyeball(arg0, NULL);
+        return 1;
+    case 0xF:
+        sp28 = func_80106790(func_80101080());
+        _chskeletonexplode_entrypoint_3(sp28, 3, 2);
+        _chskeletonexplode_entrypoint_4(sp28, 6);
+        func_800FFA88(arg0->unk0);
+        return 1;
+    case 0x1F:
+        func_801015D0(arg0);
+        func_800DF744(3, 1);
+        return 1;
+    case 0x95:
+        arg0->unk54 = func_800DC178(180.0f, 360.0f);
+        arg0->unk50 = func_800DC178(180.0f, 360.0f);
+        func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+        ((f32 *)arg0->actorData)[3] = 0.0f;
+        return 1;
+    default:
+        return 0;
+    }
+}
 
 void func_80801BC4_chfantasyeyeball(Actor *arg0, f32 *arg1) {
     void _chskeletonexplode_entrypoint_7(Actor *, f32 *);
