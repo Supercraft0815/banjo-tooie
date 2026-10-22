@@ -35,7 +35,35 @@ f32 func_80800000_idwibble(void *arg0, void *arg1, void *arg2) {
     return temp_f12;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/wibble/idwibble_entrypoint_0.s")
+void idwibble_entrypoint_0(s32 arg0, u32 arg1, u8 *arg2, s32 arg3, void *arg4) {
+    f32 height;
+    s32 shade;
+    f32 offsets[2];
+
+    arg3 = arg3 * 0x10 + arg1;
+    if (arg1 < (u32)arg3) {
+        do {
+            height = func_80800000_idwibble(arg4, (void *)arg1, offsets);
+            if (*(u8 *)((s8 *)arg4 + 0x31) == 1) {
+                *(s16 *)(arg2 + 2) = (s16)(s32)((f32)*(s16 *)((s8 *)arg4 + 0x34) + ((f32)*(s16 *)((s8 *)arg4 + 0x18) + height));
+            } else if (*(u8 *)((s8 *)arg4 + 0x31) == 2) {
+                *(s16 *)(arg2 + 2) = (s16)(s32)((f32)*(s16 *)((s8 *)arg4 + 0x34) + ((f32)*(s16 *)(arg1 + 2) + height));
+            }
+            if (*(u8 *)((s8 *)arg4 + 0x32) == 1) {
+                shade = (s32)((height * *(f32 *)((s8 *)arg4 + 0x20)) + (f32)(u32)*(u8 *)((s8 *)arg4 + 0x30));
+                arg2[0xC] = ((s32)(*(u8 *)(arg1 + 0xC) * shade)) >> 8;
+                arg2[0xD] = ((s32)(*(u8 *)(arg1 + 0xD) * shade)) >> 8;
+                arg2[0xE] = ((s32)(*(u8 *)(arg1 + 0xE) * shade)) >> 8;
+            }
+            if (*(u8 *)((s8 *)arg4 + 0x33)) {
+                *(s16 *)(arg2 + 8) = (s32)((f32)*(s16 *)(arg1 + 8) + *(f32 *)((s8 *)arg4 + 0x1C) * offsets[0]);
+                *(s16 *)(arg2 + 0xA) = (s32)((f32)*(s16 *)(arg1 + 0xA) + *(f32 *)((s8 *)arg4 + 0x1C) * offsets[1]);
+            }
+            arg1 += 0x10;
+            arg2 += 0x10;
+        } while (arg1 < (u32)arg3);
+    }
+}
 
 void idwibble_entrypoint_1(s32 arg0) 
 {
