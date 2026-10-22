@@ -68,7 +68,77 @@ void func_80800168_bsbpeck(PlayerState *self) {
     ((s32 *)self)[0x58]++;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bpeck/bsbpeck_entrypoint_1.s")
+void bsbpeck_entrypoint_1(PlayerState *self) {
+    typedef struct anctrl_s AnimCtrl;
+    int anctrl_isAt(AnimCtrl *, f32);
+    s32 anctrl_isStopped(AnimCtrl *);
+    void anctrl_reset(AnimCtrl *);
+    void anctrl_setDuration(AnimCtrl *, f32);
+    void anctrl_setIndex();
+    void anctrl_setPlaybackType(AnimCtrl *, s32);
+    void anctrl_setSmoothTransition(AnimCtrl *, s32);
+    void anctrl_setStart(AnimCtrl *, f32);
+    void anctrl_start(AnimCtrl *);
+    void func_8008B188(AnimCtrl *, s32);
+    s32 _bswalk_entrypoint_1();
+    AnimCtrl *baanim_getAnimCtrlPtr(PlayerState *);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void func_8009FE58(PlayerState *);
+    f32 func_800D8FF8(void);
+    s32 nextState = 0;
+    AnimCtrl *control = baanim_getAnimCtrlPtr(self);
+
+    _bswalk_entrypoint_1(self);
+    if (((s32 *)self)[0x59] != 0) {
+        baphysics_set_target_horizontal_velocity(self, baphysics_get_target_horizontal_velocity(self) * 0.1f);
+    }
+    switch (((s32 *)self)[0x57]) {
+        case 0:
+            if (anctrl_isAt(control, 0.9126f)) {
+                anctrl_setIndex(control, 0x19);
+                anctrl_setStart(control, 0.0f);
+                anctrl_setDuration(control, 0.35f);
+                anctrl_setPlaybackType(control, 2);
+                anctrl_start(control);
+                ((s32 *)self)[0x57] = 1;
+                ((f32 *)self)[0x5B] = 0.5f;
+            }
+            break;
+        case 1:
+            if (anctrl_isAt(control, 0.1621f)) {
+                func_80800168_bsbpeck(self);
+            }
+            if (anctrl_isAt(control, 0.7f)) {
+                func_80800168_bsbpeck(self);
+            }
+            ((f32 *)self)[0x5B] -= func_800D8FF8();
+            if (((f32 *)self)[0x5B] < 0.0f) {
+                anctrl_reset(control);
+                anctrl_setSmoothTransition(control, 0);
+                anctrl_setIndex(control, 0x1A);
+                func_8008B188(control, 0);
+                anctrl_setDuration(control, 0.2f);
+                anctrl_setPlaybackType(control, 1);
+                anctrl_start(control);
+                ((s32 *)self)[0x57] = 2;
+            }
+            break;
+        case 2:
+            if (anctrl_isStopped(control)) {
+                nextState = 0x2F;
+            }
+            break;
+    }
+    if (player_isStable(self)) {
+        func_8009FE58(self);
+        nextState = 1;
+    }
+    if (player_inWater(self)) {
+        nextState = 0x4C;
+    }
+    bs_setState(self, nextState);
+}
 
 /* extern */
 
