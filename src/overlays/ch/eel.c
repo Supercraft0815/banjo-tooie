@@ -188,7 +188,49 @@ void func_80801120_cheel(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_80801200_cheel.s")
+/* extern */
+
+void func_80801200_cheel(Actor *arg0, s32 arg1) {
+    s32 func_8008FD48();
+    f32 func_800DC178(f32, f32);
+    void func_80102424(Actor *, s32);
+    void func_8010A570(Actor *);
+    arg0->unk64_20 = 1;
+    func_80102424(arg0, arg1);
+    switch (arg1) {
+    case 1:
+        arg0->unk54 = arg0->rotation[1] + func_800DC178(-90.0f, 90.0f);
+        arg0->unk50 = arg0->rotation[0] + func_800DC178(-90.0f, 90.0f);
+        return;
+    case 2:
+        func_80801120_cheel(arg0);
+        return;
+    case 3:
+        if (func_8008FD48() == 0xC) {
+            arg0->unk70_10 = 5;
+            return;
+        }
+    default:
+        return;
+    case 4:
+        func_80801120_cheel(arg0);
+        return;
+    case 8:
+        func_8010A570(arg0);
+        return;
+    case 6:
+        func_8010A570(arg0);
+        arg0->unk64_19 = 0;
+        return;
+    case 9:
+    case 10:
+    case 11:
+    case 12:
+        func_8010A570(arg0);
+        arg0->unk64_20 = 0;
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_80801330_cheel.s")
 
