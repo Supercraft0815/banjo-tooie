@@ -217,6 +217,44 @@ void func_80800C58_chhoneyb()
     func_8010C964();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800C78_chhoneyb.s")
+/* extern */
+
+s32 func_80800C78_chhoneyb(void *arg0, s32 arg1, void *volatile arg2) {
+    s32 _glcutDll_entrypoint_20();
+    void _subaddiefade_entrypoint_3(Actor *);
+    void func_800DF744(s32, s32);
+    void func_800FFAB0(Actor *);
+    void func_8010DC50(s32);
+    void func_8010DCB4(s32);
+    int func_8010DD20(u8 *, s32, u8 *);
+    Actor *actor = arg0;
+
+    switch (arg1) {
+    case 0x95:
+        if (func_80800B78_chhoneyb() >= (s32)actor->unk74_7 - 0x32 ||
+            _glcutDll_entrypoint_20(actor)) {
+            func_800FFAB0(actor);
+        }
+        break;
+    case 0x29:
+        func_8010DC50(2);
+        break;
+    case 0x2A:
+        func_8010DCB4(2);
+        break;
+    case 0x1F:
+        func_8010DD20(arg0, 2, arg2);
+        func_800DF744(3, 0);
+        break;
+    case 0x23:
+        if ((s32)arg2 >= (s32)actor->unk74_7 - 0x32) {
+            _subaddiefade_entrypoint_3(actor);
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/chhoneyb_entrypoint_2.s")
