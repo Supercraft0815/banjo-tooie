@@ -14,7 +14,58 @@ OSThread *chklungophial_entrypoint_1(void)
     return (OSThread *) D_80800C78_chklungophial;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/phial/func_80800018_chklungophial.s")
+void func_80800018_chklungophial(Actor *arg0) {
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8E84(s32, u32 *);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFD24(f32 *);
+    u32 func_800F54E4(void);
+    void *func_80100094(Actor *, u32);
+    void func_80108A30(s32, void *, f32, s32);
+    void func_8010D12C(s32, f32 *, f32, s32);
+    extern u32 D_80800CC0_chklungophial[];
+    struct Motion {
+        f32 unused[3];
+        f32 duration;
+        f32 velocity[3];
+    };
+    struct Phial {
+        f32 position[3];
+        s32 effect;
+        f32 scale;
+    };
+    s32 i;
+    f32 target[3];
+    struct Phial *data;
+    f32 origin[3];
+
+
+    data = func_80100094(arg0, 0);
+    func_8010D12C(func_800F54E4(), target, arg0->unk58, 5);
+    for (i = 0; i < 3; i++) {
+        ((struct Motion *)arg0->actorData)->velocity[i] =
+            (target[i] - arg0->position[i]) / ((struct Motion *)arg0->actorData)->duration;
+    }
+    ((struct Motion *)arg0->actorData)->velocity[1] +=
+        400.0f * ((struct Motion *)arg0->actorData)->duration;
+    arg0->unk50 = (func_800DC298(0.5f) ? -1.0f : 1.0f) * func_800DC178(250.0f, 350.0f);
+    arg0->unk54 = (func_800DC298(0.5f) ? -1.0f : 1.0f) * func_800DC178(150.0f, 250.0f);
+    func_800EE7F8(data->position, arg0->position);
+    data->scale = 0.15f;
+    data->effect = func_800C8A98();
+    func_800C8E84(data->effect, D_80800CC0_chklungophial);
+    func_800C8E54(data->effect, 250.0f, 600.0f);
+    func_800C8CB8(data->effect, arg0->position);
+    if (_subaddiefind_entrypoint_2(0x423, 0) == NULL) {
+        func_800EFD24(origin);
+        func_80108A30(0x423, origin, 0.0f, 50);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/phial/func_80800204_chklungophial.s")
 
