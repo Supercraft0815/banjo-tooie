@@ -432,7 +432,47 @@ void func_80801F98_chaliendad(Actor *arg0) {
     func_80802284_chaliendad(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80802058_chaliendad.s")
+void func_80802058_chaliendad(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    void func_800FFAB0(Actor *);
+    s32 func_80101180(s32, s32, s32);
+    void func_80102424(Actor *, s32);
+    void func_80802218_chaliendad(Actor *);
+    void func_80802284_chaliendad(Actor *);
+    s32 sp34;
+    s32 pad30;
+    s32 sp2C;
+    s32 pad28;
+
+    func_80802218_chaliendad(arg0);
+    switch (arg0->unk70_10) {
+        case 6:
+            break;
+        case 5:
+            sp34 = func_800D9078(&arg0->unk58);
+            func_800EFE50(arg0->position, (f32 *)&arg0->actorData[4],
+                (f32 *)arg0->actorData,
+                func_800F12D4(arg0->unk58, 0.0f, 6.0f, 1.0f, 0.0f));
+            if (sp34) {
+                func_80101180(0x45A, 0x31, arg0->unk6C_9);
+                func_80102424(arg0, 6);
+            }
+            break;
+        case 7:
+            sp2C = func_800D9078(&arg0->unk58);
+            ((f32 *)arg0->actorData)[3] += func_800D8FF8() * 300.0f;
+            arg0->position[1] += ((f32 *)arg0->actorData)[3] * func_800D8FF8();
+            if (sp2C) {
+                func_80101180(0x45A, 0x2C, 0);
+                func_800FFAB0(arg0);
+            }
+            break;
+    }
+    func_80802284_chaliendad(arg0);
+}
 
 void func_80802188_chaliendad(Actor *arg0, s32 arg1) {
     void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
