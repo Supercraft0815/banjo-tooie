@@ -13,7 +13,90 @@ void rtlight_entrypoint_0(void* arg0)
 {
     heap_free(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/rt/light/rtlight_entrypoint_1.s")
+void *rtlight_entrypoint_1(void *arg0, void *arg1, s32 arg2) {
+    typedef struct {
+        s16 origin[3];
+        u16 pad[5];
+        u16 count;
+        s16 scale;
+        s32 vertexCount;
+    } Source;
+    typedef struct {
+        u8 lights[15];
+        s8 dirty;
+        s16 min[3];
+        s16 max[3];
+        u16 first;
+        u16 count;
+    } Cell;
+    typedef struct {
+        Source *source;
+        s16 scale;
+        u16 count;
+        f32 inverseScale;
+    } Header;
+    typedef struct {
+        s16 pos[3];
+        s16 index;
+        u8 color[3];
+        u8 pad;
+    } Vertex;
+    typedef struct { u16 first; u16 count; } Pair;
+    void *func_800B2190(void *);
+    void *heap_alloc(s32);
+    Header *result;
+    Source *source = arg0;
+    Vertex *vertexEnd;
+    Cell *cell;
+    u8 *base;
+    Cell *end;
+    Vertex *vertex;
+    u8 *vertices;
+    u16 count;
+    Pair *input;
+    s16 *indices;
+    u8 *color;
+    s32 coords[3];
+    s32 i;
+
+    count = source->count;
+    result = heap_alloc(count * sizeof(Cell) + source->vertexCount * sizeof(Vertex) + sizeof(Header));
+    *(Source **)result = source;
+    *(s16 *)((u8 *)result + 4) = *(s16 *)((u8 *)source + 18);
+    *(u16 *)((u8 *)result + 6) = count;
+    result->inverseScale = 1.0f / *(s16 *)((u8 *)source + 18);
+    input = (Pair *)(source + 1);
+    base = (u8 *)(result + 1);
+    cell = (Cell *)base;
+    end = (Cell *)((u8 *)(count + (Cell *)result) + sizeof(Header));
+    if (cell < end) {
+      do {
+        if (input->count == 0) {
+            cell->dirty = -1;
+        } else {
+            for (i = 0; i < 15; i++) {
+                cell->lights[i] = 0;
+            }
+            func_80800000_rtlight(result->source, (s32)((u8 *)cell - base) >> 5, coords);
+            for (i = 0; i < 3; i++) {
+                cell->min[i] = coords[i] * source->scale - 20;
+                cell->max[i] = (coords[i] + 1) * source->scale + 20;
+            }
+            cell->first = ((u16 *)input)[0];
+            cell->count = ((u16 *)input)[1];
+            cell->dirty = 0;
+        }
+        cell++;
+        input++;
+      } while (cell < end);
+    }
+    vertex = (Vertex *)cell;
+    vertexEnd = vertex + source->vertexCount;
+    indices = (s16 *)input;
+    vertices = func_800B2190(arg1);
+    if ((u32)vertex < (u32)vertexEnd) { do { base = (u8 *)vertex; vertex++; vertex[-1].index = *indices; i = 0; color = vertices + *indices * 16; do { base[8 + i] = color[12 + i]; i++; } while (i != 3); indices++; } while ((u32)vertex < (u32)vertexEnd); }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/rt/light/func_8080036C_rtlight.s")
 
