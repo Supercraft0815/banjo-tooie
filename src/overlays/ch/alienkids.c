@@ -92,7 +92,66 @@ void func_80800408_chalienkids(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80800DB8_chalienkids.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80800FA4_chalienkids.s")
+void func_80800FA4_chalienkids(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 _glcutDll_entrypoint_20();
+    void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
+    s32 func_800DA298(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800FFAB0(u8 *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_80103014(u8 *);
+    void func_80103110(void *, s32);
+    void func_8010A85C(u8 *, s32);
+    typedef union {
+        Actor actor;
+        struct {
+            u8 pad[0x94];
+            u32 pad94_17 : 15;
+            u32 unk94_16 : 1;
+            u32 pad94_0 : 16;
+        } flags;
+    } InitActor;
+    f32 *data;
+    s32 ready;
+
+    data = func_80100094((Actor *)arg0, 0);
+    ready = func_800DA298(0x372) != 0;
+    if (ready) {
+        ready = func_800DA298(0x373) != 0;
+        if (ready) {
+            ready = func_800DA298(0x374) != 0;
+        }
+    }
+    if (ready && !_glcutDll_entrypoint_20()) {
+        func_800FFAB0((u8 *)arg0);
+        return;
+    }
+    ((InitActor *)arg0)->flags.unk94_16 = 1;
+    _subaddiemarker_entrypoint_1((Actor *)arg0, 0x154, arg1, data, 1);
+    if (_glcutDll_entrypoint_20()) {
+        func_8010A85C((u8 *)arg0, 1);
+        func_800EE7F8(((Actor *)arg0)->position, data);
+        ((Actor *)arg0)->rotation[1] = data[4];
+        func_80102424((Actor *)arg0, 0x10);
+        func_80103014((u8 *)arg0);
+        return;
+    }
+    if (!func_800DA298(0x376)) {
+        ((Actor *)arg0)->unk64_16 = 0;
+        func_80103110((Actor *)arg0, 0);
+        return;
+    }
+    if (func_800DA298(arg2)) {
+        func_8010A85C((u8 *)arg0, 1);
+        func_800EE7F8(((Actor *)arg0)->position, data);
+        ((Actor *)arg0)->rotation[1] = data[4];
+        func_80102424((Actor *)arg0, 0x10);
+        func_80103014((u8 *)arg0);
+        return;
+    }
+    func_80102424((Actor *)arg0, arg3);
+}
 
 void func_80801138_chalienkids(Actor* arg0)
 {
