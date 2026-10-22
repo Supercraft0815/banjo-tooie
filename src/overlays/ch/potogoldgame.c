@@ -335,7 +335,43 @@ void chpotogoldgame_entrypoint_2(s32 arg0, Unk80132ED0 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80801A7C_chpotogoldgame.s")
+s32 func_80801A7C_chpotogoldgame(Actor *arg0) {
+    s32 sp24;
+    s32 marker;
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    s32 func_800BEA88(s32);
+    int func_800D91EC(f32 *, f32);
+    s32 func_800DA298(s32);
+    extern s32 _chpotogoldgame_entrypoint_3;
+    s32 *volatile sp1C;
+    s32 temp_v0;
+
+    sp24 = 1;
+    if ((func_800DA298(0x9F6) != 0) || (func_800DA298(0x1DB) != 0)) {
+        sp24 = func_800D91EC((f32 *)&arg0->actorData[0], 2.0f) & 1;
+    }
+    if ((func_800DA298(0x9F7) != 0) || (func_800DA298(0x1DB) != 0)) {
+        sp24 &= func_800D91EC((f32 *)&arg0->actorData[5], 2.0f);
+    }
+    if ((func_800DA298(0x9F8) != 0) || (func_800DA298(0x1DB) != 0)) {
+        sp24 &= func_800D91EC((f32 *)&arg0->actorData[4], 2.0f);
+    }
+    if ((func_800DA298(0x9F9) != 0) || (func_800DA298(0x1DB) != 0)) {
+        sp24 &= func_800D91EC((f32 *)&arg0->actorData[6], 2.0f);
+    }
+    if ((func_800DA298(0x9F6) != 0) && (func_800DA298(0x9F7) != 0) && (func_800DA298(0x9F8) != 0) && (func_800DA298(0x9F9) != 0)) {
+        sp24 &= func_800D91EC((f32 *)&arg0->actorData[1], 2.0f);
+    }
+    temp_v0 = func_800BEA88(0);
+    marker = arg0->unk0;
+    sp1C = &_chpotogoldgame_entrypoint_3;
+    _glid_entrypoint_0(temp_v0, 0x18, &_chpotogoldgame_entrypoint_3, marker);
+    _glid_entrypoint_0(func_800BEA88(0), 0x15, sp1C, arg0->unk0);
+    _glid_entrypoint_0(func_800BEA88(0), 0x17, sp1C, arg0->unk0);
+    _glid_entrypoint_0(func_800BEA88(0), 0x16, sp1C, arg0->unk0);
+    _glid_entrypoint_0(func_800BEA88(0), 0x19, sp1C, arg0->unk0);
+    return sp24;
+}
 
 void chpotogoldgame_entrypoint_3(s32 arg0, s32 arg1, Vtx *arg2, s32 arg3, s32 arg4) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
