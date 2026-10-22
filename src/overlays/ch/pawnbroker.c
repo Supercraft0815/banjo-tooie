@@ -146,7 +146,69 @@ s32 func_808007BC_chpawnbroker(Actor *arg0, void *arg1, s32 *arg2, s32 arg3, s32
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_8080083C_chpawnbroker.s")
+void func_8080083C_chpawnbroker(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _subaddieitem_entrypoint_2(s32);
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800D0B68(u32, u32);
+    s32 func_800DA298(s32);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80800AA8_chpawnbroker(void *);
+    void func_80800B88_chpawnbroker(Actor *, s32, s32);
+    s32 func_80800C00_chpawnbroker(s32, s32);
+    s32 sp34;
+    s32 sp30;
+    s32 state;
+
+    switch (arg1) {
+        case 0xFE4:
+        case 0xFE6:
+        case 0x105B:
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xFEA, 0x4E, arg0->position, 0x53);
+            break;
+        case 0xFEA:
+            if (func_800DA298(0xB4)) {
+                sp34 = func_80800C00_chpawnbroker(5, arg2);
+                _subaddiedialog_entrypoint_11(arg0->unk0, sp34, 0xE, arg0->position, 0x53);
+                if (sp34 == 0x1040) {
+                    arg0->unk64_20 = 0;
+                }
+            } else {
+                sp30 = func_80800C00_chpawnbroker(0x14, arg2);
+                _subaddiedialog_entrypoint_11(arg0->unk0, sp30, 0xE, arg0->position, 0x53);
+                if (sp30 == 0x1040) {
+                    arg0->unk64_20 = 1;
+                }
+            }
+            break;
+        case 0x1040:
+            _subaddieitem_entrypoint_2(func_80100094(arg0, 0));
+            func_80102424(arg0, 3);
+            break;
+        case 0xFE8:
+            func_80102424(arg0, arg0->unk64_20 ? 4 : 7);
+            func_80102424(func_80106790(arg0->unk3C), 2);
+            func_80800B88_chpawnbroker(arg0, 3, 0x30);
+            break;
+        default:
+            if (func_800DA298(0xB5)) {
+                state = 8;
+            } else if (func_800DA298(0xB4)) {
+                if (func_800D0B68(0x27, 1) && func_800D0A9C(0xA, 4)) {
+                    state = 6;
+                } else {
+                    state = 5;
+                }
+            } else {
+                state = 2;
+            }
+            func_80800AA8_chpawnbroker(arg0);
+            func_80102424(arg0, state);
+            break;
+    }
+}
 
 /* extern */
 
