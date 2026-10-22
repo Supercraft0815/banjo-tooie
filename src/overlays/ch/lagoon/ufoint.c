@@ -247,7 +247,104 @@ void func_80800878_chlagoonufoint(s32 arg0, s32 arg1) {
     func_800C4104(arg1, 0x3F800000, 0x55F0, arg0 + 4, 500.0f, 1000.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_808008C8_chlagoonufoint.s")
+void func_808008C8_chlagoonufoint(Actor *arg0) {
+    s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
+    s32 func_8008FB10(f32 *, f32, f32, f32);
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8D4C(s32, f32 *);
+    void func_800C8E84(s32, u32 *);
+    void func_800C8F64(s32, s32);
+    void func_800C8FE0(s32, s32);
+    s32 func_800DA298(s32);
+    f32 func_800DC0C0(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101E4C(Actor *, f32 *);
+    s32 func_80101EE4(void *, f32);
+    f32 func_80101F24(Actor *);
+    void func_80102424(Actor *, s32);
+    extern f32 D_80801B1C_chlagoonufoint[];
+    extern f32 D_80801B2C_chlagoonufoint[];
+    extern f32 D_80801B38_chlagoonufoint[];
+    extern u32 D_80801B44_chlagoonufoint[];
+    extern f32 D_80801B50_chlagoonufoint[];
+    f32 progress;
+    s32 *sp50;
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp2C[3];
+
+    func_8008FB10(arg0->position, 240.0f, 0.0f, 100.0f);
+    switch (arg0->unk70_10) {
+        case 1:
+            func_80800744_chlagoonufoint((s32)arg0);
+        case 2:
+            switch (arg0->unk6C_9) {
+                case 0x1C6:
+                    if (func_80101E4C(arg0, D_80801B1C_chlagoonufoint)) {
+                        func_80800878_chlagoonufoint((s32)arg0, 0x5C1);
+                    }
+                    break;
+                case 0x1C7:
+                    if (func_80101E4C(arg0, D_80801B2C_chlagoonufoint)) {
+                        func_80800878_chlagoonufoint((s32)arg0, 0x5BF);
+                    }
+                    break;
+                default:
+                    if (func_80101E4C(arg0, D_80801B38_chlagoonufoint)) {
+                        func_80800878_chlagoonufoint((s32)arg0, 0x5C0);
+                    }
+                    break;
+            }
+            if (func_800DA298(0x9F0)) {
+                func_80102424(arg0, 3);
+                if (arg0->unk6C_9 == 0x1C7) {
+                    func_80101EE4(arg0, func_800DC0C0());
+                }
+            }
+            break;
+        case 3:
+            if (arg0->unk6C_9 == 0x1C7) {
+                progress = func_80101F24(arg0);
+                arg0->unk79_4 = 0;
+                arg0->unk6C_0 = 0;
+                if (progress > 0.05f && progress < 0.120000005f) {
+                    arg0->unk79_4 = 1;
+                } else if (progress > 0.23f && progress < 0.3f) {
+                    arg0->unk6C_0 = 1;
+                } else if ((progress > 0.39f && progress < 0.45000002f) ||
+                           (progress > 0.48f && progress < 0.53999996f) ||
+                           (progress > 0.58000004f && progress < 0.64f)) {
+                    arg0->unk79_4 = arg0->unk6C_0 = 1;
+                }
+                sp50 = func_80100094(arg0, 0);
+                if (*sp50 == 0) {
+                    *sp50 = func_800C8A98();
+                    func_800C8E84(*sp50, D_80801B44_chlagoonufoint);
+                    func_800C8D4C(*sp50, D_80801B50_chlagoonufoint);
+                    func_800C8F64(*sp50, 1);
+                }
+                _subaddieskeleton_entrypoint_3(arg0->unk0, 4, sp38);
+                _subaddieskeleton_entrypoint_3(arg0->unk0, 5, sp44);
+                if (arg0->unk79_4 && arg0->unk6C_0) {
+                    func_800EFE50(sp2C, sp44, sp38, 0.5f);
+                } else if (arg0->unk79_4) {
+                    func_800EE7F8(sp2C, sp44);
+                } else {
+                    func_800EE7F8(sp2C, sp38);
+                }
+                func_800C8CB8(*sp50, sp2C);
+                func_800C8FE0(*sp50, (arg0->unk79_4 || arg0->unk6C_0) ? 1 : 0);
+                if (arg0->unk79_4 || arg0->unk6C_0) {
+                    func_80800820_chlagoonufoint(arg0, sp2C);
+                }
+            }
+            func_80800744_chlagoonufoint((s32)arg0);
+            break;
+    }
+}
 
 void func_80800CD4_chlagoonufoint(Actor *arg0, void *arg1) {
     void func_800DF3E0(void);
