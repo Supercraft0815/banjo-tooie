@@ -915,7 +915,84 @@ void func_808021E4_chgameselect(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x34))) = heap_alloc(0x40);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802248_chgameselect.s")
+void func_80802248_chgameselect(Actor *arg0) {
+    int _gczoombox_entrypoint_10();
+    s32 _gczoombox_entrypoint_11(s32);
+    void _gczoombox_entrypoint_12();
+    void _gczoombox_entrypoint_15();
+    void _gczoombox_entrypoint_16(s32);
+    void _gczoombox_entrypoint_17();
+    void _gczoombox_entrypoint_18();
+    int _gczoombox_entrypoint_32();
+    s32 _gczoombox_entrypoint_4();
+    int _gczoombox_entrypoint_7();
+    int _gczoombox_entrypoint_8();
+    s32 _gczoombox_entrypoint_9(s32);
+    void func_800DB8BC(char *, s32);
+    void func_800E6A58(char *, char);
+    void func_800E73D4(s8 *);
+    s32 func_80803738_chgameselect(s32, s32 *, s32 *);
+    void func_80803E94_chgameselect(char *, s32, s32, s32, s32 *);
+    extern char *B_80808558_chgameselect[];
+    s32 state = 0;
+    s32 time;
+    s32 count;
+    s32 value;
+
+    if (arg0->unk64_20) {
+        switch (arg0->unk79_4) {
+            case 0:
+            case 1:
+            case 2:
+                state = arg0->unk79_4 + 1;
+                break;
+        }
+    }
+    if (arg0->actorData[0]) {
+        _gczoombox_entrypoint_18(arg0->actorData[4]);
+        _gczoombox_entrypoint_16(arg0->actorData[4]);
+        _gczoombox_entrypoint_9(arg0->actorData[4]);
+        _gczoombox_entrypoint_11(arg0->actorData[4]);
+    } else if (state) {
+        if (state != (s32)arg0->actorData[5]) {
+            _gczoombox_entrypoint_18(arg0->actorData[4]);
+            _gczoombox_entrypoint_16(arg0->actorData[4]);
+            _gczoombox_entrypoint_9(arg0->actorData[4]);
+            _gczoombox_entrypoint_11(arg0->actorData[4]);
+            func_800E73D4((s8 *)arg0->actorData[3]);
+            func_800E73D4((s8 *)arg0->actorData[7]);
+            value = arg0->unk79_4 + 1;
+            if (func_80803738_chgameselect(arg0->unk79_4, &time, &count)) {
+                func_80803E94_chgameselect((char *)arg0->actorData[3], 0x18F3, 1, 1, &value);
+                func_800DB8BC((char *)arg0->actorData[3], time);
+                func_800E6A58((char *)arg0->actorData[3], ',');
+                value = count;
+                if (count == 1) {
+                    func_80803E94_chgameselect((char *)arg0->actorData[7], 0x18F3, 3, 1, &value);
+                } else {
+                    func_80803E94_chgameselect((char *)arg0->actorData[7], 0x18F3, 2, 1, &value);
+                }
+            } else {
+                func_80803E94_chgameselect((char *)arg0->actorData[3], 0x18F3, 0, 1, &value);
+            }
+            _gczoombox_entrypoint_32(arg0->actorData[4]);
+            if (*(u8 *)arg0->actorData[7]) {
+                B_80808558_chgameselect[0] = (char *)arg0->actorData[3];
+                B_80808558_chgameselect[1] = (char *)arg0->actorData[7];
+                _gczoombox_entrypoint_7(arg0->actorData[4], 2, B_80808558_chgameselect);
+            } else {
+                _gczoombox_entrypoint_8(arg0->actorData[4], (char *)arg0->actorData[3]);
+            }
+        }
+    } else {
+        _gczoombox_entrypoint_15(arg0->actorData[4]);
+        _gczoombox_entrypoint_17(arg0->actorData[4]);
+        _gczoombox_entrypoint_12(arg0->actorData[4]);
+        _gczoombox_entrypoint_10(arg0->actorData[4]);
+    }
+    arg0->actorData[5] = state;
+    _gczoombox_entrypoint_4(arg0->actorData[4]);
+}
 
 void func_80802620_chgameselect(void *arg0);
 
