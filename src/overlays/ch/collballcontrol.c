@@ -109,7 +109,7 @@ void func_808001B8_chcollballcontrol(Actor *arg0, s32 arg1) {
 void func_80800B5C_chcollballcontrol(u8 *arg0) {
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
-    s32 func_8080324C_chcollballcontrol(u8 *, s32);
+    void func_8080324C_chcollballcontrol();
     Actor *actor = (Actor *)arg0;
     ((f32 *)actor->actorData)[3] = func_8080009C_chcollballcontrol();
     ((f32 *)actor->actorData)[7] = func_800DC178(0.9f, 1.1f) * 45.0f;
@@ -332,7 +332,7 @@ void func_80801500_chcollballcontrol(Actor *arg0, s32 arg1) {
 
 void func_80801578_chcollballcontrol(Unk80132ED0 *arg0, s32 arg1) {
     Actor *func_80106790(Unk80132ED0 *);
-    s32 func_8080324C_chcollballcontrol(u8 *, s32);
+    void func_8080324C_chcollballcontrol();
     void *actor;
 
     actor = func_80106790(arg0);
@@ -999,7 +999,22 @@ OSThread *chcollballcontrol_entrypoint_4(void)
     return (OSThread *) D_80804FE8_chcollballcontrol;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_8080324C_chcollballcontrol.s")
+void func_8080324C_chcollballcontrol(Actor *arg0, s32 arg1) {
+    void func_80102424(Actor *, s32);
+
+    func_80102424(arg0, arg1);
+    switch (arg0->unk70_10) {
+        case 2:
+            if (arg0->unk64_29) {
+                arg0->unk70_10 = 10;
+                arg0->unk58 = 0.0f;
+            }
+            break;
+        case 8:
+            arg0->unk50 = 0.0f;
+            break;
+    }
+}
 
 void func_808032CC_chcollballcontrol(u8 *arg0, s32 arg1) {
     typedef struct { f32 v[3]; } Vec3;
@@ -1007,7 +1022,7 @@ void func_808032CC_chcollballcontrol(u8 *arg0, s32 arg1) {
     s32 func_800EE780(u8 *, u8 *, s32 *);
     s32 func_800EFCD8(s32 *, f32, s32);
     f32 func_80102D78(u8 *);
-    s32 func_8080324C_chcollballcontrol(u8 *, s32);
+    void func_8080324C_chcollballcontrol();
     f32 func_8080009C_chcollballcontrol();
     extern Vec3 D_80805098_chcollballcontrol;
     Vec3 sp2C = D_80805098_chcollballcontrol;
@@ -1143,7 +1158,7 @@ void func_80803F70_chcollballcontrol(Actor *arg0) {
     f32 func_80102D78();
     s32 func_80102CF4(Actor *, s32);
     void func_80102B2C(Actor *, f32);
-    s32 func_8080324C_chcollballcontrol(u8 *, s32);
+    void func_8080324C_chcollballcontrol();
 
     if (_sukickball_entrypoint_12((u8 *)func_80106790(arg0->unk3C), arg0->unk6C_0) == 2) {
         _sukickball_entrypoint_4(arg0->unk6C_0, arg0->actorData);
@@ -1191,7 +1206,7 @@ void func_8080405C_chcollballcontrol(u8 *arg0) {
     void func_800F7700(s32, s32, f32 *);
     void func_800F8294(s32, f32 *);
     f32 func_80102D78();
-    s32 func_8080324C_chcollballcontrol(u8 *, s32);
+    void func_8080324C_chcollballcontrol();
     u8 *parent;
     u8 *other;
     s32 i;
