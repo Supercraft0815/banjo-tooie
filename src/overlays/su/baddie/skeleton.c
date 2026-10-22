@@ -32,16 +32,16 @@ s32 subaddieskeleton_entrypoint_0(Actor *arg0, s32 arg1, f32 *arg2) {
 
 /* extern */
 
-void subaddieskeleton_entrypoint_1(Unk80132ED0 **arg0, s32 arg1, s32 arg2) {
-    void func_800DBEFC(s32 *, s32, s32);
+void subaddieskeleton_entrypoint_1(Unk80132ED0 **arg0, s32 arg1, f32 *arg2) {
+    void func_800DBEFC(void *, s32, f32 *);
     void *data = (*arg0)->unk4;
     func_800DBEFC(data, arg1, arg2);
 }
 
-s32 subaddieskeleton_entrypoint_2(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
+s32 subaddieskeleton_entrypoint_2(Unk80132ED0 *arg0, s32 arg1, f32 *arg2) {
     Actor *func_80106790(Unk80132ED0 *);
     void *subaddieskeleton_entrypoint_4(Actor *);
-    void func_800DBEFC(s32 *, s32, s32);
+    void func_800DBEFC(void *, s32, f32 *);
     Actor *actor;
     void *data;
 
@@ -56,7 +56,25 @@ s32 subaddieskeleton_entrypoint_2(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/skeleton/subaddieskeleton_entrypoint_3.s")
+s32 subaddieskeleton_entrypoint_3(Unk80132ED0 *arg0, s32 arg1, f32 *arg2) {
+    Actor *func_80106790(Unk80132ED0 *);
+    void *subaddieskeleton_entrypoint_4(Actor *);
+    void func_800DBEFC(void *, s32, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    Actor *actor;
+    void *data;
+
+    actor = func_80106790(arg0);
+    if (actor->unk7C_12) {
+        data = subaddieskeleton_entrypoint_4(actor);
+        if (data != NULL) {
+            func_800DBEFC(data, arg1, arg2);
+            return 1;
+        }
+    }
+    func_800EE7F8(arg2, actor->position);
+    return 0;
+}
 
 /* extern */
 
