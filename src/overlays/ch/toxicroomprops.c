@@ -81,7 +81,51 @@ void func_80800700_chtoxicroomprops(void *arg0) {
     func_80101FDC(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroomprops/func_80800758_chtoxicroomprops.s")
+void func_80800758_chtoxicroomprops(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800D90A4();
+    s32 func_800DA298(s32);
+    void func_800E148C(s32, f32, f32);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_80101FDC(Actor *, u32);
+    f32 func_80103EF4(Actor *);
+    extern u8 D_80800A78_chtoxicroomprops[];
+    f32 *position;
+
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_800DA298(0xA04) || !func_800DA298(0x1BD)) {
+                func_80101FDC(arg0, 2);
+                ((f32 *)arg0->actorData)[4] = 8.0f;
+            }
+            arg0->position[1] = ((f32 *)arg0->actorData)[6];
+            break;
+        case 2:
+            if (func_800D90A4(&((f32 *)arg0->actorData)[4])) {
+                func_80101FDC(arg0, 3);
+            }
+            arg0->position[1] = ((f32 *)arg0->actorData)[6] + func_800F10B4(((f32 *)arg0->actorData)[4], 8.0f, 0.0f, 0.0f, func_80103EF4(arg0) * 0.9f);
+            break;
+        case 3:
+            if (func_800DA298(0x1BD) && !func_800DA298(0xA04)) {
+                func_80101FDC(arg0, 4);
+                ((f32 *)arg0->actorData)[4] = 0.5f;
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800A78_chtoxicroomprops);
+            }
+            arg0->position[1] = ((f32 *)arg0->actorData)[6] + func_80103EF4(arg0) * 0.9f;
+            break;
+        case 4:
+            if (func_800D90A4(&((f32 *)arg0->actorData)[4])) {
+                position = arg0->position;
+                func_800E148C(func_800E1610(2, 200.0f, 0.85f, position), 1000.0f, 4000.0f);
+                func_80101FDC(arg0, 1);
+                _subaddieaudioquick_entrypoint_2(arg0, position, D_80800A78_chtoxicroomprops);
+            }
+            arg0->position[1] = ((f32 *)arg0->actorData)[6] + func_800F10B4(((f32 *)arg0->actorData)[4], 0.5f, 0.0f, func_80103EF4(arg0) * 0.9f, 0.0f);
+            break;
+    }
+}
 
 OSThread *chtoxicroomprops_entrypoint_2(void)
 {
