@@ -272,14 +272,26 @@ s32 func_800F424C(void *arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F4354.s")
+s32 func_800F4354(s32 arg0) {
+    typedef struct {
+        s32 value;
+        s32 (*callback)(s32);
+    } CacheEntry;
+    extern CacheEntry D_801235D0[];
+
+    if (D_801235D0[arg0].value >= 0) {
+        return D_801235D0[arg0].value;
+    }
+    D_801235D0[arg0].value = D_801235D0[arg0].callback(arg0);
+    return D_801235D0[arg0].value;
+}
 
 /* extern */
 
 u8 *func_800F43A8(s32 arg0) {
     void func_800F44DC(void *, s32);
     s32 func_80098C48(u8 *);
-    s32 func_800F4354(u32);
+    s32 func_800F4354(s32);
     void *heap_alloc(s32);
     void *heap_realloc(void *, s32);
     s32 temp_v0;
