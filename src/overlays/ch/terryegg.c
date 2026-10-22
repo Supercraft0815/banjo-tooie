@@ -177,7 +177,54 @@ s32 func_80800E0C_chterryegg(s32 arg0, s32 arg1, f32 *arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80800E88_chterryegg.s")
+void func_80800E88_chterryegg(Actor *arg0, s32 arg1) {
+    void func_80100120(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    void _subaddietaxi_entrypoint_0(Actor *, s32, f32 *, s32);
+    void _subaddietaxi_entrypoint_10(Actor *, s32, s32);
+    s32 func_800CB3E0(s32);
+    s32 func_800DA298(s32);
+    s32 func_80801138_chterryegg(void *);
+    f32 func_80801188_chterryegg(Actor *, s32);
+    struct TerryEggFlags {
+        u8 pad[0x74];
+        u32 pad74_21 : 11;
+        u32 active : 1;
+        u32 pad74_0 : 20;
+    };
+    f32 position[3];
+
+    func_80100120(arg0);
+    func_80800CF4_chterryegg(arg0, func_80801188_chterryegg(arg0, 0));
+    switch (func_800CB3E0(arg1)) {
+        case 1:
+            if (func_800DA298(arg0->unk74_7 + 0x143) || func_80801138_chterryegg(arg0)) {
+                func_80102424(arg0, 6);
+                func_8010A590(arg0);
+            } else {
+                func_80800C08_chterryegg(arg0);
+                func_80102424(arg0, 1);
+                func_8010A570(arg0);
+                arg0->unk64_16 = 0;
+                ((struct TerryEggFlags *)arg0)->active = arg0->unk64_16;
+            }
+            break;
+        case 3:
+            _subaddietaxi_entrypoint_10(arg0, arg1, 10);
+            break;
+        case 4:
+            func_80800D88_chterryegg(arg1, position);
+            func_8010A570(arg0);
+            _subaddietaxi_entrypoint_0(arg0, arg1, position, 9);
+            break;
+        case 6:
+            func_80102424(arg0, 11);
+            func_8010A570(arg0);
+            break;
+    }
+}
 
 void func_80800FE0_chterryegg(u8 *arg0) {
     s32 _subaddieaudioquick_entrypoint_2(u8 *, u8 *, s32 *);
