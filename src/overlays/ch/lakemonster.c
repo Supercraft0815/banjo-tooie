@@ -347,7 +347,32 @@ void chlakemonster_entrypoint_1(s32 arg0) {
     _fxripple_entrypoint_0(0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/chlakemonster_entrypoint_2.s")
+void chlakemonster_entrypoint_2(f32 *arg0, f32 *arg1, s32 arg2, s32 arg3) {
+    s32 func_800B53A4(s32);
+    void func_800BA1D0(s32, f32 *, f32 *, s32);
+    void func_800BA544(s32 *, s32);
+    void func_800BA568(s16 *, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    int func_800DC298(f32);
+    extern s32 D_8080224C_chlakemonster;
+    extern s32 _chlakemonster_entrypoint_1;
+    s32 sp2C;
+    s32 temp_v0;
+
+    temp_v0 = func_800B53A4(6);
+    sp2C = temp_v0;
+    func_800BA568(temp_v0, (s16)(s32)*(f32 *)&arg3);
+    func_800BA544(sp2C, &_chlakemonster_entrypoint_1);
+    if (func_800DC298(0.5f) != 0) {
+        *arg1 -= 100.0f;
+        *arg0 -= 100.0f;
+    } else {
+        *arg1 += 100.0f;
+        *arg0 += 100.0f;
+    }
+    func_800BABB8(sp2C, arg1, 0, 1.0f, &D_8080224C_chlakemonster);
+    func_800BA1D0(sp2C, arg0, arg1, 6);
+}
 
 void chlakemonster_entrypoint_3(void *arg0, void *arg1, s32 arg2, s32 arg3) {
     s32 func_800B53A4(s32);
@@ -367,7 +392,7 @@ void chlakemonster_entrypoint_3(void *arg0, void *arg1, s32 arg2, s32 arg3) {
 
 void func_80801A60_chlakemonster(void *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    void chlakemonster_entrypoint_2(void *, void *, s32, s32);
+    void chlakemonster_entrypoint_2(f32 *, f32 *, s32, s32);
     s32 func_800C2FDC(u8);
     void func_800C3058(u8, s32);
     void func_800C31DC(u8, f32);
