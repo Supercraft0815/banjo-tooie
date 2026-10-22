@@ -55,7 +55,69 @@ void func_8080003C_chmonsterinterior(Actor *arg0) {
     arg0->unk6C_0 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_808000BC_chmonsterinterior.s")
+void func_808000BC_chmonsterinterior(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    s32 _susubgame_entrypoint_9(void);
+    s32 func_800CEAD0(s32);
+    s32 func_800D0B68(u32, u32);
+    s32 func_800D2498(u32, s32, u32);
+    int func_800D9154(f32 *, f32);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F7C0C(s32, s32, f32);
+    void func_800F8300();
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    s32 func_80800C38_chmonsterinterior(Actor *, s32 *);
+    s32 *data;
+    s32 player;
+    u32 animation;
+    f32 random;
+
+    data = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+    case 1:
+        break;
+    case 3:
+        player = func_800F54E4();
+        func_800D2498(0xF7, data[0], 0);
+        if (func_800CEAD0(arg0->unk6C_0)) {
+            data[2] = func_80800C38_chmonsterinterior(arg0, &data[3]);
+            func_800F8300(player, 2, 0);
+            func_800F7C0C(player, 0x5F, 0.0f);
+            func_80101FDC(arg0, 4);
+        } else if (func_800D9154(&arg0->unk58, func_800DC178(0.5f, 1.0f))) {
+            random = func_800DC0C0();
+            if (random < 0.166666f) {
+                animation = 0;
+            } else if (random < 0.5f) {
+                animation = 1;
+            } else {
+                animation = 2;
+            }
+            func_80108B04(arg0, animation);
+        }
+        break;
+    case 4:
+        if (_susubgame_entrypoint_9()) {
+            _susubgame_entrypoint_5(arg0, &data[4], 5, 1, 0);
+            _subaddiedialog_entrypoint_11(arg0->unk0, data[2], data[3], NULL, 0xB3);
+            func_80101FDC(arg0, 5);
+        }
+        break;
+    case 7:
+        if (func_800D0B68(0x2E, 1)) {
+            func_800F8300(func_800F54E4(), 2, 0);
+            data[2] = 0xCEB;
+            data[3] = 0x46;
+            func_80101FDC(arg0, 4);
+        }
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_808002D4_chmonsterinterior.s")
 
