@@ -432,4 +432,57 @@ s32 func_80020298(u16 *arg0, u16 *arg1) {
     return (s32) sp26;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E36640/func_8002039C.s")
+SfxState *func_8002039C(SfxSound *arg0) {
+    void func_80020E74(ALLink *);
+    f32 func_80027170(s32);
+    void func_800E9070(s32, s32);
+    extern SfxState *D_800411D0;
+    extern SfxState *D_800411D8;
+    SfxState *sp24;
+    SfxKeyMap *sp20;
+    s32 sp1C;
+    u32 sp18;
+
+    sp20 = &arg0->key;
+    sp18 = osSetIntMask(1U);
+    sp24 = D_800411D8;
+    if (sp24 != NULL) {
+        D_800411D8 = sp24->next;
+        func_80020E74((ALLink *)sp24);
+        if (D_800411D0 != NULL) {
+            sp24->next = D_800411D0;
+            sp24->prev = NULL;
+            D_800411D0->prev = sp24;
+            D_800411D0 = sp24;
+        } else {
+            sp24->prev = NULL;
+            sp24->next = sp24->prev;
+            D_800411D0 = sp24;
+            D_800411D4 = sp24;
+        }
+        osSetIntMask(sp18);
+        func_800E9070((s32)arg0, 0);
+        sp1C = (arg0->decayTime + 1) == 0;
+        sp24->sound = arg0;
+        sp24->priority = sp1C + 0x40;
+        sp24->phase = 5;
+        sp24->pitchRatio = 1.0f;
+        sp24->retries = 2;
+        sp24->flags = sp20->keyMax & 0xF0;
+        sp24->handle = 0;
+        if (sp24->flags & 0x20) {
+            sp24->pitch = func_80027170(sp20->keyBase * 100 - 6000);
+        } else {
+            sp24->pitch = func_80027170(sp20->keyBase * 100 + sp20->detune - 6000);
+        }
+        if (sp1C != 0) {
+            sp24->flags |= 2;
+        }
+        sp24->fxMix = 0;
+        sp24->pan = 0x40;
+        sp24->volume = 0x7FFF;
+    } else {
+        osSetIntMask(sp18);
+    }
+    return sp24;
+}
