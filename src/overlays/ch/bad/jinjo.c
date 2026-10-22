@@ -136,7 +136,56 @@ s16 func_80800DF8_chbadjinjo(Actor *arg0) {
     return D_80801384_chbadjinjo[*((u8 *)func_80100094(arg0, 0U) + 0x24)];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_80800E28_chbadjinjo.s")
+void func_80800E28_chbadjinjo(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    s32 func_800DA9E4(s32, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void func_80801090_chbadjinjo(Actor *, s32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_8010A570(Actor *);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    extern s32 D_808012F8_chbadjinjo;
+    typedef struct {
+        u8 pad0[0x64];
+        u32 flag31 : 1;
+        u32 flag30 : 1;
+        u32 pad64 : 30;
+        u32 pad68;
+        u32 pad6C;
+        u32 state : 7;
+        u32 pad70 : 15;
+        u32 previousState : 6;
+        u32 pad73 : 4;
+    } JinjoFlags;
+    void *sp2C;
+
+    sp2C = func_80100094(arg0, 0);
+    func_80102424(arg0, arg1);
+    switch (arg1) {
+    case 1:
+        break;
+    case 5:
+        if (func_800DA9E4(0x57, 1) == 0) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xCE8, 3, arg0->position, func_80800DF8_chbadjinjo(arg0));
+        }
+        func_80801090_chbadjinjo(arg0, &D_808012F8_chbadjinjo);
+        ((f32 *)arg0->actorData)[5] = ((f32 *)arg0->actorData)[6];
+        break;
+    case 6:
+        func_800EE7F8((f32 *)arg0->actorData, (f32 *)((u8 *)sp2C + 0x10));
+        ((f32 *)arg0->actorData)[5] *= 0.5f;
+        break;
+    case 7:
+        ((JinjoFlags *)arg0)->previousState = 0;
+        arg0->unk70_25 = ((JinjoFlags *)arg0)->previousState;
+        ((JinjoFlags *)arg0)->flag30 = 0;
+        ((JinjoFlags *)arg0)->flag31 = ((JinjoFlags *)arg0)->flag30;
+        func_8010A570(arg0);
+        _subaddieDll_entrypoint_4(arg0, 1);
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_80800F7C_chbadjinjo.s")
 
