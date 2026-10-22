@@ -363,7 +363,46 @@ void func_808013D0_chmonsterinterior(Actor *arg0) {
 void func_808017E8_chmonsterinterior(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_808017F0_chmonsterinterior.s")
+s32 func_808017F0_chmonsterinterior(Actor *arg0, s32 arg1, Unk80132ED0 *volatile arg2) {
+    void func_80101074(void *);
+    s32 func_801015D0(Actor *);
+    void func_8010DC50(s32);
+    void func_8010DCB4(s32);
+    int func_8010DD20(u8 *, s32, u8 *);
+    void func_80801930_chmonsterinterior(Actor *, Unk80132ED0 *);
+    extern u8 D_80801E58_chmonsterinterior[];
+    Unk80132ED0 *data;
+
+    switch (arg1) {
+        case 0x40:
+            func_80801930_chmonsterinterior(arg0, arg2);
+            break;
+        case 0x99:
+            func_80101074(arg0->unk64_20 ? NULL : D_80801E58_chmonsterinterior);
+            break;
+        case 0x1F:
+            data = arg2;
+            if (arg0->unk64_20) {
+                func_8010DD20((u8 *)arg0, arg0->unk6C_9 - 0x44B, (u8 *)data);
+            } else {
+                func_801015D0(arg0);
+            }
+            break;
+        case 0x29:
+            if (arg0->unk64_20) {
+                func_8010DC50(arg0->unk6C_9 - 0x44B);
+            }
+            break;
+        case 0x2A:
+            if (arg0->unk64_20) {
+                func_8010DCB4(arg0->unk6C_9 - 0x44B);
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80801930_chmonsterinterior(Actor *arg0, Unk80132ED0 *arg1) {
     void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
