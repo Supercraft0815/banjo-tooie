@@ -232,7 +232,6 @@ void func_801075E4(Actor *arg0, void *arg1) {
     s32 _subaddiefade_entrypoint_2();
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     extern s32 D_801244FC;
-    extern f32 D_80126474;
     void *settings;
     struct ActorFlags *flags = (void *)arg0;
     struct Entry *entry = arg1;
@@ -249,7 +248,7 @@ void func_801075E4(Actor *arg0, void *arg1) {
         }
         entry->unk0 = 0.0;
     } else {
-        entry->unk0 = D_80126474;
+        entry->unk0 = 1.8f;
     }
     flags->flag31 = func_80102FA0(settings, 0x80000004);
     flags->flag30 = func_80102FA0(settings, 0x80000008);
@@ -371,7 +370,35 @@ s32 func_801078DC(Actor *arg0, u8 *arg1) {
     return count >= 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107A80.s")
+f32 func_80107A80(void) {
+    extern u8 D_8012762C;
+    switch (D_8012762C) {
+    case 19:
+        return 80 * 0.5f;
+    case 16:
+        return 60 * 0.5f;
+    case 15:
+        return 56 * 0.5f;
+    case 18:
+        return 52 * 0.5f;
+    case 20:
+        return 48 * 0.5f;
+    case 21:
+        return 44 * 0.5f;
+    case 22:
+        return 40 * 0.5f;
+    case 23:
+        return 36 * 0.5f;
+    case 24:
+        return 33 * 0.5f;
+    case 25:
+        return 28 * 0.5f;
+    case 26:
+        return 60 * 0.5f;
+    default:
+        return 60 * 0.5f;
+    }
+}
 
 s32 func_80107B70(s32 arg0, f32 *arg1) {
     void func_800EE88C(f32 dst[3], s16 src[3]);

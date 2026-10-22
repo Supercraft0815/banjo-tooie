@@ -23,7 +23,55 @@ u8 func_80095388(s32 *arg0, s32 arg1, u8 *arg2, s32 arg3) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6EC70/func_800953E0.s")
+s32 func_800953E0(PlayerState *arg0, void *arg1, s32 arg2) {
+    enum transform_e {
+        TRANSFORM_13_TREXLARGE = 0x13,
+        TRANSFORM_12_TREXSMALL = 0x12,
+        TRANSFORM_11_CLOCKWORK = 0x11,
+        TRANSFORM_10_VAN = 0x10,
+        TRANSFORM_F_DETONATOR = 0xF,
+        TRANSFORM_E_GOLDENGOLIATH = 0xE,
+        TRANSFORM_D_MUMBO = 0xD,
+        TRANSFORM_C_SUB = 0xC,
+        TRANSFORM_B_KAZOOIE = 0xB,
+        TRANSFORM_A_BANJO = 0xA,
+        TRANSFORM_9_FIRSTPERSON = 0x9,
+        TRANSFORM_8_STONY = 0x8,
+        TRANSFORM_7_WASHINGMACHINE = 0x7,
+        TRANSFORM_6_BEE = 0x6,
+        TRANSFORM_2_SNOWBALL = 0x2,
+        TRANSFORM_1_BK = 0x1
+    } func_800A3274(PlayerState *);
+    s32 func_8009E71C(void *, s32);
+    extern u8 D_80117E60[];
+
+    *(s32 *)arg1 = 0;
+    if (arg2 < 0) {
+        return 0;
+    }
+    switch (func_800A3274(arg0)) {
+        case TRANSFORM_A_BANJO:
+            if (func_8009E71C(arg0, 0x13)) {
+                return func_80095388(arg1, arg2, D_80117E60, 1000);
+            }
+            break;
+        case TRANSFORM_2_SNOWBALL:
+        case TRANSFORM_6_BEE:
+        case TRANSFORM_7_WASHINGMACHINE:
+        case TRANSFORM_8_STONY:
+        case TRANSFORM_B_KAZOOIE:
+        case TRANSFORM_C_SUB:
+        case TRANSFORM_D_MUMBO:
+        case TRANSFORM_E_GOLDENGOLIATH:
+        case TRANSFORM_F_DETONATOR:
+        case TRANSFORM_10_VAN:
+        case TRANSFORM_11_CLOCKWORK:
+        case TRANSFORM_12_TREXSMALL:
+        case TRANSFORM_13_TREXLARGE:
+            break;
+    }
+    return func_80095388(arg1, arg2, D_80117E60, 0);
+}
 
 void func_8009C128(PlayerState *, f32[3]);
 

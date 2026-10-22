@@ -246,7 +246,35 @@ void func_8009FC80(PlayerState *arg0) {
     func_800BBCB8(sp24, NULL, 1.0f, 1, &D_80119220);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E78BF0/func_8009FD24.s")
+/* extern */
+
+void func_8009FD24(PlayerState *arg0, s32 arg1) {
+    s32 _fxsplash_entrypoint_2(f32[3], f32);
+    void func_80092C00(void *, f32 *);
+    void func_80092C24(void *, f32 *);
+    f32 func_800964DC(PlayerState *);
+    s32 func_80096544(PlayerState *);
+    void func_800BA22C(s32, s32);
+    s32 func_800BA994(s32, s32, s16, s32, s32, s32, s32);
+    f32 sp44[3];
+    f32 sp40;
+    s32 sp3C;
+
+    if (func_80096544(arg0) != 0) {
+        if (arg1 != 0) {
+            func_80092C24(arg0, sp44);
+        } else {
+            func_80092C00(arg0, sp44);
+        }
+        sp44[1] = func_800964DC(arg0);
+        sp40 = yaw_get(arg0);
+        sp3C = _fxsplash_entrypoint_2(sp44, 8.0f);
+        func_800BA994(sp3C, -0x8C, (s16)(s32)(sp40 - 35.0f), 0xC8, -0x78, (s16)(s32)(sp40 + 35.0f), 0xFA);
+        func_800BA22C(sp3C, 3);
+        func_800BA994(sp3C, -0x64, (s16)(s32)(sp40 - 35.0f), 0x12C, -0x5A, (s16)(s32)(sp40 + 35.0f), 0x190);
+        func_800BA22C(sp3C, 2);
+    }
+}
 
 void func_8009FE58(PlayerState* arg0)
 {

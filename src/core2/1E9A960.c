@@ -570,8 +570,6 @@ s32 func_800C2C4C(u8 index) {
     void func_800EFD24(f32 *);
     void func_800C3418(u8, s32);
     void func_800C3798(u8, f32, f32);
-    extern f32 D_801257F0;
-    extern f32 D_801257F4;
     struct Source {
         f32 position[3];
         f32 inner, outer, distance;
@@ -627,8 +625,8 @@ s32 func_800C2C4C(u8 index) {
     func_800C13A0(source, 4);
     func_800C13A0(source, 8);
     func_800C13A0(source, 0x10);
-    source->inner = D_801257F0;
-    source->outer = D_801257F4;
+    source->inner = 62500.0f;
+    source->outer = 1440000.0f;
     source->count = 10;
     source->byte1A = 0;
     source->byte1B = 0;
@@ -658,8 +656,6 @@ void func_800C2E40(u8 index) {
     void func_800EFD24(f32 *);
     void func_800C3418(u8, s32);
     void func_800C3798(u8, f32, f32);
-    extern f32 D_801257F8;
-    extern f32 D_801257FC;
     struct Source {
         f32 position[3];
         f32 inner, outer, distance;
@@ -713,8 +709,8 @@ void func_800C2E40(u8 index) {
     func_800C13A0(source, 4);
     func_800C13A0(source, 8);
     func_800C13A0(source, 0x10);
-    source->inner = D_801257F8;
-    source->outer = D_801257FC;
+    source->inner = 62500.0f;
+    source->outer = 1440000.0f;
     source->count = 10;
     source->byte1A = 0;
     source->byte1B = 0;

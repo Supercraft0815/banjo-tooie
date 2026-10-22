@@ -206,15 +206,58 @@ void func_800D05E4(s32 arg0, s32 arg1, s32 arg2) { s32 func_800CFC5C(s32); exter
 
 s16 func_800D0684(s32 arg0, s32 arg1) { s32 func_800CFC5C(s32); extern s16 D_8012B190[]; s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { return *(s16 *)((u8 *)D_8012B190 + temp_v0 * 0x14); } } return 0; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D06D4.s")
+s32 func_800D06D4(s32 itemIndex, s32 itemType) {
+    extern u8 D_8011ABC6[][2];
+    extern u8 D_8011AB3D[][3];
+    extern u8 D_8011ACD2[][2];
+    extern u8 D_8011ACAE[][2];
+    extern u8 D_8011AC7A[][2];
+    switch (itemType) {
+        case 1: return D_8011ABC6[itemIndex][0];
+        case 0: return D_8011AB3D[itemIndex][0];
+        case 4: return D_8011ACD2[itemIndex][0];
+        case 3: return D_8011ACAE[itemIndex][0];
+        case 2: return D_8011AC7A[itemIndex][0];
+        case 5: return 0x10;
+        case 6: return -1;
+    }
+    return -1;
+}
 
 void func_800D0778(s32 arg0, s32 arg1, f32 *arg2) { s32 func_800CFC5C(s32); extern f32 D_8012B180[][5]; s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { func_800EE7F8(D_8012B180[temp_v0], arg2); } } }
 
 void func_800D07CC(s32 arg0, s32 arg1, f32 *arg2) { s32 func_800CFC5C(s32); extern f32 D_8012B180[][5]; s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { func_800EE7F8(arg2, D_8012B180[temp_v0]); } } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D0820.s")
+s32 func_800D0820(s32 itemType) {
+    s32 result = -1;
+    switch (itemType) {
+        case 0: return -result;
+        case 1: return -result;
+        case 2: return -result;
+        case 3: return -result;
+        case 4: return -result;
+        case 5: return -result;
+        case 6: return -result;
+        case 7: return -result;
+        case 8: return -result;
+    }
+    return result;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D0894.s")
+s32 func_800D0894(s32 itemType) {
+    switch (itemType) {
+        case 0: return 45;
+        case 1: return 90;
+        case 2: return 25;
+        case 3: return 17;
+        case 4: return 25;
+        case 5: return 25;
+        case 6: return 153;
+        case 7: return 30;
+        case 8: return 4;
+    }
+    return -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D0908.s")
 

@@ -91,15 +91,13 @@ f32 func_800287FC(f32 *arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3EDE0/func_80028A24.s")
 
 f32 func_80028B74(s32 arg0) {
-    extern f32 D_80041D18;
-    extern f32 D_80041D1C;
     f32 x;
     f32 ratio = 1.0f;
 
     if (arg0 >= 0) {
-        x = D_80041D18;
+        x = 1.0594631433486938f;
     } else {
-        x = D_80041D1C;
+        x = 0.9438742995262146f;
         arg0 = -arg0;
     }
     while (arg0 != 0) {
