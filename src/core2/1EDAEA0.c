@@ -77,7 +77,21 @@ f32 *func_80101918(f32 arg0) {
     return D_801243E0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDAEA0/func_80101934.s")
+void func_80101934(Actor *arg0) {
+    union RenderActor {
+        Actor actor;
+        struct {
+            u8 pad[0x74];
+            u32 unused : 28;
+            u32 index : 4;
+        } flags;
+    };
+    extern void (*D_801243E8[])(Actor *);
+
+    if (((union RenderActor *)arg0)->flags.index != 0) {
+        D_801243E8[((union RenderActor *)arg0)->flags.index](arg0);
+    }
+}
 
 int func_80101970(Actor *arg0) {
     typedef struct {
