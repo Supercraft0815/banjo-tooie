@@ -93,7 +93,83 @@ void func_80800918_chaliendad(Actor *arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80800A54_chaliendad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80800F28_chaliendad.s")
+void func_80800F28_chaliendad(Actor *arg0) {
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 func_800DA298(s32);
+    int func_800DB9B0(void);
+    s32 func_800EA090(void);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_80801324_chaliendad(Actor *, s32);
+    void func_80801D40_chaliendad(Actor *, s32, s32, Unk80132ED0 *);
+    Unk80132ED0 **data;
+    Actor *other;
+    Actor *child;
+    s32 pad48;
+    s32 cutscene;
+    s32 active;
+    s32 flags;
+    s32 entrance;
+    s32 allowed;
+    s32 i;
+    Unk80132ED0 **cursor;
+    s32 pad28;
+
+    data = func_80100094(arg0, 0U);
+    other = _subaddiefind_entrypoint_2(0x45B, 0);
+    arg0->unk64_20 = 0;
+    if (func_800DA298(0x375) == 0) {
+        cutscene = _glcutDll_entrypoint_19(0x4A);
+        active = 0;
+        flags = 0x30;
+        if (cutscene == 0 && func_800DB9B0() == 0) {
+            if (func_800DA298(0xB6) != 0) {
+                entrance = func_800EA090();
+                allowed = entrance != 0xA && entrance != 6;
+                if (allowed) {
+                    active = 1;
+                }
+            }
+        } else {
+            flags = 0x2830;
+        }
+        if (cutscene != 0 || active != 0) {
+            arg0->unk64_20 = 1;
+            func_80102424(arg0, 1);
+            func_80101FDC(other, 2);
+            arg0->unk64_16 = 0;
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x12A0, 0x44, arg0->position, 0x62);
+            func_80801D40_chaliendad(arg0, 0x2A, flags, other->unk0);
+        }
+    }
+    i = 0;
+    cursor = data;
+    do {
+        child = _subaddiefind_entrypoint_2(i + 0x456, 0);
+        if (child != NULL) {
+            cursor[10] = child->unk0;
+        } else {
+            cursor[10] = NULL;
+        }
+        i++;
+        cursor++;
+    } while (i != 3);
+    if (!arg0->unk64_20) {
+        func_800FFAB0(other);
+        if (func_800DA298(0x375) == 0) {
+            func_800FFAB0(arg0);
+            return;
+        }
+        if (func_800DA298(0x376) == 0) {
+            func_80801324_chaliendad(arg0, 2);
+            func_80102424(arg0, 6);
+        }
+    }
+}
 
 void func_80801110_chaliendad(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
