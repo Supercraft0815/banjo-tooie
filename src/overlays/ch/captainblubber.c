@@ -35,7 +35,50 @@ void func_80800078_chcaptainblubber(Actor *arg0) {
     func_80102424(arg0, 5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/captainblubber/func_808000CC_chcaptainblubber.s")
+s32 func_800DA298(s32);
+void func_800FFA88(Unk80132ED0 *);
+
+void func_808000CC_chcaptainblubber(Actor *arg0) {
+    struct BlubberData {
+        f32 position[3];
+        f32 pad[4];
+        f32 unk1C;
+    };
+    Prop *_gccubesearch_entrypoint_1(u32, f32[3]);
+    s32 _glcutDll_entrypoint_20();
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    s32 _gspropctrl_entrypoint_12(Prop *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_80102424(Actor *, s32);
+    void func_80108B04(Actor *, u32);
+    extern f32 D_808016CC_chcaptainblubber[3];
+    Prop *prop;
+
+    if (_glcutDll_entrypoint_20()) {
+        func_800EE7F8(arg0->position, D_808016CC_chcaptainblubber);
+        func_80102424(arg0, 0xB);
+        return;
+    }
+    prop = _gccubesearch_entrypoint_1(0x299, arg0->position);
+    if (prop == NULL) {
+        func_800FFA88(arg0->unk0);
+        return;
+    }
+    _gspropctrl_entrypoint_11(prop, ((struct BlubberData *)arg0->actorData)->position);
+    arg0->unk54 = _gspropctrl_entrypoint_12(prop);
+    arg0->unk79_4 = 0;
+    if (func_800EEAD4(arg0->position, ((struct BlubberData *)arg0->actorData)->position) > 1000000.0f) {
+        func_800FFA88(arg0->unk0);
+        return;
+    }
+    ((struct BlubberData *)arg0->actorData)->unk1C = 0.0f;
+    arg0->position[0] += 175.0f;
+    arg0->position[2] += -33.0f;
+    if (func_800DA298(0xE0)) {
+        func_80108B04(arg0, 1);
+    }
+}
 
 void func_808001F0_chcaptainblubber(Actor *arg0) {
     struct BlubberFlags {
