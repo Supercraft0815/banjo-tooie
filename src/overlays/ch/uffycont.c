@@ -1,6 +1,59 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_80800000_chchuffycont.s")
+void func_80800000_chchuffycont(Actor *arg0, s32 arg1) {
+    s32 _gcnewoption_entrypoint_6(u8 *, s32);
+    void _gcnewoption_entrypoint_4(Actor *, u32, u32 *, u32, s32);
+    s32 _gcnewoption_entrypoint_8(s32, s32);
+    s32 _gcnewoption_entrypoint_9(s32, s32);
+    s32 _gcnewoption_entrypoint_10(s32, s32);
+    s32 _gcnewoption_entrypoint_11(s32);
+    s32 _gcnewoption_entrypoint_14(s32, s32, s32, s32, f32);
+    s32 _gcnewoption_entrypoint_40(s32, s32, s32, s32, f32, f32);
+    void _gcnewoption_entrypoint_42(void *, f32);
+    void func_80090708(s32);
+    s32 func_80100094(s32, s32);
+    void func_80102424(Actor *, s32);
+    u32 func_8010A828(Actor *, u32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void func_8080046C_chchuffycont(s32, s32);
+    s32 func_8080070C_chchuffycont(s32);
+    extern s32 _gcnewoption_entrypoint_35;
+    s32 count;
+    s32 option;
+
+    if (arg0->unk70_10 == 5) {
+        _gcnewoption_entrypoint_6((u8 *)arg0, 1);
+        func_80090708(0);
+        func_8010A828(arg0, 2);
+    }
+    func_80102424(arg0, arg1);
+    switch (arg0->unk70_10) {
+        case 2:
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xF96, 0xE, arg0->position, 0x42);
+            break;
+        case 3:
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xD80, 0xE, arg0->position, 0x42);
+            break;
+        case 6:
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x12C5, 0xE, arg0->position, 0x42);
+            break;
+        case 5:
+            count = func_8080070C_chchuffycont((s32)arg0);
+            _gcnewoption_entrypoint_4(arg0, 1, (u32 *)&_gcnewoption_entrypoint_35, 0, 0x184B);
+            option = func_80100094((s32)arg0, 1);
+            func_80090708(2);
+            _gcnewoption_entrypoint_8(option, count >= 6 ? 5 : count);
+            _gcnewoption_entrypoint_9(option, count);
+            _gcnewoption_entrypoint_10(option, 0);
+            func_8080046C_chchuffycont((s32)arg0, (s32)option);
+            _gcnewoption_entrypoint_14(option, 0, 1, 3, 4.0f);
+            _gcnewoption_entrypoint_40(option, 0x41, 0x22, 0x20, 0.8f, 1.0f);
+            _gcnewoption_entrypoint_42((void *)option, 0.1f);
+            _gcnewoption_entrypoint_11(option);
+            func_8010A828(arg0, 10);
+            break;
+    }
+}
 
 s32 func_808001F8_chchuffycont(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80101080(void);
