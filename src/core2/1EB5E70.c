@@ -655,7 +655,66 @@ void func_800DD65C(Gfx **arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD728.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD998.s")
+struct GeoContext800DD998 {
+    Gfx *gfx;
+    Mtx *mtx;
+};
+
+void func_800DD998(struct GeoContext800DD998 *context, u8 *arg1) {
+    MtxF *func_80018BB4(void);
+    s32 func_8010F070(MtxF *, s32 *, s16);
+    void mlMtxApply(Mtx *);
+    MtxF *mlMtx_get_stack_pointer(void);
+    extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
+    Gfx *packet;
+    Gfx *list;
+    s32 sp64;
+    s32 sp60;
+    MtxF *sp5C;
+    MtxF *sp58;
+    struct DrawCommand {
+        s32 header[2];
+        s16 indices[6];
+        s16 counts1[6];
+        s16 counts2[6];
+        s16 start;
+        s16 flags;
+    } *command = (struct DrawCommand *)arg1;
+    s32 i;
+
+    sp64 = command->start;
+    sp60 = sp64;
+    sp5C = mlMtx_get_stack_pointer();
+    sp58 = func_80018BB4();
+    mlMtxApply(context->mtx);
+    i = 0;
+    do {
+        if (*(s16 *)(arg1 + 0x2E) != 0 && (*(s16 *)(arg1 + 0x2E) & 1)) {
+            if (command->counts2[i] != 0) {
+                func_8010F070(sp5C, &sp60, command->counts2[i]);
+            }
+            if (command->counts1[i] != 0) {
+                func_8010F070(sp58, &sp60, command->counts1[i]);
+            }
+        }
+        if (D_8012CEC4 != NULL) {
+            if (command->counts2[i] != 0) {
+                D_8012CEC4(sp5C, &sp64, command->counts2[i]);
+            }
+            if (command->counts1[i] != 0) {
+                D_8012CEC4(sp58, &sp64, command->counts1[i]);
+            }
+        }
+        list = context->gfx++;
+        list->words.w0 = 0xDE000000;
+        list->words.w1 = osVirtualToPhysical(command->indices[i] * 8 + (u8 *)D_8012C960 + 8);
+        packet = context->gfx++;
+        packet->words.w0 = 0xDA380002;
+        i++;
+        packet->words.w1 = (u32)context->mtx;
+    } while (command->indices[i] != 0);
+    context->mtx++;
+}
 
 void func_800DDB38(void *arg0, u8 *arg1) {
     void mlMtxApply(Mtx *);
