@@ -105,7 +105,109 @@ void func_80800240_chhoneyb(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_808002AC_chhoneyb.s")
+void func_808002AC_chhoneyb(Actor *arg0) {
+    s32 _gcextra_entrypoint_1(void);
+    s32 _glcutDll_entrypoint_20(void);
+    s32 _subaddiedialog_entrypoint_5(f32 *, u32, u32, u32);
+    s32 _subaddieitem_entrypoint_3(Actor *, f32 *, void *);
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    s32 func_80090708(s32);
+    void func_8008FBE0(u32);
+    void func_800C3FC0(s32, f32, s32);
+    void func_800D1824(s32);
+    s32 func_800D2498(u32, s32, u32);
+    int func_800D27F4(s32);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    s32 func_800DA298(s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800FA9F4(s32, s32);
+    void *func_80100094(Actor *, u32);
+    void func_80103DFC(Actor *, f32 *);
+    void func_8080062C_chhoneyb(void *);
+    void func_80800680_chhoneyb(s32 *);
+    void func_80800744_chhoneyb(Actor *, s32, s32);
+    void func_80800B2C_chhoneyb(Actor *);
+    s32 func_80800B78_chhoneyb(void);
+    s32 func_80800C0C_chhoneyb(void);
+    typedef struct {
+        s32 unk0[3];
+        s32 total;
+        s32 pending;
+        s32 unk14;
+        s32 current;
+        union {
+            f32 value;
+            s32 bits;
+        } progress;
+    } HoneybData;
+    f32 sp34[3];
+
+    func_80800680_chhoneyb((s32 *)arg0);
+    _sudeflect_entrypoint_1(arg0->position, 400.0f, 0.0f, 80.0f, 0xE);
+    func_80800B2C_chhoneyb(arg0);
+    func_8008FBE0(arg0->unk70_10 == 1);
+    switch (arg0->unk70_10) {
+        case 1:
+            if (_glcutDll_entrypoint_20() == 0) {
+                func_800D1824(0x49);
+                if (((HoneybData *)arg0->actorData)->pending == 0) {
+                    if (func_80800B78_chhoneyb() < _gcextra_entrypoint_1()) {
+                        func_800D2498(0x107, func_80800C0C_chhoneyb(), 0);
+                    }
+                }
+            }
+            if (_subaddiedialog_entrypoint_5(arg0->position, 0x258, 0x3C, 0) != 0) {
+                if (func_80800B78_chhoneyb() >= _gcextra_entrypoint_1()) {
+                    _susubgame_entrypoint_5(arg0, func_80100094(arg0, 1), 3, 0, 0);
+                    func_80800018_chhoneyb(arg0, 0x1521, 0xF);
+                } else if (func_800DA298(0) != 0) {
+                    func_80800744_chhoneyb(arg0, 0x1519, 0);
+                } else {
+                    _susubgame_entrypoint_5(arg0, func_80100094(arg0, 1), 3, 0, 0);
+                    func_80800018_chhoneyb(arg0, 0x1519, 0xF);
+                }
+            }
+            break;
+        case 4:
+            if (arg0->unk74_29) {
+                _susubgame_entrypoint_5(arg0, func_80100094(arg0, 1), 3, 0, 0);
+                func_80800018_chhoneyb(arg0, 0x1518, 0xF);
+            }
+            break;
+        case 5:
+            func_80103DFC(arg0, sp34);
+            if (_subaddieitem_entrypoint_3(arg0, sp34, (s8 *)func_80100094(arg0, 1) + 0x18) != 0) {
+                func_80800018_chhoneyb(arg0, 0x1553, 0xF);
+            }
+            break;
+        case 3:
+            func_800FA9F4(0, ((HoneybData *)arg0->actorData)->progress.bits);
+            func_800D2498(0x119, ((HoneybData *)arg0->actorData)->current, ((HoneybData *)arg0->actorData)->total);
+            if (func_800D27F4(0x119) != 0) {
+                if (((HoneybData *)arg0->actorData)->progress.value < 1.0f) {
+                    ((HoneybData *)arg0->actorData)->progress.value += func_800D8FF8() * 2;
+                    if (((HoneybData *)arg0->actorData)->progress.value > 1.0f) {
+                        ((HoneybData *)arg0->actorData)->progress.value = 1.0f;
+                        func_800C3FC0(0x66C, func_800F10B4(((HoneybData *)arg0->actorData)->current, 1.0, 10.0f, 0.8f, 1.5f), 0x7D00);
+                    }
+                }
+                if (func_800D9078(&arg0->unk58) != 0) {
+                    if (((HoneybData *)arg0->actorData)->current >= ((HoneybData *)arg0->actorData)->total) {
+                        func_8080062C_chhoneyb(arg0);
+                        func_80090708(0);
+                        func_80102424(arg0, 1);
+                        return;
+                    }
+                    ((HoneybData *)arg0->actorData)->current++;
+                    ((HoneybData *)arg0->actorData)->progress.value = 0.0f;
+                    arg0->unk58 = 0.75f;
+                }
+            }
+            break;
+    }
+}
 
 /* extern */
 
@@ -316,7 +418,7 @@ s32 func_80800BD8_chhoneyb(void) {
     return result - func_80800B58_chhoneyb();
 }
 
-void func_80800C0C_chhoneyb(void) {
+s32 func_80800C0C_chhoneyb(void) {
     func_80800B98_chhoneyb(func_80800B78_chhoneyb() + 1);
 }
 
