@@ -1186,7 +1186,61 @@ void func_8080373C_chweldarboss(Actor *arg0) {
     (*(f32 *)((s8 *)(temp_v0) + (0xA8))) = 2.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80803770_chweldarboss.s")
+void func_80803770_chweldarboss(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800D90A4(f32 *);
+    s32 _mlwave_entrypoint_1(u8 *);
+    f32 _mlwave_entrypoint_5(u8 *, f32, f32);
+    s32 _mlwave_entrypoint_8(u8 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800BF744(s32, s32);
+    s32 func_800BEA88(s32);
+    s32 func_808038F8_chweldarboss(Actor *);
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    extern s32 _chweldarboss_entrypoint_2;
+    s32 pad;
+    s32 update;
+    s32 timer2;
+    s32 timer4;
+    u8 *data;
+
+    data = func_80100094(arg0, 0U);
+    update = 0;
+    switch (*(s16 *)(data + 0xAC)) {
+        case 1:
+            break;
+        case 2:
+            timer2 = func_800D90A4((f32 *)(data + 0xA8));
+            _mlwave_entrypoint_1(data + 0x88);
+            *(s16 *)(data + 0xAE) = (s32)_mlwave_entrypoint_5(data + 0x88, 0, 255.0f);
+            if (timer2 && _mlwave_entrypoint_8(data + 0x88, 0.75f)) {
+                *(s16 *)(data + 0xAE) = 255;
+                *(s16 *)(data + 0xAC) = 3;
+            }
+            update = 1;
+            break;
+        case 3:
+            if (func_800D90A4((f32 *)(data + 0xA4))) {
+                func_808038F8_chweldarboss(arg0);
+            }
+            break;
+        case 4:
+            timer4 = func_800D90A4((f32 *)(data + 0xA8));
+            *(s16 *)(data + 0xAE) = (s32)func_800F10B4(*(f32 *)(data + 0xA8), 0.0f, 2.0f, 0, 255.0f);
+            if (timer4) {
+                *(s16 *)(data + 0xAC) = 1;
+                func_800BF744(3, 0);
+            }
+            update = 1;
+            break;
+    }
+    if (update) {
+        timer2 = func_800BEA88(0);
+        if (timer2) {
+            _glid_entrypoint_0(timer2, 1, &_chweldarboss_entrypoint_2, (s32)arg0->unk0);
+        }
+    }
+}
 
 s32 func_808038F8_chweldarboss(Actor *arg0) {
     void func_800F5A00(s32, f32 *);
