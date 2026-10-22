@@ -256,7 +256,25 @@ void func_80800944_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80800998_chgameselect.s")
+void func_80800998_chgameselect(Actor *arg0, void *arg1, s32 arg2) {
+    typedef struct {
+        void (*callback)();
+        u8 pad4[0x30];
+    } GameSelectCallback;
+    extern GameSelectCallback D_80807DE8_chgameselect[];
+    void (*temp_v0)();
+    Actor *original;
+
+    temp_v0 = D_80807DE8_chgameselect[arg0->unk70_10].callback;
+    if (temp_v0 != NULL) {
+        original = arg0;
+        arg0 = (Actor *)((u32)arg0 ^ 0);
+        temp_v0(original, arg1, arg2);
+    }
+    if (arg0 == NULL) {
+        return;
+    }
+}
 
 void func_808009EC_chgameselect(Actor *arg0) {
     typedef struct {
@@ -310,7 +328,7 @@ void func_80800AEC_chgameselect(Unk80132ED0 *arg0, void *arg1, s32 arg2, s32 arg
     } GameSelectCallback;
     Actor *func_80106790(Unk80132ED0 *);
     void func_80800944_chgameselect();
-    void func_80800998_chgameselect(Actor *, void *, s32, s32);
+    void func_80800998_chgameselect();
     extern GameSelectCallback D_80807DDC_chgameselect[];
     extern GameSelectCallback D_80807DF0_chgameselect[];
     extern GameSelectCallback D_80807DF4_chgameselect[];
