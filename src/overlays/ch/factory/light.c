@@ -52,7 +52,54 @@ void chfactorylight_entrypoint_1(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/light/func_8080057C_chfactorylight.s")
+s32 func_8080057C_chfactorylight(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800C8FE0(s32, s32);
+    s32 func_800EA05C(void);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_808008E4_chfactorylight(Actor *);
+    struct LightActorFlags {
+        u8 pad[0x7C];
+        u32 upper : 16;
+        u32 initialized : 1;
+        u32 lower : 15;
+    };
+    void *data;
+    s32 i;
+    u8 *ptr;
+    s32 enabled;
+
+    switch (arg1) {
+        case 0xA:
+            if (arg2 != 0) {
+                enabled = 1;
+            } else {
+                enabled = 0;
+            }
+            data = func_80100094(arg0, 0);
+            if (!((struct LightActorFlags *)arg0)->initialized) {
+                func_808008E4_chfactorylight(arg0);
+                ((struct LightActorFlags *)arg0)->initialized = 1;
+            }
+            if (func_800EA05C() == 0x10D) {
+                func_80101FDC(arg0, enabled ? 3 : 2);
+                arg0->unk58 = 5.0f;
+                ((f32 *)arg0->actorData)[3] = 1.3f;
+            } else {
+                func_80101FDC(arg0, enabled ? 1 : 2);
+            }
+            for (i = 0, ptr = data; i != 8; i += 4, ptr += 4) {
+                func_800C8FE0(*(s32 *)ptr, enabled);
+            }
+            break;
+        case 0x95:
+            func_808008E4_chfactorylight(arg0);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_808006B8_chfactorylight(Actor *arg0, s32 arg1) {
     void func_800DF5D8(u32, u32, u32, s32);
