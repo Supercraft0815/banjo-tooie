@@ -224,7 +224,69 @@ void chskeletonexplode_entrypoint_8(Actor **arg0, s16 *arg1) {
     _chbaddiesetup_entrypoint_6(&_chskeletonexplode_entrypoint_0, (s32) *arg0, sp[2], sp[3], sp[4], sp[1], sp[0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_80800E88_chskeletonexplode.s")
+s32 func_80800E88_chskeletonexplode(Actor *arg0) {
+    s32 _dbskeleton_entrypoint_4(u8 *, u32);
+    s32 func_80019CD4(void);
+    void func_800ADD80(s16, u8 *);
+    void func_800ADEC4(u8 *, u8 *, s32, f32 [4][4]);
+    void *func_800AE080(s16);
+    u8 *func_800B27E0(u8 *);
+    void func_800DF6BC(s32, s32);
+    void func_800DF72C(s32);
+    void func_800DF758(s32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_801015D0(Actor *);
+    u8 *func_801039E4(Unk80132ED0 *);
+    void mlMtxGet(void *);
+    void mlMtxRotatePYR(f32, f32, f32);
+    void mlMtxTranslate(f32, f32, f32);
+    struct SkeletonExplodeData {
+        f32 timer;
+        s32 values[60];
+        u8 sound;
+        u8 mode;
+    } *data;
+    struct SkeletonExplodePart {
+        f32 offset[3];
+        f32 position[3];
+        f32 rotation[3];
+        f32 velocity[3];
+        f32 unk30[3];
+        s8 active;
+        u8 pad3D[3];
+    } *part;
+    s32 bone;
+    f32 matrix[4][4];
+    u8 *skeleton;
+    u8 *transforms;
+    u32 i;
+    struct {
+        u32 mode : 8;
+    } flags;
+
+    data = func_80100094(arg0, 1);
+    skeleton = func_800B27E0(func_801039E4(arg0->unk0));
+    part = func_80100094(arg0, 0);
+    func_801015D0(arg0);
+    func_800ADD80(((s16 *)&arg0->unk0->unk10)[0], skeleton);
+    transforms = func_800AE080(((s16 *)&arg0->unk0->unk10)[0]);
+    for (i = 0; i < arg0->unk6C_0; i++, part++) {
+        bone = _dbskeleton_entrypoint_4(skeleton, i);
+        func_80019CD4();
+        mlMtxTranslate(part->position[0], part->position[1], part->position[2]);
+        mlMtxTranslate(part->offset[0], part->offset[1], part->offset[2]);
+        mlMtxRotatePYR(part->rotation[0], part->rotation[1], part->rotation[2]);
+        mlMtxTranslate(-part->position[0], -part->position[1], -part->position[2]);
+        mlMtxGet(matrix);
+        func_800ADEC4(transforms, skeleton, bone, matrix);
+    }
+    func_800DF72C((s32)transforms);
+    func_800DF758(data->values);
+    flags.mode = data->mode;
+    if (flags.mode != 0) {
+        func_800DF6BC(flags.mode, arg0->alpha);
+    }
+}
 
 /* extern */
 
