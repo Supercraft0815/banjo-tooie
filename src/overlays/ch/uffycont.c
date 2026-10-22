@@ -90,7 +90,55 @@ s32 func_808001F8_chchuffycont(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffycont/func_808002C4_chchuffycont.s")
+void func_808002C4_chchuffycont(Actor *arg0) {
+    void _gcnewoption_entrypoint_0(s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiedialog_entrypoint_4(f32 *, s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    s32 func_80100094();
+    s32 func_8010CAC0(f32 *, u32);
+    s32 func_8080070C_chchuffycont(s32);
+    void func_80800A7C_chchuffycont(Actor *);
+    u32 flag;
+    u32 state;
+
+    func_80800A7C_chchuffycont(arg0);
+    state = arg0->unk70_10;
+    switch (state) {
+    case 1:
+        if (!func_800DA298(0x66D) && !func_800DA298(0x86) && func_8010CAC0(arg0->position, 250)) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xFAC, 0xE, NULL, 0x42);
+            func_800DA544(0x66D);
+        }
+        if (arg0->unk64_19 && _subaddiedialog_entrypoint_4(arg0->position, 100, 0)) {
+            if (!func_800DA298(0x86)) {
+                arg0->unk74_30 = 0;
+                func_80800000_chchuffycont(arg0, 2);
+            } else if (func_8080070C_chchuffycont((s32)arg0) <= 0) {
+                arg0->unk74_30 = 0;
+                func_80800000_chchuffycont(arg0, 3);
+                flag = arg0->unk64_19;
+                goto done;
+            } else {
+                func_80800000_chchuffycont(arg0, 5);
+            }
+        }
+        flag = arg0->unk64_19;
+        break;
+    case 5:
+        _gcnewoption_entrypoint_0(func_80100094(arg0, 1));
+        flag = arg0->unk64_19;
+        break;
+    default:
+        flag = arg0->unk64_19;
+        break;
+    }
+done:
+    if (flag) {
+        arg0->unk64_19 = 0;
+    }
+}
 
 void func_80800440_chchuffycont(Actor *arg0) {
     u32 func_8010A828(Actor*, u32);
