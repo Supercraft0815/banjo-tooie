@@ -33,7 +33,72 @@ OSThread *chsabreman_entrypoint_3(void)
     return (OSThread *) D_80801DC0_chsabreman;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_80800030_chsabreman.s")
+int func_80800030_chsabreman(Actor *arg0) {
+    struct SabremanFlags {
+        u8 pad0[0x74];
+        u32 pad74_21 : 11;
+        u32 unk74_20 : 1;
+        u32 pad74_0 : 20;
+    };
+    s32 _glcutDll_entrypoint_20();
+    s32 _subaddielink_entrypoint_0(u8 *);
+    s32 _subaddiepalette_entrypoint_0(void *, void *, s32);
+    s32 func_800CB3E0(s32);
+    s32 func_800DA564(s32, s32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_80102FDC(Actor *, f32);
+    void func_801088A8(void *, s32, s32, void *);
+    void func_80108B04(Actor *, u32);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    void func_8010A85C(u8 *, s32);
+    f32 func_8080112C_chsabreman(Actor *);
+    void func_808011F8_chsabreman();
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    func_80102FDC(arg0, 0.45f);
+    func_801088A8(arg0, 0x10002000, 0, NULL);
+    _subaddielink_entrypoint_0(data + 0x810);
+    if (_glcutDll_entrypoint_20()) {
+        _subaddiepalette_entrypoint_0(arg0, func_80100094(arg0, 0), 0x7F1);
+        func_80102424(arg0, 0x19);
+        arg0->position[1] = func_8080112C_chsabreman(arg0);
+        return 1;
+    } else {
+        switch (func_800DA564(0x1CA, 2)) {
+            case 0:
+                func_8010A85C((u8 *)arg0, 2);
+                _subaddiepalette_entrypoint_0(arg0, func_80100094(arg0, 0), 0x7F0);
+                func_80108B04(arg0, 0);
+                func_808011F8_chsabreman(arg0, 1);
+                func_8010A570(arg0);
+                ((struct SabremanFlags *)arg0)->unk74_20 = 0;
+                break;
+            case 1:
+                _subaddiepalette_entrypoint_0(arg0, func_80100094(arg0, 0), 0x7F0);
+                if (func_800CB3E0(0xB) == 1) {
+                    func_80108B04(arg0, 0);
+                }
+                func_808011F8_chsabreman(arg0, 5);
+                func_8010A590(arg0);
+                arg0->position[1] = func_8080112C_chsabreman(arg0);
+                break;
+            case 2:
+                _subaddiepalette_entrypoint_0(arg0, func_80100094(arg0, 0), 0x7F1);
+                func_808011F8_chsabreman(arg0, 0xA);
+                func_8010A590(arg0);
+                arg0->position[1] = func_8080112C_chsabreman(arg0);
+                break;
+            case 3:
+                func_800FFAB0(arg0);
+                return 0;
+        }
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_80800218_chsabreman.s")
 
