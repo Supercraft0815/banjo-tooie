@@ -1,6 +1,55 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoext/func_80800000_chlagoonufoext.s")
+s32 func_80800000_chlagoonufoext(Actor *arg0, s32 arg1, s32 arg2) {
+    u32 _gclevel_entrypoint_3(u32);
+    void _glcutDll_entrypoint_6(u32, u32);
+    s32 _susubgame_entrypoint_4(void *, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    s32 func_80090178(AllowedTransformation);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    s32 func_800EA090(void);
+    void func_800F497C(s32);
+    void func_800F49D4(s32, void *, s32);
+    void func_800F4AC0(s32, s32, f32);
+    u32 func_800F54E4(void);
+    void func_800F608C(s32, s32);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_808002A4_chlagoonufoext(Actor *);
+    extern s32 func_8010D5DC;
+    s32 sp24;
+
+    switch (arg1) {
+    case 0xB:
+        if (arg2 == 0x32) {
+            func_800DA544(0xB6);
+            _susubgame_entrypoint_4(arg0, func_80100094(arg0, 0));
+            if (_gclevel_entrypoint_3(0x17)) {
+                _glcutDll_entrypoint_6(0x128, 0x4A);
+            }
+            return 4;
+        }
+        return 3;
+    case 0x32:
+        func_808002A4_chlagoonufoext(arg0);
+        break;
+    case 0x95:
+        if (func_800DA298(0x9F0) && func_80090178(1) && func_800EA090() == 9) {
+            sp24 = func_800F54E4();
+            func_800F608C(sp24, 1);
+            func_800F497C(sp24);
+            func_800F49D4(sp24, &func_8010D5DC, arg0->unk0);
+            func_800F4AC0(sp24, &arg0->actorData[4], 300.0f);
+            _susubgame_entrypoint_6(arg0, func_80100094(arg0, 0), 0x42, 0x60, 0);
+            func_80102424(arg0, 2);
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
