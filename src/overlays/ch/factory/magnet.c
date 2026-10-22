@@ -487,7 +487,61 @@ void func_80802390_chfactorymagnet(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_808025B4_chfactorymagnet.s")
+s32 func_808025B4_chfactorymagnet(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    void _gspropctrl_entrypoint_11(Prop *, f32 *);
+    s32 _gspropctrl_entrypoint_8(Prop *);
+    f32 func_800DC0C0(void);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    void func_800DF744(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    s32 func_801015D0(Actor *);
+    f32 func_80103EAC(Actor *);
+    Prop *props[20];
+    s32 count;
+    s32 i;
+    f32 angles[4];
+    f32 speed;
+
+    switch (arg1) {
+        case 0x1F:
+            arg0->alpha = (u32)func_800F10B4(arg0->unk58, ((f32 *)arg0->actorData)[7], 0.0f, 255.0f, 50.0f);
+            func_801015D0(arg0);
+            func_800DF744(1, 1);
+            func_800DF744(2, func_800DC128(1, 5));
+            return 1;
+        case 0x95:
+            count = _gccubesearch_entrypoint_9(0x511, props, 20);
+            for (i = 0; i < count; i++) {
+                if (_gspropctrl_entrypoint_8(props[i]) == arg0->unk74_7) {
+                    speed = func_80103EAC(arg0);
+                    angles[2] = func_800DC0C0() * 200.0f;
+                    angles[3] = angles[2] + func_800DC0C0() * 200.0f;
+                    _gspropctrl_entrypoint_11(props[i], (f32 *)arg0->actorData);
+                    func_800EE7F8((f32 *)&arg0->actorData[4], arg0->position);
+                    func_800F18FC(arg0->position, (f32 *)arg0->actorData, angles);
+                    arg0->rotation[0] = angles[0];
+                    arg0->rotation[1] = angles[1];
+                    speed = func_800EEAD4((f32 *)&arg0->actorData[4], (f32 *)arg0->actorData) / speed;
+                    arg0->scale = speed;
+                    func_800EF214(arg0->position, angles[0], angles[1], -speed);
+                    arg0->unk64_16 = 0;
+                    arg0->unk58 = ((f32 *)arg0->actorData)[7] = func_800DC178(2.0f, 20.0f);
+                    return 1;
+                }
+            }
+            func_800FFAB0(arg0);
+            return 0;
+        default:
+            return 0;
+    }
+}
 
 void func_8080281C_chfactorymagnet(u8 *arg0) {
     void func_800C8B84(s32);
