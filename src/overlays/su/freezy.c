@@ -10,7 +10,26 @@ void sufreezy_entrypoint_1(Actor *arg0)
     sufreezy_entrypoint_0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/freezy/sufreezy_entrypoint_2.s")
+void sufreezy_entrypoint_2(Actor *arg0) {
+    s32 _subaddielink_entrypoint_0(u8 *);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010108C(Actor *, s32, s32);
+    void func_80102190(void *, s32);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    Actor *actor;
+
+    actor = _subaddielink_entrypoint_4(func_80100094(arg0, 1));
+    func_8010A570(arg0);
+    if (actor != NULL) {
+        *((u8 *)actor + 0x7B) &= ~4;
+        func_80102190(actor, 0);
+        func_8010A590(actor);
+        func_8010108C(actor, 4, 0);
+    }
+    _subaddielink_entrypoint_0(func_80100094(arg0, 1));
+}
 
 void sufreezy_entrypoint_3(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor*, f32[3], void*);
