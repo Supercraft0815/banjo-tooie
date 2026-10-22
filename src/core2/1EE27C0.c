@@ -300,7 +300,25 @@ void func_80109704(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s
     func_80109748(arg0 + 4, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109748.s")
+void func_80109748(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6, s32 arg7) {
+    void func_800B4470(f32 *, f32 *, f32 *, s32, f32, f32, s32, s32, s32);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    extern f32 D_80124688[];
+    f32 spA4[3];
+    f32 sp98[3];
+    s32 i;
+
+    sp98[0] = ((f32 *)arg0)[0];
+    sp98[2] = ((f32 *)arg0)[2];
+    for (i = 0; i < arg1; i++) {
+        sp98[1] = ((f32 *)arg0)[1] + func_800DC178((f32)arg2, (f32)arg3);
+        spA4[1] = func_800DC178(4.0f, 10.0f);
+        spA4[0] = func_800DC178(-8.0f, 8.0f);
+        spA4[2] = func_800DC178(-8.0f, 8.0f);
+        func_800B4470(sp98, spA4, D_80124688, 1, arg4, 50.0f, arg5, func_800DC128(arg6, arg7), 0);
+    }
+}
 
 s32 func_801098D0(f32 *arg0, f32 arg1, void *arg2) {
     f32 func_800EC75C(void *, f32 *);
