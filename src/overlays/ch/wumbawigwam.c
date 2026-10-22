@@ -172,7 +172,60 @@ void func_80800158_chwumbawigwam(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/wumbawigwam/func_80800B9C_chwumbawigwam.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/wumbawigwam/func_80800E04_chwumbawigwam.s")
+void func_80800E04_chwumbawigwam(Actor *arg0, void *arg1) {
+    typedef struct {
+        u8 pad[0x7A];
+        u8 mode : 2;
+        u8 : 6;
+    } WigwamRenderFlags;
+    s32 func_80100094();
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    s32 _sumumbofx_entrypoint_8(u8 *, s32);
+    s32 _sumumbofx_entrypoint_9(u8 *, s32);
+    void func_800DF500(f32, f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80101870(Actor *, void *);
+    extern f32 B_808011C0_chwumbawigwam[3];
+    extern f32 B_808011E4_chwumbawigwam[3];
+    extern f32 B_808011F0_chwumbawigwam[3];
+    f32 *dst;
+    f32 *src;
+    s32 i;
+
+    if (func_80100094(arg0, 1)) {
+        _sumumbofx_entrypoint_9(func_80100094(arg0, 1), (s32)arg1);
+    }
+    i = 4;
+    if (arg0->unk70_10 == 7 || arg0->unk70_10 == 8) {
+        dst = B_808011F0_chwumbawigwam; src = B_808011E4_chwumbawigwam;
+        do {
+            func_800EE7F8(dst, src);
+            if (dst[0] != 0.0f && dst[1] != 0.0f && dst[2] != 0.0f) {
+                func_800DF500(dst[0], dst[1], dst[2]);
+                _subaddiefade_entrypoint_1((s32)arg0, 160 - i * 30);
+                ((WigwamRenderFlags *)arg0)->mode = 2;
+                func_80101870(arg0, arg1);
+            }
+            i--;
+            dst -= 3;
+            src -= 3;
+        } while (i != 0);
+        func_800EE7F8(B_808011C0_chwumbawigwam, (f32 *)&arg0->actorData[4]);
+        if (((f32 *)arg0->actorData)[4] != 0.0f &&
+            ((f32 *)arg0->actorData)[5] != 0.0f &&
+            ((f32 *)arg0->actorData)[6] != 0.0f) {
+            func_800DF500(((f32 *)arg0->actorData)[4],
+                         ((f32 *)arg0->actorData)[5],
+                         ((f32 *)arg0->actorData)[6]);
+        }
+        ((WigwamRenderFlags *)arg0)->mode = 1;
+    }
+    _subaddiefade_entrypoint_1((s32)arg0, 255);
+    func_80101870(arg0, arg1);
+    if (func_80100094(arg0, 1)) {
+        _sumumbofx_entrypoint_8(func_80100094(arg0, 1), (s32)arg1);
+    }
+}
 
 /* extern */
 
