@@ -24,7 +24,44 @@ void func_80800050_bsdronexform(void *arg0, s32 arg1, f32 arg2, f32 arg3) {
     func_800BA7C4(arg1, temp_f0, temp_f0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/func_808000E4_bsdronexform.s")
+s32 func_808000E4_bsdronexform(void *arg0) {
+    f32 func_80013788(void);
+    f32 func_800137F4(f32);
+    f32 func_800138D0(f32);
+    f32 func_80013970(f32);
+    void func_8008FE68(f32 *);
+    void func_800BA22C(s32, s32);
+    void func_800BA75C(s32, f32[3]);
+    f32 func_800F0F9C(f32, f32);
+    f32 func_800F1214(f32, f32, f32);
+    f32 func_800F13C4(f32, f32);
+    f32 angle;
+    f32 phase;
+    f32 cosine;
+    f32 sine;
+    f32 time;
+    f32 pos[3];
+
+    func_8008FE68(pos);
+    time = *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x18C) + 8);
+    phase = func_800F0F9C(time, 0.38f);
+    sine = func_800137F4(360.0f * phase);
+    cosine = func_80013788();
+    pos[0] += sine * *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x18C) + 0x18);
+    pos[1] += func_800F1214(func_800F0F9C(time, 1.14f), 0.0f, 130.0f);
+    pos[2] += cosine * *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x18C) + 0x18);
+    func_80800050_bsdronexform(arg0, (*(s32 **)((u8 *)arg0 + 0x18C))[1], sine, cosine);
+    func_800BA75C((*(s32 **)((u8 *)arg0 + 0x18C))[1], pos);
+    func_800BA22C((*(s32 **)((u8 *)arg0 + 0x18C))[1], 1);
+    func_8008FE68(pos);
+    angle = (1.0f - func_800F13C4(phase + 0.5f, 1.0f)) * 360.0f;
+    pos[0] -= func_80013970(angle) * *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x18C) + 0x18);
+    pos[1] += func_800F1214(func_800F0F9C(time, 1.14f), 130.0f, 0.0f);
+    pos[2] -= func_800138D0(angle) * *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x18C) + 0x18);
+    func_80800050_bsdronexform(arg0, (*(s32 **)((u8 *)arg0 + 0x18C))[0], sine, cosine);
+    func_800BA75C((*(s32 **)((u8 *)arg0 + 0x18C))[0], pos);
+    func_800BA22C((*(s32 **)((u8 *)arg0 + 0x18C))[0], 1);
+}
 
 /* extern */
 
