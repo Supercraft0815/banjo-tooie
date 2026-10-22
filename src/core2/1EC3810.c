@@ -125,13 +125,31 @@ void func_800EA400(s32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
     *(s32 *)((u8 *)&D_80132DD0 + arg0 * 0x14 + 0x18) = arg3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA45C.s")
+void func_800EA45C(void) {
+    void func_800D8B80(s16, s32, f32 *, f32 *, f32, s32, u16 *, u8 *, f32 *);
+    void func_800F5A00(s32, f32 *);
+    u8 *func_80103C94(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s32 D_80132DD0;
+    struct Entry { Unk80132ED0 *marker; u16 *indices; f32 position[3]; };
+    s32 var_s1;
+    f32 sp60[3];
+    Actor *temp_s0;
+
+    for (var_s1 = 0; var_s1 != 8; var_s1++) {
+        if (((struct Entry *)&D_80132DD0)[var_s1 + 1].marker != NULL) {
+            temp_s0 = func_80106790(((struct Entry *)&D_80132DD0)[var_s1 + 1].marker);
+            func_800F5A00(var_s1, sp60);
+            func_800D8B80(((s16 *)&temp_s0->pad80)[0], var_s1, temp_s0->position, temp_s0->rotation, temp_s0->scale, 0, ((struct Entry *)&D_80132DD0)[var_s1 + 1].indices, func_80103C94(temp_s0), ((struct Entry *)&D_80132DD0)[var_s1].position);
+        }
+    }
+}
 
 void func_800EA51C(void) {
     s32 func_800D89C8(s16, s32, f32 *, f32 *, f32, s32, s32, f32 *, f32 *);
     void func_800F5A00(s32, f32 *);
     s32 func_800F8418(s32, f32 *);
-    s32 func_80103C94(Actor *);
+    u8 *func_80103C94(Actor *);
     Actor *func_80106790(Unk80132ED0 *);
     extern s32 D_80132DD0;
     s32 *var_s2;
