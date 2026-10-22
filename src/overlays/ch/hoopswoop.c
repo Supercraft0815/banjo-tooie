@@ -715,7 +715,62 @@ void func_808017C4_chhoopswoop(Actor *arg0) {
     func_80801D8C_chhoopswoop(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80801838_chhoopswoop.s")
+void func_80801838_chhoopswoop(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    s32 func_800DA298(s32);
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    void func_8010A800(Actor *, s32);
+    s32 func_800D90A4(f32 *);
+    s32 func_800CEAD0(s32);
+    f32 func_800136E4(f32);
+    void func_800FFAB0(Actor *);
+    s32 func_80801AB4_chhoopswoop(Actor *);
+    void func_80801DCC_chhoopswoop(Actor *);
+    s32 func_80801A10_chhoopswoop(u8 *, s32, s32);
+    f32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+
+    sp34 = func_800D8FF8();
+    sp2C = func_800DA298(0);
+    sp28 = 0;
+    sp24 = 1;
+    func_8010A800(arg0, _subaddiefade_entrypoint_0(arg0) == 0xFF ? 1 : 0);
+    sp30 = func_800D90A4(&arg0->unk58);
+    if (!sp2C && func_800CEAD0(arg0->unk6C_0)) {
+        arg0->unk64_20 = 1;
+    }
+    switch (arg0->unk70_10) {
+        case 4:
+            sp28 = func_800DA298(3);
+            break;
+        case 3:
+            sp28 = func_800DA298(2);
+            break;
+        case 2:
+            sp28 = func_800DA298(1);
+            break;
+        case 5:
+            sp24 = 0;
+            if (_subaddiefade_entrypoint_0(arg0) == 0) {
+                func_80801DCC_chhoopswoop(arg0);
+                func_800FFAB0(arg0);
+                return;
+            }
+            break;
+    }
+    if (!sp2C) {
+        func_80801AB4_chhoopswoop(arg0);
+    }
+    arg0->rotation[2] = func_800136E4(arg0->rotation[2] + arg0->unk50 * sp34);
+    if (sp24) {
+        if ((!sp2C && (sp30 != 0 || arg0->unk64_20)) || (sp2C && sp28)) {
+            func_80801A10_chhoopswoop((u8 *)arg0, 0x4F, sp30 != 0 && !sp2C);
+        }
+    }
+}
 
 s32 func_80801A10_chhoopswoop(u8 *arg0, s32 arg1, s32 arg2)
 {
