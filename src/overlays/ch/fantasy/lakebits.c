@@ -37,7 +37,81 @@ void func_80800300_chfantasylakebits(s32 arg0, s16 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/lakebits/func_80800344_chfantasylakebits.s")
+void func_80800344_chfantasylakebits(Actor *arg0, s32 arg1) {
+    s32 _glid_entrypoint_0(s32, s32, s32 *, Unk80132ED0 *);
+    s32 _idworldmake_entrypoint_1(s32, s32, s32, s32);
+    s32 _subaddieDll_entrypoint_0(Actor *);
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    s32 func_800BEA88(s32);
+    void func_800BF744(s32, s32);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    s32 func_800EA05C();
+    u32 func_800F54E4(void);
+    f32 func_800F5628(s32);
+    void func_800F5A00(s32, f32 *);
+    void func_800F9C38(void);
+    void func_800FFAB0(Actor *);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(void *, s32);
+    s32 func_80103140(Actor *, u32, u16);
+    void func_8010A800(Actor *, s32);
+    extern s32 _chfantasylakebits_entrypoint_0;
+    s32 sp2C;
+    s32 temp_v0;
+    s32 sp24;
+    s32 pad;
+
+    switch (arg1) {
+    case 1:
+        sp2C = func_800BEA88(1);
+        arg0->unk58 = 0.0f;
+        func_800BF744(1, 1);
+        arg0->actorData[3] = 0;
+        _idworldmake_entrypoint_1(sp2C, 0x654, 1, 1);
+        _glid_entrypoint_0(sp2C, 1, &_chfantasylakebits_entrypoint_0, arg0->unk0);
+        if (func_800EA05C() == 0x13A) {
+            temp_v0 = func_800BEA88(0);
+            arg0->actorData[3] = 0;
+            _idworldmake_entrypoint_1(temp_v0, 0x59B, 2, 1);
+        }
+        arg0->unk64_16 = 0;
+        func_80103110(arg0, 0);
+        break;
+    case 2:
+        func_800F9C38();
+        func_80103110(arg0, 1);
+        arg0->unk58 = 0.0f;
+        _subaddieDll_entrypoint_0(arg0);
+        arg0->unk54 = 1.0f;
+        func_80103140(arg0, 0x8DE, arg0->unk0->unk16);
+        break;
+    case 3:
+        func_8010A800(arg0, 2);
+        func_800F5A00(func_800F54E4(), &((f32 *)arg0->actorData)[4]);
+        ((f32 *)arg0->actorData)[5] = func_800F5628(func_800F54E4());
+        break;
+    case 4:
+        func_800BF744(1, 0);
+        arg0->unk64_16 = 1;
+        ((f32 *)arg0->actorData)[7] = 5.0f;
+        _subaddieaudioloop_entrypoint_2(arg0);
+        break;
+    case 5:
+        sp24 = func_800BEA88(1);
+        func_800BF744(1, 0);
+        arg0->actorData[3] = -0xC80;
+        _glid_entrypoint_0(sp24, 1, &_chfantasylakebits_entrypoint_0, arg0->unk0);
+        _idworldmake_entrypoint_1(sp24, 0x654, 1, 1);
+        func_800DA544(0x327);
+        func_800DA524(0x9FC);
+        arg0->unk64_16 = 0;
+        _subaddieaudioloop_entrypoint_2(arg0);
+        func_800FFAB0(arg0);
+        break;
+    }
+    func_80101FDC(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/lakebits/func_80800570_chfantasylakebits.s")
 
