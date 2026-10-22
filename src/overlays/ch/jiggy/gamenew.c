@@ -219,7 +219,57 @@ void func_80800424_chjiggygamenew(Unk80132ED0 *arg0) {
     func_808007E4_chjiggygamenew(data, 0x7F4, index);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_808004E0_chjiggygamenew.s")
+void func_808004E0_chjiggygamenew(Unk80132ED0 *arg0) {
+    Actor *func_80106790();
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _sujiggy_entrypoint_21(void);
+    u32 _sujiggy_entrypoint_24(void);
+    void func_800C082C(s32);
+    void func_800C9C34(f32, s32, s32, s32);
+    void func_800C9DE4(f32, void *, s32);
+    void func_800CE88C(s32, s32);
+    s32 func_800CEAA8(s32);
+    void func_800FC6B0(u32);
+    void func_80803598_chjiggygamenew();
+    Actor *actor;
+    s32 dialog;
+    u32 score;
+
+    actor = func_80106790(arg0);
+    if (!actor->unk64_20 && func_800CEAA8(4)) {
+        func_800CE88C(4, 0);
+    }
+    func_80803598_chjiggygamenew(actor->unk3C);
+    if (_sujiggy_entrypoint_21()) {
+        score = _sujiggy_entrypoint_24();
+        actor->unk6C_0 = (s32)(((f32 *)actor->actorData)[6] - ((f32 *)actor->actorData)[0]);
+        if (score == 0) {
+            func_800C9C34(0.25f, 0x83, 0, 0x7D0);
+            func_800C9DE4(0.3f, &func_800FC6B0, 0x10);
+            dialog = 0x1564;
+        } else if (score < actor->unk6C_0) {
+            func_800C9C34(0.25f, 0x83, 0, 0x7D0);
+            func_800C9DE4(0.3f, &func_800FC6B0, 0x17);
+            dialog = 0x1563;
+        } else if (score == actor->unk6C_0) {
+            func_800C9C34(0.25f, 0x83, 0, 0x7D0);
+            func_800C9DE4(0.3f, &func_800FC6B0, 0x17);
+            dialog = 0x1562;
+        } else {
+            func_800C9C34(0.25f, 0x83, 0, 0x7D0);
+            func_800C9DE4(0.3f, &func_800FC6B0, 0x10);
+            dialog = 0x1561;
+        }
+    } else {
+        func_800C9C34(0.25f, 0x83, 0, 0x7D0);
+        func_800C9DE4(0.3f, &func_800FC6B0, 0x10);
+        dialog = 0x14FA;
+    }
+    func_800C082C(0);
+    _subaddiedialog_entrypoint_11(actor->unk0, dialog, 0x4C6, NULL, 0x97);
+    func_800C082C(1);
+    actor->actorData[4] = 6;
+}
 
 void func_808006E0_chjiggygamenew(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
     Actor *func_80106790();
