@@ -123,7 +123,40 @@ void func_808005E0_chrainbow(s32 arg0, s32 arg1) {
     func_800BABB8(sp24, arg0, 0, 0x3F800000, &D_80800FD0_chrainbow);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_8080063C_chrainbow.s")
+void func_8080063C_chrainbow(Actor *arg0, f32 arg1, s32 arg2) {
+    f32 func_800138D0(f32);
+    f32 func_800DC0C0(void);
+    s32 func_800DC128(s32, s32);
+    void func_800EEC70(void *, f32, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    f32 func_800F1214(f32, f32, f32);
+    f32 func_80103EAC(Actor *);
+    f32 func_80103EF4(Actor *);
+    f32 offset[3];
+    f32 position[3];
+    f32 result[3];
+    f32 t;
+    f32 *resultPtr;
+    s32 color;
+    s32 i;
+
+    resultPtr = result;
+    i = 0;
+    if (arg2 > 0) {
+        do {
+            t = func_800F1214(func_800DC0C0(), 1.0f, arg1);
+            color = func_800DC128(0, 6);
+            func_800EEC70(offset, arg0->rotation[0], arg0->rotation[1] - 90.0f, func_80103EAC(arg0));
+            position[0] = arg0->position[0] + func_800F1214(t, -offset[0], offset[0]);
+            position[1] = (arg0->position[1] - func_80103EF4(arg0)) + func_800138D0(func_800F1214(t, 90.0f, 270.0f)) * -func_80103EF4(arg0);
+            position[2] = arg0->position[2] + func_800F1214(t, -offset[2], offset[2]);
+            func_800EEC70(resultPtr, arg0->rotation[0], arg0->rotation[1] - 180.0f, arg0->scale * 800.0f * ((f32)color / 5.0f));
+            func_800EF04C(resultPtr, position);
+            func_808005E0_chrainbow((s32)resultPtr, color);
+            i++;
+        } while (i != arg2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_80800838_chrainbow.s")
 
