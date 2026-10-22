@@ -130,7 +130,61 @@ void func_808009B4_chterryegg(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_80800A2C_chterryegg.s")
+s32 func_80800A2C_chterryegg(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddietaxi_entrypoint_13(Actor *, s32, void *, s32);
+    s32 _subaddietaxi_entrypoint_2(Actor *, s32);
+    void func_800FFAB0(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_8010A570(Actor *);
+    void func_80800BD0_chterryegg(Actor *, s32, s32);
+    void func_80800C08_chterryegg(Actor *);
+    void func_80800E88_chterryegg(Actor *, s32);
+    s32 func_80801138_chterryegg(void *);
+    extern OSThread *_chterryegg_entrypoint_0(void);
+    struct TerryEggFlags {
+        u8 pad[0x74];
+        u32 pad74_21 : 11;
+        u32 active : 1;
+        u32 pad74_0 : 20;
+    };
+    switch (arg1) {
+    case 0x3E:
+        if (_subaddietaxi_entrypoint_2(arg0, arg0->unk74_7 - 0x2B)) {
+            func_80102424(arg0, 8);
+        }
+        break;
+    case 0x2E:
+        func_80800BD0_chterryegg(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x44:
+        func_80800E88_chterryegg(arg0, arg2);
+        break;
+    case 0x95:
+        if (_glcutDll_entrypoint_19(0x33)) {
+            _subaddieDll_entrypoint_4(arg0, 1);
+        }
+        if (_subaddietaxi_entrypoint_13(arg0, arg0->unk74_7 - 0x2B, _chterryegg_entrypoint_0, 3)) {
+            func_80800C08_chterryegg(arg0);
+            if (func_80801138_chterryegg(arg0)) {
+                arg0->unk64_16 = 1;
+                ((struct TerryEggFlags *)arg0)->active = arg0->unk64_16;
+                func_80102424(arg0, 6);
+            } else {
+                func_8010A570(arg0);
+                arg0->unk64_16 = 0;
+                ((struct TerryEggFlags *)arg0)->active = arg0->unk64_16;
+            }
+        } else if (arg0->unk7A_5) {
+            func_800FFAB0(arg0);
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800BD0_chterryegg(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80102424(Actor*, s32);
