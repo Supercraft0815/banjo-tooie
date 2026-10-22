@@ -304,7 +304,26 @@ s32 func_808015E0_chevilspirit(Actor *arg0, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801684_chevilspirit.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801840_chevilspirit.s")
+s32 func_80801840_chevilspirit(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _subaddielink_entrypoint_0(u8 *);
+    s32 _subaddielink_entrypoint_2(u8 *);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    s32 func_8010108C(Actor *, s32, s32);
+    Actor *actor;
+
+    if (_subaddielink_entrypoint_2(func_80100094(arg0, 0)) == 0) {
+        return 0;
+    }
+    actor = _subaddielink_entrypoint_4(func_80100094(arg0, 0));
+    if (!actor->unk64_24) {
+        actor->unk64_29 = 0;
+        _subaddielink_entrypoint_0(func_80100094(arg0, 0));
+        func_8010108C(actor, 2, 0);
+        return 0;
+    }
+    return 1;
+}
 
 s32 func_808018DC_chevilspirit(Actor *arg0) {
     Actor *_subaddielink_entrypoint_4(u8 *);
