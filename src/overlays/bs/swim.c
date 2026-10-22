@@ -281,7 +281,67 @@ void func_808006C4_bsswim(struct player_state_s *arg0) {
     baphysics_set_type(arg0, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/swim/func_808007F8_bsswim.s")
+void func_808007F8_bsswim(struct player_state_s *arg0) {
+    s32 bs_setState(s32, s32);
+    int baflag_isTrue(struct player_state_s *, s32);
+    int bakey_pressed(struct player_state_s *, int);
+    s32 bastick_getZone(struct player_state_s *);
+    int func_8008D214(struct player_state_s *);
+    s32 func_80096500(struct player_state_s *);
+    s32 func_8009650C(struct player_state_s *);
+    void func_8009DE74(struct player_state_s *, s32, f32, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    int anctrl_isAt(struct anctrl_s *, f32);
+    void func_80096440(struct player_state_s *, f32 *);
+    f32 func_800964DC(struct player_state_s *);
+    f32 func_8009C150(struct player_state_s *);
+    void func_8009FD24(struct player_state_s *, s32);
+    s32 sp34;
+    struct anctrl_s *sp30;
+    f32 sp24[3];
+    f32 sp20;
+
+    sp34 = 0;
+    sp30 = baanim_getAnimCtrlPtr(arg0);
+    if (anctrl_isAt(sp30, 0.38f)) {
+        func_8009FD24(arg0, 1);
+    }
+    if (anctrl_isAt(sp30, 0.88f)) {
+        func_8009FD24(arg0, 0);
+    }
+    if (anctrl_isAt(sp30, 0.2f)) {
+        func_8009DE74(arg0, 0x40C, 0.9f, 1.1f);
+    }
+    if (anctrl_isAt(sp30, 0.7f)) {
+        func_8009DE74(arg0, 0x40C, 0.9f, 1.1f);
+    }
+    func_80800178_bsswim(arg0);
+    if (bastick_getZone(arg0) == 0) {
+        sp34 = 0x2D;
+    }
+    if (player_inWater(arg0) == 0) {
+        sp34 = 1;
+    }
+    if (func_8009650C(arg0) && func_8008D214(arg0)) {
+        func_80096440(arg0, sp24);
+        if (sp24[1] < -0.7f) {
+            sp20 = func_800964DC(arg0);
+            if (sp20 - func_8009C150(arg0) > 90.0f) {
+                sp34 = func_80800000_bsswim(arg0);
+            }
+        }
+    }
+    if (bainput_should_dive(arg0)) {
+        sp34 = func_80800000_bsswim(arg0);
+    }
+    if (func_80096500(arg0) && bakey_pressed(arg0, 8)) {
+        sp34 = 5;
+    }
+    if (baflag_isTrue(arg0, 6) || baflag_isTrue(arg0, 0x14)) {
+        sp34 = 0xD;
+    }
+    bs_setState(arg0, sp34);
+}
 
 void func_808009F0_bsswim(struct player_state_s *arg0)
 {
