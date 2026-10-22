@@ -414,7 +414,28 @@ void func_80800D74_chpoolkids(Actor *arg0) {
     _idworldmake_entrypoint_1(sp20, 0x8D, 2, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/chpoolkids_entrypoint_3.s")
+void chpoolkids_entrypoint_3(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4) {
+    Actor *func_80106790(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    u8 *data;
+    Vtx *end;
+    f32 scale;
+    data = func_80100094(func_80106790(arg4), 0);
+    switch (arg0) {
+    case 1:
+        scale = 1.0f - *(f32 *)(data + 0x20);
+        for (end = arg1 + arg3; arg1 < end; arg1++, arg2++) {
+            arg2->v.cn[3] = (u32)((f32)(u32)arg1->v.cn[3] * scale);
+        }
+        break;
+    case 2:
+        scale = 1.0f - *(f32 *)(data + 0xC);
+        for (end = arg1 + arg3; arg1 < end; arg1++, arg2++) {
+            arg2->v.cn[3] = (u32)((f32)(u32)arg1->v.cn[3] * scale);
+        }
+        break;
+    }
+}
 
 void func_808011A8_chpoolkids(Actor *arg0) {
     s32 func_800B5BE4(s32);
