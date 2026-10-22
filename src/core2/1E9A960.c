@@ -357,7 +357,59 @@ s32 func_800C19E4(void *arg0, s32 arg1) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C1AA4.s")
+void func_800C1AA4(u16 *arg0) {
+    void func_800E3980(f32 *);
+    void func_800E3A58(f32 *);
+    void func_800EF7B0(f32 *, f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    int func_800F1EA4(f32 *, f32 *);
+    f32 sp5C[3];
+    f32 sp50[3];
+    s32 pan;
+    f32 current;
+    f32 sp44;
+    f32 sp38[3];
+    f32 sp2C[3];
+
+    func_800E3980(sp5C);
+    func_800EFB24(sp50, arg0, sp5C);
+    if (sp50[0] * sp50[0] + sp50[1] * sp50[1] + sp50[2] * sp50[2] < 10.0f) {
+        *(f32 *)((s8 *)arg0 + 0x14) = 64.0f;
+    } else {
+        *(u8 *)((s8 *)arg0 + 0x1C) = *(u8 *)((s8 *)arg0 + 0x1D);
+        if (*(u8 *)((s8 *)arg0 + 0x1C) == 0) {
+            func_800E3A58(sp2C);
+            sp2C[1] = -sp2C[1];
+            sp2C[0] = -sp2C[0];
+            sp2C[2] = -sp2C[2];
+            func_800EF7B0(sp38, sp2C, sp50[0], sp50[1], sp50[2]);
+            func_800F1EA4(sp38, &sp44);
+            sp44 = 180.0f - sp44;
+            if (sp44 < -90.0f) {
+                sp44 = -180.0f - sp44;
+                if (*(u8 *)((s8 *)arg0 + 0x1B)) {
+                    *(u8 *)((s8 *)arg0 + 0x1C) = 1;
+                }
+            } else {
+                if (sp44 > 90.0f) {
+                    sp44 = 180.0f - sp44;
+                    if (*(u8 *)((s8 *)arg0 + 0x1B)) {
+                        *(u8 *)((s8 *)arg0 + 0x1C) = 1;
+                    }
+                }
+            }
+        }
+        func_800C18C8(*(u8 *)((s8 *)arg0 + 0x79), *(u8 *)((s8 *)arg0 + 0x60), *(u8 *)((s8 *)arg0 + 0x1B), *(u8 *)((s8 *)arg0 + 0x1C), func_800C13C4(arg0, 0x400));
+        current = sp44 * 0.7f + 64.0f;
+        pan = (s32)current;
+        if (*(u8 *)((s8 *)arg0 + 0x1A)) {
+            *(f32 *)((s8 *)arg0 + 0x14) += 0.07f * ((f32)pan - *(f32 *)((s8 *)arg0 + 0x14));
+        } else {
+            *(f32 *)((s8 *)arg0 + 0x14) = (f32)pan;
+        }
+    }
+    func_800C191C(*(u8 *)((s8 *)arg0 + 0x79), (s32)*(f32 *)((s8 *)arg0 + 0x14));
+}
 
 /* extern */
 
