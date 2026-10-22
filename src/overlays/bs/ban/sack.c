@@ -400,7 +400,85 @@ int func_80800AA4_bsbansack(PlayerState *arg0) {
     return player_inWater(arg0) && baphysics_get_vertical_velocity(arg0) < 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80800AF4_bsbansack.s")
+void func_80800AF4_bsbansack(PlayerState *arg0, s32 arg1) {
+    void anctrl_reset(s32);
+    void anctrl_setDuration(s32, f32);
+    void anctrl_setIndex(s32, s32);
+    s32 anctrl_setPlaybackType(s32, s32);
+    void anctrl_setSubrange(s32, f32, f32);
+    s32 anctrl_start(s32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void baanim_setEndAndDuration(void *, f32, f32);
+    void baphysics_reset_gravity(PlayerState *);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    s32 baroll_setIdeal(s32, f32);
+    f32 bastick_distance(PlayerState *);
+    f32 bastick_getAngleRelativeToBanjo(PlayerState *);
+    f32 func_8009BB5C(PlayerState *);
+    void func_8009BF5C(PlayerState *, f32);
+    void func_8009D2D8(PlayerState *, s32);
+    void func_8009DB04(s32, s32, f32, s32);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+    void func_800A2FCC(s32, s32);
+    f32 func_800DC178(f32, f32);
+    s32 player_inWater(PlayerState *);
+    f32 yaw_getIdeal(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+    struct anctrl_s *control;
+    f32 velocity;
+
+    *(u8 *)((u8 *)arg0 + 0x15C) = arg1;
+    switch (arg1) {
+    case 1:
+        control = baanim_getAnimCtrlPtr(arg0);
+        func_80800A78_bsbansack((s32)arg0);
+        func_8009DB04(arg0, 0x3F0, func_800DC178(0.96f, 1.04f), 0x2710);
+        func_8009FFD8(arg0, 1, 1, 1, 2);
+        baphysics_set_gravity(arg0, -1350.0f);
+        if (bastick_distance(arg0) != 0.0f) {
+            yaw_setIdeal(arg0, bastick_getAngleRelativeToBanjo(arg0));
+        }
+        velocity = func_8009BB5C(arg0);
+        baphysics_set_target_horizontal_velocity(arg0, velocity);
+        baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+        baphysics_set_horizontal_velocity(arg0, yaw_getIdeal(arg0), velocity);
+        anctrl_reset(control);
+        anctrl_setIndex(control, 0x144);
+        anctrl_setSubrange(control, 0.0f, 0.35f);
+        anctrl_setDuration(control, 0.7f);
+        anctrl_setPlaybackType(control, 1);
+        anctrl_start(control);
+        baphysics_set_vertical_velocity(arg0, 710.0f);
+        break;
+    case 2:
+        baanim_setEndAndDuration(arg0, 0.65f, 3.0f);
+        break;
+    case 3:
+        if (player_inWater(arg0)) {
+            func_80800A14_bsbansack(arg0);
+        }
+        baanim_setEndAndDuration(arg0, 0.98f, 0.7f);
+        break;
+    case 4:
+        if (player_inWater(arg0)) {
+            func_80800A14_bsbansack(arg0);
+        }
+        func_8009D2D8(arg0, 3);
+        func_800A2FCC(arg0, 0);
+        baanim_setEndAndDuration(arg0, 0.98f, 0.7f);
+        break;
+    case 0:
+        func_80800A78_bsbansack((s32)arg0);
+        baphysics_reset_gravity(arg0);
+        func_8009BF5C(arg0, 0.0f);
+        baroll_setIdeal(arg0, 0.0f);
+        break;
+    }
+}
 
 void func_80800D4C_bsbansack(s32 arg0)
 {
