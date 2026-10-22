@@ -500,7 +500,82 @@ void func_80801130_chhoopswoop(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_808011DC_chhoopswoop.s")
+void func_808011DC_chhoopswoop(Actor *arg0) {
+    typedef struct {
+        s16 rotation : 15;
+        u16 active : 1;
+        s16 position[3];
+        f32 time;
+    } Hoop;
+    typedef struct {
+        s32 count;
+        u8 unk4[8];
+        s32 dialog;
+        s32 dialogFlags;
+        Hoop hoops[100];
+        u8 subgame[0x18];
+        u8 score[0x51C];
+        f32 timer;
+    } HoopData;
+    s32 _gcstatusDll_entrypoint_11();
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiefind_entrypoint_9(s32);
+    void _sumultiscore_entrypoint_6(u8 *);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    s32 _susubgame_entrypoint_9(void);
+    s32 func_800C954C(void);
+    s32 func_800CEAD0(s32);
+    s32 func_800D9078(f32 *);
+    s32 func_800D90A4(f32 *);
+    int func_800D9154(f32 *, f32);
+    s32 func_800DA298(s32);
+    f32 func_800DC178(f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    void func_808015A4_chhoopswoop(Actor *);
+    HoopData *data;
+    int i;
+    f32 *time;
+    f32 interval;
+
+    data = func_80100094(arg0, 0);
+    _sumultiscore_entrypoint_6(data->score);
+    switch (arg0->unk70_10) {
+    case 1:
+        if (!func_800C954C() && !func_800DA298(0x6AD)) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEC, 7, NULL, 0x22);
+            func_80101FDC(arg0, 2);
+        }
+        return;
+    case 3:
+        i = 0;
+        time = &data->hoops[0].time;
+        if (data->count > 0) {
+            do {
+                func_800D90A4(time);
+                time += 3;
+                i++;
+            } while (i < data->count);
+        }
+        if (_subaddiefind_entrypoint_9(0x356) < 5) {
+            interval = func_800DC178(0.5f, 1.0f);
+            if (func_800D9154(&arg0->unk58, interval / (f32)_gcstatusDll_entrypoint_11())) {
+                func_80108B04(arg0, -1);
+            }
+        }
+        if (func_800CEAD0(arg0->unk6C_0)) {
+            func_808015A4_chhoopswoop(arg0);
+        }
+        return;
+    case 4:
+        if (_susubgame_entrypoint_9() || func_800D9078(&data->timer)) {
+            _susubgame_entrypoint_5(arg0, data->subgame, 5, 1, 0);
+            _subaddiedialog_entrypoint_11(arg0->unk0, data->dialog, data->dialogFlags, NULL, 0x22);
+            func_80101FDC(arg0, 5);
+        }
+    }
+}
 
 void func_808013C4_chhoopswoop(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
