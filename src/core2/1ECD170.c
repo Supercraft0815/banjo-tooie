@@ -173,7 +173,83 @@ void func_800F3E84(s32 arg0, void *arg1) {
     (*(f32 *)((s8 *)(arg1) + (8))) = baroll_get(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F3ED0.s")
+s32 func_800F3ED0(void *arg0) {
+    s32 _bashoes_entrypoint_1(PlayerState *);
+    int baflag_isTrue(PlayerState *, s32);
+    s32 bastatetimer_isActive(PlayerState *, s32);
+    s32 bs_getCurrentState(PlayerState *);
+    s32 func_8008EF3C(PlayerState *, s32);
+    s16 func_8009CBDC(PlayerState *, s32);
+    s32 func_8009E674(PlayerState *, s32);
+    s32 state;
+
+    state = bs_getCurrentState(arg0);
+    if (baflag_isTrue(arg0, 0x1B)) {
+        return 0xD;
+    }
+    if (baflag_isTrue(arg0, 0x17)) {
+        return 4;
+    }
+    if (func_8009CBDC(arg0, state) == 9) {
+        return 0xA;
+    }
+    if (func_8009CBDC(arg0, state) == 0x12) {
+        return 0xC;
+    }
+    if (func_8009CBDC(arg0, state) == 0x13) {
+        return 0xE;
+    }
+    if (func_8009CBDC(arg0, state) == 8) {
+        return 9;
+    }
+    if (func_8009CBDC(arg0, state) == 0xA) {
+        return 5;
+    }
+    if (baflag_isTrue(arg0, 9)) {
+        return 1;
+    }
+    if (func_8009E674(arg0, 0x80)) {
+        switch (_bashoes_entrypoint_1(arg0)) {
+            case 3: return 6;
+            case 4: return 0x10;
+            case 5: return 0xF;
+        }
+    }
+    switch (state) {
+        case 0xE:
+        case 0x34:
+        case 0x3C:
+        case 0x3F:
+        case 0x41:
+        case 0x44:
+        case 0x120:
+            return 1;
+        case 0x1A:
+        case 0x1B:
+        case 0x1C:
+        case 0x1D:
+        case 0x1E:
+        case 0xA4:
+        case 0xA5:
+            return 3;
+        case 8:
+        case 0x15:
+        case 0x16:
+        case 0x17:
+        case 0x45:
+            if (bastatetimer_isActive(arg0, 3)) {
+                return 6;
+            }
+            return 8;
+        case 0xB:
+            return 2;
+        default:
+            if (func_8008EF3C(arg0, 0)) {
+                return 0xB;
+            }
+            return 0;
+    }
+}
 
 s32 func_800F40EC(PlayerState *arg0) {
     s32 _bsjump_entrypoint_16(PlayerState *);
