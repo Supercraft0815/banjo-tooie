@@ -184,7 +184,29 @@ void func_808018BC_sucoasterfly(Actor *arg0) {
     ((f32 *)arg0->actorData)[3] = func_800F15F8(((f32 *)arg0->actorData)[3], sp2C[3] * scale, func_80107C00() * sp28);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/func_808019A0_sucoasterfly.s")
+/* extern */
+
+void func_808019A0_sucoasterfly(Actor *arg0) {
+    void func_800EEB9C(f32[3], f32, f32);
+    f32 func_800F0D50(f32, f32, f32);
+    void func_80102924(void *, f32);
+    s32 func_8010B990(Actor *, s32);
+    s32 func_808014AC_sucoasterfly(Actor *, s32);
+    void func_808018BC_sucoasterfly(Actor *);
+    f32 func_80801E5C_sucoasterfly();
+    f32 sp24;
+    s32 sp20;
+
+    sp24 = func_80801E5C_sucoasterfly();
+    sp20 = (arg0->unk64_29) ? 0x404027 : 0x504327;
+    func_808018BC_sucoasterfly(arg0);
+    func_800EEB9C(&((f32 *)arg0->actorData)[4], arg0->rotation[1], ((f32 *)arg0->actorData)[3]);
+    ((f32 *)arg0->actorData)[5] = func_800F0D50(sp24 - arg0->position[1], -300.0f, 300.0f);
+    if ((func_8010B990(arg0, sp20) & 0x24) && !(arg0->unk64_29)) {
+        func_80102924(arg0, arg0->rotation[1] + 180.0f);
+        func_808014AC_sucoasterfly(arg0, 2);
+    }
+}
 
 /* extern */
 
