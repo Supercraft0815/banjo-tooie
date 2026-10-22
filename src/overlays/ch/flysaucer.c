@@ -222,7 +222,48 @@ void func_80800514_chflysaucer(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808005FC_chflysaucer.s")
+void func_808005FC_chflysaucer(Actor *arg0) {
+    s32 func_800D395C(void);
+    void *func_80100094(Actor *, u32);
+    void func_808009DC_chflysaucer(Actor *, s32);
+    void func_808012A4_chflysaucer(Actor *, s32);
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    switch (data[0x26]) {
+        case 0:
+            func_808012A4_chflysaucer(arg0, 1);
+            func_808009DC_chflysaucer(arg0, 3);
+            func_8080003C_chflysaucer(arg0, 1);
+            if (func_800D395C() == 0) {
+                func_80800514_chflysaucer(arg0);
+            }
+            break;
+        case 1:
+            func_8080003C_chflysaucer(arg0, 2);
+            func_80800514_chflysaucer(arg0);
+            break;
+        case 2:
+            func_8080003C_chflysaucer(arg0, 3);
+            func_80800514_chflysaucer(arg0);
+            break;
+        case 3:
+            func_8080003C_chflysaucer(arg0, 4);
+            func_80800514_chflysaucer(arg0);
+            break;
+        case 4:
+            func_8080003C_chflysaucer(arg0, 5);
+            func_80800514_chflysaucer(arg0);
+            break;
+        case 5:
+            func_8080003C_chflysaucer(arg0, 6);
+            func_80800514_chflysaucer(arg0);
+            break;
+        case 6:
+            func_8080003C_chflysaucer(arg0, 0);
+            break;
+    }
+}
 
 s16 func_80800728_chflysaucer(Actor *arg0) {
     void* func_80100094(Actor*, u32);
