@@ -14,7 +14,66 @@ OSThread *chkingjinjo_entrypoint_1(void)
     return (OSThread *) D_808011F0_chkingjinjo;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_80800018_chkingjinjo.s")
+void func_80800018_chkingjinjo(Actor *arg0) {
+    s32 _glcutDll_entrypoint_20(void);
+    s32 _subaddieDll_entrypoint_1(Actor *);
+    void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
+    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    s32 func_800DA298(s32);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    s32 func_80104E78(Actor *);
+    void func_8010A590(Actor *);
+    typedef union {
+        Actor actor;
+        struct {
+            u32 padding[29];
+            u32 pad74_31 : 11;
+            u32 visible : 1;
+            u32 pad74_18 : 20;
+            u32 pad78_31 : 30;
+            u32 enabled : 1;
+            u32 pad78_0 : 1;
+        } flags;
+    } KingJinjoActor;
+    f32 *sp44;
+    f32 sp2C[6];
+
+    sp44 = func_80100094(arg0, 0);
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_80102424(arg0, 0xB);
+        ((KingJinjoActor *)arg0)->flags.visible = 0;
+        return;
+    }
+    if (func_800DA298(0x360) != 0) {
+        _subaddiemarker_entrypoint_1(arg0, 0x154, 0x32, sp2C, 1);
+        func_800EE7F8(arg0->position, sp2C);
+        arg0->rotation[1] = func_800DC178(0.0f, 360.0f);
+        _subaddieDll_entrypoint_1(arg0);
+        _subaddierouteDll_entrypoint_3(arg0, sp44, arg0->position);
+        func_80102424(arg0, 6);
+        func_8010A590(arg0);
+        func_80104E78(arg0);
+        ((KingJinjoActor *)arg0)->flags.visible = 1;
+        arg0->unk58 = func_800DC178(8.0f, 12.0f);
+        sp44[3] = func_800DC178(4.0f, 6.0f);
+        ((KingJinjoActor *)arg0)->flags.enabled = 1;
+        return;
+    }
+    if (func_800DA298(0x3B) != 0) {
+        if (func_800DA298(0x43) == 0) {
+            func_800FFAB0(arg0);
+            return;
+        }
+        func_80102424(arg0, 9);
+        ((KingJinjoActor *)arg0)->flags.visible = 0;
+        return;
+    }
+    ((KingJinjoActor *)arg0)->flags.visible = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_80800194_chkingjinjo.s")
 
