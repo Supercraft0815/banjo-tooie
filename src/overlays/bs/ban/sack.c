@@ -752,7 +752,70 @@ void func_80801A04_bsbansack(s32 arg0)
 
 void func_80801A30_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(arg0); *(u8 *)((u8 *)arg0 + 0x15D) = 0; *(u8 *)((u8 *)arg0 + 0x15C) = 0; func_80801680_bsbansack(arg0, 1); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/ban/sack/func_80801A64_bsbansack.s")
+void func_80801A64_bsbansack(PlayerState *arg0) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    int baanim_isAt(PlayerState *, f32);
+    s32 anctrl_isStopped(struct anctrl_s *);
+    s32 func_8008DF8C(PlayerState *, s32);
+    s32 func_8008E260(PlayerState *);
+    void func_8009DEC0(PlayerState *, s32, f32, f32, s32, s32);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 player_isStable(PlayerState *);
+    s32 player_inWater(PlayerState *);
+    void bs_setState(PlayerState *, int);
+    s32 sp2C;
+    struct anctrl_s *sp28;
+
+    sp2C = 0;
+    sp28 = baanim_getAnimCtrlPtr(arg0);
+    func_808001D4_bsbansack(arg0);
+    switch (arg0->unk15C.bytes[0]) {
+    case 1:
+        if (baanim_isAt(arg0, 0.05f)) {
+            func_8009DEC0(arg0, 0x58A, 0.95f, 1.05f, 0x2328, 0x2AF8);
+        }
+        if (func_8008DF8C(arg0, 0x82) || func_80800AA4_bsbansack(arg0)) {
+            func_80801680_bsbansack((s32)arg0, 3);
+        } else if (anctrl_isStopped(sp28)) {
+            func_80801680_bsbansack((s32)arg0, 2);
+        }
+        sp2C = func_80800000_bsbansack(arg0, 0, 1);
+        break;
+    case 2:
+        if (func_8008DF8C(arg0, 0x82) || func_80800AA4_bsbansack(arg0)) {
+            func_80801680_bsbansack((s32)arg0, 3);
+        }
+        sp2C = func_80800000_bsbansack(arg0, 0, 1);
+        break;
+    case 3:
+        func_80800368_bsbansack(arg0);
+        if (player_isStable(arg0) || player_inWater(arg0)) {
+            func_80801680_bsbansack((s32)arg0, 4);
+        }
+        sp2C = func_80800000_bsbansack(arg0, 0, 1);
+        break;
+    case 4:
+        func_80800368_bsbansack(arg0);
+        if (anctrl_isStopped(sp28)) {
+            if (baphysics_get_target_horizontal_velocity(arg0) > 0.0f) {
+                func_80801680_bsbansack((s32)arg0, 1);
+            } else if (player_inWater(arg0)) {
+                sp2C = 0x167;
+            } else {
+                sp2C = 0x165;
+            }
+        } else {
+            baphysics_set_target_horizontal_velocity(arg0, arg0->unk16C);
+        }
+        sp2C = func_80800084_bsbansack(arg0, sp2C);
+        break;
+    }
+    if (func_8008E260(arg0)) {
+        sp2C = 0x3D;
+    }
+    bs_setState(arg0, sp2C);
+}
 
 s32 bsbansack_entrypoint_8(s32 arg0) {
     extern s32 D_80801E90_bsbansack[];
