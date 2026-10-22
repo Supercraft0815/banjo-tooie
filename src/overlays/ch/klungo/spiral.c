@@ -62,7 +62,46 @@ void func_80800060_chklungospiral(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/spiral/func_8080015C_chklungospiral.s")
+s32 func_8080015C_chklungospiral(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    s32 _suexpression_entrypoint_8(Actor *, s32);
+    void func_800DF744(s32, s32);
+    s32 func_801015D0(Actor *);
+    void func_80102424(Actor *, s32);
+    s32 func_808002A0_chklungospiral(void *, s32, s32);
+    void func_808002FC_chklungospiral(Actor *, s32, s32);
+    void func_808003AC_chklungospiral(Actor *, s32, s32);
+
+    switch (arg1) {
+        case 11:
+            if (arg2 == 0xF) {
+                func_808002FC_chklungospiral(arg0, 3, 1);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1638, 0xE, NULL, 0xAB);
+                return 4;
+            }
+            return 3;
+        case 46:
+            func_808003AC_chklungospiral(arg0, 0x16, 0x30);
+            func_80102424(arg0, 3);
+            break;
+        case 87:
+            return func_808002A0_chklungospiral(arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+        case 41:
+            _suexpression_entrypoint_7(arg0, 1, 0xAB);
+            break;
+        case 42:
+            _suexpression_entrypoint_8(arg0, 1);
+            break;
+        case 31:
+            func_801015D0(arg0);
+            func_800DF744(3, 0);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
