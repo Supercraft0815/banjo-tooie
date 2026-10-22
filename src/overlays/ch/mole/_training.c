@@ -160,7 +160,47 @@ void func_808003D4_chmole_training(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/func_808004D0_chmole_training.s")
+/* extern */
+
+void func_808004D0_chmole_training(Actor *arg0, s32 arg1) {
+    s32 _gcnewoption_entrypoint_12(s32, s32, s16);
+
+    switch ((u32)arg0->unk54) {
+    case 1:
+        _gcnewoption_entrypoint_12(arg1, 0, 0xA);
+        _gcnewoption_entrypoint_12(arg1, 1, 0x15);
+        _gcnewoption_entrypoint_12(arg1, 2, 0x16);
+        return;
+    case 2:
+        _gcnewoption_entrypoint_12(arg1, 0, 0xB);
+        _gcnewoption_entrypoint_12(arg1, 1, 0xC);
+        _gcnewoption_entrypoint_12(arg1, 2, 0x1A);
+        return;
+    case 4:
+        _gcnewoption_entrypoint_12(arg1, 0, 0x17);
+        _gcnewoption_entrypoint_12(arg1, 1, 0x18);
+        _gcnewoption_entrypoint_12(arg1, 2, 0x19);
+        return;
+    case 0:
+        _gcnewoption_entrypoint_12(arg1, 0, 0x14);
+        _gcnewoption_entrypoint_12(arg1, 1, 0xD);
+        return;
+    case 3:
+        _gcnewoption_entrypoint_12(arg1, 0, 0xE);
+        _gcnewoption_entrypoint_12(arg1, 1, 0xF);
+        return;
+    case 7:
+        _gcnewoption_entrypoint_12(arg1, 0, 0x10);
+        _gcnewoption_entrypoint_12(arg1, 1, 0x11);
+        return;
+    case 5:
+        _gcnewoption_entrypoint_12(arg1, 0, 0x12);
+        _gcnewoption_entrypoint_12(arg1, 1, 0x13);
+        /* fallthrough */
+    default:
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mole/_training/chmole_training_entrypoint_0.s")
 
