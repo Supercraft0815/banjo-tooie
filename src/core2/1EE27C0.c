@@ -368,7 +368,84 @@ void func_80109C20(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
 
 void func_80109C4C(s32 arg0, f32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) { struct Flags { u8 pad[0x24]; u32 value : 10; u32 rest : 22; }; s32 temp; u32 saved; void func_801099D0(s32, f32, s32, s32, s32, s32); saved = ((struct Flags *)arg5)->value; ((struct Flags *)arg5)->value = arg6; func_801099D0(arg0, arg1, arg2, arg3, arg4, arg5); ((struct Flags *)arg5)->value = saved; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109CC4.s")
+s32 func_80109CC4(f32 *arg0, f32 arg1, void *arg2) {
+    typedef struct {
+        u8 pad0[0x14];
+        u16 id;
+        u16 pad16;
+        u16 flags18;
+        u8 pad1A[0xA];
+        u32 group : 10;
+        u32 pad24 : 22;
+        u32 pad28 : 22;
+        u32 enabled : 1;
+        u32 pad28b : 9;
+    } HitMarker;
+    typedef struct {
+        HitMarker *marker;
+        u32 pad4;
+        u32 pad8 : 27;
+        u32 active : 1;
+        u32 pad8b : 3;
+        u32 valid : 1;
+    } HitEntry;
+    typedef struct {
+        u8 pad0[0x10];
+        s32 (*test)(void *, void *);
+    } HitCallbacks;
+    typedef struct {
+        u8 pad0[0x70];
+        u32 pad70 : 30;
+        u32 hit : 1;
+        u32 pad70b : 1;
+    } HitFlags;
+    s32 *func_800BE444(f32 *);
+    s16 func_800CB854(s32 *);
+    s32 func_800E9E88(s32);
+    u32 func_800E9EB4(s16 *);
+    void *func_80106790();
+    void *func_800EC3C4(void *);
+    s32 _glhittableDll_entrypoint_1(void *, void *);
+    void func_800EB210(void *, void *, s32);
+    s32 pad;
+    s32 *cubes;
+    HitEntry *entry;
+    HitEntry *end;
+    HitMarker *marker;
+    Actor *actor;
+    HitCallbacks *callbacks;
+    s32 mask;
+    s32 result = 0;
+
+    cubes = func_800BE444(arg0);
+    mask = func_800CB854(NULL) ? 1 << (func_800CB854(NULL) + 31) : 0;
+    for (; *cubes; cubes++) {
+        entry = (HitEntry *)func_800E9E88(*cubes);
+        end = (HitEntry *)func_800E9EB4((s16 *)*cubes);
+        for (; entry < end; entry++) {
+            if (entry->active && entry->valid) {
+                marker = entry->marker;
+                if (marker != arg2 && marker->enabled && (marker->flags18 & 1)
+                    && marker->id && marker->id != 0xFFFF
+                    && marker->group != ((HitMarker *)arg2)->group) {
+                    actor = func_80106790(marker);
+                    if (!actor->unk64_17 && !(actor->unk64_0 & mask)
+                        && func_801098D0(arg0, arg1, marker)) {
+                        callbacks = func_800EC3C4(marker);
+                        if (!callbacks->test || callbacks->test(marker, arg2)) {
+                            result = 1;
+                            ((HitFlags *)actor)->hit = 1;
+                            if (!_glhittableDll_entrypoint_1(arg2, marker)) {
+                                func_800EB210(marker, arg2, 1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return result;
+}
 
 s32 func_80109EE0(void *arg0, s32 arg1) {
     return (*(u16 *)((s8 *)(arg0) + (0x66))) & arg1;
