@@ -314,7 +314,102 @@ void func_808007C4_chflysaucer(Actor *arg0, s16 arg1) {
     func_800F0EF0(count, _suspline_entrypoint_10(spline, 1));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808009DC_chflysaucer.s")
+struct anctrl_s;
+enum asset_e;
+void func_808009DC_chflysaucer(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_800904F4(s32, Unk80132ED0 *);
+    void func_800904C8(s32);
+    void func_800F4CEC(s32, u32);
+    void func_800F4CC0(s32);
+    u32 func_800F54E4(void);
+    void func_800BF4A4(s32, s32);
+    s32 func_8008FFE8(void);
+    void func_8010FD38(s32, f32);
+    struct anctrl_s *func_80104200(s16);
+    struct anctrl_s *func_80104268(u32 *);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    void func_80801428_chflysaucer(Actor *);
+    void func_8080149C_chflysaucer(Actor *);
+    void func_80802CF0_chflysaucer(Actor *);
+    struct {
+        union {
+            u32 packed;
+            s16 index[2];
+        } anim;
+        u8 pad[0x20];
+        u8 state;
+    } *data;
+    struct FlysaucerFlags {
+        u8 pad[0x74];
+        u32 before : 11;
+        u32 active : 1;
+    };
+    s32 pad;
+    struct anctrl_s *control;
+    struct anctrl_s *control1;
+    struct anctrl_s *control0;
+
+    data = func_80100094(arg0, 0);
+    if (arg1 != data->state) {
+        switch (data->state) {
+        case 0:
+            if (arg1 == 1U || arg1 == 3U) {
+                func_800904F4(0x27, arg0->unk0);
+                func_80104268(&data->anim.packed);
+                func_80801428_chflysaucer(arg0);
+                func_800F4CEC(func_800F54E4(), 0x71);
+                func_80802CF0_chflysaucer(arg0);
+            }
+            break;
+        case 2:
+            if (arg1 == 1 || arg1 == 3) {
+                func_800904C8(0x4B);
+                func_800F4CC0(func_800F54E4());
+                func_800BF4A4(0, 1);
+                func_800BF4A4(1, 1);
+                ((struct FlysaucerFlags *)arg0)->active = 1;
+                func_8010FD38(func_8008FFE8(), 0.0f);
+                control = func_80104200(data->anim.index[0]);
+                anctrl_setIndex(control, 0x486);
+                anctrl_setDuration(control, 1.0f);
+                anctrl_setPlaybackType(control, 3);
+                anctrl_start(control);
+            }
+            break;
+        case 1:
+        case 3:
+            if (arg1 != 0) {
+                if (arg1 == 2) {
+                    func_800F4CEC(func_800F54E4(), 0x60);
+                    func_800BF4A4(0, 0);
+                    func_800BF4A4(1, 0);
+                    ((struct FlysaucerFlags *)arg0)->active = 0;
+                    func_800904C8(0x4B);
+                    func_80802CF0_chflysaucer(arg0);
+                    func_8010FD38(func_8008FFE8(), 75.0f);
+                    control1 = func_80104200(data->anim.index[1]);
+                    control0 = func_80104200(data->anim.index[0]);
+                    anctrl_setIndex(control1, 0x484);
+                    anctrl_setIndex(control0, 0x489);
+                    anctrl_setPlaybackType(control1, 3);
+                    anctrl_start(control1);
+                    anctrl_setPlaybackType(control0, 3);
+                    anctrl_start(control0);
+                }
+            } else {
+                func_800904C8(0x28);
+                func_800F4CC0(func_800F54E4());
+                func_8080149C_chflysaucer(arg0);
+            }
+            break;
+        }
+        data->state = arg1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800C3C_chflysaucer.s")
 
