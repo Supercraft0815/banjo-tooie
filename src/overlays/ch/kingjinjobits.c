@@ -181,4 +181,30 @@ void func_80800744_chkingjinjobits(Actor *arg0, s32 arg1, s16 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjobits/chkingjinjobits_entrypoint_1.s")
+void chkingjinjobits_entrypoint_1(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4) {
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800EE88C(f32 *, Vtx *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    extern f32 D_80800AC8_chkingjinjobits[3];
+    s32 padding[2];
+    Actor *actor;
+    f32 position[3];
+    Vtx *end;
+    f32 amount;
+    f32 distance;
+    actor = func_80106790(arg4);
+    if ((*(u32 *)((u8 *)actor + 0x6C)) & 0x1FF) {
+        amount = func_800F12D4(*(f32 *)((u8 *)actor + 0x58), 0.0f, 12.0f, 10.0f, 3000.0f);
+    } else {
+        amount = func_800F12D4(*(f32 *)((u8 *)actor + 0x58), 0.0f, 12.0f, 3000.0f, 10.0f);
+    }
+    for (end = arg1 + arg3; arg1 < end; arg1++, arg2++) {
+        func_800EE88C(position, arg1);
+        distance = func_800EEAD4(position, D_80800AC8_chkingjinjobits);
+        if (distance < amount) { arg2->v.cn[3] = 0; }
+        else if (amount + 200.0f < distance) { arg2->v.cn[3] = 255; }
+        else { arg2->v.cn[3] = (u32)func_800F10B4(distance - amount, 0.0f, 200.0f, 0, 255.0f); }
+    }
+}
