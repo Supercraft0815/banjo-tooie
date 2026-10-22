@@ -939,7 +939,44 @@ void func_8080372C_chdodgemcontrol(Actor *arg0, f32 arg1, f32 arg2) {
     arg0->unk54 = arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808037C8_chdodgemcontrol.s")
+void func_808037C8_chdodgemcontrol(Actor *arg0) {
+    f32 func_800DC178(f32, f32);
+    void *func_80100094(Actor *, u32);
+    f32 func_80102D78(Actor *, f32 *);
+    f32 func_8080458C_chdodgemcontrol(Actor *);
+    f32 func_8080460C_chdodgemcontrol(Actor *);
+    struct DodgemPosition { f32 v[3]; };
+    extern struct DodgemPosition D_80804FA0_chdodgemcontrol;
+    f32 *sp4C;
+    f32 scale;
+    struct DodgemPosition sp3C;
+    f32 sp38;
+    s32 pad34;
+    f32 sp30;
+
+    sp4C = func_80100094(arg0, 0);
+    scale = func_800DC178(0.6f, 0.75f);
+    if (720.0f * scale < arg0->position[0] ||
+        arg0->position[0] < -720.0f * scale ||
+        720.0f * scale < arg0->position[2] ||
+        arg0->position[2] < -720.0f * scale) {
+        sp3C = D_80804FA0_chdodgemcontrol;
+        sp38 = func_80102D78(arg0, sp3C.v);
+        sp30 = func_800DC178(15.0f, 70.0f);
+        func_8080372C_chdodgemcontrol(arg0, sp30 + sp38, sp38 - func_800DC178(15.0f, 70.0f));
+        if (func_8080460C_chdodgemcontrol(arg0) * 0.5f < ((f32 *)arg0->actorData)[3]) {
+            ((f32 *)arg0->actorData)[3] -= func_8080458C_chdodgemcontrol(arg0);
+        }
+        if (((f32 *)arg0->actorData)[3] < func_8080460C_chdodgemcontrol(arg0) * 0.5f) {
+            ((f32 *)arg0->actorData)[3] += func_8080458C_chdodgemcontrol(arg0);
+        }
+        sp4C[5] = 0.25f;
+        return;
+    }
+    if (((f32 *)arg0->actorData)[3] < func_8080460C_chdodgemcontrol(arg0) * 0.75f) {
+        ((f32 *)arg0->actorData)[3] += func_8080458C_chdodgemcontrol(arg0);
+    }
+}
 
 void func_808039B8_chdodgemcontrol(Actor *arg0) {
     void func_800EE780(f32 *, f32 *, f32 *);
