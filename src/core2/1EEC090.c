@@ -326,11 +326,33 @@ s32 func_8011349C(f32 *start, f32 *end) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_801134F0.s")
+void func_801134F0(f32 *arg0, f32 arg1) {
+    void *func_800C6C94(f32[3], f32, f32[3], u32);
+    f32 func_800EEFD4(f32 *);
+    void func_800EF174(f32[3], f32[3], f32);
+    f32 normal[3];
+    f32 threshold;
+    s32 count;
+
+    count = 0;
+    if (func_800C6C94(arg0, arg1, normal, 0x820020) != 0) {
+        threshold = 0.01f;
+loop:
+        if (!(func_800EEFD4(normal) < threshold)) {
+            func_800EF174(arg0, normal, 1.5f);
+            count += 1;
+            if (func_800C6C94(arg0, arg1, normal, 0x820020) != 0) {
+                if (count != 1) {
+                    goto loop;
+                }
+            }
+        }
+    }
+}
 
 void func_801135D0(u8 *arg0, u8 *arg1, u8 *arg2, u8 *arg3, f32 *arg4) {
     f32 func_800EEAA4(f32 a[3], f32 b[3]);
-    s32 func_800EF174(s32, s32, f32);
+    void func_800EF174(f32[3], f32[3], f32);
     void func_800EFB24(void *arg0, void *arg1, void *arg2);
     f32 sp34[3];
     f32 sp28[3];
@@ -339,7 +361,7 @@ void func_801135D0(u8 *arg0, u8 *arg1, u8 *arg2, u8 *arg3, f32 *arg4) {
     func_800EFB24(sp34, arg3, arg2);
     func_800EFB24(&sp28, arg1, arg0);
     func_800EFB24(&sp1C, sp34, &sp28);
-    func_800EF174((s32) arg3, (s32) arg4, -func_800EEAA4(arg4, &sp1C));
+    func_800EF174((f32 *)arg3, arg4, -func_800EEAA4(arg4, &sp1C));
 }
 
 void func_80113640(s32 unused, f32 *start, f32 *end) {
@@ -356,9 +378,8 @@ void func_80113688(PlayerState *arg0, struct ba_bounce_s *arg1, f32 *arg2) {
     void *func_800FB3C0(f32 *, f32 *, f32, f32 *, s32, u32);
     s32 func_80110060(s32 *);
     s32 func_80110898(PlayerState *);
-    void func_801134F0(struct ba_bounce_s *, f32);
+    void func_801134F0(f32 *, f32);
     void func_80114CF4(u8 *, f32 *, s32, f32 *);
-    extern f32 D_801265CC;
     f32 sp74[3];
     f32 sp68[3];
     f32 sp5C[3];
@@ -367,7 +388,7 @@ void func_80113688(PlayerState *arg0, struct ba_bounce_s *arg1, f32 *arg2) {
     f32 sp30[9];
 
     func_801134F0(arg1, 45.0f);
-    if (!(func_800EEB40(arg1, arg2) < D_801265CC)) {
+    if (!(func_800EEB40(arg1, arg2) < 0.0001f)) {
         func_800EE7F8(sp68, arg1);
         func_800EE7F8(sp5C, arg2);
         sp58 = func_800FAB50(sp68, sp5C, sp74, 0x820020, 45.0f);

@@ -60,7 +60,33 @@ void dbzone_entrypoint_2(s16 arg0[][7], f32 *arg1, s32 arg2) {
     func_8080010C_dbzone(temp[0] + 1, sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/db/zone/dbzone_entrypoint_3.s")
+/* extern */
+
+s32 dbzone_entrypoint_3(u8 *arg0, f32 *arg1) {
+    void func_800EE940(s16 *, f32 *);
+    u8 *sp28;
+    u8 *var_s0;
+    void *temp_s1;
+    s16 sp2C[3];
+
+    sp28 = arg0 + 2;
+    temp_s1 = (*arg0 * 0xE) + arg0 + 2;
+    func_800EE940(sp2C, arg1);
+    var_s0 = arg0 + 2;
+    if ((u32) var_s0 < (u32) temp_s1) {
+loop_2:
+        if (func_8080010C_dbzone((s16 *) var_s0, sp2C) != 0) {
+            return (s32) (var_s0 - sp28) / 14;
+        }
+        var_s0 += 0xE;
+        if ((u32) var_s0 >= (u32) temp_s1) {
+            goto block_5;
+        }
+        goto loop_2;
+    }
+block_5:
+    return -1;
+}
 
 s32 dbzone_entrypoint_4(u8 *arg0, f32 *arg1, u8 *arg2) {
     void func_800EE940(s16 dst[3], f32 src[3]);
