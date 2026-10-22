@@ -123,7 +123,63 @@ extend:
 done:;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anemone/func_80800648_chanemone.s")
+s32 func_80800648_chanemone(Unk80132ED0 *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4)
+{
+    f32 func_800136E4(f32);
+    s16 func_800B1F8C(u8 *, f32 *, f32 *, f32, s32, void *, s32, f32, s32, s32);
+    s16 func_800CB854(s32 *);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EF04C(f32 *, f32 *);
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    f32 func_800F1DCC(f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    u8 *func_80103D98(Unk80132ED0 *);
+    void *func_801040A8(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *actor;
+    s32 result;
+    s32 sp64;
+    f32 sp58[3];
+    u8 *sp54;
+    f32 angle;
+    u8 *sp4C;
+
+    actor = func_80106790(arg0);
+    switch (func_800CB854(&sp64)) {
+    case 2:
+        func_800EE88C(sp58, (s16 *)&arg0->unk1C + 1);
+        func_800EF04C(sp58, actor->position);
+        return func_800EFFB4(sp58, (u32)*(u16 *)&actor->pad68 * 0.8f * actor->scale + arg2, (f32 *)arg1);
+    case 5:
+        sp54 = func_80103D98(arg0);
+        if (sp54 == NULL) {
+            return 0;
+        }
+        result = func_800B1F8C(sp54, actor->position, actor->rotation, actor->scale, 0, func_801040A8(actor), arg1, arg2, arg3, 30);
+        break;
+    default:
+        sp4C = func_80103D98(arg0);
+        if (sp4C == NULL) {
+            return 0;
+        }
+        angle = func_800136E4(func_800F1DCC(func_800F1DF4(actor->position, (f32 *)arg1), actor->rotation[1]));
+        if (angle < 90.0f) {
+            arg4 = 12;
+        } else if (angle < 180.0f) {
+            arg4 = 24;
+        } else if (angle < 270.0f) {
+            arg4 = 18;
+        } else {
+            arg4 = 6;
+        }
+        result = func_800B1F8C(sp4C, actor->position, actor->rotation, actor->scale, 0, func_801040A8(actor), arg1, arg2, arg3, arg4);
+        break;
+    }
+    if (result != 0) {
+        actor->unk6C_0 = result;
+    }
+    return result;
+}
 
 OSThread *chanemone_entrypoint_1(void)
 {
