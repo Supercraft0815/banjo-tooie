@@ -180,7 +180,76 @@ void func_8080047C_chmasterjiggy(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_808004FC_chmasterjiggy.s")
+void func_808004FC_chmasterjiggy(Actor *arg0) {
+    typedef struct {
+        f32 amount;
+        f32 fade;
+        f32 progress;
+        u32 sound;
+        f32 speed;
+        s32 pad14[2];
+        f32 timer;
+    } MasterJiggyData;
+    s32 _subaddiedialog_entrypoint_6(f32 *, s32, s32, s32, s32);
+    s32 _sujiggy_entrypoint_21(void);
+    s32 func_8008FB10(f32 *, f32, f32, f32);
+    s32 func_800C0638(void);
+    s32 func_800D9078(f32 *);
+    s32 func_800D90A4(f32 *);
+    s32 func_80101DDC(Actor *);
+    f32 *position[1];
+
+    position[0] = arg0->position;
+    func_8008FB10(position[0], 200.0f, 0.0f, 100.0f);
+    switch (arg0->unk70_10) {
+    case 1:
+        if (_subaddiedialog_entrypoint_6(position[0], (s32)arg0->rotation[1], 0x190, 0x3C, 6)) {
+            if (_sujiggy_entrypoint_21()) {
+                func_808001D0_chmasterjiggy((Unk80132ED0 **)arg0, 8);
+            } else {
+                func_808001D0_chmasterjiggy((Unk80132ED0 **)arg0, 1);
+            }
+        } else {
+            func_80800414_chmasterjiggy((s32)arg0);
+        }
+        func_8080047C_chmasterjiggy((s32)arg0);
+        break;
+    case 2:
+    case 3:
+        func_8080047C_chmasterjiggy((s32)arg0);
+        break;
+    case 4:
+        if (!func_800C0638() && func_800D9078(&arg0->unk58)) {
+            func_808001B0_chmasterjiggy((s32)arg0);
+        }
+        func_8080047C_chmasterjiggy((s32)arg0);
+        break;
+    case 5:
+        if (func_800D90A4(&((MasterJiggyData *)arg0->actorData)->timer)) {
+            func_80800220_chmasterjiggy((s32)arg0, 6);
+        }
+        break;
+    case 6:
+        if (func_80101DDC(arg0)) {
+            func_80800220_chmasterjiggy((s32)arg0, 7);
+        }
+        break;
+    case 8:
+        if (func_80800374_chmasterjiggy((s32)arg0) && func_808003D4_chmasterjiggy((s32)arg0)) {
+            func_808001D0_chmasterjiggy((Unk80132ED0 **)arg0, 5);
+        } else if (_subaddiedialog_entrypoint_6(position[0], (s32)arg0->rotation[1], 0x190, 0x3C, 6)) {
+            func_808001D0_chmasterjiggy((Unk80132ED0 **)arg0, 2);
+        }
+        func_8080047C_chmasterjiggy((s32)arg0);
+        break;
+    case 9:
+    case 10:
+        if (func_80101DDC(arg0)) {
+            func_80800220_chmasterjiggy((s32)arg0, arg0->unk70_10 + 1);
+        }
+        break;
+    }
+}
 
 /* extern */
 
