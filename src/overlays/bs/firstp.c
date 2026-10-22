@@ -1765,7 +1765,62 @@ void func_80803F6C_bsfirstp(s32 arg0)
     func_808090D8_bsfirstp((void *)arg0);
     func_80807C8C_bsfirstp(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803F94_bsfirstp.s")
+void func_80803F94_bsfirstp(struct player_state_s *arg0) {
+    s32 func_80802F20_bsfirstp(struct player_state_s *);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    int baanim_isStopped(struct player_state_s *);
+    s32 bs_setState(void *, s32);
+    int func_8008DF8C(struct player_state_s *, s32);
+    s32 func_800F7F98(s32, u32);
+    s32 func_80804848_bsfirstp(u8 *, s32);
+    void func_8080682C_bsfirstp(void *);
+    void func_80808EF0_bsfirstp(s32);
+    s32 func_808094F4_bsfirstp(s32);
+    void func_808099B4_bsfirstp(void *);
+    void func_80809D24_bsfirstp(void *);
+    int player_isStable(struct player_state_s *);
+    void *sp2C;
+    s32 sp28;
+    struct anctrl_s *sp24;
+
+    sp2C = *(void **)((u8 *)arg0 + 0x188);
+    sp28 = 0;
+    func_80807D48_bsfirstp((s32)arg0);
+    func_80804848_bsfirstp((u8 *)arg0, *(s32 *)((u8 *)sp2C + 0xC));
+    func_80801928_bsfirstp(arg0);
+    func_80801DC0_bsfirstp((u8 *)arg0);
+    func_80808EF0_bsfirstp((s32)arg0);
+    func_80802F20_bsfirstp(arg0);
+    func_80809198_bsfirstp(arg0);
+    switch (*(s32 *)((u8 *)sp2C + 4)) {
+        case 0:
+            if (func_8008DF8C(arg0, 0x5A)) {
+                sp24 = baanim_getAnimCtrlPtr(arg0);
+                anctrl_setSubrange(sp24, 0.0f, 1.0f);
+                anctrl_setPlaybackType(sp24, 1);
+                *(s32 *)((u8 *)sp2C + 4) = 1;
+            }
+            break;
+        case 1:
+            if (player_isStable(arg0)) {
+                *(s32 *)((u8 *)sp2C + 4) = 2;
+                func_800F7F98(*(s32 *)((u8 *)arg0 + 0x184), 0);
+            }
+            break;
+        case 2:
+            func_80809D24_bsfirstp(arg0);
+            func_8080682C_bsfirstp(arg0);
+            func_808099B4_bsfirstp(arg0);
+            sp28 = func_808094F4_bsfirstp((s32)arg0);
+            if (sp28 == 0xCA && !baanim_isStopped(arg0)) {
+                sp28 = 0;
+            }
+            break;
+    }
+    bs_setState(arg0, sp28);
+}
 
 s32 bsfirstp_entrypoint_15(s32 arg0) {
     extern s32 D_8080B4D0_bsfirstp[];
