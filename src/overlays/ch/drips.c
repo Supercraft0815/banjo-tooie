@@ -69,7 +69,63 @@ void func_80800260_chdrips(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/drips/func_80800394_chdrips.s")
+void func_80800394_chdrips(Actor *arg0) {
+    s32 _subaddie3d_entrypoint_0(f32 *, f32, f32, f32 *);
+    s32 _subaddie3d_entrypoint_1(f32 *, f32, f32, f32 *);
+    u32 func_800CC5F4(s32);
+    void *func_800CC63C(s32, s32);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800FFA88(Unk80132ED0 *);
+    u32 *func_80100074(Actor *, u32, u32);
+    void *func_80100094(Actor *, u32);
+    struct {
+        f32 position[3];
+        f32 size;
+        u8 flag;
+        u8 pad[3];
+    } *drip;
+    struct {
+        f32 position[3];
+        s16 radius;
+    } *point;
+    f32 angle;
+    f32 height;
+    s32 count;
+    s32 i;
+
+    if (arg0->unk70_25 == 0) {
+        func_800FFA88(arg0->unk0);
+        return;
+    }
+    if ((s32)arg0->unk74_7 < 51) {
+        arg0->unk74_7 = 60;
+    }
+    arg0->unk74_7 = (s32)arg0->unk74_7 - 50;
+    func_80100074(arg0, 0, arg0->unk74_7 * sizeof(*drip));
+    drip = func_80100094(arg0, 0);
+    count = func_800CC5F4(arg0->unk70_25 - 1);
+    for (i = 0; i < (s32)arg0->unk74_7; i++, drip++) {
+        point = func_800CC63C(arg0->unk70_25 - 1, func_800DC128(0, count));
+        angle = func_800DC178(0.0f, 359.0f);
+        func_800EEB9C(drip->position, angle, func_800DC178(0.0f, point->radius));
+        func_800EF04C(drip->position, point->position);
+        if (!_subaddie3d_entrypoint_0(drip->position, 0.0f, -5000.0f, &drip->size)) {
+            drip->size = point->position[1];
+        }
+        if (!_subaddie3d_entrypoint_1(drip->position, 0.0f, -5000.0f, &height)) {
+            height = drip->size - 50.0f;
+        }
+        if (drip->size < height) {
+            drip->size = height;
+            drip->flag = 1;
+        } else {
+            drip->flag = 0;
+        }
+    }
+}
 
 void func_808005CC_chdrips(Actor *arg0) {
     u32* func_80100074(Actor*, u32, u32);
