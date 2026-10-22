@@ -353,7 +353,66 @@ void sumumbofx_entrypoint_13(void *arg0) {
     func_800C8B84((*(s16 *)((s8 *)(arg0) + (0x5E))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_14.s")
+void sumumbofx_entrypoint_14(u8 *arg0) {
+    s32 func_800D9078(f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    void func_800FCAE0(u32, u32, u32);
+    f32 sumumbofx_entrypoint_26(void *);
+    struct Flags { u8 pad[0x60]; unsigned char mode:7; unsigned char changed:1; };
+    f32 value;
+    f32 distance;
+    f32 minimum;
+    f32 sp40[3];
+    f32 maximum;
+    f32 scale;
+    u32 mode;
+    u8 flags;
+
+    mode = *(u32 *)(arg0 + 0x60) >> 25;
+    if (mode != 1) {
+        if (mode == 2) {
+            value = 1.0f - sumumbofx_entrypoint_26(arg0);
+            ((struct Flags *)arg0)->changed = value != *(f32 *)(arg0 + 4);
+            *(f32 *)(arg0 + 4) = value;
+        }
+    } else {
+        value = sumumbofx_entrypoint_26(arg0);
+        ((struct Flags *)arg0)->changed = value != *(f32 *)(arg0 + 4);
+        *(f32 *)(arg0 + 4) = value;
+    }
+    if (arg0[0x61] && *(f32 *)(arg0 + 4) > 0.1f && arg0[0x62] == 2) {
+        if (arg0[0x63]) {
+            func_800F5A00(func_800F54E4(), sp40);
+            distance = func_800EEB40((f32 *)(arg0 + 0x28), sp40);
+            minimum = *(f32 *)(arg0 + 0x34);
+            if (distance < minimum) {
+                scale = 1.0f;
+            } else {
+                maximum = *(f32 *)(arg0 + 0x38);
+                if (maximum < distance) {
+                    scale = 0.0f;
+                } else {
+                    scale = func_800F10B4(distance, minimum, maximum, 1.0f, 0.0f);
+                }
+            }
+        } else {
+            scale = 1.0f;
+        }
+        func_800FCAE0(0x1C, (s32)(*(f32 *)(arg0 + 4) * 20000.0f * scale), 0x1F4);
+    }
+    arg0[0x61] = 0;
+    func_800D9078((f32 *)(arg0 + 0x10));
+    flags = arg0[0x60];
+    if (flags & 1) {
+        arg0[0x60] = flags & 0xFFFE;
+        if (*(s16 *)(arg0 + 0x5E)) {
+            func_80800F8C_sumumbofx(arg0);
+        }
+    }
+}
 
 void sumumbofx_entrypoint_15(void *arg0, f32 arg1) { void sumumbofx_entrypoint_20(void *, f32); arg0 = arg0; ((u8 *)arg0)[0x60] = (((u8 *)arg0)[0x60] & 0xFF01) | 2; sumumbofx_entrypoint_20(arg0, arg1); }
 
