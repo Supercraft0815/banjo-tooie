@@ -146,7 +146,42 @@ void func_800B7174(u8 *arg0) {
     func_800F2EBC(&D_801281A4, arg0 + 0x10);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B71F4.s")
+s32 func_800B71F4(Gfx **arg0, u8 *arg1) {
+    s32 func_800B0D58(s16 *);
+    void *func_800B0D60(void *);
+    s16 *func_800D3524(s32);
+    void func_800E76A4(Gfx **, s32);
+    s32 func_800E7778(Gfx **, s32);
+    s32 func_800E7828(Gfx **, s32 *);
+    void func_800E78C8(Gfx **, s32);
+    void func_800E7928(Gfx **, s32);
+    s16 *font;
+    s32 flags;
+    void *palette;
+
+    func_800E78C8(arg0, ((u32)*(u16 *)(arg1 + 6) >> 12) == 1 ? 0x2000 : 0);
+    if (*(s16 *)(arg1 + 4) != -0x7FFF) {
+        func_800E7778(arg0, 0x100000);
+        func_800E76A4(arg0, 1);
+    } else {
+        func_800E7778(arg0, 0);
+        func_800E76A4(arg0, 0);
+    }
+    func_800E7828(arg0, (s32 *)(arg1 + 0x10));
+    font = func_800D3524((u32)*(u16 *)(arg1 + 6) >> 12);
+    flags = func_800B0D58(font);
+    if (flags & 5) {
+        palette = func_800B0D60(font);
+        func_800E7928(arg0, 0x8000);
+        if (flags & 1) {
+            gDPLoadTLUT_pal16((*arg0)++, 0, palette);
+        } else {
+            gDPLoadTLUT_pal256((*arg0)++, palette);
+        }
+    } else {
+        func_800E7928(arg0, 0);
+    }
+}
 
 void func_800B7448(Gfx **arg0) {
     void func_800B62CC(Gfx **, u8, f32 *, f32 *, f32);
