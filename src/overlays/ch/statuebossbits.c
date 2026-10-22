@@ -33,7 +33,65 @@ OSThread *chstatuebossbits_entrypoint_3(void)
 void func_80800030_chstatuebossbits(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statuebossbits/func_80800038_chstatuebossbits.s")
+void func_80800038_chstatuebossbits(Actor *arg0) {
+    void _subaddiefade_entrypoint_3(Actor *);
+    f32 func_800D8FF8(void);
+    u8 func_800D9078(f32 *);
+    void func_800EA600(s32, s32);
+    void func_800EA614(void);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_8010108C(Actor *, s32, s32);
+    void func_80101FDC(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80109FB8(s32, volatile s32);
+    void func_80800270_chstatuebossbits(Actor *);
+    s32 sp3C;
+    s32 sp38;
+    Actor *sp34;
+    s32 sp30;
+    s32 sp2C;
+
+    switch (arg0->unk70_10) {
+        case 1:
+            arg0->unk3C = NULL;
+            func_800EA600((s32)func_80109FB8, (s32)arg0->unk0);
+            sp3C = func_8010B990(arg0, 0x100005);
+            func_800EA614();
+            arg0->rotation[2] += func_800D8FF8() * 150.0f;
+            if (sp3C != 0) {
+                sp38 = 0;
+                if (arg0->unk3C != NULL) {
+                    sp34 = func_80106790(arg0->unk3C);
+                    if (sp34->unk6C_9 == 0x449) {
+                        func_8010108C(sp34, 0x40, (s32)arg0->unk0);
+                        if (*(s32 *)&sp34->unk54 >= 3) {
+                            sp38 = 1;
+                        }
+                    }
+                }
+                func_800EF1B8(arg0->position, arg0->rotation[1] + 180.0f, 100.0f);
+                func_80800270_chstatuebossbits(arg0);
+                func_8010A570(arg0);
+                if (sp38 != 0) {
+                    func_80101FDC(arg0, 3);
+                    _subaddiefade_entrypoint_3(arg0);
+                    return;
+                }
+                func_80101FDC(arg0, 2);
+                arg0->unk58 = 1.4f;
+            }
+            break;
+        case 2:
+            sp30 = func_800D9078(&arg0->unk58);
+            sp2C = func_8001210C(1) ? -1 : 1;
+            arg0->rotation[0] = func_800F10B4(arg0->unk58, 0.0f, 1.4f, 0.0f, 10.0f) * (f32)sp2C;
+            if (sp30 != 0) {
+                _subaddiefade_entrypoint_3(arg0);
+            }
+            break;
+    }
+}
 
 /* extern */
 
