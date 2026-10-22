@@ -83,7 +83,45 @@ void func_80800514_chpawnbroker(Actor* arg0)
 {
     _suexpression_entrypoint_8(arg0, 1);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800534_chpawnbroker.s")
+s32 func_80800534_chpawnbroker(Actor *arg0, s32 arg1, s32 arg2) {
+    extern u32 D_80800F60_chpawnbroker;
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    s32 _suexpression_entrypoint_12(void *, s32, s32);
+    s32 _suexpression_entrypoint_17(void *, s32);
+    void func_80108B04(Actor *, u32);
+    void func_808006FC_chpawnbroker(Actor *, s32);
+    void func_8080083C_chpawnbroker(Actor *, s32, s32);
+    s32 func_80800A50_chpawnbroker(void *, s32, s32);
+    void func_80800AA8_chpawnbroker(void *);
+    s32 expression;
+
+    switch (arg1) {
+        case 0x2E:
+            func_8080083C_chpawnbroker(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x3D:
+            func_808006FC_chpawnbroker(arg0, arg2);
+            break;
+        case 0x52:
+            _gcdialogcamera_entrypoint_3(&D_80800F60_chpawnbroker, arg0->scale);
+            break;
+        case 0x57:
+            return func_80800A50_chpawnbroker(arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+        case 0xB:
+            func_80800AA8_chpawnbroker(arg0);
+            return 4;
+        case 0x95:
+            expression = _suexpression_entrypoint_7(arg0, 1, 0x53);
+            _suexpression_entrypoint_12(expression, 0x428C0000, 0x41F00000);
+            _suexpression_entrypoint_17(expression, 0x3E8);
+            func_80108B04(arg0, 0x354);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800664_chpawnbroker(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
