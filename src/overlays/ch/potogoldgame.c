@@ -370,7 +370,28 @@ void chpotogoldgame_entrypoint_3(s32 arg0, s32 arg1, Vtx *arg2, s32 arg3, s32 ar
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_8080206C_chpotogoldgame.s")
+/* extern */
+
+s32 func_8080206C_chpotogoldgame(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 i;
+    s32 j;
+    s32 k;
+    s32 count = 0;
+    u8 (*data)[4][5];
+
+    data = func_80100094(arg0, 0);
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 4; j++) {
+            for (k = 0; k < 5; k++) {
+                if (data[i][j][k] != 0) {
+                    count++;
+                }
+            }
+        }
+    }
+    return count;
+}
 
 void func_80802124_chpotogoldgame(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
