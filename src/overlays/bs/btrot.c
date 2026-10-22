@@ -6,6 +6,7 @@ void bs_setState();
 /* extern */
 
 typedef struct PlayerState PlayerState;
+void func_8009FE58(PlayerState *);
 void _bashoes_entrypoint_20(PlayerState *);
 void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
 s32 bs_getNextState(PlayerState *);
@@ -1084,7 +1085,72 @@ s32 bsbtrot_entrypoint_43(s32 arg0) {
     return ((s32 *)&D_80802EF0_bsbtrot)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/func_808025D8_bsbtrot.s")
+s32 func_808025D8_bsbtrot(s32 arg0, s32 arg1) {
+    AnimCtrl *temp_a0;
+    AnimCtrl *sp34;
+    f32 sp28[2];
+    PlayerState *self = (PlayerState *)arg0;
+    void anctrl_reset(AnimCtrl *);
+    void anctrl_setDuration(AnimCtrl *, f32);
+    void anctrl_setIndex(AnimCtrl *, s32);
+    void anctrl_setPlaybackType(AnimCtrl *, s32);
+    void anctrl_setStart(AnimCtrl *, f32);
+    void anctrl_setSubrange(AnimCtrl *, f32, f32);
+    void anctrl_start(AnimCtrl *);
+    void func_8008B1C8(AnimCtrl *, f32);
+
+    AnimCtrl *baanim_getAnimCtrlPtr(PlayerState *);
+    void baanim_setEnd(PlayerState *, f32);
+    void baanim_setEndAndDuration(PlayerState *, f32, f32);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    f32 bastick_distance(PlayerState *);
+    f32 bastick_getAngleRelativeToBanjo(PlayerState *);
+    void func_8009DE38(PlayerState *, s32, f32);
+    void func_8009FE58(PlayerState *);
+    f32 yaw_getIdeal(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+
+    temp_a0 = baanim_getAnimCtrlPtr(self);
+    switch (arg1) {
+    case 1:
+        sp34 = temp_a0;
+        anctrl_reset(temp_a0);
+        anctrl_setIndex(temp_a0, 0x11F);
+        anctrl_setDuration(temp_a0, 0.9f);
+        func_8008B1C8(temp_a0, 0.1f);
+        anctrl_setStart(temp_a0, 0.1734f);
+        anctrl_setSubrange(temp_a0, 0.0f, 0.4f);
+        anctrl_setPlaybackType(temp_a0, 1);
+        anctrl_start(temp_a0);
+        func_8009FFD8(self, 1, 1, 3, 6);
+        if (bastick_distance(self) != 0.0f) {
+            yaw_setIdeal(self, bastick_getAngleRelativeToBanjo(self));
+        }
+        baphysics_set_target_yaw(self, yaw_getIdeal(self));
+        func_80800438_bsbtrot(self);
+        sp28[0] = yaw_getIdeal(self);
+        baphysics_set_horizontal_velocity(self, sp28[0], baphysics_get_target_horizontal_velocity(self));
+        baphysics_set_vertical_velocity(self, 693.0f);
+        baphysics_set_gravity(self, -1200.0f);
+        func_8009DE38(self, 0x4432, 1.0f);
+        break;
+    case 2:
+        baanim_setEndAndDuration(self, 0.6f, 4.0f);
+        break;
+    case 3:
+        baanim_setEndAndDuration(self, 0.7734f, 0.9f);
+        break;
+    case 4:
+        func_8009FE58(self);
+        baanim_setEnd(self, 1.0f);
+        break;
+    }
+    *(s32 *)((s8 *)self + 0x15C) = arg1;
+}
 
 void bsbtrot_entrypoint_44(s32 arg0)
 {
