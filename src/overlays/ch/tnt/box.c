@@ -21,7 +21,42 @@ void func_80800018_chtntbox(u8 *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x95))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x95))) & 0xFFFE) | 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/func_80800044_chtntbox.s")
+void func_80800044_chtntbox(Actor *arg0) {
+    s32 _subaddiejoy_entrypoint_6(u8 *, s32);
+    f32 func_800D8FF8(void);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    void func_80102424(Actor *, s32);
+    void func_80108B04(Actor *, u32);
+    s32 func_8010C9B0(f32 *, s32);
+    s32 result;
+
+    switch (arg0->unk70_10) {
+        case 1:
+            if (arg0->unk58 > 0.0f) {
+                arg0->unk58 -= func_800D8FF8();
+                return;
+            }
+            if (arg0->unk64_29) {
+                result = _subaddiejoy_entrypoint_6((u8 *)arg0, 1) == 1;
+            } else {
+                result = func_8010C9B0(arg0->position, arg0->unk74_7 * 10);
+            }
+            if (result) {
+                func_80102424(arg0, 2);
+            }
+            break;
+        case 2:
+            if (func_80101E14(arg0, 0.3f)) {
+                func_80108B04(arg0, 0);
+            }
+            if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 1);
+                arg0->unk58 = 0.8f;
+            }
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/func_8080015C_chtntbox.s")
 
