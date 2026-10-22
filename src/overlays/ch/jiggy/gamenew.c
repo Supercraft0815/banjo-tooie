@@ -659,7 +659,29 @@ void chjiggygamenew_entrypoint_1(void) {
     func_800EC828();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/chjiggygamenew_entrypoint_2.s")
+void chjiggygamenew_entrypoint_2(void) {
+    s32 func_80014F00(void);
+    s32 _glglobalsettings_entrypoint_3(void);
+    extern u8 D_80803DE4_chjiggygamenew[10][2];
+    extern u8 D_80803DF8_chjiggygamenew[7][2];
+    u16 *buffer;
+    s32 i;
+    s32 offset;
+    s32 offset2;
+
+    buffer = (u16 *)func_80014F00();
+    if (_glglobalsettings_entrypoint_3()) {
+        for (i = 0; i < 7; i++) {
+            offset = D_80803DF8_chjiggygamenew[i][0] + D_80803DF8_chjiggygamenew[i][1] * 0x130;
+            buffer[offset] = buffer[offset - 1];
+        }
+    } else {
+        for (i = 0; i < 10; i++) {
+            offset2 = D_80803DE4_chjiggygamenew[i][0] + D_80803DE4_chjiggygamenew[i][1] * 0x130;
+            buffer[offset2] = buffer[offset2 - 1];
+        }
+    }
+}
 
 OSThread *chjiggygamenew_entrypoint_3(void)
 {
