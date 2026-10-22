@@ -45,7 +45,58 @@ void func_80800030_chterryegg(Actor *arg0) {
     func_80800CF4_chterryegg(arg0, 4.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_808000A8_chterryegg.s")
+void func_808000A8_chterryegg(Actor *arg0) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    s32 _plsu_entrypoint_3(Unk80132ED0 *);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiepalette_entrypoint_1(Actor *, void *);
+    s32 _subaddiepalette_entrypoint_2(Actor *, void *, s32, f32);
+    s32 func_800D9078();
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800F7BC8(s32, s32, Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101E14(Actor *, f32);
+    void func_80102424(Actor *, s32);
+    void func_808010B0_chterryegg(Actor *);
+    s32 player;
+
+    switch (arg0->unk70_10) {
+        case 1:
+            player = _plsu_entrypoint_3(arg0->unk0);
+            if (player != -1) {
+                func_800F7BC8(player, 0x53, arg0->unk0);
+            }
+            break;
+        case 3:
+            if (arg0->unk7C_12 && func_800D9078(&arg0->unk58)) {
+                _subaddiepalette_entrypoint_2(arg0, func_80100094(arg0, 1), 0x7BE, 2.5f);
+                func_80102424(arg0, 4);
+                arg0->unk58 = 2.5f;
+            }
+            break;
+        case 4:
+            if (func_800D9078(&arg0->unk58)) {
+                func_80102424(arg0, 5);
+                _subaddieDll_entrypoint_4(arg0, 0);
+            }
+            ((f32 *)arg0->actorData)[4] = func_800F10B4(arg0->unk58, 0.0f, 2.5f, 0, 255.0f);
+            break;
+        case 5:
+            player = _plsu_entrypoint_3(arg0->unk0);
+            if (player != -1) {
+                func_800F7BC8(player, 0x53, arg0->unk0);
+            }
+            break;
+        case 6:
+            func_808010B0_chterryegg(arg0);
+            if (func_80101E14(arg0, 0.3f)) {
+                _chexploder_entrypoint_3(arg0, arg0->position, 8);
+                func_80102424(arg0, 7);
+            }
+            break;
+    }
+    _subaddiepalette_entrypoint_1(arg0, func_80100094(arg0, 1));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_8080023C_chterryegg.s")
 
