@@ -97,4 +97,48 @@ void chelectricfence_entrypoint_1(Actor *arg0, f32 *arg1) {
     _chlightfader_entrypoint_1(light, 0.8f, 5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/electricfence/chelectricfence_entrypoint_2.s")
+s32 chelectricfence_entrypoint_2(Actor *arg0, u32 *arg1, u32 *arg2) {
+    s32 func_800B5BE4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA8F8(void *, f32, f32);
+    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EF934(f32[3], f32[3], f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    extern s32 D_808005A4_chelectricfence[];
+    f32 sp5C[3];
+    f32 sp50[3];
+    f32 sp44[3];
+    f32 sp40;
+    s32 sp3C;
+    f32 sp38;
+
+    if (func_800DC298(0.5f)) {
+        sp40 = ((f32 *)arg1)[2];
+    } else {
+        sp40 = ((f32 *)arg2)[2];
+    }
+    func_800EFA4C(sp5C, func_800DC178(((f32 *)arg1)[0], ((f32 *)arg2)[0]),
+                 func_800DC178(((f32 *)arg1)[1], ((f32 *)arg2)[1]), sp40);
+    func_800EFA4C(sp50, func_800DC178(((f32 *)arg1)[0], ((f32 *)arg2)[0]),
+                 func_800DC178(((f32 *)arg1)[1], ((f32 *)arg2)[1]), sp40);
+    func_800EF934(sp5C, sp5C, arg0->rotation[1]);
+    func_800EF04C(sp5C, arg0->position);
+    func_800EF934(sp50, sp50, arg0->rotation[1]);
+    func_800EF04C(sp50, arg0->position);
+    func_800EFB24(sp44, sp50, sp5C);
+    func_800EF368(sp44, 400.0f);
+    sp38 = func_800EEAD4(sp50, sp5C) / 500.0f;
+    sp3C = func_800B5BE4(0x12);
+    func_800BABB8(sp3C, sp5C, NULL, 1.8f, D_808005A4_chelectricfence);
+    func_800BA930(sp3C, (s16)sp44[0], (s16)sp44[1], (s16)sp44[2],
+                 (s16)sp44[0], (s16)sp44[1], (s16)sp44[2]);
+    func_800BA8F8((void *)sp3C, sp38, sp38);
+    func_800BA22C(sp3C, 1);
+}
