@@ -278,7 +278,7 @@ int func_808005F0_gczoombox(u8 arg0, u8 arg1){
     }
 }
 
-void gczoombox_entrypoint_1()
+int gczoombox_entrypoint_1()
 {
     func_800E7188();
 }
@@ -679,7 +679,61 @@ void func_80801BD0_gczoombox(u8 *box, s32 state) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_80801C0C_gczoombox.s")
+s32 func_80801C0C_gczoombox(void *arg0, u8 *arg1) {
+    struct Flags {
+        u32 pad0:12;
+        u32 large:1;
+        u32 pad1:3;
+        u32 alternate:1;
+        u32 pad2:15;
+    };
+    int func_800D36C4(s32, s32);
+    struct Box { u8 padding[0x1DC]; f32 scale; };
+    u8 *p;
+    s32 i;
+    s32 width;
+    s32 overflow;
+    s32 font;
+    s32 limit;
+    s32 advance;
+
+    limit = (s32)(((struct Box *)arg0)->scale * 216.0f - 24.0f * ((struct Box *)arg0)->scale);
+    overflow = 0;
+    font = ((struct Flags *)((u8 *)arg0 + 0x1E4))->large ? 2 :
+        (((struct Flags *)((u8 *)arg0 + 0x1E4))->alternate ? 1 : 0);
+    i = 0;
+    width = 0;
+    if (*arg1) {
+      do {
+        p = &arg1[i];
+        if (*p == 0xFD) {
+            i++;
+        } else {
+            advance = func_80800E24_gczoombox(*p) ? 24 : func_800D36C4(font, *p);
+            width += advance;
+            if (width > limit) {
+                if (!overflow) overflow = i;
+                if (*p == ' ') {
+                    width -= advance;
+                    break;
+                }
+            }
+        }
+        i++;
+      } while (arg1[i]);
+    }
+    if (overflow && !((f32)(width - limit) < 6.0f * ((struct Box *)arg0)->scale)) {
+        i--;
+        if (i > 0) {
+            while (arg1[i] != ' ') {
+                i--;
+                if (i <= 0) break;
+            }
+        }
+        if (i == 0) i = gczoombox_entrypoint_1(arg1);
+    }
+    return i;
+}
 
 void gczoombox_entrypoint_4(u8 *box) {
     struct Flags {
