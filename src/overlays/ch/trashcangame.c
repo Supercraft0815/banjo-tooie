@@ -265,7 +265,97 @@ void func_80800BA8_chtrashcangame(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_8080134C_chtrashcangame.s")
+void func_8080134C_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcfrontend_entrypoint_10(void);
+    void func_800C0850(void);
+    s32 func_800D2054(s32, s32, s32);
+    void func_808017F0_chtrashcangame(Actor *, s32, s32);
+
+    switch (arg1) {
+        case 0x13EE:
+            if (arg2 != 0) {
+                func_808003D0_chtrashcangame(arg0, 4);
+                return;
+            }
+            func_808003D0_chtrashcangame(arg0, 5);
+            return;
+        case 0x13EF:
+        case 0x13F0:
+        case 0x13F1:
+        case 0x13F2:
+            if (arg2 != 0) {
+                func_808003D0_chtrashcangame(arg0, 7);
+                return;
+            }
+            func_808003D0_chtrashcangame(arg0, 6);
+            return;
+        case 0x13F3:
+            func_808003D0_chtrashcangame(arg0, 3);
+            return;
+        case 0x13F4:
+        case 0x13F5:
+        case 0x1444:
+            func_808003D0_chtrashcangame(arg0, 8);
+            return;
+        case 0x13F6:
+        case 0x13F8:
+        case 0x13F9:
+            func_808003D0_chtrashcangame(arg0, 10);
+            return;
+        case 0x13FA:
+            func_808003D0_chtrashcangame(arg0, 15);
+            return;
+        case 0x13F7:
+            func_808003D0_chtrashcangame(arg0, 12);
+            return;
+        case 0x13FD:
+            func_808003D0_chtrashcangame(arg0, 3);
+            return;
+        case 0x13FC:
+            if (arg2 != 0) {
+                func_808003D0_chtrashcangame(arg0, 7);
+                return;
+            }
+            func_808003D0_chtrashcangame(arg0, 6);
+            return;
+        case 0x13FB:
+            if (arg2 != 0) {
+                func_808003D0_chtrashcangame(arg0, 7);
+                return;
+            }
+            func_808003D0_chtrashcangame(arg0, 6);
+            return;
+        case 0x13FE:
+        case 0x13FF:
+        case 0x1400:
+            func_808003D0_chtrashcangame(arg0, 1);
+            return;
+        case 0x1443:
+            if (arg2 != 0) {
+                func_808003D0_chtrashcangame(arg0, 17);
+                return;
+            }
+            func_808003D0_chtrashcangame(arg0, 7);
+            return;
+        case 0x1451:
+            func_808003D0_chtrashcangame(arg0, 7);
+            return;
+        case 0x1445:
+        case 0x1446:
+        case 0x1447:
+            func_808017F0_chtrashcangame(arg0, 0x1448, 0x4E);
+            func_800D2054(0, 0x86, func_80800014_chtrashcangame(arg0, 0));
+            return;
+        case 0x1448:
+            if (arg2 != 0) {
+                func_808003D0_chtrashcangame(arg0, 7);
+                return;
+            }
+            func_800C0850();
+            _gcfrontend_entrypoint_10();
+            return;
+    }
+}
 
 s32 func_80801558_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
     s16 func_800D211C(s32);
