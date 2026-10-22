@@ -59,7 +59,74 @@ void gspropsDll_entrypoint_1(Prop **arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propsDll/gspropsDll_entrypoint_2.s")
+void gspropsDll_entrypoint_2(s16 *arg0, s32 arg1) {
+    Prop *func_800E9D68(s16 *);
+    u32 func_800E9D90(s16 *);
+    void func_800CBA68(s32, s32, s32, s32, s32, s32, s32);
+    void func_800CBAC8(s32, s32, s32, s32, s32);
+    void func_800CBB18(s32, s32, s32, s32, s32, s32);
+    Prop *prop;
+    u32 end;
+    s32 size;
+    s32 duration;
+    u32 flags;
+    u32 flag6;
+    s32 enabled;
+    s32 selected;
+
+    if (arg0 != NULL && arg0[1] != 0) {
+        prop = func_800E9D68(arg0);
+        end = func_800E9D90(arg0);
+        for (; (u32)prop < end; prop++) {
+            if (prop->unk6_1 == 7) {
+                selected = arg1 ? 1 : 0;
+                flags = *(u32 *)&prop->unk10;
+                flag6 = (flags << 25) >> 31;
+                enabled = flag6 ? 1 : 0;
+                if (enabled == selected) {
+                    size = prop->unk6_7;
+                    duration = prop->FlagOrRotation * 5;
+                    if (duration == 0) duration = 300;
+                    if ((flags << 26) >> 31) size *= 5;
+                    func_800CBA68(prop->ItemID, (s32)prop, size, duration,
+                                 flags >> 21, (flags << 22) >> 31, flag6);
+                }
+            }
+            if (arg1 == 0) {
+                u32 type = prop->unk6_1;
+                if (type == 9) {
+                    s32 size2;
+                    s32 duration2;
+                    flags = *(u32 *)&prop->unk10;
+                    size2 = prop->unk6_7;
+                    duration2 = prop->FlagOrRotation * 5;
+                    if (duration2 == 0) duration2 = 300;
+                    if ((flags << 26) >> 31) size2 *= 5;
+                    func_800CBAC8(prop->ItemID, (s32)prop, size2, flags & 3, duration2);
+                } else {
+                switch (type) {
+                case 10:
+                    break;
+                case 12: {
+                    s32 size3;
+                    s32 duration3;
+                    size3 = prop->unk6_7;
+                    flags = *(u32 *)&prop->unk10;
+                    duration3 = prop->FlagOrRotation * 5;
+                    if (duration3 == 0) duration3 = 300;
+                    if ((flags << 26) >> 31) size3 *= 5;
+                    func_800CBB18(prop->ItemID, (s32)prop, size3, duration3,
+                                 flags & 3, (flags << 22) >> 31);
+                    break;
+                }
+                default:
+                    break;
+                }
+                }
+            }
+        }
+    }
+}
 
 s32 func_808004E0_gspropsDll(Prop *arg0) {
     switch (arg0->unk6_1) {
