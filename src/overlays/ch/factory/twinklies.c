@@ -284,7 +284,59 @@ void func_80800DE0_chfactorytwinklies(Actor *arg0) {
     _subaddiemulti_entrypoint_3(0xA);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80800E9C_chfactorytwinklies.s")
+void func_80800E9C_chfactorytwinklies(Actor *arg0) {
+    s32 _chmrtannoy_entrypoint_0(void);
+    s32 _gcstatusDll_entrypoint_11(void);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiefind_entrypoint_9(s32);
+    s32 func_800C954C(void);
+    s32 func_800CEAD0(s32);
+    int func_800D9154(f32 *, f32);
+    s32 func_800DA298(s32);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    void func_808011B0_chfactorytwinklies(Actor *);
+    void func_808013BC_chfactorytwinklies(Actor *, s32);
+    s32 choice;
+    f32 random;
+
+    switch (arg0->unk70_10) {
+    case 1:
+        if (func_800C954C() == 0 && func_800DA298(0x6AD) == 0) {
+            _chmrtannoy_entrypoint_0();
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEC, 7, 0, 0xA3);
+            func_80101FDC(arg0, 2);
+        }
+        break;
+    case 3:
+        func_808013BC_chfactorytwinklies(arg0, 0);
+        func_80800D00_chfactorytwinklies(arg0);
+        if (func_800CEAD0(0) != 0) {
+            func_808011B0_chfactorytwinklies(arg0);
+            return;
+        }
+        if (_subaddiefind_entrypoint_9(0x443) + _subaddiefind_entrypoint_9(0x444) + _subaddiefind_entrypoint_9(0x445) < 4 &&
+            func_800D9154(&arg0->unk58, func_800DC178(1.0f, 1.199996948f) / _gcstatusDll_entrypoint_11())) {
+                random = func_800DC0C0();
+                if (random < 0.25f) {
+                    choice = 0;
+                } else if (random < 0.6f) {
+                    choice = 1;
+                } else {
+                    choice = 2;
+                }
+                func_80108B04(arg0, choice);
+                return;
+        }
+        break;
+    case 5:
+    case 6:
+        func_808013BC_chfactorytwinklies(arg0, 1);
+        break;
+    }
+}
 
 s32 func_8080105C_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80801108_chfactorytwinklies(Actor *, s32, s32);
