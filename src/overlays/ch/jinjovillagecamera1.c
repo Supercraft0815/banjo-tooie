@@ -17,7 +17,72 @@ void func_80800000_chjinjovillagecamera1(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjovillagecamera1/func_80800078_chjinjovillagecamera1.s")
+s32 func_80800078_chjinjovillagecamera1(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _chjinjo_entrypoint_0(s32);
+    s32 _chjinjo_entrypoint_3(s32);
+    s32 _glcutDll_entrypoint_9(void);
+    s32 _glcutDll_entrypoint_19(u32);
+    void _glcutDll_entrypoint_24(u32, u32, u32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800D129C(u32);
+    u32 func_800D1338(u32);
+    s32 func_800DA544(s32);
+    s32 func_800DA564(s32, s32);
+    s32 func_800DA9E4(s32, s32);
+    s32 func_800EA05C(void);
+    extern u8 D_80800470_chjinjovillagecamera1[];
+    extern u8 D_8080047C_chjinjovillagecamera1[];
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+    s32 sp20;
+
+    switch (arg1) {
+    case 0xB:
+        sp34 = func_800DA564(0x6D0, 4);
+        if (func_800EA05C() == 0x142) {
+            sp30 = _chjinjo_entrypoint_3(sp34);
+            _glcutDll_entrypoint_24(sp30, _glcutDll_entrypoint_9(), 0x84);
+            return 3;
+        }
+        if (arg2 == D_8080047C_chjinjovillagecamera1[sp34]) {
+            func_800DA544(0x39E);
+        }
+        return 3;
+    case 0x49:
+        sp2C = func_800DA564(0x6D0, 4);
+        if (_glcutDll_entrypoint_19(0x84) == 0) {
+            return 0;
+        }
+        if (func_800EA05C() == 0x142) {
+            _capod_entrypoint_13(arg0->unk0, NULL, D_80800470_chjinjovillagecamera1[sp2C], 0x810);
+        } else {
+            _capod_entrypoint_13(arg0->unk0, NULL, D_8080047C_chjinjovillagecamera1[sp2C], 0x2830);
+            if (func_800DA9E4(0x43C, 1) == 0) {
+                sp20 = func_800D1338(sp2C);
+                if (func_800D129C(sp2C) == sp20) {
+                    func_800DA544(0x43D);
+                    _subaddiedialog_entrypoint_11(arg0->unk0, 0x1524, 4, NULL, _chjinjo_entrypoint_0(sp2C));
+                } else {
+                    _subaddiedialog_entrypoint_11(arg0->unk0, 0x1522, 4, NULL, _chjinjo_entrypoint_0(sp2C));
+                }
+            } else if (func_800DA9E4(0x43D, 1) == 0) {
+                sp24 = sp2C == 0 ? 0x1565 : 0x1523;
+                _subaddiedialog_entrypoint_11(arg0->unk0, sp24, 4, NULL, _chjinjo_entrypoint_0(sp2C));
+            }
+        }
+        break;
+    case 0x2E:
+        func_80800000_chjinjovillagecamera1(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        return 1;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_808002BC_chjinjovillagecamera1(s32 arg0) {
     s32 _chjinjo_entrypoint_2(s32);
