@@ -102,7 +102,93 @@ void func_808001B8_chcollballcontrol(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808006FC_chcollballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_808008FC_chcollballcontrol.s")
+void func_808008FC_chcollballcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    u32 func_800FDC28(u32);
+    void func_80801500_chcollballcontrol(Actor *, s32);
+    s32 _sumultiscore_entrypoint_2(s32 *, s32 *, s32 *, s32, s32);
+    void func_800FC6B0(u32);
+    s32 func_800D2054(s32, s32, s32);
+    s32 func_800DA544(s32);
+    s32 func_80101FDC();
+    void func_800AA200(s32);
+    struct CollballScore {
+        u8 pad0[0x20];
+        s32 scores[4];
+        u8 winners[4];
+        u8 pad34[5];
+        u8 mode;
+        u8 count;
+        s8 result;
+    } *data;
+    s32 places[4];
+    s32 result;
+    s32 ties[4];
+    u32 dialog;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    arg0->unk70_10 = 6;
+    func_80801500_chcollballcontrol(arg0, 1);
+    func_800FDC28(0);
+    result = _sumultiscore_entrypoint_2(data->scores, places, ties, 1, data->count);
+    if (data->mode < 4) {
+        if (arg0->unk64_19) {
+            switch (places[0]) {
+            case 1:
+                if (ties[0] == 0) {
+                    func_800FC6B0(0x16);
+                    func_80800000_chcollballcontrol(&arg0->unk0, 0x12CC, 0x200);
+                    break;
+                }
+            case 2:
+            case 3:
+            case 4:
+                func_80800000_chcollballcontrol(&arg0->unk0, 0x12CD, 0x200);
+                func_800FC6B0(0x17);
+                break;
+            }
+        } else {
+            switch (places[0]) {
+            case 1:
+                if (ties[0] == 0) {
+                    func_800D2054(1, data->mode + 0x91, data->scores[0] + 0x3E80);
+                    func_800DA544(0xA17);
+                    func_800FC6B0(0x16);
+                    func_80101FDC(arg0, 8);
+                    arg0->unk58 = 2.5f;
+                    break;
+                }
+            case 2:
+            case 3:
+                func_80800000_chcollballcontrol(&arg0->unk0, 0x127F, 0x200);
+                func_800FC6B0(0x17);
+                break;
+            case 4:
+                func_80800000_chcollballcontrol(&arg0->unk0, 0x1280, 0x200);
+                func_800FC6B0(0x17);
+                break;
+            }
+        }
+    } else {
+        func_800AA200(1);
+        for (i = 0; i < data->count; i++) {
+            if (places[i] == 1) {
+                data->winners[i] = 1;
+            } else {
+                data->winners[i] = 0;
+            }
+        }
+        if (result != 0) {
+            dialog = 0x12D1;
+            data->result = result;
+        } else {
+            dialog = 0x12D2;
+        }
+        func_800FC6B0(0x10);
+        func_80800000_chcollballcontrol(&arg0->unk0, dialog, 0);
+    }
+}
 
 /* extern */
 
