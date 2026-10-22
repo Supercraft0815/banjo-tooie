@@ -213,7 +213,55 @@ s32 func_808005AC_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_808006D0_chtntmineshoot.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800830_chtntmineshoot.s")
+void func_80800830_chtntmineshoot(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    f32 func_800F13F0(f32, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFD24(f32 *);
+    void func_80101CDC(Actor *, f32);
+    extern s32 D_80802580_chtntmineshoot;
+    struct { u8 pad[0x14]; u8 state; } *sp4C;
+    f32 sp48;
+    f32 sp44;
+    f32 sp40;
+    f32 sp34[3];
+
+    sp4C = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 1:
+            func_800F5A00(func_800F54E4(), sp34);
+            sp40 = func_800F13F0(func_800EEAD4(sp34, arg0->position), 2000.0f) * 0.0005f;
+            ((f32 *)arg0->actorData)[3] = arg0->scale * (1.0f - sp40) * 500.0f;
+            sp48 = sp40 * (1.0f - 0.33f) + 0.33f;
+            sp44 = (sp40 * 200.0f + 200.0f) * arg0->scale;
+            func_800EFA4C((f32 *)&arg0->actorData[4], 0.0f, sp44, 0.0f);
+            ((f32 *)arg0->actorData)[7] = (-sp44 - sp44) / sp48;
+            sp48 += sp40 * 0.5f;
+            func_80101CDC(arg0, sp48);
+            func_800C4AF0(arg0->position, &D_80802580_chtntmineshoot);
+            func_80800440_chtntmineshoot(arg0, 1);
+            break;
+        case 2:
+            if (((f32 *)arg0->actorData)[5] > 0.0f) {
+                ((f32 *)arg0->actorData)[5] = 0.0f;
+            }
+            break;
+        case 3:
+            func_800EFD24((f32 *)&arg0->actorData[4]);
+            ((f32 *)arg0->actorData)[7] = 0.0f;
+            break;
+        case 4:
+            func_800EFD24((f32 *)&arg0->actorData[4]);
+            ((f32 *)arg0->actorData)[7] = 0.0f;
+            ((f32 *)arg0->actorData)[3] = 0.0f;
+            func_80800440_chtntmineshoot(arg0, 0);
+            break;
+    }
+    sp4C->state = arg1;
+}
 
 s32 func_80800A1C_chtntmineshoot(Actor *arg0) {
     void *func_80100094(Actor *, u32);
