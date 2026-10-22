@@ -18,7 +18,43 @@ void func_80800000_chboggyfish(s32 *arg0, void *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fish/func_80800064_chboggyfish.s")
+s32 func_80800064_chboggyfish(Actor *arg0, s32 arg1, void *volatile arg2) {
+    u8 func_800D731C(s32);
+    s32 func_800DA298(s32);
+    s32 func_800DBE60(u8, s32, s32);
+    void func_800FFAB0(Actor *);
+    s32 func_801015D0(Actor *);
+    s32 _glcutDll_entrypoint_20();
+    u8 index;
+    s32 value;
+
+    switch (arg1) {
+        case 0x3E:
+            func_80800000_chboggyfish((s32 *)arg0, arg2);
+            break;
+        case 0x1F:
+            func_801015D0(arg0);
+            if (index = func_800D731C(arg0->unk0->unk14)) {
+                value = (s32)((f32 *)arg0->actorData)[4];
+                func_800DBE60(index, 0, value);
+                func_800DBE60(index, 1, value);
+                func_800DBE60(index, 2, value);
+                func_800DBE60(index, 3, value);
+            }
+            break;
+        case 0x95:
+            if (func_800DA298(0x438) && !_glcutDll_entrypoint_20()) {
+                func_800FFAB0(arg0);
+                return 0;
+            }
+            ((f32 *)arg0->actorData)[4] = 0.0f;
+            ((f32 *)arg0->actorData)[5] = 0.5f;
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_8080018C_chboggyfish(void *arg0) {
     (*(f32 *)((s8 *)arg0 + 0x28)) += (*(f32 *)((s8 *)arg0 + 0x2C));
