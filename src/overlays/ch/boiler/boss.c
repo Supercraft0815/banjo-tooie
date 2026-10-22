@@ -81,7 +81,55 @@ void func_80800B94_chboilerboss(Actor *arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80800D50_chboilerboss.s")
+void func_80800D50_chboilerboss(Actor *arg0, s32 *arg1) {
+    void func_800C4AF0(f32 *, void *);
+    s16 func_800CB854(s32 *);
+    int func_800DC298(f32);
+    void *func_80100094(Actor *, u32);
+    void func_80109EEC(s16 *, s32);
+    s32 func_80800F34_chboilerboss(Actor *, s32);
+    void func_80801B88_chboilerboss(Actor *, s32 *);
+    extern f32 D_80802B34_chboilerboss;
+    extern f32 D_80802B40_chboilerboss;
+    struct {
+        u8 pad0[0x3C];
+        f32 unk3C[3];
+        u8 pad48[0x14];
+        f32 unk5C;
+    } *data;
+    void *vector;
+    data = func_80100094(arg0, 0);
+    func_80801B88_chboilerboss(arg0, arg1);
+    if ((s32)arg0->unk70_10 < 5 || (s32)arg0->unk70_10 >= 11) {
+        return;
+    }
+    {
+        if (func_800CB854(NULL) == 7) {
+            data->unk5C = 1.5f;
+            func_80109EEC((s16 *)arg0, 0x40);
+        }
+        switch (arg0->unk70_10) {
+            default:
+                if ((arg0->unk0->unk28 << 20) >> 31) {
+                    func_80800F34_chboilerboss(arg0, 6);
+                } else {
+                    if (func_800DC298(0.5f)) {
+                        vector = &D_80802B34_chboilerboss;
+                    } else {
+                        vector = &D_80802B40_chboilerboss;
+                    }
+                    func_800C4AF0(data->unk3C, vector);
+                }
+                break;
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+                break;
+        }
+    }
+}
 
 /* extern */
 
