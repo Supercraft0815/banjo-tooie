@@ -86,7 +86,46 @@ void func_808001B4_chstonedartgunhead(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonedartgunhead/func_80800224_chstonedartgunhead.s")
+void func_80800224_chstonedartgunhead(Actor *arg0, s32 arg1) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 func_800E3AA4(f32);
+    void func_80101EE4(Actor *, f32);
+    void func_80102424(Actor *, s32);
+    struct StoneDartGunHeadTurnData {
+        f32 pad[5];
+        f32 direction;
+        f32 speed;
+    };
+
+    if (arg0->unk70_10 == 8) {
+        _subaddieDll_entrypoint_4(arg0, 0);
+    }
+    func_80102424(arg0, arg1);
+    switch (arg0->unk70_10) {
+    case 4:
+        arg0->unk58 = 0.75f;
+        break;
+    case 5:
+        func_80101EE4(arg0, 0.856f);
+        break;
+    case 3:
+        func_80101EE4(arg0, 0.856f);
+        break;
+    case 6:
+        if ((f32)func_800E3AA4(arg0->rotation[1]) < 180.0f) {
+            ((struct StoneDartGunHeadTurnData *)arg0->actorData)->direction = -1.0f;
+        } else {
+            ((struct StoneDartGunHeadTurnData *)arg0->actorData)->direction = 1.0f;
+        }
+        ((struct StoneDartGunHeadTurnData *)arg0->actorData)->speed = 20.0f;
+        arg0->unk58 = 1.159988403f;
+        _subaddieDll_entrypoint_4(arg0, 1);
+        break;
+    case 8:
+        arg0->unk58 = 20.0f;
+        break;
+    }
+}
 
 void func_80800364_chstonedartgunhead(Actor *arg0) {
     void _subaddieaudioloop_entrypoint_0(Actor *, f32);
