@@ -118,7 +118,85 @@ void func_80800518_vplight(s32 arg0, s32 *range) {
     range[2] = (s32)(values[2] * 16384.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/light/vplight_entrypoint_3.s")
+void vplight_entrypoint_3(u32 arg0, s32 arg1, u32 arg2, s32 arg3) {
+    void func_800C8900(s32, s32 *);
+    f32 sqrtf(f32);
+    s32 temp_v0_2;
+    s32 temp_v1;
+    s32 temp_a0;
+    s32 sp98[3];
+    s32 sp8C[3];
+    s32 sp80[3];
+    s32 temp_a1;
+    s32 var_a2;
+    s32 var_s5;
+    s32 var_v0;
+    s32 var_v1;
+    u32 temp_fp;
+    u32 loop_end;
+    u32 var_s0;
+    u8 temp_v0;
+    u8 *temp_s1;
+    u8 *temp_s6;
+
+    temp_s6 = (u8 *)arg0;
+    temp_s6 += arg1 * 16;
+    temp_fp = (arg3 * 0x10) + arg2;
+    if (temp_s6[1] != 0) {
+        loop_end = temp_fp;
+        var_s5 = 0;
+loop_2:
+        if ((temp_s6 + var_s5)[2] == 0) {
+            var_s5 += 1;
+            if (var_s5 != 0xE) {
+                goto loop_2;
+            }
+        }
+        if (var_s5 < 0xE) {
+            do {
+                temp_s1 = temp_s6 + var_s5;
+                temp_v0 = temp_s1[2];
+                if (temp_v0 != 0) {
+                    func_808004B0_vplight((void *)temp_v0, sp98);
+                    var_s0 = arg2;
+                    func_80800518_vplight(temp_s1[2], sp8C);
+                    func_800C8900(temp_s1[2], sp80);
+                    if (arg2 < temp_fp) {
+                        do {
+                            temp_v0_2 = sp98[0] - *(s16 *)(var_s0 + 0);
+                            temp_v1 = sp98[1] - *(s16 *)(var_s0 + 2);
+                            temp_a0 = sp98[2] - *(s16 *)(var_s0 + 4);
+                            temp_a1 = temp_v0_2 * temp_v0_2 + temp_v1 * temp_v1 + temp_a0 * temp_a0;
+                            var_a2 = temp_a1;
+                            if (temp_a1 < sp8C[1]) {
+                                if (temp_a1 != 0) {
+                                    var_a2 = (s32)(sqrtf((f32)temp_a1) * 256.0f);
+                                }
+                                if (sp8C[0] < var_a2) {
+                                    var_v0 = 0x4000 - (((var_a2 - sp8C[0]) * sp8C[2]) >> 8);
+                                    var_v1 = var_v0 << 2;
+                                } else {
+                                    var_v1 = 0x10000;
+                                }
+                                var_v0 = *(u8 *)(var_s0 + 12) + ((sp80[0] * var_v1) >> 16);
+                                if (var_v0 >= 256) var_v0 = 255;
+                                *(u8 *)(var_s0 + 12) = var_v0;
+                                var_v0 = *(u8 *)(var_s0 + 13) + ((sp80[1] * var_v1) >> 16);
+                                if (var_v0 >= 256) var_v0 = 255;
+                                *(u8 *)(var_s0 + 13) = var_v0;
+                                var_v0 = *(u8 *)(var_s0 + 14) + ((sp80[2] * var_v1) >> 16);
+                                if (var_v0 >= 256) var_v0 = 255;
+                                *(u8 *)(var_s0 + 14) = var_v0;
+                            }
+                            var_s0 += 0x10;
+                        } while (var_s0 < loop_end);
+                    }
+                }
+                var_s5 += 1;
+            } while (var_s5 < 0xE);
+        }
+    }
+}
 
 void vplight_entrypoint_4(Vtx *vertices, s32 count) {
     s32 func_800C8760(s32, s32);
