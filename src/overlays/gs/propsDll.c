@@ -23,7 +23,41 @@ void gspropsDll_entrypoint_0(s16 *arg0, Prop **arg1, s32 *arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propsDll/gspropsDll_entrypoint_1.s")
+void gspropsDll_entrypoint_1(Prop **arg0, s32 arg1) {
+    f32 _gspropmarker_entrypoint_3(Prop *);
+    void func_80102FDC(void *, f32);
+    Actor *func_80108DC0(s32, s32 *, u32, s32, s32, Prop *);
+    s32 i;
+    s32 j;
+    Prop *temp;
+    s32 position[3];
+    Prop *prop;
+    Actor *actor;
+
+    for (i = 0; i < arg1; i++) {
+        for (j = 0; j < i; j++) {
+            if ((u32)arg0[i]->ItemID < (u32)arg0[j]->ItemID) {
+                temp = arg0[j];
+                arg0[j] = arg0[i];
+                arg0[i] = temp;
+            }
+        }
+    }
+    for (i = 0; i < arg1; i++) {
+        prop = arg0[i];
+        position[0] = prop->position[0];
+        position[1] = prop->position[1];
+        position[2] = prop->position[2];
+        actor = func_80108DC0(prop->ItemID, position, prop->FlagOrRotation,
+                            *(u32 *)&prop->unk10 >> 21,
+                            (*(u32 *)&prop->unk10 << 11) >> 21, prop);
+        if (actor != NULL) {
+            actor->unk74_7 = prop->unk6_7;
+            actor->unk7A_5 = 1;
+            func_80102FDC(actor, _gspropmarker_entrypoint_3(prop));
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/propsDll/gspropsDll_entrypoint_2.s")
 
