@@ -298,4 +298,56 @@ Prop *gccubesearch_entrypoint_17(s32 arg0, s32 *arg1) {
     return NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_18.s")
+u32 gccubesearch_entrypoint_18(s32 arg0, s32 *arg1, u32 *arg2, s32 *arg3, s32 *arg4, s32 *arg5, Prop **arg6) {
+    s32 func_800BDAD4(s32 position[3]);
+    void func_800BE554(s32 *, s32 *);
+    s32 func_800E9BF4(s16 *, s32);
+    s32 func_800E9DC4(s16 *);
+    s32 cube;
+    u32 word;
+    s32 min[3];
+    s32 max[3];
+    u32 result = 0;
+
+    func_800BE554(min, max);
+    if (arg0 == 0) {
+        arg4[0] = min[0];
+        arg4[1] = min[1];
+        arg4[2] = min[2];
+        *arg5 = 0;
+        return 0;
+    }
+    do {
+        if (max[0] < arg4[0]) {
+            return -1;
+        }
+        cube = func_800BDAD4(arg4);
+        if (cube && func_800E9DC4((s16 *)cube)) {
+            *arg6 = (Prop *)func_800E9BF4((s16 *)cube, *arg5);
+            word = ((u32 *)*arg6)[4];
+            *arg2 = (word << 11) >> 21;
+            result = word >> 21;
+            *arg3 = ((u32 *)*arg6)[1] & 1;
+            arg1[0] = (*arg6)->position[0];
+            arg1[1] = (*arg6)->position[1];
+            arg1[2] = (*arg6)->position[2];
+            (*arg5)++;
+        }
+        if (!cube || *arg5 >= func_800E9DC4((s16 *)cube)) {
+            *arg5 = 0;
+            arg4[2]++;
+            if (max[2] < arg4[2]) {
+                arg4[2] = min[2];
+                arg4[1]++;
+                if (max[1] < arg4[1]) {
+                    arg4[1] = min[1];
+                    arg4[0]++;
+                    if (max[0] < arg4[0]) {
+                        return result ? result : -1;
+                    }
+                }
+            }
+        }
+    } while (!result);
+    return result;
+}
