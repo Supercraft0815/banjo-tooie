@@ -238,7 +238,44 @@ void func_80800950_chbeanstalkseed(Actor *arg0, void *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/beanstalkseed/func_80800A0C_chbeanstalkseed.s")
+s32 func_80800A0C_chbeanstalkseed(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_14(void);
+    s32 func_800DA298(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_80101180(s32, s32, s32);
+    s32 seed;
+
+    switch (arg1) {
+    case 0xB:
+        _capod_entrypoint_14();
+        func_80101180(0x40E, 0x4C, 0);
+        return 4;
+    case 0x4B:
+        if (arg0->unk70_10 == 3) {
+            func_80800804_chbeanstalkseed(arg0, 4);
+            return 1;
+        }
+        return 0;
+    case 0x95:
+        func_800EE7F8((f32 *)&arg0->actorData[4], arg0->position);
+        ((f32 *)arg0->actorData)[5] += 2412.0f * arg0->scale * 0.8f;
+        seed = arg0->unk74_7;
+        if (seed >= 0x33 || seed < 0x35) {
+            if (func_800DA298(seed + 0x325)) {
+                func_80800804_chbeanstalkseed(arg0, 5);
+                return 1;
+            }
+            if (func_800DA298(arg0->unk74_7 + 0x323)) {
+                func_80800804_chbeanstalkseed(arg0, 3);
+                return 1;
+            }
+            func_80800804_chbeanstalkseed(arg0, 1);
+        }
+        return 1;
+    default:
+        return 0;
+    }
+}
 
 OSThread *chbeanstalkseed_entrypoint_1(void)
 {
