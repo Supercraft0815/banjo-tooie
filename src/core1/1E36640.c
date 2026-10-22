@@ -1,6 +1,6 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E36640/func_8001EB10.s")
+
 
 
 typedef struct {
@@ -76,6 +76,44 @@ void func_80026CB0(ALVoice *, ALWaveTable *, f32, s16, u8, u8, u8, f32, u8, s32)
 void func_80026DE0(ALVoice *, u8);
 void func_80026E90(ALVoice *, f32);
 void func_80026F40(ALVoice *, u8);
+
+void func_8001EB10(s32 *arg0) {
+    void func_80020E40(ALLink *, ALLink *);
+    s32 func_80020EE4(s32, s32, void *, s32, s32);
+    void func_800263C0(ALEventQueue *, ALEventListItem *, s32);
+    s32 func_8002645C(ALEventQueue *, SfxEvent *);
+    void func_800267F0(s32 *);
+    s32 func_8001ED68(void *);
+    extern SfxState *D_800411D8;
+    u32 i;
+    void *memory;
+    SfxEvent event;
+    SfxState *states;
+
+    D_800411DC->maxVoices = arg0[2];
+    *(s32 *)((u8 *)D_800411DC + 0x3C) = 0;
+    D_800411DC->frameTime = 16000;
+    memory = (void *)func_80020EE4(0, 0, *(void **)&arg0[3], 1, (u32)arg0[0] * sizeof(SfxState));
+    *(void **)((u8 *)D_800411DC + 0x40) = memory;
+    memory = (void *)func_80020EE4(0, 0, *(void **)&arg0[3], 1, arg0[1] * 0x1C);
+    func_800263C0(&D_800411DC->queue, memory, arg0[1]);
+    D_800411D8 = *(SfxState **)((u8 *)D_800411DC + 0x40);
+    for (i = 1; i < (u32)arg0[0]; i++) {
+        states = *(SfxState **)((u8 *)D_800411DC + 0x40);
+        func_80020E40((ALLink *)&states[i], (ALLink *)(&states[i] - 1));
+    }
+    D_8007EA24 = (s16 *)func_80020EE4(0, 0, *(void **)&arg0[3], 2, *(u16 *)&arg0[4]);
+    for (i = 0; i < *(u16 *)&arg0[4]; i++) {
+        D_8007EA24[i] = 0x7FFF;
+    }
+    *(s32 *)D_800411DC = 0;
+    *(s32 (**)(void *))((u8 *)D_800411DC + 8) = func_8001ED68;
+    *(SfxPlayer **)((u8 *)D_800411DC + 4) = D_800411DC;
+    func_800267F0((s32 *)D_800411DC);
+    event.type = 0x20;
+    func_80026500(&D_800411DC->queue, &event, D_800411DC->frameTime, 1);
+    D_800411DC->pad4C = func_8002645C(&D_800411DC->queue, (SfxEvent *)D_800411DC->pad28);
+}
 
 s32 func_8001ED68(void *arg0) {
     s32 func_8002645C(ALEventQueue *, SfxEvent *);
