@@ -7,7 +7,51 @@ void func_80800000_chfriendlystonehead(s32 arg0)
     func_80102424(arg0,1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friendlystonehead/func_80800020_chfriendlystonehead.s")
+void func_80800020_chfriendlystonehead(Actor *arg0) {
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 func_80101DDC(Actor *);
+    void func_8010C820(s32, s32, s32);
+    void func_80800238_chfriendlystonehead(Actor *);
+    void func_80800284_chfriendlystonehead(Actor *);
+    void func_808002BC_chfriendlystonehead(void *);
+    s32 func_80800540_chfriendlystonehead(Actor *);
+    extern u32 D_80800950_chfriendlystonehead;
+    extern u32 D_8080095C_chfriendlystonehead;
+
+    func_8010C820(arg0, 0xA0, 0x50);
+    switch (arg0->unk70_10) {
+    case 1:
+        func_80800238_chfriendlystonehead(arg0);
+        break;
+    case 2:
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800950_chfriendlystonehead, 0.2f);
+        func_80800284_chfriendlystonehead(arg0);
+        func_808002BC_chfriendlystonehead(arg0);
+        if (func_80101DDC(arg0)) {
+            func_80102424(arg0, 3);
+        }
+        break;
+    case 3:
+        func_80800284_chfriendlystonehead(arg0);
+        func_808002BC_chfriendlystonehead(arg0);
+        func_80800540_chfriendlystonehead(arg0);
+        break;
+    case 4:
+        func_808002BC_chfriendlystonehead(arg0);
+        break;
+    case 5:
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_8080095C_chfriendlystonehead, 0.15f);
+        func_80800238_chfriendlystonehead(arg0);
+        if (func_80101DDC(arg0)) {
+            func_80102424(arg0, 1);
+            ((u8 *)&arg0->unk0->unk28)[2] &= ~0x20;
+        }
+        break;
+    case 6:
+        func_808002BC_chfriendlystonehead(arg0);
+        break;
+    }
+}
 
 /* extern */
 
