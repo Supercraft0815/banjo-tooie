@@ -53,7 +53,53 @@ void func_80800570_chnewshovel(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800610_chnewshovel.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_808006B0_chnewshovel.s")
+s32 func_808006B0_chnewshovel(Actor *arg0, s32 arg1) {
+    typedef struct {
+        s16 unk0[8];
+        s16 timer;
+    } ShovelState;
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_800F5A00(s32, f32 *);
+    s32 func_80107B70(s32, f32 *);
+    s32 func_8010D290(s32);
+    s32 func_808007F8_chnewshovel(Actor *, s32);
+    ShovelState *state;
+
+    state = func_80100094(arg0, 0);
+    state->timer = 0;
+    switch (arg1) {
+    case 1:
+        func_80102424(arg0, arg1);
+        func_808007F8_chnewshovel(arg0, 0);
+        break;
+    case 2:
+        func_80102424(arg0, arg1);
+        break;
+    case 3:
+        func_80102424(arg0, arg1);
+        func_808007F8_chnewshovel(arg0, 1);
+        break;
+    case 4:
+        func_800F5A00(func_8010D290(0x10000), (f32 *)arg0->actorData);
+        func_80102424(arg0, arg1);
+        func_808007F8_chnewshovel(arg0, 3);
+        break;
+    case 5:
+        func_80102424(arg0, arg1);
+        func_808007F8_chnewshovel(arg0, 0);
+        break;
+    case 6:
+        func_80107B70((s32)arg0, (f32 *)arg0->actorData);
+        func_80102424(arg0, arg1);
+        func_808007F8_chnewshovel(arg0, 1);
+        break;
+    default:
+        func_80102424(arg0, arg1);
+        break;
+    }
+    return 1;
+}
 
 s32 func_808007F8_chnewshovel(Actor *arg0, s32 arg1) {
     typedef struct {
