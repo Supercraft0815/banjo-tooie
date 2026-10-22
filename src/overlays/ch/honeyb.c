@@ -149,7 +149,68 @@ void func_80800680_chhoneyb(s32 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/honeyb/func_80800744_chhoneyb.s")
+void func_80800744_chhoneyb(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800DA544(GameFlag);
+    void _subaddieitem_entrypoint_2(s32);
+    s32 _susubgame_entrypoint_4(s32, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80800BD8_chhoneyb(void);
+    u32 sp2C;
+    u32 sp28;
+    u32 temp_v0;
+
+    sp2C = 0;
+    sp28 = 0xF;
+    switch (arg1) {
+    case 0x1518:
+        func_800DA544(0x4E9);
+    case 0x1519:
+        func_800DA544(0);
+        temp_v0 = arg0->actorData[4];
+        if (temp_v0 == 0) {
+            if (func_80800BD8_chhoneyb() == 1) {
+                sp2C = 0x151F;
+            } else {
+                sp2C = 0x1520;
+            }
+        } else if (temp_v0 == 1) {
+            sp2C = 0x151A;
+        } else {
+            sp2C = 0x151B;
+        }
+        _susubgame_entrypoint_5(arg0, func_80100094(arg0, 1), 3, 1, 0);
+        break;
+    case 0x151A:
+    case 0x151B:
+        sp2C = 0x151C;
+        break;
+    case 0x151C:
+        if (arg2 == 1) {
+            sp2C = 0x151D;
+        } else {
+            sp2C = 0x151E;
+        }
+        sp28 = 0x4E;
+        break;
+    case 0x151D:
+        _subaddieitem_entrypoint_2((s32)func_80100094(arg0, 1) + 0x18);
+        _susubgame_entrypoint_5(arg0, func_80100094(arg0, 1), 2, 1, 0);
+        func_80102424(arg0, 5);
+        break;
+    case 0x1553:
+        _susubgame_entrypoint_4((s32)arg0, (s32)func_80100094(arg0, 1));
+        func_8080011C_chhoneyb(arg0);
+        break;
+    default:
+        _susubgame_entrypoint_4((s32)arg0, (s32)func_80100094(arg0, 1));
+        func_80102424(arg0, 1);
+        break;
+    }
+    if (sp2C != 0) {
+        func_80800018_chhoneyb(arg0, sp2C, sp28);
+    }
+}
 
 /* extern */
 
