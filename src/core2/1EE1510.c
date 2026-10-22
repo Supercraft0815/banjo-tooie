@@ -498,7 +498,20 @@ void func_80108C14(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108C90.s")
+Actor *func_80108C90(s32 arg0, s32 *arg1, u32 arg2, Prop *arg3) {
+    typedef ActorData *(*ActorFactory)(void);
+    typedef Actor *(*ActorSpawn)(s32 *, u32, ActorData *, ActorFactory, Prop *);
+    ActorFactory _gemarkersDll_entrypoint_0(s32);
+    ActorFactory factory;
+    ActorData *data;
+
+    factory = _gemarkersDll_entrypoint_0(arg0);
+    if (factory == NULL) {
+        return NULL;
+    }
+    data = factory();
+    return ((ActorSpawn)data->unk38_func)(arg1, arg2, data, factory, arg3);
+}
 
 void *func_80108CF4(s32 arg0)
 {
