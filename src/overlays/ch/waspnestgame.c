@@ -336,7 +336,77 @@ void func_80801324_chwaspnestgame(f32 *arg0, f32 arg1, f32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801364_chwaspnestgame.s")
+s32 func_80801364_chwaspnestgame(s32 actor, s32 arg1)
+{
+  void _subaddiefade_entrypoint_3(Actor *);
+  void func_8008FE68(f32 *);
+  void func_800C4AF0(f32 *, void *);
+  void func_800EE7F8(f32 *, f32 *);
+  void func_800EF2A0(f32 *);
+  void func_800EFD24(f32 *);
+  void func_80102424(Actor *, s32);
+  s32 func_8010A570(s32);
+  void func_8010DC50(s32);
+  s32 func_8010DCB4(s32);
+  extern u8 D_80802024_chwaspnestgame[];
+  extern u8 D_80802038_chwaspnestgame[];
+  f32 pos[3];
+  Actor *arg0 = (Actor *) actor;
+  struct Motion
+  {
+    f32 origin[3];
+    f32 phase;
+    f32 velocity[3];
+    f32 angle;
+  };
+  if ((arg0->unk70_10 == 2) && (arg1 != 5))
+  {
+    func_8010DCB4(10);
+  }
+  switch (arg1)
+  {
+    case 2:
+      func_8010DC50(10);
+      break;
+
+    case 1:
+      func_8008FE68(pos);
+      ((struct Motion *) arg0->actorData)->velocity[0] = pos[2] - arg0->position[2];
+      ((struct Motion *) arg0->actorData)->velocity[1] = 0 * 0.0f;
+      ((struct Motion *) arg0->actorData)->velocity[2] = pos[0] - arg0->position[0];
+      func_800EF2A0(((struct Motion *) arg0->actorData)->velocity);
+      ((struct Motion *) arg0->actorData)->phase = 0.0f;
+      ((struct Motion *) arg0->actorData)->angle = 0.0f;
+      ((struct Motion *) arg0->actorData)->velocity[1] = 1.0f;
+      func_800EE7F8(((struct Motion *) arg0->actorData)->origin, arg0->position);
+      break;
+
+    case 5:
+      func_8010A570(actor);
+      break;
+
+    case 3:
+      func_800C4AF0(arg0->position, D_80802024_chwaspnestgame);
+      func_8010A570(actor);
+      break;
+
+    case 4:
+      func_800C4AF0(arg0->position, D_80802038_chwaspnestgame);
+      arg0->rotation[0] = 0.0f;
+      break;
+
+    case 6:
+      func_800EFD24(((struct Motion *) arg0->actorData)->velocity);
+      break;
+
+    case 7:
+      _subaddiefade_entrypoint_3(arg0);
+      break;
+
+  }
+
+  func_80102424(arg0, arg1);
+}
 
 /* extern */
 
