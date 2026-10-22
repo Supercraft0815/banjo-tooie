@@ -850,7 +850,35 @@ void func_80803388_chintrochar(Actor *volatile arg0, s32 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80803418_chintrochar.s")
+void func_80803418_chintrochar(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 _fxstep_entrypoint_15(s32, s32, s32 *, s32 *, f32 *);
+    void func_800C4B64(f32);
+    void func_800C4B70(s32);
+    void func_800C4B7C(s32);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern s32 D_808052F8_chintrochar;
+    s32 *sp34;
+    s32 sp30;
+    f32 sp2C;
+    s32 sp28;
+    s32 var_a1;
+
+    sp34 = func_80100094(arg0, 2);
+    func_80803388_chintrochar(arg0, sp34);
+    if (arg1 == 0) {
+        var_a1 = 0;
+    } else {
+        var_a1 = 1;
+    }
+    if (_fxstep_entrypoint_15(sp34[0x33], var_a1, &sp30, &sp28, &sp2C) != 0) {
+        func_800C4B64(sp2C);
+        func_800C4B70(sp28);
+        func_800C4B7C(sp30);
+        var_a1 = arg0->unk70_0;
+        func_8010D930(2, var_a1, arg0->position, &D_808052F8_chintrochar);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_808034C4_chintrochar.s")
 
