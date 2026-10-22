@@ -280,7 +280,13 @@ void func_800F32D4(void *arg0, void *arg1, void *arg2, f32 arg3, f32 arg4) {
     func_800F3214(arg0, arg1, arg2, ratio);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F3320.s")
+int func_800F3320(u8 *arg0, u8 *arg1, u8 *arg2, f32 amount) {
+    if (amount > 1.0f) amount = 1.0f;
+    arg0[0] = (u32)((f32)(u32)arg1[0] + (f32)(arg2[0] - arg1[0]) * amount);
+    arg0[1] = (u32)((f32)(u32)arg1[1] + (f32)(arg2[1] - arg1[1]) * amount);
+    arg0[2] = (u32)((f32)(u32)arg1[2] + (f32)(arg2[2] - arg1[2]) * amount);
+    return amount == 1.0f;
+}
 
 void func_800F35AC(void *arg0, void *arg1) {
     s32 temp_v0;
