@@ -51,7 +51,69 @@ block_6:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gobi/hailfire/func_808000C8_chgobihailfire.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gobi/hailfire/func_8080032C_chgobihailfire.s")
+s32 func_8080032C_chgobihailfire(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_8008FCC8(Unk80132ED0 *);
+    void func_80090658(s32);
+    s32 func_800C064C(void);
+    s32 func_800C067C(s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    void func_80101EE4(Actor *, f32);
+    void func_80102424(Actor *, s32);
+    void func_80102FDC(Actor *, f32);
+    Actor *func_801084B0(s32, Actor **);
+    void func_80108B04(Actor *, u32);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    s32 func_80800538_chgobihailfire(Actor *, s32);
+    extern u8 D_80800818_chgobihailfire[];
+    Actor *sp24;
+
+    switch (arg1) {
+        case 0x49:
+            return func_80800538_chgobihailfire(arg0, arg2);
+        case 0x3E:
+            arg0->unk64_19 = 1;
+            if (func_8008FCC8(arg0->unk0) == 1) {
+                if (!func_800DA298(0x171) && func_800DA298(0x4F2)) {
+                    if (arg0->unk70_10 != 7) {
+                        func_80090658(1);
+                        _capod_entrypoint_13(arg0->unk0, NULL, 0x11, 0);
+                        if (func_800C064C() == 0x12C3) {
+                            func_800C067C(0x12C3);
+                        }
+                        _subaddiedialog_entrypoint_11(arg0->unk0, 0x12C4, 4, arg0->position, 0x38);
+                        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800818_chgobihailfire);
+                        func_80102424(arg0, 7);
+                        func_80108B04(arg0, 0);
+                        func_8010A570(arg0);
+                        func_800DA544(0x171);
+                    }
+                } else if (arg0->unk70_10 != 8) {
+                    func_80102424(arg0, 8);
+                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800818_chgobihailfire);
+                }
+            }
+            break;
+        case 0xB:
+            if (arg2 == 0x11) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x12C6, 0x44, arg0->position, 0x42);
+                func_80090658(0);
+                func_8010A590(arg0);
+            }
+            return 3;
+        case 0x3D:
+            sp24 = func_801084B0(0x500, &arg0);
+            func_80102FDC(sp24, arg0->scale);
+            arg0->unk3C = sp24->unk0;
+            func_80101EE4(arg0, 0.0f);
+            break;
+    }
+    return 0;
+}
 
 s32 func_80800538_chgobihailfire(Actor *arg0, s32 arg1) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
