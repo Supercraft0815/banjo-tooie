@@ -314,7 +314,59 @@ s32 func_80801180_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_808011BC_chmonsterinterior.s")
+void func_808011BC_chmonsterinterior(Actor *arg0) {
+    s32 _gcstatusDll_entrypoint_11();
+    s32 _subaddiemulti_entrypoint_1(s32, s32);
+    void _sumultiscore_entrypoint_11(u8 *, s32, s32, f32);
+    s32 _sumultiscore_entrypoint_8(void *, s32, s32);
+    void func_800AA20C(s32, s32);
+    void func_800FC6B0(u32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    s32 temp;
+    s32 scores[8];
+    s32 *data;
+    s32 max;
+    s32 i;
+    s32 j;
+    s32 k;
+    s32 dialog;
+
+    data = func_80100094(arg0, 0);
+    max = -1;
+    for (j = 0; j < _gcstatusDll_entrypoint_11(); j++) {
+        scores[j] = _sumultiscore_entrypoint_8(data + 10, j, 8);
+        if (max < scores[j]) {
+            max = scores[j];
+        }
+        func_800AA20C(j, scores[j]);
+    }
+    for (j = 0; j < _gcstatusDll_entrypoint_11(); j++) {
+        if (max == scores[j]) {
+            _sumultiscore_entrypoint_11((u8 *)(data + 10), j, 8, 3.0f);
+        }
+    }
+    for (i = 1; i < _gcstatusDll_entrypoint_11(); i++) {
+        for (k = i; k > 0 && scores[k - 1] < scores[k]; k--) {
+            temp = scores[k];
+            scores[k] = scores[k - 1];
+            scores[k - 1] = temp;
+        }
+    }
+    func_800FC6B0(0x16);
+    if (scores[0] != scores[1]) {
+        for (k = 0; _sumultiscore_entrypoint_8(data + 10, k, 8) != scores[0]; k++) {
+        }
+        data[1] = k;
+        dialog = 0x17F8;
+    } else {
+        dialog = 0x17F9;
+    }
+    _subaddiemulti_entrypoint_1(0, 0);
+    func_80101FDC(arg0, 4);
+    data[2] = dialog;
+    data[3] = 6;
+}
 
 void func_808013D0_chmonsterinterior(Actor *arg0) {
     void *func_80100094(Actor *, u32);
