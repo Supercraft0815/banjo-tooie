@@ -398,7 +398,62 @@ u16 func_801023E4(s32 arg0, s32 arg1) {
     return *(u16 *)((s8 *)temp_v0 + arg1 * 8 + 6);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDB4D0/func_80102424.s")
+void func_80102424(Actor *arg0, s32 arg1) {
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setSmoothTransition(struct anctrl_s *, s32);
+    s32 func_8008B10C(struct anctrl_s *, f32);
+    void func_8008B188(struct anctrl_s *, s32);
+    void func_8008B4A8(struct anctrl_s *, s32);
+    f32 func_800DC0C0(void);
+    s32 func_800DC298(f32);
+    typedef struct { u16 data[3]; u16 flags; } AnimationEntry;
+    AnimationEntry *sp24;
+    struct anctrl_s *sp20;
+    s32 flags;
+    s32 sp18;
+    struct anctrl_s *control;
+
+    sp24 = (AnimationEntry *)func_80102394(arg0);
+    control = func_80104248(arg0);
+    if (control != NULL && sp24 != 0) {
+        flags = sp24[arg1].flags;
+        anctrl_setSmoothTransition(control, (flags & 0x200) ? 0 : 1);
+    }
+    func_80101FDC(arg0, arg1);
+    sp20 = func_80104248(arg0);
+    if (sp20 != NULL) {
+        sp18 = sp24[arg1].flags;
+        if (sp18 & 1) {
+            anctrl_setPlaybackType(sp20, 2);
+            func_8008B4A8(sp20, (sp18 & 0x100) ? 0 : 1);
+        }
+        if (sp18 & 2) {
+            anctrl_setPlaybackType(sp20, 1);
+        }
+        if (sp18 & 4) {
+            anctrl_setPlaybackType(sp20, 3);
+        }
+        if (sp18 & 8) {
+            func_8008B188(sp20, 1);
+        }
+        if (sp18 & 0x10) {
+            func_8008B188(sp20, 0);
+        }
+        if (sp18 & 0x800) {
+            func_8008B188(sp20, func_800DC298(0.5f) ? 1 : 0);
+        }
+        if (sp18 & 0x40) {
+            func_8008B10C(sp20, 0.0f);
+        }
+        if (sp18 & 0x80) {
+            func_8008B10C(sp20, 0.999f);
+        }
+        if (sp18 & 0x400) {
+            func_8008B10C(sp20, func_800DC0C0());
+        }
+        func_80102190(arg0, (sp18 & 0x20) ? 1 : 0);
+    }
+}
 
 /* extern */
 
