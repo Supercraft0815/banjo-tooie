@@ -454,7 +454,69 @@ void func_80801CF0_chtrashcangame(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80801D54_chtrashcangame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80801EE8_chtrashcangame.s")
+void func_80801EE8_chtrashcangame(Actor *arg0, s32 arg1) {
+    s32 _gcstatusDll_entrypoint_11();
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    s32 _subaddiemulti_entrypoint_0(s32);
+    s32 _subaddiemulti_entrypoint_2();
+    void func_800AA20C(s32, s32);
+    s32 func_800CE88C(s32, s32);
+    s32 func_800CE8D8(s32, f32, s32);
+    void func_800D2748(s32, s32);
+    void func_800FC660(u32);
+    u32 func_800FDC28(u32);
+    void func_80101FDC(Actor *, u32);
+    s32 i;
+    s32 tie;
+    s32 score;
+    s32 best;
+
+    switch (arg1) {
+        case 2:
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x13ED, 0xF, 0, 0x6A);
+            func_80800000_chtrashcangame(arg0);
+            break;
+        case 3:
+            arg0->unk58 = 0.299987793f;
+            *(s32 *)&arg0->unk50 = 0;
+            arg0->actorData[7] = 10;
+            for (i = 0; i < _gcstatusDll_entrypoint_11(); i++) {
+                func_80800098_chtrashcangame(arg0, i, 0);
+                func_800D2748(i + 0xC3, i + 0x5F);
+            }
+            func_800CE8D8(0, 60.0f, 0x3C);
+            func_800CE88C(0, 1);
+            _subaddiemulti_entrypoint_2();
+            func_800FDC28(0xC);
+            break;
+        case 4:
+            tie = 0;
+            score = func_80800014_chtrashcangame(arg0, 0);
+            arg0->actorData[1] = score;
+            arg0->actorData[2] = 0;
+            func_800AA20C(0, score);
+            func_800FC660(0x10);
+            for (i = 1; i < _gcstatusDll_entrypoint_11(); i++) {
+                score = func_80800014_chtrashcangame(arg0, i);
+                best = arg0->actorData[1];
+                if (best < score) {
+                    arg0->actorData[1] = score;
+                    arg0->actorData[2] = i;
+                } else if (score == best) {
+                    tie = 1;
+                }
+                func_800AA20C(i, score);
+            }
+            if (tie) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x13DF, 7, 0, 0x6A);
+            } else {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x13DE, 7, 0, 0x6A);
+            }
+            _subaddiemulti_entrypoint_0(1);
+            break;
+    }
+    func_80101FDC(arg0, arg1);
+}
 
 s32 func_808020D8_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_10(void);
