@@ -154,7 +154,71 @@ void func_80800F00_chfirefx(Actor *arg0) {
     sp2C[0] = (s32)arg0->rotation[1];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/func_80800F7C_chfirefx.s")
+void func_80800F7C_chfirefx(Actor *arg0)
+{
+  Actor *_subaddielink_entrypoint_4(u8 *);
+  void *func_80100094(Actor *, u32);
+  void func_80103110(Actor *, u32);
+  void func_8010D254(f32 *);
+  f32 func_800EEB40(f32 *, f32 *);
+  Actor *actors[16];
+  s32 i;
+  s32 count;
+  s32 j;
+  f32 distances[16];
+  f32 position[3];
+  struct 
+  {
+    s32 limit;
+    s32 count;
+    u8 links[16][8];
+  } *data;
+  Actor *tmpActor;
+  f32 tmpDistance;
+  data = func_80100094(arg0, 0);
+  for (i = 0, count = 0; i < data->count; i++)
+  {
+    actors[count] = _subaddielink_entrypoint_4(data->links[i]);
+    if (actors[count] != NULL)
+    {
+      count++;
+    }
+  }
+
+  func_80103110(arg0, 0);
+  data->count = 0;
+  if (count == 0)
+  {
+    return;
+  }
+  if (data->limit >= count)
+  {
+    for (i = 0; i < count; i++)
+    {
+      func_80800AA8_chfirefx(actors[i]);
+    }
+
+    return;
+  }
+  {
+    func_8010D254(position);
+    for (i = 0; i < count; i++)
+    {
+      distances[i] = func_800EEB40(position, actors[i]->position);
+    }
+
+    for (j = 1; j < count; j++)
+    {
+ do { for (i = j; (i > 0) && (distances[i] < distances[i - 1]); i--) { tmpDistance = distances[i]; distances[i] = distances[i - 1]; distances[i - 1] = tmpDistance; tmpActor = actors[i]; actors[i] = actors[i - 1]; actors[i - 1] = tmpActor; } } while (0);
+    }
+
+    for (i = 0; i < data->limit; i++)
+    {
+      func_80800AA8_chfirefx(actors[i]);
+    }
+
+  }
+}
 
 void func_8080116C_chfirefx(Actor *arg0, Unk80132ED0 **arg1)
 {
