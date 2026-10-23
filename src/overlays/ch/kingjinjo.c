@@ -75,7 +75,137 @@ void func_80800018_chkingjinjo(Actor *arg0) {
     ((KingJinjoActor *)arg0)->flags.visible = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjo/func_80800194_chkingjinjo.s")
+void func_80800194_chkingjinjo(Actor *arg0) {
+    u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _subaddierouteDll_entrypoint_5(Actor *, void *, s32, f32, f32, f32);
+    void _subaddierouteDll_entrypoint_6(Actor *, void *, s32, s32, f32, s32, s32);
+    s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 _suexpression_entrypoint_18(void *, s32);
+    u32 *_suexpression_entrypoint_20(Actor *);
+    s32 func_800C0638(void);
+    void func_800C3CE8(u8);
+    int func_800C3D78(u8);
+    u8 func_800C4350(u8, f32 *, s32 *);
+    void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
+    s32 func_800D9078(f32 *);
+    s32 func_800D90A4(f32 *);
+    s32 func_800DA298(s32);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    s32 func_800F4EC8(u32, s32, f32, f32, f32);
+    s32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_801022E4(Actor *);
+    s32 func_80102320(Actor *, f32, f32);
+    void func_80102424(Actor *, s32);
+    void func_80102BF8(Actor *, f32, f32, f32);
+    s32 func_8010B990(Actor *, s32);
+    s32 func_8010C500(Actor *);
+    s32 func_8010C9B0(f32 *, s32);
+    s32 func_8010CAC0(f32 *, s32);
+    f32 func_8010CD28(Actor *);
+    s32 func_8010CD88(Actor *, f32, f32);
+    s32 func_8010D248(void);
+    void func_80800AE4_chkingjinjo(s32, s32 *);
+    extern s32 D_80801238_chkingjinjo[];
+    extern s32 D_80801254_chkingjinjo[];
+    extern s32 D_80801264_chkingjinjo[];
+    extern s32 D_80801274_chkingjinjo[];
+    extern s32 D_80801284_chkingjinjo[];
+    typedef struct {
+        u16 unk0[3];
+        u16 sound;
+        f32 unk8;
+        f32 timer;
+    } KingJinjoRoute;
+    typedef struct {
+        f32 unk0[3];
+        f32 speed;
+    } KingJinjoData;
+    KingJinjoRoute *route;
+    f32 position[3];
+    s32 pad;
+
+    route = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+    case 3:
+        func_80800AE4_chkingjinjo((s32)arg0, D_80801238_chkingjinjo);
+        break;
+    case 5:
+        if (func_800D9078(&arg0->unk58)) {
+            func_800F5A00(func_800F54E4(), position);
+            position[1] += 200.0f;
+            func_800D1000(0x5A, 1, position, 1, NULL);
+            func_80102424(arg0, 4);
+        }
+        break;
+    case 6:
+        if (func_800D9078(&route->timer)) {
+            if (arg0->unk5F == 0) {
+                arg0->unk5F = _subaddieaudioquick_entrypoint_1(arg0, arg0->position);
+            }
+            arg0->unk5F = func_800C4350(arg0->unk5F, arg0->position, D_80801254_chkingjinjo);
+            route->timer = func_800DC178(4.0f, 6.0f);
+        }
+        if (!func_800C0638() && func_8010CAC0(arg0->position, 1000) && func_800D90A4(&arg0->unk58)) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, func_800DC128(0, 6) + 0x152F, 0x44, arg0->position, 0xA5);
+            arg0->unk58 = func_800DC178(8.0f, 12.0f);
+        }
+        if (func_8010D248() && func_8010C500(arg0)) {
+            arg0->unk54 = func_8010CD28(arg0);
+        }
+        ((KingJinjoData *)arg0->actorData)->speed = arg0->scale * 60.0f;
+        _subaddierouteDll_entrypoint_7(arg0, route, arg0->rotation[1], arg0->unk54, 400.0f, 0x4000);
+        _subaddierouteDll_entrypoint_6(arg0, route, route->sound, 0x7F, 0.2f, 20, 40);
+        _subaddierouteDll_entrypoint_5(arg0, route, route->sound, 0.1f, 4.0f, 80.0f);
+        func_8010B990(arg0, 0x1405);
+        if (func_8010C9B0(arg0->position, 200) && func_8010CD88(arg0, 180.0f, 60.0f)) {
+            func_80102424(arg0, 8);
+        }
+        break;
+    case 7:
+        if (func_80101E14(arg0, 0.3f)) {
+            if (arg0->unk5F && func_800C3D78(arg0->unk5F)) {
+                func_800C3CE8(arg0->unk5F);
+            }
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801264_chkingjinjo);
+        }
+        if (func_80101DDC(arg0)) {
+            func_80102424(arg0, 6);
+        }
+        break;
+    case 8:
+        if (func_8010D248() && func_8010C500(arg0)) {
+            arg0->unk54 = func_8010CD28(arg0);
+        }
+        func_80102BF8(arg0, 0.1f, 4.0f, 80.0f);
+        if (func_80101E14(arg0, 0.3f)) {
+            if (arg0->unk5F && func_800C3D78(arg0->unk5F)) {
+                func_800C3CE8(arg0->unk5F);
+            }
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801274_chkingjinjo);
+        }
+        if (func_80101DDC(arg0)) {
+            func_80102424(arg0, 6);
+        }
+        break;
+    case 9:
+        func_80800AE4_chkingjinjo((s32)arg0, D_80801284_chkingjinjo);
+        break;
+    }
+    if (func_800DA298(0x360)) {
+        func_800F4EC8(func_800F54E4(), (s32)arg0->position, arg0->scale * 300.0f, 0.0f, arg0->scale * 90.0f);
+    } else if (func_801022E4(arg0) == 0x3A9 && func_80102320(arg0, 0.55f, 0.95f)) {
+        _suexpression_entrypoint_18(_suexpression_entrypoint_20(arg0), 1);
+    }
+    _suexpression_entrypoint_10(_suexpression_entrypoint_20(arg0), arg0->unk0, 0);
+}
 
 s32 func_80800634_chkingjinjo(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _gcgoto_entrypoint_1(s32, s32);
