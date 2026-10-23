@@ -1,6 +1,57 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/wave/idwave_entrypoint_0.s")
+/* extern */
+
+void idwave_entrypoint_0(s32 arg0, u32 arg1, u8 *arg2, s32 arg3, u8 *arg4) {
+    s32 pad[3];
+    f32 func_800136D0(f32);
+    f32 func_800138BC(f32);
+    f32 func_8001395C(f32);
+    f32 sp70;
+    f32 sp6C;
+    f32 temp_f20;
+    f32 temp_f20_2;
+    f32 temp_f22;
+    f32 temp_f26;
+    f32 temp_f28;
+    f32 temp_f2;
+    f32 temp_f30;
+    s16 temp_s4;
+    s16 temp_s5;
+    s32 temp_f16;
+    u32 temp_s6;
+    u32 var_s1;
+    u8 *var_s0;
+
+    temp_f26 = (*(f32 *)((s8 *)(arg4) + (4)));
+    temp_f28 = (*(f32 *)((s8 *)(arg4) + (8)));
+    temp_f30 = (*(f32 *)((s8 *)(arg4) + (0x10)));
+    sp70 = (*(f32 *)((s8 *)(arg4) + (0x14)));
+    sp6C = (*(f32 *)((s8 *)(arg4) + (0xC)));
+    var_s0 = arg2;
+    var_s1 = arg1;
+    temp_s4 = (*(s16 *)((s8 *)(arg4) + (0x28)));
+    temp_s5 = (*(s16 *)((s8 *)(arg4) + (0x2A)));
+    temp_s6 = (arg3 * 0x10) + arg1;
+    if (arg1 < temp_s6) {
+        do {
+            temp_f20 = func_800136D0((((f32) (*(s16 *)((s8 *)(var_s0) + (0))) - temp_f30) * 200.0f) + temp_f26);
+            temp_f22 = func_800136D0((((f32) (*(s16 *)((s8 *)(var_s0) + (4))) - sp70) * 200.0f) + temp_f28);
+            temp_f20_2 = func_8001395C(temp_f20);
+            temp_f2 = func_800138BC(temp_f22) + temp_f20_2;
+            temp_f2 *= (*(f32 *)((s8 *)(arg4) + (0x20)));
+            var_s1 += 0x10;
+            var_s0 += 0x10;
+            (*(s16 *)((s8 *)(var_s0) + (-0xE))) = (s16) (s32) (sp6C + temp_f2);
+            temp_f16 = (s32) (((temp_f2 / (*(f32 *)((s8 *)(arg4) + (0x24)))) * 50.0f) + 205.0f);
+            (*(s8 *)((s8 *)(var_s0) + (-4))) = (s8) ((s32) ((*(u8 *)((s8 *)(var_s1) + (-4))) * temp_f16) / 255);
+            (*(s8 *)((s8 *)(var_s0) + (-3))) = (s8) ((s32) ((*(u8 *)((s8 *)(var_s1) + (-3))) * temp_f16) / 255);
+            (*(s8 *)((s8 *)(var_s0) + (-2))) = (s8) ((s32) ((*(u8 *)((s8 *)(var_s1) + (-2))) * temp_f16) / 255);
+            (*(s16 *)((s8 *)(var_s0) + (-8))) = (s16) ((*(s16 *)((s8 *)(var_s1) + (-8))) + temp_s4);
+            (*(s16 *)((s8 *)(var_s0) + (-6))) = (s16) ((*(s16 *)((s8 *)(var_s1) + (-6))) + temp_s5);
+        } while (var_s1 < temp_s6);
+    }
+}
 
 void idwave_entrypoint_1(s32 arg0) 
 {
